@@ -1241,7 +1241,7 @@ let tophtml = `
         <div class="swiper">
             <div class="swiper-wrapper"></div>
         </div>
-        <a href="https://www.sparkpaws.com/collections/shop-all-2" class="ProductCollectionListItem__Link Button btn">${german ? 'Alle anzeigen' : 'Shop All'}</a>
+        <a href="https://www.sparkpaws.com/collections/shop-all-2" class="ProductCollectionListItem__Link Button btn" onclick="pushDataLayer('exp_imp_hp_b_bs_sa', 'Shop all', 'Button', 'Best Sellers');">${german ? 'Alle anzeigen' : 'Shop All'}</a>
     </div>
     <div class="cooling-vest jackets">
         <div class="container relative d-md-flex">
@@ -1260,7 +1260,7 @@ let tophtml = `
                 <p><b>${german ? 'Kühlwesten sind unverzichtbare Accessoires für Hunde, die sich im Sommer leicht überhitzen. ' : 'Cooling vests are essential accessories for dogs that easily overheat in the summer.'} </b></p>
                 <p>${german ? "Die Kühlweste reduziert die Körpertemperatur Ihres Hundes durch Verdunstung - alles, was Sie tun müssen, ist sie mit Wasser zu befeuchten, auszuwringen und Ihrem Hund anzulegen. Der Stoff ist speziell so konzipiert, dass er Wasser speichert und dadurch einen kühlenden Effekt erzeugt. Die Netzschichten ermöglichen die Luftzirkulation und reflektieren gleichzeitig Sonnenlicht, bieten zusätzlichen UV-Schutz und Schatten." : "The cooling vest reduces your dog’s body temperature by using evaporation - all you have to do is dampen it with water, wring it out, and put it on your pup. The fabric is specially designed to retain water, creating a cooling effect. The mesh layers allow air to circulate, while deflecting sunlight, offering extra UV protection and shading."}</p>
                 <p>${german ? 'Legen Sie die angefeuchtete Weste für einen zusätzlichen Kühlungseffekt bis zu 3 Minuten in den Gefrierschrank.' : 'Put the dampen vest in the freezer for en extra cooling effect for up to 3 minutes.'}</p>
-                <a href="https://www.sparkpaws.com/collections/dog-cooling-vest" class=" Button btn btn-white flex-center">
+                <a href="https://www.sparkpaws.com/collections/dog-cooling-vest" class=" Button btn btn-white flex-center" onclick="pushDataLayer('exp_imp_hp_b_ct_vp', 'View product', 'Button', 'ChillTech');">
                     <span>${german ? 'Produkte anzeigen' : 'View products'}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
                         <path d="M8.2418 13.7333L11.4751 10.5L8.2418 7.26665C7.9168 6.94165 7.9168 6.41665 8.2418 6.09165C8.5668 5.76665 9.0918 5.76665 9.4168 6.09165L13.2418 9.91665C13.5668 10.2417 13.5668 10.7667 13.2418 11.0917L9.4168 14.9166C9.0918 15.2416 8.5668 15.2416 8.2418 14.9166C7.92513 14.5916 7.9168 14.0583 8.2418 13.7333Z" fill="#344D79"/>
@@ -1315,7 +1315,7 @@ let tophtml = `
                     </a>
                 </li>
             </ul>
-            <a href="https://www.sparkpaws.com/pages/fabrics" class=" Button btn btn-white flex-center">
+            <a href="https://www.sparkpaws.com/pages/fabrics" class=" Button btn btn-white flex-center" onclick="pushDataLayer('exp_imp_hp_b_fl_e', 'Explore', 'Button', 'Fabric Lab');">
                 <span>${german ? 'ERKUNDEN' : 'EXPLORE'}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
                     <path d="M8.2418 13.7333L11.4751 10.5L8.2418 7.26665C7.9168 6.94165 7.9168 6.41665 8.2418 6.09165C8.5668 5.76665 9.0918 5.76665 9.4168 6.09165L13.2418 9.91665C13.5668 10.2417 13.5668 10.7667 13.2418 11.0917L9.4168 14.9166C9.0918 15.2416 8.5668 15.2416 8.2418 14.9166C7.92513 14.5916 7.9168 14.0583 8.2418 13.7333Z" fill="#344D79"/>
@@ -1328,7 +1328,7 @@ let tophtml = `
         <div class="swiper">
             <div class="swiper-wrapper"></div>
         </div>
-        <a href="https://www.sparkpaws.com/collections/4th-of-july-sale-1" class="ProductCollectionListItem__Link Button btn">${german ? 'Alle anzeigen' : 'Shop All'}</a>
+        <a href="https://www.sparkpaws.com/collections/4th-of-july-sale-1" class="ProductCollectionListItem__Link Button btn" onclick="pushDataLayer('exp_imp_hp_b_gd_sa', 'Shop all', 'Button', 'Great deals');">${german ? 'Alle anzeigen' : 'Shop All'}</a>
     </div>
     <div class="loox-review relative">
         <h2 class="text-md-center">${german ? 'Unsere zufriedenen Kunden ' : 'Our Happy Customers'}</h2>
@@ -1372,7 +1372,7 @@ let tophtml = `
                 </div>
                 <h3>WarmShield™ ${german ? 'Wasserdichte Jacken ' : 'Waterproof Jackets'}</h3>
                 <p>${german ? 'Die WarmShield™ Wasserdichte Jacke ist ein eleganter, von Technikbekleidung inspirierter Parka, der Ihren Hund an den kältesten Wintertagen trocken und warm hält. ' : 'WarmShield™ Waterproof Jacket is a sleek tech-wear inspired parka that will keep your dog dry and warm on the coldest winter days.'}</p>
-                <a href="https://www.sparkpaws.com/collections/warmshield-waterproof-jacket" class=" Button btn btn-white flex-center">
+                <a href="https://www.sparkpaws.com/collections/warmshield-waterproof-jacket" class=" Button btn btn-white flex-center" onclick="pushDataLayer('exp_imp_hp_b_ws_vp', 'View product', 'Button', 'Warm Shield');">
                     <span>${german ? 'Produkte anzeigen' : 'View products'}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
                         <path d="M8.2418 13.7333L11.4751 10.5L8.2418 7.26665C7.9168 6.94165 7.9168 6.41665 8.2418 6.09165C8.5668 5.76665 9.0918 5.76665 9.4168 6.09165L13.2418 9.91665C13.5668 10.2417 13.5668 10.7667 13.2418 11.0917L9.4168 14.9166C9.0918 15.2416 8.5668 15.2416 8.2418 14.9166C7.92513 14.5916 7.9168 14.0583 8.2418 13.7333Z" fill="#344D79"/>
@@ -1570,6 +1570,19 @@ let mut = new MutationObserver(function (muts) {
                 }
             }
         })
+
+        document.querySelector('button.Header__Icon Icon-Wrapper').addEventListener('click', () => {
+            pushDataLayer('exp_imp_hp_v_sm_m', 'Menu', 'Visibility', 'Sidebar menu');
+        })
+
+        document.querySelectorAll('.SidebarMenu__Nav .Collapsible').forEach(item => {
+            item.firstElementChild.addEventListener('click', (e) => {
+                pushDataLayer('exp_imp_hp_m_sm_in', e.target.innerText, 'Menu', 'Sidebar menu');
+            })
+        })
+        document.querySelector('.Drawer__Close').addEventListener('click', (e) => {
+            pushDataLayer('exp_imp_hp_c_sm_m', 'Menu', 'Close', 'Sidebar menu');
+        })
     }
 
     mut.observe(document, optionMut);
@@ -1679,6 +1692,100 @@ let mut = new MutationObserver(function (muts) {
                 pushDataLayer('exp_imp_hp_v_ebc_cn', item.innerText, 'Button', 'Explore by category');
             })
         })
+
+        document.querySelectorAll('.fabric_content li a').forEach(item => {
+            item.addEventListener('click', () => {
+                pushDataLayer('exp_imp_hp_b_fl_cn', item.innerText, 'Button', 'Fabric Lab');
+            })
+        })
+  
+
+        // Об'єкт для відстеження видимості кожного елемента та їхнього часу знаходження у видимій області
+        const visibilityMap = new Map();
+        // Таймер для визначення затримки перед викликом функції pushDataLayer
+        let visibilityTimer;
+        // Функція, яка буде викликана при видимості елементів з різними класами
+        function handleVisibility(className, label) {
+            const targetElements = document.querySelectorAll(className);
+
+            visibilityTimer = setTimeout(() => {
+                targetElements.forEach((targetElement) => {
+                    const rect = targetElement.getBoundingClientRect();
+
+                    // Перевірка, чи елемент видимий в видимій області
+                    const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+
+                    if (isVisible && !visibilityMap.has(targetElement)) {
+                        // Елемент вперше стає видимим, встановлюємо час початку знаходження у видимій області
+                        visibilityMap.set(targetElement, Date.now());
+                    } else if (!isVisible && visibilityMap.has(targetElement)) {
+                        // Елемент більше не видно, вираховуємо час знаходження у видимій області і викликаємо функцію pushDataLayer
+                        const startTime = visibilityMap.get(targetElement);
+                        const focusTime = Date.now() - startTime;
+                            if (targetElement.className.includes('explore_category') ) {
+                                pushDataLayer('exp_imp_hp_v_ebc_ft', focusTime, 'Visibility', 'Explore by category');
+                            }
+                            if (targetElement.className.includes('high-quality')) {
+                                pushDataLayer('exp_imp_hp_v_ben_ft', focusTime, 'Visibility', 'Benefits');
+                            }
+                            if (targetElement.className.includes('best-sellers')) {
+                                pushDataLayer('exp_imp_hp_v_bs_ft', focusTime, 'Visibility', 'Best Sellers');
+                            }
+                            if (targetElement.className.includes('cooling-vest')) {
+                                pushDataLayer('exp_imp_hp_v_ct_ft', focusTime, 'Visibility', 'ChillTech');
+                            }
+                            if (targetElement.className.includes('fabric_content')) {
+                                pushDataLayer('exp_imp_hp_v_fl_ft', focusTime, 'Visibility', 'Fabric Lab');
+                            }
+                            if (targetElement.className.includes('great-deals')) {
+                                pushDataLayer('exp_imp_hp_v_gd_ft', focusTime, 'Visibility', 'Great deals');
+                            }
+                            if (targetElement.className.includes('loox-review')) {
+                                pushDataLayer('exp_imp_hp_v_ohc_ft', focusTime, 'Visibility', 'Our happy customerrs');
+                            }
+                            if (targetElement.className.includes('waterproof-jackets')) {
+                                pushDataLayer('exp_imp_hp_v_ws_ft', focusTime, 'Visibility', 'Warm Shield');
+                            }
+                            if (targetElement.className.includes('benefits')) {
+                                pushDataLayer('exp_imp_hp_v_ab_ft', focusTime, 'Visibility', 'Additional benefits');
+                            }
+                            if (targetElement.className.includes('trustpilot-widget')) {
+                                pushDataLayer('exp_imp_hp_v_tr_ft', focusTime, 'Visibility', 'Trustpilot');
+                            }
+                        visibilityMap.delete(targetElement);
+                    }
+                });
+            }, 100)
+        }
+
+
+        // Викликаємо функцію handleVisibility для перевірки видимості кожного елемента
+        handleVisibility('.explore_category')
+        handleVisibility('.high-quality')
+        handleVisibility('.best-sellers')
+        handleVisibility('.cooling-vest')
+        handleVisibility('.fabric_content')
+        handleVisibility('.great-deals')
+        handleVisibility('.loox-review')
+        handleVisibility('.waterproof-jackets')
+        handleVisibility('.benefits')
+        handleVisibility('.trustpilot-widget')
+        // Додаємо обробник події scroll для подальшої перевірки видимості при прокрутці
+        window.addEventListener('scroll', () => {
+            handleVisibility('.explore_category')
+            handleVisibility('.high-quality')
+            handleVisibility('.best-sellers')
+            handleVisibility('.cooling-vest')
+            handleVisibility('.fabric_content')
+            handleVisibility('.great-deals')
+            handleVisibility('.loox-review')
+            handleVisibility('.waterproof-jackets')
+            handleVisibility('.benefits')
+            handleVisibility('.trustpilot-widget')
+            
+            
+        });
+        
   
         //best-sellers
         let sliders = '';
@@ -1700,6 +1807,12 @@ let mut = new MutationObserver(function (muts) {
         })
 
         document.querySelector('.best-sellers .swiper-wrapper').innerHTML = sliders;
+        //event
+        document.querySelectorAll('.best-sellers .swiper-slide a').forEach(item => {
+            item.addEventListener('click', () => {
+                pushDataLayer('exp_imp_hp_p_bs_pn', item.parentElement.querySelector('h2').innerText, 'Product', 'Best Sellers');
+            })
+        })
 
         //great-deals
         let sliders2 = '';
@@ -1719,7 +1832,7 @@ let mut = new MutationObserver(function (muts) {
             sliders2 += `<div class="swiper-slide">
                             <div class="ProductItem " style="visibility: inherit; opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">
                                 <div class="ProductItem__Wrapper">
-                                    <a href="/products/${objHoliday[i].handle}" class="ProductItem__ImageWrapper ProductItem__ImageWrapper--withAlternateImage">
+                                    <a href="/products/${objHoliday[i].handle}" class="ProductItem__ImageWrapper ProductItem__ImageWrapper--withAlternateImage"  onclick="pushDataLayer('exp_imp_hp_p_gd_pn', ${objHoliday[i].title}, 'Product', 'Great deals');">
                                         <div class="AspectRatio AspectRatio--square" style="max-width: 2000px;  --aspect-ratio: 1.0">
                                             <img class="ProductItem__Image ProductItem__Image--alternate Image--fadeIn lazyautosizes Image--lazyLoaded" data-widths="[200,300,400,600,800,900,1000,1200]" data-sizes="auto" alt="${objHoliday[i].title}" src="${objHoliday[i].images[1]}">
                                             <span class="Image__Loader"></span>
@@ -1729,7 +1842,7 @@ let mut = new MutationObserver(function (muts) {
                                     <div class="ProductItem__LabelList"></div>
                                     <div class="ProductItem__Info ProductItem__Info--center">
                                         <h2 class="ProductItem__Title Heading">
-                                            <a href="/products/${objHoliday[i].handle}">${objHoliday[i].title}</a>
+                                            <a href="/products/${objHoliday[i].handle}" onclick="pushDataLayer('exp_imp_hp_p_gd_pn', ${objHoliday[i].title}, 'Product', 'Great deals');">${objHoliday[i].title}</a>
                                         </h2>
                         
                                         <div class="loox-rating">
@@ -1765,7 +1878,7 @@ let mut = new MutationObserver(function (muts) {
             
         }
         document.querySelector('.great-deals .swiper-wrapper').innerHTML = sliders2;
-       
+  
         let sliders3 = '';
 
         for (let i = 0; i < objLooxReview.length; i++) {
@@ -1797,11 +1910,11 @@ let mut = new MutationObserver(function (muts) {
                                     </p>
                                 </div>
                                 <p class="text">${objLooxReview[i].text} </p>
-                                <a href="${objLooxReview[i].urlProduct}" class="d-flex items-center loox_product">
+                                <a href="${objLooxReview[i].urlProduct}" class="d-flex items-center loox_product" onclick=" pushDataLayer('exp_imp_hp_r_ohc_rn', ${objLooxReview[i].titleProduct}, 'Review', 'Our happy customerrs');">
                                     <img src="${objLooxReview[i].imageProduct}" alt="${objLooxReview[i].titleProduct}">
                                     <span>${objLooxReview[i].titleProduct}</span>
                                 </a>
-                                <a href="https://loox.io/s/E1WNN9nzHY" class=" Button btn btn-white flex-center">
+                                <a href="https://loox.io/s/E1WNN9nzHY" class=" Button btn btn-white flex-center" onclick="pushDataLayer('exp_imp_hp_b_ohc_rfr', 'Read full review', 'Button', 'Our happy customerrs');">
                                     <span>${german ? 'Lesen Sie die vollständige Bewertung' : 'Read full review'}</span>
                                 </a>
                             </div>
@@ -1809,6 +1922,7 @@ let mut = new MutationObserver(function (muts) {
         }
 
         document.querySelector('.loox-review .swiper-wrapper').innerHTML = sliders3;
+
 
         //init Swiper slider
         const waitSwiper = setInterval(() => {
@@ -1854,7 +1968,19 @@ let mut = new MutationObserver(function (muts) {
                             },
                         });
                     }
+
+                    const swiper = slider.swiper;
+                    swiper.on('slideChange', () => {
+                        if (slider.closest('.best-sellers')) {
+                            pushDataLayer('exp_imp_hp_s_bs_v', 'Vertical', 'Scroll', 'Best Sellers');
+                        } else if (slider.closest('.great-deals')) {
+                            pushDataLayer('exp_imp_hp_s_gd_v', 'Vertical', 'Scroll', 'Great deals');
+                        } else {
+                            pushDataLayer('exp_imp_hp_s_ohc_v', 'Vertical', 'Scroll', 'Our happy customerrs');
+                        }
+                    });
                 })
+              
             }
         });
     }
@@ -1874,51 +2000,3 @@ let mut = new MutationObserver(function (muts) {
     mut.observe(document, optionMut);
 })
 mut.observe(document, optionMut);
-
-
-// function handleVisibility(className) {
-//     const targetElements = document.querySelector(className);
-  
-//     targetElements.forEach((targetElement) => {
-//       const rect = targetElement.getBoundingClientRect();
-  
-//       // Перевірка, чи блок видимий в видимій області
-//       if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-//         // Вираховуємо час, який блок знаходиться у видимій області
-//         const focusTime = Date.now() - startTime;
-
-//         if (targetElement.className.includes('explore_category') ) {
-//             const focusTime = Date.now() - startTime;
-//             pushDataLayer('exp_imp_hp_v_ebc_ft', focusTime, 'Visibility', 'Explore by category');
-//         }
-//         if (targetElement.className.includes('high-quality')) {
-//             pushDataLayer('exp_imp_hp_v_ben_ft', focusTime, 'Visibility', 'Benefits');
-//         }
-//         if (targetElement.className.includes('best-sellers')) {
-//             pushDataLayer('exp_imp_hp_v_bs_ft', focusTime, 'Visibility', 'Best Sellers');
-//         }
-//         // Відмінюємо обробник події scroll, щоб він не викликався більше одного разу
-//         window.removeEventListener('scroll', () => handleVisibility(className, label));
-//       }
-//     });
-//   }
-  
-//   // Обробник події завантаження сторінки
-//   function handlePageLoad() {
-  
-//     startTime = Date.now();
-  
-//     handleVisibility('.explore_category')
-//     handleVisibility('.high-quality')
-//     handleVisibility('.best-sellers')
-
-//     window.addEventListener('scroll', () => {
-//       handleVisibility('.explore_category')
-//       handleVisibility('.high-quality')
-//       handleVisibility('.best-sellers')
-//     });
-//   }
-  
-//   // Додаємо обробник події завантаження сторінки
-//   window.addEventListener('load', handlePageLoad);
-  
