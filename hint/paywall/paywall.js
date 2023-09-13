@@ -790,7 +790,7 @@ section[class*="styles_experts"],
       if (!$el('.crs_new_content')) {
         $el('[class*=styles_contentWrapper]').insertAdjacentHTML('afterbegin', content)
         $el('[class*="footerButton"] [class*="button"]').innerText = 'Get My Prediction'
-        if (!$el('[class*="timerCustomStyles"]').innerText.includes('Your Personilized')) {
+        if (!$el('[class*="timerCustomStyles"]').innerText.includes('Your Personalized')) {
           $el('[class*="timerCustomStyles"]').insertAdjacentHTML('afterbegin', 'Your Personalized Offer Reserved&nbsp;')
         }
         $$el('.crs_btn').forEach((item) => {
