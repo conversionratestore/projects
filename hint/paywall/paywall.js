@@ -459,6 +459,7 @@ section[class*="styles_experts"],
 .crs_palms ul li {
   width: 100%;
   display: flex;
+  align-items: center;
   border-radius: 8px;
   border: 1px solid #DEE5F9;
   padding: 16px 16px 16px 0;
