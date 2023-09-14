@@ -1739,7 +1739,7 @@ let mut = new MutationObserver(function (muts) {
                         if (targetElement.closest('.cooling-vest')) {
                             pushDataLayer('exp_imp_hp_v_ct_ft', focusTime, 'Visibility', 'ChillTech');
                         }
-                        if (targetElement.className.includes('fabric_content')) {
+                        if (targetElement.closest('.fabric_content')) {
                             pushDataLayer('exp_imp_hp_v_fl_ft', focusTime, 'Visibility', 'Fabric Lab');
                         }
                         if (targetElement.className.includes('great-deals')) {
@@ -1748,7 +1748,7 @@ let mut = new MutationObserver(function (muts) {
                         if (targetElement.closest('.loox-review') && index == 0) {
                             pushDataLayer('exp_imp_hp_v_ohc_ft', focusTime, 'Visibility', 'Our happy customerrs');
                         }
-                        if (targetElement.className.includes('waterproof-jackets')) {
+                        if (targetElement.closest('.waterproof-jackets')) {
                             pushDataLayer('exp_imp_hp_v_ws_ft', focusTime, 'Visibility', 'Warm Shield');
                         }
                         if (targetElement.className.includes('benefits')) {
