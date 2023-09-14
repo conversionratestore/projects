@@ -44,33 +44,33 @@ let objLooxReview = [
         'author': 'Kayla W. ',
         'text': `I had purchased a no-pull harness for my staffy from a pet store and though it worked, it left red raw spots all under his arms. I wanted a harness that would not do this but also give me the control to walk him as he is quite the puller! I had seen ads for spark paws many times but it always seemed slightly out of my price range! But I took a chance and purchased the harness set in army green as well as a tactical collar because I have ocd about matching and I honestly can’t say enough good things about it! I even went back and purchased the lime green and blue collar and leash set for my Dane! I am extremely in love with this product and encourage anybody to get it! It is expensive but you are paying for the quality of this product and it is completely worth the money! I will be purchasing all my collar and harnesses from them from now on! Though I am not complaining I do wish they had extra large in the harnesses and sweaters and such as my Dane is a big boy and the large size doesn’t fit his giant chest (he’s 109cm around) but otherwise extremely happy! 10/10 recommended!`,
         'image': 'https://images.loox.io/uploads/2023/7/31/kkgSLCPjy.jpg',
-        'imageProduct': 'https://www.sparkpaws.com/cdn/shop/products/1_0fa2ab35-db64-4608-a1a2-04dac5e58d70_1000x.png',
+        'imageProduct': '/cdn/shop/products/1_0fa2ab35-db64-4608-a1a2-04dac5e58d70_1000x.png',
         'titleProduct': 'Comfort Control No-Pull Dog Harness Set - Army Green',
-        'urlProduct': 'http://www.sparkpaws.com/products/comfort-control-no-pull-dog-harness-set-army-green',
+        'urlProduct': '/products/comfort-control-no-pull-dog-harness-set-army-green',
     },
     {
         'author':'Sabrina G.',
         'text': `Such a great lightweight, waterproof and lightweight coat. So many details to adjust and reflective stripes. Beautiful color.Mascha is a boxer girl and wears size 3xl. We are excited!`,
         'image': 'https://images.loox.io/uploads/2023/8/8/p3AAX2VXI.jpg',
-        'imageProduct': 'https://www.sparkpaws.com/cdn/shop/files/Untitleddesign_1000x.jpg',
+        'imageProduct': '/cdn/shop/files/Untitleddesign_1000x.jpg',
         'titleProduct': 'Breatheshield™ Dog Raincoat - Teal White Purple',
-        'urlProduct': 'http://www.sparkpaws.com/products/dog-raincoat-acqua-fresh',
+        'urlProduct': '/products/dog-raincoat-acqua-fresh',
     }, 
     {
         'author': 'Andrea R.',
         'text': `I got the human hoodie just to be cute and match my pup, but this is legit the most comfortable hoodie I have ever owned! I need this in EVERY colour! ❤️`,
         'image': 'https://images.loox.io/uploads/2022/4/21/Vkb07fP5N3.jpg',
-        'imageProduct': 'https://www.sparkpaws.com/cdn/shop/products/25_1000x.png',
+        'imageProduct': '/cdn/shop/products/25_1000x.png',
         'titleProduct': 'Vintage Navy Grey Sky-Dye Velvet Human Hoodie',
-        'urlProduct': 'https://www.sparkpaws.com/products/vintage-grey-sky-human-hoodie-matching',
+        'urlProduct': '/products/vintage-grey-sky-human-hoodie-matching',
     }, 
     {
         'author': 'Chloé F.',
         'text': `As always, the product lives up to its promise, Sky tends to pull and this set provides better control, so you can work on walking on a leash. The quality is insane and the safety is guaranteed, we're delighted and Sky has no skin problems with this collar thanks to the high quality material used, thanks again Sparkpaws another success for you 🫶🏼`,
         'image': 'https://images.loox.io/uploads/2023/8/28/x4IQvE9Hi.jpg',
-        'imageProduct': 'https://www.sparkpaws.com/cdn/shop/products/big-dog_-pitbull_-frenchie-dog-leash_SET_07_699f82a5-1735-4588-b98e-18bb7a5e4bb1_1600x.jpg',
+        'imageProduct': '/cdn/shop/products/big-dog_-pitbull_-frenchie-dog-leash_SET_07_699f82a5-1735-4588-b98e-18bb7a5e4bb1_1600x.jpg',
         'titleProduct': 'Tactical Dog Collar Set - Pastel Icing (2"/5cm)',
-        'urlProduct': 'https://www.sparkpaws.com/products/tactical-collar-and-leash-set-pastel-rainbow',
+        'urlProduct': '/products/tactical-collar-and-leash-set-pastel-rainbow',
     }, 
     {
         'author': 'Melinda M.',
@@ -100,7 +100,7 @@ let objLooxReview = [
         'author': 'Chelsey M.',
         'text': `Maggie and I LOVE our sweaters!! The material is so soft!! Maggie is an English bulldog and she measures a 3XL. Definitely will be ordering more! Fast shipping, nice packaging and great quality!`,
         'image': 'https://images.loox.io/uploads/2022/4/21/NyJoqz54h.jpg',
-        'imageProduct': 'https://www.sparkpaws.com/cdn/shop/files/66_1600x.jpg',
+        'imageProduct': '/cdn/shop/files/66_1600x.jpg',
         'titleProduct': 'Pink and Blue Sky-Dye Velvet Dog Hoodie',
         'urlProduct': 'https://sparkpaws-global.myshopify.com/products/pink-blue-sky-dye-dog-hoodie?ref=loox-feed&post_id=41nfrIsk3&rating=5&variant=41392845226141&utm_source=referral&utm_medium=post&utm_campaign=loox-feed',
     }, 
@@ -426,10 +426,10 @@ let style = `
         background: no-repeat center / cover;
     }
     .jackets.cooling-vest .container > div:first-child {
-        background-image: url(https://www.sparkpaws.com/cdn/shop/files/7_eaa59b70-5ca3-484c-92b2-427143f07446_1000x.jpg);
+        background-image: url(/cdn/shop/files/7_eaa59b70-5ca3-484c-92b2-427143f07446_1000x.jpg);
     }
     .jackets.waterproof-jackets .container > div:first-child {
-        background-image: url(https://www.sparkpaws.com/cdn/shop/products/dogwinterjacketcoat_clothesforbigdogs_pitbulls_bulldogs_8_7c34700f-b395-4273-94ec-c6146fe1fd09_1200x.jpg?v=1667928798);
+        background-image: url(/cdn/shop/products/dogwinterjacketcoat_clothesforbigdogs_pitbulls_bulldogs_8_7c34700f-b395-4273-94ec-c6146fe1fd09_1200x.jpg?v=1667928798);
     }
     .jackets .absolute {
         position: absolute;
@@ -898,7 +898,7 @@ let style = `
         }
         .fabric {
             min-height: 280px;
-            background-image: url(https://www.sparkpaws.com/cdn/shop/files/fabric_lab_desktop_e1d1a19b-5074-4fa0-b8a5-88145f156b16_1800x.jpg);
+            background-image: url(/cdn/shop/files/fabric_lab_desktop_e1d1a19b-5074-4fa0-b8a5-88145f156b16_1800x.jpg);
         }
         .fabric_content .container {
             padding: 32px 24px 60px;
@@ -939,6 +939,7 @@ let style = `
             position: absolute;
             top: 50%;
             left: 50%;
+            z-index: 1;
         }
         .swiper-button-prev {
             transform: translateX(-630px);
@@ -1138,85 +1139,85 @@ let tophtml = `
         <h2 class="text-md-center">${german ? 'Erkunden nach Kategorie ' : 'Explore by Category'}</h2>
         <ul class="d-flex flex-wrap">
             <li>
-                <a href="https://www.sparkpaws.com/collections/tactical-collars" class="d-md-block d-flex items-center">
-                    <img class="d-md-block d-none scale-x" src="https://www.sparkpaws.com/cdn/shop/products/bigdog_pitbull_frenchiedogleash_pinkbluegradient_1000x.jpg" alt="Dog Harness Sets">
+                <a href="/collections/tactical-collars" class="d-md-block d-flex items-center">
+                    <img class="d-md-block d-none scale-x" src="/cdn/shop/products/bigdog_pitbull_frenchiedogleash_pinkbluegradient_1000x.jpg" alt="Dog Harness Sets">
                     <p>${german ? 'Hundehalsband-Sets' : 'Dog <br class="d-md-block d-none">  Collar Sets'}</p>
                     <img class="d-md-none" src="${dir}category-6.png" alt="Dog Collar Sets">
                 </a>
             </li>
             <li>
-                <a href="https://www.sparkpaws.com/collections/dog-hoodie" class="d-md-block d-flex items-center">
-                    <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/products/1_35856d01-1b3d-4e5d-8adf-47931bcf8aa6_1600x.jpg" alt="Dog Hoodies">
+                <a href="/collections/dog-hoodie" class="d-md-block d-flex items-center">
+                    <img class="d-md-block d-none" src="/cdn/shop/products/1_35856d01-1b3d-4e5d-8adf-47931bcf8aa6_1600x.jpg" alt="Dog Hoodies">
                     <p>${german ? 'Hunde Kapuzenpullover' : 'Dog <br>  Hoodies'}</p>
                     <img class="d-md-none" src="${dir}category-7.png" alt="Dog Hoodies">
                 </a>
             </li>
             <li>
-                <a href="https://www.sparkpaws.com/collections/jewelry-for-dogs" class="d-md-block d-flex items-center">
-                    <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/products/CubanLinkLeashProductPics_400x.jpg" alt="Dog Chains & Tags">
+                <a href="/collections/jewelry-for-dogs" class="d-md-block d-flex items-center">
+                    <img class="d-md-block d-none" src="/cdn/shop/products/CubanLinkLeashProductPics_400x.jpg" alt="Dog Chains & Tags">
                     <p>${german ? 'Hundeketten & Anhänger' : 'Dog <br class="d-md-block d-none">  Chains & Tags'}</p>
                     <img class="d-md-none" src="${dir}category-8.png" alt="Dog Chains & Tags">
                 </a>
             </li>
             <li>
-                <a href="https://www.sparkpaws.com/collections/comfort-control-no-pull-dog-harness" class="d-md-block d-flex items-center">
-                    <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/products/bigdog_pitbull_frenchiedogleash_2.0_PB_13_400x.jpg" alt="Dog Collar Sets">
+                <a href="/collections/comfort-control-no-pull-dog-harness" class="d-md-block d-flex items-center">
+                    <img class="d-md-block d-none" src="/cdn/shop/products/bigdog_pitbull_frenchiedogleash_2.0_PB_13_400x.jpg" alt="Dog Collar Sets">
                     <p>${german ? 'Hundegeschirr-Sets ' : 'Dog <br class="d-md-block d-none"> Harness Sets'}</p>
                     <img class="d-md-none" src="${dir}category-9.png" alt="Dog Harness Sets">
                 </a>
             </li>
             <li>
-                <a href="https://www.sparkpaws.com/collections/dog-coats-jackets" class="d-md-block d-flex items-center">
-                    <img class="d-md-block d-none"  src="https://www.sparkpaws.com/cdn/shop/products/dogwinterjacketcoat_clothesforbigdogs_pitbulls_bulldogs_8_7c34700f-b395-4273-94ec-c6146fe1fd09_400x.jpg" alt="Dog Jackets">
+                <a href="/collections/dog-coats-jackets" class="d-md-block d-flex items-center">
+                    <img class="d-md-block d-none"  src="/cdn/shop/products/dogwinterjacketcoat_clothesforbigdogs_pitbulls_bulldogs_8_7c34700f-b395-4273-94ec-c6146fe1fd09_400x.jpg" alt="Dog Jackets">
                     <p>${german ? 'Hundemäntel' : 'Dog <br>  Jackets'}</p>
                     <img class="d-md-none" src="${dir}category-10.png" alt="Dog Jackets">
                 </a>
             </li>
             <li>
-                <a href="https://www.sparkpaws.com/collections/knit-dog-sweater" class="d-md-block d-flex items-center">
-                    <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/products/TeddyBearKnitDogSweater-Black-modelpic3_400x.jpg" alt="Dog Knit Sweaters">
+                <a href="/collections/knit-dog-sweater" class="d-md-block d-flex items-center">
+                    <img class="d-md-block d-none" src="/cdn/shop/products/TeddyBearKnitDogSweater-Black-modelpic3_400x.jpg" alt="Dog Knit Sweaters">
                     <p>${german ? 'Hundestrick Sweater' : 'Dog <br class="d-md-block d-none">  Knit Sweaters'}</p>
                     <img class="d-md-none" src="${dir}category-11.png" alt="Dog Knit Sweaters">
                 </a>
             </li>
             <li>
-                <a href="https://www.sparkpaws.com/collections/matching-human-and-dog-clothes" class="d-md-block d-flex items-center">
-                    <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/products/62_400x.jpg" alt="Human Matching Sets">
+                <a href="/collections/matching-human-and-dog-clothes" class="d-md-block d-flex items-center">
+                    <img class="d-md-block d-none" src="/cdn/shop/products/62_400x.jpg" alt="Human Matching Sets">
                     <p>${german ? 'Menschliche Partner-Sets' : 'Human  <br> Matching Sets'}</p>
                     <img class="d-md-none" src="${dir}category-12.png" alt="Human Matching Sets">
                 </a>
             </li>
             <li>
-                <a href="https://www.sparkpaws.com/collections/dog-hats-accessories" class="d-md-block d-flex items-center">
-                    <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/products/WeChatImage_20221018165946_400x.jpg" alt="Dog Hats & Warmers">
+                <a href="/collections/dog-hats-accessories" class="d-md-block d-flex items-center">
+                    <img class="d-md-block d-none" src="/cdn/shop/products/WeChatImage_20221018165946_400x.jpg" alt="Dog Hats & Warmers">
                     <p>${german ? 'Hundehüte & Wärmer ' : 'Dog Hats &  <br> Warmers'}</p>
                     <img class="d-md-none" src="${dir}category-13.png" alt="Dog Hats & Warmers">
                 </a>
             </li>
             <li>
-                <a href="https://www.sparkpaws.com/collections/dog-shoes-boots" class="d-md-block d-flex items-center">
-                    <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/products/dogshoebootswinterbootieshotpavementprotector_5_b2f3c3f9-259d-46e0-aeac-f360c9b3200e_900x.jpg" alt="Dog Shoes & Boots">
+                <a href="/collections/dog-shoes-boots" class="d-md-block d-flex items-center">
+                    <img class="d-md-block d-none" src="/cdn/shop/products/dogshoebootswinterbootieshotpavementprotector_5_b2f3c3f9-259d-46e0-aeac-f360c9b3200e_900x.jpg" alt="Dog Shoes & Boots">
                     <p>${german ? 'Hundeschuhe & Stiefel ' : 'Dog <br class="d-md-block d-none">  Shoes & Boots'}</p>
                     <img class="d-md-none" src="${dir}category-14.png" alt="Dog Shoes & Boots">
                 </a>
             </li>
             <li>
-                <a href="https://www.sparkpaws.com/collections/dog-pajama-onesies" class="d-md-block d-flex items-center">
-                    <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/files/87_12a96df8-d5cb-4015-9043-802758cddf13_900x.jpg" alt="Dog Pajamas">
+                <a href="/collections/dog-pajama-onesies" class="d-md-block d-flex items-center">
+                    <img class="d-md-block d-none" src="/cdn/shop/files/87_12a96df8-d5cb-4015-9043-802758cddf13_900x.jpg" alt="Dog Pajamas">
                     <p>${german ? 'Hundeschlafanzüge' : 'Dog  <br> Pajamas'}</p>
                     <img class="d-md-none" src="${dir}category-15.png" alt="Dog Pajamas">
                 </a>
             </li>
             <li>
-                <a href="https://www.sparkpaws.com/collections/dog-rainncoat" class="d-md-block d-flex items-center">
-                    <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/files/8-dogclothes_hoodie_sweater_apparel_jacket_bigdogs_bulldogs_400x.jpg" alt="Dog Raincoats">
+                <a href="/collections/dog-rainncoat" class="d-md-block d-flex items-center">
+                    <img class="d-md-block d-none" src="/cdn/shop/files/8-dogclothes_hoodie_sweater_apparel_jacket_bigdogs_bulldogs_400x.jpg" alt="Dog Raincoats">
                     <p>${german ? 'Hunde-Regenmäntel ' : 'Dog  <br> Raincoats'}</p>
                     <img class="d-md-none" src="${dir}category-16.png" alt="Dog Raincoats">
                 </a>
             </li>
             <li>
-                <a href="https://www.sparkpaws.com/collections/dog-cooling-vest" class="d-md-block d-flex items-center">
-                    <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/files/27_54389a73-c3e8-4455-b637-c8504fe5b531_1000x.jpg" alt="Dog Cooling Vests">
+                <a href="/collections/dog-cooling-vest" class="d-md-block d-flex items-center">
+                    <img class="d-md-block d-none" src="/cdn/shop/files/27_54389a73-c3e8-4455-b637-c8504fe5b531_1000x.jpg" alt="Dog Cooling Vests">
                     <p>${german ? 'Hunde-Kühlwesten' : 'Dog  <br class="d-md-block d-none"> Cooling Vests'}</p>
                     <img class="d-md-none" src="${dir}category-17.png" alt="Dog Cooling Vests">
                 </a>
@@ -1241,7 +1242,7 @@ let tophtml = `
         <div class="swiper">
             <div class="swiper-wrapper"></div>
         </div>
-        <a href="https://www.sparkpaws.com/collections/shop-all-2" class="ProductCollectionListItem__Link Button btn" onclick="pushDataLayer('exp_imp_hp_b_bs_sa', 'Shop all', 'Button', 'Best Sellers');">${german ? 'Alle anzeigen' : 'Shop All'}</a>
+        <a href="/collections/shop-all-2" class="ProductCollectionListItem__Link Button btn" onclick="pushDataLayer('exp_imp_hp_b_bs_sa', 'Shop all', 'Button', 'Best Sellers');">${german ? 'Alle anzeigen' : 'Shop All'}</a>
     </div>
     <div class="cooling-vest jackets">
         <div class="container relative d-md-flex">
@@ -1260,7 +1261,7 @@ let tophtml = `
                 <p><b>${german ? 'Kühlwesten sind unverzichtbare Accessoires für Hunde, die sich im Sommer leicht überhitzen. ' : 'Cooling vests are essential accessories for dogs that easily overheat in the summer.'} </b></p>
                 <p>${german ? "Die Kühlweste reduziert die Körpertemperatur Ihres Hundes durch Verdunstung - alles, was Sie tun müssen, ist sie mit Wasser zu befeuchten, auszuwringen und Ihrem Hund anzulegen. Der Stoff ist speziell so konzipiert, dass er Wasser speichert und dadurch einen kühlenden Effekt erzeugt. Die Netzschichten ermöglichen die Luftzirkulation und reflektieren gleichzeitig Sonnenlicht, bieten zusätzlichen UV-Schutz und Schatten." : "The cooling vest reduces your dog’s body temperature by using evaporation - all you have to do is dampen it with water, wring it out, and put it on your pup. The fabric is specially designed to retain water, creating a cooling effect. The mesh layers allow air to circulate, while deflecting sunlight, offering extra UV protection and shading."}</p>
                 <p>${german ? 'Legen Sie die angefeuchtete Weste für einen zusätzlichen Kühlungseffekt bis zu 3 Minuten in den Gefrierschrank.' : 'Put the dampen vest in the freezer for en extra cooling effect for up to 3 minutes.'}</p>
-                <a href="https://www.sparkpaws.com/collections/dog-cooling-vest" class=" Button btn btn-white flex-center" onclick="pushDataLayer('exp_imp_hp_b_ct_vp', 'View product', 'Button', 'ChillTech');">
+                <a href="/collections/dog-cooling-vest" class=" Button btn btn-white flex-center" onclick="pushDataLayer('exp_imp_hp_b_ct_vp', 'View product', 'Button', 'ChillTech');">
                     <span>${german ? 'Produkte anzeigen' : 'View products'}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
                         <path d="M8.2418 13.7333L11.4751 10.5L8.2418 7.26665C7.9168 6.94165 7.9168 6.41665 8.2418 6.09165C8.5668 5.76665 9.0918 5.76665 9.4168 6.09165L13.2418 9.91665C13.5668 10.2417 13.5668 10.7667 13.2418 11.0917L9.4168 14.9166C9.0918 15.2416 8.5668 15.2416 8.2418 14.9166C7.92513 14.5916 7.9168 14.0583 8.2418 13.7333Z" fill="#344D79"/>
@@ -1315,7 +1316,7 @@ let tophtml = `
                     </a>
                 </li>
             </ul>
-            <a href="https://www.sparkpaws.com/pages/fabrics" class=" Button btn btn-white flex-center" onclick="pushDataLayer('exp_imp_hp_b_fl_e', 'Explore', 'Button', 'Fabric Lab');">
+            <a href="/pages/fabrics" class=" Button btn btn-white flex-center" onclick="pushDataLayer('exp_imp_hp_b_fl_e', 'Explore', 'Button', 'Fabric Lab');">
                 <span>${german ? 'ERKUNDEN' : 'EXPLORE'}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
                     <path d="M8.2418 13.7333L11.4751 10.5L8.2418 7.26665C7.9168 6.94165 7.9168 6.41665 8.2418 6.09165C8.5668 5.76665 9.0918 5.76665 9.4168 6.09165L13.2418 9.91665C13.5668 10.2417 13.5668 10.7667 13.2418 11.0917L9.4168 14.9166C9.0918 15.2416 8.5668 15.2416 8.2418 14.9166C7.92513 14.5916 7.9168 14.0583 8.2418 13.7333Z" fill="#344D79"/>
@@ -1328,7 +1329,7 @@ let tophtml = `
         <div class="swiper">
             <div class="swiper-wrapper"></div>
         </div>
-        <a href="https://www.sparkpaws.com/collections/4th-of-july-sale-1" class="ProductCollectionListItem__Link Button btn" onclick="pushDataLayer('exp_imp_hp_b_gd_sa', 'Shop all', 'Button', 'Great deals');">${german ? 'Alle anzeigen' : 'Shop All'}</a>
+        <a href="/collections/4th-of-july-sale-1" class="ProductCollectionListItem__Link Button btn" onclick="pushDataLayer('exp_imp_hp_b_gd_sa', 'Shop all', 'Button', 'Great deals');">${german ? 'Alle anzeigen' : 'Shop All'}</a>
     </div>
     <div class="loox-review relative">
         <h2 class="text-md-center">${german ? 'Unsere zufriedenen Kunden ' : 'Our Happy Customers'}</h2>
@@ -1372,7 +1373,7 @@ let tophtml = `
                 </div>
                 <h3>WarmShield™ ${german ? 'Wasserdichte Jacken ' : 'Waterproof Jackets'}</h3>
                 <p>${german ? 'Die WarmShield™ Wasserdichte Jacke ist ein eleganter, von Technikbekleidung inspirierter Parka, der Ihren Hund an den kältesten Wintertagen trocken und warm hält. ' : 'WarmShield™ Waterproof Jacket is a sleek tech-wear inspired parka that will keep your dog dry and warm on the coldest winter days.'}</p>
-                <a href="https://www.sparkpaws.com/collections/warmshield-waterproof-jacket" class=" Button btn btn-white flex-center" onclick="pushDataLayer('exp_imp_hp_b_ws_vp', 'View product', 'Button', 'Warm Shield');">
+                <a href="/collections/warmshield-waterproof-jacket" class=" Button btn btn-white flex-center" onclick="pushDataLayer('exp_imp_hp_b_ws_vp', 'View product', 'Button', 'Warm Shield');">
                     <span>${german ? 'Produkte anzeigen' : 'View products'}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
                         <path d="M8.2418 13.7333L11.4751 10.5L8.2418 7.26665C7.9168 6.94165 7.9168 6.41665 8.2418 6.09165C8.5668 5.76665 9.0918 5.76665 9.4168 6.09165L13.2418 9.91665C13.5668 10.2417 13.5668 10.7667 13.2418 11.0917L9.4168 14.9166C9.0918 15.2416 8.5668 15.2416 8.2418 14.9166C7.92513 14.5916 7.9168 14.0583 8.2418 13.7333Z" fill="#344D79"/>
@@ -1593,7 +1594,7 @@ let mut = new MutationObserver(function (muts) {
         document.querySelectorAll('.SidebarMenu__Nav > .Collapsible')[6].insertAdjacentHTML('afterend',`
         <div class="Collapsible Collapsible_new">
             <button class="Collapsible__Button Heading u-h6 Collapsible__Button__Imaged" data-action="toggle-collapsible" aria-expanded="false">
-                <img class="MobileNav__Image" src="https://www.sparkpaws.com/cdn/shop/files/fabric_lab_mobile_8d2a2b5b-eba8-42ef-9970-f9ab130097e0_x800.jpg" alt="Fabric Technologies">
+                <img class="MobileNav__Image" src="/cdn/shop/files/fabric_lab_mobile_8d2a2b5b-eba8-42ef-9970-f9ab130097e0_x800.jpg" alt="Fabric Technologies">
                 <span>${german ? 'Stofftechnologien' : 'Fabric Technologies'}<span class="Collapsible__Plus"></span></span>
             </button>
 
