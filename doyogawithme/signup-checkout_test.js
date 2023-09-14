@@ -1554,9 +1554,11 @@ function init() {
 
       if (document.querySelector(".views-field.views-field-total-price__number").innerHTML.includes("$108.99")) {
         let price = document.querySelector(".views-field.views-field-total-price__number");
-        price.innerHTML = `
-                    <p><span>$167.88</span> ${price.innerHTML}</p>
-                    <p class="c-green">Just $9.08/month!</p>`;
+        if (!document.querySelector(".c-green")) {
+          price.innerHTML = `
+                      <p><span>$167.88</span> ${price.innerHTML}</p>
+                      <p class="c-green">Just $9.08/month!</p>`;
+        }
 
         document.querySelector(".views-field.views-field-title").innerHTML = `1-Year DYWM Subscription`;
         if (!document.querySelector(".saved_block")) {
@@ -1768,6 +1770,14 @@ let optionMut = {
 };
 
 let mut = new MutationObserver(function (muts) {
+  if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value !== "" && !document.querySelector(".saved_block")) {
+    mut.disconnect();
+    console.log(`object >>>>>>>>>>>>>>>>>>>>`);
+    init();
+  }
+  mut.observe(document, optionMut);
+
+  //
   if (document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-country-code"]') != null) {
     mut.disconnect();
 
@@ -1811,30 +1821,6 @@ let mut = new MutationObserver(function (muts) {
   // mut.observe(document, optionMut);
 });
 mut.observe(document, optionMut);
-
-// let findFullInput = setInterval(() => {
-//   if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value !== "" && document.querySelector("#edit-sidebar-coupon-redemption-form-apply")) {
-//     clearInterval(findFullInput);
-
-//     setTimeout(() => {
-//       const element = document.querySelector("#edit-sidebar-coupon-redemption-form-apply");
-//       const events = ["mousedown", "focusin"];
-//       events.forEach((eventType) => element.dispatchEvent(new MouseEvent(eventType, { cancelable: true })));
-//       // window.location.reload();
-//     }, 1000);
-//   }
-// }, 100);
-// let findBtnRemoveCoupon = setInterval(() => {
-//   if (document.querySelector("#edit-sidebar-coupon-redemption-form-remove-coupon-0")) {
-//     clearInterval(findBtnRemoveCoupon);
-//     const element = document.querySelector("#edit-sidebar-coupon-redemption-form-remove-coupon-0");
-//     const events = ["mousedown", "focusin"];
-//     events.forEach((eventType) => element.dispatchEvent(new MouseEvent(eventType, { bubbles: true })));
-//     setTimeout(() => {
-//       window.location.reload();
-//     }, 100);
-//   }
-// }, 100);
 
 let isClarify = setInterval(() => {
   if (typeof clarity == "function") {
