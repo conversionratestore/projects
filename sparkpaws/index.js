@@ -1575,12 +1575,10 @@ let mut = new MutationObserver(function (muts) {
             pushDataLayer('exp_imp_hp_v_sm_m', 'Menu', 'Visibility', 'Sidebar menu');
         })
 
-        document.querySelectorAll('.SidebarMenu__Nav .Collapsible').forEach(item => {
-            item.firstElementChild.addEventListener('click', (e) => {
-                pushDataLayer('exp_imp_hp_m_sm_in', e.target.innerText, 'Menu', 'Sidebar menu');
-            })
-        })
         document.querySelector('.Drawer__Close').addEventListener('click', (e) => {
+            pushDataLayer('exp_imp_hp_c_sm_m', 'Menu', 'Close', 'Sidebar menu');
+        })
+        document.querySelector('.PageOverlay').addEventListener('click', (e) => {
             pushDataLayer('exp_imp_hp_c_sm_m', 'Menu', 'Close', 'Sidebar menu');
         })
     }
@@ -1619,6 +1617,12 @@ let mut = new MutationObserver(function (muts) {
                 </div>
             </div>
         </div>`)
+        //event
+        document.querySelectorAll('.SidebarMenu__Nav .Collapsible').forEach(item => {
+            item.firstElementChild.addEventListener('click', (e) => {
+                pushDataLayer('exp_imp_hp_m_sm_in', e.target.innerText, 'Menu', 'Sidebar menu');
+            })
+        })
     }
 
     mut.observe(document, optionMut);
@@ -1705,11 +1709,11 @@ let mut = new MutationObserver(function (muts) {
         // Таймер для визначення затримки перед викликом функції pushDataLayer
         let visibilityTimer;
         // Функція, яка буде викликана при видимості елементів з різними класами
-        function handleVisibility(className, label) {
+        function handleVisibility(className) {
             const targetElements = document.querySelectorAll(className);
 
             visibilityTimer = setTimeout(() => {
-                targetElements.forEach((targetElement) => {
+                targetElements.forEach((targetElement, index) => {
                     const rect = targetElement.getBoundingClientRect();
 
                     // Перевірка, чи елемент видимий в видимій області
@@ -1722,36 +1726,38 @@ let mut = new MutationObserver(function (muts) {
                         // Елемент більше не видно, вираховуємо час знаходження у видимій області і викликаємо функцію pushDataLayer
                         const startTime = visibilityMap.get(targetElement);
                         const focusTime = Date.now() - startTime;
-                            if (targetElement.className.includes('explore_category') ) {
-                                pushDataLayer('exp_imp_hp_v_ebc_ft', focusTime, 'Visibility', 'Explore by category');
-                            }
-                            if (targetElement.className.includes('high-quality')) {
-                                pushDataLayer('exp_imp_hp_v_ben_ft', focusTime, 'Visibility', 'Benefits');
-                            }
-                            if (targetElement.className.includes('best-sellers')) {
-                                pushDataLayer('exp_imp_hp_v_bs_ft', focusTime, 'Visibility', 'Best Sellers');
-                            }
-                            if (targetElement.className.includes('cooling-vest')) {
-                                pushDataLayer('exp_imp_hp_v_ct_ft', focusTime, 'Visibility', 'ChillTech');
-                            }
-                            if (targetElement.className.includes('fabric_content')) {
-                                pushDataLayer('exp_imp_hp_v_fl_ft', focusTime, 'Visibility', 'Fabric Lab');
-                            }
-                            if (targetElement.className.includes('great-deals')) {
-                                pushDataLayer('exp_imp_hp_v_gd_ft', focusTime, 'Visibility', 'Great deals');
-                            }
-                            if (targetElement.className.includes('loox-review')) {
-                                pushDataLayer('exp_imp_hp_v_ohc_ft', focusTime, 'Visibility', 'Our happy customerrs');
-                            }
-                            if (targetElement.className.includes('waterproof-jackets')) {
-                                pushDataLayer('exp_imp_hp_v_ws_ft', focusTime, 'Visibility', 'Warm Shield');
-                            }
-                            if (targetElement.className.includes('benefits')) {
-                                pushDataLayer('exp_imp_hp_v_ab_ft', focusTime, 'Visibility', 'Additional benefits');
-                            }
-                            if (targetElement.className.includes('trustpilot-widget')) {
-                                pushDataLayer('exp_imp_hp_v_tr_ft', focusTime, 'Visibility', 'Trustpilot');
-                            }
+
+                        if (targetElement.className.includes('explore_category') ) {
+                            pushDataLayer('exp_imp_hp_v_ebc_ft', focusTime, 'Visibility', 'Explore by category');
+                        }
+                        if (targetElement.className.includes('high-quality')) {
+                            pushDataLayer('exp_imp_hp_v_ben_ft', focusTime, 'Visibility', 'Benefits');
+                        }
+                        if (targetElement.className.includes('best-sellers')) {
+                            pushDataLayer('exp_imp_hp_v_bs_ft', focusTime, 'Visibility', 'Best Sellers');
+                        }
+                        if (targetElement.closest('.cooling-vest')) {
+                            pushDataLayer('exp_imp_hp_v_ct_ft', focusTime, 'Visibility', 'ChillTech');
+                        }
+                        if (targetElement.className.includes('fabric_content')) {
+                            pushDataLayer('exp_imp_hp_v_fl_ft', focusTime, 'Visibility', 'Fabric Lab');
+                        }
+                        if (targetElement.className.includes('great-deals')) {
+                            pushDataLayer('exp_imp_hp_v_gd_ft', focusTime, 'Visibility', 'Great deals');
+                        }
+                        if (targetElement.closest('.loox-review') && index == 0) {
+                            pushDataLayer('exp_imp_hp_v_ohc_ft', focusTime, 'Visibility', 'Our happy customerrs');
+                        }
+                        if (targetElement.className.includes('waterproof-jackets')) {
+                            pushDataLayer('exp_imp_hp_v_ws_ft', focusTime, 'Visibility', 'Warm Shield');
+                        }
+                        if (targetElement.className.includes('benefits')) {
+                            pushDataLayer('exp_imp_hp_v_ab_ft', focusTime, 'Visibility', 'Additional benefits');
+                        }
+                        if (targetElement.className.includes('trustpilot-widget')) {
+                            pushDataLayer('exp_imp_hp_v_tr_ft', focusTime, 'Visibility', 'Trustpilot');
+                        }
+
                         visibilityMap.delete(targetElement);
                     }
                 });
@@ -1763,11 +1769,11 @@ let mut = new MutationObserver(function (muts) {
         handleVisibility('.explore_category')
         handleVisibility('.high-quality')
         handleVisibility('.best-sellers')
-        handleVisibility('.cooling-vest')
-        handleVisibility('.fabric_content')
+        handleVisibility('.cooling-vest h3')
+        handleVisibility('.fabric_content ul')
         handleVisibility('.great-deals')
-        handleVisibility('.loox-review')
-        handleVisibility('.waterproof-jackets')
+        handleVisibility('.loox-review img')
+        handleVisibility('.waterproof-jackets h3')
         handleVisibility('.benefits')
         handleVisibility('.trustpilot-widget')
         // Додаємо обробник події scroll для подальшої перевірки видимості при прокрутці
@@ -1775,15 +1781,13 @@ let mut = new MutationObserver(function (muts) {
             handleVisibility('.explore_category')
             handleVisibility('.high-quality')
             handleVisibility('.best-sellers')
-            handleVisibility('.cooling-vest')
-            handleVisibility('.fabric_content')
+            handleVisibility('.cooling-vest h3')
+            handleVisibility('.fabric_content ul')
             handleVisibility('.great-deals')
-            handleVisibility('.loox-review')
-            handleVisibility('.waterproof-jackets')
+            handleVisibility('.loox-review img')
+            handleVisibility('.waterproof-jackets h3')
             handleVisibility('.benefits')
             handleVisibility('.trustpilot-widget')
-            
-            
         });
         
   
@@ -1810,14 +1814,14 @@ let mut = new MutationObserver(function (muts) {
         //event
         document.querySelectorAll('.best-sellers .swiper-slide a').forEach(item => {
             item.addEventListener('click', () => {
-                pushDataLayer('exp_imp_hp_p_bs_pn', item.parentElement.querySelector('h2').innerText, 'Product', 'Best Sellers');
+                pushDataLayer('exp_imp_hp_p_bs_pn', item.closest('.ProductItem__Wrapper').querySelector('h2').innerText, 'Product', 'Best Sellers');
             })
         })
 
         //great-deals
         let sliders2 = '';
         let lengthHolidayDeals = media ? 4 : objHoliday.length > 9 ? 10 : objHoliday.length;
-
+      
         for (let i = 0; i < lengthHolidayDeals; i++) {
             let req = /(\d{1,})(\d{2})$/;
             let rating = '';
@@ -1832,7 +1836,7 @@ let mut = new MutationObserver(function (muts) {
             sliders2 += `<div class="swiper-slide">
                             <div class="ProductItem " style="visibility: inherit; opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">
                                 <div class="ProductItem__Wrapper">
-                                    <a href="/products/${objHoliday[i].handle}" class="ProductItem__ImageWrapper ProductItem__ImageWrapper--withAlternateImage"  onclick="pushDataLayer('exp_imp_hp_p_gd_pn', ${objHoliday[i].title}, 'Product', 'Great deals');">
+                                    <a href="/products/${objHoliday[i].handle}" class="ProductItem__ImageWrapper ProductItem__ImageWrapper--withAlternateImage" >
                                         <div class="AspectRatio AspectRatio--square" style="max-width: 2000px;  --aspect-ratio: 1.0">
                                             <img class="ProductItem__Image ProductItem__Image--alternate Image--fadeIn lazyautosizes Image--lazyLoaded" data-widths="[200,300,400,600,800,900,1000,1200]" data-sizes="auto" alt="${objHoliday[i].title}" src="${objHoliday[i].images[1]}">
                                             <span class="Image__Loader"></span>
@@ -1842,7 +1846,7 @@ let mut = new MutationObserver(function (muts) {
                                     <div class="ProductItem__LabelList"></div>
                                     <div class="ProductItem__Info ProductItem__Info--center">
                                         <h2 class="ProductItem__Title Heading">
-                                            <a href="/products/${objHoliday[i].handle}" onclick="pushDataLayer('exp_imp_hp_p_gd_pn', ${objHoliday[i].title}, 'Product', 'Great deals');">${objHoliday[i].title}</a>
+                                            <a href="/products/${objHoliday[i].handle}">${objHoliday[i].title}</a>
                                         </h2>
                         
                                         <div class="loox-rating">
@@ -1878,7 +1882,14 @@ let mut = new MutationObserver(function (muts) {
             
         }
         document.querySelector('.great-deals .swiper-wrapper').innerHTML = sliders2;
-  
+    
+        //event
+        document.querySelectorAll('.great-deals .swiper-slide a').forEach(item => {
+            item.addEventListener('click', () => {
+                pushDataLayer('exp_imp_hp_p_gd_pn', item.closest('.ProductItem__Wrapper').querySelector('h2').innerText, 'Product', 'Great deals')
+            })
+        })
+
         let sliders3 = '';
 
         for (let i = 0; i < objLooxReview.length; i++) {
@@ -1922,7 +1933,6 @@ let mut = new MutationObserver(function (muts) {
         }
 
         document.querySelector('.loox-review .swiper-wrapper').innerHTML = sliders3;
-
 
         //init Swiper slider
         const waitSwiper = setInterval(() => {
