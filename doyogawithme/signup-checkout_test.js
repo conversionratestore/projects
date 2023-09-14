@@ -1619,29 +1619,6 @@ function init() {
         });
       });
 
-      let findFullInput = setInterval(() => {
-        if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value !== "") {
-          clearInterval(findFullInput);
-          const element = document.querySelector("#edit-sidebar-coupon-redemption-form-apply");
-          const events = ["mousedown", "focusin"];
-          events.forEach((eventType) => element.dispatchEvent(new MouseEvent(eventType, { bubbles: true })));
-          setTimeout(() => {
-            window.location.reload();
-          }, 100);
-        }
-      }, 100);
-      // let findBtnRemoveCoupon = setInterval(() => {
-      //   if (document.querySelector("#edit-sidebar-coupon-redemption-form-remove-coupon-0")) {
-      //     clearInterval(findBtnRemoveCoupon);
-      //     const element = document.querySelector("#edit-sidebar-coupon-redemption-form-remove-coupon-0");
-      //     const events = ["mousedown", "focusin"];
-      //     events.forEach((eventType) => element.dispatchEvent(new MouseEvent(eventType, { bubbles: true })));
-      //     setTimeout(() => {
-      //       window.location.reload();
-      //     }, 100);
-      //   }
-      // }, 100);
-
       document.querySelector(".btn_start_membership").addEventListener("click", (e) => {
         document.querySelector('[data-drupal-selector="edit-actions-next"]').click();
         pushDataLayer("exp_ch_pl_page_start_b", "Start membership button", "Button", loc);
@@ -1826,8 +1803,38 @@ let mut = new MutationObserver(function (muts) {
     });
   }
   mut.observe(document, optionMut);
+
+  // if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")) {
+  //   mut.disconnect();
+  //   console.log(`object`);
+  // }
+  // mut.observe(document, optionMut);
 });
 mut.observe(document, optionMut);
+
+// let findFullInput = setInterval(() => {
+//   if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value !== "" && document.querySelector("#edit-sidebar-coupon-redemption-form-apply")) {
+//     clearInterval(findFullInput);
+
+//     setTimeout(() => {
+//       const element = document.querySelector("#edit-sidebar-coupon-redemption-form-apply");
+//       const events = ["mousedown", "focusin"];
+//       events.forEach((eventType) => element.dispatchEvent(new MouseEvent(eventType, { cancelable: true })));
+//       // window.location.reload();
+//     }, 1000);
+//   }
+// }, 100);
+// let findBtnRemoveCoupon = setInterval(() => {
+//   if (document.querySelector("#edit-sidebar-coupon-redemption-form-remove-coupon-0")) {
+//     clearInterval(findBtnRemoveCoupon);
+//     const element = document.querySelector("#edit-sidebar-coupon-redemption-form-remove-coupon-0");
+//     const events = ["mousedown", "focusin"];
+//     events.forEach((eventType) => element.dispatchEvent(new MouseEvent(eventType, { bubbles: true })));
+//     setTimeout(() => {
+//       window.location.reload();
+//     }, 100);
+//   }
+// }, 100);
 
 let isClarify = setInterval(() => {
   if (typeof clarity == "function") {
