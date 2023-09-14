@@ -1594,7 +1594,7 @@ let mut = new MutationObserver(function (muts) {
         <div class="Collapsible Collapsible_new">
             <button class="Collapsible__Button Heading u-h6 Collapsible__Button__Imaged" data-action="toggle-collapsible" aria-expanded="false">
                 <img class="MobileNav__Image" src="https://www.sparkpaws.com/cdn/shop/files/fabric_lab_mobile_8d2a2b5b-eba8-42ef-9970-f9ab130097e0_x800.jpg" alt="Fabric Technologies">
-                <span>Fabric Technologies<span class="Collapsible__Plus"></span></span>
+                <span>${german ? 'Stofftechnologien' : 'Fabric Technologies'}<span class="Collapsible__Plus"></span></span>
             </button>
 
             <div class="Collapsible__Inner">
