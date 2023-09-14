@@ -1559,12 +1559,14 @@ function init() {
                     <p class="c-green">Just $9.08/month!</p>`;
 
         document.querySelector(".views-field.views-field-title").innerHTML = `1-Year DYWM Subscription`;
+        if (!document.querySelector(".saved_block")) {
+          document.querySelector(".order-total-line__total").insertAdjacentHTML("afterend", ` <div class="saved_block">You just saved <span class="saved_var">$58,89</span> (<span class="percent_var">35%</span> off)</div>`);
+        }
 
-        document.querySelector(".order-total-line__total").insertAdjacentHTML("afterend", ` <div class="saved_block">You just saved <span class="saved_var">$58,89</span> (<span class="percent_var">35%</span> off)</div>`);
         if (document.querySelector("#edit-sidebar-order-summary-summary .order-total-line__adjustment--promotion") && document.querySelector(".order-total-line.order-total-line__total .order-total-line-value")?.textContent === "$92.64") {
           document.querySelector(".saved_var").textContent = "$75.24";
           document.querySelector(".percent_var").textContent = "45%";
-          if (document.querySelector(".views-field.views-field-total-price__number")) {
+          if (document.querySelector(".views-field.views-field-total-price__number") && !document.querySelector(".c-green")) {
             document.querySelector(".views-field.views-field-total-price__number").innerHTML = '<p><span>$167.88</span> $92.64</p> <p class="c-green">Just $7,83/month!</p>';
           }
         }
@@ -1616,6 +1618,18 @@ function init() {
           disabledBtnFun();
         });
       });
+
+      let findFullInput = setInterval(() => {
+        if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value !== "") {
+          clearInterval(findFullInput);
+          const element = document.querySelector("#edit-sidebar-coupon-redemption-form-apply");
+          const events = ["mousedown", "focusin"];
+          events.forEach((eventType) => element.dispatchEvent(new MouseEvent(eventType, { bubbles: true })));
+          setTimeout(() => {
+            window.location.reload();
+          }, 100);
+        }
+      }, 100);
 
       document.querySelector(".btn_start_membership").addEventListener("click", (e) => {
         document.querySelector('[data-drupal-selector="edit-actions-next"]').click();
