@@ -770,15 +770,103 @@ let startFunk = setInterval(() => {
     }
 
     //add to cart on checkout
-    async function addToCartCheckout(idValue, qt) {
-      let formData = {
+     async function addToCartCheckout(idValue, qt) {
+          	const customHeightVariant =  $('select#TableHeight').children('option:selected').data('variant');
+const customLegcolorVariant =  $('select#Legcolor').children('option:selected').data('variant');
+const qnt111=$('#quantity').val();
+let selectedHeightTitle = $('#TableHeight').val();
+        $('#TableHeight').change(function() {selectedHeightTitle = $(this).val();
+        });
+
+      let selectedLegcolorTitle = $('#Legcolor').val();
+        $('#Legcolor').change(function() {selectedLegcolorTitle = $(this).val();
+        });
+
+
+if(customHeightVariant && !customLegcolorVariant) {
+              if (customHeightVariant!=43637174894840){
+                 var formData = {
         items: [
-          {
-            id: idValue,
-            quantity: qt,
-          },
-        ],
+          
+           {id: customHeightVariant,quantity: qnt111}, 
+          {id: idValue,quantity: qt},
+          
+    ],
+      }
+                 }
+            }
+
+
+  if(!customHeightVariant && customLegcolorVariant) {
+              if (customLegcolorVariant!=43651396534520){
+
+           var formData = {
+        items: [
+        
+                 {id: customLegcolorVariant,quantity: qnt111}, 
+            {id: idValue,quantity: qt},
+    ],
       };
+                
+                   }
+            }
+
+
+if(customLegcolorVariant && customHeightVariant) {
+              if (customHeightVariant!=43637174894840 && customLegcolorVariant!=43651396534520){
+              var formData = {
+        items: [
+         
+           {id: customHeightVariant,quantity: qnt111}, 
+                {id: customLegcolorVariant,quantity: qnt111}, 
+           {id: idValue,quantity: qt},
+    ],
+      };
+                
+
+              }
+
+ if (customHeightVariant!=43637174894840 && customLegcolorVariant==43651396534520){
+   
+    var formData = {
+        items: [
+          
+           {id: customHeightVariant,quantity: qnt111}, 
+          {id: idValue,quantity: qt},
+    ],
+      };
+   
+              }
+
+if (customHeightVariant==43637174894840 && customLegcolorVariant!=43651396534520){
+               var formData = {
+        items: [
+         
+           {id: customLegcolorVariant,quantity: qnt111}, 
+           {id: idValue,quantity: qt},
+    ],
+      };
+
+              }
+
+ if (customHeightVariant==43637174894840 && customLegcolorVariant==43651396534520){
+                var formData = {
+        items: [
+          {id: idValue,quantity: qt}
+    ],
+      }; 
+
+              }
+
+        
+              
+            }
+
+
+
+ 
+
+                 
 
       await fetch("/cart/add.js", {
         method: "POST",
