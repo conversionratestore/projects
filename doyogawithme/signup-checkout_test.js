@@ -1770,7 +1770,7 @@ let optionMut = {
 };
 
 let mut = new MutationObserver(function (muts) {
-  if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value !== "" && !document.querySelector(".saved_block")) {
+  if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value !== "" && !document.querySelector(".saved_block") && window.location.pathname.includes("checkout/")) {
     mut.disconnect();
     console.log(`object >>>>>>>>>>>>>>>>>>>>`);
     init();
