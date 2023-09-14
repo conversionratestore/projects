@@ -1629,7 +1629,7 @@ let mut = new MutationObserver(function (muts) {
 
     if (!document.querySelector('.style-exp') && 
         document.querySelector('#main') && 
-        document.querySelectorAll('#shopify-section-template--15821794246837__featured-collections .Grid__Cell') && 
+        document.querySelectorAll('#shopify-section-template--15821794246837__featured-collections .Grid__Cell').length >= 4 && 
         window.location.href == 'https://'+window.location.host+'/'
        
     ) {
