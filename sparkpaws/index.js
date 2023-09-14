@@ -285,8 +285,8 @@ let style = `
         text-decoration-line: underline;
     }
     .explore_category li img {
-        width: 53px;
-        height: 53px;
+        width: 45px;
+        height: 45px;
         object-fit: contain;
         flex-shrink: 0;
         position: absolute;
