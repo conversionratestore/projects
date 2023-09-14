@@ -1630,17 +1630,17 @@ function init() {
           }, 100);
         }
       }, 100);
-      let findBtnRemoveCoupon = setInterval(() => {
-        if (document.querySelector("#edit-sidebar-coupon-redemption-form-remove-coupon-0")) {
-          clearInterval(findBtnRemoveCoupon);
-          const element = document.querySelector("#edit-sidebar-coupon-redemption-form-remove-coupon-0");
-          const events = ["mousedown", "focusin"];
-          events.forEach((eventType) => element.dispatchEvent(new MouseEvent(eventType, { bubbles: true })));
-          setTimeout(() => {
-            window.location.reload();
-          }, 100);
-        }
-      }, 100);
+      // let findBtnRemoveCoupon = setInterval(() => {
+      //   if (document.querySelector("#edit-sidebar-coupon-redemption-form-remove-coupon-0")) {
+      //     clearInterval(findBtnRemoveCoupon);
+      //     const element = document.querySelector("#edit-sidebar-coupon-redemption-form-remove-coupon-0");
+      //     const events = ["mousedown", "focusin"];
+      //     events.forEach((eventType) => element.dispatchEvent(new MouseEvent(eventType, { bubbles: true })));
+      //     setTimeout(() => {
+      //       window.location.reload();
+      //     }, 100);
+      //   }
+      // }, 100);
 
       document.querySelector(".btn_start_membership").addEventListener("click", (e) => {
         document.querySelector('[data-drupal-selector="edit-actions-next"]').click();
