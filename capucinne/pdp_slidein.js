@@ -1036,7 +1036,7 @@ let klaviyoStep = 1;
     
     @media(max-width: 768px) {
       .product-block+.full-bleed--mobile {
-        display: none;
+        display: none !important;
       }
       .lav-paypal .shopify-cleanslate [data-testid="grid-cell"] {
         // height: 42px!important;
