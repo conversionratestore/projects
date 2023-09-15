@@ -1317,13 +1317,10 @@ td[data-cell="Price"] span {
         el.addEventListener('click', (e) => {
           const target = e.target
 
-          switch (true) {
-            case target.classList.contains('btn-learn'):
-              pushDataLayer(['exp_pl_improv_b_lm_ps', 'Learn more', 'Button', 'Product section'])
-              break
-            case target.classList.contains('btn-add'):
-              pushDataLayer(['exp_pl_improv_b_atc', 'Add to cart', 'Button', 'Product section'])
-              break
+          if (target.classList.contains('btn-learn')) {
+            pushDataLayer(['exp_pl_improv_b_lm_ps', 'Learn more', 'Button', 'Product section'])
+          } else if (target.closest('.btn-add')) {
+            pushDataLayer(['exp_pl_improv_b_atc', 'Add to cart', 'Button', 'Product section'])
           }
         })
       })
