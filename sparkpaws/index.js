@@ -562,6 +562,9 @@ let style = `
         margin-right: 12px;
         object-fit: cover;
     }
+    .loox-review .swiper .btn {
+        width: 100%;
+    }
     .swiper-pagination-bullet {
         border-radius: 50%;
         background-color: #E6E6E6;
@@ -1003,6 +1006,9 @@ let style = `
         }
         .btn-white {
             padding: 9px 16px 9px 24px;
+        }
+        .loox-review .swiper .btn {
+            width: 100%;
         }
     }
     @media screen and (min-width: 768px) and (max-width: 1200px) {
@@ -1927,7 +1933,7 @@ let mut = new MutationObserver(function (muts) {
                                     <span>${objLooxReview[i].titleProduct}</span>
                                 </a>
                                 <a href="https://loox.io/s/E1WNN9nzHY" class=" Button btn btn-white flex-center" onclick="pushDataLayer('exp_imp_hp_b_ohc_rfr', 'Read full review', 'Button', 'Our happy customerrs');">
-                                    <span>${german ? 'Lesen Sie die vollständige Bewertung' : 'Read full review'}</span>
+                                    <span>${german ? 'Ganze Bewertung lesen' : 'Read full review'}</span>
                                 </a>
                             </div>
                         </div>`;
