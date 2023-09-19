@@ -846,6 +846,19 @@ cursor: pointer;
   height: 54px;
 }
 
+.reviews-title p{
+  color: var(--font-h, #1B1B1B);
+text-align: center;
+font-family: Avenir Next;
+font-size: 28px;
+font-style: normal;
+font-weight: 500;
+line-height: 35px; /* 125% */
+text-transform: capitalize;
+margin: 0;
+margin-bottom: 25px;
+}
+
 /*.product__submit__item [name="add"] {display: none;} */
 
     @media screen and (max-width: 1023px) {
@@ -1719,7 +1732,7 @@ cursor: pointer;
                     <div class="d-lg-flex justify-lg-between">
                         <p>Free standard delivery on orders over <b>${orders}</b> </p>
                         <div class="line-vertical d-lg-block d-none"></div>
-                        <p>Approximate data of delivery, <b>${formatDate()}</b> </p>
+                        <p>Approximate data of delivery: <b>${formatDate()}</b> </p>
                     </div>
                     <p class="d-flex items-center title">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
@@ -1821,7 +1834,7 @@ cursor: pointer;
           waitForElement('#Text--template--16711182876924__0ba37192-7466-420d-ada7-f85e8f0f34f7 span.text-highlight__break').then(el => el.innerHTML = 'Recently Viewed')
 
           // (29)
-          waitForElement('.yotpo.yotpo-main-widget').then(yotpo => {
+          waitForElement('#shopify-section-template--16711182876924__16842542196ee361cd .wrapper').then(yotpo => {
             yotpo.insertAdjacentHTML('afterbegin', /*html*/`
             <div class="reviews-title"><p>Reviews from our customers</p></div>
           `)
