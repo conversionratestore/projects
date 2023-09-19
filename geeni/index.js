@@ -78,6 +78,9 @@
         display: flex;
         flex-direction: column;
     }
+     .shopify-installments__learn-more {
+      color: #023F88 !important;
+    }
     .product__description {
         padding-bottom: 0;
     }
@@ -354,6 +357,7 @@ line-height: 28px; /* 140% */
         overflow: hidden;
     }
     .payments-exp > p {
+        display: none;
         color: var(--font-body, #5B5B5B);
         font-size: 14px;
         font-weight: 500;
@@ -505,9 +509,7 @@ line-height: 28px; /* 140% */
       font-size: 14px;
     }
 
-    .shopify-installments__learn-more {
-      color: var(--Main-Blue, #023F88) !important;
-    }
+   
 
     .product__title-and-price {
       margin-bottom: 15px !important;
@@ -1017,20 +1019,28 @@ cursor: pointer;
     }
 
 
-    if (media && packs) {
-      btn = /*html*/`
-     <button class="add-to-cart" data-btn-link="true">Choose a Product</button>`
-    } else {
-      console.log('herer');
-      const clientCTABtn = document.querySelector('[data-add-to-cart-text]')?.innerText.toLowerCase().includes('sold out') ? 'add-to-cart--sold' : ''
+    // if (media && packs) {
+    //   btn = /*html*/`
+    //  <button class="add-to-cart" data-btn-link="true">Choose a Product</button>`
+    // } else {
+    //   const clientCTABtn = document.querySelector('[data-add-to-cart-text]')?.innerText.toLowerCase().includes('sold out') ? 'add-to-cart--sold' : ''
 
-      btn = /*html*/`
+    //   btn = /*html*/`
+    //   <button class="add-to-cart ${clientCTABtn}">
+    //     ${clientCTABtn ? 'Sold out' : 'Add to cart'}
+    //     <span class="sticky-btn-wrapper__dot"></span>
+    //     <span class="sticky-btn-wrapper__price">${packPrice}</span>
+    //   </button>`
+    // }
+
+    const clientCTABtn = document.querySelector('[data-add-to-cart-text]')?.innerText.toLowerCase().includes('sold out') ? 'add-to-cart--sold' : ''
+
+    btn = /*html*/`
       <button class="add-to-cart ${clientCTABtn}">
         ${clientCTABtn ? 'Sold out' : 'Add to cart'}
         <span class="sticky-btn-wrapper__dot"></span>
         <span class="sticky-btn-wrapper__price">${packPrice}</span>
       </button>`
-    }
 
     return /*html*/`
      <div class="sticky-btn-wrapper">
@@ -1078,6 +1088,53 @@ cursor: pointer;
     })
   }
 
+  function handleVisibility(el, eventParams) {
+    let isVisible = false
+    let entryTime
+    const config = {
+      root: null,
+      threshold: 0, // Trigger when any part of the element is out of viewport
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (!isVisible) {
+            // The element has become visible
+            isVisible = true
+            entryTime = new Date().getTime()
+          }
+        } else if (isVisible) {
+          // The element is out of the viewport, calculate visibility duration
+          isVisible = false
+          const exitTime = new Date().getTime()
+          const visibilityDuration = (exitTime - entryTime) / 1000 // Convert to seconds
+          const roundedDuration = Math.round(visibilityDuration)
+
+          if (roundedDuration) {
+            const eventData = eventParams
+            eventData[1] = roundedDuration
+            pushDataLayer(eventData)
+            observer.disconnect()
+          }
+        }
+      })
+    }, config)
+
+    observer.observe(el)
+  }
+
+  function pushDataLayer([event_name, event_desc, event_type, event_loc]) { // Send a Google Analytics event
+    const eventData = {
+      'event': 'event-to-ga4', event_name, event_desc, event_type, event_loc
+    }
+
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push(eventData)
+
+    console.log(eventData)
+  }
+
   function extractNumberWithDollarSignAndPlus(string) {
     // Regular expression to extract a number with a dollar sign ($) and optional '+' sign
     const regex = /\$([\d.]+)\+/
@@ -1097,10 +1154,9 @@ cursor: pointer;
     let _this = event.target
 
     if (!_this.classList.contains('selected')) {
-      console.log(_this.parentElement)
-      _this.parentElement.querySelector('.selected')?.classList.remove('selected')
+      pushDataLayer(['exp_imp_pdp_b_ps_pn', `${_this.querySelector('.name').innerText}`, 'Button', 'Pack size'])
 
-      console.log(_this.dataset.id)
+      _this.parentElement.querySelector('.selected')?.classList.remove('selected')
 
       //document.querySelector(`[data-id="${_this.dataset.id}"]`)?.click()
       window.location = document.querySelector(`[data-id="${_this.dataset.id}"] a`)?.href
@@ -1113,8 +1169,6 @@ cursor: pointer;
       price = _this.querySelector('.pr').innerHTML,
       compare = _this.querySelector('.compare').innerHTML,
       saved = _this.querySelector('.saved') ? _this.querySelector('.saved').innerHTML : ''
-
-    console.log('2', saved)
 
     _this.closest('.pack_size').parentElement.querySelector('.product__price-and-badge .product__price').innerHTML = `
         <p class="name">${pack}</p>
@@ -1151,8 +1205,10 @@ cursor: pointer;
       if (qty.value > 1) {
         qty.value = +qty.value - 1
       }
+      pushDataLayer(['exp_imp_pdp_b_qty_en', '-', 'Button', 'QTY'])
     } else if (_this.classList.contains('btn_qty_plus')) {
       qty.value = +qty.value + 1
+      pushDataLayer(['exp_imp_pdp_b_qty_en', '-', 'Button', 'QTY'])
     }
 
     _this.closest('form').querySelector('.quantity__selector.quantity__input').value = qty.value
@@ -1206,8 +1262,6 @@ cursor: pointer;
           saved = Math.round(((compare - price) / compare) * 100) + '%'
         }
       }
-
-      console.log('1', saved)
 
       document.querySelector('.pack_size ul').insertAdjacentHTML('beforeend', `
                   <li class="d-flex items-center ${item.querySelector('.alternative-options__item--active') ? 'selected' : ''} ${item.classList.contains('alternative-options__sold-out') ? "sold-out" : ""}" data-id="${item.dataset.id}">
@@ -1278,7 +1332,7 @@ cursor: pointer;
 
           selectedPack.classList.add('sticky-btn-pack__option--active')
 
-          console.log('switch option')
+          pushDataLayer(['exp_imp_pdp_b_sd_pn', `${selectedPack.innerText}`, 'Button', 'Sticky desktop'])
 
 
           document.querySelector('.sticky-btn-info__price').innerText = selectedPack.dataset.packPrice
@@ -1292,14 +1346,8 @@ cursor: pointer;
       } else if (target.closest('.sticky-btn-pack')) {
         document.querySelector('.sticky-btn-pack__options').classList.toggle('sticky-btn-pack__options--visible')
       } else if (target.matches('.sticky-btn-wrapper .add-to-cart')) {
-        if (target.dataset.btnLink) {
-          $('html, body').animate({
-            scrollTop: $('#pack_size').offset().top - 65
-          }, 500) // 1000 milliseconds (1 second) for smooth scrolling, adjust as needed
-        } else {
-          document.querySelector('button[name="add"]').click()
-        }
-        console.log('add to cart')
+        pushDataLayer(['exp_imp_pdp_st_b_atc', 'Add to cart', 'Button', 'Sticky mobile'])
+        document.querySelector('button[name="add"]').click()
 
       } else {
         document.querySelector('.sticky-btn-pack__options--visible')?.classList.remove('sticky-btn-pack__options--visible')
@@ -1412,16 +1460,18 @@ cursor: pointer;
               document.querySelector('.product__reviews').insertAdjacentHTML('beforeend', /*html*/`
                 <div class="review-link">
                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="15" viewBox="0 0 19 15" fill="none">
-<path d="M12.375 5.5625C12.375 8.24219 9.80469 10.375 6.6875 10.375C5.62109 10.375 4.66406 10.1562 3.81641 9.71875C3.13281 10.0742 2.25781 10.375 1.19141 10.375C1.10938 10.375 1.02734 10.3477 1 10.2656C0.972656 10.1836 0.972656 10.1016 1.05469 10.0469C1.05469 10.0195 1.68359 9.36328 2.12109 8.46094C1.41016 7.64062 1 6.65625 1 5.5625C1 2.91016 3.54297 0.75 6.6875 0.75C9.80469 0.75 12.375 2.91016 12.375 5.5625ZM17.3789 12.8906C17.8164 13.7656 18.418 14.3945 18.418 14.4219C18.4727 14.4766 18.5 14.5586 18.4727 14.6406C18.4453 14.7227 18.3633 14.75 18.2812 14.75C17.2969 14.75 16.4492 14.4766 15.7656 14.1758C15.0273 14.5312 14.1523 14.75 13.25 14.75C10.7617 14.75 8.71094 13.2188 8.13672 11.1133C11.0625 10.5391 13.25 8.26953 13.25 5.5625C13.25 5.42578 13.2227 5.28906 13.2227 5.15234C13.2227 5.15234 13.2227 5.125 13.25 5.125C16.1484 5.125 18.5 7.28516 18.5 9.9375C18.5 11.0586 18.0625 12.0703 17.3789 12.8906Z" fill="#023F88"/>
+<path d="M12.375 5.5625C12.375 8.24219 9.80469 10.375 6.6875 10.375C5.62109 10.375 4.66406 10.1562 3.81641 9.71875C3.13281 10.0742 2.25781 10.375 1.19141 10.375C1.10938 10.375 1.02734 10.3477 1 10.2656C0.972656 10.1836 0.972656 10.1016 1.05469 10.0469C1.05469 10.0195 1.68359 9.36328 2.12109 8.46094C1.41016 7.64062 1 6.65625 1 5.5625C1 2.91016 3.54 297 0.75 6.6875 0.75C9.80469 0.75 12.375 2.91016 12.375 5.5625ZM17.3789 12.8906C17.8164 13.7656 18.418 14.3945 18.418 14.4219C18.4727 14.4766 18.5 14.5586 18.4727 14.6406C18.4453 14.7227 18.3633 14.75 18.2812 14.75C17.2969 14.75 16.4492 14.4766 15.7656 14.1758C15.0273 14.5312 14.1523 14.75 13.25 14.75C10.7617 14.75 8.71094 13.2188 8.13672 11.1133C11.0625 10.5391 13.25 8.26953 13.25 5.5625C13.25 5.42578 13.2227 5.28906 13.2227 5.15234C13.2227 5.15234 13.2227 5.125 13.25 5.125C16.1484 5.125 18.5 7.28516 18.5 9.9375C18.5 11.0586 18.0625 12.0703 17.3789 12.8906Z" fill="#023F88"/>
 </svg>
 <a href="#shopify-section-template--16711182876924__16842542196ee361cd">See all reviews</a>
                 </div>
    
               `)
+
+              waitForElement('.review-link a').then(el => el.addEventListener('click', () => {
+                pushDataLayer(['exp_imp_pdp_l_fs_sar', 'See all reviews', 'Link', 'First sccreen'])
+              }))
             }
           }, WAIT_INTERVAL_TIMEOUT)
-
-
 
           // redesign packs (6-13) 
           // add sticky btn
@@ -1434,7 +1484,7 @@ cursor: pointer;
             if (document.querySelector('.manufacturer') && productTitle && clientCTABtn) {
               clearInterval(waitForRedesignPacks)
 
-              console.log('clientCTABtn', clientCTABtn);
+              console.log('clientCTABtn', clientCTABtn)
 
               let packs
 
@@ -1724,12 +1774,20 @@ cursor: pointer;
                 </div> `)
 
                 waitForElement('.btn_more').then(btn => {
+
+                  handleVisibility(btn,
+                    ['exp_imp_pdp_v_dlm_ft', '{{focusTime}}', 'Visibility', 'Details learn more']
+                  )
+
                   btn.addEventListener('click', () => {
                     list.classList.toggle('active')
                     if (list.classList.contains('active')) {
                       btn.querySelector('span').innerHTML = 'See less'
+                      pushDataLayer(['exp_imp_pdp_l_d_lm', 'Learn more', 'Link', 'Details'])
                     } else {
                       btn.querySelector('span').innerHTML = 'Learn more'
+
+
                     }
                   })
                 }
@@ -1762,6 +1820,132 @@ cursor: pointer;
             yotpo.insertAdjacentHTML('afterbegin', /*html*/`
             <div class="reviews-title"><p>Reviews from our customers</p></div>
           `)
+          })
+
+          waitForElement('.product-single__thumbnails').then(el => {
+            handleVisibility(
+              el,
+              ['exp_imp_pdp_vis_fs_t', '{{focusTime}}', 'Visibility', 'First sccreen Thumbnail']
+            )
+          })
+          waitForElement('.manufacturer').then(el => {
+            handleVisibility(
+              el,
+              ['exp_imp_pdp_v_fs_dfm', '{{focusTime}}', 'Visibility', 'First sccreen Direct from the manufacturer']
+            )
+          })
+          waitForElement('.pack_size').then(el => {
+            handleVisibility(
+              el,
+              ['exp_imp_pdp_v_ps_pss', '{{focusTime}}', 'Visibility', 'Pack size Pack size section']
+            )
+          })
+          waitForElement('.qty_block').then(el => {
+            handleVisibility(
+              el,
+              ['exp_imp_pdp_v_ps_1p', '{{focusTime}}', 'Visibility', 'Pack save 1 pack']
+            )
+          })
+          waitForElement('.discount').then(el => {
+            handleVisibility(
+              el,
+              ['exp_imp_pdp_v_ps_s', '{{focusTime}}', 'Visibility', 'Pack save spend']
+            )
+          })
+
+          // waitForElement('.product__submit__holder [name="add"]').then(el =>
+          //   el.addEventListener('click', () => {
+          //     pushDataLayer(['exp_imp_pdp_b_ps_atc', 'Add to cart', 'Button', 'Product section'])
+          //   })
+          // )
+
+          // waitForElement('.product__submit__item').then(el =>
+          //   el.addEventListener('click', (e) => {
+          //     if (e.target.closest(`[name="add"]`)) {
+
+          //       pushDataLayer(['exp_imp_pdp_b_ps_atc', 'Add to cart', 'Button', 'Product section'])
+          //     }
+          //   })
+          // )
+
+          waitForElement('.payments-exp [data-testid="ShopifyPay-button"]').then(el => {
+            if (media) {
+              waitForElement('.payments-exp > p').then(el => el.style.display = "block")
+            }
+
+            el.addEventListener('click', () => {
+              pushDataLayer(['exp_imp_pdp_b_ps_sp', 'Shop pay', 'Button', 'Product section'])
+            })
+          }
+          )
+
+          waitForElement('.delivery').then(el =>
+            handleVisibility(
+              el,
+              ['exp_imp_pdp_v_dr_ft', '{{focusTime}}', 'Visibility', 'Delivery & Return']
+            ))
+
+          waitForElement('.btn_more').then(el =>
+            handleVisibility(
+              el,
+              ['exp_imp_pdp_v_drlm_ft', '{{focusTime}}', 'Visibility', 'Delivery & Return learn more']
+            ))
+
+          waitForElement('.product__block ').then(el =>
+            handleVisibility(
+              el,
+              ['exp_imp_pdp_v_365_ft', '{{focusTime}}', 'Visibility', '365 day warranty']
+            ))
+
+          waitForElement('.delivery a').then(el => {
+            el.addEventListener('click', () => {
+              pushDataLayer(['exp_imp_pdp_v_l_dr_lm', 'Learn more', 'Link', 'Delivery & Return'])
+            })
+          })
+
+          waitForElement('.product__block .title + div').then(el => {
+            handleVisibility(el,
+              ['exp_imp_pdp_v_d_ft', '{{focusTime}}', 'Visibility', 'Details']
+            )
+          })
+
+
+          waitForElement('.support').then(el => {
+            handleVisibility(el,
+              ['exp_imp_pdp_v_q_ft', '{{focusTime}}', 'Visibility', 'Questions']
+            )
+          })
+
+          waitForElement('.support a').then(el => {
+            el.addEventListener('click', () => {
+              pushDataLayer(['exp_imp_pdp_l_q_sp', 'Support page', 'Link', 'Questions'])
+            })
+          })
+
+          waitForElement('.shopify-section-template--16711182876924__icons').then(el =>
+            handleVisibility(el,
+              ['exp_imp_pdp_v_b_ft', '{{focusTime}}', 'Visibility', 'Benefits']
+            )
+          )
+
+          waitForElement('.featured-collection__container .product-grid-item').then(el => {
+            handleVisibility(el,
+              ['exp_imp_pdp_v_ymal_ft', '{{focusTime}}', 'Visibility', 'You may also like']
+            )
+          })
+
+          waitForElement('.related-products .product-grid-item').then(el => {
+            handleVisibility(el,
+              ['exp_imp_pdp_v_rv_ft', '{{focusTime}}', 'Visibility', 'Recently viewed']
+            )
+          })
+
+          waitForElement('.product-single__thumbnails').then(el => {
+            el.addEventListener('click', (e) => {
+              if (e.target.closest('.product-single__thumbnail')) {
+                pushDataLayer(['exp_imp_pdp_i_fs_it', `${e.target.closest('.product-single__thumbnail').dataset.id}`, 'Image', 'First sccreen'])
+              }
+            })
           })
         } else {
           // block with discount "Spend $ and get a % discount" (13)
@@ -1908,6 +2092,8 @@ cursor: pointer;
           //             }
           //           }, WAIT_INTERVAL_TIMEOUT)
         }
+
+
       }
     }, WAIT_INTERVAL_TIMEOUT)
   }
