@@ -126,6 +126,9 @@
     .pack_size ul {
         margin: 0;
     }
+    .pack_size ul li.sold-out{
+      background: #ddd;
+    }
     .pack_size > p {
         font-weight: 700;
         margin: 16px 0 12px;
@@ -610,6 +613,7 @@ text-decoration: underline;
   font-weight: 600;
   line-height: 24px;
   /* 150% */
+  margin-right: 20px;
 }
 
 .sticky-btn-info__price-wrapper {
@@ -658,6 +662,15 @@ text-decoration: underline;
   cursor: pointer;
 
   height: 100%;
+}
+.sticky-btn-pack__current {
+  display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.sticky-btn-pack__current span {
+  white-space: nowrap;
 }
 
 .sticky-btn-pack__current svg {
@@ -725,6 +738,12 @@ text-decoration: underline;
   border: 0;
   border-radius: 0;
   cursor: pointer;
+}
+
+.add-to-cart.add-to-cart--sold {
+  background-color: #ddd;
+
+    color: var(--text-alpha-50);
 }
 
 .sticky-btn-wrapper__dot {
@@ -936,33 +955,36 @@ cursor: pointer;
   const stickyBtn = (productName, packs) => {
     let packsHTML
     let packSelectBlock = ''
-    let firstPack
+    //let stickySelectedPack
     let btn
 
     if (packs) {
       console.log(packs)
 
-      firstPack = packs[0]
+      // stickySelectedPack = packs[0]
 
-      console.log(firstPack)
+      // console.log(stickySelectedPack)
+
+      const activePack = document.querySelector('.alternative-options__item--active .alternative-options__item-label')
 
       packsHTML = [...packs].map((pack, index) => {
+        const packName = document.querySelectorAll('.alternative-options__item-label')[index]
         // console.log(pack.dataset)
         return /*html*/`
           <p 
-            class="${index === 0 ? "sticky-btn-pack__option--active" : ''}" 
+            class="${packName?.innerText === activePack?.innerText ? "sticky-btn-pack__option--active" : ''}" 
             data-pack-id="${pack.dataset.id}" 
             data-pack-price="${pack.dataset.price}" 
             data-pack-compare="${pack.dataset.compare}"
           >
-              ${+index + 1} Pack
+            ${packName?.innerText} 
           </p>
           `
       }).join('')
 
       packSelectBlock = /*html*/`
         <div class="sticky-btn-pack">
-            <p class="sticky-btn-pack__current"><span>1 Pack</span> <svg xmlns="http://www.w3.org/2000/svg" width="13"
+            <p class="sticky-btn-pack__current"><span>${document.querySelector('.alternative-options__item--active')?.innerText}</span> <svg xmlns="http://www.w3.org/2000/svg" width="13"
                 height="7" viewBox="0 0 13 7" fill="none">
                 <path
                   d="M7.00781 6.99609C6.72656 6.99609 6.47656 6.90234 6.28906 6.71484L1.28906 1.71484C0.882812 1.33984 0.882812 0.683594 1.28906 0.308594C1.66406 -0.0976562 2.32031 -0.0976562 2.69531 0.308594L7.00781 4.58984L11.2891 0.308594C11.6641 -0.0976562 12.3203 -0.0976562 12.6953 0.308594C13.1016 0.683594 13.1016 1.33984 12.6953 1.71484L7.69531 6.71484C7.50781 6.90234 7.25781 6.99609 7.00781 6.99609Z"
@@ -980,21 +1002,27 @@ cursor: pointer;
 
     let packPrice, packCompare
 
-    if (firstPack) {
-      packPrice = firstPack.dataset.price
-      packCompare = firstPack.dataset.compare != '$0.00' ? firstPack.dataset.compare : ''
-    } else {
+    if (!packs) {
       packPrice = document.querySelector('.product__price--regular')?.innerText
       packCompare = document.querySelector('.product__price--compare')?.innerText != '$0.00' ? document.querySelector('.product__price--compare')?.innerText : ''
+    } else {
+      const activePack = document.querySelector('.alternative-options__item--active').closest('li')
+
+      packPrice = activePack.dataset.price
+      packCompare = activePack.dataset.compare != '$0.00' ? activePack.dataset.compare : ''
     }
+
 
     if (media && packs) {
       btn = /*html*/`
      <button class="add-to-cart" data-btn-link="true">Choose a Product</button>`
     } else {
+      console.log('herer');
+      const clientCTABtn = document.querySelector('[data-add-to-cart-text]')?.innerText.toLowerCase().includes('sold out') ? 'add-to-cart--sold' : ''
+
       btn = /*html*/`
-      <button class="add-to-cart">
-        Add to cart
+      <button class="add-to-cart ${clientCTABtn}">
+        ${clientCTABtn ? 'Sold out' : 'Add to cart'}
         <span class="sticky-btn-wrapper__dot"></span>
         <span class="sticky-btn-wrapper__price">${packPrice}</span>
       </button>`
@@ -1046,50 +1074,6 @@ cursor: pointer;
     })
   }
 
-  function includesSubstring(substring) {
-    return window.location.href.includes(substring)
-  }
-
-  function returnVideoLink() {
-    let link = ''
-
-    switch (true) {
-      case includesSubstring("geeni-sentry-smart-wi-fi-floodlight-and-security-camera-outdoor-light-and-security-camera-for-home-surveillance?variant=31329754513487"):
-        link = "https://drive.google.com/file/d/1qct5Uqxjg3bf9LKv2ZyZFcp3gB2L-Vhp"
-        break
-
-      case includesSubstring('sentinel-1080p-pan-tilt-smart-wi-fi-security-camera-black?variant=31329771094095'):
-        link = "https://drive.google.com/file/d/1N0TUVKQSvWkY-TEHAATAsgynz6njHaDl"
-        break
-
-      case includesSubstring('collections/strip-lights/products/'):
-        link = "https://drive.google.com/file/d/1qrBRDiGC6HS0IHw865vehbX1C5Vo95kG"
-        break
-
-      case includesSubstring('collections/indoor-cameras') && !includesSubstring('sentinel-1080p-pan-tilt-smart-wi-fi-security-camera-black'):
-        link = "https://drive.google.com/file/d/1GAv-K-DtB9kHNlTKUfafmTWbgULitI4F"
-        break
-
-      case includesSubstring('collections/lighting') && !includesSubstring('strip-lights'):
-        link = "https://drive.google.com/file/d/1LscdR59KKSgOG2tNXjm5uMHNuLYCmOXZ"
-        break
-
-      case includesSubstring('collections/outdoor-cameras') && !includesSubstring('geeni-sentry-smart-wi-fi-floodlight-and-security-cam'):
-        link = "https://drive.google.com/file/d/1UQtRRhOUe_UQ4788kBEMPzO4is87j4yV"
-        break
-
-      case includesSubstring('/collections/power'):
-        link = "https://drive.google.com/file/d/1biVou2eh8Gv6gvXdCTyLcXW48n0DWtkm"
-        break
-
-      default:
-        // Handle the default case when none of the conditions match
-        break
-    }
-
-    return link
-  }
-
   function extractNumberWithDollarSignAndPlus(string) {
     // Regular expression to extract a number with a dollar sign ($) and optional '+' sign
     const regex = /\$([\d.]+)\+/
@@ -1112,7 +1096,12 @@ cursor: pointer;
       console.log(_this.parentElement)
       _this.parentElement.querySelector('.selected')?.classList.remove('selected')
 
-      document.querySelector(`[data-pack-id="${_this.dataset.id}"]`)?.click()
+      console.log(_this.dataset.id)
+
+      //document.querySelector(`[data-id="${_this.dataset.id}"]`)?.click()
+      window.location = document.querySelector(`[data-id="${_this.dataset.id}"] a`)?.href
+      //document.querySelector(`[data-id="32658361385039"] a`)?.click()
+      //document.querySelector(`[data-pack-id="${_this.dataset.id}"]`)?.click()
     }
     _this.classList.add('selected')
 
@@ -1216,10 +1205,8 @@ cursor: pointer;
 
       console.log('1', saved)
 
-      if (!item.classList.contains('alternative-options__sold-out')) {
-
-        document.querySelector('.pack_size ul').insertAdjacentHTML('beforeend', `
-                  <li class="d-flex items-center ${item.querySelector('.alternative-options__item--active') ? 'selected' : ''}" data-id="${item.dataset.id}">
+      document.querySelector('.pack_size ul').insertAdjacentHTML('beforeend', `
+                  <li class="d-flex items-center ${item.querySelector('.alternative-options__item--active') ? 'selected' : ''} ${item.classList.contains('alternative-options__sold-out') ? "sold-out" : ""}" data-id="${item.dataset.id}">
                       <div class="relative">   
                           <div class="count">x${index + 1}</div>
                           <img src="${item.querySelector('img').src}" alt="${item.querySelector('img').alt}">
@@ -1235,17 +1222,17 @@ cursor: pointer;
                       ${saved !== '' ? '<div class="saved">Save $' + saved + '</div>' : ''}
                   </li>`)
 
-        // add handleOnClickForPack
-        const waitForItem = setInterval(() => {
-          const addedItem = document.querySelectorAll('.pack_size ul li')[index]
-          if (addedItem) {
-            clearInterval(waitForItem)
+      // add handleOnClickForPack
+      const waitForItem = setInterval(() => {
+        const addedItem = document.querySelectorAll('.pack_size ul li')[index]
+        if (addedItem) {
+          clearInterval(waitForItem)
 
 
-            addedItem.addEventListener('click', (e) => selectedPack(e))
-          }
-        }, WAIT_INTERVAL_TIMEOUT)
-      }
+          addedItem.addEventListener('click', (e) => selectedPack(e))
+        }
+      }, WAIT_INTERVAL_TIMEOUT)
+
       //(11)
       if (item.querySelector('.alternative-options__item--active')) {
         document.querySelector('.product__price-and-badge .product__price').innerHTML = `
@@ -1305,8 +1292,6 @@ cursor: pointer;
           $('html, body').animate({
             scrollTop: $('#pack_size').offset().top - 65
           }, 500) // 1000 milliseconds (1 second) for smooth scrolling, adjust as needed
-
-
         } else {
           document.querySelector('button[name="add"]').click()
         }
@@ -1328,6 +1313,12 @@ cursor: pointer;
           document.body.insertAdjacentHTML('afterbegin', styleBase)
           document.body.insertAdjacentHTML('afterbegin', stylePDP)
 
+          waitForElement('[data-add-to-cart-text]').then(el => {
+            if (el.innerText.toLowerCase().includes('sold out')) {
+              el.innerText = 'Sold Out'
+            }
+          })
+
           // change logo
           waitForElement('.logo__image-link--other').then(el => {
             console.log("el", el)
@@ -1337,55 +1328,10 @@ cursor: pointer;
           })
           waitForElement('.logo__image-link--home').then(el => el.insertAdjacentHTML('beforeend', /*html*/`
           <img class="custom-logo" src="${dir}logo_geeni.png" alt="logo">
-        `))
-
-          // // add video to the slider
-          // waitForElement('.product-single__thumbnail').then(el => {
-          //   const videoLink = returnVideoLink()
-
-          //   if (videoLink) {
-          //     const videoSize = media ? 58.4 : 1190
-          //     const previewSize = media ? 58.4 : 88.4
-
-          //     document.querySelector('.product-single__media-slider div').insertAdjacentHTML('afterend', /*html*/`
-          //       <div>
-          //        <iframe src="${videoLink}/preview" class="video-iframe" width="1190" height="1190"></iframe>
-          //       </div>
-          //     `)
-          //     document.querySelector('.product-single__thumbnail').insertAdjacentHTML('afterend', /*html*/`
-          //     <div class="product-single__thumbnail">
-          //     <img src="${dir}video-preview.png" alt="video preview" style="width: ${previewSize}px; height: ${previewSize};">
-          //     </div>
-          //     `)
-          //   }
-          // })
+          `))
 
           // hide chat btn behind slide-in cart
           waitForElement('[title="Button to launch messaging window"]').then(el => el.style.zIndex = "999")
-
-          // add video
-          waitForElement('.product-single__thumbnail').then(el => {
-            const videoLink = returnVideoLink()
-
-            if (videoLink) {
-
-              document.querySelector('.product-single__media-slider div').insertAdjacentHTML('afterend', /*html*/`
-              <div id="FeaturedMedia-template--16711182876924__main-31769937805564" class="product-single__media-slide" data-product-slide="" data-id="31769937805564" data-aspectratio="1.0" data-media-id="template--16711182876924__main-31769937805564" data-type="image" data-product-single-media-wrapper="" style="position: absolute; left: 0px; transform: translateX(0%);" aria-hidden="true"><div class="product-single__media product-single__media--image">
-      <div class="product-single__media--image-height" style="padding-top: 100.0%;"></div>
-      <iframe src="${videoLink}/preview" class="video-iframe" width="1190" height="1190"></iframe>
-
-      <noscript>
-        <img src="//mygeeni.com/cdn/shop/products/GN-CW021_mainwshadow_2048x2048.jpg?v=1680186439" alt="Geeni Sentinel 1080p Pan &amp; Tilt Smart Camera" id="31769937805564">
-      </noscript></div></div>
-              `)
-              document.querySelector('.product-single__thumbnail').insertAdjacentHTML('afterend', /*html*/`
-              <div class="product-single__thumbnail" data-id="31769937805564" data-thumbnail-id="template--16711182876924__main-31769937805564"> <div class="product-single__thumbnail-link video-preview"><img src="${dir}video-preview.png" alt="video preview">
-            </div>
-
-</div>
-              `)
-            }
-          })
 
           //(2-5)
           const waitForSlider = setInterval(() => {
@@ -1479,9 +1425,12 @@ cursor: pointer;
             const packsAlternates = document.querySelector('.product__alternates')
             // const packs = document.querySelectorAll('.product__alternates .alternative-options > li')
             const productTitle = document.querySelector('.product__title')
+            const clientCTABtn = document.querySelector('[data-add-to-cart-text]')
 
-            if (document.querySelector('.manufacturer') && productTitle) {
+            if (document.querySelector('.manufacturer') && productTitle && clientCTABtn) {
               clearInterval(waitForRedesignPacks)
+
+              console.log('clientCTABtn', clientCTABtn);
 
               let packs
 
