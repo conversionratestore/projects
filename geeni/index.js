@@ -810,6 +810,7 @@ line-height: 22px; /* 157.143% */
 
 .get-ur-discount {
   display: flex;
+  display: none;
   align-items: center;
   margin-top: 10px;
 
@@ -848,6 +849,10 @@ cursor: pointer;
 /*.product__submit__item [name="add"] {display: none;} */
 
     @media screen and (max-width: 1023px) {
+      .product__price-and-badge .product__price p.pr:before {
+        margin: 0 6px !important;
+      }
+
       .discount {
         padding-top: 16px;
       }
