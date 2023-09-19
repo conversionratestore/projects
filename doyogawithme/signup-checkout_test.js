@@ -648,7 +648,7 @@ function init() {
                     font-weight: 700;
                 `;
 
-        document.querySelector("#edit-actions .form-submit").insertAdjacentHTML("afterend", `<p class="text-center singup">Don’t have an account? <a href="/yogi/register">Sing up</a></p>`);
+        document.querySelector("#edit-actions .form-submit").insertAdjacentHTML("afterend", `<p class="text-center singup">Don’t have an account? <a href="/yogi/register">Sign Up</a></p>`);
 
         document.querySelector("#edit-actions .form-submit").addEventListener("click", () => {
           pushDataLayer("exp_ch_pl_page_login_b", "Log in button", "Button", loc);
