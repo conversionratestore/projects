@@ -1277,7 +1277,7 @@ cursor: pointer;
                           <p class="compare">${item.dataset.compare != '$0.00' ? item.dataset.compare : ''}</p>
                           <p class="pr">${item.dataset.price}</p>
                       </div>
-                      ${saved !== '' ? '<div class="saved">Save $' + saved + '</div>' : ''}
+                      ${saved !== '' ? '<div class="saved">Save ' + saved + '</div>' : ''}
                   </li>`)
 
       // add handleOnClickForPack
@@ -1297,7 +1297,7 @@ cursor: pointer;
                   <p class="name">${item.querySelector('.alternative-options__item-label').innerHTML}</p>
                   <p class="pr d-flex items-center">${item.dataset.price}</p>
                   <p class="compare">${item.dataset.compare != '$0.00' ? item.dataset.compare : ''}</p>
-                  ${saved != '' ? '<div class="saved">  Save $' + saved + '</div>' : ''}`
+                  ${saved != '' ? '<div class="saved">  Save ' + saved + '</div>' : ''}`
       }
     })
   }
@@ -1947,153 +1947,244 @@ cursor: pointer;
               }
             })
           })
-        } else {
-          // block with discount "Spend $ and get a % discount" (13)
-          //           const waitForCart = setInterval(() => {
-          //             const cartDrawer = document.querySelector('.cart-drawer')
-
-          //             if (cartDrawer) {
-          //               clearInterval(waitForCart)
-
-          //               // Function to check if the element has the "is-open" class
-          //               const checkIsOpen = (targetElement, priceContainer) => {
-
-          //                 if (targetElement.classList.contains('is-open')) {
-          //                   discountChange = true
-          //                 }
-
-          //                 if (
-          //                   !targetElement.classList.contains('is-open') &&
-          //                   discountChange == true
-          //                 ) {
-          //                   discountChange = false
-
-          //                   getCart().then(data => {
-          //                     console.log(data)
-
-          //                     let req = /(\d{1,})(\d{2})$/
-          //                     let total = +(data['total_price'].toString().replace(req, "$1.$2"))
-
-          //                     let discount = ``
-          //                     if (total >= 0 && total <= 99.00) {
-          //                       discount = `<p>Spend <b>$99</b> and get a <b>10% discount</b></p>`
-          //                     } else if (total > 99.00 && total <= 149.00) {
-          //                       discount = `<p>Spend <b>$149</b> and get a <b>15% discount</b></p>`
-          //                     } else if (total > 149.00) {
-          //                       discount = `<p>Spend <b>$199</b> and get a <b>20% discount</b></p>`
-          //                     }
-
-          //                     /*if (document.querySelector('.discount')) {
-          //                       document.querySelector('.discount').remove()
-          //                     }*/
-
-          //                     let discountHTML = `
-          //                         <div class="discount d-flex items-center">
-          //                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="29" viewBox="0 0 28 29" fill="none">
-          //                                 <circle cx="14" cy="14.25" r="14" fill="#E8F8FE"/>
-          //                                 <path d="M8.53864 8H13.3148C13.8598 8 14.3726 8.22387 14.7573 8.60765L20.399 14.2364C21.2003 15.036 21.2003 16.3472 20.399 17.1468L16.1357 21.4003C15.3343 22.1999 14.02 22.1999 13.2187 21.4003L7.57699 15.7716C7.19233 15.3878 7 14.8761 7 14.3324V9.53512C7 8.7036 7.67315 8 8.53864 8ZM10.5902 12.6054C11.1351 12.6054 11.6159 12.1576 11.6159 11.582C11.6159 11.0383 11.1351 10.5585 10.5902 10.5585C10.0132 10.5585 9.5644 11.0383 9.5644 11.582C9.5644 12.1576 10.0132 12.6054 10.5902 12.6054Z" fill="#023F88"/>
-          //                             </svg>  
-          //                             ${discount}
-          //                         </div>`
-
-          //                     // if (media) {
-          //                     //   priceContainer.insertAdjacentHTML('afterend', discountHTML)
-          //                     // } else {
-          //                     //   qtyBlock.insertAdjacentHTML('beforebegin', discountHTML)
-          //                     //   // waitForElement('.qty_block').then(el => el.insertAdjacentHTML('beforebegin', discountHTML))
-          //                     //   // document.querySelector('.qty_block').insertAdjacentHTML('beforebegin', discountHTML)
-          //                     // }
-          //                   })
-          //                 }
-          //               }
-
-          //               const config = { attributes: true, attributeFilter: ['class'] }
-          //               const callback = (mutationsList) => {
-          //                 for (const mutation of mutationsList) {
-          //                   console.log(mutation)
-
-          //                   if (mutation.type === 'attributes') {
-          //                     // Check if the "is-open" class has been added or removed
-          //                     if (mutation.attributeName === 'class') {
-          //                       checkIsOpen(cartDrawer, productPriceBlock)
-
-          //                       const drawerMessage = document.querySelector('.cart-drawer__message').textContent
-
-          //                       if (!document.querySelector('.away-from')) {
-
-          //                         const priceToFreeShipping = extractNumberWithDollarSignAndPlus(drawerMessage)
-          //                         document.querySelector('.cart__message__progress__holder').insertAdjacentHTML('beforebegin', /*html*/`
-
-          // <div class="msg away-from">
-          //   <p>You are $<span class="away-from__number">${priceToFreeShipping}</span> away from</p>
-          //   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 18" fill="none">
-          //     <path d="M4.2 0H13.8C14.775 0 15.6 0.773438 15.6 1.6875V3.375H17.475C18.1125 3.375 18.7125 3.62109 19.2 4.04297L22.0875 6.75C22.5375 7.17188 22.8 7.76953 22.8 8.36719V12.375C23.4375 12.375 24 12.9023 24 13.5C24 14.1328 23.4375 14.625 22.8 14.625H21.6C21.6 16.4883 19.9875 18 18 18C15.975 18 14.4 16.4883 14.4 14.625H9.6C9.6 16.4883 7.9875 18 6 18C3.975 18 2.4 16.4883 2.4 14.625V10.125H7.8C8.1 10.125 8.4 9.87891 8.4 9.5625C8.4 9.28125 8.1 9 7.8 9H0.6C0.2625 9 0 8.75391 0 8.4375C0 8.15625 0.2625 7.875 0.6 7.875H9C9.3 7.875 9.6 7.62891 9.6 7.3125C9.6 7.03125 9.3 6.75 9 6.75H1.8C1.4625 6.75 1.2 6.50391 1.2 6.1875C1.2 5.90625 1.4625 5.625 1.8 5.625H10.2C10.5 5.625 10.8 5.37891 10.8 5.0625C10.8 4.78125 10.5 4.5 10.2 4.5H0.6C0.2625 4.5 0 4.25391 0 3.9375C0 3.65625 0.2625 3.375 0.6 3.375H2.4V1.6875C2.4 0.773438 3.1875 0 4.2 0ZM20.4 8.36719L17.475 5.625H15.6V9H20.4V8.36719ZM6 16.3125C6.975 16.3125 7.8 15.5742 7.8 14.625C7.8 13.7109 6.975 12.9375 6 12.9375C4.9875 12.9375 4.2 13.7109 4.2 14.625C4.2 15.5742 4.9875 16.3125 6 16.3125ZM19.8 14.625C19.8 13.7109 18.975 12.9375 18 12.9375C16.9875 12.9375 16.2 13.7109 16.2 14.625C16.2 15.5742 16.9875 16.3125 18 16.3125C18.975 16.3125 19.8 15.5742 19.8 14.625Z" fill="#023F88"/>
-          //   </svg>
-          //   <span>Free shipping</span>                    
-          // </div>
-          //                           <div class="msg congrats">
-          //                             <p>Congratulations!</p>
-          //                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="18" viewBox="0 0 22 18" fill="none">
-          //       <path d="M1.8 0H11.4C12.375 0 13.2 0.773438 13.2 1.6875V3.375H15.075C15.7125 3.375 16.3125 3.62109 16.8 4.04297L19.6875 6.75C20.1375 7.17188 20.4 7.76953 20.4 8.36719V12.375C21.0375 12.375 21.6 12.9023 21.6 13.5C21.6 14.1328 21.0375 14.625 20.4 14.625H19.2C19.2 16.4883 17.5875 18 15.6 18C13.575 18 12 16.4883 12 14.625H7.20001C7.20001 16.4883 5.5875 18 3.6 18C1.575 18 0 16.4883 0 14.625V10.125C0 10.125 0 9.85072 0 9.53432C0 9.25307 0 9 0 9C0 9 0 8.75391 0 8.4375C0 8.15625 0 7.875 0 7.875C0 7.875 0 7.62891 0 7.3125C0 7.03125 0 6.75 0 6.75C0 6.75 0 6.50391 0 6.1875C0 5.90625 0 5.625 0 5.625C0 5.625 0 5.37891 0 5.0625C0 4.78125 0 4.5 0 4.5C0 4.5 0 4.25391 0 3.9375C0 3.65625 0 3.375 0 3.375V1.6875C0 0.773438 0.787499 0 1.8 0ZM18 8.36719L15.075 5.625H13.2V9H18V8.36719ZM3.6 16.3125C4.575 16.3125 5.4 15.5742 5.4 14.625C5.4 13.7109 4.575 12.9375 3.6 12.9375C2.5875 12.9375 1.8 13.7109 1.8 14.625C1.8 15.5742 2.5875 16.3125 3.6 16.3125ZM17.4 14.625C17.4 13.7109 16.575 12.9375 15.6 12.9375C14.5875 12.9375 13.8 13.7109 13.8 14.625C13.8 15.5742 14.5875 16.3125 15.6 16.3125C16.575 16.3125 17.4 15.5742 17.4 14.625Z" fill="#023F88"/>
-          //       <path fill-rule="evenodd" clip-rule="evenodd" d="M9.29831 4.40819C9.58093 4.711 9.56457 5.18559 9.26175 5.46822L4.40405 10.0021L2.18057 7.40802C1.911 7.09352 1.94743 6.62005 2.26192 6.35048C2.57641 6.08092 3.04989 6.11734 3.31946 6.43183L4.52455 7.83778L8.23828 4.37163C8.54109 4.08901 9.01568 4.10537 9.29831 4.40819Z" fill="white"/>
-          //     </svg>
-          //     <span>You're eligible for free delivery</span>
-          //                           </div>
-          //                         `)
-          //                       }
-
-          //                       if (document.querySelector('.cart__message__default.is-hidden')) {
-          //                         document.querySelector('.msg.away-from').style.display = "none"
-          //                         document.querySelector('.msg.congrats').style.display = "flex"
-          //                       } else {
-          //                         document.querySelector('.away-from__number').innerText = extractNumberWithDollarSignAndPlus(drawerMessage)
-
-          //                         document.querySelector('.msg.away-from').style.display = "flex"
-          //                         document.querySelector('.msg.congrats').style.display = "none"
-          //                       }
-
-          //                       if (!document.querySelector('.get-ur-discount')) {
-          //                         document.querySelector('.cart__item__content').insertAdjacentHTML('beforeend', /*html*/`
-          //                           <div class="get-ur-discount">
-          //                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-          //   <path d="M7.60056 8.84132C7.94519 8.84132 8.22456 8.56195 8.22456 8.21732C8.22456 7.8727 7.94519 7.59332 7.60056 7.59332C7.25594 7.59332 6.97656 7.8727 6.97656 8.21732C6.97656 8.56195 7.25594 8.84132 7.60056 8.84132Z" fill="#53B6EB"/>
-          //   <path d="M12.3916 12.3854C12.2261 12.3854 12.0674 12.4511 11.9504 12.5681C11.8334 12.6852 11.7676 12.8439 11.7676 13.0094C11.766 13.135 11.802 13.2583 11.8708 13.3635C11.9396 13.4686 12.0383 13.5509 12.1541 13.5997C12.2699 13.6485 12.3976 13.6617 12.5209 13.6376C12.6443 13.6134 12.7576 13.5531 12.8465 13.4642C12.9353 13.3753 12.9957 13.262 13.0198 13.1387C13.0439 13.0153 13.0308 12.8876 12.9819 12.7718C12.9331 12.656 12.8509 12.5574 12.7457 12.4885C12.6406 12.4197 12.5173 12.3838 12.3916 12.3854Z" fill="#53B6EB"/>
-          //   <path d="M17.3596 8.76135C17.0769 8.49769 16.8391 8.18964 16.6556 7.84935C16.5377 7.46339 16.4836 7.06075 16.4956 6.65735C16.5637 5.95049 16.3607 5.24416 15.9276 4.68135C15.3648 4.24829 14.6585 4.04526 13.9516 4.11335C13.5616 4.12101 13.1728 4.06702 12.7996 3.95335C12.4593 3.76988 12.1513 3.53208 11.8876 3.24935C11.4134 2.67522 10.7383 2.30333 9.99961 2.20935C9.27402 2.30914 8.61345 2.68089 8.15161 3.24935C7.88637 3.53035 7.57861 3.76791 7.23961 3.95335C6.85352 4.07071 6.45098 4.12474 6.04761 4.11335C5.33815 4.04399 4.62887 4.24705 4.06361 4.68135C3.63266 5.24494 3.43244 5.95146 3.50361 6.65735C3.50932 7.06096 3.45265 7.46304 3.33561 7.84935C3.15493 8.19144 2.9168 8.49993 2.63161 8.76135C2.06799 9.2261 1.69963 9.88571 1.59961 10.6094C1.69374 11.3331 2.05987 11.9938 2.62361 12.4574C2.91343 12.7318 3.15423 13.0538 3.33561 13.4093C3.45297 13.7954 3.507 14.198 3.49561 14.6013C3.43025 15.3104 3.6329 16.0183 4.06361 16.5853C4.63002 17.0168 5.33919 17.217 6.04761 17.1453C6.45114 17.1409 6.85303 17.1975 7.23961 17.3133C7.58037 17.4961 7.88853 17.734 8.15161 18.0174C8.62052 18.5692 9.28058 18.9235 9.99961 19.0093C10.7221 18.9114 11.3815 18.546 11.8476 17.9853C12.1203 17.6936 12.4427 17.4525 12.7996 17.2733C13.1856 17.1554 13.5882 17.1014 13.9916 17.1133C14.6981 17.1774 15.403 16.9748 15.9676 16.5454C16.4019 15.9801 16.605 15.2708 16.5356 14.5613C16.5242 14.158 16.5783 13.7554 16.6956 13.3693C16.881 13.0303 17.1186 12.7226 17.3996 12.4574C17.9532 11.9888 18.3101 11.3291 18.3996 10.6094C18.296 9.88504 17.925 9.22577 17.3596 8.76135ZM6.15961 8.21735C6.15803 7.93413 6.24047 7.65681 6.39651 7.42045C6.55254 7.18408 6.77516 6.9993 7.03621 6.88946C7.29727 6.77961 7.58503 6.74965 7.86311 6.80335C8.14119 6.85705 8.39711 6.99201 8.59849 7.19115C8.79987 7.3903 8.93768 7.64469 8.99449 7.92216C9.05129 8.19962 9.02455 8.4877 8.91763 8.74997C8.81071 9.01223 8.62842 9.2369 8.39382 9.39556C8.15921 9.55423 7.88283 9.63976 7.59961 9.64135C7.2212 9.64136 6.85817 9.49158 6.58985 9.22476C6.32153 8.95793 6.16972 8.59575 6.16761 8.21735H6.15961ZM7.52761 13.6334C7.4917 13.6716 7.44832 13.7021 7.40016 13.723C7.35201 13.7438 7.30009 13.7546 7.24761 13.7546C7.19513 13.7546 7.14321 13.7438 7.09505 13.723C7.0469 13.7021 7.00352 13.6716 6.96761 13.6334C6.92934 13.5974 6.89885 13.5541 6.878 13.5059C6.85715 13.4577 6.84639 13.4058 6.84639 13.3534C6.84639 13.3009 6.85715 13.249 6.878 13.2008C6.89885 13.1526 6.92934 13.1093 6.96761 13.0733L12.4476 7.58535C12.4849 7.54806 12.5292 7.51847 12.5779 7.49829C12.6266 7.4781 12.6789 7.46771 12.7316 7.46771C12.7844 7.46771 12.8366 7.4781 12.8853 7.49829C12.934 7.51847 12.9783 7.54806 13.0156 7.58535C13.0529 7.62265 13.0825 7.66692 13.1027 7.71565C13.1229 7.76438 13.1332 7.81661 13.1332 7.86935C13.1332 7.92209 13.1229 7.97432 13.1027 8.02305C13.0825 8.07178 13.0529 8.11606 13.0156 8.15335L7.52761 13.6334ZM12.3836 14.4334C12.1004 14.4334 11.8235 14.3494 11.588 14.192C11.3525 14.0347 11.169 13.811 11.0606 13.5494C10.9522 13.2877 10.9239 12.9998 10.9791 12.722C11.0344 12.4442 11.1708 12.189 11.371 11.9888C11.5713 11.7885 11.8265 11.6521 12.1042 11.5969C12.382 11.5416 12.6699 11.57 12.9316 11.6784C13.1933 11.7867 13.4169 11.9703 13.5743 12.2058C13.7316 12.4413 13.8156 12.7181 13.8156 13.0013C13.8167 13.1894 13.7807 13.3758 13.7097 13.55C13.6387 13.7241 13.5341 13.8826 13.4018 14.0163C13.2696 14.15 13.1123 14.2564 12.939 14.3293C12.7657 14.4022 12.5797 14.4403 12.3916 14.4414L12.3836 14.4334Z" fill="#53B6EB"/>
-          // </svg>
-          // <p>Get Your 10% Off</p>
-          // <svg xmlns="http://www.w3.org/2000/svg" width="11" height="12" viewBox="0 0 11 12" fill="none">
-          //   <g clip-path="url(#clip0_1003_173)">
-          //     <path d="M4 1.20938L8 5.6094L4 10.0094" stroke="#53B6EB" stroke-linecap="square" stroke-linejoin="round"/>
-          //   </g>
-          //   <defs>
-          //     <clipPath id="clip0_1003_173">
-          //       <rect width="11" height="11" fill="white" transform="matrix(0 -1 1 0 0 11.1094)"/>
-          //     </clipPath>
-          //   </defs>
-          // </svg>
-          //                           </div>
-          //                         `)
-
-          //                         waitForElement('.get-ur-discount').then(el => el.addEventListener('click', () => {
-          //                           console.log(el)
-          //                         }))
-          //                       }
-
-          //                       console.log('mut')
-          //                     }
-          //                   }
-          //                 }
-          //               }
-          //               const observer = new MutationObserver(callback)
-          //               observer.observe(cartDrawer, config)
-
-          //               // Initial check
-          //               checkIsOpen(cartDrawer, productPriceBlock)
-          //             }
-          //           }, WAIT_INTERVAL_TIMEOUT)
         }
+        // else if (window.location.pathname.includes("checkouts")) {
+        //   waitForElement('[aria-label="Breadcrumb"]').then(el => {
+        //     let styleNew = /*html */ `
+        //       <style>
+        //           /*breadcrumb  */
+        //           [aria-label="Breadcrumb"]{
+        //               margin-top: 50px;
+        //           }
+        //           .breadcrumb {
+        //               display: flex;
+        //               position: relative;
+        //               justify-content: space-between;
+        //               max-width: 500px;
+        //               margin: 0 auto;
+        //           }
+        //           .breadcrumb::before{
+        //               position: absolute;
+        //               content:'';
+        //               width: 97%;
+        //               height: 1px;
+        //               background: #D9D9D9;
+        //               top: -17px;
+        //           }
+        //           .breadcrumb__item .breadcrumb__text,
+        //           .breadcrumb__item--completed .breadcrumb__text,
+        //           .breadcrumb__item--completed .breadcrumb__link{
+        //               color: #888;
+        //               font-family: 'Avenir Next', 'Helvetica Neue', sans-serif;
+        //               font-size: 14px;
+        //               font-weight: 500;
+        //               line-height: 157%;
+        //           }
+        //           .breadcrumb__item--current .breadcrumb__text{
+        //               color: #023F88;
+        //           }
+        //           .main .icon-svg--color-adaptive-light{
+        //               display: none;
+        //           }
+        //           .breadcrumb__item{
+        //               position: relative;
+        //           }
+        //           .anyflexbox .breadcrumb__item::before{
+        //               position: absolute;
+        //               display: flex;
+        //               align-items: center;
+        //               justify-content: center;
+        //               content:'1';
+        //               width: 24px;
+        //               height: 24px;
+        //               background: #F7F7F7;
+        //               border-radius: 50%;
+        //               border: 1px solid #D9D9D9;
+        //               top: -30px;
+        //               left: 50%;
+        //               transform: translateX(-50%);
+        //               color: #888;
+        //               font-family: 'Avenir Next', 'Helvetica Neue', sans-serif;
+        //               font-size: 14px;
+        //               font-weight: 500;
+        //               line-height: 157%;
+        //           }
+        //           .anyflexbox .breadcrumb__item:nth-child(2):before{
+        //               content:'2';
+        //           }
+        //           .anyflexbox .breadcrumb__item:nth-child(3):before{
+        //               content:'3';
+        //           }
+        //           .anyflexbox .breadcrumb__item:nth-child(4):before{
+        //               content:'4';
+        //           }
+        //           .anyflexbox .breadcrumb__item.breadcrumb__item--current::before{
+        //               background: #023F88;
+        //               border: 1px solid #023F88;
+        //               color: #FFF;
+        //           }
+        //           .anyflexbox .breadcrumb__item.breadcrumb__item--completed::before{
+        //               content: "\\2714";
+        //               color: #023F88;
+        //           }
+        //           /*shipping_block */
+        //           .shipping_block{
+        //               border-top: 1px solid #FFF;
+        //               background: #E8F8FE;
+        //               margin: 12px -20px 0;
+        //           }
+        //           .shipping_list{
+        //               display: flex;
+        //               justify-content: space-between;
+        //               align-items: center;
+        //               margin: 0;
+        //               list-style: none;
+        //               padding: 12px 16px;
+        //               gap: 13px;
+        //           }
+        //           .shipping_list li{
+        //               position: relative;
+        //               width: 50%;
+        //               margin: 0;
+        //               padding-left: 32px;
+        //           }
+        //           .shipping_list li::before{
+        //               position: absolute;
+        //               content: "";
+        //               width: 24px;
+        //               height: 24px;
+        //               background: url(https://conversionratestore.github.io/projects/geeni/img/shield.svg) no-repeat center center;
+        //               top: 50%;
+        //               transform: translateY(-50%);
+        //               left: 0;
+        //               background-size: contain;
+        //           }
+        //           .shipping_list li:nth-child(2):before{
+        //               background: url(https://conversionratestore.github.io/projects/geeni/img/return_box.svg) no-repeat center center;
+        //               background-size: contain;
+        //               left: 13px;
+        //           }
+        //           .shipping_list li:nth-child(2){
+        //               border-left: 1px solid #FFF;
+        //               padding-left: 45px;
+        //           }
+        //           .shipping_list li p{
+        //             font-family: 'Avenir Next', 'Helvetica Neue', sans-serif;
+        //               color: #1B1B1B;
+        //               font-size: 14px;
+        //               font-weight: 500;
+        //               line-height: 134%;
+        //               margin: 0;
+        //               max-width: 128px;
+        //           }
+        //           .shipping_block.checkout_var{
+        //               margin: 0;
+        //           }
+        //           .shipping_block.checkout_var .shipping_list{
+        //               position: relative;
+        //               padding: 12px;
+        //           }
+        //           .shipping_list::after{
+        //               position: absolute;
+        //               content: "";
+        //               width: 1px;
+        //               height: 55%;
+        //               background: #FFF;
+        //               top: 50%;
+        //               left: 50%;
+        //               transform: translate(-50%, -50%);
+        //           }
+        //           .shipping_block.checkout_var .shipping_list li{
+        //               width: unset;
+        //               border: none !important;
+        //           }
+        //           .shipping_block.checkout_var .shipping_list li p{
+        //               max-width: unset;
+        //           }
 
+        //       @media (max-width: 1130px) {
+        //           .shipping_block.checkout_var .shipping_list li p{
+        //               font-size: 12px;
+        //           }
+        //       }
+        //       @media (max-width: 768px) {
+        //           [aria-label="Breadcrumb"] {
+        //               margin-top: 30px;
+        //           }
+        //           .breadcrumb{
+        //               max-width: 295px;
+        //               padding: 0 0 10px;
+        //           }
+        //           .breadcrumb::before{
+        //               width: 92%;
+        //           }
+        //           .shipping_block.checkout_var .shipping_list li p {
+        //               font-size: 14px;
+        //               max-width: 115px;
+        //           }
+        //           .shipping_block.checkout_var .shipping_list{
+        //               padding: 12px 16px;
+        //           }
+        //           .paypal-button.paypal-button-shape-rect,
+        //           .shopify-cleanslate .h7OYsWHrW5495r9beh2n,
+        //           .shopify-cleanslate .KHqjJyKjVNT1lCGf2bnQ, .shopify-cleanslate .wOEViUrCyNb9maEe3QrQ{
+        //               border-radius: 30px !important;
+        //           }
+        //           .dynamic-checkout__title{
+        //               display: none;
+        //           }
+        //           .dynamic-checkout__content{
+        //               border: none;
+        //               padding: 0;
+        //           }
+        //           .anyflexbox .main{
+        //               padding-top: 16px !important;
+        //           }
+        //           .alternative-payment-separator {
+        //               padding-bottom: 18px;
+        //               margin-top: 16px;
+        //           }
+        //           .alternative-payment-separator__content{
+        //               color: #5B5B5B;
+        //               font-family: 'Avenir Next', 'Helvetica Neue', sans-serif;
+        //               font-size: 14px;
+        //               font-weight: 500;
+        //               line-height: 22px;
+        //           }
+        //       }
+        //       </style>
+        //       `
 
+        //     let shippingBlock = /*html */ `
+        //       <div class="shipping_block">
+        //         <ul class="shipping_list">
+        //           <li><p>365-day warranty on all products</p></li>
+        //           <li><p>30-day easy returns & refund policy</p></li>
+        //         </ul>
+        //       </div>
+        //       `
+
+        //     document.head.insertAdjacentHTML("beforeend", styleNew)
+
+        //     renderHtml()
+        //     function renderHtml() {
+        //       // shippingBlock in the cart
+
+        //       if (window.innerWidth <= 768) {
+        //         if (document.querySelector(".order-summary-toggle") && !document.querySelector(".shipping_block")) {
+        //           document.querySelector(".order-summary-toggle").insertAdjacentHTML("beforebegin", shippingBlock)
+        //         }
+        //       } else {
+        //         if (document.querySelector('[aria-label="Breadcrumb"]') && !document.querySelector(".shipping_block")) {
+        //           document.querySelector('[aria-label="Breadcrumb"]').insertAdjacentHTML("beforebegin", shippingBlock)
+        //         }
+        //       }
+        //       if (document.querySelector(".shipping_block") && !document.querySelector(".shipping_block").classList.contains("checkout_var")) {
+        //         document.querySelector(".shipping_block").classList.add("checkout_var")
+        //       }
+        //     }
+        //   })
+        // }
       }
     }, WAIT_INTERVAL_TIMEOUT)
   }
