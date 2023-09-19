@@ -74,6 +74,13 @@
     .index-section {
         order: 1;
     }
+
+    html #survicate-box + div:not([class]) iframe,
+    html [title="Button to launch messaging window"] {
+      z-index: 999 !important;
+      bottom: 70px !important;
+    }
+
     .main-content {
         display: flex;
         flex-direction: column;
@@ -859,6 +866,10 @@ margin: 0;
 margin-bottom: 25px;
 }
 
+.btn--scroll-top {
+  bottom: 145px;
+}
+
 /*.product__submit__item [name="add"] {display: none;} */
 
     @media screen and (max-width: 1023px) {
@@ -1401,7 +1412,10 @@ margin-bottom: 25px;
           `))
 
           // hide chat btn behind slide-in cart
-          waitForElement('#survicate-box + div:not([class])').then(el => el.style.zIndex = "999")
+          waitForElement('#survicate-box + div:not([class]) iframe').then(el => {
+            el.style.zIndex = "999"
+            el.style.bottom = "70px"
+          })
 
           //(2-5)
           const waitForSlider = setInterval(() => {
@@ -1478,7 +1492,7 @@ margin-bottom: 25px;
               document.querySelector('.product__reviews').insertAdjacentHTML('beforeend', /*html*/`
                 <div class="review-link">
                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="15" viewBox="0 0 19 15" fill="none">
-<path d="M12.375 5.5625C12.375 8.24219 9.80469 10.375 6.6875 10.375C5.62109 10.375 4.66406 10.1562 3.81641 9.71875C3.13281 10.0742 2.25781 10.375 1.19141 10.375C1.10938 10.375 1.02734 10.3477 1 10.2656C0.972656 10.1836 0.972656 10.1016 1.05469 10.0469C1.05469 10.0195 1.68359 9.36328 2.12109 8.46094C1.41016 7.64062 1 6.65625 1 5.5625C1 2.91016 3.54 297 0.75 6.6875 0.75C9.80469 0.75 12.375 2.91016 12.375 5.5625ZM17.3789 12.8906C17.8164 13.7656 18.418 14.3945 18.418 14.4219C18.4727 14.4766 18.5 14.5586 18.4727 14.6406C18.4453 14.7227 18.3633 14.75 18.2812 14.75C17.2969 14.75 16.4492 14.4766 15.7656 14.1758C15.0273 14.5312 14.1523 14.75 13.25 14.75C10.7617 14.75 8.71094 13.2188 8.13672 11.1133C11.0625 10.5391 13.25 8.26953 13.25 5.5625C13.25 5.42578 13.2227 5.28906 13.2227 5.15234C13.2227 5.15234 13.2227 5.125 13.25 5.125C16.1484 5.125 18.5 7.28516 18.5 9.9375C18.5 11.0586 18.0625 12.0703 17.3789 12.8906Z" fill="#023F88"/>
+<path d="M12.375 5.5625C12.375 8.24219 9.80469 10.375 6.6875 10.375C5.62109 10.375 4.66406 10.1562 3.81641 9.71875C3.13281 10.0742 2.25781 10.375 1.19141 10.375C1.10938 10.375 1.02734 10.3477 1 10.2656C0.972656 10.1836 0.972656 10.1016 1.05469 10.0469C1.05469 10.0195 1.68359 9.36328 2.12109 8.46094C1.41016 7.64062 1 6.65625 1 5.5625C1 2.91016 3.54297 0.75 6.6875 0.75C9.80469 0.75 12.375 2.91016 12.375 5.5625ZM17.3789 12.8906C17.8164 13.7656 18.418 14.3945 18.418 14.4219C18.4727 14.4766 18.5 14.5586 18.4727 14.6406C18.4453 14.7227 18.3633 14.75 18.2812 14.75C17.2969 14.75 16.4492 14.4766 15.7656 14.1758C15.0273 14.5312 14.1523 14.75 13.25 14.75C10.7617 14.75 8.71094 13.2188 8.13672 11.1133C11.0625 10.5391 13.25 8.26953 13.25 5.5625C13.25 5.42578 13.2227 5.28906 13.2227 5.15234C13.2227 5.15234 13.2227 5.125 13.25 5.125C16.1484 5.125 18.5 7.28516 18.5 9.9375C18.5 11.0586 18.0625 12.0703 17.3789 12.8906Z" fill="#023F88"/>
 </svg>
 <a href="#shopify-section-template--16711182876924__16842542196ee361cd">See all reviews</a>
                 </div>
@@ -1634,7 +1648,11 @@ margin-bottom: 25px;
                       }
 
                       if (!document.querySelector('.get-ur-discount')) {
-                        document.querySelector('.cart__item__content').insertAdjacentHTML('beforeend', /*html*/`
+                        const waitForEl = setInterval(() => {
+                          if(document.querySelector('.cart__item__content')) {
+                            clearInterval(waitForEl)
+                        
+                            document.querySelector('.cart__item__content').insertAdjacentHTML('beforeend', /*html*/`
                           <div class="get-ur-discount">
                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
   <path d="M7.60056 8.84132C7.94519 8.84132 8.22456 8.56195 8.22456 8.21732C8.22456 7.8727 7.94519 7.59332 7.60056 7.59332C7.25594 7.59332 6.97656 7.8727 6.97656 8.21732C6.97656 8.56195 7.25594 8.84132 7.60056 8.84132Z" fill="#53B6EB"/>
@@ -1654,6 +1672,8 @@ margin-bottom: 25px;
 </svg>
                           </div>
                         `)
+                          }
+                        }, WAIT_INTERVAL_TIMEOUT)
 
                         waitForElement('.get-ur-discount').then(el => el.addEventListener('click', () => {
                           console.log(el)
@@ -1965,6 +1985,22 @@ margin-bottom: 25px;
               }
             })
           })
+
+       
+          waitForElement('button[aria-label="Open Form"]').then(el => {
+            el.style.bottom = "60px"
+          })
+
+          const waitForShopPay = setInterval(() => {
+            if (
+              document.getElementById('AddToCartForm--template--16711182876924__main')
+              && document.querySelector('.shop-pay-terms')
+            ) {
+              clearInterval(waitForShopPay)
+
+              document.getElementById('AddToCartForm--template--16711182876924__main').insertAdjacentElement('beforeend', document.querySelector('.shop-pay-terms'))            
+            }
+          }, WAIT_INTERVAL_TIMEOUT)
         }
         // else if (window.location.pathname.includes("checkouts")) {
         //   waitForElement('[aria-label="Breadcrumb"]').then(el => {
