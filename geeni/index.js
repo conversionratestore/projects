@@ -490,6 +490,10 @@ line-height: 28px; /* 140% */
         text-decoration: underline !important;
 
     }
+      .support p a::after,
+      .support p a::before {
+        display: none !important;
+      }
 
 
     /* Andrii's part */
@@ -510,8 +514,8 @@ line-height: 28px; /* 140% */
     }
 
     .video-preview img {
-height: 100%;
-object-fit: cover;
+      height: 100%;
+      object-fit: cover;
     }
 
     .logo__image-link--other img,
