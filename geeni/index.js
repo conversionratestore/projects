@@ -1335,7 +1335,7 @@ cursor: pointer;
           `))
 
           // hide chat btn behind slide-in cart
-          waitForElement('[title="Button to launch messaging window"]').then(el => el.style.zIndex = "999")
+          waitForElement('#survicate-box + div:not([class])').then(el => el.style.zIndex = "999")
 
           //(2-5)
           const waitForSlider = setInterval(() => {
