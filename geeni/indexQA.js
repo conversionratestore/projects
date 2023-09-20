@@ -1324,6 +1324,10 @@ margin-bottom: 25px;
       stickyCompare.innerText = calculateTotalPrice(compareValue, qtyValue)
     }
 
+    if (document.querySelector('.sticky-btn-wrapper__price')) {
+      document.querySelector('.sticky-btn-wrapper__price').innerText = calculateTotalPrice(priceValue, qtyValue)
+    }
+
   }
 
   //get the current date + 7 days in the format: Fri, Aug 11 (19)
@@ -1598,9 +1602,6 @@ margin-bottom: 25px;
 
               priceRegularDefault = packPrice.innerText
               priceCompareDefault = packCompare.innerText
-
-              console.log(priceRegularDefault)
-              console.log(priceCompareDefault)
 
               const waitForRedesignPacks = setInterval(() => {
                 const packsAlternates = document.querySelector('.product__alternates')
