@@ -870,6 +870,14 @@ margin-bottom: 25px;
   bottom: 145px;
 }
 
+.product__form.hide-shoppay .product__submit__item [name="add"] {
+  min-width: 100%;
+}
+
+.product__form.hide-shoppay .product__submit__item .payments-exp {
+  display: none !important;
+}
+
 /*.product__submit__item [name="add"] {display: none;} */
 
     @media screen and (max-width: 1023px) {
@@ -942,8 +950,22 @@ margin-bottom: 25px;
             padding: 0;
         }
         .product__form .btn--submit {
-            width: 48%;
+            width: 48%;       
+    
+            min-width: 100%;
         }
+        .product__form.is-shoppay .btn--submit {
+          min-width: auto;
+        }
+
+        .product__form  {
+          gap: 4px !important;
+        }
+
+        .product__submit__holder  {
+          margin-top: 8px;
+        }
+        
         .product__submit__item {
           display: flex;
         }
@@ -975,6 +997,11 @@ margin-bottom: 25px;
             padding-right: 25px;
             padding-left: 25px;
         }
+    }
+    @media screen and (max-width: 767px) {
+      .product__form {
+        gap: 0 !important;
+    }
     }
   </style>`
 
@@ -1039,12 +1066,12 @@ margin-bottom: 25px;
 
     if (!packs) {
       packPrice = document.querySelector('.product__price--regular')?.innerText
-      packCompare = document.querySelector('.product__price--compare')?.innerText != '$0.00' ? document.querySelector('.product__price--compare')?.innerText : ''
+      packCompare = document.querySelector('.product__price--compare')?.innerText != '$0.00' && document.querySelector('.product__price--compare')?.innerText != '$0' ? document.querySelector('.product__price--compare')?.innerText : ''
     } else {
       const activePack = document.querySelector('.alternative-options__item--active').closest('li')
 
       packPrice = activePack.dataset.price
-      packCompare = activePack.dataset.compare != '$0.00' ? activePack.dataset.compare : ''
+      packCompare = activePack.dataset.compare != '$0.00' && activePack.dataset.compare != '$0' ? activePack.dataset.compare : ''
     }
 
 
@@ -1303,7 +1330,7 @@ margin-bottom: 25px;
                           <p class="title"></p>
                       </div>
                       <div class="prices d-flex">
-                          <p class="compare">${item.dataset.compare != '$0.00' ? item.dataset.compare : ''}</p>
+                          <p class="compare">${item.dataset.compare != '$0.00' && item.dataset.compare != '$0' ? item.dataset.compare : ''}</p>
                           <p class="pr">${item.dataset.price}</p>
                       </div>
                       ${saved !== '' ? '<div class="saved">Save ' + saved + '</div>' : ''}
@@ -1325,7 +1352,7 @@ margin-bottom: 25px;
         document.querySelector('.product__price-and-badge .product__price').innerHTML = `
                   <p class="name">${item.querySelector('.alternative-options__item-label').innerHTML}</p>
                   <p class="pr d-flex items-center">${item.dataset.price}</p>
-                  <p class="compare">${item.dataset.compare != '$0.00' ? item.dataset.compare : ''}</p>
+                  <p class="compare">${item.dataset.compare != '$0.00' && item.dataset.compare != '$0' ? item.dataset.compare : ''}</p>
                   ${saved != '' ? '<div class="saved">  Save ' + saved + '</div>' : ''}`
       }
     })
@@ -1366,7 +1393,7 @@ margin-bottom: 25px;
 
           document.querySelector('.sticky-btn-info__price').innerText = selectedPack.dataset.packPrice
           // document.querySelector('.sticky-btn-wrapper__price').innerText = selectedPack.dataset.packPrice
-          document.querySelector('.sticky-btn-info__old-price').innerText = selectedPack.dataset.packCompare != '$0.00' ? selectedPack.dataset.packCompare : ''
+          document.querySelector('.sticky-btn-info__old-price').innerText = selectedPack.dataset.packCompare != '$0.00' && selectedPack.dataset.packCompare != '$0' ? selectedPack.dataset.packCompare : ''
 
           document.querySelector(`[data-id="${selectedPack.dataset.packId}"]`).click()
 
@@ -1397,6 +1424,8 @@ margin-bottom: 25px;
           waitForElement('[data-add-to-cart-text]').then(el => {
             if (el.innerText.toLowerCase().includes('sold out')) {
               el.innerText = 'Sold Out'
+
+              document.querySelector('.product__form').classList.add('hide-shoppay')
             }
           })
 
@@ -1649,9 +1678,9 @@ margin-bottom: 25px;
 
                       if (!document.querySelector('.get-ur-discount')) {
                         const waitForEl = setInterval(() => {
-                          if(document.querySelector('.cart__item__content')) {
+                          if (document.querySelector('.cart__item__content')) {
                             clearInterval(waitForEl)
-                        
+
                             document.querySelector('.cart__item__content').insertAdjacentHTML('beforeend', /*html*/`
                           <div class="get-ur-discount">
                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
@@ -1891,11 +1920,11 @@ margin-bottom: 25px;
             )
           })
 
-          // waitForElement('.product__submit__holder [name="add"]').then(el =>
-          //   el.addEventListener('click', () => {
-          //     pushDataLayer(['exp_imp_pdp_b_ps_atc', 'Add to cart', 'Button', 'Product section'])
-          //   })
-          // )
+          waitForElement('.product__submit__holder [name="add"]').then(el =>
+            el.addEventListener('click', () => {
+              pushDataLayer(['exp_imp_pdp_b_ps_atc', 'Add to cart', 'Button', 'Product section'])
+            })
+          )
 
           // waitForElement('.product__submit__item').then(el =>
           //   el.addEventListener('click', (e) => {
@@ -1909,6 +1938,11 @@ margin-bottom: 25px;
           waitForElement('.payments-exp [data-testid="ShopifyPay-button"]').then(el => {
             if (media) {
               waitForElement('.payments-exp > p').then(el => el.style.display = "block")
+            } else {
+              waitForElement('.product__form').then(el => {
+                el.classList.add('is-shoppay')
+                console.log(el)
+              })
             }
 
             el.addEventListener('click', () => {
@@ -1986,7 +2020,7 @@ margin-bottom: 25px;
             })
           })
 
-       
+
           waitForElement('button[aria-label="Open Form"]').then(el => {
             el.style.bottom = "60px"
           })
@@ -1998,7 +2032,7 @@ margin-bottom: 25px;
             ) {
               clearInterval(waitForShopPay)
 
-              document.getElementById('AddToCartForm--template--16711182876924__main').insertAdjacentElement('beforeend', document.querySelector('.shop-pay-terms'))            
+              document.getElementById('AddToCartForm--template--16711182876924__main').insertAdjacentElement('beforeend', document.querySelector('.shop-pay-terms'))
             }
           }, WAIT_INTERVAL_TIMEOUT)
         }
