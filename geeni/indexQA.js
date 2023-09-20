@@ -882,10 +882,6 @@ margin: 0;
 margin-bottom: 25px;
 }
 
-.btn--scroll-top {
-  display: none !important;
-}
-
 .product__form.hide-shoppay .product__submit__item [name="add"] {
   min-width: 100%;
 }
@@ -2029,6 +2025,14 @@ margin-bottom: 25px;
               document.getElementById('AddToCartForm--template--16711182876924__main').insertAdjacentElement('beforeend', document.querySelector('.shop-pay-terms'))
             }
           }, WAIT_INTERVAL_TIMEOUT)
+        } else {
+          document.head.insertAdjacentHTML('beforeend', /*html*/`
+            <style>
+              .btn--scroll-top {
+                display: none !important;
+              }
+            </style>
+          `)
         }
         // else if (window.location.pathname.includes("checkouts")) {
         //   waitForElement('[aria-label="Breadcrumb"]').then(el => {
