@@ -1408,14 +1408,8 @@ margin-bottom: 25px;
       // add handleOnClickForPack
       const waitForItem = setInterval(() => {
         const addedItem = document.querySelectorAll('.pack_size ul li')[index]
-        const priceRegular = document.querySelector('.product__price--regular')
-        const priceCompare = document.querySelector('.product__price--regular')
-
-        if (addedItem && priceRegular && priceCompare) {
+        if (addedItem) {
           clearInterval(waitForItem)
-
-          priceRegularDefault = priceRegular.innerText
-          priceCompareDefault = priceCompare.innerText
 
           addedItem.addEventListener('click', (e) => selectedPack(e))
         }
@@ -1839,10 +1833,9 @@ margin-bottom: 25px;
                         </svg>
                         <span>Delivery </span>
                     </p>
-                    <div class="d-lg-flex justify-lg-between">
+                    <div>
                         <p>Free standard delivery on orders over <b>${orders}</b> </p>
-                        <div class="line-vertical d-lg-block d-none"></div>
-                        <p>Approximate data of delivery: <b>${formatDate()}</b> </p>
+                        <p>Approximate delivery date: <b>${formatDate()}</b> </p>
                     </div>
                     <p class="d-flex items-center title">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
