@@ -1446,7 +1446,7 @@ const trustpilot = /*html*/ `
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
-            <a href="https://uk.trustpilot.com/review/sparkpaws.com" class="view_more">view more</a>
+            <a href="https://uk.trustpilot.com/review/sparkpaws.com" class="view_more" target="_blank">view more</a>
         </div>
     </div>
 `
