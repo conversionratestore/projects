@@ -1278,17 +1278,27 @@ margin-bottom: 25px;
   //get the current date + 7 days in the format: Fri, Aug 11 (19)
   function formatDate() {
     const today = new Date()
+    const deliveryDate = new Date(today)
+    let addedBusinessDays = 0
 
-    const nextWeek = new Date(today)
-    nextWeek.setDate(today.getDate() + 7)
+    while (addedBusinessDays < 7) {
+      // Move to the next day
+      deliveryDate.setDate(deliveryDate.getDate() + 1)
+
+      // Check if the current day is a weekend day (Saturday or Sunday)
+      if (deliveryDate.getDay() !== 0 && deliveryDate.getDay() !== 6) {
+        addedBusinessDays++
+      }
+    }
 
     const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-    const nextWeekDayOfWeek = daysOfWeek[nextWeek.getDay()]
-    const nextWeekMonth = months[nextWeek.getMonth()]
+    const deliveryDayOfWeek = daysOfWeek[deliveryDate.getDay()]
+    const deliveryMonth = months[deliveryDate.getMonth()]
+    const deliveryDay = deliveryDate.getDate()
 
-    const formattedDate = `${nextWeekDayOfWeek}, ${nextWeekMonth} ${nextWeek.getDate()}`
+    const formattedDate = `${deliveryDayOfWeek}, ${deliveryMonth} ${deliveryDay}`
 
     return formattedDate
   }
@@ -1319,7 +1329,7 @@ margin-bottom: 25px;
         const compare = parseFloat(compareValue.replace('$', ''))
 
         if (compare > price) {
-          saved = Math.round(((compare - price) / compare) * 100) + '%'
+          saved = Math.floor(((compare - price) / compare) * 100) + '%'
         }
       }
 
