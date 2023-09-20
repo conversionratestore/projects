@@ -375,7 +375,7 @@ line-height: 28px; /* 140% */
         width: fit-content;
     }
     .payments-exp {
-        display: block!important;
+        display: none!important;
     }
     .payments-exp .shopify-cleanslate ul li {
         height: auto!important;
@@ -1618,17 +1618,6 @@ margin-bottom: 25px;
             }
           }, WAIT_INTERVAL_TIMEOUT)
 
-          //shop-pay-terms move for payments buttons (17)
-          const waitForShopPayTerms = setInterval(() => {
-            if (document.querySelector('.payments-exp .dynamic-checkout__content .shopify-cleanslate') &&
-              !document.querySelector('.product__submit__buttons+.shop-pay-terms')
-            ) {
-              clearInterval(waitForShopPayTerms)
-
-              document.querySelector('.product__submit__buttons').after(document.querySelector('.shop-pay-terms'))
-            }
-          }, WAIT_INTERVAL_TIMEOUT)
-
           // block with discount "Spend $ and get a % discount" (13)
           const waitForCartAndProductPriceBlock = setInterval(() => {
             const cartDrawer = document.querySelector('.cart-drawer')
@@ -1945,17 +1934,6 @@ margin-bottom: 25px;
             el.style.bottom = "60px"
           })
 
-          const waitForShopPay = setInterval(() => {
-            if (
-              document.getElementById('AddToCartForm--template--16711182876924__main')
-              && document.querySelector('.shop-pay-terms')
-            ) {
-              clearInterval(waitForShopPay)
-
-              document.getElementById('AddToCartForm--template--16711182876924__main').insertAdjacentElement('beforeend', document.querySelector('.shop-pay-terms'))
-            }
-          }, WAIT_INTERVAL_TIMEOUT)
-
           // events
           waitForElement('.product-single__thumbnails').then(el => {
             handleVisibility(
@@ -1991,20 +1969,6 @@ margin-bottom: 25px;
             el.addEventListener('click', () => {
               pushDataLayer(['exp_imp_pdp_b_ps_atc', 'Add to cart', 'Button', 'Product section'])
             })
-          )
-          waitForElement('.payments-exp [data-testid="ShopifyPay-button"]').then(el => {
-            if (media) {
-              waitForElement('.payments-exp > p').then(el => el.style.display = "block")
-            } else {
-              waitForElement('.product__form').then(el => {
-                el.classList.add('is-shoppay')
-              })
-            }
-
-            el.addEventListener('click', () => {
-              pushDataLayer(['exp_imp_pdp_b_ps_sp', 'Shop pay', 'Button', 'Product section'])
-            })
-          }
           )
           waitForElement('.delivery').then(el =>
             handleVisibility(
