@@ -262,7 +262,7 @@ line-height: 28px; /* 140% */
         width: 4px;
         height: 4px;
         border-radius: 50%;
-        margin: 0 12px;
+        margin: 0 12px 0 4px;
         background: #1B1B1B;
         flex-shrink: 0;
         display: block;
@@ -275,8 +275,10 @@ line-height: 28px; /* 140% */
       align-items: center;
       gap: 8px;
     }
+    .product__price p,
+    .product__price .saved,
     .product__price span {
-      margin: 0;
+      margin: 0 !important;
     }
     .product__price--compare {
       margin: 0 !important;
@@ -897,7 +899,7 @@ margin-bottom: 25px;
 
     @media screen and (max-width: 1023px) {
       .product__price-and-badge .product__price p.pr:before {
-        margin: 0 6px !important;
+        margin: 0 6px 0 -2px;
       }
 
       .discount {
