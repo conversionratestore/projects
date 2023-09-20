@@ -267,13 +267,28 @@ line-height: 28px; /* 140% */
     .product__price-and-badge .product__price p.name {
         font-weight: 400;
     }
+    .product__price {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .product__price span {
+      margin: 0;
+    }
+    .product__price--compare {
+      margin: 0 !important;
+      font-size: 24px;
+    }
+    .product__price--off [data-price-off-type],
+    .product__price--off em {
+      display: none !important;
+    }
     .product__price--regular {
         color: var(--font-h, #1B1B1B);
         font-size: 24px;
         font-style: normal;
         font-weight: 600;
         line-height: 32px;
-        margin: -10px 0 0 0;
     }
     .discount {
         padding-bottom: 16px;
@@ -429,6 +444,7 @@ line-height: 28px; /* 140% */
         font-weight: 600;
         line-height: 22px;
         text-decoration-line: underline;
+        width: fit-content;
     }
     .delivery > div + .title {
       margin-top: 16px;
@@ -867,7 +883,7 @@ margin-bottom: 25px;
 }
 
 .btn--scroll-top {
-  bottom: 145px;
+  display: none !important;
 }
 
 .product__form.hide-shoppay .product__submit__item [name="add"] {
@@ -1021,17 +1037,11 @@ margin-bottom: 25px;
     let btn
 
     if (packs) {
-      console.log(packs)
-
-      // stickySelectedPack = packs[0]
-
-      // console.log(stickySelectedPack)
 
       const activePack = document.querySelector('.alternative-options__item--active .alternative-options__item-label')
 
       packsHTML = [...packs].map((pack, index) => {
         const packName = document.querySelectorAll('.alternative-options__item-label')[index]
-        // console.log(pack.dataset)
         return /*html*/`
           <p 
             class="${packName?.innerText === activePack?.innerText ? "sticky-btn-pack__option--active" : ''}" 
@@ -1199,7 +1209,6 @@ margin-bottom: 25px;
     const match = string.match(regex)
     if (match) {
       const number = parseFloat(match[1]) // Extract the number part without symbols
-      console.log(number)
       return number // Return only the extracted number
     } else {
       return '' // Return null if no matching number is found
@@ -1245,7 +1254,6 @@ margin-bottom: 25px;
         method: 'GET'
       }).then(res => res.json()).then(data => {
         resolve(data)
-        console.log(data)
       }).catch((error) => {
         console.error('Error:', error)
       })
@@ -1264,7 +1272,7 @@ margin-bottom: 25px;
       pushDataLayer(['exp_imp_pdp_b_qty_en', '-', 'Button', 'QTY'])
     } else if (_this.classList.contains('btn_qty_plus')) {
       qty.value = +qty.value + 1
-      pushDataLayer(['exp_imp_pdp_b_qty_en', '-', 'Button', 'QTY'])
+      pushDataLayer(['exp_imp_pdp_b_qty_en', '+', 'Button', 'QTY'])
     }
 
     _this.closest('form').querySelector('.quantity__selector.quantity__input').value = qty.value
@@ -1359,7 +1367,6 @@ margin-bottom: 25px;
   }
 
   function addStickyBtn(title, packs) {
-    console.log('addStickyBtn')
     document.body.insertAdjacentHTML('beforeend', stickyBtn(title.innerText, packs))
 
     // const waitForStickyBtn = setInterval(() => {
@@ -1378,8 +1385,6 @@ margin-bottom: 25px;
 
       if (target.matches('.sticky-btn-pack__options > p')) {
         const selectedPack = target
-
-        console.log(selectedPack)
 
         if (!selectedPack.classList.contains('sticky-btn-pack__option--active')) {
           document.querySelector('.sticky-btn-pack__current span').innerText = selectedPack.innerText
@@ -1431,7 +1436,6 @@ margin-bottom: 25px;
 
           // change logo
           waitForElement('.logo__image-link--other').then(el => {
-            console.log("el", el)
             el.insertAdjacentHTML('beforeend', /*html*/`
             <img class="custom-logo" src="${dir}logo_geeni.png" alt="logo" >
           `)
@@ -1545,8 +1549,6 @@ margin-bottom: 25px;
             if (document.querySelector('.manufacturer') && productTitle && clientCTABtn) {
               clearInterval(waitForRedesignPacks)
 
-              console.log('clientCTABtn', clientCTABtn)
-
               let packs
 
               if (packsAlternates.querySelectorAll('.alternative-options > li')?.length > 0) {
@@ -1593,8 +1595,6 @@ margin-bottom: 25px;
                   discountChange = false
 
                   getCart().then(data => {
-                    console.log(data)
-
                     let req = /(\d{1,})(\d{2})$/
                     let total = +(data['total_price'].toString().replace(req, "$1.$2"))
 
@@ -1634,8 +1634,6 @@ margin-bottom: 25px;
               const config = { attributes: true, attributeFilter: ['class'] }
               const callback = (mutationsList) => {
                 for (const mutation of mutationsList) {
-                  console.log(mutation)
-
                   if (mutation.type === 'attributes') {
                     // Check if the "is-open" class has been added or removed
                     if (mutation.attributeName === 'class') {
@@ -1708,8 +1706,6 @@ margin-bottom: 25px;
                           console.log(el)
                         }))
                       }
-
-                      console.log('mut')
                     }
                   }
                 }
@@ -1941,7 +1937,6 @@ margin-bottom: 25px;
             } else {
               waitForElement('.product__form').then(el => {
                 el.classList.add('is-shoppay')
-                console.log(el)
               })
             }
 
@@ -1963,7 +1958,7 @@ margin-bottom: 25px;
               ['exp_imp_pdp_v_drlm_ft', '{{focusTime}}', 'Visibility', 'Delivery & Return learn more']
             ))
 
-          waitForElement('.product__block ').then(el =>
+          waitForElement('.warranty').then(el =>
             handleVisibility(
               el,
               ['exp_imp_pdp_v_365_ft', '{{focusTime}}', 'Visibility', '365 day warranty']
@@ -1975,12 +1970,11 @@ margin-bottom: 25px;
             })
           })
 
-          waitForElement('.product__block .title + div').then(el => {
+          waitForElement('.product__block .title + p').then(el => {
             handleVisibility(el,
               ['exp_imp_pdp_v_d_ft', '{{focusTime}}', 'Visibility', 'Details']
             )
           })
-
 
           waitForElement('.support').then(el => {
             handleVisibility(el,
@@ -1994,7 +1988,7 @@ margin-bottom: 25px;
             })
           })
 
-          waitForElement('.shopify-section-template--16711182876924__icons').then(el =>
+          waitForElement('.icons-row').then(el =>
             handleVisibility(el,
               ['exp_imp_pdp_v_b_ft', '{{focusTime}}', 'Visibility', 'Benefits']
             )
