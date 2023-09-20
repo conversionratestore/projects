@@ -8,6 +8,9 @@
 
   let discountChange = true
 
+  let priceRegularDefault
+  let priceCompareDefault
+
   /* CSS & HTML */
   const styleBase = `
 <style>
@@ -1256,6 +1259,20 @@ margin-bottom: 25px;
     })
   }
 
+  function calculateTotalPrice(prText, quantity) {
+    console.log(prText)
+
+    if (prText !== "$0.00" && prText !== "$0") {
+      const numericPrice = parseFloat(prText.replace('$', ''))
+
+      const result = numericPrice * quantity
+
+      const formattedResult = '$' + result.toFixed(2) // Assuming you 
+
+      return formattedResult
+    }
+  }
+
   //change qty (PDP)
   function qtyChange(event) {
     let _this = event.target
@@ -1272,6 +1289,38 @@ margin-bottom: 25px;
     }
 
     _this.closest('form').querySelector('.quantity__selector.quantity__input').value = qty.value
+
+
+    const pr = document.querySelector('.product__price .pr')
+    const compare = document.querySelector('.product__price .compare')
+
+    const stickyPr = document.querySelector('.sticky-btn-info__price')
+    const stickyCompare = document.querySelector('.sticky-btn-info__old-price')
+
+    const singlePrice = document.querySelector('.product__price--regular')
+    const singleCompare = document.querySelector('.product__price--compare')
+
+    const qtyValue = qty.value
+
+    const compareValue = priceCompareDefault
+    const priceValue = priceRegularDefault
+
+    if (
+      pr && compare && stickyPr && stickyCompare
+    ) {
+
+      pr.innerText = calculateTotalPrice(priceValue, qtyValue)
+      stickyPr.innerText = calculateTotalPrice(priceValue, qtyValue)
+
+      compare.innerText = calculateTotalPrice(compareValue, qtyValue)
+      stickyCompare.innerText = calculateTotalPrice(compareValue, qtyValue)
+    } else if (singlePrice && singleCompare) {
+      singlePrice.innerText = calculateTotalPrice(priceValue, qtyValue)
+      stickyPr.innerText = calculateTotalPrice(priceValue, qtyValue)
+
+      singleCompare.innerText = calculateTotalPrice(compareValue, qtyValue)
+      stickyCompare.innerText = calculateTotalPrice(compareValue, qtyValue)
+    }
 
   }
 
@@ -1353,9 +1402,14 @@ margin-bottom: 25px;
       // add handleOnClickForPack
       const waitForItem = setInterval(() => {
         const addedItem = document.querySelectorAll('.pack_size ul li')[index]
-        if (addedItem) {
+        const priceRegular = document.querySelector('.product__price--regular')
+        const priceCompare = document.querySelector('.product__price--regular')
+
+        if (addedItem && priceRegular && priceCompare) {
           clearInterval(waitForItem)
 
+          priceRegularDefault = priceRegular.innerText
+          priceCompareDefault = priceCompare.innerText
 
           addedItem.addEventListener('click', (e) => selectedPack(e))
         }
@@ -1375,17 +1429,6 @@ margin-bottom: 25px;
   function addStickyBtn(title, packs) {
     document.body.insertAdjacentHTML('beforeend', stickyBtn(title.innerText, packs))
 
-    // const waitForStickyBtn = setInterval(() => {
-    //   const productPacks = document.querySelector('.sticky-btn-pack__options')
-    //   const currentProductPacks = document.querySelector('.sticky-btn-pack__current span')
-
-    //   if (productPacks && currentProductPacks) {
-    //     clearInterval(waitForStickyBtn)
-
-
-    //   }
-    // }, WAIT_INTERVAL_TIMEOUT)
-
     document.body.addEventListener('click', (e) => {
       const target = e.target
 
@@ -1401,7 +1444,6 @@ margin-bottom: 25px;
 
           pushDataLayer(['exp_imp_pdp_b_sd_pn', `${selectedPack.innerText}`, 'Button', 'Sticky desktop'])
 
-
           document.querySelector('.sticky-btn-info__price').innerText = selectedPack.dataset.packPrice
           // document.querySelector('.sticky-btn-wrapper__price').innerText = selectedPack.dataset.packPrice
           document.querySelector('.sticky-btn-info__old-price').innerText = selectedPack.dataset.packCompare != '$0.00' && selectedPack.dataset.packCompare != '$0' ? selectedPack.dataset.packCompare : ''
@@ -1415,7 +1457,6 @@ margin-bottom: 25px;
       } else if (target.matches('.sticky-btn-wrapper .add-to-cart')) {
         pushDataLayer(['exp_imp_pdp_st_b_atc', 'Add to cart', 'Button', 'Sticky mobile'])
         document.querySelector('button[name="add"]').click()
-
       } else {
         document.querySelector('.sticky-btn-pack__options--visible')?.classList.remove('sticky-btn-pack__options--visible')
       }
@@ -1546,24 +1587,38 @@ margin-bottom: 25px;
 
           // redesign packs (6-13) 
           // add sticky btn
-          const waitForRedesignPacks = setInterval(() => {
-            const packsAlternates = document.querySelector('.product__alternates')
-            // const packs = document.querySelectorAll('.product__alternates .alternative-options > li')
-            const productTitle = document.querySelector('.product__title')
-            const clientCTABtn = document.querySelector('[data-add-to-cart-text]')
+          const waitForPackPrice = setInterval(() => {
+            const packPrice = document.querySelector('.product__price--regular')
+            const packCompare = document.querySelector('.product__price--compare')
 
-            if (document.querySelector('.manufacturer') && productTitle && clientCTABtn) {
-              clearInterval(waitForRedesignPacks)
+            if (packPrice && packCompare) {
+              clearInterval(waitForPackPrice)
 
-              let packs
+              priceRegularDefault = packPrice.innerText
+              priceCompareDefault = packCompare.innerText
 
-              if (packsAlternates.querySelectorAll('.alternative-options > li')?.length > 0) {
-                redesignPacks()
-                packs = document.querySelectorAll('.product__alternates .alternative-options > li')
-              }
+              console.log(priceRegularDefault)
+              console.log(priceCompareDefault)
 
+              const waitForRedesignPacks = setInterval(() => {
+                const packsAlternates = document.querySelector('.product__alternates')
+                // const packs = document.querySelectorAll('.product__alternates .alternative-options > li')
+                const productTitle = document.querySelector('.product__title')
+                const clientCTABtn = document.querySelector('[data-add-to-cart-text]')
 
-              addStickyBtn(productTitle, packs)
+                if (document.querySelector('.manufacturer') && productTitle && clientCTABtn) {
+                  clearInterval(waitForRedesignPacks)
+
+                  let packs
+
+                  if (packsAlternates.querySelectorAll('.alternative-options > li')?.length > 0) {
+                    redesignPacks()
+                    packs = document.querySelectorAll('.product__alternates .alternative-options > li')
+                  }
+
+                  addStickyBtn(productTitle, packs)
+                }
+              }, WAIT_INTERVAL_TIMEOUT)
             }
           }, WAIT_INTERVAL_TIMEOUT)
 
@@ -1724,15 +1779,14 @@ margin-bottom: 25px;
             }
           }, WAIT_INTERVAL_TIMEOUT)
 
-          // const waitForCart = setInterval(() => {  
-          //   if (condition) {
-          //     clearInterval(waitForCart)
-          //   }
-          // }), WAIT_INTERVAL_TIMEOUT)
-
           //qty and compatibility icons
-          waitForElement('.selector-wrapper--qty').then(el => {
-            el.insertAdjacentHTML('afterend', `
+          const waitForEl = setInterval(() => {
+            if (document.querySelector('.selector-wrapper--qty') && document.querySelector('.product__price')) {
+              clearInterval(waitForEl)
+
+              const el = document.querySelector('.selector-wrapper--qty')
+
+              el.insertAdjacentHTML('afterend', `
             <div class="d-flex items-end justify-lg-between">
                 <div class="qty_block">
                     <p>QTY</p>
@@ -1745,21 +1799,23 @@ margin-bottom: 25px;
                 ${compatibilityHTML('d-lg-none')}
             </div>`)
 
-            // add qty handlers
-            const waitForQtyBtns = setInterval(() => {
-              if (document.querySelectorAll('.btn_qty')[1]) {
-                clearInterval(waitForQtyBtns)
+              // add qty handlers
+              const waitForQtyBtns = setInterval(() => {
+                if (document.querySelectorAll('.btn_qty')[1]) {
+                  clearInterval(waitForQtyBtns)
 
-                for (const btn of document.querySelectorAll('.btn_qty')) {
-                  btn.addEventListener('click', (e) => {
-                    qtyChange(e)
-                  })
+                  for (const btn of document.querySelectorAll('.btn_qty')) {
+                    btn.addEventListener('click', (e) => {
+                      qtyChange(e)
+                    })
+                  }
                 }
-              }
-            }, WAIT_INTERVAL_TIMEOUT)
+              }, WAIT_INTERVAL_TIMEOUT)
 
-            waitForElement('.input_qty').then(inputQty => inputQty.addEventListener('change', (e) => qtyChange(e)))
-          })
+              waitForElement('.input_qty').then(inputQty => inputQty.addEventListener('change', (e) => qtyChange(e)))
+            }
+          }, WAIT_INTERVAL_TIMEOUT)
+
 
           //delivery section (18-21)
           const waitForDelivery = setInterval(() => {
@@ -1855,8 +1911,6 @@ margin-bottom: 25px;
                       pushDataLayer(['exp_imp_pdp_l_d_lm', 'Learn more', 'Link', 'Details'])
                     } else {
                       btn.querySelector('span').innerHTML = 'Learn more'
-
-
                     }
                   })
                 }
@@ -1891,6 +1945,23 @@ margin-bottom: 25px;
           `)
           })
 
+          // smth else
+          waitForElement('button[aria-label="Open Form"]').then(el => {
+            el.style.bottom = "60px"
+          })
+
+          const waitForShopPay = setInterval(() => {
+            if (
+              document.getElementById('AddToCartForm--template--16711182876924__main')
+              && document.querySelector('.shop-pay-terms')
+            ) {
+              clearInterval(waitForShopPay)
+
+              document.getElementById('AddToCartForm--template--16711182876924__main').insertAdjacentElement('beforeend', document.querySelector('.shop-pay-terms'))
+            }
+          }, WAIT_INTERVAL_TIMEOUT)
+
+          // events
           waitForElement('.product-single__thumbnails').then(el => {
             handleVisibility(
               el,
@@ -1921,22 +1992,11 @@ margin-bottom: 25px;
               ['exp_imp_pdp_v_ps_s', '{{focusTime}}', 'Visibility', 'Pack save spend']
             )
           })
-
           waitForElement('.product__submit__holder [name="add"]').then(el =>
             el.addEventListener('click', () => {
               pushDataLayer(['exp_imp_pdp_b_ps_atc', 'Add to cart', 'Button', 'Product section'])
             })
           )
-
-          // waitForElement('.product__submit__item').then(el =>
-          //   el.addEventListener('click', (e) => {
-          //     if (e.target.closest(`[name="add"]`)) {
-
-          //       pushDataLayer(['exp_imp_pdp_b_ps_atc', 'Add to cart', 'Button', 'Product section'])
-          //     }
-          //   })
-          // )
-
           waitForElement('.payments-exp [data-testid="ShopifyPay-button"]').then(el => {
             if (media) {
               waitForElement('.payments-exp > p').then(el => el.style.display = "block")
@@ -1951,67 +2011,56 @@ margin-bottom: 25px;
             })
           }
           )
-
           waitForElement('.delivery').then(el =>
             handleVisibility(
               el,
               ['exp_imp_pdp_v_dr_ft', '{{focusTime}}', 'Visibility', 'Delivery & Return']
             ))
-
           waitForElement('.btn_more').then(el =>
             handleVisibility(
               el,
               ['exp_imp_pdp_v_drlm_ft', '{{focusTime}}', 'Visibility', 'Delivery & Return learn more']
             ))
-
           waitForElement('.warranty').then(el =>
             handleVisibility(
               el,
               ['exp_imp_pdp_v_365_ft', '{{focusTime}}', 'Visibility', '365 day warranty']
             ))
-
           waitForElement('.delivery a').then(el => {
             el.addEventListener('click', () => {
               pushDataLayer(['exp_imp_pdp_v_l_dr_lm', 'Learn more', 'Link', 'Delivery & Return'])
             })
           })
-
           waitForElement('.product__block .title + p').then(el => {
             handleVisibility(el,
               ['exp_imp_pdp_v_d_ft', '{{focusTime}}', 'Visibility', 'Details']
             )
           })
-
           waitForElement('.support').then(el => {
             handleVisibility(el,
               ['exp_imp_pdp_v_q_ft', '{{focusTime}}', 'Visibility', 'Questions']
             )
           })
-
           waitForElement('.support a').then(el => {
             el.addEventListener('click', () => {
               pushDataLayer(['exp_imp_pdp_l_q_sp', 'Support page', 'Link', 'Questions'])
             })
           })
-
           waitForElement('.icons-row').then(el =>
             handleVisibility(el,
               ['exp_imp_pdp_v_b_ft', '{{focusTime}}', 'Visibility', 'Benefits']
             )
           )
-
           waitForElement('.featured-collection__container .product-grid-item').then(el => {
             handleVisibility(el,
               ['exp_imp_pdp_v_ymal_ft', '{{focusTime}}', 'Visibility', 'You may also like']
             )
           })
-
           waitForElement('.related-products .product-grid-item').then(el => {
             handleVisibility(el,
               ['exp_imp_pdp_v_rv_ft', '{{focusTime}}', 'Visibility', 'Recently viewed']
             )
           })
-
           waitForElement('.product-single__thumbnails').then(el => {
             el.addEventListener('click', (e) => {
               if (e.target.closest('.product-single__thumbnail')) {
@@ -2019,23 +2068,9 @@ margin-bottom: 25px;
               }
             })
           })
-
-
-          waitForElement('button[aria-label="Open Form"]').then(el => {
-            el.style.bottom = "60px"
-          })
-
-          const waitForShopPay = setInterval(() => {
-            if (
-              document.getElementById('AddToCartForm--template--16711182876924__main')
-              && document.querySelector('.shop-pay-terms')
-            ) {
-              clearInterval(waitForShopPay)
-
-              document.getElementById('AddToCartForm--template--16711182876924__main').insertAdjacentElement('beforeend', document.querySelector('.shop-pay-terms'))
-            }
-          }, WAIT_INTERVAL_TIMEOUT)
         }
+
+        // All
         document.head.insertAdjacentHTML('beforeend', /*html*/`
           <style>
             .btn--scroll-top {
@@ -2043,244 +2078,6 @@ margin-bottom: 25px;
             }
           </style>
         `)
-
-        // else if (window.location.pathname.includes("checkouts")) {
-        //   waitForElement('[aria-label="Breadcrumb"]').then(el => {
-        //     let styleNew = /*html */ `
-        //       <style>
-        //           /*breadcrumb  */
-        //           [aria-label="Breadcrumb"]{
-        //               margin-top: 50px;
-        //           }
-        //           .breadcrumb {
-        //               display: flex;
-        //               position: relative;
-        //               justify-content: space-between;
-        //               max-width: 500px;
-        //               margin: 0 auto;
-        //           }
-        //           .breadcrumb::before{
-        //               position: absolute;
-        //               content:'';
-        //               width: 97%;
-        //               height: 1px;
-        //               background: #D9D9D9;
-        //               top: -17px;
-        //           }
-        //           .breadcrumb__item .breadcrumb__text,
-        //           .breadcrumb__item--completed .breadcrumb__text,
-        //           .breadcrumb__item--completed .breadcrumb__link{
-        //               color: #888;
-        //               font-family: 'Avenir Next', 'Helvetica Neue', sans-serif;
-        //               font-size: 14px;
-        //               font-weight: 500;
-        //               line-height: 157%;
-        //           }
-        //           .breadcrumb__item--current .breadcrumb__text{
-        //               color: #023F88;
-        //           }
-        //           .main .icon-svg--color-adaptive-light{
-        //               display: none;
-        //           }
-        //           .breadcrumb__item{
-        //               position: relative;
-        //           }
-        //           .anyflexbox .breadcrumb__item::before{
-        //               position: absolute;
-        //               display: flex;
-        //               align-items: center;
-        //               justify-content: center;
-        //               content:'1';
-        //               width: 24px;
-        //               height: 24px;
-        //               background: #F7F7F7;
-        //               border-radius: 50%;
-        //               border: 1px solid #D9D9D9;
-        //               top: -30px;
-        //               left: 50%;
-        //               transform: translateX(-50%);
-        //               color: #888;
-        //               font-family: 'Avenir Next', 'Helvetica Neue', sans-serif;
-        //               font-size: 14px;
-        //               font-weight: 500;
-        //               line-height: 157%;
-        //           }
-        //           .anyflexbox .breadcrumb__item:nth-child(2):before{
-        //               content:'2';
-        //           }
-        //           .anyflexbox .breadcrumb__item:nth-child(3):before{
-        //               content:'3';
-        //           }
-        //           .anyflexbox .breadcrumb__item:nth-child(4):before{
-        //               content:'4';
-        //           }
-        //           .anyflexbox .breadcrumb__item.breadcrumb__item--current::before{
-        //               background: #023F88;
-        //               border: 1px solid #023F88;
-        //               color: #FFF;
-        //           }
-        //           .anyflexbox .breadcrumb__item.breadcrumb__item--completed::before{
-        //               content: "\\2714";
-        //               color: #023F88;
-        //           }
-        //           /*shipping_block */
-        //           .shipping_block{
-        //               border-top: 1px solid #FFF;
-        //               background: #E8F8FE;
-        //               margin: 12px -20px 0;
-        //           }
-        //           .shipping_list{
-        //               display: flex;
-        //               justify-content: space-between;
-        //               align-items: center;
-        //               margin: 0;
-        //               list-style: none;
-        //               padding: 12px 16px;
-        //               gap: 13px;
-        //           }
-        //           .shipping_list li{
-        //               position: relative;
-        //               width: 50%;
-        //               margin: 0;
-        //               padding-left: 32px;
-        //           }
-        //           .shipping_list li::before{
-        //               position: absolute;
-        //               content: "";
-        //               width: 24px;
-        //               height: 24px;
-        //               background: url(https://conversionratestore.github.io/projects/geeni/img/shield.svg) no-repeat center center;
-        //               top: 50%;
-        //               transform: translateY(-50%);
-        //               left: 0;
-        //               background-size: contain;
-        //           }
-        //           .shipping_list li:nth-child(2):before{
-        //               background: url(https://conversionratestore.github.io/projects/geeni/img/return_box.svg) no-repeat center center;
-        //               background-size: contain;
-        //               left: 13px;
-        //           }
-        //           .shipping_list li:nth-child(2){
-        //               border-left: 1px solid #FFF;
-        //               padding-left: 45px;
-        //           }
-        //           .shipping_list li p{
-        //             font-family: 'Avenir Next', 'Helvetica Neue', sans-serif;
-        //               color: #1B1B1B;
-        //               font-size: 14px;
-        //               font-weight: 500;
-        //               line-height: 134%;
-        //               margin: 0;
-        //               max-width: 128px;
-        //           }
-        //           .shipping_block.checkout_var{
-        //               margin: 0;
-        //           }
-        //           .shipping_block.checkout_var .shipping_list{
-        //               position: relative;
-        //               padding: 12px;
-        //           }
-        //           .shipping_list::after{
-        //               position: absolute;
-        //               content: "";
-        //               width: 1px;
-        //               height: 55%;
-        //               background: #FFF;
-        //               top: 50%;
-        //               left: 50%;
-        //               transform: translate(-50%, -50%);
-        //           }
-        //           .shipping_block.checkout_var .shipping_list li{
-        //               width: unset;
-        //               border: none !important;
-        //           }
-        //           .shipping_block.checkout_var .shipping_list li p{
-        //               max-width: unset;
-        //           }
-
-        //       @media (max-width: 1130px) {
-        //           .shipping_block.checkout_var .shipping_list li p{
-        //               font-size: 12px;
-        //           }
-        //       }
-        //       @media (max-width: 768px) {
-        //           [aria-label="Breadcrumb"] {
-        //               margin-top: 30px;
-        //           }
-        //           .breadcrumb{
-        //               max-width: 295px;
-        //               padding: 0 0 10px;
-        //           }
-        //           .breadcrumb::before{
-        //               width: 92%;
-        //           }
-        //           .shipping_block.checkout_var .shipping_list li p {
-        //               font-size: 14px;
-        //               max-width: 115px;
-        //           }
-        //           .shipping_block.checkout_var .shipping_list{
-        //               padding: 12px 16px;
-        //           }
-        //           .paypal-button.paypal-button-shape-rect,
-        //           .shopify-cleanslate .h7OYsWHrW5495r9beh2n,
-        //           .shopify-cleanslate .KHqjJyKjVNT1lCGf2bnQ, .shopify-cleanslate .wOEViUrCyNb9maEe3QrQ{
-        //               border-radius: 30px !important;
-        //           }
-        //           .dynamic-checkout__title{
-        //               display: none;
-        //           }
-        //           .dynamic-checkout__content{
-        //               border: none;
-        //               padding: 0;
-        //           }
-        //           .anyflexbox .main{
-        //               padding-top: 16px !important;
-        //           }
-        //           .alternative-payment-separator {
-        //               padding-bottom: 18px;
-        //               margin-top: 16px;
-        //           }
-        //           .alternative-payment-separator__content{
-        //               color: #5B5B5B;
-        //               font-family: 'Avenir Next', 'Helvetica Neue', sans-serif;
-        //               font-size: 14px;
-        //               font-weight: 500;
-        //               line-height: 22px;
-        //           }
-        //       }
-        //       </style>
-        //       `
-
-        //     let shippingBlock = /*html */ `
-        //       <div class="shipping_block">
-        //         <ul class="shipping_list">
-        //           <li><p>365-day warranty on all products</p></li>
-        //           <li><p>30-day easy returns & refund policy</p></li>
-        //         </ul>
-        //       </div>
-        //       `
-
-        //     document.head.insertAdjacentHTML("beforeend", styleNew)
-
-        //     renderHtml()
-        //     function renderHtml() {
-        //       // shippingBlock in the cart
-
-        //       if (window.innerWidth <= 768) {
-        //         if (document.querySelector(".order-summary-toggle") && !document.querySelector(".shipping_block")) {
-        //           document.querySelector(".order-summary-toggle").insertAdjacentHTML("beforebegin", shippingBlock)
-        //         }
-        //       } else {
-        //         if (document.querySelector('[aria-label="Breadcrumb"]') && !document.querySelector(".shipping_block")) {
-        //           document.querySelector('[aria-label="Breadcrumb"]').insertAdjacentHTML("beforebegin", shippingBlock)
-        //         }
-        //       }
-        //       if (document.querySelector(".shipping_block") && !document.querySelector(".shipping_block").classList.contains("checkout_var")) {
-        //         document.querySelector(".shipping_block").classList.add("checkout_var")
-        //       }
-        //     }
-        //   })
-        // }
       }
     }, WAIT_INTERVAL_TIMEOUT)
   }
