@@ -800,14 +800,13 @@ text-decoration: underline;
 }
 
 .cart__message__progress {
-  height: 2px !important;
+  height: 3px !important;
   background-color: #fff !important;
   border: 1px solid var(--Border, #D9D9D9);
-
 }
 
 .cart__message__progress__holder {
-  line-height: 1;
+  line-height: 5px;
 }
 
 .cart__message__success,
@@ -831,7 +830,7 @@ line-height: 22px; /* 157.143% */
   margin: 0;
 }
 
-.msg span:not(".away-from__number") {
+.msg span:not(.away-from__number) {
   color: var(--Main-Blue, #023F88);
   font-weight: 600;
 }
