@@ -398,10 +398,10 @@ let style = `
     }
     .advantages p {
         text-align: center;
-        color: var(--grey-700, #5C5555);
-        font-size: 12px;
+        color: #5C5555;
+        font-size: 13px;
         font-style: normal;
-        font-weight: 400;
+        font-weight: 700;
         line-height: 16px;
     }
     /* best-sellers, great-deals */
@@ -1367,15 +1367,25 @@ const trustpilot = /*html*/ `
                 cursor: pointer;
                 margin: 30px auto;
             }
+            .crs_trustpilot_content .swiper-pagination {
+                padding-left: 0;
+            }
             @media (max-width: 768px) {
                 .crs_trustpilot_content>a  {
                     display: none;
+                }
+                .crs_trustpilot_content {
+                    width: 100%;
+                    overflow: hidden;
                 }
             }
             .trusted_review {
                 padding: 16px;
                 background: #F0F4F5;
                 position: relative;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
             }
             .trusted_review>img {
                 position: absolute;
@@ -1399,6 +1409,7 @@ const trustpilot = /*html*/ `
                 font-size: 12px;
                 line-height: 1.5;
                 margin-bottom: 14px;
+                width: fit-content;
             }
             .trusted_review .text {
                 color: #5C5C5C;
@@ -1412,6 +1423,13 @@ const trustpilot = /*html*/ `
                 font-size: 13px;
                 font-weight: 700;
                 line-height: 21px;
+                margin-top: auto;
+            }
+            .trusted_swiper .swiper-wrapper {
+                align-items: stretch;
+            }
+            .trusted_swiper .swiper-slide {
+                height: unset;
             }
         </style>
         <div class="crs_trustpilot_content">
@@ -2120,7 +2138,7 @@ let mut = new MutationObserver(function (muts) {
             if (targetElement.className.includes('benefits')) {
               pushDataLayer('exp_imp_hp_v_ab_ft', focusTime, 'Visibility', 'Additional benefits')
             }
-            if (targetElement.className.includes('trustpilot-widget')) {
+            if (targetElement.className.includes('crs_trustpilot')) {
               pushDataLayer('exp_imp_hp_v_tr_ft', focusTime, 'Visibility', 'Trustpilot')
             }
 
@@ -2140,7 +2158,8 @@ let mut = new MutationObserver(function (muts) {
     handleVisibility('.loox-review img')
     handleVisibility('.waterproof-jackets h3')
     handleVisibility('.benefits')
-    handleVisibility('.trustpilot-widget')
+    handleVisibility('.crs_trustpilot')
+    blockVisibility('.trusted_review', 1)
     // Додаємо обробник події scroll для подальшої перевірки видимості при прокрутці
     window.addEventListener('scroll', () => {
       handleVisibility('.explore_category')
@@ -2152,7 +2171,7 @@ let mut = new MutationObserver(function (muts) {
       handleVisibility('.loox-review img')
       handleVisibility('.waterproof-jackets h3')
       handleVisibility('.benefits')
-      handleVisibility('.trustpilot-widget')
+      handleVisibility('.crs_trustpilot')
     })
 
     //best-sellers
@@ -2323,7 +2342,7 @@ let mut = new MutationObserver(function (muts) {
                                     <img src="${objLooxReview[i].imageProduct}" alt="${objLooxReview[i].titleProduct}">
                                     <span>${objLooxReview[i].titleProduct}</span>
                                 </a>
-                                <a href="https://loox.io/s/E1WNN9nzHY" class=" Button btn btn-white flex-center" onclick="pushDataLayer('exp_imp_hp_b_ohc_rfr', 'Read full review', 'Button', 'Our happy customerrs');">
+                                <a href="https://loox.io/s/E1WNN9nzHY" class=" Button btn btn-white flex-center" onclick="pushDataLayer('exp_imp_hp_b_ohc_rfr', 'Read full review', 'Button', 'Our happy customerrs');" target="_blank">
                                     <span>${german ? 'Ganze Bewertung lesen' : 'Read full review'}</span>
                                 </a>
                             </div>
@@ -2396,11 +2415,14 @@ let mut = new MutationObserver(function (muts) {
               pushDataLayer('exp_imp_hp_s_bs_v', 'Vertical', 'Scroll', 'Best Sellers')
             } else if (slider.closest('.great-deals')) {
               pushDataLayer('exp_imp_hp_s_gd_v', 'Vertical', 'Scroll', 'Great deals')
+            } else if (slider.closest('.crs_trustpilot')) {
+              pushDataLayer('exp_imp_hp_s_tr_v', 'Vertical', 'Scroll', 'Trustpilot')
             } else {
               pushDataLayer('exp_imp_hp_s_ohc_v', 'Vertical', 'Scroll', 'Our happy customerrs')
             }
           })
         })
+        blockVisibility('.loox-review .swiper-slide', 1)
       }
     })
   }
@@ -2423,3 +2445,47 @@ let mut = new MutationObserver(function (muts) {
   mut.observe(document, optionMut)
 })
 mut.observe(document, optionMut)
+
+const blockVisibility = (selector, viewTime, event, location) => {
+  let v1 = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((item) => {
+        if (item.isIntersecting) {
+          v1.unobserve(item.target)
+          setTimeout(function () {
+            v2.observe(item.target)
+          }, 1000 * viewTime)
+        }
+      })
+    },
+    {
+      threshold: 0.5
+    }
+  )
+
+  let v2 = new IntersectionObserver((entries) => {
+    entries.forEach((item) => {
+      if (item.isIntersecting) {
+        let name = ''
+        if (item.target.closest('.loox-review')) {
+          name = item.target.querySelector('.title').childNodes[0].nodeValue
+          location = 'Our happy customerrs'
+          event = 'exp_imp_hp_r_ohc_rn'
+        } else if (item.target.closest('.crs_trustpilot')) {
+          name = item.target.querySelector('.name').innerText
+          location = 'Trustpilot'
+          event = 'exp_imp_hp_r_tr_rn'
+        }
+        pushDataLayer(event || `view_element_${item.target.id}`, name, 'Review', location || item.target.id)
+        v1.unobserve(item.target)
+      } else {
+        v1.observe(item.target)
+      }
+      v2.unobserve(item.target)
+    })
+  })
+
+  document.querySelectorAll(selector).forEach((item) => {
+    v1.observe(item)
+  })
+}
