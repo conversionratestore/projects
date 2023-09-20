@@ -1,135 +1,174 @@
-let dir = 'https://conversionratestore.github.io/projects/sparkpaws/img/';
+let dir = 'https://conversionratestore.github.io/projects/sparkpaws/img/'
 
-let german = window.location.href.includes('https://www.sparkpaws.de/');
-let currency = german ? '€' : '$';
-
+let german = window.location.href.includes('https://www.sparkpaws.de/')
+let currency = german ? '€' : '$'
 
 let objRatingHolidayDeals = [
-    {
-        'handle':'green-camo-shark-monster-dog-hoodie',
-        'rating':'1,431'
-    },
-    {
-        'handle':'sherpa-dog-jacket-pink',
-        'rating':'2,829'
-    },
-    {
-        'handle':'cotton-candy-color-block-hoodie',
-        'rating':'1916'
-    },
-    {
-        'handle':'cotton-candy-human-hoodie',
-        'rating':'353'
-    },
-    {
-        'handle':'olive-cream-human-hoodie',
-        'rating':'347'
-    },
-    {
-        'handle':'black-olive-cream-dog-hoodie',
-        'rating':'1361'
-    },
-    {
-        'handle':'woof-dog-hoodie-black',
-        'rating':'1509'
-    },
-    {
-        'handle':'woof-dog-hoodie-red',
-        'rating':'1135'
-    }
+  {
+    handle: 'green-camo-shark-monster-dog-hoodie',
+    rating: '1,431'
+  },
+  {
+    handle: 'sherpa-dog-jacket-pink',
+    rating: '2,829'
+  },
+  {
+    handle: 'cotton-candy-color-block-hoodie',
+    rating: '1916'
+  },
+  {
+    handle: 'cotton-candy-human-hoodie',
+    rating: '353'
+  },
+  {
+    handle: 'olive-cream-human-hoodie',
+    rating: '347'
+  },
+  {
+    handle: 'black-olive-cream-dog-hoodie',
+    rating: '1361'
+  },
+  {
+    handle: 'woof-dog-hoodie-black',
+    rating: '1509'
+  },
+  {
+    handle: 'woof-dog-hoodie-red',
+    rating: '1135'
+  }
 ]
 
 let objLooxReview = [
-    {
-        'author': 'Kayla W. ',
-        'text': `I had purchased a no-pull harness for my staffy from a pet store and though it worked, it left red raw spots all under his arms. I wanted a harness that would not do this but also give me the control to walk him as he is quite the puller! I had seen ads for spark paws many times but it always seemed slightly out of my price range! But I took a chance and purchased the harness set in army green as well as a tactical collar because I have ocd about matching and I honestly can’t say enough good things about it! I even went back and purchased the lime green and blue collar and leash set for my Dane! I am extremely in love with this product and encourage anybody to get it! It is expensive but you are paying for the quality of this product and it is completely worth the money! I will be purchasing all my collar and harnesses from them from now on! Though I am not complaining I do wish they had extra large in the harnesses and sweaters and such as my Dane is a big boy and the large size doesn’t fit his giant chest (he’s 109cm around) but otherwise extremely happy! 10/10 recommended!`,
-        'image': 'https://images.loox.io/uploads/2023/7/31/kkgSLCPjy.jpg',
-        'imageProduct': '/cdn/shop/products/1_0fa2ab35-db64-4608-a1a2-04dac5e58d70_1000x.png',
-        'titleProduct': 'Comfort Control No-Pull Dog Harness Set - Army Green',
-        'urlProduct': '/products/comfort-control-no-pull-dog-harness-set-army-green',
-    },
-    {
-        'author':'Sabrina G.',
-        'text': `Such a great lightweight, waterproof and lightweight coat. So many details to adjust and reflective stripes. Beautiful color.Mascha is a boxer girl and wears size 3xl. We are excited!`,
-        'image': 'https://images.loox.io/uploads/2023/8/8/p3AAX2VXI.jpg',
-        'imageProduct': '/cdn/shop/files/Untitleddesign_1000x.jpg',
-        'titleProduct': 'Breatheshield™ Dog Raincoat - Teal White Purple',
-        'urlProduct': '/products/dog-raincoat-acqua-fresh',
-    }, 
-    {
-        'author': 'Andrea R.',
-        'text': `I got the human hoodie just to be cute and match my pup, but this is legit the most comfortable hoodie I have ever owned! I need this in EVERY colour! ❤️`,
-        'image': 'https://images.loox.io/uploads/2022/4/21/Vkb07fP5N3.jpg',
-        'imageProduct': '/cdn/shop/products/25_1000x.png',
-        'titleProduct': 'Vintage Navy Grey Sky-Dye Velvet Human Hoodie',
-        'urlProduct': '/products/vintage-grey-sky-human-hoodie-matching',
-    }, 
-    {
-        'author': 'Chloé F.',
-        'text': `As always, the product lives up to its promise, Sky tends to pull and this set provides better control, so you can work on walking on a leash. The quality is insane and the safety is guaranteed, we're delighted and Sky has no skin problems with this collar thanks to the high quality material used, thanks again Sparkpaws another success for you 🫶🏼`,
-        'image': 'https://images.loox.io/uploads/2023/8/28/x4IQvE9Hi.jpg',
-        'imageProduct': '/cdn/shop/products/big-dog_-pitbull_-frenchie-dog-leash_SET_07_699f82a5-1735-4588-b98e-18bb7a5e4bb1_1600x.jpg',
-        'titleProduct': 'Tactical Dog Collar Set - Pastel Icing (2"/5cm)',
-        'urlProduct': '/products/tactical-collar-and-leash-set-pastel-rainbow',
-    }, 
-    {
-        'author': 'Melinda M.',
-        'text': `Amazing customer service and extremely friendly when needing help. The chain and pendant is exactly as shown in their pictures and descriptions and is fantastic quality. Both chain and pendant is packaged with so much care and very well protected and presented. Will definitely recommend these products to family and friends.`,
-        'image': 'https://images.loox.io/uploads/2022/4/21/NJ0n7v9N2.jpg',
-        'imageProduct': 'https://cdn.shopify.com/s/files/1/0490/4219/4589/products/1_bfbc8dd9-3be9-40e7-9f20-088bd3be7bde_x100.jpg',
-        'titleProduct': 'Cuban Link 20mm Dog Gold Chain Collar',
-        'urlProduct': 'https://sparkpaws-global.myshopify.com/products/classic-gold-chain?ref=loox-feed&post_id=EJzt9goes&rating=5&variant=36291132981405&utm_source=referral&utm_medium=post&utm_campaign=loox-feed',
-    }, 
-    {
-        'author': 'Leeann H.',
-        'text': `My Name is Stanley and I absolutely love ❤️ my Sherpa hoodie. The inside is nice and smooth and doesn’t make me itch!!! The best thing is how lovely and warm I am and the fit is perfect and my mum says it’s the best fitted hoodie she’s ever bought for me!`,
-        'image': 'https://images.loox.io/uploads/2022/4/21/EklxqbPcVh.jpg',
-        'imageProduct': 'https://cdn.shopify.com/s/files/1/0490/4219/4589/products/1_22d59502-74ce-4167-85ce-9db2890e0f50_x50.jpg',
-        'titleProduct': 'Teddy Sherpa Jacket - Grey',
-        'urlProduct': 'https://sparkpaws-global.myshopify.com/products/sherpa-dog-jacket-grey?ref=loox-feed&post_id=41Ky1FH7n&rating=5&variant=37799690141853&utm_source=referral&utm_medium=post&utm_campaign=loox-feed',
-    }, 
-    {
-        'author': 'Anna M.',
-        'text': `I have a pitbull, 30/35 kg, maybe a bit bigger than the average pitbull, I've bought a 4xl. The quality was great, better than many of my own hoodies. The inside is in fleece to keep him warm and he loves it. Only it's large on the belly and I have to clip it on the side or he will pee inside it (a girl shouldn't have this problem), but it's ok anyway, the length and on the shoulders fit perfectly.`,
-        'image': 'https://images.loox.io/uploads/2022/4/21/N1eS9cM9En.jpg',
-        'imageProduct': 'https://cdn.shopify.com/s/files/1/0490/4219/4589/products/WOOF_DogHoodie-Black-modelpic1_x50.png',
-        'titleProduct': '"WOOF" Dog Hoodie - Black & Reflective',
-        'urlProduct': 'https://sparkpaws-global.myshopify.com/products/woof-dog-hoodie-black?ref=loox-feed&post_id=NkVrD2bx3&rating=5&variant=39819160813725&utm_source=referral&utm_medium=post&utm_campaign=loox-feed',
-    }, 
-    {
-        'author': 'Chelsey M.',
-        'text': `Maggie and I LOVE our sweaters!! The material is so soft!! Maggie is an English bulldog and she measures a 3XL. Definitely will be ordering more! Fast shipping, nice packaging and great quality!`,
-        'image': 'https://images.loox.io/uploads/2022/4/21/NyJoqz54h.jpg',
-        'imageProduct': '/cdn/shop/files/66_1600x.jpg',
-        'titleProduct': 'Pink and Blue Sky-Dye Velvet Dog Hoodie',
-        'urlProduct': 'https://sparkpaws-global.myshopify.com/products/pink-blue-sky-dye-dog-hoodie?ref=loox-feed&post_id=41nfrIsk3&rating=5&variant=41392845226141&utm_source=referral&utm_medium=post&utm_campaign=loox-feed',
-    }, 
-    {
-        'author': 'Angie G.',
-        'text': `My girl is a smaller size staffy, I call her a mini size (about 15kg) so I got the xl and it fits her nicely. The hood is a bit on the big side but that's ok. Love the feel of the material it's made out of, soo soft. In the beginning I thought the pricing was a bit much, I bit the bullet and got one. So glad I did. I would recommend anyone to buy from this company.`,
-        'image': 'https://images.loox.io/uploads/2022/4/21/V1gPz9M9En.jpg',
-        'imageProduct': 'https://cdn.shopify.com/s/files/1/0490/4219/4589/products/04_b67ea4cd-781f-4ea0-9dc8-443b75d76f92_x50.png',
-        'titleProduct': 'Pink and Blue Sky-Dye Velvet Dog Hoodie',
-        'urlProduct': 'https://sparkpaws-global.myshopify.com/products/pink-blue-sky-dye-dog-hoodie?ref=loox-feed&post_id=E1TcpiYm2&rating=5&variant=41392845160605&utm_source=referral&utm_medium=post&utm_campaign=loox-feed',
-    }, 
-    {
-        'author': 'Dee W.',
-        'text': `It’s difficult finding jackets/jumpers to fit Frenchie’s, this however was perfect! The material is definitely of good quality and finding the correct size for my growing puppy was simple, placing the order itself was easy and delivery was prompt. I’ll definitely be ordering again!`,
-        'image': 'https://images.loox.io/uploads/2022/4/23/4kTdNh3E3_mid.jpg',
-        'imageProduct': 'https://cdn.shopify.com/s/files/1/0490/4219/4589/products/05_f98eb65c-e0e0-4fbe-90e9-ab39a885a877_x100.png',
-        'titleProduct': 'Vintage Navy Sky Dye Dog Hoodie',
-        'urlProduct': 'https://sparkpaws-global.myshopify.com/products/navy-grey-sky-dye-dog-hoodie?ref=loox-feed&post_id=VkYFX3hEh&rating=5&variant=41392863871133&utm_source=referral&utm_medium=post&utm_campaign=loox-feed',
-    }
+  {
+    author: 'Kayla W. ',
+    text: `I had purchased a no-pull harness for my staffy from a pet store and though it worked, it left red raw spots all under his arms. I wanted a harness that would not do this but also give me the control to walk him as he is quite the puller! I had seen ads for spark paws many times but it always seemed slightly out of my price range! But I took a chance and purchased the harness set in army green as well as a tactical collar because I have ocd about matching and I honestly can’t say enough good things about it! I even went back and purchased the lime green and blue collar and leash set for my Dane! I am extremely in love with this product and encourage anybody to get it! It is expensive but you are paying for the quality of this product and it is completely worth the money! I will be purchasing all my collar and harnesses from them from now on! Though I am not complaining I do wish they had extra large in the harnesses and sweaters and such as my Dane is a big boy and the large size doesn’t fit his giant chest (he’s 109cm around) but otherwise extremely happy! 10/10 recommended!`,
+    image: 'https://images.loox.io/uploads/2023/7/31/kkgSLCPjy.jpg',
+    imageProduct: '/cdn/shop/products/1_0fa2ab35-db64-4608-a1a2-04dac5e58d70_1000x.png',
+    titleProduct: 'Comfort Control No-Pull Dog Harness Set - Army Green',
+    urlProduct: '/products/comfort-control-no-pull-dog-harness-set-army-green'
+  },
+  {
+    author: 'Sabrina G.',
+    text: `Such a great lightweight, waterproof and lightweight coat. So many details to adjust and reflective stripes. Beautiful color.Mascha is a boxer girl and wears size 3xl. We are excited!`,
+    image: 'https://images.loox.io/uploads/2023/8/8/p3AAX2VXI.jpg',
+    imageProduct: '/cdn/shop/files/Untitleddesign_1000x.jpg',
+    titleProduct: 'Breatheshield™ Dog Raincoat - Teal White Purple',
+    urlProduct: '/products/dog-raincoat-acqua-fresh'
+  },
+  {
+    author: 'Andrea R.',
+    text: `I got the human hoodie just to be cute and match my pup, but this is legit the most comfortable hoodie I have ever owned! I need this in EVERY colour! ❤️`,
+    image: 'https://images.loox.io/uploads/2022/4/21/Vkb07fP5N3.jpg',
+    imageProduct: '/cdn/shop/products/25_1000x.png',
+    titleProduct: 'Vintage Navy Grey Sky-Dye Velvet Human Hoodie',
+    urlProduct: '/products/vintage-grey-sky-human-hoodie-matching'
+  },
+  {
+    author: 'Chloé F.',
+    text: `As always, the product lives up to its promise, Sky tends to pull and this set provides better control, so you can work on walking on a leash. The quality is insane and the safety is guaranteed, we're delighted and Sky has no skin problems with this collar thanks to the high quality material used, thanks again Sparkpaws another success for you 🫶🏼`,
+    image: 'https://images.loox.io/uploads/2023/8/28/x4IQvE9Hi.jpg',
+    imageProduct:
+      '/cdn/shop/products/big-dog_-pitbull_-frenchie-dog-leash_SET_07_699f82a5-1735-4588-b98e-18bb7a5e4bb1_1600x.jpg',
+    titleProduct: 'Tactical Dog Collar Set - Pastel Icing (2"/5cm)',
+    urlProduct: '/products/tactical-collar-and-leash-set-pastel-rainbow'
+  },
+  {
+    author: 'Melinda M.',
+    text: `Amazing customer service and extremely friendly when needing help. The chain and pendant is exactly as shown in their pictures and descriptions and is fantastic quality. Both chain and pendant is packaged with so much care and very well protected and presented. Will definitely recommend these products to family and friends.`,
+    image: 'https://images.loox.io/uploads/2022/4/21/NJ0n7v9N2.jpg',
+    imageProduct:
+      'https://cdn.shopify.com/s/files/1/0490/4219/4589/products/1_bfbc8dd9-3be9-40e7-9f20-088bd3be7bde_x100.jpg',
+    titleProduct: 'Cuban Link 20mm Dog Gold Chain Collar',
+    urlProduct:
+      'https://sparkpaws-global.myshopify.com/products/classic-gold-chain?ref=loox-feed&post_id=EJzt9goes&rating=5&variant=36291132981405&utm_source=referral&utm_medium=post&utm_campaign=loox-feed'
+  },
+  {
+    author: 'Leeann H.',
+    text: `My Name is Stanley and I absolutely love ❤️ my Sherpa hoodie. The inside is nice and smooth and doesn’t make me itch!!! The best thing is how lovely and warm I am and the fit is perfect and my mum says it’s the best fitted hoodie she’s ever bought for me!`,
+    image: 'https://images.loox.io/uploads/2022/4/21/EklxqbPcVh.jpg',
+    imageProduct:
+      'https://cdn.shopify.com/s/files/1/0490/4219/4589/products/1_22d59502-74ce-4167-85ce-9db2890e0f50_x50.jpg',
+    titleProduct: 'Teddy Sherpa Jacket - Grey',
+    urlProduct:
+      'https://sparkpaws-global.myshopify.com/products/sherpa-dog-jacket-grey?ref=loox-feed&post_id=41Ky1FH7n&rating=5&variant=37799690141853&utm_source=referral&utm_medium=post&utm_campaign=loox-feed'
+  },
+  {
+    author: 'Anna M.',
+    text: `I have a pitbull, 30/35 kg, maybe a bit bigger than the average pitbull, I've bought a 4xl. The quality was great, better than many of my own hoodies. The inside is in fleece to keep him warm and he loves it. Only it's large on the belly and I have to clip it on the side or he will pee inside it (a girl shouldn't have this problem), but it's ok anyway, the length and on the shoulders fit perfectly.`,
+    image: 'https://images.loox.io/uploads/2022/4/21/N1eS9cM9En.jpg',
+    imageProduct: 'https://cdn.shopify.com/s/files/1/0490/4219/4589/products/WOOF_DogHoodie-Black-modelpic1_x50.png',
+    titleProduct: '"WOOF" Dog Hoodie - Black & Reflective',
+    urlProduct:
+      'https://sparkpaws-global.myshopify.com/products/woof-dog-hoodie-black?ref=loox-feed&post_id=NkVrD2bx3&rating=5&variant=39819160813725&utm_source=referral&utm_medium=post&utm_campaign=loox-feed'
+  },
+  {
+    author: 'Chelsey M.',
+    text: `Maggie and I LOVE our sweaters!! The material is so soft!! Maggie is an English bulldog and she measures a 3XL. Definitely will be ordering more! Fast shipping, nice packaging and great quality!`,
+    image: 'https://images.loox.io/uploads/2022/4/21/NyJoqz54h.jpg',
+    imageProduct: '/cdn/shop/files/66_1600x.jpg',
+    titleProduct: 'Pink and Blue Sky-Dye Velvet Dog Hoodie',
+    urlProduct:
+      'https://sparkpaws-global.myshopify.com/products/pink-blue-sky-dye-dog-hoodie?ref=loox-feed&post_id=41nfrIsk3&rating=5&variant=41392845226141&utm_source=referral&utm_medium=post&utm_campaign=loox-feed'
+  },
+  {
+    author: 'Angie G.',
+    text: `My girl is a smaller size staffy, I call her a mini size (about 15kg) so I got the xl and it fits her nicely. The hood is a bit on the big side but that's ok. Love the feel of the material it's made out of, soo soft. In the beginning I thought the pricing was a bit much, I bit the bullet and got one. So glad I did. I would recommend anyone to buy from this company.`,
+    image: 'https://images.loox.io/uploads/2022/4/21/V1gPz9M9En.jpg',
+    imageProduct:
+      'https://cdn.shopify.com/s/files/1/0490/4219/4589/products/04_b67ea4cd-781f-4ea0-9dc8-443b75d76f92_x50.png',
+    titleProduct: 'Pink and Blue Sky-Dye Velvet Dog Hoodie',
+    urlProduct:
+      'https://sparkpaws-global.myshopify.com/products/pink-blue-sky-dye-dog-hoodie?ref=loox-feed&post_id=E1TcpiYm2&rating=5&variant=41392845160605&utm_source=referral&utm_medium=post&utm_campaign=loox-feed'
+  },
+  {
+    author: 'Dee W.',
+    text: `It’s difficult finding jackets/jumpers to fit Frenchie’s, this however was perfect! The material is definitely of good quality and finding the correct size for my growing puppy was simple, placing the order itself was easy and delivery was prompt. I’ll definitely be ordering again!`,
+    image: 'https://images.loox.io/uploads/2022/4/23/4kTdNh3E3_mid.jpg',
+    imageProduct:
+      'https://cdn.shopify.com/s/files/1/0490/4219/4589/products/05_f98eb65c-e0e0-4fbe-90e9-ab39a885a877_x100.png',
+    titleProduct: 'Vintage Navy Sky Dye Dog Hoodie',
+    urlProduct:
+      'https://sparkpaws-global.myshopify.com/products/navy-grey-sky-dye-dog-hoodie?ref=loox-feed&post_id=VkYFX3hEh&rating=5&variant=41392863871133&utm_source=referral&utm_medium=post&utm_campaign=loox-feed'
+  }
+]
+
+const trustReviews = [
+  {
+    name: 'Jennifer P',
+    title: 'Perfect fit (Rhodesian Ridgeback - Pitbull mix)',
+    text: 'I ordered hoodies, knits and rain gear for my 4 y/o Rhodesian Ridgeback - pitbull mix (3XL). She is petite but quite muscular (20"neck - 30.5"chest). Everything fits perfectly!! I love the quality, colors and style options. My girl seems comfortable and loves the ultra-soft materials. We get ALOT of compliments! I will definitely be ordering more ; ) Thank you.',
+    date: '4 days ago'
+  },
+  {
+    name: 'Kathy',
+    title: 'Excellent quality jumper',
+    text: 'My order arrived today and the item that I purchased is excellent quality . My dog hates most things I put on him but this jumper is soft and he seemed quite happy wearing it.',
+    date: 'Aug 9, 2023'
+  },
+  {
+    name: 'John K Morrison',
+    title: 'Backing up their product',
+    text: 'Great customer service and replacement of a 6 month old harness with just a pitcher of the harness.',
+    date: '4 days ago'
+  },
+  {
+    name: 'Chris Djukanovic',
+    title: 'Great outfit for owner and pooch',
+    text: 'Great outfit for owner and pooch .. trouble free ordering and speedy delivery . Highly recommended!',
+    date: '5 days ago'
+  }
 ]
 
 let style = `
 <style class="style-exp">
-    #shopify-section-template--15821794246837__1650547685f0318980,
-    #shopify-section-template--15821794246837__7164ea44-ce08-4d5c-8d10-61c0a6e6e334,
-    #shopify-section-template--15821794246837__1d73e740-c6f3-4c4e-83a3-25019344a4de,
-    #shopify-section-template--15821794246837__00e1908d-9d44-4288-a91a-09094320b853,
-    #shopify-section-template--15821794246837__featured-collections,
-    #shopify-section-template--15821794246837__219fd661-63ec-452c-8237-ed062313b6f4 {
+    #shopify-section-template--15879345635509__115aa41c-0742-4cbd-b2bd-b94c5596ddb7,
+    #shopify-section-template--15879345635509__e826ee7c-7bbd-44b5-9a6d-60fcf25e1570,
+    #shopify-section-template--15879345635509__1650547685f0318980,
+    #shopify-section-template--15879345635509__7164ea44-ce08-4d5c-8d10-61c0a6e6e334,
+    #shopify-section-template--15879345635509__1d73e740-c6f3-4c4e-83a3-25019344a4de,
+    #shopify-section-template--15879345635509__00e1908d-9d44-4288-a91a-09094320b853,
+    #shopify-section-template--15879345635509__featured-collections,
+    #shopify-section-template--15879345635509__219fd661-63ec-452c-8237-ed062313b6f4 {
         display: none!Important;
     }
     .shopify-section--bordered>.Section--spacingNormal {
@@ -862,6 +901,7 @@ let style = `
             padding: 14px 24px;
             margin: 32px auto 0;
             display: block;
+            min-width: 180px;
         }
         .main-exp .swiper {
             overflow: hidden;
@@ -1047,7 +1087,7 @@ let style = `
             max-height: 280px;
         }
     }
-</style>`;
+</style>`
 
 let addAdvantages = (classes) => `
 <div class="advantages ${classes}">
@@ -1063,7 +1103,7 @@ let addAdvantages = (classes) => `
                 </clipPath>
                 </defs>
             </svg>
-            <p>${german ? 'Premiumqualität zu erschwinglichen Preisen ': 'Premium Quality at Accessible Prices'}</p>
+            <p>${german ? 'Premiumqualität zu erschwinglichen Preisen ' : 'Premium Quality at Accessible Prices'}</p>
         </a>
         <a href="/blogs/community/spark-paws-joins-the-fight-against-animal-cruelty" class="flex-md-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
@@ -1078,7 +1118,7 @@ let addAdvantages = (classes) => `
             </clipPath>
             </defs>
             </svg>
-            <p>${german ? 'Jeder Kauf unterstützt bedürftige Hunde ': 'Every Purchase Feeds Sheltered Dogs'}</p>
+            <p>${german ? 'Jeder Kauf unterstützt bedürftige Hunde ' : 'Every Purchase Feeds Sheltered Dogs'}</p>
         </a>
         <a href="/pages/30-day-exchange-return" class="flex-md-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -1092,7 +1132,7 @@ let addAdvantages = (classes) => `
             <path d="M20.3444 5.62307H20.3075L17.2613 5.2934C17.1795 5.279 17.1062 5.23401 17.0564 5.16757C17.0066 5.10113 16.9839 5.01821 16.9929 4.93564C17.002 4.85308 17.0421 4.77705 17.1052 4.723C17.1683 4.66895 17.2495 4.64093 17.3325 4.64461L20.0437 4.93736L20.347 2.2156C20.349 2.17091 20.3601 2.1271 20.3797 2.08689C20.3993 2.04667 20.4269 2.0109 20.4609 1.98179C20.4949 1.95268 20.5345 1.93085 20.5772 1.91765C20.6199 1.90444 20.6649 1.90015 20.7094 1.90503C20.7539 1.90991 20.7969 1.92386 20.8357 1.94602C20.8746 1.96818 20.9085 1.99808 20.9353 2.03386C20.9622 2.06965 20.9814 2.11056 20.9918 2.15406C21.0022 2.19757 21.0036 2.24275 20.9958 2.28681L20.6688 5.33296C20.659 5.41913 20.6153 5.49787 20.5475 5.55186C20.4901 5.5984 20.4183 5.62357 20.3444 5.62307Z" fill="#383A3D"/>
             <path d="M3.33584 22.0143H3.29892C3.21297 22.005 3.13421 21.962 3.07984 21.8948C3.02548 21.8276 2.99994 21.7416 3.00881 21.6556L3.33848 18.6094C3.34258 18.5668 3.3552 18.5255 3.37559 18.4879C3.39597 18.4503 3.42371 18.4172 3.45716 18.3905C3.52468 18.3361 3.61091 18.3106 3.69716 18.3193L6.74331 18.6463C6.82473 18.6609 6.89762 18.7057 6.9473 18.7718C6.99699 18.8379 7.01978 18.9204 7.01108 19.0027C7.00239 19.0849 6.96286 19.1608 6.90045 19.2151C6.83805 19.2693 6.75739 19.2979 6.67474 19.2951L3.95562 19.0024L3.6576 21.7241C3.64915 21.8037 3.61163 21.8772 3.55225 21.9308C3.49286 21.9843 3.4158 22.0141 3.33584 22.0143Z" fill="#383A3D"/>
             </svg>
-            <p>${german ? 'Kostenloser Umtausch und 24/7 Support': 'Free Exchange and 24/7 Support'}</p>
+            <p>${german ? 'Kostenloser Umtausch und 24/7 Support' : 'Free Exchange and 24/7 Support'}</p>
         </a>
     </div>
 </div>`
@@ -1135,11 +1175,268 @@ let topCategoryHTML = `
             <span>${german ? 'Schuhe & Stiefel' : 'Shoes&Boots'}</span>
         </a>
     </li>
-</ul>`;
+</ul>`
 
-let tophtml = `
+const mainScreen = /*html*/ `
+<div class='crs_main_screen'>
+<style>
+    .crs_stars {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 12px;
+        font-size: 13px;
+        color: #5C5C5C;
+        line-height: 1.6;
+        column-gap: 12px;
+        border-bottom: 1px solid #E7E7E7;
+        border-top: 1px solid #E7E7E7;
+    }
+    .crs_cta {
+        display: flex;
+        width: 100%;
+    }
+    .crs_title {
+        width: 26%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 74px 40px 74px 70px;
+        background: #F0F4F5;
+    }
+    .crs_cta .img {
+        width: 74%;
+    }
+    .crs_title h1 {
+        color: #344D79;
+        font-size: 34px;
+        font-weight: 700;
+        line-height: 120%;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin: 20px 0;
+    }
+
+    .crs_cta .img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .crs_cta .img img.mob {
+        display: none;
+    }
+    .crs_title a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        color: #fff;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 2.2px;
+        font-weight: 600;
+        background: #344D79;
+        padding: 13px;
+    }
+    @media (max-width: 768px) {
+        .crs_cta .img img:not(.mob) {
+            display: none;
+        }
+        .crs_cta .img img.mob {
+            display: block;
+        }
+        .crs_cta {
+            flex-direction: column;
+        }
+        .crs_cta .img {
+            width: 100%;
+            order: -1;
+        }
+        .crs_title {
+            width: 100%;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            flex-direction: row;
+            column-gap: 16px;
+            padding: 24px;
+        }
+        .crs_title a {
+            order: -1;
+        }
+        .crs_title img {
+            width: 130px;
+        }
+        .crs_title h1 {
+            font-size: 22px;
+            line-height: 1.1;
+            width: 190px;
+        }
+    }
+</style>
+<div class='crs_content'>
+    <div class="crs_stars">
+        <img src="${dir}stars.svg" alt="stars">
+        <span>${
+          german ? 'Basierend auf <b>über 30.000</b> Kundenbewertungen' : 'Based on <b>30,000+</b> Customer Reviews'
+        }</span>
+    </div>
+    <div class="crs_cta">
+        <div class="crs_title">
+            <img src="${dir}sale.svg" alt="sale">
+            <h1>${german ? 'Schwarzer Freitag im September' : 'Black friday in september'}</h1>
+            <a href="/collections/shop-all-2">${german ? 'Jetzt einkaufen' : 'Shop now'}</a>
+        </div>
+        <div class="img">
+            <img src="${dir}main_screen.jpg" alt="main_screen">
+            <img src="${dir}main_screen_mob.jpg" alt="main_screen_mob" class="mob">
+        </div>
+    </div>
+</div>
+</div>
+`
+
+const drawTrustedReviews = () => {
+  let slides = ''
+  trustReviews.forEach((item) => {
+    slides += /*html*/ `
+            <div class="swiper-slide">
+                <div class="trusted_review">
+                    <img src="${dir}rating5.svg" alt="rating">
+                    <p class="name">${item.name}</p>
+                    <p class="verifed"><img src="${dir}check.svg" alt="check">${
+      german ? 'Verifizierter Benutzer' : 'Verified User'
+    }</p>
+                    <p class="title">${item.title}</p>
+                    <p class="text">${item.text}</p>
+                    <p class="date">${item.date}</p>
+                </div>
+            </div>
+        `
+  })
+  return slides
+}
+
+const trustpilot = /*html*/ `
+    <div class="crs_trustpilot">
+        <style>
+            .crs_trustpilot_content h2 {
+                text-align: center;
+                font-size: 28px;
+                line-height: 1.2;
+                font-weight: 700;
+                margin-bottom: 12px;
+            }
+            .crs_trustpilot_content h2+p {
+                display: flex;
+                justify-content: center;
+                column-gap: 8px;
+                align-items: center;
+                font-size: 13px;
+                color: #5C5C5C;
+                line-height: 1.6;
+                margin-bottom: 10px;
+            }
+            .crs_trustpilot_content h2+p+p {
+                color: var(--grey-600, #5C5C5C);
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 130%;
+                text-align: center;
+            }
+            .crs_trustpilot_content h2+p+p span {
+                color: #2DAF6B;
+            }
+            .trusted_swiper {
+                margin: 32px auto;
+                max-width: 1300px;
+                width: 95%;
+            }
+            .crs_trustpilot_content>a {
+                display: flex;
+                width: 200px;
+                justify-content: center;
+                align-items: center;
+                padding: 8px 40px;
+                background: none;
+                border: 1px solid #344D79;
+                color: #344D79;
+                text-transform: uppercase;
+                font-size: 14px;
+                font-weight: 600;
+                letter-spacing: 2.2px;
+                cursor: pointer;
+                margin: 30px auto;
+            }
+            @media (max-width: 768px) {
+                .crs_trustpilot_content>a  {
+                    display: none;
+                }
+            }
+            .trusted_review {
+                padding: 16px;
+                background: #F0F4F5;
+                position: relative;
+            }
+            .trusted_review>img {
+                position: absolute;
+                top: 16px;
+                right: 16px;
+            }
+            .trusted_review .name, .trusted_review .title {
+                color: #323232;
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 130%;
+                margin-bottom: 4px;
+            }
+            .trusted_review .verifed {
+                display: inline-flex;
+                column-gap: 6px;
+                align-items: center;
+                padding: 5px 6px;
+                background-color: #DBF5ED;
+                color: #2DAF6B;
+                font-size: 12px;
+                line-height: 1.5;
+                margin-bottom: 14px;
+            }
+            .trusted_review .text {
+                color: #5C5C5C;
+                font-size: 13px;
+                font-weight: 400;
+                line-height: 21px;
+                margin-bottom: 8px;
+            }
+            .trusted_review .date {
+                color: #323232;
+                font-size: 13px;
+                font-weight: 700;
+                line-height: 21px;
+            }
+        </style>
+        <div class="crs_trustpilot_content">
+            <h2>${german ? 'Vertrauenswürdige Kundenbewertungen' : 'Trusted customer reviews'}</h2>
+            <p>
+                <img src="${dir}trustpilot.svg" alt="trustpilot">
+                <img src="${dir}rating4.svg" alt="rating">
+                4.0 rating
+            </p>
+            <p><span>1,836</span> Total Reviews</p>
+            <div class="swiper trusted_swiper">
+                <div class="swiper-wrapper">
+                    ${drawTrustedReviews()}
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <a href="https://uk.trustpilot.com/review/sparkpaws.com" class="view_more">view more</a>
+        </div>
+    </div>
+`
+
+let tophtml = /*html*/ `
 <div class="main-exp">
-   
+
+    ${mainScreen}
     ${addAdvantages('d-none d-md-block')}
     <div class="explore_category">
         <h2 class="text-md-center">${german ? 'Erkunden nach Kategorie ' : 'Explore by Category'}</h2>
@@ -1237,18 +1534,27 @@ let tophtml = `
                 <path d="M10.1216 15.0376C9.4016 15.0376 8.73345 14.6183 8.42234 13.9679L4.87419 6.60497C4.6979 6.23609 4.85197 5.79312 5.22086 5.61535C5.58975 5.43905 6.03123 5.59312 6.20901 5.96201L9.75716 13.3265C9.86975 13.562 10.489 13.5828 10.5231 13.1902L11.6727 0.996085C11.7112 0.588678 12.0623 0.274604 12.4786 0.327937C12.886 0.366456 13.1853 0.727937 13.1468 1.13386L11.9986 13.3265C11.9097 14.2998 11.1038 15.0376 10.1216 15.0376Z" fill="#323232"/>
                 <path d="M26.1475 35.7778C25.9919 35.7778 25.8363 35.7289 25.7045 35.6311C25.3297 35.3511 16.5178 28.7126 16.5178 23.3778C16.5178 20.4119 18.9297 18 21.8956 18C23.586 18 25.1445 18.7867 26.1475 20.08C27.1489 18.7867 28.7089 18 30.3993 18C33.3652 18 35.7771 20.4119 35.7771 23.3778C35.7771 28.7126 26.9652 35.3511 26.5904 35.6311C26.4586 35.7289 26.303 35.7778 26.1475 35.7778ZM21.8956 19.4815C19.7475 19.4815 17.9993 21.2296 17.9993 23.3778C17.9993 26.9778 23.5149 32.043 26.1475 34.1037C28.7786 32.0415 34.2956 26.9733 34.2956 23.3778C34.2956 21.2296 32.5475 19.4815 30.3993 19.4815C28.8452 19.4815 27.4437 20.3985 26.8275 21.8193C26.5934 22.36 25.703 22.36 25.4689 21.8193C24.8512 20.3985 23.4497 19.4815 21.8956 19.4815Z" fill="#323232"/>
             </svg>  
-            <p class="fw-semi">${german ? 'Spark Paws wurde gegründet, um hochwertige, schöne und bequeme Haustierbedarfsartikel zu fairen Preisen anzubieten' : 'Spark Paws was created to deliver high-quality, beautiful, comfortable pet essentials at fair prices'}</p>  
+            <p class="fw-semi">${
+              german
+                ? 'Spark Paws wurde gegründet, um hochwertige, schöne und bequeme Haustierbedarfsartikel zu fairen Preisen anzubieten'
+                : 'Spark Paws was created to deliver high-quality, beautiful, comfortable pet essentials at fair prices'
+            }</p>  
         </div>
-        <p>${german ? 'Unser Ansatz ist einfach: Qualität steht an erster Stelle.   <br class="d-md-block d-none"> Alle unsere Produkte werden mit hochwertigen Materialien und sorgfältiger Handwerkskunst hergestellt.' :
-        'Our approach is simple: quality is the most important. <br class="d-md-block d-none"> All our products are made with top-quality materials and meticulous craftmanship.'}</p>
+        <p>${
+          german
+            ? 'Unser Ansatz ist einfach: Qualität steht an erster Stelle.   <br class="d-md-block d-none"> Alle unsere Produkte werden mit hochwertigen Materialien und sorgfältiger Handwerkskunst hergestellt.'
+            : 'Our approach is simple: quality is the most important. <br class="d-md-block d-none"> All our products are made with top-quality materials and meticulous craftmanship.'
+        }</p>
     </div>
     ${addAdvantages('d-md-none')} 
     <div class="best-sellers">
-        <h2 class="text-md-center">${german ? 'Bestseller': 'Best Sellers'}</h2>
+        <h2 class="text-md-center">${german ? 'Bestseller' : 'Best Sellers'}</h2>
         <div class="swiper">
             <div class="swiper-wrapper"></div>
         </div>
-        <a href="/collections/shop-all-2" class="ProductCollectionListItem__Link Button btn" onclick="pushDataLayer('exp_imp_hp_b_bs_sa', 'Shop all', 'Button', 'Best Sellers');">${german ? 'Alle anzeigen' : 'Shop All'}</a>
+        <a href="/collections/shop-all-2" class="ProductCollectionListItem__Link Button btn" onclick="pushDataLayer('exp_imp_hp_b_bs_sa', 'Shop all', 'Button', 'Best Sellers');">${
+          german ? 'Alle anzeigen' : 'Shop All'
+        }</a>
     </div>
     <div class="cooling-vest jackets">
         <div class="container relative d-md-flex">
@@ -1264,9 +1570,21 @@ let tophtml = `
                     <div class="tab">ChillTech™</div>
                 </div>
                 <h3>ChillTech™ ${german ? 'Kühlwesten ' : 'Cooling Vests'}</h3>
-                <p><b>${german ? 'Kühlwesten sind unverzichtbare Accessoires für Hunde, die sich im Sommer leicht überhitzen. ' : 'Cooling vests are essential accessories for dogs that easily overheat in the summer.'} </b></p>
-                <p>${german ? "Die Kühlweste reduziert die Körpertemperatur Ihres Hundes durch Verdunstung - alles, was Sie tun müssen, ist sie mit Wasser zu befeuchten, auszuwringen und Ihrem Hund anzulegen. Der Stoff ist speziell so konzipiert, dass er Wasser speichert und dadurch einen kühlenden Effekt erzeugt. Die Netzschichten ermöglichen die Luftzirkulation und reflektieren gleichzeitig Sonnenlicht, bieten zusätzlichen UV-Schutz und Schatten." : "The cooling vest reduces your dog’s body temperature by using evaporation - all you have to do is dampen it with water, wring it out, and put it on your pup. The fabric is specially designed to retain water, creating a cooling effect. The mesh layers allow air to circulate, while deflecting sunlight, offering extra UV protection and shading."}</p>
-                <p>${german ? 'Legen Sie die angefeuchtete Weste für einen zusätzlichen Kühlungseffekt bis zu 3 Minuten in den Gefrierschrank.' : 'Put the dampen vest in the freezer for en extra cooling effect for up to 3 minutes.'}</p>
+                <p><b>${
+                  german
+                    ? 'Kühlwesten sind unverzichtbare Accessoires für Hunde, die sich im Sommer leicht überhitzen. '
+                    : 'Cooling vests are essential accessories for dogs that easily overheat in the summer.'
+                } </b></p>
+                <p>${
+                  german
+                    ? 'Die Kühlweste reduziert die Körpertemperatur Ihres Hundes durch Verdunstung - alles, was Sie tun müssen, ist sie mit Wasser zu befeuchten, auszuwringen und Ihrem Hund anzulegen. Der Stoff ist speziell so konzipiert, dass er Wasser speichert und dadurch einen kühlenden Effekt erzeugt. Die Netzschichten ermöglichen die Luftzirkulation und reflektieren gleichzeitig Sonnenlicht, bieten zusätzlichen UV-Schutz und Schatten.'
+                    : 'The cooling vest reduces your dog’s body temperature by using evaporation - all you have to do is dampen it with water, wring it out, and put it on your pup. The fabric is specially designed to retain water, creating a cooling effect. The mesh layers allow air to circulate, while deflecting sunlight, offering extra UV protection and shading.'
+                }</p>
+                <p>${
+                  german
+                    ? 'Legen Sie die angefeuchtete Weste für einen zusätzlichen Kühlungseffekt bis zu 3 Minuten in den Gefrierschrank.'
+                    : 'Put the dampen vest in the freezer for en extra cooling effect for up to 3 minutes.'
+                }</p>
                 <a href="/collections/dog-cooling-vest" class=" Button btn btn-white flex-center" onclick="pushDataLayer('exp_imp_hp_b_ct_vp', 'View product', 'Button', 'ChillTech');">
                     <span>${german ? 'Produkte anzeigen' : 'View products'}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
@@ -1282,7 +1600,11 @@ let tophtml = `
     <div class="fabric_content">
         <div class="container text-md-center">
             <h2>${german ? 'Spark Paws Fabric Lab ' : 'Spark Paws Fabric Lab'}</h2>
-            <p>${german ? 'Spark Paws ist Vorreiter als erstes Unternehmen, das Stoffe speziell für Hunde entwirft. ' : 'Spark Paws is leading the pack as the first company to design fabrics specifically for dogs'}</p>
+            <p>${
+              german
+                ? 'Spark Paws ist Vorreiter als erstes Unternehmen, das Stoffe speziell für Hunde entwirft. '
+                : 'Spark Paws is leading the pack as the first company to design fabrics specifically for dogs'
+            }</p>
             <ul class="d-flex flex-wrap">
                 <li>
                     <a href="/pages/butter-stretch">
@@ -1335,7 +1657,9 @@ let tophtml = `
         <div class="swiper">
             <div class="swiper-wrapper"></div>
         </div>
-        <a href="/collections/4th-of-july-sale-1" class="ProductCollectionListItem__Link Button btn" onclick="pushDataLayer('exp_imp_hp_b_gd_sa', 'Shop all', 'Button', 'Great deals');">${german ? 'Alle anzeigen' : 'Shop All'}</a>
+        <a href="/collections/4th-of-july-sale-1" class="ProductCollectionListItem__Link Button btn" onclick="pushDataLayer('exp_imp_hp_b_gd_sa', 'Shop all', 'Button', 'Great deals');">${
+          german ? 'Alle anzeigen' : 'Shop All'
+        }</a>
     </div>
     <div class="loox-review relative">
         <h2 class="text-md-center">${german ? 'Unsere zufriedenen Kunden ' : 'Our Happy Customers'}</h2>
@@ -1347,7 +1671,11 @@ let tophtml = `
                 <path d="M53 12.0133L55.7667 13.6867C56.2734 13.9933 56.8934 13.54 56.76 12.9667L56.0267 9.82L58.4734 7.7C58.92 7.31334 58.68 6.58 58.0934 6.53334L54.8734 6.26L53.6134 3.28667C53.3867 2.74667 52.6134 2.74667 52.3867 3.28667L51.1267 6.25333L47.9067 6.52667C47.32 6.57333 47.08 7.30667 47.5267 7.69334L49.9734 9.81333L49.24 12.96C49.1067 13.5333 49.7267 13.9867 50.2334 13.68L53 12.0133Z" fill="#FCE358"/>
                 <path d="M68 12.0133L70.7667 13.6867C71.2734 13.9933 71.8934 13.54 71.76 12.9667L71.0267 9.82L73.4734 7.7C73.92 7.31334 73.68 6.58 73.0934 6.53334L69.8734 6.26L68.6134 3.28667C68.3867 2.74667 67.6134 2.74667 67.3867 3.28667L66.1267 6.25333L62.9067 6.52667C62.32 6.57333 62.08 7.30667 62.5267 7.69334L64.9734 9.81333L64.24 12.96C64.1067 13.5333 64.7267 13.9867 65.2334 13.68L68 12.0133Z" fill="#FCE358"/>
             </svg>
-            <span>${german ? 'Basierend auf über <b>30.000</b> Kundenbewertungen' : 'Based on over <b>30,000</b> customer reviews '}</span>
+            <span>${
+              german
+                ? 'Basierend auf über <b>30.000</b> Kundenbewertungen'
+                : 'Based on over <b>30,000</b> customer reviews '
+            }</span>
         <p>
         <div class="swiper-button swiper-button-prev">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="20" viewBox="0 0 12 20" fill="none">
@@ -1378,7 +1706,11 @@ let tophtml = `
                     <div class="tab">WarmShield™</div>
                 </div>
                 <h3>WarmShield™ ${german ? 'Wasserdichte Jacken ' : 'Waterproof Jackets'}</h3>
-                <p>${german ? 'Die WarmShield™ Wasserdichte Jacke ist ein eleganter, von Technikbekleidung inspirierter Parka, der Ihren Hund an den kältesten Wintertagen trocken und warm hält. ' : 'WarmShield™ Waterproof Jacket is a sleek tech-wear inspired parka that will keep your dog dry and warm on the coldest winter days.'}</p>
+                <p>${
+                  german
+                    ? 'Die WarmShield™ Wasserdichte Jacke ist ein eleganter, von Technikbekleidung inspirierter Parka, der Ihren Hund an den kältesten Wintertagen trocken und warm hält. '
+                    : 'WarmShield™ Waterproof Jacket is a sleek tech-wear inspired parka that will keep your dog dry and warm on the coldest winter days.'
+                }</p>
                 <a href="/collections/warmshield-waterproof-jacket" class=" Button btn btn-white flex-center" onclick="pushDataLayer('exp_imp_hp_b_ws_vp', 'View product', 'Button', 'Warm Shield');">
                     <span>${german ? 'Produkte anzeigen' : 'View products'}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
@@ -1402,8 +1734,14 @@ let tophtml = `
                 <path d="M3.33584 22.0143H3.29892C3.21297 22.005 3.13421 21.962 3.07984 21.8948C3.02548 21.8276 2.99994 21.7416 3.00881 21.6556L3.33848 18.6094C3.34258 18.5668 3.3552 18.5255 3.37559 18.4879C3.39597 18.4503 3.42371 18.4172 3.45716 18.3905C3.52468 18.3361 3.61091 18.3106 3.69716 18.3193L6.74331 18.6463C6.82473 18.6609 6.89762 18.7057 6.9473 18.7718C6.99699 18.8379 7.01978 18.9204 7.01108 19.0027C7.00239 19.0849 6.96286 19.1608 6.90045 19.2151C6.83805 19.2693 6.75739 19.2979 6.67474 19.2951L3.95562 19.0024L3.6576 21.7241C3.64915 21.8037 3.61163 21.8772 3.55225 21.9308C3.49286 21.9843 3.4158 22.0141 3.33584 22.0143Z" fill="#323232"/>
             </svg>
             <p> 
-                <span class="name">${german ? '30-tägige Rückgabe und Umtauschmöglichkeit ' : '30 Day Return & Exchange'}</span> <br>
-                <span class="text">${german ? 'Sie können gekaufte Artikel innerhalb von 30 Tagen problemlos zurückgeben oder umtauschen. ' : 'You may return or exchange purchased items within 30 days, hassle free'}</span>
+                <span class="name">${
+                  german ? '30-tägige Rückgabe und Umtauschmöglichkeit ' : '30 Day Return & Exchange'
+                }</span> <br>
+                <span class="text">${
+                  german
+                    ? 'Sie können gekaufte Artikel innerhalb von 30 Tagen problemlos zurückgeben oder umtauschen. '
+                    : 'You may return or exchange purchased items within 30 days, hassle free'
+                }</span>
             </p>
         </div>
         <div class="d-flex">
@@ -1427,8 +1765,14 @@ let tophtml = `
                 </defs>
             </svg>
             <p> 
-                <span class="name">${german ? 'Weltweiter vollständiger Versandschutz' : 'Full Coverage Shipping Worldwide'}</span> <br>
-                <span class="text">${german ? 'Wir ersetzen Ihr Paket KOSTENLOS, wenn es während des Versands verloren geht. ' : 'We will replace your package for <b>FREE</b> if it gets lost during shipping'}</span>
+                <span class="name">${
+                  german ? 'Weltweiter vollständiger Versandschutz' : 'Full Coverage Shipping Worldwide'
+                }</span> <br>
+                <span class="text">${
+                  german
+                    ? 'Wir ersetzen Ihr Paket KOSTENLOS, wenn es während des Versands verloren geht. '
+                    : 'We will replace your package for <b>FREE</b> if it gets lost during shipping'
+                }</span>
             </p>
         </div>
         <div class="d-flex">
@@ -1443,45 +1787,55 @@ let tophtml = `
                 </defs>
             </svg>
             <p> 
-                <span class="name">${german ? 'Premiumqualität und sicherheitsgeprüft ' : 'Premium Quality & Safety Tested'}</span> <br>
-                <span class="text">${german ? 'Alle unsere Produkte sind von Premiumqualität und unter strengen Standards getestet.' : 'All of our products are premium quality and tested under strict standards'}</span>
+                <span class="name">${
+                  german ? 'Premiumqualität und sicherheitsgeprüft ' : 'Premium Quality & Safety Tested'
+                }</span> <br>
+                <span class="text">${
+                  german
+                    ? 'Alle unsere Produkte sind von Premiumqualität und unter strengen Standards getestet.'
+                    : 'All of our products are premium quality and tested under strict standards'
+                }</span>
             </p>
         </div>
     </div>
     <br>
-    <div class="trustpilot-widget" data-locale="en-GB" data-template-id="5419b6a8b0d04a076446a9ad" data-businessunit-id="5e171bb531e26e0001f4525d" data-style-height="24px" data-style-width="100%" data-theme="light" data-style-alignment="center">
+    <!-- <div class="trustpilot-widget" data-locale="en-GB" data-template-id="5419b6a8b0d04a076446a9ad" data-businessunit-id="5e171bb531e26e0001f4525d" data-style-height="24px" data-style-width="100%" data-theme="light" data-style-alignment="center">
       <a href="https://uk.trustpilot.com/review/sparkpaws.com" target="_blank" rel="noopener">Trustpilot</a>
-    </div>
+    </div> -->
+    ${trustpilot}
     <br>
-</div>`;
+</div>
+`
 
 const pushDataLayer = (name, desk, type, loc) => {
-    console.log(name + " / " + desk + " / " + type + " / " +  loc)
+  console.log(name + ' / ' + desk + ' / ' + type + ' / ' + loc)
 
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga4',
-        'event_name': name,
-        'event_desc': desk,
-        'event_type': type,
-        'event_loc': loc
-    });
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: 'event-to-ga4',
+    event_name: name,
+    event_desc: desk,
+    event_type: type,
+    event_loc: loc
+  })
 }
 
 let optionMut = {
-    childList: true,
-    subtree: true,
-    attributes: true
-};
-
+  childList: true,
+  subtree: true,
+  attributes: true
+}
 
 let mut = new MutationObserver(function (muts) {
-    if (document.querySelectorAll('.Header__MainNav > .HorizontalList--spacingExtraLoose > li > a').length >= 8 && 
-        !document.querySelector('.style-header')
-    ) {
-        mut.disconnect()
+  if (
+    document.querySelectorAll('.Header__MainNav > .HorizontalList--spacingExtraLoose > li > a').length >= 8 &&
+    !document.querySelector('.style-header')
+  ) {
+    mut.disconnect()
 
-        document.body.insertAdjacentHTML('afterbegin',`
+    document.body.insertAdjacentHTML(
+      'afterbegin',
+      `
         <style class="style-header">
             @media screen and (min-width: 768px) {
 
@@ -1500,108 +1854,110 @@ let mut = new MutationObserver(function (muts) {
                     order: 4;
                 }
                 .Header__MainNav > .HorizontalList--spacingExtraLoose > li.HorizontalList__Item > a {
-                    color: #5C5555;
-                    text-transform: capitalize;
-                }
-                .Header__MainNav > .HorizontalList--spacingExtraLoose > li.HorizontalList__Item:nth-child(6) > a,
-                .Header__MainNav > .HorizontalList--spacingExtraLoose > li.HorizontalList__Item:nth-child(7) > a {
-                    font-weight: 500;
+                    color: #323232;
                     text-transform: uppercase;
-                }
-                .HorizontalList--spacingExtraLoose .HorizontalList__Item {
-                    margin-right: 14px;
-                    margin-left: 14px;
-                }
-        
+                    font-weight: 500;
+                }        
                 .Header__MainNav > .HorizontalList--spacingExtraLoose > li.HorizontalList__Item:nth-child(6),
                 .Header__MainNav > .HorizontalList--spacingExtraLoose > li.HorizontalList__Item:nth-child(7) {
                     margin-right: 8px;
                     margin-left: 8px;
                 }
-                .Header__FlexItem--fill {
-                    flex: initial;
-                    margin: 0;
-                }
                 
             }
-        </style>`)
+        </style>`
+    )
 
-        if (!german) {
-            document.body.insertAdjacentHTML('afterbegin',`
+    if (!german) {
+      document.body.insertAdjacentHTML(
+        'afterbegin',
+        `
             <style class="style-header">
                 @media screen and (min-width: 768px) {
                     .Header__MainNav > .HorizontalList--spacingExtraLoose > li.HorizontalList__Item:nth-child(6) {
                         margin-left: 68px;
                     }
                 }
-            </style>`)
-        }
-
-        document.querySelectorAll('.Header__MainNav > .HorizontalList--spacingExtraLoose > li > a').forEach((item, index) => {
-            let name = item.innerText;
-           
-            item.innerHTML = item.innerHTML.replace('&amp;','&').replace(name, name.toLowerCase());
-
-            item.parentElement.classList.remove('is-active');
-            
-            if (index == 0) {
-                item.href = '/collections/shop-all-2';
-                item.innerHTML = `${german ? 'Bestseller' : 'Best Sellers'}<span class="Header__LinkSpacer">${german ? 'Bestseller' : 'Best Sellers'}</span>`;
-
-                if (window.location.href.includes('/collections/shop-all-2')) {
-                    item.parentElement.classList.add('is-active')
-                }
-            } else if (index == 1) {
-                item.href = '/collections/summer-23';
-                item.innerHTML = `${german ? 'Neu' : 'New'}<span class="Header__LinkSpacer">${german ? 'Neu' : 'New'}</span>`;
-
-                if (window.location.href.includes('/collections/summer-23')) {
-                    item.parentElement.classList.add('is-active')
-                }
-            } else if (index == 2 && window.location.href.includes('/collections/dog-apparel')) {
-                item.parentElement.classList.add('is-active')
-            } else if (index == 3 && window.location.href.includes('/collections/walk')) {
-                item.parentElement.classList.add('is-active')
-            } else if (index == 4 && window.location.href.includes('/collections/jewelry-for-dogs')) {
-                item.parentElement.classList.add('is-active')
-            } else if (index == 5 && window.location.href.includes('/pages/about-us')) {
-                item.parentElement.classList.add('is-active')
-            } else if (index == 6 && window.location.href.includes('/pages/reviews')) {
-                item.parentElement.classList.add('is-active')
-            } else if (index == 7) {
-                item.href = '/collections/dog-shoes-boots';
-                item.innerHTML = `${german ? 'Schuhe & Stiefel' : 'Shoes & Boots'}<span class="Header__LinkSpacer">${german ? 'Schuhe & Stiefel' : 'Shoes & Boots'}</span>`;
-
-                if (window.location.href.includes('/collections/dog-shoes-boots')) {
-                    item.parentElement.classList.add('is-active')
-                }
-            }
-        })
-
-        document.querySelector('button.Header__Icon.Icon-Wrapper').addEventListener('click', () => {
-            pushDataLayer('exp_imp_hp_v_sm_m', 'Menu', 'Visibility', 'Sidebar menu');
-        })
-
-        document.querySelector('.Drawer__Close').addEventListener('click', (e) => {
-            pushDataLayer('exp_imp_hp_c_sm_m', 'Menu', 'Close', 'Sidebar menu');
-        })
-        document.querySelector('.PageOverlay').addEventListener('click', (e) => {
-            pushDataLayer('exp_imp_hp_c_sm_m', 'Menu', 'Close', 'Sidebar menu');
-        })
+            </style>`
+      )
     }
 
-    mut.observe(document, optionMut);
+    document
+      .querySelectorAll('.Header__MainNav > .HorizontalList--spacingExtraLoose > li > a')
+      .forEach((item, index) => {
+        let name = item.innerText
 
-    if (document.querySelectorAll('.SidebarMenu__Nav > .Collapsible').length > 7 && 
-        !document.querySelector('.Collapsible_new')
-    ) {
-        mut.disconnect()
+        item.innerHTML = item.innerHTML.replace('&amp;', '&').replace(name, name.toLowerCase())
 
-        document.querySelectorAll('.SidebarMenu__Nav > .Collapsible')[6].insertAdjacentHTML('afterend',`
+        item.parentElement.classList.remove('is-active')
+
+        if (index == 0) {
+          item.href = '/collections/shop-all-2'
+          item.innerHTML = `${german ? 'Bestseller' : 'Best Sellers'}<span class="Header__LinkSpacer">${
+            german ? 'Bestseller' : 'Best Sellers'
+          }</span>`
+
+          if (window.location.href.includes('/collections/shop-all-2')) {
+            item.parentElement.classList.add('is-active')
+          }
+        } else if (index == 1) {
+          item.href = '/collections/summer-23'
+          item.innerHTML = `${german ? 'Neu' : 'New'}<span class="Header__LinkSpacer">${german ? 'Neu' : 'New'}</span>`
+
+          if (window.location.href.includes('/collections/summer-23')) {
+            item.parentElement.classList.add('is-active')
+          }
+        } else if (index == 2 && window.location.href.includes('/collections/dog-apparel')) {
+          item.parentElement.classList.add('is-active')
+        } else if (index == 3 && window.location.href.includes('/collections/walk')) {
+          item.parentElement.classList.add('is-active')
+        } else if (index == 4 && window.location.href.includes('/collections/jewelry-for-dogs')) {
+          item.parentElement.classList.add('is-active')
+        } else if (index == 5 && window.location.href.includes('/pages/about-us')) {
+          item.parentElement.classList.add('is-active')
+        } else if (index == 6 && window.location.href.includes('/pages/reviews')) {
+          item.parentElement.classList.add('is-active')
+        } else if (index == 7) {
+          item.href = '/collections/dog-shoes-boots'
+          item.innerHTML = `${german ? 'Schuhe & Stiefel' : 'Shoes & Boots'}<span class="Header__LinkSpacer">${
+            german ? 'Schuhe & Stiefel' : 'Shoes & Boots'
+          }</span>`
+
+          if (window.location.href.includes('/collections/dog-shoes-boots')) {
+            item.parentElement.classList.add('is-active')
+          }
+        }
+      })
+
+    document.querySelector('button.Header__Icon.Icon-Wrapper').addEventListener('click', () => {
+      pushDataLayer('exp_imp_hp_v_sm_m', 'Menu', 'Visibility', 'Sidebar menu')
+    })
+
+    document.querySelector('.Drawer__Close').addEventListener('click', (e) => {
+      pushDataLayer('exp_imp_hp_c_sm_m', 'Menu', 'Close', 'Sidebar menu')
+    })
+    document.querySelector('.PageOverlay').addEventListener('click', (e) => {
+      pushDataLayer('exp_imp_hp_c_sm_m', 'Menu', 'Close', 'Sidebar menu')
+    })
+  }
+
+  mut.observe(document, optionMut)
+
+  if (
+    document.querySelectorAll('.SidebarMenu__Nav > .Collapsible').length > 7 &&
+    !document.querySelector('.Collapsible_new')
+  ) {
+    mut.disconnect()
+
+    document.querySelectorAll('.SidebarMenu__Nav > .Collapsible')[6].insertAdjacentHTML(
+      'afterend',
+      `
         <div class="Collapsible Collapsible_new">
             <button class="Collapsible__Button Heading u-h6 Collapsible__Button__Imaged" data-action="toggle-collapsible" aria-expanded="false">
                 <img class="MobileNav__Image" src="/cdn/shop/files/fabric_lab_mobile_8d2a2b5b-eba8-42ef-9970-f9ab130097e0_x800.jpg" alt="Fabric Technologies">
-                <span>${german ? 'Stofftechnologien' : 'Fabric Technologies'}<span class="Collapsible__Plus"></span></span>
+                <span>${
+                  german ? 'Stofftechnologien' : 'Fabric Technologies'
+                }<span class="Collapsible__Plus"></span></span>
             </button>
 
             <div class="Collapsible__Inner">
@@ -1623,44 +1979,47 @@ let mut = new MutationObserver(function (muts) {
                     </div>
                 </div>
             </div>
-        </div>`)
-        //event
-        document.querySelectorAll('.SidebarMenu__Nav .Collapsible').forEach(item => {
-            item.firstElementChild.addEventListener('click', (e) => {
-                pushDataLayer('exp_imp_hp_m_sm_in', e.target.innerText, 'Menu', 'Sidebar menu');
-            })
-        })
-    }
+        </div>`
+    )
+    //event
+    document.querySelectorAll('.SidebarMenu__Nav .Collapsible').forEach((item) => {
+      item.firstElementChild.addEventListener('click', (e) => {
+        pushDataLayer('exp_imp_hp_m_sm_in', e.target.innerText, 'Menu', 'Sidebar menu')
+      })
+    })
+  }
 
-    mut.observe(document, optionMut);
+  mut.observe(document, optionMut)
 
-    if (!document.querySelector('.style-exp') && 
-        document.querySelector('#main') && 
-        document.querySelectorAll('#shopify-section-template--15821794246837__featured-collections .Grid__Cell').length >= 4 && 
-        window.location.href == 'https://'+window.location.host+'/'
-       
-    ) {
-        mut.disconnect()
+  if (
+    !document.querySelector('.style-exp') &&
+    document.querySelector('#main') &&
+    document.querySelectorAll('#shopify-section-template--15879345635509__featured-collections .Grid__Cell').length >=
+      4 &&
+    window.location.href == 'https://' + window.location.host + '/'
+  ) {
+    mut.disconnect()
 
-        let scriptTrustpilot = document.createElement('script');
-        scriptTrustpilot.src = '//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
-        scriptTrustpilot.async = false;
-        scriptTrustpilot.type = 'text/javascript';
-        document.head.appendChild(scriptTrustpilot)
+    let scriptTrustpilot = document.createElement('script')
+    scriptTrustpilot.src = '//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js'
+    scriptTrustpilot.async = false
+    scriptTrustpilot.type = 'text/javascript'
+    document.head.appendChild(scriptTrustpilot)
 
-        //add script/link Swiper slider
-        let scriptSwiper = document.createElement('script');
-        scriptSwiper.src = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js';
-        document.body.appendChild(scriptSwiper);
+    //add script/link Swiper slider
+    let scriptSwiper = document.createElement('script')
+    scriptSwiper.src = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js'
+    document.body.appendChild(scriptSwiper)
 
-        let linkSwiper = document.createElement('link');
-        linkSwiper.href = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css';
-        linkSwiper.rel = 'stylesheet';
-        document.head.appendChild(linkSwiper);
+    let linkSwiper = document.createElement('link')
+    linkSwiper.href = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css'
+    linkSwiper.rel = 'stylesheet'
+    document.head.appendChild(linkSwiper)
 
-
-        if (german) {
-            document.body.insertAdjacentHTML('afterbegin',`
+    if (german) {
+      document.body.insertAdjacentHTML(
+        'afterbegin',
+        `
             <style class="style-header">
                 @media screen and (min-width: 768px) {
                     .explore_category li a {
@@ -1682,172 +2041,188 @@ let mut = new MutationObserver(function (muts) {
                         margin-right: 0!important;
                     }
                 }
-            </style>`)
-        }
+            </style>`
+      )
+    }
 
-        document.body.insertAdjacentHTML('afterbegin', style)
-        document.querySelector('#main').insertAdjacentHTML('beforeend', tophtml)
-        document.querySelector('#main').insertAdjacentHTML('afterbegin', topCategoryHTML)
-        
-        let media = window.matchMedia("(min-width: 768px)").matches;
+    document.body.insertAdjacentHTML('afterbegin', style)
+    document.querySelector('#main').insertAdjacentHTML('beforeend', tophtml)
+    document.querySelector('#main').insertAdjacentHTML('afterbegin', topCategoryHTML)
 
-        //events
-        document.querySelectorAll('.top_category a').forEach(item => {
-            item.addEventListener('click', () => {
-                pushDataLayer('exp_imp_hp_b_fs_cn', item.innerText, 'Button', 'First screen')
-            })
-        })
+    let media = window.matchMedia('(min-width: 768px)').matches
 
-        document.querySelectorAll('.explore_category li a').forEach(item => {
-            item.addEventListener('click', () => {
-                pushDataLayer('exp_imp_hp_v_ebc_cn', item.innerText, 'Button', 'Explore by category');
-            })
-        })
+    //events
+    document.querySelectorAll('.top_category a').forEach((item) => {
+      item.addEventListener('click', () => {
+        pushDataLayer('exp_imp_hp_b_fs_cn', item.innerText, 'Button', 'First screen')
+      })
+    })
 
-        document.querySelectorAll('.fabric_content li a').forEach(item => {
-            item.addEventListener('click', () => {
-                pushDataLayer('exp_imp_hp_b_fl_cn', item.innerText, 'Button', 'Fabric Lab');
-            })
-        })
-  
+    document.querySelectorAll('.explore_category li a').forEach((item) => {
+      item.addEventListener('click', () => {
+        pushDataLayer('exp_imp_hp_v_ebc_cn', item.innerText, 'Button', 'Explore by category')
+      })
+    })
 
-        // Об'єкт для відстеження видимості кожного елемента та їхнього часу знаходження у видимій області
-        const visibilityMap = new Map();
-        // Таймер для визначення затримки перед викликом функції pushDataLayer
-        let visibilityTimer;
-        // Функція, яка буде викликана при видимості елементів з різними класами
-        function handleVisibility(className) {
-            const targetElements = document.querySelectorAll(className);
+    document.querySelectorAll('.fabric_content li a').forEach((item) => {
+      item.addEventListener('click', () => {
+        pushDataLayer('exp_imp_hp_b_fl_cn', item.innerText, 'Button', 'Fabric Lab')
+      })
+    })
 
-            visibilityTimer = setTimeout(() => {
-                targetElements.forEach((targetElement, index) => {
-                    const rect = targetElement.getBoundingClientRect();
+    // Об'єкт для відстеження видимості кожного елемента та їхнього часу знаходження у видимій області
+    const visibilityMap = new Map()
+    // Таймер для визначення затримки перед викликом функції pushDataLayer
+    let visibilityTimer
+    // Функція, яка буде викликана при видимості елементів з різними класами
+    function handleVisibility(className) {
+      const targetElements = document.querySelectorAll(className)
 
-                    // Перевірка, чи елемент видимий в видимій області
-                    const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+      visibilityTimer = setTimeout(() => {
+        targetElements.forEach((targetElement, index) => {
+          const rect = targetElement.getBoundingClientRect()
 
-                    if (isVisible && !visibilityMap.has(targetElement)) {
-                        // Елемент вперше стає видимим, встановлюємо час початку знаходження у видимій області
-                        visibilityMap.set(targetElement, Date.now());
-                    } else if (!isVisible && visibilityMap.has(targetElement)) {
-                        // Елемент більше не видно, вираховуємо час знаходження у видимій області і викликаємо функцію pushDataLayer
-                        const startTime = visibilityMap.get(targetElement);
-                        const focusTime = Date.now() - startTime;
+          // Перевірка, чи елемент видимий в видимій області
+          const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight
 
-                        if (targetElement.className.includes('explore_category') ) {
-                            pushDataLayer('exp_imp_hp_v_ebc_ft', focusTime, 'Visibility', 'Explore by category');
-                        }
-                        if (targetElement.className.includes('high-quality')) {
-                            pushDataLayer('exp_imp_hp_v_ben_ft', focusTime, 'Visibility', 'Benefits');
-                        }
-                        if (targetElement.className.includes('best-sellers')) {
-                            pushDataLayer('exp_imp_hp_v_bs_ft', focusTime, 'Visibility', 'Best Sellers');
-                        }
-                        if (targetElement.closest('.cooling-vest')) {
-                            pushDataLayer('exp_imp_hp_v_ct_ft', focusTime, 'Visibility', 'ChillTech');
-                        }
-                        if (targetElement.closest('.fabric_content')) {
-                            pushDataLayer('exp_imp_hp_v_fl_ft', focusTime, 'Visibility', 'Fabric Lab');
-                        }
-                        if (targetElement.className.includes('great-deals')) {
-                            pushDataLayer('exp_imp_hp_v_gd_ft', focusTime, 'Visibility', 'Great deals');
-                        }
-                        if (targetElement.closest('.loox-review') && index == 0) {
-                            pushDataLayer('exp_imp_hp_v_ohc_ft', focusTime, 'Visibility', 'Our happy customerrs');
-                        }
-                        if (targetElement.closest('.waterproof-jackets')) {
-                            pushDataLayer('exp_imp_hp_v_ws_ft', focusTime, 'Visibility', 'Warm Shield');
-                        }
-                        if (targetElement.className.includes('benefits')) {
-                            pushDataLayer('exp_imp_hp_v_ab_ft', focusTime, 'Visibility', 'Additional benefits');
-                        }
-                        if (targetElement.className.includes('trustpilot-widget')) {
-                            pushDataLayer('exp_imp_hp_v_tr_ft', focusTime, 'Visibility', 'Trustpilot');
-                        }
+          if (isVisible && !visibilityMap.has(targetElement)) {
+            // Елемент вперше стає видимим, встановлюємо час початку знаходження у видимій області
+            visibilityMap.set(targetElement, Date.now())
+          } else if (!isVisible && visibilityMap.has(targetElement)) {
+            // Елемент більше не видно, вираховуємо час знаходження у видимій області і викликаємо функцію pushDataLayer
+            const startTime = visibilityMap.get(targetElement)
+            const focusTime = Date.now() - startTime
 
-                        visibilityMap.delete(targetElement);
-                    }
-                });
-            }, 500)
-        }
-
-
-        // Викликаємо функцію handleVisibility для перевірки видимості кожного елемента
-        handleVisibility('.explore_category')
-        handleVisibility('.high-quality')
-        handleVisibility('.best-sellers')
-        handleVisibility('.cooling-vest h3')
-        handleVisibility('.fabric_content ul')
-        handleVisibility('.great-deals')
-        handleVisibility('.loox-review img')
-        handleVisibility('.waterproof-jackets h3')
-        handleVisibility('.benefits')
-        handleVisibility('.trustpilot-widget')
-        // Додаємо обробник події scroll для подальшої перевірки видимості при прокрутці
-        window.addEventListener('scroll', () => {
-            handleVisibility('.explore_category')
-            handleVisibility('.high-quality')
-            handleVisibility('.best-sellers')
-            handleVisibility('.cooling-vest h3')
-            handleVisibility('.fabric_content ul')
-            handleVisibility('.great-deals')
-            handleVisibility('.loox-review img')
-            handleVisibility('.waterproof-jackets h3')
-            handleVisibility('.benefits')
-            handleVisibility('.trustpilot-widget')
-        });
-        
-  
-        //best-sellers
-        let sliders = '';
-        document.querySelectorAll('#shopify-section-template--15821794246837__featured-collections .Grid__Cell').forEach((item, index) => {
-
-            let price = item.querySelector('.Price').innerHTML.trim();
-            let compare = item.querySelector('.Price.Price--compareAt') ? item.querySelector('.Price.Price--compareAt').innerHTML.trim() : '';
-
-            let removeZeroPrice = price.split('.00') ? price.split('.00')[0] : price.split(' ')[0];
-            let removeZeroCompare = compare.split('.00') ? compare.split('.00')[0] : compare.split(' ')[0];
-
-            if (media) {
-                if (index < 4) {
-                    sliders += `<div class="swiper-slide">${item.innerHTML.replace(price, removeZeroPrice).replace(compare, removeZeroCompare.split(' ')[0])}</div>`;
-                }
-            } else {
-                sliders += `<div class="swiper-slide">${item.innerHTML.replace(price, removeZeroPrice).replace(compare, removeZeroCompare.split(' ')[0])}</div>`;
+            if (targetElement.className.includes('explore_category')) {
+              pushDataLayer('exp_imp_hp_v_ebc_ft', focusTime, 'Visibility', 'Explore by category')
             }
-        })
-
-        document.querySelector('.best-sellers .swiper-wrapper').innerHTML = sliders;
-        //event
-        document.querySelectorAll('.best-sellers .swiper-slide a').forEach(item => {
-            item.addEventListener('click', () => {
-                pushDataLayer('exp_imp_hp_p_bs_pn', item.closest('.ProductItem__Wrapper').querySelector('h2').innerText, 'Product', 'Best Sellers');
-            })
-        })
-
-        //great-deals
-        let sliders2 = '';
-        let lengthHolidayDeals = media ? 4 : objHoliday.length > 9 ? 10 : objHoliday.length;
-      
-        for (let i = 0; i < lengthHolidayDeals; i++) {
-            let req = /(\d{1,})(\d{2})$/;
-            let rating = '';
-            for (let r = 0; r < objRatingHolidayDeals.length; r++) {
-                if (objHoliday[i].handle == objRatingHolidayDeals[r].handle) {
-                    rating = objRatingHolidayDeals[r].rating;
-                }
+            if (targetElement.className.includes('high-quality')) {
+              pushDataLayer('exp_imp_hp_v_ben_ft', focusTime, 'Visibility', 'Benefits')
             }
-            let price = objHoliday[i].price.toString().replace(req, "$1.$2");
-            let compare = objHoliday[i].compare_at_price_min.toString().replace(req, "$1.$2");
+            if (targetElement.className.includes('best-sellers')) {
+              pushDataLayer('exp_imp_hp_v_bs_ft', focusTime, 'Visibility', 'Best Sellers')
+            }
+            if (targetElement.closest('.cooling-vest')) {
+              pushDataLayer('exp_imp_hp_v_ct_ft', focusTime, 'Visibility', 'ChillTech')
+            }
+            if (targetElement.closest('.fabric_content')) {
+              pushDataLayer('exp_imp_hp_v_fl_ft', focusTime, 'Visibility', 'Fabric Lab')
+            }
+            if (targetElement.className.includes('great-deals')) {
+              pushDataLayer('exp_imp_hp_v_gd_ft', focusTime, 'Visibility', 'Great deals')
+            }
+            if (targetElement.closest('.loox-review') && index == 0) {
+              pushDataLayer('exp_imp_hp_v_ohc_ft', focusTime, 'Visibility', 'Our happy customerrs')
+            }
+            if (targetElement.closest('.waterproof-jackets')) {
+              pushDataLayer('exp_imp_hp_v_ws_ft', focusTime, 'Visibility', 'Warm Shield')
+            }
+            if (targetElement.className.includes('benefits')) {
+              pushDataLayer('exp_imp_hp_v_ab_ft', focusTime, 'Visibility', 'Additional benefits')
+            }
+            if (targetElement.className.includes('trustpilot-widget')) {
+              pushDataLayer('exp_imp_hp_v_tr_ft', focusTime, 'Visibility', 'Trustpilot')
+            }
 
-            sliders2 += `<div class="swiper-slide">
+            visibilityMap.delete(targetElement)
+          }
+        })
+      }, 500)
+    }
+
+    // Викликаємо функцію handleVisibility для перевірки видимості кожного елемента
+    handleVisibility('.explore_category')
+    handleVisibility('.high-quality')
+    handleVisibility('.best-sellers')
+    handleVisibility('.cooling-vest h3')
+    handleVisibility('.fabric_content ul')
+    handleVisibility('.great-deals')
+    handleVisibility('.loox-review img')
+    handleVisibility('.waterproof-jackets h3')
+    handleVisibility('.benefits')
+    handleVisibility('.trustpilot-widget')
+    // Додаємо обробник події scroll для подальшої перевірки видимості при прокрутці
+    window.addEventListener('scroll', () => {
+      handleVisibility('.explore_category')
+      handleVisibility('.high-quality')
+      handleVisibility('.best-sellers')
+      handleVisibility('.cooling-vest h3')
+      handleVisibility('.fabric_content ul')
+      handleVisibility('.great-deals')
+      handleVisibility('.loox-review img')
+      handleVisibility('.waterproof-jackets h3')
+      handleVisibility('.benefits')
+      handleVisibility('.trustpilot-widget')
+    })
+
+    //best-sellers
+    let sliders = ''
+    document
+      .querySelectorAll('#shopify-section-template--15879345635509__featured-collections .Grid__Cell')
+      .forEach((item, index) => {
+        let price = item.querySelector('.Price').innerHTML.trim()
+        let compare = item.querySelector('.Price.Price--compareAt')
+          ? item.querySelector('.Price.Price--compareAt').innerHTML.trim()
+          : ''
+
+        let removeZeroPrice = price.split('.00') ? price.split('.00')[0] : price.split(' ')[0]
+        let removeZeroCompare = compare.split('.00') ? compare.split('.00')[0] : compare.split(' ')[0]
+
+        if (media) {
+          if (index < 4) {
+            sliders += `<div class="swiper-slide">${item.innerHTML
+              .replace(price, removeZeroPrice)
+              .replace(compare, removeZeroCompare.split(' ')[0])}</div>`
+          }
+        } else {
+          sliders += `<div class="swiper-slide">${item.innerHTML
+            .replace(price, removeZeroPrice)
+            .replace(compare, removeZeroCompare.split(' ')[0])}</div>`
+        }
+      })
+
+    document.querySelector('.best-sellers .swiper-wrapper').innerHTML = sliders
+    //event
+    document.querySelectorAll('.best-sellers .swiper-slide a').forEach((item) => {
+      item.addEventListener('click', () => {
+        pushDataLayer(
+          'exp_imp_hp_p_bs_pn',
+          item.closest('.ProductItem__Wrapper').querySelector('h2').innerText,
+          'Product',
+          'Best Sellers'
+        )
+      })
+    })
+
+    //great-deals
+    let sliders2 = ''
+    let lengthHolidayDeals = media ? 4 : objHoliday.length > 9 ? 10 : objHoliday.length
+
+    for (let i = 0; i < lengthHolidayDeals; i++) {
+      let req = /(\d{1,})(\d{2})$/
+      let rating = ''
+      for (let r = 0; r < objRatingHolidayDeals.length; r++) {
+        if (objHoliday[i].handle == objRatingHolidayDeals[r].handle) {
+          rating = objRatingHolidayDeals[r].rating
+        }
+      }
+      let price = objHoliday[i].price.toString().replace(req, '$1.$2')
+      let compare = objHoliday[i].compare_at_price_min.toString().replace(req, '$1.$2')
+
+      sliders2 += `<div class="swiper-slide">
                             <div class="ProductItem " style="visibility: inherit; opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">
                                 <div class="ProductItem__Wrapper">
-                                    <a href="/products/${objHoliday[i].handle}" class="ProductItem__ImageWrapper ProductItem__ImageWrapper--withAlternateImage" >
+                                    <a href="/products/${
+                                      objHoliday[i].handle
+                                    }" class="ProductItem__ImageWrapper ProductItem__ImageWrapper--withAlternateImage" >
                                         <div class="AspectRatio AspectRatio--square" style="max-width: 2000px;  --aspect-ratio: 1.0">
-                                            <img class="ProductItem__Image ProductItem__Image--alternate Image--fadeIn lazyautosizes Image--lazyLoaded" data-widths="[200,300,400,600,800,900,1000,1200]" data-sizes="auto" alt="${objHoliday[i].title}" src="${objHoliday[i].images[1]}">
+                                            <img class="ProductItem__Image ProductItem__Image--alternate Image--fadeIn lazyautosizes Image--lazyLoaded" data-widths="[200,300,400,600,800,900,1000,1200]" data-sizes="auto" alt="${
+                                              objHoliday[i].title
+                                            }" src="${objHoliday[i].images[1]}">
                                             <span class="Image__Loader"></span>
-                                            <img class="ProductItem__Image Image--fadeIn lazyautosizes Image--lazyLoaded" data-widths="[200,400,600,700,800,900,1000,1200]" data-sizes="auto" alt="${objHoliday[i].title}" src="${objHoliday[i].images[0]}" >
+                                            <img class="ProductItem__Image Image--fadeIn lazyautosizes Image--lazyLoaded" data-widths="[200,400,600,700,800,900,1000,1200]" data-sizes="auto" alt="${
+                                              objHoliday[i].title
+                                            }" src="${objHoliday[i].images[0]}" >
                                         </div>
                                     </a>
                                     <div class="ProductItem__LabelList"></div>
@@ -1874,33 +2249,45 @@ let mut = new MutationObserver(function (muts) {
                                                 <svg class="loox-icon" viewBox="0 0 24 24" data-lx-fill="full" aria-hidden="true">
                                                     <use href="#looxicons-rating-icon"></use>
                                                 </svg>
-                                                ${rating != '' ? '<span class="loox-rating-label">&nbsp;(' + rating + ')</span>' : ''}
+                                                ${
+                                                  rating != ''
+                                                    ? '<span class="loox-rating-label">&nbsp;(' + rating + ')</span>'
+                                                    : ''
+                                                }
                                                 
                                             </div>
                                         </div>
                                         <div class="ProductItem__PriceList  Heading">
-                                            <span class="ProductItem__Price Price Price--highlight Text--subdued">${currency + price}</span>
-                                            <span class="ProductItem__Price Price Price--compareAt Text--subdued">${currency + compare}</span>
+                                            <span class="ProductItem__Price Price Price--highlight Text--subdued">${
+                                              currency + price
+                                            }</span>
+                                            <span class="ProductItem__Price Price Price--compareAt Text--subdued">${
+                                              currency + compare
+                                            }</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>`;
-            
-        }
-        document.querySelector('.great-deals .swiper-wrapper').innerHTML = sliders2;
-    
-        //event
-        document.querySelectorAll('.great-deals .swiper-slide a').forEach(item => {
-            item.addEventListener('click', () => {
-                pushDataLayer('exp_imp_hp_p_gd_pn', item.closest('.ProductItem__Wrapper').querySelector('h2').innerText, 'Product', 'Great deals')
-            })
-        })
+                        </div>`
+    }
+    document.querySelector('.great-deals .swiper-wrapper').innerHTML = sliders2
 
-        let sliders3 = '';
+    //event
+    document.querySelectorAll('.great-deals .swiper-slide a').forEach((item) => {
+      item.addEventListener('click', () => {
+        pushDataLayer(
+          'exp_imp_hp_p_gd_pn',
+          item.closest('.ProductItem__Wrapper').querySelector('h2').innerText,
+          'Product',
+          'Great deals'
+        )
+      })
+    })
 
-        for (let i = 0; i < objLooxReview.length; i++) {
-            sliders3 += `<div class="swiper-slide">
+    let sliders3 = ''
+
+    for (let i = 0; i < objLooxReview.length; i++) {
+      sliders3 += `<div class="swiper-slide">
                             <img class="img" src="${objLooxReview[i].image}" alt="${objLooxReview[i].titleProduct}">
                             <div class="loox_content">
                                 <div class="d-flex justify-between">
@@ -1928,7 +2315,11 @@ let mut = new MutationObserver(function (muts) {
                                     </p>
                                 </div>
                                 <p class="text">${objLooxReview[i].text} </p>
-                                <a href="${objLooxReview[i].urlProduct}" class="d-flex items-center loox_product" onclick=" pushDataLayer('exp_imp_hp_r_ohc_rn', ${objLooxReview[i].titleProduct}, 'Review', 'Our happy customerrs');">
+                                <a href="${
+                                  objLooxReview[i].urlProduct
+                                }" class="d-flex items-center loox_product" onclick=" pushDataLayer('exp_imp_hp_r_ohc_rn', ${
+        objLooxReview[i].titleProduct
+      }, 'Review', 'Our happy customerrs');">
                                     <img src="${objLooxReview[i].imageProduct}" alt="${objLooxReview[i].titleProduct}">
                                     <span>${objLooxReview[i].titleProduct}</span>
                                 </a>
@@ -1936,84 +2327,99 @@ let mut = new MutationObserver(function (muts) {
                                     <span>${german ? 'Ganze Bewertung lesen' : 'Read full review'}</span>
                                 </a>
                             </div>
-                        </div>`;
-        }
+                        </div>`
+    }
 
-        document.querySelector('.loox-review .swiper-wrapper').innerHTML = sliders3;
+    document.querySelector('.loox-review .swiper-wrapper').innerHTML = sliders3
 
-        //init Swiper slider
-        const waitSwiper = setInterval(() => {
-            if(typeof Swiper == 'function') {
-                clearInterval(waitSwiper)
+    //init Swiper slider
+    const waitSwiper = setInterval(() => {
+      if (typeof Swiper == 'function') {
+        clearInterval(waitSwiper)
 
-                document.querySelectorAll('.main-exp .swiper').forEach(slider => {
-                     
-                    if (slider.closest('.loox-review')) {
-                        new Swiper(slider, {
-                            // loop: true,
-                            slidesPerView: 1,
-                            spaceBetween: 12,
-                            pagination: {
-                              el: ".swiper-pagination",
-                              dynamicBullets: true,
-                              clickable: true
-                            },
-                            breakpoints: {
-                                768: {
-                                  slidesPerView: 3,
-                                  spaceBetween: 24,
-                                  navigation: {
-                                    nextEl: '.swiper-button-next',
-                                    prevEl: '.swiper-button-prev',
-                                  }
-                                }
-                            }
+        document.querySelectorAll('.main-exp .swiper').forEach((slider) => {
+          if (slider.closest('.loox-review')) {
+            new Swiper(slider, {
+              // loop: true,
+              slidesPerView: 1,
+              spaceBetween: 12,
+              pagination: {
+                el: '.swiper-pagination',
+                dynamicBullets: true,
+                clickable: true
+              },
+              breakpoints: {
+                768: {
+                  slidesPerView: 3,
+                  spaceBetween: 24,
+                  navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev'
+                  }
+                }
+              }
+            })
+          } else if (slider.classList.contains('trusted_swiper')) {
+            new Swiper(slider, {
+              slidesPerView: 1,
+              spaceBetween: 12,
+              pagination: {
+                el: '.swiper-pagination',
+                dynamicBullets: true,
+                clickable: true
+              },
+              breakpoints: {
+                768: {
+                  slidesPerView: 4
+                }
+              }
+            })
+          } else {
+            new Swiper(slider, {
+              // loop: true,
+              slidesPerView: 2,
+              // slidesPerView: "auto",
+              spaceBetween: 12,
+              // centeredSlides: true
+              breakpoints: {
+                768: {
+                  slidesPerView: 4,
+                  spaceBetween: 20
+                }
+              }
+            })
+          }
 
-                          });
-                    } else {
-                        new Swiper(slider, {
-                            // loop: true,
-                            slidesPerView: 2,
-                            // slidesPerView: "auto",
-                            spaceBetween: 12,
-                            // centeredSlides: true
-                            breakpoints: {
-                                768: {
-                                  slidesPerView: 4,
-                                  spaceBetween: 20
-                                }
-                            },
-                        });
-                    }
-
-                    const swiper = slider.swiper;
-                    swiper.on('slideChange', () => {
-                        if (slider.closest('.best-sellers')) {
-                            pushDataLayer('exp_imp_hp_s_bs_v', 'Vertical', 'Scroll', 'Best Sellers');
-                        } else if (slider.closest('.great-deals')) {
-                            pushDataLayer('exp_imp_hp_s_gd_v', 'Vertical', 'Scroll', 'Great deals');
-                        } else {
-                            pushDataLayer('exp_imp_hp_s_ohc_v', 'Vertical', 'Scroll', 'Our happy customerrs');
-                        }
-                    });
-                })
-              
+          const swiper = slider.swiper
+          swiper.on('slideChange', () => {
+            if (slider.closest('.best-sellers')) {
+              pushDataLayer('exp_imp_hp_s_bs_v', 'Vertical', 'Scroll', 'Best Sellers')
+            } else if (slider.closest('.great-deals')) {
+              pushDataLayer('exp_imp_hp_s_gd_v', 'Vertical', 'Scroll', 'Great deals')
+            } else {
+              pushDataLayer('exp_imp_hp_s_ohc_v', 'Vertical', 'Scroll', 'Our happy customerrs')
             }
-        });
-    }
-    mut.observe(document, optionMut);
+          })
+        })
+      }
+    })
+  }
+  mut.observe(document, optionMut)
 
-    if (document.querySelector('.loox-review span.swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev') && 
-        document.querySelector('.loox-review span.swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev').previousElementSibling
-    ) {
+  if (
+    document.querySelector('.loox-review span.swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev') &&
+    document.querySelector('.loox-review span.swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev')
+      .previousElementSibling
+  ) {
+    mut.disconnect()
+    document.querySelector('.loox-review .swiper-pagination-bullet.siblingsPrev')
+      ? document.querySelector('.loox-review .swiper-pagination-bullet.siblingsPrev').classList.remove('siblingsPrev')
+      : ''
 
-        mut.disconnect()
-        document.querySelector('.loox-review .swiper-pagination-bullet.siblingsPrev') ? 
-        document.querySelector('.loox-review .swiper-pagination-bullet.siblingsPrev').classList.remove('siblingsPrev') : '';
-
-        document.querySelector('.loox-review span.swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev').previousElementSibling.classList.add('siblingsPrev');
-
-    }
-    mut.observe(document, optionMut);
+    document
+      .querySelector('.loox-review span.swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev')
+      .previousElementSibling.classList.add('siblingsPrev')
+  }
+  mut.observe(document, optionMut)
 })
-mut.observe(document, optionMut);
+mut.observe(document, optionMut)
