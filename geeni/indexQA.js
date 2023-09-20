@@ -1262,8 +1262,6 @@ margin-bottom: 25px;
   }
 
   function calculateTotalPrice(prText, quantity) {
-    console.log(prText)
-
     if (prText !== "$0.00" && prText !== "$0") {
       const numericPrice = parseFloat(prText.replace('$', ''))
 
@@ -1272,6 +1270,8 @@ margin-bottom: 25px;
       const formattedResult = '$' + result.toFixed(2) // Assuming you 
 
       return formattedResult
+    } else {
+      return ''
     }
   }
 
