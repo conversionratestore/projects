@@ -1368,7 +1368,7 @@ const trustpilot = /*html*/ `
                 margin: 30px auto;
             }
             .crs_trustpilot_content .swiper-pagination {
-                padding-left: 0;
+                padding-left: 0 !important;
             }
             @media (max-width: 768px) {
                 .crs_trustpilot_content>a  {
