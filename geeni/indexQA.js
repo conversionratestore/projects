@@ -78,10 +78,9 @@
         order: 1;
     }
 
-    html #survicate-box + div:not([class]) iframe,
-    html [title="Button to launch messaging window"] {
-      z-index: 999 !important;
+    html div > div + div iframe[title]:not([class]) {
       bottom: 70px !important;
+      z-index: 999 !important;
     }
 
     .main-content {
@@ -91,6 +90,7 @@
      .shopify-installments__learn-more {
       color: #023F88 !important;
     }
+
     .product__description {
         padding-bottom: 0;
     }
@@ -1490,12 +1490,6 @@ margin-bottom: 25px;
           <img class="custom-logo" src="${dir}logo_geeni.png" alt="logo">
           `))
 
-          // hide chat btn behind slide-in cart
-          waitForElement('#survicate-box + div:not([class]) iframe').then(el => {
-            el.style.zIndex = "999"
-            el.style.bottom = "70px"
-          })
-
           //(2-5)
           const waitForSlider = setInterval(() => {
             if (
@@ -1965,11 +1959,6 @@ margin-bottom: 25px;
               ['exp_imp_pdp_v_ps_s', '{{focusTime}}', 'Visibility', 'Pack save spend']
             )
           })
-          waitForElement('.product__submit__holder [name="add"]').then(el =>
-            el.addEventListener('click', () => {
-              pushDataLayer(['exp_imp_pdp_b_ps_atc', 'Add to cart', 'Button', 'Product section'])
-            })
-          )
           waitForElement('.delivery').then(el =>
             handleVisibility(
               el,
