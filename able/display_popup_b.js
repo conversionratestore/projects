@@ -1,4 +1,4 @@
-(function () {
+; (function () {
   // -------------------------------------
   // CONSTANTS
   // -------------------------------------
@@ -6,6 +6,9 @@
   const DEVICE = screen.width < 768 ? 'mobile' : 'desktop'
   const WAIT_INTERVAL_TIMEOUT = 100
   let popupWasVisible = false
+
+  let packPrice
+  let packValue
 
   const waitForRoot = setInterval(() => {
     const rootElement = document.getElementById('root')
@@ -381,6 +384,7 @@
                 price = 50
                 trialAmount = 50
                 value = "$0.50"
+
                 break
               case 1:
                 sendGAEvent(
@@ -414,6 +418,9 @@
             parsedData.price = price
             parsedData.trialAmount = trialAmount
             parsedData.value = value
+
+            packPrice = price
+            packValue = value
 
             localStorage.setItem("planCode", JSON.stringify(parsedData))
           })
@@ -497,7 +504,24 @@
             sessionStorage.removeItem("trialDiscountModalWindowShown")
           }
 
-          location.reload()
+          popupOverlay.classList.remove('show-popup')
+          document.body.style.overflow = "auto"
+
+          window.dispatchEvent(new CustomEvent('onStoreUpdated', {
+            detail: {
+              value:
+              {
+                "key": "able-35-weekly-free-trial-USD-Weekly",
+                "value": `${packValue}`,
+                "price": packPrice,
+                "currencyLabel": "$",
+                "trialAmount": packPrice,
+                "currency": "USD",
+                "invoiceItemPriceId": "Set-Up-Fee-Able-v2-USD"
+              },
+              keyEvent: 'planCode'
+            }
+          }))
 
           sendGAEvent('exp_popup_trial_see_my_program', 'See My Program', 'Button', 'Popup Try Able for 1 week')
         })
