@@ -1365,7 +1365,7 @@ let klaviyoStep = 1;
       <img class='lav-earn_moon' src='https://conversionratestore.github.io/projects/capucinne/earn.jpg' />
     </div>
     <div class='lav-earn__caption lav-earn_moon' >
-      <span>You’ll receive a free</span> pair of Half Moon Capucinne <span>earrings</span> with your order&nbsp; <a href='/products/gift?variant=46796290392405'><u>Learn more</u> <img src="${exp.dir}/img/black-arrow.svg"></a>
+      <span>You’ll receive a free</span> Half Moon Capucinne <span>earrings</span> with your order&nbsp; <a href='/products/gift?variant=46796290392405'><u>Learn more</u> <img src="${exp.dir}/img/black-arrow.svg"></a>
     </div>
   </div>
   `;
@@ -1376,7 +1376,7 @@ let klaviyoStep = 1;
       <img class='lav-earn_chain' src='https://conversionratestore.github.io/projects/capucinne/chain.jpg'  />
     </div>
     <div class='lav-earn__caption lav-earn_chain'>
-      <span>You’ll receive a free</span> pair of Half Moon Capucinne <span>bracelet</span> with your order&nbsp; <a href='/products/gift?variant=46796290392405'><u>Learn more</u> <img src="${exp.dir}/img/black-arrow.svg"></a>
+      <span>You’ll receive a free</span> Half Moon Capucinne <span>bracelet</span> with your order&nbsp; <a href='/products/gift?variant=46796290392405'><u>Learn more</u> <img src="${exp.dir}/img/black-arrow.svg"></a>
     </div>
   </div>
   `;
