@@ -1,6 +1,9 @@
 let dir = 'https://conversionratestore.github.io/projects/sparkpaws/img/'
 
-let german = window.location.href.includes('https://www.sparkpaws.de/')
+let german = window.location.href.includes('https://www.sparkpaws.de/');
+let australia = window.location.href.includes('https://www.au-sparkpaws.com/');
+let uk = window.location.href.includes('https://www.sparkpaws.uk/');
+
 let currency = german ? '€' : '$'
 
 let objRatingHolidayDeals = [
@@ -161,7 +164,6 @@ const trustReviews = [
 
 let style = `
 <style class="style-exp">
-    #shopify-section-template--15879345635509__115aa41c-0742-4cbd-b2bd-b94c5596ddb7,
     #shopify-section-template--15879345635509__1650547685f0318980,
     #shopify-section-template--15879345635509__7164ea44-ce08-4d5c-8d10-61c0a6e6e334,
     #shopify-section-template--15879345635509__1d73e740-c6f3-4c4e-83a3-25019344a4de,
@@ -1245,19 +1247,22 @@ const mainScreen = /*html*/ `
         padding: 13px;
     }
     @media (max-width: 768px) {
-        .crs_cta .img img:not(.mob) {
+        .crs_cta .img img:not(.mob),
+        #shopify-section-template--15879345635509__16504601089dfc205f,
+        #shopify-section-template--15879345635509__2930bc2c-a0ef-4698-9d10-77554b24f138,
+        #shopify-section-template--15879345635509__115aa41c-0742-4cbd-b2bd-b94c5596ddb7 {
             display: none;
         }
         .crs_cta .img img.mob {
             display: block;
-            height: ${german ? '93.46667':'95.46667'}vw;
+            height: ${german ? '93.46667': australia ? '89.46667' : '95.46667'}vw;
             object-position: center -8.26667vw;
             object-fit: cover;
         }
         .crs_cta img.crs_img_content {
             height: 44.33vw;
             object-fit: cover;
-            object-position: center -104vw;
+            object-position: center -${australia ? '98' : '104'}vw;
         }
         .crs_cta {
             flex-direction: column;
@@ -1299,11 +1304,23 @@ const mainScreen = /*html*/ `
         <div class="crs_title">
             <a href="/collections/shop-all-2">${german ? 'Jetzt einkaufen' : 'Shop now'}</a>
         </div>
-        <img src="${german ? '//www.sparkpaws.de/cdn/shop/files/DE_-_SW_SALE_Mobile_691aea0b-9337-4bb6-8a02-91c20ac792ec_x800.png' : '//www.sparkpaws.com/cdn/shop/files/EN_-_Sweater_weather_sale_mobile_6106a016-daa3-43fc-860f-e0996004cf92_x800.png'}" alt="image" class="crs_img_content">  
-        <div class="img">
+    
+        <img src="${
+            german ? '//www.sparkpaws.de/cdn/shop/files/DE_-_SW_SALE_Mobile_691aea0b-9337-4bb6-8a02-91c20ac792ec_x800.png' : 
+            australia ? '//www.au-sparkpaws.com/cdn/shop/files/spring_essentials_sale_AU_Mobile_x800.jpg' :
+            uk ? '//www.sparkpaws.uk/cdn/shop/files/EU_UK_-_SW_SALE_Mobile_866ebd5d-6015-4310-bd6e-3a747d368be0_x800.png':
+            '//www.sparkpaws.com/cdn/shop/files/EN_-_Sweater_weather_sale_mobile_6106a016-daa3-43fc-860f-e0996004cf92_x800.png'
+            
+        }" alt="image" class="crs_img_content">  
+        <a href="/collections/shop-all-2" class="img">
             <img src="${dir}main_screen.jpg" alt="main_screen">
-            <img src="${german ? '//www.sparkpaws.de/cdn/shop/files/DE_-_SW_SALE_Mobile_691aea0b-9337-4bb6-8a02-91c20ac792ec_x800.png': '//www.sparkpaws.com/cdn/shop/files/EN_-_Sweater_weather_sale_mobile_6106a016-daa3-43fc-860f-e0996004cf92_x800.png'}" alt="image" class="mob">  
-        </div>
+            <img src="${
+                german ? '//www.sparkpaws.de/cdn/shop/files/DE_-_SW_SALE_Mobile_691aea0b-9337-4bb6-8a02-91c20ac792ec_x800.png': 
+                australia ? '//www.au-sparkpaws.com/cdn/shop/files/spring_essentials_sale_AU_Mobile_x800.jpg' :
+                uk ? '//www.sparkpaws.uk/cdn/shop/files/EU_UK_-_SW_SALE_Mobile_866ebd5d-6015-4310-bd6e-3a747d368be0_x800.png':
+                '//www.sparkpaws.com/cdn/shop/files/EN_-_Sweater_weather_sale_mobile_6106a016-daa3-43fc-860f-e0996004cf92_x800.png'
+            }" alt="image" class="mob">  
+        </a>
     </div>
 </div>
 </div>
@@ -1599,20 +1616,20 @@ let tophtml = /*html*/ `
                 <div class="d-md-flex d-none">
                     <div class="tab c-green">${german ? 'Neue Ankunft ' : 'New Arrival'}</div>
                 </div>
-                <h3>${german ? 'ChillTech™ Kühlwesten ' : 'Matching Human and Dog Apparel'}</h3>
+                <h3>${german ? 'Passende Kleidung für Mensch und Hund' : 'Matching Human and Dog Apparel'}</h3>
                 <p><b>${
                   german
-                    ? 'Kühlwesten sind unverzichtbare Accessoires für Hunde, die sich im Sommer leicht überhitzen. '
+                    ? 'Tauchen Sie ein in die Welt von Sparkpaws, wo Mode auf Treue trifft.'
                     : 'Step into the world of Sparkpaws, where fashion meets loyalty.'
                 } </b></p>
                 <p>${
                   german
-                    ? 'Die Kühlweste reduziert die Körpertemperatur Ihres Hundes durch Verdunstung - alles, was Sie tun müssen, ist sie mit Wasser zu befeuchten, auszuwringen und Ihrem Hund anzulegen. Der Stoff ist speziell so konzipiert, dass er Wasser speichert und dadurch einen kühlenden Effekt erzeugt. Die Netzschichten ermöglichen die Luftzirkulation und reflektieren gleichzeitig Sonnenlicht, bieten zusätzlichen UV-Schutz und Schatten.'
+                    ? 'Unsere exklusive Kollektion von passender Kleidung für Menschen und Hunde feiert die einzigartige Verbindung, die Sie mit Ihrem pelzigen Begleiter teilen. Entdecken Sie eine Kollektion, die die harmonische Verbindung zwischen zwei Seelen einfängt. Ob bei einem zwanglosen Ausflug oder einem besonderen Anlass, lassen Sie Ihren abgestimmten Stil zum Gesprächsthema werden.'
                     : "Our exclusive range of matching apparel for humans and dogs celebrates the unique bond you share with your furry companion. Explore a collection that captures the harmonious connection between two souls. Whether it's a casual outing or a special event, let your coordinated style become the talk of the town."
                 }</p>
                 <p>${
                   german
-                    ? 'Legen Sie die angefeuchtete Weste für einen zusätzlichen Kühlungseffekt bis zu 3 Minuten in den Gefrierschrank.'
+                    ? 'Werten Sie Ihr Ensemble auf und lassen Sie jeden Blick ein Zeugnis Ihrer gemeinsamen Reise sein.'
                     : 'Enhance your ensemble and let every gaze be a testament to your shared journey.'
                 }</p>
                 <a href="/collections/matching-human-and-dog-clothes" class=" Button btn btn-white flex-center" onclick="pushDataLayer('exp_imp_hp_b_ct_vp', 'View product', 'Button', 'ChillTech');">
