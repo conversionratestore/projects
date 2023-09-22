@@ -712,6 +712,7 @@ line-height: 22px; /* 183.333% */
 letter-spacing: 0.8px;
 text-transform: uppercase;
 padding: 7px 18px;
+margin-right: 22px;
 }
 
 .sticky-btn-pack {
@@ -2330,13 +2331,20 @@ margin-bottom: 25px;
           waitForElement('.featured-collection__container').then(el => {
             el.addEventListener('click', (e) => {
               const target = e.target
-              console.log(target)
 
-              if (target.closest('.product-grid-item__image')) {
+              if (target.closest('.btn--quick') || target.matches('.btn--quick')) {
+                pushDataLayer(['exp_imp_pdp_i_ymal_b', 'Basket', 'Icon', 'You may also like'])
+              } else if (target.closest('.product-grid-item__image')) {
                 pushDataLayer(['exp_imp_pdp_i_ymal_pi', 'Product image', 'Image', 'You may also like'])
               }
-              else if (target.closest('.btn__loader')) {
-                pushDataLayer(['exp_imp_pdp_i_ymal_b', 'Basket', 'Icon', 'You may also like'])
+
+            })
+          })
+
+          waitForElement('.cart-drawer .payments-cart-exp').then(el => {
+            el.addEventListener('click', (e) => {
+              if (e.target.closest(`[role="button"]`) || e.target.matches(`[role="button"]`)) {
+                pushDataLayer(['exp_imp_pdp_b_c_sp', 'Shop pay', 'Button', 'Cart'])
               }
             })
           })
@@ -2379,13 +2387,12 @@ margin-bottom: 25px;
           waitForElement('.related-products').then(el => {
             el.addEventListener('click', (e) => {
               const target = e.target
-              console.log(target)
 
-              if (target.closest('.product-grid-item__image')) {
-                pushDataLayer(['exp_imp_pdp_i_rv_pi', 'Product image', 'Image', 'Recently viewed'])
-              }
-              else if (target.closest('.btn__loader')) {
+              if (target.closest('.btn--quick') || target.matches('.btn--quick')) {
                 pushDataLayer(['exp_imp_pdp_i_rv_b', 'Basket', 'Icon', 'Recently viewed'])
+              }
+              else if (target.closest('.product-grid-item__image')) {
+                pushDataLayer(['exp_imp_pdp_i_rv_pi', 'Product image', 'Image', 'Recently viewed'])
               }
             })
           })
@@ -2401,8 +2408,6 @@ margin-bottom: 25px;
                 scrolled = true // Set scrolled to true to prevent further logging
               }
             })
-
-
           })
 
           waitForElement('.related-products .carousel .flickity-slider').then(el => {
@@ -2742,7 +2747,6 @@ margin-bottom: 25px;
           })
 
           waitForElement('.logo--left .logo__image').then(el => {
-            console.log(el)
             el.insertAdjacentHTML('afterend', /*html*/`
             <img class="custom-logo" src="${dir}logo_geeni.png" alt="logo" >
           `)
