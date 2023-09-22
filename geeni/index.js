@@ -6,14 +6,44 @@
   const WAIT_INTERVAL_TIMEOUT = 100
   const media = window.matchMedia("(max-width: 1023px)").matches
 
+  const location = window.location
+
   let discountChange = true
 
   let priceRegularDefault
   let priceCompareDefault
 
+  const req = /(\d{1,})(\d{2})$/ // Regular expression to extract a number with a dollar sign ($) and optional '+' sign 
+
   /* CSS & HTML */
-  const styleBase = `
+  const styleBase = /*html*/`
 <style>
+.msg {
+  display: none;
+  align-items: center;
+  gap: 4px;
+  color: var(--font-h, #1B1B1B);
+font-family: Avenir Next;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 22px; /* 157.143% */
+}
+
+.msg p {
+  margin: 0;
+}
+
+.msg span:not(.away-from__number) {
+  color: var(--Main-Blue, #023F88);
+  font-weight: 600;
+}
+@media screen and (max-width: 376px) {
+  .msg {
+    gap: 3px;
+      }
+  }
+
     .line-vertical {
         width: 1px;
         height: 14px;
@@ -78,12 +108,6 @@
         order: 1;
     }
 
-    html #survicate-box + div:not([class]) iframe,
-    html [title="Button to launch messaging window"] {
-      z-index: 999 !important;
-      bottom: 70px !important;
-    }
-
     .main-content {
         display: flex;
         flex-direction: column;
@@ -91,6 +115,7 @@
      .shopify-installments__learn-more {
       color: #023F88 !important;
     }
+
     .product__description {
         padding-bottom: 0;
     }
@@ -139,8 +164,29 @@
     .pack_size ul {
         margin: 0;
     }
-    .pack_size ul li.sold-out{
-      background: #ddd;
+    .pack_size ul li .sold-out{
+      display: none;
+      padding: 7px 18px;
+      border-radius: 6px;
+border: 1px solid var(--Border, #D9D9D9);
+background: var(--bg-light-grey, #F7F7F7);
+margin-inline: auto;
+
+    }
+    .pack_size ul li .sold-out p {
+      color: var(--font-body, #5B5B5B);
+text-align: center;
+font-family: Avenir Next;
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+line-height: 22px; /* 183.333% */
+letter-spacing: 0.8px;
+text-transform: uppercase;
+margin: inline;
+    }
+    .pack_size ul li .sold-out.sold-out--show{
+      display: block;
     }
     .pack_size > p {
         font-weight: 700;
@@ -295,18 +341,7 @@ line-height: 28px; /* 140% */
         font-weight: 600;
         line-height: 32px;
     }
-    .discount {
-        padding-bottom: 16px;
-    }
-    .discount p {
-        color:  #1B1B1B;
-        font-size: 14px;
-        line-height: 22px; 
-        margin: 0 0 0 12px;
-    }
-    .discount b {
-        font-weight: 600;
-    }
+
     .qty_block > p {
         color: var(--font-h, #1B1B1B);
         font-size: 14px;
@@ -547,17 +582,7 @@ line-height: 28px; /* 140% */
       height: 100%;
       object-fit: cover;
     }
-
-    .logo__image-link--other img,
-    .logo__image-link--home  img{
-            display: none;
-    }
-    
-    .logo__image-link--other img.custom-logo,
-    .logo__image-link--home  img.custom-logo{
-            display: block;
-            height: 100%;
-    }
+  
 
     .logo__image-push {
       display: none;
@@ -674,6 +699,22 @@ text-decoration: underline;
   margin-right: 12px;
 }
 
+.sticky-btn-info__sold-out {
+  border-radius: 6px;
+background: var(--bg-light-grey, #F7F7F7);
+color: var(--font-body, #5B5B5B);
+text-align: center;
+font-family: Avenir Next;
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+line-height: 22px; /* 183.333% */
+letter-spacing: 0.8px;
+text-transform: uppercase;
+padding: 7px 18px;
+margin-right: 22px;
+}
+
 .sticky-btn-pack {
   display: flex;
   align-items: center;
@@ -696,6 +737,7 @@ text-decoration: underline;
   cursor: pointer;
 
   height: 100%;
+  min-width: 136px;
 }
 .sticky-btn-pack__current {
   display: flex;
@@ -728,6 +770,18 @@ text-decoration: underline;
   transform-origin: bottom;
 }
 
+.sticky-btn-pack__options .not-available {
+  display: block;
+  color: var(--font-body, #5B5B5B);
+font-family: Avenir Next;
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+line-height: 22px; /* 183.333% */
+letter-spacing: 0.8px;
+text-transform: uppercase;
+}
+
 .sticky-btn-pack__options.sticky-btn-pack__options--visible {
   transform: scaleY(1);
 }
@@ -735,7 +789,7 @@ text-decoration: underline;
 .sticky-btn-pack__options p {
   width: 100%;
   margin: 0;
-  padding: 12px 15px;
+  padding: 8px 15px;
   text-align: left;
 }
 
@@ -757,7 +811,7 @@ text-decoration: underline;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  width: 31%;
+  width: 33.5%;
   background: #023F88;
   color: #FFF;
   text-align: center;
@@ -775,9 +829,21 @@ text-decoration: underline;
 }
 
 .add-to-cart.add-to-cart--sold {
-  background-color: #ddd;
+  background: #DEDEDE;
+  color: var(--font-grey, #888);
+text-align: center;
+font-family: Avenir Next;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: 22px; /* 137.5% */
+letter-spacing: 0.8px;
+text-transform: uppercase;
+}
 
-    color: var(--text-alpha-50);
+.add-to-cart.add-to-cart--sold .sticky-btn-wrapper__dot,
+.add-to-cart.add-to-cart--sold .sticky-btn-wrapper__price {
+  display: none;
 }
 
 .sticky-btn-wrapper__dot {
@@ -793,99 +859,6 @@ text-decoration: underline;
   display: none;
 }
 
-/* cart */
-.cart-drawer__message {
-  background: var(--bg-light-grey, #F7F7F7);
-  padding-top: 10px !important;
-}
-
-.cart__message__progress {
-  height: 3px !important;
-  background-color: #fff !important;
-  border: 1px solid var(--Border, #D9D9D9);
-}
-
-.cart__message__progress__holder {
-  line-height: 5px;
-}
-
-.cart__message__success,
-.cart__message__default {
-  display: none !important;
-}
-
-.msg {
-  display: none;
-  align-items: center;
-  gap: 4px;
-  color: var(--font-h, #1B1B1B);
-font-family: Avenir Next;
-font-size: 14px;
-font-style: normal;
-font-weight: 500;
-line-height: 22px; /* 157.143% */
-}
-
-.msg p {
-  margin: 0;
-}
-
-.msg span:not(.away-from__number) {
-  color: var(--Main-Blue, #023F88);
-  font-weight: 600;
-}
-
-.get-ur-discount {
-  display: flex;
-  display: none;
-  align-items: center;
-  margin-top: 10px;
-
-}
-
-.get-ur-discount p {
-  margin: 0px 2px 0 4px;
-  color: #53B6EB;
-text-align: center;
-font-family: Poppins;
-font-size: 14px;
-font-style: normal;
-font-weight: 600;
-line-height: 20px; /* 142.857% */
-text-decoration: underline;
-cursor: pointer;
-}
-
-.payments-cart-exp {
-  display: block !important;
-}
-
-.payments-cart-exp [role="list"] li:not(:first-child) {
-  display: none;
-}
-
-.payments-cart-exp .shopify-cleanslate .IcgSIE7pEVZrlnAeRS6j, 
-.payments-cart-exp .shopify-cleanslate .DefhEHZZf4y32pvV7mZj {
-  border-radius: 30px;
-}
-
-.cart__checkout {
-  height: 54px;
-}
-
-.reviews-title p{
-  color: var(--font-h, #1B1B1B);
-text-align: center;
-font-family: Avenir Next;
-font-size: 28px;
-font-style: normal;
-font-weight: 500;
-line-height: 35px; /* 125% */
-text-transform: capitalize;
-margin: 0;
-margin-bottom: 25px;
-}
-
 .product__form.hide-shoppay .product__submit__item [name="add"] {
   min-width: 100%;
 }
@@ -893,10 +866,32 @@ margin-bottom: 25px;
 .product__form.hide-shoppay .product__submit__item .payments-exp {
   display: none !important;
 }
-
+.variant--soldout .product__submit__add {
+  background: #DEDEDE;
+}
+.variant--soldout .product__submit__add span {
+  color: var(--font-grey, #888);
+text-align: center;
+font-family: Avenir Next;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: 22px; /* 137.5% */
+letter-spacing: 0.8px;
+text-transform: uppercase;
+}
 /*.product__submit__item [name="add"] {display: none;} */
 
     @media screen and (max-width: 1023px) {
+      .pack_size li.selected {
+        padding: 2px 16px 2px 2px;
+      }
+      .pack_size ul li .sold-out.sold-out--show {
+        margin-inline: auto 0;
+      }
+      .sold-out--show + .prices {
+        display: none;
+      }
       .product__price-and-badge .product__price p.pr:before {
         margin: 0 6px 0 -2px;
       }
@@ -955,6 +950,8 @@ margin-bottom: 25px;
       .product-single__media-slider * {
         border-radius: 0 !important;
       }
+
+    
 
         #shopify-section-template--16711182876924__icons {
             margin-top: 60px;
@@ -1021,6 +1018,277 @@ margin-bottom: 25px;
     }
   </style>`
 
+  const cartCSS = /*html */ `
+<style>
+.cart-drawer .discount {
+      text-align: center;
+    border-top: 1px solid #D9D9D9;
+    padding: 15px 0 19px;
+    margin-inline: 20px;
+    justify-content: center;
+    }
+.cart-drawer__message {
+  background: var(--bg-light-grey, #F7F7F7);
+  padding-top: 10px !important;
+}
+
+.cart__message__progress {
+  height: 3px !important;
+  background-color: #fff !important;
+  border: 1px solid var(--Border, #D9D9D9);
+}
+
+.cart__message__progress__holder {
+  line-height: 5px;
+}
+
+.cart__message__success,
+.cart__message__default {
+  display: none !important;
+}
+
+.get-ur-discount {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+
+}
+
+.get-ur-discount p {
+  margin: 0px 2px 0 4px;
+  color: #53B6EB;
+text-align: center;
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: 20px; /* 142.857% */
+text-decoration: underline;
+cursor: pointer;
+}
+
+.payments-cart-exp {
+  display: block !important;
+}
+
+.payments-cart-exp [role="list"] li:not(:first-child) {
+  display: none;
+}
+
+.payments-cart-exp .shopify-cleanslate .IcgSIE7pEVZrlnAeRS6j, 
+.payments-cart-exp .shopify-cleanslate .DefhEHZZf4y32pvV7mZj {
+  border-radius: 30px;
+}
+
+.cart__checkout {
+  height: 54px;
+}
+
+.reviews-title p{
+  color: var(--font-h, #1B1B1B);
+text-align: center;
+font-family: Avenir Next;
+font-size: 28px;
+font-style: normal;
+font-weight: 500;
+line-height: 35px; /* 125% */
+text-transform: capitalize;
+margin: 0;
+margin-bottom: 25px;
+}
+
+    .cart-drawer__foot{
+        background: #FFF;
+        box-shadow: 0px -2px 12px 0px rgba(0, 0, 0, 0.15);
+        padding: 12px 20px 0;
+    }
+    .cart-drawer__foot .cart__text{
+        display: none;
+    }
+    .cart__widget__wrapper{
+        border-radius: 5px;
+        border: 1px solid #D9D9D9;
+        background: #F7F7F7;
+        margin: 0 0 15px;
+    }
+    .cart__widget__wrapper .cart__widget{
+        margin: 0 !important;
+        padding: 8px 12px 6px;
+    }
+    .cart__widget__wrapper  .cart__widget__title{
+        margin: 0;
+        padding: 0;
+        color: #5B5B5B;
+        font-family: 'Avenir Next';
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 157%;
+    }
+    #gift-notes{
+        margin: 0;
+    }
+    .cart__widget__title .icon{
+        right: 15px;
+        height: 12px;
+        width: 12px;
+        stroke-width: 25px;
+        top: 5px;
+    }
+    .cart__widget__title .icon path{
+        stroke: #023F88;
+    }
+    .cart__checkout{
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 22px;
+        letter-spacing: 0.8px;
+    }
+    /*subtotal_block */
+    .subtotal_block{
+        padding: 0 20px 35px;
+    }
+    .get_discount_inform_wrapp{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 16px;
+        border-top: 1px solid #D9D9D9;
+        padding-top: 12px;
+    }
+    .get_discount_inform_wrapp p{
+        color: #1B1B1B;
+        font-family: 'Avenir Next';
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 157%;
+        margin: 0;
+    }
+    .get_discount_inform_wrapp p b{
+        font-weight: 600;
+    }
+    .product_title_list{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .product_title_list li{
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin: 0;
+    }
+    .product_title_list li + li{
+        margin-top: 8px;
+    }
+    .product_title_list li p{
+        color: #5B5B5B;
+        font-family: 'Avenir Next';
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 157%;
+        margin: 0;
+    }
+    .product_title_txt{
+        max-width: 70%;
+    }
+    .subtotal_txt_wrapp{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 12px;
+        margin: 12px 0 0;
+        border-top: 1px solid #D9D9D9;
+    }
+    .subtotal_txt_wrapp p{
+        color: #1C1D1D;
+        font-family: 'Avenir Next';
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 150%;
+        margin: 0;
+    }
+    /**have_question_block */
+    .have_question_block{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 15px;
+        display: none;
+    }
+    .have_question_block p{
+        color: #1B1B1B;
+        font-family: 'Avenir Next';
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 134%;
+        text-transform: uppercase;
+        margin: 0;
+    }
+    .have_question_block p:nth-child(2){
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        color: #023F88;
+        line-height: 157%;
+        text-decoration-line: underline;
+        cursor: pointer;
+    }
+    /*shipping_block */
+    .shipping_block{
+        border-top: 1px solid #FFF;
+        background: #E8F8FE;
+        margin: 12px -20px 0;
+    }
+    .shipping_list{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0;
+        list-style: none;
+        padding: 12px 16px;
+        gap: 13px;
+    }
+    .shipping_list li{
+        position: relative;
+        width: 50%;
+        margin: 0;
+        padding-left: 32px;
+    }
+    .shipping_list li::before{
+        position: absolute;
+        content: "";
+        width: 24px;
+        height: 24px;
+        background: url(https://conversionratestore.github.io/projects/geeni/img/shield.svg) no-repeat center center;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        background-size: contain;
+    }
+    .shipping_list li:nth-child(2):before{
+        background: url(https://conversionratestore.github.io/projects/geeni/img/return_box.svg) no-repeat center center;
+        background-size: contain;
+        left: 13px;
+    }
+    .shipping_list li:nth-child(2){
+        border-left: 1px solid #FFF;
+        padding-left: 45px;
+    }
+    .shipping_list li p{
+        font-family: 'Avenir Next';
+        color: #1B1B1B;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 134%;
+        margin: 0;
+        max-width: 128px;
+    }
+</style>
+  `
+
   //for (12)
   let compatibilityHTML = (classess = '') => `  
 <div class="compatibility_block ${classess}">
@@ -1050,6 +1318,7 @@ margin-bottom: 25px;
             data-pack-compare="${pack.dataset.compare}"
           >
             ${packName?.innerText} 
+            ${document.querySelectorAll('.pack_size li')[index].querySelector('.sold-out--show') ? '<span class="not-available">not available</span>' : ''}
           </p>
           `
       }).join('')
@@ -1084,21 +1353,6 @@ margin-bottom: 25px;
       packCompare = activePack.dataset.compare != '$0.00' && activePack.dataset.compare != '$0' ? activePack.dataset.compare : ''
     }
 
-
-    // if (media && packs) {
-    //   btn = /*html*/`
-    //  <button class="add-to-cart" data-btn-link="true">Choose a Product</button>`
-    // } else {
-    //   const clientCTABtn = document.querySelector('[data-add-to-cart-text]')?.innerText.toLowerCase().includes('sold out') ? 'add-to-cart--sold' : ''
-
-    //   btn = /*html*/`
-    //   <button class="add-to-cart ${clientCTABtn}">
-    //     ${clientCTABtn ? 'Sold out' : 'Add to cart'}
-    //     <span class="sticky-btn-wrapper__dot"></span>
-    //     <span class="sticky-btn-wrapper__price">${packPrice}</span>
-    //   </button>`
-    // }
-
     const clientCTABtn = document.querySelector('[data-add-to-cart-text]')?.innerText.toLowerCase().includes('sold out') ? 'add-to-cart--sold' : ''
 
     btn = /*html*/`
@@ -1113,6 +1367,7 @@ margin-bottom: 25px;
     <div class="sticky-btn-inner d-flex">
       <div class="sticky-btn-info">
         <p class="sticky-btn-info__product-name">${productName}</p>
+        ${clientCTABtn ? `<p class="sticky-btn-info__sold-out">not available</p>` : ''}
         <div class="sticky-btn-info__price-wrapper d-flex">
           <div class="sticky-btn-info__price-block">
             <p class="sticky-btn-info__price">${packPrice}</p>
@@ -1125,6 +1380,16 @@ margin-bottom: 25px;
     </div>
   </div>
   `}
+
+  // cart 
+  const shippingBlock = /*html */ `
+  <div class="shipping_block">
+    <ul class="shipping_list">
+      <li><p>365-day warranty on all products</p></li>
+      <li><p>30-day easy returns & refund policy</p></li>
+    </ul>
+  </div>
+  `
 
   // -------------------------------------
   // MAKE DOM CHANGES
@@ -1388,7 +1653,7 @@ margin-bottom: 25px;
       }
 
       document.querySelector('.pack_size ul').insertAdjacentHTML('beforeend', `
-                  <li class="d-flex items-center ${item.querySelector('.alternative-options__item--active') ? 'selected' : ''} ${item.classList.contains('alternative-options__sold-out') ? "sold-out" : ""}" data-id="${item.dataset.id}">
+                  <li class="d-flex items-center ${item.querySelector('.alternative-options__item--active') ? 'selected' : ''}" data-id="${item.dataset.id}">
                       <div class="relative">   
                           <div class="count">x${index + 1}</div>
                           <img src="${item.querySelector('img').src}" alt="${item.querySelector('img').alt}">
@@ -1397,6 +1662,7 @@ margin-bottom: 25px;
                           <p class="name">${item.querySelector('.alternative-options__item-label').innerHTML}</p>
                           <p class="title"></p>
                       </div>
+                      <div class="sold-out ${item.classList.contains('alternative-options__sold-out') ? "sold-out--show" : ""}"><p>not available</p></div>
                       <div class="prices d-flex">
                           <p class="compare">${item.dataset.compare != '$0.00' && item.dataset.compare != '$0' ? item.dataset.compare : ''}</p>
                           <p class="pr">${item.dataset.price}</p>
@@ -1431,8 +1697,14 @@ margin-bottom: 25px;
     document.body.addEventListener('click', (e) => {
       const target = e.target
 
-      if (target.matches('.sticky-btn-pack__options > p')) {
-        const selectedPack = target
+      if (target.matches('.sticky-btn-pack__options > p') || target.closest('.sticky-btn-pack__options > p')) {
+        let selectedPack
+
+        if (target.matches('.sticky-btn-pack__options > p')) {
+          selectedPack = target
+        } else {
+          selectedPack = target.closest('.sticky-btn-pack__options > p')
+        }
 
         if (!selectedPack.classList.contains('sticky-btn-pack__option--active')) {
           document.querySelector('.sticky-btn-pack__current span').innerText = selectedPack.innerText
@@ -1462,39 +1734,190 @@ margin-bottom: 25px;
     })
   }
 
+  function spendDiscount(total) {
+    let discount = ``
+    if (total >= 0 && total <= 99.00) {
+      discount = `<p>Spend <b>$99</b> and get a <b>10% discount</b></p>`
+    } else if (total > 99.00 && total <= 149.00) {
+      discount = `<p>Spend <b>$149</b> and get a <b>15% discount</b></p>`
+    } else if (total > 149.00) {
+      discount = `<p>Spend <b>$199</b> and get a <b>20% discount</b></p>`
+    }
+
+    let discountHTML = `
+    <div class="discount d-flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="29" viewBox="0 0 28 29" fill="none">
+            <circle cx="14" cy="14.25" r="14" fill="#E8F8FE"/>
+            <path d="M8.53864 8H13.3148C13.8598 8 14.3726 8.22387 14.7573 8.60765L20.399 14.2364C21.2003 15.036 21.2003 16.3472 20.399 17.1468L16.1357 21.4003C15.3343 22.1999 14.02 22.1999 13.2187 21.4003L7.57699 15.7716C7.19233 15.3878 7 14.8761 7 14.3324V9.53512C7 8.7036 7.67315 8 8.53864 8ZM10.5902 12.6054C11.1351 12.6054 11.6159 12.1576 11.6159 11.582C11.6159 11.0383 11.1351 10.5585 10.5902 10.5585C10.0132 10.5585 9.5644 11.0383 9.5644 11.582C9.5644 12.1576 10.0132 12.6054 10.5902 12.6054Z" fill="#023F88"/>
+        </svg>  
+        <div>
+          ${discount}
+        </div>  
+    </div>`
+
+    if (!document.querySelector('.cart-drawer .discount')) {
+      waitForElement('.cart-drawer__items').then(el => el.insertAdjacentHTML('afterend', discountHTML))
+    } else {
+      document.querySelector('.cart-drawer .discount div').innerHTML = discount
+    }
+
+    if (document.querySelector('.main-content .discount')) {
+      document.querySelector('.main-content .discount div').innerHTML = discount
+    }
+  }
+
+  // cart 
+  function addShippingBlock() {
+    // shippingBlock in the cart
+    if (document.querySelector(".cart-drawer__foot") && !document.querySelector(".shipping_block")) {
+      document.querySelector(".cart-drawer__foot").insertAdjacentHTML("beforeend", shippingBlock)
+    }
+  }
+
+  // Function to calculate the total price based on the items in the cart.
+  function calculateTotalPriceItems(items) {
+    let total = 0
+    items.forEach((item) => {
+      const price = +(item['price'].toString().replace(req, "$1.$2"))
+      const quantity = item['quantity']
+      total += price * quantity
+    })
+    return total
+  }
+
+  // Function to generate the subtotal block HTML.
+  function subtotalBlock(items, totalPrice) {
+    return /*html */ `
+      <div class="subtotal_block">
+        <div class="product_title_wrapp">
+          <ul class="product_title_list">
+            ${items.map((item) => `
+              <li>
+                <p class="product_title_txt">${item.title}</p>
+                <p class="product_title_price">$${(item.price * item.quantity).toString().replace(req, "$1.$2")}</p>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+        <div class="subtotal_txt_wrapp">
+          <p>Subtotal</p>
+          <p class="subtotal_price">$${totalPrice.toFixed(2)}</p>
+        </div>
+      </div>`
+  }
+
+  // Function to handle the observed mutations on the cart element.
+  function handleCartMutation(mutationsList, observer) {
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+        const targetElement = mutation.target
+        if (targetElement.classList.contains('is-open') && !targetElement.classList.contains('is-loading')) {
+          getCart().then(data => {
+            if (data.items.length > 0) {
+              const items = data.items
+              let total = +(data['total_price'].toString().replace(req, "$1.$2"))
+
+              total = calculateTotalPriceItems(items)
+
+              // Check if the subtotal block does not exist and insert it.
+              if (document.querySelector(".cart-drawer__items") && !document.querySelector(".subtotal-wrapper")) {
+                const subtotalHTML = subtotalBlock(items, total)
+                document.querySelector(".cart-drawer__items").insertAdjacentHTML("afterend",
+                  `<div class="subtotal-wrapper">${subtotalHTML}</div>`)
+              } else {
+                document.querySelector(".subtotal-wrapper").innerHTML = subtotalBlock(items, total)
+              }
+
+              spendDiscount(total)
+              addShippingBlock()
+            } else if (document.querySelector('.cart-drawer .discount') && document.querySelector('.subtotal_block')) {
+              document.querySelector('.cart-drawer .discount').remove()
+              document.querySelector('.cart-drawer .subtotal_block').remove()
+            }
+
+          })
+
+          redesignCartMsg()
+        }
+      }
+    }
+  }
+
+  function redesignCartMsg() {
+    const drawerMessage = document.querySelector('.cart-drawer__message').textContent
+
+    if (!document.querySelector('.away-from')) {
+      const priceToFreeShipping = extractNumberWithDollarSignAndPlus(drawerMessage)
+      document.querySelector('.cart__message__progress__holder').insertAdjacentHTML('beforebegin', /*html*/`
+                                  
+        <div class="msg away-from">
+          <p>You are $<span class="away-from__number">${priceToFreeShipping}</span> away from</p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 18" fill="none">
+            <path d="M4.2 0H13.8C14.775 0 15.6 0.773438 15.6 1.6875V3.375H17.475C18.1125 3.375 18.7125 3.62109 19.2 4.04297L22.0875 6.75C22.5375 7.17188 22.8 7.76953 22.8 8.36719V12.375C23.4375 12.375 24 12.9023 24 13.5C24 14.1328 23.4375 14.625 22.8 14.625H21.6C21.6 16.4883 19.9875 18 18 18C15.975 18 14.4 16.4883 14.4 14.625H9.6C9.6 16.4883 7.9875 18 6 18C3.975 18 2.4 16.4883 2.4 14.625V10.125H7.8C8.1 10.125 8.4 9.87891 8.4 9.5625C8.4 9.28125 8.1 9 7.8 9H0.6C0.2625 9 0 8.75391 0 8.4375C0 8.15625 0.2625 7.875 0.6 7.875H9C9.3 7.875 9.6 7.62891 9.6 7.3125C9.6 7.03125 9.3 6.75 9 6.75H1.8C1.4625 6.75 1.2 6.50391 1.2 6.1875C1.2 5.90625 1.4625 5.625 1.8 5.625H10.2C10.5 5.625 10.8 5.37891 10.8 5.0625C10.8 4.78125 10.5 4.5 10.2 4.5H0.6C0.2625 4.5 0 4.25391 0 3.9375C0 3.65625 0.2625 3.375 0.6 3.375H2.4V1.6875C2.4 0.773438 3.1875 0 4.2 0ZM20.4 8.36719L17.475 5.625H15.6V9H20.4V8.36719ZM6 16.3125C6.975 16.3125 7.8 15.5742 7.8 14.625C7.8 13.7109 6.975 12.9375 6 12.9375C4.9875 12.9375 4.2 13.7109 4.2 14.625C4.2 15.5742 4.9875 16.3125 6 16.3125ZM19.8 14.625C19.8 13.7109 18.975 12.9375 18 12.9375C16.9875 12.9375 16.2 13.7109 16.2 14.625C16.2 15.5742 16.9875 16.3125 18 16.3125C18.975 16.3125 19.8 15.5742 19.8 14.625Z" fill="#023F88"/>
+          </svg>
+          <span>Free shipping</span>                    
+        </div>
+                                  <div class="msg congrats">
+                                    <p>Congratulations!</p>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="18" viewBox="0 0 22 18" fill="none">
+              <path d="M1.8 0H11.4C12.375 0 13.2 0.773438 13.2 1.6875V3.375H15.075C15.7125 3.375 16.3125 3.62109 16.8 4.04297L19.6875 6.75C20.1375 7.17188 20.4 7.76953 20.4 8.36719V12.375C21.0375 12.375 21.6 12.9023 21.6 13.5C21.6 14.1328 21.0375 14.625 20.4 14.625H19.2C19.2 16.4883 17.5875 18 15.6 18C13.575 18 12 16.4883 12 14.625H7.20001C7.20001 16.4883 5.5875 18 3.6 18C1.575 18 0 16.4883 0 14.625V10.125C0 10.125 0 9.85072 0 9.53432C0 9.25307 0 9 0 9C0 9 0 8.75391 0 8.4375C0 8.15625 0 7.875 0 7.875C0 7.875 0 7.62891 0 7.3125C0 7.03125 0 6.75 0 6.75C0 6.75 0 6.50391 0 6.1875C0 5.90625 0 5.625 0 5.625C0 5.625 0 5.37891 0 5.0625C0 4.78125 0 4.5 0 4.5C0 4.5 0 4.25391 0 3.9375C0 3.65625 0 3.375 0 3.375V1.6875C0 0.773438 0.787499 0 1.8 0ZM18 8.36719L15.075 5.625H13.2V9H18V8.36719ZM3.6 16.3125C4.575 16.3125 5.4 15.5742 5.4 14.625C5.4 13.7109 4.575 12.9375 3.6 12.9375C2.5875 12.9375 1.8 13.7109 1.8 14.625C1.8 15.5742 2.5875 16.3125 3.6 16.3125ZM17.4 14.625C17.4 13.7109 16.575 12.9375 15.6 12.9375C14.5875 12.9375 13.8 13.7109 13.8 14.625C13.8 15.5742 14.5875 16.3125 15.6 16.3125C16.575 16.3125 17.4 15.5742 17.4 14.625Z" fill="#023F88"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M9.29831 4.40819C9.58093 4.711 9.56457 5.18559 9.26175 5.46822L4.40405 10.0021L2.18057 7.40802C1.911 7.09352 1.94743 6.62005 2.26192 6.35048C2.57641 6.08092 3.04989 6.11734 3.31946 6.43183L4.52455 7.83778L8.23828 4.37163C8.54109 4.08901 9.01568 4.10537 9.29831 4.40819Z" fill="white"/>
+            </svg>
+            <span>You're eligible for free delivery</span>
+                                  </div>
+                                `)
+    }
+
+    if (document.querySelector('.cart__message__default.is-hidden')) {
+      document.querySelector('.msg.away-from').style.display = "none"
+      document.querySelector('.msg.congrats').style.display = "flex"
+
+      sessionStorage.setItem('msg', document.querySelector('.msg.congrats').innerText.replace(/\s+/g, ' '))
+    } else {
+      document.querySelector('.away-from__number').innerText = extractNumberWithDollarSignAndPlus(drawerMessage)
+
+      document.querySelector('.msg.away-from').style.display = "flex"
+      document.querySelector('.msg.congrats').style.display = "none"
+
+      sessionStorage.setItem('msg', document.querySelector('.msg.away-from').innerText.replace(/\s+/g, ' '))
+    }
+
+    sessionStorage.setItem('msg-progress', document.querySelector('.cart__message__progress').value)
+  }
+
   function start() {
     const waitForBody = setInterval(() => {
       if (document.body) {
         clearInterval(waitForBody)
 
+        document.body.insertAdjacentHTML('afterbegin', styleBase)
+
+        // change logo
+        waitForElement('.logo__image-link--other').then(el => {
+          el.innerHTML = /*html*/`
+          <img class="custom-logo" src="${dir}logo_geeni.png" alt="logo" >
+          `
+        })
+
+        waitForElement('.logo__image-link--home').then(el => {
+          el.innerHTML = /*html*/`
+          <img class="custom-logo" src="${dir}logo_geeni.png" alt="logo" >
+          `
+        })
+
         // PDP
-        if (window.location.href.includes('/products/')) {
-          document.body.insertAdjacentHTML('afterbegin', styleBase)
+        if (location.href.includes('/products/')) {
           document.body.insertAdjacentHTML('afterbegin', stylePDP)
 
-          waitForElement('[data-add-to-cart-text]').then(el => {
-            if (el.innerText.toLowerCase().includes('sold out')) {
-              el.innerText = 'Sold Out'
+          const waitForCartTxt = setInterval(() => {
+            if (document.querySelector('[data-add-to-cart-text]')?.innerText?.length > 0) {
+              clearInterval(waitForCartTxt)
 
-              document.querySelector('.product__form').classList.add('hide-shoppay')
+              if (document.querySelector('[data-add-to-cart-text]').innerText.toLowerCase().includes('sold out')) {
+                document.querySelector('[data-add-to-cart-text]').innerText = 'Sold Out'
+              }
             }
-          })
-
-          // change logo
-          waitForElement('.logo__image-link--other').then(el => {
-            el.insertAdjacentHTML('beforeend', /*html*/`
-            <img class="custom-logo" src="${dir}logo_geeni.png" alt="logo" >
-          `)
-          })
-          waitForElement('.logo__image-link--home').then(el => el.insertAdjacentHTML('beforeend', /*html*/`
-          <img class="custom-logo" src="${dir}logo_geeni.png" alt="logo">
-          `))
-
-          // hide chat btn behind slide-in cart
-          waitForElement('#survicate-box + div:not([class]) iframe').then(el => {
-            el.style.zIndex = "999"
-            el.style.bottom = "70px"
-          })
+          }, WAIT_INTERVAL_TIMEOUT)
 
           //(2-5)
           const waitForSlider = setInterval(() => {
@@ -1618,152 +2041,6 @@ margin-bottom: 25px;
             }
           }, WAIT_INTERVAL_TIMEOUT)
 
-          // block with discount "Spend $ and get a % discount" (13)
-          const waitForCartAndProductPriceBlock = setInterval(() => {
-            const cartDrawer = document.querySelector('.cart-drawer')
-            const productPriceBlock = document.querySelector('.product__block.product__price-and-badge')
-            const qtyBlock = document.querySelector('.qty_block')
-
-            if (cartDrawer && productPriceBlock && qtyBlock) {
-              clearInterval(waitForCartAndProductPriceBlock)
-
-              // Function to check if the element has the "is-open" class
-              const checkIsOpen = (targetElement, priceContainer) => {
-
-                if (targetElement.classList.contains('is-open')) {
-                  discountChange = true
-                }
-
-                if (
-                  !targetElement.classList.contains('is-open') &&
-                  discountChange == true
-                ) {
-                  discountChange = false
-
-                  getCart().then(data => {
-                    let req = /(\d{1,})(\d{2})$/
-                    let total = +(data['total_price'].toString().replace(req, "$1.$2"))
-
-                    let discount = ``
-                    if (total >= 0 && total <= 99.00) {
-                      discount = `<p>Spend <b>$99</b> and get a <b>10% discount</b></p>`
-                    } else if (total > 99.00 && total <= 149.00) {
-                      discount = `<p>Spend <b>$149</b> and get a <b>15% discount</b></p>`
-                    } else if (total > 149.00) {
-                      discount = `<p>Spend <b>$199</b> and get a <b>20% discount</b></p>`
-                    }
-
-                    if (document.querySelector('.discount')) {
-                      document.querySelector('.discount').remove()
-                    }
-
-                    let discountHTML = `
-                        <div class="discount d-flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="29" viewBox="0 0 28 29" fill="none">
-                                <circle cx="14" cy="14.25" r="14" fill="#E8F8FE"/>
-                                <path d="M8.53864 8H13.3148C13.8598 8 14.3726 8.22387 14.7573 8.60765L20.399 14.2364C21.2003 15.036 21.2003 16.3472 20.399 17.1468L16.1357 21.4003C15.3343 22.1999 14.02 22.1999 13.2187 21.4003L7.57699 15.7716C7.19233 15.3878 7 14.8761 7 14.3324V9.53512C7 8.7036 7.67315 8 8.53864 8ZM10.5902 12.6054C11.1351 12.6054 11.6159 12.1576 11.6159 11.582C11.6159 11.0383 11.1351 10.5585 10.5902 10.5585C10.0132 10.5585 9.5644 11.0383 9.5644 11.582C9.5644 12.1576 10.0132 12.6054 10.5902 12.6054Z" fill="#023F88"/>
-                            </svg>  
-                            ${discount}
-                        </div>`
-
-                    if (media) {
-                      priceContainer.insertAdjacentHTML('afterend', discountHTML)
-                    } else {
-                      qtyBlock.insertAdjacentHTML('beforebegin', discountHTML)
-                      // waitForElement('.qty_block').then(el => el.insertAdjacentHTML('beforebegin', discountHTML))
-                      // document.querySelector('.qty_block').insertAdjacentHTML('beforebegin', discountHTML)
-                    }
-                  })
-                }
-              }
-
-              const config = { attributes: true, attributeFilter: ['class'] }
-              const callback = (mutationsList) => {
-                for (const mutation of mutationsList) {
-                  if (mutation.type === 'attributes') {
-                    // Check if the "is-open" class has been added or removed
-                    if (mutation.attributeName === 'class') {
-                      checkIsOpen(cartDrawer, productPriceBlock)
-
-                      const drawerMessage = document.querySelector('.cart-drawer__message').textContent
-
-                      if (!document.querySelector('.away-from')) {
-
-                        const priceToFreeShipping = extractNumberWithDollarSignAndPlus(drawerMessage)
-                        document.querySelector('.cart__message__progress__holder').insertAdjacentHTML('beforebegin', /*html*/`
-                          
-<div class="msg away-from">
-  <p>You are $<span class="away-from__number">${priceToFreeShipping}</span> away from</p>
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 18" fill="none">
-    <path d="M4.2 0H13.8C14.775 0 15.6 0.773438 15.6 1.6875V3.375H17.475C18.1125 3.375 18.7125 3.62109 19.2 4.04297L22.0875 6.75C22.5375 7.17188 22.8 7.76953 22.8 8.36719V12.375C23.4375 12.375 24 12.9023 24 13.5C24 14.1328 23.4375 14.625 22.8 14.625H21.6C21.6 16.4883 19.9875 18 18 18C15.975 18 14.4 16.4883 14.4 14.625H9.6C9.6 16.4883 7.9875 18 6 18C3.975 18 2.4 16.4883 2.4 14.625V10.125H7.8C8.1 10.125 8.4 9.87891 8.4 9.5625C8.4 9.28125 8.1 9 7.8 9H0.6C0.2625 9 0 8.75391 0 8.4375C0 8.15625 0.2625 7.875 0.6 7.875H9C9.3 7.875 9.6 7.62891 9.6 7.3125C9.6 7.03125 9.3 6.75 9 6.75H1.8C1.4625 6.75 1.2 6.50391 1.2 6.1875C1.2 5.90625 1.4625 5.625 1.8 5.625H10.2C10.5 5.625 10.8 5.37891 10.8 5.0625C10.8 4.78125 10.5 4.5 10.2 4.5H0.6C0.2625 4.5 0 4.25391 0 3.9375C0 3.65625 0.2625 3.375 0.6 3.375H2.4V1.6875C2.4 0.773438 3.1875 0 4.2 0ZM20.4 8.36719L17.475 5.625H15.6V9H20.4V8.36719ZM6 16.3125C6.975 16.3125 7.8 15.5742 7.8 14.625C7.8 13.7109 6.975 12.9375 6 12.9375C4.9875 12.9375 4.2 13.7109 4.2 14.625C4.2 15.5742 4.9875 16.3125 6 16.3125ZM19.8 14.625C19.8 13.7109 18.975 12.9375 18 12.9375C16.9875 12.9375 16.2 13.7109 16.2 14.625C16.2 15.5742 16.9875 16.3125 18 16.3125C18.975 16.3125 19.8 15.5742 19.8 14.625Z" fill="#023F88"/>
-  </svg>
-  <span>Free shipping</span>                    
-</div>
-                          <div class="msg congrats">
-                            <p>Congratulations!</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="18" viewBox="0 0 22 18" fill="none">
-      <path d="M1.8 0H11.4C12.375 0 13.2 0.773438 13.2 1.6875V3.375H15.075C15.7125 3.375 16.3125 3.62109 16.8 4.04297L19.6875 6.75C20.1375 7.17188 20.4 7.76953 20.4 8.36719V12.375C21.0375 12.375 21.6 12.9023 21.6 13.5C21.6 14.1328 21.0375 14.625 20.4 14.625H19.2C19.2 16.4883 17.5875 18 15.6 18C13.575 18 12 16.4883 12 14.625H7.20001C7.20001 16.4883 5.5875 18 3.6 18C1.575 18 0 16.4883 0 14.625V10.125C0 10.125 0 9.85072 0 9.53432C0 9.25307 0 9 0 9C0 9 0 8.75391 0 8.4375C0 8.15625 0 7.875 0 7.875C0 7.875 0 7.62891 0 7.3125C0 7.03125 0 6.75 0 6.75C0 6.75 0 6.50391 0 6.1875C0 5.90625 0 5.625 0 5.625C0 5.625 0 5.37891 0 5.0625C0 4.78125 0 4.5 0 4.5C0 4.5 0 4.25391 0 3.9375C0 3.65625 0 3.375 0 3.375V1.6875C0 0.773438 0.787499 0 1.8 0ZM18 8.36719L15.075 5.625H13.2V9H18V8.36719ZM3.6 16.3125C4.575 16.3125 5.4 15.5742 5.4 14.625C5.4 13.7109 4.575 12.9375 3.6 12.9375C2.5875 12.9375 1.8 13.7109 1.8 14.625C1.8 15.5742 2.5875 16.3125 3.6 16.3125ZM17.4 14.625C17.4 13.7109 16.575 12.9375 15.6 12.9375C14.5875 12.9375 13.8 13.7109 13.8 14.625C13.8 15.5742 14.5875 16.3125 15.6 16.3125C16.575 16.3125 17.4 15.5742 17.4 14.625Z" fill="#023F88"/>
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M9.29831 4.40819C9.58093 4.711 9.56457 5.18559 9.26175 5.46822L4.40405 10.0021L2.18057 7.40802C1.911 7.09352 1.94743 6.62005 2.26192 6.35048C2.57641 6.08092 3.04989 6.11734 3.31946 6.43183L4.52455 7.83778L8.23828 4.37163C8.54109 4.08901 9.01568 4.10537 9.29831 4.40819Z" fill="white"/>
-    </svg>
-    <span>You're eligible for free delivery</span>
-                          </div>
-                        `)
-                      }
-
-                      if (document.querySelector('.cart__message__default.is-hidden')) {
-                        document.querySelector('.msg.away-from').style.display = "none"
-                        document.querySelector('.msg.congrats').style.display = "flex"
-                      } else {
-                        document.querySelector('.away-from__number').innerText = extractNumberWithDollarSignAndPlus(drawerMessage)
-
-                        document.querySelector('.msg.away-from').style.display = "flex"
-                        document.querySelector('.msg.congrats').style.display = "none"
-                      }
-
-                      if (!document.querySelector('.get-ur-discount')) {
-                        const waitForEl = setInterval(() => {
-                          if (document.querySelector('.cart__item__content')) {
-                            clearInterval(waitForEl)
-
-                            document.querySelector('.cart__item__content').insertAdjacentHTML('beforeend', /*html*/`
-                          <div class="get-ur-discount">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-  <path d="M7.60056 8.84132C7.94519 8.84132 8.22456 8.56195 8.22456 8.21732C8.22456 7.8727 7.94519 7.59332 7.60056 7.59332C7.25594 7.59332 6.97656 7.8727 6.97656 8.21732C6.97656 8.56195 7.25594 8.84132 7.60056 8.84132Z" fill="#53B6EB"/>
-  <path d="M12.3916 12.3854C12.2261 12.3854 12.0674 12.4511 11.9504 12.5681C11.8334 12.6852 11.7676 12.8439 11.7676 13.0094C11.766 13.135 11.802 13.2583 11.8708 13.3635C11.9396 13.4686 12.0383 13.5509 12.1541 13.5997C12.2699 13.6485 12.3976 13.6617 12.5209 13.6376C12.6443 13.6134 12.7576 13.5531 12.8465 13.4642C12.9353 13.3753 12.9957 13.262 13.0198 13.1387C13.0439 13.0153 13.0308 12.8876 12.9819 12.7718C12.9331 12.656 12.8509 12.5574 12.7457 12.4885C12.6406 12.4197 12.5173 12.3838 12.3916 12.3854Z" fill="#53B6EB"/>
-  <path d="M17.3596 8.76135C17.0769 8.49769 16.8391 8.18964 16.6556 7.84935C16.5377 7.46339 16.4836 7.06075 16.4956 6.65735C16.5637 5.95049 16.3607 5.24416 15.9276 4.68135C15.3648 4.24829 14.6585 4.04526 13.9516 4.11335C13.5616 4.12101 13.1728 4.06702 12.7996 3.95335C12.4593 3.76988 12.1513 3.53208 11.8876 3.24935C11.4134 2.67522 10.7383 2.30333 9.99961 2.20935C9.27402 2.30914 8.61345 2.68089 8.15161 3.24935C7.88637 3.53035 7.57861 3.76791 7.23961 3.95335C6.85352 4.07071 6.45098 4.12474 6.04761 4.11335C5.33815 4.04399 4.62887 4.24705 4.06361 4.68135C3.63266 5.24494 3.43244 5.95146 3.50361 6.65735C3.50932 7.06096 3.45265 7.46304 3.33561 7.84935C3.15493 8.19144 2.9168 8.49993 2.63161 8.76135C2.06799 9.2261 1.69963 9.88571 1.59961 10.6094C1.69374 11.3331 2.05987 11.9938 2.62361 12.4574C2.91343 12.7318 3.15423 13.0538 3.33561 13.4093C3.45297 13.7954 3.507 14.198 3.49561 14.6013C3.43025 15.3104 3.6329 16.0183 4.06361 16.5853C4.63002 17.0168 5.33919 17.217 6.04761 17.1453C6.45114 17.1409 6.85303 17.1975 7.23961 17.3133C7.58037 17.4961 7.88853 17.734 8.15161 18.0174C8.62052 18.5692 9.28058 18.9235 9.99961 19.0093C10.7221 18.9114 11.3815 18.546 11.8476 17.9853C12.1203 17.6936 12.4427 17.4525 12.7996 17.2733C13.1856 17.1554 13.5882 17.1014 13.9916 17.1133C14.6981 17.1774 15.403 16.9748 15.9676 16.5454C16.4019 15.9801 16.605 15.2708 16.5356 14.5613C16.5242 14.158 16.5783 13.7554 16.6956 13.3693C16.881 13.0303 17.1186 12.7226 17.3996 12.4574C17.9532 11.9888 18.3101 11.3291 18.3996 10.6094C18.296 9.88504 17.925 9.22577 17.3596 8.76135ZM6.15961 8.21735C6.15803 7.93413 6.24047 7.65681 6.39651 7.42045C6.55254 7.18408 6.77516 6.9993 7.03621 6.88946C7.29727 6.77961 7.58503 6.74965 7.86311 6.80335C8.14119 6.85705 8.39711 6.99201 8.59849 7.19115C8.79987 7.3903 8.93768 7.64469 8.99449 7.92216C9.05129 8.19962 9.02455 8.4877 8.91763 8.74997C8.81071 9.01223 8.62842 9.2369 8.39382 9.39556C8.15921 9.55423 7.88283 9.63976 7.59961 9.64135C7.2212 9.64136 6.85817 9.49158 6.58985 9.22476C6.32153 8.95793 6.16972 8.59575 6.16761 8.21735H6.15961ZM7.52761 13.6334C7.4917 13.6716 7.44832 13.7021 7.40016 13.723C7.35201 13.7438 7.30009 13.7546 7.24761 13.7546C7.19513 13.7546 7.14321 13.7438 7.09505 13.723C7.0469 13.7021 7.00352 13.6716 6.96761 13.6334C6.92934 13.5974 6.89885 13.5541 6.878 13.5059C6.85715 13.4577 6.84639 13.4058 6.84639 13.3534C6.84639 13.3009 6.85715 13.249 6.878 13.2008C6.89885 13.1526 6.92934 13.1093 6.96761 13.0733L12.4476 7.58535C12.4849 7.54806 12.5292 7.51847 12.5779 7.49829C12.6266 7.4781 12.6789 7.46771 12.7316 7.46771C12.7844 7.46771 12.8366 7.4781 12.8853 7.49829C12.934 7.51847 12.9783 7.54806 13.0156 7.58535C13.0529 7.62265 13.0825 7.66692 13.1027 7.71565C13.1229 7.76438 13.1332 7.81661 13.1332 7.86935C13.1332 7.92209 13.1229 7.97432 13.1027 8.02305C13.0825 8.07178 13.0529 8.11606 13.0156 8.15335L7.52761 13.6334ZM12.3836 14.4334C12.1004 14.4334 11.8235 14.3494 11.588 14.192C11.3525 14.0347 11.169 13.811 11.0606 13.5494C10.9522 13.2877 10.9239 12.9998 10.9791 12.722C11.0344 12.4442 11.1708 12.189 11.371 11.9888C11.5713 11.7885 11.8265 11.6521 12.1042 11.5969C12.382 11.5416 12.6699 11.57 12.9316 11.6784C13.1933 11.7867 13.4169 11.9703 13.5743 12.2058C13.7316 12.4413 13.8156 12.7181 13.8156 13.0013C13.8167 13.1894 13.7807 13.3758 13.7097 13.55C13.6387 13.7241 13.5341 13.8826 13.4018 14.0163C13.2696 14.15 13.1123 14.2564 12.939 14.3293C12.7657 14.4022 12.5797 14.4403 12.3916 14.4414L12.3836 14.4334Z" fill="#53B6EB"/>
-</svg>
-<p>Get Your 10% Off</p>
-<svg xmlns="http://www.w3.org/2000/svg" width="11" height="12" viewBox="0 0 11 12" fill="none">
-  <g clip-path="url(#clip0_1003_173)">
-    <path d="M4 1.20938L8 5.6094L4 10.0094" stroke="#53B6EB" stroke-linecap="square" stroke-linejoin="round"/>
-  </g>
-  <defs>
-    <clipPath id="clip0_1003_173">
-      <rect width="11" height="11" fill="white" transform="matrix(0 -1 1 0 0 11.1094)"/>
-    </clipPath>
-  </defs>
-</svg>
-                          </div>
-                        `)
-                          }
-                        }, WAIT_INTERVAL_TIMEOUT)
-
-                        waitForElement('.get-ur-discount').then(el => el.addEventListener('click', () => {
-                          console.log(el)
-                        }))
-                      }
-                    }
-                  }
-                }
-              }
-              const observer = new MutationObserver(callback)
-              observer.observe(cartDrawer, config)
-
-              // Initial check
-              checkIsOpen(cartDrawer, productPriceBlock)
-            }
-          }, WAIT_INTERVAL_TIMEOUT)
-
           //qty and compatibility icons
           const waitForEl = setInterval(() => {
             if (document.querySelector('.selector-wrapper--qty') && document.querySelector('.product__price')) {
@@ -1800,7 +2077,6 @@ margin-bottom: 25px;
               waitForElement('.input_qty').then(inputQty => inputQty.addEventListener('change', (e) => qtyChange(e)))
             }
           }, WAIT_INTERVAL_TIMEOUT)
-
 
           //delivery section (18-21)
           const waitForDelivery = setInterval(() => {
@@ -1914,7 +2190,7 @@ margin-bottom: 25px;
             }
           }, WAIT_INTERVAL_TIMEOUT)
 
-          //text replace on  "You May Also Like" (26)Z
+          //text replace on  "You May Also Like" (26)
           waitForElement('.featured-collection__top h2').then(h2 => {
             h2.innerHTML = 'You May Also Like'
           })
@@ -1927,6 +2203,43 @@ margin-bottom: 25px;
             yotpo.insertAdjacentHTML('afterbegin', /*html*/`
             <div class="reviews-title"><p>Reviews from our customers</p></div>
           `)
+          })
+
+          // add spend and get discount block\
+          getCart().then(data => {
+            let req = /(\d{1,})(\d{2})$/
+            let total = +(data['total_price'].toString().replace(req, "$1.$2"))
+
+            let discount = ``
+            if (total >= 0 && total <= 99.00) {
+              discount = `<p>Spend <b>$99</b> and get a <b>10% discount</b></p>`
+            } else if (total > 99.00 && total <= 149.00) {
+              discount = `<p>Spend <b>$149</b> and get a <b>15% discount</b></p>`
+            } else if (total > 149.00) {
+              discount = `<p>Spend <b>$199</b> and get a <b>20% discount</b></p>`
+            }
+
+            let discountHTML = `
+                <div class="discount d-flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="29" viewBox="0 0 28 29" fill="none">
+                        <circle cx="14" cy="14.25" r="14" fill="#E8F8FE"/>
+                        <path d="M8.53864 8H13.3148C13.8598 8 14.3726 8.22387 14.7573 8.60765L20.399 14.2364C21.2003 15.036 21.2003 16.3472 20.399 17.1468L16.1357 21.4003C15.3343 22.1999 14.02 22.1999 13.2187 21.4003L7.57699 15.7716C7.19233 15.3878 7 14.8761 7 14.3324V9.53512C7 8.7036 7.67315 8 8.53864 8ZM10.5902 12.6054C11.1351 12.6054 11.6159 12.1576 11.6159 11.582C11.6159 11.0383 11.1351 10.5585 10.5902 10.5585C10.0132 10.5585 9.5644 11.0383 9.5644 11.582C9.5644 12.1576 10.0132 12.6054 10.5902 12.6054Z" fill="#023F88"/>
+                    </svg>
+                    <div>
+                      ${discount}
+                    </div>  
+                  
+                </div>`
+
+            if (!document.querySelector('.main-content .discount')) {
+              if (media) {
+                waitForElement('.product__block.product__price-and-badge').then(el => el.insertAdjacentHTML('afterend', discountHTML))
+              } else {
+                waitForElement('.qty_block').then(el => el.insertAdjacentHTML('beforebegin', discountHTML))
+              }
+            } else {
+              document.querySelector('.main-content .discount div').innerHTML = discount
+            }
           })
 
           // smth else
@@ -1965,11 +2278,6 @@ margin-bottom: 25px;
               ['exp_imp_pdp_v_ps_s', '{{focusTime}}', 'Visibility', 'Pack save spend']
             )
           })
-          waitForElement('.product__submit__holder [name="add"]').then(el =>
-            el.addEventListener('click', () => {
-              pushDataLayer(['exp_imp_pdp_b_ps_atc', 'Add to cart', 'Button', 'Product section'])
-            })
-          )
           waitForElement('.delivery').then(el =>
             handleVisibility(
               el,
@@ -2027,16 +2335,485 @@ margin-bottom: 25px;
               }
             })
           })
+
+          waitForElement('.featured-collection__container').then(el => {
+            el.addEventListener('click', (e) => {
+              const target = e.target
+
+              if (target.closest('.btn--quick') || target.matches('.btn--quick')) {
+                pushDataLayer(['exp_imp_pdp_i_ymal_b', 'Basket', 'Icon', 'You may also like'])
+              } else if (target.closest('.product-grid-item__image')) {
+                pushDataLayer(['exp_imp_pdp_i_ymal_pi', 'Product image', 'Image', 'You may also like'])
+              }
+
+            })
+          })
+
+          waitForElement('.cart-drawer .payments-cart-exp').then(el => {
+            el.addEventListener('click', (e) => {
+              if (e.target.closest(`[role="button"]`) || e.target.matches(`[role="button"]`)) {
+                pushDataLayer(['exp_imp_pdp_b_c_sp', 'Shop pay', 'Button', 'Cart'])
+              }
+            })
+          })
+
+          // Function to handle style changes
+          function handleStyleChange(mutationsList, observer, arr) {
+            for (let mutation of mutationsList) {
+              if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                // Style attribute has changed
+                const sliderStyle = mutation.target.getAttribute('style')
+                pushDataLayer(arr)
+
+                // Disconnect the observer after logging the style change
+                observer.disconnect()
+              }
+            }
+          }
+
+          waitForElement('.featured-collection__container .carousel').then(el => {
+            let scrolled = false
+
+            el.addEventListener("scroll", function () {
+              if (!scrolled) {
+                pushDataLayer(['exp_imp_pdp_s_ymal_h', 'Horisontal', 'Scrool', 'You may also like']); scrolled = true // Set scrolled to true to prevent further logging
+              }
+            })
+
+
+          })
+
+          waitForElement('.featured-collection__container .carousel .flickity-slider').then(el => {
+            const observer = new MutationObserver((mutationsList, observer) => {
+              handleStyleChange(mutationsList, observer, ['exp_imp_pdp_s_ymal_h', 'Horisontal', 'Scrool', 'You may also like'])
+            })
+
+            // Start observing changes to the style attribute of the slider
+            observer.observe(el, { attributes: true })
+          })
+
+          waitForElement('.related-products').then(el => {
+            el.addEventListener('click', (e) => {
+              const target = e.target
+
+              if (target.closest('.btn--quick') || target.matches('.btn--quick')) {
+                pushDataLayer(['exp_imp_pdp_i_rv_b', 'Basket', 'Icon', 'Recently viewed'])
+              }
+              else if (target.closest('.product-grid-item__image')) {
+                pushDataLayer(['exp_imp_pdp_i_rv_pi', 'Product image', 'Image', 'Recently viewed'])
+              }
+            })
+          })
+
+
+
+          waitForElement('.related-products .carousel').then(el => {
+            let scrolled = false
+
+            el.addEventListener("scroll", function () {
+              if (!scrolled) {
+                pushDataLayer(['exp_imp_pdp_s_rv_h', 'Horisontal', 'Scrool', 'Recently viewed'])
+                scrolled = true // Set scrolled to true to prevent further logging
+              }
+            })
+          })
+
+          waitForElement('.related-products .carousel .flickity-slider').then(el => {
+            const observer = new MutationObserver((mutationsList, observer) => {
+              handleStyleChange(mutationsList, observer, ['exp_imp_pdp_s_rv_h', 'Horisontal', 'Scrool', 'Recently viewed'])
+            })
+
+            // Start observing changes to the style attribute of the slider
+            observer.observe(el, { attributes: true })
+          })
+
+
+        } else if (location.pathname.includes("checkouts")) {
+          waitForElement('[aria-label="Breadcrumb"]').then(() => {
+            let styleNew = /*html */ `
+            <style>
+              .msg {
+                display: flex !important;
+                flex-direction: column;
+                align-items: flex-start !important;
+                padding:  10px 20px;
+                background: var(--bg-light-grey, #F7F7F7);
+                font-family: 'Avenir Next', 'Helvetica Neue', sans-serif !important;
+              }
+              .progress-wrap {
+                width: 100%; 
+                height: 3px;border-radius: 6px;
+    background-color: #fff !important;
+    border: 1px solid var(--Border, #D9D9D9);
+              }
+              .progress-wrap .progress {
+                background-color: #023F88;
+                border-radius: 6px;
+                height: 100%;
+              }
+              .msg > div {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+              }
+               .logo--left .logo__image {
+                display: none;
+              }
+              .custom-logo {
+                object-fit: contain;
+                max-width: 230px;
+                height: 80px;
+                margin-bottom: 15px;
+              }
+                /*breadcrumb  */
+                [aria-label="Breadcrumb"]{
+                    margin-top: 50px;
+                }
+                .breadcrumb {
+                    display: flex;
+                    position: relative;
+                    justify-content: space-between;
+                    max-width: 500px;
+                    margin: 0 auto;
+                }
+                .breadcrumb::before{
+                    position: absolute;
+                    content:'';
+                    width: 97%;
+                    height: 1px;
+                    background: #D9D9D9;
+                    top: -17px;
+                }
+                .breadcrumb__item .breadcrumb__text,
+                .breadcrumb__item--completed .breadcrumb__text,
+                .breadcrumb__item--completed .breadcrumb__link{
+                    color: #888;
+                    font-family: 'Avenir Next', 'Helvetica Neue', sans-serif;
+                    font-size: 14px;
+                    font-weight: 500;
+                    line-height: 157%;
+                }
+                .breadcrumb__item--current .breadcrumb__text{
+                    color: #023F88;
+                }
+                .main .icon-svg--color-adaptive-light{
+                    display: none;
+                }
+                .breadcrumb__item{
+                    position: relative;
+                }
+                .anyflexbox .breadcrumb__item::before{
+                    position: absolute;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    content:'1';
+                    width: 24px;
+                    height: 24px;
+                    background: #F7F7F7;
+                    border-radius: 50%;
+                    border: 1px solid #D9D9D9;
+                    top: -30px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    color: #888;
+                    font-family: 'Avenir Next', 'Helvetica Neue', sans-serif;
+                    font-size: 14px;
+                    font-weight: 500;
+                    line-height: 157%;
+                }
+                .anyflexbox .breadcrumb__item:nth-child(2):before{
+                    content:'2';
+                }
+                .anyflexbox .breadcrumb__item:nth-child(3):before{
+                    content:'3';
+                }
+                .anyflexbox .breadcrumb__item:nth-child(4):before{
+                    content:'4';
+                }
+                .anyflexbox .breadcrumb__item.breadcrumb__item--current::before{
+                    background: #023F88;
+                    border: 1px solid #023F88;
+                    color: #FFF;
+                }
+                .anyflexbox .breadcrumb__item.breadcrumb__item--completed::before{
+                    content: "\\2714";
+                    color: #023F88;
+                }
+                /*shipping_block */
+                .shipping_block{
+                    border-top: 1px solid #FFF;
+                    background: #E8F8FE;
+                    margin: 12px -20px 0;
+                }
+                .shipping_list{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin: 0;
+                    list-style: none;
+                    padding: 12px 16px;
+                    gap: 13px;
+                }
+                .shipping_list li{
+                    position: relative;
+                    width: 50%;
+                    margin: 0;
+                    padding-left: 32px;
+                }
+                .shipping_list li::before{
+                    position: absolute;
+                    content: "";
+                    width: 24px;
+                    height: 24px;
+                    background: url(https://conversionratestore.github.io/projects/geeni/img/shield.svg) no-repeat center center;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    left: 0;
+                    background-size: contain;
+                }
+                .shipping_list li:nth-child(2):before{
+                    background: url(https://conversionratestore.github.io/projects/geeni/img/return_box.svg) no-repeat center center;
+                    background-size: contain;
+                    left: 13px;
+                }
+                .shipping_list li:nth-child(2){
+                    border-left: 1px solid #FFF;
+                    padding-left: 45px;
+                }
+                .shipping_list li p{
+                  font-family: 'Avenir Next', 'Helvetica Neue', sans-serif;
+                    color: #1B1B1B;
+                    font-size: 14px;
+                    font-weight: 500;
+                    line-height: 134%;
+                    margin: 0;
+                    max-width: 128px;
+                }
+                .shipping_block.checkout_var{
+                    margin: 0;
+                }
+                .shipping_block.checkout_var .shipping_list{
+                    position: relative;
+                    padding: 12px;
+                }
+                .shipping_list::after{
+                    position: absolute;
+                    content: "";
+                    width: 1px;
+                    height: 55%;
+                    background: #FFF;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+                .shipping_block.checkout_var .shipping_list li{
+                    width: unset;
+                    border: none !important;
+                }
+                .shipping_block.checkout_var .shipping_list li p{
+                    max-width: unset;
+                }
+         
+            @media (max-width: 1130px) {
+                .shipping_block.checkout_var .shipping_list li p{
+                    font-size: 12px;
+                }
+            }
+            @media (max-width: 768px) {
+              .custom-logo {
+                width: 144px;
+                height: 45px;
+                margin-bottom: 0;
+              }
+                [aria-label="Breadcrumb"] {
+                    margin-top: 30px;
+                }
+                .breadcrumb{
+                    max-width: 295px;
+                    padding: 0 0 10px;
+                }
+                .breadcrumb::before{
+                    width: 92%;
+                }
+                .shipping_block.checkout_var .shipping_list li p {
+                    font-size: 14px;
+                    max-width: 115px;
+                }
+                .shipping_block.checkout_var .shipping_list{
+                    padding: 12px 16px;
+                }
+                .paypal-button.paypal-button-shape-rect,
+                .shopify-cleanslate .h7OYsWHrW5495r9beh2n,
+                .shopify-cleanslate .KHqjJyKjVNT1lCGf2bnQ, .shopify-cleanslate .wOEViUrCyNb9maEe3QrQ{
+                    border-radius: 30px !important;
+                }
+                .dynamic-checkout__title{
+                    display: none;
+                }
+                .dynamic-checkout__content{
+                    border: none;
+                    padding: 0;
+                }
+                .anyflexbox .main{
+                    padding-top: 16px !important;
+                }
+                .alternative-payment-separator {
+                    padding-bottom: 18px;
+                    margin-top: 16px;
+                }
+                .alternative-payment-separator__content{
+                    color: #5B5B5B;
+                    font-family: 'Avenir Next', 'Helvetica Neue', sans-serif;
+                    font-size: 14px;
+                    font-weight: 500;
+                    line-height: 22px;
+                }
+            }
+
+            @media (max-width: 376px) { 
+              .msg > div {
+                gap: 3px;
+              }
+            }
+            </style>
+            `
+
+            let msgType = sessionStorage.getItem('msg') && sessionStorage.getItem('msg').includes('Congratulations') ? 'congrats' : 'away'
+            let msg
+
+            function extractNumberFromString(inputString) {
+              const regex = /\$\d+(\.\d{2})?/ // This regex matches the dollar amount (e.g., $19.01)
+              const match = inputString.match(regex)
+
+              if (match) {
+                const number = parseFloat(match[0].replace('$', ''))
+                return number
+              } else {
+                return null // Return null if no number is found in the string
+              }
+            }
+
+            const msgCograts = /*html*/`
+            <div class="msg congrats">
+              <div>
+                <p>Congratulations!</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="18" viewBox="0 0 22 18" fill="none">
+                  <path d="M1.8 0H11.4C12.375 0 13.2 0.773438 13.2 1.6875V3.375H15.075C15.7125 3.375 16.3125 3.62109 16.8 4.04297L19.6875 6.75C20.1375 7.17188 20.4 7.76953 20.4 8.36719V12.375C21.0375 12.375 21.6 12.9023 21.6 13.5C21.6 14.1328 21.0375 14.625 20.4 14.625H19.2C19.2 16.4883 17.5875 18 15.6 18C13.575 18 12 16.4883 12 14.625H7.20001C7.20001 16.4883 5.5875 18 3.6 18C1.575 18 0 16.4883 0 14.625V10.125C0 10.125 0 9.85072 0 9.53432C0 9.25307 0 9 0 9C0 9 0 8.75391 0 8.4375C0 8.15625 0 7.875 0 7.875C0 7.875 0 7.62891 0 7.3125C0 7.03125 0 6.75 0 6.75C0 6.75 0 6.50391 0 6.1875C0 5.90625 0 5.625 0 5.625C0 5.625 0 5.37891 0 5.0625C0 4.78125 0 4.5 0 4.5C0 4.5 0 4.25391 0 3.9375C0 3.65625 0 3.375 0 3.375V1.6875C0 0.773438 0.787499 0 1.8 0ZM18 8.36719L15.075 5.625H13.2V9H18V8.36719ZM3.6 16.3125C4.575 16.3125 5.4 15.5742 5.4 14.625C5.4 13.7109 4.575 12.9375 3.6 12.9375C2.5875 12.9375 1.8 13.7109 1.8 14.625C1.8 15.5742 2.5875 16.3125 3.6 16.3125ZM17.4 14.625C17.4 13.7109 16.575 12.9375 15.6 12.9375C14.5875 12.9375 13.8 13.7109 13.8 14.625C13.8 15.5742 14.5875 16.3125 15.6 16.3125C16.575 16.3125 17.4 15.5742 17.4 14.625Z" fill="#023F88"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M9.29831 4.40819C9.58093 4.711 9.56457 5.18559 9.26175 5.46822L4.40405 10.0021L2.18057 7.40802C1.911 7.09352 1.94743 6.62005 2.26192 6.35048C2.57641 6.08092 3.04989 6.11734 3.31946 6.43183L4.52455 7.83778L8.23828 4.37163C8.54109 4.08901 9.01568 4.10537 9.29831 4.40819Z" fill="white"/>
+                </svg>
+                <span>You're eligible for free delivery</span>
+              </div>
+              <div class="progress-wrap">                <div class="progress" style="width: ${sessionStorage.getItem('msg-progress')}%;"></div></div>
+            </div>`
+
+            const msgAway = /*html*/`
+            <div class="msg away-from">
+              <div>
+                <p>You are $<span class="away-from__number">${extractNumberFromString(sessionStorage.getItem('msg'))}</span> away from</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 18" fill="none">
+                  <path d="M4.2 0H13.8C14.775 0 15.6 0.773438 15.6 1.6875V3.375H17.475C18.1125 3.375 18.7125 3.62109 19.2 4.04297L22.0875 6.75C22.5375 7.17188 22.8 7.76953 22.8 8.36719V12.375C23.4375 12.375 24 12.9023 24 13.5C24 14.1328 23.4375 14.625 22.8 14.625H21.6C21.6 16.4883 19.9875 18 18 18C15.975 18 14.4 16.4883 14.4 14.625H9.6C9.6 16.4883 7.9875 18 6 18C3.975 18 2.4 16.4883 2.4 14.625V10.125H7.8C8.1 10.125 8.4 9.87891 8.4 9.5625C8.4 9.28125 8.1 9 7.8 9H0.6C0.2625 9 0 8.75391 0 8.4375C0 8.15625 0.2625 7.875 0.6 7.875H9C9.3 7.875 9.6 7.62891 9.6 7.3125C9.6 7.03125 9.3 6.75 9 6.75H1.8C1.4625 6.75 1.2 6.50391 1.2 6.1875C1.2 5.90625 1.4625 5.625 1.8 5.625H10.2C10.5 5.625 10.8 5.37891 10.8 5.0625C10.8 4.78125 10.5 4.5 10.2 4.5H0.6C0.2625 4.5 0 4.25391 0 3.9375C0 3.65625 0.2625 3.375 0.6 3.375H2.4V1.6875C2.4 0.773438 3.1875 0 4.2 0ZM20.4 8.36719L17.475 5.625H15.6V9H20.4V8.36719ZM6 16.3125C6.975 16.3125 7.8 15.5742 7.8 14.625C7.8 13.7109 6.975 12.9375 6 12.9375C4.9875 12.9375 4.2 13.7109 4.2 14.625C4.2 15.5742 4.9875 16.3125 6 16.3125ZM19.8 14.625C19.8 13.7109 18.975 12.9375 18 12.9375C16.9875 12.9375 16.2 13.7109 16.2 14.625C16.2 15.5742 16.9875 16.3125 18 16.3125C18.975 16.3125 19.8 15.5742 19.8 14.625Z" fill="#023F88"/>
+                </svg>
+                <span>Free shipping</span>   
+              </div>           
+              <div class="progress-wrap">                <div class="progress" style="width: ${sessionStorage.getItem('msg-progress')}%;"></div></div>
+            </div>
+            `
+
+            if (msgType === 'congrats') {
+              msg = msgCograts
+            } else {
+              msg = msgAway
+            }
+
+
+
+            let shippingBlock = /*html */ `
+            ${msg}
+            <div class="shipping_block">
+              <ul class="shipping_list">
+                <li><p>365-day warranty on all products</p></li>
+                <li><p>30-day easy returns & refund policy</p></li>
+              </ul>
+            </div>
+            `
+
+            document.head.insertAdjacentHTML("beforeend", styleNew)
+
+            if (window.innerWidth <= 768) {
+              if (document.querySelector(".order-summary-toggle") && !document.querySelector(".shipping_block")) {
+                document.querySelector(".order-summary-toggle").insertAdjacentHTML("beforebegin", shippingBlock)
+              }
+            } else {
+              if (document.querySelector('[aria-label="Breadcrumb"]') && !document.querySelector(".shipping_block")) {
+                document.querySelector('[aria-label="Breadcrumb"]').insertAdjacentHTML("beforebegin", shippingBlock)
+              }
+            }
+            if (document.querySelector(".shipping_block") && !document.querySelector(".shipping_block").classList.contains("checkout_var")) {
+              document.querySelector(".shipping_block").classList.add("checkout_var")
+            }
+          })
+
+          waitForElement('.logo--left .logo__image').then(el => {
+            el.insertAdjacentHTML('afterend', /*html*/`
+            <img class="custom-logo" src="${dir}logo_geeni.png" alt="logo" >
+          `)
+          })
         }
 
-        // All
-        document.head.insertAdjacentHTML('beforeend', /*html*/`
+        if (!location.pathname.includes("checkouts")) {
+          document.head.insertAdjacentHTML('beforeend', /*html*/`
           <style>
             .btn--scroll-top {
               display: none !important;
             }
+            html div > div + div iframe[title]:not([class]) {
+              bottom: 70px !important;
+              z-index: 999 !important;
+            }
+            html .kl-teaser-VPxaD7 {
+                z-index: 900 !important;
+              }
+              .discount {
+        padding-bottom: 16px;
+    }
+    .discount p {
+        color:  #1B1B1B;
+        font-size: 14px;
+        line-height: 22px; 
+        margin: 0 0 0 12px;
+    }
+    .discount b {
+        font-weight: 600;
+    }
+    .HiddenBottomBarContainer.svelte-f78rro.svelte-f78rro {
+      z-index: 999 !important;
+    }
+    .logo__image-link--other img.custom-logo,
+    .logo__image-link--home  img.custom-logo{
+            display: block;
+            height: 100%;
+    }
+
           </style>
-        `)
+          `)
+          document.head.insertAdjacentHTML('beforeend', cartCSS)
+
+          waitForElement('.cart-drawer')
+            .then((cartElement) => {
+              // Create a Mutation Observer to watch for changes in the cart.
+              const cartObserver = new MutationObserver(handleCartMutation)
+
+              // Define the options for the Mutation Observer.
+              const observerOptions = {
+                attributes: true, // Watch for changes to the attributes of the cart.
+                attributeFilter: ['class'], // Only watch for changes to the "class" attribute.
+              }
+
+              // Start observing the cart element.
+              cartObserver.observe(cartElement, observerOptions)
+            })
+        }
       }
     }, WAIT_INTERVAL_TIMEOUT)
   }
