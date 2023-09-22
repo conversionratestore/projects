@@ -1266,6 +1266,7 @@ const mainScreen = /*html*/ `
         }
         .crs_title img {
             width: 130px;
+            margin-right: 16px;
         }
         .crs_title h1 {
             font-size: 22px;
@@ -1283,8 +1284,10 @@ const mainScreen = /*html*/ `
     </div>
     <div class="crs_cta">
         <div class="crs_title">
-            <img src="${dir}sale.svg" alt="sale">
-            <h1>${german ? 'Schwarzer Freitag im September' : 'Black friday in september'}</h1>
+            <div class="d-md-block d-flex">
+                <img src="${dir}sale.svg" alt="sale">
+                <h1>${german ? 'Schwarzer Freitag im September' : 'Black friday in september'}</h1>
+            </div>
             <a href="/collections/shop-all-2">${german ? 'Jetzt einkaufen' : 'Shop now'}</a>
         </div>
         <div class="img">
