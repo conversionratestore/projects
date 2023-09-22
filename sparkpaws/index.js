@@ -456,18 +456,19 @@ let style = `
     .jackets {
         background: #F0F4F5;
     }
-    .jackets .container > div {
+    .jackets .container > div, .jackets .container > a {
         padding: 24px 24px 40px;
     }
-    .jackets .container > div:first-child {
+    .jackets .container > a {
         min-height: 88vw;
         width: 100%;
         background: no-repeat center / cover;
+        display: block;
     }
-    .jackets.cooling-vest .container > div:first-child {
-        background-image: url(/cdn/shop/files/7_eaa59b70-5ca3-484c-92b2-427143f07446_1000x.jpg);
+    .jackets.cooling-vest .container > a {
+        background-image: url(/cdn/shop/files/11_0ae50d61-eef8-4802-bc16-bb78055f4d51_1000x.jpg);
     }
-    .jackets.waterproof-jackets .container > div:first-child {
+    .jackets.waterproof-jackets .container > a {
         background-image: url(/cdn/shop/products/dogwinterjacketcoat_clothesforbigdogs_pitbulls_bulldogs_8_7c34700f-b395-4273-94ec-c6146fe1fd09_1200x.jpg?v=1667928798);
     }
     .jackets .absolute {
@@ -906,13 +907,13 @@ let style = `
         .main-exp .swiper {
             overflow: hidden;
         }
-        .jackets .container > div:first-child {
+        .jackets .container > a {
             min-height: 400px;
             padding: 0;
             width: 568px;
             flex-shrink: 0;
         }
-        .jackets .container > div:last-child {
+        .jackets .container > div {
             max-width: 510px;
             margin: 0 auto;
             padding: 24px;
@@ -921,7 +922,7 @@ let style = `
         .jackets {
             background: no-repeat left center / cover;       
         }
-        .jackets .container > div:first-child {
+        .jackets .container > a {
             background: none!important;
         }
         .cooling-vest {
@@ -1025,7 +1026,7 @@ let style = `
             padding: 24px 47px 24px 70px;
             min-width: 380px;
         }
-        .jackets .container > div:last-child {
+        .jackets .container > div {
             max-width: 620px;
         }
         .advantages {
@@ -1055,12 +1056,12 @@ let style = `
         .jackets {
             background-position: left 30% center;
         }
-        .jackets .container > div:first-child {
+        .jackets .container > a {
             width: 380px;
         }
     }
     @media screen and (min-width:992px) and (max-width: 1200px) {
-        .jackets .container > div:first-child {
+        .jackets .container > a {
             width: 500px;
         }
     }
@@ -1576,34 +1577,32 @@ let tophtml = /*html*/ `
     </div>
     <div class="cooling-vest jackets">
         <div class="container relative d-md-flex">
-            <div>
+            <a href="/collections/matching-human-and-dog-clothes">
                 <div class="absolute d-md-none">
                     <div class="tab c-green">${german ? 'Neue Ankunft ' : 'New Arrival'}</div>
-                    <div class="tab">ChillTech™</div>
                 </div>
-            </div>
+            </a>
             <div class="d-md-flex flex-column justify-center">
                 <div class="d-md-flex d-none">
                     <div class="tab c-green">${german ? 'Neue Ankunft ' : 'New Arrival'}</div>
-                    <div class="tab">ChillTech™</div>
                 </div>
-                <h3>ChillTech™ ${german ? 'Kühlwesten ' : 'Cooling Vests'}</h3>
+                <h3>${german ? 'ChillTech™ Kühlwesten ' : 'Matching Human and Dog Apparel'}</h3>
                 <p><b>${
                   german
                     ? 'Kühlwesten sind unverzichtbare Accessoires für Hunde, die sich im Sommer leicht überhitzen. '
-                    : 'Cooling vests are essential accessories for dogs that easily overheat in the summer.'
+                    : 'Step into the world of Sparkpaws, where fashion meets loyalty.'
                 } </b></p>
                 <p>${
                   german
                     ? 'Die Kühlweste reduziert die Körpertemperatur Ihres Hundes durch Verdunstung - alles, was Sie tun müssen, ist sie mit Wasser zu befeuchten, auszuwringen und Ihrem Hund anzulegen. Der Stoff ist speziell so konzipiert, dass er Wasser speichert und dadurch einen kühlenden Effekt erzeugt. Die Netzschichten ermöglichen die Luftzirkulation und reflektieren gleichzeitig Sonnenlicht, bieten zusätzlichen UV-Schutz und Schatten.'
-                    : 'The cooling vest reduces your dog’s body temperature by using evaporation - all you have to do is dampen it with water, wring it out, and put it on your pup. The fabric is specially designed to retain water, creating a cooling effect. The mesh layers allow air to circulate, while deflecting sunlight, offering extra UV protection and shading.'
+                    : "Our exclusive range of matching apparel for humans and dogs celebrates the unique bond you share with your furry companion. Explore a collection that captures the harmonious connection between two souls. Whether it's a casual outing or a special event, let your coordinated style become the talk of the town."
                 }</p>
                 <p>${
                   german
                     ? 'Legen Sie die angefeuchtete Weste für einen zusätzlichen Kühlungseffekt bis zu 3 Minuten in den Gefrierschrank.'
-                    : 'Put the dampen vest in the freezer for en extra cooling effect for up to 3 minutes.'
+                    : 'Enhance your ensemble and let every gaze be a testament to your shared journey.'
                 }</p>
-                <a href="/collections/dog-cooling-vest" class=" Button btn btn-white flex-center" onclick="pushDataLayer('exp_imp_hp_b_ct_vp', 'View product', 'Button', 'ChillTech');">
+                <a href="/collections/matching-human-and-dog-clothes" class=" Button btn btn-white flex-center" onclick="pushDataLayer('exp_imp_hp_b_ct_vp', 'View product', 'Button', 'ChillTech');">
                     <span>${german ? 'Produkte anzeigen' : 'View products'}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
                         <path d="M8.2418 13.7333L11.4751 10.5L8.2418 7.26665C7.9168 6.94165 7.9168 6.41665 8.2418 6.09165C8.5668 5.76665 9.0918 5.76665 9.4168 6.09165L13.2418 9.91665C13.5668 10.2417 13.5668 10.7667 13.2418 11.0917L9.4168 14.9166C9.0918 15.2416 8.5668 15.2416 8.2418 14.9166C7.92513 14.5916 7.9168 14.0583 8.2418 13.7333Z" fill="#344D79"/>
@@ -1712,12 +1711,12 @@ let tophtml = /*html*/ `
     </div>
     <div class="waterproof-jackets jackets">
         <div class="container relative d-md-flex">
-            <div>
+            <a href="/collections/warmshield-waterproof-jacket">
                 <div class="absolute d-md-none">
                     <div class="tab c-green">${german ? 'Neue Ankunft ' : 'New Arrival'}</div>
                     <div class="tab">WarmShield™</div>
                 </div>
-            </div>
+            </a>
             <div class="d-md-flex flex-column justify-center">
                 <div class="d-md-flex d-none">
                     <div class="tab c-green">${german ? 'Neue Ankunft ' : 'New Arrival'}</div>
