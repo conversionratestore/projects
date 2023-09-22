@@ -162,7 +162,6 @@ const trustReviews = [
 let style = `
 <style class="style-exp">
     #shopify-section-template--15879345635509__115aa41c-0742-4cbd-b2bd-b94c5596ddb7,
-    #shopify-section-template--15879345635509__e826ee7c-7bbd-44b5-9a6d-60fcf25e1570,
     #shopify-section-template--15879345635509__1650547685f0318980,
     #shopify-section-template--15879345635509__7164ea44-ce08-4d5c-8d10-61c0a6e6e334,
     #shopify-section-template--15879345635509__1d73e740-c6f3-4c4e-83a3-25019344a4de,
@@ -724,7 +723,8 @@ let style = `
         .fabric_content li:nth-child(3n+3) {
             margin-right: 0;
         }
-        .swiper-button {
+        .swiper-button,
+        #shopify-section-template--15879345635509__e826ee7c-7bbd-44b5-9a6d-60fcf25e1570 {
             display: none;
         }
         .tab {
@@ -1179,7 +1179,7 @@ let topCategoryHTML = `
 </ul>`
 
 const mainScreen = /*html*/ `
-<div class='crs_main_screen'>
+<div class='crs_main_screen d-md-none'>
 <style>
     .crs_stars {
         display: flex;
