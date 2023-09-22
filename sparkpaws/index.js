@@ -1146,7 +1146,7 @@ let addAdvantages = (classes) => `
 let topCategoryHTML = `
 <ul class="top_category d-md-none d-flex">
     <li>
-        <a href="/collections/shop-all-2">
+        <a href="/collections/4th-of-july-sale-1">
             <img src="${dir}category.png" alt="category">
             <span>${german ? 'Bestseller' : 'Best Sellers'}</span>
         </a>
@@ -1601,7 +1601,7 @@ let tophtml = /*html*/ `
         <div class="swiper">
             <div class="swiper-wrapper"></div>
         </div>
-        <a href="/collections/shop-all-2" class="ProductCollectionListItem__Link Button btn" onclick="pushDataLayer('exp_imp_hp_b_bs_sa', 'Shop all', 'Button', 'Best Sellers');">${
+        <a href="/collections/4th-of-july-sale-1" class="ProductCollectionListItem__Link Button btn" onclick="pushDataLayer('exp_imp_hp_b_bs_sa', 'Shop all', 'Button', 'Best Sellers');">${
           german ? 'Alle anzeigen' : 'Shop All'
         }</a>
     </div>
@@ -1704,7 +1704,7 @@ let tophtml = /*html*/ `
         <div class="swiper">
             <div class="swiper-wrapper"></div>
         </div>
-        <a href="/collections/4th-of-july-sale-1" class="ProductCollectionListItem__Link Button btn" onclick="pushDataLayer('exp_imp_hp_b_gd_sa', 'Shop all', 'Button', 'Great deals');">${
+        <a href="/collections/shop-all-2" class="ProductCollectionListItem__Link Button btn" onclick="pushDataLayer('exp_imp_hp_b_gd_sa', 'Shop all', 'Button', 'Great deals');">${
           german ? 'Alle anzeigen' : 'Shop All'
         }</a>
     </div>
@@ -1939,7 +1939,7 @@ let mut = new MutationObserver(function (muts) {
         item.parentElement.classList.remove('is-active')
 
         if (index == 0) {
-          item.href = '/collections/shop-all-2'
+          item.href = '/collections/4th-of-july-sale-1'
           item.innerHTML = `${german ? 'Bestseller' : 'Best Sellers'}<span class="Header__LinkSpacer">${
             german ? 'Bestseller' : 'Best Sellers'
           }</span>`
