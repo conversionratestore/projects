@@ -2797,6 +2797,7 @@ margin-bottom: 25px;
 
           </style>
           `)
+          
           document.head.insertAdjacentHTML('beforeend', cartCSS)
 
           waitForElement('.cart-drawer')
