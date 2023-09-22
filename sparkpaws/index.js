@@ -550,6 +550,9 @@ let style = `
     .loox-review .btn {
         padding: 13px 8px;
     }
+    .loox-review > p > span {
+        font-size: ${german ? '10': '13'}px;
+    }
     .loox-review > p > svg {
         margin-right: 8px;
     }
@@ -1186,12 +1189,15 @@ const mainScreen = /*html*/ `
         justify-content: center;
         align-items: center;
         padding: 12px;
-        font-size: 13px;
+        font-size: ${german ? '11' : '13'}px;
         color: #5C5C5C;
         line-height: 1.6;
         column-gap: 12px;
         border-bottom: 1px solid #E7E7E7;
         border-top: 1px solid #E7E7E7;
+    }
+    ${
+        german ? ' .crs_stars img {max-width: 80px;}' : ''
     }
     .crs_cta {
         display: flex;
@@ -1203,7 +1209,6 @@ const mainScreen = /*html*/ `
         flex-direction: column;
         justify-content: center;
         padding: 74px 40px 74px 70px;
-        background: #F0F4F5;
     }
     .crs_cta .img {
         width: 74%;
@@ -1245,6 +1250,14 @@ const mainScreen = /*html*/ `
         }
         .crs_cta .img img.mob {
             display: block;
+            height: ${german ? '93.46667':'95.46667'}vw;
+            object-position: center -8.26667vw;
+            object-fit: cover;
+        }
+        .crs_cta img.crs_img_content {
+            height: 44.33vw;
+            object-fit: cover;
+            object-position: center -104vw;
         }
         .crs_cta {
             flex-direction: column;
@@ -1259,7 +1272,7 @@ const mainScreen = /*html*/ `
             justify-content: flex-start;
             flex-direction: row;
             column-gap: 16px;
-            padding: 24px;
+            padding: 24px 24px 5px;
         }
         .crs_title a {
             order: -1;
@@ -1284,15 +1297,12 @@ const mainScreen = /*html*/ `
     </div>
     <div class="crs_cta">
         <div class="crs_title">
-            <div class="d-md-block d-flex">
-                <img src="${dir}sale.svg" alt="sale">
-                <h1>${german ? 'Schwarzer Freitag im September' : 'Black friday in september'}</h1>
-            </div>
             <a href="/collections/shop-all-2">${german ? 'Jetzt einkaufen' : 'Shop now'}</a>
         </div>
+        <img src="${german ? '//www.sparkpaws.de/cdn/shop/files/DE_-_SW_SALE_Mobile_691aea0b-9337-4bb6-8a02-91c20ac792ec_x800.png' : '//www.sparkpaws.com/cdn/shop/files/EN_-_Sweater_weather_sale_mobile_6106a016-daa3-43fc-860f-e0996004cf92_x800.png'}" alt="image" class="crs_img_content">  
         <div class="img">
             <img src="${dir}main_screen.jpg" alt="main_screen">
-            <img src="${dir}main_screen_mob.jpg" alt="main_screen_mob" class="mob">
+            <img src="${german ? '//www.sparkpaws.de/cdn/shop/files/DE_-_SW_SALE_Mobile_691aea0b-9337-4bb6-8a02-91c20ac792ec_x800.png': '//www.sparkpaws.com/cdn/shop/files/EN_-_Sweater_weather_sale_mobile_6106a016-daa3-43fc-860f-e0996004cf92_x800.png'}" alt="image" class="mob">  
         </div>
     </div>
 </div>
