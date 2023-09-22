@@ -736,6 +736,7 @@ padding: 7px 18px;
   cursor: pointer;
 
   height: 100%;
+  min-width: 136px;
 }
 .sticky-btn-pack__current {
   display: flex;
@@ -787,7 +788,7 @@ text-transform: uppercase;
 .sticky-btn-pack__options p {
   width: 100%;
   margin: 0;
-  padding: 12px 15px;
+  padding: 8px 15px;
   text-align: left;
 }
 
@@ -2800,88 +2801,6 @@ margin-bottom: 25px;
               // Start observing the cart element.
               cartObserver.observe(cartElement, observerOptions)
             })
-        }
-
-        if (false) {
-          // block with discount "Spend $ and get a % discount" (13)
-          const waitForCart = setInterval(() => {
-            const cartDrawer = document.querySelector('.cart-drawer')
-            //const productPriceBlock = document.querySelector('.product__block.product__price-and-badge')
-            //const qtyBlock = document.querySelector('.qty_block')
-
-            if (cartDrawer) {
-              clearInterval(waitForCart)
-
-              // Function to check if the element has the "is-open" class
-              const checkIsOpen = (targetElement, priceContainer) => {
-                if (targetElement.classList.contains('is-open')) {
-                  discountChange = true
-                }
-
-                if (!targetElement.classList.contains('is-open') && discountChange == true) {
-                  discountChange = false
-
-                  getCart().then(data => {
-                    let req = /(\d{1,})(\d{2})$/
-                    let total = +(data['total_price'].toString().replace(req, "$1.$2"))
-
-                    let discount = ``
-                    if (total >= 0 && total <= 99.00) {
-                      discount = `<p>Spend <b>$99</b> and get a <b>10% discount</b></p>`
-                    } else if (total > 99.00 && total <= 149.00) {
-                      discount = `<p>Spend <b>$149</b> and get a <b>15% discount</b></p>`
-                    } else if (total > 149.00) {
-                      discount = `<p>Spend <b>$199</b> and get a <b>20% discount</b></p>`
-                    }
-
-                    if (document.querySelector('.discount')) {
-                      document.querySelector('.discount').remove()
-                    }
-
-                    let discountHTML = `
-                    <div class="discount d-flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="29" viewBox="0 0 28 29" fill="none">
-                            <circle cx="14" cy="14.25" r="14" fill="#E8F8FE"/>
-                            <path d="M8.53864 8H13.3148C13.8598 8 14.3726 8.22387 14.7573 8.60765L20.399 14.2364C21.2003 15.036 21.2003 16.3472 20.399 17.1468L16.1357 21.4003C15.3343 22.1999 14.02 22.1999 13.2187 21.4003L7.57699 15.7716C7.19233 15.3878 7 14.8761 7 14.3324V9.53512C7 8.7036 7.67315 8 8.53864 8ZM10.5902 12.6054C11.1351 12.6054 11.6159 12.1576 11.6159 11.582C11.6159 11.0383 11.1351 10.5585 10.5902 10.5585C10.0132 10.5585 9.5644 11.0383 9.5644 11.582C9.5644 12.1576 10.0132 12.6054 10.5902 12.6054Z" fill="#023F88"/>
-                        </svg>  
-                        ${discount}
-                    </div>`
-
-                    if (media) {
-                      priceContainer.insertAdjacentHTML('afterend', discountHTML)
-                    } else {
-                      qtyBlock.insertAdjacentHTML('beforebegin', discountHTML)
-                      // waitForElement('.qty_block').then(el => el.insertAdjacentHTML('beforebegin', discountHTML))
-                      // document.querySelector('.qty_block').insertAdjacentHTML('beforebegin', discountHTML)
-                    }
-                  })
-                }
-              }
-
-              const config = { attributes: true, attributeFilter: ['class'] }
-              const callback = (mutationsList) => {
-                for (const mutation of mutationsList) {
-                  if (mutation.type === 'attributes') {
-                    // Check if the "is-open" class has been added or removed
-                    if (mutation.attributeName === 'class') {
-
-                      checkIsOpen(cartDrawer, productPriceBlock)
-
-
-
-                      renderCartHtml()
-                    }
-                  }
-                }
-              }
-              const observer = new MutationObserver(callback)
-              observer.observe(cartDrawer, config)
-
-              // Initial check
-              checkIsOpen(cartDrawer, productPriceBlock)
-
-            }
-          }, WAIT_INTERVAL_TIMEOUT)
         }
       }
     }, WAIT_INTERVAL_TIMEOUT)
