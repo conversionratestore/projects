@@ -1697,8 +1697,14 @@ margin-bottom: 25px;
     document.body.addEventListener('click', (e) => {
       const target = e.target
 
-      if (target.matches('.sticky-btn-pack__options > p')) {
-        const selectedPack = target
+      if (target.matches('.sticky-btn-pack__options > p') || target.closest('.sticky-btn-pack__options > p')) {
+        let selectedPack
+
+        if (target.matches('.sticky-btn-pack__options > p')) {
+          selectedPack = target
+        } else {
+          selectedPack = target.closest('.sticky-btn-pack__options > p')
+        }
 
         if (!selectedPack.classList.contains('sticky-btn-pack__option--active')) {
           document.querySelector('.sticky-btn-pack__current span').innerText = selectedPack.innerText
