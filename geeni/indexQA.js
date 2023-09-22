@@ -1775,7 +1775,7 @@ margin-bottom: 25px;
   }
 
   // Function to calculate the total price based on the items in the cart.
-  function calculateTotalPrice(items) {
+  function calculateTotalPriceItems(items) {
     let total = 0
     items.forEach((item) => {
       const price = +(item['price'].toString().replace(req, "$1.$2"))
@@ -1817,7 +1817,7 @@ margin-bottom: 25px;
               const items = data.items
               let total = +(data['total_price'].toString().replace(req, "$1.$2"))
 
-              total = calculateTotalPrice(items)
+              total = calculateTotalPriceItems(items)
 
               // Check if the subtotal block does not exist and insert it.
               if (document.querySelector(".cart-drawer__items") && !document.querySelector(".subtotal-wrapper")) {
