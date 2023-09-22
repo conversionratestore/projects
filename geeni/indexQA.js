@@ -771,7 +771,6 @@ padding: 7px 18px;
 .sticky-btn-pack__options .not-available {
   display: block;
   color: var(--font-body, #5B5B5B);
-text-align: center;
 font-family: Avenir Next;
 font-size: 12px;
 font-style: normal;
