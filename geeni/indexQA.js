@@ -16,7 +16,7 @@
   const req = /(\d{1,})(\d{2})$/ // Regular expression to extract a number with a dollar sign ($) and optional '+' sign 
 
   /* CSS & HTML */
-  const styleBase = `
+  const styleBase = /*html*/`
 <style>
 .msg {
   display: none;
@@ -38,10 +38,11 @@ line-height: 22px; /* 157.143% */
   color: var(--Main-Blue, #023F88);
   font-weight: 600;
 }
-@media screen and (max-width: 375px) {
-      .msg {
-  gap: 3px;
-    }}
+@media screen and (max-width: 376px) {
+  .msg {
+    gap: 3px;
+      }
+  }
 
     .line-vertical {
         width: 1px;
@@ -1731,16 +1732,12 @@ margin-bottom: 25px;
       if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
         const targetElement = mutation.target
         if (targetElement.classList.contains('is-open') && !targetElement.classList.contains('is-loading')) {
-          console.log(targetElement)
-
           getCart().then(data => {
             if (data.items.length > 0) {
               const items = data.items
               let total = +(data['total_price'].toString().replace(req, "$1.$2"))
 
               total = calculateTotalPrice(items)
-
-              console.log("Total Price:", total)
 
               // Check if the subtotal block does not exist and insert it.
               if (document.querySelector(".cart-drawer__items") && !document.querySelector(".subtotal-wrapper")) {
@@ -1753,7 +1750,6 @@ margin-bottom: 25px;
 
               spendDiscount(total)
               addShippingBlock()
-
             } else if (document.querySelector('.cart-drawer .discount') && document.querySelector('.subtotal_block')) {
               document.querySelector('.cart-drawer .discount').remove()
               document.querySelector('.cart-drawer .subtotal_block').remove()
@@ -2257,6 +2253,95 @@ margin-bottom: 25px;
               }
             })
           })
+
+          waitForElement('.featured-collection__container').then(el => {
+            el.addEventListener('click', (e) => {
+              const target = e.target
+              console.log(target)
+
+              if (target.closest('.product-grid-item__image')) {
+                pushDataLayer(['exp_imp_pdp_i_ymal_pi', 'Product image', 'Image', 'You may also like'])
+              }
+              else if (target.closest('.btn__loader')) {
+                pushDataLayer(['exp_imp_pdp_i_ymal_b', 'Basket', 'Icon', 'You may also like'])
+              }
+            })
+          })
+
+          // Function to handle style changes
+          function handleStyleChange(mutationsList, observer, arr) {
+            for (let mutation of mutationsList) {
+              if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                // Style attribute has changed
+                const sliderStyle = mutation.target.getAttribute('style')
+                pushDataLayer(arr)
+
+                // Disconnect the observer after logging the style change
+                observer.disconnect()
+              }
+            }
+          }
+
+          waitForElement('.featured-collection__container .carousel').then(el => {
+            let scrolled = false
+
+            el.addEventListener("scroll", function () {
+              if (!scrolled) {
+                pushDataLayer(['exp_imp_pdp_s_ymal_h', 'Horisontal', 'Scrool', 'You may also like']); scrolled = true // Set scrolled to true to prevent further logging
+              }
+            })
+
+
+          })
+
+          waitForElement('.featured-collection__container .carousel .flickity-slider').then(el => {
+            const observer = new MutationObserver((mutationsList, observer) => {
+              handleStyleChange(mutationsList, observer, ['exp_imp_pdp_s_ymal_h', 'Horisontal', 'Scrool', 'You may also like'])
+            })
+
+            // Start observing changes to the style attribute of the slider
+            observer.observe(el, { attributes: true })
+          })
+
+          waitForElement('.related-products').then(el => {
+            el.addEventListener('click', (e) => {
+              const target = e.target
+              console.log(target)
+
+              if (target.closest('.product-grid-item__image')) {
+                pushDataLayer(['exp_imp_pdp_i_rv_pi', 'Product image', 'Image', 'Recently viewed'])
+              }
+              else if (target.closest('.btn__loader')) {
+                pushDataLayer(['exp_imp_pdp_i_rv_b', 'Basket', 'Icon', 'Recently viewed'])
+              }
+            })
+          })
+
+
+
+          waitForElement('.related-products .carousel').then(el => {
+            let scrolled = false
+
+            el.addEventListener("scroll", function () {
+              if (!scrolled) {
+                pushDataLayer(['exp_imp_pdp_s_rv_h', 'Horisontal', 'Scrool', 'Recently viewed'])
+                scrolled = true // Set scrolled to true to prevent further logging
+              }
+            })
+
+
+          })
+
+          waitForElement('.related-products .carousel .flickity-slider').then(el => {
+            const observer = new MutationObserver((mutationsList, observer) => {
+              handleStyleChange(mutationsList, observer, ['exp_imp_pdp_s_rv_h', 'Horisontal', 'Scrool', 'Recently viewed'])
+            })
+
+            // Start observing changes to the style attribute of the slider
+            observer.observe(el, { attributes: true })
+          })
+
+
         } else if (location.pathname.includes("checkouts")) {
           waitForElement('[aria-label="Breadcrumb"]').then(() => {
             let styleNew = /*html */ `
@@ -2500,7 +2585,7 @@ margin-bottom: 25px;
                 }
             }
 
-            @media (max-width: 375px) { 
+            @media (max-width: 376px) { 
               .msg > div {
                 gap: 3px;
               }
