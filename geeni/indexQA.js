@@ -1909,13 +1909,15 @@ margin-bottom: 25px;
         if (location.href.includes('/products/')) {
           document.body.insertAdjacentHTML('afterbegin', stylePDP)
 
-          waitForElement('[data-add-to-cart-text]').then(el => {
-            if (el.innerText.toLowerCase().includes('sold out')) {
-              el.innerText = 'Sold Out'
+          const waitForCartTxt = setInterval(() => {
+            if (document.querySelector('[data-add-to-cart-text]')?.innerText?.length > 0) {
+              clearInterval(waitForCartTxt)
 
-              document.querySelector('.product__form').classList.add('hide-shoppay')
+              if (document.querySelector('[data-add-to-cart-text]').innerText.toLowerCase().includes('sold out')) {
+                document.querySelector('[data-add-to-cart-text]').innerText = 'Sold Out'
+              }
             }
-          })
+          }, WAIT_INTERVAL_TIMEOUT)
 
           //(2-5)
           const waitForSlider = setInterval(() => {
