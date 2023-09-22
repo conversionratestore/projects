@@ -164,8 +164,29 @@ line-height: 22px; /* 157.143% */
     .pack_size ul {
         margin: 0;
     }
-    .pack_size ul li.sold-out{
-      background: #ddd;
+    .pack_size ul li .sold-out{
+      display: none;
+      padding: 7px 18px;
+      border-radius: 6px;
+border: 1px solid var(--Border, #D9D9D9);
+background: var(--bg-light-grey, #F7F7F7);
+margin-inline: auto;
+
+    }
+    .pack_size ul li .sold-out p {
+      color: var(--font-body, #5B5B5B);
+text-align: center;
+font-family: Avenir Next;
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+line-height: 22px; /* 183.333% */
+letter-spacing: 0.8px;
+text-transform: uppercase;
+margin: inline;
+    }
+    .pack_size ul li .sold-out.sold-out--show{
+      display: block;
     }
     .pack_size > p {
         font-weight: 700;
@@ -678,6 +699,21 @@ text-decoration: underline;
   margin-right: 12px;
 }
 
+.sticky-btn-info__sold-out {
+  border-radius: 6px;
+background: var(--bg-light-grey, #F7F7F7);
+color: var(--font-body, #5B5B5B);
+text-align: center;
+font-family: Avenir Next;
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+line-height: 22px; /* 183.333% */
+letter-spacing: 0.8px;
+text-transform: uppercase;
+padding: 7px 18px;
+}
+
 .sticky-btn-pack {
   display: flex;
   align-items: center;
@@ -732,6 +768,19 @@ text-decoration: underline;
   transform-origin: bottom;
 }
 
+.sticky-btn-pack__options .not-available {
+  display: block;
+  color: var(--font-body, #5B5B5B);
+text-align: center;
+font-family: Avenir Next;
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+line-height: 22px; /* 183.333% */
+letter-spacing: 0.8px;
+text-transform: uppercase;
+}
+
 .sticky-btn-pack__options.sticky-btn-pack__options--visible {
   transform: scaleY(1);
 }
@@ -761,7 +810,7 @@ text-decoration: underline;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  width: 31%;
+  width: 33.5%;
   background: #023F88;
   color: #FFF;
   text-align: center;
@@ -779,9 +828,21 @@ text-decoration: underline;
 }
 
 .add-to-cart.add-to-cart--sold {
-  background-color: #ddd;
+  background: #DEDEDE;
+  color: var(--font-grey, #888);
+text-align: center;
+font-family: Avenir Next;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: 22px; /* 137.5% */
+letter-spacing: 0.8px;
+text-transform: uppercase;
+}
 
-    color: var(--text-alpha-50);
+.add-to-cart.add-to-cart--sold .sticky-btn-wrapper__dot,
+.add-to-cart.add-to-cart--sold .sticky-btn-wrapper__price {
+  display: none;
 }
 
 .sticky-btn-wrapper__dot {
@@ -804,10 +865,32 @@ text-decoration: underline;
 .product__form.hide-shoppay .product__submit__item .payments-exp {
   display: none !important;
 }
-
+.variant--soldout .product__submit__add {
+  background: #DEDEDE;
+}
+.variant--soldout .product__submit__add span {
+  color: var(--font-grey, #888);
+text-align: center;
+font-family: Avenir Next;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: 22px; /* 137.5% */
+letter-spacing: 0.8px;
+text-transform: uppercase;
+}
 /*.product__submit__item [name="add"] {display: none;} */
 
     @media screen and (max-width: 1023px) {
+      .pack_size li.selected {
+        padding: 2px 16px 2px 2px;
+      }
+      .pack_size ul li .sold-out.sold-out--show {
+        margin-inline: auto 0;
+      }
+      .sold-out--show + .prices {
+        display: none;
+      }
       .product__price-and-badge .product__price p.pr:before {
         margin: 0 6px 0 -2px;
       }
@@ -866,6 +949,8 @@ text-decoration: underline;
       .product-single__media-slider * {
         border-radius: 0 !important;
       }
+
+    
 
         #shopify-section-template--16711182876924__icons {
             margin-top: 60px;
@@ -1232,6 +1317,7 @@ margin-bottom: 25px;
             data-pack-compare="${pack.dataset.compare}"
           >
             ${packName?.innerText} 
+            ${document.querySelectorAll('.pack_size li')[index].querySelector('.sold-out--show') ? '<span class="not-available">not available</span>' : ''}
           </p>
           `
       }).join('')
@@ -1266,21 +1352,6 @@ margin-bottom: 25px;
       packCompare = activePack.dataset.compare != '$0.00' && activePack.dataset.compare != '$0' ? activePack.dataset.compare : ''
     }
 
-
-    // if (media && packs) {
-    //   btn = /*html*/`
-    //  <button class="add-to-cart" data-btn-link="true">Choose a Product</button>`
-    // } else {
-    //   const clientCTABtn = document.querySelector('[data-add-to-cart-text]')?.innerText.toLowerCase().includes('sold out') ? 'add-to-cart--sold' : ''
-
-    //   btn = /*html*/`
-    //   <button class="add-to-cart ${clientCTABtn}">
-    //     ${clientCTABtn ? 'Sold out' : 'Add to cart'}
-    //     <span class="sticky-btn-wrapper__dot"></span>
-    //     <span class="sticky-btn-wrapper__price">${packPrice}</span>
-    //   </button>`
-    // }
-
     const clientCTABtn = document.querySelector('[data-add-to-cart-text]')?.innerText.toLowerCase().includes('sold out') ? 'add-to-cart--sold' : ''
 
     btn = /*html*/`
@@ -1295,6 +1366,7 @@ margin-bottom: 25px;
     <div class="sticky-btn-inner d-flex">
       <div class="sticky-btn-info">
         <p class="sticky-btn-info__product-name">${productName}</p>
+        ${clientCTABtn ? `<p class="sticky-btn-info__sold-out">not available</p>` : ''}
         <div class="sticky-btn-info__price-wrapper d-flex">
           <div class="sticky-btn-info__price-block">
             <p class="sticky-btn-info__price">${packPrice}</p>
@@ -1580,7 +1652,7 @@ margin-bottom: 25px;
       }
 
       document.querySelector('.pack_size ul').insertAdjacentHTML('beforeend', `
-                  <li class="d-flex items-center ${item.querySelector('.alternative-options__item--active') ? 'selected' : ''} ${item.classList.contains('alternative-options__sold-out') ? "sold-out" : ""}" data-id="${item.dataset.id}">
+                  <li class="d-flex items-center ${item.querySelector('.alternative-options__item--active') ? 'selected' : ''}" data-id="${item.dataset.id}">
                       <div class="relative">   
                           <div class="count">x${index + 1}</div>
                           <img src="${item.querySelector('img').src}" alt="${item.querySelector('img').alt}">
@@ -1589,6 +1661,7 @@ margin-bottom: 25px;
                           <p class="name">${item.querySelector('.alternative-options__item-label').innerHTML}</p>
                           <p class="title"></p>
                       </div>
+                      <div class="sold-out ${item.classList.contains('alternative-options__sold-out') ? "sold-out--show" : ""}"><p>not available</p></div>
                       <div class="prices d-flex">
                           <p class="compare">${item.dataset.compare != '$0.00' && item.dataset.compare != '$0' ? item.dataset.compare : ''}</p>
                           <p class="pr">${item.dataset.price}</p>
