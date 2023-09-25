@@ -220,6 +220,7 @@ margin: inline;
         padding: 2px 15px 2px 2px;
     }
     .pack_size li .count {
+        display: none;
         position: absolute;
         top: 3px;
         right: 4px;
@@ -1830,6 +1831,7 @@ margin-bottom: 25px;
 
               spendDiscount(total)
               addShippingBlock()
+
             } else if (document.querySelector('.cart-drawer .discount') && document.querySelector('.subtotal_block')) {
               document.querySelector('.cart-drawer .discount').remove()
               document.querySelector('.cart-drawer .subtotal_block').remove()
@@ -2108,7 +2110,7 @@ margin-bottom: 25px;
                         <span>Return & Refund Policy</span>
                     </p>
                     <p>${returnOrder} free return and refund policy on all your orders</p>
-                    <a href="https://mygeeni.com/pages/shipping-return-policy">Learn more</a>
+                    <a href="https://mygeeni.com/pages/shipping-return-policy" target="_blank">Learn more</a>
                 </div>
                 <div class="warranty flex-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
