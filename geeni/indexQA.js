@@ -1145,8 +1145,20 @@ margin-bottom: 25px;
         letter-spacing: 0.8px;
     }
     /*subtotal_block */
+    .subtotal-wrapper {
+      margin-inline: 20px;
+      padding-bottom: 35px;
+    }
     .subtotal_block{
-        padding: 0 20px 35px;
+        padding: 0 !important;
+    }
+    .subtotal-wrapper {
+      padding-top: 19px;
+      border-top: 1px solid #D9D9D9;
+    }
+    .discount + .subtotal-wrapper {
+      border: 0;
+      padding-top: 0;
     }
     .get_discount_inform_wrapp{
         display: flex;
@@ -1463,8 +1475,6 @@ margin-bottom: 25px;
 
     window.dataLayer = window.dataLayer || []
     dataLayer.push(eventData)
-
-    console.log(eventData)
   }
 
   function extractNumberWithDollarSignAndPlus(string) {
@@ -1736,16 +1746,17 @@ margin-bottom: 25px;
   }
 
   function spendDiscount(total) {
-    let discount = ``
-    if (total >= 0 && total <= 99.00) {
-      discount = `<p>Spend <b>$99</b> and get a <b>10% discount</b></p>`
-    } else if (total > 99.00 && total <= 149.00) {
-      discount = `<p>Spend <b>$149</b> and get a <b>15% discount</b></p>`
-    } else if (total > 149.00) {
-      discount = `<p>Spend <b>$199</b> and get a <b>20% discount</b></p>`
-    }
+    if (!localStorage.getItem('usedDiscount')) {
+      let discount = ``
+      if (total >= 0 && total <= 99.00) {
+        discount = `<p>Spend <b>$99</b> and get a <b>10% discount</b></p>`
+      } else if (total > 99.00 && total <= 149.00) {
+        discount = `<p>Spend <b>$149</b> and get a <b>15% discount</b></p>`
+      } else if (total > 149.00) {
+        discount = `<p>Spend <b>$199</b> and get a <b>20% discount</b></p>`
+      }
 
-    let discountHTML = `
+      let discountHTML = `
     <div class="discount d-flex items-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="29" viewBox="0 0 28 29" fill="none">
             <circle cx="14" cy="14.25" r="14" fill="#E8F8FE"/>
@@ -1756,14 +1767,15 @@ margin-bottom: 25px;
         </div>  
     </div>`
 
-    if (!document.querySelector('.cart-drawer .discount')) {
-      waitForElement('.cart-drawer__items').then(el => el.insertAdjacentHTML('afterend', discountHTML))
-    } else {
-      document.querySelector('.cart-drawer .discount div').innerHTML = discount
-    }
+      if (!document.querySelector('.cart-drawer .discount')) {
+        waitForElement('.cart-drawer__items').then(el => el.insertAdjacentHTML('afterend', discountHTML))
+      } else {
+        document.querySelector('.cart-drawer .discount div').innerHTML = discount
+      }
 
-    if (document.querySelector('.main-content .discount')) {
-      document.querySelector('.main-content .discount div').innerHTML = discount
+      if (document.querySelector('.main-content .discount')) {
+        document.querySelector('.main-content .discount div').innerHTML = discount
+      }
     }
   }
 
@@ -1836,7 +1848,6 @@ margin-bottom: 25px;
               document.querySelector('.cart-drawer .discount').remove()
               document.querySelector('.cart-drawer .subtotal_block').remove()
             }
-
           })
 
           redesignCartMsg()
@@ -2212,16 +2223,17 @@ margin-bottom: 25px;
             let req = /(\d{1,})(\d{2})$/
             let total = +(data['total_price'].toString().replace(req, "$1.$2"))
 
-            let discount = ``
-            if (total >= 0 && total <= 99.00) {
-              discount = `<p>Spend <b>$99</b> and get a <b>10% discount</b></p>`
-            } else if (total > 99.00 && total <= 149.00) {
-              discount = `<p>Spend <b>$149</b> and get a <b>15% discount</b></p>`
-            } else if (total > 149.00) {
-              discount = `<p>Spend <b>$199</b> and get a <b>20% discount</b></p>`
-            }
+            if (!localStorage.getItem('usedDiscount')) {
+              let discount = ``
+              if (total >= 0 && total <= 99.00) {
+                discount = `<p>Spend <b>$99</b> and get a <b>10% discount</b></p>`
+              } else if (total > 99.00 && total <= 149.00) {
+                discount = `<p>Spend <b>$149</b> and get a <b>15% discount</b></p>`
+              } else if (total > 149.00) {
+                discount = `<p>Spend <b>$199</b> and get a <b>20% discount</b></p>`
+              }
 
-            let discountHTML = `
+              let discountHTML = `
                 <div class="discount d-flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="29" viewBox="0 0 28 29" fill="none">
                         <circle cx="14" cy="14.25" r="14" fill="#E8F8FE"/>
@@ -2233,14 +2245,15 @@ margin-bottom: 25px;
                   
                 </div>`
 
-            if (!document.querySelector('.main-content .discount')) {
-              if (media) {
-                waitForElement('.product__block.product__price-and-badge').then(el => el.insertAdjacentHTML('afterend', discountHTML))
+              if (!document.querySelector('.main-content .discount')) {
+                if (media) {
+                  waitForElement('.product__block.product__price-and-badge').then(el => el.insertAdjacentHTML('afterend', discountHTML))
+                } else {
+                  waitForElement('.qty_block').then(el => el.insertAdjacentHTML('beforebegin', discountHTML))
+                }
               } else {
-                waitForElement('.qty_block').then(el => el.insertAdjacentHTML('beforebegin', discountHTML))
+                document.querySelector('.main-content .discount div').innerHTML = discount
               }
-            } else {
-              document.querySelector('.main-content .discount div').innerHTML = discount
             }
           })
 
@@ -2356,6 +2369,12 @@ margin-bottom: 25px;
               if (e.target.closest(`[role="button"]`) || e.target.matches(`[role="button"]`)) {
                 pushDataLayer(['exp_imp_pdp_b_c_sp', 'Shop pay', 'Button', 'Cart'])
               }
+            })
+          })
+
+          waitForElement('.cart__checkout').then(el => {
+            el.addEventListener('focus', () => {
+              localStorage.setItem('usedDiscount', true)
             })
           })
 
