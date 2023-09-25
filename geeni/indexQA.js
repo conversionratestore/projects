@@ -1851,6 +1851,10 @@ margin-bottom: 25px;
 
             if (data.items.length < 1 && localStorage.getItem('checkoutVisited')) {
               localStorage.setItem('hideMsg', 'true')
+
+              if (document.querySelector('.main-content .discount')) {
+                document.querySelector('.main-content .discount').remove()
+              }
             }
           })
 
