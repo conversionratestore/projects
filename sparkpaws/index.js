@@ -1146,7 +1146,7 @@ let addAdvantages = (classes) => `
 let topCategoryHTML = `
 <ul class="top_category d-md-none d-flex">
     <li>
-        <a href="/collections/4th-of-july-sale-1">
+        <a href="${german ? '/collections/4th-of-july-sale-1' : '/collections/shop-all-2'}">
             <img src="${dir}category.png" alt="category">
             <span>${german ? 'Bestseller' : 'Best Sellers'}</span>
         </a>
@@ -1939,7 +1939,7 @@ let mut = new MutationObserver(function (muts) {
         item.parentElement.classList.remove('is-active')
 
         if (index == 0) {
-          item.href = '/collections/4th-of-july-sale-1'
+          item.href = german ? '/collections/4th-of-july-sale-1' : '/collections/shop-all-2'
           item.innerHTML = `${german ? 'Bestseller' : 'Best Sellers'}<span class="Header__LinkSpacer">${
             german ? 'Bestseller' : 'Best Sellers'
           }</span>`
