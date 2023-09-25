@@ -2162,7 +2162,7 @@ let klaviyoStep = 1;
       .querySelector(".label")
       .innerHTML.replace(
         "Shipping and Production",
-        "Shipping, returns and exechnges"
+        "Shipping, returns and exchanges"
       );
 
     el.querySelector(".collapsible-content__inner").classList.remove("rte");
