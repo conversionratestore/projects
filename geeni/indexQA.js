@@ -1746,7 +1746,7 @@ margin-bottom: 25px;
   }
 
   function spendDiscount(total) {
-    if (!localStorage.getItem('usedDiscount')) {
+    if (!localStorage.getItem('hideMsg')) {
       let discount = ``
       if (total >= 0 && total <= 99.00) {
         discount = `<p>Spend <b>$99</b> and get a <b>10% discount</b></p>`
@@ -1847,6 +1847,10 @@ margin-bottom: 25px;
             } else if (document.querySelector('.cart-drawer .discount') && document.querySelector('.subtotal_block')) {
               document.querySelector('.cart-drawer .discount').remove()
               document.querySelector('.cart-drawer .subtotal_block').remove()
+            }
+
+            if (data.items.length < 1 && localStorage.getItem('checkoutVisited')) {
+              localStorage.setItem('hideMsg', 'true')
             }
           })
 
@@ -2223,7 +2227,7 @@ margin-bottom: 25px;
             let req = /(\d{1,})(\d{2})$/
             let total = +(data['total_price'].toString().replace(req, "$1.$2"))
 
-            if (!localStorage.getItem('usedDiscount')) {
+            if (!localStorage.getItem('hideMsg')) {
               let discount = ``
               if (total >= 0 && total <= 99.00) {
                 discount = `<p>Spend <b>$99</b> and get a <b>10% discount</b></p>`
@@ -2374,7 +2378,7 @@ margin-bottom: 25px;
 
           waitForElement('.cart__checkout').then(el => {
             el.addEventListener('focus', () => {
-              localStorage.setItem('usedDiscount', true)
+              localStorage.setItem('checkoutVisited', 'true')
             })
           })
 
