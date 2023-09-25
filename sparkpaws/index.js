@@ -1601,7 +1601,7 @@ let tophtml = /*html*/ `
         <div class="swiper">
             <div class="swiper-wrapper"></div>
         </div>
-        <a href="/collections/4th-of-july-sale-1" class="ProductCollectionListItem__Link Button btn" onclick="pushDataLayer('exp_imp_hp_b_bs_sa', 'Shop all', 'Button', 'Best Sellers');">${
+        <a href=" ${german ? '/collections/4th-of-july-sale-1' : '/collections/shop-all-2'}" class="ProductCollectionListItem__Link Button btn" onclick="pushDataLayer('exp_imp_hp_b_bs_sa', 'Shop all', 'Button', 'Best Sellers');">${
           german ? 'Alle anzeigen' : 'Shop All'
         }</a>
     </div>
@@ -1646,7 +1646,7 @@ let tophtml = /*html*/ `
         <div class="swiper">
             <div class="swiper-wrapper"></div>
         </div>
-        <a href="/collections/shop-all-2" class="ProductCollectionListItem__Link Button btn" onclick="pushDataLayer('exp_imp_hp_b_gd_sa', 'Shop all', 'Button', 'Great deals');">${
+        <a href="${german ? '/collections/shop-all-2' : '/collections/4th-of-july-sale-1'}" class="ProductCollectionListItem__Link Button btn" onclick="pushDataLayer('exp_imp_hp_b_gd_sa', 'Shop all', 'Button', 'Great deals');">${
           german ? 'Alle anzeigen' : 'Shop All'
         }</a>
     </div>
@@ -2229,18 +2229,8 @@ let mut = new MutationObserver(function (muts) {
         }
       })
 
-    document.querySelector('.great-deals .swiper-wrapper').innerHTML = sliders
-    //event
-    document.querySelectorAll('.great-deals .swiper-slide a').forEach((item) => {
-        item.addEventListener('click', () => {
-          pushDataLayer(
-            'exp_imp_hp_p_gd_pn',
-            item.closest('.ProductItem__Wrapper').querySelector('h2').innerText,
-            'Product',
-            'Great deals'
-          )
-        })
-      })
+    document.querySelector(`${german ? '.great-deals' : '.best-sellers '} .swiper-wrapper`).innerHTML = sliders
+    
 
     //best-sellers
     let sliders2 = ''
@@ -2318,10 +2308,10 @@ let mut = new MutationObserver(function (muts) {
                             </div>
                         </div>`
     }
-    document.querySelector('.best-sellers .swiper-wrapper').innerHTML = sliders2
+    document.querySelector(`${german ? '.best-sellers ' : '.great-deals'} .swiper-wrapper`).innerHTML = sliders2
 
     //event
-    document.querySelectorAll('.best-sellers .swiper-slide a').forEach((item) => {
+    document.querySelectorAll(`${german ? '.best-sellers ' : '.great-deals'} .swiper-slide a`).forEach((item) => {
         item.addEventListener('click', () => {
           pushDataLayer(
             'exp_imp_hp_p_bs_pn',
@@ -2331,6 +2321,16 @@ let mut = new MutationObserver(function (muts) {
           )
         })
       })
+    document.querySelectorAll(`${german ? '.great-deals' : '.best-sellers '} .swiper-slide a`).forEach((item) => {
+        item.addEventListener('click', () => {
+          pushDataLayer(
+            'exp_imp_hp_p_gd_pn',
+            item.closest('.ProductItem__Wrapper').querySelector('h2').innerText,
+            'Product',
+            'Great deals'
+          )
+        })
+    })
 
     let sliders3 = ''
 
