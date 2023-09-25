@@ -1641,6 +1641,15 @@ let tophtml = /*html*/ `
             </div>
         </div>
     </div>
+    <div class="great-deals">
+        <h2 class="text-md-center">${german ? 'Großartige Angebote der Woche ' : 'Great Deals of the Week'}</h2>
+        <div class="swiper">
+            <div class="swiper-wrapper"></div>
+        </div>
+        <a href="/collections/shop-all-2" class="ProductCollectionListItem__Link Button btn" onclick="pushDataLayer('exp_imp_hp_b_gd_sa', 'Shop all', 'Button', 'Great deals');">${
+          german ? 'Alle anzeigen' : 'Shop All'
+        }</a>
+    </div>
     <div class="fabric">
         <div class="tab c-green">${german ? 'Stoffe speziell für Hunde entwickelt' : 'fabric made for dogs'}</div>
     </div>
@@ -1698,15 +1707,6 @@ let tophtml = /*html*/ `
                 </svg>
             </a>
         </div>
-    </div>
-    <div class="great-deals">
-        <h2 class="text-md-center">${german ? 'Großartige Angebote der Woche ' : 'Great Deals of the Week'}</h2>
-        <div class="swiper">
-            <div class="swiper-wrapper"></div>
-        </div>
-        <a href="/collections/shop-all-2" class="ProductCollectionListItem__Link Button btn" onclick="pushDataLayer('exp_imp_hp_b_gd_sa', 'Shop all', 'Button', 'Great deals');">${
-          german ? 'Alle anzeigen' : 'Shop All'
-        }</a>
     </div>
     <div class="loox-review relative">
         <h2 class="text-md-center">${german ? 'Unsere zufriedenen Kunden ' : 'Our Happy Customers'}</h2>
@@ -2203,7 +2203,7 @@ let mut = new MutationObserver(function (muts) {
       handleVisibility('.crs_trustpilot')
     })
 
-    //best-sellers
+    //great-deals
     let sliders = ''
     document
       .querySelectorAll('#shopify-section-template--15879345635509__featured-collections .Grid__Cell')
@@ -2229,20 +2229,20 @@ let mut = new MutationObserver(function (muts) {
         }
       })
 
-    document.querySelector('.best-sellers .swiper-wrapper').innerHTML = sliders
+    document.querySelector('.great-deals .swiper-wrapper').innerHTML = sliders
     //event
-    document.querySelectorAll('.best-sellers .swiper-slide a').forEach((item) => {
-      item.addEventListener('click', () => {
-        pushDataLayer(
-          'exp_imp_hp_p_bs_pn',
-          item.closest('.ProductItem__Wrapper').querySelector('h2').innerText,
-          'Product',
-          'Best Sellers'
-        )
+    document.querySelectorAll('.great-deals .swiper-slide a').forEach((item) => {
+        item.addEventListener('click', () => {
+          pushDataLayer(
+            'exp_imp_hp_p_gd_pn',
+            item.closest('.ProductItem__Wrapper').querySelector('h2').innerText,
+            'Product',
+            'Great deals'
+          )
+        })
       })
-    })
 
-    //great-deals
+    //best-sellers
     let sliders2 = ''
     let lengthHolidayDeals = media ? 4 : objHoliday.length > 9 ? 10 : objHoliday.length
 
@@ -2318,19 +2318,19 @@ let mut = new MutationObserver(function (muts) {
                             </div>
                         </div>`
     }
-    document.querySelector('.great-deals .swiper-wrapper').innerHTML = sliders2
+    document.querySelector('.best-sellers .swiper-wrapper').innerHTML = sliders2
 
     //event
-    document.querySelectorAll('.great-deals .swiper-slide a').forEach((item) => {
-      item.addEventListener('click', () => {
-        pushDataLayer(
-          'exp_imp_hp_p_gd_pn',
-          item.closest('.ProductItem__Wrapper').querySelector('h2').innerText,
-          'Product',
-          'Great deals'
-        )
+    document.querySelectorAll('.best-sellers .swiper-slide a').forEach((item) => {
+        item.addEventListener('click', () => {
+          pushDataLayer(
+            'exp_imp_hp_p_bs_pn',
+            item.closest('.ProductItem__Wrapper').querySelector('h2').innerText,
+            'Product',
+            'Best Sellers'
+          )
+        })
       })
-    })
 
     let sliders3 = ''
 
