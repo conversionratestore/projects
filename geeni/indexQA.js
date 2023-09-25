@@ -2231,7 +2231,7 @@ margin-bottom: 25px;
             let req = /(\d{1,})(\d{2})$/
             let total = +(data['total_price'].toString().replace(req, "$1.$2"))
 
-            if (!localStorage.getItem('hideMsg')) {
+            if (!(data.items.length < 1 && localStorage.getItem('checkoutVisited')) && !localStorage.getItem('hideMsg')) {
               let discount = ``
               if (total >= 0 && total <= 99.00) {
                 discount = `<p>Spend <b>$99</b> and get a <b>10% discount</b></p>`
