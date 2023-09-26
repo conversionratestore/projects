@@ -941,7 +941,6 @@ font-family: "Apercu Medium Pro", sans-serif !important;
   const popupTrigger = /*html*/`
     <div id="popup-trigger" class="m-p-0 ff-primary">
       <p>How Does It Work?</p>
-      <img src="https://uploads-ssl.webflow.com/60a81d43a468febf25fad764/6111718306355f781c8feaeb_arrow-dark.svg" alt="next arrow">
     </div>`
 
   const button = (type, eventLocation) =>/*html*/`
