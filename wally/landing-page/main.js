@@ -456,7 +456,6 @@ line-height: 135%; /* 37.8px */
   width: fit-content;
   margin-inline: auto;
   background: var(--beige, #F8EDDF);
-  width: 100%;
   justify-content: space-between;
 }
 
@@ -825,6 +824,10 @@ line-height: 135%; /* 27px */
   
   #tell-popup .popup__inner {
     max-width: 231px;
+  }
+
+  #tell-popup a.btn-primary {
+    width: auto;
   }
 
   #what-popup ul {
