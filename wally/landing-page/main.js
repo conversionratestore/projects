@@ -213,6 +213,7 @@
 
 .btn-wrapper-fixed button {
   margin-inline: auto;
+  border: 1px solid #a2faa8;
 }
 
 .btn-wrapper-fixed.btn--visibility {
