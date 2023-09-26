@@ -1760,7 +1760,7 @@ let init = setInterval(() => {
             document.querySelector('header.course.is-course-form').insertAdjacentHTML('beforebegin', courseInit(course))
             
 
-            if (i < 3) {
+            if (i != 3) {
                 document.querySelector('.related_courses').after(document.querySelector('.faqs'))
             } else {
                 document.querySelector('.related_courses').insertAdjacentHTML('afterend', `
