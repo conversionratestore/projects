@@ -435,6 +435,18 @@ let data = [
 
 ]
     
+const pushDataLayer = (name, desk, type, loc) => {
+    console.log(name + " / " + desk + " / " + type + " / " +  loc)
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga4',
+        'event_name': name,
+        'event_desc': desk,
+        'event_type': type,
+        'event_loc': loc
+    });
+}
 
 let style = `
 <style>
@@ -448,7 +460,8 @@ header.course.is-course-form,
 .course-overview,
 .image-text,
 footer .accreditations,
-.embedsocial-hashtag {
+.embedsocial-hashtag,
+.course-table {
     display: none;
 }
 footer .footer-logo {
@@ -772,7 +785,7 @@ p, a, li {
     margin-top: 15px;
 }
 .need_different > img {
-    width: 100%:
+    width: 100%;
     object-fit: cover;
 }
 .trainers {
@@ -979,6 +992,9 @@ p, a, li {
     color: var(--Body-text, #49718C);
 }
 @media (max-width: 991px) {
+    .offer_section .btn {
+        margin-top: 15px;
+    }
     .course_approval img {
         max-height: 21px;
         object-fit: contain;
@@ -996,7 +1012,7 @@ p, a, li {
         margin: 0 -20px;
     }
     .course_approval {
-        margin: 10px -20px 15px;
+        margin: 10px -20px 0;
     }
     .need_different {
         margin: 30px -20px 0px;
@@ -1198,7 +1214,7 @@ p, a, li {
     }
 
     .need_different > img {
-        max-height: ${ window.location.href.includes(arrlinks[4]) ? '250px': '291px'};
+        max-height: ${ window.location.href.includes(arrlinks[3]) || window.location.href.includes(arrlinks[4]) ? '250px': '291px'};
         width: 49%;
     }
     .need_different_content {
@@ -1456,7 +1472,7 @@ let courseInit = (course) =>  {
             <div class="swiper-slide">
                 <div>
                     <p><b>${dataTrustpilor[i].theme}</b></p>
-                    <p class="text">${dataTrustpilor[i].text}</p>
+                    <p class="text">${dataTrustpilor[i].description}</p>
                     <p class="info"><b>${dataTrustpilor[i].customer} | ${dataTrustpilor[i].date}</b></p>
                 </div>
             </div>`;
@@ -1815,6 +1831,11 @@ let init = setInterval(() => {
                         // loop: true,
                         slidesPerView: 1,
                         spaceBetween: 5,
+                        mousewheel:  {
+                            enabled: true,
+                            eventsTarget: '.swiper_course .swiper-wrapper', 
+                            releaseOnEdges: true, 
+                        },
                         pagination: {
                             el: ".swiper_course .swiper-pagination",
                             clickable: true
@@ -1837,8 +1858,8 @@ let init = setInterval(() => {
                         // centeredSlides: true,
                         mousewheel:  {
                             enabled: true,
-                            eventsTarget: '.swiper-wrapper', // Обмежити прокручування горизонтальною осі
-                            releaseOnEdges: true, // Переходити до наступного слайду, коли досягнуто краю
+                            eventsTarget: '.slider_trustpilot .swiper-wrapper', 
+                            releaseOnEdges: true, 
                         },
                         pagination: {
                             el: ".slider_trustpilot .swiper-pagination",
@@ -1897,3 +1918,11 @@ let testimonial = setInterval(() => {
         document.querySelector('.trustpilot').after(document.querySelector('.testimonial'))
     }
 });
+
+
+const record = setInterval(() => {
+    if (typeof clarity === "function") {
+      clearInterval(record);
+      clarity("set", "exp_improvements_course_page", "variant_1");
+    }
+}, 100);
