@@ -25,7 +25,7 @@
 }
 
 .home-v2-hero-section {
-  background-color: #69BBA9 !important;
+  background-color: #006A5C !important;
 }
 
 .home-v2-header-logo {
@@ -60,18 +60,13 @@
 }
 
 .home-v2-hero-header-inner img {
-  filter: brightness(0) saturate(100%) invert(14%) sepia(66%) saturate(6116%) hue-rotate(170deg) brightness(94%) contrast(103%);
-
-
+  filter: brightness(0) saturate(100%) invert(89%) sepia(21%) saturate(557%) hue-rotate(58deg) brightness(99%) contrast(97%);
 }
 
-/*.home-v2-hero-circled {
-    background-image: url(${IMAGE_DIR_URL}/circled.svg) !important;
-  }*/
 
 .home-v2-hero-subtext {
   position: static !important;
-}
+} 
 
 .home-v2-hero-inner-desktop .home-v2-hero-subtext {
   font-size: 2vw !important;
@@ -92,7 +87,7 @@
   margin-block: 42px 66px;
 }
 
-/* .home-v2-membership {
+ .home-v2-membership {
     background-color: #F8EDDF !important;
   }
 
@@ -102,14 +97,21 @@
     color: var(--green-1, #006A5C) !important;
   }
 
-  .home-v2-membership-what {
-    font-weight: 700;
-  }
+
 
   .home-v2-membership-list {
-    display: none;
-  }
-   */
+    
+    color: #76CABB;
+ }
+
+
+ .home-v2-membership-list span{
+  color: var(--green-1, #006A5C);
+ }
+
+ .home-locations-text {
+  background: #F9EFE3;
+ }
 
 .as-seen-in-section {
   background-color: #fff !important;
@@ -148,7 +150,7 @@
 .btn-primary,
 .btn-secondary {
   display: flex;
-  gap: 16px;
+  gap: 48px;
 
   height: 64px;
 
@@ -191,7 +193,6 @@
 .btn-secondary {
   background: var(--green-1, #006A5C);
   color: var(--white, #FFF);
-  border: 2px solid var(--green-2, #A2FAA8);
 }
 
 .btn-secondary img {
@@ -239,10 +240,11 @@
   position: relative;
 }
 
+.reviews__view p::after,
 #popup-trigger p::after {
   content: '';
   position: absolute;
-  top: calc(100% + 1px);
+  top: calc(100% - 1px);
   left: 0;
   width: 100%;
   height: 1px;
@@ -256,12 +258,16 @@
   align-items: center;
   width: 100%;
 
-  background: var(--green-0, #124F47);
+  background: #A2FAA8;
 
-  color: var(--beige, #F8EDDF);
+  color: var(--green-1, #006A5C);
   font-size: 16px;
   font-weight: 400;
   line-height: 1;
+}
+
+#google-reviews > img {
+  filter: brightness(0) saturate(100%) invert(25%) sepia(92%) saturate(862%) hue-rotate(136deg) brightness(97%) contrast(101%);
 }
 
 #popup-trigger img {
@@ -330,10 +336,14 @@
   min-inline: auto;
 }
 
+#what-popup .popup__title {
+  margin-bottom: 7% !important;
+}
+
 .popup__title {
   color: var(--green-1, #006A5C);
   font-family: "Cardinal Photo Web Regular", sans-serif;
-  font-size: 100px;
+  font-size: 95px;
   font-weight: 400;
   line-height: 1;
   text-align: center;
@@ -342,6 +352,7 @@
 .popup__title span {
   font-family: "Apercu Medium Pro", sans-serif;
   font-weight: 500;
+  font-size: 100px;
 }
 
 .popup.popup--show {
@@ -349,7 +360,7 @@
 }
 
 #what-popup {
-  background: var(--beige, #F8EDDF);
+  background: var(--beige, #FFF);
   color: var(--green-1, #006A5C);
 }
 
@@ -363,10 +374,18 @@
 
 #what-popup ul li {
   font-size: 30px;
+  list-style: none;
 }
 
+
 #what-popup ul li p:first-child {
-  font-size: 20px;
+
+  max-width: 10ch;
+}
+
+#what-popup ul li:first-child p:first-child {
+
+  max-width: 12ch;
 }
 
 #what-popup ul li p{margin-left: -7px;}
@@ -375,25 +394,26 @@
 
 #what-popup ul li p:first-child {
   color: var(--green-1, #006A5C);
-
+  font-size: 28px;
   font-style: normal;
   font-weight: 500;
-  line-height: 24px;
+  line-height: 110%;
   /* 120% */
   margin-bottom: 8px;
 }
 
 #what-popup ul li p:last-child {
   color: #353640;
-  font-size: 16px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 135%;
   /* 150% */
 }
 
 #what-popup button {
   margin-inline: auto;
+  margin-top: 15%;
 }
 
 .popup__close {
@@ -401,6 +421,14 @@
   top: 42px;
   right: 42px;
   cursor: pointer;
+  filter: brightness(0) saturate(100%) invert(79%) sepia(47%) saturate(184%) hue-rotate(119deg) brightness(91%) contrast(92%);
+}
+
+.popup__logo {
+  position: absolute;
+  top: 40px;
+  left: 33px;
+  filter: brightness(0) saturate(100%) invert(79%) sepia(47%) saturate(184%) hue-rotate(119deg) brightness(91%) contrast(92%);
 }
 
 #tell-popup p {
@@ -413,20 +441,28 @@
 }
 
 #tell-popup .take-quiz {
-  margin: 48px auto 56px;
-  max-width: 381px;
+  margin: 30px auto 83px;
+  max-width: 553px;
+  color: var(--beige, #F8EDDF);
+text-align: center;
+font-size: 28px;
+font-weight: 500;
+line-height: 135%; /* 37.8px */
 }
 
 #tell-popup a.btn-primary {
   text-decoration: none;
   width: fit-content;
   margin-inline: auto;
-  border: 2px solid var(--green-2, #A2FAA8);
+  background: var(--beige, #F8EDDF);
+  width: 100%;
+  justify-content: space-between;
 }
 
 .gradient-line {
   height: 28px;
   width: 100%;
+  object-fit: cover;
 }
 
 .gradient-line img {
@@ -435,25 +471,33 @@
   object-fit: cover;
 }
 
-.home-v2-hero-circled {
-  background-image: url(https://uploads-ssl.webflow.com/60a81d4…/60ecdc2…_hero-circle.png);
-}
-
 #reviews-container>p {
-  color: var(--green-1, #006A5C);
+  color: #fff;
   font-size: 42px;
   font-style: normal;
   font-weight: 700;
-  line-height: 42px;
+  line-height: 116%;
   /* 100% */
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 #reviews-container>p span {
   font-family: "Cardinal Photo Web Regular", sans-serif;
+  font-weight: 400;
 }
-
+#reviews-container .reviews {
+  position: relative;
+  z-index: 1;
+}
+.bg-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
 
 /* reviews */
 .review {
@@ -503,12 +547,13 @@
   justify-content: center;
   cursor: pointer;
   margin-bottom: 17px;
-  min-inline: auto;
+  margin-top: 21px;
+  position: relative;
 }
 
 .reviews__view p {
   position: relative;
-  color: var(--green-1, #006A5C);
+  color: var(--white, #FFF);
   margin-right: 4px;
   font-size: 18px;
   font-style: normal;
@@ -518,22 +563,82 @@
   margin-bottom: 0;
 
 }
-
-.reviews__view p::after {
-  content: '';
-  position: absolute;
-  top: calc(100% + 1px);
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: #006A5C;
-}
-
 .popup {
     padding: 28px;
   }
 
+  .word-of-mouth-section {
+    background: url(https://conversionratestore.github.io/projects/wally/landing-page/img/w-bg.svg) #006A5C no-repeat;
+    padding: 4.3em 0 6.8em !important;
+  }
+  .word-of-mouth-reviews {
+    margin-top: 3.3em !important;
+  }
+
+.word-of-mouth-section .word-of-mouth-tag p {
+  color: var(--white, #FFF);
+text-align: center;
+font-size: 42px;
+font-weight: 700;
+line-height: 1; /* 100% */
+text-transform: none;
+}
+
+.word-of-mouth-section {
+  padding: 4.3em 0 7em;
+}
+
+.word-of-mouth-section .word-of-mouth-tag p span {
+  font-family: "Cardinal Photo Web Regular", sans-serif;
+}
+
+.main-faq-section > img {
+  display: none;
+}
+
+.main-faq-section {
+  padding-top: 5em;
+}
+  
 @media screen and (min-width: 991px) {
+  .home-v2-membership-title {
+    color: var(--green-1, #006A5C);
+font-size: 80px;
+font-weight: 400;
+letter-spacing: 2.4px;
+  }
+
+  .home-v2-membership-subtitle {
+    color: var(--green-1, #006A5C);
+font-size: 30px;
+font-weight: 500;
+line-height: 38px; /* 126.667% */
+  }
+  .home-v2-membership-what {
+    color: var(--green-1, #006A5C);
+font-size: 22px;
+font-weight: 700;
+line-height: 20px; /* 90.909% */
+letter-spacing: 3.3px;
+  }
+
+  
+ .home-v2-membership-list-item {
+font-size: 40px;
+font-style: normal;
+font-weight: 500;
+line-height: 50px; 
+ }
+
+  .home-text-locations-wrapper > div {
+  font-family: "Apercu Medium Pro", sans-serif !important;
+  color: var(--green-1, #006A5C);
+font-size: 96px;
+font-style: normal;
+font-weight: 700;
+line-height: 100%; /* 96px */
+ }
+
   #popup-trigger img {
     filter: brightness(0) saturate(100%) invert(100%) sepia(78%) saturate(2%) hue-rotate(100deg) brightness(113%) contrast(101%);
   }
@@ -541,7 +646,7 @@
 
 @media screen and (max-width: 991px) {
   body .word-of-mouth-section {
-    padding: 45px 30px 60px !important;
+    padding: 45px 30px 35px !important;
   }
 
   .home-v2-hero-circled {
@@ -549,7 +654,7 @@
   }
 
   .home-v2-hero-inner {
-    margin-top: 1em !important;
+    margin-top: 24px !important;
   }
 
   #google-reviews {
@@ -592,7 +697,10 @@
   }
 
   .home-v2-hero-section .btn-primary {
-    margin-block: 28px 32px;
+    margin-block: 16px 33px;
+    max-width: 275px;
+    width: 100%;
+    justify-content: space-between;
   }
 
   .word-of-mouth-section {
@@ -609,9 +717,8 @@
   }
 
   .word-of-mouth-section {
-    background-image: url(${IMAGE_DIR_URL}/BG.svg);
-    background-size: cover;
-    background-repeat: no-repeat;
+    position: relative;
+    background:#006A5C;
   }
 
   .reviews__part-two {
@@ -683,7 +790,7 @@
   }
 
   #tell-popup p.popup__title {
-    display: none;
+    text-align: left;
   }
 
   .popup__title {
@@ -697,8 +804,8 @@
   .popup__close {
     width: 24px;
 height: 24px;
-top: 28px;
-    right: 28px;
+top: 36px;
+    right: 30px;
   }
 
   .popup__close svg {
@@ -707,10 +814,20 @@ top: 28px;
   }
 
   #tell-popup .take-quiz {
-    margin: 40px auto 56px;
+    margin: 33px auto 23%;
+    color: var(--beige, #F8EDDF);
+font-size: 20px;
+font-style: normal;
+font-weight: 500;
+line-height: 135%; /* 27px */
+  }
+  
+  #tell-popup .popup__inner {
+    max-width: 231px;
   }
 
   #what-popup ul {
+    margin-left: -1em;
     grid-template-columns: auto;
     grid-row-gap: 28px;
     margin-block: 26px 28px;
@@ -724,6 +841,7 @@ top: 28px;
 font-size: 20px;
 font-weight: 500;
 line-height: 24px; /* 120% */
+max-width: 100% !important;
   }
 
   #what-popup ul li p:last-child {
@@ -741,6 +859,64 @@ line-height: 24px; /* 150% */
   #what-popup ul li:nth-of-type(3) {
     order: 1;
   }
+
+  
+.popup__logo {
+  top: 28px;
+  left: 28px;
+  width: 88px;
+height: 39px;
+}
+
+ .popup__title {
+  font-size: 46px;
+  line-height: 49px; /* 98% */
+ }
+
+ .popup__title span {
+  font-size: 50px;
+ }
+
+ #what-popup .popup__title {
+  margin-bottom: 48px;
+ }
+
+ #tell-popup .popup__title {
+  margin-bottom: 33px;
+ }
+
+ #what-popup ul  p:first-child {
+  max-width: 100%;
+ }
+ #what-popup ul li p:last-child {
+  line-height: 135%; /* 24.3px */
+  font-size: 18px;
+
+ }
+
+ #what-popup button {
+  margin-top: 33%;
+ }
+}
+
+@media screen and (max-width: 768px) {
+.wally-revolution-info {
+  display: none !important;
+}
+
+.home-text-locations-wrapper > div {
+  color: var(--green-1, #006A5C);
+font-size: 52px;
+font-weight: 700;
+line-height: 100%; /* 52px */
+font-family: "Apercu Medium Pro", sans-serif !important;
+}
+
+.home-locations-text-title-1 {
+  margin-left: 0.8em !important;
+}
+
+
 }
 
 @media screen and (max-width: 479px) {
@@ -748,12 +924,19 @@ line-height: 24px; /* 150% */
     font-size: 1.1em;
     line-height: 1.29;
   }
+  .home-v2-hero-text {
+    margin-bottom: 5.3em !important;
+  }
+
+  .wally-experience-section {
+    padding-top: 0 !important;  
+  }
 }
     </style>`
 
   const popupTrigger = /*html*/`
     <div id="popup-trigger" class="m-p-0 ff-primary">
-      <p>How does it work?</p>
+      <p>How Does It Work?</p>
       <img src="https://uploads-ssl.webflow.com/60a81d43a468febf25fad764/6111718306355f781c8feaeb_arrow-dark.svg" alt="next arrow">
     </div>`
 
@@ -773,7 +956,7 @@ line-height: 24px; /* 150% */
     <div id="google-reviews" class="m-p-0 ff-primary">
       <img src="${IMAGE_DIR_URL}/stars.svg" alt="5 stars">
       <p>
-        <strong style="margin-inline: 4px 8px;">4.9</strong>(Based on 486
+        <strong style="margin-inline: 4px 8px;">4.9</strong>(Based on <strong>486</strong>
             <img src="${IMAGE_DIR_URL}/google-logo.svg" alt="google logo"> 
           reviews)
       </p>
@@ -782,19 +965,19 @@ line-height: 24px; /* 150% */
   const whatPopup =  /*html*/`
     <div id="what-popup" class="popup m-p-0">
       <div class="popup__inner">
-      <p class="popup__title">What is <span>Wally’s</span><br>Dental Care?</p>
+      <p class="popup__title"><span>How</span> It Works.</p>
       <ul class="ff-primary">
         <li>
-          <p>It’s easy and comfortable</p>
-          <p>Effortless bookings, wallet-free transactions. Experience advanced spa-like tech for diagnostics and cleaning.</p>
+          <p>Book your first appointment</p>
+          <p>Get your membership for $199 (no fees, no insurance needed) and we text your booking link instantly.</p>
         </li>
         <li>
-          <p>It’s prevention-focused</p>
-          <p>We prioritize your smile's health. With a <b>value-based care model</b>, receive technology-driven, unlimited care virtually and at our studios. Say goodbye to unnecessary fillings – we focus on what's best for your smile.</p>
+          <p>Have your first visit</p>
+          <p>Get your x-rays, checkup, remove surface stains, and get your cleaning.</p>
         </li>
         <li>
-          <p>It’s affordable</p>
-          <p>Enjoy unlimited smiles at just <strong>$199.</strong> Transparent pricing without insurance complexities – the most affordable dental visits, time after time.</p>
+          <p>Continue your care</p>
+          <p>Book ongoing cleanings, get your personal whitening kit shipped to your door.</p>
         </li>
       </ul>
 
@@ -805,21 +988,17 @@ line-height: 24px; /* 150% */
           <path d="M6.9043 34.7L16.7043 18.8917L8.24596 5.30005H14.7793L19.971 13.7L25.221 5.30005H31.696L23.296 18.8917L33.096 34.7H26.621L19.971 24.1417L13.321 34.7H6.9043Z" fill="#006A5C"/>
         </svg>
       </div>
+      <div class="popup__logo">
+        <img src="https://uploads-ssl.webflow.com/60a81d43a468febf25fad764/60ec951925b835320d82efe8_header-logo.svg" alt="wally logo">
+      </div>
     </div>`
 
   const tellUSPopup = /*html*/`
       <div id="tell-popup" class="popup m-p-0 ff-primary">
         <div class="popup__inner">
-          <p class="popup__title">Tell Us <span>About</span><br>Your <span>Dental </span> Care?<br>Experience</p>
+          <p class="popup__title">First Things <span>First.</span></p>
 
-          <div class="popup__title">
-            <p>Tell Us</p>
-            <p><span>About</span> Your</p>
-            <p><span>Dental</span> Care</p>
-            <p>Experience</p>
-          </div>
-
-          <p class="take-quiz">Take a 2-min quiz to share about yourself, so we can personalize your experience!</p>
+          <p class="take-quiz">Because founding memberships are limited, take a 2-min quiz to see if you’re a fit.</p>
 
           <a class="btn-primary" href="https://wallyhealth.pro.typeform.com/to/pVusBqL3?typeform-source=www.carebywally.com">Start Quiz! <img src="https://uploads-ssl.webflow.com/60a81d43a468febf25fad764/6111718306355f781c8feaeb_arrow-dark.svg" alt=""></a>
         </div>
@@ -829,12 +1008,16 @@ line-height: 24px; /* 150% */
               <path d="M6.9043 34.7L16.7043 18.8917L8.24596 5.30005H14.7793L19.971 13.7L25.221 5.30005H31.696L23.296 18.8917L33.096 34.7H26.621L19.971 24.1417L13.321 34.7H6.9043Z" fill="#FFFFFF"/>
             </svg>
           </div>
+          <div class="popup__logo">
+        <img src="https://uploads-ssl.webflow.com/60a81d43a468febf25fad764/60ec951925b835320d82efe8_header-logo.svg" alt="wally logo">
+      </div>
       </div>
   `
 
   const reviews = /*html*/`
        <div id="reviews-container" class="ff-primary m-p-0">
-    <p>Word<br>of <span>Mouth</span></p>
+        <img class="bg-lines" src="${IMAGE_DIR_URL}/lines-bg.svg" alt="">
+    <p>Word of<br><span>Mouth</span></p>
 
     <div class="reviews">
       <div class="reviews__part-one">
@@ -900,18 +1083,6 @@ line-height: 24px; /* 150% */
       </div>
       <div class="reviews__view">
         <p>View More</p>
-        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-          <g clip-path="url(#clip0_623_5453)">
-            <path
-              d="M18.15 6.85C16.7 5.4 14.71 4.5 12.5 4.5C8.08001 4.5 4.51001 8.08 4.51001 12.5C4.51001 16.92 8.08001 20.5 12.5 20.5C16.23 20.5 19.34 17.95 20.23 14.5H18.15C17.33 16.83 15.11 18.5 12.5 18.5C9.19001 18.5 6.50001 15.81 6.50001 12.5C6.50001 9.19 9.19001 6.5 12.5 6.5C14.16 6.5 15.64 7.19 16.72 8.28L13.5 11.5H20.5V4.5L18.15 6.85Z"
-              fill="#006A5C" />
-          </g>
-          <defs>
-            <clipPath id="clip0_623_5453">
-              <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)" />
-            </clipPath>
-          </defs>
-        </svg>
       </div>
       <div class="reviews__part-two">
         <div class="review">
@@ -994,6 +1165,7 @@ line-height: 24px; /* 150% */
     const $asSeenSection = document.querySelector('.as-seen-in-section')
 
     const $homeLocationsSection = document.querySelector('.home-locations-section')
+    const $homeTicker = document.querySelector('.home-generic-ticker')
     const $stackSection = document.querySelector('.stack-up-section')
 
     const $topHeaderBtn = document.getElementById('top-header-button')
@@ -1009,19 +1181,15 @@ line-height: 24px; /* 150% */
       && $topHeaderBtn
       && $asSeenSection
       && $reviewsSection
+      && $homeTicker
     ) {
       clearInterval(waitForSections)
 
       /* replace elements order */
-      $asSeenSection.insertAdjacentElement('afterend', $experienceSection)
-      $faqSection.insertAdjacentElement('afterend', $revolutionSection)
-
       $homeLocationsSection.insertAdjacentElement('beforebegin', $stackSection)
-      $homeLocationsSection.insertAdjacentHTML('beforebegin', /*html*/`
-      <div class="gradient-line" >
-      <img src="${IMAGE_DIR_URL}/seen-in-2.svg" alt="">
-      </div>
-      `)
+      $homeLocationsSection.insertAdjacentElement('beforebegin', $homeTicker)
+
+      $reviewsSection.insertAdjacentElement('afterend', $experienceSection)
 
       /* add custom elements */
       $topHeaderBtn.insertAdjacentHTML('beforebegin', popupTrigger)
@@ -1034,11 +1202,6 @@ line-height: 24px; /* 150% */
         <div class="gradient-line" >
         <img src="${IMAGE_DIR_URL}/seen-in-1.svg" alt=""></div>
       `)
-        $asSeenSection.insertAdjacentHTML('beforeend', /*html*/`
-      <div class="gradient-line" >
-      <img src="${IMAGE_DIR_URL}/seen-in-2.svg" alt="">
-      </div>
-      `)
 
       } else {
         $homeHeroInnerMobileSection.insertAdjacentHTML('beforeend', button('primary', 'First screen'))
@@ -1048,11 +1211,7 @@ line-height: 24px; /* 150% */
         $asSeenSection.insertAdjacentHTML('afterbegin', /*html*/`
         <img class="gradient-line" src="${IMAGE_DIR_URL}/gradient-mob-1.svg" alt="">
       `)
-        $asSeenSection.insertAdjacentHTML('beforeend', /*html*/`
-      <div class="gradient-line" >
-      <img src="${IMAGE_DIR_URL}/gradient-mob-2.svg" alt="">
-      </div>
-      `)
+     
 
 
         const waitForViewMoreReviews = setInterval(() => {
@@ -1072,11 +1231,11 @@ line-height: 24px; /* 150% */
 
       }
 
-      $revolutionSection.insertAdjacentHTML('afterend', /*html*/`
-      <div class="gradient-line" >
-      <img src="${IMAGE_DIR_URL}/gradient-mob-3.svg" alt="">
-      </div>
-      `)
+      // $revolutionSection.insertAdjacentHTML('afterend', /*html*/`
+      // <div class="gradient-line" >
+      // <img src="${IMAGE_DIR_URL}/gradient-mob-3.svg" alt="">
+      // </div>
+      // `)
 
 
     }
@@ -1085,6 +1244,8 @@ line-height: 24px; /* 150% */
   document.body.insertAdjacentHTML('beforeend', fixedButton)
   document.body.insertAdjacentHTML('beforeend', whatPopup)
   document.body.insertAdjacentHTML('beforeend', tellUSPopup)
+
+  waitForElement('.word-of-mouth-section .word-of-mouth-tag').then(el => el.innerHTML = '<p>Word of <span>Mouth</span></p>')
 
   /* add handlers */
   const waitForWhatPopupAndTrigger = setInterval(() => {
