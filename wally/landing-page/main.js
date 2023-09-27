@@ -125,15 +125,6 @@
   padding-bottom: 50px;
 }
 
-/*.as-seen-in-section .as-seen-in-logos {
-    display: none;
-  }*/
-
-/*.wally-experience-video-wrapper > div {
-    border-radius: 42px;
-    overflow: hidden;
-  }*/
-
 .as-seen-in-section {
   padding: 0 !important;
 }
@@ -192,8 +183,6 @@
   opacity: .9;
 }
 
-
-
 .btn-secondary {
   background: var(--green-1, #006A5C);
   color: var(--white, #FFF);
@@ -234,9 +223,6 @@
   font-size: 19px;
   font-style: normal;
   font-weight: 700;
-
-  /* 105.263% */
-
   cursor: pointer;
 }
 
@@ -329,7 +315,6 @@
   position: fixed;
   display: flex;
   align-items: center;
-  justify-content: center;
   top: 0;
   transform: translateY(-200%);
 
@@ -337,12 +322,27 @@
 }
 
 .popup__inner {
-  max-width: 1037px;
-  min-inline: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-#what-popup .popup__title {
-  margin-bottom: 7% !important;
+#what-popup .popup__inner {
+
+  max-width: 1037px;
+  max-height: 550px;
+  height: 100%;
+}
+
+.popup__inner-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+#tell-popup .popup__inner-wrapper  {
+  height: 75%;
 }
 
 .popup__title {
@@ -374,7 +374,8 @@
   grid-template-columns: repeat(3, 1fr);
   color: #95CFC4;
   grid-column-gap: 51px;
-  margin-block: 48px 56px;
+  margin-block: 71px 15px;
+  padding-left: 0;
 }
 
 #what-popup ul li {
@@ -384,12 +385,10 @@
 
 
 #what-popup ul li p:first-child {
-
   max-width: 10ch;
 }
 
 #what-popup ul li:first-child p:first-child {
-
   max-width: 12ch;
 }
 
@@ -418,21 +417,16 @@
 
 #what-popup button {
   margin-inline: auto;
-  margin-top: 15%;
 }
 
 .popup__close {
-  position: absolute;
-  top: 42px;
-  right: 42px;
+  position: relative;
+  top: -10px;
   cursor: pointer;
   filter: brightness(0) saturate(100%) invert(79%) sepia(47%) saturate(184%) hue-rotate(119deg) brightness(91%) contrast(92%);
 }
 
 .popup__logo {
-  position: absolute;
-  top: 40px;
-  left: 33px;
   filter: brightness(0) saturate(100%) invert(79%) sepia(47%) saturate(184%) hue-rotate(119deg) brightness(91%) contrast(92%);
 }
 
@@ -454,11 +448,9 @@ font-size: 28px;
 font-weight: 500;
 line-height: 135%; /* 37.8px */
 }
-
 #tell-popup a.btn-primary {
   text-decoration: none;
   width: fit-content;
-  margin-inline: auto;
   background: var(--beige, #F8EDDF);
   justify-content: space-between;
 }
@@ -481,7 +473,6 @@ line-height: 135%; /* 37.8px */
   font-style: normal;
   font-weight: 700;
   line-height: 116%;
-  /* 100% */
   text-align: center;
   margin-bottom: 50px;
 }
@@ -528,7 +519,6 @@ line-height: 135%; /* 37.8px */
   font-style: normal;
   font-weight: 700;
   line-height: 18px;
-  /* 128.571% */
   letter-spacing: 1px;
 }
 
@@ -542,7 +532,6 @@ line-height: 135%; /* 37.8px */
   font-style: normal;
   font-weight: 500;
   line-height: 21px;
-  /* 140% */
 }
 
 .reviews__view {
@@ -563,12 +552,11 @@ line-height: 135%; /* 37.8px */
   font-style: normal;
   font-weight: 700;
   line-height: 1;
-  /* 172.222% */
   margin-bottom: 0;
 
 }
 .popup {
-    padding: 28px;
+    padding: 40px 42px 40px 33px;
   }
 
   .word-of-mouth-section {
@@ -604,6 +592,20 @@ text-transform: none;
   padding-top: 5em;
 }
   
+.popup-head {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+
+  width: 100%;
+
+  margin-bottom: 10px;
+}
+
+.btn-wrapper {
+  margin-inline: auto;
+}
+
 @media screen and (min-width: 991px) {
   .home-v2-membership-title {
     color: var(--green-1, #006A5C);
@@ -653,6 +655,7 @@ line-height: 100%; /* 96px */
     padding: 45px 30px 35px !important;
   }
 
+
   .home-v2-hero-circled {
     padding-top: 0.15em;
   }
@@ -680,7 +683,6 @@ line-height: 100%; /* 96px */
     font-style: normal;
     font-weight: 700;
     line-height: 31px;
-    /* 221.429% */
   }
 
   #popup-trigger img {
@@ -764,7 +766,6 @@ line-height: 100%; /* 96px */
   #tell-popup div.popup__title {
     display: block;
   }
-  
 
   #tell-popup div.popup__title p:nth-of-type(1) {
     transform: translateX(-22%);
@@ -802,14 +803,11 @@ line-height: 100%; /* 96px */
     font-style: normal;
     font-weight: 400;
     line-height: 1;
-    /* 100% */
   }
   
   .popup__close {
     width: 24px;
 height: 24px;
-top: 36px;
-    right: 30px;
   }
 
   .popup__close svg {
@@ -817,8 +815,12 @@ top: 36px;
     width: 100%;
   }
 
+  #tell-popup .popup__inner-wrapper {
+    height: 100%;
+  }
+
   #tell-popup .take-quiz {
-    margin: 33px auto 23%;
+    margin: 33px auto 73px;
     color: var(--beige, #F8EDDF);
 font-size: 20px;
 font-style: normal;
@@ -835,10 +837,9 @@ line-height: 135%; /* 27px */
   }
 
   #what-popup ul {
-    margin-left: -1em;
     grid-template-columns: auto;
     grid-row-gap: 28px;
-    margin-block: 26px 28px;
+    margin-block: 48px 0;
   }
 
   #what-popup ul li {
@@ -885,26 +886,41 @@ height: 39px;
   font-size: 50px;
  }
 
- #what-popup .popup__title {
-  margin-bottom: 48px;
- }
-
- #tell-popup .popup__title {
-  margin-bottom: 33px;
- }
-
  #what-popup ul  p:first-child {
   max-width: 100%;
  }
  #what-popup ul li p:last-child {
   line-height: 135%; /* 24.3px */
   font-size: 18px;
-
  }
 
- #what-popup button {
-  margin-top: 33%;
+ #what-popup .popup__inner {
+  max-height: 100%;
  }
+
+ .popup {
+  padding: 28px;
+ }
+ .popup__close {
+  top: auto;
+ }
+
+ #what-popup .popup__inner {
+  justify-content: normal;
+ }
+
+ .popup__info {
+  height: 86%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+ }
+
+ .btn-wrapper {
+  margin-inline: 0;
+}
 }
 
 @media screen and (max-width: 768px) {
@@ -969,53 +985,62 @@ font-family: "Apercu Medium Pro", sans-serif !important;
 
   const whatPopup =  /*html*/`
     <div id="what-popup" class="popup m-p-0">
-      <div class="popup__inner">
-      <p class="popup__title"><span>How</span> It Works.</p>
-      <ul class="ff-primary">
-        <li>
-          <p>Book your first appointment</p>
-          <p>Get your membership for $199 (no fees, no insurance needed) and we text your booking link instantly.</p>
-        </li>
-        <li>
-          <p>Have your first visit</p>
-          <p>Get your x-rays, checkup, remove surface stains, and get your cleaning.</p>
-        </li>
-        <li>
-          <p>Continue your care</p>
-          <p>Book ongoing cleanings, get your personal whitening kit shipped to your door.</p>
-        </li>
-      </ul>
-
-      ${button('secondary', 'Whats is wallys dental care')}
-      </div>
-      <div class="popup__close">
-              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-          <path d="M6.9043 34.7L16.7043 18.8917L8.24596 5.30005H14.7793L19.971 13.7L25.221 5.30005H31.696L23.296 18.8917L33.096 34.7H26.621L19.971 24.1417L13.321 34.7H6.9043Z" fill="#006A5C"/>
-        </svg>
-      </div>
-      <div class="popup__logo">
-        <img src="https://uploads-ssl.webflow.com/60a81d43a468febf25fad764/60ec951925b835320d82efe8_header-logo.svg" alt="wally logo">
+      <div class="popup-head">
+          <div class="popup__logo">
+            <img src="https://uploads-ssl.webflow.com/60a81d43a468febf25fad764/60ec951925b835320d82efe8_header-logo.svg" alt="wally logo">
+          </div>
+          <div class="popup__close">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <path d="M6.9043 34.7L16.7043 18.8917L8.24596 5.30005H14.7793L19.971 13.7L25.221 5.30005H31.696L23.296 18.8917L33.096 34.7H26.621L19.971 24.1417L13.321 34.7H6.9043Z" fill="#006A5C"/>
+            </svg>
+          </div>
+        </div>
+      <div class="popup__inner-wrapper">
+        <div class="popup__inner">
+        <div class="popup__info">
+        <p class="popup__title"><span>How</span> It Works.</p>
+          <ul class="ff-primary">
+            <li>
+              <p>Book your first appointment</p>
+              <p>Get your membership for $199 (no fees, no insurance needed) and we text your booking link instantly.</p>
+            </li>
+            <li>
+              <p>Have your first visit</p>
+              <p>Get your x-rays, checkup, remove surface stains, and get your cleaning.</p>
+            </li>
+            <li>
+              <p>Continue your care</p>
+              <p>Book ongoing cleanings, get your personal whitening kit shipped to your door.</p>
+            </li>
+          </ul>
+        </div>
+        ${button('secondary', 'Whats is wallys dental care')}
+        </div>
       </div>
     </div>`
 
   const tellUSPopup = /*html*/`
       <div id="tell-popup" class="popup m-p-0 ff-primary">
-        <div class="popup__inner">
-          <p class="popup__title">First Things <span>First.</span></p>
-
-          <p class="take-quiz">Because founding memberships are limited, take a 2-min quiz to see if you’re a fit.</p>
-
-          <a class="btn-primary" href="https://wallyhealth.pro.typeform.com/to/pVusBqL3?typeform-source=www.carebywally.com">Start Quiz! <img src="https://uploads-ssl.webflow.com/60a81d43a468febf25fad764/6111718306355f781c8feaeb_arrow-dark.svg" alt=""></a>
-        </div>
-        
-        <div class="popup__close">  
+        <div class="popup-head">
+          <div class="popup__logo">
+            <img src="https://uploads-ssl.webflow.com/60a81d43a468febf25fad764/60ec951925b835320d82efe8_header-logo.svg" alt="wally logo">
+          </div>
+          <div class="popup__close">
                   <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-              <path d="M6.9043 34.7L16.7043 18.8917L8.24596 5.30005H14.7793L19.971 13.7L25.221 5.30005H31.696L23.296 18.8917L33.096 34.7H26.621L19.971 24.1417L13.321 34.7H6.9043Z" fill="#FFFFFF"/>
+              <path d="M6.9043 34.7L16.7043 18.8917L8.24596 5.30005H14.7793L19.971 13.7L25.221 5.30005H31.696L23.296 18.8917L33.096 34.7H26.621L19.971 24.1417L13.321 34.7H6.9043Z" fill="#006A5C"/>
             </svg>
           </div>
-          <div class="popup__logo">
-        <img src="https://uploads-ssl.webflow.com/60a81d43a468febf25fad764/60ec951925b835320d82efe8_header-logo.svg" alt="wally logo">
-      </div>
+        </div>
+        <div class="popup__inner-wrapper">
+          <div class="popup__inner">
+            <p class="popup__title">First Things <span>First.</span></p>
+
+            <p class="take-quiz">Because founding memberships are limited, take a 2-min quiz to see if you’re a fit.</p>
+
+            <div class="btn-wrapper">
+            <a class="btn-primary" href="https://wallyhealth.pro.typeform.com/to/pVusBqL3?typeform-source=www.carebywally.com">Start Quiz! <img src="https://uploads-ssl.webflow.com/60a81d43a468febf25fad764/6111718306355f781c8feaeb_arrow-dark.svg" alt=""></a></div>
+          </div>
+        </div>
       </div>
   `
 
@@ -1216,7 +1241,7 @@ font-family: "Apercu Medium Pro", sans-serif !important;
         $asSeenSection.insertAdjacentHTML('afterbegin', /*html*/`
         <img class="gradient-line" src="${IMAGE_DIR_URL}/gradient-mob-1.svg" alt="">
       `)
-     
+
 
 
         const waitForViewMoreReviews = setInterval(() => {
