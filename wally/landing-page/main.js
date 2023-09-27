@@ -20,6 +20,10 @@
 }
 
 /* original elements */
+.wally-experience-section {
+  background: linear-gradient(to bottom, white 50%, #A2FAA8 50%);
+}
+
 .home-v2-floatie {
   display: none;
 }
@@ -919,8 +923,6 @@ font-family: "Apercu Medium Pro", sans-serif !important;
 .home-locations-text-title-1 {
   margin-left: 0.8em !important;
 }
-
-
 }
 
 @media screen and (max-width: 479px) {
