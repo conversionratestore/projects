@@ -1970,7 +1970,7 @@ let init = setInterval(() => {
                 }
             });
             if (document.querySelector('.exp-loading')) {
-                document.querySelector('.exp-loading').classList.remove('exp-loading')
+                document.querySelector('.exp-loading').remove()
             }
         }  
     }
