@@ -1068,7 +1068,7 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swipe
     .navigation_content {
         height: fit-content;
         position: sticky;
-        top: 0;
+        top: 60px;
         min-width: 315px;
     }
     .course_approval .mr-8 {
@@ -1740,12 +1740,16 @@ let courseInit = (course) =>  {
                 <ul>
                     <li><a href="#modules-breakdown">Modules breakdown</a></li>
                     ${
-                        course.index == 3 || course.index == 4 ? '<li><a href="#exams-and-assessment">Exams and assessment</a></li>' : '<li><a href="#efaw-exams-and-assessment">EFAW exams and assessment</a></li>'
+                        course.index == 3 || course.index == 4 ? 
+                        '<li><a href="#exams-and-assessment">Exams and assessment</a></li>' : 
+                        course.index == 2 ? '<li><a href="#construction-faw-exams-and-assessment">Construction FAW exams and assessment</a></li>' :
+                        '<li><a href="#efaw-exams-and-assessment">EFAW exams and assessment</a></li>'
                     }
                     
                     <li><a href="#entry-requirements">Entry requirements</a></li>
                     ${
-                        course.index == 1 ? '<li><a href="#first-aid-at-work-qualification">First Aid at Work Qualification</a></li>' : ''
+                        course.index == 1 ? 
+                        '<li><a href="#first-aid-at-work-qualification">First Aid at Work Qualification</a></li>' : ''
                     }
                     
                     <li><a href="#course-overview">Course overview</a></li>
@@ -1875,7 +1879,7 @@ let init = setInterval(() => {
 
                     const topOffset = e.target.offsetHeight;
                     const elementPosition = document.querySelector(query).getBoundingClientRect().top;
-                    const offsetPosition = elementPosition - topOffset - 57;
+                    const offsetPosition = elementPosition - topOffset - (!media ? 57 : 0);
 
                     seamless.polyfill();
                     seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
@@ -1948,25 +1952,7 @@ let init = setInterval(() => {
                         document.querySelector('.slider_trustpilot').style = 'height: ' +  document.querySelectorAll('.slider_trustpilot .swiper-slide')[0].dataset.height;
                     }
 
-                    document.querySelectorAll('.swiper-l').forEach(item => {
-                        let swiper = item.swiper;
-                        swiper.on('slideChange', (e) => {
-                            console.log(e)
-    
-                            if (!media && item.classList.contains('slider_trustpilot')) {
-                                document.querySelector('.slider_trustpilot').style = 'height: ' + document.querySelectorAll('.slider_trustpilot .swiper-slide')[e.activeIndex].dataset.height;
-                            }
-                        
-                            let bullet = item.querySelectorAll('.swiper-pagination-bullet')[e.activeIndex]
-                            if (bullet.parentElement.querySelector('.siblingsPrev')) {
-                                bullet.parentElement.querySelector('.siblingsPrev').classList.remove('siblingsPrev') 
-                            }
-                            if (e.activeIndex > 2) {
-                                bullet.previousElementSibling.previousElementSibling.previousElementSibling.classList.add('siblingsPrev')
-                            }
-                
-                        })
-                    });
+                   
                 }
             });
             if (document.querySelector('.exp-loading')) {
@@ -1985,6 +1971,31 @@ let testimonial = setInterval(() => {
     }
 });
 
+let optionMut = {
+    childList: true,
+    subtree: true,
+    attributes: true
+}
+
+//add class for prev-prev-prev bullet
+let mut = new MutationObserver(function (muts) {
+    if (document.querySelectorAll('.swiper-l span.swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev')) {
+        mut.disconnect()
+        
+        document.querySelectorAll('.swiper-l span.swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev').forEach(item => {
+            if (item.previousElementSibling) {
+                console.log(item.previousElementSibling)
+               
+                if (item.parentElement.querySelector('.swiper-pagination-bullet.siblingsPrev')) {
+                    item.parentElement.querySelector('.swiper-pagination-bullet.siblingsPrev').classList.remove('siblingsPrev')
+                }
+                item.previousElementSibling.classList.add('siblingsPrev')
+            }
+        });
+    }
+    mut.observe(document, optionMut)
+})
+mut.observe(document, optionMut)
 
 const record = setInterval(() => {
     if (typeof clarity === "function") {
