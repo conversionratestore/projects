@@ -545,7 +545,7 @@ p, a, li {
     background: var(--BG, #EAF5FE);
     position: relative;
     margin: 57px 0 0 0;
-    z-index: 1;
+    z-index: 2;
 }
 .offer_section * {
     z-index: 1;
@@ -648,17 +648,17 @@ p, a, li {
 .swiper-pagination {
     bottom: 25px!important;
 }
-.swiper_course .swiper-horizontal>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic, 
-.swiper_course .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
-    z-index: 0;
-}
-.swiper_course .swiper-horizontal>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet, 
-.swiper_course .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet {
-    width: 8px;
-    height: 8px;
-    transform: none;
-    background: #EAF5FE;
-}
+// .swiper_course .swiper-horizontal>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic, 
+// .swiper_course .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+//     z-index: 0;
+// }
+// .swiper_course .swiper-horizontal>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet, 
+// .swiper_course .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet {
+//     width: 8px;
+//     height: 8px;
+//     transform: none;
+//     background: #EAF5FE;
+// }
 .swiper-pagination-bullet-active {
     background: #09983F;
 }
@@ -864,30 +864,30 @@ p, a, li {
     margin: 5px 0;
     color: var(--Body-text, #49718C);
 }
-.trustpilot .swiper-pagination {
+.swiper-pagination {
     overflow: visible;
 }
-.trustpilot .swiper-pagination-bullet {
+.swiper-pagination-bullet {
     transform: scale(.5);
     opacity: 0;
     background: #DBE8F4;
 }
-.trustpilot .swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-main{
+.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-main{
     background: #09983F;
 }
-.trustpilot span.swiper-pagination-bullet.swiper-pagination-bullet-active-prev,
-.trustpilot span.swiper-pagination-bullet.swiper-pagination-bullet-active-next,
-.trustpilot .swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-main {
+span.swiper-pagination-bullet.swiper-pagination-bullet-active-prev,
+span.swiper-pagination-bullet.swiper-pagination-bullet-active-next,
+.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-main {
     transform: scale(1);
     opacity: 1;
 }
-.trustpilot span.swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev,
-.trustpilot span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next {
+span.swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev,
+span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next {
     transform: scale(.75);
     opacity: 1;
 }
-.trustpilot span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swiper-pagination-bullet,
-.trustpilot .swiper-pagination-bullet.siblingsPrev {
+span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swiper-pagination-bullet,
+.swiper-pagination-bullet.siblingsPrev {
     opacity: 1;
 }
 .testimonial {
@@ -1028,6 +1028,26 @@ p, a, li {
         margin-bottom: 10px;
         ${window.location.href.includes(arrlinks[4]) ? 'margin-right: 10px;' : ''}
     }
+    .sticky_btn {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        padding: 15px 20px;
+        border-top: 1px solid var(--Border, #DBE8F4);
+        background: var(--FFFFFF, #FFF);
+        box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+        z-inex: 2;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(100px);
+        transition: all 0.2s ease;
+    }
+    .sticky_btn.active {
+        pointer-events: auto;
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 @media (min-width: 992px) {
     .review-item {
@@ -1097,7 +1117,7 @@ p, a, li {
         padding-left: 30px;
     }
     .review_item {
-        padding: 10px 16px;
+        border-radius: 4px;
     }
     .form_course .review_item {
         width: 260px;
@@ -1159,6 +1179,9 @@ p, a, li {
         right: 50px;
         bottom: 60px;
         z-index: 11;
+    }
+    .slider_trustpilot .swiper-btns {
+        bottom: 30px;
     }
     .swiper-btns button {
         border-radius: 100px;
@@ -1247,6 +1270,9 @@ p, a, li {
     .trustpilot {
         padding: 30px 0 98px 30px;
         margin-bottom: 60px;
+        border-radius: 10px;
+        border: 1px solid var(--Border, #DBE8F4);
+        box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
     }
     .trustpilot > img {
         margin-bottom: 5px;
@@ -1480,6 +1506,9 @@ let courseInit = (course) =>  {
     }
 
     return `
+        <div class="sticky_btn d-lg-none">
+            <a href="${course.linkStart}" class="btn btn--green">VIEW START DATES & VENUES</a>
+        </div>
         <section class="offer_section">
             <svg class="bg-icon" width="375" height="214" viewBox="0 0 375 214" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g opacity="0.08" clip-path="url(#clip0_1105_4147)">
@@ -1569,7 +1598,7 @@ let courseInit = (course) =>  {
                 </div>
             </div>
         </section>
-        <div class="swiper_course">
+        <div class="swiper_course swiper-l">
             <div class="swiper-wrapper">${slides}</div>
             <div class="swiper-pagination"></div>
             <div class="d-lg-flex d-none swiper-btns">
@@ -1625,9 +1654,22 @@ let courseInit = (course) =>  {
                 <div class="trustpilot" id="reviews">
                     <img src="${dir}trustpilot.svg" alt="trustpilot">
                     <h2>More than 20,000 customers already trust us</h2>
-                    <div class="slider_trustpilot">
+                    <div class="slider_trustpilot swiper-l">
                         <div class="swiper-wrapper">${slidesTrustpilot}</div>
                         <div class="swiper-pagination"></div>
+
+                        <div class="d-lg-flex d-none swiper-btns">
+                            <button type="button" class="swiper-prev">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="46" viewBox="0 0 20 20" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5617 18.1533L14.582 16.133L8.44933 10.0003L14.582 3.86761L12.5617 1.8473L4.40872 10.0003L12.5617 18.1533Z" fill="#0D3B5B"/>
+                                </svg>
+                            </button>
+                            <button type="button" class="swiper-next">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="46" viewBox="0 0 20 20" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.43827 18.1533L5.41797 16.133L11.5507 10.0003L5.41797 3.86761L7.43827 1.8473L15.5913 10.0003L7.43827 18.1533Z" fill="#0D3B5B"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="brands">
@@ -1760,6 +1802,23 @@ let init = setInterval(() => {
             document.querySelector('header.course.is-course-form').insertAdjacentHTML('beforebegin', courseInit(course))
             
 
+            if (!media) {
+
+                const offerBtn = document.querySelector('.offer_section .btn');
+                const stickyBtn = document.querySelector('.sticky_btn');
+
+                function addActiveClass() {
+                    if (offerBtn.getBoundingClientRect().bottom <= 0) {
+                        stickyBtn.classList.add('active');
+                    } else {
+                        stickyBtn.classList.remove('active');
+                    }
+                }
+            }
+
+            // Додаємо прослуховувач подій для виклику функції при прокрутці
+            window.addEventListener('scroll', addActiveClass);
+
             if (i != 3) {
                 document.querySelector('.related_courses').after(document.querySelector('.faqs'))
             } else {
@@ -1805,7 +1864,7 @@ let init = setInterval(() => {
             document.querySelector('.form_course .review_block').before(document.querySelector('#course-form'))
             
             document.querySelector('.course-form h2').innerHTML = `Any unanswered questions? <span>Don't hesitate to ask for a call, and we'll be delighted to provide a consultation</span>`
-            document.querySelectorAll('.navigation_content a').forEach(item => {
+            document.querySelectorAll('.navigation_content ul a').forEach(item => {
                 item.addEventListener('click', (e) => {
                     e.preventDefault();
                     let hrefSpt = item.href.split('/');
@@ -1838,6 +1897,7 @@ let init = setInterval(() => {
                         },
                         pagination: {
                             el: ".swiper_course .swiper-pagination",
+                            dynamicBullets: true,
                             clickable: true
                         },
                         breakpoints: {
@@ -1845,8 +1905,8 @@ let init = setInterval(() => {
                                 slidesPerView: 2.6,
                                 spaceBetween: 29,
                                 navigation: {
-                                    nextEl: '.swiper-next',
-                                    prevEl: '.swiper-prev',
+                                    nextEl: '.swiper_course .swiper-next',
+                                    prevEl: '.swiper_course .swiper-prev',
                                 }
                             }
                         }
@@ -1871,8 +1931,8 @@ let init = setInterval(() => {
                                 slidesPerView: 2.5,
                                 spaceBetween: 5,
                                 navigation: {
-                                    nextEl: '.swiper-button-next',
-                                    prevEl: '.swiper-button-prev',
+                                    nextEl: '.slider_trustpilot .swiper-next',
+                                    prevEl: '.slider_trustpilot .swiper-prev',
                                 }
                             }
                         }
@@ -1887,25 +1947,30 @@ let init = setInterval(() => {
                         document.querySelector('.slider_trustpilot').style = 'height: ' +  document.querySelectorAll('.slider_trustpilot .swiper-slide')[0].dataset.height;
                     }
 
-                    const swiper = document.querySelector('.slider_trustpilot').swiper;
-                    swiper.on('slideChange', (e) => {
-                        console.log(e)
-
-                        if (!media) {
-                            document.querySelector('.slider_trustpilot').style = 'height: ' + document.querySelectorAll('.slider_trustpilot .swiper-slide')[e.activeIndex].dataset.height;
-                        }
-                    
-                        let bullet = document.querySelectorAll('.slider_trustpilot .swiper-pagination-bullet')[e.activeIndex]
-                        if (bullet.parentElement.querySelector('.siblingsPrev')) {
-                            bullet.parentElement.querySelector('.siblingsPrev').classList.remove('siblingsPrev') 
-                        }
-                        if (e.activeIndex > 2) {
-                            bullet.previousElementSibling.previousElementSibling.previousElementSibling.classList.add('siblingsPrev')
-                        }
-            
-                    })
+                    document.querySelectorAll('.swiper-l').forEach(item => {
+                        let swiper = item.swiper;
+                        swiper.on('slideChange', (e) => {
+                            console.log(e)
+    
+                            if (!media && item.classList.contains('slider_trustpilot')) {
+                                document.querySelector('.slider_trustpilot').style = 'height: ' + document.querySelectorAll('.slider_trustpilot .swiper-slide')[e.activeIndex].dataset.height;
+                            }
+                        
+                            let bullet = item.querySelectorAll('.swiper-pagination-bullet')[e.activeIndex]
+                            if (bullet.parentElement.querySelector('.siblingsPrev')) {
+                                bullet.parentElement.querySelector('.siblingsPrev').classList.remove('siblingsPrev') 
+                            }
+                            if (e.activeIndex > 2) {
+                                bullet.previousElementSibling.previousElementSibling.previousElementSibling.classList.add('siblingsPrev')
+                            }
+                
+                        })
+                    });
                 }
             });
+            if (document.querySelector('.exp-loading')) {
+                document.querySelector('.exp-loading').classList.remove('exp-loading')
+            }
         }  
     }
 })
