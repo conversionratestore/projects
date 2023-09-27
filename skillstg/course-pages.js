@@ -451,6 +451,9 @@ const pushDataLayer = (name, desk, type, loc) => {
 let style = `
 <style>
 /* base */
+nav {
+    z-index: 12;
+}
 .container {
     width: 100%;
     padding: 0 20px;
@@ -1037,7 +1040,7 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swipe
         border-top: 1px solid var(--Border, #DBE8F4);
         background: var(--FFFFFF, #FFF);
         box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
-        z-inex: 2;
+        z-index: 11;
         opacity: 0;
         pointer-events: none;
         transform: translateY(100px);
@@ -1875,8 +1878,6 @@ let init = setInterval(() => {
                     let hrefSpt = item.href.split('/');
                     let query = hrefSpt[hrefSpt.length - 1];
 
-                    console.log(query)
-
                     const topOffset = e.target.offsetHeight;
                     const elementPosition = document.querySelector(query).getBoundingClientRect().top;
                     const offsetPosition = elementPosition - topOffset - (!media ? 57 : 0);
@@ -1984,7 +1985,6 @@ let mut = new MutationObserver(function (muts) {
         
         document.querySelectorAll('.swiper-l span.swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev').forEach(item => {
             if (item.previousElementSibling) {
-                console.log(item.previousElementSibling)
                
                 if (item.parentElement.querySelector('.swiper-pagination-bullet.siblingsPrev')) {
                     item.parentElement.querySelector('.swiper-pagination-bullet.siblingsPrev').classList.remove('siblingsPrev')
