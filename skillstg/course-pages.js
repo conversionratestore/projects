@@ -274,7 +274,7 @@ let data = [
             'Course overview': {
                 'description': [
                     'This course complies with Health and Safety (first aid) Regulations 1981 and updates learners of any change in practice and guidelines.',
-                    'Our Construction First Aid Course runs from <b>9:00 – 16:00</b>.',
+                    '<span>Our Construction First Aid Course runs from <b>9:00 – 16:00</b>.</span>',
                     'The Construction FAW training syllabus covers some important general & building site first aid topics, including:'
                 ],
                 'list': [
@@ -649,7 +649,7 @@ p, a, li {
     position: relative;
 }
 .swiper-pagination {
-    bottom: 25px!important;
+    bottom: 30px!important;
 }
 // .swiper_course .swiper-horizontal>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic, 
 // .swiper_course .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
@@ -1051,6 +1051,12 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swipe
         opacity: 1;
         transform: translateY(0);
     }
+    .trustpilot {
+        padding-bottom: 54px;
+    }
+    .swiper_course .swiper-pagination-bullets {
+        height: 8px;
+    }
 }
 @media (min-width: 992px) {
     .review-item {
@@ -1177,6 +1183,9 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swipe
     .swiper_course .swiper-pagination {
         bottom: 75px!important;
     }
+    .slider_trustpilot .swiper-pagination {
+        bottom: 53px!important;
+    }
     .swiper-btns {
         position: absolute;
         right: 50px;
@@ -1215,6 +1224,7 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swipe
     .accordion_drop p span {
         margin: 0 -50px;
         padding: 15px 50px;
+        width: 890px;
     }
     .accordion_drop p, .accordion_drop ul {
         padding-bottom: 15px;
@@ -1239,6 +1249,10 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swipe
         padding: 10px 20px;
     }
 
+    .need_different {
+        border-radius: 10px;
+        overflow: hidden;
+    }
     .need_different > img {
         max-height: ${ window.location.href.includes(arrlinks[3]) || window.location.href.includes(arrlinks[4]) ? '250px': '291px'};
         width: 49%;
@@ -1355,6 +1369,12 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swipe
     }
     .related_courses h2 {
         margin-top: 60px;
+    }
+    .faqs__entry h5 {
+        padding: 20px 30px;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: normal;
     }
 }
 </style>`;
@@ -1553,7 +1573,7 @@ let courseInit = (course) =>  {
                 <div class="main d-lg-flex justify-between items-center">
                     <h1>${course.title}</h1>
                     <div>
-                        <p class="day"><b>${course.day} </b> 
+                        <p class="day"><b>${course.day} ${course.index == 2 ? 's' : ''} </b> 
                             ${course.index == 0 || course.index == 2 || course.index == 3 ? '(9am to 4pm)' : ''}
                         </p>
                         <p class="pr">${course.price}</p>
@@ -1839,13 +1859,13 @@ let init = setInterval(() => {
                                 <div class="faqs__entry">
                                     <h5 class="is-open">Can you take this class online?</h5>
                                     <p style="display: block;">You can’t take this class online. It’s a 1-day practical training course with a practical assessment.</p>
-                                </div>>
+                                </div>
                                 <div class="faqs__entry">
-                                    <h5 class="is-open">Is this OFSTED approved?</h5>
+                                    <h5 class="">Is this OFSTED approved?</h5>
                                     <p>If you want an OFSTED approved course, you should undertake our <a href="https://www.skillstg.co.uk/courses/paediatric-first-aid-course/" class="underline"><b>2-day Level 3 Award Blended Paediatric First Aid Course.</b></a></p>
                                 </div>
                                 <div class="faqs__entry">
-                                    <h5 class="is-open">Who is this course suitable for?</h5>
+                                    <h5 class="">Who is this course suitable for?</h5>
                                     <p>This course is suitable for people who work with children or minors such as nannies or workers / teachers at schools. Child minders or those working alone on the Compulsory Ofsted Register must take the Full Paediatric First Aid qualification.</p>
                                 </div>
                             ` : 
@@ -1861,6 +1881,21 @@ let init = setInterval(() => {
                         </div>
                     </div>
                 </section>`)
+
+                var question = $('.faqs__entry h5');
+                var answer = $('.faqs__entry p');
+                question.on('click', function() {
+                    var thisQuestion = $(this);
+                    var thisAnswer = thisQuestion.siblings('p');
+                    var isOpen = thisQuestion.hasClass('is-open');
+                    question.removeClass('is-open');
+                    answer.slideUp(300);
+                    if (!isOpen) {
+                        thisQuestion.addClass('is-open');
+                        thisAnswer.slideDown(300)
+                    }
+                });
+                
             }
 
             document.querySelector('.faqs').insertAdjacentHTML('afterend', `
@@ -1909,6 +1944,14 @@ let init = setInterval(() => {
                         breakpoints: {
                             992: {
                                 slidesPerView: 2.6,
+                                spaceBetween: 29,
+                                navigation: {
+                                    nextEl: '.swiper_course .swiper-next',
+                                    prevEl: '.swiper_course .swiper-prev',
+                                }
+                            },
+                            1600: {
+                                slidesPerView: 3.6,
                                 spaceBetween: 29,
                                 navigation: {
                                     nextEl: '.swiper_course .swiper-next',
