@@ -1410,8 +1410,6 @@ font-family: "Apercu Medium Pro", sans-serif !important;
 
     window.dataLayer = window.dataLayer || []
     dataLayer.push(eventData)
-
-    console.log(eventData)
   }
 
   function handleBtnVisibility(visibleElement, btn) {
@@ -1423,10 +1421,8 @@ font-family: "Apercu Medium Pro", sans-serif !important;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          console.log('visible', visibleElement)
           btn.classList.remove('btn--visibility')
         } else {
-          console.log('NOT visible', visibleElement)
           btn.classList.add('btn--visibility')
         }
       })
