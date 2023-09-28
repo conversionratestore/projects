@@ -19,7 +19,15 @@
   font-family: "Apercu Medium Pro", sans-serif;
 }
 
+body.no-scroll {
+  overflow: hidden;
+}
+
 /* original elements */
+.home-v2-membership-list-item {
+  color: #76CABB !important;
+}
+
 .wally-experience-section {
   background: linear-gradient(to bottom, white 50%, #A2FAA8 50%);
 }
@@ -416,6 +424,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: 135%;
+  font-family: "Apercu Light Pro", sans-serif !important;
   /* 150% */
 }
 
@@ -888,6 +897,10 @@ line-height: 24px; /* 150% */
 height: 39px;
 }
 
+#what-popup .popup__title {
+  margin-right: auto;
+}
+
  .popup__title {
   font-size: 46px;
   line-height: 49px; /* 98% */
@@ -1049,7 +1062,7 @@ font-family: "Apercu Medium Pro", sans-serif !important;
             <p class="take-quiz">Because founding memberships are limited, take a 2-min quiz to see if you’re a fit.</p>
 
             <div class="btn-wrapper">
-            <a class="btn-primary" href="https://wallyhealth.pro.typeform.com/to/pVusBqL3?typeform-source=www.carebywally.com">Start Quiz! <img src="https://uploads-ssl.webflow.com/60a81d43a468febf25fad764/6111718306355f781c8feaeb_arrow-dark.svg" alt=""></a></div>
+            <a class="btn-primary" href="https://wallyhealth.pro.typeform.com/to/pVusBqL3?typeform-source=www.carebywally.com">Start Quiz <img src="https://uploads-ssl.webflow.com/60a81d43a468febf25fad764/6111718306355f781c8feaeb_arrow-dark.svg" alt=""></a></div>
           </div>
         </div>
       </div>
@@ -1298,6 +1311,9 @@ font-family: "Apercu Medium Pro", sans-serif !important;
 
       popupTrigger.addEventListener('click', () => {
         popup.classList.add('popup--show')
+
+        document.body.classList.add('no-scroll')
+
         pushDataLayer(['exp_new_hp_l_fs_hdiw', 'How does it work', 'Link', 'First screen'])
 
         pushDataLayer(['exp_new_hp_v_pp_wiwdc', 'Pop up 1', 'Visibility', 'Whats is wallys dental care'])
@@ -1327,6 +1343,9 @@ font-family: "Apercu Medium Pro", sans-serif !important;
           for (const popup of document.querySelectorAll('.popup--show')) {
             popup.classList.remove('popup--show')
           }
+
+          document.body.classList.remove('no-scroll')
+
 
           if (closeX.closest('#what-popup')) {
             pushDataLayer(['exp_new_hp_c_wiwdc_pp', 'Pop up 1', 'Close', 'Whats is wallys dental care'])
@@ -1358,6 +1377,8 @@ font-family: "Apercu Medium Pro", sans-serif !important;
       for (const btn of document.querySelectorAll('[data-btn="become"]')) {
         btn.addEventListener('click', () => {
           document.getElementById('tell-popup').classList.add('popup--show')
+
+          document.body.classList.add('no-scroll')
 
           pushDataLayer(['exp_new_hp_v_tu_pp', 'Pop up 2', 'Visibility', 'Tell us'])
 
