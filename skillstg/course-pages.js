@@ -931,6 +931,7 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swipe
 .course-form {
     display: block;
     padding: 30px 20px;
+    border-radius: 0;
 }
 .course-form h2 {
     font-size: 20px;
@@ -983,15 +984,24 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swipe
     color: var(--Body-text, #49718C);
 }
 .faqs__entry h5 {
-    border-radius: 4px 4px 0 0;
+    border-radius: 4px;
     font-style: normal;
     font-size: 14px;
     font-weight: 600;
     text-transform: none;
     line-height: normal;
 }
+.faqs__entry h5.is-open {
+    border-radius: 4px 4px 0 0;
+}
+.faqs__entry {
+    border-radius: 4px;
+    border: 1px solid #eaf5fe;
+}
 .faqs__entry p {
     border-radius: 0 0 4px 4px;
+    border: none;
+    border-top: 1px solid #eaf5fe;
 }
 @media (max-width: 991px) {
     .faqs__entry h5 {
