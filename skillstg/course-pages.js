@@ -724,7 +724,7 @@ p, a, li {
     color: var(--Blue-dark, #0D3B5B);
 }
 .highlighted {
-    border-radius: 4px;
+    border-radius: ${window.location.href.includes(arrlinks[1]) ? '4px 4px 0 0' : '4px'};
     background: var(--Blue-dark, #0D3B5B);
     padding: 15px 15px 20px;
 }
@@ -1304,6 +1304,7 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swipe
     }
     .need_course img {
         max-width: 430px;
+        border-radius: 10px;
     }
     .trustpilot {
         padding: 30px 0 98px 30px;
@@ -1534,7 +1535,7 @@ let courseInit = (course) =>  {
                 ${course.index == 0 ? '<p>Some companies only require emergency training following a first aid risk assessment – in such cases, our 1-day emergency first aid at work course is sufficient and first aiders only need to receive the EFAW qualification.</p>'+ 
                     '<p>Depending on the outcome of the assessment, other businesses may need more extensive training for the <a href="/courses/first-aid-at-work-course/" class="underline"><b>first aid at work (FAW) qualification.</b></a></p>'+
                     '<p>SIA Badge holders should now hold an Emergency First Aid at Work Qualification. This course is accepted by SIA.</p>' : 
-                    '<p>Your employees need the full FAW qualification if the outcome of your first aid risk assessment determines that you require first aiders with more than emergency first aid skills. For less risky business environments, you may only need your first aiders to have received the <a href="/courses/one-day-emergency-first-aid-at-work-course/"><b>EFAW qualification</b></a>.</p>'}
+                    '<p>Your employees need the full FAW qualification if the outcome of your first aid risk assessment determines that you require first aiders with more than emergency first aid skills. For less risky business environments, you may only need your first aiders to have received the <a href="/courses/one-day-emergency-first-aid-at-work-course/" class="underline"><b>EFAW qualification</b></a>.</p>'}
             </div>
         </div>` : ''
 
@@ -1661,7 +1662,7 @@ let courseInit = (course) =>  {
         </div>
         <div class="d-flex column-reverse flex-lg-row container">
             <div class="left_content">
-                ${course.index != 1 ? `
+                ${course.index != 0 ? `
                 <div class="work_certificate d-lg-flex">
                     <div class="${course.index == 4 ? 'd-flex items-center' : ''}">
                         <img src="${dir}${course.index == 4 ? 'certification' : 'faib2'}.svg" alt="faib">
