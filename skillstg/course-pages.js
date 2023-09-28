@@ -2018,20 +2018,25 @@ let init = setInterval(() => {
                     </div>
                 </section>`)
 
-                var question = $('.faqs__entry h5');
-                var answer = $('.faqs__entry p');
-                question.on('click', function() {
-                    var thisQuestion = $(this);
-                    var thisAnswer = thisQuestion.siblings('p');
-                    var isOpen = thisQuestion.hasClass('is-open');
-                    question.removeClass('is-open');
-                    answer.slideUp(300);
-                    if (!isOpen) {
-                        thisQuestion.addClass('is-open');
-                        thisAnswer.slideDown(300)
+                let isjquery = setInterval(() => {
+                    if ((typeof $ !== 'undefined' && typeof $.fn !== 'undefined')) {
+                        clearInterval(isjquery)
+
+                        var question = $('.faqs__entry h5');
+                        var answer = $('.faqs__entry p');
+                        question.on('click', function() {
+                            var thisQuestion = $(this);
+                            var thisAnswer = thisQuestion.siblings('p');
+                            var isOpen = thisQuestion.hasClass('is-open');
+                            question.removeClass('is-open');
+                            answer.slideUp(300);
+                            if (!isOpen) {
+                                thisQuestion.addClass('is-open');
+                                thisAnswer.slideDown(300)
+                            }
+                        });
                     }
-                });
-                
+                })  
             }
 
             document.querySelectorAll('.faqs__entry h5').forEach(item => {
