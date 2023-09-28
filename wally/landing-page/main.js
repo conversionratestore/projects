@@ -308,7 +308,8 @@
 .popup {
   z-index: 300;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh; 
+min-height: -webkit-fill-available;
   background-color: #006a5c;
   border: 0 #000;
   flex-direction: column;
