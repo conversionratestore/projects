@@ -205,8 +205,12 @@
 }
 
 .btn-wrapper-fixed button {
-  margin-inline: auto;
   border: 1px solid #a2faa8;
+  margin-inline: auto;
+    border: 1px solid #a2faa8;
+    max-width: 275px;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .btn-wrapper-fixed.btn--visibility {
@@ -733,6 +737,13 @@ line-height: 100%; /* 96px */
 
   .reviews__part-two .review:last-child {
     margin-bottom: 0;
+  }
+
+  #what-popup button {
+    margin-inline: 0;
+    text-align: left;
+    justify-content: space-between;
+    max-width: 83%;
   }
 
   .btn-primary,
