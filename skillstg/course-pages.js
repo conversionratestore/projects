@@ -1610,9 +1610,9 @@ let courseInit = (course) =>  {
                     </div>
                     <div class="d-lg-flex">
                         <div>
-                            <a href="${course.linkStart}" class="btn btn--green" onclick="pushDataLayer(${media ? 'exp_imp_cour_pag_b_1dehd_vsdv' : 'exp_imp_cour_pag_b_1de_vsdv'}, 'view start dates and venues', 'Button', ${course.title + (media ? ' Head Desktop' : '')});">VIEW START DATES & VENUES</a>
+                            <a href="${course.linkStart}" class="btn btn--green" onclick="pushDataLayer(${media ? 'exp_imp_cour_pag_b_1dehd_vsdv' : 'exp_imp_cour_pag_b_1de_vsdv'}, 'view start dates and venues', 'Button', '${course.title + (media ? ' Head Desktop' : '')}');">VIEW START DATES & VENUES</a>
                             <p class="or text-center">or</p>
-                            <a href="/courses/on-site-first-aid-training/" class="flex-center book_onsite underline" onclick="pushDataLayer('exp_imp_cour_pag_b_1de_bcoyv', 'book this course onsite at your venue', 'Button', ${course.title});">
+                            <a href="/courses/on-site-first-aid-training/" class="flex-center book_onsite underline" onclick="pushDataLayer('exp_imp_cour_pag_b_1de_bcoyv', 'book this course onsite at your venue', 'Button', '${course.title}');">
                                 <svg class="mr-10" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                     <g clip-path="url(#clip0_1105_4162)">
                                         <path d="M18.2941 14.0222C18.0104 13.8664 17.6542 13.9701 17.4984 14.2537C17.3426 14.5373 17.4462 14.8935 17.7298 15.0493C18.4278 15.4328 18.8281 15.8578 18.8281 16.2156C18.8281 16.6531 18.2082 17.3312 16.4682 17.9224C14.7493 18.5064 12.4521 18.828 10 18.828C7.54785 18.828 5.2507 18.5064 3.53176 17.9224C1.7918 17.3313 1.17188 16.6531 1.17188 16.2156C1.17188 15.8578 1.57219 15.4328 2.27016 15.0493C2.55379 14.8935 2.65738 14.5372 2.50156 14.2536C2.34574 13.97 1.98961 13.8664 1.7059 14.0222C0.927695 14.4497 0 15.1773 0 16.2156C0 17.0114 0.547344 18.1461 3.15477 19.032C4.99195 19.6562 7.42297 19.9999 10 19.9999C12.577 19.9999 15.008 19.6562 16.8452 19.032C19.4527 18.1461 20 17.0114 20 16.2156C20 15.1773 19.0723 14.4497 18.2941 14.0222Z" fill="#0D3B5B"/>
