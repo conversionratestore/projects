@@ -996,7 +996,7 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swipe
 @media (max-width: 991px) {
     .faqs__entry h5 {
         min-height: 34px;
-        padding: 0 39px 0 15px;
+        padding: 10px 39px 10px 15px;
         display: flex;
         align-items: center;
     }
