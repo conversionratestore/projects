@@ -216,8 +216,6 @@ body.no-scroll {
   border: 1px solid #a2faa8;
   margin-inline: auto;
     border: 1px solid #a2faa8;
-    max-width: 275px;
-    width: 100%;
     justify-content: space-between;
 }
 
@@ -664,6 +662,11 @@ line-height: 100%; /* 96px */
 }
 
 @media screen and (max-width: 991px) {
+  .btn-wrapper-fixed button{
+      max-width: 275px;
+    width: 100%;
+}
+
   body .word-of-mouth-section {
     padding: 45px 30px 35px !important;
   }
