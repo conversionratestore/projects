@@ -1715,8 +1715,8 @@ let courseInit = (course) =>  {
                     <h2>Related Courses</h2>
                     <div class="d-lg-flex flex-wrap">
                         ${course.index == 0 ? 
-                            `<div class="card">'+
-                                <img src="'+dir+'slider/slider_5.png" alt="image">
+                            `<div class="card">
+                                <img src="${dir}slider/slider_5.png" alt="image">
                                 <p class="tag"><b>Online & Classroom</b> </p>
                                 <p class="title"><b>First aid at work course</b> </p>
                                 <p><b> Level:</b> Beginner</p>
@@ -1726,7 +1726,7 @@ let courseInit = (course) =>  {
                         }
                         ${course.index == 1 || course.index == 2 ? 
                             `<div class="card">
-                                <img src="'+dir+'slider/slider_0.png" alt="image">
+                                <img src="${dir}slider/slider_0.png" alt="image">
                                 <p class="tag"><b>Classroom</b> </p>
                                 <p class="title"><b>1-Day Emergency First Aid at Work Course (EFAW) </b> </p>
                                 <p><b> Level:</b> Beginner</p>
@@ -1737,7 +1737,7 @@ let courseInit = (course) =>  {
                         
                         ${course.index == 3 ? 
                             `<div class="card">
-                                <img src="'+dir+'slider/slider_21.png" alt="image">
+                                <img src="${dir}slider/slider_21.png" alt="image">
                                 <p class="tag"><b>Classroom + E-learning</b> </p>
                                 <p class="title"><b>Paediatric first aid course (12 hour) Level 3</b> </p>
                                 <p><b> Level:</b> Beginner</p>
@@ -1746,8 +1746,8 @@ let courseInit = (course) =>  {
                             </div>` : ''
                         }
                         ${course.index == 4 ? 
-                            `<div class="card">'+
-                                <img src="'+dir+'slider/slider_16.png" alt="image">
+                            `<div class="card">
+                                <img src="${dir}slider/slider_16.png" alt="image">
                                 <p class="tag"><b>Classroom</b> </p>
                                 <p class="title"><b>Emergency Paediatric First Aid Course</b> </p>
                                 <p><b> Level:</b> Beginner</p>
