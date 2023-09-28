@@ -288,7 +288,7 @@ let data = [
         'bookOnsite': 'The construction first aid course is a <a href="/courses/first-aid-at-work-course/">First Aid at Work Course</a>. Click here if you require our <a href="/courses/one-day-emergency-first-aid-at-work-course/">1-Day Emergency First Aid at Work Course</a>.',
         'needDifferent': {
             'linkText':'View all our First Aid Qualifications',
-            'description': 'For group bookings, we can deliver these <a href="/courses/on-site-first-aid-training/">courses on site at your venue</a>.'
+            'description': 'For group bookings, we can deliver these <a href="/courses/on-site-first-aid-training/" class="underline"><b>courses on site at your venue</b></a>.'
         },
         'trustpilot': [
             {
@@ -651,24 +651,12 @@ p, a, li {
 .swiper-pagination {
     bottom: 30px!important;
 }
-// .swiper_course .swiper-horizontal>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic, 
-// .swiper_course .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
-//     z-index: 0;
-// }
-// .swiper_course .swiper-horizontal>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet, 
-// .swiper_course .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet {
-//     width: 8px;
-//     height: 8px;
-//     transform: none;
-//     background: #EAF5FE;
-// }
 .swiper-pagination-bullet-active {
     background: #09983F;
 }
 .navigation_content {
     background: #F8F8F8;
     padding: 20px;
-    border-radius: 10px;
 }
 .navigation_content ul {
     padding-top: 5px;
@@ -1054,7 +1042,7 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swipe
     .trustpilot {
         padding-bottom: 54px;
     }
-    .swiper_course .swiper-pagination-bullets {
+    .swiper-pagination-bullets {
         height: 8px;
     }
 }
@@ -1079,6 +1067,10 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swipe
         position: sticky;
         top: 60px;
         min-width: 315px;
+        border-radius: 10px;
+        margin: 60px 0 0 30px;
+        border: 1px solid var(--Border, #DBE8F4);
+        box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
     }
     .course_approval .mr-8 {
         margin-right: 20px;
@@ -1098,11 +1090,6 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swipe
     }
     .for_qroup {
         border-radius: 0 0 10px 10px;
-    }
-    .navigation_content {
-        margin: 60px 0 0 30px;
-        border: 1px solid var(--Border, #DBE8F4);
-        box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
     }
     h2, .large-title {
         font-size: 24px;
@@ -1376,6 +1363,11 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swipe
         font-weight: 600;
         line-height: normal;
     }
+    .trustpilot .swiper-slide > div {
+        max-height: 162px;
+        overflow-y: auto;
+        box-sizing: border-box;
+    }
 }
 </style>`;
 
@@ -1434,7 +1426,7 @@ let courseInit = (course) =>  {
     for (const key in contentObj) {
         accordion += `
             <div class="accordion" id="${key.split(' ').join('-').toLowerCase()}">
-                <p class="accordion_current d-flex items-center justify-between" onclick="event.target.classList.toggle('is-hide')">
+                <p class="accordion_current d-flex items-center justify-between" onclick="event.target.classList.toggle('is-hide');">
                     <b>${key}</b>
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
                         <path d="M2 9.5L7 4.5L12 9.5" stroke="#0D3B5B" stroke-width="2"/>
@@ -1482,11 +1474,11 @@ let courseInit = (course) =>  {
                     <path d="M13.0164 20.1085C13.0272 19.9907 13.0019 19.8543 12.8714 19.8184C12.8448 19.8079 11.6386 19.4286 11.6386 19.4286C11.5116 19.3923 11.4119 19.2972 11.3576 19.1793L9.04598 13.8809L7.69531 14.597L10.3785 20.1085H13.0164Z" fill="#0D3B5B"/>
                     <path d="M17.7738 22.3472C17.1288 21.5042 16.0328 21.0115 14.9546 21.0147C14.473 21.0168 4.03137 21.0147 4.03137 21.0147C3.78209 21.0147 3.57812 21.2186 3.57812 21.4679V23.9517C4.78721 23.9514 8.85611 23.9519 10.1366 23.9517C10.1366 23.9517 10.1366 23.0225 10.1366 23.0225C10.1352 22.7791 10.3376 22.5673 10.5899 22.5693H13.3094C13.6901 22.5693 14.0527 22.6599 14.3699 22.8276C15.6072 23.3994 16.0606 25.1504 15.2356 26.2497C15.2356 26.2496 16.2011 26.2496 16.2011 26.2496C18.3539 26.2346 19.0317 23.8648 17.7738 22.3472Z" fill="#0D3B5B"/>
                 </svg>
-                <a href="/category/first-aid-training-courses/"><b>${data[course.index]['needDifferent']['linkText']}</b></a>
+                <a href="/category/first-aid-training-courses/" ><b>${data[course.index]['needDifferent']['linkText']}</b></a>
             </div>
             ${data[course.index]['needDifferent']['description'] ? '<p>'+data[course.index]['needDifferent']['description']+'</p>' : ''}
 
-            ${course.index == 0 ? '<a href="/courses/on-site-first-aid-training/" class="btn btn--green">Book onsite</a>' : ''}
+            ${course.index == 0 ? `<a href="/courses/on-site-first-aid-training/" class="btn btn--green" onclick="pushDataLayer('exp_imp_cour_pag_bo_1dendc_b', 'Book onsite', 'Button', '` + course.title + ` Need a different course?');">Book onsite</a>` : ''}
         </div>
     </div>
     ` : '';
@@ -1525,12 +1517,11 @@ let courseInit = (course) =>  {
                     <p class="info"><b>${dataTrustpilor[i].customer} | ${dataTrustpilor[i].date}</b></p>
                 </div>
             </div>`;
-
     }
 
     return `
         <div class="sticky_btn d-lg-none">
-            <a href="${course.linkStart}" class="btn btn--green">VIEW START DATES & VENUES</a>
+            <a href="${course.linkStart}" class="btn btn--green" onclick="pushDataLayer('exp_imp_cour_pag_b_1desb_vsdv', 'view start dates and venues', 'Button', '${course.title} Sticky button');">VIEW START DATES & VENUES</a>
         </div>
         <section class="offer_section">
             <svg class="bg-icon" width="375" height="214" viewBox="0 0 375 214" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1573,7 +1564,7 @@ let courseInit = (course) =>  {
                 <div class="main d-lg-flex justify-between items-center">
                     <h1>${course.title}</h1>
                     <div>
-                        <p class="day"><b>${course.day} ${course.index == 2 ? 's' : ''} </b> 
+                        <p class="day"><b>${course.day}${course.index == 2 ? 'S' : ''} </b> 
                             ${course.index == 0 || course.index == 2 || course.index == 3 ? '(9am to 4pm)' : ''}
                         </p>
                         <p class="pr">${course.price}</p>
@@ -1598,9 +1589,9 @@ let courseInit = (course) =>  {
                     </div>
                     <div class="d-lg-flex">
                         <div>
-                            <a href="${course.linkStart}" class="btn btn--green">VIEW START DATES & VENUES</a>
+                            <a href="${course.linkStart}" class="btn btn--green" onclick="pushDataLayer(${media ? 'exp_imp_cour_pag_b_1dehd_vsdv' : 'exp_imp_cour_pag_b_1de_vsdv'}, 'view start dates and venues', 'Button', ${course.title + (media ? ' Head Desktop' : '')});">VIEW START DATES & VENUES</a>
                             <p class="or text-center">or</p>
-                            <a href="/courses/on-site-first-aid-training/" class="flex-center book_onsite underline">
+                            <a href="/courses/on-site-first-aid-training/" class="flex-center book_onsite underline" onclick="pushDataLayer('exp_imp_cour_pag_b_1de_bcoyv', 'book this course onsite at your venue', 'Button', ${course.title});">
                                 <svg class="mr-10" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                     <g clip-path="url(#clip0_1105_4162)">
                                         <path d="M18.2941 14.0222C18.0104 13.8664 17.6542 13.9701 17.4984 14.2537C17.3426 14.5373 17.4462 14.8935 17.7298 15.0493C18.4278 15.4328 18.8281 15.8578 18.8281 16.2156C18.8281 16.6531 18.2082 17.3312 16.4682 17.9224C14.7493 18.5064 12.4521 18.828 10 18.828C7.54785 18.828 5.2507 18.5064 3.53176 17.9224C1.7918 17.3313 1.17188 16.6531 1.17188 16.2156C1.17188 15.8578 1.57219 15.4328 2.27016 15.0493C2.55379 14.8935 2.65738 14.5372 2.50156 14.2536C2.34574 13.97 1.98961 13.8664 1.7059 14.0222C0.927695 14.4497 0 15.1773 0 16.2156C0 17.0114 0.547344 18.1461 3.15477 19.032C4.99195 19.6562 7.42297 19.9999 10 19.9999C12.577 19.9999 15.008 19.6562 16.8452 19.032C19.4527 18.1461 20 17.0114 20 16.2156C20 15.1773 19.0723 14.4497 18.2941 14.0222Z" fill="#0D3B5B"/>
@@ -1703,45 +1694,45 @@ let courseInit = (course) =>  {
                     <h2>Related Courses</h2>
                     <div class="d-lg-flex flex-wrap">
                         ${course.index == 0 ? 
-                            '<div class="card">'+
-                                '<img src="'+dir+'slider/slider_5.png" alt="image">'+
-                                '<p class="tag"><b>Online & Classroom</b> </p>'+
-                                '<p class="title"><b>First aid at work course</b> </p>'+
-                                '<p><b> Level:</b> Beginner</p>'+
-                                '<p><b> Length:</b> 6 hours e-learning + 2 days practical</p>'+
-                                '<a href="/courses/first-aid-at-work-course/" class="btn">Learn more</a>'+
-                            '</div>' : ''
+                            `<div class="card">'+
+                                <img src="'+dir+'slider/slider_5.png" alt="image">
+                                <p class="tag"><b>Online & Classroom</b> </p>
+                                <p class="title"><b>First aid at work course</b> </p>
+                                <p><b> Level:</b> Beginner</p>
+                                <p><b> Length:</b> 6 hours e-learning + 2 days practical</p>
+                                <a href="/courses/first-aid-at-work-course/" class="btn" onclick="pushDataLayer('exp_imp_cour_pag_b_1derc_lmnc', 'learn more - ' + event.target.closest('.card').querySelector('.title').innerText, 'Button', '${course.title} Related Courses');">Learn more</a>
+                            </div>` : ''
                         }
                         ${course.index == 1 || course.index == 2 ? 
-                            '<div class="card">'+
-                                '<img src="'+dir+'slider/slider_0.png" alt="image">'+
-                                '<p class="tag"><b>Classroom</b> </p>'+
-                                '<p class="title"><b>1-Day Emergency First Aid at Work Course (EFAW) </b> </p>'+
-                                '<p><b> Level:</b> Beginner</p>'+
-                                '<p><b> Length:</b> 1 day</p>'+
-                                '<a href="/courses/one-day-emergency-first-aid-at-work-course/" class="btn">Learn more</a>'+
-                            '</div>' : ''
+                            `<div class="card">
+                                <img src="'+dir+'slider/slider_0.png" alt="image">
+                                <p class="tag"><b>Classroom</b> </p>
+                                <p class="title"><b>1-Day Emergency First Aid at Work Course (EFAW) </b> </p>
+                                <p><b> Level:</b> Beginner</p>
+                                <p><b> Length:</b> 1 day</p>
+                                <a href="/courses/one-day-emergency-first-aid-at-work-course/" class="btn" onclick="pushDataLayer('exp_imp_cour_pag_b_1derc_lmnc', 'learn more - ' + event.target.closest('.card').querySelector('.title').innerText, 'Button', '${course.title} Related Courses');">Learn more</a>
+                            </div>` : ''
                         }
                         
                         ${course.index == 3 ? 
-                            '<div class="card">'+
-                                '<img src="'+dir+'slider/slider_21.png" alt="image">'+
-                                '<p class="tag"><b>Classroom + E-learning</b> </p>'+
-                                '<p class="title"><b>Paediatric first aid course (12 hour) Level 3</b> </p>'+
-                                '<p><b> Level:</b> Beginner</p>'+
-                                '<p><b> Length:</b> 1 day practical + 1 day e-learning</p>'+
-                                '<a href="/courses/paediatric-first-aid-course/" class="btn">Learn more</a>'+
-                            '</div>' : ''
+                            `<div class="card">
+                                <img src="'+dir+'slider/slider_21.png" alt="image">
+                                <p class="tag"><b>Classroom + E-learning</b> </p>
+                                <p class="title"><b>Paediatric first aid course (12 hour) Level 3</b> </p>
+                                <p><b> Level:</b> Beginner</p>
+                                <p><b> Length:</b> 1 day practical + 1 day e-learning</p>
+                                <a href="/courses/paediatric-first-aid-course/" class="btn" onclick="pushDataLayer('exp_imp_cour_pag_b_1derc_lmnc', 'learn more - ' + event.target.closest('.card').querySelector('.title').innerText, 'Button', '${course.title} Related Courses');">Learn more</a>
+                            </div>` : ''
                         }
                         ${course.index == 4 ? 
-                            '<div class="card">'+
-                                '<img src="'+dir+'slider/slider_16.png" alt="image">'+
-                                '<p class="tag"><b>Classroom</b> </p>'+
-                                '<p class="title"><b>Emergency Paediatric First Aid Course</b> </p>'+
-                                '<p><b> Level:</b> Beginner</p>'+
-                                '<p><b> Length:</b> 1 day</p>'+
-                                '<a href="/courses/emergency-paediatric-first-aid-course/" class="btn">Learn more</a>'+
-                            '</div>' : ''
+                            `<div class="card">'+
+                                <img src="'+dir+'slider/slider_16.png" alt="image">
+                                <p class="tag"><b>Classroom</b> </p>
+                                <p class="title"><b>Emergency Paediatric First Aid Course</b> </p>
+                                <p><b> Level:</b> Beginner</p>
+                                <p><b> Length:</b> 1 day</p>
+                                <a href="/courses/emergency-paediatric-first-aid-course/" class="btn" onclick="pushDataLayer('exp_imp_cour_pag_b_1derc_lmnc', 'learn more - ' + event.target.closest('.card').querySelector('.title').innerText, 'Button', '${course.title} Related Courses');">Learn more</a>
+                            </div>` : ''
                         }
                         <div class="card">
                             <img src="${dir}image-3.png" alt="image">
@@ -1749,7 +1740,7 @@ let courseInit = (course) =>  {
                             <p class="title"><b>On Site First Aid Training Nationwide</b> </p>
                             <p><b> Level:</b> Beginner</p>
                             <p><b> Length:</b> Varies</p>
-                            <a href="/courses/on-site-first-aid-training/" class="btn">Learn more</a>
+                            <a href="/courses/on-site-first-aid-training/" class="btn" onclick="pushDataLayer('exp_imp_cour_pag_b_1derc_lmnc', 'learn more - ' + event.target.closest('.card').querySelector('.title').innerText, 'Button', '${course.title} Related Courses');">Learn more</a>
                         </div>
                     </div>
                 </div>
@@ -1766,6 +1757,8 @@ let courseInit = (course) =>  {
                         course.index == 3 || course.index == 4 ? 
                         '<li><a href="#exams-and-assessment">Exams and assessment</a></li>' : 
                         course.index == 2 ? '<li><a href="#construction-faw-exams-and-assessment">Construction FAW exams and assessment</a></li>' :
+                        course.index == 1 ? 
+                        '<li><a href="#faw-exams-and-assessment">FAW exams and assessment</a></li>' : 
                         '<li><a href="#efaw-exams-and-assessment">EFAW exams and assessment</a></li>'
                     }
                     
@@ -1780,7 +1773,7 @@ let courseInit = (course) =>  {
                     <li><a href="#reviews">Reviews</a></li>
                     <li><a href=".faqs">FAQ</a></li>
                 </ul>
-                <a href="${course.linkStart}" class="btn btn--green d-lg-block d-none">VIEW START DATES & VENUES</a>
+                <a href="${course.linkStart}" class="btn btn--green d-lg-block d-none" onclick="pushDataLayer('exp_imp_cour_pag_b_1decbsbd_vsdv', 'view start dates and venues', 'Button', '${course.title} Content block Sticky button Desktop');">VIEW START DATES & VENUES</a>
             </div>
         </div>
        
@@ -1788,6 +1781,84 @@ let courseInit = (course) =>  {
      `
 }
 
+const visibilityMap = new Map()
+
+let visibilityTimer
+
+function handleVisibility(className) {
+  const targetElements = document.querySelectorAll(className)
+
+  visibilityTimer = setTimeout(() => {
+    targetElements.forEach((targetElement, index) => {
+      const rect = targetElement.getBoundingClientRect()
+
+      const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight
+
+      if (isVisible && !visibilityMap.has(targetElement)) {
+        visibilityMap.set(targetElement, Date.now())
+      } else if (!isVisible && visibilityMap.has(targetElement)) {
+        const startTime = visibilityMap.get(targetElement)
+        const focusTime = Date.now() - startTime
+
+        let title = targetElement.closest('body').querySelector('.offer_section h1').innerText;
+
+        if (targetElement.closest('.offer_section') && targetElement.className.includes('btn')) {
+            pushDataLayer('exp_imp_cour_pag_v_1devsdv_ft', focusTime, 'Visibility', title + ' View start dates and venues');
+        }
+        if (targetElement.className.includes('need_different')) {
+            pushDataLayer('exp_imp_cour_pag_v_1dendc_ft', focusTime, 'Visibility', title + ' Need a different course?');
+        }
+        if (targetElement.closest('.course-form') ) {
+            pushDataLayer('exp_imp_cour_pag_v_1deauq_ft', focusTime, 'Visibility', title + '1-Day Emergency Any unanswered questions?');
+        }
+        if (targetElement.closest('.course-form')  && targetElement.className.includes('btn')) {
+            pushDataLayer('exp_imp_cour_pag_v_1deauq_ftrcb', focusTime + ' - request a call back', 'Visibility', title + ' Any unanswered questions?');
+        }
+        if (targetElement.closest('.offer_section') && targetElement.className.includes('main')) {
+            pushDataLayer('exp_imp_cour_pag_v_1deh_ft', focusTime, 'Visibility', title + ' Head');
+        }
+        if (targetElement.closest('.offer_section') && targetElement.className.includes('review_block')) {
+            pushDataLayer('exp_imp_cour_pag_v_1des_ft', focusTime, 'Visibility', title + ' Stars');
+        }
+        if (targetElement.closest('.form_course') && targetElement.className.includes('review_block')) {
+            pushDataLayer('exp_imp_cour_pag_v_1der_ft', focusTime, 'Visibility', title + ' Rating');
+        }
+        if (targetElement.className.includes('navigation_content')) {
+            pushDataLayer('exp_imp_cour_pag_v_1den_ft', focusTime, 'Visibility', title + ' Navigation');
+        }
+        if (targetElement.className.includes('accordion_current')) {
+            let name = targetElement.innerText.includes('Modules breakdown') ? '1demb' : 
+            targetElement.innerText.includes('EFAW exams and assessment') ? '1deees' : 
+            targetElement.innerText.includes('Entry requirements') ? '1deer' :
+            targetElement.innerText.includes('Course overview') ? '1deco' :
+            '';
+
+            pushDataLayer(`exp_imp_cour_pag_v_${name}_ft`, focusTime, 'Visibility', title + ' ' + targetElement.innerText);
+        }
+        if (targetElement.className.includes('trainers')) {
+            pushDataLayer('exp_imp_cour_pag_v_1demqt_ft', focusTime, 'Visibility', title + ' Meet our qualified trainers');
+        }
+        if (targetElement.className.includes('need_course_content')) {
+            pushDataLayer('exp_imp_cour_pag_v_1demenc_ft', focusTime, 'Visibility', title + ' Do my employees need this course?');
+        }
+        if (targetElement.closest('trustpilot')) {
+            pushDataLayer('exp_imp_cour_pag_v_1demcatu_ft', focusTime, 'Visibility', title + ' More than 20,000 customers already trust us');
+        }
+        if (targetElement.closest('testimonial')) {
+            pushDataLayer('exp_imp_cour_pag_v_1devpf_ft', focusTime, 'Visibility', title + ' Very positive feedback');
+        }
+        if (targetElement.closest('.card')) {
+            pushDataLayer('exp_imp_cour_pag_v_1deblm_ftcnlm', focusTime + targetElement.closest('.card').querySelector('.title').innerText + ' - Learn more', 'Visibility', title + 'Button Learn more');
+        }
+        if (targetElement.closest('.faqs')) {
+            pushDataLayer('exp_imp_cour_pag_v_1defaq_ft', focusTime, 'Visibility', title + ' Frequently asked questions');
+        }
+
+        visibilityMap.delete(targetElement)
+      }
+    })
+  }, 500)
+}
 
 let init = setInterval(() => {
     for (let i = 0; i < arrlinks.length; i++) {
@@ -1829,6 +1900,52 @@ let init = setInterval(() => {
             document.body.insertAdjacentHTML('afterbegin', style)
             document.querySelector('header.course.is-course-form').insertAdjacentHTML('beforebegin', courseInit(course))
             
+            let title = document.querySelector('.offer_section .main h1').innerText;
+
+            //event
+            handleVisibility('.offer_section .btn')
+            handleVisibility('.need_different')
+            handleVisibility('.course-form button')
+            handleVisibility('.course-form')
+            handleVisibility('.offer_section .main')
+            handleVisibility('.offer_section .review_block')
+            handleVisibility('.form_course .review_block')
+            handleVisibility('.navigation_content')
+            handleVisibility('.accordion_current')
+            handleVisibility('.trainers')
+            handleVisibility('.need_course_content')
+            handleVisibility('.trustpilot h2')
+            handleVisibility('.testimonial')
+            handleVisibility('.card .btn')
+            handleVisibility('.faqs h2')
+            handleVisibility('.accreditations_block')
+          
+            window.addEventListener('scroll', () => {
+                handleVisibility('.offer_section .btn')
+                handleVisibility('.need_different')
+                handleVisibility('.course-form button')
+                handleVisibility('.course-form')
+                handleVisibility('.offer_section .main')
+                handleVisibility('.offer_section .review_block')
+                handleVisibility('.form_course .review_block')
+                handleVisibility('.navigation_content')
+                handleVisibility('.accordion_current')
+                handleVisibility('.trainers')
+                handleVisibility('.need_course_content')
+                handleVisibility('.trustpilot h2')
+                handleVisibility('.testimonial')
+                handleVisibility('.card .btn')
+                handleVisibility('.faqs h2')
+                handleVisibility('.accreditations_block')
+            })
+
+            document.querySelectorAll('.accordion_current').forEach(accordion => {
+                accordion.addEventListener('click', () => {
+                    if (accordion.classList.contains('is-hide')) {
+                        pushDataLayer('exp_imp_cour_pag_a_1dec_ccbn', `Close ${accordion.innerText}`, 'Accordion', title);
+                    }
+                })
+            })
 
             if (!media) {
 
@@ -1842,10 +1959,8 @@ let init = setInterval(() => {
                         stickyBtn.classList.remove('active');
                     }
                 }
+                window.addEventListener('scroll', addActiveClass);
             }
-
-            // Додаємо прослуховувач подій для виклику функції при прокрутці
-            window.addEventListener('scroll', addActiveClass);
 
             if (i != 3) {
                 document.querySelector('.related_courses').after(document.querySelector('.faqs'))
@@ -1898,15 +2013,27 @@ let init = setInterval(() => {
                 
             }
 
+            document.querySelectorAll('.faqs__entry h5').forEach(item => {
+                item.addEventListener('click', () => {
+                    if (item.classList.contains('is-open')) {
+                        pushDataLayer('exp_imp_cour_pag_a_1de_ofaq', `Open ${item.innerText}`, 'Accordion', title);
+                    }
+                })
+            })
+
             document.querySelector('.faqs').insertAdjacentHTML('afterend', `
             <div class="d-lg-flex items-center form_course">
                 ${reviewBlock('d-lg-block')}
             </div>`)
            
-
             document.querySelector('.form_course .review_block').before(document.querySelector('#course-form'))
             
             document.querySelector('.course-form h2').innerHTML = `Any unanswered questions? <span>Don't hesitate to ask for a call, and we'll be delighted to provide a consultation</span>`
+           
+            document.querySelector('.course-form button').addEventListener('click', () => {
+                pushDataLayer('exp_imp_cour_pag_b_1deauq_rcb', 'request a call back', 'Button', title + ' Any unanswered questions?');
+            })
+           
             document.querySelectorAll('.navigation_content ul a').forEach(item => {
                 item.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -1920,8 +2047,10 @@ let init = setInterval(() => {
                     seamless.polyfill();
                     seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
                     
+                    pushDataLayer('exp_imp_cour_pag_l_1dec_ct', item.innerText, 'Link', title);
                 })
             })
+
             //init Swiper slider
             const waitSwiper = setInterval(() => {
                 if(typeof Swiper == 'function') {
@@ -1935,6 +2064,7 @@ let init = setInterval(() => {
                             enabled: true,
                             eventsTarget: '.swiper_course .swiper-wrapper', 
                             releaseOnEdges: true, 
+                            forceToAxis: true
                         },
                         pagination: {
                             el: ".swiper_course .swiper-pagination",
@@ -1969,6 +2099,7 @@ let init = setInterval(() => {
                             enabled: true,
                             eventsTarget: '.slider_trustpilot .swiper-wrapper', 
                             releaseOnEdges: true, 
+                            forceToAxis: true
                         },
                         pagination: {
                             el: ".slider_trustpilot .swiper-pagination",
@@ -1990,13 +2121,36 @@ let init = setInterval(() => {
                     
                     if (!media) {
                         document.querySelectorAll('.slider_trustpilot .swiper-slide').forEach(item => {
-                            item.setAttribute('data-height', item.clientHeight + 54 + 'px');
+                            item.setAttribute('data-height', item.clientHeight + 'px');
                         })
                         
                         document.querySelector('.slider_trustpilot').style = 'height: ' +  document.querySelectorAll('.slider_trustpilot .swiper-slide')[0].dataset.height;
                     }
-
-                   
+                    //events
+                    document.querySelectorAll('.swiper-l').forEach(item => {
+                        if (!media && item.classList.contains('slider_trustpilot')) {
+                            item.swiper.on('slideChange', (e) => {
+                                item.style = 'height: ' +  item.querySelectorAll('.swiper-slide')[e.activeIndex].dataset.height;
+                            })
+                        }
+                        item.swiper.on('sliderFirstMove', () => {
+                            if (item.closest('.swiper_course')) {
+                                pushDataLayer('exp_imp_cour_pag_s_1deg_h', 'Horisontal', 'Scroll', title + ' Gallery');
+                            } else {
+                                pushDataLayer('exp_imp_cour_pag_s_1demtcatu_h', 'Horisontal', 'Scroll', title + ' More than 20,000 customers already trust us');
+                            }
+                        })
+                        item.querySelectorAll('button').forEach(button => {
+                            let arrows = button.className.includes('swiper-next') ? 'right' : 'left';
+                            button.addEventListener('click', () => {
+                                if (button.closest('.swiper_course')) {
+                                    pushDataLayer('exp_imp_cour_pag_b_1deg_alr', `arrows - ${arrows}`, 'Button', title + ' Gallery');
+                                } else {
+                                    pushDataLayer('exp_imp_cour_pag_b_1demtcatu_alr', `arrows - ${arrows}`, 'Button', title + ' More than 20,000 customers already trust us"');
+                                }
+                            })
+                        })
+                    })
                 }
             });
             if (document.querySelector('.exp-loading')) {
@@ -2043,6 +2197,6 @@ mut.observe(document, optionMut)
 const record = setInterval(() => {
     if (typeof clarity === "function") {
       clearInterval(record);
-      clarity("set", "exp_improvements_course_page", "variant_1");
+      clarity("set", "exp_imp_course", "variant_1");
     }
 }, 100);
