@@ -1902,6 +1902,21 @@ function handleVisibility(className) {
   }, 500)
 }
 
+//add script/link Swiper slider
+let scriptSwiper = document.createElement('script');
+scriptSwiper.src = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js';
+document.head.appendChild(scriptSwiper);
+
+let linkSwiper = document.createElement('link');
+linkSwiper.href = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css';
+linkSwiper.rel = 'stylesheet';
+document.head.appendChild(linkSwiper);
+
+let scriptSeamless = document.createElement('script');
+scriptSeamless.async = true;
+scriptSeamless.src = 'https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js';
+document.head.appendChild(scriptSeamless)
+
 let init = setInterval(() => {
     for (let i = 0; i < arrlinks.length; i++) {
         if (window.location.href.includes(arrlinks[i]) && 
@@ -1913,22 +1928,6 @@ let init = setInterval(() => {
         ) {
             clearInterval(init)
 
-
-            //add script/link Swiper slider
-            let scriptSwiper = document.createElement('script');
-            scriptSwiper.src = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js';
-            document.body.appendChild(scriptSwiper);
-
-            let linkSwiper = document.createElement('link');
-            linkSwiper.href = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css';
-            linkSwiper.rel = 'stylesheet';
-            document.head.appendChild(linkSwiper);
-
-
-            let scriptSeamless = document.createElement('script');
-            scriptSeamless.async = true;
-            scriptSeamless.src = 'https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js';
-            document.body.appendChild(scriptSeamless)
 
             let course = {};
 
