@@ -1610,7 +1610,7 @@ let courseInit = (course) =>  {
                     </div>
                     <div class="d-lg-flex">
                         <div>
-                            <a href="${course.linkStart}" class="btn btn--green" onclick="pushDataLayer(${media ? 'exp_imp_cour_pag_b_1dehd_vsdv' : 'exp_imp_cour_pag_b_1de_vsdv'}, 'view start dates and venues', 'Button', '${course.title + (media ? ' Head Desktop' : '')}');">VIEW START DATES & VENUES</a>
+                            <a href="${course.linkStart}" class="btn btn--green" onclick="pushDataLayer('${media ? 'exp_imp_cour_pag_b_1dehd_vsdv' : 'exp_imp_cour_pag_b_1de_vsdv'}', 'view start dates and venues', 'Button', '${course.title + (media ? ' Head Desktop' : '')}');">VIEW START DATES & VENUES</a>
                             <p class="or text-center">or</p>
                             <a href="/courses/on-site-first-aid-training/" class="flex-center book_onsite underline" onclick="pushDataLayer('exp_imp_cour_pag_b_1de_bcoyv', 'book this course onsite at your venue', 'Button', '${course.title}');">
                                 <svg class="mr-10" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
