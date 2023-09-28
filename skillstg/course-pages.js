@@ -1832,7 +1832,7 @@ function handleVisibility(className) {
         if (targetElement.closest('.course-form') ) {
             pushDataLayer('exp_imp_cour_pag_v_1deauq_ft', focusTime, 'Visibility', title + '1-Day Emergency Any unanswered questions?');
         }
-        if (targetElement.closest('.course-form')  && targetElement.className.includes('btn')) {
+        if (targetElement.closest('.course-form')  && targetElement.id.includes('freepack-submit')) {
             pushDataLayer('exp_imp_cour_pag_v_1deauq_ftrcb', focusTime + ' - request a call back', 'Visibility', title + ' Any unanswered questions?');
         }
         if (targetElement.closest('.offer_section') && targetElement.className.includes('main')) {
@@ -1862,10 +1862,10 @@ function handleVisibility(className) {
         if (targetElement.className.includes('need_course_content')) {
             pushDataLayer('exp_imp_cour_pag_v_1demenc_ft', focusTime, 'Visibility', title + ' Do my employees need this course?');
         }
-        if (targetElement.closest('trustpilot')) {
+        if (targetElement.closest('.trustpilot')) {
             pushDataLayer('exp_imp_cour_pag_v_1demcatu_ft', focusTime, 'Visibility', title + ' More than 20,000 customers already trust us');
         }
-        if (targetElement.closest('testimonial')) {
+        if (targetElement.closest('.testimonial')) {
             pushDataLayer('exp_imp_cour_pag_v_1devpf_ft', focusTime, 'Visibility', title + ' Very positive feedback');
         }
         if (targetElement.closest('.card')) {
@@ -1873,6 +1873,9 @@ function handleVisibility(className) {
         }
         if (targetElement.closest('.faqs')) {
             pushDataLayer('exp_imp_cour_pag_v_1defaq_ft', focusTime, 'Visibility', title + ' Frequently asked questions');
+        }
+        if (targetElement.className.includes('accreditations_block')) {
+            pushDataLayer('exp_imp_cour_pag_v_1dea_ft', focusTime, 'Visibility', title + ' Our accreditations');
         }
 
         visibilityMap.delete(targetElement)
