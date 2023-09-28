@@ -982,7 +982,31 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swipe
 .work_certificate p {
     color: var(--Body-text, #49718C);
 }
+.faqs__entry h5 {
+    border-radius: 4px 4px 0 0;
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: none;
+    line-height: normal;
+}
+.faqs__entry p {
+    border-radius: 0 0 4px 4px;
+}
 @media (max-width: 991px) {
+    .faqs__entry h5 {
+        min-height: 34px;
+        padding: 0 39px 0 15px;
+        display: flex;
+        align-items: center;
+    }
+    .faqs__entry h5::after {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .faqs__entry h5.is-open::after {
+        transform: translateY(-50%) rotate(-180deg);
+    }
     .offer_section .btn {
         margin-top: 15px;
     }
@@ -1359,9 +1383,6 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swipe
     }
     .faqs__entry h5 {
         padding: 20px 30px;
-        font-size: 14px;
-        font-weight: 600;
-        line-height: normal;
     }
     .trustpilot .swiper-slide > div {
         max-height: 162px;
