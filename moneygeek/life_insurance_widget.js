@@ -482,11 +482,19 @@ let init = setInterval(() => {
         if (
             media && 
             !document.querySelector('.exp-update') && 
-            document.querySelector('.css-mypapy') &&
+            (
+                document.querySelector('.css-mypapy') || 
+                document.querySelector('.css-1h13y3f') ||
+                document.querySelector('.css-j8or2w')
+            ) &&
             document.querySelector('.banner-last-updated')
         ) {
 
-            document.querySelector('.css-mypapy').insertAdjacentHTML('beforebegin', `
+            let parent = document.querySelector('.css-mypapy') ? '.css-mypapy' : 
+                         document.querySelector('.css-j8or2w') ? '.css-j8or2w' :
+                         '.css-1h13y3f';
+
+            document.querySelector(parent).insertAdjacentHTML('beforebegin', `
             <div class="exp-update">
                 ${
                     !window.location.href.includes('/insurance/life/whole-life-insurance/') &&
