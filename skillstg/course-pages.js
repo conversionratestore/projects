@@ -1001,12 +1001,12 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swipe
 }
 .faqs__entry {
     border-radius: 4px;
-    border: 1px solid #eaf5fe;
+    border: 1px solid #DBE8F4;
 }
 .faqs__entry p {
     border-radius: 0 0 4px 4px;
     border: none;
-    border-top: 1px solid #eaf5fe;
+    border-top: 1px solid #DBE8F4;
 }
 @media (max-width: 991px) {
     .faqs__entry h5 {
