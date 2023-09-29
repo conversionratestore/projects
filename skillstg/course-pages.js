@@ -1927,7 +1927,7 @@ let init = setInterval(() => {
             document.querySelector('section.banner h1') &&
             document.querySelector('header.course .course-buttons .simple-btn') &&
             document.querySelector('#course-form') &&
-            (document.querySelector('.faqs') || i == 3) &&
+            (document.querySelector('.faqs') || i > 2) &&
             document.querySelector('.accreditations__container')
         ) {
             clearInterval(init)
@@ -2009,20 +2009,21 @@ let init = setInterval(() => {
 
             if (i < 3) {
                 document.querySelector('.related_courses').after(document.querySelector('.faqs'))
+
+                document.querySelectorAll('.faqs__entry h5').forEach(item => {
+                    item.addEventListener('click', () => {
+                        if (item.classList.contains('is-open')) {
+                            pushDataLayer('exp_imp_cour_pag_a_1de_ofaq', `Open ${item.innerText}`, 'Accordion', title);
+                        }
+                    })
+                })
+    
+                document.querySelector('.faqs').insertAdjacentHTML('afterend', `
+                <div class="d-lg-flex items-center form_course">
+                    ${reviewBlock('d-lg-block')}
+                </div>`)
             } 
 
-            document.querySelectorAll('.faqs__entry h5').forEach(item => {
-                item.addEventListener('click', () => {
-                    if (item.classList.contains('is-open')) {
-                        pushDataLayer('exp_imp_cour_pag_a_1de_ofaq', `Open ${item.innerText}`, 'Accordion', title);
-                    }
-                })
-            })
-
-            document.querySelector('.faqs').insertAdjacentHTML('afterend', `
-            <div class="d-lg-flex items-center form_course">
-                ${reviewBlock('d-lg-block')}
-            </div>`)
            
             document.querySelector('.form_course .review_block').before(document.querySelector('#course-form'))
             
