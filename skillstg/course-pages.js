@@ -2007,61 +2007,9 @@ let init = setInterval(() => {
                 window.addEventListener('scroll', addActiveClass);
             }
 
-            if (i != 3) {
+            if (i < 3) {
                 document.querySelector('.related_courses').after(document.querySelector('.faqs'))
-            } else {
-                document.querySelector('.related_courses').insertAdjacentHTML('afterend', `
-                <section class="faqs">
-                    <div class="container">
-                        <h2>Frequently Asked Questions</h2>    
-                        <div class="faqs__list"> 
-                            ${i == 3 ? `
-                                <div class="faqs__entry">
-                                    <h5 class="is-open">Can you take this class online?</h5>
-                                    <p style="display: block;">You can’t take this class online. It’s a 1-day practical training course with a practical assessment.</p>
-                                </div>
-                                <div class="faqs__entry">
-                                    <h5 class="">Is this OFSTED approved?</h5>
-                                    <p>If you want an OFSTED approved course, you should undertake our <a href="https://www.skillstg.co.uk/courses/paediatric-first-aid-course/" class="underline"><b>2-day Level 3 Award Blended Paediatric First Aid Course.</b></a></p>
-                                </div>
-                                <div class="faqs__entry">
-                                    <h5 class="">Who is this course suitable for?</h5>
-                                    <p>This course is suitable for people who work with children or minors such as nannies or workers / teachers at schools. Child minders or those working alone on the Compulsory Ofsted Register must take the Full Paediatric First Aid qualification.</p>
-                                </div>
-                            ` : 
-                            i == 4 ? `
-                            <div class="faqs__entry">
-                                <h5 class="is-open">Which Course Do I Need?</h5>
-                                <p style="display: block;">Our Emergency Paediatric First Aid Course is generally suitable for nannies, childminders, au pairs and nursery staff who work in Scotland.<br><br>
-                                    Our Combined Emergency Paediatric First Aid Course & Emergency First Aid at Work Course is suitable for primary school and highschool staff.<br><br>
-                                    For those who need OFSTED Approval, such as some nannies or nursery staff in England or Wales, you’ll require our OFSTED approved 2-Day Blended Paediatric First Aid Course.
-                                </p>
-                            </div>
-                            `: ''}   
-                        </div>
-                    </div>
-                </section>`)
-
-                let isjquery = setInterval(() => {
-                    if ((typeof $ !== 'undefined' && typeof $.fn !== 'undefined')) {
-                        clearInterval(isjquery)
-
-                        var question = $('.faqs__entry h5');
-                        var answer = $('.faqs__entry p');
-                        question.on('click', function() {
-                            var thisQuestion = $(this);
-                            var thisAnswer = thisQuestion.siblings('p');
-                            var isOpen = thisQuestion.hasClass('is-open');
-                            question.removeClass('is-open');
-                            answer.slideUp(300);
-                            if (!isOpen) {
-                                thisQuestion.addClass('is-open');
-                                thisAnswer.slideDown(300)
-                            }
-                        });
-                    }
-                })  
-            }
+            } 
 
             document.querySelectorAll('.faqs__entry h5').forEach(item => {
                 item.addEventListener('click', () => {
