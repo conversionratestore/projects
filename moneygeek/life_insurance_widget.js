@@ -1,6 +1,6 @@
 let dir = `https://conversionratestore.github.io/projects/moneygeek/img/`;
 
-let media = window.matchMedia("(min-width: 992px)").matches;
+let media = window.matchMedia("(min-width: 768px)").matches;
 
 let style = `
 <style>
@@ -113,6 +113,78 @@ let style = `
     .compare_quotes.error .chakra-form__error-message {
         display: block!important;
     }
+    .banner-container > .container > img {
+        margin: 0 auto;
+    }
+    .banner-container  {
+        background: #F6F8FF;
+    }
+    @media screen and (min-width: 435px) and (max-width: 766px) {
+        .css-c0gtt0 {
+            display: none;
+        }
+        .css-af43ts {
+            flex-direction: column;
+            display: flex;        
+        }
+        .css-1p8d0n6 {
+            order: 2;
+        }
+        .css-1h13y3f {
+            order: 3
+        }
+        .banner-authorship {
+            order: 2;
+            grid-gap: 0;
+            flex-direction: ${window.location.href.includes('/insurance/life/best/term/') ? 'row' : 'row-reverse'};
+            ${window.location.href.includes('/insurance/life/best/term/') ? '' : 'justify-content: flex-end;'}
+            flex-wrap: wrap;
+        }
+        .banner-advertising {
+            order: 2;
+            width: fit-content;
+            margin-right: 15px;
+        }
+        .banner-contribution {
+            order: 3;
+        }
+        .banner-authorship > .css-1t0181o > .css-k008qs:before, 
+        .banner-advertising .css-195f0y4:before {
+            content: '';
+            background: url(https://res.cloudinary.com/moneygeek/image/upload/v1585171420/assets/components/icon/blue_checkmark_cucw0x.svg) no-repeat center / 12px;
+            width: 12px;
+            height: 12px;
+            margin-right: 8px;
+        }
+        .css-k008qs, .banner-link, .css-195f0y4, .css-k008qs b, .banner-contribution {
+            color: #292929;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 22px; 
+            text-decoration-line: none;
+            display: flex;
+            align-items: center;
+        }
+        .css-k008qs > .css-k008qs {
+            margin-right: 15px;
+        }
+        .banner-link, .css-195f0y4 {
+            color: #526EFF;
+            text-decoration-line: underline;
+        }
+        span.chakra-text.banner-last-updated.css-yaw6qn {
+            display: block;
+        }
+        .css-195f0y4 {
+            margin-right: 15px;
+        }
+        .banner-container > div > div {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+    }
     @media screen and (max-width: 767px) {
         .compare_quotes .chakra-form__error-message {
             text-align: center;
@@ -159,30 +231,29 @@ let style = `
             justify-content: center;
             margin-bottom: 14px;
         }
-        .banner-container.css-12dh8bu > img {
-            margin: 0 auto;
-        }
         .compare_quotes input {
             border-right: 1px solid #D3D4D6;
         }
     }
     @media screen and (min-width: 767px) {
-
         .css-yaw6qn, .css-c0gtt0 {
             display: none;
         }
         .banner-container  {
-            display: flex;
-            justify-content: center;
-            padding-bottom: 0;
-            background: #F6F8FF;
+            padding: 0;
         }
-        .banner-container > div {
-            max-width: 600px;
-            margin-right: 45px;
+        .banner-container .container {
+            margin: 0 auto;
+            max-width: 1190px;
+            width: 100%;
+            padding: 0 20px;
         }
-        .banner-container > img {
+        .banner-container > .container > div {
+            padding: 40px 0;
+        }
+        .banner-container > .container > img {
             margin-top: auto;
+            max-width: 505px;
         }
         .banner-container .css-1uxi4iy {
             color: #292929;
@@ -194,47 +265,7 @@ let style = `
             flex-direction: column;
             grid-gap: 15px;
         }
-        .css-1h13y3f {
-            order: 3
-        }
-        .banner-authorship {
-            order: 2;
-            grid-gap: 0;
-            flex-direction: ${window.location.href.includes('/insurance/life/best/term/') ? 'row' : 'row-reverse'};
-            ${window.location.href.includes('/insurance/life/best/term/') ? '' : 'justify-content: flex-end;'}
-            flex-wrap: wrap;
-        }
-        .banner-advertising {
-            order: 2;
-            width: fit-content;
-            margin-right: 15px;
-        }
-        .banner-contribution {
-            order: 3;
-        }
-        .banner-authorship > .css-1t0181o > .css-k008qs:before, 
-        .banner-advertising .css-195f0y4:before {
-            content: '';
-            background: url(https://res.cloudinary.com/moneygeek/image/upload/v1585171420/assets/components/icon/blue_checkmark_cucw0x.svg) no-repeat center / 12px;
-            width: 12px;
-            height: 12px;
-            margin-right: 8px;
-        }
-        .css-k008qs, .banner-link, .css-195f0y4, .css-k008qs b, .banner-contribution {
-            color: #292929;
-            font-family: 'Source Sans Pro', sans-serif;
-            font-size: 12px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 22px; 
-            text-decoration-line: none;
-            display: flex;
-            align-items: center;
-        }
-        .banner-link, .css-195f0y4 {
-            color: #526EFF;
-            text-decoration-line: underline;
-        }
+
         .compare_quotes_form {
             display: flex;
         }
@@ -255,9 +286,23 @@ let style = `
         }
         .css-1t0181o > .css-k008qs:not(:first-child) {
             margin-left: 15px;
-        }
-        
+        } 
     }
+
+    @media screen and (min-width: 992px) {
+        .banner-container .container {
+            display: flex;
+        }
+        .banner-container > .container > div {
+            max-width: 600px;
+            margin: 0 auto 0 0;
+        }
+
+        .banner-container > .container > img {
+            margin: auto 0 0 0;
+        }
+    }
+
 </style>`;
 
 let isLocation = new Promise((resolve, reject) => {
@@ -325,41 +370,6 @@ function getZipCode(address) {
     });
 }
 
-let optionMut = {
-    childList: true,
-    subtree: true,
-    attributes: true
-}
-
-function findForm(address) {
-    let findForm = setInterval(() => {
-        if (document.querySelector('.sh-widget-form .sh-form-element .sh-form-data > .value > input') &&
-            document.querySelector('.sh-widget-form .sh-form-element button.sh-button.shmktpl-submit') &&
-            document.querySelector('.sh-widget-form .sh-form-element .sh-form-data > .value > input').value != address
-        ) {
-
-            const inputElement = document.querySelector('.sh-widget-form .sh-form-element .sh-form-data > .value > input');
-            inputElement.value = address;
-            inputElement.dispatchEvent(new Event('input', { bubbles: true }));
-
-            document.querySelector('.sh-widget-form .sh-form-element button.sh-button.shmktpl-submit').click();
-           
-            document.querySelector('.sh-filter-headline').classList.add('active')
-
-            let edit = setInterval(() => {
-                if (document.querySelector('.sh-filter-headline.active')) {
-                    clearInterval(edit)
-
-                    clearInterval(findForm)
-
-                    document.querySelector('.sh-filter-headline.active span.sh-edit-text').click()
-                    document.querySelector('.sh-filter-headline').classList.remove('active')
-                }
-            });
-        }
-    })
-}
-
 let init = setInterval(() => {
     if (document.querySelector('.banner-grid') &&
         document.querySelector('header .css-nrnxqy a')
@@ -405,10 +415,12 @@ let init = setInterval(() => {
         </svg>`;
 
         document.querySelector('.banner-container').insertAdjacentHTML('beforeend',`
-        <div>
-            ${newBlock}
-        </div>
-        <img src="${dir}image-offer${media ? '': '-mob'}.svg" alt="image">`);
+        <div class="container">
+            <div>
+                ${newBlock}
+            </div>
+            <img src="${dir}image-offer${media ? '': '-mob'}.svg" alt="image">
+        </div>`);
 
         document.querySelector('.compare_quotes').before(document.querySelector('.banner-container .banner-grid'))
 
@@ -454,18 +466,31 @@ let init = setInterval(() => {
                             if (document.querySelector('.css-1hw3t4r')) {
                                 clearInterval(findBtn)
                                 document.querySelector('.css-1hw3t4r').click()
-                               
                             }
                         })
-                    }
+                    } else if (href.includes('/insurance/life/rates/100-thousand/')) {
+                        document.querySelector('.css-1hw3t4r').click()
+                    } else if (
+                        href.includes('/insurance/life/best/40-year-olds/') ||
+                        href.includes('/insurance/life/best/30-year-olds/') || 
+                        href.includes('/insurance/life/best/term/') ||
+                        href.includes('/insurance/life/best/universal-life/')
+                    ) {
+                        document.querySelector('.css-12t4gr6').click()
+                    } else if (href.includes('/insurance/life/best/50-year-olds/')) {
+                        document.querySelector('.css-1ybtjtu .QuoteButton>div:first-of-type>button').click()
+                    } else if (href.includes('/insurance/life/whole-life-insurance/')) {
+                        document.querySelector('.css-1bo2w2p').value = address;
+                        document.querySelector('.css-1r2v32i').click();
+                    } else if (href.includes('/insurance/life/cheapest/seniors/')) {
+                        document.querySelector('.css-1bo2w2p').value = address;
+                        document.querySelector('.css-a0bqjq').click();
+                    } 
 
-                    // findForm(address) 
                 } else {
                     e.target.closest('.compare_quotes').classList.add('error')
                 }
             })
-           
         })
-
     }
 })
