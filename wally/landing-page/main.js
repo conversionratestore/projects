@@ -1062,7 +1062,7 @@ font-family: "Apercu Medium Pro", sans-serif !important;
           <div class="popup__inner">
             <p class="popup__title">First Things <span>First.</span></p>
 
-            <p class="take-quiz">Because founding memberships are limited, take a 2-min quiz to see if you’re a fit.</p>
+            <p class="take-quiz">Because founding memberships are limited, take a 2-min quiz to see if we’re a fit for you</p>
 
             <div class="btn-wrapper">
             <a class="btn-primary" href="https://wallyhealth.pro.typeform.com/to/pVusBqL3?typeform-source=www.carebywally.com">Start Quiz <img src="https://uploads-ssl.webflow.com/60a81d43a468febf25fad764/6111718306355f781c8feaeb_arrow-dark.svg" alt=""></a></div>
