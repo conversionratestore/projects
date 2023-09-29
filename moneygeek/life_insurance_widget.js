@@ -579,4 +579,4 @@ let init = setInterval(() => {
             document.querySelector('.exp-loading').remove()
         }
     }
-})
+}, 200)
