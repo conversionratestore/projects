@@ -119,6 +119,9 @@ let style = `
     .banner-container  {
         background: #F6F8FF;
     }
+    .compare_quotes {
+        margin-top: -14px;
+    }
     @media screen and (min-width: 435px) {
 
         .banner-authorship {
@@ -155,15 +158,16 @@ let style = `
             display: flex;
             align-items: center;
         }
-        .css-k008qs > .css-k008qs {
-            margin-right: 15px;
-        }
         .banner-link, .css-195f0y4 {
             color: #526EFF;
             text-decoration-line: underline;
         }
     }
     @media screen and (min-width: 435px) and (max-width: 766px) {
+
+        .css-k008qs > .css-k008qs {
+            margin-right: 15px;
+        }
         .css-c0gtt0 {
             display: none;
         }
@@ -290,6 +294,46 @@ let style = `
         .css-1t0181o > .css-k008qs:not(:first-child) {
             margin-left: 15px;
         } 
+        .compare_quotes > p {
+            font-size: 22px;
+            line-height: 30px;
+        }
+        .banner-description p {
+            font-size: 18px;
+            line-height: 22px;
+        }
+        .exp-update {
+            order: 3;
+            display: flex;
+            align-items: center;
+        }
+        .exp-update p {
+            color: #292929;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 22px;
+            margin: 0;
+        }
+        .css-1255oue {
+            margin-right: 13px;
+            color: #292929;
+            font-family: Source Sans Pro;
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 21.412px; /* 164.706% */
+            width: fit-content;
+            border-radius: 22px;
+            border: 1px solid #292929;
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            padding-inline: 10px;
+        }
     }
 
     @media screen and (min-width: 992px) {
@@ -358,6 +402,7 @@ let newBlock = `
 </div>`;
 
 let spinner = `<span class="chakra-spinner css-1ahuvff"><span class="css-8b45rq"></span></span>`;
+let checked = `<div class="css-1255oue"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.40777 0.180441C7.25108 0.0507866 7.0476 -0.0132926 6.84211 0.00230287C6.63661 0.0178983 6.44593 0.111891 6.31203 0.263598L2.96586 4.05321L1.16542 2.59796C0.864304 2.35475 0.416605 2.39354 0.1649 2.68466C0.0442881 2.8244 -0.0140056 3.00481 0.00285551 3.18617C0.0197166 3.36753 0.11035 3.53497 0.254797 3.65161L2.66737 5.60161C2.81785 5.72306 3.01373 5.77846 3.20808 5.75455C3.41391 5.73922 3.60495 5.64515 3.73897 5.49315L7.49367 1.24069C7.77246 0.924854 7.73401 0.450358 7.40777 0.180441Z" fill="#292929"></path></svg><span style="margin-left: 5px;">Fact Checked</span></div>`
 
 function getZipCode(address) {
     return new Promise((resolve, reject) => {
@@ -432,6 +477,25 @@ let init = setInterval(() => {
 
         document.querySelector('.compare_quotes').before(document.querySelector('.banner-container .banner-grid'))
 
+        if (
+            media && 
+            !document.querySelector('.exp-update') && 
+            document.querySelector('.css-mypapy') &&
+            document.querySelector('.banner-last-updated')
+        ) {
+
+            document.querySelector('.css-mypapy').insertAdjacentHTML('beforebegin', `
+            <div class="exp-update">
+                ${
+                    !window.location.href.includes('/insurance/life/whole-life-insurance/') &&
+                    !window.location.href.includes('/insurance/life/rates/100-thousand/') ? 
+                    checked : 
+                    ''
+                }
+
+                <p>${document.querySelector('.banner-last-updated').innerHTML.replace('Last','')}</p>
+            </div>`)
+        }
         isLocation.then(data => {
             document.querySelector('.compare_quotes_form input').value = data.postal;
             document.querySelector('.compare_quotes_form .address').innerHTML = data.region;
