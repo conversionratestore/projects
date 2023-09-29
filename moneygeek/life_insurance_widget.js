@@ -272,7 +272,6 @@ let style = `
             flex-direction: column;
             grid-gap: 15px;
         }
-
         .compare_quotes_form {
             display: flex;
         }
@@ -301,6 +300,9 @@ let style = `
         .banner-description p {
             font-size: 18px;
             line-height: 22px;
+        }
+        .compare_quotes > p {
+            font-family: 'Brandon Grotesque', sans-serif;
         }
         .exp-update {
             order: 3;
@@ -564,5 +566,9 @@ let init = setInterval(() => {
                 }
             })
         })
+
+        if (document.querySelector('.exp-loading')) {
+            document.querySelector('.exp-loading').remove()
+        }
     }
 })
