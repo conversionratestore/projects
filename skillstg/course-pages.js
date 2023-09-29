@@ -653,6 +653,10 @@ p, a, li {
     overflow: hidden;
     position: relative;
 }
+.swiper_course img {
+    border-radius: 10px;
+    border: 1px solid var(--Border, #DBE8F4);
+}
 .swiper-pagination {
     bottom: 30px!important;
 }
