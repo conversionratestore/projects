@@ -1442,23 +1442,16 @@ let media = window.matchMedia("(min-width: 992px)").matches;
 let courseInit = (course) =>  {
     //slider
     let slides = '';
-    let numberImage = course.index == 0 ? ' 0-4' : 
-                        course.index == 1 ? '5, 2, 6-8, 4' : 
-                        course.index == 2 ? '9-13, 3, 14, 4' : 
-                        course.index == 3 ? ' 15-20' : 
-                        '15, 17-21';
+    let numberImage = course.index == 0 ? ' 0,1,2,3,4' : 
+                        course.index == 1 ? '5,2,6,7,8,4' : 
+                        course.index == 2 ? '9,10,12,13,3,14,4' : 
+                        course.index == 3 ? '15,16,17,18,19,20' : 
+                        '15,17,18,19,20,21';
 
     let arrQuat = numberImage.split(',');
 
     for (let q = 0; q < arrQuat.length - 1; q++) {
         slides += `<div class="swiper-slide"><img src="${dir}slider/slider_${arrQuat[q]}.png" alt="image"></div>`;
-    }
-    
-    let splTo = +(numberImage.split('-')[0].split(' ')[1]);
-    let splFrom = +(numberImage.split('-')[1]);
-
-    for (let s = splTo; s <= splFrom; s++) {
-        slides += `<div class="swiper-slide"><img src="${dir}slider/slider_${s}.png" alt="image"></div>`;
     }
 
     //accordion
