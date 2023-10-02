@@ -4,8 +4,12 @@ let media = window.matchMedia("(min-width: 768px)").matches;
 
 let style = `
 <style class="exp-style">
-    #stickywidgetdiv {
+    #stickywidgetdiv, .banner-container {
         display: none;
+    }
+    .css-1uxi4iy {
+
+        font-weight: 600;
     }
     .css-1uxi4iy, .css-11keg2m , .css-mypapy, .css-1h13y3f, .css-j8or2w {
         grid-area: auto;
@@ -116,10 +120,10 @@ let style = `
     .compare_quotes.error .chakra-form__error-message {
         display: block!important;
     }
-    .banner-container > .container > img {
+    .exp_banner > .container > img {
         margin: 0 auto;
     }
-    .banner-container  {
+    .exp_banner  {
         background: #F6F8FF;
     }
     .compare_quotes {
@@ -190,17 +194,23 @@ let style = `
         .css-195f0y4 {
             margin-right: 15px;
         }
-        .banner-container > div > div {
+        .exp_banner > div > div {
             padding-left: 16px;
             padding-right: 16px;
         }
     }
     @media screen and (max-width: 767px) {
+        .css-1uxi4iy {
+            margin: 10px 0;
+        }
+        .content-wrapper.banner-redesign .breadcrumbs-container .breadcrumbs {
+            padding: 0!important;
+        }
         .compare_quotes .chakra-form__error-message {
             text-align: center;
         }
         .content-wrapper.banner-redesign .breadcrumbs-container {
-            margin-top: 50px;
+            margin-top: 21px;
         }
         .css-11gphgj {
             flex-direction: row-reverse;
@@ -244,28 +254,31 @@ let style = `
         .compare_quotes input {
             border-right: 1px solid #D3D4D6;
         }
+        .exp_banner {
+            padding: 55px 15px 20px; 
+        }
     }
     @media screen and (min-width: 767px) {
         .css-yaw6qn, .css-c0gtt0 {
             display: none;
         }
-        .banner-container  {
+        .exp_banner  {
             padding: 0;
         }
-        .banner-container .container {
+        .exp_banner .container {
             margin: 0 auto;
             max-width: 1190px;
             width: 100%;
             padding: 0 20px;
         }
-        .banner-container > .container > div {
+        .exp_banner > .container > div {
             padding: 40px 0;
         }
-        .banner-container > .container > img {
+        .exp_banner > .container > img {
             margin-top: auto;
             max-width: 505px;
         }
-        .banner-container .css-1uxi4iy {
+        .exp_banner .css-1uxi4iy {
             color: #292929;
             font-size: 44px;
             line-height: 50px;
@@ -342,15 +355,15 @@ let style = `
     }
 
     @media screen and (min-width: 992px) {
-        .banner-container .container {
+        .exp_banner .container {
             display: flex;
         }
-        .banner-container > .container > div {
+        .exp_banner > .container > div {
             max-width: 600px;
             margin: 0 auto 0 0;
         }
 
-        .banner-container > .container > img {
+        .exp_banner > .container > img {
             margin: auto 0 0 0;
         }
     }
@@ -366,44 +379,51 @@ let isLocation = new Promise((resolve, reject) => {
     })
 })
 
-let newBlock = `
-<div class="compare_quotes">
-    <p>Compare rates and save on life insurance today.</p>
-    <label>Enter Your Zip Code</label>
-    <div class="compare_quotes_form">
-        <div class="relative">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="20" viewBox="0 0 20 20" fill="none">
-                <g clip-path="url(#clip0_470_885)">
-                <path d="M10 10.625C11.3807 10.625 12.5 9.50571 12.5 8.125C12.5 6.74429 11.3807 5.625 10 5.625C8.61929 5.625 7.5 6.74429 7.5 8.125C7.5 9.50571 8.61929 10.625 10 10.625Z" stroke="#292929" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M16.25 8.125C16.25 13.75 10 18.125 10 18.125C10 18.125 3.75 13.75 3.75 8.125C3.75 6.4674 4.40848 4.87769 5.58058 3.70558C6.75269 2.53348 8.3424 1.875 10 1.875C11.6576 1.875 13.2473 2.53348 14.4194 3.70558C15.5915 4.87769 16.25 6.4674 16.25 8.125Z" stroke="#292929" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                </g>
-                <defs>
-                <clipPath id="clip0_470_885">
-                    <rect width="20" height="20" fill="white"/>
-                </clipPath>
-                </defs>
-            </svg>
-            <input type="nubmer">
-            <p class="address"></p>
+let html = `
+<div class="exp_banner">
+    <div class="container">
+        <div>
+            <div class="compare_quotes">
+                <p>Compare rates and save on life insurance today.</p>
+                <label>Enter Your Zip Code</label>
+                <div class="compare_quotes_form">
+                    <div class="relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="20" viewBox="0 0 20 20" fill="none">
+                            <g clip-path="url(#clip0_470_885)">
+                            <path d="M10 10.625C11.3807 10.625 12.5 9.50571 12.5 8.125C12.5 6.74429 11.3807 5.625 10 5.625C8.61929 5.625 7.5 6.74429 7.5 8.125C7.5 9.50571 8.61929 10.625 10 10.625Z" stroke="#292929" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16.25 8.125C16.25 13.75 10 18.125 10 18.125C10 18.125 3.75 13.75 3.75 8.125C3.75 6.4674 4.40848 4.87769 5.58058 3.70558C6.75269 2.53348 8.3424 1.875 10 1.875C11.6576 1.875 13.2473 2.53348 14.4194 3.70558C15.5915 4.87769 16.25 6.4674 16.25 8.125Z" stroke="#292929" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_470_885">
+                                <rect width="20" height="20" fill="white"/>
+                            </clipPath>
+                            </defs>
+                        </svg>
+                        <input type="nubmer">
+                        <p class="address"></p>
+                    </div>
+                    <button type="button">Compare Quotes</button>
+                </div>
+                <div class="chakra-form__error-message">You must provide a valid zip code</div>
+                
+            </div>
+            <div class="info_block">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <g clip-path="url(#clip0_470_895)">
+                        <path d="M2.8125 8.07117V3.9375C2.8125 3.78832 2.87176 3.64524 2.97725 3.53975C3.08274 3.43426 3.22582 3.375 3.375 3.375H14.625C14.7742 3.375 14.9173 3.43426 15.0227 3.53975C15.1282 3.64524 15.1875 3.78832 15.1875 3.9375V8.06976C15.1875 13.9887 10.1735 15.9497 9.17297 16.2823C9.0609 16.3209 8.9391 16.3209 8.82703 16.2823C7.82648 15.9511 2.8125 13.9922 2.8125 8.07117Z" stroke="#292929" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6.1875 9.5625L7.875 11.25L11.8125 7.3125" stroke="#292929" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_470_895">
+                            <rect width="18" height="18" fill="white"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+                <p>Free and simple - your information is secure</p>
+            </div>
         </div>
-        <button type="button">Compare Quotes</button>
+        <img src="${dir}image-offer${media ? '': '-mob'}.svg" alt="image" class="offer_image">
     </div>
-    <div class="chakra-form__error-message">You must provide a valid zip code</div>
-    
-</div>
-<div class="info_block">
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-        <g clip-path="url(#clip0_470_895)">
-            <path d="M2.8125 8.07117V3.9375C2.8125 3.78832 2.87176 3.64524 2.97725 3.53975C3.08274 3.43426 3.22582 3.375 3.375 3.375H14.625C14.7742 3.375 14.9173 3.43426 15.0227 3.53975C15.1282 3.64524 15.1875 3.78832 15.1875 3.9375V8.06976C15.1875 13.9887 10.1735 15.9497 9.17297 16.2823C9.0609 16.3209 8.9391 16.3209 8.82703 16.2823C7.82648 15.9511 2.8125 13.9922 2.8125 8.07117Z" stroke="#292929" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M6.1875 9.5625L7.875 11.25L11.8125 7.3125" stroke="#292929" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </g>
-        <defs>
-            <clipPath id="clip0_470_895">
-                <rect width="18" height="18" fill="white"/>
-            </clipPath>
-        </defs>
-    </svg>
-    <p>Free and simple - your information is secure</p>
 </div>`;
 
 let spinner = `<span class="chakra-spinner css-1ahuvff"><span class="css-8b45rq"></span></span>`;
@@ -451,7 +471,7 @@ function handleVisibility(className) {
         if (targetElement.className.includes('compare_quotes')) {
             pushDataLayer('exp_intr_ban_v_fszc_ft', focusTimeSeconds + ' sec', 'Visibility','First screen ZIP code')
         }
-        if (targetElement.className.includes('offer_image') && targetElement.closest('.banner-container')) {
+        if (targetElement.className.includes('offer_image') && targetElement.closest('.exp_banner')) {
             pushDataLayer('exp_intr_ban_v_fsi_ft', focusTimeSeconds + ' sec', 'Visibility','First screen Image')
         }
         
@@ -527,16 +547,16 @@ let addCheckedDesk = setInterval(() => {
         media && 
         !document.querySelector('.exp-update') && 
         (
-            document.querySelector('.css-mypapy') || 
-            document.querySelector('.css-1h13y3f') ||
-            document.querySelector('.css-j8or2w')
+            document.querySelector('.exp_banner .css-mypapy') || 
+            document.querySelector('.exp_banner .css-1h13y3f') ||
+            document.querySelector('.exp_banner .css-j8or2w')
         ) &&
         document.querySelector('.banner-last-updated')
     ) {
 
-        let parent = document.querySelector('.css-mypapy') ? '.css-mypapy' : 
-                     document.querySelector('.css-j8or2w') ? '.css-j8or2w' :
-                     '.css-1h13y3f';
+        let parent = document.querySelector('.exp_banner .css-mypapy') ? '.exp_banner .css-mypapy' : 
+                     document.querySelector('.exp_banner .css-j8or2w') ? '.exp_banner .css-j8or2w' :
+                     '.exp_banner .css-1h13y3f';
 
         document.querySelector(parent).insertAdjacentHTML('beforebegin', `
         <div class="exp-update">
@@ -552,18 +572,22 @@ let addCheckedDesk = setInterval(() => {
     }
 })
 
+let breadcrumbsMob = setInterval(() => {
+    if (!media && 
+        document.querySelector('.breadcrumbs-container') && 
+        document.querySelector('.exp_banner > .container > div') &&
+        !document.querySelector('.exp_banner .breadcrumbs-container')
+    ) {
+        document.querySelector('.exp_banner > .container > div').before(document.querySelector('.breadcrumbs-container'));
+    }   
+});
+
 let init = setInterval(() => {
     if (document.querySelector('.banner-container .banner-grid') &&
         !document.querySelector('.compare_quotes')
     ) {
 
-        document.querySelector('.banner-container').insertAdjacentHTML('beforeend',`
-        <div class="container">
-            <div>
-                ${newBlock}
-            </div>
-            <img src="${dir}image-offer${media ? '': '-mob'}.svg" alt="image" class="offer_image">
-        </div>`);
+        document.querySelector('.banner-redesign').insertAdjacentHTML('afterbegin', html);
 
         document.querySelector('.compare_quotes').before(document.querySelector('.banner-container .banner-grid'))
 
@@ -643,16 +667,16 @@ let init = setInterval(() => {
             pushDataLayer('exp_intr_ban_i_fs_eyzc', 'Enter your zip code', 'Input','First screen')
         })
 
-        handleVisibility(media ? '.banner-authorship' : '.css-bco1gb')
-        handleVisibility('.banner-description p')
+        handleVisibility(media ? '.exp_banner .banner-authorship' : '.exp_banner .css-bco1gb')
+        handleVisibility('.exp_banner .banner-description p')
         handleVisibility('.compare_quotes')
-        handleVisibility('.banner-container > .container > img')
+        handleVisibility('.exp_banner > .container > img')
         
         window.addEventListener('scroll', () => {
             handleVisibility(media ? '.banner-authorship' : '.css-bco1gb')
             handleVisibility('.banner-description p')
             handleVisibility('.compare_quotes')
-            handleVisibility('.banner-container > .container > img')
+            handleVisibility('.exp_banner > .container > img')
         })
 
         setTimeout(() => {
