@@ -353,7 +353,7 @@ let data = [
                 ]
             }
         },
-        'bookOnsite': 'For group bookings, we can <a href="/courses/on-site-first-aid-training/">deliver this course in-house</a> for up to 12 learners.<br><br>We also offer the <a href="/courses/emergency-paediatric-first-aid-course/">Emergency Paediatric First Aid Course.</a>',
+        'bookOnsite': 'For group bookings, we can <a href="/courses/on-site-first-aid-training/">deliver this course in-house</a> for up to 12 learners.<br><br>We also offer the <a href="/courses/paediatric-first-aid-course/">Level 3 Paediatric First Aid Course.</a>',
         'needDifferent': {
             'linkText':'View all of our first aid certification courses'
         },
@@ -419,7 +419,7 @@ let data = [
                 ]
             }
         },
-        'bookOnsite': 'For group bookings, we can <a href="/courses/on-site-first-aid-training/">deliver this course in-house</a> for up to 12 learners.<br><br>We also offer the <a href="/courses/paediatric-first-aid-course/">Level 3 Paediatric First Aid Course.</a>',
+        'bookOnsite': 'For group bookings, we can <a href="/courses/on-site-first-aid-training/">deliver this course in-house</a> for up to 12 learners.<br><br>We also offer the  <a href="/courses/emergency-paediatric-first-aid-course/">Emergency Paediatric First Aid Course.<a>', 
         'needDifferent': {
             'linkText':'View all of our first aid certification courses'
         },
@@ -1807,7 +1807,10 @@ let courseInit = (course) =>  {
                     <li><a href="#course-overview">Course overview</a></li>
                     <li><a href="#trainers">Trainers</a></li>
                     <li><a href="#reviews">Reviews</a></li>
-                    <li><a href=".faqs">FAQ</a></li>
+                    ${
+                        course.index < 3 ?
+                        '<li><a href=".faqs">FAQ</a></li>' : ''
+                    }
                 </ul>
                 <a href="${course.linkStart}" class="btn btn--green d-lg-block d-none" onclick="pushDataLayer('exp_imp_cour_pag_b_1decbsbd_vsdv', 'view start dates and venues', 'Button', '${course.title} Content block Sticky button Desktop');">VIEW START DATES & VENUES</a>
             </div>
