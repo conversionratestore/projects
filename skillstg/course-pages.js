@@ -1443,8 +1443,8 @@ let courseInit = (course) =>  {
     //slider
     let slides = '';
     let numberImage = course.index == 0 ? ' 0-4' : 
-                        course.index == 1 ? '2, 4-8' : 
-                        course.index == 2 ? '3,4, 9-14' : 
+                        course.index == 1 ? '5, 2, 6-8, 4' : 
+                        course.index == 2 ? '9-13, 3, 14, 4' : 
                         course.index == 3 ? ' 15-20' : 
                         '15, 17-21';
 
@@ -1551,7 +1551,7 @@ let courseInit = (course) =>  {
         </div>` : ''
 
     let slidesTrustpilot = '';
-    for (let i = course.index == 0 || course.index == 1 ? 1 : 0; i < dataTrustpilor.length; i++) {
+    for (let i = course.index <= 2 ? 1 : 0; i < dataTrustpilor.length; i++) {
         slidesTrustpilot += `
             <div class="swiper-slide">
                 <div>
@@ -1778,7 +1778,7 @@ let courseInit = (course) =>  {
                             </div>` : ''
                         }
                         <div class="card">
-                            <img src="${dir}image-3.png" alt="image">
+                            <img src="${dir}image-4.png" alt="image">
                             <p class="tag"><b>Classroom</b> </p>
                             <p class="title"><b>On Site First Aid Training Nationwide</b> </p>
                             <p><b> Level:</b> Beginner</p>
@@ -2007,6 +2007,10 @@ let init = setInterval(() => {
                 window.addEventListener('scroll', addActiveClass);
             }
 
+            let formSection =  `<div class="d-lg-flex items-center form_course">
+                ${reviewBlock('d-lg-block')}
+            </div>`;
+
             if (i < 3) {
                 document.querySelector('.related_courses').after(document.querySelector('.faqs'))
 
@@ -2018,12 +2022,16 @@ let init = setInterval(() => {
                     })
                 })
     
-                document.querySelector('.faqs').insertAdjacentHTML('afterend', `
-                <div class="d-lg-flex items-center form_course">
-                    ${reviewBlock('d-lg-block')}
-                </div>`)
-            } 
-
+                document.querySelector('.faqs').insertAdjacentHTML('afterend', formSection)
+            }  else {
+                document.querySelector('.related_courses').insertAdjacentHTML('afterend', formSection)
+                document.body.insertAdjacentHTML('afterbegin',`
+                <style>
+                    .faqs {
+                        display: none;
+                    }
+                </style>`)
+            }
            
             document.querySelector('.form_course .review_block').before(document.querySelector('#course-form'))
             
