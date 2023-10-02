@@ -1444,7 +1444,7 @@ let courseInit = (course) =>  {
     let slides = '';
     let numberImage = course.index == 0 ? '0,1,2,3,4' : 
                         course.index == 1 ? '5,2,6,7,8,4' : 
-                        course.index == 2 ? '9,10,12,13,3,14,4' : 
+                        course.index == 2 ? '9,10,11,12,13,3,14,4' : 
                         course.index == 3 ? '15,16,17,18,19,20' : 
                         '21,15,17,18,19,20';
 
