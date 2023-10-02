@@ -4,6 +4,9 @@ let media = window.matchMedia("(min-width: 768px)").matches;
 
 let style = `
 <style class="exp-style">
+    #stickywidgetdiv {
+        display: none;
+    }
     .css-1uxi4iy, .css-11keg2m , .css-mypapy, .css-1h13y3f, .css-j8or2w {
         grid-area: auto;
         color: #292929;
@@ -436,19 +439,20 @@ function handleVisibility(className) {
         visibilityMap.set(targetElement, Date.now())
       } else if (!isVisible && visibilityMap.has(targetElement)) {
         const startTime = visibilityMap.get(targetElement)
-        const focusTime = Date.now() - startTime
+        const focusTimeMillis = Date.now() - startTime;
+        const focusTimeSeconds = focusTimeMillis / 1000; 
 
-        if (targetElement.className.includes('banner-authorship')) {
-            pushDataLayer('exp_intr_ban_v_fsbt_ft', focusTime, 'Visibility','First screen benefits tips')
+        if (targetElement.className.includes('banner-authorship') || targetElement.className.includes('css-bco1gb')) {
+            pushDataLayer('exp_intr_ban_v_fsbt_ft', focusTimeSeconds + ' sec', 'Visibility','First screen benefits tips')
         }
         if (targetElement.closest('.banner-description')) {
-            pushDataLayer('exp_intr_ban_v_fsd_ft', focusTime, 'Visibility','First screen description')
+            pushDataLayer('exp_intr_ban_v_fsd_ft', focusTimeSeconds + ' sec', 'Visibility','First screen description')
         }
         if (targetElement.className.includes('compare_quotes')) {
-            pushDataLayer('exp_intr_ban_v_fszc_ft', focusTime, 'Visibility','First screen ZIP code')
+            pushDataLayer('exp_intr_ban_v_fszc_ft', focusTimeSeconds + ' sec', 'Visibility','First screen ZIP code')
         }
         if (targetElement.className.includes('offer_image') && targetElement.closest('.banner-container')) {
-            pushDataLayer('exp_intr_ban_v_fsi_ft', focusTime, 'Visibility','First screen Image')
+            pushDataLayer('exp_intr_ban_v_fsi_ft', focusTimeSeconds + ' sec', 'Visibility','First screen Image')
         }
         
         visibilityMap.delete(targetElement)
@@ -639,13 +643,13 @@ let init = setInterval(() => {
             pushDataLayer('exp_intr_ban_i_fs_eyzc', 'Enter your zip code', 'Input','First screen')
         })
 
-        handleVisibility('.banner-authorship')
+        handleVisibility(media ? '.banner-authorship' : '.css-bco1gb')
         handleVisibility('.banner-description p')
         handleVisibility('.compare_quotes')
         handleVisibility('.banner-container > .container > img')
         
         window.addEventListener('scroll', () => {
-            handleVisibility('.banner-authorship')
+            handleVisibility(media ? '.banner-authorship' : '.css-bco1gb')
             handleVisibility('.banner-description p')
             handleVisibility('.compare_quotes')
             handleVisibility('.banner-container > .container > img')
