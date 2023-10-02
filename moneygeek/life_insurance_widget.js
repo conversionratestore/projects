@@ -200,17 +200,33 @@ let style = `
         }
     }
     @media screen and (max-width: 767px) {
+        
+        .exp_banner .breadcrumbs-container .breadcrumbs .breadcrumb-item:nth-child(2), 
+        .exp_banner .breadcrumbs-container .breadcrumbs .breadcrumb-item:nth-last-child(2) {
+            display: -webkit-inline-box;
+            display: -webkit-inline-flex;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+        }
+        .exp_banner .breadcrumbs-container .breadcrumb-separator, 
+        .exp_banner .breadcrumbs-container .breadcrumbs .breadcrumb-item, 
+        .exp_banner .breadcrumbs-container .breadcrumbs .breadcrumb-item>span:first-child,
+        .exp_banner .breadcrumbs-container .breadcrumbs .breadcrumb-item:nth-last-child(2) span:last-child {
+            display: none;
+        }
         .css-1uxi4iy {
             margin: 10px 0;
         }
-        .content-wrapper.banner-redesign .breadcrumbs-container .breadcrumbs {
+        .exp_banner .breadcrumbs-container .breadcrumbs {
             padding: 0!important;
         }
         .compare_quotes .chakra-form__error-message {
             text-align: center;
         }
-        .content-wrapper.banner-redesign .breadcrumbs-container {
+        .exp_banner .breadcrumbs-container {
             margin-top: 21px;
+            display: block;
+            background: transparent;
         }
         .css-11gphgj {
             flex-direction: row-reverse;
@@ -237,7 +253,7 @@ let style = `
             height: 10px;
             margin-top: 3px;
         }
-        .content-wrapper.banner-redesign .banner-checkmark {
+        .exp_banner .banner-checkmark {
             margin-right: 5px;
         }
         .css-bco1gb {
@@ -587,7 +603,7 @@ let init = setInterval(() => {
         !document.querySelector('.compare_quotes')
     ) {
 
-        document.querySelector('.banner-redesign').insertAdjacentHTML('afterbegin', html);
+        document.querySelector('.banner-redesign').insertAdjacentHTML('beforebegin', html);
 
         document.querySelector('.compare_quotes').before(document.querySelector('.banner-container .banner-grid'))
 
