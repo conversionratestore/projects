@@ -1442,7 +1442,7 @@ let media = window.matchMedia("(min-width: 992px)").matches;
 let courseInit = (course) =>  {
     //slider
     let slides = '';
-    let numberImage = course.index == 0 ? ' 0,1,2,3,4' : 
+    let numberImage = course.index == 0 ? '0,1,2,3,4' : 
                         course.index == 1 ? '5,2,6,7,8,4' : 
                         course.index == 2 ? '9,10,12,13,3,14,4' : 
                         course.index == 3 ? '15,16,17,18,19,20' : 
@@ -1450,7 +1450,7 @@ let courseInit = (course) =>  {
 
     let arrQuat = numberImage.split(',');
 
-    for (let q = 0; q < arrQuat.length - 1; q++) {
+    for (let q = 0; q < arrQuat.length; q++) {
         slides += `<div class="swiper-slide"><img src="${dir}slider/slider_${arrQuat[q]}.png" alt="image"></div>`;
     }
 
