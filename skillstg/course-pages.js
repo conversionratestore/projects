@@ -1088,6 +1088,9 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active-next-next + .swipe
     .swiper-pagination-bullets {
         height: 8px;
     }
+    #tidio-chat-iframe {
+        inset: auto -7px 71px auto!important;
+    }
 }
 @media (min-width: 992px) {
     .review-item {
