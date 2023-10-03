@@ -690,6 +690,15 @@ let init = setInterval(() => {
                             btnElement.addEventListener('click', () => {
                                 clearInterval(findForm)
                             })
+
+                            document.querySelector('.css-10csyus').addEventListener('click', () => {
+                                clearInterval(findForm)
+                            })
+                            document.body.addEventListener('click', (e) => {
+                                if (!e.target.closest('.css-1l59ezn')) {
+                                    clearInterval(findForm)
+                                }
+                            })
                         }
                     })
 
