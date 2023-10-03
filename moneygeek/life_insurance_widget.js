@@ -680,6 +680,10 @@ let init = setInterval(() => {
                             const inputElement = document.querySelector('.sh-widget-form .sh-form-element .sh-form-data > .value > input');
                             inputElement.value = address;
                             inputElement.dispatchEvent(new Event('input', { bubbles: true }));
+
+                            inputElement.addEventListener('click', () => {
+                                clearInterval(findForm)
+                            })
                         }
                     })
 
