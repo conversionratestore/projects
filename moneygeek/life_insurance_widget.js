@@ -130,7 +130,10 @@ let style = `
         margin-top: -14px;
     }
     @media screen and (min-width: 435px) {
-
+        .exp_banner {
+            position: relative;
+            z-index: 4;
+        }
         .exp_banner .banner-authorship {
             order: 2;
             grid-gap: 0!important;
