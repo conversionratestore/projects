@@ -1004,7 +1004,7 @@ font-family: "Apercu Medium Pro", sans-serif !important;
     <div id="google-reviews" class="m-p-0 ff-primary">
       <img src="${IMAGE_DIR_URL}/stars.svg" alt="5 stars">
       <p>
-        <strong style="margin-inline: 4px 8px;">4.9</strong>(Based on <strong>486</strong>
+        <strong style="margin-inline: 4px 8px;">4.9</strong>(Based on <strong>605</strong>
             <img src="${IMAGE_DIR_URL}/google-logo.svg" alt="google logo"> 
           reviews)
       </p>
