@@ -664,7 +664,7 @@ let init = setInterval(() => {
                     ) {
                         document.querySelector('.css-12t4gr6').click()
                     } else if (href.includes('/insurance/life/best/50-year-olds/')) {
-                        document.querySelector('.css-1ybtjtu .QuoteButton>div:first-of-type>button').click()
+                        document.querySelector('.css-ky701d div>button').click()
                     } else if (href.includes('/insurance/life/whole-life-insurance/')) {
                         document.querySelector('.css-1bo2w2p').value = address;
                         document.querySelector('.css-1r2v32i').click();
