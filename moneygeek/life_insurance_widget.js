@@ -131,70 +131,70 @@ let style = `
     }
     @media screen and (min-width: 435px) {
 
-        .banner-authorship {
+        .exp_banner .banner-authorship {
             order: 2;
-            grid-gap: 0;
-            flex-direction: ${window.location.href.includes('/insurance/life/best/term/') ? 'row' : 'row-reverse'};
+            grid-gap: 0!important;
+            flex-direction: ${window.location.href.includes('/insurance/life/best/term/') ? 'row!important' : 'row-reverse!important'};
             ${window.location.href.includes('/insurance/life/best/term/') ? '' : 'justify-content: flex-end;'}
             flex-wrap: wrap;
         }
-        .banner-advertising {
+        .exp_banner .banner-advertising {
             order: 2;
             width: fit-content;
             margin-right: 15px;
         }
-        .banner-contribution {
+        .exp_banner .banner-contribution {
             order: 3;
         }
-        .banner-authorship > .css-1t0181o > .css-k008qs:before, 
-        .banner-advertising .css-195f0y4:before {
+        .exp_banner .banner-authorship > .css-1t0181o > .css-k008qs:before, 
+        .exp_banner .banner-advertising .css-195f0y4:before {
             content: '';
             background: url(https://res.cloudinary.com/moneygeek/image/upload/v1585171420/assets/components/icon/blue_checkmark_cucw0x.svg) no-repeat center / 12px;
             width: 12px;
             height: 12px;
             margin-right: 8px;
         }
-        .css-k008qs, .banner-link, .css-195f0y4, .css-k008qs b, .banner-contribution {
-            color: #292929;
+        .exp_banner .css-k008qs, .exp_banner .banner-link, .exp_banner .css-195f0y4, .exp_banner .css-k008qs b, .exp_banner .banner-contribution {
+            color: #292929!important;
             font-family: 'Source Sans Pro', sans-serif;
-            font-size: 12px;
+            font-size: 12px!important;
             font-style: normal;
             font-weight: 400;
             line-height: 22px; 
-            text-decoration-line: none;
-            display: flex;
+            text-decoration-line: none!important;
+            display: flex!important;
             align-items: center;
         }
-        .banner-link, .css-195f0y4 {
-            color: #526EFF;
-            text-decoration-line: underline;
+        .exp_banner .banner-link, .exp_banner .css-195f0y4 {
+            color: #526EFF!important;
+            text-decoration-line: underline!important;
         }
     }
     @media screen and (min-width: 435px) and (max-width: 766px) {
 
-        .css-k008qs > .css-k008qs {
+        .exp_banner .css-k008qs > .css-k008qs {
             margin-right: 15px;
         }
-        .css-c0gtt0 {
+        .exp_banner .css-c0gtt0 {
             display: none;
         }
-        .css-af43ts {
+        .exp_banner .css-af43ts {
             flex-direction: column;
             display: flex;        
         }
-        .css-1p8d0n6 {
+        .exp_banner .css-1p8d0n6 {
             order: 2;
         }
-        .css-1h13y3f {
+        .exp_banner .css-1h13y3f {
             order: 3
         }
-        span.chakra-text.banner-last-updated.css-yaw6qn {
+        .exp_banner span.chakra-text.banner-last-updated.css-yaw6qn {
             display: block;
         }
-        .css-195f0y4 {
+        .exp_banner .css-195f0y4 {
             margin-right: 15px;
         }
-        .exp_banner > div > div {
+        .exp_banner .exp_banner > div > div {
             padding-left: 16px;
             padding-right: 16px;
         }
@@ -214,7 +214,7 @@ let style = `
         .exp_banner .breadcrumbs-container .breadcrumbs .breadcrumb-item:nth-last-child(2) span:last-child {
             display: none;
         }
-        .css-1uxi4iy {
+        .exp_banner .css-1uxi4iy {
             margin: 10px 0;
         }
         .exp_banner .breadcrumbs-container .breadcrumbs {
@@ -228,27 +228,27 @@ let style = `
             display: block;
             background: transparent;
         }
-        .css-11gphgj {
+        .exp_banner .css-11gphgj {
             flex-direction: row-reverse;
             padding: 10px 17px;
         }
-        .css-1m50t9u {
+        .exp_banner .css-1m50t9u {
             margin: 0 0 0 auto;
         }
-        .css-kuk5vd {
+        .exp_banner .css-kuk5vd {
             margin: 0 auto 0 0;
         }
-        .css-1m50t9u, .css-1h3iw5b {
+        .exp_banner .css-1m50t9u, .exp_banner .css-1h3iw5b {
             width: 32px;
             height: 32px;
             border-radius: 6px;
             background: var(--purple-05, #F6F8FF);
             min-width: fit-content;
         }
-        .css-l8qto0 {
+        .exp_banner .css-l8qto0 {
             font-size: 14px;
         }
-        .css-w82p09 img {
+        .exp_banner .css-w82p09 img {
             width: 10px;
             height: 10px;
             margin-top: 3px;
@@ -256,7 +256,7 @@ let style = `
         .exp_banner .banner-checkmark {
             margin-right: 5px;
         }
-        .css-bco1gb {
+        .exp_banner .css-bco1gb {
             font-size: 12px;
             font-style: normal;
             font-weight: 400;
@@ -275,7 +275,7 @@ let style = `
         }
     }
     @media screen and (min-width: 767px) {
-        .css-yaw6qn, .css-c0gtt0 {
+        .exp_banner .css-yaw6qn, .exp_banner .css-c0gtt0 {
             display: none;
         }
         .exp_banner  {
@@ -299,8 +299,8 @@ let style = `
             font-size: 44px;
             line-height: 50px;
         }
-        .banner-grid {
-            display: flex;
+        .exp_banner .banner-grid {
+            display: flex!important;
             flex-direction: column;
             grid-gap: 15px;
         }
@@ -319,17 +319,17 @@ let style = `
             border-top: 1px solid #D3D4D6;
             border-left: 1px solid #D3D4D6;
         }
-        .css-1t0181o:not(.banner-contribution) {
+        .exp_banner .css-1t0181o:not(.banner-contribution) {
             margin-right: 15px;
         }
-        .css-1t0181o > .css-k008qs:not(:first-child) {
+        .exp_banner .css-1t0181o > .css-k008qs:not(:first-child) {
             margin-left: 15px;
         } 
         .compare_quotes > p {
             font-size: 22px;
             line-height: 30px;
         }
-        .banner-description p {
+        .exp_banner .banner-description p {
             font-size: 18px;
             line-height: 22px;
         }
@@ -350,7 +350,7 @@ let style = `
             line-height: 22px;
             margin: 0;
         }
-        .css-1255oue {
+        .exp_banner .css-1255oue {
             margin-right: 13px;
             color: #292929;
             font-family: Source Sans Pro;
