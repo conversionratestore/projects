@@ -1308,19 +1308,19 @@ const mainScreen = /*html*/ `
         </div>
     
         <img src="${
-            german ? '//www.sparkpaws.de/cdn/shop/files/DE_-_SW_SALE_Mobile_691aea0b-9337-4bb6-8a02-91c20ac792ec_x800.png' : 
-            australia ? '//www.au-sparkpaws.com/cdn/shop/files/spring_essentials_sale_AU_Mobile_x800.jpg' :
-            uk ? '//www.sparkpaws.uk/cdn/shop/files/EU_UK_-_SW_SALE_Mobile_866ebd5d-6015-4310-bd6e-3a747d368be0_x800.png':
-            '//www.sparkpaws.com/cdn/shop/files/EN_-_Sweater_weather_sale_mobile_6106a016-daa3-43fc-860f-e0996004cf92_x800.png'
+            german ? document.querySelector('#shopify-section-template--15879345635509__115aa41c-0742-4cbd-b2bd-b94c5596ddb7 img').src: 
+            australia ? document.querySelector('#shopify-section-template--15879345635509__16504601089dfc205f img').src :
+            uk ? document.querySelector('#shopify-section-template--15879345635509__2930bc2c-a0ef-4698-9d10-77554b24f138 img').src :
+            document.querySelector('#shopify-section-template--15879345635509__e826ee7c-7bbd-44b5-9a6d-60fcf25e1570 img').src
             
         }" alt="image" class="crs_img_content">  
         <a href="/collections/shop-all-2" class="img">
             <img src="${dir}main_screen.jpg" alt="main_screen">
             <img src="${
-                german ? '//www.sparkpaws.de/cdn/shop/files/DE_-_SW_SALE_Mobile_691aea0b-9337-4bb6-8a02-91c20ac792ec_x800.png': 
-                australia ? '//www.au-sparkpaws.com/cdn/shop/files/spring_essentials_sale_AU_Mobile_x800.jpg' :
-                uk ? '//www.sparkpaws.uk/cdn/shop/files/EU_UK_-_SW_SALE_Mobile_866ebd5d-6015-4310-bd6e-3a747d368be0_x800.png':
-                '//www.sparkpaws.com/cdn/shop/files/EN_-_Sweater_weather_sale_mobile_6106a016-daa3-43fc-860f-e0996004cf92_x800.png'
+                german ? document.querySelector('#shopify-section-template--15879345635509__115aa41c-0742-4cbd-b2bd-b94c5596ddb7 img').src: 
+                australia ? document.querySelector('#shopify-section-template--15879345635509__16504601089dfc205f img').src :
+                uk ? document.querySelector('#shopify-section-template--15879345635509__2930bc2c-a0ef-4698-9d10-77554b24f138 img').src :
+                document.querySelector('#shopify-section-template--15879345635509__e826ee7c-7bbd-44b5-9a6d-60fcf25e1570 img').src
             }" alt="image" class="mob">  
         </a>
     </div>
