@@ -2520,3 +2520,10 @@ const blockVisibility = (selector, viewTime, event, location) => {
     v1.observe(item)
   })
 }
+
+let isClarity = setInterval(() => {
+	if (typeof clarity == 'function') {
+		clearInterval(isClarity)
+		clarity('set', `imp_hp`, 'variant_1')
+	}
+}, 100)
