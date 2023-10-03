@@ -702,9 +702,9 @@ let init = setInterval(() => {
             if (document.querySelector('.exp-loading')) {
                 document.querySelector('.exp-loading').remove()
             }
-        }, 300)
+        }, 500)
     }
-}, 200)
+})
 
 
 //clarify
