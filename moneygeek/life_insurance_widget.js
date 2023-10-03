@@ -512,8 +512,8 @@ function getZipCode(address) {
 }
 
 let addStyle = setInterval(() => {
-    if (document.body && !document.querySelector('.exp-style')) {
-        document.body.insertAdjacentHTML('afterbegin', style)
+    if (document.head && !document.querySelector('.exp-style')) {
+        document.head.insertAdjacentHTML('beforeend', style)
     }
 });
 
@@ -701,7 +701,7 @@ let init = setInterval(() => {
             }
         }, 300)
     }
-})
+}, 200)
 
 
 //clarify
