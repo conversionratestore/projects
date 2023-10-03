@@ -675,6 +675,7 @@ let init = setInterval(() => {
 
                     let findForm = setInterval(() => {
                         if (document.querySelector('.sh-widget-form .sh-form-element .sh-form-data > .value > input') && 
+                            document.querySelector('.sh-widget-form .sh-form-element button.sh-button.shmktpl-submit') &&
                             document.querySelector('.sh-widget-form .sh-form-element .sh-form-data > .value > input').value != address
                         ) {
                             const inputElement = document.querySelector('.sh-widget-form .sh-form-element .sh-form-data > .value > input');
@@ -682,6 +683,11 @@ let init = setInterval(() => {
                             inputElement.dispatchEvent(new Event('input', { bubbles: true }));
 
                             inputElement.addEventListener('click', () => {
+                                clearInterval(findForm)
+                            })
+
+                            const btnElement = document.querySelector('.sh-widget-form .sh-form-element button.sh-button.shmktpl-submit');
+                            btnElement.addEventListener('click', () => {
                                 clearInterval(findForm)
                             })
                         }
