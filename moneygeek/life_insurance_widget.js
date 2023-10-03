@@ -660,6 +660,7 @@ let init = setInterval(() => {
                         href.includes('/insurance/life/best/40-year-olds/') ||
                         href.includes('/insurance/life/best/30-year-olds/') || 
                         href.includes('/insurance/life/best/term/') ||
+                        href.includes('/insurance/life/best/50-year-olds/') ||
                         href.includes('/insurance/life/best/universal-life/')
                     ) {
                         document.querySelector('.css-12t4gr6').click()
