@@ -4,7 +4,7 @@ let media = window.matchMedia("(min-width: 768px)").matches;
 
 let style = `
 <style class="exp-style">
-    #stickywidgetdiv, .banner-container {
+    .banner-container {
         display: none;
     }
     .css-1uxi4iy {
