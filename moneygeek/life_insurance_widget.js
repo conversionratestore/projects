@@ -134,8 +134,8 @@ let style = `
         .exp_banner .banner-authorship {
             order: 2;
             grid-gap: 0!important;
-            flex-direction: ${window.location.href.includes('/insurance/life/best/term/') ? 'row!important' : 'row-reverse!important'};
-            ${window.location.href.includes('/insurance/life/best/term/') ? '' : 'justify-content: flex-end;'}
+            flex-direction: ${window.location.href.includes('/insurance/life/best/term/') || window.location.href.includes('/insurance/life/rates/100-thousan') ? 'row!important' : 'row-reverse!important'};
+            ${window.location.href.includes('/insurance/life/best/term/') || window.location.href.includes('/insurance/life/rates/100-thousan') ? '' : 'justify-content: flex-end;'}
             flex-wrap: wrap;
         }
         .exp_banner .banner-advertising {
