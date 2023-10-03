@@ -673,6 +673,16 @@ let init = setInterval(() => {
                         document.querySelector('.css-a0bqjq').click();
                     } 
 
+                    let findForm = setInterval(() => {
+                        if (document.querySelector('.sh-widget-form .sh-form-element .sh-form-data > .value > input') && 
+                            document.querySelector('.sh-widget-form .sh-form-element .sh-form-data > .value > input').value != address
+                        ) {
+                            const inputElement = document.querySelector('.sh-widget-form .sh-form-element .sh-form-data > .value > input');
+                            inputElement.value = address;
+                            inputElement.dispatchEvent(new Event('input', { bubbles: true }));
+                        }
+                    })
+
                 } else {
                     e.target.closest('.compare_quotes').classList.add('error')
                 }
