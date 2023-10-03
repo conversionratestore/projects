@@ -169,7 +169,9 @@ let style = `
     #shopify-section-template--15879345635509__1d73e740-c6f3-4c4e-83a3-25019344a4de,
     #shopify-section-template--15879345635509__00e1908d-9d44-4288-a91a-09094320b853,
     #shopify-section-template--15879345635509__featured-collections,
-    #shopify-section-template--15879345635509__219fd661-63ec-452c-8237-ed062313b6f4 {
+    #shopify-section-template--15879345635509__219fd661-63ec-452c-8237-ed062313b6f4,
+    #shopify-section-template--15879345635509__dd150490-93a4-4208-a753-86b1fd4a3e91,
+    #shopify-section-template--15879345635509__548de682-5c58-4dbf-9be9-47894b20a53b {
         display: none!Important;
     }
     .shopify-section--bordered>.Section--spacingNormal {
