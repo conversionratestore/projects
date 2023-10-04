@@ -18,6 +18,9 @@ let style = `
         padding: 0 25px;
         pointer-events: none;
     }
+    .exp-input.is-hide {
+        display: none!important;
+    }
     .banner-container {
         display: none;
     }
@@ -705,13 +708,13 @@ let init = setInterval(() => {
 
                             inputElement.addEventListener('click', () => {
                                 clearInterval(findForm)
-                                document.querySelector('.exp-input').style.display = 'none!important';
+                                document.querySelector('.exp-input').classList.add('is-hide');
                             })
 
                             const btnElement = document.querySelector('.sh-widget-form .sh-form-element button.sh-button.shmktpl-submit');
                             btnElement.addEventListener('click', () => {
                                 clearInterval(findForm)
-                                document.querySelector('.exp-input').style.display = 'none!important';
+                                document.querySelector('.exp-input').classList.add('is-hide');
                             })
 
                             document.querySelector('.css-10csyus').addEventListener('click', () => {
