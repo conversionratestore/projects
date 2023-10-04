@@ -4,6 +4,20 @@ let media = window.matchMedia("(min-width: 768px)").matches;
 
 let style = `
 <style class="exp-style">
+    .exp-input {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        background: #fff;
+        font: normal normal normal 14px/32px PT Sans;
+        outline: none;
+        color: #333333;
+        border: none;
+        padding: 0 25px;
+        pointer-events: none;
+    }
     .banner-container {
         display: none;
     }
@@ -203,7 +217,9 @@ let style = `
         }
     }
     @media screen and (max-width: 767px) {
-        
+        .exp-input {
+            font: normal normal normal 16px/32px PT Sans;
+        }
         .exp_banner .breadcrumbs-container .breadcrumbs .breadcrumb-item:nth-child(2), 
         .exp_banner .breadcrumbs-container .breadcrumbs .breadcrumb-item:nth-last-child(2) {
             display: -webkit-inline-box;
@@ -683,13 +699,19 @@ let init = setInterval(() => {
                             inputElement.value = address;
                             inputElement.dispatchEvent(new Event('input', { bubbles: true }));
 
+                            if (!document.querySelector('.exp-input')) {
+                                inputElement.insertAdjacentHTML('beforebegin', `<div class="exp-input">${address}</div>`)
+                            }
+
                             inputElement.addEventListener('click', () => {
                                 clearInterval(findForm)
+                                document.querySelector('.exp-input').style.display = 'none!important';
                             })
 
                             const btnElement = document.querySelector('.sh-widget-form .sh-form-element button.sh-button.shmktpl-submit');
                             btnElement.addEventListener('click', () => {
                                 clearInterval(findForm)
+                                document.querySelector('.exp-input').style.display = 'none!important';
                             })
 
                             document.querySelector('.css-10csyus').addEventListener('click', () => {
