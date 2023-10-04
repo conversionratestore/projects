@@ -663,7 +663,7 @@ let init = setInterval(() => {
             button.addEventListener('click', (e) => {
                 if (button.tagName == 'svg') {
                     $('html,body').animate({
-                        scrollTop: $('#getNow').offset().top - 75
+                        scrollTop: $('#purchase').offset().top - 50
                     }, 500); 
                 } else {
                     document.querySelector('.popup').classList.add('active');
