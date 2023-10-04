@@ -1409,6 +1409,14 @@ margin-bottom: 25px;
   // -------------------------------------
   start()
 
+  const record = setInterval(() => {
+    if (typeof clarity === 'function') {
+      clearInterval(record)
+
+      clarity('set', 'first_e_commerce_hp', 'variant_1')
+    }
+  }, WAIT_INTERVAL_TIMEOUT)
+
   // -------------------------------------
   // FUNCTIONS
   // -------------------------------------
