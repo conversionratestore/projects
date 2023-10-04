@@ -678,12 +678,14 @@ let init = setInterval(() => {
             document.querySelector('#cons').style = 'transform: translateX(700px);';
             document.querySelector('.sidebar').style = 'width: 0%; position: absolute;';
             document.querySelector('.popup').classList.remove('active');
+            document.body.classList.remove('slide');
         })
         document.body.addEventListener('click', (e) => {
             if (e.target.className == 'sidebar') {
                 document.querySelector('#cons').style = 'transform: translateX(700px);';
                 document.querySelector('.sidebar').style = 'width: 0%; position: absolute;';
                 document.querySelector('.popup').classList.remove('active');
+                document.body.classList.remove('slide');
             }
         })
     }
