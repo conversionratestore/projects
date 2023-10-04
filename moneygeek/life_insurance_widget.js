@@ -147,6 +147,11 @@ let style = `
     .compare_quotes {
         margin-top: -14px;
     }
+
+    .exp_banner .banner-link, .exp_banner .css-195f0y4 {
+        color: #526EFF!important;
+        text-decoration-line: underline!important;
+    }
     @media screen and (min-width: 435px) {
         .exp_banner {
             position: relative;
@@ -186,10 +191,6 @@ let style = `
             display: flex!important;
             align-items: center;
         }
-        .exp_banner .banner-link, .exp_banner .css-195f0y4 {
-            color: #526EFF!important;
-            text-decoration-line: underline!important;
-        }
     }
     @media screen and (min-width: 435px) and (max-width: 766px) {
 
@@ -223,6 +224,9 @@ let style = `
     @media screen and (max-width: 767px) {
         .exp-input {
             font: normal normal normal 16px/33px PT Sans;
+        }
+        .exp_banner .breadcrumbs-container .breadcrumbs {
+            border: none;
         }
         .exp_banner .breadcrumbs-container .breadcrumbs .breadcrumb-item:nth-child(2), 
         .exp_banner .breadcrumbs-container .breadcrumbs .breadcrumb-item:nth-last-child(2) {

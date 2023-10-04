@@ -408,6 +408,55 @@ let style = `
     
 </style>`;
 
+// pushDataLayer
+let pushDataLayer = (name, desc, type, loc) => {
+    console.log(name + ' : ' + desc + ' : ' + type + ' : ' + loc)
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga4',
+        'event_name': name,
+        'event_desc': desc,
+        'event_type': type,
+        'event_loc': loc
+    });
+}
+
+
+const visibilityMap = new Map()
+
+let visibilityTimer
+
+function handleVisibility(className) {
+  const targetElements = document.querySelectorAll(className)
+
+  visibilityTimer = setTimeout(() => {
+    targetElements.forEach((targetElement, index) => {
+      const rect = targetElement.getBoundingClientRect()
+
+      const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight
+
+      if (isVisible && !visibilityMap.has(targetElement)) {
+        visibilityMap.set(targetElement, Date.now())
+      } else if (!isVisible && visibilityMap.has(targetElement)) {
+        const startTime = visibilityMap.get(targetElement)
+        const focusTimeMillis = Date.now() - startTime;
+        const focusTimeSeconds = focusTimeMillis / 1000; 
+
+        if (targetElement.className.includes('yellow-wave')) {
+            pushDataLayer('exp_int_pro_v_fs_reapply_sunscreen', `Reapply sunscreen with confidence - ${focusTimeMillis}`, 'Visibility', 'First screen');
+        }
+        if (targetElement.className.includes('block_highlighting') && targetElement.closest('.scientific')) {
+            pushDataLayer('exp_int_pro_v_ufs1_how_it_works', `How it works 1 part- ${focusTimeMillis}`, 'Visibility', 'Under first screen');
+        }
+        if (targetElement.className.includes('block_highlighting') && targetElement.closest('.reviews')) {
+            pushDataLayer('exp_int_pro_v_upd_how_it_works', `How it works- ${focusTimeMillis}`, 'Visibility', 'Under product details');
+        }
+        visibilityMap.delete(targetElement)
+      }
+    })
+  }, 500)
+}
 
 let blockHighlighting = ` 
     <ul class="block_highlighting">
@@ -531,6 +580,7 @@ let modal = `
             <a id="open" href="#" class="btn js-btn btn-primary get-it">get it now</a>
         </div>
     </div>`;
+
 
 let init = setInterval(() => {
     if ( document.querySelector('#getNow .days') &&
@@ -664,14 +714,18 @@ let init = setInterval(() => {
 
         document.querySelector('.sidebar').insertAdjacentHTML('beforeend', modal)
 
+        document.querySelector('.reviews ').insertAdjacentHTML('afterbegin', blockHighlighting);
+
         document.querySelectorAll('.btn_how_works').forEach(button => {
             button.addEventListener('click', (e) => {
                 if (button.tagName == 'svg') {
                     $('html,body').animate({
                         scrollTop: $('#purchase').offset().top - 50
                     }, 500); 
+                    pushDataLayer('exp_int_pro_b_fs_how_sunny_works', 'How SunnyPatch works', 'Button', 'First screen');
                 } else {
                     document.querySelector('.popup').classList.add('active');
+                    pushDataLayer('exp_int_pro_b_sc_how_sunny_works', 'How SunnyPatch works', 'Button', 'Slide in cart');
                 }
             })
         })
@@ -692,6 +746,22 @@ let init = setInterval(() => {
                 document.querySelector('.popup').classList.remove('active');
                 document.body.classList.remove('slide');
             }
+        })    
+
+        handleVisibility('.yellow-wave')
+        handleVisibility('.scientific .block_highlighting')
+            
+        window.addEventListener('scroll', () => {
+            handleVisibility('.yellow-wave')
+            handleVisibility('.scientific .block_highlighting')
         })
+        
     }
 });
+
+const isClarity = setInterval(() => {
+    if (typeof clarity === 'function') {
+        clearInterval(isClarity)
+        clarity('set', `int_pro_sun`, 'variant_1')
+    }
+}, 100)
