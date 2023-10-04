@@ -147,6 +147,17 @@ let style = `
         margin-top: -14px;
     }
 
+    .exp_banner .css-k008qs, .exp_banner .banner-link, .exp_banner .css-195f0y4, .exp_banner .css-k008qs b, .exp_banner .banner-contribution {
+        color: #292929!important;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 12px!important;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 22px; 
+        text-decoration-line: none!important;
+        display: flex!important;
+        align-items: center;
+    }
     .exp_banner .banner-link, .exp_banner .css-195f0y4 {
         color: #526EFF!important;
         text-decoration-line: underline!important;
@@ -179,18 +190,8 @@ let style = `
             height: 12px;
             margin-right: 8px;
         }
-        .exp_banner .css-k008qs, .exp_banner .banner-link, .exp_banner .css-195f0y4, .exp_banner .css-k008qs b, .exp_banner .banner-contribution {
-            color: #292929!important;
-            font-family: 'Source Sans Pro', sans-serif;
-            font-size: 12px!important;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 22px; 
-            text-decoration-line: none!important;
-            display: flex!important;
-            align-items: center;
-        }
     }
+
     @media screen and (min-width: 435px) and (max-width: 766px) {
 
         .exp_banner .css-k008qs > .css-k008qs {
