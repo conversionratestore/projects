@@ -11,12 +11,13 @@ let style = `
         top: 0;
         height: 100%;
         background: #fff;
-        font: normal normal normal 14px/35px PT Sans;
+        font: normal normal normal 14px/34px PT Sans;
         outline: none;
         color: #333333;
         border: none;
         padding: 0 25px;
         pointer-events: none;
+        text-align: left;
     }
     .exp-input.is-hide {
         display: none!important;

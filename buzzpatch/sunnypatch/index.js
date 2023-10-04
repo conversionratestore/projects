@@ -311,6 +311,7 @@ let style = `
     }
     #cons>div {
         max-width: 100%!important;
+        background: transparent!important;
     }
     .view-prices > img {
         width: calc(100% + 32px);
