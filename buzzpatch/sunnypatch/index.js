@@ -2,6 +2,9 @@ let dir = 'https://conversionratestore.github.io/projects/buzzpatch/sunnypatch/i
 
 let style = `
 <style>
+    .exp-crs #getNow img.days {
+        display; none;
+    }
     .exp-crs .container {
         padding-left: 20px;
         padding-right: 20px;
@@ -701,9 +704,9 @@ let init = setInterval(() => {
 
         document.querySelector('#getNow .free-shipping-checkout').src = dir + 'free-shipping-worldwide.svg';
         
-        document.querySelector('#getNow img.days').srcset = dir + 'rated.svg';
-        document.querySelector('#getNow img.days').src = dir + 'rated.svg';
-        
+        document.querySelector('#getNow img.days').insertAdjacentHTML('beforebegin',`
+        <img src="${dir}rated.svg" alt="image" style="max-width: 100%!important;">`)
+
         document.querySelector('.title-logo').insertAdjacentHTML('afterend', `
         <img src="${dir}sunnypatches.svg" alt="image">`);
 
@@ -738,7 +741,9 @@ let init = setInterval(() => {
                 } else {
                     document.querySelector('.popup').classList.add('active');
                     pushDataLayer('exp_int_pro_b_sc_how_sunny_works', 'How SunnyPatch works', 'Button', 'Slide in cart');
-                    startTime = visibilityMap.get(e.target)
+                    setInterval(() => {
+                        startTime += 1
+                    }, 100)
                 }
             })
         })
@@ -777,6 +782,10 @@ let init = setInterval(() => {
     
             }
         })    
+
+        $('#slide-container > div').on('afterChange', function(event, slick, currentSlide) {
+            pushDataLayer('exp_int_pro_hs_why_kids', `Horisontal`, ' Scroll', '"First screen Why Kids & Adults Love SunnyPatch"');
+        });
 
         handleVisibility('.yellow-wave')
         handleVisibility('.block_highlighting')
