@@ -283,6 +283,9 @@ let style = `
         width: 100%;
         z-index: -1;
     }
+    .sidebar {
+        overflow: hidden;
+    }
     .sidebar .btn_how_works {
         color: var(--NATPAT-BLUE, #1F4FC9);
         font-family: DINEngschrift LT;
@@ -393,7 +396,8 @@ let style = `
     }
     .sidebar #cons {
         padding-inline: 15px;
-        min-height: 100vh;
+        height: 100vh;
+        overflow-y: auto;
     }
     @media (min-width: 415px) {
         #cons:before {

@@ -11,7 +11,7 @@ let style = `
         top: 0;
         height: 100%;
         background: #fff;
-        font: normal normal normal 14px/32px PT Sans;
+        font: normal normal normal 14px/35px PT Sans;
         outline: none;
         color: #333333;
         border: none;
@@ -221,7 +221,7 @@ let style = `
     }
     @media screen and (max-width: 767px) {
         .exp-input {
-            font: normal normal normal 16px/32px PT Sans;
+            font: normal normal normal 16px/33px PT Sans;
         }
         .exp_banner .breadcrumbs-container .breadcrumbs .breadcrumb-item:nth-child(2), 
         .exp_banner .breadcrumbs-container .breadcrumbs .breadcrumb-item:nth-last-child(2) {
