@@ -452,6 +452,15 @@ function handleVisibility(className) {
         if (targetElement.className.includes('block_highlighting') && targetElement.closest('.reviews')) {
             pushDataLayer('exp_int_pro_v_upd_how_it_works', `How it works- ${focusTimeMillis}`, 'Visibility', 'Under product details');
         }
+        if (targetElement.className.includes('isVisibleSteps') && targetElement.closest('.scientific') ) {
+            pushDataLayer('exp_int_pro_v_ufs2_how_it_works', `How it works 2 part- ${focusTimeMillis}`, 'Visibility', 'Under first screen');
+        }
+        if (targetElement.closest('.sleeping-problems')) {
+            pushDataLayer('exp_int_pro_v_what_sun_safety', focusTimeMillis, 'Visibility', 'What sun-safety concerns are you trying to address?');
+        }
+        if (targetElement.closest('.featured-reviews')) {
+            pushDataLayer('exp_int_pro_v_why_kids', focusTimeMillis, 'Visibility', 'First screen Why Kids & Adults Love SunnyPatch');
+        }
         visibilityMap.delete(targetElement)
       }
     })
@@ -716,6 +725,9 @@ let init = setInterval(() => {
 
         document.querySelector('.reviews ').insertAdjacentHTML('afterbegin', blockHighlighting);
 
+        document.querySelector('.scientific .mobile-steps').insertAdjacentHTML('beforebegin', `<div class="isVisibleSteps"></div>`);
+
+        let startTime = 0;
         document.querySelectorAll('.btn_how_works').forEach(button => {
             button.addEventListener('click', (e) => {
                 if (button.tagName == 'svg') {
@@ -726,18 +738,31 @@ let init = setInterval(() => {
                 } else {
                     document.querySelector('.popup').classList.add('active');
                     pushDataLayer('exp_int_pro_b_sc_how_sunny_works', 'How SunnyPatch works', 'Button', 'Slide in cart');
+                    startTime = visibilityMap.get(e.target)
                 }
             })
         })
 
         document.querySelector('.popup_back').addEventListener('click', (e) => {
             document.querySelector('.popup').classList.remove('active');
+
+            const focusTimeMillis = Date.now() - startTime;
+            pushDataLayer('exp_int_pro_v_sc1_how_it_works', `How it works 1 part- ${focusTimeMillis}`, 'Visibility', 'Slide in cart');
+            pushDataLayer('exp_int_pro_v_sc2_how_it_works', `How it works 2 part- ${focusTimeMillis}`, 'Visibility', 'Slide in cart');
+            pushDataLayer('exp_int_pro_b_sc_back', `back`, 'Button', 'Slide in cart');
+
         })
+
         document.querySelector('.popup_close').addEventListener('click', (e) => {
             document.querySelector('#cons').style = 'transform: translateX(700px);';
             document.querySelector('.sidebar').style = 'width: 0%; position: absolute;';
             document.querySelector('.popup').classList.remove('active');
             document.body.classList.remove('slide');
+            
+            const focusTimeMillis = Date.now() - startTime;
+            pushDataLayer('exp_int_pro_v_sc1_how_it_works', `How it works 1 part- ${focusTimeMillis}`, 'Visibility', 'Slide in cart');
+            pushDataLayer('exp_int_pro_v_sc2_how_it_works', `How it works 2 part- ${focusTimeMillis}`, 'Visibility', 'Slide in cart');
+            pushDataLayer('exp_int_pro_b_sc_close', `close`, 'Button', 'Slide in cart');
         })
         document.body.addEventListener('click', (e) => {
             if (e.target.className == 'sidebar') {
@@ -745,15 +770,27 @@ let init = setInterval(() => {
                 document.querySelector('.sidebar').style = 'width: 0%; position: absolute;';
                 document.querySelector('.popup').classList.remove('active');
                 document.body.classList.remove('slide');
+            
+                const focusTimeMillis = Date.now() - startTime;
+                pushDataLayer('exp_int_pro_v_sc1_how_it_works', `How it works 1 part- ${focusTimeMillis}`, 'Visibility', 'Slide in cart');
+                pushDataLayer('exp_int_pro_v_sc2_how_it_works', `How it works 2 part- ${focusTimeMillis}`, 'Visibility', 'Slide in cart');
+    
             }
         })    
 
         handleVisibility('.yellow-wave')
-        handleVisibility('.scientific .block_highlighting')
-            
+        handleVisibility('.block_highlighting')
+        handleVisibility('.scientific .isVisibleSteps')
+        handleVisibility('.sleeping-problems .title-highlight')
+        handleVisibility('.featured-reviews h2.js-title')
+       
+        
         window.addEventListener('scroll', () => {
             handleVisibility('.yellow-wave')
-            handleVisibility('.scientific .block_highlighting')
+            handleVisibility('.block_highlighting')
+            handleVisibility('.scientific .isVisibleSteps')
+            handleVisibility('.sleeping-problems .title-highlight')
+            handleVisibility('.featured-reviews h2.js-title')
         })
         
     }

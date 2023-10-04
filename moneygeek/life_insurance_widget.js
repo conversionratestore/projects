@@ -26,11 +26,10 @@ let style = `
         display: none;
     }
     .css-1uxi4iy {
-
-        font-weight: 600;
+        font-weight: 600!important;
     }
     .css-1uxi4iy, .css-11keg2m , .css-mypapy, .css-1h13y3f, .css-j8or2w {
-        grid-area: auto;
+        grid-area: auto!important;
         color: #292929;
     }
     .css-195f0y4, .css-1t0181o, .css-yaw6qn {
@@ -243,6 +242,7 @@ let style = `
         }
         .exp_banner .css-1uxi4iy {
             margin: 10px 0;
+            line-height: 30px;
         }
         .exp_banner .breadcrumbs-container .breadcrumbs {
             padding: 0!important;
