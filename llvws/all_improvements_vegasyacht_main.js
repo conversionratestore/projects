@@ -350,7 +350,7 @@ body.open_var {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 32px;
+  gap: 30px;
 }
 .with_code_block .accent_color {
   color: #e60023;
