@@ -3042,8 +3042,8 @@ section.shopify-section .index-section > .page-width{
               if (localStorage.getItem("shorterProduction")) {
                 const options = { day: "2-digit", month: "short" };
                 const date = new Date();
-                let dateAfter8Weeks = new Date(date.getTime() + 3.5 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
-                let dateAfter9Weeks = new Date(date.getTime() + 4 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
+                let dateAfter8Weeks = new Date(date.getTime() + 4 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
+                let dateAfter9Weeks = new Date(date.getTime() + 4, 5 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
                 document.querySelector(".shorter_time").textContent = `${dateAfter8Weeks}-${dateAfter9Weeks}`;
               }
               if (document.querySelector(".production_time_available")?.classList.contains("is_hidden")) {
