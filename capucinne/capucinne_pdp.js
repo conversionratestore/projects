@@ -1069,7 +1069,7 @@ button.syte-discovery.syte-integration-injected .button-text {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  z-index: 11;
+  z-index: 10;
 }
 .tangiblee-cta-wrapper .tangiblee-cta {
   height: 32px;
@@ -1123,7 +1123,7 @@ nav.breadcrumb.custom_breadcrumbs {
   bottom: 0;
   left: 0;
   right: 0;
-      z-index: 12;
+      z-index: 10;
   border-top: 1px solid #f6f5f5;
   background: #fff;
   padding: 5px 48px;
