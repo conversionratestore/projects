@@ -329,7 +329,6 @@ h1.h2.product-single__title {
   display: flex;
   align-items: center;
   gap: 4px;
-  cursor: pointer;
 }
 .get_discount_caption {
   color: #c1856f;
@@ -1686,9 +1685,9 @@ section.shopify-section .index-section > .page-width{
         <img src='https://conversionratestore.github.io/projects/capucinne/img/money.svg' />
       </div>
       <div class='get_discount_caption'>Get your <span>$230</span> Off</div>
-      <div class='get_discount_arrow'>
+      <!-- <div class='get_discount_arrow'>
         <img src='https://conversionratestore.github.io/projects/capucinne/img/arrow_right.svg' />
-      </div>
+      </div> -->
     </div>
   `;
 
