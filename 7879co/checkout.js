@@ -33,10 +33,7 @@ let clickKlarnaBtn = false;
 class CheckoutUpdate {
   constructor(device) {
     this.device = device
-    if (window.location.href.includes('/bag/') || window.location.href.includes('/checkout')) {
-      this.init()
-    }
-    
+    this.init()
   }
 
   init() {
@@ -356,7 +353,9 @@ class CheckoutUpdate {
         item.innerText = 'Payment'
       }
     })
-    $el('div.gap-2.w-full').classList.add('crs-heads')
+    if ( $el('div.gap-2.w-full')) {
+      $el('div.gap-2.w-full').classList.add('crs-heads')
+    }
     $$el('div.gap-2.w-full>div').forEach((item) => {
       item.classList.remove('crs-header-prev')
     })
@@ -498,6 +497,7 @@ class CheckoutUpdate {
 
   }
   createCartSummary() {
+    if (this.checkPageUrl() !== 'checkout') return
     $el('h3')
       .closest('.w-full')
       .querySelectorAll('&>div:not(:last-child)')
