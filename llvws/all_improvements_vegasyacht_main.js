@@ -683,7 +683,7 @@ body.open_var {
     margin-bottom: 8px;
   }
   .private_event_request_form label input[name="date"]{
-    min-height: 49px;
+    min-height: 40px;
   }
   .private_event_request_form label input,
   .private_event_request_form label textarea {
