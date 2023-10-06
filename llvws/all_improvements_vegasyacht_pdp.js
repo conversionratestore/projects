@@ -1058,6 +1058,9 @@ h2.new_title::after {
     width: 90%;
     margin: 0 auto;
   }
+  .logos.lav_mob > img{
+    width: 100%;
+  }
   /*#howToFindUsBlock */
   #howToFindUsBlock {
     padding: 72px 0;
