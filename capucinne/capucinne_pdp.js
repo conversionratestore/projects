@@ -99,6 +99,9 @@ let startFunk = setInterval(() => {
 
     let newStyle = /*html */ `
         <style>
+              .widget-visible {
+      z-index: 22!important;
+    }
        .overlay_popup {
       position: fixed !important;
       overflow: hidden;
@@ -1905,6 +1908,7 @@ section.shopify-section .index-section > .page-width{
 
     setInterval(() => {
       handleKlarna();
+      handleWidgets();
       waitFor(
         () => () => document.querySelector("[doubly-currency-usd]"),
         () => {
@@ -2201,7 +2205,6 @@ section.shopify-section .index-section > .page-width{
           <meta charset="utf-8" />
           <p>If you find a piece you like that isn’t in our Ready to Ship Collection, you can pay a premium to make it a rush order.</p>
           <p>Most of our jewelry pages have a “Rush Order” button. Click on that and it will move your order to the top of our work schedule.</p>
-          <p>Mostly</p>
         </div>
       </div>
     </div>
@@ -2549,6 +2552,7 @@ section.shopify-section .index-section > .page-width{
       let activated = false;
 
       if (document.querySelector('[name="properties[Ring size]"]')) {
+        document.querySelector('.variant-wrapper .variant__label[for="SingleOptionSelector-template--20834585772373__main-4515502063659-option-1"]').textContent = "Ring size, US";
         document.querySelector('[name="properties[Ring size]"]').insertAdjacentHTML("afterbegin", '<option value="Select size" selected>Select size</option>');
         document
           .querySelector(".extend-offer")
@@ -3059,26 +3063,56 @@ section.shopify-section .index-section > .page-width{
       const original = document.querySelector("klarna-placement div")?.shadowRoot?.querySelector("div");
 
       if (window.innerWidth <= 768) {
-        original.querySelector(".container").style = "border: 0;background: rgba(225, 149, 169, 0.10);padding: 8px 12px;margin-bottom: 44px";
-      } else {
-        original.querySelector(".container").style = "border: 0;background: rgba(225, 149, 169, 0.10);padding: 8px 12px;margin-bottom: 16px";
-      }
-      original.querySelector(".text-wrapper").style = "margin-left: 16px;";
-      original.querySelector('.text-wrapper .text[part="osm-message"]').style = "font-size: 13px;font-weight: 400;line-height: 18px;color: #1C1D1D;";
-      original.querySelector(".text button").style = "color: #565656;";
-      original.querySelector(".text button").textContent = "View details >";
-
-      original.querySelector(".text button").addEventListener("click", (e) => {
-        if (!e.target.getAttribute("data-test")) {
-          pushDataLayer("exp_barriers_l_k_vd", "View details", "Link", "Klarna");
+        if (original) {
+          original.querySelector(".container").style = "border: 0;background: rgba(225, 149, 169, 0.10);padding: 8px 12px;margin-bottom: 44px";
         }
-        e.target.setAttribute("data-test", "1");
-        setTimeout(() => {
-          if (e.target.getAttribute("data-test")) {
-            e.target.removeAttribute("data-test");
+      } else {
+        if (original) {
+          original.querySelector(".container").style = "border: 0;background: rgba(225, 149, 169, 0.10);padding: 8px 12px;margin-bottom: 16px";
+        }
+      }
+      if (original) {
+        original.querySelector(".text-wrapper").style = "margin-left: 16px;";
+        original.querySelector('.text-wrapper .text[part="osm-message"]').style = "font-size: 13px;font-weight: 400;line-height: 18px;color: #1C1D1D;";
+        original.querySelector(".text button").style = "color: #565656;";
+        original.querySelector(".text button").textContent = "View details >";
+
+        original.querySelector(".text button").addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            pushDataLayer("exp_barriers_l_k_vd", "View details", "Link", "Klarna");
           }
-        }, 1000);
-      });
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
+        });
+      }
+    }
+
+    function handleWidgets() {
+      if (!window.location.pathname.includes("/products/")) return false;
+      document.querySelector(".widget-visible")?.setAttribute("style", "z-index: 22!important");
+
+      for (let frame of document.querySelectorAll(".widget-visible iframe")) {
+        if (frame.width === "120px") {
+          frame.style.display = "none";
+        }
+        if (frame.width === "64px" || frame.width === "67px") {
+          if (window.innerWidth < 768) {
+            frame.style.bottom = "80px";
+          } else {
+            frame.style.bottom = "110px";
+            frame.style.right = "10px";
+          }
+        }
+
+        if (frame.width === "300px") {
+          // frame.style.right = '130px';
+          frame.style.bottom = "100px";
+        }
+      }
     }
     visibElem();
     function visibElem() {
