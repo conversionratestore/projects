@@ -12,17 +12,20 @@ let startFunk = setInterval(() => {
       }
     }
 
-    function pushDataLayer(name, desc, type, loc) {
-      console.log(name + " / " + desc + " / " + type + " / " + loc);
+    function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
+      console.log(event_name + " / " + event_desc + " / " + event_type + " / " + event_loc);
+
+      // Send a Google Analytics event
+      const eventData = {
+        event: "event-to-ga4",
+        event_name,
+        event_desc,
+        event_type,
+        event_loc,
+      };
 
       window.dataLayer = window.dataLayer || [];
-      dataLayer.push({
-        event: "event-to-ga4",
-        event_name: name,
-        event_desc: desc,
-        event_type: type,
-        event_loc: loc,
-      });
+      dataLayer.push(eventData);
     }
 
     // cdn slider
@@ -995,7 +998,7 @@ line-height: 20px;
   position: absolute;
   top: -61px;
   right: 0;
-  z-index: 111;
+  z-index: 10;
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -1900,7 +1903,7 @@ section.shopify-section .index-section > .page-width{
       () => {
         document.querySelector(".product-single__form .add-to-cart").addEventListener("click", () => {
           if (!isAddCart) {
-            pushDataLayer("exp_barriers_b_atc", "Add to cart", "Button", "Add to cart");
+            pushDataLayer(["exp_barriers_b_atc", "Add to cart", "Button", "Add to cart"]);
           }
         });
       }
@@ -2265,7 +2268,7 @@ section.shopify-section .index-section > .page-width{
 
         el.addEventListener("click", () => {
           item.click();
-          pushDataLayer("exp_barriers_b_e_pp", `${item.querySelector(".term-length").textContent}`, "Button", "Extend");
+          pushDataLayer(["exp_barriers_b_e_pp", `${item.querySelector(".term-length").textContent}`, "Button", "Extend"]);
 
           if (el.classList.contains("active")) {
             el.classList.remove("active");
@@ -2358,7 +2361,7 @@ section.shopify-section .index-section > .page-width{
         if (document.querySelector(".expert_advice")) {
           clearInterval(a);
           document.querySelector(".expert_advice").addEventListener("click", () => {
-            pushDataLayer("exp_barriers_b_glea", "Get live expert advice", "Button", "Get live expert advice");
+            pushDataLayer(["exp_barriers_b_glea", "Get live expert advice", "Button", "Get live expert advice"]);
             document.querySelectorAll(".product-block--sales-point li.sales-point .icon-and-text")[1].click();
           });
         }
@@ -2383,7 +2386,7 @@ section.shopify-section .index-section > .page-width{
           clearInterval(c);
           document.querySelector("#shopify-block-cadd6db7-a422-4c1f-90e3-91f50c296730 + .product-block > div").addEventListener("click", (e) => {
             e.preventDefault();
-            pushDataLayer("exp_barriers_l_fs_r", "reviews", "Link", "First screen");
+            pushDataLayer(["exp_barriers_l_fs_r", "reviews", "Link", "First screen"]);
             if (e.currentTarget) {
               const scrollTarget = document.querySelector("#stamped-reviews-widget");
               let topOffset = 100;
@@ -2407,7 +2410,7 @@ section.shopify-section .index-section > .page-width{
           clearInterval(yourHand);
           document.querySelector(".tangiblee-cta-wrapper .tangiblee-cta").addEventListener("click", (e) => {
             if (e.currentTarget) {
-              pushDataLayer("exp_barriers_b_fs_tyh", "Try it on Your Hand", "Button", "First screen");
+              pushDataLayer(["exp_barriers_b_fs_tyh", "Try it on Your Hand", "Button", "First screen"]);
             }
           });
         }
@@ -2417,7 +2420,7 @@ section.shopify-section .index-section > .page-width{
           clearInterval(photoZoom);
           document.querySelectorAll(".product-slideshow .is-selected .product__photo-zoom").forEach((el) => {
             el.addEventListener("click", () => {
-              pushDataLayer("exp_barriers_b_fs_mg", "Magnifying glass", "Button", "First screen");
+              pushDataLayer(["exp_barriers_b_fs_mg", "Magnifying glass", "Button", "First screen"]);
             });
           });
         }
@@ -2427,14 +2430,14 @@ section.shopify-section .index-section > .page-width{
       });
 
       document.querySelector(".the4-toolkit-wishlist a")?.addEventListener("click", () => {
-        pushDataLayer("exp_barriers_b_fs_wl", "Wish list", "Button", "First screen");
+        pushDataLayer(["exp_barriers_b_fs_wl", "Wish list", "Button", "First screen"]);
       });
       let stampedReviews = setInterval(() => {
         if (document.querySelector("#stamped-reviews-widget[data-widget-type=carousel] a")) {
           clearInterval(stampedReviews);
           document.querySelectorAll("#stamped-reviews-widget[data-widget-type=carousel] a").forEach((el) => {
             el.addEventListener("click", (e) => {
-              pushDataLayer("exp_barriers_s_r_rt", `${e.currentTarget.closest(".stamped-ratings-wrapper").querySelector(".stamped-reviews-title a").textContent}`, "Section", "Reviews");
+              pushDataLayer(["exp_barriers_s_r_rt", `${e.currentTarget.closest(".stamped-ratings-wrapper").querySelector(".stamped-reviews-title a").textContent}`, "Section", "Reviews"]);
             });
           });
         }
@@ -2444,7 +2447,7 @@ section.shopify-section .index-section > .page-width{
           clearInterval(bestSellersLink);
           document.querySelectorAll("#bestSellers .product_link").forEach((el) => {
             el.addEventListener("click", (e) => {
-              pushDataLayer("exp_barriers_p_bs_pn", `${e.currentTarget.closest(".product_content").querySelector(".product_title").textContent}`, "Produst", "Best sellers");
+              pushDataLayer(["exp_barriers_p_bs_pn", `${e.currentTarget.closest(".product_content").querySelector(".product_title").textContent}`, "Produсt", "Best sellers"]);
             });
           });
         }
@@ -2454,7 +2457,7 @@ section.shopify-section .index-section > .page-width{
           clearInterval(readyToShipLink);
           document.querySelectorAll("#readyToShip .grid-product__link").forEach((el) => {
             el.addEventListener("click", (e) => {
-              pushDataLayer("exp_barriers_p_rs_pn", `${e.currentTarget.querySelector(".grid-product__title").textContent}`, "Produst", "Ready to ship");
+              pushDataLayer(["exp_barriers_p_rs_pn", `${e.currentTarget.querySelector(".grid-product__title").textContent}`, "Produсt", "Ready to ship"]);
             });
           });
         }
@@ -2464,7 +2467,7 @@ section.shopify-section .index-section > .page-width{
           clearInterval(similarItemsLink);
           document.querySelectorAll("#syte-similar-items-container .syte-slider-layout-container .syte-offers-item").forEach((el) => {
             el.addEventListener("click", (e) => {
-              pushDataLayer("exp_barriers_p_si_pn", `${e.currentTarget.querySelector(".syte-offers-item-desc").textContent}`, "Produst", "Similar items");
+              pushDataLayer(["exp_barriers_p_si_pn", `${e.currentTarget.querySelector(".syte-offers-item-desc").textContent}`, "Produсt", "Similar items"]);
             });
           });
         }
@@ -2473,7 +2476,7 @@ section.shopify-section .index-section > .page-width{
         if (document.querySelector(".create_custom_link")) {
           clearInterval(createCustomBtn);
           document.querySelector(".create_custom_link").addEventListener("click", (e) => {
-            pushDataLayer("exp_barriers_l_nsu_cc", "Create custom", "Link", "Need something unique");
+            pushDataLayer(["exp_barriers_l_nsu_cc", "Create custom", "Link", "Need something unique"]);
           });
         }
       }, 100);
@@ -2481,7 +2484,7 @@ section.shopify-section .index-section > .page-width{
         if (document.querySelector(".learn_more_btn")) {
           clearInterval(deliveryLearnMoreBtn);
           document.querySelector(".learn_more_btn").addEventListener("click", () => {
-            pushDataLayer("exp_barriers_l_pd_lm", "Learn more", "Link", "Production & Delivery");
+            pushDataLayer(["exp_barriers_l_pd_lm", "Learn more", "Link", "Production & Delivery"]);
           });
         }
       }, 100);
@@ -2618,7 +2621,7 @@ section.shopify-section .index-section > .page-width{
 
       if (document.querySelector(".lav-select_size")) {
         document.querySelector(".lav-select_size").addEventListener("click", () => {
-          pushDataLayer("exp_barriers_b_atc", "Add to cart", "Button", "Add to cart");
+          pushDataLayer(["exp_barriers_b_atc", "Add to cart", "Button", "Add to cart"]);
           const el = document.querySelector(".variant-wrapper");
           const offset = el.getBoundingClientRect().top + window.scrollY - 120;
           document.querySelector('[name="properties[Ring size]"]').classList.add("lav-error");
@@ -2626,7 +2629,7 @@ section.shopify-section .index-section > .page-width{
             document.querySelector('[name="properties[Ring size]"]').insertAdjacentHTML("afterend", `<span class="lav-error-txt">Please select your size</span>`);
           }
           if (document.querySelector(".lav-error-txt")) {
-            pushDataLayer("exp_barriers_v_s_psys", "Please select your size", "Visibility", "Size");
+            pushDataLayer(["exp_barriers_v_s_psys", "Please select your size", "Visibility", "Size"]);
           }
           window.scrollTo({
             top: offset,
@@ -2652,7 +2655,7 @@ section.shopify-section .index-section > .page-width{
             document.querySelector('[name="properties[Ring size]"]').insertAdjacentHTML("afterend", `<span class="lav-error-txt">Please select your size</span>`);
           }
           if (document.querySelector(".lav-error-txt")) {
-            pushDataLayer("exp_barriers_v_s_psys", "Please select your size", "Visibility", "Size");
+            pushDataLayer(["exp_barriers_v_s_psys", "Please select your size", "Visibility", "Size"]);
           }
           window.scrollTo({
             top: offset,
@@ -2725,7 +2728,7 @@ section.shopify-section .index-section > .page-width{
               ],
             });
           slider.on("swipe", function () {
-            pushDataLayer("exp_barriers_s_bs_h", "Horizontal", "Scroll", "Best sellers");
+            pushDataLayer(["exp_barriers_s_bs_h", "Horizontal", "Scroll", "Best sellers"]);
           });
         }
       }, 100);
@@ -2764,7 +2767,7 @@ section.shopify-section .index-section > .page-width{
             });
           slider.on("init", function () {});
           slider.on("swipe", function () {
-            pushDataLayer("exp_barriers_s_rs_h", "Horizontal", "Scroll", "Ready to ship");
+            pushDataLayer(["exp_barriers_s_rs_h", "Horizontal", "Scroll", "Ready to ship"]);
           });
           document.querySelector(".ready_to_ship_list").style.display = "block";
         }
@@ -2825,7 +2828,7 @@ section.shopify-section .index-section > .page-width{
           el.addEventListener("click", (e) => {
             //
             if (!e.target.getAttribute("data-test")) {
-              pushDataLayer("exp_barriers_l_fs_gyo", "Get your off", "Link", "First screen");
+              pushDataLayer(["exp_barriers_l_fs_gyo", "Get your off", "Link", "First screen"]);
             }
             e.target.setAttribute("data-test", "1");
             setTimeout(() => {
@@ -2859,7 +2862,7 @@ section.shopify-section .index-section > .page-width{
             }
           }
           document.querySelector(".size_guide_txt span:nth-child(2)").addEventListener("click", (el) => {
-            pushDataLayer("exp_barriers_b_sgpp_mm", "MM", "Button", "Size guide pop up");
+            pushDataLayer(["exp_barriers_b_sgpp_mm", "MM", "Button", "Size guide pop up"]);
             el.currentTarget.classList.add("active_var");
             if (el.currentTarget.nextElementSibling.classList.contains("active_var")) {
               el.currentTarget.nextElementSibling.classList.remove("active_var");
@@ -2876,7 +2879,7 @@ section.shopify-section .index-section > .page-width{
             });
           });
           document.querySelector(".size_guide_txt span:nth-child(3)").addEventListener("click", (el) => {
-            pushDataLayer("exp_barriers_b_sgpp_i", "Inches", "Button", "Size guide pop up");
+            pushDataLayer(["exp_barriers_b_sgpp_i", "Inches", "Button", "Size guide pop up"]);
             el.currentTarget.classList.add("active_var");
             if (el.currentTarget.previousElementSibling.classList.contains("active_var")) {
               el.currentTarget.previousElementSibling.classList.remove("active_var");
@@ -2908,7 +2911,7 @@ section.shopify-section .index-section > .page-width{
 
         btnClose.addEventListener("click", (e) => {
           if (!e.target.getAttribute("data-test")) {
-            pushDataLayer("exp_barriers_b_sgpp_c", "Close", "Button", "Size guide pop up");
+            pushDataLayer(["exp_barriers_b_sgpp_c", "Close", "Button", "Size guide pop up"]);
           }
           e.target.setAttribute("data-test", "1");
           setTimeout(() => {
@@ -2923,11 +2926,11 @@ section.shopify-section .index-section > .page-width{
         overlay.addEventListener("click", (e) => {
           if (e.target.matches(".overlay_popup")) {
             onClosePopup();
-            pushDataLayer("exp_barriers_b_sgpp_c", "Close", "Button", "Size guide pop up");
+            pushDataLayer(["exp_barriers_b_sgpp_c", "Close", "Button", "Size guide pop up"]);
           }
         });
         document.querySelector(".size_guide").addEventListener("click", () => {
-          pushDataLayer("exp_barriers_b_s_sg", "Size guide", "Button", "Size");
+          pushDataLayer(["exp_barriers_b_s_sg", "Size guide", "Button", "Size"]);
           onOpenPopup();
         });
 
@@ -2989,7 +2992,7 @@ section.shopify-section .index-section > .page-width{
             entries.forEach((i) => {
               if (i.isIntersecting) {
                 if (i.target.classList.contains("size_guide_title")) {
-                  pushDataLayer("exp_barriers_v_sgpp_ft", "1000", "Visibility", "Size guide pop up");
+                  pushDataLayer(["exp_barriers_v_sgpp_ft", "1000", "Visibility", "Size guide pop up"]);
                 }
 
                 obsV.unobserve(i.target);
@@ -3081,7 +3084,7 @@ section.shopify-section .index-section > .page-width{
 
         original.querySelector(".text button").addEventListener("click", (e) => {
           if (!e.target.getAttribute("data-test")) {
-            pushDataLayer("exp_barriers_l_k_vd", "View details", "Link", "Klarna");
+            pushDataLayer(["exp_barriers_l_k_vd", "View details", "Link", "Klarna"]);
           }
           e.target.setAttribute("data-test", "1");
           setTimeout(() => {
@@ -3118,126 +3121,95 @@ section.shopify-section .index-section > .page-width{
     }
     visibElem();
     function visibElem() {
-      let obsV = new IntersectionObserver(visibilityV, {
-        threshold: 1,
+      waitForElement(".earn_gift_wrapp").then((el) => {
+        handleVisibility(el, ["exp_barriers_v_ywrgyo_ft", `{{focusTime}}`, "Visibility", "You’ll receive a gift with your order"]);
+      });
+      waitForElement(".new_extend").then((el) => {
+        handleVisibility(el, ["exp_barriers_v_e_ft", `{{focusTime}}`, "Visibility", "Extend"]);
+      });
+      waitForElement(".production_delivery").then((el) => {
+        handleVisibility(el, ["exp_barriers_v_pd_ft", `{{focusTime}}`, "Visibility", "Production & Delivery"]);
+      });
+      waitForElement(".create_custom_block").then((el) => {
+        handleVisibility(el, ["exp_barriers_v_nsu_ft", `{{focusTime}}`, "Visibility", "Need something unique"]);
+      });
+      waitForElement(".visib_ready_to_ship").then((el) => {
+        handleVisibility(el, ["exp_barriers_v_rs_ft", `{{focusTime}}`, "Visibility", "Ready to ship"]);
+      });
+      waitForElement(".visib_packaged").then((el) => {
+        handleVisibility(el, ["exp_barriers_v_bp_ft", `{{focusTime}}`, "Visibility", "BEAUTIFULLY PACKAGED"]);
+      });
+      waitForElement(".visib_best_sellers").then((el) => {
+        handleVisibility(el, ["exp_barriers_v_bs_ft", `{{focusTime}}`, "Visibility", "Best sellers"]);
+      });
+      waitForElement("#reviews .btn").then((el) => {
+        handleVisibility(el, ["exp_barriers_v_r_ft", `{{focusTime}}`, "Visibility", "Reviews"]);
+      });
+      waitForElement(".visib_similar_items").then((el) => {
+        handleVisibility(el, ["exp_barriers_v_si_ft", `{{focusTime}}`, "Visibility", "Similar items"]);
       });
 
-      let obsV2 = new IntersectionObserver(visibilityV2, {
-        threshold: 1,
+      let kl = document.querySelector("klarna-placement div")?.shadowRoot?.querySelector("div").querySelector('.text-wrapper .text[part="osm-message"]');
+      waitForElement(`${kl}`).then((el) => {
+        handleVisibility(el, ["exp_barriers_v_k_ft", `{{focusTime}}`, "Visibility", "Klarna"]);
       });
+    }
 
-      let timeV = 3000;
+    function handleVisibility(el, eventParams) {
+      let isVisible = false;
+      let entryTime;
+      const config = {
+        root: null,
+        threshold: 0, // Trigger when any part of the element is out of viewport
+      };
 
-      let intV1 = setInterval(() => {
-        if (document.querySelector(".earn_gift_wrapp")) {
-          clearInterval(intV1);
-          obsV.observe(document.querySelector(".earn_gift_wrapp"));
-        }
-      }, 100);
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (!isVisible) {
+              // The element has become visible
+              isVisible = true;
+              entryTime = new Date().getTime();
+            }
+          } else if (isVisible) {
+            // The element is out of the viewport, calculate visibility duration
+            isVisible = false;
+            const exitTime = new Date().getTime();
+            const visibilityDuration = exitTime - entryTime; // / 1000 Convert to seconds
+            const roundedDuration = Math.round(visibilityDuration);
 
-      let intV2 = setInterval(() => {
-        if (document.querySelector(".new_extend")) {
-          clearInterval(intV2);
-          obsV.observe(document.querySelector(".new_extend"));
-        }
-      }, 100);
-      let intV3 = setInterval(() => {
-        if (document.querySelector(".production_delivery")) {
-          clearInterval(intV3);
-          obsV.observe(document.querySelector(".production_delivery"));
-        }
-      }, 100);
-      let intV4 = setInterval(() => {
-        if (document.querySelector(".create_custom_block")) {
-          clearInterval(intV4);
-          obsV.observe(document.querySelector(".create_custom_block"));
-        }
-      }, 100);
-      let intV5 = setInterval(() => {
-        if (document.querySelector(".visib_ready_to_ship")) {
-          clearInterval(intV5);
-          obsV.observe(document.querySelector(".visib_ready_to_ship"));
-        }
-      }, 100);
-      let intV6 = setInterval(() => {
-        if (document.querySelector(".visib_packaged")) {
-          clearInterval(intV6);
-          obsV.observe(document.querySelector(".visib_packaged"));
-        }
-      }, 100);
-      let intV7 = setInterval(() => {
-        if (document.querySelector(".visib_best_sellers")) {
-          clearInterval(intV7);
-          obsV.observe(document.querySelector(".visib_best_sellers"));
-        }
-      }, 100);
-      let intV8 = setInterval(() => {
-        if (document.querySelector("#reviews .btn")) {
-          clearInterval(intV8);
-          obsV.observe(document.querySelector("#reviews .btn"));
-        }
-      }, 100);
-      let intV9 = setInterval(() => {
-        if (document.querySelector(".visib_similar_items")) {
-          clearInterval(intV9);
-          obsV.observe(document.querySelector(".visib_similar_items"));
-        }
-      }, 100);
-      let intV10 = setInterval(() => {
-        if (document.querySelector("klarna-placement div")?.shadowRoot?.querySelector("div").querySelector('.text-wrapper .text[part="osm-message"]')) {
-          clearInterval(intV10);
-          obsV.observe(document.querySelector("klarna-placement div")?.shadowRoot?.querySelector("div").querySelector('.text-wrapper .text[part="osm-message"]'));
-        }
-      }, 100);
-
-      function visibilityV(entries) {
-        entries.forEach((i) => {
-          if (i.isIntersecting) {
-            setTimeout(function () {
-              obsV2.observe(i.target);
-            }, timeV);
+            if (roundedDuration) {
+              const eventData = eventParams;
+              eventData[1] = roundedDuration;
+              pushDataLayer(eventData);
+              observer.disconnect();
+            }
           }
         });
-      }
-      function visibilityV2(entries) {
-        entries.forEach((i) => {
-          if (i.isIntersecting) {
-            if (i.target.classList.contains("earn_gift_wrapp")) {
-              pushDataLayer("exp_barriers_v_ywrgyo_ft", `${timeV}`, "Visibility", "You’ll receive a gift with your order");
-            }
-            if (i.target.classList.contains("new_extend")) {
-              pushDataLayer("exp_barriers_v_e_ft", `${timeV}`, "Visibility", "Extend");
-            }
-            if (i.target.classList.contains("production_delivery")) {
-              pushDataLayer("exp_barriers_v_pd_ft", `${timeV}`, "Visibility", "Production & Delivery");
-            }
-            if (i.target.classList.contains("create_custom_block")) {
-              pushDataLayer("exp_barriers_v_nsu_ft", `${timeV}`, "Visibility", "Need something unique");
-            }
-            if (i.target.classList.contains("visib_packaged")) {
-              pushDataLayer("exp_barriers_v_bp_ft", `${timeV}`, "Visibility", "BEAUTIFULLY PACKAGED");
-            }
-            if (i.target.classList.contains("visib_ready_to_ship")) {
-              pushDataLayer("exp_barriers_v_rs_ft", `${timeV}`, "Visibility", "Ready to ship");
-            }
-            if (i.target.classList.contains("visib_best_sellers")) {
-              pushDataLayer("exp_barriers_v_bs_ft", `${timeV}`, "Visibility", "Best sellers");
-            }
-            if (i.target.classList.contains("btn")) {
-              pushDataLayer("exp_barriers_v_r_ft", `${timeV}`, "Visibility", "Reviews");
-            }
-            if (i.target.classList.contains("visib_similar_items")) {
-              pushDataLayer("exp_barriers_v_si_ft", `${timeV}`, "Visibility", "Similar items");
-            }
-            if (i.target.classList.contains("text")) {
-              pushDataLayer("exp_barriers_v_k_ft", `${timeV}`, "Visibility", "Klarna");
-            }
+      }, config);
 
-            obsV.unobserve(i.target);
+      observer.observe(el);
+    }
+    2;
+
+    function waitForElement(selector) {
+      return new Promise((resolve) => {
+        if (document.querySelector(selector)) {
+          return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver(() => {
+          if (document.querySelector(selector)) {
+            resolve(document.querySelector(selector));
+            observer.disconnect();
           }
-          obsV2.unobserve(i.target);
         });
-      }
+
+        observer.observe(document.documentElement, {
+          childList: true,
+          subtree: true,
+        });
+      });
     }
 
     // *** Utils *** //
