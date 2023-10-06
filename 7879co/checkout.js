@@ -28,7 +28,6 @@ const clarityInterval = setInterval(function () {
 
 const device = window.innerWidth < 769 ? 'mobile' : 'desktop'
 
-let clickCreditBtn = false;
 let clickKlarnaBtn = false;
 
 class CheckoutUpdate {
@@ -255,22 +254,25 @@ class CheckoutUpdate {
           font-size: 14px;
           line-height: 20px;
         }
-        .crs-delivery p.text-p {
+        .crs-delivery p.text-p,
+        .crs-billing p.text-p {
           float: left;
         }
-        #checkout-container + div.mt-5.flex.flex-col > div:first-child p.text-p:not(:nth-child(8), .crs-email):after {
+        #checkout-container + div.mt-5.flex.flex-col > div:not(:last-child) p.text-p:not(:nth-child(8), .crs-email):after {
           content: ', ';
           margin-right: 4px;
         }
-        
         #checkout-container + div.mt-5.flex.flex-col > div.crs-contact p.text-p:last-child:after {
           content: none;
         }
-        .crs-free {
+        .crs-free,
+        #checkout-container + div.mt-5.flex.flex-col > div .text-h5:not(first-child)  {
           color: var(--Text, #484850);
           font-size: 14px;
-          font-weight: 600;
           line-height: 20px;
+        }
+        .crs-free {
+          font-weight: 600;
         }
         #primer-checkout-apm-button-container * {
           order: 1;
@@ -718,6 +720,46 @@ class CheckoutUpdate {
     #primer-checkout-scene-klarna-payment .PrimerCheckout__formHeader {
       margin: 0;
     }
+    .crs-payment-klarna .dJDRcm {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .crs-payment-klarna .bfvKmd {
+      stroke: #579B31;
+      border-radius: 50%;
+      border: 1px solid #579B31;
+      width: 20px;
+      height: 20px;
+      padding: 2px;
+    }
+    .crs-payment-klarna .bpbPRL {
+      position: relative;
+      background: var(--Backgraund, #F4F4F5);
+      border-radius: 5px;
+    }
+    .crs-payment-klarna .bpbPRL:before  {
+      content: '';
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 15px;
+      height: 15px;
+      background: url(${dir}plus.svg) no-repeat center / contain;
+    }
+    .crs-payment-klarna .bpbPRL[disabled] {
+      background: transparent;
+    }
+    .crs-payment-klarna .bpbPRL[disabled]:before {
+      content: none;
+    }
+    .crs-payment-klarna .bpbPRL[disabled] + .iYCTkD {
+      margin: 0 8px 8px!important;
+    }
+    .crs-payment-klarna .eQlxcA {
+      padding-top: 8px;
+      border-top: 1px solid #dedfe0;
+    }
     </style>
     <div class="crs-payment-methods">
         <div class="crs-payment-credit">
@@ -746,13 +788,9 @@ class CheckoutUpdate {
     }
     if ($el('#primer-checkout-credit-card-button')) {
 
-      if (clickCreditBtn == true) return
+      if ($el('#primer-checkout-card-form') || !$el('#primer-checkout-credit-card-button')) return
       $el('#primer-checkout-credit-card-button').click()
-      clickCreditBtn = true
-
     }
-
-
   }
   fixFormAndBlocks() {
     if ($el('p.text-h3')) {
@@ -874,7 +912,7 @@ class CheckoutUpdate {
           if ( item.innerText.includes('Billing Address')) {
             text.parentElement.classList.add("crs-billing")
           }
-          
+
           if (!item.innerText.includes('Delivery Address')) return
           text.parentElement.classList.add("crs-delivery")
           if (index == 6) {
@@ -929,7 +967,7 @@ class CheckoutUpdate {
       if (item.id == 'primer-checkout-apm-klarna' && $el('.crs-payment-klarna')) {
         $el('.crs-payment-klarna').style.display = 'block';
       }
-      if (item.querySelector('img[alt="AFTERPAY"]')) {
+      if (item.querySelector('img[alt="AFTERPAY"]') || item.querySelector('img[alt="CLEARPAY"]')) {
         item.style.display = 'block'
       }
     })
