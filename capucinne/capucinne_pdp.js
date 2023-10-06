@@ -2552,7 +2552,9 @@ section.shopify-section .index-section > .page-width{
       let activated = false;
 
       if (document.querySelector('[name="properties[Ring size]"]')) {
-        document.querySelector('.variant-wrapper .variant__label[for="SingleOptionSelector-template--20834585772373__main-4515502063659-option-1"]').textContent = "Ring size, US";
+        if (document.querySelector('.variant-wrapper .variant__label[for="SingleOptionSelector-template--20834585772373__main-4515502063659-option-1"]')) {
+          document.querySelector('.variant-wrapper .variant__label[for="SingleOptionSelector-template--20834585772373__main-4515502063659-option-1"]').textContent = "Ring size, US";
+        }
         document.querySelector('[name="properties[Ring size]"]').insertAdjacentHTML("afterbegin", '<option value="Select size" selected>Select size</option>');
         document
           .querySelector(".extend-offer")
