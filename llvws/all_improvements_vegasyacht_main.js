@@ -682,6 +682,9 @@ body.open_var {
   .private_event_request_form label > span {
     margin-bottom: 8px;
   }
+  .private_event_request_form label input[name="date"]{
+    min-height: 49px;
+  }
   .private_event_request_form label input,
   .private_event_request_form label textarea {
     padding: 8px 16px;
@@ -1119,7 +1122,10 @@ body.open_var {
         </div>
     `;
 
-      let today = `${new Date().getFullYear()}-0${new Date().getMonth() + 1}-${new Date().getDate()}`;
+      let y = new Date().getFullYear();
+      let m = new Date().getMonth() + 1;
+      let d = new Date().getDate();
+      let today = `${y < 10 ? "0" + y : y}-${m < 10 ? "0" + m : m}-${d < 10 ? "0" + d : d}`;
 
       let contentPopup = /*html */ `
         <div class="content_popup private_event_req">
