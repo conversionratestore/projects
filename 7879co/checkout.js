@@ -33,7 +33,10 @@ let clickKlarnaBtn = false;
 class CheckoutUpdate {
   constructor(device) {
     this.device = device
-    this.init()
+    if (window.location.href.includes('/bag/') || window.location.href.includes('/checkout')) {
+      this.init()
+    }
+    
   }
 
   init() {
