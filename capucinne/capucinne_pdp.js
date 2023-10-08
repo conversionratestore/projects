@@ -105,11 +105,6 @@ let startFunk = setInterval(() => {
               .widget-visible {
       z-index: 22!important;
     }
-    .overlay_popup.is_hidden_var {
-      opacity: 0;
-      pointer-events: none;
-      visibility: hidden;
-    }
        .overlay_popup {
       position: fixed !important;
       overflow: hidden;
@@ -117,16 +112,24 @@ let startFunk = setInterval(() => {
       left: 0;
       width: 100vw;
       height: 100%;
-      opacity: 1;
       background: rgba(0, 0, 0, 0.60);
       transition: all 0.5s ease 0s;
       z-index: 2200000000;
       display: block;
       max-height: 100%;
+      opacity: 0;
+      pointer-events: none;
     }
-     .overlay_popup.is_hidden_var .container_popup {
+    .overlay_popup.is_visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+     .overlay_popup .container_popup {
       transform: translateX(100%);
       transition: all 0.8s ease 0s;
+    }
+    .overlay_popup.is_visible .container_popup {
+      transform: translateX(0);
     }
      .overlay_popup .container_popup {
       display: block;
@@ -1859,7 +1862,7 @@ section.shopify-section .index-section > .page-width{
 
     // popup
     let popUp = /*html */ `
-      <div class="overlay_popup is_hidden_var">
+      <div class="overlay_popup">
         <div class="container_popup">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M1 1L15 15" stroke="black"/>
@@ -2937,7 +2940,7 @@ section.shopify-section .index-section > .page-width{
 
         function onClosePopup() {
           visibElem();
-          overlay.classList.add("is_hidden_var");
+          overlay.classList.remove("is_visible");
           document.body.style.marginRight = `0px`;
           document.body.style.overflow = "auto";
           document.body.style.display = "initial";
@@ -2946,7 +2949,7 @@ section.shopify-section .index-section > .page-width{
           // }, 400);
         }
         function onOpenPopup() {
-          overlay.classList.remove("is_hidden_var");
+          overlay.classList.add("is_visible");
           document.body.style.overflow = "hidden";
           document.body.style.marginRight = `${scroll}px`;
           document.body.style.display = "block";
