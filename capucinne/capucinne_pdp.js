@@ -105,6 +105,11 @@ let startFunk = setInterval(() => {
               .widget-visible {
       z-index: 22!important;
     }
+    .overlay_popup.is_hidden_var {
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+    }
        .overlay_popup {
       position: fixed !important;
       overflow: hidden;
@@ -118,10 +123,6 @@ let startFunk = setInterval(() => {
       z-index: 2200000000;
       display: block;
       max-height: 100%;
-    }
-     .overlay_popup.is_hidden_var {
-      opacity: 0;
-      pointer-events: none;
     }
      .overlay_popup.is_hidden_var .container_popup {
       transform: translateX(100%);
