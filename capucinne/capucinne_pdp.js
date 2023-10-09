@@ -134,7 +134,7 @@ let startFunk = setInterval(() => {
      .overlay_popup .container_popup {
       display: block;
       position: absolute;
-      bottom: 0;
+      top: 0;
       right: 0;
       max-width: 450px;
       height: 100%;
@@ -143,7 +143,6 @@ let startFunk = setInterval(() => {
       background: #fff;
       transition: all 0.5s ease 0s;
       overflow: auto;
-      max-height: 100vh;
 box-shadow: 0px 20px 30px 0px rgba(0, 0, 0, 0.10);
     }
      .overlay_popup .container_popup > svg {
@@ -337,7 +336,9 @@ h1.h2.product-single__title {
   display: flex;
   align-items: center;
   gap: 4px;
-  display: none !important;
+}
+.get_discount_block:not(.get_discount_block_applied){
+  cursor: pointer;
 }
 .get_discount_caption {
   color: #c1856f;
@@ -1718,7 +1719,7 @@ button.syte-discovery.syte-integration-injected .button-text{
       <div class='get_discount_icon'>
         <img src='https://conversionratestore.github.io/projects/capucinne/img/money.svg' />
       </div>
-      <div class='get_discount_caption'>Get your <span>$230</span> Off</div>
+      <div class='get_discount_caption'>Get Your 50$ Off</div>
       <div class='get_discount_arrow'>
         <img src='https://conversionratestore.github.io/projects/capucinne/img/arrow_right.svg' />
       </div>
@@ -1728,9 +1729,9 @@ button.syte-discovery.syte-integration-injected .button-text{
     let appliedDiscount = /*html */ `
     <div class='get_discount_block get_discount_block_applied'>
       <div class='get_discount_icon'>
-        <img src='' />
+        <img src='https://flopsi69.github.io/crs/capucinne/pdp_slidein/img/discount-apply.svg' />
       </div>
-      <div class='get_discount_caption'>You save 5%</div>
+      <div class='get_discount_caption'>You save $50</div>
     </div>
   `;
 
@@ -1915,6 +1916,16 @@ button.syte-discovery.syte-integration-injected .button-text{
   `;
 
     document.head.insertAdjacentHTML("beforeend", newStyle);
+    const hideLabel = `
+        <style>
+          .needsclick[aria-label="Open Form"] {
+            opacity: 0;
+            pointer-events: none;
+            z-index: -1!important;
+          }
+        </style>
+      `;
+    document.head.insertAdjacentHTML("beforeend", hideLabel);
 
     renderNewBlocks();
     onDiffClick();
@@ -2016,11 +2027,11 @@ button.syte-discovery.syte-integration-injected .button-text{
       document.querySelectorAll(".variant__label").forEach((el) => {
         if (el.textContent.includes("Ring size")) {
           if (document.querySelector(".variant-wrapper") && !document.querySelector(".size_guide")) {
-            if (window.innerWidth > 768) {
-              document.querySelector("[data-product-price]").insertAdjacentHTML("beforeend", sizeGuide);
-            } else {
-              document.querySelectorAll(".variant-wrapper")[0].insertAdjacentHTML("beforebegin", sizeGuide);
-            }
+            // if (window.innerWidth > 768) {
+            //   document.querySelector("[data-product-price]").insertAdjacentHTML("beforeend", sizeGuide);
+            // } else {
+            // }
+            document.querySelectorAll(".variant-wrapper")[0].insertAdjacentHTML("beforebegin", sizeGuide);
           }
         }
       });
@@ -2079,7 +2090,7 @@ button.syte-discovery.syte-integration-injected .button-text{
       // }
       //add new block Description
       if (!document.querySelector(".description_new_block") && document.querySelector(".new_rush_order")) {
-        document.querySelector(".new_rush_order").insertAdjacentHTML("afterend", `<div class="description_new_block"><h2>Description</h2><div class="description_body no_visib"></div><span class="read_more_btn">Read more ></span></div>`);
+        document.querySelector(".new_rush_order").insertAdjacentHTML("afterend", `<div class="description_new_block"><h2>Description</h2><div class="description_body"></div><span class="read_more_btn">Read more ></span></div>`);
       }
       if (document.querySelector(".description_new_block") && document.querySelector(".description_body").children.length === 0) {
         let children = document.querySelectorAll(".product-block.product-block--tab .collapsible-content__inner")[0]?.innerHTML;
@@ -2400,16 +2411,27 @@ button.syte-discovery.syte-integration-injected .button-text{
       let b = setInterval(() => {
         if (document.querySelector(".description_new_block .read_more_btn")) {
           clearInterval(b);
+          let isClamping = false;
+          toggleClamping();
           document.querySelector(".description_new_block .read_more_btn").addEventListener("click", (e) => {
             e.preventDefault();
-            document.querySelector(".description_body").classList.toggle("no_visib");
+            toggleClamping();
+            // document.querySelector(".description_body").classList.toggle("no_visib");
             document.querySelector(".description_new_block").scrollIntoView({ block: "start", behavior: "smooth" });
-            if (document.querySelector(".description_body").classList.contains("no_visib")) {
-              e.currentTarget.textContent = "Read more >";
-            } else {
-              e.currentTarget.textContent = "Read Less <";
-            }
+            // if (document.querySelector(".description_body").classList.contains("no_visib")) {
+            //   e.currentTarget.textContent = "Read more >";
+            // } else {
+            //   e.currentTarget.textContent = "Read Less <";
+            // }
           });
+
+          function toggleClamping() {
+            isClamping = !isClamping;
+            document.querySelector(".description_new_block .read_more_btn").textContent = isClamping ? "Read more >" : "Read Less <";
+            document.querySelector(".description_body").classList.toggle("no_visib");
+            document.querySelector(".description_body").style.webkitLineClamp = isClamping ? "4" : "";
+            // document.querySelector(".description_body").style.maxHeight = isClamping ? "6.5em" : "";
+          }
         }
       }, 100);
       let c = setInterval(() => {
@@ -2671,8 +2693,8 @@ button.syte-discovery.syte-integration-injected .button-text{
 
       document.querySelector(".lav-sticky__btn").addEventListener("click", () => {
         if (activated) {
-          // pushDataLayer("new_payments_sticky_add_to_cart", "Sticky add to cart", "Button", "Sticky section");
           isAddCart = true;
+          pushDataLayer(["exp_barriers_b_s_add_cart", "Add to cart", "Button", "Sticky section"]);
           document.querySelector("button.add-to-cart").click();
           setTimeout(() => {
             isAddCart = false;
@@ -2838,38 +2860,60 @@ button.syte-discovery.syte-integration-injected .button-text{
 
     function handeGetYourMoneyOff() {
       //  add get Discount
-      if (document.querySelector("[data-product-price]") && !document.querySelector("[data-product-price] .get_discount_block")) {
-        document.querySelector("[data-product-price]").insertAdjacentHTML("beforeend", getDiscount);
-      }
-      if (document.querySelector(".lav-sticky") && !document.querySelector(".lav-sticky__btn_price .get_discount_block")) {
-        document.querySelector(".lav-sticky__btn_price .lav-sticky__btn").insertAdjacentHTML("beforebegin", getDiscount);
-      }
-      let doublyCurrency = "";
-      let price = +document.querySelector("[data-product-price] .money")?.textContent.replace(/\D/g, "") / 100;
-      let curr = document.querySelector("[data-product-price] .money")?.textContent.slice(0, 1);
-      if (document.querySelector("[data-product-price] .money")?.getAttribute("doubly-currency")) {
-        doublyCurrency = document.querySelector("[data-product-price] .money")?.getAttribute("doubly-currency");
-      }
-      let moneyOff = (price * 0.05).toFixed(0);
-      if (document.querySelectorAll(".get_discount_block")) {
-        document.querySelectorAll(".get_discount_block span").forEach((el) => {
-          el.textContent = `${curr}${moneyOff} ${doublyCurrency}`;
-        });
-        document.querySelectorAll(".get_discount_block").forEach((el) => {
-          el.addEventListener("click", (e) => {
-            //
-            if (!e.target.getAttribute("data-test")) {
-              pushDataLayer(["exp_barriers_l_fs_gyo", "Get your off", "Link", "First screen"]);
+      if (!sessionStorage.getItem("lav-discount")) {
+        let getNeedsClick = setInterval(() => {
+          if (document.querySelector('.needsclick[aria-label="Open Form"]')) {
+            clearInterval(getNeedsClick);
+            if (document.querySelector("[data-product-price]") && !document.querySelector("[data-product-price] .get_discount_block:not(.get_discount_block_applied)")) {
+              document.querySelector("[data-product-price]").insertAdjacentHTML("beforeend", getDiscount);
             }
-            e.target.setAttribute("data-test", "1");
-            setTimeout(() => {
-              if (e.target.getAttribute("data-test")) {
-                e.target.removeAttribute("data-test");
-              }
-            }, 1000);
-          });
-        });
+            if (document.querySelector(".lav-sticky") && !document.querySelector(".lav-sticky__btn_price .get_discount_block:not(.get_discount_block_applied)")) {
+              document.querySelector(".lav-sticky__btn_price .lav-sticky__btn").insertAdjacentHTML("beforebegin", getDiscount);
+            }
+            let doublyCurrency = "";
+            let price = +document.querySelector("[data-product-price] .money")?.textContent.replace(/\D/g, "") / 100;
+            let curr = document.querySelector("[data-product-price] .money")?.textContent.slice(0, 1);
+            if (document.querySelector("[data-product-price] .money")?.getAttribute("doubly-currency")) {
+              doublyCurrency = document.querySelector("[data-product-price] .money")?.getAttribute("doubly-currency");
+            }
+            let moneyOff = (price * 0.05).toFixed(0);
+            if (document.querySelectorAll(".get_discount_block")) {
+              document.querySelectorAll(".get_discount_block span").forEach((el) => {
+                el.textContent = `${curr}${moneyOff} ${doublyCurrency}`;
+              });
+              document.querySelectorAll(".get_discount_block:not(.get_discount_block_applied)").forEach((el) => {
+                el.addEventListener("click", (e) => {
+                  //
+                  if (!e.target.getAttribute("data-test")) {
+                    pushDataLayer(["exp_barriers_l_fs_gyo", "Get your off", "Link", "First screen"]);
+                    document.querySelector('.needsclick[aria-label="Open Form"]')?.click();
+                  }
+                  e.target.setAttribute("data-test", "1");
+                  setTimeout(() => {
+                    if (e.target.getAttribute("data-test")) {
+                      e.target.removeAttribute("data-test");
+                    }
+                  }, 1000);
+                });
+              });
+            }
+          }
+        }, 100);
       }
+      let getSessionStorage = setInterval(() => {
+        if (sessionStorage.getItem("lav-discount") === "yes") {
+          clearInterval(getSessionStorage);
+          document.querySelectorAll(".get_discount_block:not(.get_discount_block_applied)").forEach((el) => {
+            el.remove();
+          });
+          if (document.querySelector("[data-product-price]") && !document.querySelector("[data-product-price] .get_discount_block.get_discount_block_applied")) {
+            document.querySelector("[data-product-price]").insertAdjacentHTML("beforeend", appliedDiscount);
+          }
+          if (document.querySelector(".lav-sticky") && !document.querySelector(".lav-sticky__btn_price .get_discount_block.get_discount_block_applied")) {
+            document.querySelector(".lav-sticky__btn_price .lav-sticky__btn").insertAdjacentHTML("beforebegin", appliedDiscount);
+          }
+        }
+      }, 100);
     }
     function addPopupSize() {
       if (!document.querySelector(".overlay_popup")) {
@@ -3187,7 +3231,6 @@ button.syte-discovery.syte-integration-injected .button-text{
 
       observer.observe(el);
     }
-    2;
 
     function waitForElement(selector) {
       return new Promise((resolve) => {
@@ -3208,6 +3251,46 @@ button.syte-discovery.syte-integration-injected .button-text{
         });
       });
     }
+
+    // Observer
+
+    initObserver(
+      (el) => {
+        if (el.ariaLabel === "POPUP Form") {
+          pushDataLayer("new_payments_pp_get_50_off", "Visibility", "Popup", "Popup 50$ off");
+        }
+
+        // if (el.classList.contains('.needsclick') && !isDiscountEvent) {
+        //   console.log('ffff1');
+        //   // TODO
+        //   observerView(el);
+        // }
+
+        if ((el.closest(".needsclick") && el.querySelector("svg path") && el.closest('[component="[object Object]"]')?.querySelector("svg path")?.getAttribute("d") === `M11.1597 18.9917L6.66651 14.4983C5.99844 13.8687 4.95494 13.8706 4.28909 14.5025C3.59908 15.1574 3.56725 16.2465 4.21784 16.9405L9.72916 23.085C10.5199 23.9286 11.862 23.9189 12.6405 23.064L25.9625 8.9336C26.5713 8.26509 26.5411 7.23449 25.8943 6.60272C25.2293 5.95322 24.1631 5.96785 23.5162 6.63534L11.1597 18.9917Z`) || el.closest('[component="[object Object]"]')?.querySelector("svg path")?.getAttribute("d") === `M3.60156 1.09961C1.94471 1.09961 0.601562 2.44275 0.601562 4.09961V22.4996C0.601562 24.1565 1.94471 25.4996 3.60156 25.4996H8V23.4996H3.60156C3.04928 23.4996 2.60156 23.0519 2.60156 22.4996V4.09961C2.60156 3.54732 3.04928 3.09961 3.60156 3.09961H18.8016C19.3538 3.09961 19.8016 3.54732 19.8016 4.09961V5.30078H21.8016V4.09961C21.8016 2.44276 20.4584 1.09961 18.8016 1.09961H3.60156Z`) {
+          sessionStorage.setItem("lav-discount", "yes");
+        }
+
+        if (el.name == "phone-number" && el.closest(".needsclick")) {
+          el.closest("form.needsclick").querySelectorAll('button[class*="go"')[1].click();
+        }
+
+        if (el.closest(".needsclick")?.querySelector('[title="Recaptcha"]')) {
+          pushDataLayer("new_payments_pp_get_50_off_captcha_vis", "CAPTCHA", "Element visibility", "Popup 50$ off");
+
+          el.closest(".needsclick")
+            .querySelector('[title="Recaptcha"]')
+            .addEventListener("click", () => {
+              pushDataLayer("new_payments_pp_get_50_off_captcha_click", "Klick on CAPTCHA", "CAPTCHA", "Popup 50$ off");
+            });
+        }
+      },
+      (el) => {
+        // console.log('Remove', el);
+        if (el.id === "extend-learn-more-modal-iframe") {
+          pushDataLayer("new_payments_ext_pop_close", "Close", "Button", "Extend popup");
+        }
+      }
+    );
 
     // *** Utils *** //
     // Waiting for loading by condition
@@ -3243,6 +3326,33 @@ button.syte-discovery.syte-integration-injected .button-text{
       childList: true,
       subtree: true,
     });
+
+    // Mutation Observer
+    function initObserver(cb, removedCb) {
+      let observer = new MutationObserver((mutations) => {
+        for (let mutation of mutations) {
+          for (let node of mutation.addedNodes) {
+            if (!(node instanceof HTMLElement)) continue;
+
+            cb(node);
+          }
+
+          for (let node of mutation.removedNodes) {
+            if (!(node instanceof HTMLElement)) continue;
+
+            removedCb(node);
+          }
+        }
+      });
+
+      waitFor(
+        () => document.body,
+        () => {
+          observer.observe(document.body, { childList: true, subtree: true });
+        },
+        100
+      );
+    }
 
     const record = setInterval(() => {
       if (typeof clarity === "function") {
