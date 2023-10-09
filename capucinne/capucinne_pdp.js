@@ -247,7 +247,7 @@ line-height: 20px;
     margin-bottom: 16px;
      }
      [aria-label="Open Form"]{
-          z-index: 10 !important;
+          z-index: -1 !important;
      }
           .the4-wishlist-icon.new_icon_wishlist{
     width: 24px !important;
@@ -1270,11 +1270,11 @@ nav.breadcrumb.custom_breadcrumbs {
 .lav-error-txt{
 position: absolute;
     left: 0;
-    top: 42px;
+    top: 39px;
     width: max-content;
     color: #C20000;
     font-family: 'Poppins';
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
     line-height: 20px;
 }
