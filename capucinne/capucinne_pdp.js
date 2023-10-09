@@ -642,6 +642,7 @@ text-transform: initial;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    max-height: 89px;
 }
 .description_body > br{
   display: none;
@@ -1939,9 +1940,12 @@ button.syte-discovery.syte-integration-injected .button-text{
     waitFor(
       () => document.querySelector(".product-single__form .add-to-cart"),
       () => {
-        document.querySelector(".product-single__form .add-to-cart").addEventListener("click", () => {
-          if (!isAddCart) {
+        document.querySelector(".product-single__form .add-to-cart").addEventListener("click", (e) => {
+          if (!isAddCart && !localStorage.getItem("stickyBtn")) {
             pushDataLayer(["exp_barriers_b_atc", "Add to cart", "Button", "Add to cart"]);
+          }
+          if (localStorage.getItem("stickyBtn") === "yes") {
+            localStorage.removeItem("stickyBtn");
           }
         });
       }
@@ -2090,7 +2094,7 @@ button.syte-discovery.syte-integration-injected .button-text{
       // }
       //add new block Description
       if (!document.querySelector(".description_new_block") && document.querySelector(".new_rush_order")) {
-        document.querySelector(".new_rush_order").insertAdjacentHTML("afterend", `<div class="description_new_block"><h2>Description</h2><div class="description_body"></div><span class="read_more_btn">Read more ></span></div>`);
+        document.querySelector(".new_rush_order").insertAdjacentHTML("afterend", `<div class="description_new_block"><h2>Description</h2><div class="description_body no_visib"></div><span class="read_more_btn">Read more ></span></div>`);
       }
       if (document.querySelector(".description_new_block") && document.querySelector(".description_body").children.length === 0) {
         let children = document.querySelectorAll(".product-block.product-block--tab .collapsible-content__inner")[0]?.innerHTML;
@@ -2411,27 +2415,17 @@ button.syte-discovery.syte-integration-injected .button-text{
       let b = setInterval(() => {
         if (document.querySelector(".description_new_block .read_more_btn")) {
           clearInterval(b);
-          let isClamping = false;
-          toggleClamping();
+
           document.querySelector(".description_new_block .read_more_btn").addEventListener("click", (e) => {
             e.preventDefault();
-            toggleClamping();
-            // document.querySelector(".description_body").classList.toggle("no_visib");
-            document.querySelector(".description_new_block").scrollIntoView({ block: "start", behavior: "smooth" });
-            // if (document.querySelector(".description_body").classList.contains("no_visib")) {
-            //   e.currentTarget.textContent = "Read more >";
-            // } else {
-            //   e.currentTarget.textContent = "Read Less <";
-            // }
-          });
-
-          function toggleClamping() {
-            isClamping = !isClamping;
-            document.querySelector(".description_new_block .read_more_btn").textContent = isClamping ? "Read more >" : "Read Less <";
             document.querySelector(".description_body").classList.toggle("no_visib");
-            document.querySelector(".description_body").style.webkitLineClamp = isClamping ? "4" : "";
-            // document.querySelector(".description_body").style.maxHeight = isClamping ? "6.5em" : "";
-          }
+            document.querySelector(".description_new_block").scrollIntoView({ block: "start", behavior: "smooth" });
+            if (document.querySelector(".description_body").classList.contains("no_visib")) {
+              e.currentTarget.textContent = "Read more >";
+            } else {
+              e.currentTarget.textContent = "Read Less <";
+            }
+          });
         }
       }, 100);
       let c = setInterval(() => {
@@ -2673,7 +2667,7 @@ button.syte-discovery.syte-integration-injected .button-text{
       }
 
       if (document.querySelector(".lav-select_size")) {
-        document.querySelector(".lav-select_size").addEventListener("click", () => {
+        document.querySelector(".lav-select_size").addEventListener("click", (e) => {
           pushDataLayer(["exp_barriers_b_atc", "Add to cart", "Button", "Add to cart"]);
           const el = document.querySelector(".variant-wrapper");
           const offset = el.getBoundingClientRect().top + window.scrollY - 120;
@@ -2695,6 +2689,7 @@ button.syte-discovery.syte-integration-injected .button-text{
         if (activated) {
           isAddCart = true;
           pushDataLayer(["exp_barriers_b_s_add_cart", "Add to cart", "Button", "Sticky section"]);
+          localStorage.setItem("stickyBtn", "yes");
           document.querySelector("button.add-to-cart").click();
           setTimeout(() => {
             isAddCart = false;
