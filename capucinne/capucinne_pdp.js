@@ -638,11 +638,23 @@ margin: 0 0 16px;
 text-transform: initial;
 }
 .description_body.no_visib {
+  position: relative;
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    max-height: 89px;
+    max-height: 87px;
+}
+.description_body.no_visib::before{
+display: flex;
+    position: absolute;
+    content: '. . .';
+    width: 100%;
+    height: 16px;
+    bottom: 0;
+    left: 93px;
+    background: white;
+    align-items: center;
 }
 .description_body > br{
   display: none;
