@@ -1862,7 +1862,7 @@ section.shopify-section .index-section > .page-width{
 
     // popup
     let popUp = /*html */ `
-      <div class="overlay_popup is_hidden">
+      <div class="overlay_popup" style="display: none;">
         <div class="container_popup">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M1 1L15 15" stroke="black"/>
@@ -2854,10 +2854,9 @@ section.shopify-section .index-section > .page-width{
           containerPopup = overlay.querySelector(".container_popup"),
           btnClose = overlay.querySelector("svg"),
           scroll = calcScroll();
-
-        if (overlay.classList.contains("is_hidden")) {
-          overlay.classList.remove("is_hidden");
-        }
+        setTimeout(() => {
+          overlay.style.display = "block";
+        }, 1000);
 
         btnClose.addEventListener("click", (e) => {
           if (!e.target.getAttribute("data-test")) {
