@@ -1130,7 +1130,7 @@ body.open_var {
       let contentPopup = /*html */ `
         <div class="content_popup private_event_req">
               <div class="popup_header">
-      <h2>Charter Services request</h2>
+      <h2>Charter Services Request</h2>
     </div>
     <div class="popup_body">
       <form action="" class="private_event_request_form">
@@ -1155,7 +1155,7 @@ body.open_var {
         </div>
         <div class="second_step is_hidden">
           <label for="">
-            <span>Duration of rental (in hours)</span>
+            <span>Duration of rental (in hours)*</span>
             <input type="number" name="hours" id="" min="1" max="24" required placeholder="Hours" />
             <div class="input_validation">Please enter duration of rental (in hours)</div>
           </label>
@@ -1181,7 +1181,7 @@ body.open_var {
       let contentPopupServicesRequest = /*html */ `
         <div class="content_popup charter_services_req">
               <div class="popup_header">
-      <h2>Charter Services request</h2>
+      <h2>Charter Services Request</h2>
     </div>
     <div class="popup_body">
       <form action="" class="private_event_request_form">
@@ -1218,7 +1218,7 @@ body.open_var {
 
       let arrR = {
         1: [
-          `Post-booking & ARRIVAL`,
+          `Post-booking & arrival`,
           `<p>Once you complete your booking online, you will receive a confirmation email with a map showing where to park when you arrive, and digital links to both the liability waiver, and the required boaters' contract. Anyone participating in activities must have a liability release completed prior to arrival.</p>
           <p>Upon arriving at Lake Las Vegas, you will be relieved that there are no parking fees! Parking can be found in the Monte Lago parking garage located at 8 Strada Di Villagio, Henderson NV, 89011.</p>
           <p>After parking, you can walk through the Village and stop at any restaurants on-site. When you are finished strolling, head toward the marina, and you will find our office located behind Seasons Grocery.</p>`,
