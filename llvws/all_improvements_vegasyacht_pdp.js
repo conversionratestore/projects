@@ -274,6 +274,7 @@ h2.new_title::after {
   font-family: "Playfair Display";
   font-size: 20px;
   text-transform: uppercase;
+  display: block;
 }
 .free_cancellationup_block svg {
   min-width: 24px;
