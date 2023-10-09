@@ -2855,64 +2855,6 @@ section.shopify-section .index-section > .page-width{
           btnClose = overlay.querySelector("svg"),
           scroll = calcScroll();
 
-        if (!document.querySelector(" .overlay_popup .content_popup")) {
-          containerPopup?.insertAdjacentHTML("beforeend", contentPopup);
-        }
-
-        if (document.querySelector(" .overlay_popup .content_popup")) {
-          if (document.querySelector(".overlay_popup .content_popup table tbody").children.length !== arrSize.length) {
-            for (let key in arrSize) {
-              document.querySelector(".overlay_popup .content_popup table tbody")?.insertAdjacentHTML("beforeend", setSize(key, arrSize[key][0], arrSize[key][1], arrSize[key][2], arrSize[key][3], arrSize[key][4]));
-            }
-          }
-          document.querySelector(".size_guide_txt span:nth-child(2)").addEventListener("click", (el) => {
-            pushDataLayer(["exp_barriers_b_sgpp_mm", "MM", "Button", "Size guide pop up"]);
-            el.currentTarget.classList.add("active_var");
-            if (el.currentTarget.nextElementSibling.classList.contains("active_var")) {
-              el.currentTarget.nextElementSibling.classList.remove("active_var");
-            }
-            document.querySelectorAll(".inches_var").forEach((el) => {
-              if (!el.classList.contains("is_hidden")) {
-                el.classList.add("is_hidden");
-              }
-            });
-            document.querySelectorAll(".mm_var").forEach((el) => {
-              if (el.classList.contains("is_hidden")) {
-                el.classList.remove("is_hidden");
-              }
-            });
-          });
-          document.querySelector(".size_guide_txt span:nth-child(3)").addEventListener("click", (el) => {
-            pushDataLayer(["exp_barriers_b_sgpp_i", "Inches", "Button", "Size guide pop up"]);
-            el.currentTarget.classList.add("active_var");
-            if (el.currentTarget.previousElementSibling.classList.contains("active_var")) {
-              el.currentTarget.previousElementSibling.classList.remove("active_var");
-            }
-            document.querySelectorAll(".inches_var").forEach((el) => {
-              if (el.classList.contains("is_hidden")) {
-                el.classList.remove("is_hidden");
-              }
-            });
-            document.querySelectorAll(".mm_var").forEach((el) => {
-              if (!el.classList.contains("is_hidden")) {
-                el.classList.add("is_hidden");
-              }
-            });
-          });
-
-          function setSize(t1, t2, t3, t4, t5, t6) {
-            return `
-            <tr>
-              <td><span class="mm_var">${t1}</span><span class="inches_var is_hidden">${t6}</span></td>
-              <td><span>${t2}</span></td>
-              <td><span>${t3}</span></td>
-              <td><span>${t4}</span></td>
-              <td><span>${t5}</span></td>
-            </tr>
-            `;
-          }
-        }
-
         btnClose.addEventListener("click", (e) => {
           if (!e.target.getAttribute("data-test")) {
             pushDataLayer(["exp_barriers_b_sgpp_c", "Close", "Button", "Size guide pop up"]);
@@ -2954,6 +2896,64 @@ section.shopify-section .index-section > .page-width{
           document.body.style.marginRight = `${scroll}px`;
           document.body.style.display = "block";
           document.body.style.height = "100%";
+
+          if (!document.querySelector(" .overlay_popup .content_popup")) {
+            containerPopup?.insertAdjacentHTML("beforeend", contentPopup);
+          }
+
+          if (document.querySelector(" .overlay_popup .content_popup")) {
+            if (document.querySelector(".overlay_popup .content_popup table tbody").children.length !== arrSize.length) {
+              for (let key in arrSize) {
+                document.querySelector(".overlay_popup .content_popup table tbody")?.insertAdjacentHTML("beforeend", setSize(key, arrSize[key][0], arrSize[key][1], arrSize[key][2], arrSize[key][3], arrSize[key][4]));
+              }
+            }
+            document.querySelector(".size_guide_txt span:nth-child(2)").addEventListener("click", (el) => {
+              pushDataLayer(["exp_barriers_b_sgpp_mm", "MM", "Button", "Size guide pop up"]);
+              el.currentTarget.classList.add("active_var");
+              if (el.currentTarget.nextElementSibling.classList.contains("active_var")) {
+                el.currentTarget.nextElementSibling.classList.remove("active_var");
+              }
+              document.querySelectorAll(".inches_var").forEach((el) => {
+                if (!el.classList.contains("is_hidden")) {
+                  el.classList.add("is_hidden");
+                }
+              });
+              document.querySelectorAll(".mm_var").forEach((el) => {
+                if (el.classList.contains("is_hidden")) {
+                  el.classList.remove("is_hidden");
+                }
+              });
+            });
+            document.querySelector(".size_guide_txt span:nth-child(3)").addEventListener("click", (el) => {
+              pushDataLayer(["exp_barriers_b_sgpp_i", "Inches", "Button", "Size guide pop up"]);
+              el.currentTarget.classList.add("active_var");
+              if (el.currentTarget.previousElementSibling.classList.contains("active_var")) {
+                el.currentTarget.previousElementSibling.classList.remove("active_var");
+              }
+              document.querySelectorAll(".inches_var").forEach((el) => {
+                if (el.classList.contains("is_hidden")) {
+                  el.classList.remove("is_hidden");
+                }
+              });
+              document.querySelectorAll(".mm_var").forEach((el) => {
+                if (!el.classList.contains("is_hidden")) {
+                  el.classList.add("is_hidden");
+                }
+              });
+            });
+
+            function setSize(t1, t2, t3, t4, t5, t6) {
+              return `
+            <tr>
+              <td><span class="mm_var">${t1}</span><span class="inches_var is_hidden">${t6}</span></td>
+              <td><span>${t2}</span></td>
+              <td><span>${t3}</span></td>
+              <td><span>${t4}</span></td>
+              <td><span>${t5}</span></td>
+            </tr>
+            `;
+            }
+          }
         }
         function calcScroll() {
           let div = document.createElement("div");
