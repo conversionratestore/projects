@@ -1120,6 +1120,9 @@ class CheckoutUpdate {
         }
         
         localStorage.setItem('use_address_billing', item.querySelector('input').checked)
+        if (item.innerText.includes('Add your billing address')) {
+          localStorage.setItem('use_address_billing', 'false')
+        }
       }
     })
     
@@ -1370,7 +1373,7 @@ class CheckoutUpdate {
         }
       })
       
-      if (!$el('#checkout-container') && !$el('.crs-continue') && $$el('.crs-footer') && $el('.overflow-auto ~ button')) {
+      if (!$el('#checkout-container') && !$el('.crs-continue') && $el('.crs-footer') && $el('.overflow-auto ~ button')) {
         $el('.crs-footer').insertAdjacentHTML('afterbegin', `
         <button type="button" class="crs-continue flex items-center justify-center text-left p-3 uppercase w-full">
           <span class="p-1">Save and Continue</span>
