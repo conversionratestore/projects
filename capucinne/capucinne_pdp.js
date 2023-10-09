@@ -278,9 +278,7 @@ line-height: 20px;
 .grid2__item2.medium-up--two-fifths .product-block hr,
 #syte-discovery-banner,
 #shopify-section-template--20834585772373__82449f7c-6c71-4b98-89f3-074fa0fedafc,
-.beautifully_packaged_mob,
-[aria-label="Open Form"],
-.needsclick.kl-private-reset-css-Xuajs1 {
+.beautifully_packaged_mob{
   display: none !important;
 }
 #shopify-block-cadd6db7-a422-4c1f-90e3-91f50c296730 + .product-block {
@@ -417,6 +415,12 @@ h1.h2.product-single__title {
 .new_rush_order .one-half .switch-button .switch-button__label,
 .new_rush_order .one-whole .switch-button .switch-button__label {
   background-color: #e4e3e0;
+}
+.one-whole .js .one-half .switch-button .switch-button__checkbox:checked + .switch-button__label,
+.one-whole .js .one-whole .switch-button .switch-button__checkbox:checked + .switch-button__label,
+.new_rush_order .one-half .switch-button .switch-button__checkbox:checked + .switch-button__label,
+.new_rush_order .one-whole .switch-button .switch-button__checkbox:checked + .switch-button__label{
+background-color: #d4a298;
 }
 form.product-single__form {
   padding: 24px 0 0px;
@@ -567,7 +571,7 @@ button[name="add"] span {
 }
 .earn_gift > h2 {
   color: #000;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
   line-height: 20px;
   margin-bottom: 8px;
@@ -1288,7 +1292,7 @@ position: absolute;
 font-family: 'Poppins';
 font-size: 14px;
 font-weight: 500;
-line-height: 20px; 
+line-height: 20px;
 }
 .product-block.product-block--tab.is_hidden + .product-block--tab{
   border-top: 1px solid #E8E8E1 !important;
@@ -1508,7 +1512,7 @@ form.product-single__form{
       gap: 8px;
 }
 .earn_gift > h2{
-  font-size: 13px;
+  font-size: 12px;
     line-height: 18px;
 }
 .production_delivery {
@@ -1550,7 +1554,7 @@ color: #565656;
 font-family: 'Poppins';
 font-size: 12px;
 font-weight: 400;
-line-height: 18px; 
+line-height: 18px;
 text-transform: capitalize;
 }
 .new_benefits_item + .new_benefits_item{
@@ -1684,6 +1688,25 @@ section.shopify-section .index-section > .page-width{
 }
 .lav-error-txt{
   top: 49px;
+}
+}
+@media (max-width: 376px) {
+.tangiblee-cta-wrapper .tangiblee-cta{
+  font-size: 11px !important;
+}
+.earn_gift > h2{
+  font-size: 11px;
+}
+}
+@media (max-width: 361px) {
+.tangiblee-cta-wrapper .tangiblee-cta{
+      font-size: 10px !important;
+}
+.tangiblee-cta-wrapper{
+  left: 179px;
+}
+button.syte-discovery.syte-integration-injected .button-text{
+      font-size: 11px;
 }
 }
 
@@ -1993,7 +2016,11 @@ section.shopify-section .index-section > .page-width{
       document.querySelectorAll(".variant__label").forEach((el) => {
         if (el.textContent.includes("Ring size")) {
           if (document.querySelector(".variant-wrapper") && !document.querySelector(".size_guide")) {
-            document.querySelectorAll(".variant-wrapper")[0].insertAdjacentHTML("beforebegin", sizeGuide);
+            if (window.innerWidth > 768) {
+              document.querySelector("[data-product-price]").insertAdjacentHTML("beforeend", sizeGuide);
+            } else {
+              document.querySelectorAll(".variant-wrapper")[0].insertAdjacentHTML("beforebegin", sizeGuide);
+            }
           }
         }
       });
@@ -2884,7 +2911,6 @@ section.shopify-section .index-section > .page-width{
         });
 
         function onClosePopup() {
-          visibElem();
           overlay.classList.remove("is_visible");
           document.body.style.marginRight = `0px`;
           document.body.style.overflow = "auto";
@@ -2969,44 +2995,6 @@ section.shopify-section .index-section > .page-width{
           let scrollWidth = div.offsetWidth - div.clientWidth;
           div.remove();
           return scrollWidth;
-        }
-        function visibElem() {
-          let obsV = new IntersectionObserver(visibilityV, {
-            threshold: 1,
-          });
-
-          let obsV2 = new IntersectionObserver(visibilityV2, {
-            threshold: 1,
-          });
-
-          let intV1 = setInterval(() => {
-            if (document.querySelector(".size_guide_title")) {
-              clearInterval(intV1);
-              obsV.observe(document.querySelector(".size_guide_title"));
-            }
-          }, 100);
-
-          function visibilityV(entries) {
-            entries.forEach((i) => {
-              if (i.isIntersecting) {
-                setTimeout(function () {
-                  obsV2.observe(i.target);
-                }, 1000);
-              }
-            });
-          }
-          function visibilityV2(entries) {
-            entries.forEach((i) => {
-              if (i.isIntersecting) {
-                if (i.target.classList.contains("size_guide_title")) {
-                  pushDataLayer(["exp_barriers_v_sgpp_ft", "1000", "Visibility", "Size guide pop up"]);
-                }
-
-                obsV.unobserve(i.target);
-              }
-              obsV2.unobserve(i.target);
-            });
-          }
         }
       }
     }
@@ -3155,9 +3143,11 @@ section.shopify-section .index-section > .page-width{
       waitForElement(".visib_similar_items").then((el) => {
         handleVisibility(el, ["exp_barriers_v_si_ft", `{{focusTime}}`, "Visibility", "Similar items"]);
       });
+      waitForElement(".size_guide_title").then((el) => {
+        handleVisibility(el, ["exp_barriers_v_sgpp_ft", `{{focusTime}}`, "Visibility", "Size guide pop up"]);
+      });
 
-      let kl = document.querySelector("klarna-placement div")?.shadowRoot?.querySelector("div").querySelector('.text-wrapper .text[part="osm-message"]');
-      waitForElement(`${kl}`).then((el) => {
+      waitForElement(`#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b`).then((el) => {
         handleVisibility(el, ["exp_barriers_v_k_ft", `{{focusTime}}`, "Visibility", "Klarna"]);
       });
     }
