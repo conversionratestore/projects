@@ -142,6 +142,7 @@ body.open_var {
   justify-content: center;
   padding: 0;
   margin-top: 24px;
+  cursor: pointer;
 }
 .private_event_request_form .first_step p,
 .second_step p,
@@ -1172,7 +1173,7 @@ body.open_var {
         <div class="third_step is_hidden">
           <h2>Thank You!</h2>
           <p>Our booking team will process your request and we'll send you available slots for <span class="my_date">Thursday 15 June</span> and possible times for the following days.</p>
-          <button class="submit_btn ok_btn">Ok</button>
+          <span class="submit_btn ok_btn">Ok</span>
         </div>
       </form>
     </div>
@@ -1202,7 +1203,7 @@ body.open_var {
         <div class="second_step is_hidden">
           <h2>Thank You!</h2>
           <p>Our booking team will process your request and we'll send you available slots for <span class="my_date">Thursday 15 June</span> and possible times for the following days.</p>
-          <button class="submit_btn ok_btn">Ok</button>
+          <span class="submit_btn ok_btn">Ok</span>
         </div>
       </form>
     </div>
@@ -1685,6 +1686,7 @@ body.open_var {
                 clearInterval(okBtn);
                 document.querySelector(".ok_btn").addEventListener("click", (e) => {
                   e.preventDefault();
+                  e.stopPropagation();
                   console.log(`ok_btn`);
                   onClosePopup();
                 });
