@@ -1682,9 +1682,65 @@ body.open_var {
             });
 
             let okBtn = setInterval(() => {
-              if (document.querySelector(".ok_btn")) {
+              if (document.querySelector(".charter_services_req .ok_btn")) {
                 clearInterval(okBtn);
-                document.querySelector(".ok_btn").addEventListener("click", (e) => {
+                document.querySelector(".charter_services_req .ok_btn").addEventListener("click", (e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  console.log(`ok_btn`);
+                  onClosePopup();
+                });
+              }
+            }, 100);
+
+            let okBtn1 = setInterval(() => {
+              if (document.querySelector(".inquire_now .ok_btn")) {
+                clearInterval(okBtn1);
+                document.querySelector(".inquire_now .ok_btn").addEventListener("click", (e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  console.log(`ok_btn`);
+                  onClosePopup();
+                });
+              }
+            }, 100);
+            let okBtn2 = setInterval(() => {
+              if (document.querySelector(".private_event_req.firts_get_a_quote .ok_btn")) {
+                clearInterval(okBtn2);
+                document.querySelector(".private_event_req.firts_get_a_quote .ok_btn").addEventListener("click", (e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  console.log(`ok_btn`);
+                  onClosePopup();
+                });
+              }
+            }, 100);
+            let okBtn3 = setInterval(() => {
+              if (document.querySelector(".private_event_req.second_get_a_quote .ok_btn")) {
+                clearInterval(okBtn3);
+                document.querySelector(".private_event_req.second_get_a_quote .ok_btn").addEventListener("click", (e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  console.log(`ok_btn`);
+                  onClosePopup();
+                });
+              }
+            }, 100);
+            let okBtn4 = setInterval(() => {
+              if (document.querySelector(".private_event_req.third_get_a_quote .ok_btn")) {
+                clearInterval(okBtn4);
+                document.querySelector(".private_event_req.third_get_a_quote .ok_btn").addEventListener("click", (e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  console.log(`ok_btn`);
+                  onClosePopup();
+                });
+              }
+            }, 100);
+            let okBtn5 = setInterval(() => {
+              if (document.querySelector(".private_event_req.fourth_get_a_quote .ok_btn")) {
+                clearInterval(okBtn5);
+                document.querySelector(".private_event_req.fourth_get_a_quote .ok_btn").addEventListener("click", (e) => {
                   e.preventDefault();
                   e.stopPropagation();
                   console.log(`ok_btn`);
@@ -1901,7 +1957,7 @@ body.open_var {
         let data = {
           lead: {
             first_name: name,
-            last_name: "last_name",
+            last_name: "!",
             phone_number: "000-000-000",
             email_address: email,
             event_date: date,
