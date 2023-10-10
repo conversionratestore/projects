@@ -694,7 +694,7 @@ text-transform: initial;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    max-height: 95px;
+    max-height: 90px;
 }
 .description_body.no_visib::before{
 display: flex;
@@ -1448,6 +1448,9 @@ padding: 4px 8px;
   }
 }
 @media (max-width: 768px) {
+  .description_body.no_visib{
+    max-height: 95px;
+  }
   .new_txt_klarna{
     margin: 1px 0 44px 0;
     font-weight: 400;
