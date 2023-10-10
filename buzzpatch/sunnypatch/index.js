@@ -719,10 +719,11 @@ let init = setInterval(() => {
         <p class="text-center">24 patches in 1 pack</p>
         <img src="${dir}sunnypatches.svg" alt="image">`)
 
-        
-        document.querySelectorAll('.slide-packs>ul>li').forEach((item, index) => {
-            let patches = +item.dataset.packCount * 24
-            item.querySelector('p.pcs').insertAdjacentHTML('beforeend', `<span>${patches} Patches</span>`);
+        document.querySelectorAll('.package .slide-packs>ul>li').forEach((item, index) => {
+            let patches = `<span>${index == 0 ? '96' : index == 1 ? '72' : index == 2 ? '48' : '24'} Patches</span>`;
+
+            item.querySelector('p.pcs').insertAdjacentHTML('beforeend', patches);
+            document.querySelectorAll('.sidebar .slide-packs>ul>li')[index].querySelector('p.pcs').insertAdjacentHTML('beforeend', patches);
         })
 
         document.querySelector('#getNow .free-shipping-checkout').src = dir + 'free-shipping-worldwide.svg';
