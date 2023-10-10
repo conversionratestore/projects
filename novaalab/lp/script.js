@@ -18,7 +18,7 @@
         'Deep Healing Therapy with patented remote',
         '5.7" x 9"',
       ],
-      rate: '4.6'
+      rate: '4.7'
     },
     'oral': {
       id: '40365298679862',
@@ -32,7 +32,7 @@
     'oral-bundle': {
       id: '46932997865817',
       name: '1 novoral care pro + 1 sonic toothbrush',
-      pdpLink: `https://novaalab.com/products/novoral-care-pro-sonic-toothbrush`,
+      pdpLink: `https://novaalab.com/products/novoral-care-pro-oral-care-at-home-new#shopify-section-template--19620217061721__37c4e062-a8ba-4b9f-8d95-69467430cc3c`,
       imgUrl: `//novaalab.com/cdn/shop/files/Novoralcarepro_sonictoothbrush_medium.png?v=1689758579`,
       price: ['$330.00', '$179.80', '-35%'],
       list: [''],
@@ -141,6 +141,7 @@
   font-weight: 700;
   line-height: 1.16;
   letter-spacing: normal;
+  text-transform: none;
 }
 
 .heading-2 {
@@ -150,6 +151,7 @@
   font-weight: 700;
   line-height: 1.33;
   letter-spacing: normal;
+  text-transform: none;
 }
 
 .heading-3 {
@@ -159,6 +161,7 @@
   font-weight: 700;
   line-height: 1.22;
   letter-spacing: normal;
+  text-transform: none;
   /* 122.222% */
 }
 
@@ -173,6 +176,7 @@
   max-width: 569px;
   margin-top: 8px;
   letter-spacing: normal;
+  text-transform: none;
 }
 
 .fs-400 {
@@ -1570,6 +1574,7 @@ section.ailments .col-right {
 
 /* navbar START */
 .navbar {
+  transform: scaleY(0);
   position: fixed;
   top: 0;
   left: 0;
@@ -1577,6 +1582,12 @@ section.ailments .col-right {
   background-color: #F5F5FD;
   box-shadow: 0px 10px 10px 0px rgba(60, 32, 88, 0.08);
   z-index: 999;
+  transform-origin: top;
+}
+
+.navbar.navbar--show {
+  transform: scaleY(1);
+  transition: transform .5s ease-in-out;
 }
 
 .navbar-list {
@@ -2259,7 +2270,7 @@ padding: 8px 16px;
   </nav>
 
   <div class="crs">
-    <section class="head">
+    <section id="head-section" class="head">
       <div class="container">
 
         <div class="row">
@@ -2269,7 +2280,7 @@ padding: 8px 16px;
 
                 <div class="reviews--plugin | flx ">
                   <div>
-                    <p>4.6</p>
+                    <p>4.7</p>
                     <img src="${IMAGE_DIR_URL}/stars.svg" alt="5 stars">
                   </div>
                   <div>
@@ -2297,7 +2308,7 @@ padding: 8px 16px;
 
                 <div class="reviews--plugin | flx align-center">
                   <div>
-                    <p>4.6</p>
+                    <p>4.7</p>
                   </div>
                   <div>
                     <img src="${IMAGE_DIR_URL}/stars.svg" alt="5 stars">
@@ -2361,8 +2372,7 @@ padding: 8px 16px;
       </div>
     </section>
 
-    <section class="navigation">
-      <span id="navigation-anchor"></span>
+    <section id="navigation-section" class="navigation">
       <div class="container">
         <h2 class="heading-2">What health issue do you want to heal?</h2>
         <nav>
@@ -2792,7 +2802,7 @@ padding: 8px 16px;
             <p>Imagine this healing light reaching your <strong>tissues, muscles, tendons and even bones</strong>,
               increasing blood circulation, further promoting the healing process.</p>
           </div>
-          <a href="#navigation-anchor" class="button" data-btn="choose-kit">Choose your kit</a>
+          <a href="#navigation-section" class="button" data-btn="choose-kit">Choose your kit</a>
         </div>
       </div>
     </section>
@@ -2823,7 +2833,7 @@ padding: 8px 16px;
 
         </div>
         <div class="ailments__btn-wrapper">
-          <a href="#navigation-anchor" class="button" data-btn="choose-kit">Choose your kit</a>
+          <a href="#navigation-section" class="button" data-btn="choose-kit">Choose your kit</a>
         </div>
       </div>
     </section>
@@ -2838,10 +2848,11 @@ padding: 8px 16px;
   waitForElement('#r-1653306391810').then(el => el.insertAdjacentHTML('afterend', html))
 
   const waitForNavSections = setInterval(() => {
-    const sections = document.querySelectorAll("section[id]")
+    const sections = document.querySelectorAll('#shopify-section-header, #head-section, #navigation-section, #back-pain-section, #knee-section, #joint-section, #periodontal-section, #skin-section')
+
     const navbarItems = document.querySelectorAll(".navbar-item")
 
-    if (navbarItems.length >= 5 && sections.length >= 5) {
+    if (navbarItems?.length >= 5 && sections?.length >= 8) {
       clearInterval(waitForNavSections)
 
       const navbar = document.querySelector(".navbar")
@@ -2887,9 +2898,6 @@ padding: 8px 16px;
         }
       }
 
-
-
-
       // Function to check if the bottom of the navbar touches the section
       function isNavbarTouchingSection() {
         const navbarRect = navbar.getBoundingClientRect()
@@ -2904,9 +2912,29 @@ padding: 8px 16px;
           }
         })
 
+        const navbarToHide = document.querySelector('.navbar')
+
+        console.log(activeSection)
+
+        if (
+          activeSection === 'shopify-section-header'
+          || activeSection === 'head-section'
+          || activeSection === 'navigation-section'
+        ) {
+          // Hide the navbar for the navigation section
+          navbarToHide.classList.remove('navbar--show')
+        } else if (!document.querySelector('.navbar--show')) {
+          navbarToHide.classList.add('navbar--show')
+        }
+
         if (activeSection) {
           navbarItems.forEach((item) => {
-            item.classList.toggle('navbar-item--active', item.querySelector(`a[href="#${activeSection}"]`) !== null)
+            // Skip the 'navigation' section item in the navbar
+            if (item.querySelector(`a[href="#${activeSection}"]`) !== null) {
+              item.classList.add('navbar-item--active')
+            } else {
+              item.classList.remove('navbar-item--active')
+            }
           })
 
           scrollToActiveNavItem()
@@ -3415,12 +3443,3 @@ padding: 8px 16px;
     }
   }
 })()
-
-
-
-
-
-
-
-
-
