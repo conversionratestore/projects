@@ -695,6 +695,7 @@ let init = setInterval(() => {
 
         document.querySelector('.js-mobile.scientific').after(document.querySelector('.sleeping-problems'))
         document.querySelector('.js-mobile.scientific img.mobile-steps').src = dir + 'sunny-lp-mobile-steps.svg';
+        document.querySelector('.js-mobile.scientific img.mobile-steps').insertAdjacentHTML('beforebegin', `<div class="isVisibleSteps"></div>`);
 
         document.querySelector('.js-mobile.scientific > .container > .row.r-flex').insertAdjacentHTML('afterend', blockHighlighting)
 
@@ -735,8 +736,6 @@ let init = setInterval(() => {
         document.querySelector('.sidebar').insertAdjacentHTML('beforeend', modal)
 
         document.querySelector('.reviews .container').insertAdjacentHTML('afterbegin', blockHighlighting);
-
-        document.querySelector('.js-mobile.scientific .mobile-steps.ls-is-cached').insertAdjacentHTML('beforebegin', `<div class="isVisibleSteps"></div>`);
 
         let startTime = 0;
         document.querySelectorAll('.btn_how_works').forEach(button => {
