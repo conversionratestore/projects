@@ -3,7 +3,7 @@ let dir = 'https://conversionratestore.github.io/projects/buzzpatch/sunnypatch/i
 let style = `
 <style>
     .exp-crs #getNow img.days {
-        display; none;
+        display: none;
     }
     .exp-crs .container {
         padding-left: 20px;
@@ -536,7 +536,7 @@ let blockHighlighting = `
                 </clipPath>
                 </defs>
             </svg>
-            <span>Toxin-free. Designed to be safe for babies, kids, and adults.
+            <span>Toxin-free. Designed to be safe for babies, kids, and adults.<br>
                 That's full-family protection!</span>
                 
         </li>
@@ -684,6 +684,8 @@ let init = setInterval(() => {
         <path d="M218 14.645L223.563 20L218 25.3551L219.713 27L227 20L219.713 13L218 14.645Z" fill="white"/>
         </svg>`)
 
+        document.querySelector('.scientific img.mobile-steps.ls-is-cached').src = dir + 'free-shipping-worldwide.svg';
+
         document.querySelector('.scientific .t-right h5').innerHTML = `Here's How It Works (You can Hi-Five Us Later)`;
 
         document.querySelector('.js-mobile.scientific').after(document.querySelector('.sleeping-problems'))
@@ -726,7 +728,7 @@ let init = setInterval(() => {
 
         document.querySelector('.sidebar').insertAdjacentHTML('beforeend', modal)
 
-        document.querySelector('.reviews ').insertAdjacentHTML('afterbegin', blockHighlighting);
+        document.querySelector('.reviews .container').insertAdjacentHTML('afterbegin', blockHighlighting);
 
         document.querySelector('.scientific .mobile-steps').insertAdjacentHTML('beforebegin', `<div class="isVisibleSteps"></div>`);
 
@@ -735,7 +737,7 @@ let init = setInterval(() => {
             button.addEventListener('click', (e) => {
                 if (button.tagName == 'svg') {
                     $('html,body').animate({
-                        scrollTop: $('#purchase').offset().top - 50
+                        scrollTop: $('.scientific.js-mobile').offset().top - 50
                     }, 500); 
                     pushDataLayer('exp_int_pro_b_fs_how_sunny_works', 'How SunnyPatch works', 'Button', 'First screen');
                 } else {
@@ -768,6 +770,9 @@ let init = setInterval(() => {
             pushDataLayer('exp_int_pro_v_sc1_how_it_works', `How it works 1 part- ${focusTimeMillis}`, 'Visibility', 'Slide in cart');
             pushDataLayer('exp_int_pro_v_sc2_how_it_works', `How it works 2 part- ${focusTimeMillis}`, 'Visibility', 'Slide in cart');
             pushDataLayer('exp_int_pro_b_sc_close', `close`, 'Button', 'Slide in cart');
+        })
+        document.querySelector('.popup_body > a').addEventListener('click', (e) => {
+            document.querySelector('.popup').classList.remove('active');
         })
         document.body.addEventListener('click', (e) => {
             if (e.target.className == 'sidebar') {

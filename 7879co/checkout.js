@@ -325,6 +325,7 @@ class CheckoutUpdate {
         }
         .overflow-auto {
           padding: 8px 28px;
+          gap: 0;
         }
         .overflow-auto img {
           width: 140px;
