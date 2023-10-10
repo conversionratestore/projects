@@ -643,7 +643,7 @@ text-transform: initial;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    max-height: 87px;
+    max-height: 95px;
 }
 .description_body.no_visib::before{
 display: flex;
@@ -2896,7 +2896,11 @@ button.syte-discovery.syte-integration-injected .button-text{
                 el.addEventListener("click", (e) => {
                   //
                   if (!e.target.getAttribute("data-test")) {
-                    pushDataLayer(["exp_barriers_l_fs_gyo", "Get your off", "Link", "First screen"]);
+                    if (e.target.closest(".lav-sticky__btn_price")) {
+                      pushDataLayer(["exp_barriers_l_s_gyo", "Get your off", "Link", "Sticky section"]);
+                    } else {
+                      pushDataLayer(["exp_barriers_l_fs_gyo", "Get your off", "Link", "First screen"]);
+                    }
                     document.querySelector('.needsclick[aria-label="Open Form"]')?.click();
                   }
                   e.target.setAttribute("data-test", "1");
