@@ -1985,6 +1985,10 @@ button.syte-discovery.syte-integration-injected .button-text{
     }
 
     function renderNewBlocks() {
+      // change href size
+      if (document.querySelector('[title="Ring sizing guide"]').href !== "https://www.docdroid.net/2eqEQph/ring-size-capucinne-with-scale-pdf" && document.querySelector('[title="Ring sizing guide"]')) {
+        document.querySelector('[title="Ring sizing guide"]').href = "https://www.docdroid.net/2eqEQph/ring-size-capucinne-with-scale-pdf";
+      }
       // change icon header
       if (!document.querySelector(".new_icon_camera") && document.querySelector(".--syte-start-camera-upload.syte-integration-injected svg:not(.new_icon_camera)")) {
         document.querySelector(".--syte-start-camera-upload.syte-integration-injected svg:not(.new_icon_camera)").outerHTML = `<svg class="new_icon_camera" xmlns="http://www.w3.org/2000/svg" width="22" height="19" viewBox="0 0 22 19" fill="none">
