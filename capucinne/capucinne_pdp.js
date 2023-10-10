@@ -107,6 +107,9 @@ let startFunk = setInterval(() => {
             flex-wrap: wrap;
             justify-content: space-between;
           }
+          .product-block.before_lable_wrapp + .product-block .variant-wrapper{
+                margin-bottom: 25px;
+          }
           .ring_size_var{
              order: 1;
              width: 100%;
@@ -1332,7 +1335,7 @@ nav.breadcrumb.custom_breadcrumbs {
 .lav-error-txt{
 position: absolute;
     left: 0;
-    top: 39px;
+    top: 41px;
     width: max-content;
     color: #C20000;
     font-family: 'Poppins';
@@ -1752,7 +1755,7 @@ section.shopify-section .index-section > .page-width{
   margin-bottom: 24px !important;
 }
 .lav-error-txt{
-  top: 49px;
+  top: 45px;
 }
 }
 @media (max-width: 376px) {
@@ -2767,8 +2770,8 @@ button.syte-discovery.syte-integration-injected .button-text{
       if (document.querySelector(".lav-select_size")) {
         document.querySelector(".lav-select_size").addEventListener("click", (e) => {
           pushDataLayer(["exp_barriers_b_atc", "Add to cart", "Button", "Add to cart"]);
-          const el = document.querySelector(".variant-wrapper");
-          const offset = el.getBoundingClientRect().top + window.scrollY - 120;
+          const el = document.querySelector(".ring_size_var");
+          const offset = el.getBoundingClientRect().top + window.scrollY - 180;
           document.querySelector('[name="properties[Ring size]"]').classList.add("lav-error");
           if (!document.querySelector(".lav-error-txt")) {
             document.querySelector('[name="properties[Ring size]"]').insertAdjacentHTML("afterend", `<span class="lav-error-txt">Please select your size</span>`);
@@ -2794,8 +2797,8 @@ button.syte-discovery.syte-integration-injected .button-text{
           }, 200);
         } else {
           // pushDataLayer("new_payments_sticky_select_size", "Sticky select size", "Button", "Sticky section");
-          const el = document.querySelector(".variant-wrapper");
-          const offset = el.getBoundingClientRect().top + window.scrollY - 120;
+          const el = document.querySelector(".ring_size_var");
+          const offset = el.getBoundingClientRect().top + window.scrollY - 180;
           document.querySelector('[name="properties[Ring size]"]').classList.add("lav-error");
           if (!document.querySelector(".lav-error-txt")) {
             document.querySelector('[name="properties[Ring size]"]').insertAdjacentHTML("afterend", `<span class="lav-error-txt">Please select your size</span>`);
