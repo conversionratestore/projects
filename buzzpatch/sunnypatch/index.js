@@ -415,11 +415,12 @@ let style = `
     .crs-img img {
         margin: 0!important;
         height: 54px!important;
-        width: fit-content!important;
+        width: auto!important;
         max-width: none!important;
     }
-    .crs-img .mr-3 {
+    .crs-img img.mr-3 {
         margin-right: 16px!important;
+        width: 54px!important;
     }
     @media (min-width: 415px) {
         #cons:before {
