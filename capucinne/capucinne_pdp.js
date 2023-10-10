@@ -2426,11 +2426,17 @@ button.syte-discovery.syte-integration-injected .button-text{
       for (let item of innerEl.querySelectorAll(".btn-offer")) {
         const el = document.createElement("div");
         el.classList.add("new_extend_item");
+        let w = "";
+        if (item.querySelector(".plan-price").textContent.split("$")[0] === "") {
+          w = item.querySelector(".plan-price").textContent.split("$")[1];
+        }
+        if (item.querySelector(".plan-price").textContent.split("$")[1] === "") {
+          w = item.querySelector(".plan-price").textContent.split("$")[0];
+        }
         console.log(item.querySelector(".plan-price").textContent.split("$"));
-
         el.innerHTML = `
         <div class='new_extend_item_caption'>${item.querySelector(".term-length").textContent}</div>
-        <div class='new_extend_item_price'>$${item.querySelector(".plan-price").textContent.split("$")[0]}</div>
+        <div class='new_extend_item_price'>$${w}</div>
       `;
 
         document.querySelector(".new_extend_body").insertAdjacentElement("beforeend", el);
