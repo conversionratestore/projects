@@ -2,9 +2,6 @@ let dir = 'https://conversionratestore.github.io/projects/buzzpatch/sunnypatch/i
 
 let style = `
 <style>
-    .crs-img .mr-3 {
-        margin-right: 16px;
-    }
     .isVisibleSteps {
         height: 1px;
         width: 100%;
@@ -415,6 +412,15 @@ let style = `
         height: 100vh;
         overflow-y: auto;
     }
+    .crs-img img {
+        margin: 0!important;
+        height: 54px!important;
+        width: fit-content!important;
+        max-width: none!important;
+    }
+    .crs-img .mr-3 {
+        margin-right: 16px!important;
+    }
     @media (min-width: 415px) {
         #cons:before {
             top: 75px;
@@ -722,7 +728,7 @@ let init = setInterval(() => {
         
         document.querySelector('#getNow img.days').insertAdjacentHTML('beforebegin',`
         <div class="crs-img d-flex align-items-center justify-content-center">
-            <img src="${dir}rated-30.svg" alt="image" class="mr-3">
+            <img src="${dir}rated-30.png" alt="image" class="mr-3">
             <img src="${dir}rated.svg" alt="image">
         </div>`)
 
