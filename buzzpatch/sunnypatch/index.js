@@ -5,7 +5,7 @@ let style = `
     .isVisibleSteps {
         height: 1px;
         width: 100%;
-        display: block;
+        display: block!important;
     }
     .exp-crs #getNow img.days {
         display: none;
