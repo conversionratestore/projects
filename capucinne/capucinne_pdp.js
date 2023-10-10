@@ -1439,6 +1439,9 @@ margin: 1px 0 24px 0;
 background: #FCF4F6;
 padding: 4px 8px;
 }
+.new_txt_klarna b{
+  font-weight: 600;
+}
 @media (max-width: 1180px) {
   .beautifully_packaged_container {
     padding: 20px 5px;
