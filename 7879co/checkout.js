@@ -1075,16 +1075,18 @@ class CheckoutUpdate {
     if ($el('#checkout-container') && !$el('.crs-payment-methods')) {
       $el('#checkout-container').insertAdjacentHTML('beforebegin', payments)
 
-      $$el('.crs-btn').forEach(item => {
-        item.addEventListener('click', (e) => {
-          $el('#primer-checkout-submit-button').click()
-          if (item.closest('.crs-payment-credit')) {
-            pushDataLayer('exp_imp_ch_b_scospsypm_pn', 'Pay now', 'Button', 'Secure checkout Order summery Payment Select your payment method');
-          } else {
-            pushDataLayer('exp_imp_ch_r_scospsypm_k', 'Klarna Confirm', 'Button', 'Secure checkout Order summery Payment Select your payment method');
-          }
+      if ($el('#primer-checkout-submit-button')) {
+        $$el('.crs-btn').forEach(item => {
+          item.addEventListener('click', (e) => {
+            $el('#primer-checkout-submit-button').click()
+            if (item.closest('.crs-payment-credit')) {
+              pushDataLayer('exp_imp_ch_b_scospsypm_pn', 'Pay now', 'Button', 'Secure checkout Order summery Payment Select your payment method');
+            } else {
+              pushDataLayer('exp_imp_ch_r_scospsypm_k', 'Klarna Confirm', 'Button', 'Secure checkout Order summery Payment Select your payment method');
+            }
+          })
         })
-      })
+      }
 
       $$el('.check_border').forEach(item => {
         item.addEventListener('click', (e) => {
