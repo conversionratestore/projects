@@ -16,13 +16,13 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
     event_type: type,
     event_loc: loc
   })
-  console.log(`Event: ${name} ${desc} ${type} ${loc}`)
+  console.log(`${name} / ${desc} / ${type} / ${loc}`)
 }
 
 const clarityInterval = setInterval(function () {
   if (typeof clarity == 'function') {
     clearInterval(clarityInterval)
-    clarity('set', 'Improvements at Checkout', 'variant_1')
+    clarity('set', ' improvements_at_checkout', 'variant_1')
   }
 }, 1000)
 
@@ -30,7 +30,7 @@ const device = window.innerWidth < 769 ? 'mobile' : 'desktop'
 
 let clickKlarnaBtn = false;
 let clickRemovePromo = false;
-
+let isEvent = false;
 
 class CheckoutUpdate {
   constructor(device) {
@@ -112,6 +112,7 @@ class CheckoutUpdate {
     $el('#postcode-input').parentElement.style = 'width: calc(100% - 110px)'
     $el('.crs-search').addEventListener('click', (e) => {
       e.target.closest('.relative').classList.add('show')
+      pushDataLayer('exp_imp_ch_b_scosi_s', 'Search', 'Button', 'Secure checkout Order summery Information');
     })
     $el('#postcode-input').addEventListener('input', (e) => {
       e.target.parentElement.parentElement.classList.remove('show')
@@ -167,11 +168,8 @@ class CheckoutUpdate {
         .crs-heads p {
           font-size: 13px;
         }
-        .crs-header-current p {
+        .crs-header-current {
           font-weight: 600;
-        }
-        .crs-header-prev>div {
-          background: #484850;
         }
         .crs-checkbox {
           height: 18px;
@@ -290,7 +288,8 @@ class CheckoutUpdate {
         #primer-checkout-credit-card-button > svg,
         #primer-checkout-credit-card-button > span,
         #primer-checkout-go-back,
-        #primer-checkout-scene-credit-card-form {
+        #primer-checkout-scene-credit-card-form,
+        #primer-checkout-submit-button-container {
           display: none;
         }
         #primer-checkout-apm-button-container > div:last-child {
@@ -477,18 +476,11 @@ class CheckoutUpdate {
     })
     if ( $el('div.gap-2.w-full')) {
       $el('div.gap-2.w-full').classList.add('crs-heads')
-    }
-    $$el('div.gap-2.w-full>div').forEach((item) => {
-      item.classList.remove('crs-header-prev')
-    })
-    $$el('div.gap-2.w-full>div .text-black').forEach((item, i) => {
-      const lastItem = +$$el('div.gap-2.w-full>div .text-black').length - 1
-      if (i < lastItem) {
-        item.closest('div').classList.add('crs-header-prev')
-      } else {
-        item.closest('div').classList.add('crs-header-current')
+      if ($el('.crs-heads .crs-header-current')) {
+        $el('.crs-heads .crs-header-current').classList.remove('crs-header-current')
       }
-    })
+      $$el('.crs-heads .text-black')[ $$el('.crs-heads .text-black').length - 1].classList.add('crs-header-current')
+    }
   }
 
   createTotalPayment() {
@@ -575,6 +567,10 @@ class CheckoutUpdate {
   }
   createPromo(parent) {
 
+
+    let loc = parent.parentElement.className.includes('crs-summary-footer') ? 'Information' : 'Payment'
+    let type = loc ==  'Information' ? 'i' : 'p'
+
     const getPromo = `
     <style>
       .crs-promo {
@@ -656,7 +652,7 @@ class CheckoutUpdate {
             </svg>
         </button>
         <div class="crs-promo-form flex" hidden>
-            <input type="text" name="promo" placeholder="Your promo code">
+            <input type="text" name="promo" placeholder="Your promo code" onclick="pushDataLayer('exp_imp_ch_i_scos${type}_ypc', 'Your promo code', 'Input', 'Secure checkout Order summery ${loc}');">
             <p class="crs-error-promo">No Voucher found</p>
             <button type="button" class="crs-apply-promo">Apply</button>
         </div>
@@ -674,10 +670,12 @@ class CheckoutUpdate {
 
     parent.insertAdjacentHTML('beforebegin', getPromo)
 
+
     $$el('.crs-get-promo').forEach(item => {
       item.addEventListener('click', (e) => {
         e.currentTarget.hidden = true;
         e.target.closest('.crs-promo').querySelector('.crs-promo-form').hidden = false;
+        pushDataLayer(`exp_imp_ch_l_scos${type}_gp`, 'Got a promo code', 'Link', 'Secure checkout Order summery ' + loc);
       })
     })
     $$el('.crs-promo-form input').forEach(item => {
@@ -691,6 +689,8 @@ class CheckoutUpdate {
     $$el('.crs-apply-promo').forEach(item => {
       item.addEventListener('click', () => {
         let promoCode = item.parentElement.querySelector('input').value; //7879WELCOME10
+      
+        pushDataLayer(`exp_imp_ch_b_scos${type}_a`, 'Apply', 'Button', 'Secure checkout Order summery ' + loc);
 
         this.postPromo('add', promoCode).then(data => {
           console.log(data)
@@ -718,6 +718,8 @@ class CheckoutUpdate {
         let promoCode = $el('.crs-promo-form input').value; //7879WELCOME10
 
         clickRemovePromo = true;
+        pushDataLayer(`exp_imp_ch_b_scos${type}_r`, 'Remove', 'Button', 'Secure checkout Order summery ' + loc);
+
         this.postPromo('remove', promoCode).then(data => {
           $$el('.crs-promo').forEach(from => {
             from.querySelector('.crs-promo-form').hidden = true;
@@ -836,7 +838,7 @@ class CheckoutUpdate {
       }
     </style>
     <div class="crs-summary">
-      <div class="crs-summary-head flex items-center justify-between" onclick="event.target.parentElement.classList.toggle('active')">
+      <div class="crs-summary-head flex items-center justify-between">
           <p class="flex items-center">Order summary
               <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M9.8183 0.193997C9.57597 -0.0646656 9.18319 -0.0646656 8.94086 0.193997L5.00005 4.40096L1.05916 0.193997C0.816857 -0.0646656 0.424024 -0.0646656 0.181725 0.193997C-0.0605749 0.452652 -0.0605749 0.872022 0.181725 1.13068L4.56129 5.80597C4.80362 6.06468 5.1964 6.06468 5.43873 5.80597L9.8183 1.13068C10.0606 0.872022 10.0606 0.452652 9.8183 0.193997Z" fill="black"/>
@@ -862,6 +864,11 @@ class CheckoutUpdate {
     if ($el('.crs-summary') || device != 'mobile') return
     
     $el('.crs-warranty-banner').insertAdjacentHTML('afterend', summary)
+
+    $el('.crs-summary-head').addEventListener('click', (event) => {
+      event.target.parentElement.classList.toggle('active'); 
+      pushDataLayer('exp_imp_ch_d_scosi_os', 'Order summary', 'Dropdown', 'Secure checkout Order summery Information')
+    })
     
     $$el('.crs-summary-footer > div').forEach(item => {
       if (item.innerText.includes('Total')) {
@@ -919,6 +926,7 @@ class CheckoutUpdate {
     .crs-payment-klarna,
     .crs-payment-methods > div:not(.show) > form,
     .crs-payment-methods > div:not(.show) > div,
+    .crs-payment-methods > div:not(.show) > .crs-btn,
     .crs-payment-klarna img.ddtYbK  {
       display: none;
     }
@@ -1017,6 +1025,14 @@ class CheckoutUpdate {
       padding-top: 8px;
       border-top: 1px solid #dedfe0;
     }
+    .crs-btn {
+      max-width: calc(100% - 32px);
+      margin: -10px auto 16px;
+    }
+    .crs-btn[disabled] {
+      background: #B5B5B7;
+      cursor: no-drop;
+    }
     </style>
     <div class="crs-payment-methods">
         <div class="crs-payment-credit">
@@ -1027,6 +1043,14 @@ class CheckoutUpdate {
                   <span>Pay by Card</span>
                 </span>
             </label>
+            <button type="button" class="crs-btn cIaFpO"> 
+              <span class="flex justify-center items-center ">
+                <span>Play now</span>
+                <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M1.66732 7.83339H10.9757L6.90898 11.9001C6.58398 12.2251 6.58398 12.7584 6.90898 13.0834C7.23398 13.4084 7.75898 13.4084 8.08398 13.0834L13.5757 7.59172C13.9007 7.26672 13.9007 6.74172 13.5757 6.41672L8.09232 0.916724C7.76732 0.591724 7.24232 0.591724 6.91732 0.916724C6.59232 1.24172 6.59232 1.76672 6.91732 2.09172L10.9757 6.16672H1.66732C1.20898 6.16672 0.833984 6.54172 0.833984 7.00006C0.833984 7.45839 1.20898 7.83339 1.66732 7.83339Z" fill="white"/>
+                </svg>
+              </span>
+            </button>
         </div>
         <div class="crs-payment-klarna">
           <label class="crs-payment-radio">
@@ -1036,12 +1060,52 @@ class CheckoutUpdate {
                 <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBmb2N1c2FibGU9ImZhbHNlIiB3aWR0aD0iODEiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCA4MSAyMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIHNjYWxlKDEpIj4KICAgICAgICA8cGF0aCBkPSJNNzguMzM1MjU0OSwxNC4zMjkyNzA2IEM3Ny4wNjc4MDE3LDE0LjMyOTI3MDYgNzYuMDQwMzQzOSwxNS4zNTY3Mjg0IDc2LjA0MDM0MzksMTYuNjI0MzU5NyBDNzYuMDQwMzQzOSwxNy44OTE2MzQ4IDc3LjA2NzgwMTcsMTguOTE5MjcwNyA3OC4zMzUyNTQ5LDE4LjkxOTI3MDcgQzc5LjYwMjcwODEsMTguOTE5MjcwNyA4MC42MzAzNDQsMTcuODkxNjM0OCA4MC42MzAzNDQsMTYuNjI0MzU5NyBDODAuNjMwMzQ0LDE1LjM1NjcyODQgNzkuNjAyNzA4MSwxNC4zMjkyNzA2IDc4LjMzNTI1NDksMTQuMzI5MjcwNiIgZmlsbD0icmdiYSgwLCAwLCAwLCAxKSI+PC9wYXRoPgogICAgICAgIDxwYXRoIGQ9Ik03MC43OTU4NTY4LDcuMjI4MTczNDUgTDcwLjc5NTg1NjgsNi40NDY3ODAzIEw3NC40NTI5ODMzLDYuNDQ2NzgwMyBMNzQuNDUyOTgzMywxOC42NjE4MzU2IEw3MC43OTU4NTY4LDE4LjY2MTgzNTYgTDcwLjc5NTg1NjgsMTcuODgxMTU0NyBDNjkuNzYyNjY1NiwxOC41ODU3OTc1IDY4LjUxNTYwNjMsMTkgNjcuMTcwNDI3NywxOSBDNjMuNjEwNzA4MiwxOSA2MC43MjUwMDI3LDE2LjExNDI5NDUgNjAuNzI1MDAyNywxMi41NTQ1NzUgQzYwLjcyNTAwMjcsOC45OTQ4NTU2MSA2My42MTA3MDgyLDYuMTA5MTUwMDkgNjcuMTcwNDI3Nyw2LjEwOTE1MDA5IEM2OC41MTU2MDYzLDYuMTA5MTUwMDkgNjkuNzYyNjY1Niw2LjUyMzM1MjU2IDcwLjc5NTg1NjgsNy4yMjgxNzM0NSBaIE02Ny40Njk3NzE4LDE1LjY5NzQyMDkgQzY5LjMwMDAyNjcsMTUuNjk3NDIwOSA3MC43ODM1Njk2LDE0LjI5MDI3MjIgNzAuNzgzNTY5NiwxMi41NTQ1NzUgQzcwLjc4MzU2OTYsMTAuODE4ODc3OSA2OS4zMDAwMjY3LDkuNDEyMDg1MzYgNjcuNDY5NzcxOCw5LjQxMjA4NTM2IEM2NS42Mzk1MTY4LDkuNDEyMDg1MzYgNjQuMTU1OTczOSwxMC44MTg4Nzc5IDY0LjE1NTk3MzksMTIuNTU0NTc1IEM2NC4xNTU5NzM5LDE0LjI5MDI3MjIgNjUuNjM5NTE2OCwxNS42OTc0MjA5IDY3LjQ2OTc3MTgsMTUuNjk3NDIwOSBaIiBmaWxsPSJyZ2JhKDAsIDAsIDAsIDEpIj48L3BhdGg+CiAgICAgICAgPHBhdGggZD0iTTU0LjIyNjMzMzMsNi4xMTgyMzE5MSBDNTIuNzY1NDA2LDYuMTE4MjMxOTEgNTEuMzgyODMxNiw2LjU3MTc4ODk2IDUwLjQ1ODQ0NDIsNy44MjMxMjIwNSBMNTAuNDU4NDQ0Miw2LjQ0NzQ5MjYgTDQ2LjgxNjk4ODQsNi40NDc0OTI2IEw0Ni44MTY5ODg0LDE4LjY2MTgzNTYgTDUwLjUwMzE0MSwxOC42NjE4MzU2IEw1MC41MDMxNDEsMTIuMjQyNzY1NyBDNTAuNTAzMTQxLDEwLjM4NTI2NTMgNTEuNzQ4Nzc1Nyw5LjQ3NTY1ODE0IDUzLjI0ODUyMzUsOS40NzU2NTgxNCBDNTQuODU1ODI4NSw5LjQ3NTY1ODE0IDU1Ljc3OTg1OTcsMTAuNDM1ODM4NiA1NS43Nzk4NTk3LDEyLjIxNzQ3OTEgTDU1Ljc3OTg1OTcsMTguNjYxODM1NiBMNTkuNDMyNzEyNCwxOC42NjE4MzU2IEw1OS40MzI3MTI0LDEwLjg5NDAyNTYgQzU5LjQzMjcxMjQsOC4wNTE0MTQyMSA1Ny4xNzI1ODQ0LDYuMTE4MjMxOTEgNTQuMjI2MzMzMyw2LjExODIzMTkxIiBmaWxsPSJyZ2JhKDAsIDAsIDAsIDEpIj48L3BhdGg+CiAgICAgICAgPHBhdGggZD0iTTQxLjUyNzgwNDQsOC4wMzc4ODA1MSBMNDEuNTI3ODA0NCw2LjQ0Njk1ODM4IEwzNy43ODM0MjEyLDYuNDQ2OTU4MzggTDM3Ljc4MzQyMTIsMTguNjYxODM1NiBMNDEuNTM2MTc0LDE4LjY2MTgzNTYgTDQxLjUzNjE3NCwxMi45NTg4MDUzIEM0MS41MzYxNzQsMTEuMDM0NzA0OCA0My42MjE2MTA0LDEwLjAwMDQ0NTIgNDUuMDY4NjQ3OSwxMC4wMDA0NDUyIEM0NS4wODM0MjgxLDEwLjAwMDQ0NTIgNDUuMDk3MzE4LDEwLjAwMTg2OTggNDUuMTEyMDk4MiwxMC4wMDIwNDc5IEw0NS4xMTIwOTgyLDYuNDQ3NjcwNjggQzQzLjYyNjk1MjYsNi40NDc2NzA2OCA0Mi4yNjA5MzkyLDcuMDgzNTc2NTQgNDEuNTI3ODA0NCw4LjAzNzg4MDUxIiBmaWxsPSJyZ2JhKDAsIDAsIDAsIDEpIj48L3BhdGg+CiAgICAgICAgPHBhdGggZD0iTTMyLjIxMjg3ODgsNy4yMjgxNzM0NSBMMzIuMjEyODc4OCw2LjQ0Njc4MDMgTDM1Ljg3MDE4MzMsNi40NDY3ODAzIEwzNS44NzAxODMzLDE4LjY2MTgzNTYgTDMyLjIxMjg3ODgsMTguNjYxODM1NiBMMzIuMjEyODc4OCwxNy44ODExNTQ3IEMzMS4xNzk2ODc2LDE4LjU4NTc5NzUgMjkuOTMyNjI4MywxOSAyOC41ODc2Mjc3LDE5IEMyNS4wMjc5MDgzLDE5IDIyLjE0MjIwMjgsMTYuMTE0Mjk0NSAyMi4xNDIyMDI4LDEyLjU1NDU3NSBDMjIuMTQyMjAyOCw4Ljk5NDg1NTYxIDI1LjAyNzkwODMsNi4xMDkxNTAwOSAyOC41ODc2Mjc3LDYuMTA5MTUwMDkgQzI5LjkzMjYyODMsNi4xMDkxNTAwOSAzMS4xNzk2ODc2LDYuNTIzMzUyNTYgMzIuMjEyODc4OCw3LjIyODE3MzQ1IFogTTI4Ljg4Njc5MzgsMTUuNjk3NDIwOSBDMzAuNzE3MDQ4NywxNS42OTc0MjA5IDMyLjIwMDc2OTcsMTQuMjkwMjcyMiAzMi4yMDA3Njk3LDEyLjU1NDU3NSBDMzIuMjAwNzY5NywxMC44MTg4Nzc5IDMwLjcxNzA0ODcsOS40MTIwODUzNiAyOC44ODY3OTM4LDkuNDEyMDg1MzYgQzI3LjA1NjcxNjksOS40MTIwODUzNiAyNS41NzI5OTU5LDEwLjgxODg3NzkgMjUuNTcyOTk1OSwxMi41NTQ1NzUgQzI1LjU3Mjk5NTksMTQuMjkwMjcyMiAyNy4wNTY3MTY5LDE1LjY5NzQyMDkgMjguODg2NzkzOCwxNS42OTc0MjA5IFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMSkiPjwvcGF0aD4KICAgICAgICA8cGF0aCBkPSJNMTYuODE1MDg4OSAxOC42NjE4MzU2IDIwLjY0Mjk4OTMgMTguNjYxODM1NiAyMC42NDI5ODkzIDEuMDAzMzgzNDMgMTYuODE1MDg4OSAxLjAwMzM4MzQzeiIgZmlsbD0icmdiYSgwLCAwLCAwLCAxKSI+PC9wYXRoPgogICAgICAgIDxwYXRoIGQ9Ik0xNC4xNzcwODU3LDEgTDEwLjIxMDQ2NDksMSBDMTAuMjEwNDY0OSw0LjI1MTExNTQ0IDguNzE1NzAzMjUsNy4yMzUxMTgzNyA2LjEwOTU3NTQ5LDkuMTg3MzU0NyBMNC41MzgwNjM1MywxMC4zNjQyNTI0IEwxMC42MjcxNjA0LDE4LjY2NzM1NTkgTDE1LjYzMzU2MTIsMTguNjY3MzU1OSBMMTAuMDMwNzg3MiwxMS4wMjcyMjU3IEMxMi42ODY1OTc5LDguMzgyNjMzNzMgMTQuMTc3MDg1Nyw0LjgyNDY5NTA1IDE0LjE3NzA4NTcsMSIgZmlsbD0icmdiYSgwLCAwLCAwLCAxKSI+PC9wYXRoPgogICAgICAgIDxwYXRoIGQ9Ik0wIDE4LjY2NjY0MzYgNC4wNTMzNDMzNiAxOC42NjY2NDM2IDQuMDUzMzQzMzYgMSAwIDF6IiBmaWxsPSJyZ2JhKDAsIDAsIDAsIDEpIj48L3BhdGg+CiAgICA8L2c+Cjwvc3ZnPg==" alt="klarna"> 
               </span>
           </label>
+          <button type="button" class="crs-btn cIaFpO" disabled> 
+            <span class="flex justify-center items-center ">
+              <span>Confirm</span>
+              <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M1.66732 7.83339H10.9757L6.90898 11.9001C6.58398 12.2251 6.58398 12.7584 6.90898 13.0834C7.23398 13.4084 7.75898 13.4084 8.08398 13.0834L13.5757 7.59172C13.9007 7.26672 13.9007 6.74172 13.5757 6.41672L8.09232 0.916724C7.76732 0.591724 7.24232 0.591724 6.91732 0.916724C6.59232 1.24172 6.59232 1.76672 6.91732 2.09172L10.9757 6.16672H1.66732C1.20898 6.16672 0.833984 6.54172 0.833984 7.00006C0.833984 7.45839 1.20898 7.83339 1.66732 7.83339Z" fill="white"/>
+              </svg>
+            </span>
+          </button>
       </div>
     </div>`
 
+  
     if ($el('#checkout-container') && !$el('.crs-payment-methods')) {
       $el('#checkout-container').insertAdjacentHTML('beforebegin', payments)
 
+      $$el('.crs-btn').forEach(item => {
+        item.addEventListener('click', (e) => {
+          $el('#primer-checkout-submit-button').click()
+          if (item.closest('.crs-payment-credit')) {
+            pushDataLayer('exp_imp_ch_b_scospsypm_pn', 'Pay now', 'Button', 'Secure checkout Order summery Payment Select your payment method');
+          } else {
+            pushDataLayer('exp_imp_ch_r_scospsypm_k', 'Klarna Confirm', 'Button', 'Secure checkout Order summery Payment Select your payment method');
+          }
+        })
+      })
+
+      $$el('.check_border').forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.stopImmediatePropagation()
+          if (item.closest('.crs-payment-radio')) {
+            if (item.previousElementSibling.checked) {
+              $el('#primer-checkout-credit-card-button').click()
+            }
+           
+            pushDataLayer('exp_imp_ch_r_scospsypm_pbc', 'Pay by card', 'Radio button', '"Secure checkout Order summery Payment Select your payment method"');
+          } else {
+            if (item.previousElementSibling.checked) {
+              $el('#primer-checkout-klarna-button').click()
+            }
+            pushDataLayer('exp_imp_ch_r_scospsypm_k', 'Klarna', 'Radio button', 'Secure checkout Order summery Payment Select your payment method');
+          }
+        })
+      })
+    }
+    if ($el('.crs-payment-klarna .bpbPRL[disabled]')) {
+      $el('.crs-payment-klarna button.crs-btn').disabled = false;
     }
     if ($el('#primer-checkout-credit-card-button')) {
 
@@ -1049,6 +1113,28 @@ class CheckoutUpdate {
       $el('#primer-checkout-credit-card-button').click()
     }
   }
+  
+  getFirstLetters(sentence) {
+    // Split the sentence into words
+    const words = sentence.split(' ');
+  
+    // Initialize an array to store the first letters
+    const firstLetters = [];
+  
+    // Loop through the words and get the first letter of each
+    for (const word of words) {
+      if (word.length > 0) {
+        const firstLetter = word[0].toUpperCase(); // Convert to uppercase
+        firstLetters.push(firstLetter);
+      }
+    }
+  
+    // Join the first letters to form a new string
+    const result = firstLetters.join('');
+  
+    return result;
+  }
+  
   fixFormAndBlocks() {
     if ($el('p.text-h3')) {
       $el('p.text-h3').closest('.py-10').style.padding = '12px 0 24px'
@@ -1083,6 +1169,9 @@ class CheckoutUpdate {
           <path d="M1.16634 7.83339H10.4747L6.40801 11.9001C6.08301 12.2251 6.08301 12.7584 6.40801 13.0834C6.73301 13.4084 7.25801 13.4084 7.58301 13.0834L13.0747 7.59172C13.3997 7.26672 13.3997 6.74172 13.0747 6.41672L7.59134 0.916724C7.26634 0.591724 6.74134 0.591724 6.41634 0.916724C6.09134 1.24172 6.09134 1.76672 6.41634 2.09172L10.4747 6.16672H1.16634C0.708008 6.16672 0.333008 6.54172 0.333008 7.00006C0.333008 7.45839 0.708008 7.83339 1.16634 7.83339Z" fill="black"/>
         </svg>`
         item.querySelector('.text-p').style = 'color: #000; font-weight: 600;';
+        item.querySelector('button').addEventListener('click', () => {
+          pushDataLayer('exp_imp_ch_l_scosi_eddm', 'Enter delivery detaisl manually', 'Link', 'Secure checkout Order summery Information');
+        })
         
       }
       if (item.innerText.includes('Select an option')) {
@@ -1121,6 +1210,30 @@ class CheckoutUpdate {
         if (item.innerText.includes('Add your billing address')) {
           localStorage.setItem('use_address_billing', 'false')
         }
+      }
+
+      
+      if (item.previousElementSibling && item.previousElementSibling.tagName == 'INPUT') {
+        item.previousElementSibling.addEventListener('click', (e) => {
+          if (isEvent != false) return
+          isEvent = true
+
+          let label = item.innerText.replace('*','');
+          let title = item.closest('form').parentElement.parentElement.querySelector('.text-h3').innerText;
+          let type = 'Input';
+          let name = this.getFirstLetters(label) + this.getFirstLetters(title)
+          console.log(name); 
+          if (label.includes('Postcode')) {
+            name = 'p'+this.getFirstLetters(title)
+          }
+          if (label.includes('Country')) {
+            type = 'Dropdown'
+          }
+          pushDataLayer('exp_imp_ch_i_scosi_' + name.toLowerCase(), label + ' ' + title, type, 'Secure checkout Order summery Information');
+        })
+        item.previousElementSibling.addEventListener('blur', (e) => {
+          isEvent = false
+        })
       }
     })
     
@@ -1274,13 +1387,14 @@ class CheckoutUpdate {
       $el('.crs-payment-credit > label')
     ) {
       $el('.crs-payment-credit > label').after($el('#primer-checkout-card-form'))
-    }
-
-    if ($el('#primer-checkout-submit-button-container') &&
-    $el('#primer-checkout-card-form') &&
-    !$el('#primer-checkout-card-form + #primer-checkout-submit-button-container')
-    ) {
-     $el('#primer-checkout-card-form').after($el('#primer-checkout-submit-button-container'))
+      $$el('#primer-checkout-card-form iframe').forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.stopImmediatePropagation()
+          let desk = item.closest('.PrimerCheckout__formField').querySelector('.PrimerCheckout__label').innerText
+          let type = this.getFirstLetters(desk.split('(')[0])
+          pushDataLayer('exp_imp_ch_i_scospsypm_' + type.toLowerCase(), desk, 'Input', 'Secure checkout Order summery Payment Select your payment method');
+        })
+      })
     }
 
     $$el('#primer-checkout-apm-button-container > div').forEach(item => {
@@ -1289,9 +1403,31 @@ class CheckoutUpdate {
       }
       if (item.querySelector('img[alt="AFTERPAY"]') || item.querySelector('img[alt="CLEARPAY"]')) {
         item.style.display = 'block'
+
+      }
+      
+      if (item.querySelector('button')) {
+        item.querySelector('button').addEventListener('click', (e) => {
+          e.stopImmediatePropagation()
+          if (item.querySelector('img[alt="CLEARPAY"]')) {
+            pushDataLayer('exp_imp_ch_r_scospsypm_c', 'Clearpay', 'Button', 'Secure checkout Order summery Payment Select your payment method');
+          } else if (item.querySelector('img[alt="CLEARPAY"]')) {
+            pushDataLayer('exp_imp_ch_r_scospsypm_a', 'Afterpay', 'Button', 'Secure checkout Order summery Payment Select your payment method');
+          } else if (item.id == 'primer-checkout-apm-applePay' || item.id == 'primer-checkout-apm-googlePay') {
+            pushDataLayer('exp_imp_ch_b_scospsypm_apgp', 'Apple Pay - Gpay', 'Button', 'Secure checkout Order summery Payment Select your payment method');
+          }
+        })
+      }
+      if (item.querySelector('iframe')) {
+
+        item.querySelector('iframe').addEventListener('click', (e) => { 
+          if (item.id == 'primer-checkout-apm-paypal') {
+            e.stopImmediatePropagation()
+            pushDataLayer('exp_imp_ch_b_scospsypm_pp', 'PayPal', 'Button', 'Secure checkout Order summery Payment Select your payment method');
+          }
+        })
       }
     })
-
     
     $$el('.crs-payment-radio [name="radio_payment"]').forEach(item => {
       if (item.checked) {
@@ -1322,7 +1458,15 @@ class CheckoutUpdate {
       !$el('.crs-payment-klarna > #primer-checkout-scene-klarna-payment')
     ) {
       $el('.crs-payment-klarna > label').after($el('#primer-checkout-scene-klarna-payment'))
+  
+      $$el('#primer-checkout-scene-klarna-payment .kGQuJo > div button').forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.stopImmediatePropagation()
+          pushDataLayer('exp_imp_ch_r_scospsypm_k',`Klarna ${item.innerText}`,'Button','Secure checkout Order summery Payment Select your payment method')
+        })
+      })
     }
+   
 
     //add arrow 'save and continue' button
     if ($el('h3') && $el('h3').closest('.w-full').querySelector('&>button>div>div') && !$el('.crs-svg')) {

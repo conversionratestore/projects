@@ -2,6 +2,9 @@ let dir = 'https://conversionratestore.github.io/projects/buzzpatch/sunnypatch/i
 
 let style = `
 <style>
+    .crs-img .mr-3 {
+        margin-right: 16px;
+    }
     .isVisibleSteps {
         height: 1px;
         width: 100%;
@@ -260,6 +263,7 @@ let style = `
         margin-left: 4px;
         padding-left: 4px;
         font-family: Roboto;
+        text-transform: capitalize;
     }
     .exp-crs #getNow .form {
         margin-top: 0;
@@ -710,14 +714,17 @@ let init = setInterval(() => {
 
         
         document.querySelectorAll('.slide-packs>ul>li').forEach((item, index) => {
-            let patches = index == 0 ? '96' : index == 1 ? '72' : index == 2 ? '48' : '24'
+            let patches = +item.dataset.packCount * 24
             item.querySelector('p.pcs').insertAdjacentHTML('beforeend', `<span>${patches} Patches</span>`);
         })
 
         document.querySelector('#getNow .free-shipping-checkout').src = dir + 'free-shipping-worldwide.svg';
         
         document.querySelector('#getNow img.days').insertAdjacentHTML('beforebegin',`
-        <img src="${dir}rated.svg" alt="image" style="max-width: 100%!important;">`)
+        <div class="crs-img d-flex align-items-center justify-content-center">
+            <img src="${dir}rated-30.svg" alt="image" class="mr-3">
+            <img src="${dir}rated.svg" alt="image">
+        </div>`)
 
         document.querySelector('.title-logo').insertAdjacentHTML('afterend', `
         <img src="${dir}sunnypatches.svg" alt="image">`);
@@ -820,6 +827,8 @@ let init = setInterval(() => {
             handleVisibility('.sleeping-problems .title-highlight')
             handleVisibility('.featured-reviews h2.js-title')
         })
+
+        document.querySelector('.exp-loading')?.remove()
         
     }
 });
