@@ -652,7 +652,7 @@ display: flex;
     width: 100%;
     height: 16px;
     bottom: 0;
-    left: 93px;
+    left: 0;
     background: white;
     align-items: center;
 }
