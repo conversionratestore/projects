@@ -138,6 +138,9 @@ let style = `
         font-weight: 500;
         line-height: 20px;
     }
+    .reviews .block_highlighting {
+        background: #FFF;
+    }
     .exp-crs .js-mobile.scientific {
         margin-top: -20vw;
         padding-top: 20vw!important;
@@ -737,6 +740,10 @@ let init = setInterval(() => {
 
         document.querySelector('.reviews .container').insertAdjacentHTML('afterbegin', blockHighlighting);
 
+        const appHeight = () => {
+            document.querySelector('.popup').style.height = window.innerHeight + 'px';
+        }
+
         let startTime = 0;
         document.querySelectorAll('.btn_how_works').forEach(button => {
             button.addEventListener('click', (e) => {
@@ -746,6 +753,8 @@ let init = setInterval(() => {
                     }, 500); 
                     pushDataLayer('exp_int_pro_b_fs_how_sunny_works', 'How SunnyPatch works', 'Button', 'First screen');
                 } else {
+                    appHeight()
+
                     document.querySelector('.popup').classList.add('active');
                     pushDataLayer('exp_int_pro_b_sc_how_sunny_works', 'How SunnyPatch works', 'Button', 'Slide in cart');
                     setInterval(() => {
