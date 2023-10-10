@@ -446,7 +446,7 @@
 .product__sale {
   position: absolute;
   top: 40px;
-  left: 0;
+  left: -1px;
   width: 86px;
   height: 28px;
   display: flex;
@@ -2856,15 +2856,14 @@ padding: 8px 16px;
       clearInterval(waitForNavSections)
 
       const navbar = document.querySelector(".navbar")
-      // const navbarList = document.querySelector('.navbar-list')
 
       // Function to handle navbar item click
-      // function handleNavbarItemClick(event) {
-      //   event.preventDefault()
-      //   const sectionId = event.currentTarget.querySelector('a').getAttribute('href')
-      //   const section = document.querySelector(sectionId)
-      //   section.scrollIntoView({ behavior: 'smooth' })
-      // }
+      function handleNavbarItemClick(event) {
+        event.preventDefault()
+        const sectionId = event.currentTarget.querySelector('a').getAttribute('href')
+        const section = document.querySelector(sectionId)
+        section.scrollIntoView({ behavior: 'smooth' })
+      }
 
       // Function to scroll to the active item
       function scrollToActiveNavItem() {
@@ -2943,9 +2942,9 @@ padding: 8px 16px;
         }
       }
 
-      // navbarItems.forEach(item => {
-      //   item.addEventListener('click', handleNavbarItemClick)
-      // })
+      navbarItems.forEach(item => {
+        item.addEventListener('click', handleNavbarItemClick)
+      })
 
       window.addEventListener("scroll", isNavbarTouchingSection)
     }
