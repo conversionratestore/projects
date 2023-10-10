@@ -1431,6 +1431,9 @@ text-decoration-line: underline;
   }
 }
 @media (max-width: 768px) {
+  .one-whole[data-type="dropdown"] select{
+    height: 47px !important;
+  }
   .overlay_popup .container_popup{
         padding: 16px;
         max-width: 100%;
@@ -2697,8 +2700,8 @@ button.syte-discovery.syte-integration-injected .button-text{
       let activated = false;
 
       if (document.querySelector('[name="properties[Ring size]"]')) {
-        if (document.querySelector('.variant-wrapper .variant__label[for="SingleOptionSelector-template--20834585772373__main-4515502063659-option-1"]')) {
-          document.querySelector('.variant-wrapper .variant__label[for="SingleOptionSelector-template--20834585772373__main-4515502063659-option-1"]').textContent = "Ring size, US";
+        if (document.querySelector(".variant-wrapper.ring_size_var .variant__label")) {
+          document.querySelector(".variant-wrapper.ring_size_var .variant__label").textContent = "Ring size, US";
         }
         document.querySelector('[name="properties[Ring size]"]').insertAdjacentHTML("afterbegin", '<option value="Select size" selected>Select size</option>');
         document
