@@ -684,7 +684,7 @@ let init = setInterval(() => {
         <path d="M218 14.645L223.563 20L218 25.3551L219.713 27L227 20L219.713 13L218 14.645Z" fill="white"/>
         </svg>`)
 
-        document.querySelector('.scientific img.mobile-steps.ls-is-cached').src = dir + 'free-shipping-worldwide.svg';
+        document.querySelector('.scientific img.mobile-steps.ls-is-cached').src = dir + 'sunny-lp-mobile-steps.svg';
 
         document.querySelector('.scientific .t-right h5').innerHTML = `Here's How It Works (You can Hi-Five Us Later)`;
 
