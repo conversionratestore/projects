@@ -2,6 +2,11 @@ let dir = 'https://conversionratestore.github.io/projects/buzzpatch/sunnypatch/i
 
 let style = `
 <style>
+    .isVisibleSteps {
+        height: 1px;
+        width: 100%;
+        display: block;
+    }
     .exp-crs #getNow img.days {
         display: none;
     }
@@ -588,7 +593,7 @@ let modal = `
         <div class="popup_body">
             <h5>Here's How It Works (You can Hi-Five Us Later)</h5>
             ${blockHighlighting}
-            <img src="//naturalpatch.com/cdn/shop/files/sunny-lp-mobile-steps.svg" class="mobile-steps ls-is-cached lazyloaded">
+            <img src="${dir}sunny-lp-mobile-steps.svg" alt="image" class="mobile-steps ls-is-cached lazyloaded">
             <a id="open" href="#" class="btn js-btn btn-primary get-it">get it now</a>
         </div>
     </div>`;
@@ -597,7 +602,8 @@ let modal = `
 let init = setInterval(() => {
     if ( document.querySelector('#getNow .days') &&
         document.querySelector('.close-btn') &&
-        document.querySelector('.reviews-slide img')
+        document.querySelector('.reviews-slide img') &&
+        document.querySelector('.js-mobile.scientific img.mobile-steps')
     ) {
         clearInterval(init)
 
@@ -684,13 +690,13 @@ let init = setInterval(() => {
         <path d="M218 14.645L223.563 20L218 25.3551L219.713 27L227 20L219.713 13L218 14.645Z" fill="white"/>
         </svg>`)
 
-        document.querySelector('.scientific img.mobile-steps.ls-is-cached').src = dir + 'sunny-lp-mobile-steps.svg';
 
-        document.querySelector('.scientific .t-right h5').innerHTML = `Here's How It Works (You can Hi-Five Us Later)`;
+        document.querySelector('.js-mobile.scientific .t-right h5').innerHTML = `Here's How It Works (You can Hi-Five Us Later)`;
 
         document.querySelector('.js-mobile.scientific').after(document.querySelector('.sleeping-problems'))
+        document.querySelector('.js-mobile.scientific img.mobile-steps').src = dir + 'sunny-lp-mobile-steps.svg';
 
-        document.querySelector('.scientific > .container > .row.r-flex').insertAdjacentHTML('afterend', blockHighlighting)
+        document.querySelector('.js-mobile.scientific > .container > .row.r-flex').insertAdjacentHTML('afterend', blockHighlighting)
 
         document.querySelector('.sleeping-problems').after(document.querySelector('.featured-reviews'))
 
@@ -730,7 +736,7 @@ let init = setInterval(() => {
 
         document.querySelector('.reviews .container').insertAdjacentHTML('afterbegin', blockHighlighting);
 
-        document.querySelector('.scientific .mobile-steps').insertAdjacentHTML('beforebegin', `<div class="isVisibleSteps"></div>`);
+        document.querySelector('.js-mobile.scientific .mobile-steps.ls-is-cached').insertAdjacentHTML('beforebegin', `<div class="isVisibleSteps"></div>`);
 
         let startTime = 0;
         document.querySelectorAll('.btn_how_works').forEach(button => {
@@ -794,7 +800,7 @@ let init = setInterval(() => {
 
         handleVisibility('.yellow-wave')
         handleVisibility('.block_highlighting')
-        handleVisibility('.scientific .isVisibleSteps')
+        handleVisibility('.js-mobile.scientific .isVisibleSteps')
         handleVisibility('.sleeping-problems .title-highlight')
         handleVisibility('.featured-reviews h2.js-title')
        
@@ -802,7 +808,7 @@ let init = setInterval(() => {
         window.addEventListener('scroll', () => {
             handleVisibility('.yellow-wave')
             handleVisibility('.block_highlighting')
-            handleVisibility('.scientific .isVisibleSteps')
+            handleVisibility('.js-mobile.scientific .isVisibleSteps')
             handleVisibility('.sleeping-problems .title-highlight')
             handleVisibility('.featured-reviews h2.js-title')
         })
