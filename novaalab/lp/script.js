@@ -414,7 +414,6 @@
 }
 
 .product__moneyback {
-  width: 100%;
   position: absolute;
   top: 6px;
   left: 0px;
@@ -1719,6 +1718,7 @@ section.ailments .col-right {
 
   .product__img-wrapper {
     border-radius: 4px;
+    height: 164px;
   }
 
   .product__sale {
@@ -1736,6 +1736,7 @@ section.ailments .col-right {
   }
 
   .product__moneyback {
+    width: 100%;
     top: auto;
     bottom: 0;
     background: #F5F5FD;
@@ -2851,8 +2852,9 @@ padding: 8px 16px;
     const sections = document.querySelectorAll('#shopify-section-header, #head-section, #navigation-section, #back-pain-section, #knee-section, #joint-section, #periodontal-section, #skin-section')
 
     const navbarItems = document.querySelectorAll(".navbar-item")
+    const navSectionItems = document.querySelectorAll("#navigation-section ul li")
 
-    if (navbarItems?.length >= 5 && sections?.length >= 8) {
+    if (navbarItems?.length >= 5 && navSectionItems?.length >= 5 && sections?.length >= 8) {
       clearInterval(waitForNavSections)
 
       const navbar = document.querySelector(".navbar")
@@ -2943,6 +2945,10 @@ padding: 8px 16px;
       }
 
       navbarItems.forEach(item => {
+        item.addEventListener('click', handleNavbarItemClick)
+      })
+
+      navSectionItems.forEach(item => {
         item.addEventListener('click', handleNavbarItemClick)
       })
 
@@ -3406,7 +3412,7 @@ padding: 8px 16px;
                   </div>
                   <div class="product__buttons">
                     <a href="${item.pdpLink}" class="button">Learn more</a>
-                    <button class="btn-add" data-product-id="id"><img
+                    <button class="btn-add" data-product-id="${item.id}"><img
                         src="https://conversionratestore.github.io/projects/novaalab/catalog-page/images/24_cart.svg"
                         alt="Add to cart">
                       <span>Add to cart</span>
