@@ -689,11 +689,10 @@ class CheckoutUpdate {
 
     $$el('.crs-apply-promo').forEach(item => {
       item.addEventListener('click', () => {
-        let promoCode = $el('.crs-promo-form input').value; //7879WELCOME10
+        let promoCode = item.parentElement.querySelector('input').value; //7879WELCOME10
 
         this.postPromo('add', promoCode).then(data => {
-          console.log(data['data'])
-          console.log(data['data']['checkoutAddPromoCode'])
+          console.log(data)
           if (data['data']['checkoutAddPromoCode']['checkout'] && data['data']['checkoutAddPromoCode']['checkout']['discount']) {
             let discount = data['data']['checkoutAddPromoCode']['checkout']['discount'];
             let amout = discount.amount;
@@ -710,8 +709,6 @@ class CheckoutUpdate {
             item.parentElement.classList.add('crs-error')
           }
         })
-
-
       })
     })
    
@@ -789,9 +786,8 @@ class CheckoutUpdate {
       }
       .crs-summary-products div:first-child {
         width: 140px;
-        height: 140px;
+        height: 156px;
         flex-shrink: 0;
-        margin-right: 16px;
       }
       .crs-summary-products div > img {
         width: 140px;
@@ -802,8 +798,7 @@ class CheckoutUpdate {
         width: max-content;
       }
       .crs-summary-products > div.gap-2 {
-        gap: inherit;
-        padding-bottom: 16px;
+        gap: 16px;
         margin-bottom: 16px;
         border-bottom: 1px solid #EAEAEB;
         width: 100%;
@@ -1111,7 +1106,9 @@ class CheckoutUpdate {
         item.querySelector('&>div').style.width = '20px'
         item.querySelector('input').style.opacity = '0'
         item.querySelector('input').style.position = 'absolute'
-        item.style = 'margin: 15px 0 10px!important;'
+        if (!item.className.includes('isUseAddress')) {
+          item.style = 'margin: 15px 0 10px!important'
+        }
         if (!item.querySelector('.crs-checkbox')) {
           item.querySelector('input').insertAdjacentHTML('afterend', '<span class="crs-checkbox"></span>')
         }
