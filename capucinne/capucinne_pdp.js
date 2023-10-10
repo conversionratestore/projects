@@ -102,6 +102,54 @@ let startFunk = setInterval(() => {
 
     let newStyle = /*html */ `
         <style>
+          .product-block.before_lable_wrapp + .product-block{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+          }
+          .ring_size_var{
+             order: 1;
+             width: 100%;
+             margin-right: 0;
+          }
+          .ring_size_var .variant-input-wrap select,
+          .material_var .variant-input-wrap select,
+          .stone_var .variant-input-wrap select,
+          .bracelet_length_var .variant-input-wrap select,
+          .necklace_length_var .variant-input-wrap select{
+                width: 100%;
+          }
+          .material_var{
+                order: 2;
+                width: 48%;
+    margin-right: 0;
+          }
+          .stone_var,
+          .necklace_length_var{
+                order: 3;
+                width: 48%;
+    margin-right: 0;
+          }
+          .one-whole{
+            order: 4;
+          }
+          .one-whole[data-type="dropdown"]{
+width: 48%;
+    margin: 0;
+          }
+          .one-whole[data-type="dropdown"] select{
+                height: 42px !important;
+                    width: 100%;
+          }
+          .one-whole[data-type="dropdown"] #fin_img{
+           width: 42px !important;
+    height: 42px !important;
+          }
+          .bracelet_length_var{
+            order: 5;
+    margin-right: 0;
+    width: 48%;
+          }
               .widget-visible {
       z-index: 22!important;
     }
@@ -1985,9 +2033,39 @@ button.syte-discovery.syte-integration-injected .button-text{
     }
 
     function renderNewBlocks() {
+      //
+      if (!document.querySelector(".product-block--sales-point + .shopify-block.shopify-app-block + .product-block").classList.contains("before_lable_wrapp")) {
+        document.querySelector(".product-block--sales-point + .shopify-block.shopify-app-block + .product-block").classList.add("before_lable_wrapp");
+      }
+      if (document.querySelector(".product-block--sales-point + .shopify-block.shopify-app-block + .product-block").classList.contains("before_lable_wrapp")) {
+        document.querySelectorAll(".variant-wrapper.variant-wrapper--dropdown .variant__label").forEach((el) => {
+          if (el.textContent.includes("Ring size") && !document.querySelector(".ring_size_var")) {
+            el.closest(".variant-wrapper--dropdown").classList.add("ring_size_var");
+            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
+          }
+          if (el.textContent.includes("Material") && !document.querySelector(".material_var")) {
+            el.closest(".variant-wrapper--dropdown").classList.add("material_var");
+            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
+          }
+          if (el.textContent.includes("Stone") && !document.querySelector(".stone_var")) {
+            el.closest(".variant-wrapper--dropdown").classList.add("stone_var");
+            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
+          }
+          if (el.textContent.includes("Bracelet length") && !document.querySelector(".bracelet_length_var")) {
+            el.closest(".variant-wrapper--dropdown").classList.add("bracelet_length_var");
+            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
+          }
+          if (el.textContent.includes("Necklace Length") && !document.querySelector(".necklace_length_var")) {
+            el.closest(".variant-wrapper--dropdown").classList.add("necklace_length_var");
+            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
+          }
+        });
+      }
       // change href size
-      if (document.querySelector('[title="Ring sizing guide"]').href !== "https://www.docdroid.net/2eqEQph/ring-size-capucinne-with-scale-pdf" && document.querySelector('[title="Ring sizing guide"]')) {
-        document.querySelector('[title="Ring sizing guide"]').href = "https://www.docdroid.net/2eqEQph/ring-size-capucinne-with-scale-pdf";
+      if (document.querySelector('[title="Ring sizing guide"]')) {
+        if (document.querySelector('[title="Ring sizing guide"]').href !== "https://www.docdroid.net/2eqEQph/ring-size-capucinne-with-scale-pdf" && document.querySelector('[title="Ring sizing guide"]')) {
+          document.querySelector('[title="Ring sizing guide"]').href = "https://www.docdroid.net/2eqEQph/ring-size-capucinne-with-scale-pdf";
+        }
       }
       // change icon header
       if (!document.querySelector(".new_icon_camera") && document.querySelector(".--syte-start-camera-upload.syte-integration-injected svg:not(.new_icon_camera)")) {
@@ -2320,10 +2398,11 @@ button.syte-discovery.syte-integration-injected .button-text{
       for (let item of innerEl.querySelectorAll(".btn-offer")) {
         const el = document.createElement("div");
         el.classList.add("new_extend_item");
+        console.log(item.querySelector(".plan-price").textContent.split("$"));
 
         el.innerHTML = `
         <div class='new_extend_item_caption'>${item.querySelector(".term-length").textContent}</div>
-        <div class='new_extend_item_price'>${item.querySelector(".plan-price").textContent}</div>
+        <div class='new_extend_item_price'>$${item.querySelector(".plan-price").textContent.split("$")[0]}</div>
       `;
 
         document.querySelector(".new_extend_body").insertAdjacentElement("beforeend", el);
