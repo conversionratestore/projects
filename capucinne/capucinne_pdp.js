@@ -1428,12 +1428,27 @@ text-decoration-line: underline;
 #shopify-section-footer {
   padding-bottom: 100px;
 }
+.new_txt_klarna{
+color:  #1C1D1D;
+font-family: 'Poppins';
+font-size: 12px;
+font-weight: 600;
+line-height: 16px;
+display: block;
+margin: 1px 0 24px 0;
+background: #FCF4F6;
+padding: 4px 8px;
+}
 @media (max-width: 1180px) {
   .beautifully_packaged_container {
     padding: 20px 5px;
   }
 }
 @media (max-width: 768px) {
+  .new_txt_klarna{
+    margin: 1px 0 44px 0;
+    font-weight: 400;
+  }
   .one-whole[data-type="dropdown"] select{
     height: 47px !important;
   }
@@ -2039,7 +2054,11 @@ button.syte-discovery.syte-integration-injected .button-text{
     }
 
     function renderNewBlocks() {
-      //
+      // add txt Klarna
+      if (document.querySelector("#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b") && !document.querySelector(".new_txt_klarna")) {
+        document.querySelector("#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b").insertAdjacentHTML("beforeend", `<span class="new_txt_klarna"><b>Pay nothing today.</b> The annual percentage rate is <b>0%</b></span>`);
+      }
+      //replace select
       if (!document.querySelector(".product-block--sales-point + .shopify-block.shopify-app-block + .product-block").classList.contains("before_lable_wrapp")) {
         document.querySelector(".product-block--sales-point + .shopify-block.shopify-app-block + .product-block").classList.add("before_lable_wrapp");
       }
@@ -3208,11 +3227,11 @@ button.syte-discovery.syte-integration-injected .button-text{
 
       if (window.innerWidth <= 768) {
         if (original) {
-          original.querySelector(".container").style = "border: 0;background: rgba(225, 149, 169, 0.10);padding: 8px 12px;margin-bottom: 44px";
+          original.querySelector(".container").style = "border: 0;background: rgba(225, 149, 169, 0.10);padding: 8px 12px;margin-bottom: 0";
         }
       } else {
         if (original) {
-          original.querySelector(".container").style = "border: 0;background: rgba(225, 149, 169, 0.10);padding: 8px 12px;margin-bottom: 16px";
+          original.querySelector(".container").style = "border: 0;background: rgba(225, 149, 169, 0.10);padding: 8px 12px;margin-bottom: 0";
         }
       }
       if (original) {
