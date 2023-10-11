@@ -755,15 +755,15 @@ section.navigation ul {
   grid-auto-flow: dense;
   padding: 0;
   list-style: none;
-  gap: 20px
+  gap: 8px;
 }
 
 section.navigation ul li {
-  flex: 1 1 229px;
+  flex: 1 1 209px;
 }
 
 section.navigation ul li .button {
-  padding: 12px 20px;
+  padding: 12px 5px;
 }
 
 /* navigation section END */
@@ -1634,6 +1634,12 @@ section.ailments .col-right {
   display: none;
 }
 
+@media screen and (min-width: 1224px) {
+  section.navigation ul {
+    gap: 20px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .heading-2 {
     font-size: 24px;
@@ -1844,7 +1850,7 @@ section.ailments .col-right {
   .navbar-item a {
     font-size: 14px;
 font-weight: 600;
-line-height: 20px; /* 142.857% */
+line-height: 21px; /* 142.857% */
 letter-spacing: 0.7px;
 border-radius: 4px;
 border: 2px solid var(--colors-black-500, #212121);
@@ -1857,8 +1863,8 @@ padding: 8px 16px;
     border: 0;
     color: #fff;
     background: linear-gradient(to right, #6519f4, #a042f3) no-repeat;
-
-    border: 2px solid var(--colors-black-500, #a042f3);
+    padding: 10px 18px;
+    line-height: 20px; 
   } 
 
   /* head section START */
@@ -1881,6 +1887,7 @@ padding: 8px 16px;
   .reviews-wrapper>div {
     flex-direction: column;
     gap: 4px;
+    align-items: flex-start;
   }
 
   .reviews-wrapper>div>div {
@@ -2859,14 +2866,6 @@ padding: 8px 16px;
 
       const navbar = document.querySelector(".navbar")
 
-      // Function to handle navbar item click
-      function handleNavbarItemClick(event) {
-        event.preventDefault()
-        const sectionId = event.currentTarget.querySelector('a').getAttribute('href')
-        const section = document.querySelector(sectionId)
-        section.scrollIntoView({ behavior: 'smooth' })
-      }
-
       // Function to scroll to the active item
       function scrollToActiveNavItem() {
         const navbar = document.querySelector('.navbar-list')
@@ -2915,8 +2914,6 @@ padding: 8px 16px;
 
         const navbarToHide = document.querySelector('.navbar')
 
-        console.log(activeSection)
-
         if (
           activeSection === 'shopify-section-header'
           || activeSection === 'head-section'
@@ -2944,13 +2941,31 @@ padding: 8px 16px;
         }
       }
 
-      navbarItems.forEach(item => {
-        item.addEventListener('click', handleNavbarItemClick)
-      })
+      const waitForjQuery = setInterval(() => {
+        if (jQuery && jQuery.fn.jquery) {
+          clearInterval(waitForjQuery)
 
-      navSectionItems.forEach(item => {
-        item.addEventListener('click', handleNavbarItemClick)
-      })
+          // Function to handle navbar item click
+          function handleNavbarItemClick(event) {
+            event.preventDefault()
+            const sectionId = $(this).find('a').attr('href')
+            const $section = $(sectionId)
+
+            $('html, body').animate({
+              scrollTop: $section.offset().top
+            }, 1000) // You can adjust the duration (in milliseconds) for smooth scrolling
+          }
+
+          navbarItems.forEach(item => {
+            item.addEventListener('click', handleNavbarItemClick)
+          })
+
+          navSectionItems.forEach(item => {
+            item.addEventListener('click', handleNavbarItemClick)
+          })
+        }
+      }, WAIT_INTERVAL_TIMEOUT)
+
 
       window.addEventListener("scroll", isNavbarTouchingSection)
     }
