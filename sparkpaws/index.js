@@ -1258,6 +1258,7 @@ const mainScreen = /*html*/ `
         .crs_cta .img img.mob {
             display: block;
             height: ${german ? '93.46667': australia ? '89.46667' : '95.46667'}vw;
+            ${uk ? 'height: calc(100% - 8.26667vw);' : ''}
             object-position: center -8.26667vw;
             object-fit: cover;
         }
@@ -1265,6 +1266,7 @@ const mainScreen = /*html*/ `
             height: 44.33vw;
             object-fit: cover;
             object-position: center -${australia ? '98' : '104'}vw;
+            ${uk ? 'display: none;' : ''}
         }
         .crs_cta {
             flex-direction: column;
@@ -1280,6 +1282,7 @@ const mainScreen = /*html*/ `
             flex-direction: row;
             column-gap: 16px;
             padding: 24px 24px 5px;
+            ${uk ? 'display: none;' : ''}
         }
         .crs_title a {
             order: -1;
@@ -2249,6 +2252,9 @@ let mut = new MutationObserver(function (muts) {
       let price = objHoliday[i].price.toString().replace(req, '$1.$2')
       let compare = objHoliday[i].compare_at_price_min.toString().replace(req, '$1.$2')
 
+      let removeZeroPrice = price.split('.00') ? price.split('.00')[0] : price.split(' ')[0]
+      let removeZeroCompare = compare.split('.00') ? compare.split('.00')[0] : compare.split(' ')[0]
+
       sliders2 += `<div class="swiper-slide">
                             <div class="ProductItem " style="visibility: inherit; opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">
                                 <div class="ProductItem__Wrapper">
@@ -2299,10 +2305,10 @@ let mut = new MutationObserver(function (muts) {
                                         </div>
                                         <div class="ProductItem__PriceList  Heading">
                                             <span class="ProductItem__Price Price Price--highlight Text--subdued">${
-                                              currency + price
+                                              currency + removeZeroPrice
                                             }</span>
                                             <span class="ProductItem__Price Price Price--compareAt Text--subdued">${
-                                              currency + compare
+                                              currency + removeZeroCompare
                                             }</span>
                                         </div>
                                     </div>
