@@ -730,7 +730,7 @@ line-height: 18px;
 text-decoration-line: underline;
 margin-top: 5px;
 }
-.description_new_block +div{
+.new_tab +div{
   display: none;
 }
 /*production_delivery */
@@ -1441,6 +1441,10 @@ padding: 4px 8px;
 }
 .new_txt_klarna b{
   font-weight: 600;
+}
+/*new_tab */
+.new_tab{
+  margin-top: 16px;
 }
 @media (max-width: 1180px) {
   .beautifully_packaged_container {
@@ -2270,11 +2274,15 @@ button.syte-discovery.syte-integration-injected .button-text{
         if (document.querySelector(".beautifully_packaged_box") && !document.querySelector(".new_tab")) {
           document.querySelector(".beautifully_packaged_box").insertAdjacentHTML("beforebegin", `<div class="new_tab"></div>`);
         }
-        if (document.querySelector(".new_tab")) {
-          document.querySelectorAll(".product-block.product-block--tab").forEach((el) => {
-            document.querySelector(".new_tab").insertAdjacentElement("beforeend", el);
-          });
+      } else {
+        if (document.querySelector(".description_new_block") && !document.querySelector(".new_tab")) {
+          document.querySelector(".description_new_block").insertAdjacentHTML("afterend", `<div class="new_tab"></div>`);
         }
+      }
+      if (document.querySelector(".new_tab")) {
+        document.querySelectorAll(".product-block.product-block--tab").forEach((el) => {
+          document.querySelector(".new_tab").insertAdjacentElement("beforeend", el);
+        });
       }
 
       //Best Sellers
@@ -3324,6 +3332,19 @@ button.syte-discovery.syte-integration-injected .button-text{
 
       waitForElement(`#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b`).then((el) => {
         handleVisibility(el, ["exp_barriers_v_k_ft", `{{focusTime}}`, "Visibility", "Klarna"]);
+      });
+      //
+      waitForElement(".get_discount_block_applied").then((el) => {
+        handleVisibility(el, ["exp_barriers_l_v_you_save", "{{focusTime}}", "Visibility", "You save $50"]);
+      });
+      waitForElement(".new_benefits").then((el) => {
+        handleVisibility(el, ["exp_barriers_l_v_sh_ret", "{{focusTime}}", "Visibility", "Free shipping and Returns"]);
+      });
+      waitForElement(".description_body.no_visib").then((el) => {
+        handleVisibility(el, ["exp_barriers_l_v_descr", "{{focusTime}}", "Visibility", "Description"]);
+      });
+      waitForElement(".new_tab").then((el) => {
+        handleVisibility(el, ["exp_barriers_l_v_details", "{{focusTime}}", "Visibility", "Details"]);
       });
     }
 
