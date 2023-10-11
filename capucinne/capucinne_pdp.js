@@ -3227,6 +3227,11 @@ button.syte-discovery.syte-integration-injected .button-text{
               console.log(el);
               localStorage.setItem("shorterProduction", "yes");
               if (localStorage.getItem("shorterProduction")) {
+                if (document.querySelector(".new_rush_order")) {
+                  document.querySelector(".new_rush_order .new_rush_order_title").style.display = "none";
+                  document.querySelector(".new_rush_order .one-half").style.display = "none";
+                }
+
                 const options = { day: "2-digit", month: "short" };
                 const date = new Date();
                 let dateAfter8Weeks = new Date(date.getTime() + 4 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
