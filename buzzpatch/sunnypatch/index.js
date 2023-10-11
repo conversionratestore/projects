@@ -334,6 +334,7 @@ let style = `
     }
     .sidebar .reviews-slide {
         border: none;
+        display: none;
     }
     .popup {
         width: 94%;
@@ -411,6 +412,9 @@ let style = `
         padding-inline: 15px;
         height: 100vh;
         overflow-y: auto;
+    }
+    .sidebar .crs-img  {
+        margin: 12px 0;
     }
     .crs-img img {
         margin: 0!important;
@@ -728,11 +732,13 @@ let init = setInterval(() => {
 
         document.querySelector('#getNow .free-shipping-checkout').src = dir + 'free-shipping-worldwide.svg';
         
-        document.querySelector('#getNow img.days').insertAdjacentHTML('beforebegin',`
+        const imageBlock = `
         <div class="crs-img d-flex align-items-center justify-content-center">
             <img src="${dir}rated-30.png" alt="image" class="mr-3">
             <img src="${dir}rated.svg" alt="image">
-        </div>`)
+        </div>`;
+
+        document.querySelector('#getNow img.days').insertAdjacentHTML('beforebegin', imageBlock)
 
         document.querySelector('.title-logo').insertAdjacentHTML('afterend', `
         <img src="${dir}sunnypatches.svg" alt="image">`);
@@ -749,7 +755,7 @@ let init = setInterval(() => {
             </svg>
         </button>`)
 
-        document.querySelector('.reviews-slide img').src = dir + 'rated.svg';
+        document.querySelector('.reviews-slide').insertAdjacentHTML('beforebegin', imageBlock)
 
         document.querySelector('.sidebar').insertAdjacentHTML('beforeend', modal)
 
