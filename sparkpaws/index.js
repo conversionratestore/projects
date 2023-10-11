@@ -2210,9 +2210,9 @@ let mut = new MutationObserver(function (muts) {
     document
       .querySelectorAll('#shopify-section-template--15879345635509__featured-collections .Grid__Cell')
       .forEach((item, index) => {
-        let price = item.querySelector('.Price').innerHTML.trim()
+        let price = item.querySelector('.Price').innerText.trim()
         let compare = item.querySelector('.Price.Price--compareAt')
-          ? item.querySelector('.Price.Price--compareAt').innerHTML.trim()
+          ? item.querySelector('.Price.Price--compareAt').innerText.trim()
           : ''
 
         let removeZeroPrice = price.split('.00') ? price.split('.00')[0] : price.split(' ')[0]
