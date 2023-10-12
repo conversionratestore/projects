@@ -148,7 +148,7 @@ form label {
     margin-left: 15px;
 }
 .social-auth__container {
-    margin: 24px 0;
+    // margin: 24px 0;
     padding: 0;
 }
 .social-auth__divider {
@@ -323,10 +323,10 @@ input[type="checkbox"]:checked ~ .check {
     margin: 0;
 }
 .samsara .form-actions {
-    padding-bottom: 15px;
+    padding-bottom: 0;
 }
 .samsara .user-register-form .form-actions {
-    padding: 0 0 15px 0;
+    padding: 0 0 0 0;
 }
 .form-actions .button[value="Create new account"], #edit-actions .form-submit {
     display: none;
@@ -369,7 +369,7 @@ input[type="checkbox"]:checked ~ .check {
     font-size: 14px;
     line-height: 24px;
     color: #555555;
-    margin: 24px 0 0 0!important;
+    // margin: 24px 0 0 0!important;
 }
 .singup a {
     text-decoration-line: underline;
@@ -647,12 +647,12 @@ function init() {
           window.location.href.includes('/yogi/register')) &&
         document.querySelector('form h1')
       ) {
-        document
-          .querySelector('form h1')
-          .after(document.querySelector('.social-auth__container'));
-        document
-          .querySelector('form h1')
-          .after(document.querySelector('.social-auth__networks'));
+        // document
+        //   .querySelector('form h1')
+        //   .after(document.querySelector('.social-auth__container'));
+        // document
+        //   .querySelector('form h1')
+        //   .after(document.querySelector('.social-auth__networks'));
 
         if (
           document.querySelector('.messages.messages--status') &&
@@ -699,10 +699,17 @@ function init() {
                     font-weight: 700;
                 `;
 
+        // document
+        //   .querySelector('#edit-actions .form-submit')
+        //   .insertAdjacentHTML(
+        //     'afterend',
+        //     `<p class="text-center singup">Don’t have an account? <a href="/yogi/register">Sign Up</a></p>`
+        //   );
+
         document
-          .querySelector('#edit-actions .form-submit')
-          .insertAdjacentHTML(
-            'afterend',
+          .querySelector('#block-legalacceptcopy')
+          ?.insertAdjacentHTML(
+            'beforebegin',
             `<p class="text-center singup">Don’t have an account? <a href="/yogi/register">Sign Up</a></p>`
           );
 
@@ -1113,7 +1120,14 @@ function init() {
           .querySelector('#edit-actions .form-submit')
           .insertAdjacentHTML(
             'afterend',
-            `<button type="button" class="btn-reg">Create an account</button><p class="text-center singup">Already have an account? <a href="/yogi/login">Log in</a></p>`
+            `<button type="button" class="btn-reg">Create an account</button>`
+          );
+
+        document
+          .querySelector('#block-legalacceptcopy')
+          ?.insertAdjacentHTML(
+            'beforebegin',
+            `<p class="text-center singup">Already have an account? <a href="/yogi/login">Log in</a></p>`
           );
 
         document.querySelector('.singup a').href =
