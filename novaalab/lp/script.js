@@ -3409,7 +3409,7 @@ padding: 8px 16px;
     const productTableRowTemplate = (name, link, src, zones, benefits, lights, size, price) => /*html*/`
   <tr role="row">
     <td data-cell="Products" role="cell">
-      <a href="${link}">
+      <a href="${link}" class="table__img">
         <img src="${src}" alt="${name}">
       </a>
       <div>
@@ -3456,8 +3456,17 @@ padding: 8px 16px;
       .then(el => el.insertAdjacentHTML('beforeend', tableRowsHTML))
 
     waitForElement('.tables-wrapper').then(el => el.addEventListener('click', (e) => {
+
       if (e.target.matches('.button') || e.target.closest('.button')) {
         pushDataLayer('exp_hopg_impr_b_scc_pn', `Learn more - ${e.target.closest('div').querySelector('.table__product-name').innerText}`, 'Button', 'Section Compare and choose!')
+      }
+
+      if (e.target.matches('.table__img') || e.target.closest('.table__img')) {
+        pushDataLayer('exp_hopg_impr_b_scc_pn_image', 'Image', 'Image', 'Section Compare and choose!')
+      }
+
+      if (e.target.matches('.table__product-name') || e.target.closest('.table__product-name')) {
+        pushDataLayer('exp_hopg_impr_b_scc_pn_title', 'Image text', 'Text', 'Section Compare and choose!')
       }
     }))
 
