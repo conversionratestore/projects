@@ -3436,7 +3436,6 @@ padding: 8px 16px;
       .then(el => el.insertAdjacentHTML('beforeend', tableRowsHTML))
 
     waitForElement('.tables-wrapper').then(el => el.addEventListener('click', (e) => {
-      e.preventDefault()
       if (e.target.matches('.button') || e.target.closest('.button')) {
         pushDataLayer('exp_hopg_impr_b_scc_pn', `Learn more - ${e.target.closest('div').querySelector('.table__product-name').innerText}`, 'Button', 'Section Compare and choose!')
       }
@@ -3512,7 +3511,7 @@ padding: 8px 16px;
       pushDataLayer('exp_hopg_impr_b_spmcs_cyk', 'Choose your kit 1 ', 'Button', 'Scientifically proven by more than 3,000 clinical studies')
     }))
     waitForElement('.ailments  [data-btn="choose-kit"]').then(el => el.addEventListener('click', () => {
-      pushDataLayer(['exp_hopg_impr_b_wwnlhy_cyk', 'Choose your kit 2', 'Button', 'When will Novaa Light help you?'])
+      pushDataLayer('exp_hopg_impr_b_wwnlhy_cyk', 'Choose your kit 2', 'Button', 'When will Novaa Light help you?')
     }))
 
 
