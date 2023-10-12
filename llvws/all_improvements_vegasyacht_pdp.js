@@ -803,6 +803,9 @@ h2.new_title::after {
   transition: 0.35s;
   object-fit: cover;
 }
+.envelope_var{
+  display: none !important;
+}
 
 @media (hover: hover) {
   .main_slider_sync .swiper-slide:not(.swiper-slide-thumb-active) img:hover {
@@ -1322,7 +1325,7 @@ h2.new_title::after {
               <li>
                 <a href="tel:+39702-600-9860"><i class="fas fa-phone-alt"></i> 702-600-9860</a>
               </li>
-              <li>
+              <li class="envelope_var">
                 <a href="mailto:lauren@llvws.com"><i class="fas fa-envelope"></i> lauren@llvws.com</a>
               </li>
               <li style="padding: 0; font-style: italic">*Texting will get the fastest response</li>
