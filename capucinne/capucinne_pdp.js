@@ -1592,7 +1592,7 @@ h1.h2.product-single__title{
       margin: 0 0 8px !important;
 }
 .size_guide{
-      top: -26px;
+      top: 0;
 }
 .size_guide p{
       font-size: 13px;
