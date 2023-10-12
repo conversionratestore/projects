@@ -1599,9 +1599,8 @@ section.ailments .col-right {
   overflow: auto;
   white-space: nowrap;
   text-align: center;
-
+  transition: scroll 1s ease; 
 }
-
 .navbar-item {
   display: inline-block;
 
