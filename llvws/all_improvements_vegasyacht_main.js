@@ -630,6 +630,9 @@ body.open_var {
 .our_clients_say_slider .slick-slide {
   margin: 0 1px;
 }
+.envelope_var{
+  display: none !important;
+}
 @media (max-width: 1280px) {
   .private_event_list {
     gap: 50px;
@@ -1012,7 +1015,7 @@ body.open_var {
             <ul id="footer-social" class="cp">
               <li><i class="fas fa-map-marker-alt"></i> 20 Costa di Lago, Suite 130, Henderson, NV 89011, US</li>
               <li><a href="tel:+39702-600-9860"><i class="fas fa-phone-alt"></i> 702-600-9860</a></li>
-              <li><a href="mailto:lauren@llvws.com"><i class="fas fa-envelope"></i> lauren@llvws.com</a></li>
+              <li class="envelope_var"><a href="mailto:lauren@llvws.com"><i class="fas fa-envelope"></i> lauren@llvws.com</a></li>
               <li style="padding: 0; font-style: italic">*Texting will get the fastest response</li>
             </ul>
           </div>
