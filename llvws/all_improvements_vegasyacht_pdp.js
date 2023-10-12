@@ -1531,6 +1531,11 @@ h2.new_title::after {
       3: [`Throwback Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-07_04-01-25.jpg`, `https://vegasyacht.com/throwback-cruise-at-lake-las-vegas/`],
       4: [`Sunset Sessions`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2022/06/sunset.jpg`, `https://vegasyacht.com/sunset-sessions-cruise/`],
     };
+    let arrpMayAlsoLikeListThird = {
+      1: [`Punk Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-10-11_03-55-55.jpg`, `https://vegasyacht.com/punk-cruise/`],
+      2: [`Y2K Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/Y2K.jpg`, `https://vegasyacht.com/y2k-cruise/`],
+      3: [`Haunted Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-09-12_01-40-08-1024x1024.jpg`, `https://vegasyacht.com/haunted-cruise-at-lake-las-vegas/`],
+    };
     let arrpMayAlsoLikeListMob = {
       1: [`Yacht After Dark Neon Party`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-08-09_03-45-31-1024x1024.jpg`, `https://vegasyacht.com/yacht-after-dark-neon-party/`],
       2: [`Emo Night`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/emo-night.jpg`, `https://vegasyacht.com/emo-night/`],
@@ -1540,6 +1545,9 @@ h2.new_title::after {
       6: [`Sangria Sunday`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-06_03-53-29-300x300.jpg`, `https://vegasyacht.com/sangria-sunday/`],
       7: [`Throwback Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-07_04-01-25.jpg`, `https://vegasyacht.com/throwback-cruise-at-lake-las-vegas/`],
       8: [`Sunset Sessions`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2022/06/sunset.jpg`, `https://vegasyacht.com/sunset-sessions-cruise/`],
+      9: [`Punk Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-10-11_03-55-55.jpg`, `https://vegasyacht.com/punk-cruise/`],
+      10: [`Y2K Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/Y2K.jpg`, `https://vegasyacht.com/y2k-cruise/`],
+      11: [`Haunted Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-09-12_01-40-08-1024x1024.jpg`, `https://vegasyacht.com/haunted-cruise-at-lake-las-vegas/`],
     };
     let arrImgSwiperNeonParty = {
       1: ["https://vegasyacht.com/wp-content/uploads/2023/08/party_after_dark.png"],
@@ -1599,6 +1607,20 @@ h2.new_title::after {
     };
     let arrImgSwiperHauntedCruise = {
       1: ["https://vegasyacht.com/wp-content/uploads/2023/09/Haunted-Cruise-at-Lake-Las-Vegas.jpg"],
+      2: ["https://drive.google.com/uc?export=view&id=1WvZr4ZXFkpxnp-qFvcFs9t7hXzhGrFgS"],
+      3: ["https://drive.google.com/uc?export=view&id=1rX5Ju9IGpTvewfZp_Y-6oUlE4CxcWAJG"],
+      4: ["https://drive.google.com/uc?export=view&id=1zo15RcVPo3UaoKNP6X6_bBb1sN_FNvVK"],
+      5: ["https://drive.google.com/uc?export=view&id=12KieCMeooo_fAHC6xx7t9BBUGC-7RmcW"],
+    };
+    let arrImgSwiperPunkCruise = {
+      1: ["https://vegasyacht.com/wp-content/uploads/2023/10/Punk-Cruise.jpg"],
+      2: ["https://drive.google.com/uc?export=view&id=1WvZr4ZXFkpxnp-qFvcFs9t7hXzhGrFgS"],
+      3: ["https://drive.google.com/uc?export=view&id=1rX5Ju9IGpTvewfZp_Y-6oUlE4CxcWAJG"],
+      4: ["https://drive.google.com/uc?export=view&id=1qGxEjgbMGUTND9iCyqXe5w2i14wpRUme"],
+      5: ["https://drive.google.com/uc?export=view&id=1tvVqyxrOcyI_5CgjY5s3Xpa3vY0P9iQg"],
+    };
+    let arrImgSwiperYKCruise = {
+      1: ["https://vegasyacht.com/wp-content/uploads/2023/10/Y2K.jpg"],
       2: ["https://drive.google.com/uc?export=view&id=1WvZr4ZXFkpxnp-qFvcFs9t7hXzhGrFgS"],
       3: ["https://drive.google.com/uc?export=view&id=1rX5Ju9IGpTvewfZp_Y-6oUlE4CxcWAJG"],
       4: ["https://drive.google.com/uc?export=view&id=1zo15RcVPo3UaoKNP6X6_bBb1sN_FNvVK"],
@@ -1673,6 +1695,18 @@ h2.new_title::after {
           for (let key in arrImgSwiperHauntedCruise) {
             document.querySelector(".main_slider .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperHauntedCruise[key][0]));
             document.querySelector(".main_slider_sync .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperHauntedCruise[key][0]));
+          }
+        }
+        if (window.location.pathname === "/punk-cruise/") {
+          for (let key in arrImgSwiperPunkCruise) {
+            document.querySelector(".main_slider .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperPunkCruise[key][0]));
+            document.querySelector(".main_slider_sync .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperPunkCruise[key][0]));
+          }
+        }
+        if (window.location.pathname === "/y2k-cruise/") {
+          for (let key in arrImgSwiperYKCruise) {
+            document.querySelector(".main_slider .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperYKCruise[key][0]));
+            document.querySelector(".main_slider_sync .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperYKCruise[key][0]));
           }
         }
       }
