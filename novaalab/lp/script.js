@@ -2948,6 +2948,13 @@ padding: 8px 16px;
           // Function to handle navbar item click
           function handleNavbarItemClick(event) {
             event.preventDefault()
+
+            if ($(this).closest('.navbar-list').length > 0) {
+              pushDataLayer('exp_hopg_impr_b_header_menu_item', $(this).find('a').text(), 'Button', 'Header')
+            } else {
+              pushDataLayer('exp_hopg_impr_b_whiwh_bn', $(this).find('a').text(), 'Button', 'What health issue do you want to heal?')
+            }
+
             const sectionId = $(this).find('a').attr('href')
             const $section = $(sectionId)
 
@@ -2979,6 +2986,34 @@ padding: 8px 16px;
 
       document.querySelectorAll('[data-product-id]').forEach(btn => {
         btn.addEventListener('click', () => {
+          const sectionId = btn.closest('section').id
+
+          switch (sectionId) {
+            case 'head-section':
+              pushDataLayer('exp_hopg_impr_b_fs_sdhp', 'Shop Deep Healing Pad', 'Button', 'First screen')
+              break
+            case 'navigation-section':
+              break
+            case 'back-pain-section':
+              pushDataLayer('exp_hopg_impr_b_bps_atc', 'Add to cart', 'Button', 'For back pain section')
+              break
+            case 'knee-section':
+              pushDataLayer('exp_hopg_impr_b_khp_atc', 'Add to cart', 'Button', 'For knee or hand pain')
+              break
+            case 'joint-section':
+              pushDataLayer('exp_hopg_impr_b_jpa_atc', 'Add to cart', 'Button', 'For joint pain and arthritis')
+              break
+            case 'periodontal-section':
+              pushDataLayer('exp_hopg_impr_b_pgd_atc', 'Add to cart', 'Button', 'For periodontal (gum) disease')
+              break
+            case 'skin-section':
+              pushDataLayer('exp_hopg_impr_b_hgs_atc', 'Add to cart', 'Button', 'For a healthy and glowing skin')
+              break
+
+            default:
+              break
+          }
+
           addProductToCart(btn.dataset.productId)
         })
       })
@@ -2989,6 +3024,137 @@ padding: 8px 16px;
     if (typeof clarity === 'function') {
       clearInterval(recordClarity)
       clarity('set', `CLARITY_NAME`, 'variant_1')
+    }
+  }, WAIT_INTERVAL_TIMEOUT)
+
+  waitForElement('.even-columns a').then(el => el.addEventListener('click', () => {
+    pushDataLayer('exp_hopg_impr_b_fs_arlt', 'About red light therapy', 'Button', 'First screen')
+  }))
+
+  const waitForReviews = setInterval(() => {
+    if (document.querySelectorAll('.reviews--plugin a')[1]) {
+      clearInterval(waitForReviews)
+
+      document.querySelectorAll('.reviews--plugin a').forEach(element => {
+        element.addEventListener('click', () => {
+          pushDataLayer('exp_hopg_impr_l_fs_ysr', 'Yellow star reviews', 'Link', 'First screen')
+        })
+      })
+    }
+  }, WAIT_INTERVAL_TIMEOUT)
+
+  const waitForReviewsTrust = setInterval(() => {
+    if (document.querySelectorAll('.reviews--trust  a')[1]) {
+      clearInterval(waitForReviewsTrust)
+
+      document.querySelectorAll('.reviews--trust  a').forEach(element => {
+        element.addEventListener('click', () => {
+          pushDataLayer('exp_hopg_impr_l_fs_gsr', 'Green star reviews', 'Link', 'First screen')
+        })
+      })
+    }
+  }, WAIT_INTERVAL_TIMEOUT)
+
+  const waitForProducts = setInterval(() => {
+    if (document.querySelectorAll('.product')[9]) {
+      clearInterval(waitForProducts)
+
+      document.querySelectorAll('.product').forEach(element => {
+        element.addEventListener('click', (e) => {
+
+          const sectionId = e.target.closest('section').id
+
+          if (e.target.matches('.button') || e.target.closest('.button')) {
+            switch (sectionId) {
+              case 'head-section':
+
+                break
+              case 'navigation-section':
+                break
+              case 'back-pain-section':
+                pushDataLayer('exp_hopg_impr_b_bps_lm', 'Learn more', 'Button', 'For back pain section')
+                break
+              case 'knee-section':
+                pushDataLayer('exp_hopg_impr_b_khp_lm', 'Learn more', 'Button', 'For knee or hand pain')
+                break
+              case 'joint-section':
+                pushDataLayer('exp_hopg_impr_b_jpa_lm', 'Learn more', 'Button', 'For joint pain and arthritis')
+                break
+              case 'periodontal-section':
+                pushDataLayer('exp_hopg_impr_b_pgd_lm', 'Learn more', 'Button', 'For periodontal (gum) disease')
+                break
+              case 'skin-section':
+                pushDataLayer('exp_hopg_impr_b_hgs_lm', 'Learn more', 'Button', 'For a healthy and glowing skin')
+                break
+              default:
+                break
+            }
+          }
+          if (e.target.matches('.product__img-wrapper a') || e.target.closest('.product__img-wrapper a')) {
+            switch (sectionId) {
+              case 'head-section':
+
+                break
+              case 'navigation-section':
+                break
+              case 'back-pain-section':
+                pushDataLayer('exp_hopg_impr_i_bps_i', 'Image', 'Image', 'For back pain section')
+                break
+              case 'knee-section':
+                pushDataLayer('exp_hopg_impr_i_khp_i', 'Image', 'Image', 'For knee or hand pain')
+                break
+              case 'joint-section':
+                pushDataLayer('exp_hopg_impr_i_jpa_i', 'Image', 'Image', 'For joint pain and arthritis')
+                break
+              case 'periodontal-section':
+                pushDataLayer('exp_hopg_impr_i_pgd_i', 'Image', 'Image', 'For periodontal (gum) disease')
+                break
+              case 'skin-section':
+                pushDataLayer('exp_hopg_impr_i_hgs_i', 'Image', 'Image', 'For a healthy and glowing skin')
+                break
+
+              default:
+                break
+            }
+          }
+          if (e.target.matches('.product__name') || e.target.closest('.product__name')) {
+
+            switch (sectionId) {
+              case 'head-section':
+
+                break
+              case 'navigation-section':
+                break
+              case 'back-pain-section':
+                pushDataLayer('exp_hopg_impr_t_bps_it', 'Image text', 'Text', 'For back pain section')
+                break
+              case 'knee-section':
+                pushDataLayer('exp_hopg_impr_t_khp_it', 'Image text', 'Text', 'For knee or hand pain')
+                break
+              case 'joint-section':
+                pushDataLayer('exp_hopg_impr_t_jpa_it', 'Image text', 'Text', 'For joint pain and arthritis')
+                break
+              case 'periodontal-section':
+                pushDataLayer('exp_hopg_impr_t_pgd_it', 'Image text', 'Text', 'For periodontal (gum) disease')
+                break
+              case 'skin-section':
+                pushDataLayer('exp_hopg_impr_t_hgs_it', 'Image text', 'Text', 'For a healthy and glowing skin')
+                break
+
+              default:
+                break
+            }
+          }
+        })
+      })
+    }
+  }, WAIT_INTERVAL_TIMEOUT)
+
+  const record = setInterval(() => {
+    if (typeof clarity === 'function') {
+      clearInterval(record)
+
+      clarity('set', 'exp_hopg_impr', 'variant_1')
     }
   }, WAIT_INTERVAL_TIMEOUT)
 
@@ -3048,7 +3214,7 @@ padding: 8px 16px;
   //   }
   // }
 
-  function pushDataLayer([event_name, event_desc, event_type, event_loc]) { // Send a Google Analytics event
+  function pushDataLayer(event_name, event_desc, event_type, event_loc) { // Send a Google Analytics event
     const eventData = {
       'event': 'event-to-ga4', event_name, event_desc, event_type, event_loc
     }
@@ -3269,38 +3435,12 @@ padding: 8px 16px;
     waitForElement('.table-wrapper tbody')
       .then(el => el.insertAdjacentHTML('beforeend', tableRowsHTML))
 
-    // waitForElement('.tables-wrapper').then(el => {
-    //   handleVisibilityAndHover(
-    //     el,
-    //     ['exp_pl_improv_v_ct', 'Сomparison table', 'Visibility', 'Comparison table'],
-    //     0.3
-    //   )
-
-    //   el.addEventListener('click', (e) => {
-    //     const target = e.target
-
-    //     const productName =
-    //       target.closest("[data-product-name]")?.dataset.productName
-    //       || target.closest("[data-cell='Products']")?.querySelector('.table__product-name')?.innerText
-
-    //     if (productName) {
-    //       switch (true) {
-    //         case target.classList.contains('btn-learn'):
-    //           pushDataLayer(['exp_pl_improv_b_lm_ct', `Learn more - ${productName}`, 'Button', 'Comparison table'])
-    //           break
-
-    //         case (target.classList.contains('table-mobile__name') || target.classList.contains('table__product-name')):
-    //           pushDataLayer(['exp_pl_improv_t_ct', `${productName}`, 'Title', 'Comparison table'])
-    //           break
-
-    //         case target.matches('a img'):
-    //           pushDataLayer(['exp_pl_improv_i_ct', `${productName}`, 'Image', 'Comparison table'])
-    //           break
-    //       }
-    //     }
-    //   })
-    // }
-    // )
+    waitForElement('.tables-wrapper').then(el => el.addEventListener('click', (e) => {
+      e.preventDefault()
+      if (e.target.matches('.button') || e.target.closest('.button')) {
+        pushDataLayer('exp_hopg_impr_b_scc_pn', `Learn more - ${e.target.closest('div').querySelector('.table__product-name').innerText}`, 'Button', 'Section Compare and choose!')
+      }
+    }))
 
     const productTableRowsMobileTemplate = (data) => {
       const rowConfig = [
@@ -3367,6 +3507,15 @@ padding: 8px 16px;
     // .then(
     //   () => document.querySelector('.table-mobile-wrapper').addEventListener('scroll', handleHorizontalScroll)
     // )
+
+    waitForElement('.efficient__content [data-btn="choose-kit"]').then(el => el.addEventListener('click', () => {
+      pushDataLayer('exp_hopg_impr_b_spmcs_cyk', 'Choose your kit 1 ', 'Button', 'Scientifically proven by more than 3,000 clinical studies')
+    }))
+    waitForElement('.ailments  [data-btn="choose-kit"]').then(el => el.addEventListener('click', () => {
+      pushDataLayer(['exp_hopg_impr_b_wwnlhy_cyk', 'Choose your kit 2', 'Button', 'When will Novaa Light help you?'])
+    }))
+
+
   }
 
   function drawProduct(name) {
@@ -3375,7 +3524,7 @@ padding: 8px 16px;
     const listItems = item.list.map(item => `<li><span>${item}</span></li>`).join('')
 
     return /*html*/`
-      <div class="product ff-primary">
+      <div class="product ff-primary" data-product-name="${item.name}">
               <div class="product__img-wrapper">
                 <div class="product__moneyback">
                   <img src="${IMAGE_DIR_URL}/guranteed-small.svg" alt="">
