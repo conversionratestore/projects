@@ -3610,4 +3610,8 @@ padding: 8px 16px;
       console.error("An error occurred while adding item to cart:", error)
     }
   }
+
+  setTimeout(() => {
+    document.querySelector('.exp-loading')?.remove() 
+  }, 4000)
 })()
