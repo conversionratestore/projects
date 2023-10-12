@@ -1232,7 +1232,7 @@ td[data-cell="Price"] small {
 .table-mobile-wrapper .table-mobile {
   border-collapse: collapse;
   height: 1px;
-  /* margin-right: 16px; */
+  margin-right: 16px; 
 }
 
 .table-mobile caption {
@@ -1582,11 +1582,11 @@ section.ailments .col-right {
   box-shadow: 0px 10px 10px 0px rgba(60, 32, 88, 0.08);
   z-index: 999;
   transform-origin: top;
+  transition: scroll 1s ease-in-out;
 }
 
 .navbar.navbar--show {
   transform: scaleY(1);
-  transition: transform .5s ease-in-out;
 }
 
 .navbar-list {
@@ -1599,7 +1599,7 @@ section.ailments .col-right {
   overflow: auto;
   white-space: nowrap;
   text-align: center;
-  transition: scroll 1s ease; 
+  transition: scroll 1s ease-in-out;
 }
 .navbar-item {
   display: inline-block;
@@ -2865,36 +2865,51 @@ padding: 8px 16px;
 
       const navbar = document.querySelector(".navbar")
 
-      // Function to scroll to the active item
-      function scrollToActiveNavItem() {
-        const navbar = document.querySelector('.navbar-list')
-        const activeItem = document.querySelector('.navbar-item--active')
+      const list = document.querySelector(".navbar ")
+      const container = document.querySelector(".navbar-list")
 
-        if (navbar && activeItem) {
-          const navbarRect = navbar.getBoundingClientRect()
-          const activeItemRect = activeItem.getBoundingClientRect()
-
-          // Calculate the left offset of the active item relative to the navbar
-          const activeItemOffset = activeItemRect.left - navbarRect.left
-
-          // Calculate the desired spacing on the left and right sides
+      // Функція для плавного скроллу до активного елемента
+      function smoothScrollToActiveElement() {
+        const activeElement = list.querySelector(".navbar-item--active")
+        if (activeElement) {
+          const containerRect = container.getBoundingClientRect()
+          const elementRect = activeElement.getBoundingClientRect()
           const spacing = 20 // Adjust this value as needed
 
-          // Calculate the amount to scroll to make the active item fully visible with spacing
-          let scrollAmount = 0
-          if (activeItemOffset < spacing) {
-            // Scroll left to make the entire active item visible with spacing
-            scrollAmount = activeItemOffset - spacing
-          } else if (activeItemOffset + activeItemRect.width > navbarRect.width - spacing) {
-            // Scroll right to make the entire active item visible with spacing
-            scrollAmount = activeItemOffset + activeItemRect.width - (navbarRect.width - spacing)
+          // Calculate the target scroll position with spacing
+          const targetScrollLeft = elementRect.left - containerRect.left - spacing
+
+          // Initial scroll position
+          let startScrollLeft = container.scrollLeft
+          let currentTime = 0
+          const duration = 200 // Duration of the animation in milliseconds
+
+          // Animation function
+          function animateScroll(timestamp) {
+            if (!currentTime) {
+              currentTime = timestamp
+            }
+            const progress = timestamp - currentTime
+            const newScrollLeft = easeInOutCubic(progress, startScrollLeft, targetScrollLeft, duration)
+
+            container.scrollLeft = newScrollLeft
+
+            if (progress < duration) {
+              requestAnimationFrame(animateScroll)
+            }
           }
 
-          // Scroll only if necessary
-          if (scrollAmount !== 0) {
-            navbar.scrollLeft += scrollAmount
-          }
+          // Start the animation
+          requestAnimationFrame(animateScroll)
         }
+      }
+
+      // Function for easing animation (ease-in-out)
+      function easeInOutCubic(t, b, c, d) {
+        t /= d / 2
+        if (t < 1) return (c / 2) * t * t * t + b
+        t -= 2
+        return (c / 2) * (t * t * t + 2) + b
       }
 
       // Function to check if the bottom of the navbar touches the section
@@ -2934,7 +2949,7 @@ padding: 8px 16px;
             }
           })
 
-          scrollToActiveNavItem()
+          smoothScrollToActiveElement()
         } else {
           document.querySelector('.navbar-item--active')?.classList.remove('navbar-item--active')
         }
@@ -3332,6 +3347,12 @@ padding: 8px 16px;
         benefits: `Extra Power, Portable, Shorter Sessions`,
         lights: [
           {
+            iconName: 'red',
+            description: 'Red',
+            nm: '630',
+            number: ``
+          },
+          {
             iconName: 'deep_red',
             description: 'Deep red',
             nm: '660',
@@ -3611,6 +3632,6 @@ padding: 8px 16px;
   }
 
   setTimeout(() => {
-    document.querySelector('.exp-loading')?.remove() 
+    document.querySelector('.exp-loading')?.remove()
   }, 4000)
 })()
