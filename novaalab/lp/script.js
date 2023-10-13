@@ -3176,7 +3176,7 @@ padding: 8px 16px;
       document.querySelectorAll('[data-product-id]').forEach(btn => {
         btn.addEventListener('click', () => {
           const sectionId = btn.closest('section').id
-          const productName = btn.closest('data-product-name').dataset.productName
+          const productName = btn.closest('[data-product-name]').dataset.productName ? btn.closest('[data-product-name]').dataset.productName : ''
 
           switch (sectionId) {
             case 'head-section':
@@ -3251,7 +3251,7 @@ padding: 8px 16px;
         element.addEventListener('click', (e) => {
 
           const sectionId = e.target.closest('section').id
-          const productName = btn.closest('data-product-name').dataset.productName
+          const productName = element.dataset.productName
 
           if (e.target.matches('.button') || e.target.closest('.button')) {
             switch (sectionId) {
@@ -3325,7 +3325,7 @@ padding: 8px 16px;
   }, WAIT_INTERVAL_TIMEOUT)
 
   // check for the reviews section and rate stars, to update the main product rate
-  waitForElement('div.opw-fontLg.opw-textColor.opw-mb-auto.opw-capitalize').then(el => { 
+  waitForElement('div.opw-fontLg.opw-textColor.opw-mb-auto.opw-capitalize').then(el => {
     const reviews = el.innerText
     const rate = document.querySelector('.opw-font6Xl.opw-font-bold.opw-navbarTextColor.opw-pr-2')?.innerText
 
