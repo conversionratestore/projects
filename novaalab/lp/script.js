@@ -3008,7 +3008,7 @@ padding: 8px 16px;
             clearInterval(waitForLinks)
 
             document.querySelectorAll('.custom-header a').forEach(link => {
-              link.addEventListener('click', () => {
+              link.addEventListener('focus', () => {
                 if (link.closest('.bubble-cart')) {
                   pushDataLayer('exp_hopg_impr_b_header_menu_basket', 'Basket', 'Button', 'Header menu')
                 } else if (link.closest('.logo')) {
