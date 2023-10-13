@@ -480,6 +480,21 @@ class CheckoutUpdate {
         $el('.crs-heads .crs-header-current').classList.remove('crs-header-current')
       }
       $$el('.crs-heads .text-black')[ $$el('.crs-heads .text-black').length - 1].classList.add('crs-header-current')
+
+      if (!$el('.crs-calc') || !$el('.overflow-auto+.flex.flex-col.gap-2')) return
+
+      if ($el('.overflow-auto+.flex.flex-col.gap-2').innerText.includes('Shipping') && 
+        $el('.overflow-auto+.flex.flex-col.gap-2').innerText.includes('Free') && 
+        !$el('.crs-header-current').innerText.includes('Delivery') &&
+        !$el('.crs-header-current').innerText.includes('Payment')
+      ) {
+        $el('.crs-calc').style = ''
+        $el('.crs-calc').previousElementSibling.style.display = 'none'
+      } else {
+        $el('.crs-calc').style.display = 'none'
+        $el('.crs-calc').previousElementSibling.style = ''
+      }
+     
     }
   }
 
@@ -623,7 +638,7 @@ class CheckoutUpdate {
         margin-left: 4px;
       }
       .crs-promo-result {
-        margin-top: -14px;
+        margin-top: -11px;
         margin-bottom: -8px;
       }
       .crs-promo-result .name {
@@ -705,6 +720,10 @@ class CheckoutUpdate {
               from.querySelector('.crs-promo-form').hidden = true;
               from.querySelector('.crs-promo-result').hidden = false;
             })
+            let total = $el('.overflow-auto+.flex.flex-col.gap-2').innerHTML.split('Total</p><p class="text-h5 font-semibold">')[1].split('</p>')[0].replace(currency, '');
+
+            console.log(total)
+            $el('.crs-summary-total').innerHTML = `<span class="crs-compare">${total}</span> ` + (+total - amout)
           } else {
             console.log('error')
             item.parentElement.classList.add('crs-error')
@@ -726,6 +745,9 @@ class CheckoutUpdate {
             from.querySelector('.crs-promo-result').hidden = true;
             from.querySelector('.crs-get-promo').hidden = false;
           })
+          let total = $el('.overflow-auto+.flex.flex-col.gap-2').innerHTML.split('Total</p><p class="text-h5 font-semibold">')[1].split('</p>')[0];
+
+          $el('.crs-summary-total').innerHTML = total
         })
       })
     })
@@ -876,8 +898,15 @@ class CheckoutUpdate {
 
         this.createPromo(item)
       }
-      if (!item.querySelector('p')) {
+      if (!item.querySelector('p') || item.innerText.includes('Voucher') || item.innerText.includes('Discount')) {
         item.style.display = 'none'
+      }
+   
+      if (item.innerText.includes('Shipping') && 
+        item.innerText.includes('Free') && 
+        !$el('.crs-calc')
+      ) {
+        item.querySelector('p:last-child').innerHTML = `<span style="display: none">${item.querySelector('p:last-child').innerHTML}</span><span class="crs-calc">Calculated at next step</span>`
       }
     });
   }
@@ -954,6 +983,11 @@ class CheckoutUpdate {
     }
     .crs-payment-methods .PrimerCheckout__formField {
       margin-top: 24px;
+      flex-direction: row;
+      gap: 12px;
+    }
+    .crs-payment-methods .PrimerCheckout__formField > div {
+      margin-top: 0!important;
     }
     #primer-checkout-card-number-field {
       margin: 0;
@@ -1142,7 +1176,7 @@ class CheckoutUpdate {
       $el('p.text-h3').closest('.py-10').style.padding = '12px 0 24px'
     }
     $$el('form .gap-2').forEach((item, i) => {
-      if (i === 0) {
+      if (i === 0 && !item.innerText.includes('Keep me logged in')) {
         item.style.flexDirection = 'column'
         item.style.gap = '1.5rem'
       }
@@ -1240,7 +1274,11 @@ class CheckoutUpdate {
     })
     
     if ($el('.crs-promo-result')) {
-
+      // if ($el('.crs-summary-total') &&  $el('.overflow-auto+.flex.flex-col.gap-2')) {
+      //   let total = $el('.overflow-auto+.flex.flex-col.gap-2').innerHTML.split('Total</p><p class="text-h5 font-semibold">')[1].split('</p>')[0];
+      //   let amount = $el('.crs-promo-price').innerText.split($el('.crs-promo-price').innerText[2])[1]
+      //   $el('.crs-summary-total').innerHTML = `<span class="crs-compare">${total}</span> ` + (+total - +amout)
+      // }
       $$el('.flex.w-full.flex-1 .text-p').forEach((item) => {
         if (item.innerText.includes('By registering your details you agree to our')) {
   
@@ -1272,6 +1310,7 @@ class CheckoutUpdate {
             })
           }
         }
+
         if (item.className.includes('text-special-priceIncrease')) {
           item.parentElement.style.display = 'none';
           if (clickRemovePromo == false) {
