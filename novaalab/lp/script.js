@@ -933,6 +933,10 @@ section.periodontal .product__characteristics {
   display: NONE;
 }
 
+section.periodontal .product__img-wrapper {
+  background: #fff;
+}
+
 /* periodontal section END */
 
 /* skin section START */
@@ -3178,8 +3182,6 @@ padding: 8px 16px;
             case 'head-section':
               pushDataLayer('exp_hopg_impr_b_fs_sdhp', 'Shop Deep Healing Pad', 'Button', 'First screen')
               break
-            case 'navigation-section':
-              break
             case 'back-pain-section':
               pushDataLayer('exp_hopg_impr_b_bps_atc', `Add to cart - ${productName}`, 'Button', 'For back pain section')
               break
@@ -3253,11 +3255,6 @@ padding: 8px 16px;
 
           if (e.target.matches('.button') || e.target.closest('.button')) {
             switch (sectionId) {
-              case 'head-section':
-
-                break
-              case 'navigation-section':
-                break
               case 'back-pain-section':
                 pushDataLayer('exp_hopg_impr_b_bps_lm', `Learn more - ${productName}`, 'Button', 'For back pain section')
                 break
@@ -3279,11 +3276,6 @@ padding: 8px 16px;
           }
           if (e.target.matches('.product__img-wrapper a') || e.target.closest('.product__img-wrapper a')) {
             switch (sectionId) {
-              case 'head-section':
-
-                break
-              case 'navigation-section':
-                break
               case 'back-pain-section':
                 pushDataLayer('exp_hopg_impr_i_bps_i', `Image - ${productName}`, 'Image', 'For back pain section')
                 break
@@ -3307,11 +3299,6 @@ padding: 8px 16px;
           if (e.target.matches('.product__name') || e.target.closest('.product__name')) {
 
             switch (sectionId) {
-              case 'head-section':
-
-                break
-              case 'navigation-section':
-                break
               case 'back-pain-section':
                 pushDataLayer('exp_hopg_impr_t_bps_it', `Image text - ${productName}`, 'Text', 'For back pain section')
                 break
@@ -3337,34 +3324,33 @@ padding: 8px 16px;
     }
   }, WAIT_INTERVAL_TIMEOUT)
 
+  // check for the reviews section and rate stars, to update the main product rate
+  waitForElement('div.opw-fontLg.opw-textColor.opw-mb-auto.opw-capitalize').then(el => { 
+    const reviews = el.innerText
+    const rate = document.querySelector('.opw-font6Xl.opw-font-bold.opw-navbarTextColor.opw-pr-2')?.innerText
 
-  // // check for the reviews section and rate stars, to update the main product rate
-  // waitForElement('div.opw-fontLg.opw-textColor.opw-mb-auto.opw-capitalize').then(el => {
+    const waitForEl = setInterval(() => {
+      if (
+        document.querySelectorAll('.reviews--plugin a')[1]
+        && document.querySelectorAll('.reviews--plugin p')[1]
+        && document.querySelectorAll('[data-product-name="Novaa deep healing pad with remote [2023]"] .product__rate span')[2]
+      ) {
+        clearInterval(waitForEl)
 
-  //   const reviews = el.innerText
-  //   const rate = document.querySelector('.opw-font6Xl.opw-font-bold.opw-navbarTextColor.opw-pr-2')?.innerText
+        document.querySelectorAll('.reviews--plugin a').forEach(element => {
+          element.innerText = reviews.toLowerCase()
+        })
 
-  //   console.log(reviews, rate)
+        document.querySelectorAll('.reviews--plugin p').forEach(element => {
+          element.innerText = rate
+        })
 
-  //   const waitForEl = setInterval(() => {
-  //     if (
-  //       document.querySelectorAll('.reviews--plugin a')[1]
-  //       && document.querySelectorAll('.reviews--plugin p')[1]
-  //     ) {
-  //       clearInterval(waitForEl)
-
-  //       console.log('INSIDE >>>>>>>>>>>>>>>>');
-
-  //       document.querySelectorAll('.reviews--trust a').forEach(element => {
-  //         element.innerText = reviews.toLowerCase()
-  //       })
-
-  //       document.querySelectorAll('.reviews--trust p').forEach(element => {
-  //         element.innerText = rate
-  //       })
-  //     }
-  //   }, WAIT_INTERVAL_TIMEOUT)
-  // })
+        document.querySelectorAll('[data-product-name="Novaa deep healing pad with remote [2023]"] .product__rate span').forEach(element => {
+          element.innerText = rate
+        })
+      }
+    }, WAIT_INTERVAL_TIMEOUT)
+  })
 
   const record = setInterval(() => {
     if (typeof clarity === 'function') {
