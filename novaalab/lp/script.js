@@ -1217,13 +1217,11 @@ td[data-cell="Price"] small {
   display: block;
   overflow: auto;
   margin-top: 24px;
-  margin-right: -16px;
 }
 
 .table-mobile-wrapper .table-mobile {
   border-collapse: collapse;
   height: 1px;
-  margin-right: 16px; 
 }
 
 .table-mobile caption {
