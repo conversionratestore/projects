@@ -169,7 +169,7 @@
 
   const patchesInPack = /*html*/`
     <div class="patches-in-pack">
-      <p>72 patches in 3 pack - 3 month for 1 person</p>
+      <p>72 patches in 3 pack - 3 months for 1 person</p>
       <img src="//naturalpatch.com/cdn/shop/files/free-shipping-worldwide.svg?v=2160055944846624631" alt="free shipping worldwide">
     </div>`
 
@@ -194,14 +194,14 @@
     handleVisibility(el, ['exp_add_exp_v_msus_bnft', '{{button_name}} - {{focusTime}}', 'Visibility', 'Main Stock Up And Save'])
 
     el.addEventListener('click', () => {
-      pushDataLayer(['exp_add_exp_b_msus_bn', el.querySelector('span').innerText, 'Button', 'Main Stock Up And Save']);
+      pushDataLayer(['exp_add_exp_b_msus_bn', el.querySelector('span').innerText, 'Button', 'Main Stock Up And Save'])
     })
   })
   waitForElement(`.shopify-cleanslate [role="button"]`).then(el => {
     handleVisibility(el, ['exp_add_exp_v_sp_bnft', '{{button_name}} - {{focusTime}}', 'Visibility', 'Select package'])
 
     el.addEventListener('focus', () => {
-      pushDataLayer(['exp_add_exp_b_sp_bn', el.querySelector('span').innerText, 'Button', 'Select package']);
+      pushDataLayer(['exp_add_exp_b_sp_bn', el.querySelector('span').innerText, 'Button', 'Select package'])
     })
   })
 
@@ -321,7 +321,13 @@
           const calculatedPatchesInPack = packNumber * 24
 
           pack.addEventListener('click', function () {
-            const txt = `${calculatedPatchesInPack} patches in ${packNumber} pack - ${packNumber} month for 1 person`
+            let txt
+            
+            if (Number(packNumber) > 1) {
+              txt = `${calculatedPatchesInPack} patches in ${packNumber} pack - ${packNumber} months for 1 person`
+            } else {
+              txt = `${calculatedPatchesInPack} patches in ${packNumber} pack - ${packNumber} month for 1 person`
+            }
 
             $patchesInPack.querySelector('p').innerText = txt
           })
