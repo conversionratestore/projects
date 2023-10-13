@@ -3208,12 +3208,7 @@ padding: 8px 16px;
     }
   }, WAIT_INTERVAL_TIMEOUT)
 
-  const recordClarity = setInterval(() => {
-    if (typeof clarity === 'function') {
-      clearInterval(recordClarity)
-      clarity('set', `CLARITY_NAME`, 'variant_1')
-    }
-  }, WAIT_INTERVAL_TIMEOUT)
+  window._mfq.push(["setVariable", "home_page_improvements", "var1"])
 
   waitForElement('.even-columns a').then(el => el.addEventListener('click', () => {
     pushDataLayer('exp_hopg_impr_b_fs_arlt', 'About red light therapy', 'Button', 'First screen')
