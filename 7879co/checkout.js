@@ -723,7 +723,7 @@ class CheckoutUpdate {
             let total = $el('.overflow-auto+.flex.flex-col.gap-2').innerHTML.split('Total</p><p class="text-h5 font-semibold">')[1].split('</p>')[0].replace(currency, '');
 
             console.log(total)
-            $el('.crs-summary-total').innerHTML = `<span class="crs-compare">${total}</span> ` + (+total - amout)
+            $el('.crs-summary-total').innerHTML = `<span class="crs-compare">${currency + total}</span> ` + currency + (+total - amout)
           } else {
             console.log('error')
             item.parentElement.classList.add('crs-error')
