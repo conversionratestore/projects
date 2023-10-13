@@ -133,6 +133,7 @@ class CheckoutUpdate {
     const style =
       /* html */ `
       <style class="crs-style">
+        ${device == 'mobile' ? `
         main>div:first-of-type>.h-30 {
           flex-direction: row;
           height: auto;
@@ -142,6 +143,8 @@ class CheckoutUpdate {
         main>div:first-of-type>.h-30>.mx-auto {
           margin: 0;
         }
+        `:''}
+       
         main>div:first-of-type {
           margin-bottom: 0;
         }
@@ -634,6 +637,10 @@ class CheckoutUpdate {
         font-weight: 400;
         line-height: 16px;
         width: 100%;
+      }
+      .crs-promo-form input:focus {
+        border-color: #EAEAEB!important;
+        box-shadow: none!important;
       }
       .crs-error .crs-error-promo {
         display: block;
@@ -1587,7 +1594,7 @@ class CheckoutUpdate {
         }
         .crs-footer {
           order: 4;
-          padding: 0 28px 28px;
+          ${device == 'mobile' ? 'padding: 0 28px 28px;' : 'padding-top: 28px;'}
         }
         .crs-terms {
           padding: 12px 0 0;
