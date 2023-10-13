@@ -276,6 +276,9 @@ class CheckoutUpdate {
         .crs-free {
           font-weight: 600;
         }
+        #primer-checkout-apm-button-container {
+          gap: 12px;
+        }
         #primer-checkout-apm-button-container * {
           order: 1;
         }
@@ -345,17 +348,21 @@ class CheckoutUpdate {
           padding: 28px 0;
           border-bottom: 1px solid #EAEAEB;
         }
-        .overflow-auto + div:not(.flex-1) {
+        .overflow-auto + div:not(.flex-1, .crs-summary-footer) {
+          display: none;
+        }
+        .crs-summary-footer {
           padding: 20px 28px;
           gap: 8px;
+          display: grid;
         }
-        .overflow-auto + div .text-platinum-32 {
+        .crs-summary-footer .text-platinum-32 {
           color: var(--Text, #484850);
           font-size: 14px;
           font-weight: 600;
           line-height: 20px; 
         }
-        .overflow-auto + div .font-semibold {
+        .crs-summary-footer .font-semibold {
           font-size: 20px;
           padding-top: 12px;
         }
@@ -588,6 +595,12 @@ class CheckoutUpdate {
 
     const getPromo = `
     <style>
+      .crs-compare {
+        color: var(--Text, #484850);
+        font-size: 14px;
+        font-weight: 400;
+        text-decoration-line: line-through;
+      }
       .crs-promo {
         padding: 14px 0 20px;
       }
@@ -658,6 +671,11 @@ class CheckoutUpdate {
       .crs-remove-promo {
         cursor: pointer;
       }
+      ${device == 'desktop' ? `
+      .crs-promo {
+        border-bottom: 1px solid #EAEAEB;
+      }
+      ` : ''}
     </style>
     <div class="crs-promo">
         <button type="button" class="crs-get-promo flex items-center">
@@ -711,19 +729,33 @@ class CheckoutUpdate {
           console.log(data)
           if (data['data']['checkoutAddPromoCode']['checkout'] && data['data']['checkoutAddPromoCode']['checkout']['discount']) {
             let discount = data['data']['checkoutAddPromoCode']['checkout']['discount'];
-            let amout = discount.amount;
+            let amount = discount.amount;
             let currency = $el('.overflow-auto + div .font-semibold:last-child').innerText.charAt(0)
               
             $$el('.crs-promo').forEach(from => {
               from.querySelector('.crs-promo-result p > .name').innerHTML = promoCode;
-              from.querySelector('.crs-promo-price').innerHTML = '- ' + currency + amout;
+              from.querySelector('.crs-promo-price').innerHTML = '- ' + currency + amount;
               from.querySelector('.crs-promo-form').hidden = true;
+              from.querySelector('.crs-get-promo').hidden = true;
               from.querySelector('.crs-promo-result').hidden = false;
             })
-            let total = $el('.overflow-auto+.flex.flex-col.gap-2').innerHTML.split('Total</p><p class="text-h5 font-semibold">')[1].split('</p>')[0].replace(currency, '');
-
-            console.log(total)
-            $el('.crs-summary-total').innerHTML = `<span class="crs-compare">${currency + total}</span> ` + currency + (+total - amout)
+            
+            let total = $el('.overflow-auto+.flex.flex-col.gap-2').innerHTML.split('Total</p><p class="text-h5 font-semibold">')[1].split('</p>')[0]
+            let compare = ''
+            let totalOrder = ''
+            if ($el('.text-special-priceIncrease')) {
+              compare = +(total.replace(currency, '')) + amount;
+              totalOrder = +total.replace(currency, '')
+            } else {
+              compare = +total.replace(currency, '');
+              totalOrder = +(total.replace(currency, '')) - amount
+            }
+            if (device == 'mobile') {
+              $el('.crs-summary-total').innerHTML = `<span class="crs-compare">${currency + compare.toFixed(2)}</span> ` + currency + totalOrder.toFixed(2)
+              if (!$el('.crs-total .crs-promo+div p:last-child')) return
+              $el('.crs-total .crs-promo+div p:last-child').innerHTML = currency + totalOrder.toFixed(2)
+            }
+            $el('.crs-summary-footer .crs-promo+div p:last-child').innerHTML = totalOrder.toFixed(2)
           } else {
             console.log('error')
             item.parentElement.classList.add('crs-error')
@@ -740,53 +772,64 @@ class CheckoutUpdate {
         pushDataLayer(`exp_imp_ch_b_scos${type}_r`, 'Remove', 'Button', 'Secure checkout Order summery ' + loc);
 
         this.postPromo('remove', promoCode).then(data => {
+          console.log(data)
           $$el('.crs-promo').forEach(from => {
             from.querySelector('.crs-promo-form').hidden = true;
             from.querySelector('.crs-promo-result').hidden = true;
             from.querySelector('.crs-get-promo').hidden = false;
           })
-          let total = $el('.overflow-auto+.flex.flex-col.gap-2').innerHTML.split('Total</p><p class="text-h5 font-semibold">')[1].split('</p>')[0];
+          let total = device == 'mobile' ? $el('.crs-compare').innerText : $el('.overflow-auto + div:not(.flex-1, .crs-summary-footer) .font-semibold:last-child').innerText
 
-          $el('.crs-summary-total').innerHTML = total
+          $el('.crs-summary-footer .crs-promo+div p:last-child').innerHTML = total
+          if (device == 'mobile') {
+            if ($el('.crs-total')) {
+              $el('.crs-total .crs-promo + div p:last-child').innerHTML = total
+            }
+            $el('.crs-summary-total').innerHTML = total
+          } 
         })
       })
     })
 
   }
   createCartSummary() {
-    if (this.checkPageUrl() !== 'checkout') return
+  if (this.checkPageUrl() !== 'checkout') return
 
-    if ($el('h3')) {
-      
-      $el('h3')
-        .closest('.w-full')
-        .querySelectorAll('&>div:not(:last-child)')
-        .forEach((item, index) => {
-          if (!item.innerText.includes('You now have') && device != 'desktop') {
-            item.style.display = 'none'
+  if ($el('h3')) {
+    
+    $el('h3')
+      .closest('.w-full')
+      .querySelectorAll('&>div:not(:last-child)')
+      .forEach((item, index) => {
+        if (!item.innerText.includes('You now have') && device != 'desktop') {
+          item.style.display = 'none'
+        }
+        if (item.innerText.includes('Summary')) {
+          item.querySelector('.text-h3').innerText = 'Order summary';
+          item.classList.add('crs-order-head');
+          
+          if (device == 'desktop' && 
+            $el('.overflow-auto+.flex.flex-col.gap-2 > div:last-child > .text-h5.font-semibold:last-child') &&
+            !$el('.crs-desk-total')
+          ) {
+            item.insertAdjacentHTML('beforeend', `
+            <p class="crs-desk-total">
+              <span>${$el('.overflow-auto+.flex.flex-col.gap-2 > div:last-child > .text-h5.font-semibold:last-child').innerText}</span>
+            </p>`)
           }
-          if (item.innerText.includes('Summary')) {
-            item.querySelector('.text-h3').innerText = 'Order summary';
-            item.classList.add('crs-order-head');
-            
-            if (device == 'desktop' && 
-              $el('.overflow-auto+.flex.flex-col.gap-2 > div:last-child > .text-h5.font-semibold:last-child') &&
-              !$el('.crs-desk-total')
-            ) {
-              item.insertAdjacentHTML('beforeend', `
-              <p class="crs-desk-total">
-                <span>${$el('.overflow-auto+.flex.flex-col.gap-2 > div:last-child > .text-h5.font-semibold:last-child').innerText}</span>
-              </p>`)
-            }
 
-            item.querySelector('svg.stroke-black').style.display = 'none'
-          }
-        })
+          item.querySelector('svg.stroke-black').style.display = 'none'
+        }
+      })
     }
 
     if (!$el('.crs-warranty-banner') ||
         !$el('.overflow-auto+.flex.flex-col.gap-2')) return
 
+    const footer = `
+    <div class="crs-summary-footer">
+      ${$el('.overflow-auto+.flex.flex-col.gap-2').innerHTML}
+    </div>`;
 
     const summary =  /*html*/ `
     <style>
@@ -877,31 +920,33 @@ class CheckoutUpdate {
                 .join('<span>Quantity: </span> ')
             }
         </div>
-        <div class="crs-summary-footer">
-          ${$el('.overflow-auto+.flex.flex-col.gap-2').innerHTML}
-        </div>
+        ${footer}
       </div>
     </div>`;
 
-    if ($el('.crs-summary') || device != 'mobile') return
-    
-    $el('.crs-warranty-banner').insertAdjacentHTML('afterend', summary)
+    if ($el('.crs-summary-footer')) return
 
-    $el('.crs-summary-head').addEventListener('click', (event) => {
-      event.target.parentElement.classList.toggle('active'); 
-      pushDataLayer('exp_imp_ch_d_scosi_os', 'Order summary', 'Dropdown', 'Secure checkout Order summery Information')
-    })
-    
+    if (device == 'mobile') {
+      $el('.crs-warranty-banner').insertAdjacentHTML('afterend', summary)
+
+      $el('.crs-summary-head').addEventListener('click', (event) => {
+        event.target.parentElement.classList.toggle('active'); 
+        pushDataLayer('exp_imp_ch_d_scosi_os', 'Order summary', 'Dropdown', 'Secure checkout Order summery Information')
+      })
+    } else {
+      $el('.overflow-auto').parentElement.insertAdjacentHTML('beforeend', footer)
+    }
+
     $$el('.crs-summary-footer > div').forEach(item => {
       if (item.innerText.includes('Total')) {
-        $el('.crs-summary-total').innerHTML = item.querySelector('p:last-child').innerText
-
+        if (device == 'mobile') {
+          $el('.crs-summary-total').innerHTML = item.querySelector('p:last-child').innerText
+        }
         this.createPromo(item)
       }
       if (!item.querySelector('p') || item.innerText.includes('Voucher') || item.innerText.includes('Discount')) {
         item.style.display = 'none'
       }
-   
       if (item.innerText.includes('Shipping') && 
         item.innerText.includes('Free') && 
         !$el('.crs-calc')
@@ -980,6 +1025,9 @@ class CheckoutUpdate {
     .crs-payment-methods .khsPUc {
       height: 42px!important;
       background: transparent;
+    }
+    .PrimerCheckout__apmButton {
+      border: none;
     }
     .crs-payment-methods .PrimerCheckout__formField {
       margin-top: 24px;
@@ -1274,11 +1322,6 @@ class CheckoutUpdate {
     })
     
     if ($el('.crs-promo-result')) {
-      // if ($el('.crs-summary-total') &&  $el('.overflow-auto+.flex.flex-col.gap-2')) {
-      //   let total = $el('.overflow-auto+.flex.flex-col.gap-2').innerHTML.split('Total</p><p class="text-h5 font-semibold">')[1].split('</p>')[0];
-      //   let amount = $el('.crs-promo-price').innerText.split($el('.crs-promo-price').innerText[2])[1]
-      //   $el('.crs-summary-total').innerHTML = `<span class="crs-compare">${total}</span> ` + (+total - +amout)
-      // }
       $$el('.flex.w-full.flex-1 .text-p').forEach((item) => {
         if (item.innerText.includes('By registering your details you agree to our')) {
   
@@ -1315,11 +1358,22 @@ class CheckoutUpdate {
           item.parentElement.style.display = 'none';
           if (clickRemovePromo == false) {
             $$el('.crs-promo-price').forEach((price) => {
+              if (price.innerText != '') return
               price.innerHTML = item.innerText;
+
+              if (!$el('.overflow-auto+.flex.flex-col.gap-2') || !$el('.crs-summary-footer .crs-promo+div p:last-child')) return
+              let currency = $el('.overflow-auto + div .font-semibold:last-child').innerText.charAt(0)
+              let total = $el('.overflow-auto+.flex.flex-col.gap-2').innerHTML.split('Total</p><p class="text-h5 font-semibold">')[1].split('</p>')[0].replace(currency, '');
+              let amount = item.innerText.split(item.innerText[2])[1]
+
+              if (device == 'mobile' && $el('.crs-summary-total')) {
+                $el('.crs-summary-total').innerHTML = `<span class="crs-compare">${currency + (+total + +amount).toFixed(2)}</span> ` + currency + total
+              }
+
+              $el('.crs-summary-footer .crs-promo+div p:last-child').innerHTML = currency + total
             })
           }
         }
-        
       })
     }
 
@@ -1519,7 +1573,6 @@ class CheckoutUpdate {
 
     
     if (device == 'desktop') {
-
       const terms = `
       <style>
         .crs-continue {
@@ -1581,9 +1634,6 @@ class CheckoutUpdate {
         $el('#main > div.mx-auto.w-full.p-5 > div.flex.flex-col.items-start.justify-center.gap-4> div.flex.w-full.flex-1.flex-col.gap-4 > div.flex.justify-between').after($el('.crs-timer'))
       }
 
-      if ($el('.overflow-auto + div > div:last-child') && !$el('.overflow-auto + div .crs-promo')) {
-        this.createPromo($el('.overflow-auto + div > div:last-child'))
-      }
       $$el('.overflow-auto + div > div').forEach(item => {
         if (item.innerText.includes('Total') || item.className.includes('border-platinum-9')) {
           item.style.order = '1'
