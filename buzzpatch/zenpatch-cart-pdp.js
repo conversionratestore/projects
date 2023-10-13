@@ -55,8 +55,20 @@
       }
 
       /* PDP */
+      .pdp-paypal-bottom {
+        margin: 0 auto !important;
+      }
+
+      .pdp-paypal-bottom .pdp-paypal-container {
+        margin-top: 6px;
+      }
+
+      .shopify-payment-button__button--branded .shopify-cleanslate {
+        justify-content: center;
+      }
+
       .container.package #addToCart {
-        margin-top: 10px;
+        margin-block: 8px 10px !important;
       }
 
       .container.package .js-heading h2{
@@ -177,13 +189,27 @@
   hideNavbarIntersection()
   addTrustAdvisor()
 
-  waitForElement(`.shopify-cleanslate [role="button"]`).then(el => handleVisibility(el, ['exp_add_exp_v_sp_bnft', '{{button_name}} - {{focusTime}}', 'Visibility', 'Select package'])) // #2
 
-  waitForElement('.slide-in .patches-in-pack img').then(el => handleVisibility(el, ['exp_add_exp_v_spfsw_ft', '{{focusTime}}', 'Visibility', 'Select package FREE Shipping Worldwide'])) // #4
-  waitForElement('.slide-in .patches-in-pack > p').then(el => handleVisibility(el, ['exp_add_exp_v_spiap_ft', '{{focusTime}}', 'Visibility', 'Select package Information about pack '])) // #5
+  waitForElement(`.pdp-paypal-bottom .shopify-cleanslate [role="button"]`).then(el => {
+    handleVisibility(el, ['exp_add_exp_v_msus_bnft', '{{button_name}} - {{focusTime}}', 'Visibility', 'Main Stock Up And Save'])
 
-  waitForElement('.container.package .patches-in-pack img').then(el => handleVisibility(el, ['exp_add_exp_ft_msusrsw_v', '{{focusTime}}', 'Visibility', 'Main Stock Up And Save FREE Shipping Worldwide'])) // #6
-  waitForElement('.container.package  .patches-in-pack > p').then(el => handleVisibility(el, ['exp_add_exp_ft_msusiap_v', '{{focusTime}}', 'Visibility', 'Main Stock Up And Save Information about pack'])) // #7
+    el.addEventListener('click', () => {
+      pushDataLayer(['exp_add_exp_b_msus_bn', el.querySelector('span').innerText, 'Button', 'Main Stock Up And Save']);
+    })
+  })
+  waitForElement(`.shopify-cleanslate [role="button"]`).then(el => {
+    handleVisibility(el, ['exp_add_exp_v_sp_bnft', '{{button_name}} - {{focusTime}}', 'Visibility', 'Select package'])
+
+    el.addEventListener('focus', () => {
+      pushDataLayer(['exp_add_exp_b_sp_bn', el.querySelector('span').innerText, 'Button', 'Select package']);
+    })
+  })
+
+  waitForElement('.slide-in .patches-in-pack img').then(el => handleVisibility(el, ['exp_add_exp_v_spfsw_ft', '{{focusTime}}', 'Visibility', 'Select package FREE Shipping Worldwide']))
+  waitForElement('.slide-in .patches-in-pack > p').then(el => handleVisibility(el, ['exp_add_exp_v_spiap_ft', '{{focusTime}}', 'Visibility', 'Select package Information about pack ']))
+
+  waitForElement('.container.package .patches-in-pack img').then(el => handleVisibility(el, ['exp_add_exp_ft_msusrsw_v', '{{focusTime}}', 'Visibility', 'Main Stock Up And Save FREE Shipping Worldwide']))
+  waitForElement('.container.package  .patches-in-pack > p').then(el => handleVisibility(el, ['exp_add_exp_ft_msusiap_v', '{{focusTime}}', 'Visibility', 'Main Stock Up And Save Information about pack']))
 
   const recordClarity = setInterval(() => {
     if (typeof clarity === 'function') {
