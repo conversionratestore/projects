@@ -3724,14 +3724,46 @@ padding: 8px 16px;
     //   () => document.querySelector('.table-mobile-wrapper').addEventListener('scroll', handleHorizontalScroll)
     // )
 
-    waitForElement('.efficient__content [data-btn="choose-kit"]').then(el => el.addEventListener('click', () => {
+    waitForElement('.efficient__content [data-btn="choose-kit"]').then(el => el.addEventListener('click', function (e) {
+      e.preventDefault()
+
+      // Get the 'href' attribute from the clicked element and remove the '#' character to get the target anchor.
+      var targetAnchor = $(this).attr('href').substring(1)
+
+      // Check if the target anchor element exists on the page.
+      var $target = $('#' + targetAnchor)
+
+      let offsetTop = DEVICE === 'mobile' ? 0 : 74
+
+
+      if ($target.length) {
+        $('html, body').animate({
+          scrollTop: $target.offset().top - offsetTop
+        }, 1000) // You can adjust the duration (in milliseconds) for smooth scrolling
+      }
+
       pushDataLayer('exp_hopg_impr_b_spmcs_cyk', 'Choose your kit 1 ', 'Button', 'Scientifically proven by more than 3,000 clinical studies')
     }))
-    waitForElement('.ailments  [data-btn="choose-kit"]').then(el => el.addEventListener('click', () => {
+    waitForElement('.ailments [data-btn="choose-kit"]').then(el => el.addEventListener('click', function (e) {
+      e.preventDefault()
+
+      // Get the 'href' attribute from the clicked element and remove the '#' character to get the target anchor.
+      var targetAnchor = $(this).attr('href').substring(1)
+
+      // Check if the target anchor element exists on the page.
+      var $target = $('#' + targetAnchor)
+
+      let offsetTop = DEVICE === 'mobile' ? 0 : 74
+
+
+      if ($target.length) {
+        $('html, body').animate({
+          scrollTop: $target.offset().top - offsetTop
+        }, 1000) // You can adjust the duration (in milliseconds) for smooth scrolling
+      }
+
       pushDataLayer('exp_hopg_impr_b_wwnlhy_cyk', 'Choose your kit 2', 'Button', 'When will Novaa Light help you?')
     }))
-
-
   }
 
   function drawProduct(name) {
