@@ -35,6 +35,43 @@ if (window.location.pathname === "/") {
 
       let vegasYachtStyle = /*html */ `
         <style>
+          /*steps_block */
+          .steps_block{
+margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+          }
+          .steps_block span{
+            border-radius: 100px;
+    border: 1px solid #E7E6DE;
+    background: #E7E6DE;
+    width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4B4F58;
+    font-family: 'Raleway';
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: 0.14px;
+    height: 24px;
+          }
+          .steps_block span.active_step{
+            color: #28364B;
+            font-weight: 600;
+            border: 1px solid #CFBE88;
+background: #CFBE88;
+          }
+          .steps_block span.visited_step{
+                border: none;
+          }
+          .steps_block.is_hidden{
+            display: none;
+          }
+          /* */
           #rev_slider_1_1 .tp-revslider-mainul a.sg-popup-id-502,
           [data-popup-id="502"].fl-module.fl-module-button{
             display: none !important;
@@ -1133,6 +1170,10 @@ body.open_var {
 
       let contentPopup = /*html */ `
         <div class="content_popup private_event_req">
+          <div class="steps_block">
+  <span class="active_step">1</span>
+  <span>2</span>
+</div>
               <div class="popup_header">
       <h2>Charter Services Request</h2>
     </div>
@@ -1184,6 +1225,9 @@ body.open_var {
     `;
       let contentPopupServicesRequest = /*html */ `
         <div class="content_popup charter_services_req">
+          <div class="steps_block">
+  <span class="">1</span>
+</div>
               <div class="popup_header">
       <h2>Charter Services Request</h2>
     </div>
@@ -1940,6 +1984,16 @@ body.open_var {
           if ((parent === "firts_get_a_quote" || parent === "second_get_a_quote" || parent === "third_get_a_quote" || parent === "fourth_get_a_quote" || parent === "inquire_now") && target === "") {
             document.querySelector(`[data-count='${parent}'] .private_event_req .second_step.is_hidden`)?.classList.remove("is_hidden");
             document.querySelector(`[data-count='${parent}'] .private_event_req .first_step`)?.classList.add("is_hidden");
+            document.querySelector(`[data-count='${parent}'] .steps_block span:nth-child(2)`)?.classList.add("active_step");
+            document.querySelector(`[data-count='${parent}'] .steps_block span:nth-child(1)`)?.classList.add("visited_step");
+            if (document.querySelector(`[data-count='${parent}'] .steps_block span:nth-child(1)`)?.classList.contains("active_step")) {
+              document.querySelector(`[data-count='${parent}'] .steps_block span:nth-child(1)`)?.classList.remove("active_step");
+            }
+            document.querySelector(`[data-count='${parent}'] .steps_block span:nth-child(1)`).innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <rect x="0.5" y="0.5" width="23" height="23" rx="11.5" fill="#CFBE88"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M17.7796 8.15971C18.0506 8.39682 18.0751 8.80989 17.8341 9.0774L11.0491 16.6083C10.8068 16.8772 10.3909 16.8943 10.1273 16.6463L6.20108 12.95C5.95623 12.7195 5.93279 12.3354 6.14286 12.0728C6.37467 11.7831 6.80634 11.7432 7.08221 11.9913L10.1284 14.7314C10.3932 14.9695 10.8007 14.9482 11.0393 14.6838L16.8753 8.21309C17.1115 7.95124 17.5142 7.9275 17.7796 8.15971Z" fill="#28364B"/>
+  <rect x="0.5" y="0.5" width="23" height="23" rx="11.5" stroke="#CFBE88"/>
+</svg>`;
           }
 
           if (parent === "charter_services_req") {
@@ -1982,11 +2036,18 @@ body.open_var {
               if (parent === "charter_services_req") {
                 document.querySelector(".charter_services_req .second_step.is_hidden")?.classList.remove("is_hidden");
                 document.querySelector(".charter_services_req .first_step")?.classList.add("is_hidden");
+                if (!document.querySelector(`[data-count='${parent}'] .steps_block`)?.classList.contains("is_hidden")) {
+                  document.querySelector(`[data-count='${parent}'] .steps_block`)?.classList.add("is_hidden");
+                }
                 pushDataLayer("exp_new_ui_chapter_sub_s2", `Chapter services request`, "Submit", "Step 1 Chapter services request Pop up");
               }
               if (parent === "firts_get_a_quote" || parent === "second_get_a_quote" || parent === "third_get_a_quote" || parent === "fourth_get_a_quote" || parent === "inquire_now") {
                 document.querySelector(`[data-count='${parent}'] .private_event_req .third_step.is_hidden`)?.classList.remove("is_hidden");
                 document.querySelector(`[data-count='${parent}'] .private_event_req .second_step`)?.classList.add("is_hidden");
+                if (!document.querySelector(`[data-count='${parent}'] .steps_block`)?.classList.contains("is_hidden")) {
+                  document.querySelector(`[data-count='${parent}'] .steps_block`)?.classList.add("is_hidden");
+                }
+
                 if (parent === "inquire_now") {
                   pushDataLayer("exp_new_ui_sub_qcsrp_s2", "Quiz Chapter services request", "Submit", "Quiz Step 2 Chapter services request Pop up");
                 } else {
