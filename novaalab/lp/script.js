@@ -3,7 +3,7 @@
   // CONSTANTS
   // -------------------------------------
   const WAIT_INTERVAL_TIMEOUT = 100
-  // const DEVICE = screen.width <= 768 ? 'mobile' : 'desktop'
+  const DEVICE = screen.width <= 768 ? 'mobile' : 'desktop'
   const IMAGE_DIR_URL = 'https://conversionratestore.github.io/projects/novaalab/lp/images'
 
   const productsData = {
@@ -100,6 +100,7 @@
       #r-1653306391810 {
         display: none !important;
       }
+      
 
      /* Remove default margin */
 .crs * {
@@ -220,20 +221,6 @@
 
 .bg-primary {
   background: var(--colors-purple, #773BD9);
-}
-
-@media (max-width: 768px) {
-  .fs-400 {
-    font-size: 14px;
-  }
-
-  .fs-500 {
-    font-size: 14px;
-  }
-
-  .even-columns {
-    grid-auto-flow: row;
-  }
 }
 
 :where(.flow > :not(:first-child)) {
@@ -1571,18 +1558,94 @@ section.ailments .col-right {
 
 /* ailments section END */
 
+/* header START */
+.custom-header {
+    background-color: #fff;
+    color: #fff;
+
+    padding: 19px;
+}
+
+.custom-header a {
+  display: block;
+}
+
+.custom-header > div {
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-left: 40px;
+    text-align: center;
+}
+
+.menu ul li {
+    margin: 0;
+}
+
+.menu ul li a {
+  text-decoration: none;
+  color: var(--colors-black-500, #212121);
+  font-family: var(--font-family-secondary);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5; /* 150% */
+  text-transform: uppercase;
+}
+
+.bubble-cart {
+  position: relative;
+}
+
+.bubble-cart::after {
+  content: '';
+  display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background-color: #7827f4;
+    border-radius: 50%;
+}
+
+.custom-header--fixed {
+  position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: scaleY(0);
+    transition: transform 0.3s ease-in-out;
+    transform-origin: top;
+    height: 72px;
+}
+
+.show-fixed-header {
+    transform: scaleY(1);
+}
+/* header END */
+
 /* navbar START */
 .navbar {
   transform: scaleY(0);
   position: fixed;
-  top: 0;
+  top: 72px;
   left: 0;
   width: 100%;
   background-color: #F5F5FD;
   box-shadow: 0px 10px 10px 0px rgba(60, 32, 88, 0.08);
   z-index: 999;
   transform-origin: top;
-  transition: scroll 1s ease-in-out;
+  transition: all .3s ease-in-out;
 }
 
 .navbar.navbar--show {
@@ -1590,9 +1653,6 @@ section.ailments .col-right {
 }
 
 .navbar-list {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   list-style: none;
   margin: 0;
   padding: 0;
@@ -1641,7 +1701,26 @@ section.ailments .col-right {
   }
 }
 
+@media (min-width: 769px) {
+  .site-header {
+    display: none;
+  }
+}
+
+
 @media screen and (max-width: 768px) {
+  .fs-400 {
+    font-size: 14px;
+  }
+
+  .fs-500 {
+    font-size: 14px;
+  }
+
+  .even-columns {
+    grid-auto-flow: row;
+  }
+
   .heading-2 {
     font-size: 24px;
     line-height: 1.33;
@@ -1680,6 +1759,10 @@ section.ailments .col-right {
     display: none;
   } */
 
+  .navbar {
+    top: 0;
+  }
+
   .padding-block-700 {
     padding-block: 44px;
   }
@@ -1714,6 +1797,10 @@ section.ailments .col-right {
 
   .button {
     padding: 8px;
+  }
+
+  .custom-header {
+    display: none !important;
   }
 
   /* product START */
@@ -2136,27 +2223,6 @@ padding: 8px 16px;
     padding-block: 0;
   }
 
-  [data-row="Medical Lights content"] td:last-child {
-    display: flex;
-    flex-direction: column;
-  }
-
-  [data-row="Medical Lights content"] td:last-child>div:nth-of-type(1) {
-    order: 1;
-  }
-
-  [data-row="Medical Lights content"] td:last-child>div:nth-of-type(2) {
-    order: 3;
-  }
-
-  [data-row="Medical Lights content"] td:last-child>div:nth-of-type(3) {
-    order: 2;
-  }
-
-  [data-row="Medical Lights content"] td:last-child>div:nth-of-type(4) {
-    order: 4;
-  }
-
   [data-row="Medical Lights content"] td:last-child span br:last-child {
     display: none;
   }
@@ -2267,6 +2333,46 @@ padding: 8px 16px;
 }
     </style>`
 
+  const customHeader = (isBubble) => /*html*/`
+
+
+    <header class="custom-header">
+        <div class="container">
+        <div class="logo">
+            <a href="/"><img src="//novaalab.com/cdn/shop/files/Logo_novaalab_color_rgb_-_250px_190x.png?v=1655278058" alt="novaalab logo"></a>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="/collections/best-red-light-therapy-catalog">Our catalog</a></li>
+                <li data-link="mitochondria"><a href="#mitochondria-section">HOW IT WORKS</a></li>
+                <li><a href="https://novaalab.com/pages/novaalab-reviews-red-light-therapy">read our reviews</a></li>
+                <li><a href="/blogs/infos">blog</a></li>
+                <li><a href="/cart">my cart</a></li>
+                <li class="${isBubble ? 'bubble-cart' : ''}"><a href="/cart"><img src="https://conversionratestore.github.io/projects/novaalab/catalog-page/images/24_cart.svg" alt="cart"></a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <header class="custom-header custom-header--fixed">
+        <div class="container">
+        <div class="logo">
+            <a href="/"><img src="//novaalab.com/cdn/shop/files/Logo_novaalab_color_rgb_-_250px_190x.png?v=1655278058" alt="novaalab logo"></a>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="/collections/best-red-light-therapy-catalog">Our catalog</a></li>
+                <li data-link="mitochondria"><a href="#mitochondria-section">HOW IT WORKS</a></li>
+                <li><a href="https://novaalab.com/pages/novaalab-reviews-red-light-therapy">read our reviews</a></li>
+                <li><a href="/blogs/infos">blog</a></li>
+                <li><a href="/cart">my cart</a></li>
+                <li class="${isBubble ? 'bubble-cart' : ''}"><a href="/cart"><img src="https://conversionratestore.github.io/projects/novaalab/catalog-page/images/24_cart.svg" alt="cart"></a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+  `
+
   const html = /*html*/`
     <nav class="navbar">
     <ul class="navbar-list">
@@ -2303,7 +2409,7 @@ padding: 8px 16px;
                     <img src="${IMAGE_DIR_URL}/trust.svg" alt="trustadvisor 5 stars">
                   </div>
                   <div>
-                    <a href="https://www.trustpilot.com/review/novaalab.com">from 142 reviews</a>
+                    <a href="https://www.trustpilot.com/review/novaalab.com">from 160 reviews</a>
                   </div>
                 </div>
               </div>
@@ -2331,7 +2437,7 @@ padding: 8px 16px;
                   </div>
                   <div>
                     <img src="${IMAGE_DIR_URL}/trust.svg" alt="trustadvisor 5 stars">
-                    <a href="https://www.trustpilot.com/review/novaalab.com">from 142 reviews</a>
+                    <a href="https://www.trustpilot.com/review/novaalab.com">from 160 reviews</a>
                   </div>
                 </div>
               </div>
@@ -2698,7 +2804,7 @@ padding: 8px 16px;
       </div>
     </section>
 
-    <section class="mitochondria | padding-block-500">
+    <section id="mitochondria-section" class="mitochondria | padding-block-500" >
       <div class="container">
         <div class="novaalab">
           <p>Why Novaa Light will help YOU</p>
@@ -2854,6 +2960,67 @@ padding: 8px 16px;
   // -------------------------------------
   document.head.insertAdjacentHTML('beforeend', style)
 
+
+  waitForElement('.cart-link__bubble').then(el => {
+    const clientHeader = document.querySelector('.site-header')
+
+    if (el.classList.contains('cart-link__bubble--visible')) {
+      clientHeader.insertAdjacentHTML('afterend', customHeader(true))
+    } else {
+      clientHeader.insertAdjacentHTML('afterend', customHeader(false))
+    }
+
+    const waitForHeaders = setInterval(() => {
+      const customHeader = document.querySelector('.custom-header')
+      const fixedCustomHeader = document.querySelector('.custom-header--fixed')
+      // const announcementBar = document.querySelector('.announcement-bar')
+
+      if (customHeader && fixedCustomHeader) {
+        clearInterval(waitForHeaders)
+
+        // const headerHeight = customHeader.clientHeight + announcementBar.clientHeight
+        const headerHeight = customHeader.clientHeight
+
+        window.addEventListener('scroll', function () {
+          const scrollPosition = window.scrollY
+
+          if (scrollPosition >= headerHeight) {
+            customHeader.style.visibility = 'hidden'
+            fixedCustomHeader.classList.add('show-fixed-header')
+          } else {
+            customHeader.style.visibility = 'visible'
+            fixedCustomHeader.classList.remove('show-fixed-header')
+          }
+        })
+
+        // customHeader.addEventListener('click', (e) => {
+        //   if (e.target.closest()) {
+
+        //   }
+        // })
+
+        const waitForLinks = setInterval(() => {
+          if (document.querySelectorAll('.custom-header a')[13]) {
+            clearInterval(waitForLinks)
+
+            document.querySelectorAll('.custom-header a').forEach(link => {
+              link.addEventListener('click', () => {
+                if (link.closest('.bubble-cart')) {
+                  pushDataLayer('exp_hopg_impr_b_header_menu_basket', 'Basket', 'Button', 'Header menu')
+                } else if (link.closest('.logo')) {
+                  pushDataLayer('exp_hopg_impr_b_header_sticky_logo', 'Logo', 'Image', 'Header menu')
+                } else {
+                  pushDataLayer('exp_hopg_impr_b_header_sticky_menu_item', link.innerText, 'Button', 'Header menu')
+                }
+              })
+            })
+          }
+        }, WAIT_INTERVAL_TIMEOUT)
+
+      }
+    }, WAIT_INTERVAL_TIMEOUT)
+
+  })
   waitForElement('#r-1653306391810').then(el => el.insertAdjacentHTML('afterend', html))
 
   const waitForNavSections = setInterval(() => {
@@ -2950,17 +3117,24 @@ padding: 8px 16px;
           function handleNavbarItemClick(event) {
             event.preventDefault()
 
+            let offsetTop = DEVICE === 'mobile' ? 0 : 74
+
             if ($(this).closest('.navbar-list').length > 0) {
               pushDataLayer('exp_hopg_impr_b_header_menu_item', $(this).find('a').text(), 'Button', 'Header')
-            } else {
+            } else if ($(this).closest('#navigation-section').length > 0) {
               pushDataLayer('exp_hopg_impr_b_whiwh_bn', $(this).find('a').text(), 'Button', 'What health issue do you want to heal?')
+            } else if ($(this).closest('.custom-header').length > 0 && DEVICE !== 'mobile') {
+              offsetTop = 110
             }
 
             const sectionId = $(this).find('a').attr('href')
             const $section = $(sectionId)
 
+
+            // const offsetTop = DEVICE === 'mobile' ? 0 : 150
+
             $('html, body').animate({
-              scrollTop: $section.offset().top
+              scrollTop: $section.offset().top - offsetTop
             }, 1000) // You can adjust the duration (in milliseconds) for smooth scrolling
           }
 
@@ -2971,6 +3145,16 @@ padding: 8px 16px;
           navSectionItems.forEach(item => {
             item.addEventListener('click', handleNavbarItemClick)
           })
+
+          const waitForHowWorksLinks = setInterval(() => {
+            if (document.querySelectorAll('[data-link="mitochondria"]')[1]) {
+              clearInterval(waitForHowWorksLinks)
+
+              document.querySelectorAll('[data-link="mitochondria"]').forEach(el => {
+                el.addEventListener('click', handleNavbarItemClick)
+              })
+            }
+          }, WAIT_INTERVAL_TIMEOUT)
         }
       }, WAIT_INTERVAL_TIMEOUT)
 
@@ -2988,6 +3172,7 @@ padding: 8px 16px;
       document.querySelectorAll('[data-product-id]').forEach(btn => {
         btn.addEventListener('click', () => {
           const sectionId = btn.closest('section').id
+          const productName = btn.closest('data-product-name').dataset.productName
 
           switch (sectionId) {
             case 'head-section':
@@ -2996,19 +3181,19 @@ padding: 8px 16px;
             case 'navigation-section':
               break
             case 'back-pain-section':
-              pushDataLayer('exp_hopg_impr_b_bps_atc', 'Add to cart', 'Button', 'For back pain section')
+              pushDataLayer('exp_hopg_impr_b_bps_atc', `Add to cart - ${productName}`, 'Button', 'For back pain section')
               break
             case 'knee-section':
-              pushDataLayer('exp_hopg_impr_b_khp_atc', 'Add to cart', 'Button', 'For knee or hand pain')
+              pushDataLayer('exp_hopg_impr_b_khp_atc', `Add to cart - ${productName}`, 'Button', 'For knee or hand pain')
               break
             case 'joint-section':
-              pushDataLayer('exp_hopg_impr_b_jpa_atc', 'Add to cart', 'Button', 'For joint pain and arthritis')
+              pushDataLayer('exp_hopg_impr_b_jpa_atc', `Add to cart - ${productName}`, 'Button', 'For joint pain and arthritis')
               break
             case 'periodontal-section':
-              pushDataLayer('exp_hopg_impr_b_pgd_atc', 'Add to cart', 'Button', 'For periodontal (gum) disease')
+              pushDataLayer('exp_hopg_impr_b_pgd_atc', `Add to cart - ${productName}`, 'Button', 'For periodontal (gum) disease')
               break
             case 'skin-section':
-              pushDataLayer('exp_hopg_impr_b_hgs_atc', 'Add to cart', 'Button', 'For a healthy and glowing skin')
+              pushDataLayer('exp_hopg_impr_b_hgs_atc', `Add to cart - ${productName}`, 'Button', 'For a healthy and glowing skin')
               break
 
             default:
@@ -3064,6 +3249,7 @@ padding: 8px 16px;
         element.addEventListener('click', (e) => {
 
           const sectionId = e.target.closest('section').id
+          const productName = btn.closest('data-product-name').dataset.productName
 
           if (e.target.matches('.button') || e.target.closest('.button')) {
             switch (sectionId) {
@@ -3073,19 +3259,19 @@ padding: 8px 16px;
               case 'navigation-section':
                 break
               case 'back-pain-section':
-                pushDataLayer('exp_hopg_impr_b_bps_lm', 'Learn more', 'Button', 'For back pain section')
+                pushDataLayer('exp_hopg_impr_b_bps_lm', `Learn more - ${productName}`, 'Button', 'For back pain section')
                 break
               case 'knee-section':
-                pushDataLayer('exp_hopg_impr_b_khp_lm', 'Learn more', 'Button', 'For knee or hand pain')
+                pushDataLayer('exp_hopg_impr_b_khp_lm', `Learn more - ${productName}`, 'Button', 'For knee or hand pain')
                 break
               case 'joint-section':
-                pushDataLayer('exp_hopg_impr_b_jpa_lm', 'Learn more', 'Button', 'For joint pain and arthritis')
+                pushDataLayer('exp_hopg_impr_b_jpa_lm', `Learn more - ${productName}`, 'Button', 'For joint pain and arthritis')
                 break
               case 'periodontal-section':
-                pushDataLayer('exp_hopg_impr_b_pgd_lm', 'Learn more', 'Button', 'For periodontal (gum) disease')
+                pushDataLayer('exp_hopg_impr_b_pgd_lm', `Learn more - ${productName}`, 'Button', 'For periodontal (gum) disease')
                 break
               case 'skin-section':
-                pushDataLayer('exp_hopg_impr_b_hgs_lm', 'Learn more', 'Button', 'For a healthy and glowing skin')
+                pushDataLayer('exp_hopg_impr_b_hgs_lm', `Learn more - ${productName}`, 'Button', 'For a healthy and glowing skin')
                 break
               default:
                 break
@@ -3099,19 +3285,19 @@ padding: 8px 16px;
               case 'navigation-section':
                 break
               case 'back-pain-section':
-                pushDataLayer('exp_hopg_impr_i_bps_i', 'Image', 'Image', 'For back pain section')
+                pushDataLayer('exp_hopg_impr_i_bps_i', `Image - ${productName}`, 'Image', 'For back pain section')
                 break
               case 'knee-section':
-                pushDataLayer('exp_hopg_impr_i_khp_i', 'Image', 'Image', 'For knee or hand pain')
+                pushDataLayer('exp_hopg_impr_i_khp_i', `Image - ${productName}`, 'Image', 'For knee or hand pain')
                 break
               case 'joint-section':
-                pushDataLayer('exp_hopg_impr_i_jpa_i', 'Image', 'Image', 'For joint pain and arthritis')
+                pushDataLayer('exp_hopg_impr_i_jpa_i', `Image - ${productName}`, 'Image', 'For joint pain and arthritis')
                 break
               case 'periodontal-section':
-                pushDataLayer('exp_hopg_impr_i_pgd_i', 'Image', 'Image', 'For periodontal (gum) disease')
+                pushDataLayer('exp_hopg_impr_i_pgd_i', `Image - ${productName}`, 'Image', 'For periodontal (gum) disease')
                 break
               case 'skin-section':
-                pushDataLayer('exp_hopg_impr_i_hgs_i', 'Image', 'Image', 'For a healthy and glowing skin')
+                pushDataLayer('exp_hopg_impr_i_hgs_i', `Image - ${productName}`, 'Image', 'For a healthy and glowing skin')
                 break
 
               default:
@@ -3127,19 +3313,19 @@ padding: 8px 16px;
               case 'navigation-section':
                 break
               case 'back-pain-section':
-                pushDataLayer('exp_hopg_impr_t_bps_it', 'Image text', 'Text', 'For back pain section')
+                pushDataLayer('exp_hopg_impr_t_bps_it', `Image text - ${productName}`, 'Text', 'For back pain section')
                 break
               case 'knee-section':
-                pushDataLayer('exp_hopg_impr_t_khp_it', 'Image text', 'Text', 'For knee or hand pain')
+                pushDataLayer('exp_hopg_impr_t_khp_it', `Image text - ${productName}`, 'Text', 'For knee or hand pain')
                 break
               case 'joint-section':
-                pushDataLayer('exp_hopg_impr_t_jpa_it', 'Image text', 'Text', 'For joint pain and arthritis')
+                pushDataLayer('exp_hopg_impr_t_jpa_it', `Image text - ${productName}`, 'Text', 'For joint pain and arthritis')
                 break
               case 'periodontal-section':
-                pushDataLayer('exp_hopg_impr_t_pgd_it', 'Image text', 'Text', 'For periodontal (gum) disease')
+                pushDataLayer('exp_hopg_impr_t_pgd_it', `Image text - ${productName}`, 'Text', 'For periodontal (gum) disease')
                 break
               case 'skin-section':
-                pushDataLayer('exp_hopg_impr_t_hgs_it', 'Image text', 'Text', 'For a healthy and glowing skin')
+                pushDataLayer('exp_hopg_impr_t_hgs_it', `Image text - ${productName}`, 'Text', 'For a healthy and glowing skin')
                 break
 
               default:
@@ -3150,6 +3336,35 @@ padding: 8px 16px;
       })
     }
   }, WAIT_INTERVAL_TIMEOUT)
+
+
+  // // check for the reviews section and rate stars, to update the main product rate
+  // waitForElement('div.opw-fontLg.opw-textColor.opw-mb-auto.opw-capitalize').then(el => {
+
+  //   const reviews = el.innerText
+  //   const rate = document.querySelector('.opw-font6Xl.opw-font-bold.opw-navbarTextColor.opw-pr-2')?.innerText
+
+  //   console.log(reviews, rate)
+
+  //   const waitForEl = setInterval(() => {
+  //     if (
+  //       document.querySelectorAll('.reviews--plugin a')[1]
+  //       && document.querySelectorAll('.reviews--plugin p')[1]
+  //     ) {
+  //       clearInterval(waitForEl)
+
+  //       console.log('INSIDE >>>>>>>>>>>>>>>>');
+
+  //       document.querySelectorAll('.reviews--trust a').forEach(element => {
+  //         element.innerText = reviews.toLowerCase()
+  //       })
+
+  //       document.querySelectorAll('.reviews--trust p').forEach(element => {
+  //         element.innerText = rate
+  //       })
+  //     }
+  //   }, WAIT_INTERVAL_TIMEOUT)
+  // })
 
   const record = setInterval(() => {
     if (typeof clarity === 'function') {
