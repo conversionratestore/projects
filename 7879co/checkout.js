@@ -94,12 +94,14 @@ class CheckoutUpdate {
         top: 0;
         right: 0;
       }
+      .crs-search.active {
+        background: #000000;
+      }
       .crs-search + .absolute {
         display: none;
       }
       .relative.show .border-platinum-18 {
         display: block!important;
-        top: 42px;
       }
     </style>
     <button type="button" class="flex items-center crs-search ml-1">Search
@@ -116,6 +118,11 @@ class CheckoutUpdate {
     })
     $el('#postcode-input').addEventListener('input', (e) => {
       e.target.parentElement.parentElement.classList.remove('show')
+      if (e.target.value != '') {
+        $el('.crs-search').classList.add('active')
+      } else {
+        $el('.crs-search').classList.remoe('active')
+      }
     })
   }
   checkPageUrl() {
@@ -144,7 +151,9 @@ class CheckoutUpdate {
           margin: 0;
         }
         `:''}
-       
+        [for="Country"] + div.absolute {
+          pointer-events: none;
+        }
         main>div:first-of-type {
           margin-bottom: 0;
         }
@@ -318,6 +327,11 @@ class CheckoutUpdate {
         label.text-platinum-32 {
           line-height: 20px;
         }
+        .text-postcode {
+          font-size: 13px;
+          line-height: 16px;
+          margin-top: -16px;
+        }
         ${device == 'desktop' ? `
         #main {
           background: var(--Backgraund, #F4F4F5);
@@ -422,10 +436,6 @@ class CheckoutUpdate {
         }
         .overflow-auto ~ button {
           display: none;
-        }
-        .text-postcode {
-          font-size: 13px;
-          line-height: 16px;
         }
         .crs-timer > div {
           gap: 12px;
@@ -1263,10 +1273,12 @@ class CheckoutUpdate {
       if (item.innerText.includes('in case we need')) {
         item.style.order = '-1'
       }
-      if (item.innerText.includes('first line of address') && !item.innerText.includes('fill the delivery')) {
+      if (item.innerText.includes('first line of address') && 
+        !$el('.text-postcode')
+      ) {
         item.insertAdjacentHTML(
-          'beforeend',
-          '<p class="text-p text-postcode" style="margin-top: 8px;">Enter your postcode / first line of address to automatically fill the delivery address</p>'
+          'afterend',
+          '<p class="text-p text-postcode">Enter your postcode / first line of address to automatically fill the delivery address</p>'
         )
         item.style.flexDirection = 'column'
       }
