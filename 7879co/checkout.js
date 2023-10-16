@@ -1181,6 +1181,7 @@ class CheckoutUpdate {
       $el('#checkout-container').insertAdjacentHTML('beforebegin', payments)
 
       if ($el('#primer-checkout-submit-button')) {
+        console.log('is #primer-checkout-submit-button')
         $$el('.crs-btn').forEach(item => {
           item.addEventListener('click', (e) => {
             console.log(' click primer-checkout-submit-button')
@@ -1639,18 +1640,18 @@ class CheckoutUpdate {
       $$el('.py-10').forEach(item => {
         if (!item.innerText.includes('ummary')) {
           if ($el('.crs-terms')) return
-          if (item.innerText.includes('Select your payment method') || 
-            item.innerText.includes('Add your delivery address') ||
+          if (item.innerText.includes('Add your delivery address') ||
             item.innerText.includes('Add your billing address') ||
             item.innerText.includes('Your delivery options')
           ) {
             item.parentElement.insertAdjacentHTML('beforeend', terms)
           }
+          if (item.innerText.includes('Select your payment method') && 
+            $el('#checkout-container + div.mt-5.flex.flex-col')
+          ) {
+            item.parentElement.insertAdjacentHTML('beforeend', terms)
+          }
         }
-        // if (item.innerText.includes('Add your billing address')) {
-        //   console.log('use_address_billing false')
-        //   localStorage.setItem('use_address_billing', false)
-        // }
       })
 
       if (!$el('#checkout-container') && !$el('.crs-continue') && $el('.crs-footer') && $el('.overflow-auto ~ button')) {
