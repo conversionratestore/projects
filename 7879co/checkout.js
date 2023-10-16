@@ -1196,22 +1196,6 @@ class CheckoutUpdate {
     if ($el('#checkout-container') && !$el('.crs-payment-methods')) {
       $el('#checkout-container').insertAdjacentHTML('beforebegin', payments)
 
-      $$el('input[name="radio_payment"]').forEach(item => {
-        item.addEventListener('click', (e) => {
-          e.stopImmediatePropagation()
-          if (item.checked) {
-            if (item.closest('.crs-payment-credit')) {
-              $el('#primer-checkout-credit-card-button').click()
-              pushDataLayer('exp_imp_ch_r_scospsypm_pbc', 'Pay by card', 'Radio button', '"Secure checkout Order summery Payment Select your payment method"');
-            
-            } else {
-              $el('#primer-checkout-klarna-button').click()
-              pushDataLayer('exp_imp_ch_r_scospsypm_k', 'Klarna', 'Radio button', 'Secure checkout Order summery Payment Select your payment method');
-              
-            }
-          }
-        })
-      })
     }
     if ($el('.crs-payment-klarna .bpbPRL[disabled]')) {
       $el('.crs-payment-klarna button.crs-btn').disabled = false;
@@ -1532,7 +1516,9 @@ class CheckoutUpdate {
     }
 
     $$el('#primer-checkout-apm-button-container > div').forEach(item => {
-      if (item.id == 'primer-checkout-apm-klarna' && $el('.crs-payment-klarna')) {
+      if (item.id == 'primer-checkout-apm-klarna' && 
+        $el('.crs-payment-klarna')
+      ) {
         $el('.crs-payment-klarna').style.display = 'block';
       }
       if (item.querySelector('img[alt="AFTERPAY"]') || item.querySelector('img[alt="CLEARPAY"]')) {
@@ -1575,6 +1561,20 @@ class CheckoutUpdate {
       } else {
         item.parentElement.parentElement.classList.remove('show')
       }
+      item.addEventListener('click', (e) => {
+        e.stopImmediatePropagation()
+        if (item.checked) {
+          if (item.closest('.crs-payment-credit')) {
+            $el('#primer-checkout-credit-card-button').click()
+            pushDataLayer('exp_imp_ch_r_scospsypm_pbc', 'Pay by card', 'Radio button', '"Secure checkout Order summery Payment Select your payment method"');
+          
+          } else {
+            $el('#primer-checkout-klarna-button').click()
+            pushDataLayer('exp_imp_ch_r_scospsypm_k', 'Klarna', 'Radio button', 'Secure checkout Order summery Payment Select your payment method');
+            
+          }
+        }
+      })
     })
 
     if ( $el('#primer-checkout-submit-button > span') && 
@@ -1610,16 +1610,18 @@ class CheckoutUpdate {
       </svg>`)
     }
 
-    if ($el('#primer-checkout-submit-button') && $$el('.crs-btn')) {
+    if ($el('#primer-checkout-submit-button-container button') && $$el('.crs-btn')) {
       $$el('.crs-btn').forEach(item => {
         item.addEventListener('click', (e) => {
           e.stopImmediatePropagation()
-          $el('#primer-checkout-submit-button').click()
           if (item.closest('.crs-payment-credit')) {
             pushDataLayer('exp_imp_ch_b_scospsypm_pn', 'Pay now', 'Button', 'Secure checkout Order summery Payment Select your payment method');
           } else {
             pushDataLayer('exp_imp_ch_r_scospsypm_k', 'Klarna Confirm', 'Button', 'Secure checkout Order summery Payment Select your payment method');
           }
+          setTimeout(() => {
+            $el('#primer-checkout-submit-button-container button').click()
+          }, 300)
         })
       })
     }
