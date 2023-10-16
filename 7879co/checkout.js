@@ -771,7 +771,7 @@ class CheckoutUpdate {
               from.querySelector('.crs-promo-result').hidden = false;
             })
             
-            let total = $el('.overflow-auto+.flex.flex-col.gap-2').innerHTML.split('Total</p><p class="text-h5 font-semibold">')[1].split('</p>')[0]
+            let total = $el('.overflow-auto+.flex.flex-col.gap-2').innerHTML.split('Total</p><p class="text-h5 font-semibold">')[1].split('</p>')[0].split(',').join('')
             let compare = ''
             let totalOrder = ''
             if ($el('.text-special-priceIncrease')) {
