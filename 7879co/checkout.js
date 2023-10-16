@@ -609,7 +609,7 @@ class CheckoutUpdate {
         },
 
         body: JSON.stringify({
-          query: `mutation ${action == 'remove' ? 'checkoutRemovePromoCode': 'checkoutAddPromoCode'}checkoutAddPromoCode($promoCode: String!, $token: String) {
+          query: `mutation ${action == 'remove' ? 'checkoutRemovePromoCode': 'checkoutAddPromoCode'}($promoCode: String!, $token: String) {
             ${action == 'remove' ? 'checkoutRemovePromoCode':'checkoutAddPromoCode'}(promoCode: $promoCode, token: $token) {
               checkout {
                   id
@@ -1251,7 +1251,7 @@ class CheckoutUpdate {
       content: none!important;
     }
     </style>
-    <label class="flex items-center mt-3 isUseAddress" style="pointer-events: none;">
+    <label class="flex items-center mt-3 isUseAddress">
       <div class="h-6 w-6 bg-white relative" style="height: 20px; width: 20px;">
         <input class="border-platinum-18 h-6 w-6 cursor-pointer" type="checkbox" ${localStorage.getItem('use_address_billing') == 'true' ? 'checked' : ''} style="opacity: 0; position: absolute;">
         <span class="crs-checkbox"></span>
@@ -1261,6 +1261,87 @@ class CheckoutUpdate {
 
     if ($el('.isUseAddress')) return
     parent.insertAdjacentHTML('beforeend', isUseAddress)
+
+    $el('.isUseAddress input').addEventListener('change', (e) => { 
+
+      let token = '';
+        
+      const cookieName = '7879_CHECKOUT_V2_TOKEN_uk';
+      const cookies = document.cookie.split('; ');
+
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].split('=');
+        if (cookie[0] === cookieName) {
+          token = decodeURIComponent(cookie[1]);
+          console.log(`Value of ${cookieName} is: ${token}`);
+          break; // Stop searching once the cookie is found
+        }
+      }
+   
+      // fetch('https://apicdn.7879.co/', {
+      //   method: 'POST',
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     "x-api-key": "da2-kd47u433qjeqzefxn5toajbaae"
+      //   },
+
+      //   body: JSON.stringify({
+      //     query: `mutation UpdateBillingAddress($billingAddress: AddressInput!, $token: String) {
+      //       checkoutBillingAddressUpdate(billingAddress: $billingAddress, token: $token) {
+      //         checkout {
+      //           billingAddress {
+      //             firstName
+      //             lastName
+      //             companyName
+      //             streetAddress1
+      //             streetAddress2
+      //             city
+      //             cityArea
+      //             postalCode
+      //             country
+      //             countryArea
+      //             phone
+      //           }
+      //         }
+      //       }
+      //     }`,
+      //     variables: {
+      //       "billingAddress": {
+      //         "firstName": 'Olha billing',
+      //         "lastName": 'tes',
+      //         "companyName": 'company',
+      //         "streetAddress1": 'streetAddress1',
+      //         "streetAddress2": 'streetAddress2',
+      //         "city": 'Manchester',
+      //         "cityArea": 'greater manchester',
+      //         "postalCode": 'M17',
+      //         "country": 'UK',
+      //         "countryArea": 'UK',
+      //         "phone": '09099999',
+      //       },
+      //       "token": token,
+      //     },
+      //   }),
+      // })
+      // .then((response) => response.json())
+      // .then((data) => {
+      //   // Обробка відповіді сервера
+      //   console.log(data);
+      // })
+      // .catch((error) => {
+      //   console.error('Помилка:', error);
+      // });
+      $$el('#checkout-container + div.mt-5.flex.flex-col > div').forEach(item => {
+        if (item.innerText.includes('Billing Address')) {
+          if (e.target.checked) {
+            item.style.display = 'none'
+          } else {
+            item = ''
+          }
+        }
+      })
+      
+    })
   }
   fixFormAndBlocks() {
     if ($el('p.text-h3')) {
@@ -1345,7 +1426,7 @@ class CheckoutUpdate {
         
      
         localStorage.setItem('use_address_billing', item.querySelector('input').checked)
-        
+
         item.querySelector('input').addEventListener('change', (e) => {
           e.stopImmediatePropagation()
           console.log(e.target.checked)
