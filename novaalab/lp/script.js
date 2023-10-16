@@ -1,4 +1,4 @@
-; (function () {
+;(function () {
   // -------------------------------------
   // CONSTANTS
   // -------------------------------------
@@ -7,20 +7,16 @@
   const IMAGE_DIR_URL = 'https://conversionratestore.github.io/projects/novaalab/lp/images'
 
   const productsData = {
-    'remote': {
+    remote: {
       id: '46883225993561',
       name: 'Novaa deep healing pad with remote [2023]',
       pdpLink: `https://novaalab.com/products/new-red-light-therapy-pad-at-home-with-remote`,
       imgUrl: `https://ucarecdn.com/d556b2cd-e77a-4265-b5c7-803a591a5b8d/-/format/auto/-/preview/3000x3000/-/quality/lighter/red%20light%20therapy%20pad%20at%20home%20infrared%205%20-%20700px.jpg`,
       price: ['$700.00', '$349.90', '-50%'],
-      list: [
-        'Bestseller',
-        'Deep Healing Therapy with patented remote',
-        '5.7" x 9"',
-      ],
+      list: ['Bestseller', 'Deep Healing Therapy with patented remote', '5.7" x 9"'],
       rate: '4.7'
     },
-    'oral': {
+    oral: {
       id: '40365298679862',
       name: 'Novaa oral care pro',
       pdpLink: `https://novaalab.com/products/novaa-oral-care-gums-periodontal-treatment`,
@@ -38,7 +34,7 @@
       list: [''],
       rate: '4.8'
     },
-    'pro': {
+    pro: {
       id: '32854816784438',
       name: 'Novaa light pro',
       pdpLink: `https://novaalab.com/products/novaa-light-pro-red-light-laser-therapy-device`,
@@ -49,37 +45,29 @@
         'Affordable light therapy',
         'Pain treatment',
         'Skin treatment',
-        '4.7" x 1"',
+        '4.7" x 1"'
       ],
       rate: '4.9'
     },
-    'deep': {
+    deep: {
       id: '39782656311350',
       name: 'Novaa deep healing pad for your knee',
       pdpLink: `https://novaalab.com/products/knee-treatment-therapy-wrap-arthritis-relief`,
       imgUrl: `https://novaalab.com/cdn/shop/products/DSC_2736_b613cc30-9fe4-4bc2-9945-dae336978c32_1024x1024.jpg?v=1634830839`,
       price: ['$540.90', '$299.90', '-45%'],
-      list: [
-        'Deep Healing Therapy designed for the knee',
-        '15.7" x 9"',
-      ],
+      list: ['Deep Healing Therapy designed for the knee', '15.7" x 9"'],
       rate: '4.8'
     },
-    'laser': {
+    laser: {
       id: '40156488761398',
       name: 'Novaa extra strength laser',
       pdpLink: `https://novaalab.com/products/laser-red-light-therapy`,
       imgUrl: `https://novaalab.com/cdn/shop/products/ColdLaserredlighttherapy9_1024x1024.jpg?v=1655115461`,
       price: ['$399.00', '$299.90', '-25%'],
-      list: [
-        'Extra Power Healing Laser',
-        'Pain treatment',
-        'Skin treatment',
-        '7.9" x 2.3"',
-      ],
+      list: ['Extra Power Healing Laser', 'Pain treatment', 'Skin treatment', '7.9" x 2.3"'],
       rate: '4.9'
     },
-    'mask': {
+    mask: {
       id: '47048817607001',
       name: 'Novaa glow therapy mask',
       pdpLink: `https://novaalab.com/products/novaa-glow-therapy-mask`,
@@ -87,14 +75,13 @@
       price: ['$299.00', '$249.90', '-20%'],
       list: [''],
       rate: '4.8'
-    },
-
+    }
   }
 
   // -------------------------------------
   // CSS & HTML
   // -------------------------------------
-  const style = /*html*/`
+  const style = /*html*/ `
     <style>
       /* client's elements  */
       #r-1653306391810 {
@@ -2335,7 +2322,7 @@ padding: 8px 16px;
 }
     </style>`
 
-  const customHeader = (isBubble) => /*html*/`
+  const customHeader = (isBubble) => /*html*/ `
 
 
     <header class="custom-header">
@@ -2350,7 +2337,9 @@ padding: 8px 16px;
                 <li><a href="https://novaalab.com/pages/novaalab-reviews-red-light-therapy">read our reviews</a></li>
                 <li><a href="/blogs/infos">blog</a></li>
                 <li><a href="/cart">my cart</a></li>
-                <li class="${isBubble ? 'bubble-cart' : ''}"><a href="/cart"><img src="https://conversionratestore.github.io/projects/novaalab/catalog-page/images/24_cart.svg" alt="cart"></a></li>
+                <li class="${
+                  isBubble ? 'bubble-cart' : ''
+                }"><a href="/cart"><img src="https://conversionratestore.github.io/projects/novaalab/catalog-page/images/24_cart.svg" alt="cart"></a></li>
             </ul>
         </nav>
         </div>
@@ -2368,14 +2357,16 @@ padding: 8px 16px;
                 <li><a href="https://novaalab.com/pages/novaalab-reviews-red-light-therapy">read our reviews</a></li>
                 <li><a href="/blogs/infos">blog</a></li>
                 <li><a href="/cart">my cart</a></li>
-                <li class="${isBubble ? 'bubble-cart' : ''}"><a href="/cart"><img src="https://conversionratestore.github.io/projects/novaalab/catalog-page/images/24_cart.svg" alt="cart"></a></li>
+                <li class="${
+                  isBubble ? 'bubble-cart' : ''
+                }"><a href="/cart"><img src="https://conversionratestore.github.io/projects/novaalab/catalog-page/images/24_cart.svg" alt="cart"></a></li>
             </ul>
         </nav>
         </div>
     </header>
   `
 
-  const html = /*html*/`
+  const html = /*html*/ `
     <nav class="navbar">
     <ul class="navbar-list">
       <li class="navbar-item"><a href="#back-pain-section">Back pain</a></li>
@@ -2411,7 +2402,7 @@ padding: 8px 16px;
                     <img src="${IMAGE_DIR_URL}/trust.svg" alt="trustadvisor 5 stars">
                   </div>
                   <div>
-                    <a href="https://www.trustpilot.com/review/novaalab.com">from 160 reviews</a>
+                    <a href="https://www.trustpilot.com/review/novaalab.com" target="_blank">from 160 reviews</a>
                   </div>
                 </div>
               </div>
@@ -2439,14 +2430,14 @@ padding: 8px 16px;
                   </div>
                   <div>
                     <img src="${IMAGE_DIR_URL}/trust.svg" alt="trustadvisor 5 stars">
-                    <a href="https://www.trustpilot.com/review/novaalab.com">from 160 reviews</a>
+                    <a href="https://www.trustpilot.com/review/novaalab.com" target="_blank">from 160 reviews</a>
                   </div>
                 </div>
               </div>
 
               <div class="even-columns">
-                <button class="button" data-product-id="46883225993561">Shop Deep Healing Pad</button>
-                <a href="#r-1662107210899" class="button" data-type="inverted">About red light therapy</a>
+                <button class="button" data-linkTo="https://novaalab.com/products/new-red-light-therapy-pad-at-home-with-remote">Shop Deep Healing Pad</button>
+                <a href="#mitochondria-section" class="button" data-type="inverted">About red light therapy</a>
               </div>
 
             </div>
@@ -2962,8 +2953,7 @@ padding: 8px 16px;
   // -------------------------------------
   document.head.insertAdjacentHTML('beforeend', style)
 
-
-  waitForElement('.cart-link__bubble').then(el => {
+  waitForElement('.cart-link__bubble').then((el) => {
     const clientHeader = document.querySelector('.site-header')
 
     if (el.classList.contains('cart-link__bubble--visible')) {
@@ -3005,7 +2995,7 @@ padding: 8px 16px;
           if (document.querySelectorAll('.custom-header a')[13]) {
             clearInterval(waitForLinks)
 
-            document.querySelectorAll('.custom-header a').forEach(link => {
+            document.querySelectorAll('.custom-header a').forEach((link) => {
               link.addEventListener('focus', () => {
                 if (link.closest('.bubble-cart')) {
                   pushDataLayer('exp_hopg_impr_b_header_menu_basket', 'Basket', 'Button', 'Header menu')
@@ -3018,23 +3008,23 @@ padding: 8px 16px;
             })
           }
         }, WAIT_INTERVAL_TIMEOUT)
-
       }
     }, WAIT_INTERVAL_TIMEOUT)
-
   })
-  waitForElement('#r-1653306391810').then(el => el.insertAdjacentHTML('afterend', html))
+  waitForElement('#r-1653306391810').then((el) => el.insertAdjacentHTML('afterend', html))
 
   const waitForNavSections = setInterval(() => {
-    const sections = document.querySelectorAll('#shopify-section-header, #head-section, #navigation-section, #back-pain-section, #knee-section, #joint-section, #periodontal-section, #skin-section')
+    const sections = document.querySelectorAll(
+      '#shopify-section-header, #head-section, #navigation-section, #back-pain-section, #knee-section, #joint-section, #periodontal-section, #skin-section'
+    )
 
-    const navbarItems = document.querySelectorAll(".navbar-item")
-    const navSectionItems = document.querySelectorAll("#navigation-section ul li")
+    const navbarItems = document.querySelectorAll('.navbar-item')
+    const navSectionItems = document.querySelectorAll('#navigation-section ul li')
 
     if (navbarItems?.length >= 5 && navSectionItems?.length >= 5 && sections?.length >= 8) {
       clearInterval(waitForNavSections)
 
-      const navbar = document.querySelector(".navbar")
+      const navbar = document.querySelector('.navbar')
 
       // Function to scroll to the active item
       function scrollToActiveNavItem() {
@@ -3085,9 +3075,9 @@ padding: 8px 16px;
         const navbarToHide = document.querySelector('.navbar')
 
         if (
-          activeSection === 'shopify-section-header'
-          || activeSection === 'head-section'
-          || activeSection === 'navigation-section'
+          activeSection === 'shopify-section-header' ||
+          activeSection === 'head-section' ||
+          activeSection === 'navigation-section'
         ) {
           // Hide the navbar for the navigation section
           navbarToHide.classList.remove('navbar--show')
@@ -3125,7 +3115,12 @@ padding: 8px 16px;
             if ($(this).closest('.navbar-list').length > 0) {
               pushDataLayer('exp_hopg_impr_b_header_menu_item', $(this).find('a').text(), 'Button', 'Header')
             } else if ($(this).closest('#navigation-section').length > 0) {
-              pushDataLayer('exp_hopg_impr_b_whiwh_bn', $(this).find('a').text(), 'Button', 'What health issue do you want to heal?')
+              pushDataLayer(
+                'exp_hopg_impr_b_whiwh_bn',
+                $(this).find('a').text(),
+                'Button',
+                'What health issue do you want to heal?'
+              )
             } else if ($(this).closest('.custom-header').length > 0 && DEVICE !== 'mobile') {
               offsetTop = 110
             }
@@ -3133,19 +3128,21 @@ padding: 8px 16px;
             const sectionId = $(this).find('a').attr('href')
             const $section = $(sectionId)
 
-
             // const offsetTop = DEVICE === 'mobile' ? 0 : 150
 
-            $('html, body').animate({
-              scrollTop: $section.offset().top - offsetTop
-            }, 1000) // You can adjust the duration (in milliseconds) for smooth scrolling
+            $('html, body').animate(
+              {
+                scrollTop: $section.offset().top - offsetTop
+              },
+              1000
+            ) // You can adjust the duration (in milliseconds) for smooth scrolling
           }
 
-          navbarItems.forEach(item => {
+          navbarItems.forEach((item) => {
             item.addEventListener('click', handleNavbarItemClick)
           })
 
-          navSectionItems.forEach(item => {
+          navSectionItems.forEach((item) => {
             item.addEventListener('click', handleNavbarItemClick)
           })
 
@@ -3153,7 +3150,7 @@ padding: 8px 16px;
             if (document.querySelectorAll('[data-link="mitochondria"]')[1]) {
               clearInterval(waitForHowWorksLinks)
 
-              document.querySelectorAll('[data-link="mitochondria"]').forEach(el => {
+              document.querySelectorAll('[data-link="mitochondria"]').forEach((el) => {
                 el.addEventListener('click', handleNavbarItemClick)
               })
             }
@@ -3161,8 +3158,7 @@ padding: 8px 16px;
         }
       }, WAIT_INTERVAL_TIMEOUT)
 
-
-      window.addEventListener("scroll", isNavbarTouchingSection)
+      window.addEventListener('scroll', isNavbarTouchingSection)
     }
   }, WAIT_INTERVAL_TIMEOUT)
 
@@ -3172,29 +3168,56 @@ padding: 8px 16px;
     if (document.querySelectorAll('[data-product-id]')[20]) {
       clearInterval(waitForAddBtns)
 
-      document.querySelectorAll('[data-product-id]').forEach(btn => {
+      document.querySelectorAll('[data-product-id]').forEach((btn) => {
         btn.addEventListener('click', () => {
           const sectionId = btn.closest('section').id
-          const productName = btn.closest('[data-product-name]').dataset.productName ? btn.closest('[data-product-name]').dataset.productName : ''
-
+          let productName = ''
+          if (btn.closest('[data-product-name]')) {
+            btn.closest('[data-product-name]').dataset.productName
+          }
           switch (sectionId) {
             case 'head-section':
               pushDataLayer('exp_hopg_impr_b_fs_sdhp', 'Shop Deep Healing Pad', 'Button', 'First screen')
               break
             case 'back-pain-section':
-              pushDataLayer('exp_hopg_impr_b_bps_atc', `Add to cart - ${productName}`, 'Button', 'For back pain section')
+              pushDataLayer(
+                'exp_hopg_impr_b_bps_atc',
+                `Add to cart - ${productName}`,
+                'Button',
+                'For back pain section'
+              )
               break
             case 'knee-section':
-              pushDataLayer('exp_hopg_impr_b_khp_atc', `Add to cart - ${productName}`, 'Button', 'For knee or hand pain')
+              pushDataLayer(
+                'exp_hopg_impr_b_khp_atc',
+                `Add to cart - ${productName}`,
+                'Button',
+                'For knee or hand pain'
+              )
               break
             case 'joint-section':
-              pushDataLayer('exp_hopg_impr_b_jpa_atc', `Add to cart - ${productName}`, 'Button', 'For joint pain and arthritis')
+              pushDataLayer(
+                'exp_hopg_impr_b_jpa_atc',
+                `Add to cart - ${productName}`,
+                'Button',
+                'For joint pain and arthritis'
+              )
               break
             case 'periodontal-section':
-              pushDataLayer('exp_hopg_impr_b_pgd_atc', `Add to cart - ${productName}`, 'Button', 'For periodontal (gum) disease')
+              pushDataLayer(
+                'exp_hopg_impr_b_pgd_atc',
+                `Add to cart - ${productName}`,
+                'Button',
+                'For periodontal (gum) disease'
+              )
               break
             case 'skin-section':
-              pushDataLayer('exp_hopg_impr_b_hgs_atc', `Add to cart - ${productName}`, 'Button', 'For a healthy and glowing skin')
+              pushDataLayer(
+                'exp_hopg_impr_b_hgs_atc',
+                `Add to cart - ${productName}`,
+                'Button',
+                'For a healthy and glowing skin'
+              )
               break
 
             default:
@@ -3207,13 +3230,13 @@ padding: 8px 16px;
     }
   }, WAIT_INTERVAL_TIMEOUT)
 
-  window._mfq.push(["setVariable", "home_page_improvements", "var1"])
+  window._mfq.push(['setVariable', 'home_page_improvements', 'var1'])
 
   const waitForReviews = setInterval(() => {
     if (document.querySelectorAll('.reviews--plugin a')[1]) {
       clearInterval(waitForReviews)
 
-      document.querySelectorAll('.reviews--plugin a').forEach(element => {
+      document.querySelectorAll('.reviews--plugin a').forEach((element) => {
         element.addEventListener('click', () => {
           pushDataLayer('exp_hopg_impr_l_fs_ysr', 'Yellow star reviews', 'Link', 'First screen')
         })
@@ -3225,7 +3248,7 @@ padding: 8px 16px;
     if (document.querySelectorAll('.reviews--trust  a')[1]) {
       clearInterval(waitForReviewsTrust)
 
-      document.querySelectorAll('.reviews--trust  a').forEach(element => {
+      document.querySelectorAll('.reviews--trust  a').forEach((element) => {
         element.addEventListener('click', () => {
           pushDataLayer('exp_hopg_impr_l_fs_gsr', 'Green star reviews', 'Link', 'First screen')
         })
@@ -3237,28 +3260,52 @@ padding: 8px 16px;
     if (document.querySelectorAll('.product')[9]) {
       clearInterval(waitForProducts)
 
-      document.querySelectorAll('.product').forEach(element => {
+      document.querySelectorAll('.product').forEach((element) => {
         element.addEventListener('click', (e) => {
-
           const sectionId = e.target.closest('section').id
           const productName = element.dataset.productName
 
           if (e.target.matches('.button') || e.target.closest('.button')) {
             switch (sectionId) {
               case 'back-pain-section':
-                pushDataLayer('exp_hopg_impr_b_bps_lm', `Learn more - ${productName}`, 'Button', 'For back pain section')
+                pushDataLayer(
+                  'exp_hopg_impr_b_bps_lm',
+                  `Learn more - ${productName}`,
+                  'Button',
+                  'For back pain section'
+                )
                 break
               case 'knee-section':
-                pushDataLayer('exp_hopg_impr_b_khp_lm', `Learn more - ${productName}`, 'Button', 'For knee or hand pain')
+                pushDataLayer(
+                  'exp_hopg_impr_b_khp_lm',
+                  `Learn more - ${productName}`,
+                  'Button',
+                  'For knee or hand pain'
+                )
                 break
               case 'joint-section':
-                pushDataLayer('exp_hopg_impr_b_jpa_lm', `Learn more - ${productName}`, 'Button', 'For joint pain and arthritis')
+                pushDataLayer(
+                  'exp_hopg_impr_b_jpa_lm',
+                  `Learn more - ${productName}`,
+                  'Button',
+                  'For joint pain and arthritis'
+                )
                 break
               case 'periodontal-section':
-                pushDataLayer('exp_hopg_impr_b_pgd_lm', `Learn more - ${productName}`, 'Button', 'For periodontal (gum) disease')
+                pushDataLayer(
+                  'exp_hopg_impr_b_pgd_lm',
+                  `Learn more - ${productName}`,
+                  'Button',
+                  'For periodontal (gum) disease'
+                )
                 break
               case 'skin-section':
-                pushDataLayer('exp_hopg_impr_b_hgs_lm', `Learn more - ${productName}`, 'Button', 'For a healthy and glowing skin')
+                pushDataLayer(
+                  'exp_hopg_impr_b_hgs_lm',
+                  `Learn more - ${productName}`,
+                  'Button',
+                  'For a healthy and glowing skin'
+                )
                 break
               default:
                 break
@@ -3273,13 +3320,28 @@ padding: 8px 16px;
                 pushDataLayer('exp_hopg_impr_i_khp_i', `Image - ${productName}`, 'Image', 'For knee or hand pain')
                 break
               case 'joint-section':
-                pushDataLayer('exp_hopg_impr_i_jpa_i', `Image - ${productName}`, 'Image', 'For joint pain and arthritis')
+                pushDataLayer(
+                  'exp_hopg_impr_i_jpa_i',
+                  `Image - ${productName}`,
+                  'Image',
+                  'For joint pain and arthritis'
+                )
                 break
               case 'periodontal-section':
-                pushDataLayer('exp_hopg_impr_i_pgd_i', `Image - ${productName}`, 'Image', 'For periodontal (gum) disease')
+                pushDataLayer(
+                  'exp_hopg_impr_i_pgd_i',
+                  `Image - ${productName}`,
+                  'Image',
+                  'For periodontal (gum) disease'
+                )
                 break
               case 'skin-section':
-                pushDataLayer('exp_hopg_impr_i_hgs_i', `Image - ${productName}`, 'Image', 'For a healthy and glowing skin')
+                pushDataLayer(
+                  'exp_hopg_impr_i_hgs_i',
+                  `Image - ${productName}`,
+                  'Image',
+                  'For a healthy and glowing skin'
+                )
                 break
 
               default:
@@ -3287,7 +3349,6 @@ padding: 8px 16px;
             }
           }
           if (e.target.matches('.product__name') || e.target.closest('.product__name')) {
-
             switch (sectionId) {
               case 'back-pain-section':
                 pushDataLayer('exp_hopg_impr_t_bps_it', `Image text - ${productName}`, 'Text', 'For back pain section')
@@ -3296,13 +3357,28 @@ padding: 8px 16px;
                 pushDataLayer('exp_hopg_impr_t_khp_it', `Image text - ${productName}`, 'Text', 'For knee or hand pain')
                 break
               case 'joint-section':
-                pushDataLayer('exp_hopg_impr_t_jpa_it', `Image text - ${productName}`, 'Text', 'For joint pain and arthritis')
+                pushDataLayer(
+                  'exp_hopg_impr_t_jpa_it',
+                  `Image text - ${productName}`,
+                  'Text',
+                  'For joint pain and arthritis'
+                )
                 break
               case 'periodontal-section':
-                pushDataLayer('exp_hopg_impr_t_pgd_it', `Image text - ${productName}`, 'Text', 'For periodontal (gum) disease')
+                pushDataLayer(
+                  'exp_hopg_impr_t_pgd_it',
+                  `Image text - ${productName}`,
+                  'Text',
+                  'For periodontal (gum) disease'
+                )
                 break
               case 'skin-section':
-                pushDataLayer('exp_hopg_impr_t_hgs_it', `Image text - ${productName}`, 'Text', 'For a healthy and glowing skin')
+                pushDataLayer(
+                  'exp_hopg_impr_t_hgs_it',
+                  `Image text - ${productName}`,
+                  'Text',
+                  'For a healthy and glowing skin'
+                )
                 break
 
               default:
@@ -3315,29 +3391,33 @@ padding: 8px 16px;
   }, WAIT_INTERVAL_TIMEOUT)
 
   // check for the reviews section and rate stars, to update the main product rate
-  waitForElement('div.opw-fontLg.opw-textColor.opw-mb-auto.opw-capitalize').then(el => {
+  waitForElement('div.opw-fontLg.opw-textColor.opw-mb-auto.opw-capitalize').then((el) => {
     const reviews = el.innerText
     const rate = document.querySelector('.opw-font6Xl.opw-font-bold.opw-navbarTextColor.opw-pr-2')?.innerText
 
     const waitForEl = setInterval(() => {
       if (
-        document.querySelectorAll('.reviews--plugin a')[1]
-        && document.querySelectorAll('.reviews--plugin p')[1]
-        && document.querySelectorAll('[data-product-name="Novaa deep healing pad with remote [2023]"] .product__rate span')[2]
+        document.querySelectorAll('.reviews--plugin a')[1] &&
+        document.querySelectorAll('.reviews--plugin p')[1] &&
+        document.querySelectorAll(
+          '[data-product-name="Novaa deep healing pad with remote [2023]"] .product__rate span'
+        )[2]
       ) {
         clearInterval(waitForEl)
 
-        document.querySelectorAll('.reviews--plugin a').forEach(element => {
+        document.querySelectorAll('.reviews--plugin a').forEach((element) => {
           element.innerText = reviews.toLowerCase()
         })
 
-        document.querySelectorAll('.reviews--plugin p').forEach(element => {
+        document.querySelectorAll('.reviews--plugin p').forEach((element) => {
           element.innerText = rate
         })
 
-        document.querySelectorAll('[data-product-name="Novaa deep healing pad with remote [2023]"] .product__rate span').forEach(element => {
-          element.innerText = rate
-        })
+        document
+          .querySelectorAll('[data-product-name="Novaa deep healing pad with remote [2023]"] .product__rate span')
+          .forEach((element) => {
+            element.innerText = rate
+          })
       }
     }, WAIT_INTERVAL_TIMEOUT)
   })
@@ -3354,7 +3434,7 @@ padding: 8px 16px;
   // FUNCTIONS
   // -------------------------------------
   function waitForElement(selector) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       if (document.querySelector(selector)) {
         return resolve(document.querySelector(selector))
       }
@@ -3406,9 +3486,14 @@ padding: 8px 16px;
   //   }
   // }
 
-  function pushDataLayer(event_name, event_desc, event_type, event_loc) { // Send a Google Analytics event
+  function pushDataLayer(event_name, event_desc, event_type, event_loc) {
+    // Send a Google Analytics event
     const eventData = {
-      'event': 'event-to-ga4', event_name, event_desc, event_type, event_loc
+      event: 'event-to-ga4',
+      event_name,
+      event_desc,
+      event_type,
+      event_loc
     }
 
     window.dataLayer = window.dataLayer || []
@@ -3437,7 +3522,7 @@ padding: 8px 16px;
             description: 'Infrared',
             nm: `850`,
             number: `240`
-          },
+          }
         ],
         size: '15.7" x 9"',
         price: ['$700.00', '$349.90']
@@ -3460,7 +3545,7 @@ padding: 8px 16px;
             description: 'Deep red',
             nm: `660`,
             number: `8`
-          },
+          }
         ],
         size: `Remote size:<br>5.1" x 1.4" x 1.2"<br>Mouth tray size: 2.2" x 1.4" x 0.8"`,
         price: ['$199.90', '$129.90']
@@ -3489,7 +3574,7 @@ padding: 8px 16px;
             description: 'Infrared',
             nm: `850`,
             number: ``
-          },
+          }
         ],
         size: '4.7" x 1"',
         price: ['$299.90', '$149.90']
@@ -3512,7 +3597,7 @@ padding: 8px 16px;
             description: 'Infrared',
             nm: `850`,
             number: `240`
-          },
+          }
         ],
         size: '15.7" x 9"',
         price: ['$540.90', '$299.90']
@@ -3541,7 +3626,7 @@ padding: 8px 16px;
             description: 'Infrared',
             nm: `808`,
             number: `4`
-          },
+          }
         ],
         size: '7.9" x 2.3"',
         price: ['$399.00', '$299.90']
@@ -3576,15 +3661,14 @@ padding: 8px 16px;
             description: 'Infrared',
             nm: `830 nm <br>+ 10`,
             number: ``
-          },
-
+          }
         ],
         size: '7.52" x 6.22" x 9.13"',
         price: ['$299.00', '$249.90']
-      },
+      }
     ]
 
-    const productTableRowTemplate = (name, link, src, zones, benefits, lights, size, price) => /*html*/`
+    const productTableRowTemplate = (name, link, src, zones, benefits, lights, size, price) => /*html*/ `
   <tr role="row">
   <td data-cell="Products" role="cell" data-product-name="${name}">
       <a href="${link}" class="table__img">
@@ -3598,60 +3682,91 @@ padding: 8px 16px;
     <td data-cell="Zones" role="cell">${zones}</td>
     <td data-cell="Benefits" role="cell">${benefits.split(',').join(',<br>')}</td>
     <td data-cell="Medical Lights" role="cell">  
-        ${lights.map(light =>
-          /*html*/`
+        ${lights
+          .map(
+            (light) => /*html*/ `
           <div>
             <div>
-              <img src="https://conversionratestore.github.io/projects/novaalab/catalog-page/images/24_light_${light.iconName}.svg" alt="">
+              <img src="https://conversionratestore.github.io/projects/novaalab/catalog-page/images/24_light_${
+                light.iconName
+              }.svg" alt="">
               <span>${light.description}<br>${light.nm} nm</span>
             </div>
             <div>
               ${light.number ? `<span>${light.number}<br><small>lights</small></span>` : ''}
             </div>
           </div>`
-    ).join('')
-      }
+          )
+          .join('')}
     </td>
     <td data-cell="Size" role="cell">${size}</td>
     <td data-cell="Price" role="cell"><small>${price[0]}</small><br><span>${price[1]}</span></td>
   </tr>
 `
 
-    const tableRowsHTML = productsTableData.map(product => {
-      return productTableRowTemplate(
-        product.name,
-        product.pdpLink,
-        product.imgUrl,
-        product.zones,
-        product.benefits,
-        product.lights,
-        product.size,
-        product.price
-      )
-    }).join('')
+    const tableRowsHTML = productsTableData
+      .map((product) => {
+        return productTableRowTemplate(
+          product.name,
+          product.pdpLink,
+          product.imgUrl,
+          product.zones,
+          product.benefits,
+          product.lights,
+          product.size,
+          product.price
+        )
+      })
+      .join('')
 
-    waitForElement('.table-wrapper tbody')
-      .then(el => el.insertAdjacentHTML('beforeend', tableRowsHTML))
+    waitForElement('.table-wrapper tbody').then((el) => el.insertAdjacentHTML('beforeend', tableRowsHTML))
 
-    waitForElement('.tables-wrapper').then(el => el.addEventListener('click', (e) => {
-      if (e.target.matches('.button') || e.target.closest('.button')) {
-        pushDataLayer('exp_hopg_impr_b_scc_pn', `Learn more - ${e.target.closest('[data-product-name]').dataset.productName}`, 'Button', 'Section Compare and choose!')
-      }
+    waitForElement('.tables-wrapper').then((el) =>
+      el.addEventListener('click', (e) => {
+        if (e.target.matches('.button') || e.target.closest('.button')) {
+          pushDataLayer(
+            'exp_hopg_impr_b_scc_pn',
+            `Learn more - ${e.target.closest('[data-product-name]').dataset.productName}`,
+            'Button',
+            'Section Compare and choose!'
+          )
+        }
 
-      if (e.target.matches('.table__img') || e.target.closest('.table__img') || e.target.matches('.table-mobile__img-wrapper') || e.target.closest('.table-mobile__img-wrapper')) {
-        pushDataLayer('exp_hopg_impr_b_scc_pn_image', `Image - ${e.target.closest('[data-product-name]').dataset.productName}`, 'Image', 'Section Compare and choose!')
-      }
+        if (
+          e.target.matches('.table__img') ||
+          e.target.closest('.table__img') ||
+          e.target.matches('.table-mobile__img-wrapper') ||
+          e.target.closest('.table-mobile__img-wrapper')
+        ) {
+          pushDataLayer(
+            'exp_hopg_impr_b_scc_pn_image',
+            `Image - ${e.target.closest('[data-product-name]').dataset.productName}`,
+            'Image',
+            'Section Compare and choose!'
+          )
+        }
 
-      if (e.target.matches('.table__product-name') || e.target.closest('.table__product-name') || e.target.matches('.table-mobile__name') || e.target.closest('.table-mobile__name')) {
-        pushDataLayer('exp_hopg_impr_b_scc_pn_title', `Image text - ${e.target.closest('[data-product-name]').dataset.productName}`, 'Text', 'Section Compare and choose!')
-      }
-    }))
-
+        if (
+          e.target.matches('.table__product-name') ||
+          e.target.closest('.table__product-name') ||
+          e.target.matches('.table-mobile__name') ||
+          e.target.closest('.table-mobile__name')
+        ) {
+          pushDataLayer(
+            'exp_hopg_impr_b_scc_pn_title',
+            `Image text - ${e.target.closest('[data-product-name]').dataset.productName}`,
+            'Text',
+            'Section Compare and choose!'
+          )
+        }
+      })
+    )
 
     const productTableRowsMobileTemplate = (data) => {
       const rowConfig = [
         {
-          key: "info", cellContent: ({ pdpLink, imgUrl, name, price }) => /*html*/`
+          key: 'info',
+          cellContent: ({ pdpLink, imgUrl, name, price }) => /*html*/ `
       <td role="cell">
         <div data-product-name="${name}">
           <div>
@@ -3668,15 +3783,20 @@ padding: 8px 16px;
       </td>
       `
         },
-        { key: "Zones heading", cellContent: () => `<td>Zones</td>` },
-        { key: "Zones content", cellContent: ({ zones }) => `<td>${zones}</td>` },
-        { key: "Benefits heading", cellContent: () => `<td>Benefits</td>` },
-        { key: "Benefits content", cellContent: ({ benefits }) => `<td><div>${benefits.split(',').join(',<br>')}</div></td>` },
-        { key: "Medical Lights heading", cellContent: () => `<td>Medical Lights</td>` },
+        { key: 'Zones heading', cellContent: () => `<td>Zones</td>` },
+        { key: 'Zones content', cellContent: ({ zones }) => `<td>${zones}</td>` },
+        { key: 'Benefits heading', cellContent: () => `<td>Benefits</td>` },
         {
-          key: "Medical Lights content", cellContent: ({ lights }) => `<td>
-    ${lights.map(({ iconName, description, nm, number }) =>
-      /*html*/`
+          key: 'Benefits content',
+          cellContent: ({ benefits }) => `<td><div>${benefits.split(',').join(',<br>')}</div></td>`
+        },
+        { key: 'Medical Lights heading', cellContent: () => `<td>Medical Lights</td>` },
+        {
+          key: 'Medical Lights content',
+          cellContent: ({ lights }) => `<td>
+    ${lights
+      .map(
+        ({ iconName, description, nm, number }) => /*html*/ `
       <div>
         <div>
           <img src="https://conversionratestore.github.io/projects/novaalab/catalog-page/images/24_light_${iconName}.svg" alt="">
@@ -3686,104 +3806,135 @@ padding: 8px 16px;
           ${number ? `<span>${number}<br><small>lights</small></span>` : ''}
         </div>
       </div>`
-          ).join('')
-            }
-    </td>` },
-        { key: "Size heading", cellContent: () => `<td>Size</td>` },
-        { key: "Size content", cellContent: ({ size }) => `<td>${size}</td>` },
+      )
+      .join('')}
+    </td>`
+        },
+        { key: 'Size heading', cellContent: () => `<td>Size</td>` },
+        { key: 'Size content', cellContent: ({ size }) => `<td>${size}</td>` }
       ]
 
       const rows = {}
 
-      rowConfig.forEach(config => {
-        rows[config.key] = data.map(item => config.cellContent(item))
+      rowConfig.forEach((config) => {
+        rows[config.key] = data.map((item) => config.cellContent(item))
       })
 
       return `
-    ${rowConfig.map(config => `
+    ${rowConfig
+      .map(
+        (config) => `
       <tr data-row="${config.key}" role="row">
-        ${rows[config.key].join("")}
+        ${rows[config.key].join('')}
       </tr>
-    `).join("")}
+    `
+      )
+      .join('')}
   `
     }
 
-    waitForElement('.table-mobile tbody')
-      .then(el => el.innerHTML = productTableRowsMobileTemplate(productsTableData))
+    waitForElement('.table-mobile tbody').then(
+      (el) => (el.innerHTML = productTableRowsMobileTemplate(productsTableData))
+    )
     // .then(
     //   () => document.querySelector('.table-mobile-wrapper').addEventListener('scroll', handleHorizontalScroll)
     // )
 
-    waitForElement('.efficient__content [data-btn="choose-kit"]').then(el => el.addEventListener('click', function (e) {
-      e.preventDefault()
+    waitForElement('[data-linkTo]').then((el) => {
+      el.addEventListener('click', (e) => {
+        window.location.href = e.target.dataset.linkto
+      })
+    })
 
-      // Get the 'href' attribute from the clicked element and remove the '#' character to get the target anchor.
-      var targetAnchor = $(this).attr('href').substring(1)
+    waitForElement('.efficient__content [data-btn="choose-kit"]').then((el) =>
+      el.addEventListener('click', function (e) {
+        e.preventDefault()
 
-      // Check if the target anchor element exists on the page.
-      var $target = $('#' + targetAnchor)
+        // Get the 'href' attribute from the clicked element and remove the '#' character to get the target anchor.
+        var targetAnchor = $(this).attr('href').substring(1)
 
-      var navbarListHeight = $('.navbar-list').height()
-      let offsetTop = navbarListHeight - (DEVICE === 'mobile' ? 15 : 0)
+        // Check if the target anchor element exists on the page.
+        var $target = $('#' + targetAnchor)
 
+        var navbarListHeight = $('.navbar-list').height()
+        let offsetTop = navbarListHeight - (DEVICE === 'mobile' ? 15 : 0)
 
-      if ($target.length) {
-        $('html, body').animate({
-          scrollTop: $target.offset().top - offsetTop
-        }, 1000) // You can adjust the duration (in milliseconds) for smooth scrolling
-      }
+        if ($target.length) {
+          $('html, body').animate(
+            {
+              scrollTop: $target.offset().top - offsetTop
+            },
+            1000
+          ) // You can adjust the duration (in milliseconds) for smooth scrolling
+        }
 
-      pushDataLayer('exp_hopg_impr_b_spmcs_cyk', 'Choose your kit 1 ', 'Button', 'Scientifically proven by more than 3,000 clinical studies')
-    }))
-    waitForElement('.ailments [data-btn="choose-kit"]').then(el => el.addEventListener('click', function (e) {
-      e.preventDefault()
+        pushDataLayer(
+          'exp_hopg_impr_b_spmcs_cyk',
+          'Choose your kit 1 ',
+          'Button',
+          'Scientifically proven by more than 3,000 clinical studies'
+        )
+      })
+    )
+    waitForElement('.ailments [data-btn="choose-kit"]').then((el) =>
+      el.addEventListener('click', function (e) {
+        e.preventDefault()
 
-      // Get the 'href' attribute from the clicked element and remove the '#' character to get the target anchor.
-      var targetAnchor = $(this).attr('href').substring(1)
+        // Get the 'href' attribute from the clicked element and remove the '#' character to get the target anchor.
+        var targetAnchor = $(this).attr('href').substring(1)
 
-      // Check if the target anchor element exists on the page.
-      var $target = $('#' + targetAnchor)
+        // Check if the target anchor element exists on the page.
+        var $target = $('#' + targetAnchor)
 
-      var navbarListHeight = $('.navbar-list').height()
-      let offsetTop = navbarListHeight - (DEVICE === 'mobile' ? 15 : 0)
+        var navbarListHeight = $('.navbar-list').height()
+        let offsetTop = navbarListHeight - (DEVICE === 'mobile' ? 15 : 0)
 
-      if ($target.length) {
-        $('html, body').animate({
-          scrollTop: $target.offset().top - offsetTop
-        }, 1000) // You can adjust the duration (in milliseconds) for smooth scrolling
-      }
+        if ($target.length) {
+          $('html, body').animate(
+            {
+              scrollTop: $target.offset().top - offsetTop
+            },
+            1000
+          ) // You can adjust the duration (in milliseconds) for smooth scrolling
+        }
 
-      pushDataLayer('exp_hopg_impr_b_wwnlhy_cyk', 'Choose your kit 2', 'Button', 'When will Novaa Light help you?')
-    }))
+        pushDataLayer('exp_hopg_impr_b_wwnlhy_cyk', 'Choose your kit 2', 'Button', 'When will Novaa Light help you?')
+      })
+    )
 
-    waitForElement('.even-columns a').then(el => el.addEventListener('click', function (e) {
-      e.preventDefault()
+    waitForElement('.even-columns a').then((el) =>
+      el.addEventListener('click', function (e) {
+        e.preventDefault()
 
-      // Get the 'href' attribute from the clicked element and remove the '#' character to get the target anchor.
-      var targetAnchor = $(this).attr('href').substring(1)
+        // Get the 'href' attribute from the clicked element and remove the '#' character to get the target anchor.
+        var targetAnchor = $(this).attr('href').substring(1)
 
-      // Check if the target anchor element exists on the page.
-      var $target = $('#' + targetAnchor)
+        // Check if the target anchor element exists on the page.
+        var $target = $('#' + targetAnchor)
 
-      var navbarListHeight = $('.navbar-list').height() 
-      let offsetTop = navbarListHeight + (DEVICE === 'mobile' ? 0 : 74)
+        var navbarListHeight = $('.navbar-list').height()
+        let offsetTop = navbarListHeight + (DEVICE === 'mobile' ? 0 : 74)
 
-      if ($target.length) {
-        $('html, body').animate({
-          scrollTop: $target.offset().top - offsetTop
-        }, 1000) // You can adjust the duration (in milliseconds) for smooth scrolling
-      }
+        if ($target.length) {
+          $('html, body').animate(
+            {
+              scrollTop: $target.offset().top - offsetTop
+            },
+            1000
+          ) // You can adjust the duration (in milliseconds) for smooth scrolling
+        }
 
-      pushDataLayer('exp_hopg_impr_b_fs_arlt', 'About red light therapy', 'Button', 'First screen')
-    }))
+        pushDataLayer('exp_hopg_impr_b_fs_arlt', 'About red light therapy', 'Button', 'First screen')
+      })
+    )
   }
 
   function drawProduct(name) {
     const item = productsData[name]
 
-    const listItems = item.list.map(item => `<li><span>${item}</span></li>`).join('')
+    const listItems = item.list.map((item) => `<li><span>${item}</span></li>`).join('')
 
-    return /*html*/`
+    return /*html*/ `
       <div class="product ff-primary" data-product-name="${item.name}">
               <div class="product__img-wrapper">
                 <div class="product__moneyback">
@@ -3850,25 +4001,25 @@ padding: 8px 16px;
 
   async function addProductToCart(id) {
     try {
-      const response = await fetch("/cart/add.json", {
-        method: "POST",
+      const response = await fetch('/cart/add.json', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
         },
         body: JSON.stringify({
           id,
-          quantity: 1,
-        }),
+          quantity: 1
+        })
       })
 
       if (!response.ok) {
         throw new Error(`Failed to add item to cart. ${response.status} ${response.statusText}`)
       }
 
-      window.location = "https://novaalab.com/cart"
+      window.location = 'https://novaalab.com/cart'
     } catch (error) {
-      console.error("An error occurred while adding item to cart:", error)
+      console.error('An error occurred while adding item to cart:', error)
     }
   }
 
