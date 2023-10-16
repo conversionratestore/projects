@@ -1,4 +1,4 @@
-; (function () {
+;(function () {
   // -------------------------------------
   // CONSTANTS
   // -------------------------------------
@@ -9,7 +9,7 @@
   // -------------------------------------
   // CSS & HTML
   // -------------------------------------
-  const styleCSS = /*html*/`
+  const styleCSS = /*html*/ `
     <style>
       /* General */
       .container.package .free-shipping-checkout,
@@ -135,6 +135,7 @@
       #cons .patches-in-pack img {
         position: absolute;
         left: 0;
+        width: 100%;
       }
 
       #cons .title-logo .close-btn {
@@ -167,13 +168,13 @@
 
     </style>`
 
-  const patchesInPack = /*html*/`
+  const patchesInPack = /*html*/ `
     <div class="patches-in-pack">
       <p>72 patches in 3 pack - 3 months for 1 person</p>
       <img src="//naturalpatch.com/cdn/shop/files/free-shipping-worldwide.svg?v=2160055944846624631" alt="free shipping worldwide">
     </div>`
 
-  const trustadvisor = /*html*/`
+  const trustadvisor = /*html*/ `
     <div class="trust-advisor">
       <img src="${IMAGE_DIR_URL}/rated-trustadvisor.png" alt="trustadvisor excellent rate">
     </div> 
@@ -189,15 +190,19 @@
   hideNavbarIntersection()
   addTrustAdvisor()
 
-
-  waitForElement(`.pdp-paypal-bottom .shopify-cleanslate [role="button"]`).then(el => {
-    handleVisibility(el, ['exp_add_exp_v_msus_bnft', '{{button_name}} - {{focusTime}}', 'Visibility', 'Main Stock Up And Save'])
+  waitForElement(`.pdp-paypal-bottom .shopify-cleanslate [role="button"]`).then((el) => {
+    handleVisibility(el, [
+      'exp_add_exp_v_msus_bnft',
+      '{{button_name}} - {{focusTime}}',
+      'Visibility',
+      'Main Stock Up And Save'
+    ])
 
     el.addEventListener('click', () => {
       pushDataLayer(['exp_add_exp_b_msus_bn', el.querySelector('span').innerText, 'Button', 'Main Stock Up And Save'])
     })
   })
-  waitForElement(`.shopify-cleanslate [role="button"]`).then(el => {
+  waitForElement(`.shopify-cleanslate [role="button"]`).then((el) => {
     handleVisibility(el, ['exp_add_exp_v_sp_bnft', '{{button_name}} - {{focusTime}}', 'Visibility', 'Select package'])
 
     el.addEventListener('focus', () => {
@@ -205,11 +210,39 @@
     })
   })
 
-  waitForElement('.slide-in .patches-in-pack img').then(el => handleVisibility(el, ['exp_add_exp_v_spfsw_ft', '{{focusTime}}', 'Visibility', 'Select package FREE Shipping Worldwide']))
-  waitForElement('.slide-in .patches-in-pack > p').then(el => handleVisibility(el, ['exp_add_exp_v_spiap_ft', '{{focusTime}}', 'Visibility', 'Select package Information about pack ']))
+  waitForElement('.slide-in .patches-in-pack img').then((el) =>
+    handleVisibility(el, [
+      'exp_add_exp_v_spfsw_ft',
+      '{{focusTime}}',
+      'Visibility',
+      'Select package FREE Shipping Worldwide'
+    ])
+  )
+  waitForElement('.slide-in .patches-in-pack > p').then((el) =>
+    handleVisibility(el, [
+      'exp_add_exp_v_spiap_ft',
+      '{{focusTime}}',
+      'Visibility',
+      'Select package Information about pack '
+    ])
+  )
 
-  waitForElement('.container.package .patches-in-pack img').then(el => handleVisibility(el, ['exp_add_exp_ft_msusrsw_v', '{{focusTime}}', 'Visibility', 'Main Stock Up And Save FREE Shipping Worldwide']))
-  waitForElement('.container.package  .patches-in-pack > p').then(el => handleVisibility(el, ['exp_add_exp_ft_msusiap_v', '{{focusTime}}', 'Visibility', 'Main Stock Up And Save Information about pack']))
+  waitForElement('.container.package .patches-in-pack img').then((el) =>
+    handleVisibility(el, [
+      'exp_add_exp_ft_msusrsw_v',
+      '{{focusTime}}',
+      'Visibility',
+      'Main Stock Up And Save FREE Shipping Worldwide'
+    ])
+  )
+  waitForElement('.container.package  .patches-in-pack > p').then((el) =>
+    handleVisibility(el, [
+      'exp_add_exp_ft_msusiap_v',
+      '{{focusTime}}',
+      'Visibility',
+      'Main Stock Up And Save Information about pack'
+    ])
+  )
 
   const recordClarity = setInterval(() => {
     if (typeof clarity === 'function') {
@@ -222,7 +255,7 @@
   // FUNCTIONS
   // -------------------------------------
   function waitForElement(selector) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       if (document.querySelector(selector)) {
         return resolve(document.querySelector(selector))
       }
@@ -245,7 +278,7 @@
     let entryTime
     const config = {
       root: null,
-      threshold: 0, // Trigger when any part of the element is out of viewport
+      threshold: 0 // Trigger when any part of the element is out of viewport
     }
 
     const observer = new IntersectionObserver((entries) => {
@@ -271,7 +304,6 @@
               eventData[1] = `${el.querySelector('span').innerText} - ${roundedDuration}`
             }
 
-
             pushDataLayer(eventData)
             observer.disconnect()
           }
@@ -281,9 +313,14 @@
 
     observer.observe(el)
   }
-  function pushDataLayer([event_name, event_desc, event_type, event_loc]) { // Send a Google Analytics event
+  function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
+    // Send a Google Analytics event
     const eventData = {
-      'event': 'event-to-ga4', event_name, event_desc, event_type, event_loc
+      event: 'event-to-ga4',
+      event_name,
+      event_desc,
+      event_type,
+      event_loc
     }
 
     window.dataLayer = window.dataLayer || []
@@ -322,9 +359,9 @@
 
           pack.addEventListener('click', function () {
             let txt
-            
+
             if (Number(packNumber) > 1) {
-              txt = `${calculatedPatchesInPack} patches in ${packNumber} pack - ${packNumber} months for 1 person`
+              txt = `${calculatedPatchesInPack} patches in ${packNumber} packs - ${packNumber} months for 1 person`
             } else {
               txt = `${calculatedPatchesInPack} patches in ${packNumber} pack - ${packNumber} month for 1 person`
             }
@@ -336,7 +373,7 @@
     }, WAIT_INTERVAL_TIMEOUT)
   }
   function changeCloseIMG() {
-    waitForElement('#cons .title-logo img').then(el => el.src = `${IMAGE_DIR_URL}/slide-in-close-x.svg`)
+    waitForElement('#cons .title-logo img').then((el) => (el.src = `${IMAGE_DIR_URL}/slide-in-close-x.svg`))
   }
   function hideNavbarIntersection() {
     const waitForNavbar = setInterval(() => {
@@ -345,26 +382,28 @@
       if (navbar && addToCartBtn) {
         clearInterval(waitForNavbar)
 
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              navbar.style.transform = "translateY(-100%)"
-            } else {
-              navbar.style.transform = "translateY(0)"
-            }
-          })
-        }, {
-          threshold: 0.5,
-        })
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                navbar.style.transform = 'translateY(-100%)'
+              } else {
+                navbar.style.transform = 'translateY(0)'
+              }
+            })
+          },
+          {
+            threshold: 0.5
+          }
+        )
 
         // Start observing the element
         observer.observe(addToCartBtn)
-
       }
     }, WAIT_INTERVAL_TIMEOUT)
   }
   function addTrustAdvisor() {
-    waitForElement('.reviews-slide').then(el => el.insertAdjacentHTML('afterend', trustadvisor))
-    waitForElement('.prices + .js-heading').then(el => el.insertAdjacentHTML('afterend', trustadvisor))
+    waitForElement('.reviews-slide').then((el) => el.insertAdjacentHTML('afterend', trustadvisor))
+    waitForElement('.prices + .js-heading').then((el) => el.insertAdjacentHTML('afterend', trustadvisor))
   }
 })()
