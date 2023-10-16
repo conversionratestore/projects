@@ -605,7 +605,7 @@ class CheckoutUpdate {
   createPromo(parent) {
 
 
-    let loc = parent.parentElement.className.includes('crs-summary-footer') ? 'Information' : 'Payment'
+    let loc = $el('.crs-header-current').innerText.includes('Information') ? 'Information' : 'Payment'
     let type = loc ==  'Information' ? 'i' : 'p'
 
     const getPromo = `
@@ -725,9 +725,10 @@ class CheckoutUpdate {
 
     $$el('.crs-get-promo').forEach(item => {
       item.addEventListener('click', (e) => {
-        e.currentTarget.hidden = true;
-        e.target.closest('.crs-promo').querySelector('.crs-promo-form').hidden = false;
-        pushDataLayer(`exp_imp_ch_l_scos${type}_gp`, 'Got a promo code', 'Link', 'Secure checkout Order summery ' + loc);
+        e.stopImmediatePropagation()
+        e.currentTarget.hidden = true
+        e.target.closest('.crs-promo').querySelector('.crs-promo-form').hidden = false
+        pushDataLayer(`exp_imp_ch_l_scos${type}_gp`, 'Got a promo code', 'Link', 'Secure checkout Order summery ' + loc)
       })
     })
     $$el('.crs-promo-form input').forEach(item => {
@@ -739,10 +740,11 @@ class CheckoutUpdate {
     })
 
     $$el('.crs-apply-promo').forEach(item => {
-      item.addEventListener('click', () => {
+      item.addEventListener('click', (e) => {
+        e.stopImmediatePropagation()
         let promoCode = item.parentElement.querySelector('input').value; //7879WELCOME10
       
-        pushDataLayer(`exp_imp_ch_b_scos${type}_a`, 'Apply', 'Button', 'Secure checkout Order summery ' + loc);
+        pushDataLayer(`exp_imp_ch_b_scos${type}_a`, 'Apply', 'Button', 'Secure checkout Order summery ' + loc)
 
         this.postPromo('add', promoCode).then(data => {
           console.log(data)
@@ -784,11 +786,14 @@ class CheckoutUpdate {
     })
    
     $$el('.crs-remove-promo').forEach(item => {
-      item.addEventListener('click', () => {
+      item.addEventListener('click', (e) => {
+        e.stopImmediatePropagation()
         let promoCode = $el('.crs-promo-form input').value; //7879WELCOME10
 
         clickRemovePromo = true;
         pushDataLayer(`exp_imp_ch_b_scos${type}_r`, 'Remove', 'Button', 'Secure checkout Order summery ' + loc);
+
+        let total = device == 'mobile' ? $el('.crs-compare').innerText : $el('.overflow-auto + div:not(.flex-1, .crs-summary-footer) .font-semibold:last-child').innerText
 
         this.postPromo('remove', promoCode).then(data => {
           console.log(data)
@@ -797,8 +802,7 @@ class CheckoutUpdate {
             from.querySelector('.crs-promo-result').hidden = true;
             from.querySelector('.crs-get-promo').hidden = false;
           })
-          let total = device == 'mobile' ? $el('.crs-compare').innerText : $el('.overflow-auto + div:not(.flex-1, .crs-summary-footer) .font-semibold:last-child').innerText
-
+         
           $el('.crs-summary-footer .crs-promo+div p:last-child').innerHTML = total
           if (device == 'mobile') {
             if ($el('.crs-total')) {
@@ -1179,6 +1183,7 @@ class CheckoutUpdate {
       if ($el('#primer-checkout-submit-button')) {
         $$el('.crs-btn').forEach(item => {
           item.addEventListener('click', (e) => {
+            console.log(' click primer-checkout-submit-button')
             $el('#primer-checkout-submit-button').click()
             if (item.closest('.crs-payment-credit')) {
               pushDataLayer('exp_imp_ch_b_scospsypm_pn', 'Pay now', 'Button', 'Secure checkout Order summery Payment Select your payment method');
@@ -1189,20 +1194,19 @@ class CheckoutUpdate {
         })
       }
 
-      $$el('.check_border').forEach(item => {
+      $$el('input[name="radio_payment"]').forEach(item => {
         item.addEventListener('click', (e) => {
           e.stopImmediatePropagation()
-          if (item.closest('.crs-payment-radio')) {
-            if (item.previousElementSibling.checked) {
+          if (item.checked) {
+            if (item.closest('.crs-payment-credit')) {
               $el('#primer-checkout-credit-card-button').click()
-            }
-           
-            pushDataLayer('exp_imp_ch_r_scospsypm_pbc', 'Pay by card', 'Radio button', '"Secure checkout Order summery Payment Select your payment method"');
-          } else {
-            if (item.previousElementSibling.checked) {
+              pushDataLayer('exp_imp_ch_r_scospsypm_pbc', 'Pay by card', 'Radio button', '"Secure checkout Order summery Payment Select your payment method"');
+            
+            } else {
               $el('#primer-checkout-klarna-button').click()
+              pushDataLayer('exp_imp_ch_r_scospsypm_k', 'Klarna', 'Radio button', 'Secure checkout Order summery Payment Select your payment method');
+              
             }
-            pushDataLayer('exp_imp_ch_r_scospsypm_k', 'Klarna', 'Radio button', 'Secure checkout Order summery Payment Select your payment method');
           }
         })
       })
@@ -1319,14 +1323,6 @@ class CheckoutUpdate {
         })
       }
 
-      // if (item.innerText.includes('Use the same address for billing') &&
-      //   $el('.py-10').innerText.includes('Add your delivery address') && 
-      //   !$el('.py-10').innerText.includes('Select your payment method')
-      // ) {
-      //   console.log('input.checked ? ' + item.querySelector('input').checked)
-      //   localStorage.setItem('use_address_billing', item.querySelector('input').checked)
-      // }
-
       if (item.previousElementSibling && item.previousElementSibling.tagName == 'INPUT') {
         item.previousElementSibling.addEventListener('click', (e) => {
           if (isEvent != false) return
@@ -1343,7 +1339,10 @@ class CheckoutUpdate {
           if (label.includes('Country')) {
             type = 'Dropdown'
           }
-          pushDataLayer('exp_imp_ch_i_scosi_' + name.toLowerCase(), label + ' ' + title, type, 'Secure checkout Order summery Information');
+
+          let loc = $el('.crs-header-current').innerText.includes('Information') ? 'd' : 'b'
+
+          pushDataLayer(`exp_imp_ch_${loc}_scosi_${name.toLowerCase()}`, label + ' ' + title, type, 'Secure checkout Order summery Information');
         })
         item.previousElementSibling.addEventListener('blur', (e) => {
           isEvent = false
@@ -1520,6 +1519,10 @@ class CheckoutUpdate {
           let type = this.getFirstLetters(desk.split('(')[0])
           pushDataLayer('exp_imp_ch_i_scospsypm_' + type.toLowerCase(), desk, 'Input', 'Secure checkout Order summery Payment Select your payment method');
         })
+      })
+      $el('#primer-checkout-card-form input').addEventListener('click', (e) => {
+        e.stopImmediatePropagation()
+        pushDataLayer('exp_imp_ch_i_scospsypm_noc', 'Name on card', 'Input', 'Secure checkout Order summery Payment Select your payment method');
       })
     }
 
