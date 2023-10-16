@@ -328,6 +328,9 @@ class CheckoutUpdate {
           background: #fff;
           gap: 0;
         }
+        #main > div.mx-auto.w-full.p-5 > div  {
+          gap: 48px;
+        }
         .overflow-auto {
           padding: 8px 28px;
           gap: 0;
@@ -419,6 +422,15 @@ class CheckoutUpdate {
         }
         .overflow-auto ~ button {
           display: none;
+        }
+        .text-postcode {
+          font-size: 13px;
+          line-height: 16px;
+        }
+        .crs-timer > div {
+          gap: 12px;
+          padding: 0.75rem 0;
+          justify-content: center;
         }
         
         ` : ''}
@@ -1249,7 +1261,7 @@ class CheckoutUpdate {
       if (item.innerText.includes('first line of address') && !item.innerText.includes('fill the delivery')) {
         item.insertAdjacentHTML(
           'beforeend',
-          '<p class="text-p" style="margin-top: 8px;">Enter your postcode / first line of address to automatically fill the delivery address</p>'
+          '<p class="text-p text-postcode" style="margin-top: 8px;">Enter your postcode / first line of address to automatically fill the delivery address</p>'
         )
         item.style.flexDirection = 'column'
       }
@@ -1276,7 +1288,9 @@ class CheckoutUpdate {
         
       }
       if (device == 'desktop') {
-        if (item.closest('.w-full.flex-col').innerText.includes('Your delivery options')) {
+        if (item.closest('.w-full.flex-col') &&
+          item.closest('.w-full.flex-col').innerText.includes('Your delivery options')
+        ) {
           item.closest('.w-full.flex-col').style = 'padding: 0 28px 28px; margin-top: -30px;'
         }
       }
@@ -1294,16 +1308,25 @@ class CheckoutUpdate {
           item.querySelector('input').insertAdjacentHTML('afterend', '<span class="crs-checkbox"></span>')
         }
         if (device == 'desktop' && !$el('#checkout-container')) {
-          item.style = 'margin: 11px 0 0 0!important; padding: 18px 0 0 0; border-top: 1px solid #EAEAEB;'
+          item.style = 'margin: 24px 0 0 0!important; padding: 18px 0 0 0; border-top: 1px solid #EAEAEB;'
         }
         
-        localStorage.setItem('use_address_billing', item.querySelector('input').checked)
-        if (item.innerText.includes('Add your billing address')) {
-          localStorage.setItem('use_address_billing', 'false')
-        }
+     
+        item.querySelector('input').addEventListener('change', (e) => {
+          e.stopImmediatePropagation()
+          console.log(e.target.checked)
+          localStorage.setItem('use_address_billing', e.target.checked)
+        })
       }
 
-      
+      // if (item.innerText.includes('Use the same address for billing') &&
+      //   $el('.py-10').innerText.includes('Add your delivery address') && 
+      //   !$el('.py-10').innerText.includes('Select your payment method')
+      // ) {
+      //   console.log('input.checked ? ' + item.querySelector('input').checked)
+      //   localStorage.setItem('use_address_billing', item.querySelector('input').checked)
+      // }
+
       if (item.previousElementSibling && item.previousElementSibling.tagName == 'INPUT') {
         item.previousElementSibling.addEventListener('click', (e) => {
           if (isEvent != false) return
@@ -1405,15 +1428,15 @@ class CheckoutUpdate {
         ) && 
         item.innerText.includes('Edit')
       ) {
-        if (item.innerText.includes('Add your billing address')) {
-          localStorage.setItem('use_address_billing', 'false')
-        }
         item.querySelectorAll('button').forEach(button => {
           if (button.innerText.includes('Edit')) {
             button.click();
           }
         })
+      }
 
+      if (item.innerText.includes('Add your billing address')) {
+        localStorage.setItem('use_address_billing', false)
       }
     })
     
@@ -1465,6 +1488,7 @@ class CheckoutUpdate {
         if (localStorage.getItem('use_address_billing') &&
           localStorage.getItem('use_address_billing') == 'true'
         ) {
+          console.log('create ')
           const isUseAddress = `
           <label class="flex items-center mt-3 isUseAddress" style="pointer-events: none;"><div class="h-6 w-6 bg-white relative" style="height: 20px; width: 20px;"><input class="border-platinum-18 h-6 w-6 cursor-pointer" type="checkbox" checked="" style="opacity: 0; position: absolute;"><span class="crs-checkbox"></span></div><p class="text-p ml-2 ">Use the same address for billing</p></label>`;
 
@@ -1612,10 +1636,20 @@ class CheckoutUpdate {
       $$el('.py-10').forEach(item => {
         if (!item.innerText.includes('ummary')) {
           if ($el('.crs-terms')) return
-          item.parentElement.insertAdjacentHTML('afterend', terms)
+          if (item.innerText.includes('Select your payment method') || 
+            item.innerText.includes('Add your delivery address') ||
+            item.innerText.includes('Add your billing address') ||
+            item.innerText.includes('Your delivery options')
+          ) {
+            item.parentElement.insertAdjacentHTML('beforeend', terms)
+          }
         }
+        // if (item.innerText.includes('Add your billing address')) {
+        //   console.log('use_address_billing false')
+        //   localStorage.setItem('use_address_billing', false)
+        // }
       })
-      
+
       if (!$el('#checkout-container') && !$el('.crs-continue') && $el('.crs-footer') && $el('.overflow-auto ~ button')) {
         $el('.crs-footer').insertAdjacentHTML('afterbegin', `
         <button type="button" class="crs-continue flex items-center justify-center text-left p-3 uppercase w-full">
