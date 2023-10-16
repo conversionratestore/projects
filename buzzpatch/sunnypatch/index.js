@@ -331,6 +331,11 @@ let style = `
     }
     .button-proceed {
         margin-top: 8px!important;
+        font-family: DINEngschrift LT!important;
+        font-size: 22px!important;
+        font-style: normal;
+        line-height: 24px;
+        letter-spacing: 0.3px!important;
     }
     .sidebar .reviews-slide {
         border: none;
@@ -377,6 +382,7 @@ let style = `
         text-transform: uppercase;
         border: none;
         background: none;
+        padding: 0;
     }
     .popup_back svg {
         margin-right: 12px;
@@ -425,6 +431,9 @@ let style = `
     .crs-img img.mr-3 {
         margin-right: 16px!important;
         width: 54px!important;
+    }
+    .reviews {
+        padding-top: 1px!important;
     }
     @media (min-width: 415px) {
         #cons:before {
