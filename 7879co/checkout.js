@@ -102,6 +102,7 @@ class CheckoutUpdate {
       }
       .relative.show .border-platinum-18 {
         display: block!important;
+        top: calc(100% - 24px);
       }
     </style>
     <button type="button" class="flex items-center crs-search ml-1">Search
@@ -264,7 +265,8 @@ class CheckoutUpdate {
           line-height: 20px; 
           margin-bottom: 12px;
         }
-        #checkout-container + div.mt-5.flex.flex-col > div p.text-p {
+        #checkout-container + div.mt-5.flex.flex-col > div p.text-p,
+        #checkout-container + div.mt-5.flex.flex-col > div .text-h5 {
           color: var(--Text, #484850);
           font-size: 14px;
           line-height: 20px;
@@ -273,7 +275,8 @@ class CheckoutUpdate {
         .crs-billing p.text-p {
           float: left;
         }
-        #checkout-container + div.mt-5.flex.flex-col > div:not(:last-child) p.text-p:not(:nth-child(8), .crs-email):after {
+        #checkout-container + div.mt-5.flex.flex-col > div:not(:last-child) p.text-p:not(:nth-child(8), .crs-email):after,
+        #checkout-container + div.mt-5.flex.flex-col > div p.text-p:last-child {
           content: ', ';
           margin-right: 4px;
         }
@@ -284,8 +287,7 @@ class CheckoutUpdate {
           color: var(--Text, #484850);
           font-size: 14px;
           line-height: 20px;
-        }
-        .crs-free {
+          margin-top: 8px;
           font-weight: 600;
         }
         #primer-checkout-apm-button-container {
@@ -330,7 +332,18 @@ class CheckoutUpdate {
         .text-postcode {
           font-size: 13px;
           line-height: 16px;
-          margin-top: -16px;
+          margin-top: 8px;
+        }
+        .crs-timer > div > p > span:last-child {
+          color: #000!important;
+          font-weight: 400!important;
+        }
+        .crs-text {
+          font-size: 14px!important;
+          font-weight: 400;
+        }
+        .crs-text:last-child {
+          font-weight: 600;
         }
         ${device == 'desktop' ? `
         #main {
@@ -440,8 +453,7 @@ class CheckoutUpdate {
         }
         .crs-timer > div {
           gap: 12px;
-          padding: 0.75rem 0;
-          justify-content: center;
+          padding: 0.75rem 0 0.75rem 20px;
         }
         .crs-compare {
           font-size: 16px;
@@ -1150,6 +1162,11 @@ class CheckoutUpdate {
     .crs-btn {
       max-width: calc(100% - 32px);
       margin: -10px auto 16px;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 20px;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
     }
     .crs-btn[disabled] {
       background: #B5B5B7;
@@ -1227,7 +1244,24 @@ class CheckoutUpdate {
   
     return result;
   }
-  
+  addUseAddress(parent) {
+    const isUseAddress = `
+    <style>
+    .isUseAddress p:after {
+      content: none!important;
+    }
+    </style>
+    <label class="flex items-center mt-3 isUseAddress" style="pointer-events: none;">
+      <div class="h-6 w-6 bg-white relative" style="height: 20px; width: 20px;">
+        <input class="border-platinum-18 h-6 w-6 cursor-pointer" type="checkbox" ${localStorage.getItem('use_address_billing') == 'true' ? 'checked' : ''} style="opacity: 0; position: absolute;">
+        <span class="crs-checkbox"></span>
+      </div>
+      <p class="text-p ml-2 ">Use the same address for billing</p>
+    </label>`;
+
+    if ($el('.isUseAddress')) return
+    parent.insertAdjacentHTML('beforeend', isUseAddress)
+  }
   fixFormAndBlocks() {
     if ($el('p.text-h3')) {
       $el('p.text-h3').closest('.py-10').style.padding = '12px 0 24px'
@@ -1248,11 +1282,11 @@ class CheckoutUpdate {
       if (item.innerText.includes('in case we need')) {
         item.style.order = '-1'
       }
-      if (item.innerText.includes('first line of address') && 
+      if (item.innerText.includes('first line of address') &&
         !$el('.text-postcode')
       ) {
         item.insertAdjacentHTML(
-          'afterend',
+          'beforeend',
           '<p class="text-p text-postcode">Enter your postcode / first line of address to automatically fill the delivery address</p>'
         )
         item.style.flexDirection = 'column'
@@ -1266,6 +1300,8 @@ class CheckoutUpdate {
         item.querySelector('.text-p').style = 'color: #000; font-weight: 600;';
         item.querySelector('button').addEventListener('click', () => {
           pushDataLayer('exp_imp_ch_l_scosi_eddm', 'Enter delivery detaisl manually', 'Link', 'Secure checkout Order summery Information');
+        
+          $el('.text-postcode')?.remove()
         })
         
       }
@@ -1274,15 +1310,19 @@ class CheckoutUpdate {
         item.closest('.border-platinum-18').parentElement.querySelector('.border-t').style.display = 'none'
         item.closest('.border-platinum-18').querySelector('.max-h-80').style.display = 'none'
         item.closest('.border-platinum-18').style.padding = '8px 16px'
-        item.querySelectorAll('.text-h5').forEach(text => {
+        item.querySelectorAll('.text-h5').forEach((text, index) => {
           text.style = 'font-size: 14px;margin: 8px 0;'
         }) 
         
       }
-      if (device == 'desktop') {
-        if (item.closest('.w-full.flex-col') &&
-          item.closest('.w-full.flex-col').innerText.includes('Your delivery options')
-        ) {
+      if (item.closest('.w-full.flex-col') &&
+        item.closest('.w-full.flex-col').innerText.includes('Your delivery options')
+      ) {
+        item.querySelectorAll('.text-h5').forEach(text => {
+          text.classList.add('crs-text')
+        })
+       
+        if (device == 'desktop') {
           item.closest('.w-full.flex-col').style = 'padding: 0 28px 28px; margin-top: -30px;'
         }
       }
@@ -1304,6 +1344,8 @@ class CheckoutUpdate {
         }
         
      
+        localStorage.setItem('use_address_billing', item.querySelector('input').checked)
+        
         item.querySelector('input').addEventListener('change', (e) => {
           e.stopImmediatePropagation()
           console.log(e.target.checked)
@@ -1450,6 +1492,9 @@ class CheckoutUpdate {
           </button>
         </div>`)
       }
+      if (item.innerText.includes('Delivery Address')) {
+        this.addUseAddress(item)
+      }
       if (item.innerText.includes('Delivery Address') || item.innerText.includes('Billing Address')) {
         item.querySelector('.text-h5:not(.font-semibold)').style.display = 'none';
         item.querySelectorAll('.text-p').forEach((text, index) => {
@@ -1472,21 +1517,12 @@ class CheckoutUpdate {
           }
 
         })
-        if (!item.innerText.includes('Delivery Address')) return
+      }
 
-        if (localStorage.getItem('use_address_billing') &&
-          localStorage.getItem('use_address_billing') == 'true'
-        ) {
-          console.log('create ')
-          const isUseAddress = `
-          <label class="flex items-center mt-3 isUseAddress" style="pointer-events: none;"><div class="h-6 w-6 bg-white relative" style="height: 20px; width: 20px;"><input class="border-platinum-18 h-6 w-6 cursor-pointer" type="checkbox" checked="" style="opacity: 0; position: absolute;"><span class="crs-checkbox"></span></div><p class="text-p ml-2 ">Use the same address for billing</p></label>`;
-
-          if ($el('.isUseAddress')) return
-          item.insertAdjacentHTML('beforeend', isUseAddress)
-        } else {
-          if (!$el('.isUseAddress')) return
-          $el('.isUseAddress').remove()
-        }
+      if (item.innerText.includes('Billing Address') && 
+        localStorage.getItem('use_address_billing') == 'true'
+      ) {
+        item.style.display = 'none'
       }
       if (item.innerText.includes('Delivery Method') &&
         item.innerText.includes('Free hand delivered ') &&
@@ -1626,6 +1662,7 @@ class CheckoutUpdate {
       })
     }
 
+    
     if (device == 'desktop') {
       const terms = `
       <style>
