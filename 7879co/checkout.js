@@ -388,6 +388,7 @@ class CheckoutUpdate {
         }
         .crs-order-head {
           padding: 28px;
+          align-items: center;
         }
         .crs-heads {
           padding: 8px 28px;
@@ -406,7 +407,7 @@ class CheckoutUpdate {
           line-height: 34px;
           letter-spacing: -0.7px;
         }
-        .crs-desk-total {
+        .crs-summary-total {
           font-size: 20px;
           font-style: normal;
           font-weight: 600;
@@ -442,7 +443,9 @@ class CheckoutUpdate {
           padding: 0.75rem 0;
           justify-content: center;
         }
-        
+        .crs-compare {
+          font-size: 16px;
+        }
         ` : ''}
       </style>
     `
@@ -781,12 +784,15 @@ class CheckoutUpdate {
               compare = +total.replace(currency, '');
               totalOrder = +(total.replace(currency, '')) - amount
             }
+            $el('.crs-summary-total').innerHTML = `<span class="crs-compare">${currency + compare.toFixed(2)}</span> ` + currency + totalOrder.toFixed(2)
+              
             if (device == 'mobile') {
-              $el('.crs-summary-total').innerHTML = `<span class="crs-compare">${currency + compare.toFixed(2)}</span> ` + currency + totalOrder.toFixed(2)
               if (!$el('.crs-total .crs-promo+div p:last-child')) return
               $el('.crs-total .crs-promo+div p:last-child').innerHTML = currency + totalOrder.toFixed(2)
             }
-            $el('.crs-summary-footer .crs-promo+div p:last-child').innerHTML = totalOrder.toFixed(2)
+            $el('.crs-summary-footer .crs-promo+div p:last-child').innerHTML = device == 'mobile' ? 
+              totalOrder.toFixed(2) :
+              `<span class="crs-compare">${currency + compare.toFixed(2)}</span> ${currency + totalOrder.toFixed(2)}`
           } else {
             console.log('error')
             item.parentElement.classList.add('crs-error')
@@ -803,7 +809,7 @@ class CheckoutUpdate {
         clickRemovePromo = true;
         pushDataLayer(`exp_imp_ch_b_scos${type}_r`, 'Remove', 'Button', 'Secure checkout Order summery ' + loc);
 
-        let total = device == 'mobile' ? $el('.crs-compare').innerText : $el('.overflow-auto + div:not(.flex-1, .crs-summary-footer) .font-semibold:last-child').innerText
+        let total = $el('.crs-compare').innerText
 
         this.postPromo('remove', promoCode).then(data => {
           console.log(data)
@@ -813,12 +819,12 @@ class CheckoutUpdate {
             from.querySelector('.crs-get-promo').hidden = false;
           })
          
+          $el('.crs-summary-total').innerHTML = total
           $el('.crs-summary-footer .crs-promo+div p:last-child').innerHTML = total
           if (device == 'mobile') {
             if ($el('.crs-total')) {
               $el('.crs-total .crs-promo + div p:last-child').innerHTML = total
             }
-            $el('.crs-summary-total').innerHTML = total
           } 
         })
       })
@@ -843,12 +849,9 @@ class CheckoutUpdate {
           
           if (device == 'desktop' && 
             $el('.overflow-auto+.flex.flex-col.gap-2 > div:last-child > .text-h5.font-semibold:last-child') &&
-            !$el('.crs-desk-total')
+            !$el('.crs-summary-total')
           ) {
-            item.insertAdjacentHTML('beforeend', `
-            <p class="crs-desk-total">
-              <span>${$el('.overflow-auto+.flex.flex-col.gap-2 > div:last-child > .text-h5.font-semibold:last-child').innerText}</span>
-            </p>`)
+            item.insertAdjacentHTML('beforeend', `<p class="crs-summary-total">${$el('.overflow-auto+.flex.flex-col.gap-2 > div:last-child > .text-h5.font-semibold:last-child').innerText}</p>`)
           }
 
           item.querySelector('svg.stroke-black').style.display = 'none'
@@ -967,14 +970,17 @@ class CheckoutUpdate {
         pushDataLayer('exp_imp_ch_d_scosi_os', 'Order summary', 'Dropdown', 'Secure checkout Order summery Information')
       })
     } else {
+      if (!$el('.crs-summary-total') &&  $el('.crs-order-head')) {
+        $el('.crs-order-head').insertAdjacentHTML('beforeend', ` <p class="crs-summary-total"></p>`)
+      }
       $el('.overflow-auto').parentElement.insertAdjacentHTML('beforeend', footer)
+
     }
 
     $$el('.crs-summary-footer > div').forEach(item => {
       if (item.innerText.includes('Total')) {
-        if (device == 'mobile') {
-          $el('.crs-summary-total').innerHTML = item.querySelector('p:last-child').innerText
-        }
+
+        $el('.crs-summary-total').innerHTML = item.querySelector('p:last-child').innerText
         this.createPromo(item)
       }
       if (!item.querySelector('p') || item.innerText.includes('Voucher') || item.innerText.includes('Discount')) {
@@ -1408,11 +1414,13 @@ class CheckoutUpdate {
               let total = $el('.overflow-auto+.flex.flex-col.gap-2').innerHTML.split('Total</p><p class="text-h5 font-semibold">')[1].split('</p>')[0].replace(currency, '');
               let amount = item.innerText.split(item.innerText[2])[1]
 
-              if (device == 'mobile' && $el('.crs-summary-total')) {
+              if ($el('.crs-summary-total')) {
                 $el('.crs-summary-total').innerHTML = `<span class="crs-compare">${currency + (+total + +amount).toFixed(2)}</span> ` + currency + total
               }
 
-              $el('.crs-summary-footer .crs-promo+div p:last-child').innerHTML = currency + total
+              $el('.crs-summary-footer .crs-promo+div p:last-child').innerHTML = device == 'mobile' ? 
+               currency + total :
+               `<span class="crs-compare">${currency + (+total + +amount).toFixed(2)}</span> ` + currency + total
             })
           }
         }
