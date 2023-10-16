@@ -1193,25 +1193,8 @@ class CheckoutUpdate {
       </div>
     </div>`
 
-  
     if ($el('#checkout-container') && !$el('.crs-payment-methods')) {
       $el('#checkout-container').insertAdjacentHTML('beforebegin', payments)
-
-      if ($el('#primer-checkout-submit-button')) {
-        console.log('is #primer-checkout-submit-button')
-        $$el('.crs-btn').forEach(item => {
-          console.log(item)
-          item.addEventListener('click', (e) => {
-            console.log(' click primer-checkout-submit-button')
-            $el('#primer-checkout-submit-button').click()
-            if (item.closest('.crs-payment-credit')) {
-              pushDataLayer('exp_imp_ch_b_scospsypm_pn', 'Pay now', 'Button', 'Secure checkout Order summery Payment Select your payment method');
-            } else {
-              pushDataLayer('exp_imp_ch_r_scospsypm_k', 'Klarna Confirm', 'Button', 'Secure checkout Order summery Payment Select your payment method');
-            }
-          })
-        })
-      }
 
       $$el('input[name="radio_payment"]').forEach(item => {
         item.addEventListener('click', (e) => {
@@ -1528,8 +1511,7 @@ class CheckoutUpdate {
         item.insertAdjacentHTML('beforeend', `<p class="crs-free">FREE</p>`)
       }
     })
-
-        
+   
     if ($el('#primer-checkout-card-form') &&
       !$el('.crs-payment-credit > #primer-checkout-card-form') &&
       $el('.crs-payment-credit > label')
@@ -1628,7 +1610,20 @@ class CheckoutUpdate {
       </svg>`)
     }
 
-    
+    if ($el('#primer-checkout-submit-button') && $$el('.crs-btn')) {
+      $$el('.crs-btn').forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.stopImmediatePropagation()
+          $el('#primer-checkout-submit-button').click()
+          if (item.closest('.crs-payment-credit')) {
+            pushDataLayer('exp_imp_ch_b_scospsypm_pn', 'Pay now', 'Button', 'Secure checkout Order summery Payment Select your payment method');
+          } else {
+            pushDataLayer('exp_imp_ch_r_scospsypm_k', 'Klarna Confirm', 'Button', 'Secure checkout Order summery Payment Select your payment method');
+          }
+        })
+      })
+    }
+
     if (device == 'desktop') {
       const terms = `
       <style>
