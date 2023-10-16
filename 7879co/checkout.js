@@ -445,6 +445,7 @@ class CheckoutUpdate {
         }
         .crs-compare {
           font-size: 16px;
+          margin-right: 12px;
         }
         ` : ''}
       </style>
@@ -1199,6 +1200,7 @@ class CheckoutUpdate {
       if ($el('#primer-checkout-submit-button')) {
         console.log('is #primer-checkout-submit-button')
         $$el('.crs-btn').forEach(item => {
+          console.log(item)
           item.addEventListener('click', (e) => {
             console.log(' click primer-checkout-submit-button')
             $el('#primer-checkout-submit-button').click()
@@ -1537,7 +1539,7 @@ class CheckoutUpdate {
         item.addEventListener('click', (e) => {
           e.stopImmediatePropagation()
           let desk = item.closest('.PrimerCheckout__formField').querySelector('.PrimerCheckout__label').innerText
-          let type = this.getFirstLetters(desk.split('(')[0])
+          let type = desk.includes('Expiry') ? 'ed' : desk.includes('CVV') ? 'cvv' : this.getFirstLetters(desk.split('(')[0])
           pushDataLayer('exp_imp_ch_i_scospsypm_' + type.toLowerCase(), desk, 'Input', 'Secure checkout Order summery Payment Select your payment method');
         })
       })
