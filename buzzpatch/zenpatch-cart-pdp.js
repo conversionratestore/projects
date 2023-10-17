@@ -406,4 +406,11 @@
     waitForElement('.reviews-slide').then((el) => el.insertAdjacentHTML('afterend', trustadvisor))
     waitForElement('.prices + .js-heading').then((el) => el.insertAdjacentHTML('afterend', trustadvisor))
   }
+  waitForElement('#getNow a').then(() => {
+    $('#getNow a').click(function (e) {
+      if (e.target.href.includes('cart/')) {
+        $('#getNow .patches-in-pack p').text('72 patches in 3 packs - 3 months for 1 person')
+      }
+    })
+  })
 })()
