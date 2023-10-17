@@ -457,7 +457,7 @@ class CheckoutUpdate {
         }
         .crs-compare {
           font-size: 16px;
-          margin-right: 12px;
+          margin-right: 8px;
         }
         ` : ''}
       </style>
