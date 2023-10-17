@@ -3237,7 +3237,22 @@ padding: 8px 16px;
       clearInterval(waitForReviews)
 
       document.querySelectorAll('.reviews--plugin a').forEach((element) => {
-        element.addEventListener('click', () => {
+        element.addEventListener('click', (e) => {
+          e.preventDefault()
+          // scroll to block from link
+
+          const sectionId = e.target.getAttribute('href')
+          const section = document.querySelector(sectionId)
+
+          const offsetTop = 150
+
+          $('html, body').animate(
+            {
+              scrollTop: $(section).offset().top - offsetTop
+            },
+            1000
+          )
+
           pushDataLayer('exp_hopg_impr_l_fs_ysr', 'Yellow star reviews', 'Link', 'First screen')
         })
       })
