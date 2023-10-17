@@ -2922,6 +2922,7 @@ button.syte-discovery.syte-integration-injected .button-text{
       }, 100);
 
       let slickReadyToShip = setInterval(() => {
+        // && document.querySelector(".ready_to_ship_list")?.children.length >= 179
         if (typeof jQuery("#readyToShip .ready_to_ship_list").slick === "function") {
           clearInterval(slickReadyToShip);
 
