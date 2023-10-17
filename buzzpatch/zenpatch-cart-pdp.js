@@ -170,7 +170,7 @@
 
   const patchesInPack = /*html*/ `
     <div class="patches-in-pack">
-      <p>72 patches in 3 pack - 3 months for 1 person</p>
+      <p>72 patches in 3 packs - 3 months for 1 person</p>
       <img src="//naturalpatch.com/cdn/shop/files/free-shipping-worldwide.svg?v=2160055944846624631" alt="free shipping worldwide">
     </div>`
 
