@@ -2923,7 +2923,7 @@ button.syte-discovery.syte-integration-injected .button-text{
 
       let slickReadyToShip = setInterval(() => {
         // && document.querySelector(".ready_to_ship_list")?.children.length >= 179
-        if (typeof jQuery("#readyToShip .ready_to_ship_list").slick === "function") {
+        if (typeof jQuery("#readyToShip .ready_to_ship_list").slick === "function" && document.querySelector(".ready_to_ship_list")?.children.length >= 160) {
           clearInterval(slickReadyToShip);
 
           //  slider
