@@ -1247,11 +1247,31 @@ class CheckoutUpdate {
   addUseAddress(parent) {
     const isUseAddress = `
     <style>
+    .isUseAddress {
+      position: relative;
+    }
     .isUseAddress p:after {
       content: none!important;
     }
+    .isUseAddress .ilueL  {
+      display: none;
+    }
+    .isUseAddress.loading .ilueL {
+      display: block;
+      position: absolute;
+      right: -30px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+    }
+    .isUseAddress .ilueL .spinner {
+      width: 20px;
+      height: 20px;
+      margin: 0;
+    }
     </style>
     <label class="flex items-center mt-3 isUseAddress">
+      <div class="ilueL"><svg class="spinner" viewBox="0 0 50 50"><circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle></svg></div>
       <div class="h-6 w-6 bg-white relative" style="height: 20px; width: 20px;">
         <input class="border-platinum-18 h-6 w-6 cursor-pointer" type="checkbox" ${localStorage.getItem('use_address_billing') == 'true' ? 'checked' : ''} style="opacity: 0; position: absolute;">
         <span class="crs-checkbox"></span>
@@ -1264,82 +1284,115 @@ class CheckoutUpdate {
 
     $el('.isUseAddress input').addEventListener('change', (e) => { 
 
-      let token = '';
-        
-      const cookieName = '7879_CHECKOUT_V2_TOKEN_uk';
-      const cookies = document.cookie.split('; ');
+      if (e.target.checked) {
 
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].split('=');
-        if (cookie[0] === cookieName) {
-          token = decodeURIComponent(cookie[1]);
-          console.log(`Value of ${cookieName} is: ${token}`);
-          break; // Stop searching once the cookie is found
-        }
-      }
-   
-      // fetch('https://apicdn.7879.co/', {
-      //   method: 'POST',
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     "x-api-key": "da2-kd47u433qjeqzefxn5toajbaae"
-      //   },
+        e.target.closest('.isUseAddress').classList.add('loading')
+        let token = '';
+          
+        const cookieName = '7879_CHECKOUT_V2_TOKEN_uk';
+        const cookies = document.cookie.split('; ');
 
-      //   body: JSON.stringify({
-      //     query: `mutation UpdateBillingAddress($billingAddress: AddressInput!, $token: String) {
-      //       checkoutBillingAddressUpdate(billingAddress: $billingAddress, token: $token) {
-      //         checkout {
-      //           billingAddress {
-      //             firstName
-      //             lastName
-      //             companyName
-      //             streetAddress1
-      //             streetAddress2
-      //             city
-      //             cityArea
-      //             postalCode
-      //             country
-      //             countryArea
-      //             phone
-      //           }
-      //         }
-      //       }
-      //     }`,
-      //     variables: {
-      //       "billingAddress": {
-      //         "firstName": 'Olha billing',
-      //         "lastName": 'tes',
-      //         "companyName": 'company',
-      //         "streetAddress1": 'streetAddress1',
-      //         "streetAddress2": 'streetAddress2',
-      //         "city": 'Manchester',
-      //         "cityArea": 'greater manchester',
-      //         "postalCode": 'M17',
-      //         "country": 'UK',
-      //         "countryArea": 'UK',
-      //         "phone": '09099999',
-      //       },
-      //       "token": token,
-      //     },
-      //   }),
-      // })
-      // .then((response) => response.json())
-      // .then((data) => {
-      //   // Обробка відповіді сервера
-      //   console.log(data);
-      // })
-      // .catch((error) => {
-      //   console.error('Помилка:', error);
-      // });
-      $$el('#checkout-container + div.mt-5.flex.flex-col > div').forEach(item => {
-        if (item.innerText.includes('Billing Address')) {
-          if (e.target.checked) {
-            item.style.display = 'none'
-          } else {
-            item = ''
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].split('=');
+          if (cookie[0] === cookieName) {
+            token = decodeURIComponent(cookie[1]);
+            console.log(`Value of ${cookieName} is: ${token}`);
+            break; 
           }
         }
-      })
+        let header =  {
+          "Content-Type": "application/json",
+          "x-api-key": "da2-kd47u433qjeqzefxn5toajbaae"
+        }
+        fetch('https://apicdn.7879.co/', {
+          method: 'POST',
+          headers: header,
+          body: JSON.stringify({
+            query: `
+              query GetShippingAddress($token: String) {
+                checkout(token: $token) {
+                  checkout {
+                    shippingAddress {
+                      firstName
+                      lastName
+                      companyName
+                      streetAddress1
+                      streetAddress2
+                      city
+                      cityArea
+                      postalCode
+                      country
+                      countryArea
+                      phone
+                    }
+                  }
+                }
+              }
+            `,
+            variables: {
+              "token": token
+            }
+          })
+        }).then(res => res.json()).then(data => {
+          console.log(data);
+          console.log(data.data['checkout']);
+          let billingObj = data.data['checkout']['checkout']['shippingAddress']
+          console.log(billingObj);
+
+          fetch('https://apicdn.7879.co/', {
+            method: 'POST',
+            headers: header,
+    
+            body: JSON.stringify({
+              query: `mutation checkoutBillingAddressUpdate($billingAddress: AddressInput!, $token: String) {
+                checkoutBillingAddressUpdate(billingAddress: $billingAddress, token: $token) {
+                  checkout {
+                    billingAddress {
+                      firstName
+                      lastName
+                      companyName
+                      streetAddress1
+                      streetAddress2
+                      city
+                      cityArea
+                      postalCode
+                      country
+                      countryArea
+                      phone
+                    }
+                  }
+                }
+              }`,
+              variables: {
+                "billingAddress": billingObj,
+                "token": token,
+              }
+            })
+          }).then(res => res.json()).then(dataBilling => {
+            console.log(dataBilling);
+            window.location.reload()
+            // $$el('#checkout-container + div.mt-5.flex.flex-col > div').forEach(item => {
+            //   if (item.innerText.includes('Billing Address')) {
+            //     item.style.display = 'none'
+            //   }
+            // })
+          }).catch((error) => {
+            console.error('Error:', error);
+          });
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+
+      } else {
+        $$el('#checkout-container + div.mt-5.flex.flex-col > div').forEach(item => {
+          if (item.innerText.includes('Billing Address')) {
+            item.style = ''
+          }
+        })
+      }
+
+     
       
     })
   }
