@@ -20,17 +20,20 @@ if (window.location.pathname === "/") {
       scriptCustomSliderStyle.rel = "stylesheet";
       document.head.appendChild(scriptCustomSliderStyle);
 
-      function pushDataLayer(name, desc, type, loc) {
-        console.log(name + " / " + desc + " / " + type + " / " + loc);
+      function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
+        console.log(event_name + " / " + event_desc + " / " + event_type + " / " + event_loc);
+
+        // Send a Google Analytics event
+        const eventData = {
+          event: "event-to-ga4",
+          event_name,
+          event_desc,
+          event_type,
+          event_loc,
+        };
 
         window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-          event: "event-to-ga4",
-          event_name: name,
-          event_desc: desc,
-          event_type: type,
-          event_loc: loc,
-        });
+        dataLayer.push(eventData);
       }
 
       let vegasYachtStyle = /*html */ `
@@ -1425,12 +1428,12 @@ body.open_var {
               $(".how_to_find_accardion_link").not(this).removeClass("active_block");
               $(".how_to_find_accardion_link").not(this).closest("li").removeClass("active_block");
             }
-            pushDataLayer("exp_new_ui_li_ol_inhp", `${e.currentTarget.querySelector("h3").textContent}`, "List item", "Our location HP");
+            pushDataLayer(["exp_new_ui_li_ol_inhp", `${e.currentTarget.querySelector("h3").textContent}`, "List item", "Our location HP"]);
             let w = e.currentTarget.querySelector("h3").textContent.split(" ");
             // if (e.currentTarget.classList.contains("active_block")) {
-            //   pushDataLayer("exp_new_content_what_type_open", `Open - ${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Text area", "What type of college admissions assistance does your child require?");
+            //   pushDataLayer(["exp_new_content_what_type_open", `Open - ${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Text area", "What type of college admissions assistance does your child require?"]);
             // } else {
-            //   pushDataLayer("exp_new_content_what_type_close", `Close - ${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Text area", "What type of college admissions assistance does your child require?");
+            //   pushDataLayer(["exp_new_content_what_type_close", `Close - ${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Text area", "What type of college admissions assistance does your child require?"]);
             // }
 
             const headerOffset = 10;
@@ -1454,6 +1457,7 @@ body.open_var {
               console.info("Action:", e.action);
               console.info("Text:", e.text);
               console.info("Trigger:", e.trigger);
+              pushDataLayer(["exp_new_ui_promo_visib_focus", "Copy", "Icon", "Travel with us Upcoming Events Promotional code"]);
 
               document.querySelector(".copied")?.remove();
               document.querySelector(".voucher_block").insertAdjacentHTML(
@@ -1480,7 +1484,7 @@ body.open_var {
           if (document.querySelector(".load_more_events")) {
             clearInterval(btnSearch);
             document.querySelector(".load_more_events").addEventListener("click", () => {
-              pushDataLayer("exp_new_ui_b_twu_lm", "Load more", "Button", "Travel with us HP");
+              pushDataLayer(["exp_new_ui_b_twu_lm", "Load more", "Button", "Travel with us HP"]);
               document.querySelectorAll(".fl-node-tp16blf7q3sz .fl-col-group").forEach((el) => {
                 el.style.display = "block";
               });
@@ -1575,9 +1579,9 @@ body.open_var {
                 if (!e.target.getAttribute("data-test")) {
                   e.preventDefault();
                   if (e.currentTarget.closest(".overlay_popup").classList.contains("inquire_now")) {
-                    pushDataLayer("exp_new_ui_b_qcsrp_con_s1", "Continue", "Button", "Quiz Step 1 Chapter services request Pop up");
+                    pushDataLayer(["exp_new_ui_b_qcsrp_con_s1", "Continue", "Button", "Quiz Step 1 Chapter services request Pop up"]);
                   } else {
-                    pushDataLayer("exp_new_ui_b_pecsrp_con_s1", `Continue ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Button", "Step 1 Private event  request Pop up");
+                    pushDataLayer(["exp_new_ui_b_pecsrp_con_s1", `Continue ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Button", "Step 1 Private event  request Pop up"]);
                   }
                   validateForm(e.currentTarget.closest(".overlay_popup").getAttribute("data-count"), "");
                 }
@@ -1595,9 +1599,9 @@ body.open_var {
                 if (!e.target.getAttribute("data-test")) {
                   e.preventDefault();
                   if (e.currentTarget.closest(".overlay_popup.inquire_now")) {
-                    pushDataLayer("exp_new_ui_b_qcsrp_sub_s2", "Submit", "Button", "Quiz Step 2 Chapter services request Pop up");
+                    pushDataLayer(["exp_new_ui_b_qcsrp_sub_s2", "Submit", "Button", "Quiz Step 2 Chapter services request Pop up"]);
                   } else {
-                    pushDataLayer("exp_new_ui_b_pecsrp_sub_s2", `Submit ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Button", "Step 2 Private event  request Pop up");
+                    pushDataLayer(["exp_new_ui_b_pecsrp_sub_s2", `Submit ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Button", "Step 2 Private event  request Pop up"]);
                   }
                   validateForm(e.currentTarget.closest(".overlay_popup").getAttribute("data-count"), "private_event_req_btn");
                 }
@@ -1616,24 +1620,24 @@ body.open_var {
                   if (e.currentTarget.closest(".overlay_popup.private_event_req")) {
                     if (e.currentTarget.closest(".overlay_popup.inquire_now.private_event_req")) {
                       if (!e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".first_step").classList.contains("is_hidden")) {
-                        pushDataLayer("exp_new_ui_in_qcsrp_i_s1", `${e.currentTarget.previousElementSibling.textContent}`, "Input", "Quiz Step 1 Chapter services request Pop up");
+                        pushDataLayer(["exp_new_ui_in_qcsrp_i_s1", `${e.currentTarget.previousElementSibling.textContent}`, "Input", "Quiz Step 1 Chapter services request Pop up"]);
                       }
                       if (!e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".second_step").classList.contains("is_hidden")) {
-                        pushDataLayer("exp_new_ui_in_qcsrp_i_s2", `${e.currentTarget.previousElementSibling.textContent}`, "Input", "Quiz Step 2 Chapter services request Pop up");
+                        pushDataLayer(["exp_new_ui_in_qcsrp_i_s2", `${e.currentTarget.previousElementSibling.textContent}`, "Input", "Quiz Step 2 Chapter services request Pop up"]);
                       }
                     } else {
                       if (!e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".first_step").classList.contains("is_hidden")) {
-                        pushDataLayer("exp_new_ui_in_pecsrp_i_s1", `${e.currentTarget.previousElementSibling.textContent} ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Input", "Step 1 Private event  request Pop up");
+                        pushDataLayer(["exp_new_ui_in_pecsrp_i_s1", `${e.currentTarget.previousElementSibling.textContent} ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Input", "Step 1 Private event  request Pop up"]);
                       }
                       if (!e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".second_step").classList.contains("is_hidden")) {
-                        pushDataLayer("exp_new_ui_in_pecsrp_i_s2", `${e.currentTarget.previousElementSibling.textContent} ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Input", "Step 2 Private event  request Pop up");
+                        pushDataLayer(["exp_new_ui_in_pecsrp_i_s2", `${e.currentTarget.previousElementSibling.textContent} ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Input", "Step 2 Private event  request Pop up"]);
                       }
                     }
                   }
 
                   if (e.currentTarget.closest(".overlay_popup.charter_services_req")) {
                     if (!e.currentTarget.closest(".overlay_popup.charter_services_req")?.querySelector(".first_step").classList.contains("is_hidden")) {
-                      pushDataLayer("exp_new_ui_in_csrp_i_s1", `${e.currentTarget.previousElementSibling.textContent}`, "Input", "Step 1 Chapter services request Pop up");
+                      pushDataLayer(["exp_new_ui_in_csrp_i_s1", `${e.currentTarget.previousElementSibling.textContent}`, "Input", "Step 1 Chapter services request Pop up"]);
                     }
                   }
                 }
@@ -1652,17 +1656,17 @@ body.open_var {
                   if (e.currentTarget.closest(".overlay_popup.private_event_req")) {
                     if (e.currentTarget.closest(".overlay_popup.inquire_now")) {
                       if (!e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".first_step").classList.contains("is_hidden")) {
-                        pushDataLayer("exp_new_ui_in_qcsrp_i_s1", `${e.currentTarget.previousElementSibling.textContent}`, "Input", "Quiz Step 1 Chapter services request Pop up");
+                        pushDataLayer(["exp_new_ui_in_qcsrp_i_s1", `${e.currentTarget.previousElementSibling.textContent}`, "Input", "Quiz Step 1 Chapter services request Pop up"]);
                       }
                       if (!e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".second_step").classList.contains("is_hidden")) {
-                        pushDataLayer("exp_new_ui_in_qcsrp_i_s2", `${e.currentTarget.previousElementSibling.textContent}`, "Input", "Quiz Step 2 Chapter services request Pop up");
+                        pushDataLayer(["exp_new_ui_in_qcsrp_i_s2", `${e.currentTarget.previousElementSibling.textContent}`, "Input", "Quiz Step 2 Chapter services request Pop up"]);
                       }
                     } else {
                       if (!e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".first_step").classList.contains("is_hidden")) {
-                        pushDataLayer("exp_new_ui_in_pecsrp_i_s1", `${e.currentTarget.previousElementSibling.textContent} ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Input", "Step 1 Private event  request Pop up");
+                        pushDataLayer(["exp_new_ui_in_pecsrp_i_s1", `${e.currentTarget.previousElementSibling.textContent} ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Input", "Step 1 Private event  request Pop up"]);
                       }
                       if (!e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".second_step").classList.contains("is_hidden")) {
-                        pushDataLayer("exp_new_ui_in_pecsrp_i_s2", `${e.currentTarget.previousElementSibling.textContent} ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Input", "Step 2 Private event  request Pop up");
+                        pushDataLayer(["exp_new_ui_in_pecsrp_i_s2", `${e.currentTarget.previousElementSibling.textContent} ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Input", "Step 2 Private event  request Pop up"]);
                       }
                     }
                   }
@@ -1683,31 +1687,31 @@ body.open_var {
                 if (!e.target.getAttribute("data-test")) {
                   if (e.currentTarget.closest(".overlay_popup.private_event_req.inquire_now")) {
                     if ($(".first_step").is(":visible") && e.currentTarget.closest(".overlay_popup.private_event_req") && !e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".first_step").classList.contains("is_hidden")) {
-                      pushDataLayer("exp_new_ui_b_qcsrp_cl_s1", "Close", "Button", "Quiz Step 1 Chapter services request Pop up");
+                      pushDataLayer(["exp_new_ui_b_qcsrp_cl_s1", "Close", "Button", "Quiz Step 1 Chapter services request Pop up"]);
                     }
                     if ($(".second_step").is(":visible") && e.currentTarget.closest(".overlay_popup.private_event_req") && !e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".second_step").classList.contains("is_hidden")) {
-                      pushDataLayer("exp_new_ui_b_qcsrp_cl_s2", "Close", "Button", "Quiz Step 2 Chapter services request Pop up");
+                      pushDataLayer(["exp_new_ui_b_qcsrp_cl_s2", "Close", "Button", "Quiz Step 2 Chapter services request Pop up"]);
                     }
                     if ($(".third_step").is(":visible") && e.currentTarget.closest(".overlay_popup.private_event_req") && !e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".third_step").classList.contains("is_hidden")) {
-                      pushDataLayer("exp_new_ui_b_qcsrp_cl_s3", "Close", "Button", "Quiz Step 3 Chapter services request Pop up");
+                      pushDataLayer(["exp_new_ui_b_qcsrp_cl_s3", "Close", "Button", "Quiz Step 3 Chapter services request Pop up"]);
                     }
                   } else {
                     if ($(".first_step").is(":visible") && e.currentTarget.closest(".overlay_popup.private_event_req") && !e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".first_step").classList.contains("is_hidden")) {
-                      pushDataLayer("exp_new_ui_b_pecsrp_cl_s1", `Close ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Button", "Step 1 Private event  request Pop up");
+                      pushDataLayer(["exp_new_ui_b_pecsrp_cl_s1", `Close ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Button", "Step 1 Private event  request Pop up"]);
                     }
                     if ($(".second_step").is(":visible") && e.currentTarget.closest(".overlay_popup.private_event_req") && !e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".second_step").classList.contains("is_hidden")) {
-                      pushDataLayer("exp_new_ui_b_pecsrp_cl_s2", `Close ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Button", "Step 2 Private event  request Pop up");
+                      pushDataLayer(["exp_new_ui_b_pecsrp_cl_s2", `Close ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Button", "Step 2 Private event  request Pop up"]);
                     }
                     if ($(".third_step").is(":visible") && e.currentTarget.closest(".overlay_popup.private_event_req") && !e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".third_step").classList.contains("is_hidden")) {
-                      pushDataLayer("exp_new_ui_b_pecsrp_cl_s3", `Close ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Button", "Step 3 Private event  request Pop up");
+                      pushDataLayer(["exp_new_ui_b_pecsrp_cl_s3", `Close ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Button", "Step 3 Private event  request Pop up"]);
                     }
                   }
 
                   if ($(".first_step").is(":visible") && e.currentTarget.closest(".overlay_popup.charter_services_req") && !e.currentTarget.closest(".overlay_popup.charter_services_req")?.querySelector(".first_step").classList.contains("is_hidden")) {
-                    pushDataLayer("exp_new_ui_b_csrp_cl_s1", `Close ${e.currentTarget.closest(".overlay_popup ").getAttribute("data-visibprivate")}`, "Button", "Step 1 Chapter services request Pop up");
+                    pushDataLayer(["exp_new_ui_b_csrp_cl_s1", `Close ${e.currentTarget.closest(".overlay_popup ").getAttribute("data-visibprivate")}`, "Button", "Step 1 Chapter services request Pop up"]);
                   }
                   if ($(".second_step").is(":visible") && e.currentTarget.closest(".overlay_popup.charter_services_req") && !e.currentTarget.closest(".overlay_popup.charter_services_req")?.querySelector(".second_step").classList.contains("is_hidden")) {
-                    pushDataLayer("exp_new_ui_b_csrp_cl_s2", `Close ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Button", "Step 2 Chapter services request Pop up");
+                    pushDataLayer(["exp_new_ui_b_csrp_cl_s2", `Close ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Button", "Step 2 Chapter services request Pop up"]);
                   }
                   onClosePopup();
                 }
@@ -1816,7 +1820,7 @@ body.open_var {
             if (document.querySelector(".check_availability_btn")) {
               clearInterval(f);
               document.querySelector(".check_availability_btn").addEventListener("click", () => {
-                pushDataLayer("exp_new_ui_b_wwd_ca", "Check Availability For Your Date", "Button", "What we do HP");
+                pushDataLayer(["exp_new_ui_b_wwd_ca", "Check Availability For Your Date", "Button", "What we do HP"]);
                 onOpenPopup(contentPopupServicesRequest, "charter_services_req");
               });
             }
@@ -1826,7 +1830,7 @@ body.open_var {
               clearInterval(q);
               document.querySelectorAll(".get_a_quot_btn").forEach((el) => {
                 el.addEventListener("click", (e) => {
-                  pushDataLayer("exp_new_ui_b_pe_gq", `Get a quote ${el.previousElementSibling.textContent}`, "Button", "Private event HP");
+                  pushDataLayer(["exp_new_ui_b_pe_gq", `Get a quote ${el.previousElementSibling.textContent}`, "Button", "Private event HP"]);
                   console.log(el.closest(".private_event_link").getAttribute("data-visib"));
                   switch (el.closest(".private_event_link").getAttribute("data-visib")) {
                     case "1":
@@ -1872,7 +1876,7 @@ body.open_var {
               clearInterval(charterServicesReqBtn);
               document.querySelector(".charter_services_req_btn")?.addEventListener("click", (e) => {
                 e.preventDefault();
-                pushDataLayer("exp_new_ui_b_csrp_con_s1", "Continue", "Button", "Step 1 Chapter services request Pop up");
+                pushDataLayer(["exp_new_ui_b_csrp_con_s1", "Continue", "Button", "Step 1 Chapter services request Pop up"]);
                 validateForm("charter_services_req", "");
               });
             }
@@ -2039,7 +2043,7 @@ body.open_var {
                 if (!document.querySelector(`[data-count='${parent}'] .steps_block`)?.classList.contains("is_hidden")) {
                   document.querySelector(`[data-count='${parent}'] .steps_block`)?.classList.add("is_hidden");
                 }
-                pushDataLayer("exp_new_ui_chapter_sub_s2", `Chapter services request`, "Submit", "Step 1 Chapter services request Pop up");
+                pushDataLayer(["exp_new_ui_chapter_sub_s2", `Chapter services request`, "Submit", "Step 1 Chapter services request Pop up"]);
               }
               if (parent === "firts_get_a_quote" || parent === "second_get_a_quote" || parent === "third_get_a_quote" || parent === "fourth_get_a_quote" || parent === "inquire_now") {
                 document.querySelector(`[data-count='${parent}'] .private_event_req .third_step.is_hidden`)?.classList.remove("is_hidden");
@@ -2049,9 +2053,9 @@ body.open_var {
                 }
 
                 if (parent === "inquire_now") {
-                  pushDataLayer("exp_new_ui_sub_qcsrp_s2", "Quiz Chapter services request", "Submit", "Quiz Step 2 Chapter services request Pop up");
+                  pushDataLayer(["exp_new_ui_sub_qcsrp_s2", "Quiz Chapter services request", "Submit", "Quiz Step 2 Chapter services request Pop up"]);
                 } else {
-                  pushDataLayer("exp_new_ui_pecsrp_sub_s2", `Private event  request Pop up ${document.querySelector(`[data-count='${parent}']`).getAttribute("data-visibprivate")}`, "Submit", "Step 2 Private event request Pop up");
+                  pushDataLayer(["exp_new_ui_pecsrp_sub_s2", `Private event  request Pop up ${document.querySelector(`[data-count='${parent}']`).getAttribute("data-visibprivate")}`, "Submit", "Step 2 Private event request Pop up"]);
                 }
               }
             }
@@ -2217,63 +2221,63 @@ body.open_var {
           entries.forEach((i) => {
             if (i.isIntersecting) {
               if (i.target.classList.contains("how_to_find_accardion")) {
-                pushDataLayer("exp_new_ui_v_olhp", "Our location", "Visibility", "Our location HP");
+                pushDataLayer(["exp_new_ui_v_olhp", "Our location", "Visibility", "Our location HP"]);
               }
               if (i.target.classList.contains("private_event_list")) {
-                pushDataLayer("exp_new_ui_v_pe", "Private event", "Visibility", "Private event HP");
+                pushDataLayer(["exp_new_ui_v_pe", "Private event", "Visibility", "Private event HP"]);
               }
               if (i.target.closest(".firts_get_a_quote") && i.target.classList.contains("first_step")) {
-                pushDataLayer("exp_new_ui_v_pecsrp_s1", "Private event Chapter services request 1", "Visibility", "Step 1 Private event request Pop up");
+                pushDataLayer(["exp_new_ui_v_pecsrp_s1", "Private event Chapter services request 1", "Visibility", "Step 1 Private event request Pop up"]);
               }
               if (i.target.closest(".second_get_a_quote") && i.target.classList.contains("first_step")) {
-                pushDataLayer("exp_new_ui_v_pecsrp_s1", "Private event Chapter services request 2", "Visibility", "Step 1 Private event request Pop up");
+                pushDataLayer(["exp_new_ui_v_pecsrp_s1", "Private event Chapter services request 2", "Visibility", "Step 1 Private event request Pop up"]);
               }
               if (i.target.closest(".third_get_a_quote") && i.target.classList.contains("first_step")) {
-                pushDataLayer("exp_new_ui_v_pecsrp_s1", "Private event Chapter services request 3", "Visibility", "Step 1 Private event request Pop up");
+                pushDataLayer(["exp_new_ui_v_pecsrp_s1", "Private event Chapter services request 3", "Visibility", "Step 1 Private event request Pop up"]);
               }
               if (i.target.closest(".fourth_get_a_quote") && i.target.classList.contains("first_step")) {
-                pushDataLayer("exp_new_ui_v_pecsrp_s1", "Private event Chapter services request 4", "Visibility", "Step 1 Private event request Pop up");
+                pushDataLayer(["exp_new_ui_v_pecsrp_s1", "Private event Chapter services request 4", "Visibility", "Step 1 Private event request Pop up"]);
               }
               if (i.target.closest(".firts_get_a_quote") && i.target.classList.contains("second_step")) {
-                pushDataLayer("exp_new_ui_v_pecsrp_s2", "Private event Chapter services request 1", "Visibility", "Step 2 Private event request Pop up");
+                pushDataLayer(["exp_new_ui_v_pecsrp_s2", "Private event Chapter services request 1", "Visibility", "Step 2 Private event request Pop up"]);
               }
               if (i.target.closest(".second_get_a_quote") && i.target.classList.contains("second_step")) {
-                pushDataLayer("exp_new_ui_v_pecsrp_s2", "Private event Chapter services request 2", "Visibility", "Step 2 Private event request Pop up");
+                pushDataLayer(["exp_new_ui_v_pecsrp_s2", "Private event Chapter services request 2", "Visibility", "Step 2 Private event request Pop up"]);
               }
               if (i.target.closest(".third_get_a_quote") && i.target.classList.contains("second_step")) {
-                pushDataLayer("exp_new_ui_v_pecsrp_s2", "Private event Chapter services request 3", "Visibility", "Step 2 Private event request Pop up");
+                pushDataLayer(["exp_new_ui_v_pecsrp_s2", "Private event Chapter services request 3", "Visibility", "Step 2 Private event request Pop up"]);
               }
               if (i.target.closest(".fourth_get_a_quote") && i.target.classList.contains("second_step")) {
-                pushDataLayer("exp_new_ui_v_pecsrp_s2", "Private event Chapter services request 4", "Visibility", "Step 2 Private event request Pop up");
+                pushDataLayer(["exp_new_ui_v_pecsrp_s2", "Private event Chapter services request 4", "Visibility", "Step 2 Private event request Pop up"]);
               }
               if (i.target.closest(".firts_get_a_quote") && i.target.classList.contains("third_step")) {
-                pushDataLayer("exp_new_ui_v_pecsrp_s3", "Thank you 1", "Visibility", "Step 3 Private event request Pop up");
+                pushDataLayer(["exp_new_ui_v_pecsrp_s3", "Thank you 1", "Visibility", "Step 3 Private event request Pop up"]);
               }
               if (i.target.closest(".second_get_a_quote") && i.target.classList.contains("third_step")) {
-                pushDataLayer("exp_new_ui_v_pecsrp_s3", "Thank you 2", "Visibility", "Step 3 Private event request Pop up");
+                pushDataLayer(["exp_new_ui_v_pecsrp_s3", "Thank you 2", "Visibility", "Step 3 Private event request Pop up"]);
               }
               if (i.target.closest(".third_get_a_quote") && i.target.classList.contains("third_step")) {
-                pushDataLayer("exp_new_ui_v_pecsrp_s3", "Thank you 3", "Visibility", "Step 3 Private event request Pop up");
+                pushDataLayer(["exp_new_ui_v_pecsrp_s3", "Thank you 3", "Visibility", "Step 3 Private event request Pop up"]);
               }
               if (i.target.closest(".fourth_get_a_quote") && i.target.classList.contains("third_step")) {
-                pushDataLayer("exp_new_ui_v_pecsrp_s3", "Thank you 4", "Visibility", "Step 3 Private event request Pop up");
+                pushDataLayer(["exp_new_ui_v_pecsrp_s3", "Thank you 4", "Visibility", "Step 3 Private event request Pop up"]);
               }
 
               if (i.target.closest(".charter_services_req") && i.target.classList.contains("first_step")) {
-                pushDataLayer("exp_new_ui_v_csrp_s1", "Chapter services request", "Visibility", "Step 1 Chapter services request Pop up");
+                pushDataLayer(["exp_new_ui_v_csrp_s1", "Chapter services request", "Visibility", "Step 1 Chapter services request Pop up"]);
               }
               if (i.target.closest(".charter_services_req") && i.target.classList.contains("second_step")) {
-                pushDataLayer("exp_new_ui_v_csrp_ty_s2", "Thank you", "Visibility", "Step 2 Chapter services request TY Pop up");
+                pushDataLayer(["exp_new_ui_v_csrp_ty_s2", "Thank you", "Visibility", "Step 2 Chapter services request TY Pop up"]);
               }
 
               if (i.target.closest(".inquire_now") && i.target.classList.contains("first_step")) {
-                pushDataLayer("exp_new_ui_v_qcsrp_s1", "Quiz Chapter services request", "Visibility", "Quiz Step 1 Chapter services request Pop up");
+                pushDataLayer(["exp_new_ui_v_qcsrp_s1", "Quiz Chapter services request", "Visibility", "Quiz Step 1 Chapter services request Pop up"]);
               }
               if (i.target.closest(".inquire_now") && i.target.classList.contains("second_step")) {
-                pushDataLayer("exp_new_ui_v_qcsrp_s2", "Quiz Chapter services request", "Visibility", "Quiz Step 2 Chapter services request Pop up");
+                pushDataLayer(["exp_new_ui_v_qcsrp_s2", "Quiz Chapter services request", "Visibility", "Quiz Step 2 Chapter services request Pop up"]);
               }
               if (i.target.closest(".inquire_now") && i.target.classList.contains("third_step")) {
-                pushDataLayer("exp_new_ui_v_qcsrp_s3", "Thank you Quiz Chapter services request", "Visibility", "Quiz Step 3 Chapter services request Pop up");
+                pushDataLayer(["exp_new_ui_v_qcsrp_s3", "Thank you Quiz Chapter services request", "Visibility", "Quiz Step 3 Chapter services request Pop up"]);
               }
 
               obsV.unobserve(i.target);
@@ -2281,6 +2285,81 @@ body.open_var {
             obsV2.unobserve(i.target);
           });
         }
+
+        waitForElement(".charter_services_request_block").then((el) => {
+          handleVisibility(el, ["exp_new_ui_charter_visib_focus", "{{focusTime}}", "Visibility", "Сharter service"]);
+        });
+        waitForElement(".private_event_list").then((el) => {
+          handleVisibility(el, ["exp_new_ui_private_visib_focus", "{{focusTime}}", "Visibility", "Private Event Want to know how much a private event costs?"]);
+        });
+        waitForElement(".with_code_block").then((el) => {
+          handleVisibility(el, ["exp_new_ui_promo_visib_focus", "{{focusTime}}", "Visibility", "Travel with us Upcoming Events Promotional code"]);
+        });
+        waitForElement(".our_clients_say_slider").then((el) => {
+          handleVisibility(el, ["exp_new_ui_testimo_visib_focus", "{{focusTime}}", "Visibility", "Testimonials Want our clients say"]);
+        });
+        waitForElement(".fl-col-group.fl-node-1hxsy37v4bmg").then((el) => {
+          handleVisibility(el, ["exp_new_ui_adverti_visib_focus", "{{focusTime}}", "Visibility", "Travel with us Upcoming Events Advertising blocks"]);
+        });
+        waitForElement(".how_to_find_accardion.list_var").then((el) => {
+          handleVisibility(el, ["exp_new_ui_accor_visib_focus", "{{focusTime}}", "Visibility", "Under Our location Accordion"]);
+        });
+      }
+
+      function handleVisibility(el, eventParams) {
+        let isVisible = false;
+        let entryTime;
+        const config = {
+          root: null,
+          threshold: 0, // Trigger when any part of the element is out of viewport
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              if (!isVisible) {
+                // The element has become visible
+                isVisible = true;
+                entryTime = new Date().getTime();
+              }
+            } else if (isVisible) {
+              // The element is out of the viewport, calculate visibility duration
+              isVisible = false;
+              const exitTime = new Date().getTime();
+              const visibilityDuration = exitTime - entryTime; // / 1000 Convert to seconds
+              const roundedDuration = Math.round(visibilityDuration);
+
+              if (roundedDuration) {
+                const eventData = eventParams;
+                eventData[1] = roundedDuration;
+                pushDataLayer(eventData);
+                observer.disconnect();
+              }
+            }
+          });
+        }, config);
+
+        observer.observe(el);
+      }
+
+      function waitForElement(selector) {
+        return new Promise((resolve) => {
+          if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector));
+          }
+
+          const observer = new MutationObserver(() => {
+            if (document.querySelector(selector)) {
+              resolve(document.querySelector(selector));
+              observer.disconnect();
+            }
+          });
+
+          observer.observe(document.documentElement, {
+            childList: true,
+            subtree: true,
+          });
+        });
       }
       const record = setInterval(() => {
         if (typeof clarity === "function") {
