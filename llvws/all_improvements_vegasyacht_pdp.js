@@ -1778,6 +1778,9 @@ h2.new_title::after {
           if (el.href === window.location.href) {
             el.closest(".may_also_like_link")?.remove();
           }
+          el.addEventListener("click", (e) => {
+            pushDataLayer("exp_new_ui_pdptour_click_name", `${e.currentTarget.closest(".learn_more_wrapp").querySelector(".may_also_like_title").textContent}`, "Click link", "PDP Tours You may also like");
+          });
         });
       } else {
         document.querySelector(".may_also_like_list_first")?.remove();
@@ -1792,6 +1795,9 @@ h2.new_title::after {
           if (el.href === window.location.href) {
             el?.remove();
           }
+          el.addEventListener("click", (e) => {
+            pushDataLayer("exp_new_ui_pdptour_click_name", `${e.currentTarget.querySelector(".may_also_like_title").textContent}`, "Click link", "PDP Tours You may also like");
+          });
         });
       }
       // lookingHtml
