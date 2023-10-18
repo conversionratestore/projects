@@ -1699,6 +1699,7 @@ section.shopify-section .index-section > .page-width{
     max-height: 300px;
 }
 .beautifully_packaged_box{
+  display: flex !important;
   margin-bottom: 48px;
     flex-direction: column;
         padding: 0 16px;
@@ -1750,7 +1751,7 @@ section.shopify-section .index-section > .page-width{
     text-align: center;
 }
 #reviews{
-      margin: 0 auto 48px !important;
+      margin: 29px auto 48px !important;
 }
 #reviews .btn{
       max-width: 200px;
