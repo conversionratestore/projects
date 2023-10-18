@@ -3165,7 +3165,8 @@ padding: 8px 16px;
   drawTableProducts()
 
   const waitForAddBtns = setInterval(() => {
-    if (document.querySelectorAll('[data-product-id]')[20]) {
+    
+    if (document.querySelectorAll('[data-product-id]')[19]) {
       clearInterval(waitForAddBtns)
 
       document.querySelectorAll('[data-product-id]').forEach((btn) => {
