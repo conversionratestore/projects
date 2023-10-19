@@ -1078,7 +1078,7 @@ p.book_now_txt,
   }
   #chat-widget-container[style*="max-height: calc(100% - 0px)"],
   #chat-widget-container[style*="height: 138px"] {
-    bottom: 50px !important;
+    bottom: 125px !important;
   }
   .popup__btn:hover {
     background: var(--18-aae-2, #18aae2) !important;
