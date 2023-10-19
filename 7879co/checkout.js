@@ -328,7 +328,6 @@ class CheckoutUpdate {
           border-radius: 0;
         }
         .crs-heads + .hidden {
-          display: block!important;
           border: 1px solid var(--Borders, #EAEAEB);
           padding: 0 20px 20px;
           width: calc(100% - 56px);
@@ -577,6 +576,12 @@ class CheckoutUpdate {
       } else {
         $el('.crs-calc').style.display = 'none'
         $el('.crs-calc').previousElementSibling.style = ''
+      }
+
+      if ($el('.crs-header-current').innerText.includes('Information') && $el('.crs-heads + .hidden')) {
+        $el('.crs-heads + .hidden').style.display = 'block'
+      } else {
+        $el('.crs-heads + .hidden').style = ''
       }
      
     }
@@ -1430,11 +1435,12 @@ class CheckoutUpdate {
     })
   }
   fixFormAndBlocks() {
-    if ($el('p.text-h3') && 
-      $el('p.text-h3').closest('.py-10')
-    ) {
-      $el('p.text-h3').closest('.py-10').style.padding = '12px 0 24px'
-    }
+    $$el('p.text-h3').forEach(item => {
+      if (item.closest('.py-10')) {
+        item.closest('.py-10').style.padding = '12px 0 24px'
+      }
+    })
+   
     $$el('form .gap-2').forEach((item, i) => {
       if (i === 0 && !item.innerText.includes('Keep me logged in')) {
         item.style.flexDirection = 'column'
