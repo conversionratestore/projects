@@ -1850,7 +1850,12 @@ class CheckoutUpdate {
       })
     }
 
-    
+    if ($el('.StripeElement iframe')) {
+      $el('.StripeElement iframe').addEventListener('click', (e) => {
+        e.stopImmediatePropagation()
+        pushDataLayer('exp_imp_ch_b_scosi_ecapg', 'Express checkout Apple Pay - Gpay', 'Button', 'Secure checkout Order summery Information');
+      })
+    }
     if (device == 'desktop') {
       const terms = `
       <style>
