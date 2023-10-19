@@ -3165,7 +3165,6 @@ padding: 8px 16px;
   drawTableProducts()
 
   const waitForAddBtns = setInterval(() => {
-    
     if (document.querySelectorAll('[data-product-id]')[19]) {
       clearInterval(waitForAddBtns)
 
@@ -3178,7 +3177,6 @@ padding: 8px 16px;
           }
           switch (sectionId) {
             case 'head-section':
-              pushDataLayer('exp_hopg_impr_b_fs_sdhp', 'Shop Deep Healing Pad', 'Button', 'First screen')
               break
             case 'back-pain-section':
               pushDataLayer(
@@ -3858,6 +3856,7 @@ padding: 8px 16px;
 
     waitForElement('[data-linkTo]').then((el) => {
       el.addEventListener('click', (e) => {
+        pushDataLayer('exp_hopg_impr_b_fs_sdhp', 'Shop Deep Healing Pad', 'Button', 'First screen')
         window.location.href = e.target.dataset.linkto
       })
     })
