@@ -202,6 +202,9 @@ class CheckoutUpdate {
           transform: translate(-50%, -50%);
           opacity: 0;
         }
+        input:not([name="promo"]) {
+          max-height: 36px;
+        }
         input:checked + .crs-checkbox::after {
           opacity: 1;
         }
