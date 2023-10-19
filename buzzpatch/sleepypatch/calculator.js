@@ -890,8 +890,8 @@ calculate.on('click', function () {
   weeks === 0 ? (weeks = 1) : weeks
 
   $('.calculate_block_step2 .patch .img img').attr('src', patch[packs - 1].img)
-  $('.calculate_block_step2 .patch p').html(`${packs * 24} patches (${packs} PACKS)`)
-  $('.calculate_block_step2 .patch span').html(`For approximately <b>${weeks} weeks</b>`)
+  $('.calculate_block_step2 .patch p').html(`${packs * 24} patches (${packs} PACK${packs === 1 ? '' : 's'})`)
+  $('.calculate_block_step2 .patch span').html(`For approximately <b>${weeks} week${weeks === 1 ? '' : 's'}</b>`)
   $('.calculate_block_step2 .total_price>span:first-of-type').html(`${patch[packs - 1].old}`)
   $('.calculate_block_step2 .total_price>span:last-of-type').html(`${patch[packs - 1].price}`)
   $('.calculate_block_step2 .total_price>p').html(`${patch[packs - 1].percent}<span>|</span>${patch[packs - 1].save}`)
@@ -914,9 +914,10 @@ btnMinus.on('click', function () {
   if ($(this).siblings('.qty_calculate').attr('id') == 'qty_children' && value == 1) {
     input.val(0)
   }
+  console.log($(this).siblings('.qty_calculate').attr('id'))
   if ($(this).siblings('.qty_calculate').attr('id') == 'qty_children') {
     pushDataLayer(
-      'exp_int_pro_asl_b_chmc_pm',
+      'exp_int_pro_asl_b_chmyc_pm',
       'minus',
       'Button',
       'Calculate How many of your children are under 3 years old?'
@@ -938,7 +939,7 @@ btnPlus.on('click', function () {
   }
   if ($(this).siblings('.qty_calculate').attr('id') == 'qty_children') {
     pushDataLayer(
-      'exp_int_pro_asl_b_chmk_pm',
+      'exp_int_pro_asl_b_chmyc_pm',
       'plus',
       'Button',
       'Calculate How many of your children are under 3 years old?'
