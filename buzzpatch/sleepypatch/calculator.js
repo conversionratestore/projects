@@ -51,6 +51,12 @@ const patch = [
 ]
 const style = /* html */ `
 <style>
+    .sidebar {
+      height: 100vh !important;
+    }
+    #flowers .wave-bg {
+      display: none !important;
+    }
     .rev.trust-rating, .hand-banner > img {
         display: none!important;
     }
@@ -148,13 +154,14 @@ const style = /* html */ `
         margin-left: 10px;
     }
     .patches {
-        background: url('${dir}blue-wave.svg') no-repeat center top / cover;
-    }
-    .patches {
-        padding: 46px 16px 56px;
+        background: url('${dir}blue-wave.png') no-repeat center center;
+        background-size: 100% 100%;
         margin-top: -70px;
-        position: relative;
         z-index: 1;
+        position: relative;
+    }
+    .patches .crs_wrapper {
+        padding: 46px 16px 56px;
     }
     .patches h2 {
         color: var(--sleepy-white, #FFF);
@@ -169,21 +176,21 @@ const style = /* html */ `
     .transparent .wave-bg {
         display: none;
     }
-    .patches>ul {
+    .patches .crs_wrapper>ul {
         display: flex;
         flex-direction: column;
         padding: 0;
     }
-    .patches>ul li {
+    .patches .crs_wrapper>ul li {
         width: 100%;
         display: flex;
         column-gap: 19px;
         padding: 12px 0;
     }
-    .patches>ul li:not(:first-child):not(:last-child) {
+    .patches .crs_wrapper>ul li:not(:first-child):not(:last-child) {
         border-bottom: 1px solid #F0F0F4;
     }
-    .patches>ul li span {
+    .patches .crs_wrapper>ul li span {
         color: #FFF;
         font-size: 12px !important;
         line-height: 18px !important;
@@ -193,18 +200,18 @@ const style = /* html */ `
         justify-content: center;
         flex: 1 0 0;
     }
-    .patches>ul li span:last-child {
+    .patches .crs_wrapper>ul li span:last-child {
         flex: 1.7 0 0;
         letter-spacing: normal;
     }
-    .patches>ul li:not(:first-child) span:nth-of-type(3) {
+    .patches .crs_wrapper>ul li:not(:first-child) span:nth-of-type(3) {
         font-weight: 400;
         text-align-last: left;
     }
-    .patches>ul li.head {
+    .patches .crs_wrapper>ul li.head {
         padding: 0;
     }
-    .patches>ul li.head span {
+    .patches .crs_wrapper>ul li.head span {
         text-transform: uppercase;
         padding: 3px 0;
         background-color: #3292DA;
@@ -238,8 +245,7 @@ const style = /* html */ `
       column-gap: 16px;
       justify-content: space-between;
     }
-    .calculate_block>div:nth-of-type(2),
-    .calculate_block>div:nth-of-type(3) {
+    .calculate_block>div:nth-of-type(2) {
       padding: 14px 0;
       margin: 14px 0;
       border-top: 1px solid #D6DAED;
@@ -473,7 +479,7 @@ const mainBlock = /* html */ `
                     <image id="image0_825_3038" width="128" height="128" xlink:href="data:image/png;base64,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"/>
                     </defs>
                 </svg>
-                <span>(london, GB)</span>
+                <span>(London, GB)</span>
             </p>
                 
         </div>
@@ -483,6 +489,7 @@ const mainBlock = /* html */ `
 
 const calculateBlock = /* html */ `
 <div class="patches" id="patch_calculator">
+    <div class="crs_wrapper">
     <h2>How many paTCHES do I need?</h2>
     <ul>
         <li class="head">
@@ -526,20 +533,7 @@ const calculateBlock = /* html */ `
                 </button>
             </div>
         </div>
-        <div class="d-flex align-items-center child3 active">
-            <p>Is your child<br>under 3 years old?</p>
-            <div class="d-flex">
-                <label>
-                    <input type="radio" name="radio" class="check_radio" value="1">
-                    <span>Yes</span>
-                </label>
-                <label>
-                    <input type="radio" name="radio" class="check_radio" checked value="0">
-                    <span>No</span>
-                </label>
-            </div>
-        </div>
-        <div class="d-flex align-items-center child3qty">
+        <div class="d-flex align-items-center child3qty active">
             <p>How many of your children are under 3 years old?</p>
             <div class="calculate">
                 <button type="button" class="btn_calculate btn_calculate_minus">
@@ -601,6 +595,7 @@ const calculateBlock = /* html */ `
         </div>
         <a href="/cart/41802601857068:1" class="crs_btn crs_to_checkout">Get IT NOW</a>
         <div class="recalculate">recalculate</div>
+    </div>
     </div>
 </div>`
 
@@ -889,8 +884,10 @@ calculate.on('click', function () {
   let weeks = 2
   if (packs > 4) {
     packs = 4
-    weeks = (96 / (qtyChildren + (qtyKids - qtyChildren) * 3) / 7).toFixed(1)
+    weeks = Math.round(96 / (qtyChildren + (qtyKids - qtyChildren) * 3) / 7)
   }
+
+  weeks === 0 ? (weeks = 1) : weeks
 
   $('.calculate_block_step2 .patch .img img').attr('src', patch[packs - 1].img)
   $('.calculate_block_step2 .patch p').html(`${packs * 24} patches (${packs} PACKS)`)
@@ -916,13 +913,10 @@ btnMinus.on('click', function () {
   }
   if ($(this).siblings('.qty_calculate').attr('id') == 'qty_children' && value == 1) {
     input.val(0)
-    $('.child3').addClass('active')
-    $('.child3qty').removeClass('active')
-    $('.child3 .check_radio[value="0"]').prop('checked', true)
   }
   if ($(this).siblings('.qty_calculate').attr('id') == 'qty_children') {
     pushDataLayer(
-      'exp_int_pro_asl_b_chmk_pm',
+      'exp_int_pro_asl_b_chmc_pm',
       'minus',
       'Button',
       'Calculate How many of your children are under 3 years old?'
@@ -1004,7 +998,7 @@ $('.crs_how_to_use .crs_btn, .crs_how_it_works .crs_btn').on('click', function (
 $('input[name="bundle"]').on('change', function () {
   pushDataLayer(
     'exp_int_pro_asl_bbs_cypr_en',
-    `Block bundle and save - ${$(this).val() === 1 ? 'yes' : 'no'}`,
+    `Block bundle and save - ${$(this).next().text()}`,
     'Button',
     'Calculate Your Patch Requirement'
   )
@@ -1012,6 +1006,10 @@ $('input[name="bundle"]').on('change', function () {
 
 $('.crs_to_checkout').on('click', function () {
   pushDataLayer('exp_int_pro_asl_b_sr_gn', 'Get it now', 'Button', 'State Results')
+})
+
+$('.exp-trust').on('click', function () {
+  pushDataLayer('exp_int_pro_asl_v_fs_trusts', 'TrustScore', 'Link', 'First screen')
 })
 
 // visible time of block on viewport
@@ -1035,7 +1033,7 @@ function checkFocusTime(selector, event, location) {
 }
 
 checkFocusTime('.exp-review', 'exp_int_pro_asl_v_fs_ftimag', 'First screen')
-checkFocusTime('#patch_calculator>ul', 'exp_int_pro_asl_v_hmpn_ft', 'How many patches do I need?')
+checkFocusTime('#patch_calculator>.crs_wrapper>ul', 'exp_int_pro_asl_v_hmpn_ft', 'How many patches do I need?')
 checkFocusTime('.calculate_block', 'exp_int_pro_asl_v_cypr_ft', 'Calculate Your Patch Requirement')
 checkFocusTime('.calculate_block_step2', 'exp_int_pro_asl_v_srbya_ft', 'State Results BASED ON YOUR ANSWERS YOU NEED')
 checkFocusTime('.crs_how_it_works', 'exp_int_pro_asl_v_hw_ft', 'How it works Step 1, 2, 3')
