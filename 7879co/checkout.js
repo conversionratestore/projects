@@ -1570,13 +1570,14 @@ class CheckoutUpdate {
     if ($el('.crs-promo-result')) {
       $$el('.flex.w-full.flex-1 .text-p').forEach((item) => {
         if (item.innerText.includes('By registering your details you agree to our')) {
-  
           if (device == 'desktop') {
             item.parentElement.style.display = 'none'
           } else {
             item.style = 'font-size: 14px; color: var(--Text, #484850); line-height: 20px;margin-top: 0!important;'
-            item.querySelector('a').style.display = 'inline'
-            item.querySelector('a > div').style.display = 'inline'
+            item.querySelectorAll('a').forEach(link => {
+              link.style.display = 'inline'
+              item.querySelector('div').style.display = 'inline'
+            })
           }
         }
         if (device == 'desktop' && !item.innerText.includes('Price') && item.closest('.overflow-auto')) {

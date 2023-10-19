@@ -1,0 +1,20 @@
+<svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_1533_442" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="46" height="46">
+<path d="M46 0H0V46H46V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_1533_442)">
+<mask id="mask1_1533_442" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="46" height="46">
+<path d="M0 3.8147e-06H46V46H0V3.8147e-06Z" fill="white"/>
+</mask>
+<g mask="url(#mask1_1533_442)">
+<path d="M22.9999 11.1701V42.7656M22.9999 11.1701L31.9033 11.1701C34.0468 11.1701 35.7843 9.43413 35.7843 7.2928V7.11176C35.7843 4.97034 34.0468 3.23438 31.9033 3.23438C30.8061 3.23438 29.7601 3.69842 29.0244 4.51168L22.9999 11.1701ZM22.9999 11.1701L14.0965 11.1701C11.9531 11.1701 10.2155 9.43413 10.2155 7.2928V7.11176C10.2155 4.97034 11.9531 3.23438 14.0965 3.23438C15.1937 3.23438 16.2397 3.69842 16.9754 4.51168L22.9999 11.1701ZM40.611 11.1701H5.38889C3.40505 11.1701 1.79675 12.7783 1.79675 14.7621V19.7871H44.203V14.7621C44.203 12.7783 42.5948 11.1701 40.611 11.1701ZM40.9687 19.787H5.03117V42.7657H40.9687V19.787Z" stroke="url(#paint0_linear_1533_442)" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_1533_442" x1="23.1491" y1="4.39497" x2="9.41511" y2="8.94231" gradientUnits="userSpaceOnUse">
+<stop stop-color="#1F72DA"/>
+<stop offset="0.515625" stop-color="#A25BB6"/>
+<stop offset="1" stop-color="#E6AD19"/>
+</linearGradient>
+</defs>
+</svg>
