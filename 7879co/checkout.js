@@ -331,7 +331,8 @@ class CheckoutUpdate {
           border: 1px solid var(--Borders, #EAEAEB);
           padding: 0 20px 20px;
           width: calc(100% - 56px);
-          margin: 44px auto 0;
+          margin: 44px auto 20px;
+          position: relative;
         }
         .crs-heads + .hidden .text-h3 {
           font-size: 28px;
@@ -346,7 +347,7 @@ class CheckoutUpdate {
           background: #fff;
           width: fit-content;
         }
-        .crs-heads + .hidden.relative {
+        .crs-heads + .hidden .relative {
           position: absolute;
           left: 0;
           top: calc(100% + 16px);

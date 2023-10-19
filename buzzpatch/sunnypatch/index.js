@@ -336,6 +336,11 @@ let style = `
         font-style: normal;
         line-height: 24px;
         letter-spacing: 0.3px!important;
+        padding: 20px 0!important;
+        box-shadow: 0 10px 20px #4d473299;
+    }
+    .button-proceed:hover {
+        color: #fff!important;
     }
     .sidebar .reviews-slide {
         border: none;
@@ -420,7 +425,7 @@ let style = `
         overflow-y: auto;
     }
     .sidebar .crs-img  {
-        margin: 12px 0;
+        margin: 14px 0;
     }
     .crs-img img {
         margin: 0!important;
