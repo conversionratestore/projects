@@ -220,6 +220,9 @@ class CheckoutUpdate {
         .input-with-floating-placeholder ~ .border-platinum-18 {
           display: none!important;
         }
+        .inline-block > div {
+          display: inline;
+        }
         #postcode-input {
           padding: 12px 16px!important;
         }
