@@ -328,24 +328,22 @@ class CheckoutUpdate {
           border-radius: 0;
         }
         .crs-heads + .hidden {
-          border: 1px solid var(--Borders, #EAEAEB);
-          padding: 0 20px 20px;
-          width: calc(100% - 56px);
-          margin: 44px auto 20px;
+          padding: 0;
+          width: 100%;
+          margin: 28px auto 18px;
           position: relative;
         }
         .crs-heads + .hidden .text-h3 {
-          font-size: 28px;
           font-style: normal;
           font-weight: 400;
-          line-height: 34px; 
-          letter-spacing: -0.7px;
-          margin: -20px 0 15px;
-          position: realtive;
-          padding: 0 5px;
+          margin: 0 0 15px;
+          position: relative;
+          padding: 0;
           z-index: 1;
           background: #fff;
           width: fit-content;
+          font-size: 22px;
+          line-height: 32px; 
         }
         .crs-heads + .hidden > .relative {
           position: absolute;
@@ -380,6 +378,19 @@ class CheckoutUpdate {
           font-weight: 600;
         }
         ${device == 'desktop' ? `
+        .crs-heads + .hidden {
+          border: 1px solid var(--Borders, #EAEAEB);
+          padding: 0 20px 20px;
+          width: calc(100% - 56px);
+          margin: 44px auto 20px;
+        }
+        .crs-heads + .hidden .text-h3 {
+          font-size: 28px;
+          line-height: 34px; 
+          letter-spacing: -0.7px;
+          margin: -20px 0 15px;
+          padding: 0 5px;
+        }
         #main {
           background: var(--Backgraund, #F4F4F5);
         }
