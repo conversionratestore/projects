@@ -347,7 +347,7 @@ class CheckoutUpdate {
           background: #fff;
           width: fit-content;
         }
-        .crs-heads + .hidden .relative {
+        .crs-heads + .hidden > .relative {
           position: absolute;
           left: 0;
           top: calc(100% + 16px);
