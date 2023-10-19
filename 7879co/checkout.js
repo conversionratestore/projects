@@ -1576,6 +1576,7 @@ class CheckoutUpdate {
             item.style = 'font-size: 14px; color: var(--Text, #484850); line-height: 20px;margin-top: 0!important;'
             item.querySelectorAll('a').forEach(link => {
               link.style.display = 'inline'
+              if (!item.querySelector('div')) return
               item.querySelector('div').style.display = 'inline'
             })
           }
