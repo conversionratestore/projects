@@ -1832,6 +1832,7 @@ class CheckoutUpdate {
             pushDataLayer('exp_imp_ch_r_scospsypm_k', 'Klarna Confirm', 'Button', 'Secure checkout Order summery Payment Select your payment method');
           }
           setTimeout(() => {
+            $el('#primer-checkout-submit-button-container button').disabled = false
             $el('#primer-checkout-submit-button-container button').click()
           }, 300)
         })
