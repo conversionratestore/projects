@@ -323,8 +323,42 @@ class CheckoutUpdate {
         .crs-svg {
           margin-left: 10px;
         }
-        .crs-heads + div button .rounded {
+        .crs-heads + div:not(.hidden) button .rounded, 
+        .crs-heads + div.hidden + div button .rounded {
           border-radius: 0;
+        }
+        .crs-heads + .hidden {
+          display: block!important;
+          border: 1px solid var(--Borders, #EAEAEB);
+          padding: 0 20px 20px;
+          width: calc(100% - 56px);
+          margin: 44px auto 0;
+        }
+        .crs-heads + .hidden .text-h3 {
+          font-size: 28px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 34px; 
+          letter-spacing: -0.7px;
+          margin: -20px 0 15px;
+          position: realtive;
+          padding: 0 5px;
+          z-index: 1;
+          background: #fff;
+          width: fit-content;
+        }
+        .crs-heads + .hidden.relative {
+          position: absolute;
+          left: 0;
+          top: calc(100% + 16px);
+          width: 100%;
+          margin: 0;
+        }
+        .crs-heads + .hidden.relative p {
+          font-size: 13px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 16px;
         }
         label.text-platinum-32 {
           line-height: 20px;
@@ -406,13 +440,15 @@ class CheckoutUpdate {
         .crs-heads {
           padding: 8px 28px;
         }
-        .crs-heads + div {
+        .crs-heads + div:not(.hidden),
+        .crs-heads + div.hidden + div {
           padding: 4px 28px 20px;
           width: 100%;
           display: flex;
           flex-direction: column;
         }
-        .crs-heads + div > button {
+        .crs-heads + div:not(.hidden) > button ,
+        .crs-heads + div.hidden + div > button {
           order: 3;
           margin-top: 28px;
         }
@@ -1391,13 +1427,12 @@ class CheckoutUpdate {
           }
         })
       }
-
-     
-      
     })
   }
   fixFormAndBlocks() {
-    if ($el('p.text-h3')) {
+    if ($el('p.text-h3') && 
+      $el('p.text-h3').closest('.py-10')
+    ) {
       $el('p.text-h3').closest('.py-10').style.padding = '12px 0 24px'
     }
     $$el('form .gap-2').forEach((item, i) => {
