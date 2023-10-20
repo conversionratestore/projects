@@ -846,7 +846,7 @@ class CheckoutUpdate {
               
             $$el('.crs-promo').forEach(from => {
               from.querySelector('.crs-promo-result p > .name').innerHTML = promoCode;
-              from.querySelector('.crs-promo-price').innerHTML = '- ' + currency + amount;
+              from.querySelector('.crs-promo-price').innerHTML = '- ' + currency + amount.toFixed(2);
               from.querySelector('.crs-promo-form').hidden = true;
               from.querySelector('.crs-get-promo').hidden = true;
               from.querySelector('.crs-promo-result').hidden = false;
