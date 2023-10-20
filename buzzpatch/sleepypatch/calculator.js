@@ -129,6 +129,7 @@ const style = /* html */ `
     }
     .header-shipping .hand-banner {
         padding-top: 44px;
+        text-align: center;
     }
     .header-shipping .hand-banner .shipping-noti {
         top: 14px;
@@ -152,6 +153,7 @@ const style = /* html */ `
         text-transform: uppercase;
         padding: 14px 0;
         margin-bottom: 54px;
+        display: inline-flex;
     }
     .btn_how svg {
         margin-left: 10px;
@@ -326,6 +328,7 @@ const style = /* html */ `
     }
     .calculate_block_step2 {
       padding: 18px 12px;
+      text-align: center;
     }
     .calculate_block_step2 .patch {
       display: flex;
@@ -356,6 +359,7 @@ const style = /* html */ `
       line-height: 30px !important;
       text-transform: uppercase;
       width: 60%;
+      text-align-last: left;
     }
     .calculate_block_step2 .patch span {
       font-size: 14px !important;
@@ -404,7 +408,7 @@ const style = /* html */ `
       text-decoration: none;
     }
     .calculate_block_step2 .recalculate {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       margin-top: 10px;
@@ -412,6 +416,7 @@ const style = /* html */ `
       font-family: "DINEngschrift LT", sans-serif;
       text-transform: uppercase;
       text-decoration: underline;
+
     }
     .crs_tooltip {
       position: relative;
@@ -604,7 +609,7 @@ const calculateBlock = /* html */ `
 </div>`
 
 const linkToCalculate = /* html */ `
-<a href="#patch_calculator" class="btn_how d-flex align-items-center justify-content-center stb">How many paTCHES do I need?
+<a href="#patch_calculator" class="btn_how align-items-center justify-content-center stb">How many paTCHES do I need?
     <svg xmlns="http://www.w3.org/2000/svg" width="9" height="14" viewBox="0 0 9 14" fill="none">
         <path d="M8.81768e-07 1.64501L5.56278 7.00004L4.13616e-07 12.3551L1.71259 14L9 7.00004L1.71259 -3.18543e-07L8.81768e-07 1.64501Z" fill="white"/>
     </svg>
