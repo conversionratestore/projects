@@ -124,8 +124,9 @@ const style = /* html */ `
     }
     .exp-review .exp-review_content > p {
         color: var(--sleepy-black, #0C0B0B);
-        font-size: 13px!important;
-        line-height: 20px!important; 
+        font-size: 14px!important;
+        line-height: 20px!important;
+        letter-spacing: normal;
     }
     .header-shipping .hand-banner {
         padding-top: 44px;
@@ -197,8 +198,8 @@ const style = /* html */ `
     }
     .patches .crs_wrapper>ul li span {
         color: #FFF;
-        font-size: 12px !important;
-        line-height: 18px !important;
+        font-size: 14px !important;
+        line-height: 20px !important;
         font-weight: 700;
         display: flex;
         align-items: center;
@@ -210,7 +211,6 @@ const style = /* html */ `
         letter-spacing: normal;
     }
     .patches .crs_wrapper>ul li:not(:first-child) span:nth-of-type(3) {
-        font-weight: 400;
         text-align-last: left;
     }
     .patches .crs_wrapper>ul li.head {
@@ -242,9 +242,10 @@ const style = /* html */ `
         text-transform: uppercase;
     }
     .calculate_block p {
-      font-size: 14px !important;
-      line-height: 20px !important;
+      font-size: 16px !important;
+      line-height: 24px !important;
       color: #0C0B0B;
+      letter-spacing: normal;
     }
     .calculate_block>div {
       column-gap: 16px;
@@ -678,8 +679,8 @@ const howItWorks = /* html */ `
                 object-fit: contain;
             }
             .crs_how_it_works ul li p {
-                font-size: 12px !important;
-                line-height: 16px !important;
+                font-size: 16px !important;
+                line-height: 24px !important;
                 margin: 0;
                 letter-spacing: normal;
                 color: #0C0B0B;
@@ -820,9 +821,9 @@ const howToUse = /* html */ `
                 margin: 0 0 4px;
             }
             .crs_how_to_use ul li .img + p + p {
-                font-size: 12px !important;
+                font-size: 14px !important;
                 color: #515151;
-                line-height: 16px !important;
+                line-height: 20px !important;
                 margin-bottom: 0;
                 letter-spacing: normal;
             }
