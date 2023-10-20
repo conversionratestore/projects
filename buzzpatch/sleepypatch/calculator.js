@@ -916,7 +916,7 @@ calculate.on('click', function () {
   $('.calculate_block_step2 .total_price>span:first-of-type').html(`${currency}${oldPrice}`)
   $('.calculate_block_step2 .total_price>span:last-of-type').html(`${currency}${newPrice}`)
   $('.calculate_block_step2 .total_price>p').html(
-    `${Math.round((newPrice / oldPrice) * 100)}%&nbsp;OFF&nbsp;|&nbsp;Save&nbsp;${currency}${Math.round(
+    `${100 - Math.ceil((newPrice / oldPrice) * 100)}%&nbsp;OFF&nbsp;|&nbsp;Save&nbsp;${currency}${Math.round(
       oldPrice - newPrice
     )}`
   )
