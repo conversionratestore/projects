@@ -116,6 +116,9 @@ const style = /* html */ `
     .exp-review_head p.date, .exp-review_head p.location span {
         color: #979797;
     }
+    .exp-review_head p.location b {
+      color: #0C0B0B;
+    }
     .exp-review_head p.location svg {
         margin: 0 7px;
     }
@@ -388,7 +391,7 @@ const style = /* html */ `
       padding: 4px 12px;
       background: url('${dir}label.svg') center center / contain no-repeat;
       display: flex;
-      flex-wrap: nowrap;a
+      flex-wrap: nowrap;
       column-gap: 6px;
       margin-bottom: 0;
     }
