@@ -46,7 +46,6 @@ class CheckoutUpdate {
           mutation.addedNodes.length > 0 &&
           $el('[data-testid="signin-modal"]')
         ) {
-          console.log('click signin-modal')
           $el('[data-testid="signin-modal"] #signup').click()
         }
         if (this.checkPageUrl() === 'checkout') {
@@ -656,8 +655,7 @@ class CheckoutUpdate {
         const cookie = cookies[i].split('=');
         if (cookie[0] === cookieName) {
           token = decodeURIComponent(cookie[1]);
-          console.log(`Value of ${cookieName} is: ${token}`);
-          break; // Stop searching once the cookie is found
+          break;
         }
       }
 
@@ -1361,7 +1359,6 @@ class CheckoutUpdate {
           const cookie = cookies[i].split('=');
           if (cookie[0] === cookieName) {
             token = decodeURIComponent(cookie[1]);
-            console.log(`Value of ${cookieName} is: ${token}`);
             break; 
           }
         }
@@ -1400,9 +1397,7 @@ class CheckoutUpdate {
           })
         }).then(res => res.json()).then(data => {
           console.log(data);
-          console.log(data.data['checkout']);
           let billingObj = data.data['checkout']['checkout']['shippingAddress']
-          console.log(billingObj);
 
           fetch('https://apicdn.7879.co/', {
             method: 'POST',
@@ -1436,11 +1431,6 @@ class CheckoutUpdate {
           }).then(res => res.json()).then(dataBilling => {
             console.log(dataBilling);
             window.location.reload()
-            // $$el('#checkout-container + div.mt-5.flex.flex-col > div').forEach(item => {
-            //   if (item.innerText.includes('Billing Address')) {
-            //     item.style.display = 'none'
-            //   }
-            // })
           }).catch((error) => {
             console.error('Error:', error);
           });
@@ -1555,7 +1545,6 @@ class CheckoutUpdate {
 
         item.querySelector('input').addEventListener('change', (e) => {
           e.stopImmediatePropagation()
-          console.log(e.target.checked)
           localStorage.setItem('use_address_billing', e.target.checked)
         })
       }
@@ -1569,7 +1558,7 @@ class CheckoutUpdate {
           let title = item.closest('form').parentElement.parentElement.querySelector('.text-h3').innerText;
           let type = 'Input';
           let name = this.getFirstLetters(label) + this.getFirstLetters(title)
-          console.log(name); 
+        
           if (label.includes('Postcode')) {
             name = 'p'+this.getFirstLetters(title)
           }
@@ -1635,7 +1624,6 @@ class CheckoutUpdate {
               let amount = item.innerText.split(item.innerText[2])[1]
 
               if ($el('.crs-summary-total')) {
-                console.log(total)
                 let compare = (+total + +amount).toFixed(2)
 
                 $el('.crs-summary-total').innerHTML = `<span class="crs-compare">${currency + this.numberFormat(compare)}</span> ` + currency + this.numberFormat(total)
@@ -1796,7 +1784,7 @@ class CheckoutUpdate {
         })
       }
     })
-    
+
     $$el('.crs-payment-radio [name="radio_payment"]').forEach(item => {
       if (item.checked) {
         if (item.closest('.crs-payment-klarna')) {
@@ -1819,7 +1807,6 @@ class CheckoutUpdate {
           } else {
             $el('#primer-checkout-klarna-button').click()
             pushDataLayer('exp_imp_ch_r_scospsypm_k', 'Klarna', 'Radio button', 'Secure checkout Order summery Payment Select your payment method');
-            
           }
         }
       })
@@ -1866,6 +1853,11 @@ class CheckoutUpdate {
             pushDataLayer('exp_imp_ch_b_scospsypm_pn', 'Pay now', 'Button', 'Secure checkout Order summery Payment Select your payment method');
           } else {
             pushDataLayer('exp_imp_ch_r_scospsypm_k', 'Klarna Confirm', 'Button', 'Secure checkout Order summery Payment Select your payment method');
+            
+            if ($el('#primer-checkout-scene-credit-card-form')) {
+              $el('#primer-checkout-scene-credit-card-form').after($el('#primer-checkout-scene-klarna-payment'))
+              $el('#primer-checkout-scene-credit-card-form').remove()
+            }
           }
           setTimeout(() => {
             $el('#primer-checkout-submit-button-container button').disabled = false
