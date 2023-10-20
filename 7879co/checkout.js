@@ -688,6 +688,13 @@ class CheckoutUpdate {
       })
     })
   }
+
+  numberFormat(amount) {
+    return new Intl.NumberFormat({
+      minimumFractionDigits: 2
+    }).format(amount);
+  }
+
   createPromo(parent) {
 
     let loc = $el('.crs-header-current').innerText.includes('Information') ? 'Information' : 'Payment'
@@ -807,7 +814,6 @@ class CheckoutUpdate {
 
     parent.insertAdjacentHTML('beforebegin', getPromo)
 
-
     $$el('.crs-get-promo').forEach(item => {
       item.addEventListener('click', (e) => {
         e.stopImmediatePropagation()
@@ -851,20 +857,21 @@ class CheckoutUpdate {
             let totalOrder = ''
             
             if ($el('.text-special-priceIncrease')) {
-              compare = +(total.replace(currency, '')) + amount;
-              totalOrder = +(total.replace(currency, ''))
+              compare = this.numberFormat((+(total.replace(currency, '')) + amount));
+              totalOrder = this.numberFormat((+(total.replace(currency, ''))));
             } else {
-              compare = +(total.replace(currency, ''));
-              totalOrder = +(total.replace(currency, '')) - amount
+              compare = this.numberFormat((+(total.replace(currency, ''))));
+              totalOrder = this.numberFormat((+(total.replace(currency, '')) - amount));
             }
-            $el('.crs-summary-total').innerHTML = `<span class="crs-compare">${currency + compare.toFixed(2)}</span> ` + currency + totalOrder.toFixed(2)
+           
+            $el('.crs-summary-total').innerHTML = `<span class="crs-compare">${currency + compare}</span> ` + currency + totalOrder
               
             if (device == 'mobile') {
               if (!$el('.crs-total .crs-promo+div p:last-child')) return
-              $el('.crs-total .crs-promo+div p:last-child').innerHTML = currency + totalOrder.toFixed(2)
-              $el('.crs-summary-footer .crs-promo+div p:last-child').innerHTML = currency + totalOrder.toFixed(2)
+              $el('.crs-total .crs-promo+div p:last-child').innerHTML = currency + totalOrder
+              $el('.crs-summary-footer .crs-promo+div p:last-child').innerHTML = currency + totalOrder
             } else {
-              $el('.crs-summary-footer .crs-promo+div p:last-child').innerHTML = `<span class="crs-compare">${currency + compare.toFixed(2)}</span> ${currency + totalOrder.toFixed(2)}`
+              $el('.crs-summary-footer .crs-promo+div p:last-child').innerHTML = `<span class="crs-compare">${currency + compare}</span> ${currency + totalOrder}`
             }
 
           } else {
@@ -1287,21 +1294,17 @@ class CheckoutUpdate {
   }
   
   getFirstLetters(sentence) {
-    // Split the sentence into words
     const words = sentence.split(' ');
   
-    // Initialize an array to store the first letters
     const firstLetters = [];
   
-    // Loop through the words and get the first letter of each
     for (const word of words) {
       if (word.length > 0) {
-        const firstLetter = word[0].toUpperCase(); // Convert to uppercase
+        const firstLetter = word[0].toUpperCase(); 
         firstLetters.push(firstLetter);
       }
     }
   
-    // Join the first letters to form a new string
     const result = firstLetters.join('');
   
     return result;
@@ -1455,6 +1458,7 @@ class CheckoutUpdate {
       }
     })
   }
+
   fixFormAndBlocks() {
     if ($el('.crs-summary-total > .crs-compare') &&
       device == 'mobile' &&
@@ -1633,18 +1637,13 @@ class CheckoutUpdate {
               if ($el('.crs-summary-total')) {
                 console.log(total)
                 let compare = (+total + +amount).toFixed(2)
-                let formattedCompare = new Intl.NumberFormat({
-                  minimumFractionDigits: 2
-                }).format(compare);
 
-                console.log(formattedCompare); 
-
-                $el('.crs-summary-total').innerHTML = `<span class="crs-compare">${currency + formattedCompare}</span> ` + currency + total
+                $el('.crs-summary-total').innerHTML = `<span class="crs-compare">${currency + this.numberFormat(compare)}</span> ` + currency + this.numberFormat(total)
               }
 
               $el('.crs-summary-footer .crs-promo+div p:last-child').innerHTML = device == 'mobile' ? 
                currency + total :
-               `<span class="crs-compare">${currency + (+total + +amount).toFixed(2)}</span> ` + currency + total
+               `<span class="crs-compare">${currency + (+total + +amount).toFixed(2)}</span> ` + currency + this.numberFormat(total)
             })
           }
         }
