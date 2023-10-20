@@ -31,6 +31,7 @@ const device = window.innerWidth < 769 ? 'mobile' : 'desktop'
 let clickKlarnaBtn = false;
 let clickRemovePromo = false;
 let isEvent = false;
+let klarnaConfirm = false;
 
 class CheckoutUpdate {
   constructor(device) {
@@ -140,6 +141,12 @@ class CheckoutUpdate {
     const style =
       /* html */ `
       <style class="crs-style">
+        #primer-checkout-scene-klarna-payment {
+          opacity: 0;
+        }
+        .crs-payment-klarna #primer-checkout-scene-klarna-payment {
+          opacity: 1;
+        }
         ${device == 'mobile' ? `
         main>div:first-of-type>.h-30 {
           flex-direction: row;
@@ -1824,7 +1831,8 @@ class CheckoutUpdate {
 
     if ($el('#primer-checkout-scene-klarna-payment') && 
       $el('.crs-payment-klarna > label') &&
-      !$el('.crs-payment-klarna > #primer-checkout-scene-klarna-payment')
+      !$el('.crs-payment-klarna > #primer-checkout-scene-klarna-payment') &&
+      klarnaConfirm == false
     ) {
       $el('.crs-payment-klarna > label').after($el('#primer-checkout-scene-klarna-payment'))
   
@@ -1853,10 +1861,18 @@ class CheckoutUpdate {
             pushDataLayer('exp_imp_ch_b_scospsypm_pn', 'Pay now', 'Button', 'Secure checkout Order summery Payment Select your payment method');
           } else {
             pushDataLayer('exp_imp_ch_r_scospsypm_k', 'Klarna Confirm', 'Button', 'Secure checkout Order summery Payment Select your payment method');
-            
+            klarnaConfirm = true
             if ($el('#primer-checkout-scene-credit-card-form')) {
+             
               $el('#primer-checkout-scene-credit-card-form').after($el('#primer-checkout-scene-klarna-payment'))
               $el('#primer-checkout-scene-credit-card-form').remove()
+              setTimeout(() => {
+                $el('.crs-payment-credit input').checked = true
+                $el('#primer-checkout-credit-card-button').click()
+                klarnaConfirm = false
+              }, 500)
+              
+
             }
           }
           setTimeout(() => {
