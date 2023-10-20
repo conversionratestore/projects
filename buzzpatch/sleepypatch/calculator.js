@@ -349,6 +349,9 @@ const style = /* html */ `
       height: 100%;
       object-fit: contain;
     }
+    .calculate_block_step2 .patch .img + div {
+      text-align: left;
+    }
     .calculate_block_step2 .patch p {
       color: #234798;
       padding-bottom: 13px;
@@ -359,7 +362,6 @@ const style = /* html */ `
       line-height: 30px !important;
       text-transform: uppercase;
       width: 60%;
-      text-align-last: left;
     }
     .calculate_block_step2 .patch span {
       font-size: 14px !important;
@@ -416,7 +418,6 @@ const style = /* html */ `
       font-family: "DINEngschrift LT", sans-serif;
       text-transform: uppercase;
       text-decoration: underline;
-
     }
     .crs_tooltip {
       position: relative;
@@ -898,9 +899,16 @@ calculate.on('click', function () {
 
   weeks === 0 ? (weeks = 1) : weeks
 
-  const oldPrice = +$(`#getNow [data-pack-count="${packs}"] .strikethrough span`).text().replace(',', '')
-  const newPrice = +$(`#getNow [data-pack-count="${packs}"] .after-price span`).text().replace(',', '')
+  let oldPrice = $(`#getNow [data-pack-count="${packs}"] .strikethrough span`).text()
+  let newPrice = $(`#getNow [data-pack-count="${packs}"] .after-price span`).text()
   const currency = $(`#getNow [data-pack-count="${packs}"] .strikethrough`).contents()[0].nodeValue
+  if (currency == '€') {
+    oldPrice = oldPrice.replace(',', '.')
+    newPrice = newPrice.replace(',', '.')
+  } else {
+    oldPrice = oldPrice.replace(',', '')
+    newPrice = newPrice.replace(',', '')
+  }
 
   $('.calculate_block_step2 .patch .img img').attr('src', patch[packs - 1].img)
   $('.calculate_block_step2 .patch p').html(`${packs * 24} patches (${packs} PACK${packs === 1 ? '' : 's'})`)
@@ -908,7 +916,9 @@ calculate.on('click', function () {
   $('.calculate_block_step2 .total_price>span:first-of-type').html(`${currency}${oldPrice}`)
   $('.calculate_block_step2 .total_price>span:last-of-type').html(`${currency}${newPrice}`)
   $('.calculate_block_step2 .total_price>p').html(
-    `${patch[packs - 1].percent}&nbsp;|&nbsp;Save&nbsp;${currency}${Math.round(oldPrice - newPrice)}`
+    `${Math.round((newPrice / oldPrice) * 100)}%&nbsp;OFF&nbsp;|&nbsp;Save&nbsp;${currency}${Math.round(
+      oldPrice - newPrice
+    )}`
   )
   $('.crs_to_checkout').attr('href', patch[packs - 1].linkToCheckout)
   pushDataLayer('exp_int_pro_asl_b_cypr_c', 'Calculate', 'Button', 'Calculate Your Patch Requirement')
