@@ -689,7 +689,6 @@ class CheckoutUpdate {
   }
   createPromo(parent) {
 
-
     let loc = $el('.crs-header-current').innerText.includes('Information') ? 'Information' : 'Payment'
     let type = loc ==  'Information' ? 'i' : 'p'
 
@@ -904,35 +903,34 @@ class CheckoutUpdate {
 
   }
   createCartSummary() {
-  if (this.checkPageUrl() !== 'checkout') return
+    if (this.checkPageUrl() !== 'checkout') return
 
-  if ($el('h3')) {
-    
-    $el('h3')
-      .closest('.w-full')
-      .querySelectorAll('&>div:not(:last-child)')
-      .forEach((item, index) => {
-        if (!item.innerText.includes('You now have') && device != 'desktop') {
-          item.style.display = 'none'
-        }
-        if (item.innerText.includes('Summary')) {
-          item.querySelector('.text-h3').innerText = 'Order summary';
-          item.classList.add('crs-order-head');
-          
-          if (device == 'desktop' && 
-            $el('.overflow-auto+.flex.flex-col.gap-2 > div:last-child > .text-h5.font-semibold:last-child') &&
-            !$el('.crs-summary-total')
-          ) {
-            item.insertAdjacentHTML('beforeend', `<p class="crs-summary-total">${$el('.overflow-auto+.flex.flex-col.gap-2 > div:last-child > .text-h5.font-semibold:last-child').innerText}</p>`)
+    if ($el('h3')) {
+      $el('h3')
+        .closest('.w-full')
+        .querySelectorAll('&>div:not(:last-child)')
+        .forEach((item, index) => {
+          if (!item.innerText.includes('You now have') && device != 'desktop') {
+            item.style.display = 'none'
           }
-
-          item.querySelector('svg.stroke-black').style.display = 'none'
-        }
-      })
+          if (item.innerText.includes('Summary')) {
+            item.querySelector('.text-h3').innerText = 'Order summary';
+            item.classList.add('crs-order-head');
+            
+            if (device == 'desktop' && 
+              $el('.overflow-auto+.flex.flex-col.gap-2 > div:last-child > .text-h5.font-semibold:last-child') &&
+              !$el('.crs-summary-total')
+            ) {
+              item.insertAdjacentHTML('beforeend', `<p class="crs-summary-total">${$el('.overflow-auto+.flex.flex-col.gap-2 > div:last-child > .text-h5.font-semibold:last-child').innerText}</p>`)
+            }
+            item.querySelector('svg.stroke-black').style.display = 'none'
+          }
+        })
     }
 
     if (!$el('.crs-warranty-banner') ||
-        !$el('.overflow-auto+.flex.flex-col.gap-2')) return
+        !$el('.overflow-auto+.flex.flex-col.gap-2') ||
+        !$el('.crs-header-current')) return
 
     const footer = `
     <div class="crs-summary-footer">
