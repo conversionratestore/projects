@@ -371,10 +371,11 @@ const style = /* html */ `
     }
     .calculate_block_step2 .total_price {
       display: flex;
-      column-gap: 8px;
+      gap: 8px;
       align-items: center;
       justify-content: center;
       margin: 20px 0;
+      flex-wrap: wrap;
     }
     .calculate_block_step2 .total_price>span:first-of-type {
       color: #616267;
@@ -888,13 +889,15 @@ calculate.on('click', function () {
   const bundle = +$('input[name="bundle"]:checked').val()
   let qtyPatches = (qtyChildren + (qtyKids - qtyChildren) * 3) * 14
   let packs = Math.ceil(qtyPatches / 24)
+  let weeks = 2
   if (bundle == 1) {
     packs += 1
   }
-  let weeks = 2
   if (packs > 4) {
     packs = 4
-    weeks = Math.round(96 / (qtyChildren + (qtyKids - qtyChildren) * 3) / 7)
+  }
+  if (bundle == 1) {
+    weeks = Math.round((24 * packs) / ((qtyChildren + (qtyKids - qtyChildren) * 3) * 7))
   }
 
   weeks === 0 ? (weeks = 1) : weeks
@@ -938,6 +941,9 @@ btnMinus.on('click', function () {
   }
   if ($(this).siblings('.qty_calculate').attr('id') == 'qty_children' && value == 1) {
     input.val(0)
+  }
+  if ($(this).siblings('.qty_calculate').attr('id') == 'qty_kids' && value <= +$('#qty_children').val() && value > 1) {
+    $('#qty_children').val(value - 1)
   }
   console.log($(this).siblings('.qty_calculate').attr('id'))
   if ($(this).siblings('.qty_calculate').attr('id') == 'qty_children') {
