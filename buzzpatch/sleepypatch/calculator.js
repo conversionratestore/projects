@@ -17,8 +17,8 @@ const patch = [
     qty: '24 patches (1 pack)',
     price: '$14.99',
     old: '$24.99',
-    save: 'Save $10',
-    percent: '40% OFF',
+    save: 'Save&nbsp;$10',
+    percent: '40%&nbsp;OFF',
     linkToCheckout: '/cart/41802601857068:1'
   },
   {
@@ -26,8 +26,8 @@ const patch = [
     qty: '48 patches (2 packs)',
     price: '$27',
     old: '$49.98',
-    save: 'Save $23',
-    percent: '45% OFF',
+    save: 'Save&nbsp;$23',
+    percent: '45%&nbsp;OFF',
     linkToCheckout: '/cart/41802601889836:1'
   },
   {
@@ -35,8 +35,8 @@ const patch = [
     qty: '72 patches (3 packs)',
     price: '$36',
     old: '$74.97',
-    save: 'Save $39',
-    percent: '51% OFF',
+    save: 'Save&nbsp;$39',
+    percent: '51%&nbsp;OFF',
     linkToCheckout: '/cart/41802601824300:1'
   },
   {
@@ -44,8 +44,8 @@ const patch = [
     qty: '96 patches (4 packs)',
     price: '$42',
     old: '$99.96',
-    save: 'Save $58',
-    percent: '57% OFF',
+    save: 'Save&nbsp;$58',
+    percent: '57%&nbsp;OFF',
     linkToCheckout: '/cart/41802601922604:1'
   }
 ]
@@ -388,6 +388,7 @@ const style = /* html */ `
       padding: 4px 12px;
       background: url('${dir}label.svg') center center / contain no-repeat;
       display: flex;
+      flex-wrap: nowrap;a
       column-gap: 6px;
       margin-bottom: 0;
     }
@@ -591,7 +592,7 @@ const calculateBlock = /* html */ `
         <div class="total_price">
             <span>$74.97</span>
             <span>$36</span>
-            <p>51% OFF<span>|</span>Save $39</p>
+            <p>51%&nbsp;OFF&nbsp;|&nbsp;Save&nbsp;$39</p>
         </div>
         <a href="/cart/41802601857068:1" class="crs_btn crs_to_checkout">Get IT NOW</a>
         <div class="recalculate">recalculate</div>
@@ -889,12 +890,18 @@ calculate.on('click', function () {
 
   weeks === 0 ? (weeks = 1) : weeks
 
+  const oldPrice = +$(`#getNow [data-pack-count="${packs}"] .strikethrough span`).text().replace(',', '')
+  const newPrice = +$(`#getNow [data-pack-count="${packs}"] .after-price span`).text().replace(',', '')
+  const currency = $(`#getNow [data-pack-count="${packs}"] .strikethrough`).contents()[0].nodeValue
+
   $('.calculate_block_step2 .patch .img img').attr('src', patch[packs - 1].img)
   $('.calculate_block_step2 .patch p').html(`${packs * 24} patches (${packs} PACK${packs === 1 ? '' : 's'})`)
   $('.calculate_block_step2 .patch span').html(`For approximately <b>${weeks} week${weeks === 1 ? '' : 's'}</b>`)
-  $('.calculate_block_step2 .total_price>span:first-of-type').html(`${patch[packs - 1].old}`)
-  $('.calculate_block_step2 .total_price>span:last-of-type').html(`${patch[packs - 1].price}`)
-  $('.calculate_block_step2 .total_price>p').html(`${patch[packs - 1].percent}<span>|</span>${patch[packs - 1].save}`)
+  $('.calculate_block_step2 .total_price>span:first-of-type').html(`${currency}${oldPrice}`)
+  $('.calculate_block_step2 .total_price>span:last-of-type').html(`${currency}${newPrice}`)
+  $('.calculate_block_step2 .total_price>p').html(
+    `${patch[packs - 1].percent}&nbsp;|&nbsp;Save&nbsp;${currency}${Math.round(oldPrice - newPrice)}`
+  )
   $('.crs_to_checkout').attr('href', patch[packs - 1].linkToCheckout)
   pushDataLayer('exp_int_pro_asl_b_cypr_c', 'Calculate', 'Button', 'Calculate Your Patch Requirement')
 })
@@ -1026,6 +1033,7 @@ function checkFocusTime(selector, event, location) {
         const timeShow = Math.round((endShow - startShow) / 1000)
         entry.target.removeAttribute('data-startShow')
         pushDataLayer(event, timeShow, 'Visibility', location)
+        checker.unobserve(entry.target)
       }
     })
   })
