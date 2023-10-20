@@ -1861,19 +1861,19 @@ class CheckoutUpdate {
             pushDataLayer('exp_imp_ch_b_scospsypm_pn', 'Pay now', 'Button', 'Secure checkout Order summery Payment Select your payment method');
           } else {
             pushDataLayer('exp_imp_ch_r_scospsypm_k', 'Klarna Confirm', 'Button', 'Secure checkout Order summery Payment Select your payment method');
-            klarnaConfirm = true
-            if ($el('#primer-checkout-scene-credit-card-form')) {
+            // klarnaConfirm = true
+            // if ($el('#primer-checkout-scene-credit-card-form')) {
              
-              $el('#primer-checkout-scene-credit-card-form').after($el('#primer-checkout-scene-klarna-payment'))
-              $el('#primer-checkout-scene-credit-card-form').remove()
-              setTimeout(() => {
-                $el('.crs-payment-credit input').checked = true
-                $el('#primer-checkout-credit-card-button').click()
-                klarnaConfirm = false
-              }, 500)
+            //   $el('#primer-checkout-scene-credit-card-form').after($el('#primer-checkout-scene-klarna-payment'))
+            //   $el('#primer-checkout-scene-credit-card-form').remove()
+            //   setTimeout(() => {
+            //     $el('.crs-payment-credit input').checked = true
+            //     $el('#primer-checkout-credit-card-button').click()
+            //     klarnaConfirm = false
+            //   }, 500)
               
 
-            }
+            // }
           }
           setTimeout(() => {
             $el('#primer-checkout-submit-button-container button').disabled = false
