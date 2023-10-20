@@ -645,9 +645,9 @@ const howItWorks = /* html */ `
             }
             .crs_how_it_works h2 + p  {
                 text-align: center;
-                font-size: 14px !important;
+                font-size: 16px !important;
                 color: #515151;
-                line-height: 20px !important;
+                line-height: 24px !important;
                 letter-spacing: normal;
                 margin-bottom: 18px;
             }
