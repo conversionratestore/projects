@@ -1530,7 +1530,7 @@ const html = `
 
         <div class="accordion"></div>
 
-        <div class="logos lav-desk">
+        <div class="logos lav-desk lav-observe">
           <img src="${exp.dir}/img/logos.png">
         </div>
       </div>
@@ -1614,7 +1614,7 @@ const html = `
       </div>
     </div>
 
-    <div class="logos lav-mob">
+    <div class="logos lav-mob lav-observe">
       <img src="${exp.dir}/img/logos-mob.png">
     </div>
   </div>
@@ -2022,7 +2022,7 @@ function changeFooter() {
         }
       </style>
 
-      <div class='lav-find'>
+      <div class='lav-find lav-observe'>
         <div class='lav-find__info'>
           <h4 class='lav-find__title'>How to find us</h4>
           <p class='lav-find__descr lav-desk'>You can find us just 20 miles away from the renowned Las Vegas Strip. Here, the desert, lights, and gambling transform into a tranquil, picturesque getaway with Lake Mead National Park (Hoover Dam) and Valley of Fire State Park right around the corner!</p>
@@ -2719,6 +2719,13 @@ function observerView(observeEl) {
         if (target.classList.contains("book_now_wrapp")) {
           isElementInViewport(target, ["exp_im_pdp_v_bnehp_cc", "Copy code", "Visibility", "Book now enjoy HP"]);
         }
+        if (target.classList.contains("logos")) {
+          isElementInViewport(target, ["exp_im_pdp_v_ast_sr", "Service reviews", "Visibility", "Above section Tours"]);
+        }
+        if (target.classList.contains("lav-find")) {
+          isElementInViewport(target, ["exp_im_pdp_v_olpdp", "Our location", "Visibility", "Our location PDP"]);
+        }
+        //
       }
     });
   }, observerOptions);
