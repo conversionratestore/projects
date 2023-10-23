@@ -296,7 +296,7 @@ let style = `
         z-index: -1;
     }
     .sidebar {
-        overflow: hidden;
+        overflow-y: auto!important;
     }
     .sidebar .btn_how_works {
         color: var(--NATPAT-BLUE, #1F4FC9);
