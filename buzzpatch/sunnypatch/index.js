@@ -297,6 +297,7 @@ let style = `
     }
     .sidebar {
         overflow-y: auto!important;
+        overflow-x: hidden!important;
     }
     .sidebar .btn_how_works {
         color: var(--NATPAT-BLUE, #1F4FC9);
