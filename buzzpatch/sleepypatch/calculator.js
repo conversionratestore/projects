@@ -1,3 +1,4 @@
+console.log('%c EXP: Sleepypatch calculator', 'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;')
 const pushDataLayer = (name, desc, type = '', loc = '') => {
   window.dataLayer = window.dataLayer || []
   window.dataLayer.push({
@@ -9,6 +10,13 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
   })
   console.log(`Event: ${name} ${desc} ${type} ${loc}`)
 }
+
+const clarityInterval = setInterval(function () {
+  if (typeof clarity == 'function') {
+    clearInterval(clarityInterval)
+    clarity('set', 'sleepypatch_calculator', 'variant_1')
+  }
+}, 1000)
 
 const dir = 'https://conversionratestore.github.io/projects/buzzpatch/sleepypatch/img/'
 const patch = [
