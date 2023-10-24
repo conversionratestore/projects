@@ -676,7 +676,7 @@ const html = `
         <div class="attend_info">
             <h2>Who Should Attend?</h2>
             <p>This masterclass is tailored for Canadian citizens, permanent residents of Canada, or dual US and Canadian citizens who are eager to carve a unique educational path without drowning in student debt. </p>
-            <p>If you're a student or parent of student  in grades 9-12 looking for a clear, efficient, and effective approach to college admissions and scholarships, you’re in the right place!</p>
+            <p>If you're a student or parent of student in grades 9-12 looking for a clear, efficient, and effective approach to college admissions and scholarships, you’re in the right place!</p>
             <div class="limited">
                 <h3>Spaces are limited and filling up fast</h3>
                 <p>Grab this golden opportunity to transform your educational journey. </p>
@@ -890,9 +890,7 @@ const mask = (input, mask, evt) => {
 }
 
 let init = setInterval(() => {
-    if ($el('header') && 
-        !window.location.href.includes('/webinar-booking-page/')
-    ) {
+    if ($el('header')) {
         clearInterval(init)
 
         const link = document.createElement('link')
@@ -1022,7 +1020,7 @@ let init = setInterval(() => {
                           body: JSON.stringify(dataZapier)
                         }).then(data => {
                             console.log('send data Zapier');
-                            window.location.href = 'https://grantme.ca/webinar-booking-page/'
+                            // window.location.href = 'https://grantme.ca/webinar-booking-page/'
                         }).catch(error => {
                             console.error('Error:', error);
                         });
@@ -1036,66 +1034,11 @@ let init = setInterval(() => {
 let addBtn = setInterval(() => {
     if ($el('.elementor-element-72e0f20') &&
         $el('.elementor-element-ab828a0') &&
-        $el('.elementor-element-89f4b88') && 
-        !window.location.href.includes('/webinar-booking-page/')
+        $el('.elementor-element-89f4b88')
     ) {
         clearInterval(addBtn)
         $el('.elementor-element-72e0f20').insertAdjacentHTML('beforeend', btnHtml)
         $el('.elementor-element-ab828a0').insertAdjacentHTML('beforeend', btnHtml)
         $el('.elementor-element-89f4b88').insertAdjacentHTML('beforeend', btnHtml)
-    }
-})
-
-let thankPage = setInterval(() => {
-    if (window.location.href.includes('/webinar-booking-page/') &&
-        $el('.elementor-element-d4ed8ee .elementor-widget-container p > a')
-    ) {
-        clearInterval(thankPage)
-
-        document.body.insertAdjacentHTML('afterbegin', `
-        <style>
-        .elementor-element-1eda5cbc,
-        .elementor-element-0190c05,
-        .elementor-element-1879b01,
-        .elementor-element-09a1070,
-        .elementor-element-494232b,
-        .crs-mail+p  {
-            display: none!important;
-        }
-        .crs-mail svg {
-            flex-shrink: 0;
-            margin-right: 12px;
-            margin-top: 6px;
-        }
-        .crs-mail {  
-            display: flex;
-        }
-        .crs-mail p, 
-        .elementor-element-d4ed8ee .elementor-widget-container > p {
-            text-align: left;
-        }
-        .elementor-element-14d207b {
-            padding-left: 24px!important;
-            padding-right: 24px!important;
-        }
-
-        </style>`)
-
-        $el('.elementor-element-d4ed8ee .elementor-widget-container p:last-child').insertAdjacentHTML('beforebegin', `
-        <div class="crs-mail">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M16 12.0004C16 12.9822 15.204 13.7782 14.2222 13.7782H1.77778C0.796 13.7782 0 12.9822 0 12.0004V4.00043C0 3.01866 0.796 2.22266 1.77778 2.22266H14.2222C15.204 2.22266 16 3.01866 16 4.00043V12.0004Z" fill="#CCD6DD"/>
-                <path d="M5.31111 7.83834L0.283106 12.8663C0.271106 12.8788 0.266661 12.8943 0.256439 12.9068C0.40755 13.1601 0.618217 13.3703 0.87155 13.5219C0.884439 13.5117 0.89955 13.5072 0.91155 13.4952L5.93999 8.46679C6.11333 8.29301 6.11333 8.01212 5.93999 7.83834C5.76577 7.66456 5.48488 7.66456 5.31111 7.83834ZM15.7436 12.9068C15.7342 12.8943 15.7289 12.8788 15.7169 12.8668L10.6893 7.83834C10.5151 7.66456 10.2342 7.66456 10.0604 7.83834C9.88666 8.01212 9.88666 8.29301 10.0604 8.46679L15.0884 13.4952C15.1 13.5068 15.116 13.5117 15.1284 13.5219C15.3822 13.3708 15.5924 13.1601 15.7436 12.9068Z" fill="#99AAB5"/>
-                <path d="M14.2222 2.22266H1.77778C0.796 2.22266 0 3.01866 0 4.00043V4.45821L6.45689 10.9009C7.29867 11.7422 8.67378 11.7422 9.51645 10.9009L16 4.44888V4.00043C16 3.01866 15.204 2.22266 14.2222 2.22266Z" fill="#99AAB5"/>
-                <path d="M14.2223 2.22266H1.77783C1.07205 2.22266 0.467165 2.63777 0.180054 3.23377L6.74272 9.79688C7.43694 10.4911 8.56316 10.4911 9.25694 9.79688L15.8201 3.23377C15.5329 2.63777 14.9285 2.22266 14.2223 2.22266Z" fill="#E1E8ED"/>
-                <path d="M6.66666 4.12011C6.66666 3.79566 6.82888 3.55566 7.1111 3.55566H8.71999C9.09288 3.55566 9.24177 3.77344 9.24177 4.00011C9.24177 4.22055 9.08666 4.44455 8.78177 4.44455H7.57821V5.33344H8.70399C9.02221 5.33344 9.17732 5.55078 9.17732 5.77789C9.17732 5.99833 9.01466 6.22233 8.70399 6.22233H7.57821V7.11122H8.84043C9.1511 7.11122 9.30132 7.32855 9.30132 7.55566C9.30132 7.77611 9.14443 8.00011 8.84043 8.00011H7.16666C6.88088 8.00011 6.66666 7.76411 6.66666 7.47211V4.12011Z" fill="#66757F"/>
-            </svg>
-            <p>If you are unable to watch the webinar now, please check your email for important details and your link to join the next webinar, or reach out to us at <a style="color: #ebbd45;" href="mailto:programs@grantme.ca">programs@grantme.ca</a></p>
-        </div>`)
-
-        $el('.elementor-element-d4ed8ee .elementor-widget-container > p:nth-child(3)').innerHTML = 'We will redirect you to the FREE webinar shortly. Please press the play button on the video on the next page to start watching the webinar.';
-        setTimeout(() => {
-            $el('.elementor-element-494232b a').click()
-        }, 3000)
     }
 })
