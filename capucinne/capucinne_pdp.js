@@ -320,6 +320,9 @@ line-height: 20px;
 .the4-toolkit-wishlist {
   margin: 0 !important;
 }
+#shopify-section-footer {
+    padding-bottom: 3px !important;
+}
 .wishlist_txt,
 .product-block.product-block--sales-point,
 .product-block--sales-point + .shopify-block.shopify-app-block + .product-block,
@@ -328,7 +331,10 @@ line-height: 20px;
 .grid2__item2.medium-up--two-fifths .product-block hr,
 #syte-discovery-banner,
 #shopify-section-template--20834585772373__82449f7c-6c71-4b98-89f3-074fa0fedafc,
-.beautifully_packaged_mob{
+.beautifully_packaged_mob,
+.product-sticky,
+[data-index="option1"][value=""],
+button[name="add"] [loading="eager"]{
   display: none !important;
 }
 #shopify-block-cadd6db7-a422-4c1f-90e3-91f50c296730 + .product-block {
@@ -1452,6 +1458,9 @@ padding: 4px 8px;
   }
 }
 @media (max-width: 768px) {
+  .template-product {
+    padding-bottom: 56px !important;
+}
   .description_body.no_visib{
     max-height: 95px;
   }
