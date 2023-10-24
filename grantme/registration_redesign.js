@@ -1081,16 +1081,6 @@ let init = setInterval(() => {
             const focusTimeMillis = Date.now() - startTime;
             pushDataLayer('exp_regist_pag_visib_popform_focus', focusTimeMillis, 'Visibility ', 'Pop up did you now Form')
         })
-
-        $el('.popup').addEventListener('click', (e) => {
-            if (e.currentTarget.className.includes('popup')) {
-                e.stopImmediatePropagation()
-                e.target.classList.remove('active')
-
-                const focusTimeMillis = Date.now() - startTime;
-                pushDataLayer('exp_regist_pag_visib_popform_focus', focusTimeMillis, 'Visibility ', 'Pop up did you now Form')
-            }
-        })
       
         $$el('[name="phone"]').forEach(item => {
             item.addEventListener('keyup', (event) => {
@@ -1160,7 +1150,7 @@ let init = setInterval(() => {
             input.addEventListener('click', () => {
                 let name = input.closest('.popup') ? 'exp_regist_pag_input_popform_name' : 'exp_regist_pag_input_form_name'
                 let loc = input.closest('.popup') ? 'Pop up did you now Form' : 'Form Join Our Online College Admission Webinar- FREE'
-                pushDataLayer(name, input.name, 'Input', loc)
+                pushDataLayer(name, input.name.split('-').join(' '), 'Input', loc)
             })
         })
 
@@ -1200,7 +1190,7 @@ let addBtn = setInterval(() => {
             })
         })
 
-        $$el('.accourdion .htmega-accourdion-title').forEach(item => {
+        $$el('.accordion > div .htmega-accourdion-title').forEach(item => {
             item.addEventListener('click', () => {
                 pushDataLayer('exp_regist_pag_accord_asked_quest', item.innerText ,'Accordion','Frequently Asked Questions Register  - webinar page')
             })
