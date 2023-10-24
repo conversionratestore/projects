@@ -284,6 +284,10 @@ div#n2-ss-16 .nextend-bullet-bar .n2-bullet.n2-active {
     color: var(--grey-20, #CCC);
     line-height: 24px; /* 150% */
 }
+.featured img {
+    margin: 0 auto;
+    display: block;
+}
 /* host */
 .host {
     padding: 30px 0;
@@ -294,7 +298,7 @@ div#n2-ss-16 .nextend-bullet-bar .n2-bullet.n2-active {
 .host .crs-container > div,
 .gift,
 .host .crs-container > div .img {
-    background: linear-gradient(-45deg, rgba(31, 114, 218, 1), rgba(162, 91, 182, 1), rgba(230, 173, 25, 1));
+    background: linear-gradient(-90deg, rgba(31, 114, 218, 1), rgba(162, 91, 182, 1), rgba(230, 173, 25, 1));
     padding: 1.5px;
     border-radius: 7px;
 }
@@ -417,6 +421,12 @@ div#n2-ss-16 .nextend-bullet-bar .n2-bullet.n2-active {
     display: grid;
     gap: 10px;
     margin-bottom: 30px;
+    position: realtive;
+}
+.limited svg {
+    position: absolute;
+    right: -5.4px;
+    bottom: -26.8px;
 }
 .limited h3 {
     color: #fff;
@@ -580,7 +590,107 @@ form .absolute p {
 
 </style>`
 
-const btnHtml = `<button type="button" class="btn-yellow">Grab Your FREE Seat Now!</button>`
+function getLocName(event) {
+    event.stopImmediatePropagation()
+    let target = event.target;
+    let loc = ''
+    let name = ''
+    
+    if (target.closest('.offer')) {
+        loc = 'First screen Register  - webinar page'
+        name = 'exp_regist_pag_butt_first_grab'
+    } else if (target.closest('.host')) {
+        loc = 'Your hosts Register  - webinar page'
+        name = 'exp_regist_pag_butt_hosts_grab'
+    } else if (target.closest('.learn')) {
+        loc = 'In this FREE webinar, you’ll learn Register  - webinar page'
+        name = 'exp_regist_pag_butt_freeweb_grab'
+    } else if (target.closest('.elementor-element-72e0f20')) {
+        loc = 'Learn About The Program That Brought 20,000+ Students Success Register  - webinar page'
+        name = 'exp_regist_pag_butt_learnprog_grab'
+    } else if (target.closest('.elementor-element-ab828a0')) {
+        loc = 'Frequently Asked Questions Register  - webinar page'
+        name = 'exp_regist_pag_butt_question_grab'
+    } else if (target.closest('.elementor-element-89f4b88')) {
+        loc = 'Your Future Is A Big Deal Register  - webinar page'
+        name = 'exp_regist_pag_butt_bigdeal_grab'
+    } else if (target.closest('.crs-sticky')) {
+        loc = 'Register  - webinar page Sticky button'
+        name = 'exp_regist_pag_butt_stikybutt_grab'
+    }
+
+    pushDataLayer(name, 'Grab Your FREE Seat Now!', 'Button', loc)
+}
+
+function pushDataLayer(event_name, event_desc, event_type, event_loc) { // Send a Google Analytics event
+    window.dataLayer = window.dataLayer || []
+
+    const obj = {
+        'event': 'event-to-ga4',
+        event_name,
+        event_desc,
+        event_type,
+        event_loc
+    }
+
+    dataLayer.push(obj)
+    console.log(obj)
+}
+
+const visibilityMap = new Map()
+
+let visibilityTimer
+
+function handleVisibility(className) {
+  const targetElements = document.querySelectorAll(className)
+
+  visibilityTimer = setTimeout(() => {
+    targetElements.forEach((targetElement, index) => {
+      const rect = targetElement.getBoundingClientRect()
+
+      const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight
+
+      if (isVisible && !visibilityMap.has(targetElement)) {
+        visibilityMap.set(targetElement, Date.now())
+      } else if (!isVisible && visibilityMap.has(targetElement)) {
+        const startTime = visibilityMap.get(targetElement)
+        const focusTimeMillis = Date.now() - startTime;
+        const focusTimeSeconds = focusTimeMillis / 1000; 
+
+        if (targetElement.className.includes('block')) {
+            pushDataLayer('exp_regist_pag_vis_first_focus', focusTimeMillis, 'Visibility', 'First screen Register  - webinar page');
+        }
+        if (targetElement.closest('.host')) {
+            pushDataLayer('exp_regist_pag_vis_hosts_focus', focusTimeMillis, 'Visibility', 'Your hosts Register  - webinar page');
+        }
+        if (targetElement.closest('.learn') && targetElement.tagName.includes('UL')) {
+            pushDataLayer('exp_regist_pag_vis_freeweb_focus', focusTimeMillis, 'Visibility', 'In this FREE webinar, you’ll learn Register  - webinar page');
+        }
+        if (targetElement.className.includes('gift')) {
+            pushDataLayer('exp_regist_pag_vis_exclusbon_focus', focusTimeMillis, 'Visibility', 'In this FREE webinar, you’ll learn. EXCLUSIVE BONUS! Register  - webinar page')
+        }
+        if (targetElement.className.includes('limited')){
+            pushDataLayer('exp_regist_pag_vis_spaclimit_focus', focusTimeMillis, 'Visibility', '"Who Should Attend? Spaces are limited and filling up fast Register  - webinar page"')
+        }
+        if (targetElement.className.includes('elementor-element-d8f28c4')) {
+            pushDataLayer('exp_regist_pag_vis_underform_focus', focusTimeMillis, 'Visibility', 'Under Form Join Our Online College Admission Webinar- FREE' )
+        }
+        if (targetElement.className.includes('elementor-element-f097975')) {
+            pushDataLayer('exp_regist_pag_vis_learnprog_focus', focusTimeMillis, 'Visibility', 'Learn About The Program That Brought 20,000+ Students Success Register  - webinar page' )
+        }
+        if (targetElement.closest('.accordion')) {
+            pushDataLayer('exp_regist_pag_vis_question_focus', focusTimeMillis, 'Visibility', 'Frequently Asked Questions Register  - webinar page' )
+        }
+
+        visibilityMap.delete(targetElement)
+      }
+    })
+  }, 500)
+}
+
+let startTime = 0;
+
+const btnHtml = `<button type="button" class="btn-yellow" onclick="$el('.popup').classList.add('active'); getLocName(event); setInterval(()=>{startTime += 1}, 100)">Grab Your FREE Seat Now!</button>`
 
 const html = `
 <div class="crs-sticky">
@@ -676,11 +786,21 @@ const html = `
         <div class="attend_info">
             <h2>Who Should Attend?</h2>
             <p>This masterclass is tailored for Canadian citizens, permanent residents of Canada, or dual US and Canadian citizens who are eager to carve a unique educational path without drowning in student debt. </p>
-            <p>If you're a student or parent of student in grades 9-12 looking for a clear, efficient, and effective approach to college admissions and scholarships, you’re in the right place!</p>
+            <p>If you're a student or parent of student in <span class="underline">grades 9-12</span> looking for a clear, efficient, and effective approach to college admissions and scholarships, you’re in the right place!</p>
             <div class="limited">
                 <h3>Spaces are limited and filling up fast</h3>
                 <p>Grab this golden opportunity to transform your educational journey. </p>
                 <p>Fill in the form below to secure your spot!</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="58" height="67" viewBox="0 0 58 67" fill="none">
+                    <path d="M1.17803 14.1907C0.631408 14.2695 0.252199 14.7766 0.331048 15.3232C0.409898 15.8699 0.916946 16.2491 1.46357 16.1702L1.17803 14.1907ZM37.1147 21.1175L36.5323 21.9305L37.1147 21.1175ZM43.3184 59.4792C43.443 60.0172 43.9802 60.3524 44.5182 60.2278L53.2863 58.1977C53.8243 58.0731 54.1595 57.5359 54.0349 56.9979C53.9103 56.4598 53.3732 56.1246 52.8351 56.2492L45.0413 58.0538L43.2367 50.26C43.1121 49.7219 42.575 49.3868 42.0369 49.5113C41.4989 49.6359 41.1637 50.1731 41.2883 50.7111L43.3184 59.4792ZM46.4782 57.368C46.7206 56.8718 46.5149 56.273 46.0186 56.0306C45.5224 55.7882 44.9236 55.9939 44.6812 56.4902L46.4782 57.368ZM46.4682 51.696C46.3251 52.2294 46.6414 52.7779 47.1748 52.9211C47.7082 53.0643 48.2567 52.7479 48.3999 52.2145L46.4682 51.696ZM49.3407 46.8081C49.387 46.2577 48.9784 45.7741 48.428 45.7278C47.8777 45.6815 47.3941 46.0901 47.3478 46.6405L49.3407 46.8081ZM47.3338 41.5032C47.3829 42.0533 47.8687 42.4594 48.4188 42.4102C48.9689 42.3611 49.375 41.8753 49.3258 41.3252L47.3338 41.5032ZM48.3632 35.9252C48.2188 35.3921 47.6695 35.0771 47.1365 35.2216C46.6034 35.3661 46.2884 35.9153 46.4329 36.4484L48.3632 35.9252ZM44.6475 31.6443C44.8872 32.1419 45.4848 32.351 45.9824 32.1113C46.48 31.8717 46.6891 31.2741 46.4495 30.7765L44.6475 31.6443ZM43.5938 26.0726C43.2621 25.6309 42.6353 25.5418 42.1936 25.8735C41.752 26.2051 41.6629 26.832 41.9945 27.2736L43.5938 26.0726ZM38.5322 23.5227C38.9462 23.8882 39.5781 23.849 39.9437 23.435C40.3093 23.0211 40.2701 22.3891 39.8561 22.0235L38.5322 23.5227ZM35.0357 18.5448C34.5636 18.2582 33.9486 18.4085 33.6619 18.8806C33.3753 19.3527 33.5257 19.9678 33.9977 20.2544L35.0357 18.5448ZM28.5863 17.5581C29.1001 17.7607 29.6808 17.5084 29.8834 16.9947C30.086 16.4809 29.8338 15.9001 29.32 15.6975L28.5863 17.5581ZM23.192 13.8872C22.6508 13.7773 22.1229 14.1269 22.0129 14.6681C21.9029 15.2093 22.2525 15.7372 22.7938 15.8472L23.192 13.8872ZM16.7715 15.11C17.3231 15.1373 17.7924 14.7122 17.8196 14.1606C17.8469 13.609 17.4218 13.1397 16.8702 13.1125L16.7715 15.11ZM10.54 13.1685C9.98873 13.2015 9.56851 13.6751 9.60145 14.2264C9.63438 14.7777 10.108 15.1979 10.6593 15.165L10.54 13.1685ZM4.53046 15.754C5.07843 15.6851 5.46682 15.1851 5.39794 14.6371C5.32907 14.0891 4.82901 13.7007 4.28104 13.7696L4.53046 15.754ZM45.141 59.783C45.6277 59.0031 46.0735 58.1967 46.4782 57.368L44.6812 56.4902C44.306 57.2583 43.8935 58.0043 43.4443 58.7242L45.141 59.783ZM48.3999 52.2145C48.8722 50.4551 49.1865 48.6423 49.3407 46.8081L47.3478 46.6405C47.2033 48.3587 46.9091 50.0539 46.4682 51.696L48.3999 52.2145ZM49.3258 41.3252C49.1634 39.5075 48.8435 37.6974 48.3632 35.9252L46.4329 36.4484C46.8819 38.1053 47.1816 39.7998 47.3338 41.5032L49.3258 41.3252ZM46.4495 30.7765C45.6578 29.1327 44.7069 27.5548 43.5938 26.0726L41.9945 27.2736C43.0267 28.648 43.9105 30.1138 44.6475 31.6443L46.4495 30.7765ZM39.8561 22.0235C39.1735 21.4208 38.4539 20.8467 37.697 20.3045L36.5323 21.9305C37.2337 22.4329 37.9003 22.9646 38.5322 23.5227L39.8561 22.0235ZM37.697 20.3045C36.8101 19.6692 35.9232 19.0837 35.0357 18.5448L33.9977 20.2544C34.8409 20.7663 35.6856 21.3239 36.5323 21.9305L37.697 20.3045ZM29.32 15.6975C27.2845 14.8948 25.2441 14.3042 23.192 13.8872L22.7938 15.8472C24.7371 16.2421 26.6648 16.8004 28.5863 17.5581L29.32 15.6975ZM16.8702 13.1125C14.7786 13.0091 12.6706 13.0413 10.54 13.1685L10.6593 15.165C12.7321 15.0412 14.7659 15.0109 16.7715 15.11L16.8702 13.1125ZM4.28104 13.7696C3.25423 13.8987 2.22002 14.0404 1.17803 14.1907L1.46357 16.1702C2.4965 16.0212 3.51834 15.8812 4.53046 15.754L4.28104 13.7696Z" fill="url(#paint0_linear_1533_472)"/>
+                    <path d="M43.3184 59.4821C43.443 60.0201 43.9802 60.3553 44.5182 60.2308L53.2863 58.2006C53.8243 58.076 54.1595 57.5388 54.0349 57.0008C53.9103 56.4627 53.3732 56.1275 52.8351 56.2521L45.0413 58.0567L43.2367 50.2629C43.1121 49.7249 42.575 49.3897 42.0369 49.5143C41.4989 49.6388 41.1637 50.176 41.2883 50.7141L43.3184 59.4821ZM49.405 45.8829C49.4351 45.3314 49.0124 44.86 48.4609 44.83C47.9094 44.7999 47.438 45.2226 47.408 45.7741L49.405 45.8829ZM47.408 45.7741C47.1548 50.4225 45.8109 54.9343 43.4443 58.7271L45.1411 59.7859C47.7022 55.6814 49.1351 50.837 49.405 45.8829L47.408 45.7741Z" fill="#EBBD45"/>
+                    <defs>
+                    <linearGradient id="paint0_linear_1533_472" x1="48.5" y1="41" x2="22.5" y2="16.5" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#EBBD45"/>
+                    <stop offset="1" stop-color="#EBBD45" stop-opacity="0"/>
+                    </linearGradient>
+                    </defs>
+                </svg>
             </div>
         </div>
         <form class="attend_form">
@@ -737,7 +857,7 @@ const html = `
                     <p>*</p>
                 </div>
             </div>
-            <button type="button" class="btn-yellow">Reserve My Seat!</button>
+            <button type="button" class="btn-yellow" onclick="pushDataLayer('exp_regist_pag_butt_form_reserv', 'Reserve My Seat!', 'Button', 'Form Join Our Online College Admission Webinar- FREE')">Reserve My Seat!</button>
             <p>Your details will be forwarded to the webinar organizer, who might communicate with you regarding this event or their services</p>
         </form>
     </div>
@@ -818,7 +938,7 @@ const html = `
                     <p>*</p>
                 </div>
             </div>
-            <button type="button" class="btn-yellow">Reserve My Seat Now!</button>
+            <button type="button" class="btn-yellow" onclick="pushDataLayer('exp_regist_pag_button_popform_reserv', 'Reserve My Seat!', 'Button', 'Pop up did you now Form')">Reserve My Seat Now!</button>
             <p>Your details will be forwarded to the webinar organizer, who might communicate with you regarding this event or their services</p>
         </form>
     </div>
@@ -908,7 +1028,6 @@ let init = setInterval(() => {
             }, 500); 
         })
 
-       
         //state events
         state.then(state => {
             for (let i = 0; i < state.length; i++) {
@@ -956,12 +1075,20 @@ let init = setInterval(() => {
         });
 
         $el('.popup_close').addEventListener('click', (e) => {
+            e.stopImmediatePropagation()
             e.target.closest('.popup').classList.remove('active')
+
+            const focusTimeMillis = Date.now() - startTime;
+            pushDataLayer('exp_regist_pag_visib_popform_focus', focusTimeMillis, 'Visibility ', 'Pop up did you now Form')
         })
 
         $el('.popup').addEventListener('click', (e) => {
             if (e.currentTarget.className.includes('popup')) {
+                e.stopImmediatePropagation()
                 e.target.classList.remove('active')
+
+                const focusTimeMillis = Date.now() - startTime;
+                pushDataLayer('exp_regist_pag_visib_popform_focus', focusTimeMillis, 'Visibility ', 'Pop up did you now Form')
             }
         })
       
@@ -973,9 +1100,7 @@ let init = setInterval(() => {
 
         $$el('.btn-yellow').forEach(item => {
             item.addEventListener('click', () => {
-                if (!item.closest('form')) {
-                    $el('.popup').classList.add('active')
-                } else {
+                if (item.closest('form')) {
                     let inputs = item.closest('form').querySelectorAll('input')
     
                     inputs.forEach(input => {
@@ -1028,6 +1153,30 @@ let init = setInterval(() => {
                 }
             })
         })
+
+        //events 
+
+        $$el('form input').forEach(input => {
+            input.addEventListener('click', () => {
+                let name = input.closest('.popup') ? 'exp_regist_pag_input_popform_name' : 'exp_regist_pag_input_form_name'
+                let loc = input.closest('.popup') ? 'Pop up did you now Form' : 'Form Join Our Online College Admission Webinar- FREE'
+                pushDataLayer(name, input.name, 'Input', loc)
+            })
+        })
+
+        handleVisibility('.offer .block')
+        handleVisibility('.host h2 + div')
+        handleVisibility('.learn ul')
+        handleVisibility('.gift')
+        handleVisibility('.limited')
+        
+        window.addEventListener('scroll', () => {
+            handleVisibility('.offer .block')
+            handleVisibility('.host h2 + div')
+            handleVisibility('.learn ul')
+            handleVisibility('.gift')
+            handleVisibility('.limited')
+        })
     }
 })
 
@@ -1040,5 +1189,38 @@ let addBtn = setInterval(() => {
         $el('.elementor-element-72e0f20').insertAdjacentHTML('beforeend', btnHtml)
         $el('.elementor-element-ab828a0').insertAdjacentHTML('beforeend', btnHtml)
         $el('.elementor-element-89f4b88').insertAdjacentHTML('beforeend', btnHtml)
+
+        //events
+        $el('.elementor-element-59961b2 iframe').addEventListener('click', () => {
+            pushDataLayer('exp_regist_pag_link_excellent_click', 'Click', 'Link', 'Excellent review Register  - webinar page')
+        })
+        $$el('.nextend-bullet-bar > div').forEach(item => {
+            item.addEventListener('click', () => {
+                pushDataLayer('exp_regist_pag_pagin_learnprog_click','Click','Pagination','Learn About The Program That Brought 20,000+ Students Success Register  - webinar page')
+            })
+        })
+
+        $$el('.accourdion .htmega-accourdion-title').forEach(item => {
+            item.addEventListener('click', () => {
+                pushDataLayer('exp_regist_pag_accord_asked_quest', item.innerText ,'Accordion','Frequently Asked Questions Register  - webinar page')
+            })
+        })
+   
+        handleVisibility('.elementor-element-d8f28c4')
+        handleVisibility('.elementor-element-f097975')
+        handleVisibility('.accordion > div:first-child')
+        
+        window.addEventListener('scroll', () => { 
+            handleVisibility('.elementor-element-d8f28c4')
+            handleVisibility('.elementor-element-f097975')
+            handleVisibility('.accordion > div:first-child')
+        })
     }
 })
+
+const isClarity = setInterval(() => {
+    if (typeof clarity === 'function') {
+        clearInterval(isClarity)
+        clarity("set", `exp_registration_page_redesign`, "variant_1")
+    }
+}, 100)
