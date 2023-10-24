@@ -586,6 +586,9 @@ button[name="add"] {
   background: #000;
   height: 56px;
 }
+button[name="add"] [loading="eager"]{
+display: none !important;
+}
 button[name="add"] svg{
   margin-right: 11px;
 }
