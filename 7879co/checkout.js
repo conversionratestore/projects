@@ -1976,3 +1976,5 @@ class CheckoutUpdate {
 }
 
 new CheckoutUpdate(device)
+
+hj('event', 'checkout_app')
