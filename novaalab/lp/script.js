@@ -12,7 +12,7 @@
       name: 'Novaa deep healing pad with remote [2023]',
       pdpLink: `https://novaalab.com/products/the-novaa-deep-healing-therapy-pad-for-back-pain`,
       imgUrl: `https://ucarecdn.com/d556b2cd-e77a-4265-b5c7-803a591a5b8d/-/format/auto/-/preview/3000x3000/-/quality/lighter/red%20light%20therapy%20pad%20at%20home%20infrared%205%20-%20700px.jpg`,
-      price: ['$700.00', '$349.90', '-50%'],
+      price: ['$600.00', '$299.90', '-50%'],
       list: ['Bestseller', 'Deep Healing Therapy with patented remote', '5.7" x 9"'],
       rate: '4.7'
     },
