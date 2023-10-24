@@ -1055,10 +1055,11 @@ let thankPage = setInterval(() => {
         document.body.insertAdjacentHTML('afterbegin', `
         <style>
         .elementor-element-1eda5cbc,
-        .elementor-element-0190c05б
+        .elementor-element-0190c05,
         .elementor-element-1879b01,
         .elementor-element-09a1070,
-        .elementor-element-494232b  {
+        .elementor-element-494232b,
+        .crs-mail+p  {
             display: none!important;
         }
         .crs-mail svg {
@@ -1069,9 +1070,15 @@ let thankPage = setInterval(() => {
         .crs-mail {  
             display: flex;
         }
-        .crs-mail p {
+        .crs-mail p, 
+        .elementor-element-d4ed8ee .elementor-widget-container > p {
             text-align: left;
         }
+        .elementor-element-14d207b {
+            padding-left: 24px!important;
+            padding-right: 24px!important;
+        }
+
         </style>`)
 
         $el('.elementor-element-d4ed8ee .elementor-widget-container p:last-child').insertAdjacentHTML('beforebegin', `
@@ -1083,12 +1090,12 @@ let thankPage = setInterval(() => {
                 <path d="M14.2223 2.22266H1.77783C1.07205 2.22266 0.467165 2.63777 0.180054 3.23377L6.74272 9.79688C7.43694 10.4911 8.56316 10.4911 9.25694 9.79688L15.8201 3.23377C15.5329 2.63777 14.9285 2.22266 14.2223 2.22266Z" fill="#E1E8ED"/>
                 <path d="M6.66666 4.12011C6.66666 3.79566 6.82888 3.55566 7.1111 3.55566H8.71999C9.09288 3.55566 9.24177 3.77344 9.24177 4.00011C9.24177 4.22055 9.08666 4.44455 8.78177 4.44455H7.57821V5.33344H8.70399C9.02221 5.33344 9.17732 5.55078 9.17732 5.77789C9.17732 5.99833 9.01466 6.22233 8.70399 6.22233H7.57821V7.11122H8.84043C9.1511 7.11122 9.30132 7.32855 9.30132 7.55566C9.30132 7.77611 9.14443 8.00011 8.84043 8.00011H7.16666C6.88088 8.00011 6.66666 7.76411 6.66666 7.47211V4.12011Z" fill="#66757F"/>
             </svg>
+            <p>If you are unable to watch the webinar now, please check your email for important details and your link to join the next webinar, or reach out to us at <a style="color: #ebbd45;" href="mailto:programs@grantme.ca">programs@grantme.ca</a></p>
         </div>`)
 
-       $el('.crs-mail svg').after($el('.crs-mail+p'))
+        $el('.elementor-element-d4ed8ee .elementor-widget-container > p:nth-child(3)').innerHTML = 'We will redirect you to the FREE webinar shortly. Please press the play button on the video on the next page to start watching the webinar.';
         setTimeout(() => {
             $el('.elementor-element-494232b a').click()
         }, 3000)
-
     }
 })
