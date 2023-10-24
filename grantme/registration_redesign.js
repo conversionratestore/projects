@@ -433,7 +433,7 @@ div#n2-ss-16 .nextend-bullet-bar .n2-bullet.n2-active {
     display: grid;
     gap: 10px;
     margin-bottom: 30px;
-    position: realtive;
+    position: relative;
 }
 .limited svg {
     position: absolute;
