@@ -30,7 +30,7 @@
       name: '1 novoral care pro + 1 sonic toothbrush',
       pdpLink: `https://novaalab.com/products/novoral-care-pro-oral-care-at-home-new#shopify-section-template--19620217061721__37c4e062-a8ba-4b9f-8d95-69467430cc3c`,
       imgUrl: `//novaalab.com/cdn/shop/files/Novoralcarepro_sonictoothbrush_medium.png?v=1689758579`,
-      price: ['$330.00', '$179.80', '-35%'],
+      price: ['$329.80', '$179.80', '-45%'],
       list: [''],
       rate: '4.8'
     },
@@ -54,7 +54,7 @@
       name: 'Novaa deep healing pad for your knee',
       pdpLink: `https://novaalab.com/products/knee-treatment-therapy-wrap-arthritis-relief`,
       imgUrl: `https://novaalab.com/cdn/shop/products/DSC_2736_b613cc30-9fe4-4bc2-9945-dae336978c32_1024x1024.jpg?v=1634830839`,
-      price: ['$540.90', '$299.90', '-45%'],
+      price: ['$600', '$299.90', '-50%'],
       list: ['Deep Healing Therapy designed for the knee', '15.7" x 9"'],
       rate: '4.8'
     },
@@ -72,7 +72,7 @@
       name: 'Novaa glow therapy mask',
       pdpLink: `https://novaalab.com/products/novaa-glow-therapy-mask`,
       imgUrl: `https://novaalab.com/cdn/shop/files/IMGpurplemask700pxcompressee_1024x1024.jpg?v=1692889719`,
-      price: ['$299.00', '$249.90', '-20%'],
+      price: ['$299.00', '$299.90', '-20%'],
       list: [''],
       rate: '4.8'
     }
@@ -3539,7 +3539,7 @@ padding: 8px 16px;
           }
         ],
         size: '15.7" x 9"',
-        price: ['$700.00', '$349.90']
+        price: ['$600.00', '$299.90']
       },
       {
         name: 'Novaa oral care pro',
@@ -3614,7 +3614,7 @@ padding: 8px 16px;
           }
         ],
         size: '15.7" x 9"',
-        price: ['$540.90', '$299.90']
+        price: ['$600', '$299.90']
       },
       {
         name: 'Novaa extra strength laser',
@@ -3678,7 +3678,7 @@ padding: 8px 16px;
           }
         ],
         size: '7.52" x 6.22" x 9.13"',
-        price: ['$299.00', '$249.90']
+        price: ['$299.00', '$299.90']
       }
     ]
 
