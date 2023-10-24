@@ -1977,4 +1977,10 @@ class CheckoutUpdate {
 
 new CheckoutUpdate(device)
 
-hj('event', 'checkout_app')
+const hjInterval = setInterval(function () {
+  if (typeof hj == 'function') {
+    clearInterval(hjInterval)
+    console.log('checkout_app event')
+    hj('event', 'checkout_app')
+  }
+}, 100)
