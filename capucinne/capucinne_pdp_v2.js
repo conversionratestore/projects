@@ -429,7 +429,9 @@ line-height: 20px;
 #shopify-section-template--20834585772373__82449f7c-6c71-4b98-89f3-074fa0fedafc,
 .beautifully_packaged_mob,
 a.site-nav__link.site-nav__link--icon:nth-child(1),
-#AnnouncementSlide-e3dec2d7-f571-42ea-aa8f-d3b0efb567d1{
+#AnnouncementSlide-e3dec2d7-f571-42ea-aa8f-d3b0efb567d1,
+.product-sticky,
+[data-index="option1"][value=""]{
   display: none !important;
 }
 #shopify-block-cadd6db7-a422-4c1f-90e3-91f50c296730 + .product-block {
@@ -1348,6 +1350,7 @@ nav.breadcrumb.custom_breadcrumbs {
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
+  max-width: 400px;
 }
 .lav-sticky__price {
   position: relative;
@@ -1403,7 +1406,7 @@ nav.breadcrumb.custom_breadcrumbs {
 .lav-sticky__btn_price .lav-product-price {
   color: #000;
   font-family: "Poppins";
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 30px;
   margin-right: 16px;
@@ -1686,6 +1689,12 @@ h3.fJBbjl{
   }
 }
 @media (max-width: 768px) {
+  #shopify-section-footer{
+    padding-bottom: 0 !important;
+  }
+  .template-product {
+    padding-bottom: 45px !important;
+}
   .new_tab +div{
     display: unset;
   }
