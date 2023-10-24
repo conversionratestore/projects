@@ -24,43 +24,23 @@ const clarityInterval = setInterval(function () {
 }, 1000)
 
 // block visibility function
-const blockVisibility = (selector, viewTime, event, location) => {
-  let v1 = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((item) => {
-        if (item.isIntersecting) {
-          v1.unobserve(item.target)
-          setTimeout(function () {
-            v2.observe(item.target)
-          }, 1000 * viewTime)
-        }
-      })
-    },
-    {
-      threshold: 0.5
-    }
-  )
-
-  let v2 = new IntersectionObserver((entries) => {
-    entries.forEach((item) => {
-      if (item.isIntersecting) {
-        pushDataLayer(
-          event || `view_element_${item.target.id}`,
-          'Element visibility',
-          `View element on screen (${viewTime} sec or more)`,
-          location || item.target.id
-        )
-        v1.unobserve(item.target)
-      } else {
-        v1.observe(item.target)
+function checkFocusTime(selector, event, location, additional = '') {
+  const checker = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !entry.target.getAttribute('data-startShow')) {
+        entry.target.setAttribute('data-startShow', new Date().getTime())
+      } else if (!entry.isIntersecting && entry.target.getAttribute('data-startShow')) {
+        const startShow = entry.target.getAttribute('data-startShow')
+        const endShow = new Date().getTime()
+        const timeShow = Math.round((endShow - startShow) / 1000)
+        entry.target.removeAttribute('data-startShow')
+        pushDataLayer(event, timeShow + ' ' + additional, 'Visibility', location)
+        checker.unobserve(entry.target)
       }
-      v2.unobserve(item.target)
     })
   })
 
-  document.querySelectorAll(selector).forEach((item) => {
-    v1.observe(item)
-  })
+  checker.observe(document.querySelector(selector))
 }
 
 function scrollToElement(selector) {
@@ -392,6 +372,7 @@ class NewHomePage {
     this.trustpilotReviews()
     this.mostSubscribed()
     this.lastBlock()
+    this.setVisibility()
   }
 
   globalChange() {
@@ -832,6 +813,13 @@ class NewHomePage {
     $el('.crs_main1 p').addEventListener('click', function () {
       this.style.display = 'none'
       $el('.search-form').style.display = 'block'
+      pushDataLayer('exp_imp_home_first_but_seacou', 'Search for a courses', 'Button', 'First screen')
+    })
+    $el('.search-form input').addEventListener('input', function () {
+      pushDataLayer('exp_imp_home_first_inp_sear', 'Search', 'Input', 'First screen')
+    })
+    $el('.search-form button').addEventListener('click', function () {
+      pushDataLayer('exp_imp_home_first_but_sear', 'Search', 'Button', 'First screen')
     })
   }
 
@@ -1339,6 +1327,12 @@ class NewHomePage {
             item.parentElement.classList.add('active')
             drawContentToDesktop()
           }
+          pushDataLayer(
+            'exp_imp_home_expl_acc_cours',
+            item.querySelector('h3').innerText,
+            'Accordion',
+            'Explore all courses'
+          )
         }
       })
     })
@@ -1355,6 +1349,7 @@ class NewHomePage {
       })
       $el('.course_type:nth-of-type(2)').classList.add('active')
       scrollToElement('.course_type:nth-of-type(2)')
+      pushDataLayer('exp_imp_home_first_but_aid', 'Explore first aid courses', 'Button', 'First screen')
     })
     $el('.crs_main1 a:first-of-type').addEventListener('click', (e) => {
       e.preventDefault()
@@ -1363,18 +1358,59 @@ class NewHomePage {
       })
       $el('.course_type:nth-of-type(1)').classList.add('active')
       scrollToElement('#all_courses')
+      pushDataLayer('exp_imp_home_first_but_exp', 'Explore all courses', 'Button', 'First screen')
     })
     $$el('.course_tap_line p').forEach((item, i) => {
       item.addEventListener('click', () => {
-        $$el('.course_tap_line p').forEach((item) => {
-          item.classList.remove('active')
+        $$el('.course_tap_line p').forEach((y) => {
+          y.classList.remove('active')
         })
         item.classList.add('active')
-        $$el('.course_type').forEach((item) => {
-          item.classList.remove('active')
+        $$el('.course_type').forEach((y) => {
+          y.classList.remove('active')
         })
         $el(`.course_type:nth-of-type(${i + 1})`).classList.add('active')
         scrollToElement('.course_type.active')
+        pushDataLayer('exp_imp_home_expl_but_cours', item.innerText, 'Button', 'Explore all courses Header')
+      })
+    })
+
+    $$el('.course_item .learn_more').forEach((item) => {
+      item.addEventListener('click', () => {
+        pushDataLayer(
+          'exp_imp_home_explac_but_cours',
+          `Learn more - ${item.closest('.course_item').querySelector('.name h3').innerText}`,
+          'Button',
+          'Explore all courses'
+        )
+      })
+    })
+
+    $$el('.course_item .book_now').forEach((item) => {
+      item.addEventListener('click', () => {
+        pushDataLayer(
+          'exp_imp_home_explac_but_bookin',
+          `Book now - ${item.closest('.course_item').querySelector('.name h3').innerText}`,
+          'Button',
+          'Explore all courses'
+        )
+      })
+    })
+
+    $$el('.add_links a').forEach((item) => {
+      item.addEventListener('click', () => {
+        pushDataLayer('exp_imp_home_explac_inp_categ', `View all - ${item.innerText}`, 'Link', 'Explore all courses')
+      })
+    })
+
+    $$el('.course_item_title a').forEach((item) => {
+      item.addEventListener('click', () => {
+        pushDataLayer(
+          'exp_imp_home_explund_but_cours',
+          `View all - ${item.closest('.course_item_title').querySelector('h3').innerText}`,
+          'Button',
+          'Explore all courses'
+        )
       })
     })
   }
@@ -1394,6 +1430,12 @@ class NewHomePage {
     const block = /* html */ `
       <div class="crs_reviews_tp">
         <style>
+          .slick-dots li:not(.slick-active) {
+            display: none;
+          }
+          .slick-dots li {
+            transition: all 0.3s ease;
+          }
           .crs_reviews_tp {
             max-width: 1400px;
             margin: 0 auto;
@@ -1563,6 +1605,29 @@ class NewHomePage {
             }
           ]
         })
+        $('.crs_reviews_slider').on('afterChange', function () {
+          changeDots()
+          pushDataLayer('exp_imp_home_trustp_slide', 'Change slide', 'Slider', ' Block reviews Trustpilot')
+        })
+        changeDots()
+        function changeDots() {
+          const dots = $('.crs_reviews_slider .slick-dots li')
+          const dotActive = $('.crs_reviews_slider .slick-dots li.slick-active')
+          const dotActiveIndex = dotActive.index()
+          console.log(dotActiveIndex)
+          dots.each((i, item) => {
+            if (i < dotActiveIndex - 2 || i > dotActiveIndex + 2) {
+              $(item).css('display', 'none')
+            } else {
+              $(item).css('display', 'inline-block')
+              if (i == dotActiveIndex - 2 || i == dotActiveIndex + 2) {
+                $(item).css('scale', '0.8')
+              } else {
+                $(item).css('scale', '1')
+              }
+            }
+          })
+        }
       }
     }, 500)
   }
@@ -1649,6 +1714,46 @@ class NewHomePage {
       </div>
     `
     $el('.image-text .crs_links').insertAdjacentHTML('afterend', block)
+  }
+
+  setVisibility() {
+    checkFocusTime('header', 'exp_imp_home_firstnew_vis_foc', 'First screen new')
+    checkFocusTime('.course-stats', 'exp_imp_home_unfind_vis_focus', 'Under Find a course that’s right for you')
+    checkFocusTime('.endorsements', 'exp_imp_home_trust_vis_focus', 'Trust block and partners')
+    checkFocusTime('.top-courses', 'exp_imp_home_popular_vis_focus', 'Popular Courses')
+    checkFocusTime('.image-text__text', 'exp_imp_home_train_vis_foc', 'Our Popular First Aid Training Venues')
+    checkFocusTime('.crs_reviews_tp', 'exp_imp_home_trustp_vis_foc', 'Block reviews Trustpilot')
+    checkFocusTime(
+      '.crs_reviews.crs_bottom',
+      'exp_imp_home_googl_vis_foc',
+      'Blocks Google and Trustpilot ratings Down the page'
+    )
+
+    $$el('.three-col-icons__block').forEach((item, i) => {
+      checkFocusTime(
+        `.three-col-icons__block:nth-of-type(${i + 1})`,
+        `exp_imp_home_choose_vis_focben`,
+        `Why do people choose Skills Training Group?`,
+        item.querySelector('h3').innerText
+      )
+    })
+
+    $$el('.facilities__block').forEach((item, i) => {
+      checkFocusTime(
+        `.facilities__block:nth-of-type(${i + 1})`,
+        `exp_imp_home_review_vis_focrew`,
+        `Reviews`,
+        item.querySelector('h3').innerText
+      )
+    })
+    $$el('.course_type .course_item_content').forEach((item, i) => {
+      checkFocusTime(
+        `.course_type:nth-of-type(${i + 1}) .course_item_content`,
+        `exp_imp_home_open_vis_foc`,
+        `Explore all courses Open courses`,
+        item.closest('.course_type').querySelector('h3').innerText
+      )
+    })
   }
 }
 
