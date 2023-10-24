@@ -648,8 +648,14 @@ line-height: 18px;
 margin: 0 0 12px;
 }
 .new_extend_covered {
-  margin-top: -3px;
+  width: max-content;
+  display: block;
+  min-width: 71px;
   cursor: pointer;
+}
+.new_extend_covered > img{
+  max-width: 51px;
+  width: 100%;
 }
 .new_extend_body {
   display: grid;
@@ -738,7 +744,7 @@ margin: 0 0 12px;
   justify-content: center;
   border: 1px solid #f6f5f5;
 }
-.new_link_gift_{
+.new_link_gift{
   position: absolute;
   right: 12px;
   bottom: 12px;
@@ -1720,7 +1726,7 @@ h3.fJBbjl{
     font-size: 12px;
 line-height: 16px;
   }
-  .new_link_gift_{
+  .new_link_gift{
     right: 8px;
     bottom: 8px;
   }
@@ -1913,7 +1919,8 @@ form.product-single__form{
   padding: 16px 0 0px;
 }
 .new_extend_head{
-      gap: 8px;
+  gap: 8px;
+  justify-content: flex-start;
 }
 .earn_gift > h2{
   font-size: 12px;
@@ -2294,7 +2301,7 @@ button.syte-discovery.syte-integration-injected .button-text{
         <div class='earn_gift_icon'>
             <img class='earn_gift_icon_abs' src='https://conversionratestore.github.io/projects/capucinne/img/gift.svg'  />
         </div>
-        <a target="_blank" class="new_link_gift_" href="https://capucinne.com/pages/gifts?_pos=2&_sid=0ff8257bc&_ss=r">More gifts ></a>
+        <a target="_blank" class="new_link_gift" href="https://capucinne.com/pages/gifts?_pos=2&_sid=0ff8257bc&_ss=r">More gifts ></a>
     </div>
   </div>
   `;
@@ -2313,7 +2320,7 @@ button.syte-discovery.syte-integration-injected .button-text{
         <div class='earn_gift_icon'>
             <img class='earn_gift_icon_abs' src='https://conversionratestore.github.io/projects/capucinne/img/gift.svg'  />
         </div>
-        <a target="_blank" class="new_link_gift_" href="https://capucinne.com/pages/gifts?_pos=2&_sid=0ff8257bc&_ss=r">More gifts ></a>
+        <a target="_blank" class="new_link_gift" href="https://capucinne.com/pages/gifts?_pos=2&_sid=0ff8257bc&_ss=r">More gifts ></a>
     </div>
   </div>
   `;
@@ -2332,7 +2339,7 @@ button.syte-discovery.syte-integration-injected .button-text{
         <div class='earn_gift_icon'>
             <img class='earn_gift_icon_abs' src='https://conversionratestore.github.io/projects/capucinne/img/gift.svg'  />
         </div>
-        <a target="_blank" class="new_link_gift_" href="https://capucinne.com/pages/gifts?_pos=2&_sid=0ff8257bc&_ss=r">More gifts ></a>
+        <a target="_blank" class="new_link_gift" href="https://capucinne.com/pages/gifts?_pos=2&_sid=0ff8257bc&_ss=r">More gifts ></a>
     </div>
   </div>
   `;
@@ -2963,8 +2970,17 @@ button.syte-discovery.syte-integration-injected .button-text{
         });
       }
 
-      document.querySelector(".new_extend_covered")?.addEventListener("click", () => {
-        innerEl.querySelector(".info-link")?.click();
+      document.querySelector(".new_extend_covered")?.addEventListener("click", (e) => {
+        if (!e.target.getAttribute("data-test")) {
+          pushDataLayer(["exp_main_barriersv2_produc_tooltip_ext", "Extend", "Tooltip", "Product page"]);
+          innerEl.querySelector(".info-link")?.click();
+        }
+        e.target.setAttribute("data-test", "1");
+        setTimeout(() => {
+          if (e.target.getAttribute("data-test")) {
+            e.target.removeAttribute("data-test");
+          }
+        }, 1000);
       });
     }
 
@@ -2996,6 +3012,22 @@ button.syte-discovery.syte-integration-injected .button-text{
         } else {
           document.querySelector(".btn.btn--full.add-to-cart")?.insertAdjacentHTML("beforebegin", earnStart);
         }
+      }
+
+      if (document.querySelector(".new_link_gift")) {
+        document.querySelectorAll(".new_link_gift").forEach((el) => {
+          el.addEventListener("click", (e) => {
+            if (!e.target.getAttribute("data-test")) {
+              pushDataLayer(["exp_main_barriersv2_produc_link_moreg", "More gifts", "Link", "Product page"]);
+            }
+            e.target.setAttribute("data-test", "1");
+            setTimeout(() => {
+              if (e.target.getAttribute("data-test")) {
+                e.target.removeAttribute("data-test");
+              }
+            }, 1000);
+          });
+        });
       }
     }
 
