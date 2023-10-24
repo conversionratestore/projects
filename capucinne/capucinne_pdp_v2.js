@@ -1654,6 +1654,9 @@ select.lav-error{
     background-image: url(https://conversionratestore.github.io/projects/capucinne/img/arrow_error.svg);
     background-size: 16px;
 }
+#shopify-section-footer {
+    padding-bottom: 10px !important;
+}
 @media (max-width: 1200px) {
 .new_benefits{
   font-size: 11px;
@@ -3273,7 +3276,9 @@ button.syte-discovery.syte-integration-injected .button-text{
           document.querySelectorAll('[value="Select size"]').forEach((el) => {
             el.selected = true;
           });
-          document.querySelector(".select_size_sticky.ring_size_var select").addEventListener("click", () => {
+
+          document.querySelector(".select_size_sticky.ring_size_var select").addEventListener("click", (e) => {
+            console.log(e.target, `>>>>>>>>>>>>>>>>>>>.`);
             pushDataLayer(["exp_main_barriersv2_produc_drop_size", "Select size", "Dropdown", "Product page"]);
           });
         }
@@ -3374,7 +3379,6 @@ button.syte-discovery.syte-integration-injected .button-text{
         if (activated) {
           isAddCart = true;
           pushDataLayer(["exp_barriers_b_s_add_cart", "Add to cart", "Button", "Sticky section"]);
-          pushDataLayer(["exp_main_barriersv2_produc_but_add", "add to cart", "Button", "Product page"]);
           localStorage.setItem("stickyBtn", "yes");
           document.querySelector("button.add-to-cart").click();
           setTimeout(() => {
@@ -3914,7 +3918,7 @@ button.syte-discovery.syte-integration-injected .button-text{
       waitForElement(".new_tab").then((el) => {
         handleVisibility(el, ["exp_barriers_l_v_details", "{{focusTime}}", "Visibility", "Details"]);
       });
-      waitForElement(".icon_share").then((el) => {
+      waitForElement("#syte-discovery-banner").then((el) => {
         handleVisibility(el, ["exp_main_barriersv2_produc_visib_focus", " {{focusTime}} ", "Visibility ", "Product page"]);
       });
     }
