@@ -261,6 +261,18 @@ div#n2-ss-16 .nextend-bullet-bar .n2-bullet.n2-active {
     text-align: center;
     width: 100%;
     margin-top: 24px;
+    position: realtive;
+}
+.btn-yellow.loading:after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: url(https://conversionratestore.github.io/projects/lemieux/img/loading.gif) no-repeat center / 100%;
+    width: 30px;
+    height: 30px;
+    z-index: 1;
 }
 .btn-learn,
 .featured p {
@@ -1111,7 +1123,8 @@ let init = setInterval(() => {
                     })
                    
                     if (!item.closest('form').querySelector('.error')) {
-                        console.log('send data')
+                        item.classList.add('loading')
+
                         const email = item.closest('form').querySelector('[name="email"]').value
                         const firstName = item.closest('form').querySelector('[name="first-name"]').value
                         const lastName = item.closest('form').querySelector('[name="last-name"]').value
@@ -1135,9 +1148,11 @@ let init = setInterval(() => {
                           body: JSON.stringify(dataZapier)
                         }).then(data => {
                             console.log('send data Zapier');
+                            item.classList.remove('loading')
                             // window.location.href = 'https://grantme.ca/webinar-booking-page/'
                         }).catch(error => {
                             console.error('Error:', error);
+                            item.classList.remove('loading')
                         });
                     }
                 }
