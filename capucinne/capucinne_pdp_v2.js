@@ -458,6 +458,8 @@ a.site-nav__link.site-nav__link--icon:nth-child(1),
   font-weight: 400;
   line-height: 18px;
   letter-spacing: -0.308px;
+  border-bottom: 1px solid #565656;
+  margin-left: 7px;
 }
 .product-block.product-block--header {
   margin: 0 0 20px !important;
@@ -540,6 +542,15 @@ h1.h2.product-single__title {
   justify-content: flex-end;
   gap: 12px;
   align-items: center;
+}
+.new_rush_order .one-half{
+  width: 90%;
+}
+.tooltip-toggle-rush > svg{
+  width: 14px;
+}
+.new_rush_order .one-half .tooltip-toggle-rush::before{
+  left: -98px;
 }
 .one-whole .js .one-half .variant__label,
 .one-whole .js .one-whole .variant__label,
@@ -1712,7 +1723,7 @@ h3.fJBbjl{
   }
   .icon_share{
     right: 16px;
-    top: 39px;
+    top: 22px;
   }
   .new_extend{
         padding: 12px 16px;
@@ -1837,6 +1848,7 @@ width: 100%;
 }
 .lav-sticky{
   padding: 0;
+  border: 1px solid var(--grey-border, #E8E8E1);
 }
 .lav-sticky__info,
 .lav-sticky .get_discount_block,
@@ -1855,7 +1867,8 @@ padding: 0;
     display: block;
 }
 .select_size_sticky select{
-  border: 1px solid #E8E8E1;
+  border: none;
+  outline: none;
   color: #000;
 font-family: 'Poppins';
 font-size: 14px !important;
@@ -2706,6 +2719,12 @@ button.syte-discovery.syte-integration-injected .button-text{
           }
         }
       });
+      // if (!document.querySelector(".new_rush_order_txt")) {
+      //   document.querySelector(".new_rush_order .one-half .variant__label")?.insertAdjacentHTML("afterbegin", `<span class="new_rush_order_txt">Choose ‘Rush Order’ for faster production at extra cost</span>`);
+      // }
+      // if (document.querySelector(".new_rush_order_txt")) {
+      //   document.querySelector(".new_rush_order_txt").after(document.querySelector("#rush"));
+      // }
       // if (document.querySelector(".new_rush_order .one-whole")) {
       //   document.querySelector(".new_rush_order .one-whole label").innerHTML = `Add <b>"Rush Order"</b> to your purchase <span class="tooltip-toggle-rush" aria-label="Shorter production time" tabindex="0">
       //          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2714,14 +2733,15 @@ button.syte-discovery.syte-integration-injected .button-text{
       //          </svg>
       //        </span>`;
       // }
-      // if (document.querySelector(".new_rush_order .one-half")) {
-      //   document.querySelector(".new_rush_order .one-half label").innerHTML = `Add <b>"Rush Order"</b> to your purchase <span class="tooltip-toggle-rush" aria-label="Shorter production time" tabindex="0">
-      //          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-      //          <circle cx="7.87793" cy="7.70068" r="6.5" fill="white" stroke="#D4A298"></circle>
-      //          <path d="M7.88724 5.70868C7.72191 5.70868 7.58324 5.65268 7.47124 5.54068C7.35924 5.42868 7.30324 5.29002 7.30324 5.12468C7.30324 4.95935 7.35924 4.82068 7.47124 4.70868C7.58324 4.59668 7.72191 4.54068 7.88724 4.54068C8.04724 4.54068 8.18324 4.59668 8.29524 4.70868C8.40724 4.82068 8.46324 4.95935 8.46324 5.12468C8.46324 5.29002 8.40724 5.42868 8.29524 5.54068C8.18324 5.65268 8.04724 5.70868 7.88724 5.70868ZM8.33524 6.29268V10.7007H7.42324V6.29268H8.33524Z" fill="#D4A298"></path>
-      //          </svg>
-      //        </span>`;
-      // }
+      if (document.querySelector(".new_rush_order .one-half")) {
+        document.querySelector(".new_rush_order .one-half label").innerHTML = `Choose ‘Rush Order’ for faster production at extra cost
+              <span class="tooltip-toggle-rush" id="rush" label="Shorter production time" tabindex="0">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="7.87793" cy="7.70068" r="6.5" fill="white" stroke="#D4A298"></circle>
+          <path d="M7.88724 5.70868C7.72191 5.70868 7.58324 5.65268 7.47124 5.54068C7.35924 5.42868 7.30324 5.29002 7.30324 5.12468C7.30324 4.95935 7.35924 4.82068 7.47124 4.70868C7.58324 4.59668 7.72191 4.54068 7.88724 4.54068C8.04724 4.54068 8.18324 4.59668 8.29524 4.70868C8.40724 4.82068 8.46324 4.95935 8.46324 5.12468C8.46324 5.29002 8.40724 5.42868 8.29524 5.54068C8.18324 5.65268 8.04724 5.70868 7.88724 5.70868ZM8.33524 6.29268V10.7007H7.42324V6.29268H8.33524Z" fill="#D4A298"></path>
+          </svg></span>
+             </span>`;
+      }
       //add new block Description
       if (!document.querySelector(".description_new_block") && document.querySelector(".new_rush_order")) {
         document.querySelector(".new_rush_order").insertAdjacentHTML("afterend", `<div class="description_new_block"><h2>Description</h2><div class="description_body no_visib"></div><span class="read_more_btn">Learn more ></span></div>`);
@@ -3076,7 +3096,7 @@ button.syte-discovery.syte-integration-injected .button-text{
             <div class='delivery_timeline_item_icon'>
               <img src='https://conversionratestore.github.io/projects/capucinne/img/present_box.svg' />
             </div>
-            <div class='delivery_timeline_item_date'>${deliveryFrom}-${deliferyAfter}</div>
+            <div class='delivery_timeline_item_date longer_time'>${deliveryFrom}-${deliferyAfter}</div>
             <div class='delivery_timeline_item_caption'>Delivered!</div>
           </div>
         </div>
@@ -3820,7 +3840,10 @@ button.syte-discovery.syte-integration-injected .button-text{
                 const date = new Date();
                 let dateAfter8Weeks = new Date(date.getTime() + 4 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
                 let dateAfter9Weeks = new Date(date.getTime() + 4.5 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
+                let deliveryFrom = new Date(date.getTime() + (4 * 7 + 5) * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
+                let deliferyAfter = new Date(date.getTime() + (4.5 * 7 + 5) * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
                 document.querySelector(".shorter_time").textContent = `${dateAfter8Weeks}-${dateAfter9Weeks}`;
+                document.querySelector(".longer_time").textContent = `${deliveryFrom}-${deliferyAfter}`;
               }
               if (document.querySelector(".production_time_available")?.classList.contains("is_hidden")) {
                 document.querySelector(".production_time_available").classList.remove("is_hidden");
