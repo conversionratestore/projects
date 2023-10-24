@@ -1678,6 +1678,15 @@ section.ailments .col-right {
   color: #773BD9;
 }
 
+#skin-section .product__price .old, 
+#skin-section .product__price .discount,
+#skin-section .product__price [data-price="old"],
+#skin-section .product__price [data-price="discount"],
+.table-mobile [data-row=info] td:last-of-type .table-mobile__price span:first-of-type,
+.table tr:last-of-type small {
+  display: none;
+}
+
 /* navbar END */
 
 .mobile {
