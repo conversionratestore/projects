@@ -603,7 +603,7 @@ class CheckoutUpdate {
         $el('.crs-calc').previousElementSibling.style = ''
       }
 
-      if ($el('.crs-header-current').innerText.includes('Information') && $el('.crs-heads + .hidden')) {
+      if ($el('.crs-header-current').innerText.includes('Information') && $el('.crs-heads + .hidden .StripeElement iframe')) {
         $el('.crs-heads + .hidden').style.display = 'block'
       } else {
         $el('.crs-heads + .hidden').style = ''
