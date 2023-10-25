@@ -10,7 +10,7 @@ const exp = {
   observer: false,
   clarity: {
     enable: true,
-    params: ["set", "booking_page_exp", "variant_1"],
+    params: ["set", "improving_pdp", "variant_1"],
   },
   debug: false,
 };
