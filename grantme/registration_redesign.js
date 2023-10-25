@@ -314,6 +314,9 @@ div#n2-ss-16 .nextend-bullet-bar .n2-bullet.n2-active {
     padding: 1.5px;
     border-radius: 7px;
 }
+.host .crs-container > div .img {
+    background: linear-gradient(90deg, rgba(31, 114, 218, 1), rgba(162, 91, 182, 1), rgba(230, 173, 25, 1));
+}
 .host .crs-container > div > div,
 .gift > div {
     background-color: #fff;
