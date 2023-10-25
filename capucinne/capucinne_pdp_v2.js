@@ -4,6 +4,15 @@ let startFunk = setInterval(() => {
 
     let isAddCart;
 
+    let findOption = setInterval(() => {
+      if (document.querySelectorAll('[data-index="option1"][value=""]')) {
+        clearInterval(findOption);
+        document.querySelectorAll('[data-index="option1"][value=""]').forEach((el) => {
+          el?.remove();
+        });
+      }
+    }, 100);
+
     window.onunload = unloadPage;
     function unloadPage() {
       console.log("unload event detected!");
