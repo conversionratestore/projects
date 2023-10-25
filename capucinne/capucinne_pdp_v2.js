@@ -3059,8 +3059,8 @@ button.syte-discovery.syte-integration-injected .button-text{
       let dateAfter9Weeks = new Date(date.getTime() + 9 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
       console.log(dateAfter8Weeks);
 
-      const deliveryFrom = new Date(date.getTime() + (8 * 7 + 5) * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
-      const deliferyAfter = new Date(date.getTime() + (9 * 7 + 5) * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
+      const deliveryFrom = new Date(date.getTime() + (8 * 7 + 7) * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
+      const deliferyAfter = new Date(date.getTime() + (9 * 7 + 7) * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
 
       document.querySelector(".production_delivery").innerHTML = `
         <h3>Production & Delivery </h3>
@@ -3840,8 +3840,8 @@ button.syte-discovery.syte-integration-injected .button-text{
                 const date = new Date();
                 let dateAfter8Weeks = new Date(date.getTime() + 4 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
                 let dateAfter9Weeks = new Date(date.getTime() + 4.5 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
-                let deliveryFrom = new Date(date.getTime() + (4 * 7 + 5) * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
-                let deliferyAfter = new Date(date.getTime() + (4.5 * 7 + 5) * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
+                let deliveryFrom = new Date(date.getTime() + (4 * 7 + 7) * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
+                let deliferyAfter = new Date(date.getTime() + (4.5 * 7 + 7) * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
                 document.querySelector(".shorter_time").textContent = `${dateAfter8Weeks}-${dateAfter9Weeks}`;
                 document.querySelector(".longer_time").textContent = `${deliveryFrom}-${deliferyAfter}`;
               }
