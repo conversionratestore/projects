@@ -1182,6 +1182,19 @@ let init = setInterval(() => {
             handleVisibility('.gift')
             handleVisibility('.limited')
         })
+
+        let waitElements = setInterval(() => {
+            if ($el('.elementor-element-72e0f20') &&
+                $el('.elementor-element-ab828a0') &&
+                $el('.elementor-element-89f4b88') && 
+                $el('.exp-loading')
+            ) {
+                clearInterval(waitElements)
+
+                console.log('rem load')
+                $el('.exp-loading')?.remove()
+            } 
+        })
     }
 })
 
