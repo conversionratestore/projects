@@ -176,7 +176,10 @@
         margin-top: 0 !important;
         top: 190px;
       }
-
+      .sidebar .pdp-popup-discount {
+        width: calc(100% + 32px);
+        margin-left: -16px;
+      }
     </style>`
 
   const patchesInPack = /*html*/ `
@@ -418,6 +421,7 @@
     waitForElement('.prices + .js-heading').then((el) => el.insertAdjacentHTML('afterend', trustadvisor))
   }
   waitForElement('#getNow a').then(() => {
+    document.querySelector('#getNow #addToCart').after(document.querySelector('#getNow .pdp-popup-discount'))
     $('#getNow a').click(function (e) {
       if (e.target.href.includes('cart/')) {
         $('#getNow .patches-in-pack p').text('72 patches in 3 packs - 3 months for 1 person')
