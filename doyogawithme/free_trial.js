@@ -4268,7 +4268,7 @@ line-height: 32px;
           </div>
           <div class="your_plan_body">
             <div class="your_plan_usd">All prices in USD, billed as <span class="your_plan_year_old">$167.88</span> <span class="your_plan_year_new">$108.99</span><span class="your_plan_year_caption">/year</span></div>
-            <a href="#" class="your_plan_btn btn_year">Start Trial now</a>
+            <a href="#" class="your_plan_btn btn_year">Start Free 7-day Trial</a>
             <div class="your_plan_options_wrapp">
               <div class="your_plan_options">
                 <img src="https://flopsi69.github.io/crs/doYogaWithMe/subscribe/img/calendar.svg" />
@@ -4305,7 +4305,7 @@ line-height: 32px;
           </div>
           <div class="your_plan_body">
             <div class="your_plan_usd">*All prices in USD</div>
-            <a href="#" class="your_plan_btn btn_month">Start Trial now</a>
+            <a href="#" class="your_plan_btn btn_month">Start Free 7-day Trial</a>
             <div class="your_plan_options_wrapp">
               <div class="your_plan_options">
                 <img src="https://flopsi69.github.io/crs/doYogaWithMe/subscribe/img/calendar.svg" />
