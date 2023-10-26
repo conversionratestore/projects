@@ -12,12 +12,16 @@
   const styleCSS = /*html*/ `
     <style>
       /* General */
+      .view-prices .pdp-pop-spacer,
       .container.package .free-shipping-checkout,
       .container.package .prices .js-regular,
       .view-prices h3 + p {
         display: none !important;
       }
-
+      form[action*=amazon] button {
+        height: 54px;
+        border-radius: 100px;
+      }
       .patches-in-pack p {
         color: #6F6F6F !important;
         font-family: "Roboto", sans-serif;
@@ -84,7 +88,7 @@
         margin-inline: -30px;
       }
 
-      .prices + .js-heading img {
+      .prices + .js-heading>img {
         display: none !important;
       }
 
@@ -148,8 +152,9 @@
         display: none !important;
       }
 
-      body .sidebar .view-prices {
+      .sidebar .view-prices {
         margin-top: 8px !important;
+        position: relative;
       }
       .view-prices h3 {
         line-height: 32px !important; 
@@ -164,6 +169,12 @@
 
       .pdp-paypal-container + .button-proceed {
         margin-top: 10px !important;
+        margin-bottom: 50px;
+      }
+
+      .sidebar .pdp-popup-discount {
+        margin-top: 0 !important;
+        top: 190px;
       }
 
     </style>`
