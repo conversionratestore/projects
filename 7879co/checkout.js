@@ -61,7 +61,6 @@ class CheckoutUpdate {
       if (device == 'mobile') {
         this.createTotalPayment()
       }
-      this.createPaymentMethod()
       this.createSearchPostCode()
       globalMutation.observe(document.body, {
         childList: true,
@@ -141,12 +140,6 @@ class CheckoutUpdate {
     const style =
       /* html */ `
       <style class="crs-style">
-        #primer-checkout-scene-klarna-payment {
-          opacity: 0;
-        }
-        .crs-payment-klarna #primer-checkout-scene-klarna-payment {
-          opacity: 1;
-        }
         ${device == 'mobile' ? `
         main>div:first-of-type>.h-30 {
           flex-direction: row;
@@ -306,32 +299,129 @@ class CheckoutUpdate {
           gap: 12px;
         }
         #primer-checkout-apm-button-container * {
+          order: 2;
+        }
+        #primer-checkout-apm-klarna {
           order: 1;
         }
         #primer-checkout-credit-card-button {
           border: 1px solid var(--Borders, #EAEAEB);
           background: var(--Backgraund, #F4F4F5);
           padding: 16px;
-          justify-content: flex-start;
-        }
-        #primer-checkout-credit-card-button > svg,
-        #primer-checkout-credit-card-button > span,
-        #primer-checkout-go-back,
-        #primer-checkout-scene-credit-card-form,
-        #primer-checkout-submit-button-container {
-          display: none;
         }
         #primer-checkout-apm-button-container > div:last-child {
           order: 0;
           display: block;
         }
-        .PrimerCheckout__scene.PrimerCheckout--exited {
-          position: inherit;
-          visibility: visible;
-          display: block;
-          opacity: 1;
-          transform: none;
+
+        #primer-checkout-card-form label img {
+          background: #FFB3C7;
+          padding: 6px 7px;
+          height: 24px;
+          border-radius: 4px;
         }
+        #primer-checkout-card-form .jJoydX, 
+        #primer-checkout-card-form .bqKecf, 
+        #primer-checkout-card-form .hhAkSd {
+          height: 40px!important;
+          background: #fff!important;
+          border: 2px solid #EAEAEB!important;
+          border-radius: 0!important;
+          max-height: auto!important;
+        }
+        #primer-checkout-card-form .khsPUc {
+          height: 42px!important;
+          background: transparent;
+        }
+        .PrimerCheckout__apmButton {
+          border: none;
+        }
+        #primer-checkout-scene-credit-card-form {
+          padding-bottom: 0!important;
+        }
+        #primer-checkout-card-number-field {
+          margin: 0;
+        }
+        #primer-checkout-card-number-field .PrimerCheckout__formField {
+          margin-top: 24px;
+          flex-direction: row;
+          gap: 12px;
+        }
+        #primer-checkout-card-form .PrimerCheckout__formField:not(:first-of-type) {
+          margin-top: 24px;
+        }
+
+        #primer-checkout-card-form .PrimerCheckout__formField > div {
+          margin-top: 0!important;
+        }
+        #primer-checkout-card-form .PrimerCheckout__formField.PrimerCheckout__formField--dual {
+          flex-direction: row!important;
+          gap: 12px;
+        }
+        #primer-checkout-card-form .PrimerCheckout__formField > .PrimerCheckout__label {
+          margin-bottom: 0;
+          padding: 0 8px;
+          position: absolute;
+          top: 0;
+          left: 8px;
+          background: #fff;
+          z-index: 2;
+          transform: translateY(-50%);
+        }
+        #primer-checkout-card-form {
+          margin-bottom: 24px;
+        }
+        #primer-checkout-card-form .cIaFpO {
+          height: 44px;
+        }
+        #primer-checkout-submit-button > span {
+          display: flex;
+          align-items: center;
+        }
+
+
+
+    #primer-checkout-scene-klarna-payment .dJDRcm {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    #primer-checkout-scene-klarna-payment .bfvKmd {
+      stroke: #579B31;
+      border-radius: 50%;
+      border: 1px solid #579B31;
+      width: 20px;
+      height: 20px;
+      padding: 2px;
+    }
+    #primer-checkout-scene-klarna-payment .bpbPRL {
+      position: relative;
+      background: var(--Backgraund, #F4F4F5);
+      border-radius: 5px;
+    }
+    #primer-checkout-scene-klarna-payment .bpbPRL:before  {
+      content: '';
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 15px;
+      height: 15px;
+      background: url(${dir}plus.svg) no-repeat center / contain;
+    }
+    #primer-checkout-scene-klarna-payment .bpbPRL[disabled] {
+      background: transparent;
+    }
+    #primer-checkout-scene-klarna-payment .bpbPRL[disabled]:before {
+      content: none;
+    }
+    #primer-checkout-scene-klarna-payment .bpbPRL[disabled] + .iYCTkD {
+      margin: 0 8px 8px!important;
+    }
+    #primer-checkout-scene-klarna-payment .eQlxcA {
+      padding-top: 8px;
+      border-top: 1px solid #dedfe0;
+    }
+
         .crs-svg {
           margin-left: 10px;
         }
@@ -1082,222 +1172,6 @@ class CheckoutUpdate {
     });
   }
 
-  createPaymentMethod() {
-    const payments = `
-    <style>
-    .crs-payment-methods {
-      order: 3;
-    }
-    .crs-payment-methods > div {
-      border: 1px solid var(--Borders, #EAEAEB);
-      margin-bottom: 12px;
-    }
-    .crs-payment-credit #primer-checkout-submit-button-container {
-      padding: 0px 16px ;
-      margin-bottom: 16px;
-    }
-    .check_border {
-      background: var(--Backgraund, #F4F4F5);
-      padding: 16px;
-    }
-    .check_radio {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      position: relative;
-      border: 1px solid #212121;
-      display: block;
-    }
-    .check_radio:before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%,-50%);
-      width: 10px;
-      height: 10px;
-      background-color: #212121;
-      border-radius: 50%;
-      opacity: 0;
-    }
-    input[name="radio_payment"],
-    #primer-checkout-scene-loading,
-    #primer-checkout-apm-button-container > div:not(#primer-checkout-apm-googlePay, #primer-checkout-apm-paypal, #primer-checkout-apm-applePay),
-    .crs-payment-klarna,
-    .crs-payment-methods > div:not(.show) > form,
-    .crs-payment-methods > div:not(.show) > div,
-    .crs-payment-methods > div:not(.show) > .crs-btn,
-    .crs-payment-klarna img.ddtYbK  {
-      display: none;
-    }
-    input[name="radio_payment"]:checked ~ .check_border  {
-      background: transparent;
-    }
-    input[name="radio_payment"]:checked ~ .check_border .check_radio:before  {
-      opacity: 1;
-    } 
-    .crs-payment-klarna label img {
-      background: #FFB3C7;
-      padding: 6px 7px;
-      height: 24px;
-      border-radius: 4px;
-    }
-    .crs-payment-methods .jJoydX, .crs-payment-methods .bqKecf, .crs-payment-methods .hhAkSd {
-      height: 40px!important;
-      background: #fff!important;
-      border: 2px solid #EAEAEB!important;
-      border-radius: 0!important;
-    }
-    .crs-payment-methods .khsPUc {
-      height: 42px!important;
-      background: transparent;
-    }
-    .PrimerCheckout__apmButton {
-      border: none;
-    }
-    .crs-payment-methods .PrimerCheckout__formField {
-      margin-top: 24px;
-      flex-direction: row;
-      gap: 12px;
-    }
-    .crs-payment-methods .PrimerCheckout__formField > div {
-      margin-top: 0!important;
-    }
-    #primer-checkout-card-number-field {
-      margin: 0;
-    }
-    .crs-payment-methods .PrimerCheckout__formField > .PrimerCheckout__label {
-      margin-bottom: 0;
-      padding: 0 8px;
-      position: absolute;
-      top: 0;
-      left: 8px;
-      background: #fff;
-      z-index: 2;
-      transform: translateY(-50%);
-    }
-    #primer-checkout-card-form {
-      padding: 8px 16px 0;
-      margin-bottom: 24px;
-    }
-    .crs-payment-credit .cIaFpO {
-      height: 44px;
-    }
-    #primer-checkout-submit-button > span {
-      display: flex;
-      align-items: center;
-    }
-    #primer-checkout-scene-klarna-payment {
-      padding: 0 16px;
-    }
-    #primer-checkout-scene-klarna-payment .PrimerCheckout__formHeader {
-      margin: 0;
-    }
-    .crs-payment-klarna .dJDRcm {
-      font-size: 14px;
-      font-weight: 600;
-    }
-    .crs-payment-klarna .bfvKmd {
-      stroke: #579B31;
-      border-radius: 50%;
-      border: 1px solid #579B31;
-      width: 20px;
-      height: 20px;
-      padding: 2px;
-    }
-    .crs-payment-klarna .bpbPRL {
-      position: relative;
-      background: var(--Backgraund, #F4F4F5);
-      border-radius: 5px;
-    }
-    .crs-payment-klarna .bpbPRL:before  {
-      content: '';
-      position: absolute;
-      right: 8px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 15px;
-      height: 15px;
-      background: url(${dir}plus.svg) no-repeat center / contain;
-    }
-    .crs-payment-klarna .bpbPRL[disabled] {
-      background: transparent;
-    }
-    .crs-payment-klarna .bpbPRL[disabled]:before {
-      content: none;
-    }
-    .crs-payment-klarna .bpbPRL[disabled] + .iYCTkD {
-      margin: 0 8px 8px!important;
-    }
-    .crs-payment-klarna .eQlxcA {
-      padding-top: 8px;
-      border-top: 1px solid #dedfe0;
-    }
-    .crs-btn {
-      max-width: calc(100% - 32px);
-      margin: -10px auto 16px;
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 20px;
-      letter-spacing: 1.6px;
-      text-transform: uppercase;
-    }
-    .crs-btn[disabled] {
-      background: #B5B5B7;
-      cursor: no-drop;
-    }
-    </style>
-    <div class="crs-payment-methods">
-        <div class="crs-payment-credit">
-            <label class="crs-payment-radio">
-                <input type="radio" name="radio_payment" checked>
-                <span class="check_border flex items-center">
-                  <span class="check_radio mr-3"></span>
-                  <span>Pay by Card</span>
-                </span>
-            </label>
-            <button type="button" class="crs-btn cIaFpO"> 
-              <span class="flex justify-center items-center ">
-                <span>Play now</span>
-                <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M1.66732 7.83339H10.9757L6.90898 11.9001C6.58398 12.2251 6.58398 12.7584 6.90898 13.0834C7.23398 13.4084 7.75898 13.4084 8.08398 13.0834L13.5757 7.59172C13.9007 7.26672 13.9007 6.74172 13.5757 6.41672L8.09232 0.916724C7.76732 0.591724 7.24232 0.591724 6.91732 0.916724C6.59232 1.24172 6.59232 1.76672 6.91732 2.09172L10.9757 6.16672H1.66732C1.20898 6.16672 0.833984 6.54172 0.833984 7.00006C0.833984 7.45839 1.20898 7.83339 1.66732 7.83339Z" fill="white"/>
-                </svg>
-              </span>
-            </button>
-        </div>
-        <div class="crs-payment-klarna">
-          <label class="crs-payment-radio">
-              <input type="radio" name="radio_payment">
-              <span class="check_border flex items-center">
-                <span class="check_radio mr-3"></span>
-                <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBmb2N1c2FibGU9ImZhbHNlIiB3aWR0aD0iODEiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCA4MSAyMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIHNjYWxlKDEpIj4KICAgICAgICA8cGF0aCBkPSJNNzguMzM1MjU0OSwxNC4zMjkyNzA2IEM3Ny4wNjc4MDE3LDE0LjMyOTI3MDYgNzYuMDQwMzQzOSwxNS4zNTY3Mjg0IDc2LjA0MDM0MzksMTYuNjI0MzU5NyBDNzYuMDQwMzQzOSwxNy44OTE2MzQ4IDc3LjA2NzgwMTcsMTguOTE5MjcwNyA3OC4zMzUyNTQ5LDE4LjkxOTI3MDcgQzc5LjYwMjcwODEsMTguOTE5MjcwNyA4MC42MzAzNDQsMTcuODkxNjM0OCA4MC42MzAzNDQsMTYuNjI0MzU5NyBDODAuNjMwMzQ0LDE1LjM1NjcyODQgNzkuNjAyNzA4MSwxNC4zMjkyNzA2IDc4LjMzNTI1NDksMTQuMzI5MjcwNiIgZmlsbD0icmdiYSgwLCAwLCAwLCAxKSI+PC9wYXRoPgogICAgICAgIDxwYXRoIGQ9Ik03MC43OTU4NTY4LDcuMjI4MTczNDUgTDcwLjc5NTg1NjgsNi40NDY3ODAzIEw3NC40NTI5ODMzLDYuNDQ2NzgwMyBMNzQuNDUyOTgzMywxOC42NjE4MzU2IEw3MC43OTU4NTY4LDE4LjY2MTgzNTYgTDcwLjc5NTg1NjgsMTcuODgxMTU0NyBDNjkuNzYyNjY1NiwxOC41ODU3OTc1IDY4LjUxNTYwNjMsMTkgNjcuMTcwNDI3NywxOSBDNjMuNjEwNzA4MiwxOSA2MC43MjUwMDI3LDE2LjExNDI5NDUgNjAuNzI1MDAyNywxMi41NTQ1NzUgQzYwLjcyNTAwMjcsOC45OTQ4NTU2MSA2My42MTA3MDgyLDYuMTA5MTUwMDkgNjcuMTcwNDI3Nyw2LjEwOTE1MDA5IEM2OC41MTU2MDYzLDYuMTA5MTUwMDkgNjkuNzYyNjY1Niw2LjUyMzM1MjU2IDcwLjc5NTg1NjgsNy4yMjgxNzM0NSBaIE02Ny40Njk3NzE4LDE1LjY5NzQyMDkgQzY5LjMwMDAyNjcsMTUuNjk3NDIwOSA3MC43ODM1Njk2LDE0LjI5MDI3MjIgNzAuNzgzNTY5NiwxMi41NTQ1NzUgQzcwLjc4MzU2OTYsMTAuODE4ODc3OSA2OS4zMDAwMjY3LDkuNDEyMDg1MzYgNjcuNDY5NzcxOCw5LjQxMjA4NTM2IEM2NS42Mzk1MTY4LDkuNDEyMDg1MzYgNjQuMTU1OTczOSwxMC44MTg4Nzc5IDY0LjE1NTk3MzksMTIuNTU0NTc1IEM2NC4xNTU5NzM5LDE0LjI5MDI3MjIgNjUuNjM5NTE2OCwxNS42OTc0MjA5IDY3LjQ2OTc3MTgsMTUuNjk3NDIwOSBaIiBmaWxsPSJyZ2JhKDAsIDAsIDAsIDEpIj48L3BhdGg+CiAgICAgICAgPHBhdGggZD0iTTU0LjIyNjMzMzMsNi4xMTgyMzE5MSBDNTIuNzY1NDA2LDYuMTE4MjMxOTEgNTEuMzgyODMxNiw2LjU3MTc4ODk2IDUwLjQ1ODQ0NDIsNy44MjMxMjIwNSBMNTAuNDU4NDQ0Miw2LjQ0NzQ5MjYgTDQ2LjgxNjk4ODQsNi40NDc0OTI2IEw0Ni44MTY5ODg0LDE4LjY2MTgzNTYgTDUwLjUwMzE0MSwxOC42NjE4MzU2IEw1MC41MDMxNDEsMTIuMjQyNzY1NyBDNTAuNTAzMTQxLDEwLjM4NTI2NTMgNTEuNzQ4Nzc1Nyw5LjQ3NTY1ODE0IDUzLjI0ODUyMzUsOS40NzU2NTgxNCBDNTQuODU1ODI4NSw5LjQ3NTY1ODE0IDU1Ljc3OTg1OTcsMTAuNDM1ODM4NiA1NS43Nzk4NTk3LDEyLjIxNzQ3OTEgTDU1Ljc3OTg1OTcsMTguNjYxODM1NiBMNTkuNDMyNzEyNCwxOC42NjE4MzU2IEw1OS40MzI3MTI0LDEwLjg5NDAyNTYgQzU5LjQzMjcxMjQsOC4wNTE0MTQyMSA1Ny4xNzI1ODQ0LDYuMTE4MjMxOTEgNTQuMjI2MzMzMyw2LjExODIzMTkxIiBmaWxsPSJyZ2JhKDAsIDAsIDAsIDEpIj48L3BhdGg+CiAgICAgICAgPHBhdGggZD0iTTQxLjUyNzgwNDQsOC4wMzc4ODA1MSBMNDEuNTI3ODA0NCw2LjQ0Njk1ODM4IEwzNy43ODM0MjEyLDYuNDQ2OTU4MzggTDM3Ljc4MzQyMTIsMTguNjYxODM1NiBMNDEuNTM2MTc0LDE4LjY2MTgzNTYgTDQxLjUzNjE3NCwxMi45NTg4MDUzIEM0MS41MzYxNzQsMTEuMDM0NzA0OCA0My42MjE2MTA0LDEwLjAwMDQ0NTIgNDUuMDY4NjQ3OSwxMC4wMDA0NDUyIEM0NS4wODM0MjgxLDEwLjAwMDQ0NTIgNDUuMDk3MzE4LDEwLjAwMTg2OTggNDUuMTEyMDk4MiwxMC4wMDIwNDc5IEw0NS4xMTIwOTgyLDYuNDQ3NjcwNjggQzQzLjYyNjk1MjYsNi40NDc2NzA2OCA0Mi4yNjA5MzkyLDcuMDgzNTc2NTQgNDEuNTI3ODA0NCw4LjAzNzg4MDUxIiBmaWxsPSJyZ2JhKDAsIDAsIDAsIDEpIj48L3BhdGg+CiAgICAgICAgPHBhdGggZD0iTTMyLjIxMjg3ODgsNy4yMjgxNzM0NSBMMzIuMjEyODc4OCw2LjQ0Njc4MDMgTDM1Ljg3MDE4MzMsNi40NDY3ODAzIEwzNS44NzAxODMzLDE4LjY2MTgzNTYgTDMyLjIxMjg3ODgsMTguNjYxODM1NiBMMzIuMjEyODc4OCwxNy44ODExNTQ3IEMzMS4xNzk2ODc2LDE4LjU4NTc5NzUgMjkuOTMyNjI4MywxOSAyOC41ODc2Mjc3LDE5IEMyNS4wMjc5MDgzLDE5IDIyLjE0MjIwMjgsMTYuMTE0Mjk0NSAyMi4xNDIyMDI4LDEyLjU1NDU3NSBDMjIuMTQyMjAyOCw4Ljk5NDg1NTYxIDI1LjAyNzkwODMsNi4xMDkxNTAwOSAyOC41ODc2Mjc3LDYuMTA5MTUwMDkgQzI5LjkzMjYyODMsNi4xMDkxNTAwOSAzMS4xNzk2ODc2LDYuNTIzMzUyNTYgMzIuMjEyODc4OCw3LjIyODE3MzQ1IFogTTI4Ljg4Njc5MzgsMTUuNjk3NDIwOSBDMzAuNzE3MDQ4NywxNS42OTc0MjA5IDMyLjIwMDc2OTcsMTQuMjkwMjcyMiAzMi4yMDA3Njk3LDEyLjU1NDU3NSBDMzIuMjAwNzY5NywxMC44MTg4Nzc5IDMwLjcxNzA0ODcsOS40MTIwODUzNiAyOC44ODY3OTM4LDkuNDEyMDg1MzYgQzI3LjA1NjcxNjksOS40MTIwODUzNiAyNS41NzI5OTU5LDEwLjgxODg3NzkgMjUuNTcyOTk1OSwxMi41NTQ1NzUgQzI1LjU3Mjk5NTksMTQuMjkwMjcyMiAyNy4wNTY3MTY5LDE1LjY5NzQyMDkgMjguODg2NzkzOCwxNS42OTc0MjA5IFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMSkiPjwvcGF0aD4KICAgICAgICA8cGF0aCBkPSJNMTYuODE1MDg4OSAxOC42NjE4MzU2IDIwLjY0Mjk4OTMgMTguNjYxODM1NiAyMC42NDI5ODkzIDEuMDAzMzgzNDMgMTYuODE1MDg4OSAxLjAwMzM4MzQzeiIgZmlsbD0icmdiYSgwLCAwLCAwLCAxKSI+PC9wYXRoPgogICAgICAgIDxwYXRoIGQ9Ik0xNC4xNzcwODU3LDEgTDEwLjIxMDQ2NDksMSBDMTAuMjEwNDY0OSw0LjI1MTExNTQ0IDguNzE1NzAzMjUsNy4yMzUxMTgzNyA2LjEwOTU3NTQ5LDkuMTg3MzU0NyBMNC41MzgwNjM1MywxMC4zNjQyNTI0IEwxMC42MjcxNjA0LDE4LjY2NzM1NTkgTDE1LjYzMzU2MTIsMTguNjY3MzU1OSBMMTAuMDMwNzg3MiwxMS4wMjcyMjU3IEMxMi42ODY1OTc5LDguMzgyNjMzNzMgMTQuMTc3MDg1Nyw0LjgyNDY5NTA1IDE0LjE3NzA4NTcsMSIgZmlsbD0icmdiYSgwLCAwLCAwLCAxKSI+PC9wYXRoPgogICAgICAgIDxwYXRoIGQ9Ik0wIDE4LjY2NjY0MzYgNC4wNTMzNDMzNiAxOC42NjY2NDM2IDQuMDUzMzQzMzYgMSAwIDF6IiBmaWxsPSJyZ2JhKDAsIDAsIDAsIDEpIj48L3BhdGg+CiAgICA8L2c+Cjwvc3ZnPg==" alt="klarna"> 
-              </span>
-          </label>
-          <button type="button" class="crs-btn cIaFpO" disabled> 
-            <span class="flex justify-center items-center ">
-              <span>Confirm</span>
-              <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M1.66732 7.83339H10.9757L6.90898 11.9001C6.58398 12.2251 6.58398 12.7584 6.90898 13.0834C7.23398 13.4084 7.75898 13.4084 8.08398 13.0834L13.5757 7.59172C13.9007 7.26672 13.9007 6.74172 13.5757 6.41672L8.09232 0.916724C7.76732 0.591724 7.24232 0.591724 6.91732 0.916724C6.59232 1.24172 6.59232 1.76672 6.91732 2.09172L10.9757 6.16672H1.66732C1.20898 6.16672 0.833984 6.54172 0.833984 7.00006C0.833984 7.45839 1.20898 7.83339 1.66732 7.83339Z" fill="white"/>
-              </svg>
-            </span>
-          </button>
-      </div>
-    </div>`
-
-    if ($el('#checkout-container') && !$el('.crs-payment-methods')) {
-      $el('#checkout-container').insertAdjacentHTML('beforebegin', payments)
-
-    }
-    if ($el('.crs-payment-klarna .bpbPRL[disabled]')) {
-      $el('.crs-payment-klarna button.crs-btn').disabled = false;
-    }
-    if ($el('#primer-checkout-credit-card-button')) {
-
-      if ($el('#primer-checkout-card-form') || !$el('#primer-checkout-credit-card-button')) return
-      $el('#primer-checkout-credit-card-button').click()
-    }
-  }
-  
   getFirstLetters(sentence) {
     const words = sentence.split(' ');
   
@@ -1739,11 +1613,29 @@ class CheckoutUpdate {
       }
     })
    
-    if ($el('#primer-checkout-card-form') &&
-      !$el('.crs-payment-credit > #primer-checkout-card-form') &&
-      $el('.crs-payment-credit > label')
+    if ($el('#primer-checkout-submit-button > span') &&
+      $el('#primer-checkout-submit-button > span').innerText.includes('Pay')
     ) {
-      $el('.crs-payment-credit > label').after($el('#primer-checkout-card-form'))
+      $el('#primer-checkout-submit-button > span').innerText = 'Pay Now'
+    }
+
+    if ($el('#primer-checkout-credit-card-button')) {
+      $el('#primer-checkout-credit-card-button').addEventListener('click', (e) => {
+        e.stopImmediatePropagation()
+        pushDataLayer('exp_imp_ch_r_scospsypm_pbc', 'Pay by card', 'Radio button', 'Secure checkout Order summery Payment Select your payment method');
+      })
+    }
+    if ($el('#primer-checkout-klarna-button')) {
+      $el('#primer-checkout-klarna-button').addEventListener('click', (e) => {
+        e.stopImmediatePropagation()
+        pushDataLayer('exp_imp_ch_r_scospsypm_k', 'Klarna', 'Radio button', 'Secure checkout Order summery Payment Select your payment method');
+
+      })
+    }
+
+    if ($$el('#primer-checkout-card-form iframe')  && 
+    $el('#primer-checkout-card-form input')
+    ) {
       $$el('#primer-checkout-card-form iframe').forEach(item => {
         item.addEventListener('click', (e) => {
           e.stopImmediatePropagation()
@@ -1759,15 +1651,6 @@ class CheckoutUpdate {
     }
 
     $$el('#primer-checkout-apm-button-container > div').forEach(item => {
-      if (item.id == 'primer-checkout-apm-klarna' && 
-        $el('.crs-payment-klarna')
-      ) {
-        $el('.crs-payment-klarna').style.display = 'block';
-      }
-      if (item.querySelector('img[alt="AFTERPAY"]') || item.querySelector('img[alt="CLEARPAY"]')) {
-        item.style.display = 'block'
-
-      }
       
       if (item.querySelector('button')) {
         item.querySelector('button').addEventListener('click', (e) => {
@@ -1792,50 +1675,7 @@ class CheckoutUpdate {
       }
     })
 
-    $$el('.crs-payment-radio [name="radio_payment"]').forEach(item => {
-      if (item.checked) {
-        if (item.closest('.crs-payment-klarna')) {
-          if (clickKlarnaBtn == false) {
-            clickKlarnaBtn = true
-            $el('#primer-checkout-apm-klarna > button').click()
-          }
-        }
-        item.parentElement.parentElement.classList.add('show')
-      } else {
-        item.parentElement.parentElement.classList.remove('show')
-      }
-      item.addEventListener('click', (e) => {
-        e.stopImmediatePropagation()
-        if (item.checked) {
-          if (item.closest('.crs-payment-credit')) {
-            $el('#primer-checkout-credit-card-button').click()
-            pushDataLayer('exp_imp_ch_r_scospsypm_pbc', 'Pay by card', 'Radio button', '"Secure checkout Order summery Payment Select your payment method"');
-          
-          } else {
-            $el('#primer-checkout-klarna-button').click()
-            pushDataLayer('exp_imp_ch_r_scospsypm_k', 'Klarna', 'Radio button', 'Secure checkout Order summery Payment Select your payment method');
-          }
-        }
-      })
-    })
-
-    if ( $el('#primer-checkout-submit-button > span') && 
-      $el('#primer-checkout-submit-button > span').innerText != 'Pay now'
-    ) {
-      $el('#primer-checkout-submit-button > span').innerHTML = `
-      Pay now
-      <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <path d="M1.16634 7.83339H10.4747L6.40801 11.9001C6.08301 12.2251 6.08301 12.7584 6.40801 13.0834C6.73301 13.4084 7.25801 13.4084 7.58301 13.0834L13.0747 7.59172C13.3997 7.26672 13.3997 6.74172 13.0747 6.41672L7.59134 0.916724C7.26634 0.591724 6.74134 0.591724 6.41634 0.916724C6.09134 1.24172 6.09134 1.76672 6.41634 2.09172L10.4747 6.16672H1.16634C0.708008 6.16672 0.333008 6.54172 0.333008 7.00006C0.333008 7.45839 0.708008 7.83339 1.16634 7.83339Z" fill="white"/>
-      </svg>`
-    }
-
-    if ($el('#primer-checkout-scene-klarna-payment') && 
-      $el('.crs-payment-klarna > label') &&
-      !$el('.crs-payment-klarna > #primer-checkout-scene-klarna-payment') &&
-      klarnaConfirm == false
-    ) {
-      $el('.crs-payment-klarna > label').after($el('#primer-checkout-scene-klarna-payment'))
-  
+    if ($el('#primer-checkout-scene-klarna-payment .kGQuJo > div button')) {
       $$el('#primer-checkout-scene-klarna-payment .kGQuJo > div button').forEach(item => {
         item.addEventListener('click', (e) => {
           e.stopImmediatePropagation()
@@ -1853,33 +1693,14 @@ class CheckoutUpdate {
       </svg>`)
     }
 
-    if ($el('#primer-checkout-submit-button-container button') && $$el('.crs-btn')) {
-      $$el('.crs-btn').forEach(item => {
-        item.addEventListener('click', (e) => {
-          e.stopImmediatePropagation()
-          if (item.closest('.crs-payment-credit')) {
-            pushDataLayer('exp_imp_ch_b_scospsypm_pn', 'Pay now', 'Button', 'Secure checkout Order summery Payment Select your payment method');
-          } else {
-            pushDataLayer('exp_imp_ch_r_scospsypm_k', 'Klarna Confirm', 'Button', 'Secure checkout Order summery Payment Select your payment method');
-            // klarnaConfirm = true
-            // if ($el('#primer-checkout-scene-credit-card-form')) {
-             
-            //   $el('#primer-checkout-scene-credit-card-form').after($el('#primer-checkout-scene-klarna-payment'))
-            //   $el('#primer-checkout-scene-credit-card-form').remove()
-            //   setTimeout(() => {
-            //     $el('.crs-payment-credit input').checked = true
-            //     $el('#primer-checkout-credit-card-button').click()
-            //     klarnaConfirm = false
-            //   }, 500)
-              
+    if ($el('#primer-checkout-submit-button-container button')) {
 
-            // }
-          }
-          setTimeout(() => {
-            $el('#primer-checkout-submit-button-container button').disabled = false
-            $el('#primer-checkout-submit-button-container button').click()
-          }, 300)
-        })
+      $el('#primer-checkout-submit-button-container button').addEventListener('click', (e) => {
+        e.stopImmediatePropagation()
+        const name = e.target.innerText.includes('Confirm') ? 'exp_imp_ch_r_scospsypm_k' : 'exp_imp_ch_b_scospsypm_pn'
+        const desk = e.target.innerText.includes('Confirm') ? 'Klarna Confirm' : 'Pay now'
+     
+        pushDataLayer(name, desk, 'Button', 'Secure checkout Order summery Payment Select your payment method');
       })
     }
 
