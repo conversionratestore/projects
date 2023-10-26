@@ -597,20 +597,12 @@ class NewHomePage {
         header.home [name="#contact-form"] {
           display: none;
         }
-
-        header.home h1 {
-          font-size: 30px;
-          line-height: 38px;
-        }
         header.home h1+p {
           margin: 10px 0 24px;
           font-weight: 400;
         }
         header.home h1+p span {
           text-decoration: underline;
-        }
-        header.home {
-          padding: 87px 0 30px;
         }
         .crs_main1 {
           display: flex;
@@ -631,6 +623,7 @@ class NewHomePage {
           font-size: 16px;
           font-weight: 600;
           background: #09983F;
+          text-align: center;
         }
         .crs_main1 a:last-of-type {
           background: linear-gradient(180deg, #1C4F6E 0%, #1C4F6E 100%);
@@ -735,13 +728,6 @@ class NewHomePage {
           header.home .banner {
             width: 45%;
           }
-          header.home {
-            padding: 176px 0 42px;
-          }
-          header.home h1 {
-            font-size: 66px;
-            line-height: 74px;
-          }
           header.home h1+p {
             margin: 14px 0 30px;
           }
@@ -764,14 +750,52 @@ class NewHomePage {
             text-transform: uppercase;
             font-weight: 800;
           }
+          
+        }
+        @media (max-width: 1300px) {
+            header.home h1 {
+              font-size: 50px;
+              line-height: 58px;
+            }
+            header.home {
+              padding: 150px 0 42px;
+            }
+            .main_img {
+              position: absolute;
+              right: 15px;
+              top: -90px;
+              width: 48%;
+              max-width: 690px;
+            }
+          }
+          @media (max-width: 768px) {
+          header.home h1 {
+            font-size: 30px;
+            line-height: 38px;
+          }
+          header.home {
+            padding: 87px 0 30px;
+          }
           .main_img {
-            position: absolute;
-            right: 15px;
-            top: -170px;
-            width: 48%;
-            max-width: 690px;
+            display: none;
           }
         }
+          @media (min-width: 1300px) {
+            header.home h1 {
+              font-size: 66px;
+              line-height: 74px;
+            }
+            header.home {
+              padding: 176px 0 42px;
+            }
+            .main_img {
+              position: absolute;
+              right: 15px;
+              top: -170px;
+              width: 48%;
+              max-width: 690px;
+            }
+          }
       </style>
     `
     const block1 = /* html */ `
