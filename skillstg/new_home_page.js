@@ -541,12 +541,17 @@ class NewHomePage {
           .image-text__images,
           .image-text__image {
             height: 100%;
+            box-shadow: none;
           }
           .course-stats {
             max-width: 1400px;
             margin: 120px auto;
             display: flex;
             justify-content: center;
+          }
+          .three-col-icons {
+            background: linear-gradient(90deg, #EAF5FE 66.39%, rgba(234, 245, 254, 0.00) 103.85%), url(${git}/why_bg.png) top right no-repeat;
+            padding: 60px 0;
           }
           .three-col-icons h2 {
             font-size: 36px;
@@ -720,6 +725,9 @@ class NewHomePage {
           right: 4px;
         }
         @media (min-width: 769px) {
+          header.home .banner {
+            width: 45%;
+          }
           header.home {
             padding: 176px 0 42px;
           }
@@ -787,10 +795,10 @@ class NewHomePage {
             <img src="https://www.skillstg.co.uk/wp-content/uploads/2020/12/oftec.png" alt="logo2">
             <img src="https://www.skillstg.co.uk/wp-content/uploads/2020/12/gas-safe-register.png" alt="logo3">
             <img src="https://www.skillstg.co.uk/wp-content/uploads/2020/12/city-guilds.png" alt="logo4">
-            <img src="https://www.skillstg.co.uk/wp-content/uploads/2020/12/trading-standards.png" alt="logo5">
-            <img src="https://www.skillstg.co.uk/wp-content/uploads/2020/12/lcl.png" alt="logo6">
+            <img src="${git}/logo1.png" alt="logo5">
+            <img src="${git}/logo2.png" alt="logo6">
             <img src="https://www.skillstg.co.uk/wp-content/uploads/2020/02/faib-logo-130x65.jpg" alt="logo7">
-            <img src="https://www.skillstg.co.uk/wp-content/uploads/2020/02/FOFATO-JPEG-LoRes-300x91-130x39.jpg" alt="logo8">
+            <img src="${git}/logo3.png" alt="logo8">
           </div>
         </div>
       </div>
@@ -815,7 +823,7 @@ class NewHomePage {
       $el('.search-form').style.display = 'block'
       pushDataLayer('exp_imp_home_first_but_seacou', 'Search for a courses', 'Button', 'First screen')
     })
-    $el('.search-form input').addEventListener('input', function () {
+    $el('.search-form input').addEventListener('focus', function () {
       pushDataLayer('exp_imp_home_first_inp_sear', 'Search', 'Input', 'First screen')
     })
     $el('.search-form button').addEventListener('click', function () {
@@ -1430,9 +1438,6 @@ class NewHomePage {
     const block = /* html */ `
       <div class="crs_reviews_tp">
         <style>
-          .slick-dots li:not(.slick-active) {
-            display: none;
-          }
           .slick-dots li {
             transition: all 0.3s ease;
           }
@@ -1473,6 +1478,21 @@ class NewHomePage {
             display: flex !important;
             flex-direction: column;
             gap: 6px;
+            height: 250px;
+            overflow-y: auto;
+          }
+          .crs_reviews_item::-webkit-scrollbar {
+            width: 5px;
+          }
+          .crs_reviews_item::-webkit-scrollbar-track {
+            background-color: #FAFAFA;
+            border-radius: 3px;
+            width: 5px;
+          }
+          .crs_reviews_item::-webkit-scrollbar-thumb {
+            border-radius: 3px;
+            width: 5px;
+            background: #DBE8F4;
           }
           .crs_reviews_item h4 {
             font-size: 16px;
@@ -1497,17 +1517,29 @@ class NewHomePage {
           .crs_reviews_tp .slick-slide {
             margin: 0 6px;
           }
+          .crs_reviews_tp .slick-dots {
+            margin-top: 20px;
+          }
           .crs_reviews_tp .slick-dots li {
             background-color: #DBE8F4;
             border: none;
             height: 8px;
             width: 8px;
+            transition: all 0.3s ease;
+            position: absolute;
           }
           .crs_reviews_tp .slick-dots .slick-active{
             background-color: #09983F;
           }
           .crs_arrows {
             display: none;
+          }
+          .course-stats h3 {
+            display: flex;
+            align-items: center;
+          }
+          .course-stats h3 em {
+            margin-top: 0;
           }
           @media (min-width: 769px) {
             .crs_reviews_tp {
@@ -1522,7 +1554,9 @@ class NewHomePage {
               width: auto;
             }
             .crs_reviews_tp .slick-dots {
-              margin-top: 20px;
+              height: 10px;
+              width: 100%;  
+              margin-top: 30px;
             }
             .crs_reviews_tp h3 {
               font-size: 24px;
@@ -1606,8 +1640,12 @@ class NewHomePage {
           ]
         })
         $('.crs_reviews_slider').on('afterChange', function () {
-          changeDots()
           pushDataLayer('exp_imp_home_trustp_slide', 'Change slide', 'Slider', ' Block reviews Trustpilot')
+        })
+        $('.crs_reviews_slider').on('beforeChange', function () {
+          setTimeout(() => {
+            changeDots()
+          }, 10)
         })
         changeDots()
         function changeDots() {
@@ -1616,14 +1654,21 @@ class NewHomePage {
           const dotActiveIndex = dotActive.index()
           console.log(dotActiveIndex)
           dots.each((i, item) => {
-            if (i < dotActiveIndex - 2 || i > dotActiveIndex + 2) {
-              $(item).css('display', 'none')
+            if (i < dotActiveIndex - 3 || i > dotActiveIndex + 3) {
+              $(item).css('opacity', '0').css('transform', 'scale(0)')
             } else {
-              $(item).css('display', 'inline-block')
+              $(item).css('opacity', '1')
+              if (i == dotActiveIndex - 3 || i == dotActiveIndex + 3) {
+                $(item).css('transform', `translateX(${i == dotActiveIndex - 3 ? '-' : ''}48px) scale(0.3)`)
+              }
               if (i == dotActiveIndex - 2 || i == dotActiveIndex + 2) {
-                $(item).css('scale', '0.8')
-              } else {
-                $(item).css('scale', '1')
+                $(item).css('transform', `translateX(${i == dotActiveIndex - 2 ? '-' : ''}32px) scale(0.8)`)
+              }
+              if (i == dotActiveIndex - 1 || i == dotActiveIndex + 1) {
+                $(item).css('transform', `translateX(${i == dotActiveIndex - 1 ? '-' : ''}16px) scale(1)`)
+              }
+              if (i == dotActiveIndex) {
+                $(item).css('transform', `scale(1)`)
               }
             }
           })
