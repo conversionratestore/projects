@@ -525,6 +525,13 @@ class NewHomePage {
           }
         }
         @media (min-width: 769px) {
+          .facilities p {
+            font-size: 16px;
+            line-height: 24px;
+          }
+          .facilities h3 {
+            font-size: 20px;
+          }
           header.home {
             margin-bottom: 90px;
           }
