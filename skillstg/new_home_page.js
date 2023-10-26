@@ -805,7 +805,7 @@ class NewHomePage {
     `
     $el('header form').insertAdjacentHTML('beforebegin', block1)
     $el('header form').insertAdjacentHTML('afterend', block2)
-    $el('header h1').innerHTML = 'Boost your skills. Boost your career.'
+    $el('header h1').innerHTML = 'Boost your skills.<br>Boost your career.'
     $el('header h1+p').innerHTML =
       'We provide <span>more than 100 courses</span> spanning heating, electrical, plumbing, and first aid disciplines.'
     $el('header').insertAdjacentHTML('afterbegin', style)
@@ -1356,6 +1356,7 @@ class NewHomePage {
         item.classList.remove('active')
       })
       $el('.course_type:nth-of-type(2)').classList.add('active')
+      drawContentToDesktop()
       scrollToElement('.course_type:nth-of-type(2)')
       pushDataLayer('exp_imp_home_first_but_aid', 'Explore first aid courses', 'Button', 'First screen')
     })
@@ -1478,8 +1479,6 @@ class NewHomePage {
             display: flex !important;
             flex-direction: column;
             gap: 6px;
-            height: 250px;
-            overflow-y: auto;
           }
           .crs_reviews_item::-webkit-scrollbar {
             width: 5px;
@@ -1569,6 +1568,10 @@ class NewHomePage {
               right: 30px;
               bottom: 30px;
               column-gap: 30px;
+            }
+            .crs_reviews_item {
+              height: 250px;
+              overflow-y: auto;
             }
             .crs_arrows div {
               display: flex;
@@ -1696,6 +1699,7 @@ class NewHomePage {
         .top-courses__course a {
           background-position: center right;
           display: block;
+          margin-bottom: 0;
         }
         @media (min-width: 769px) {
           .top-courses .container>.row {
