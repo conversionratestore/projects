@@ -1281,6 +1281,9 @@ class NewHomePage {
               border-radius: 4px;
               cursor: pointer;
             }
+            .course_list .course_type:nth-of-type(n+6) .course_item_title {
+              cursor: default;
+            }
             .course_list .course_type .course_item_title::after {
               transition: unset;
               transform: translateY(-50%) rotate(-90deg);
@@ -1381,6 +1384,7 @@ class NewHomePage {
                 item.classList.remove('active')
               })
               $el(`.course_tap_line p:nth-of-type(${i + 1})`).classList.add('active')
+              $el('.course_tap_line').scrollLeft = $el(`.course_tap_line p:nth-of-type(${i + 1})`).offsetLeft - 24
             }
             scrollToElement('.course_type.active')
           } else {
