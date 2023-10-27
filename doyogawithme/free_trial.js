@@ -2612,7 +2612,8 @@ box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.10);
                   $("#test").swipe({
                     swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
                       if (direction === "down") {
-                        onClosePopup();
+                        // onClosePopup();
+                        document.querySelector("#edit-cancel--3").click();
                       }
                     },
                   });
