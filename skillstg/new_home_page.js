@@ -378,6 +378,9 @@ class NewHomePage {
   globalChange() {
     const style = /* html */ `
       <style>
+        .top-courses__section {
+          box-shadow: none;
+        }
         .course-categories-simple {
           display: none;
         }
@@ -1307,6 +1310,7 @@ class NewHomePage {
             .desktop_content .course_item_content .work {
               width: calc(100% + 40px);
               margin: -20px 0 20px -20px;
+              border-radius: 10px 10px 0 0;
             }
             .desktop_content .course_item_content .courses_items {
               align-items: stretch;
@@ -1736,6 +1740,7 @@ class NewHomePage {
         }
         .top-courses__section-list {
           border-radius: 10px;
+          box-shadow: 7px 7px 20px 0 rgba(7, 34, 52, 0.1);
         }
         .top-courses__course h5 {
           font-size: 16px;
