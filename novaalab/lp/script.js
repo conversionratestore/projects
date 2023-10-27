@@ -3182,7 +3182,7 @@ padding: 8px 16px;
           const sectionId = btn.closest('section').id
           let productName = ''
           if (btn.closest('[data-product-name]')) {
-            btn.closest('[data-product-name]').dataset.productName
+            productName = btn.closest('[data-product-name]').dataset.productName
           }
           switch (sectionId) {
             case 'head-section':
