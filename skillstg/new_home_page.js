@@ -450,8 +450,7 @@ class NewHomePage {
         }
         .three-col-icons .three-col-icons__block {
           flex-wrap: wrap;
-          flex-direction: row;
-          align-items: center;
+          align-items: start;
           gap: 10px;
           background: #fff;
           padding: 20px;
@@ -461,6 +460,7 @@ class NewHomePage {
         }
         .three-col-icons .three-col-icons__block p {
           width: 100%;
+          margin-top: 0;
         }
         .three-col-icons img {
           margin-bottom: 0;
@@ -468,6 +468,9 @@ class NewHomePage {
         .three-col-icons h3 {
           font-size: 18px;
           line-height: 26px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
         }
         .three-col-icons__grid {
           margin-top: 20px;
@@ -585,6 +588,9 @@ class NewHomePage {
     $el('.testimonial').before($el('.endorsements'))
     $el('.course-categories-simple').after($el('.three-col-icons'))
     $el('.three-col-icons').after($el('.course-stats'))
+    $$el('.three-col-icons__block h3').forEach((el, i) => {
+      el.insertAdjacentElement('afterbegin', $$el('.three-col-icons__block img')[i])
+    })
   }
 
   mainScreen() {
@@ -725,6 +731,11 @@ class NewHomePage {
           right: 4px;
         }
         @media (min-width: 769px) {
+          header .background__overlay {
+            transform: translateX(-50%) rotate(180deg);
+            top: 0;
+            left: 50%;
+          }
           header.home .banner {
             width: 45%;
           }
@@ -763,7 +774,7 @@ class NewHomePage {
             .main_img {
               position: absolute;
               right: 15px;
-              top: -90px;
+              top: -120px;
               width: 48%;
               max-width: 690px;
             }
@@ -1230,6 +1241,14 @@ class NewHomePage {
             display: none;
           }
           @media (min-width: 769px) {
+            .desktop_content .course_item .name+p {
+              max-height: calc(22px * 4);
+              display: -webkit-box;
+              -webkit-line-clamp: 4;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              -webkit-box-orient: vertical;
+            }
             .crs_all_courses h2 {
               font-size: 36px;
               line-height: 44px;
@@ -1308,6 +1327,7 @@ class NewHomePage {
             }
             .desktop_content .course_item .img {
               border-radius: 10px 10px 0 0;
+              border: none;
             }
             .desktop_content .add_links {
               gap: 20px;
@@ -1393,10 +1413,6 @@ class NewHomePage {
     })
     $el('.crs_main1 a:first-of-type').addEventListener('click', (e) => {
       e.preventDefault()
-      $$el('.course_type.active').forEach((item) => {
-        item.classList.remove('active')
-      })
-      $el('.course_type:nth-of-type(1)').classList.add('active')
       scrollToElement('#all_courses')
       pushDataLayer('exp_imp_home_first_but_exp', 'Explore all courses', 'Button', 'First screen')
     })
