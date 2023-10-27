@@ -777,7 +777,25 @@ class NewHomePage {
             .main_img {
               position: absolute;
               right: 15px;
-              top: -120px;
+              top: 0px;
+              width: 48%;
+              max-width: 690px;
+            }
+          }
+          @media (max-width: 1250px) {
+            .main_img {
+              position: absolute;
+              right: 15px;
+              top: -55px;
+              width: 48%;
+              max-width: 690px;
+            }
+          }
+          @media (max-width: 990px) {
+            .main_img {
+              position: absolute;
+              right: 15px;
+              top: -95px;
               width: 48%;
               max-width: 690px;
             }
@@ -805,7 +823,7 @@ class NewHomePage {
             .main_img {
               position: absolute;
               right: 15px;
-              top: -170px;
+              top: -80px;
               width: 48%;
               max-width: 690px;
             }
