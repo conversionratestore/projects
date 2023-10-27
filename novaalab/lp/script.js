@@ -4050,4 +4050,82 @@ padding: 8px 16px;
   setTimeout(() => {
     document.querySelector('.exp-loading')?.remove()
   }, 4000)
+
+  function checkFocusTime(selector, event, location, additional = '', loop = false) {
+    const checker = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !entry.target.getAttribute('data-startShow')) {
+          entry.target.setAttribute('data-startShow', new Date().getTime())
+        } else if (!entry.isIntersecting && entry.target.getAttribute('data-startShow')) {
+          const startShow = entry.target.getAttribute('data-startShow')
+          const endShow = new Date().getTime()
+          const timeShow = Math.round((endShow - startShow) / 1000)
+          entry.target.removeAttribute('data-startShow')
+          pushDataLayer(event, timeShow + ' ' + additional, 'Visibility', location)
+          checker.unobserve(entry.target)
+        }
+      })
+    })
+    if (loop) {
+      checker.observe(selector)
+    } else {
+      checker.observe(document.querySelector(selector))
+    }
+  }
+  setTimeout(() => {
+    checkFocusTime(
+      '#navigation-section',
+      'exp_hopg_impr_visib_baner_focus',
+      'Home page Baner what health issue do you want to heal?'
+    )
+    checkFocusTime(
+      '#back-pain-section .product__img-wrapper',
+      'exp_hopg_impr_visib_imagbac_focus',
+      'Home page Image For back pain section'
+    )
+    checkFocusTime(
+      '#knee-section .product__img-wrapper',
+      'exp_hopg_impr_visib_imaghad_focus',
+      'Home page Image For knee or hand pain'
+    )
+    checkFocusTime(
+      '#joint-section .product__img-wrapper',
+      'exp_hopg_impr_visib_imagjoi_focus',
+      'Home page Image For joint pain and arthritis'
+    )
+    checkFocusTime(
+      '#periodontal-section .product__img-wrapper',
+      'exp_hopg_impr_visib_imaggum_focus',
+      'Home page Image For periodontal (gum) disease'
+    )
+    checkFocusTime(
+      '#skin-section .product__img-wrapper',
+      'exp_hopg_impr_visib_imagglow_focus',
+      'Home page Image For a healthy and glowing skin'
+    )
+    document.querySelectorAll('.compare .button').forEach((element) => {
+      checkFocusTime(
+        element,
+        'exp_hopg_impr_visib_buttchoo_name',
+        'Home page Button SectionCompare and choose!',
+        element.previousSibling.innerText,
+        true
+      )
+    })
+    checkFocusTime(
+      '#mitochondria-section',
+      'exp_hopg_impr_visib_redeffic_focus',
+      'Home page Why is Red Light Therapy so efficient and how does it work?'
+    )
+    checkFocusTime(
+      '.efficient__content',
+      'exp_hopg_impr_visib_buttchoo1_focus',
+      'Home page What makes it so efficient? Button Choose your kit'
+    )
+    checkFocusTime(
+      '.ailments .button',
+      'exp_hopg_impr_visib_buttchoo2_focus',
+      'Home page When will Novaa Light help you? Button Choose your kit'
+    )
+  }, 1000)
 })()
