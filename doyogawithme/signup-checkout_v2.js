@@ -2070,3 +2070,5 @@ let isClarify = setInterval(() => {
     clarity("set", "exp_trial", "variant_1");
   }
 }, 100);
+
+document.querySelector(".exp")?.remove();
