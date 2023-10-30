@@ -1766,7 +1766,7 @@ function init() {
         }
       } else if (document.querySelector(".views-field.views-field-title").innerHTML.match("Monthly Subscription w/ 7 Day Trial")) {
         console.log(`object`);
-        document.querySelector(".views-field.views-field-title").innerHTML = `<span>1-Month DYWM Subscription</span><span>After the 7-day trial period, the annual fee will be $13.99. We’ll email you a reminder before your trial ends.</span>`;
+        document.querySelector(".views-field.views-field-title").innerHTML = `<span>1-Month DYWM Subscription</span><span>After the 7-day trial period, the monthly fee will be $13.99. We’ll email you a reminder before your trial ends.</span>`;
         document.querySelector(".views-field.views-field-total-price__number").textContent = "$13.99";
         if (window.innerWidth <= 768) {
           if (!document.querySelector(".subscr_txt_mob")) {
