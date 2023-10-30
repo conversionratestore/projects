@@ -474,6 +474,7 @@ class NewHomePage {
           display: flex;
           align-items: center;
           gap: 10px;
+          width: 100%;
         }
         .three-col-icons__grid {
           margin-top: 20px;
