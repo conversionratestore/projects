@@ -1516,9 +1516,9 @@ let freeTrial = setInterval(() => {
                   }
                 } else {
                   if (document.querySelector(".sfc-nodePlayable__lockContainerInner .sfc-copy__header .sfc-item__headline").textContent.includes("Unlock this Premium meditation")) {
-                    document.querySelector(".sfc-nodePlayable__lockContainerInner .sfc-copy__header .sfc-item__headline").insertAdjacentHTML("afterend", `<p class="txt_headline">Start your 7-day Free Trial and get access to this and 1000+ other meditations</p>`);
+                    document.querySelector(".sfc-nodePlayable__lockContainerInner .sfc-copy__header .sfc-item__headline").insertAdjacentHTML("afterend", `<p class="txt_headline">Start your 7-day Free Trial and get access to this and 500+ other Premium meditations</p>`);
                   } else {
-                    document.querySelector(".sfc-nodePlayable__lockContainerInner .sfc-copy__header .sfc-item__headline").insertAdjacentHTML("afterend", `<p class="txt_headline">Start your 7-day Free Trial and get access to this and 1000+ other classes</p>`);
+                    document.querySelector(".sfc-nodePlayable__lockContainerInner .sfc-copy__header .sfc-item__headline").insertAdjacentHTML("afterend", `<p class="txt_headline">Start your 7-day Free Trial and get access to this and 500+ other Premium classes</p>`);
                   }
                 }
               }
