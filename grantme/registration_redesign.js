@@ -449,14 +449,19 @@ div#n2-ss-16 .nextend-bullet-bar .n2-bullet.n2-active {
 .attend_form {
     border-radius: 10px;
     background: var(--white, #FFF);
-    padding: 24px 16px 18px;
+    padding: 24px 0 18px;
+}
+.attend_form > div:not(.elementor-element) {
+    display: none;
 }
 .attend_form h2 {
     margin-bottom: 20px;
+    padding: 0 16px;
 }
 .attend_form p {
     padding-bottom: 6px;
     color: var(--grey-60, #676767);
+    padding: 0 16px;
 }
 form > .relative {
     margin-top: 12px;
@@ -634,6 +639,9 @@ function getLocName(event) {
         name = 'exp_regist_pag_butt_stikybutt_grab'
     }
 
+    if ($el('#js-reg-btn')) {
+        $el('#js-reg-btn').click()
+    }
     pushDataLayer(name, 'Grab Your FREE Seat Now!', 'Button', loc)
 }
 
@@ -705,7 +713,7 @@ function handleVisibility(className) {
 
 let startTime = 0;
 
-const btnHtml = `<button type="button" class="btn-yellow" onclick="$el('.popup').classList.add('active'); getLocName(event); setInterval(()=>{startTime += 1}, 100)">Grab Your FREE Seat Now!</button>`
+const btnHtml = `<button type="button" class="btn-yellow" onclick="getLocName(event); setInterval(()=>{startTime += 1}, 100)">Grab Your FREE Seat Now!</button>`
 
 const html = `
 <div class="crs-sticky">
@@ -801,7 +809,7 @@ const html = `
         <div class="attend_info">
             <h2>Who Should Attend?</h2>
             <p>This masterclass is tailored for Canadian citizens, permanent residents of Canada, or dual US and Canadian citizens who are eager to carve a unique educational path without drowning in student debt. </p>
-            <p>If you're a student or parent of student in <span class="underline">grades 9-12</span> looking for a clear, efficient, and effective approach to college admissions and scholarships, you’re in the right place!</p>
+            <p>If you're a student or parent of student in <span class="crs-underline">grades 9-12</span> looking for a clear, efficient, and effective approach to college admissions and scholarships, you’re in the right place!</p>
             <div class="limited">
                 <h3>Spaces are limited and filling up fast</h3>
                 <p>Grab this golden opportunity to transform your educational journey. </p>
@@ -818,63 +826,65 @@ const html = `
                 </svg>
             </div>
         </div>
-        <form class="attend_form">
+        <div class="attend_form">
             <h2>Join Our Online College Admission Webinar- FREE</h2>
             <p>The webinar will be conducted by Jason Yee and Madison Guy.</p>
             <p>You'll learn about the program that has brought success to over 20,000 students.</p>
             <p>We’ll email and text you the link for the webinar and tips used by students to win over $5,000,000, find awards they're eligible for, and save 30+hours.</p>
-            <div class="relative">
-                <div class="absolute d-flex">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.99999 1.66699C7.81666 1.66699 6.04166 3.44199 6.04166 5.62533C6.04166 7.76699 7.71666 9.50033 9.89999 9.57533C9.96666 9.56699 10.0333 9.56699 10.0833 9.57533C10.1 9.57533 10.1083 9.57533 10.125 9.57533C10.1333 9.57533 10.1333 9.57533 10.1417 9.57533C12.275 9.50033 13.95 7.76699 13.9583 5.62533C13.9583 3.44199 12.1833 1.66699 9.99999 1.66699Z" fill="#CCCCCC"/>
-                        <path d="M14.2333 11.7914C11.9083 10.2414 8.11666 10.2414 5.775 11.7914C4.71666 12.4997 4.13333 13.4581 4.13333 14.4831C4.13333 15.5081 4.71666 16.4581 5.76666 17.1581C6.93333 17.9414 8.46666 18.3331 10 18.3331C11.5333 18.3331 13.0667 17.9414 14.2333 17.1581C15.2833 16.4497 15.8667 15.4997 15.8667 14.4664C15.8583 13.4414 15.2833 12.4914 14.2333 11.7914Z" fill="#CCCCCC"/>
-                    </svg>
-                    <p>*</p>
+            <div>
+                <div class="relative">
+                    <div class="absolute d-flex">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.99999 1.66699C7.81666 1.66699 6.04166 3.44199 6.04166 5.62533C6.04166 7.76699 7.71666 9.50033 9.89999 9.57533C9.96666 9.56699 10.0333 9.56699 10.0833 9.57533C10.1 9.57533 10.1083 9.57533 10.125 9.57533C10.1333 9.57533 10.1333 9.57533 10.1417 9.57533C12.275 9.50033 13.95 7.76699 13.9583 5.62533C13.9583 3.44199 12.1833 1.66699 9.99999 1.66699Z" fill="#CCCCCC"/>
+                            <path d="M14.2333 11.7914C11.9083 10.2414 8.11666 10.2414 5.775 11.7914C4.71666 12.4997 4.13333 13.4581 4.13333 14.4831C4.13333 15.5081 4.71666 16.4581 5.76666 17.1581C6.93333 17.9414 8.46666 18.3331 10 18.3331C11.5333 18.3331 13.0667 17.9414 14.2333 17.1581C15.2833 16.4497 15.8667 15.4997 15.8667 14.4664C15.8583 13.4414 15.2833 12.4914 14.2333 11.7914Z" fill="#CCCCCC"/>
+                        </svg>
+                        <p>*</p>
+                    </div>
+                    <input type="text" placeholder="Enter first name..." required name="first-name">
+                    <p class="error-message">First Name cannot be empty</p>
                 </div>
-                <input type="text" placeholder="Enter first name..." required name="first-name">
-                <p class="error-message">First Name cannot be empty</p>
-            </div>
-            <div class="relative">
-                <div class="absolute d-flex">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.99999 1.66699C7.81666 1.66699 6.04166 3.44199 6.04166 5.62533C6.04166 7.76699 7.71666 9.50033 9.89999 9.57533C9.96666 9.56699 10.0333 9.56699 10.0833 9.57533C10.1 9.57533 10.1083 9.57533 10.125 9.57533C10.1333 9.57533 10.1333 9.57533 10.1417 9.57533C12.275 9.50033 13.95 7.76699 13.9583 5.62533C13.9583 3.44199 12.1833 1.66699 9.99999 1.66699Z" fill="#CCCCCC"/>
-                        <path d="M14.2333 11.7914C11.9083 10.2414 8.11666 10.2414 5.775 11.7914C4.71666 12.4997 4.13333 13.4581 4.13333 14.4831C4.13333 15.5081 4.71666 16.4581 5.76666 17.1581C6.93333 17.9414 8.46666 18.3331 10 18.3331C11.5333 18.3331 13.0667 17.9414 14.2333 17.1581C15.2833 16.4497 15.8667 15.4997 15.8667 14.4664C15.8583 13.4414 15.2833 12.4914 14.2333 11.7914Z" fill="#CCCCCC"/>
-                    </svg>
-                    <p>*</p>
+                <div class="relative">
+                    <div class="absolute d-flex">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.99999 1.66699C7.81666 1.66699 6.04166 3.44199 6.04166 5.62533C6.04166 7.76699 7.71666 9.50033 9.89999 9.57533C9.96666 9.56699 10.0333 9.56699 10.0833 9.57533C10.1 9.57533 10.1083 9.57533 10.125 9.57533C10.1333 9.57533 10.1333 9.57533 10.1417 9.57533C12.275 9.50033 13.95 7.76699 13.9583 5.62533C13.9583 3.44199 12.1833 1.66699 9.99999 1.66699Z" fill="#CCCCCC"/>
+                            <path d="M14.2333 11.7914C11.9083 10.2414 8.11666 10.2414 5.775 11.7914C4.71666 12.4997 4.13333 13.4581 4.13333 14.4831C4.13333 15.5081 4.71666 16.4581 5.76666 17.1581C6.93333 17.9414 8.46666 18.3331 10 18.3331C11.5333 18.3331 13.0667 17.9414 14.2333 17.1581C15.2833 16.4497 15.8667 15.4997 15.8667 14.4664C15.8583 13.4414 15.2833 12.4914 14.2333 11.7914Z" fill="#CCCCCC"/>
+                        </svg>
+                        <p>*</p>
+                    </div>
+                    <input type="text" placeholder="Enter last name..." required name="last-name">
+                    <p class="error-message">Last Name cannot be empty</p>
                 </div>
-                <input type="text" placeholder="Enter last name..." required name="last-name">
-                <p class="error-message">Last Name cannot be empty</p>
-            </div>
-            <div class="relative">
-                <div class="absolute d-flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M14.1667 2.91699H5.83332C3.33332 2.91699 1.66666 4.16699 1.66666 7.08366V12.917C1.66666 15.8337 3.33332 17.0837 5.83332 17.0837H14.1667C16.6667 17.0837 18.3333 15.8337 18.3333 12.917V7.08366C18.3333 4.16699 16.6667 2.91699 14.1667 2.91699ZM14.5583 7.99199L11.95 10.0753C11.4 10.517 10.7 10.7337 9.99999 10.7337C9.29999 10.7337 8.59166 10.517 8.04999 10.0753L5.44166 7.99199C5.17499 7.77533 5.13332 7.37533 5.34166 7.10866C5.55832 6.84199 5.94999 6.79199 6.21666 7.00866L8.82499 9.09199C9.45832 9.60033 10.5333 9.60033 11.1667 9.09199L13.775 7.00866C14.0417 6.79199 14.4417 6.83366 14.65 7.10866C14.8667 7.37533 14.825 7.77533 14.5583 7.99199Z" fill="#CCCCCC"/>
-                    </svg>
-                    <p>*</p>
+                <div class="relative">
+                    <div class="absolute d-flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M14.1667 2.91699H5.83332C3.33332 2.91699 1.66666 4.16699 1.66666 7.08366V12.917C1.66666 15.8337 3.33332 17.0837 5.83332 17.0837H14.1667C16.6667 17.0837 18.3333 15.8337 18.3333 12.917V7.08366C18.3333 4.16699 16.6667 2.91699 14.1667 2.91699ZM14.5583 7.99199L11.95 10.0753C11.4 10.517 10.7 10.7337 9.99999 10.7337C9.29999 10.7337 8.59166 10.517 8.04999 10.0753L5.44166 7.99199C5.17499 7.77533 5.13332 7.37533 5.34166 7.10866C5.55832 6.84199 5.94999 6.79199 6.21666 7.00866L8.82499 9.09199C9.45832 9.60033 10.5333 9.60033 11.1667 9.09199L13.775 7.00866C14.0417 6.79199 14.4417 6.83366 14.65 7.10866C14.8667 7.37533 14.825 7.77533 14.5583 7.99199Z" fill="#CCCCCC"/>
+                        </svg>
+                        <p>*</p>
+                    </div>
+                    <input type="text" placeholder="Enter email address..." required name="email">
+                    <p class="error-message">Not a valid e-mail address</p>
                 </div>
-                <input type="text" placeholder="Enter email address..." required name="email">
-                <p class="error-message">Not a valid e-mail address</p>
-            </div>
-            <div class="relative">
-                <div class="flag-dropdown flx">
-                    <span class="selected-flag">
-                        <span class="fi fi-ca"></span>
-                    </span>
-                    <span class="arrow-drop"></span>
-                    <ul class="country-list"></ul>
+                <div class="relative">
+                    <div class="flag-dropdown flx">
+                        <span class="selected-flag">
+                            <span class="fi fi-ca"></span>
+                        </span>
+                        <span class="arrow-drop"></span>
+                        <ul class="country-list"></ul>
+                    </div>
+                    <input type="text" placeholder="+1" data-mask="+1 (000) 000 0000" value="+1" required name="phone">
+                    <p class="error-message">Not a valid number phone</p>
+                    <div class="absolute d-flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M13.5333 1.66699H6.46668C4.16668 1.66699 3.33334 2.50033 3.33334 4.84199V15.1587C3.33334 17.5003 4.16668 18.3337 6.46668 18.3337H13.525C15.8333 18.3337 16.6667 17.5003 16.6667 15.1587V4.84199C16.6667 2.50033 15.8333 1.66699 13.5333 1.66699ZM10 16.0837C9.20001 16.0837 8.54168 15.4253 8.54168 14.6253C8.54168 13.8253 9.20001 13.167 10 13.167C10.8 13.167 11.4583 13.8253 11.4583 14.6253C11.4583 15.4253 10.8 16.0837 10 16.0837ZM11.6667 5.20866H8.33334C7.99168 5.20866 7.70834 4.92533 7.70834 4.58366C7.70834 4.24199 7.99168 3.95866 8.33334 3.95866H11.6667C12.0083 3.95866 12.2917 4.24199 12.2917 4.58366C12.2917 4.92533 12.0083 5.20866 11.6667 5.20866Z" fill="#CCCCCC"/>
+                        </svg>
+                        <p>*</p>
+                    </div>
                 </div>
-                <input type="text" placeholder="+1" data-mask="+1 (000) 000 0000" value="+1" required name="phone">
-                <p class="error-message">Not a valid number phone</p>
-                <div class="absolute d-flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M13.5333 1.66699H6.46668C4.16668 1.66699 3.33334 2.50033 3.33334 4.84199V15.1587C3.33334 17.5003 4.16668 18.3337 6.46668 18.3337H13.525C15.8333 18.3337 16.6667 17.5003 16.6667 15.1587V4.84199C16.6667 2.50033 15.8333 1.66699 13.5333 1.66699ZM10 16.0837C9.20001 16.0837 8.54168 15.4253 8.54168 14.6253C8.54168 13.8253 9.20001 13.167 10 13.167C10.8 13.167 11.4583 13.8253 11.4583 14.6253C11.4583 15.4253 10.8 16.0837 10 16.0837ZM11.6667 5.20866H8.33334C7.99168 5.20866 7.70834 4.92533 7.70834 4.58366C7.70834 4.24199 7.99168 3.95866 8.33334 3.95866H11.6667C12.0083 3.95866 12.2917 4.24199 12.2917 4.58366C12.2917 4.92533 12.0083 5.20866 11.6667 5.20866Z" fill="#CCCCCC"/>
-                    </svg>
-                    <p>*</p>
-                </div>
-            </div>
-            <button type="button" class="btn-yellow" onclick="pushDataLayer('exp_regist_pag_butt_form_reserv', 'Reserve My Seat!', 'Button', 'Form Join Our Online College Admission Webinar- FREE')">Reserve My Seat!</button>
-            <p>Your details will be forwarded to the webinar organizer, who might communicate with you regarding this event or their services</p>
-        </form>
+                <button type="button" class="btn-yellow" onclick="pushDataLayer('exp_regist_pag_butt_form_reserv', 'Reserve My Seat!', 'Button', 'Form Join Our Online College Admission Webinar- FREE')">Reserve My Seat!</button>
+                <p>Your details will be forwarded to the webinar organizer, who might communicate with you regarding this event or their services</p>
+            </div> 
+        </div>
     </div>
 </section>
 <div class="popup d-flex ">
@@ -1025,7 +1035,7 @@ const mask = (input, mask, evt) => {
 }
 
 let init = setInterval(() => {
-    if ($el('header')) {
+    if ($el('header') && $el('.elementor-element-01b041d iframe')) {
         clearInterval(init)
 
         const link = document.createElement('link')
@@ -1036,6 +1046,8 @@ let init = setInterval(() => {
         document.head.insertAdjacentHTML('beforeend', style)
         $el('header').insertAdjacentHTML('afterend', html)
 
+        $el('.attend_form > div').after($el('.elementor-element-01b041d'))
+    
         $('.btn-learn').click(function(e) {
             e.preventDefault()
             $('html,body').animate({
@@ -1158,7 +1170,7 @@ let init = setInterval(() => {
                             item.classList.remove('loading')
                         });
                     }
-                }
+                } 
             })
         })
 
@@ -1226,7 +1238,7 @@ let addBtn = setInterval(() => {
                 pushDataLayer('exp_regist_pag_accord_asked_quest', item.innerText ,'Accordion','Frequently Asked Questions Register  - webinar page')
             })
         })
-   
+
         handleVisibility('.elementor-element-d8f28c4')
         handleVisibility('.elementor-element-f097975')
         handleVisibility('.accordion > div:first-child')
