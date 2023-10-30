@@ -1673,6 +1673,8 @@ let freeTrial = setInterval(() => {
         clarity("set", "exp_trial", "variant_1");
       }
     }, 200);
+
+    document.querySelector(".exp")?.remove();
   }
 }, 100);
 
@@ -2707,6 +2709,8 @@ box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.10);
         clarity("set", "exp_trial", "variant_1");
       }
     }, 200);
+
+    document.querySelector(".exp")?.remove();
   }
 }, 100);
 
@@ -4723,5 +4727,7 @@ line-height: 32px;
         clarity("set", "exp_trial", "variant_1");
       }
     }, 200);
+
+    document.querySelector(".exp")?.remove();
   }
 }, 100);
