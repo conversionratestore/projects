@@ -438,7 +438,6 @@ line-height: 20px;
 #shopify-section-template--20834585772373__82449f7c-6c71-4b98-89f3-074fa0fedafc,
 .beautifully_packaged_mob,
 a.site-nav__link.site-nav__link--icon:nth-child(1),
-#AnnouncementSlide-e3dec2d7-f571-42ea-aa8f-d3b0efb567d1,
 .product-sticky,
 [data-index="option1"][value=""]{
   display: none !important;
