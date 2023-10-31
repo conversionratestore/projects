@@ -4,6 +4,15 @@ let startFunk = setInterval(() => {
 
     let isAddCart;
 
+    let findOption = setInterval(() => {
+      if (document.querySelectorAll('[data-index="option1"][value=""]')) {
+        clearInterval(findOption);
+        document.querySelectorAll('[data-index="option1"][value=""]').forEach((el) => {
+          el?.remove();
+        });
+      }
+    }, 100);
+
     window.onunload = unloadPage;
     function unloadPage() {
       console.log("unload event detected!");
@@ -102,6 +111,104 @@ let startFunk = setInterval(() => {
 
     let newStyle = /*html */ `
         <style>
+          /**title="Ring sizing guide" */
+          [title="Ring sizing guide"]{
+            color: #1C1D1D;
+font-family: 'Poppins';
+font-size: 13px;
+font-weight: 500;
+line-height: 18px;
+text-transform: uppercase;
+gap: 11px;
+    display: flex !important;
+    justify-content: space-between;
+    width: max-content;
+          }
+          [title="Ring sizing guide"] strong{
+            font-weight: 500;
+          }
+          .product-page.page-width{
+            position: relative;
+          }
+          .icon_share{
+            position: absolute;
+            right: 40px;
+            margin: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+          }
+          .icon_share span{
+            color: #000;
+            font-family: 'Poppins';
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 18px;
+          }
+          .share{
+            margin: 0;
+    color: #000;
+    font-family: 'Poppins';
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    border-radius: 1px;
+    border: 1px solid  #E8E8E1;
+    background: #FFF;
+padding: 4px 7px;
+    position: absolute;
+    top: 22px;
+    z-index: 11;
+    width: max-content;
+          }
+          .share::before{
+position: absolute;
+    content: '';
+    width: 10px;
+    height: 10px;
+    transform: rotate(133deg);
+    -webkit-transform: rotate(133deg);
+    -moz-transform: rotate(133deg);
+    -o-transform: rotate(133deg);
+    -ms-transform: rotate(133deg);
+    border-left: 1px solid #E8E8E1;
+    border-bottom: 1px solid #E8E8E1;
+    left: 50%;
+    top: -6px;
+    background: #FFF;
+          }
+          label.variant__label:not(.variant__button-label):not(.text-label){
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            letter-spacing: normal;
+          }
+          .one-whole[data-type="dropdown"] .variant-input-wrap{
+position: relative;
+          }
+          .one-whole[data-type="dropdown"] .variant-input-wrap select{
+    padding-left: 54px;
+        z-index: 1;
+          }
+          .one-whole[data-type="dropdown"] .variant-input-wrap #fin_img{
+position: absolute !important;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    width: 24px !important;
+    height: 24px !important;
+          }
+          .variant-input-wrap select{
+            color: #000;
+            font-family: 'Poppins';
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 24px;
+            padding: 12px 28px 12px 16px;
+          }
           .product-block.before_lable_wrapp + .product-block{
             display: flex;
             flex-wrap: wrap;
@@ -110,16 +217,17 @@ let startFunk = setInterval(() => {
           .product-block.before_lable_wrapp + .product-block .variant-wrapper{
                 margin-bottom: 25px;
           }
-          .ring_size_var{
+          .variant-wrapper.ring_size_var{
              order: 1;
              width: 100%;
              margin-right: 0;
           }
-          .ring_size_var .variant-input-wrap select,
+          .variant-wrapper.ring_size_var .variant-input-wrap select,
           .material_var .variant-input-wrap select,
           .stone_var .variant-input-wrap select,
           .bracelet_length_var .variant-input-wrap select,
-          .necklace_length_var .variant-input-wrap select{
+          .necklace_length_var .variant-input-wrap select,
+          .style_var .variant-input-wrap select{
                 width: 100%;
           }
           .material_var{
@@ -128,7 +236,8 @@ let startFunk = setInterval(() => {
     margin-right: 0;
           }
           .stone_var,
-          .necklace_length_var{
+          .necklace_length_var,
+          .style_var{
                 order: 3;
                 width: 48%;
     margin-right: 0;
@@ -141,7 +250,7 @@ width: 48%;
     margin: 0;
           }
           .one-whole[data-type="dropdown"] select{
-                height: 42px !important;
+                height: 50px !important;
                     width: 100%;
           }
           .one-whole[data-type="dropdown"] #fin_img{
@@ -320,21 +429,17 @@ line-height: 20px;
 .the4-toolkit-wishlist {
   margin: 0 !important;
 }
-#shopify-section-footer {
-    padding-bottom: 3px !important;
-}
 .wishlist_txt,
 .product-block.product-block--sales-point,
 .product-block--sales-point + .shopify-block.shopify-app-block + .product-block,
 .extend-offer,
 .full-bleed--mobile.small--hide,
 .grid2__item2.medium-up--two-fifths .product-block hr,
-#syte-discovery-banner,
 #shopify-section-template--20834585772373__82449f7c-6c71-4b98-89f3-074fa0fedafc,
 .beautifully_packaged_mob,
+a.site-nav__link.site-nav__link--icon:nth-child(1),
 .product-sticky,
-[data-index="option1"][value=""],
-button[name="add"] [loading="eager"]{
+[data-index="option1"][value=""]{
   display: none !important;
 }
 #shopify-block-cadd6db7-a422-4c1f-90e3-91f50c296730 + .product-block {
@@ -361,6 +466,8 @@ button[name="add"] [loading="eager"]{
   font-weight: 400;
   line-height: 18px;
   letter-spacing: -0.308px;
+  border-bottom: 1px solid #565656;
+  margin-left: 7px;
 }
 .product-block.product-block--header {
   margin: 0 0 20px !important;
@@ -429,9 +536,9 @@ h1.h2.product-single__title {
 }
 .size_guide p {
   color: #000;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
-  line-height: 24px;
+  line-height: 18px;
   margin: 0;
 }
 .one-whole .js .one-half,
@@ -444,16 +551,24 @@ h1.h2.product-single__title {
   gap: 12px;
   align-items: center;
 }
+.new_rush_order .one-half{
+  width: 90%;
+}
+.tooltip-toggle-rush > svg{
+  width: 14px;
+}
+.new_rush_order .one-half .tooltip-toggle-rush::before{
+  left: -98px;
+}
 .one-whole .js .one-half .variant__label,
 .one-whole .js .one-whole .variant__label,
 .new_rush_order .one-half .variant__label,
 .new_rush_order .one-whole .variant__label {
   margin: 0;
-  color: #565656;
+  color: #000;
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
-  letter-spacing: 0.8px;
 }
 .one-whole .js .one-half .switch-button .switch-button__label,
 .one-whole .js .one-whole .switch-button .switch-button__label,
@@ -481,8 +596,7 @@ h1.h2.product-single__title {
 background-color: #d4a298;
 }
 form.product-single__form {
-  padding: 24px 0 0px;
-  border-top: 1px solid #e8e8e1;
+  padding: 8px 0 0px;
 }
 button[name="add"] {
   display: flex;
@@ -490,6 +604,9 @@ button[name="add"] {
     justify-content: center;
   background: #000;
   height: 56px;
+}
+button[name="add"] [loading="eager"]{
+display: none !important;
 }
 button[name="add"] svg{
   margin-right: 11px;
@@ -507,62 +624,80 @@ button[name="add"] span {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #d4a298;
-  height: 48px;
+  border: 1px solid var(--grey-border, #E8E8E1);
+  background: #FFF;
+  height: 40px;
   cursor: pointer;
-  gap: 8px;
+  gap: 16px;
+      padding: 8px;
 }
 .expert_advice p {
   color: #000;
   font-size: 14px;
   font-weight: 600;
-  line-height: 24px;
+  line-height: 20px;
   text-transform: uppercase;
   margin: 0;
 }
 .new_extend {
-  margin-bottom: 24px;
+  margin-bottom: 28px;
+  background: #F8F8F9;
+  padding: 20px;
 }
 .new_extend_head {
-  width: max-content;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 6px;
-  margin-bottom: 16px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
 }
 .new_extend_caption {
   color: #1c1d1d;
   font-family: "Poppins";
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 18px;
 }
+.insurance_txt{
+  color: #1C1D1D;
+font-family: 'Poppins';
+font-size: 13px;
+font-weight: 400;
+line-height: 18px;
+margin: 0 0 12px;
+}
 .new_extend_covered {
-  height: 16px;
-  width: 16px;
-  margin-top: -3px;
+  width: max-content;
+  display: block;
+  min-width: 71px;
   cursor: pointer;
+}
+.new_extend_covered > img{
+  max-width: 51px;
+  width: 100%;
 }
 .new_extend_body {
-  margin-top: 1px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 8px;
+  gap: 12px;
 }
 .new_extend_item {
-  border: 1px solid #e8e8e1;
-  background: #fff;
-  padding: 9px;
-  text-align: center;
-  cursor: pointer;
-  transition: 0.35s;
+    border: 1px solid #e8e8e1;
+    background: #fff;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.35s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 .new_extend_item_caption {
   color: #565656;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
-  line-height: 16px;
+  line-height: 18px;
 }
 .new_extend_item_price {
   color: #000;
@@ -575,7 +710,7 @@ button[name="add"] span {
 }
 /**earn_gift_wrapp */
 .earn_gift {
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 .earn_gift_wrapp {
   display: flex;
@@ -589,6 +724,7 @@ button[name="add"] span {
 .earn_gift_img {
   position: relative;
   max-width: 60px;
+  max-height: 60px;
   width: 100%;
 }
 .earn_gift_title {
@@ -627,26 +763,25 @@ button[name="add"] span {
   justify-content: center;
   border: 1px solid #f6f5f5;
 }
+.new_link_gift{
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  cursor: pointer;
+  color: #000;
+  font-family: 'Poppins';
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  text-decoration-line: underline;
+}
 .earn_gift > h2 {
   color: #000;
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 20px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   text-transform: initial;
-}
-.earn_gift > h2 b {
-  font-weight: 600;
-}
-.earn_gift.earn_gift_start > h2 {
-  font-weight: 500;
-}
-.earn_gift.earn_gift_start > h2 b {
-  font-weight: 500;
-  color: #c1856f;
-}
-.earn_gift.earn_gift_moon > h2 {
-  font-weight: 500;
 }
 /**new_rush_order */
 .new_rush_order_title {
@@ -659,31 +794,36 @@ button[name="add"] span {
 }
 .new_benefits {
   display: flex;
-  justify-content: center;
-  background-color: #f6f5f5;
-  padding: 16px;
-  line-height: 1;
+  justify-content: flex-start;
+  border-top: 1px solid #E4E3E0;
+  border-bottom: 1px solid #E4E3E0;
+  padding: 14px 16px;
+  line-height: 18px;
   text-transform: capitalize;
-  color: #1c1d1d;
+  color: #1C1D1D;
+font-family: 'Poppins';
+font-size: 13px;
+font-weight: 500;
   margin-top: 16px;
 }
 .new_benefits_item {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 16px;
+  max-width: 220px;
 }
-.new_benefits_item img {
-  margin-right: 8px;
+.new_benefits_item svg {
   flex-shrink: 0;
 }
 .new_benefits_item + .new_benefits_item {
-  border-left: 1px solid #fff;
-  margin-left: 16px;
-  padding-left: 16px;
+  border-left: 1px solid #E8E8E1;
+  margin-left: 32px;
+  padding-left: 32px;
 }
 /**description_new_block */
 .description_new_block{
-  padding: 24px 0 8px;
+  margin: 24px 0 8px;
 }
 .description_new_block > h2{
   color: #000;
@@ -731,7 +871,7 @@ margin: 0 0 5px;
   color: #000;
 font-family: 'Poppins';
 font-size: 13px;
-font-weight: 400;
+font-weight: 500;
 line-height: 18px;
 text-decoration-line: underline;
 margin-top: 5px;
@@ -739,9 +879,12 @@ margin-top: 5px;
 .new_tab +div{
   display: none;
 }
+.collapsible-trigger-btn--borders+.collapsible-content .collapsible-content__inner{
+  padding: 0 0 20px;
+}
 /*production_delivery */
 .production_delivery {
-  margin: 24px 0;
+  margin: 32px 0 24px;
 }
 .production_delivery > h3 {
   color: #000;
@@ -782,7 +925,7 @@ margin-top: 5px;
   display: block;
   color: #000;
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 18px;
   text-decoration-line: underline;
   cursor: pointer;
@@ -824,8 +967,8 @@ margin-top: 5px;
   justify-content: center;
   border-radius: 100px;
   background-color: #eedad6;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
 }
 .delivery_timeline_item:nth-child(3) .delivery_timeline_item_icon {
   margin-left: auto;
@@ -839,7 +982,7 @@ margin-top: 5px;
   font-size: 12px;
   font-weight: 600;
   line-height: 18px;
-  margin-top: 8px;
+  margin-top: 17px;
 }
 .delivery_timeline_item_caption {
   color: #565656;
@@ -849,9 +992,9 @@ margin-top: 5px;
 .delivery_timeline_item_info {
   position: relative;
   color: #000;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
-  line-height: 18px;
+  line-height: 20px;
   border-radius: 100px;
   border: 1px solid #f6f5f5;
   background: #f6f5f5;
@@ -1235,6 +1378,7 @@ nav.breadcrumb.custom_breadcrumbs {
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
+  max-width: 400px;
 }
 .lav-sticky__price {
   position: relative;
@@ -1290,7 +1434,7 @@ nav.breadcrumb.custom_breadcrumbs {
 .lav-sticky__btn_price .lav-product-price {
   color: #000;
   font-family: "Poppins";
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 30px;
   margin-right: 16px;
@@ -1341,7 +1485,7 @@ nav.breadcrumb.custom_breadcrumbs {
 .lav-error-txt{
 position: absolute;
     left: 0;
-    top: 41px;
+    top: 47px;
     width: max-content;
     color: #C20000;
     font-family: 'Poppins';
@@ -1382,6 +1526,7 @@ line-height: 20px;
     align-items: center;
     position: relative;
     gap: 36px;
+    margin-top: 24px;
 }
 .create_custom_img_wrap{
       max-width: 234px;
@@ -1413,7 +1558,7 @@ line-height: 20px;
 .create_custom_title{
   color: #1C1D1D;
 font-size: 16px;
-font-weight: 600;
+font-weight: 500;
 line-height: 24px;
 margin: 8px 0;
 text-transform: inherit !important;
@@ -1437,13 +1582,13 @@ text-decoration-line: underline;
 .new_txt_klarna{
 color:  #1C1D1D;
 font-family: 'Poppins';
-font-size: 12px;
-font-weight: 600;
-line-height: 16px;
+font-size: 13px;
+font-weight: 500;
+line-height: 18px;
 display: block;
-margin: 1px 0 24px 0;
-background: #FCF4F6;
-padding: 4px 8px;
+margin: -1px 0 24px;
+border: 1px solid #FCF4F6;
+padding: 6px 16px;
 }
 .new_txt_klarna b{
   font-weight: 600;
@@ -1451,22 +1596,176 @@ padding: 4px 8px;
 /*new_tab */
 .new_tab{
   margin-top: 16px;
+  margin-bottom: 24px;
+}
+.select_size_sticky{
+  display: none;
+}
+/*dVNpKj */
+#syte-discovery-banner .dVNpKj{
+border-radius: 0;
+    padding: 16px 20px;
+    background: #F3E7E2;
+}
+#syte-discovery-banner .iMSLnD{
+  padding: 0;
+  display: flex;
+      align-items: center;
+    justify-content: space-between;
+  gap: 26px;
+}
+.new_block_right{
+  width: 50%;
+}
+.new_block_left{
+  width: 50%;
+}
+.new_block_txt{
+  display: flex;
+  gap: 16px;
+      justify-content: center;
+    align-items: center;
+}
+.new_block_txt img{
+    width: 24px;
+    height: 24px;
+}
+#syte-discovery-banner .daKVjE{
+  display: none;
+}
+#syte-discovery-banner .JFxfs{
+  margin-top: 16px;
+}
+#syte-discovery-banner .ezjTIL {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(4, 1fr);
+}
+#syte-discovery-banner .fiichn{
+  border-radius: 0;
+    object-fit: cover;
+    align-self: stretch;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 50px;
+    min-height: 50px;
+    max-width: 50px;
+}
+h3.gqaIxH{
+  color: #000;
+    text-transform: initial;
+font-family: 'Poppins';
+font-size: 16px;
+font-weight: 600;
+line-height: 24px;
+}
+h3.fJBbjl{
+  background: var(--Primary, #D4A298);
+    border: none;
+    border-radius: 0;
+    color:  #FFF;
+font-family: 'Poppins';
+font-size: 14px;
+font-weight: 600;
+line-height: 20px;
+text-transform: uppercase;
+}
+select{
+    background-image: url(https://conversionratestore.github.io/projects/capucinne/img/arrow_ok.svg);
+    background-size: 16px;
+}
+select.lav-error{
+    border: 1px solid #c60200;
+    background-image: url(https://conversionratestore.github.io/projects/capucinne/img/arrow_error.svg);
+    background-size: 16px;
+}
+#shopify-section-footer {
+    padding-bottom: 10px !important;
+}
+@media (max-width: 1200px) {
+.new_benefits{
+  font-size: 11px;
+}
+.new_benefits_item + .new_benefits_item {
+    margin-left: 15px;
+    padding-left: 15px;
+}
+.create_custom_block{
+      gap: 0;
+          padding: 8px 8px;
+}
+.create_custom_title{
+      margin: 5px 0;
+}
+/*syte-discovery-banner */
+.new_block_txt{
+  gap: 7px;
+}
+h3.gqaIxH{
+  font-size: 13px;
+}
+#syte-discovery-banner .iMSLnD{
+  gap: 8px;
+}
+h3.fJBbjl{
+  padding: 10px;
+}
 }
 @media (max-width: 1180px) {
   .beautifully_packaged_container {
     padding: 20px 5px;
   }
+  .expert_advice p{
+        font-size: 12px;
+  }
 }
 @media (max-width: 768px) {
+  #shopify-section-footer{
+    padding-bottom: 0 !important;
+  }
   .template-product {
-    padding-bottom: 56px !important;
+    padding-bottom: 45px !important;
 }
+  .new_tab +div{
+    display: unset;
+  }
+  .icon_share{
+    right: 16px;
+    top: 22px;
+  }
+  .new_extend{
+        padding: 12px 16px;
+        margin: 0 -16px 24px;
+  }
+  .new_extend_item{
+    flex-direction:column;
+    gap: 0;
+  }
+  .new_extend_item_caption{
+    font-size: 12px;
+line-height: 16px;
+  }
+  .new_link_gift{
+    right: 8px;
+    bottom: 8px;
+  }
+  .earn_gift_wrapp{
+    gap: 12px;
+    padding: 8px 12px;
+  }
+  .expert_advice p{
+    line-height: 18px;
+  }
+  .lav-sticky__btn svg{
+    display: none !important;
+  }
   .description_body.no_visib{
     max-height: 95px;
   }
   .new_txt_klarna{
-    margin: 1px 0 44px 0;
-    font-weight: 400;
+font-size: 12px;
+    line-height: 16px;
+        padding: 6px 11px;
   }
   .one-whole[data-type="dropdown"] select{
     height: 47px !important;
@@ -1506,6 +1805,7 @@ line-height: 18px;
   nav.breadcrumb.custom_breadcrumbs {
     padding-bottom: 16px !important;
     margin-top: 4px !important;
+        max-width: 256px;
 }
 .--syte-start-camera-upload>svg{
   margin: 0 !important;
@@ -1536,6 +1836,12 @@ line-height: 24px;
 position: relative;
 margin-right: 20px;
 }
+.lav-sticky.none_size .select_size_sticky{
+  display: none;
+}
+.lav-sticky.none_size .lav-sticky__btn_price{
+width: 100%;
+}
 .lav-btn-price.lav-mob:after {
     content: '';
     position: absolute;
@@ -1549,7 +1855,8 @@ margin-right: 20px;
     transition: 0.2s;
 }
 .lav-sticky{
-  padding: 4px 2px;
+  padding: 0;
+  border: 1px solid var(--grey-border, #E8E8E1);
 }
 .lav-sticky__info,
 .lav-sticky .get_discount_block,
@@ -1559,14 +1866,37 @@ margin-right: 20px;
 }
 .lav-sticky__btn_price{
 padding: 0;
-width: 100%;
+    width: 100%;
     border: none;
+}
+.select_size_sticky{
+  width: 31%;
+    max-width: max-content;
+    display: block;
+}
+.select_size_sticky select{
+  border: none;
+  outline: none;
+  color: #000;
+font-family: 'Poppins';
+font-size: 14px !important;
+font-weight: 400;
+line-height: 30px;
+}
+.select_size_sticky select:focus{
+      border: none;
+    border-color: unset;
+    border-color: unset;
+}
+.select_size_sticky select.lav-error{
+    border: 1px solid #c60200;
 }
 .lav-sticky__btn{
   margin: 0;
   width: 100%;
     max-width: 100%;
         gap: 8px;
+            height: 49px;
 }
 .product-slideshow .is-selected .product__photo-zoom{
   margin: 0;
@@ -1610,18 +1940,22 @@ form.product-single__form{
   padding: 16px 0 0px;
 }
 .new_extend_head{
-      margin-bottom: 12px;
-      gap: 8px;
+  gap: 8px;
+  justify-content: flex-start;
 }
 .earn_gift > h2{
   font-size: 12px;
     line-height: 18px;
 }
 .production_delivery {
-    margin: 32px 0 25px;
+    margin: 40px 0 24px;
 }
 .production_delivery > h3{
   margin-bottom: 12px;
+  font-weight: 600;
+}
+.production_time_available{
+  padding: 6px;
 }
 .production_delivery > p{
       margin: 12px 0 12px;
@@ -1629,8 +1963,12 @@ form.product-single__form{
 .production_delivery .learn_more_btn{
     margin: 30px 0 0;
 }
+.delivery_timeline_item_info{
+      padding: 2px 8px;
+}
 .delivery_timeline_item_date{
       width: max-content;
+      font-size: 10px;
 }
 .delivery_timeline_item_caption{
   position: absolute;
@@ -1647,32 +1985,66 @@ form.product-single__form{
 }
 .new_benefits{
   margin-top: 12px;
-}
-.new_benefits{
-  padding: 12px;
+  padding: 14px 12px;
+  flex-direction:column;
+  align-items:center;
+  justify-content: center;
+  gap: 14px;
 }
 .new_benefits_item{
-color: #565656;
+color: #1C1D1D;
 font-family: 'Poppins';
-font-size: 12px;
-font-weight: 400;
+font-size: 13px;
+font-weight: 500;
 line-height: 18px;
 text-transform: capitalize;
+gap: 8px;
+max-width: unset;
 }
 .new_benefits_item + .new_benefits_item{
-  margin-left: 12px;
-    padding-left: 12px;
+    margin-left: 0;
+    padding-left: 0;
+    border: unset;
 }
 .description_new_block {
-    padding: 25px 0 6px;
+    padding: 0 0 6px;
 }
 .description_new_block > h2{
   margin: 0 0 12px;
+  font-weight: 600;
+}
+#stamped-reviews-widget[data-widget-type=carousel]{
+  width: 95% !important;
+}
+#stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll:before{
+  display: none !important;
+}
+#stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll{
+    margin: 25px 0 0;
+  }
+      #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll .block{
+        height: unset !important;
+        padding: 0 5px !important;
+      }
+      #stamped-reviews-widget[data-widget-type=carousel] .stamped-ratings-wrapper{
+  border: 1px solid #EDECEB;
+  padding: 24px 16px !important;
+}
+#stamped-reviews-widget[data-widget-type=carousel] .stamped-reviews-date{
+  margin-top: 24px;
+}
+#stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll .stamped-reviews-image img{
+      width: 100% !important;
+    height: 100% !important;
+        margin: 0 !important;
+}
+#stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll .stamped-reviews-author{
+  margin-bottom: 20px;
 }
 .create_custom_block{
   gap: 20px;
   padding: 24px 12px 36px;
-  margin: 0 0 48px;
+  margin: 48px 0 48px;
   flex-direction: column;
 }
 .create_custom_container{
@@ -1709,7 +2081,7 @@ section.shopify-section .index-section > .page-width{
 }
 .beautifully_packaged_box{
   display: flex !important;
-  margin-bottom: 48px;
+  margin: 48px 0;
     flex-direction: column;
         padding: 0 16px;
 }
@@ -1760,7 +2132,7 @@ section.shopify-section .index-section > .page-width{
     text-align: center;
 }
 #reviews{
-      margin: 29px auto 48px !important;
+      margin: 0 auto 48px !important;
 }
 #reviews .btn{
       max-width: 200px;
@@ -1792,6 +2164,52 @@ section.shopify-section .index-section > .page-width{
 .lav-error-txt{
   top: 45px;
 }
+.product-page.page-width{
+  padding-top: 16px;
+}
+#syte-discovery-banner{
+padding: 0 16px;
+    width: 100%;
+    display: block;
+}
+#syte-discovery-banner .dVNpKj{
+  padding: 32px;
+}
+#syte-discovery-banner .iMSLnD{
+  gap: 20px;
+flex-direction: column;
+}
+.new_block_right{
+  width: 100%;
+}
+.new_block_left {
+    width: 100%;
+}
+h3.fJBbjl {
+    padding: 12px;
+    margin-top: 20px;
+}
+h3.gqaIxH {
+    font-size: 18px;
+    line-height: 26px;
+}
+.new_block_txt {
+    gap: 16px;
+}
+#syte-discovery-banner .ezjTIJ{
+      display: flex;
+    gap: 8px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+#syte-discovery-banner .fiichn {
+    max-height: 58px;
+    min-height: 58px;
+    max-width: 64px;
+}
+.medium--hide{
+  display: none;
+}
 }
 @media (max-width: 376px) {
 .tangiblee-cta-wrapper .tangiblee-cta{
@@ -1799,6 +2217,9 @@ section.shopify-section .index-section > .page-width{
 }
 .earn_gift > h2{
   font-size: 11px;
+}
+#syte-discovery-banner .fiichn{
+  max-width: 63px;
 }
 }
 @media (max-width: 361px) {
@@ -1845,10 +2266,33 @@ button.syte-discovery.syte-integration-injected .button-text{
     `;
 
     let expertAdvice = /*html */ `
+    <div class="expert_advice_benefits_wrapp">
       <div class="expert_advice">
-         <img src='https://conversionratestore.github.io/projects/capucinne/img/eye.svg' />
-        <p>Get live expert advice</p>
+        <img src="https://conversionratestore.github.io/projects/capucinne/img/eye.svg" />
+        <p>SEE OUR PRODUCTS LIVE - SCHEDULE A MEETING</p>
       </div>
+      <div class="new_benefits">
+        <div class="new_benefits_item">
+         <svg xmlns="http://www.w3.org/2000/svg" width="73" height="16" viewBox="0 0 73 16" fill="none">
+  <g clip-path="url(#clip0_1896_13462)">
+    <path d="M23.3639 6.68619C23.0472 7.115 22.5174 7.86047 22.195 8.29587C22.0313 8.51729 21.7357 8.9193 22.7157 8.9193H27.8759C27.8759 8.9193 28.7075 7.7879 29.4048 6.84163C30.3531 5.55438 29.4868 2.87598 26.0963 2.87598H12.7439L10.4287 6.02154H23.0468C23.6839 6.02154 23.6752 6.26398 23.3639 6.68619ZM19.5731 9.69528C18.593 9.69528 18.8886 9.29244 19.0523 9.07103C19.3747 8.63562 19.9132 7.89799 20.2299 7.46918C20.5416 7.04697 20.5498 6.80453 19.912 6.80453H14.1412L9.49152 13.1237H20.8306C24.5757 13.1237 26.6608 10.5764 27.3036 9.69569L19.5731 9.69528ZM26.9494 13.1237H33.6013L36.123 9.69486L29.472 9.69569C29.4699 9.69528 26.9494 13.1237 26.9494 13.1237ZM44.1121 2.87598L41.5607 6.3415H38.592L41.1422 2.87598H34.4923L30.0434 8.9193H46.3134L50.7611 2.87598H44.1121ZM36.57 13.1237H43.2194L45.7424 9.69569H39.0929C39.0905 9.69528 36.57 13.1237 36.57 13.1237ZM0 11.0477V11.7758H9.26392L9.79911 11.0477H0ZM10.7949 9.69528H0V10.4226H10.2584L10.7949 9.69528ZM0 13.1237H8.27148L8.80419 12.3997H0V13.1237ZM62.7018 11.7754H72.4638V11.0473H63.2378L62.7018 11.7754ZM61.7102 13.1237H72.4638V12.3997H62.2424L61.7102 13.1237ZM64.2319 9.69528L63.6971 10.4234H72.4638V9.69528H64.2319ZM55.5221 8.9193L59.9706 2.87598H52.9278C52.9253 2.87598 48.476 8.9193 48.476 8.9193H55.5221ZM47.9058 9.69528C47.9058 9.69528 47.4197 10.3595 47.1834 10.6795C46.3485 11.8076 47.0869 13.1237 49.8123 13.1237H60.4918L63.0147 9.69569L47.9058 9.69528Z" fill="#D4A298"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_1896_13462">
+      <rect width="72.4638" height="16" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>
+        Free & fully insured express delivery
+        </div>
+        <div class="new_benefits_item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M20.6078 4.71308L12.6243 2.02538C12.5238 1.99154 12.4149 1.99154 12.3143 2.02538L4.33081 4.71308C4.13312 4.77964 4 4.96494 4 5.17352V11.8466C4 16.7891 7.52316 21.0556 12.3773 21.9912C12.4077 21.9971 12.4385 22 12.4693 22C12.5 22 12.5308 21.9971 12.5612 21.9912C17.4153 21.0556 20.9385 16.7891 20.9385 11.8466V5.17352C20.9386 4.9649 20.8055 4.7796 20.6078 4.71308ZM11.5675 13.7637L16.6798 8.86895C16.8736 8.6834 17.1811 8.69008 17.3667 8.88389C17.5522 9.07769 17.5455 9.38522 17.3517 9.57081L11.9104 14.7806C11.8166 14.8705 11.6955 14.9155 11.5743 14.9155C11.4566 14.9155 11.3388 14.873 11.2457 14.7876L8.21105 12.0006C8.01344 11.8191 8.00036 11.5118 8.18182 11.3141C8.36332 11.1165 8.67069 11.1035 8.8683 11.2849L11.5675 13.7637Z" fill="#CC9286"/>
+</svg>
+          14 days Free Returns & Exchange 
+        </div>
+      </div>
+    </div>
     `;
 
     let productionDelivery = /*html */ `
@@ -1858,23 +2302,12 @@ button.syte-discovery.syte-integration-injected .button-text{
     let newRushOrder = /*html */ `
     <div class="new_rush_order">
         <h3 class="new_rush_order_title">Need it faster ?</h3>
-        <div class="new_benefits">
-        <div class="new_benefits_item">
-            <img src="https://flopsi69.github.io/crs/capucinne/pdp_slidein/img/delivery.svg">
-            Free insured shipping
-        </div>
-
-        <div class="new_benefits_item">
-            <img src="https://flopsi69.github.io/crs/capucinne/pdp_slidein/img/shield.svg">
-            14 days Free Returns &amp;&nbsp;Exchange 
-        </div>
-        </div>
     </div>
       `;
 
     let earnStart = /*html */ `
   <div class='earn_gift earn_gift_start'>
-    <h2>Spend <b>$1500</b> or more and get complimentary gift </h2>
+    <h2>Spend $1500 or more and get complimentary gift </h2>
     <div class="earn_gift_wrapp">
         <div class='earn_gift_img'>
             <img class='earn_gift_start' src='https://conversionratestore.github.io/projects/capucinne/earn.jpg'  />
@@ -1889,13 +2322,14 @@ button.syte-discovery.syte-integration-injected .button-text{
         <div class='earn_gift_icon'>
             <img class='earn_gift_icon_abs' src='https://conversionratestore.github.io/projects/capucinne/img/gift.svg'  />
         </div>
+        <a target="_blank" class="new_link_gift" href="https://capucinne.com/pages/gifts?_pos=2&_sid=0ff8257bc&_ss=r">More gifts ></a>
     </div>
   </div>
   `;
 
     let earnGift1 = /*html */ `
   <div class='earn_gift earn_gift_chain'>
-    <h2><b>You’ll receive a gift</b> with your order</h2>
+    <h2>You’ll receive a gift with your order</h2>
     <div class="earn_gift_wrapp">
         <div class='earn_gift_img'>
             <img class='earn_gift_chain' src='https://conversionratestore.github.io/projects/capucinne/earn.jpg'  />
@@ -1907,6 +2341,7 @@ button.syte-discovery.syte-integration-injected .button-text{
         <div class='earn_gift_icon'>
             <img class='earn_gift_icon_abs' src='https://conversionratestore.github.io/projects/capucinne/img/gift.svg'  />
         </div>
+        <a target="_blank" class="new_link_gift" href="https://capucinne.com/pages/gifts?_pos=2&_sid=0ff8257bc&_ss=r">More gifts ></a>
     </div>
   </div>
   `;
@@ -1925,6 +2360,7 @@ button.syte-discovery.syte-integration-injected .button-text{
         <div class='earn_gift_icon'>
             <img class='earn_gift_icon_abs' src='https://conversionratestore.github.io/projects/capucinne/img/gift.svg'  />
         </div>
+        <a target="_blank" class="new_link_gift" href="https://capucinne.com/pages/gifts?_pos=2&_sid=0ff8257bc&_ss=r">More gifts ></a>
     </div>
   </div>
   `;
@@ -2032,7 +2468,7 @@ button.syte-discovery.syte-integration-injected .button-text{
     renderNewBlocks();
     onDiffClick();
     waitFor(
-      () => document.querySelector(".product-single__title") && item && item.ImageURL && document.querySelector("[data-add-to-cart]") && document.querySelector(".extend-offer"),
+      () => document.querySelector(".product-single__title") && item && item.ImageURL && document.querySelector("[data-add-to-cart]"),
       () => {
         addSticky();
       }
@@ -2055,11 +2491,12 @@ button.syte-discovery.syte-integration-injected .button-text{
     setInterval(() => {
       handleKlarna();
       handleWidgets();
+      onClickSyteDiscoveryBanner();
       waitFor(
         () => () => document.querySelector("[doubly-currency-usd]"),
         () => {
           // add You’ll receive a gift with your order
-          if (document.querySelector(".new_extend") && document.querySelector(".product__price:not(.product__price--compare) .money").getAttribute("doubly-currency-usd")) {
+          if (document.querySelector(".product__price:not(.product__price--compare) .money").getAttribute("doubly-currency-usd")) {
             handleEarn();
           }
         }
@@ -2074,8 +2511,75 @@ button.syte-discovery.syte-integration-injected .button-text{
     }
 
     function renderNewBlocks() {
+      //
+      let findBlock = setInterval(() => {
+        if (document.querySelector(".iMSLnD") && !document.querySelector(".new_block_right")) {
+          clearInterval(findBlock);
+          document.querySelector(".iMSLnD").insertAdjacentHTML(
+            "afterbegin",
+            `<div class="new_block_right"><div class="new_block_txt"><img src="https://conversionratestore.github.io/projects/capucinne/img/hand_icon.svg" alt="hand icon" /></div></div>
+      <div class="new_block_left"></div>`
+          );
+        }
+
+        if (document.querySelector(".new_block_right")) {
+          if (document.querySelector(".daKVjE")) {
+            document.querySelector(".new_block_txt").insertAdjacentElement("beforeend", document.querySelector(".daKVjE"));
+          }
+          if (document.querySelector(".hiuISs")) {
+            document.querySelector(".new_block_txt").insertAdjacentElement("beforeend", document.querySelector(".hiuISs"));
+          }
+          if (window.innerWidth > 768) {
+            if (document.querySelector(".JFxfs")) {
+              document.querySelector(".new_block_right").insertAdjacentElement("beforeend", document.querySelector(".JFxfs"));
+            }
+            if (!document.querySelector(".JFxfs") && document.querySelector("h3.fJBbjl")) {
+              document.querySelector(".new_block_right").insertAdjacentElement("beforeend", document.querySelector("h3.fJBbjl"));
+            }
+          }
+        }
+
+        if (document.querySelector(".new_block_left") && document.querySelector(".TLcL")) {
+          document.querySelector(".new_block_left").insertAdjacentElement("beforeend", document.querySelector(".TLcL"));
+        }
+      }, 100);
+      //icon_share
+      if (!document.querySelector(".icon_share")) {
+        document.querySelector(".product-page.page-width").insertAdjacentHTML(
+          "afterbegin",
+          `<p class="icon_share"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.5 4.9573V15.7242C0.5 15.8764 0.623586 16 0.775861 16H13.4655C13.6177 16 13.7413 15.8764 13.7413 15.7242V12.4138C13.7413 12.2615 13.6177 12.138 13.4655 12.138C13.3132 12.138 13.1896 12.2615 13.1896 12.4138V15.4483H1.05172V4.9573C1.05172 4.80503 0.928136 4.68144 0.775861 4.68144C0.623586 4.68144 0.5 4.80503 0.5 4.9573ZM11.5344 3.27952C10.7438 3.31152 8.463 3.55841 6.53501 5.27813C4.96812 6.67564 3.62219 9.04942 3.53447 13.0974C3.53171 13.2309 3.62468 13.3473 3.75571 13.3738C3.88647 13.4003 4.0175 13.3291 4.06688 13.205C4.06688 13.205 6.26604 7.62157 11.5344 8.4326V11.0428C11.5344 11.1595 11.6078 11.2635 11.7173 11.3027C11.8271 11.3418 11.9496 11.3079 12.0235 11.2177L16.4373 5.83427C16.5209 5.73275 16.5209 5.58627 16.4373 5.48447L12.0235 0.101047C11.9496 0.0108408 11.8271 -0.0230898 11.7173 0.0160825C11.6078 0.0555306 11.5344 0.15953 11.5344 0.275944V3.27952ZM11.7995 3.82737C11.8746 3.83041 11.9474 3.80255 12.0015 3.75069C12.0555 3.69855 12.0862 3.62683 12.0862 3.55179V1.04753L15.8674 5.65937L12.0862 10.2712V8.1995C12.0862 8.06653 11.9913 7.9526 11.8608 7.92833C7.65969 7.14847 5.20977 10.1021 4.1615 11.8315C4.4633 8.75977 5.59046 6.85992 6.90218 5.68971C9.1041 3.72586 11.7995 3.82737 11.7995 3.82737Z" fill="#C1856F"/>
+  </svg>
+  <span>Share</span></p>`
+        );
+      }
+
+      onClickShare();
+
+      function onClickShare() {
+        let iconShare = setInterval(() => {
+          if (document.querySelector(".icon_share")) {
+            clearInterval(iconShare);
+            document.querySelector(".icon_share").addEventListener("click", () => {
+              pushDataLayer(["exp_main_barriersv2_produc_link_share", "Share text", "LInk", "Product page"]);
+              navigator.clipboard.writeText(window.location);
+
+              document.querySelector(".share")?.remove();
+              document.querySelector(".icon_share").insertAdjacentHTML(
+                "beforeend",
+                `<p class="share">
+                  <span>Link copied</span>
+                </p>`
+              );
+              setTimeout(() => {
+                document.querySelector(".share")?.remove();
+              }, 3000);
+            });
+          }
+        }, 100);
+      }
       // add txt Klarna
-      if (document.querySelector("#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b") && !document.querySelector(".new_txt_klarna")) {
+      if (document.querySelector("#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b") && !document.querySelector(".new_txt_klarna") && document.querySelector("klarna-placement div")) {
         document.querySelector("#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b").insertAdjacentHTML("beforeend", `<span class="new_txt_klarna"><b>Pay nothing today.</b> The annual percentage rate is <b>0%</b></span>`);
       }
       //replace select
@@ -2084,25 +2588,23 @@ button.syte-discovery.syte-integration-injected .button-text{
       }
       if (document.querySelector(".product-block--sales-point + .shopify-block.shopify-app-block + .product-block").classList.contains("before_lable_wrapp")) {
         document.querySelectorAll(".variant-wrapper.variant-wrapper--dropdown .variant__label").forEach((el) => {
-          if (el.textContent.includes("Ring size") && !document.querySelector(".ring_size_var")) {
+          if (el.textContent.toLocaleLowerCase().includes("size") && !document.querySelector(".variant-wrapper.ring_size_var")) {
             el.closest(".variant-wrapper--dropdown").classList.add("ring_size_var");
-            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
           }
           if (el.textContent.includes("Material") && !document.querySelector(".material_var")) {
             el.closest(".variant-wrapper--dropdown").classList.add("material_var");
-            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
           }
           if (el.textContent.includes("Stone") && !document.querySelector(".stone_var")) {
             el.closest(".variant-wrapper--dropdown").classList.add("stone_var");
-            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
           }
           if (el.textContent.includes("Bracelet length") && !document.querySelector(".bracelet_length_var")) {
             el.closest(".variant-wrapper--dropdown").classList.add("bracelet_length_var");
-            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
           }
           if (el.textContent.includes("Necklace Length") && !document.querySelector(".necklace_length_var")) {
             el.closest(".variant-wrapper--dropdown").classList.add("necklace_length_var");
-            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
+          }
+          if (el.textContent.includes("Style") && !document.querySelector(".style_var")) {
+            el.closest(".variant-wrapper--dropdown").classList.add("style_var");
           }
         });
       }
@@ -2110,6 +2612,16 @@ button.syte-discovery.syte-integration-injected .button-text{
       if (document.querySelector('[title="Ring sizing guide"]')) {
         if (document.querySelector('[title="Ring sizing guide"]').href !== "https://www.docdroid.net/2eqEQph/ring-size-capucinne-with-scale-pdf" && document.querySelector('[title="Ring sizing guide"]')) {
           document.querySelector('[title="Ring sizing guide"]').href = "https://www.docdroid.net/2eqEQph/ring-size-capucinne-with-scale-pdf";
+        }
+        if (document.querySelector('[title="Ring sizing guide"]') && !document.querySelector('[title="Ring sizing guide"] svg')) {
+          document.querySelector('[title="Ring sizing guide"]').insertAdjacentHTML(
+            "beforeend",
+            `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 18 20" fill="none">
+  <path d="M13.4846 8.56503V4.82066C13.4846 4.71348 13.435 4.61446 13.365 4.53611L9.16702 0.127857C9.08868 0.0454366 8.97728 0 8.86603 0H2.21024C0.981491 0 0 1.00202 0 2.23092V14.8166C0 16.0455 0.981491 17.031 2.21024 17.031H7.46398C8.4577 18.6805 10.264 19.7856 12.3216 19.7856C15.4474 19.7856 18 17.2454 18 14.1155C18.0042 11.3815 16.0412 9.09698 13.4846 8.56503ZM9.27843 1.44748L12.0949 4.41233H10.2681C9.72374 4.41233 9.27843 3.96295 9.27843 3.41861V1.44748ZM2.21024 16.2062C1.43918 16.2062 0.824803 15.5876 0.824803 14.8166V2.23092C0.824803 1.45563 1.43918 0.824803 2.21024 0.824803H8.45362V3.41861C8.45362 4.42064 9.26605 5.23714 10.2681 5.23714H12.6598V8.4577C12.5361 8.45363 12.4371 8.44125 12.3299 8.44125C10.8907 8.44125 9.56705 8.99388 8.5691 9.8599H3.33197C3.10509 9.8599 2.91957 10.0454 2.91957 10.2721C2.91957 10.499 3.10509 10.6845 3.33197 10.6845H7.80212C7.50927 11.0969 7.26593 11.5094 7.07634 11.963H3.33197C3.10509 11.963 2.91957 12.1485 2.91957 12.3754C2.91957 12.6021 3.10509 12.7878 3.33197 12.7878H6.80825C6.70515 13.2002 6.65156 13.6579 6.65156 14.1155C6.65156 14.8578 6.79587 15.5919 7.05566 16.2105H2.21024V16.2062ZM12.3259 18.965C9.6537 18.965 7.48044 16.7918 7.48044 14.1196C7.48044 11.4475 9.64947 9.2742 12.3259 9.2742C15.0021 9.2742 17.1711 11.4475 17.1711 14.1196C17.1711 16.7918 14.998 18.965 12.3259 18.965Z" fill="black"/>
+  <path d="M3.33184 8.61875H7.50914C7.73602 8.61875 7.92154 8.43308 7.92154 8.20635C7.92154 7.97947 7.73602 7.79395 7.50914 7.79395H3.33184C3.10495 7.79395 2.91943 7.97947 2.91943 8.20635C2.91943 8.43308 3.10495 8.61875 3.33184 8.61875Z" fill="black"/>
+  <path d="M14.4368 14.033L12.742 15.8598V11.3567C12.742 11.1299 12.5564 10.9443 12.3296 10.9443C12.1028 10.9443 11.9172 11.1299 11.9172 11.3567V15.8598L10.21 14.033C10.0533 13.8681 9.78942 13.8558 9.62443 14.0124C9.45944 14.1691 9.44706 14.4289 9.6039 14.5939L12.0163 17.1877C12.0946 17.2701 12.2018 17.3197 12.3173 17.3197C12.4327 17.3197 12.5399 17.2701 12.6183 17.1877L15.0349 14.5939C15.1915 14.4289 15.1832 14.1651 15.0183 14.0124C14.8492 13.8558 14.5936 13.8681 14.4368 14.033Z" fill="black"/>
+</svg>`
+          );
         }
       }
       // change icon header
@@ -2119,8 +2631,8 @@ button.syte-discovery.syte-integration-injected .button-text{
         <path d="M11 5.7666C8.16496 5.7666 5.8667 8.06487 5.8667 10.8999C5.8667 13.735 8.16496 16.0333 11 16.0333C13.8351 16.0333 16.1334 13.735 16.1334 10.8999C16.1334 8.06487 13.8351 5.7666 11 5.7666ZM11 15.2999C8.56999 15.2999 6.60005 13.33 6.60005 10.8999C6.60005 8.46989 8.56999 6.49995 11 6.49995C13.4301 6.49995 15.4 8.46989 15.4 10.8999C15.4 13.33 13.4301 15.2999 11 15.2999Z" fill="black"/>
       </svg>`;
       }
-      if (!document.querySelector(".new_icon_login") && document.querySelector(".js-search-header svg:not(.new_icon_login)")) {
-        document.querySelector("[href='/account'] svg:not(.new_icon_login)").outerHTML = `<svg class="new_icon_login" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      if (!document.querySelector(".new_icon_login") && document.querySelector("a.site-nav__link.site-nav__link--icon.small--hide svg:not(.new_icon_login)")) {
+        document.querySelector("a.site-nav__link.site-nav__link--icon.small--hide svg:not(.new_icon_login)").outerHTML = `<svg class="new_icon_login" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M9.17837 11.5306C9.87796 12.1159 10.8061 12.5559 12.2988 13.178C13.458 13.6608 14.7318 13.9396 15.9482 14.3057C17.2771 14.7053 18.5384 15.2065 19.4608 16.2718C20.3384 17.2853 20.8976 18.8012 20.9543 21.1837H3.82408C3.96122 17.5927 5.90776 15.2624 8.44857 14.1522C8.65469 14.062 8.74939 13.8212 8.65878 13.6147C8.56857 13.4082 8.32776 13.3139 8.12163 13.4041C5.21673 14.6735 3 17.3788 3 21.5918C3 21.8171 3.18286 22 3.40816 22H21.3673C21.5927 22 21.7755 21.8171 21.7755 21.5918C21.7755 18.7029 21.1 16.9176 20.078 15.7371C19.0514 14.5522 17.662 13.969 16.1837 13.5241C14.9939 13.1657 13.7465 12.8967 12.6127 12.4241C10.6106 11.5902 9.4302 10.9955 8.68082 9.92857C8.66898 9.91184 7.89796 8.93878 7.89796 7.30612C7.89796 4.82 9.78735 2.80694 12.3878 2.81633C14.8657 2.82531 16.8776 4.82816 16.8776 7.30612C16.8776 8.9649 15.9759 10.4147 14.6367 11.1922C14.442 11.3053 14.3755 11.5551 14.4886 11.7498C14.602 11.9449 14.8518 12.011 15.0465 11.898C16.629 10.9792 17.6939 9.26612 17.6939 7.30612C17.6939 4.37755 15.3163 2 12.3878 2C9.45918 2 7.08163 4.37755 7.08163 7.30612C7.08163 9.02898 7.90449 10.5612 9.17837 11.5306Z" fill="black"/>
         </svg>
         `;
@@ -2168,7 +2680,7 @@ button.syte-discovery.syte-integration-injected .button-text{
 
       // add size Guide
       document.querySelectorAll(".variant__label").forEach((el) => {
-        if (el.textContent.includes("Ring size")) {
+        if (el.textContent.toLocaleLowerCase().includes("size")) {
           if (document.querySelector(".variant-wrapper") && !document.querySelector(".size_guide")) {
             // if (window.innerWidth > 768) {
             //   document.querySelector("[data-product-price]").insertAdjacentHTML("beforeend", sizeGuide);
@@ -2188,19 +2700,19 @@ button.syte-discovery.syte-integration-injected .button-text{
       //   handleEarn();
       // }
       // add expert Advice
-      if (document.querySelector("form.product-single__form") && !document.querySelector(".expert_advice")) {
+      if (document.querySelector("form.product-single__form") && !document.querySelector(".expert_advice_benefits_wrapp")) {
         document.querySelector("form.product-single__form").closest(".product-block").insertAdjacentHTML("afterend", expertAdvice);
       }
       // add production & delivery
-      if (document.querySelector(".expert_advice") && !document.querySelector(".production_delivery")) {
-        document.querySelector(".expert_advice").insertAdjacentHTML("afterend", productionDelivery);
+      if (document.querySelector(".expert_advice_benefits_wrapp") && !document.querySelector(".production_delivery")) {
+        document.querySelector(".expert_advice_benefits_wrapp").insertAdjacentHTML("afterend", productionDelivery);
       }
       if (document.querySelector(".production_delivery")) {
         handleShipping();
         getPdpShorterProduction();
       }
       // Add "Rush Order" to your purchase
-      if (document.querySelector(".production_delivery") && !document.querySelector(".new_rush_order")) {
+      if (document.querySelector(".production_delivery") && !document.querySelector(".new_rush_order") && document.querySelector("#rush")) {
         document.querySelector(".production_delivery").insertAdjacentHTML("afterend", newRushOrder);
       }
       document.querySelectorAll(".one-whole .js > div > div").forEach((el) => {
@@ -2215,6 +2727,12 @@ button.syte-discovery.syte-integration-injected .button-text{
           }
         }
       });
+      // if (!document.querySelector(".new_rush_order_txt")) {
+      //   document.querySelector(".new_rush_order .one-half .variant__label")?.insertAdjacentHTML("afterbegin", `<span class="new_rush_order_txt">Choose ‘Rush Order’ for faster production at extra cost</span>`);
+      // }
+      // if (document.querySelector(".new_rush_order_txt")) {
+      //   document.querySelector(".new_rush_order_txt").after(document.querySelector("#rush"));
+      // }
       // if (document.querySelector(".new_rush_order .one-whole")) {
       //   document.querySelector(".new_rush_order .one-whole label").innerHTML = `Add <b>"Rush Order"</b> to your purchase <span class="tooltip-toggle-rush" aria-label="Shorter production time" tabindex="0">
       //          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2223,17 +2741,18 @@ button.syte-discovery.syte-integration-injected .button-text{
       //          </svg>
       //        </span>`;
       // }
-      // if (document.querySelector(".new_rush_order .one-half")) {
-      //   document.querySelector(".new_rush_order .one-half label").innerHTML = `Add <b>"Rush Order"</b> to your purchase <span class="tooltip-toggle-rush" aria-label="Shorter production time" tabindex="0">
-      //          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-      //          <circle cx="7.87793" cy="7.70068" r="6.5" fill="white" stroke="#D4A298"></circle>
-      //          <path d="M7.88724 5.70868C7.72191 5.70868 7.58324 5.65268 7.47124 5.54068C7.35924 5.42868 7.30324 5.29002 7.30324 5.12468C7.30324 4.95935 7.35924 4.82068 7.47124 4.70868C7.58324 4.59668 7.72191 4.54068 7.88724 4.54068C8.04724 4.54068 8.18324 4.59668 8.29524 4.70868C8.40724 4.82068 8.46324 4.95935 8.46324 5.12468C8.46324 5.29002 8.40724 5.42868 8.29524 5.54068C8.18324 5.65268 8.04724 5.70868 7.88724 5.70868ZM8.33524 6.29268V10.7007H7.42324V6.29268H8.33524Z" fill="#D4A298"></path>
-      //          </svg>
-      //        </span>`;
-      // }
+      if (document.querySelector(".new_rush_order .one-half")) {
+        document.querySelector(".new_rush_order .one-half label").innerHTML = `Choose ‘Rush Order’ for faster production at extra cost
+              <span class="tooltip-toggle-rush" id="rush" label="Shorter production time" tabindex="0">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="7.87793" cy="7.70068" r="6.5" fill="white" stroke="#D4A298"></circle>
+          <path d="M7.88724 5.70868C7.72191 5.70868 7.58324 5.65268 7.47124 5.54068C7.35924 5.42868 7.30324 5.29002 7.30324 5.12468C7.30324 4.95935 7.35924 4.82068 7.47124 4.70868C7.58324 4.59668 7.72191 4.54068 7.88724 4.54068C8.04724 4.54068 8.18324 4.59668 8.29524 4.70868C8.40724 4.82068 8.46324 4.95935 8.46324 5.12468C8.46324 5.29002 8.40724 5.42868 8.29524 5.54068C8.18324 5.65268 8.04724 5.70868 7.88724 5.70868ZM8.33524 6.29268V10.7007H7.42324V6.29268H8.33524Z" fill="#D4A298"></path>
+          </svg></span>
+             </span>`;
+      }
       //add new block Description
       if (!document.querySelector(".description_new_block") && document.querySelector(".new_rush_order")) {
-        document.querySelector(".new_rush_order").insertAdjacentHTML("afterend", `<div class="description_new_block"><h2>Description</h2><div class="description_body no_visib"></div><span class="read_more_btn">Read more ></span></div>`);
+        document.querySelector(".new_rush_order").insertAdjacentHTML("afterend", `<div class="description_new_block"><h2>Description</h2><div class="description_body no_visib"></div><span class="read_more_btn">Learn more ></span></div>`);
       }
       if (document.querySelector(".description_new_block") && document.querySelector(".description_body").children.length === 0) {
         let children = document.querySelectorAll(".product-block.product-block--tab .collapsible-content__inner")[0]?.innerHTML;
@@ -2283,6 +2802,9 @@ button.syte-discovery.syte-integration-injected .button-text{
       if (window.innerWidth <= 768) {
         if (document.querySelector(".beautifully_packaged_box") && !document.querySelector(".new_tab")) {
           document.querySelector(".beautifully_packaged_box").insertAdjacentHTML("beforebegin", `<div class="new_tab"></div>`);
+        }
+        if (document.querySelector(".new_tab") && !document.querySelector(".new_tab + #syte-discovery-banner")) {
+          document.querySelector(".new_tab").after(document.querySelector("#syte-discovery-banner"));
         }
       } else {
         if (document.querySelector(".description_new_block") && !document.querySelector(".new_tab")) {
@@ -2429,15 +2951,16 @@ button.syte-discovery.syte-integration-injected .button-text{
         <div class='new_extend_head'>
           <div class='new_extend_caption'>
             Add accident protection offered by
+            </div>
+            <div class='new_extend_covered'>
             <img src='https://flopsi69.github.io/crs/capucinne/pdp_slidein/img/extend.svg' />
-          </div>
-          <div class='new_extend_covered'>
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="7.87793" cy="7.70068" r="6.5" fill="white" stroke="#D4A298"></circle>
           <path d="M7.88724 5.70868C7.72191 5.70868 7.58324 5.65268 7.47124 5.54068C7.35924 5.42868 7.30324 5.29002 7.30324 5.12468C7.30324 4.95935 7.35924 4.82068 7.47124 4.70868C7.58324 4.59668 7.72191 4.54068 7.88724 4.54068C8.04724 4.54068 8.18324 4.59668 8.29524 4.70868C8.40724 4.82068 8.46324 4.95935 8.46324 5.12468C8.46324 5.29002 8.40724 5.42868 8.29524 5.54068C8.18324 5.65268 8.04724 5.70868 7.88724 5.70868ZM8.33524 6.29268V10.7007H7.42324V6.29268H8.33524Z" fill="#D4A298"></path>
           </svg>
           </div>
         </div>
+        <div class="insurance_txt">USA based insurance company guarantee</div>
         <div class='new_extend_body'></div>
       </div>
     `;
@@ -2456,7 +2979,7 @@ button.syte-discovery.syte-integration-injected .button-text{
         }
         console.log(item.querySelector(".plan-price").textContent.split("$"));
         el.innerHTML = `
-        <div class='new_extend_item_caption'>${item.querySelector(".term-length").textContent}</div>
+        <div class='new_extend_item_caption'>${item.querySelector(".term-length").textContent}:</div>
         <div class='new_extend_item_price'>$${w}</div>
       `;
 
@@ -2475,8 +2998,17 @@ button.syte-discovery.syte-integration-injected .button-text{
         });
       }
 
-      document.querySelector(".new_extend_covered")?.addEventListener("click", () => {
-        innerEl.querySelector(".info-link")?.click();
+      document.querySelector(".new_extend_covered")?.addEventListener("click", (e) => {
+        if (!e.target.getAttribute("data-test")) {
+          pushDataLayer(["exp_main_barriersv2_produc_tooltip_ext", "Extend", "Tooltip", "Product page"]);
+          innerEl.querySelector(".info-link")?.click();
+        }
+        e.target.setAttribute("data-test", "1");
+        setTimeout(() => {
+          if (e.target.getAttribute("data-test")) {
+            e.target.removeAttribute("data-test");
+          }
+        }, 1000);
       });
     }
 
@@ -2489,13 +3021,41 @@ button.syte-discovery.syte-integration-injected .button-text{
       let subtotal = price;
       if (subtotal >= 5000 && !document.querySelector(".earn_gift_moon")) {
         document.querySelector(".earn_gift")?.remove();
-        document.querySelector(".new_extend")?.insertAdjacentHTML("afterend", earnGift2);
+        if (document.querySelector(".lav-select_size")) {
+          document.querySelector(".lav-select_size")?.insertAdjacentHTML("beforebegin", earnGift2);
+        } else {
+          document.querySelector(".btn.btn--full.add-to-cart")?.insertAdjacentHTML("beforebegin", earnGift2);
+        }
       } else if (subtotal < 5000 && subtotal >= 1500 && !document.querySelector(".earn_gift_chain")) {
         document.querySelector(".earn_gift")?.remove();
-        document.querySelector(".new_extend")?.insertAdjacentHTML("afterend", earnGift1);
+        if (document.querySelector(".lav-select_size")) {
+          document.querySelector(".lav-select_size")?.insertAdjacentHTML("beforebegin", earnGift1);
+        } else {
+          document.querySelector(".btn.btn--full.add-to-cart")?.insertAdjacentHTML("beforebegin", earnGift1);
+        }
       } else if (subtotal < 1500 && !document.querySelector(".earn_gift_start")) {
         document.querySelector(".earn_gift")?.remove();
-        document.querySelector(".new_extend")?.insertAdjacentHTML("afterend", earnStart);
+        if (document.querySelector(".lav-select_size")) {
+          document.querySelector(".lav-select_size")?.insertAdjacentHTML("beforebegin", earnStart);
+        } else {
+          document.querySelector(".btn.btn--full.add-to-cart")?.insertAdjacentHTML("beforebegin", earnStart);
+        }
+      }
+
+      if (document.querySelector(".new_link_gift")) {
+        document.querySelectorAll(".new_link_gift").forEach((el) => {
+          el.addEventListener("click", (e) => {
+            if (!e.target.getAttribute("data-test")) {
+              pushDataLayer(["exp_main_barriersv2_produc_link_moreg", "More gifts", "Link", "Product page"]);
+            }
+            e.target.setAttribute("data-test", "1");
+            setTimeout(() => {
+              if (e.target.getAttribute("data-test")) {
+                e.target.removeAttribute("data-test");
+              }
+            }, 1000);
+          });
+        });
       }
     }
 
@@ -2507,8 +3067,8 @@ button.syte-discovery.syte-integration-injected .button-text{
       let dateAfter9Weeks = new Date(date.getTime() + 9 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
       console.log(dateAfter8Weeks);
 
-      const deliveryFrom = new Date(date.getTime() + (8 * 7 + 5) * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
-      const deliferyAfter = new Date(date.getTime() + (9 * 7 + 5) * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
+      const deliveryFrom = new Date(date.getTime() + (8 * 7 + 7) * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
+      const deliferyAfter = new Date(date.getTime() + (9 * 7 + 7) * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
 
       document.querySelector(".production_delivery").innerHTML = `
         <h3>Production & Delivery </h3>
@@ -2544,7 +3104,7 @@ button.syte-discovery.syte-integration-injected .button-text{
             <div class='delivery_timeline_item_icon'>
               <img src='https://conversionratestore.github.io/projects/capucinne/img/present_box.svg' />
             </div>
-            <div class='delivery_timeline_item_date'>${deliveryFrom}-${deliferyAfter}</div>
+            <div class='delivery_timeline_item_date longer_time'>${deliveryFrom}-${deliferyAfter}</div>
             <div class='delivery_timeline_item_caption'>Delivered!</div>
           </div>
         </div>
@@ -2571,9 +3131,9 @@ button.syte-discovery.syte-integration-injected .button-text{
             document.querySelector(".description_body").classList.toggle("no_visib");
             document.querySelector(".description_new_block").scrollIntoView({ block: "start", behavior: "smooth" });
             if (document.querySelector(".description_body").classList.contains("no_visib")) {
-              e.currentTarget.textContent = "Read more >";
+              e.currentTarget.textContent = "Learn more >";
             } else {
-              e.currentTarget.textContent = "Read Less <";
+              e.currentTarget.textContent = "Learn less <";
             }
           });
         }
@@ -2717,6 +3277,8 @@ button.syte-discovery.syte-integration-injected .button-text{
     function addSticky() {
       const el = `
       <div class='lav-sticky'>
+      <div class="select_size_sticky ring_size_var">
+      </div>
         <div class='lav-sticky__info'>
           <div class='lav-sticky__img'>
             <img src='${item.ImageURL}' />
@@ -2744,6 +3306,7 @@ button.syte-discovery.syte-integration-injected .button-text{
     `;
 
       document.querySelector("body").insertAdjacentHTML("beforeend", el);
+
       document.querySelectorAll(".lav-sticky__btn_price .lav-product-price").forEach((el) => {
         el.style.display = "none";
       });
@@ -2751,58 +3314,93 @@ button.syte-discovery.syte-integration-injected .button-text{
 
       let activated = false;
 
-      if (document.querySelector('[name="properties[Ring size]"]')) {
+      if (document.querySelector(".variant-wrapper.ring_size_var select")) {
         if (document.querySelector(".variant-wrapper.ring_size_var .variant__label")) {
           document.querySelector(".variant-wrapper.ring_size_var .variant__label").textContent = "Ring size, US";
         }
-        document.querySelector('[name="properties[Ring size]"]').insertAdjacentHTML("afterbegin", '<option value="Select size" selected>Select size</option>');
+        document.querySelectorAll(".variant-wrapper.ring_size_var select").forEach((el) => {
+          el.insertAdjacentHTML("afterbegin", '<option value="Select size" selected>Select size</option>');
+        });
         document
-          .querySelector(".extend-offer")
-          .insertAdjacentHTML(
-            "afterend",
+          .querySelector(".btn.btn--full.add-to-cart")
+          ?.insertAdjacentHTML(
+            "beforebegin",
             '<div class="lav-select_size"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="21" viewBox="0 0 19 21" fill="none"><path d="M9.12403 0C7.14645 0 5.51877 1.51542 5.36371 3.43807H4.16532C3.07605 3.43807 2.27602 4.28356 2.11027 5.43001L0.0169455 18.9087C-0.147716 20.0476 0.913536 21 2.07468 21H16.1573C17.3273 21 18.3774 20.0474 18.213 18.9087L16.1224 5.43001C15.9626 4.32383 15.1878 3.43807 14.0666 3.43807H12.8837C12.7286 1.51543 11.1016 0 9.12403 0ZM9.12403 0.687483C10.7334 0.687483 12.047 1.89213 12.1989 3.43807H6.05119C6.20277 1.89213 7.51468 0.68747 9.12403 0.687483ZM4.16532 4.12621H14.0666C14.889 4.12621 15.3418 4.83095 15.4423 5.52668L17.5329 19.0081C17.6368 19.7278 16.894 20.3119 16.1573 20.3119H2.07468C1.34013 20.3119 0.595268 19.7316 0.699726 19.0081L2.79036 5.52668C2.90057 4.76325 3.38957 4.12621 4.16532 4.12621ZM12.2143 6.87412C12.2143 8.56124 10.836 9.92683 9.12403 9.92683C7.41206 9.92683 6.03574 8.56125 6.03574 6.87412C6.03574 6.41687 5.34827 6.41441 5.34827 6.87412C5.34826 8.93691 7.04458 10.6143 9.12403 10.6143C11.2035 10.6143 12.8998 8.93689 12.8998 6.87412C12.8998 6.41687 12.2143 6.41687 12.2143 6.87412Z" fill="white"/></svg> Add to cart</div>'
           );
+        if (document.querySelector(".lav-sticky") && !document.querySelector(".select_size_sticky.ring_size_var select") && document.querySelector('[value="Select size"]') && document.querySelector(".variant-wrapper.ring_size_var select")) {
+          let cloneNode = document.querySelector(".variant-wrapper.ring_size_var select").cloneNode(true);
+          document.querySelector(".select_size_sticky").insertAdjacentElement("afterbegin", cloneNode);
+        }
+
+        if (document.querySelector(".select_size_sticky.ring_size_var select")) {
+          document.querySelectorAll('[value="Select size"]').forEach((el) => {
+            el.selected = true;
+          });
+
+          document.querySelector(".select_size_sticky.ring_size_var select").addEventListener("click", (e) => {
+            console.log(e.target, `>>>>>>>>>>>>>>>>>>>.`);
+            pushDataLayer(["exp_main_barriersv2_produc_drop_size", "Select size", "Dropdown", "Product page"]);
+          });
+        }
         document.querySelector("[data-add-to-cart]").style.display = "none";
 
-        document.querySelector('[name="properties[Ring size]"]').addEventListener("change", function (e) {
-          if (e.target.value !== "Select size") {
-            activated = true;
-            document.querySelectorAll(".lav-sticky__btn_price .lav-product-price").forEach((el) => {
-              if (window.innerWidth > 768) {
-                if (el.classList.contains("lav-desk")) {
-                  el.style.display = "block";
+        document.querySelectorAll(".ring_size_var select").forEach((el) => {
+          el.addEventListener("change", function (e) {
+            // console.log(e.target, `change`);
+            if (e.target.value !== "Select size") {
+              activated = true;
+              document.querySelectorAll(".lav-sticky__btn_price .lav-product-price").forEach((el) => {
+                if (window.innerWidth > 768) {
+                  if (el.classList.contains("lav-desk")) {
+                    el.style.display = "block";
+                  }
+                } else {
+                  if (el.classList.contains("lav-mob")) {
+                    el.style.display = "block";
+                  }
                 }
-              } else {
-                if (el.classList.contains("lav-mob")) {
-                  el.style.display = "block";
-                }
+              });
+              document.querySelector(".lav-sticky__btn svg").style.display = "block";
+              document.querySelector("[data-add-to-cart]").style.display = "flex";
+              if (document.querySelector(".lav-select_size")) {
+                document.querySelector(".lav-select_size").style.display = "none";
               }
-            });
-            document.querySelector(".lav-sticky__btn svg").style.display = "block";
-            document.querySelector("[data-add-to-cart]").style.display = "flex";
-            document.querySelector(".lav-select_size").style.display = "none";
-            document.querySelector('[name="properties[Ring size]"]').classList.remove("lav-error");
-            document.querySelector(".lav-error-txt")?.remove();
-          } else {
-            activated = false;
-            document.querySelectorAll(".lav-sticky__btn_price .lav-product-price").forEach((el) => {
-              if (window.innerWidth > 768) {
-                if (el.classList.contains("lav-desk")) {
-                  el.style.display = "none";
+              document.querySelectorAll(".ring_size_var select").forEach((el) => {
+                el.classList.remove("lav-error");
+              });
+              document.querySelector(".lav-error-txt")?.remove();
+            } else {
+              activated = false;
+              document.querySelectorAll(".lav-sticky__btn_price .lav-product-price").forEach((el) => {
+                if (window.innerWidth > 768) {
+                  if (el.classList.contains("lav-desk")) {
+                    el.style.display = "none";
+                  }
+                } else {
+                  if (el.classList.contains("lav-mob")) {
+                    el.style.display = "none";
+                  }
                 }
-              } else {
-                if (el.classList.contains("lav-mob")) {
-                  el.style.display = "none";
-                }
+              });
+              document.querySelector(".lav-sticky__btn svg").style.display = "none";
+              document.querySelector("[data-add-to-cart]").style.display = "none";
+              if (document.querySelector(".lav-select_size")) {
+                document.querySelector(".lav-select_size").style.display = "flex";
               }
-            });
-            document.querySelector(".lav-sticky__btn svg").style.display = "none";
-            document.querySelector("[data-add-to-cart]").style.display = "none";
-            document.querySelector(".lav-select_size").style.display = "flex";
-          }
+            }
+
+            if (e.currentTarget.closest(".select_size_sticky")) {
+              pushDataLayer(["exp_main_barriersv2_drop_click_choose", `${document.querySelector(".select_size_sticky select").value}`, "Click", "Drop down list"]);
+              document.querySelector(".variant-wrapper.ring_size_var select").value = document.querySelector(".select_size_sticky select").value;
+            }
+            if (e.currentTarget.closest(".ring_size_var")) {
+              document.querySelector(".select_size_sticky select").value = document.querySelector(".variant-wrapper.ring_size_var select").value;
+            }
+          });
         });
       } else {
         activated = true;
+        document.querySelector(".lav-sticky").classList.add("none_size");
         document.querySelectorAll(".lav-sticky__btn_price .lav-product-price").forEach((el) => {
           if (window.innerWidth > 768) {
             if (el.classList.contains("lav-desk")) {
@@ -2819,11 +3417,13 @@ button.syte-discovery.syte-integration-injected .button-text{
       if (document.querySelector(".lav-select_size")) {
         document.querySelector(".lav-select_size").addEventListener("click", (e) => {
           pushDataLayer(["exp_barriers_b_atc", "Add to cart", "Button", "Add to cart"]);
-          const el = document.querySelector(".ring_size_var");
+          const el = document.querySelector(".variant-wrapper.ring_size_var");
           const offset = el.getBoundingClientRect().top + window.scrollY - 180;
-          document.querySelector('[name="properties[Ring size]"]').classList.add("lav-error");
+          document.querySelectorAll(".ring_size_var select").forEach((el) => {
+            el.classList.add("lav-error");
+          });
           if (!document.querySelector(".lav-error-txt")) {
-            document.querySelector('[name="properties[Ring size]"]').insertAdjacentHTML("afterend", `<span class="lav-error-txt">Please select your size</span>`);
+            document.querySelector(".variant-wrapper.ring_size_var select").insertAdjacentHTML("afterend", `<span class="lav-error-txt">Please select your size</span>`);
           }
           if (document.querySelector(".lav-error-txt")) {
             pushDataLayer(["exp_barriers_v_s_psys", "Please select your size", "Visibility", "Size"]);
@@ -2846,11 +3446,13 @@ button.syte-discovery.syte-integration-injected .button-text{
           }, 200);
         } else {
           // pushDataLayer("new_payments_sticky_select_size", "Sticky select size", "Button", "Sticky section");
-          const el = document.querySelector(".ring_size_var");
+          const el = document.querySelector(".variant-wrapper.ring_size_var");
           const offset = el.getBoundingClientRect().top + window.scrollY - 180;
-          document.querySelector('[name="properties[Ring size]"]').classList.add("lav-error");
+          document.querySelectorAll(".ring_size_var select").forEach((el) => {
+            el.classList.add("lav-error");
+          });
           if (!document.querySelector(".lav-error-txt")) {
-            document.querySelector('[name="properties[Ring size]"]').insertAdjacentHTML("afterend", `<span class="lav-error-txt">Please select your size</span>`);
+            document.querySelector(".variant-wrapper.ring_size_var select").insertAdjacentHTML("afterend", `<span class="lav-error-txt">Please select your size</span>`);
           }
           if (document.querySelector(".lav-error-txt")) {
             pushDataLayer(["exp_barriers_v_s_psys", "Please select your size", "Visibility", "Size"]);
@@ -2932,7 +3534,6 @@ button.syte-discovery.syte-integration-injected .button-text{
       }, 100);
 
       let slickReadyToShip = setInterval(() => {
-        // && document.querySelector(".ready_to_ship_list")?.children.length >= 179
         if (typeof jQuery("#readyToShip .ready_to_ship_list").slick === "function" && document.querySelector(".ready_to_ship_list")?.children.length >= 160) {
           clearInterval(slickReadyToShip);
 
@@ -3247,7 +3848,10 @@ button.syte-discovery.syte-integration-injected .button-text{
                 const date = new Date();
                 let dateAfter8Weeks = new Date(date.getTime() + 4 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
                 let dateAfter9Weeks = new Date(date.getTime() + 4.5 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
+                let deliveryFrom = new Date(date.getTime() + (4 * 7 + 7) * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
+                let deliferyAfter = new Date(date.getTime() + (4.5 * 7 + 7) * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
                 document.querySelector(".shorter_time").textContent = `${dateAfter8Weeks}-${dateAfter9Weeks}`;
+                document.querySelector(".longer_time").textContent = `${deliveryFrom}-${deliferyAfter}`;
               }
               if (document.querySelector(".production_time_available")?.classList.contains("is_hidden")) {
                 document.querySelector(".production_time_available").classList.remove("is_hidden");
@@ -3257,24 +3861,39 @@ button.syte-discovery.syte-integration-injected .button-text{
         });
     }
 
+    function onClickSyteDiscoveryBanner() {
+      document.querySelector('#syte-discovery-banner [role="button"]')?.addEventListener("click", (e) => {
+        if (!e.target.getAttribute("data-test")) {
+          pushDataLayer(["exp_main_barriersv2_produc_butt_shop", "Baner Shop similar style", "Button", "Product page"]);
+        }
+        e.target.setAttribute("data-test", "1");
+        setTimeout(() => {
+          if (e.target.getAttribute("data-test")) {
+            e.target.removeAttribute("data-test");
+          }
+        }, 1000);
+      });
+    }
+
     function handleKlarna() {
       if (document.querySelector("klarna-placement div")?.style.display === "none") return false;
       const original = document.querySelector("klarna-placement div")?.shadowRoot?.querySelector("div");
 
       if (window.innerWidth <= 768) {
         if (original) {
-          original.querySelector(".container").style = "border: 0;background: rgba(225, 149, 169, 0.10);padding: 8px 12px;margin-bottom: 0";
+          original.querySelector(".container").style = "border: 0;background: rgba(225, 149, 169, 0.10);padding: 8px 16px;margin-bottom: 0";
         }
       } else {
         if (original) {
-          original.querySelector(".container").style = "border: 0;background: rgba(225, 149, 169, 0.10);padding: 8px 12px;margin-bottom: 0";
+          original.querySelector(".container").style = "border: 0;background: rgba(225, 149, 169, 0.10);padding: 8px 16px;margin-bottom: 0";
         }
       }
       if (original) {
         original.querySelector(".text-wrapper").style = "margin-left: 16px;";
         original.querySelector('.text-wrapper .text[part="osm-message"]').style = "font-size: 13px;font-weight: 400;line-height: 18px;color: #1C1D1D;";
-        original.querySelector(".text button").style = "color: #565656;";
+        original.querySelector(".text button").style = "color: #000;font-weight: 500;line-height: 20px;font-size: 14px;font-family: Poppins;";
         original.querySelector(".text button").textContent = "View details >";
+        original.querySelector(".badge > svg").style = "width: 48px;height: 24px;";
 
         original.querySelector(".text button").addEventListener("click", (e) => {
           if (!e.target.getAttribute("data-test")) {
@@ -3361,6 +3980,9 @@ button.syte-discovery.syte-integration-injected .button-text{
       });
       waitForElement(".new_tab").then((el) => {
         handleVisibility(el, ["exp_barriers_l_v_details", "{{focusTime}}", "Visibility", "Details"]);
+      });
+      waitForElement("#syte-discovery-banner").then((el) => {
+        handleVisibility(el, ["exp_main_barriersv2_produc_visib_focus", " {{focusTime}} ", "Visibility ", "Product page"]);
       });
     }
 
@@ -3525,7 +4147,7 @@ button.syte-discovery.syte-integration-injected .button-text{
     const record = setInterval(() => {
       if (typeof clarity === "function") {
         clearInterval(record);
-        clarity("set", "exp_paywall", "variant_1");
+        clarity("set", "exp_main_barriers_v2", "variant_1");
       }
     }, 200);
 
