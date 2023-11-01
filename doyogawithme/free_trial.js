@@ -1710,7 +1710,7 @@ let cancelTrial = setInterval(() => {
 
     let cancelTrialStyle = /*html */ `
       <style>
-        #block-tabs + #block-lotus-content{
+        #block-tabs + #block-lotus-content.your_trial_lotus{
           display: none;
         }
         .o-page--user .o-page__mainContent{
@@ -2347,6 +2347,7 @@ box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.10);
     document.body.insertAdjacentHTML("afterbegin", popUp);
 
     if (!document.querySelector(".your_trial_new_block") && document.querySelectorAll(".in_trial.active li")[0]?.textContent.match("Currently in trial")) {
+      document.querySelector("#block-lotus-content").classList.add("your_trial_lotus");
       document.querySelector("#block-lotus-content").insertAdjacentHTML(
         "afterend",
         `<div class="your_trial_new_block">
