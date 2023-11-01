@@ -611,9 +611,6 @@ form .absolute p {
 .absolute {
     position: absolute;
 }
-.d-flex {
-    display: flex;
-} 
 .justify-between {
     justify-content: space-between;
 }
@@ -758,9 +755,8 @@ const html = `
             </svg>
             <span>(1,332 reviews)</p>
         </a>
-        <h1>Unlock the Secrets to a Debt-Free College Journey with Our Exclusive Webinar!</h1>
-        <p>Discover the proven strategies how you can help your child of <span class="crs-underline">9-12 grades</span> to get into top choice school and graduate with money in the bank 
-            - absolutely FREE!</p>
+        <h1>Unlock the Secrets to a <span class="text-nowrap">Debt-Free</span> College Journey with Our Exclusive Webinar!</h1>
+        <p>Discover the proven strategies for how you can help your child in <span class="crs-underline">grades 9-12</span> to get into top choice school and graduate with money in the bank - absolutely FREE!</p>
         <div class="block">
             <div class="d-flex justify-between block_head">
                 <div class="d-flex items-center">
