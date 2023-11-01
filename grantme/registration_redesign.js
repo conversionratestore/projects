@@ -734,7 +734,7 @@ const html = `
 </div>
 <section class="offer">
     <div class="crs-container">
-        <a href="https://www.trustpilot.com/review/grantme.ca?utm_medium=trustbox&utm_source=MicroCombo" class="trustpilot d-flex items-center">
+        <a href="https://www.trustpilot.com/review/grantme.ca?utm_medium=trustbox&utm_source=MicroCombo" target="_blank" class="trustpilot d-flex items-center">
             <svg width="109" height="20" viewBox="0 0 109 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 19.1283H19.9722V0.0078125H0V19.1283Z" fill="#2DAF6B"/>
                 <path d="M17.0255 8.14277L5.69745 16.021L7.35043 11.1519L3.02344 8.14277H8.37182L10.0244 3.27344L11.6771 8.14277H17.0255ZM10.0249 13.0121L13.1186 12.3891L14.3512 16.021L10.0249 13.0121Z" fill="white"/>
