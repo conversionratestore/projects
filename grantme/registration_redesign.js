@@ -1085,7 +1085,7 @@ let init = setInterval(() => {
         $el('.attend_form > div').after($el('.elementor-element-01b041d'))
     
         $el('.attend').insertAdjacentHTML('afterend', `
-        <div class="report_card_frame" >
+        <div class="report_card_frame" style="display: none;">
             <div class="trustpilot-widget" data-locale="en-US" data-template-id="54ad5defc6454f065c28af8b" data-businessunit-id="5efe956b4acfb90001faa80d" data-style-height="240px" data-style-width="100%" data-theme="light" data-stars="4,5" data-review-languages="en" data-font-family="Lato" data-text-color="#2B3F51" style="position: relative;"><iframe title="Customer reviews powered by Trustpilot" loading="auto" src="https://widget.trustpilot.com/trustboxes/54ad5defc6454f065c28af8b/index.html?templateId=54ad5defc6454f065c28af8b&amp;businessunitId=5efe956b4acfb90001faa80d#locale=en-US&amp;styleHeight=240px&amp;styleWidth=100%25&amp;theme=light&amp;stars=4%2C5&amp;reviewLanguages=en&amp;fontFamily=Lato&amp;textColor=%232B3F51" style="position: relative; height: 240px; width: 100%; border-style: none; display: block; overflow: hidden;"></iframe></div>
         </div>`)
 
