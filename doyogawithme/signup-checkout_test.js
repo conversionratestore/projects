@@ -10,7 +10,7 @@
 //checkout
 //https://www.doyogawithme.com/checkout/23348/order_information
 
-let dir = 'https://conversionratestore.github.io/projects/doyogawithme/img/';
+let dir = "https://conversionratestore.github.io/projects/doyogawithme/img/";
 
 let style = `
 <style>
@@ -148,7 +148,7 @@ form label {
     margin-left: 15px;
 }
 .social-auth__container {
-    // margin: 24px 0;
+    margin: 24px 0;
     padding: 0;
 }
 .social-auth__divider {
@@ -323,10 +323,10 @@ input[type="checkbox"]:checked ~ .check {
     margin: 0;
 }
 .samsara .form-actions {
-    padding-bottom: 0;
+    padding-bottom: 15px;
 }
 .samsara .user-register-form .form-actions {
-    padding: 0 0 0 0;
+    padding: 0 0 15px 0;
 }
 .form-actions .button[value="Create new account"], #edit-actions .form-submit {
     display: none;
@@ -369,7 +369,7 @@ input[type="checkbox"]:checked ~ .check {
     font-size: 14px;
     line-height: 24px;
     color: #555555;
-    // margin: 24px 0 0 0!important;
+    margin: 24px 0 0 0!important;
 }
 .singup a {
     text-decoration-line: underline;
@@ -436,6 +436,9 @@ input[type="checkbox"]:checked ~ .check {
     }
 }
 @media only screen and (max-width: 767px) {
+  .form-actions > :not(:first-child){
+    margin-left: 0;
+  }
     .progressbar, .topbar {
         margin-bottom: 16px;
     }
@@ -508,12 +511,7 @@ let headHTML = `
         </svg>
         <span>Back</span>
     </a>
-    <div class="progressbar flex justify-md-center justify-end ${
-      window.location.href.includes('?destination=/become-a-subscriber') ||
-      window.location.href.includes('yogi/login')
-        ? 'hidden'
-        : ''
-    }">
+    <div class="progressbar flex justify-md-center justify-end ${window.location.href.includes("?destination=/become-a-subscriber") || window.location.href.includes("yogi/login") ? "hidden" : ""}">
         <div class="step checked active"><div class="flex items-center" data-step="">Choose a plan</div></div>
         <div class="step active"><div class="flex items-center" data-step="2">Create your account</div></div>
         <div class="step"><div class="flex items-center" data-step="3">Payment</div></div>
@@ -522,49 +520,37 @@ let headHTML = `
 
 function getLoc(event) {
   let target = event.target;
-  let loc = '';
-  let name = '';
+  let loc = "";
+  let name = "";
   let href = window.location.href;
 
-  if (
-    href.includes('yogi/register') ||
-    (href.includes('/checkout') && href.includes('/login'))
-  ) {
-    if (
-      target
-        .closest('.o-page__main')
-        .querySelector('.sfc-tabs__tabcontent:not([aria-hidden=true]) h2') !=
-        null &&
-      target
-        .closest('.o-page__main')
-        .querySelector('.sfc-tabs__tabcontent:not([aria-hidden=true]) h2')
-        .innerHTML.includes('Log In')
-    ) {
-      loc = 'Log in form';
-      name = 'login';
+  if (href.includes("yogi/register") || (href.includes("/checkout") && href.includes("/login"))) {
+    if (target.closest(".o-page__main").querySelector(".sfc-tabs__tabcontent:not([aria-hidden=true]) h2") != null && target.closest(".o-page__main").querySelector(".sfc-tabs__tabcontent:not([aria-hidden=true]) h2").innerHTML.includes("Log In")) {
+      loc = "Log in form";
+      name = "login";
     } else {
-      loc = 'Create your account';
-      name = 'create';
+      loc = "Create your account";
+      name = "create";
     }
-  } else if (href.includes('yogi/login')) {
-    loc = 'Log in form';
-    name = 'login';
-  } else if (href.includes('yogi/intake-survey')) {
-    loc = 'Lets find classes that work best for you';
-    name = 'lets';
-  } else if (href.includes('/checkout') && !href.includes('/login')) {
-    loc = 'Card information';
-    name = 'card';
+  } else if (href.includes("yogi/login")) {
+    loc = "Log in form";
+    name = "login";
+  } else if (href.includes("yogi/intake-survey")) {
+    loc = "Lets find classes that work best for you";
+    name = "lets";
+  } else if (href.includes("/checkout") && !href.includes("/login")) {
+    loc = "Card information";
+    name = "card";
   }
   return [name, loc];
 }
 
 function pushDataLayer(name, desc, type, loc) {
-  console.log(name + ' / ' + desc + ' / ' + type + ' / ' + loc);
+  console.log(name + " / " + desc + " / " + type + " / " + loc);
 
   window.dataLayer = window.dataLayer || [];
   dataLayer.push({
-    event: 'event-to-ga4',
+    event: "event-to-ga4",
     event_name: name,
     event_desc: desc,
     event_type: type,
@@ -576,19 +562,19 @@ function lsRememberMe(checkbox, email) {
   const rmCheck = document.querySelector(checkbox),
     emailInput = document.querySelector(email);
 
-  if (localStorage.checkbox && localStorage.checkbox !== '') {
-    rmCheck.setAttribute('checked', 'checked');
+  if (localStorage.checkbox && localStorage.checkbox !== "") {
+    rmCheck.setAttribute("checked", "checked");
     emailInput.value = localStorage.username;
   } else {
-    rmCheck.removeAttribute('checked');
+    rmCheck.removeAttribute("checked");
   }
 
-  if (rmCheck.checked && emailInput.value !== '') {
+  if (rmCheck.checked && emailInput.value !== "") {
     localStorage.username = emailInput.value;
     localStorage.checkbox = rmCheck.value;
   } else {
-    localStorage.username = '';
-    localStorage.checkbox = '';
+    localStorage.username = "";
+    localStorage.checkbox = "";
   }
 }
 let rememberMeHTML = `
@@ -622,75 +608,41 @@ let clickApplyCoupon = false;
 
 function init() {
   let init = setInterval(() => {
-    if (
-      document.querySelector(
-        '.o-page--simpleCard .o-page__mainContentWrapper'
-      ) != null &&
-      document.querySelector('form') != null
-    ) {
+    if (document.querySelector(".o-page--simpleCard .o-page__mainContentWrapper") != null && document.querySelector("form") != null) {
       clearInterval(init);
 
-      let loc = '';
-      document.body.insertAdjacentHTML('afterbegin', style); //add style
-      document
-        .querySelector('.o-page--simpleCard .o-page__mainContentWrapper')
-        .insertAdjacentHTML('afterbegin', headHTML); //add topbar
+      let loc = "";
+      document.body.insertAdjacentHTML("afterbegin", style); //add style
+      document.querySelector(".o-page--simpleCard .o-page__mainContentWrapper").insertAdjacentHTML("afterbegin", headHTML); //add topbar
 
-      if (window.matchMedia('(max-width: 767px)').matches) {
-        document.querySelector(
-          '.progressbar .step.active:not(.checked) > div'
-        ).innerHTML = '/3';
+      if (window.matchMedia("(max-width: 767px)").matches) {
+        document.querySelector(".progressbar .step.active:not(.checked) > div").innerHTML = "/3";
       }
 
-      if (
-        (window.location.href.includes('/yogi/login') ||
-          window.location.href.includes('/yogi/register')) &&
-        document.querySelector('form h1')
-      ) {
-        // document
-        //   .querySelector('form h1')
-        //   .after(document.querySelector('.social-auth__container'));
-        // document
-        //   .querySelector('form h1')
-        //   .after(document.querySelector('.social-auth__networks'));
+      if ((window.location.href.includes("/yogi/login") || window.location.href.includes("/yogi/register")) && document.querySelector("form h1")) {
+        document.querySelector("form h1").after(document.querySelector(".social-auth__container"));
+        document.querySelector("form h1").after(document.querySelector(".social-auth__networks"));
 
-        if (
-          document.querySelector('.messages.messages--status') &&
-          document
-            .querySelector('.messages.messages--status')
-            .innerHTML.includes(
-              'if you are having trouble logging in to your account.'
-            )
-        ) {
-          document.querySelector('.messages.messages--status').remove();
+        if (document.querySelector(".messages.messages--status") && document.querySelector(".messages.messages--status").innerHTML.includes("if you are having trouble logging in to your account.")) {
+          document.querySelector(".messages.messages--status").remove();
         }
       }
-      if (
-        window.location.href.includes('/yogi/login') &&
-        document.querySelector('.social-auth__networks a')
-      ) {
-        loc = 'Log in form';
+      if (window.location.href.includes("/yogi/login") && document.querySelector(".social-auth__networks a")) {
+        loc = "Log in form";
 
-        document.querySelector('.social-auth__networks a').innerHTML =
-          logInGoogle('Login');
-        document.querySelector('label[for="edit-name"]').innerHTML =
-          'Email address';
-        document.querySelector('#edit-name').placeholder = 'Email';
-        document.querySelector('#edit-pass').placeholder = 'Password';
-        document
-          .querySelector('form [href="/yogi/password"]')
-          .insertAdjacentHTML('beforebegin', rememberMeHTML);
+        document.querySelector(".social-auth__networks a").innerHTML = logInGoogle("Login");
+        document.querySelector('label[for="edit-name"]').innerHTML = "Email address";
+        document.querySelector("#edit-name").placeholder = "Email";
+        document.querySelector("#edit-pass").placeholder = "Password";
+        document.querySelector('form [href="/yogi/password"]').insertAdjacentHTML("beforebegin", rememberMeHTML);
 
-        if (localStorage.username != null && localStorage.username != '') {
-          document.querySelector('#edit-name').value = localStorage.username;
+        if (localStorage.username != null && localStorage.username != "") {
+          document.querySelector("#edit-name").value = localStorage.username;
         }
-        document
-          .querySelector('.remember-me')
-          .after(document.querySelector('form [href="/yogi/password"]'));
-        document.querySelector('form [href="/yogi/password"]').innerHTML =
-          'Forgot Password?';
+        document.querySelector(".remember-me").after(document.querySelector('form [href="/yogi/password"]'));
+        document.querySelector('form [href="/yogi/password"]').innerHTML = "Forgot Password?";
 
-        document.querySelector('#edit-actions .form-submit').style = `
+        document.querySelector("#edit-actions .form-submit").style = `
                     display: block;
                     width: 100%;    
                     text-align: center;
@@ -699,70 +651,39 @@ function init() {
                     font-weight: 700;
                 `;
 
-        // document
-        //   .querySelector('#edit-actions .form-submit')
-        //   .insertAdjacentHTML(
-        //     'afterend',
-        //     `<p class="text-center singup">Don’t have an account? <a href="/yogi/register">Sign Up</a></p>`
-        //   );
+        document.querySelector("#edit-actions .form-submit").insertAdjacentHTML("afterend", `<p class="text-center singup">Don’t have an account? <a href="/yogi/register">Sign Up</a></p>`);
+        if (window.innerWidth <= 768) {
+          if (document.querySelector(".singup")) {
+            document.querySelector(".singup").before(document.querySelector(".social-auth__container"));
+          }
+          if (document.querySelector(".social-auth__container + .singup")) {
+            document.querySelector(".social-auth__container").after(document.querySelector(".social-auth__networks"));
+          }
+        }
 
-        document
-          .querySelector('#block-legalacceptcopy')
-          ?.insertAdjacentHTML(
-            'beforebegin',
-            `<p class="text-center singup">Don’t have an account? <a href="/yogi/register">Sign Up</a></p>`
-          );
+        document.querySelector("#edit-actions .form-submit").addEventListener("click", () => {
+          pushDataLayer("exp_ch_pl_page_login_b", "Log in button", "Button", loc);
+          lsRememberMe(".remember-me input", "#edit-name");
+        });
 
-        document
-          .querySelector('#edit-actions .form-submit')
-          .addEventListener('click', () => {
-            pushDataLayer(
-              'exp_ch_pl_page_login_b',
-              'Log in button',
-              'Button',
-              loc
-            );
-            lsRememberMe('.remember-me input', '#edit-name');
-          });
+        document.querySelector(".singup a").href = document.querySelector(".singup a").href + window.location.search;
 
-        document.querySelector('.singup a').href =
-          document.querySelector('.singup a').href + window.location.search;
+        pushDataLayer("exp_ch_pl_page_login", loc, "Visibility", loc);
 
-        pushDataLayer('exp_ch_pl_page_login', loc, 'Visibility', loc);
-
-        document
-          .querySelector('.social-auth.auth-link')
-          .addEventListener('click', () => {
-            pushDataLayer(
-              'exp_ch_pl_page_login_g',
-              'Login with google button',
-              'Button',
-              loc
-            );
-          });
-        document
-          .querySelector('.remember-me + a')
-          .addEventListener('click', (e) => {
-            pushDataLayer(
-              'exp_ch_pl_page_forg',
-              'Forgot password',
-              'Link',
-              loc
-            );
-          });
-        document.querySelector('.singup a').addEventListener('click', (e) => {
-          pushDataLayer('exp_ch_pl_page_login_link', 'Sign up', 'Link', loc);
+        document.querySelector(".social-auth.auth-link").addEventListener("click", () => {
+          pushDataLayer("exp_ch_pl_page_login_g", "Login with google button", "Button", loc);
+        });
+        document.querySelector(".remember-me + a").addEventListener("click", (e) => {
+          pushDataLayer("exp_ch_pl_page_forg", "Forgot password", "Link", loc);
+        });
+        document.querySelector(".singup a").addEventListener("click", (e) => {
+          pushDataLayer("exp_ch_pl_page_login_link", "Sign up", "Link", loc);
         });
       }
       //all register pages
-      if (
-        window.location.href.includes('/yogi/register') ||
-        window.location.href.includes('yogi/intake-survey') ||
-        (window.location.href.includes('/checkout') &&
-          window.location.href.includes('/login'))
-      ) {
+      if (window.location.href.includes("/yogi/register") || window.location.href.includes("yogi/intake-survey") || (window.location.href.includes("/checkout") && window.location.href.includes("/login"))) {
         document.body.insertAdjacentHTML(
-          'afterbegin',
+          "afterbegin",
           `
                 <style>
                     #main-content {
@@ -778,22 +699,16 @@ function init() {
                     }
                 </style>`
         );
-        document
-          .querySelector('.o-page__mainContentWrapper')
-          .insertAdjacentHTML(
-            'beforebegin',
-            `
+        document.querySelector(".o-page__mainContentWrapper").insertAdjacentHTML(
+          "beforebegin",
+          `
                 <div class="header-logo text-center"> <a href="/" class="logo"><img src="/themes/custom/lotus/logo.png" alt="image"></a></div>`
-          );
+        );
       }
 
-      if (
-        window.location.href.includes('/checkout') &&
-        window.location.href.includes('/login') &&
-        document.querySelectorAll('.sfc-tabs__tablistItem > a').length > 1
-      ) {
+      if (window.location.href.includes("/checkout") && window.location.href.includes("/login") && document.querySelectorAll(".sfc-tabs__tablistItem > a").length > 1) {
         document.body.insertAdjacentHTML(
-          'afterbegin',
+          "afterbegin",
           `
                 <style>
                     .sfc-tabs__tablist, .password-suggestions, #edit-login-register-password-pass2, #edit-login-register-password-pass2, .form-item-login-register-legal-legal-accept, .form-item-login-register-legal-extras-1, .ac-newsletter-reg-suffix, #edit-login-register-field-ac-newsletter-reg-wrapper, #edit-login-register-password .password-strength, .form-item-login-register-password-pass2, .messages--status, .c-jsTabs__tabList {
@@ -854,242 +769,112 @@ function init() {
                 </style>`
         );
 
-        document.querySelectorAll('.sfc-tabs__tablistItem > a')[1].click();
-        document.querySelector('#edit-login-register-mail').focus();
-        document
-          .querySelector('.o-page--simpleCard .o-page__mainContent')
-          .classList.add('active');
+        document.querySelectorAll(".sfc-tabs__tablistItem > a")[1].click();
+        document.querySelector("#edit-login-register-mail").focus();
+        document.querySelector(".o-page--simpleCard .o-page__mainContent").classList.add("active");
 
-        pushDataLayer(
-          'exp_ch_pl_page_create_v',
-          'Create your account',
-          'Visibility',
-          'Create your account'
+        pushDataLayer("exp_ch_pl_page_create_v", "Create your account", "Visibility", "Create your account");
+
+        document.querySelector('[data-drupal-selector="edit-login-returning-customer"]').insertAdjacentHTML(
+          "afterbegin",
+          `
+                <h2>Log In</h2>`
+        );
+        document.querySelector('[data-drupal-selector="edit-login-register"]').insertAdjacentHTML(
+          "afterbegin",
+          `
+                <h2>Create your account</h2>`
         );
 
-        document
-          .querySelector(
-            '[data-drupal-selector="edit-login-returning-customer"]'
-          )
-          .insertAdjacentHTML(
-            'afterbegin',
-            `
-                <h2>Log In</h2>`
-          );
-        document
-          .querySelector('[data-drupal-selector="edit-login-register"]')
-          .insertAdjacentHTML(
-            'afterbegin',
-            `
-                <h2>Create your account</h2>`
-          );
+        document.querySelector('[data-drupal-selector="edit-login-register"] h2').innerHTML = "Create your account";
 
-        document.querySelector(
-          '[data-drupal-selector="edit-login-register"] h2'
-        ).innerHTML = 'Create your account';
+        document.querySelector('label[for="edit-login-returning-customer-name"]').innerHTML = "Email address";
+        document.querySelector("#edit-login-returning-customer-name").placeholder = "Email";
+        document.querySelector("#edit-login-returning-customer-password").placeholder = "Password";
+        document.querySelector("form #edit-login-returning-customer-submit").insertAdjacentHTML("beforebegin", rememberMeHTML);
 
-        document.querySelector(
-          'label[for="edit-login-returning-customer-name"]'
-        ).innerHTML = 'Email address';
-        document.querySelector(
-          '#edit-login-returning-customer-name'
-        ).placeholder = 'Email';
-        document.querySelector(
-          '#edit-login-returning-customer-password'
-        ).placeholder = 'Password';
-        document
-          .querySelector('form #edit-login-returning-customer-submit')
-          .insertAdjacentHTML('beforebegin', rememberMeHTML);
+        document.querySelector(".remember-me").after(document.querySelector("#edit-login-returning-customer-forgot-password"));
 
-        document
-          .querySelector('.remember-me')
-          .after(
-            document.querySelector(
-              '#edit-login-returning-customer-forgot-password'
-            )
-          );
+        document.querySelector("#edit-login-returning-customer-submit").insertAdjacentHTML("afterend", `<p class="text-center singup">Don’t have an account? <a href="#">Sing up</a></p>`);
+        document.querySelector("#edit-login-register-register").insertAdjacentHTML("afterend", `<p class="text-center singup">Already have an account? <a href="#">Log in</a></p>`);
 
-        document
-          .querySelector('#edit-login-returning-customer-submit')
-          .insertAdjacentHTML(
-            'afterend',
-            `<p class="text-center singup">Don’t have an account? <a href="#">Sing up</a></p>`
-          );
-        document
-          .querySelector('#edit-login-register-register')
-          .insertAdjacentHTML(
-            'afterend',
-            `<p class="text-center singup">Already have an account? <a href="#">Log in</a></p>`
-          );
-
-        document
-          .querySelector('#edit-login-register-register')
-          .insertAdjacentHTML(
-            'beforebegin',
-            `${subscribeHTML}
+        document.querySelector("#edit-login-register-register").insertAdjacentHTML(
+          "beforebegin",
+          `${subscribeHTML}
                 <button type="button" class="btn-reg">Sign Up</button>`
-          );
+        );
 
-        document
-          .querySelector(
-            '[data-drupal-selector="edit-login-returning-customer"] .singup a'
-          )
-          .addEventListener('click', (e) => {
-            document.querySelectorAll('.sfc-tabs__tablistItem > a')[1].click();
-            document
-              .querySelector('.o-page--simpleCard .o-page__mainContent')
-              .classList.add('active');
-            document.querySelector('#edit-login-register-mail').focus();
-            document.body.classList.remove('show-header');
-            pushDataLayer(
-              'exp_ch_pl_page_login_link',
-              'Sign up',
-              'Link',
-              'Log in form'
-            );
-            pushDataLayer(
-              'exp_ch_pl_page_create_v',
-              'Create your account',
-              'Visibility',
-              'Create your account'
-            );
-          });
-        document
-          .querySelector(
-            '[data-drupal-selector="edit-login-register"] .singup a'
-          )
-          .addEventListener('click', (e) => {
-            document.querySelectorAll('.sfc-tabs__tablistItem > a')[0].click();
-            document
-              .querySelector('.o-page--simpleCard .o-page__mainContent')
-              .classList.remove('active');
-            document
-              .querySelector('#edit-login-returning-customer-name')
-              .focus();
-            document.body.classList.add('show-header');
-            pushDataLayer(
-              'exp_ch_pl_page_create_link',
-              'Log in',
-              'Link',
-              'Create your account'
-            );
-            pushDataLayer(
-              'exp_ch_pl_page_login_v',
-              'Log in form',
-              'Visibility',
-              'Log in form'
-            );
-          });
+        document.querySelector('[data-drupal-selector="edit-login-returning-customer"] .singup a').addEventListener("click", (e) => {
+          document.querySelectorAll(".sfc-tabs__tablistItem > a")[1].click();
+          document.querySelector(".o-page--simpleCard .o-page__mainContent").classList.add("active");
+          document.querySelector("#edit-login-register-mail").focus();
+          document.body.classList.remove("show-header");
+          pushDataLayer("exp_ch_pl_page_login_link", "Sign up", "Link", "Log in form");
+          pushDataLayer("exp_ch_pl_page_create_v", "Create your account", "Visibility", "Create your account");
+        });
+        document.querySelector('[data-drupal-selector="edit-login-register"] .singup a').addEventListener("click", (e) => {
+          document.querySelectorAll(".sfc-tabs__tablistItem > a")[0].click();
+          document.querySelector(".o-page--simpleCard .o-page__mainContent").classList.remove("active");
+          document.querySelector("#edit-login-returning-customer-name").focus();
+          document.body.classList.add("show-header");
+          pushDataLayer("exp_ch_pl_page_create_link", "Log in", "Link", "Create your account");
+          pushDataLayer("exp_ch_pl_page_login_v", "Log in form", "Visibility", "Log in form");
+        });
 
-        if (localStorage.username != null && localStorage.username != '') {
-          document.querySelector('#edit-login-returning-customer-name').value =
-            localStorage.username;
+        if (localStorage.username != null && localStorage.username != "") {
+          document.querySelector("#edit-login-returning-customer-name").value = localStorage.username;
         }
-        document
-          .querySelector('#edit-login-returning-customer-submit')
-          .addEventListener('click', () => {
-            localStorage.setItem(
-              'email',
-              document.querySelector('#edit-login-returning-customer-name')
-                .value
-            );
-            pushDataLayer(
-              'exp_ch_pl_page_login_b',
-              'Log in button',
-              'Button',
-              'Log in form'
-            );
-            lsRememberMe(
-              '.remember-me input',
-              '#edit-login-returning-customer-name'
-            );
-          });
+        document.querySelector("#edit-login-returning-customer-submit").addEventListener("click", () => {
+          localStorage.setItem("email", document.querySelector("#edit-login-returning-customer-name").value);
+          pushDataLayer("exp_ch_pl_page_login_b", "Log in button", "Button", "Log in form");
+          lsRememberMe(".remember-me input", "#edit-login-returning-customer-name");
+        });
 
         //passwords
-        document
-          .querySelector('#edit-login-register-password-pass1')
-          .addEventListener('input', (e) => {
-            document.querySelector(
-              '#edit-login-register-password-pass2'
-            ).value = e.target.value;
-          });
+        document.querySelector("#edit-login-register-password-pass1").addEventListener("input", (e) => {
+          document.querySelector("#edit-login-register-password-pass2").value = e.target.value;
+        });
 
         //checkbox
-        document
-          .querySelectorAll('.check-accept input')
-          .forEach((item, index) => {
-            item.addEventListener('change', (e) => {
-              if (item.checked) {
-                document.querySelector(
-                  '#edit-login-register-field-ac-newsletter-reg-value'
-                ).checked = true;
-              } else {
-                document.querySelector(
-                  '#edit-login-register-field-ac-newsletter-reg-value'
-                ).checked = false;
-              }
-            });
+        document.querySelectorAll(".check-accept input").forEach((item, index) => {
+          item.addEventListener("change", (e) => {
+            if (item.checked) {
+              document.querySelector("#edit-login-register-field-ac-newsletter-reg-value").checked = true;
+            } else {
+              document.querySelector("#edit-login-register-field-ac-newsletter-reg-value").checked = false;
+            }
           });
+        });
 
-        document.querySelector('.btn-reg').addEventListener('click', (e) => {
-          if (
-            document.querySelector('.js-password-strength__text') != null &&
-            (document.querySelector('.js-password-strength__text').innerHTML ==
-              '' ||
-              document
-                .querySelector('.js-password-strength__text')
-                .innerHTML.includes('Weak'))
-          ) {
-            document.querySelector('.password-strength').style =
-              'dusplay: block!important';
+        document.querySelector(".btn-reg").addEventListener("click", (e) => {
+          if (document.querySelector(".js-password-strength__text") != null && (document.querySelector(".js-password-strength__text").innerHTML == "" || document.querySelector(".js-password-strength__text").innerHTML.includes("Weak"))) {
+            document.querySelector(".password-strength").style = "dusplay: block!important";
           } else {
-            document.querySelector('.password-strength').style = '';
+            document.querySelector(".password-strength").style = "";
           }
 
-          localStorage.setItem(
-            'email',
-            document.querySelector('#edit-login-register-mail').value
-          );
-          document.querySelector('#edit-login-register-register').click();
+          localStorage.setItem("email", document.querySelector("#edit-login-register-mail").value);
+          document.querySelector("#edit-login-register-register").click();
 
-          if (
-            document.querySelector('#edit-login-register-name').value != '' &&
-            document.querySelector('#edit-login-register-password-pass1')
-              .value != ''
-          ) {
-            e.currentTarget.classList.add('loading');
+          if (document.querySelector("#edit-login-register-name").value != "" && document.querySelector("#edit-login-register-password-pass1").value != "") {
+            e.currentTarget.classList.add("loading");
           }
 
-          pushDataLayer(
-            'exp_ch_pl_page_create_b',
-            'Create an account button',
-            'Button',
-            'Create your account'
-          );
+          pushDataLayer("exp_ch_pl_page_create_b", "Create an account button", "Button", "Create your account");
         });
-        document.querySelectorAll('form .form-item label').forEach((item) => {
-          item.classList.add('form-required');
+        document.querySelectorAll("form .form-item label").forEach((item) => {
+          item.classList.add("form-required");
         });
-        document
-          .querySelector('.remember-me + a')
-          .addEventListener('click', (e) => {
-            pushDataLayer(
-              'exp_ch_pl_page_forg',
-              'Forgot password',
-              'Link',
-              'Log in form'
-            );
-          });
+        document.querySelector(".remember-me + a").addEventListener("click", (e) => {
+          pushDataLayer("exp_ch_pl_page_forg", "Forgot password", "Link", "Log in form");
+        });
       }
 
-      if (
-        window.location.href.includes('/yogi/register') &&
-        document.querySelector('form h1')
-      ) {
-        loc = 'Create your account';
+      if (window.location.href.includes("/yogi/register") && document.querySelector("form h1")) {
+        loc = "Create your account";
 
         document.body.insertAdjacentHTML(
-          'afterbegin',
+          "afterbegin",
           `
                 <style>
                     @media only screen and (min-width: 768px) {
@@ -1106,167 +891,92 @@ function init() {
                     }
                 </style>`
         );
-        document.querySelector('form h1').innerHTML = 'Create your account';
-        document.querySelector('.social-auth__networks a').innerHTML =
-          logInGoogle('Sing Up');
-        document.querySelector(
-          '.social-auth__container .social-auth__divider__text'
-        ).innerHTML = 'or create an account';
-        document
-          .querySelector('#edit-pass')
-          .insertAdjacentHTML('afterend', subscribeHTML);
+        document.querySelector("form h1").innerHTML = "Create your account";
+        document.querySelector(".social-auth__networks a").innerHTML = logInGoogle("Sing Up");
+        document.querySelector(".social-auth__container .social-auth__divider__text").innerHTML = "or create an account";
+        document.querySelector("#edit-pass").insertAdjacentHTML("afterend", subscribeHTML);
 
-        document
-          .querySelector('#edit-actions .form-submit')
-          .insertAdjacentHTML(
-            'afterend',
-            `<button type="button" class="btn-reg">Create an account</button>`
-          );
+        document.querySelector("#edit-actions .form-submit").insertAdjacentHTML("afterend", `<button type="button" class="btn-reg">Create an account</button><p class="text-center singup">Already have an account? <a href="/yogi/login">Log in</a></p>`);
 
-        document
-          .querySelector('#block-legalacceptcopy')
-          ?.insertAdjacentHTML(
-            'beforebegin',
-            `<p class="text-center singup">Already have an account? <a href="/yogi/login">Log in</a></p>`
-          );
+        document.querySelector(".singup a").href = document.querySelector(".singup a").href + window.location.search;
 
-        document.querySelector('.singup a').href =
-          document.querySelector('.singup a').href + window.location.search;
-
-        document.querySelector('.btn-reg').addEventListener('click', (e) => {
-          if (
-            document.querySelector('.form-email').value != '' &&
-            document.querySelector('.username').value != '' &&
-            document.querySelector('#edit-pass-pass1').value != ''
-          ) {
-            e.currentTarget.classList.add('loading');
-            pushDataLayer(
-              'exp_ch_pl_page_create_b',
-              'Create an account button',
-              'Button',
-              loc
-            );
+        document.querySelector(".btn-reg").addEventListener("click", (e) => {
+          if (document.querySelector(".form-email").value != "" && document.querySelector(".username").value != "" && document.querySelector("#edit-pass-pass1").value != "") {
+            e.currentTarget.classList.add("loading");
+            pushDataLayer("exp_ch_pl_page_create_b", "Create an account button", "Button", loc);
           }
-          document.querySelector('#edit-actions .form-submit').click();
+          document.querySelector("#edit-actions .form-submit").click();
         });
 
-        document.querySelector('.social-auth.auth-link span').innerHTML =
-          'Sign up with Google';
-        document
-          .querySelector(
-            '[data-drupal-selector="user-register-form"] .social-auth'
-          )
-          .addEventListener('click', (e) => {
-            pushDataLayer(
-              'exp_ch_pl_page_sign_create',
-              'Sign up with google',
-              'Button',
-              loc
-            );
-          });
+        if (window.innerWidth <= 768) {
+          if (document.querySelector(".singup")) {
+            document.querySelector(".singup").before(document.querySelector(".social-auth__container"));
+          }
+          if (document.querySelector(".social-auth__container + .singup")) {
+            document.querySelector(".social-auth__container").after(document.querySelector(".social-auth__networks"));
+          }
+          document.querySelector(".social-auth__container .social-auth__divider__text").innerHTML = "or";
+        }
+
+        document.querySelector(".social-auth.auth-link span").innerHTML = "Sign up with Google";
+        document.querySelector('[data-drupal-selector="user-register-form"] .social-auth').addEventListener("click", (e) => {
+          pushDataLayer("exp_ch_pl_page_sign_create", "Sign up with google", "Button", loc);
+        });
         //passwords
-        document
-          .querySelector('#edit-pass-pass1')
-          .addEventListener('input', (e) => {
-            document.querySelector('#edit-pass-pass2').value = e.target.value;
-          });
+        document.querySelector("#edit-pass-pass1").addEventListener("input", (e) => {
+          document.querySelector("#edit-pass-pass2").value = e.target.value;
+        });
 
         //checkbox
-        document
-          .querySelectorAll('.check-accept input')
-          .forEach((item, index) => {
-            item.addEventListener('change', (e) => {
-              if (item.checked) {
-                document.querySelector(
-                  '#edit-field-ac-newsletter-reg-value'
-                ).checked = true;
-              } else {
-                document.querySelector(
-                  '#edit-field-ac-newsletter-reg-value'
-                ).checked = false;
-              }
-            });
-          });
-
-        document.querySelector('#edit-mail').focus();
-
-        document
-          .querySelector('#edit-actions')
-          .addEventListener('click', (e) => {
-            if (
-              document.querySelector('.password-strength__indicator.is-weak') !=
-              null
-            ) {
-              document.querySelector('.password-strength').style =
-                'dusplay: block!important';
+        document.querySelectorAll(".check-accept input").forEach((item, index) => {
+          item.addEventListener("change", (e) => {
+            if (item.checked) {
+              document.querySelector("#edit-field-ac-newsletter-reg-value").checked = true;
             } else {
-              document.querySelector('.password-strength').style = '';
+              document.querySelector("#edit-field-ac-newsletter-reg-value").checked = false;
             }
           });
-
-        document.querySelector('.singup a').addEventListener('click', () => {
-          pushDataLayer('exp_ch_pl_page_create_login', 'Log in', 'Link', loc);
         });
-        pushDataLayer('exp_ch_pl_page_create_v', loc, 'Visibility', loc);
+
+        document.querySelector("#edit-mail").focus();
+
+        document.querySelector("#edit-actions").addEventListener("click", (e) => {
+          if (document.querySelector(".password-strength__indicator.is-weak") != null) {
+            document.querySelector(".password-strength").style = "dusplay: block!important";
+          } else {
+            document.querySelector(".password-strength").style = "";
+          }
+        });
+
+        document.querySelector(".singup a").addEventListener("click", () => {
+          pushDataLayer("exp_ch_pl_page_create_login", "Log in", "Link", loc);
+        });
+        pushDataLayer("exp_ch_pl_page_create_v", loc, "Visibility", loc);
       }
 
-      if (
-        window.location.href.includes('/yogi/register') ||
-        window.location.href.includes('/yogi/login') ||
-        (window.location.href.includes('/checkout') &&
-          window.location.href.includes('/login'))
-      ) {
-        document.querySelectorAll('form input').forEach((item) => {
-          item.addEventListener('click', (e) => {
+      if (window.location.href.includes("/yogi/register") || window.location.href.includes("/yogi/login") || (window.location.href.includes("/checkout") && window.location.href.includes("/login"))) {
+        document.querySelectorAll("form input").forEach((item) => {
+          item.addEventListener("click", (e) => {
             let parent = e.currentTarget.parentElement;
 
-            if (parent.querySelector('label')) {
-              pushDataLayer(
-                `exp_ch_pl_page_input_${getLoc(e)[0]}`,
-                `Click on ${parent.querySelector('label').innerText}`,
-                'Input',
-                getLoc(e)[1]
-              );
-            } else if (parent.tagName == 'LABEL' && item.type != 'checkbox') {
-              pushDataLayer(
-                `exp_ch_pl_page_input_${getLoc(e)[0]}`,
-                `Click on ${parent.innerText}`,
-                'Input',
-                getLoc(e)[1]
-              );
-            } else if (parent.classList.contains('remember-me')) {
-              pushDataLayer(
-                'exp_ch_pl_page_rem_ch',
-                'Remember me',
-                'Checkbox',
-                'Log in form'
-              );
-            } else if (parent.classList.contains('check-accept')) {
-              pushDataLayer(
-                'exp_ch_pl_page_create_chs',
-                'Checkbox subscribe',
-                'Checkbox',
-                'Create your account'
-              );
+            if (parent.querySelector("label")) {
+              pushDataLayer(`exp_ch_pl_page_input_${getLoc(e)[0]}`, `Click on ${parent.querySelector("label").innerText}`, "Input", getLoc(e)[1]);
+            } else if (parent.tagName == "LABEL" && item.type != "checkbox") {
+              pushDataLayer(`exp_ch_pl_page_input_${getLoc(e)[0]}`, `Click on ${parent.innerText}`, "Input", getLoc(e)[1]);
+            } else if (parent.classList.contains("remember-me")) {
+              pushDataLayer("exp_ch_pl_page_rem_ch", "Remember me", "Checkbox", "Log in form");
+            } else if (parent.classList.contains("check-accept")) {
+              pushDataLayer("exp_ch_pl_page_create_chs", "Checkbox subscribe", "Checkbox", "Create your account");
             } else {
-              pushDataLayer(
-                `exp_ch_pl_page_input_${getLoc(e)[0]}`,
-                `Click on ${
-                  e.currentTarget.value == 'Create new account'
-                    ? 'Sign up'
-                    : e.currentTarget.value
-                }`,
-                'Input',
-                getLoc(e)[1]
-              );
+              pushDataLayer(`exp_ch_pl_page_input_${getLoc(e)[0]}`, `Click on ${e.currentTarget.value == "Create new account" ? "Sign up" : e.currentTarget.value}`, "Input", getLoc(e)[1]);
             }
           });
         });
       }
 
-      if (window.location.href.includes('yogi/intake-survey')) {
+      if (window.location.href.includes("yogi/intake-survey")) {
         document.body.insertAdjacentHTML(
-          'afterbegin',
+          "afterbegin",
           `<style>
                     .messages--status[role="contentinfo"] {
                         display: none!important;
@@ -1389,94 +1099,52 @@ function init() {
                     </svg>
                     <span>Registration successful. You are now logged in.</span>`;
 
-        document.querySelector('.profile-student-form').insertAdjacentHTML(
-          'beforebegin',
+        document.querySelector(".profile-student-form").insertAdjacentHTML(
+          "beforebegin",
           `
                     <div class="messages--status" style="margin-bottom: -22px;">${messHtml}</div>`
         );
 
-        document.querySelectorAll('.form-item input').forEach((item) => {
-          item.addEventListener('change', (e) => {
-            if (item.type == 'checkbox' || item.type == 'radio') {
+        document.querySelectorAll(".form-item input").forEach((item) => {
+          item.addEventListener("change", (e) => {
+            if (item.type == "checkbox" || item.type == "radio") {
               if (item.checked) {
-                let name = item
-                    .closest('fieldset')
-                    .querySelector('legend > .fieldset-legend')
-                    .innerText.trim()
-                    .split(' ')[0]
-                    .toLowerCase(),
-                  type = item.type == 'radio' ? '_r' : '_ch',
-                  desk = `${item
-                    .closest('.fieldset-wrapper')
-                    .previousElementSibling.innerText.replace('?', '')} - ${
-                    item.parentElement.innerText
-                  }`;
+                let name = item.closest("fieldset").querySelector("legend > .fieldset-legend").innerText.trim().split(" ")[0].toLowerCase(),
+                  type = item.type == "radio" ? "_r" : "_ch",
+                  desk = `${item.closest(".fieldset-wrapper").previousElementSibling.innerText.replace("?", "")} - ${item.parentElement.innerText}`;
 
-                pushDataLayer(
-                  `exp_ch_pl_page_${name}` + type,
-                  desk,
-                  item.type,
-                  'Lets find classes that work best for you'
-                );
+                pushDataLayer(`exp_ch_pl_page_${name}` + type, desk, item.type, "Lets find classes that work best for you");
               }
             }
           });
         });
 
-        document.querySelector('#edit-submit').addEventListener('click', () => {
-          pushDataLayer(
-            'exp_ch_pl_page_save_b',
-            'Save button',
-            'Button',
-            'Lets find classes that work best for you'
-          );
+        document.querySelector("#edit-submit").addEventListener("click", () => {
+          pushDataLayer("exp_ch_pl_page_save_b", "Save button", "Button", "Lets find classes that work best for you");
         });
-        pushDataLayer(
-          'exp_ch_pl_page_lets_v',
-          'Lets find classes that work best for you',
-          'Visibility',
-          'Lets find classes that work best for you'
-        );
+        pushDataLayer("exp_ch_pl_page_lets_v", "Lets find classes that work best for you", "Visibility", "Lets find classes that work best for you");
       }
 
-      document.querySelectorAll('#block-legalacceptcopy a').forEach((item) => {
-        item.addEventListener('click', (e) => {
-          let name =
-            item.pathname == '/legal'
-              ? 'term_l'
-              : item.pathname == '/privacy'
-              ? 'priv_l'
-              : '';
-          pushDataLayer('exp_ch_pl_page_' + name, item.innerText, 'Link', loc);
+      document.querySelectorAll("#block-legalacceptcopy a").forEach((item) => {
+        item.addEventListener("click", (e) => {
+          let name = item.pathname == "/legal" ? "term_l" : item.pathname == "/privacy" ? "priv_l" : "";
+          pushDataLayer("exp_ch_pl_page_" + name, item.innerText, "Link", loc);
         });
       });
     }
 
-    if (
-      document.querySelector(
-        '.form-item-commerce-donation-pane-donation-toggler label'
-      ) != null &&
-      document.querySelector('.views-field.views-field-total-price__number') !=
-        null &&
-      document.querySelector('.o-page__mainContent') != null &&
-      window.location.href.includes('/checkout') &&
-      !window.location.href.includes('/login') &&
-      document.querySelector('[data-drupal-selector="edit-actions-next"]') !=
-        null
-    ) {
+    if (document.querySelector(".form-item-commerce-donation-pane-donation-toggler label") != null && document.querySelector(".views-field.views-field-total-price__number") != null && document.querySelector(".o-page__mainContent") != null && window.location.href.includes("/checkout") && !window.location.href.includes("/login") && document.querySelector('[data-drupal-selector="edit-actions-next"]') != null) {
       clearInterval(init);
-      let loc = 'Card information';
+      let loc = "Card information";
 
-      document.body.insertAdjacentHTML('afterbegin', style); //add style
+      document.body.insertAdjacentHTML("afterbegin", style); //add style
 
-      if (document.querySelector('.topbar') == null) {
-        document
-          .querySelector('.o-page__mainContent')
-          .insertAdjacentHTML('afterbegin', headHTML); //add topbar
+      if (document.querySelector(".topbar") == null) {
+        document.querySelector(".o-page__mainContent").insertAdjacentHTML("afterbegin", headHTML); //add topbar
       }
 
       document.body.insertAdjacentHTML(
-        'afterbegin',
+        "afterbegin",
         `
             <style>
                 .commerce-checkout-flow {
@@ -1852,206 +1520,103 @@ function init() {
             </style>`
       );
 
-      if (document.querySelector('.header-logo') == null) {
-        document.querySelector('.o-page__header').insertAdjacentHTML(
-          'afterend',
+      if (document.querySelector(".header-logo") == null) {
+        document.querySelector(".o-page__header").insertAdjacentHTML(
+          "afterend",
           `
                 <div class="header-logo text-center"> <a href="/" class="logo"><img src="/themes/custom/lotus/logo.png" alt="image"></a></div>`
         );
       }
 
-      document
-        .querySelector('.progressbar .step:nth-child(2)')
-        .classList.add('checked');
-      document
-        .querySelector('.progressbar .step:last-child')
-        .classList.add('active');
-      if (window.matchMedia('(max-width: 767px)').matches) {
-        document.querySelector(
-          '.progressbar .step.active:not(.checked) > div'
-        ).innerHTML = '/3';
+      document.querySelector(".progressbar .step:nth-child(2)").classList.add("checked");
+      document.querySelector(".progressbar .step:last-child").classList.add("active");
+      if (window.matchMedia("(max-width: 767px)").matches) {
+        document.querySelector(".progressbar .step.active:not(.checked) > div").innerHTML = "/3";
       }
 
-      document.querySelector('.checkout-pane .fieldset-legend').innerHTML =
-        'Enter your card information';
+      document.querySelector(".checkout-pane .fieldset-legend").innerHTML = "Enter your card information";
 
-      if (document.querySelector('.btn_start_membership') == null) {
-        const isDonation =
-          document
-            .querySelector(
-              '[data-drupal-selector="edit-sidebar-order-summary-summary"] .views-field-title'
-            )
-            ?.textContent.toLowerCase()
-            .trim() === 'donation';
-        document
-          .querySelector('.layout-region.layout-region-checkout-main')
-          .insertAdjacentHTML(
-            'beforeend',
-            `<button type="button" class="btn_start_membership">${
-              isDonation ? 'Continue to review' : 'Start membership'
-            }</button>`
-          );
+      if (document.querySelector(".btn_start_membership") == null) {
+        const isDonation = document.querySelector('[data-drupal-selector="edit-sidebar-order-summary-summary"] .views-field-title')?.textContent.toLowerCase().trim() === "donation";
+        document.querySelector(".layout-region.layout-region-checkout-main").insertAdjacentHTML("beforeend", `<button type="button" class="btn_start_membership">${isDonation ? "Continue to review" : "Start membership"}</button>`);
       }
 
       // Continue to review
 
       let waitEmail = setInterval(() => {
-        if (
-          document.querySelector('.recurly-hosted-field') != null &&
-          document.querySelector('.form-radios') == null
-        ) {
+        if (document.querySelector(".recurly-hosted-field") != null && document.querySelector(".form-radios") == null) {
           clearInterval(waitEmail);
-          if (localStorage.getItem('email')) {
-            let email = localStorage.getItem('email');
+          if (localStorage.getItem("email")) {
+            let email = localStorage.getItem("email");
 
-            document
-              .querySelector(
-                '[data-drupal-selector="edit-payment-information-add-payment-method-payment-details"]'
-              )
-              .insertAdjacentHTML(
-                'beforebegin',
-                `
+            document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-payment-details"]').insertAdjacentHTML(
+              "beforebegin",
+              `
                         <div class="field-email form-item">
                             <label>Email</label>
                             <input type="email" readonly value="${email}">
                         </div>`
-              );
+            );
           }
 
-          document
-            .querySelector('.recurly-hosted-field')
-            .insertAdjacentHTML(
-              'beforebegin',
-              `<label>Card Information</label>`
-            );
-          document.querySelector('.btn_start_membership').disabled = true;
+          document.querySelector(".recurly-hosted-field").insertAdjacentHTML("beforebegin", `<label>Card Information</label>`);
+          document.querySelector(".btn_start_membership").disabled = true;
         }
       });
 
-      if (
-        document.querySelector('.samsara .form-type-checkbox .check') == null
-      ) {
-        document
-          .querySelector(
-            '[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]'
-          )
-          .insertAdjacentHTML('afterend', `<span class="check"></span>`);
-        document
-          .querySelector(
-            '[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]'
-          )
-          .addEventListener('change', (e) => {
-            pushDataLayer(
-              'exp_ch_pl_page_would_ch',
-              `I'd like to make ...`,
-              'Checkbox',
-              loc
-            );
-          });
+      if (document.querySelector(".samsara .form-type-checkbox .check") == null) {
+        document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]').insertAdjacentHTML("afterend", `<span class="check"></span>`);
+        document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]').addEventListener("change", (e) => {
+          pushDataLayer("exp_ch_pl_page_would_ch", `I'd like to make ...`, "Checkbox", loc);
+        });
       }
-      document.querySelector(
-        '.form-item-commerce-donation-pane-donation-toggler label'
-      ).innerHTML = `I'd like to make a donation to support instructors and free content creation `;
+      document.querySelector(".form-item-commerce-donation-pane-donation-toggler label").innerHTML = `I'd like to make a donation to support instructors and free content creation `;
 
-      if (
-        document
-          .querySelector('.views-field.views-field-total-price__number')
-          .innerHTML.includes('$108.99')
-      ) {
-        let price = document.querySelector(
-          '.views-field.views-field-total-price__number'
-        );
-        if (!document.querySelector('.c-green')) {
+      if (document.querySelector(".views-field.views-field-total-price__number").innerHTML.includes("$108.99")) {
+        let price = document.querySelector(".views-field.views-field-total-price__number");
+        if (!document.querySelector(".c-green")) {
           price.innerHTML = `
                       <p><span>$167.88</span> ${price.innerHTML}</p>
                       <p class="c-green">Just $9.08/month!</p>`;
         }
 
-        document.querySelector(
-          '.views-field.views-field-title'
-        ).innerHTML = `1-Year DYWM Subscription`;
-        if (!document.querySelector('.saved_block')) {
-          document
-            .querySelector('.order-total-line__total')
-            .insertAdjacentHTML(
-              'afterend',
-              ` <div class="saved_block">You just saved <span class="saved_var">$58,89</span> (<span class="percent_var">35%</span> off)</div>`
-            );
+        document.querySelector(".views-field.views-field-title").innerHTML = `1-Year DYWM Subscription`;
+        if (!document.querySelector(".saved_block")) {
+          document.querySelector(".order-total-line__total").insertAdjacentHTML("afterend", ` <div class="saved_block">You just saved <span class="saved_var">$58,89</span> (<span class="percent_var">35%</span> off)</div>`);
         }
 
-        if (
-          document.querySelector(
-            '#edit-sidebar-order-summary-summary .order-total-line__adjustment--promotion'
-          ) &&
-          document.querySelector(
-            '.order-total-line.order-total-line__total .order-total-line-value'
-          )?.textContent === '$92.64'
-        ) {
-          document.querySelector('.saved_var').textContent = '$75.24';
-          document.querySelector('.percent_var').textContent = '45%';
-          if (
-            document.querySelector(
-              '.views-field.views-field-total-price__number'
-            ) &&
-            !document.querySelector('.c-green')
-          ) {
-            document.querySelector(
-              '.views-field.views-field-total-price__number'
-            ).innerHTML =
-              '<p><span>$167.88</span> $92.64</p> <p class="c-green">Just $7,83/month!</p>';
+        if (document.querySelector("#edit-sidebar-order-summary-summary .order-total-line__adjustment--promotion") && document.querySelector(".order-total-line.order-total-line__total .order-total-line-value")?.textContent === "$92.64") {
+          document.querySelector(".saved_var").textContent = "$75.24";
+          document.querySelector(".percent_var").textContent = "45%";
+          if (document.querySelector(".views-field.views-field-total-price__number") && !document.querySelector(".c-green")) {
+            document.querySelector(".views-field.views-field-total-price__number").innerHTML = '<p><span>$167.88</span> $92.64</p> <p class="c-green">Just $7,83/month!</p>';
           }
         }
-      } else if (
-        document
-          .querySelector('.views-field.views-field-total-price__number')
-          .innerHTML.includes('$13.99 ')
-      ) {
-        document.querySelector(
-          '.views-field.views-field-title'
-        ).innerHTML = `1-Month DYWM Subscription`;
+      } else if (document.querySelector(".views-field.views-field-total-price__number").innerHTML.includes("$13.99 ")) {
+        document.querySelector(".views-field.views-field-title").innerHTML = `1-Month DYWM Subscription`;
       }
 
-      if (
-        document.querySelector('#edit-coupon-redemption') != null &&
-        document.querySelector('.btn_got_coupon') == null
-      ) {
-        document.querySelector('#edit-coupon-redemption').insertAdjacentHTML(
-          'beforebegin',
+      if (document.querySelector("#edit-coupon-redemption") != null && document.querySelector(".btn_got_coupon") == null) {
+        document.querySelector("#edit-coupon-redemption").insertAdjacentHTML(
+          "beforebegin",
           `
                 <a href="#" class="btn_got_coupon">Got a Coupon?</a>`
         );
-        if (
-          document.querySelector(
-            '[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]'
-          )
-        ) {
-          document.querySelector(
-            '[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]'
-          ).innerHTML = 'Apply';
+        if (document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]')) {
+          document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]').innerHTML = "Apply";
         }
 
-        document
-          .querySelector('.btn_got_coupon')
-          .addEventListener('click', (e) => {
-            e.preventDefault();
-            document
-              .querySelector('#edit-coupon-redemption')
-              .classList.toggle('active');
-            clickApplyCoupon = false;
-            pushDataLayer(
-              'exp_ch_pl_page_coupon_link',
-              'Got a Coupon?',
-              'Link',
-              loc
-            );
-          });
+        document.querySelector(".btn_got_coupon").addEventListener("click", (e) => {
+          e.preventDefault();
+          document.querySelector("#edit-coupon-redemption").classList.toggle("active");
+          clickApplyCoupon = false;
+          pushDataLayer("exp_ch_pl_page_coupon_link", "Got a Coupon?", "Link", loc);
+        });
       }
 
-      document
-        .querySelector('.layout-region-checkout-secondary')
-        .insertAdjacentHTML(
-          'beforeend',
-          `
+      document.querySelector(".layout-region-checkout-secondary").insertAdjacentHTML(
+        "beforeend",
+        `
             <div class="flex items-center justify-between infos_dashed">
                 <div class="info_dashed flex items-center justify-center">
                     <svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2069,51 +1634,27 @@ function init() {
                     100% money back guarantee
                 </div>
             </div>`
-        );
-      document
-        .querySelectorAll(
-          'form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])'
-        )
-        .forEach((item) => {
-          item.addEventListener('input', () => {
-            disabledBtnFun();
-          });
+      );
+      document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])').forEach((item) => {
+        item.addEventListener("input", () => {
+          disabledBtnFun();
         });
+      });
 
-      document
-        .querySelector('.btn_start_membership')
-        .addEventListener('click', (e) => {
-          document
-            .querySelector('[data-drupal-selector="edit-actions-next"]')
-            .click();
-          pushDataLayer(
-            'exp_ch_pl_page_start_b',
-            'Start membership button',
-            'Button',
-            loc
-          );
+      document.querySelector(".btn_start_membership").addEventListener("click", (e) => {
+        document.querySelector('[data-drupal-selector="edit-actions-next"]').click();
+        pushDataLayer("exp_ch_pl_page_start_b", "Start membership button", "Button", loc);
 
-          let invalidCard = setInterval(() => {
-            if (
-              document.querySelector(
-                '.recurly-hosted-field.recurly-hosted-field-invalid'
-              )
-            ) {
-              clearInterval(invalidCard);
-              window.scrollTo(0, 0);
-            }
-          });
+        let invalidCard = setInterval(() => {
+          if (document.querySelector(".recurly-hosted-field.recurly-hosted-field-invalid")) {
+            clearInterval(invalidCard);
+            window.scrollTo(0, 0);
+          }
         });
+      });
 
       let waitRadios = setInterval(() => {
-        if (
-          document.querySelectorAll(
-            '.form-item-payment-information-payment-method input'
-          ).length > 1 &&
-          document.querySelector(
-            '[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]'
-          ) != null
-        ) {
+        if (document.querySelectorAll(".form-item-payment-information-payment-method input").length > 1 && document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]') != null) {
           clearInterval(waitRadios);
           setTimeout(() => {
             disabledBtnFun();
@@ -2121,30 +1662,18 @@ function init() {
         }
       });
       let waitFormEdit = setInterval(() => {
-        if (
-          document.querySelector('.address-book-edit-button') == null &&
-          document.querySelectorAll(
-            '.form-item-payment-information-payment-method'
-          ).length > 1 &&
-          document.querySelectorAll(
-            'form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])'
-          ).length > 1
-        ) {
+        if (document.querySelector(".address-book-edit-button") == null && document.querySelectorAll(".form-item-payment-information-payment-method").length > 1 && document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])').length > 1) {
           clearInterval(waitFormEdit);
 
-          document
-            .querySelectorAll(
-              'form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])'
-            )
-            .forEach((item) => {
-              item.addEventListener('input', (e) => {
-                setTimeout(() => {
-                  disabledBtnFun();
-                }, 200);
-              });
+          document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])').forEach((item) => {
+            item.addEventListener("input", (e) => {
+              setTimeout(() => {
+                disabledBtnFun();
+              }, 200);
             });
+          });
 
-          document.querySelector('.country').addEventListener('change', (e) => {
+          document.querySelector(".country").addEventListener("change", (e) => {
             setTimeout(() => {
               disabledBtnFun();
             }, 200);
@@ -2152,220 +1681,89 @@ function init() {
         }
       });
 
-      pushDataLayer('exp_ch_pl_page_card_v', loc, 'Visibility', loc);
+      pushDataLayer("exp_ch_pl_page_card_v", loc, "Visibility", loc);
     }
   }, 100);
 }
 init();
 
 let setLabelCountry = setInterval(() => {
-  if (
-    document.querySelector(
-      '.form-item-payment-information-add-payment-method-billing-information-address-0-address-country-code'
-    ) != null &&
-    document.querySelector(
-      '.form-item-payment-information-add-payment-method-billing-information-address-0-address-country-code > label'
-    ) == null
-  ) {
-    document
-      .querySelector(
-        '.form-item-payment-information-add-payment-method-billing-information-address-0-address-country-code'
-      )
-      .insertAdjacentHTML(
-        'afterbegin',
-        `<label class="form-required">Country</label>`
-      );
+  if (document.querySelector(".form-item-payment-information-add-payment-method-billing-information-address-0-address-country-code") != null && document.querySelector(".form-item-payment-information-add-payment-method-billing-information-address-0-address-country-code > label") == null) {
+    document.querySelector(".form-item-payment-information-add-payment-method-billing-information-address-0-address-country-code").insertAdjacentHTML("afterbegin", `<label class="form-required">Country</label>`);
   }
 });
 
 let setLabelState = setInterval(() => {
-  if (
-    document.querySelector(
-      '.form-item-payment-information-add-payment-method-billing-information-address-0-address-administrative-area'
-    ) &&
-    document.querySelector(
-      '.form-item-payment-information-add-payment-method-billing-information-address-0-address-administrative-area > label'
-    ) == null
-  ) {
-    document
-      .querySelector(
-        '.form-item-payment-information-add-payment-method-billing-information-address-0-address-administrative-area'
-      )
-      .insertAdjacentHTML(
-        'afterbegin',
-        `<label class="form-required">State</label>`
-      );
+  if (document.querySelector(".form-item-payment-information-add-payment-method-billing-information-address-0-address-administrative-area") && document.querySelector(".form-item-payment-information-add-payment-method-billing-information-address-0-address-administrative-area > label") == null) {
+    document.querySelector(".form-item-payment-information-add-payment-method-billing-information-address-0-address-administrative-area").insertAdjacentHTML("afterbegin", `<label class="form-required">State</label>`);
   }
 });
 
 let setLabelCountryPaypal = setInterval(() => {
-  if (
-    document.querySelector(
-      '.form-item-payment-information-billing-information-address-0-address-country-code'
-    ) &&
-    document.querySelector(
-      '.form-item-payment-information-billing-information-address-0-address-country-code > label'
-    ) == null
-  ) {
-    document
-      .querySelector(
-        '.form-item-payment-information-billing-information-address-0-address-country-code'
-      )
-      .insertAdjacentHTML(
-        'afterbegin',
-        `<label class="form-required">Country</label>`
-      );
+  if (document.querySelector(".form-item-payment-information-billing-information-address-0-address-country-code") && document.querySelector(".form-item-payment-information-billing-information-address-0-address-country-code > label") == null) {
+    document.querySelector(".form-item-payment-information-billing-information-address-0-address-country-code").insertAdjacentHTML("afterbegin", `<label class="form-required">Country</label>`);
   }
 });
 
 let setLabelAddressPaypal = setInterval(() => {
-  if (
-    document.querySelector(
-      '.form-item-payment-information-billing-information-select-address'
-    ) &&
-    document.querySelector(
-      '.form-item-payment-information-billing-information-select-address > label'
-    ) == null
-  ) {
-    document
-      .querySelector(
-        '.form-item-payment-information-billing-information-select-address'
-      )
-      .insertAdjacentHTML(
-        'afterbegin',
-        `<label class="form-required">Select an address</label>`
-      );
+  if (document.querySelector(".form-item-payment-information-billing-information-select-address") && document.querySelector(".form-item-payment-information-billing-information-select-address > label") == null) {
+    document.querySelector(".form-item-payment-information-billing-information-select-address").insertAdjacentHTML("afterbegin", `<label class="form-required">Select an address</label>`);
   }
 });
 
 let setLabelObls = setInterval(() => {
-  if (
-    document.querySelector(
-      '.form-item-payment-information-billing-information-address-0-address-administrative-area'
-    ) &&
-    document.querySelector(
-      '.form-item-payment-information-billing-information-address-0-address-administrative-area > label'
-    ) == null
-  ) {
-    let label = document.querySelector(
-      '.form-item-payment-information-billing-information-address-0-address-administrative-area > .select2 label'
-    ).innerText;
-    document
-      .querySelector(
-        '.form-item-payment-information-billing-information-address-0-address-administrative-area'
-      )
-      .insertAdjacentHTML(
-        'afterbegin',
-        `<label class="form-required">${label}</label>`
-      );
+  if (document.querySelector(".form-item-payment-information-billing-information-address-0-address-administrative-area") && document.querySelector(".form-item-payment-information-billing-information-address-0-address-administrative-area > label") == null) {
+    let label = document.querySelector(".form-item-payment-information-billing-information-address-0-address-administrative-area > .select2 label").innerText;
+    document.querySelector(".form-item-payment-information-billing-information-address-0-address-administrative-area").insertAdjacentHTML("afterbegin", `<label class="form-required">${label}</label>`);
   }
 });
 
 let applyCoupon = setInterval(() => {
-  if (
-    document.querySelector(
-      '[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]'
-    ) != null &&
-    document.querySelector('.field-email') == null &&
-    document.querySelector('.btn_got_coupon') == null
-  ) {
+  if (document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]') != null && document.querySelector(".field-email") == null && document.querySelector(".btn_got_coupon") == null) {
     init();
   }
 }, 200);
 
 //remove Message "DYWM Subscription, Yearly added to "
 let findMessageSubscription = setInterval(() => {
-  if (
-    document.querySelector('.messages--status') != null &&
-    document.querySelector('.messages--status').innerHTML.includes('your cart')
-  ) {
-    document.querySelector('.messages--status').remove();
+  if (document.querySelector(".messages--status") != null && document.querySelector(".messages--status").innerHTML.includes("your cart")) {
+    document.querySelector(".messages--status").remove();
   }
 });
 
 let disabledBtnFun = () => {
   let disabledBtn = setInterval(() => {
-    if (
-      document.querySelectorAll('form #edit-payment-information input') &&
-      document.querySelector('[data-drupal-selector="edit-actions-next"]') !=
-        null &&
-      document.querySelector('.btn_start_membership') != null
-    ) {
+    if (document.querySelectorAll("form #edit-payment-information input") && document.querySelector('[data-drupal-selector="edit-actions-next"]') != null && document.querySelector(".btn_start_membership") != null) {
       error = false;
-      error =
-        document.querySelector(
-          '[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"]'
-        ) != null &&
-        document.querySelector(
-          '[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"] + .select2 .select2-selection__rendered'
-        ) != null &&
-        document
-          .querySelector(
-            '[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"] + .select2 .select2-selection__rendered'
-          )
-          .innerHTML.includes('Select');
+      error = document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"]') != null && document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"] + .select2 .select2-selection__rendered') != null && document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"] + .select2 .select2-selection__rendered').innerHTML.includes("Select");
 
       clearInterval(disabledBtn);
 
-      let inputs = document.querySelectorAll(
-        'form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"],.address-line2)'
-      );
-      let inputsAll = document.querySelectorAll('form input');
+      let inputs = document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"],.address-line2)');
+      let inputsAll = document.querySelectorAll("form input");
 
-      let loc = 'Card information';
+      let loc = "Card information";
 
-      let selects = document.querySelectorAll('form .select2');
+      let selects = document.querySelectorAll("form .select2");
       selects.forEach((item) => {
-        item.addEventListener('click', (e) => {
+        item.addEventListener("click", (e) => {
           e.stopImmediatePropagation();
-          let name = item.parentElement
-            .querySelector('label')
-            .innerText.replace('*', '')
-            .toLowerCase();
-          pushDataLayer(
-            'exp_ch_pl_page_select_' + name,
-            e.currentTarget.closest('.form-item').querySelector('label')
-              .innerText,
-            'Select',
-            loc
-          );
+          let name = item.parentElement.querySelector("label").innerText.replace("*", "").toLowerCase();
+          pushDataLayer("exp_ch_pl_page_select_" + name, e.currentTarget.closest(".form-item").querySelector("label").innerText, "Select", loc);
         });
       });
 
       inputsAll.forEach((item) => {
-        item.addEventListener('click', (e) => {
+        item.addEventListener("click", (e) => {
           e.stopImmediatePropagation();
           let parent = e.currentTarget.parentElement;
-          if (parent.querySelector('label')) {
-            if (
-              parent.closest(
-                '[data-drupal-selector="edit-commerce-donation-pane-field-gift-type"]'
-              )
-            ) {
-              pushDataLayer(
-                'exp_ch_pl_page_sel_card',
-                `Select Donation Type - ${parent.innerText}`,
-                'Radio',
-                loc
-              );
-            } else if (
-              parent.closest(
-                '[data-drupal-selector="edit-commerce-donation-pane-field-donation-amount-0-donation-level"]'
-              )
-            ) {
-              pushDataLayer(
-                'exp_ch_pl_page_amount_r',
-                `Amount - ${parent.innerText}`,
-                'Radio',
-                loc
-              );
-            } else if (item.type != 'checkbox') {
-              pushDataLayer(
-                'exp_ch_pl_page_input_card',
-                `Click on ${parent.querySelector('label').innerText}`,
-                'Input',
-                loc
-              );
+          if (parent.querySelector("label")) {
+            if (parent.closest('[data-drupal-selector="edit-commerce-donation-pane-field-gift-type"]')) {
+              pushDataLayer("exp_ch_pl_page_sel_card", `Select Donation Type - ${parent.innerText}`, "Radio", loc);
+            } else if (parent.closest('[data-drupal-selector="edit-commerce-donation-pane-field-donation-amount-0-donation-level"]')) {
+              pushDataLayer("exp_ch_pl_page_amount_r", `Amount - ${parent.innerText}`, "Radio", loc);
+            } else if (item.type != "checkbox") {
+              pushDataLayer("exp_ch_pl_page_input_card", `Click on ${parent.querySelector("label").innerText}`, "Input", loc);
             }
           }
         });
@@ -2373,34 +1771,16 @@ let disabledBtnFun = () => {
 
       if (error == false) {
         for (let i = 0; i < inputs.length; i++) {
-          if (inputs[i].value == '') {
-            if (
-              inputs[i].id.includes(
-                'edit-payment-information-add-payment-method-billing-information-address-0-address-given-name'
-              ) ||
-              inputs[i].id.includes(
-                'edit-payment-information-add-payment-method-billing-information-address-0-address-family-name'
-              ) ||
-              inputs[i].id.includes(
-                'edit-payment-information-add-payment-method-billing-information-address-0-address-address-line1'
-              ) ||
-              inputs[i].id.includes(
-                'edit-payment-information-add-payment-method-billing-information-address-0-address-locality'
-              ) ||
-              inputs[i].id.includes(
-                'edit-payment-information-add-payment-method-billing-information-address-0-address-postal-code'
-              ) ||
-              inputs[i].classList.contains('locality') ||
-              inputs[i].classList.contains('postal-code')
-            ) {
+          if (inputs[i].value == "") {
+            if (inputs[i].id.includes("edit-payment-information-add-payment-method-billing-information-address-0-address-given-name") || inputs[i].id.includes("edit-payment-information-add-payment-method-billing-information-address-0-address-family-name") || inputs[i].id.includes("edit-payment-information-add-payment-method-billing-information-address-0-address-address-line1") || inputs[i].id.includes("edit-payment-information-add-payment-method-billing-information-address-0-address-locality") || inputs[i].id.includes("edit-payment-information-add-payment-method-billing-information-address-0-address-postal-code") || inputs[i].classList.contains("locality") || inputs[i].classList.contains("postal-code")) {
               error = true;
             }
           }
         }
       }
 
-      document.querySelector('.btn_start_membership').disabled = error;
-      console.log('Start membership = ' + error);
+      document.querySelector(".btn_start_membership").disabled = error;
+      console.log("Start membership = " + error);
     }
   });
 };
@@ -2410,12 +1790,7 @@ let optionMut = {
 };
 
 let mut = new MutationObserver(function (muts) {
-  if (
-    document.querySelector('#edit-sidebar-coupon-redemption-form-code')
-      ?.value !== '' &&
-    !document.querySelector('.saved_block') &&
-    window.location.pathname.includes('checkout/')
-  ) {
+  if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value !== "" && !document.querySelector(".saved_block") && window.location.pathname.includes("checkout/")) {
     mut.disconnect();
     console.log(`object >>>>>>>>>>>>>>>>>>>>`);
     init();
@@ -2423,74 +1798,37 @@ let mut = new MutationObserver(function (muts) {
   mut.observe(document, optionMut);
 
   //
-  if (
-    document.querySelector(
-      '[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-country-code"]'
-    ) != null
-  ) {
+  if (document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-country-code"]') != null) {
     mut.disconnect();
 
     disabledBtnFun();
   }
   mut.observe(document, optionMut);
-  if (
-    document.querySelector(
-      '[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"]'
-    ) != null
-  ) {
+  if (document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"]') != null) {
     mut.disconnect();
 
-    error = document
-      .querySelector(
-        '[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"]'
-      )
-      .innerHTML.includes('Select');
+    error = document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"]').innerHTML.includes("Select");
     disabledBtnFun();
   }
   mut.observe(document, optionMut);
-  if (
-    document.querySelectorAll('.form-item-payment-information-payment-method ')
-      .length > 1 &&
-    document.querySelector(
-      '[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]'
-    ) != null
-  ) {
+  if (document.querySelectorAll(".form-item-payment-information-payment-method ").length > 1 && document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]') != null) {
     mut.disconnect();
 
     disabledBtnFun();
   }
   mut.observe(document, optionMut);
 
-  if (
-    clickApplyCoupon == false &&
-    document.querySelector(
-      '[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]'
-    ) != null &&
-    document.querySelector(
-      '[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]'
-    ).nextElementSibling != null
-  ) {
+  if (clickApplyCoupon == false && document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]') != null && document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]').nextElementSibling != null) {
     mut.disconnect();
     clickApplyCoupon = true;
-    pushDataLayer(
-      'exp_ch_pl_page_apply',
-      'Apply (Coupon)',
-      'Button',
-      'Card information'
-    );
+    pushDataLayer("exp_ch_pl_page_apply", "Apply (Coupon)", "Button", "Card information");
   }
   mut.observe(document, optionMut);
-  if (
-    document.querySelectorAll('[data-drupal-messages]') &&
-    document.querySelector('[data-drupal-selector="edit-coupon-redemption"]') !=
-      null
-  ) {
+  if (document.querySelectorAll("[data-drupal-messages]") && document.querySelector('[data-drupal-selector="edit-coupon-redemption"]') != null) {
     mut.disconnect();
-    document.querySelectorAll('[data-drupal-messages]').forEach((item) => {
-      if (item.innerHTML.includes('coupon code')) {
-        document
-          .querySelector('[data-drupal-selector="edit-coupon-redemption"]')
-          .after(item);
+    document.querySelectorAll("[data-drupal-messages]").forEach((item) => {
+      if (item.innerHTML.includes("coupon code")) {
+        document.querySelector('[data-drupal-selector="edit-coupon-redemption"]').after(item);
       }
     });
   }
@@ -2505,8 +1843,8 @@ let mut = new MutationObserver(function (muts) {
 mut.observe(document, optionMut);
 
 let isClarify = setInterval(() => {
-  if (typeof clarity == 'function') {
+  if (typeof clarity == "function") {
     clearInterval(isClarify);
-    clarity('set', 'change_plans_page_signup_сheckout', 'variant_1');
+    clarity("set", "change_plans_page_signup_сheckout", "variant_1");
   }
 }, 100);
