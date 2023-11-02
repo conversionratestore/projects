@@ -537,7 +537,6 @@ const style = `
 .c-blue {
     color: var(--Blue-Main, #027DB8);
 }
-
 @media only screen and (min-width: 768px) {
     .flex-md-center {
         display: flex;
@@ -559,6 +558,9 @@ const style = `
         box-shadow: 0px -2px 16px 0px rgba(0, 0, 0, 0.10);
         width: auto;
         margin: auto -60px 0 ;
+    }
+    .crs_swiper {
+        display: none;
     }
 }
 @media only screen and (max-width: 767px) {
