@@ -1549,12 +1549,7 @@ input[type="checkbox"]:checked ~ .check {
 #main-content {
     min-height: auto!important;
 }
-.password-suggestions, 
-.user-register-form .ac-newsletter-reg-suffix, 
-.user-register-form .form-type-checkbox, 
-header.o-page__header, .js-form-item-pass-pass2, 
-.user-register-form .password-strength__title, 
-.user-register-form .password-strength {
+header.o-page__header, .js-form-item-pass-pass2 {
     display: none!important;
 }
 .commerce-checkout-flow {
@@ -1951,19 +1946,13 @@ input[readonly] {
         width: 8px;
         margin-right: 8px;
     }
-    form h1, .sfc-tabs__tabcontent.tabs__content h2 {
+    form h1 {
         font-size: 22px;
         line-height: 30px;
         margin-bottom: 20px;
     }
     .form-actions {
         padding: 20px 0 0 0;
-    }
-    .social-auth__container {
-        margin: 20px 0;
-    }
-    #block-userloginregistertabs--2, #block-userloginregistertabs {
-        margin: 0!important;
     }
 }
 </style>`;
@@ -2316,9 +2305,9 @@ const disabledBtnFun = () => {
           .querySelector(
             '[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"] + .select2 .select2-selection__rendered'
           )
-          .innerHTML.includes("Select");
+          .innerHTML.includes("Select")
 
-      clearInterval(disabledBtn);
+      clearInterval(disabledBtn)
 
       let inputs = document.querySelectorAll(
         'form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"],.address-line2)'
@@ -2331,7 +2320,7 @@ const disabledBtnFun = () => {
           let name = item.parentElement
             .querySelector("label")
             .innerText.replace("*", "")
-            .toLowerCase();
+            .toLowerCase()
         });
       });
 
@@ -2357,13 +2346,13 @@ const disabledBtnFun = () => {
               inputs[i].classList.contains("locality") ||
               inputs[i].classList.contains("postal-code")
             ) {
-              error = true;
+              error = true
             }
           }
         }
       }
 
-      document.querySelector(".btn_start_membership").disabled = error;
+      document.querySelector(".btn_start_membership").disabled = error
     }
-  });
-};
+  })
+}
