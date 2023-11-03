@@ -225,7 +225,7 @@
       'Main Stock Up And Save'
     ])
 
-    el.addEventListener('click', (e) => {
+    el.addEventListener('click', () => {
       pushDataLayer(['exp_add_exp_b_msus_bn', el.querySelector('span').innerText, 'Button', 'Main Stock Up And Save'])
     })
   })
@@ -248,6 +248,7 @@
 
   waitForElement('.js-heading .pdp-popup-discount').then(el => el.addEventListener('click', () => {
     pushDataLayer(['exp_add_exp_gao_msus_l', 'Get additional % off', 'Link', 'Main Stock Up And Save'])
+
   }))
 
   waitForElement('.sidebar .pdp-popup-discount').then(el => el.addEventListener('click', () => {
@@ -346,6 +347,8 @@
             eventData[1] = roundedDuration
 
             if (el.matches('.shopify-cleanslate [role="button"]')) {
+              eventData[1] = `${el.querySelector('span').innerText} - ${roundedDuration}`
+            } else if (el.matches('.shopify-cleanslate button')) {
               eventData[1] = `${el.querySelector('span').innerText} - ${roundedDuration}`
             }
 
