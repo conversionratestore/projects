@@ -1038,228 +1038,225 @@ let freeTrial = setInterval(() => {
 
     //Hypothesis #6 - Add exit-intent popup with limited-time offer
     // Show exit intent popups for users who are logged in but have not bought a paid plan (free users) on pages:
-    // if (!document.querySelector('.menu--account [data-drupal-link-system-path="yogi/login"]') && (window.location.pathname === "/" || window.location.pathname === "/yoga-classes" || window.location.pathname === "/yoga-meditation" || window.location.pathname === "/yoga-challenges" || window.location.pathname === "/yoga-programs" || window.location.pathname.match("/content/"))) {
-    //   document.body.insertAdjacentHTML("afterbegin", popUp);
-    //   document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup);
+    if (!document.querySelector('.menu--account [data-drupal-link-system-path="yogi/login"]') && (window.location.pathname === "/" || window.location.pathname === "/yoga-classes" || window.location.pathname === "/yoga-meditation" || window.location.pathname === "/yoga-challenges" || window.location.pathname === "/yoga-programs" || window.location.pathname.match("/content/"))) {
+      document.body.insertAdjacentHTML("afterbegin", popUp);
+      document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup);
 
-    //   exitIntentPopup();
-    //   // trigger for click on video
-    //   let findVideo = setInterval(() => {
-    //     if (document.querySelector("video.fp-engine")) {
-    //       clearInterval(findVideo);
-    //       document.querySelector(".sfc-nodePlayable__primaryContentContainer").addEventListener("click", (e) => {
-    //         console.log(`object`, e.currentTarget);
-    //         sessionStorage.setItem("click_on_video", "true");
-    //       });
-    //     }
-    //   }, 100);
+      exitIntentPopup();
+      // trigger for click on video
+      let findVideo = setInterval(() => {
+        if (document.querySelector("video.fp-engine")) {
+          clearInterval(findVideo);
+          document.querySelector(".sfc-nodePlayable__primaryContentContainer").addEventListener("click", (e) => {
+            console.log(`object`, e.currentTarget);
+            sessionStorage.setItem("click_on_video", "true");
+          });
+        }
+      }, 100);
 
-    //   function pausedVideo() {
-    //     if (document.querySelector("video.fp-engine")) {
-    //       document.querySelector("video.fp-engine").pause();
-    //     }
-    //   }
-    //   function startVideo() {
-    //     if (document.querySelector("video.fp-engine")) {
-    //       document.querySelector("video.fp-engine").play();
-    //     }
-    //   }
+      function pausedVideo() {
+        if (document.querySelector("video.fp-engine")) {
+          document.querySelector("video.fp-engine").pause();
+        }
+      }
+      function startVideo() {
+        if (document.querySelector("video.fp-engine")) {
+          document.querySelector("video.fp-engine").play();
+        }
+      }
 
-    //   function exitIntentPopup() {
-    //     //   EXIT INTENT popup
-    //     if (document.querySelector(".overlay_popup")) {
-    //       let overlay = document.querySelector(".overlay_popup"),
-    //         containerPopup = overlay.querySelector(".container_popup"),
-    //         btnClose = overlay.querySelector(".btn_close");
+      function exitIntentPopup() {
+        //   EXIT INTENT popup
+        if (document.querySelector(".overlay_popup")) {
+          let overlay = document.querySelector(".overlay_popup"),
+            containerPopup = overlay.querySelector(".container_popup"),
+            btnClose = overlay.querySelector(".btn_close");
 
-    //       setTimeout(() => {
-    //         if (sessionStorage.getItem("click_on_video") == null && sessionStorage.getItem("exit_popup_loaded") == null && document.querySelector("video.fp-engine")) {
-    //           sessionStorage.setItem("exit_popup_loaded", "true"); //refresh status popup
-    //           console.log(`60000 exit_popup_loaded`);
-    //           onOpenPopup(); //show popup
-    //         }
-    //       }, 60000);
+          setTimeout(() => {
+            if (sessionStorage.getItem("click_on_video") == null && sessionStorage.getItem("exit_popup_loaded") == null && document.querySelector("video.fp-engine")) {
+              sessionStorage.setItem("exit_popup_loaded", "true"); //refresh status popup
+              console.log(`60000 exit_popup_loaded`);
+              onOpenPopup(); //show popup
+            }
+          }, 60000);
 
-    //       addEvent(document, "mouseout", function (e) {
-    //         //show EXIT INTENT popup desktop
-    //         if (e.toElement == null && e.relatedTarget == null && sessionStorage.getItem("exit_popup_loaded") == null) {
-    //           sessionStorage.setItem("exit_popup_loaded", "true"); //refresh status popup
-    //           onOpenPopup(); //show popup
-    //         }
-    //       });
-    //       function addEvent(obj, evt, fn) {
-    //         //exit intent
-    //         if (obj.addEventListener) {
-    //           obj.addEventListener(evt, fn, false);
-    //         } else if (obj.attachEvent) {
-    //           obj.attachEvent("on" + evt, fn);
-    //         }
-    //       }
-    //       if (window.innerWidth <= 768) {
-    //         //show EXIT INTENT popup mobile
-    //         let lastPosition = 0,
-    //           newPosition = 0,
-    //           currentSpeed = 0;
-    //         let scrollSpeed = () => {
-    //           lastPosition = window.scrollY;
-    //           setTimeout(() => {
-    //             newPosition = window.scrollY;
-    //           }, 70);
-    //           currentSpeed = newPosition - lastPosition;
-    //           if (currentSpeed > 70 && sessionStorage.getItem("exit_popup_loaded") == null) {
-    //             sessionStorage.setItem("exit_popup_loaded", "true"); //refresh status popup
-    //             onOpenPopup(); //show popup
-    //             document.removeEventListener("scroll", scrollSpeed);
-    //           }
-    //         };
-    //         document.addEventListener("scroll", scrollSpeed);
-    //       }
-    //       function onOpenPopup() {
-    //         // pausedVideo();
-    //         sessionStorage.setItem("openPopupVisib", "yes");
-    //         overlay.classList.remove("is_hidden");
-    //         document.querySelector("body").classList.add("open_var");
-    //         if (!document.querySelector(".overlay_popup .content_popup")) {
-    //           containerPopup?.insertAdjacentHTML("beforeend", contentPopup);
-    //         }
+          addEvent(document, "mouseout", function (e) {
+            //show EXIT INTENT popup desktop
+            if (e.toElement == null && e.relatedTarget == null && sessionStorage.getItem("exit_popup_loaded") == null) {
+              sessionStorage.setItem("exit_popup_loaded", "true"); //refresh status popup
+              onOpenPopup(); //show popup
+            }
+          });
+          function addEvent(obj, evt, fn) {
+            //exit intent
+            if (obj.addEventListener) {
+              obj.addEventListener(evt, fn, false);
+            } else if (obj.attachEvent) {
+              obj.attachEvent("on" + evt, fn);
+            }
+          }
+          if (window.innerWidth <= 768) {
+            //show EXIT INTENT popup mobile
+            let lastPosition = 0,
+              newPosition = 0,
+              currentSpeed = 0;
+            let scrollSpeed = () => {
+              lastPosition = window.scrollY;
+              setTimeout(() => {
+                newPosition = window.scrollY;
+              }, 70);
+              currentSpeed = newPosition - lastPosition;
+              if (currentSpeed > 70 && sessionStorage.getItem("exit_popup_loaded") == null) {
+                sessionStorage.setItem("exit_popup_loaded", "true"); //refresh status popup
+                onOpenPopup(); //show popup
+                document.removeEventListener("scroll", scrollSpeed);
+              }
+            };
+            document.addEventListener("scroll", scrollSpeed);
+          }
+          function onOpenPopup() {
+            // pausedVideo();
+            sessionStorage.setItem("openPopupVisib", "yes");
+            overlay.classList.remove("is_hidden");
+            document.querySelector("body").classList.add("open_var");
+            if (!document.querySelector(".overlay_popup .content_popup")) {
+              containerPopup?.insertAdjacentHTML("beforeend", contentPopup);
+            }
 
-    //         if (document.querySelector(".overlay_popup .content_popup")) {
-    //           if (window.innerWidth <= 768) {
-    //             document.querySelector(".info_block > h2").after(document.querySelector(".discount_expires_wrap"));
-    //           }
-    //           let clock = setInterval(() => {
-    //             if (typeof FlipClock === "function" && document.querySelector("#countdown")) {
-    //               clearInterval(clock);
-    //               let countdown, init_countdown, set_countdown;
-    //               countdown = init_countdown = function () {
-    //                 countdown = new FlipClock(document.querySelector(".countdown"), {
-    //                   clockFace: "MinuteCounter",
-    //                   language: "en",
-    //                   autoStart: false,
-    //                   countdown: true,
-    //                   showSeconds: true,
-    //                   callbacks: {
-    //                     start: function () {
-    //                       timerEventDesk(document.querySelector(".info_block"), "start");
-    //                     },
-    //                     stop: function () {
-    //                       if (this.factory.getTime().time === 0) {
-    //                         document.querySelector(".discount_expires_wrap")?.remove();
-    //                       }
-    //                     },
-    //                   },
-    //                 });
-    //                 function timerEventDesk(el, trigger) {
-    //                   let time = 0;
-    //                   let currentTime = 0;
-    //                   let s = setInterval(() => {
-    //                     if (trigger === "start") {
-    //                       currentTime = ++time;
-    //                       el.setAttribute("data-time", currentTime);
-    //                     }
-    //                     if (trigger === "stop") {
-    //                       clearInterval(s);
-    //                       currentTime = el.getAttribute("data-time");
-    //                     }
-    //                   }, 1000);
-    //                 }
-    //                 btnClose.addEventListener("click", (e) => {
-    //                   // click on btn close popup
-    //                   // pushDataLayer("exp_sub_premium_enjoy_close", "Close", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
+            if (document.querySelector(".overlay_popup .content_popup")) {
+              if (window.innerWidth <= 768) {
+                document.querySelector(".info_block > h2").after(document.querySelector(".discount_expires_wrap"));
+              }
+              let clock = setInterval(() => {
+                if (typeof FlipClock === "function" && document.querySelector("#countdown")) {
+                  clearInterval(clock);
+                  let countdown, init_countdown, set_countdown;
+                  countdown = init_countdown = function () {
+                    countdown = new FlipClock(document.querySelector(".countdown"), {
+                      clockFace: "MinuteCounter",
+                      language: "en",
+                      autoStart: false,
+                      countdown: true,
+                      showSeconds: true,
+                      callbacks: {
+                        start: function () {
+                          timerEventDesk(document.querySelector(".info_block"), "start");
+                        },
+                        stop: function () {
+                          if (this.factory.getTime().time === 0) {
+                            document.querySelector(".discount_expires_wrap")?.remove();
+                          }
+                        },
+                      },
+                    });
+                    function timerEventDesk(el, trigger) {
+                      let time = 0;
+                      let currentTime = 0;
+                      let s = setInterval(() => {
+                        if (trigger === "start") {
+                          currentTime = ++time;
+                          el.setAttribute("data-time", currentTime);
+                        }
+                        if (trigger === "stop") {
+                          clearInterval(s);
+                          currentTime = el.getAttribute("data-time");
+                        }
+                      }, 1000);
+                    }
+                    btnClose.addEventListener("click", (e) => {
+                      // click on btn close popup
+                      // pushDataLayer("exp_sub_premium_enjoy_close", "Close", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
 
-    //                   countdown.stop();
-    //                   timerEventDesk(document.querySelector(".info_block"), "stop");
-    //                   onClosePopup();
-    //                 });
-    //                 overlay.addEventListener("click", (e) => {
-    //                   // click on overlay popup
-    //                   if (e.target.matches(".overlay_popup")) {
-    //                     // pushDataLayer("exp_sub_premium_enjoy_close", "Close", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
-    //                     countdown.stop();
-    //                     timerEventDesk(document.querySelector(".info_block"), "stop");
-    //                     onClosePopup();
-    //                   }
-    //                 });
-    //                 document.querySelector("#subscribeSaveLink")?.addEventListener("click", () => {
-    //                   pushDataLayer(["exp_trial_popupenjoy_but_start", "Start Free Trial And Save ", "Button", "Pop up did you now Enjoy DoYogaWithMe?"]);
-    //                   countdown.stop();
-    //                   sessionStorage.setItem("becomeSubscriber", "true");
+                      countdown.stop();
+                      timerEventDesk(document.querySelector(".info_block"), "stop");
+                      onClosePopup();
+                    });
+                    overlay.addEventListener("click", (e) => {
+                      // click on overlay popup
+                      if (e.target.matches(".overlay_popup")) {
+                        // pushDataLayer("exp_sub_premium_enjoy_close", "Close", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
+                        countdown.stop();
+                        timerEventDesk(document.querySelector(".info_block"), "stop");
+                        onClosePopup();
+                      }
+                    });
+                    document.querySelector("#subscribeSaveLink")?.addEventListener("click", () => {
+                      pushDataLayer(["exp_trial_popupenjoy_but_start", "Start Free Trial And Save ", "Button", "Pop up did you now Enjoy DoYogaWithMe?"]);
+                      countdown.stop();
+                      sessionStorage.setItem("becomeSubscriber", "true");
 
-    //                   timerEventDesk(document.querySelector(".info_block"), "stop");
+                      timerEventDesk(document.querySelector(".info_block"), "stop");
 
-    //                   onClosePopup();
-    //                 });
-    //                 return countdown;
-    //               };
-    //               set_countdown = function (minutes, start) {
-    //                 let elapsed, end, left_secs, now, seconds;
-    //                 if (countdown.running) {
-    //                   return;
-    //                 }
-    //                 seconds = minutes * 60;
-    //                 now = new Date();
-    //                 start = new Date(start);
-    //                 end = start.getTime() + seconds * 1000;
-    //                 left_secs = Math.round((end - now.getTime()) / 1000);
-    //                 elapsed = false;
-    //                 if (left_secs < 0) {
-    //                   console.log(`left_secs`, left_secs);
-    //                   left_secs *= -1;
-    //                   elapsed = true;
-    //                 }
-    //                 countdown.setTime(left_secs);
-    //                 return countdown.start();
-    //               };
-    //               init_countdown();
-    //               set_countdown(30, new Date());
-    //             }
-    //           }, 500);
-    //         }
-    //       }
-    //       function onClosePopup() {
-    //         // startVideo();
-    //         overlay.classList.add("is_hidden");
-    //         if (document.querySelector("body").classList.contains("open_var")) {
-    //           document.querySelector("body").classList.remove("open_var");
-    //         }
-    //         setTimeout(() => {
-    //           document.querySelector(".content_popup")?.remove();
-    //         }, 400);
-    //       }
-    //     }
-    //   }
-    // }
-    // //to redirect from https://www.doyogawithme.com/become-a-subscriber to https://www.doyogawithme.com/checkout/________?__/order_information after exit intent popup
-    // let becomeSubscriber = setInterval(() => {
-    //   if (sessionStorage.getItem("becomeSubscriber") && window.location.pathname === "/become-a-subscriber" && !sessionStorage.getItem("checkoutPremium")) {
-    //     clearInterval(becomeSubscriber);
-    //     sessionStorage.removeItem("becomeSubscriber");
-    //     sessionStorage.setItem("checkoutPremium", "true");
-    //     document.querySelectorAll('.sfc-pricingCard__cta[href="/express-checkout/55"]').forEach((el) => {
-    //       console.log(`CLICK plan__btn-year`);
-    //       el.click();
-    //     });
-    //   }
-    // }, 100);
-    // //to apply the discount code automatically on the checkout after exit intent popup
-    // let checkoutPremium = setInterval(() => {
-    //   if (window.location.pathname.includes("checkout") && sessionStorage.getItem("checkoutPremium") && document.querySelector("#edit-sidebar-order-summary-summary .views-field.views-field-title")?.textContent.includes("12-month")) {
-    //     clearInterval(checkoutPremium);
-    //     // sessionStorage.removeItem("checkoutPremium");
-    //     if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value === "") {
-    //       document.querySelector("#edit-sidebar-coupon-redemption-form-code").value = "YOGA_45";
-    //     }
+                      onClosePopup();
+                    });
+                    return countdown;
+                  };
+                  set_countdown = function (minutes, start) {
+                    let elapsed, end, left_secs, now, seconds;
+                    if (countdown.running) {
+                      return;
+                    }
+                    seconds = minutes * 60;
+                    now = new Date();
+                    start = new Date(start);
+                    end = start.getTime() + seconds * 1000;
+                    left_secs = Math.round((end - now.getTime()) / 1000);
+                    elapsed = false;
+                    if (left_secs < 0) {
+                      console.log(`left_secs`, left_secs);
+                      left_secs *= -1;
+                      elapsed = true;
+                    }
+                    countdown.setTime(left_secs);
+                    return countdown.start();
+                  };
+                  init_countdown();
+                  set_countdown(30, new Date());
+                }
+              }, 500);
+            }
+          }
+          function onClosePopup() {
+            // startVideo();
+            overlay.classList.add("is_hidden");
+            if (document.querySelector("body").classList.contains("open_var")) {
+              document.querySelector("body").classList.remove("open_var");
+            }
+            setTimeout(() => {
+              document.querySelector(".content_popup")?.remove();
+            }, 400);
+          }
+        }
+      }
+    }
+    //to redirect from https://www.doyogawithme.com/become-a-subscriber to https://www.doyogawithme.com/checkout/________?__/order_information after exit intent popup
+    let becomeSubscriber = setInterval(() => {
+      if (sessionStorage.getItem("becomeSubscriber") && window.location.pathname === "/become-a-subscriber" && !sessionStorage.getItem("checkoutPremium")) {
+        clearInterval(becomeSubscriber);
+        sessionStorage.removeItem("becomeSubscriber");
+        sessionStorage.setItem("checkoutPremium", "true");
+        document.querySelector('[href="/express-checkout/139"]').click();
+      }
+    }, 100);
+    //to apply the discount code automatically on the checkout after exit intent popup
+    let checkoutPremium = setInterval(() => {
+      if (window.location.pathname.includes("checkout") && sessionStorage.getItem("checkoutPremium") && document.querySelector("#edit-sidebar-order-summary-summary .views-field.views-field-title")?.textContent.includes("12-month")) {
+        clearInterval(checkoutPremium);
+        // sessionStorage.removeItem("checkoutPremium");
+        if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value === "") {
+          document.querySelector("#edit-sidebar-coupon-redemption-form-code").value = "YOGA_45";
+        }
 
-    //     if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value === "YOGA_45") {
-    //       const element = document.querySelector("#edit-sidebar-coupon-redemption-form-apply");
-    //       const events = ["mousedown", "focusin"];
-    //       events.forEach((eventType) => element.dispatchEvent(new MouseEvent(eventType, { bubbles: true })));
-    //       setTimeout(() => {
-    //         window.location.reload();
-    //       }, 100);
-    //     }
-    //   }
-    // }, 100);
+        if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value === "YOGA_45") {
+          const element = document.querySelector("#edit-sidebar-coupon-redemption-form-apply");
+          const events = ["mousedown", "focusin"];
+          events.forEach((eventType) => element.dispatchEvent(new MouseEvent(eventType, { bubbles: true })));
+          setTimeout(() => {
+            window.location.reload();
+          }, 100);
+        }
+      }
+    }, 100);
 
     // btn Sign Up ->>> textContent
     changeTextBtn();
