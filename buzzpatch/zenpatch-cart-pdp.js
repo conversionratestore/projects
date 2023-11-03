@@ -1,4 +1,4 @@
-;(function () {
+; (function () {
   // -------------------------------------
   // CONSTANTS
   // -------------------------------------
@@ -216,13 +216,44 @@
       pushDataLayer(['exp_add_exp_b_msus_bn', el.querySelector('span').innerText, 'Button', 'Main Stock Up And Save'])
     })
   })
-  waitForElement(`.shopify-cleanslate [role="button"]`).then((el) => {
+
+  waitForElement(`.pdp-paypal-bottom .shopify-cleanslate button`).then((el) => {
+    handleVisibility(el, [
+      'exp_add_exp_v_msus_bnft',
+      '{{button_name}} - {{focusTime}}',
+      'Visibility',
+      'Main Stock Up And Save'
+    ])
+
+    el.addEventListener('click', (e) => {
+      pushDataLayer(['exp_add_exp_b_msus_bn', el.querySelector('span').innerText, 'Button', 'Main Stock Up And Save'])
+    })
+  })
+
+  waitForElement(`.sidebar .shopify-cleanslate [role="button"]`).then((el) => {
     handleVisibility(el, ['exp_add_exp_v_sp_bnft', '{{button_name}} - {{focusTime}}', 'Visibility', 'Select package'])
 
     el.addEventListener('focus', () => {
       pushDataLayer(['exp_add_exp_b_sp_bn', el.querySelector('span').innerText, 'Button', 'Select package'])
     })
   })
+
+  waitForElement(`.sidebar .shopify-cleanslate button`).then((el) => {
+    handleVisibility(el, ['exp_add_exp_v_sp_bnft', '{{button_name}} - {{focusTime}}', 'Visibility', 'Select package'])
+
+    el.addEventListener('click', () => {
+      pushDataLayer(['exp_add_exp_b_sp_bn', el.querySelector('span').innerText, 'Button', 'Select package'])
+    })
+  })
+
+  waitForElement('.js-heading .pdp-popup-discount').then(el => el.addEventListener('click', () => {
+    pushDataLayer(['exp_add_exp_gao_msus_l', 'Get additional % off', 'Link', 'Main Stock Up And Save'])
+  }))
+
+  waitForElement('.sidebar .pdp-popup-discount').then(el => el.addEventListener('click', () => {
+    pushDataLayer(['exp_add_exp_gao_sp_l', 'Get additional % off', 'Link', 'Select package'])
+  }))
+
 
   waitForElement('.slide-in .patches-in-pack img').then((el) =>
     handleVisibility(el, [
@@ -423,7 +454,7 @@
   waitForElement('#getNow a').then(() => {
     document.querySelector('#getNow #addToCart').after(document.querySelector('#getNow .pdp-popup-discount'))
     $('#getNow a').click(function (e) {
-      if (e.target.href.includes('cart/')) {
+      if (e.target.href?.includes('cart/')) {
         $('#getNow .patches-in-pack p').text('72 patches in 3 packs - 3 months for 1 person')
       }
     })
