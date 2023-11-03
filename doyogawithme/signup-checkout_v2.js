@@ -1275,6 +1275,9 @@ function init() {
                       max-width: 280px;
     width: 100%;
                 }
+                .views-field.views-field-title span:last-child.current_price{
+                  display: inline;
+                }
                 .checkout-pane-payment-information .fieldset-wrapper {
                         padding-top: 2.5em;
                 }
@@ -1439,7 +1442,7 @@ function init() {
                 .views-field.views-field-total-price__number p {
                     margin: 0;
                 }
-                .views-field.views-field-total-price__number p span {
+                .views-field.views-field-total-price__number p span.old_price_var {
                     text-decoration-line: line-through;
                     color: #A5A5A5;
                 }
@@ -1734,20 +1737,24 @@ function init() {
         document.querySelector(".layout-region.layout-region-checkout-secondary > h3").insertAdjacentHTML("afterend", `<div class="free_trial_box"><p>7-day free trial</p><p>$0.00</p></div><div class="due_on_block"><p>Due on <span class="due_on_txt">${newMonthTxt}, ${newDateTxt}</span>:</p></div>`);
       }
 
+      let diffValue = "";
+      let percentVar = "";
+      let price = "";
+      let value = "";
       if (document.querySelector(".views-field.views-field-title").innerHTML.match("Yearly Subscription w/ 7 Day Trial")) {
-        let price = document.querySelector(".views-field.views-field-total-price__number");
-        let value = 108.99;
-        let diffValue = 167.88 - value;
-        let percentVar = (diffValue * 100) / 167.88;
+        price = document.querySelector(".views-field.views-field-total-price__number");
+        value = 108.99;
+        diffValue = 167.88 - value;
+        percentVar = (diffValue * 100) / 167.88;
         console.log(percentVar, `percentVar`);
         console.log(diffValue, `diffValue`);
         if (!document.querySelector(".c-green")) {
           price.innerHTML = `
-                      <p><span>$167.88</span> ${value}</p>
-                      <p class="c-green">Just $${(value / 12).toFixed(2)}/month!</p>`;
+                      <p><span class="old_price_var">$167.88</span> $<span class="current_price">${value}</span></p>
+                      <p class="c-green">Just $<span class="green_price">${(value / 12).toFixed(2)}</span>/month!</p>`;
         }
 
-        document.querySelector(".views-field.views-field-title").innerHTML = `<span>12-month DYWM Subscription</span><span>After the 7-day trial period, the annual fee will be $${value}.</span>`;
+        document.querySelector(".views-field.views-field-title").innerHTML = `<span>12-month DYWM Subscription</span><span>After the 7-day trial period, the annual fee will be $<span class='current_price'>${value}</span>.</span>`;
         if (window.innerWidth <= 768) {
           if (!document.querySelector(".subscr_txt_mob")) {
             document.querySelector(".checkout-pane.checkout-pane-order-summary.js-form-wrapper.form-wrapper").insertAdjacentHTML("afterend", `<p class="subscr_txt_mob">After the 7-day trial period, the annual fee will be $${value}.</p>`);
@@ -1755,14 +1762,6 @@ function init() {
         }
         if (!document.querySelector(".saved_block") && document.querySelector(".c-green")) {
           document.querySelector(".c-green").insertAdjacentHTML("afterend", ` <div class="saved_block">You saved <span class="saved_var">$${diffValue}</span> (<span class="percent_var">${percentVar.toFixed(0)}%</span> off)</div>`);
-        }
-
-        if (document.querySelector("#edit-sidebar-order-summary-summary .order-total-line__adjustment--promotion") && document.querySelector(".order-total-line.order-total-line__total .order-total-line-value")?.textContent === "$92.64") {
-          document.querySelector(".saved_var").textContent = `${diffValue}`;
-          document.querySelector(".percent_var").textContent = `${percentVar.toFixed(0)}%`;
-          if (document.querySelector(".views-field.views-field-total-price__number") && !document.querySelector(".c-green")) {
-            document.querySelector(".views-field.views-field-total-price__number").innerHTML = '<p><span>$167.88</span> ${value}</p><p class="c-green">Just $${(value / 12).toFixed(2)}/month!</p>';
-          }
         }
       } else if (document.querySelector(".views-field.views-field-title").innerHTML.match("Monthly Subscription w/ 7 Day Trial")) {
         console.log(`object`);
@@ -1776,15 +1775,35 @@ function init() {
       }
 
       let findInputNull = setInterval(() => {
-        if (!document.querySelector("[name='sidebar[coupon_redemption][form][code]']")) {
+        if (!document.querySelector("[name='sidebar[coupon_redemption][form][code]']") && document.querySelector(".coupon-redemption-form__coupons td").textContent.includes("yoga_45")) {
           clearInterval(findInputNull);
           console.log(`findInput`);
           if (document.querySelector(".saved_block")) {
             document.querySelector(".saved_block").style.display = "block";
+            document.querySelector(".views-field.views-field-total-price__number").style.paddingBottom = "17px";
           }
-          document.querySelector(".btn_got_coupon").style.display = "none";
+          document.querySelectorAll(".current_price").forEach((el) => {
+            el.textContent = "92.64";
+          });
+          value = 92.64;
+          diffValue = 167.88 - value;
+          percentVar = (diffValue * 100) / 167.88;
+          if (document.querySelector(".green_price")) {
+            console.log(value, `value`);
+            document.querySelector(".green_price").textContent = `${(value / 12).toFixed(2)}`;
+          }
+
+          if (document.querySelector(".saved_var")) {
+            document.querySelector(".saved_var").textContent = `${diffValue}`;
+            document.querySelector(".percent_var").textContent = `${percentVar.toFixed(0)}%`;
+          }
+          if (document.querySelector(".btn_got_coupon")) {
+            document.querySelector(".btn_got_coupon").style.display = "none";
+          }
           document.querySelector(".coupon-redemption-form__coupons.coupon-redemption-form__coupons--multiple")?.classList.add("active_var");
-          document.querySelector(".views-field.views-field-title span:last-child").style.maxWidth = "235px";
+          if (document.querySelector(".views-field.views-field-title span:last-child")) {
+            document.querySelector(".views-field.views-field-title span:last-child").style.maxWidth = "235px";
+          }
           document.querySelector("#edit-coupon-redemption").classList.add("active");
           document.querySelector(".coupon-redemption-form__coupons.coupon-redemption-form__coupons--multiple.active_var > h3").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
   <g clip-path="url(#clip0_232_24337)">
@@ -1814,7 +1833,9 @@ function init() {
           if (document.querySelector(".coupon-redemption-form__coupons.coupon-redemption-form__coupons--multiple")?.classList.contains("active_var")) {
             document.querySelector(".coupon-redemption-form__coupons.coupon-redemption-form__coupons--multiple").classList.remove("active_var");
           }
-          document.querySelector(".views-field.views-field-title span:last-child").style.maxWidth = "280px";
+          if (document.querySelector(".views-field.views-field-title span:last-child")) {
+            document.querySelector(".views-field.views-field-title span:last-child").style.maxWidth = "280px";
+          }
         }
       }, 100);
 
