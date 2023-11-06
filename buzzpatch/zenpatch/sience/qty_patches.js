@@ -8,7 +8,10 @@ $('.list-packs .info .pcs').each(function (i, item) {
 const style = /*html*/ `
   <style>
     .list-packs {
-      grid-template-columns: 3fr 1fr !important;
+      grid-template-columns: 3.5fr 1fr !important;
+    }
+    #getNow .slide-packs {
+      padding: 0 10px;
     }
   </style>
 `
