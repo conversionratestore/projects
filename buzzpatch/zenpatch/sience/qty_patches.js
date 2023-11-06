@@ -11,7 +11,7 @@ const style = /*html*/ `
       grid-template-columns: 3.5fr 1fr !important;
     }
     #getNow .slide-packs {
-      padding: 0 10px;
+      padding: 0 10px !important;
     }
   </style>
 `
