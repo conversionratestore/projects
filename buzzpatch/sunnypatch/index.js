@@ -823,6 +823,7 @@ let init = setInterval(() => {
         })
         document.querySelector('.popup_body > a').addEventListener('click', (e) => {
             document.querySelector('.popup').classList.remove('active');
+            pushDataLayer('exp_int_pro_b_sc_get_it_now', `get it now`, 'Button', 'Slide in cart');
         })
         document.body.addEventListener('click', (e) => {
             if (e.target.className == 'sidebar') {
