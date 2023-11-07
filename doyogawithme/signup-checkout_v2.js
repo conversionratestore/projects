@@ -649,6 +649,14 @@ function init() {
                 `;
 
         document.querySelector("#edit-actions .form-submit").insertAdjacentHTML("afterend", `<p class="text-center singup">Don’t have an account? <a href="/yogi/register">Sign Up</a></p>`);
+        if (window.innerWidth <= 768) {
+          if (document.querySelector(".singup")) {
+            document.querySelector(".singup").before(document.querySelector(".social-auth__container"));
+          }
+          if (document.querySelector(".social-auth__container + .singup")) {
+            document.querySelector(".social-auth__container").after(document.querySelector(".social-auth__networks"));
+          }
+        }
 
         document.querySelector("#edit-actions .form-submit").addEventListener("click", () => {
           pushDataLayer("exp_ch_pl_page_login_b", "Log in button", "Button", loc);
@@ -896,6 +904,16 @@ function init() {
           }
           document.querySelector("#edit-actions .form-submit").click();
         });
+
+        if (window.innerWidth <= 768) {
+          if (document.querySelector(".singup")) {
+            document.querySelector(".singup").before(document.querySelector(".social-auth__container"));
+          }
+          if (document.querySelector(".social-auth__container + .singup")) {
+            document.querySelector(".social-auth__container").after(document.querySelector(".social-auth__networks"));
+          }
+          document.querySelector(".social-auth__container .social-auth__divider__text").innerHTML = "or";
+        }
 
         document.querySelector(".social-auth.auth-link span").innerHTML = "Sign up with Google";
         document.querySelector('[data-drupal-selector="user-register-form"] .social-auth').addEventListener("click", (e) => {
