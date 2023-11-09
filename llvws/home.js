@@ -533,6 +533,13 @@ const style = `
     width: calc(100% - 17px);
     margin: 0 auto;
 }
+.footer-contact li img {
+    top: 50%;
+    transform: translateY(-50%);
+}
+.footer-contact li {
+    margin-top: 16px;
+}
 /* base */
 .crs_btn {
     border-radius: 100px;
@@ -601,6 +608,15 @@ const style = `
     }
 }
 
+.uabb-heading-wrapper .uabb-heading span {
+    text-transform: lowercase;
+    font-size: 40px!important;
+    line-height: 48px!important;
+}
+.uabb-heading-wrapper .uabb-heading:first-letter, 
+#hp-sec3 .uabb-heading:first-letter {
+    text-transform: capitalize;
+}
 @media (min-width: 992px) {
     .d-lg-flex {
         display: flex;
@@ -786,11 +802,6 @@ const style = `
     .uabb-heading-wrapper .uabb-heading span {
         font-size: 24px!important;
         line-height: 32px!important;
-        text-transform: lowercase;
-    }
-    .uabb-heading-wrapper .uabb-heading:first-letter, 
-    #hp-sec3 .uabb-heading:first-letter {
-        text-transform: capitalize;
     }
     #hp-sec3 .fl-col-small {
         flex: none;
@@ -1497,10 +1508,132 @@ const eventsWrap = new Promise((resolve, reject) => {
 //add events and location sections
 const initEventsLocation  = setInterval(() => {
     if (document.querySelector('.fl-node-zdoqyw0i32e1') &&
-        document.querySelector('.footer-adv-widget-4')
+        document.querySelector('.footer-adv-widget-4') && 
+        document.querySelector('.footer-adv .ast-col-lg-3:nth-child(3) #text-3')
     ) {
         clearInterval(initEventsLocation)
 
+
+        document.querySelector('.footer-adv .ast-col-lg-3:nth-child(3) #text-3').insertAdjacentHTML('afterend', `
+        <style>
+      .lav-follow {
+        margin-top: -15px;
+      }
+      .lav-follow__title {
+        color: var(--ffffff, #FFF);
+        font-family: Lato;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 26px;
+      }
+      .lav-follow__links {
+        margin-top: 15px;
+      }
+      .lav-follow__link {
+        display: inline-flex;
+        transition: 0.35s;
+      }
+      .lav-sticky {
+        position: fixed;
+        z-index: 88;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: none;
+        padding: 8px 16px;
+        background: var(--fafafa, #FAFAFA);
+      }
+      .lav-sticky__btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        border-radius: 100px;
+        background: var(--18-aae-2, #18AAE2);
+        color: var(--ffffff, #FFF);
+        text-align: center;
+        font-family: 'Lato', sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+      @media(hover: hover) {
+        .lav-follow__link:hover {
+          opacity: 0.7;
+        }
+      }
+      .lav-follow__link + .lav-follow__link {
+        margin-left: 12px;
+      }
+      @media (max-width: 768px) {
+        .lav-sticky {
+          display: block;
+          transition: 0.35s;
+        }
+        .lav-sticky_disable {
+          opacity: 0;
+          pointer-events: none;
+        }
+        .site-footer {
+          margin-bottom: 64px;
+        }
+        .footer-adv-widget-2 {
+          display: block;
+        }
+        .footer-adv-widget-1 .widget:last-child {
+          margin-bottom: 0;
+        }
+        .footer-contact li {
+          font-size: 14px;
+        }
+        .lav-follow {
+          display: flex;
+          padding-bottom: 25px;
+          margin-top: -5px;
+          align-items: center;
+        }
+        .lav-follow__links {
+          margin-top: 0;
+          line-height: 0;
+          margin-left: 20px;
+        }
+        .lav-find {
+          display: block;
+          margin-top: 40px;
+          margin-bottom: 64px;
+        }
+        .lav-find__info {
+          margin-right: 0;
+          margin-bottom: 16px;
+        }
+        .lav-find__info .lav-find__title {
+          font-size: 20px;
+          line-height: 28px;
+        }
+        .lav-find__map {
+          height: 340px;
+        }
+      }
+      .entry-content.clear {
+        // display: none!important;
+      }
+      </style>
+        <div class="lav-follow">
+            <div class="lav-follow__title">Follow us:</div>
+            <div class="lav-follow__links">
+            <a target="_blank" href="https://www.facebook.com/lakelasvegaswatersports" class="lav-follow__link">
+                <img src="https://flopsi69.github.io/crs/llvws/new_pdp/img/logo-fb.svg">
+            </a>
+            <a target="_blank" href="https://www.instagram.com/lakelasvegaswatersports/" class="lav-follow__link">
+                <img src="https://flopsi69.github.io/crs/llvws/new_pdp/img/logo-instagram.svg">
+            </a>
+            <a target="_blank" href="https://www.youtube.com/channel/UC6ak3hPg1vhQgnjHWu1cPWg" class="lav-follow__link">
+                <img src="https://flopsi69.github.io/crs/llvws/new_pdp/img/logo-yt.svg">
+            </a>
+            </div>
+        </div>`)
         eventsWrap.then(data => {
             console.log(data)
        
