@@ -1,3 +1,10 @@
+const clarityInterval = setInterval(function () {
+  if (typeof clarity == 'function') {
+    clearInterval(clarityInterval)
+    clarity('set', 'add_qty_patches', 'variant_1')
+  }
+}, 1000)
+
 $('.list-packs .info .pcs').each(function (i, item) {
   const text = $(item).text()
   const qty = +text.split(' ')[0]
