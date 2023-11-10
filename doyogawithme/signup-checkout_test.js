@@ -14,6 +14,9 @@ let dir = "https://conversionratestore.github.io/projects/doyogawithme/img/";
 
 let style = `
 <style>
+.order-total-line.order-total-line__adjustment.order-total-line__adjustment--promotion{
+   none !important
+}
 .checkout-pane-payment-information #edit-payment-information-add-payment-method {
     margin-bottom: 0;
 }
@@ -1582,7 +1585,7 @@ function init() {
 
         document.querySelector(".views-field.views-field-title").innerHTML = `1-Year DYWM Subscription`;
         if (!document.querySelector(".saved_block")) {
-          document.querySelector(".order-total-line__total").insertAdjacentHTML("afterend", ` <div class="saved_block">You just saved <span class="saved_var">$58,89</span> (<span class="percent_var">35%</span> off)</div>`);
+          document.querySelector(".order-total-line__total").insertAdjacentHTML("afterend", ` <div class="saved_block">You just saved <span class="saved_var">$75.24</span> (<span class="percent_var">45%</span> off)</div>`);
         }
 
         if (document.querySelector("#edit-sidebar-order-summary-summary .order-total-line__adjustment--promotion") && document.querySelector(".order-total-line.order-total-line__total .order-total-line-value")?.textContent === "$92.64") {
