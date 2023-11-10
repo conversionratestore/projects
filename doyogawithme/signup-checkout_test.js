@@ -15,7 +15,7 @@ let dir = "https://conversionratestore.github.io/projects/doyogawithme/img/";
 let style = `
 <style>
 .order-total-line.order-total-line__adjustment.order-total-line__adjustment--promotion{
-   none !important
+   display: none !important;
 }
 .checkout-pane-payment-information #edit-payment-information-add-payment-method {
     margin-bottom: 0;
