@@ -1535,6 +1535,8 @@ h2.new_title::after {
       1: [`Punk Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-10-11_03-55-55.jpg`, `https://vegasyacht.com/punk-cruise/`],
       2: [`Y2K Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/Y2K.jpg`, `https://vegasyacht.com/y2k-cruise/`],
       3: [`Haunted Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-09-12_01-40-08-1024x1024.jpg`, `https://vegasyacht.com/haunted-cruise-at-lake-las-vegas/`],
+      4: [`Jingle On The Waves: Christmas Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/red_xmas_yacht-sml.png`, `https://vegasyacht.com/jingle-on-the-waves-christmas-cruise/`],
+      5: [`Santa Sail – Kid Friendly Yacht Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/Red_Santa_Hat_Christmas_Greeting_Card-sml.png`, `https://vegasyacht.com/santa-sail-kid-friendly-yacht-cruise/`],
     };
     let arrpMayAlsoLikeListMob = {
       1: [`Yacht After Dark Neon Party`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-08-09_03-45-31-1024x1024.jpg`, `https://vegasyacht.com/yacht-after-dark-neon-party/`],
@@ -1548,6 +1550,8 @@ h2.new_title::after {
       9: [`Punk Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-10-11_03-55-55.jpg`, `https://vegasyacht.com/punk-cruise/`],
       10: [`Y2K Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/Y2K.jpg`, `https://vegasyacht.com/y2k-cruise/`],
       11: [`Haunted Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-09-12_01-40-08-1024x1024.jpg`, `https://vegasyacht.com/haunted-cruise-at-lake-las-vegas/`],
+      12: [`Jingle On The Waves: Christmas Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/red_xmas_yacht-sml.png`, `https://vegasyacht.com/jingle-on-the-waves-christmas-cruise/`],
+      13: [`Santa Sail – Kid Friendly Yacht Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/Red_Santa_Hat_Christmas_Greeting_Card-sml.png`, `https://vegasyacht.com/santa-sail-kid-friendly-yacht-cruise/`],
     };
     let arrImgSwiperNeonParty = {
       1: ["https://vegasyacht.com/wp-content/uploads/2023/08/party_after_dark.png"],
@@ -1621,6 +1625,20 @@ h2.new_title::after {
     };
     let arrImgSwiperYKCruise = {
       1: ["https://vegasyacht.com/wp-content/uploads/2023/10/Y2K.jpg"],
+      2: ["https://drive.google.com/uc?export=view&id=1WvZr4ZXFkpxnp-qFvcFs9t7hXzhGrFgS"],
+      3: ["https://drive.google.com/uc?export=view&id=1rX5Ju9IGpTvewfZp_Y-6oUlE4CxcWAJG"],
+      4: ["https://drive.google.com/uc?export=view&id=1zo15RcVPo3UaoKNP6X6_bBb1sN_FNvVK"],
+      5: ["https://drive.google.com/uc?export=view&id=12KieCMeooo_fAHC6xx7t9BBUGC-7RmcW"],
+    };
+    let arrImgSwiperJingleOn = {
+      1: ["https://vegasyacht.com/wp-content/uploads/2023/11/red_xmas_yacht.png"],
+      2: ["https://drive.google.com/uc?export=view&id=1WvZr4ZXFkpxnp-qFvcFs9t7hXzhGrFgS"],
+      3: ["https://drive.google.com/uc?export=view&id=1rX5Ju9IGpTvewfZp_Y-6oUlE4CxcWAJG"],
+      4: ["https://drive.google.com/uc?export=view&id=1zo15RcVPo3UaoKNP6X6_bBb1sN_FNvVK"],
+      5: ["https://drive.google.com/uc?export=view&id=12KieCMeooo_fAHC6xx7t9BBUGC-7RmcW"],
+    };
+    let arrImgSwiperSantaSail = {
+      1: ["https://vegasyacht.com/wp-content/uploads/2023/11/kids_christmas_lg.png"],
       2: ["https://drive.google.com/uc?export=view&id=1WvZr4ZXFkpxnp-qFvcFs9t7hXzhGrFgS"],
       3: ["https://drive.google.com/uc?export=view&id=1rX5Ju9IGpTvewfZp_Y-6oUlE4CxcWAJG"],
       4: ["https://drive.google.com/uc?export=view&id=1zo15RcVPo3UaoKNP6X6_bBb1sN_FNvVK"],
@@ -1709,6 +1727,20 @@ h2.new_title::after {
             document.querySelector(".main_slider_sync .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperYKCruise[key][0]));
           }
         }
+        if (window.location.pathname === "/jingle-on-the-waves-christmas-cruise/") {
+          for (let key in arrImgSwiperJingleOn) {
+            document.querySelector(".main_slider .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperJingleOn[key][0]));
+            document.querySelector(".main_slider_sync .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperJingleOn[key][0]));
+          }
+        }
+        if (window.location.pathname === "/santa-sail-kid-friendly-yacht-cruise/") {
+          for (let key in arrImgSwiperSantaSail) {
+            document.querySelector(".main_slider .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperSantaSail[key][0]));
+            document.querySelector(".main_slider_sync .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperSantaSail[key][0]));
+          }
+        }
+
+        // arrImgSwiperJingleOn
       }
       if (window.innerWidth <= 768) {
         //change place breadcrumbs
