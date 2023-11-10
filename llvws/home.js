@@ -1205,27 +1205,6 @@ const initBanner = setInterval(() => {
     }
 })
 
-const isLocation = setInterval(() => {
-    if (document.querySelector('#crs_location') && 
-        document.querySelector('.crs_banners_location')
-    ) {
-        clearInterval(isLocation);
-
-        document.querySelector('.crs_banners_location').addEventListener('click', (e) => {
-            e.preventDefault()
-         
-            // patch all methods
-            seamless.polyfill();
-            // or use specific methods
-            seamless.scrollBy(window, { 
-                behavior: "smooth", 
-                top: document.querySelector('#crs_location').getBoundingClientRect().top, 
-                left: 0 
-            }); 
-        })
-    }
-})
-
 const yelpIcon = `
 <svg width="54" height="22" viewBox="0 0 54 22" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g opacity="0.96">
@@ -1640,33 +1619,8 @@ const initEventsLocation  = setInterval(() => {
             document.querySelector('.fl-node-zdoqyw0i32e1').insertAdjacentHTML('afterend',`
             <div class="crs_events">${data}
                 <a href="#" class="crs_btn blue">Show more Events</a>
-            </div>
-            <section class="crs_location d-lg-flex items-center justify-between" id="crs_location">
-                <div class="crs_location_left">
-                    <h4>Discover our location:<br> directions and map</h4>
-                    <p>You can find us just 20 miles away from the renowned Las Vegas Strip. Here, the desert, lights, and gambling transform into a tranquil, picturesque getaway with Lake Mead National Park (Hoover Dam) and Valley of Fire State Park right around the corner!</p>
-                    <div class="d-flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M12 3C10.1441 3.00201 8.36488 3.70629 7.05258 4.95835C5.74028 6.2104 5.00211 7.90797 5 9.67864C5 15.3934 11.3636 19.7095 11.6349 19.8901C11.7419 19.9616 11.8694 20 12 20C12.1306 20 12.2581 19.9616 12.3651 19.8901C12.6364 19.7095 19 15.3934 19 9.67864C18.9979 7.90797 18.2597 6.2104 16.9474 4.95835C15.6351 3.70629 13.8559 3.00201 12 3ZM12 7.25004C12.5034 7.25004 12.9956 7.39248 13.4142 7.65934C13.8328 7.92619 14.159 8.30549 14.3517 8.74925C14.5444 9.19302 14.5948 9.68133 14.4965 10.1524C14.3983 10.6235 14.1559 11.0563 13.7999 11.3959C13.4439 11.7356 12.9904 11.9669 12.4966 12.0606C12.0028 12.1543 11.491 12.1062 11.0259 11.9224C10.5608 11.7386 10.1632 11.4273 9.88353 11.0279C9.60383 10.6285 9.45455 10.159 9.45455 9.67864C9.45455 9.03453 9.72273 8.41681 10.2001 7.96136C10.6775 7.50591 11.3249 7.25004 12 7.25004Z" fill="#333333"/>
-                        </svg>
-                        <b>15 Costa Di Lago, Henderson NV, 89011, US</b>
-                    </div>
-                    <a href="tel:7026009860" class="d-flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M18.7428 15.9666L15.5482 13.062C15.3972 12.9248 15.1988 12.8516 14.9948 12.8579C14.7909 12.8642 14.5973 12.9495 14.4551 13.0958L12.5745 15.0299C12.1218 14.9434 11.2118 14.6597 10.275 13.7253C9.33825 12.7878 9.05455 11.8754 8.97046 11.4259L10.9029 9.54447C11.0494 9.40233 11.1349 9.20876 11.1412 9.00474C11.1475 8.80071 11.0742 8.60224 10.9367 8.45132L8.03291 5.25752C7.89542 5.10613 7.70432 5.0143 7.50021 5.00153C7.2961 4.98877 7.09505 5.05607 6.93976 5.18915L5.23441 6.65167C5.09854 6.78803 5.01745 6.96951 5.00651 7.1617C4.99472 7.35817 4.76996 12.0121 8.3787 15.6224C11.5269 18.7699 15.4704 19.0001 16.5565 19.0001C16.7153 19.0001 16.8127 18.9954 16.8386 18.9938C17.0308 18.9831 17.2122 18.9016 17.3479 18.7651L18.8096 17.059C18.9432 16.9042 19.011 16.7033 18.9985 16.4992C18.9861 16.2951 18.8943 16.104 18.7428 15.9666Z" fill="#333333"/>
-                        </svg>
-                        <b>702-600-9860</b>
-                    </a>
-                    <a href="mailto:info@llvws.com" class="d-flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M5.6 18.8C5.16 18.8 4.7832 18.6432 4.4696 18.3296C4.156 18.016 3.99947 17.6395 4 17.2V7.6C4 7.16 4.1568 6.7832 4.4704 6.4696C4.784 6.156 5.16053 5.99947 5.6 6H18.4C18.84 6 19.2168 6.1568 19.5304 6.4704C19.844 6.784 20.0005 7.16053 20 7.6V17.2C20 17.64 19.8432 18.0168 19.5296 18.3304C19.216 18.644 18.8395 18.8005 18.4 18.8H5.6ZM12 13.2L18.4 9.2V7.6L12 11.6L5.6 7.6V9.2L12 13.2Z" fill="#333333"/>
-                        </svg>
-                        <b>info@llvws.com</b>
-                    </a>
-                </div>
-            </section>`)
+            </div>`)
 
-            document.querySelector('.crs_location_left').after(document.querySelector('.footer-adv-widget-4'))
             document.querySelector('.crs_btn.blue').addEventListener('click', (e) => {
                 e.preventDefault()
                 e.target.remove()
@@ -1677,7 +1631,6 @@ const initEventsLocation  = setInterval(() => {
             
             handleVisibility('.fl-node-puk31qtayd7o', ['exp_impr_hp_visib_rentalactivit_focus', '{{focusTime}}', 'Visibility ', 'RENTALS AND ACTIVITIES'])
             handleVisibility('.fl-node-pna0qb8dhjm1', ['exp_impr_hp_visib_blockevents_focus', '{{focusTime}}', 'Visibility ', 'Section of blocks with Events'])
-            handleVisibility('.crs_location', ['exp_impr_hp_visib_locationmap_focus', '{{focusTime}}', 'Visibility ', 'Discover our location: directions and map'])
 
             document.querySelectorAll('.fl-node-f6jbugl5piha .fl-col-small a.uabb-infobox-module-link').forEach(item => {
                 item.addEventListener('click', (e) => {
@@ -1696,6 +1649,58 @@ const initEventsLocation  = setInterval(() => {
                     }
                 })
             })   
+        })
+    }
+})
+
+const addLocation = setInterval(() => {
+    if (document.querySelector('.fl-builder-content') &&
+        document.querySelector('.footer-adv-widget-4') &&
+        document.querySelector('.crs_banners_location')
+    ) {
+        clearInterval(addLocation)
+        
+        document.querySelector('.fl-builder-content').insertAdjacentHTML('beforeend', `
+        <section class="crs_location d-lg-flex items-center justify-between" id="crs_location">
+            <div class="crs_location_left">
+                <h4>Discover our location:<br> directions and map</h4>
+                <p>You can find us just 20 miles away from the renowned Las Vegas Strip. Here, the desert, lights, and gambling transform into a tranquil, picturesque getaway with Lake Mead National Park (Hoover Dam) and Valley of Fire State Park right around the corner!</p>
+                <div class="d-flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 3C10.1441 3.00201 8.36488 3.70629 7.05258 4.95835C5.74028 6.2104 5.00211 7.90797 5 9.67864C5 15.3934 11.3636 19.7095 11.6349 19.8901C11.7419 19.9616 11.8694 20 12 20C12.1306 20 12.2581 19.9616 12.3651 19.8901C12.6364 19.7095 19 15.3934 19 9.67864C18.9979 7.90797 18.2597 6.2104 16.9474 4.95835C15.6351 3.70629 13.8559 3.00201 12 3ZM12 7.25004C12.5034 7.25004 12.9956 7.39248 13.4142 7.65934C13.8328 7.92619 14.159 8.30549 14.3517 8.74925C14.5444 9.19302 14.5948 9.68133 14.4965 10.1524C14.3983 10.6235 14.1559 11.0563 13.7999 11.3959C13.4439 11.7356 12.9904 11.9669 12.4966 12.0606C12.0028 12.1543 11.491 12.1062 11.0259 11.9224C10.5608 11.7386 10.1632 11.4273 9.88353 11.0279C9.60383 10.6285 9.45455 10.159 9.45455 9.67864C9.45455 9.03453 9.72273 8.41681 10.2001 7.96136C10.6775 7.50591 11.3249 7.25004 12 7.25004Z" fill="#333333"/>
+                    </svg>
+                    <b>15 Costa Di Lago, Henderson NV, 89011, US</b>
+                </div>
+                <a href="tel:7026009860" class="d-flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M18.7428 15.9666L15.5482 13.062C15.3972 12.9248 15.1988 12.8516 14.9948 12.8579C14.7909 12.8642 14.5973 12.9495 14.4551 13.0958L12.5745 15.0299C12.1218 14.9434 11.2118 14.6597 10.275 13.7253C9.33825 12.7878 9.05455 11.8754 8.97046 11.4259L10.9029 9.54447C11.0494 9.40233 11.1349 9.20876 11.1412 9.00474C11.1475 8.80071 11.0742 8.60224 10.9367 8.45132L8.03291 5.25752C7.89542 5.10613 7.70432 5.0143 7.50021 5.00153C7.2961 4.98877 7.09505 5.05607 6.93976 5.18915L5.23441 6.65167C5.09854 6.78803 5.01745 6.96951 5.00651 7.1617C4.99472 7.35817 4.76996 12.0121 8.3787 15.6224C11.5269 18.7699 15.4704 19.0001 16.5565 19.0001C16.7153 19.0001 16.8127 18.9954 16.8386 18.9938C17.0308 18.9831 17.2122 18.9016 17.3479 18.7651L18.8096 17.059C18.9432 16.9042 19.011 16.7033 18.9985 16.4992C18.9861 16.2951 18.8943 16.104 18.7428 15.9666Z" fill="#333333"/>
+                    </svg>
+                    <b>702-600-9860</b>
+                </a>
+                <a href="mailto:info@llvws.com" class="d-flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M5.6 18.8C5.16 18.8 4.7832 18.6432 4.4696 18.3296C4.156 18.016 3.99947 17.6395 4 17.2V7.6C4 7.16 4.1568 6.7832 4.4704 6.4696C4.784 6.156 5.16053 5.99947 5.6 6H18.4C18.84 6 19.2168 6.1568 19.5304 6.4704C19.844 6.784 20.0005 7.16053 20 7.6V17.2C20 17.64 19.8432 18.0168 19.5296 18.3304C19.216 18.644 18.8395 18.8005 18.4 18.8H5.6ZM12 13.2L18.4 9.2V7.6L12 11.6L5.6 7.6V9.2L12 13.2Z" fill="#333333"/>
+                    </svg>
+                    <b>info@llvws.com</b>
+                </a>
+            </div>
+        </section>`)
+
+        document.querySelector('.crs_location_left').after(document.querySelector('.footer-adv-widget-4'))
+
+        handleVisibility('.crs_location', ['exp_impr_hp_visib_locationmap_focus', '{{focusTime}}', 'Visibility ', 'Discover our location: directions and map'])
+
+        document.querySelector('.crs_banners_location').addEventListener('click', (e) => {
+            e.preventDefault()
+         
+            // patch all methods
+            seamless.polyfill();
+            // or use specific methods
+            seamless.scrollBy(window, { 
+                behavior: "smooth", 
+                top: document.querySelector('#crs_location').getBoundingClientRect().top, 
+                left: 0 
+            }); 
         })
     }
 })
