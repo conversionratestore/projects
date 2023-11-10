@@ -1,25 +1,46 @@
 (function () {
-    // -------------------------------------
-    // CONSTANTS
-    // -------------------------------------
-    const dir = `https://conversionratestore.github.io/projects/geeni/img/`;
-    const WAIT_INTERVAL_TIMEOUT = 100;
-    const media = window.matchMedia("(max-width: 1023px)").matches;
-  
-    const href = window.location.href;
-  
-    const dataReviews = [
-        {
-            0: ['The pillow does exactly what it says','The pillow does exactly what it says. My neck and shoulder pain relieved. The soft comfort of the pillow and the support is wonderful, most definitely recommend. Excellent value better than more popular brands', 'Peg'],
-            2: ['I bought a pair of pillows one for…','I bought a pair of pillows one for myself and one for my husband. We are both finding them to be super comfy and have adjusted the filling to suit our needs.','Angy Bovill'],
-            3: ['Great pillow for neck pain','After trying many different pillows for my neck pain I ordered the dual pillow, not holding out much hope. It took a while to arrive but I have slept better than I have for months and importantly I can lift my head off the pillow in the morning without being in agony. Thank you','E Kempson'],
-            4: ['Comfy pillow!','Definitely recommend the pillows. Have tried countless pillows and all seem to either go lumpy, or give me bad neck pain. With this pillow, so far, I have not experienced either!','Alexandra'],
-            5: ['So very pleased with my pillow super…','So very pleased with my pillow super comfortable.Very impressed with the customer service at Aeyla highly recommend.','ruth cooke']
-        }
-    ]
+  // -------------------------------------
+  // CONSTANTS
+  // -------------------------------------
+  const dir = `https://conversionratestore.github.io/projects/geeni/img/`;
+  const WAIT_INTERVAL_TIMEOUT = 100;
+  const media = window.matchMedia("(max-width: 1023px)").matches;
 
-    const stylePDP = `
+  const href = window.location.href;
+
+  const dataReviews = [
+    {
+      0: [
+        "The pillow does exactly what it says",
+        "The pillow does exactly what it says. My neck and shoulder pain relieved. The soft comfort of the pillow and the support is wonderful, most definitely recommend. Excellent value better than more popular brands",
+        "Peg",
+      ],
+      2: [
+        "I bought a pair of pillows one for…",
+        "I bought a pair of pillows one for myself and one for my husband. We are both finding them to be super comfy and have adjusted the filling to suit our needs.",
+        "Angy Bovill",
+      ],
+      3: [
+        "Great pillow for neck pain",
+        "After trying many different pillows for my neck pain I ordered the dual pillow, not holding out much hope. It took a while to arrive but I have slept better than I have for months and importantly I can lift my head off the pillow in the morning without being in agony. Thank you",
+        "E Kempson",
+      ],
+      4: [
+        "Comfy pillow!",
+        "Definitely recommend the pillows. Have tried countless pillows and all seem to either go lumpy, or give me bad neck pain. With this pillow, so far, I have not experienced either!",
+        "Alexandra",
+      ],
+      5: [
+        "So very pleased with my pillow super…",
+        "So very pleased with my pillow super comfortable.Very impressed with the customer service at Aeyla highly recommend.",
+        "ruth cooke",
+      ],
+    },
+  ];
+
+  const stylePDP = `
       <style>
+            .d-none,
           .ol_box img,
           #AddToCart svg,
           .paymnt_icns,
@@ -55,7 +76,7 @@
           #MainProductForm .tp_widget_wrapper {
               padding: 0 15px 0 0;
               margin-bottom: 12px;
-              ${media ? `justify-content: space-between;`:''}
+              ${media ? `justify-content: space-between;` : ""}
               
           }
           #MainProductForm .trustpilot-widget {
@@ -90,8 +111,8 @@
           }
           .prod_desc {
               background: #F8FAF7;
-              padding: 17px ${media ? '18px':'40px'} 0!important;
-              margin: 12px ${media ? '0 8px' : '-40px 0'}!important;
+              padding: 17px ${media ? "18px" : "40px"} 0!important;
+              margin: 12px ${media ? "0 8px" : "-40px 0"}!important;
           }
           #MainProductForm .prod_desc ul li {
               font-family: 'Open Sans';
@@ -322,7 +343,7 @@
             top: 0!important;
           }
           .shipped_within_wrapper {
-            ${media ? `padding: 0 18px;`:''}
+            ${media ? `padding: 0 18px;` : ""}
             margin: 20px 0!important;
           }
           .sw_svg svg path[fill="#DAE9FB"] {
@@ -549,7 +570,7 @@
             opacity: 1;
         }
         .crs_like {
-            padding: 32px 0 ${media ? '32px' : '0'};
+            padding: 32px 0 ${media ? "32px" : "0"};
         }
         .crs_like h2 {
             color: #2B4632;
@@ -629,8 +650,32 @@
         .faq_wrapper details.faq-item summary > span {
             margin-top: -6px;
         }
+        .crs_sticky {
+            background: #FFF;
+            box-shadow: 0px 0px 16px 0px rgba(43, 70, 50, 0.20);
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            z-index: 8;
+            padding: 16px 17px 18px;
+          }
+          .crs_sticky button {
+            background-color: #A84A23;
+            color: var(--colors-wight, #FFF);
+            text-align: center;
+            font-family: Open Sans;
+            font-size: 18px;
+            font-style: normal;
+            line-height: 26px;
+            width: 100%;
+            padding: 10px 12px 12px;
+            font-weight: 400;
+          }
+
         ${
-            media ? `
+          media
+            ? `
                 .shippd_w_inner .sw_svg svg {
                     width: 31px;
                     height: 19px;
@@ -651,8 +696,8 @@
                     width: 100%;
                     padding: 0 8px;
                     order: 2;
-                }`:
-            `
+                }`
+            : `
                 .crs_badge {
                     padding: 2px 6px;
                 }
@@ -677,6 +722,12 @@
                 .faq_wrapper .trustpilot-widget {
                     margin: 0 auto!important;
                 }
+                .d-lg-flex {
+                    display: flex;
+                }
+                .d-lg-block {
+                    display: block;
+                }
             `
         }
           /* base */
@@ -689,16 +740,16 @@
             white-space: nowrap;
           }
       </style>`;
-  
-    const badge = (text = "Osteopath-approved") => ` 
+
+  const badge = (text = "Osteopath-approved") => ` 
       <div class="crs_badge flex-center">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
               <path d="M16.1699 8.05492L15.1499 6.86992C14.9549 6.64492 14.7974 6.22492 14.7974 5.92492V4.64992C14.7974 3.85492 14.1449 3.20242 13.3499 3.20242H12.0749C11.7824 3.20242 11.3549 3.04492 11.1299 2.84992L9.94491 1.82992C9.42741 1.38742 8.57991 1.38742 8.05491 1.82992L6.87741 2.85742C6.65241 3.04492 6.22491 3.20242 5.93241 3.20242H4.63491C3.83991 3.20242 3.18741 3.85492 3.18741 4.64992V5.93242C3.18741 6.22492 3.02991 6.64492 2.84241 6.86992L1.82991 8.06242C1.39491 8.57992 1.39491 9.41992 1.82991 9.93742L2.84241 11.1299C3.02991 11.3549 3.18741 11.7749 3.18741 12.0674V13.3499C3.18741 14.1449 3.83991 14.7974 4.63491 14.7974H5.93241C6.22491 14.7974 6.65241 14.9549 6.87741 15.1499L8.06241 16.1699C8.57991 16.6124 9.42741 16.6124 9.95241 16.1699L11.1374 15.1499C11.3624 14.9549 11.7824 14.7974 12.0824 14.7974H13.3574C14.1524 14.7974 14.8049 14.1449 14.8049 13.3499V12.0749C14.8049 11.7824 14.9624 11.3549 15.1574 11.1299L16.1774 9.94492C16.6124 9.42742 16.6124 8.57242 16.1699 8.05492ZM12.1199 7.58242L8.49741 11.2049C8.39241 11.3099 8.24991 11.3699 8.09991 11.3699C7.94991 11.3699 7.80741 11.3099 7.70241 11.2049L5.88741 9.38992C5.66991 9.17242 5.66991 8.81242 5.88741 8.59492C6.10491 8.37742 6.46491 8.37742 6.68241 8.59492L8.09991 10.0124L11.3249 6.78742C11.5424 6.56992 11.9024 6.56992 12.1199 6.78742C12.3374 7.00492 12.3374 7.36492 12.1199 7.58242Z" fill="white"/>
           </svg>
           <p>${text}</p>
       </div>`;
-  
-    const trustpilotIcon = `
+
+  const trustpilotIcon = `
     <svg width="284" height="28" viewBox="0 0 284 28" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clip-path="url(#clip0_174_37700)">
       <path d="M27.3295 8.50586H37.8599V10.352H33.7193V20.7302H31.4425V10.352H27.3203V8.50586H27.3295ZM37.41 11.879H39.3563V13.5871H39.3931C39.4573 13.3455 39.5767 13.1126 39.7511 12.8883C39.9255 12.664 40.1367 12.4483 40.3846 12.2672C40.6325 12.0774 40.9079 11.9307 41.2108 11.81C41.5138 11.6978 41.826 11.6374 42.1381 11.6374C42.3768 11.6374 42.5512 11.646 42.643 11.6547C42.7349 11.6633 42.8267 11.6806 42.9277 11.6892V13.5698C42.7808 13.544 42.6339 13.5267 42.4778 13.5095C42.3217 13.4922 42.1748 13.4836 42.0279 13.4836C41.6791 13.4836 41.3486 13.5526 41.0364 13.682C40.7243 13.8114 40.458 14.0098 40.2285 14.26C39.999 14.5188 39.8154 14.8294 39.6777 15.209C39.5399 15.5885 39.4757 16.0199 39.4757 16.5116V20.7215H37.4008V11.879H37.41ZM52.4665 20.7302H50.4284V19.4965H50.3916C50.1346 19.9451 49.7582 20.2988 49.2532 20.5662C48.7483 20.8337 48.2342 20.9717 47.7108 20.9717C46.4714 20.9717 45.5717 20.687 45.0209 20.109C44.47 19.531 44.1946 18.6597 44.1946 17.4951V11.879H46.2695V17.3053C46.2695 18.0817 46.4255 18.6338 46.7469 18.953C47.059 19.2722 47.5089 19.4361 48.0781 19.4361C48.5188 19.4361 48.8768 19.3757 49.1706 19.2463C49.4644 19.1169 49.7031 18.953 49.8775 18.7373C50.0611 18.5303 50.1897 18.2715 50.2723 17.9782C50.3549 17.6849 50.3916 17.3657 50.3916 17.0206V11.8876H52.4665V20.7302ZM56.0011 17.8919C56.0654 18.4613 56.2949 18.8581 56.6897 19.091C57.0936 19.3153 57.571 19.4361 58.131 19.4361C58.3238 19.4361 58.5442 19.4189 58.7921 19.393C59.0399 19.3671 59.2786 19.3067 59.4898 19.2291C59.7101 19.1514 59.8846 19.0307 60.0315 18.8754C60.1692 18.7201 60.2334 18.5217 60.2243 18.2715C60.2151 18.0213 60.1141 17.8143 59.9305 17.659C59.7469 17.4951 59.5173 17.3743 59.2327 17.2708C58.9481 17.1759 58.6268 17.0896 58.2596 17.0206C57.8923 16.9516 57.5251 16.8739 57.1487 16.7963C56.7631 16.7187 56.3867 16.6151 56.0286 16.503C55.6706 16.3908 55.3493 16.2355 55.0647 16.0371C54.7801 15.8473 54.5505 15.5972 54.3853 15.2952C54.2108 14.9933 54.1282 14.6223 54.1282 14.1737C54.1282 13.6906 54.2568 13.2938 54.5046 12.966C54.7525 12.6381 55.0738 12.3793 55.4503 12.1809C55.8358 11.9825 56.2582 11.8445 56.7264 11.7582C57.1946 11.6806 57.6445 11.6374 58.0668 11.6374C58.5534 11.6374 59.0216 11.6892 59.4623 11.7841C59.9029 11.879 60.3069 12.0343 60.6649 12.2586C61.023 12.4742 61.3168 12.7589 61.5555 13.104C61.7942 13.4491 61.9411 13.8718 62.0053 14.3635H59.8387C59.7377 13.8977 59.5173 13.5785 59.1593 13.4232C58.8012 13.2593 58.3881 13.1816 57.9291 13.1816C57.7822 13.1816 57.6077 13.1903 57.4058 13.2161C57.2038 13.242 57.0202 13.2852 56.8365 13.3455C56.6621 13.4059 56.5152 13.5008 56.3867 13.6216C56.2673 13.7424 56.2031 13.8977 56.2031 14.0961C56.2031 14.3376 56.2949 14.5274 56.4693 14.6741C56.6438 14.8207 56.8733 14.9415 57.1579 15.045C57.4425 15.1399 57.7638 15.2262 58.131 15.2952C58.4983 15.3642 58.8747 15.4419 59.2603 15.5195C59.6367 15.5972 60.0039 15.7007 60.3712 15.8128C60.7384 15.925 61.0597 16.0803 61.3443 16.2787C61.6289 16.4771 61.8584 16.7187 62.0329 17.012C62.2073 17.3053 62.2991 17.6762 62.2991 18.1076C62.2991 18.6338 62.1706 19.0738 61.9135 19.4448C61.6565 19.8071 61.326 20.109 60.922 20.3333C60.518 20.5576 60.059 20.7302 59.5632 20.8337C59.0675 20.9372 58.5717 20.989 58.0851 20.989C57.4884 20.989 56.9375 20.9286 56.4326 20.7992C55.9277 20.6698 55.487 20.48 55.1197 20.2298C54.7525 19.971 54.4587 19.6518 54.2476 19.2722C54.0364 18.8926 53.9262 18.4354 53.9079 17.9092H56.0011V17.8919ZM62.85 11.879H64.4199V9.22189H66.4947V11.879H68.3676V13.3369H66.4947V18.0644C66.4947 18.2715 66.5039 18.444 66.5223 18.5993C66.5406 18.746 66.5865 18.8754 66.6508 18.9789C66.7151 19.0824 66.8161 19.1601 66.9538 19.2118C67.0915 19.2636 67.2659 19.2895 67.5046 19.2895C67.6515 19.2895 67.7984 19.2895 67.9453 19.2808C68.0922 19.2722 68.2391 19.255 68.386 19.2205V20.7302C68.1565 20.756 67.9269 20.7733 67.7158 20.7992C67.4954 20.8251 67.2751 20.8337 67.0456 20.8337C66.4947 20.8337 66.0541 20.7819 65.7236 20.687C65.393 20.5921 65.1268 20.4455 64.9432 20.2557C64.7504 20.0659 64.631 19.833 64.5576 19.5483C64.4933 19.2636 64.4474 18.9358 64.4382 18.5734V13.3542H62.8683V11.879H62.85ZM69.8365 11.879H71.8012V13.0781H71.838C72.1317 12.5605 72.5357 12.1982 73.059 11.9739C73.5823 11.7496 74.1423 11.6374 74.7574 11.6374C75.5011 11.6374 76.1438 11.7582 76.6946 12.0084C77.2454 12.2499 77.7045 12.5864 78.0717 13.0177C78.439 13.4491 78.7052 13.9494 78.8888 14.5188C79.0724 15.0882 79.1642 15.7007 79.1642 16.3477C79.1642 16.943 79.0816 17.521 78.9163 18.0731C78.7511 18.6338 78.5032 19.1256 78.1727 19.5569C77.8422 19.9882 77.4199 20.3247 76.9058 20.5835C76.3916 20.8423 75.7949 20.9717 75.0971 20.9717C74.7942 20.9717 74.4912 20.9458 74.1882 20.8941C73.8853 20.8423 73.5915 20.756 73.3161 20.6439C73.0406 20.5317 72.7744 20.3851 72.5449 20.2039C72.3062 20.0228 72.1134 19.8157 71.9481 19.5828H71.9114V23.9997H69.8365V11.879ZM77.0894 16.3132C77.0894 15.9164 77.0343 15.5281 76.9241 15.1486C76.814 14.769 76.6487 14.4412 76.4284 14.1478C76.208 13.8545 75.9326 13.6216 75.6113 13.4491C75.2808 13.2765 74.9043 13.1816 74.482 13.1816C73.6098 13.1816 72.9488 13.4663 72.5082 14.0357C72.0675 14.6051 71.8471 15.3642 71.8471 16.3132C71.8471 16.7618 71.9022 17.1759 72.0216 17.5555C72.1409 17.935 72.3062 18.2629 72.5449 18.5389C72.7744 18.815 73.0498 19.0307 73.3712 19.1859C73.6925 19.3499 74.0689 19.4275 74.4912 19.4275C74.9686 19.4275 75.3634 19.3326 75.6939 19.1514C76.0244 18.9703 76.2906 18.7287 76.5018 18.444C76.713 18.1507 76.869 17.8229 76.9608 17.4519C77.0435 17.081 77.0894 16.7014 77.0894 16.3132ZM80.7525 8.50586H82.8274V10.352H80.7525V8.50586ZM80.7525 11.879H82.8274V20.7302H80.7525V11.879ZM84.6819 8.50586H86.7567V20.7302H84.6819V8.50586ZM93.119 20.9717C92.3662 20.9717 91.696 20.8509 91.1084 20.618C90.5209 20.3851 90.0251 20.0573 89.612 19.6518C89.208 19.2377 88.8959 18.746 88.6847 18.1766C88.4736 17.6072 88.3634 16.9775 88.3634 16.2959C88.3634 15.623 88.4736 15.0019 88.6847 14.4325C88.8959 13.8632 89.208 13.3714 89.612 12.9573C90.0159 12.5432 90.5209 12.224 91.1084 11.9911C91.696 11.7582 92.3662 11.6374 93.119 11.6374C93.8718 11.6374 94.5421 11.7582 95.1296 11.9911C95.7172 12.224 96.213 12.5519 96.6261 12.9573C97.0301 13.3714 97.3422 13.8632 97.5534 14.4325C97.7645 15.0019 97.8747 15.623 97.8747 16.2959C97.8747 16.9775 97.7645 17.6072 97.5534 18.1766C97.3422 18.746 97.0301 19.2377 96.6261 19.6518C96.2221 20.0659 95.7172 20.3851 95.1296 20.618C94.5421 20.8509 93.8718 20.9717 93.119 20.9717ZM93.119 19.4275C93.5781 19.4275 93.982 19.3326 94.3217 19.1514C94.6614 18.9703 94.9368 18.7287 95.1572 18.4354C95.3775 18.1421 95.5336 17.8056 95.6438 17.4347C95.7447 17.0637 95.7998 16.6841 95.7998 16.2959C95.7998 15.9164 95.7447 15.5454 95.6438 15.1658C95.5428 14.7862 95.3775 14.4584 95.1572 14.1651C94.9368 13.8718 94.6614 13.6389 94.3217 13.4577C93.982 13.2765 93.5781 13.1816 93.119 13.1816C92.66 13.1816 92.256 13.2765 91.9163 13.4577C91.5767 13.6389 91.3012 13.8804 91.0809 14.1651C90.8606 14.4584 90.7045 14.7862 90.5943 15.1658C90.4933 15.5454 90.4382 15.9164 90.4382 16.2959C90.4382 16.6841 90.4933 17.0637 90.5943 17.4347C90.6953 17.8056 90.8606 18.1421 91.0809 18.4354C91.3012 18.7287 91.5767 18.9703 91.9163 19.1514C92.256 19.3412 92.66 19.4275 93.119 19.4275ZM98.4806 11.879H100.051V9.22189H102.125V11.879H103.998V13.3369H102.125V18.0644C102.125 18.2715 102.135 18.444 102.153 18.5993C102.171 18.746 102.217 18.8754 102.281 18.9789C102.346 19.0824 102.447 19.1601 102.584 19.2118C102.722 19.2636 102.897 19.2895 103.135 19.2895C103.282 19.2895 103.429 19.2895 103.576 19.2808C103.723 19.2722 103.87 19.255 104.017 19.2205V20.7302C103.787 20.756 103.558 20.7733 103.346 20.7992C103.126 20.8251 102.906 20.8337 102.676 20.8337C102.125 20.8337 101.685 20.7819 101.354 20.687C101.024 20.5921 100.757 20.4455 100.574 20.2557C100.381 20.0659 100.262 19.833 100.188 19.5483C100.124 19.2636 100.078 18.9358 100.069 18.5734V13.3542H98.499V11.879H98.4806Z" fill="#191919"/>
@@ -723,8 +774,8 @@
       </clipPath>
       </defs>
     </svg>`;
-  
-    const circleSvg = `
+
+  const circleSvg = `
       <svg class="circleSvg" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g filter="url(#filter0_d_174_37688)">
           <circle cx="8" cy="8" r="6" fill="#EEEEE1"/>
@@ -743,8 +794,8 @@
           </filter>
         </defs>
       </svg>`;
-  
-    const timeline = `
+
+  const timeline = `
       <div class="crs_timeline">
           <div class="crs_timeline_container">
               <svg width="2" height="136" viewBox="0 0 2 136" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -783,8 +834,8 @@
               </div>
           </div>
       </div>`;
-    
-    const review = `
+
+  const review = `
     <div class="crs_review">
       <div class="crs_review_container">
         ${trustpilotIcon}
@@ -809,209 +860,224 @@
           </div>
       </div>
     </div>`;
-  
-    // -------------------------------------
-    // MAKE DOM CHANGES
-    // -------------------------------------
-    start()
-  
-    // -------------------------------------
-    // FUNCTIONS
-    // -------------------------------------
-    function waitForElement(selector) {
-      return new Promise((resolve) => {
+
+  const stickyBtn = (price) => `
+  <div class="crs_sticky d-lg-flex">
+        <div class="d-lg-block d-none">
+            <h3>The Dual Pillow</h3>
+            <p>Standard Size Pillow: 50cm x 75cm</p>
+        </div>
+        <button type="button"><b>Choose Yours Now</b> from ${price} </button>
+  </div>`
+
+  // -------------------------------------
+  // MAKE DOM CHANGES
+  // -------------------------------------
+  start();
+
+  // -------------------------------------
+  // FUNCTIONS
+  // -------------------------------------
+  function waitForElement(selector) {
+    return new Promise((resolve) => {
+      if (document.querySelector(selector)) {
+        return resolve(document.querySelector(selector));
+      }
+
+      const observer = new MutationObserver(() => {
         if (document.querySelector(selector)) {
-          return resolve(document.querySelector(selector));
+          resolve(document.querySelector(selector));
+          observer.disconnect();
         }
-  
-        const observer = new MutationObserver(() => {
-          if (document.querySelector(selector)) {
-            resolve(document.querySelector(selector));
+      });
+
+      observer.observe(document.documentElement, {
+        childList: true,
+        subtree: true,
+      });
+    });
+  }
+
+  function handleVisibility(el, eventParams) {
+    let isVisible = false;
+    let entryTime;
+    const config = {
+      root: null,
+      threshold: 0, // Trigger when any part of the element is out of viewport
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (!isVisible) {
+            // The element has become visible
+            isVisible = true;
+            entryTime = new Date().getTime();
+          }
+        } else if (isVisible) {
+          // The element is out of the viewport, calculate visibility duration
+          isVisible = false;
+          const exitTime = new Date().getTime();
+          const visibilityDuration = (exitTime - entryTime) / 1000; // Convert to seconds
+          const roundedDuration = Math.round(visibilityDuration);
+
+          if (roundedDuration) {
+            const eventData = eventParams;
+            eventData[1] = roundedDuration;
+            pushDataLayer(eventData);
             observer.disconnect();
           }
-        });
-  
-        observer.observe(document.documentElement, {
-          childList: true,
-          subtree: true,
-        });
+        }
       });
+    }, config);
+
+    observer.observe(el);
+  }
+
+  function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
+    // Send a Google Analytics event
+    const eventData = {
+      event: "event-to-ga4",
+      event_name,
+      event_desc,
+      event_type,
+      event_loc,
+    };
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push(eventData);
+  }
+
+  function priceSubstr(price) {
+    let str = price.toString();
+    return (
+      str.substr(0, str.length - 2) +
+      "." +
+      str.substr(str.length - 2, str.length)
+    );
+  }
+
+  function formatDate(dayOne = 0, dayTwo) {
+    const today = new Date();
+
+    const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    const nextWeek = new Date(today);
+    nextWeek.setDate(today.getDate() + dayOne);
+
+    const nextWeekTwo = new Date(today);
+    if (dayTwo) {
+      nextWeekTwo.setDate(today.getDate() + dayTwo);
+
+      var nextWeekMonthTwo = months[nextWeekTwo.getMonth()];
     }
-  
-    function handleVisibility(el, eventParams) {
-      let isVisible = false;
-      let entryTime;
-      const config = {
-        root: null,
-        threshold: 0, // Trigger when any part of the element is out of viewport
-      };
-  
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (!isVisible) {
-              // The element has become visible
-              isVisible = true;
-              entryTime = new Date().getTime();
-            }
-          } else if (isVisible) {
-            // The element is out of the viewport, calculate visibility duration
-            isVisible = false;
-            const exitTime = new Date().getTime();
-            const visibilityDuration = (exitTime - entryTime) / 1000; // Convert to seconds
-            const roundedDuration = Math.round(visibilityDuration);
-  
-            if (roundedDuration) {
-              const eventData = eventParams;
-              eventData[1] = roundedDuration;
-              pushDataLayer(eventData);
-              observer.disconnect();
-            }
+
+    const nextWeekMonth = months[nextWeek.getMonth()];
+
+    let formattedDate = "";
+
+    if (dayOne == 0) {
+      formattedDate = `${nextWeekMonth} ${nextWeek.getDate()}, ${nextWeek.getFullYear()}`;
+    } else {
+      const nextWeekYear =
+        nextWeek.getFullYear() == nextWeekTwo.getFullYear()
+          ? ""
+          : ", " + nextWeek.getFullYear();
+      formattedDate = `${nextWeekMonth} ${nextWeek.getDate()}${nextWeekYear} - ${nextWeekMonthTwo} ${nextWeekTwo.getDate()}, ${nextWeekTwo.getFullYear()}`;
+    }
+
+    return formattedDate;
+  }
+
+  function start() {
+    const waitForBody = setInterval(() => {
+      if (document.body) {
+        clearInterval(waitForBody);
+        // Swiper Slider
+        const scriptCustom = document.createElement("script");
+        scriptCustom.src =
+          "https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js";
+        scriptCustom.async = false;
+        document.head.appendChild(scriptCustom);
+
+        const scriptCustomStyle = document.createElement("link");
+        scriptCustomStyle.href =
+          "https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css";
+        scriptCustomStyle.rel = "stylesheet";
+        document.head.appendChild(scriptCustomStyle);
+
+        const scriptScroll = document.createElement("script");
+        scriptScroll.src =
+          "https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js";
+        scriptScroll.async = false;
+        document.head.appendChild(scriptScroll);
+
+        document.body.insertAdjacentHTML("afterbegin", stylePDP);
+        
+        waitForElement('#CurrentVariantPrice').then((el) => {
+            document.body.insertAdjacentHTML("afterbegin", stickyBtn(el.innerText));
+        })
+
+        waitForElement(".tp_widget_wrapper").then((el) => {
+          el.insertAdjacentHTML("beforeend", badge());
+        });
+
+        waitForElement(".prod_desc ul").then((el) => {
+          if (location.href.includes("/the-dual-pillow")) {
+            el.innerHTML = `<li><strong>Perfect balance of softness & firmness:</strong> Sink into cloud-like comfort with Aeyla's Dual Pillow, offering a 2-in-1 design for the perfect balance of softness and support.</li>
+                  <li><strong>Say goodbye to morning neck stiffness, headaches, fatigue, poor sleep, and back pain.</strong> See instant results from the first night.</li>
+                  <li><strong>Get your best night's sleep: </strong>Wake up refreshed or your money back.</li>`;
           }
         });
-      }, config);
-  
-      observer.observe(el);
-    }
-  
-    function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
-      // Send a Google Analytics event
-      const eventData = {
-        event: "event-to-ga4",
-        event_name,
-        event_desc,
-        event_type,
-        event_loc,
-      };
-  
-      window.dataLayer = window.dataLayer || [];
-      dataLayer.push(eventData);
-    }
-  
-    function priceSubstr(price) {
-      let str = price.toString();
-      return (
-        str.substr(0, str.length - 2) +
-        "." +
-        str.substr(str.length - 2, str.length)
-      );
-    }
-  
-    function formatDate(dayOne = 0, dayTwo) {
-      const today = new Date();
-  
-      const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-      const months = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ];
-  
-      const nextWeek = new Date(today);
-      nextWeek.setDate(today.getDate() + dayOne);
-  
-      const nextWeekTwo = new Date(today);
-      if (dayTwo) {
-        nextWeekTwo.setDate(today.getDate() + dayTwo);
-  
-        var nextWeekMonthTwo = months[nextWeekTwo.getMonth()];
-      }
-  
-      const nextWeekMonth = months[nextWeek.getMonth()];
-  
-      let formattedDate = "";
-  
-      if (dayOne == 0) {
-        formattedDate = `${nextWeekMonth} ${nextWeek.getDate()}, ${nextWeek.getFullYear()}`;
-      } else {
-        const nextWeekYear =
-          nextWeek.getFullYear() == nextWeekTwo.getFullYear()
-            ? ""
-            : ", " + nextWeek.getFullYear();
-        formattedDate = `${nextWeekMonth} ${nextWeek.getDate()}${nextWeekYear} - ${nextWeekMonthTwo} ${nextWeekTwo.getDate()}, ${nextWeekTwo.getFullYear()}`;
-      }
-  
-      return formattedDate;
-    }
-  
-    function start() {
-      const waitForBody = setInterval(() => {
-        if (document.body) {
-          clearInterval(waitForBody);
-            // Swiper Slider 
-            const scriptCustom = document.createElement('script')
-            scriptCustom.src = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js'
-            scriptCustom.async = false
-            document.head.appendChild(scriptCustom)
-  
-            const scriptCustomStyle = document.createElement('link')
-            scriptCustomStyle.href = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css'
-            scriptCustomStyle.rel = 'stylesheet'
-            document.head.appendChild(scriptCustomStyle)
-    
 
-            const scriptScroll = document.createElement('script')
-            scriptScroll.src = 'https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js'
-            scriptScroll.async = false
-            document.head.appendChild(scriptScroll)
+        waitForElement(".pro_form span.oll.w-full").then((el) => {
+          el.innerHTML = "Quantity:";
 
+          document.querySelector("#MainPhoto1 > span").innerHTML = document
+            .querySelector(".product-carousel .small.flag")
+            .innerHTML.replace(")", "");
+        });
 
-          document.body.insertAdjacentHTML("afterbegin", stylePDP);
-  
-          waitForElement(".tp_widget_wrapper").then((el) => {
-            el.insertAdjacentHTML("beforeend", badge());
-          });
-  
-          waitForElement(".prod_desc ul").then((el) => {
-            if (location.href.includes("/the-dual-pillow")) {
-              el.innerHTML = `<li><strong>Perfect balance of softness & firmness:</strong> Sink into cloud-like comfort with Aeyla's Dual Pillow, offering a 2-in-1 design for the perfect balance of softness and support.</li>
-                  <li><strong>Say goodbye to morning neck stiffness, headaches, fatigue, poor sleep, and back pain.</strong> See instant results from the first night.</li>
-                  <li><strong>Get your best night's sleep: </strong>Wake up refreshed or your money back.</li>`
-            }
-          });
-  
-          waitForElement(".pro_form span.oll.w-full").then((el) => {
-            el.innerHTML = "Quantity:"
-
-            document.querySelector('#MainPhoto1 > span').innerHTML = document.querySelector('.product-carousel .small.flag').innerHTML.replace(')','')
-
-          });
-  
-          waitForElement(".ol_box_wrapper").then((el) => {
-            el.querySelectorAll(".ol_box").forEach((item, index) => {
-              item.querySelector(".vl_top").innerHTML =
-                index + 1 + ` PILLOW${index != 0 ? "S" : ""}`;
-              item
-                .querySelector(".vl_top")
-                .insertAdjacentHTML(
-                  "afterend",
-                  `<p class="crs_size">50cm x 75cm</p>`
-                );
-              item.querySelector(".vl_btm").innerHTML =
-                item.querySelector(".vl_btm").innerHTML.split("Each")[0] +
-                "<span>each</span>";
-  
-              const savedPrice =
-                window["__cvg_shopify_info"].product.variants[index]
-                  .compare_at_price -
-                window["__cvg_shopify_info"].product.variants[index].price;
-              const savedInterest =
-                (savedPrice * 100) /
-                window["__cvg_shopify_info"].product.variants[index]
-                  .compare_at_price;
-  
-              item.querySelector(".vl_btm").insertAdjacentHTML(
+        waitForElement(".ol_box_wrapper").then((el) => {
+          el.querySelectorAll(".ol_box").forEach((item, index) => {
+            item.querySelector(".vl_top").innerHTML =
+              index + 1 + ` PILLOW${index != 0 ? "S" : ""}`;
+            item
+              .querySelector(".vl_top")
+              .insertAdjacentHTML(
                 "afterend",
-                `
+                `<p class="crs_size">50cm x 75cm</p>`
+              );
+            item.querySelector(".vl_btm").innerHTML =
+              item.querySelector(".vl_btm").innerHTML.split("Each")[0] +
+              "<span>each</span>";
+
+            const savedPrice =
+              window["__cvg_shopify_info"].product.variants[index]
+                .compare_at_price -
+              window["__cvg_shopify_info"].product.variants[index].price;
+            const savedInterest =
+              (savedPrice * 100) /
+              window["__cvg_shopify_info"].product.variants[index]
+                .compare_at_price;
+
+            item.querySelector(".vl_btm").insertAdjacentHTML(
+              "afterend",
+              `
                   <p class="crs_save">
                     <span>Save ${savedInterest.toFixed(0)}%</span>
                     ${
@@ -1019,165 +1085,196 @@
                         .innerText[0] + priceSubstr(savedPrice)
                     }
                   </p>`
-              );
-            });
-            el.after(document.querySelector(".kl_wrapper"));
-            el.after(document.querySelector(".pro_price"));
-            document
-              .querySelector(".pro_price .pricing")
-              .before(document.querySelector(".stock_info"));
-            document
-              .querySelector(".pricing span#CurrentVariantPrice")
-              .after(document.querySelector(".usave"));
+            );
           });
-  
-          waitForElement(".money_back").then((el) => {
-            el.insertAdjacentHTML("afterend", review);
-            el.insertAdjacentHTML("afterend", timeline);
+          el.after(document.querySelector(".kl_wrapper"));
+          el.after(document.querySelector(".pro_price"));
+          document
+            .querySelector(".pro_price .pricing")
+            .before(document.querySelector(".stock_info"));
+          document
+            .querySelector(".pricing span#CurrentVariantPrice")
+            .after(document.querySelector(".usave"));
+        });
 
-            const reviews = dataReviews[href.includes('/the-dual-pillow') ? 0 : 1]
-          
-            let slides = ''
-            for (const key in reviews)  {
-                slides += ` 
+        waitForElement(".money_back").then((el) => {
+          el.insertAdjacentHTML("afterend", review);
+          el.insertAdjacentHTML("afterend", timeline);
+
+          const reviews =
+            dataReviews[href.includes("/the-dual-pillow") ? 0 : 1];
+
+          let slides = "";
+          for (const key in reviews) {
+            slides += ` 
                 <div class="swiper-slide">
                     <p><b>${reviews[key][0]}</b></p>
                     <p class="text">"${reviews[key][1]}"</p>
                     <p class="author"><b>${reviews[key][2]}</b></p>
-                </div>`
+                </div>`;
+          }
+          document
+            .querySelector(".crs_slider .swiper-wrapper")
+            .insertAdjacentHTML("beforeend", slides);
+
+          const waitForSwiper = setInterval(() => {
+            if (typeof Swiper !== "undefined") {
+              clearInterval(waitForSwiper);
+
+              let option = {
+                slidesPerView: 1,
+                // slideToClickedSlide: true,
+                spaceBetween: 32,
+                navigation: {
+                  nextEl: ".crs_button-next",
+                  prevEl: ".crs_button-prev",
+                },
+                pagination: {
+                  el: ".swiper-pagination",
+                  // type: 'bullets',
+                  dynamicBullets: true,
+                  clickable: true,
+                },
+              };
+
+              // sliders
+              new Swiper(`.crs_slider`, option);
             }
-            document.querySelector('.crs_slider .swiper-wrapper').insertAdjacentHTML('beforeend', slides)
-                   
-          
-            const waitForSwiper = setInterval(() => {
-                if (typeof Swiper !== 'undefined') {
-                    clearInterval(waitForSwiper)
-            
-                    let option = {
-                        slidesPerView: 1,
-                        // slideToClickedSlide: true,
-                        spaceBetween: 32,
-                        navigation: {
-                            nextEl: '.crs_button-next',
-                            prevEl: '.crs_button-prev',
-                        },
-                        pagination: {
-                            el: '.swiper-pagination',
-                            // type: 'bullets',
-                            dynamicBullets: true,
-                            clickable: true
-                        },
-                    }
+          });
 
-                    // sliders
-                    new Swiper(`.crs_slider`, option)
+          let optionMut = {
+            childList: true,
+            subtree: true,
+            attributes: true,
+          };
 
-                
-                }
-            })
+          let mut = new MutationObserver(function (muts) {
+            if (
+              document.querySelector(
+                ".crs_slider span.swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev"
+              ) &&
+              document.querySelector(
+                ".crs_slider span.swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev"
+              ).previousElementSibling
+            ) {
+              mut.disconnect();
+              document.querySelector(
+                ".crs_slider .swiper-pagination-bullet.siblingsPrev"
+              )
+                ? document
+                    .querySelector(
+                      ".crs_slider .swiper-pagination-bullet.siblingsPrev"
+                    )
+                    .classList.remove("siblingsPrev")
+                : "";
 
-
-            let optionMut = {
-                childList: true,
-                subtree: true,
-                attributes: true
-            };
-              
-            let mut = new MutationObserver(function (muts) {
-                if (document.querySelector('.crs_slider span.swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev') && 
-                    document.querySelector('.crs_slider span.swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev').previousElementSibling
-                ) {
-            
-                    mut.disconnect()
-                    document.querySelector('.crs_slider .swiper-pagination-bullet.siblingsPrev') ? 
-                    document.querySelector('.crs_slider .swiper-pagination-bullet.siblingsPrev').classList.remove('siblingsPrev') : '';
-            
-                    document.querySelector('.crs_slider span.swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev').previousElementSibling.classList.add('siblingsPrev');
-            
-                }
-                mut.observe(document, optionMut);
-            })
+              document
+                .querySelector(
+                  ".crs_slider span.swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev"
+                )
+                .previousElementSibling.classList.add("siblingsPrev");
+            }
             mut.observe(document, optionMut);
           });
+          mut.observe(document, optionMut);
+        });
 
-          waitForElement("#shopify-section-template--21421815595294__59cb7521-b843-46d3-8f8e-19b9898bf560").then((el) => {
-            document.querySelector('.bg-main-tertiary-100').insertAdjacentHTML('afterend', `
+        waitForElement(
+          "#shopify-section-template--21421815595294__59cb7521-b843-46d3-8f8e-19b9898bf560"
+        ).then((el) => {
+          document.querySelector(".bg-main-tertiary-100").insertAdjacentHTML(
+            "afterend",
+            `
             <div class="crs_like">
                 <h2>You might also like</h2>
-                ${el.querySelector('.mt-6').innerHTML}
-            </div>`)
+                ${el.querySelector(".mt-6").innerHTML}
+            </div>`
+          );
 
-            document.querySelectorAll('.crs_like .tabs-component-tab a').forEach((item, index) => {
-                item.classList.remove('is-active')
-                item.addEventListener('click', (e) => {
-                    item.parentElement.parentElement.querySelector('.is-active').classList.remove('is-active')
-                    item.parentElement.classList.add('is-active')
-                    document.querySelectorAll('.tabs-component-panels > section').forEach((section, i) => {
-                        section.style.display = 'none'
-                        if (index == i) {
-                            section.style = ''
-                        }
-                    })
-                })
-            })
-
-              
-            const waitForSwiper = setInterval(() => {
-                if (typeof Swiper !== 'undefined') {
-                    clearInterval(waitForSwiper)
-            
-                    let option = {
-                        slidesPerView: 2.5,
-                        // slideToClickedSlide: true,
-                        spaceBetween: 16
+          document
+            .querySelectorAll(".crs_like .tabs-component-tab a")
+            .forEach((item, index) => {
+              item.classList.remove("is-active");
+              item.addEventListener("click", (e) => {
+                item.parentElement.parentElement
+                  .querySelector(".is-active")
+                  .classList.remove("is-active");
+                item.parentElement.classList.add("is-active");
+                document
+                  .querySelectorAll(".tabs-component-panels > section")
+                  .forEach((section, i) => {
+                    section.style.display = "none";
+                    if (index == i) {
+                      section.style = "";
                     }
+                  });
+              });
+            });
 
-                    // sliders
-                    document.querySelectorAll('.tabs-component-panels > section .carousel .swiper').forEach(item => {
-                        new Swiper(item, option)
-                    })
-                   
+          const waitForSwiper = setInterval(() => {
+            if (typeof Swiper !== "undefined") {
+              clearInterval(waitForSwiper);
 
-                
-                }
-            })
+              let option = {
+                slidesPerView: 2.5,
+                // slideToClickedSlide: true,
+                spaceBetween: 16,
+              };
 
+              // sliders
+              document
+                .querySelectorAll(
+                  ".tabs-component-panels > section .carousel .swiper"
+                )
+                .forEach((item) => {
+                  new Swiper(item, option);
+                });
+            }
           });
-          if (media) {
-            waitForElement(".img_txt_wrapp > .txt_sec > .flex").then(el => {
-                // console.log(el)
-                
-                document.querySelectorAll(".img_txt_wrapp > .txt_sec > .flex").forEach(item => {
-                    console.log(item)
-                    if (item.innerHTML.includes('btn-section-cta')) {
-                        item.classList.add('crs_cta')
-                    }
-                    if (item.closest('.img_txt_wrapp').innerText.includes('Happy Customers')) {
-                        item.closest('.img_txt_wrapp').querySelector('.img_sec').style = 'order: 3;margin-top: 46px;'
-                    }
-                    item.parentElement.nextElementSibling.after(item)
-                    item.closest('.img_txt_wrapp').querySelector('a').addEventListener('click', (e) => {
-                        e.preventDefault()
-                        console.log('click')
-                        // patch all methods
-                        seamless.polyfill();
-                        // or use specific methods
-                        seamless.scrollBy(window, { 
-                            behavior: "smooth", 
-                            top: document.querySelector('form').getBoundingClientRect().top - 122, 
-                            left: 0 
-                        });
-                    })
-    
-                })
-              })
-          }
-         
+        });
+        if (media) {
+          waitForElement(".img_txt_wrapp > .txt_sec > .flex").then((el) => {
+            // console.log(el)
 
-    
+            document
+              .querySelectorAll(".img_txt_wrapp > .txt_sec > .flex")
+              .forEach((item) => {
+                console.log(item);
+                if (item.innerHTML.includes("btn-section-cta")) {
+                  item.classList.add("crs_cta");
+                }
+                if (
+                  item
+                    .closest(".img_txt_wrapp")
+                    .innerText.includes("Happy Customers")
+                ) {
+                  item
+                    .closest(".img_txt_wrapp")
+                    .querySelector(".img_sec").style =
+                    "order: 3;margin-top: 46px;";
+                }
+                item.parentElement.nextElementSibling.after(item);
+                item
+                  .closest(".img_txt_wrapp")
+                  .querySelector("a")
+                  .addEventListener("click", (e) => {
+                    e.preventDefault();
+                    console.log("click");
+                    // patch all methods
+                    seamless.polyfill();
+                    // or use specific methods
+                    seamless.scrollBy(window, {
+                      behavior: "smooth",
+                      top:
+                        document.querySelector("form").getBoundingClientRect()
+                          .top - 122,
+                      left: 0,
+                    });
+                  });
+              });
+          });
         }
-      })
-    }
-    
-  })();
-  
+      }
+    });
+  }
+})();
