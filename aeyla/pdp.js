@@ -651,14 +651,24 @@
             margin-top: -6px;
         }
         .crs_sticky {
+          position: fixed;
+          left: 0;
+          bottom: 0;
+          opacity: 0;
+          transition: all 0.2s ease;
+          transform: translateY(100px);
+          z-index: 99;
+          width: 100%;
+        }
+        .crs_sticky > div {
             background: #FFF;
             box-shadow: 0px 0px 16px 0px rgba(43, 70, 50, 0.20);
-            position: fixed;
-            left: 0;
-            bottom: 0;
             width: 100%;
-            z-index: 8;
             padding: 16px 17px 18px;
+          }
+          .crs_sticky.active {
+              transform: translateY(0);
+              opacity: 1;
           }
           .crs_sticky button {
             background-color: #A84A23;
@@ -726,7 +736,40 @@
                     display: flex;
                 }
                 .d-lg-block {
-                    display: block;
+                    display: block!important;
+                }
+                .crs_sticky {
+                  padding: 24px 17px;
+                }
+                .crs_sticky > div {
+                  border-radius: 16px;
+                  border: 1px solid #DAE5D9;
+                  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.10);
+                  max-width: 896px;
+                  margin: 0 auto;
+                }
+                .crs_sticky button {
+                  max-width: 332px;
+                  height: fit-content;
+                  border-radius: 6px;
+                }
+                .crs_sticky h3 {
+                  color: #2B4632;
+                  font-family: Open Sans;
+                  font-size: 24px;
+                  font-style: normal;
+                  font-weight: 700;
+                  line-height: 32px;
+                  margin-bottom: 4px;
+                }
+                .crs_sticky p {
+                  color: #2B4632;
+                  font-family: Open Sans;
+                  font-size: 16px;
+                  font-style: normal;
+                  font-weight: 400;
+                  line-height: 24px; /* 150% */
+                  margin: 0;
                 }
             `
         }
@@ -738,6 +781,9 @@
           }
           .text-nowrap {
             white-space: nowrap;
+          }
+          .item-center {
+              align-items: center;
           }
       </style>`;
 
@@ -862,12 +908,14 @@
     </div>`;
 
   const stickyBtn = (price) => `
-  <div class="crs_sticky d-lg-flex">
-        <div class="d-lg-block d-none">
-            <h3>The Dual Pillow</h3>
-            <p>Standard Size Pillow: 50cm x 75cm</p>
-        </div>
-        <button type="button"><b>Choose Yours Now</b> from ${price} </button>
+  <div class="crs_sticky">
+      <div class="d-lg-flex justify-between item-center">
+          <div class="d-lg-block d-none">
+              <h3>The Dual Pillow</h3>
+              <p>Standard Size Pillow: 50cm x 75cm</p>
+          </div>
+          <button type="button"><b>Choose Yours Now</b> from ${price} </button>
+      </div>
   </div>`
 
   // -------------------------------------
@@ -1030,6 +1078,42 @@
         
         waitForElement('#CurrentVariantPrice').then((el) => {
             document.body.insertAdjacentHTML("afterbegin", stickyBtn(el.innerText));
+
+            let formOffset =  document.querySelector("form").getBoundingClientRect().top
+            let btnFormOffset =  document.querySelector("#AddToCart").getBoundingClientRect().bottom
+            if (media && formOffset < 150 && btnFormOffset > 100) {
+              document.querySelector('.crs_sticky').classList.add('active')
+            }
+
+            window.addEventListener('scroll', () => {
+              let crsSticky = document.querySelector(".crs_sticky")
+              let formOffset =  document.querySelector("form").getBoundingClientRect().top
+              let btnFormOffset =  document.querySelector("#AddToCart").getBoundingClientRect().bottom
+              if (media) {
+      
+                  if (formOffset < 150 && btnFormOffset > 100) {
+                      crsSticky.classList.remove("active")
+                  } else {
+                      crsSticky.classList.add("active")
+                  }
+              } else {
+                  if (btnFormOffset > 100) {
+                      crsSticky.classList.remove("active")
+                  } else {
+                      crsSticky.classList.add("active")
+                  }
+              }
+            })
+            document.querySelector('.crs_sticky').addEventListener('click', (e) => {
+              e.target.classList.remove('active')
+              seamless.polyfill();
+              // or use specific methods
+              seamless.scrollBy(window, {
+                behavior: "smooth",
+                top: document.querySelector("form").getBoundingClientRect().top - 122,
+                left: 0,
+              });
+            })
         })
 
         waitForElement(".tp_widget_wrapper").then((el) => {
