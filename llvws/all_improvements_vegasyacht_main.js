@@ -1905,6 +1905,20 @@ body.open_var {
             return scrollWidth;
           }
         }
+        let lookForBtnInquire = setInterval(() => {
+          if (document.querySelector("div.new_btn_inquire_now")) {
+            clearInterval(lookForBtnInquire);
+            document.querySelectorAll("div.new_btn_inquire_now").forEach((el) => {
+              el.addEventListener("click", (e) => {
+                if (e.currentTarget.closest("#custom-slider")) {
+                  pushDataLayer(["exp_new_ui__first_but_inqu_1", "Inquire Now", "Button", "First screen"]);
+                } else {
+                  pushDataLayer(["exp_new_ui__first_but_inqu_2", "Inquire Now", "Button", "Book Your Private Charter Event"]);
+                }
+              });
+            });
+          }
+        }, 100);
       }
       function validateForm(parent, target) {
         let inputValueEmail = document.querySelector(`[data-count='${parent}'] input[name='email']`).value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
