@@ -697,6 +697,9 @@ body.open_var {
   }
 }
 @media (max-width: 768px) {
+  [data-node="apfd8gor7vly"]{
+    display: none;
+  }
   .overlay_popup .container_popup {
     max-width: 335px;
   }
@@ -1498,6 +1501,7 @@ body.open_var {
               document.querySelectorAll(".fl-node-tp16blf7q3sz .fl-col-group").forEach((el) => {
                 el.style.display = "block";
               });
+              document.querySelector('[data-node="apfd8gor7vly"]').style.display = "block";
 
               document.querySelector(".fl-node-tp16blf7q3sz .fl-col-group:nth-of-type(4) > div:first-child .uabb-infobox-content > .uabb-infobox-text-wrap").style.height = "unset";
               document.querySelector(".fl-node-tp16blf7q3sz .fl-col-group:nth-of-type(4) > div:first-child .uabb-infobox-content > .uabb-infobox-text-wrap").style.overflow = "unset";
