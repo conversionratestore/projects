@@ -379,7 +379,7 @@ const style = `
 }
 .crs_swiper-button {
     position: absolute;
-    top: 50%;
+    top: calc(50% - 60px);
     right: 56px;
     z-index: 3;
     padding: 0;
@@ -942,7 +942,7 @@ const svgCircle = `
 </svg>`
 
 const arrow = `
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg class="crs_arrow" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect width="32" height="32" rx="16" fill="white"/>
     <path d="M14 21L18 16L14 11" stroke="#333333" stroke-width="2" stroke-linejoin="round"/>
 </svg>`
@@ -1184,7 +1184,12 @@ const initBanner = setInterval(() => {
         document.querySelector('#banner-box').closest('.fl-row-content-wrap').parentElement.insertAdjacentHTML('afterend', banners)
     
         document.querySelectorAll('.crs_activity_item').forEach(item => {
-            pushDataLayer(['exp_impr_hp_butt_chooseactiv_name', item.innerText, 'Button', 'First screen Choose your activity']);
+            item.addEventListener('click', () => {
+                pushDataLayer(['exp_impr_hp_butt_chooseactiv_name', item.innerText, 'Button', 'First screen Choose your activity']);
+            })
+            item.querySelector('.crs_arrow').addEventListener('click', () => {
+                pushDataLayer(['exp_impr_hp_arrow_chooseactiv_name', item.innerText, 'Arrows', 'First screen Choose your activity'])        
+             })
         })
 
         handleVisibility('.crs_info', ['exp_impr_hp_visib_firstrental_focus', '{{focusTime}}', 'Visibility ', 'First screen Water Sport Rentals at the Lowest Prices'    ])
@@ -1370,7 +1375,7 @@ const initSections = setInterval(() => {
 
         document.querySelector('.fl-node-3zma2ts9y5wq').insertAdjacentHTML('afterend', `
         <div class="crs_slider">
-            <button type="button" class="crs_button-prev crs_swiper-button">
+            <button type="button" class="crs_button-prev crs_swiper-button" onclick="pushDataLayer(['exp_impr_hp_arrow_commeblock_name', 'left', 'Arrows flipping', 'Comment block'])">
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" fill="black"/>
                 <path d="M18 26L24 20L18 14" stroke="white" stroke-width="2" stroke-linejoin="round"/>
@@ -1381,14 +1386,14 @@ const initSections = setInterval(() => {
                 <div class="swiper-wrapper" data-count="2"></div>
                 <div class="swiper-pagination"></div>
             </div>
-            <button type="button" class="crs_btn_load items-center justify-center">
+            <button type="button" class="crs_btn_load items-center justify-center" onclick="pushDataLayer(['exp_impr_hp_butt_commeblock_load','Load more','Button','Comment block Mobile'])">
                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
                     <path class="iscircle" fill-rule="evenodd" clip-rule="evenodd" d="M10.5 2.85714C8.6056 2.85714 6.78878 3.60969 5.44924 4.94924C4.10969 6.28878 3.35714 8.1056 3.35714 10C3.35714 11.8944 4.10969 13.7112 5.44924 15.0508C6.78878 16.3903 8.6056 17.1429 10.5 17.1429C12.3944 17.1429 14.2112 16.3903 15.5508 15.0508C16.8903 13.7112 17.6429 11.8944 17.6429 10C17.6429 8.1056 16.8903 6.28878 15.5508 4.94924C14.2112 3.60969 12.3944 2.85714 10.5 2.85714ZM0.5 10C0.5 4.47714 4.97714 0 10.5 0C16.0229 0 20.5 4.47714 20.5 10C20.5 15.5229 16.0229 20 10.5 20C4.97714 20 0.5 15.5229 0.5 10Z" fill="#DDDDDD"/>
                     <path class="ispart" fill-rule="evenodd" clip-rule="evenodd" d="M10.4986 2.85715C8.65699 2.85302 6.88579 3.56429 5.55857 4.84096C5.28359 5.09521 4.91977 5.23131 4.54544 5.21996C4.17111 5.20861 3.81621 5.05073 3.55714 4.7803C3.29807 4.50986 3.15555 4.14851 3.16027 3.77404C3.16499 3.39957 3.31657 3.04192 3.58238 2.77811C5.44135 0.991876 7.92051 -0.00395365 10.4986 1.17976e-05C10.8774 1.17976e-05 11.2408 0.150522 11.5087 0.418431C11.7766 0.68634 11.9271 1.0497 11.9271 1.42858C11.9271 1.80746 11.7766 2.17083 11.5087 2.43874C11.2408 2.70665 10.8774 2.85715 10.4986 2.85715Z" fill="black"/>
                 </svg>
                 <span>Load more</span>
             </button>
-            <button type="button" class="crs_button-next crs_swiper-button">
+            <button type="button" class="crs_button-next crs_swiper-button" onclick="pushDataLayer('[exp_impr_hp_arrow_commeblock_name', 'right', 'Arrows flipping', 'Comment block'])">
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" fill="black"/>
                 <path d="M18 26L24 20L18 14" stroke="white" stroke-width="2" stroke-linejoin="round"/>
@@ -1397,8 +1402,7 @@ const initSections = setInterval(() => {
             </button>
         </div>`)
 
-
-        handleVisibility('.crs_btn_load', ['exp_impr_hp_visib_blockreview_focus', '{{focusTime}}', 'Visibility ', 'Section of blocks with reviews'])
+        handleVisibility(media ? '.crs_btn_load' : '.crs_slider .swiper-wrapper', ['exp_impr_hp_visib_blockreview_focus', '{{focusTime}}', 'Visibility ', 'Section of blocks with reviews'])
         handleVisibility('.fl-node-3zma2ts9y5wq',['exp_impr_hp_visib_blockrating_focus', '{{focusTime}}', 'Visibility ', 'Section of blocks with ratings'])
 
         let count = 2
@@ -1629,10 +1633,10 @@ const initEventsLocation  = setInterval(() => {
             })
 
             
-            handleVisibility('.fl-node-puk31qtayd7o', ['exp_impr_hp_visib_rentalactivit_focus', '{{focusTime}}', 'Visibility ', 'RENTALS AND ACTIVITIES'])
+            handleVisibility(media ? '.crs_wrap' : '.fl-node-puk31qtayd7o', ['exp_impr_hp_visib_rentalactivit_focus', '{{focusTime}}', 'Visibility ', 'RENTALS AND ACTIVITIES'])
             handleVisibility('.fl-node-pna0qb8dhjm1', ['exp_impr_hp_visib_blockevents_focus', '{{focusTime}}', 'Visibility ', 'Section of blocks with Events'])
 
-            document.querySelectorAll('.fl-node-f6jbugl5piha .fl-col-small a.uabb-infobox-module-link').forEach(item => {
+            document.querySelectorAll('.fl-node-zdoqyw0i32e1 .uabb-infobox-left-right-wrap a.uabb-infobox-module-link').forEach(item => {
                 item.addEventListener('click', (e) => {
                     console.log(item.nextElementSibling.querySelector('h5').innerText)
                     pushDataLayer(['exp_impr_hp_butt_rentalactivit_thumbna', `${item.nextElementSibling.querySelector('h5').innerText} - book now`, 'Button', 'RENTALS AND ACTIVITIES'])
@@ -1642,9 +1646,9 @@ const initEventsLocation  = setInterval(() => {
             document.querySelectorAll('.crs_events a').forEach(item => {
                 item.addEventListener('click', (e) => {
                     if (item.classList.contains('crs_btn')) {
-                        pushDataLayer('exp_impr_hp_butt_undeblockeven_show', 'Show more Events', 'Button', 'Under Section of blocks with Events')
+                        pushDataLayer(['exp_impr_hp_butt_undeblockeven_show', 'Show more Events', 'Button', 'Under Section of blocks with Events'])
                     } else {
-                        pushDataLayer('exp_impr_hp_butt_blockevents_name', `${item.closest('.uabb-infobox-content').querySelector('h5').innerText} - book now`, 'Button', 'Section of blocks with Events')
+                        pushDataLayer(['exp_impr_hp_butt_blockevents_name', `${item.closest('.uabb-infobox-content').querySelector('h5').innerText} - book now`, 'Button', 'Section of blocks with Events'])
 
                     }
                 })
