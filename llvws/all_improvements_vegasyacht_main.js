@@ -40,7 +40,7 @@ if (window.location.pathname === "/") {
         <style>
           /*steps_block */
           .steps_block{
-margin-bottom: 16px;
+margin-bottom: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -141,7 +141,7 @@ align-items: center;
 }
 .content_popup {
   background: #fff;
-  padding: 50px 60px;
+  padding: 30px 60px;
 }
 body.open_var {
   overflow: hidden !important;
@@ -201,7 +201,7 @@ body.open_var {
   display: block;
 }
 .private_event_request_form label + label {
-  margin-top: 16px;
+  margin-top: 10px;
 }
 .private_event_request_form label > span {
   display: block;
@@ -210,7 +210,7 @@ body.open_var {
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 .private_event_request_form label input::placeholder,
 .private_event_request_form label textarea::placeholder {
@@ -701,7 +701,7 @@ body.open_var {
     max-width: 335px;
   }
   .content_popup {
-    padding: 40px 20px;
+    padding: 30px 20px;
   }
   .overlay_popup .container_popup > .btn_close {
     width: 40px;
@@ -717,11 +717,11 @@ body.open_var {
   }
   .private_event_request_form .first_step p,
   .second_step p {
-    margin: 0 auto 24px !important;
+    margin: 0 auto 10px !important;
     max-width: 270px;
   }
   .private_event_request_form label + label {
-    margin-top: 12px;
+    margin-top: 10px;
   }
   .private_event_request_form label > span {
     margin-bottom: 8px;
@@ -1190,6 +1190,11 @@ body.open_var {
             <div class="input_validation">Please enter your name</div>
           </label>
           <label for="">
+            <span>Mobile phone number*</span>
+            <input type="text" name="phoneNumber" id="" required placeholder="Enter mobile phone number" />
+            <div class="input_validation">Please enter your mobile phone number</div>
+          </label>
+          <label for="">
             <span>Your email*</span>
             <input type="email" name="email" id="" maxlength="64" required placeholder="Enter email" />
             <div class="input_validation">Please enter your email address</div>
@@ -1242,6 +1247,11 @@ body.open_var {
             <span>Desired rental date*</span>
             <input type="date" name="date" required id="" placeholder="Date" value='${today}' min='${today}'/>
             <div class="input_validation">Please choose your desired rental date</div>
+          </label>
+          <label for="">
+            <span>Mobile phone number*</span>
+            <input type="text" name="phoneNumber" id="" required placeholder="Enter mobile phone number" />
+            <div class="input_validation">Please enter your mobile phone number</div>
           </label>
           <label for="">
             <span>Your email*</span>
@@ -1898,12 +1908,14 @@ body.open_var {
       }
       function validateForm(parent, target) {
         let inputValueEmail = document.querySelector(`[data-count='${parent}'] input[name='email']`).value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
+        let inputValuePhoneNumb = document.querySelector(`[data-count='${parent}'] input[name='phoneNumber']`).value;
         let inputValueDate = document.querySelector(`[data-count='${parent}'] [name="date"]`);
         let inputValueName = document.querySelector(`[data-count='${parent}'] input[name='name']`)?.value;
         let inputValueDuration = document.querySelector(`[data-count='${parent}'] input[name='hours']`)?.value.match(/^\d+$/);
         let inputValueServices = document.querySelector(`[data-count='${parent}'] textarea[name='services']`)?.value;
         let inputValueComments = document.querySelector(`[data-count='${parent}'] textarea[name='comments']`)?.value;
         let dateChecked;
+        console.log(inputValuePhoneNumb === null, `QQQ!!!!!!!!!!!`);
         let evt;
         if (parent === "firts_get_a_quote") {
           evt = "Special Birthday Celebrations on a Yacht";
@@ -1972,6 +1984,13 @@ body.open_var {
           document.querySelector(`[data-count='${parent}'] input[name='email']`).classList.remove("input_error");
           document.querySelector(`[data-count='${parent}'] input[name='email']`).nextElementSibling.style.display = "none";
         }
+        if (inputValuePhoneNumb === " " || inputValuePhoneNumb === "") {
+          document.querySelector(`[data-count='${parent}'] input[name='phoneNumber']`).classList.add("input_error");
+          document.querySelector(`[data-count='${parent}'] input[name='phoneNumber']`).nextElementSibling.style.display = "block";
+        } else {
+          document.querySelector(`[data-count='${parent}'] input[name='phoneNumber']`).classList.remove("input_error");
+          document.querySelector(`[data-count='${parent}'] input[name='phoneNumber']`).nextElementSibling.style.display = "none";
+        }
 
         if (inputValueDate.value === "") {
           inputValueDate.classList.add("input_error");
@@ -2003,23 +2022,23 @@ body.open_var {
           if (parent === "charter_services_req") {
             evt = "Want To Charter A Luxurious Yacht?";
             document.querySelector(".charter_services_req .my_date").textContent = `${daysWeek[dateChecked[0]]} ${dateChecked[2]} ${months[dateChecked[1]]}`;
-            ajaxEvents("Check Availability For Your Date", document.querySelector(`[data-count='${parent}'] input[name='email']`).value, document.querySelector('[name="date"]').value, "", `btn: ${evt}`, "charter_services_req");
+            ajaxEvents("Check Availability For Your Date", document.querySelector(`[data-count='${parent}'] input[name='phoneNumber']`).value, document.querySelector(`[data-count='${parent}'] input[name='email']`).value, document.querySelector('[name="date"]').value, "", `btn: ${evt}`, "charter_services_req");
           }
           if ((parent === "firts_get_a_quote" || parent === "second_get_a_quote" || parent === "third_get_a_quote" || parent === "fourth_get_a_quote" || parent === "inquire_now") && target === "private_event_req_btn") {
             document.querySelectorAll(`[data-count='${parent}'] .private_event_req .my_date`).forEach((el) => {
               el.textContent = `${daysWeek[dateChecked[0]]} ${dateChecked[2]} ${months[dateChecked[1]]}`;
             });
-            ajaxEvents(document.querySelector(`[data-count='${parent}'] input[name='name']`).value, document.querySelector(`[data-count='${parent}'] input[name='email']`).value, document.querySelector('[name="date"]').value, inputValueServices, `${inputValueComments}, Duration of rental (in hours):${document.querySelector(`[data-count='${parent}'] input[name='hours']`)?.value}, btn: ${evt}`, parent);
+            ajaxEvents(document.querySelector(`[data-count='${parent}'] input[name='name']`).value, document.querySelector(`[data-count='${parent}'] input[name='phoneNumber']`).value, document.querySelector(`[data-count='${parent}'] input[name='email']`).value, document.querySelector('[name="date"]').value, inputValueServices, `${inputValueComments}, Duration of rental (in hours):${document.querySelector(`[data-count='${parent}'] input[name='hours']`)?.value}, btn: ${evt}`, parent);
           }
         }
       }
 
-      function ajaxEvents(name, email, date, eventDescription, additionalInformation, parent) {
+      function ajaxEvents(name, phoneNumber, email, date, eventDescription, additionalInformation, parent) {
         let data = {
           lead: {
             first_name: name,
             last_name: "!",
-            phone_number: "000-000-000",
+            phone_number: phoneNumber,
             email_address: email,
             event_date: date,
             event_description: eventDescription,
