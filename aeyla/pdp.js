@@ -94,7 +94,9 @@
 
   const stylePDP = `
         <style>
-              .d-none,
+
+            .product-template-wrapper > .hidden,
+            .d-none,
             .ol_box img,
             #AddToCart svg,
             .paymnt_icns,
@@ -812,7 +814,7 @@
                 margin: 14px 0 0 0!important;
                 padding: 0;
             }
-            .ol .font-bold.text-main-blue span {
+            .ol .font-bold.text-main-blue span, .text-main-blue {
                 color: #2B4632;
                 font-family: 'Open Sans';
                 font-size: 16px;
@@ -820,7 +822,7 @@
                 font-weight: 700;
                 line-height: 24px; /* 150% */
             }
-            .ol .font-bold.text-main-blue span span {
+            .ol .font-bold.text-main-blue span span, .text-main-blue {
                 font-weight: 400;
             }
             `:''}
@@ -829,7 +831,8 @@
             media
               ? `
 
-                span.stock_info {
+                span.stock_info, 
+                .text-error{
                     margin: 0 0 0 18px!important;
                 }
                   .shippd_w_inner .sw_svg svg {
@@ -892,9 +895,10 @@
                     margin: 0 auto;
                   }
                   .crs_sticky button {
-                    max-width: 332px;
+                    width: fit-content;
                     height: fit-content;
                     border-radius: 6px;
+                    padding: 15px 29px;
                   }
                   .crs_sticky h3 {
                     color: #2B4632;
@@ -914,6 +918,10 @@
                     line-height: 24px; /* 150% */
                     margin: 0;
                   }
+                          
+                #MainProductForm {
+                    top: -310px!important;
+                }
               `
           }
             /* base */
@@ -1058,12 +1066,12 @@
         </div>
       </div>`;
 
-  const stickyBtn = (price) => `
+  const stickyBtn = (title, size, price) => `
     <div class="crs_sticky">
         <div class="d-lg-flex justify-between item-center">
             <div class="d-lg-block d-none">
-                <h3>The Dual Pillow</h3>
-                <p>Standard Size Pillow: 50cm x 75cm</p>
+                <h3>${title}</h3>
+                <p>${size}</p>
             </div>
             <button type="button"><b>Choose Yours Now</b> from ${price} </button>
         </div>
@@ -1233,10 +1241,15 @@
         document.body.insertAdjacentHTML("afterbegin", stylePDP);
 
         waitForElement("#CurrentVariantPrice").then((el) => {
-          document.body.insertAdjacentHTML(
-            "afterbegin",
-            stickyBtn(el.innerText)
-          );
+           document.body.insertAdjacentHTML("afterbegin",
+                stickyBtn(
+                    document.querySelector('div#MainProductForm h1').innerText, 
+                    document.querySelector('p.var_meta').innerText,
+                    !href.includes('/the-dual-pillow') ? el.innerText : document.querySelector('.ol_box:first-child .vl_btm').innerText.split('each')[0]
+                )
+            );
+        
+         
 
           let formOffset = document
             .querySelector("form")
@@ -1275,18 +1288,14 @@
             .addEventListener("click", (e) => {
               e.target.classList.remove("active");
 
-              const top = media
-                ? document.querySelector("form").getBoundingClientRect().top - 122
-                : document.querySelector("#MainPhoto1").getBoundingClientRect().top + (document.querySelector("#MainPhoto1").clientHeight / 2)
-          
-                // const quantityHegiht = href.includes('the-dual-pillow') ? 240 : 0
               seamless.polyfill();
               // or use specific methods
               seamless.scrollBy(window, {
                 behavior: "smooth",
-                top: top,
+                top: document.querySelector("form").getBoundingClientRect().top - 122,
                 left: 0,
               });
+                
             });
         });
 
