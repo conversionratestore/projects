@@ -16,7 +16,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
 const clarityInterval = setInterval(function () {
   if (typeof clarity == 'function') {
     clearInterval(clarityInterval)
-    clarity('set', '', 'variant_1')
+    clarity('set', 'addit_flow', 'variant_1')
   }
 }, 1000)
 
@@ -28,6 +28,25 @@ function scrollToElement(selector) {
     top: offsetPosition,
     behavior: 'smooth'
   })
+}
+
+function checkFocusTime(selector, event, location) {
+  const checker = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.getAttribute('data-startShow')) {
+        entry.target.setAttribute('data-startShow', new Date().getTime())
+      } else if (!entry.isIntersecting && entry.target.getAttribute('data-startShow')) {
+        const startShow = entry.target.getAttribute('data-startShow')
+        const endShow = new Date().getTime()
+        const timeShow = Math.round((endShow - startShow) / 1000)
+        entry.target.removeAttribute('data-startShow')
+        pushDataLayer(event, timeShow, 'Visibility', location)
+        checker.unobserve(entry.target)
+      }
+    })
+  })
+
+  checker.observe(document.querySelector(selector))
 }
 
 const questions = [
@@ -54,7 +73,7 @@ const tableResult = [
     1,
     1,
     1,
-    1,
+    2,
     'I want my kid to enjoy outdoor activities without worrying about mosquitoes.',
     '2 Packs',
     'Perfect for a whole family with 1 kid'
@@ -63,7 +82,7 @@ const tableResult = [
     1,
     1,
     1,
-    2,
+    1,
     'I want my kid to have a blast during our upcoming family vacation without mosquito bites.',
     '2 Packs',
     'Perfect for a whole family with 1 kid'
@@ -72,7 +91,7 @@ const tableResult = [
     1,
     1,
     2,
-    1,
+    2,
     'I want my active kid to enjoy outdoor activities without worrying about mosquitoes.',
     '3 Packs',
     'Perfect for a whole family with 1 kid'
@@ -81,7 +100,7 @@ const tableResult = [
     1,
     1,
     2,
-    2,
+    1,
     'I want my active kid to have a blast during our upcoming family vacation without mosquito bites.',
     '3 Packs',
     'Perfect for a whole family with 1 kid'
@@ -90,7 +109,7 @@ const tableResult = [
     1,
     1,
     3,
-    1,
+    2,
     'I want my active kid to enjoy outdoor activities without worrying about mosquitoes.',
     '3 Packs',
     'Perfect for a whole family with 1 kid'
@@ -99,7 +118,7 @@ const tableResult = [
     1,
     1,
     3,
-    2,
+    1,
     'I want my active kid to have a blast during our upcoming family vacation without mosquito bites.',
     '3 Packs',
     'Perfect for a whole family with 1 kid'
@@ -108,7 +127,7 @@ const tableResult = [
     1,
     2,
     1,
-    1,
+    2,
     'I want my kids to enjoy outdoor activities without worrying about mosquitoes.',
     '3 Packs',
     'Perfect for a whole family with 2 kids'
@@ -117,7 +136,7 @@ const tableResult = [
     1,
     2,
     1,
-    2,
+    1,
     'I want my kids to have a blast during our upcoming family vacation without mosquito bites.',
     '3 Packs',
     'Perfect for a whole family with 2 kids'
@@ -126,7 +145,7 @@ const tableResult = [
     1,
     2,
     2,
-    1,
+    2,
     'I want my active kids to enjoy outdoor activities without worrying about mosquitoes.',
     '4 Packs',
     'Perfect for a whole family with 2 kids'
@@ -135,7 +154,7 @@ const tableResult = [
     1,
     2,
     2,
-    2,
+    1,
     'I want my active kids to have a blast during our upcoming family vacation without mosquito bites.',
     '4 Packs',
     'Perfect for a whole family with 2 kids'
@@ -144,7 +163,7 @@ const tableResult = [
     1,
     2,
     3,
-    1,
+    2,
     'I want my active kids to enjoy outdoor activities without worrying about mosquitoes.',
     '4 Packs',
     'Perfect for a whole family with 2 kids'
@@ -153,7 +172,7 @@ const tableResult = [
     1,
     2,
     3,
-    2,
+    1,
     'I want my active kids to have a blast during our upcoming family vacation without mosquito bites.',
     '4 Packs',
     'Perfect for a whole family with 2 kids'
@@ -162,7 +181,7 @@ const tableResult = [
     1,
     3,
     1,
-    1,
+    2,
     'I want my kids to enjoy outdoor activities without worrying about mosquitoes.',
     '4 Packs',
     'Perfect for a whole family with 3 kids'
@@ -171,7 +190,7 @@ const tableResult = [
     1,
     3,
     1,
-    2,
+    1,
     'I want my kids to have a blast during our upcoming family vacation without mosquito bites.',
     '4 Packs',
     'Perfect for a whole family with 3 kids'
@@ -180,7 +199,7 @@ const tableResult = [
     1,
     3,
     2,
-    1,
+    2,
     'I want my active kids to enjoy outdoor activities without worrying about mosquitoes.',
     '4 Packs',
     'Perfect for a whole family with 3 kids'
@@ -189,7 +208,7 @@ const tableResult = [
     1,
     3,
     2,
-    2,
+    1,
     'I want my active kids to have a blast during our upcoming family vacation without mosquito bites.',
     '4 Packs',
     'Perfect for a whole family with 3 kids'
@@ -198,7 +217,7 @@ const tableResult = [
     1,
     3,
     3,
-    1,
+    2,
     'I want my active kids to enjoy outdoor activities without worrying about mosquitoes.',
     '4 Packs',
     'Perfect for a whole family with 3 kids'
@@ -207,7 +226,7 @@ const tableResult = [
     1,
     3,
     3,
-    2,
+    1,
     'I want my active kids to have a blast during our upcoming family vacation without mosquito bites.',
     '4 Packs',
     'Perfect for a whole family with 3 kids'
@@ -216,7 +235,7 @@ const tableResult = [
     2,
     1,
     1,
-    1,
+    2,
     'I want my family to enjoy outdoor activities without worrying about mosquitoes.',
     '2 Packs',
     'Perfect for a whole family with 1 kid'
@@ -225,7 +244,7 @@ const tableResult = [
     2,
     1,
     1,
-    2,
+    1,
     'I want our family to stay mosquito-free during our upcoming vacation.',
     '2 Packs',
     'Perfect for a whole family with 1 kid'
@@ -234,7 +253,7 @@ const tableResult = [
     2,
     1,
     2,
-    1,
+    2,
     'I want my family to enjoy outdoor activities without worrying about mosquitoes.',
     '3 Packs',
     'Perfect for a whole family with 1 kid'
@@ -243,7 +262,7 @@ const tableResult = [
     2,
     1,
     2,
-    2,
+    1,
     'I want our family to stay mosquito-free during our upcoming vacation.',
     '3 Packs',
     'Perfect for a whole family with 1 kid'
@@ -252,7 +271,7 @@ const tableResult = [
     2,
     1,
     3,
-    1,
+    2,
     'I want my family to enjoy outdoor activities without worrying about mosquitoes.',
     '3 Packs',
     'Perfect for a whole family with 1 kid'
@@ -261,7 +280,7 @@ const tableResult = [
     2,
     1,
     3,
-    2,
+    1,
     'I want our family to stay mosquito-free during our upcoming vacation.',
     '3 Packs',
     'Perfect for a whole family with 1 kid'
@@ -270,7 +289,7 @@ const tableResult = [
     2,
     2,
     1,
-    1,
+    2,
     'I want my family to enjoy outdoor activities without worrying about mosquitoes.',
     '3 Packs',
     'Perfect for a whole family with 2 kids'
@@ -279,7 +298,7 @@ const tableResult = [
     2,
     2,
     1,
-    2,
+    1,
     'I want our family to stay mosquito-free during our upcoming vacation.',
     '3 Packs',
     'Perfect for a whole family with 2 kids'
@@ -288,7 +307,7 @@ const tableResult = [
     2,
     2,
     2,
-    1,
+    2,
     'I want my family to enjoy outdoor activities without worrying about mosquitoes.',
     '4 Packs',
     'Perfect for a whole family with 2 kids'
@@ -297,7 +316,7 @@ const tableResult = [
     2,
     2,
     2,
-    2,
+    1,
     'I want our family to stay mosquito-free during our upcoming vacation.',
     '4 Packs',
     'Perfect for a whole family with 2 kids'
@@ -306,7 +325,7 @@ const tableResult = [
     2,
     2,
     3,
-    1,
+    2,
     'I want my family to enjoy outdoor activities without worrying about mosquitoes.',
     '4 Packs',
     'Perfect for a whole family with 2 kids'
@@ -315,7 +334,7 @@ const tableResult = [
     2,
     2,
     3,
-    2,
+    1,
     'I want our family to stay mosquito-free during our upcoming vacation.',
     '4 Packs',
     'Perfect for a whole family with 2 kids'
@@ -324,7 +343,7 @@ const tableResult = [
     2,
     3,
     1,
-    1,
+    2,
     'I want my family to enjoy outdoor activities without worrying about mosquitoes.',
     '4 Packs',
     'Perfect for a whole family with 3 kids'
@@ -333,7 +352,7 @@ const tableResult = [
     2,
     3,
     1,
-    2,
+    1,
     'I want our family to stay mosquito-free during our upcoming vacation.',
     '4 Packs',
     'Perfect for a whole family with 3 kids'
@@ -342,7 +361,7 @@ const tableResult = [
     2,
     3,
     2,
-    1,
+    2,
     'I want my family to enjoy outdoor activities without worrying about mosquitoes.',
     '4 Packs',
     'Perfect for a whole family with 3 kids'
@@ -351,7 +370,7 @@ const tableResult = [
     2,
     3,
     2,
-    2,
+    1,
     'I want our family to stay mosquito-free during our upcoming vacation.',
     '4 Packs',
     'Perfect for a whole family with 3 kids'
@@ -360,7 +379,7 @@ const tableResult = [
     2,
     3,
     3,
-    1,
+    2,
     'I want my family to enjoy outdoor activities without worrying about mosquitoes.',
     '4 Packs',
     'Perfect for a whole family with 3 kids'
@@ -369,7 +388,7 @@ const tableResult = [
     2,
     3,
     3,
-    2,
+    1,
     'I want our family to stay mosquito-free during our upcoming vacation.',
     '4 Packs',
     'Perfect for a whole family with 3 kids'
@@ -394,6 +413,7 @@ class Flow {
     this.createFlow()
     this.drawBlocks()
     this.setHandlers()
+    this.visibilityHAndlers()
   }
 
   addStyles() {
@@ -536,14 +556,14 @@ class Flow {
         .crs_btns {
           display: flex;
           gap: 16px;
-          margin-top: 24px;
+          margin-top: 30px;
         }
         .crs_btns .crs_next {
           width: 100%;
           border-radius: 500px;
           background: #FF3C81;
           box-shadow: 0px 4px 15px 0px rgba(72, 67, 69, 0.51);
-          padding: 10px;
+          padding: 18px 10px 10px;
           color: #fff;
           font-family: 'DIN Condensed', sans-serif;
           font-size: 25px;
@@ -772,7 +792,7 @@ class Flow {
           text-transform: uppercase;
           color: #fff;
           font-family: 'DIN Condensed', sans-serif;
-          padding: 16px;
+          padding: 24px 16px 16px;
           border-radius: 30px;
           background: #FF3C81;
           border: none;
@@ -928,7 +948,7 @@ class Flow {
           el[2] === this.answers[2] &&
           el[3] === this.answers[3]
       )[0]
-      $('.crs_request p:last-of-type').text(result[4])
+      $('.crs_request p:last-of-type').text(`“${result[4]}”`)
       $('.crs_flow_result ul>li:first-of-type b').text(result[6])
 
       let packs = +result[5].split(' ')[0]
@@ -969,6 +989,12 @@ class Flow {
         )[0][5]
         .split(' ')[0]
       $('.crs_buy_now').on('click', e => {
+        pushDataLayer(
+          'exp_addit_flow_but_based_buy',
+          `Buy now - ${p} packs`,
+          'Button',
+          'Based on the results, your perfect match is...'
+        )
         this.buyProduct(p)
       })
     }
@@ -980,22 +1006,42 @@ class Flow {
 
     next.on('click', e => {
       const value = +$(e.target).closest('.crs_flow_wrapper').find('input:checked').val()
+      const text = $(e.target).closest('.crs_flow_wrapper').find('input:checked').siblings('p').text()
       if (this.answers.length === 1 && this.step === 1) {
         this.answers = []
       }
       this.answers.push(value)
       this.step++
       this.drawBlocks()
+      pushDataLayer(
+        'exp_addit_flow_but_whodoyou_nex',
+        `Next - ${text}`,
+        'Button',
+        `Who do you buy the stickers for? Step ${this.step - 1}`
+      )
     })
 
     prev.on('click', e => {
       this.step--
       this.drawBlocks()
       this.answers.pop()
+      pushDataLayer(
+        'exp_addit_flow_arrow_howmany_stick',
+        `Back arrow - Step ${this.step + 1}`,
+        'Button',
+        'How many stickers do you need?'
+      )
     })
 
     $('.crs_buy_btns a').on('click', e => {
+      const packs = $('.crs_pack_text p:nth-of-type(2)').text().split(' |')[0]
       e.preventDefault()
+      pushDataLayer(
+        'exp_addit_flow_link_based_discov',
+        `Discover all packs - ${packs}`,
+        'Link',
+        'Based on the results, your perfect match is...'
+      )
       scrollToElement('#getNow')
     })
   }
@@ -1037,6 +1083,29 @@ class Flow {
     const productsList = ['41797704745004', '41797704777772', '41797704810540']
     window.location.href = `/cart/${productsList[pack - 2]}:1`
   }
+
+  visibilityHAndlers() {
+    checkFocusTime(
+      '.transparent+.crs_flow .crs_flow_wrapper',
+      'exp_addit_flow_vis_howmany_focstic',
+      'Before the button GET BuzzPatch How many stickers do you need?'
+    )
+    checkFocusTime(
+      '.transparent+.crs_flow .crs_flow_result',
+      'exp_addit_flow_vis_based_focus',
+      'Before the button GET BuzzPatch Based on the results, your perfect match is...'
+    )
+    checkFocusTime(
+      '#purchase+.crs_flow .crs_flow_wrapper',
+      'exp_addit_flow_vis_howmany_focstic',
+      'After the button GET BuzzPatch How many stickers do you need?'
+    )
+    checkFocusTime(
+      '#purchase+.crs_flow .crs_flow_result',
+      'exp_addit_flow_vis_based_focus',
+      'After the button GET BuzzPatch Based on the results, your perfect match is...'
+    )
+  }
 }
 
 let start = setInterval(function () {
@@ -1045,3 +1114,5 @@ let start = setInterval(function () {
     new Flow()
   }
 })
+
+// 20 45 70 100
