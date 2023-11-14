@@ -94,7 +94,7 @@
 
   const stylePDP = `
         <style>
-
+          .crs_swiper-button.swiper-button-disabled,
             .product-template-wrapper > .hidden,
             .d-none,
             .ol_box img,
@@ -1074,7 +1074,7 @@
           ${trustpilotIcon}
             <h2>More than 85,000+ customers have already trusted us</h2>
             <div class="crs_slider">
-                <button type="button" class="crs_button-prev crs_swiper-button" onclick="pushDataLayer(['exp_pdp_30_nights_to_test_left', 'Naviganion Left', 'Button|Swipe', 'More than 85 000+ customers section'])">
+                <button type="button" class="crs_button-prev crs_swiper-button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54" fill="none">
                         <path d="M27 5.5C38.8741 5.5 48.5 15.1258 48.5 27C48.5 38.8741 38.8741 48.4999 27 48.4999C15.1259 48.4999 5.5 38.8741 5.5 27C5.5 15.1258 15.1259 5.5 27 5.5Z" fill="#F4B184" stroke="white" stroke-width="11"/>
                         <path d="M32.999 27H20.9995" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1083,7 +1083,7 @@
                 </button>
                   <div class="swiper-wrapper"></div>
                   <div class="swiper-pagination"></div>
-                <button type="button" class="crs_button-next crs_swiper-button" onclick="pushDataLayer(['exp_pdp_30_nights_to_test_right', 'Naviganion Right', 'Button|Swipe', 'More than 85 000+ customers section'])">
+                <button type="button" class="crs_button-next crs_swiper-button">
                     <svg width="32" height="54" viewBox="0 0 32 54" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="10" width="11" height="54" rx="5.5" fill="white"/>
                         <path d="M16 11C7.16346 11 0 18.1634 0 27C0 35.8365 7.16346 42.9999 16 42.9999C24.8365 42.9999 32 35.8365 32 27C32 18.1634 24.8365 11 16 11Z" fill="#F4B184"/>
@@ -1472,7 +1472,7 @@
           );
 
           handleVisibility(document.querySelector('.crs_timeline'),['exp_pdp_30_nights_to_test_visibility', '{{focusTime}}', 'Element visibility', 'You have 30 nights to test section'])
-          handleVisibility(document.querySelector('.crs_slider .swiper-wrapper'),['exp_pdp_30_nights_to_test_visibility', '{{focusTime}}', 'Element visibility', 'More than 85 000+ customers section'])
+          handleVisibility(document.querySelector('.crs_review h2'),['exp_pdp_85000_customers_visibility', '{{focusTime}}', 'Element visibility', 'More than 85 000+ customers section'])
 
           const reviews =
             dataReviews[href.split("products/")[1].split("#")[0].split("?")[0]];
@@ -1501,6 +1501,16 @@
             })
           })
         
+          document.querySelectorAll('.crs_review .crs_swiper-button').forEach(item => {
+            item.addEventListener('click', (e) => {
+              if (item.classList.contains('crs_button-prev')) {
+                pushDataLayer(['exp_pdp_30_nights_to_test_left', 'Naviganion Left', 'Button|Swipe', 'More than 85 000+ customers section'])
+              } else {
+                pushDataLayer(['exp_pdp_30_nights_to_test_right', 'Naviganion Right', 'Button|Swipe', 'More than 85 000+ customers section'])
+              }
+            })
+          })
+
           const waitForSwiper = setInterval(() => {
             if (typeof Swiper !== "undefined") {
               clearInterval(waitForSwiper);
