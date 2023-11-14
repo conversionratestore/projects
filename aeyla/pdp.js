@@ -155,7 +155,6 @@
             }
             div#MainProductForm h1 {
                 font-family: 'Open Sans', sans-serif!important;
-                line-height: 32px!important;
                 margin-bottom: 4px!important;
                 height: auto!important;
             }
@@ -537,7 +536,7 @@
               top: 4px;
             }
             .crs_review {
-              padding: 10px ${media ? '32px': '15px'};
+              padding: 10px ${media ? "32px" : "15px"};
               overflow: hidden;
             }
             .crs_review_container > svg {
@@ -552,7 +551,8 @@
               font-style: normal;
               font-weight: 700;
               line-height: 32px; 
-              margin-bottom: 16px;
+              max-width: 326px;
+              margin: 0 auto 16px;
             }
             .crs_swiper-button {
               position: absolute;
@@ -698,7 +698,7 @@
           }
           .crs_like .tabs-component>.tabs-component-tabs>.tabs-component-tab {
               width: fit-content;
-              border-color: transparent;
+              border-color: transparent!important;
           }
           .crs_like .tabs-component-tabs>.tabs-component-tab.is-active {
               border-color: #A84A23!important;
@@ -794,7 +794,9 @@
             .crs_promo p b {
                 font-weight: 800;
             }
-            ${href.includes('mela-weighted-blanket') ? `
+            ${
+              href.includes("mela-weighted-blanket")
+                ? `
             .peer+label {
                 border-radius: 6px!important;
                 border: none;
@@ -840,7 +842,9 @@
             .ol .font-bold.text-main-blue span span, .text-main-blue {
                 font-weight: 400;
             }
-            `:''}
+            `
+                : ""
+            }
            
           ${
             media
@@ -875,8 +879,8 @@
                   .crs_badge {
                       padding: 2px 6px;
                   }
-                  div#MainProductForm h1 {
-                      font-size: 24px;
+                  div#MainProductForm .text-main-blue-grey h1 {
+                      font-size: 24px!important;
                   }
                   .crs_badge p {
                       font-size: 14px;
@@ -960,7 +964,6 @@
             }
         </style>`;
 
-
   function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
     // Send a Google Analytics event
     const eventData = {
@@ -973,7 +976,7 @@
 
     window.dataLayer = window.dataLayer || [];
     dataLayer.push(eventData);
-    console.log(eventData)
+    console.log(eventData);
   }
 
   const badge = (text, svg) => ` 
@@ -1061,7 +1064,7 @@
                         <p>${formatDate(30, 30)}</p>
                     </div>
                     <p>
-                        <b>100% money back guarantee</b>
+                        <b>100% money <br>back guarantee</b>
                         <span>No questions asked!</span>
                     </p>
                 </div>
@@ -1232,7 +1235,7 @@
       if (document.body) {
         clearInterval(waitForBody);
 
-        pushDataLayer(['exp_pdp_enhancements_loaded','','',''])
+        pushDataLayer(["exp_pdp_enhancements_loaded", "", "", ""]);
 
         // Swiper Slider
         const scriptCustom = document.createElement("script");
@@ -1251,90 +1254,145 @@
         scriptScroll.src =
           "https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js";
         scriptScroll.async = false;
+        scriptScroll.className = 'polyfill';
         document.head.appendChild(scriptScroll);
 
         document.body.insertAdjacentHTML("afterbegin", stylePDP);
 
         waitForElement("#CurrentVariantPrice").then((el) => {
-          document.body.insertAdjacentHTML("afterbegin",
+          let waitForCurrent = setInterval(() => {
+            if (
+              !el.innerText.includes("currentVariantPricing") &&
+              document.querySelector("p.var_meta") &&
+              !document
+                .querySelector("p.var_meta")
+                .innerText.includes("currentVariantMetafields")
+            ) {
+              clearInterval(waitForCurrent);
+
+              let meta = window.location.href.includes("/the-dual-pillow")
+                ? "Standard Size Pillow: 50cm x 75cm"
+                : window.location.href.includes("/the-foamo")
+                ? "Standard Size Luxury Pillow (50cm x 75cm)"
+                : "Weighted Blanket with Integrated Cover";
+
+              document.querySelector("p.var_meta").innerHTML = meta;
+
+              document.body.insertAdjacentHTML(
+                "afterbegin",
                 stickyBtn(
-                    document.querySelector('div#MainProductForm h1').innerText, 
-                    document.querySelector('p.var_meta').innerText,
-                    !href.includes('/the-dual-pillow') ? el.innerText : document.querySelector('.ol_box:first-child .vl_btm').innerText.split('each')[0]
+                  document.querySelector("div#MainProductForm h1").innerText,
+                  meta,
+                  !href.includes("/the-dual-pillow")
+                    ? el.innerText
+                    : document
+                        .querySelector(".ol_box:first-child .vl_btm")
+                        .innerText.split("each")[0]
                 )
-          );
+              );
 
-          handleVisibility(el,['exp_pdp_price_and_shipping', '{{focusTime}}', 'Element visibility', 'Price and shipping'])
+              handleVisibility(el, [
+                "exp_pdp_price_and_shipping",
+                "{{focusTime}}",
+                "Element visibility",
+                "Price and shipping",
+              ]);
 
-          handleVisibility(document.querySelector('#AddToCart'),['exp_pdp_add_to_card_visibility', 'Add to card — {{focusTime}}', 'Element visibility', 'Shopping section'])
+              handleVisibility(document.querySelector("#AddToCart"), [
+                "exp_pdp_add_to_card_visibility",
+                "Add to card — {{focusTime}}",
+                "Element visibility",
+                "Shopping section",
+              ]);
 
-          document.querySelector("#AddToCart").addEventListener('click', () => {
-            pushDataLayer(['exp_pdp_add_to_card', 'Add to card', 'Button', 'Shopping section']);
-          })
-          let formOffset = document
-            .querySelector("form")
-            .getBoundingClientRect().top;
-          let btnFormOffset = document
-            .querySelector("#AddToCart")
-            .getBoundingClientRect().bottom;
-          if (media && formOffset < 150 && btnFormOffset > 100) {
-            document.querySelector(".crs_sticky").classList.add("active");
-          }
-
-          window.addEventListener("scroll", () => {
-            let crsSticky = document.querySelector(".crs_sticky");
-            let formOffset = document
-              .querySelector("form")
-              .getBoundingClientRect().top;
-            let btnFormOffset = document
-              .querySelector("#AddToCart")
-              .getBoundingClientRect().bottom;
-            if (media) {
-              if (formOffset < 150 && btnFormOffset > 100) {
-                crsSticky.classList.remove("active");
-              } else {
-                crsSticky.classList.add("active");
+              document
+                .querySelector("#AddToCart")
+                .addEventListener("click", () => {
+                  pushDataLayer([
+                    "exp_pdp_add_to_card",
+                    "Add to card",
+                    "Button",
+                    "Shopping section",
+                  ]);
+                });
+              let formOffset = document
+                .querySelector("form")
+                .getBoundingClientRect().top;
+              let btnFormOffset = document
+                .querySelector("#AddToCart")
+                .getBoundingClientRect().bottom;
+              if (media && formOffset < 150 && btnFormOffset > 100) {
+                document.querySelector(".crs_sticky").classList.add("active");
               }
-            } else {
-              if (btnFormOffset > 100) {
-                crsSticky.classList.remove("active");
-              } else {
-                crsSticky.classList.add("active");
-              }
+
+              window.addEventListener("scroll", () => {
+                let crsSticky = document.querySelector(".crs_sticky");
+                let formOffset = document
+                  .querySelector("form")
+                  .getBoundingClientRect().top;
+                let btnFormOffset = document
+                  .querySelector("#AddToCart")
+                  .getBoundingClientRect().bottom;
+                if (media) {
+                  if (formOffset < 150 && btnFormOffset > 100) {
+                    crsSticky.classList.remove("active");
+                  } else {
+                    crsSticky.classList.add("active");
+                  }
+                } else {
+                  if (btnFormOffset > 100) {
+                    crsSticky.classList.remove("active");
+                  } else {
+                    crsSticky.classList.add("active");
+                  }
+                }
+              });
+              document
+                .querySelector(".crs_sticky")
+                .addEventListener("click", (e) => {
+                  e.target.classList.remove("active");
+
+                  seamless.polyfill();
+                  // or use specific methods
+                  seamless.scrollBy(window, {
+                    behavior: "smooth",
+                    top:
+                      document.querySelector("form").getBoundingClientRect()
+                        .top - 122,
+                    left: 0,
+                  });
+                });
             }
           });
-          document
-            .querySelector(".crs_sticky")
-            .addEventListener("click", (e) => {
-              e.target.classList.remove("active");
-
-              seamless.polyfill();
-              // or use specific methods
-              seamless.scrollBy(window, {
-                behavior: "smooth",
-                top: document.querySelector("form").getBoundingClientRect().top - 122,
-                left: 0,
-              });
-                
-            });
         });
 
         waitForElement(".tp_widget_wrapper").then((el) => {
-          const name = href.includes('/mela-weighted-blanket') ? 'Top-Rated Blanket' : 'Osteopath-approved'
-          const svg = href.includes('/mela-weighted-blanket') ? `
+          const name = href.includes("/mela-weighted-blanket")
+            ? "Top-Rated Blanket"
+            : "Osteopath-approved";
+          const svg = href.includes("/mela-weighted-blanket")
+            ? `
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 11.25C11.7959 11.25 14.0625 9.06739 14.0625 6.375C14.0625 3.68261 11.7959 1.5 9 1.5C6.20406 1.5 3.9375 3.68261 3.9375 6.375C3.9375 9.06739 6.20406 11.25 9 11.25Z" fill="white"/>
             <path d="M11.8425 11.7073C12.09 11.5798 12.375 11.7673 12.375 12.0448V15.6823C12.375 16.3573 11.9025 16.6873 11.3175 16.4098L9.3075 15.4573C9.135 15.3823 8.865 15.3823 8.6925 15.4573L6.6825 16.4098C6.0975 16.6798 5.625 16.3498 5.625 15.6748L5.64 12.0448C5.64 11.7673 5.9325 11.5873 6.1725 11.7073C7.02 12.1348 7.98 12.3748 9 12.3748C10.02 12.3748 10.9875 12.1348 11.8425 11.7073Z" fill="white"/>
-          </svg>` : `
+          </svg>`
+            : `
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
             <path d="M16.1699 8.05492L15.1499 6.86992C14.9549 6.64492 14.7974 6.22492 14.7974 5.92492V4.64992C14.7974 3.85492 14.1449 3.20242 13.3499 3.20242H12.0749C11.7824 3.20242 11.3549 3.04492 11.1299 2.84992L9.94491 1.82992C9.42741 1.38742 8.57991 1.38742 8.05491 1.82992L6.87741 2.85742C6.65241 3.04492 6.22491 3.20242 5.93241 3.20242H4.63491C3.83991 3.20242 3.18741 3.85492 3.18741 4.64992V5.93242C3.18741 6.22492 3.02991 6.64492 2.84241 6.86992L1.82991 8.06242C1.39491 8.57992 1.39491 9.41992 1.82991 9.93742L2.84241 11.1299C3.02991 11.3549 3.18741 11.7749 3.18741 12.0674V13.3499C3.18741 14.1449 3.83991 14.7974 4.63491 14.7974H5.93241C6.22491 14.7974 6.65241 14.9549 6.87741 15.1499L8.06241 16.1699C8.57991 16.6124 9.42741 16.6124 9.95241 16.1699L11.1374 15.1499C11.3624 14.9549 11.7824 14.7974 12.0824 14.7974H13.3574C14.1524 14.7974 14.8049 14.1449 14.8049 13.3499V12.0749C14.8049 11.7824 14.9624 11.3549 15.1574 11.1299L16.1774 9.94492C16.6124 9.42742 16.6124 8.57242 16.1699 8.05492ZM12.1199 7.58242L8.49741 11.2049C8.39241 11.3099 8.24991 11.3699 8.09991 11.3699C7.94991 11.3699 7.80741 11.3099 7.70241 11.2049L5.88741 9.38992C5.66991 9.17242 5.66991 8.81242 5.88741 8.59492C6.10491 8.37742 6.46491 8.37742 6.68241 8.59492L8.09991 10.0124L11.3249 6.78742C11.5424 6.56992 11.9024 6.56992 12.1199 6.78742C12.3374 7.00492 12.3374 7.36492 12.1199 7.58242Z" fill="white"/>
-          </svg>`
+          </svg>`;
 
           el.insertAdjacentHTML("beforeend", badge(name, svg));
 
-          const nameEvent = href.includes('/mela-weighted-blanket') ? 'exp_pdp_top_rated_blanket_visibility' : 'exp_pdp_osteopath_approved_visibility'
-          
-          handleVisibility(document.querySelector('.crs_badge'),[nameEvent,`${name} — {{focusTime}}`,'Element visibility','The pillow (description) section'])
+          const nameEvent = href.includes("/mela-weighted-blanket")
+            ? "exp_pdp_top_rated_blanket_visibility"
+            : "exp_pdp_osteopath_approved_visibility";
+
+          handleVisibility(document.querySelector(".crs_badge"), [
+            nameEvent,
+            `${name} — {{focusTime}}`,
+            "Element visibility",
+            "The pillow (description) section",
+          ]);
         });
 
         waitForElement(".prod_desc ul").then((el) => {
@@ -1350,37 +1408,68 @@
             el.parentElement.insertAdjacentHTML("beforebegin", promo);
           }
 
-          handleVisibility(el,['exp_pdp_pillow_description_visibility', '{{focusTime}}', 'Element visibility', 'The pillow (description) section'])
-
+          handleVisibility(el, [
+            "exp_pdp_pillow_description_visibility",
+            "{{focusTime}}",
+            "Element visibility",
+            "The pillow (description) section",
+          ]);
         });
 
-      
-
         waitForElement(".pro_form span.oll.w-full").then((el) => {
-            if (href.includes('mela-weighted-blanket')) {
-                el.innerHTML = "Size:";
+          if (href.includes("mela-weighted-blanket")) {
+            el.innerHTML = "Size:";
 
-                handleVisibility(document.querySelector('.ol .grow'),['exp_pdp_size_select _visibility', '{{focusTime}}', 'Element visibility', 'Size select section'])
-                
-                document.querySelectorAll('.ol .grow label .text-xs').forEach((item, index) => {
-                  item.insertAdjacentHTML('beforeend', `<span>190 cm x ${index == 0 ? '100 cm' : '135 cm'}</span>`)
-                  item.closest('.grow').querySelector('input').addEventListener('change', (e) => {
+            handleVisibility(document.querySelector(".ol .grow"), [
+              "exp_pdp_size_select _visibility",
+              "{{focusTime}}",
+              "Element visibility",
+              "Size select section",
+            ]);
+
+            document
+              .querySelectorAll(".ol .grow label .text-xs")
+              .forEach((item, index) => {
+                item.insertAdjacentHTML(
+                  "beforeend",
+                  `<span>190 cm x ${index == 0 ? "100 cm" : "135 cm"}</span>`
+                );
+                item
+                  .closest(".grow")
+                  .querySelector("input")
+                  .addEventListener("change", (e) => {
                     if (e.target.checked) {
-                      if (item.innerText.includes('Standard')) {
-                        pushDataLayer(['exp_pdp_standart', 'Standard', 'Button', 'Size select section']);
+                      if (item.innerText.includes("Standard")) {
+                        pushDataLayer([
+                          "exp_pdp_standart",
+                          "Standard",
+                          "Button",
+                          "Size select section",
+                        ]);
                       } else {
-                        pushDataLayer(['exp_pdp_large', 'Large', 'Button', 'Size select section']);
+                        pushDataLayer([
+                          "exp_pdp_large",
+                          "Large",
+                          "Button",
+                          "Size select section",
+                        ]);
                       }
                     }
-                  })
-                })
-                document.querySelector('.ol .shadow-product-option .text-main-blue').addEventListener('click', (e) => {
-                  pushDataLayer(['exp_pdp_size', 'Size', 'Select', 'Size select section']);
-                })
-            } else {
-                el.innerHTML = "Quantity:";
-            }
-          
+                  });
+              });
+            document
+              .querySelector(".ol .shadow-product-option .text-main-blue")
+              .addEventListener("click", (e) => {
+                pushDataLayer([
+                  "exp_pdp_size",
+                  "Size",
+                  "Select",
+                  "Size select section",
+                ]);
+              });
+          } else {
+            el.innerHTML = "Quantity:";
+          }
 
           document.querySelector("#MainPhoto1 > span").innerHTML = document
             .querySelector(".product-carousel .small.flag")
@@ -1399,20 +1488,29 @@
         });
 
         waitForElement(".ol_box_wrapper").then((el) => {
-
-          if (href.includes('the-dual-pillow')) {
-            handleVisibility(el,['exp_pdp_quantity_visibility', '{{focusTime}}', 'Element visibility', 'Shopping section'])
+          if (href.includes("the-dual-pillow")) {
+            handleVisibility(el, [
+              "exp_pdp_quantity_visibility",
+              "{{focusTime}}",
+              "Element visibility",
+              "Shopping section",
+            ]);
           }
 
           el.querySelectorAll(".ol_box").forEach((item, index) => {
-            item.querySelector('input.peer').addEventListener('change', (e) => {
+            item.querySelector("input.peer").addEventListener("change", (e) => {
               if (e.target.checked) {
-                let i = index < 2 ? index + 1 : 4
-                pushDataLayer([`exp_pdp_quantity_${i}`, `${i} Pillow`, 'Radiobutton', 'Shopping section']);
+                let i = index < 2 ? index + 1 : 4;
+                pushDataLayer([
+                  `exp_pdp_quantity_${i}`,
+                  `${i} Pillow`,
+                  "Radiobutton",
+                  "Shopping section",
+                ]);
               }
-            })
+            });
             item.querySelector(".vl_top").innerHTML =
-              index + 1 + ` PILLOW${index != 0 ? "S" : ""}`;
+              (index < 2 ? index + 1 : 4) + ` PILLOW${index != 0 ? "S" : ""}`;
             item
               .querySelector(".vl_top")
               .insertAdjacentHTML(
@@ -1447,22 +1545,24 @@
         });
 
         waitForElement("form .my-5.aa").then((el) => {
-            el.before(document.querySelector(".pro_price"))
-          el.before(document.querySelector(".kl_wrapper"))
+          el.before(document.querySelector(".pro_price"));
+          el.before(document.querySelector(".kl_wrapper"));
           document
             .querySelector(".pricing #CurrentVariantPrice")
-            .after(document.querySelector(".usave"))
+            .after(document.querySelector(".usave"));
           document
             .querySelector(".pro_price > .pricing")
-            .before(document.querySelector(".stock_info"))
-            
-            if (href.includes('mela-weighted-blanket')) {
-                const waitForStock = setInterval(() => {
-                    if (document.querySelector('.usave .flex')) {
-                        document.querySelector(".pro_price > .pricing").before(document.querySelector('.usave .flex') ) 
-                    }
-                })
-            }
+            .before(document.querySelector(".stock_info"));
+
+          if (href.includes("mela-weighted-blanket")) {
+            const waitForStock = setInterval(() => {
+              if (document.querySelector(".usave .flex")) {
+                document
+                  .querySelector(".pro_price > .pricing")
+                  .before(document.querySelector(".usave .flex"));
+              }
+            });
+          }
         });
         waitForElement(".money_back").then((el) => {
           el.insertAdjacentHTML("afterend", review);
@@ -1488,54 +1588,92 @@
             .querySelector(".crs_slider .swiper-wrapper")
             .insertAdjacentHTML("beforeend", slides);
 
+          handleVisibility(document.querySelector(".crs_timeline"), [
+            "exp_pdp_30_nights_to_test_visibility",
+            "{{focusTime}}",
+            "Element visibility",
+            "You have 30 nights to test section",
+          ]);
+          handleVisibility(document.querySelector(".crs_review h2"), [
+            "exp_pdp_85000_customers_visibility",
+            "{{focusTime}}",
+            "Element visibility",
+            "More than 85 000+ customers section",
+          ]);
 
-          handleVisibility(document.querySelector('.crs_timeline'),['exp_pdp_30_nights_to_test_visibility', '{{focusTime}}', 'Element visibility', 'You have 30 nights to test section'])
-          handleVisibility(document.querySelector('.crs_review h2'),['exp_pdp_85000_customers_visibility', '{{focusTime}}', 'Element visibility', 'More than 85 000+ customers section'])
-  
-          document.querySelectorAll('.crs_slider .swiper-slide p.text').forEach(item => {
-            let swipeStarted = false;
-            if ( media) {
-              item.addEventListener('touchstart', (e) => {
-                if (!swipeStarted) {
-                  swipeStarted = true;
-                  e.preventDefault();
-                  let scrollPercentage = (e.target.scrollTop / (e.target.scrollHeight - e.target.clientHeight)) * 100;
-      
-                  pushDataLayer(['exp_pdp_30_nights_to_test_scroll', scrollPercentage.toFixed(0) + '%', 'Scroll', 'More than 85 000+ customers section']);
-                }
-              })
-              item.addEventListener('touchend', () => {
-                swipeStarted = false;
-              });
-            } else {
-              item.addEventListener('mousedown', () => {
-                swipeStarted = true;
-              });
-          
-              item.addEventListener('mouseup', () => {
-                  if (swipeStarted) {
-                      // Calculate the scroll percentage or perform other actions if needed
-                      let scrollPercentage = (item.scrollTop / (item.scrollHeight - item.clientHeight)) * 100;
-          
-                      // Push data to Google Tag Manager's data layer
-                      pushDataLayer(['exp_pdp_30_nights_to_test_scroll', scrollPercentage.toFixed(0) + '%', 'Scroll', 'More than 85,000+ customers section']);
+          document
+            .querySelectorAll(".crs_slider .swiper-slide p.text")
+            .forEach((item) => {
+              let swipeStarted = false;
+              if (media) {
+                item.addEventListener("touchstart", (e) => {
+                  if (!swipeStarted) {
+                    swipeStarted = true;
+                    e.preventDefault();
+                    let scrollPercentage =
+                      (e.target.scrollTop /
+                        (e.target.scrollHeight - e.target.clientHeight)) *
+                      100;
+
+                    pushDataLayer([
+                      "exp_pdp_30_nights_to_test_scroll",
+                      scrollPercentage.toFixed(0) + "%",
+                      "Scroll",
+                      "More than 85 000+ customers section",
+                    ]);
                   }
-          
+                });
+                item.addEventListener("touchend", () => {
                   swipeStarted = false;
-              });
-            }
-          })
-        
-          document.querySelectorAll('.crs_review .crs_swiper-button').forEach(item => {
-           
-            item.addEventListener('click', (e) => {
-              if (item.classList.contains('crs_button-prev')) {
-                pushDataLayer(['exp_pdp_30_nights_to_test_left', 'Naviganion Left', 'Button|Swipe', 'More than 85 000+ customers section'])
+                });
               } else {
-                pushDataLayer(['exp_pdp_30_nights_to_test_right', 'Naviganion Right', 'Button|Swipe', 'More than 85 000+ customers section'])
+                item.addEventListener("mousedown", () => {
+                  swipeStarted = true;
+                });
+
+                item.addEventListener("mouseup", () => {
+                  if (swipeStarted) {
+                    // Calculate the scroll percentage or perform other actions if needed
+                    let scrollPercentage =
+                      (item.scrollTop /
+                        (item.scrollHeight - item.clientHeight)) *
+                      100;
+
+                    // Push data to Google Tag Manager's data layer
+                    pushDataLayer([
+                      "exp_pdp_30_nights_to_test_scroll",
+                      scrollPercentage.toFixed(0) + "%",
+                      "Scroll",
+                      "More than 85,000+ customers section",
+                    ]);
+                  }
+
+                  swipeStarted = false;
+                });
               }
-            })
-          })
+            });
+
+          document
+            .querySelectorAll(".crs_review .crs_swiper-button")
+            .forEach((item) => {
+              item.addEventListener("click", (e) => {
+                if (item.classList.contains("crs_button-prev")) {
+                  pushDataLayer([
+                    "exp_pdp_30_nights_to_test_left",
+                    "Naviganion Left",
+                    "Button|Swipe",
+                    "More than 85 000+ customers section",
+                  ]);
+                } else {
+                  pushDataLayer([
+                    "exp_pdp_30_nights_to_test_right",
+                    "Naviganion Right",
+                    "Button|Swipe",
+                    "More than 85 000+ customers section",
+                  ]);
+                }
+              });
+            });
 
           const waitForSwiper = setInterval(() => {
             if (typeof Swiper !== "undefined") {
@@ -1599,7 +1737,9 @@
           mut.observe(document, optionMut);
         });
 
-        waitForElement("#shopify-section-template--21421815595294__59cb7521-b843-46d3-8f8e-19b9898bf560").then((el) => {
+        waitForElement(
+          "#shopify-section-template--21421815595294__59cb7521-b843-46d3-8f8e-19b9898bf560"
+        ).then((el) => {
           document.querySelector(".bg-main-tertiary-100").insertAdjacentHTML(
             "afterend",
             `
@@ -1609,13 +1749,25 @@
               </div>`
           );
 
-          handleVisibility(document.querySelector('.crs_like'),['exp_pdp_you_might_also_like_visibility', '{{focusTime}}', 'Element visibility', 'You might also like section'])
+          handleVisibility(document.querySelector(".crs_like"), [
+            "exp_pdp_you_might_also_like_visibility",
+            "{{focusTime}}",
+            "Element visibility",
+            "You might also like section",
+          ]);
 
-          document.querySelectorAll('.crs_like .product-card a').forEach(item => {
-            item.addEventListener('click', (e) => {
-              pushDataLayer(['exp_pdp_you_might_also_like_card', item.href, 'Card', 'You might also like section']);
-            })
-          })
+          document
+            .querySelectorAll(".crs_like .product-card a")
+            .forEach((item) => {
+              item.addEventListener("click", (e) => {
+                pushDataLayer([
+                  "exp_pdp_you_might_also_like_card",
+                  item.href,
+                  "Card",
+                  "You might also like section",
+                ]);
+              });
+            });
           document
             .querySelectorAll(".crs_like .tabs-component-tab a")
             .forEach((item, index) => {
@@ -1626,8 +1778,13 @@
                   .classList.remove("is-active");
                 item.parentElement.classList.add("is-active");
 
-                pushDataLayer('exp_pdp_you_might_also_like_tab', item.innerText, 'Tab', 'You might also like section');
-                
+                pushDataLayer(
+                  "exp_pdp_you_might_also_like_tab",
+                  item.innerText,
+                  "Tab",
+                  "You might also like section"
+                );
+
                 document
                   .querySelectorAll(".tabs-component-panels > section")
                   .forEach((section, i) => {
@@ -1664,68 +1821,135 @@
           waitForElement(".img_txt_wrapp > .txt_sec > .flex").then((el) => {
             // console.log(el)
 
-            document.querySelectorAll(".img_txt_wrapp > .txt_sec > .flex")
+            document
+              .querySelectorAll(".img_txt_wrapp > .txt_sec > .flex")
               .forEach((item, index) => {
-                
                 if (item.innerHTML.includes("btn-section-cta")) {
                   item.classList.add("crs_cta");
-                  item.querySelector('a.btn-section-cta').addEventListener('click', () => {
-                    pushDataLayer([`exp_pdp_get_yours_now_${index+1}`, 'Get yours now', 'Button', item.closest('.img_txt_wrapp').querySelector('h2').innerText]);
-                  })
+                  item
+                    .querySelector("a.btn-section-cta")
+                    .addEventListener("click", () => {
+                      pushDataLayer([
+                        `exp_pdp_get_yours_now_${index + 1}`,
+                        "Get yours now",
+                        "Button",
+                        item.closest(".img_txt_wrapp").querySelector("h2")
+                          .innerText,
+                      ]);
+                    });
                 }
-                if (item.closest(".img_txt_wrapp").innerText.includes("Happy Customers")) {
-                  item.closest(".img_txt_wrapp").querySelector(".img_sec").style = "order: 3;margin-top: 46px;";
+                if (
+                  item
+                    .closest(".img_txt_wrapp")
+                    .innerText.includes("Happy Customers")
+                ) {
+                  item
+                    .closest(".img_txt_wrapp")
+                    .querySelector(".img_sec").style =
+                    "order: 3;margin-top: 46px;";
                 }
 
                 item.parentElement.nextElementSibling.after(item);
 
-                item.closest(".img_txt_wrapp").querySelector("a").addEventListener("click", (e) => {
-                  e.preventDefault();
-                  console.log("click");
-                  // patch all methods
-                  seamless.polyfill();
-                  // or use specific methods
-                  seamless.scrollBy(window, {
-                    behavior: "smooth",
-                    top:
-                      document.querySelector("form").getBoundingClientRect()
-                        .top - 122,
-                    left: 0,
+                item
+                  .closest(".img_txt_wrapp")
+                  .querySelector("a")
+                  .addEventListener("click", (e) => {
+                    e.preventDefault();
+                    console.log("click");
+                    // patch all methods
+                    seamless.polyfill();
+                    // or use specific methods
+                    seamless.scrollBy(window, {
+                      behavior: "smooth",
+                      top:
+                        document.querySelector("form").getBoundingClientRect()
+                          .top - 122,
+                      left: 0,
+                    });
                   });
-                });
               });
           });
         }
 
-        waitForElement('.upsell_wrapper').then((el) => {
-          handleVisibility(el,['exp_pdp_add_ons_visibility', '{{focusTime}}', 'Element visibility', 'Shopping section'])
-          el.querySelectorAll('label input').forEach(item => {
-              item.addEventListener('change', (e) => {
-                if (e.target.checked) {
-                  pushDataLayer(['exp_pdp_add_ons', `Add-ons ${item.closest('.flex.shrink-0').nextElementSibling.querySelector('.text-main-blue > span').innerText}`, 'Input', 'Shopping section']);
-                }
-              })
-          })
-        })
+        waitForElement(".upsell_wrapper").then((el) => {
+          handleVisibility(el, [
+            "exp_pdp_add_ons_visibility",
+            "{{focusTime}}",
+            "Element visibility",
+            "Shopping section",
+          ]);
+          el.querySelectorAll("label input").forEach((item) => {
+            item.addEventListener("change", (e) => {
+              if (e.target.checked) {
+                pushDataLayer([
+                  "exp_pdp_add_ons",
+                  `Add-ons ${
+                    item
+                      .closest(".flex.shrink-0")
+                      .nextElementSibling.querySelector(
+                        ".text-main-blue > span"
+                      ).innerText
+                  }`,
+                  "Input",
+                  "Shopping section",
+                ]);
+              }
+            });
+          });
+        });
 
-        waitForElement('.bg-main-tertiary-100').then((el) => {
-          handleVisibility(el,['exp_pdp_why_you_need_It_visibility', '{{focusTime}}', 'Element visibility', 'Why you need it section'])
-       
-          el.querySelectorAll('.bg-main-tertiary-100 li.tabs-component-tab').forEach(item => {
-            item.addEventListener('click', (e) => {
-              pushDataLayer(['exp_pdp_why_you_need', item.innerText, 'Tab', 'Why you need it section']);
-            })
-          })
-        })
+        // waitForElement('.faq_wrapper .button').then((el) => {
+        //   let waitForPolyfill = setInterval(() => {
+        //     if (document.querySelector('.polyfill')) {
+        //       clearInterval(waitForPolyfill)
 
+        //       el.addEventListener('click', (e) => {
+        //         e.preventDefault()
+        //         e.stopImmediatePropagation()
+    
+        //         seamless.polyfill();
+        //         // or use specific methods
+        //         seamless.scrollBy(window, {
+        //           behavior: "smooth",
+        //           top: document.querySelector("form").getBoundingClientRect().top - 122,
+        //           left: 0,
+        //         });
+        //       })
+        //     }
+        //   });
+         
+        // })
+
+        waitForElement(".bg-main-tertiary-100").then((el) => {
+          handleVisibility(el, [
+            "exp_pdp_why_you_need_It_visibility",
+            "{{focusTime}}",
+            "Element visibility",
+            "Why you need it section",
+          ]);
+
+          el.querySelectorAll(
+            ".bg-main-tertiary-100 li.tabs-component-tab"
+          ).forEach((item) => {
+            item.addEventListener("click", (e) => {
+              pushDataLayer([
+                "exp_pdp_why_you_need",
+                item.innerText,
+                "Tab",
+                "Why you need it section",
+              ]);
+            });
+          });
+        });
       }
     });
   }
 
   let isClarify = setInterval(() => {
-    if (typeof clarity == 'function') {
-      clearInterval(isClarify)
-      clarity('set', `pdp_enhancements`, 'variant_1')
+    if (typeof clarity == "function") {
+      clearInterval(isClarify);
+      clarity("set", `pdp_enhancements`, "variant_1");
     }
-  }, 100)
+  }, 100);
 })();
