@@ -1156,6 +1156,7 @@
 
     window.dataLayer = window.dataLayer || [];
     dataLayer.push(eventData);
+    console.log(eventData)
   }
 
   function priceSubstr(price) {
@@ -1251,7 +1252,7 @@
             );
 
 
-          handleVisibility('#AddToCart',['exp_pdp_add_to_card_visibility', 'Add to card — {{focusTime}}', 'Element visibility', 'Shopping section'])
+          handleVisibility(document.querySelector('#AddToCart'),['exp_pdp_add_to_card_visibility', 'Add to card — {{focusTime}}', 'Element visibility', 'Shopping section'])
 
           document.querySelector("#AddToCart").addEventListener('click', () => {
             pushDataLayer(['exp_pdp_add_to_card', 'Add to card', 'Button', 'Shopping section']);
@@ -1316,7 +1317,7 @@
           </svg>`
 
           el.insertAdjacentHTML("beforeend", badge(name, svg));
-          handleVisibility('.crs_badge',['exp_pdp_osteopath_approved_visibility',`${name} — {{focusTime}}`,'Element visibility','The pillow (description) section'])
+          handleVisibility(document.querySelector('.crs_badge'),['exp_pdp_osteopath_approved_visibility',`${name} — {{focusTime}}`,'Element visibility','The pillow (description) section'])
         });
 
         waitForElement(".prod_desc ul").then((el) => {
@@ -1332,7 +1333,7 @@
             el.parentElement.insertAdjacentHTML("beforebegin", promo);
           }
 
-          handleVisibility('.prod_desc',['exp_pdp_pillow_description_visibility', '{{focusTime}}', 'Element visibility', 'The pillow (description) section'])
+          handleVisibility(el,['exp_pdp_pillow_description_visibility', '{{focusTime}}', 'Element visibility', 'The pillow (description) section'])
 
         });
 
@@ -1363,7 +1364,7 @@
         waitForElement(".ol_box_wrapper").then((el) => {
 
           if (href.includes('the-dual-pillow')) {
-            handleVisibility('.ol_box_wrapper',['exp_pdp_quantity_visibility', '{{focusTime}}', 'Element visibility', 'Shopping section'])
+            handleVisibility(el,['exp_pdp_quantity_visibility', '{{focusTime}}', 'Element visibility', 'Shopping section'])
           }
 
           el.querySelectorAll(".ol_box").forEach((item, index) => {
@@ -1433,8 +1434,8 @@
             timeline(document.querySelector("div#MainProductForm h1").innerText)
           );
 
-          handleVisibility('.crs_timeline',['exp_pdp_30_nights_to_test_visibility', '{{focusTime}}', 'Element visibility', 'You have 30 nights to test section'])
-          handleVisibility('.crs_slider .swiper-wrapper',['exp_pdp_30_nights_to_test_visibility', '{{focusTime}}', 'Element visibility', 'More than 85 000+ customers section'])
+          handleVisibility(document.querySelector('.crs_timeline'),['exp_pdp_30_nights_to_test_visibility', '{{focusTime}}', 'Element visibility', 'You have 30 nights to test section'])
+          handleVisibility(document.querySelector('.crs_slider .swiper-wrapper'),['exp_pdp_30_nights_to_test_visibility', '{{focusTime}}', 'Element visibility', 'More than 85 000+ customers section'])
 
           
           const reviews =
@@ -1526,9 +1527,13 @@
               </div>`
           );
 
-          handleVisibility('.crs_like',['exp_pdp_you_might_also_like_visibility', '{{focusTime}}', 'Element visibility', 'You might also like section'])
+          handleVisibility(document.querySelector('.crs_like'),['exp_pdp_you_might_also_like_visibility', '{{focusTime}}', 'Element visibility', 'You might also like section'])
 
-
+          document.querySelectorAll('.crs_like .product-card a').forEach(item => {
+            item.addEventListener('click', (e) => {
+              pushDataLayer(['exp_pdp_you_might_also_like_card', item.href, 'Card', 'You might also like section']);
+            })
+          })
           document
             .querySelectorAll(".crs_like .tabs-component-tab a")
             .forEach((item, index) => {
