@@ -1007,6 +1007,7 @@ class Flow {
     next.on('click', e => {
       const value = +$(e.target).closest('.crs_flow_wrapper').find('input:checked').val()
       const text = $(e.target).closest('.crs_flow_wrapper').find('input:checked').siblings('p').text()
+      const q = $(e.target).closest('.crs_flow_wrapper').find('.crs_question').text()
       if (this.answers.length === 1 && this.step === 1) {
         this.answers = []
       }
@@ -1014,10 +1015,10 @@ class Flow {
       this.step++
       this.drawBlocks()
       pushDataLayer(
-        'exp_addit_flow_but_whodoyou_nex',
+        `exp_addit_flow_but_step${this.step - 1}_nex`,
         `Next - ${text}`,
         'Button',
-        `Who do you buy the stickers for? Step ${this.step - 1}`
+        `${q} Step ${this.step - 1}`
       )
     })
 
