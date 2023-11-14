@@ -1043,7 +1043,7 @@
           ${trustpilotIcon}
             <h2>More than 85,000+ customers have already trusted us</h2>
             <div class="crs_slider">
-                <button type="button" class="crs_button-prev crs_swiper-button">
+                <button type="button" class="crs_button-prev crs_swiper-button" onclick="pushDataLayer(['exp_pdp_30_nights_to_test_left', 'Naviganion Left', 'Button|Swipe', 'More than 85 000+ customers section'])">
                     <svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54" fill="none">
                         <path d="M27 5.5C38.8741 5.5 48.5 15.1258 48.5 27C48.5 38.8741 38.8741 48.4999 27 48.4999C15.1259 48.4999 5.5 38.8741 5.5 27C5.5 15.1258 15.1259 5.5 27 5.5Z" fill="#F4B184" stroke="white" stroke-width="11"/>
                         <path d="M32.999 27H20.9995" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1052,7 +1052,7 @@
                 </button>
                   <div class="swiper-wrapper"></div>
                   <div class="swiper-pagination"></div>
-                <button type="button" class="crs_button-next crs_swiper-button">
+                <button type="button" class="crs_button-next crs_swiper-button" onclick="pushDataLayer(['exp_pdp_30_nights_to_test_right', 'Naviganion Right', 'Button|Swipe', 'More than 85 000+ customers section'])">
                     <svg width="32" height="54" viewBox="0 0 32 54" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="10" width="11" height="54" rx="5.5" fill="white"/>
                         <path d="M16 11C7.16346 11 0 18.1634 0 27C0 35.8365 7.16346 42.9999 16 42.9999C24.8365 42.9999 32 35.8365 32 27C32 18.1634 24.8365 11 16 11Z" fill="#F4B184"/>
@@ -1071,7 +1071,7 @@
                 <h3>${title}</h3>
                 <p>${size}</p>
             </div>
-            <button type="button" onclick="pushDataLayer('exp_pdp_sticky_choose_yours_now ', 'Choose Yours Now from', 'Button', 'Sticky block')"><b>Choose Yours Now</b> from ${price} </button>
+            <button type="button" onclick="pushDataLayer(['exp_pdp_sticky_choose_yours_now ', 'Choose Yours Now from', 'Button', 'Sticky block'])"><b>Choose Yours Now</b> from ${price} </button>
         </div>
     </div>`;
 
@@ -1218,7 +1218,7 @@
       if (document.body) {
         clearInterval(waitForBody);
 
-        pushDataLayer('exp_pdp_enhancements_loaded','','','')
+        pushDataLayer(['exp_pdp_enhancements_loaded','','',''])
 
         // Swiper Slider
         const scriptCustom = document.createElement("script");
@@ -1249,9 +1249,13 @@
                     !href.includes('/the-dual-pillow') ? el.innerText : document.querySelector('.ol_box:first-child .vl_btm').innerText.split('each')[0]
                 )
             );
-        
-         
 
+
+          handleVisibility('#AddToCart',['exp_pdp_add_to_card_visibility', 'Add to card — {{focusTime}}', 'Element visibility', 'Shopping section'])
+
+          document.querySelector("#AddToCart").addEventListener('click', () => {
+            pushDataLayer(['exp_pdp_add_to_card', 'Add to card', 'Button', 'Shopping section']);
+          })
           let formOffset = document
             .querySelector("form")
             .getBoundingClientRect().top;
@@ -1312,6 +1316,7 @@
           </svg>`
 
           el.insertAdjacentHTML("beforeend", badge(name, svg));
+          handleVisibility('.crs_badge',['exp_pdp_osteopath_approved_visibility',`${name} — {{focusTime}}`,'Element visibility','The pillow (description) section'])
         });
 
         waitForElement(".prod_desc ul").then((el) => {
@@ -1326,6 +1331,9 @@
 
             el.parentElement.insertAdjacentHTML("beforebegin", promo);
           }
+
+          handleVisibility('.prod_desc',['exp_pdp_pillow_description_visibility', '{{focusTime}}', 'Element visibility', 'The pillow (description) section'])
+
         });
 
         waitForElement(".pro_form span.oll.w-full").then((el) => {
@@ -1353,7 +1361,18 @@
         });
 
         waitForElement(".ol_box_wrapper").then((el) => {
+
+          if (href.includes('the-dual-pillow')) {
+            handleVisibility('.ol_box_wrapper',['exp_pdp_quantity_visibility', '{{focusTime}}', 'Element visibility', 'Shopping section'])
+          }
+
           el.querySelectorAll(".ol_box").forEach((item, index) => {
+            item.querySelector('input.peer').addEventListener('change', (e) => {
+              if (e.target.checked) {
+                let i = index < 2 ? index + 1 : 4
+                pushDataLayer([`exp_pdp_quantity_${i}`, `${i} Pillow`, 'Radiobutton', 'Shopping section']);
+              }
+            })
             item.querySelector(".vl_top").innerHTML =
               index + 1 + ` PILLOW${index != 0 ? "S" : ""}`;
             item
@@ -1414,6 +1433,10 @@
             timeline(document.querySelector("div#MainProductForm h1").innerText)
           );
 
+          handleVisibility('.crs_timeline',['exp_pdp_30_nights_to_test_visibility', '{{focusTime}}', 'Element visibility', 'You have 30 nights to test section'])
+          handleVisibility('.crs_slider .swiper-wrapper',['exp_pdp_30_nights_to_test_visibility', '{{focusTime}}', 'Element visibility', 'More than 85 000+ customers section'])
+
+          
           const reviews =
             dataReviews[href.split("products/")[1].split("#")[0].split("?")[0]];
 
@@ -1493,9 +1516,7 @@
           mut.observe(document, optionMut);
         });
 
-        waitForElement(
-          "#shopify-section-template--21421815595294__59cb7521-b843-46d3-8f8e-19b9898bf560"
-        ).then((el) => {
+        waitForElement("#shopify-section-template--21421815595294__59cb7521-b843-46d3-8f8e-19b9898bf560").then((el) => {
           document.querySelector(".bg-main-tertiary-100").insertAdjacentHTML(
             "afterend",
             `
@@ -1504,6 +1525,9 @@
                   ${el.querySelector(".mt-6").innerHTML}
               </div>`
           );
+
+          handleVisibility('.crs_like',['exp_pdp_you_might_also_like_visibility', '{{focusTime}}', 'Element visibility', 'You might also like section'])
+
 
           document
             .querySelectorAll(".crs_like .tabs-component-tab a")
@@ -1514,6 +1538,9 @@
                   .querySelector(".is-active")
                   .classList.remove("is-active");
                 item.parentElement.classList.add("is-active");
+
+                pushDataLayer('exp_pdp_you_might_also_like_tab', item.innerText, 'Tab', 'You might also like section');
+                
                 document
                   .querySelectorAll(".tabs-component-panels > section")
                   .forEach((section, i) => {
@@ -1588,6 +1615,28 @@
               });
           });
         }
+
+        waitForElement('.upsell_wrapper').then((el) => {
+          handleVisibility(el,['exp_pdp_add_ons_visibility', '{{focusTime}}', 'Element visibility', 'Shopping section'])
+          el.querySelectorAll('label input').forEach(item => {
+              item.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                  pushDataLayer(['exp_pdp_add_ons', `Add-ons ${item.closest('.flex.shrink-0').nextElementSibling.querySelector('.text-main-blue > span').innerText}`, 'Input', 'Shopping section']);
+                }
+              })
+          })
+        })
+
+        waitForElement('.bg-main-tertiary-100').then((el) => {
+          handleVisibility(el,['exp_pdp_why_you_need_It_visibility', '{{focusTime}}', 'Element visibility', 'Why you need it section'])
+       
+          el.querySelectorAll('.bg-main-tertiary-100 li.tabs-component-tab').forEach(item => {
+            item.addEventListener('click', (e) => {
+              pushDataLayer('exp_pdp_why_you_need', item.innerText, 'Tab', 'Why you need it section');
+            })
+          })
+        })
+
       }
     });
   }
