@@ -1471,9 +1471,6 @@
             timeline(document.querySelector("div#MainProductForm h1").innerText)
           );
 
-          handleVisibility(document.querySelector('.crs_timeline'),['exp_pdp_30_nights_to_test_visibility', '{{focusTime}}', 'Element visibility', 'You have 30 nights to test section'])
-          handleVisibility(document.querySelector('.crs_review h2'),['exp_pdp_85000_customers_visibility', '{{focusTime}}', 'Element visibility', 'More than 85 000+ customers section'])
-
           const reviews =
             dataReviews[href.split("products/")[1].split("#")[0].split("?")[0]];
 
@@ -1492,16 +1489,45 @@
             .insertAdjacentHTML("beforeend", slides);
 
 
-          document.querySelectorAll('.crs_slider .swiper-slide p.text').forEach(item => {
-            item.addEventListener('touchstart', (e) => {
-              e.preventDefault();
-              let scrollPercentage = (e.target.scrollTop / (e.target.scrollHeight - e.target.clientHeight)) * 100;
+          handleVisibility(document.querySelector('.crs_timeline'),['exp_pdp_30_nights_to_test_visibility', '{{focusTime}}', 'Element visibility', 'You have 30 nights to test section'])
+          handleVisibility(document.querySelector('.crs_review h2'),['exp_pdp_85000_customers_visibility', '{{focusTime}}', 'Element visibility', 'More than 85 000+ customers section'])
   
-              pushDataLayer(['exp_pdp_30_nights_to_test_scroll', scrollPercentage.toFixed(0) + '%', 'Scroll', 'More than 85 000+ customers section']);
-            })
+          document.querySelectorAll('.crs_slider .swiper-slide p.text').forEach(item => {
+            let swipeStarted = false;
+            if ( media) {
+              item.addEventListener('touchstart', (e) => {
+                if (!swipeStarted) {
+                  swipeStarted = true;
+                  e.preventDefault();
+                  let scrollPercentage = (e.target.scrollTop / (e.target.scrollHeight - e.target.clientHeight)) * 100;
+      
+                  pushDataLayer(['exp_pdp_30_nights_to_test_scroll', scrollPercentage.toFixed(0) + '%', 'Scroll', 'More than 85 000+ customers section']);
+                }
+              })
+              item.addEventListener('touchend', () => {
+                swipeStarted = false;
+              });
+            } else {
+              item.addEventListener('mousedown', () => {
+                swipeStarted = true;
+              });
+          
+              item.addEventListener('mouseup', () => {
+                  if (swipeStarted) {
+                      // Calculate the scroll percentage or perform other actions if needed
+                      let scrollPercentage = (item.scrollTop / (item.scrollHeight - item.clientHeight)) * 100;
+          
+                      // Push data to Google Tag Manager's data layer
+                      pushDataLayer(['exp_pdp_30_nights_to_test_scroll', scrollPercentage.toFixed(0) + '%', 'Scroll', 'More than 85,000+ customers section']);
+                  }
+          
+                  swipeStarted = false;
+              });
+            }
           })
         
           document.querySelectorAll('.crs_review .crs_swiper-button').forEach(item => {
+           
             item.addEventListener('click', (e) => {
               if (item.classList.contains('crs_button-prev')) {
                 pushDataLayer(['exp_pdp_30_nights_to_test_left', 'Naviganion Left', 'Button|Swipe', 'More than 85 000+ customers section'])
