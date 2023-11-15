@@ -1393,7 +1393,7 @@ const initSections = setInterval(() => {
                 </svg>
                 <span>Load more</span>
             </button>
-            <button type="button" class="crs_button-next crs_swiper-button" onclick="pushDataLayer('[exp_impr_hp_arrow_commeblock_name', 'right', 'Arrows flipping', 'Comment block'])">
+            <button type="button" class="crs_button-next crs_swiper-button" onclick="pushDataLayer(['exp_impr_hp_arrow_commeblock_name', 'right', 'Arrows flipping', 'Comment block'])">
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="0.5" y="0.5" width="39" height="39" rx="19.5" fill="black"/>
                 <path d="M18 26L24 20L18 14" stroke="white" stroke-width="2" stroke-linejoin="round"/>
