@@ -157,6 +157,7 @@
                 font-family: 'Open Sans', sans-serif!important;
                 margin-bottom: 4px!important;
                 height: auto!important;
+                color: #2B4632!important;
             }
             p.var_meta {
                 color: #2B4632!important;
@@ -780,7 +781,7 @@
                 border-radius: 6px;
                 background: #A84A23;
                 padding: 10px;
-                width: ${media ? "calc(100% - 34px)" : "100%"};
+                width: calc(100% - 34px);
                 margin: 12px auto 0;
             }
             .crs_promo p {
@@ -842,107 +843,120 @@
             .ol .font-bold.text-main-blue span span, .text-main-blue {
                 font-weight: 400;
             }
-            `
-                : ""
+            `: ""}
+          @media (min-width: 1024px) {
+            .crs_timeline {
+              padding: 24px 0;
             }
-           
-          ${
-            media
-              ? `
-
-                span.stock_info, 
-                .text-error{
-                    margin: 0 0 0 18px!important;
-                }
-                  .shippd_w_inner .sw_svg svg {
-                      width: 31px;
-                      height: 19px;
-                  }
-                  .img_txt_wrapp a, 
-                  .img_txt_wrapp .google-rating {
-                      display: flex!important;
-                      margin: 26px 8px 0 8px!important;
-                  }
-                  .btn-section-cta {
-                      width: 100%;
-                      max-width: 240px;
-                  }
-                  
-                  .img_txt_wrapp .gap-y-5.crs_cta {
-                      flex-direction: row!important;
-                      column-gap: normal!important;
-                      width: 100%;
-                      padding: 0 8px;
-                      order: 2;
-                  }`
-              : `
-                  .crs_badge {
-                      padding: 2px 6px;
-                  }
-                  div#MainProductForm .text-main-blue-grey h1 {
-                      font-size: 24px!important;
-                  }
-                  .crs_badge p {
-                      font-size: 14px;
-                  }
-                  .prod_desc ul li:before {
-                      top: 11px!important;
-                  }
-                  form .ol span.oll {
-                      margin-bottom: 14px;
-                  }
-                  .main_img_col > div > div:not(:first-child) > .small.flag {
-                      display: none;
-                  }
-                  .faq_wrapper .trustpilot-widget {
-                      margin: 0 auto!important;
-                  }
-                  .d-lg-flex {
-                      display: flex;
-                  }
-                  .d-lg-block {
-                      display: block!important;
-                  }
-                  .crs_sticky {
-                    padding: 24px 17px;
-                  }
-                  .crs_sticky > div {
-                    border-radius: 16px;
-                    border: 1px solid #DAE5D9;
-                    box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.10);
-                    max-width: 896px;
-                    margin: 0 auto;
-                  }
-                  .crs_sticky button {
-                    width: fit-content;
-                    height: fit-content;
-                    border-radius: 6px;
-                    padding: 15px 29px;
-                  }
-                  .crs_sticky h3 {
-                    color: #2B4632;
-                    font-family: Open Sans;
-                    font-size: 24px;
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: 32px;
-                    margin-bottom: 4px;
-                  }
-                  .crs_sticky p {
-                    color: #2B4632;
-                    font-family: Open Sans;
-                    font-size: 16px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 24px; /* 150% */
-                    margin: 0;
-                  }
-                          
-                #MainProductForm {
-                    top: -310px!important;
-                }
-              `
+            .crs_badge {
+                padding: 2px 6px;
+            }
+            div#MainProductForm .text-main-blue-grey h1 {
+                font-size: 24px!important;
+            }
+            .crs_badge p {
+                font-size: 14px;
+            }
+            .prod_desc ul li:before {
+                top: 11px!important;
+            }
+            form .ol span.oll {
+                margin-bottom: 14px;
+            }
+            .main_img_col > div > div:not(:first-child) > .small.flag {
+                display: none;
+            }
+            .faq_wrapper .trustpilot-widget {
+                margin: 0 auto!important;
+            }
+            .d-lg-flex {
+                display: flex;
+            }
+            .d-lg-block {
+                display: block!important;
+            }
+            .crs_sticky {
+              padding: 24px 17px;
+            }
+            .crs_sticky > div {
+              border-radius: 16px;
+              border: 1px solid #DAE5D9;
+              box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.10);
+              max-width: 896px;
+              margin: 0 auto;
+            }
+            .crs_sticky button {
+              width: fit-content;
+              height: fit-content;
+              border-radius: 6px;
+              padding: 15px 29px;
+            }
+            .crs_sticky h3 {
+              color: #2B4632;
+              font-family: Open Sans;
+              font-size: 24px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: 32px;
+              margin-bottom: 4px;
+            }
+            .crs_sticky p {
+              color: #2B4632;
+              font-family: Open Sans;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 24px; /* 150% */
+              margin: 0;
+            }
+                    
+          #MainProductForm {
+              top: -310px!important;
           }
+          .crs_promo {
+            width: 100%;
+          }
+        }
+            @media (max-width: 1023px) {
+              span.stock_info, 
+              .text-error{
+                  margin: 0 0 0 18px!important;
+              }
+                .shippd_w_inner .sw_svg svg {
+                    width: 31px;
+                    height: 19px;
+                }
+                .img_txt_wrapp a, 
+                .img_txt_wrapp .google-rating {
+                    display: flex!important;
+                    margin: 26px 8px 0 8px!important;
+                }
+                .btn-section-cta {
+                    width: 100%;
+                    max-width: 240px;
+                }
+                
+                .img_txt_wrapp .gap-y-5.crs_cta {
+                    flex-direction: row!important;
+                    column-gap: normal!important;
+                    width: 100%;
+                    padding: 0 8px;
+                    order: 2;
+                }
+                section#shopify-section-layout-announcement-bar div {
+                  padding: 0;
+                }
+                section#shopify-section-layout-announcement-bar p b {
+                  font-family: Inter;
+                  font-size: 13px;
+                  font-style: normal;
+                  font-weight: 700;
+                  line-height: 18px; /* 138.462% */
+                  letter-spacing: 0.75px;
+                  text-transform: uppercase;
+                }
+            }
+
             /* base */
             .flex-center {
                 display: flex;
@@ -1356,6 +1370,10 @@
             }
           });
         });
+
+        waitForElement('section#shopify-section-layout-announcement-bar div b').then(el => {
+          el.innerHTML = 'BLACK FRIDAY SALE - UP TO 70% OFF WHILST STOCK LASTS - FREE shipping & Returns'
+        })
 
         waitForElement(".tp_widget_wrapper").then((el) => {
           const name = href.includes("/mela-weighted-blanket")
