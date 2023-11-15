@@ -964,27 +964,6 @@
             }
         </style>`;
 
-  function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
-    // Send a Google Analytics event
-    const eventData = {
-      event: "event-to-ga4",
-      event_name,
-      event_desc,
-      event_type,
-      event_loc,
-    };
-
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push(eventData);
-    console.log(eventData);
-  }
-
-  const badge = (text, svg) => ` 
-        <div class="crs_badge flex-center">
-            ${svg}
-            <p>${text}</p>
-        </div>`;
-
   const trustpilotIcon = `
       <svg width="284" height="28" viewBox="0 0 284 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_174_37700)">
@@ -1031,46 +1010,6 @@
           </defs>
         </svg>`;
 
-  const timeline = (title) => `
-        <div class="crs_timeline">
-            <div class="crs_timeline_container">
-                <svg width="2" height="136" viewBox="0 0 2 136" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 0L1.00001 136" stroke="url(#paint0_linear_174_37685)" stroke-dasharray="4 4"/>
-                  <defs>
-                    <linearGradient id="paint0_linear_174_37685" x1="1" y1="0" x2="1" y2="136" gradientUnits="userSpaceOnUse">
-                      <stop stop-color="#2B4632"/>
-                      <stop offset="1" stop-color="#2B4632" stop-opacity="0"/>
-                    </linearGradient>
-                  </defs>
-                </svg>
-                <h3>You have 30 nights to test <br> <span class="underline">${title}</span> </h3>
-                <div class="flex justify-center ">
-                    <div>
-                        <p><b>Today</b> ${circleSvg}</p>
-                        <p>${formatDate()}</p>
-                    </div>
-                    <p><b>Buy ${title}</b></p>
-                </div>
-                <div class="flex justify-center ">
-                    <div>
-                        <p><b>1-3 days</b>${circleSvg} </p>
-                        <p>${formatDate(1, 3)}</p>
-                    </div>
-                    <p><b>Free shipping</b></p>
-                </div>
-                <div class="flex justify-center ">
-                    <div>
-                        <p><b>Within 30 days</b> ${circleSvg}</p>
-                        <p>${formatDate(30, 30)}</p>
-                    </div>
-                    <p>
-                        <b>100% money <br>back guarantee</b>
-                        <span>No questions asked!</span>
-                    </p>
-                </div>
-            </div>
-        </div>`;
-
   const review = `
       <div class="crs_review">
         <div class="crs_review_container">
@@ -1097,17 +1036,6 @@
             </div>
         </div>
       </div>`;
-
-  const stickyBtn = (title, size, price) => `
-    <div class="crs_sticky">
-        <div class="d-lg-flex justify-between item-center">
-            <div class="d-lg-block d-none">
-                <h3>${title}</h3>
-                <p>${size}</p>
-            </div>
-            <button type="button" onclick="pushDataLayer(['exp_pdp_sticky_choose_yours_now ', 'Choose Yours Now from', 'Button', 'Sticky block'])"><b>Choose Yours Now</b> from ${price} </button>
-        </div>
-    </div>`;
 
   const promo = `
     <div class="crs_promo">
@@ -1140,39 +1068,39 @@
   }
 
   function handleVisibility(el, eventParams) {
-    let isVisible = false;
-    let entryTime;
+    let isVisible = false
+    let entryTime
     const config = {
       root: null,
       threshold: 0, // Trigger when any part of the element is out of viewport
-    };
+    }
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           if (!isVisible) {
             // The element has become visible
-            isVisible = true;
-            entryTime = new Date().getTime();
+            isVisible = true
+            entryTime = new Date().getTime()
           }
         } else if (isVisible) {
           // The element is out of the viewport, calculate visibility duration
-          isVisible = false;
-          const exitTime = new Date().getTime();
-          const visibilityDuration = (exitTime - entryTime) / 1000; // Convert to seconds
-          const roundedDuration = Math.round(visibilityDuration);
+          isVisible = false
+          const exitTime = new Date().getTime()
+          const visibilityDuration = (exitTime - entryTime) / 1000 // Convert to seconds
+          const roundedDuration = Math.round(visibilityDuration)
 
           if (roundedDuration) {
-            const eventData = eventParams;
-            eventData[1] = roundedDuration;
-            pushDataLayer(eventData);
-            observer.disconnect();
+            const eventData = eventParams
+            eventData[1] = roundedDuration
+            pushDataLayer(eventData)
+            observer.disconnect()
           }
         }
-      });
-    }, config);
+      })
+    }, config)
 
-    observer.observe(el);
+    observer.observe(el)
   }
 
   function priceSubstr(price) {
@@ -1229,6 +1157,78 @@
 
     return formattedDate;
   }
+
+  function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
+    // Send a Google Analytics event
+    const eventData = {
+      event: "event-to-ga4",
+      event_name,
+      event_desc,
+      event_type,
+      event_loc,
+    };
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push(eventData);
+    console.log(eventData);
+  }
+
+  const stickyBtn = (title, size, price) => `
+    <div class="crs_sticky">
+        <div class="d-lg-flex justify-between item-center">
+            <div class="d-lg-block d-none">
+                <h3>${title}</h3>
+                <p>${size}</p>
+            </div>
+            <button type="button"><b>Choose Yours Now</b> from ${price} </button>
+        </div>
+    </div>`;
+
+  const badge = (text, svg) => ` 
+  <div class="crs_badge flex-center">
+      ${svg}
+      <p>${text}</p>
+  </div>`;
+
+  const timeline = (title) => `
+  <div class="crs_timeline">
+    <div class="crs_timeline_container">
+        <svg width="2" height="136" viewBox="0 0 2 136" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 0L1.00001 136" stroke="url(#paint0_linear_174_37685)" stroke-dasharray="4 4"/>
+          <defs>
+            <linearGradient id="paint0_linear_174_37685" x1="1" y1="0" x2="1" y2="136" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#2B4632"/>
+              <stop offset="1" stop-color="#2B4632" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <h3>You have 30 nights to test <br> <span class="underline">${title}</span> </h3>
+        <div class="flex justify-center ">
+            <div>
+                <p><b>Today</b> ${circleSvg}</p>
+                <p>${formatDate()}</p>
+            </div>
+            <p><b>Buy ${title}</b></p>
+        </div>
+        <div class="flex justify-center ">
+            <div>
+                <p><b>1-3 days</b>${circleSvg} </p>
+                <p>${formatDate(1, 3)}</p>
+            </div>
+            <p><b>Free shipping</b></p>
+        </div>
+        <div class="flex justify-center ">
+            <div>
+                <p><b>Within 30 days</b> ${circleSvg}</p>
+                <p>${formatDate(30, 30)}</p>
+            </div>
+            <p>
+                <b>100% money <br>back guarantee</b>
+                <span>No questions asked!</span>
+            </p>
+        </div>
+    </div>
+  </div>`;
 
   function start() {
     const waitForBody = setInterval(() => {
@@ -1341,10 +1341,11 @@
                 }
               });
               document
-                .querySelector(".crs_sticky")
+                .querySelector(".crs_sticky button")
                 .addEventListener("click", (e) => {
                   e.target.classList.remove("active");
-
+                  
+                  pushDataLayer(['exp_pdp_sticky_choose_yours_now ', 'Choose Yours Now from', 'Button', 'Sticky block'])
                   $('html, body').animate(
                     {
                       scrollTop: $("form").offset().top - 122
@@ -1461,9 +1462,10 @@
             el.innerHTML = "Quantity:";
           }
 
-          document.querySelector("#MainPhoto1 > span").innerHTML = document
-            .querySelector(".product-carousel .small.flag")
-            .innerHTML.replace(")", "");
+          waitForElement('.product-carousel .small.flag').then(el => {
+            document.querySelector("#MainPhoto1 > span").innerHTML = el.innerHTML.replace(")", "");
+          })
+     
 
           if (
             document
@@ -1665,9 +1667,10 @@
               });
             });
 
-          const waitForSwiper = setTimeout(() => {
+          const waitForSwiper = setInterval(() => {
             if (
-              typeof Swiper !== "undefined" 
+              typeof Swiper !== "undefined" &&
+              document.querySelector('.crs_slider')
             ) {
               clearInterval(waitForSwiper);
 
@@ -1772,12 +1775,12 @@
                   .classList.remove("is-active");
                 item.parentElement.classList.add("is-active");
 
-                pushDataLayer(
+                pushDataLayer([
                   "exp_pdp_you_might_also_like_tab",
                   item.innerText,
                   "Tab",
                   "You might also like section"
-                );
+                ]);
 
                 document
                   .querySelectorAll(".tabs-component-panels > section")
