@@ -537,7 +537,7 @@
               top: 4px;
             }
             .crs_review {
-              padding: 10px ${media ? "32px" : "15px"};
+              padding: 10px ${media ? "32px" : "17px"};
               overflow: hidden;
             }
             .crs_review_container > svg {
