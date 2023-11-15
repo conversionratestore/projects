@@ -1250,13 +1250,6 @@
         scriptCustomStyle.rel = "stylesheet";
         document.head.appendChild(scriptCustomStyle);
 
-        const scriptScroll = document.createElement("script");
-        scriptScroll.src =
-          "https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js";
-        scriptScroll.async = false;
-        scriptScroll.className = 'polyfill';
-        document.head.appendChild(scriptScroll);
-
         document.body.insertAdjacentHTML("afterbegin", stylePDP);
 
         waitForElement("#CurrentVariantPrice").then((el) => {
@@ -1266,7 +1259,7 @@
               document.querySelector("p.var_meta") &&
               !document
                 .querySelector("p.var_meta")
-                .innerText.includes("currentVariantMetafields")
+                .innerText.includes("currentVariantMetafields") 
             ) {
               clearInterval(waitForCurrent);
 
@@ -1352,15 +1345,12 @@
                 .addEventListener("click", (e) => {
                   e.target.classList.remove("active");
 
-                  seamless.polyfill();
-                  // or use specific methods
-                  seamless.scrollBy(window, {
-                    behavior: "smooth",
-                    top:
-                      document.querySelector("form").getBoundingClientRect()
-                        .top - 122,
-                    left: 0,
-                  });
+                  $('html, body').animate(
+                    {
+                      scrollTop: $("form").offset().top - 122
+                    },
+                    250
+                  );
                 });
             }
           });
@@ -1675,9 +1665,13 @@
               });
             });
 
-          const waitForSwiper = setInterval(() => {
-            if (typeof Swiper !== "undefined") {
+          const waitForSwiper = setTimeout(() => {
+            if (
+              typeof Swiper !== "undefined" 
+            ) {
               clearInterval(waitForSwiper);
+
+              console.log('swiper init')
 
               let option = {
                 slidesPerView: 1,
@@ -1698,7 +1692,7 @@
               // sliders
               new Swiper(`.crs_slider`, option);
             }
-          });
+          }, 200);
 
           let optionMut = {
             childList: true,
@@ -1796,81 +1790,78 @@
               });
             });
 
-          const waitForSwiper = setInterval(() => {
-            if (typeof Swiper !== "undefined") {
-              clearInterval(waitForSwiper);
+          const waitForSwiperCarousel = setInterval(() => {
+            if (typeof Swiper !== "undefined" && document.querySelectorAll(".tabs-component-panels > section .carousel .swiper")) {
+              clearInterval(waitForSwiperCarousel);
 
               let option = {
                 slidesPerView: 2.5,
                 // slideToClickedSlide: true,
-                spaceBetween: 16,
+                spaceBetween: 16
               };
 
               // sliders
-              document
-                .querySelectorAll(
-                  ".tabs-component-panels > section .carousel .swiper"
-                )
+              document.querySelectorAll(".tabs-component-panels > section .carousel .swiper")
                 .forEach((item) => {
                   new Swiper(item, option);
                 });
             }
           });
         });
-        if (media) {
-          waitForElement(".img_txt_wrapp > .txt_sec > .flex").then((el) => {
-            // console.log(el)
+       
+        waitForElement(".img_txt_wrapp > .txt_sec > .flex").then((el) => {
+          // console.log(el)
 
-            document
-              .querySelectorAll(".img_txt_wrapp > .txt_sec > .flex")
-              .forEach((item, index) => {
-                if (item.innerHTML.includes("btn-section-cta")) {
-                  item.classList.add("crs_cta");
-                  item
-                    .querySelector("a.btn-section-cta")
-                    .addEventListener("click", () => {
-                      pushDataLayer([
-                        `exp_pdp_get_yours_now_${index + 1}`,
-                        "Get yours now",
-                        "Button",
-                        item.closest(".img_txt_wrapp").querySelector("h2")
-                          .innerText,
-                      ]);
-                    });
-                }
-                if (
-                  item
-                    .closest(".img_txt_wrapp")
-                    .innerText.includes("Happy Customers")
-                ) {
-                  item
-                    .closest(".img_txt_wrapp")
-                    .querySelector(".img_sec").style =
-                    "order: 3;margin-top: 46px;";
-                }
-
-                item.parentElement.nextElementSibling.after(item);
-
+          document
+            .querySelectorAll(".img_txt_wrapp > .txt_sec > .flex")
+            .forEach((item, index) => {
+              if (item.innerHTML.includes("btn-section-cta")) {
+                item.classList.add("crs_cta");
                 item
-                  .closest(".img_txt_wrapp")
-                  .querySelector("a")
+                  .querySelector("a.btn-section-cta")
                   .addEventListener("click", (e) => {
-                    e.preventDefault();
-                    console.log("click");
-                    // patch all methods
-                    seamless.polyfill();
-                    // or use specific methods
-                    seamless.scrollBy(window, {
-                      behavior: "smooth",
-                      top:
-                        document.querySelector("form").getBoundingClientRect()
-                          .top - 122,
-                      left: 0,
-                    });
+                    e.preventDefault()
+
+                    pushDataLayer([
+                      `exp_pdp_get_yours_now_${index + 1}`,
+                      "Get yours now",
+                      "Button",
+                      item.closest(".img_txt_wrapp").querySelector("h2")
+                        .innerText,
+                    ]);
+
+                    $('html, body').animate(
+                      {
+                        scrollTop: $("form").offset().top - 122
+                      },
+                      250
+                    );
                   });
-              });
-          });
-        }
+              }
+              if (!media) return
+              if (
+                item.closest(".img_txt_wrapp").innerText.includes("Happy Customers")
+              ) {
+                item.closest(".img_txt_wrapp").querySelector(".img_sec").style =
+                  "order: 3;margin-top: 46px;";
+              }
+
+              item.parentElement.nextElementSibling.after(item);
+            });
+        });
+
+        waitForElement('.faq_wrapper .button a').then((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault()
+
+            $('html, body').animate(
+              {
+                scrollTop: $("form").offset().top - 122
+              },
+              250
+            );
+          })
+        })
 
         waitForElement(".upsell_wrapper").then((el) => {
           handleVisibility(el, [
@@ -1898,28 +1889,6 @@
             });
           });
         });
-
-        // waitForElement('.faq_wrapper .button').then((el) => {
-        //   let waitForPolyfill = setInterval(() => {
-        //     if (document.querySelector('.polyfill')) {
-        //       clearInterval(waitForPolyfill)
-
-        //       el.addEventListener('click', (e) => {
-        //         e.preventDefault()
-        //         e.stopImmediatePropagation()
-    
-        //         seamless.polyfill();
-        //         // or use specific methods
-        //         seamless.scrollBy(window, {
-        //           behavior: "smooth",
-        //           top: document.querySelector("form").getBoundingClientRect().top - 122,
-        //           left: 0,
-        //         });
-        //       })
-        //     }
-        //   });
-         
-        // })
 
         waitForElement(".bg-main-tertiary-100").then((el) => {
           handleVisibility(el, [
