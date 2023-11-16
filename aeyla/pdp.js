@@ -1244,6 +1244,12 @@
     </div>
   </div>`;
 
+  const meta = window.location.href.includes("/the-dual-pillow")
+  ? "Standard Size Pillow: 50cm x 75cm"
+  : window.location.href.includes("/the-foamo")
+  ? "Standard Size Luxury Pillow (50cm x 75cm)"
+  : "Weighted Blanket with Integrated Cover";
+
   function start() {
     const waitForBody = setInterval(() => {
       if (document.body) {
@@ -1271,32 +1277,12 @@
             if (
               !el.innerText.includes("currentVariantPricing") &&
               document.querySelector("p.var_meta") &&
-              !document
-                .querySelector("p.var_meta")
-                .innerText.includes("currentVariantMetafields") &&
                 document.querySelector("div#MainProductForm h1") && 
                 document.querySelector("#AddToCart")
             ) {
               clearInterval(waitForCurrent);
 
-              let meta = window.location.href.includes("/the-dual-pillow")
-                ? "Standard Size Pillow: 50cm x 75cm"
-                : window.location.href.includes("/the-foamo")
-                ? "Standard Size Luxury Pillow (50cm x 75cm)"
-                : "Weighted Blanket with Integrated Cover";
-
               document.querySelector("p.var_meta").innerHTML = meta;
-
-              document.body.insertAdjacentHTML("afterbegin", stickyBtn(
-                  document.querySelector("div#MainProductForm h1").innerText,
-                  meta,
-                  !href.includes("/the-dual-pillow")
-                    ? el.innerText
-                    : document
-                        .querySelector(".ol_box:first-child .vl_btm")
-                        .innerText.split("each")[0]
-                )
-              );
 
               handleVisibility(el, [
                 "exp_pdp_price_and_shipping",
@@ -1321,51 +1307,6 @@
                     "Button",
                     "Shopping section",
                   ]);
-                });
-              let formOffset = document
-                .querySelector("form")
-                .getBoundingClientRect().top;
-              let btnFormOffset = document
-                .querySelector("#AddToCart")
-                .getBoundingClientRect().bottom;
-              if (media && formOffset > 150 && btnFormOffset < 100) {
-                document.querySelector(".crs_sticky").classList.add("active");
-              }
-
-              window.addEventListener("scroll", () => {
-                let crsSticky = document.querySelector(".crs_sticky");
-                let formOffset = document
-                  .querySelector("form")
-                  .getBoundingClientRect().top;
-                let btnFormOffset = document
-                  .querySelector("#AddToCart")
-                  .getBoundingClientRect().bottom;
-                if (media) {
-                  if (formOffset < 150 && btnFormOffset > 100) {
-                    crsSticky.classList.remove("active");
-                  } else {
-                    crsSticky.classList.add("active");
-                  }
-                } else {
-                  if (btnFormOffset > 100) {
-                    crsSticky.classList.remove("active");
-                  } else {
-                    crsSticky.classList.add("active");
-                  }
-                }
-              });
-              document
-                .querySelector(".crs_sticky button")
-                .addEventListener("click", (e) => {
-                  e.target.classList.remove("active");
-                  
-                  pushDataLayer(['exp_pdp_sticky_choose_yours_now ', 'Choose Yours Now from', 'Button', 'Sticky block'])
-                  $('html, body').animate(
-                    {
-                      scrollTop: $("form").offset().top - 122
-                    },
-                    250
-                  );
                 });
             }
           });
@@ -1934,7 +1875,75 @@
         });
       }
     });
+
+    const addSticky = setInterval(() => {
+      if (document.querySelector("div#MainProductForm h1") && 
+        document.querySelector("#AddToCart") &&
+        (
+          (document.querySelector('#CurrentVariantPrice') && !window.location.href.includes("/the-dual-pillow")) || 
+          (window.location.includes("/the-dual-pillow") && document.querySelector(".ol_box:first-child .vl_btm"))
+        )
+      ) {
+        clearInterval(addSticky)
+        console.log('add sticky')
+        document.body.insertAdjacentHTML("afterbegin", stickyBtn(
+            document.querySelector("div#MainProductForm h1").innerText,
+            meta,
+            !href.includes("/the-dual-pillow")
+              ? document.querySelector('#CurrentVariantPrice').innerText
+              : document.querySelector(".ol_box:first-child .vl_btm").innerText.split("each")[0]
+          )
+        );
+
+        let formOffset = document.querySelector("form").getBoundingClientRect().top;
+        let btnFormOffset = document.querySelector("#AddToCart").getBoundingClientRect().bottom;
+
+        let crsSticky = document.querySelector(".crs_sticky");
+
+        function addClassSticky(formOffset, btnFormOffset) {
+          if (media) {
+            if (formOffset < 150 && btnFormOffset > 100) {
+              crsSticky.classList.remove("active");
+            } else {
+              crsSticky.classList.add("active");
+            }
+          } else {
+            if (btnFormOffset > 100) {
+              crsSticky.classList.remove("active");
+            } else {
+              crsSticky.classList.add("active");
+            }
+          }
+        }
+        addClassSticky(formOffset, btnFormOffset)
+      
+
+      window.addEventListener("scroll", () => {
+        let formOffset = document
+          .querySelector("form")
+          .getBoundingClientRect().top;
+        let btnFormOffset = document
+          .querySelector("#AddToCart")
+          .getBoundingClientRect().bottom;
+          
+          addClassSticky(formOffset, btnFormOffset)
+      });
+      document
+        .querySelector(".crs_sticky button").addEventListener("click", (e) => {
+          e.target.classList.remove("active");
+          
+          pushDataLayer(['exp_pdp_sticky_choose_yours_now ', 'Choose Yours Now from', 'Button', 'Sticky block'])
+          $('html, body').animate(
+            {
+              scrollTop: $("form").offset().top - 122
+            },
+            250
+          );
+        });
+      }
+    })
   }
+
 
   let isClarify = setInterval(() => {
     if (typeof clarity == "function") {
@@ -1942,4 +1951,6 @@
       clarity("set", `pdp_enhancements`, "variant_1");
     }
   }, 100);
+
+
 })();
