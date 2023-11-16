@@ -4191,6 +4191,12 @@ let startFunkFastNav = setInterval(() => {
 #shopify-section-template--20985669976405__faster_available {
   display: block !important;
 }
+#shopify-section-template--20985669615957__collection-header .collection-single__description.rte p:nth-child(1){
+  margin: 0;
+}
+#shopify-section-template--20985669615957__collection-header .collection-single__description.rte p:nth-child(2){
+margin-top: 0 !important;
+}
 /*discoverFasterAvailablejewelry */
 #discoverFasterAvailablejewelry svg[data-tooltip] {
   position: absolute;
@@ -4362,7 +4368,7 @@ let startFunkFastNav = setInterval(() => {
       }, 100);
 
       let lookForLinkActive = setInterval(() => {
-        if (document.querySelector("#shopify-section-template--20985669615957__collection-header .section-header__title")) {
+        if (document.querySelector("#shopify-section-template--20985669615957__collection-header .section-header__title") && window.location.pathname === "/collections/fast-production") {
           clearInterval(lookForLinkActive);
           if (document.querySelector("#shopify-section-template--20985669615957__collection-header .section-header__title").textContent.trim() !== "FASTER AVAILABILITY COLLECTION") {
             document.querySelector("#shopify-section-template--20985669615957__collection-header .section-header__title").textContent = "FASTER AVAILABILITY COLLECTION";
