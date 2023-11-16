@@ -95,7 +95,7 @@
   const stylePDP = `
         <style>
           .crs_swiper-button.swiper-button-disabled,
-            .product-template-wrapper > .hidden,
+            .product-template-wrapper > .hidden:not(.breadcrumb),
             .d-none,
             .ol_box img,
             #AddToCart svg,
@@ -1328,7 +1328,7 @@
               let btnFormOffset = document
                 .querySelector("#AddToCart")
                 .getBoundingClientRect().bottom;
-              if (media && formOffset < 150 && btnFormOffset > 100) {
+              if (media && formOffset > 150 && btnFormOffset < 100) {
                 document.querySelector(".crs_sticky").classList.add("active");
               }
 
