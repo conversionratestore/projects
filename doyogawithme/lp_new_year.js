@@ -420,8 +420,12 @@ p {
     .crs_card_content > p {
         min-height: 96px;
     }
-    .crs_stories .container .crs_slider {
+    .crs_stories .container {
         overflow: hidden;
+        padding: 0 15px;
+    }
+    .crs_stories .container .crs_slider  {
+        padding: 0 5px;
     }
 }
 @media (max-width: 991px) {

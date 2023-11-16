@@ -1187,7 +1187,7 @@
     console.log(eventData);
   }
 
-  const stickyBtn = (title, size, price) => `
+  let stickyBtn = (title, size, price) => `
     <div class="crs_sticky">
         <div class="d-lg-flex justify-between item-center">
             <div class="d-lg-block d-none">
@@ -1273,7 +1273,9 @@
               document.querySelector("p.var_meta") &&
               !document
                 .querySelector("p.var_meta")
-                .innerText.includes("currentVariantMetafields") 
+                .innerText.includes("currentVariantMetafields") &&
+                document.querySelector("div#MainProductForm h1") && 
+                document.querySelector("#AddToCart")
             ) {
               clearInterval(waitForCurrent);
 
@@ -1285,9 +1287,7 @@
 
               document.querySelector("p.var_meta").innerHTML = meta;
 
-              document.body.insertAdjacentHTML(
-                "afterbegin",
-                stickyBtn(
+              document.body.insertAdjacentHTML("afterbegin", stickyBtn(
                   document.querySelector("div#MainProductForm h1").innerText,
                   meta,
                   !href.includes("/the-dual-pillow")
