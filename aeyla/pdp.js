@@ -1752,7 +1752,7 @@
             });
 
           const waitForSwiperCarousel = setInterval(() => {
-            if (typeof Swiper !== "undefined" && document.querySelectorAll(".tabs-component-panels > section .carousel .swiper")) {
+            if (typeof Swiper !== "undefined" && document.querySelectorAll(".crs_like .tabs-component-panels > section .carousel .swiper")) {
               clearInterval(waitForSwiperCarousel);
 
               let option = {
@@ -1762,7 +1762,7 @@
               };
 
               // sliders
-              document.querySelectorAll(".tabs-component-panels > section .carousel .swiper")
+              document.querySelectorAll(".crs_like .tabs-component-panels > section .carousel .swiper")
                 .forEach((item) => {
                   new Swiper(item, option);
                 });
