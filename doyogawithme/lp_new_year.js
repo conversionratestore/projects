@@ -1244,6 +1244,7 @@ const init = setInterval(() => {
 
     document.querySelectorAll('a[href="#crs_cards"]').forEach(item => {
         item.addEventListener('click', (e) => {
+            e.preventDefault()
             scrollTo(item)
         })
     })
