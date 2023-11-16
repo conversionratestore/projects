@@ -135,9 +135,6 @@ p {
 .crs_card_content {
     padding: 16px 20px;
 }
-.crs_card_content > p {
-    min-height: 96px;
-}
 .crs_card .crs_btn:not(.blue) {
     margin-top: 12px;
 }
@@ -419,6 +416,9 @@ p {
         z-index: 999;
         background: rgba(0,0,0,0.3);
         padding: 9px 0 4px;
+    }
+    .crs_card_content > p {
+        min-height: 96px;
     }
 }
 @media (max-width: 991px) {
