@@ -371,7 +371,7 @@ class improveCalculatorSteps {
       'afterend',
       /* html */ `<p class="crs_text_height">Based on this information we can calculate you body mass index and prepare personalized program according to your specific needs.</p>`
     )
-    $el('#page [class*=buttonWrapper]').insertAdjacentHTML('beforebegin', block)
+    $el('[class*=buttonWrapper]').insertAdjacentHTML('beforebegin', block)
     $el('[class*=mainContent]').insertAdjacentHTML('beforeend', block2)
 
     const range_input = $el('#crs_height_range')
