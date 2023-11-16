@@ -1582,7 +1582,7 @@
           );
 
           const reviews =
-            dataReviews[href.split("products/")[1].split("#")[0].split("?")[0]];
+            dataReviews[href.split("products/")[1].split("#")[0].split("?")[0].split("/")[0]];
 
           let slides = "";
           for (const key in reviews) {
