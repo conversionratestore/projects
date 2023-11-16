@@ -420,6 +420,9 @@ p {
     .crs_card_content > p {
         min-height: 96px;
     }
+    .crs_stories .container .crs_slider {
+        overflow: hidden;
+    }
 }
 @media (max-width: 991px) {
     .crs_path .col-6,
@@ -668,28 +671,15 @@ const reviewData = {
         'src': 'image',
         'author': '-Joan, 48',
         'comments': '“The convenience and personal touch in each video class make my at-home yoga journey so rewarding! I’m discovering serenity right where I am.”'
-    },
-    1: {
-        'src': 'image',
-        'author': 'author',
-        'comments': 'comments'
-    },
-    2: {
-        'src': 'image',
-        'author': 'author',
-        'comments': 'comments'
-    },
-    3: {
-        'src': 'image',
-        'author': 'author',
-        'comments': 'comments'
     }
 }
 
 let reviewOption = "";
 
 for (const key in reviewData) {
-    reviewOption += slide(reviewData[key]);
+    for (let i = 0; i < 6; i++) {
+        reviewOption += slide(reviewData[key]);
+    }
 }
 
 function scrollTo(target) {
@@ -1281,7 +1271,7 @@ const init = setInterval(() => {
                 slidesPerView: 3,
               },
               992: {
-                slidesPerView: 4,
+                slidesPerView:  index == 0 ? 3 : 4,
               },
             },
           };
