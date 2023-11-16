@@ -1273,23 +1273,22 @@
         document.body.insertAdjacentHTML("afterbegin", stylePDP);
 
         waitForElement("#CurrentVariantPrice").then((el) => {
-          let waitForCurrent = setInterval(() => {
+
+          handleVisibility(el, [
+            "exp_pdp_price_and_shipping",
+            "{{focusTime}}",
+            "Element visibility",
+            "Price and shipping",
+          ]);
+
+          let waitForMeta = setInterval(() => {
             if (
-              !el.innerText.includes("currentVariantPricing") &&
               document.querySelector("p.var_meta") &&
-                document.querySelector("div#MainProductForm h1") && 
                 document.querySelector("#AddToCart")
             ) {
-              clearInterval(waitForCurrent);
+              clearInterval(waitForMeta);
 
               document.querySelector("p.var_meta").innerHTML = meta;
-
-              handleVisibility(el, [
-                "exp_pdp_price_and_shipping",
-                "{{focusTime}}",
-                "Element visibility",
-                "Price and shipping",
-              ]);
 
               handleVisibility(document.querySelector("#AddToCart"), [
                 "exp_pdp_add_to_card_visibility",
@@ -1880,7 +1879,10 @@
       if (document.querySelector("div#MainProductForm h1") && 
         document.querySelector("#AddToCart") &&
         (
-          (document.querySelector('#CurrentVariantPrice') && !window.location.href.includes("/the-dual-pillow")) || 
+          (document.querySelector('#CurrentVariantPrice') && 
+          !window.location.href.includes("/the-dual-pillow") && 
+          !document.querySelector('#CurrentVariantPrice').innerText.includes('currentVariantPricing')
+          ) || 
           (window.location.includes("/the-dual-pillow") && document.querySelector(".ol_box:first-child .vl_btm"))
         )
       ) {
