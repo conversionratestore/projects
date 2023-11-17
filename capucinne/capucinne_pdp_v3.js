@@ -4381,8 +4381,26 @@ let startFunkFastNav = setInterval(() => {
         }
 
         focusTimeEvent(document.querySelector('#discoverFasterAvailablejewelry'), (time) => {
-          pushDataLayer(['exp_fast_prod_nav_vis_discovfas_foc', time, 'Visibility', 'HomePage Under Discover Faster Available jewelry']);
+          pushDataLayer(['exp_fast_prod_nav_vis_discovfas_foc', time, 'Visibility', 'HomePage. Under. Discover Faster Available jewelry']);
         });
+
+        document.querySelector('.view_all_btn').addEventListener('click', function () {
+          pushDataLayer(['exp_fast_prod_nav_but_view_discovfas_foc', 'View All', 'Button', 'HomePage. Discover Faster Available jewelry']);
+        });
+
+        document.addEventListener('click', function (e) {
+          if (e.target.closest('.product_content') && e.target.closest('#discoverFasterAvailablejewelry')) {
+            const productName = e.target.closest('.product_content').querySelector('.product_title').innerText;
+  
+            if (e.target.closest('.product_image')) {
+              pushDataLayer(['exp_fast_prod_nav_ima_discovfas_foc', `${productName} - product card`, 'Image', 'HomePage. Discover Faster Available jewelry']);
+            }
+  
+            if (e.target.closest('.product_title')) {
+              pushDataLayer(['exp_fast_prod_nav_text_discovfas_foc', `${productName} - product card`, 'Text', 'HomePage. Discover Faster Available jewelry']);
+            }
+          }
+        })
       }
     }, 100);
 
