@@ -635,7 +635,7 @@ background: #EFEFEF;
           }
 
           if (document.querySelector(" .overlay_popup") && document.querySelector(".view_sample_plans_link")) {
-            let overlay = document.querySelector(" .overlay_popup"),
+            let overlay = document.querySelector(".overlay_popup"),
               containerPopup = overlay.querySelector(".container_popup"),
               btnClose = overlay.querySelector("svg");
 
@@ -683,8 +683,8 @@ background: #EFEFEF;
               document.body.style.overflow = "hidden";
               document.body.style.display = "block";
 
-              if (!document.querySelector(" .overlay_popup .content_popup")) {
-                containerPopup?.insertAdjacentHTML("beforeend", contentPopup);
+              if (!document.querySelector(".overlay_popup .content_popup")) {
+                containerPopup.insertAdjacentHTML("beforeend", contentPopup);
               }
 
               let lookForBtn = setInterval(() => {
