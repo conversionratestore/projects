@@ -70,6 +70,21 @@ class improveCalculatorSteps {
     if (window.location.href.includes('/weight-loss')) {
       this.resultStep()
     }
+    if (window.location.href.includes('/body-risk-tip')) {
+      const style = /* html */ `
+        <style>
+          [class*=childrenWrapper]>div:not([class*=buttonWrapper]),
+          [class*=childrenWrapper]>div:not([class*=buttonWrapper]) p {
+            text-align: center;
+          }
+          [class*=childrenWrapper]>div:not([class*=buttonWrapper]) img {
+            width: 142px;
+            height: 142px;
+          }
+        </style>
+      `
+      document.head.insertAdjacentHTML('beforeend', style)
+    }
   }
 
   addStyles() {
@@ -139,17 +154,29 @@ class improveCalculatorSteps {
   }
 
   currentHeightStep() {
+    let heightByGenger = {
+      metric: 173,
+      imperial: 68,
+      imperialShow: '5 ft 8 in'
+    }
+
+    if (localStorage.getItem('gender') !== 'male') {
+      heightByGenger.metric = 167
+      heightByGenger.imperial = 63
+      heightByGenger.imperialShow = '5 ft 3 in'
+    }
+
     const baseRangeCm = {
       min: 109,
       max: 211,
-      value: 173,
-      showValue: '173 cm',
+      value: heightByGenger.metric,
+      showValue: '211 cm',
       units: 'cm'
     }
     const baseRangeFt = {
       min: 43,
       max: 83,
-      value: 68,
+      value: heightByGenger.imperial,
       showValue: '6 ft 11 in',
       units: 'ft'
     }
@@ -187,14 +214,13 @@ class improveCalculatorSteps {
             line-height: 18px;
           }
           h1 {
-            font-size: 24px;
-            font-weight: 600;
-            line-height: 32;
-            margin-bottom: 12px;
+            font-size: 24px !important;
+            line-height: 32px !important;
+            margin-bottom: 12px !important;
           }
           h1+p {
-            font-size: 16px;
-            line-height: 22px;
+            font-size: 16px !important;
+            line-height: 22px !important;
             margin-bottom: 50px;
             width: 100%;
             text-align: center;
@@ -273,6 +299,7 @@ class improveCalculatorSteps {
             background: #1375D6;
             border-radius: 8px;
             z-index: 2;
+            pointer-events: none;
           }
           .crs_range_block input[type=range]::-webkit-slider-thumb {
             -webkit-appearance: none;
@@ -289,12 +316,13 @@ class improveCalculatorSteps {
           }
           @media (max-width: 768px) {
             h1 {
-              margin-bottom: 12px !important;
+              font-size: 20px !important;
+              margin-bottom: 8px !important;
             }
             h1+p {
-              font-size: 14px;
-              padding: 10px;
-              line-height: 18px;
+              font-size: 14px !important;
+              padding: 0 10px;
+              line-height: 18px !important;
             }
           }
         </style>
@@ -362,7 +390,11 @@ class improveCalculatorSteps {
               <rect width="24" height="24" rx="12" fill="#5E626B"/>
               <path d="M11.7023 8L10.5761 15H8L10.0324 8H11.7023ZM16 8L14.8738 15H12.2977L14.3301 8H16Z" fill="white"/>
             </svg>
-            <p>The most common height among men is 173. If you don't know your exact height, just keep the pre-selected figure.</p>
+            <p>The most common height among men is <span>${
+              localStorage.getItem('body-height-weight-unitSystem') === 'imperial'
+                ? heightByGenger.imperialShow
+                : heightByGenger.metric + ' cm'
+            }</span>. If you don't know your exact height, just keep the pre-selected figure.</p>
           </div>
       </div>
     `
@@ -407,8 +439,9 @@ class improveCalculatorSteps {
     switchUnits.addEventListener('click', e => {
       e.preventDefault()
       const type = switchUnits.querySelector('span').innerText
+      const infoHeight = $el('.crs_add_height p span')
       $el('[class*=switcherButton]').click()
-      pushDataLayer('exp_Imp_ux_b_sn_swith', 'switch_to_lbs', 'Button', 'body_height')
+      pushDataLayer('exp_Imp_ux_b_sn_swith', 'switch_to_lb', 'Button', 'body_height')
       setTimeout(() => {
         if (type === 'cm') {
           switchUnits.querySelector('span').innerText = 'ft'
@@ -421,6 +454,7 @@ class improveCalculatorSteps {
           range_input.value = ft * 12 + +in_
           current.innerText = `${ft} ft ${in_} in`
           max.innerText = '6 ft 11 in'
+          infoHeight.innerText = heightByGenger.imperialShow
         } else {
           switchUnits.querySelector('span').innerText = 'cm'
           switchUnits.querySelector('span').dataset.u = 'cm'
@@ -430,15 +464,16 @@ class improveCalculatorSteps {
           range_input.value = localStorage.getItem('body-height-cm')
           current.innerText = `${localStorage.getItem('body-height-cm')} cm`
           max.innerText = '211 cm'
+          infoHeight.innerText = heightByGenger.metric + ' cm'
         }
         widthRange()
       }, 100)
     })
 
     dontKnow.addEventListener('click', e => {
-      localStorage.setItem('body-height-cm', '173')
+      localStorage.setItem('body-height-cm', heightByGenger.metric)
       localStorage.setItem('body-height-ft', '5')
-      localStorage.setItem('body-height-in', '8')
+      localStorage.setItem('body-height-in', heightByGenger.imperialShow.split(' ')[2])
       $el('[class*=nextButton]').click()
     })
 
@@ -467,11 +502,18 @@ class improveCalculatorSteps {
   }
 
   currentWeightStep() {
-    const units = localStorage.getItem('body-height-weight-unitSystem') === 'imperial' ? 'lbs' : 'kg'
+    const units = localStorage.getItem('body-height-weight-unitSystem') === 'imperial' ? 'lb' : 'kg'
 
     const block = /* html */ `
       <div class="crs_current_weight">
         <style>
+          h1 {
+            font-size: 24px !important;
+            margin-bottom: 12px !important;
+          }
+          h1+h2 {
+            font-size: 16px !important;
+          }
           [class*=mainContent] {
             position: relative;
           }
@@ -493,7 +535,7 @@ class improveCalculatorSteps {
           .crs_switch_units span {
             left: 50%;
           }
-          .crs_switch_units span[data-u="lbs"] {
+          .crs_switch_units span[data-u="lb"] {
             left: 0;
           }
           [class*=thanksForSharingText]:first-of-type {
@@ -509,6 +551,10 @@ class improveCalculatorSteps {
             line-height: 18px;
           }
           @media (max-width: 768px) {
+            h1 {
+              font-size: 20px !important;
+              margin-bottom: 8px !important;
+            }
             h1+h2 {
               font-size: 14px !important;
               line-height: 18px !important;
@@ -516,10 +562,16 @@ class improveCalculatorSteps {
             .crs_current_weight {
               right: 15px;
             }
+            [class*=errorText] {
+              text-align: center;
+            }
+            [class*=thanksForSharingText]:last-of-type {
+              width: 80%;
+            }
           }
         </style>  
         <div class="crs_switch_units">
-          <p>lbs</p>
+          <p>lb</p>
           <p>kg</p>
           <span data-u="${units}">${units}</span>
         </div>
@@ -535,11 +587,11 @@ class improveCalculatorSteps {
       e.preventDefault()
       const type = switchUnits.querySelector('span').innerText
       $el('[class*=switcherButton]').click()
-      pushDataLayer('exp_Imp_ux_b_sn_swith', 'switch_to_lbs', 'Button', 'current_weight')
+      pushDataLayer('exp_Imp_ux_b_sn_swith', 'switch_to_lb', 'Button', 'current_weight')
       setTimeout(() => {
         if (type === 'kg') {
-          switchUnits.querySelector('span').innerText = 'lbs'
-          switchUnits.querySelector('span').dataset.u = 'lbs'
+          switchUnits.querySelector('span').innerText = 'lb'
+          switchUnits.querySelector('span').dataset.u = 'lb'
         } else {
           switchUnits.querySelector('span').innerText = 'kg'
           switchUnits.querySelector('span').dataset.u = 'kg'
@@ -581,7 +633,7 @@ class improveCalculatorSteps {
       const height = localStorage.getItem('body-height-cm')
       const unit = localStorage.getItem('body-height-weight-unitSystem')
       const weight =
-        unit === 'imperial' ? localStorage.getItem('body-weight-lbs') : localStorage.getItem('body-weight-kg')
+        unit === 'imperial' ? localStorage.getItem('body-weight-lb') : localStorage.getItem('body-weight-kg')
       let goalWeight = Math.round(20 * (height / 100) ** 2)
       unit === 'imperial' ? (goalWeight = Math.round(goalWeight * 2.205)) : goalWeight
       if (goalWeight > weight) {
@@ -594,7 +646,7 @@ class improveCalculatorSteps {
     nextButton.addEventListener('click', e => {
       const weight =
         localStorage.getItem('body-height-weight-unitSystem') === 'imperial'
-          ? localStorage.getItem('body-weight-lbs') + ' lbs'
+          ? localStorage.getItem('body-weight-lb') + ' lb'
           : localStorage.getItem('body-weight-kg') + ' kg'
       pushDataLayer('exp_Imp_ux_b_cw_n', `Next ${weight}`, 'Button', 'current_weight')
     })
@@ -604,10 +656,13 @@ class improveCalculatorSteps {
 
   goalWeightStep() {
     const goalWeight = localStorage.getItem('weightGoal')
-    const units = localStorage.getItem('body-height-weight-unitSystem') === 'imperial' ? 'lbs' : 'kg'
+    const units = localStorage.getItem('body-height-weight-unitSystem') === 'imperial' ? 'lb' : 'kg'
     const block = /* html */ `
       <div class="crs_goal_weight">
         <style>
+          h1 {
+            margin-bottom: 8px !important;
+          }
           .crs_goal_weight p {
             color: #202B47;
             text-align: center;
@@ -648,6 +703,17 @@ class improveCalculatorSteps {
           }
           [class*=mainContent] {
             padding-bottom: 30px;
+          }
+
+          @media (min-width: 769px) {
+            h1 {
+              font-size: 24px !important;
+              margin-bottom: 12px !important;
+            }
+
+            [class*=validatedInputError] {
+              margin-left: 0;
+            }
           }
         </style>
         <p>
@@ -737,6 +803,8 @@ class improveCalculatorSteps {
 
     $el('[class*=mainContent]').insertAdjacentHTML('beforeend', block)
     checkFocusTime('.crs_result', 'exp_Imp_ux_v_fosacl_tft', 'Final order screen Able creates lasting')
+    $el('h2').innerText =
+      'Able creates lasting results through habit and behavior change, movement and 1-on-1 coaching, not restrictive diets*'
   }
 
   mutationCheck() {
