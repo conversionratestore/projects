@@ -612,7 +612,7 @@ background: #EFEFEF;
             </div>
           </div>
         </div>
-        <a href="/" class="continue_to_checkout_btn ${styleBtn}">Continue to checkout</a>
+        <a href="/checkout" class="continue_to_checkout_btn ${styleBtn}">Continue to checkout</a>
         <div class="all_descr_box">
           <h3>Checking your eligibility won’t affect your credit.</h3>
           <p class="all_txt_descr">The estimated payment amount excludes taxes and shipping. Rates range from 0-36% APR. Payment options through Shop Pay Installments are subject to an eligibility check and are provided by these lending partners:<a href="affirm.com/lenders">affirm.com/lenders</a>.Options depend on your purchase amount, and a down payment may be required. More options may be available upon approval. State notices to consumers:<a href="affirm.com/licenses">affirm.com/licenses</a>.</p>
