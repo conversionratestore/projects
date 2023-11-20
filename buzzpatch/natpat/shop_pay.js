@@ -629,7 +629,7 @@ body .icart .additional-checkout-buttons::after,
       </div>
     </div>
   </div>
-  <a href="/checkout" class="continue_to_checkout_btn ${styleBtn}">Continue to checkout</a>
+  <a href="" class="continue_to_checkout_btn ${styleBtn}">Continue to checkout</a>
   <div class="all_descr_box">
     <h3>Checking your eligibility won’t affect your credit.</h3>
     <p class="all_txt_descr">The estimated payment amount excludes taxes and shipping. Rates range from 0-36% APR. Payment options through Shop Pay Installments are subject to an eligibility check and are provided by these lending partners:<a href="affirm.com/lenders">affirm.com/lenders</a>.Options depend on your purchase amount, and a down payment may be required. More options may be available upon approval. State notices to consumers:<a href="affirm.com/licenses">affirm.com/licenses</a>.</p>
@@ -715,11 +715,12 @@ body .icart .additional-checkout-buttons::after,
                     if (!e.target.getAttribute("data-test")) {
                       e.preventDefault();
                       e.stopPropagation();
+                      addToCartCheckout(+document.querySelector("input[data-productid]").value, 1);
                       pushDataLayer(["exp_shop_pay_b_pudyn_cc", "Continue to checkout", "Button", "Pop up did you now"]);
                       onClosePopup();
-                      setTimeout(() => {
-                        window.location = "/checkout";
-                      }, 700);
+                      // setTimeout(() => {
+                      //   window.location = "/checkout";
+                      // }, 700);
                     }
                     e.target.setAttribute("data-test", "1");
                     setTimeout(() => {
@@ -802,6 +803,35 @@ body .icart .additional-checkout-buttons::after,
           document.querySelector(".icartCartSubTotalContain .icart-ai-c")?.insertAdjacentHTML("afterend", `<div class="total_saving"><span>Your total saving on this order:</span><span>${currencyCart}${totalSaving.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}</span></div>`);
         }
       }
+    }
+
+    //add to cart to checkout
+    async function addToCartCheckout(idValue, qt) {
+      let formData = {
+        items: [
+          {
+            id: idValue,
+            quantity: qt,
+          },
+        ],
+      };
+
+      await fetch("/cart/add.js", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+        .then((response) => {
+          response.json();
+          setTimeout(() => {
+            window.location.pathname = "/checkout";
+          }, 300);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     }
 
     // observer Pdp
