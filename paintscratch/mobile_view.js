@@ -62,7 +62,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
 const clarityInterval = setInterval(function () {
   if (typeof clarity == 'function') {
     clearInterval(clarityInterval)
-    clarity('set', '', 'variant_1')
+    clarity('set', 'mobile_view', 'variant_1')
   }
 }, 1000)
 
@@ -453,6 +453,9 @@ class mobileDesign {
         a.action-button-orange span {
           font-size: 16px !important;
           padding: 0 !important;
+        }
+        .select-color #color-display-table td.color-info span.color-name {
+          line-height: 1.3;
         }
       </style>
     `
@@ -1283,6 +1286,14 @@ class mobileDesign {
       $(item).slick('slickGoTo', 0)
     })
 
+    $('input[type="checkbox"]').on('change', function () {
+      if ($('input[type=checkbox]:checked').length > 0) {
+        $('#blank-space').hide()
+      } else {
+        $('#blank-space').show()
+      }
+    })
+
     function createSliders() {
       let wrap = 0
       $('#single-products-container .products-container > div').each(function (i, item) {
@@ -1828,6 +1839,13 @@ class mobileDesign {
           margin-bottom: 0 !important;
           margin-left: 0 !important;
         }
+        .checkoutstep #page #main #bottom-information #bottom-information-right span {
+          font-size: 14px !important;
+          line-height: 22px !important;
+        }
+        .checkoutstep #page #main #bottom-information #bottom-information-right span a {
+          font-weight: 700;
+        }
       </style>
     `
 
@@ -1844,6 +1862,14 @@ class mobileDesign {
         '.checkoutstep #page #main #credit_card_box .billing-information tr:nth-of-type(3) td:last-of-type'
       )[0]
       .childNodes[2].remove()
+
+    $('input[name="C1"]').attr('checked', 'checked')
+    $('#main>.billing-information:first-of-type input, #main>.billing-information:first-of-type select').on(
+      'change',
+      function () {
+        Address_Fill()
+      }
+    )
   }
 
   headerChange() {
@@ -2068,6 +2094,7 @@ class mobileDesign {
         #footer {
           background-color: #eee;
           margin-top: -1px;
+          text-align: left !important;
         }
         .touch_links {
           padding: 0 15px;
@@ -2106,6 +2133,7 @@ class mobileDesign {
           font-weight: 700;
           text-align: left;
           display: block;
+          text-decoration: underline !important;
         }
         #bottom_footer_text {
           padding: 0 15px;
@@ -2117,6 +2145,9 @@ class mobileDesign {
           color: #253189 !important;
           font-size: 14px;
           line-height: 20px;
+        }
+        .glyphicon-facetime-video {
+          display: none;
         }
       </style>
     `
