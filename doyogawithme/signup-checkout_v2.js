@@ -1804,15 +1804,16 @@ function init() {
             el.textContent = "65.39";
           });
           value = 65.39;
-          diffValue = 108.99 - value;
-          percentVar = (diffValue * 100) / 108.99;
+          diffValue = 167.88 - value;
+          percentVar = (diffValue * 100) / 167.88;
           if (document.querySelector(".green_price")) {
             console.log(value, `value`);
             document.querySelector(".green_price").textContent = `${(value / 12).toFixed(2)}`;
           }
 
           if (document.querySelector(".saved_var")) {
-            document.querySelector(".saved_var").textContent = `${diffValue}`;
+            document.querySelector(".old_price_var").textContent = `$167.88`;
+            document.querySelector(".saved_var").textContent = `${diffValue.toFixed(2)}`;
             document.querySelector(".percent_var").textContent = `${percentVar.toFixed(0)}%`;
           }
           if (document.querySelector(".btn_got_coupon")) {
