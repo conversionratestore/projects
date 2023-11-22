@@ -1783,11 +1783,12 @@ function init() {
         }
       } else if (document.querySelector(".views-field.views-field-title").innerHTML.match("Monthly Subscription w/ 7 Day Trial")) {
         console.log(`object`);
-        document.querySelector(".views-field.views-field-title").innerHTML = `<span>1-Month DYWM Subscription</span><span>After the 7-day trial period, the monthly fee will be $13.99.</span>`;
-        document.querySelector(".views-field.views-field-total-price__number").textContent = "$13.99";
+        value = 13.99;
+        document.querySelector(".views-field.views-field-title").innerHTML = `<span>1-Month DYWM Subscription</span><span>After the 7-day trial period, the monthly fee will be $<span class='current_price'>${value}</span>.</span>`;
+        document.querySelector(".views-field.views-field-total-price__number").textContent = `$${value}`;
         if (window.innerWidth <= 768) {
           if (!document.querySelector(".subscr_txt_mob")) {
-            document.querySelector(".checkout-pane.checkout-pane-order-summary.js-form-wrapper.form-wrapper").insertAdjacentHTML("afterend", `<p class="subscr_txt_mob">After the 7-day trial period, the annual fee will be $13.99.</p>`);
+            document.querySelector(".checkout-pane.checkout-pane-order-summary.js-form-wrapper.form-wrapper").insertAdjacentHTML("afterend", `<p class="subscr_txt_mob">After the 7-day trial period, the annual fee will be $${value}.</p>`);
           }
         }
       }
@@ -1840,6 +1841,19 @@ function init() {
 </svg>`;
         }
       }, 100);
+      let findInputNullСoupon1Month = setInterval(() => {
+        if (!document.querySelector("[name='sidebar[coupon_redemption][form][code]']") && document.querySelector(".views-field.views-field-title").innerHTML.match("1-Month") && document.querySelector(".coupon-redemption-form__coupons td").textContent.includes("yoga3ny")) {
+          clearInterval(findInputNullСoupon1Month);
+          console.log(`findInput`);
+          value = 8.33;
+
+          document.querySelectorAll(".current_price").forEach((el) => {
+            el.textContent = "8.33";
+          });
+          document.querySelector(".views-field.views-field-total-price__number").textContent = `$${value}`;
+        }
+      }, 100);
+
       let findInputNull = setInterval(() => {
         if (!document.querySelector("[name='sidebar[coupon_redemption][form][code]']") && document.querySelector(".coupon-redemption-form__coupons td").textContent.includes("yoga_45")) {
           clearInterval(findInputNull);
