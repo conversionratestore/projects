@@ -2579,9 +2579,12 @@ button.syte-discovery.syte-integration-injected .button-text{
         }, 100);
       }
       // add txt Klarna
-      if (document.querySelector("#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b") && !document.querySelector(".new_txt_klarna") && document.querySelector("klarna-placement div")) {
-        document.querySelector("#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b").insertAdjacentHTML("beforeend", `<span class="new_txt_klarna"><b>Pay nothing today.</b> The annual percentage rate is <b>0%</b></span>`);
-      }
+      let lookForDiv = setInterval(() => {
+        if (document.querySelector("#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b") && !document.querySelector(".new_txt_klarna") && document.querySelector("klarna-placement div")) {
+          clearInterval(lookForDiv);
+          document.querySelector("#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b").insertAdjacentHTML("beforeend", `<span class="new_txt_klarna"><b>Pay nothing today.</b> The annual percentage rate is <b>0%</b></span>`);
+        }
+      }, 100);
       //replace select
       if (!document.querySelector(".product-block--sales-point + .shopify-block.shopify-app-block + .product-block").classList.contains("before_lable_wrapp")) {
         document.querySelector(".product-block--sales-point + .shopify-block.shopify-app-block + .product-block").classList.add("before_lable_wrapp");
@@ -4155,7 +4158,6 @@ button.syte-discovery.syte-integration-injected .button-text{
   }
 }, 100);
 
-
 let startFunkFastNav = setInterval(() => {
   if (!document) return false;
 
@@ -4323,7 +4325,6 @@ let startFunkFastNav = setInterval(() => {
               </li
             `
           );
-          
       }
     } else {
       if (document.querySelector('.mobile-nav__item [href="/collections/fine-jewelry-1"]') && !document.querySelector(".faster_availability")) {
@@ -4341,10 +4342,9 @@ let startFunkFastNav = setInterval(() => {
       }
     }
 
-    document.querySelector('.faster_availability').addEventListener('click', function () {
-      pushDataLayer(['exp_fast_prod_nav_but_menu_fast', 'Faster Availability', 'Button', 'Menu. Add category']);
-    })
-
+    document.querySelector(".faster_availability").addEventListener("click", function () {
+      pushDataLayer(["exp_fast_prod_nav_but_menu_fast", "Faster Availability", "Button", "Menu. Add category"]);
+    });
 
     if (document.querySelector(".faster_availability") && window.location.pathname === "/collections/fast-production") {
       document.querySelector(".faster_availability").classList.add("active_link");
@@ -4355,22 +4355,22 @@ let startFunkFastNav = setInterval(() => {
       }, 500);
 
       window.addEventListener("beforeunload", (event) => {
-        pushDataLayer(['exp_fast_prod_nav_vis_fastavai_foc', timer + 's', 'Visibility', 'Faster Availability Page']);
+        pushDataLayer(["exp_fast_prod_nav_vis_fastavai_foc", timer + "s", "Visibility", "Faster Availability Page"]);
       });
 
-      document.addEventListener('click', function (e) {
-        if (e.target.closest('.grid-product__link')) {
-          const prouctName = e.target.closest('.grid-product__link').querySelector('.grid-product__title').innerText;
+      document.addEventListener("click", function (e) {
+        if (e.target.closest(".grid-product__link")) {
+          const prouctName = e.target.closest(".grid-product__link").querySelector(".grid-product__title").innerText;
 
-          if (e.target.closest('.grid-product__image-mask')) {
-            pushDataLayer(['exp_fast_prod_nav_ima_fastavai_prod', `${prouctName} - product card`, 'Image', 'Faster Availability Page']);
+          if (e.target.closest(".grid-product__image-mask")) {
+            pushDataLayer(["exp_fast_prod_nav_ima_fastavai_prod", `${prouctName} - product card`, "Image", "Faster Availability Page"]);
           }
 
-          if (e.target.closest('.grid-product__title')) {
-            pushDataLayer(['exp_fast_prod_nav_text_fastavai_prod', `${prouctName} - product card`, 'Text', 'Faster Availability Page']);
+          if (e.target.closest(".grid-product__title")) {
+            pushDataLayer(["exp_fast_prod_nav_text_fastavai_prod", `${prouctName} - product card`, "Text", "Faster Availability Page"]);
           }
         }
-      })
+      });
     }
 
     let lookForListSlider = setInterval(() => {
@@ -4380,27 +4380,27 @@ let startFunkFastNav = setInterval(() => {
           document.querySelector("#discoverFasterAvailablejewelry .discover_faster_available_jewelry_list").classList.add("open_var");
         }
 
-        focusTimeEvent(document.querySelector('#discoverFasterAvailablejewelry'), (time) => {
-          pushDataLayer(['exp_fast_prod_nav_vis_discovfas_foc', time, 'Visibility', 'HomePage. Under. Discover Faster Available jewelry']);
+        focusTimeEvent(document.querySelector("#discoverFasterAvailablejewelry"), (time) => {
+          pushDataLayer(["exp_fast_prod_nav_vis_discovfas_foc", time, "Visibility", "HomePage. Under. Discover Faster Available jewelry"]);
         });
 
-        document.querySelector('.view_all_btn').addEventListener('click', function () {
-          pushDataLayer(['exp_fast_prod_nav_but_view_discovfas_foc', 'View All', 'Button', 'HomePage. Discover Faster Available jewelry']);
+        document.querySelector(".view_all_btn").addEventListener("click", function () {
+          pushDataLayer(["exp_fast_prod_nav_but_view_discovfas_foc", "View All", "Button", "HomePage. Discover Faster Available jewelry"]);
         });
 
-        document.addEventListener('click', function (e) {
-          if (e.target.closest('.product_content') && e.target.closest('#discoverFasterAvailablejewelry')) {
-            const productName = e.target.closest('.product_content').querySelector('.product_title').innerText;
-  
-            if (e.target.closest('.product_image')) {
-              pushDataLayer(['exp_fast_prod_nav_ima_discovfas_foc', `${productName} - product card`, 'Image', 'HomePage. Discover Faster Available jewelry']);
+        document.addEventListener("click", function (e) {
+          if (e.target.closest(".product_content") && e.target.closest("#discoverFasterAvailablejewelry")) {
+            const productName = e.target.closest(".product_content").querySelector(".product_title").innerText;
+
+            if (e.target.closest(".product_image")) {
+              pushDataLayer(["exp_fast_prod_nav_ima_discovfas_foc", `${productName} - product card`, "Image", "HomePage. Discover Faster Available jewelry"]);
             }
-  
-            if (e.target.closest('.product_title')) {
-              pushDataLayer(['exp_fast_prod_nav_text_discovfas_foc', `${productName} - product card`, 'Text', 'HomePage. Discover Faster Available jewelry']);
+
+            if (e.target.closest(".product_title")) {
+              pushDataLayer(["exp_fast_prod_nav_text_discovfas_foc", `${productName} - product card`, "Text", "HomePage. Discover Faster Available jewelry"]);
             }
           }
-        })
+        });
       }
     }, 100);
 
@@ -4425,7 +4425,6 @@ let startFunkFastNav = setInterval(() => {
       }, 100);
     }
 
-
     // fasterAvailabilityBlock switch-label
     if (document.querySelector(".collection-filter__item.collection-filter__item--sort") && !document.querySelector("#fasterAvailabilitySwitchBlock")) {
       // let fasterAvailabilityBlock = /*html */ `
@@ -4443,7 +4442,6 @@ let startFunkFastNav = setInterval(() => {
       //     </p>
       //   </div>
       // `;
-      
       // document.querySelector(".collection-filter__item.collection-filter__item--sort").insertAdjacentHTML("afterbegin", fasterAvailabilityBlock);
     }
   }
@@ -4468,15 +4466,15 @@ let startFunkFastNav = setInterval(() => {
             },
             onShown(e) {
               time = 0;
-              pushDataLayer(['exp_fast_prod_nav_tip_discovfas_fast', 'Faster than standard production time', 'Tips', 'HomePage Discover Faster Available jewelry']);
+              pushDataLayer(["exp_fast_prod_nav_tip_discovfas_fast", "Faster than standard production time", "Tips", "HomePage Discover Faster Available jewelry"]);
               timer = setInterval(() => {
                 time += 0.5;
               }, 500);
             },
             onHide(e) {
               clearInterval(timer);
-              pushDataLayer(['exp_fast_prod_nav_vis_fasttime_foc', time + 's', 'Visibility', 'HomePage. Discover Faster Available jewelry. Tips. Faster than standard production time']);
-            }
+              pushDataLayer(["exp_fast_prod_nav_vis_fasttime_foc", time + "s", "Visibility", "HomePage. Discover Faster Available jewelry. Tips. Faster than standard production time"]);
+            },
           });
         });
       }
@@ -4511,7 +4509,6 @@ let startFunkFastNav = setInterval(() => {
     }
   }, 200);
 
-
   // Utils
   function focusTimeEvent(el, cb) {
     let entryTime = 0;
@@ -4522,7 +4519,7 @@ let startFunkFastNav = setInterval(() => {
           entryTime = time;
         } else if (entryTime) {
           const diffTime = +((time - entryTime) / 1000).toFixed(1);
-          cb(diffTime + 's');
+          cb(diffTime + "s");
           entryTime = 0;
         }
       },
@@ -4531,9 +4528,9 @@ let startFunkFastNav = setInterval(() => {
   }
 
   function initIntersection(observeEl, cb, customConfig) {
-    const el = typeof observeEl === 'string' ? $(observeEl) : observeEl;
+    const el = typeof observeEl === "string" ? $(observeEl) : observeEl;
 
-    if (!el || typeof cb !== 'function') return;
+    if (!el || typeof cb !== "function") return;
 
     const config = {
       root: null,
