@@ -72,7 +72,7 @@ class improveCalculatorSteps {
     }
     if (window.location.href.includes('/body-risk-tip')) {
       const style = /* html */ `
-        <style>
+        <style class="body-risk">
           [class*=childrenWrapper]>div:not([class*=buttonWrapper]),
           [class*=childrenWrapper]>div:not([class*=buttonWrapper]) p {
             text-align: center;
@@ -550,6 +550,9 @@ class improveCalculatorSteps {
             font-size: 14px;
             line-height: 18px;
           }
+          [class*=validatedInputError] {
+            margin-left: 0;
+          }
           @media (max-width: 768px) {
             h1 {
               font-size: 20px !important;
@@ -833,6 +836,24 @@ class improveCalculatorSteps {
         this.resultStep()
       } else if (!window.location.href.includes('/weight-loss') && $el('.crs_result')) {
         $el('.crs_result').remove()
+      }
+
+      if (window.location.href.includes('/body-risk-tip') && !$el('.body-risk')) {
+        const style = /* html */ `
+        <style class="body-risk">
+          [class*=childrenWrapper]>div:not([class*=buttonWrapper]),
+          [class*=childrenWrapper]>div:not([class*=buttonWrapper]) p {
+            text-align: center;
+          }
+          [class*=childrenWrapper]>div:not([class*=buttonWrapper]) img {
+            width: 142px;
+            height: 142px;
+          }
+        </style>
+      `
+        document.head.insertAdjacentHTML('beforeend', style)
+      } else {
+        $el('.body-risk').remove()
       }
     })
 
