@@ -2260,7 +2260,7 @@ class mobileDesign {
           margin-left: -18px;
         }
         #before_footer .links ul li:first-of-type::marker {
-          content: '';
+          content: none;
         }
         #before_footer .slider_wrapper {
           padding: 16px;
@@ -2372,16 +2372,17 @@ class mobileDesign {
       } else {
         document.querySelector('#bottom_footer_text').insertAdjacentHTML('beforebegin', block)
       }
+
+      document.head.insertAdjacentHTML('beforeend', style)
+      $('.slider_wrapper').slick({
+        dots: true,
+        arrows: false,
+        infinite: true,
+        speed: 500,
+        cssEase: 'linear',
+        slideToShow: 1
+      })
     }, 500)
-    document.head.insertAdjacentHTML('beforeend', style)
-    $('.slider_wrapper').slick({
-      dots: true,
-      arrows: false,
-      infinite: true,
-      speed: 500,
-      cssEase: 'linear',
-      slideToShow: 1
-    })
   }
 }
 
