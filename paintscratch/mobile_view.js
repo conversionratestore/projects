@@ -457,6 +457,20 @@ class mobileDesign {
         .select-color #color-display-table td.color-info span.color-name {
           line-height: 1.3;
         }
+        #bottom-warning-msg {
+          width: 100% !important;
+          margin-bottom: 12px;
+        }
+        .screenpop {
+          width: 100% !important;
+          padding: 0 15px !important;
+        }
+        div.screenpop .inner, div.screenpop .inner>div{
+          width: 100% !important;
+        }
+        div.screenpop .inner a.action-button-orange {
+          width: 100%;
+        }
       </style>
     `
     $('a.action-button-orange').append(btnArrowSvg)
@@ -2171,11 +2185,13 @@ class mobileDesign {
         <a href="https://www.paintscratch.com/touch_up_paint/">Order car touch up paint for all other Makes and Models</a>
       </div>
     `
-    if (document.querySelector('#footer')) {
-      document.querySelector('#footer').insertAdjacentHTML('afterbegin', block)
-    } else {
-      document.querySelector('#bottom_footer_text').insertAdjacentHTML('beforebegin', block)
-    }
+    setTimeout(() => {
+      if (document.querySelector('#footer')) {
+        document.querySelector('#footer').insertAdjacentHTML('afterbegin', block)
+      } else {
+        document.querySelector('#bottom_footer_text').insertAdjacentHTML('beforebegin', block)
+      }
+    }, 500)
     document.head.insertAdjacentHTML('beforeend', style)
   }
 
@@ -2350,11 +2366,13 @@ class mobileDesign {
         </div>
       </div>
     `
-    if (document.querySelector('#footer')) {
-      document.querySelector('#footer').insertAdjacentHTML('afterbegin', block)
-    } else {
-      document.querySelector('#bottom_footer_text').insertAdjacentHTML('beforebegin', block)
-    }
+    setTimeout(() => {
+      if (document.querySelector('#footer')) {
+        document.querySelector('#footer').insertAdjacentHTML('afterbegin', block)
+      } else {
+        document.querySelector('#bottom_footer_text').insertAdjacentHTML('beforebegin', block)
+      }
+    }, 500)
     document.head.insertAdjacentHTML('beforeend', style)
     $('.slider_wrapper').slick({
       dots: true,
