@@ -2259,8 +2259,8 @@ class mobileDesign {
         #before_footer .links ul li:first-of-type {
           margin-left: -18px;
         }
-        #before_footer .links ul li:first-of-type::marker {
-          content: none;
+        #before_footer .links ul li:first-of-type {
+          list-style-type: none;
         }
         #before_footer .slider_wrapper {
           padding: 16px;
