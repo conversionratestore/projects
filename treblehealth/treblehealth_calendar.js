@@ -2678,7 +2678,7 @@ p.mob_txt{
     function accordionInit() {
       console.log(`Hello accordionInit`);
       let lookForJquery = setInterval(() => {
-        if (typeof $ === 'function') {
+        if (typeof $ === 'function' && document.querySelector('.new_body')) {
           clearInterval(lookForJquery);
           document.querySelectorAll('.questions_accordion_block')[0].classList.add('active');
           document.querySelectorAll('.questions_accordion_block .questions_accordion_link')[0].classList.add('active');
