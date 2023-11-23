@@ -1759,7 +1759,7 @@ function init() {
       let percentVar = "";
       let price = "";
       let value = "";
-      if (document.querySelector(".views-field.views-field-title").innerHTML.match("Yearly Subscription w/ 7 Day Trial")) {
+      if (document.querySelector(".views-field.views-field-title").innerHTML.match("Yearly Subscription w/ 7 Day Trial") || document.querySelector(".views-field.views-field-title").innerHTML.match("DYWM Subscription, Yearly")) {
         price = document.querySelector(".views-field.views-field-total-price__number");
         value = 108.99;
         diffValue = 167.88 - value;
@@ -1794,9 +1794,8 @@ function init() {
       }
 
       let findInputNullСoupon1 = setInterval(() => {
-        if (!document.querySelector("[name='sidebar[coupon_redemption][form][code]']") && document.querySelector(".coupon-redemption-form__coupons td").textContent.includes("yoga40bf")) {
+        if (!document.querySelector("[name='sidebar[coupon_redemption][form][code]']") && document.querySelector(".coupon-redemption-form__coupons td").textContent.includes("yoga40bf") && document.querySelector(".old_price_var")?.textContent !== `$108.99`) {
           clearInterval(findInputNullСoupon1);
-          console.log(`findInput`);
           if (document.querySelector(".saved_block")) {
             document.querySelector(".saved_block").style.display = "block";
             document.querySelector(".views-field.views-field-total-price__number").style.paddingBottom = "17px";
@@ -1826,23 +1825,23 @@ function init() {
           }
           document.querySelector("#edit-coupon-redemption").classList.add("active");
           document.querySelector(".coupon-redemption-form__coupons.coupon-redemption-form__coupons--multiple.active_var > h3").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
-  <g clip-path="url(#clip0_232_24337)">
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M11 0C4.93281 0 0 4.93281 0 11C0 17.0672 4.93281 22 11 22C17.0672 22 22 17.0672 22 11C22 4.93281 17.0672 0 11 0Z" fill="#017922"/>
-    <path d="M9.35695 14.9073C8.26686 13.8154 7.18343 12.7135 6.09001 11.6215C5.97 11.5013 5.97 11.3009 6.09001 11.1807L7.34678 9.92184C7.46679 9.80163 7.66681 9.80163 7.78682 9.92184L9.58363 11.7217L14.204 7.09016C14.3274 6.96995 14.524 6.96995 14.6474 7.09016L15.9075 8.35239C16.0308 8.47595 16.0308 8.67296 15.9075 8.79318L9.79698 14.9073C9.67697 15.0309 9.48029 15.0309 9.35695 14.9073Z" fill="white"/>
-  </g>
-  <defs>
-    <clipPath id="clip0_232_24337">
-      <rect width="22" height="22" fill="white"/>
-    </clipPath>
-  </defs>
-</svg> Coupon Applied: `;
+        <g clip-path="url(#clip0_232_24337)">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M11 0C4.93281 0 0 4.93281 0 11C0 17.0672 4.93281 22 11 22C17.0672 22 22 17.0672 22 11C22 4.93281 17.0672 0 11 0Z" fill="#017922"/>
+          <path d="M9.35695 14.9073C8.26686 13.8154 7.18343 12.7135 6.09001 11.6215C5.97 11.5013 5.97 11.3009 6.09001 11.1807L7.34678 9.92184C7.46679 9.80163 7.66681 9.80163 7.78682 9.92184L9.58363 11.7217L14.204 7.09016C14.3274 6.96995 14.524 6.96995 14.6474 7.09016L15.9075 8.35239C16.0308 8.47595 16.0308 8.67296 15.9075 8.79318L9.79698 14.9073C9.67697 15.0309 9.48029 15.0309 9.35695 14.9073Z" fill="white"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_232_24337">
+            <rect width="22" height="22" fill="white"/>
+          </clipPath>
+        </defs>
+      </svg> Coupon Applied: `;
           document.querySelector(".coupon-redemption-form__coupons.coupon-redemption-form__coupons--multiple.active_var td button").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-  <path d="M11.6654 11.6673L2.33203 2.33398M11.6654 2.33398L2.33203 11.6673" stroke="#027DB8" stroke-width="2" stroke-linecap="round"/>
-</svg>`;
+        <path d="M11.6654 11.6673L2.33203 2.33398M11.6654 2.33398L2.33203 11.6673" stroke="#027DB8" stroke-width="2" stroke-linecap="round"/>
+      </svg>`;
         }
       }, 100);
       let findInputNullСoupon1Month = setInterval(() => {
-        if (!document.querySelector("[name='sidebar[coupon_redemption][form][code]']") && document.querySelector(".views-field.views-field-title").innerHTML.match("1-Month") && document.querySelector(".coupon-redemption-form__coupons td").textContent.includes("yoga3ny")) {
+        if (!document.querySelector("[name='sidebar[coupon_redemption][form][code]']") && document.querySelector(".views-field.views-field-title").innerHTML.match("1-Month") && document.querySelector(".coupon-redemption-form__coupons td").textContent.includes("yoga3ny") && document.querySelector(".views-field.views-field-total-price__number").textContent !== "$8.33") {
           clearInterval(findInputNullСoupon1Month);
           console.log(`findInput`);
           value = 8.33;
@@ -1886,19 +1885,19 @@ function init() {
           }
           document.querySelector("#edit-coupon-redemption").classList.add("active");
           document.querySelector(".coupon-redemption-form__coupons.coupon-redemption-form__coupons--multiple.active_var > h3").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
-  <g clip-path="url(#clip0_232_24337)">
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M11 0C4.93281 0 0 4.93281 0 11C0 17.0672 4.93281 22 11 22C17.0672 22 22 17.0672 22 11C22 4.93281 17.0672 0 11 0Z" fill="#017922"/>
-    <path d="M9.35695 14.9073C8.26686 13.8154 7.18343 12.7135 6.09001 11.6215C5.97 11.5013 5.97 11.3009 6.09001 11.1807L7.34678 9.92184C7.46679 9.80163 7.66681 9.80163 7.78682 9.92184L9.58363 11.7217L14.204 7.09016C14.3274 6.96995 14.524 6.96995 14.6474 7.09016L15.9075 8.35239C16.0308 8.47595 16.0308 8.67296 15.9075 8.79318L9.79698 14.9073C9.67697 15.0309 9.48029 15.0309 9.35695 14.9073Z" fill="white"/>
-  </g>
-  <defs>
-    <clipPath id="clip0_232_24337">
-      <rect width="22" height="22" fill="white"/>
-    </clipPath>
-  </defs>
-</svg> Coupon Applied: `;
+        <g clip-path="url(#clip0_232_24337)">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M11 0C4.93281 0 0 4.93281 0 11C0 17.0672 4.93281 22 11 22C17.0672 22 22 17.0672 22 11C22 4.93281 17.0672 0 11 0Z" fill="#017922"/>
+          <path d="M9.35695 14.9073C8.26686 13.8154 7.18343 12.7135 6.09001 11.6215C5.97 11.5013 5.97 11.3009 6.09001 11.1807L7.34678 9.92184C7.46679 9.80163 7.66681 9.80163 7.78682 9.92184L9.58363 11.7217L14.204 7.09016C14.3274 6.96995 14.524 6.96995 14.6474 7.09016L15.9075 8.35239C16.0308 8.47595 16.0308 8.67296 15.9075 8.79318L9.79698 14.9073C9.67697 15.0309 9.48029 15.0309 9.35695 14.9073Z" fill="white"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_232_24337">
+            <rect width="22" height="22" fill="white"/>
+          </clipPath>
+        </defs>
+      </svg> Coupon Applied: `;
           document.querySelector(".coupon-redemption-form__coupons.coupon-redemption-form__coupons--multiple.active_var td button").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-  <path d="M11.6654 11.6673L2.33203 2.33398M11.6654 2.33398L2.33203 11.6673" stroke="#027DB8" stroke-width="2" stroke-linecap="round"/>
-</svg>`;
+        <path d="M11.6654 11.6673L2.33203 2.33398M11.6654 2.33398L2.33203 11.6673" stroke="#027DB8" stroke-width="2" stroke-linecap="round"/>
+      </svg>`;
         }
       }, 100);
 
