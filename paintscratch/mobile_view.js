@@ -134,6 +134,9 @@ class mobileDesign {
       case '/cgi-bin/check-out.cgi':
         this.checkoutPage()
         break
+      case '/cgi-bin/review-order.cgi':
+        this.orderPage()
+        break
       default:
         break
     }
@@ -143,7 +146,8 @@ class mobileDesign {
         this.page === '/cgi-bin/order-form.cgi' ||
         this.page === '/cgi-bin/guided-order.cgi' ||
         this.page === '/cgi-bin/shopping-cart.cgi' ||
-        this.page === '/cgi-bin/check-out.cgi')
+        this.page === '/cgi-bin/check-out.cgi' ||
+        this.page === '/cgi-bin/review-order.cgi')
     ) {
       this.globalStyle()
       this.headerChange()
@@ -187,6 +191,16 @@ class mobileDesign {
 
         #page .slick-slide {
           float: left !important;
+        }
+        .screenpop {
+          width: 100% !important;
+          padding: 0 15px !important;
+        }
+        div.screenpop .inner, div.screenpop .inner>div{
+          width: 100% !important;
+        }
+        div.screenpop .inner a.action-button-orange {
+          width: 100%;
         }
       </style>
     `
@@ -295,7 +309,7 @@ class mobileDesign {
   paintCodePage() {
     const style = /* html */ `
       <style>
-        #panel_links, #car_make_links, #page_sidebar>*:not(#color_search_widget) {
+        #panel_links, #car_make_links, #page_sidebar>*:not(#color_search_widget), .breadcrumb {
           display: none;
         }
         body {
@@ -311,13 +325,78 @@ class mobileDesign {
         }
         .page-content h1 {
           margin-top: 10px;
+          font-size: 16px !important;
+          line-height: 1.5 !important;
         }
+        #color_search_widget_copy {
+          margin-top: 40px;
+        }
+        #color_search_widget {
+          margin-top: 30px;
+        }
+        [id*=color_search_widget] .panel-primary{
+          position: relative;
+          padding-top: 15px;
+        }
+        p+.panel-primary {
+          position: relative;
+        }
+        [id*=color_search_widget] .panel-heading, p+.panel-primary .panel-heading {
+          background-color: #fff !important;  
+          padding: 0 !important;
+          border-bottom: none !important;
+        }
+        [id*=color_search_widget] h3, p+.panel-primary h2 {
+          color: #0373BD;
+          padding: 0 8px;
+          background-color: #fff;
+          position: absolute;
+          left: 8px;
+          top: -15px;
+          font-size: 24px !important;
+          line-height: 30px !important;
+        }
+        p+.panel-primary h2 {
+          font-size: 18px !important;
+          line-height: 26px !important;
+          top: -10px;
+        }
+        [id*=color_search_widget] .action-button-orange, p+.panel-primary .btn-primary {
+          width: 100% !important;
+          border-radius: 4px;
+          border: 2px solid #E68626;
+          background: linear-gradient(180deg, #FFC842 0%, #F48818 100%);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          column-gap: 16px;
+          color: #333;
+          font-size: 16px !important;
+          line-height: 1.5 !important;
+          font-weight: 700 !important;
+          padding: 6px;
+        }
+        p+.panel-primary select {
+          display: flex;
+          width: 100% !important;
+          margin-top: 4px;
+          border: 2px solid #CCC;
+          background: #FFF;
+          padding: 5px 10px;
+        }
+
       </style>
     `
 
     document.head.insertAdjacentHTML('beforeend', style)
     this.beforeFooter()
     this.footerChange()
+
+    const copy = document.querySelector('#color_search_widget').cloneNode(true)
+
+    copy.setAttribute('id', 'color_search_widget_copy')
+    document.querySelector('h1').insertAdjacentElement('afterend', copy)
+    $('.action-button-orange, p+.panel-primary .btn-primary').append(btnArrowSvg)
   }
 
   colorPage() {
@@ -460,16 +539,6 @@ class mobileDesign {
         #bottom-warning-msg {
           width: 100% !important;
           margin-bottom: 12px;
-        }
-        .screenpop {
-          width: 100% !important;
-          padding: 0 15px !important;
-        }
-        div.screenpop .inner, div.screenpop .inner>div{
-          width: 100% !important;
-        }
-        div.screenpop .inner a.action-button-orange {
-          width: 100%;
         }
       </style>
     `
@@ -1886,6 +1955,177 @@ class mobileDesign {
     )
   }
 
+  orderPage() {
+    const style = /* html */ `
+      <style>
+        #secure_checkout_top {
+          margin-top: 0 !important;
+          display: flex;
+          align-items: center;
+          column-gap: 12px;
+          margin-bottom: 16px;
+        }
+        #secure_checkout_top img, #shipto, #green_proceed_arrow {
+          display: none !important;
+        }
+        #secure_checkout_top h1 {
+          font-size: 16px !important;
+          line-height: 24px !important;
+          margin: 0 !important;
+        }
+        #sub-header p {
+          font-size: 14px !important;
+          line-height: 22px !important;
+        }
+        .user_info .title_block {
+          display: flex;
+          align-items: center;
+          column-gap: 4px;
+          margin-bottom: 9px;
+        }
+        .user_info .title_block .small-note {
+          margin-bottom: 0;
+        }
+        .user_info .telandeml {
+          display: flex;
+          flex-direction: column;
+          margin-top: 8px;
+          row-gap: 8px;
+        }
+        .user_info>div {
+          margin-bottom: 16px;
+        }
+        .review .telandeml span {
+          position: unset !important;
+        }
+        .review .telandeml>p:last-of-type {
+          display: flex;
+          column-gap: 12px;
+          align-items: center;
+        }
+        .review .telandeml input {
+          width: 100% !important;
+          border: 2px solid var(--Border, #CCC);
+          background: #FFF;
+          padding: 4px 12px;
+        }
+        .edit_button {
+          border: 1px solid #CCC;
+          background: #EEE;
+          display: flex;
+          align-items: center;
+          column-gap: 10px;
+          padding: 6px 20px;
+          justify-content: center;
+        }
+        .edit_button svg {
+          transform: rotate(180deg);
+        }
+        .review .credit-card {
+          margin-top: 24px !important;
+          width: 100% !important;
+          padding: 15px !important;
+        }
+        .review .credit-card .billing-information {
+          width: 100%;
+        }
+        .review #page .credit-card>img {
+          float: left !important;
+          margin-top: 0 !important;
+          margin-right: 12px !important;
+          padding-right: 0 !important;
+          padding-bottom: 20px !important;
+          height: 60px !important;
+        }
+        .review #page .credit-card>h2 {
+          padding-top: 0 !important;
+          margin-bottom: 8px !important;
+        }
+        .review #page .billing-information tr{
+          display: flex;
+          flex-direction: column;
+        }
+        .review #page .billing-information td {
+          height: auto !important;
+          width: 100%;
+          font-size: 14px !important;
+          line-height: 22px !important;
+        }
+        .review #page .billing-information input {
+          border: 2px solid #CCC;
+          background: #FFF;
+          margin-bottom: 16px;
+          padding: 4px 12px;
+          height: auto !important;
+          width: auto !important;
+        }
+        .review #page .billing-information input[name="cardnum"] {
+          width: 100% !important;
+        }
+        .review table#ordereditems, .paypal table#ordereditems, #agree, .policy-agree {
+          width: 100% !important;
+        }
+        table#ordereditems td {
+          vertical-align: bottom !important;
+        }
+        .policy-agree p {
+          text-align: left;
+          font-size: 12px !important;
+          line-height: 20px !important;
+        }
+        .policy-agree p:last-of-type {
+          margin-top: 8px;
+        }
+        .policy-agree {
+          margin-top: 16px !important;
+        }
+        a.action-button-orange {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          border-radius: 4px;
+          border: 2px solid #E68626;
+          background: linear-gradient(180deg, #FFC842 0%, #F48818 100%);
+          align-items: center;
+          column-gap: 12px;
+        }
+      </style>
+    `
+
+    const userInfo = /* html */ `
+        <div class="user_info">
+          <div class="ship_data">
+            <div class="title_block"></div>
+          </div>
+          <div class="bill_data">
+            <div class="title_block"></div>
+          </div>
+          <button class="edit_button" onclick="editMyInfo()">${btnArrowSvg}Edit My Information</button>
+        </div>
+    `
+
+    document.head.insertAdjacentHTML('beforeend', style)
+    $('#shipto').after(userInfo)
+    $('#shipto>tbody>tr:first-of-type>td').each(function (i, item) {
+      if (i === 0) {
+        $('.ship_data .title_block').append($(item).html())
+      } else {
+        $('.bill_data .title_block').append($(item).html())
+      }
+    })
+    $('#shipto>tbody>tr:nth-of-type(2)>td').each(function (i, item) {
+      if (i === 0) {
+        $('.ship_data').append($(item).html())
+      } else {
+        $('.bill_data').append($(item).html())
+      }
+    })
+    $('.ship_data').append($('#shipto>tbody>tr:nth-of-type(3)>td>div'))
+    $('.user_info').after($('#shipto>tbody>tr:nth-of-type(5)>td>div'))
+    $('.user_info').after($('#shipto>tbody>tr:nth-of-type(6)>td>div'))
+    $('a.action-button-orange').prepend(btnArrowSvg)
+  }
+
   headerChange() {
     const style = /* html */ `
       <style>
@@ -2053,6 +2293,9 @@ class mobileDesign {
         step = 4
         break
       case '/cgi-bin/check-out.cgi':
+        step = 5
+        break
+      case '/cgi-bin/review-order.cgi':
         step = 5
         break
       default:
@@ -2392,7 +2635,9 @@ const start = setInterval(function () {
     const device = window.isMobile()
     const page = window.location.pathname
     if (device === 'mobile') {
-      new mobileDesign(page)
+      setTimeout(() => {
+        new mobileDesign(page)
+      }, 100)
     }
   }
 })
