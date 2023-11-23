@@ -2089,6 +2089,9 @@ class mobileDesign {
           align-items: center;
           column-gap: 12px;
         }
+        a.action-button-orange span {
+          padding: 0 !important;
+        }
       </style>
     `
 
@@ -2123,7 +2126,7 @@ class mobileDesign {
     $('.ship_data').append($('#shipto>tbody>tr:nth-of-type(3)>td>div'))
     $('.user_info').after($('#shipto>tbody>tr:nth-of-type(5)>td>div'))
     $('.user_info').after($('#shipto>tbody>tr:nth-of-type(6)>td>div'))
-    $('a.action-button-orange').prepend(btnArrowSvg)
+    $('a.action-button-orange').append(btnArrowSvg)
   }
 
   headerChange() {
