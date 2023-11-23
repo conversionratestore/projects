@@ -1841,7 +1841,7 @@ function init() {
         }
       }, 100);
       let findInputNullСoupon1Month = setInterval(() => {
-        if (!document.querySelector("[name='sidebar[coupon_redemption][form][code]']") && document.querySelector(".views-field.views-field-title").innerHTML.match("1-Month") && document.querySelector(".coupon-redemption-form__coupons td").textContent.includes("yoga3ny") && document.querySelector(".views-field.views-field-total-price__number").textContent !== "$8.33") {
+        if (!document.querySelector("[name='sidebar[coupon_redemption][form][code]']") && (document.querySelector(".views-field.views-field-title").innerHTML.match("1-Month") || document.querySelector(".views-field.views-field-title").innerHTML.match("DYWM Subscription, Monthly")) && document.querySelector(".coupon-redemption-form__coupons td").textContent.includes("yoga3ny") && document.querySelector(".views-field.views-field-total-price__number").textContent !== "$8.33") {
           clearInterval(findInputNullСoupon1Month);
           console.log(`findInput`);
           value = 8.33;
