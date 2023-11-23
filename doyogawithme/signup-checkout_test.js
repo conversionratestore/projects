@@ -1575,29 +1575,62 @@ function init() {
       }
       document.querySelector(".form-item-commerce-donation-pane-donation-toggler label").innerHTML = `I'd like to make a donation to support instructors and free content creation `;
 
+      let value = "";
       if (document.querySelector(".views-field.views-field-total-price__number").innerHTML.includes("$108.99")) {
         let price = document.querySelector(".views-field.views-field-total-price__number");
+        value = 108.99;
         if (!document.querySelector(".c-green")) {
           price.innerHTML = `
-                      <p><span>$167.88</span> ${price.innerHTML}</p>
-                      <p class="c-green">Just $9.08/month!</p>`;
+                      <p><span class="old_price_var">$167.88</span> <b class="current_price">${price.innerHTML}</b></p>
+                      <p class="c-green">Just $<b class="green_price">${(value / 12).toFixed(2)}</b>/month!</p>`;
         }
 
         document.querySelector(".views-field.views-field-title").innerHTML = `1-Year DYWM Subscription`;
         if (!document.querySelector(".saved_block")) {
-          document.querySelector(".order-total-line__total").insertAdjacentHTML("afterend", ` <div class="saved_block">You just saved <span class="saved_var">$75.24</span> (<span class="percent_var">45%</span> off)</div>`);
+          document.querySelector(".order-total-line__total").insertAdjacentHTML("afterend", ` <div class="saved_block">You just saved <span class="saved_var">$58.89</span> (<span class="percent_var">35%</span> off)</div>`);
         }
 
-        if (document.querySelector("#edit-sidebar-order-summary-summary .order-total-line__adjustment--promotion") && document.querySelector(".order-total-line.order-total-line__total .order-total-line-value")?.textContent === "$92.64") {
-          document.querySelector(".saved_var").textContent = "$75.24";
-          document.querySelector(".percent_var").textContent = "45%";
-          if (document.querySelector(".views-field.views-field-total-price__number") && !document.querySelector(".c-green")) {
-            document.querySelector(".views-field.views-field-total-price__number").innerHTML = '<p><span>$167.88</span> $92.64</p> <p class="c-green">Just $7,83/month!</p>';
+        let l = setInterval(() => {
+          if (document.querySelector(".saved_var")?.textContent !== "$75.24" && document.querySelector(".order-total-line.order-total-line__total .order-total-line-value")?.textContent === "$92.64") {
+            clearInterval(l);
+            value = 92.64;
+            document.querySelector(".saved_var").textContent = "$75.24";
+            document.querySelector(".percent_var").textContent = "45%";
+            document.querySelectorAll(".current_price").forEach((el) => {
+              el.textContent = "$92.64";
+            });
+            document.querySelector(".green_price").textContent = `${(value / 12).toFixed(2)}`;
+            if (document.querySelector(".views-field.views-field-total-price__number") && !document.querySelector(".c-green")) {
+              document.querySelector(".views-field.views-field-total-price__number").innerHTML = '<p><span>$167.88</span> $92.64</p> <p class="c-green">Just $7,83/month!</p>';
+            }
           }
-        }
+        }, 100);
       } else if (document.querySelector(".views-field.views-field-total-price__number").innerHTML.includes("$13.99 ")) {
         document.querySelector(".views-field.views-field-title").innerHTML = `1-Month DYWM Subscription`;
       }
+
+      let findInputNullСoupon1 = setInterval(() => {
+        if (!document.querySelector("[name='sidebar[coupon_redemption][form][code]']") && document.querySelector(".coupon-redemption-form__coupons td").textContent.includes("yoga40bf") && document.querySelector(".old_price_var").textContent !== `$108.99`) {
+          clearInterval(findInputNullСoupon1);
+          console.log(`findInput`);
+          document.querySelectorAll(".current_price").forEach((el) => {
+            el.textContent = "65.39";
+          });
+          value = 65.39;
+          diffValue = 108.99 - value;
+          percentVar = (diffValue * 100) / 108.99;
+          if (document.querySelector(".green_price")) {
+            console.log(value, `value`);
+            document.querySelector(".green_price").textContent = `${(value / 12).toFixed(2)}`;
+          }
+
+          if (document.querySelector(".saved_var")) {
+            document.querySelector(".old_price_var").textContent = `$108.99`;
+            document.querySelector(".saved_var").textContent = `${diffValue.toFixed(2)}`;
+            document.querySelector(".percent_var").textContent = `${percentVar.toFixed(0)}%`;
+          }
+        }
+      }, 100);
 
       if (document.querySelector("#edit-coupon-redemption") != null && document.querySelector(".btn_got_coupon") == null) {
         document.querySelector("#edit-coupon-redemption").insertAdjacentHTML(
