@@ -373,7 +373,7 @@ ul.calendar_header_list li p {
 }
 .calendar_body iframe{
       height: 100%;
-    min-height: 505px;
+    min-height: 600px;
 }
 .calendar_footer{
   padding: 20px 32px;
@@ -525,6 +525,7 @@ line-height: 25px;
 }
 #ourPatientsLoveTrebleHealthBlock .slick-arrow.slick-disabled {
   opacity: 0.2;
+  pointer-events: none;
 }
 #ourPatientsLoveTrebleHealthBlock .next_btn.slick-arrow {
   right: 0;
@@ -1888,7 +1889,7 @@ p.mob_txt{
   </ul>
 </div>
 <div class="calendar_body">
-  <iframe src="https://calendly.com/treble-health-audiologists/tinnitus-relief-discovery?embed_domain=treblehealth.com&amp;embed_type=Inline&amp;hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;primary_color=4622da&amp;utm_term=1261762004.1699950023&utm_content=funnel_1" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-14="true" data-gtm-yt-inspected-60173040_75="true"></iframe>
+ <iframe src="https://calendly.com/treble-health-audiologists/tinnitus-relief-discovery?embed_domain=treblehealth.com&amp;embed_type=Inline&amp;hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;primary_color=4622da&amp;utm_term=1261762004.1699950023&utm_content=funnel_1" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-14="true" data-gtm-yt-inspected-60173040_75="true"></iframe>
 </div>
 <div class="calendar_footer">
   <div class="calendar_contacts">
@@ -1978,7 +1979,7 @@ p.mob_txt{
           </ul>
         </div>
         <div class="calendar_body no_sticky">
-          <iframe src="https://calendly.com/treble-health-audiologists/tinnitus-relief-discovery?embed_domain=treblehealth.com&amp;embed_type=Inline&amp;hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;primary_color=4622da&amp;utm_term=1261762004.1699950023" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-14="true" data-gtm-yt-inspected-60173040_75="true"></iframe>
+ <iframe src="https://calendly.com/treble-health-audiologists/tinnitus-relief-discovery?embed_domain=treblehealth.com&amp;embed_type=Inline&amp;hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;primary_color=4622da&amp;utm_term=1261762004.1699950023&utm_content=funnel_1" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-14="true" data-gtm-yt-inspected-60173040_75="true"></iframe>
         </div>
         <div class="calendar_footer">
           <div class="calendar_contacts">
@@ -2571,6 +2572,15 @@ p.mob_txt{
               }
             });
           });
+
+          // document.querySelectorAll('iframe').forEach(el => {
+          //   el.addEventListener('click', i => {
+          //     console.log(i.target, `i`);
+          //     if (!i.target) {
+          //       el.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+          //     }
+          //   });
+          // });
         }
       }, 100);
     }
@@ -3043,7 +3053,7 @@ p.mob_txt{
             if (e.currentTarget.closest('#heroBlock')) {
               pushDataLayer(['exp_call_book_page_link_reviews_click', 'Click reviews', 'Link', 'First screen']);
             }
-            const headerOffset = 50;
+            const headerOffset = 60;
             const elementPosition = document.querySelector('#trustpilotBlock').getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
             window.scrollTo({
