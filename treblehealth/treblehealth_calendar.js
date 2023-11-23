@@ -1819,7 +1819,7 @@ p.mob_txt{
         <a class="tel_link" href="tel:3369414041">
           <img src="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" alt="" data-src-desktop-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" data-src-mobile-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" />
           (336) 941-4041</a>
-          <button class="grab_your_free_btn">Book a Free Call</button>
+          <button class="grab_your_free_btn">Grab a Free Seat</button>
       </div>
     </div>
   </div>
@@ -2007,21 +2007,21 @@ p.mob_txt{
             <p class="video_descr" data-name="Melinda">Melinda had a <b>serious level of tinnitus</b>. She worked with Treble Health and found relief in just <b>47 Days</b>.</p>
             <div class="video_link_wrapp">
               <img src="https://conversionratestore.github.io/projects/treblehealth/img/melinda.png" alt="woman" />
-             <iframe width="560" height="315" src="https://www.youtube.com/embed/NMEISemQYcU?si=apKbuTqO7fQzd_eR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+             <iframe width="560" height="315" src="https://www.youtube.com/embed/NMEISemQYcU?si=apKbuTqO7fQzd_eR&enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
           </div>
           <div class="video_item">
             <p class="video_descr" data-name="Randy">Randy <b>lowered his tinnitus and got his life back</b> working with Treble Health over a <b>three-month</b> time period.</p>
             <div class="video_link_wrapp">
               <img src="https://conversionratestore.github.io/projects/treblehealth/img/randy.png" alt="man" />
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/PaJhaIUSSfQ?si=-LEXqse9UgrVqPtO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/PaJhaIUSSfQ?si=-LEXqse9UgrVqPtO&enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
           </div>
           <div class="video_item">
             <p class="video_descr" data-name="James">James had severe tinnitus. He worked with Treble Health and <b>improved his condition by 75%.</b></p>
             <div class="video_link_wrapp">
               <img src="https://conversionratestore.github.io/projects/treblehealth/img/james.png" alt="man" />
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/8EwDVQ0gKVY?si=MmoerJmfnQog73GA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/8EwDVQ0gKVY?si=MmoerJmfnQog73GA&enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
           </div>
         </div>
@@ -2535,7 +2535,11 @@ p.mob_txt{
               },
             ],
           });
-          slider.on('swipe', function () {});
+          slider.on('afterChange', function () {
+            document.querySelectorAll('iframe').forEach(el => {
+              el.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+            });
+          });
           document.querySelectorAll('#ourPatientsLoveTrebleHealthBlock .slick-dots li').forEach(el => {
             el.addEventListener('click', (i, idx) => {
               pushDataLayer([
@@ -3040,7 +3044,7 @@ p.mob_txt{
               pushDataLayer(['exp_call_book_page_link_reviews_click', 'Click reviews', 'Link', 'First screen']);
             }
             const headerOffset = 50;
-            const elementPosition = document.querySelector('#verifiedReviewsOnGoogleBlock').getBoundingClientRect().top;
+            const elementPosition = document.querySelector('#trustpilotBlock').getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
             window.scrollTo({
               top: offsetPosition,
