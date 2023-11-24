@@ -46,9 +46,7 @@ function checkFocusTime(selector, event, location) {
 }
 
 const device = window.innerWidth < 769 ? 'mobile' : 'desktop'
-if (localStorage.getItem('body-height-cm') === '') {
-  localStorage.setItem('body-height-cm', '173')
-}
+
 class improveCalculatorSteps {
   constructor(device) {
     this.d = device
@@ -73,17 +71,24 @@ class improveCalculatorSteps {
     if (window.location.href.includes('/body-risk-tip')) {
       const style = /* html */ `
         <style class="body-risk">
-          [class*=childrenWrapper]>div:not([class*=buttonWrapper]),
-          [class*=childrenWrapper]>div:not([class*=buttonWrapper]) p {
-            text-align: center;
-          }
-          [class*=childrenWrapper]>div:not([class*=buttonWrapper]) img {
-            width: 142px;
-            height: 142px;
+          @media (min-width: 769px) {
+            [class*=childrenWrapper]>div:not([class*=buttonWrapper]),
+            [class*=childrenWrapper]>div:not([class*=buttonWrapper]) p {
+              text-align: center;
+            }
+            [class*=childrenWrapper]>div:not([class*=buttonWrapper]) img {
+              width: 142px;
+              height: 142px;
+            }
           }
         </style>
       `
       document.head.insertAdjacentHTML('beforeend', style)
+      if (localStorage.getItem('body-height-cm') === '' && localStorage.getItem('gender') === 'male') {
+        localStorage.setItem('body-height-cm', '173')
+      } else if (localStorage.getItem('body-height-cm') === '' && localStorage.getItem('gender') === 'female') {
+        localStorage.setItem('body-height-cm', '167')
+      }
     }
   }
 
@@ -157,13 +162,15 @@ class improveCalculatorSteps {
     let heightByGenger = {
       metric: 173,
       imperial: 68,
-      imperialShow: '5 ft 8 in'
+      imperialShow: '5 ft 8 in',
+      text: 'men'
     }
 
     if (localStorage.getItem('gender') !== 'male') {
       heightByGenger.metric = 167
       heightByGenger.imperial = 63
       heightByGenger.imperialShow = '5 ft 3 in'
+      heightByGenger.text = 'women'
     }
 
     const baseRangeCm = {
@@ -390,7 +397,7 @@ class improveCalculatorSteps {
               <rect width="24" height="24" rx="12" fill="#5E626B"/>
               <path d="M11.7023 8L10.5761 15H8L10.0324 8H11.7023ZM16 8L14.8738 15H12.2977L14.3301 8H16Z" fill="white"/>
             </svg>
-            <p>The most common height among men is <span>${
+            <p>The most common height among ${heightByGenger.text} is <span>${
               localStorage.getItem('body-height-weight-unitSystem') === 'imperial'
                 ? heightByGenger.imperialShow
                 : heightByGenger.metric + ' cm'
@@ -841,13 +848,21 @@ class improveCalculatorSteps {
       if (window.location.href.includes('/body-risk-tip') && !$el('.body-risk')) {
         const style = /* html */ `
         <style class="body-risk">
-          [class*=childrenWrapper]>div:not([class*=buttonWrapper]),
-          [class*=childrenWrapper]>div:not([class*=buttonWrapper]) p {
-            text-align: center;
+          [class*=childrenWrapper] {
+            justify-content: flex-start;
           }
-          [class*=childrenWrapper]>div:not([class*=buttonWrapper]) img {
-            width: 142px;
-            height: 142px;
+          [class*=nextButton] {
+            margin-top: 70px;
+          }
+          @media (min-width: 769px) {
+            [class*=childrenWrapper]>div:not([class*=buttonWrapper]),
+            [class*=childrenWrapper]>div:not([class*=buttonWrapper]) p {
+              text-align: center;
+            }
+            [class*=childrenWrapper]>div:not([class*=buttonWrapper]) img {
+              width: 142px;
+              height: 142px;
+            }
           }
         </style>
       `
