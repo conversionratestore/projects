@@ -938,9 +938,11 @@ class Flow {
     }
 
     if (step === 5) {
-      $('.crs_questions').removeClass('show')
-      $('.crs_request').addClass('show')
-      $('.crs_next').text('that’s my request')
+      // $('.crs_questions').removeClass('show')
+      // $('.crs_request').addClass('show')
+      // $('.crs_next').text('that’s my request')
+      $('.crs_flow_wrapper').removeClass('active')
+      $('.crs_flow_result').addClass('active')
       let result = tableResult.filter(
         el =>
           el[0] === this.answers[0] &&
@@ -972,13 +974,6 @@ class Flow {
 
       $('.crs_pack_info img').attr('src', imgSrc[packs - 2])
 
-      console.log(this.answers)
-      console.log(result)
-    }
-
-    if (step === 6) {
-      $('.crs_flow_wrapper').removeClass('active')
-      $('.crs_flow_result').addClass('active')
       let p = tableResult
         .filter(
           el =>
@@ -997,6 +992,9 @@ class Flow {
         )
         this.buyProduct(p)
       })
+
+      console.log(this.answers)
+      console.log(result)
     }
   }
 
