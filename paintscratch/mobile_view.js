@@ -187,6 +187,7 @@ class mobileDesign {
           margin: 0;
           font-size: 14px;
           line-height: 22px;
+          overflow-wrap: break-word;
         }
 
         #page .slick-slide {
@@ -1143,7 +1144,7 @@ class mobileDesign {
               transform: translate(-50%, -50%) rotate(-45deg);
             }
             .slide_cart>button {
-              margin-top: auto;
+              margin-top: 16px;
               border-radius: 4px;
               border: 2px solid #E68626;
               background: linear-gradient(180deg, #FFC842 0%, #F48818 100%);
@@ -1161,7 +1162,7 @@ class mobileDesign {
               align-self: end;
             }
             .slide_cart ul {
-              max-height: calc(100vh - 180px);
+              max-height: calc(100% - 180px);
               overflow-y: auto;
             }
             .slide_cart ul li {
@@ -1253,6 +1254,7 @@ class mobileDesign {
         drawCart()
         $('.overlay').addClass('active')
         $('.slide_cart').css('right', '0')
+        $('body').css('overflow', 'hidden')
       })
 
       $('.slide_cart ul').on('click', '.minus', function () {
@@ -1321,6 +1323,7 @@ class mobileDesign {
 
       $('.slide_cart .close').on('click', function () {
         $('.slide_cart').css('right', '-100%')
+        $('body').css('overflow', 'auto')
         setTimeout(() => {
           $('.overlay').removeClass('active')
         }, 200)
@@ -1751,7 +1754,7 @@ class mobileDesign {
         <p>Free shipping on orders over $149.00</p>
         <p class="total">Total:<span>${$('#total_and_checkout .right_side_text').text()}</span></p>
         <div class="btns">
-          <button class="checkout" onclick="CheckOut()">Secure checkout${btnArrowSvg}</button>
+          <button class="checkout">Secure checkout${btnArrowSvg}</button>
           <div class="or"><span>OR</span></div>
           <button class="paypal">Check out with <img src="${git}/PayPal.svg" alt="paypal"></button>
         </div>
@@ -1764,6 +1767,10 @@ class mobileDesign {
     $('.total_block .paypal').on('click', function (e) {
       e.preventDefault()
       PopPaypalCheckout()
+    })
+    $('.total_block .checkout').on('click', function (e) {
+      e.preventDefault()
+      CheckOut()
     })
   }
 
