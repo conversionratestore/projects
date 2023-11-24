@@ -548,8 +548,15 @@ class mobileDesign {
   }
 
   productsPage() {
+    const vh = window.innerHeight / 100
+    document.documentElement.style.setProperty('--vh', `${vh}px`)
+
     const style = /* html */ `
       <style>
+        body {
+          min-height: 100vh;
+          min-height: calc(var(--vh, 1vh) * 100);
+        }
         #basecoat_required + div {
           width: 100% !important;
           position: relative;
