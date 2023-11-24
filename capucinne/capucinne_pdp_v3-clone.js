@@ -2579,9 +2579,12 @@ button.syte-discovery.syte-integration-injected .button-text{
         }, 100);
       }
       // add txt Klarna
-      if (document.querySelector("#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b") && !document.querySelector(".new_txt_klarna") && document.querySelector("klarna-placement div")) {
-        document.querySelector("#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b").insertAdjacentHTML("beforeend", `<span class="new_txt_klarna"><b>Pay nothing today.</b> The annual percentage rate is <b>0%</b></span>`);
-      }
+      let lookForDiv = setInterval(() => {
+        if (document.querySelector("#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b") && !document.querySelector(".new_txt_klarna") && document.querySelector("klarna-placement div")) {
+          clearInterval(lookForDiv);
+          document.querySelector("#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b").insertAdjacentHTML("beforeend", `<span class="new_txt_klarna"><b>Pay nothing today.</b> The annual percentage rate is <b>0%</b></span>`);
+        }
+      }, 100);
       //replace select
       if (!document.querySelector(".product-block--sales-point + .shopify-block.shopify-app-block + .product-block").classList.contains("before_lable_wrapp")) {
         document.querySelector(".product-block--sales-point + .shopify-block.shopify-app-block + .product-block").classList.add("before_lable_wrapp");
@@ -4559,9 +4562,9 @@ let startFunkFastNav = setInterval(() => {
       function toggleFilter(flag, isNavbar) {
         const isActive = document.querySelector('.filter-form [value="Faster availability"]').checked;
         if (isNavbar) {
-          pushDataLayer(['exp_fast_prod_nav_rad_listfilt_avail', `${isActive ? 'SetActive' : 'SetInactive'} - Click`, 'Radio button', 'Listing Filter']);
+          pushDataLayer(['exp_fast_prod_nav_rad_listfilt_avail', `${isActive ? 'SetInactive' : 'SetActive'} - Click`, 'Radio button', 'Listing Filter']);
         } else {
-          pushDataLayer(['exp_fast_prod_nav_rad_listing_avail', `${isActive ? 'SetActive' : 'SetInactive'} - Click`, 'Radio button', 'Listing']);
+          pushDataLayer(['exp_fast_prod_nav_rad_listing_avail', `${isActive ? 'SetInactive' : 'SetActive'} - Click`, 'Radio button', 'Listing']);
         }
   
 
