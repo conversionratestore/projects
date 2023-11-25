@@ -548,15 +548,8 @@ class mobileDesign {
   }
 
   productsPage() {
-    const vh = window.innerHeight / 100
-    document.documentElement.style.setProperty('--vh', `${vh}px`)
-
     const style = /* html */ `
       <style>
-        body {
-          min-height: 100vh;
-          min-height: calc(var(--vh, 1vh) * 100);
-        }
         #basecoat_required + div {
           width: 100% !important;
           position: relative;
@@ -1104,7 +1097,7 @@ class mobileDesign {
               top: 0;
               left: 0;
               width: 100vw;
-              height: 100vh;
+              height: 100dvh;
               background-color: rgba(0, 0, 0, 0.5);
               z-index: 999;
               display: none;
@@ -1117,7 +1110,7 @@ class mobileDesign {
               top: 0;
               right: -100%;
               width: calc(100vw - 20px);
-              height: 100vh;
+              height: 100dvh;
               background-color: #fff;
               z-index: 1000;
               padding: 15px;
