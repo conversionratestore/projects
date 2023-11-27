@@ -1255,6 +1255,7 @@ class mobileDesign {
         $('.overlay').addClass('active')
         $('.slide_cart').css('right', '0')
         $('body').css('overflow', 'hidden')
+        pushDataLayer('exp_mob_redes_view_cart_st_btn', 'View Shopping cart', 'Button', 'Sticky section')
       })
 
       $('.slide_cart ul').on('click', '.minus', function () {
@@ -1266,6 +1267,7 @@ class mobileDesign {
           qty--
           $(this).next().val(qty).change()
         }
+        pushDataLayer('exp_mob_redes_slide_dec_qnt_btn', 'Decrease qnt', 'Button', 'Slide cart')
       })
 
       $('.slide_cart ul').on('click', '.plus', function () {
@@ -1274,6 +1276,7 @@ class mobileDesign {
           qty++
           $(this).prev().val(qty).change()
         }
+        pushDataLayer('exp_mob_redes_slide_inc_qnt_btn', 'Inscrease qnt', 'Button', 'Slide cart')
       })
 
       $('.slide_cart ul').on('change', 'input', function () {
@@ -1297,6 +1300,7 @@ class mobileDesign {
         console.log(qty, name)
         AddCart(qty, name)
         checkCart()
+        pushDataLayer('exp_mob_redes_add_to_cart_btn', 'Add to cart', 'Button', 'Products page')
       })
 
       $('.add-to-cart').on('click', function (e) {
@@ -1311,6 +1315,7 @@ class mobileDesign {
           qty--
           $(this).next().val(qty)
         }
+        pushDataLayer('exp_mob_redes_dec_qnt_btn', 'Decrease qnt', 'Button', 'Products page')
       })
 
       $('.qty_selector span:last-of-type').on('click', function () {
@@ -1319,6 +1324,7 @@ class mobileDesign {
           qty++
           $(this).prev().val(qty)
         }
+        pushDataLayer('exp_mob_redes_inc_qnt_btn', 'Inscrease qnt', 'Button', 'Products page')
       })
 
       $('.slide_cart .close').on('click', function () {
@@ -1327,10 +1333,12 @@ class mobileDesign {
         setTimeout(() => {
           $('.overlay').removeClass('active')
         }, 200)
+        pushDataLayer('exp_mob_redes_close_bnt', 'Close', 'Button', 'Slide cart')
       })
 
       $('.to_checkout').on('click', function () {
         Cart()
+        pushDataLayer('exp_mob_redes_to_checkout_btn', 'To checkout', 'Button', 'Slide cart')
       })
     } else if (this.page === '/cgi-bin/guided-order.cgi') {
       $('#ordertotals a.action-button-orange').append(btnArrowSvg)
@@ -1349,6 +1357,7 @@ class mobileDesign {
           qty--
           $(this).next().val(qty).change()
         }
+        pushDataLayer('exp_mob_redes_dec_qnt_btn', 'Decrease qnt', 'Button', 'Products page guided')
       })
 
       $('.input_block span:last-of-type').on('click', function () {
@@ -1357,6 +1366,7 @@ class mobileDesign {
           qty++
           $(this).prev().val(qty).change()
         }
+        pushDataLayer('exp_mob_redes_inc_qnt_btn', 'Inscrease qnt', 'Button', 'Products page guided')
       })
     }
 
@@ -2444,6 +2454,18 @@ class mobileDesign {
       } else {
         document.querySelector('#bottom_footer_text').insertAdjacentHTML('beforebegin', block)
       }
+
+      $('.touch_links ul').on('click', 'a', function (e) {
+        pushDataLayer('exp_mob_redes_link_touch_up', $(this).text().trim(), 'Link', 'Touch Up')
+      })
+      $('.touch_links ul+a').on('click', function (e) {
+        pushDataLayer(
+          'exp_mob_redes_link_order_cart_touch_up',
+          'Order car touch up paint for all other Makes and Models',
+          'Link',
+          'Order Car Touch Up'
+        )
+      })
     }, 500)
     document.head.insertAdjacentHTML('beforeend', style)
   }
@@ -2626,6 +2648,14 @@ class mobileDesign {
         document.querySelector('#bottom_footer_text').insertAdjacentHTML('beforebegin', block)
       }
 
+      $('#before_footer .service a').on('click', function (e) {
+        pushDataLayer('exp_mob_redes_link_cus_ser', $(this).attr('title'), 'Link', 'Customer service')
+      })
+
+      $('#before_footer .links a').on('click', function (e) {
+        pushDataLayer('exp_mob_redes_link_use_lin', $(this).attr('title'), 'Link', 'Useful links')
+      })
+
       document.head.insertAdjacentHTML('beforeend', style)
       $('.slider_wrapper').slick({
         dots: true,
@@ -2647,6 +2677,7 @@ const start = setInterval(function () {
     if (device === 'mobile') {
       setTimeout(() => {
         new mobileDesign(page)
+        pushDataLayer('exp_mob_redes_loaded', 'loaded')
       }, 100)
     }
   }
