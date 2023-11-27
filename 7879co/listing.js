@@ -178,7 +178,6 @@ class ListingUpdate {
         }
         .grid > .col-span-6 .flex > .flex.hidden {
           color: var(--Grey, #484850);
-          font-family: 'RoobertTRIAL-normal-400';
           font-size: 14px;
           line-height: 20px;
         }
