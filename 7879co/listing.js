@@ -3,18 +3,6 @@ const dir = 'https://conversionratestore.github.io/projects/7879co/img/'
 const $$el = (selector) => document.querySelectorAll(selector)
 const $el = (selector) => document.querySelector(selector)
 
-const pushDataLayer = (name, desc, type = '', loc = '') => {
-  window.dataLayer = window.dataLayer || []
-  window.dataLayer.push({
-    event: 'event-to-ga4',
-    event_name: name,
-    event_desc: desc,
-    event_type: type,
-    event_loc: loc
-  })
-  console.log(`${name} / ${desc} / ${type} / ${loc}`)
-}
-
 const clarityInterval = setInterval(function () {
   if (typeof clarity == 'function') {
     clearInterval(clarityInterval)
@@ -48,14 +36,6 @@ class ListingUpdate {
 
   init() {
     const globalMutation = new MutationObserver((mutations) => {
-      // mutations.forEach((mutation) => {
-      //   if (this.checkPageUrl() === 'collections' || this.checkPageUrl() === 'shop') {
-     
-      //     this.styleAppend()
-      //     this.addInfo()
-      //     this.sortPrice()
-      //   }
-      // })
       if (this.checkPageUrl() === 'shop') {
      
         this.styleAppend()
@@ -178,6 +158,7 @@ class ListingUpdate {
         }
         .grid > .col-span-6 .flex > .flex.hidden {
           color: var(--Grey, #484850);
+          font-family: 'RoobertTRIAL-normal-400';
           font-size: 14px;
           line-height: 20px;
         }
@@ -235,6 +216,59 @@ class ListingUpdate {
     } 
   }
 
+  handleVisibility(el, eventParams) {
+    let isVisible = false;
+    let entryTime;
+    const config = {
+      root: null,
+      threshold: 0, // Trigger when any part of the element is out of viewport
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (!isVisible) {
+            // The element has become visible
+            isVisible = true;
+            entryTime = new Date().getTime();
+          }
+        } else if (isVisible) {
+          // The element is out of the viewport, calculate visibility duration
+          isVisible = false;
+          const exitTime = new Date().getTime();
+          const visibilityDuration = (exitTime - entryTime) / 1000; // Convert to seconds
+          const roundedDuration = Math.round(visibilityDuration);
+
+          if (roundedDuration) {
+            const eventData = eventParams;
+            eventData[1] = roundedDuration;
+            this.pushDataLayer(eventData);
+            observer.disconnect();
+          }
+        }
+      });
+    }, config);
+
+    observer.observe(el);
+  }
+
+  pushDataLayer([event_name, event_desc, event_type, event_loc]) {
+    // Send a Google Analytics event
+    const eventData = {
+      event: "event-to-ga4",
+      event_name,
+      event_desc,
+      event_type,
+      event_loc,
+    };
+  
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push(eventData);
+    console.log( event_name + ' / ' +
+      event_desc + ' / ' +
+      event_type + ' / ' +
+      event_loc)
+  }
   addInfo() {
     const htmlInfo = `
     <div class=" crs_info">
@@ -251,7 +285,7 @@ class ListingUpdate {
     if ($el('.crs_info')) return
     $el('.mobile-view').parentElement.insertAdjacentHTML('afterend', htmlInfo)
 
-
+    this.handleVisibility($el('.crs_info'), ['exp_plimp_lifetime_war_und_fil', ' {{focusTime}} ', 'Visibility ', 'Under the filter']);
   }
   sortPrice() {
     const htmlSort = `
@@ -371,6 +405,7 @@ class ListingUpdate {
           $el('.crs_sort').classList.remove('active')
           $el('.crs_btn_sort').classList.remove('border-b')
 
+          this.pushDataLayer(['exp_plimp_sort_filter', item.parentElement.innerText, 'Menu item', 'Sort filter']);
         }
       })
     })
@@ -400,12 +435,18 @@ class ListingUpdate {
             </div>
           </div>`)
 
+          this.handleVisibility($el('.crs_lifetime'), ['exp_plimp_lifetime_war_und_prod', ' {{focusTime}} ', 'Visibility ', 'Under the products']);
+
           item.parentElement.insertAdjacentHTML('afterend', faq)
 
           $$el('.crs_faq button').forEach(button => {
             button.addEventListener('click', () => {
               button.closest('.border-b').classList.toggle('hide')
+              this.pushDataLayer(['exp_plimp_faq_button', 'FAQ', 'Button', button.innerText]);
             })
+
+            this.handleVisibility(button, ['exp_plimp_faq_visibility', ' {{focusTime}} ', 'Visibility ', button.innerText]);
+
           })
         }
 
