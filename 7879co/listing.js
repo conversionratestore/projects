@@ -103,7 +103,9 @@ class ListingUpdate {
         }
         [name="crs_radio"],
         .crs_info+.grid > .col-span-12 .trustpilot-widget,
-        .crs_hidden {
+        .crs_btn_sort + button,
+        .crs_sort + button:not(.crs_btn_sort),
+        .crs_sort + button:not(.crs_btn_sort) + ul {
           display: none;
         }
         .grid > .col-span-6 .flex > .flex.hidden {
@@ -131,6 +133,7 @@ class ListingUpdate {
           font-weight: 400;
           line-height: 22px;
           z-index: 999;
+          width: fit-content;
         }
         .crs_sort.active {
           opacity: 1;
@@ -253,6 +256,10 @@ class ListingUpdate {
   }
   sortPrice() {
     const htmlSort = `
+    <button type="button" class="crs_btn_sort relative h-10 w-full px-3 text-left pr-10 border-black">
+      <p class="text-p block truncate ${media ? 'font-medium': ''}">${media ? 'SORT' : 'Sort by'}</p>
+      <span class="absolute inset-y-0 flex h-full items-center justify-center right-3 w-6 border-black"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current"><path d="M16.75 10.75L12 15.25L7.25 10.75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+    </button>
     <div class="crs_sort absolute flex w-full flex-col gap-4 bg-white py-6 px-6">
       <label class="flex items-center gap-4">
           <input type="radio" name="crs_radio" class="crs_low">
@@ -290,9 +297,9 @@ class ListingUpdate {
     let buttonSort = ''
 
     if (media) {
-      buttonSort = $el('.mobile-view button.relative')
+      buttonSort = $el('.mobile-view button.relative:not(.crs_btn_sort)')
     } else {
-      $$el('.desktop-view button.relative').forEach(item => {
+      $$el('.desktop-view button.relative:not(.crs_btn_sort)').forEach(item => {
         if (item.innerText.includes('Weight high to low') ||
         item.innerText.includes('Weight low to high') ||
         item.innerText.includes('New in') ||
@@ -307,16 +314,12 @@ class ListingUpdate {
       })
     }
 
-    console.log(buttonSort)
-
-    if (buttonSort == '') return
-
-    buttonSort.parentElement.insertAdjacentHTML('afterend', htmlSort)
+    buttonSort.parentElement.insertAdjacentHTML('afterbegin', htmlSort)
 
     $$el('.crs_sort input').forEach((item, i) => {
       item.addEventListener('input', (e) => {
         e.stopImmediatePropagation()
-        
+
         const elements = $$el('.col-span-6 .flex > .hidden > p.font-semibold');
         if (item.checked) {
           if (i < 2) {
@@ -336,14 +339,14 @@ class ListingUpdate {
             });
   
             elementsArray.forEach((element, index) => {
-              const isIndexEven = index % 2 === 0;
+              const isIndexEven = index % (media ? 2 : 4) === 0;
 
               element.closest('.col-span-6').style.order = index + 1;
               
               if (element.closest('.col-span-6').nextElementSibling && 
                 element.closest('.col-span-6').nextElementSibling.classList.contains('row-span-1')
               ) {
-                element.closest('.col-span-6').nextElementSibling.style.order = isIndexEven ? media ? index + 2 : index + 3 : index + 1;
+                element.closest('.col-span-6').nextElementSibling.style.order = index + (isIndexEven ? 2 : 1);
               }
             });
 
@@ -367,20 +370,18 @@ class ListingUpdate {
           }
 
           $el('.crs_sort').classList.remove('active')
+          $el('.crs_btn_sort').classList.remove('border-b')
 
         }
       })
     })
 
-    buttonSort.addEventListener('click', () => {
+    $el('.crs_btn_sort').addEventListener('click', (e) => {
+      e.currentTarget.classList.toggle('border-b')
       $el('.crs_sort').classList.toggle('active')
     })
   }
   fixFormAndBlocks() {
-    if ($el('.border-platinum-18 button.relative p')) {
-      $el('.border-platinum-18 button.relative p').innerHTML = 'SORT'
-     
-    }
 
     $$el('.col-span-12 > div').forEach(item => {
       if (item.innerText.includes('Hallmarked by Assay') ) {
@@ -418,8 +419,6 @@ class ListingUpdate {
           line-height: 22px;
           font-family: 'Roobert TRIAL', sans-serif;
           text-align: left;`
-
-
        
           if (!media) {
             el.style = 'width: 25%; padding: 24px;'
@@ -436,23 +435,7 @@ class ListingUpdate {
           item.style = 'padding: 0!important;gap: 0;'
         }
       }
-
     })
-
-    if ($el('.crs_sort') && 
-      !$el('ul.crs_hidden') &&
-      $el('.crs_sort').parentElement.querySelector('ul:not(.crs_sort)')
-    ) {
-      $el('.crs_sort').parentElement.querySelector('ul:not(.crs_sort)').classList.add('crs_hidden')
-
-    }
-    
-    if (!media && 
-      $el('.crs_sort')
-    ) {
-      $el('.crs_sort').parentElement.querySelector('button > p').innerText = 'Sort by'
-    }
-
   }
 }
 
