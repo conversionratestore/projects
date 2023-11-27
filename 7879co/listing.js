@@ -136,6 +136,9 @@ class ListingUpdate {
           opacity: 1;
           pointer-events: auto;
         }
+        .crs_check {
+          pointer-events: none;
+        }
         .crs_check > span {
             opacity: 0;
             background-color: #000;
@@ -146,6 +149,9 @@ class ListingUpdate {
         }
         .crs_sort input:checked ~ .crs_check > span {
             opacity: 1;
+        }
+        .crs_sort label {
+          cursor: pointer;
         }
         .crs_info > div {
             color: #000;
@@ -308,8 +314,9 @@ class ListingUpdate {
     buttonSort.parentElement.insertAdjacentHTML('afterend', htmlSort)
 
     $$el('.crs_sort input').forEach((item, i) => {
-      item.addEventListener('change', () => {
-
+      item.addEventListener('input', (e) => {
+        e.stopImmediatePropagation()
+        
         const elements = $$el('.col-span-6 .flex > .hidden > p.font-semibold');
         if (item.checked) {
           if (i < 2) {
@@ -336,7 +343,7 @@ class ListingUpdate {
               if (element.closest('.col-span-6').nextElementSibling && 
                 element.closest('.col-span-6').nextElementSibling.classList.contains('row-span-1')
               ) {
-                element.closest('.col-span-6').nextElementSibling.style.order = isIndexEven ? index + 2 : index + 1;
+                element.closest('.col-span-6').nextElementSibling.style.order = isIndexEven ? media ? index + 2 : index + 3 : index + 1;
               }
             });
 
