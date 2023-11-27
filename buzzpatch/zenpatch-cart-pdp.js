@@ -455,7 +455,8 @@
     waitForElement('.prices + .js-heading').then((el) => el.insertAdjacentHTML('afterend', trustadvisor))
   }
   waitForElement('#getNow a').then(() => {
-    document.querySelector('#getNow #addToCart').after(document.querySelector('#getNow .pdp-popup-discount'))
+    waitForElement('#getNow .pdp-popup-discount').then(discountEl => document.querySelector('#getNow #addToCart').after(discountEl))
+
     $('#getNow a').click(function (e) {
       if (e.target.href?.includes('cart/')) {
         $('#getNow .patches-in-pack p').text('72 patches in 3 packs - 3 months for 1 person')
