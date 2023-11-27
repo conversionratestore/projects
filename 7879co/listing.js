@@ -56,7 +56,7 @@ class ListingUpdate {
       //     this.sortPrice()
       //   }
       // })
-      if (this.checkPageUrl() === 'collections' || this.checkPageUrl() === 'shop') {
+      if (this.checkPageUrl() === 'shop') {
      
         this.styleAppend()
         this.addInfo()
