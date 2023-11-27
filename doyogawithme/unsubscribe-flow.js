@@ -1230,7 +1230,7 @@ const init = setInterval(() => {
 
               const link =
                 "https://www.doyogawithme.com/express-checkout/" +
-                (plan == "year" ? "55" : "54");
+                (plan == "year" ? "142" : "141");
               console.log(plan);
               console.log(link);
               console.log(radioIndex);
