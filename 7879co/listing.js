@@ -94,6 +94,7 @@ class ListingUpdate {
         .crs_faq .border-b.hide dd {
           opacity: 0;
           height: 0;
+          pointer-events: none;
         }
         .crs_faq .border-b.hide button > span {
           transform: scaleY(-1);
