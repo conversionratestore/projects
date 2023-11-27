@@ -480,3 +480,11 @@ class ListingUpdate {
 }
 
 new ListingUpdate(device)
+
+const hjInterval = setInterval(function () {
+  if (typeof hj == 'function') {
+    clearInterval(hjInterval)
+    console.log('imp_plp event')
+    hj('event', 'imp_plp')
+  }
+}, 100)
