@@ -1883,7 +1883,7 @@
           !window.location.href.includes("/the-dual-pillow") && 
           !document.querySelector('#CurrentVariantPrice').innerText.includes('currentVariantPricing')
           ) || 
-          (window.location.includes("/the-dual-pillow") && document.querySelector(".ol_box:first-child .vl_btm"))
+          (window.location.href.includes("/the-dual-pillow") && document.querySelector(".ol_box:first-child .vl_btm"))
         )
       ) {
         clearInterval(addSticky)
