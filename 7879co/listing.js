@@ -430,9 +430,8 @@ class ListingUpdate {
               </svg>
             </div>
             <div class="flex flex-col items-center">
-              <h4 class="text-h4 w-full text-left font-bold sm:text-center sm:text-lg">Lifetime warranty & 30 Day free returns</h4>
-              <h4 class="text-h4 mt-0 w-full text-left sm:text-center sm:text-base">Yes. we offer a lifetime warranty.
-              7879 jewellery is designed to last. Our lifetime warranty guarantees your timeless investment will be cared for, forever.</h4>
+              <h4 class="text-h4 w-full text-left font-bold sm:text-center sm:text-lg">Lifetime warranty &<br> 30 Day free returns</h4>
+              <h4 class="text-h4 mt-0 w-full text-left sm:text-center sm:text-base">7879 jewellery is designed to last. Our lifetime warranty guarantees your timeless investment will be cared for, forever.</h4>
             </div>
           </div>`)
 
