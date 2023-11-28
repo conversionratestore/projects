@@ -362,7 +362,7 @@ class mobileDesign {
           line-height: 26px !important;
           top: -10px;
         }
-        [id*=color_search_widget] .action-button-orange, p+.panel-primary .btn-primary {
+        [id*=color_search_widget] .action-button-orange, p+.panel-primary .btn-primary, #color_search_widget_copy button {
           width: 100% !important;
           border-radius: 4px;
           border: 2px solid #E68626;
@@ -385,19 +385,112 @@ class mobileDesign {
           background: #FFF;
           padding: 5px 10px;
         }
-
+        #color_search_widget_copy {
+          display: flex;
+          flex-direction: column;
+          row-gap: 16px;
+          position: relative;
+          padding: 31px 16px 16px;
+          border-radius: 4px;
+          border: 1px solid #0373BD;
+          margin-bottom: 24px;
+        }
+        #color_search_widget_copy label {
+          margin-bottom: 0;
+        }
+        #color_search_widget_copy label, #color_search_widget_copy button, #color_search_widget_copy select {
+          width: 100%;
+        }
+        #color_search_widget_copy h3 {
+          top: -35px;
+          font-weight: 700;
+        }
+        #color_search_widget_copy select {
+          border-radius: 4px;
+          border: 1px solid #CCC;
+          background: #EEE;
+          padding: 8px;
+        }
+        #color_search_widget_copy select.active {
+          background: #FFF;
+        }
+        #color_search_widget_copy select:not(.active) {
+          pointer-events: none;
+        }
       </style>
+    `
+
+    const copyBlock = /* html */ `
+      <div id="color_search_widget_copy">
+        <h3>Order Touch Up Paint</h3>
+        <label>
+          <select name="select_year" id="select_year_copy" class="active">
+          </select>
+        </label>
+        <label>
+          <select name="select_make" id="select_make_copy">
+          </select>
+        </label>
+        <label>
+          <select name="select_model" id="select_model_copy">
+          </select>
+        </label>
+        <button>Find Your Color</button>
+      </div>
     `
 
     document.head.insertAdjacentHTML('beforeend', style)
     this.beforeFooter()
     this.footerChange()
 
-    const copy = document.querySelector('#color_search_widget').cloneNode(true)
+    document.querySelector('h1').insertAdjacentHTML('afterend', copyBlock)
+    $('.action-button-orange, p+.panel-primary .btn-primary, #color_search_widget_copy button').append(btnArrowSvg)
 
-    copy.setAttribute('id', 'color_search_widget_copy')
-    document.querySelector('h1').insertAdjacentElement('afterend', copy)
-    $('.action-button-orange, p+.panel-primary .btn-primary').append(btnArrowSvg)
+    $('#select_year option').clone().appendTo('#select_year_copy')
+    $('#select_make option').clone().appendTo('#select_make_copy')
+
+    $('#select_year_copy').on('change', function () {
+      pushDataLayer('exp_mob_redes_dropdown_year_sel', 'Year', 'Dropdown', 'Order Touch Up Paint')
+      $('#select_year').val($(this).val())
+      $('#select_year').trigger('change')
+      $('#select_model option').clone().appendTo('#select_model_copy')
+      if ($(this).val() !== '') {
+        $('#select_make_copy').addClass('active')
+        setTimeout(() => {
+          $('#select_make_copy').html('')
+          $('#select_make option').clone().appendTo('#select_make_copy')
+        }, 1000)
+      } else {
+        $('#select_make_copy').removeClass('active')
+        $('#select_model_copy').removeClass('active')
+      }
+    })
+
+    $('#select_make_copy').on('change', function () {
+      pushDataLayer('exp_mob_redes_dropdown_make_sel', 'Make', 'Dropdown', 'Order Touch Up Paint')
+      $('#select_make').val($(this).val())
+      $('#select_make').trigger('change')
+      if ($(this).val() !== '') {
+        $('#select_model_copy').addClass('active')
+        setTimeout(() => {
+          $('#select_model_copy').html('')
+          $('#select_model option').clone().appendTo('#select_model_copy')
+        }, 1000)
+      } else {
+        $('#select_model_copy').removeClass('active')
+      }
+    })
+
+    $('#select_model_copy').on('change', function () {
+      pushDataLayer('exp_mob_redes_dropdown_model_sel', 'Model', 'Dropdown', 'Order Touch Up Paint')
+      $('#select_model').val($(this).val())
+      $('#select_model').trigger('change')
+    })
+
+    $('#color_search_widget_copy button').on('click', function () {
+      pushDataLayer('exp_mob_redes_btn_find_your_color', 'Find Your Color', 'Button', 'Order Touch Up Paint')
+      $('#find_colors_button').click()
+    })
   }
 
   colorPage() {
@@ -1746,7 +1839,7 @@ class mobileDesign {
             ${listGroup}
           </ul>
           <div class="cart_block_btns">
-            <button class="cahange_btn" onclick="EditItem(${i})">Change Items</button>
+            <button class="change_btn" onclick="EditItem(${i})">Change Items</button>
             <button class="remove_btn" onclick="RemoveItem(${i})">Remove Vehicle</button>
           </div>
         </div>
@@ -1774,13 +1867,24 @@ class mobileDesign {
     document.head.insertAdjacentHTML('beforeend', style)
     $('#page #main .continue-shopping-button').before(cartTable)
     $('#page #main .continue-shopping-button').before(totalBlock)
+    $('.change_btn').on('click', function () {
+      pushDataLayer('exp_mob_redes_btn_change_items', 'Change items', 'Button', 'Cart')
+    })
+    $('.remove_btn').on('click', function () {
+      pushDataLayer('exp_mob_redes_btn_remove_vehicle', 'Remove vehicle', 'Button', 'Cart')
+    })
     $('.total_block .paypal').on('click', function (e) {
       e.preventDefault()
+      pushDataLayer('exp_mob_redes_btn_paypal_checkout', 'Check out with PayPal', 'Button', 'Cart')
       PopPaypalCheckout()
     })
     $('.total_block .checkout').on('click', function (e) {
       e.preventDefault()
+      pushDataLayer('exp_mob_redes_btn_secur_checkout', 'Secure checkout', 'Button', 'Cart')
       CheckOut()
+    })
+    $('.cart_block .descr a').on('click', function () {
+      pushDataLayer('exp_mob_redes_btn_open_item_cart', 'Open item', 'Link', 'Cart')
     })
   }
 
@@ -2340,9 +2444,18 @@ class mobileDesign {
       burger.toggleClass('active')
       if (burger.hasClass('active')) {
         menu.slideDown()
+        pushDataLayer('exp_mob_redes_btn_ham_icon', 'Hamburger icon', 'Button', 'Header')
       } else {
         menu.slideUp()
       }
+    })
+
+    $('.crs_menu a').on('click', function () {
+      pushDataLayer('exp_mob_redes_link_ham_menu', $(this).text(), 'Link', 'Hamburger menu')
+    })
+
+    $('.crs_nav_logo a').on('click', function () {
+      pushDataLayer('exp_mob_redes_icon_logo', 'Logo', 'Icon', 'Header')
     })
   }
 
