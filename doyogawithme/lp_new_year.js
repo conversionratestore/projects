@@ -119,6 +119,9 @@ p {
     font-size: 16px;
     line-height: 24px; /* 150% */
 }
+.crs_card .crs_card_top p {
+    color: var(--H1-Black, #272727);
+}
 .crs_card_top img {
     position: absolute;
     left: 0;
@@ -127,6 +130,7 @@ p {
     width: 100%;
     object-fit: cover;
     z-index: 1;
+    border-radius: 12px 12px 0 0;
 }
 .crs_card_top *:not(img) {
     position: relative;
@@ -285,6 +289,7 @@ p {
 }
 .crs_instructors {
     overflow: hidden;
+    padding-bottom: 80px;
 }
 .crs_surface {
     left: 0;
@@ -731,7 +736,7 @@ const html = `
                             ${svgCalendar}
                             <p class="pl-2"><b>22 days</b></p>
                         </div>
-                        <a href="https://www.doyogawithme.com/content/" class="crs_btn blue mt-3">See Details</a>
+                        <a href="https://www.doyogawithme.com/content/strengthen-yoga-practice" class="crs_btn blue mt-3">See Details</a>
                         <a href="https://www.doyogawithme.com/become-a-subscriber" class="crs_btn">Subscribe to challenge</a>
                     </div>
                 </div>
@@ -752,7 +757,7 @@ const html = `
                             ${svgCalendar}
                             <p class="pl-2"><b>22 days</b></p>
                         </div>
-                        <a href="https://www.doyogawithme.com/content/" class="crs_btn blue mt-3">See Details</a>
+                        <a href="https://www.doyogawithme.com/content/soar-into-2024" class="crs_btn blue mt-3">See Details</a>
                         <a href="https://www.doyogawithme.com/become-a-subscriber " class="crs_btn">Subscribe to challenge</a>
                     </div>
                 </div>
@@ -773,7 +778,7 @@ const html = `
                             ${svgCalendar}
                             <p class="pl-2"><b>22 days</b></p>
                         </div>
-                        <a href="https://www.doyogawithme.com/content/" class="crs_btn blue mt-3">See Details</a>
+                        <a href="https://www.doyogawithme.com/content/explore-benefits-meditation" class="crs_btn blue mt-3">See Details</a>
                         <a href="https://www.doyogawithme.com/become-a-subscriber" class="crs_btn ">Subscribe to challenge</a>
                     </div>
                 </div>
@@ -831,7 +836,7 @@ const html = `
             <div>
                 <h2 class="mb-md-4 mb-2">More Than a Challenge - A Community.</h2>
                 <p class="mb-md-4 pt-md-0 pt-1">Embark on your yoga journey and join a thriving online community of like-minded individuals, all supporting, sharing, and growing together. Your path is yours, but you’ll never walk it alone.</p>
-                <a href="#" class="crs_btn blue d-md-block d-none">Explore Challenges</a>
+                <a href="#crs_cards" class="crs_btn blue d-md-block d-none">Explore Challenges</a>
             </div>
         </div>
     </section>
@@ -1276,6 +1281,12 @@ const init = setInterval(() => {
               },
               992: {
                 slidesPerView:  index == 0 ? 3 : 4,
+                pagination: {
+                  el: `.${element.closest("section").className} .swiper-pagination`,
+                  type: "bullets",
+                  dynamicBullets: true,
+                  clickable: true,
+                },
               },
             },
           };
@@ -1289,5 +1300,7 @@ const init = setInterval(() => {
         });
       }
     });
+
+    document.querySelector('.exp-loading')?.remove()
   }
 });
