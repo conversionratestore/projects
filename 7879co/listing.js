@@ -173,6 +173,7 @@ class ListingUpdate {
           line-height: 20px;
           color: var(--Black, #000);
           font-size: 14px;
+          font-weight: 700;
         }
         .flex-center {
             display: flex;
