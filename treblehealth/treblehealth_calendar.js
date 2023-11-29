@@ -1793,9 +1793,9 @@ p.mob_txt{
       <a class="logo_link" href="https://treblehealth.com">
         <img width="211" height="40" src="https://treblehealth.com/wp-content/uploads/2021/09/site-logo.svg" data-src="https://treblehealth.com/wp-content/uploads/2021/09/site-logo.svg" class="attachment-full size-full wp-image-13 ls-is-cached lazyloaded" alt="TrebleHealth Site Logo" />
       </a>
-      <a class="tel_link" href="tel:3369414041">
+      <a class="tel_link" href="tel:+8558732531">
         <img src="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" alt="" data-src-desktop-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" data-src-mobile-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" />
-        <span class="desk_var">(336) 941-4041</span><span class="mob_var">Call Us</span></a>
+        <span class="desk_var">(855) 873-2531</span><span class="mob_var">Call Us</span></a>
     </div>
   </div>
 </div>
@@ -1817,9 +1817,9 @@ p.mob_txt{
           </div>
         </div>
       <div class="sticky_btn_wrapp">
-        <a class="tel_link" href="tel:3369414041">
+        <a class="tel_link" href="tel:+8558732531">
           <img src="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" alt="" data-src-desktop-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" data-src-mobile-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" />
-          (336) 941-4041</a>
+          (855) 873-2531</a>
           <button class="grab_your_free_btn">Grab a Free Seat</button>
       </div>
     </div>
