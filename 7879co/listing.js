@@ -163,9 +163,11 @@ class ListingUpdate {
         }
         .grid > .col-span-6 .flex > .flex.hidden {
           color: var(--Grey, #484850);
-          font-family: 'RoobertTRIAL-normal-400';
           font-size: 14px;
           line-height: 20px;
+        }
+        .grid > .col-span-6 .border {
+          width: fit-content;
         }
         .grid > .col-span-6 .flex > .flex.hidden > p {
           line-height: 20px;
