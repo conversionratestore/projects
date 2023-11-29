@@ -82,7 +82,6 @@ class ListingUpdate {
           height: 100%;
         }
         [name="crs_radio"],
-        .crs_info+.grid > .col-span-12 .trustpilot-widget,
         .crs_btn_sort + button,
         .crs_sort + button:not(.crs_btn_sort),
         .crs_sort + button:not(.crs_btn_sort) + ul {
@@ -156,6 +155,9 @@ class ListingUpdate {
         }
         .crs_info+.grid > .col-span-12 {
           order: 200;
+        }
+        .crs_info+.grid > .col-span-12.crs_faq {
+          order: 201;
         }
         .grid > .col-span-6 .flex > .flex.hidden {
           color: var(--Grey, #484850);
