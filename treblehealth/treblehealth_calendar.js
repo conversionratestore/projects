@@ -1894,9 +1894,9 @@ p.mob_txt{
 <div class="calendar_footer">
   <div class="calendar_contacts">
     <h3 class="calendar_footer_title">Can’t find a time?</h3>
-    <a class="tel_link" href="tel:8559224236">
+    <a class="tel_link" href="tel:+8558732531">
       <img src="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" alt="" data-src-desktop-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" data-src-mobile-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" />
-      <span>Call us</span> <span>(855) 922-4236</span>
+      <span>Call us</span> <span>(855) 873-2531</span>
     </a>
   </div>
   <div class="calendar_footer_members">
@@ -1984,9 +1984,9 @@ p.mob_txt{
         <div class="calendar_footer">
           <div class="calendar_contacts">
             <h3 class="calendar_footer_title">Can’t find a time?</h3>
-            <a class="tel_link" href="tel:8559224236">
+            <a class="tel_link" href="tel:+8558732531">
               <img src="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" alt="" data-src-desktop-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" data-src-mobile-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" />
-              <span>Call us</span> <span>(855) 922-4236</span>
+              <span>Call us</span> <span>(855) 873-2531</span>
             </a>
           </div>
           <div class="calendar_footer_members">
