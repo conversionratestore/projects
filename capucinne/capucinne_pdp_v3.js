@@ -2900,7 +2900,6 @@ button.syte-discovery.syte-integration-injected .button-text{
           <p>The package will be sent without any extra expense to the customer.</p>
           <p>EU 1-3 business days</p>
           <p>NON EU 2-10 business days</p>
-          <p> <b>Free to return within 14 days</b></p>
         </div>
       </div>
     </div>
