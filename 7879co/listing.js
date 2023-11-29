@@ -28,6 +28,8 @@ Alternatively, you can sell back your product to us at any time, for the current
 
 const media = window.matchMedia("(max-width: 1024px)").matches;
 
+let visibleTrust = false
+
 class ListingUpdate {
   constructor(device) {
     this.device = device
@@ -477,7 +479,16 @@ class ListingUpdate {
           item.style = 'padding: 0!important;gap: 0;'
         }
       }
+
+    
     })
+
+    if ($el('.col-span-12 .trustpilot-widget') && visibleTrust == false) {
+      visibleTrust = true
+      console.log($el('.trustpilot-widget'))
+      this.handleVisibility($el('.col-span-12 .trustpilot-widget'), ['exp_plimp_trustpilot_visibility', ' {{focusTime}} ', 'Visibility ', 'Trustpilot widget']);
+
+    }
   }
 }
 
