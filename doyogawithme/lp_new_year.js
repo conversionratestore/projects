@@ -262,6 +262,7 @@ p {
     flex-shrink: 0;
     border-radius: 50%;
     margin-right: 16px;
+    object-fit: cover;
 }
 .crs_stories .swiper-slide img+div {
     width: 100%;
@@ -408,6 +409,36 @@ p {
 .pl-2 {
     padding-left: 10px;
 }
+.crs_info {
+    border-radius: 12px;
+    background: var(--Gray-1, #F6F6F6);   
+    padding: 16px;
+    max-width: 808px;
+    margin: 0 auto 7px;  
+}
+.crs_info p {
+    color: var(--H1-Black, #272727);
+    font-size: 16px;
+    line-height: 24px; 
+    font-weight: 700;
+    max-width: 100%;
+}
+.crs_info p span {
+    color: var(--Blue-Main, #027DB8);
+}
+.crs_info .crs_btn {
+    border-radius: 30px!important;
+    border: 2px dashed var(--Blue-Main, #027DB8)!important;
+    padding: 10px 20px;
+    margin-left: 24px;
+    width: fit-content;
+    background: transparent!important;
+    color: var(--Blue-Main, #027DB8)!important;
+    margin-left: auto;
+}
+.crs_info .crs_btn svg {
+    margin-right: 8px;
+}
 @media (min-width: 768px) {
     h1,
     .crs_offer p {
@@ -431,6 +462,9 @@ p {
     }
     .crs_stories .container .crs_slider  {
         padding: 0 5px;
+    }
+    .text-md-center {
+        text-align: center;
     }
 }
 @media (max-width: 991px) {
@@ -499,7 +533,6 @@ p {
     }
     .crs_cards {
         padding: 189px 0 24px;
-        background: #F6F6F6;
     }
     .crs_offer {
         min-height: 324px;
@@ -568,6 +601,18 @@ p {
     }
     .sfc-footer {
         padding-bottom: 85px;
+    }
+    .crs_info {
+        margin-top: 16px;
+        margin-bottom: 0;
+    }
+    .crs_info p {
+        text-align: center;
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .crs_info .crs_btn {
+        margin: 10px auto 0;
     }
 }
 </style>`;
@@ -677,9 +722,9 @@ for (const key in dataFaq) {
 
 const reviewData = {
     0: {
-        'src': 'image',
-        'author': '-Joan, 48',
-        'comments': '“The convenience and personal touch in each video class make my at-home yoga journey so rewarding! I’m discovering serenity right where I am.”'
+        'src': 'https://images.unsplash.com/photo-1701084412727-1f3e01088a5f',
+        'author': 'Johanna',
+        'comments': `The convenience and personal touch in each video class make my at-home yoga journey so rewarding! I’m discovering serenity right where I am.`
     }
 }
 
@@ -701,6 +746,24 @@ function scrollTo(target) {
     seamless.scrollBy(window, { behavior: "smooth", top: top, left: 0 });
 }
 
+function copyText(target) {
+    // Get the input element
+    var inputElement = document.querySelector(target);
+
+    // Select the text in the input element
+    inputElement.select();
+    inputElement.setSelectionRange(0, 99999); // For mobile devices
+
+    try {
+      // Use the Clipboard API to copy the text
+      navigator.clipboard.writeText(inputElement.value);
+      console.log("Text copied: " + inputElement.value);
+    } catch (err) {
+      console.error("Unable to copy text: ", err);
+    }
+  
+}
+
 const html = `
     <header class="crs_header d-flex justify-content-center">
         <img src="${dir}logo.png" alt="logo" class="d-md-block d-none">
@@ -717,7 +780,17 @@ const html = `
     </section>
     <section class="crs_cards" id="crs_cards">
         <div class="container">
-            <h2 class="pb-md-4">Choose Your Path,<br class="d-md-none"> Accept the Challenge</h2>
+            <h2 class="pb-md-4 text-md-center">Choose Your Path,<br class="d-md-none"> Accept the Challenge</h2>
+            <div class="crs_info d-md-flex align-items-center">
+                <p>Use Promo Code on a Monthly subscription to receive <span>3 months for $24.99</span> </p>
+                <input type="text" value="yoga3ny" id="myInput" class="d-none">
+                <button class="crs_btn d-flex align-items-center" type="button" onclick="copyText('#myInput')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M17.6491 2.49609C17.8596 2.70703 18 2.98828 18 3.30469V11.25C18 12.5156 16.9825 13.5 15.7544 13.5H9.01754C7.75439 13.5 6.77193 12.5156 6.73684 11.25V2.25C6.73684 1.01953 7.7193 0 8.98246 0H14.7018C15.0175 0 15.2982 0.140625 15.5088 0.351562L17.6491 2.49609ZM16.3158 11.25H16.2807V4.5H14.6316C14 4.5 13.5088 4.00781 13.5088 3.375L13.4737 1.72266H8.98246C8.66667 1.72266 8.42105 1.96875 8.42105 2.28516V11.25C8.42105 11.5664 8.66667 11.8125 8.98246 11.8125H15.7544C16.0351 11.8125 16.3158 11.5664 16.3158 11.25ZM9.57895 15.75V14.625H11.2632V15.75C11.2632 17.0156 10.2456 18 9.01754 18H2.2807C1.01754 18 0.0350877 17.0156 0.0350877 15.75L0 6.75C0 5.51953 1.01754 4.5 2.24561 4.5H5.64912V6.22266H2.24561C1.96491 6.22266 1.68421 6.46875 1.68421 6.78516V15.75C1.68421 16.0664 1.92982 16.3125 2.24561 16.3125H9.01754C9.29825 16.3125 9.57895 16.0664 9.57895 15.75Z" fill="#027DB8"/>
+                    </svg>
+                    yoga3ny
+                </button>
+            </div>
             <div class="d-flex flex-wrap">
                 <div class="crs_card mt-3">
                     <div class="crs_card_top">
