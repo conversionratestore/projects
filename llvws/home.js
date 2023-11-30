@@ -977,7 +977,7 @@ const banners = `
                         </svg>
                         <div>
                             <h2>10% off</h2>
-                            <p>Enjoy first booking discount</p>
+                            <p>with code: <b>BOOK10</b></p>
                         </div>
                         <div class="crs_benefits_tooltip">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -1197,16 +1197,7 @@ const initBanner = setInterval(() => {
         handleVisibility('.crs_banner',['exp_impr_hp_visib_yachtcharter_focus', '{{focusTime}}', 'Visibility ', 'Yacht Charter Services'])
         handleVisibility('.crs_benefits[data-index="0"]', ['exp_impr_hp_visib_enjoydisco_focus', '{{focusTime}}', 'Visibility ', 'Baner 10% off Enjoy first booking discount'])
         handleVisibility('.crs_benefits[data-index="1"]', ['exp_impr_hp_visib_freecancel_focus', '{{focusTime}}', 'Visibility ', 'Baner Free cancelation up to 24H before the event'])
-        
-        // window.addEventListener('scroll', () => {
-            
-        //     handleVisibility('.crs_info', ['exp_impr_hp_visib_firstrental_focus', '{{focusTime}}', 'Visibility ', 'First screen Water Sport Rentals at the Lowest Prices'    ])
-        //     handleVisibility('.crs_activity', ['exp_impr_hp_visib_chooseactiv_focus','{{focusTime}}','Visibility','First screen Choose your activity'])
-        //     handleVisibility('.crs_banner',['exp_impr_hp_visib_yachtcharter_focus', '{{focusTime}}', 'Visibility ', 'Yacht Charter Services'])
-        //     handleVisibility('.crs_benefits[data-index="0"]', ['exp_impr_hp_visib_enjoydisco_focus', '{{focusTime}}', 'Visibility ', 'Baner 10% off Enjoy first booking discount'])
-        //     handleVisibility('.crs_benefits[data-index="1"]', ['exp_impr_hp_visib_freecancel_focus', '{{focusTime}}', 'Visibility ', 'Baner Free cancelation up to 24H before the event'])
-        
-        // })
+
     }
 })
 
