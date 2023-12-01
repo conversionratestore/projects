@@ -280,7 +280,7 @@ p {
     -webkit-line-clamp: 9;
 }
 .crs_stories .swiper-slide p.active {
-    -webkit-line-clamp: initial;
+    -webkit-line-clamp: initial!important;
 }
 .crs_stories {
     background-color: #F6F6F6;
@@ -557,7 +557,7 @@ p {
     }
     .crs_offer {
         min-height: 324px;
-        background: url('${dir}imgae-7.png') no-repeat center / cover
+        background: url('${dir}image-7.png') no-repeat center / cover
     }
     .crs_card p {
         font-size: 14px;
@@ -634,6 +634,12 @@ p {
     }
     .crs_info .crs_btn {
         margin: 10px auto 0;
+    }
+    .crs_stories .swiper-slide p {
+        -webkit-line-clamp: 9;
+    }
+    .crs_stories .swiper-slide p.line-9 {
+        -webkit-line-clamp: 8;
     }
 }
 </style>`;
