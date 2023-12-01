@@ -855,7 +855,7 @@ const html = `
                             <p class="pl-2"><b>22 days</b></p>
                         </div>
                         <a href="https://www.doyogawithme.com/content/strengthen-yoga-practice" class="crs_btn blue mt-3">See Details</a>
-                        <a href="https://www.doyogawithme.com/become-a-subscriber" class="crs_btn">Subscribe to challenge</a>
+                        <a href="https://www.doyogawithme.com/content/strengthen-yoga-practice/enroll" class="crs_btn">Subscribe to challenge</a>
                     </div>
                 </div>
                 <div class="crs_card mt-3">
@@ -876,7 +876,7 @@ const html = `
                             <p class="pl-2"><b>22 days</b></p>
                         </div>
                         <a href="https://www.doyogawithme.com/content/soar-into-2024" class="crs_btn blue mt-3">See Details</a>
-                        <a href="https://www.doyogawithme.com/become-a-subscriber " class="crs_btn">Subscribe to challenge</a>
+                        <a href="https://www.doyogawithme.com/content/soar-into-2024/enroll" class="crs_btn">Subscribe to challenge</a>
                     </div>
                 </div>
                 <div class="crs_card mt-3">
@@ -897,7 +897,7 @@ const html = `
                             <p class="pl-2"><b>22 days</b></p>
                         </div>
                         <a href="https://www.doyogawithme.com/content/explore-benefits-meditation" class="crs_btn blue mt-3">See Details</a>
-                        <a href="https://www.doyogawithme.com/become-a-subscriber" class="crs_btn ">Subscribe to challenge</a>
+                        <a href="https://www.doyogawithme.com/content/explore-benefits-meditation/enroll" class="crs_btn ">Subscribe to challenge</a>
                     </div>
                 </div>
             </div>
