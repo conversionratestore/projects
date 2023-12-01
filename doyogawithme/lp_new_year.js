@@ -48,7 +48,7 @@ const style = `
 .crs_offer {
     min-height: 100vh;
     position: relative;
-    background: linear-gradient(90deg, #272727 0%, rgba(39, 39, 39, 0.00) 100.59%), url('${dir}imgae-7.png') no-repeat center / cover;
+    background: linear-gradient(90deg, #272727 0%, rgba(39, 39, 39, 0.00) 100.59%), url('${dir}image-7.png') no-repeat center / cover;
 }
 .container {
     max-width: 1264px;
@@ -270,6 +270,17 @@ p {
 .crs_stories .swiper-slide p {
     font-size: 18px;
     line-height: 26px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+}
+.crs_stories .swiper-slide p.line-9 {
+    -webkit-line-clamp: 9;
+}
+.crs_stories .swiper-slide p.active {
+    -webkit-line-clamp: initial;
 }
 .crs_stories {
     background-color: #F6F6F6;
@@ -278,6 +289,16 @@ p {
 .crs_stories .crs_slider .swiper-slide {
     background: #FFF;
     padding: 24px;
+}
+.crs_stories .crs_slider .swiper-slide a {
+    color: var(--Blue-Main, #027DB8);
+    font-family: Manrope;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 26px; /* 144.444% */
+    text-decoration-line: underline;
+    text-transform: capitalize;
 }
 .crs_community {
     padding: 90px 0 65px;
@@ -673,11 +694,11 @@ const svgCalendar = `
 </defs>
 </svg>`;
 
-const slide = (data) => {
+const slide = (data, key) => {
   const html = `   
     <div class="swiper-slide">
         <div class="d-flex">
-            <img src="${data.src}" alt="avatar">
+            <img src="${dir}avatars_reviews/image-${key}.png" alt="avatar">
             <div>
                 <div class="d-flex justify-content-between pb-1">
                     <p><b>${data.author}</b></p>
@@ -687,6 +708,7 @@ const slide = (data) => {
                     </svg>
                 </div>
                 <p>${data.comments}</p>
+                <a href="#" class="d-none">Read more</a>
             </div>
         </div>
     </div>`;
@@ -722,18 +744,35 @@ for (const key in dataFaq) {
 
 const reviewData = {
     0: {
-        'src': 'https://images.unsplash.com/photo-1701084412727-1f3e01088a5f',
-        'author': 'Johanna',
-        'comments': `The convenience and personal touch in each video class make my at-home yoga journey so rewarding! I’m discovering serenity right where I am.`
+        'author': 'Marilyn, 65',
+        'comments': `After a year of exploring the free classes, the exceptional quality of instruction was the key reason I chose to subscribe. The teachers are outstanding, making it easy and enjoyable to practice yoga right at home. It's a wonderful blend of guidance and personal growth.`
+    },
+    1: {
+        'author': 'Susan, 58',
+        'comments': `DYWM, particularly instructors like David and Melissa, has been life-changing. Understanding my core better has resolved my back problems, and I've lost significant weight. I am deeply grateful for finding DYWM during the early months of the pandemic and for the physical transformation it has brought.`
+    },
+    2: {
+        'author': 'Jean, 33',
+        'comments': `Finding your yoga videos, especially the deep release ones for hips, hamstrings, and lower back, has been a game-changer for me, particularly during challenging times like Covid and natural disasters. As a long-time yoga practitioner, I've discovered new insights through your videos and have even recommended them to friends and family.`
+    },
+    3: {
+        'author': 'Diane, 40',
+        'comments': `After nearly a year of using DoYogaWithMe's free services, I've become such a fan that I upgraded to a paid subscription. This platform offers the most positive and transformative yoga experience I've ever had, with noticeable changes in my body and a deep alignment with the values of DoYogaWithMe`
+    },
+    4: {
+        'author': 'Sue, 45',
+        'comments': `I've been a fan of David's classes for many years. They've been incredibly helpful, especially during periods of back discomfort. Sharing his classes with others has been a joy, and I'm looking forward to joining as a full member in the future. David truly is a gem in the yoga world.`
+    },
+    5: {
+        'author': 'John, 39',
+        'comments': `I started with your website about a month ago and it's been a revelation. I was waiting to see how much I would use it before committing to a subscription, and I'm thoroughly impressed. The quality of teaching is outstanding, and it's been a delightful addition to my routine.`
     }
 }
 
 let reviewOption = "";
 
 for (const key in reviewData) {
-    for (let i = 0; i < 6; i++) {
-        reviewOption += slide(reviewData[key]);
-    }
+    reviewOption += slide(reviewData[key], key);
 }
 
 function scrollTo(target) {
@@ -1370,6 +1409,26 @@ const init = setInterval(() => {
             }`,
             option
           );
+
+          if (element.closest('.crs_stories')) {
+            let textElement = element.querySelectorAll('.swiper-slide > div > div > p')
+
+            textElement.forEach(item => {
+                if (item.scrollHeight > item.clientHeight) {
+                    item.classList.add('line-9')
+                    item.nextElementSibling.classList.remove('d-none')
+                    
+                }
+                item.nextElementSibling.addEventListener('click', (e) => {
+                    e.preventDefault()
+                    e.target.classList.add('d-none')
+                    item.classList.add('active')
+                })
+            })
+
+            
+
+          }
         });
       }
     });
