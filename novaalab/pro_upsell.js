@@ -122,6 +122,10 @@ body.active {
 .slide_in_body {
   max-height: 550px;
   overflow-y: auto;
+      height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .slide_in_body::-webkit-scrollbar {
   width: 4px;
@@ -1279,6 +1283,18 @@ span.accent_weight_bold {
         }
       });
 
+      // if (window.location.pathname === "/products/novaa-glow-therapy-mask") {
+      //   document.querySelectorAll(".item-content button.gf_add-to-cart")?.forEach((el) => {
+      //     if (!document.querySelector(".add_to_cart_new_btn")) {
+      //       let count = 1;
+      //       if (el.closest(".AddToCartForm").querySelector('input[name="quantity"]')) {
+      //         count = el.closest(".AddToCartForm").querySelector('input[name="quantity"]').value;
+      //       }
+      //       el.insertAdjacentHTML("beforebegin", `<button class="add_to_cart_new_btn" data-count=${count} data-id=${el.closest(".AddToCartForm").querySelector('[name="product-id"]').value}>Add to Cart</button>`);
+      //     }
+      //   });
+      // }
+
       // click on radioBTN Choose your kit
       if (document.querySelectorAll('.choose-kit__kits input[name="quantity"]')) {
         document.querySelectorAll('.choose-kit__kits input[name="quantity"]').forEach((el) => {
@@ -1296,7 +1312,7 @@ span.accent_weight_bold {
         if (!e.target.getAttribute("data-test")) {
           e.preventDefault();
           e.stopPropagation();
-          console.log(`object`);
+          pushDataLayer(["exp_nov_oral_butt_add_cart_nav_bar", "Add to cart", "Button", "Navigation bar"]);
           addToCartCheckout(e.currentTarget.closest(".AddToCartForm").querySelector('[name="id"]').getAttribute("data-value"), e.currentTarget.closest(".AddToCartForm").querySelector('[name="quantity"]') ? e.currentTarget.closest(".AddToCartForm").querySelector('[name="quantity"]')?.value : 1);
         }
         e.target.setAttribute("data-test", "1");
@@ -1313,6 +1329,7 @@ span.accent_weight_bold {
           if (!e.target.getAttribute("data-test")) {
             e.preventDefault();
             e.stopPropagation();
+            console.log(`object`);
             addToCartCheckout(e.currentTarget.closest(".AddToCartForm").querySelector('[name="id"]').getAttribute("data-value"), e.currentTarget.closest(".AddToCartForm").querySelector('[name="quantity"]') ? e.currentTarget.closest(".AddToCartForm").querySelector('[name="quantity"]')?.value : 1);
           }
           e.target.setAttribute("data-test", "1");
