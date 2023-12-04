@@ -1523,9 +1523,11 @@ span.accent_weight_bold {
             let q = setInterval(() => {
               if (localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
                 clearInterval(q);
-                let id = localStorage.getItem("firstUpsellId");
-                let count = +localStorage.getItem("countForUps");
-                changeCartCheckout(id, count);
+                setTimeout(() => {
+                  let id = localStorage.getItem("firstUpsellId");
+                  let count = +localStorage.getItem("countForUps");
+                  changeCartCheckout(id, count);
+                }, 500);
               }
             }, 700);
 
