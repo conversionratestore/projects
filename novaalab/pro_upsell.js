@@ -755,6 +755,33 @@ span.accent_weight_bold {
   width: 100%;
   padding: 15.5px 20px;
 }
+.add_to_cart_new_btn_mask{
+  width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    white-space: normal;
+    cursor: pointer;
+    border: 1px solid transparent;
+    max-width: 168px;
+    margin: 0 auto;
+    padding: 12px 20px;
+  background: linear-gradient(90deg,rgba(63,94,251,1) 0%,rgba(88,26,204,1) 0%,rgba(146,58,190,1) 100%);
+    color: #f7f7f7!important;
+    font-weight: 800!important;
+    font-size: 19px!important;
+    font-family: Urbanist!important;
+    border-radius: 12px!important;
+    transition: background-color .15s ease-out;
+        line-height: 1.6 !important;
+    text-transform: inherit;
+}
+.add_to_cart_new_btn_mask + .gf_add-to-cart{
+  display: none !important;
+}
 .choose-kit .add-to-cart,
 .bundle__form .add-to-cart-btn,
 .gf_tab .item-content .gf_add-to-cart:not(.new_btn_icon) {
@@ -1283,17 +1310,44 @@ span.accent_weight_bold {
         }
       });
 
-      // if (window.location.pathname === "/products/novaa-glow-therapy-mask") {
-      //   document.querySelectorAll(".item-content button.gf_add-to-cart")?.forEach((el) => {
-      //     if (!document.querySelector(".add_to_cart_new_btn")) {
-      //       let count = 1;
-      //       if (el.closest(".AddToCartForm").querySelector('input[name="quantity"]')) {
-      //         count = el.closest(".AddToCartForm").querySelector('input[name="quantity"]').value;
-      //       }
-      //       el.insertAdjacentHTML("beforebegin", `<button class="add_to_cart_new_btn" data-count=${count} data-id=${el.closest(".AddToCartForm").querySelector('[name="product-id"]').value}>Add to Cart</button>`);
-      //     }
-      //   });
-      // }
+      if (window.location.pathname === "/products/novaa-glow-therapy-mask" && window.innerWidth <= 768) {
+        document.querySelectorAll(".item-content button.gf_add-to-cart")?.forEach((el) => {
+          if (!document.querySelector(`[data-id="${el.closest(".AddToCartForm").querySelector('[name="id"]').value}"] + .add_to_cart_new_btn_mask`)) {
+            console.log(`object`);
+            let count = 1;
+            if (el.closest(".AddToCartForm").querySelector('input[name="quantity"]')) {
+              count = el.closest(".AddToCartForm").querySelector('input[name="quantity"]').value;
+            }
+            el.insertAdjacentHTML("beforebegin", `<button class="add_to_cart_new_btn_mask" data-count=${count} data-id=${el.closest(".AddToCartForm").querySelector('[name="id"]').value}>Add to Cart</button>`);
+          }
+        });
+
+        let w = setInterval(() => {
+          if (document.querySelectorAll('.AddToCartForm input[name="quantity"]') && document.querySelectorAll(".add_to_cart_new_btn_mask")) {
+            clearInterval(w);
+            document.querySelectorAll(".add_to_cart_new_btn_mask")?.forEach((el) => {
+              el.addEventListener("click", (e) => {
+                if (!e.target.getAttribute("data-test")) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  let count = 1;
+                  if (el.closest(".AddToCartForm").querySelector('input[name="quantity"]')) {
+                    count = +el.closest(".AddToCartForm").querySelector('input[name="quantity"]').value;
+                  }
+
+                  addToCartCheckout(+e.currentTarget.getAttribute("data-id"), count);
+                }
+                e.target.setAttribute("data-test", "1");
+                setTimeout(() => {
+                  if (e.target.getAttribute("data-test")) {
+                    e.target.removeAttribute("data-test");
+                  }
+                }, 1000);
+              });
+            });
+          }
+        }, 100);
+      }
 
       // click on radioBTN Choose your kit
       if (document.querySelectorAll('.choose-kit__kits input[name="quantity"]')) {
