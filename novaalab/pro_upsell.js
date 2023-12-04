@@ -1533,20 +1533,24 @@ span.accent_weight_bold {
             response.json();
 
             let q = setInterval(() => {
-              if (localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
+              // localStorage.getItem("upsellInit");
+              if (localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
                 clearInterval(q);
                 setTimeout(() => {
                   let id = localStorage.getItem("firstUpsellId");
                   let count = +localStorage.getItem("countForUps");
+                  console.log(count, `count`);
                   changeCartCheckout(id, count);
-                }, 500);
+                }, 400);
               }
             }, 700);
 
             getCartCheckout();
 
             if (window.location.pathname.match("/cart") && localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
-              window.location = "/cart";
+              setTimeout(() => {
+                window.location = "/cart";
+              }, 500);
             } else {
               onOpenPopup();
             }
