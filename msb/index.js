@@ -4,6 +4,15 @@ const media = window.matchMedia("(max-width: 768px)").matches;
 /* CSS & HTML */
 const styleBase = /*html*/ `
 <style>
+.action.primary {
+    background: var(--Red, #A11A17);
+    border-color: var(--Red, #A11A17);
+    font-size: 14px!important;
+}
+.action.primary:focus, .action.primary:active {
+    background: #A11A17;
+    border: #A11A17;
+}
 .crs_klarna {
     font-size: 12px;
     line-height: 22px; 
@@ -31,6 +40,13 @@ const styleBase = /*html*/ `
 } 
 .crs_discount svg {
     margin-right: 6px;
+}
+.crs_trustpilot p {
+    font-size: 12px;
+    line-height: 16px;
+}
+.crs_trustpilot p b {
+    display: block;
 }
 @media (max-width: 768px) {
     .crs_klarna {
@@ -211,11 +227,6 @@ a.product-modal-options-btn.selected-option + a {
 a.product-modal-options-btn.selected-option + a svg {
     opacity: 1;
 }
-.action.primary {
-    background: var(--Red, #A11A17);
-    border-color: var(--Red, #A11A17);
-    font-size: 14px!important;
-}
 .product-options-bottom .action.primary {
     padding: 17px!important;
 }
@@ -277,13 +288,6 @@ a.product-modal-options-btn.selected-option + a svg {
 p.crs_uk_delivery, .crs_shipto {
     margin-bottom: 4px;
 }
-.crs_trustpilot p {
-    font-size: 12px;
-    line-height: 16px;
-}
-.crs_trustpilot p b {
-    display: block;
-}
 .crs_popup {
     position: fixed;
     top: 0;
@@ -311,6 +315,11 @@ p.crs_uk_delivery, .crs_shipto {
     position: relative;
     background-color: #fff;
     padding: 0;
+    transform: translateY(200px);
+    transition: all 0.2s ease;
+}
+.crs_popup.active .container {
+    transform: translateY(0);
 }
 .crs_popup img {
     width: 100%;
@@ -553,37 +562,66 @@ body .product-static-columns .container .section-desc {
 
 const styleCart = `
 <style>
-.mobile-basket-block {
-    height: 100vh;
-    top: -8px;
-    width: calc(100% + 16px);
-    right: -8px;
+.mobile-basket-block,
+.minicart-wrapper .block-minicart {
+    height: 100vh!important;
+    top: 0;
+    width: 100%;
+    right: 0;
     margin: 0;
     background: rgba(51, 51, 51, 0.50);
-    backdrop-filter: blur(4px);
     box-shadow: none;
     overflow: hidden;
+    position: fixed;
+    transform: translateX(0);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.15s ease;
 }
-.mobile-basket-block.active {
-    max-width: calc(100% + 16px);
+.minicart-wrapper .block-minicart {
+    background: rgba(51, 51, 51, 0.60);
 }
-.mobile-basket-block__content {
+.mobile-basket-block {
+    backdrop-filter: blur(4px);
+}
+.mobile-basket-block.active,
+.minicart-wrapper.active .block-minicart {
+    max-width: 100%;
+    opacity: 1;
+    pointer-events: auto;
+    height: 100%;
+}
+.mobile-basket-block__content,
+#minicart-content-wrapper {
     background: #fff;
-    margin: 0;
+    margin: 0 0 0 auto;
     height: 100%;
     width: calc(100% - 25px);
     padding: 14px 16px 200px;
+    transform: translateX(100%);
+    transition: all 0.2s ease;
+    overflow-x: hidden;
     overflow-y: auto;
 }
-.mobile-basket-block .product > .col-3 {
+.mobile-basket-block.active .mobile-basket-block__content,
+.minicart-wrapper.active .block-minicart #minicart-content-wrapper {
+    transform: translateX(0);
+}
+#minicart-content-wrapper  {
+    max-width: 350px;
+}
+.minicart-wrapper .block-minicart {
+    padding: 0!important;
+}
+.minicart-items .product > .col-3 {
     max-width: 72px;
     width: 72px;
     height: 72px;
 }
-.mobile-basket-block .product > .col-3 > a {
+.minicart-items .product > .col-3 > a {
     height: 100%;
 }
-.mobile-basket-block .product > .col-9 {
+.minicart-items .product > .col-9 {
     padding-left: 16px;
     max-width: calc(100% - 72px);
     width: 100%;
@@ -600,30 +638,40 @@ const styleCart = `
     color: #646464;
     font-size: 14px;
 }
-.mobile-basket-block__content .price-including-tax>.minicart-price .price {
+.price-including-tax>.minicart-price .price {
     font-size: 16px;
     font-weight: 600;
     font-family: 'adobe-garamond-pro', sans-serif;
     line-height: 24px;
 }
-.mobile-basket-block .minicart-items-wrapper {
+.minicart-items-wrapper {
     height: auto!important
 }
-.mobile-basket-block__content .minicart-items-wrapper .product-item {
+.minicart-items-wrapper .product-item {
     padding: 10px 0;
     margin-top: 10px;
     border: none!important;
     border-bottom: 1px solid #ccc!important;
 }
-.minicart-items-wrapper .crs_discount {
-    margin: 18px 0;
+.minicart-items-wrapper .product-item > .product > .col-9 .col-7 {
+    flex: auto;
+    max-width: 75%;
 }
-.mobile-basket-block__content .subtotal {
-    padding: 0 0 13px;
+.minicart-items-wrapper .product-item > .product > .col-9 .col-5 {
+    max-width: 25%;
+    flex: auto;
+}
+.minicart-items-wrapper .crs_discount {
+    margin: 18px 0 0;
+}
+.mobile-basket-block__content .subtotal,
+.block-minicart .subtotal {
+    padding-bottom: 13px;
     border: none;
 }
 .crs_sub p,
-.mobile-basket-block__content .subtotal {
+.mobile-basket-block__content .subtotal,
+.block-minicart .subtotal {
     font-family: Arial;
     font-size: 16px;
     font-style: normal;
@@ -631,27 +679,51 @@ const styleCart = `
     line-height: 22px; 
 }
 .crs_sub p.pr,
-.mobile-basket-block__content .subtotal .amount {
+.mobile-basket-block__content .subtotal .amount,
+.block-minicart .subtotal .amount {
     font-size: 18px;
     font-family: 'adobe-garamond-pro', sans-serif;
 }
-.mobile-basket-block__content .crs_klarna {
+.mobile-basket-block__content .crs_klarna,
+.block-minicart .crs_klarna {
     padding: 0;
 }
-.mobile-basket-block__content .shipping-costs .shipping-costs-desc {
+.shipping-costs .shipping-costs-desc {
     padding: 12px 0;
     border-top: 1px dashed #CCC;
 }
-.mobile-basket-block__content > .block-content > .actions {
+.mobile-basket-block__content > .block-content > .actions,
+.minicart-wrapper .block-minicart .block-content > .actions {
     margin-top: auto;
     position: fixed;
     bottom: 0;
     right: 0;
-    width: calc(100% - 25px);
+    width: 100%;
     padding: 13px 16px;
     background: var(--colors-wight, #FFF);
     z-index: 3;
     box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.16);
+}
+.minicart-wrapper .block-minicart .block-content > .actions {
+    max-width: 350px;
+}
+.mobile-basket-block__content .block-content .actions .checkout input,
+.minicart-wrapper .block-minicart .block-content .actions .checkout input {
+    width: 100%;
+    padding: 15px;
+    background: #FFBD5D;
+    height: 54px;
+}
+.mobile-basket-block__content .block-content,
+.minicart-wrapper .block-minicart .block-content{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.minicart-wrapper .product .actions {
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 .paypal.after:before {
     content: none;
@@ -673,8 +745,11 @@ const styleCart = `
     font-size: 12px;
     letter-spacing: 1.6px;
 }
-.mobile-basket-block__content .shipping-costs .fields .field-country select {
+.shipping-costs .fields .field-country select {
     height: 40px;
+}
+.crs_highlight {
+    margin-top: auto;
 }
 .crs_highlight > div {
     background: #FCF7EC;
@@ -683,6 +758,17 @@ const styleCart = `
 }
 .crs_highlight > div:first-child {
     margin-right: 8px;
+}
+.minicart-title {
+    color: #212121;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0.9px;
+}
+.minicart-wrapper .action.close {
+    top: 3px;
 }
 </style>`
 
@@ -709,20 +795,245 @@ const getDiscount = `
         Get a 10% Discount
     </button>`;
 
+const trustpilot = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="91" height="20" viewBox="0 0 91 20" fill="none">
+        <path d="M9.78008 0.573486L12.4401 7.19635L19.5602 7.67918L14.0835 12.2552L15.8248 19.1765L9.78008 15.3817L3.73535 19.1765L5.47669 12.2552L0 7.67918L7.12008 7.19635L9.78008 0.573486Z" fill="#00B67E"/>
+        <path d="M33.0782 6.66401H29.6043V16.2435H27.6837V6.66401H24.2412V5.10308H33.0782V6.66401ZM38.1974 9.66327C37.9525 9.62253 37.6998 9.60215 37.4393 9.60215C36.5873 9.60215 36.0134 9.92858 35.7176 10.5815V16.2435H33.8587V7.96473H35.6334L35.6794 8.89054C36.1289 8.17128 36.7508 7.81165 37.5471 7.81165C37.8115 7.81165 38.0309 7.8474 38.2042 7.9188L38.1974 9.66327ZM44.3871 15.4325C43.8415 16.0752 43.0659 16.3965 42.061 16.3965C41.1629 16.3965 40.4823 16.1338 40.018 15.6085C39.5587 15.0831 39.3295 14.3231 39.3295 13.3283V7.96473H41.1884V13.3054C41.1884 14.3562 41.6252 14.8816 42.4969 14.8816C43.3998 14.8816 44.01 14.5576 44.3254 13.9099V7.96473H46.1852V16.2435H44.4331L44.3871 15.4325ZM52.7196 13.994C52.7196 13.6625 52.5815 13.41 52.3063 13.2365C52.036 13.0631 51.5845 12.9101 50.9518 12.7774C50.3192 12.6448 49.7913 12.4764 49.3682 12.2724C48.4397 11.8236 47.9755 11.1732 47.9755 10.3213C47.9755 9.60725 48.2762 9.01041 48.8785 8.53091C49.4798 8.0514 50.2457 7.81165 51.1742 7.81165C52.1633 7.81165 52.9615 8.0565 53.5687 8.54619C54.1809 9.03588 54.4864 9.671 54.4864 10.4514H52.6276C52.6276 10.0944 52.4953 9.79852 52.2299 9.56386C51.9645 9.32411 51.6129 9.20423 51.1742 9.20423C50.7658 9.20423 50.4318 9.29865 50.1713 9.48737C49.9166 9.6761 49.7893 9.92858 49.7893 10.2448C49.7893 10.5305 49.9088 10.7523 50.1488 10.9105C50.3887 11.0686 50.8725 11.2293 51.6021 11.3926C52.3318 11.5506 52.9028 11.7419 53.3161 11.9664C53.7343 12.1858 54.0428 12.451 54.2416 12.7621C54.4463 13.0733 54.5481 13.4507 54.5481 13.8946C54.5481 14.6393 54.2396 15.2438 53.6226 15.7079C53.0046 16.167 52.1966 16.3965 51.1967 16.3965C50.518 16.3965 49.9137 16.2741 49.3838 16.0292C48.853 15.7844 48.4397 15.4478 48.144 15.0193C47.8482 14.5908 47.7003 14.1291 47.7003 13.6344H49.5063C49.5317 14.0731 49.6973 14.4123 50.0028 14.652C50.3094 14.8867 50.7148 15.004 51.2202 15.004C51.7099 15.004 52.082 14.9122 52.3367 14.7285C52.5923 14.5398 52.7196 14.295 52.7196 13.994ZM58.5038 5.9524V7.96473H59.9651V9.34193H58.5038V13.9634C58.5038 14.2797 58.5655 14.5092 58.688 14.652C58.8153 14.7897 59.0396 14.8586 59.3608 14.8586C59.5753 14.8586 59.7917 14.8331 60.0111 14.7821V16.2206C59.588 16.3379 59.1796 16.3965 58.7869 16.3965C57.3589 16.3965 56.645 15.6085 56.645 14.0323V9.34193H55.2827V7.96473H56.645V5.9524H58.5038ZM68.6424 12.1883C68.6424 13.4686 68.3515 14.4913 67.7697 15.2565C67.188 16.0165 66.4074 16.3965 65.4281 16.3965C64.5202 16.3965 63.7935 16.0982 63.2479 15.5014V19.4265H61.3881V7.96473H63.102L63.1784 8.80631C63.7249 8.14327 64.4673 7.81165 65.4055 7.81165C66.4153 7.81165 67.2056 8.18911 67.7776 8.94411C68.3534 9.69392 68.6424 10.7371 68.6424 12.0735V12.1883ZM66.7904 12.0276C66.7904 11.2013 66.6249 10.5458 66.2928 10.0612C65.9667 9.57659 65.4976 9.33429 64.8855 9.33429C64.1255 9.33429 63.579 9.64799 63.2479 10.2754V13.9481C63.5848 14.5908 64.1353 14.9122 64.9002 14.9122C65.4917 14.9122 65.954 14.675 66.285 14.2006C66.6219 13.7211 66.7904 12.9968 66.7904 12.0276ZM72.1995 16.2435H70.3406V7.96473H72.1995V16.2435ZM70.226 5.8147C70.226 5.52901 70.3152 5.29181 70.4934 5.10308C70.6775 4.91435 70.9371 4.81994 71.274 4.81994C71.6109 4.81994 71.8704 4.91435 72.0545 5.10308C72.2377 5.29181 72.3297 5.52901 72.3297 5.8147C72.3297 6.09519 72.2377 6.32985 72.0545 6.51858C71.8704 6.70221 71.6109 6.79408 71.274 6.79408C70.9371 6.79408 70.6775 6.70221 70.4934 6.51858C70.3152 6.32985 70.226 6.09519 70.226 5.8147ZM76.2091 16.2435H74.3502V4.49097H76.2091V16.2435ZM77.8926 12.0276C77.8926 11.2166 78.0532 10.4871 78.3745 9.83926C78.6957 9.18641 79.1472 8.68653 79.729 8.33964C80.3107 7.98765 80.9786 7.81165 81.7337 7.81165C82.8502 7.81165 83.7562 8.17128 84.4496 8.89054C85.1488 9.60979 85.5259 10.5636 85.5817 11.7522L85.5896 12.1883C85.5896 13.0044 85.4319 13.7339 85.1155 14.3766C84.8041 15.0193 84.3555 15.5166 83.7689 15.8686C83.1871 16.2206 82.5143 16.3965 81.7484 16.3965C80.581 16.3965 79.6447 16.0089 78.9406 15.2336C78.2423 14.4531 77.8926 13.4151 77.8926 12.1195V12.0276ZM79.7515 12.1883C79.7515 13.0402 79.9278 13.7084 80.2794 14.1929C80.632 14.6724 81.1216 14.9122 81.7484 14.9122C82.3762 14.9122 82.863 14.6673 83.2107 14.1776C83.5623 13.6879 83.7386 12.9713 83.7386 12.0276C83.7386 11.191 83.5573 10.528 83.195 10.0383C82.8375 9.54858 82.3507 9.30374 81.7337 9.30374C81.1265 9.30374 80.6447 9.54604 80.2872 10.0305C79.9307 10.51 79.7515 11.2293 79.7515 12.1883ZM89.4924 5.9524V7.96473H90.9536V9.34193H89.4924V13.9634C89.4924 14.2797 89.5531 14.5092 89.6755 14.652C89.8029 14.7897 90.0281 14.8586 90.3494 14.8586C90.5629 14.8586 90.7803 14.8331 90.9996 14.7821V16.2206C90.5756 16.3379 90.1682 16.3965 89.7754 16.3965C88.3465 16.3965 87.6326 15.6085 87.6326 14.0323V9.34193H86.2712V7.96473H87.6326V5.9524H89.4924Z" fill="#0C0B0B"/>
+    </svg>
+    <svg class="mx-3" width="111" height="18" viewBox="0 0 111 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19.4986 0H0.831055V18H19.4986V0Z" fill="#00B67E"/>
+        <path d="M10.165 2.00012L12.0426 6.50832L17.0693 6.83699L13.2029 9.95192L14.4321 14.6633L10.165 12.0801L5.89798 14.6633L7.12714 9.95192L3.26074 6.83699L8.2875 6.50832L10.165 2.00012Z" fill="white"/>
+        <path d="M42.1666 0H23.499V18H42.1666V0Z" fill="#00B67E"/>
+        <path d="M32.832 2.00012L34.7096 6.50832L39.7363 6.83699L35.8699 9.95192L37.0991 14.6633L32.832 12.0801L28.565 14.6633L29.7941 9.95192L25.9277 6.83699L30.9545 6.50832L32.832 2.00012Z" fill="white"/>
+        <path d="M64.8336 0H46.166V18H64.8336V0Z" fill="#00B67E"/>
+        <path d="M55.5 2.00012L57.3778 6.50832L62.4042 6.83699L58.538 9.95192L59.7673 14.6633L55.5 12.0801L51.2329 14.6633L52.4621 9.95192L48.5957 6.83699L53.6225 6.50832L55.5 2.00012Z" fill="white"/>
+        <path d="M87.5015 0H68.834V18H87.5015V0Z" fill="#00B67E"/>
+        <path d="M78.1679 2.00012L80.0457 6.50832L85.0721 6.83699L81.2059 9.95192L82.4352 14.6633L78.1679 12.0801L73.9006 14.6633L75.1299 9.95192L71.2637 6.83699L76.2901 6.50832L78.1679 2.00012Z" fill="white"/>
+        <path d="M110.169 0H91.501V18H110.169V0Z" fill="#00B67E"/>
+        <path d="M100.835 2.00012L102.713 6.50832L107.739 6.83699L103.873 9.95192L105.102 14.6633L100.835 12.0801L96.5676 14.6633L97.7969 9.95192L93.9307 6.83699L98.9571 6.50832L100.835 2.00012Z" fill="white"/>
+    </svg>
+    <p>
+        <b>Excellent</b>
+        518 Reviews
+    </p>`
+
+
+const dataShipping = {
+    'GB': { 'name': 'United Kingdom', 'days': '1-3' },
+    'US': { 'name': 'United States', 'days': '3-5' },
+    'DE': { 'name': 'Germany', 'days': '2-4' },
+    'AF': { 'name': 'Afghanistan', 'days': '3-5' },
+    'AL': { 'name': 'Albania', 'days': '3-5' },
+    'DZ': { 'name': 'Algeria', 'days': '3-5' },
+    'AS': { 'name': 'American Samoa', 'days': '3-5' },
+    'AD': { 'name': 'Andorra', 'days': '3-5' },
+    'AO': { 'name': 'Angola', 'days': '3-5' },
+    'AI': { 'name': 'Anguilla', 'days': '3-5' },
+    'AG': { 'name': 'Antigua & Barbuda', 'days': '3-5' },
+    'AR': { 'name': 'Argentina', 'days': '3-5' },
+    'AM': { 'name': 'Armenia', 'days': '3-5' },
+    'AW': { 'name': 'Aruba', 'days': '3-5' },
+    'AU': { 'name': 'Australia', 'days': '3-5' },
+    'AT': { 'name': 'Austria', 'days': '4-6' },
+    'AZ': { 'name': 'Azerbaijan', 'days': '2-4' },
+    'BS': { 'name': 'Bahamas', 'days': '3-5' },
+    'BH': { 'name': 'Bahrain', 'days': '3-5' },
+    'BD': { 'name': 'Bangladesh', 'days': '3-5' },
+    'BB': { 'name': 'Barbados', 'days': '3-5' },
+    'BY': { 'name': 'Belarus', 'days': '3-5' },
+    'BE': { 'name': 'Belgium', 'days': '3-5' },
+    'BZ': { 'name': 'Belize', 'days': '2-4' },
+    'BM': { 'name': 'Bermuda', 'days': '5-7' },
+    'BT': { 'name': 'Bhutan', 'days': '3-5' },
+    'BO': { 'name': 'Bolivia', 'days': '3-5' },
+    'BA': { 'name': 'Bosnia & Herzegovina', 'days': '3-5' },
+    'BW': { 'name': 'Botswana', 'days': '3-5' },
+    'BR': { 'name': 'Brazil', 'days': '3-5' },
+    'BN': { 'name': 'Brunei Darussalam', 'days': '3-5' },
+    'BG': { 'name': 'Bulgaria', 'days': '3-5' },
+    'BF': { 'name': 'Burkina Faso', 'days': '3-5' },
+    'BI': { 'name': 'Burundi', 'days': '3-5' },
+    'KH': { 'name': 'Cambodia', 'days': '3-5' },
+    'CM': { 'name': 'Cameroon', 'days': '3-5' },
+    'CA': { 'name': 'Canada', 'days': '3-5' },
+    'CV': { 'name': 'Cape Verde', 'days': '2-4' },
+    'KY': { 'name': 'Cayman Islands', 'days': '3-5' },
+    'CF': { 'name': 'Central African Republic', 'days': '3-5' },
+    'TD': { 'name': 'Chad', 'days': '3-5' },
+    'CL': { 'name': 'Chile', 'days': '3-5' },
+    'CN': { 'name': 'China, People\'s Republic of', 'days': '3-5' },
+    'CO': { 'name': 'Colombia', 'days': '3-5' },
+    'CG': { 'name': 'Congo', 'days': '3-5' },
+    'CR': { 'name': 'Costa Rica', 'days': '3-5' },
+    'HR': { 'name': 'Croatia', 'days': '3-5' },
+    'CU': { 'name': 'Cuba', 'days': '3-5' },
+    'CY': { 'name': 'Cyprus', 'days': '5-7' },
+    'CZ': { 'name': 'Czech Republic', 'days': '3-5' },
+    'DK': { 'name': 'Denmark', 'days': '3-5' },
+    'DJ': { 'name': 'Djibouti', 'days': '2-4' },
+    'DM': { 'name': 'Dominica', 'days': '3-5' },
+    'DO': { 'name': 'Dominican Republic', 'days': '3-5' },
+    'EC': { 'name': 'Ecuador', 'days': '3-5' },
+    'EG': { 'name': 'Egypt', 'days': '3-5' },
+    'SV': { 'name': 'El Salvador', 'days': '3-5' },
+    'GQ': { 'name': 'Equatorial Guinea', 'days': '3-5' },
+    'ER': { 'name': 'Eritrea', 'days': '3-5' },
+    'EE': { 'name': 'Estonia', 'days': '3-5' },
+    'ET': { 'name': 'Ethiopia', 'days': '3-5' },
+    'FO': { 'name': 'Faroe Islands (Denmark)', 'days': '3-5' },
+    'FJ': { 'name': 'Fiji', 'days': '3-5' },
+    'FI': { 'name': 'Finland', 'days': '3-5' },
+    'FR': { 'name': 'France', 'days': '2-4' },
+    'GF': { 'name': 'French Guiana', 'days': '2-4' },
+    'PF': { 'name': 'French Polynesia (Tahiti)', 'days': '3-5' },
+    'GA': { 'name': 'Gabon', 'days': '3-5' },
+    'GE': { 'name': 'Georgia', 'days': '3-5' },
+    'GH': { 'name': 'Ghana', 'days': '3-5' },
+    'GI': { 'name': 'Gibraltar', 'days': '3-5' },
+    'GR': { 'name': 'Greece', 'days': '2-4' },
+    'GL': { 'name': 'Greenland (Denmark)', 'days': '2-4' },
+    'GD': { 'name': 'Grenada', 'days': '1-3' },
+    'GP': { 'name': 'Guadeloupe', 'days': '3-5' },
+    'GU': { 'name': 'Guam', 'days': '3-5' },
+    'GT': { 'name': 'Guatemala', 'days': '3-5' },
+    'GG': { 'name': 'Guernsey', 'days': '3-5' },
+    'GN': { 'name': 'Guinea', 'days': '2-4' },
+    'GY': { 'name': 'Guyana', 'days': '3-5' },
+    'HT': { 'name': 'Haiti', 'days': '3-5' },
+    'HN': { 'name': 'Honduras', 'days': '3-5' },
+    'HK': { 'name': 'Hong Kong', 'days': '3-5' },
+    'HU': { 'name': 'Hungary', 'days': '3-5' },
+    'IS': { 'name': 'Iceland', 'days': '3-5' },
+    'IN': { 'name': 'India', 'days': '3-5' },
+    'ID': { 'name': 'Indonesia', 'days': '3-5' },
+    'IQ': { 'name': 'Iraq', 'days': '3-5' },
+    'IE': { 'name': 'Ireland', 'days': '3-5' },
+    'IL': { 'name': 'Israel', 'days': '2-4' },
+    'IT': { 'name': 'Italy', 'days': '3-5' },
+    'JM': { 'name': 'Jamaica', 'days': '2-4' },
+    'JP': { 'name': 'Japan', 'days': '3-5' },
+    'JE': { 'name': 'Jersey', 'days': '3-5' },
+    'JO': { 'name': 'Jordan', 'days': '2-4' },
+    'KZ': { 'name': 'Kazakhstan', 'days': '3-5' },
+    'KE': { 'name': 'Kenya', 'days': '3-5' },
+    'KI': { 'name': 'Kiribati', 'days': '3-5' },
+    'KW': { 'name': 'Kuwait', 'days': '5-7' },
+    'KG': { 'name': 'Kyrgyzstan', 'days': '3-5' },
+    'LA': { 'name': 'Laos', 'days': '3-5' },
+    'LV': { 'name': 'Latvia', 'days': '3-5' },
+    'LB': { 'name': 'Lebanon', 'days': '3-5' },
+    'LS': { 'name': 'Lesotho', 'days': '3-5' },
+    'LR': { 'name': 'Liberia', 'days': '3-5' },
+    'LY': { 'name': 'Libya', 'days': '3-5' },
+    'LI': { 'name': 'Liechtenstein', 'days': '3-5' },
+    'LT': { 'name': 'Lithuania', 'days': '2-4' },
+    'LU': { 'name': 'Luxembourg', 'days': '3-5' },
+    'MK': { 'name': 'Macedonia', 'days': '2-4' },
+    'MG': { 'name': 'Madagascar', 'days': '3-5' },
+    'MW': { 'name': 'Malawi', 'days': '3-5' },
+    'MY': { 'name': 'Malaysia', 'days': '3-5' },
+    'MV': { 'name': 'Maldives', 'days': '3-5' },
+    'ML': { 'name': 'Mali', 'days': '3-5' },
+    'MT': { 'name': 'Malta', 'days': '3-5' },
+    'MH': { 'name': 'Marshall Islands', 'days': '3-5' },
+    'MQ': { 'name': 'Martinique', 'days': '3-5' },
+    'MR': { 'name': 'Mauritania', 'days': '3-5' },
+    'MU': { 'name': 'Mauritius', 'days': '3-5' },
+    'MX': { 'name': 'Mexico', 'days': '3-5' },
+    'FM': { 'name': 'Micronesia, Federated States of', 'days': '3-5' },
+    'MD': { 'name': 'Moldova', 'days': '3-5' },
+    'MC': { 'name': 'Monaco', 'days': '2-4' },
+    'MN': { 'name': 'Mongolia', 'days': '3-5' },
+    'MS': { 'name': 'Montserrat', 'days': '3-5' },
+    'MA': { 'name': 'Morocco', 'days': '3-5' },
+    'MZ': { 'name': 'Mozambique', 'days': '3-5' },
+    'NA': { 'name': 'Namibia', 'days': '3-5' },
+    'NP': { 'name': 'Nepal', 'days': '3-5' },
+    'NL': { 'name': 'Netherlands', 'days': '2-4' },
+    'NC': { 'name': 'New Caledonia', 'days': '3-5' },
+    'NZ': { 'name': 'New Zealand', 'days': '3-5' },
+    'NI': { 'name': 'Nicaragua', 'days': '3-5' },
+    'NE': { 'name': 'Niger', 'days': '3-5' },
+    'NG': { 'name': 'Nigeria', 'days': '3-5' },
+    'NO': { 'name': 'Norway', 'days': '3-5' },
+    'OM': { 'name': 'Oman', 'days': '3-5' },
+    'PK': { 'name': 'Pakistan', 'days': '3-5' },
+    'PA': { 'name': 'Panama', 'days': '3-5' },
+    'PG': { 'name': 'Papua New Guinea', 'days': '3-5' },
+    'PY': { 'name': 'Paraguay', 'days': '3-5' },
+    'PE': { 'name': 'Peru', 'days': '3-5' },
+    'PH': { 'name': 'Philippines', 'days': '3-5' },
+    'PL': { 'name': 'Poland', 'days': '3-5' },
+    'PT': { 'name': 'Portugal', 'days': '3-5' },
+    'PR': { 'name': 'Puerto Rico', 'days': '2-4' },
+    'QA': { 'name': 'Qatar', 'days': '3-5' },
+    'RO': { 'name': 'Romania', 'days': '3-5' },
+    'RW': { 'name': 'Rwanda', 'days': '3-5' },
+    'WS': { 'name': 'Samoa', 'days': '3-5' },
+    'SM': { 'name': 'San Marino', 'days': '3-5' },
+    'SA': { 'name': 'Saudi Arabia', 'days': '2-4' },
+    'SN': { 'name': 'Senegal', 'days': '3-5' },
+    'SC': { 'name': 'Seychelles', 'days': '3-5' },
+    'SG': { 'name': 'Singapore', 'days': '3-5' },
+    'SK': { 'name': 'Slovakia', 'days': '2-4' },
+    'SI': { 'name': 'Slovenia', 'days': '3-5' },
+    'ZA': { 'name': 'South Africa', 'days': '1-3' },
+    'ES': { 'name': 'Spain', 'days': '3-5' },
+    'LK': { 'name': 'Sri Lanka', 'days': '2-4' },
+    'SR': { 'name': 'Suriname', 'days': '3-5' },
+    'SZ': { 'name': 'Swaziland', 'days': '3-5' },
+    'SE': { 'name': 'Sweden', 'days': '5-7' },
+    'CH': { 'name': 'Switzerland', 'days': '2-4' },
+    'TW': { 'name': 'Taiwan', 'days': '2-4' },
+    'TJ': { 'name': 'Tajikistan', 'days': '3-5' },
+    'TZ': { 'name': 'Tanzania', 'days': '3-5' },
+    'TH': { 'name': 'Thailand', 'days': '3-5' },
+    'TG': { 'name': 'Togo', 'days': '3-5' },
+    'TO': { 'name': 'Tonga', 'days': '3-5' },
+    'TT': { 'name': 'Trinidad and Tobago', 'days': '3-5' },
+    'TN': { 'name': 'Tunisia', 'days': '3-5' },
+    'TR': { 'name': 'Turkey', 'days': '3-5' },
+    'TC': { 'name': 'Turks and Caicos Islands', 'days': '3-5' },
+    'UG': { 'name': 'Uganda', 'days': '3-5' },
+    'UA': { 'name': 'Ukraine', 'days': '3-5' },
+    'AE': { 'name': 'United Arab Emirates', 'days': '3-5' },
+    'UY': { 'name': 'Uruguay', 'days': '3-5' },
+    'UZ': { 'name': 'Uzbekistan', 'days': '3-5' },
+    'VU': { 'name': 'Vanuatu', 'days': '2-4' },
+    'VE': { 'name': 'Venezuela', 'days': '3-5' },
+    'VN': { 'name': 'Vietnam', 'days': '3-5' },
+    'VG': { 'name': 'Virgin Islands (British)', 'days': '3-5' },
+    'WF': { 'name': 'Wallis and Futuna', 'days': '3-5' },
+    'YE': { 'name': 'Yemen', 'days': '3-5' },
+    'ZM': { 'name': 'Zambia', 'days': '3-5' },
+    'ZW': { 'name': 'Zimbabwe', 'days': '3-5' }
+}
+      
+
+let optionsCountry = ''
+
+let isCountry = window.location.href.split('maxwellscottbags.')[1].split('/')[0]
+
+if (isCountry == 'com') {
+    isCountry = window.location.href.split('maxwellscottbags.')[0].includes('au') ? 'au' : 
+    window.location.href.split('maxwellscottbags.')[0].includes('us') ? 'us' : 'GB'
+}
+
+for (const key in dataShipping) {
+    optionsCountry += `<option value="${key}" data-days="${dataShipping[key].days}" ${key == isCountry.toUpperCase() ? 'selected' : ''}>${dataShipping[key].name}</option>`
+}
+
 const delivery = `
     <ul class="crs_delivery">
         <li class="">
-            <p class="crs_uk_delivery"><b>You get FREE EXPRESS UK Delivery</b></p>
+            <p class="crs_uk_delivery" ${isCountry.toUpperCase() != 'GB' ? 'hidden':''}><b>You get FREE EXPRESS UK Delivery</b></p>
             <div class="crs_shipto d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
                     <path d="M21.4325 7.7L19.775 3.95C19.717 3.81701 19.6216 3.70371 19.5005 3.62384C19.3793 3.54396 19.2376 3.50095 19.0925 3.5H15.08L15.32 1.3325C15.3318 1.22728 15.3212 1.12075 15.2889 1.01992C15.2566 0.919094 15.2033 0.82625 15.1325 0.7475C15.0624 0.669806 14.9768 0.607647 14.8812 0.565021C14.7856 0.522396 14.6822 0.500247 14.5775 0.5H4.25C4.05109 0.5 3.86032 0.579018 3.71967 0.71967C3.57902 0.860322 3.5 1.05109 3.5 1.25C3.5 1.44891 3.57902 1.63968 3.71967 1.78033C3.86032 1.92098 4.05109 2 4.25 2H8C8.19891 2 8.38968 2.07902 8.53033 2.21967C8.67098 2.36032 8.75 2.55109 8.75 2.75C8.75 2.94891 8.67098 3.13968 8.53033 3.28033C8.38968 3.42098 8.19891 3.5 8 3.5H2.75C2.55109 3.5 2.36032 3.57902 2.21967 3.71967C2.07902 3.86032 2 4.05109 2 4.25C2 4.44891 2.07902 4.63968 2.21967 4.78033C2.36032 4.92098 2.55109 5 2.75 5H10.25C10.4489 5 10.6397 5.07902 10.7803 5.21967C10.921 5.36032 11 5.55109 11 5.75C11 5.94891 10.921 6.13968 10.7803 6.28033C10.6397 6.42098 10.4489 6.5 10.25 6.5H5C4.80109 6.5 4.61032 6.57902 4.46967 6.71967C4.32902 6.86032 4.25 7.05109 4.25 7.25C4.25 7.44891 4.32902 7.63968 4.46967 7.78033C4.61032 7.92098 4.80109 8 5 8H8C8.19891 8 8.38968 8.07902 8.53033 8.21967C8.67098 8.36032 8.75 8.55109 8.75 8.75C8.75 8.94891 8.67098 9.13968 8.53033 9.28033C8.38968 9.42098 8.19891 9.5 8 9.5H2C1.80109 9.5 1.61032 9.57902 1.46967 9.71967C1.32902 9.86032 1.25 10.0511 1.25 10.25C1.25 10.4489 1.32902 10.6397 1.46967 10.7803C1.61032 10.921 1.80109 11 2 11H3.5C3.69891 11 3.88968 11.079 4.03033 11.2197C4.17098 11.3603 4.25 11.5511 4.25 11.75C4.25 11.9489 4.17098 12.1397 4.03033 12.2803C3.88968 12.421 3.69891 12.5 3.5 12.5H2.75C2.55109 12.5 2.36032 12.579 2.21967 12.7197C2.07902 12.8603 2 13.0511 2 13.25C2 13.4489 2.07902 13.6397 2.21967 13.7803C2.36032 13.921 2.55109 14 2.75 14H4.8875C4.96849 14.3163 5.12262 14.6092 5.3375 14.855C5.51959 15.0586 5.74271 15.2213 5.99219 15.3325C6.24168 15.4436 6.51187 15.5007 6.785 15.5C7.24719 15.4868 7.69518 15.3374 8.07278 15.0705C8.45038 14.8037 8.74076 14.4313 8.9075 14H14.6375C14.7185 14.3163 14.8726 14.6092 15.0875 14.855C15.2696 15.0586 15.4927 15.2213 15.7422 15.3325C15.9917 15.4436 16.2619 15.5007 16.535 15.5C16.9972 15.4868 17.4452 15.3374 17.8228 15.0705C18.2004 14.8037 18.4908 14.4313 18.6575 14H20.1575C20.3429 14.0011 20.5222 13.9335 20.6607 13.8103C20.7992 13.687 20.8871 13.5168 20.9075 13.3325L21.485 8.0825C21.5056 7.95261 21.4873 7.81955 21.4325 7.7ZM6.785 14C6.72281 14.0027 6.66081 13.9913 6.60366 13.9666C6.54651 13.9419 6.49569 13.9046 6.455 13.8575C6.39613 13.7847 6.35305 13.7004 6.32852 13.61C6.30399 13.5196 6.29853 13.4251 6.3125 13.3325C6.33166 13.1219 6.42257 12.9243 6.57003 12.7728C6.71748 12.6212 6.91252 12.5249 7.1225 12.5C7.18469 12.4973 7.24669 12.5087 7.30384 12.5334C7.36099 12.5581 7.41181 12.5954 7.4525 12.6425C7.51137 12.7153 7.55445 12.7996 7.57898 12.89C7.60351 12.9804 7.60897 13.0749 7.595 13.1675C7.57584 13.3781 7.48493 13.5757 7.33747 13.7272C7.19002 13.8788 6.99498 13.9751 6.785 14ZM16.535 14C16.4728 14.0027 16.4108 13.9913 16.3537 13.9666C16.2965 13.9419 16.2457 13.9046 16.205 13.8575C16.1461 13.7847 16.1031 13.7004 16.0785 13.61C16.054 13.5196 16.0485 13.4251 16.0625 13.3325C16.0817 13.1219 16.1726 12.9243 16.32 12.7728C16.4675 12.6212 16.6625 12.5249 16.8725 12.5C16.9347 12.4973 16.9967 12.5087 17.0538 12.5334C17.111 12.5581 17.1618 12.5954 17.2025 12.6425C17.2614 12.7153 17.3044 12.7996 17.329 12.89C17.3535 12.9804 17.359 13.0749 17.345 13.1675C17.3258 13.3781 17.2349 13.5757 17.0875 13.7272C16.94 13.8788 16.745 13.9751 16.535 14ZM19.91 8.75H16.595C16.4903 8.74975 16.3869 8.7276 16.2913 8.68498C16.1957 8.64235 16.1101 8.58019 16.04 8.5025C15.9692 8.42375 15.9159 8.33091 15.8836 8.23008C15.8513 8.12925 15.8407 8.02272 15.8525 7.9175L16.1 5.6675C16.1221 5.48457 16.2108 5.31617 16.3491 5.19445C16.4874 5.07272 16.6657 5.00617 16.85 5.0075H18.5975L20 8.12L19.91 8.75Z" fill="#333333"/>
                     <path d="M2 8C2.19891 8 2.38968 7.92098 2.53033 7.78033C2.67098 7.63968 2.75 7.44891 2.75 7.25C2.75 7.05109 2.67098 6.86032 2.53033 6.71967C2.38968 6.57902 2.19891 6.5 2 6.5H1.25C1.05109 6.5 0.860322 6.57902 0.71967 6.71967C0.579018 6.86032 0.5 7.05109 0.5 7.25C0.5 7.44891 0.579018 7.63968 0.71967 7.78033C0.860322 7.92098 1.05109 8 1.25 8H2Z" fill="#333333"/>
                 </svg>
                 <p>Ship to:</p>
-                <select class="crs_country">
-                    <option value="uk" data-ship-from="7" data-ship-to="9">United Kingdom</option>
-                    <option value="us" data-ship-from="3" data-ship-to="5">United States</option>
-                </select>
+                <select class="crs_country">${optionsCountry}</select>
             </div>
             <div class="crs_est">Est. Delivery: <b>20 Jun - 22 Jun</b> </div>
         </li>
@@ -746,27 +1057,7 @@ const delivery = `
             <button class="crs_btn_more ml-auto" type="button">LEARN MORE</button>
         </li>
         <li class="d-flex justify-content-between align-items-center crs_trustpilot">
-            <svg xmlns="http://www.w3.org/2000/svg" width="91" height="20" viewBox="0 0 91 20" fill="none">
-                <path d="M9.78008 0.573486L12.4401 7.19635L19.5602 7.67918L14.0835 12.2552L15.8248 19.1765L9.78008 15.3817L3.73535 19.1765L5.47669 12.2552L0 7.67918L7.12008 7.19635L9.78008 0.573486Z" fill="#00B67E"/>
-                <path d="M33.0782 6.66401H29.6043V16.2435H27.6837V6.66401H24.2412V5.10308H33.0782V6.66401ZM38.1974 9.66327C37.9525 9.62253 37.6998 9.60215 37.4393 9.60215C36.5873 9.60215 36.0134 9.92858 35.7176 10.5815V16.2435H33.8587V7.96473H35.6334L35.6794 8.89054C36.1289 8.17128 36.7508 7.81165 37.5471 7.81165C37.8115 7.81165 38.0309 7.8474 38.2042 7.9188L38.1974 9.66327ZM44.3871 15.4325C43.8415 16.0752 43.0659 16.3965 42.061 16.3965C41.1629 16.3965 40.4823 16.1338 40.018 15.6085C39.5587 15.0831 39.3295 14.3231 39.3295 13.3283V7.96473H41.1884V13.3054C41.1884 14.3562 41.6252 14.8816 42.4969 14.8816C43.3998 14.8816 44.01 14.5576 44.3254 13.9099V7.96473H46.1852V16.2435H44.4331L44.3871 15.4325ZM52.7196 13.994C52.7196 13.6625 52.5815 13.41 52.3063 13.2365C52.036 13.0631 51.5845 12.9101 50.9518 12.7774C50.3192 12.6448 49.7913 12.4764 49.3682 12.2724C48.4397 11.8236 47.9755 11.1732 47.9755 10.3213C47.9755 9.60725 48.2762 9.01041 48.8785 8.53091C49.4798 8.0514 50.2457 7.81165 51.1742 7.81165C52.1633 7.81165 52.9615 8.0565 53.5687 8.54619C54.1809 9.03588 54.4864 9.671 54.4864 10.4514H52.6276C52.6276 10.0944 52.4953 9.79852 52.2299 9.56386C51.9645 9.32411 51.6129 9.20423 51.1742 9.20423C50.7658 9.20423 50.4318 9.29865 50.1713 9.48737C49.9166 9.6761 49.7893 9.92858 49.7893 10.2448C49.7893 10.5305 49.9088 10.7523 50.1488 10.9105C50.3887 11.0686 50.8725 11.2293 51.6021 11.3926C52.3318 11.5506 52.9028 11.7419 53.3161 11.9664C53.7343 12.1858 54.0428 12.451 54.2416 12.7621C54.4463 13.0733 54.5481 13.4507 54.5481 13.8946C54.5481 14.6393 54.2396 15.2438 53.6226 15.7079C53.0046 16.167 52.1966 16.3965 51.1967 16.3965C50.518 16.3965 49.9137 16.2741 49.3838 16.0292C48.853 15.7844 48.4397 15.4478 48.144 15.0193C47.8482 14.5908 47.7003 14.1291 47.7003 13.6344H49.5063C49.5317 14.0731 49.6973 14.4123 50.0028 14.652C50.3094 14.8867 50.7148 15.004 51.2202 15.004C51.7099 15.004 52.082 14.9122 52.3367 14.7285C52.5923 14.5398 52.7196 14.295 52.7196 13.994ZM58.5038 5.9524V7.96473H59.9651V9.34193H58.5038V13.9634C58.5038 14.2797 58.5655 14.5092 58.688 14.652C58.8153 14.7897 59.0396 14.8586 59.3608 14.8586C59.5753 14.8586 59.7917 14.8331 60.0111 14.7821V16.2206C59.588 16.3379 59.1796 16.3965 58.7869 16.3965C57.3589 16.3965 56.645 15.6085 56.645 14.0323V9.34193H55.2827V7.96473H56.645V5.9524H58.5038ZM68.6424 12.1883C68.6424 13.4686 68.3515 14.4913 67.7697 15.2565C67.188 16.0165 66.4074 16.3965 65.4281 16.3965C64.5202 16.3965 63.7935 16.0982 63.2479 15.5014V19.4265H61.3881V7.96473H63.102L63.1784 8.80631C63.7249 8.14327 64.4673 7.81165 65.4055 7.81165C66.4153 7.81165 67.2056 8.18911 67.7776 8.94411C68.3534 9.69392 68.6424 10.7371 68.6424 12.0735V12.1883ZM66.7904 12.0276C66.7904 11.2013 66.6249 10.5458 66.2928 10.0612C65.9667 9.57659 65.4976 9.33429 64.8855 9.33429C64.1255 9.33429 63.579 9.64799 63.2479 10.2754V13.9481C63.5848 14.5908 64.1353 14.9122 64.9002 14.9122C65.4917 14.9122 65.954 14.675 66.285 14.2006C66.6219 13.7211 66.7904 12.9968 66.7904 12.0276ZM72.1995 16.2435H70.3406V7.96473H72.1995V16.2435ZM70.226 5.8147C70.226 5.52901 70.3152 5.29181 70.4934 5.10308C70.6775 4.91435 70.9371 4.81994 71.274 4.81994C71.6109 4.81994 71.8704 4.91435 72.0545 5.10308C72.2377 5.29181 72.3297 5.52901 72.3297 5.8147C72.3297 6.09519 72.2377 6.32985 72.0545 6.51858C71.8704 6.70221 71.6109 6.79408 71.274 6.79408C70.9371 6.79408 70.6775 6.70221 70.4934 6.51858C70.3152 6.32985 70.226 6.09519 70.226 5.8147ZM76.2091 16.2435H74.3502V4.49097H76.2091V16.2435ZM77.8926 12.0276C77.8926 11.2166 78.0532 10.4871 78.3745 9.83926C78.6957 9.18641 79.1472 8.68653 79.729 8.33964C80.3107 7.98765 80.9786 7.81165 81.7337 7.81165C82.8502 7.81165 83.7562 8.17128 84.4496 8.89054C85.1488 9.60979 85.5259 10.5636 85.5817 11.7522L85.5896 12.1883C85.5896 13.0044 85.4319 13.7339 85.1155 14.3766C84.8041 15.0193 84.3555 15.5166 83.7689 15.8686C83.1871 16.2206 82.5143 16.3965 81.7484 16.3965C80.581 16.3965 79.6447 16.0089 78.9406 15.2336C78.2423 14.4531 77.8926 13.4151 77.8926 12.1195V12.0276ZM79.7515 12.1883C79.7515 13.0402 79.9278 13.7084 80.2794 14.1929C80.632 14.6724 81.1216 14.9122 81.7484 14.9122C82.3762 14.9122 82.863 14.6673 83.2107 14.1776C83.5623 13.6879 83.7386 12.9713 83.7386 12.0276C83.7386 11.191 83.5573 10.528 83.195 10.0383C82.8375 9.54858 82.3507 9.30374 81.7337 9.30374C81.1265 9.30374 80.6447 9.54604 80.2872 10.0305C79.9307 10.51 79.7515 11.2293 79.7515 12.1883ZM89.4924 5.9524V7.96473H90.9536V9.34193H89.4924V13.9634C89.4924 14.2797 89.5531 14.5092 89.6755 14.652C89.8029 14.7897 90.0281 14.8586 90.3494 14.8586C90.5629 14.8586 90.7803 14.8331 90.9996 14.7821V16.2206C90.5756 16.3379 90.1682 16.3965 89.7754 16.3965C88.3465 16.3965 87.6326 15.6085 87.6326 14.0323V9.34193H86.2712V7.96473H87.6326V5.9524H89.4924Z" fill="#0C0B0B"/>
-            </svg>
-            <svg width="111" height="18" viewBox="0 0 111 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.4986 0H0.831055V18H19.4986V0Z" fill="#00B67E"/>
-                <path d="M10.165 2.00012L12.0426 6.50832L17.0693 6.83699L13.2029 9.95192L14.4321 14.6633L10.165 12.0801L5.89798 14.6633L7.12714 9.95192L3.26074 6.83699L8.2875 6.50832L10.165 2.00012Z" fill="white"/>
-                <path d="M42.1666 0H23.499V18H42.1666V0Z" fill="#00B67E"/>
-                <path d="M32.832 2.00012L34.7096 6.50832L39.7363 6.83699L35.8699 9.95192L37.0991 14.6633L32.832 12.0801L28.565 14.6633L29.7941 9.95192L25.9277 6.83699L30.9545 6.50832L32.832 2.00012Z" fill="white"/>
-                <path d="M64.8336 0H46.166V18H64.8336V0Z" fill="#00B67E"/>
-                <path d="M55.5 2.00012L57.3778 6.50832L62.4042 6.83699L58.538 9.95192L59.7673 14.6633L55.5 12.0801L51.2329 14.6633L52.4621 9.95192L48.5957 6.83699L53.6225 6.50832L55.5 2.00012Z" fill="white"/>
-                <path d="M87.5015 0H68.834V18H87.5015V0Z" fill="#00B67E"/>
-                <path d="M78.1679 2.00012L80.0457 6.50832L85.0721 6.83699L81.2059 9.95192L82.4352 14.6633L78.1679 12.0801L73.9006 14.6633L75.1299 9.95192L71.2637 6.83699L76.2901 6.50832L78.1679 2.00012Z" fill="white"/>
-                <path d="M110.169 0H91.501V18H110.169V0Z" fill="#00B67E"/>
-                <path d="M100.835 2.00012L102.713 6.50832L107.739 6.83699L103.873 9.95192L105.102 14.6633L100.835 12.0801L96.5676 14.6633L97.7969 9.95192L93.9307 6.83699L98.9571 6.50832L100.835 2.00012Z" fill="white"/>
-            </svg>
-            <p>
-                <b>Excellent</b>
-                518 Reviews
-            </p>
-                
+            ${trustpilot}
         </li>
     </ul>`;
 
@@ -868,6 +1159,25 @@ const qualityBadge = `
     <p><b>Handcrafted leather<br>made in italy</b></p>
     <a href="#leather-unique-block-desktop" class="crs_quality_more">Learn more</ф>
 </div>`;
+
+const highlight = `
+<div class="d-flex crs_highlight">
+    <div class="d-flex align-items-center justify-content-center">
+        <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="29" height="24" viewBox="0 0 29 24" fill="none">
+            <path d="M25.1929 12.9147C27.0207 12.9147 28.5078 11.443 28.5078 9.63414V8.06723H26.4069C25.7622 8.06723 25.1388 8.25339 24.6046 8.59771C24.5452 8.27304 24.4702 7.95173 24.379 7.63471L25.0116 7.27444C25.7784 6.83633 26.3269 6.12891 26.5561 5.2825C26.7853 4.43608 26.6677 3.552 26.225 2.79313L25.4333 1.43616L23.6139 2.47568C22.896 2.88589 22.3631 3.54457 22.1137 4.33036C21.868 5.10394 21.917 5.93423 22.2515 6.66982L22.6247 7.54934C22.9564 8.46821 23.1248 9.43696 23.1248 10.4293C23.1248 15.1534 19.2412 18.9968 14.4675 18.9968C9.69381 18.9968 5.81016 15.1534 5.81016 10.4293C5.81016 9.43457 5.97837 8.46577 6.3099 7.54939L6.68311 6.66982C7.01755 5.93418 7.06652 5.10394 6.82093 4.33036C6.57145 3.54457 6.03864 2.88589 5.32068 2.47568L3.50124 1.43616L2.70963 2.79313C2.26687 3.552 2.14929 4.43608 2.37843 5.2825C2.60756 6.12891 3.15611 6.83633 3.92392 7.27498L4.55534 7.6346C4.46424 7.95146 4.38922 8.27271 4.32993 8.59765C3.79564 8.25339 3.17223 8.06723 2.5276 8.06723H0.426758V9.63414C0.426758 11.4431 1.91384 12.9147 3.74283 12.9147L4.47472 12.9137C4.55649 13.2358 4.65389 13.5517 4.76588 13.8609C4.12772 13.8257 3.49258 13.9724 2.93383 14.2917L1.1145 15.3312L1.90617 16.6882C2.51943 17.7394 3.63555 18.3276 4.78234 18.3276C5.34454 18.3276 5.91436 18.1861 6.43549 17.8883L7.0742 17.5222C7.30646 17.7593 7.55024 17.9852 7.80466 18.1991C7.23368 18.4842 6.75687 18.9264 6.43335 19.4808L5.38293 21.2813L6.75413 22.0647C7.26495 22.3566 7.83176 22.5057 8.40624 22.5057C8.69417 22.5057 8.98408 22.4683 9.26959 22.3925C10.1249 22.1657 10.8397 21.6229 11.283 20.863L11.6472 20.2367C12.5439 20.4896 13.49 20.625 14.4675 20.625C15.4449 20.625 16.3909 20.4896 17.2875 20.2368L17.6522 20.864C18.2656 21.9153 19.3821 22.5037 20.5286 22.5037C21.0906 22.5037 21.6598 22.3623 22.1805 22.0648L23.5517 21.2813L22.5013 19.4809C22.1779 18.9265 21.7011 18.4844 21.1303 18.1993C21.3847 17.9853 21.6285 17.7594 21.8608 17.5223L22.5002 17.889C23.021 18.1865 23.5901 18.3279 24.1521 18.3279C25.2985 18.3279 26.4152 17.7394 27.0285 16.6883L27.8201 15.3313L26.0008 14.2918C25.4421 13.9726 24.8071 13.8259 24.1691 13.861C24.2811 13.5519 24.3784 13.2359 24.4603 12.9138L25.1929 12.9147Z"
+                fill="#B68B51" />
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.55757 10.3652C7.55757 6.59407 10.6578 3.52603 14.4685 3.52603C18.2792 3.52603 21.3794 6.59407 21.3794 10.3652C21.3794 14.1364 18.2792 17.2045 14.4685 17.2045C10.6578 17.2045 7.55757 14.1364 7.55757 10.3652ZM19.1818 6.62702L16.4744 6.94774C16.2982 6.96748 16.1852 6.99215 16.1353 7.02176C16.0888 7.05136 16.0489 7.12867 16.0157 7.25367L15.4024 9.5777C15.3725 9.69942 15.3758 9.78494 15.4124 9.83428C15.4489 9.88034 15.547 9.9083 15.7065 9.91817C15.8495 9.92803 15.9691 9.9379 16.0655 9.94777C16.1619 9.95764 16.2849 9.97409 16.4345 9.99712C16.5874 10.0169 16.717 10.0399 16.8234 10.0662C16.9298 10.0925 17.0511 10.1287 17.1874 10.1747C17.3237 10.2208 17.4383 10.2718 17.5314 10.3277C17.6278 10.3836 17.7242 10.4527 17.8206 10.5349C17.9203 10.6172 17.9984 10.7093 18.0549 10.8113C18.1148 10.91 18.163 11.0267 18.1995 11.1616C18.2394 11.2932 18.2594 11.4379 18.2594 11.5958C18.2594 12.1353 17.9436 12.5909 17.312 12.9626C17.086 13.0942 16.7868 13.1978 16.4146 13.2735C16.0456 13.3524 15.6633 13.4001 15.2678 13.4166C15.2013 13.4626 15.1764 13.5432 15.193 13.6583C15.2096 13.7768 15.2561 13.8541 15.3326 13.8902C15.798 13.8804 16.2749 13.8195 16.7636 13.7077C17.2555 13.5991 17.7009 13.4379 18.0998 13.2241C19.0771 12.7011 19.5657 11.9741 19.5657 11.0432C19.5657 10.6484 19.4643 10.308 19.2616 10.0218C19.0588 9.73231 18.7995 9.51027 18.4837 9.35566C18.0084 9.12211 17.3154 8.95599 16.4046 8.8573C16.2849 8.84743 16.2018 8.82276 16.1553 8.78329C16.1087 8.74381 16.0988 8.67144 16.1254 8.56618L16.1902 8.33427C16.2135 8.23887 16.2417 8.16815 16.2749 8.1221C16.3082 8.07604 16.358 8.04808 16.4245 8.03821L18.733 7.78657C18.8594 7.66815 18.9724 7.51354 19.0721 7.32275C19.1718 7.13196 19.2449 6.93952 19.2915 6.74544C19.2915 6.66649 19.2549 6.62702 19.1818 6.62702ZM12.9742 12.1929H11.7427C11.6131 12.1929 11.5482 12.1517 11.5482 12.0695C11.5482 11.9774 11.7277 11.7652 12.0867 11.433L12.5803 10.979C13.182 10.4198 13.5892 9.96422 13.8019 9.61224C14.0146 9.26027 14.121 8.88362 14.121 8.4823C14.121 7.99216 13.9448 7.58426 13.5925 7.2586C13.2435 6.92965 12.7764 6.76518 12.1914 6.76518C11.6829 6.76518 11.2158 6.90334 10.7904 7.17965C10.3649 7.45597 10.0491 7.84413 9.84303 8.34414C9.853 8.42309 9.89455 8.47736 9.96768 8.50697C10.0441 8.53328 10.1139 8.52506 10.1771 8.4823C10.5427 7.86387 10.9815 7.55466 11.4934 7.55466C11.8291 7.55466 12.0984 7.67143 12.3011 7.90499C12.5072 8.13854 12.6102 8.43296 12.6102 8.78822C12.6102 9.27836 12.4922 9.7356 12.2562 10.1599C12.0202 10.5843 11.6912 11.0267 11.269 11.4873C10.8435 11.9511 10.3167 12.4692 9.68846 13.0416C9.67849 13.0909 9.68181 13.1386 9.69843 13.1846C9.71505 13.2274 9.74497 13.2537 9.78818 13.2636C9.96435 13.2439 10.3466 13.234 10.935 13.234H12.5554C13.1005 13.234 13.5775 13.2439 13.9864 13.2636C14.0761 13.1386 14.1709 12.9231 14.2706 12.6172C14.3736 12.308 14.4468 12.0021 14.49 11.6994C14.47 11.6369 14.4152 11.6007 14.3254 11.5909C14.2357 11.581 14.1742 11.5958 14.1409 11.6353C13.998 11.8952 13.8651 12.0531 13.7421 12.109C13.6191 12.1649 13.3631 12.1929 12.9742 12.1929Z"
+                fill="#B68B51" />
+        </svg>
+        25-year warranty
+    </div>
+    <div class="d-flex align-items-center justify-content-center">
+        <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+            <path d="M16.69 2H8.31001C4.67 2 2.5 4.17 2.5 7.81001V16.18C2.5 19.83 4.67 22 8.31001 22H16.68C20.32 22 22.49 19.83 22.49 16.19V7.81001C22.5 4.17 20.33 2 16.69 2ZM14.42 16.13H9.50001C9.09001 16.13 8.75001 15.79 8.75001 15.38C8.75001 14.97 9.09001 14.63 9.50001 14.63H14.42C15.7 14.63 16.75 13.59 16.75 12.3C16.75 11.01 15.71 9.97001 14.42 9.97001H9.35001L9.61001 10.23C9.90001 10.53 9.90001 11 9.60001 11.3C9.45001 11.45 9.26001 11.52 9.07001 11.52C8.88001 11.52 8.69001 11.45 8.54001 11.3L6.97001 9.72001C6.68001 9.43001 6.68001 8.95001 6.97001 8.66001L8.54001 7.09001C8.83001 6.80001 9.31001 6.80001 9.60001 7.09001C9.89001 7.38001 9.89001 7.86001 9.60001 8.15001L9.27001 8.48001H14.42C16.53 8.48001 18.25 10.2 18.25 12.31C18.25 14.42 16.53 16.13 14.42 16.13Z" fill="#B68B51"/>
+        </svg>
+        60-day return
+    </div>
+</div>`
 
 start();
 
@@ -1023,7 +1333,7 @@ function formatDate(days) {
         if (targetElement.classList.contains('active')) {
           
             let countProduct = 0
-            targetElement.querySelectorAll('li .option-wrapper > .values [data-bind="text: qty"]').forEach(item => {
+            targetElement.querySelectorAll('.minicart-items li .option-wrapper > .values [data-bind="text: qty"]').forEach(item => {
                 countProduct += +(item.innerText)
                 console.log(+(item.innerText))
             })
@@ -1040,7 +1350,7 @@ function formatDate(days) {
 
             if (targetElement.querySelector('.minicart-title span').innerHTML == '0') return
 
-            let price = targetElement.querySelector('.mobile-basket-block__content .subtotal .amount.price-container .price').innerText
+            let price = targetElement.querySelector('.subtotal .amount.price-container .price').innerText
 
             if (!targetElement.querySelector('.crs_cart_subtotal')) {
                 targetElement.querySelector('.block-content > .actions > .primary').insertAdjacentHTML('beforebegin',  `
@@ -1051,26 +1361,7 @@ function formatDate(days) {
                     </div>
                 </div>`)
 
-                targetElement.querySelector('.block-content > .actions > .primary .paypal input').src = dir + 'paypal-logo.svg'
-
-                targetElement.querySelector('.mobile-basket-block__content > .block-content > .actions').insertAdjacentHTML('beforebegin', 
-                `<div class="d-flex crs_highlight">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="29" height="24" viewBox="0 0 29 24" fill="none">
-                            <path d="M25.1929 12.9147C27.0207 12.9147 28.5078 11.443 28.5078 9.63414V8.06723H26.4069C25.7622 8.06723 25.1388 8.25339 24.6046 8.59771C24.5452 8.27304 24.4702 7.95173 24.379 7.63471L25.0116 7.27444C25.7784 6.83633 26.3269 6.12891 26.5561 5.2825C26.7853 4.43608 26.6677 3.552 26.225 2.79313L25.4333 1.43616L23.6139 2.47568C22.896 2.88589 22.3631 3.54457 22.1137 4.33036C21.868 5.10394 21.917 5.93423 22.2515 6.66982L22.6247 7.54934C22.9564 8.46821 23.1248 9.43696 23.1248 10.4293C23.1248 15.1534 19.2412 18.9968 14.4675 18.9968C9.69381 18.9968 5.81016 15.1534 5.81016 10.4293C5.81016 9.43457 5.97837 8.46577 6.3099 7.54939L6.68311 6.66982C7.01755 5.93418 7.06652 5.10394 6.82093 4.33036C6.57145 3.54457 6.03864 2.88589 5.32068 2.47568L3.50124 1.43616L2.70963 2.79313C2.26687 3.552 2.14929 4.43608 2.37843 5.2825C2.60756 6.12891 3.15611 6.83633 3.92392 7.27498L4.55534 7.6346C4.46424 7.95146 4.38922 8.27271 4.32993 8.59765C3.79564 8.25339 3.17223 8.06723 2.5276 8.06723H0.426758V9.63414C0.426758 11.4431 1.91384 12.9147 3.74283 12.9147L4.47472 12.9137C4.55649 13.2358 4.65389 13.5517 4.76588 13.8609C4.12772 13.8257 3.49258 13.9724 2.93383 14.2917L1.1145 15.3312L1.90617 16.6882C2.51943 17.7394 3.63555 18.3276 4.78234 18.3276C5.34454 18.3276 5.91436 18.1861 6.43549 17.8883L7.0742 17.5222C7.30646 17.7593 7.55024 17.9852 7.80466 18.1991C7.23368 18.4842 6.75687 18.9264 6.43335 19.4808L5.38293 21.2813L6.75413 22.0647C7.26495 22.3566 7.83176 22.5057 8.40624 22.5057C8.69417 22.5057 8.98408 22.4683 9.26959 22.3925C10.1249 22.1657 10.8397 21.6229 11.283 20.863L11.6472 20.2367C12.5439 20.4896 13.49 20.625 14.4675 20.625C15.4449 20.625 16.3909 20.4896 17.2875 20.2368L17.6522 20.864C18.2656 21.9153 19.3821 22.5037 20.5286 22.5037C21.0906 22.5037 21.6598 22.3623 22.1805 22.0648L23.5517 21.2813L22.5013 19.4809C22.1779 18.9265 21.7011 18.4844 21.1303 18.1993C21.3847 17.9853 21.6285 17.7594 21.8608 17.5223L22.5002 17.889C23.021 18.1865 23.5901 18.3279 24.1521 18.3279C25.2985 18.3279 26.4152 17.7394 27.0285 16.6883L27.8201 15.3313L26.0008 14.2918C25.4421 13.9726 24.8071 13.8259 24.1691 13.861C24.2811 13.5519 24.3784 13.2359 24.4603 12.9138L25.1929 12.9147Z"
-                                fill="#B68B51" />
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.55757 10.3652C7.55757 6.59407 10.6578 3.52603 14.4685 3.52603C18.2792 3.52603 21.3794 6.59407 21.3794 10.3652C21.3794 14.1364 18.2792 17.2045 14.4685 17.2045C10.6578 17.2045 7.55757 14.1364 7.55757 10.3652ZM19.1818 6.62702L16.4744 6.94774C16.2982 6.96748 16.1852 6.99215 16.1353 7.02176C16.0888 7.05136 16.0489 7.12867 16.0157 7.25367L15.4024 9.5777C15.3725 9.69942 15.3758 9.78494 15.4124 9.83428C15.4489 9.88034 15.547 9.9083 15.7065 9.91817C15.8495 9.92803 15.9691 9.9379 16.0655 9.94777C16.1619 9.95764 16.2849 9.97409 16.4345 9.99712C16.5874 10.0169 16.717 10.0399 16.8234 10.0662C16.9298 10.0925 17.0511 10.1287 17.1874 10.1747C17.3237 10.2208 17.4383 10.2718 17.5314 10.3277C17.6278 10.3836 17.7242 10.4527 17.8206 10.5349C17.9203 10.6172 17.9984 10.7093 18.0549 10.8113C18.1148 10.91 18.163 11.0267 18.1995 11.1616C18.2394 11.2932 18.2594 11.4379 18.2594 11.5958C18.2594 12.1353 17.9436 12.5909 17.312 12.9626C17.086 13.0942 16.7868 13.1978 16.4146 13.2735C16.0456 13.3524 15.6633 13.4001 15.2678 13.4166C15.2013 13.4626 15.1764 13.5432 15.193 13.6583C15.2096 13.7768 15.2561 13.8541 15.3326 13.8902C15.798 13.8804 16.2749 13.8195 16.7636 13.7077C17.2555 13.5991 17.7009 13.4379 18.0998 13.2241C19.0771 12.7011 19.5657 11.9741 19.5657 11.0432C19.5657 10.6484 19.4643 10.308 19.2616 10.0218C19.0588 9.73231 18.7995 9.51027 18.4837 9.35566C18.0084 9.12211 17.3154 8.95599 16.4046 8.8573C16.2849 8.84743 16.2018 8.82276 16.1553 8.78329C16.1087 8.74381 16.0988 8.67144 16.1254 8.56618L16.1902 8.33427C16.2135 8.23887 16.2417 8.16815 16.2749 8.1221C16.3082 8.07604 16.358 8.04808 16.4245 8.03821L18.733 7.78657C18.8594 7.66815 18.9724 7.51354 19.0721 7.32275C19.1718 7.13196 19.2449 6.93952 19.2915 6.74544C19.2915 6.66649 19.2549 6.62702 19.1818 6.62702ZM12.9742 12.1929H11.7427C11.6131 12.1929 11.5482 12.1517 11.5482 12.0695C11.5482 11.9774 11.7277 11.7652 12.0867 11.433L12.5803 10.979C13.182 10.4198 13.5892 9.96422 13.8019 9.61224C14.0146 9.26027 14.121 8.88362 14.121 8.4823C14.121 7.99216 13.9448 7.58426 13.5925 7.2586C13.2435 6.92965 12.7764 6.76518 12.1914 6.76518C11.6829 6.76518 11.2158 6.90334 10.7904 7.17965C10.3649 7.45597 10.0491 7.84413 9.84303 8.34414C9.853 8.42309 9.89455 8.47736 9.96768 8.50697C10.0441 8.53328 10.1139 8.52506 10.1771 8.4823C10.5427 7.86387 10.9815 7.55466 11.4934 7.55466C11.8291 7.55466 12.0984 7.67143 12.3011 7.90499C12.5072 8.13854 12.6102 8.43296 12.6102 8.78822C12.6102 9.27836 12.4922 9.7356 12.2562 10.1599C12.0202 10.5843 11.6912 11.0267 11.269 11.4873C10.8435 11.9511 10.3167 12.4692 9.68846 13.0416C9.67849 13.0909 9.68181 13.1386 9.69843 13.1846C9.71505 13.2274 9.74497 13.2537 9.78818 13.2636C9.96435 13.2439 10.3466 13.234 10.935 13.234H12.5554C13.1005 13.234 13.5775 13.2439 13.9864 13.2636C14.0761 13.1386 14.1709 12.9231 14.2706 12.6172C14.3736 12.308 14.4468 12.0021 14.49 11.6994C14.47 11.6369 14.4152 11.6007 14.3254 11.5909C14.2357 11.581 14.1742 11.5958 14.1409 11.6353C13.998 11.8952 13.8651 12.0531 13.7421 12.109C13.6191 12.1649 13.3631 12.1929 12.9742 12.1929Z"
-                                fill="#B68B51" />
-                        </svg>
-                        25-year warranty
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center">
-                        <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
-                            <path d="M16.69 2H8.31001C4.67 2 2.5 4.17 2.5 7.81001V16.18C2.5 19.83 4.67 22 8.31001 22H16.68C20.32 22 22.49 19.83 22.49 16.19V7.81001C22.5 4.17 20.33 2 16.69 2ZM14.42 16.13H9.50001C9.09001 16.13 8.75001 15.79 8.75001 15.38C8.75001 14.97 9.09001 14.63 9.50001 14.63H14.42C15.7 14.63 16.75 13.59 16.75 12.3C16.75 11.01 15.71 9.97001 14.42 9.97001H9.35001L9.61001 10.23C9.90001 10.53 9.90001 11 9.60001 11.3C9.45001 11.45 9.26001 11.52 9.07001 11.52C8.88001 11.52 8.69001 11.45 8.54001 11.3L6.97001 9.72001C6.68001 9.43001 6.68001 8.95001 6.97001 8.66001L8.54001 7.09001C8.83001 6.80001 9.31001 6.80001 9.60001 7.09001C9.89001 7.38001 9.89001 7.86001 9.60001 8.15001L9.27001 8.48001H14.42C16.53 8.48001 18.25 10.2 18.25 12.31C18.25 14.42 16.53 16.13 14.42 16.13Z" fill="#B68B51"/>
-                        </svg>
-                        60-day return
-                    </div>
-                </div>`)
+                targetElement.querySelector('.block-content > .actions').insertAdjacentHTML('beforebegin', highlight)
             }
 
             if (!targetElement.querySelector('.crs_klarna')) {
@@ -1078,10 +1369,22 @@ function formatDate(days) {
             }
             targetElement.querySelector('.crs_sub .pr b').innerHTML = price
             
+            targetElement.querySelector('.block-content > .actions > .primary .paypal input').src = dir + 'paypal-logo.svg'
 
-            if (!targetElement.querySelector('.crs_discount')) {
-                targetElement.querySelector('.minicart-items').insertAdjacentHTML('afterend', getDiscount)
-            }
+            const waitForDiscount = setInterval(() => {
+                if (document.querySelector('body > div > button.needsclick') &&
+                    document.querySelector('body > div > button.needsclick').innerText.includes('10% OFF') &&
+                    !targetElement.querySelector('.crs_discount')
+                ) {
+                    clearInterval(waitForDiscount)
+    
+                    targetElement.querySelector('.minicart-items').insertAdjacentHTML('afterend', getDiscount)
+
+                    document.querySelector('.crs_discount').addEventListener('click', () => {
+                        document.querySelector('body > div > button.needsclick').click()
+                    })
+                }
+              })
 
 
 
@@ -1200,15 +1503,12 @@ function start() {
             .addEventListener("change", (e) => {
               let selectedOption = e.target.options[e.target.selectedIndex];
 
-              console.log(selectedOption);
-
               document.querySelector(".crs_est b").innerHTML =
-                formatDate(selectedOption.dataset.shipFrom) +
+                formatDate(selectedOption.dataset.days.split('-')[0]) +
                 " - " +
-                formatDate(selectedOption.dataset.shipTo);
+                formatDate(selectedOption.dataset.days.split('-')[1]);
 
-              console.log(e.target.value);
-              if (e.target.value == "uk") {
+              if (e.target.value == "GB") {
                 document.querySelector(".crs_uk_delivery").hidden = false;
               } else {
                 document.querySelector(".crs_uk_delivery").hidden = true;
@@ -1255,22 +1555,59 @@ function start() {
             stickyBtn(el.innerText)
         })
 
-        waitForElement('.mobile-basket-block').then((cartElement) => {
-            cartElement.querySelector('.minicart-title').innerHTML = 'Shopping Bag (<span>0</span>)'
-           
-            // Create a Mutation Observer to watch for changes in the cart.
-            const cartObserver = new MutationObserver(handleCartMutation)
-
-            // Define the options for the Mutation Observer.
-            const observerOptions = {
-                attributes: true, // Watch for changes to the attributes of the cart.
-                attributeFilter: ['class'], // Only watch for changes to the "class" attribute.
-            }
-
-            // Start observing the cart element.
-            cartObserver.observe(cartElement, observerOptions)
+      }
+     
+      if (location.href.includes("/checkout/")) {
+        document.body.insertAdjacentHTML('afterend', `<style>
+        .checkout-header-container {
+            margin-bottom: 20px!important;
+        }
+        .crs_info {
+            max-width: 650px;
+        }
+        </style>`)
+        waitForElement('.checkout-header-container').then(el => {
+            el.insertAdjacentHTML('afterend', `
+            <div class="px-4 crs_info mx-auto">
+                <div class="d-flex align-items-center justify-content-center crs_trustpilot">
+                    ${trustpilot}
+                </div>
+                ${highlight}
+            </div>`)
         })
       }
+      waitForElement('.header-right-block > ul > .minicart-wrapper').then((cartElement) => {
+        cartElement.querySelector('.minicart-title').innerHTML = 'Shopping Bag (<span>0</span>)'
+       
+        // Create a Mutation Observer to watch for changes in the cart.
+        const cartObserver = new MutationObserver(handleCartMutation)
+
+        // Define the options for the Mutation Observer.
+        const observerOptions = {
+            attributes: true, // Watch for changes to the attributes of the cart.
+            attributeFilter: ['class'], // Only watch for changes to the "class" attribute.
+        }
+
+        // Start observing the cart element.
+        cartObserver.observe(cartElement, observerOptions)
+      })
+
+      waitForElement('.mobile-basket-block').then((cartElement) => {
+        cartElement.querySelector('.minicart-title').innerHTML = 'Shopping Bag (<span>0</span>)'
+       
+        // Create a Mutation Observer to watch for changes in the cart.
+        const cartObserver = new MutationObserver(handleCartMutation)
+
+        // Define the options for the Mutation Observer.
+        const observerOptions = {
+            attributes: true, // Watch for changes to the attributes of the cart.
+            attributeFilter: ['class'], // Only watch for changes to the "class" attribute.
+        }
+
+        // Start observing the cart element.
+        cartObserver.observe(cartElement, observerOptions)
+      })
+
     }
   }, 0);
 }
