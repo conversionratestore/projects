@@ -1527,17 +1527,6 @@ span.accent_weight_bold {
             localStorage.setItem("upselsAddBtn", "yes");
 
             addToCartCheckout(el.getAttribute("data-variant"), 1);
-            let q = setInterval(() => {
-              if (localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtan")) {
-                clearInterval(q);
-                setTimeout(() => {
-                  let id = localStorage.getItem("firstUpsellId");
-                  let count = +localStorage.getItem("countForUps");
-                  console.log(count, `count`);
-                  changeCartCheckout(id, count);
-                }, 400);
-              }
-            }, 700);
           }
           e.target.setAttribute("data-test", "1");
           setTimeout(() => {
@@ -1614,18 +1603,6 @@ span.accent_weight_bold {
           .then((response) => {
             response.json();
 
-            // let q = setInterval(() => {
-            //   if (localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
-            //     clearInterval(q);
-            //     setTimeout(() => {
-            //       let id = localStorage.getItem("firstUpsellId");
-            //       let count = +localStorage.getItem("countForUps");
-            //       console.log(count, `count`);
-            //       changeCartCheckout(id, count);
-            //     }, 400);
-            //   }
-            // }, 700);
-
             getCartCheckout();
 
             if (window.location.pathname.match("/cart") && localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
@@ -1636,6 +1613,19 @@ span.accent_weight_bold {
               onOpenPopup();
             }
             document.querySelector(".slide_in_products")?.scrollIntoView({ block: "start", behavior: "smooth" });
+          })
+          .then(() => {
+            let q = setInterval(() => {
+              if (localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
+                clearInterval(q);
+                setTimeout(() => {
+                  let id = localStorage.getItem("firstUpsellId");
+                  let count = +localStorage.getItem("countForUps");
+                  console.log(count, `count`);
+                  changeCartCheckout(id, count);
+                }, 200);
+              }
+            }, 700);
           })
           .catch((error) => {
             console.error("Error:", error);
