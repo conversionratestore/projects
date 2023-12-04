@@ -1527,6 +1527,17 @@ span.accent_weight_bold {
             localStorage.setItem("upselsAddBtn", "yes");
 
             addToCartCheckout(el.getAttribute("data-variant"), 1);
+            let q = setInterval(() => {
+              if (localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtan")) {
+                clearInterval(q);
+                setTimeout(() => {
+                  let id = localStorage.getItem("firstUpsellId");
+                  let count = +localStorage.getItem("countForUps");
+                  console.log(count, `count`);
+                  changeCartCheckout(id, count);
+                }, 400);
+              }
+            }, 700);
           }
           e.target.setAttribute("data-test", "1");
           setTimeout(() => {
@@ -1603,18 +1614,17 @@ span.accent_weight_bold {
           .then((response) => {
             response.json();
 
-            let q = setInterval(() => {
-              // localStorage.getItem("upsellInit");
-              if (localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
-                clearInterval(q);
-                setTimeout(() => {
-                  let id = localStorage.getItem("firstUpsellId");
-                  let count = +localStorage.getItem("countForUps");
-                  console.log(count, `count`);
-                  changeCartCheckout(id, count);
-                }, 400);
-              }
-            }, 700);
+            // let q = setInterval(() => {
+            //   if (localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
+            //     clearInterval(q);
+            //     setTimeout(() => {
+            //       let id = localStorage.getItem("firstUpsellId");
+            //       let count = +localStorage.getItem("countForUps");
+            //       console.log(count, `count`);
+            //       changeCartCheckout(id, count);
+            //     }, 400);
+            //   }
+            // }, 700);
 
             getCartCheckout();
 
@@ -1762,10 +1772,6 @@ span.accent_weight_bold {
 
           document.querySelector(".slide_in_products").innerHTML = "";
           document.querySelector(".upsells_wrapp").innerHTML = "";
-
-          if (localStorage.getItem("upsellInit")) {
-            localStorage.removeItem("upsellInit");
-          }
 
           if (localStorage.getItem("novaaLightPad")) {
             localStorage.removeItem("novaaLightPad");
@@ -1917,7 +1923,7 @@ span.accent_weight_bold {
                 el.addEventListener("click", (e) => {
                   if (!e.target.getAttribute("data-test")) {
                     pushDataLayer(["exp_nov_oral_butt_slidcart_delete", "Delete", "Button", "Slide-in cart"]);
-                    if (localStorage.getItem("upsellInit") && +e.target.closest(".product_wrap").getAttribute("data-id") === 46932997865817) {
+                    if (localStorage.getItem("upsellInit") && (+e.target.closest(".product_wrap").getAttribute("data-id") === 46932997865817 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368669593945 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368670118233 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368679293273 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368679752025 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368681161049)) {
                       localStorage.removeItem("upsellInit");
                     }
                     changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), 0);
@@ -2024,17 +2030,13 @@ span.accent_weight_bold {
                   firstUpsell = +localStorage.getItem("firstUpsellId");
                   if (firstUpsell === 46883225993561) {
                     onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPad", 46883225993561, "novaa_light_pad", 47368669593945);
-                  }
-                  if (firstUpsell === 47116576588121) {
+                  } else if (firstUpsell === 47116576588121) {
                     onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPadXl", 47116576588121, "novaa_light_pad_xl", 47368670118233);
-                  }
-                  if (firstUpsell === 47048817607001) {
+                  } else if (firstUpsell === 47048817607001) {
                     onRenderUpsell(data.items, upselsObjNovaa, "novaaGlowTherapyMask", 47048817607001, "novaa_glow_therapy_mask", 47368679293273);
-                  }
-                  if (firstUpsell === 32854816784438) {
+                  } else if (firstUpsell === 32854816784438) {
                     onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPro", 32854816784438, "novaa_light_pro", 47368679752025);
-                  }
-                  if (firstUpsell === 40156488761398) {
+                  } else if (firstUpsell === 40156488761398) {
                     onRenderUpsell(data.items, upselsObjNovaa, "novaaExtraStrengthLaser", 40156488761398, "novaa_extra_strength_laser", 47368681161049);
                   }
                   // if (firstUpsell === 39782656311350) {
@@ -2047,11 +2049,14 @@ span.accent_weight_bold {
                   //     '',
                   //   );
                   // }
-                  if (firstUpsell === 47100514140505) {
+                  else if (firstUpsell === 47100514140505) {
                     onRenderUpsell(data.items, upselsObjSonic, "upselsSonic", 47100514140505, "upsels_sonic", 46932997865817);
-                  }
-                  if (firstUpsell === 40365298679862) {
+                  } else if (firstUpsell === 40365298679862) {
                     onRenderUpsell(data.items, upselsObjSonic, "upselsSonic", 40365298679862, "upsels_sonic", 46932997865817);
+                  } else {
+                    if (localStorage.getItem("upsellInit")) {
+                      localStorage.removeItem("upsellInit");
+                    }
                   }
                 }
               }, 1000);
@@ -2103,7 +2108,6 @@ span.accent_weight_bold {
           response.json();
         })
         .then((data) => {
-          console.log(data);
           addBlurLoadCart();
 
           if (localStorage.getItem("upselsAddBtn")) {
