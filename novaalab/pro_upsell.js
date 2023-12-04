@@ -40,6 +40,9 @@ html.gemapp.video.fixed_body {
   width: 100%;
   overflow: hidden !important;
 }
+.visib_cart{
+  position: absolute;
+}
 .slide_in_cart {
   position: fixed;
   right: 0;
@@ -55,6 +58,11 @@ html.gemapp.video.fixed_body {
 }
 html.gemapp.video.active {
   overflow: hidden !important;
+}
+html.active,
+body.active {
+  overflow: hidden !important;
+  display: block;
 }
 .slide_in_cart.active {
   opacity: 1;
@@ -894,6 +902,10 @@ span.accent_weight_bold {
   }
   .slide_in_body {
     margin-right: 6px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   .cartleft .upsell_body {
     flex-wrap: wrap;
@@ -1016,6 +1028,7 @@ span.accent_weight_bold {
     <div class="slide_in_cart">
   <div class="container">
       <div class="slide_in_header">
+        <span class="visib_cart"></span>
         <p class="cart_length">Cart (<span>0</span>)</p>
         <svg class="slide_in_cart_close" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M8.00022 6.54522L1.45508 0.00012207L0.000548353 1.45464L6.54569 7.99973L0 14.5454L1.45453 15.9999L8.00022 9.45425L14.5458 15.9998L16.0004 14.5453L9.45475 7.99973L15.9998 1.45471L14.5453 0.000194265L8.00022 6.54522Z" fill="#212121" />
@@ -1045,6 +1058,7 @@ span.accent_weight_bold {
               />
             </svg>
             <span>60-day money back guarantee</span>
+            <span class="visib_guarantee"></span>
           </div>
         </div>
         <div class="slide_in_btn_wrap">
@@ -1561,18 +1575,34 @@ span.accent_weight_bold {
 
       function onOpenPopup() {
         html.classList.add("active");
-
+        body.classList.add("active");
         overlay.classList.add("active");
-        body.style.overflow = "hidden";
-        html.style.overflow = "hidden";
-        body.style.display = "block";
+        if (!document.querySelector(".visib_cart")) {
+          document.querySelector(".slide_in_header")?.insertAdjacentHTML("afterbegin", `<span class="visib_cart"></span>`);
+        }
+        if (!document.querySelector(".visib_guarantee")) {
+          document.querySelector(".slide_in_guarantee")?.insertAdjacentHTML("beforeend", `<span class="visib_guarantee"></span>`);
+        }
+
+        waitForElement(".visib_guarantee").then((el) => {
+          handleVisibility(el, ["exp_nov_oral_butt_slidcartguar_check", " {{focusTime}} ", "Visibility ", "Slide-in cart 60-day money back guarantee"]);
+        });
+        waitForElement(".visib_cart").then((el) => {
+          handleVisibility(el, ["exp_nov_oral_vis_slidcart_focus", " {{focusTime}} ", "Visibility ", "Slide-in cart"]);
+        });
       }
 
       function onClosePopup() {
         html.classList.remove("active");
         overlay.classList.remove("active");
+        body.classList.remove("active");
         body.style.overflow = "auto";
         html.style.overflow = "auto";
+
+        setTimeout(() => {
+          document.querySelector(".visib_cart")?.remove();
+          document.querySelector(".visib_guarantee")?.remove();
+        }, 10);
       }
     }
 
@@ -2074,14 +2104,8 @@ span.accent_weight_bold {
     });
 
     function visibElem() {
-      waitForElement(".slide_in_guarantee").then((el) => {
-        handleVisibility(el, ["exp_nov_oral_butt_slidcartguar_check", " {{focusTime}} ", "Visibility ", "Slide-in cart 60-day money back guarantee"]);
-      });
       waitForElement(".overlay_popup.active").then((el) => {
         handleVisibility(el, ["exp_nov_oral_vis_popup_focus", " {{focusTime}} ", "Visibility ", "Pop up did you now"]);
-      });
-      waitForElement(".slide_in_cart.active").then((el) => {
-        handleVisibility(el, ["exp_nov_oral_vis_slidcart_focus", " {{focusTime}} ", "Visibility ", "Slide-in cart"]);
       });
     }
 
