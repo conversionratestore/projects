@@ -30,7 +30,6 @@ let startFunk = setInterval(() => {
   -webkit-appearance: none;
   margin: 0;
 }
-
 /* Firefox */
 .slide_in_cart input[type="number"] {
   -moz-appearance: textfield;
@@ -40,7 +39,7 @@ html.gemapp.video.fixed_body {
   width: 100%;
   overflow: hidden !important;
 }
-.visib_cart{
+.visib_cart {
   position: absolute;
 }
 .slide_in_cart {
@@ -130,8 +129,6 @@ body.active {
 .slide_in_body::-webkit-scrollbar-thumb {
   background: #e2e2e2;
   border-radius: 20px;
-}
-.slide_in_body.my_height {
 }
 .slide_in_products {
   position: relative;
@@ -759,21 +756,21 @@ span.accent_weight_bold {
 .gf_tab .item-content .gf_add-to-cart:not(.new_btn_icon) {
   display: none !important;
 }
-.new_btn_icon{
+.new_btn_icon {
   padding: 10px 10px 20px 50px;
-    background-image: url(https://ucarecdn.com/1ae13a7f-2f76-4c32-9a6e-09c31e3253a2/Group%20130%20_3_.svg)!important;
-    background-repeat: no-repeat!important;
-    background-color: transparent!important;
-    color: #212121!important;
-    line-height: 1.6 !important;
-    text-transform: inherit;
-    font-family: Montserrat,sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    letter-spacing: .1em;
-    font-size: .8125em;
-    width: auto;
-    max-width: 100%;
+  background-image: url(https://ucarecdn.com/1ae13a7f-2f76-4c32-9a6e-09c31e3253a2/Group%20130%20_3_.svg) !important;
+  background-repeat: no-repeat !important;
+  background-color: transparent !important;
+  color: #212121 !important;
+  line-height: 1.6 !important;
+  text-transform: inherit;
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  font-size: 0.8125em;
+  width: auto;
+  max-width: 100%;
 }
 /**add_bundle_new_btn */
 .add_bundle_new_btn {
@@ -1291,8 +1288,8 @@ span.accent_weight_bold {
         });
       }
       //add to cart with icon PDP
-      if (!document.querySelector(".new_btn_icon")) {
-        document.querySelector(".gf_tab .item-content .gf_add-to-cart").insertAdjacentHTML("afterend", `<button class="new_btn_icon">Add To Cart</button>`);
+      if (!document.querySelector(".new_btn_icon") && document.querySelector(".gf_tab .item-content .gf_add-to-cart")) {
+        document.querySelector(".gf_tab .item-content .gf_add-to-cart")?.insertAdjacentHTML("afterend", `<button class="new_btn_icon">Add To Cart</button>`);
       }
 
       document.querySelector(".new_btn_icon")?.addEventListener("click", (e) => {
@@ -1336,6 +1333,7 @@ span.accent_weight_bold {
               if (!e.target.getAttribute("data-test")) {
                 e.preventDefault();
                 e.stopPropagation();
+                pushDataLayer(["exp_nov_oral_butt_add_cart_pdp", "Add to Cart", "Button", "PDP"]);
                 addToCartCheckout(e.currentTarget.getAttribute("data-id"), e.currentTarget.getAttribute("data-count"));
               }
               e.target.setAttribute("data-test", "1");
@@ -1548,7 +1546,7 @@ span.accent_weight_bold {
             getCartCheckout();
 
             if (window.location.pathname.match("/cart") && localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
-              // window.location = '/cart';
+              window.location = "/cart";
             } else {
               onOpenPopup();
             }
