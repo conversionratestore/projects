@@ -88,8 +88,12 @@ body > div > button.needsclick {
 .crs_warranty svg {
     margin-right: 6px;
 }
-.crs_wishlist {
-    cursor: pointer;
+.crs_wishlist:focus svg circle {
+    fill: #FFEAEA;
+}
+.crs_wishlist:focus svg path {
+    fill: #A11A17;
+    stroke: #A11A17;
 }
 .crs_absolute {
     position: absolute;
@@ -433,7 +437,7 @@ body .product-static-columns .container .section-desc {
     opacity: 0;
     transition: all 0.2s ease;
     transform: translateY(100px);
-    z-index: 99;
+    z-index: 9;
     width: 100%;
     background: var(--Red, #A11A17);
     color: var(--White, #FFF);
@@ -781,10 +785,12 @@ const topBadge = `
             </svg>
             25-Year Warranty
         </div>
-        <svg class="crs_wishlist" onclick="document.querySelector('.product-addto-links .ajax_wishlist').click()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="12" fill="#F0AEAE"/>
-            <path d="M11.3765 18.1922L11.3754 18.1912C9.36117 16.3814 7.75006 14.93 6.63375 13.5768C5.52547 12.2333 4.98535 11.0798 4.98535 9.87842C4.98535 7.92271 6.5212 6.39697 8.50594 6.39697C9.63283 6.39697 10.7249 6.92061 11.4332 7.73828L12.0001 8.39274L12.567 7.73828C13.2752 6.92061 14.3673 6.39697 15.4942 6.39697C17.4789 6.39697 19.0148 7.92271 19.0148 9.87842C19.0148 11.0798 18.4746 12.2333 17.3664 13.5768C16.2501 14.93 14.6389 16.3814 12.6247 18.1912L12.6236 18.1922L12.0001 18.7546L11.3765 18.1922Z" fill="white" stroke="#F0AEAE" stroke-width="1.5"/>
-        </svg>
+        <a href="#" class="crs_wishlist" onclick="event.preventDefault(); document.querySelector('.product-addto-links .ajax_wishlist').click()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="12" fill="#F0AEAE"/>
+                <path d="M11.3765 18.1922L11.3754 18.1912C9.36117 16.3814 7.75006 14.93 6.63375 13.5768C5.52547 12.2333 4.98535 11.0798 4.98535 9.87842C4.98535 7.92271 6.5212 6.39697 8.50594 6.39697C9.63283 6.39697 10.7249 6.92061 11.4332 7.73828L12.0001 8.39274L12.567 7.73828C13.2752 6.92061 14.3673 6.39697 15.4942 6.39697C17.4789 6.39697 19.0148 7.92271 19.0148 9.87842C19.0148 11.0798 18.4746 12.2333 17.3664 13.5768C16.2501 14.93 14.6389 16.3814 12.6247 18.1912L12.6236 18.1922L12.0001 18.7546L11.3765 18.1922Z" fill="white" stroke="#F0AEAE" stroke-width="1.5"/>
+            </svg>
+        </a>
     </div>`;
 
 const getDiscount = `
@@ -1271,8 +1277,8 @@ function klarna(price) {
   )}</b> with <img src="${dir}klarna.png" alt="klarna"> <a href="#">Learn More</a></p>`;
 }
 
-function stickyBtn(price) {
-    return `<button type="button" class="crs_sticky_btn d-flex align-items-center justify-content-center"><b>add to basket</b>  <span class="crs_pr">${price}</span></button>`
+function setStickyBtn(price) {
+    return `<button type="button" class="crs_sticky_btn d-flex align-items-center justify-content-center active"><b>add to basket</b>  <span class="crs_pr">${price}</span></button>`
 }
 
 function scrollTo(target) {
@@ -1552,7 +1558,30 @@ function start() {
         });
 
         waitForElement('.product-info-main .price-box .price-wrapper .price').then(el => {
-            stickyBtn(el.innerText)
+            if (media) {
+                document.body.insertAdjacentHTML('beforeend', setStickyBtn(el.innerText))
+
+                let stickyBtn = document.querySelector('.crs_sticky_btn')
+                let btnAddToCart = document.querySelector(".product-options-bottom")
+
+                stickyBtn.addEventListener('click', () => {
+                    document.querySelector('.product-info-main .box-tocart .actions .action.tocart').click()
+                })
+
+                function handleScroll() {
+                    let btnRect = btnAddToCart.getBoundingClientRect();
+                  
+                    if (btnRect.top >= 0 && btnRect.bottom <= window.innerHeight) {
+                      stickyBtn.classList.remove('active');
+                    } else {
+                      stickyBtn.classList.add('active');
+                    }
+                }
+                  
+                window.addEventListener('scroll', handleScroll);
+            
+                handleScroll(); 
+            }
         })
 
       }
