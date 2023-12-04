@@ -47,7 +47,7 @@ html.gemapp.video.fixed_body {
   position: fixed;
   right: 0;
   top: 0;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background: rgba(20, 20, 20, 0.6);
   z-index: 2147483001;
@@ -56,7 +56,8 @@ html.gemapp.video.fixed_body {
   transition: all 0.3s ease;
   font-family: "Urbanist", sans-serif;
 }
-html.gemapp.video.active {
+html.gemapp.video.active,
+body.gempage.active {
   overflow: hidden !important;
 }
 html.active,
@@ -88,7 +89,7 @@ body.active {
   width: 100%;
   max-width: 351px;
   background: #ffffff;
-  height: 100vh;
+  height: 100%;
   overflow-y: auto;
   margin: 0 0 0 auto;
   padding: 0;
@@ -758,6 +759,22 @@ span.accent_weight_bold {
 .gf_tab .item-content .gf_add-to-cart:not(.new_btn_icon) {
   display: none !important;
 }
+.new_btn_icon{
+  padding: 10px 10px 20px 50px;
+    background-image: url(https://ucarecdn.com/1ae13a7f-2f76-4c32-9a6e-09c31e3253a2/Group%20130%20_3_.svg)!important;
+    background-repeat: no-repeat!important;
+    background-color: transparent!important;
+    color: #212121!important;
+    line-height: 1.6 !important;
+    text-transform: inherit;
+    font-family: Montserrat,sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: .1em;
+    font-size: .8125em;
+    width: auto;
+    max-width: 100%;
+}
 /**add_bundle_new_btn */
 .add_bundle_new_btn {
   border-radius: 5px;
@@ -1078,6 +1095,7 @@ span.accent_weight_bold {
 
     <div class="content_popup">
       <h2 class="product_upsell_title">Add the GumCare Sonic Toothbrush for healthy gums</h2>
+      <span class="visib_product_upsell"></span>
       <p class="product_upsell_descr">Clean your teeth while protecting your gum</p>
       <div class="product_upsell_descr_wrapp">
         <div class="product_upsell_img_wrap">
@@ -1179,7 +1197,6 @@ span.accent_weight_bold {
 
     if (document.querySelector(".slide_in_cart")) {
       slideInCart();
-      visibElem();
     }
 
     function slideInCart() {
@@ -1274,14 +1291,11 @@ span.accent_weight_bold {
         });
       }
       //add to cart with icon PDP
-      let clonedNodeBtn = document.querySelector(".gf_tab .item-content .gf_add-to-cart")?.cloneNode(true);
-      if (clonedNodeBtn) {
-        if (!document.querySelector(".gf_tab .item-content .gf_add-to-cart + .gf_add-to-cart")) {
-          document.querySelector(".gf_tab .item-content .gf_add-to-cart").insertAdjacentElement("afterend", clonedNodeBtn);
-          document.querySelector(".gf_tab .item-content .gf_add-to-cart + .gf_add-to-cart").classList.add("new_btn_icon");
-        }
+      if (!document.querySelector(".new_btn_icon")) {
+        document.querySelector(".gf_tab .item-content .gf_add-to-cart").insertAdjacentHTML("afterend", `<button class="new_btn_icon">Add To Cart</button>`);
       }
-      clonedNodeBtn?.addEventListener("click", (e) => {
+
+      document.querySelector(".new_btn_icon")?.addEventListener("click", (e) => {
         if (!e.target.getAttribute("data-test")) {
           e.preventDefault();
           e.stopPropagation();
@@ -1642,6 +1656,12 @@ span.accent_weight_bold {
       }
 
       function onOpenPopup() {
+        if (!document.querySelector(".visib_product_upsell")) {
+          document.querySelector(".product_upsell_descr")?.insertAdjacentHTML("afterbegin", `<span class="visib_product_upsell"></span>`);
+        }
+        waitForElement(".visib_product_upsell").then((el) => {
+          handleVisibility(el, ["exp_nov_oral_vis_popup_focus", " {{focusTime}} ", "Visibility ", "Pop up did you now"]);
+        });
         overlay.classList.add("active");
         body.style.overflow = "hidden";
         html.style.overflow = "hidden";
@@ -1650,6 +1670,9 @@ span.accent_weight_bold {
 
       function onClosePopup() {
         overlay.classList.remove("active");
+        setTimeout(() => {
+          document.querySelector(".visib_product_upsell")?.remove();
+        }, 10);
       }
     }
 
@@ -2105,11 +2128,7 @@ span.accent_weight_bold {
       subtree: true,
     });
 
-    function visibElem() {
-      waitForElement(".overlay_popup.active").then((el) => {
-        handleVisibility(el, ["exp_nov_oral_vis_popup_focus", " {{focusTime}} ", "Visibility ", "Pop up did you now"]);
-      });
-    }
+    function visibElem() {}
 
     function handleVisibility(el, eventParams) {
       let isVisible = false;
