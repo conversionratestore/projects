@@ -1463,10 +1463,10 @@ span.accent_weight_bold {
                 e.preventDefault();
                 e.stopPropagation();
                 pushDataLayer(["exp_nov_oral_butt_slidcart_check", "Proceed to secure checkout", "Button", "Slide-in cart"]);
-
-                setTimeout(() => {
-                  window.location.pathname = "/checkout";
-                }, 300);
+                window.appikonDiscount.checkoutEventHandler(jQuery, e);
+                // setTimeout(() => {
+                //   window.location.pathname = "/checkout";
+                // }, 300);
               }
               e.target.setAttribute("data-test", "1");
               setTimeout(() => {
