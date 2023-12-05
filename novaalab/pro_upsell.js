@@ -1261,6 +1261,7 @@ span.accent_weight_bold {
         el.addEventListener("click", (e) => {
           if (!e.target.getAttribute("data-test")) {
             e.preventDefault();
+            pushDataLayer(["exp_nov_oral_butt_add_cart_pdp", "Add to Cart", "Button", "PDP"]);
             addToCartCheckout(e.currentTarget.closest("form").querySelector('[name="id"]').value, 1);
           }
           e.target.setAttribute("data-test", "1");
@@ -1384,7 +1385,26 @@ span.accent_weight_bold {
             e.preventDefault();
             e.stopPropagation();
             console.log(`object`);
+            pushDataLayer(["exp_nov_oral_butt_add_cart_pdp", "Add to Cart", "Button", "PDP"]);
             addToCartCheckout(e.currentTarget.closest(".AddToCartForm").querySelector('[name="id"]').getAttribute("data-value"), e.currentTarget.closest(".AddToCartForm").querySelector('[name="quantity"]') ? e.currentTarget.closest(".AddToCartForm").querySelector('[name="quantity"]')?.value : 1);
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
+        });
+      });
+
+      // add to cart PDP ---> PACK 2 BRUSH HEADS
+      document.querySelectorAll("#product_form_8465377984857 button[type='submit']")?.forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            e.preventDefault();
+            e.stopPropagation();
+            pushDataLayer(["exp_nov_oral_butt_add_cart_pdp", "Add to Cart", "Button", "PDP"]);
+            addToCartCheckout(e.currentTarget.closest("#product_form_8465377984857").querySelector('[name="id"]').value, e.currentTarget.closest("#product_form_8465377984857").querySelector('[name="quantity"]').value);
           }
           e.target.setAttribute("data-test", "1");
           setTimeout(() => {
@@ -1427,6 +1447,7 @@ span.accent_weight_bold {
               if (!e.target.getAttribute("data-test")) {
                 e.preventDefault();
                 e.stopPropagation();
+                pushDataLayer(["exp_nov_oral_butt_add_cart_pdp", "Add to Cart", "Button", "PDP"]);
                 addToCartCheckout(e.currentTarget.getAttribute("data-id"), 1);
               }
               e.target.setAttribute("data-test", "1");
