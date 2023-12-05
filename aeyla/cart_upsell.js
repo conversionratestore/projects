@@ -527,7 +527,6 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
                     addShowAllProducts()
                     addUpsellAndChoice()
                     editCheckoutBtnBlock()
-                    $el('.minicart_items').innerText = $el('.minicart_items').innerText.trim()
                   }
                   if (window.location.href.includes('/cart')) {
                     cartPageUpsell()
@@ -816,6 +815,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
         $el('.secure_checkout .chckout').innerHTML = `${svgObject.lock} Proceed to secure checkout`
         $el('.secure_checkout').insertAdjacentHTML('afterend', '<p>30-Day Money Back Guarantee | 365-Day Warranty</p>')
       }
+      $el('.minicart_items').innerText = $el('.minicart_items').innerText.trim()
     })
   }
 
@@ -930,7 +930,6 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
       addShipping()
       addShowAllProducts()
       addUpsellAndChoice()
-      $el('.minicart_items').innerText = $el('.minicart_items').innerText.trim()
     }
 
     if (window.location.href.includes('/cart')) {
