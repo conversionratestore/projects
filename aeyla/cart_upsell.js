@@ -357,7 +357,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
       .checkout_wrapper .secure_checkout a.chckout {
         color: #fff;
         display: flex;
-        column-gap: 4px;
+        column-gap: 8px;
         font-size: 14px;
         line-height: 20px;
         font-weight: 700;
