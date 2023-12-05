@@ -28,7 +28,6 @@ function checkFocusTime(selector, event, location) {
 
   checker.observe(document.querySelector(selector))
 }
-
 const pushDataLayer = (name, desc, type = '', loc = '') => {
   window.dataLayer = window.dataLayer || []
   window.dataLayer.push({
@@ -259,8 +258,13 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
         background: #FFF;
       }
 
+      .upsell__description {
+          width: 100%;
+      }
+
       .upsell__image-wrapper {
         width: 80px;
+        flex-shrink: 0;
       }
 
       .upsell__image-wrapper img {
@@ -345,6 +349,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
       .checkout_wrapper .klarna_wrapper p {
         margin-bottom: 0;
         font-size: 14px;
+        align-items: center;
       }
       .checkout_wrapper .secure_checkout {
         margin: 8px 0;
@@ -357,6 +362,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
         line-height: 20px;
         font-weight: 700;
         background: #E67125;
+        text-transform: uppercase;
       }
       .checkout_wrapper .secure_checkout a.chckout svg {
         margin-right: 0;
@@ -367,6 +373,9 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
         line-height: 22px;
         font-weight: 700;
         text-align: center;
+      }
+      .minicart_inner {
+        height: 100dvh !important;
       }
       .minicart_inner .items_wrapper {
         height: 100%;
@@ -388,6 +397,24 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
         font-size: 16px;
         font-family: 'BiancoSerif', serif;
       }
+      .cart-icon-klarna>svg {
+        width: 3rem;
+      }
+
+      @media (min-width: 769px) {
+        .upsell {
+          width: 535px;
+          margin: 0 auto;
+          
+        }
+        .upsell__heading {
+          font-size: 26px;
+          line-height: normal;
+        }
+        .crs_mobile {
+          display: none;
+        }
+      }
     </style>`
 
   const shipping = (free, arrives) => /*html*/ `
@@ -408,7 +435,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
 
   const upsellBlock = /*html*/ `
     <div class="upsell">
-      <p class="upsell__heading">Complete your ultimate sleep setup</p>
+      <p class="upsell__heading">Complete your ultimate<br class="crs_mobile">sleep setup</p>
       <div class="upsell__content">
         <div class="upsell__image-wrapper">
           <img src="//www.aeyla.co.uk/cdn/shop/products/MEL2923-MelaComfort7438.webp?crop=center&height=1400&v=1677452179&width=1400" alt="product img">
@@ -775,10 +802,12 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
   }
 
   function editCheckoutBtnBlock() {
-    if (!$el('.secure_checkout + p')) {
-      $el('.secure_checkout .chckout').innerHTML = `${svgObject.lock} Proceed to secure checkout`
-      $el('.secure_checkout').insertAdjacentHTML('afterend', '<p>30-Day Money Back Guarantee | 365-Day Warranty</p>')
-    }
+    waitForElement('.secure_checkout').then(el => {
+      if (!$el('.secure_checkout + p')) {
+        $el('.secure_checkout .chckout').innerHTML = `${svgObject.lock} Proceed to secure checkout`
+        $el('.secure_checkout').insertAdjacentHTML('afterend', '<p>30-Day Money Back Guarantee | 365-Day Warranty</p>')
+      }
+    })
   }
 
   function addUpsellAndChoice() {
@@ -790,8 +819,9 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
         }
       })
       if (upsell) {
-        el.insertAdjacentHTML('beforeend', choiceBlock)
         el.insertAdjacentHTML('beforeend', upsellBlock)
+        el.insertAdjacentHTML('beforeend', choiceBlock)
+
         drawTotalBlock()
 
         checkFocusTime(
@@ -850,31 +880,34 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
   }
 
   function cartPageUpsell() {
-    let upsell = true
-    $$el('#cart a.text-lg').forEach(el => {
-      if (el.innerText.toLowerCase().includes('sleep enhancer pillow spray')) {
-        upsell = false
-      }
-    })
-    if (upsell) {
-      $el('#cart>div:last-of-type').insertAdjacentHTML('beforebegin', upsellBlock)
+    waitForElement('#cart a.text-lg').then(el => {
+      let upsell = true
 
-      $el('#cart .upsell__button').addEventListener('click', () => {
-        addSprayToCart()
-        pushDataLayer(
-          'exp_slid_cart_enha_but_pagcompultim_add',
-          'Add',
-          'Button',
+      $$el('#cart a.text-lg').forEach(el => {
+        if (el.innerText.toLowerCase().includes('sleep enhancer pillow spray')) {
+          upsell = false
+        }
+      })
+      if (upsell) {
+        $el('#cart>div:last-of-type').insertAdjacentHTML('beforebegin', upsellBlock)
+
+        $el('#cart .upsell__button').addEventListener('click', () => {
+          addSprayToCart()
+          pushDataLayer(
+            'exp_slid_cart_enha_but_pagcompultim_add',
+            'Add',
+            'Button',
+            'Shopping cart page Complete your ultimate sleep setup'
+          )
+        })
+
+        checkFocusTime(
+          '#cart .upsell',
+          'exp_slid_cart_enha_vis_pagcompultim_foc',
           'Shopping cart page Complete your ultimate sleep setup'
         )
-      })
-
-      checkFocusTime(
-        '#cart .upsell',
-        'exp_slid_cart_enha_vis_pagcompultim_foc',
-        'Shopping cart page Complete your ultimate sleep setup'
-      )
-    }
+      }
+    })
   }
 
   function start() {
