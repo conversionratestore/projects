@@ -2220,8 +2220,6 @@ span.accent_weight_bold {
       subtree: true,
     });
 
-    function visibElem() {}
-
     function handleVisibility(el, eventParams) {
       let isVisible = false;
       let entryTime;
@@ -2286,3 +2284,58 @@ span.accent_weight_bold {
     }, 200);
   }
 }, 600);
+
+let startFunkCheckout = setInterval(() => {
+  // checkout
+  if (window.location.pathname.match("checkout")) {
+    clearInterval(startFunkCheckout);
+
+    renderLink();
+
+    function renderLink() {
+      if (document.querySelector(".breadcrumb.breadcrumb--center") && !document.querySelector(".new_cart_link") && !document.querySelector(".breadcrumb__item").textContent.includes("Cart")) {
+        document.querySelector(".breadcrumb.breadcrumb--center").insertAdjacentHTML(
+          "afterbegin",
+          `<li class="breadcrumb__item breadcrumb__item--completed new_cart_link">
+            <a class="breadcrumb__link" href="https://novaalab.com/cart">Cart</a>
+            <svg class="icon-svg icon-svg--color-adaptive-light icon-svg--size-10 breadcrumb__chevron-icon" aria-hidden="true" focusable="false"> <use xlink:href="#chevron-right"></use> </svg>
+          </li>`
+        );
+      }
+    }
+
+    // Observe
+    let observer = new MutationObserver((mutations) => {
+      for (let mutation of mutations) {
+        for (let node of mutation.addedNodes) {
+          if (!(node instanceof HTMLElement)) continue;
+          if (document) {
+            observer.disconnect();
+            // console.log(`observer`);
+
+            if (!document.querySelector(".new_cart_link")) {
+              renderLink();
+            }
+
+            observer.observe(document, {
+              childList: true,
+              subtree: true,
+            });
+          }
+        }
+      }
+    });
+
+    observer.observe(document, {
+      childList: true,
+      subtree: true,
+    });
+
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record);
+        clarity("set", "exp_nov_oral", "variant_1");
+      }
+    }, 200);
+  }
+}, 500);
