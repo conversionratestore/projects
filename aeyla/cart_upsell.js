@@ -402,12 +402,12 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
       }
 
       @media (min-width: 769px) {
-        .upsell {
+        #cart .upsell {
           width: 535px;
           margin: 0 auto;
           
         }
-        .upsell__heading {
+        #cart .upsell__heading {
           font-size: 26px;
           line-height: normal;
         }
