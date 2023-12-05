@@ -888,7 +888,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
           upsell = false
         }
       })
-      if (upsell) {
+      if (upsell && !$el('#cart .upsell')) {
         $el('#cart>div:last-of-type').insertAdjacentHTML('beforebegin', upsellBlock)
 
         $el('#cart .upsell__button').addEventListener('click', () => {
