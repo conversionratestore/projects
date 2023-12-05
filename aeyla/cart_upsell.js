@@ -469,7 +469,12 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
   // -------------------------------------
   document.head.insertAdjacentHTML('beforeend', style)
 
-  start()
+  const go = setInterval(() => {
+    if (typeof $ === 'function') {
+      clearInterval(go)
+      start()
+    }
+  }, 100)
 
   // -------------------------------------
   // FUNCTIONS
