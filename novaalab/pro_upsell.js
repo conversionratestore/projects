@@ -2290,10 +2290,27 @@ let startFunkCheckout = setInterval(() => {
   if (window.location.pathname.match("checkout")) {
     clearInterval(startFunkCheckout);
 
+    function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
+      console.log(event_name + " / " + event_desc + " / " + event_type + " / " + event_loc);
+
+      // Send a Google Analytics event
+      const eventData = {
+        event: "event-to-ga4",
+        event_name,
+        event_desc,
+        event_type,
+        event_loc,
+      };
+
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push(eventData);
+    }
+
     renderLink();
+    renderLinkReturnToCart();
 
     function renderLink() {
-      if (document.querySelector(".breadcrumb.breadcrumb--center") && !document.querySelector(".new_cart_link") && !document.querySelector(".breadcrumb__item").textContent.includes("Cart")) {
+      if (document.querySelector(".breadcrumb.breadcrumb--center") && !document.querySelector(".new_cart_link") && !document.querySelector(".breadcrumb__item")?.textContent.includes("Cart")) {
         document.querySelector(".breadcrumb.breadcrumb--center").insertAdjacentHTML(
           "afterbegin",
           `<li class="breadcrumb__item breadcrumb__item--completed new_cart_link">
@@ -2301,6 +2318,40 @@ let startFunkCheckout = setInterval(() => {
             <svg class="icon-svg icon-svg--color-adaptive-light icon-svg--size-10 breadcrumb__chevron-icon" aria-hidden="true" focusable="false"> <use xlink:href="#chevron-right"></use> </svg>
           </li>`
         );
+      }
+
+      if (document.querySelector(".new_cart_link")) {
+        document.querySelector(".new_cart_link").addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            pushDataLayer(["exp_nov_oral_butt_cart_checkout", "Cart", "Link", "Checkout"]);
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
+        });
+      }
+    }
+
+    function renderLinkReturnToCart() {
+      if (document.querySelector(".step__footer") && !document.querySelector(".new_return_cart_link") && !document.querySelector(".step__footer__previous-link-content")?.textContent.includes("Return to cart")) {
+        document.querySelector(".step__footer").insertAdjacentHTML("beforeend", `<a class="step__footer__previous-link new_return_cart_link" href="https://novaalab.com/cart"><svg focusable="false" aria-hidden="true" class="icon-svg icon-svg--color-accent icon-svg--size-10 previous-link__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M8 1L7 0 3 4 2 5l1 1 4 4 1-1-4-4"></path></svg><span class="step__footer__previous-link-content">Return to cart</span></a>`);
+      }
+
+      if (document.querySelector(".new_return_cart_link")) {
+        document.querySelector(".new_return_cart_link").addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            pushDataLayer(["exp_nov_oral_butt_return_cart_checkout", "Return to cart", "Link", "Checkout"]);
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
+        });
       }
     }
 
@@ -2315,6 +2366,10 @@ let startFunkCheckout = setInterval(() => {
 
             if (!document.querySelector(".new_cart_link")) {
               renderLink();
+            }
+
+            if (!document.querySelector(".new_return_cart_link")) {
+              renderLinkReturnToCart();
             }
 
             observer.observe(document, {
