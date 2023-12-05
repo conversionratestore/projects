@@ -401,6 +401,10 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
         width: 3rem;
       }
 
+      .minicart_inner .crs_mobile{
+        display: none;
+      }
+
       @media (min-width: 769px) {
         #cart .upsell {
           width: 535px;
