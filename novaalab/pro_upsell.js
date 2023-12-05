@@ -1331,6 +1331,7 @@ span.accent_weight_bold {
                 if (!e.target.getAttribute("data-test")) {
                   e.preventDefault();
                   e.stopPropagation();
+                  pushDataLayer(["exp_nov_oral_butt_add_cart_pdp", "Add to Cart", "Button", "PDP"]);
                   let count = 1;
                   if (el.closest(".AddToCartForm").querySelector('input[name="quantity"]')) {
                     count = +el.closest(".AddToCartForm").querySelector('input[name="quantity"]').value;
