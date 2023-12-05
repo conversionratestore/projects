@@ -981,9 +981,12 @@ span.accent_weight_bold {
   .cartleft .upsell_card {
     margin-top: 35px;
   }
+  .overlay_popup{
+        background: #F5F5FD;
+  }
   .overlay_popup .container_popup {
     padding: 20px 16px;
-    border-bottom: 1px solid #e2e2e2;
+    border-bottom: none;
     border-radius: unset;
     height: 100%;
   }
