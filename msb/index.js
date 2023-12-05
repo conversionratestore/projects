@@ -102,6 +102,9 @@ body > div > button.needsclick {
     width: 100%;
     z-index: 1;
 }
+.crs_absolute .crs_warranty {
+    cursor: pointer;
+}
 .product-info-main .page-title-wrapper .page-title {
     margin-top: 0;
     text-align: left;
@@ -649,7 +652,8 @@ const styleCart = `
     line-height: 24px;
 }
 .minicart-items-wrapper {
-    height: auto!important
+    height: auto!important;
+    max-height: max-content;
 }
 .minicart-items-wrapper .product-item {
     padding: 10px 0;
@@ -774,7 +778,7 @@ const styleCart = `
 .minicart-wrapper .action.close {
     top: 3px;
 }
-</style>`
+</style>`;
 
 const topBadge = `
     <div class="crs_absolute px-4 pt-3 mt-1 d-flex align-items-center justify-content-between">
@@ -785,7 +789,7 @@ const topBadge = `
             </svg>
             25-Year Warranty
         </div>
-        <a href="#" class="crs_wishlist" onclick="event.preventDefault(); document.querySelector('.product-addto-links .ajax_wishlist').click()">
+        <a href="#" class="crs_wishlist">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <circle cx="12" cy="12" r="12" fill="#F0AEAE"/>
                 <path d="M11.3765 18.1922L11.3754 18.1912C9.36117 16.3814 7.75006 14.93 6.63375 13.5768C5.52547 12.2333 4.98535 11.0798 4.98535 9.87842C4.98535 7.92271 6.5212 6.39697 8.50594 6.39697C9.63283 6.39697 10.7249 6.92061 11.4332 7.73828L12.0001 8.39274L12.567 7.73828C13.2752 6.92061 14.3673 6.39697 15.4942 6.39697C17.4789 6.39697 19.0148 7.92271 19.0148 9.87842C19.0148 11.0798 18.4746 12.2333 17.3664 13.5768C16.2501 14.93 14.6389 16.3814 12.6247 18.1912L12.6236 18.1922L12.0001 18.7546L11.3765 18.1922Z" fill="white" stroke="#F0AEAE" stroke-width="1.5"/>
@@ -821,218 +825,227 @@ const trustpilot = `
     <p>
         <b>Excellent</b>
         518 Reviews
-    </p>`
-
+    </p>`;
 
 const dataShipping = {
-    'GB': { 'name': 'United Kingdom', 'days': '1-3' },
-    'US': { 'name': 'United States', 'days': '3-5' },
-    'DE': { 'name': 'Germany', 'days': '2-4' },
-    'AF': { 'name': 'Afghanistan', 'days': '3-5' },
-    'AL': { 'name': 'Albania', 'days': '3-5' },
-    'DZ': { 'name': 'Algeria', 'days': '3-5' },
-    'AS': { 'name': 'American Samoa', 'days': '3-5' },
-    'AD': { 'name': 'Andorra', 'days': '3-5' },
-    'AO': { 'name': 'Angola', 'days': '3-5' },
-    'AI': { 'name': 'Anguilla', 'days': '3-5' },
-    'AG': { 'name': 'Antigua & Barbuda', 'days': '3-5' },
-    'AR': { 'name': 'Argentina', 'days': '3-5' },
-    'AM': { 'name': 'Armenia', 'days': '3-5' },
-    'AW': { 'name': 'Aruba', 'days': '3-5' },
-    'AU': { 'name': 'Australia', 'days': '3-5' },
-    'AT': { 'name': 'Austria', 'days': '4-6' },
-    'AZ': { 'name': 'Azerbaijan', 'days': '2-4' },
-    'BS': { 'name': 'Bahamas', 'days': '3-5' },
-    'BH': { 'name': 'Bahrain', 'days': '3-5' },
-    'BD': { 'name': 'Bangladesh', 'days': '3-5' },
-    'BB': { 'name': 'Barbados', 'days': '3-5' },
-    'BY': { 'name': 'Belarus', 'days': '3-5' },
-    'BE': { 'name': 'Belgium', 'days': '3-5' },
-    'BZ': { 'name': 'Belize', 'days': '2-4' },
-    'BM': { 'name': 'Bermuda', 'days': '5-7' },
-    'BT': { 'name': 'Bhutan', 'days': '3-5' },
-    'BO': { 'name': 'Bolivia', 'days': '3-5' },
-    'BA': { 'name': 'Bosnia & Herzegovina', 'days': '3-5' },
-    'BW': { 'name': 'Botswana', 'days': '3-5' },
-    'BR': { 'name': 'Brazil', 'days': '3-5' },
-    'BN': { 'name': 'Brunei Darussalam', 'days': '3-5' },
-    'BG': { 'name': 'Bulgaria', 'days': '3-5' },
-    'BF': { 'name': 'Burkina Faso', 'days': '3-5' },
-    'BI': { 'name': 'Burundi', 'days': '3-5' },
-    'KH': { 'name': 'Cambodia', 'days': '3-5' },
-    'CM': { 'name': 'Cameroon', 'days': '3-5' },
-    'CA': { 'name': 'Canada', 'days': '3-5' },
-    'CV': { 'name': 'Cape Verde', 'days': '2-4' },
-    'KY': { 'name': 'Cayman Islands', 'days': '3-5' },
-    'CF': { 'name': 'Central African Republic', 'days': '3-5' },
-    'TD': { 'name': 'Chad', 'days': '3-5' },
-    'CL': { 'name': 'Chile', 'days': '3-5' },
-    'CN': { 'name': 'China, People\'s Republic of', 'days': '3-5' },
-    'CO': { 'name': 'Colombia', 'days': '3-5' },
-    'CG': { 'name': 'Congo', 'days': '3-5' },
-    'CR': { 'name': 'Costa Rica', 'days': '3-5' },
-    'HR': { 'name': 'Croatia', 'days': '3-5' },
-    'CU': { 'name': 'Cuba', 'days': '3-5' },
-    'CY': { 'name': 'Cyprus', 'days': '5-7' },
-    'CZ': { 'name': 'Czech Republic', 'days': '3-5' },
-    'DK': { 'name': 'Denmark', 'days': '3-5' },
-    'DJ': { 'name': 'Djibouti', 'days': '2-4' },
-    'DM': { 'name': 'Dominica', 'days': '3-5' },
-    'DO': { 'name': 'Dominican Republic', 'days': '3-5' },
-    'EC': { 'name': 'Ecuador', 'days': '3-5' },
-    'EG': { 'name': 'Egypt', 'days': '3-5' },
-    'SV': { 'name': 'El Salvador', 'days': '3-5' },
-    'GQ': { 'name': 'Equatorial Guinea', 'days': '3-5' },
-    'ER': { 'name': 'Eritrea', 'days': '3-5' },
-    'EE': { 'name': 'Estonia', 'days': '3-5' },
-    'ET': { 'name': 'Ethiopia', 'days': '3-5' },
-    'FO': { 'name': 'Faroe Islands (Denmark)', 'days': '3-5' },
-    'FJ': { 'name': 'Fiji', 'days': '3-5' },
-    'FI': { 'name': 'Finland', 'days': '3-5' },
-    'FR': { 'name': 'France', 'days': '2-4' },
-    'GF': { 'name': 'French Guiana', 'days': '2-4' },
-    'PF': { 'name': 'French Polynesia (Tahiti)', 'days': '3-5' },
-    'GA': { 'name': 'Gabon', 'days': '3-5' },
-    'GE': { 'name': 'Georgia', 'days': '3-5' },
-    'GH': { 'name': 'Ghana', 'days': '3-5' },
-    'GI': { 'name': 'Gibraltar', 'days': '3-5' },
-    'GR': { 'name': 'Greece', 'days': '2-4' },
-    'GL': { 'name': 'Greenland (Denmark)', 'days': '2-4' },
-    'GD': { 'name': 'Grenada', 'days': '1-3' },
-    'GP': { 'name': 'Guadeloupe', 'days': '3-5' },
-    'GU': { 'name': 'Guam', 'days': '3-5' },
-    'GT': { 'name': 'Guatemala', 'days': '3-5' },
-    'GG': { 'name': 'Guernsey', 'days': '3-5' },
-    'GN': { 'name': 'Guinea', 'days': '2-4' },
-    'GY': { 'name': 'Guyana', 'days': '3-5' },
-    'HT': { 'name': 'Haiti', 'days': '3-5' },
-    'HN': { 'name': 'Honduras', 'days': '3-5' },
-    'HK': { 'name': 'Hong Kong', 'days': '3-5' },
-    'HU': { 'name': 'Hungary', 'days': '3-5' },
-    'IS': { 'name': 'Iceland', 'days': '3-5' },
-    'IN': { 'name': 'India', 'days': '3-5' },
-    'ID': { 'name': 'Indonesia', 'days': '3-5' },
-    'IQ': { 'name': 'Iraq', 'days': '3-5' },
-    'IE': { 'name': 'Ireland', 'days': '3-5' },
-    'IL': { 'name': 'Israel', 'days': '2-4' },
-    'IT': { 'name': 'Italy', 'days': '3-5' },
-    'JM': { 'name': 'Jamaica', 'days': '2-4' },
-    'JP': { 'name': 'Japan', 'days': '3-5' },
-    'JE': { 'name': 'Jersey', 'days': '3-5' },
-    'JO': { 'name': 'Jordan', 'days': '2-4' },
-    'KZ': { 'name': 'Kazakhstan', 'days': '3-5' },
-    'KE': { 'name': 'Kenya', 'days': '3-5' },
-    'KI': { 'name': 'Kiribati', 'days': '3-5' },
-    'KW': { 'name': 'Kuwait', 'days': '5-7' },
-    'KG': { 'name': 'Kyrgyzstan', 'days': '3-5' },
-    'LA': { 'name': 'Laos', 'days': '3-5' },
-    'LV': { 'name': 'Latvia', 'days': '3-5' },
-    'LB': { 'name': 'Lebanon', 'days': '3-5' },
-    'LS': { 'name': 'Lesotho', 'days': '3-5' },
-    'LR': { 'name': 'Liberia', 'days': '3-5' },
-    'LY': { 'name': 'Libya', 'days': '3-5' },
-    'LI': { 'name': 'Liechtenstein', 'days': '3-5' },
-    'LT': { 'name': 'Lithuania', 'days': '2-4' },
-    'LU': { 'name': 'Luxembourg', 'days': '3-5' },
-    'MK': { 'name': 'Macedonia', 'days': '2-4' },
-    'MG': { 'name': 'Madagascar', 'days': '3-5' },
-    'MW': { 'name': 'Malawi', 'days': '3-5' },
-    'MY': { 'name': 'Malaysia', 'days': '3-5' },
-    'MV': { 'name': 'Maldives', 'days': '3-5' },
-    'ML': { 'name': 'Mali', 'days': '3-5' },
-    'MT': { 'name': 'Malta', 'days': '3-5' },
-    'MH': { 'name': 'Marshall Islands', 'days': '3-5' },
-    'MQ': { 'name': 'Martinique', 'days': '3-5' },
-    'MR': { 'name': 'Mauritania', 'days': '3-5' },
-    'MU': { 'name': 'Mauritius', 'days': '3-5' },
-    'MX': { 'name': 'Mexico', 'days': '3-5' },
-    'FM': { 'name': 'Micronesia, Federated States of', 'days': '3-5' },
-    'MD': { 'name': 'Moldova', 'days': '3-5' },
-    'MC': { 'name': 'Monaco', 'days': '2-4' },
-    'MN': { 'name': 'Mongolia', 'days': '3-5' },
-    'MS': { 'name': 'Montserrat', 'days': '3-5' },
-    'MA': { 'name': 'Morocco', 'days': '3-5' },
-    'MZ': { 'name': 'Mozambique', 'days': '3-5' },
-    'NA': { 'name': 'Namibia', 'days': '3-5' },
-    'NP': { 'name': 'Nepal', 'days': '3-5' },
-    'NL': { 'name': 'Netherlands', 'days': '2-4' },
-    'NC': { 'name': 'New Caledonia', 'days': '3-5' },
-    'NZ': { 'name': 'New Zealand', 'days': '3-5' },
-    'NI': { 'name': 'Nicaragua', 'days': '3-5' },
-    'NE': { 'name': 'Niger', 'days': '3-5' },
-    'NG': { 'name': 'Nigeria', 'days': '3-5' },
-    'NO': { 'name': 'Norway', 'days': '3-5' },
-    'OM': { 'name': 'Oman', 'days': '3-5' },
-    'PK': { 'name': 'Pakistan', 'days': '3-5' },
-    'PA': { 'name': 'Panama', 'days': '3-5' },
-    'PG': { 'name': 'Papua New Guinea', 'days': '3-5' },
-    'PY': { 'name': 'Paraguay', 'days': '3-5' },
-    'PE': { 'name': 'Peru', 'days': '3-5' },
-    'PH': { 'name': 'Philippines', 'days': '3-5' },
-    'PL': { 'name': 'Poland', 'days': '3-5' },
-    'PT': { 'name': 'Portugal', 'days': '3-5' },
-    'PR': { 'name': 'Puerto Rico', 'days': '2-4' },
-    'QA': { 'name': 'Qatar', 'days': '3-5' },
-    'RO': { 'name': 'Romania', 'days': '3-5' },
-    'RW': { 'name': 'Rwanda', 'days': '3-5' },
-    'WS': { 'name': 'Samoa', 'days': '3-5' },
-    'SM': { 'name': 'San Marino', 'days': '3-5' },
-    'SA': { 'name': 'Saudi Arabia', 'days': '2-4' },
-    'SN': { 'name': 'Senegal', 'days': '3-5' },
-    'SC': { 'name': 'Seychelles', 'days': '3-5' },
-    'SG': { 'name': 'Singapore', 'days': '3-5' },
-    'SK': { 'name': 'Slovakia', 'days': '2-4' },
-    'SI': { 'name': 'Slovenia', 'days': '3-5' },
-    'ZA': { 'name': 'South Africa', 'days': '1-3' },
-    'ES': { 'name': 'Spain', 'days': '3-5' },
-    'LK': { 'name': 'Sri Lanka', 'days': '2-4' },
-    'SR': { 'name': 'Suriname', 'days': '3-5' },
-    'SZ': { 'name': 'Swaziland', 'days': '3-5' },
-    'SE': { 'name': 'Sweden', 'days': '5-7' },
-    'CH': { 'name': 'Switzerland', 'days': '2-4' },
-    'TW': { 'name': 'Taiwan', 'days': '2-4' },
-    'TJ': { 'name': 'Tajikistan', 'days': '3-5' },
-    'TZ': { 'name': 'Tanzania', 'days': '3-5' },
-    'TH': { 'name': 'Thailand', 'days': '3-5' },
-    'TG': { 'name': 'Togo', 'days': '3-5' },
-    'TO': { 'name': 'Tonga', 'days': '3-5' },
-    'TT': { 'name': 'Trinidad and Tobago', 'days': '3-5' },
-    'TN': { 'name': 'Tunisia', 'days': '3-5' },
-    'TR': { 'name': 'Turkey', 'days': '3-5' },
-    'TC': { 'name': 'Turks and Caicos Islands', 'days': '3-5' },
-    'UG': { 'name': 'Uganda', 'days': '3-5' },
-    'UA': { 'name': 'Ukraine', 'days': '3-5' },
-    'AE': { 'name': 'United Arab Emirates', 'days': '3-5' },
-    'UY': { 'name': 'Uruguay', 'days': '3-5' },
-    'UZ': { 'name': 'Uzbekistan', 'days': '3-5' },
-    'VU': { 'name': 'Vanuatu', 'days': '2-4' },
-    'VE': { 'name': 'Venezuela', 'days': '3-5' },
-    'VN': { 'name': 'Vietnam', 'days': '3-5' },
-    'VG': { 'name': 'Virgin Islands (British)', 'days': '3-5' },
-    'WF': { 'name': 'Wallis and Futuna', 'days': '3-5' },
-    'YE': { 'name': 'Yemen', 'days': '3-5' },
-    'ZM': { 'name': 'Zambia', 'days': '3-5' },
-    'ZW': { 'name': 'Zimbabwe', 'days': '3-5' }
-}
-      
+  GB: { name: "United Kingdom", days: "1-3" },
+  US: { name: "United States", days: "3-5" },
+  DE: { name: "Germany", days: "2-4" },
+  AF: { name: "Afghanistan", days: "3-5" },
+  AL: { name: "Albania", days: "3-5" },
+  DZ: { name: "Algeria", days: "3-5" },
+  AS: { name: "American Samoa", days: "3-5" },
+  AD: { name: "Andorra", days: "3-5" },
+  AO: { name: "Angola", days: "3-5" },
+  AI: { name: "Anguilla", days: "3-5" },
+  AG: { name: "Antigua & Barbuda", days: "3-5" },
+  AR: { name: "Argentina", days: "3-5" },
+  AM: { name: "Armenia", days: "3-5" },
+  AW: { name: "Aruba", days: "3-5" },
+  AU: { name: "Australia", days: "3-5" },
+  AT: { name: "Austria", days: "4-6" },
+  AZ: { name: "Azerbaijan", days: "2-4" },
+  BS: { name: "Bahamas", days: "3-5" },
+  BH: { name: "Bahrain", days: "3-5" },
+  BD: { name: "Bangladesh", days: "3-5" },
+  BB: { name: "Barbados", days: "3-5" },
+  BY: { name: "Belarus", days: "3-5" },
+  BE: { name: "Belgium", days: "3-5" },
+  BZ: { name: "Belize", days: "2-4" },
+  BM: { name: "Bermuda", days: "5-7" },
+  BT: { name: "Bhutan", days: "3-5" },
+  BO: { name: "Bolivia", days: "3-5" },
+  BA: { name: "Bosnia & Herzegovina", days: "3-5" },
+  BW: { name: "Botswana", days: "3-5" },
+  BR: { name: "Brazil", days: "3-5" },
+  BN: { name: "Brunei Darussalam", days: "3-5" },
+  BG: { name: "Bulgaria", days: "3-5" },
+  BF: { name: "Burkina Faso", days: "3-5" },
+  BI: { name: "Burundi", days: "3-5" },
+  KH: { name: "Cambodia", days: "3-5" },
+  CM: { name: "Cameroon", days: "3-5" },
+  CA: { name: "Canada", days: "3-5" },
+  CV: { name: "Cape Verde", days: "2-4" },
+  KY: { name: "Cayman Islands", days: "3-5" },
+  CF: { name: "Central African Republic", days: "3-5" },
+  TD: { name: "Chad", days: "3-5" },
+  CL: { name: "Chile", days: "3-5" },
+  CN: { name: "China, People's Republic of", days: "3-5" },
+  CO: { name: "Colombia", days: "3-5" },
+  CG: { name: "Congo", days: "3-5" },
+  CR: { name: "Costa Rica", days: "3-5" },
+  HR: { name: "Croatia", days: "3-5" },
+  CU: { name: "Cuba", days: "3-5" },
+  CY: { name: "Cyprus", days: "5-7" },
+  CZ: { name: "Czech Republic", days: "3-5" },
+  DK: { name: "Denmark", days: "3-5" },
+  DJ: { name: "Djibouti", days: "2-4" },
+  DM: { name: "Dominica", days: "3-5" },
+  DO: { name: "Dominican Republic", days: "3-5" },
+  EC: { name: "Ecuador", days: "3-5" },
+  EG: { name: "Egypt", days: "3-5" },
+  SV: { name: "El Salvador", days: "3-5" },
+  GQ: { name: "Equatorial Guinea", days: "3-5" },
+  ER: { name: "Eritrea", days: "3-5" },
+  EE: { name: "Estonia", days: "3-5" },
+  ET: { name: "Ethiopia", days: "3-5" },
+  FO: { name: "Faroe Islands (Denmark)", days: "3-5" },
+  FJ: { name: "Fiji", days: "3-5" },
+  FI: { name: "Finland", days: "3-5" },
+  FR: { name: "France", days: "2-4" },
+  GF: { name: "French Guiana", days: "2-4" },
+  PF: { name: "French Polynesia (Tahiti)", days: "3-5" },
+  GA: { name: "Gabon", days: "3-5" },
+  GE: { name: "Georgia", days: "3-5" },
+  GH: { name: "Ghana", days: "3-5" },
+  GI: { name: "Gibraltar", days: "3-5" },
+  GR: { name: "Greece", days: "2-4" },
+  GL: { name: "Greenland (Denmark)", days: "2-4" },
+  GD: { name: "Grenada", days: "1-3" },
+  GP: { name: "Guadeloupe", days: "3-5" },
+  GU: { name: "Guam", days: "3-5" },
+  GT: { name: "Guatemala", days: "3-5" },
+  GG: { name: "Guernsey", days: "3-5" },
+  GN: { name: "Guinea", days: "2-4" },
+  GY: { name: "Guyana", days: "3-5" },
+  HT: { name: "Haiti", days: "3-5" },
+  HN: { name: "Honduras", days: "3-5" },
+  HK: { name: "Hong Kong", days: "3-5" },
+  HU: { name: "Hungary", days: "3-5" },
+  IS: { name: "Iceland", days: "3-5" },
+  IN: { name: "India", days: "3-5" },
+  ID: { name: "Indonesia", days: "3-5" },
+  IQ: { name: "Iraq", days: "3-5" },
+  IE: { name: "Ireland", days: "3-5" },
+  IL: { name: "Israel", days: "2-4" },
+  IT: { name: "Italy", days: "3-5" },
+  JM: { name: "Jamaica", days: "2-4" },
+  JP: { name: "Japan", days: "3-5" },
+  JE: { name: "Jersey", days: "3-5" },
+  JO: { name: "Jordan", days: "2-4" },
+  KZ: { name: "Kazakhstan", days: "3-5" },
+  KE: { name: "Kenya", days: "3-5" },
+  KI: { name: "Kiribati", days: "3-5" },
+  KW: { name: "Kuwait", days: "5-7" },
+  KG: { name: "Kyrgyzstan", days: "3-5" },
+  LA: { name: "Laos", days: "3-5" },
+  LV: { name: "Latvia", days: "3-5" },
+  LB: { name: "Lebanon", days: "3-5" },
+  LS: { name: "Lesotho", days: "3-5" },
+  LR: { name: "Liberia", days: "3-5" },
+  LY: { name: "Libya", days: "3-5" },
+  LI: { name: "Liechtenstein", days: "3-5" },
+  LT: { name: "Lithuania", days: "2-4" },
+  LU: { name: "Luxembourg", days: "3-5" },
+  MK: { name: "Macedonia", days: "2-4" },
+  MG: { name: "Madagascar", days: "3-5" },
+  MW: { name: "Malawi", days: "3-5" },
+  MY: { name: "Malaysia", days: "3-5" },
+  MV: { name: "Maldives", days: "3-5" },
+  ML: { name: "Mali", days: "3-5" },
+  MT: { name: "Malta", days: "3-5" },
+  MH: { name: "Marshall Islands", days: "3-5" },
+  MQ: { name: "Martinique", days: "3-5" },
+  MR: { name: "Mauritania", days: "3-5" },
+  MU: { name: "Mauritius", days: "3-5" },
+  MX: { name: "Mexico", days: "3-5" },
+  FM: { name: "Micronesia, Federated States of", days: "3-5" },
+  MD: { name: "Moldova", days: "3-5" },
+  MC: { name: "Monaco", days: "2-4" },
+  MN: { name: "Mongolia", days: "3-5" },
+  MS: { name: "Montserrat", days: "3-5" },
+  MA: { name: "Morocco", days: "3-5" },
+  MZ: { name: "Mozambique", days: "3-5" },
+  NA: { name: "Namibia", days: "3-5" },
+  NP: { name: "Nepal", days: "3-5" },
+  NL: { name: "Netherlands", days: "2-4" },
+  NC: { name: "New Caledonia", days: "3-5" },
+  NZ: { name: "New Zealand", days: "3-5" },
+  NI: { name: "Nicaragua", days: "3-5" },
+  NE: { name: "Niger", days: "3-5" },
+  NG: { name: "Nigeria", days: "3-5" },
+  NO: { name: "Norway", days: "3-5" },
+  OM: { name: "Oman", days: "3-5" },
+  PK: { name: "Pakistan", days: "3-5" },
+  PA: { name: "Panama", days: "3-5" },
+  PG: { name: "Papua New Guinea", days: "3-5" },
+  PY: { name: "Paraguay", days: "3-5" },
+  PE: { name: "Peru", days: "3-5" },
+  PH: { name: "Philippines", days: "3-5" },
+  PL: { name: "Poland", days: "3-5" },
+  PT: { name: "Portugal", days: "3-5" },
+  PR: { name: "Puerto Rico", days: "2-4" },
+  QA: { name: "Qatar", days: "3-5" },
+  RO: { name: "Romania", days: "3-5" },
+  RW: { name: "Rwanda", days: "3-5" },
+  WS: { name: "Samoa", days: "3-5" },
+  SM: { name: "San Marino", days: "3-5" },
+  SA: { name: "Saudi Arabia", days: "2-4" },
+  SN: { name: "Senegal", days: "3-5" },
+  SC: { name: "Seychelles", days: "3-5" },
+  SG: { name: "Singapore", days: "3-5" },
+  SK: { name: "Slovakia", days: "2-4" },
+  SI: { name: "Slovenia", days: "3-5" },
+  ZA: { name: "South Africa", days: "1-3" },
+  ES: { name: "Spain", days: "3-5" },
+  LK: { name: "Sri Lanka", days: "2-4" },
+  SR: { name: "Suriname", days: "3-5" },
+  SZ: { name: "Swaziland", days: "3-5" },
+  SE: { name: "Sweden", days: "5-7" },
+  CH: { name: "Switzerland", days: "2-4" },
+  TW: { name: "Taiwan", days: "2-4" },
+  TJ: { name: "Tajikistan", days: "3-5" },
+  TZ: { name: "Tanzania", days: "3-5" },
+  TH: { name: "Thailand", days: "3-5" },
+  TG: { name: "Togo", days: "3-5" },
+  TO: { name: "Tonga", days: "3-5" },
+  TT: { name: "Trinidad and Tobago", days: "3-5" },
+  TN: { name: "Tunisia", days: "3-5" },
+  TR: { name: "Turkey", days: "3-5" },
+  TC: { name: "Turks and Caicos Islands", days: "3-5" },
+  UG: { name: "Uganda", days: "3-5" },
+  UA: { name: "Ukraine", days: "3-5" },
+  AE: { name: "United Arab Emirates", days: "3-5" },
+  UY: { name: "Uruguay", days: "3-5" },
+  UZ: { name: "Uzbekistan", days: "3-5" },
+  VU: { name: "Vanuatu", days: "2-4" },
+  VE: { name: "Venezuela", days: "3-5" },
+  VN: { name: "Vietnam", days: "3-5" },
+  VG: { name: "Virgin Islands (British)", days: "3-5" },
+  WF: { name: "Wallis and Futuna", days: "3-5" },
+  YE: { name: "Yemen", days: "3-5" },
+  ZM: { name: "Zambia", days: "3-5" },
+  ZW: { name: "Zimbabwe", days: "3-5" },
+};
 
-let optionsCountry = ''
+let optionsCountry = "";
 
-let isCountry = window.location.href.split('maxwellscottbags.')[1].split('/')[0]
+let isCountry = window.location.href
+  .split("maxwellscottbags.")[1]
+  .split("/")[0];
 
-if (isCountry == 'com') {
-    isCountry = window.location.href.split('maxwellscottbags.')[0].includes('au') ? 'au' : 
-    window.location.href.split('maxwellscottbags.')[0].includes('us') ? 'us' : 'GB'
+if (isCountry == "com") {
+  isCountry = window.location.href.split("maxwellscottbags.")[0].includes("au")
+    ? "au"
+    : window.location.href.split("maxwellscottbags.")[0].includes("us")
+    ? "us"
+    : "GB";
 }
 
 for (const key in dataShipping) {
-    optionsCountry += `<option value="${key}" data-days="${dataShipping[key].days}" ${key == isCountry.toUpperCase() ? 'selected' : ''}>${dataShipping[key].name}</option>`
+  optionsCountry += `<option value="${key}" data-days="${
+    dataShipping[key].days
+  }" ${key == isCountry.toUpperCase() ? "selected" : ""}>${
+    dataShipping[key].name
+  }</option>`;
 }
 
 const delivery = `
     <ul class="crs_delivery">
         <li class="">
-            <p class="crs_uk_delivery" ${isCountry.toUpperCase() != 'GB' ? 'hidden':''}><b>You get FREE EXPRESS UK Delivery</b></p>
+            <p class="crs_uk_delivery" ${
+              isCountry.toUpperCase() != "GB" ? "hidden" : ""
+            }><b>You get FREE EXPRESS UK Delivery</b></p>
             <div class="crs_shipto d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
                     <path d="M21.4325 7.7L19.775 3.95C19.717 3.81701 19.6216 3.70371 19.5005 3.62384C19.3793 3.54396 19.2376 3.50095 19.0925 3.5H15.08L15.32 1.3325C15.3318 1.22728 15.3212 1.12075 15.2889 1.01992C15.2566 0.919094 15.2033 0.82625 15.1325 0.7475C15.0624 0.669806 14.9768 0.607647 14.8812 0.565021C14.7856 0.522396 14.6822 0.500247 14.5775 0.5H4.25C4.05109 0.5 3.86032 0.579018 3.71967 0.71967C3.57902 0.860322 3.5 1.05109 3.5 1.25C3.5 1.44891 3.57902 1.63968 3.71967 1.78033C3.86032 1.92098 4.05109 2 4.25 2H8C8.19891 2 8.38968 2.07902 8.53033 2.21967C8.67098 2.36032 8.75 2.55109 8.75 2.75C8.75 2.94891 8.67098 3.13968 8.53033 3.28033C8.38968 3.42098 8.19891 3.5 8 3.5H2.75C2.55109 3.5 2.36032 3.57902 2.21967 3.71967C2.07902 3.86032 2 4.05109 2 4.25C2 4.44891 2.07902 4.63968 2.21967 4.78033C2.36032 4.92098 2.55109 5 2.75 5H10.25C10.4489 5 10.6397 5.07902 10.7803 5.21967C10.921 5.36032 11 5.55109 11 5.75C11 5.94891 10.921 6.13968 10.7803 6.28033C10.6397 6.42098 10.4489 6.5 10.25 6.5H5C4.80109 6.5 4.61032 6.57902 4.46967 6.71967C4.32902 6.86032 4.25 7.05109 4.25 7.25C4.25 7.44891 4.32902 7.63968 4.46967 7.78033C4.61032 7.92098 4.80109 8 5 8H8C8.19891 8 8.38968 8.07902 8.53033 8.21967C8.67098 8.36032 8.75 8.55109 8.75 8.75C8.75 8.94891 8.67098 9.13968 8.53033 9.28033C8.38968 9.42098 8.19891 9.5 8 9.5H2C1.80109 9.5 1.61032 9.57902 1.46967 9.71967C1.32902 9.86032 1.25 10.0511 1.25 10.25C1.25 10.4489 1.32902 10.6397 1.46967 10.7803C1.61032 10.921 1.80109 11 2 11H3.5C3.69891 11 3.88968 11.079 4.03033 11.2197C4.17098 11.3603 4.25 11.5511 4.25 11.75C4.25 11.9489 4.17098 12.1397 4.03033 12.2803C3.88968 12.421 3.69891 12.5 3.5 12.5H2.75C2.55109 12.5 2.36032 12.579 2.21967 12.7197C2.07902 12.8603 2 13.0511 2 13.25C2 13.4489 2.07902 13.6397 2.21967 13.7803C2.36032 13.921 2.55109 14 2.75 14H4.8875C4.96849 14.3163 5.12262 14.6092 5.3375 14.855C5.51959 15.0586 5.74271 15.2213 5.99219 15.3325C6.24168 15.4436 6.51187 15.5007 6.785 15.5C7.24719 15.4868 7.69518 15.3374 8.07278 15.0705C8.45038 14.8037 8.74076 14.4313 8.9075 14H14.6375C14.7185 14.3163 14.8726 14.6092 15.0875 14.855C15.2696 15.0586 15.4927 15.2213 15.7422 15.3325C15.9917 15.4436 16.2619 15.5007 16.535 15.5C16.9972 15.4868 17.4452 15.3374 17.8228 15.0705C18.2004 14.8037 18.4908 14.4313 18.6575 14H20.1575C20.3429 14.0011 20.5222 13.9335 20.6607 13.8103C20.7992 13.687 20.8871 13.5168 20.9075 13.3325L21.485 8.0825C21.5056 7.95261 21.4873 7.81955 21.4325 7.7ZM6.785 14C6.72281 14.0027 6.66081 13.9913 6.60366 13.9666C6.54651 13.9419 6.49569 13.9046 6.455 13.8575C6.39613 13.7847 6.35305 13.7004 6.32852 13.61C6.30399 13.5196 6.29853 13.4251 6.3125 13.3325C6.33166 13.1219 6.42257 12.9243 6.57003 12.7728C6.71748 12.6212 6.91252 12.5249 7.1225 12.5C7.18469 12.4973 7.24669 12.5087 7.30384 12.5334C7.36099 12.5581 7.41181 12.5954 7.4525 12.6425C7.51137 12.7153 7.55445 12.7996 7.57898 12.89C7.60351 12.9804 7.60897 13.0749 7.595 13.1675C7.57584 13.3781 7.48493 13.5757 7.33747 13.7272C7.19002 13.8788 6.99498 13.9751 6.785 14ZM16.535 14C16.4728 14.0027 16.4108 13.9913 16.3537 13.9666C16.2965 13.9419 16.2457 13.9046 16.205 13.8575C16.1461 13.7847 16.1031 13.7004 16.0785 13.61C16.054 13.5196 16.0485 13.4251 16.0625 13.3325C16.0817 13.1219 16.1726 12.9243 16.32 12.7728C16.4675 12.6212 16.6625 12.5249 16.8725 12.5C16.9347 12.4973 16.9967 12.5087 17.0538 12.5334C17.111 12.5581 17.1618 12.5954 17.2025 12.6425C17.2614 12.7153 17.3044 12.7996 17.329 12.89C17.3535 12.9804 17.359 13.0749 17.345 13.1675C17.3258 13.3781 17.2349 13.5757 17.0875 13.7272C16.94 13.8788 16.745 13.9751 16.535 14ZM19.91 8.75H16.595C16.4903 8.74975 16.3869 8.7276 16.2913 8.68498C16.1957 8.64235 16.1101 8.58019 16.04 8.5025C15.9692 8.42375 15.9159 8.33091 15.8836 8.23008C15.8513 8.12925 15.8407 8.02272 15.8525 7.9175L16.1 5.6675C16.1221 5.48457 16.2108 5.31617 16.3491 5.19445C16.4874 5.07272 16.6657 5.00617 16.85 5.0075H18.5975L20 8.12L19.91 8.75Z" fill="#333333"/>
@@ -1062,8 +1075,10 @@ const delivery = `
             </p>
             <button class="crs_btn_more ml-auto" type="button">LEARN MORE</button>
         </li>
-        <li class="d-flex justify-content-between align-items-center crs_trustpilot">
-            ${trustpilot}
+        <li class=" crs_trustpilot">
+            <a href=" https://www.trustpilot.com/review/www.maxwellscottbags.com" class="d-flex justify-content-between align-items-center" target="_blank" onclick="pushDataLayer(['exp_inc_soc_trus_but_pdprating_trust', 'Trustpilot ', 'Button', 'PDP Give us a rating'])">
+                ${trustpilot}
+            </a>
         </li>
     </ul>`;
 
@@ -1089,7 +1104,7 @@ const popupOne = `
                 </defs>
             </svg>
         </button>
-        <img src="${dir}image-1${media ? '' : '-desk'}.png" alt="image">
+        <img src="${dir}image-1${media ? "" : "-desk"}.png" alt="image">
         <div class="crs_popup_content">
             <div class="crs_popup_circle position-absolute bg-white">
                 <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" width="35" height="34" viewBox="0 0 35 34" fill="none">
@@ -1139,7 +1154,7 @@ const popupTwo = `
                 </defs>
             </svg>
         </button>
-        <img src="${dir}image-2${media ? '' : '-desk'}.png" alt="image">
+        <img src="${dir}image-2${media ? "" : "-desk"}.png" alt="image">
         <div class="crs_popup_content">
             <div class="crs_popup_circle position-absolute bg-white">
                 <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" width="35" height="34" viewBox="0 0 35 34" fill="none">
@@ -1183,7 +1198,7 @@ const highlight = `
         </svg>
         60-day return
     </div>
-</div>`
+</div>`;
 
 start();
 
@@ -1278,7 +1293,7 @@ function klarna(price) {
 }
 
 function setStickyBtn(price) {
-    return `<button type="button" class="crs_sticky_btn d-flex align-items-center justify-content-center active"><b>add to basket</b>  <span class="crs_pr">${price}</span></button>`
+  return `<button type="button" class="crs_sticky_btn d-flex align-items-center justify-content-center active"><b>add to basket</b>  <span class="crs_pr">${price}</span></button>`;
 }
 
 function scrollTo(target) {
@@ -1331,72 +1346,116 @@ function formatDate(days) {
   return formattedDate;
 }
 
- // Function to handle the observed mutations on the cart element.
- function handleCartMutation(mutationsList, observer) {
-    for (const mutation of mutationsList) {
-      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-        const targetElement = mutation.target
-        if (targetElement.classList.contains('active')) {
-          
-            let countProduct = 0
-            targetElement.querySelectorAll('.minicart-items li .option-wrapper > .values [data-bind="text: qty"]').forEach(item => {
-                countProduct += +(item.innerText)
-                console.log(+(item.innerText))
-            })
-            console.log(countProduct)
-            targetElement.querySelector('.minicart-title span').innerHTML = countProduct
+// Function to handle the observed mutations on the cart element.
+function handleCartMutation(mutationsList, observer) {
+  for (const mutation of mutationsList) {
+    if (mutation.type === "attributes" && mutation.attributeName === "class") {
+      const targetElement = mutation.target;
+      if (targetElement.classList.contains("active")) {
+        let countProduct = 0;
+        targetElement
+          .querySelectorAll(
+            '.minicart-items li .option-wrapper > .values [data-bind="text: qty"]'
+          )
+          .forEach((item) => {
+            countProduct += +item.innerText;
+            console.log(+item.innerText);
+          });
+        console.log(countProduct);
+        targetElement.querySelector(".minicart-title span").innerHTML =
+          countProduct;
 
-            targetElement.querySelectorAll('.minicart-items .action.delete').forEach(item => {
-                item.innerHTML = `
+        targetElement
+          .querySelectorAll(".minicart-items .action.delete")
+          .forEach((item) => {
+            item.innerHTML = `
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M17.5584 4.35842C16.2167 4.22508 14.875 4.12508 13.525 4.05008V4.04175L13.3417 2.95841C13.2167 2.19175 13.0334 1.04175 11.0834 1.04175H8.90005C6.95838 1.04175 6.77505 2.14175 6.64172 2.95008L6.46672 4.01675C5.69172 4.06675 4.91672 4.11675 4.14172 4.19175L2.44172 4.35842C2.09172 4.39175 1.84172 4.70008 1.87505 5.04175C1.90838 5.38342 2.20838 5.63342 2.55838 5.60008L4.25838 5.43342C8.62505 5.00008 13.0251 5.16675 17.4417 5.60842C17.4667 5.60842 17.4834 5.60842 17.5084 5.60842C17.8251 5.60842 18.1 5.36675 18.1334 5.04175C18.1584 4.70008 17.9084 4.39175 17.5584 4.35842Z" fill="#333333"/>
                     <path d="M16.0254 6.78325C15.8254 6.57492 15.5504 6.45825 15.2671 6.45825H4.73378C4.45044 6.45825 4.16711 6.57492 3.97544 6.78325C3.78378 6.99159 3.67544 7.27492 3.69211 7.56659L4.20878 16.1166C4.30044 17.3833 4.41711 18.9666 7.32544 18.9666H12.6754C15.5838 18.9666 15.7004 17.3916 15.7921 16.1166L16.3088 7.57492C16.3254 7.27492 16.2171 6.99159 16.0254 6.78325ZM11.3838 14.7916H8.60878C8.26711 14.7916 7.98378 14.5083 7.98378 14.1666C7.98378 13.8249 8.26711 13.5416 8.60878 13.5416H11.3838C11.7254 13.5416 12.0088 13.8249 12.0088 14.1666C12.0088 14.5083 11.7254 14.7916 11.3838 14.7916ZM12.0838 11.4583H7.91711C7.57544 11.4583 7.29211 11.1749 7.29211 10.8333C7.29211 10.4916 7.57544 10.2083 7.91711 10.2083H12.0838C12.4254 10.2083 12.7088 10.4916 12.7088 10.8333C12.7088 11.1749 12.4254 11.4583 12.0838 11.4583Z" fill="#333333"/>
-                </svg>`
-            })
+                </svg>`;
+          });
 
-            if (targetElement.querySelector('.minicart-title span').innerHTML == '0') return
+        if (
+          targetElement.querySelector(".minicart-title span").innerHTML == "0"
+        )
+          return;
 
-            let price = targetElement.querySelector('.subtotal .amount.price-container .price').innerText
+        let price = targetElement.querySelector(
+          ".subtotal .amount.price-container .price"
+        ).innerText;
 
-            if (!targetElement.querySelector('.crs_cart_subtotal')) {
-                targetElement.querySelector('.block-content > .actions > .primary').insertAdjacentHTML('beforebegin',  `
+        if (!targetElement.querySelector(".crs_cart_subtotal")) {
+          targetElement
+            .querySelector(".block-content > .actions > .primary")
+            .insertAdjacentHTML(
+              "beforebegin",
+              `
                 <div class="crs_cart_subtotal">
                     <div class="d-flex justify-content-between align-items-center crs_sub">
                         <p><b>Subtotal</b> </p>
                         <p class="pr"><b> ${price}</b></p>
                     </div>
-                </div>`)
+                </div>`
+            );
 
-                targetElement.querySelector('.block-content > .actions').insertAdjacentHTML('beforebegin', highlight)
-            }
-
-            if (!targetElement.querySelector('.crs_klarna')) {
-                targetElement.querySelector('.subtotal').insertAdjacentHTML('afterend', klarna(+(price.replace(price[0],''))))
-            }
-            targetElement.querySelector('.crs_sub .pr b').innerHTML = price
-            
-            targetElement.querySelector('.block-content > .actions > .primary .paypal input').src = dir + 'paypal-logo.svg'
-
-            const waitForDiscount = setInterval(() => {
-                if (document.querySelector('body > div > button.needsclick') &&
-                    document.querySelector('body > div > button.needsclick').innerText.includes('10% OFF') &&
-                    !targetElement.querySelector('.crs_discount')
-                ) {
-                    clearInterval(waitForDiscount)
-    
-                    targetElement.querySelector('.minicart-items').insertAdjacentHTML('afterend', getDiscount)
-
-                    document.querySelector('.crs_discount').addEventListener('click', () => {
-                        document.querySelector('body > div > button.needsclick').click()
-                    })
-                }
-              })
-
-
-
+          targetElement
+            .querySelector(".block-content > .actions")
+            .insertAdjacentHTML("beforebegin", highlight);
         }
+
+        if (!targetElement.querySelector(".crs_klarna")) {
+          targetElement
+            .querySelector(".subtotal")
+            .insertAdjacentHTML(
+              "afterend",
+              klarna(+price.replace(price[0], ""))
+            );
+          document
+            .querySelector(".crs_klarna a")
+            .addEventListener("click", () => {
+              pushDataLayer([
+                "exp_inc_soc_trus_lin_cart_learn",
+                "Learn More",
+                "Link",
+                "Cart",
+              ]);
+            });
+        }
+        targetElement.querySelector(".crs_sub .pr b").innerHTML = price;
+
+        targetElement.querySelector(
+          ".block-content > .actions > .primary .paypal input"
+        ).src = dir + "paypal-logo.svg";
+
+        const waitForDiscount = setInterval(() => {
+          if (
+            document.querySelector("body > div > button.needsclick") &&
+            document
+              .querySelector("body > div > button.needsclick")
+              .innerText.includes("View Today’s Offer") &&
+            !targetElement.querySelector(".crs_discount")
+          ) {
+            clearInterval(waitForDiscount);
+
+            targetElement
+              .querySelector(".minicart-items")
+              .insertAdjacentHTML("afterend", getDiscount);
+
+            document
+              .querySelector(".crs_discount")
+              .addEventListener("click", () => {
+                pushDataLayer([
+                  "exp_inc_soc_trus_lin_cart_discou",
+                  "Get  discount",
+                  "Link",
+                  "Cart",
+                ]);
+              });
+          }
+        });
       }
     }
+  }
 }
 
 function start() {
@@ -1419,6 +1478,35 @@ function start() {
 
         waitForElement(".page-layout-1column .product.media").then((el) => {
           el.insertAdjacentHTML("afterbegin", topBadge);
+          document
+            .querySelector(".crs_absolute .crs_warranty")
+            .addEventListener("click", () => {
+              document
+                .querySelectorAll(".crs_popup")[0]
+                .classList.add("active");
+
+              pushDataLayer([
+                "exp_inc_soc_trus_but_pdp_yeawar",
+                "25-Year Warranty",
+                "Button",
+                "PDP Under Header",
+              ]);
+            });
+
+          document
+            .querySelector(".crs_absolute .crs_wishlist")
+            .addEventListener("click", (e) => {
+              e.preventDefault();
+              document
+                .querySelector(".product-addto-links .ajax_wishlist")
+                .click();
+              pushDataLayer([
+                "exp_inc_soc_trus_but_pdp_savwish",
+                "Save to wishlist",
+                "Button",
+                "PDP Under Header",
+              ]);
+            });
         });
 
         waitForElement(".product-reviews-summary").then((el) => {
@@ -1426,31 +1514,55 @@ function start() {
         });
         waitForElement(".product-info-stock-and-review").then((el) => {
           el.children[0].before(document.querySelector(".product-info-price"));
+
           el.insertAdjacentHTML(
             "afterend",
             klarna(
-              document.querySelector(".product-info-price [data-price-amount]")
+              document
+                .querySelector(".product-info-price [data-price-amount]")
                 .getAttribute("data-price-amount")
             )
           );
 
-          const waitForDiscount = setInterval(() => {
-            if (document.querySelector('body > div > button.needsclick') &&
-                document.querySelector('body > div > button.needsclick').innerText.includes('10% OFF')
-            ) {
-                clearInterval(waitForDiscount)
+          document
+            .querySelector(".crs_klarna a")
+            .addEventListener("click", () => {
+              pushDataLayer([
+                "exp_inc_soc_trus_lin_pdpunpri_leamor",
+                "Learn More",
+                "Link",
+                "PDP Under the price",
+              ]);
+            });
 
-                document.querySelector(".crs_klarna")
+          const waitForDiscount = setInterval(() => {
+            if (
+              document.querySelector("body > div > button.needsclick") &&
+              document
+                .querySelector("body > div > button.needsclick")
+                .innerText.includes("View Today’s Offer")
+            ) {
+              clearInterval(waitForDiscount);
+
+              document
+                .querySelector(".crs_klarna")
                 .insertAdjacentHTML("afterend", getDiscount);
 
-                document.querySelector('.crs_discount').addEventListener('click', () => {
-                    document.querySelector('body > div > button.needsclick').click()
-                })
+              document
+                .querySelector(".crs_discount")
+                .addEventListener("click", () => {
+                  document
+                    .querySelector("body > div > button.needsclick")
+                    .click();
+                  pushDataLayer([
+                    "exp_inc_soc_trus_lin_pdpunpri_getdis",
+                    "Get Discount",
+                    "Link",
+                    "PDP Under the price",
+                  ]);
+                });
             }
-          })
-
-        
-         
+          });
         });
 
         waitForElement(".product-modal-options-btn-wrap").then((el) => {
@@ -1477,13 +1589,14 @@ function start() {
             item
               .querySelector("a.product-modal-options-btn")
               .insertAdjacentHTML("afterbegin", icon);
+
             item.querySelector(".price-notice").insertAdjacentHTML(
               "afterend",
               `
-                        <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6 10.6C8.54051 10.6 10.6 8.54051 10.6 6C10.6 3.45949 8.54051 1.4 6 1.4C3.45949 1.4 1.4 3.45949 1.4 6C1.4 8.54051 3.45949 10.6 6 10.6ZM12 6C12 9.31371 9.31371 12 6 12C2.68629 12 0 9.31371 0 6C0 2.68629 2.68629 0 6 0C9.31371 0 12 2.68629 12 6Z" fill="#646464"/>
-                            <path d="M7.04236 2.8493C7.04236 2.9823 7.01436 3.1083 6.95836 3.2273C6.90936 3.3393 6.83936 3.4373 6.74836 3.5213C6.66436 3.6053 6.55936 3.6718 6.43336 3.7208C6.31436 3.7698 6.18836 3.7943 6.05536 3.7943C5.77536 3.7943 5.54086 3.7033 5.35186 3.5213C5.16286 3.3323 5.06836 3.1083 5.06836 2.8493C5.06836 2.7233 5.09286 2.6043 5.14186 2.4923C5.19086 2.3733 5.26086 2.2718 5.35186 2.1878C5.44286 2.1038 5.54786 2.0373 5.66686 1.9883C5.78586 1.9323 5.91536 1.9043 6.05536 1.9043C6.18836 1.9043 6.31436 1.9288 6.43336 1.9778C6.55936 2.0268 6.66436 2.0933 6.74836 2.1773C6.83936 2.2613 6.90936 2.3628 6.95836 2.4818C7.01436 2.5938 7.04236 2.7163 7.04236 2.8493ZM5.19436 9.7478V4.5188H6.91636V9.7478H5.19436Z" fill="#646464"/>
-                        </svg>`
+                <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6 10.6C8.54051 10.6 10.6 8.54051 10.6 6C10.6 3.45949 8.54051 1.4 6 1.4C3.45949 1.4 1.4 3.45949 1.4 6C1.4 8.54051 3.45949 10.6 6 10.6ZM12 6C12 9.31371 9.31371 12 6 12C2.68629 12 0 9.31371 0 6C0 2.68629 2.68629 0 6 0C9.31371 0 12 2.68629 12 6Z" fill="#646464"/>
+                    <path d="M7.04236 2.8493C7.04236 2.9823 7.01436 3.1083 6.95836 3.2273C6.90936 3.3393 6.83936 3.4373 6.74836 3.5213C6.66436 3.6053 6.55936 3.6718 6.43336 3.7208C6.31436 3.7698 6.18836 3.7943 6.05536 3.7943C5.77536 3.7943 5.54086 3.7033 5.35186 3.5213C5.16286 3.3323 5.06836 3.1083 5.06836 2.8493C5.06836 2.7233 5.09286 2.6043 5.14186 2.4923C5.19086 2.3733 5.26086 2.2718 5.35186 2.1878C5.44286 2.1038 5.54786 2.0373 5.66686 1.9883C5.78586 1.9323 5.91536 1.9043 6.05536 1.9043C6.18836 1.9043 6.31436 1.9288 6.43336 1.9778C6.55936 2.0268 6.66436 2.0933 6.74836 2.1773C6.83936 2.2613 6.90936 2.3628 6.95836 2.4818C7.01436 2.5938 7.04236 2.7163 7.04236 2.8493ZM5.19436 9.7478V4.5188H6.91636V9.7478H5.19436Z" fill="#646464"/>
+                </svg>`
             );
 
             item.querySelector("a.hide-remove-link").innerHTML = ` 
@@ -1492,8 +1605,42 @@ function start() {
                         <rect id="Rectangle 4323" x="0.5" y="1" width="23" height="23" fill="#A11A17" stroke="#A11A17"/>
                         <path id="Vector 167" d="M6 12.5L10 16.5L18 8.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
                     </g>
-                </svg>
-                `;
+                </svg>`;
+
+            item.querySelectorAll("a").forEach((link) => {
+              link.addEventListener("click", () => {
+                if (link.innerText.includes("Add Gift Wrap")) {
+                  pushDataLayer([
+                    "exp_inc_soc_trus_chec_pdpuncol_gift",
+                    "Add Gift Wrap ",
+                    "Checkbox ",
+                    "PDP Under colour",
+                  ]);
+                } else if (link.innerText.includes("Add Personalisation")) {
+                  pushDataLayer([
+                    "exp_inc_soc_trus_chec_pdpuncol_pers",
+                    "Add Personalisation ",
+                    "Checkbox ",
+                    "PDP Under colour",
+                  ]);
+                }
+              });
+            });
+          });
+        });
+
+        waitForElement(
+          ".product-options-wrapper .swatch-attribute-options"
+        ).then((el) => {
+          el.querySelectorAll(".swatch-option").forEach((item) => {
+            item.addEventListener("click", (e) => {
+              pushDataLayer([
+                "exp_inc_soc_trus_icon_pdpundis_choocol",
+                item.getAttribute("aria-label") + " - Сhoose the colour",
+                "Icone",
+                "PDP Under discount",
+              ]);
+            });
           });
         });
 
@@ -1510,9 +1657,9 @@ function start() {
               let selectedOption = e.target.options[e.target.selectedIndex];
 
               document.querySelector(".crs_est b").innerHTML =
-                formatDate(selectedOption.dataset.days.split('-')[0]) +
+                formatDate(selectedOption.dataset.days.split("-")[0]) +
                 " - " +
-                formatDate(selectedOption.dataset.days.split('-')[1]);
+                formatDate(selectedOption.dataset.days.split("-")[1]);
 
               if (e.target.value == "GB") {
                 document.querySelector(".crs_uk_delivery").hidden = false;
@@ -1522,10 +1669,34 @@ function start() {
             });
 
           document.querySelectorAll(".crs_btn_more").forEach((item, index) => {
+            let startTime = 0;
+
             item.addEventListener("click", (e) => {
               document
                 .querySelectorAll(".crs_popup")
                 [index].classList.add("active");
+              setInterval(() => {
+                startTime += 1;
+              }, 100);
+              if (
+                item.previousElementSibling.innerText.includes(
+                  "25-Year Warranty"
+                )
+              ) {
+                pushDataLayer([
+                  "exp_inc_soc_trus_but_pdpwarra_learn",
+                  "Learn More",
+                  "Button",
+                  "PDP Under Block delivery 25-Year warranty",
+                ]);
+              } else {
+                pushDataLayer([
+                  "exp_inc_soc_trus_but_pdpriskfree_learn",
+                  "Learn More",
+                  "Button",
+                  "PDP Under Block delivery 60-day risk-free return",
+                ]);
+              }
             });
             document
               .querySelectorAll(".crs_popup .crs_popup_close")
@@ -1533,6 +1704,26 @@ function start() {
                 document
                   .querySelectorAll(".crs_popup")
                   [index].classList.remove("active");
+
+                const focusTimeMillis = Date.now() - startTime;
+                const focusTimeSeconds = focusTimeMillis / 1000;
+
+                if (index == 0) {
+                  pushDataLayer([
+                    "exp_inc_soc_trus_vis_popupwarr_focu",
+                    focusTimeSeconds,
+                    "Visibility ",
+                    "Pop up 25-Year Warranty: A Promise of Timeless Quality",
+                  ]);
+                } else {
+                  pushDataLayer([
+                    "exp_inc_soc_trus_vis_popupriskfree_focu",
+                    focusTimeSeconds,
+                    "Visibility ",
+                    "Pop up 60-day risk-free return",
+                  ]);
+                }
+                startTime = 0;
               });
             document
               .querySelectorAll(".crs_popup")
@@ -1548,6 +1739,30 @@ function start() {
             .addEventListener("click", (e) => {
               e.preventDefault();
               scrollTo(e.target);
+              pushDataLayer([
+                "exp_inc_soc_trus_link_pdphand_learn",
+                "Learn More",
+                "Link",
+                "PDP Handcrafted leather made in italy",
+              ]);
+            });
+
+          handleVisibility(document.querySelector(".crs_shipto"), [
+            "exp_inc_soc_trus_vis_pdpunbask_focu",
+            " {{focusTime}} ",
+            "Visibility ",
+            "PDP Under Add to Basket",
+          ]);
+
+          document
+            .querySelector(".crs_country")
+            .addEventListener("click", () => {
+              pushDataLayer(
+                "exp_inc_soc_trus_acc_pdpdeli_click",
+                "Click",
+                "Accordion",
+                "PDP You get FREE EXPRESS UK Delivery"
+              );
             });
         });
         waitForElement(".msb-product-details-col-left").then((el) => {
@@ -1557,86 +1772,167 @@ function start() {
           );
         });
 
-        waitForElement('.product-info-main .price-box .price-wrapper .price').then(el => {
-            if (media) {
-                document.body.insertAdjacentHTML('beforeend', setStickyBtn(el.innerText))
+        waitForElement(
+          ".product-info-main .price-box .price-wrapper .price"
+        ).then((el) => {
+          if (media) {
+            document.body.insertAdjacentHTML(
+              "beforeend",
+              setStickyBtn(el.innerText)
+            );
 
-                let stickyBtn = document.querySelector('.crs_sticky_btn')
-                let btnAddToCart = document.querySelector(".product-options-bottom")
+            let stickyBtn = document.querySelector(".crs_sticky_btn");
+            let btnAddToCart = document.querySelector(
+              ".product-options-bottom"
+            );
 
-                stickyBtn.addEventListener('click', () => {
-                    document.querySelector('.product-info-main .box-tocart .actions .action.tocart').click()
-                })
+            let clickAddToCart = false;
+            stickyBtn.addEventListener("click", () => {
+              clickAddToCart = true;
+              document
+                .querySelector(
+                  ".product-info-main .box-tocart .actions .action.tocart"
+                )
+                .click();
+              pushDataLayer([
+                "exp_inc_soc_trus_sticbut_pdp_bask",
+                "Add to basket",
+                "Sticky button ",
+                "PDP",
+              ]);
+            });
 
-                function handleScroll() {
-                    let btnRect = btnAddToCart.getBoundingClientRect();
-                  
-                    if (btnRect.top >= 0 && btnRect.bottom <= window.innerHeight) {
-                      stickyBtn.classList.remove('active');
-                    } else {
-                      stickyBtn.classList.add('active');
-                    }
+            document
+              .querySelector(".product-info-main .box-tocart .action.tocart")
+              .addEventListener("click", (e) => {
+                if (clickAddToCart == false) {
+                  pushDataLayer([
+                    "exp_inc_soc_trus_but_pdpunchec_bask",
+                    "Add to Basket",
+                    "Button",
+                    "PDP Under the checkboxes",
+                  ]);
+                } else {
+                  clickAddToCart = false;
                 }
-                  
-                window.addEventListener('scroll', handleScroll);
-            
-                handleScroll(); 
-            }
-        })
+              });
 
+            function handleScroll() {
+              let btnRect = btnAddToCart.getBoundingClientRect();
+
+              if (btnRect.top >= 0 && btnRect.bottom <= window.innerHeight) {
+                stickyBtn.classList.remove("active");
+              } else {
+                stickyBtn.classList.add("active");
+              }
+            }
+
+            window.addEventListener("scroll", handleScroll);
+
+            handleScroll();
+          }
+        });
       }
-     
+
       if (location.href.includes("/checkout/")) {
-        document.body.insertAdjacentHTML('afterend', `<style>
+        document.body.insertAdjacentHTML(
+          "afterend",
+          `<style>
         .checkout-header-container {
             margin-bottom: 20px!important;
         }
         .crs_info {
             max-width: 650px;
         }
-        </style>`)
-        waitForElement('.checkout-header-container').then(el => {
-            el.insertAdjacentHTML('afterend', `
+        </style>`
+        );
+        waitForElement(".checkout-header-container").then((el) => {
+          el.insertAdjacentHTML(
+            "afterend",
+            `
             <div class="px-4 crs_info mx-auto">
-                <div class="d-flex align-items-center justify-content-center crs_trustpilot">
-                    ${trustpilot}
+                <div class="crs_trustpilot">
+                    <a href=" https://www.trustpilot.com/review/www.maxwellscottbags.com" class="d-flex justify-content-center align-items-center" target="_blank" onclick="pushDataLayer(['exp_inc_soc_trus_but_checkrating_trust', 'Trustpilot ', 'Button', 'Checkout Give us a rating'])">
+                        ${trustpilot}
+                    </a>
                 </div>
                 ${highlight}
-            </div>`)
-        })
+            </div>`
+          );
+        });
       }
-      waitForElement('.header-right-block > ul > .minicart-wrapper').then((cartElement) => {
-        cartElement.querySelector('.minicart-title').innerHTML = 'Shopping Bag (<span>0</span>)'
-       
+      waitForElement(".header-right-block > ul > .minicart-wrapper").then(
+        (cartElement) => {
+          cartElement.querySelector(".minicart-title").innerHTML =
+            "Shopping Bag (<span>0</span>)";
+
+          cartElement
+            .querySelector(".block-minicart")
+            .addEventListener("click", (e) => {
+              if (e.target.classList.contains("block-minicart")) {
+                cartElement.classList.remove("active");
+              }
+            });
+          cartElement
+            .querySelector("#top-cart-btn-checkout")
+            .addEventListener("click", (e) => {
+              pushDataLayer([
+                "exp_inc_soc_trus_but_car_checkout",
+                "Proceed to checkout",
+                "Button",
+                "Cart",
+              ]);
+            });
+          // Create a Mutation Observer to watch for changes in the cart.
+          const cartObserver = new MutationObserver(handleCartMutation);
+
+          // Define the options for the Mutation Observer.
+          const observerOptions = {
+            attributes: true, // Watch for changes to the attributes of the cart.
+            attributeFilter: ["class"], // Only watch for changes to the "class" attribute.
+          };
+
+          // Start observing the cart element.
+          cartObserver.observe(cartElement, observerOptions);
+        }
+      );
+
+      waitForElement(".mobile-basket-block").then((cartElement) => {
+        cartElement.querySelector(".minicart-title").innerHTML =
+          "Shopping Bag (<span>0</span>)";
+
+        cartElement
+          .querySelector("#top-cart-btn-checkout")
+          .addEventListener("click", (e) => {
+            pushDataLayer([
+              "exp_inc_soc_trus_but_car_checkout",
+              "Proceed to checkout",
+              "Button",
+              "Cart",
+            ]);
+          });
         // Create a Mutation Observer to watch for changes in the cart.
-        const cartObserver = new MutationObserver(handleCartMutation)
+        const cartObserver = new MutationObserver(handleCartMutation);
 
         // Define the options for the Mutation Observer.
         const observerOptions = {
-            attributes: true, // Watch for changes to the attributes of the cart.
-            attributeFilter: ['class'], // Only watch for changes to the "class" attribute.
-        }
+          attributes: true, // Watch for changes to the attributes of the cart.
+          attributeFilter: ["class"], // Only watch for changes to the "class" attribute.
+        };
 
         // Start observing the cart element.
-        cartObserver.observe(cartElement, observerOptions)
-      })
-
-      waitForElement('.mobile-basket-block').then((cartElement) => {
-        cartElement.querySelector('.minicart-title').innerHTML = 'Shopping Bag (<span>0</span>)'
-       
-        // Create a Mutation Observer to watch for changes in the cart.
-        const cartObserver = new MutationObserver(handleCartMutation)
-
-        // Define the options for the Mutation Observer.
-        const observerOptions = {
-            attributes: true, // Watch for changes to the attributes of the cart.
-            attributeFilter: ['class'], // Only watch for changes to the "class" attribute.
-        }
-
-        // Start observing the cart element.
-        cartObserver.observe(cartElement, observerOptions)
-      })
-
+        cartObserver.observe(cartElement, observerOptions);
+      });
     }
   }, 0);
 }
+//https://www.maxwellscottbags.com/rest/default/V1/guest-carts/FJWCeu7peZgfWDcl6DyPCtmxd7su6zLA/coupons/25OFF
+
+//https://www.maxwellscottbags.com/rest/default/V1/carts/mine/coupons/25OFF
+
+//https://www.maxwellscottbags.com/rest/default/V1/guest-carts/onAlsUb4dbNo5qRiSxzr06RFwcrUghPd/coupons/25OFF
+
+// fetch('https://www.maxwellscottbags.com/rest/default/V1/guest-carts/onAlsUb4dbNo5qRiSxzr06RFwcrUghPd/coupons/25OFF', {
+
+//     method: 'PUT'
+// }).then(data => console.log(data))
