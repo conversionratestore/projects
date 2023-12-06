@@ -1938,7 +1938,7 @@ span.accent_weight_bold {
                 el.addEventListener("click", (e) => {
                   if (!e.target.getAttribute("data-test")) {
                     pushDataLayer(["exp_nov_oral_butt_slidcart_delete", "Delete", "Button", "Slide-in cart"]);
-                    if (localStorage.getItem("upsellInit") && (+e.target.closest(".product_wrap").getAttribute("data-id") === 46932997865817 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368669593945 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368670118233 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368679293273 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368679752025 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368681161049)) {
+                    if (localStorage.getItem("upsellInit") && (+e.target.closest(".product_wrap").getAttribute("data-id") === 46932997865817 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368669593945 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368670118233 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368679293273 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368679752025 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368681161049 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47442481348953)) {
                       localStorage.removeItem("upsellInit");
                     }
                     changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), 0);
@@ -2052,19 +2052,11 @@ span.accent_weight_bold {
                   } else if (firstUpsell === 32854816784438) {
                     onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPro", 32854816784438, "novaa_light_pro", 47368679752025);
                   } else if (firstUpsell === 40156488761398) {
-                    onRenderUpsell(data.items, upselsObjNovaa, "novaaExtraStrengthLaser", 40156488761398, "novaa_extra_strength_laser", 47368681161049);
+                    onRenderUpsell(data.items, upselsObjNovaa, "novaaExtraStrengthLaser", 40156488761398, "novaa_extra_strength_laser", 47442481348953);
                   }
-                  // if (firstUpsell === 39782656311350) {
-                  //   onRenderUpsell(
-                  //     data.items,
-                  //     upselsObjNovaa,
-                  //     'novaaLightPadForKneePain',
-                  //     39782656311350,
-                  //     'novaa_light_padfor_knee_pain',
-                  //     '',
-                  //   );
-                  // }
-                  else if (firstUpsell === 47100514140505) {
+                  if (firstUpsell === 39782656311350) {
+                    onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPadForKneePain", 39782656311350, "novaa_light_padfor_knee_pain", 47368681161049);
+                  } else if (firstUpsell === 47100514140505) {
                     onRenderUpsell(data.items, upselsObjSonic, "upselsSonic", 47100514140505, "upsels_sonic", 46932997865817);
                   } else if (firstUpsell === 40365298679862) {
                     onRenderUpsell(data.items, upselsObjSonic, "upselsSonic", 40365298679862, "upsels_sonic", 46932997865817);
