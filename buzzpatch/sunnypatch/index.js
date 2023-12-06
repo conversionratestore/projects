@@ -1,6 +1,6 @@
 let dir = 'https://conversionratestore.github.io/projects/buzzpatch/sunnypatch/img/'
 
-let style = `
+let style = /* html */ `
 <style>
     .isVisibleSteps {
         height: 1px;
@@ -227,6 +227,7 @@ let style = `
     }
     .exp-crs .stickers-prices {
         justify-content: center;
+        text-align: center !important;
     }
     .exp-crs #purchase .js-heading>h2+p+img {
         margin: 16px auto;
@@ -447,22 +448,21 @@ let style = `
         }
     }
     
-</style>`;
+</style>`
 
 // pushDataLayer
 let pushDataLayer = (name, desc, type, loc) => {
-    console.log(name + ' : ' + desc + ' : ' + type + ' : ' + loc)
+  console.log(name + ' : ' + desc + ' : ' + type + ' : ' + loc)
 
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga4',
-        'event_name': name,
-        'event_desc': desc,
-        'event_type': type,
-        'event_loc': loc
-    });
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: 'event-to-ga4',
+    event_name: name,
+    event_desc: desc,
+    event_type: type,
+    event_loc: loc
+  })
 }
-
 
 const visibilityMap = new Map()
 
@@ -481,26 +481,56 @@ function handleVisibility(className) {
         visibilityMap.set(targetElement, Date.now())
       } else if (!isVisible && visibilityMap.has(targetElement)) {
         const startTime = visibilityMap.get(targetElement)
-        const focusTimeMillis = Date.now() - startTime;
-        const focusTimeSeconds = focusTimeMillis / 1000; 
+        const focusTimeMillis = Date.now() - startTime
+        const focusTimeSeconds = focusTimeMillis / 1000
 
         if (targetElement.className.includes('yellow-wave')) {
-            pushDataLayer('exp_int_pro_v_fs_reapply_sunscreen', `Reapply sunscreen with confidence - ${focusTimeMillis}`, 'Visibility', 'First screen');
+          pushDataLayer(
+            'exp_int_pro_v_fs_reapply_sunscreen',
+            `Reapply sunscreen with confidence - ${focusTimeMillis}`,
+            'Visibility',
+            'First screen'
+          )
         }
         if (targetElement.className.includes('block_highlighting') && targetElement.closest('.scientific')) {
-            pushDataLayer('exp_int_pro_v_ufs1_how_it_works', `How it works 1 part- ${focusTimeMillis}`, 'Visibility', 'Under first screen');
+          pushDataLayer(
+            'exp_int_pro_v_ufs1_how_it_works',
+            `How it works 1 part- ${focusTimeMillis}`,
+            'Visibility',
+            'Under first screen'
+          )
         }
         if (targetElement.className.includes('block_highlighting') && targetElement.closest('.reviews')) {
-            pushDataLayer('exp_int_pro_v_upd_how_it_works', `How it works- ${focusTimeMillis}`, 'Visibility', 'Under product details');
+          pushDataLayer(
+            'exp_int_pro_v_upd_how_it_works',
+            `How it works- ${focusTimeMillis}`,
+            'Visibility',
+            'Under product details'
+          )
         }
-        if (targetElement.className.includes('isVisibleSteps') && targetElement.closest('.scientific') ) {
-            pushDataLayer('exp_int_pro_v_ufs2_how_it_works', `How it works 2 part- ${focusTimeMillis}`, 'Visibility', 'Under first screen');
+        if (targetElement.className.includes('isVisibleSteps') && targetElement.closest('.scientific')) {
+          pushDataLayer(
+            'exp_int_pro_v_ufs2_how_it_works',
+            `How it works 2 part- ${focusTimeMillis}`,
+            'Visibility',
+            'Under first screen'
+          )
         }
         if (targetElement.closest('.sleeping-problems')) {
-            pushDataLayer('exp_int_pro_v_what_sun_safety', focusTimeMillis, 'Visibility', 'What sun-safety concerns are you trying to address?');
+          pushDataLayer(
+            'exp_int_pro_v_what_sun_safety',
+            focusTimeMillis,
+            'Visibility',
+            'What sun-safety concerns are you trying to address?'
+          )
         }
         if (targetElement.closest('.featured-reviews')) {
-            pushDataLayer('exp_int_pro_v_why_kids', focusTimeMillis, 'Visibility', 'First screen Why Kids & Adults Love SunnyPatch');
+          pushDataLayer(
+            'exp_int_pro_v_why_kids',
+            focusTimeMillis,
+            'Visibility',
+            'First screen Why Kids & Adults Love SunnyPatch'
+          )
         }
         visibilityMap.delete(targetElement)
       }
@@ -600,7 +630,7 @@ let blockHighlighting = `
             </svg>
             <span>Designed in Australia - the capital of SUN, FUN & SURFFF!</span>            
         </li>
-    </ul>`;
+    </ul>`
 
 let modal = `
     <div class="popup">
@@ -629,26 +659,29 @@ let modal = `
             <img src="${dir}sunny-lp-mobile-steps.svg" alt="image" class="mobile-steps ls-is-cached lazyloaded">
             <a id="open" href="#" class="btn js-btn btn-primary get-it">get it now</a>
         </div>
-    </div>`;
-
+    </div>`
 
 let init = setInterval(() => {
-    if ( document.querySelector('#getNow .days') &&
-        document.querySelector('.close-btn') &&
-        document.querySelector('.reviews-slide img') &&
-        document.querySelector('.js-mobile.scientific img.mobile-steps')
-    ) {
-        clearInterval(init)
+  if (
+    document.querySelector('#getNow .days') &&
+    document.querySelector('.close-btn') &&
+    document.querySelector('.reviews-slide img') &&
+    document.querySelector('.js-mobile.scientific img.mobile-steps')
+  ) {
+    clearInterval(init)
 
-        document.body.classList.add('exp-crs');
-        document.body.insertAdjacentHTML('afterbegin', style);
+    document.body.classList.add('exp-crs')
+    document.body.insertAdjacentHTML('afterbegin', style)
 
-        document.head.insertAdjacentHTML('beforeend',`
+    document.head.insertAdjacentHTML(
+      'beforeend',
+      `
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">`)
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">`
+    )
 
-        document.querySelector('.shipping-noti').innerHTML = `
+    document.querySelector('.shipping-noti').innerHTML = `
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="17" viewBox="0 0 24 17" fill="none">
             <path d="M24.0001 8.61301V13.3582C24.0001 13.7468 23.6851 14.0613 23.297 14.0613H15.984C15.5964 14.0613 15.2819 13.7477 15.2809 13.36L15.2612 4.44629C15.2612 4.05816 15.5758 3.74316 15.9644 3.74316H19.2639C19.4547 3.74316 19.637 3.82051 19.7692 3.95738L23.8023 8.1241C23.9294 8.25535 24.0001 8.43066 24.0001 8.61301Z" fill="#F3EDEA"/>
             <path d="M15.2705 8.61328L15.281 13.3601C15.2819 13.7478 15.5965 14.0614 15.9841 14.0614H23.2971C23.6852 14.0614 24.0002 13.7468 24.0002 13.3583V8.61328H15.2705Z" fill="#007FFC"/>
@@ -662,9 +695,11 @@ let init = setInterval(() => {
             <path d="M7.28592 7.01367H0.703125C0.314812 7.01367 0 6.69886 0 6.31055C0 5.92223 0.314812 5.60742 0.703125 5.60742H7.28592C7.67423 5.60742 7.98905 5.92223 7.98905 6.31055C7.98905 6.69886 7.67423 7.01367 7.28592 7.01367Z" fill="#FE9900"/>
             <path d="M15.4683 0H12V14.1033L15.9839 14.0616H16.1714V0.703125C16.1714 0.315 15.8564 0 15.4683 0Z" fill="#FFC200"/>
         </svg>
-        <h3>FREE Shipping   |   30-day Money Back Guarantee </h3>`;
+        <h3>FREE Shipping   |   30-day Money Back Guarantee </h3>`
 
-        document.querySelector('.js-iphone .js-heading.js-mobile h1').insertAdjacentHTML('afterend',` <ul class="info_regarding">
+    document.querySelector('.js-iphone .js-heading.js-mobile h1').insertAdjacentHTML(
+      'afterend',
+      ` <ul class="info_regarding">
         <li>
             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M23.3085 29.5584L22.3162 28.5658C22.0334 28.283 21.6499 28.1241 21.2499 28.1241C20.85 28.1241 20.4665 28.283 20.1836 28.5658L19.1913 29.5584C18.9085 29.8412 18.5249 30 18.1249 30C17.7251 30 17.3415 29.8412 17.0587 29.5584L16.0663 28.566C15.7835 28.2832 15.4 28.1244 15.0001 28.1244C14.6001 28.1244 14.2165 28.2832 13.9337 28.566L12.9414 29.5584C12.6586 29.8412 12.2751 30 11.8751 30C11.4752 30 11.0916 29.8412 10.8088 29.5584L9.81647 28.566C9.53368 28.2832 9.15016 28.1244 8.75021 28.1244C8.35026 28.1244 7.96668 28.2832 7.68389 28.566L6.69158 29.5584C6.40879 29.8412 6.02521 30 5.62526 30C5.22534 30 4.84179 29.8412 4.55898 29.5584L0.441725 25.4411C0.158932 25.1583 6.04247e-05 24.7747 6.04247e-05 24.3748C6.04247e-05 23.9749 0.158932 23.5913 0.441725 23.3085L1.43406 22.3161C1.57409 22.1761 1.68517 22.0099 1.76096 21.8269C1.83674 21.644 1.87575 21.4479 1.87575 21.2499C1.87575 21.0519 1.83674 20.8558 1.76096 20.6728C1.68517 20.4899 1.57409 20.3237 1.43406 20.1836L0.441725 19.1912C0.301694 19.0512 0.190615 18.885 0.114831 18.702C0.0390465 18.5191 4.0741e-05 18.323 4.0741e-05 18.125C4.0741e-05 17.9269 0.0390465 17.7309 0.114831 17.5479C0.190615 17.365 0.301694 17.1987 0.441725 17.0587L1.43413 16.0663C1.71692 15.7835 1.87578 15.4 1.87578 15C1.87578 14.6001 1.71692 14.2166 1.43413 13.9338L0.441725 12.9414C0.158932 12.6585 6.04247e-05 12.275 6.04247e-05 11.8751C6.04247e-05 11.4751 0.158932 11.0916 0.441725 10.8088L1.43406 9.81649C1.71686 9.5337 1.87573 9.15017 1.87573 8.75023C1.87573 8.35028 1.71686 7.9667 1.43406 7.68391L0.441665 6.69154C0.158872 6.4087 0 6.02517 0 5.62522C0 5.22529 0.158872 4.84173 0.441665 4.55893L4.55893 0.441665C4.84173 0.158871 5.22528 0 5.62521 0C6.02516 0 6.40868 0.158871 6.69153 0.441665L7.68384 1.43401C7.96663 1.7168 8.35021 1.87567 8.75016 1.87567C9.15005 1.87567 9.53363 1.7168 9.81642 1.43401L10.8088 0.441665C11.0916 0.158871 11.4751 0 11.8751 0C12.275 0 12.6585 0.158871 12.9414 0.441665L13.9337 1.43401C14.2165 1.7168 14.6001 1.87567 15 1.87567C15.3999 1.87567 15.7835 1.7168 16.0663 1.43401L17.0586 0.441665C17.3414 0.158871 17.7249 0 18.1249 0C18.5248 0 18.9084 0.158871 19.1912 0.441665L20.1835 1.43401C20.4663 1.7168 20.8499 1.87567 21.2498 1.87567C21.6497 1.87567 22.0333 1.7168 22.3161 1.43401L23.3085 0.441665C23.5913 0.158871 23.9748 0 24.3747 0C24.7747 0 25.1582 0.158871 25.4411 0.441665L29.5583 4.5587C29.6983 4.69871 29.8094 4.86494 29.8852 5.04789C29.9609 5.23085 29.9999 5.42696 29.9999 5.62496C29.9999 5.82296 29.9609 6.01906 29.8852 6.20201C29.8094 6.38496 29.6983 6.55122 29.5583 6.69122L28.5659 7.68364C28.4258 7.82364 28.3148 7.98986 28.239 8.1728C28.1632 8.35575 28.1242 8.55186 28.1242 8.74991C28.1242 8.94791 28.1632 9.14402 28.239 9.32696C28.3148 9.50991 28.4258 9.67612 28.5659 9.81612L29.5583 10.8083C29.8411 11.0911 29.9999 11.4747 29.9999 11.8746C29.9999 12.2745 29.8411 12.6581 29.5583 12.9409L28.5659 13.9332C28.2831 14.216 28.1242 14.5996 28.1242 14.9996C28.1242 15.3994 28.2831 15.783 28.5659 16.0658L29.5583 17.0582C29.8411 17.341 29.9999 17.7246 29.9999 18.1245C29.9999 18.5245 29.8411 18.908 29.5583 19.1908L28.5659 20.1831C28.2832 20.4659 28.1243 20.8495 28.1243 21.2494C28.1243 21.6493 28.2832 22.0329 28.5659 22.3157L29.5584 23.3081C29.8412 23.5909 30 23.9745 30 24.3744C30 24.7743 29.8412 25.1578 29.5584 25.4407L27.4997 27.4993L25.4411 29.5584C25.1583 29.8412 24.7747 30 24.3748 30C23.9749 30 23.5913 29.8412 23.3085 29.5584Z" fill="#1F4FD1"/>
@@ -710,162 +745,224 @@ let init = setInterval(() => {
             </svg>
             <span>Safe for kids (0+)</span>
         </li>
-        </ul>`)
+        </ul>`
+    )
 
-        document.querySelector('.header-shipping .trust-rating').innerHTML = document.querySelector('.header-shipping .trust-rating').innerHTML.split('<br>')[1]
-        document.querySelector('.js-heading .hand-banner .js-btn.btn-primary').before(document.querySelector('.header-shipping .trust-rating'))
+    document.querySelector('.header-shipping .trust-rating').innerHTML = document
+      .querySelector('.header-shipping .trust-rating')
+      .innerHTML.split('<br>')[1]
+    document
+      .querySelector('.js-heading .hand-banner .js-btn.btn-primary')
+      .before(document.querySelector('.header-shipping .trust-rating'))
 
-        document.querySelector('.js-heading .hand-banner .js-btn.btn-primary').insertAdjacentHTML('afterend', `
+    document.querySelector('.js-heading .hand-banner .js-btn.btn-primary').insertAdjacentHTML(
+      'afterend',
+      `
         <svg class="btn_how_works" width="257" height="42" viewBox="0 0 257 42" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M2.77022 23.0586C3.04069 22.7883 3.25524 22.4674 3.40162 22.1141C3.548 21.7609 3.62334 21.3823 3.62334 21C3.62334 20.6177 3.548 20.2391 3.40162 19.8859C3.25524 19.5326 3.04069 19.2117 2.77022 18.9414L0.854078 17.0283C0.583681 16.7581 0.369179 16.4374 0.222832 16.0844C0.076485 15.7313 0.00115877 15.3529 0.00115877 14.9708C0.00115877 14.5887 0.076485 14.2103 0.222832 13.8572C0.369179 13.5042 0.583681 13.1834 0.854078 12.9133L2.77022 10.9979C3.04062 10.7278 3.25512 10.407 3.40147 10.054C3.54781 9.70096 3.62314 9.32257 3.62314 8.94042C3.62314 8.55828 3.54781 8.17989 3.40147 7.82685C3.25512 7.47382 3.04062 7.15308 2.77022 6.88294L0.854078 4.96754C0.447666 4.56042 0.170996 4.04209 0.0589858 3.47795C-0.0530242 2.91381 0.00464131 2.32915 0.224708 1.79773C0.444774 1.26632 0.817382 0.811976 1.29551 0.492029C1.77363 0.172082 2.33584 0.000870539 2.91121 2.34912e-07H254.089C254.665 -0.000231054 255.228 0.170334 255.706 0.490097C256.185 0.80986 256.558 1.26444 256.779 1.79631C256.999 2.32818 257.056 2.91341 256.944 3.47793C256.831 4.04244 256.553 4.56085 256.146 4.96754L254.232 6.88294C253.962 7.15308 253.747 7.47382 253.601 7.82685C253.455 8.17989 253.379 8.55828 253.379 8.94042C253.379 9.32257 253.455 9.70096 253.601 10.054C253.747 10.407 253.962 10.7278 254.232 10.9979L256.146 12.9133C256.416 13.1834 256.631 13.5042 256.777 13.8572C256.923 14.2103 256.999 14.5887 256.999 14.9708C256.999 15.3529 256.923 15.7313 256.777 16.0844C256.631 16.4374 256.416 16.7581 256.146 17.0283L254.232 18.9414C253.962 19.2117 253.747 19.5326 253.601 19.8859C253.454 20.2391 253.379 20.6177 253.379 21C253.379 21.3823 253.454 21.7609 253.601 22.1141C253.747 22.4674 253.962 22.7883 254.232 23.0586L256.146 24.9717C256.416 25.2419 256.631 25.5626 256.777 25.9156C256.923 26.2687 256.999 26.6471 256.999 27.0292C256.999 27.4114 256.923 27.7898 256.777 28.1428C256.631 28.4958 256.416 28.8166 256.146 29.0867L254.232 31.0021C253.962 31.2722 253.747 31.593 253.601 31.946C253.455 32.299 253.379 32.6774 253.379 33.0596C253.379 33.4417 253.455 33.8201 253.601 34.1731C253.747 34.5262 253.962 34.8469 254.232 35.1171L256.146 37.0325C256.552 37.4396 256.829 37.9579 256.941 38.5221C257.053 39.0862 256.995 39.6709 256.775 40.2023C256.555 40.7337 256.183 41.188 255.704 41.508C255.226 41.8279 254.664 41.9991 254.089 42H2.91121C2.33535 42.0002 1.77237 41.8297 1.29353 41.5099C0.814691 41.1901 0.441522 40.7356 0.221267 40.2037C0.00101204 39.6718 -0.0564256 39.0866 0.0562211 38.5221C0.168868 37.9576 0.446538 37.4392 0.854078 37.0325L2.77022 35.1171C3.04062 34.8469 3.25512 34.5262 3.40147 34.1731C3.54781 33.8201 3.62314 33.4417 3.62314 33.0596C3.62314 32.6774 3.54781 32.299 3.40147 31.946C3.25512 31.593 3.04062 31.2722 2.77022 31.0021L0.854078 29.0867C0.583681 28.8166 0.369179 28.4958 0.222832 28.1428C0.076485 27.7898 0.00115877 27.4114 0.00115877 27.0292C0.00115877 26.6471 0.076485 26.2687 0.222832 25.9156C0.369179 25.5626 0.583681 25.2419 0.854078 24.9717L2.77022 23.0586Z" fill="#1F4FC9"/>
         <path d="M31.056 12.336H33.3V19.046H36.072V12.336H38.316V28H36.072V21.026H33.3V28H31.056V12.336ZM42.6452 24.304C42.6452 24.8467 42.7919 25.25 43.0852 25.514C43.3932 25.7633 43.7525 25.888 44.1632 25.888C44.5739 25.888 44.9259 25.7633 45.2192 25.514C45.5272 25.25 45.6812 24.8467 45.6812 24.304V16.032C45.6812 15.4893 45.5272 15.0933 45.2192 14.844C44.9259 14.58 44.5739 14.448 44.1632 14.448C43.7525 14.448 43.3932 14.58 43.0852 14.844C42.7919 15.0933 42.6452 15.4893 42.6452 16.032V24.304ZM40.4012 16.032C40.4012 15.4013 40.5112 14.844 40.7312 14.36C40.9512 13.876 41.2372 13.48 41.5892 13.172C41.9559 12.8493 42.3592 12.6073 42.7992 12.446C43.2539 12.2847 43.7085 12.204 44.1632 12.204C44.6179 12.204 45.0652 12.2847 45.5052 12.446C45.9599 12.6073 46.3632 12.8493 46.7152 13.172C47.0819 13.48 47.3752 13.876 47.5952 14.36C47.8152 14.844 47.9252 15.4013 47.9252 16.032V24.304C47.9252 24.9493 47.8152 25.514 47.5952 25.998C47.3752 26.4673 47.0819 26.8633 46.7152 27.186C46.3632 27.494 45.9599 27.7287 45.5052 27.89C45.0652 28.0513 44.6179 28.132 44.1632 28.132C43.7085 28.132 43.2539 28.0513 42.7992 27.89C42.3592 27.7287 41.9559 27.494 41.5892 27.186C41.2372 26.8633 40.9512 26.4673 40.7312 25.998C40.5112 25.514 40.4012 24.9493 40.4012 24.304V16.032ZM59.0586 28H56.9466L55.2306 17.836H55.1866L53.4926 28H51.3806L49.0486 12.336H51.4246L52.5466 22.28H52.5906L54.3506 12.336H56.0666L57.8926 22.522H57.9366L59.0146 12.336H61.3906L59.0586 28ZM74.3556 16.846H72.1116V16.34C72.1116 15.8267 71.9869 15.3867 71.7376 15.02C71.5029 14.6387 71.0996 14.448 70.5276 14.448C70.2196 14.448 69.9629 14.5067 69.7576 14.624C69.5669 14.7413 69.4129 14.8953 69.2956 15.086C69.1929 15.262 69.1196 15.4747 69.0756 15.724C69.0316 15.9587 69.0096 16.208 69.0096 16.472C69.0096 16.78 69.0169 17.044 69.0316 17.264C69.0609 17.4693 69.1196 17.6527 69.2076 17.814C69.2956 17.9607 69.4203 18.0927 69.5816 18.21C69.7576 18.3273 69.9923 18.4447 70.2856 18.562L72.0016 19.244C72.5003 19.4347 72.9036 19.662 73.2116 19.926C73.5196 20.1753 73.7543 20.476 73.9156 20.828C74.0916 21.1653 74.2089 21.5613 74.2676 22.016C74.3263 22.456 74.3556 22.962 74.3556 23.534C74.3556 24.194 74.2896 24.81 74.1576 25.382C74.0256 25.9393 73.8056 26.4233 73.4976 26.834C73.2043 27.23 72.8083 27.5453 72.3096 27.78C71.8109 28.0147 71.2023 28.132 70.4836 28.132C69.9409 28.132 69.4349 28.0367 68.9656 27.846C68.4963 27.6553 68.0929 27.3987 67.7556 27.076C67.4183 26.7387 67.1469 26.3427 66.9416 25.888C66.7509 25.4333 66.6556 24.942 66.6556 24.414V23.578H68.8996V24.282C68.8996 24.6927 69.0169 25.0667 69.2516 25.404C69.5009 25.7267 69.9116 25.888 70.4836 25.888C70.8649 25.888 71.1583 25.8367 71.3636 25.734C71.5836 25.6167 71.7449 25.4627 71.8476 25.272C71.9649 25.0667 72.0383 24.8173 72.0676 24.524C72.0969 24.2307 72.1116 23.908 72.1116 23.556C72.1116 23.1453 72.0969 22.808 72.0676 22.544C72.0383 22.28 71.9723 22.0673 71.8696 21.906C71.7816 21.7447 71.6496 21.6127 71.4736 21.51C71.3123 21.4073 71.0923 21.2973 70.8136 21.18L69.2076 20.52C68.2396 20.124 67.5869 19.6033 67.2496 18.958C66.9269 18.298 66.7656 17.4767 66.7656 16.494C66.7656 15.9073 66.8463 15.35 67.0076 14.822C67.1689 14.294 67.4036 13.8393 67.7116 13.458C68.0343 13.0767 68.4376 12.776 68.9216 12.556C69.4056 12.3213 69.9703 12.204 70.6156 12.204C71.1729 12.204 71.6789 12.3067 72.1336 12.512C72.6029 12.7173 72.9989 12.9887 73.3216 13.326C73.6589 13.6633 73.9156 14.0447 74.0916 14.47C74.2676 14.8807 74.3556 15.306 74.3556 15.746V16.846ZM83.4031 24.48C83.4031 24.9933 83.3078 25.47 83.1171 25.91C82.9264 26.35 82.6624 26.7387 82.3251 27.076C82.0024 27.3987 81.6211 27.6553 81.1811 27.846C80.7411 28.0367 80.2718 28.132 79.7731 28.132C79.2744 28.132 78.8051 28.0367 78.3651 27.846C77.9251 27.6553 77.5364 27.3987 77.1991 27.076C76.8764 26.7387 76.6198 26.35 76.4291 25.91C76.2384 25.47 76.1431 24.9933 76.1431 24.48V12.336H78.3871V24.26C78.3871 24.8173 78.5191 25.228 78.7831 25.492C79.0471 25.756 79.3771 25.888 79.7731 25.888C80.1691 25.888 80.4991 25.756 80.7631 25.492C81.0271 25.228 81.1591 24.8173 81.1591 24.26V12.336H83.4031V24.48ZM85.5323 12.336H87.6883L91.0763 21.774H91.1203V12.336H93.3643V28H91.2523L87.8203 18.584H87.7763V28H85.5323V12.336ZM95.4177 12.336H97.5737L100.962 21.774H101.006V12.336H103.25V28H101.138L97.7057 18.584H97.6617V28H95.4177V12.336ZM107.481 21.378L104.401 12.336H106.777L108.581 18.562H108.625L110.429 12.336H112.805L109.725 21.378V28H107.481V21.378ZM116.274 19.772H117.352C117.807 19.772 118.159 19.706 118.408 19.574C118.658 19.442 118.841 19.266 118.958 19.046C119.076 18.8113 119.142 18.5327 119.156 18.21C119.186 17.8873 119.2 17.528 119.2 17.132C119.2 16.7653 119.186 16.4207 119.156 16.098C119.142 15.7607 119.076 15.4747 118.958 15.24C118.856 14.9907 118.687 14.8 118.452 14.668C118.218 14.5213 117.88 14.448 117.44 14.448H116.274V19.772ZM114.03 12.336H117.396C118.012 12.336 118.555 12.4167 119.024 12.578C119.494 12.7393 119.919 13.0253 120.3 13.436C120.682 13.8467 120.946 14.3307 121.092 14.888C121.239 15.4307 121.312 16.1713 121.312 17.11C121.312 17.7993 121.268 18.3933 121.18 18.892C121.107 19.376 120.938 19.8307 120.674 20.256C120.366 20.7693 119.956 21.1727 119.442 21.466C118.929 21.7447 118.254 21.884 117.418 21.884H116.274V28H114.03V12.336ZM125.715 16.846H125.671L124.571 22.522H126.815L125.715 16.846ZM124.769 12.336H126.639L130.137 28H127.893L127.233 24.634H124.175L123.515 28H121.271L124.769 12.336ZM131.623 14.448H129.027V12.336H136.463V14.448H133.867V28H131.623V14.448ZM144.691 24.502C144.691 24.986 144.596 25.448 144.406 25.888C144.229 26.328 143.98 26.7167 143.658 27.054C143.335 27.3767 142.953 27.6407 142.513 27.846C142.088 28.0367 141.626 28.132 141.127 28.132C140.702 28.132 140.269 28.0733 139.829 27.956C139.389 27.8387 138.993 27.6407 138.641 27.362C138.289 27.0687 137.996 26.6873 137.761 26.218C137.541 25.7487 137.431 25.1547 137.431 24.436V15.812C137.431 15.2987 137.519 14.822 137.695 14.382C137.871 13.942 138.121 13.5607 138.443 13.238C138.766 12.9153 139.147 12.666 139.587 12.49C140.042 12.2993 140.541 12.204 141.083 12.204C141.597 12.204 142.073 12.2993 142.513 12.49C142.953 12.666 143.335 12.9227 143.658 13.26C143.98 13.5827 144.229 13.9787 144.406 14.448C144.596 14.9027 144.691 15.4013 144.691 15.944V16.824H142.447V16.076C142.447 15.636 142.323 15.2547 142.074 14.932C141.824 14.6093 141.487 14.448 141.062 14.448C140.504 14.448 140.13 14.624 139.939 14.976C139.763 15.3133 139.675 15.746 139.675 16.274V24.282C139.675 24.7367 139.771 25.118 139.961 25.426C140.167 25.734 140.526 25.888 141.04 25.888C141.186 25.888 141.34 25.866 141.501 25.822C141.677 25.7633 141.831 25.6753 141.963 25.558C142.11 25.4407 142.227 25.2793 142.315 25.074C142.403 24.8687 142.447 24.612 142.447 24.304V23.534H144.691V24.502ZM146.632 12.336H148.876V19.046H151.648V12.336H153.892V28H151.648V21.026H148.876V28H146.632V12.336ZM169.608 28H167.496L165.78 17.836H165.736L164.042 28H161.93L159.598 12.336H161.974L163.096 22.28H163.14L164.9 12.336H166.616L168.442 22.522H168.486L169.564 12.336H171.94L169.608 28ZM175.307 24.304C175.307 24.8467 175.454 25.25 175.747 25.514C176.055 25.7633 176.414 25.888 176.825 25.888C177.236 25.888 177.588 25.7633 177.881 25.514C178.189 25.25 178.343 24.8467 178.343 24.304V16.032C178.343 15.4893 178.189 15.0933 177.881 14.844C177.588 14.58 177.236 14.448 176.825 14.448C176.414 14.448 176.055 14.58 175.747 14.844C175.454 15.0933 175.307 15.4893 175.307 16.032V24.304ZM173.063 16.032C173.063 15.4013 173.173 14.844 173.393 14.36C173.613 13.876 173.899 13.48 174.251 13.172C174.618 12.8493 175.021 12.6073 175.461 12.446C175.916 12.2847 176.37 12.204 176.825 12.204C177.28 12.204 177.727 12.2847 178.167 12.446C178.622 12.6073 179.025 12.8493 179.377 13.172C179.744 13.48 180.037 13.876 180.257 14.36C180.477 14.844 180.587 15.4013 180.587 16.032V24.304C180.587 24.9493 180.477 25.514 180.257 25.998C180.037 26.4673 179.744 26.8633 179.377 27.186C179.025 27.494 178.622 27.7287 178.167 27.89C177.727 28.0513 177.28 28.132 176.825 28.132C176.37 28.132 175.916 28.0513 175.461 27.89C175.021 27.7287 174.618 27.494 174.251 27.186C173.899 26.8633 173.613 26.4673 173.393 25.998C173.173 25.514 173.063 24.9493 173.063 24.304V16.032ZM184.916 19.332H186.192C186.588 19.332 186.903 19.2807 187.138 19.178C187.373 19.0607 187.549 18.8993 187.666 18.694C187.798 18.4887 187.886 18.2393 187.93 17.946C187.974 17.638 187.996 17.286 187.996 16.89C187.996 16.494 187.974 16.1493 187.93 15.856C187.886 15.548 187.791 15.2913 187.644 15.086C187.512 14.866 187.321 14.7047 187.072 14.602C186.823 14.4993 186.493 14.448 186.082 14.448H184.916V19.332ZM182.672 12.336H186.28C188.92 12.336 190.24 13.8687 190.24 16.934C190.24 17.8433 190.093 18.628 189.8 19.288C189.521 19.9333 189.023 20.454 188.304 20.85L190.724 28H188.348L186.258 21.312H184.916V28H182.672V12.336ZM192.149 12.336H194.393V19.486H194.437L197.715 12.336H199.959L196.901 18.606L200.531 28H198.155L195.603 21.048L194.393 23.314V28H192.149V12.336ZM208.886 16.846H206.642V16.34C206.642 15.8267 206.518 15.3867 206.268 15.02C206.034 14.6387 205.63 14.448 205.058 14.448C204.75 14.448 204.494 14.5067 204.288 14.624C204.098 14.7413 203.944 14.8953 203.826 15.086C203.724 15.262 203.65 15.4747 203.606 15.724C203.562 15.9587 203.54 16.208 203.54 16.472C203.54 16.78 203.548 17.044 203.562 17.264C203.592 17.4693 203.65 17.6527 203.738 17.814C203.826 17.9607 203.951 18.0927 204.112 18.21C204.288 18.3273 204.523 18.4447 204.816 18.562L206.532 19.244C207.031 19.4347 207.434 19.662 207.742 19.926C208.05 20.1753 208.285 20.476 208.446 20.828C208.622 21.1653 208.74 21.5613 208.798 22.016C208.857 22.456 208.886 22.962 208.886 23.534C208.886 24.194 208.82 24.81 208.688 25.382C208.556 25.9393 208.336 26.4233 208.028 26.834C207.735 27.23 207.339 27.5453 206.84 27.78C206.342 28.0147 205.733 28.132 205.014 28.132C204.472 28.132 203.966 28.0367 203.496 27.846C203.027 27.6553 202.624 27.3987 202.286 27.076C201.949 26.7387 201.678 26.3427 201.472 25.888C201.282 25.4333 201.186 24.942 201.186 24.414V23.578H203.43V24.282C203.43 24.6927 203.548 25.0667 203.782 25.404C204.032 25.7267 204.442 25.888 205.014 25.888C205.396 25.888 205.689 25.8367 205.894 25.734C206.114 25.6167 206.276 25.4627 206.378 25.272C206.496 25.0667 206.569 24.8173 206.598 24.524C206.628 24.2307 206.642 23.908 206.642 23.556C206.642 23.1453 206.628 22.808 206.598 22.544C206.569 22.28 206.503 22.0673 206.4 21.906C206.312 21.7447 206.18 21.6127 206.004 21.51C205.843 21.4073 205.623 21.2973 205.344 21.18L203.738 20.52C202.77 20.124 202.118 19.6033 201.78 18.958C201.458 18.298 201.296 17.4767 201.296 16.494C201.296 15.9073 201.377 15.35 201.538 14.822C201.7 14.294 201.934 13.8393 202.242 13.458C202.565 13.0767 202.968 12.776 203.452 12.556C203.936 12.3213 204.501 12.204 205.146 12.204C205.704 12.204 206.21 12.3067 206.664 12.512C207.134 12.7173 207.53 12.9887 207.852 13.326C208.19 13.6633 208.446 14.0447 208.622 14.47C208.798 14.8807 208.886 15.306 208.886 15.746V16.846Z" fill="white"/>
         <path d="M30 30.75H209.502V31.85H30V30.75Z" fill="white"/>
         <path d="M218 14.645L223.563 20L218 25.3551L219.713 27L227 20L219.713 13L218 14.645Z" fill="white"/>
-        </svg>`)
+        </svg>`
+    )
 
+    document.querySelector(
+      '.js-mobile.scientific .t-right h5'
+    ).innerHTML = `Here's How It Works (You can Hi-Five Us Later)`
 
-        document.querySelector('.js-mobile.scientific .t-right h5').innerHTML = `Here's How It Works (You can Hi-Five Us Later)`;
+    document.querySelector('.js-mobile.scientific').after(document.querySelector('.sleeping-problems'))
+    document.querySelector('.js-mobile.scientific img.mobile-steps').src = dir + 'sunny-lp-mobile-steps.svg'
+    document
+      .querySelector('.js-mobile.scientific img.mobile-steps')
+      .insertAdjacentHTML('beforebegin', `<div class="isVisibleSteps"></div>`)
 
-        document.querySelector('.js-mobile.scientific').after(document.querySelector('.sleeping-problems'))
-        document.querySelector('.js-mobile.scientific img.mobile-steps').src = dir + 'sunny-lp-mobile-steps.svg';
-        document.querySelector('.js-mobile.scientific img.mobile-steps').insertAdjacentHTML('beforebegin', `<div class="isVisibleSteps"></div>`);
+    document
+      .querySelector('.js-mobile.scientific > .container > .row.r-flex')
+      .insertAdjacentHTML('afterend', blockHighlighting)
 
-        document.querySelector('.js-mobile.scientific > .container > .row.r-flex').insertAdjacentHTML('afterend', blockHighlighting)
+    document.querySelector('.sleeping-problems').after(document.querySelector('.featured-reviews'))
 
-        document.querySelector('.sleeping-problems').after(document.querySelector('.featured-reviews'))
-
-        document.querySelector('#purchase .js-heading>h2').insertAdjacentHTML('afterend', `
+    document.querySelector('#purchase .js-heading>h2').insertAdjacentHTML(
+      'afterend',
+      `
         <p class="text-center">24 patches in 1 pack</p>
-        <img src="${dir}sunnypatches.svg" alt="image">`)
+        <img src="${dir}sunnypatches.svg" alt="image">`
+    )
 
-        document.querySelectorAll('.package .slide-packs>ul>li').forEach((item, index) => {
-            let patches = `<span>${index == 0 ? '96' : index == 1 ? '72' : index == 2 ? '48' : '24'} Patches</span>`;
+    // document.querySelectorAll('.package .slide-packs>ul>li').forEach((item, index) => {
+    //   let patches = `<span>${index == 0 ? '96' : index == 1 ? '72' : index == 2 ? '48' : '24'} Patches</span>`
 
-            item.querySelector('p.pcs').insertAdjacentHTML('beforeend', patches);
-            document.querySelectorAll('.sidebar .slide-packs>ul>li')[index].querySelector('p.pcs').insertAdjacentHTML('beforeend', patches);
-        })
+    //   item.querySelector('p.pcs').insertAdjacentHTML('beforeend', patches)
+    //   document
+    //     .querySelectorAll('.sidebar .slide-packs>ul>li')
+    //     [index].querySelector('p.pcs')
+    //     .insertAdjacentHTML('beforeend', patches)
+    // })
 
-        document.querySelector('#getNow .free-shipping-checkout').src = dir + 'free-shipping-worldwide.svg';
-        
-        const imageBlock = `
+    document.querySelector('#getNow .free-shipping-checkout').src = dir + 'free-shipping-worldwide.svg'
+
+    const imageBlock = `
         <div class="crs-img d-flex align-items-center justify-content-center">
             <img src="${dir}rated-30.png" alt="image" class="mr-3">
             <img src="${dir}rated.svg" alt="image">
-        </div>`;
+        </div>`
 
-        document.querySelector('#getNow img.days').insertAdjacentHTML('beforebegin', imageBlock)
+    document.querySelector('#getNow img.days').insertAdjacentHTML('beforebegin', imageBlock)
 
-        document.querySelector('.title-logo').insertAdjacentHTML('afterend', `
-        <img src="${dir}sunnypatches.svg" alt="image">`);
+    document.querySelector('.title-logo').insertAdjacentHTML(
+      'afterend',
+      `
+        <img src="${dir}sunnypatches.svg" alt="image">`
+    )
 
-        document.querySelector('.button-proceed').insertAdjacentHTML('beforebegin', `
-        <img src="${dir}free-shipping-worldwide.svg" alt="image">`);
+    document.querySelector('.button-proceed').insertAdjacentHTML(
+      'beforebegin',
+      `
+        <img src="${dir}free-shipping-worldwide.svg" alt="image">`
+    )
 
-        document.querySelector('.close-btn').src = dir + 'close.svg';
+    document.querySelector('.close-btn').src = dir + 'close.svg'
 
-        document.querySelector('.sidebar .slide-packs').insertAdjacentHTML('afterend', `
+    document.querySelector('.sidebar .slide-packs').insertAdjacentHTML(
+      'afterend',
+      `
         <button type="button" class="btn_how_works">How SunnyPatch works
             <svg xmlns="http://www.w3.org/2000/svg" width="9" height="15" viewBox="0 0 9 15" fill="none">
                 <path d="M8.81768e-07 2.63232L5.56278 7.98735L4.13616e-07 13.3424L1.71259 14.9873L9 7.98735L1.71259 0.987304L8.81768e-07 2.63232Z" fill="#1F4FC9"/>
             </svg>
-        </button>`)
+        </button>`
+    )
 
-        document.querySelector('.reviews-slide').insertAdjacentHTML('beforebegin', imageBlock)
+    document.querySelector('.reviews-slide').insertAdjacentHTML('beforebegin', imageBlock)
 
-        document.querySelector('.sidebar').insertAdjacentHTML('beforeend', modal)
+    document.querySelector('.sidebar').insertAdjacentHTML('beforeend', modal)
 
-        document.querySelector('.reviews .container').insertAdjacentHTML('afterbegin', blockHighlighting);
+    document.querySelector('.reviews .container').insertAdjacentHTML('afterbegin', blockHighlighting)
 
-        const appHeight = () => {
-            document.querySelector('.popup').style.height = window.innerHeight + 'px';
-        }
-
-        let startTime = 0;
-        document.querySelectorAll('.btn_how_works').forEach(button => {
-            button.addEventListener('click', (e) => {
-                if (button.tagName == 'svg') {
-                    $('html,body').animate({
-                        scrollTop: $('.scientific.js-mobile').offset().top - 50
-                    }, 500); 
-                    pushDataLayer('exp_int_pro_b_fs_how_sunny_works', 'How SunnyPatch works', 'Button', 'First screen');
-                } else {
-                    appHeight()
-
-                    document.querySelector('.popup').classList.add('active');
-                    pushDataLayer('exp_int_pro_b_sc_how_sunny_works', 'How SunnyPatch works', 'Button', 'Slide in cart');
-                    setInterval(() => {
-                        startTime += 1
-                    }, 100)
-                }
-            })
-        })
-
-        document.querySelector('.popup_back').addEventListener('click', (e) => {
-            document.querySelector('.popup').classList.remove('active');
-
-            const focusTimeMillis = Date.now() - startTime;
-            pushDataLayer('exp_int_pro_v_sc1_how_it_works', `How it works 1 part- ${focusTimeMillis}`, 'Visibility', 'Slide in cart');
-            pushDataLayer('exp_int_pro_v_sc2_how_it_works', `How it works 2 part- ${focusTimeMillis}`, 'Visibility', 'Slide in cart');
-            pushDataLayer('exp_int_pro_b_sc_back', `back`, 'Button', 'Slide in cart');
-
-        })
-
-        document.querySelector('.popup_close').addEventListener('click', (e) => {
-            document.querySelector('#cons').style = 'transform: translateX(700px);';
-            document.querySelector('.sidebar').style = 'width: 0%; position: absolute;';
-            document.querySelector('.popup').classList.remove('active');
-            document.body.classList.remove('slide');
-            
-            const focusTimeMillis = Date.now() - startTime;
-            pushDataLayer('exp_int_pro_v_sc1_how_it_works', `How it works 1 part- ${focusTimeMillis}`, 'Visibility', 'Slide in cart');
-            pushDataLayer('exp_int_pro_v_sc2_how_it_works', `How it works 2 part- ${focusTimeMillis}`, 'Visibility', 'Slide in cart');
-            pushDataLayer('exp_int_pro_b_sc_close', `close`, 'Button', 'Slide in cart');
-        })
-        document.querySelector('.popup_body > a').addEventListener('click', (e) => {
-            document.querySelector('.popup').classList.remove('active');
-            pushDataLayer('exp_int_pro_b_sc_get_it_now', `get it now`, 'Button', 'Slide in cart');
-        })
-        document.body.addEventListener('click', (e) => {
-            if (e.target.className == 'sidebar') {
-                document.querySelector('#cons').style = 'transform: translateX(700px);';
-                document.querySelector('.sidebar').style = 'width: 0%; position: absolute;';
-                document.querySelector('.popup').classList.remove('active');
-                document.body.classList.remove('slide');
-            
-                const focusTimeMillis = Date.now() - startTime;
-                pushDataLayer('exp_int_pro_v_sc1_how_it_works', `How it works 1 part- ${focusTimeMillis}`, 'Visibility', 'Slide in cart');
-                pushDataLayer('exp_int_pro_v_sc2_how_it_works', `How it works 2 part- ${focusTimeMillis}`, 'Visibility', 'Slide in cart');
-    
-            }
-        })    
-
-        $('#slide-container > div').on('afterChange', function(event, slick, currentSlide) {
-            pushDataLayer('exp_int_pro_hs_why_kids', `Horisontal`, ' Scroll', '"First screen Why Kids & Adults Love SunnyPatch"');
-        });
-
-        handleVisibility('.yellow-wave')
-        handleVisibility('.block_highlighting')
-        handleVisibility('.js-mobile.scientific .isVisibleSteps')
-        handleVisibility('.sleeping-problems .title-highlight')
-        handleVisibility('.featured-reviews h2.js-title')
-       
-        
-        window.addEventListener('scroll', () => {
-            handleVisibility('.yellow-wave')
-            handleVisibility('.block_highlighting')
-            handleVisibility('.js-mobile.scientific .isVisibleSteps')
-            handleVisibility('.sleeping-problems .title-highlight')
-            handleVisibility('.featured-reviews h2.js-title')
-        })
-
-        document.querySelector('.exp-loading')?.remove()
-        
+    const appHeight = () => {
+      document.querySelector('.popup').style.height = window.innerHeight + 'px'
     }
-});
+
+    let startTime = 0
+    document.querySelectorAll('.btn_how_works').forEach(button => {
+      button.addEventListener('click', e => {
+        if (button.tagName == 'svg') {
+          $('html,body').animate(
+            {
+              scrollTop: $('.scientific.js-mobile').offset().top - 50
+            },
+            500
+          )
+          pushDataLayer('exp_int_pro_b_fs_how_sunny_works', 'How SunnyPatch works', 'Button', 'First screen')
+        } else {
+          appHeight()
+
+          document.querySelector('.popup').classList.add('active')
+          pushDataLayer('exp_int_pro_b_sc_how_sunny_works', 'How SunnyPatch works', 'Button', 'Slide in cart')
+          setInterval(() => {
+            startTime += 1
+          }, 100)
+        }
+      })
+    })
+
+    document.querySelector('.popup_back').addEventListener('click', e => {
+      document.querySelector('.popup').classList.remove('active')
+
+      const focusTimeMillis = Date.now() - startTime
+      pushDataLayer(
+        'exp_int_pro_v_sc1_how_it_works',
+        `How it works 1 part- ${focusTimeMillis}`,
+        'Visibility',
+        'Slide in cart'
+      )
+      pushDataLayer(
+        'exp_int_pro_v_sc2_how_it_works',
+        `How it works 2 part- ${focusTimeMillis}`,
+        'Visibility',
+        'Slide in cart'
+      )
+      pushDataLayer('exp_int_pro_b_sc_back', `back`, 'Button', 'Slide in cart')
+    })
+
+    document.querySelector('.popup_close').addEventListener('click', e => {
+      document.querySelector('#cons').style = 'transform: translateX(700px);'
+      document.querySelector('.sidebar').style = 'width: 0%; position: absolute;'
+      document.querySelector('.popup').classList.remove('active')
+      document.body.classList.remove('slide')
+
+      const focusTimeMillis = Date.now() - startTime
+      pushDataLayer(
+        'exp_int_pro_v_sc1_how_it_works',
+        `How it works 1 part- ${focusTimeMillis}`,
+        'Visibility',
+        'Slide in cart'
+      )
+      pushDataLayer(
+        'exp_int_pro_v_sc2_how_it_works',
+        `How it works 2 part- ${focusTimeMillis}`,
+        'Visibility',
+        'Slide in cart'
+      )
+      pushDataLayer('exp_int_pro_b_sc_close', `close`, 'Button', 'Slide in cart')
+    })
+    document.querySelector('.popup_body > a').addEventListener('click', e => {
+      document.querySelector('.popup').classList.remove('active')
+      pushDataLayer('exp_int_pro_b_sc_get_it_now', `get it now`, 'Button', 'Slide in cart')
+    })
+    document.body.addEventListener('click', e => {
+      if (e.target.className == 'sidebar') {
+        document.querySelector('#cons').style = 'transform: translateX(700px);'
+        document.querySelector('.sidebar').style = 'width: 0%; position: absolute;'
+        document.querySelector('.popup').classList.remove('active')
+        document.body.classList.remove('slide')
+
+        const focusTimeMillis = Date.now() - startTime
+        pushDataLayer(
+          'exp_int_pro_v_sc1_how_it_works',
+          `How it works 1 part- ${focusTimeMillis}`,
+          'Visibility',
+          'Slide in cart'
+        )
+        pushDataLayer(
+          'exp_int_pro_v_sc2_how_it_works',
+          `How it works 2 part- ${focusTimeMillis}`,
+          'Visibility',
+          'Slide in cart'
+        )
+      }
+    })
+
+    $('#slide-container > div').on('afterChange', function (event, slick, currentSlide) {
+      pushDataLayer(
+        'exp_int_pro_hs_why_kids',
+        `Horisontal`,
+        ' Scroll',
+        '"First screen Why Kids & Adults Love SunnyPatch"'
+      )
+    })
+
+    handleVisibility('.yellow-wave')
+    handleVisibility('.block_highlighting')
+    handleVisibility('.js-mobile.scientific .isVisibleSteps')
+    handleVisibility('.sleeping-problems .title-highlight')
+    handleVisibility('.featured-reviews h2.js-title')
+
+    window.addEventListener('scroll', () => {
+      handleVisibility('.yellow-wave')
+      handleVisibility('.block_highlighting')
+      handleVisibility('.js-mobile.scientific .isVisibleSteps')
+      handleVisibility('.sleeping-problems .title-highlight')
+      handleVisibility('.featured-reviews h2.js-title')
+    })
+
+    document.querySelector('.exp-loading')?.remove()
+  }
+})
 
 const isClarity = setInterval(() => {
-    if (typeof clarity === 'function') {
-        clearInterval(isClarity)
-        clarity('set', `int_pro_sun`, 'variant_1')
-    }
+  if (typeof clarity === 'function') {
+    clearInterval(isClarity)
+    clarity('set', `int_pro_sun`, 'variant_1')
+  }
 }, 100)
