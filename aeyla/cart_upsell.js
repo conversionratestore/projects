@@ -363,7 +363,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
         font-weight: 700;
         background: #E67125;
         text-transform: uppercase;
-        padding: 14px;
+        padding: 18px 14px;
         height: auto;
       }
       .checkout_wrapper .secure_checkout a.chckout svg {
