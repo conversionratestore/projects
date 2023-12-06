@@ -576,7 +576,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
   }
 
   function addShowAllProducts() {
-    if ($el('.minicart').getBoundingClientRect().x > 30) {
+    if ($el('.minicart').getBoundingClientRect().right > window.innerWidth + 100) {
       getCart().then(cart => {
         const cartItemsNumber = cart.items.length
 
