@@ -2328,8 +2328,8 @@ let startFunkCheckout = setInterval(() => {
     }
 
     function renderLinkReturnToCart() {
-      if (document.querySelector(".step__footer") && !document.querySelector(".new_return_cart_link") && !document.querySelector(".step__footer__previous-link-content")?.textContent.includes("Return to cart")) {
-        document.querySelector(".step__footer").insertAdjacentHTML("beforeend", `<a class="step__footer__previous-link new_return_cart_link" href="https://novaalab.com/cart"><svg focusable="false" aria-hidden="true" class="icon-svg icon-svg--color-accent icon-svg--size-10 previous-link__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M8 1L7 0 3 4 2 5l1 1 4 4 1-1-4-4"></path></svg><span class="step__footer__previous-link-content">Return to cart</span></a>`);
+      if (document.querySelector(".step__footer") && !document.querySelector(".new_return_cart_link") && !document.querySelector(".new_return_cart_link .step__footer__previous-link-content")?.textContent.includes("Return to cart")) {
+        document.querySelector(".step__footer #continue_button").insertAdjacentHTML("afterend", `<a class="step__footer__previous-link new_return_cart_link" href="https://novaalab.com/cart"><svg focusable="false" aria-hidden="true" class="icon-svg icon-svg--color-accent icon-svg--size-10 previous-link__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M8 1L7 0 3 4 2 5l1 1 4 4 1-1-4-4"></path></svg><span class="step__footer__previous-link-content">Return to cart</span></a>`);
       }
 
       if (document.querySelector(".new_return_cart_link")) {
@@ -2344,6 +2344,10 @@ let startFunkCheckout = setInterval(() => {
             }
           }, 1000);
         });
+
+        if (!document.querySelector(".step__footer").lastElementChild.classList.contains("new_return_cart_link")) {
+          document.querySelector(".new_return_cart_link").style.display = "none";
+        }
       }
     }
 
