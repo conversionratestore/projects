@@ -1629,15 +1629,6 @@ span.accent_weight_bold {
             response.json();
 
             getCartCheckout();
-
-            if (window.location.pathname.match("/cart") && localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
-              setTimeout(() => {
-                window.location = "/cart";
-              }, 500);
-            } else {
-              onOpenPopup();
-            }
-            document.querySelector(".slide_in_products")?.scrollIntoView({ block: "start", behavior: "smooth" });
           })
           .then(() => {
             let q = setInterval(() => {
@@ -1651,6 +1642,15 @@ span.accent_weight_bold {
                 }, 200);
               }
             }, 700);
+
+            if (window.location.pathname.match("/cart") && localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
+              setTimeout(() => {
+                // window.location = "/cart";
+              }, 700);
+            } else {
+              onOpenPopup();
+            }
+            document.querySelector(".slide_in_products")?.scrollIntoView({ block: "start", behavior: "smooth" });
           })
           .catch((error) => {
             console.error("Error:", error);
