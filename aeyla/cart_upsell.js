@@ -910,6 +910,12 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
           upsell = false
         }
       })
+      $$el('.button-no-border').forEach(el => {
+        el.addEventListener('click', () => {
+          window.location.reload()
+        })
+      })
+
       if (upsell && !$el('#cart .upsell')) {
         $el('#cart>div:last-of-type').insertAdjacentHTML('beforebegin', upsellBlock)
 
