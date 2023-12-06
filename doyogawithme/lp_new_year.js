@@ -276,6 +276,9 @@ p {
     -webkit-line-clamp: 10;
     -webkit-box-orient: vertical;
 }
+.crs_stories .swiper-slide p > b {
+    color: var(--H1-Black, #272727);
+}
 .crs_stories .swiper-slide p.line-9 {
     -webkit-line-clamp: 9;
 }
@@ -828,12 +831,12 @@ const html = `
             <h2 class="pb-md-4 text-md-center">Choose Your Path,<br class="d-md-none"> Accept the Challenge</h2>
             <div class="crs_info d-md-flex align-items-center">
                 <p>Use Promo Code on a Monthly subscription to receive <span>3 months for $24.99</span> </p>
-                <input type="text" value="yoga3ny" id="myInput" class="d-none">
+                <input type="text" value="Yoga3ny" id="myInput" class="d-none">
                 <button class="crs_btn d-flex align-items-center" type="button" onclick="copyText('#myInput')">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
                         <path d="M17.6491 2.49609C17.8596 2.70703 18 2.98828 18 3.30469V11.25C18 12.5156 16.9825 13.5 15.7544 13.5H9.01754C7.75439 13.5 6.77193 12.5156 6.73684 11.25V2.25C6.73684 1.01953 7.7193 0 8.98246 0H14.7018C15.0175 0 15.2982 0.140625 15.5088 0.351562L17.6491 2.49609ZM16.3158 11.25H16.2807V4.5H14.6316C14 4.5 13.5088 4.00781 13.5088 3.375L13.4737 1.72266H8.98246C8.66667 1.72266 8.42105 1.96875 8.42105 2.28516V11.25C8.42105 11.5664 8.66667 11.8125 8.98246 11.8125H15.7544C16.0351 11.8125 16.3158 11.5664 16.3158 11.25ZM9.57895 15.75V14.625H11.2632V15.75C11.2632 17.0156 10.2456 18 9.01754 18H2.2807C1.01754 18 0.0350877 17.0156 0.0350877 15.75L0 6.75C0 5.51953 1.01754 4.5 2.24561 4.5H5.64912V6.22266H2.24561C1.96491 6.22266 1.68421 6.46875 1.68421 6.78516V15.75C1.68421 16.0664 1.92982 16.3125 2.24561 16.3125H9.01754C9.29825 16.3125 9.57895 16.0664 9.57895 15.75Z" fill="#027DB8"/>
                     </svg>
-                    yoga3ny
+                    Yoga3ny
                 </button>
             </div>
             <div class="d-flex flex-wrap">
