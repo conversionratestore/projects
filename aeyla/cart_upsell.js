@@ -363,6 +363,8 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
         font-weight: 700;
         background: #E67125;
         text-transform: uppercase;
+        padding: 14px;
+        height: auto;
       }
       .checkout_wrapper .secure_checkout a.chckout svg {
         margin-right: 0;
@@ -405,6 +407,10 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
         display: none;
       }
 
+      .minicart {
+        z-index: 99999 !important;
+      }
+
       @media (min-width: 769px) {
         #cart .upsell {
           width: 535px;
@@ -439,7 +445,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
 
   const upsellBlock = /*html*/ `
     <div class="upsell">
-      <p class="upsell__heading">Complete your ultimate<br class="crs_mobile">sleep setup</p>
+      <p class="upsell__heading">Complete your ultimate<br class="crs_mobile"> sleep setup</p>
       <div class="upsell__content">
         <div class="upsell__image-wrapper">
           <img src="//www.aeyla.co.uk/cdn/shop/products/MEL2923-MelaComfort7438.webp?crop=center&height=1400&v=1677452179&width=1400" alt="product img">
@@ -470,7 +476,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
   document.head.insertAdjacentHTML('beforeend', style)
 
   const go = setInterval(() => {
-    if (typeof $ === 'function') {
+    if (typeof $ === 'function' && $el('.minicart_inner')) {
       clearInterval(go)
       start()
     }
@@ -570,31 +576,34 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
   }
 
   function addShowAllProducts() {
-    getCart().then(cart => {
-      const cartItemsNumber = cart.items.length
+    if (!$el('.opnd').classList.contains('opn')) {
+      getCart().then(cart => {
+        const cartItemsNumber = cart.items.length
 
-      if (cartItemsNumber <= 1) return
-      waitForElement('.items_wrapper .item_block').then(block => {
-        block.insertAdjacentHTML('afterend', showAllProducts(cartItemsNumber - 1))
-        $el('.items_wrapper .show-all p').addEventListener('click', function () {
-          pushDataLayer(
-            'exp_slid_cart_enha_lin_undimaprod_show',
-            'Show all products',
-            'Link',
-            'YOUR CART Under image product'
-          )
-          this.closest('.show-all').remove()
-          $$el('.items_wrapper .item_block').forEach((el, index) => {
-            el.style.display = 'flex'
+        if (cartItemsNumber <= 1) return
+        waitForElement('.items_wrapper .item_block').then(block => {
+          if ($el('show-all')) return
+          block.insertAdjacentHTML('afterend', showAllProducts(cartItemsNumber - 1))
+          $el('.items_wrapper .show-all p').addEventListener('click', function () {
+            pushDataLayer(
+              'exp_slid_cart_enha_lin_undimaprod_show',
+              'Show all products',
+              'Link',
+              'YOUR CART Under image product'
+            )
+            this.closest('.show-all').remove()
+            $$el('.items_wrapper .item_block').forEach((el, index) => {
+              el.style.display = 'flex'
+            })
           })
         })
+        $$el('.items_wrapper .item_block').forEach((el, index) => {
+          if (index > 0) {
+            el.style.display = 'none'
+          }
+        })
       })
-      $$el('.items_wrapper .item_block').forEach((el, index) => {
-        if (index > 0) {
-          el.style.display = 'none'
-        }
-      })
-    })
+    }
   }
 
   function drawEmptyCart() {
@@ -828,29 +837,33 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
         }
       })
       if (upsell) {
-        el.insertAdjacentHTML('beforeend', upsellBlock)
-        el.insertAdjacentHTML('beforeend', choiceBlock)
+        if (!$el('.upsell') && !$el('.choice')) {
+          el.insertAdjacentHTML('beforeend', upsellBlock)
+          el.insertAdjacentHTML('beforeend', choiceBlock)
 
-        drawTotalBlock()
+          drawTotalBlock()
 
-        checkFocusTime(
-          '.upsell',
-          'exp_slid_cart_enha_vis_complultim_foc',
-          'YOUR CART Complete your ultimate sleep setup'
-        )
-
-        $el('.minicart_inner .upsell__button').addEventListener('click', () => {
-          addSprayToCart()
-          pushDataLayer(
-            'exp_slid_cart_enha_but_complultim_add',
-            'Add',
-            'Button',
+          checkFocusTime(
+            '.upsell',
+            'exp_slid_cart_enha_vis_complultim_foc',
             'YOUR CART Complete your ultimate sleep setup'
           )
-        })
+
+          $el('.minicart_inner .upsell__button').addEventListener('click', () => {
+            addSprayToCart()
+            pushDataLayer(
+              'exp_slid_cart_enha_but_complultim_add',
+              'Add',
+              'Button',
+              'YOUR CART Complete your ultimate sleep setup'
+            )
+          })
+        }
       } else {
-        el.insertAdjacentHTML('beforeend', choiceBlock)
-        drawTotalBlock()
+        if (!$el('.choice')) {
+          el.insertAdjacentHTML('beforeend', choiceBlock)
+          drawTotalBlock()
+        }
       }
       checkFocusTime('.choice', 'exp_slid_cart_enha_vis_greatchois_foc', 'YOUR CART Great Choice!')
     })
