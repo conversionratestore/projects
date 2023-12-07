@@ -316,7 +316,8 @@ h2.new_title::after {
 }
 .may_also_like_list_first,
 .may_also_like_list_second,
-.may_also_like_list_third {
+.may_also_like_list_third,
+.may_also_like_list_fourth {
   list-style: none;
   display: flex !important;
   flex-wrap: wrap;
@@ -1295,6 +1296,8 @@ h2.new_title::after {
         <div class="may_also_like_slider">
           <ul class="may_also_like_list_first desk_var"></ul>
           <ul class="may_also_like_list_second desk_var"></ul>
+          <ul class="may_also_like_list_third desk_var"></ul>
+          <ul class="may_also_like_list_fourth desk_var"></ul>
         </div>
         <span class="is_visib_may_also_like"></span>
       </div>
@@ -1519,30 +1522,34 @@ h2.new_title::after {
       ],
       // 4: [`Cancelation & refunds`, `<p>Our cancelation policy allows for free cancelation up to 24 hours before the event. For cancelations, please send us an email or submit your request via chat or SMS. Refunds will be processed according to our terms and conditions.</p>`],
     };
-    let arrpMayAlsoLikeListFirst = {
+    let arrpMayAlsoLikeListSecond = {
       1: [`Yacht After Dark Neon Party`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-08-09_03-45-31-1024x1024.jpg`, `https://vegasyacht.com/yacht-after-dark-neon-party/`],
       2: [`Emo Night`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/emo-night.jpg`, `https://vegasyacht.com/emo-night/`],
       3: [`Latin Night Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-10_02-02-53.jpg`, `https://vegasyacht.com/latin-night-cruise-at-lake-las-vegas/"`],
       4: [`Country Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-06_03-52-16-300x300.jpg`, `https://vegasyacht.com/country-cruise-at-lake-las-vegas/`],
     };
-    let arrpMayAlsoLikeListSecond = {
+    let arrpMayAlsoLikeListThird = {
       1: [`Mimosa Cruise Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-06_04-10-16.jpg`, `https://vegasyacht.com/mimosa-cruise-lake-las-vegas/`],
       2: [`Sangria Sunday`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-06_03-53-29-300x300.jpg`, `https://vegasyacht.com/sangria-sunday/`],
       3: [`Throwback Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-07_04-01-25.jpg`, `https://vegasyacht.com/throwback-cruise-at-lake-las-vegas/`],
       4: [`Sunset Sessions`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2022/06/sunset.jpg`, `https://vegasyacht.com/sunset-sessions-cruise/`],
     };
-    let arrpMayAlsoLikeListThird = {
+    let arrpMayAlsoLikeListFourth = {
       1: [`Punk Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-10-11_03-55-55.jpg`, `https://vegasyacht.com/punk-cruise/`],
       2: [`Y2K Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/Y2K.jpg`, `https://vegasyacht.com/y2k-cruise/`],
       3: [`Haunted Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-09-12_01-40-08-1024x1024.jpg`, `https://vegasyacht.com/haunted-cruise-at-lake-las-vegas/`],
-      4: [`Jingle On The Waves: Christmas Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/red_xmas_yacht-sml.png`, `https://vegasyacht.com/jingle-on-the-waves-christmas-cruise/`],
-      5: [`Santa Sail – Kid Friendly Yacht Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/Red_Santa_Hat_Christmas_Greeting_Card-sml.png`, `https://vegasyacht.com/santa-sail-kid-friendly-yacht-cruise/`],
+    };
+    let arrpMayAlsoLikeListFirst = {
+      1: [`NYE Firework Yacht Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/nye-sml.png`, `https://vegasyacht.com/nye-firework-yacht-cruise/`],
+      2: [`New Years Eve Electric Boat Rental at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/NYE_PRIVATEBOAT-sml.png`, `https://vegasyacht.com/new-years-eve-electric-boat-rental-champagne-included-at-lake-las-vegas/`],
+      3: [`Jingle On The Waves: Christmas Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/red_xmas_yacht-sml.png`, `https://vegasyacht.com/jingle-on-the-waves-christmas-cruise/`],
+      4: [`Santa Sail – Kid Friendly Yacht Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/Red_Santa_Hat_Christmas_Greeting_Card-sml.png`, `https://vegasyacht.com/santa-sail-kid-friendly-yacht-cruise/`],
     };
     let arrpMayAlsoLikeListMob = {
-      1: [`Yacht After Dark Neon Party`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-08-09_03-45-31-1024x1024.jpg`, `https://vegasyacht.com/yacht-after-dark-neon-party/`],
-      2: [`Emo Night`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/emo-night.jpg`, `https://vegasyacht.com/emo-night/`],
-      3: [`Latin Night Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-10_02-02-53.jpg`, `https://vegasyacht.com/latin-night-cruise-at-lake-las-vegas/"`],
-      4: [`Country Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-06_03-52-16-300x300.jpg`, `https://vegasyacht.com/country-cruise-at-lake-las-vegas/`],
+      1: [`New Years Eve Electric Boat Rental at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/NYE_PRIVATEBOAT-sml.png`, `https://vegasyacht.com/new-years-eve-electric-boat-rental-champagne-included-at-lake-las-vegas/`],
+      2: [`NYE Firework Yacht Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/nye-sml.png`, `https://vegasyacht.com/nye-firework-yacht-cruise/`],
+      3: [`Jingle On The Waves: Christmas Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/red_xmas_yacht-sml.png`, `https://vegasyacht.com/jingle-on-the-waves-christmas-cruise/`],
+      4: [`Santa Sail – Kid Friendly Yacht Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/Red_Santa_Hat_Christmas_Greeting_Card-sml.png`, `https://vegasyacht.com/santa-sail-kid-friendly-yacht-cruise/`],
       5: [`Mimosa Cruise Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-06_04-10-16.jpg`, `https://vegasyacht.com/mimosa-cruise-lake-las-vegas/`],
       6: [`Sangria Sunday`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-06_03-53-29-300x300.jpg`, `https://vegasyacht.com/sangria-sunday/`],
       7: [`Throwback Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-07_04-01-25.jpg`, `https://vegasyacht.com/throwback-cruise-at-lake-las-vegas/`],
@@ -1550,8 +1557,10 @@ h2.new_title::after {
       9: [`Punk Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-10-11_03-55-55.jpg`, `https://vegasyacht.com/punk-cruise/`],
       10: [`Y2K Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/Y2K.jpg`, `https://vegasyacht.com/y2k-cruise/`],
       11: [`Haunted Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-09-12_01-40-08-1024x1024.jpg`, `https://vegasyacht.com/haunted-cruise-at-lake-las-vegas/`],
-      12: [`Jingle On The Waves: Christmas Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/red_xmas_yacht-sml.png`, `https://vegasyacht.com/jingle-on-the-waves-christmas-cruise/`],
-      13: [`Santa Sail – Kid Friendly Yacht Cruise`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/Red_Santa_Hat_Christmas_Greeting_Card-sml.png`, `https://vegasyacht.com/santa-sail-kid-friendly-yacht-cruise/`],
+      12: [`Yacht After Dark Neon Party`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-08-09_03-45-31-1024x1024.jpg`, `https://vegasyacht.com/yacht-after-dark-neon-party/`],
+      13: [`Emo Night`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/emo-night.jpg`, `https://vegasyacht.com/emo-night/`],
+      14: [`Latin Night Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-10_02-02-53.jpg`, `https://vegasyacht.com/latin-night-cruise-at-lake-las-vegas/"`],
+      15: [`Country Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-06_03-52-16-300x300.jpg`, `https://vegasyacht.com/country-cruise-at-lake-las-vegas/`],
     };
     let arrImgSwiperNeonParty = {
       1: ["https://vegasyacht.com/wp-content/uploads/2023/08/party_after_dark.png"],
@@ -1635,14 +1644,28 @@ h2.new_title::after {
       2: ["https://drive.google.com/uc?export=view&id=1WvZr4ZXFkpxnp-qFvcFs9t7hXzhGrFgS"],
       3: ["https://drive.google.com/uc?export=view&id=1rX5Ju9IGpTvewfZp_Y-6oUlE4CxcWAJG"],
       4: ["https://drive.google.com/uc?export=view&id=1zo15RcVPo3UaoKNP6X6_bBb1sN_FNvVK"],
-      5: ["https://drive.google.com/uc?export=view&id=12KieCMeooo_fAHC6xx7t9BBUGC-7RmcW"],
+      5: ["https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/Fireworks_lg.jpeg"],
     };
     let arrImgSwiperSantaSail = {
       1: ["https://vegasyacht.com/wp-content/uploads/2023/11/kids_christmas_lg.png"],
+      2: ["https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/Fireworks__1___1__lg.png"],
+      3: ["https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/photo_2023-06-03_03-06-42-1024x683.jpg"],
+      4: ["https://drive.google.com/uc?export=view&id=1QMR-ovgFvvU1y_FgRr62Cyq0fWgBr7rp"],
+      5: ["https://drive.google.com/uc?export=view&id=12KieCMeooo_fAHC6xx7t9BBUGC-7RmcW"],
+    };
+    let arrImgSwiperNyeFireworkYachtCruise = {
+      1: ["https://vegasyacht.com/wp-content/uploads/2023/12/nye.png"],
       2: ["https://drive.google.com/uc?export=view&id=1WvZr4ZXFkpxnp-qFvcFs9t7hXzhGrFgS"],
       3: ["https://drive.google.com/uc?export=view&id=1rX5Ju9IGpTvewfZp_Y-6oUlE4CxcWAJG"],
+      4: ["https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/V6A5382__2__lg-1024x682.jpg"],
+      5: ["https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/Fireworks__1___1__lg.png"],
+    };
+    let arrImgSwiperElectricBoatRentalChampagne = {
+      1: ["https://vegasyacht.com/wp-content/uploads/2023/12/NYE_PRIVATEBOAT.png"],
+      2: ["https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/Fireworks_lg.jpeg"],
+      3: ["https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/Fireworks__1___1__lg.png"],
       4: ["https://drive.google.com/uc?export=view&id=1zo15RcVPo3UaoKNP6X6_bBb1sN_FNvVK"],
-      5: ["https://drive.google.com/uc?export=view&id=12KieCMeooo_fAHC6xx7t9BBUGC-7RmcW"],
+      5: ["https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/V6A5382__2__lg-1024x682.jpg"],
     };
 
     addSwiper();
@@ -1739,6 +1762,18 @@ h2.new_title::after {
             document.querySelector(".main_slider_sync .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperSantaSail[key][0]));
           }
         }
+        if (window.location.pathname === "/nye-firework-yacht-cruise/") {
+          for (let key in arrImgSwiperNyeFireworkYachtCruise) {
+            document.querySelector(".main_slider .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperNyeFireworkYachtCruise[key][0]));
+            document.querySelector(".main_slider_sync .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperNyeFireworkYachtCruise[key][0]));
+          }
+        }
+        if (window.location.pathname === "/new-years-eve-electric-boat-rental-champagne-included-at-lake-las-vegas/") {
+          for (let key in arrImgSwiperElectricBoatRentalChampagne) {
+            document.querySelector(".main_slider .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperElectricBoatRentalChampagne[key][0]));
+            document.querySelector(".main_slider_sync .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperElectricBoatRentalChampagne[key][0]));
+          }
+        }
 
         // arrImgSwiperJingleOn
       }
@@ -1782,27 +1817,47 @@ h2.new_title::after {
       }
       // MayAlsoLikeList
       if (window.innerWidth > 768) {
-        if (window.location.pathname === "/emo-night/" || window.location.pathname === "/latin-night-cruise-at-lake-las-vegas/" || window.location.pathname === "/country-cruise-at-lake-las-vegas/" || window.location.pathname === "/yacht-after-dark-neon-party/") {
-          if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_first").children.length !== arrpMayAlsoLikeListSecond.length) {
-            for (let key in arrpMayAlsoLikeListSecond) {
-              document.querySelector(".may_also_like_list_first").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListSecond[key][0], arrpMayAlsoLikeListSecond[key][1], arrpMayAlsoLikeListSecond[key][2], arrpMayAlsoLikeListSecond[key][3], key));
-            }
+        // if (window.location.pathname === "/emo-night/" || window.location.pathname === "/latin-night-cruise-at-lake-las-vegas/" || window.location.pathname === "/country-cruise-at-lake-las-vegas/" || window.location.pathname === "/yacht-after-dark-neon-party/") {
+        //   if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_first").children.length !== arrpMayAlsoLikeListSecond.length) {
+        //     for (let key in arrpMayAlsoLikeListSecond) {
+        //       document.querySelector(".may_also_like_list_first").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListSecond[key][0], arrpMayAlsoLikeListSecond[key][1], arrpMayAlsoLikeListSecond[key][2], arrpMayAlsoLikeListSecond[key][3], key));
+        //     }
+        //   }
+        //   if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_second").children.length !== arrpMayAlsoLikeListFirst.length) {
+        //     for (let key in arrpMayAlsoLikeListFirst) {
+        //       document.querySelector(".may_also_like_list_second").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListFirst[key][0], arrpMayAlsoLikeListFirst[key][1], arrpMayAlsoLikeListFirst[key][2], arrpMayAlsoLikeListFirst[key][3], key));
+        //     }
+        //   }
+        // } else {
+        //   if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_first").children.length !== arrpMayAlsoLikeListFirst.length) {
+        //     for (let key in arrpMayAlsoLikeListFirst) {
+        //       document.querySelector(".may_also_like_list_first").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListFirst[key][0], arrpMayAlsoLikeListFirst[key][1], arrpMayAlsoLikeListFirst[key][2], arrpMayAlsoLikeListFirst[key][3], key));
+        //     }
+        //   }
+        //   if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_second").children.length !== arrpMayAlsoLikeListSecond.length) {
+        //     for (let key in arrpMayAlsoLikeListSecond) {
+        //       document.querySelector(".may_also_like_list_second").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListSecond[key][0], arrpMayAlsoLikeListSecond[key][1], arrpMayAlsoLikeListSecond[key][2], arrpMayAlsoLikeListSecond[key][3], key));
+        //     }
+        //   }
+        // }
+        if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_first").children.length !== arrpMayAlsoLikeListFirst.length) {
+          for (let key in arrpMayAlsoLikeListFirst) {
+            document.querySelector(".may_also_like_list_first").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListFirst[key][0], arrpMayAlsoLikeListFirst[key][1], arrpMayAlsoLikeListFirst[key][2], arrpMayAlsoLikeListFirst[key][3], key));
           }
-          if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_second").children.length !== arrpMayAlsoLikeListFirst.length) {
-            for (let key in arrpMayAlsoLikeListFirst) {
-              document.querySelector(".may_also_like_list_second").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListFirst[key][0], arrpMayAlsoLikeListFirst[key][1], arrpMayAlsoLikeListFirst[key][2], arrpMayAlsoLikeListFirst[key][3], key));
-            }
+        }
+        if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_second").children.length !== arrpMayAlsoLikeListSecond.length) {
+          for (let key in arrpMayAlsoLikeListSecond) {
+            document.querySelector(".may_also_like_list_second").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListSecond[key][0], arrpMayAlsoLikeListSecond[key][1], arrpMayAlsoLikeListSecond[key][2], arrpMayAlsoLikeListSecond[key][3], key));
           }
-        } else {
-          if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_first").children.length !== arrpMayAlsoLikeListFirst.length) {
-            for (let key in arrpMayAlsoLikeListFirst) {
-              document.querySelector(".may_also_like_list_first").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListFirst[key][0], arrpMayAlsoLikeListFirst[key][1], arrpMayAlsoLikeListFirst[key][2], arrpMayAlsoLikeListFirst[key][3], key));
-            }
+        }
+        if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_third").children.length !== arrpMayAlsoLikeListThird.length) {
+          for (let key in arrpMayAlsoLikeListThird) {
+            document.querySelector(".may_also_like_list_third").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListThird[key][0], arrpMayAlsoLikeListThird[key][1], arrpMayAlsoLikeListThird[key][2], arrpMayAlsoLikeListThird[key][3], key));
           }
-          if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_second").children.length !== arrpMayAlsoLikeListSecond.length) {
-            for (let key in arrpMayAlsoLikeListSecond) {
-              document.querySelector(".may_also_like_list_second").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListSecond[key][0], arrpMayAlsoLikeListSecond[key][1], arrpMayAlsoLikeListSecond[key][2], arrpMayAlsoLikeListSecond[key][3], key));
-            }
+        }
+        if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_third").children.length !== arrpMayAlsoLikeListFourth.length) {
+          for (let key in arrpMayAlsoLikeListFourth) {
+            document.querySelector(".may_also_like_list_fourth").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListFourth[key][0], arrpMayAlsoLikeListFourth[key][1], arrpMayAlsoLikeListFourth[key][2], arrpMayAlsoLikeListFourth[key][3], key));
           }
         }
 
