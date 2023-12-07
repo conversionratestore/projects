@@ -1903,7 +1903,9 @@ span.accent_weight_bold {
 
                     items.querySelector(".my_old_price").textContent = `$${((res.variants[0].compare_at_price / 100) * items.querySelector(".count_var").value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`;
 
-                    items.querySelector(".discount_txt").textContent = `${(((el.final_line_price / 100) * 100) / (res.variants[0].compare_at_price / 100) - 100).toFixed(0)}%`;
+                    items.querySelector(".discount_txt").textContent = `${(((el.final_line_price / 100) * 100) / ((res.variants[0].compare_at_price / 100) * items.querySelector(".count_var").value) - 100).toFixed(0)}%`;
+                    console.log((el.final_line_price / 100) * 100, `el.final_line_price / 100) * 100`, res.variants[0].id);
+                    console.log(res.variants[0].compare_at_price / 100 - 100, `res.variants[0].compare_at_price / 100) - 100`, res.variants[0].id);
                   }
 
                   let appikonF = setInterval(() => {
@@ -1922,6 +1924,8 @@ span.accent_weight_bold {
                             items.querySelector(".my_price").textContent = currPrDsc;
                             items.querySelector(".my_old_price").textContent = oldPr;
                             items.querySelector(".discount_txt").textContent = `${((appikonItem.discounted_line_price * 100) / appikonItem.compare_at_line_price - 100).toFixed(0)}%`;
+                            console.log(appikonItem.discounted_line_price * 100, `(appikonItem.discounted_line_price * 100)`, res.variants[0].id);
+                            console.log(appikonItem.compare_at_line_price - 100, `appikonItem.compare_at_line_price - 100`, res.variants[0].id);
                           }
                         }
                       });
@@ -2056,6 +2060,9 @@ span.accent_weight_bold {
                   }
                   if (firstUpsell === 39782656311350) {
                     onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPadForKneePain", 39782656311350, "novaa_light_padfor_knee_pain", 47368681161049);
+                  }
+                  if (firstUpsell === 39737414484022) {
+                    onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPadForKneePain", 39737414484022, "novaa_light_padfor_knee_pain", 47368681161049);
                   } else if (firstUpsell === 47100514140505) {
                     onRenderUpsell(data.items, upselsObjSonic, "upselsSonic", 47100514140505, "upsels_sonic", 46932997865817);
                   } else if (firstUpsell === 40365298679862) {
