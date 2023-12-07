@@ -839,7 +839,7 @@ function handleVisibility(el, eventParams) {
 
           if (roundedDuration) {
             const eventData = eventParams
-            const name = eventData[1].split('-') ? ' -' + eventData[1].split('-')[1] : ''
+            const name = eventData[1].includes('-') ? ' -' + eventData[1].split('-')[1] : ''
             eventData[1] = roundedDuration + name
             pushDataLayer(eventData)
             observer.disconnect()
