@@ -182,6 +182,7 @@ class ListingUpdate {
         }
         .crs_list {
           overflow-y: auto;
+          margin-bottom: 20px;
         }
         .crs_list:not(.crs_list_1) li {
           display: flex;
@@ -202,7 +203,7 @@ class ListingUpdate {
         .crs_popup_span {
             color: #878789;
         }
-        .crs_popup_left_stock {
+        .crs_list p.crs_popup_left_stock {
             font-size: 13px;
             font-style: normal;
             font-weight: 500;
@@ -210,7 +211,7 @@ class ListingUpdate {
             margin: 0;
         }
         .crs_popup_left_stock:not(.flex) {
-          display: none;
+            display: none;
         }
         .crs_popup_left_stock svg {
             margin-right: 4px;
@@ -222,10 +223,10 @@ class ListingUpdate {
             font-size: 13px;
             font-weight: 500;
             line-height: 16px;
-            margin: 20px 0;
+            margin: 0 0 20px;
         }
         .crs_popup_info:not(.flex) {
-          display: none;
+            display: none;
         }
         .crs_popup_info svg {
             margin-right: 12px;
@@ -263,17 +264,23 @@ class ListingUpdate {
             height: 120px;
             margin-right: 16px;
           }
+          .crs_list_1 img {
+            width: 168px;
+            height: 140px;
+            margin: 0 auto 16px;
+          }
           .crs_list:not(.crs_list_1) li > div {
             display: flex;
             flex-direction: column;
             justify-content: center;
           }
-          .crs_popup_left_stock {
-            margin-top: 10px;
+          .crs_list p.crs_popup_left_stock {
+            margin: 10px 0 0 0;
           }
           .crs_list.gap-6 {
             gap: 16px;
             max-height: 294px;
+            margin-bottom: 24px;
           }
           .crs_list.gap-6::-webkit-scrollbar {
             background: #D5D5D8;
@@ -286,7 +293,7 @@ class ListingUpdate {
             border-radius: 2px;
           }
           .crs_popup_info {
-            margin: 24px 0;
+            margin: 0 0 24px;
             padding: 8px 16px;
             font-size: 14px;
             line-height: 20px;
