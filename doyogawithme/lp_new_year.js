@@ -809,7 +809,55 @@ function copyText(target) {
     } catch (err) {
       console.error("Unable to copy text: ", err);
     }
+
+    pushDataLayer(['exp_new_year_pag_link_choospath_promo', 'yoga3ny', 'Link', 'Choose Your Path, Accept the Challenge Promo Code ']);
   
+}
+
+function handleVisibility(el, eventParams) {
+    let isVisible = false
+    let entryTime
+    const config = {
+      root: null,
+      threshold: 0, // Trigger when any part of the element is out of viewport
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (!isVisible) {
+            // The element has become visible
+            isVisible = true
+            entryTime = new Date().getTime()
+          }
+        } else if (isVisible) {
+          // The element is out of the viewport, calculate visibility duration
+          isVisible = false
+          const exitTime = new Date().getTime()
+          const visibilityDuration = (exitTime - entryTime) / 1000 // Convert to seconds
+          const roundedDuration = Math.round(visibilityDuration)
+
+          if (roundedDuration) {
+            const eventData = eventParams
+            eventData[1] = roundedDuration
+            pushDataLayer(eventData)
+            observer.disconnect()
+          }
+        }
+      })
+    }, config)
+
+    observer.observe(el)
+}
+
+function pushDataLayer([event_name, event_desc, event_type, event_loc]) { // Send a Google Analytics event
+    const eventData = {
+        'event': 'event-to-ga4', event_name, event_desc, event_type, event_loc
+    }
+
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push(eventData)
+    console.log(eventData)
 }
 
 const html = `
@@ -1295,11 +1343,11 @@ const html = `
         <div class="container">
             <h2 class="mb-md-5 mb-4">Got Questions?<br class="d-md-none"> We’ve Got Answers!</h2>
             <ul>${faqOption}</ul>
-            <a href="#crs_cards" class="crs_btn blue mx-auto d-md-block d-none mt-4">Explore Challenges</a>
+            <a href="#crs_cards" class="crs_btn blue mx-auto d-md-block d-none mt-4" onclick="pushDataLayer(['exp_new_year_pag_but_undques_expl', 'Explore Challenges', 'Button', 'Under block Got Questions? We’ve Got Answers!'])">Explore Challenges</a>
         </div>
     </section>
     <div class="crs_sticky d-md-none">
-        <a href="#crs_cards" class="crs_btn blue mx-auto d-md-none">Explore Challenges</a>
+        <a href="#crs_cards" class="crs_btn blue mx-auto d-md-none" onclick="pushDataLayer(['exp_new_year_pag_but_embrac_expl', 'Explore Challenges', 'Button', 'Why Embrace Yoga Challenges?'])">Explore Challenges</a>
     </div>`;
 
 const init = setInterval(() => {
@@ -1331,6 +1379,35 @@ const init = setInterval(() => {
       .querySelector(".o-page__preContent")
       .insertAdjacentHTML("afterbegin", html);
 
+    handleVisibility(document.querySelector('.crs_offer h1'), ['exp_new_year_pag_vis_firstnewyear_focu', ' {{focusTime}} ', 'Visibility ', 'First screen New Year, New You Through Yoga'])
+    handleVisibility(document.querySelector('.crs_block'), ['exp_new_year_pag_vis_embrac_focu', ' {{focusTime}} ', 'Visibility ', 'Why Embrace Yoga Challenges?'])
+    handleVisibility(document.querySelector('.crs_community h2'), ['exp_new_year_pag_vis_slogan_focu', ' {{focusTime}} ', 'Visibility ', 'More Than a Challenge - A Community. Slogan'])
+    handleVisibility(document.querySelector('.crs_ways h2'), ['exp_new_year_pag_vis_personal_focu', ' {{focusTime}} ', 'Visibility ', 'Count the ways you can personalize your practice'])
+    handleVisibility(document.querySelector('.crs_faq ul'), ['exp_new_year_pag_vis_question_focu', ' {{focusTime}} ', 'Visibility ', 'Got Questions? We’ve Got Answers!'])
+    
+    document.querySelectorAll('.crs_card').forEach(item => {
+        handleVisibility(item, ['exp_new_year_pag_vis_choospath_focu', `{{focusTime}} - ${item.querySelector('h4').innerText}`, 'Visibility ', 'Choose Your Path, Accept the Challenge'])
+
+        item.querySelector('.crs_btn').addEventListener('click', () => {
+            pushDataLayer(['exp_new_year_pag_but_choospath_deta', 'See Details - {{title_name}}', 'Button', 'Choose Your Path, Accept the Challenge'])
+        })
+    })
+
+    document.querySelector('.crs_cards > div > a').addEventListener('click', () => {
+        pushDataLayer(['exp_new_year_pag_lin_pathub_browse', 'Browse all challenges', 'Link', `Choose Your Path, Accept the Challenge Under block's `])
+    })
+    
+    document.querySelectorAll('.crs_button_swiper').forEach(item => {
+        item.addEventListener('click', (e) => {
+            let arrowsName = item.classList.contains('crs_button_next') ? 'Right' : 'Left'
+            if (item.closest('.crs_stories')) {
+                pushDataLayer(['exp_new_year_pag_sele_story_arrow', arrowsName, 'Select', 'Real Stories, Real Transformations']);
+            } else {
+                pushDataLayer(['exp_new_year_pag_sele_instruc_arrow', arrowsName, 'Select', 'Our Instructors']);
+            }
+        })
+    })
+
     //accordion (faq)
     document.querySelectorAll(".crs_plus").forEach((item) => {
       item.addEventListener("click", () => {
@@ -1356,6 +1433,8 @@ const init = setInterval(() => {
               .scrollHeight +
             "px"
           : "";
+
+          pushDataLayer(['exp_new_year_pag_accor_quest_name', item.parentElement.innerText, 'Accordion', 'Got Questions? We’ve Got Answers!'])
       });
     });
 
@@ -1432,13 +1511,59 @@ const init = setInterval(() => {
                 })
             })
 
-            
 
+          }
+
+          const bullets = element.querySelectorAll('.swiper-pagination-bullet')
+
+          bullets.forEach(bullet => {
+              bullet.addEventListener('click', () => {
+                if (element.closest('.crs_stories')) {
+                    pushDataLayer(['exp_new_year_pag_pagin_reviews_click', 'Click', 'Pagination  ', 'Join the Excitement of Our Inaugural Yoga Challenges! Reviews'])
+                } else {
+                    pushDataLayer(['exp_new_year_pag_pagin_instruc_click', 'Click', 'Pagination  ', 'Our Instructors']);
+                }
+              })
+          })
+
+          if (element.closest('.crs_instructors')) {
+            const links = element.querySelectorAll('a')
+
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    pushDataLayer(['exp_new_year_pag_link_instruc_select', `Select - ${link.querySelector('.lav-instr__name').innerText}`, 'Link', 'Our Instructors']);
+                })
+            })
           }
         });
       }
     });
 
+    document.querySelectorAll('.sfc-footer__social a').forEach(social => {
+        social.addEventListener('click', () => {
+            pushDataLayer(['exp_new_year_pag_icon_footer_soci', `Click - ${social.href.split('www.')[1].split('.')[0]}`, 'Icone', 'Footer Social media link']);
+        })
+    })
+
+    document.querySelectorAll('.sfc-footer__menuContainer a').forEach(linkMenu => {
+        linkMenu.addEventListener('click', () => {
+            pushDataLayer(['exp_new_year_pag_lin_footnav_menu', `Click - ${linkMenu.innerText}`, 'Link', 'Footer Navigation']);
+        })
+    })
+    document.querySelectorAll('.sfc-footer__legal a').forEach(linkLegal => {
+        linkLegal.addEventListener('click', () => {
+            let name = linkLegal.innerText == 'Privacy Policy' ? 'exp_new_year_pag_lin_footer_polic' : 'exp_new_year_pag_lin_footer_tearm'
+            pushDataLayer([name, linkLegal.innerText, 'Link', 'Footer ']);
+        })
+    })
+   
     document.querySelector('.exp-loading')?.remove()
   }
 });
+
+const isClarity = setInterval(() => {
+    if (typeof clarity === 'function') {
+      clearInterval(isClarity)
+      clarity('set', `exp_new_year_pag`, 'variant_1')
+    }
+}, 100)
