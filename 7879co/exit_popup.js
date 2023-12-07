@@ -15,8 +15,11 @@ const device = window.innerWidth < 769 ? "mobile" : "desktop";
 let dataCart = [];
 
 let usedDefaultLog = false;
-let isProductsInCart = false
-let clickAddToCart = false
+let isProductsInCart = false;
+let clickAddToCart = false;
+
+let startTime = 0;
+let timeInterval;
 
 class ExitIntentPopup {
   constructor(device) {
@@ -26,18 +29,21 @@ class ExitIntentPopup {
 
   init() {
     const globalMutation = new MutationObserver((mutations) => {
-
       this.styleAppend();
       this.addDataCartInStorage();
       this.addPopup();
 
-      if (this.checkPageUrl() === 'bag') {
-        this.removeItemCartInStorage()
-        this.longInactivityInBag()
+      if (this.checkPageUrl() === "bag") {
+        this.removeItemCartInStorage();
+        this.longInactivityInBag();
       }
 
-      if (isProductsInCart == false && localStorage.getItem("crs_cart") && $el(".crs_popup .crs_list")) {
-        isProductsInCart = true
+      if (
+        isProductsInCart == false &&
+        localStorage.getItem("crs_cart") &&
+        $el(".crs_popup .crs_list")
+      ) {
+        isProductsInCart = true;
         this.updateProductsInPopup();
       }
 
@@ -48,7 +54,6 @@ class ExitIntentPopup {
         subtree: true,
       });
     });
-
 
     globalMutation.observe(document.body, {
       childList: true,
@@ -63,6 +68,12 @@ class ExitIntentPopup {
       return "checkout";
     } else if (pageUrl.includes("/bag/")) {
       return "bag";
+    } else if (pageUrl.includes("/shop/")) {
+      return "shop";
+    } else if (pageUrl.includes("/collections/")) {
+      return "collections";
+    } else if (pageUrl.includes("/about-us")) {
+      return "about-us";
     } else {
       return "other";
     }
@@ -346,7 +357,10 @@ class ExitIntentPopup {
       function resetIdleTimer() {
         clearTimeout(idleTimer);
         idleTimer = setTimeout(() => {
-          if (new ExitIntentPopup(device).checkPageUrl() === "bag" && localStorage.getItem("crs_cart")) {
+          if (
+            new ExitIntentPopup(device).checkPageUrl() === "bag" &&
+            localStorage.getItem("crs_cart")
+          ) {
             new ExitIntentPopup(device).showPopup();
             console.log("resetIdleTimer: ");
           }
@@ -364,62 +378,83 @@ class ExitIntentPopup {
   }
 
   showPopup() {
-    $el(".crs_popup").classList.add('active');
+    if ($el(".crs_popup.active")) return;
+    startTime = 0;
+    $el(".crs_popup").classList.add("active");
+
+    timeInterval = setInterval(() => {
+      startTime += 1;
+      console.log(startTime);
+    }, 1000);
+
     sessionStorage.setItem("popupShown", "true");
-    console.log('showPopup')
+    console.log("showPopup");
   }
 
   setExitIntentPopup() {
     if (!sessionStorage.getItem("popupShown") && $el(".crs_popup")) {
       switch (device) {
-          case "desktop":
-              let x = 0,
-                  y = 0
-              window.addEventListener("mousemove", function (e) {
-                  x = e.clientX
-                  y = e.clientY
-              })
-              document.body.addEventListener(
-                  "mouseleave",
-                  function () {
-                      if (x < 50 || y < 50 || x > window.innerWidth - 50 || y > window.innerHeight - 50) {
-                        if (localStorage.getItem("crs_cart") && clickAddToCart == false) {
-                          new ExitIntentPopup(device).showPopup()
-                          console.log('setExitIntentPopup desktop: ' )
-                        }
-                      }
-                  },
-                  { once: true }
-              )
-              break
-          case "mobile":
-              let speedValue = /android/i.test(navigator.userAgent) ? 70 : 70
-
-              let lastPosition = 0,
-                  newPosition = 0,
-                  currentSpeed = 0
-
-              let scrollSpeed = () => {
-                  lastPosition = window.scrollY
-                  setTimeout(() => {
-                      newPosition = window.scrollY
-                  }, 100)
-
-                  currentSpeed = newPosition - lastPosition
-
-                  if (currentSpeed > speedValue && localStorage.getItem("crs_cart") && clickAddToCart == false && window.scrollY != 0) {
-                      console.log('currentSpeed: ' + currentSpeed)
-
-                      document.removeEventListener("scroll", scrollSpeed)
-                      this.showPopup()
-                      console.log('setExitIntentPopup mobile: ' )
-                  }
+        case "desktop":
+          let x = 0,
+            y = 0;
+          window.addEventListener("mousemove", function (e) {
+            x = e.clientX;
+            y = e.clientY;
+          });
+          document.body.addEventListener(
+            "mouseleave",
+            function () {
+              if (
+                x < 50 ||
+                y < 50 ||
+                x > window.innerWidth - 50 ||
+                y > window.innerHeight - 50
+              ) {
+                if (
+                  localStorage.getItem("crs_cart") &&
+                  clickAddToCart == false
+                ) {
+                  new ExitIntentPopup(device).showPopup();
+                  console.log("setExitIntentPopup desktop: ");
+                }
               }
+            },
+            { once: true }
+          );
+          break;
+        case "mobile":
+          let speedValue = /android/i.test(navigator.userAgent) ? 70 : 70;
 
-              document.addEventListener("scroll", scrollSpeed)
-              break
-          default:
-              break
+          let lastPosition = 0,
+            newPosition = 0,
+            currentSpeed = 0;
+
+          let scrollSpeed = () => {
+            lastPosition = window.scrollY;
+            setTimeout(() => {
+              newPosition = window.scrollY;
+            }, 100);
+
+            currentSpeed = newPosition - lastPosition;
+
+            if (
+              currentSpeed > speedValue &&
+              localStorage.getItem("crs_cart") &&
+              clickAddToCart == false &&
+              window.scrollY != 0
+            ) {
+              console.log("currentSpeed: " + currentSpeed);
+
+              document.removeEventListener("scroll", scrollSpeed);
+              this.showPopup();
+              console.log("setExitIntentPopup mobile: ");
+            }
+          };
+
+          document.addEventListener("scroll", scrollSpeed);
+          break;
+        default:
+          break;
       }
     }
   }
@@ -461,35 +496,129 @@ class ExitIntentPopup {
     if ($el(".crs_popup")) return;
     document.body.insertAdjacentHTML("beforeend", popup);
 
-    $el('.crs_popup_close').addEventListener('click', () => {
-      $el(".crs_popup").classList.remove('active')
-    })
+    $el(".crs_popup_close").addEventListener("click", () => {
+      $el(".crs_popup").classList.remove("active");
+      clearInterval(timeInterval);
 
-    $el('.crs_popup').addEventListener('click', (e) => {
-      if (e.target.classList.contains('crs_popup')) {
-        $el(".crs_popup").classList.remove('active')
+      const page =
+        $$el('[aria-label="Breadcrumb"] li').length >= 3 &&
+        this.checkPageUrl() == "shop"
+          ? "PDP"
+          : this.checkPageUrl();
+      this.pushDataLayer([
+        "exp_exit_int_popup_vis_almos_focu",
+        `${startTime} - ${page}`,
+        "Visibility ",
+        "Popup It’s almost yours!",
+      ]);
+      this.pushDataLayer([
+        "exp_exit_int_popup_vis_almcompl_focu",
+        startTime,
+        "Visibility ",
+        "Popup It’s almost yours! Complete my order now",
+      ]);
+      this.pushDataLayer([
+        "exp_exit_int_popup_but_almos_close",
+        "Close",
+        "Button",
+        "Popup It’s almost yours!",
+      ]);
+    });
+
+    $el(".crs_popup").addEventListener("click", (e) => {
+      if (e.target.classList.contains("crs_popup")) {
+        $el(".crs_popup").classList.remove("active");
+        clearInterval(timeInterval);
+
+        const page =
+          $$el('[aria-label="Breadcrumb"] li').length >= 3 &&
+          this.checkPageUrl() == "shop"
+            ? "PDP"
+            : this.checkPageUrl();
+        this.pushDataLayer([
+          "exp_exit_int_popup_vis_almos_focu",
+          `${startTime} - ${page}`,
+          "Visibility ",
+          "Popup It’s almost yours!",
+        ]);
+        this.pushDataLayer([
+          "exp_exit_int_popup_vis_almcompl_focu",
+          startTime,
+          "Visibility ",
+          "Popup It’s almost yours! Complete my order now",
+        ]);
       }
-    })
+    });
 
-    $el('.crs_popup_complete').addEventListener('click', (e) => {
-      e.preventDefault()
+    $el(".crs_popup_complete").addEventListener("click", (e) => {
+      e.preventDefault();
 
-      if (this.checkPageUrl() != 'checkout') {
-        window.location.href = 'https://7879.co/checkoutv2/' 
+      if (this.checkPageUrl() != "checkout") {
+        window.location.href = "https://7879.co/checkoutv2/";
       } else {
-        $el(".crs_popup").classList.remove('active')
+        $el(".crs_popup").classList.remove("active");
       }
-    })
+      this.pushDataLayer([
+        "exp_exit_int_popup_but_almos_compl",
+        "Complete my order now",
+        "Button",
+        "Popup It’s almost yours!",
+      ]);
 
-    this.setExitIntentPopup()
+      clearInterval(timeInterval);
 
-    if (device == 'desktop') return
+      const page =
+        $$el('[aria-label="Breadcrumb"] li').length >= 3 &&
+        this.checkPageUrl() == "shop"
+          ? "PDP"
+          : this.checkPageUrl();
+      this.pushDataLayer([
+        "exp_exit_int_popup_vis_almos_focu",
+        `${startTime} - ${page}`,
+        "Visibility ",
+        "Popup It’s almost yours!",
+      ]);
+      this.pushDataLayer([
+        "exp_exit_int_popup_vis_almcompl_focu",
+        startTime,
+        "Visibility ",
+        "Popup It’s almost yours! Complete my order now",
+      ]);
+    });
+    //event "percent_scrolled"
+    let scrollTimer;
+
+    function handleScroll(e) {
+      let verticalScrollPercentage =
+        (e.target.scrollTop / (e.target.scrollHeight - e.target.clientHeight)) *
+        100;
+      this.pushDataLayer([
+        "exp_exit_int_popup_scro_almos_vert",
+        `percent_scrolled: ${verticalScrollPercentage}`,
+        "Scroll ",
+        "Popup It’s almost yours! Products group",
+      ]);
+    }
+
+    $el(".crs_popup ul").addEventListener("scroll", (e) => {
+      if (scrollTimer) {
+        clearTimeout(scrollTimer);
+      }
+
+      scrollTimer = setTimeout(() => {
+        handleScroll.call(this, e);
+        scrollTimer = null;
+      }, 100);
+    });
+    this.setExitIntentPopup();
+
+    if (device == "desktop") return;
 
     const appHeight = () => {
-      $el(".crs_popup").style.height = window.innerHeight + 'px';
-    }
-    window.addEventListener('resize', appHeight)
-    appHeight()
+      $el(".crs_popup").style.height = window.innerHeight + "px";
+    };
+    window.addEventListener("resize", appHeight);
+    appHeight();
   }
 
   addDataCartInStorage() {
@@ -537,25 +666,34 @@ class ExitIntentPopup {
                     ? $el(".sticky img.object-cover").src
                     : "";
 
-                  let price = parseFloat(parsedData[0]
-                    .split('"price":')[1]
-                    .split("}")[0]
-                    .split("\n")
-                    .join("")
-                    .trim()).toFixed(2);
+                  let price = parseFloat(
+                    parsedData[0]
+                      .split('"price":')[1]
+                      .split("}")[0]
+                      .split("\n")
+                      .join("")
+                      .trim()
+                  ).toFixed(2);
 
                   dataCart.push({
-                    'item_name': title,
-                    'price': price,
-                    'low_stock': +(parsedData[0]
+                    item_name: title,
+                    price: price,
+                    low_stock: +parsedData[0]
                       .split('"low_stock":')[1]
-                      .split(",")[0].trim()),
-                    'image': image,
-                    'item_id': parsedData[0].split('"item_id":')[1].split(",")[0].trim(),
-                    'item_variant': parsedData[0]
+                      .split(",")[0]
+                      .trim(),
+                    image: image,
+                    item_id: parsedData[0]
+                      .split('"item_id":')[1]
+                      .split(",")[0]
+                      .trim(),
+                    item_variant: parsedData[0]
                       .split('"item_variant": ')[1]
-                      .split(",")[0].split('\"').join('').trim(),
-                    'metal': metal + ", " + weight,
+                      .split(",")[0]
+                      .split('"')
+                      .join("")
+                      .trim(),
+                    metal: metal + ", " + weight,
                   });
 
                   if (
@@ -579,21 +717,21 @@ class ExitIntentPopup {
                   );
 
                   localStorage.setItem("crs_cart", JSON.stringify(dataCart));
-                  sessionStorage.removeItem("popupShown") 
+                  sessionStorage.removeItem("popupShown");
 
-                  clickAddToCart = true
+                  clickAddToCart = true;
                   new ExitIntentPopup(device).updateProductsInPopup();
 
-                  if (device == 'mobile') {
-                    window.addEventListener('scroll', (e) => {
+                  if (device == "mobile") {
+                    window.addEventListener("scroll", (e) => {
                       if (window.scrollY == 0) {
-                        clickAddToCart = false
-                        new ExitIntentPopup(device).setExitIntentPopup()
+                        clickAddToCart = false;
+                        new ExitIntentPopup(device).setExitIntentPopup();
                       }
-                    })
+                    });
                   } else {
-                    clickAddToCart = false
-                    new ExitIntentPopup(device).setExitIntentPopup()
+                    clickAddToCart = false;
+                    new ExitIntentPopup(device).setExitIntentPopup();
                   }
                 }
               } catch (error) {
@@ -619,57 +757,72 @@ class ExitIntentPopup {
 
   removeItemCartInStorage() {
     if (localStorage.getItem("crs_cart")) {
-      dataCart = JSON.parse(localStorage.getItem("crs_cart"))
+      dataCart = JSON.parse(localStorage.getItem("crs_cart"));
 
       if (dataCart.length > 0) {
+        $$el(
+          ".flex-col > .justify-start.gap-4 > div:last-child > .text-black > button"
+        ).forEach((el) => {
+          el.addEventListener("click", (e) => {
+            console.log("click remove");
 
-        $$el('.flex-col > .justify-start.gap-4 > div:last-child > .text-black > button').forEach(el => {
-          el.addEventListener('click', (e) => {
-  
-            console.log('click remove')
-  
-            let itemName = el.closest('.relative').querySelectorAll('h5')[0].innerText.replace('gold','').replace('platinum','').trim()
-            let itemPrice = el.closest('.relative').querySelectorAll('h5')[1].innerText.replace(',','').trim()
-  
+            let itemName = el
+              .closest(".relative")
+              .querySelectorAll("h5")[0]
+              .innerText.replace("gold", "")
+              .replace("platinum", "")
+              .trim();
+            let itemPrice = el
+              .closest(".relative")
+              .querySelectorAll("h5")[1]
+              .innerText.replace(",", "")
+              .trim();
+
             for (let i = 0; i < dataCart.length; i++) {
-              if (dataCart[i].item_name === itemName && dataCart[i].price === itemPrice.replace(itemPrice[0],'') ) {
+              if (
+                dataCart[i].item_name === itemName &&
+                dataCart[i].price === itemPrice.replace(itemPrice[0], "")
+              ) {
                 dataCart.splice(i, 1);
-  
-                console.log("update")
-  
-                localStorage.setItem("crs_cart", JSON.stringify(dataCart))
-                sessionStorage.removeItem("popupShown") 
-                if (localStorage.getItem("crs_cart") == '[]') {
-                  localStorage.removeItem("crs_cart")
+
+                console.log("update");
+
+                localStorage.setItem("crs_cart", JSON.stringify(dataCart));
+                sessionStorage.removeItem("popupShown");
+                if (localStorage.getItem("crs_cart") == "[]") {
+                  localStorage.removeItem("crs_cart");
                 } else {
-                  this.updateProductsInPopup()
+                  this.updateProductsInPopup();
+                  this.setExitIntentPopup();
                 }
-                
               }
             }
-          })
-        })
+          });
+        });
       }
     }
   }
 
   updateProductsInPopup() {
-    if (!localStorage.getItem("crs_cart") && !$el(".crs_popup .crs_list")) return;
+    if (!localStorage.getItem("crs_cart") && !$el(".crs_popup .crs_list"))
+      return;
 
-    dataCart = JSON.parse(localStorage.getItem("crs_cart"))
+    dataCart = JSON.parse(localStorage.getItem("crs_cart"));
 
-    const listPopup = $el(".crs_popup .crs_list")
-    const info = $el('.crs_popup_info')
+    const listPopup = $el(".crs_popup .crs_list");
+    const info = $el(".crs_popup_info");
 
     listPopup.innerHTML = "";
 
     let lengthMadeForYou = 0;
 
     for (let i = 0; i < dataCart.length; i++) {
+      let madeForYou =
+        dataCart[i].low_stock == 0 && typeof dataCart[i].low_stock != "object"
+          ? "MADE FOR YOU"
+          : "";
 
-      let madeForYou = dataCart[i].low_stock == 0 && typeof dataCart[i].low_stock != 'object' ? 'MADE FOR YOU' : ''
-
-      lengthMadeForYou += madeForYou != '' ? 1 : 0;
+      lengthMadeForYou += madeForYou != "" ? 1 : 0;
 
       $el(".crs_popup .crs_list").insertAdjacentHTML(
         "beforeend",
@@ -680,10 +833,14 @@ class ExitIntentPopup {
               <p class="crs_popup_name"><b>${dataCart[i].item_name}</b></p>
               <p class="crs_popup_span">${dataCart[i].metal}</p>
               <p class="crs_popup_price"><b>${dataCart[i].price}</b></p>
-              <p class="crs_popup_left_stock ${dataCart.length > 1 ? '' : 'justify-center'} items-center ${
-                dataCart[i].low_stock <= 4 && typeof dataCart[i].low_stock != 'object'
-                  ? "flex" : ""
-                }" >
+              <p class="crs_popup_left_stock ${
+                dataCart.length > 1 ? "" : "justify-center"
+              } items-center ${
+                dataCart[i].low_stock <= 4 &&
+                typeof dataCart[i].low_stock != "object"
+                  ? "flex"
+                  : ""
+              }" >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <g clip-path="url(#clip0_128_3836)">
                     <path d="M13.9658 9.36778C13.7825 6.98156 12.6715 5.48622 11.6914 4.16665C10.7838 2.94503 10 1.89009 10 0.333904C10 0.208904 9.93 0.0946543 9.819 0.037373C9.70766 -0.020252 9.57387 -0.0108145 9.47266 0.062748C8.00066 1.11606 6.77247 2.89134 6.34344 4.58522C6.04559 5.7645 6.00619 7.09025 6.00066 7.96584C4.64128 7.6755 4.33334 5.64212 4.33009 5.61997C4.31478 5.5145 4.25034 5.42272 4.15659 5.37259C4.06188 5.32312 3.95053 5.31953 3.8545 5.36706C3.78322 5.40156 2.10481 6.25437 2.00716 9.6594C2.00031 9.77269 2 9.88631 2 9.9999C2 13.3079 4.69172 15.9995 8 15.9995C8.00456 15.9998 8.00944 16.0005 8.01334 15.9995C8.01466 15.9995 8.01594 15.9995 8.01756 15.9995C11.3177 15.99 14 13.3021 14 9.9999C14 9.83356 13.9658 9.36778 13.9658 9.36778ZM8 15.3329C6.89713 15.3329 6 14.3772 6 13.2025C6 13.1625 5.99969 13.1221 6.00259 13.0726C6.01594 12.5772 6.11003 12.239 6.21322 12.0141C6.40659 12.4294 6.75228 12.8112 7.31381 12.8112C7.49806 12.8112 7.64716 12.6622 7.64716 12.4779C7.64716 12.0034 7.65694 11.4559 7.77509 10.9617C7.88025 10.5236 8.13153 10.0575 8.44991 9.68384C8.5915 10.1688 8.86756 10.5614 9.13709 10.9445C9.52284 11.4926 9.92159 12.0593 9.99159 13.0257C9.99581 13.083 10.0001 13.1407 10.0001 13.2025C10 14.3772 9.10287 15.3329 8 15.3329Z" fill="#D9BA58"/>
@@ -694,8 +851,11 @@ class ExitIntentPopup {
                     </clipPath>
                     </defs>
                 </svg>
-                <span>${madeForYou != '' ? madeForYou : 
-                  `Only ` + dataCart[i].low_stock + `pcs left in stock`}
+                <span>${
+                  madeForYou != ""
+                    ? madeForYou
+                    : `Only ` + dataCart[i].low_stock + `pcs left in stock`
+                }
                 </span> 
               </p>
           </div>
@@ -705,20 +865,26 @@ class ExitIntentPopup {
 
     if (dataCart.length > 1) {
       listPopup.classList.remove("crs_list_1");
-      info.querySelector('p').innerHTML = `We can’t guarantee the availability of all products in your cart if you don’t complete the purchase now`
+      info.querySelector(
+        "p"
+      ).innerHTML = `We can’t guarantee the availability of all products in your cart if you don’t complete the purchase now`;
     } else {
       listPopup.classList.add("crs_list_1");
-      info.querySelector('p').innerHTML = `We can’t guarantee its availability if you don't complete the purchase now`
+      info.querySelector(
+        "p"
+      ).innerHTML = `We can’t guarantee its availability if you don't complete the purchase now`;
     }
 
     if (dataCart.length == lengthMadeForYou) {
-      info.classList.remove('flex')
+      info.classList.remove("flex");
     } else {
-      info.classList.add('flex')
+      info.classList.add("flex");
     }
 
-    if (device == 'desktop') return
-    listPopup.style = `max-height: calc(100vh - ${listPopup.getBoundingClientRect().top}px - 20px - 56px - ${info.offsetHeight}px)`
+    if (device == "desktop") return;
+    listPopup.style = `max-height: calc(100vh - ${
+      listPopup.getBoundingClientRect().top
+    }px - 20px - 56px - ${info.offsetHeight}px)`;
   }
 }
 
