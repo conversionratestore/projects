@@ -1,7 +1,3 @@
-const style = `
-<style>
-</style>`;
-
 const dir = "https://conversionratestore.github.io/projects/7879co/img/";
 
 const $$el = (selector) => document.querySelectorAll(selector);
@@ -10,13 +6,11 @@ const $el = (selector) => document.querySelector(selector);
 // const clarityInterval = setInterval(function () {
 //   if (typeof clarity == 'function') {
 //     clearInterval(clarityInterval)
-//     clarity('set', ' exit_intent_popup', 'variant_1')
+//     clarity('set', 'exit_intent_popup', 'variant_1')
 //   }
 // }, 1000)
 
 const device = window.innerWidth < 769 ? "mobile" : "desktop";
-
-const media = window.matchMedia("(max-width: 1024px)").matches;
 
 let viewBtnAddToCart = false;
 
@@ -24,6 +18,11 @@ let dataCart = [];
 
 let firstAddToProductsInPopup = 0
 let clickAddToCart = false
+let showPopupIsBag = false
+
+
+let isHref = window.location.href
+let newHref = window.location.href
 
 class ListingUpdate {
   constructor(device) {
@@ -36,20 +35,25 @@ class ListingUpdate {
 
       this.styleAppend();
       this.addDataCartInStorage();
-      this.setPopup();
+      this.addPopup();
 
       if (this.checkPageUrl() === 'bag') {
 
         this.removeDataCartInStorage()
 
         if (!sessionStorage.getItem("popupShown")) {
-          setTimeout(() => new ListingUpdate(device).showPopup(), 60000);
           let idleTimer;
           const idleTime = 60000; // час (в мілісекундах), який вважається "неактивним"
 
           function resetIdleTimer() {
             clearTimeout(idleTimer);
-            idleTimer = setTimeout(new ListingUpdate(device).showPopup(), idleTime);
+            idleTimer = setTimeout( () => {
+              if (new ListingUpdate(device).checkPageUrl() === 'bag' && showPopupIsBag == false) {
+                showPopupIsBag = true
+                new ListingUpdate(device).showPopup()
+                console.log('resetIdleTimer: ')
+              }
+            }, idleTime);
           }
 
           // Додайте обробники подій для відслідковування активності користувача
@@ -61,12 +65,15 @@ class ListingUpdate {
           resetIdleTimer();
         }
 
+      } else {
+        showPopupIsBag = false
       }
 
       if (firstAddToProductsInPopup == 0 && localStorage.getItem("crs_cart") && $el(".crs_popup .crs_list")) {
         firstAddToProductsInPopup = 1
         this.addProductInPopup();
       }
+
 
       globalMutation.disconnect();
 
@@ -85,6 +92,7 @@ class ListingUpdate {
 
   checkPageUrl() {
     const pageUrl = window.location.href;
+    newHref = window.location.href
 
     if (pageUrl.includes("/checkout")) {
       return "checkout";
@@ -107,8 +115,10 @@ class ListingUpdate {
             height: 100vh;
             overflow-y: auto;
             opacity: 0;
+            display: flex;
             pointer-events: none;
             transition: all 0.2s ease;
+            background: rgba(12, 10, 10, 0.60);
         }
         .crs_popup.active {
           opacity: 1;
@@ -121,6 +131,8 @@ class ListingUpdate {
             position: relative;
             transition: all 0.2s ease;
             flex-direction: column;
+            max-width: 580px;
+            margin: auto;
         }
         .crs_popup_close {
             position: absolute;
@@ -146,7 +158,7 @@ class ListingUpdate {
         .crs_popup_message {
             background: var(--Gold-100, #E2D098);
             padding: 8px;
-            margin: 0 -24px 16px;
+            margin: 0 0 24px;
             font-size: 13px;
             font-style: normal;
             font-weight: 500;
@@ -157,12 +169,16 @@ class ListingUpdate {
             width: 72px;
             height: 72px;
             margin-right: 12px;
+            background: #F4F4F5;
         }
         .crs_list p {
             font-size: 16px;
             font-weight: 400;
             line-height: 24px;
             margin-bottom: 4px;
+        }
+        .crs_list p b {
+          font-weight: 600;
         }
         .crs_list {
           overflow-y: auto;
@@ -191,6 +207,10 @@ class ListingUpdate {
             font-style: normal;
             font-weight: 500;
             line-height: 18px; 
+            margin: 0;
+        }
+        .crs_popup_left_stock:not(.flex) {
+          display: none;
         }
         .crs_popup_left_stock svg {
             margin-right: 4px;
@@ -203,6 +223,9 @@ class ListingUpdate {
             font-weight: 500;
             line-height: 16px;
             margin: 20px 0;
+        }
+        .crs_popup_info:not(.flex) {
+          display: none;
         }
         .crs_popup_info svg {
             margin-right: 12px;
@@ -219,14 +242,68 @@ class ListingUpdate {
           text-align: center;
           letter-spacing: 1.6px;
           text-transform: uppercase;
-          margin-top: auto;
+          margin: auto auto 0;
+          max-width: 360px;
+          width: 100%;
         }
-        @media (max-width: 1023px) {
+        @media (max-width: 769px) {
           .crs_popup .container {
             height: 100%;
           }
-          .crs_popup {
-              background: #FFF;
+          .crs_popup_message {
+            margin: 0 -24px 16px;
+          }
+        }
+        @media (min-width: 770px) {
+          .crs_popup .container {
+            padding: 48px 24px;
+          }
+          .crs_list img {
+            width: 120px;
+            height: 120px;
+            margin-right: 16px;
+          }
+          .crs_list:not(.crs_list_1) li > div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+          .crs_popup_left_stock {
+            margin-top: 10px;
+          }
+          .crs_list.gap-6 {
+            gap: 16px;
+            max-height: 294px;
+          }
+          .crs_list.gap-6::-webkit-scrollbar {
+            background: #D5D5D8;
+            border-radius: 2px;
+            width: 2px;
+            height: 2px;
+          }
+          .crs_list.gap-6::-webkit-scrollbar-thumb {
+            background: #000;
+            border-radius: 2px;
+          }
+          .crs_popup_info {
+            margin: 24px 0;
+            padding: 8px 16px;
+            font-size: 14px;
+            line-height: 20px;
+          }
+          .crs_popup h2 {
+            font-size: 32px;
+            line-height: 36px;
+          }
+          .crs_popup h2 span {
+            margin-top: 8px;
+          }
+          .crs_popup_close {
+            padding: 16px;
+          }
+          .crs_popup_close svg {
+            width: 16px;
+            height: 16px;
           }
         }
       </style>
@@ -310,7 +387,8 @@ class ListingUpdate {
                   function () {
                       if (x < 50 || y < 50 || x > window.innerWidth - 50 || y > window.innerHeight - 50) {
                         if (localStorage.getItem("crs_cart") && clickAddToCart == false) {
-                          this.showPopup()
+                          new ListingUpdate(device).showPopup()
+                          console.log('showExitIntentPopup desktop: ' )
                         }
                       }
                   },
@@ -332,9 +410,13 @@ class ListingUpdate {
 
                   currentSpeed = newPosition - lastPosition
 
-                  if (currentSpeed > speedValue && localStorage.getItem("crs_cart") && clickAddToCart == false) {
+                  
+                  if (currentSpeed > speedValue && localStorage.getItem("crs_cart") && clickAddToCart == false && window.scrollY != 0) {
+                      console.log('currentSpeed: ' + currentSpeed)
+
                       document.removeEventListener("scroll", scrollSpeed)
                       this.showPopup()
+                      console.log('showExitIntentPopup mobile: ' )
                   }
               }
 
@@ -346,7 +428,7 @@ class ListingUpdate {
     }
   }
 
-  setPopup() {
+  addPopup() {
     const popup = `
     <div class="crs_popup">
         <div class="container flex">
@@ -387,9 +469,20 @@ class ListingUpdate {
       $el(".crs_popup").classList.remove('active')
     })
 
+    $el('.crs_popup').addEventListener('click', (e) => {
+      if (e.target.classList.contains('crs_popup')) {
+        $el(".crs_popup").classList.remove('active')
+      }
+    })
+
     $el('.crs_popup_complete').addEventListener('click', (e) => {
       e.preventDefault()
-      window.location.href = this.checkPageUrl() != 'checkout' ? 'https://7879.co/checkoutv2/' : ''
+
+      if (this.checkPageUrl() != 'checkout') {
+        window.location.href = 'https://7879.co/checkoutv2/' 
+      } else {
+        $el(".crs_popup").classList.remove('active')
+      }
     })
 
     this.showExitIntentPopup()
@@ -515,33 +608,32 @@ class ListingUpdate {
 
   removeDataCartInStorage() {
     if (localStorage.getItem("crs_cart") ) {
-      dataCart = localStorage.getItem("crs_cart")
+      dataCart = JSON.parse(localStorage.getItem("crs_cart"))
 
-      $$el('.flex-col > .justify-start.gap-4 > div:last-child > .text-black > button').forEach(item => {
-        item.addEventListener('click', () => {
+      $$el('.flex-col > .justify-start.gap-4 > div:last-child > .text-black > button').forEach(el => {
+        el.addEventListener('click', (e) => {
 
-          let itemName = item.closest('.relative').querySelectorAll('h5')[0].innerText.trim()
-          let itemPrice = item.closest('.relative').querySelectorAll('h5')[1].innerText.trim().replace()
+          console.log('click remove')
 
-          // Знаходимо індекс об'єкта в масиві за item_name та price
-          const indexToRemove = dataCart.findIndex(
-            (item) => item.item_name === itemName && item.price === itemPrice
-          );
+          let itemName = el.closest('.relative').querySelectorAll('h5')[0].innerText.replace('gold','').replace('platinum','').trim()
+          let itemPrice = el.closest('.relative').querySelectorAll('h5')[1].innerText.replace(',','').trim()
 
-          // Якщо об'єкт знайдено, видаляємо його з масиву
-          if (indexToRemove !== -1) {
-            dataCart.splice(indexToRemove, 1);
+          for (let i = 0; i < dataCart.length; i++) {
+            if (dataCart[i].item_name === itemName && dataCart[i].price === itemPrice.replace(itemPrice[0],'') ) {
+              dataCart.splice(i, 1);
 
-            console.log(dataCart)
+              console.log("update: ", JSON.stringify(dataCart))
 
-            localStorage.setItem("crs_cart", dataCart)
-            this.addProductInPopup()
-
-            console.log(`Object with item_name "${itemName}" and price "${itemPrice}" removed.`);
-          } else {
-            console.log(`Object with item_name "${itemName}" and price "${itemPrice}" not found.`);
+              if ( $$el('.flex-col > .justify-start.gap-4 > div:last-child > .text-black > button').length < 1) {
+                localStorage.removeItem("crs_cart")
+              } else {
+                localStorage.setItem("crs_cart", JSON.stringify(dataCart))
+                localStorage.removeItem("popupShown")
+                this.addProductInPopup()
+              }
+              
+            }
           }
-
         })
       })
     }
@@ -557,10 +649,13 @@ class ListingUpdate {
 
     listPopup.innerHTML = "";
 
+    let lengthMadeForYou = 0;
+
     for (let i = 0; i < dataCart.length; i++) {
-      console.log('addProductInPopup: ' + dataCart[i].low_stock)
-      console.log('addProductInPopup: ' + typeof dataCart[i].low_stock)
-      console.log('addProductInPopup: ' + dataCart[i].low_stock <= 4)
+
+      let madeForYou = dataCart[i].low_stock == 0 && typeof dataCart[i].low_stock != 'object' ? 'MADE FOR YOU' : ''
+
+      lengthMadeForYou += madeForYou != '' ? 1 : 0;
 
       $el(".crs_popup .crs_list").insertAdjacentHTML(
         "beforeend",
@@ -568,27 +663,26 @@ class ListingUpdate {
         <li data-id="${dataCart[i].item_id}">
           <img src="${dataCart[i].image}" alt="${dataCart[i].item_name}">
           <div>
-              <p class="crs_popup_name">${dataCart[i].item_name}</p>
+              <p class="crs_popup_name"><b>${dataCart[i].item_name}</b></p>
               <p class="crs_popup_span">${dataCart[i].metal}</p>
-              <p class="crs_popup_price">${dataCart[i].price}</p>
-              <p class="crs_popup_left_stock flex ${dataCart.length > 1 ? '' : 'justify-center'} items-center"  ${
-                dataCart[i].low_stock <= 4
-                  ? ""
-                  : "hidden"
-              }>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <g clip-path="url(#clip0_128_3836)">
-                      <path d="M13.9658 9.36778C13.7825 6.98156 12.6715 5.48622 11.6914 4.16665C10.7838 2.94503 10 1.89009 10 0.333904C10 0.208904 9.93 0.0946543 9.819 0.037373C9.70766 -0.020252 9.57387 -0.0108145 9.47266 0.062748C8.00066 1.11606 6.77247 2.89134 6.34344 4.58522C6.04559 5.7645 6.00619 7.09025 6.00066 7.96584C4.64128 7.6755 4.33334 5.64212 4.33009 5.61997C4.31478 5.5145 4.25034 5.42272 4.15659 5.37259C4.06188 5.32312 3.95053 5.31953 3.8545 5.36706C3.78322 5.40156 2.10481 6.25437 2.00716 9.6594C2.00031 9.77269 2 9.88631 2 9.9999C2 13.3079 4.69172 15.9995 8 15.9995C8.00456 15.9998 8.00944 16.0005 8.01334 15.9995C8.01466 15.9995 8.01594 15.9995 8.01756 15.9995C11.3177 15.99 14 13.3021 14 9.9999C14 9.83356 13.9658 9.36778 13.9658 9.36778ZM8 15.3329C6.89713 15.3329 6 14.3772 6 13.2025C6 13.1625 5.99969 13.1221 6.00259 13.0726C6.01594 12.5772 6.11003 12.239 6.21322 12.0141C6.40659 12.4294 6.75228 12.8112 7.31381 12.8112C7.49806 12.8112 7.64716 12.6622 7.64716 12.4779C7.64716 12.0034 7.65694 11.4559 7.77509 10.9617C7.88025 10.5236 8.13153 10.0575 8.44991 9.68384C8.5915 10.1688 8.86756 10.5614 9.13709 10.9445C9.52284 11.4926 9.92159 12.0593 9.99159 13.0257C9.99581 13.083 10.0001 13.1407 10.0001 13.2025C10 14.3772 9.10287 15.3329 8 15.3329Z" fill="#D9BA58"/>
-                      </g>
-                      <defs>
-                      <clipPath id="clip0_128_3836">
-                          <rect width="16" height="16" fill="white"/>
-                      </clipPath>
-                      </defs>
-                  </svg>
-                  <span>Only ${
-                    dataCart[i].low_stock
-                  }pcs left in stock</span>  <!-- <= 4 -->
+              <p class="crs_popup_price"><b>${dataCart[i].price}</b></p>
+              <p class="crs_popup_left_stock ${dataCart.length > 1 ? '' : 'justify-center'} items-center ${
+                dataCart[i].low_stock <= 4 && typeof dataCart[i].low_stock != 'object'
+                  ? "flex" : ""
+                }" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <g clip-path="url(#clip0_128_3836)">
+                    <path d="M13.9658 9.36778C13.7825 6.98156 12.6715 5.48622 11.6914 4.16665C10.7838 2.94503 10 1.89009 10 0.333904C10 0.208904 9.93 0.0946543 9.819 0.037373C9.70766 -0.020252 9.57387 -0.0108145 9.47266 0.062748C8.00066 1.11606 6.77247 2.89134 6.34344 4.58522C6.04559 5.7645 6.00619 7.09025 6.00066 7.96584C4.64128 7.6755 4.33334 5.64212 4.33009 5.61997C4.31478 5.5145 4.25034 5.42272 4.15659 5.37259C4.06188 5.32312 3.95053 5.31953 3.8545 5.36706C3.78322 5.40156 2.10481 6.25437 2.00716 9.6594C2.00031 9.77269 2 9.88631 2 9.9999C2 13.3079 4.69172 15.9995 8 15.9995C8.00456 15.9998 8.00944 16.0005 8.01334 15.9995C8.01466 15.9995 8.01594 15.9995 8.01756 15.9995C11.3177 15.99 14 13.3021 14 9.9999C14 9.83356 13.9658 9.36778 13.9658 9.36778ZM8 15.3329C6.89713 15.3329 6 14.3772 6 13.2025C6 13.1625 5.99969 13.1221 6.00259 13.0726C6.01594 12.5772 6.11003 12.239 6.21322 12.0141C6.40659 12.4294 6.75228 12.8112 7.31381 12.8112C7.49806 12.8112 7.64716 12.6622 7.64716 12.4779C7.64716 12.0034 7.65694 11.4559 7.77509 10.9617C7.88025 10.5236 8.13153 10.0575 8.44991 9.68384C8.5915 10.1688 8.86756 10.5614 9.13709 10.9445C9.52284 11.4926 9.92159 12.0593 9.99159 13.0257C9.99581 13.083 10.0001 13.1407 10.0001 13.2025C10 14.3772 9.10287 15.3329 8 15.3329Z" fill="#D9BA58"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_128_3836">
+                        <rect width="16" height="16" fill="white"/>
+                    </clipPath>
+                    </defs>
+                </svg>
+                <span>${madeForYou != '' ? madeForYou : 
+                  `Only ` + dataCart[i].low_stock + `pcs left in stock`}
+                </span> 
               </p>
           </div>
       </li>`
@@ -603,9 +697,15 @@ class ListingUpdate {
       info.querySelector('p').innerHTML = `We can’t guarantee its availability if you don't complete the purchase now`
     }
 
+    if (dataCart.length == lengthMadeForYou) {
+      info.classList.remove('flex')
+    } else {
+      info.classList.add('flex')
+    }
+
+    if (device == 'desktop') return
     listPopup.style = `max-height: calc(100vh - ${listPopup.getBoundingClientRect().top}px - 20px - 56px - ${info.offsetHeight}px)`
   }
-
 }
 
 new ListingUpdate(device);
