@@ -1002,7 +1002,7 @@ const html = `
             <div>
                 <h2 class="mb-md-4 mb-2">More Than a Challenge - A Community.</h2>
                 <p class="mb-md-4 pt-md-0 pt-1">Embark on your yoga journey and join a thriving online community of like-minded individuals, all supporting, sharing, and growing together. Your path is yours, but you’ll never walk it alone.</p>
-                <a href="#crs_cards" class="crs_btn blue d-md-block d-none">Explore Challenges</a>
+                <a href="#crs_cards" class="crs_btn blue d-md-block d-none" onclick="pushDataLayer(['exp_new_year_pag_but_commun_expl', 'Explore Challenges', 'Button', 'More Than a Challenge - A Community.'])">Explore Challenges</a>
             </div>
         </div>
     </section>
