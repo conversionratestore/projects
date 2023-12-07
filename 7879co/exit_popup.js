@@ -487,6 +487,13 @@ class ListingUpdate {
 
     this.showExitIntentPopup()
 
+    if (device == 'desktop') return
+    
+    const appHeight = () => {
+      $el(".crs_popup").style.height = window.innerHeight + 'px';
+    }
+    window.addEventListener('resize', appHeight)
+    appHeight()
   }
 
   addDataCartInStorage() {
