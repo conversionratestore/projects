@@ -12,19 +12,13 @@ const $el = (selector) => document.querySelector(selector);
 
 const device = window.innerWidth < 769 ? "mobile" : "desktop";
 
-let viewBtnAddToCart = false;
-
 let dataCart = [];
 
-let firstAddToProductsInPopup = 0
+let usedDefaultLog = false;
+let isProductsInCart = false
 let clickAddToCart = false
-let showPopupIsBag = false
 
-
-let isHref = window.location.href
-let newHref = window.location.href
-
-class ListingUpdate {
+class ExitIntentPopup {
   constructor(device) {
     this.device = device;
     this.init();
@@ -38,42 +32,14 @@ class ListingUpdate {
       this.addPopup();
 
       if (this.checkPageUrl() === 'bag') {
-
-        this.removeDataCartInStorage()
-
-        if (!sessionStorage.getItem("popupShown")) {
-          let idleTimer;
-          const idleTime = 60000; // час (в мілісекундах), який вважається "неактивним"
-
-          function resetIdleTimer() {
-            clearTimeout(idleTimer);
-            idleTimer = setTimeout( () => {
-              if (new ListingUpdate(device).checkPageUrl() === 'bag' && showPopupIsBag == false) {
-                showPopupIsBag = true
-                new ListingUpdate(device).showPopup()
-                console.log('resetIdleTimer: ')
-              }
-            }, idleTime);
-          }
-
-          // Додайте обробники подій для відслідковування активності користувача
-          document.addEventListener('mousemove', resetIdleTimer);
-          document.addEventListener('keydown', resetIdleTimer);
-          document.addEventListener('click', resetIdleTimer);
-
-          // Початкове запускання таймера
-          resetIdleTimer();
-        }
-
-      } else {
-        showPopupIsBag = false
+        this.removeItemCartInStorage()
+        this.longInactivityInBag()
       }
 
-      if (firstAddToProductsInPopup == 0 && localStorage.getItem("crs_cart") && $el(".crs_popup .crs_list")) {
-        firstAddToProductsInPopup = 1
-        this.addProductInPopup();
+      if (isProductsInCart == false && localStorage.getItem("crs_cart") && $el(".crs_popup .crs_list")) {
+        isProductsInCart = true
+        this.updateProductsInPopup();
       }
-
 
       globalMutation.disconnect();
 
@@ -92,7 +58,6 @@ class ListingUpdate {
 
   checkPageUrl() {
     const pageUrl = window.location.href;
-    newHref = window.location.href
 
     if (pageUrl.includes("/checkout")) {
       return "checkout";
@@ -373,13 +338,38 @@ class ListingUpdate {
     );
   }
 
+  longInactivityInBag() {
+    if (!sessionStorage.getItem("popupShown")) {
+      let idleTimer;
+      const idleTime = 60000; // час (в мілісекундах), який вважається "неактивним"
+
+      function resetIdleTimer() {
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(() => {
+          if (new ExitIntentPopup(device).checkPageUrl() === "bag" && localStorage.getItem("crs_cart")) {
+            new ExitIntentPopup(device).showPopup();
+            console.log("resetIdleTimer: ");
+          }
+        }, idleTime);
+      }
+
+      // Додайте обробники подій для відслідковування активності користувача
+      document.addEventListener("mousemove", resetIdleTimer);
+      document.addEventListener("keydown", resetIdleTimer);
+      document.addEventListener("click", resetIdleTimer);
+
+      // Початкове запускання таймера
+      resetIdleTimer();
+    }
+  }
+
   showPopup() {
     $el(".crs_popup").classList.add('active');
     sessionStorage.setItem("popupShown", "true");
     console.log('showPopup')
   }
 
-  showExitIntentPopup() {
+  setExitIntentPopup() {
     if (!sessionStorage.getItem("popupShown") && $el(".crs_popup")) {
       switch (device) {
           case "desktop":
@@ -394,8 +384,8 @@ class ListingUpdate {
                   function () {
                       if (x < 50 || y < 50 || x > window.innerWidth - 50 || y > window.innerHeight - 50) {
                         if (localStorage.getItem("crs_cart") && clickAddToCart == false) {
-                          new ListingUpdate(device).showPopup()
-                          console.log('showExitIntentPopup desktop: ' )
+                          new ExitIntentPopup(device).showPopup()
+                          console.log('setExitIntentPopup desktop: ' )
                         }
                       }
                   },
@@ -417,13 +407,12 @@ class ListingUpdate {
 
                   currentSpeed = newPosition - lastPosition
 
-                  
                   if (currentSpeed > speedValue && localStorage.getItem("crs_cart") && clickAddToCart == false && window.scrollY != 0) {
                       console.log('currentSpeed: ' + currentSpeed)
 
                       document.removeEventListener("scroll", scrollSpeed)
                       this.showPopup()
-                      console.log('showExitIntentPopup mobile: ' )
+                      console.log('setExitIntentPopup mobile: ' )
                   }
               }
 
@@ -492,7 +481,7 @@ class ListingUpdate {
       }
     })
 
-    this.showExitIntentPopup()
+    this.setExitIntentPopup()
 
     if (device == 'desktop') return
 
@@ -508,9 +497,9 @@ class ListingUpdate {
       $$el("button.tracking-widest").forEach((item) => {
         if (
           item.innerText.toLowerCase().includes("add to bag") &&
-          viewBtnAddToCart == false
+          usedDefaultLog == false
         ) {
-          viewBtnAddToCart = true;
+          usedDefaultLog = true;
 
           function checkData(val) {
             if (val.includes("item_id")) {
@@ -548,13 +537,16 @@ class ListingUpdate {
                     ? $el(".sticky img.object-cover").src
                     : "";
 
+                  let price = parseFloat(parsedData[0]
+                    .split('"price":')[1]
+                    .split("}")[0]
+                    .split("\n")
+                    .join("")
+                    .trim()).toFixed(2);
+
                   dataCart.push({
                     'item_name': title,
-                    'price': parsedData[0]
-                      .split('"price":')[1]
-                      .split("}")[0]
-                      .split("\n")
-                      .join("").trim(),
+                    'price': price,
                     'low_stock': +(parsedData[0]
                       .split('"low_stock":')[1]
                       .split(",")[0].trim()),
@@ -590,14 +582,19 @@ class ListingUpdate {
                   sessionStorage.removeItem("popupShown") 
 
                   clickAddToCart = true
-                  new ListingUpdate(device).addProductInPopup();
+                  new ExitIntentPopup(device).updateProductsInPopup();
 
-                  window.addEventListener('scroll', (e) => {
-                    if (window.scrollY == 0) {
-                      clickAddToCart = false
-                      new ListingUpdate(device).showExitIntentPopup()
-                    }
-                  })
+                  if (device == 'mobile') {
+                    window.addEventListener('scroll', (e) => {
+                      if (window.scrollY == 0) {
+                        clickAddToCart = false
+                        new ExitIntentPopup(device).setExitIntentPopup()
+                      }
+                    })
+                  } else {
+                    clickAddToCart = false
+                    new ExitIntentPopup(device).setExitIntentPopup()
+                  }
                 }
               } catch (error) {
                 console.error("Error parsing JSON:", error);
@@ -620,40 +617,43 @@ class ListingUpdate {
     }
   }
 
-  removeDataCartInStorage() {
-    if (localStorage.getItem("crs_cart") ) {
+  removeItemCartInStorage() {
+    if (localStorage.getItem("crs_cart")) {
       dataCart = JSON.parse(localStorage.getItem("crs_cart"))
 
-      $$el('.flex-col > .justify-start.gap-4 > div:last-child > .text-black > button').forEach(el => {
-        el.addEventListener('click', (e) => {
+      if (dataCart.length > 0) {
 
-          console.log('click remove')
-
-          let itemName = el.closest('.relative').querySelectorAll('h5')[0].innerText.replace('gold','').replace('platinum','').trim()
-          let itemPrice = el.closest('.relative').querySelectorAll('h5')[1].innerText.replace(',','').trim()
-
-          for (let i = 0; i < dataCart.length; i++) {
-            if (dataCart[i].item_name === itemName && dataCart[i].price === itemPrice.replace(itemPrice[0],'') ) {
-              dataCart.splice(i, 1);
-
-              console.log("update: ", JSON.stringify(dataCart))
-
-              if ( $$el('.flex-col > .justify-start.gap-4 > div:last-child > .text-black > button').length < 1) {
-                localStorage.removeItem("crs_cart")
-              } else {
+        $$el('.flex-col > .justify-start.gap-4 > div:last-child > .text-black > button').forEach(el => {
+          el.addEventListener('click', (e) => {
+  
+            console.log('click remove')
+  
+            let itemName = el.closest('.relative').querySelectorAll('h5')[0].innerText.replace('gold','').replace('platinum','').trim()
+            let itemPrice = el.closest('.relative').querySelectorAll('h5')[1].innerText.replace(',','').trim()
+  
+            for (let i = 0; i < dataCart.length; i++) {
+              if (dataCart[i].item_name === itemName && dataCart[i].price === itemPrice.replace(itemPrice[0],'') ) {
+                dataCart.splice(i, 1);
+  
+                console.log("update")
+  
                 localStorage.setItem("crs_cart", JSON.stringify(dataCart))
                 sessionStorage.removeItem("popupShown") 
-                this.addProductInPopup()
+                if (localStorage.getItem("crs_cart") == '[]') {
+                  localStorage.removeItem("crs_cart")
+                } else {
+                  this.updateProductsInPopup()
+                }
+                
               }
-              
             }
-          }
+          })
         })
-      })
+      }
     }
   }
 
-  addProductInPopup() {
+  updateProductsInPopup() {
     if (!localStorage.getItem("crs_cart") && !$el(".crs_popup .crs_list")) return;
 
     dataCart = JSON.parse(localStorage.getItem("crs_cart"))
@@ -722,7 +722,7 @@ class ListingUpdate {
   }
 }
 
-new ListingUpdate(device);
+new ExitIntentPopup(device);
 
 // const hjInterval = setInterval(function () {
 //   if (typeof hj == 'function') {

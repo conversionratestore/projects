@@ -717,7 +717,7 @@ const slide = (data, key) => {
                     </svg>
                 </div>
                 <p>${data.comments}</p>
-                <a href="#" class="d-none">Read more</a>
+                <a href="#" class="d-none" onclick="pushDataLayer(['exp_new_year_pag_lin_story_read', 'Read more - ${data.author}', 'Link', 'Real Stories, Real Transformations'])">Read more</a>
             </div>
         </div>
     </div>`;
@@ -839,7 +839,8 @@ function handleVisibility(el, eventParams) {
 
           if (roundedDuration) {
             const eventData = eventParams
-            eventData[1] = roundedDuration
+            const name = eventData[1].split('-') ? ' -' + eventData[1].split('-')[1] : ''
+            eventData[1] = roundedDuration + name
             pushDataLayer(eventData)
             observer.disconnect()
           }
@@ -1388,8 +1389,8 @@ const init = setInterval(() => {
     document.querySelectorAll('.crs_card').forEach(item => {
         handleVisibility(item, ['exp_new_year_pag_vis_choospath_focu', `{{focusTime}} - ${item.querySelector('h4').innerText}`, 'Visibility ', 'Choose Your Path, Accept the Challenge'])
 
-        item.querySelector('.crs_btn').addEventListener('click', () => {
-            pushDataLayer(['exp_new_year_pag_but_choospath_deta', 'See Details - {{title_name}}', 'Button', 'Choose Your Path, Accept the Challenge'])
+        item.querySelector('.crs_btn').addEventListener('click', (e) => {
+            pushDataLayer(['exp_new_year_pag_but_choospath_deta', `See Details - ${item.querySelector('h4').innerText}`, 'Button', 'Choose Your Path, Accept the Challenge'])
         })
     })
 
