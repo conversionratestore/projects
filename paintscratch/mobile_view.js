@@ -97,6 +97,18 @@ const minusSvg = /* html */ `
 </svg>
 `
 
+const closeSvg = /* html */ `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+<g clip-path="url(#clip0_510_13116)">
+<path d="M5.01041 3.40381L8.19239 6.58579L11.3744 3.40381C11.75 3.02816 12.4129 3.02816 12.7886 3.40381C13.1863 3.80155 13.1642 4.44237 12.7886 4.81802L9.6066 8L12.7886 11.182C13.1863 11.5797 13.1642 12.2205 12.7886 12.5962C12.3908 12.9939 11.7721 12.9939 11.3744 12.5962L8.19239 9.41421L5.01041 12.5962C4.61266 12.9939 3.99394 12.9939 3.59619 12.5962C3.22054 12.2205 3.19845 11.5797 3.59619 11.182L6.77817 8L3.59619 4.81802C3.22054 4.44237 3.19845 3.80155 3.59619 3.40381C3.97184 3.02816 4.63476 3.02816 5.01041 3.40381Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_510_13116">
+<rect width="16" height="16" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+`
+
 const librariesLinks = [
   'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js',
   'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css',
@@ -857,9 +869,11 @@ class mobileDesign {
           border: none;
         }
         .regular #single-products-container .products-list {
-          width: auto;
+          width: calc(50% - 9px);
           text-align: center;
           height: auto !important;
+          display: flex;
+          flex-direction: column;
         }
         .regular #single-products-container .products-list a.related-items {
           margin: 0 auto 16px !important;
@@ -885,6 +899,7 @@ class mobileDesign {
           text-decoration: none;
         }
         .regular #single-products-container .products-list span.price {
+          margin-top: auto;
           font-size: 18px !important;
           line-height: 24px !important;
           font-weight: 700;
@@ -898,7 +913,10 @@ class mobileDesign {
           line-height: 22px !important;
         }
         .slider_wrapper_product {
-          padding-bottom: 58px;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 18px;
+          padding-bottom: 16px;
           margin-bottom: 0 !important;
           border-bottom: 1px solid #DBDBDB;
         }
@@ -945,6 +963,30 @@ class mobileDesign {
           z-index: 999;
           border-top: 1px solid #CCC;
           box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.15);
+        }
+        .to_cart button span {
+          display: flex;
+          align-items: center;
+          height: 19px;
+          position: relative;
+        }
+        .to_cart button span b {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 14px;
+          width: 14px;
+          border-radius: 50%;
+          background-color: #900;
+          color: #fff;
+          font-size: 10px;
+          font-weight: 700;
+          position: absolute;
+          top: -4px;
+          right: -7px;
+        } 
+        .to_cart button img {
+          height: 100%;
         }
         .to_cart button,
         #ordertotals a.action-button-orange {
@@ -1146,19 +1188,59 @@ class mobileDesign {
           width: 100% !important;
           margin-left: 0 !important;
         }
+        .slider_wrapper_product .show_more {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-top: 8px;
+        }
+        .slider_wrapper_product .show_more button {
+          border: none;
+          background: none;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 1.5;
+          color: #0373BD;
+          text-decoration: underline;
+        }
+        .add_to_cart_info {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          background-color: #0373BD;
+          padding: 10px 16px;
+          z-index: 999;
+        }
+        .add_to_cart_info p {
+          font-size: 14px;
+          line-height: 20px;
+          color: #fff;
+          margin-bottom: 0;
+          padding-right: 32px;
+          font-weight: 700;
+          text-align: left;
+        }
+        .add_to_cart_info .close {
+          position: absolute;
+          top: 50%;
+          right: 16px;
+          transform: translateY(-50%);
+          border: none;
+          background: none;
+        }
       </style>
     `
 
     const toCart = /* html */ `
       <div class="to_cart">
-        <button>View Shopping Cart ${btnArrowSvg}</button>
+        <button><span><img src="${git}/cart.png" alt=""></span>View Shopping Cart ${btnArrowSvg}</button>
       </div>
     `
 
     const listQty = /* html */ `
         <div class="list_qty">
           <div>
-            <span>Quantity:</span>
             <div class="qty_selector">
               <span>${minusSvg}</span>
               <input type="text" value="1" readonly>
@@ -1390,15 +1472,19 @@ class mobileDesign {
         e.preventDefault()
         const qty = $(this).parent().find('input').val()
         const name = $(this).closest('.products-list').find('select.quantity').attr('name')
+        const fullName = $(this).closest('.products-list').find('p>a').text()
         console.log(qty, name)
         AddCart(qty, name)
         checkCart()
         pushDataLayer('exp_mob_redes_add_to_cart_btn', 'Add to cart', 'Button', 'Products page')
+        addCartInfo(fullName)
       })
 
       $('.add-to-cart').on('click', function (e) {
         setTimeout(() => {
+          const name = $(this).closest('.kit-item').find('h2').text()
           checkCart()
+          addCartInfo(name)
         }, 500)
       })
 
@@ -1463,16 +1549,43 @@ class mobileDesign {
       })
     }
 
-    $('.slider_wrapper_product').each(function (i, item) {
-      $(item).slick({
-        infinite: false,
-        slidesToShow: 1.5,
-        slidesToScroll: 1,
-        arrows: false,
-        dots: true
-      })
+    // $('.slider_wrapper_product').each(function (i, item) {
+    //   $(item).slick({
+    //     infinite: false,
+    //     slidesToShow: 1.5,
+    //     slidesToScroll: 1,
+    //     arrows: false,
+    //     dots: true
+    //   })
 
-      $(item).slick('slickGoTo', 0)
+    //   $(item).slick('slickGoTo', 0)
+    // })
+
+    $('.slider_wrapper_product').each(function (i, item) {
+      const items = $(item).find('.products-list')
+      if (items.length > 4) {
+        items.each((i, item) => {
+          if (i > 3) {
+            $(item).hide()
+          }
+        })
+        $(item).append(/* html */ `
+          <div class="show_more">
+            <button>Show All</button>
+          </div>
+        `)
+        $(item)
+          .find('.show_more button')
+          .on('click', function () {
+            $(this)
+              .closest('.slider_wrapper_product')
+              .find('.products-list')
+              .each((i, item) => {
+                $(item).show()
+              })
+            $(this).parent().remove()
+          })
+      }
     })
 
     $('input[type="checkbox"]').on('change', function () {
@@ -1498,11 +1611,18 @@ class mobileDesign {
 
     function checkCart() {
       let cartLength = window.currcart.length
+      let totalItems = 0
+      window.currcart.forEach(item => {
+        const itemData = item.split('|')
+        totalItems += +itemData[0]
+      })
       console.log(cartLength)
       if (cartLength > 0) {
         $('.to_cart').addClass('fix')
+        $('.to_cart button span').append(/* html */ `<b>${totalItems}</b>`)
       } else {
         $('.to_cart').removeClass('fix')
+        $('.to_cart button span b').remove()
       }
     }
 
@@ -1544,6 +1664,23 @@ class mobileDesign {
       } else {
         $('.slide_cart .sub_total').text(`Subtotal: $${total.toFixed(2)}`)
       }
+    }
+
+    function addCartInfo(name) {
+      const ellipsis = name.length > 20 ? '...' : ''
+      $('body').append(/* html */ `
+          <div class="add_to_cart_info">
+            <p><span>${name.slice(0, 20) + ellipsis}</span> was added to Cart</p>
+            <div class="close">${closeSvg}</div>
+          </div>
+      `)
+      let autoClose = setTimeout(() => {
+        $('.add_to_cart_info').remove()
+      }, 5000)
+      $('.add_to_cart_info .close').on('click', function () {
+        $(this).closest('.add_to_cart_info').remove()
+        clearTimeout(autoClose)
+      })
     }
   }
 
@@ -2010,6 +2147,15 @@ class mobileDesign {
         }
         #bottom-secure-checkout {
           width: 100% !important;
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          padding: 15px;
+          z-index: 999;
+          margin-bottom: 0;
+          border-top: 1px solid var(--Border, #CCC);
+          background: #FFF;
+          box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.15);
         }
         a.action-button-orange {
           width: 100% !important;
@@ -2050,6 +2196,7 @@ class mobileDesign {
         .checkoutstep #page #main #bottom-information #bottom-information-right span a {
           font-weight: 700;
         }
+
       </style>
     `
 
