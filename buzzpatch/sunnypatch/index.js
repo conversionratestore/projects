@@ -58,14 +58,12 @@ let style = /* html */ `
         letter-spacing: 0.1px;
         padding-left: 8px;
     }
-    .exp-crs .header-shipping .trust-rating {
-        position: relative;
-        z-index: 2;
-    }
     .hand-banner {
         padding: 0 5px;
     }
     .exp-crs .header-shipping .trust-rating {
+        position: relative;
+        z-index: 2;
         max-width: calc(100% - 20px);
         display: flex;
         align-items: center;
@@ -75,6 +73,7 @@ let style = /* html */ `
         font-size: 15px;
         border-radius: 4px 4px 0 0;
         background: rgba(255, 255, 255, 0.90);
+        color: #1F1F5B;
     }
 
     .exp-crs .trust-rating img {
@@ -175,6 +174,7 @@ let style = /* html */ `
         line-height: normal;
         letter-spacing: 0.75px;
         margin-bottom: 8px;
+        color: #000 !important;
     }
     .exp-crs #purchase .js-heading>h2+p {
         color: var(--Black, #000);
@@ -447,7 +447,19 @@ let style = /* html */ `
             top: 75px;
         }
     }
-    
+
+    .bp-mob-table-container .js-heading .js-btn.btn-primary {
+      font-size: 22px !important;
+    }
+    #faqs h2 {
+      font-size: 30px !important;
+      font-weight: 700 !important;
+    }
+    #reviews h2 {
+      font-size: 25px !important;
+      font-weight: 400 !important;
+      line-height: 42px !important;
+    }
 </style>`
 
 // pushDataLayer
@@ -675,6 +687,7 @@ let init = setInterval(() => {
 
     document.querySelectorAll('.js-mobile.effectiveness #open')[0].innerText = 'GET READY FOR SUN-FILLED FUN!'
     document.querySelectorAll('.js-mobile.effectiveness #open')[0].style.fontSize = '22px'
+    document.querySelectorAll('.exp-crs .bp-comparison h2')[0].innerHTML = 'sunnypatch<br>vs<br>alternatives'
 
     document.head.insertAdjacentHTML(
       'beforeend',
