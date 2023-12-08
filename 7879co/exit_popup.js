@@ -759,45 +759,47 @@ class ExitIntentPopup {
 
   removeItemCartInStorage() {
     if (localStorage.getItem("crs_cart")) {
-      dataCart = JSON.parse(localStorage.getItem("crs_cart"));
+      $$el(
+        ".flex-col > .justify-start.gap-4 > div:last-child > .text-black > button"
+      ).forEach((el) => {
+        el.addEventListener("click", (e) => {
 
-      if (dataCart.length > 0) {
-        $$el(
-          ".flex-col > .justify-start.gap-4 > div:last-child > .text-black > button"
-        ).forEach((el) => {
-          el.addEventListener("click", (e) => {
+          dataCart = JSON.parse(localStorage.getItem("crs_cart"));
 
-            let itemName = el
-              .closest(".relative")
-              .querySelectorAll("h5")[0]
-              .innerText.toLowerCase().trim();
+          let itemName = el
+            .closest(".relative")
+            .querySelectorAll("h5")[0]
+            .innerText.toLowerCase();
 
-            let itemMetal = itemName.includes('platinum') ? 'platinum' : 'gold'
+          let itemMetal = itemName.includes('platinum') ? 'platinum' : 'gold'
 
-            console.log(itemName)
-            console.log(itemMetal)
+          console.log(itemMetal)
 
-            for (let i = 0; i < dataCart.length; i++) {
-              if (
-                dataCart[i].item_name.toLowerCase().includes(itemName.replace("gold", "").replace("platinum", "").trim()) &&
-                dataCart[i].metal.toLowerCase().includes(itemMetal)
-              ) {
-                dataCart.splice(i, 1);
+          let newItemName = itemName.replace("gold", "").replace("platinum", "").trim()
+          console.log(newItemName)
 
-                console.log("remove: " + dataCart[i].item_name.toLowerCase() + ' / ' +  dataCart[i].metal.toLowerCase());
+          for (let i = 0; i < dataCart.length; i++) {
+            console.log("remove: " + dataCart[i].item_name.toLowerCase() + ' / ' +  dataCart[i].metal.toLowerCase());
 
-                localStorage.setItem("crs_cart", JSON.stringify(dataCart));
-                sessionStorage.removeItem("popupShown");
-                if (localStorage.getItem("crs_cart") == "[]") {
-                  localStorage.removeItem("crs_cart");
-                } else {
-                  this.updateProductsInPopup();
-                }
+            if (
+              dataCart[i]['item_name'].toLowerCase().includes(newItemName) &&
+              dataCart[i]['metal'].toLowerCase().includes(itemMetal)
+            ) {
+              dataCart.splice(i, 1);
+
+              
+              localStorage.setItem("crs_cart", JSON.stringify(dataCart));
+
+              sessionStorage.removeItem("popupShown");
+              if (localStorage.getItem("crs_cart") == "[]") {
+                localStorage.removeItem("crs_cart");
+              } else {
+                this.updateProductsInPopup();
               }
             }
-          });
+          }
         });
-      }
+      });
     }
   }
 
