@@ -770,22 +770,21 @@ class ExitIntentPopup {
             let itemName = el
               .closest(".relative")
               .querySelectorAll("h5")[0]
-              .innerText.replace("gold", "")
-              .replace("platinum", "")
-              .trim().toLowerCase();
+              .innerText.toLowerCase().trim();
 
             let itemMetal = itemName.includes('platinum') ? 'platinum' : 'gold'
 
-              console.log(itemName)
-              console.log(itemMetal)
+            console.log(itemName)
+            console.log(itemMetal)
+
             for (let i = 0; i < dataCart.length; i++) {
               if (
-                dataCart[i].item_name.toLowerCase() === itemName &&
+                dataCart[i].item_name.toLowerCase().includes(itemName.replace("gold", "").replace("platinum", "").trim()) &&
                 dataCart[i].metal.toLowerCase().includes(itemMetal)
               ) {
                 dataCart.splice(i, 1);
 
-                console.log("update");
+                console.log("remove: " + dataCart[i].item_name.toLowerCase() + ' / ' +  dataCart[i].metal.toLowerCase());
 
                 localStorage.setItem("crs_cart", JSON.stringify(dataCart));
                 sessionStorage.removeItem("popupShown");
