@@ -368,7 +368,6 @@ class ExitIntentPopup {
             localStorage.getItem("crs_cart")
           ) {
             new ExitIntentPopup(device).showPopup();
-            console.log("resetIdleTimer: ");
           }
         }, idleTime);
       }
@@ -684,14 +683,7 @@ class ExitIntentPopup {
                     ? $el(".sticky img.object-cover").src
                     : "";
 
-                  let price = parseFloat(
-                    parsedData[0]
-                      .split('"price":')[1]
-                      .split("}")[0]
-                      .split("\n")
-                      .join("")
-                      .trim()
-                  ).toFixed(2);
+                  let price = $el("#main .layout-container h1").parentElement.querySelector('.my-7 > div > h3').innerText
 
                   dataCart.push({
                     item_name: title,

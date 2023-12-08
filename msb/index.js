@@ -22,10 +22,6 @@ const styleBase = /*html*/ `
     margin: 0 3px;
     max-width: 38px;
 }
-.crs_klarna a {
-    text-decoration-line: underline;
-    text-wrap: nowrap;
-}
 .crs_discount {
     color: var(--Brown, #862B04);
     font-size: 14px;
@@ -1285,11 +1281,7 @@ function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
 }
 
 function klarna(price) {
-  return `<p class="crs_klarna">or 3 interest-free payments of <b>£${(
-    price / 3
-  ).toFixed(
-    2
-  )}</b> with <img src="${dir}klarna.png" alt="klarna"> <a href="#">Learn More</a></p>`;
+  return `<p class="crs_klarna">or 3 interest-free payments of <b>£${( price / 3).toFixed(2)}</b> with <img src="${dir}klarna.png" alt="klarna"></p>`;
 }
 
 function setStickyBtn(price) {
@@ -1353,6 +1345,10 @@ function handleCartMutation(mutationsList, observer) {
       const targetElement = mutation.target;
       if (targetElement.classList.contains("active")) {
         let countProduct = 0;
+
+        targetElement.querySelector(".minicart-title").innerHTML =
+          "Shopping Bag (<span>0</span>)";
+
         targetElement
           .querySelectorAll(
             '.minicart-items li .option-wrapper > .values [data-bind="text: qty"]'
@@ -1380,6 +1376,7 @@ function handleCartMutation(mutationsList, observer) {
           targetElement.querySelector(".minicart-title span").innerHTML == "0"
         )
           return;
+
 
         targetElement.querySelector("#top-cart-btn-checkout")
           .addEventListener("click", (e) => {
@@ -1423,16 +1420,6 @@ function handleCartMutation(mutationsList, observer) {
               "afterend",
               klarna(+price.replace(price[0], ""))
             );
-          document
-            .querySelector(".crs_klarna a")
-            .addEventListener("click", () => {
-              pushDataLayer([
-                "exp_inc_soc_trus_lin_cart_learn",
-                "Learn More",
-                "Link",
-                "Cart",
-              ]);
-            });
         }
         targetElement.querySelector(".crs_sub .pr b").innerHTML = price;
 
@@ -1536,17 +1523,6 @@ function start() {
                 .getAttribute("data-price-amount")
             )
           );
-
-          document
-            .querySelector(".crs_klarna a")
-            .addEventListener("click", () => {
-              pushDataLayer([
-                "exp_inc_soc_trus_lin_pdpunpri_leamor",
-                "Learn More",
-                "Link",
-                "PDP Under the price",
-              ]);
-            });
 
           const waitForDiscount = setInterval(() => {
             if (
@@ -1876,9 +1852,6 @@ function start() {
       }
       waitForElement(".header-right-block > ul > .minicart-wrapper").then(
         (cartElement) => {
-          cartElement.querySelector(".minicart-title").innerHTML =
-            "Shopping Bag (<span>0</span>)";
-
           cartElement
             .querySelector(".block-minicart")
             .addEventListener("click", (e) => {
@@ -1902,8 +1875,6 @@ function start() {
       );
 
       waitForElement(".mobile-basket-block").then((cartElement) => {
-        cartElement.querySelector(".minicart-title").innerHTML =
-          "Shopping Bag (<span>0</span>)";
 
         // Create a Mutation Observer to watch for changes in the cart.
         const cartObserver = new MutationObserver(handleCartMutation);
