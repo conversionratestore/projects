@@ -33,9 +33,11 @@ class ExitIntentPopup {
       this.addDataCartInStorage();
       this.addPopup();
 
+      if (this.checkPageUrl() === "bag" || this.checkPageUrl() === "checkout") {
+        this.longInactivityInBag();
+      }
       if (this.checkPageUrl() === "bag") {
         this.removeItemCartInStorage();
-        this.longInactivityInBag();
       }
 
       if (
@@ -130,6 +132,7 @@ class ExitIntentPopup {
             font-size: 16px;
             line-height: 24px; 
             margin-top: 4px;
+            text-transform: initial;
         }
         .crs_popup_message {
             background: var(--Gold-100, #E2D098);
@@ -358,7 +361,10 @@ class ExitIntentPopup {
         clearTimeout(idleTimer);
         idleTimer = setTimeout(() => {
           if (
-            new ExitIntentPopup(device).checkPageUrl() === "bag" &&
+            (
+              new ExitIntentPopup(device).checkPageUrl() === "bag" || 
+              new ExitIntentPopup(device).checkPageUrl() === "checkout"
+            ) &&
             localStorage.getItem("crs_cart")
           ) {
             new ExitIntentPopup(device).showPopup();
@@ -412,7 +418,8 @@ class ExitIntentPopup {
               ) {
                 if (
                   localStorage.getItem("crs_cart") &&
-                  clickAddToCart == false
+                  clickAddToCart == false &&
+                  !sessionStorage.getItem("popupShown")
                 ) {
                   new ExitIntentPopup(device).showPopup();
                   console.log("setExitIntentPopup desktop: ");
@@ -441,7 +448,8 @@ class ExitIntentPopup {
               currentSpeed > speedValue &&
               localStorage.getItem("crs_cart") &&
               clickAddToCart == false &&
-              window.scrollY != 0
+              window.scrollY != 0 &&
+              !sessionStorage.getItem("popupShown")
             ) {
               console.log("currentSpeed: " + currentSpeed);
 
@@ -554,7 +562,17 @@ class ExitIntentPopup {
       e.preventDefault();
 
       if (this.checkPageUrl() != "checkout") {
-        window.location.href = "https://7879.co/checkoutv2/";
+        if (window.location.href.includes('/int-usd') || 
+          window.location.href.includes('/ie') ||
+          window.location.href.includes('/us') ||
+          window.location.href.includes('/gcc') ||
+          window.location.href.includes('/eu')
+          ) {
+          window.location.href  = '/' + window.location.href.split('7879.co/')[1].split('/')[0] + '/checkoutv2/'
+        } else {
+          window.location.href  = "/checkoutv2/"
+        }
+       
       } else {
         $el(".crs_popup").classList.remove("active");
       }
@@ -764,7 +782,6 @@ class ExitIntentPopup {
           ".flex-col > .justify-start.gap-4 > div:last-child > .text-black > button"
         ).forEach((el) => {
           el.addEventListener("click", (e) => {
-            console.log("click remove");
 
             let itemName = el
               .closest(".relative")
