@@ -673,6 +673,9 @@ let init = setInterval(() => {
     document.body.classList.add('exp-crs')
     document.body.insertAdjacentHTML('afterbegin', style)
 
+    document.querySelectorAll('.js-mobile.effectiveness #open')[0].innerText = 'GET READY FOR SUN-FILLED FUN!'
+    document.querySelectorAll('.js-mobile.effectiveness #open')[0].style.fontSize = '22px'
+
     document.head.insertAdjacentHTML(
       'beforeend',
       `
