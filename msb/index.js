@@ -1375,10 +1375,23 @@ function handleCartMutation(mutationsList, observer) {
                 </svg>`;
           });
 
+          
         if (
           targetElement.querySelector(".minicart-title span").innerHTML == "0"
         )
           return;
+
+        targetElement.querySelector("#top-cart-btn-checkout")
+          .addEventListener("click", (e) => {
+            pushDataLayer([
+              "exp_inc_soc_trus_but_car_checkout",
+              "Proceed to checkout",
+              "Button",
+              "Cart",
+            ]);
+        });
+
+        if (!targetElement.querySelector(".subtotal .amount.price-container .price")) return
 
         let price = targetElement.querySelector(
           ".subtotal .amount.price-container .price"
@@ -1873,16 +1886,7 @@ function start() {
                 cartElement.classList.remove("active");
               }
             });
-          cartElement
-            .querySelector("#top-cart-btn-checkout")
-            .addEventListener("click", (e) => {
-              pushDataLayer([
-                "exp_inc_soc_trus_but_car_checkout",
-                "Proceed to checkout",
-                "Button",
-                "Cart",
-              ]);
-            });
+
           // Create a Mutation Observer to watch for changes in the cart.
           const cartObserver = new MutationObserver(handleCartMutation);
 
@@ -1901,16 +1905,6 @@ function start() {
         cartElement.querySelector(".minicart-title").innerHTML =
           "Shopping Bag (<span>0</span>)";
 
-        cartElement
-          .querySelector("#top-cart-btn-checkout")
-          .addEventListener("click", (e) => {
-            pushDataLayer([
-              "exp_inc_soc_trus_but_car_checkout",
-              "Proceed to checkout",
-              "Button",
-              "Cart",
-            ]);
-          });
         // Create a Mutation Observer to watch for changes in the cart.
         const cartObserver = new MutationObserver(handleCartMutation);
 
