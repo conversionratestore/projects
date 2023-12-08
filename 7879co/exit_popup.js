@@ -389,7 +389,6 @@ class ExitIntentPopup {
 
     timeInterval = setInterval(() => {
       startTime += 1;
-      console.log(startTime);
     }, 1000);
 
     sessionStorage.setItem("popupShown", "true");
@@ -397,73 +396,67 @@ class ExitIntentPopup {
   }
 
   setExitIntentPopup() {
-    if (!sessionStorage.getItem("popupShown") && $el(".crs_popup")) {
-      switch (device) {
-        case "desktop":
-          let x = 0,
-            y = 0;
-          window.addEventListener("mousemove", function (e) {
-            x = e.clientX;
-            y = e.clientY;
-          });
-          document.body.addEventListener(
-            "mouseleave",
-            function () {
-              if (
-                x < 50 ||
-                y < 50 ||
-                x > window.innerWidth - 50 ||
-                y > window.innerHeight - 50
-              ) {
-                if (
-                  localStorage.getItem("crs_cart") &&
-                  clickAddToCart == false &&
-                  !sessionStorage.getItem("popupShown")
-                ) {
-                  new ExitIntentPopup(device).showPopup();
-                  console.log("setExitIntentPopup desktop: ");
-                }
-              }
-            },
-            { once: true }
-          );
-          break;
-        case "mobile":
-          let speedValue = /android/i.test(navigator.userAgent) ? 70 : 70;
-
-          let lastPosition = 0,
-            newPosition = 0,
-            currentSpeed = 0;
-
-          let scrollSpeed = () => {
-            lastPosition = window.scrollY;
-            setTimeout(() => {
-              newPosition = window.scrollY;
-            }, 100);
-
-            currentSpeed = newPosition - lastPosition;
-
+    if (device == 'desktop') {
+      let x = 0,
+      y = 0;
+      window.addEventListener("mousemove", function (e) {
+        x = e.clientX;
+        y = e.clientY;
+      });
+      document.body.addEventListener(
+        "mouseleave",
+        function () {
+          if (
+            x < 50 ||
+            y < 50 ||
+            x > window.innerWidth - 50 ||
+            y > window.innerHeight - 50
+          ) {
             if (
-              currentSpeed > speedValue &&
               localStorage.getItem("crs_cart") &&
               clickAddToCart == false &&
-              window.scrollY != 0 &&
-              !sessionStorage.getItem("popupShown")
+              !sessionStorage.getItem("popupShown") &&
+              $el(".crs_popup")
             ) {
-              console.log("currentSpeed: " + currentSpeed);
-
-              document.removeEventListener("scroll", scrollSpeed);
-              this.showPopup();
-              console.log("setExitIntentPopup mobile: ");
+              new ExitIntentPopup(device).showPopup();
             }
-          };
+          }
+        },
+        { once: true }
+      );
+    } 
+    
+    let speedValue = /android/i.test(navigator.userAgent) ? 70 : 70;
 
-          document.addEventListener("scroll", scrollSpeed);
-          break;
-        default:
-          break;
+    let lastPosition = 0,
+      newPosition = 0,
+      currentSpeed = 0;
+
+    let scrollSpeed = () => {
+      lastPosition = window.scrollY;
+      setTimeout(() => {
+        newPosition = window.scrollY;
+      }, 100);
+
+      currentSpeed = newPosition - lastPosition;
+
+      if (
+        currentSpeed > speedValue &&
+        localStorage.getItem("crs_cart") &&
+        window.scrollY != 0 &&
+        !sessionStorage.getItem("popupShown") &&
+        clickAddToCart == false &&
+        $el(".crs_popup")
+      ) {
+        console.log("currentSpeed: " + currentSpeed);
+
+        document.removeEventListener("scroll", scrollSpeed);
+        this.showPopup();
       }
-    }
+    };
+
+    document.addEventListener("scroll", scrollSpeed);
+    
   }
 
   addPopup() {
@@ -561,15 +554,18 @@ class ExitIntentPopup {
       e.preventDefault();
 
       if (this.checkPageUrl() != "checkout") {
+
+        let token = $el('[data-testid="bag-button"]') ? $el('[data-testid="bag-button"]').href.split('bag/')[1] : ''
+
         if (window.location.href.includes('/int-usd') || 
           window.location.href.includes('/ie') ||
           window.location.href.includes('/us') ||
           window.location.href.includes('/gcc') ||
           window.location.href.includes('/eu')
           ) {
-          window.location.href  = '/' + window.location.href.split('7879.co/')[1].split('/')[0] + '/checkoutv2/'
+          window.location.href  = '/' + window.location.href.split('7879.co/')[1].split('/')[0] + '/checkoutv2/' + token
         } else {
-          window.location.href  = "/checkoutv2/"
+          window.location.href  = "/checkoutv2/" + token
         }
        
       } else {
@@ -652,8 +648,6 @@ class ExitIntentPopup {
               try {
                 const parsedData = JSON.parse(val);
 
-                console.log($el("#main .layout-container h1").innerText);
-
                 let title = parsedData[0]
                   .split('"item_name":')[1]
                   .split(",")[0]
@@ -727,9 +721,7 @@ class ExitIntentPopup {
                   );
 
                   localStorage.setItem("crs_cart", JSON.stringify(dataCart));
-                  sessionStorage.removeItem("popupShown");
-
-                  clickAddToCart = true;
+                  clickAddToCart = true
                   new ExitIntentPopup(device).updateProductsInPopup();
 
                   if (device == "mobile") {
@@ -780,17 +772,16 @@ class ExitIntentPopup {
               .querySelectorAll("h5")[0]
               .innerText.replace("gold", "")
               .replace("platinum", "")
-              .trim();
-            let itemPrice = el
-              .closest(".relative")
-              .querySelectorAll("h5")[1]
-              .innerText.replace(",", "")
-              .trim();
+              .trim().toLowerCase();
 
+            let itemMetal = itemName.includes('platinum') ? 'platinum' : 'gold'
+
+              console.log(itemName)
+              console.log(itemMetal)
             for (let i = 0; i < dataCart.length; i++) {
               if (
-                dataCart[i].item_name === itemName &&
-                dataCart[i].price === itemPrice.replace(itemPrice[0], "")
+                dataCart[i].item_name.toLowerCase() === itemName &&
+                dataCart[i].metal.toLowerCase().includes(itemMetal)
               ) {
                 dataCart.splice(i, 1);
 
@@ -802,7 +793,6 @@ class ExitIntentPopup {
                   localStorage.removeItem("crs_cart");
                 } else {
                   this.updateProductsInPopup();
-                  this.setExitIntentPopup();
                 }
               }
             }
