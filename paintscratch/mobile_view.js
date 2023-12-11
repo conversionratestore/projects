@@ -1584,6 +1584,7 @@ class mobileDesign {
                 $(item).show()
               })
             $(this).parent().remove()
+            pushDataLayer('exp_mob_redes_show_all_btn', 'Show All', 'Button', 'Products page')
           })
       }
     })
