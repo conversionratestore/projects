@@ -19,7 +19,17 @@ let isProductsInCart = false;
 let clickAddToCart = false;
 
 let startTime = 0;
-let timeInterval;
+let startTimeInterval;
+
+function addCommasToNumber(number) {
+  var parts = number.toString().split(".");
+  var integerPart = parts[0];
+  var decimalPart = parts.length > 1 ? "." + parts[1] : "";
+
+  var formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  return formattedIntegerPart + decimalPart;
+}
 
 class ExitIntentPopup {
   constructor(device) {
@@ -387,7 +397,7 @@ class ExitIntentPopup {
     startTime = 0;
     $el(".crs_popup").classList.add("active");
 
-    timeInterval = setInterval(() => {
+    startTimeInterval = setInterval(() => {
       startTime += 1;
     }, 1000);
 
@@ -498,7 +508,7 @@ class ExitIntentPopup {
 
     $el(".crs_popup_close").addEventListener("click", () => {
       $el(".crs_popup").classList.remove("active");
-      clearInterval(timeInterval);
+      clearInterval(startTimeInterval);
 
       const page =
         $$el('[aria-label="Breadcrumb"] li').length >= 3 &&
@@ -528,7 +538,7 @@ class ExitIntentPopup {
     $el(".crs_popup").addEventListener("click", (e) => {
       if (e.target.classList.contains("crs_popup")) {
         $el(".crs_popup").classList.remove("active");
-        clearInterval(timeInterval);
+        clearInterval(startTimeInterval);
 
         const page =
           $$el('[aria-label="Breadcrumb"] li').length >= 3 &&
@@ -578,7 +588,7 @@ class ExitIntentPopup {
         "Popup It’s almost yours!",
       ]);
 
-      clearInterval(timeInterval);
+      clearInterval(startTimeInterval);
 
       const page =
         $$el('[aria-label="Breadcrumb"] li').length >= 3 &&
@@ -692,7 +702,7 @@ class ExitIntentPopup {
                   
                   dataCart.push({
                     item_name: title,
-                    price: price,
+                    price: addCommasToNumber(price),
                     low_stock: +parsedData[0]
                       .split('"low_stock":')[1]
                       .split(",")[0]
@@ -783,11 +793,7 @@ class ExitIntentPopup {
             .innerText.toLowerCase();
 
           let itemMetal = itemName.includes('platinum') ? 'platinum' : 'gold'
-
-          console.log(itemMetal)
-
           let newItemName = itemName.replace("gold", "").replace("platinum", "").trim()
-          console.log(newItemName)
 
           for (let i = 0; i < dataCart.length; i++) {
             console.log("remove: " + dataCart[i].item_name.toLowerCase() + ' / ' +  dataCart[i].metal.toLowerCase());
@@ -798,7 +804,6 @@ class ExitIntentPopup {
             ) {
               dataCart.splice(i, 1);
 
-              
               localStorage.setItem("crs_cart", JSON.stringify(dataCart));
 
               sessionStorage.removeItem("popupShown");
