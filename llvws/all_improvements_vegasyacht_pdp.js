@@ -1872,6 +1872,8 @@ h2.new_title::after {
       } else {
         document.querySelector(".may_also_like_list_first")?.remove();
         document.querySelector(".may_also_like_list_second")?.remove();
+        document.querySelector(".may_also_like_list_third")?.remove();
+        document.querySelector(".may_also_like_list_fourth")?.remove();
 
         if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_slider").children.length !== arrpMayAlsoLikeListMob.length) {
           for (let key in arrpMayAlsoLikeListMob) {
