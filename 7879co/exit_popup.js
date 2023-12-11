@@ -599,7 +599,13 @@ class ExitIntentPopup {
           window.location.href  = domen + "/checkoutv2/" + token
         } else {
           localStorage.setItem('showPopupRegister', true)
-          window.location.href = domen + "/bag/" + token
+          if (this.checkPageUrl() == 'bag') {
+            $el(".crs_popup").classList.remove("active");
+            localStorage.removeItem('showPopupRegister')
+            $el('[data-testid="checkout-button"]').click()
+          } else {
+            window.location.href = domen + "/bag/" + token
+          }
         }
       } else {
         $el(".crs_popup").classList.remove("active");
