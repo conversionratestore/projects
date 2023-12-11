@@ -354,7 +354,7 @@ class ListingUpdate {
         }
       })
     }
-    if (buttonSort == null || buttonSort == undefined) return
+    if (buttonSort == null || buttonSort == undefined || buttonSort == '') return
     buttonSort.parentElement.insertAdjacentHTML('afterbegin', htmlSort)
 
     $$el('.crs_sort input').forEach((item, i) => {

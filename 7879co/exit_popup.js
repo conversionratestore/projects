@@ -60,6 +60,11 @@ class ExitIntentPopup {
       }
       if (this.checkPageUrl() === "bag") {
         this.removeItemCartInStorage();
+
+        if (localStorage.getItem('showPopupRegister')) {
+          localStorage.removeItem('showPopupRegister')
+          $el('[data-testid="checkout-button"]').click()
+        }
       }
 
       if (
@@ -578,18 +583,24 @@ class ExitIntentPopup {
       if (this.checkPageUrl() != "checkout") {
 
         let token = $el('[data-testid="bag-button"]') ? $el('[data-testid="bag-button"]').href.split('bag/')[1] : ''
+        let login = !!$el('[data-testid="my-portfolio"]');
+        let domen = '';
 
         if (window.location.href.includes('/int-usd') || 
-          window.location.href.includes('/ie') ||
-          window.location.href.includes('/us') ||
-          window.location.href.includes('/gcc') ||
-          window.location.href.includes('/eu')
-          ) {
-          window.location.href  = '/' + window.location.href.split('7879.co/')[1].split('/')[0] + '/checkoutv2/' + token
-        } else {
-          window.location.href  = "/checkoutv2/" + token
+            window.location.href.includes('/ie') ||
+            window.location.href.includes('/us') ||
+            window.location.href.includes('/gcc') ||
+            window.location.href.includes('/eu')
+        ) {
+          domen = '/' + window.location.href.split('7879.co/')[1].split('/')[0]
         }
-       
+
+        if (login) {
+          window.location.href  = domen + "/checkoutv2/" + token
+        } else {
+          localStorage.setItem('showPopupRegister', true)
+          window.location.href = domen + "/bag/" + token
+        }
       } else {
         $el(".crs_popup").classList.remove("active");
       }
@@ -746,6 +757,11 @@ class ExitIntentPopup {
                   clickAddToCart = true
 
                   new ExitIntentPopup(device).updateProductsInPopup();
+
+                  if (window.scrollY == 0) {
+                    clickAddToCart = false;
+                    new ExitIntentPopup(device).setExitIntentPopup();
+                  }
 
                   window.addEventListener("scroll", (e) => {
                     if (window.scrollY == 0) {
