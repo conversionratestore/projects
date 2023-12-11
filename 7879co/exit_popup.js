@@ -625,6 +625,15 @@ class ExitIntentPopup {
     });
     this.setExitIntentPopup();
 
+
+    if (
+      $el('[aria-label="Bag"]') && 
+      $el('[data-testid="bag-button"]').innerText == '' &&
+      localStorage.getItem("crs_cart")
+    ) {
+      localStorage.removeItem("crs_cart")
+    }
+
     if (device == "desktop") return;
 
     const appHeight = () => {
@@ -679,6 +688,8 @@ class ExitIntentPopup {
 
                   let price = $el("#main .layout-container h1").parentElement.querySelector('.my-7 > div > h3').innerText
 
+                  price = price[0] + (parseFloat(parsedData[0].split('"price":')[1].split("}")[0].trim()) / parseFloat(parsedData[0].split('"quantity":')[1].split(",")[0].trim())).toFixed(2)
+                  
                   dataCart.push({
                     item_name: title,
                     price: price,
