@@ -804,7 +804,6 @@ class ExitIntentPopup {
 
               localStorage.setItem("crs_cart", JSON.stringify(dataCart));
 
-              sessionStorage.removeItem("popupShown");
               if (localStorage.getItem("crs_cart") == "[]") {
                 localStorage.removeItem("crs_cart");
               } else {
