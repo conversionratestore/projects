@@ -31,6 +31,18 @@ function addCommasToNumber(number) {
   return formattedIntegerPart + decimalPart;
 }
 
+function handleScroll(e) {
+  let verticalScrollPercentage =
+    (e.target.scrollTop / (e.target.scrollHeight - e.target.clientHeight)) *
+    100;
+  this.pushDataLayer([
+    "exp_exit_int_popup_scro_almos_vert",
+    `percent_scrolled: ${verticalScrollPercentage}`,
+    "Scroll ",
+    "Popup It’s almost yours! Products group",
+  ]);
+}
+
 class ExitIntentPopup {
   constructor(device) {
     this.device = device;
@@ -611,18 +623,6 @@ class ExitIntentPopup {
     //event "percent_scrolled"
     let scrollTimer;
 
-    function handleScroll(e) {
-      let verticalScrollPercentage =
-        (e.target.scrollTop / (e.target.scrollHeight - e.target.clientHeight)) *
-        100;
-      this.pushDataLayer([
-        "exp_exit_int_popup_scro_almos_vert",
-        `percent_scrolled: ${verticalScrollPercentage}`,
-        "Scroll ",
-        "Popup It’s almost yours! Products group",
-      ]);
-    }
-
     $el(".crs_popup ul").addEventListener("scroll", (e) => {
       if (scrollTimer) {
         clearTimeout(scrollTimer);
@@ -633,8 +633,8 @@ class ExitIntentPopup {
         scrollTimer = null;
       }, 100);
     });
-    this.setExitIntentPopup();
 
+    this.setExitIntentPopup();
 
     if (
       $el('[aria-label="Bag"]') && 
@@ -742,20 +742,18 @@ class ExitIntentPopup {
                   );
 
                   localStorage.setItem("crs_cart", JSON.stringify(dataCart));
+
                   clickAddToCart = true
+
                   new ExitIntentPopup(device).updateProductsInPopup();
 
-                  if (device == "mobile") {
-                    window.addEventListener("scroll", (e) => {
-                      if (window.scrollY == 0) {
-                        clickAddToCart = false;
-                        new ExitIntentPopup(device).setExitIntentPopup();
-                      }
-                    });
-                  } else {
-                    clickAddToCart = false;
-                    new ExitIntentPopup(device).setExitIntentPopup();
-                  }
+                  window.addEventListener("scroll", (e) => {
+                    if (window.scrollY == 0) {
+                      clickAddToCart = false;
+                      new ExitIntentPopup(device).setExitIntentPopup();
+                    }
+                  });
+                 
                 }
               } catch (error) {
                 console.error("Error parsing JSON:", error);
