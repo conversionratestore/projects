@@ -903,7 +903,7 @@ const html = `
                         <img src="${dir}path-1.png" alt="image">
                         <h4 class="mb-1">Beginner's Breeze</h4>
                         <p class="mb-1"><b>Your First Yoga Step</b> </p>
-                        <p><b>Created by:</b> Fiji McAlpine</p>
+                       
                     </div>
                     <div class="crs_card_content">
                         <p class="mb-3">Begin your yoga journey from home with gentle, beginner-friendly sessions. Discover fundamental poses and mindful breathing in concise, easy-to-follow classes.</p>
@@ -923,7 +923,7 @@ const html = `
                         <img src="${dir}path-3.png" alt="image">
                         <h4 class="mb-1">Advance with Ease</h4>
                         <p class="mb-1"><b>Deepening Your Yoga Path</b> </p>
-                        <p><b>Created by:</b> Fiji McAlpine</p>
+                      
                     </div>
                     <div class="crs_card_content">
                         <p class="mb-3">Dive deeper into yoga with intermediate-level home sessions. Enhance strength and flexibility while elevating your practice.</p>
@@ -943,7 +943,7 @@ const html = `
                         <img src="${dir}path-3.png" alt="image">
                         <h4 class="mb-1">Mindful Moments</h4>
                         <p class="mb-1"><b>Tranquility Through Meditation</b> </p>
-                        <p><b>Created by:</b> Fiji McAlpine</p>
+                       
                     </div>
                     <div class="crs_card_content">
                         <p class="mb-3">Discover meditation techniques for mental clarity and emotional balance, creating tranquillity in every aspect of your life.</p>
