@@ -460,7 +460,8 @@ class ExitIntentPopup {
       );
     } 
     
-    let speedValue = /android/i.test(navigator.userAgent) ? 70 : 70;
+    // let speedValue = /android/i.test(navigator.userAgent) ? 70 : 70;
+    let speedValue = this.device == 'desktop' ? 149 : 70;
 
     let lastPosition = 0,
       newPosition = 0,
