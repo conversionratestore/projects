@@ -412,6 +412,8 @@ class ExitIntentPopup {
 
   showPopup() {
     if ($el(".crs_popup.active")) return;
+    if (sessionStorage.getItem("popupShown")) return;
+
     startTime = 0;
     $el(".crs_popup").classList.add("active");
 
@@ -443,8 +445,7 @@ class ExitIntentPopup {
             if (
               localStorage.getItem("crs_cart") &&
               clickAddToCart == false &&
-              !sessionStorage.getItem("popupShown") &&
-              $el(".crs_popup")
+              !sessionStorage.getItem("popupShown")
             ) {
               new ExitIntentPopup(device).showPopup();
             }
@@ -472,9 +473,8 @@ class ExitIntentPopup {
         currentSpeed > speedValue &&
         localStorage.getItem("crs_cart") &&
         window.scrollY != 0 &&
-        !sessionStorage.getItem("popupShown") &&
         clickAddToCart == false &&
-        $el(".crs_popup")
+        !sessionStorage.getItem("popupShown")
       ) {
         console.log("currentSpeed: " + currentSpeed);
 
