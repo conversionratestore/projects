@@ -47,6 +47,7 @@ class ExitIntentPopup {
   constructor(device) {
     this.device = device;
     this.init();
+    this.isLongInactivityInBag = false
   }
 
   init() {
@@ -57,6 +58,8 @@ class ExitIntentPopup {
 
       if (this.checkPageUrl() === "bag" || this.checkPageUrl() === "checkout") {
         this.longInactivityInBag();
+      } else {
+        this.isLongInactivityInBag = false
       }
       if (this.checkPageUrl() === "bag") {
         this.removeItemCartInStorage();
@@ -380,10 +383,12 @@ class ExitIntentPopup {
   }
 
   longInactivityInBag() {
-    if (!sessionStorage.getItem("popupShown")) {
+    if (!sessionStorage.getItem("popupShown") && this.isLongInactivityInBag == false ) {
+      this.isLongInactivityInBag = true
       let idleTimer;
-      const idleTime = 60000; // час (в мілісекундах), який вважається "неактивним"
+      const idleTime = 60000; 
 
+      console.log(this.isLongInactivityInBag)
       function resetIdleTimer() {
         clearTimeout(idleTimer);
         idleTimer = setTimeout(() => {
