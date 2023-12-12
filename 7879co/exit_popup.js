@@ -3,12 +3,12 @@ const dir = "https://conversionratestore.github.io/projects/7879co/img/";
 const $$el = (selector) => document.querySelectorAll(selector);
 const $el = (selector) => document.querySelector(selector);
 
-// const clarityInterval = setInterval(function () {
-//   if (typeof clarity == 'function') {
-//     clearInterval(clarityInterval)
-//     clarity('set', 'exit_intent_popup', 'variant_1')
-//   }
-// }, 1000)
+const clarityInterval = setInterval(function () {
+  if (typeof clarity == 'function') {
+    clearInterval(clarityInterval)
+    clarity('set', 'exit_intent_popup', 'variant_1')
+  }
+}, 200)
 
 const device = window.innerWidth < 769 ? "mobile" : "desktop";
 
