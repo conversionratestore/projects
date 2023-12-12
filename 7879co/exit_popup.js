@@ -392,7 +392,8 @@ class ExitIntentPopup {
               new ExitIntentPopup(device).checkPageUrl() === "bag" || 
               new ExitIntentPopup(device).checkPageUrl() === "checkout"
             ) &&
-            localStorage.getItem("crs_cart")
+            localStorage.getItem("crs_cart") &&
+            !sessionStorage.getItem("popupShown")
           ) {
             new ExitIntentPopup(device).showPopup();
           }
