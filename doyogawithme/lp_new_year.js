@@ -901,7 +901,7 @@ const html = `
                 <div class="crs_card mt-3">
                     <div class="crs_card_top">
                         <img src="${dir}path-1.png" alt="image">
-                        <h4 class="mb-1">Beginner's Breeze</h4>
+                        <h4 class="mb-1">Strengthen Your Yoga Practice</h4>
                         <p class="mb-1"><b>Your First Yoga Step</b> </p>
                        
                     </div>
@@ -909,11 +909,11 @@ const html = `
                         <p class="mb-3">Begin your yoga journey from home with gentle, beginner-friendly sessions. Discover fundamental poses and mindful breathing in concise, easy-to-follow classes.</p>
                         <div class="d-flex align-items-center mb-2 pb-1">
                             ${svgTime}
-                            <p class="pl-2"><b>25 - 51 mins/day</b></p>
+                            <p class="pl-2"><b>15-60 mins/day</b></p>
                         </div>
                         <div class="d-flex align-items-center">
                             ${svgCalendar}
-                            <p class="pl-2"><b>22 days</b></p>
+                            <p class="pl-2"><b>14 days</b></p>
                         </div>
                         <a href="https://www.doyogawithme.com/content/strengthen-yoga-practice" class="crs_btn blue mt-3">See Details</a>
                     </div>
@@ -921,7 +921,7 @@ const html = `
                 <div class="crs_card mt-3">
                     <div class="crs_card_top">
                         <img src="${dir}path-3.png" alt="image">
-                        <h4 class="mb-1">Advance with Ease</h4>
+                        <h4 class="mb-1">Soar Into 2024</h4>
                         <p class="mb-1"><b>Deepening Your Yoga Path</b> </p>
                       
                     </div>
@@ -929,11 +929,11 @@ const html = `
                         <p class="mb-3">Dive deeper into yoga with intermediate-level home sessions. Enhance strength and flexibility while elevating your practice.</p>
                         <div class="d-flex align-items-center mb-2 pb-1">
                             ${svgTime}
-                            <p class="pl-2"><b>25 - 51 mins/day</b></p>
+                            <p class="pl-2"><b>20-60 mins/day</b></p>
                         </div>
                         <div class="d-flex align-items-center">
                             ${svgCalendar}
-                            <p class="pl-2"><b>22 days</b></p>
+                            <p class="pl-2"><b>14 days</b></p>
                         </div>
                         <a href="https://www.doyogawithme.com/content/soar-into-2024" class="crs_btn blue mt-3">See Details</a>
                     </div>
@@ -941,7 +941,7 @@ const html = `
                 <div class="crs_card mt-3">
                     <div class="crs_card_top">
                         <img src="${dir}path-3.png" alt="image">
-                        <h4 class="mb-1">Mindful Moments</h4>
+                        <h4 class="mb-1">Explore the Benefits of Meditation</h4>
                         <p class="mb-1"><b>Tranquility Through Meditation</b> </p>
                        
                     </div>
@@ -949,11 +949,11 @@ const html = `
                         <p class="mb-3">Discover meditation techniques for mental clarity and emotional balance, creating tranquillity in every aspect of your life.</p>
                         <div class="d-flex align-items-center mb-2 pb-1">
                             ${svgTime}
-                            <p class="pl-2"><b>25 - 51 mins/day</b></p>
+                            <p class="pl-2"><b>10-20 mins/day</b></p>
                         </div>
                         <div class="d-flex align-items-center">
                             ${svgCalendar}
-                            <p class="pl-2"><b>22 days</b></p>
+                            <p class="pl-2"><b>14 days</b></p>
                         </div>
                         <a href="https://www.doyogawithme.com/content/explore-benefits-meditation" class="crs_btn blue mt-3">See Details</a>
                     </div>
