@@ -431,7 +431,7 @@ class ExitIntentPopup {
   }
 
   setExitIntentPopup() {
-    if (device == 'desktop') {
+    if (this.device == 'desktop') {
       let x = 0,
       y = 0;
       window.addEventListener("mousemove", function (e) {
@@ -458,38 +458,37 @@ class ExitIntentPopup {
         },
         { once: true }
       );
-    } 
-    
-    // let speedValue = /android/i.test(navigator.userAgent) ? 70 : 70;
-    let speedValue = this.device == 'desktop' ? 149 : 70;
+    } else {
+      let speedValue = /android/i.test(navigator.userAgent) ? 70 : 70;
 
-    let lastPosition = 0,
-      newPosition = 0,
-      currentSpeed = 0;
+      let lastPosition = 0,
+        newPosition = 0,
+        currentSpeed = 0;
 
-    let scrollSpeed = () => {
-      lastPosition = window.scrollY;
-      setTimeout(() => {
-        newPosition = window.scrollY;
-      }, 100);
+      let scrollSpeed = () => {
+        lastPosition = window.scrollY;
+        setTimeout(() => {
+          newPosition = window.scrollY;
+        }, 100);
 
-      currentSpeed = newPosition - lastPosition;
+        currentSpeed = newPosition - lastPosition;
 
-      if (
-        currentSpeed > speedValue &&
-        localStorage.getItem("crs_cart") &&
-        window.scrollY != 0 &&
-        clickAddToCart == false &&
-        !sessionStorage.getItem("popupShown")
-      ) {
-        console.log("currentSpeed: " + currentSpeed);
+        if (
+          currentSpeed > speedValue &&
+          localStorage.getItem("crs_cart") &&
+          window.scrollY != 0 &&
+          clickAddToCart == false &&
+          !sessionStorage.getItem("popupShown")
+        ) {
+          console.log("currentSpeed: " + currentSpeed);
 
-        document.removeEventListener("scroll", scrollSpeed);
-        this.showPopup();
-      }
-    };
+          document.removeEventListener("scroll", scrollSpeed);
+          this.showPopup();
+        }
+      };
 
-    document.addEventListener("scroll", scrollSpeed);
+      document.addEventListener("scroll", scrollSpeed);
+    }
     
   }
 
