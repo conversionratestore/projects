@@ -656,6 +656,7 @@ class ExitIntentPopup {
 
     if (
       $el('[aria-label="Bag"]') && 
+      $el('[data-testid="bag-button"]') &&
       $el('[data-testid="bag-button"]').innerText == '' &&
       localStorage.getItem("crs_cart")
     ) {
