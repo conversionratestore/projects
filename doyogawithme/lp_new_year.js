@@ -492,6 +492,9 @@ p {
     .text-md-center {
         text-align: center;
     }
+    .crs_card_top {
+        min-height: 133px;
+    }
 }
 @media (max-width: 991px) {
     .crs_path .col-6,
