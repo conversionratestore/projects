@@ -695,15 +695,17 @@ class ExitIntentPopup {
 
     this.setExitIntentPopup();
 
+    let testid = this.device == 'desktop' ? 'bag-button' : 'bag-button-mobile'
+    
     if (
       $el('[aria-label="Bag"]') && 
-      $el('[data-testid="bag-button"]') &&
-      $el('[data-testid="bag-button"]').innerText == '' &&
+      $el(`[data-testid="${testid}"]`) &&
+      $el(`[data-testid="${testid}"]`).innerText == '' &&
       localStorage.getItem("crs_cart")
     ) {
       localStorage.removeItem("crs_cart")
     }
-
+   
     if (device == "desktop") return;
 
     const appHeight = () => {
