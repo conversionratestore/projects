@@ -71,7 +71,8 @@ class ExitIntentPopup {
       }
 
       if (this.checkPageUrl() === "checkout" && 
-          clickAddToCart == false
+          clickAddToCart == false && 
+          this.device == 'mobile'
       ) {
         $$el('button').forEach(item => {
           if (item.innerText.includes('Save and Continue')) {
