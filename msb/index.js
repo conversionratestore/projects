@@ -660,7 +660,7 @@ const styleCart = `
     margin: 0 0 0 auto;
     height: 100%;
     width: calc(100% - 25px);
-    padding: 14px 16px 200px;
+    padding: 14px 16px 220px;
     transform: translateX(100%);
     transition: all 0.2s ease;
     overflow-x: hidden;
@@ -726,13 +726,26 @@ const styleCart = `
     max-width: 25%;
     flex: auto;
 }
-.minicart-items-wrapper .crs_discount {
+.block-content .crs_discount {
     margin: 18px 0 0;
 }
 .mobile-basket-block__content .subtotal,
 .block-minicart .subtotal {
     padding-bottom: 13px;
     border: none;
+    font-size: 16px;
+}
+.block-minicart .subtotal {
+  padding-top: 18px;
+}
+.header-right-block .minicart-wrapper .block-content .crs_discount {
+  margin-top: 0;
+}
+.header-right-block .minicart-wrapper .crs_discount_row {
+  padding-top: 0;
+}
+.header-right-block .minicart-wrapper .crs_regular {
+  padding: 0 0 18px 0;
 }
 
 .mobile-basket-block__content .crs_klarna,
@@ -801,9 +814,11 @@ const styleCart = `
 }
 .crs_highlight {
     margin-top: auto;
+    font-size: 12px;
+    text-transform: capitalize;
 }
 .crs_highlight > div {
-    background: #FCF7EC;
+    background: #DDC9B0;
     padding: 6px;
     width: calc(50% - 4px);
 }
@@ -824,8 +839,16 @@ const styleCart = `
 .crs_discount_row {
   display: none;
   border-bottom: 1px dashed #CCC;
-  padding: 0 0 18px 0;
-  margin-bottom: 18px;
+  padding: 18px 0;
+  position: relative;
+}
+.crs_discount_row.crs_error:before {
+  content: 'Error';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: red;
+  font-size: 12px;
 }
 .crs_discount_row.active {
   display: flex;
@@ -858,7 +881,8 @@ const styleCart = `
   padding: 10px;
 }
 .crs_regular {
-  padding-bottom: 18px;
+  padding-top: 18px;
+  border-bottom: 1px dashed #CCCCCC;
 }
 .crs_regular b {
   color: var(--Black, #333);
@@ -878,9 +902,10 @@ const styleCart = `
   font-style: normal;
   font-weight: 400;
   line-height: 22px;
+}
+.crs_regular p:first-child {
   margin-bottom: 7px;
 }
-
 .block-minicart .subtotal .amount .price-wrapper:first-child .price,
 .crs_sub p,
 .crs_price_new {
@@ -891,14 +916,15 @@ const styleCart = `
   font-weight: 700;
   line-height: 24px;
   letter-spacing: 1px;
+  margin-bottom: 0;
 }
 .crs_sub p:not(.pr) {
   letter-spacing: initial;
   margin: 0;
 }
-.block-minicart .subtotal .amount.crs_change .price-wrapper:first-child .price,
+.subtotal .amount.crs_change .price,
 .pr_old {
-  color: #ACACAC;
+  color: #ACACAC!important;
   text-decoration-line: line-through;
   margin-right: 5px;
 }
@@ -909,14 +935,19 @@ const styleCart = `
   font-style: normal;
   font-weight: 400;
   line-height: 22px; 
-  margin: 4px 0 10px;
+  margin: -6px 0 10px;
   text-align: right;
 }
-
+.crs_cart_subtotal {
+  padding-bottom: 10px;
+}
+.crs_klarna+.subtotal {
+  display: none;
+}
 </style>`;
 
 const dataIcons = {
-  'warrantyIcon': `
+  warrantyIcon: `
     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="26" viewBox="0 0 25 26" fill="none">
       <g clip-path="url(#clip0_573_9766)">
         <path d="M24.1 13.0001C24.1 11.8001 22.7 10.8001 22.4 9.80011C22 8.70011 22.6 7.10011 21.9 6.20011C21.2 5.30011 19.6 5.30011 18.6 4.60011C17.7 3.90011 17.2 2.30011 16.1 2.00011C15 1.60011 13.7 2.50011 12.5 2.50011C11.3 2.50011 10 1.50011 8.9 1.90011C7.8 2.30011 7.3 3.90011 6.4 4.50011C5.4 5.20011 3.8 5.20011 3.1 6.20011C2.4 7.10011 2.9 8.70011 2.6 9.80011C2.3 10.9001 0.900002 11.8001 0.900002 13.0001C0.900002 14.2001 2.3 15.2001 2.6 16.2001C3 17.3001 2.4 18.9001 3.1 19.8001C3.8 20.7001 5.4 20.7001 6.4 21.4001C7.3 22.1001 7.8 23.7001 8.9 24.0001C10 24.3001 11.3 23.4001 12.5 23.4001C13.7 23.4001 15 24.4001 16.1 24.0001C17.2 23.6001 17.7 22.1001 18.6 21.4001C19.5 20.7001 21.2 20.7001 21.9 19.8001C22.6 18.9001 22.1 17.3001 22.4 16.2001C22.8 15.2001 24.1 14.2001 24.1 13.0001ZM12.5 22.0001C7.5 22.0001 3.5 18.0001 3.5 13.0001C3.5 8.00011 7.5 4.00011 12.5 4.00011C17.5 4.00011 21.5 8.00011 21.5 13.0001C21.5 18.0001 17.5 22.0001 12.5 22.0001Z" fill="#B68B52"/>
@@ -930,19 +961,19 @@ const dataIcons = {
         </clipPath>
       </defs>
     </svg>`,
-  'wishlistIcon': `
+  wishlistIcon: `
     <svg width="25" height="21" viewBox="0 0 25 21" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M18.4 2C20.6 2 22.3 3.8 22.3 5.9C22.3 6.9 21.9 7.9 21.2 8.7L12.5 17.4L3.80001 8.7C3.10001 7.9 2.60001 7 2.60001 5.9C2.70001 3.7 4.40001 2 6.60001 2C7.70001 2 8.60001 2.4 9.40001 3.2L11.1 4.9C11.5 5.3 12 5.5 12.5 5.5C13 5.5 13.5 5.3 13.9 4.9L15.6 3.2C16.4 2.4 17.4 2 18.4 2ZM18.4 0C16.8 0 15.3 0.7 14.2 1.7L12.5 3.4L10.8 1.7C9.70001 0.6 8.20001 0 6.60001 0C3.30001 0 0.700012 2.6 0.700012 5.9C0.700012 7.5 1.40001 9 2.40001 10.1L12.5 20.2L22.6 10.1C23.7 9 24.3 7.5 24.3 5.9C24.3 2.6 21.7 0 18.4 0Z" fill="#A11A17"/>
     </svg>`,
-  'wishlistFullIcon': `
+  wishlistFullIcon: `
     <svg width="25" height="21" viewBox="0 0 25 21" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M22.6 10.1L12.5 20.2L2.39995 10.1C1.29995 9 0.699951 7.5 0.699951 5.9C0.699951 2.6 3.29995 0 6.59995 0C8.19995 0 9.69995 0.7 10.8 1.7L12.5 3.4L14.2 1.7C15.3 0.6 16.7999 0 18.4 0C21.6999 0 24.2999 2.6 24.2999 5.9C24.2999 7.5 23.7 9 22.6 10.1Z" fill="#A11A17"/>
     </svg>`,
-  'discountIcon': `
+  discountIcon: `
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
       <path d="M21.53 10.8699L20.01 9.34988C19.75 9.08988 19.54 8.57988 19.54 8.21988V6.05988C19.54 5.17988 18.82 4.45988 17.94 4.45988H15.79C15.43 4.45988 14.92 4.24988 14.66 3.98988L13.14 2.46988C12.52 1.84988 11.5 1.84988 10.88 2.46988L9.34 3.98988C9.09 4.24988 8.58 4.45988 8.21 4.45988H6.06C5.18 4.45988 4.46 5.17988 4.46 6.05988V8.20988C4.46 8.56988 4.25 9.07988 3.99 9.33988L2.47 10.8599C1.85 11.4799 1.85 12.4999 2.47 13.1199L3.99 14.6399C4.25 14.8999 4.46 15.4099 4.46 15.7699V17.9199C4.46 18.7999 5.18 19.5199 6.06 19.5199H8.21C8.57 19.5199 9.08 19.7299 9.34 19.9899L10.86 21.5099C11.48 22.1299 12.5 22.1299 13.12 21.5099L14.64 19.9899C14.9 19.7299 15.41 19.5199 15.77 19.5199H17.92C18.8 19.5199 19.52 18.7999 19.52 17.9199V15.7699C19.52 15.4099 19.73 14.8999 19.99 14.6399L21.51 13.1199C22.16 12.5099 22.16 11.4899 21.53 10.8699ZM8 8.99988C8 8.44988 8.45 7.99988 9 7.99988C9.55 7.99988 10 8.44988 10 8.99988C10 9.54988 9.56 9.99988 9 9.99988C8.45 9.99988 8 9.54988 8 8.99988ZM9.53 15.5299C9.38 15.6799 9.19 15.7499 9 15.7499C8.81 15.7499 8.62001 15.6799 8.47001 15.5299C8.18001 15.2399 8.18001 14.7599 8.47001 14.4699L14.47 8.46988C14.76 8.17988 15.24 8.17988 15.53 8.46988C15.82 8.75988 15.82 9.23988 15.53 9.52988L9.53 15.5299ZM15 15.9999C14.44 15.9999 13.99 15.5499 13.99 14.9999C13.99 14.4499 14.44 13.9999 14.99 13.9999C15.54 13.9999 15.99 14.4499 15.99 14.9999C15.99 15.5499 15.55 15.9999 15 15.9999Z" fill="#862B04"/>
     </svg>`,
-  'giftIcon': `
+  giftIcon: `
     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
       <g clip-path="url(#clip0_573_9737)">
         <path d="M21.9 5.9002H19.3C19.4 5.5002 19.5 5.1002 19.5 4.7002C19.5 2.7002 18 1.2002 16 1.2002C14.7 1.2002 13.6 1.8002 13.1 2.7002L12.5 3.5002L11.9 2.7002C11.3 1.7002 10.3 1.2002 9 1.2002C7 1.2002 5.5 2.7002 5.5 4.7002C5.5 5.1002 5.6 5.5002 5.7 5.9002H3.1C1.8 5.9002 0.699997 7.0002 0.699997 8.3002V21.3002C0.699997 22.6002 1.8 23.7002 3.1 23.7002H22C23.3 23.7002 24.4 22.6002 24.4 21.3002V8.3002C24.3 6.9002 23.2 5.9002 21.9 5.9002ZM16 3.5002C16.7 3.5002 17.2 4.0002 17.2 4.7002C17.2 5.4002 16.7 5.9002 16 5.9002C15.3 5.9002 14.8 5.4002 14.8 4.7002C14.8 4.0002 15.3 3.5002 16 3.5002ZM9 3.5002C9.7 3.5002 10.2 4.0002 10.2 4.7002C10.2 5.4002 9.7 5.9002 9 5.9002C8.3 5.9002 7.8 5.4002 7.8 4.7002C7.8 4.0002 8.3 3.5002 9 3.5002ZM21.9 21.2002H3.1V18.8002H22V21.2002H21.9ZM21.9 15.3002H3.1V8.2002H9.1L6.6 11.5002L8.5 12.9002L11.3 9.1002L12.5 7.4002L13.7 9.1002L16.5 12.9002L18.4 11.5002L15.9 8.2002H21.9V15.3002Z" fill="#A11A17"/>
@@ -953,7 +984,7 @@ const dataIcons = {
         </clipPath>
       </defs>
     </svg>`,
-  'personalisationIcon': `
+  personalisationIcon: `
     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
       <g clip-path="url(#clip0_573_9742)">
         <path d="M10 14.2001H14.9L12.5 7.7001L10 14.2001ZM21.9 0.600098H3C1.7 0.600098 0.599998 1.7001 0.599998 3.0001V21.9001C0.599998 23.2001 1.7 24.3001 3 24.3001H21.9C23.2 24.3001 24.3 23.2001 24.3 21.9001V3.0001C24.3 1.7001 23.2 0.600098 21.9 0.600098ZM17.1 20.1001L15.8 16.5001H9.1L7.8 20.1001H5.3L11.3 4.7001H13.5L19.5 20.1001C19.6 20.1001 17.1 20.1001 17.1 20.1001Z" fill="#A11A17"/>
@@ -964,7 +995,7 @@ const dataIcons = {
         </clipPath>
       </defs>
     </svg>`,
-  'infoIcon': `
+  infoIcon: `
     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
       <g clip-path="url(#clip0_573_9755)">
         <path d="M7.49999 14.0999C11.1451 14.0999 14.1 11.145 14.1 7.4999C14.1 3.85482 11.1451 0.899902 7.49999 0.899902C3.85491 0.899902 0.899994 3.85482 0.899994 7.4999C0.899994 11.145 3.85491 14.0999 7.49999 14.0999Z" fill="#333333"/>
@@ -976,12 +1007,12 @@ const dataIcons = {
         </clipPath>
       </defs>
     </svg>`,
-  'checkIcon': `
+  checkIcon: `
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
       <rect x="0.5" y="1" width="23" height="23" fill="#A11A17" stroke="#A11A17"/>
       <path d="M6 12.5L10 16.5L18 8.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
     </svg>`,
-  'returnsIcon': `
+  returnsIcon: `
     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="26" viewBox="0 0 25 26" fill="none">
       <g clip-path="url(#clip0_573_9778)">
         <path d="M20.8734 3H4.03797C2.88608 3 2 3.92827 2 5.02532V20.9747C2 22.0717 2.97468 23 4.12658 23H20.8734C22.0253 23 23 22.0717 23 20.9747V5.02532C22.9114 3.92827 22.0253 3 20.8734 3ZM12.4557 19.5401C9.44304 19.5401 6.96203 17.1772 6.96203 14.308H8.29114C8.29114 16.5021 10.1519 18.1899 12.3671 18.1899C14.6709 18.1899 16.443 16.4177 16.443 14.308C16.443 12.1139 14.5823 10.4262 12.3671 10.4262V13.0422L9.08861 9.75106L12.5443 6.45992V9.07595C15.557 9.07595 18.038 11.4388 18.038 14.308C17.9494 17.1772 15.4684 19.5401 12.4557 19.5401Z" fill="#B68B52"/>
@@ -992,7 +1023,7 @@ const dataIcons = {
         </clipPath>
       </defs>
     </svg>`,
-  'shipIcon': `
+  shipIcon: `
     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
       <g clip-path="url(#clip0_573_9787)">
         <path d="M21.2 8.5998H18V4.2998H2.9C1.7 4.2998 0.699997 5.2998 0.699997 6.4998V18.2998H2.9C2.9 20.0998 4.3 21.4998 6.1 21.4998C7.9 21.4998 9.3 20.0998 9.3 18.2998H15.8C15.8 20.0998 17.2 21.4998 19 21.4998C20.8 21.4998 22.2 20.0998 22.2 18.2998H24.4V12.8998L21.2 8.5998ZM6.1 19.8998C5.2 19.8998 4.5 19.0998 4.5 18.2998C4.5 17.3998 5.3 16.6998 6.1 16.6998C6.9 16.6998 7.7 17.4998 7.7 18.2998C7.7 19.0998 7 19.8998 6.1 19.8998ZM20.6 10.1998L22.8 12.8998H18V10.1998H20.6ZM19 19.8998C18.1 19.8998 17.4 19.0998 17.4 18.2998C17.4 17.3998 18.2 16.6998 19 16.6998C19.8 16.6998 20.6 17.4998 20.6 18.2998C20.6 19.0998 19.9 19.8998 19 19.8998Z" fill="#B68B52"/>
@@ -1003,7 +1034,7 @@ const dataIcons = {
         </clipPath>
       </defs>
     </svg>`,
-  'leatherIcon': `
+  leatherIcon: `
     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
       <g clip-path="url(#clip0_573_9791)">
         <path d="M22.1 19.6H22C21.2 19 20.6 18.5 20.2 17.9C19.7 17.2 19.3 16.3 19 15.2C18.8 14.5 18.8 13.7 18.8 12.9C18.8 12 19 11.2 19.3 10.5C19.6 9.6 20.3 8.9 21.1 8.4C21.2 8.3 21.4 8.3 21.5 8.2C21.6 8.1 21.8 8.1 21.9 8C22 8 22.2 7.9 22.2 7.7V7.5L21.8 6.4C21.7 6.2 21.7 5.9 21.6 5.6C21.5 5.3 21.4 5.1 21.4 4.8C21.3 4.7 21.2 4.6 21 4.6C20.2 4.6 19.5 4.5 18.7 4.3C17.9 4.1 17.1 3.6 16.5 3C16 2.5 15.7 2 15.5 1.3C15.5 1.2 15.4 1 15.2 1H9.89999C9.79999 1 9.59999 1.1 9.59999 1.3C9.39999 2 8.99999 2.6 8.29999 3.1C7.59999 3.7 6.79999 4.1 5.69999 4.4C4.99999 4.5 4.39999 4.6 3.89999 4.6C3.69999 4.6 3.49999 4.6 3.49999 4.9L2.79999 7.3C2.79999 7.4 2.79999 7.7 3.09999 7.7C3.89999 8 4.49999 8.4 4.89999 8.9C5.19999 9.2 5.49999 9.6 5.89999 10.2C5.99999 10.4 6.19999 10.6 6.29999 10.8C6.39999 11.1 6.49999 11.4 6.59999 11.8C6.59999 12 6.69999 12.2 6.69999 12.3C6.79999 12.8 6.79999 13.2 6.79999 13.7C6.79999 14.9 6.49999 16 5.89999 17.3C5.49999 18.2 4.69999 19 3.69999 19.6C3.59999 19.7 3.49999 19.7 3.49999 19.8C3.49999 19.9 3.49999 20 3.59999 20.1C3.89999 20.5 4.19999 20.9 4.49999 21.3C4.69999 21.6 4.99999 22 5.29999 22.4C5.39999 22.5 5.59999 22.7 5.69999 22.5C5.69999 22.5 5.69999 22.4 5.79999 22.4C6.39999 22 6.99999 21.8 7.69999 21.7C7.89999 21.6 8.29999 21.6 8.59999 21.6C9.79999 21.6 10.9 22 11.7 22.9C12 23.1 12.3 23.5 12.5 23.8C12.5 23.8 12.5 23.9 12.6 23.9H12.7C12.8 23.9 12.9 23.9 12.9 23.8C13 23.8 13 23.7 13 23.7C13.3 23.1 13.9 22.6 14.5 22.2C15 21.9 15.4 21.7 16 21.6C16.5 21.5 17 21.5 17.5 21.6C18.1 21.7 18.8 22 19.7 22.4C19.8 22.4 20 22.4 20.1 22.3C20.8 21.6 21.4 20.8 22 20C22.1 19.9 22.1 19.9 22.1 19.8C22.2 19.7 22.1 19.6 22.1 19.6Z" fill="#B68B52"/>
@@ -1051,7 +1082,7 @@ const dataIcons = {
         </clipPath>
       </defs>
     </svg>`,
-  'closeIcon': `
+  closeIcon: `
     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
       <g filter="url(#filter0_d_571_2120)">
         <path d="M5.91211 2L15.2403 11.3M5.91211 11.3L15.2403 2" stroke="white" stroke-width="2.325" stroke-linecap="round" stroke-linejoin="round" shape-rendering="crispEdges"/>
@@ -1068,8 +1099,8 @@ const dataIcons = {
           <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_571_2120" result="shape"/>
         </filter>
       </defs>
-    </svg>`
-}
+    </svg>`,
+};
 
 const topBadge = `
     <div class="crs_absolute px-4 pt-3 mt-1 d-flex align-items-center justify-content-between">
@@ -1108,7 +1139,7 @@ const trustpilot = `
     </svg>
     <p>
         <b>Excellent</b>
-        518 Reviews
+        536 Reviews
     </p>`;
 
 const dataShipping = {
@@ -1526,7 +1557,9 @@ function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
 }
 
 function klarna(price) {
-  return `<p class="crs_klarna">or 3 interest-free payments of <b>£${( price / 3).toFixed(2)}</b> with <img src="${dir}klarna.png" alt="klarna"></p>`;
+  return `<p class="crs_klarna">or 3 interest-free payments of <b>£${addCommasToNumber(
+    (price / 3).toFixed(2)
+  )}</b> with <img src="${dir}klarna.png" alt="klarna"></p>`;
 }
 
 function setStickyBtn(price) {
@@ -1583,28 +1616,112 @@ function formatDate(days) {
   return formattedDate;
 }
 
+function addCommasToNumber(number) {
+  var parts = number.toString().split(".");
+  var integerPart = parts[0];
+  var decimalPart = parts.length > 1 ? "." + parts[1] : "";
+
+  var formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  return formattedIntegerPart + decimalPart;
+}
+
+function setSaved(targetElement, price) {
+  if (!sessionStorage.getItem("crsDiscount")) return;
+
+  const isDiscount =
+    targetElement.querySelectorAll(".block-content .subtotal").length > 1;
+
+  console.log(isDiscount);
+
+  let subtotal = parseFloat(price.replace(price[0], "").split(",").join(""));
+  let saved = isDiscount
+    ? ((subtotal * 10) / 90).toFixed(2)
+    : ((subtotal * 10) / 100).toFixed(2);
+  let subtotalNew = isDiscount
+    ? subtotal.toFixed(2)
+    : (subtotal - saved).toFixed(2);
+  let oldPrice = isDiscount
+    ? (subtotal + +saved).toFixed(2)
+    : subtotal.toFixed(2);
+
+  console.log(subtotal);
+  console.log(saved);
+  console.log(subtotalNew);
+  console.log(oldPrice);
+
+  targetElement.querySelector(".crs_regular")?.remove()
+
+  targetElement.querySelector(".crs_discount_row").insertAdjacentHTML(
+      "beforebegin",
+      `
+    <div class="crs_regular">
+      <p class="d-flex justify-content-between"><b>Regular price</b> <b>${
+        price[0] + addCommasToNumber(oldPrice)
+      }</b></p>
+      <p class="d-flex justify-content-between">Sign up discount savings <span>${
+        price[0] + saved
+      }</span></p>
+    </div>`
+  );
+  
+
+  targetElement.querySelector(".crs_discount_row").classList.remove("active");
+
+  targetElement
+    .querySelector(".subtotal .price-container.amount")
+    .classList.add("crs_change");
+
+  targetElement.querySelector(".crs_price_new")?.remove()
+
+  targetElement.querySelector(".subtotal .price-container.amount").insertAdjacentHTML("beforeend",
+    `<span class="crs_price_new">${
+      price[0] + addCommasToNumber(subtotalNew)
+    }</span>`
+  );
+  
+
+  targetElement.querySelector(
+    ".crs_cart_subtotal .pr"
+  ).innerHTML = `<b class="pr_old">${price[0] + oldPrice} </b><b> ${
+    price[0] + addCommasToNumber(subtotalNew)
+  }</b>`;
+
+  if (!targetElement.querySelector(".crs_saved")) {
+    targetElement.querySelector(".crs_cart_subtotal").insertAdjacentHTML(
+      "afterend",
+      `
+    <div class="crs_saved ml-auto">You just saved ${price[0] + saved}</div>`
+    );
+  }
+}
+
 // Function to handle the observed mutations on the cart element.
 function handleCartMutation(mutationsList, observer) {
   for (const mutation of mutationsList) {
     if (mutation.type === "attributes" && mutation.attributeName === "class") {
-      const targetElement = mutation.target;
+      const targetElement = media
+        ? mutation.target
+        : document.querySelector(".header-right-block .minicart-wrapper");
       if (targetElement.classList.contains("active")) {
         let countProduct = 0;
 
-        targetElement.querySelector(".minicart-title").innerHTML =
-          "Shopping Bag (<span>0</span>)";
+        if (targetElement.querySelector(".minicart-title")) {
+          targetElement.querySelector(".minicart-title").innerHTML =
+            "Shopping Bag (<span>0</span>)";
 
-        targetElement
-          .querySelectorAll(
-            '.minicart-items li .option-wrapper > .values [data-bind="text: qty"]'
-          )
-          .forEach((item) => {
-            countProduct += +item.innerText;
-            console.log(+item.innerText);
-          });
-        console.log(countProduct);
-        targetElement.querySelector(".minicart-title span").innerHTML =
-          countProduct;
+          targetElement
+            .querySelectorAll(
+              '.minicart-items li .option-wrapper > .values [data-bind="text: qty"]'
+            )
+            .forEach((item) => {
+              countProduct += +item.innerText;
+              console.log(+item.innerText);
+            });
+          console.log(countProduct);
+          targetElement.querySelector(".minicart-title span").innerHTML =
+            countProduct;
+        }
 
         targetElement
           .querySelectorAll(".minicart-items .action.delete")
@@ -1616,14 +1733,9 @@ function handleCartMutation(mutationsList, observer) {
                 </svg>`;
           });
 
-          
-        if (
-          targetElement.querySelector(".minicart-title span").innerHTML == "0"
-        )
-          return;
-
-
-        targetElement.querySelector("#top-cart-btn-checkout")
+        if (!targetElement.querySelector("#top-cart-btn-checkout")) return;
+        targetElement
+          .querySelector("#top-cart-btn-checkout")
           .addEventListener("click", (e) => {
             pushDataLayer([
               "exp_inc_soc_trus_but_car_checkout",
@@ -1631,118 +1743,139 @@ function handleCartMutation(mutationsList, observer) {
               "Button",
               "Cart",
             ]);
-        });
+          });
 
-        if (!targetElement.querySelector(".subtotal .amount.price-container .price")) return
+        targetElement.querySelector(
+          ".block-content > .actions > .primary .paypal input"
+        ).src = dir + "paypal-logo.svg";
 
-        let price = targetElement.querySelector(
-          ".subtotal .amount.price-container .price"
-        ).innerText;
+        let waitSubtotal = setInterval(() => {
+          if (
+            targetElement.querySelector(
+              ".subtotal .amount.price-container .price"
+            )
+          ) {
+            clearInterval(waitSubtotal);
 
-        if (!targetElement.querySelector(".crs_cart_subtotal")) {
-          targetElement
-            .querySelector(".block-content > .actions > .primary")
-            .insertAdjacentHTML(
-              "beforebegin",
-              `
+            let price = targetElement.querySelector(
+              ".subtotal .amount.price-container .price"
+            ).innerText;
+
+            console.log(price);
+
+            targetElement.querySelector(".crs_cart_subtotal")?.remove();
+
+            targetElement
+              .querySelector(".block-content > .actions > .primary")
+              .insertAdjacentHTML(
+                "beforebegin",
+                `
                 <div class="crs_cart_subtotal">
                     <div class="d-flex justify-content-between align-items-center crs_sub">
                         <p><b>Subtotal</b> </p>
                         <p class="pr"><b> ${price}</b></p>
                     </div>
                 </div>`
+              );
+
+            if (!targetElement.querySelector(".crs_highlight")) {
+              targetElement
+                .querySelector(".block-content > .actions")
+                .insertAdjacentHTML("beforebegin", highlight);
+            }
+
+            targetElement.querySelector(".crs_klarna")?.remove();
+
+            targetElement
+              .querySelector(".subtotal")
+              .insertAdjacentHTML(
+                "afterend",
+                klarna(+price.replace(price[0], "").split(",").join(""))
+              );
+            targetElement.querySelector(".crs_sub .pr b").innerHTML = price;
+
+            targetElement.querySelector(".crs_discount_row")?.remove()
+
+            targetElement.querySelector(".subtotal").insertAdjacentHTML(
+              "beforebegin",
+              `
+              <div class="crs_discount_row ${
+                sessionStorage.getItem("crsDiscount") ? "active" : ""
+              }">
+                <input type="text" placeholder="Apply discount code">
+                <button type="button">Apply</button>
+              </div>`
             );
 
-          targetElement
-            .querySelector(".block-content > .actions")
-            .insertAdjacentHTML("beforebegin", highlight);
-        }
+            if (
+              !sessionStorage.getItem("crsDiscount") &&
+              !targetElement.querySelector(".crs_discount")
+            ) {
+              targetElement
+                .querySelector(".crs_discount_row")
+                .insertAdjacentHTML("beforebegin", getDiscount);
+            }
 
-        if (!targetElement.querySelector(".crs_klarna")) {
-          targetElement
-            .querySelector(".subtotal")
-            .insertAdjacentHTML(
-              "afterend",
-              klarna(+price.replace(price[0], ""))
-            );
-        }
-        targetElement.querySelector(".crs_sub .pr b").innerHTML = price;
+            if (!sessionStorage.getItem("crsDiscount")) {
+            }
 
-        targetElement.querySelector(
-          ".block-content > .actions > .primary .paypal input"
-        ).src = dir + "paypal-logo.svg";
+            setSaved(targetElement, price);
 
-        // const waitForDiscount = setInterval(() => {
-        //   if (
-        //     document.querySelector("body > div > button.needsclick") &&
-        //     document
-        //       .querySelector("body > div > button.needsclick")
-        //       .innerText.includes("View Today’s Offer") &&
-        //     !targetElement.querySelector(".crs_discount")
-        //   ) {
-        //     clearInterval(waitForDiscount);
+            if (!sessionStorage.getItem("crsDiscount")) {
+              targetElement
+                .querySelector(".crs_discount")
+                .addEventListener("click", (e) => {
+                  e.currentTarget.hidden = true;
+                  targetElement
+                    .querySelector(".crs_discount_row")
+                    .classList.add("active");
 
-   
-        if (document.querySelector('.crs_discount_row')) return
-        targetElement.querySelector(".subtotal")
-          .insertAdjacentHTML("beforebegin", `
-          
-          ${!localStorage.getItem('crsDiscount') ? getDiscount : '' } 
-          <div class="crs_discount_row ${localStorage.getItem('crsDiscount') ? 'active' : ''}">
-            <input type="text" placeholder="Apply discount code">
-            <button type="button">Apply</button>
-          </div>`);
+                  pushDataLayer([
+                    "exp_inc_soc_trus_lin_cart_discou",
+                    "Get  discount",
+                    "Link",
+                    "Cart",
+                  ]);
+                });
+            }
 
-          if (!localStorage.getItem('crsDiscount')) {
-            targetElement.querySelector(".crs_discount").addEventListener("click", (e) => {
-              e.currentTarget.hidden = true
-              targetElement.querySelector('.crs_discount_row').classList.add('active')
-  
-              pushDataLayer([
-                "exp_inc_soc_trus_lin_cart_discou",
-                "Get  discount",
-                "Link",
-                "Cart",
-              ]);
-            });
+            targetElement
+              .querySelector(".crs_discount_row button")
+              .addEventListener("click", (e) => {
+                if (
+                  targetElement
+                    .querySelector(".crs_discount_row input")
+                    .value.toLowerCase() == "welcome10"
+                ) {
+                  targetElement
+                    .querySelector(".crs_discount_row")
+                    .classList.remove("crs_error", "active");
+                  sessionStorage.setItem("crsDiscount", true);
+                  setSaved(targetElement, price);
+                } else {
+                  targetElement
+                    .querySelector(".crs_discount_row")
+                    .classList.add("crs_error");
+                }
+              });
+
+            targetElement
+              .querySelectorAll(".subtotal")
+              .forEach((item, index) => {
+                if (item.innerText.includes("Discount")) {
+                  let priceSub = parseFloat(
+                    price.replace(price[0], "").split(",").join("")
+                  );
+                  let savedPrice = (priceSub * 10) / 90;
+                  targetElement.querySelectorAll(
+                    ".subtotal .price"
+                  )[0].innerHTML = addCommasToNumber(
+                    (priceSub + savedPrice).toFixed(2)
+                  );
+                }
+              });
           }
-
-
-        function setSaved() {
-          if (!localStorage.getItem('crsDiscount')) return
-
-          let saved =(parseFloat(price.replace(price[0],'')) * 10 / 100).toFixed(2)
-          let subtotalNew = price[0] + (parseFloat(price.replace(price[0],'')) - saved).toFixed(2)
-
-          if (document.querySelector('.crs_regular')) return
-
-          targetElement.querySelector('.crs_discount_row').insertAdjacentHTML('beforebegin', `
-          <div class="crs_regular">
-            <p class="d-flex justify-content-between"><b>Regular price</b> <b>${price}</b></p>
-            <p class="d-flex justify-content-between">Sign up discount savings <span>${price[0] + saved}</span></p>
-          </div>`)
-          targetElement.querySelector('.block-minicart .subtotal .price-container.amount').classList.add('crs_change')
-          targetElement.querySelector('.block-minicart .subtotal .price-container.amount').insertAdjacentHTML('beforeend', `
-          <span class="crs_price_new">${subtotalNew}</span>`)
-
-          targetElement.querySelector('.crs_cart_subtotal .pr').innerHTML = `<b class="pr_old">${price} </b><b> ${subtotalNew}</b>`
-
-          targetElement.querySelector('.crs_cart_subtotal').insertAdjacentHTML('afterend', `
-          <div class="crs_saved ml-auto">You just saved ${price[0] + saved}</div>`)
-        }
-
-        setSaved()
-
-        targetElement
-        .querySelector(".crs_discount_row button")
-        .addEventListener("click", (e) => {
-          if (targetElement.querySelector(".crs_discount_row input").value.toUpperCase() == 'WELCOME10') {
-            localStorage.setItem('crsDiscount', true)
-            setSaved()
-          }
-        })
-        //   }
-        // });
+        }, 200);
       }
     }
   }
@@ -1847,17 +1980,22 @@ function start() {
         waitForElement(".product-modal-options-btn-wrap").then((el) => {
           el.querySelectorAll("li").forEach((item) => {
             let icon = item.innerText.includes("GIFT WRAP")
-              ? dataIcons.giftIcon : dataIcons.personalisationIcon;
+              ? dataIcons.giftIcon
+              : dataIcons.personalisationIcon;
 
             item
               .querySelector("a.product-modal-options-btn")
               .insertAdjacentHTML("afterbegin", icon);
 
-            item.querySelector(".price-notice").insertAdjacentHTML(
-              "afterend", `<span class="ml-2">${dataIcons.infoIcon}</span>`
-            );
+            item
+              .querySelector(".price-notice")
+              .insertAdjacentHTML(
+                "afterend",
+                `<span class="ml-2">${dataIcons.infoIcon}</span>`
+              );
 
-            item.querySelector("li > a:last-child").innerHTML = dataIcons.checkIcon;
+            item.querySelector("li > a:last-child").innerHTML =
+              dataIcons.checkIcon;
 
             item.querySelectorAll("a").forEach((link) => {
               link.addEventListener("click", () => {
@@ -2087,17 +2225,35 @@ function start() {
       }
 
       if (location.href.includes("/checkout/")) {
+        if (sessionStorage.getItem("crsDiscount")) {
+          sessionStorage.removeItem("crsDiscount");
+
+          fetch(
+            `https://www.maxwellscottbags.com/rest/default/V1/guest-carts/${window.checkoutConfig.quoteData.entity_id}/coupons/welcome10`,
+            {
+              method: "PUT",
+            }
+          ).then((data) => {
+            window.location.reload();
+          });
+        }
+
         document.body.insertAdjacentHTML(
           "afterend",
           `<style>
-        .checkout-header-container {
-            margin-bottom: 20px!important;
-        }
-        .crs_info {
-            max-width: 650px;
-        }
-        </style>`
+            .checkout-header-container {
+                margin-bottom: 20px!important;
+            }
+            .crs_info {
+                max-width: 650px;
+                width: 100%;
+            }
+            .crs_highlight {
+              margin: 22px 0 30px;
+            }
+          </style>`
         );
+
         waitForElement(".checkout-header-container").then((el) => {
           el.insertAdjacentHTML(
             "afterend",
@@ -2128,8 +2284,9 @@ function start() {
 
           // Define the options for the Mutation Observer.
           const observerOptions = {
-            attributes: true, // Watch for changes to the attributes of the cart.
-            attributeFilter: ["class"], // Only watch for changes to the "class" attribute.
+            childList: true,
+            subtree: true,
+            attributes: true,
           };
 
           // Start observing the cart element.
@@ -2138,14 +2295,14 @@ function start() {
       );
 
       waitForElement(".mobile-basket-block").then((cartElement) => {
-
         // Create a Mutation Observer to watch for changes in the cart.
         const cartObserver = new MutationObserver(handleCartMutation);
 
         // Define the options for the Mutation Observer.
         const observerOptions = {
-          attributes: true, // Watch for changes to the attributes of the cart.
-          attributeFilter: ["class"], // Only watch for changes to the "class" attribute.
+          childList: true,
+          subtree: true,
+          attributes: true,
         };
 
         // Start observing the cart element.
@@ -2154,3 +2311,12 @@ function start() {
     }
   }, 0);
 }
+//https://www.maxwellscottbags.com/rest/default/V1/guest-carts/FJWCeu7peZgfWDcl6DyPCtmxd7su6zLA/coupons/25OFF
+
+//https://www.maxwellscottbags.com/rest/default/V1/carts/mine/coupons/25OFF
+
+//https://www.maxwellscottbags.com/rest/default/V1/guest-carts/onAlsUb4dbNo5qRiSxzr06RFwcrUghPd/coupons/25OFF
+
+// fetch('https://www.maxwellscottbags.com/rest/default/V1/guest-carts/onAlsUb4dbNo5qRiSxzr06RFwcrUghPd/coupons/25OFF', {
+//     method: 'PUT'
+// }).then(data => console.log(data))
