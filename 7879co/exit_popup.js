@@ -114,6 +114,9 @@ class ExitIntentPopup {
   styleAppend() {
     const style = /* html */ `
       <style class="crs-style">
+        body.crs_fixed {
+          overflow: hidden!important;
+        }
         .crs_popup {
             position: fixed;
             z-index: 99999999999;
@@ -421,6 +424,7 @@ class ExitIntentPopup {
 
     startTime = 0;
     $el(".crs_popup").classList.add("active");
+    document.body.classList.add("crs_fixed");
 
     startTimeInterval = setInterval(() => {
       startTime += 1;
@@ -531,6 +535,9 @@ class ExitIntentPopup {
 
     $el(".crs_popup_close").addEventListener("click", () => {
       $el(".crs_popup").classList.remove("active");
+
+      document.body.classList.remove("crs_fixed");
+
       clearInterval(startTimeInterval);
 
       const page =
@@ -561,6 +568,9 @@ class ExitIntentPopup {
     $el(".crs_popup").addEventListener("click", (e) => {
       if (e.target.classList.contains("crs_popup")) {
         $el(".crs_popup").classList.remove("active");
+
+        document.body.classList.remove("crs_fixed");
+
         clearInterval(startTimeInterval);
 
         const page =
@@ -588,33 +598,35 @@ class ExitIntentPopup {
 
       if (this.checkPageUrl() != "checkout") {
 
-        let token = $el('[data-testid="bag-button"]') ? $el('[data-testid="bag-button"]').href.split('bag/')[1] : ''
-        let login = !!$el('[data-testid="my-portfolio"]');
-        let domen = '';
+        let bagLink = '/bag'
 
-        if (window.location.href.includes('/int-usd') || 
-            window.location.href.includes('/ie') ||
-            window.location.href.includes('/us') ||
-            window.location.href.includes('/gcc') ||
-            window.location.href.includes('/eu')
-        ) {
-          domen = '/' + window.location.href.split('7879.co/')[1].split('/')[0]
+        if (this.device == 'desktop') {
+          bagLink = $el('[data-testid="bag-button"]') ? $el('[data-testid="bag-button"]').href : '/bag'
+        } else {
+          bagLink = $el('[data-testid="bag-button-mobile"]') ? $el('[data-testid="bag-button-mobile"]').href : '/bag'
         }
+        
+        console.log(bagLink)
+        console.log(bagLink.replace('/bag/','/checkoutv2/'))
+
+        let login = !!$el('[data-testid="my-portfolio"]');
 
         if (login) {
-          window.location.href  = domen + "/checkoutv2/" + token
+          window.location.href  = bagLink.replace('/bag/','/checkoutv2/')
         } else {
           localStorage.setItem('showPopupRegister', true)
           if (this.checkPageUrl() == 'bag') {
             $el(".crs_popup").classList.remove("active");
+            document.body.classList.remove("crs_fixed");
             localStorage.removeItem('showPopupRegister')
             $el('[data-testid="checkout-button"]').click()
           } else {
-            window.location.href = domen + "/bag/" + token
+            window.location.href = bagLink
           }
         }
       } else {
         $el(".crs_popup").classList.remove("active");
+        document.body.classList.remove("crs_fixed");
       }
       this.pushDataLayer([
         "exp_exit_int_popup_but_almos_compl",
