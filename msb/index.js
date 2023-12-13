@@ -652,7 +652,6 @@ const styleCart = `
     max-width: 100%;
     opacity: 1;
     pointer-events: auto;
-    height: 100%;
 }
 .mobile-basket-block__content,
 #minicart-content-wrapper {
@@ -660,7 +659,7 @@ const styleCart = `
     margin: 0 0 0 auto;
     height: 100%;
     width: calc(100% - 25px);
-    padding: 14px 16px 220px;
+    padding: 14px 0 0 0;
     transform: translateX(100%);
     transition: all 0.2s ease;
     overflow-x: hidden;
@@ -783,6 +782,8 @@ const styleCart = `
     height: 100%;
     display: flex;
     flex-direction: column;
+    overflow: hidden auto;
+    padding: 14px 16px 220px;
 }
 .minicart-wrapper .product .actions {
     position: absolute;
@@ -1632,8 +1633,6 @@ function setSaved(targetElement, price) {
   const isDiscount =
     targetElement.querySelectorAll(".block-content .subtotal").length > 1;
 
-  console.log(isDiscount);
-
   let subtotal = parseFloat(price.replace(price[0], "").split(",").join(""));
   let saved = isDiscount
     ? ((subtotal * 10) / 90).toFixed(2)
@@ -1645,16 +1644,11 @@ function setSaved(targetElement, price) {
     ? (subtotal + +saved).toFixed(2)
     : subtotal.toFixed(2);
 
-  console.log(subtotal);
-  console.log(saved);
-  console.log(subtotalNew);
-  console.log(oldPrice);
-
-  targetElement.querySelector(".crs_regular")?.remove()
+  targetElement.querySelector(".crs_regular")?.remove();
 
   targetElement.querySelector(".crs_discount_row").insertAdjacentHTML(
-      "beforebegin",
-      `
+    "beforebegin",
+    `
     <div class="crs_regular">
       <p class="d-flex justify-content-between"><b>Regular price</b> <b>${
         price[0] + addCommasToNumber(oldPrice)
@@ -1664,7 +1658,6 @@ function setSaved(targetElement, price) {
       }</span></p>
     </div>`
   );
-  
 
   targetElement.querySelector(".crs_discount_row").classList.remove("active");
 
@@ -1672,14 +1665,16 @@ function setSaved(targetElement, price) {
     .querySelector(".subtotal .price-container.amount")
     .classList.add("crs_change");
 
-  targetElement.querySelector(".crs_price_new")?.remove()
+  targetElement.querySelector(".crs_price_new")?.remove();
 
-  targetElement.querySelector(".subtotal .price-container.amount").insertAdjacentHTML("beforeend",
-    `<span class="crs_price_new">${
-      price[0] + addCommasToNumber(subtotalNew)
-    }</span>`
-  );
-  
+  targetElement
+    .querySelector(".subtotal .price-container.amount")
+    .insertAdjacentHTML(
+      "beforeend",
+      `<span class="crs_price_new">${
+        price[0] + addCommasToNumber(subtotalNew)
+      }</span>`
+    );
 
   targetElement.querySelector(
     ".crs_cart_subtotal .pr"
@@ -1687,13 +1682,16 @@ function setSaved(targetElement, price) {
     price[0] + addCommasToNumber(subtotalNew)
   }</b>`;
 
-  if (!targetElement.querySelector(".crs_saved")) {
-    targetElement.querySelector(".crs_cart_subtotal").insertAdjacentHTML(
+  targetElement.querySelector(".crs_saved")?.remove();
+
+  targetElement
+    .querySelector(".crs_cart_subtotal")
+    .insertAdjacentHTML(
       "afterend",
-      `
-    <div class="crs_saved ml-auto">You just saved ${price[0] + saved}</div>`
+      `<div class="crs_saved ml-auto">You just saved ${price[0] + saved}</div>`
     );
-  }
+
+  isSaved = false
 }
 
 // Function to handle the observed mutations on the cart element.
@@ -1716,11 +1714,8 @@ function handleCartMutation(mutationsList, observer) {
             )
             .forEach((item) => {
               countProduct += +item.innerText;
-              console.log(+item.innerText);
             });
-          console.log(countProduct);
-          targetElement.querySelector(".minicart-title span").innerHTML =
-            countProduct;
+          targetElement.querySelector(".minicart-title span").innerHTML = countProduct;
         }
 
         targetElement
@@ -1761,8 +1756,6 @@ function handleCartMutation(mutationsList, observer) {
               ".subtotal .amount.price-container .price"
             ).innerText;
 
-            console.log(price);
-
             targetElement.querySelector(".crs_cart_subtotal")?.remove();
 
             targetElement
@@ -1794,27 +1787,22 @@ function handleCartMutation(mutationsList, observer) {
               );
             targetElement.querySelector(".crs_sub .pr b").innerHTML = price;
 
-            targetElement.querySelector(".crs_discount_row")?.remove()
+            if (!targetElement.querySelector(".crs_discount_row")) {
 
-            targetElement.querySelector(".subtotal").insertAdjacentHTML(
-              "beforebegin",
-              `
-              <div class="crs_discount_row ${
-                sessionStorage.getItem("crsDiscount") ? "active" : ""
-              }">
-                <input type="text" placeholder="Apply discount code">
-                <button type="button">Apply</button>
-              </div>`
-            );
-
-            if (
-              !sessionStorage.getItem("crsDiscount") &&
-              !targetElement.querySelector(".crs_discount")
-            ) {
-              targetElement
-                .querySelector(".crs_discount_row")
-                .insertAdjacentHTML("beforebegin", getDiscount);
+              targetElement.querySelector(".subtotal").insertAdjacentHTML(
+                "beforebegin",
+                ` ${getDiscount}
+                <div class="crs_discount_row">
+                  <input type="text" placeholder="Apply discount code">
+                  <button type="button">Apply</button>
+                </div>`
+              );
             }
+
+            targetElement.querySelector(".crs_discount").hidden = sessionStorage.getItem("crsDiscount") || 
+            targetElement.querySelector(".crs_discount_row").classList.contains('active') ? true : false
+
+            // !!sessionStorage.getItem("crsDiscount") ? targetElement.querySelector(".crs_discount_row").classList.add('active') : targetElement.querySelector(".crs_discount_row").classList.remove('active')
 
             if (!sessionStorage.getItem("crsDiscount")) {
             }
@@ -2318,5 +2306,6 @@ function start() {
 //https://www.maxwellscottbags.com/rest/default/V1/guest-carts/onAlsUb4dbNo5qRiSxzr06RFwcrUghPd/coupons/25OFF
 
 // fetch('https://www.maxwellscottbags.com/rest/default/V1/guest-carts/onAlsUb4dbNo5qRiSxzr06RFwcrUghPd/coupons/25OFF', {
+
 //     method: 'PUT'
 // }).then(data => console.log(data))
