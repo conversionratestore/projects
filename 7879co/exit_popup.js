@@ -70,6 +70,29 @@ class ExitIntentPopup {
         }
       }
 
+      if (this.checkPageUrl() === "checkout" && 
+          clickAddToCart == false
+      ) {
+        $$el('button').forEach(item => {
+          if (item.innerText.includes('Save and Continue')) {
+            item.addEventListener('click', () =>{
+              clickAddToCart = true
+
+              if (window.scrollY == 0) {
+                clickAddToCart = false;
+              }
+      
+              window.addEventListener("scroll", (e) => {
+                if (window.scrollY == 0) {
+                  clickAddToCart = false;
+                }
+              });
+            })
+          }
+        })
+      }
+
+
       if (
         isProductsInCart == false &&
         localStorage.getItem("crs_cart") &&
@@ -463,7 +486,7 @@ class ExitIntentPopup {
         { once: true }
       );
     } else {
-      let speedValue = /android/i.test(navigator.userAgent) ? 70 : 70;
+      let speedValue = /android/i.test(navigator.userAgent) ? 150 : 150;
 
       let lastPosition = 0,
         newPosition = 0,
