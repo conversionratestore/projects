@@ -287,6 +287,17 @@ a.product-modal-options-btn.selected-option + a svg {
     width: fit-content;
     padding: 0;
     height: auto;
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8" fill="none"%3E%3Cg clip-path="url(%23clip0_571_1990)"%3E%3Cpath d="M7.1101 5.15703L2.16009 0.207031L0.746094 1.62103L7.1101 7.98503L13.4741 1.62103L12.0601 0.207033L7.1101 5.15703Z" fill="%23333333"%3E%3C/path%3E%3C/g%3E%3Cdefs%3E%3CclipPath id="clip0_571_1990"%3E%3Crect width="14" height="8" fill="white"%3E%3C/rect%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E') no-repeat right center / 14px 8px;
+}
+.crs_country,
+.mobile-basket-block__content .shipping-costs .fields .field-country select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+}
+.mobile-basket-block__content .shipping-costs .fields .field-country select {
+  background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none"%3E%3Cpath d="M1 0.5L6 5.5L11 0.5" stroke="%23333333" stroke-width="1.4"%3E%3C/path%3E%3C/svg%3E') no-repeat right 12px center / 10px 8px;
 }
 .crs_shipto > p {
     margin: 0 4px 0 0;
@@ -488,6 +499,19 @@ body .product-static-columns .container .section-desc {
   padding: 17px 0;
 }
 @media (max-width: 768px) {
+    .mobile-basket-block__content .product-item-details .product.options .option-wrapper .label {
+      padding-right: 0;
+    }
+    .mobile-basket-block__content .product-item-details .product.options .option-wrapper .label:after {
+      content: ':';
+      padding: 0 5px 0 0;
+    }
+    #wi-country-selector-button {
+      z-index: 8;
+    }
+    body {
+      padding-bottom: 65px;
+    }
     .product-info-main .product-reviews-summary {
         order: 1;
     }
@@ -762,7 +786,6 @@ const styleCart = `
 .header-right-block .minicart-wrapper .crs_regular {
   padding: 0 0 18px 0;
 }
-
 .mobile-basket-block__content .crs_klarna,
 .block-minicart .crs_klarna {
     padding: 0;
@@ -778,7 +801,7 @@ const styleCart = `
     bottom: 0;
     right: 0;
     width: 100%;
-    padding: 13px 16px;
+    padding: 12px 16px;
     background: var(--colors-wight, #FFF);
     z-index: 3;
     box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.16);
@@ -794,12 +817,12 @@ const styleCart = `
     height: 54px;
 }
 .mobile-basket-block__content .block-content,
-.minicart-wrapper .block-minicart .block-content{
+.minicart-wrapper .block-minicart .block-content {
     height: 100%;
     display: flex;
     flex-direction: column;
     overflow: hidden auto;
-    padding: 14px 16px 220px;
+    padding: 14px 16px 196px;
 }
 .minicart-wrapper .product .actions {
     bottom: 3px!important;
@@ -1722,8 +1745,8 @@ function setSaved(targetElement, price) {
       "afterend",
       `<div class="crs_saved ml-auto">You just saved ${price[0] + saved}</div>`
     );
-
-  isSaved = false;
+    
+  targetElement.querySelector('.block-content').style = 'padding-bottom: 220px'
 }
 
 // Function to handle the observed mutations on the cart element.
@@ -1978,7 +2001,7 @@ function start() {
               clearInterval(waitForDiscount);
 
               document
-                .querySelector(".crs_klarna")
+                .querySelector(".product-info-main .crs_klarna")
                 .insertAdjacentHTML("afterend", getDiscount);
 
               document
@@ -2000,9 +2023,11 @@ function start() {
 
         waitForElement(".product-modal-options-btn-wrap").then((el) => {
           el.querySelectorAll("li").forEach((item) => {
-            let icon = item.innerText.includes("GIFT WRAP")
+            let icon = item.innerText.toUpperCase().includes("GIFT")
               ? dataIcons.giftIcon
               : dataIcons.personalisationIcon;
+
+            console.log(item.innerText.toUpperCase())
 
             item
               .querySelector("a.product-modal-options-btn")
