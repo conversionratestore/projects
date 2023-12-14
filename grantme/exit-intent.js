@@ -842,13 +842,21 @@ class ExitIntentPopup {
         this.createPopup(videoTime)
       })
     }
-
-    $el('video').addEventListener('click', function () {
-      if (this.classList.contains('crs_popup_start')) {
-        this.classList.remove('crs_popup_start')
+    $el('.p-absolute.z-index-101').addEventListener('click', () => {
+      if ($el('.p-absolute.z-index-101').classList.contains('crs_popup_start')) {
+        $el('.p-absolute.z-index-101').classList.remove('crs_popup_start')
         this.createPopup(videoTime)
       } else {
-        this.classList.add('crs_popup_start')
+        $el('.p-absolute.z-index-101').classList.add('crs_popup_start')
+      }
+    })
+
+    $el('.video-js').addEventListener('click', () => {
+      if ($el('.video-js').classList.contains('crs_popup_start')) {
+        $el('.video-js').classList.remove('crs_popup_start')
+        this.createPopup(videoTime)
+      } else {
+        $el('.video-js').classList.add('crs_popup_start')
       }
     })
     if ($el('.btn-unmute')) {
