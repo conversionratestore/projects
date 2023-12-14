@@ -869,6 +869,8 @@ const styleCart = `
     padding: 14px 16px 196px;
 }
 .minicart-wrapper .product .actions {
+    position: absolute;
+    right: 0;
     bottom: 3px!important;
 }
 .paypal.after:before {
@@ -1033,9 +1035,6 @@ const styleCart = `
 }
 .modal-slide._show, .modal-popup._show {
   z-index: 99999999!important;
-}
-.needsclick.kl-private-reset-css-Xuajs1 {
-  z-index: 9!important;
 }
 </style>`;
 
@@ -1812,7 +1811,9 @@ function setSaved(targetElement, price) {
   targetElement.querySelector(
     ".crs_cart_subtotal .pr"
   ).innerHTML = `<b class="pr_old">${price[0] + oldPrice} </b><b> ${
-    price[0] + addCommasToNumber(subtotalNew)
+    isDiscount
+    ? price[0] + addCommasToNumber(oldPrice)
+    : price[0] + addCommasToNumber(subtotalNew)
   }</b>`;
 
   targetElement.querySelector(".crs_saved")?.remove();
@@ -1861,6 +1862,7 @@ function handleCartMutation(mutationsList, observer) {
           .querySelectorAll(".minicart-items .action.delete")
           .forEach((item) => {
             item.innerHTML = dataIcons.deleteIcon;
+            item.addEventListener('click', () => isSaved = false)
           });
 
         if (!targetElement.querySelector("#top-cart-btn-checkout")) return;
@@ -1894,6 +1896,12 @@ function handleCartMutation(mutationsList, observer) {
             console.log(price);
 
             targetElement.querySelector(".crs_cart_subtotal")?.remove();
+            
+            let newPrice = ''
+            if (targetElement.querySelector('.crs_regular > p > span')) {
+              let selectorNewPrice = targetElement.querySelector('.crs_regular > p > span')
+              newPrice = price[0] + addCommasToNumber((+price.replace(price[0], "").split(",").join("") - +selectorNewPrice.innerText.split(selectorNewPrice.innerText[1])[1]).toFixed(2))
+            }
 
             targetElement
               .querySelector(".block-content > .actions > .primary")
@@ -1903,31 +1911,32 @@ function handleCartMutation(mutationsList, observer) {
                 <div class="crs_cart_subtotal">
                     <div class="d-flex justify-content-between align-items-center crs_sub">
                         <p><b>Subtotal</b> </p>
-                        <p class="pr"><b> ${price}</b></p>
+                        <p class="pr"><b> ${newPrice != '' ? newPrice : price}</b></p>
                     </div>
                 </div>`
               );
+
+              console.log(targetElement.querySelector(".crs_cart_subtotal .pr").innerText)
 
             if (!targetElement.querySelector(".crs_highlight")) {
               targetElement
                 .querySelector(".block-content > .actions")
                 .insertAdjacentHTML("beforebegin", highlight);
             }
+            targetElement.querySelector(".crs_klarna")?.remove()
 
-            if (!targetElement.querySelector(".crs_klarna")) {
-              targetElement
-                .querySelector(".subtotal")
-                .insertAdjacentHTML(
-                  "afterend",
-                  klarna(+price.replace(price[0], "").split(",").join(""))
-                );
-
-              console.log(
-                targetElement.querySelector(".crs_klarna b").innerHTML
+            targetElement
+              .querySelector(".subtotal")
+              .insertAdjacentHTML(
+                "afterend",
+                klarna(newPrice != '' ? +newPrice.replace(newPrice[0], "").split(",").join("") : +price.replace(price[0], "").split(",").join(""))
               );
-            }
 
-            targetElement.querySelector(".crs_sub .pr b").innerHTML = price;
+            console.log(
+              targetElement.querySelector(".crs_klarna b").innerHTML
+            );
+
+            targetElement.querySelector(".crs_sub .pr b").innerHTML = newPrice != '' ? newPrice : price;
 
             if (!targetElement.querySelector(".crs_discount_row")) {
               targetElement.querySelector(".subtotal").insertAdjacentHTML(
@@ -2482,3 +2491,13 @@ function start() {
     }
   }, 0);
 }
+//https://www.maxwellscottbags.com/rest/default/V1/guest-carts/FJWCeu7peZgfWDcl6DyPCtmxd7su6zLA/coupons/25OFF
+
+//https://www.maxwellscottbags.com/rest/default/V1/carts/mine/coupons/25OFF
+
+//https://www.maxwellscottbags.com/rest/default/V1/guest-carts/onAlsUb4dbNo5qRiSxzr06RFwcrUghPd/coupons/25OFF
+
+// fetch('https://www.maxwellscottbags.com/rest/default/V1/guest-carts/onAlsUb4dbNo5qRiSxzr06RFwcrUghPd/coupons/25OFF', {
+
+//     method: 'PUT'
+// }).then(data => console.log(data))
