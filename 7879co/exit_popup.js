@@ -947,7 +947,7 @@ class ExitIntentPopup {
       listPopup.classList.remove("crs_list_1");
       info.querySelector(
         "p"
-      ).innerHTML = `We can’t guarantee the availability of all products in your cart if you don’t complete the purchase now`;
+      ).innerHTML = `We can’t guarantee the availability of all products in your bag if you don’t complete the purchase now`;
     } else {
       listPopup.classList.add("crs_list_1");
       info.querySelector(

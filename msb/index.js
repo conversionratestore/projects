@@ -796,19 +796,22 @@ const styleCart = `
 .block-minicart .crs_klarna {
     padding: 0;
 }
+.shipping-costs .shipping-costs__control {
+  display: none!important;
+}
 .shipping-costs .shipping-costs-desc {
     padding: 12px 0;
     border-top: 1px dashed #CCC;
 }
-#minicart-content-wrapper .shipping-costs .shipping-costs-desc {
+.shipping-costs .shipping-costs-desc {
   display: flex;
   align-items: center;
   text-decoration: none;
 }
-#minicart-content-wrapper .shipping-costs .shipping-costs-desc span {
+.shipping-costs .shipping-costs-desc span {
   text-decoration: underline;
 }
-#minicart-content-wrapper .shipping-costs .shipping-costs-desc:after {
+.shipping-costs .shipping-costs-desc:after {
   content: '+';
   color: var(--Untitled-Black, #333);
   text-align: right;
@@ -820,15 +823,15 @@ const styleCart = `
   margin-left: auto;
   display: block;
 }
-#minicart-content-wrapper .shipping-costs.active .shipping-costs-desc:after  {
+.shipping-costs.active .shipping-costs-desc:after  {
   content: '–';
 }
-#minicart-content-wrapper .shipping-costs + .extra,
-#minicart-content-wrapper .shipping-costs > .fields {
+.shipping-costs + .extra,
+.shipping-costs > .fields {
   display: none;
 }
-#minicart-content-wrapper .shipping-costs.active > .fields,
-#minicart-content-wrapper .shipping-costs.active + .extra {
+.shipping-costs.active > .fields,
+.shipping-costs.active + .extra {
   display: block;
 }
 .mobile-basket-block__content > .block-content > .actions,
@@ -1021,6 +1024,9 @@ const styleCart = `
 }
 .modal-slide._show, .modal-popup._show {
   z-index: 99999999!important;
+}
+.needsclick {
+  z-index: 9!important;
 }
 </style>`;
 
@@ -1722,11 +1728,22 @@ function addCommasToNumber(number) {
   return formattedIntegerPart + decimalPart;
 }
 
+let isSaved = false;
+
 function setSaved(targetElement, price) {
-  if (!sessionStorage.getItem("crsDiscount")) return;
+  if (
+    !sessionStorage.getItem("crsDiscount") &&
+    !targetElement.querySelector(".crs_klarna+.subtotal")
+  )
+    return;
+  if (isSaved == true) return;
+
+  isSaved = true;
 
   const isDiscount =
     targetElement.querySelectorAll(".block-content .subtotal").length > 1;
+
+  console.log(isDiscount);
 
   let subtotal = parseFloat(price.replace(price[0], "").split(",").join(""));
   let saved = isDiscount
@@ -1738,6 +1755,11 @@ function setSaved(targetElement, price) {
   let oldPrice = isDiscount
     ? (subtotal + +saved).toFixed(2)
     : subtotal.toFixed(2);
+
+  console.log("subtotal: " + subtotal);
+  console.log("saved: " + saved);
+  console.log("subtotalNew: " + subtotalNew);
+  console.log("oldPrice: " + oldPrice);
 
   targetElement.querySelector(".crs_regular")?.remove();
 
@@ -1755,6 +1777,7 @@ function setSaved(targetElement, price) {
   );
 
   targetElement.querySelector(".crs_discount_row").classList.remove("active");
+  targetElement.querySelector(".crs_discount").hidden = isDiscount ? true : false
 
   targetElement
     .querySelector(".subtotal .price-container.amount")
@@ -1765,9 +1788,11 @@ function setSaved(targetElement, price) {
   targetElement
     .querySelector(".subtotal .price-container.amount")
     .insertAdjacentHTML(
-      "beforeend",
+      isDiscount ? "afterbegin" : "beforeend",
       `<span class="crs_price_new">${
-        price[0] + addCommasToNumber(subtotalNew)
+        isDiscount
+          ? price[0] + addCommasToNumber(oldPrice)
+          : price[0] + addCommasToNumber(subtotalNew)
       }</span>`
     );
 
@@ -1848,6 +1873,8 @@ function handleCartMutation(mutationsList, observer) {
               ".subtotal .amount.price-container .price"
             ).innerText;
 
+            console.log(price);
+
             targetElement.querySelector(".crs_cart_subtotal")?.remove();
 
             targetElement
@@ -1898,18 +1925,13 @@ function handleCartMutation(mutationsList, observer) {
                 ? true
                 : false;
 
-            // !!sessionStorage.getItem("crsDiscount") ? targetElement.querySelector(".crs_discount_row").classList.add('active') : targetElement.querySelector(".crs_discount_row").classList.remove('active')
-
-            if (!sessionStorage.getItem("crsDiscount")) {
-            }
-
             setSaved(targetElement, price);
 
             if (!sessionStorage.getItem("crsDiscount")) {
               targetElement
                 .querySelector(".crs_discount")
                 .addEventListener("click", (e) => {
-                  e.stopImmediatePropagation()
+                  e.stopImmediatePropagation();
                   e.currentTarget.hidden = true;
                   targetElement
                     .querySelector(".crs_discount_row")
@@ -1927,7 +1949,7 @@ function handleCartMutation(mutationsList, observer) {
             targetElement
               .querySelector(".crs_discount_row button")
               .addEventListener("click", (e) => {
-                e.stopImmediatePropagation()
+                e.stopImmediatePropagation();
                 if (
                   targetElement
                     .querySelector(".crs_discount_row input")
@@ -1937,6 +1959,7 @@ function handleCartMutation(mutationsList, observer) {
                     .querySelector(".crs_discount_row")
                     .classList.remove("crs_error", "active");
                   sessionStorage.setItem("crsDiscount", true);
+                  isSaved = false;
                   setSaved(targetElement, price);
                 } else {
                   targetElement
@@ -1944,42 +1967,30 @@ function handleCartMutation(mutationsList, observer) {
                     .classList.add("crs_error");
                 }
 
-                pushDataLayer(['exp_inc_soc_trus_but_apply_cart', 'Apply', 'Button', 'Cart']);
-              });
-
-            targetElement
-              .querySelectorAll(".subtotal")
-              .forEach((item, index) => {
-                if (item.innerText.includes("Discount")) {
-                  let priceSub = parseFloat(
-                    price.replace(price[0], "").split(",").join("")
-                  );
-                  let savedPrice = (priceSub * 10) / 90;
-                  targetElement.querySelectorAll(
-                    ".subtotal .price"
-                  )[0].innerHTML = addCommasToNumber(
-                    (priceSub + savedPrice).toFixed(2)
-                  );
-                }
+                pushDataLayer([
+                  "exp_inc_soc_trus_but_apply_cart",
+                  "Apply",
+                  "Button",
+                  "Cart",
+                ]);
               });
 
             if (
               targetElement.querySelector(
                 ".shipping-costs .shipping-costs-desc"
-              ) &&
-              !media
+              )
             ) {
               targetElement
                 .querySelector(".shipping-costs .shipping-costs-desc")
                 .addEventListener("click", (e) => {
-                  e.stopImmediatePropagation()
+                  e.stopImmediatePropagation();
                   targetElement
                     .querySelector(".shipping-costs")
                     .classList.toggle("active");
                 });
             }
           }
-        }, 200);
+        }, 300);
       }
     }
   }
@@ -2400,6 +2411,9 @@ function start() {
                 cartElement.classList.remove("active");
               }
             });
+          cartElement
+            .querySelector(".showcart")
+            .addEventListener("click", (e) => (isSaved = false));
 
           // Create a Mutation Observer to watch for changes in the cart.
           const cartObserver = new MutationObserver(handleCartMutation);
@@ -2424,6 +2438,10 @@ function start() {
         };
         window.addEventListener("resize", appHeight);
         appHeight();
+
+        document
+          .querySelector(".mobile-basket__btn")
+          .addEventListener("click", (e) => (isSaved = false));
 
         const cartObserver = new MutationObserver(handleCartMutation);
 
