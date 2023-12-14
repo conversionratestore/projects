@@ -213,7 +213,6 @@ body > div > button.needsclick {
     padding: 6px 0;
     font-size: 14px;
     position: relative;
-    text-transform: uppercase;
 }
 .product-modal-options-btn-wrap .product-modal-options-btn + a {
     margin: 0!important;
@@ -457,7 +456,7 @@ body .product-static-columns .container .section-desc {
     font-size: 12.875px;
     max-width: 315px;
 }
-.crs_sticky_btn {
+.crs_sticky {
     position: fixed;
     left: 0;
     bottom: 0;
@@ -465,6 +464,9 @@ body .product-static-columns .container .section-desc {
     transition: all 0.2s ease;
     transform: translateY(100px);
     z-index: 9;
+    width: 100%;
+}
+.crs_sticky_btn {
     width: 100%;
     background: var(--Red, #A11A17);
     color: var(--White, #FFF);
@@ -478,24 +480,9 @@ body .product-static-columns .container .section-desc {
     text-transform: uppercase;
     padding: 17px;
 }
-.crs_sticky_btn.active {
+.crs_sticky.active {
     transform: translateY(0);
     opacity: 1;
-}
-.crs_pr {
-    font-family: 'adobe-garamond-pro', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 1.6px;
-    text-transform: uppercase;
-}
-.crs_pr:before {
-    content: '';
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    margin: 0 19px;
-    background-color: #fff;
 }
 .features-static-link-block>a, .features-static-link-block>span {
   padding: 17px 0;
@@ -510,6 +497,34 @@ body .product-static-columns .container .section-desc {
     }
 }
 @media (min-width: 769px) {
+    .crs_sticky_btn {
+      max-width: 335px;
+    }
+    .crs_sticky {
+      background: #FFF;
+      box-shadow: 0px -3px 6px 0px rgba(0, 0, 0, 0.10);
+    }
+    .crs_sticky > div {
+      width: 100%;
+      margin: 0 auto;
+      max-width: 842px;
+      padding: 16px;
+    }
+    .crs_sticky h2 {
+      color: var(--Untitled-Black, #333);
+      font-family: 'adobe-garamond-pro', serif;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 40px; 
+      margin: 0;
+    }
+    .crs_sticky h2 span {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 28px;
+      display: block;
+    }
     .title-v3 ,
     .msb-reviews-static-block .block-title,
     .column.main .block .title {
@@ -625,9 +640,12 @@ body .product-static-columns .container .section-desc {
 
 const styleCart = `
 <style>
+.minicart-wrapper .block-minicart  {
+  height: 100vh!important;
+}
 .mobile-basket-block,
 .minicart-wrapper .block-minicart {
-    height: 100vh!important;
+    height: 100vh;
     top: 0;
     width: 100%;
     right: 0;
@@ -659,7 +677,7 @@ const styleCart = `
     margin: 0 0 0 auto;
     height: 100%;
     width: calc(100% - 25px);
-    padding: 14px 0 0 0;
+    padding: 0;
     transform: translateX(100%);
     transition: all 0.2s ease;
     overflow-x: hidden;
@@ -691,7 +709,6 @@ const styleCart = `
 }
 .minicart-items .product-item-name {
     font-size: 18px;
-    font-weight: 700;
     line-height: 24px;
     margin: 0;
 }
@@ -701,8 +718,7 @@ const styleCart = `
     font-size: 14px;
 }
 .price-including-tax>.minicart-price .price {
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 16px!important;
     font-family: 'adobe-garamond-pro', sans-serif;
     line-height: 24px;
 }
@@ -786,9 +802,7 @@ const styleCart = `
     padding: 14px 16px 220px;
 }
 .minicart-wrapper .product .actions {
-    position: absolute;
-    right: 0;
-    bottom: 0;
+    bottom: 3px!important;
 }
 .paypal.after:before {
     content: none;
@@ -828,11 +842,11 @@ const styleCart = `
 }
 .minicart-title {
     color: #212121;
-    font-size: 18px;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 700;
-    line-height: 24px;
-    letter-spacing: 0.9px;
+    font-weight: 400;
+    line-height: 30px; /* 150% */
+    letter-spacing: 1px;
 }
 .minicart-wrapper .action.close {
     top: 3px;
@@ -1101,6 +1115,18 @@ const dataIcons = {
         </filter>
       </defs>
     </svg>`,
+  deleteIcon: `
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <g clip-path="url(#clip0_578_12563)">
+          <path d="M24 0H0V24H24V0Z" fill="white"/>
+          <path d="M7 21C6.5 21 6 20.8 5.6 20.4C5.2 20 5 19.5 5 19V6H4V4H9V3H15V4H20V6H19V19C19 19.5 18.8 20 18.4 20.4C18 20.8 17.6 21 17 21H7ZM17 6H7V19H17V6ZM9 17H11V8H9V17ZM13 17H15V8H13V17Z" fill="#333333"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_578_12563">
+            <rect width="24" height="24" fill="white"/>
+          </clipPath>
+        </defs>
+      </svg>`,
 };
 
 const topBadge = `
@@ -1563,8 +1589,14 @@ function klarna(price) {
   )}</b> with <img src="${dir}klarna.png" alt="klarna"></p>`;
 }
 
-function setStickyBtn(price) {
-  return `<button type="button" class="crs_sticky_btn d-flex align-items-center justify-content-center active"><b>add to basket</b>  <span class="crs_pr">${price}</span></button>`;
+function setStickyBtn(title, span) {
+  return `
+    <div class="crs_sticky ${media ? "active" : ""}">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2 class="crs_sticky_content d-md-block d-none">${title} <span>${span}</span></h2>
+        <button type="button" class="crs_sticky_btn"><b>add to basket</b></button>
+      </div> 
+    </div>`;
 }
 
 function scrollTo(target) {
@@ -1653,7 +1685,7 @@ function setSaved(targetElement, price) {
       <p class="d-flex justify-content-between"><b>Regular price</b> <b>${
         price[0] + addCommasToNumber(oldPrice)
       }</b></p>
-      <p class="d-flex justify-content-between">Sign up discount savings <span>${
+      <p class="d-flex justify-content-between">Sign up discount savings <span>-${
         price[0] + saved
       }</span></p>
     </div>`
@@ -1691,7 +1723,7 @@ function setSaved(targetElement, price) {
       `<div class="crs_saved ml-auto">You just saved ${price[0] + saved}</div>`
     );
 
-  isSaved = false
+  isSaved = false;
 }
 
 // Function to handle the observed mutations on the cart element.
@@ -1715,17 +1747,14 @@ function handleCartMutation(mutationsList, observer) {
             .forEach((item) => {
               countProduct += +item.innerText;
             });
-          targetElement.querySelector(".minicart-title span").innerHTML = countProduct;
+          targetElement.querySelector(".minicart-title span").innerHTML =
+            countProduct;
         }
 
         targetElement
           .querySelectorAll(".minicart-items .action.delete")
           .forEach((item) => {
-            item.innerHTML = `
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M17.5584 4.35842C16.2167 4.22508 14.875 4.12508 13.525 4.05008V4.04175L13.3417 2.95841C13.2167 2.19175 13.0334 1.04175 11.0834 1.04175H8.90005C6.95838 1.04175 6.77505 2.14175 6.64172 2.95008L6.46672 4.01675C5.69172 4.06675 4.91672 4.11675 4.14172 4.19175L2.44172 4.35842C2.09172 4.39175 1.84172 4.70008 1.87505 5.04175C1.90838 5.38342 2.20838 5.63342 2.55838 5.60008L4.25838 5.43342C8.62505 5.00008 13.0251 5.16675 17.4417 5.60842C17.4667 5.60842 17.4834 5.60842 17.5084 5.60842C17.8251 5.60842 18.1 5.36675 18.1334 5.04175C18.1584 4.70008 17.9084 4.39175 17.5584 4.35842Z" fill="#333333"/>
-                    <path d="M16.0254 6.78325C15.8254 6.57492 15.5504 6.45825 15.2671 6.45825H4.73378C4.45044 6.45825 4.16711 6.57492 3.97544 6.78325C3.78378 6.99159 3.67544 7.27492 3.69211 7.56659L4.20878 16.1166C4.30044 17.3833 4.41711 18.9666 7.32544 18.9666H12.6754C15.5838 18.9666 15.7004 17.3916 15.7921 16.1166L16.3088 7.57492C16.3254 7.27492 16.2171 6.99159 16.0254 6.78325ZM11.3838 14.7916H8.60878C8.26711 14.7916 7.98378 14.5083 7.98378 14.1666C7.98378 13.8249 8.26711 13.5416 8.60878 13.5416H11.3838C11.7254 13.5416 12.0088 13.8249 12.0088 14.1666C12.0088 14.5083 11.7254 14.7916 11.3838 14.7916ZM12.0838 11.4583H7.91711C7.57544 11.4583 7.29211 11.1749 7.29211 10.8333C7.29211 10.4916 7.57544 10.2083 7.91711 10.2083H12.0838C12.4254 10.2083 12.7088 10.4916 12.7088 10.8333C12.7088 11.1749 12.4254 11.4583 12.0838 11.4583Z" fill="#333333"/>
-                </svg>`;
+            item.innerHTML = dataIcons.deleteIcon;
           });
 
         if (!targetElement.querySelector("#top-cart-btn-checkout")) return;
@@ -1788,7 +1817,6 @@ function handleCartMutation(mutationsList, observer) {
             targetElement.querySelector(".crs_sub .pr b").innerHTML = price;
 
             if (!targetElement.querySelector(".crs_discount_row")) {
-
               targetElement.querySelector(".subtotal").insertAdjacentHTML(
                 "beforebegin",
                 ` ${getDiscount}
@@ -1799,8 +1827,13 @@ function handleCartMutation(mutationsList, observer) {
               );
             }
 
-            targetElement.querySelector(".crs_discount").hidden = sessionStorage.getItem("crsDiscount") || 
-            targetElement.querySelector(".crs_discount_row").classList.contains('active') ? true : false
+            targetElement.querySelector(".crs_discount").hidden =
+              sessionStorage.getItem("crsDiscount") ||
+              targetElement
+                .querySelector(".crs_discount_row")
+                .classList.contains("active")
+                ? true
+                : false;
 
             // !!sessionStorage.getItem("crsDiscount") ? targetElement.querySelector(".crs_discount_row").classList.add('active') : targetElement.querySelector(".crs_discount_row").classList.remove('active')
 
@@ -2146,69 +2179,84 @@ function start() {
         waitForElement(".msb-product-details-col-left").then((el) => {
           el.insertAdjacentHTML(
             "beforebegin",
-            `<h3 class="crs_about">About this product</h3>`
+            `<h3 class="crs_about">About ${
+              document.querySelector(
+                ".product-info-main .page-title-wrapper .page-title"
+              ).innerText
+            }</h3>`
           );
         });
 
         waitForElement(
           ".product-info-main .price-box .price-wrapper .price"
         ).then((el) => {
-          if (media) {
-            document.body.insertAdjacentHTML(
-              "beforeend",
-              setStickyBtn(el.innerText)
-            );
+          document.body.insertAdjacentHTML(
+            "beforeend",
+            setStickyBtn(
+              document.querySelector(
+                ".product-info-main .page-title-wrapper .page-title"
+              ).innerText,
+              document.querySelector(
+                ".product-info-main .page-title-wrapper .product-name-sub"
+              ).innerText
+            )
+          );
 
-            let stickyBtn = document.querySelector(".crs_sticky_btn");
-            let btnAddToCart = document.querySelector(
-              ".product-options-bottom"
-            );
+          let stickyBtn = document.querySelector(".crs_sticky");
+          let btnAddToCart = document.querySelector(".product-options-bottom");
 
-            let clickAddToCart = false;
-            stickyBtn.addEventListener("click", () => {
-              clickAddToCart = true;
-              document
-                .querySelector(
-                  ".product-info-main .box-tocart .actions .action.tocart"
-                )
-                .click();
-              pushDataLayer([
-                "exp_inc_soc_trus_sticbut_pdp_bask",
-                "Add to basket",
-                "Sticky button ",
-                "PDP",
-              ]);
+          let clickAddToCart = false;
+          stickyBtn.addEventListener("click", () => {
+            clickAddToCart = true;
+            document
+              .querySelector(
+                ".product-info-main .box-tocart .actions .action.tocart"
+              )
+              .click();
+            pushDataLayer([
+              "exp_inc_soc_trus_sticbut_pdp_bask",
+              "Add to basket",
+              "Sticky button ",
+              "PDP",
+            ]);
+          });
+
+          document
+            .querySelector(".product-info-main .box-tocart .action.tocart")
+            .addEventListener("click", (e) => {
+              if (clickAddToCart == false) {
+                pushDataLayer([
+                  "exp_inc_soc_trus_but_pdpunchec_bask",
+                  "Add to Basket",
+                  "Button",
+                  "PDP Under the checkboxes",
+                ]);
+              } else {
+                clickAddToCart = false;
+              }
             });
 
-            document
-              .querySelector(".product-info-main .box-tocart .action.tocart")
-              .addEventListener("click", (e) => {
-                if (clickAddToCart == false) {
-                  pushDataLayer([
-                    "exp_inc_soc_trus_but_pdpunchec_bask",
-                    "Add to Basket",
-                    "Button",
-                    "PDP Under the checkboxes",
-                  ]);
-                } else {
-                  clickAddToCart = false;
-                }
-              });
+          function handleScroll() {
+            let btnRect = btnAddToCart.getBoundingClientRect();
 
-            function handleScroll() {
-              let btnRect = btnAddToCart.getBoundingClientRect();
-
+            if (media) {
               if (btnRect.top >= 0 && btnRect.bottom <= window.innerHeight) {
                 stickyBtn.classList.remove("active");
               } else {
                 stickyBtn.classList.add("active");
               }
+            } else {
+              if (btnRect.bottom > 50) {
+                stickyBtn.classList.remove("active");
+              } else {
+                stickyBtn.classList.add("active");
+              }
             }
-
-            window.addEventListener("scroll", handleScroll);
-
-            handleScroll();
           }
+
+          window.addEventListener("scroll", handleScroll);
+
+          handleScroll();
         });
       }
 
@@ -2284,6 +2332,13 @@ function start() {
 
       waitForElement(".mobile-basket-block").then((cartElement) => {
         // Create a Mutation Observer to watch for changes in the cart.
+
+        const appHeight = () => {
+          cartElement.style.height = window.innerHeight + "px";
+        };
+        window.addEventListener("resize", appHeight);
+        appHeight();
+
         const cartObserver = new MutationObserver(handleCartMutation);
 
         // Define the options for the Mutation Observer.
