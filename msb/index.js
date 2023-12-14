@@ -521,6 +521,12 @@ body .product-static-columns .container .section-desc {
     }
 }
 @media (min-width: 769px) {
+    .column.main .block .title {
+      margin: 100px 0 0 0;
+    }
+    .products {
+      margin: 0px auto!important;
+    }
     .crs_sticky_btn {
       max-width: 335px;
     }
@@ -794,6 +800,37 @@ const styleCart = `
     padding: 12px 0;
     border-top: 1px dashed #CCC;
 }
+#minicart-content-wrapper .shipping-costs .shipping-costs-desc {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+#minicart-content-wrapper .shipping-costs .shipping-costs-desc span {
+  text-decoration: underline;
+}
+#minicart-content-wrapper .shipping-costs .shipping-costs-desc:after {
+  content: '+';
+  color: var(--Untitled-Black, #333);
+  text-align: right;
+  font-family: Arial;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  margin-left: auto;
+  display: block;
+}
+#minicart-content-wrapper .shipping-costs.active .shipping-costs-desc:after  {
+  content: '–';
+}
+#minicart-content-wrapper .shipping-costs + .extra,
+#minicart-content-wrapper .shipping-costs > .fields {
+  display: none;
+}
+#minicart-content-wrapper .shipping-costs.active > .fields,
+#minicart-content-wrapper .shipping-costs.active + .extra {
+  display: block;
+}
 .mobile-basket-block__content > .block-content > .actions,
 .minicart-wrapper .block-minicart .block-content > .actions {
     margin-top: auto;
@@ -881,7 +918,7 @@ const styleCart = `
   position: relative;
 }
 .crs_discount_row.crs_error:before {
-  content: 'Error';
+  content: "The voucher code isn't valid. Verify the code and try again.";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -981,6 +1018,9 @@ const styleCart = `
 }
 .crs_klarna+.subtotal {
   display: none;
+}
+.modal-slide._show, .modal-popup._show {
+  z-index: 99999999!important;
 }
 </style>`;
 
@@ -1175,7 +1215,7 @@ const trustpilot = `
         <path d="M9.78008 0.573486L12.4401 7.19635L19.5602 7.67918L14.0835 12.2552L15.8248 19.1765L9.78008 15.3817L3.73535 19.1765L5.47669 12.2552L0 7.67918L7.12008 7.19635L9.78008 0.573486Z" fill="#00B67E"/>
         <path d="M33.0782 6.66401H29.6043V16.2435H27.6837V6.66401H24.2412V5.10308H33.0782V6.66401ZM38.1974 9.66327C37.9525 9.62253 37.6998 9.60215 37.4393 9.60215C36.5873 9.60215 36.0134 9.92858 35.7176 10.5815V16.2435H33.8587V7.96473H35.6334L35.6794 8.89054C36.1289 8.17128 36.7508 7.81165 37.5471 7.81165C37.8115 7.81165 38.0309 7.8474 38.2042 7.9188L38.1974 9.66327ZM44.3871 15.4325C43.8415 16.0752 43.0659 16.3965 42.061 16.3965C41.1629 16.3965 40.4823 16.1338 40.018 15.6085C39.5587 15.0831 39.3295 14.3231 39.3295 13.3283V7.96473H41.1884V13.3054C41.1884 14.3562 41.6252 14.8816 42.4969 14.8816C43.3998 14.8816 44.01 14.5576 44.3254 13.9099V7.96473H46.1852V16.2435H44.4331L44.3871 15.4325ZM52.7196 13.994C52.7196 13.6625 52.5815 13.41 52.3063 13.2365C52.036 13.0631 51.5845 12.9101 50.9518 12.7774C50.3192 12.6448 49.7913 12.4764 49.3682 12.2724C48.4397 11.8236 47.9755 11.1732 47.9755 10.3213C47.9755 9.60725 48.2762 9.01041 48.8785 8.53091C49.4798 8.0514 50.2457 7.81165 51.1742 7.81165C52.1633 7.81165 52.9615 8.0565 53.5687 8.54619C54.1809 9.03588 54.4864 9.671 54.4864 10.4514H52.6276C52.6276 10.0944 52.4953 9.79852 52.2299 9.56386C51.9645 9.32411 51.6129 9.20423 51.1742 9.20423C50.7658 9.20423 50.4318 9.29865 50.1713 9.48737C49.9166 9.6761 49.7893 9.92858 49.7893 10.2448C49.7893 10.5305 49.9088 10.7523 50.1488 10.9105C50.3887 11.0686 50.8725 11.2293 51.6021 11.3926C52.3318 11.5506 52.9028 11.7419 53.3161 11.9664C53.7343 12.1858 54.0428 12.451 54.2416 12.7621C54.4463 13.0733 54.5481 13.4507 54.5481 13.8946C54.5481 14.6393 54.2396 15.2438 53.6226 15.7079C53.0046 16.167 52.1966 16.3965 51.1967 16.3965C50.518 16.3965 49.9137 16.2741 49.3838 16.0292C48.853 15.7844 48.4397 15.4478 48.144 15.0193C47.8482 14.5908 47.7003 14.1291 47.7003 13.6344H49.5063C49.5317 14.0731 49.6973 14.4123 50.0028 14.652C50.3094 14.8867 50.7148 15.004 51.2202 15.004C51.7099 15.004 52.082 14.9122 52.3367 14.7285C52.5923 14.5398 52.7196 14.295 52.7196 13.994ZM58.5038 5.9524V7.96473H59.9651V9.34193H58.5038V13.9634C58.5038 14.2797 58.5655 14.5092 58.688 14.652C58.8153 14.7897 59.0396 14.8586 59.3608 14.8586C59.5753 14.8586 59.7917 14.8331 60.0111 14.7821V16.2206C59.588 16.3379 59.1796 16.3965 58.7869 16.3965C57.3589 16.3965 56.645 15.6085 56.645 14.0323V9.34193H55.2827V7.96473H56.645V5.9524H58.5038ZM68.6424 12.1883C68.6424 13.4686 68.3515 14.4913 67.7697 15.2565C67.188 16.0165 66.4074 16.3965 65.4281 16.3965C64.5202 16.3965 63.7935 16.0982 63.2479 15.5014V19.4265H61.3881V7.96473H63.102L63.1784 8.80631C63.7249 8.14327 64.4673 7.81165 65.4055 7.81165C66.4153 7.81165 67.2056 8.18911 67.7776 8.94411C68.3534 9.69392 68.6424 10.7371 68.6424 12.0735V12.1883ZM66.7904 12.0276C66.7904 11.2013 66.6249 10.5458 66.2928 10.0612C65.9667 9.57659 65.4976 9.33429 64.8855 9.33429C64.1255 9.33429 63.579 9.64799 63.2479 10.2754V13.9481C63.5848 14.5908 64.1353 14.9122 64.9002 14.9122C65.4917 14.9122 65.954 14.675 66.285 14.2006C66.6219 13.7211 66.7904 12.9968 66.7904 12.0276ZM72.1995 16.2435H70.3406V7.96473H72.1995V16.2435ZM70.226 5.8147C70.226 5.52901 70.3152 5.29181 70.4934 5.10308C70.6775 4.91435 70.9371 4.81994 71.274 4.81994C71.6109 4.81994 71.8704 4.91435 72.0545 5.10308C72.2377 5.29181 72.3297 5.52901 72.3297 5.8147C72.3297 6.09519 72.2377 6.32985 72.0545 6.51858C71.8704 6.70221 71.6109 6.79408 71.274 6.79408C70.9371 6.79408 70.6775 6.70221 70.4934 6.51858C70.3152 6.32985 70.226 6.09519 70.226 5.8147ZM76.2091 16.2435H74.3502V4.49097H76.2091V16.2435ZM77.8926 12.0276C77.8926 11.2166 78.0532 10.4871 78.3745 9.83926C78.6957 9.18641 79.1472 8.68653 79.729 8.33964C80.3107 7.98765 80.9786 7.81165 81.7337 7.81165C82.8502 7.81165 83.7562 8.17128 84.4496 8.89054C85.1488 9.60979 85.5259 10.5636 85.5817 11.7522L85.5896 12.1883C85.5896 13.0044 85.4319 13.7339 85.1155 14.3766C84.8041 15.0193 84.3555 15.5166 83.7689 15.8686C83.1871 16.2206 82.5143 16.3965 81.7484 16.3965C80.581 16.3965 79.6447 16.0089 78.9406 15.2336C78.2423 14.4531 77.8926 13.4151 77.8926 12.1195V12.0276ZM79.7515 12.1883C79.7515 13.0402 79.9278 13.7084 80.2794 14.1929C80.632 14.6724 81.1216 14.9122 81.7484 14.9122C82.3762 14.9122 82.863 14.6673 83.2107 14.1776C83.5623 13.6879 83.7386 12.9713 83.7386 12.0276C83.7386 11.191 83.5573 10.528 83.195 10.0383C82.8375 9.54858 82.3507 9.30374 81.7337 9.30374C81.1265 9.30374 80.6447 9.54604 80.2872 10.0305C79.9307 10.51 79.7515 11.2293 79.7515 12.1883ZM89.4924 5.9524V7.96473H90.9536V9.34193H89.4924V13.9634C89.4924 14.2797 89.5531 14.5092 89.6755 14.652C89.8029 14.7897 90.0281 14.8586 90.3494 14.8586C90.5629 14.8586 90.7803 14.8331 90.9996 14.7821V16.2206C90.5756 16.3379 90.1682 16.3965 89.7754 16.3965C88.3465 16.3965 87.6326 15.6085 87.6326 14.0323V9.34193H86.2712V7.96473H87.6326V5.9524H89.4924Z" fill="#0C0B0B"/>
     </svg>
-    <svg class="mx-3" width="111" height="18" viewBox="0 0 111 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg class="mx-3 mx-md-4" width="111" height="18" viewBox="0 0 111 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M19.4986 0H0.831055V18H19.4986V0Z" fill="#00B67E"/>
         <path d="M10.165 2.00012L12.0426 6.50832L17.0693 6.83699L13.2029 9.95192L14.4321 14.6633L10.165 12.0801L5.89798 14.6633L7.12714 9.95192L3.26074 6.83699L8.2875 6.50832L10.165 2.00012Z" fill="white"/>
         <path d="M42.1666 0H23.499V18H42.1666V0Z" fill="#00B67E"/>
@@ -1441,7 +1481,7 @@ const delivery = `
             <button class="crs_btn_more ml-auto" type="button">LEARN MORE</button>
         </li>
         <li class=" crs_trustpilot">
-            <a href=" https://www.trustpilot.com/review/www.maxwellscottbags.com" class="d-flex justify-content-between align-items-center" target="_blank" onclick="pushDataLayer(['exp_inc_soc_trus_but_pdprating_trust', 'Trustpilot ', 'Button', 'PDP Give us a rating'])">
+            <a href=" https://www.trustpilot.com/review/www.maxwellscottbags.com" class="d-flex justify-content-md-center justify-content-between align-items-center" target="_blank" onclick="pushDataLayer(['exp_inc_soc_trus_but_pdprating_trust', 'Trustpilot ', 'Button', 'PDP Give us a rating'])">
                 ${trustpilot}
             </a>
         </li>
@@ -1745,8 +1785,8 @@ function setSaved(targetElement, price) {
       "afterend",
       `<div class="crs_saved ml-auto">You just saved ${price[0] + saved}</div>`
     );
-    
-  targetElement.querySelector('.block-content').style = 'padding-bottom: 220px'
+
+  targetElement.querySelector(".block-content").style = "padding-bottom: 220px";
 }
 
 // Function to handle the observed mutations on the cart element.
@@ -1844,7 +1884,7 @@ function handleCartMutation(mutationsList, observer) {
                 "beforebegin",
                 ` ${getDiscount}
                 <div class="crs_discount_row">
-                  <input type="text" placeholder="Apply discount code">
+                  <input type="text" placeholder="Apply discount code" onclick="pushDataLayer(['exp_inc_soc_trus_inp_applycode_cart', 'Apply discount code', 'Input', 'Cart'])">
                   <button type="button">Apply</button>
                 </div>`
               );
@@ -1869,6 +1909,7 @@ function handleCartMutation(mutationsList, observer) {
               targetElement
                 .querySelector(".crs_discount")
                 .addEventListener("click", (e) => {
+                  e.stopImmediatePropagation()
                   e.currentTarget.hidden = true;
                   targetElement
                     .querySelector(".crs_discount_row")
@@ -1886,6 +1927,7 @@ function handleCartMutation(mutationsList, observer) {
             targetElement
               .querySelector(".crs_discount_row button")
               .addEventListener("click", (e) => {
+                e.stopImmediatePropagation()
                 if (
                   targetElement
                     .querySelector(".crs_discount_row input")
@@ -1901,6 +1943,8 @@ function handleCartMutation(mutationsList, observer) {
                     .querySelector(".crs_discount_row")
                     .classList.add("crs_error");
                 }
+
+                pushDataLayer(['exp_inc_soc_trus_but_apply_cart', 'Apply', 'Button', 'Cart']);
               });
 
             targetElement
@@ -1918,6 +1962,22 @@ function handleCartMutation(mutationsList, observer) {
                   );
                 }
               });
+
+            if (
+              targetElement.querySelector(
+                ".shipping-costs .shipping-costs-desc"
+              ) &&
+              !media
+            ) {
+              targetElement
+                .querySelector(".shipping-costs .shipping-costs-desc")
+                .addEventListener("click", (e) => {
+                  e.stopImmediatePropagation()
+                  targetElement
+                    .querySelector(".shipping-costs")
+                    .classList.toggle("active");
+                });
+            }
           }
         }, 200);
       }
@@ -2027,7 +2087,7 @@ function start() {
               ? dataIcons.giftIcon
               : dataIcons.personalisationIcon;
 
-            console.log(item.innerText.toUpperCase())
+            console.log(item.innerText.toUpperCase());
 
             item
               .querySelector("a.product-modal-options-btn")
@@ -2227,11 +2287,11 @@ function start() {
             )
           );
 
-          let stickyBtn = document.querySelector(".crs_sticky");
+          let stickyBlock = document.querySelector(".crs_sticky");
           let btnAddToCart = document.querySelector(".product-options-bottom");
 
           let clickAddToCart = false;
-          stickyBtn.addEventListener("click", () => {
+          stickyBlock.querySelector("button").addEventListener("click", () => {
             clickAddToCart = true;
             document
               .querySelector(
@@ -2266,15 +2326,15 @@ function start() {
 
             if (media) {
               if (btnRect.top >= 0 && btnRect.bottom <= window.innerHeight) {
-                stickyBtn.classList.remove("active");
+                stickyBlock.classList.remove("active");
               } else {
-                stickyBtn.classList.add("active");
+                stickyBlock.classList.add("active");
               }
             } else {
               if (btnRect.bottom > 50) {
-                stickyBtn.classList.remove("active");
+                stickyBlock.classList.remove("active");
               } else {
-                stickyBtn.classList.add("active");
+                stickyBlock.classList.add("active");
               }
             }
           }
@@ -2330,6 +2390,7 @@ function start() {
           );
         });
       }
+
       waitForElement(".header-right-block > ul > .minicart-wrapper").then(
         (cartElement) => {
           cartElement
