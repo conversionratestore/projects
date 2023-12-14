@@ -1025,7 +1025,7 @@ const styleCart = `
 .modal-slide._show, .modal-popup._show {
   z-index: 99999999!important;
 }
-.needsclick {
+.needsclick.kl-private-reset-css-Xuajs1 {
   z-index: 9!important;
 }
 </style>`;
