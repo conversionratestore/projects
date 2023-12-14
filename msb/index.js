@@ -848,6 +848,7 @@ const styleCart = `
     background: var(--colors-wight, #FFF);
     z-index: 3;
     box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.16);
+    display: grid;
 }
 .minicart-wrapper .block-minicart .block-content > .actions {
     max-width: 350px;
@@ -1018,6 +1019,11 @@ const styleCart = `
   line-height: 22px; 
   margin: -6px 0 10px;
   text-align: right;
+  order: 1;
+}
+
+.block-content>.actions>.primary {
+  order: 1;
 }
 .crs_cart_subtotal {
   padding-bottom: 10px;
@@ -1746,7 +1752,7 @@ function setSaved(targetElement, price) {
   const isDiscount =
     targetElement.querySelectorAll(".block-content .subtotal").length > 1;
 
-  console.log(isDiscount);
+  console.log("isDiscount: " + isDiscount);
 
   let subtotal = parseFloat(price.replace(price[0], "").split(",").join(""));
   let saved = isDiscount
@@ -1771,7 +1777,9 @@ function setSaved(targetElement, price) {
     `
     <div class="crs_regular">
       <p class="d-flex justify-content-between"><b>Regular price</b> <b>${
-        price[0] + addCommasToNumber(oldPrice)
+        isDiscount || sessionStorage.getItem("crsDiscount")
+          ? price[0] + addCommasToNumber(oldPrice)
+          : price[0] + addCommasToNumber(subtotalNew)
       }</b></p>
       <p class="d-flex justify-content-between">Sign up discount savings <span>-${
         price[0] + saved
@@ -1780,7 +1788,9 @@ function setSaved(targetElement, price) {
   );
 
   targetElement.querySelector(".crs_discount_row").classList.remove("active");
-  targetElement.querySelector(".crs_discount").hidden = isDiscount ? true : false
+  targetElement.querySelector(".crs_discount").hidden = isDiscount
+    ? true
+    : false;
 
   targetElement
     .querySelector(".subtotal .price-container.amount")
@@ -1815,6 +1825,11 @@ function setSaved(targetElement, price) {
     );
 
   targetElement.querySelector(".block-content").style = "padding-bottom: 220px";
+
+  targetElement.querySelector(".crs_klarna b").innerHTML = isDiscount
+    ? price[0] + addCommasToNumber((oldPrice / 3).toFixed(2))
+    : price[0] + addCommasToNumber((subtotalNew / 3).toFixed(2));
+  console.log(targetElement.querySelector(".crs_klarna b").innerHTML);
 }
 
 // Function to handle the observed mutations on the cart element.
@@ -1899,14 +1914,19 @@ function handleCartMutation(mutationsList, observer) {
                 .insertAdjacentHTML("beforebegin", highlight);
             }
 
-            targetElement.querySelector(".crs_klarna")?.remove();
+            if (!targetElement.querySelector(".crs_klarna")) {
+              targetElement
+                .querySelector(".subtotal")
+                .insertAdjacentHTML(
+                  "afterend",
+                  klarna(+price.replace(price[0], "").split(",").join(""))
+                );
 
-            targetElement
-              .querySelector(".subtotal")
-              .insertAdjacentHTML(
-                "afterend",
-                klarna(+price.replace(price[0], "").split(",").join(""))
+              console.log(
+                targetElement.querySelector(".crs_klarna b").innerHTML
               );
+            }
+
             targetElement.querySelector(".crs_sub .pr b").innerHTML = price;
 
             if (!targetElement.querySelector(".crs_discount_row")) {
@@ -2323,6 +2343,7 @@ function start() {
           document
             .querySelector(".product-info-main .box-tocart .action.tocart")
             .addEventListener("click", (e) => {
+              isSaved = false;
               if (clickAddToCart == false) {
                 pushDataLayer([
                   "exp_inc_soc_trus_but_pdpunchec_bask",
@@ -2461,13 +2482,3 @@ function start() {
     }
   }, 0);
 }
-//https://www.maxwellscottbags.com/rest/default/V1/guest-carts/FJWCeu7peZgfWDcl6DyPCtmxd7su6zLA/coupons/25OFF
-
-//https://www.maxwellscottbags.com/rest/default/V1/carts/mine/coupons/25OFF
-
-//https://www.maxwellscottbags.com/rest/default/V1/guest-carts/onAlsUb4dbNo5qRiSxzr06RFwcrUghPd/coupons/25OFF
-
-// fetch('https://www.maxwellscottbags.com/rest/default/V1/guest-carts/onAlsUb4dbNo5qRiSxzr06RFwcrUghPd/coupons/25OFF', {
-
-//     method: 'PUT'
-// }).then(data => console.log(data))
