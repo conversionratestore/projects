@@ -3,11 +3,11 @@ let treblehealthCalendar = setInterval(() => {
     clearInterval(treblehealthCalendar);
 
     function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
-      console.log(event_name + ' / ' + event_desc + ' / ' + event_type + ' / ' + event_loc);
+      console.log(event_name + " / " + event_desc + " / " + event_type + " / " + event_loc);
 
       // Send a Google Analytics event
       const eventData = {
-        event: 'event-to-ga4',
+        event: "event-to-ga4",
         event_name,
         event_desc,
         event_type,
@@ -19,55 +19,58 @@ let treblehealthCalendar = setInterval(() => {
     }
 
     // jquery
-    let script = document.createElement('script');
-    script.src = 'https://code.jquery.com/jquery-3.4.1.min.js';
+    let script = document.createElement("script");
+    script.src = "https://code.jquery.com/jquery-3.4.1.min.js";
     script.async = false;
     document.head.appendChild(script);
     // cdn slider
-    let scriptCustomSlider = document.createElement('script');
-    scriptCustomSlider.src = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js';
+    let scriptCustomSlider = document.createElement("script");
+    scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js";
     scriptCustomSlider.async = false;
     document.head.appendChild(scriptCustomSlider);
 
-    let scriptCustomSliderStyle = document.createElement('link');
-    scriptCustomSliderStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css';
-    scriptCustomSliderStyle.rel = 'stylesheet';
+    let scriptCustomSliderStyle = document.createElement("link");
+    scriptCustomSliderStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css";
+    scriptCustomSliderStyle.rel = "stylesheet";
     document.head.appendChild(scriptCustomSliderStyle);
     // script tooltip
-    let scriptPopper = document.createElement('script');
-    scriptPopper.src = 'https://unpkg.com/popper.js@1';
+    let scriptPopper = document.createElement("script");
+    scriptPopper.src = "https://unpkg.com/popper.js@1";
     scriptPopper.async = false;
     document.body.appendChild(scriptPopper);
 
-    let scriptTippy = document.createElement('script');
-    scriptTippy.src = 'https://unpkg.com/tippy.js@5';
+    let scriptTippy = document.createElement("script");
+    scriptTippy.src = "https://unpkg.com/tippy.js@5";
     scriptTippy.async = false;
     document.body.appendChild(scriptTippy);
     // scriptTrustpilot
-    let scriptTrustpilot = document.createElement('script');
-    scriptTrustpilot.src = '//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
+    let scriptTrustpilot = document.createElement("script");
+    scriptTrustpilot.src = "//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js";
     scriptTrustpilot.async = false;
     document.head.appendChild(scriptTrustpilot);
 
     let newStyle = /*html */ `
     <style>
-      body{
-        font-family: 'Plus Jakarta Sans', sans-serif !important;
-      }
-      html, body{
-        overflow:initial;
-      }
+body {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+}
+html,
+body {
+  overflow: initial;
+}
 /*main */
 #lp-pom-root,
 #learnMobBlock,
 #bookCalendarMob,
 .learn_from_call_box_mob,
-.grab_your_free_btn.mob_var,
+button.grab_your_free_btn.mob_var,
 p.mob_txt,
 .mob_img,
 .ti-column.mob_var,
 .new_header_wrapp .tel_link span.mob_var,
-._2eZHnh_PMhyzt7w_zi7 #root {
+._2eZHnh_PMhyzt7w_zi7 #root,
+[data-elementor-type="header"],
+main#content {
   display: none;
 }
 /* */
@@ -86,7 +89,8 @@ p.mob_txt,
   width: 90%;
   margin: 0 auto;
 }
-.main_title {
+h2.main_title {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
   color: #2e168d;
   font-size: 40px;
   font-weight: 800;
@@ -94,58 +98,61 @@ p.mob_txt,
   margin: 0;
 }
 .sub_title {
-  color: #2e168d;
-  font-size: 30px;
-  font-weight: 800;
-  line-height: 40px;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  color: #2e168d !important;
+  font-size: 30px !important;
+  font-weight: 800 !important;
+  line-height: 40px !important;
   margin: 0;
 }
-.grab_your_free_btn {
+button.grab_your_free_btn {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   max-width: 310px;
   height: 62px;
-  color: #fff;
+  color: #fff !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  line-height: 28px !important;
+  margin: 28px 0 0;
+  border-radius: 5px !important;
+  border: 2px solid #ff2e1f !important;
+  background: #ff2e1f !important;
+  cursor: pointer !important;
+  outline: none;
+}
+/*new_header */
+.new_header {
+  border-bottom: 1px solid #e6e6e6;
+  background: #efecfb;
+  padding: 20px 0;
+}
+.new_header_wrapp {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tel_link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #2e168d !important;
   font-size: 18px;
   font-weight: 800;
   line-height: 28px;
-  margin: 28px 0 0;
-  border-radius: 5px;
-  border: 2px solid #ff2e1f;
-  background: #ff2e1f;
-  cursor: pointer;
+  text-decoration: none;
 }
-/*new_header */
-.new_header{
-  border-bottom: 1px solid #E6E6E6;
-  background: #EFECFB;
-  padding: 20px 0;
-}
-.new_header_wrapp{
-  display: flex;
-align-items: center;
-    justify-content: space-between;
-}
-.tel_link{
-    display: flex;
-align-items: center;
-gap: 12px;
-color: #2E168D;
-font-size: 18px;
-font-weight: 800;
-line-height: 28px;
-text-decoration: none;
-}
-.tel_link img{
+.tel_link img {
   width: 24px;
 }
 /* sticky_header */
 .sticky_header {
   width: 100%;
-  border-bottom: 1px solid #E6E6E6;
-  background: #EFECFB;
+  border-bottom: 1px solid #e6e6e6;
+  background: #efecfb;
   height: 0;
   opacity: 0;
   transition: opacity 0.7s;
@@ -162,94 +169,97 @@ text-decoration: none;
   overflow: initial;
   height: max-content;
 }
-.sticky_header .container_var{
-max-width: 1280px;
+.sticky_header .container_var {
+  max-width: 1280px;
 }
-.sticky_header .logo_link{
-max-width: 211px;
+.sticky_header .logo_link {
+  max-width: 211px;
 }
 .sticky_btn_wrapp {
   display: flex;
-justify-content: flex-end;
-    gap: 28px;
-    width: 33%;
+  justify-content: flex-end;
+  gap: 28px;
+  width: 33%;
 }
-.sticky_header .trust_score_wrapp p{
-color: #2E168D;
-font-size: 13px;
-font-weight: 400;
-line-height: 20px;
+.sticky_header .trust_score_wrapp p {
+  color: #2e168d;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0;
 }
 .sticky_header .trust_score_wrapp p.reviews_txt {
-    margin: 0 2px 0 8px;
+  margin: 0 2px 0 8px;
 }
 .sticky_header .trust_score_wrapp p.reviews_mark {
-    color: #2E168D;
-    font-weight: 600;
-    margin: 0 4px 0 2px;
-    font-size: 14px;
+  color: #2e168d;
+  font-weight: 600;
+  margin: 0 4px 0 2px;
+  font-size: 14px;
 }
-.sticky_header .grab_your_free_btn{
+.sticky_header button.grab_your_free_btn {
   margin: 0;
   max-width: 148px;
   height: 48px;
-font-size: 16px;
-font-weight: 700;
-line-height: 25px;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 25px !important;
 }
 /*heroBlock */
-#heroBlock{
-  background: #2E168D;
+#heroBlock {
+  background: #2e168d;
   padding: 60px 0 80px;
 }
-.hero_wrapper{
+.hero_wrapper {
   position: relative;
   display: flex;
   align-items: flex-start;
 }
-.hero_wrapper > div{
+.hero_wrapper > div {
   width: 47%;
 }
-.hero_wrapper > div.main_descr_wrapp{
+.hero_wrapper > div.main_descr_wrapp {
   width: 53%;
   position: sticky;
   top: 0;
 }
-.hero_main_title{
-  color: #FFF;
-font-size: 55px;
-font-weight: 800;
-line-height: 65px;
-margin: 20px 0;
+h1.hero_main_title {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  color: #fff !important;
+  font-size: 55px !important;
+  font-weight: 800 !important;
+  line-height: 65px !important;
+  margin: 20px 0;
 }
-#heroBlock p.hero_txt{
-color: #EFECFB;
-margin-bottom: 28px;
-max-width: 552px;
+#heroBlock p.hero_txt {
+  color: #efecfb;
+  margin-bottom: 28px;
+  max-width: 552px;
 }
-.learn_wrapp{
+.learn_wrapp {
   border-radius: 8px 0 0 8px;
-background: #EFECFB;
-padding: 28px;
-margin-bottom: 28px;
+  background: #efecfb;
+  padding: 28px;
+  margin-bottom: 28px;
 }
-.hero_sub_title{
-  color: #2E168D;
-font-size: 18px;
-font-weight: 800;
-line-height: 26px;
-margin-bottom: 20px;
+h2.hero_sub_title {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  color: #2e168d;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 26px;
+  margin: 0 0 20px;
 }
-#heroBlock .learn_list{
-margin: 0;
-padding: 0;
-list-style: none;
+#heroBlock .learn_list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
-.learn_list .learn_item{
+.learn_list .learn_item {
   position: relative;
   padding-left: 32px;
 }
-.learn_list .learn_item + .learn_item{
+.learn_list .learn_item + .learn_item {
   margin-top: 12px;
 }
 .learn_list .learn_item::before {
@@ -263,17 +273,17 @@ list-style: none;
   top: 3px;
   left: 0;
 }
-.learn_list .learn_item p{
-  color: #0A0A0A;
+.learn_list .learn_item p {
+  color: #0a0a0a;
 }
-.learn_list .learn_item p .accent_color_black{
-font-weight: 700;
+.learn_list .learn_item p .accent_color_black {
+  font-weight: 700;
 }
-.featured_box{
+.featured_box {
   max-width: 552px;
 }
-.featured_box .hero_sub_title {
-  color: #FFF;
+.featured_box h2.hero_sub_title {
+  color: #fff;
   margin-bottom: 12px;
   padding-bottom: 12px;
   border-bottom: 1px solid rgb(239 236 251 / 30%);
@@ -287,58 +297,59 @@ font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-      width: max-content;
-    cursor: pointer;
+  width: max-content;
+  cursor: pointer;
 }
-.trust_score_wrapp > div{
+.trust_score_wrapp > div {
   display: flex;
-    align-items: center;
-    justify-content: flex-start;
+  align-items: center;
+  justify-content: flex-start;
 }
 .trust_score_wrapp p {
   color: #fff;
 }
-.trust_score_wrapp p.reviews_txt{
+.trust_score_wrapp p.reviews_txt {
   margin: 0 4px 0 12px;
 }
-.trust_score_wrapp p.reviews_mark{
-color: #00B67A;
-font-weight: 700;
-margin: 0 12px 0 2px;
+.trust_score_wrapp p.reviews_mark {
+  color: #00b67a;
+  font-weight: 700;
+  margin: 0 12px 0 2px;
 }
-.trust_score_wrapp p.reviews_count span{
-text-decoration-line: underline;
+.trust_score_wrapp p.reviews_count span {
+  text-decoration-line: underline;
 }
-.book_calendar_wrapp{
+.book_calendar_wrapp {
   display: flex;
-    flex-direction: column;
-    justify-content: space-between;
- border-radius: 16px;
-background: #FFF;
-box-shadow: 0px 4px 35px 0px rgba(153, 133, 235, 0.20);
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0px 4px 35px 0px rgba(153, 133, 235, 0.2);
 }
 .calendar_header {
-padding: 28px 0 12px;
-    border-bottom: 1px solid #E5E5E5;
-    margin: 0 32px;
+  padding: 28px 0 12px;
+  border-bottom: 1px solid #e5e5e5;
+  margin: 0 32px;
 }
 .calendar_header h2 {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
   color: #2e168d;
   font-size: 18px;
   font-weight: 800;
   line-height: 26px;
   margin: 0 auto 12px;
-      max-width: 270px;
-    text-align: center;
+  max-width: 270px;
+  text-align: center;
 }
 ul.calendar_header_list {
   display: flex;
-      align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
   gap: 20px;
   list-style: none;
   margin: 0;
-    padding: 0;
+  padding: 0;
 }
 ul.calendar_header_list li {
   position: relative;
@@ -356,11 +367,11 @@ ul.calendar_header_list li::before {
   left: 0;
   transform: translateY(-50%);
 }
-ul.calendar_header_list li:nth-child(2):before{
- background: url(https://conversionratestore.github.io/projects/treblehealth/img/clock.svg) center no-repeat;
+ul.calendar_header_list li:nth-child(2):before {
+  background: url(https://conversionratestore.github.io/projects/treblehealth/img/clock.svg) center no-repeat;
 }
-ul.calendar_header_list li:nth-child(3):before{
- background: url(https://conversionratestore.github.io/projects/treblehealth/img/zoom.svg) center no-repeat;
+ul.calendar_header_list li:nth-child(3):before {
+  background: url(https://conversionratestore.github.io/projects/treblehealth/img/zoom.svg) center no-repeat;
 }
 ul.calendar_header_list li p {
   color: #2e168d;
@@ -368,45 +379,46 @@ ul.calendar_header_list li p {
   font-weight: 700;
   line-height: 30px;
 }
-.calendar_body{
+.calendar_body {
   height: 100%;
 }
-.calendar_body iframe{
-      height: 100%;
-    min-height: 600px;
+.calendar_body iframe {
+  height: 100%;
+  min-height: 600px;
 }
-.calendar_footer{
+.calendar_footer {
   padding: 20px 32px;
-  background: #EFECFB;
+  background: #efecfb;
   border-radius: 0 0 16px 16px;
 }
-.calendar_contacts{
+.calendar_contacts {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 12px;
   gap: 20px;
 }
-.calendar_footer_title{
-  color: #2E168D;
-font-size: 18px;
-font-weight: 800;
-line-height: 26px;
+h3.calendar_footer_title {
+  color: #2e168d;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 26px;
+  margin: 0;
 }
 .calendar_contacts .tel_link {
   gap: 6px;
 }
-.calendar_contacts .tel_link img{
+.calendar_contacts .tel_link img {
   width: 20px;
 }
-.calendar_contacts .tel_link span:nth-child(3){
+.calendar_contacts .tel_link span:nth-child(3) {
   font-weight: 700;
   text-decoration-line: underline;
 }
-.calendar_contacts .tel_link span{
+.calendar_contacts .tel_link span {
   font-weight: 400;
-font-size: 16px;
-line-height: 25px;
+  font-size: 16px;
+  line-height: 25px;
 }
 .calendar_footer_members {
   display: flex;
@@ -414,7 +426,7 @@ line-height: 25px;
   justify-content: flex-start;
   align-items: center;
 }
-.calendar_footer_members img{
+.calendar_footer_members img {
   max-width: 104px;
 }
 .calendar_footer p.calendar_footer_txt {
@@ -475,7 +487,7 @@ line-height: 25px;
 #ourPatientsLoveTrebleHealthBlock {
   padding: 80px 0;
 }
-.our_patients_treble_health_wrapp .main_title {
+.our_patients_treble_health_wrapp h2.main_title {
   max-width: max-content;
   margin: 0 auto 8px;
 }
@@ -557,6 +569,7 @@ line-height: 25px;
   border-radius: 50%;
   border: none;
   margin: 0 4px;
+  padding: 0;
 }
 #ourPatientsLoveTrebleHealthBlock .slick-dots li.slick-active button {
   background: #2e168d;
@@ -610,7 +623,7 @@ line-height: 25px;
   padding: 0;
   list-style: none;
 }
-.who_should_attend_descr .main_title {
+.who_should_attend_descr h2.main_title {
   margin-bottom: 8px;
 }
 .who_should_attend_descr_list {
@@ -697,7 +710,7 @@ line-height: 25px;
 #yourHostsBlock {
   padding: 0 0 80px;
 }
-.your_hosts_wrapp .main_title {
+.your_hosts_wrapp h2.main_title {
   max-width: max-content;
   margin: 0 auto 48px;
 }
@@ -721,15 +734,16 @@ line-height: 25px;
   gap: 10px;
   margin-bottom: 16px;
 }
-.host_full_info img{
+.host_full_info img {
   max-width: 90px;
 }
-.host_name {
+h3.host_name {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
   color: #2e168d;
   font-size: 18px;
   font-weight: 800;
   line-height: 26px;
-  margin-bottom: 8px;
+  margin: 0 0 8px;
 }
 .your_hosts_list p.host_doctor_of {
   color: #0a0a0a;
@@ -741,13 +755,13 @@ line-height: 25px;
   color: #0a0a0a;
 }
 #yourHostsBlock .tippy-tooltip {
-border-radius: 8px;
-background: #FFF;
-color: #2E168D;
-font-size: 14px;
-font-weight: 400;
-line-height: 20px;
-box-shadow: 0px 0px 23px 7px rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  background: #fff;
+  color: #2e168d;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  box-shadow: 0px 0px 23px 7px rgba(0, 0, 0, 0.12);
 }
 #yourHostsBlock .tippy-popper {
   max-width: 167px !important;
@@ -760,11 +774,11 @@ box-shadow: 0px 0px 23px 7px rgba(0, 0, 0, 0.12);
   border-top-color: #fff;
 }
 #yourHostsBlock .tippy-tooltip[data-placement^="top"] .tippy-arrow {
-    border-width: 22px 29px 0;
-    bottom: -17px;
+  border-width: 22px 29px 0;
+  bottom: -17px;
 }
 #yourHostsBlock .tippy-content {
-    padding: 16px;
+  padding: 16px;
 }
 /*clinicallyProvenResultsBlock */
 #clinicallyProvenResultsBlock {
@@ -775,11 +789,12 @@ box-shadow: 0px 0px 23px 7px rgba(0, 0, 0, 0.12);
   max-width: 944px;
   margin: 0 auto;
   border-radius: 32px;
-    background: #FFF;
-    box-shadow: 0px 4px 35px 0px rgba(153, 133, 235, 0.20);
-    padding: 40px;
+  background: #fff;
+  box-shadow: 0px 4px 35px 0px rgba(153, 133, 235, 0.2);
+  padding: 40px;
+  box-sizing: initial;
 }
-.clinically_proven_results_box .main_title {
+.clinically_proven_results_box h2.main_title {
   text-align: center;
   margin-bottom: 40px;
 }
@@ -791,7 +806,7 @@ box-shadow: 0px 0px 23px 7px rgba(0, 0, 0, 0.12);
   line-height: 20px;
   margin-top: 40px;
 }
-.clinically_proven_results_wrapp .grab_your_free_btn {
+.clinically_proven_results_wrapp button.grab_your_free_btn {
   margin: 28px auto 0;
 }
 .circular_chart_list {
@@ -802,24 +817,24 @@ box-shadow: 0px 0px 23px 7px rgba(0, 0, 0, 0.12);
 .circular_chart_item {
   position: relative;
   width: 100%;
-    max-width: 231px;
+  max-width: 231px;
 }
 .circular_chart_item:nth-child(2)::before,
-.circular_chart_item:nth-child(2)::after{
-  position: absolute;;
-  content: '';
+.circular_chart_item:nth-child(2)::after {
+  position: absolute;
+  content: "";
   width: 3px;
-height: 49px;
-border-radius: 3px;
-background: #2E168D;
-top: 50%;
+  height: 49px;
+  border-radius: 3px;
+  background: #2e168d;
+  top: 50%;
   transform: translateY(-50%);
 }
-.circular_chart_item:nth-child(2)::before{
-left: -64px;
+.circular_chart_item:nth-child(2)::before {
+  left: -64px;
 }
-.circular_chart_item:nth-child(2)::after{
-right: -64px;
+.circular_chart_item:nth-child(2)::after {
+  right: -64px;
 }
 .circular_chart_info {
   position: absolute;
@@ -828,12 +843,13 @@ right: -64px;
   transform: translate(-50%, -50%);
 }
 .circular_chart_item_title {
-  color: #2e168d;
-  font-size: 36px;
-  font-weight: 800;
-  line-height: 45px;
-  margin-bottom: 8px;
-      text-align: center;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  color: #2e168d !important;
+  font-size: 36px !important;
+  font-weight: 800 !important;
+  line-height: 45px !important;
+  margin: 0 0 8px;
+  text-align: center;
 }
 #clinicallyProvenResultsBlock p.circular_chart_item_txt {
   color: #2e168d;
@@ -841,30 +857,30 @@ right: -64px;
   font-weight: 600;
   line-height: 20px;
   width: 100%;
-    min-width: 151px;
-    text-align: center;
-    min-height: 100px;
+  min-width: 151px;
+  text-align: center;
+  min-height: 100px;
 }
-#clinicallyProvenResultsBlock .circular_chart_item:nth-child(1) p.circular_chart_item_txt{
-      min-width: 118px;
+#clinicallyProvenResultsBlock .circular_chart_item:nth-child(1) p.circular_chart_item_txt {
+  min-width: 118px;
 }
 .circle {
-    transform: rotate(-90deg);
-    transform-origin: 50% 50%;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
 }
 /*trustpilotBlock */
 #trustpilotBlock {
   background: #efecfb;
   padding: 40px 0 80px;
 }
-#trustpilotBlock .container_var .trustpilot_link{
+#trustpilotBlock .container_var .trustpilot_link {
   display: block;
-max-width: 180px;
-margin: 0 auto 20px;
-text-align:center;
+  max-width: 180px;
+  margin: 0 auto 20px;
+  text-align: center;
 }
-#trustpilotBlock  .main_title{
-  text-align:center;
+#trustpilotBlock h2.main_title {
+  text-align: center;
   max-width: 530px;
   margin: 0 auto 67px;
 }
@@ -873,64 +889,64 @@ text-align:center;
 #frequentlyAskedQuestionsBlock {
   padding: 80px 0;
 }
-.frequently_asked_questions_wrapp .main_title{
-text-align:center;
-margin-bottom: 48px;
+.frequently_asked_questions_wrapp h2.main_title {
+  text-align: center;
+  margin-bottom: 48px;
 }
-.questions_accordion{
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0;
-      list-style: none;
+.questions_accordion {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
 }
 .questions_accordion_link {
   padding: 20px;
   cursor: pointer;
 }
-#frequentlyAskedQuestionsBlock .questions_accordion_link p{
+#frequentlyAskedQuestionsBlock .questions_accordion_link p {
   color: #2e168d;
   font-weight: 800;
   line-height: 28px;
-    font-size: 18px;
+  font-size: 18px;
 }
-.questions_accordion_lists{
+.questions_accordion_lists {
   padding: 15px 40px 20px 40px;
   display: none;
 }
-.accordion_icon_wrapp{
+.accordion_icon_wrapp {
   margin-right: 10px;
   display: inline-block;
   float: left;
 }
 .accordion_icon_closed,
-.accordion_icon_opened{
-display: inline-block;
-    width: 100%;
-    max-width: 24px;
-    max-height: 17px;
-    height: 100%;
+.accordion_icon_opened {
+  display: inline-block;
+  width: 100%;
+  max-width: 24px;
+  max-height: 17px;
+  height: 100%;
 }
 .accordion_icon_closed svg,
-.accordion_icon_opened svg{
+.accordion_icon_opened svg {
   width: 100%;
   height: 100%;
 }
 .accordion_icon_opened,
-.questions_accordion_block.active .accordion_icon_closed{
+.questions_accordion_block.active .accordion_icon_closed {
   display: none;
 }
-.questions_accordion_block.active .accordion_icon_opened{
- display: block;
+.questions_accordion_block.active .accordion_icon_opened {
+  display: block;
 }
-.frequently_asked_questions_wrapp .grab_your_free_btn{
-margin: 28px auto 0;
+.frequently_asked_questions_wrapp button.grab_your_free_btn {
+  margin: 28px auto 0;
 }
 /*verifiedReviewsOnGoogleBlock */
 #verifiedReviewsOnGoogleBlock {
   background: #fbfafe;
   padding: 80px 0;
 }
-.verified_reviews_on_google_wrapp .main_title {
+.verified_reviews_on_google_wrapp h2.main_title {
   max-width: max-content;
   margin: 0 auto 48px;
 }
@@ -1054,12 +1070,12 @@ margin: 28px auto 0;
   height: 77px;
   font-size: 15px;
   text-align: left;
-   transition: all 700ms ease-out;
+  transition: all 700ms ease-out;
   overflow: hidden;
   padding-right: 0;
 }
-.ti-review-content .ti-inner.active{
-      height: max-content;
+.ti-review-content .ti-inner.active {
+  height: max-content;
 }
 .ti-highlight {
   padding: 1px 2px;
@@ -1100,8 +1116,8 @@ margin: 28px auto 0;
   -ms-transform: translate(0, -5px);
   transform: translate(0, -5px);
 }
-.ti-read-more span:hover{
-  text-decoration:underline;
+.ti-read-more span:hover {
+  text-decoration: underline;
   opacity: 1;
 }
 /*completeRecoveryBlock */
@@ -1116,10 +1132,10 @@ margin: 28px auto 0;
 .complete_recovery_wrapp .img_wrapp {
   border-radius: 16px;
 }
-.complete_recovery_wrapp .img_wrapp .desk_img{
+.complete_recovery_wrapp .img_wrapp .desk_img {
   max-width: 560px;
 }
-.complete_recovery_wrapp .main_title {
+.complete_recovery_wrapp h2.main_title {
   margin-bottom: 12px;
 }
 /*new_footer */
@@ -1159,7 +1175,7 @@ margin: 28px auto 0;
   .who_should_attend_descr_list + p {
     font-size: 14px;
   }
-  .main_title {
+  h2.main_title {
     font-size: 39px;
   }
   .featured_img_wrapp {
@@ -1167,573 +1183,577 @@ margin: 28px auto 0;
   }
   .sticky_header .tel_link {
     font-size: 14px;
-}
-#ourPatientsLoveTrebleHealthBlock .slick-list {
+  }
+  #ourPatientsLoveTrebleHealthBlock .slick-list {
     max-width: 820px;
-}
-.hero_main_title {
-    font-size: 50px;
-}
-.new_body p {
+  }
+  h1.hero_main_title {
+    font-size: 50px !important;
+  }
+  .new_body p {
     font-size: 15px;
-}
-.calendar_contacts .tel_link span {
+  }
+  .calendar_contacts .tel_link span {
     font-size: 13px;
-}
-#ourPatientsLoveTrebleHealthBlock p.video_descr {
+  }
+  #ourPatientsLoveTrebleHealthBlock p.video_descr {
     font-size: 15px;
-}
+  }
 }
 @media only screen and (min-width: 900px) and (max-width: 1090px) {
   .sticky_header .tel_link {
     font-size: 12px;
-}
-.who_should_attend_descr_list + p {
+  }
+  .who_should_attend_descr_list + p {
     font-size: 13px;
-}
-.who_should_attend_descr .main_title + p{
-   font-size: 14px;
-}
-.sticky_header .grab_your_free_btn {
+  }
+  .who_should_attend_descr h2.main_title + p {
+    font-size: 14px;
+  }
+  .sticky_header button.grab_your_free_btn {
     max-width: 133px;
-}
-#ourPatientsLoveTrebleHealthBlock .slick-list {
+  }
+  #ourPatientsLoveTrebleHealthBlock .slick-list {
     max-width: 792px;
-}
-.main_title {
+  }
+  h2.main_title {
     font-size: 31px;
-}
-.new_body p {
+  }
+  .new_body p {
     font-size: 14px;
-}
-#ourPatientsLoveTrebleHealthBlock p.video_descr {
+  }
+  #ourPatientsLoveTrebleHealthBlock p.video_descr {
     font-size: 14px;
-}
-.circular_chart_item:nth-child(2)::after {
+  }
+  .circular_chart_item:nth-child(2)::after {
     right: -42px;
-}
-.circular_chart_item:nth-child(2)::before {
+  }
+  .circular_chart_item:nth-child(2)::before {
     left: -42px;
-}
+  }
 }
 
 @media (max-width: 768px) {
-    .main_title {
-  font-size: 28px;
-  line-height: 36px;
-}
-.sub_title{
-  font-size: 20px;
-line-height: 28px;
-}
-.grab_your_free_btn {
-  margin: 20px auto 0;
-  max-width: unset;
-}
-#exclusiveBonusBlock,
-#heroBlock .book_calendar_wrapp,
-#heroBlock .learn_wrapp,
-.sticky_header .logo_link,
-.sticky_btn_wrapp .tel_link,
-p.desk_txt,
-.desk_img,
-.ti-column.firts_var,
-.ti-column.second_var,
-.ti-column.third_var,
-.ti-column.fourth_var,
-.new_header_wrapp .tel_link span.desk_var {
-  display: none;
-}
-/*new_header */
-.new_header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-      z-index: 5;
-      padding: 8px 0;
-}
-.new_header_wrapp .logo_link {
-  max-width: 150px;
-  max-height: 28px;
-}
-.new_header_wrapp .logo_link img {
-  width: 100%;
-  height: 100%;
-}
-.new_header_wrapp .tel_link span.mob_var{
-  display: block;
-}
-.new_header_wrapp .tel_link {
+  h2.main_title {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  .sub_title {
+    font-size: 20px !important;
+    line-height: 28px !important;
+  }
+  button.grab_your_free_btn {
+    margin: 20px auto 0;
+    max-width: unset;
+  }
+  #exclusiveBonusBlock,
+  #heroBlock .book_calendar_wrapp,
+  #heroBlock .learn_wrapp,
+  .sticky_header .logo_link,
+  .sticky_btn_wrapp .tel_link,
+  p.desk_txt,
+  .desk_img,
+  .ti-column.firts_var,
+  .ti-column.second_var,
+  .ti-column.third_var,
+  .ti-column.fourth_var,
+  .new_header_wrapp .tel_link span.desk_var {
+    display: none;
+  }
+  /*new_header */
+  .new_header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    padding: 8px 0;
+  }
+  .new_header_wrapp .logo_link {
+    max-width: 150px;
+    max-height: 28px;
+  }
+  .new_header_wrapp .logo_link img {
+    width: 100%;
+    height: 100%;
+  }
+  .new_header_wrapp .tel_link span.mob_var {
+    display: block;
+  }
+  .new_header_wrapp .tel_link {
     color: #333;
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
     flex-direction: column;
     gap: 0;
-}
-.new_header_wrapp .tel_link img {
+  }
+  .new_header_wrapp .tel_link img {
     width: 26px;
-}
-/*.sticky_header */
-.sticky_header.is_fixed_mob.is_intersecting{
+  }
+  /*.sticky_header */
+  .sticky_header.is_fixed_mob.is_intersecting {
     padding: 20px 0;
-  opacity: 1;
-  position: fixed;
-  left: 0;
-  z-index: 111111111;
-  overflow: initial;
-  height: max-content;
-  bottom: 0;
-  border-top: 1px solid #E5E5E5;
-background: #EFECFB;
-box-shadow: 0px -4px 35px 0px rgba(153, 133, 235, 0.20);
-}
-.sticky_header .new_header_wrapp{
-  gap: 9px;
-}
-.sticky_header .trust_score_wrapp {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-}
-.sticky_btn_wrapp {
-  width: 100%;
-  max-width: 148px;
-}
-.sticky_header .trust_score_wrapp p.reviews_txt{
-  margin-left: 0;
-}
-.trust_score_wrapp > div {
-  width: 100%;
-  display: flex;
-}
-/*new_body */
-.new_body {
-  padding-top: 60px;
-  background: #fff;
-}
-/* heroBlock */
-#heroBlock {
-  padding: 20px 0 40px;
-}
-.hero_wrapper {
-  flex-direction: column;
-}
-.hero_wrapper > div.main_descr_wrapp {
-  width: 100%;
-}
-.hero_main_title {
-  font-size: 34px;
-  line-height: 48px;
-  margin: 28px auto 16px;
-  text-align: center;
-}
-.hero_sub_title {
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 25px;
-  text-align: center;
-}
-#heroBlock p.hero_txt {
-  text-align: center;
-}
-.learn_from_call_box_mob {
-  display: block;
-  border-radius: 8px;
-  background: var(--bg-1, #efecfb);
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-  padding: 20px;
-  margin-bottom: 28px;
-}
-.learn_from_call_box_mob .grab_your_free_btn {
-  margin: 16px 0;
-}
-.learn_from_call_btn {
-  color: #2e168d;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 25px;
-  text-decoration-line: underline;
-  cursor: pointer;
-      margin: 0 auto;
+    opacity: 1;
+    position: fixed;
+    left: 0;
+    z-index: 111111111;
+    overflow: initial;
+    height: max-content;
+    bottom: 0;
+    border-top: 1px solid #e5e5e5;
+    background: #efecfb;
+    box-shadow: 0px -4px 35px 0px rgba(153, 133, 235, 0.2);
+  }
+  .sticky_header .new_header_wrapp {
+    gap: 9px;
+  }
+  .sticky_header .trust_score_wrapp {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .sticky_btn_wrapp {
+    width: 100%;
+    max-width: 148px;
+  }
+  .sticky_header .trust_score_wrapp p.reviews_txt {
+    margin-left: 0;
+  }
+  .trust_score_wrapp > div {
+    width: 100%;
+    display: flex;
+  }
+  /*new_body */
+  .new_body {
+    padding-top: 60px;
+    background: #fff;
+  }
+  /* heroBlock */
+  #heroBlock {
+    padding: 20px 0 40px;
+  }
+  .hero_wrapper {
+    flex-direction: column;
+  }
+  .hero_wrapper > div.main_descr_wrapp {
+    width: 100%;
+  }
+  h1.hero_main_title {
+    font-size: 34px !important;
+    line-height: 48px !important;
+    margin: 28px auto 16px;
+    text-align: center;
+  }
+  h2.hero_sub_title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 25px;
+    text-align: center;
+  }
+  #heroBlock p.hero_txt {
+    text-align: center;
+  }
+  .learn_from_call_box_mob {
+    display: block;
+    border-radius: 8px;
+    background: var(--bg-1, #efecfb);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+    padding: 20px;
+    margin-bottom: 28px;
+  }
+  .learn_from_call_box_mob button.grab_your_free_btn {
+    margin: 16px 0;
+  }
+  .learn_from_call_btn {
+    color: #2e168d;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 25px;
+    text-decoration-line: underline;
+    cursor: pointer;
+    margin: 0 auto;
     text-align: center;
     display: block;
     width: max-content;
-}
-.trust_score_wrapp p {
-  font-size: 14px;
-  line-height: 20px;
-}
-.trust_score_wrapp p span {
-  font-weight: 600;
-}
-.featured_img_wrapp img:nth-child(1) {
-  max-width: 69px;
-}
-.featured_img_wrapp img:nth-child(2) {
-  max-width: 141px;
-}
-.featured_img_wrapp img:nth-child(3) {
-  max-width: 78px;
-}
-/*learnMobBlock */
-#learnMobBlock {
-  display: block;
-  padding: 40px 0;
-}
-.learn_wrapp {
-  border-radius: 0;
-  background: none;
-  padding: 0;
-  margin-bottom: 20px;
-}
-.learn_wrapp .hero_sub_title {
-  font-size: 28px;
-  font-weight: 800;
-  line-height: 36px;
-  max-width: 350px;
-}
-.learn_list .learn_item p {
-  color: #2e168d;
-}
-.learn_list .learn_item + .learn_item {
-  margin-top: 8px;
-}
-.learn_list .learn_item::before {
-  background: url(https://conversionratestore.github.io/projects/treblehealth/img/check_icon.svg) center no-repeat;
-  background-size: contain;
-}
-.exclusive_bonus_wrapp {
-  border-radius: 0;
-  border: none;
-  background: none;
-  box-shadow: none;
-  flex-direction: column;
-}
-.exclusive_bonus_wrapp li:nth-child(1) {
-  border-radius: 8px;
-  border: 1px solid var(--borders, #e5e5e5);
-  background: var(--white, #fff);
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-  padding: 12px;
-  display: flex;
-  gap: 4px;
-}
-.exclusive_bonus_wrapp li:nth-child(2){
-  width: 100%;
-  padding: 0;
+  }
+  .trust_score_wrapp p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .trust_score_wrapp p span {
+    font-weight: 600;
+  }
+  .featured_img_wrapp img:nth-child(1) {
+    max-width: 69px;
+  }
+  .featured_img_wrapp img:nth-child(2) {
+    max-width: 141px;
+  }
+  .featured_img_wrapp img:nth-child(3) {
+    max-width: 78px;
+  }
+  /*learnMobBlock */
+  #learnMobBlock {
+    display: block;
+    padding: 40px 0;
+  }
+  .learn_wrapp {
+    border-radius: 0;
+    background: none;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+  .learn_wrapp h2.hero_sub_title {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 36px;
+    max-width: 350px;
+  }
+  .learn_list {
+    list-style: none;
+    padding: 0;
+  }
+  .learn_list .learn_item p {
+    color: #2e168d;
+  }
+  .learn_list .learn_item + .learn_item {
+    margin-top: 8px;
+  }
+  .learn_list .learn_item::before {
+    background: url(https://conversionratestore.github.io/projects/treblehealth/img/check_icon.svg) center no-repeat;
+    background-size: contain;
+  }
+  .exclusive_bonus_wrapp {
+    border-radius: 0;
+    border: none;
+    background: none;
+    box-shadow: none;
+    flex-direction: column;
+  }
+  .exclusive_bonus_wrapp li:nth-child(1) {
+    border-radius: 8px;
+    border: 1px solid var(--borders, #e5e5e5);
+    background: var(--white, #fff);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+    padding: 12px;
+    display: flex;
+    gap: 4px;
+  }
+  .exclusive_bonus_wrapp li:nth-child(2) {
+    width: 100%;
+    padding: 0;
     width: 100%;
     border-radius: 0;
     background: unset;
-}
-.exclusive_bonus_wrapp .sub_title {
-  margin-bottom: 2px;
-}
-.exclusive_bonus_wrapp .accent_color {
-  font-weight: 400;
-  margin-bottom: 8px;
-  color: #2E168D;
-  font-size: 14px;
-line-height: 20px;
-}
-.exclusive_bonus_wrapp p:last-child{
-  color: #0A0A0A;
+  }
+  .exclusive_bonus_wrapp .sub_title {
+    margin-bottom: 2px;
+  }
+  .exclusive_bonus_wrapp .accent_color {
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: #2e168d;
     font-size: 14px;
-line-height: 20px;
-}
-.exclusive_bonus_wrapp .img_wrapp{
-  max-width: 104px;
+    line-height: 20px;
+  }
+  .exclusive_bonus_wrapp p:last-child {
+    color: #0a0a0a;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .exclusive_bonus_wrapp .img_wrapp {
+    max-width: 104px;
     width: 100%;
     min-width: 104px;
-}
-/*bookCalendarMob */
-#bookCalendarMob {
-  display: block;
-  background: #efecfb;
-  padding: 40px 0;
-}
-#bookCalendarMob .book_calendar_wrapp {
-  border-radius: 0;
-  background: unset;
-  box-shadow: none;
-}
-#bookCalendarMob .calendar_header {
-  padding: 0 0 20px;
-  border-bottom: none;
-  margin: 0;
-}
-#bookCalendarMob .calendar_header h2 {
-  font-size: 20px;
-  line-height: 28px;
-  max-width: 304px;
-}
-#bookCalendarMob iframe {
-  border-radius: 8px;
-  background: #fff;
-}
-#bookCalendarMob .calendar_footer {
-  padding: 20px 0 0;
-  background: none;
-  border-radius: 0;
-}
-#bookCalendarMob .calendar_footer p.calendar_footer_txt {
-  font-size: 14px;
-  line-height: 20px;
-}
-#bookCalendarMob .calendar_contacts {
-  gap: 12px;
-  flex-direction: column;
-  align-items: flex-start;
-}
-#bookCalendarMob .calendar_footer_title {
-  line-height: 28px;
-}
-#bookCalendarMob .calendar_footer p.calendar_footer_txt br{
-  display: none;
-}
-#bookCalendarMob .calendar_contacts .tel_link span {
-  font-size: 14px;
-  line-height: 20px;
-}
-#bookCalendarMob .calendar_contacts .tel_link span:nth-child(3) {
-  font-weight: 600;
-}
-/* ourPatientsLoveTrebleHealthBlock */
-#ourPatientsLoveTrebleHealthBlock {
-  padding: 40px 0;
-}
-.our_patients_treble_health_wrapp .main_title {
-  text-align: center;
-}
-.our_patients_treble_health_wrapp > p {
-  margin: 0 auto 20px;
-}
-#ourPatientsLoveTrebleHealthBlock .slick-slide > div {
-  border-radius: 8px;
-}
-#ourPatientsLoveTrebleHealthBlock p.video_descr {
-  padding: 12px;
-  border-radius: 8px 8px 0 0;
-}
-#ourPatientsLoveTrebleHealthBlock .video_link_wrapp {
-  height: 197px;
-}
-#ourPatientsLoveTrebleHealthBlock .video_link_wrapp::before {
-  height: 48px;
-  width: 48px;
-}
-#ourPatientsLoveTrebleHealthBlock .video_link_wrapp iframe {
+  }
+  /*bookCalendarMob */
+  #bookCalendarMob {
+    display: block;
+    background: #efecfb;
+    padding: 40px 0;
+  }
+  #bookCalendarMob .book_calendar_wrapp {
+    border-radius: 0;
+    background: unset;
+    box-shadow: none;
+  }
+  #bookCalendarMob .calendar_header {
+    padding: 0 0 20px;
+    border-bottom: none;
+    margin: 0;
+  }
+  #bookCalendarMob .calendar_header h2 {
+    font-size: 20px;
+    line-height: 28px;
+    max-width: 304px;
+  }
+  #bookCalendarMob iframe {
+    border-radius: 8px;
+    background: #fff;
+  }
+  #bookCalendarMob .calendar_footer {
+    padding: 20px 0 0;
+    background: none;
+    border-radius: 0;
+  }
+  #bookCalendarMob .calendar_footer p.calendar_footer_txt {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  #bookCalendarMob .calendar_contacts {
+    gap: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  #bookCalendarMob h3.calendar_footer_title {
+    line-height: 28px;
+  }
+  #bookCalendarMob .calendar_footer p.calendar_footer_txt br {
+    display: none;
+  }
+  #bookCalendarMob .calendar_contacts .tel_link span {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  #bookCalendarMob .calendar_contacts .tel_link span:nth-child(3) {
+    font-weight: 600;
+  }
+  /* ourPatientsLoveTrebleHealthBlock */
+  #ourPatientsLoveTrebleHealthBlock {
+    padding: 40px 0;
+  }
+  .our_patients_treble_health_wrapp h2.main_title {
+    text-align: center;
+  }
+  .our_patients_treble_health_wrapp > p {
+    margin: 0 auto 20px;
+  }
+  #ourPatientsLoveTrebleHealthBlock .slick-slide > div {
+    border-radius: 8px;
+  }
+  #ourPatientsLoveTrebleHealthBlock p.video_descr {
+    padding: 12px;
+    border-radius: 8px 8px 0 0;
+  }
+  #ourPatientsLoveTrebleHealthBlock .video_link_wrapp {
+    height: 197px;
+  }
+  #ourPatientsLoveTrebleHealthBlock .video_link_wrapp::before {
+    height: 48px;
+    width: 48px;
+  }
+  #ourPatientsLoveTrebleHealthBlock .video_link_wrapp iframe {
     border-radius: 0 0 8px 8px;
-}
-#ourPatientsLoveTrebleHealthBlock .slick-slide {
-  margin: 0 4px;
-  border-radius: 8px;
-}
-#ourPatientsLoveTrebleHealthBlock .video_link_wrapp img {
-  border-radius: 0 0 8px 8px;
-}
-#ourPatientsLoveTrebleHealthBlock .slick-arrow {
-  top: unset;
-  transform: unset;
-  bottom: -5px;
-  height: 24px;
-  width: 24px;
-}
+  }
+  #ourPatientsLoveTrebleHealthBlock .slick-slide {
+    margin: 0 4px;
+    border-radius: 8px;
+  }
+  #ourPatientsLoveTrebleHealthBlock .video_link_wrapp img {
+    border-radius: 0 0 8px 8px;
+  }
+  #ourPatientsLoveTrebleHealthBlock .slick-arrow {
+    top: unset;
+    transform: unset;
+    bottom: -5px;
+    height: 24px;
+    width: 24px;
+  }
 
-/* whoShouldAttendBlock */
-#whoShouldAttendBlock {
-  padding: 0 0 40px;
-}
-.who_should_attend_wrapp {
-  gap: 20px;
-  flex-direction: column-reverse;
-}
-.who_should_attend_descr .main_title {
-  text-align: center;
-}
-.who_should_attend_descr .main_title + p {
-  text-align: center;
-  max-width: 317px;
-  margin: 0 auto;
-}
-.who_should_attend_descr_list {
-  gap: 8px;
-}
-.who_should_attend_descr_list + p {
-  text-align: center;
-}
-.who_should_attend_item:nth-child(1) > div:nth-child(2) {
-  padding: 12px;
-}
-.who_should_attend_item:nth-child(1) > div > p {
-  margin-top: 8px;
-}
-p.mob_txt{
-  display: block;
-}
-.who_should_attend_item:nth-child(1) .img_wrapp {
-  max-width: 100px;
-}
-.who_should_attend_item:nth-child(1) .img_wrapp p.name_founder {
-  padding: 4px;
-}
-.who_should_attend_item:nth-child(1) .img_wrapp p.name_founder span {
+  /* whoShouldAttendBlock */
+  #whoShouldAttendBlock {
+    padding: 0 0 40px;
+  }
+  .who_should_attend_wrapp {
+    gap: 20px;
+    flex-direction: column-reverse;
+  }
+  .who_should_attend_descr h2.main_title {
+    text-align: center;
+  }
+  .who_should_attend_descr h2.main_title + p {
+    text-align: center;
+    max-width: 317px;
+    margin: 0 auto;
+  }
+  .who_should_attend_descr_list {
+    gap: 8px;
+  }
+  .who_should_attend_descr_list + p {
+    text-align: center;
+  }
+  .who_should_attend_item:nth-child(1) > div:nth-child(2) {
+    padding: 12px;
+  }
+  .who_should_attend_item:nth-child(1) > div > p {
+    margin-top: 8px;
+  }
+  p.mob_txt {
+    display: block;
+  }
+  .who_should_attend_item:nth-child(1) .img_wrapp {
+    max-width: 100px;
+  }
+  .who_should_attend_item:nth-child(1) .img_wrapp p.name_founder {
+    padding: 4px;
+  }
+  .who_should_attend_item:nth-child(1) .img_wrapp p.name_founder span {
     max-width: 88px;
-}
-.who_should_attend_item .grab_your_free_btn{
-  display: none;
-}
-.grab_your_free_btn.mob_var{
-  display: flex;
-}
-.who_should_attend_item:nth-child(1) > div:nth-child(2)::after{
-  width: 41px;
+  }
+  .who_should_attend_item button.grab_your_free_btn {
+    display: none;
+  }
+  button.grab_your_free_btn.mob_var {
+    display: flex;
+  }
+  .who_should_attend_item:nth-child(1) > div:nth-child(2)::after {
+    width: 41px;
     height: 57px;
     background: url(https://conversionratestore.github.io/projects/treblehealth/img/arrow_icon_mob.svg) center no-repeat;
     background-size: contain;
     bottom: -20px;
     right: 50px;
-}
-/* yourHostsBlock */
-#yourHostsBlock {
-  padding: 0 0 40px;
-}
-.your_hosts_wrapp .main_title {
+  }
+  /* yourHostsBlock */
+  #yourHostsBlock {
+    padding: 0 0 40px;
+  }
+  .your_hosts_wrapp h2.main_title {
     margin: 0 auto 77px;
-}
-.your_hosts_list {
-  gap: 77px;
-  flex-direction: column;
-}
-.your_hosts_list > li {
-  padding: 73px 20px 20px;
-}
-.host_full_info {
-  flex-direction: column;
-  gap: 0;
-}
-.host_name {
-  font-size: 20px;
-  line-height: 28px;
-}
-.your_hosts_list p.host_doctor_of {
-  text-align: center;
-}
-.host_full_info .img_wrapp {
-  margin-top: -133px;
-}
-/* #clinicallyProvenResultsBlock */
-#clinicallyProvenResultsBlock {
-  padding: 40px 0;
-}
-.clinically_proven_results_box .main_title {
-  margin-bottom: 20px;
-}
-.circular_chart_list {
-  flex-direction: column;
-  gap: 43px;
-}
-.circular_chart_item:nth-child(2)::before,
-.circular_chart_item:nth-child(2)::after {
-  left: 50%;
-  top: -49px;
-  transform: translateX(-50%) rotate(90deg);
-}
-.circular_chart_item:nth-child(2)::after {
+  }
+  .your_hosts_list {
+    gap: 77px;
+    flex-direction: column;
+  }
+  .your_hosts_list > li {
+    padding: 73px 20px 20px;
+  }
+  .host_full_info {
+    flex-direction: column;
+    gap: 0;
+  }
+  h3.host_name {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  .your_hosts_list p.host_doctor_of {
+    text-align: center;
+  }
+  .host_full_info .img_wrapp {
+    margin-top: -133px;
+  }
+  /* #clinicallyProvenResultsBlock */
+  #clinicallyProvenResultsBlock {
+    padding: 40px 0;
+  }
+  .clinically_proven_results_box h2.main_title {
+    margin-bottom: 20px;
+  }
+  .circular_chart_list {
+    flex-direction: column;
+    gap: 43px;
+  }
+  .circular_chart_item:nth-child(2)::before,
+  .circular_chart_item:nth-child(2)::after {
+    left: 50%;
+    top: -49px;
+    transform: translateX(-50%) rotate(90deg);
+  }
+  .circular_chart_item:nth-child(2)::after {
     right: 50%;
     top: unset;
     bottom: -45px;
-}
-.clinically_proven_results_box > p {
-  margin-top: 20px;
-}
-#clinicallyProvenResultsBlock p.circular_chart_item_txt {
-  min-height: unset;
-}
-#clinicallyProvenResultsBlock .circular_chart_item:nth-child(1) p.circular_chart_item_txt {
-  min-width: 110px;
-}
-.clinically_proven_results_wrapp .grab_your_free_btn {
-  margin: 20px 0 0;
-}
-.clinically_proven_results_box {
-  padding: 28px 20px;
-}
-/* trustpilotBlock */
-#trustpilotBlock {
-  padding: 0 0 40px;
-}
-#trustpilotBlock .main_title {
-    margin: 0 auto 12px;
-}
-/* frequentlyAskedQuestionsBlock */
-#frequentlyAskedQuestionsBlock {
-  padding: 40px 0;
-}
-.frequently_asked_questions_wrapp .grab_your_free_btn {
-  margin: 0;
-}
-#frequentlyAskedQuestionsBlock .questions_accordion_link p {
-  font-size: 17px;
-}
-/* verifiedReviewsOnGoogleBlock */
-#verifiedReviewsOnGoogleBlock {
-  padding: 40px 0 59px;
-}
-.verified_reviews_on_google_wrapp .main_title {
-  margin: 0 auto 20px;
-  text-align: center;
-}
-.ti-reviews-container-wrapper {
-  flex-direction: column;
-}
-.ti-column {
-  flex: unset;
-  max-width: 100%;
-}
-.ti-column.mob_var{
-  display: block;
-}
-  /*#completeRecoveryBlock */
-  #completeRecoveryBlock{
-    background: #FBFAFE;
+  }
+  .clinically_proven_results_box > p {
+    margin-top: 20px;
+  }
+  #clinicallyProvenResultsBlock p.circular_chart_item_txt {
+    min-height: unset;
+  }
+  #clinicallyProvenResultsBlock .circular_chart_item:nth-child(1) p.circular_chart_item_txt {
+    min-width: 110px;
+  }
+  .clinically_proven_results_wrapp button.grab_your_free_btn {
+    margin: 20px 0 0;
+  }
+  .clinically_proven_results_box {
+    padding: 28px 20px;
+  }
+  /* trustpilotBlock */
+  #trustpilotBlock {
     padding: 0 0 40px;
   }
-#completeRecoveryBlock .complete_recovery_wrapp {
-  flex-direction: column;
-  justify-content: center;
-  gap: 19px;
-  border-radius: 8px;
-  border: 1px solid #e5e5e5;
-  background: #fff;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-}
-.complete_recovery_wrapp .main_title {
-  margin-bottom: 8px;
-  text-align: center;
-}
-#completeRecoveryBlock p{
-  text-align:center;
-}
-.complete_recovery_wrapp .img_wrapp {
+  #trustpilotBlock h2.main_title {
+    margin: 0 auto 12px;
+  }
+  /* frequentlyAskedQuestionsBlock */
+  #frequentlyAskedQuestionsBlock {
+    padding: 40px 0;
+  }
+  .frequently_asked_questions_wrapp button.grab_your_free_btn {
+    margin: 0;
+  }
+  #frequentlyAskedQuestionsBlock .questions_accordion_link p {
+    font-size: 17px;
+  }
+  /* verifiedReviewsOnGoogleBlock */
+  #verifiedReviewsOnGoogleBlock {
+    padding: 40px 0 59px;
+  }
+  .verified_reviews_on_google_wrapp h2.main_title {
+    margin: 0 auto 20px;
+    text-align: center;
+  }
+  .ti-reviews-container-wrapper {
+    flex-direction: column;
+  }
+  .ti-column {
+    flex: unset;
+    max-width: 100%;
+  }
+  .ti-column.mob_var {
+    display: block;
+  }
+  /*#completeRecoveryBlock */
+  #completeRecoveryBlock {
+    background: #fbfafe;
+    padding: 0 0 40px;
+  }
+  #completeRecoveryBlock .complete_recovery_wrapp {
+    flex-direction: column;
+    justify-content: center;
+    gap: 19px;
+    border-radius: 8px;
+    border: 1px solid #e5e5e5;
+    background: #fff;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+  }
+  .complete_recovery_wrapp h2.main_title {
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  #completeRecoveryBlock p {
+    text-align: center;
+  }
+  .complete_recovery_wrapp .img_wrapp {
     border-radius: 0;
-}
-.complete_recovery_wrapp .img_wrapp img {
-  width: 100%;
-  height: 100%;
-  border-radius: 8px 8px 0 0;
-}
-.mob_img{
-  display: block;
-}
-/*new_footer_wrapp */
-.new_footer_wrapp {
-  flex-direction: column-reverse;
-}
-.new_footer {
+  }
+  .complete_recovery_wrapp .img_wrapp img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px 8px 0 0;
+  }
+  .mob_img {
+    display: block;
+  }
+  /*new_footer_wrapp */
+  .new_footer_wrapp {
+    flex-direction: column-reverse;
+  }
+  .new_footer {
     padding: 20px 0 109px;
-}
+  }
 }
 @media (max-width: 376px) {
   .sticky_header .trust_score_wrapp p {
@@ -1743,8 +1763,8 @@ p.mob_txt{
     font-size: 15px;
   }
   .learn_list .learn_item p {
-  font-size: 15px;
-}
+    font-size: 15px;
+  }
 }
 @media (max-width: 361px) {
   ul.calendar_header_list li p {
@@ -1753,7 +1773,7 @@ p.mob_txt{
     font-weight: 700;
     line-height: 30px;
   }
-  .main_title {
+  h2.main_title {
     font-size: 27px;
   }
   .new_body p {
@@ -1775,11 +1795,11 @@ p.mob_txt{
   .sticky_header .trust_score_wrapp p {
     font-size: 10px;
   }
-  .sticky_header .grab_your_free_btn {
-    font-size: 15px;
+  .sticky_header button.grab_your_free_btn {
+    font-size: 15px !important;
   }
-  .grab_your_free_btn {
-    font-size: 16px;
+  button.grab_your_free_btn {
+    font-size: 16px !important;
   }
 }
 
@@ -1889,7 +1909,7 @@ p.mob_txt{
   </ul>
 </div>
 <div class="calendar_body">
- <iframe src="https://calendly.com/treble-health-audiologists/tinnitus-relief-discovery?embed_domain=treblehealth.com&embed_type=Inline&hide_event_type_details=1&hide_gdpr_banner=1&primary_color=4622da&month=2023-11&utm_content=funnel_1" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-14="true" data-gtm-yt-inspected-60173040_75="true"></iframe>
+ <iframe class="new_iframe_calendly" src="https://calendly.com/treble-health-audiologists/tinnitus-relief-discovery?embed_domain=treblehealth.com&embed_type=Inline&hide_event_type_details=1&hide_gdpr_banner=1&primary_color=4622da&month=2023-11&utm_content=funnel_1" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-14="true" data-gtm-yt-inspected-60173040_75="true"></iframe>
 </div>
 <div class="calendar_footer">
   <div class="calendar_contacts">
@@ -1979,7 +1999,7 @@ p.mob_txt{
           </ul>
         </div>
         <div class="calendar_body no_sticky">
- <iframe src="https://calendly.com/treble-health-audiologists/tinnitus-relief-discovery?embed_domain=treblehealth.com&embed_type=Inline&hide_event_type_details=1&hide_gdpr_banner=1&primary_color=4622da&month=2023-11&utm_content=funnel_1" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-14="true" data-gtm-yt-inspected-60173040_75="true"></iframe>
+          <iframe class="new_iframe_calendly" src="https://calendly.com/treble-health-audiologists/tinnitus-relief-discovery?embed_domain=treblehealth.com&embed_type=Inline&hide_event_type_details=1&hide_gdpr_banner=1&primary_color=4622da&month=2023-11&utm_content=funnel_1" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-14="true" data-gtm-yt-inspected-60173040_75="true"></iframe>
         </div>
         <div class="calendar_footer">
           <div class="calendar_contacts">
@@ -2227,152 +2247,59 @@ p.mob_txt{
       `;
 
     let arrQuestions = {
-      1: [
-        `"I was told that tinnitus is permanent and I just have to “learn to live with it.” Can your services actually lower tinnitus?"`,
-        `<p>Many doctors do not know that there are treatments for tinnitus. It’s true, there is no surgery or medication to <a href="https://treblehealth.com/tinnitus-cure/">cure tinnitus</a>, but research has shown that about 80% of patients can reduce the perception of tinnitus using tinnitus retraining techniques. Oftentimes, the volume gets softer too.</p>`,
-      ],
-      2: [
-        `"Tinnitus retraining therapy takes too long. I’m looking for the fastest way to lower my tinnitus. Are you aware of any cures for tinnitus?"`,
-        `<p><span style="font-weight: 400;">For a majority of tinnitus cases, there is no “quick-fix” solution. As part of our new patient onboarding, we help our patients identify any possible medical cause to tinnitus and refer them to the appropriate medical tests when applicable. Usually, habituation-based protocols (like the system we follow) are the only way to improve tinnitus.</span></p>`,
-      ],
-      3: [
-        `"Can’t I just go to my local audiologist for this kind of service?"`,
-        `<p><span style="font-weight: 400;">Most audiologists are not experts in tinnitus management. While you can certainly search your local area for tinnitus experts, research has shown that receiving care via telehealth can be performed at the same level of clinical efficacy. Your Treble Health audiologist may identify that you could benefit from in-person medical tests. In that case, we will refer you to the appropriate local clinic.</span></p>`,
-      ],
-      4: [
-        `"I already have hearing aids for tinnitus. Isn’t that enough?"`,
-        `<p><span style="font-weight: 400;">Hearing aids can help, but are not always enough. A comprehensive approach to managing tinnitus will focus on the whole person. This includes professional counseling, calming the central nervous system, and a comprehensive sound therapy plan.</span></p>`,
-      ],
-      5: [
-        `“Do you take insurance?”`,
-        `<p>While most insurance companies do not cover tinnitus treatment, if your insurance does offer this, typically called a benefit for hearing aids, we can provide the necessary documentation and codes for you to submit for reimbursement.</p>`,
-      ],
-      6: [
-        `"I have an appointment with an ENT next week, so let me wait to meet with my doctor”`,
-        `<p>Yes, definitely keep your ENT appointment. Our telehealth consultation is completely free, so you don’t need to wait until your ENT appt. We recommend scheduling the free consultation with us as soon as possible so that you can learn about options for tinnitus relief.</p>`,
-      ],
-      7: [
-        `“I’m already scheduled to see a local audiologist. Why should I work with you instead of them?”`,
-        `<p>You’re welcome to work with anyone that you choose, just make sure that you’re working with an audiologist who specializes in Tinnitus Retraining Therapy. Most audiologists are great for hearing loss, but few are specialized in tinnitus. We have an 85% success rate, and most patients that work with us see a significant tinnitus reduction within three months. Plus, our telehealth model allows us to have better prices and significantly shorter wait times for appointments.</p>`,
-      ],
-      8: [
-        `“What do you do? How can you help?”`,
-        `<p>We use the gold-standard method for reducing tinnitus, which is called Tinnitus Retraining Therapy. It includes medical devices worn on the ears and one-on-one appointments with an audiologist to reduce the anxiety-stress-tinnitus response. We have an 85% success rate, and most patients that work with us see a significant tinnitus reduction within three months.</p>`,
-      ],
-      9: [
-        `“I’ve never used Zoom”`,
-        `<p>No problem, it’s quite simple. You can download Zoom for your computer or mobile phone for free.</p>`,
-      ],
-      10: [
-        `“Where are you located?”`,
-        `<p>We operate via telehealth, allowing us to serve customers across all 50 states. We only see patients who live in the United States.</p>`,
-      ],
-      11: [
-        `“How can you do a hearing test over the internet?”`,
-        `<p>We do not perform hearing tests. We require that our patients have a full diagnostic hearing test performed locally and send it to us via email. This is not required before the free Zoom consultation.</p>`,
-      ],
-      12: [
-        `“Are you doctors?”`,
-        `<p>Our team is made up of licensed doctors of audiology who specialize in tinnitus treatment.</p>`,
-      ],
-      13: [
-        `“How long does it take for the program to work?”`,
-        `<p>We expect that you would see some level of improvement within 3 to 4 weeks, with the benefits increasing by month 2, 3, 6, and beyond. 82% of people who try the Bundle choose to keep it beyond the 45 day trial period, because they are experiencing improvements.</p>`,
-      ],
-      14: [
-        `“Can you really help my tinnitus?”`,
-        `<p>Yes! Based on our internal data, over 80% of our patients report tinnitus reduction using our Tinnitus Relief Bundle. We also offer a 45-day trial period, so if you’re not satisfied within that time period you can return them and be refunded 100%.</p>`,
-      ],
-      15: [
-        `“Won’t my tinnitus go away on its own?”`,
-        `<p>Tinnitus may resolve on its own but this is not guaranteed and research suggests it can take 18 months or longer. We prefer to be proactive, we believe people with tinnitus should not suffer unnecessarily while waiting and hoping it decreases on its own. The “wait-and-see” approach is not recommended.</p>`,
-      ],
-      16: [
-        `“My doctor said there’s nothing that can be done for tinnitus, is that the case?”`,
-        `<p dir="ltr" role="presentation">No, that is not the case. Our program uses Tinnitus Retraining Therapy, which is based on decades of research and has been shown to significantly reduce tinnitus in more than 80% of cases. In most cases, there is no surgery or medication that cures tinnitus, bringing it to zero, but there are legitimate approaches that reduce it and improve quality of life. Our goal is to significantly reduce tinnitus, which is absolutely possible.</p>`,
-      ],
+      1: [`"I was told that tinnitus is permanent and I just have to “learn to live with it.” Can your services actually lower tinnitus?"`, `<p>Many doctors do not know that there are treatments for tinnitus. It’s true, there is no surgery or medication to <a href="https://treblehealth.com/tinnitus-cure/">cure tinnitus</a>, but research has shown that about 80% of patients can reduce the perception of tinnitus using tinnitus retraining techniques. Oftentimes, the volume gets softer too.</p>`],
+      2: [`"Tinnitus retraining therapy takes too long. I’m looking for the fastest way to lower my tinnitus. Are you aware of any cures for tinnitus?"`, `<p><span style="font-weight: 400;">For a majority of tinnitus cases, there is no “quick-fix” solution. As part of our new patient onboarding, we help our patients identify any possible medical cause to tinnitus and refer them to the appropriate medical tests when applicable. Usually, habituation-based protocols (like the system we follow) are the only way to improve tinnitus.</span></p>`],
+      3: [`"Can’t I just go to my local audiologist for this kind of service?"`, `<p><span style="font-weight: 400;">Most audiologists are not experts in tinnitus management. While you can certainly search your local area for tinnitus experts, research has shown that receiving care via telehealth can be performed at the same level of clinical efficacy. Your Treble Health audiologist may identify that you could benefit from in-person medical tests. In that case, we will refer you to the appropriate local clinic.</span></p>`],
+      4: [`"I already have hearing aids for tinnitus. Isn’t that enough?"`, `<p><span style="font-weight: 400;">Hearing aids can help, but are not always enough. A comprehensive approach to managing tinnitus will focus on the whole person. This includes professional counseling, calming the central nervous system, and a comprehensive sound therapy plan.</span></p>`],
+      5: [`“Do you take insurance?”`, `<p>While most insurance companies do not cover tinnitus treatment, if your insurance does offer this, typically called a benefit for hearing aids, we can provide the necessary documentation and codes for you to submit for reimbursement.</p>`],
+      6: [`"I have an appointment with an ENT next week, so let me wait to meet with my doctor”`, `<p>Yes, definitely keep your ENT appointment. Our telehealth consultation is completely free, so you don’t need to wait until your ENT appt. We recommend scheduling the free consultation with us as soon as possible so that you can learn about options for tinnitus relief.</p>`],
+      7: [`“I’m already scheduled to see a local audiologist. Why should I work with you instead of them?”`, `<p>You’re welcome to work with anyone that you choose, just make sure that you’re working with an audiologist who specializes in Tinnitus Retraining Therapy. Most audiologists are great for hearing loss, but few are specialized in tinnitus. We have an 85% success rate, and most patients that work with us see a significant tinnitus reduction within three months. Plus, our telehealth model allows us to have better prices and significantly shorter wait times for appointments.</p>`],
+      8: [`“What do you do? How can you help?”`, `<p>We use the gold-standard method for reducing tinnitus, which is called Tinnitus Retraining Therapy. It includes medical devices worn on the ears and one-on-one appointments with an audiologist to reduce the anxiety-stress-tinnitus response. We have an 85% success rate, and most patients that work with us see a significant tinnitus reduction within three months.</p>`],
+      9: [`“I’ve never used Zoom”`, `<p>No problem, it’s quite simple. You can download Zoom for your computer or mobile phone for free.</p>`],
+      10: [`“Where are you located?”`, `<p>We operate via telehealth, allowing us to serve customers across all 50 states. We only see patients who live in the United States.</p>`],
+      11: [`“How can you do a hearing test over the internet?”`, `<p>We do not perform hearing tests. We require that our patients have a full diagnostic hearing test performed locally and send it to us via email. This is not required before the free Zoom consultation.</p>`],
+      12: [`“Are you doctors?”`, `<p>Our team is made up of licensed doctors of audiology who specialize in tinnitus treatment.</p>`],
+      13: [`“How long does it take for the program to work?”`, `<p>We expect that you would see some level of improvement within 3 to 4 weeks, with the benefits increasing by month 2, 3, 6, and beyond. 82% of people who try the Bundle choose to keep it beyond the 45 day trial period, because they are experiencing improvements.</p>`],
+      14: [`“Can you really help my tinnitus?”`, `<p>Yes! Based on our internal data, over 80% of our patients report tinnitus reduction using our Tinnitus Relief Bundle. We also offer a 45-day trial period, so if you’re not satisfied within that time period you can return them and be refunded 100%.</p>`],
+      15: [`“Won’t my tinnitus go away on its own?”`, `<p>Tinnitus may resolve on its own but this is not guaranteed and research suggests it can take 18 months or longer. We prefer to be proactive, we believe people with tinnitus should not suffer unnecessarily while waiting and hoping it decreases on its own. The “wait-and-see” approach is not recommended.</p>`],
+      16: [`“My doctor said there’s nothing that can be done for tinnitus, is that the case?”`, `<p dir="ltr" role="presentation">No, that is not the case. Our program uses Tinnitus Retraining Therapy, which is based on decades of research and has been shown to significantly reduce tinnitus in more than 80% of cases. In most cases, there is no surgery or medication that cures tinnitus, bringing it to zero, but there are legitimate approaches that reduce it and improve quality of life. Our goal is to significantly reduce tinnitus, which is absolutely possible.</p>`],
     };
 
     let arrGoogleReviews1 = {
-      'Krista Keleher': [
-        'https://lh3.googleusercontent.com/a-/AFdZucrEI6CcP1Pvnp3JYChAfrMZj8Yybr-3P0MVGbxllCk=s120-c-c-rp-w64-h64-mo-br100',
-        '<mark class="ti-highlight">I am so glad I found Treble Health!</mark> I have been suffering with a major tinnitus spike for the last two months and now I have resources to help mitigate the intrusiveness of the noise in my head. Dr. Ramsay has been great to work with! She got me set up with hearing aids and a sound therapy plan. I now have hope that I will habituate to the tinnitus. Thank you!!',
-      ],
-      'Tom Shell': [
-        'https://lh3.googleusercontent.com/a-/AFdZucop5i96XVE1RojzBG-Hu2RUFxKYH1NgtFrwWrBz5g=s120-c-c-rp-w64-h64-mo-br100',
-        `Tracy had <mark class="ti-highlight">excellent input and really listened to my particular case</mark>. I was very impressed and will be working more with Treble Health in the future.`,
-      ],
-      'Robbie Wigley': [
-        'https://lh3.googleusercontent.com/a-/AFdZucrSsAAMBWRQo-Wg0vhm7j76sFgftjQ1FgUpgdfvXpY=s120-c-c-rp-w64-h64-mo-br100',
-        `My audiologist was <mark class="ti-highlight">extremely professional very knowledgeable and respectful</mark>. She addressed all my questions and made me feel comfortable in sharing my situation. I am very grateful that I had the opportunity to speak with her and I recommend her highly to anyone else that is having difficulties.`,
-      ],
+      "Krista Keleher": ["https://lh3.googleusercontent.com/a-/AFdZucrEI6CcP1Pvnp3JYChAfrMZj8Yybr-3P0MVGbxllCk=s120-c-c-rp-w64-h64-mo-br100", '<mark class="ti-highlight">I am so glad I found Treble Health!</mark> I have been suffering with a major tinnitus spike for the last two months and now I have resources to help mitigate the intrusiveness of the noise in my head. Dr. Ramsay has been great to work with! She got me set up with hearing aids and a sound therapy plan. I now have hope that I will habituate to the tinnitus. Thank you!!'],
+      "Tom Shell": ["https://lh3.googleusercontent.com/a-/AFdZucop5i96XVE1RojzBG-Hu2RUFxKYH1NgtFrwWrBz5g=s120-c-c-rp-w64-h64-mo-br100", `Tracy had <mark class="ti-highlight">excellent input and really listened to my particular case</mark>. I was very impressed and will be working more with Treble Health in the future.`],
+      "Robbie Wigley": ["https://lh3.googleusercontent.com/a-/AFdZucrSsAAMBWRQo-Wg0vhm7j76sFgftjQ1FgUpgdfvXpY=s120-c-c-rp-w64-h64-mo-br100", `My audiologist was <mark class="ti-highlight">extremely professional very knowledgeable and respectful</mark>. She addressed all my questions and made me feel comfortable in sharing my situation. I am very grateful that I had the opportunity to speak with her and I recommend her highly to anyone else that is having difficulties.`],
     };
     let arrGoogleReviews2 = {
-      'David Anderson': [
-        'https://lh3.googleusercontent.com/a/AItbvmnda_W86_SEFT3Xw7EVJnk1rBRxnsVQfH1MqctC=s120-c-c-rp-w64-h64-mo-br100',
-        `I think <mark class="ti-highlight">Treble Health is the most AWESOME team available for tinnitus</mark>. Your team truly cares. I think you all deserve more than an EXCELLENT. You all are beyond EXCELLENT. THANK YOU SO MUCH.`,
-      ],
-      'B. B.': [
-        'https://lh3.googleusercontent.com/a/AItbvmmbY39YsL7j5_s4-ltoF77ZZ6YTcOEyY28mEgtx=s120-c-c-rp-w64-h64-mo-br100',
-        `A life saver... <mark class="ti-highlight">I can't recommend this service enough to everyone struggling with tinnitus</mark> at the beginning, when it can as scary as hell. Suzanne has been helping me practically from the first minutes... I've seen great improvements in less than a month. Thank you Treble Health...`,
-      ],
-      'Pierre Alauzet': [
-        'https://lh3.googleusercontent.com/a-/AFdZucpBgVz4iH5NW4EB8Tu6NW8QdX_WOj2C_5DnPoCB3Dg=s120-c-c-rp-w64-h64-mo-br100',
-        `<mark class="ti-highlight">Love the services offered by Treble Health!</mark> It's helping me so much to quickly jump into the issue and doing it remotely. Thank you guys!`,
-      ],
+      "David Anderson": ["https://lh3.googleusercontent.com/a/AItbvmnda_W86_SEFT3Xw7EVJnk1rBRxnsVQfH1MqctC=s120-c-c-rp-w64-h64-mo-br100", `I think <mark class="ti-highlight">Treble Health is the most AWESOME team available for tinnitus</mark>. Your team truly cares. I think you all deserve more than an EXCELLENT. You all are beyond EXCELLENT. THANK YOU SO MUCH.`],
+      "B. B.": ["https://lh3.googleusercontent.com/a/AItbvmmbY39YsL7j5_s4-ltoF77ZZ6YTcOEyY28mEgtx=s120-c-c-rp-w64-h64-mo-br100", `A life saver... <mark class="ti-highlight">I can't recommend this service enough to everyone struggling with tinnitus</mark> at the beginning, when it can as scary as hell. Suzanne has been helping me practically from the first minutes... I've seen great improvements in less than a month. Thank you Treble Health...`],
+      "Pierre Alauzet": ["https://lh3.googleusercontent.com/a-/AFdZucpBgVz4iH5NW4EB8Tu6NW8QdX_WOj2C_5DnPoCB3Dg=s120-c-c-rp-w64-h64-mo-br100", `<mark class="ti-highlight">Love the services offered by Treble Health!</mark> It's helping me so much to quickly jump into the issue and doing it remotely. Thank you guys!`],
     };
     let arrGoogleReviews3 = {
-      'Naf Steinmetz': [
-        'https://lh3.googleusercontent.com/a-/AFdZucrTUcw2LtbZJP4NDf2gx89PuqC3Hgv4wZ1OsQ4BHw=s120-c-c-rp-w64-h64-mo-ba2-br100',
-        `These are some studious, <mark class="ti-highlight">extremely well-informed professionals</mark>. That matters a lot.`,
-      ],
-      'Robert Berry': [
-        'https://lh3.googleusercontent.com/a-/AFdZucqA4HdVs7owPyGh7_YKmx9aOFmYIi9oqDHgNDmYYQ=s120-c-c-rp-w64-h64-mo-ba2-br100',
-        `<mark class="ti-highlight">The best.</mark><br><br>If you're struggling with Tinnitus stop what you are doing and give them a call.<br><br>Treble Health can help.<br><br>I am deeply appreciative for their care and efforts as without a doubt it had a huge positive impact on my life.  Thank you Dr. May.`,
-      ],
+      "Naf Steinmetz": ["https://lh3.googleusercontent.com/a-/AFdZucrTUcw2LtbZJP4NDf2gx89PuqC3Hgv4wZ1OsQ4BHw=s120-c-c-rp-w64-h64-mo-ba2-br100", `These are some studious, <mark class="ti-highlight">extremely well-informed professionals</mark>. That matters a lot.`],
+      "Robert Berry": ["https://lh3.googleusercontent.com/a-/AFdZucqA4HdVs7owPyGh7_YKmx9aOFmYIi9oqDHgNDmYYQ=s120-c-c-rp-w64-h64-mo-ba2-br100", `<mark class="ti-highlight">The best.</mark><br><br>If you're struggling with Tinnitus stop what you are doing and give them a call.<br><br>Treble Health can help.<br><br>I am deeply appreciative for their care and efforts as without a doubt it had a huge positive impact on my life.  Thank you Dr. May.`],
     };
     let arrGoogleReviews4 = {
-      'Preston D': [
-        'https://lh3.googleusercontent.com/a/AItbvmk-58HU2kUx7f2PsN7-yRcyI0i3y0ELTlmrp7bZyg=s120-c-c-rp-w64-h64-mo-br100',
-        'From my experience, <mark class="ti-highlight">they are very knowledgeable</mark>. I feel better about the fact that they use proven science and methods that have been successful using techniques that were pioneered by a respected scientist.',
-      ],
-      'Mark Button': [
-        'https://lh3.googleusercontent.com/a-/AFdZucrdT3FgeRWu-e-Q4-zghzQ2Gv4-8DLsW75Vh0ODjQ=s120-c-c-rp-w64-h64-mo-br100',
+      "Preston D": ["https://lh3.googleusercontent.com/a/AItbvmk-58HU2kUx7f2PsN7-yRcyI0i3y0ELTlmrp7bZyg=s120-c-c-rp-w64-h64-mo-br100", 'From my experience, <mark class="ti-highlight">they are very knowledgeable</mark>. I feel better about the fact that they use proven science and methods that have been successful using techniques that were pioneered by a respected scientist.'],
+      "Mark Button": [
+        "https://lh3.googleusercontent.com/a-/AFdZucrdT3FgeRWu-e-Q4-zghzQ2Gv4-8DLsW75Vh0ODjQ=s120-c-c-rp-w64-h64-mo-br100",
         `Treble Health has <mark class="ti-highlight">helped me enormously in a fairly short amount of time when other doctors couldn’t</mark>. My audiologist (Dr May) has 18 years of experience in dealing with tinnitus and has suffered with and habituated to tinnitus herself.<br><br>My story…<br>I lived and dealt with tinnitus on my own for 8. years until one week when it really spiked. I couldn’t sleep, couldn’t focus and I became extremely anxious about my condition. I had very loud ringing 24/7 and was wondering if I was going to be able to live with it.  I saw my GP who referred me to an audiologist who basically I said that this is the way it’s going to be for you, and then wanted to sell me a generic hearing aid.<br><br>I did my own research into the latest and most effective tinnitus treatments, and into who could provide them. Two months later… my anxiety is nearly gone and I am sleeping well. At the moment I can go hours without noticing my tinnitus and I am hopeful that will even improve to most of my day.<br><br>Treble Health provided real solutions and gave me hope.  They deserve 10 STARS!`,
       ],
     };
     let arrGoogleReviewsMob = {
-      'Randy Spear': [
-        'https://lh3.googleusercontent.com/a/AItbvmkkr8HFUQFUSbIpierOi_tssRDrUkx-hUDdpVdp=s120-c-c-rp-w64-h64-mo-br100"',
-        '<mark class="ti-highlight">Treble Health gave me hope for my tinnitus</mark> when no one else could.  My medical provider told me there was no cure (true) and gave me some pills.  But Treble Health provided expert counseling and therapy.  Their methods provided great relief and gave me back my life.  Dr. Tracy at Treble Health was fantastic!',
-      ],
-      'Alicia Toole': [
-        'https://lh3.googleusercontent.com/a-/AFdZucpN_mxnE8ZkgQeGNeRszBAciUSbOXMwQHGguYMTVGU=s120-c-c-rp-w64-h64-mo-br100',
-        `<mark class="ti-highlight">Excellent source of help for those of us suffering with tinnitus</mark>!  I have a plan and I have hope!  Dr. Holcomb was great!  So thankful to have found this resource.`,
-      ],
-      'Douglas Le Comte': [
-        'https://lh3.googleusercontent.com/a/AItbvmlhBMa78iqBpJV1E04-LQumMFBojt4qyFYLAFA=s120-c-c-rp-w64-h64-mo-br100',
-        `Can't praise the audiologists at Treble Health enough</mark>. Smart, caring, helpful...all you could ask for.`,
-      ],
-      'Victor Marquez': [
-        'https://lh3.googleusercontent.com/a/AItbvmnH8U9v2RyRMEX9Dtz520XVU6bqHZcv4lDrel8I=s120-c-c-rp-w64-h64-mo-br100',
-        `<mark class="ti-highlight">They helped me with my hyperacusis</mark>. I would recommended to anyone who has been struggling to find help with their hyperacusis.`,
-      ],
-      'Bubba Saul': [
-        'https://lh3.googleusercontent.com/a-/AFdZucoeBRbx1X33g-kn3GbESgqkNpYVu-Qk2aeQiMdmLA=s120-c-c-rp-w64-h64-mo-br100',
-        `<mark class="ti-highlight">Treble Health has done wonders for me</mark>. Thank God I found them very soon after my tinnitus started. Earlier in my treatment I started tinnitus maskers (Tranquil II) and the Jasterboff protocol with Dr. Jen, who is great to work with. Within 3 months I basically habituated. I love my maskers and plan to wear them as long as I have tinnitus. I wish everyone the same success that I have had with Treble Health.`,
-      ],
-      'Jordan Marie': [
-        'https://lh3.googleusercontent.com/a-/AFdZucrlfUVXg6qygbaayWvgd5mlfmpj6RQuxi9WUuzl=s120-c-c-rp-w64-h64-mo-br100',
+      "Randy Spear": ['https://lh3.googleusercontent.com/a/AItbvmkkr8HFUQFUSbIpierOi_tssRDrUkx-hUDdpVdp=s120-c-c-rp-w64-h64-mo-br100"', '<mark class="ti-highlight">Treble Health gave me hope for my tinnitus</mark> when no one else could.  My medical provider told me there was no cure (true) and gave me some pills.  But Treble Health provided expert counseling and therapy.  Their methods provided great relief and gave me back my life.  Dr. Tracy at Treble Health was fantastic!'],
+      "Alicia Toole": ["https://lh3.googleusercontent.com/a-/AFdZucpN_mxnE8ZkgQeGNeRszBAciUSbOXMwQHGguYMTVGU=s120-c-c-rp-w64-h64-mo-br100", `<mark class="ti-highlight">Excellent source of help for those of us suffering with tinnitus</mark>!  I have a plan and I have hope!  Dr. Holcomb was great!  So thankful to have found this resource.`],
+      "Douglas Le Comte": ["https://lh3.googleusercontent.com/a/AItbvmlhBMa78iqBpJV1E04-LQumMFBojt4qyFYLAFA=s120-c-c-rp-w64-h64-mo-br100", `Can't praise the audiologists at Treble Health enough</mark>. Smart, caring, helpful...all you could ask for.`],
+      "Victor Marquez": ["https://lh3.googleusercontent.com/a/AItbvmnH8U9v2RyRMEX9Dtz520XVU6bqHZcv4lDrel8I=s120-c-c-rp-w64-h64-mo-br100", `<mark class="ti-highlight">They helped me with my hyperacusis</mark>. I would recommended to anyone who has been struggling to find help with their hyperacusis.`],
+      "Bubba Saul": ["https://lh3.googleusercontent.com/a-/AFdZucoeBRbx1X33g-kn3GbESgqkNpYVu-Qk2aeQiMdmLA=s120-c-c-rp-w64-h64-mo-br100", `<mark class="ti-highlight">Treble Health has done wonders for me</mark>. Thank God I found them very soon after my tinnitus started. Earlier in my treatment I started tinnitus maskers (Tranquil II) and the Jasterboff protocol with Dr. Jen, who is great to work with. Within 3 months I basically habituated. I love my maskers and plan to wear them as long as I have tinnitus. I wish everyone the same success that I have had with Treble Health.`],
+      "Jordan Marie": [
+        "https://lh3.googleusercontent.com/a-/AFdZucrlfUVXg6qygbaayWvgd5mlfmpj6RQuxi9WUuzl=s120-c-c-rp-w64-h64-mo-br100",
         `<mark class="ti-highlight">Treble Health has been the only thing that has truly helped with my tinnitus</mark>. After seeing an ENT and a couple of audiologists who offered me no help, having someone who actually understood and gave me tools, made things so much better - even after the first visit. I'm a few weeks into treatment, and I no longer have any suicidal thoughts, my tinnitus is less noticeable, and less annoying. It's really true what they say - don't look at message boards!!! I finally see a road to habituation when I NEVER thought it was possible, and I'm really looking forward to having my normal life back. I work with Dr. Poindexter, and she has been nothing but kind, supportive, and thoughtful. I feel really comfortable with her and shes always available! Highly recommend Treble Health, as I've found it the only place with knowledgeable experts.`,
       ],
     };
 
-    document.head.insertAdjacentHTML(
-      'beforeend',
-      `<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">`,
-    );
-    document.head.insertAdjacentHTML('beforeend', newStyle);
+    document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">`);
+    document.head.insertAdjacentHTML("beforeend", newStyle);
     renderNewElem();
     slickSliderInit();
     onClickVideoSlider();
@@ -2389,101 +2316,55 @@ p.mob_txt{
 
     function renderNewElem() {
       // newHtml
-      if (
-        document.querySelector('#lp-pom-root') &&
-        !document.querySelector('.new_body') &&
-        window.location.pathname === '/tinnitus-relief-discovery-call-v1-1/'
-      ) {
-        document.querySelector('#lp-pom-root').insertAdjacentHTML('beforebegin', newHtml);
+      if (document.querySelector("#lp-pom-root") && !document.querySelector(".new_body") && window.location.pathname === "/tinnitus-relief-discovery-call-v1-1/") {
+        document.querySelector("#lp-pom-root").insertAdjacentHTML("beforebegin", newHtml);
       }
 
-      if (
-        document.querySelector('#root') &&
-        !document.querySelector('.new_body') &&
-        window.location.pathname === '/treble-health-audiologists/tinnitus-relief-discovery/'
-      ) {
-        document.querySelector('#root').insertAdjacentHTML('beforebegin', newHtml);
+      if (window.location.pathname === "/product/maskers-bundle/" && document.querySelector(".elementor-12891 .elementor-element.elementor-element-3816e4b .elementor-button")?.href !== "https://treblehealth.com/aud-consult-sign-up-calendly-v2/") {
+        document.querySelector(".elementor-12891 .elementor-element.elementor-element-3816e4b .elementor-button").href = "https://treblehealth.com/aud-consult-sign-up-calendly-v2/";
       }
+
+      if (document.querySelector("#content") && !document.querySelector(".new_body") && window.location.pathname === "/aud-consult-sign-up-calendly-v2/") {
+        document.querySelector("#content").insertAdjacentHTML("beforebegin", newHtml);
+      }
+      // new_iframe_calendly
+      if (document.querySelector("#content") && document.querySelector(".new_body") && window.location.pathname === "/aud-consult-sign-up-calendly-v2/" && document.querySelectorAll(".new_iframe_calendly") && !document.querySelector(".new_iframe_calendly_second")) {
+        document.querySelectorAll(".new_iframe_calendly").forEach((el) => {
+          el.insertAdjacentHTML("beforebegin", `<div class="new_iframe_calendly_second"><iframe src="https://calendly.com/treble-health-audiologists/treble-health-consultation?embed_domain=treblehealth.com&amp;embed_type=Inline&amp;hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;primary_color=4622da&amp;utm_term=1261762004.1699950023&utm_content=funnel_1" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-60173040_75="true" data-gtm-yt-inspected-15="true"></iframe></div>`);
+          el.remove();
+        });
+      }
+
       //Verified Reviews on Google items
-      if (
-        document.querySelector('.verified_reviews_on_google_wrapp') &&
-        document.querySelector('.verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.firts_var')
-          .children.length !== arrGoogleReviews1.length
-      ) {
+      if (document.querySelector(".verified_reviews_on_google_wrapp") && document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.firts_var").children.length !== arrGoogleReviews1.length) {
         for (let key in arrGoogleReviews1) {
-          document
-            .querySelector('.verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.firts_var')
-            .insertAdjacentHTML(
-              'beforeend',
-              setGoogleReviews(key, arrGoogleReviews1[key][0], arrGoogleReviews1[key][1]),
-            );
+          document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.firts_var").insertAdjacentHTML("beforeend", setGoogleReviews(key, arrGoogleReviews1[key][0], arrGoogleReviews1[key][1]));
         }
       }
-      if (
-        document.querySelector('.verified_reviews_on_google_wrapp') &&
-        document.querySelector('.verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.second_var')
-          .children.length !== arrGoogleReviews2.length
-      ) {
+      if (document.querySelector(".verified_reviews_on_google_wrapp") && document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.second_var").children.length !== arrGoogleReviews2.length) {
         for (let key in arrGoogleReviews2) {
-          document
-            .querySelector('.verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.second_var')
-            .insertAdjacentHTML(
-              'beforeend',
-              setGoogleReviews(key, arrGoogleReviews2[key][0], arrGoogleReviews2[key][1]),
-            );
+          document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.second_var").insertAdjacentHTML("beforeend", setGoogleReviews(key, arrGoogleReviews2[key][0], arrGoogleReviews2[key][1]));
         }
       }
-      if (
-        document.querySelector('.verified_reviews_on_google_wrapp') &&
-        document.querySelector('.verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.third_var')
-          .children.length !== arrGoogleReviews4.length
-      ) {
+      if (document.querySelector(".verified_reviews_on_google_wrapp") && document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.third_var").children.length !== arrGoogleReviews4.length) {
         for (let key in arrGoogleReviews4) {
-          document
-            .querySelector('.verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.third_var')
-            .insertAdjacentHTML(
-              'beforeend',
-              setGoogleReviews(key, arrGoogleReviews4[key][0], arrGoogleReviews4[key][1]),
-            );
+          document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.third_var").insertAdjacentHTML("beforeend", setGoogleReviews(key, arrGoogleReviews4[key][0], arrGoogleReviews4[key][1]));
         }
       }
-      if (
-        document.querySelector('.verified_reviews_on_google_wrapp') &&
-        document.querySelector('.verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.fourth_var')
-          .children.length !== arrGoogleReviews3.length
-      ) {
+      if (document.querySelector(".verified_reviews_on_google_wrapp") && document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.fourth_var").children.length !== arrGoogleReviews3.length) {
         for (let key in arrGoogleReviews3) {
-          document
-            .querySelector('.verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.fourth_var')
-            .insertAdjacentHTML(
-              'beforeend',
-              setGoogleReviews(key, arrGoogleReviews3[key][0], arrGoogleReviews3[key][1]),
-            );
+          document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.fourth_var").insertAdjacentHTML("beforeend", setGoogleReviews(key, arrGoogleReviews3[key][0], arrGoogleReviews3[key][1]));
         }
       }
-      if (
-        document.querySelector('.verified_reviews_on_google_wrapp') &&
-        document.querySelector('.verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.mob_var')
-          .children.length !== arrGoogleReviewsMob.length
-      ) {
+      if (document.querySelector(".verified_reviews_on_google_wrapp") && document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.mob_var").children.length !== arrGoogleReviewsMob.length) {
         for (let key in arrGoogleReviewsMob) {
-          document
-            .querySelector('.verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.mob_var')
-            .insertAdjacentHTML(
-              'beforeend',
-              setGoogleReviews(key, arrGoogleReviewsMob[key][0], arrGoogleReviewsMob[key][1]),
-            );
+          document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.mob_var").insertAdjacentHTML("beforeend", setGoogleReviews(key, arrGoogleReviewsMob[key][0], arrGoogleReviewsMob[key][1]));
         }
       }
       // questions_accordion
-      if (
-        document.querySelector('.questions_accordion') &&
-        document.querySelector('.questions_accordion').children.length !== arrQuestions.length
-      ) {
+      if (document.querySelector(".questions_accordion") && document.querySelector(".questions_accordion").children.length !== arrQuestions.length) {
         for (let key in arrQuestions) {
-          document
-            .querySelector('.questions_accordion')
-            .insertAdjacentHTML('beforeend', setAccordionItem(key, arrQuestions[key][0], arrQuestions[key][1]));
+          document.querySelector(".questions_accordion").insertAdjacentHTML("beforeend", setAccordionItem(key, arrQuestions[key][0], arrQuestions[key][1]));
         }
       }
     }
@@ -2491,15 +2372,11 @@ p.mob_txt{
     function slickSliderInit() {
       console.log(`Hello slickSliderInit`);
       let slickInterval = setInterval(() => {
-        if (
-          typeof jQuery === 'function' &&
-          typeof jQuery('#ourPatientsLoveTrebleHealthBlock .video_list').slick === 'function' &&
-          document.querySelector('#ourPatientsLoveTrebleHealthBlock .video_list')
-        ) {
+        if (typeof jQuery === "function" && typeof jQuery("#ourPatientsLoveTrebleHealthBlock .video_list").slick === "function" && document.querySelector("#ourPatientsLoveTrebleHealthBlock .video_list")) {
           clearInterval(slickInterval);
 
           //  slider
-          let slider = jQuery('#ourPatientsLoveTrebleHealthBlock .video_list').slick({
+          let slider = jQuery("#ourPatientsLoveTrebleHealthBlock .video_list").slick({
             slidesToShow: 1,
             slidesToScroll: 1,
             arrows: true,
@@ -2536,39 +2413,24 @@ p.mob_txt{
               },
             ],
           });
-          slider.on('afterChange', function () {
-            document.querySelectorAll('iframe').forEach(el => {
-              el.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+          slider.on("afterChange", function () {
+            document.querySelectorAll("iframe").forEach((el) => {
+              el.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', "*");
             });
           });
-          document.querySelectorAll('#ourPatientsLoveTrebleHealthBlock .slick-dots li').forEach(el => {
-            el.addEventListener('click', (i, idx) => {
-              pushDataLayer([
-                'exp_call_book_page_pagin_video_click',
-                'Click ',
-                'Pagination  ',
-                'Why Our Patients Love Treble Health',
-              ]);
+          document.querySelectorAll("#ourPatientsLoveTrebleHealthBlock .slick-dots li").forEach((el) => {
+            el.addEventListener("click", (i, idx) => {
+              pushDataLayer(["exp_call_book_page_pagin_video_click", "Click ", "Pagination  ", "Why Our Patients Love Treble Health"]);
             });
           });
 
-          document.querySelectorAll('#ourPatientsLoveTrebleHealthBlock .slick-arrow').forEach(el => {
-            el.addEventListener('click', i => {
-              if (i.currentTarget.classList.contains('prev_btn')) {
-                pushDataLayer([
-                  'exp_call_book_page_butt_video_lefrig',
-                  'Left',
-                  'Button',
-                  'Why Our Patients Love Treble Health',
-                ]);
+          document.querySelectorAll("#ourPatientsLoveTrebleHealthBlock .slick-arrow").forEach((el) => {
+            el.addEventListener("click", (i) => {
+              if (i.currentTarget.classList.contains("prev_btn")) {
+                pushDataLayer(["exp_call_book_page_butt_video_lefrig", "Left", "Button", "Why Our Patients Love Treble Health"]);
               }
-              if (i.currentTarget.classList.contains('next_btn')) {
-                pushDataLayer([
-                  'exp_call_book_page_butt_video_lefrig',
-                  'Right',
-                  'Button',
-                  'Why Our Patients Love Treble Health',
-                ]);
+              if (i.currentTarget.classList.contains("next_btn")) {
+                pushDataLayer(["exp_call_book_page_butt_video_lefrig", "Right", "Button", "Why Our Patients Love Treble Health"]);
               }
             });
           });
@@ -2587,18 +2449,13 @@ p.mob_txt{
 
     function onClickVideoSlider() {
       console.log(`Hello onClickVideoSlider`);
-      if (document.querySelectorAll('.video_link_wrapp')) {
-        document.querySelectorAll('.video_link_wrapp').forEach(video => {
-          video.addEventListener('click', e => {
-            pushDataLayer([
-              'exp_call_book_page_butt_patient_name',
-              `${e.currentTarget.previousElementSibling.getAttribute('data-name')} - Click`,
-              'Button',
-              'Why Our Patients Love Treble Health',
-            ]);
-            video.querySelector('iframe').src += '&autoplay=1';
-            if (!e.currentTarget.classList.contains('is_clicked')) {
-              e.currentTarget.classList.add('is_clicked');
+      if (document.querySelectorAll(".video_link_wrapp")) {
+        document.querySelectorAll(".video_link_wrapp").forEach((video) => {
+          video.addEventListener("click", (e) => {
+            pushDataLayer(["exp_call_book_page_butt_patient_name", `${e.currentTarget.previousElementSibling.getAttribute("data-name")} - Click`, "Button", "Why Our Patients Love Treble Health"]);
+            video.querySelector("iframe").src += "&autoplay=1";
+            if (!e.currentTarget.classList.contains("is_clicked")) {
+              e.currentTarget.classList.add("is_clicked");
             }
           });
         });
@@ -2608,15 +2465,15 @@ p.mob_txt{
     function tooltipInit() {
       console.log(`Hello tooltipInit`);
       let tippyRunYourHosts = setInterval(() => {
-        if (typeof tippy === 'function' && document.querySelector('#yourHostsBlock [data-tooltip]')) {
+        if (typeof tippy === "function" && document.querySelector("#yourHostsBlock [data-tooltip]")) {
           clearInterval(tippyRunYourHosts);
-          document.querySelectorAll('#yourHostsBlock [data-title]').forEach(el => {
+          document.querySelectorAll("#yourHostsBlock [data-title]").forEach((el) => {
             tippy(el, {
-              content: el.getAttribute('data-title'),
+              content: el.getAttribute("data-title"),
               // trigger: 'click',
-              placement: 'top-end',
+              placement: "top-end",
               appendTo: function () {
-                return el.closest('.host_name');
+                return el.closest(".host_name");
               },
               onTrigger(inst, e) {
                 e.stopPropagation();
@@ -2631,22 +2488,22 @@ p.mob_txt{
 
     function stickyHeaderInit() {
       console.log(`Hello stickyHeaderInit`);
-      if (document.querySelector('.new_body')) {
-        let element = document.querySelector('.sticky_header');
-        const elemClose = document.querySelector('#heroBlock');
+      if (document.querySelector(".new_body")) {
+        let element = document.querySelector(".sticky_header");
+        const elemClose = document.querySelector("#heroBlock");
         if (window.innerWidth <= 768) {
-          window.addEventListener('scroll', () => {
+          window.addEventListener("scroll", () => {
             const options = {
               root: null,
               threshold: 1,
             };
-            let containerHint = document.querySelector('.calendar_body.no_sticky');
-            let observer = new IntersectionObserver(entries => {
-              entries.forEach(i => {
+            let containerHint = document.querySelector(".calendar_body.no_sticky");
+            let observer = new IntersectionObserver((entries) => {
+              entries.forEach((i) => {
                 if (i.isIntersecting) {
-                  element.classList.remove('is_intersecting');
+                  element.classList.remove("is_intersecting");
                 } else {
-                  element.classList.add('is_intersecting');
+                  element.classList.add("is_intersecting");
                 }
 
                 observer.unobserve(i.target);
@@ -2662,27 +2519,27 @@ p.mob_txt{
         function visible(target) {
           if (window.innerWidth > 768) {
             if (target.getBoundingClientRect().bottom < 0) {
-              element.classList.add('is_fixed');
-              element.style.top = '-1px';
+              element.classList.add("is_fixed");
+              element.style.top = "-1px";
             } else {
-              if (element.classList.contains('is_fixed')) {
-                element.classList.remove('is_fixed');
-                element.style.top = '-1px';
+              if (element.classList.contains("is_fixed")) {
+                element.classList.remove("is_fixed");
+                element.style.top = "-1px";
               }
             }
           } else {
             if (target.getBoundingClientRect().bottom < 0) {
-              element.classList.add('is_fixed_mob');
-              element.style.bottom = '-1px';
+              element.classList.add("is_fixed_mob");
+              element.style.bottom = "-1px";
             } else {
-              if (element.classList.contains('is_fixed_mob')) {
-                element.classList.remove('is_fixed_mob');
-                element.style.bottom = '-1px';
+              if (element.classList.contains("is_fixed_mob")) {
+                element.classList.remove("is_fixed_mob");
+                element.style.bottom = "-1px";
               }
             }
           }
         }
-        window.addEventListener('scroll', function () {
+        window.addEventListener("scroll", function () {
           visible(elemClose);
         });
         visible(elemClose);
@@ -2692,23 +2549,23 @@ p.mob_txt{
     function accordionInit() {
       console.log(`Hello accordionInit`);
       let lookForJquery = setInterval(() => {
-        if (typeof $ === 'function' && document.querySelector('.new_body')) {
+        if (typeof $ === "function" && document.querySelector(".new_body")) {
           clearInterval(lookForJquery);
-          document.querySelectorAll('.questions_accordion_block')[0].classList.add('active');
-          document.querySelectorAll('.questions_accordion_block .questions_accordion_link')[0].classList.add('active');
-          document.querySelectorAll('.questions_accordion_block .questions_accordion_lists')[0].style.display = 'block';
+          document.querySelectorAll(".questions_accordion_block")[0].classList.add("active");
+          document.querySelectorAll(".questions_accordion_block .questions_accordion_link")[0].classList.add("active");
+          document.querySelectorAll(".questions_accordion_block .questions_accordion_lists")[0].style.display = "block";
           // questions_accordion_lists
-          $('.questions_accordion_link').click(function (e) {
-            $(this).toggleClass('active');
-            $(this).closest('li').toggleClass('active');
-            $(this).next('.questions_accordion_lists').slideToggle();
-            if ($('.questions_accordion_link').not(this)) {
-              $('.questions_accordion_link').not(this).next('.questions_accordion_lists').css('display', 'none');
-              $('.questions_accordion_link').not(this).removeClass('active');
-              $('.questions_accordion_link').not(this).closest('li').removeClass('active');
+          $(".questions_accordion_link").click(function (e) {
+            $(this).toggleClass("active");
+            $(this).closest("li").toggleClass("active");
+            $(this).next(".questions_accordion_lists").slideToggle();
+            if ($(".questions_accordion_link").not(this)) {
+              $(".questions_accordion_link").not(this).next(".questions_accordion_lists").css("display", "none");
+              $(".questions_accordion_link").not(this).removeClass("active");
+              $(".questions_accordion_link").not(this).closest("li").removeClass("active");
             }
 
-            if (e.currentTarget.classList.contains('active')) {
+            if (e.currentTarget.classList.contains("active")) {
               // pushDataLayer('Open block', `${e.currentTarget.querySelector('p').textContent}`);
             } else {
               // pushDataLayer('Close block', `${e.currentTarget.querySelector('p').textContent}`);
@@ -2786,12 +2643,12 @@ p.mob_txt{
     function onCircularInit() {
       console.log(`Hello onCircularInit`);
       let s = setInterval(() => {
-        if (typeof jQuery === 'function') {
+        if (typeof jQuery === "function") {
           clearInterval(s);
           const counterAnim = (qSelector, start = 0, end, duration = 1000) => {
             const target = document.querySelector(qSelector);
             let startTimestamp = null;
-            const step = timestamp => {
+            const step = (timestamp) => {
               if (!startTimestamp) startTimestamp = timestamp;
               const progress = Math.min((timestamp - startTimestamp) / duration, 1);
               target.innerText = Math.floor(progress * (end - start) + start);
@@ -2806,86 +2663,86 @@ p.mob_txt{
           let counter3 = 0;
 
           jQuery(document).scroll(function () {
-            if (jQuery('.animation-none1').hasClass('animated')) {
+            if (jQuery(".animation-none1").hasClass("animated")) {
               counter1 += 1;
             } else {
             }
             if (counter1 == 1) {
               circle1();
-              counterAnim('.count-number1', 0, 85, 1800);
+              counterAnim(".count-number1", 0, 85, 1800);
             }
 
-            if (jQuery('.animation-none2').hasClass('animated')) {
+            if (jQuery(".animation-none2").hasClass("animated")) {
               counter2 += 1;
             } else {
             }
             if (counter2 == 1) {
               circle2();
-              counterAnim('.count-number2', 0, 75, 1350);
+              counterAnim(".count-number2", 0, 75, 1350);
             }
 
-            if (jQuery('.animation-none3').hasClass('animated')) {
+            if (jQuery(".animation-none3").hasClass("animated")) {
               counter3 += 1;
             } else {
             }
             if (counter3 == 1) {
               circle3();
-              counterAnim('.count-number3', 0, 98, 2000);
+              counterAnim(".count-number3", 0, 98, 2000);
             }
           });
 
           function circle1() {
-            var circle1 = document.getElementById('circle1');
+            var circle1 = document.getElementById("circle1");
             var interval1 = 18;
             var angle1 = 0;
             var angle_increment1 = 6;
 
             window.timer1 = window.setInterval(
               function () {
-                circle1.setAttribute('stroke-dasharray', angle1 + ', 20000');
+                circle1.setAttribute("stroke-dasharray", angle1 + ", 20000");
 
                 if (angle1 >= 550) {
                   window.clearInterval(window.timer1);
                 }
                 angle1 += angle_increment1;
               }.bind(this),
-              interval1,
+              interval1
             );
           }
           function circle2() {
-            var circle2 = document.getElementById('circle2');
+            var circle2 = document.getElementById("circle2");
             var interval2 = 15;
             var angle2 = 0;
             var angle_increment2 = 6;
 
             window.timer2 = window.setInterval(
               function () {
-                circle2.setAttribute('stroke-dasharray', angle2 + ', 20000');
+                circle2.setAttribute("stroke-dasharray", angle2 + ", 20000");
 
                 if (angle2 >= 490) {
                   window.clearInterval(window.timer2);
                 }
                 angle2 += angle_increment2;
               }.bind(this),
-              interval2,
+              interval2
             );
           }
           function circle3() {
-            var circle3 = document.getElementById('circle3');
+            var circle3 = document.getElementById("circle3");
             var interval3 = 18;
             var angle3 = 0;
             var angle_increment3 = 6;
 
             window.timer3 = window.setInterval(
               function () {
-                circle3.setAttribute('stroke-dasharray', angle3 + ', 20000');
+                circle3.setAttribute("stroke-dasharray", angle3 + ", 20000");
 
                 if (angle3 >= 630) {
                   window.clearInterval(window.timer3);
                 }
                 angle3 += angle_increment3;
               }.bind(this),
-              interval3,
+              interval3
             );
           }
         }
@@ -2895,17 +2752,17 @@ p.mob_txt{
     function onClickReviewsGoogle() {
       console.log(`Hello onClickReviewsGoogle`);
       let lookForJqueryReviews = setInterval(() => {
-        if (document.querySelector('.ti-read-more')) {
+        if (document.querySelector(".ti-read-more")) {
           clearInterval(lookForJqueryReviews);
-          document.querySelectorAll('.ti-read-more-active').forEach(el => {
-            el.addEventListener('click', e => {
-              e.currentTarget.classList.toggle('active');
-              e.currentTarget.closest('.ti-read-more').previousElementSibling.classList.toggle('active');
-              if (e.currentTarget.classList.contains('active')) {
-                e.currentTarget.textContent = 'Hide';
+          document.querySelectorAll(".ti-read-more-active").forEach((el) => {
+            el.addEventListener("click", (e) => {
+              e.currentTarget.classList.toggle("active");
+              e.currentTarget.closest(".ti-read-more").previousElementSibling.classList.toggle("active");
+              if (e.currentTarget.classList.contains("active")) {
+                e.currentTarget.textContent = "Hide";
               } else {
-                e.currentTarget.scrollIntoView({ block: 'center', behavior: 'smooth' });
-                e.currentTarget.textContent = 'Read more';
+                e.currentTarget.scrollIntoView({ block: "center", behavior: "smooth" });
+                e.currentTarget.textContent = "Read more";
               }
             });
           });
@@ -2915,71 +2772,36 @@ p.mob_txt{
 
     function onClickBtnGrabYourFREE() {
       console.log(`Hello onClickBtnGrabYourFREE`);
-      if (document.querySelector('.new_body')) {
-        document.querySelectorAll('.grab_your_free_btn').forEach(el => {
-          el.addEventListener('click', e => {
-            if (e.currentTarget.closest('#heroBlock')) {
-              pushDataLayer([
-                'exp_call_book_page_butt_first_grab',
-                'Grab Your FREE Seat Now!',
-                'Button',
-                'First screen',
-              ]);
+      if (document.querySelector(".new_body")) {
+        document.querySelectorAll(".grab_your_free_btn").forEach((el) => {
+          el.addEventListener("click", (e) => {
+            if (e.currentTarget.closest("#heroBlock")) {
+              pushDataLayer(["exp_call_book_page_butt_first_grab", "Grab Your FREE Seat Now!", "Button", "First screen"]);
             }
-            if (e.currentTarget.closest('#learnMobBlock') || e.currentTarget.closest('#exclusiveBonusBlock')) {
-              pushDataLayer([
-                'exp_call_book_page_butt_discov_grab',
-                'Grab Your FREE Seat Now!',
-                'Button',
-                'In this FREE discovery call, you’ll learn',
-              ]);
+            if (e.currentTarget.closest("#learnMobBlock") || e.currentTarget.closest("#exclusiveBonusBlock")) {
+              pushDataLayer(["exp_call_book_page_butt_discov_grab", "Grab Your FREE Seat Now!", "Button", "In this FREE discovery call, you’ll learn"]);
             }
-            if (e.currentTarget.closest('#whoShouldAttendBlock')) {
-              pushDataLayer([
-                'exp_call_book_page_butt_attend_grab',
-                'Grab Your FREE Seat Now!',
-                'Button',
-                'Who Should Attend?',
-              ]);
+            if (e.currentTarget.closest("#whoShouldAttendBlock")) {
+              pushDataLayer(["exp_call_book_page_butt_attend_grab", "Grab Your FREE Seat Now!", "Button", "Who Should Attend?"]);
             }
-            if (e.currentTarget.closest('#clinicallyProvenResultsBlock')) {
-              pushDataLayer([
-                'exp_call_book_page_butt_clinic_grab',
-                'Grab Your FREE Seat Now!',
-                'Button',
-                'Under Clinically Proven Results',
-              ]);
+            if (e.currentTarget.closest("#clinicallyProvenResultsBlock")) {
+              pushDataLayer(["exp_call_book_page_butt_clinic_grab", "Grab Your FREE Seat Now!", "Button", "Under Clinically Proven Results"]);
             }
-            if (e.currentTarget.closest('#frequentlyAskedQuestionsBlock')) {
-              pushDataLayer([
-                'exp_call_book_page_butt_quest_grab',
-                'Grab Your FREE Seat Now!',
-                'Button',
-                'Frequently Asked Questions',
-              ]);
+            if (e.currentTarget.closest("#frequentlyAskedQuestionsBlock")) {
+              pushDataLayer(["exp_call_book_page_butt_quest_grab", "Grab Your FREE Seat Now!", "Button", "Frequently Asked Questions"]);
             }
-            if (e.currentTarget.closest('#completeRecoveryBlock')) {
-              pushDataLayer([
-                'exp_call_book_page_butt_possible_grab',
-                'Grab Your FREE Seat Now!',
-                'Button',
-                'A complete recovery from tinnitus is possible',
-              ]);
+            if (e.currentTarget.closest("#completeRecoveryBlock")) {
+              pushDataLayer(["exp_call_book_page_butt_possible_grab", "Grab Your FREE Seat Now!", "Button", "A complete recovery from tinnitus is possible"]);
             }
-            if (e.currentTarget.closest('.sticky_header')) {
+            if (e.currentTarget.closest(".sticky_header")) {
               let maxScrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
               let currentScrollHeight = window.pageYOffset.toFixed(0);
 
-              pushDataLayer([
-                'exp_call_book_page_sticbut_sitewi_book',
-                `${((currentScrollHeight / maxScrollHeight) * 100).toFixed(0)}% - Book a Free Call`,
-                'Sticky button',
-                'Sitewide',
-              ]);
+              pushDataLayer(["exp_call_book_page_sticbut_sitewi_book", `${((currentScrollHeight / maxScrollHeight) * 100).toFixed(0)}% - Book a Free Call`, "Sticky button", "Sitewide"]);
             }
             //
-            document.querySelectorAll('.calendar_header').forEach(el => {
-              el.scrollIntoView({ block: 'start', behavior: 'smooth' });
+            document.querySelectorAll(".calendar_header").forEach((el) => {
+              el.scrollIntoView({ block: "start", behavior: "smooth" });
             });
           });
         });
@@ -2988,16 +2810,11 @@ p.mob_txt{
 
     function onClickBtnContactsTel() {
       console.log(`Hello onClickBtnContactsTel`);
-      if (document.querySelector('.new_body')) {
-        document.querySelectorAll('.tel_link').forEach(el => {
-          el.addEventListener('click', e => {
-            if (e.currentTarget.closest('.calendar_contacts')) {
-              pushDataLayer([
-                'exp_call_book_page_link_find_namber',
-                'Click number',
-                'Link',
-                'Under calendar Can’t find a time?',
-              ]);
+      if (document.querySelector(".new_body")) {
+        document.querySelectorAll(".tel_link").forEach((el) => {
+          el.addEventListener("click", (e) => {
+            if (e.currentTarget.closest(".calendar_contacts")) {
+              pushDataLayer(["exp_call_book_page_link_find_namber", "Click number", "Link", "Under calendar Can’t find a time?"]);
             }
           });
         });
@@ -3006,15 +2823,10 @@ p.mob_txt{
 
     function onClickBtnTrustpilotLink() {
       console.log(`Hello onClickBtnTrustpilotLink`);
-      if (document.querySelector('.new_body')) {
-        document.querySelectorAll('.trustpilot_link').forEach(el => {
-          el.addEventListener('click', e => {
-            pushDataLayer([
-              'exp_call_book_page_link_trustpil_click',
-              'Click ',
-              'Link',
-              'Trustpilot People just like you achieve great results',
-            ]);
+      if (document.querySelector(".new_body")) {
+        document.querySelectorAll(".trustpilot_link").forEach((el) => {
+          el.addEventListener("click", (e) => {
+            pushDataLayer(["exp_call_book_page_link_trustpil_click", "Click ", "Link", "Trustpilot People just like you achieve great results"]);
           });
         });
       }
@@ -3022,22 +2834,17 @@ p.mob_txt{
 
     function onClickBtnLearnFromTheCall() {
       console.log(`Hello onClickBtnLearnFromTheCall`);
-      if (document.querySelector('.new_body')) {
-        document.querySelectorAll('.learn_from_call_btn').forEach(el => {
-          el.addEventListener('click', () => {
-            pushDataLayer([
-              'exp_call_book_page_link_first_learn',
-              'What will I learn from the call?',
-              'Link',
-              'First screen',
-            ]);
-            document.querySelectorAll('.calendar_header').forEach(el => {
+      if (document.querySelector(".new_body")) {
+        document.querySelectorAll(".learn_from_call_btn").forEach((el) => {
+          el.addEventListener("click", () => {
+            pushDataLayer(["exp_call_book_page_link_first_learn", "What will I learn from the call?", "Link", "First screen"]);
+            document.querySelectorAll(".calendar_header").forEach((el) => {
               const headerOffset = 50;
-              const elementPosition = document.querySelector('#learnMobBlock').getBoundingClientRect().top;
+              const elementPosition = document.querySelector("#learnMobBlock").getBoundingClientRect().top;
               const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
               window.scrollTo({
                 top: offsetPosition,
-                behavior: 'smooth',
+                behavior: "smooth",
               });
             });
           });
@@ -3047,18 +2854,18 @@ p.mob_txt{
 
     function onClickTrustScoreWrapp() {
       console.log(`Hello onClickTrustScoreWrapp`);
-      if (document.querySelector('.new_body')) {
-        document.querySelectorAll('.trust_score_wrapp').forEach(el => {
-          el.addEventListener('click', e => {
-            if (e.currentTarget.closest('#heroBlock')) {
-              pushDataLayer(['exp_call_book_page_link_reviews_click', 'Click reviews', 'Link', 'First screen']);
+      if (document.querySelector(".new_body")) {
+        document.querySelectorAll(".trust_score_wrapp").forEach((el) => {
+          el.addEventListener("click", (e) => {
+            if (e.currentTarget.closest("#heroBlock")) {
+              pushDataLayer(["exp_call_book_page_link_reviews_click", "Click reviews", "Link", "First screen"]);
             }
             const headerOffset = 60;
-            const elementPosition = document.querySelector('#trustpilotBlock').getBoundingClientRect().top;
+            const elementPosition = document.querySelector("#trustpilotBlock").getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
             window.scrollTo({
               top: offsetPosition,
-              behavior: 'smooth',
+              behavior: "smooth",
             });
           });
         });
@@ -3067,91 +2874,41 @@ p.mob_txt{
 
     visibElem();
     function visibElem() {
-      waitForElement('#heroBlock').then(el => {
-        handleVisibility(el, ['exp_call_book_page_visib_first_focu', ' {{focusTime}} ', 'Visibility ', 'First screen']);
+      waitForElement("#heroBlock").then((el) => {
+        handleVisibility(el, ["exp_call_book_page_visib_first_focu", " {{focusTime}} ", "Visibility ", "First screen"]);
       });
-      waitForElement('#yourHostsBlock').then(el => {
-        handleVisibility(el, ['exp_call_book_page_visib_hosts_focu', ' {{focusTime}} ', 'Visibility ', 'Your hosts']);
+      waitForElement("#yourHostsBlock").then((el) => {
+        handleVisibility(el, ["exp_call_book_page_visib_hosts_focu", " {{focusTime}} ", "Visibility ", "Your hosts"]);
       });
-      waitForElement('#exclusiveBonusBlock').then(el => {
-        handleVisibility(el, [
-          'exp_call_book_page_visib_discov_focu',
-          ' {{focusTime}} ',
-          'Visibility ',
-          "In this FREE discovery call, you'll learn",
-        ]);
+      waitForElement("#exclusiveBonusBlock").then((el) => {
+        handleVisibility(el, ["exp_call_book_page_visib_discov_focu", " {{focusTime}} ", "Visibility ", "In this FREE discovery call, you'll learn"]);
       });
-      waitForElement('#learnMobBlock').then(el => {
-        handleVisibility(el, [
-          'exp_call_book_page_visib_discov_focu',
-          ' {{focusTime}} ',
-          'Visibility ',
-          "In this FREE discovery call, you'll learn",
-        ]);
+      waitForElement("#learnMobBlock").then((el) => {
+        handleVisibility(el, ["exp_call_book_page_visib_discov_focu", " {{focusTime}} ", "Visibility ", "In this FREE discovery call, you'll learn"]);
       });
-      waitForElement('#bookCalendarMob').then(el => {
-        handleVisibility(el, [
-          'exp_call_book_page_visib_calend_focu',
-          ' {{focusTime}} ',
-          'Visibility ',
-          'Book Your Spot in Tinnitus Relief Discovery Call',
-        ]);
+      waitForElement("#bookCalendarMob").then((el) => {
+        handleVisibility(el, ["exp_call_book_page_visib_calend_focu", " {{focusTime}} ", "Visibility ", "Book Your Spot in Tinnitus Relief Discovery Call"]);
       });
-      waitForElement('#whoShouldAttendBlock').then(el => {
-        handleVisibility(el, [
-          'exp_call_book_page_visib_should_focu',
-          ' {{focusTime}} ',
-          'Visibility ',
-          'Who Should Attend?',
-        ]);
+      waitForElement("#whoShouldAttendBlock").then((el) => {
+        handleVisibility(el, ["exp_call_book_page_visib_should_focu", " {{focusTime}} ", "Visibility ", "Who Should Attend?"]);
       });
-      waitForElement('#clinicallyProvenResultsBlock').then(el => {
-        handleVisibility(el, [
-          'exp_call_book_page_visib_results_focu',
-          ' {{focusTime}} ',
-          'Visibility ',
-          'Clinically Proven Results',
-        ]);
+      waitForElement("#clinicallyProvenResultsBlock").then((el) => {
+        handleVisibility(el, ["exp_call_book_page_visib_results_focu", " {{focusTime}} ", "Visibility ", "Clinically Proven Results"]);
       });
-      waitForElement('#trustpilotBlock').then(el => {
-        handleVisibility(el, [
-          'exp_call_book_page_visib_achieve_focu',
-          ' {{focusTime}} ',
-          'Visibility ',
-          'People just like you achieve great results',
-        ]);
+      waitForElement("#trustpilotBlock").then((el) => {
+        handleVisibility(el, ["exp_call_book_page_visib_achieve_focu", " {{focusTime}} ", "Visibility ", "People just like you achieve great results"]);
       });
-      waitForElement('#frequentlyAskedQuestionsBlock').then(el => {
-        handleVisibility(el, [
-          'exp_call_book_page_visib_question_focu',
-          ' {{focusTime}} ',
-          'Visibility ',
-          'Frequently Asked Questions',
-        ]);
+      waitForElement("#frequentlyAskedQuestionsBlock").then((el) => {
+        handleVisibility(el, ["exp_call_book_page_visib_question_focu", " {{focusTime}} ", "Visibility ", "Frequently Asked Questions"]);
       });
-      waitForElement('#verifiedReviewsOnGoogleBlock').then(el => {
-        handleVisibility(el, [
-          'exp_call_book_page_visib_reviews_focu',
-          ' {{focusTime}} ',
-          'Visibility ',
-          'Why Our Patients Love Treble Health',
-        ]);
+      waitForElement("#verifiedReviewsOnGoogleBlock").then((el) => {
+        handleVisibility(el, ["exp_call_book_page_visib_reviews_focu", " {{focusTime}} ", "Visibility ", "Why Our Patients Love Treble Health"]);
       });
-      waitForElement('#completeRecoveryBlock').then(el => {
-        handleVisibility(el, [
-          'exp_call_book_page_visib_recovery_focu',
-          ' {{focusTime}} ',
-          'Visibility ',
-          'A complete recovery from tinnitus is possible',
-        ]);
+      waitForElement("#completeRecoveryBlock").then((el) => {
+        handleVisibility(el, ["exp_call_book_page_visib_recovery_focu", " {{focusTime}} ", "Visibility ", "A complete recovery from tinnitus is possible"]);
       });
-      waitForElement('#ourPatientsLoveTrebleHealthBlock').then(el => {
-        handleVisibility(el, [
-          'exp_call_book_page_visib_video_focu',
-          ' {{focusTime}} ',
-          'Visibility ',
-          'Why Our Patients Love Treble Health',
-        ]);
+      waitForElement("#ourPatientsLoveTrebleHealthBlock").then((el) => {
+        handleVisibility(el, ["exp_call_book_page_visib_video_focu", " {{focusTime}} ", "Visibility ", "Why Our Patients Love Treble Health"]);
       });
       //"pushDataLayer();"
     }
@@ -3164,8 +2921,8 @@ p.mob_txt{
         threshold: 0, // Trigger when any part of the element is out of viewport
       };
 
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             if (!isVisible) {
               // The element has become visible
@@ -3193,7 +2950,7 @@ p.mob_txt{
     }
 
     function waitForElement(selector) {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         if (document.querySelector(selector)) {
           return resolve(document.querySelector(selector));
         }
@@ -3213,9 +2970,9 @@ p.mob_txt{
     }
 
     const record = setInterval(() => {
-      if (typeof clarity === 'function') {
+      if (typeof clarity === "function") {
         clearInterval(record);
-        clarity('set', 'exp_call_book_page', 'variant_1');
+        clarity("set", "exp_call_book_page", "variant_1");
       }
     }, 200);
   }
