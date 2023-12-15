@@ -1884,10 +1884,6 @@ function handleCartMutation(mutationsList, observer) {
             ]);
           });
 
-        targetElement.querySelector(
-          ".block-content > .actions > .primary .paypal input"
-        ).src = dir + "paypal-logo.svg";
-
         console.log("." + targetElement.className.split(" ")[0]);
 
         // let classTargetElement = targetElement.className.includes('minicart-wrapper') ? '.minicart-wrapper'
@@ -1899,6 +1895,10 @@ function handleCartMutation(mutationsList, observer) {
           console.log(el);
           let price = el.innerText;
 
+          targetElement.querySelector(
+            ".block-content > .actions > .primary .paypal input"
+          ).src = dir + "paypal-logo.svg";
+          
           console.log("price: " + price);
 
           targetElement.querySelector(".crs_cart_subtotal")?.remove();
