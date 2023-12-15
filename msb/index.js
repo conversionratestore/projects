@@ -1462,6 +1462,36 @@ for (const key in dataShipping) {
   }</option>`;
 }
 
+function formatDate(days) {
+  const today = new Date();
+
+  const nextWeek = new Date(today);
+  nextWeek.setDate(today.getDate() + parseFloat(days));
+
+  const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const deliveryDay = nextWeek.getDate();
+  const nextWeekMonth = months[nextWeek.getMonth()];
+
+  const formattedDate = `${deliveryDay} ${nextWeekMonth}`;
+
+  return formattedDate;
+}
+
 const delivery = `
     <ul class="crs_delivery">
         <li class="d-flex">
@@ -1476,7 +1506,9 @@ const delivery = `
                   <p>Ship to:</p>
                   <select class="crs_country">${optionsCountry}</select>
               </div>
-              <div class="crs_est">Est. Delivery: <b>20 Jun - 22 Jun</b> </div>
+              <div class="crs_est">Est. Delivery: <b>${
+                formatDate("1") + " - " + formatDate("3")
+              }</b> </div>
             </div>
         </li>
         <li class="d-flex justify-content-between align-items-center">
@@ -1689,46 +1721,6 @@ function scrollTo(target) {
   seamless.scrollBy(window, { behavior: "smooth", top: top, left: 0 });
 }
 
-function formatDate(days) {
-  const today = new Date();
-  const deliveryDate = new Date(today);
-  let addedBusinessDays = 0;
-
-  while (addedBusinessDays < days) {
-    // Move to the next day
-    deliveryDate.setDate(deliveryDate.getDate() + 1);
-
-    // Check if the current day is a weekend day (Saturday or Sunday)
-    if (deliveryDate.getDay() !== 0 && deliveryDate.getDay() !== 6) {
-      addedBusinessDays++;
-    }
-  }
-
-  const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-
-  const deliveryDayOfWeek = daysOfWeek[deliveryDate.getDay()];
-  const deliveryMonth = months[deliveryDate.getMonth()];
-  const deliveryDay = deliveryDate.getDate();
-
-  const formattedDate = `${deliveryDay} ${deliveryMonth}`;
-
-  return formattedDate;
-}
-
 function addCommasToNumber(number) {
   var parts = number.toString().split(".");
   var integerPart = parts[0];
@@ -1741,9 +1733,104 @@ function addCommasToNumber(number) {
 
 let isSaved = false;
 
-// function setSaved(targetElement, price) {
+function setSaved(targetElement, price) {
+  isSaved = true;
 
-// }
+  let isDiscount =
+    targetElement.querySelectorAll(".block-content .subtotal").length > 1;
+
+  console.log("isDiscount: " + isDiscount);
+
+  let subtotal = parseFloat(price.replace(price[0], "").split(",").join(""));
+  let saved = isDiscount
+    ? ((subtotal * 10) / 90).toFixed(2)
+    : ((subtotal * 10) / 100).toFixed(2);
+  let subtotalNew = isDiscount
+    ? subtotal.toFixed(2)
+    : (subtotal - saved).toFixed(2);
+  let oldPrice = isDiscount
+    ? (subtotal + +saved).toFixed(2)
+    : subtotal.toFixed(2);
+  console.log("subtotal: " + subtotal);
+  console.log("saved: " + saved);
+  console.log("subtotalNew: " + subtotalNew);
+  console.log("oldPrice: " + oldPrice);
+
+  targetElement.querySelector(".crs_regular")?.remove();
+
+  if (sessionStorage.getItem("crsDiscount") || isDiscount) {
+    targetElement.querySelector(".crs_discount_row").insertAdjacentHTML(
+      "beforebegin",
+      `
+        <div class="crs_regular">
+          <p class="d-flex justify-content-between"><b>Regular price</b> <b>${price}</b></p>
+          <p class="d-flex justify-content-between">Sign up discount savings <span>-${
+            price[0] + saved
+          }</span></p>
+        </div>`
+    );
+
+    targetElement.querySelector(".crs_discount_row").classList.remove("active");
+  }
+  targetElement.querySelector(".crs_price_new")?.remove();
+
+  if (sessionStorage.getItem("crsDiscount") || isDiscount) {
+    targetElement.querySelector(".crs_discount").hidden = true;
+    targetElement
+      .querySelector(".subtotal .price-container.amount")
+      .classList.add("crs_change");
+
+    targetElement
+      .querySelector(".subtotal .price-container.amount")
+      .insertAdjacentHTML(
+        isDiscount ? "afterbegin" : "beforeend",
+        `<span class="crs_price_new">${
+          isDiscount
+            ? price[0] + addCommasToNumber(oldPrice)
+            : price[0] + addCommasToNumber(subtotalNew)
+        }</span>`
+      );
+  }
+
+  let priceFooter = targetElement.querySelector(".crs_change")
+    ? targetElement.querySelector(".crs_price_new").innerText
+    : targetElement.querySelector(".subtotal .amount.price-container .price")
+        .innerText;
+  targetElement.querySelector(
+    ".crs_cart_subtotal .pr b:not(.pr_old)"
+  ).innerHTML = priceFooter;
+
+  targetElement.querySelector(".crs_cart_subtotal .pr .pr_old").innerHTML =
+    targetElement.querySelector(".crs_change")
+      ? targetElement.querySelector(".subtotal .amount.price-container .price")
+          .innerText
+      : "";
+
+  targetElement.querySelector(".crs_saved")?.remove();
+
+  if (sessionStorage.getItem("crsDiscount") || isDiscount) {
+    targetElement
+      .querySelector(".crs_cart_subtotal")
+      .insertAdjacentHTML(
+        "afterend",
+        `<div class="crs_saved ml-auto">You just saved ${
+          price[0] + saved
+        }</div>`
+      );
+
+    targetElement.querySelector(".block-content").style =
+      "padding-bottom: 220px";
+  }
+  targetElement.querySelector(".crs_klarna b").innerHTML =
+    price[0] +
+    addCommasToNumber(
+      (
+        parseFloat(
+          priceFooter.replace(priceFooter[0], "").split(",").join("")
+        ) / 3
+      ).toFixed(2)
+    );
+}
 
 // Function to handle the observed mutations on the cart element.
 function handleCartMutation(mutationsList, observer) {
@@ -1940,7 +2027,8 @@ function handleCartMutation(mutationsList, observer) {
                 sessionStorage.setItem("crsDiscount", true);
 
                 isSaved = false;
-                // setSaved(targetElement, price);
+
+                setSaved(targetElement, price);
               } else {
                 targetElement
                   .querySelector(".crs_discount_row")
@@ -1967,114 +2055,10 @@ function handleCartMutation(mutationsList, observer) {
                   .classList.toggle("active");
               });
           }
-          // if (
-          //   !sessionStorage.getItem("crsDiscount") &&
-          //   !targetElement.querySelector(".crs_klarna+.subtotal")
-          // )
-          //   return;
+        
           if (isSaved == true) return;
 
-          isSaved = true;
-
-          let isDiscount =
-            targetElement.querySelectorAll(".block-content .subtotal").length >
-            1;
-
-          console.log("isDiscount: " + isDiscount);
-
-          let subtotal = parseFloat(
-            price.replace(price[0], "").split(",").join("")
-          );
-          let saved = isDiscount
-            ? ((subtotal * 10) / 90).toFixed(2)
-            : ((subtotal * 10) / 100).toFixed(2);
-          let subtotalNew = isDiscount
-            ? subtotal.toFixed(2)
-            : (subtotal - saved).toFixed(2);
-          let oldPrice = isDiscount
-            ? (subtotal + +saved).toFixed(2)
-            : subtotal.toFixed(2);
-
-          console.log("subtotal: " + subtotal);
-          console.log("saved: " + saved);
-          console.log("subtotalNew: " + subtotalNew);
-          console.log("oldPrice: " + oldPrice);
-
-          targetElement.querySelector(".crs_regular")?.remove();
-
-          if (sessionStorage.getItem("crsDiscount") || isDiscount) {
-            console.log();
-            targetElement.querySelector(".crs_discount_row").insertAdjacentHTML(
-              "beforebegin",
-              `
-              <div class="crs_regular">
-                <p class="d-flex justify-content-between"><b>Regular price</b> <b>${price}</b></p>
-                <p class="d-flex justify-content-between">Sign up discount savings <span>-${
-                  price[0] + saved
-                }</span></p>
-              </div>`
-            );
-
-            targetElement
-              .querySelector(".crs_discount_row")
-              .classList.remove("active");
-          }
-          targetElement.querySelector(".crs_price_new")?.remove();
-
-          if (sessionStorage.getItem("crsDiscount") || isDiscount) {
-            targetElement.querySelector(".crs_discount").hidden = true;
-            targetElement
-              .querySelector(".subtotal .price-container.amount")
-              .classList.add("crs_change");
-
-            targetElement
-              .querySelector(".subtotal .price-container.amount")
-              .insertAdjacentHTML(
-                isDiscount ? "afterbegin" : "beforeend",
-                `<span class="crs_price_new">${
-                  isDiscount
-                    ? price[0] + addCommasToNumber(oldPrice)
-                    : price[0] + addCommasToNumber(subtotalNew)
-                }</span>`
-              );
-          }
-
-          targetElement.querySelector(
-            ".crs_cart_subtotal .pr .pr_old"
-          ).innerHTML = price[0] + oldPrice;
-          targetElement.querySelector(
-            ".crs_cart_subtotal .pr b:not(.pr_old)"
-          ).innerHTML = isDiscount
-            ? price[0] + addCommasToNumber(oldPrice)
-            : price[0] + addCommasToNumber(subtotalNew);
-
-          console.log(
-            ".crs_cart_subtotal .pr .pr_old: " +
-              targetElement.querySelector(".crs_cart_subtotal .pr .pr_old")
-                .innerText
-          );
-
-          targetElement.querySelector(".crs_saved")?.remove();
-
-          if (sessionStorage.getItem("crsDiscount") || isDiscount) {
-            targetElement
-              .querySelector(".crs_cart_subtotal")
-              .insertAdjacentHTML(
-                "afterend",
-                `<div class="crs_saved ml-auto">You just saved ${
-                  price[0] + saved
-                }</div>`
-              );
-
-            targetElement.querySelector(".block-content").style =
-              "padding-bottom: 220px";
-          }
-
-          targetElement.querySelector(".crs_klarna b").innerHTML = isDiscount
-            ? price[0] + addCommasToNumber((oldPrice / 3).toFixed(2))
-            : price[0] + addCommasToNumber((subtotalNew / 3).toFixed(2));
-          console.log(targetElement.querySelector(".crs_klarna b").innerHTML);
-          // observer.disconnect()
+          setSaved(targetElement, price);
         });
       }
     }
@@ -2246,6 +2230,8 @@ function start() {
             .addEventListener("change", (e) => {
               let selectedOption = e.target.options[e.target.selectedIndex];
 
+              console.log(selectedOption);
+
               document.querySelector(".crs_est b").innerHTML =
                 formatDate(selectedOption.dataset.days.split("-")[0]) +
                 " - " +
@@ -2351,7 +2337,7 @@ function start() {
                 "exp_inc_soc_trus_acc_pdpdeli_click",
                 "Click",
                 "Accordion",
-                "PDP You get FREE EXPRESS UK Delivery"
+                "PDP You get FREE EXPRESS UK Delivery",
               ]);
             });
         });
