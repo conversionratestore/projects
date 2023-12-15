@@ -673,6 +673,9 @@ body .product-static-columns .container .section-desc {
 
 const styleCart = `
 <style>
+.crs_fixed {
+  overflow: hidden!important;
+}
 .minicart-wrapper .block-minicart  {
   height: 100vh!important;
 }
@@ -1738,108 +1741,18 @@ function addCommasToNumber(number) {
 
 let isSaved = false;
 
-function setSaved(targetElement, price) {
-  if (
-    !sessionStorage.getItem("crsDiscount") &&
-    !targetElement.querySelector(".crs_klarna+.subtotal")
-  )
-    return;
-  if (isSaved == true) return;
+// function setSaved(targetElement, price) {
 
-  isSaved = true;
-
-  const isDiscount =
-    targetElement.querySelectorAll(".block-content .subtotal").length > 1;
-
-  console.log("isDiscount: " + isDiscount);
-
-  let subtotal = parseFloat(price.replace(price[0], "").split(",").join(""));
-  let saved = isDiscount
-    ? ((subtotal * 10) / 90).toFixed(2)
-    : ((subtotal * 10) / 100).toFixed(2);
-  let subtotalNew = isDiscount
-    ? subtotal.toFixed(2)
-    : (subtotal - saved).toFixed(2);
-  let oldPrice = isDiscount
-    ? (subtotal + +saved).toFixed(2)
-    : subtotal.toFixed(2);
-
-  console.log("subtotal: " + subtotal);
-  console.log("saved: " + saved);
-  console.log("subtotalNew: " + subtotalNew);
-  console.log("oldPrice: " + oldPrice);
-
-  targetElement.querySelector(".crs_regular")?.remove();
-
-  targetElement.querySelector(".crs_discount_row").insertAdjacentHTML(
-    "beforebegin",
-    `
-    <div class="crs_regular">
-      <p class="d-flex justify-content-between"><b>Regular price</b> <b>${
-        isDiscount || sessionStorage.getItem("crsDiscount")
-          ? price[0] + addCommasToNumber(oldPrice)
-          : price[0] + addCommasToNumber(subtotalNew)
-      }</b></p>
-      <p class="d-flex justify-content-between">Sign up discount savings <span>-${
-        price[0] + saved
-      }</span></p>
-    </div>`
-  );
-
-  targetElement.querySelector(".crs_discount_row").classList.remove("active");
-  targetElement.querySelector(".crs_discount").hidden = isDiscount
-    ? true
-    : false;
-
-  targetElement
-    .querySelector(".subtotal .price-container.amount")
-    .classList.add("crs_change");
-
-  targetElement.querySelector(".crs_price_new")?.remove();
-
-  targetElement
-    .querySelector(".subtotal .price-container.amount")
-    .insertAdjacentHTML(
-      isDiscount ? "afterbegin" : "beforeend",
-      `<span class="crs_price_new">${
-        isDiscount
-          ? price[0] + addCommasToNumber(oldPrice)
-          : price[0] + addCommasToNumber(subtotalNew)
-      }</span>`
-    );
-
-  targetElement.querySelector(
-    ".crs_cart_subtotal .pr"
-  ).innerHTML = `<b class="pr_old">${price[0] + oldPrice} </b><b> ${
-    isDiscount
-    ? price[0] + addCommasToNumber(oldPrice)
-    : price[0] + addCommasToNumber(subtotalNew)
-  }</b>`;
-
-  targetElement.querySelector(".crs_saved")?.remove();
-
-  targetElement
-    .querySelector(".crs_cart_subtotal")
-    .insertAdjacentHTML(
-      "afterend",
-      `<div class="crs_saved ml-auto">You just saved ${price[0] + saved}</div>`
-    );
-
-  targetElement.querySelector(".block-content").style = "padding-bottom: 220px";
-
-  targetElement.querySelector(".crs_klarna b").innerHTML = isDiscount
-    ? price[0] + addCommasToNumber((oldPrice / 3).toFixed(2))
-    : price[0] + addCommasToNumber((subtotalNew / 3).toFixed(2));
-  console.log(targetElement.querySelector(".crs_klarna b").innerHTML);
-}
+// }
 
 // Function to handle the observed mutations on the cart element.
 function handleCartMutation(mutationsList, observer) {
   for (const mutation of mutationsList) {
-    if (mutation.type === "attributes" && mutation.attributeName === "class") {
+    if (mutation.attributeName === "class") {
       const targetElement = media
         ? mutation.target
         : document.querySelector(".header-right-block .minicart-wrapper");
+
       if (targetElement.classList.contains("active")) {
         let countProduct = 0;
 
@@ -1862,7 +1775,10 @@ function handleCartMutation(mutationsList, observer) {
           .querySelectorAll(".minicart-items .action.delete")
           .forEach((item) => {
             item.innerHTML = dataIcons.deleteIcon;
-            item.addEventListener('click', () => isSaved = false)
+            item.addEventListener("click", () => {
+              isSaved = false;
+              console.log("click delete");
+            });
           });
 
         if (!targetElement.querySelector("#top-cart-btn-checkout")) return;
@@ -1881,148 +1797,285 @@ function handleCartMutation(mutationsList, observer) {
           ".block-content > .actions > .primary .paypal input"
         ).src = dir + "paypal-logo.svg";
 
-        let waitSubtotal = setInterval(() => {
-          if (
-            targetElement.querySelector(
-              ".subtotal .amount.price-container .price"
-            )
-          ) {
-            clearInterval(waitSubtotal);
+        console.log("." + targetElement.className.split(" ")[0]);
 
-            let price = targetElement.querySelector(
-              ".subtotal .amount.price-container .price"
-            ).innerText;
+        // let classTargetElement = targetElement.className.includes('minicart-wrapper') ? '.minicart-wrapper'
+        waitForElement(
+          "." +
+            targetElement.className.split(" ")[0] +
+            " .subtotal .amount.price-container .price"
+        ).then((el) => {
+          console.log(el);
+          let price = el.innerText;
 
-            console.log(price);
+          console.log("price: " + price);
 
-            targetElement.querySelector(".crs_cart_subtotal")?.remove();
-            
-            let newPrice = ''
-            if (targetElement.querySelector('.crs_regular > p > span')) {
-              let selectorNewPrice = targetElement.querySelector('.crs_regular > p > span')
-              newPrice = price[0] + addCommasToNumber((+price.replace(price[0], "").split(",").join("") - +selectorNewPrice.innerText.split(selectorNewPrice.innerText[1])[1]).toFixed(2))
-            }
+          targetElement.querySelector(".crs_cart_subtotal")?.remove();
 
-            targetElement
-              .querySelector(".block-content > .actions > .primary")
-              .insertAdjacentHTML(
-                "beforebegin",
-                `
-                <div class="crs_cart_subtotal">
-                    <div class="d-flex justify-content-between align-items-center crs_sub">
-                        <p><b>Subtotal</b> </p>
-                        <p class="pr"><b> ${newPrice != '' ? newPrice : price}</b></p>
-                    </div>
-                </div>`
+          let newPrice = "";
+          if (targetElement.querySelector(".crs_regular > p > span")) {
+            let selectorNewPrice = targetElement.querySelector(
+              ".crs_regular > p > span"
+            );
+            let haveDiscount =
+              targetElement.querySelectorAll(".block-content .subtotal")
+                .length > 1
+                ? 0
+                : +selectorNewPrice.innerText.split(
+                    selectorNewPrice.innerText[1]
+                  )[1];
+
+            newPrice =
+              price[0] +
+              addCommasToNumber(
+                (
+                  +price.replace(price[0], "").split(",").join("") -
+                  haveDiscount
+                ).toFixed(2)
               );
+          }
+          console.log("newPrice: " + newPrice);
 
-              console.log(targetElement.querySelector(".crs_cart_subtotal .pr").innerText)
-
-            if (!targetElement.querySelector(".crs_highlight")) {
-              targetElement
-                .querySelector(".block-content > .actions")
-                .insertAdjacentHTML("beforebegin", highlight);
-            }
-            targetElement.querySelector(".crs_klarna")?.remove()
-
-            targetElement
-              .querySelector(".subtotal")
-              .insertAdjacentHTML(
-                "afterend",
-                klarna(newPrice != '' ? +newPrice.replace(newPrice[0], "").split(",").join("") : +price.replace(price[0], "").split(",").join(""))
-              );
-
-            console.log(
-              targetElement.querySelector(".crs_klarna b").innerHTML
+          targetElement
+            .querySelector(".block-content > .actions > .primary")
+            .insertAdjacentHTML(
+              "beforebegin",
+              `
+              <div class="crs_cart_subtotal">
+                  <div class="d-flex justify-content-between align-items-center crs_sub">
+                      <p><b>Subtotal</b> </p>
+                      <p class="pr"><b class="pr_old">${
+                        newPrice != "" ? price : ""
+                      }</b><b> ${newPrice != "" ? newPrice : price}</b></p>
+                  </div>
+              </div>`
             );
 
-            targetElement.querySelector(".crs_sub .pr b").innerHTML = newPrice != '' ? newPrice : price;
+          console.log(
+            ".crs_cart_subtotal .pr: " +
+              targetElement.querySelector(".crs_cart_subtotal .pr").innerText
+          );
 
-            if (!targetElement.querySelector(".crs_discount_row")) {
-              targetElement.querySelector(".subtotal").insertAdjacentHTML(
-                "beforebegin",
-                ` ${getDiscount}
-                <div class="crs_discount_row">
-                  <input type="text" placeholder="Apply discount code" onclick="pushDataLayer(['exp_inc_soc_trus_inp_applycode_cart', 'Apply discount code', 'Input', 'Cart'])">
-                  <button type="button">Apply</button>
-                </div>`
-              );
-            }
-
-            targetElement.querySelector(".crs_discount").hidden =
-              sessionStorage.getItem("crsDiscount") ||
-              targetElement
-                .querySelector(".crs_discount_row")
-                .classList.contains("active")
-                ? true
-                : false;
-
-            setSaved(targetElement, price);
-
-            if (!sessionStorage.getItem("crsDiscount")) {
-              targetElement
-                .querySelector(".crs_discount")
-                .addEventListener("click", (e) => {
-                  e.stopImmediatePropagation();
-                  e.currentTarget.hidden = true;
-                  targetElement
-                    .querySelector(".crs_discount_row")
-                    .classList.add("active");
-
-                  pushDataLayer([
-                    "exp_inc_soc_trus_lin_cart_discou",
-                    "Get  discount",
-                    "Link",
-                    "Cart",
-                  ]);
-                });
-            }
-
+          if (!targetElement.querySelector(".crs_highlight")) {
             targetElement
-              .querySelector(".crs_discount_row button")
+              .querySelector(".block-content > .actions")
+              .insertAdjacentHTML("beforebegin", highlight);
+          }
+          targetElement.querySelector(".crs_klarna")?.remove();
+
+          targetElement
+            .querySelector(".subtotal")
+            .insertAdjacentHTML(
+              "afterend",
+              klarna(
+                newPrice != ""
+                  ? +newPrice.replace(newPrice[0], "").split(",").join("")
+                  : +price.replace(price[0], "").split(",").join("")
+              )
+            );
+
+          console.log(
+            ".crs_klarna b: " +
+              targetElement.querySelector(".crs_klarna b").innerHTML
+          );
+
+          // targetElement.querySelector(".crs_sub .pr b").innerHTML = price;
+
+          if (!targetElement.querySelector(".crs_discount_row")) {
+            targetElement.querySelector(".subtotal").insertAdjacentHTML(
+              "beforebegin",
+              ` ${getDiscount}
+              <div class="crs_discount_row">
+                <input type="text" placeholder="Apply discount code" onclick="pushDataLayer(['exp_inc_soc_trus_inp_applycode_cart', 'Apply discount code', 'Input', 'Cart'])">
+                <button type="button">Apply</button>
+              </div>`
+            );
+          }
+
+          // targetElement.querySelector(".crs_discount").hidden =
+          //   sessionStorage.getItem("crsDiscount") ||
+          //   targetElement.querySelector(".crs_regular")
+          //     ? true
+          //     : false;
+
+          if (
+            !sessionStorage.getItem("crsDiscount") &&
+            targetElement.querySelectorAll(".block-content .subtotal").length <
+              2 &&
+            targetElement.querySelector(".crs_discount")
+          ) {
+            targetElement
+              .querySelector(".crs_discount")
               .addEventListener("click", (e) => {
                 e.stopImmediatePropagation();
-                if (
-                  targetElement
-                    .querySelector(".crs_discount_row input")
-                    .value.toLowerCase() == "welcome10"
-                ) {
-                  targetElement
-                    .querySelector(".crs_discount_row")
-                    .classList.remove("crs_error", "active");
-                  sessionStorage.setItem("crsDiscount", true);
-                  isSaved = false;
-                  setSaved(targetElement, price);
-                } else {
-                  targetElement
-                    .querySelector(".crs_discount_row")
-                    .classList.add("crs_error");
-                }
+
+                e.currentTarget.hidden = true;
+
+                targetElement
+                  .querySelector(".crs_discount_row")
+                  .classList.add("active");
 
                 pushDataLayer([
-                  "exp_inc_soc_trus_but_apply_cart",
-                  "Apply",
-                  "Button",
+                  "exp_inc_soc_trus_lin_cart_discou",
+                  "Get  discount",
+                  "Link",
                   "Cart",
                 ]);
               });
-
-            if (
-              targetElement.querySelector(
-                ".shipping-costs .shipping-costs-desc"
-              )
-            ) {
-              targetElement
-                .querySelector(".shipping-costs .shipping-costs-desc")
-                .addEventListener("click", (e) => {
-                  e.stopImmediatePropagation();
-                  targetElement
-                    .querySelector(".shipping-costs")
-                    .classList.toggle("active");
-                });
-            }
           }
-        }, 300);
+
+          targetElement
+            .querySelector(".crs_discount_row button")
+            .addEventListener("click", (e) => {
+              e.stopImmediatePropagation();
+              if (
+                targetElement
+                  .querySelector(".crs_discount_row input")
+                  .value.toLowerCase() == "welcome10"
+              ) {
+                targetElement
+                  .querySelector(".crs_discount_row")
+                  .classList.remove("crs_error", "active");
+
+                sessionStorage.setItem("crsDiscount", true);
+
+                isSaved = false;
+                // setSaved(targetElement, price);
+              } else {
+                targetElement
+                  .querySelector(".crs_discount_row")
+                  .classList.add("crs_error");
+              }
+
+              pushDataLayer([
+                "exp_inc_soc_trus_but_apply_cart",
+                "Apply",
+                "Button",
+                "Cart",
+              ]);
+            });
+
+          if (
+            targetElement.querySelector(".shipping-costs .shipping-costs-desc")
+          ) {
+            targetElement
+              .querySelector(".shipping-costs .shipping-costs-desc")
+              .addEventListener("click", (e) => {
+                e.stopImmediatePropagation();
+                targetElement
+                  .querySelector(".shipping-costs")
+                  .classList.toggle("active");
+              });
+          }
+          // if (
+          //   !sessionStorage.getItem("crsDiscount") &&
+          //   !targetElement.querySelector(".crs_klarna+.subtotal")
+          // )
+          //   return;
+          if (isSaved == true) return;
+
+          isSaved = true;
+
+          let isDiscount =
+            targetElement.querySelectorAll(".block-content .subtotal").length >
+            1;
+
+          console.log("isDiscount: " + isDiscount);
+
+          let subtotal = parseFloat(
+            price.replace(price[0], "").split(",").join("")
+          );
+          let saved = isDiscount
+            ? ((subtotal * 10) / 90).toFixed(2)
+            : ((subtotal * 10) / 100).toFixed(2);
+          let subtotalNew = isDiscount
+            ? subtotal.toFixed(2)
+            : (subtotal - saved).toFixed(2);
+          let oldPrice = isDiscount
+            ? (subtotal + +saved).toFixed(2)
+            : subtotal.toFixed(2);
+
+          console.log("subtotal: " + subtotal);
+          console.log("saved: " + saved);
+          console.log("subtotalNew: " + subtotalNew);
+          console.log("oldPrice: " + oldPrice);
+
+          targetElement.querySelector(".crs_regular")?.remove();
+
+          if (sessionStorage.getItem("crsDiscount") || isDiscount) {
+            console.log();
+            targetElement.querySelector(".crs_discount_row").insertAdjacentHTML(
+              "beforebegin",
+              `
+              <div class="crs_regular">
+                <p class="d-flex justify-content-between"><b>Regular price</b> <b>${price}</b></p>
+                <p class="d-flex justify-content-between">Sign up discount savings <span>-${
+                  price[0] + saved
+                }</span></p>
+              </div>`
+            );
+
+            targetElement
+              .querySelector(".crs_discount_row")
+              .classList.remove("active");
+          }
+          targetElement.querySelector(".crs_price_new")?.remove();
+
+          if (sessionStorage.getItem("crsDiscount") || isDiscount) {
+            targetElement.querySelector(".crs_discount").hidden = true;
+            targetElement
+              .querySelector(".subtotal .price-container.amount")
+              .classList.add("crs_change");
+
+            targetElement
+              .querySelector(".subtotal .price-container.amount")
+              .insertAdjacentHTML(
+                isDiscount ? "afterbegin" : "beforeend",
+                `<span class="crs_price_new">${
+                  isDiscount
+                    ? price[0] + addCommasToNumber(oldPrice)
+                    : price[0] + addCommasToNumber(subtotalNew)
+                }</span>`
+              );
+          }
+
+          targetElement.querySelector(
+            ".crs_cart_subtotal .pr .pr_old"
+          ).innerHTML = price[0] + oldPrice;
+          targetElement.querySelector(
+            ".crs_cart_subtotal .pr b:not(.pr_old)"
+          ).innerHTML = isDiscount
+            ? price[0] + addCommasToNumber(oldPrice)
+            : price[0] + addCommasToNumber(subtotalNew);
+
+          console.log(
+            ".crs_cart_subtotal .pr .pr_old: " +
+              targetElement.querySelector(".crs_cart_subtotal .pr .pr_old")
+                .innerText
+          );
+
+          targetElement.querySelector(".crs_saved")?.remove();
+
+          if (sessionStorage.getItem("crsDiscount") || isDiscount) {
+            targetElement
+              .querySelector(".crs_cart_subtotal")
+              .insertAdjacentHTML(
+                "afterend",
+                `<div class="crs_saved ml-auto">You just saved ${
+                  price[0] + saved
+                }</div>`
+              );
+
+            targetElement.querySelector(".block-content").style =
+              "padding-bottom: 220px";
+          }
+
+          targetElement.querySelector(".crs_klarna b").innerHTML = isDiscount
+            ? price[0] + addCommasToNumber((oldPrice / 3).toFixed(2))
+            : price[0] + addCommasToNumber((subtotalNew / 3).toFixed(2));
+          console.log(targetElement.querySelector(".crs_klarna b").innerHTML);
+          // observer.disconnect()
+        });
       }
     }
   }
@@ -2129,8 +2182,6 @@ function start() {
             let icon = item.innerText.toUpperCase().includes("GIFT")
               ? dataIcons.giftIcon
               : dataIcons.personalisationIcon;
-
-            console.log(item.innerText.toUpperCase());
 
             item
               .querySelector("a.product-modal-options-btn")
@@ -2476,6 +2527,14 @@ function start() {
           .querySelector(".mobile-basket__btn")
           .addEventListener("click", (e) => (isSaved = false));
 
+        let checkShopPopup = setInterval(() => {
+          if (cartElement.classList.contains("active")) {
+            document.body.classList.add("crs_fixed");
+          } else {
+            document.body.classList.remove("crs_fixed");
+          }
+        });
+
         const cartObserver = new MutationObserver(handleCartMutation);
 
         // Define the options for the Mutation Observer.
@@ -2491,6 +2550,23 @@ function start() {
     }
   }, 0);
 }
+
+let optionMut = {
+  childList: true,
+  subtree: true,
+  attributes: true,
+};
+
+let mut = new MutationObserver(function (muts) {
+  if (document.querySelectorAll(".h-calc_1")) {
+    mut.disconnect();
+    document.querySelectorAll(".h-calc_1").forEach((el) => {
+      setHeight(el, el.dataset.index);
+    });
+  }
+  mut.observe(document, optionMut);
+});
+mut.observe(document, optionMut);
 //https://www.maxwellscottbags.com/rest/default/V1/guest-carts/FJWCeu7peZgfWDcl6DyPCtmxd7su6zLA/coupons/25OFF
 
 //https://www.maxwellscottbags.com/rest/default/V1/carts/mine/coupons/25OFF
