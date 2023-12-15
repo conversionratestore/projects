@@ -2483,14 +2483,18 @@ function start() {
         });
       }
 
+      let testId = 
+      window.location.host == 'au.maxwellscottbags.com' ? 'RmpLmq' : 
+      window.location.host == 'us.maxwellscottbags.com' ? 'UqUKjW' : 'YaXKHq'
+
       let findUsedDiscount = setInterval(() => {
         if (
           document.querySelector(
-            'form.needsclick.kl-private-reset-css-Xuajs1[data-testid="klaviyo-form-YaXKHq"]'
+            `form.needsclick.kl-private-reset-css-Xuajs1[data-testid="klaviyo-form-${testId}"]`
           ) &&
           document
             .querySelector(
-              'form.needsclick.kl-private-reset-css-Xuajs1[data-testid="klaviyo-form-YaXKHq"]'
+              `form.needsclick.kl-private-reset-css-Xuajs1[data-testid="klaviyo-form-${testId}"]`
             )
             .innerText.includes("WELCOME10")
         ) {
