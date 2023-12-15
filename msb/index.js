@@ -2347,12 +2347,12 @@ function start() {
           document
             .querySelector(".crs_country")
             .addEventListener("click", () => {
-              pushDataLayer(
+              pushDataLayer([
                 "exp_inc_soc_trus_acc_pdpdeli_click",
                 "Click",
                 "Accordion",
                 "PDP You get FREE EXPRESS UK Delivery"
-              );
+              ]);
             });
         });
         waitForElement(".msb-product-details-col-left").then((el) => {
