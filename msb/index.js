@@ -1884,6 +1884,10 @@ function handleCartMutation(mutationsList, observer) {
             ]);
           });
 
+        targetElement.querySelector(
+          ".block-content > .actions > .primary .paypal input"
+        ).src = dir + "paypal-logo.svg";
+
         console.log("." + targetElement.className.split(" ")[0]);
 
         // let classTargetElement = targetElement.className.includes('minicart-wrapper') ? '.minicart-wrapper'
@@ -1895,10 +1899,6 @@ function handleCartMutation(mutationsList, observer) {
           console.log(el);
           let price = el.innerText;
 
-          targetElement.querySelector(
-            ".block-content > .actions > .primary .paypal input"
-          ).src = dir + "paypal-logo.svg";
-          
           console.log("price: " + price);
 
           targetElement.querySelector(".crs_cart_subtotal")?.remove();
@@ -1970,7 +1970,7 @@ function handleCartMutation(mutationsList, observer) {
               targetElement.querySelector(".crs_klarna b").innerHTML
           );
 
-          return
+          return;
           if (!targetElement.querySelector(".crs_discount_row")) {
             targetElement.querySelector(".subtotal").insertAdjacentHTML(
               "beforebegin",
@@ -2058,7 +2058,7 @@ function handleCartMutation(mutationsList, observer) {
                   .classList.toggle("active");
               });
           }
-        
+
           if (isSaved == true) return;
 
           setSaved(targetElement, price);
@@ -2134,9 +2134,10 @@ function start() {
             )
           );
 
-          document
-          .querySelector(".product-info-main .crs_klarna")
-          .insertAdjacentHTML("afterend", getDiscount);
+
+          if (sessionStorage.getItem('crsDiscount')) {
+            document.querySelector(".product-info-main .crs_klarna").insertAdjacentHTML("afterend", getDiscount);
+          }
 
           const waitForDiscount = setInterval(() => {
             if (
@@ -2147,6 +2148,10 @@ function start() {
             ) {
               clearInterval(waitForDiscount);
 
+              if (!document.querySelector('.crs_discount')) {
+                document.querySelector(".product-info-main .crs_klarna").insertAdjacentHTML("afterend", getDiscount);
+              }
+              
               document
                 .querySelector(".crs_discount")
                 .addEventListener("click", () => {
@@ -2430,8 +2435,8 @@ function start() {
       }
 
       if (location.href.includes("/checkout/")) {
-        if (sessionStorage.getItem("crsDiscount")) {
-          sessionStorage.removeItem("crsDiscount");
+        if (sessionStorage.getItem("crsDiscount") && sessionStorage.getItem("crsDiscount") == 'true') {
+          sessionStorage.setItem("crsDiscount", false)
 
           fetch(
             `https://www.maxwellscottbags.com/rest/default/V1/guest-carts/${window.checkoutConfig.quoteData.entity_id}/coupons/welcome10`,
@@ -2439,6 +2444,7 @@ function start() {
               method: "PUT",
             }
           ).then((data) => {
+            
             window.location.reload();
           });
         }
@@ -2476,25 +2482,41 @@ function start() {
       }
 
       let findUsedDiscount = setInterval(() => {
-        if (document.querySelector('form.needsclick.kl-private-reset-css-Xuajs1[data-testid="klaviyo-form-YaXKHq"]') && document.querySelector('form.needsclick.kl-private-reset-css-Xuajs1[data-testid="klaviyo-form-YaXKHq"]').innerText.includes('WELCOME10')) {
-          clearInterval(findUsedDiscount)
-          sessionStorage.setItem("crsDiscount", true)
+        if (
+          document.querySelector(
+            'form.needsclick.kl-private-reset-css-Xuajs1[data-testid="klaviyo-form-YaXKHq"]'
+          ) &&
+          document
+            .querySelector(
+              'form.needsclick.kl-private-reset-css-Xuajs1[data-testid="klaviyo-form-YaXKHq"]'
+            )
+            .innerText.includes("WELCOME10")
+        ) {
+          clearInterval(findUsedDiscount);
+          sessionStorage.setItem("crsDiscount", true);
         }
       });
 
       let changeStateDiscountBtn = setInterval(() => {
-        if (document.querySelector('.crs_discount > span') && sessionStorage.getItem("crsDiscount")) {
-          clearInterval(changeStateDiscountBtn)
-          document.querySelector('.crs_discount > span').innerHTML = '10% discount will be applied at Checkout'
+        if (
+          document.querySelector(".crs_discount > span") &&
+          sessionStorage.getItem("crsDiscount")
+        ) {
+          clearInterval(changeStateDiscountBtn);
+          document.querySelector(".crs_discount > span").innerHTML =
+            "10% discount will be applied at Checkout";
         }
-      })
+      });
 
       waitForElement(".header-right-block > ul > .minicart-wrapper").then(
         (cartElement) => {
           cartElement
             .querySelector(".block-minicart")
             .addEventListener("click", (e) => {
-              if (e.target.classList.contains("block-minicart") || e.target.classList.contains('close')) {
+              if (
+                e.target.classList.contains("block-minicart") ||
+                e.target.classList.contains("close")
+              ) {
                 cartElement.classList.remove("active");
               }
             });
