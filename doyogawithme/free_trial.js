@@ -1285,6 +1285,15 @@ let freeTrial = setInterval(() => {
             }
           }, 100);
           break;
+        case "/based-on-interests":
+          let yogaBasedFind = setInterval(() => {
+            if (document.querySelector(".o-page__header")) {
+              clearInterval(yogaBasedFind);
+              localStorage.setItem("newBannerVisib", "withBtn");
+              document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
+            }
+          }, 100);
+          break;
         case "/yoga-meditation":
           let yogaMeditationFind = setInterval(() => {
             if (document.querySelector(".o-page__header")) {
