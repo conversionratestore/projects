@@ -2527,8 +2527,8 @@ function start() {
           .querySelector(".mobile-basket__btn")
           .addEventListener("click", (e) => (isSaved = false));
 
-        let checkShopPopup = setInterval(() => {
-          if (cartElement.classList.contains("active")) {
+        let checkShowPopup = setInterval(() => {
+          if (cartElement.classList.contains("active") && media) {
             document.body.classList.add("crs_fixed");
           } else {
             document.body.classList.remove("crs_fixed");
