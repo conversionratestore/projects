@@ -2479,10 +2479,11 @@ function start() {
           cartElement
             .querySelector(".block-minicart")
             .addEventListener("click", (e) => {
-              if (e.target.classList.contains("block-minicart")) {
+              if (e.target.classList.contains("block-minicart") || e.target.classList.contains('close')) {
                 cartElement.classList.remove("active");
               }
             });
+
           cartElement
             .querySelector(".showcart")
             .addEventListener("click", (e) => (isSaved = false));
