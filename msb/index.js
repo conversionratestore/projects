@@ -1876,12 +1876,14 @@ function handleCartMutation(mutationsList, observer) {
         targetElement
           .querySelector("#top-cart-btn-checkout")
           .addEventListener("click", (e) => {
+            e.stopImmediatePropagation()
             pushDataLayer([
               "exp_inc_soc_trus_but_car_checkout",
               "Proceed to checkout",
               "Button",
               "Cart",
             ]);
+            window.location.href = '/checkout'
           });
 
         targetElement.querySelector(
