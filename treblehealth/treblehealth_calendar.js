@@ -2,6 +2,8 @@ let treblehealthCalendar = setInterval(() => {
   if (document) {
     clearInterval(treblehealthCalendar);
 
+    console.log("%c EXP: Trial Selection (DEV: SKh)", "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;");
+
     function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
       console.log(event_name + " / " + event_desc + " / " + event_type + " / " + event_loc);
 
@@ -2322,9 +2324,12 @@ h3.host_name {
         document.querySelector("#lp-pom-root").insertAdjacentHTML("beforebegin", newHtml);
       }
 
-      if (window.location.pathname === "/product/maskers-bundle/" && document.querySelector(".elementor-12891 .elementor-element.elementor-element-3816e4b .elementor-button")?.href !== "https://treblehealth.com/aud-consult-sign-up-calendly-v2/") {
-        document.querySelector(".elementor-12891 .elementor-element.elementor-element-3816e4b .elementor-button").href = "https://treblehealth.com/aud-consult-sign-up-calendly-v2/";
-      }
+      let maskersBundleLink = setInterval(() => {
+        if (window.location.pathname === "/product/maskers-bundle/" && document.querySelector(".elementor-12891 .elementor-element.elementor-element-3816e4b .elementor-button")?.href !== "https://treblehealth.com/aud-consult-sign-up-calendly-v2/") {
+          clearInterval(maskersBundleLink);
+          document.querySelector(".elementor-12891 .elementor-element.elementor-element-3816e4b .elementor-button").href = "https://treblehealth.com/aud-consult-sign-up-calendly-v2/";
+        }
+      }, 100);
 
       if (document.querySelector("#content") && !document.querySelector(".new_body") && window.location.pathname === "/aud-consult-sign-up-calendly-v2/") {
         document.querySelector("#content").insertAdjacentHTML("beforebegin", newHtml);
