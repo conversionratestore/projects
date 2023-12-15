@@ -3,13 +3,6 @@ const dir = "https://conversionratestore.github.io/projects/7879co/img/";
 const $$el = (selector) => document.querySelectorAll(selector);
 const $el = (selector) => document.querySelector(selector);
 
-const clarityInterval = setInterval(function () {
-  if (typeof clarity == 'function') {
-    clearInterval(clarityInterval)
-    clarity('set', 'exit_intent_popup', 'variant_1')
-  }
-}, 200)
-
 const device = window.innerWidth < 769 ? "mobile" : "desktop";
 
 let dataCart = [];
@@ -970,9 +963,12 @@ class ExitIntentPopup {
 
 new ExitIntentPopup(device);
 
-// const hjInterval = setInterval(function () {
-//   if (typeof hj == 'function') {
-//     clearInterval(hjInterval)
-//     hj('event', 'exit_intent_popup')
-//   }
-// }, 100)
+(function(h,o,t,j,a,r){
+  h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+  h._hjSettings={hjid:1350427,hjsv:6};
+  a=o.getElementsByTagName('head')[0];
+  r=o.createElement('script');r.async=1;
+  r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+  a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+hj('event', 'exit_intent_popup');
