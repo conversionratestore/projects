@@ -33,6 +33,8 @@ const styleBase = /*html*/ `
     border: 1px dashed var(--Gold, #B68B51);
     background: #FCF7EC;
     margin-bottom: 18px;
+    text-align: left;
+    max-width: calc(100% - 40px);
 } 
 .crs_discount[hidden] {
   display: none!important;
@@ -1226,7 +1228,7 @@ const topBadge = `
 const getDiscount = `
     <button type="button" class="crs_discount d-flex align-items-center">
         ${dataIcons.discountIcon}
-        Get a 10% Discount
+       <span> Get a 10% Discount</span>
     </button>`;
 
 const trustpilot = `
@@ -1968,8 +1970,7 @@ function handleCartMutation(mutationsList, observer) {
               targetElement.querySelector(".crs_klarna b").innerHTML
           );
 
-          // targetElement.querySelector(".crs_sub .pr b").innerHTML = price;
-
+          return
           if (!targetElement.querySelector(".crs_discount_row")) {
             targetElement.querySelector(".subtotal").insertAdjacentHTML(
               "beforebegin",
@@ -2133,6 +2134,10 @@ function start() {
             )
           );
 
+          document
+          .querySelector(".product-info-main .crs_klarna")
+          .insertAdjacentHTML("afterend", getDiscount);
+
           const waitForDiscount = setInterval(() => {
             if (
               document.querySelector("body > div > button.needsclick") &&
@@ -2141,10 +2146,6 @@ function start() {
                 .innerText.includes("10% OFF")
             ) {
               clearInterval(waitForDiscount);
-
-              document
-                .querySelector(".product-info-main .crs_klarna")
-                .insertAdjacentHTML("afterend", getDiscount);
 
               document
                 .querySelector(".crs_discount")
@@ -2473,6 +2474,20 @@ function start() {
           );
         });
       }
+
+      let findUsedDiscount = setInterval(() => {
+        if (document.querySelector('form.needsclick.kl-private-reset-css-Xuajs1[data-testid="klaviyo-form-YaXKHq"]') && document.querySelector('form.needsclick.kl-private-reset-css-Xuajs1[data-testid="klaviyo-form-YaXKHq"]').innerText.includes('WELCOME10')) {
+          clearInterval(findUsedDiscount)
+          sessionStorage.setItem("crsDiscount", true)
+        }
+      });
+
+      let changeStateDiscountBtn = setInterval(() => {
+        if (document.querySelector('.crs_discount > span') && sessionStorage.getItem("crsDiscount")) {
+          clearInterval(changeStateDiscountBtn)
+          document.querySelector('.crs_discount > span').innerHTML = '10% discount will be applied at Checkout'
+        }
+      })
 
       waitForElement(".header-right-block > ul > .minicart-wrapper").then(
         (cartElement) => {
