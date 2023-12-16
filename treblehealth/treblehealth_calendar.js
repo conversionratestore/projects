@@ -2341,6 +2341,28 @@ h3.host_name {
           el.remove();
         });
       }
+      //change text ->>>>>>>>>>>> /aud-consult-sign-up-calendly-v2/
+      if (document.querySelector(".new_body") && window.location.pathname === "/aud-consult-sign-up-calendly-v2/") {
+        if (document.querySelectorAll(".hero_txt")) {
+          document.querySelectorAll(".hero_txt").forEach((el) => {
+            el.innerHTML = `Book your discovery call and take your first step towards quieter days - <b>absolutely FREE!</b>`;
+          });
+        }
+        if (document.querySelectorAll(".calendar_header h2")) {
+          document.querySelectorAll(".calendar_header h2").forEach((el) => {
+            el.innerHTML = `Book Your Free Tinnitus Relief Discovery Call`;
+          });
+        }
+        if (document.querySelectorAll(".grab_your_free_btn")) {
+          document.querySelectorAll(".grab_your_free_btn").forEach((el) => {
+            if (el.closest(".sticky_header")) {
+              el.innerText = `Book a Free Call`;
+            } else {
+              el.innerText = `Book Your FREE Call Now!`;
+            }
+          });
+        }
+      }
 
       //Verified Reviews on Google items
       if (document.querySelector(".verified_reviews_on_google_wrapp") && document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.firts_var").children.length !== arrGoogleReviews1.length) {
