@@ -49,7 +49,7 @@ if (isTargetPage && (!isUSA || !isAU)) {
       totalPrice.textContent = `$${price}`;
       const items = [
         {
-          id: 40284214132780,
+          id: 42279107952684,
           quantity: 1,
         },
       ];
