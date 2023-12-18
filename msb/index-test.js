@@ -2489,20 +2489,3 @@ function start() {
     }
   }, 0);
 }
-
-let optionMut = {
-  childList: true,
-  subtree: true,
-  attributes: true,
-};
-
-let mut = new MutationObserver(function (muts) {
-  if (document.querySelectorAll(".h-calc_1")) {
-    mut.disconnect();
-    document.querySelectorAll(".h-calc_1").forEach((el) => {
-      setHeight(el, el.dataset.index);
-    });
-  }
-  mut.observe(document, optionMut);
-});
-mut.observe(document, optionMut);
