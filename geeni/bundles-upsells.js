@@ -979,6 +979,11 @@ margin-top: 2px;
                 pushDataLayer(['exp_freq_boug_but_pdpalsolike_add', `${product.querySelector('.product-title').innerText} - Add to Cart`, 'Button', 'PDP You May Also Like'])
               } else {
                 pushDataLayer(['exp_freq_boug_but_cartsavin_add', `${product.querySelector('.product-title').innerText} - Add to Cart`, 'Button', 'Cart Buy More For More Savings'])
+
+                document.querySelector('.cart-drawer__body')?.scrollTo({
+                  top: 0,
+                  behavior: 'smooth' // You can also use 'auto' or 'instant'
+                })
               }
 
               // Send a Google Analytics event
