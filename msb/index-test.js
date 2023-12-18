@@ -1708,7 +1708,7 @@ function changeStateDiscountBtn(parent) {
   let changeStateDiscountBtn = setInterval(() => {
     if (
       parent.querySelector(".crs_discount > span") &&
-      sessionStorage.getItem("crsDiscount") == "true"
+      sessionStorage.getItem("crsDiscount")
     ) {
       clearInterval(changeStateDiscountBtn);
       console.log("applied");
@@ -1909,7 +1909,6 @@ function handleCartMutation(mutationsList, observer) {
           targetElement.querySelector(".crs_cart_subtotal")?.remove();
 
           if (
-            !sessionStorage.getItem("crsDiscount") &&
             !targetElement.querySelector(".crs_discount")
           ) {
             targetElement
