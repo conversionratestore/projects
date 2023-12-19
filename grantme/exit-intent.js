@@ -615,6 +615,9 @@ class ExitIntentPopup {
             line-height: 1.5;
             color: #2B3E51;
           }
+          .popup_content .note svg {
+            flex-shrink: 0;
+          }
           .popup_content .main {
             font-size: 20px;
             line-height: 1;
@@ -744,7 +747,8 @@ class ExitIntentPopup {
       this.slider = tns({
         container: '.slider_stories',
         items: 1,
-        autoplay: false,
+        autoplay: true,
+
         mouseDrag: true,
         controls: false,
         nav: true,
