@@ -796,9 +796,6 @@ const styleCart = `
 .header-right-block .minicart-wrapper .block-content .crs_discount {
   margin-top: 0;
 }
-.header-right-block .minicart-wrapper .crs_discount_row {
-  padding-top: 0;
-}
 .header-right-block .minicart-wrapper .crs_regular {
   padding: 0 0 18px 0;
 }
@@ -926,50 +923,6 @@ const styleCart = `
 }
 .minicart-wrapper .action.close {
     top: 3px;
-}
-.crs_discount_row {
-  display: none;
-  border-bottom: 1px dashed #CCC;
-  padding: 18px 0;
-  position: relative;
-}
-.crs_discount_row.crs_error:before {
-  content: "The voucher code isn't valid. Verify the code and try again.";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  color: red;
-  font-size: 12px;
-}
-.crs_discount_row.active {
-  display: flex;
-}
-.crs_discount_row input {
-  border: 1px solid var(--Dark-gray, #646464);
-  background: var(--White, #FFF);
-  padding: 8px 12px;
-  font-family: Arial;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 22px;
-  width: calc(100% - 118px);
-  margin-right: 8px;
-  height: auto;
-}
-.crs_discount_row button {
-  width: 110px;
-  color: var(--White, #FFF);
-  text-align: center;
-  font-family: Arial;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 18px; /* 150% */
-  letter-spacing: 1.6px;
-  text-transform: uppercase;
-  background: var(--untitled-gold, #B68B51);
-  padding: 10px;
 }
 .crs_regular {
   padding-top: 18px;
@@ -1715,6 +1668,58 @@ function setStickyBtn(title, span) {
     </div>`;
 }
 
+function openDiscount(parent) {
+  let intervalDiscount = setInterval(() => {
+    if (
+      document.querySelector("body > div > button.needsclick") &&
+      document
+        .querySelector("body > div > button.needsclick")
+        .innerText.includes("10% OFF") &&
+      parent.querySelector(".crs_discount") &&
+      parent.querySelector(".crs_klarna")
+    ) {
+      clearInterval(intervalDiscount);
+
+      console.log(parent);
+
+      parent.querySelector(".crs_discount").addEventListener("click", () => {
+        document.querySelector("body > div > button.needsclick").click();
+        if (parent.closest(".product-info-main")) {
+          pushDataLayer([
+            "exp_inc_soc_trus_lin_pdpunpri_getdis",
+            "Get Discount",
+            "Link",
+            "PDP Under the price",
+          ]);
+        } else {
+          pushDataLayer([
+            "exp_inc_soc_trus_lin_cart_discou",
+            "Get  discount",
+            "Link",
+            "Cart",
+          ]);
+        }
+      });
+    }
+  });
+}
+
+function changeStateDiscountBtn(parent) {
+  let changeStateDiscountBtn = setInterval(() => {
+    if (
+      parent.querySelector(".crs_discount > span") &&
+      sessionStorage.getItem("crsDiscount")
+    ) {
+      clearInterval(changeStateDiscountBtn);
+      console.log("applied");
+      parent.querySelector(".crs_discount > span").innerHTML =
+        "10% discount will be applied at Cart";
+
+      isSaved = false;
+    }
+  });
+}
+
 function scrollTo(target) {
   const top =
     document
@@ -1763,8 +1768,10 @@ function setSaved(targetElement, price) {
   targetElement.querySelector(".crs_regular")?.remove();
 
   if (sessionStorage.getItem("crsDiscount") || isDiscount) {
-    targetElement.querySelector(".crs_discount_row").insertAdjacentHTML(
-      "beforebegin",
+    targetElement.querySelector(".crs_discount").hidden = true;
+
+    targetElement.querySelector(".crs_discount").insertAdjacentHTML(
+      "afterend",
       `
         <div class="crs_regular">
           <p class="d-flex justify-content-between"><b>Regular price</b> <b>${price}</b></p>
@@ -1773,13 +1780,10 @@ function setSaved(targetElement, price) {
           }</span></p>
         </div>`
     );
-
-    targetElement.querySelector(".crs_discount_row").classList.remove("active");
   }
   targetElement.querySelector(".crs_price_new")?.remove();
 
   if (sessionStorage.getItem("crsDiscount") || isDiscount) {
-    targetElement.querySelector(".crs_discount").hidden = true;
     targetElement
       .querySelector(".subtotal .price-container.amount")
       .classList.add("crs_change");
@@ -1876,14 +1880,14 @@ function handleCartMutation(mutationsList, observer) {
         targetElement
           .querySelector("#top-cart-btn-checkout")
           .addEventListener("click", (e) => {
-            e.stopImmediatePropagation()
+            e.stopImmediatePropagation();
             pushDataLayer([
               "exp_inc_soc_trus_but_car_checkout",
               "Proceed to checkout",
               "Button",
               "Cart",
             ]);
-            window.location.href = '/checkout'
+            window.location.href = "/checkout";
           });
 
         targetElement.querySelector(
@@ -1892,7 +1896,6 @@ function handleCartMutation(mutationsList, observer) {
 
         console.log("." + targetElement.className.split(" ")[0]);
 
-        // let classTargetElement = targetElement.className.includes('minicart-wrapper') ? '.minicart-wrapper'
         waitForElement(
           "." +
             targetElement.className.split(" ")[0] +
@@ -1904,6 +1907,14 @@ function handleCartMutation(mutationsList, observer) {
           console.log("price: " + price);
 
           targetElement.querySelector(".crs_cart_subtotal")?.remove();
+
+          if (
+            !targetElement.querySelector(".crs_discount")
+          ) {
+            targetElement
+              .querySelector(".subtotal")
+              .insertAdjacentHTML("beforebegin", getDiscount);
+          }
 
           let newPrice = "";
           if (targetElement.querySelector(".crs_regular > p > span")) {
@@ -1971,82 +1982,6 @@ function handleCartMutation(mutationsList, observer) {
             ".crs_klarna b: " +
               targetElement.querySelector(".crs_klarna b").innerHTML
           );
-
-          return;
-          if (!targetElement.querySelector(".crs_discount_row")) {
-            targetElement.querySelector(".subtotal").insertAdjacentHTML(
-              "beforebegin",
-              ` ${getDiscount}
-              <div class="crs_discount_row">
-                <input type="text" placeholder="Apply discount code" onclick="pushDataLayer(['exp_inc_soc_trus_inp_applycode_cart', 'Apply discount code', 'Input', 'Cart'])">
-                <button type="button">Apply</button>
-              </div>`
-            );
-          }
-
-          // targetElement.querySelector(".crs_discount").hidden =
-          //   sessionStorage.getItem("crsDiscount") ||
-          //   targetElement.querySelector(".crs_regular")
-          //     ? true
-          //     : false;
-
-          if (
-            !sessionStorage.getItem("crsDiscount") &&
-            targetElement.querySelectorAll(".block-content .subtotal").length <
-              2 &&
-            targetElement.querySelector(".crs_discount")
-          ) {
-            targetElement
-              .querySelector(".crs_discount")
-              .addEventListener("click", (e) => {
-                e.stopImmediatePropagation();
-
-                e.currentTarget.hidden = true;
-
-                targetElement
-                  .querySelector(".crs_discount_row")
-                  .classList.add("active");
-
-                pushDataLayer([
-                  "exp_inc_soc_trus_lin_cart_discou",
-                  "Get  discount",
-                  "Link",
-                  "Cart",
-                ]);
-              });
-          }
-
-          targetElement
-            .querySelector(".crs_discount_row button")
-            .addEventListener("click", (e) => {
-              e.stopImmediatePropagation();
-              if (
-                targetElement
-                  .querySelector(".crs_discount_row input")
-                  .value.toLowerCase() == "welcome10"
-              ) {
-                targetElement
-                  .querySelector(".crs_discount_row")
-                  .classList.remove("crs_error", "active");
-
-                sessionStorage.setItem("crsDiscount", true);
-
-                isSaved = false;
-
-                setSaved(targetElement, price);
-              } else {
-                targetElement
-                  .querySelector(".crs_discount_row")
-                  .classList.add("crs_error");
-              }
-
-              pushDataLayer([
-                "exp_inc_soc_trus_but_apply_cart",
-                "Apply",
-                "Button",
-                "Cart",
-              ]);
-            });
 
           if (
             targetElement.querySelector(".shipping-costs .shipping-costs-desc")
@@ -2136,39 +2071,12 @@ function start() {
             )
           );
 
+          document
+            .querySelector(".product-info-main .crs_klarna")
+            .insertAdjacentHTML("afterend", getDiscount);
 
-          if (sessionStorage.getItem('crsDiscount')) {
-            document.querySelector(".product-info-main .crs_klarna").insertAdjacentHTML("afterend", getDiscount);
-          }
-
-          const waitForDiscount = setInterval(() => {
-            if (
-              document.querySelector("body > div > button.needsclick") &&
-              document
-                .querySelector("body > div > button.needsclick")
-                .innerText.includes("10% OFF")
-            ) {
-              clearInterval(waitForDiscount);
-
-              if (!document.querySelector('.crs_discount')) {
-                document.querySelector(".product-info-main .crs_klarna").insertAdjacentHTML("afterend", getDiscount);
-              }
-              
-              document
-                .querySelector(".crs_discount")
-                .addEventListener("click", () => {
-                  document
-                    .querySelector("body > div > button.needsclick")
-                    .click();
-                  pushDataLayer([
-                    "exp_inc_soc_trus_lin_pdpunpri_getdis",
-                    "Get Discount",
-                    "Link",
-                    "PDP Under the price",
-                  ]);
-                });
-            }
-          });
+          openDiscount(document.querySelector(".product-info-main"));
+          changeStateDiscountBtn(document.querySelector(".product-info-main"));
         });
 
         waitForElement(".product-modal-options-btn-wrap").then((el) => {
@@ -2437,8 +2345,11 @@ function start() {
       }
 
       if (location.href.includes("/checkout/")) {
-        if (sessionStorage.getItem("crsDiscount") && sessionStorage.getItem("crsDiscount") == 'true') {
-          sessionStorage.setItem("crsDiscount", false)
+        if (
+          sessionStorage.getItem("crsDiscount") &&
+          sessionStorage.getItem("crsDiscount") == "true"
+        ) {
+          sessionStorage.setItem("crsDiscount", false);
 
           fetch(
             `https://www.maxwellscottbags.com/rest/default/V1/guest-carts/${window.checkoutConfig.quoteData.entity_id}/coupons/welcome10`,
@@ -2446,7 +2357,6 @@ function start() {
               method: "PUT",
             }
           ).then((data) => {
-            
             window.location.reload();
           });
         }
@@ -2483,9 +2393,12 @@ function start() {
         });
       }
 
-      let testId = 
-      window.location.host == 'au.maxwellscottbags.com' ? 'RmpLmq' : 
-      window.location.host == 'us.maxwellscottbags.com' ? 'UqUKjW' : 'YaXKHq'
+      let testId =
+        window.location.host == "au.maxwellscottbags.com"
+          ? "RmpLmq"
+          : window.location.host == "us.maxwellscottbags.com"
+          ? "UqUKjW"
+          : "YaXKHq";
 
       let findUsedDiscount = setInterval(() => {
         if (
@@ -2500,17 +2413,6 @@ function start() {
         ) {
           clearInterval(findUsedDiscount);
           sessionStorage.setItem("crsDiscount", true);
-        }
-      });
-
-      let changeStateDiscountBtn = setInterval(() => {
-        if (
-          document.querySelector(".crs_discount > span") &&
-          sessionStorage.getItem("crsDiscount")
-        ) {
-          clearInterval(changeStateDiscountBtn);
-          document.querySelector(".crs_discount > span").innerHTML =
-            "10% discount will be applied at Checkout";
         }
       });
 
@@ -2530,6 +2432,8 @@ function start() {
           cartElement
             .querySelector(".showcart")
             .addEventListener("click", (e) => (isSaved = false));
+
+          openDiscount(cartElement);
 
           // Create a Mutation Observer to watch for changes in the cart.
           const cartObserver = new MutationObserver(handleCartMutation);
@@ -2567,6 +2471,8 @@ function start() {
           }
         });
 
+        openDiscount(cartElement);
+
         const cartObserver = new MutationObserver(handleCartMutation);
 
         // Define the options for the Mutation Observer.
@@ -2582,30 +2488,3 @@ function start() {
     }
   }, 0);
 }
-
-let optionMut = {
-  childList: true,
-  subtree: true,
-  attributes: true,
-};
-
-let mut = new MutationObserver(function (muts) {
-  if (document.querySelectorAll(".h-calc_1")) {
-    mut.disconnect();
-    document.querySelectorAll(".h-calc_1").forEach((el) => {
-      setHeight(el, el.dataset.index);
-    });
-  }
-  mut.observe(document, optionMut);
-});
-mut.observe(document, optionMut);
-//https://www.maxwellscottbags.com/rest/default/V1/guest-carts/FJWCeu7peZgfWDcl6DyPCtmxd7su6zLA/coupons/25OFF
-
-//https://www.maxwellscottbags.com/rest/default/V1/carts/mine/coupons/25OFF
-
-//https://www.maxwellscottbags.com/rest/default/V1/guest-carts/onAlsUb4dbNo5qRiSxzr06RFwcrUghPd/coupons/25OFF
-
-// fetch('https://www.maxwellscottbags.com/rest/default/V1/guest-carts/onAlsUb4dbNo5qRiSxzr06RFwcrUghPd/coupons/25OFF', {
-
-//     method: 'PUT'
-// }).then(data => console.log(data))
