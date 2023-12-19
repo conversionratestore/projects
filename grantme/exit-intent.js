@@ -205,6 +205,7 @@ class ExitIntentPopup {
     this.device = device
     this.init()
     this.videoTime = $el('video').currentTime / 60
+    this.date = new Date(new Date().getTime() + 1000 * 60 * 60 * 24)
   }
 
   init() {
@@ -333,6 +334,19 @@ class ExitIntentPopup {
             width: 100%;
             background: transparent;
           }
+          .popup2_1 input+svg+span {
+            display: none;
+          }
+          .popup2_1 input[value=""]+svg+span {
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 13px;
+            transform: translateY(-50%);
+            z-index: 5;
+            font-size: 16px;
+            color: #676767;
+          }
           .popup2_1 label svg {
             position: absolute;
             top: 50%;
@@ -349,8 +363,9 @@ class ExitIntentPopup {
         <p>We'll email you a link to access the FREE webinar at your convenience.</p>
         <div class="popup_form">
         <label>
-          <input type="date" placeholder="Select date...">
+          <input type="date" value="${this.date.getFullYear()}-${this.date.getMonth() + 1}-${this.date.getDate()}">
           ${svgObj.calendar}
+          <span>Select date...</span>
         </label>
         <label>
           <input type="text" placeholder="Enter your name...">
