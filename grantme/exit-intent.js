@@ -204,10 +204,12 @@ class ExitIntentPopup {
   constructor(device) {
     this.device = device
     this.init()
+    this.videoTime = $el('video').currentTime / 60
   }
 
   init() {
     this.ExitIntentPopup()
+    this.changeVideoTime()
   }
 
   createPopup(time) {
@@ -329,6 +331,7 @@ class ExitIntentPopup {
             border: none;
             outline: none;
             width: 100%;
+            background: transparent;
           }
           .popup2_1 label svg {
             position: absolute;
@@ -804,8 +807,12 @@ class ExitIntentPopup {
               sessionStorage.setItem('popup', 'true')
               pushDataLayer('exp_exit_popup_but_gr', 'Get a Reminder', 'Button', popupTextSub)
             } else {
-              $el('.popup2_1 label:first-of-type').style.border = '1px solid #EB6F2D'
-              $el('.popup2_1 label:last-of-type').style.border = '1px solid #EB6F2D'
+              if (!$el('.popup2_1 input[type="date"]').value) {
+                $el('.popup2_1 label:first-of-type').style.border = '1px solid #EB6F2D'
+              }
+              if (!$el('.popup2_1 input[type="text"]').value) {
+                $el('.popup2_1 label:last-of-type').style.border = '1px solid #EB6F2D'
+              }
             }
           })
 
@@ -833,6 +840,11 @@ class ExitIntentPopup {
           pushDataLayer('exp_exit_popup_but_gso', btnText, 'Button', popupText)
         })
       }
+
+      // setInterval(() => {
+      //   $el('.popup_content').innerHTML = time < 20 ? popup1 : time < 40 ? popup2 : time < 68 ? popup3 : popup4
+      //   console.log('>>> check')
+      // }, 60000)
     }
 
     function visibilityTime() {
@@ -843,16 +855,15 @@ class ExitIntentPopup {
   }
 
   ExitIntentPopup() {
-    const videoTime = $el('video').currentTime / 60
     if (this.device === 'desktop') {
       $el('body').addEventListener('mouseleave', () => {
-        this.createPopup(videoTime)
+        this.createPopup(this.videoTime)
       })
     }
     $el('.p-absolute.z-index-101').addEventListener('click', () => {
       if ($el('.p-absolute.z-index-101').classList.contains('crs_popup_start')) {
         $el('.p-absolute.z-index-101').classList.remove('crs_popup_start')
-        this.createPopup(videoTime)
+        this.createPopup(this.videoTime)
       } else {
         $el('.p-absolute.z-index-101').classList.add('crs_popup_start')
       }
@@ -861,14 +872,14 @@ class ExitIntentPopup {
     $el('.video-js').addEventListener('click', () => {
       if ($el('.video-js').classList.contains('crs_popup_start')) {
         $el('.video-js').classList.remove('crs_popup_start')
-        this.createPopup(videoTime)
+        this.createPopup(this.videoTime)
       } else {
         $el('.video-js').classList.add('crs_popup_start')
       }
     })
     if ($el('.btn-unmute')) {
       let unmuteStart = setTimeout(() => {
-        this.createPopup(videoTime)
+        this.createPopup(this.videoTime)
       }, 10000)
 
       $el('.btn-unmute').addEventListener('click', () => {
@@ -877,9 +888,15 @@ class ExitIntentPopup {
     }
     $el('.vjs-control-bar').addEventListener('click', e => {
       if (e.target.closest('button[title="Exit Fullscreen"]')) {
-        this.createPopup(videoTime)
+        this.createPopup(this.videoTime)
       }
     })
+  }
+
+  changeVideoTime() {
+    setInterval(() => {
+      this.videoTime = $el('video').currentTime / 60
+    }, 60000)
   }
 }
 
