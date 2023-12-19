@@ -539,6 +539,9 @@ class ExitIntentPopup {
             font-size: 14px;
             line-height: 1.5;
           }
+          .slider_desktop .tns-outer [data-action] {
+            display: none;
+          }
           .popup_content {
             padding: 24px;
           }
@@ -748,10 +751,10 @@ class ExitIntentPopup {
         container: '.slider_stories',
         items: 1,
         autoplay: true,
-
         mouseDrag: true,
         controls: false,
         nav: true,
+        controls: false,
         navContainer: '.thumbs'
       })
 
