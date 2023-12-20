@@ -225,7 +225,7 @@ function initSwiper() {
         // slideToClickedSlide: true,
         spaceBetween: 0,
         pagination: {
-          el: ".swiper-pagination",
+          el: ".crs_popup[data-query='c'] .swiper-pagination",
           clickable: true,
         },
       });
@@ -1063,12 +1063,12 @@ class ExitIntentPopup {
           width: 28px;
           height: 28px;
         }
-        .swiper-pagination {
+        .crs_popup .swiper-pagination {
           display: flex!important;
           justify-content: center;
           align-items: center;
         }
-        .swiper-pagination-bullet {
+        .crs_popup .swiper-pagination-bullet {
           width: 12px;
           height: 12px;
           background: #fff;
@@ -1076,7 +1076,7 @@ class ExitIntentPopup {
           margin: 0 3px 33px!important;
           opacity: 1;
         }
-        .swiper-pagination-bullet.swiper-pagination-bullet-active {
+        .crs_popup .swiper-pagination-bullet.swiper-pagination-bullet-active {
           border-color: #C0C0C0;
           width: 20px;
           height: 20px;
