@@ -1273,8 +1273,6 @@ class ExitIntentPopup {
         $el(`.crs_popup[data-query="b"]`).classList.add("active");
       }
     }, 20000);
-
-    this.actionExitIntentPopup();
   }
 
   addPopupNewCollection() {
