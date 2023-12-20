@@ -914,7 +914,7 @@ class ExitIntentPopup {
   changeVideoTime() {
     setInterval(() => {
       this.videoTime = $el('video').currentTime / 60
-    }, 10000)
+    }, 5000)
   }
 }
 
