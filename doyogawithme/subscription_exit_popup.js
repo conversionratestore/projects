@@ -14,10 +14,18 @@ let startFunk = setInterval(() => {
     scriptCustomSlider.async = false;
     document.head.appendChild(scriptCustomSlider);
     //cdn flipclock
-    let scriptCustomTimer = document.createElement("script");
-    scriptCustomTimer.src = "https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.0/flipclock.min.js";
-    scriptCustomTimer.async = false;
-    document.head.appendChild(scriptCustomTimer);
+    const waitJquery = setInterval(() => {
+      if (typeof jQuery !== 'function') return;
+
+      console.log('fire', jQuery)
+
+      let scriptCustomTimer = document.createElement("script");
+      scriptCustomTimer.src = "https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.0/flipclock.min.js";
+      scriptCustomTimer.async = false;
+      document.head.appendChild(scriptCustomTimer);
+      clearInterval(waitJquery)
+    }, 100)
+
     let scriptCustomTimerStyle = document.createElement("link");
     scriptCustomTimerStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.0/flipclock.css";
     scriptCustomTimerStyle.rel = "stylesheet";
