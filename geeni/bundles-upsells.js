@@ -80,15 +80,18 @@
 
         .product-container-title {
           color: #000;
-        text-align: center;
-        font-family: Avenir Next;
-        font-size: 40px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 50px; /* 131.579% */
-        margin: 0;
-        margin-bottom: 40px;
-    
+          text-align: center;
+          font-family: Avenir Next;
+          font-size: 38px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 50px; /* 131.579% */
+          margin: 0;
+          margin-bottom: 40px;
+        }
+
+        .product-container .product-title {
+          min-height: 42px;
         }
 
         .product-image img {
@@ -397,6 +400,14 @@ margin-top: 2px;
         }
 
         @media (max-width: 768px) {
+          .product__description .title {
+        padding-top: 22px;
+      }
+
+      .a-list-item strong {
+        text-transform: uppercase;
+      }
+
           .product-container {
             display: block;
             padding: 30px 20px;
@@ -632,8 +643,6 @@ margin-top: 2px;
       threshold: 0, // Trigger when any part of the element is out of viewport
     }
 
-    console.log('handleVisibility')
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -693,6 +702,28 @@ margin-top: 2px;
     return resultHtml
   }
 
+  function changePriceAccordingToQty(select, qty) {
+    const productItem = select.closest('.product-item')
+    const priceCurrent = parseFloat(productItem.dataset.productPriceCurrent.replace('$', ''))
+    const priceOld = parseFloat(productItem.dataset.productPriceOld.replace('$', ''))
+
+    const priceCurrentElement = productItem.querySelector('.product-price-current')
+    const priceOldElement = productItem.querySelector('.product-price-old')
+
+    const quantity = qty
+
+    const newPriceCurrent = priceCurrent * quantity
+    const newPriceOld = priceOld ? priceOld * quantity : ''
+
+    if (priceCurrentElement) {
+      priceCurrentElement.innerText = `$${newPriceCurrent.toLocaleString('en-US', { minimumFractionDigits: 2 })}`
+    }
+
+    if (priceOldElement) {
+      priceOldElement.innerText = priceOld ? `$${newPriceOld.toLocaleString('en-US', { minimumFractionDigits: 2 })}` : ''
+    }
+  }
+
   function cartLogic() {
     const productUpsellHtml = (product) => {
       return /*html*/`
@@ -740,7 +771,6 @@ margin-top: 2px;
         })
           .then(res => res.json())
           .then(data => {
-            console.log(data)
             resolve(data)
           })
           .catch((error) => {
@@ -928,25 +958,7 @@ margin-top: 2px;
 
           quantitySelects.forEach(select => {
             select.addEventListener('change', () => {
-              const productItem = select.closest('.product-item')
-              const priceCurrent = parseFloat(productItem.dataset.productPriceCurrent.replace('$', ''))
-              const priceOld = parseFloat(productItem.dataset.productPriceOld.replace('$', ''))
-
-              const priceCurrentElement = productItem.querySelector('.product-price-current')
-              const priceOldElement = productItem.querySelector('.product-price-old')
-
-              const quantity = parseInt(select.value)
-
-              const newPriceCurrent = priceCurrent * quantity
-              const newPriceOld = priceOld ? priceOld * quantity : ''
-
-              if (priceCurrentElement) {
-                priceCurrentElement.innerText = `$${newPriceCurrent.toLocaleString('en-US', { minimumFractionDigits: 2 })}`
-              }
-
-              if (priceOldElement) {
-                priceOldElement.innerText = priceOld ? `$${newPriceOld.toLocaleString('en-US', { minimumFractionDigits: 2 })}` : ''
-              }
+              changePriceAccordingToQty(select, select.value)
             })
 
             select.addEventListener('click', () => {
@@ -971,7 +983,13 @@ margin-top: 2px;
               const product = button.closest('.product-item')
 
               const productId = product.dataset.productId // use dataset.productId instead of productId
-              const productQuantity = product?.querySelector('.product-quantity')?.value || 1
+              let productQuantity
+
+              if (DEVICE === 'mobile') {
+                productQuantity = product?.querySelector('.product-quantity-custom__value')?.dataset.qtyValue || 1
+              } else {
+                productQuantity = product?.querySelector('.product-quantity')?.value || 1
+              }
 
               addItemToCart(productId, productQuantity)
 
@@ -998,7 +1016,7 @@ margin-top: 2px;
       const waitForEl = setInterval(() => {
         if (typeof Swiper !== 'undefined' && document.querySelectorAll(`${this.parent} .swiper .swiper-slide`)[this.productsIndex]) {
           clearInterval(waitForEl)
-
+          
           if (this.cartType === 'cart') {
             const cartSlider = new Swiper(`${this.parent} .swiper`, {
               slidesPerView: 2.1,
@@ -1010,16 +1028,36 @@ margin-top: 2px;
                 el: `${this.parent} .swiper-scrollbar`,
                 draggable: true,
               },
+              on: {
+                afterInit: () => {
+                  const swiperSlides = document.querySelectorAll(`${this.parent} .swiper .swiper-slide`)
+
+                  // Intersection Observer options
+                  const options = {
+                    root: null, // use the viewport as the root
+                    rootMargin: '0px', // no margin
+                    threshold: 0.9,
+                  }
+
+                  // Callback function to be executed when the element is in view
+                  const handleIntersection = (entries, observer) => {
+                    entries.forEach(entry => {
+                      if (entry.isIntersecting) {
+                        observer.disconnect()
+
+                        pushDataLayer(['exp_freq_boug_scrol_cartsavin_movi', `${entry.target.querySelector('.product-title')?.innerText} - Moving`, 'Horizontal scroll container', 'Cart Buy More For More Savings'])
+                      }
+                    })
+                  }
+
+                  // Create an Intersection Observer for each swiper-slide
+                  swiperSlides.forEach(swiperSlide => {
+                    const observer = new IntersectionObserver(handleIntersection, options)
+                    observer.observe(swiperSlide)
+                  })
+                }
+              }
             })
-            // cartSlider.on('slideChange', function () {
-            //   console.log('slide changed');
-            //   console.log(document.querySelector(`${this.parent} .swiper-slide-active .product-title`).innerText);
-            // });
-            // cartSlider.on('transitionEnd', function () {
-            //   console.log('transitionEnd changed');
-            //   // console.log(document.querySelector(`${this.parent} .swiper-slide-active .product-title`).innerText);
-            //   console.log(document.querySelector(`.swiper-slide-active`));
-            // });
           } else if (this.cartType === 'pdp') {
             new Swiper(`${this.parent} .swiper`, {
               // slidesPerView: "auto",
@@ -1044,8 +1082,6 @@ margin-top: 2px;
               }
             })
           }
-
-          console.log('Swiper initialized', document.querySelector(`${this.parent}`))
 
           document.querySelector(`${this.parent}`).classList.add('container-visible')
         }
@@ -1147,7 +1183,7 @@ margin-top: 2px;
                   </select>
 
                   <div class="product-quantity-custom">
-                    <p class="product-quantity-custom__value">Quantity, 1</p>
+                    <p class="product-quantity-custom__value" data-qty-value="1">Quantity, 1</p>
                   </div>
 
                   <div class="product-price">
@@ -1244,8 +1280,6 @@ margin-top: 2px;
           wrapper.addEventListener('click', () => {
             const value = wrapper.innerText
 
-            console.log(value)
-
             const overlay = document.querySelector('.overlay-custom')
             overlay.style.display = 'block'
 
@@ -1262,10 +1296,13 @@ margin-top: 2px;
                     const qtyValue = option.dataset.qtyValue
 
                     wrapper.innerText = `Quantity, ${qtyValue}`
+                    wrapper.dataset.qtyValue = `${qtyValue}`
 
                     overlay.style.display = 'none'
 
                     document.querySelector('.fixed-quantity-custom').remove()
+
+                    changePriceAccordingToQty(wrapper, qtyValue)
 
                     pushDataLayer(['exp_freq_boug_drop_pdpalsolike_pack', 'Pack', 'Dropdown', 'PDP You May Also Like'])
                   })
@@ -2085,7 +2122,6 @@ line-height: 22px;
       waitForElement('.bundle__footer__btn').then(btn => {
         btn.addEventListener('click', () => {
           const bundleId = btn.dataset.bundleId
-          console.log(bundleId)
           addItemToCart(bundleId)
           pushDataLayer(['exp_freq_boug_but_pdptogether_add', 'Add to Cart', 'Button', 'PDP Block Buy Together'])
         })
@@ -2114,33 +2150,35 @@ line-height: 22px;
   }
 
   function start() {
-    addClarity()
+    waitForElement('body').then(() => {
+      addClarity()
 
-    if (window.location.pathname.includes('/products/')) {
-      addSwiper()
-      getAndAddRecommendedProducts()
-      addBundle()
+      if (window.location.pathname.includes('/products/')) {
+        addSwiper()
+        getAndAddRecommendedProducts()
+        addBundle()
 
-      if (DEVICE === 'mobile') {
-        clickOnSelect()
+        if (DEVICE === 'mobile') {
+          clickOnSelect()
+        }
+
+        // (9)
+        waitForElement('.product__block.product__description').then(el => handleVisibility(el,
+          [
+            'exp_freq_boug_vis_pdpdetprod_focu',
+            '{{focusTime}}',
+            'Visibility ',
+            'PDP Details and About this product'
+          ]
+        ))
+
+        // (10)
+        waitForElement('.product__description .btn_more').then(el => el.addEventListener('click', () => {
+          pushDataLayer(['exp_freq_boug_lin_pdpprod_more', 'See more', 'Link', 'PDP About this product'])
+        }))
       }
 
-      // (9)
-      waitForElement('.product__block.product__description').then(el => handleVisibility(el,
-        [
-          'exp_freq_boug_vis_pdpdetprod_focu',
-          '{{focusTime}}',
-          'Visibility ',
-          'PDP Details and About this product'
-        ]
-      ))
-
-      // (10)
-      waitForElement('.product__description .btn_more').then(el => el.addEventListener('click', () => {
-        pushDataLayer(['exp_freq_boug_lin_pdpprod_more', 'See more', 'Link', 'PDP About this product'])
-      }))
-    }
-
-    cartLogic()
+      cartLogic()
+    })
   }
 })()
