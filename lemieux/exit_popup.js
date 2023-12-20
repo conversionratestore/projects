@@ -1,5 +1,5 @@
 console.log(
-  '%c EXP: Trial Selection (DEV: YK)',
+  '%c EXP: Exit intent popup (DEV: Olha)',
   'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;'
 )
 
@@ -13,7 +13,7 @@ const clarityInterval = setInterval(function () {
     clearInterval(clarityInterval);
     clarity("set", "exit_intent_popup", "variant_1");
   }
-}, 1000);
+}, 200);
 
 const device = window.innerWidth < 769 ? "mobile" : "desktop";
 
