@@ -203,12 +203,13 @@ const svgObj = {
 class ExitIntentPopup {
   constructor(device) {
     this.device = device
-    this.init()
     this.videoTime = $el('video').currentTime / 60
     this.date = new Date(new Date().getTime() + 1000 * 60 * 60 * 24)
+    this.init()
   }
 
   init() {
+    console.log('First time: ' + this.videoTime)
     this.ExitIntentPopup()
     this.changeVideoTime()
   }
@@ -739,6 +740,7 @@ class ExitIntentPopup {
     `
 
     if (!$el('.crs_popup_wrapper') && sessionStorage.getItem('popup') !== 'true') {
+      console.log('Render time: ' + time)
       document.body.insertAdjacentHTML('beforeend', popupBase)
       this.popup = $el('.crs_popup_wrapper')
       const popupClose = $el('.popup_close')
@@ -897,7 +899,7 @@ class ExitIntentPopup {
   changeVideoTime() {
     setInterval(() => {
       this.videoTime = $el('video').currentTime / 60
-    }, 60000)
+    }, 10000)
   }
 }
 
