@@ -519,6 +519,9 @@ class ExitIntentPopup {
           background: #212121;
           border-radius: 2px;
         }
+        .d-none {
+          display: none!important;
+        }
         @media (max-width: 769px) {
           .crs_popup_close svg {
             width: 14px;
@@ -529,6 +532,9 @@ class ExitIntentPopup {
           }
         }
         @media (min-width: 770px) {
+          .d-md-block {
+            display: block!important;
+          }
           .crs_popup[data-query="c"] .container,
           .crs_popup[data-query="b"] .container {
             padding: 0;
@@ -1219,9 +1225,6 @@ class ExitIntentPopup {
           padding: 10px 16px;
           width: 100%;
           margin-bottom: 12px;
-        }
-        .crs_popup[data-query="b"] .container {
-
         }
       </style>
         <div class="container flex">
