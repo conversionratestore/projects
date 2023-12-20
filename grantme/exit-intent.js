@@ -384,14 +384,14 @@ class ExitIntentPopup {
 
     const popup4 = /*html*/ `
       <div class="popup4">
-          <h2>Give the program a try – RISK-FREE</h2>
+          <h2>Give the program a try –<br>RISK-FREE</h2>
           <div class="points">
             <p>
               ${svgObj.award}
               <b>We offer a market-leading guarantee:</b>
             </p>
             <ul>
-              <li>${svgObj.pencil} <p>Acceptance into one of your top <b>5 universitie</b></p></li>
+              <li>${svgObj.pencil} <p>Acceptance into one of your top <b>5 universities</b></p></li>
               <li>${svgObj.pencil} <p><b>At minimum</b>, the student receives <b>$3000</b> through scholarship, grants or bursaries</p></li>
               <li class="more"><p><b>Or your money back!</b></p></li>
             </ul>
@@ -680,6 +680,8 @@ class ExitIntentPopup {
             line-height: 1.4;
             color: #2B3E51;
             margin-bottom: 4px;
+            text-transform: uppercase;
+            font-weight: 700;
           }
           .popup_content .satisfaction h4+p {
             color: #676767;
@@ -800,6 +802,8 @@ class ExitIntentPopup {
             visibilityTime()
             this.popup.remove()
             this.createPopup(time)
+            const popupTextSub = $el('.popup_content > div h2').innerText
+            pushDataLayer('exp_exit_popup_but_back', 'Back', 'Button', popupTextSub)
           })
 
           $el('.popup2_1 button').addEventListener('click', () => {
@@ -844,6 +848,16 @@ class ExitIntentPopup {
         })
       }
 
+      $el('.crs_popup_wrapper').addEventListener('click', e => {
+        if (e.target === $el('.crs_popup_wrapper')) {
+          const popupText = $el('.popup_content > div h2').innerText
+          visibilityTime()
+          this.popup.remove()
+          sessionStorage.setItem('popup', 'true')
+          pushDataLayer('exp_exit_popup_but_bg', 'Background', 'Button', popupText)
+        }
+      })
+
       // setInterval(() => {
       //   $el('.popup_content').innerHTML = time < 20 ? popup1 : time < 40 ? popup2 : time < 68 ? popup3 : popup4
       //   console.log('>>> check')
@@ -862,28 +876,29 @@ class ExitIntentPopup {
       $el('body').addEventListener('mouseleave', () => {
         this.createPopup(this.videoTime)
       })
+    } else {
+      $el('.video-js').addEventListener('click', () => {
+        if ($el('.video-js').classList.contains('crs_popup_start')) {
+          $el('.video-js').classList.remove('crs_popup_start')
+          this.createPopup(this.videoTime)
+        } else {
+          $el('.video-js').classList.add('crs_popup_start')
+        }
+      })
+      $el('.p-absolute.z-index-101').addEventListener('click', () => {
+        if ($el('.p-absolute.z-index-101').classList.contains('crs_popup_start')) {
+          $el('.p-absolute.z-index-101').classList.remove('crs_popup_start')
+          this.createPopup(this.videoTime)
+        } else {
+          $el('.p-absolute.z-index-101').classList.add('crs_popup_start')
+        }
+      })
     }
-    $el('.p-absolute.z-index-101').addEventListener('click', () => {
-      if ($el('.p-absolute.z-index-101').classList.contains('crs_popup_start')) {
-        $el('.p-absolute.z-index-101').classList.remove('crs_popup_start')
-        this.createPopup(this.videoTime)
-      } else {
-        $el('.p-absolute.z-index-101').classList.add('crs_popup_start')
-      }
-    })
 
-    $el('.video-js').addEventListener('click', () => {
-      if ($el('.video-js').classList.contains('crs_popup_start')) {
-        $el('.video-js').classList.remove('crs_popup_start')
-        this.createPopup(this.videoTime)
-      } else {
-        $el('.video-js').classList.add('crs_popup_start')
-      }
-    })
     if ($el('.btn-unmute')) {
       let unmuteStart = setTimeout(() => {
         this.createPopup(this.videoTime)
-      }, 10000)
+      }, 20000)
 
       $el('.btn-unmute').addEventListener('click', () => {
         clearTimeout(unmuteStart)
