@@ -673,7 +673,7 @@ let treblehealthPages = setInterval(() => {
                     )
                   }
                 }
-                // $el('.elementor-element-baad601 .elementor-button-wrapper a').click()
+                $el('.elementor-element-baad601 .elementor-button-wrapper a').click()
               }
               e.target.setAttribute('data-test', '1')
               setTimeout(() => {
