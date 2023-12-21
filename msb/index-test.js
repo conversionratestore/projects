@@ -1690,21 +1690,23 @@ function openDiscount(parent) {
       }
    
       parent.querySelector(".crs_discount").addEventListener("click", () => {
-        document.querySelector("body > div > button.needsclick").click();
-        if (parent.closest(".product-info-main")) {
-          pushDataLayer([
-            "exp_inc_soc_trus_lin_pdpunpri_getdis",
-            "Get Discount",
-            "Link",
-            "PDP Under the price",
-          ]);
-        } else {
-          pushDataLayer([
-            "exp_inc_soc_trus_lin_cart_discou",
-            "Get  discount",
-            "Link",
-            "Cart",
-          ]);
+        if (document.querySelector("body > div > button.needsclick")) {
+          document.querySelector("body > div > button.needsclick").click();
+          if (parent.closest(".product-info-main")) {
+            pushDataLayer([
+              "exp_inc_soc_trus_lin_pdpunpri_getdis",
+              "Get Discount",
+              "Link",
+              "PDP Under the price",
+            ]);
+          } else {
+            pushDataLayer([
+              "exp_inc_soc_trus_lin_cart_discou",
+              "Get  discount",
+              "Link",
+              "Cart",
+            ]);
+          }
         }
       });
     }
