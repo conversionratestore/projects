@@ -488,7 +488,7 @@ let treblehealthPages = setInterval(() => {
                       clearInterval(s)
                       checkFocusTime(
                         '.bundle_tooltip_wrapp',
-                        'exp_res_surv_fun_vis_succes_focu',
+                        'exp_res_surv_fun_visib_tool_focu',
                         'Tinnitus Relief Bundle Tooltip'
                       )
                     }
