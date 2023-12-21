@@ -1517,12 +1517,13 @@ class ExitIntentPopup {
 }
 
 let waitWebsiteCode = setInterval(() => {
-  if (window.autoInitData.website && window.autoInitData.website.websiteCode && window.autoInitData.website.currency && window.autoInitData.website.currency.list[0].symbol) {
+  const websiteData = window.autoInitData.website;
+  if (websiteData?.websiteCode && websiteData.currency?.list[0]?.symbol) {
     clearInterval(waitWebsiteCode)
 
-    const userId = document.cookie.includes("user_id=") ? true : false;
+    const userId = document.cookie.includes("user_id=");
     const website = window.autoInitData.website
-    console.log(window.autoInitData.website.currency.list[0].symbol)
+    console.log(website.currency.list[0].symbol)
     new ExitIntentPopup(device, userId, website);
   }
 })
