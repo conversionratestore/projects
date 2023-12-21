@@ -807,6 +807,9 @@ class ExitIntentPopup {
           this.popup.remove()
           sessionStorage.setItem('popup', 'true')
           pushDataLayer('exp_exit_popup_but_cw', 'Continue Watching', 'Button', popup)
+          if ($el('.btn-unmute')) {
+            $el('.btn-unmute').click()
+          }
         })
       }
 
