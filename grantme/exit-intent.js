@@ -200,6 +200,26 @@ const svgObj = {
   `
 }
 
+function checkScrollSpeed(selector, callback) {
+  const block = document.querySelector(selector)
+  let lastPos, newPos, timer, delta
+  function clear() {
+    lastPos = null
+    delta = 0
+  }
+  clear()
+  block.addEventListener('scroll', function () {
+    newPos = block.scrollTop
+    if (lastPos != null) {
+      delta = newPos - lastPos
+    }
+    lastPos = newPos
+    clearTimeout(timer)
+    timer = setTimeout(clear, 50)
+    callback(Math.abs(delta))
+  })
+}
+
 class ExitIntentPopup {
   constructor(device) {
     this.device = device
@@ -891,6 +911,11 @@ class ExitIntentPopup {
           this.createPopup(this.videoTime)
         } else {
           $el('.p-absolute.z-index-101').classList.add('crs_popup_start')
+        }
+      })
+      checkScrollSpeed('.liveroom_content .scroll_wrapper', delta => {
+        if (delta > 150) {
+          this.createPopup(this.videoTime)
         }
       })
     }
