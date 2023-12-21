@@ -1682,10 +1682,12 @@ function openDiscount(parent) {
 
       console.log(parent);
 
-      if (parent.classList.contains('product-info-main')) {
-        parent.querySelector(".crs_klarna").insertAdjacentHTML("afterend", getDiscount);
-      } else {
-        parent.querySelector(".subtotal").insertAdjacentHTML("beforebegin", getDiscount);
+      if (!parent.querySelector(".crs_discount")) {
+        if (parent.classList.contains('product-info-main')) {
+          parent.querySelector(".crs_klarna").insertAdjacentHTML("afterend", getDiscount);
+        } else {
+          parent.querySelector(".subtotal").insertAdjacentHTML("beforebegin", getDiscount);
+        }
       }
    
       parent.querySelector(".crs_discount").addEventListener("click", () => {
@@ -1938,6 +1940,10 @@ function handleCartMutation(mutationsList, observer) {
           }
           console.log("newPrice: " + newPrice);
 
+          if (!targetElement.querySelector(".crs_discount")) {
+            targetElement.querySelector(".subtotal").insertAdjacentHTML("beforebegin", getDiscount);
+          }
+
           targetElement
             .querySelector(".block-content > .actions > .primary")
             .insertAdjacentHTML(
@@ -2068,6 +2074,10 @@ function start() {
                 .getAttribute("data-price-amount")
             )
           );
+
+          if (sessionStorage.getItem("crsDiscount")) {
+            document.querySelector(".product-info-main .crs_klarna").insertAdjacentHTML("afterend", getDiscount);
+          } 
 
           openDiscount(document.querySelector(".product-info-main"));
           changeStateDiscountBtn(document.querySelector(".product-info-main"));

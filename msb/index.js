@@ -1675,13 +1675,21 @@ function openDiscount(parent) {
       document
         .querySelector("body > div > button.needsclick")
         .innerText.includes("10% OFF") &&
-      parent.querySelector(".crs_discount") &&
+      !parent.querySelector(".crs_discount") &&
       parent.querySelector(".crs_klarna")
     ) {
       clearInterval(intervalDiscount);
 
       console.log(parent);
 
+      if (!parent.querySelector(".crs_discount")) {
+        if (parent.classList.contains('product-info-main')) {
+          parent.querySelector(".crs_klarna").insertAdjacentHTML("afterend", getDiscount);
+        } else {
+          parent.querySelector(".subtotal").insertAdjacentHTML("beforebegin", getDiscount);
+        }
+      }
+   
       parent.querySelector(".crs_discount").addEventListener("click", () => {
         document.querySelector("body > div > button.needsclick").click();
         if (parent.closest(".product-info-main")) {
@@ -1908,14 +1916,6 @@ function handleCartMutation(mutationsList, observer) {
 
           targetElement.querySelector(".crs_cart_subtotal")?.remove();
 
-          if (
-            !targetElement.querySelector(".crs_discount")
-          ) {
-            targetElement
-              .querySelector(".subtotal")
-              .insertAdjacentHTML("beforebegin", getDiscount);
-          }
-
           let newPrice = "";
           if (targetElement.querySelector(".crs_regular > p > span")) {
             let selectorNewPrice = targetElement.querySelector(
@@ -1939,6 +1939,10 @@ function handleCartMutation(mutationsList, observer) {
               );
           }
           console.log("newPrice: " + newPrice);
+
+          if (!targetElement.querySelector(".crs_discount")) {
+            targetElement.querySelector(".subtotal").insertAdjacentHTML("beforebegin", getDiscount);
+          }
 
           targetElement
             .querySelector(".block-content > .actions > .primary")
@@ -2071,9 +2075,9 @@ function start() {
             )
           );
 
-          document
-            .querySelector(".product-info-main .crs_klarna")
-            .insertAdjacentHTML("afterend", getDiscount);
+          if (sessionStorage.getItem("crsDiscount")) {
+            document.querySelector(".product-info-main .crs_klarna").insertAdjacentHTML("afterend", getDiscount);
+          } 
 
           openDiscount(document.querySelector(".product-info-main"));
           changeStateDiscountBtn(document.querySelector(".product-info-main"));
