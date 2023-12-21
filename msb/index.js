@@ -1675,7 +1675,6 @@ function openDiscount(parent) {
       document
         .querySelector("body > div > button.needsclick")
         .innerText.includes("10% OFF") &&
-      !parent.querySelector(".crs_discount") &&
       parent.querySelector(".crs_klarna")
     ) {
       clearInterval(intervalDiscount);
