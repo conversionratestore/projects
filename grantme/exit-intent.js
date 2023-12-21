@@ -914,7 +914,7 @@ class ExitIntentPopup {
         }
       })
       checkScrollSpeed('.liveroom_content .scroll_wrapper', delta => {
-        if (delta > 150) {
+        if (delta > 110) {
           this.createPopup(this.videoTime)
         }
       })
