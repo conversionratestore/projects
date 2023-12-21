@@ -1675,13 +1675,19 @@ function openDiscount(parent) {
       document
         .querySelector("body > div > button.needsclick")
         .innerText.includes("10% OFF") &&
-      parent.querySelector(".crs_discount") &&
+      !parent.querySelector(".crs_discount") &&
       parent.querySelector(".crs_klarna")
     ) {
       clearInterval(intervalDiscount);
 
       console.log(parent);
 
+      if (parent.classList.contains('product-info-main')) {
+        parent.querySelector(".crs_klarna").insertAdjacentHTML("afterend", getDiscount);
+      } else {
+        parent.querySelector(".subtotal").insertAdjacentHTML("beforebegin", getDiscount);
+      }
+   
       parent.querySelector(".crs_discount").addEventListener("click", () => {
         document.querySelector("body > div > button.needsclick").click();
         if (parent.closest(".product-info-main")) {
@@ -1713,7 +1719,7 @@ function changeStateDiscountBtn(parent) {
       clearInterval(changeStateDiscountBtn);
       console.log("applied");
       parent.querySelector(".crs_discount > span").innerHTML =
-        "10% discount will be applied at Checkout";
+        "10% discount will be applied at Cart";
 
       isSaved = false;
     }
@@ -1908,14 +1914,6 @@ function handleCartMutation(mutationsList, observer) {
 
           targetElement.querySelector(".crs_cart_subtotal")?.remove();
 
-          if (
-            !targetElement.querySelector(".crs_discount")
-          ) {
-            targetElement
-              .querySelector(".subtotal")
-              .insertAdjacentHTML("beforebegin", getDiscount);
-          }
-
           let newPrice = "";
           if (targetElement.querySelector(".crs_regular > p > span")) {
             let selectorNewPrice = targetElement.querySelector(
@@ -2070,10 +2068,6 @@ function start() {
                 .getAttribute("data-price-amount")
             )
           );
-
-          document
-            .querySelector(".product-info-main .crs_klarna")
-            .insertAdjacentHTML("afterend", getDiscount);
 
           openDiscount(document.querySelector(".product-info-main"));
           changeStateDiscountBtn(document.querySelector(".product-info-main"));
