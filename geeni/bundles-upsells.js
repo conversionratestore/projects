@@ -717,8 +717,6 @@ margin-top: 2px;
                   </div>
 
                   ${product.available ? '<button class="product-add-to-cart">Add to cart</button>' : '<button class="product-add-to-cart sold-out">Sold out</button>'}
-
-                  
                 </div>
               </div>
       `
@@ -997,13 +995,54 @@ margin-top: 2px;
                   behavior: 'smooth' // You can also use 'auto' or 'instant'
                 })
               }
-
-              // Send a Google Analytics event
-              // pushDataLayer('Add to cart', 'Add to cart', 'Add to cart', 'Add to cart')
             })
           })
         }
       }, WAIT_INTERVAL_TIMEOUT)
+    }
+
+    handleClickOnImg() {
+      const waitForEl = setInterval(() => {
+        if (document.querySelectorAll(`${this.parent} .product-link.product-image`)[this.productsIndex]) {
+          clearInterval(waitForEl)
+
+          const productImages = document.querySelectorAll(`${this.parent} .product-link.product-image`)
+
+          productImages.forEach(image => {
+            image.addEventListener('click', (e) => {
+              // const product = image.closest('.product-item')
+
+              if (this.cartType === 'pdp') {
+                pushDataLayer(['exp_freq_boug_vis_pdpalsolike_link_image', 'Image', 'Link', 'PDP You May Also Like'])
+              } else {
+                pushDataLayer(['exp_freq_boug_vis_cartsavin_link_image', 'Image', 'Link', 'Cart Buy More For More Savings'])
+              }
+            })
+          })
+        }
+      })
+    }
+
+    handleClickOnTitle() {
+      const waitForEl = setInterval(() => {
+        if (document.querySelectorAll(`${this.parent} .product-link.product-title`)[this.productsIndex]) {
+          clearInterval(waitForEl)
+
+          const productImages = document.querySelectorAll(`${this.parent} .product-link.product-title`)
+
+          productImages.forEach(image => {
+            image.addEventListener('click', (e) => {
+              // const product = image.closest('.product-item')
+
+              if (this.cartType === 'pdp') {
+                pushDataLayer(['exp_freq_boug_vis_pdpalsolike_link_title', 'Title', 'Link', 'PDP You May Also Like'])
+              } else {
+                pushDataLayer(['exp_freq_boug_vis_cartsavin_link_title', 'Title', 'Link', 'Cart Buy More For More Savings'])
+              }
+            })
+          })
+        }
+      })
     }
 
     initSlider() {
@@ -1099,6 +1138,8 @@ margin-top: 2px;
       }
 
       this.handleClickOnAddBtn()
+      this.handleClickOnImg()
+      this.handleClickOnTitle()
     }
   }
 
@@ -1304,8 +1345,6 @@ margin-top: 2px;
 
               }
             }, WAIT_INTERVAL_TIMEOUT)
-
-
           })
         })
       }
@@ -1372,7 +1411,7 @@ margin-top: 2px;
               "shortTitle": "Geeni Glimpse Camera",
               "rate": "4.1"
             },
-            "4-pack-prisma-plus-800-60w-led-color-tunable-white-smart-wi-fi-bulb": {          
+            "4-pack-prisma-plus-800-60w-led-color-tunable-white-smart-wi-fi-bulb": {
               "shortTitle": "Geeni Prisma Candle Wi-Fi Smart Bulb",
               "rate": "4.8"
             },
@@ -1863,27 +1902,41 @@ line-height: 22px;
   </div>
   ${document.querySelector('[data-bundle-available]').innerText === 'true' ? `<button class="bundle__footer__btn" data-bundle-id="${document.querySelector('[data-bundle-variant-id]').innerText}">Add to Cart</button>` : `<button class="bundle__footer__btn sold-out" data-bundle-id="${document.querySelector('[data-bundle-variant-id]').innerText}">Sold out</button>`}
 </div>
-</div>
-          `
+</div>`
 
           waitForElement('.delivery').then(el => el.insertAdjacentHTML('afterend', bundleContainer))
 
           waitForElement('.bundle__footer__btn').then(btn => {
             btn.addEventListener('click', () => {
-              const bundleId = btn.dataset.bundleId
-              addItemToCart(bundleId)
-              pushDataLayer(['exp_freq_boug_but_pdptogether_add', 'Add to Cart', 'Button', 'PDP Block Buy Together'])
+              if (btn.classList.contains('sold-out')) {
+                pushDataLayer(['exp_freq_boug_but_pdptogether_sold', 'Sold Out', 'Button', 'PDP Block Buy Together'])
+              } else {
+                const bundleId = btn.dataset.bundleId
+                addItemToCart(bundleId)
+                pushDataLayer(['exp_freq_boug_but_pdptogether_add', 'Add to Cart', 'Button', 'PDP Block Buy Together'])
+              }
             })
           })
 
-          waitForElement('.bundle').then(el => handleVisibility(el,
-            [
-              'exp_freq_boug_vis_pdptogether_focus',
-              '{{focusTime}}',
-              'Visibility',
-              'PDP Block Buy Together'
-            ]
-          )
+          waitForElement('.bundle').then(el => {
+            handleVisibility(el,
+              [
+                'exp_freq_boug_vis_pdptogether_focus',
+                '{{focusTime}}',
+                'Visibility',
+                'PDP Block Buy Together'
+              ]
+            )
+
+            el.addEventListener('click', (e) => {
+              if (e.target.matches('a.bundle__item__title')) {
+                pushDataLayer(['exp_freq_boug_but_pdptogether_link_title', 'Title', 'Link', 'PDP Block Buy Together'])
+              }
+              if (e.target.closest('.bundle__item__img') && e.target.closest('.bundle__item__img').querySelector('a')) {
+                pushDataLayer(['exp_freq_boug_but_pdptogether_link_img', 'Image', 'Link', 'PDP Block Buy Together'])
+              }
+            })
+          }
           )
         }
       }, WAIT_INTERVAL_TIMEOUT)
