@@ -8,8 +8,6 @@
   const DEVICE = screen.width <= 768 ? 'mobile' : 'desktop'
   const IMAGE_DIR_URL = 'https://conversionratestore.github.io/projects/geeni/img'
 
-  const PRODUCT_HANDLE = window.location.pathname.split('/')[2]
-
   const style = /*html*/`
       <style>
         :root {
@@ -76,6 +74,7 @@
           text-overflow: ellipsis;
           max-height: 3em;
           width: fit-content;
+          min-height: 42px;
         }
 
         .product-container-title {
@@ -89,14 +88,14 @@
           margin: 0;
           margin-bottom: 40px;
         }
-
-        .product-container .product-title {
-          min-height: 42px;
-        }
-
+        
         .product-image img {
           display: block;
           border-radius: 8px;
+        }
+
+        .upsells-wrapper  .product-image img {
+          height: 163px;
         }
 
         .product-rating {
@@ -213,6 +212,20 @@ margin-top: 2px;
           padding: 7px;
           width: 100%;
           cursor: pointer;
+        }
+        
+        .product-add-to-cart.sold-out {
+          cursor: auto;
+          border: 1px solid var(--Border, #D9D9D9);
+          background: var(--bg-light-grey, #F7F7F7);
+          color: var(--font-body, #5B5B5B);
+        }
+
+        .bundle__footer__btn.sold-out {
+          cursor: auto;
+          border: 1px solid var(--Border, #D9D9D9);
+          background: #fff;
+          color: var(--font-body, #5B5B5B);
         }
 
         .discount-new {
@@ -513,96 +526,44 @@ margin-top: 2px;
   }
 
   const upsellsObj = {
-    32660605632591: {
-      id: 32660605632591,
-      title: "Geeni Freebird Wire-Free Battery Camera",
-      img: "https://cdn.shopify.com/s/files/1/2612/6532/products/CW031mainwithshadow.jpg?v=1680186243",
-      url: "/products/freebird-wire-free-battery-smart-camera?variant=32660605632591",
-      currentPrice: "$89.09",
-      oldPrice: "$119.99",
+    "4811210457167": {
       rate: "4.6",
     },
-    44473959481596: {
-      id: 44473959481596,
-      title: "Geeni Eagle 2K Outdoor Camera",
-      img: "https://cdn.shopify.com/s/files/1/2612/6532/products/7fe49074-d52b-4f34-9db5-495c21bd5506.jpg?v=1690919610",
-      url: "/products/eagle-2k-camera?variant=44473959481596",
-      currentPrice: "$59.99",
-      oldPrice: "$89.99",
+    "8094794187004": {
       rate: "3.8",
     },
-    21667093381199: {
-      id: 21667093381199,
-      title: "Geeni Look - Indoor Camera (2-Pack)",
-      img: "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-CW028mainupdate.jpg?v=1680186383",
-      url: "/products/geeni-look-2-pack-1080p-hd-smart-home-surveillance-system-with-night-vision-motion-detection-2-way-audio-remote-access-with-ios-android-app-no-hub-required-black?variant=21667093381199",
-      currentPrice: "$69.99",
-      oldPrice: "$99.99",
+    "2451441188943": {
       rate: "4.5",
     },
-    32297314353231: {
-      id: 32297314353231,
-      title: "Geeni Prisma Plus 800 A19 Smart Bulb - Multicolor and Tunable (4-Pack)",
-      img: "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-BW4134packwshadow_4fb89e0f-185b-4378-8805-6397de89ada0.jpg?v=1680277536",
-      url: "/products/4-pack-prisma-plus-800-60w-led-color-tunable-white-smart-wi-fi-bulb?variant=32297314353231",
-      currentPrice: "$34.99",
-      oldPrice: "",
+    "4660038041679": {
       rate: "4.9",
     },
-    32297435365455: {
-      id: 32297435365455,
-      title: "Geeni Doorpeek Wired Doorbell",
-      img: "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-CW025mainwshadow.jpg?v=1680186218",
-      url: "/products/doorpeek-smart-wi-fi-1080p-full-hd-video-doorbell-wired-black?variant=32297435365455",
-      currentPrice: "$69.99",
-      oldPrice: "$99.99",
-      oldPrice: "",
+    "4660117110863": {
       rate: "4.9",
     },
-    31342080131151: {
-      id: 31342080131151,
-      title: "Geeni Indoor/Outdoor Weatherproof Plug - Duo",
-      img: "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-OW102-mainupdate.jpg?v=1680195344",
-      url: "/products/outdoor-duo-dual-outlet-smart-wi-fi-plug-grey?variant=31342080131151",
-      currentPrice: "$19.99",
-      oldPrice: "",
+    "4381990584399": {
       rate: "4.8",
     },
-    44472367775996: {
-      id: 44472367775996,
-      title: "Geeni Temperature and Humidity Sensor (2-Pack)",
-      img: "https://cdn.shopify.com/s/files/1/2612/6532/files/geeni-temperature-and-humidity-sensor-2-pack.jpg?v=1689284324",
-      url: "/products/temperature-humidity-sensor-2?variant=44472367775996",
-      currentPrice: "$34.99",
-      oldPrice: "$59.99",
+    "8094251385084": {
       rate: "2.5",
     },
-    31341910884431: {
-      id: 31341910884431,
-      title: "Geeni Aware 1080p Camera (2-Pack)",
-      img: "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-CW219-199_Mainupdate_d3ba52ec-cf5a-4470-8dac-04968c832a96.jpg?v=1680188297",
-      url: "/products/aware-hd-1080p-smart-wi-fi-security-camera-2-pack?variant=31341910884431",
-      currentPrice: "$49.99",
-      oldPrice: "$69.99",
+    "4381955326031": {
       rate: "4.1",
     },
-    32807717404751: {
-      id: 32807717404751,
-      title: "Geeni Glimpse 1080p Camera",
-      img: "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-CW036mainupdate.jpg?v=1680186295",
-      url: "/products/glimpse-1080p-hd-smart-security-camera-white?variant=32807717404751",
-      currentPrice: "19.99",
-      oldPrice: "29.99",
+    "4850423136335": {
       rate: "4",
     },
-    32658361385039: {
-      id: 32658361385039,
-      title: "Geeni Prisma Strip 16 - Light Strip Kit, RGB (16.4 ft.)",
-      img: "https://cdn.shopify.com/s/files/1/2612/6532/products/dc681418-6998-438e-b104-0ff8f73b22e5_63e8cb03-6728-4e13-a87a-4f1152ad0e74.jpg?v=1619733196",
-      url: "/products/5m-prisma-strip-smart-wi-fi-rgb-led?variant=32658361385039",
-      currentPrice: "$19.99",
-      oldPrice: "",
+    "4810374414415": {
       rate: "4.9",
+    },
+    "4680310063183": {
+      rate: "4.7",
+    },
+    "4380150857807": {
+      rate: "4.5",
+    },
+    "7607582556412": {
+      rate: "4.5",
     },
   }
 
@@ -728,12 +689,12 @@ margin-top: 2px;
     const productUpsellHtml = (product) => {
       return /*html*/`
         <div class="product-item swiper-slide" data-product-id="${product.id}" data-product-price-current="${product.currentPrice}" data-product-price-old="${product.oldPrice}">
-                <a href="${product.url}" class="product-link product-image">
-                  <img src="${product.img}" alt="${product.title}">
+                <a href="${product.url}" class="product-link product-image" target="_blank">
+                  <img src="https://cdn.shopify.com/s/files/1/2612/6532/${product.img}" alt="${product.title}">
                 </a>
 
                 <div class="product-info">
-                  <a href="${product.url}" class="product-link product-title" >
+                  <a href="${product.url}" class="product-link product-title" target="_blank">
                     ${product.title}
                   </a>              
 
@@ -755,7 +716,9 @@ margin-top: 2px;
                     ${product.oldPrice ? `<span class="product-price-old">${product.oldPrice}</span>` : ''}
                   </div>
 
-                  <button class="product-add-to-cart">Add to cart</button>
+                  ${product.available ? '<button class="product-add-to-cart">Add to cart</button>' : '<button class="product-add-to-cart sold-out">Sold out</button>'}
+
+                  
                 </div>
               </div>
       `
@@ -845,13 +808,13 @@ margin-top: 2px;
 
                 spendDiscount(total)
 
-                // Filter items from upsellsObj that are not in the cart.items
-                const filteredItems = Object.values(upsellsObj).filter((upsellItem) => {
-                  const isNotInCart = !items.some((cartItem) => cartItem.id === upsellItem.id)
+                const filteredItems = Object.entries(upsellsObj).filter(([productId, upsellItem]) => {
+                  const isNotInCart = !items.some((cartItem) => String(cartItem.product_id) === productId)
                   return isNotInCart
-                })
+                }).map(([productId, upsellItem]) => upsellItem)
 
-                const cartUpsells = /*html*/`
+                if (filteredItems.length) {
+                  const cartUpsells = /*html*/`
                 <div class="cart-upsells-container">
                   <h2>Buy More For More Savings</h2>
 
@@ -863,14 +826,14 @@ margin-top: 2px;
                   </div>
                   
                 </div>
-                `
-                // const itemsIndex = items.length - 1
+                  `
 
-                if (!document.querySelector('.cart-upsells')) {
-                  waitForElement('.cart-drawer__items').then(el => el.insertAdjacentHTML('afterend', cartUpsells))
+                  if (!document.querySelector('.cart-upsells')) {
+                    waitForElement('.cart-drawer__items').then(el => el.insertAdjacentHTML('afterend', cartUpsells))
 
-                  const productsCartSlider = new Slider('.cart-upsells-container', filteredItems.length - 1, 'cart')
-                  productsCartSlider.init()
+                    const productsCartSlider = new Slider('.cart-upsells-container', filteredItems.length - 1, 'cart')
+                    productsCartSlider.init()
+                  }
                 }
               }
               else {
@@ -884,8 +847,33 @@ margin-top: 2px;
       }
     }
 
-    waitForElement('.cart-drawer')
-      .then((cartElement) => {
+    const waitForEl = setInterval(() => {
+      const cartDrawer = document.querySelector('.cart-drawer')
+
+      if (cartDrawer && document.querySelectorAll('#upsells-data div [data-upsell-available]')[12]) {
+        clearInterval(waitForEl)
+
+        let upsellElements = document.querySelectorAll('[data-upsell-id]')
+
+        upsellElements.forEach(element => {
+          let id = element.getAttribute('data-upsell-id')
+
+          if (!upsellsObj[id]) {
+            upsellsObj[id] = {}
+          }
+
+          upsellsObj[id] = {
+            id: element.querySelector('[data-upsell-variant-id]').innerText,
+            title: element.querySelector('[data-upsell-title]').innerText,
+            img: element.querySelector('[data-upsell-image]').innerText,
+            url: element.querySelector('[data-upsell-url]').innerText,
+            currentPrice: element.querySelector('[data-upsell-price]').innerText,
+            oldPrice: element.querySelector('[data-upsell-compare-price]').innerText,
+            ...upsellsObj[id],
+            available: element.querySelector('[data-upsell-available]').innerText === 'true'
+          }
+        })
+
         // Create a Mutation Observer to watch for changes in the cart.
         const cartObserver = new MutationObserver(handleCartMutation)
 
@@ -896,8 +884,9 @@ margin-top: 2px;
         }
 
         // Start observing the cart element.
-        cartObserver.observe(cartElement, observerOptions)
-      })
+        cartObserver.observe(cartDrawer, observerOptions)
+      }
+    }, WAIT_INTERVAL_TIMEOUT)
   }
 
   function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
@@ -963,7 +952,7 @@ margin-top: 2px;
 
             select.addEventListener('click', () => {
               if (this.cartType === 'pdp') {
-                pushDataLayer(['exp_freq_boug_drop_pdpalsolike_pack', 'Pack', 'Dropdown', 'PDP You May Also Like'])
+                pushDataLayer(['exp_freq_boug_drop_pdpalsolike_quantity', 'Quantity', 'Dropdown', 'PDP You May Also Like'])
               }
             })
           })
@@ -996,7 +985,12 @@ margin-top: 2px;
               if (this.cartType === 'pdp') {
                 pushDataLayer(['exp_freq_boug_but_pdpalsolike_add', `${product.querySelector('.product-title').innerText} - Add to Cart`, 'Button', 'PDP You May Also Like'])
               } else {
-                pushDataLayer(['exp_freq_boug_but_cartsavin_add', `${product.querySelector('.product-title').innerText} - Add to Cart`, 'Button', 'Cart Buy More For More Savings'])
+
+                if (button.classList.contains('sold-out')) {
+                  pushDataLayer(['exp_freq_boug_but_cartsavin_sold', `${product.querySelector('.product-title').innerText} - Sold Out`, 'Button', 'Cart Buy More For More Savings'])
+                } else {
+                  pushDataLayer(['exp_freq_boug_but_cartsavin_add', `${product.querySelector('.product-title').innerText} - Add to Cart`, 'Button', 'Cart Buy More For More Savings'])
+                }
 
                 document.querySelector('.cart-drawer__body')?.scrollTo({
                   top: 0,
@@ -1016,7 +1010,6 @@ margin-top: 2px;
       const waitForEl = setInterval(() => {
         if (typeof Swiper !== 'undefined' && document.querySelectorAll(`${this.parent} .swiper .swiper-slide`)[this.productsIndex]) {
           clearInterval(waitForEl)
-          
           if (this.cartType === 'cart') {
             const cartSlider = new Swiper(`${this.parent} .swiper`, {
               slidesPerView: 2.1,
@@ -1160,12 +1153,12 @@ margin-top: 2px;
 
           return /*html*/`        
               <div class="product-item swiper-slide" data-product-id="${productData.productId}" data-product-price-current="${productData.productPriceCurrent}" data-product-price-old="${productData.productPriceOld}">
-                <a href="${productData.productLink}" class="product-link product-image" >
+                <a href="${productData.productLink}" class="product-link product-image" target="_blank">
                   <img src="${productData.productImage}" alt="${productData.productTitle}">
                 </a>
 
                 <div class="product-info">
-                  <a href="${productData.productLink}" class="product-link product-title" >
+                  <a href="${productData.productLink}" class="product-link product-title" target="_blank">
                     ${productData.productTitle}
                   </a>              
 
@@ -1304,7 +1297,7 @@ margin-top: 2px;
 
                     changePriceAccordingToQty(wrapper, qtyValue)
 
-                    pushDataLayer(['exp_freq_boug_drop_pdpalsolike_pack', 'Pack', 'Dropdown', 'PDP You May Also Like'])
+                    pushDataLayer(['exp_freq_boug_drop_pdpalsolike_quantity', 'Quantity', 'Dropdown', 'PDP You May Also Like'])
                   })
                 })
 
@@ -1320,435 +1313,199 @@ margin-top: 2px;
   }
 
   function addBundle() {
-    const bundleObjects = {
-      "sentinel-1080p-pan-tilt-smart-wi-fi-security-camera-white": {
-        title: 'Geeni Sentinel 1080p Pan & Tilt Camera',
-        shortTitle: 'Geeni Sentinel Camera',
-        img: 'https://cdn.shopify.com/s/files/1/2612/6532/products/GN-CW047mainupdate.jpg?v=1680186450',
-        url: '/products/sentinel-1080p-pan-tilt-smart-wi-fi-security-camera-white?variant=39654302908495',
-        price: '$42.95',
-        rate: '4.8'
-      },
-      "hawk-3-1080p-hd-outdoor-smart-wi-fi-security-camera-white": {
-        title: 'Geeni Hawk 3 1080p Outdoor Camera',
-        shortTitle: 'Geeni Hawk 3 Camera',
-        img: 'https://cdn.shopify.com/s/files/1/2612/6532/products/GN-CW033Mainupdate.jpg?v=1680186358',
-        url: '/products/hawk-3-1080p-hd-outdoor-smart-wi-fi-security-camera-white?variant=32753086234703',
-        price: '$49.99',
-        rate: '4.6'
-      },
-      "geeni-gn-cw008-101-look-1080p-wi-fi-camera-black": {
-        "title": "Geeni Look - Indoor Camera",
-        "shortTitle": "Geeni Look Indoor Camera",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-CW008-101_Main2.jpg?v=1680188226",
-        "url": "/products/geeni-gn-cw008-101-look-1080p-wi-fi-camera-black?variant=21666897330255",
-        "price": "$34.99",
-        "rate": "4.5"
-      },
-      "geeni-look-2-pack-1080p-hd-smart-home-surveillance-system-with-night-vision-motion-detection-2-way-audio-remote-access-with-ios-android-app-no-hub-required-black": {
-        "title": "Geeni Look - Indoor Camera (2-Pack)",
-        "shortTitle": "Geeni Look Indoor Camera",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-CW028mainupdate.jpg?v=1680186383",
-        "url": "/products/geeni-look-2-pack-1080p-hd-smart-home-surveillance-system-with-night-vision-motion-detection-2-way-audio-remote-access-with-ios-android-app-no-hub-required-black?variant=21667093381199",
-        "price": "$69.99",
-        "rate": "4.5"
-      },
-      // Geeni Hawk 3 1080p Outdoor Camera (2-Pack),
-      "insight-mini-2k": {
-        "title": "Geeni Insight Mini 2K Indoor Camera",
-        "shortTitle": "Geeni Insight Mini 2K Camera",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/37574dc4-929f-4274-8e9c-343194bc8437.jpg?v=1690919615",
-        "url": "/products/insight-mini-2k?variant=44473589629180",
-        "price": "$24.99",
-        "rate": "4"
-      },
-      // Geeni Insight Mini 2K Indoor Camera (2 - pack),
-      "aware-1080p-hd-smart-wi-fi-security-camera-white": {
-        "title": "Geeni Aware 1080p Camera",
-        "shortTitle": "Geeni Aware Wi-Fi Camera",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-CW019-199_main.jpg?v=1680186114",
-        "url": "/products/aware-1080p-hd-smart-wi-fi-security-camera-white?variant=31341859930191",
-        "price": "$29.99",
-        "rate": "4.1"
-      },
-      //Geeni Sentry Smart Wi-Fi Floodlight and Security Camera,
-      "aware-hd-1080p-smart-wi-fi-security-camera-2-pack": {
-        "title": "Geeni Aware 1080p Camera (2-Pack)",
-        "shortTitle": "Geeni Aware Wi-Fi Camera",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-CW219-199_Mainupdate_d3ba52ec-cf5a-4470-8dac-04968c832a96.jpg?v=1680188297",
-        "url": "/products/aware-hd-1080p-smart-wi-fi-security-camera-2-pack?variant=31341910884431",
-        "price": "$49.99",
-        "rate": "4.1"
-      },
-      "glimpse-1080p-hd-smart-security-camera-white": {
-        "title": "Geeni Glimpse 1080p Camera",
-        "shortTitle": "Geeni Glimpse Camera",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-CW036mainupdate.jpg?v=1680186295",
-        "url": "/products/glimpse-1080p-hd-smart-security-camera-white?variant=32807717404751",
-        "price": "$19.99",
-        "rate": "4.1"
-      },
-      "hawk-1080p-hd-outdoor-security-camera-white": {
-        "title": "Geeni Hawk 1080p Outdoor Security Camera",
-        "shortTitle": "Geeni Hawk 1080p Camera",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-CW011-199Hawk1bwshadow.jpg?v=1680186337",
-        "url": "/products/hawk-1080p-hd-outdoor-security-camera-white?variant=32333952417871",
-        "price": "$42.95",
-        "rate": "4.6"
-      },
-      "glimpse-1080p-smart-camera-2-pack": {
-        "title": "Geeni Glimpse 1080p Camera (2-Pack)",
-        "shortTitle": "Geeni Glimpse Camera",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-CW236mainupdate.jpg?v=1680186305",
-        "url": "/products/glimpse-1080p-smart-camera-2-pack?variant=42315022434556",
-        "price": "$39.99",
-        "rate": "4.1"
-      },
-      "4-pack-prisma-plus-800-60w-led-color-tunable-white-smart-wi-fi-bulb": {
-        "title": "Geeni Prisma Plus 800 A19 Smart Bulb - Multicolor and Tunable (4-Pack)",
-        "shortTitle": "Geeni Prisma Candle Wi-Fi Smart Bulb",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-BW4134packwshadow_4fb89e0f-185b-4378-8805-6397de89ada0.jpg?v=1680277536",
-        "url": "/products/4-pack-prisma-plus-800-60w-led-color-tunable-white-smart-wi-fi-bulb?variant=32297314353231",
-        "price": "$34.99",
-        "rate": "4.8"
-      },
-      "4-pack-prisma-plus-candle-e12-40w-color-tunable-white-smart-wi-fi-bulb": {
-        "title": "Geeni Prisma E12/B11 Smart Bulb - Multicolor and Tunable White (4-Pack)",
-        "shortTitle": "Geeni Prisma Candle Wi-Fi Smart Bulb",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-BW425-999wshadow.jpg?v=1680277632",
-        "url": "/products/4-pack-prisma-plus-candle-e12-40w-color-tunable-white-smart-wi-fi-bulb?variant=32297323102287",
-        "price": "$34.99",
-        "rate": "4.7"
-      },
-      "prisma-plus-800-60w-equivalent-color-and-white-dimmable-tunable-white-a19-smart-led-light-bulb": {
-        "title": "Geeni Prisma Plus A19 Smart Bulb - Multicolor and Tunable White",
-        "shortTitle": "Geeni Prisma Plus 800 Tunable Wi-Fi LED Smart E26 A19 Light Bulb (1-Pack)",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-BW913-999_mainwshadow.jpg?v=1680277427",
-        "url": "/products/prisma-plus-800-60w-equivalent-color-and-white-dimmable-tunable-white-a19-smart-led-light-bulb?variant=31352850645071",
-        "price": "$14.99",
-        "rate": "4.8"
-      },
-      "geeni-gn-bw932-999-3-lux-800-led-light-bulb-3-pack-soft-white-3-each": {
-        "title": "Geeni Lux A19 Smart Bulb - Warm White (3-Pack)",
-        "shortTitle": "Geeni Lux Smart Bulb",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-BW932-999_mainwshadow.jpg?v=1680276894",
-        "url": "/products/geeni-gn-bw932-999-3-lux-800-led-light-bulb-3-pack-soft-white-3-each?variant=21667194044495",
-        "price": "$22.49",
-        "rate": "5"
-      },
-      "lux-800-smart-wi-fi-led-white-light-1": {
-        "title": "Geeni Lux A19 Smart Bulb - Warm White (3-Pack)",
-        "shortTitle": "Geeni Lux Smart Bulb",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-BW902-999_mainwshadow.jpg?v=1680276881",
-        "url": "/products/lux-800-smart-wi-fi-led-white-light-1?variant=21667118415951",
-        "price": "$12.49",
-        "rate": "5"
-      },
-      // Geeni BR30 Smart LED Light Bulbs (4-Pack)
-      // Geeni Look - Indoor Surveillance Camera (2 -pack), 
-      // Geeni Lux PAR38 Smart Bulb - White 75W Equivalent Tunable (2-Pack)
-      // Merkury Innovations Dimmer Switch
-      "geeni-gn-bw912-999-lux-flood-smart-bulb-white": {
-        "title": "Geeni Lux PAR38 Smart Bulb - 75W Equivalent, Tunable White",
-        "shortTitle": "Geeni Lux Smart Bulb",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-BW912-999_mainwshadow.jpg?v=1680277267",
-        "url": "/products/geeni-gn-bw912-999-lux-flood-smart-bulb-white?variant=31552308314191",
-        "price": "$19.99",
-        "rate": "4.9"
-      },
-      "merkury-innovations-smart-light-switch-requires-2-4ghz-wifi": {
-        "title": "Merkury Innovations Light Switch",
-        "shortTitle": "Merkury Innovations Light Switch",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/e1d91fcd-c5ed-45b5-9756-e40cb3e2248c.jpg?v=1647897680",
-        "url": "/products/merkury-innovations-smart-light-switch-requires-2-4ghz-wifi?variant=42718813880572",
-        "price": "$18.99",
-        "rate": "4.8"
-      },
-      // Geeni Prisma Strip - USB Powered Light Strip Kit (6.6 ft.)
-      // Geeni Indoor/Outdoor Weatherproof Smart Plug - Duo (1-pack)
-      // Geeni Prisma Strip 10 (9.8 ft.)
-      // Geeni Prisma Strip 16 - Light Strip Kit, RGB (16.4 ft.)
-      // Geeni Prisma Strip Kit (32 ft.)
-      //Geeni Aware HD 1080p Smart Wi-Fi Security Camera 
+    waitForElement('#bundle-data').then(el => {
+      const waitForEl = setInterval(() => {
+        if (document.querySelectorAll('#bundle-data p')[13]) {
+          clearInterval(waitForEl)
 
-      "c9-string-lights-50ft": {
-        "title": "Geeni Indoor/Outdoor Waterproof C9 String Lights (50 ft.)",
-        "shortTitle": "Geeni Indoor/Outdoor Waterproof String Lights",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/20e7b242-3328-4090-b645-52e681912691.jpg?v=1687816776",
-        "url": "/products/c9-string-lights-50ft?variant=44449807368444",
-        "price": "$39.99",
-        "rate": "3.3"
-      },
-      "geeni-gn-ww117-199-dot-smart-wi-fi-plug-pack-of-1-white": {
-        "title": "Geeni Dot Smart Plug",
-        "shortTitle": "Geeni Dot Smart Plug",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-WW117SmartDotmainwshadow.jpg?v=1680195381",
-        "url": "/products/geeni-gn-ww117-199-dot-smart-wi-fi-plug-pack-of-1-white?variant=32333763313743",
-        "price": "$12.99",
-        "rate": "4.8"
-      },
-      "cascading-curtain-string-lights-5ft": {
-        "title": "Geeni Cascading Curtain Lights (6.6 ft. x 5 ft.)",
-        "shortTitle": "Geeni Cascading Curtain Lights",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/50180bb8-d1c4-4727-86f9-b169b7c40e08_42f538d6-18be-44a2-9396-7416053bb91d.jpg?v=1687803219",
-        "url": "/products/cascading-curtain-string-lights-5ft?variant=44449445314812",
-        "price": "$39.99",
-        "rate": ""
-      },
-      "neoflex-smart-wi-fi-rope-light-silicone-multicolor-rgbic-led-color-changing-strip-lights-with-music-sync-compatible-with-alexa-and-google-home-ip65-waterproof-for-outdoor-16-4ft": {
-        "title": "Geeni Prisma Neoflex RGB Strip Light with Music Sync (16.4 ft.)",
-        "shortTitle": "Geeni Prisma Neoflex RGB LED Strip Light",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/88ca5c77-1baf-4ae0-a135-6769cdb49ec9.jpg?v=1634584950",
-        "url": "/products/neoflex-smart-wi-fi-rope-light-silicone-multicolor-rgbic-led-color-changing-strip-lights-with-music-sync-compatible-with-alexa-and-google-home-ip65-waterproof-for-outdoor-16-4ft?variant=39649050755151",
-        "price": "$29.99",
-        "rate": "5"
-      },
-      "hawk-3-1080p-hd-outdoor-smart-wi-fi-security-camera-white": {
-        "title": "Geeni Hawk 3 1080p Outdoor Camera",
-        "shortTitle": "Geeni Hawk 3 Camera",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-CW033Mainupdate.jpg?v=1680186358",
-        "url": "/products/hawk-3-1080p-hd-outdoor-smart-wi-fi-security-camera-white?variant=32753086234703",
-        "price": "$49.99",
-        "rate": "4.5"
-      },
-      // Geeni Sentry Smart Floodlight Camera
-      // Geeni Indoor/Outdoor Weatherproof Smart Plug
-      "hawk-1080p-hd-outdoor-security-camera-white": {
-        "title": "Geeni Hawk 1080p Outdoor Security Camera",
-        "shortTitle": "Geeni Hawk 1080p Camera",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-CW011-199Hawk1bwshadow.jpg?v=1680186337",
-        "url": "/products/hawk-1080p-hd-outdoor-security-camera-white?variant=32333952417871",
-        "price": "$42.95",
-        "rate": "4.6"
-      },
-      "freebird-wire-free-battery-smart-camera": {
-        "title": "Geeni Freebird Wire-Free Battery Camera",
-        "shortTitle": "Geeni Freebird Wire-Free Battery Camera",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/CW031mainwithshadow.jpg?v=1680186243",
-        "url": "/products/freebird-wire-free-battery-smart-camera?variant=32660605632591",
-        "price": "$89.09",
-        "rate": "4.6"
-      },
-      "doorpeek-smart-wi-fi-1080p-full-hd-video-doorbell-wired-black": {
-        "title": "Geeni Doorpeek Wired Doorbell",
-        "shortTitle": "Geeni Doorpeek Smart Wired Doorbell",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-CW025mainwshadow.jpg?v=1680186218",
-        "url": "/products/doorpeek-smart-wi-fi-1080p-full-hd-video-doorbell-wired-black?variant=32297435365455",
-        "price": "$69.99",
-        "rate": "4.3"
-      },
-      "freebird-wire-free-battery-smart-camera-2-pack": {
-        "title": "Geeni Freebird Wire-Free Battery Camera (2-Pack)",
-        "shortTitle": "Geeni Freebird Wire-Free Battery Camera",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-CW231mainwithshadow.jpg?v=1680186258",
-        "url": "/products/freebird-wire-free-battery-smart-camera-2-pack?variant=32660613496911",
-        "price": "$159.55",
-        "rate": "4.6"
-      },
-      "eagle-2k-camera": {
-        "title": "Geeni Eagle 2K Outdoor Camera",
-        "shortTitle": "Geeni Eagle 2K Camera",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/7fe49074-d52b-4f34-9db5-495c21bd5506.jpg?v=1690919610",
-        "url": "/products/eagle-2k-camera?variant=44473959481596",
-        "price": "$59.99",
-        "rate": "4"
-      },
-      // Geeni Hawk 3 1080p Outdoor Smart Camera (2 -pack)
-      // Geeni Indoor/Outdoor Weatherproof Smart Plug (1 - pack)
-      // Geeni Dot Smart Plug (2 - pack)
-      // Geeni 6-Outlet Surge Protector
-      // Geeni Hawk 3 1080p HD Outdoor Smart Wi-Fi Security Camera (1 -pack)
-      // Geeni Indoor/Outdoor Weatherproof Smart Plug (2 - pack)
-      "extend-smart-wi-fi-outlet-extender-white": {
-        "title": "Geeni Extend 4-Outlet Surge Protector",
-        "shortTitle": "Geeni Extend 4-Outlet Protector",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/GN-WW119-199mainupdate.jpg?v=1680195336",
-        "url": "/products/extend-smart-wi-fi-outlet-extender-white?variant=32297298329679",
-        "price": "$21.49",
-        "rate": "5"
-      },
-      "temperature-humidity-sensor-1": {
-        "title": "Geeni Temperature and Humidity Sensor",
-        "shortTitle": "Geeni Temperature and Humidity Sensor",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/files/GN-WA012Tempsensormainwithphone.jpg?v=1689180348",
-        "url": "/products/temperature-humidity-sensor-1?variant=44472366858492",
-        "price": "$24.99",
-        "rate": "2.3"
-      },
-      "temperature-humidity-sensor-2": {
-        "title": "Geeni Temperature and Humidity Sensor (2-Pack)",
-        "shortTitle": "Geeni Temperature and Humidity Sensor",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/files/geeni-temperature-and-humidity-sensor-2-pack.jpg?v=1689284324",
-        "url": "/products/temperature-humidity-sensor-2?variant=44472367775996",
-        "price": "$34.99",
-        "rate": "2.3"
-      },
-      "geeni-cascading-curtain-string-lights-multicolor-led-app-voice-control-music-sync-linkable-6-6-ft-x-5-ft": {
-        "title": "Geeni Indoor/Outdoor String Light (72 ft.)",
-        "shortTitle": "Geeni Indoor/Outdoor String Light",
-        "img": "https://cdn.shopify.com/s/files/1/2612/6532/products/497dc64d-9985-4202-83b0-fff128b33c22.jpg?v=1692826185",
-        "url": "/products/geeni-cascading-curtain-string-lights-multicolor-led-app-voice-control-music-sync-linkable-6-6-ft-x-5-ft?variant=44538134692092",
-        "price": "$29.99",
-        "rate": "4.3"
-      }
-    }
+          const bundleObjects = {
+            "sentinel-1080p-pan-tilt-smart-wi-fi-security-camera-white": {
+              shortTitle: 'Geeni Sentinel Camera',
+              rate: '4.8'
+            },
+            "hawk-3-1080p-hd-outdoor-smart-wi-fi-security-camera-white": {
+              shortTitle: 'Geeni Hawk 3 Camera',
+              rate: '4.6'
+            },
+            "geeni-gn-cw008-101-look-1080p-wi-fi-camera-black": {
+              "shortTitle": "Geeni Look Indoor Camera",
+              "rate": "4.5"
+            },
+            "geeni-look-2-pack-1080p-hd-smart-home-surveillance-system-with-night-vision-motion-detection-2-way-audio-remote-access-with-ios-android-app-no-hub-required-black": {
+              "shortTitle": "Geeni Look Indoor Camera",
+              "rate": "4.5"
+            },
+            "insight-mini-2k": {
+              "shortTitle": "Geeni Insight Mini 2K Camera",
+              "rate": "4.3"
+            },
+            "geeni-insight-mini-2k-indoor-camera": {
+              "shortTitle": "Geeni Insight Mini 2K Camera",
+              "rate": "4.3"
+            },
+            "hawk-3-1080p-hd-outdoor-smart-wi-fi-security-camera-white-2-pack": {
+              "shortTitle": "Geeni Hawk 3 Camera",
+              "rate": "4.5"
+            },
+            "aware-1080p-hd-smart-wi-fi-security-camera-white": {
+              "shortTitle": "Geeni Aware Wi-Fi Camera",
+              "rate": "4.1"
+            },
+            "aware-hd-1080p-smart-wi-fi-security-camera-2-pack": {
+              "shortTitle": "Geeni Aware Wi-Fi Camera",
+              "rate": "4.1"
+            },
+            "geeni-sentry-smart-wi-fi-floodlight-and-security-camera-outdoor-light-and-security-camera-for-home-surveillance": {
+              "shortTitle": "Geeni Sentry Wi-Fi Floodlight Camera",
+              "rate": "4.5"
+            },
 
-    const bundleCombos = {
-      "sentinel-1080p-pan-tilt-smart-wi-fi-security-camera-white": {
-        combo: bundleObjects["hawk-3-1080p-hd-outdoor-smart-wi-fi-security-camera-white"],
-        bundleId: "44837489803516"
-      },
-      "geeni-gn-cw008-101-look-1080p-wi-fi-camera-black": {
-        combo: bundleObjects["hawk-3-1080p-hd-outdoor-smart-wi-fi-security-camera-white"],
-        bundleId: "44853233058044"
-      },
-      // "geeni-look-2-pack-1080p-hd-smart-home-surveillance-system-with-night-vision-motion-detection-2-way-audio-remote-access-with-ios-android-app-no-hub-required-black" Geeni Look - Indoor Surveillance Camera (2 - pack) + Geeni Hawk 3 1080p Outdoor Smart Camera (2 - pack),
-      "insight-mini-2k": {
-        combo: bundleObjects["hawk-3-1080p-hd-outdoor-smart-wi-fi-security-camera-white"],
-        bundleId: "44853244068092"
-      },
-      // "Geeni Insight Mini 2K Indoor Camera (2 - pack) + Geeni Hawk 3 1080p Outdoor Smart Camera (2 - pack),
-      // Geeni Aware 1080p Smart Camera (1 - pack) + Geeni Sentry Smart Wi-Fi Floodlight and Security Camera,
-      // Geeni Aware 1080p Smart Camera (1 - pack) + Geeni Sentry Smart Wi-Fi Floodlight and Security Camera,
-      // Geeni Aware 1080p Smart Camera (2 - pack) + Geeni Sentry Smart Wi-Fi Floodlight and Security Camera,
-      "glimpse-1080p-hd-smart-security-camera-white": {
-        combo: bundleObjects["hawk-1080p-hd-outdoor-security-camera-white"],
-        bundleId: "44856025284860"
-      },
-      "glimpse-1080p-smart-camera-2-pack": {
-        combo: bundleObjects["hawk-1080p-hd-outdoor-security-camera-white"],
-        bundleId: "44856027611388"
-      },
-      "4-pack-prisma-plus-800-60w-led-color-tunable-white-smart-wi-fi-bulb": {
-        combo: bundleObjects["4-pack-prisma-plus-candle-e12-40w-color-tunable-white-smart-wi-fi-bulb"],
-        bundleId: "44856033771772"
-      },
-      "4-pack-prisma-plus-candle-e12-40w-color-tunable-white-smart-wi-fi-bulb": {
-        combo: bundleObjects["prisma-plus-800-60w-equivalent-color-and-white-dimmable-tunable-white-a19-smart-led-light-bulb"],
-        bundleId: "44856385536252"
-      },
-      "geeni-gn-bw932-999-3-lux-800-led-light-bulb-3-pack-soft-white-3-each": {
-        combo: bundleObjects["hawk-3-1080p-hd-outdoor-smart-wi-fi-security-camera-white"],
-        bundleId: "44856391303420"
-      },
-      "lux-800-smart-wi-fi-led-white-light-1": {
-        combo: bundleObjects["hawk-3-1080p-hd-outdoor-smart-wi-fi-security-camera-white"],
-        bundleId: "44856395333884"
-      },
-      // Geeni BR30 Smart LED Light Bulbs (4-Pack) + Geeni Look - Indoor Surveillance Camera (2 -pack), 
-      // Geeni BR30 Smart LED Light Bulbs (4-Pack) + Geeni Look - Indoor Surveillance Camera (1 - pack)
-      // Geeni Lux PAR38 Smart Bulb - White 75W Equivalent Tunable (2-Pack) + Merkury Innovations Dimmer Switch
-      "geeni-gn-bw912-999-lux-flood-smart-bulb-white": {
-        combo: bundleObjects["merkury-innovations-smart-light-switch-requires-2-4ghz-wifi"],
-        bundleId: "44856408146172"
-      },
-      // Geeni Prisma Strip - USB Powered Light Strip Kit (6.6 ft.) + Geeni Indoor/Outdoor Weatherproof Smart Plug - Duo (1-pack)
-      // Geeni Prisma Strip 10 (9.8 ft.) + Geeni Indoor/Outdoor Weatherproof Smart Plug - Duo (1-pack)
-      // Geeni Prisma Strip 16 - Light Strip Kit, RGB (16.4 ft.) + Geeni Indoor/Outdoor Weatherproof Smart Plug - Duo (1-pack)
-      // Geeni Prisma Strip Kit (32 ft.) + Geeni Aware HD 1080p Smart Wi-Fi Security Camera 
-      "c9-string-lights-50ft": {
-        combo: bundleObjects["geeni-gn-ww117-199-dot-smart-wi-fi-plug-pack-of-1-white"],
-        bundleId: "44856591778044"
-      },
-      "cascading-curtain-string-lights-5ft": {
-        combo: bundleObjects["geeni-gn-ww117-199-dot-smart-wi-fi-plug-pack-of-1-white"],
-        bundleId: "44856593514748"
-      },
-      "neoflex-smart-wi-fi-rope-light-silicone-multicolor-rgbic-led-color-changing-strip-lights-with-music-sync-compatible-with-alexa-and-google-home-ip65-waterproof-for-outdoor-16-4ft": {
-        combo: bundleObjects["hawk-3-1080p-hd-outdoor-smart-wi-fi-security-camera-white"],
-        bundleId: "44856602886396"
-      },
-      // Geeni Sentry Smart Floodlight Camera + Geeni Indoor/Outdoor Weatherproof Smart Plug
-      "hawk-1080p-hd-outdoor-security-camera-white": {
-        combo: bundleObjects["geeni-look-2-pack-1080p-hd-smart-home-surveillance-system-with-night-vision-motion-detection-2-way-audio-remote-access-with-ios-android-app-no-hub-required-black"],
-        bundleId: "44856627790076"
-      },
-      "freebird-wire-free-battery-smart-camera": {
-        combo: bundleObjects["doorpeek-smart-wi-fi-1080p-full-hd-video-doorbell-wired-black"],
-        bundleId: "44856692441340"
-      },
-      "freebird-wire-free-battery-smart-camera-2-pack": {
-        combo: bundleObjects["doorpeek-smart-wi-fi-1080p-full-hd-video-doorbell-wired-black"],
-        bundleId: "44856754274556"
-      },
-      "hawk-3-1080p-hd-outdoor-smart-wi-fi-security-camera-white": {
-        combo: bundleObjects["eagle-2k-camera"],
-        bundleId: "44856756699388"
-      },
-      //       Geeni Hawk 3 1080p Outdoor Smart Camera (2 -pack) + Geeni Eagle 2K Outdoor Camera
-      // Geeni Dot Smart Plug (1 - pack) + Geeni Indoor/Outdoor Weatherproof Smart Plug (1 - pack)
-      // Geeni Dot Smart Plug (2 - pack) + Geeni 6-Outlet Surge Protector
-      // Geeni Indoor/Outdoor Weatherproof Smart Plug (1 - pack) + Geeni Hawk 3 1080p HD Outdoor Smart Wi-Fi Security Camera (1 -pack)
-      // Geeni Indoor/Outdoor Weatherproof Smart Plug (2 - pack) + Geeni Hawk 3 1080p HD Outdoor Smart Wi-Fi Security Camera (1 -pack)
-      "extend-smart-wi-fi-outlet-extender-white": {
-        combo: bundleObjects["geeni-gn-cw008-101-look-1080p-wi-fi-camera-black"],
-        bundleId: "44856700567804"
-      },
-      "eagle-2k-camera": {
-        combo: bundleObjects["doorpeek-smart-wi-fi-1080p-full-hd-video-doorbell-wired-black"],
-        bundleId: "44856701747452"
-      },
-      "temperature-humidity-sensor-1": {
-        combo: bundleObjects["geeni-gn-ww117-199-dot-smart-wi-fi-plug-pack-of-1-white"],
-        bundleId: "44856702632188"
-      },
-      "temperature-humidity-sensor-2": {
-        combo: bundleObjects["geeni-gn-ww117-199-dot-smart-wi-fi-plug-pack-of-1-white"],
-        bundleId: "44856704663804"
-      },
-      "geeni-cascading-curtain-string-lights-multicolor-led-app-voice-control-music-sync-linkable-6-6-ft-x-5-ft": {
-        combo: bundleObjects["4-pack-prisma-plus-800-60w-led-color-tunable-white-smart-wi-fi-bulb"],
-        bundleId: "44856705679612"
-      },
+            "glimpse-1080p-hd-smart-security-camera-white": {
+              "shortTitle": "Geeni Glimpse Camera",
+              "rate": "4.1"
+            },
+            "hawk-1080p-hd-outdoor-security-camera-white": {
+              "shortTitle": "Geeni Hawk 1080p Camera",
+              "rate": "4.6"
+            },
+            "glimpse-1080p-smart-camera-2-pack": {
+              "shortTitle": "Geeni Glimpse Camera",
+              "rate": "4.1"
+            },
+            "4-pack-prisma-plus-800-60w-led-color-tunable-white-smart-wi-fi-bulb": {          
+              "shortTitle": "Geeni Prisma Candle Wi-Fi Smart Bulb",
+              "rate": "4.8"
+            },
+            "4-pack-prisma-plus-candle-e12-40w-color-tunable-white-smart-wi-fi-bulb": {
+              "shortTitle": "Geeni Prisma Candle Wi-Fi Smart Bulb",
+              "rate": "4.7"
+            },
+            "prisma-plus-800-60w-equivalent-color-and-white-dimmable-tunable-white-a19-smart-led-light-bulb": {
+              "shortTitle": "Geeni Prisma Plus 800 Tunable Wi-Fi LED Smart E26 A19 Light Bulb (1-Pack)",
+              "rate": "4.8"
+            },
+            "geeni-gn-bw932-999-3-lux-800-led-light-bulb-3-pack-soft-white-3-each": {
+              "shortTitle": "Geeni Lux Smart Bulb",
+              "rate": "5"
+            },
+            "lux-800-smart-wi-fi-led-white-light-1": {
+              "shortTitle": "Geeni Lux Smart Bulb",
+              "rate": "5"
+            },
+            "2-pack-lux-flood-par38-75w-led-tunable-dimmable-white-smart-wi-fi-bulb": {
+              "shortTitle": "Geeni Smart LED Light Bulbs ",
+              "rate": "4.9"
+            },
+            "prisma-strip-usb-smart-led-light-strip-kit-rgb-trimmable-6-6ft": {
+              "shortTitle": "Geeni Prisma Strip - USB Powered",
+              "rate": "4.9"
+            },
+            "prisma-strip-10-smart-led-light-strip-kit-rgb-trimmable-9-8ft": {
+              "shortTitle": "Geeni Prisma Strip 10",
+              "rate": "4.9"
+            },
+            "prisma-strip-kit-rgb-trimmable-32ft": {
+              "shortTitle": "Geeni Prisma Strip Kit",
+              "rate": "4.9"
+            },
+            "5m-prisma-strip-smart-wi-fi-rgb-led": {
+              "shortTitle": "Geeni Prisma Strip 16",
+              "rate": "4.9"
+            },
+            "outdoor-duo-dual-outlet-smart-wi-fi-plug-grey": {
+              "shortTitle": "Geeni Indoor/Outdoor Weatherproof Smart Plug",
+              "rate": "4.8"
+            },
+            "indoor-outdoor-weatherproof-smart-plug-duo-2-pack": {
+              "shortTitle": "Geeni Indoor/Outdoor Weatherproof Smart Plug",
+              "rate": "4.8"
+            },
+            "geeni-gn-bw912-999-lux-flood-smart-bulb-white": {
+              "shortTitle": "Geeni Lux Smart Bulb",
+              "rate": "4.9"
+            },
+            "merkury-innovations-smart-light-switch-requires-2-4ghz-wifi": {
+              "shortTitle": "Merkury Innovations Light Switch",
+              "rate": "4.8"
+            },
+            "c9-string-lights-50ft": {
+              "shortTitle": "Geeni Indoor/Outdoor Waterproof String Lights",
+              "rate": "3.3"
+            },
+            "geeni-gn-ww117-199-dot-smart-wi-fi-plug-pack-of-1-white": {
+              "shortTitle": "Geeni Dot Smart Plug",
+              "rate": "4.8"
+            },
+            "geeni-gn-ww217-199-dot-smart-wi-fi-plug-2-pack-pack-of-2-white": {
+              "shortTitle": "Geeni Dot Smart Plug",
+              "rate": "4.8"
+            },
+            "geeni-gn-sw003-199-surge-smart-protector-white": {
+              "shortTitle": "Geeni 6-Outlet Surge Protector",
+              "rate": "4.7"
+            },
+            "cascading-curtain-string-lights-5ft": {
+              "shortTitle": "Geeni Cascading Curtain Lights",
+              "rate": ""
+            },
+            "neoflex-smart-wi-fi-rope-light-silicone-multicolor-rgbic-led-color-changing-strip-lights-with-music-sync-compatible-with-alexa-and-google-home-ip65-waterproof-for-outdoor-16-4ft": {
+              "shortTitle": "Geeni Prisma Neoflex RGB LED Strip Light",
+              "rate": "5"
+            },
+            "hawk-3-1080p-hd-outdoor-smart-wi-fi-security-camera-white": {
+              "shortTitle": "Geeni Hawk 3 Camera",
+              "rate": "4.5"
+            },
+            "4-pack-prisma-plus-drop-br30-65w-led-color-tunable-white-smart-wi-fi-bulb": {
+              "shortTitle": "Geeni Smart LED Light Bulbs ",
+              "rate": "4.8"
+            },
+            "prisma-drop-smart-wi-fi-led-color-droplight-1": {
+              "shortTitle": "Geeni Smart LED Light Bulbs ",
+              "rate": "4.8"
+            },
+            "hawk-1080p-hd-outdoor-security-camera-white": {
+              "shortTitle": "Geeni Hawk 1080p Camera",
+              "rate": "4.6"
+            },
+            "freebird-wire-free-battery-smart-camera": {
+              "shortTitle": "Geeni Freebird Wire-Free Battery Camera",
+              "rate": "4.6"
+            },
+            "doorpeek-smart-wi-fi-1080p-full-hd-video-doorbell-wired-black": {
+              "shortTitle": "Geeni Doorpeek Smart Wired Doorbell",
+              "rate": "4.3"
+            },
+            "freebird-wire-free-battery-smart-camera-2-pack": {
+              "shortTitle": "Geeni Freebird Wire-Free Battery Camera",
+              "rate": "4.6"
+            },
+            "eagle-2k-camera": {
+              "shortTitle": "Geeni Eagle 2K Camera",
+              "rate": "4"
+            },
+            "extend-smart-wi-fi-outlet-extender-white": {
+              "shortTitle": "Geeni Extend 4-Outlet Protector",
+              "rate": "5"
+            },
+            "temperature-humidity-sensor-1": {
+              "shortTitle": "Geeni Temperature and Humidity Sensor",
+              "rate": "2.3"
+            },
+            "temperature-humidity-sensor-2": {
+              "shortTitle": "Geeni Temperature and Humidity Sensor",
+              "rate": "2.3"
+            },
+            "geeni-cascading-curtain-string-lights-multicolor-led-app-voice-control-music-sync-linkable-6-6-ft-x-5-ft": {
+              "shortTitle": "Geeni Indoor/Outdoor String Light",
+              "rate": "4.3"
+            }
+          }
 
-    }
+          const firstItem = bundleObjects[document.querySelector('[data-first-product-url]').innerText.split('/products/')[1]]
+          const secondItem = bundleObjects[document.querySelector('[data-second-product-url]').innerText.split('/products/')[1]]
 
-    // // !Delete this
-    // function getFirstCartItem() {
-    //   getCart().then(data => {
-    //     const firstItem = data.items[0]
-
-    //     const itemDetails = {
-    //       title: firstItem.title,
-    //       shortTitle: '',
-    //       img: firstItem.image,
-    //       url: firstItem.url,
-    //       price: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(firstItem.price / 100),
-    //       rate: ''
-    //     }
-
-
-    //     console.log(firstItem.handle)
-    //     console.log(itemDetails)
-    //   })
-    // }
-
-    const calculate15PercentDiscountPrice = (price) => {
-      const discount = 0.15
-      const priceNumber = parseFloat(price.replace('$', ''))
-      const discountPrice = priceNumber - (priceNumber * discount)
-
-      return `$${discountPrice.toFixed(2)}`
-    }
-
-    const sumTwoPrices = (price1, price2) => {
-      const price1Number = parseFloat(price1.replace('$', ''))
-      const price2Number = parseFloat(price2.replace('$', ''))
-
-      return `$${(price1Number + price2Number).toFixed(2)}`
-    }
-
-    const firstItem = bundleObjects[PRODUCT_HANDLE]
-    const secondItem = bundleCombos[PRODUCT_HANDLE]?.combo
-
-    if (firstItem && secondItem) {
-
-      const bundleId = bundleCombos[PRODUCT_HANDLE].bundleId
-
-      const oldTotalPrice = sumTwoPrices(firstItem.price, secondItem.price)
-      const newTotalPrice = calculate15PercentDiscountPrice(oldTotalPrice)
-
-      const bundleContainer = /*html*/`
+          const bundleContainer = /*html*/`
     <style>
     .bundle * {
       margin: 0;
@@ -2047,22 +1804,18 @@ line-height: 22px;
   <div class="bundle__item">
     <div class="bundle__item__top">
       <div class="bundle__item__img">
-        <img src="${firstItem.img}" alt="${firstItem.title}">
+        <img src="https://cdn.shopify.com/s/files/1/2612/6532/${document.querySelector('[data-first-product-image]').innerText}" alt="${document.querySelector('[data-first-product-title]').innerText}">
       </div>
 
       <p class="bundle__item__title">${firstItem.shortTitle}</p>
     </div>
 
-    <div class="bundle__item__info">      
-      <!-- <div class="bundle__item-rate">
-        <div class="bundle__item-rate__stars">${getStarRatingSvg(firstItem.rate)}</div>
-        <p>${firstItem.rate}</p>
-      </div> -->
+    <div class="bundle__item__info">
       <p class="bundle__item__title">${firstItem.shortTitle}</p>
       <div class="bundle__item-rate-stars">${getStarRatingSvg(firstItem.rate)}</div>
       <div class="bundle__item__price-wrapper">
-        <p class="bundle__item__price--current">${calculate15PercentDiscountPrice(firstItem.price)}</p>
-        <p class="bundle__item__price--old">${firstItem.price}</p>
+        <p class="bundle__item__price--current">${document.querySelector('[data-first-product-discount-price]').innerText}</p>
+        <p class="bundle__item__price--old">${document.querySelector('[data-first-product-price]').innerText}</p>
       </div>
     </div>
   </div>
@@ -2084,23 +1837,19 @@ line-height: 22px;
   <div class="bundle__item">
     <div class="bundle__item__top">
       <div class="bundle__item__img">
-        <a href="${secondItem.url}" target="_blank">
-          <img src="${secondItem.img}" alt="${secondItem.title}">
+        <a href="${document.querySelector('[data-second-product-url]').innerText}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/2612/6532/${document.querySelector('[data-second-product-image]').innerText}" alt="${document.querySelector('[data-second-product-title]').innerText}">
         </a>
       </div>
-      <a href="${secondItem.url}" class="bundle__item__title">${secondItem.shortTitle}</a>
+      <a href="${document.querySelector('[data-second-product-url]').innerText}" class="bundle__item__title" target="_blank">${secondItem.shortTitle}</a>
     </div>
 
-    <div class="bundle__item__info">      
-      <!-- <div class="bundle__item-rate">
-        <div class="bundle__item-rate__stars">${getStarRatingSvg(secondItem.rate)}</div>
-        <p>${secondItem.rate}</p>
-      </div> -->
-      <a href="${secondItem.url}" class="bundle__item__title">${secondItem.shortTitle}</a>
+    <div class="bundle__item__info">
+      <a href="${document.querySelector('[data-second-product-url]').innerText}" class="bundle__item__title" target="_blank">${secondItem.shortTitle}</a>
       <div class="bundle__item-rate-stars">${getStarRatingSvg(secondItem.rate)}</div>
       <div class="bundle__item__price-wrapper">
-        <p class="bundle__item__price--current">${calculate15PercentDiscountPrice(secondItem.price)}</p>
-        <p class="bundle__item__price--old">${secondItem.price}</p>
+        <p class="bundle__item__price--current">${document.querySelector('[data-second-product-discount-price]').innerText}</p>
+        <p class="bundle__item__price--old">${document.querySelector('[data-second-product-price]').innerText}</p>
       </div>
     </div>
   </div>
@@ -2109,34 +1858,36 @@ line-height: 22px;
 <div class="bundle__footer">
   <div class="bundle__footer__price-wrapper">
     <p class="bundle__footer__total">Total Price:</p>
-    <p class="bundle__footer__price--old">${oldTotalPrice}</p>
-    <p class="bundle__footer__price--current">${newTotalPrice}</p>
+    <p class="bundle__footer__price--old">${document.querySelector('[data-bundle-price]').innerText}</p>
+    <p class="bundle__footer__price--current">${document.querySelector('[data-bundle-discount-price]').innerText}</p>
   </div>
-  <button class="bundle__footer__btn" data-bundle-id="${bundleId}">Add to Cart</button>
+  ${document.querySelector('[data-bundle-available]').innerText === 'true' ? `<button class="bundle__footer__btn" data-bundle-id="${document.querySelector('[data-bundle-variant-id]').innerText}">Add to Cart</button>` : `<button class="bundle__footer__btn sold-out" data-bundle-id="${document.querySelector('[data-bundle-variant-id]').innerText}">Sold out</button>`}
 </div>
 </div>
-      `
+          `
 
-      waitForElement('.delivery').then(el => el.insertAdjacentHTML('afterend', bundleContainer))
+          waitForElement('.delivery').then(el => el.insertAdjacentHTML('afterend', bundleContainer))
 
-      waitForElement('.bundle__footer__btn').then(btn => {
-        btn.addEventListener('click', () => {
-          const bundleId = btn.dataset.bundleId
-          addItemToCart(bundleId)
-          pushDataLayer(['exp_freq_boug_but_pdptogether_add', 'Add to Cart', 'Button', 'PDP Block Buy Together'])
-        })
-      })
+          waitForElement('.bundle__footer__btn').then(btn => {
+            btn.addEventListener('click', () => {
+              const bundleId = btn.dataset.bundleId
+              addItemToCart(bundleId)
+              pushDataLayer(['exp_freq_boug_but_pdptogether_add', 'Add to Cart', 'Button', 'PDP Block Buy Together'])
+            })
+          })
 
-      waitForElement('.bundle').then(el => handleVisibility(el,
-        [
-          'exp_freq_boug_vis_pdptogether_focus',
-          '{{focusTime}}',
-          'Visibility',
-          'PDP Block Buy Together'
-        ]
-      )
-      )
-    }
+          waitForElement('.bundle').then(el => handleVisibility(el,
+            [
+              'exp_freq_boug_vis_pdptogether_focus',
+              '{{focusTime}}',
+              'Visibility',
+              'PDP Block Buy Together'
+            ]
+          )
+          )
+        }
+      }, WAIT_INTERVAL_TIMEOUT)
+    })
   }
 
   function addClarity() {
