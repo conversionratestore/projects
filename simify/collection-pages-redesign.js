@@ -347,6 +347,10 @@
       background: #EEF4FC;
     }
 
+    .accordion-item[data-switch="on"] {
+      display: none;
+    }
+
     .accordion-item:first-child {
       border-radius: 6px 6px 0 0;
     }
@@ -1026,7 +1030,32 @@ line-height: 20px; /* 142.857% */
   function addHeading() {
     const faqHTML = /*html*/`
     <div class="accordion">
-            <div class="accordion-item">
+            <div class="accordion-item" data-switch="on">
+              <div class="accordion-title">
+                <div class="accordion-title-text">
+                  <p>What is better, SIM or eSIM?</p>
+                  <img src="https://conversionratestore.github.io/projects/simify/img/add-icon.svg" alt="Button to expand FAQ content">
+                </div>
+                <div class="accordion-line"></div>
+              </div>
+              <div class="accordion-content">
+                <div class="accordion-inner">
+                  <p>The choice between a traditional SIM and an eSIM depends on your specific needs and device capabilities:
+                  </p>
+                  <ul>
+                    <li>Traditional SIM Card: Ideal for those who frequently switch between different phones or have older
+                      models. You can physically move the SIM card from one device to another.</li>
+                    <li>eSIM: Perfect for managing multiple network plans on a single device. eSIMs offer the convenience of
+                      instant delivery and digital activation and are considered more secure as they can't be physically
+                      removed or tampered with.</li>
+                  </ul>
+                  <p>Both options have their advantages, so the right choice depends on your lifestyle, device, and how you
+                    use your mobile service.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" data-switch="off">
               <div class="accordion-title">
                 <div class="accordion-title-text">
                   <p>What is an eSIM?</p>
@@ -1089,31 +1118,6 @@ line-height: 20px; /* 142.857% */
                     convenience, we've compiled a comprehensive list of eSIM-compatible devices on our eSIM product pages.
                     Just pick the plan, and scroll down on the page to find detailed compatibility information for popular
                     brands like Apple, Samsung, and Google, along with others.</p>
-                </div>
-              </div>
-            </div>
-  
-            <div class="accordion-item">
-              <div class="accordion-title">
-                <div class="accordion-title-text">
-                  <p>What is better, SIM or eSIM?</p>
-                  <img src="https://conversionratestore.github.io/projects/simify/img/add-icon.svg" alt="Button to expand FAQ content">
-                </div>
-                <div class="accordion-line"></div>
-              </div>
-              <div class="accordion-content">
-                <div class="accordion-inner">
-                  <p>The choice between a traditional SIM and an eSIM depends on your specific needs and device capabilities:
-                  </p>
-                  <ul>
-                    <li>Traditional SIM Card: Ideal for those who frequently switch between different phones or have older
-                      models. You can physically move the SIM card from one device to another.</li>
-                    <li>eSIM: Perfect for managing multiple network plans on a single device. eSIMs offer the convenience of
-                      instant delivery and digital activation and are considered more secure as they can't be physically
-                      removed or tampered with.</li>
-                  </ul>
-                  <p>Both options have their advantages, so the right choice depends on your lifestyle, device, and how you
-                    use your mobile service.</p>
                 </div>
               </div>
             </div>
@@ -1599,6 +1603,19 @@ line-height: 20px; /* 142.857% */
           </div>
         </div>
       `
+
+      document.head.insertAdjacentHTML('beforeend', /*html*/`
+        <style>
+        .accordion-item[data-switch="on"] {
+      display: block !important;
+    }
+
+    .accordion-item[data-switch="off"] {
+      display: none !important;
+    }
+
+        </style>
+      `)
       
       waitForElement('.heading--alt').then(el => el.insertAdjacentHTML('afterend', switcher))
   
