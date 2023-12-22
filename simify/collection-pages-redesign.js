@@ -330,10 +330,6 @@
       /* 142.857% */
     }
 
-    .container-crs  .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
-      background-color: transparent !important;
-    }
-
     /* Accordion */
     .accordion {
       margin-block: 30px;
@@ -1133,12 +1129,13 @@ line-height: 20px; /* 142.857% */
 
         if (country) {
           const name = country.name
-          // const url = country.url
+          const url = country.url
           const flag = country.flag
 
           return {
             id: idCounter++,
             text: name,
+            url: url,
             flag: `${IMAGE_DIR_URL}/flags/${flag}.svg`
           }
         } else {
@@ -1343,31 +1340,31 @@ line-height: 20px; /* 142.857% */
         <nav class="countries-nav show-on-large">
           <ul>
             <li>
-              <a href="${newUrl}/europe">
+              <a href="${newUrl}europe">
                 <img src="https://conversionratestore.github.io/projects/simify/img/europe.png" alt="Europe & UK">
                 <span>Europe & UK</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}/usa">
+              <a href="${newUrl}usa">
                 <img src="https://conversionratestore.github.io/projects/simify/img/usa.png" alt="USA, Canada & Mexico">
                 <span>USA, Canada & Mexico</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}/japan">
+              <a href="${newUrl}japan">
                 <img src="https://conversionratestore.github.io/projects/simify/img/japan.png" alt="Japan">
                 <span>Japan</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}/asia">
+              <a href="${newUrl}asia">
                 <img src="https://conversionratestore.github.io/projects/simify/img/asia.png" alt="Asia">
                 <span>Asia</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}/new-zealand">
+              <a href="${newUrl}new-zealand">
                 <img src="https://conversionratestore.github.io/projects/simify/img/australia.png" alt="New Zealand & Australia">
                 <span>New Zealand & Australia</span>
               </a>
@@ -1375,19 +1372,19 @@ line-height: 20px; /* 142.857% */
           </ul>
           <ul>
             <li>
-              <a href="${newUrl}/south-east-asia">
+              <a href="${newUrl}south-east-asia">
                 <img src="https://conversionratestore.github.io/projects/simify/img/south-america.png" alt="South America">
                 <span>South America</span>
               </a>
             </li>
             <li>
-            <a href="${newUrl}/middle-east">
+            <a href="${newUrl}middle-east">
                 <img src="https://conversionratestore.github.io/projects/simify/img/east.png" alt="Middle East">
                 <span>Middle East</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}/middle-east">
+              <a href="${newUrl}middle-east">
                 <img src="https://conversionratestore.github.io/projects/simify/img/africa.png" alt="Africa">
                 <span>Africa</span>
               </a>
@@ -1403,49 +1400,49 @@ line-height: 20px; /* 142.857% */
         <nav class="countries-nav show-on-mobile">
           <ul>
           <li>
-              <a href="${newUrl}/europe">
+              <a href="${newUrl}europe">
                 <img src="https://conversionratestore.github.io/projects/simify/img/europe.png" alt="Europe & UK">
                 <span>Europe & UK</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}/usa">
+              <a href="${newUrl}usa">
                 <img src="https://conversionratestore.github.io/projects/simify/img/usa.png" alt="USA, Canada & Mexico">
                 <span>USA, Canada & Mexico</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}/japan">
+              <a href="${newUrl}japan">
                 <img src="https://conversionratestore.github.io/projects/simify/img/japan.png" alt="Japan">
                 <span>Japan</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}/asia">
+              <a href="${newUrl}asia">
                 <img src="https://conversionratestore.github.io/projects/simify/img/asia.png" alt="Asia">
                 <span>Asia</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}/new-zealand">
+              <a href="${newUrl}new-zealand">
                 <img src="https://conversionratestore.github.io/projects/simify/img/australia.png" alt="New Zealand & Australia">
                 <span>New Zealand & Australia</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}/south-east-asia">
+              <a href="${newUrl}south-east-asia">
                 <img src="https://conversionratestore.github.io/projects/simify/img/south-america.png" alt="South America">
                 <span>South America</span>
               </a>
             </li>
             <li>
-            <a href="${newUrl}/middle-east">
+            <a href="${newUrl}middle-east">
                 <img src="https://conversionratestore.github.io/projects/simify/img/east.png" alt="Middle East">
                 <span>Middle East</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}/middle-east">
+              <a href="${newUrl}middle-east">
                 <img src="https://conversionratestore.github.io/projects/simify/img/africa.png" alt="Africa">
                 <span>Africa</span>
               </a>
@@ -1517,7 +1514,7 @@ line-height: 20px; /* 142.857% */
     } else {
       let title = ''
       let subtitle = ''
-      let typeofPage = ''
+      // let typeofPage = ''
       let place
 
       if (pathname.includes('esim')) {
@@ -1535,11 +1532,11 @@ line-height: 20px; /* 142.857% */
       heading = /*html*/`
       <div class="container-crs particular-collection">
         <div class="heading heading--alt">
-          <p>${title}</h>
+          <p>${title}</p>
           <p>${subtitle}</p>
         </div>
         ${faqHTML}
-        <p class="travelling">Travelling elsewhere? <a href="${newUrl}/all">See all locations</a></p>
+        <p class="travelling">Travelling elsewhere? <a href="${newUrl}all">See all locations</a></p>
       </div>`
 
       waitForElement('.travelling a').then(el => el.addEventListener('click', () => {
@@ -1564,7 +1561,7 @@ line-height: 20px; /* 142.857% */
       `
 
       document.head.insertAdjacentHTML('beforeend', /*html*/`
-        <style>
+        <style class="switch-exist">
         .accordion-item[data-switch="on"] {
           display: block !important;
         }
