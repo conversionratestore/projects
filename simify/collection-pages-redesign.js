@@ -1940,7 +1940,7 @@ line-height: 20px; /* 142.857% */
           background-color: #fff;
           border: 1px solid #CCC;
           border-top: 0;
-          z-index: 1;
+          z-index: 9;
           border-radius: 0 0 6px 6px;
           padding: 0 6px 6px;
         }
