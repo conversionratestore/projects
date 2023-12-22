@@ -407,6 +407,9 @@ class ExitIntentPopup {
           position: relative;
           margin: 0 0 11px;
         }
+        .crs_popup[data-query="a"] .crs_popup_message {
+          text-transform: initial;
+        }
         .crs_popup_message:after, 
         .crs_popup_message:before {
           content: '';
@@ -889,6 +892,7 @@ class ExitIntentPopup {
                 let waitGetDiscount = setInterval(() => {
                   if (
                     $el(".needsclick.kl-private-reset-css-Xuajs1") &&
+                    $el('form.needsclick > div > div > div > div > div > div') &&
                     ($el(".needsclick.kl-private-reset-css-Xuajs1")
                       .innerText.toUpperCase()
                       .includes("LMWELCOME10") ||
@@ -908,7 +912,17 @@ class ExitIntentPopup {
                       this.locCountEvent + locEvent
                     ])
 
-                    $el('form.needsclick > div > div > div > div > div > div').addEventListener('click', () => {
+                    $el('form.needsclick > div > div > div > div > div > div').addEventListener('click', (e) => {
+                      e.stopPropagation()
+                      pushDataLayer([
+                        `exp_use_this_popup_copy_button`,
+                        'Copy',
+                        "Button",
+                        "Popup Use this code"
+                      ])
+                    })
+                    $el('form.needsclick > div > div > div > div > div svg').addEventListener('click', (e) => {
+                      e.stopPropagation()
                       pushDataLayer([
                         `exp_use_this_popup_copy_button`,
                         'Copy',
