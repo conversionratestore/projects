@@ -176,6 +176,8 @@ function startTimer() {
     // Перевіряємо, чи таймер закінчився
     if (minutes === 0 && seconds === 0) {
       clearInterval(timerInterval);
+      $el(".crs_timer_min").innerHTML = '00'
+      $el(".crs_timer_sec").innerHTML = '00'
       console.log("Таймер завершено!");
     }
   }, 1000);
@@ -328,6 +330,7 @@ class ExitIntentPopup {
         .needsclick.kl-private-reset-css-Xuajs1 {
           opacity: 0;
           pointer-events: none;
+          font-family: source-sans-3!important;
         }
         .text-center {
           text-align: center;
@@ -427,7 +430,7 @@ class ExitIntentPopup {
           border-top: 10px solid #FFF7EC;
         }
         .crs_list {
-          overflow: scroll;
+          overflow: auto;
           padding: 14px;
           margin: 0 -14px 14px;
           display: flex;
@@ -473,6 +476,9 @@ class ExitIntentPopup {
         p.crs_popup_span {
           font-size: 14px;
           color: var(--Grey-300, #ACACAC);
+        }
+        .crs_popup[data-query="c"] .crs_list_1 .crs_list li {
+          justify-content: center;
         }
         p.crs_popup_stars {
           font-size: 18px;
@@ -532,6 +538,9 @@ class ExitIntentPopup {
           }
         }
         @media (min-width: 770px) {
+          .d-mb-none {
+            display: none!important;
+          }
           .d-md-block {
             display: block!important;
           }
@@ -770,7 +779,8 @@ class ExitIntentPopup {
   }
 
   actionPopup(selector) {
-    let locEvent = selector.querySelector('h2').innerText.includes('Would you like') ? 'Welcome to LeMieux' : selector.querySelector('h2').innerText
+    let title = selector.querySelector('h2').innerText;
+    let locEvent = title.includes('Would you like') ? 'Welcome to LeMieux' : title.includes('almost yours') ? 'It’s almost yours!' : title.includes('Autumn/winter') ? 'Popup Autumn/winter 2024most wanted' : 'Check out now and get 10% off your first order'
     let nameEvent = locEvent.toLowerCase().includes('almost yours') ? 'almo' : locEvent.toLowerCase().includes('welcome') ? 'welcome' : locEvent.toLowerCase().includes('check out now') ? 'first' : 'autwint'
 
     selector.querySelector(".crs_popup_close").addEventListener("click", () => {
@@ -821,7 +831,7 @@ class ExitIntentPopup {
             `exp_exi_int_popup_vis_autwint_focu`,
             startTime,
             "Visibility",
-            "Popup Autumn/winter 2024most wanted"
+            this.locCountEvent + locEvent
           ])
         })
       })
@@ -901,6 +911,37 @@ class ExitIntentPopup {
                       this.locCountEvent + locEvent
                     ])
 
+                    $el('form.needsclick > div > div > div > div > div > div').addEventListener('click', () => {
+                      pushDataLayer([
+                        `exp_use_this_popup_copy_button`,
+                        'Copy',
+                        "Button",
+                        "Popup Use this code"
+                      ])
+                    })
+                    startTime = 0
+
+                    startTimeInterval = setInterval(() => {
+                      startTime += 1;
+                    }, 1000);
+
+                    let waitCloseDiscount = setInterval(() => {
+                      if (
+                        !$el(".needsclick.kl-private-reset-css-Xuajs1")
+                      ) {
+                        clearInterval(waitCloseDiscount)
+                        clearInterval(startTimeInterval)
+
+                        pushDataLayer([
+                          `exp_use_this_popup_vis_focus`,
+                          startTime,
+                          "Visibility",
+                          "Popup Use this code"
+                        ])
+                      }
+                    }, 100)
+                   
+
                     document.body.insertAdjacentHTML(
                       "afterbegin",
                       `
@@ -964,12 +1005,8 @@ class ExitIntentPopup {
         margin: 0;
       }
       .crs_code h4 {
-        color: var(--H-Black, #212121);
-        font-family: source-sans-3;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 22px;
+        font-size: 16px!important;
+        line-height: 22px!important;
         margin: 16px 0 9px;
       }
       .crs_code button {
@@ -1149,8 +1186,6 @@ class ExitIntentPopup {
     document.body.insertAdjacentHTML("beforeend", popup);
 
     this.actionPopup($el(".crs_popup[data-query='c']"));
-
-    // this.updateProductsInPopup();
   }
 
   addPopupAlmost() {
@@ -1163,7 +1198,7 @@ class ExitIntentPopup {
             <h2 class="text-center">It’s almost yours!
                 <span>Only one step left:</span>
             </h2>
-            <div class="crs_popup_message text-center">Popular choice, <br>we may run out of stock soon</div>
+            <div class="crs_popup_message text-center">Popular choice, <br class="d-mb-none">we may run out of stock soon</div>
 
             <div class="crs_list_1">
               <ul class=" crs_list"></ul>
@@ -1187,8 +1222,6 @@ class ExitIntentPopup {
     document.body.insertAdjacentHTML("beforeend", popup);
 
     this.actionPopup($el(".crs_popup[data-query='a']"));
-
-    // this.updateProductsInPopup();
   }
 
   addPopupWelcomeTo() {
@@ -1416,7 +1449,7 @@ class ExitIntentPopup {
               <div class="col-md-4">
                 <p style="background-color: #743F45;">Orchid</p>
                 <img src="${dir}new_collection_1.png" alt="image Orchid">
-                <a href="https://www.lemieux.com${this.webCode}/collections/colour/atlantic" class="crs_popup_complete">Shop Now</a>
+                <a href="https://www.lemieux.com${this.webCode}/collections/colour/orchid" class="crs_popup_complete">Shop Now</a>
               </div>
               <div class="col-md-4">
                 <p style="background-color: #192D2E;">Spruce</p>
@@ -1426,7 +1459,7 @@ class ExitIntentPopup {
               <div class="col-md-4">
                 <p style="background-color: #2A3642;">Atlantic</p>
                 <img src="${dir}new_collection_3.png" alt="image Atlantic">
-                <a href="https://www.lemieux.com${this.webCode}/collections/colour/orchid" class="crs_popup_complete">Shop Now</a>
+                <a href="https://www.lemieux.com${this.webCode}/collections/colour/atlantic" class="crs_popup_complete">Shop Now</a>
               </div>
             </div>
         </div>
