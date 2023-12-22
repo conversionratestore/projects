@@ -328,6 +328,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
       }
 
       .choice {
+        display: none;
         border-radius: 6px;
         background: #FCF5E6;
         padding: 8px 12px;
@@ -344,7 +345,8 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
         display: none;
       }
       .checkout_wrapper {
-        padding: 8px 16px;
+        position: absolute !important;
+        padding: 16px 16px 8px;
       }
       .checkout_wrapper .klarna_wrapper p {
         margin-bottom: 0;
@@ -377,11 +379,11 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
         text-align: center;
       }
       .minicart_inner {
-        height: 100dvh !important;
+        height: 100% !important;
       }
       .minicart_inner .items_wrapper {
         height: 100%;
-        max-height: calc(100dvh - 207px);
+        max-height: calc(100dvh - 326px);
       }
       .minicart_items::after {
         margin-left: 0 !important;
@@ -411,6 +413,15 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
         z-index: 99999 !important;
       }
 
+      .klarna_wrapper {
+        margin-top: 18px !important;
+      }
+      #shopify-section-minicart {
+        height: 100dvh !important;
+      }
+      .minicart_wrapper {
+        height: 100%;
+      }
       @media (min-width: 769px) {
         #cart .upsell {
           width: 535px;
@@ -448,15 +459,15 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
       <p class="upsell__heading">Complete your ultimate<br class="crs_mobile"> sleep setup</p>
       <div class="upsell__content">
         <div class="upsell__image-wrapper">
-          <img src="//www.aeyla.co.uk/cdn/shop/products/MEL2923-MelaComfort7438.webp?crop=center&height=1400&v=1677452179&width=1400" alt="product img">
+          <img src="//www.aeyla.co.uk/cdn/shop/files/EucaPillowcase-White_100x.png?v=1702554017" alt="product img">
         </div>
         <div class="upsell__description">
-          <p class="upsell__title">Sleep Enhancer Pillow Spray - 50 ml</p>
-          <p class="upsell__text">Fall asleep faster, wake up revitalized</p>
+          <p class="upsell__title">Eucalyptus Silk Pillowcases<br>(2 Pack) White</p>
+          <p class="upsell__text"></p>
           <div class="upsell__footer">
             <div class="upsell__price">
-              <p class="upsell__price--new">$14.99</p>
-              <p class="upsell__price--old">$19.99</p>
+              <p class="upsell__price--new">£39.00</p>
+              <p class="upsell__price--old">$65.00</p>
             </div>
             <button class="upsell__button">Add</button>
           </div>
@@ -762,7 +773,6 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
       <div class="crs_cart_total">
         <style>
           .crs_cart_total {
-            margin-top: 16px;
             display: flex;
             flex-direction: column;
             gap: 4px;
@@ -810,7 +820,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
         <p class="ship">Shipping<span>FREE</span></p>
       </div>
     `
-    $el('.items_wrapper').insertAdjacentHTML('beforeend', block)
+    $el('.checkout_wrapper').insertAdjacentHTML('afterbegin', block)
     checkFocusTime(
       '.crs_cart_total',
       'exp_slid_cart_enha_vis_blocksss_foc',
@@ -832,7 +842,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
     waitForElement('.items_wrapper').then(el => {
       let upsell = true
       $$el('.items_wrapper .item_block h3').forEach(el => {
-        if (el.innerText.toLowerCase().includes('sleep enhancer pillow spray')) {
+        if (el.innerText.toLowerCase().includes('eucalyptus silk pillow cases')) {
           upsell = false
         }
       })
@@ -865,7 +875,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
           drawTotalBlock()
         }
       }
-      checkFocusTime('.choice', 'exp_slid_cart_enha_vis_greatchois_foc', 'YOUR CART Great Choice!')
+      // checkFocusTime('.choice', 'exp_slid_cart_enha_vis_greatchois_foc', 'YOUR CART Great Choice!')
     })
   }
 
@@ -873,11 +883,12 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
     let fd = {
       items: [
         {
-          id: 44467910967582,
+          id: 44467942981918,
           quantity: 1
         }
       ]
     }
+    console.log(fd)
     $.ajax({
       url: '/cart/add.js',
       type: 'POST',
@@ -906,7 +917,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
       let upsell = true
 
       $$el('#cart a.text-lg').forEach(el => {
-        if (el.innerText.toLowerCase().includes('sleep enhancer pillow spray')) {
+        if (el.innerText.toLowerCase().includes('eucalyptus silk pillow cases')) {
           upsell = false
         }
       })
