@@ -1693,16 +1693,36 @@ line-height: 20px; /* 142.857% */
       }
 
       dropdownEl.addEventListener('click', function () {
-        pushDataLayer(['exp_onbo_plan_com_drop_allwhere_coun', 'Countries', 'Dropdown', 'All locations. Where are you going?'])
+        if (window.innerWidth > 767) return false;
+
+        pushDataLayer('exp_onbo_plan_com_drop_allwhere_coun', 'Countries', 'Dropdown', 'All locations. Where are you going?');
         if ($('.lav-dropdown.active').not(this).length) {
           $('.lav-dropdown.active').removeClass('active')
           $('.lav-dropdown__body').slideUp()
         }
+  
+        
+        $(dropdownEl).toggleClass('active');
+        $('.lav-dropdown__body', this).slideToggle();
+      });
 
-        $(dropdownEl).toggleClass('active')
-        $('.lav-dropdown__body', this).slideToggle()
-      })
-
+      $(dropdownEl).hover(function () {
+        if (window.innerWidth <= 767) return false;
+        
+        pushDataLayer('exp_onbo_plan_com_drop_allwhere_coun', 'Countries', 'Dropdown', 'All locations. Where are you going?');
+        if ($('.lav-dropdown.active').not(this).length) {
+          $('.lav-dropdown.active').removeClass('active');
+          $('.lav-dropdown__body').hide();
+        }
+  
+        
+        $(dropdownEl).addClass('active');
+        $('.lav-dropdown__body', this).show();
+      }, function () {
+        $(dropdownEl).removeClass('active');
+        $('.lav-dropdown__body', this).hide()
+      });
+  
       el.querySelector('.ProductItem__Title').insertAdjacentElement(
         'afterend',
         dropdownEl
@@ -1834,12 +1854,6 @@ line-height: 20px; /* 142.857% */
         }
         .lav-dropdown__item + .lav-dropdown__item {
           margin-top: 6px;
-        }
-        @media(hover:hover) {
-          .lav-dropdown:not(.active) .lav-dropdown__header:hover {
-            background-color: #faf9f9;
-            border-color: #feaa02;
-          }
         }
         .lav-dropdown__header svg {
           transition: 0.2s;
