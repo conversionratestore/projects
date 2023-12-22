@@ -8,12 +8,30 @@
 
   const pathname = window.location.pathname
 
+  let newUrl = ''
+
+  // Regular expression to match the language code in the path
+  const languageRegex = /^\/([a-z]{2}(?:-[a-z]{2})?)\//
+
+  // Use the regular expression to extract the language code
+  const match = pathname.match(languageRegex)
+
+  if (match && match[1]) {
+    // If a language code is found, construct the URL with the language code before 'collections/'
+    const languageCode = match[1]
+    newUrl = `${window.location.origin}/${languageCode}/collections/`
+  } else {
+    // If no language code is found, construct the URL with 'collections/'
+    newUrl = `${window.location.origin}/collections/`
+  }
+
   const style = /*html*/`
     <style>
           /* Client's custom styles */
-    .SectionHeader {
-      display: none;
-    }
+    .SectionHeader,
+    .tabs__buttons--container {
+      display: none !important;
+    }    
 
     /* Custom styles */
     /* Hide on mobile, show on large screens */
@@ -83,12 +101,18 @@
       }
     }
 
-
     .container-crs {
       max-width: 740px;
       margin: 0 auto;
       padding-left: 20px;
       padding-right: 20px;
+    }
+
+    .container-crs.particular-collection {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
     }
 
     .container-crs p {
@@ -221,7 +245,7 @@
     }
 
     /* Select2 */
-    .container-crs .select2-option {
+    .select2-option {
       display: flex;
       align-items: center;
     }
@@ -317,6 +341,10 @@
       margin-block: 30px;
     }
 
+    .particular-collection .accordion {
+      margin-block: 0;
+    }
+
     .accordion-item {
       background: #EEF4FC;
     }
@@ -375,6 +403,92 @@
       line-height: 20px;
       /* 166.667% */
     }
+
+    .travelling {
+      color: #000;
+text-align: center;
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 142.857% */
+    }
+
+    .travelling a{
+      color: #FEA900;
+      font-family: Poppins;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 20px;
+      text-decoration: underline;
+    } 
+
+    /* switcher */
+    .switcher {
+      border-radius: 6px;
+      border: 2px solid #333F48;
+      background: var(--Main-White, #FFF);
+      padding: 6px;
+      display: flex;
+      gap: 10px;
+      width: fit-content;
+      position: relative;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .switcher p {
+      margin: 0;     
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px; /* 142.857% */
+    }
+
+    .switcher::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 6px;
+      width: 100px;
+      height: 40px;
+      background: #333F48;
+      border-radius: 4px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .switcher>div:first-child {
+      color: #fff;
+    }
+
+    .switcher>div:last-child {
+      color: #333F48;
+    }
+
+    .switcher--right::before {
+      transform: translateX(calc(100% + 9px));
+    }
+
+    .switcher.switcher--right>div:first-child {
+      color: #333F48;
+    }
+
+    .switcher.switcher--right>div:last-child {
+      color: #fff;
+    }
+
+    .switcher>div {
+      display: flex;
+      width: 100px;
+      height: 40px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 4px;
+      z-index: 1;
+      cursor: pointer;
+    }
+
     </style>`
 
   const countries = {
@@ -585,7 +699,7 @@
     },
     macau: {
       name: 'Macau',
-      flag: 'macau',
+      flag: 'macao',
       url: 'macau',
     },
     macedonia: {
@@ -595,7 +709,7 @@
     },
     malaysia: {
       name: 'Malaysia',
-      flag: 'malaysia',
+      flag: 'malasya',
       url: 'malaysia',
     },
     malta: {
@@ -776,7 +890,7 @@
     usa: {
       name: 'USA',
       flag: 'usa',
-      url: 'usa'
+      url: 'united-states'
     },
     vietnam: {
       name: 'Vietnam',
@@ -784,7 +898,6 @@
       url: 'vietnam'
     },
   }
-
 
   // -------------------------------------
   // MAKE DOM CHANGES
@@ -1011,7 +1124,6 @@
       style.rel = 'stylesheet'
       document.head.appendChild(style)
 
-
       let idCounter = 1
 
       function createCountryOption(handle) {
@@ -1024,7 +1136,7 @@
           return {
             id: idCounter++,
             text: name,
-            flag: `${IMAGE_DIR_URL}/${url}.svg`
+            flag: `${IMAGE_DIR_URL}/flags/${url}.svg`
           }
         } else {
           console.error(`Country with handle ${handle} not found.`)
@@ -1195,13 +1307,13 @@
           // Redirect to the selected country's page when an option is selected
           select2.on('select2:select', function (e) {
             var selectedCountry = e.params.data
-            window.location.href = '/' + selectedCountry.text.toLowerCase()
+            window.location.href = newUrl + selectedCountry.text.toLowerCase()
           })
 
           function formatCountry(country) {
             if (!country.id) { return country.text }
             var $country = $(
-              `<div class="select2-option"><img src="${IMAGE_DIR_URL}/flags/${country.flag}.svg" class="img-flag"/><span>${country.text}</span></div>`
+              `<div class="select2-option"><img src="${country.flag}" class="img-flag"/><span>${country.text}</span></div>`
             )
             return $country
           };
@@ -1381,172 +1493,77 @@
       `
 
       addSelect2()
+    } else {
+      let title = ''
+      let subtitle = ''
+      let typeofPage = ''
+      let place
+
+      if (pathname.includes('esim')) {
+        place = capitalizeFirstLetter(pathname.split('collections/')[1])
+
+        title = `${place} eSIM plans:`
+        subtitle = 'Select the plan that suits you best'
+      } else {
+        place = capitalizeFirstLetter(pathname.split('collections/')[1])
+
+        title = `${place} plans:`
+        subtitle = 'Select the plan that suits you best'
+      }
+
+      heading = /*html*/`
+      <div class="container-crs particular-collection">
+        <div class="heading">
+          <p>${title}</h>
+          <p>${subtitle}</p>
+        </div>
+        ${faqHTML}
+        <p class="travelling">Travelling elsewhere? <a href="${newUrl}/all">See all locations</a></p>
+      </div>`
     }
 
     waitForElement('.SectionHeader').then((el) => {
       el.insertAdjacentHTML('afterend', heading)
     })
 
+    waitForElement('[data-tab-id="esim"]').then((el) => {
+      const switcher = /*html*/`
+        <div class="switcher ">
+          <div>
+            <p>eSIM</p>
+          </div>
+          <div>
+            <p>SIM</p>
+          </div>
+        </div>
+      `
+
+      waitForElement('.heading').then(el => el.insertAdjacentHTML('afterend', switcher))
+
+      const handleSwitcherLogic = setInterval(() => {
+        if (document.querySelector('.switcher') && document.querySelectorAll('.switcher>div')[1]) {
+          clearInterval(handleSwitcherLogic)
+
+          const switcher = document.querySelector('.switcher')
+          const left = switcher.querySelector('div:first-child')
+          const right = switcher.querySelector('div:last-child')
+
+          left.addEventListener('click', () => {
+            switcher.classList.remove('switcher--right')
+            document.querySelector('[data-tab-id="sim"]').click()
+          })
+
+          right.addEventListener('click', () => {
+            switcher.classList.add('switcher--right')
+            document.querySelector('[data-tab-id="esim"]').click()
+          })
+        }
+      }, WAIT_INTERVAL_TIMEOUT)
+
+    })
+
     addAccordionFAQLogic()
-
-
   }
-
-  // function addHeading() {
-  //   let title = ''
-  //   let subtitle = ''
-  //   let typeofPage = ''
-  //   let place
-
-  //   if (pathname.includes('collections/all')) {
-  //     typeofPage = 'all'
-  //   } else if (pathname.includes('esim')) {
-  //     typeofPage = 'esim'
-  //   } else {
-  //     typeofPage = 'sim'
-  //   }
-
-  //   switch (typeofPage) {
-  //     case 'all':
-  //       title = 'Where are you going?'
-  //       subtitle = 'Select your travel region to see all plans'
-  //       break
-  //     case 'esim':
-  //       place = capitalizeFirstLetter(pathname.split('collections/')[1])
-
-  //       title = `${place} eSIM plans:`
-  //       subtitle = 'Select the plan that suits you best'
-  //       break
-  //     case 'sim':
-  //       place = capitalizeFirstLetter(pathname.split('collections/')[1])
-
-  //       title = `${place} plans:`
-  //       subtitle = 'Select the plan that suits you best'
-  //       break
-
-  //     default:
-  //       break
-  //   }
-
-  //   const heading = /*html*/`
-  //     <div class="heading">
-  //       <p>${title}</h>
-  //       <p>${subtitle}</p>
-  //     </div>`
-
-  //   const faq = /*html*/`
-  //     <div class="accordion">
-  //     <div class="accordion-item">
-  //       <div class="accordion-title">
-  //         <div class="accordion-title-text">
-  //           <p>What is an eSIM?</p>
-  //           <img src="https://conversionratestore.github.io/projects/simify/img/add-icon.svg" alt="Button to expand FAQ content">
-  //         </div>
-  //         <div class="accordion-line"></div>
-  //       </div>
-  //       <div class="accordion-content">
-  //         <div class="accordion-inner">
-  //           <p>An eSIM is a digital version of a traditional SIM card. It's embedded in your device and performs the
-  //             same functions—connecting to mobile networks for calls, texts, and data. Unlike a physical SIM card, an
-  //             eSIM is built into your phone or tablet and can be activated electronically without needing to insert
-  //             anything.</p>
-  //         </div>
-  //       </div>
-  //     </div>
-
-  //     <div class="accordion-item">
-  //       <div class="accordion-title">
-  //         <div class="accordion-title-text">
-  //           <p>How to get started with eSIM?</p>
-  //           <img src="https://conversionratestore.github.io/projects/simify/img/add-icon.svg" alt="Button to expand FAQ content">
-  //         </div>
-  //         <div class="accordion-line"></div>
-  //       </div>
-  //       <div class="accordion-content">
-  //         <div class="accordion-inner">
-  //           <p><b>Purchase with Ease.</b> Browse our selection of eSIM plans. Once you've found your perfect match,
-  //             complete
-  //             the purchase, and we'll email you the details.
-  //           </p>
-  //           <p><b>Activate Your Plan.</b> Locate the email from us containing your eSIM QR code. Then, on your device,
-  //             navigate
-  //             to "Settings," tap "Cellular" or "Mobile Data," and select "Add Cellular Plan." Scan the QR code, and
-  //             voilà! Your device will connect to the network.</p>
-  //           <p><b>Enjoy Your Connection.</b> With just a few taps, your device is now equipped with data. No need to
-  //             wait for
-  //             shipping, no need for physical SIM cards. Start browsing, streaming, and staying connected immediately.
-  //           </p>
-  //           <p><i>Note: Should you need any assistance, our customer support is here to guide you through each step.</i>
-  //           </p>
-  //         </div>
-  //       </div>
-  //     </div>
-
-  //     <div class="accordion-item">
-  //       <div class="accordion-title">
-  //         <div class="accordion-title-text">
-  //           <p>Is my device eSIM compatible?</p>
-  //           <img src="https://conversionratestore.github.io/projects/simify/img/add-icon.svg" alt="Button to expand FAQ content">
-  //         </div>
-  //         <div class="accordion-line"></div>
-  //       </div>
-  //       <div class="accordion-content">
-  //         <div class="accordion-inner">
-  //           <p> Most modern devices, especially those released in the last few years, are likely to be compatible with
-  //             eSIM technology. This includes a wide range of smartphones, tablets, and wearable devices from various
-  //             manufacturers. To see if your specific device supports eSIM, you can look up the technical specifications
-  //             provided by the device manufacturer or check the user manual that came with your device. For your
-  //             convenience, we've compiled a comprehensive list of eSIM-compatible devices on our eSIM product pages.
-  //             Just pick the plan, and scroll down on the page to find detailed compatibility information for popular
-  //             brands like Apple, Samsung, and Google, along with others.</p>
-  //         </div>
-  //       </div>
-  //     </div>
-
-  //     <div class="accordion-item">
-  //       <div class="accordion-title">
-  //         <div class="accordion-title-text">
-  //           <p>What is better, SIM or eSIM?</p>
-  //           <img src="https://conversionratestore.github.io/projects/simify/img/add-icon.svg" alt="Button to expand FAQ content">
-  //         </div>
-  //         <div class="accordion-line"></div>
-  //       </div>
-  //       <div class="accordion-content">
-  //         <div class="accordion-inner">
-  //           <p>The choice between a traditional SIM and an eSIM depends on your specific needs and device capabilities:
-  //           </p>
-  //           <ul>
-  //             <li>Traditional SIM Card: Ideal for those who frequently switch between different phones or have older
-  //               models. You can physically move the SIM card from one device to another.</li>
-  //             <li>eSIM: Perfect for managing multiple network plans on a single device. eSIMs offer the convenience of
-  //               instant delivery and digital activation and are considered more secure as they can't be physically
-  //               removed or tampered with.</li>
-  //           </ul>
-  //           <p>Both options have their advantages, so the right choice depends on your lifestyle, device, and how you
-  //             use your mobile service.</p>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </div>
-  //   `
-
-  //   let headerContainer = ''
-
-  //   switch (typeofPage) {
-  //     case 'all':
-
-  //       break
-
-  //     default:
-
-  //       break
-  //   }
-
-
-  //   waitForElement('.SectionHeader').then((el) => {
-  //     el.insertAdjacentHTML('afterend', heading)
-  //   })
-  // }
 
   function start() {
     addHeading()
