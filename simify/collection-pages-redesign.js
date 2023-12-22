@@ -102,10 +102,8 @@
     }
 
     .container-crs {
-      max-width: 740px;
-      margin: 0 auto;
-      padding-left: 20px;
-      padding-right: 20px;
+      max-width: 700px;
+      margin: 0 auto; 
     }
 
     .container-crs.particular-collection {
@@ -425,6 +423,11 @@ line-height: 20px; /* 142.857% */
     } 
 
     /* switcher */
+    .container-crs:not(.particular-collection) .switcher {
+      margin-inline: auto;
+      margin-top: 24px;
+    }
+ 
     .switcher {
       border-radius: 6px;
       border: 2px solid #333F48;
@@ -936,6 +939,39 @@ line-height: 20px; /* 142.857% */
     })
   }
 
+  const handleVisibilityAndHover = (el, event) => {
+    const ms = 3000
+    let timer
+
+    const config = {
+      root: null,
+      threshold: 1,
+    }
+
+    if (DEVICE === 'mobile') {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            timer = setTimeout(() => {
+              pushDataLayer(event)
+            }, ms)
+          } else {
+            clearTimeout(timer)
+          }
+        })
+      }, config)
+
+      observer.observe(el)
+    } else {
+      function handleHover() {
+        pushDataLayer(event)
+        el.removeEventListener('mouseenter', handleHover)
+      }
+
+      el.addEventListener('mouseenter', handleHover)
+    }
+  }
+
   function handleVisibility(el, eventParams) {
     let isVisible = false
     let entryTime
@@ -1131,12 +1167,13 @@ line-height: 20px; /* 142.857% */
 
         if (country) {
           const name = country.name
-          const url = country.url
+          // const url = country.url
+          const flag = country.flag
 
           return {
             id: idCounter++,
             text: name,
-            flag: `${IMAGE_DIR_URL}/flags/${url}.svg`
+            flag: `${IMAGE_DIR_URL}/flags/${flag}.svg`
           }
         } else {
           console.error(`Country with handle ${handle} not found.`)
@@ -1307,7 +1344,8 @@ line-height: 20px; /* 142.857% */
           // Redirect to the selected country's page when an option is selected
           select2.on('select2:select', function (e) {
             var selectedCountry = e.params.data
-            window.location.href = newUrl + selectedCountry.text.toLowerCase()
+            // console.log(selectedCountry)
+            window.location.href = newUrl + selectedCountry.url
           })
 
           function formatCountry(country) {
@@ -1330,6 +1368,8 @@ line-height: 20px; /* 142.857% */
     if (pathname.includes('collections/all')) {
       heading = /*html*/`
       <div class="container-crs">
+        <div class="all-head-event-wrapper">
+
         <div class="heading">
           <p>Where are you going?</p>
           <p>Select your travel region to see all plans</p>
@@ -1338,58 +1378,58 @@ line-height: 20px; /* 142.857% */
         <nav class="countries-nav show-on-large">
           <ul>
             <li>
-              <a href="#">
-                <img src="https://conversionratestore.github.io/projects/simify/img/europe.png" alt="">
+              <a href="${newUrl}/europe">
+                <img src="https://conversionratestore.github.io/projects/simify/img/europe.png" alt="Europe & UK">
                 <span>Europe & UK</span>
               </a>
             </li>
             <li>
-              <a href="#">
-                <img src="https://conversionratestore.github.io/projects/simify/img/usa.png" alt="">
+              <a href="${newUrl}/usa">
+                <img src="https://conversionratestore.github.io/projects/simify/img/usa.png" alt="USA, Canada & Mexico">
                 <span>USA, Canada & Mexico</span>
               </a>
             </li>
             <li>
-              <a href="#">
-                <img src="https://conversionratestore.github.io/projects/simify/img/japan.png" alt="">
+              <a href="${newUrl}/japan">
+                <img src="https://conversionratestore.github.io/projects/simify/img/japan.png" alt="Japan">
                 <span>Japan</span>
               </a>
             </li>
             <li>
-              <a href="#">
-                <img src="https://conversionratestore.github.io/projects/simify/img/asia.png" alt="">
+              <a href="${newUrl}/asia">
+                <img src="https://conversionratestore.github.io/projects/simify/img/asia.png" alt="Asia">
                 <span>Asia</span>
               </a>
             </li>
             <li>
-              <a href="#">
-                <img src="https://conversionratestore.github.io/projects/simify/img/australia.png" alt="">
+              <a href="${newUrl}/new-zealand">
+                <img src="https://conversionratestore.github.io/projects/simify/img/australia.png" alt="New Zealand & Australia">
                 <span>New Zealand & Australia</span>
               </a>
             </li>
           </ul>
           <ul>
             <li>
-              <a href="#">
-                <img src="https://conversionratestore.github.io/projects/simify/img/south-america.png" alt="">
+              <a href="${newUrl}/south-east-asia">
+                <img src="https://conversionratestore.github.io/projects/simify/img/south-america.png" alt="South America">
                 <span>South America</span>
               </a>
             </li>
             <li>
-              <a href="#">
-                <img src="https://conversionratestore.github.io/projects/simify/img/east.png" alt="">
+            <a href="${newUrl}/middle-east">
+                <img src="https://conversionratestore.github.io/projects/simify/img/east.png" alt="Middle East">
                 <span>Middle East</span>
               </a>
             </li>
             <li>
-              <a href="#">
-                <img src="https://conversionratestore.github.io/projects/simify/img/africa.png" alt="">
+              <a href="${newUrl}/middle-east">
+                <img src="https://conversionratestore.github.io/projects/simify/img/africa.png" alt="Africa">
                 <span>Africa</span>
               </a>
             </li>
             <li class="view-all">
               <a href="#">
-                <img src="https://conversionratestore.github.io/projects/simify/img/all.png" alt="">
+                <img src="https://conversionratestore.github.io/projects/simify/img/all.png" alt="View All">
                 <span>View All</span>
               </a>
             </li>
@@ -1397,62 +1437,63 @@ line-height: 20px; /* 142.857% */
         </nav>
         <nav class="countries-nav show-on-mobile">
           <ul>
-            <li>
-              <a href="#">
-                <img src="https://conversionratestore.github.io/projects/simify/img/europe.png" alt="">
+          <li>
+              <a href="${newUrl}/europe">
+                <img src="https://conversionratestore.github.io/projects/simify/img/europe.png" alt="Europe & UK">
                 <span>Europe & UK</span>
               </a>
             </li>
             <li>
-              <a href="#">
-                <img src="https://conversionratestore.github.io/projects/simify/img/usa.png" alt="">
+              <a href="${newUrl}/usa">
+                <img src="https://conversionratestore.github.io/projects/simify/img/usa.png" alt="USA, Canada & Mexico">
                 <span>USA, Canada & Mexico</span>
               </a>
             </li>
             <li>
-              <a href="#">
-                <img src="https://conversionratestore.github.io/projects/simify/img/japan.png" alt="">
+              <a href="${newUrl}/japan">
+                <img src="https://conversionratestore.github.io/projects/simify/img/japan.png" alt="Japan">
                 <span>Japan</span>
               </a>
             </li>
             <li>
-              <a href="#">
-                <img src="https://conversionratestore.github.io/projects/simify/img/asia.png" alt="">
+              <a href="${newUrl}/asia">
+                <img src="https://conversionratestore.github.io/projects/simify/img/asia.png" alt="Asia">
                 <span>Asia</span>
               </a>
             </li>
             <li>
-              <a href="#">
-                <img src="https://conversionratestore.github.io/projects/simify/img/australia.png" alt="">
+              <a href="${newUrl}/new-zealand">
+                <img src="https://conversionratestore.github.io/projects/simify/img/australia.png" alt="New Zealand & Australia">
                 <span>New Zealand & Australia</span>
               </a>
             </li>
             <li>
-              <a href="#">
-                <img src="https://conversionratestore.github.io/projects/simify/img/south-america.png" alt="">
+              <a href="${newUrl}/south-east-asia">
+                <img src="https://conversionratestore.github.io/projects/simify/img/south-america.png" alt="South America">
                 <span>South America</span>
               </a>
             </li>
             <li>
-              <a href="#">
-                <img src="https://conversionratestore.github.io/projects/simify/img/east.png" alt="">
+            <a href="${newUrl}/middle-east">
+                <img src="https://conversionratestore.github.io/projects/simify/img/east.png" alt="Middle East">
                 <span>Middle East</span>
               </a>
             </li>
             <li>
-              <a href="#">
-                <img src="https://conversionratestore.github.io/projects/simify/img/africa.png" alt="">
+              <a href="${newUrl}/middle-east">
+                <img src="https://conversionratestore.github.io/projects/simify/img/africa.png" alt="Africa">
                 <span>Africa</span>
               </a>
             </li>
             <li class="view-all">
               <a href="#">
-                <img src="https://conversionratestore.github.io/projects/simify/img/all.png" alt="">
+                <img src="https://conversionratestore.github.io/projects/simify/img/all.png" alt="View All">
                 <span>View All</span>
               </a>
             </li>
           </ul>
         </nav>
+        </div>
 
         <div class="or-divider">
           <svg xmlns="http://www.w3.org/2000/svg" width="326" height="2" viewBox="0 0 326 2" fill="none">
@@ -1485,7 +1526,7 @@ line-height: 20px; /* 142.857% */
 
         ${faqHTML}
 
-        <div class="heading">
+        <div class="heading heading--alt">
           <p>All SIM plans:</p>
           <p>Select the plan that suits you best </p>
         </div>
@@ -1493,6 +1534,27 @@ line-height: 20px; /* 142.857% */
       `
 
       addSelect2()
+
+      waitForElement('.all-head-event-wrapper').then(el => handleVisibilityAndHover(el, ['exp_onbo_plan_com_vis_allwhere_page', 'Page view', 'Visibility', 'All locations Where are you going?']))
+
+      const waitForEl = setInterval(() => {
+        if (document.querySelectorAll('.countries-nav li')[17]) {
+          clearInterval(waitForEl)
+
+          document.querySelectorAll('.countries-nav li').forEach(element => {
+            element.addEventListener('click', () => {
+              
+
+              pushDataLayer(['exp_onbo_plan_com_icon_seeplan_titl', `${element.querySelector('span').innerText} - Select`, 'Icone', 'All locations Select your travel region to see all plans'])
+            })
+          })
+        }
+      }, WAIT_INTERVAL_TIMEOUT)
+
+
+
+     
+
     } else {
       let title = ''
       let subtitle = ''
@@ -1513,7 +1575,7 @@ line-height: 20px; /* 142.857% */
 
       heading = /*html*/`
       <div class="container-crs particular-collection">
-        <div class="heading">
+        <div class="heading heading--alt">
           <p>${title}</h>
           <p>${subtitle}</p>
         </div>
@@ -1528,7 +1590,7 @@ line-height: 20px; /* 142.857% */
 
     waitForElement('[data-tab-id="esim"]').then((el) => {
       const switcher = /*html*/`
-        <div class="switcher ">
+        <div class="switcher">
           <div>
             <p>eSIM</p>
           </div>
@@ -1537,8 +1599,9 @@ line-height: 20px; /* 142.857% */
           </div>
         </div>
       `
-
-      waitForElement('.heading').then(el => el.insertAdjacentHTML('afterend', switcher))
+      
+      waitForElement('.heading--alt').then(el => el.insertAdjacentHTML('afterend', switcher))
+  
 
       const handleSwitcherLogic = setInterval(() => {
         if (document.querySelector('.switcher') && document.querySelectorAll('.switcher>div')[1]) {
@@ -1566,24 +1629,29 @@ line-height: 20px; /* 142.857% */
   }
 
   function initCards() {
-    addCardStyles();
-    const cards = document.querySelectorAll('.ProductList .Grid__Cell');
-  
+    addCardStyles()
+    const cards = document.querySelectorAll('.ProductList .Grid__Cell')
+
     for (let card of cards) {
-      handleCard(card);
+      handleCard(card)
     }
-  
+
     $(document).on('click', function (e) {
       if (!e.target.closest('.lav-dropdown')) {
-        $('.lav-dropdown__body').slideUp();
-        $('.lav-dropdown').removeClass('active');
+        $('.lav-dropdown__body').slideUp()
+        $('.lav-dropdown').removeClass('active')
       }
-    });
-  
+    })
+
     function handleCard(el) {
-      console.log(el);
-      const text = el.querySelector('.quality-list')?.innerText;
-  
+      const text = el.querySelector('.quality-list')?.innerText
+
+      for (let item of document.querySelectorAll('.quality-list li')) {
+        if (item.innerText.toLowerCase().includes('countries')) {
+          item.remove();
+        }
+      }
+
       if (
         text &&
         !['calls', 'texts'].some((word) => text.toLowerCase().includes(word))
@@ -1601,16 +1669,16 @@ line-height: 20px; /* 142.857% */
             Phone calls and texts
           </li>
         `
-        );
+        )
       }
-  
-      const countriesLength = el.querySelectorAll('.country_list li').length;
-      if (!countriesLength) return false;
-  
-      const flagsUrl = `https://conversionratestore.github.io/projects/simify/img/flags`;
-      const dropdownEl = document.createElement('div');
-      dropdownEl.classList.add('lav-dropdown');
-  
+
+      const countriesLength = el.querySelectorAll('.country_list li').length
+      if (!countriesLength) return false
+
+      const flagsUrl = `https://conversionratestore.github.io/projects/simify/img/flags`
+      const dropdownEl = document.createElement('div')
+      dropdownEl.classList.add('lav-dropdown')
+
       dropdownEl.innerHTML = `
         <div class='lav-dropdown__header'>
           ${countriesLength} Countr${countriesLength > 1 ? 'ies' : 'y'}
@@ -1619,50 +1687,49 @@ line-height: 20px; /* 142.857% */
           </svg>
         </div>
         <div class='lav-dropdown__body'></div>
-      `;
-  
+      `
+
       for (let country of el.querySelectorAll('.country_list li')) {
         const foundEl = Object.entries(countries).find(
           ([key, obj]) =>
             obj.name.toLowerCase().trim() ===
             country.textContent.toLowerCase().trim()
-        );
-  
-        let flag;
+        )
+
+        let flag
         if (foundEl) {
-          [, { flag }] = foundEl;
-          console.log('foundEl', flag);
+          [, { flag }] = foundEl
+          // console.log('foundEl', flag)
         }
-  
-        if (!flag) continue;
-  
+
+        if (!flag) continue
+
         dropdownEl.querySelector('.lav-dropdown__body').insertAdjacentHTML(
           'beforeend',
           `
           <div class='lav-dropdown__item'>
-            ${
-              flag ? `<img src='${flagsUrl}/${flag}.svg' />` : ''
-            } ${country.textContent.trim()}
+            ${flag ? `<img src='${flagsUrl}/${flag}.svg' />` : ''
+          } ${country.textContent.trim()}
           </div>
         `
-        );
+        )
       }
-  
+
       dropdownEl.addEventListener('click', function () {
-        pushDataLayer('exp_onbo_plan_com_drop_allwhere_coun', 'Countries', 'Dropdown', 'All locations. Where are you going?');
+        pushDataLayer('exp_onbo_plan_com_drop_allwhere_coun', 'Countries', 'Dropdown', 'All locations. Where are you going?')
         if ($('.lav-dropdown.active').not(this).length) {
-          $('.lav-dropdown.active').removeClass('active');
-          $('.lav-dropdown__body').slideUp();
+          $('.lav-dropdown.active').removeClass('active')
+          $('.lav-dropdown__body').slideUp()
         }
-  
-        $(dropdownEl).toggleClass('active');
-        $('.lav-dropdown__body', this).slideToggle();
-      });
-  
+
+        $(dropdownEl).toggleClass('active')
+        $('.lav-dropdown__body', this).slideToggle()
+      })
+
       el.querySelector('.ProductItem__Title').insertAdjacentElement(
         'afterend',
         dropdownEl
-      );
+      )
     }
 
     function addCardStyles() {
@@ -1671,7 +1738,7 @@ line-height: 20px; /* 142.857% */
           display: grid;
           gap: 28px;
           grid-template-columns: 1fr 1fr 1fr;
-          max-width: 800px;
+          max-width: 700px;
           width: 100%;
           margin-left: auto;
           margin-right: auto;
@@ -1856,17 +1923,17 @@ line-height: 20px; /* 142.857% */
             padding-top: 12px;
           }
         }
-      `;
-    
-      const stylesEl = document.createElement('style');
-      stylesEl.classList.add('exp-cards');
-      stylesEl.innerHTML = styles;
-      document.head.appendChild(stylesEl);
+      `
+
+      const stylesEl = document.createElement('style')
+      stylesEl.classList.add('exp-cards')
+      stylesEl.innerHTML = styles
+      document.head.appendChild(stylesEl)
     }
   }
 
   function start() {
-    addHeading();
-    initCards();
+    addHeading()
+    initCards()
   }
 })()
