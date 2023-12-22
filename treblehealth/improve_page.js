@@ -1,132 +1,129 @@
 let treblehealthPages = setInterval(() => {
-  if (document.querySelector('.page-content')) {
-    clearInterval(treblehealthPages)
+  if (document.querySelector(".page-content")) {
+    clearInterval(treblehealthPages);
 
-    console.log(
-      '%c EXP: Trial Selection (DEV: SKh)',
-      'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;'
-    )
-    const $$el = selector => document.querySelectorAll(selector)
-    const $el = selector => document.querySelector(selector)
-    const git = 'https://conversionratestore.github.io/projects/'
+    console.log("%c EXP: Trial Selection (DEV: SKh)", "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;");
+    const $$el = (selector) => document.querySelectorAll(selector);
+    const $el = (selector) => document.querySelector(selector);
+    const git = "https://conversionratestore.github.io/projects/";
 
     // scriptTrustpilot
-    let scriptTrustpilot = document.createElement('script')
-    scriptTrustpilot.src = '//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js'
-    scriptTrustpilot.async = false
-    document.head.appendChild(scriptTrustpilot)
+    let scriptTrustpilot = document.createElement("script");
+    scriptTrustpilot.src = "//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js";
+    scriptTrustpilot.async = false;
+    document.head.appendChild(scriptTrustpilot);
     // cdn slider
-    let scriptCustomSlider = document.createElement('script')
-    scriptCustomSlider.src = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js'
-    scriptCustomSlider.async = false
-    document.head.appendChild(scriptCustomSlider)
+    let scriptCustomSlider = document.createElement("script");
+    scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js";
+    scriptCustomSlider.async = false;
+    document.head.appendChild(scriptCustomSlider);
 
-    let scriptCustomSliderStyle = document.createElement('link')
-    scriptCustomSliderStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css'
-    scriptCustomSliderStyle.rel = 'stylesheet'
-    document.head.appendChild(scriptCustomSliderStyle)
+    let scriptCustomSliderStyle = document.createElement("link");
+    scriptCustomSliderStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css";
+    scriptCustomSliderStyle.rel = "stylesheet";
+    document.head.appendChild(scriptCustomSliderStyle);
     // script tooltip
-    let scriptPopper = document.createElement('script')
-    scriptPopper.src = 'https://unpkg.com/popper.js@1'
-    scriptPopper.async = false
-    document.body.appendChild(scriptPopper)
+    let scriptPopper = document.createElement("script");
+    scriptPopper.src = "https://unpkg.com/popper.js@1";
+    scriptPopper.async = false;
+    document.body.appendChild(scriptPopper);
 
-    let scriptTippy = document.createElement('script')
-    scriptTippy.src = 'https://unpkg.com/tippy.js@5'
-    scriptTippy.async = false
-    document.body.appendChild(scriptTippy)
+    let scriptTippy = document.createElement("script");
+    scriptTippy.src = "https://unpkg.com/tippy.js@5";
+    scriptTippy.async = false;
+    document.body.appendChild(scriptTippy);
 
     const clarityInterval = setInterval(function () {
-      if (typeof clarity == 'function') {
-        clearInterval(clarityInterval)
-        clarity('set', 'exp_res_surv_fun', 'variant_1')
+      if (typeof clarity == "function") {
+        clearInterval(clarityInterval);
+        clarity("set", "exp_res_surv_fun", "variant_1");
       }
-    }, 1000)
+    }, 1000);
 
-    const pushDataLayer = (name, desc, type = '', loc = '') => {
-      window.dataLayer = window.dataLayer || []
+    const pushDataLayer = (name, desc, type = "", loc = "") => {
+      window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
-        event: 'event-to-ga4',
+        event: "event-to-ga4",
         event_name: name,
         event_desc: desc,
         event_type: type,
-        event_loc: loc
-      })
-      console.log(`Event: ${name} ${desc} ${type} ${loc}`)
-    }
+        event_loc: loc,
+      });
+      console.log(`Event: ${name} ${desc} ${type} ${loc}`);
+    };
 
     function checkFocusTime(selector, event, location) {
-      const checker = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !entry.target.getAttribute('data-startShow')) {
-            entry.target.setAttribute('data-startShow', new Date().getTime())
-          } else if (!entry.isIntersecting && entry.target.getAttribute('data-startShow')) {
-            const startShow = entry.target.getAttribute('data-startShow')
-            const endShow = new Date().getTime()
-            const timeShow = Math.round(endShow - startShow)
-            entry.target.removeAttribute('data-startShow')
-            pushDataLayer(event, timeShow, 'Visibility', location)
-            checker.unobserve(entry.target)
+      const checker = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !entry.target.getAttribute("data-startShow")) {
+            entry.target.setAttribute("data-startShow", new Date().getTime());
+          } else if (!entry.isIntersecting && entry.target.getAttribute("data-startShow")) {
+            const startShow = entry.target.getAttribute("data-startShow");
+            const endShow = new Date().getTime();
+            const timeShow = Math.round(endShow - startShow);
+            entry.target.removeAttribute("data-startShow");
+            pushDataLayer(event, timeShow, "Visibility", location);
+            checker.unobserve(entry.target);
           }
-        })
-      })
+        });
+      });
 
-      checker.observe(document.querySelector(selector))
+      checker.observe(document.querySelector(selector));
     }
 
-    let timeCount = 15
-    if (!sessionStorage.getItem('time')) {
-      sessionStorage.setItem('time', timeCount)
+    let timeCount = 15;
+    if (!sessionStorage.getItem("time")) {
+      sessionStorage.setItem("time", timeCount);
     }
-    let level = ''
-    let disclaimerDates = ''
-    let levelImg = ''
+    let level = "";
+    let disclaimerDates = "";
+    let levelImg = "";
 
-    let currentMonth = new Date().toLocaleString('en-US', {
-      month: 'short'
-    })
-    let nextCurrentMonth = new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000).toLocaleString('en-US', {
-      month: 'short'
-    })
+    let currentMonth = new Date().toLocaleString("en-US", {
+      month: "short",
+    });
+    let nextCurrentMonth = new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000).toLocaleString("en-US", {
+      month: "short",
+    });
 
     switch (window.pathname) {
-      case '/tiq-score-severe-v1/':
-        level = 'severe'
-        disclaimerDates = 56
-        levelImg = `${git}/treblehealth/img/severe_img.svg`
+      case "/tiq-score-severe-v1/":
+        level = "severe";
+        disclaimerDates = 56;
+        levelImg = `${git}/treblehealth/img/severe_img.svg`;
 
-        break
-      case '/tiq-score-serious-v1/':
-        level = 'serious'
-        disclaimerDates = 47
-        levelImg = `${git}/treblehealth/img/serious_img.svg`
-        break
-      case '/tiq-score-moderate-v1/':
-        level = 'moderate'
-        disclaimerDates = 34
-        levelImg = `${git}/treblehealth/img/moderate_img.svg`
-        break
-      case '/tiq-score-mild/':
-        level = 'mild'
-        disclaimerDates = 21
-        levelImg = `${git}/treblehealth/img/mild_img.svg`
-        break
+        break;
+      case "/tiq-score-serious-v1/":
+        level = "serious";
+        disclaimerDates = 47;
+        levelImg = `${git}/treblehealth/img/serious_img.svg`;
+        break;
+      case "/tiq-score-moderate-v1/":
+        level = "moderate";
+        disclaimerDates = 34;
+        levelImg = `${git}/treblehealth/img/moderate_img.svg`;
+        break;
+      case "/tiq-score-mild/":
+        level = "mild";
+        disclaimerDates = 21;
+        levelImg = `${git}/treblehealth/img/mild_img.svg`;
+        break;
 
       default:
-        break
+        break;
     }
 
-    let reliefDate = new Date(new Date().getTime() + disclaimerDates * 24 * 60 * 60 * 1000).toLocaleString('en-US', {
-      day: '2-digit',
-      month: 'short'
-    })
+    let reliefDate = new Date(new Date().getTime() + disclaimerDates * 24 * 60 * 60 * 1000).toLocaleString("en-US", {
+      day: "2-digit",
+      month: "short",
+    });
 
-    let reliefMonth = new Date(new Date().getTime() + disclaimerDates * 24 * 60 * 60 * 1000).toLocaleString('en-US', {
-      month: 'short'
-    })
+    let reliefMonth = new Date(new Date().getTime() + disclaimerDates * 24 * 60 * 60 * 1000).toLocaleString("en-US", {
+      month: "short",
+    });
 
     if (reliefMonth === nextCurrentMonth) {
-      nextCurrentMonth = ''
+      nextCurrentMonth = "";
     }
 
     const svgObj = {
@@ -213,14 +210,12 @@ let treblehealthPages = setInterval(() => {
             <rect id="Rectangle_2396" data-name="Rectangle 2396" width="2" height="12" transform="translate(1231 3082) rotate(90)" fill="#4521d9"></rect>
           </g>
         </svg>
-      `
-    }
+      `,
+    };
 
     const tooltipTableObj = {
-      'money back guarantee': [
-        `<p class="tooltip_txt">Work with Treble for 45 days. If you’re not fully satisfied, we’ll refund your entire order.</p>`
-      ],
-      'tinnitus relief bundle': [
+      "money back guarantee": [`<p class="tooltip_txt">Work with Treble for 45 days. If you’re not fully satisfied, we’ll refund your entire order.</p>`],
+      "tinnitus relief bundle": [
         `<div class="bundle_tooltip_wrapp">
         <div class="bundle_tooltip_slider">
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-7.png" alt="product" />
@@ -243,76 +238,28 @@ let treblehealthPages = setInterval(() => {
           <li><p>Priority email and text for 3 months</p></li>
           <li><p>Guided breathing and relaxation audio course</p></li>
         </ul>
-    </div>`
-      ]
-    }
+    </div>`,
+      ],
+    };
 
     const questionsObj = {
-      1: [
-        `"I was told that tinnitus is permanent and I just have to “learn to live with it.” Can your services actually lower tinnitus?"`,
-        `<p>Many doctors do not know that there are treatments for tinnitus. It’s true, there is no surgery or medication to <a href="https://treblehealth.com/tinnitus-cure/">cure tinnitus</a>, but research has shown that about 80% of patients can reduce the perception of tinnitus using tinnitus retraining techniques. Oftentimes, the volume gets softer too.</p>`
-      ],
-      2: [
-        `"Tinnitus retraining therapy takes too long. I’m looking for the fastest way to lower my tinnitus. Are you aware of any cures for tinnitus?"`,
-        `<p><span style="font-weight: 400;">For a majority of tinnitus cases, there is no “quick-fix” solution. As part of our new patient onboarding, we help our patients identify any possible medical cause to tinnitus and refer them to the appropriate medical tests when applicable. Usually, habituation-based protocols (like the system we follow) are the only way to improve tinnitus.</span></p>`
-      ],
-      3: [
-        `"Can’t I just go to my local audiologist for this kind of service?"`,
-        `<p><span style="font-weight: 400;">Most audiologists are not experts in tinnitus management. While you can certainly search your local area for tinnitus experts, research has shown that receiving care via telehealth can be performed at the same level of clinical efficacy. Your Treble Health audiologist may identify that you could benefit from in-person medical tests. In that case, we will refer you to the appropriate local clinic.</span></p>`
-      ],
-      4: [
-        `"I already have hearing aids for tinnitus. Isn’t that enough?"`,
-        `<p><span style="font-weight: 400;">Hearing aids can help, but are not always enough. A comprehensive approach to managing tinnitus will focus on the whole person. This includes professional counseling, calming the central nervous system, and a comprehensive sound therapy plan.</span></p>`
-      ],
-      5: [
-        `“Do you take insurance?”`,
-        `<p>While most insurance companies do not cover tinnitus treatment, if your insurance does offer this, typically called a benefit for hearing aids, we can provide the necessary documentation and codes for you to submit for reimbursement.</p>`
-      ],
-      6: [
-        `"I have an appointment with an ENT next week, so let me wait to meet with my doctor”`,
-        `<p>Yes, definitely keep your ENT appointment. Our telehealth consultation is completely free, so you don’t need to wait until your ENT appt. We recommend scheduling the free consultation with us as soon as possible so that you can learn about options for tinnitus relief.</p>`
-      ],
-      7: [
-        `“I’m already scheduled to see a local audiologist. Why should I work with you instead of them?”`,
-        `<p>You’re welcome to work with anyone that you choose, just make sure that you’re working with an audiologist who specializes in Tinnitus Retraining Therapy. Most audiologists are great for hearing loss, but few are specialized in tinnitus. We have an 85% success rate, and most patients that work with us see a significant tinnitus reduction within three months. Plus, our telehealth model allows us to have better prices and significantly shorter wait times for appointments.</p>`
-      ],
-      8: [
-        `“What do you do? How can you help?”`,
-        `<p>We use the gold-standard method for reducing tinnitus, which is called Tinnitus Retraining Therapy. It includes medical devices worn on the ears and one-on-one appointments with an audiologist to reduce the anxiety-stress-tinnitus response. We have an 85% success rate, and most patients that work with us see a significant tinnitus reduction within three months.</p>`
-      ],
-      9: [
-        `“I’ve never used Zoom”`,
-        `<p>No problem, it’s quite simple. You can download Zoom for your computer or mobile phone for free.</p>`
-      ],
-      10: [
-        `“Where are you located?”`,
-        `<p>We operate via telehealth, allowing us to serve customers across all 50 states. We only see patients who live in the United States.</p>`
-      ],
-      11: [
-        `“How can you do a hearing test over the internet?”`,
-        `<p>We do not perform hearing tests. We require that our patients have a full diagnostic hearing test performed locally and send it to us via email. This is not required before the free Zoom consultation.</p>`
-      ],
-      12: [
-        `“Are you doctors?”`,
-        `<p>Our team is made up of licensed doctors of audiology who specialize in tinnitus treatment.</p>`
-      ],
-      13: [
-        `“How long does it take for the program to work?”`,
-        `<p>We expect that you would see some level of improvement within 3 to 4 weeks, with the benefits increasing by month 2, 3, 6, and beyond. 82% of people who try the Bundle choose to keep it beyond the 45 day trial period, because they are experiencing improvements.</p>`
-      ],
-      14: [
-        `“Can you really help my tinnitus?”`,
-        `<p>Yes! Based on our internal data, over 80% of our patients report tinnitus reduction using our Tinnitus Relief Bundle. We also offer a 45-day trial period, so if you’re not satisfied within that time period you can return them and be refunded 100%.</p>`
-      ],
-      15: [
-        `“Won’t my tinnitus go away on its own?”`,
-        `<p>Tinnitus may resolve on its own but this is not guaranteed and research suggests it can take 18 months or longer. We prefer to be proactive, we believe people with tinnitus should not suffer unnecessarily while waiting and hoping it decreases on its own. The “wait-and-see” approach is not recommended.</p>`
-      ],
-      16: [
-        `“My doctor said there’s nothing that can be done for tinnitus, is that the case?”`,
-        `<p dir="ltr" role="presentation">No, that is not the case. Our program uses Tinnitus Retraining Therapy, which is based on decades of research and has been shown to significantly reduce tinnitus in more than 80% of cases. In most cases, there is no surgery or medication that cures tinnitus, bringing it to zero, but there are legitimate approaches that reduce it and improve quality of life. Our goal is to significantly reduce tinnitus, which is absolutely possible.</p>`
-      ]
-    }
+      1: [`"I was told that tinnitus is permanent and I just have to “learn to live with it.” Can your services actually lower tinnitus?"`, `<p>Many doctors do not know that there are treatments for tinnitus. It’s true, there is no surgery or medication to <a href="https://treblehealth.com/tinnitus-cure/">cure tinnitus</a>, but research has shown that about 80% of patients can reduce the perception of tinnitus using tinnitus retraining techniques. Oftentimes, the volume gets softer too.</p>`],
+      2: [`"Tinnitus retraining therapy takes too long. I’m looking for the fastest way to lower my tinnitus. Are you aware of any cures for tinnitus?"`, `<p><span style="font-weight: 400;">For a majority of tinnitus cases, there is no “quick-fix” solution. As part of our new patient onboarding, we help our patients identify any possible medical cause to tinnitus and refer them to the appropriate medical tests when applicable. Usually, habituation-based protocols (like the system we follow) are the only way to improve tinnitus.</span></p>`],
+      3: [`"Can’t I just go to my local audiologist for this kind of service?"`, `<p><span style="font-weight: 400;">Most audiologists are not experts in tinnitus management. While you can certainly search your local area for tinnitus experts, research has shown that receiving care via telehealth can be performed at the same level of clinical efficacy. Your Treble Health audiologist may identify that you could benefit from in-person medical tests. In that case, we will refer you to the appropriate local clinic.</span></p>`],
+      4: [`"I already have hearing aids for tinnitus. Isn’t that enough?"`, `<p><span style="font-weight: 400;">Hearing aids can help, but are not always enough. A comprehensive approach to managing tinnitus will focus on the whole person. This includes professional counseling, calming the central nervous system, and a comprehensive sound therapy plan.</span></p>`],
+      5: [`“Do you take insurance?”`, `<p>While most insurance companies do not cover tinnitus treatment, if your insurance does offer this, typically called a benefit for hearing aids, we can provide the necessary documentation and codes for you to submit for reimbursement.</p>`],
+      6: [`"I have an appointment with an ENT next week, so let me wait to meet with my doctor”`, `<p>Yes, definitely keep your ENT appointment. Our telehealth consultation is completely free, so you don’t need to wait until your ENT appt. We recommend scheduling the free consultation with us as soon as possible so that you can learn about options for tinnitus relief.</p>`],
+      7: [`“I’m already scheduled to see a local audiologist. Why should I work with you instead of them?”`, `<p>You’re welcome to work with anyone that you choose, just make sure that you’re working with an audiologist who specializes in Tinnitus Retraining Therapy. Most audiologists are great for hearing loss, but few are specialized in tinnitus. We have an 85% success rate, and most patients that work with us see a significant tinnitus reduction within three months. Plus, our telehealth model allows us to have better prices and significantly shorter wait times for appointments.</p>`],
+      8: [`“What do you do? How can you help?”`, `<p>We use the gold-standard method for reducing tinnitus, which is called Tinnitus Retraining Therapy. It includes medical devices worn on the ears and one-on-one appointments with an audiologist to reduce the anxiety-stress-tinnitus response. We have an 85% success rate, and most patients that work with us see a significant tinnitus reduction within three months.</p>`],
+      9: [`“I’ve never used Zoom”`, `<p>No problem, it’s quite simple. You can download Zoom for your computer or mobile phone for free.</p>`],
+      10: [`“Where are you located?”`, `<p>We operate via telehealth, allowing us to serve customers across all 50 states. We only see patients who live in the United States.</p>`],
+      11: [`“How can you do a hearing test over the internet?”`, `<p>We do not perform hearing tests. We require that our patients have a full diagnostic hearing test performed locally and send it to us via email. This is not required before the free Zoom consultation.</p>`],
+      12: [`“Are you doctors?”`, `<p>Our team is made up of licensed doctors of audiology who specialize in tinnitus treatment.</p>`],
+      13: [`“How long does it take for the program to work?”`, `<p>We expect that you would see some level of improvement within 3 to 4 weeks, with the benefits increasing by month 2, 3, 6, and beyond. 82% of people who try the Bundle choose to keep it beyond the 45 day trial period, because they are experiencing improvements.</p>`],
+      14: [`“Can you really help my tinnitus?”`, `<p>Yes! Based on our internal data, over 80% of our patients report tinnitus reduction using our Tinnitus Relief Bundle. We also offer a 45-day trial period, so if you’re not satisfied within that time period you can return them and be refunded 100%.</p>`],
+      15: [`“Won’t my tinnitus go away on its own?”`, `<p>Tinnitus may resolve on its own but this is not guaranteed and research suggests it can take 18 months or longer. We prefer to be proactive, we believe people with tinnitus should not suffer unnecessarily while waiting and hoping it decreases on its own. The “wait-and-see” approach is not recommended.</p>`],
+      16: [`“My doctor said there’s nothing that can be done for tinnitus, is that the case?”`, `<p dir="ltr" role="presentation">No, that is not the case. Our program uses Tinnitus Retraining Therapy, which is based on decades of research and has been shown to significantly reduce tinnitus in more than 80% of cases. In most cases, there is no surgery or medication that cures tinnitus, bringing it to zero, but there are legitimate approaches that reduce it and improve quality of life. Our goal is to significantly reduce tinnitus, which is absolutely possible.</p>`],
+    };
 
     const mainStyle = /*html */ `
     <style>
@@ -438,296 +385,252 @@ let treblehealthPages = setInterval(() => {
         }
       }
       </style>
-    `
+    `;
 
-    $el('head').insertAdjacentHTML('beforeend', mainStyle)
+    $el("head").insertAdjacentHTML("beforeend", mainStyle);
 
     class ImprovePage {
       constructor(level, disclaimerDates, reliefDate, levelImg, currentMonth, reliefMonth, nextCurrentMonth) {
-        this.level = level
-        this.disclaimerDates = disclaimerDates
-        this.reliefDate = reliefDate
-        this.levelImg = levelImg
-        this.currentMonth = currentMonth
-        this.reliefMonth = reliefMonth
-        this.nextCurrentMonth = nextCurrentMonth
+        this.level = level;
+        this.disclaimerDates = disclaimerDates;
+        this.reliefDate = reliefDate;
+        this.levelImg = levelImg;
+        this.currentMonth = currentMonth;
+        this.reliefMonth = reliefMonth;
+        this.nextCurrentMonth = nextCurrentMonth;
 
-        this.init()
+        this.init();
       }
 
       onRenderHtml(selectorStart, place, selectorNew, newHtml) {
         if (!$el(selectorNew) && $el(selectorStart)) {
-          $el(selectorStart).insertAdjacentHTML(place, newHtml)
+          $el(selectorStart).insertAdjacentHTML(place, newHtml);
         }
       }
       onRenderTooltip() {
         for (let key in tooltipTableObj) {
-          $$el('[data-title]').forEach(el => {
-            let title = el.getAttribute('data-title')
+          $$el("[data-title]").forEach((el) => {
+            let title = el.getAttribute("data-title");
 
             if (key === title) {
-              el.setAttribute('data-tooltip', tooltipTableObj[key][0])
+              el.setAttribute("data-tooltip", tooltipTableObj[key][0]);
             }
-          })
+          });
         }
       }
       initTooltip() {
         let tippyRun = setInterval(() => {
-          if (typeof tippy === 'function' && $$el('[data-tooltip]')) {
-            clearInterval(tippyRun)
+          if (typeof tippy === "function" && $$el("[data-tooltip]")) {
+            clearInterval(tippyRun);
 
-            $$el('[data-tooltip]').forEach(el => {
+            $$el("[data-tooltip]").forEach((el) => {
               tippy(el, {
-                content: el.getAttribute('data-tooltip'),
+                content: el.getAttribute("data-tooltip"),
                 // trigger: 'click',
-                placement: 'top',
+                placement: "top",
                 interactive: true,
                 onShow(instance) {
                   let s = setInterval(() => {
-                    if ($el('.bundle_tooltip_wrapp')) {
-                      clearInterval(s)
-                      checkFocusTime(
-                        '.bundle_tooltip_wrapp',
-                        'exp_res_surv_fun_visib_tool_focu',
-                        'Tinnitus Relief Bundle Tooltip'
-                      )
+                    if ($el(".bundle_tooltip_wrapp")) {
+                      clearInterval(s);
+                      checkFocusTime(".bundle_tooltip_wrapp", "exp_res_surv_fun_visib_tool_focu", "Tinnitus Relief Bundle Tooltip");
                     }
-                  }, 100)
+                  }, 100);
                 },
                 onTrigger(e) {
-                  pushDataLayer(
-                    'exp_res_surv_fun_tool_relie_bundl',
-                    'What’s in the bundle?',
-                    'Tooltip',
-                    'Tinnitus Relief Bundle'
-                  )
-                }
-              })
+                  pushDataLayer("exp_res_surv_fun_tool_relie_bundl", "What’s in the bundle?", "Tooltip", "Tinnitus Relief Bundle");
+                },
+              });
 
               setTimeout(() => {
-                this.initSlickSlider()
-              }, 200)
-            })
+                this.initSlickSlider();
+              }, 200);
+            });
           }
-        }, 500)
+        }, 500);
       }
       initSlickSlider() {
         let slickInterval = setInterval(() => {
-          if (
-            typeof jQuery === 'function' &&
-            typeof jQuery('.bundle_tooltip_slider').slick === 'function' &&
-            $el('.bundle_tooltip_slider')
-          ) {
-            clearInterval(slickInterval)
+          if (typeof jQuery === "function" && typeof jQuery(".bundle_tooltip_slider").slick === "function" && $el(".bundle_tooltip_slider")) {
+            clearInterval(slickInterval);
 
             //  slider
-            let slider = jQuery('.bundle_tooltip_slider').slick({
+            let slider = jQuery(".bundle_tooltip_slider").slick({
               dots: true,
               infinite: true,
               arrows: false,
               slidesToShow: 3,
               slidesToScroll: 3,
               autoplay: true,
-              autoplaySpeed: 3000
-            })
-            slider.on('init', function () {
-              if (!$el('.bundle_tooltip_slider').classList.contains('is_load')) {
-                $el('.bundle_tooltip_slider').classList.add('is_load')
+              autoplaySpeed: 3000,
+            });
+            slider.on("init", function () {
+              if (!$el(".bundle_tooltip_slider").classList.contains("is_load")) {
+                $el(".bundle_tooltip_slider").classList.add("is_load");
               }
-            })
-            slider.on('afterChange', function () {
-              if (!$el('.bundle_tooltip_slider')?.classList.contains('is_load')) {
-                $el('.bundle_tooltip_slider')?.classList.add('is_load')
+            });
+            slider.on("afterChange", function () {
+              if (!$el(".bundle_tooltip_slider")?.classList.contains("is_load")) {
+                $el(".bundle_tooltip_slider")?.classList.add("is_load");
               }
-            })
-            $$el('.bundle_tooltip_slider .slick-dots li').forEach(el => {
-              el.addEventListener('click', (i, idx) => {
-                pushDataLayer(
-                  'exp_res_surv_fun_pagin_tool_image',
-                  'Image',
-                  'Pagination  ',
-                  'Tooltip What’s in the bundle?'
-                )
-              })
-            })
+            });
+            $$el(".bundle_tooltip_slider .slick-dots li").forEach((el) => {
+              el.addEventListener("click", (i, idx) => {
+                pushDataLayer("exp_res_surv_fun_pagin_tool_image", "Image", "Pagination  ", "Tooltip What’s in the bundle?");
+              });
+            });
           }
-        }, 500)
+        }, 500);
       }
       initializeClock(timeValue, selectorValue) {
-        let timer = 0.1
-        let amountTime = timer * 60
+        let timer = 0.1;
+        let amountTime = timer * 60;
 
         function calculateTime() {
-          const countdown = $el(selectorValue)
+          const countdown = $el(selectorValue);
 
-          let minutes = Math.floor(amountTime / 60)
-          let seconds = amountTime % 60
+          let minutes = Math.floor(amountTime / 60);
+          let seconds = amountTime % 60;
 
           if (seconds < 10) {
-            seconds = '0' + seconds
+            seconds = "0" + seconds;
           }
 
           if (minutes < 10) {
-            minutes = '0' + minutes
+            minutes = "0" + minutes;
           }
 
-          countdown.textContent = `${minutes}:${seconds}`
-          amountTime--
-          sessionStorage.setItem('time', amountTime / 60)
+          countdown.textContent = `${minutes}:${seconds}`;
+          amountTime--;
+          sessionStorage.setItem("time", amountTime / 60);
 
           if (amountTime < 0) {
-            sessionStorage.setItem('time', 0)
-            stopTimer()
-            amountTime = 0
+            sessionStorage.setItem("time", 0);
+            stopTimer();
+            amountTime = 0;
           }
 
           function stopTimer() {
-            clearInterval()
+            clearInterval();
           }
         }
 
         function startTimer(timeValue) {
-          amountTime = timeValue * 60
-          setInterval(calculateTime, 1000)
+          amountTime = timeValue * 60;
+          setInterval(calculateTime, 1000);
         }
 
-        startTimer(timeValue)
+        startTimer(timeValue);
       }
       initStickyHeader() {
-        if ($el('.new_main') && $el('.new_header.sticky_var')) {
-          let element = $el('.new_header.sticky_var')
-          const elemClose = $el('#provenSuccess')
+        if ($el(".new_main") && $el(".new_header.sticky_var")) {
+          let element = $el(".new_header.sticky_var");
+          const elemClose = $el("#provenSuccess");
 
           function visible(target) {
             if (target.getBoundingClientRect().bottom < 0) {
-              element.classList.add('is_fixed')
+              element.classList.add("is_fixed");
             } else {
-              if (element.classList.contains('is_fixed')) {
-                element.classList.remove('is_fixed')
+              if (element.classList.contains("is_fixed")) {
+                element.classList.remove("is_fixed");
               }
             }
           }
-          window.addEventListener('scroll', function () {
-            visible(elemClose)
-          })
-          visible(elemClose)
+          window.addEventListener("scroll", function () {
+            visible(elemClose);
+          });
+          visible(elemClose);
         }
       }
       onClickCallBtn() {
-        if ($$el('.call_your_free_btn') && $el('.elementor-element-baad601 .elementor-button-wrapper a')) {
-          $$el('.call_your_free_btn').forEach(el => {
-            el.addEventListener('click', e => {
-              if (!e.target.getAttribute('data-test')) {
-                if (e.currentTarget.closest('#frequentlyAskedQuestionsBlock')) {
-                  pushDataLayer(
-                    'exp_res_surv_fun_but_quest_discov',
-                    'Book a FREE Discovery Call',
-                    'Button',
-                    'Frequently Asked Questions'
-                  )
+        if ($$el(".call_your_free_btn") && $el(".elementor-element-baad601 .elementor-button-wrapper a")) {
+          $$el(".call_your_free_btn").forEach((el) => {
+            el.addEventListener("click", (e) => {
+              if (!e.target.getAttribute("data-test")) {
+                if (e.currentTarget.closest("#frequentlyAskedQuestionsBlock")) {
+                  pushDataLayer("exp_res_surv_fun_but_quest_discov", "Book a FREE Discovery Call", "Button", "Frequently Asked Questions");
                 }
-                if (e.currentTarget.closest('#completeRecoveryBlock')) {
-                  pushDataLayer(
-                    'exp_res_surv_fun_but_recov_discov',
-                    'Book a FREE Discovery Call',
-                    'Button',
-                    'A complete recovery from tinnitus is possible'
-                  )
+                if (e.currentTarget.closest("#completeRecoveryBlock")) {
+                  pushDataLayer("exp_res_surv_fun_but_recov_discov", "Book a FREE Discovery Call", "Button", "A complete recovery from tinnitus is possible");
                 }
-                if (e.currentTarget.closest('#backGuarantee')) {
-                  pushDataLayer(
-                    'exp_res_surv_fun_but_bundl_discov',
-                    'Book a FREE Discovery Call',
-                    'Button',
-                    'Tinnitus Relief Bundle'
-                  )
+                if (e.currentTarget.closest("#backGuarantee")) {
+                  pushDataLayer("exp_res_surv_fun_but_bundl_discov", "Book a FREE Discovery Call", "Button", "Tinnitus Relief Bundle");
                 }
-                if (e.currentTarget.closest('.sticky_var')) {
-                  let maxScrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
-                  let currentScrollHeight = window.pageYOffset.toFixed(0)
+                if (e.currentTarget.closest(".sticky_var")) {
+                  let maxScrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                  let currentScrollHeight = window.pageYOffset.toFixed(0);
 
-                  pushDataLayer(
-                    'exp_res_surv_fun_stick_site_book_footer',
-                    `${((currentScrollHeight / maxScrollHeight) * 100).toFixed(0)}% - Book a Free Call`,
-                    'Sticky button',
-                    'Sitewide Footer'
-                  )
+                  pushDataLayer("exp_res_surv_fun_stick_site_book_footer", `${((currentScrollHeight / maxScrollHeight) * 100).toFixed(0)}% - Book a Free Call`, "Sticky button", "Sitewide Footer");
                 }
-                if (e.currentTarget.closest('.new_header:not(.sticky_var)')) {
+                if (e.currentTarget.closest(".new_header:not(.sticky_var)")) {
                   if (window.innerWidth <= 768) {
-                    let maxScrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
-                    let currentScrollHeight = window.pageYOffset.toFixed(0)
+                    let maxScrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                    let currentScrollHeight = window.pageYOffset.toFixed(0);
 
-                    pushDataLayer(
-                      'exp_res_surv_fun_stick_site_book',
-                      `${((currentScrollHeight / maxScrollHeight) * 100).toFixed(0)}% - Book a Free Call`,
-                      'Sticky button',
-                      'Sitewide Header'
-                    )
+                    pushDataLayer("exp_res_surv_fun_stick_site_book", `${((currentScrollHeight / maxScrollHeight) * 100).toFixed(0)}% - Book a Free Call`, "Sticky button", "Sitewide Header");
                   } else {
-                    pushDataLayer(
-                      'exp_res_surv_fun_stick_site_book_header',
-                      `Book a Free Call`,
-                      'Not Sticky button',
-                      'Sitewide Header'
-                    )
+                    pushDataLayer("exp_res_surv_fun_stick_site_book_header", `Book a Free Call`, "Not Sticky button", "Sitewide Header");
                   }
                 }
-                $el('.elementor-element-baad601 .elementor-button-wrapper a').click()
-              }
-              e.target.setAttribute('data-test', '1')
-              setTimeout(() => {
-                if (e.target.getAttribute('data-test')) {
-                  e.target.removeAttribute('data-test')
+                if (window.location.pathname === "/tiq-score-mild/") {
+                  $el(".elementor-element-0cdfd73 .elementor-button-wrapper a").click();
+                } else {
+                  $el(".elementor-element-baad601 .elementor-button-wrapper a").click();
                 }
-              }, 1000)
-            })
-          })
+              }
+              e.target.setAttribute("data-test", "1");
+              setTimeout(() => {
+                if (e.target.getAttribute("data-test")) {
+                  e.target.removeAttribute("data-test");
+                }
+              }, 1000);
+            });
+          });
         }
       }
       onClickTrustScoreWrapp() {
-        if ($el('.trust_score_wrapp') && $el('#trustpilotBlock')) {
-          $$el('.trust_score_wrapp').forEach(el => {
-            el.addEventListener('click', e => {
-              pushDataLayer('exp_res_surv_fun_link_trust_review', 'Reviews', 'Link', 'Header TrustScore')
-              let headerOffset = 60
+        if ($el(".trust_score_wrapp") && $el("#trustpilotBlock")) {
+          $$el(".trust_score_wrapp").forEach((el) => {
+            el.addEventListener("click", (e) => {
+              pushDataLayer("exp_res_surv_fun_link_trust_review", "Reviews", "Link", "Header TrustScore");
+              let headerOffset = 60;
               if (window.innerWidth > 768) {
-                headerOffset = 0
+                headerOffset = 0;
               }
-              const elementPosition = $el('#trustpilotBlock').getBoundingClientRect().top
-              const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+              const elementPosition = $el("#trustpilotBlock").getBoundingClientRect().top;
+              const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
               window.scrollTo({
                 top: offsetPosition,
-                behavior: 'smooth'
-              })
-            })
-          })
+                behavior: "smooth",
+              });
+            });
+          });
         }
       }
       onClickProductTxt() {
-        if ($el('.product_scroll_trigger') && $el('#tinnitusReliefBundle')) {
-          $$el('.product_scroll_trigger').forEach(el => {
-            el.addEventListener('click', e => {
-              pushDataLayer('exp_res_surv_fun_link_first_bundl', 'With Tinnitus Relief Bundle', 'Link', 'First screen')
-              let headerOffset = 60
+        if ($el(".product_scroll_trigger") && $el("#tinnitusReliefBundle")) {
+          $$el(".product_scroll_trigger").forEach((el) => {
+            el.addEventListener("click", (e) => {
+              pushDataLayer("exp_res_surv_fun_link_first_bundl", "With Tinnitus Relief Bundle", "Link", "First screen");
+              let headerOffset = 60;
               if (window.innerWidth > 768) {
-                headerOffset = 0
+                headerOffset = 0;
               }
-              const elementPosition = $el('#tinnitusReliefBundle').getBoundingClientRect().top
-              const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+              const elementPosition = $el("#tinnitusReliefBundle").getBoundingClientRect().top;
+              const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
               window.scrollTo({
                 top: offsetPosition,
-                behavior: 'smooth'
-              })
-            })
-          })
+                behavior: "smooth",
+              });
+            });
+          });
         }
       }
       onClickBtnTrustpilotLink() {
-        if ($$el('.trustpilot_link')) {
-          $$el('.trustpilot_link').forEach(el => {
-            el.addEventListener('click', e => {})
-          })
+        if ($$el(".trustpilot_link")) {
+          $$el(".trustpilot_link").forEach((el) => {
+            el.addEventListener("click", (e) => {});
+          });
         }
       }
       setAccordionItem(count, title, text) {
@@ -744,45 +647,42 @@ let treblehealthPages = setInterval(() => {
             <div>${text}</div>
           </div>
         </li>
-        `
-        return item
+        `;
+        return item;
       }
       onRenderQuestions() {
-        if ($el('.questions_accordion') && $el('.questions_accordion').children.length !== questionsObj.length) {
+        if ($el(".questions_accordion") && $el(".questions_accordion").children.length !== questionsObj.length) {
           for (let key in questionsObj) {
-            $el('.questions_accordion').insertAdjacentHTML(
-              'beforeend',
-              this.setAccordionItem(key, questionsObj[key][0], questionsObj[key][1])
-            )
+            $el(".questions_accordion").insertAdjacentHTML("beforeend", this.setAccordionItem(key, questionsObj[key][0], questionsObj[key][1]));
           }
         }
       }
       initAccordionQuestions() {
         let lookForJquery = setInterval(() => {
-          if (typeof jQuery === 'function' && $el('#frequentlyAskedQuestionsBlock')) {
-            clearInterval(lookForJquery)
-            $$el('.questions_accordion_block')[0].classList.add('active')
-            $$el('.questions_accordion_block .questions_accordion_link')[0].classList.add('active')
-            $$el('.questions_accordion_block .questions_accordion_lists')[0].style.display = 'block'
+          if (typeof jQuery === "function" && $el("#frequentlyAskedQuestionsBlock")) {
+            clearInterval(lookForJquery);
+            $$el(".questions_accordion_block")[0].classList.add("active");
+            $$el(".questions_accordion_block .questions_accordion_link")[0].classList.add("active");
+            $$el(".questions_accordion_block .questions_accordion_lists")[0].style.display = "block";
             // questions_accordion_lists
-            jQuery('.questions_accordion_link').click(function (e) {
-              jQuery(this).toggleClass('active')
-              jQuery(this).closest('li').toggleClass('active')
-              jQuery(this).next('.questions_accordion_lists').slideToggle()
-              if (jQuery('.questions_accordion_link').not(this)) {
-                jQuery('.questions_accordion_link').not(this).next('.questions_accordion_lists').css('display', 'none')
-                jQuery('.questions_accordion_link').not(this).removeClass('active')
-                jQuery('.questions_accordion_link').not(this).closest('li').removeClass('active')
+            jQuery(".questions_accordion_link").click(function (e) {
+              jQuery(this).toggleClass("active");
+              jQuery(this).closest("li").toggleClass("active");
+              jQuery(this).next(".questions_accordion_lists").slideToggle();
+              if (jQuery(".questions_accordion_link").not(this)) {
+                jQuery(".questions_accordion_link").not(this).next(".questions_accordion_lists").css("display", "none");
+                jQuery(".questions_accordion_link").not(this).removeClass("active");
+                jQuery(".questions_accordion_link").not(this).closest("li").removeClass("active");
               }
 
-              if (e.currentTarget.classList.contains('active')) {
+              if (e.currentTarget.classList.contains("active")) {
                 // pushDataLayer('Open block', `${e.currentTarget.querySelector('p').textContent}`);
               } else {
                 // pushDataLayer('Close block', `${e.currentTarget.querySelector('p').textContent}`);
               }
-            })
+            });
           }
-        }, 100)
+        }, 100);
       }
 
       init() {
@@ -864,7 +764,7 @@ let treblehealthPages = setInterval(() => {
             </p>
           </div>
         </div>
-        `
+        `;
         const newheader = /*html */ `
         <div class="new_header">
           <style>
@@ -962,7 +862,7 @@ let treblehealthPages = setInterval(() => {
             </div>
           </div>
         </div>
-        `
+        `;
         const heroSection = /*html */ `
         <section id="hero">
           <style>
@@ -1092,7 +992,7 @@ let treblehealthPages = setInterval(() => {
             </div>
           </div>
         </section>
-        `
+        `;
         const provenSuccessSection = /*html */ `
         <section id="provenSuccess">
           <style>
@@ -1140,7 +1040,7 @@ let treblehealthPages = setInterval(() => {
             </div>
           </div>
         </section>
-        `
+        `;
         const tinnitusReliefBundleSection = /*html */ `
         <section id="tinnitusReliefBundle">
           <style>
@@ -1346,7 +1246,7 @@ let treblehealthPages = setInterval(() => {
             </div>
           </div>
         </section>
-        `
+        `;
         const backGuaranteeSection = /*html */ `
         <section id="backGuarantee">
           <style>
@@ -1420,7 +1320,7 @@ let treblehealthPages = setInterval(() => {
             </div>
           </div>
         </section>
-        `
+        `;
         const trustpilotSection = /*html */ `
         <section id="trustpilotBlock">
           <style>
@@ -1460,7 +1360,7 @@ let treblehealthPages = setInterval(() => {
             <!-- End TrustBox widget -->
           </div>
         </section>
-        `
+        `;
         const frequentlyAskedQuestionsSection = /*html */ `
         <section id="frequentlyAskedQuestionsBlock">
           <style>
@@ -1541,7 +1441,7 @@ let treblehealthPages = setInterval(() => {
             </div>
           </div>
         </section>
-        `
+        `;
         const completeRecoverySection = /*html */ `
         <section id="completeRecoveryBlock">
           <style>
@@ -1623,7 +1523,7 @@ let treblehealthPages = setInterval(() => {
             </div>
           </div>
         </section>
-        `
+        `;
         const newFooter = /*html */ `
         <div class="new_footer">
           <style>
@@ -1671,106 +1571,65 @@ let treblehealthPages = setInterval(() => {
             </div>
           </div>
         </div>
-        `
+        `;
         // RENDER HTML
         // new main
-        this.onRenderHtml('#content', 'afterbegin', '.new_main', `<div class="new_main"></div>`)
+        this.onRenderHtml("#content", "afterbegin", ".new_main", `<div class="new_main"></div>`);
         //new header
-        this.onRenderHtml('.new_main', 'afterbegin', '.new_header', newheader)
+        this.onRenderHtml(".new_main", "afterbegin", ".new_header", newheader);
         //new header ->>> trustScoreStarsBlock
         if (window.innerWidth > 768) {
-          this.onRenderHtml(
-            '.new_header:not(.sticky_var) .new_header_wrapp',
-            'afterbegin',
-            '.trust_score_wrapp',
-            trustScoreStarsBlock
-          )
+          this.onRenderHtml(".new_header:not(.sticky_var) .new_header_wrapp", "afterbegin", ".trust_score_wrapp", trustScoreStarsBlock);
         }
         //new header sticky_var ->>> trustScoreStarsBlock
-        this.onRenderHtml(
-          '.new_header.sticky_var .new_header_wrapp',
-          'afterbegin',
-          '.new_header.sticky_var .trust_score_wrapp',
-          trustScoreStarsBlock
-        )
+        this.onRenderHtml(".new_header.sticky_var .new_header_wrapp", "afterbegin", ".new_header.sticky_var .trust_score_wrapp", trustScoreStarsBlock);
         // hero
-        this.onRenderHtml('.new_header', 'afterend', '#hero', heroSection)
+        this.onRenderHtml(".new_header", "afterend", "#hero", heroSection);
         if (window.innerWidth <= 768) {
-          this.onRenderHtml(
-            '#hero',
-            'beforebegin',
-            '#trustScoreStarsMob',
-            `<section id="trustScoreStarsMob"><div class="container_var">${trustScoreStarsBlock}</div></section>`
-          )
+          this.onRenderHtml("#hero", "beforebegin", "#trustScoreStarsMob", `<section id="trustScoreStarsMob"><div class="container_var">${trustScoreStarsBlock}</div></section>`);
         }
         // provenSuccess
-        this.onRenderHtml('#hero', 'afterend', '#provenSuccess', provenSuccessSection)
+        this.onRenderHtml("#hero", "afterend", "#provenSuccess", provenSuccessSection);
         // tinnitusReliefBundle
-        this.onRenderHtml('#provenSuccess', 'afterend', '#tinnitusReliefBundle', tinnitusReliefBundleSection)
+        this.onRenderHtml("#provenSuccess", "afterend", "#tinnitusReliefBundle", tinnitusReliefBundleSection);
         // backGuarantee
-        this.onRenderHtml('#tinnitusReliefBundle', 'afterend', '#backGuarantee', backGuaranteeSection)
+        this.onRenderHtml("#tinnitusReliefBundle", "afterend", "#backGuarantee", backGuaranteeSection);
         // trustpilot
-        this.onRenderHtml('#backGuarantee', 'afterend', '#trustpilotBlock', trustpilotSection)
+        this.onRenderHtml("#backGuarantee", "afterend", "#trustpilotBlock", trustpilotSection);
         // frequentlyAskedQuestions
-        this.onRenderHtml(
-          '#trustpilotBlock',
-          'afterend',
-          '#frequentlyAskedQuestionsBlock',
-          frequentlyAskedQuestionsSection
-        )
+        this.onRenderHtml("#trustpilotBlock", "afterend", "#frequentlyAskedQuestionsBlock", frequentlyAskedQuestionsSection);
         //completeRecovery
-        this.onRenderHtml(
-          '#frequentlyAskedQuestionsBlock',
-          'afterend',
-          '#completeRecoveryBlock',
-          completeRecoverySection
-        )
-        this.onRenderHtml('.new_main', 'beforeend', '.new_footer', newFooter)
-        this.onRenderQuestions()
-        this.onRenderTooltip()
-        this.initStickyHeader()
+        this.onRenderHtml("#frequentlyAskedQuestionsBlock", "afterend", "#completeRecoveryBlock", completeRecoverySection);
+        this.onRenderHtml(".new_main", "beforeend", ".new_footer", newFooter);
+        this.onRenderQuestions();
+        this.onRenderTooltip();
+        this.initStickyHeader();
 
         // init trustpilot
-        if ($el('.trustpilot-widget') && window.Trustpilot) {
-          window.Trustpilot.loadFromElement($el('.trustpilot-widget'))
+        if ($el(".trustpilot-widget") && window.Trustpilot) {
+          window.Trustpilot.loadFromElement($el(".trustpilot-widget"));
         }
 
         // on Click
-        this.initTooltip()
-        if ($el('#countdown') && sessionStorage.getItem('time')) {
-          this.initializeClock(+sessionStorage.getItem('time'), `#countdown`)
+        this.initTooltip();
+        if ($el("#countdown") && sessionStorage.getItem("time")) {
+          this.initializeClock(+sessionStorage.getItem("time"), `#countdown`);
         }
-        this.onClickCallBtn()
-        this.onClickTrustScoreWrapp()
-        this.onClickProductTxt()
-        this.onClickBtnTrustpilotLink()
-        this.initAccordionQuestions()
+        this.onClickCallBtn();
+        this.onClickTrustScoreWrapp();
+        this.onClickProductTxt();
+        this.onClickBtnTrustpilotLink();
+        this.initAccordionQuestions();
         // Visibility
-        checkFocusTime(
-          '#completeRecoveryBlock',
-          'exp_res_surv_fun_vis_recov_focu',
-          'A complete recovery from tinnitus is possible'
-        )
-        checkFocusTime(
-          '#frequentlyAskedQuestionsBlock',
-          'exp_res_surv_fun_vis_quest_focu',
-          'Frequently Asked Questions'
-        )
-        checkFocusTime(
-          '#trustpilotBlock',
-          'exp_res_surv_fun_vis_result_focu',
-          'People just like you achieve great results'
-        )
-        checkFocusTime('#hero', 'exp_res_surv_fun_vis_bundl_focu', 'Tinnitus Relief Bundle')
-        checkFocusTime(
-          '#tinnitusReliefBundle',
-          'exp_res_surv_fun_vis_moder_focu',
-          'First screen Your tinnitus is Moderate'
-        )
-        checkFocusTime('#provenSuccess', 'exp_res_surv_fun_vis_succes_focu', 'Proven Success')
+        checkFocusTime("#completeRecoveryBlock", "exp_res_surv_fun_vis_recov_focu", "A complete recovery from tinnitus is possible");
+        checkFocusTime("#frequentlyAskedQuestionsBlock", "exp_res_surv_fun_vis_quest_focu", "Frequently Asked Questions");
+        checkFocusTime("#trustpilotBlock", "exp_res_surv_fun_vis_result_focu", "People just like you achieve great results");
+        checkFocusTime("#hero", "exp_res_surv_fun_vis_bundl_focu", "Tinnitus Relief Bundle");
+        checkFocusTime("#tinnitusReliefBundle", "exp_res_surv_fun_vis_moder_focu", "First screen Your tinnitus is Moderate");
+        checkFocusTime("#provenSuccess", "exp_res_surv_fun_vis_succes_focu", "Proven Success");
       }
     }
 
-    new ImprovePage(level, disclaimerDates, reliefDate, levelImg, currentMonth, reliefMonth, nextCurrentMonth)
+    new ImprovePage(level, disclaimerDates, reliefDate, levelImg, currentMonth, reliefMonth, nextCurrentMonth);
   }
-}, 500)
+}, 500);
