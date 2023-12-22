@@ -877,8 +877,6 @@ class ExitIntentPopup {
                   new Event("input", { bubbles: true })
                 );
 
-                console.log(value);
-                console.log(inputElement.value);
                 console.log(
                   $el(
                     '.needsclick.kl-private-reset-css-Xuajs1 [data-testid="form-component"] button'
@@ -913,7 +911,6 @@ class ExitIntentPopup {
                     ])
 
                     $el('form.needsclick > div > div > div > div > div > div').addEventListener('click', (e) => {
-                      e.stopPropagation()
                       pushDataLayer([
                         `exp_use_this_popup_copy_button`,
                         'Copy',
@@ -922,7 +919,6 @@ class ExitIntentPopup {
                       ])
                     })
                     $el('form.needsclick > div > div > div > div > div svg').addEventListener('click', (e) => {
-                      e.stopPropagation()
                       pushDataLayer([
                         `exp_use_this_popup_copy_button`,
                         'Copy',
