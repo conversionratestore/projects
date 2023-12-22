@@ -355,6 +355,10 @@
       border-radius: 0 0 6px 6px;
     }
 
+    .accordion-item:last-child .accordion-line {
+      display: none;
+    }
+
     .accordion-title-text {
       display: flex;
       justify-content: space-between;
