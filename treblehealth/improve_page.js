@@ -543,7 +543,7 @@ let treblehealthPages = setInterval(() => {
         }
       }
       onClickCallBtn() {
-        if ($$el(".call_your_free_btn") && $el(".elementor-element-baad601 .elementor-button-wrapper a")) {
+        if (($$el(".call_your_free_btn") && $el(".elementor-element-baad601 .elementor-button-wrapper a")) || $el(".elementor-element-0cdfd73 .elementor-button-wrapper a")) {
           $$el(".call_your_free_btn").forEach((el) => {
             el.addEventListener("click", (e) => {
               if (!e.target.getAttribute("data-test")) {
@@ -573,6 +573,7 @@ let treblehealthPages = setInterval(() => {
                   }
                 }
                 if (window.location.pathname === "/tiq-score-mild/") {
+                  console.log(`<<<<<<<<<<<<<object>>>>>>>>>>>>>`);
                   $el(".elementor-element-0cdfd73 .elementor-button-wrapper a").click();
                 } else {
                   $el(".elementor-element-baad601 .elementor-button-wrapper a").click();
