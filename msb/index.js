@@ -1570,13 +1570,12 @@ const highlight = `
 
 start();
 
-// const record = setInterval(() => {
-//   if (typeof clarity === "function") {
-//     clearInterval(record);
-
-//     clarity("set", "first_e_commerce_hp", "variant_1");
-//   }
-// }, 0);
+const record = setInterval(() => {
+  if (typeof clarity === "function") {
+    clearInterval(record);
+    clarity("set", "social_trust", "variant_1");
+  }
+}, 0);
 
 // -------------------------------------
 // FUNCTIONS

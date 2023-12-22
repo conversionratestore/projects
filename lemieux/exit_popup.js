@@ -1226,6 +1226,44 @@ class ExitIntentPopup {
           width: 100%;
           margin-bottom: 12px;
         }
+        .crs_error_message {
+          position: absolute;
+          right: 0;
+          top: 100%;
+          display: none;
+          background: #fff4f1;
+          border: 1px solid rgb(208, 51, 31);
+        }
+        .crs_error_message:before ,
+        .crs_error_message:after {
+          content: '';
+          display: block;
+          position: absolute;
+          width: 0;
+          height: 0;
+          border-style: solid;
+        }
+        .crs_error_message:before {
+          border-width: 9px;
+          left: 7px;
+          top: -18px;
+          border-color: transparent transparent #D0331F transparent;
+        }
+        .crs_error_message:after {
+          border-width: 8px;
+          left: 8px;
+          top: -16px;
+          border-color: transparent transparent #fff4f1 transparent;
+        }
+        .relative {
+          position: relative;
+        }
+        .crs_error .crs_error_message {
+          display: block;
+        }
+        .crs_error input {
+          border-color: #D0331F;
+        }
       </style>
         <div class="container flex">
             <button class="crs_popup_close" type="button">
@@ -1236,12 +1274,15 @@ class ExitIntentPopup {
               <h2 class="text-center">
                 ${
                   id == "RQWev3"
-                    ? `Would you like Free <br> UK Delivery? <span>Enter your email to get free delivery on<br> your first order</span>`
+                    ? `Would you like <span class="crs_c-red">free UK <br>delivery?</span> <span>Enter your email to get free delivery on<br> your first order</span>`
                     : `Would you like <span class="crs_c-red">10% off</span> your first order?
                 <span>Enter your email to get 10% off your first order</span>`
                 }
               </h2>
-              <input type="email" placeholder="Email" onclick="pushDataLayer(['exp_exi_int_popup_inp_welcome_emai','Email','Input','Popup Welcome to LeMieux'])">
+              <div class="relative">
+                <input type="email" placeholder="Email" onclick="pushDataLayer(['exp_exi_int_popup_inp_welcome_emai','Email','Input','Popup Welcome to LeMieux'])">
+                <span class="crs_error_message" style="font-size: 14px; padding: 8px; font-family: Baskervville, Georgia, Times, &quot;Times New Roman&quot;, serif; color: rgb(208, 51, 31);">This field is required</span>
+              </div>
               <a href="#" class="crs_popup_complete" data-id="${id}">Sign up</a>
             </div>
             <img src="${dir}image-welcome.png" alt="image" class="d-md-block d-none" height="537px">
@@ -1258,6 +1299,12 @@ class ExitIntentPopup {
       "addPopupWelcomeTo this.itemsLengthBasket: " + this.itemsLengthBasket
     );
     console.log("addPopupWelcomeTo id: " + id);
+
+    $el('.crs_popup[data-query="b"] input[type="email"]').addEventListener('input', (e) => {
+      if (e.target.closest('.crs_error')) {
+        e.target.closest('.crs_error').classList.remove('crs_error')
+      }
+    })
 
     this.actionPopup($el('.crs_popup[data-query="b"]'));
 
