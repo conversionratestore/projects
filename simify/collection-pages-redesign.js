@@ -913,13 +913,6 @@ line-height: 20px; /* 142.857% */
 
   start()
 
-  // const recordClarity = setInterval(() => {
-  //   if (typeof clarity === 'function') {
-  //     clearInterval(recordClarity)
-  //     clarity('set', `CLARITY_NAME`, 'variant_1')
-  //   }
-  // }, WAIT_INTERVAL_TIMEOUT)
-
   // -------------------------------------
   // FUNCTIONS
   // -------------------------------------
@@ -991,7 +984,7 @@ line-height: 20px; /* 142.857% */
     return string
       .split('-')
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
+      .join(' ')
   }
 
   function addHeading() {
@@ -1532,10 +1525,6 @@ line-height: 20px; /* 142.857% */
 
         title = `${place} eSIM plans:`
         subtitle = 'Select the plan that suits you best'
-
-        waitForElement('.accordion').then(el => {
-          handleVisibilityAndHover(el, ['exp_onbo_plan_com_vis_locpag_faq', 'View FAQ ', 'Visibility ', 'Location page FAQ Expanded'])
-        })
       } else {
         place = capitalizeWords(pathname.split('collections/')[1])
 
@@ -1552,6 +1541,10 @@ line-height: 20px; /* 142.857% */
         ${faqHTML}
         <p class="travelling">Travelling elsewhere? <a href="${newUrl}/all">See all locations</a></p>
       </div>`
+
+      waitForElement('.travelling a').then(el => el.addEventListener('click', () => {
+        pushDataLayer(['exp_onbo_plan_com_link_locpag_seeloc', 'See all locations', 'Link', 'Location page Travelling elsewhere?'])
+      }))
     }
 
     waitForElement('.SectionHeader').then((el) => {
@@ -1573,12 +1566,12 @@ line-height: 20px; /* 142.857% */
       document.head.insertAdjacentHTML('beforeend', /*html*/`
         <style>
         .accordion-item[data-switch="on"] {
-      display: block !important;
-    }
+          display: block !important;
+        }
 
-    .accordion-item[data-switch="off"] {
-      display: none !important;
-    }
+        .accordion-item[data-switch="off"] {
+          display: none !important;
+        }
 
         </style>
       `)
@@ -1597,11 +1590,15 @@ line-height: 20px; /* 142.857% */
           left.addEventListener('click', () => {
             switcher.classList.remove('switcher--right')
             document.querySelector('[data-tab-id="sim"]').click()
+
+            pushDataLayer(['exp_onbo_plan_com_but_simdire_card', 'eSIM - Select', 'Button', 'All SIM plans: Select the plan that suits you best'])
           })
 
           right.addEventListener('click', () => {
             switcher.classList.add('switcher--right')
             document.querySelector('[data-tab-id="esim"]').click()
+
+            pushDataLayer(['exp_onbo_plan_com_but_simdire_card', 'SIM - Select', 'Button', 'All SIM plans: Select the plan that suits you best'])
           })
         }
       }, WAIT_INTERVAL_TIMEOUT)
@@ -1699,7 +1696,7 @@ line-height: 20px; /* 142.857% */
       }
 
       dropdownEl.addEventListener('click', function () {
-        pushDataLayer('exp_onbo_plan_com_drop_allwhere_coun', 'Countries', 'Dropdown', 'All locations. Where are you going?')
+        pushDataLayer(['exp_onbo_plan_com_drop_allwhere_coun', 'Countries', 'Dropdown', 'All locations. Where are you going?'])
         if ($('.lav-dropdown.active').not(this).length) {
           $('.lav-dropdown.active').removeClass('active')
           $('.lav-dropdown__body').slideUp()
@@ -1916,6 +1913,13 @@ line-height: 20px; /* 142.857% */
   }
 
   function start() {
+    const recordClarity = setInterval(() => {
+      if (typeof clarity === 'function') {
+        clearInterval(recordClarity)
+        clarity('set', `exp_onbo_plan_com`, 'variant_1')
+      }
+    }, WAIT_INTERVAL_TIMEOUT)
+
     addHeading()
     initCards()
   }
