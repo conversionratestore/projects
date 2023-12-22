@@ -1737,8 +1737,6 @@ line-height: 20px; /* 142.857% */
           // console.log('foundEl', flag)
         }
 
-        if (!flag) continue
-
         dropdownEl.querySelector('.lav-dropdown__body').insertAdjacentHTML(
           'beforeend',
           `
