@@ -780,7 +780,7 @@ class ExitIntentPopup {
 
   actionPopup(selector) {
     let title = selector.querySelector('h2').innerText;
-    let locEvent = title.includes('Would you like') ? 'Welcome to LeMieux' : title.includes('almost yours') ? 'It’s almost yours!' : title.includes('Autumn/winter') ? 'Popup Autumn/winter 2024most wanted' : 'Check out now and get 10% off your first order'
+    let locEvent = title.includes('Would you like') ? 'Welcome to LeMieux' : title.includes('almost yours') ? 'It’s almost yours!' : title.includes('Autumn/winter') ? 'Autumn/winter 2024most wanted' : 'Check out now and get 10% off your first order'
     let nameEvent = locEvent.toLowerCase().includes('almost yours') ? 'almo' : locEvent.toLowerCase().includes('welcome') ? 'welcome' : locEvent.toLowerCase().includes('check out now') ? 'first' : 'autwint'
 
     selector.querySelector(".crs_popup_close").addEventListener("click", () => {
