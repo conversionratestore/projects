@@ -226,7 +226,7 @@ let treblehealthPages = setInterval(() => {
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-8.png" alt="product" />
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-9.png" alt="product" />
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-12.png" alt="product" />
-          <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-13.png" alt="product" />
+          <img src="https://drive.google.com/uc?export=view&id=1rzQ2UBJSHjK8jJgzv2cJf3Y16bcoT5qC" alt="product" />
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-15.png" alt="product" />
         </div>
         <ul class="bundle_tooltip_list">
@@ -545,6 +545,9 @@ let treblehealthPages = setInterval(() => {
       onClickCallBtn() {
         if (($$el(".call_your_free_btn") && $el(".elementor-element-baad601 .elementor-button-wrapper a")) || $el(".elementor-element-0cdfd73 .elementor-button-wrapper a")) {
           $$el(".call_your_free_btn").forEach((el) => {
+            if (window.location.pathname === "/tiq-score-mild/") {
+              el.textContent = "Continue";
+            }
             el.addEventListener("click", (e) => {
               if (!e.target.getAttribute("data-test")) {
                 if (e.currentTarget.closest("#frequentlyAskedQuestionsBlock")) {
@@ -1217,7 +1220,7 @@ let treblehealthPages = setInterval(() => {
                 </div>
               </div>
               <div class="img_wrapp">
-                <img src="https://treblehealth.com/wp-content/uploads/2022/12/Wordpress-images-3.png" alt="Tinnitus Relief Bundle" />
+                <img src="${git}/treblehealth/img/tinnitus_relief_bundle_img.png" alt="Tinnitus Relief Bundle" />
               </div>
               <div>
                 <div class="desktop_var">
