@@ -1910,6 +1910,7 @@ line-height: 20px; /* 142.857% */
         }
         .lav-dropdown__item img {
           max-width: 16px;
+          display: none;
         }
         .lav-dropdown__item + .lav-dropdown__item {
           margin-top: 6px;
