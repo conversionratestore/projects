@@ -896,8 +896,8 @@ line-height: 20px; /* 142.857% */
     },
     usa: {
       name: 'USA',
-      flag: 'usa',
-      url: 'united-states'
+      flag: 'united-states',
+      url: 'usa'
     },
     vietnam: {
       name: 'Vietnam',
@@ -976,42 +976,6 @@ line-height: 20px; /* 142.857% */
     }
   }
 
-  function handleVisibility(el, eventParams) {
-    let isVisible = false
-    let entryTime
-    const config = {
-      root: null,
-      threshold: 0, // Trigger when any part of the element is out of viewport
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          if (!isVisible) {
-            // The element has become visible
-            isVisible = true
-            entryTime = new Date().getTime()
-          }
-        } else if (isVisible) {
-          // The element is out of the viewport, calculate visibility duration
-          isVisible = false
-          const exitTime = new Date().getTime()
-          const visibilityDuration = (exitTime - entryTime) / 1000 // Convert to seconds
-          const roundedDuration = Math.round(visibilityDuration)
-
-          if (roundedDuration) {
-            const eventData = eventParams
-            eventData[1] = roundedDuration
-            pushDataLayer(eventData)
-            observer.disconnect()
-          }
-        }
-      })
-    }, config)
-
-    observer.observe(el)
-  }
-
   const pushDataLayer = ([event_name, event_desc, event_type, event_loc]) => { // Send a Google Analytics event
     const eventData = {
       'event': 'event-to-ga4', event_name, event_desc, event_type, event_loc
@@ -1023,8 +987,11 @@ line-height: 20px; /* 142.857% */
     console.log(eventData)
   }
 
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1)
+  function capitalizeWords(string) {
+    return string
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
   }
 
   function addHeading() {
@@ -1147,6 +1114,8 @@ line-height: 20px; /* 142.857% */
               // Open the clicked accordion item
               item.addClass('active')
               content.css('max-height', content.prop('scrollHeight') + 'px')
+
+              pushDataLayer(['exp_onbo_plan_com_acc_locpag_ques', '{{question_title}} - Select', 'Accordion', 'Location page FAQ Expanded'])
             }
           })
         }
@@ -1314,19 +1283,7 @@ line-height: 20px; /* 142.857% */
                 createCountryOption('uruguay'),
               ]
             }
-            // Add more categories and countries as needed
           ]
-
-          // var data = [
-          //   {
-          //     text: 'Popular',
-          //     children: [
-          //       createCountryOption('india'),
-          //       createCountryOption('bali'),
-          //       createCountryOption('japan'),
-          //     ]
-          //   }
-          // ]
 
           // Initialize Select2
           var select2 = $('#countries').select2({
@@ -1340,6 +1297,14 @@ line-height: 20px; /* 142.857% */
 
           // Focus on the search field when the dropdown is opened
           select2.on('select2:open', () => {
+            pushDataLayer(['exp_onbo_plan_com_drop_allockor_count', 'Select a country', 'Dropdown', 'All locations Where are you going? or'])
+
+            waitForElement('.select2-results').then(el => {
+              handleVisibilityAndHover(el,
+                ['exp_onbo_plan_com_vis_allockor_liscon', 'List of country', 'Visibility ', 'All locations Where are you going? or']
+              )
+            })
+
             window.setTimeout(function () {
               document.querySelector('.select2-search__field').focus()
             }, 100) // Increase the delay here
@@ -1349,6 +1314,9 @@ line-height: 20px; /* 142.857% */
           select2.on('select2:select', function (e) {
             var selectedCountry = e.params.data
             // console.log(selectedCountry)
+
+            pushDataLayer(['exp_onbo_plan_com_sel_allockor_contr', 'Choose of country', 'Select', 'All locations Where are you going? or'])
+
             window.location.href = newUrl + selectedCountry.url
           })
 
@@ -1547,17 +1515,11 @@ line-height: 20px; /* 142.857% */
 
           document.querySelectorAll('.countries-nav li').forEach(element => {
             element.addEventListener('click', () => {
-              
-
               pushDataLayer(['exp_onbo_plan_com_icon_seeplan_titl', `${element.querySelector('span').innerText} - Select`, 'Icone', 'All locations Select your travel region to see all plans'])
             })
           })
         }
       }, WAIT_INTERVAL_TIMEOUT)
-
-
-
-     
 
     } else {
       let title = ''
@@ -1566,12 +1528,16 @@ line-height: 20px; /* 142.857% */
       let place
 
       if (pathname.includes('esim')) {
-        place = capitalizeFirstLetter(pathname.split('collections/')[1])
+        place = capitalizeWords(pathname.split('collections/')[1])
 
         title = `${place} eSIM plans:`
         subtitle = 'Select the plan that suits you best'
+
+        waitForElement('.accordion').then(el => {
+          handleVisibilityAndHover(el, ['exp_onbo_plan_com_vis_locpag_faq', 'View FAQ ', 'Visibility ', 'Location page FAQ Expanded'])
+        })
       } else {
-        place = capitalizeFirstLetter(pathname.split('collections/')[1])
+        place = capitalizeWords(pathname.split('collections/')[1])
 
         title = `${place} plans:`
         subtitle = 'Select the plan that suits you best'
@@ -1616,9 +1582,9 @@ line-height: 20px; /* 142.857% */
 
         </style>
       `)
-      
+
       waitForElement('.heading--alt').then(el => el.insertAdjacentHTML('afterend', switcher))
-  
+
 
       const handleSwitcherLogic = setInterval(() => {
         if (document.querySelector('.switcher') && document.querySelectorAll('.switcher>div')[1]) {
@@ -1665,7 +1631,7 @@ line-height: 20px; /* 142.857% */
 
       for (let item of document.querySelectorAll('.quality-list li')) {
         if (item.innerText.toLowerCase().includes('countries')) {
-          item.remove();
+          item.remove()
         }
       }
 
