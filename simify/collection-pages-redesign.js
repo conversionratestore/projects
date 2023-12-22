@@ -402,6 +402,14 @@
       /* 166.667% */
     }
 
+    .accordion-inner p {
+      margin-bottom: 12px;
+    }
+
+    .accordion-inner p:last-child {
+      margin-bottom: 0;
+    }
+
     .travelling {
       color: #000;
 text-align: center;
@@ -932,6 +940,16 @@ line-height: 20px; /* 142.857% */
     })
   }
 
+  const pushDataLayer = ([event_name, event_desc, event_type, event_loc]) => { // Send a Google Analytics event
+    const eventData = {
+      'event': 'event-to-ga4', event_name, event_desc, event_type, event_loc
+    }
+
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push(eventData)
+    console.log(eventData)
+  }
+
   const handleVisibilityAndHover = (el, event) => {
     const ms = 3000
     let timer
@@ -965,16 +983,48 @@ line-height: 20px; /* 142.857% */
     }
   }
 
-  const pushDataLayer = ([event_name, event_desc, event_type, event_loc]) => { // Send a Google Analytics event
-    const eventData = {
-      'event': 'event-to-ga4', event_name, event_desc, event_type, event_loc
+  const handleVisibilityAndHoverAccordion = (el) => {
+    const ms = 3000
+    let timer
+
+    const config = {
+      root: null,
+      threshold: 1,
     }
 
-    window.dataLayer = window.dataLayer || []
-    dataLayer.push(eventData)
+    function push() {
+      if (document.querySelector('.switch-exist')) {
+        pushDataLayer(['exp_onbo_plan_com_vis_simdire_faq', 'View FAQ ', 'Visibility ', 'Simsdirect FAQ Expanded'])
+      } else {
+        pushDataLayer(['exp_onbo_plan_com_vis_locpag_faq', 'View FAQ ', 'Visibility ', 'Location page FAQ Expanded'])
+      }
+    }
 
-    console.log(eventData)
+    if (DEVICE === 'mobile') {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            timer = setTimeout(() => {
+              push()
+            }, ms)
+          } else {
+            clearTimeout(timer)
+          }
+        })
+      }, config)
+
+      observer.observe(el)
+    } else {
+      function handleHover() {
+        push()
+        el.removeEventListener('mouseenter', handleHover)
+      }
+
+      el.addEventListener('mouseenter', handleHover)
+    }
   }
+
+
 
   function capitalizeWords(string) {
     return string
@@ -1104,11 +1154,19 @@ line-height: 20px; /* 142.857% */
               item.addClass('active')
               content.css('max-height', content.prop('scrollHeight') + 'px')
 
-              pushDataLayer(['exp_onbo_plan_com_acc_locpag_ques', '{{question_title}} - Select', 'Accordion', 'Location page FAQ Expanded'])
+              let title = $(this).children('.accordion-title-text').text().trim()
+
+              if (document.querySelector('.switch-exist')) {
+                pushDataLayer(['exp_onbo_plan_com_acc_simdire_ques', `${title} - Select`, 'Accordion', 'Simsdirect FAQ Expanded'])
+              } else {
+                pushDataLayer(['exp_onbo_plan_com_acc_locpag_ques', `${title} - Select`, 'Accordion', 'Location page FAQ Expanded'])
+              }
             }
           })
         }
       }, WAIT_INTERVAL_TIMEOUT)
+
+      waitForElement('.accordion').then(el => handleVisibilityAndHoverAccordion(el))
     }
 
     const addSelect2 = () => {
@@ -1693,36 +1751,35 @@ line-height: 20px; /* 142.857% */
       }
 
       dropdownEl.addEventListener('click', function () {
-        if (window.innerWidth > 767) return false;
+        if (window.innerWidth > 767) return false
 
-        pushDataLayer('exp_onbo_plan_com_drop_allwhere_coun', 'Countries', 'Dropdown', 'All locations. Where are you going?');
+        pushDataLayer(['exp_onbo_plan_com_drop_allwhere_coun', 'Countries', 'Dropdown', 'All locations. Where are you going?'])
         if ($('.lav-dropdown.active').not(this).length) {
           $('.lav-dropdown.active').removeClass('active')
           $('.lav-dropdown__body').slideUp()
         }
-  
-        
-        $(dropdownEl).toggleClass('active');
-        $('.lav-dropdown__body', this).slideToggle();
-      });
+
+        $(dropdownEl).toggleClass('active')
+        $('.lav-dropdown__body', this).slideToggle()
+      })
 
       $(dropdownEl).hover(function () {
-        if (window.innerWidth <= 767) return false;
-        
-        pushDataLayer('exp_onbo_plan_com_drop_allwhere_coun', 'Countries', 'Dropdown', 'All locations. Where are you going?');
+        if (window.innerWidth <= 767) return false
+
+        pushDataLayer(['exp_onbo_plan_com_drop_allwhere_coun', 'Countries', 'Dropdown', 'All locations. Where are you going?'])
         if ($('.lav-dropdown.active').not(this).length) {
-          $('.lav-dropdown.active').removeClass('active');
-          $('.lav-dropdown__body').hide();
+          $('.lav-dropdown.active').removeClass('active')
+          $('.lav-dropdown__body').hide()
         }
-  
-        
-        $(dropdownEl).addClass('active');
-        $('.lav-dropdown__body', this).show();
+
+
+        $(dropdownEl).addClass('active')
+        $('.lav-dropdown__body', this).show()
       }, function () {
-        $(dropdownEl).removeClass('active');
+        $(dropdownEl).removeClass('active')
         $('.lav-dropdown__body', this).hide()
-      });
-  
+      })
+
       el.querySelector('.ProductItem__Title').insertAdjacentElement(
         'afterend',
         dropdownEl
