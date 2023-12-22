@@ -515,13 +515,13 @@ class ExitIntentPopup {
           line-height: 18px;
           display: block;
         }
-        .crs_list.gap-6::-webkit-scrollbar {
+        .crs_list::-webkit-scrollbar {
           background: #F0F0F0;
           border-radius: 2px;
           width: 5px;
-          hegiht: 5px;
+          height: 4px;
         }
-        .crs_list.gap-6::-webkit-scrollbar-thumb {
+        .crs_list::-webkit-scrollbar-thumb {
           background: #212121;
           border-radius: 2px;
         }
@@ -607,15 +607,12 @@ class ExitIntentPopup {
             display: flex;
             align-items: center;
           }
-          .crs_list.gap-6 {
-            gap: 12px;
-            max-height: 294px;
-            margin-bottom: 20px;
-          }
-          .crs_list.gap-6::-webkit-scrollbar {
+          .crs_list::-webkit-scrollbar {
             background: #fff;
+            width: 5px;
+            height: 4px;
           }
-          .crs_list.gap-6::-webkit-scrollbar-thumb {
+          .crs_list::-webkit-scrollbar-thumb {
             background: #F0F0F0;
           }
           .crs_popup_info {
