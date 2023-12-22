@@ -1565,7 +1565,308 @@ line-height: 20px; /* 142.857% */
     addAccordionFAQLogic()
   }
 
+  function initCards() {
+    addCardStyles();
+    const cards = document.querySelectorAll('.ProductList .Grid__Cell');
+  
+    for (let card of cards) {
+      handleCard(card);
+    }
+  
+    $(document).on('click', function (e) {
+      if (!e.target.closest('.lav-dropdown')) {
+        $('.lav-dropdown__body').slideUp();
+        $('.lav-dropdown').removeClass('active');
+      }
+    });
+  
+    function handleCard(el) {
+      console.log(el);
+      const text = el.querySelector('.quality-list')?.innerText;
+  
+      if (
+        text &&
+        !['calls', 'texts'].some((word) => text.toLowerCase().includes(word))
+      ) {
+        el.querySelector('.quality-list').insertAdjacentHTML(
+          'beforeend',
+          `
+          <li class='lav-exclude'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+              <g opacity="0.4">
+              <path d="M8 8.49951L16.0009 16.5004" stroke="#333F48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7.99915 16.5004L16 8.49951" stroke="#333F48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+            </svg>
+            Phone calls and texts
+          </li>
+        `
+        );
+      }
+  
+      const countriesLength = el.querySelectorAll('.country_list li').length;
+      if (!countriesLength) return false;
+  
+      const flagsUrl = `https://conversionratestore.github.io/projects/simify/img/flags`;
+      const dropdownEl = document.createElement('div');
+      dropdownEl.classList.add('lav-dropdown');
+  
+      dropdownEl.innerHTML = `
+        <div class='lav-dropdown__header'>
+          ${countriesLength} Countr${countriesLength > 1 ? 'ies' : 'y'}
+          <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7" fill="none">
+            <path d="M9 1.5L5.00095 5.5L1 1.5" stroke="#333F48" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class='lav-dropdown__body'></div>
+      `;
+  
+      for (let country of el.querySelectorAll('.country_list li')) {
+        const foundEl = Object.entries(countries).find(
+          ([key, obj]) =>
+            obj.name.toLowerCase().trim() ===
+            country.textContent.toLowerCase().trim()
+        );
+  
+        let flag;
+        if (foundEl) {
+          [, { flag }] = foundEl;
+          console.log('foundEl', flag);
+        }
+  
+        if (!flag) continue;
+  
+        dropdownEl.querySelector('.lav-dropdown__body').insertAdjacentHTML(
+          'beforeend',
+          `
+          <div class='lav-dropdown__item'>
+            ${
+              flag ? `<img src='${flagsUrl}/${flag}.svg' />` : ''
+            } ${country.textContent.trim()}
+          </div>
+        `
+        );
+      }
+  
+      dropdownEl.addEventListener('click', function () {
+        pushDataLayer('exp_onbo_plan_com_drop_allwhere_coun', 'Countries', 'Dropdown', 'All locations. Where are you going?');
+        if ($('.lav-dropdown.active').not(this).length) {
+          $('.lav-dropdown.active').removeClass('active');
+          $('.lav-dropdown__body').slideUp();
+        }
+  
+        $(dropdownEl).toggleClass('active');
+        $('.lav-dropdown__body', this).slideToggle();
+      });
+  
+      el.querySelector('.ProductItem__Title').insertAdjacentElement(
+        'afterend',
+        dropdownEl
+      );
+    }
+
+    function addCardStyles() {
+      const styles = `
+        .collection-template .ProductList {
+          display: grid;
+          gap: 28px;
+          grid-template-columns: 1fr 1fr 1fr;
+          max-width: 800px;
+          width: 100%;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .collection-template .ProductList .Grid__Cell {
+          display: block;
+          width: 100%;
+          padding: 0;
+          margin: 0;
+        }
+        .ProductList .ProductItem {
+          display: flex;
+          height: 100%;
+          text-align: left;
+        }
+        .template-collection .collection-template .ProductItem .ProductItem__Title.Heading {
+          color: #333F48;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 21px;
+          margin-bottom: 0;
+        }
+        .template-collection .collection-template .stamped-product-reviews-badge {
+          display: none!important;
+        }
+        .ProductList .ProductItem .ProductItem__Info {
+          margin-top: 0;
+          padding: 16px 10px 12px;
+          align-items: flex-start;
+        }
+        .template-collection .view-btn-wrap {
+          padding: 0;
+        }
+        .template-collection .view-btn-wrap a.Button {
+          padding: 9px 10px;
+          font-weight: 500;
+        }
+        .template-collection .collection-template .ProductItem__PriceList {
+          margin-bottom: 16px;
+          flex-grow: 0;
+          margin-top: auto;
+        }
+    
+        .template-collection .collection-template .ProductItem__PriceList .Price {
+          color: #333F48;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 20px;
+        }
+        .template-collection .product-quality {
+          margin-top: 16px;
+          margin-bottom: 16px;
+          padding-bottom: 0;
+        }
+        .template-collection .product-quality .quality-list {
+          flex-flow: column;
+        }
+        .template-collection .product-quality .quality-list li {
+          color: #333F48;
+          text-overflow: ellipsis;
+          font-family: Roboto;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 20px; 
+        }
+        .template-collection .product-quality .quality-list li:not(:last-child) {
+          margin-right: 0;
+        }
+        .template-collection .product-quality .quality-list li:before {
+          filter: invert(66%) sepia(53%) saturate(2880%) hue-rotate(2deg) brightness(107%) contrast(102%);
+        }
+        .collection-template .CollectionMain {
+          padding-bottom: 40px;
+        }
+        .template-collection .product-quality .quality-list li.lav-exclude {
+          align-items: flex-start;
+          margin-top: 1px;
+          margin-left: -6px;
+        }
+        .template-collection .product-quality .quality-list li.lav-exclude svg {
+          margin-top: -2px;
+        }
+        .template-collection .product-quality .quality-list li.lav-exclude:before {
+          display: none;
+        }
+    
+        .lav-dropdown {
+          position: relative;
+          margin-top: 8px;
+          width: 100%;
+          cursor: pointer;
+        }
+        .lav-dropdown__header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          color: #333F48;
+          font-size: 12px;
+          font-weight: 600;
+          line-height: 18px;
+          height: 30px;
+          padding: 2px 8px;
+          border-radius: 6px;
+          border: 1px solid #CCC;
+          transition: 0.2s;
+          cursor: pointer;
+        }
+        .lav-dropdown__item {
+          display: flex;
+          align-items: flex-start;
+          gap: 4px;
+          line-height: 1.2;
+        }
+        .lav-dropdown__item img {
+          max-width: 16px;
+        }
+        .lav-dropdown__item + .lav-dropdown__item {
+          margin-top: 6px;
+        }
+        @media(hover:hover) {
+          .lav-dropdown:not(.active) .lav-dropdown__header:hover {
+            background-color: #faf9f9;
+            border-color: #feaa02;
+          }
+        }
+        .lav-dropdown__header svg {
+          transition: 0.2s;
+        }
+        .lav-dropdown.active .lav-dropdown__header {
+          border-bottom-color: transparent;
+          border-radius: 6px 6px 0 0;
+        }
+        .lav-dropdown.active .lav-dropdown__header svg {
+          transform: rotate(180deg);
+        }
+        .lav-dropdown__body {
+          position: absolute;
+          display: none;
+          top: 100%;
+          left: 0;
+          right: 0;
+          max-height: 150px;
+          overflow-y: auto;
+          color: #333F48;
+          font-family: Roboto;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 21px;
+          background-color: #fff;
+          border: 1px solid #CCC;
+          border-top: 0;
+          z-index: 1;
+          border-radius: 0 0 6px 6px;
+          padding: 0 6px 6px;
+        }
+        
+        @media(max-width: 767px) {
+          .collection-template .ProductList {
+            grid-template-columns: 1fr 1fr;
+            gap: 16px 9px;
+          }
+          .lav-dropdown__body {
+            max-height: 120px;
+          }
+        }
+        @media(max-width: 480px) {
+          .collection-template .ProductList {
+            gap: 15px 9px;
+          }
+          .template-collection .collection-template .ProductItem__PriceList {
+            margin-bottom: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #D9D9D9;
+            width: 100%;
+            justify-content: center;
+          }
+          .template-collection .product-quality {
+            margin-top: 12px;
+            margin-bottom: 8px;
+          }
+          .ProductList .ProductItem .ProductItem__Info {
+            padding-top: 12px;
+          }
+        }
+      `;
+    
+      const stylesEl = document.createElement('style');
+      stylesEl.classList.add('exp-cards');
+      stylesEl.innerHTML = styles;
+      document.head.appendChild(stylesEl);
+    }
+  }
+
   function start() {
-    addHeading()
+    addHeading();
+    initCards();
   }
 })()
