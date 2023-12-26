@@ -1,4 +1,4 @@
-  ;(function runExperimental() {
+  (function runExperimental() {
     console.log(
       '%c EXP: Trial Selection (DEV: OS)',
       'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;'
@@ -476,9 +476,10 @@
                 border: 2px solid #E68626;
                 background: linear-gradient(180deg, #FFC842 0%, #F48818 100%) !important; 
               }
-              .kit_item_purchase .add-to-cart img {
+              .regular #wrapper #kits #kit-container .kit-item .kit_item_purchase .add-to-cart img {
                 width: 26px !important;
                 height: 19px !important;
+                margin-bottom: 0 !important;
               }
               .kit_item_purchase .add-to-cart span {
                 color: #333;
@@ -665,8 +666,8 @@
                   flex-direction: column;
                   gap: 12px;
                 }
-                .regular #kits .kit_item_purchase .add-to-cart {
-                  width: 200px;
+                .regular #wrapper #kits #kit-container .kit-item .kit_item_purchase .add-to-cart {
+                  width: 200px !important;
                   height: 36px;
                 }
               }
