@@ -549,7 +549,7 @@
           div:not(.crs_list_1) > .crs_list {
             text-align: center;
           }
-          div:not(.crs_list_1) .crs_popup_stars {
+          div:not(.crs_list_1) > .crs_list > li .crs_popup_stars {
             justify-content: center;
           }
           p.crs_popup_span {
