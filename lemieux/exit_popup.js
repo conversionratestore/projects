@@ -1,7 +1,3 @@
-; (function () {
-  const isScriptPresent = Array.from(document.querySelectorAll('script')).some(script => script.src === 'https://conversionratestore.github.io/projects/lemieux/exit_popup.js');
-
-  if (isScriptPresent) return
 
   console.log(
     "%c EXP: Exit intent popup (DEV: Olha)",
@@ -1737,4 +1733,3 @@
       new ExitIntentPopup(device, userId, website);
     }
   });
-})()
