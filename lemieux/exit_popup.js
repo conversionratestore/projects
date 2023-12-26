@@ -1,7 +1,7 @@
 console.log(
-  '%c EXP: Exit intent popup (DEV: Olha)',
-  'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;'
-)
+  "%c EXP: Exit intent popup (DEV: Olha)",
+  "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
+);
 
 const dir = "https://conversionratestore.github.io/projects/lemieux/img/";
 
@@ -134,14 +134,24 @@ function copyText(target) {
   inputElement.select();
   inputElement.setSelectionRange(0, 99999); // For mobile devices
 
-  let nameEvent = inputElement.closest('.crs_popup_content').querySelectorAll('.crs_list li').length > 1 ? 'seve': 'one'
-  let locEvent = nameEvent == 'one' ? 'One product ' : 'Several products '
-  pushDataLayer([`exp_exi_int_popup_but_${nameEvent}first_promo`,'Promo code','Button',`Popup ${locEvent} ${inputElement.closest('.crs_popup_content').querySelector('h2').innerText}`])
+  let nameEvent =
+    inputElement.closest(".crs_popup_content").querySelectorAll(".crs_list li")
+      .length > 1
+      ? "seve"
+      : "one";
+  let locEvent = nameEvent == "one" ? "One product " : "Several products ";
+  pushDataLayer([
+    `exp_exi_int_popup_but_${nameEvent}first_promo`,
+    "Promo code",
+    "Button",
+    `Popup ${locEvent} ${
+      inputElement.closest(".crs_popup_content").querySelector("h2").innerText
+    }`,
+  ]);
 
   try {
     // Use the Clipboard API to copy the text
     navigator.clipboard.writeText(inputElement.value);
-    console.log("Text copied: " + inputElement.value);
   } catch (err) {
     console.error("Unable to copy text: ", err);
   }
@@ -176,9 +186,8 @@ function startTimer() {
     // Перевіряємо, чи таймер закінчився
     if (minutes === 0 && seconds === 0) {
       clearInterval(timerInterval);
-      $el(".crs_timer_min").innerHTML = '00'
-      $el(".crs_timer_sec").innerHTML = '00'
-      console.log("Таймер завершено!");
+      $el(".crs_timer_min").innerHTML = "00";
+      $el(".crs_timer_sec").innerHTML = "00";
     }
   }, 1000);
 }
@@ -204,6 +213,54 @@ function getFetch(api) {
         console.error("Error:", error);
       });
   });
+}
+
+let previousPeopleCount = 0;
+
+// Функція для оновлення значення залежно від елементів, які в полі зору
+function updatePeopleCountInView(parent) {
+  const popupList = parent;
+  const listItems = Array.from(popupList.querySelectorAll(`li`)); // або [...$$el(`.crs_popup .crs_list li`)]
+
+  // Знаходження елементів, які в полі зору
+  const itemsInView = listItems.filter((item) =>
+    isElementInView(item, popupList)
+  );
+
+  // Якщо є елементи в полі зору, оновлюємо значення
+  if (itemsInView.length > 0) {
+    const peopleCount = itemsInView.reduce((count, item) => {
+      return parseInt(item.getAttribute("data-people") || 0, 10);
+    }, 0);
+
+    // Оновлення значення тільки якщо воно змінилося
+    if (peopleCount !== previousPeopleCount) {
+      previousPeopleCount = peopleCount;
+      console.log(peopleCount)
+      parent.closest('.crs_popup').querySelector(".crs_popup_info b").innerHTML = peopleCount + ' people';
+    }
+  }
+  // Якщо немає елементів в полі зору, залишаємо попереднє значення
+}
+
+// Функція для перевірки, чи елемент знаходиться в полі зору
+function isElementInView(element, container) {
+  const rect = element.getBoundingClientRect();
+  const containerRect = container.getBoundingClientRect();
+
+  if (device === 'desktop') {
+      // Вертикальний скрол для desktop
+      return (
+          rect.top >= containerRect.top &&
+          rect.bottom <= containerRect.bottom
+      );
+  } else {
+      // Горизонтальний скрол для інших пристроїв
+      return (
+          rect.left >= containerRect.left &&
+          rect.right <= containerRect.right
+      );
+  }
 }
 
 // Swiper Slider
@@ -243,12 +300,16 @@ class ExitIntentPopup {
     this.device = device;
     this.currency = website.currency.list[0].symbol;
     this.isUpdateItemsInPopup = true;
-    this.itemsLengthBasket = $el('basket-qty [qty-bullet]') ? parseFloat($el('basket-qty [qty-bullet]').getAttribute('qty-bullet')) : 0;
+    this.itemsLengthBasket = $el("basket-qty [qty-bullet]")
+      ? parseFloat($el("basket-qty [qty-bullet]").getAttribute("qty-bullet"))
+      : 0;
     this.userId = userId;
     this.idKlaviyoForm = dataIdKlaviyo[website.websiteCode];
-    this.webCode = website.websiteCode != "base" ? "/" + website.websiteCode : "";
-    this.nameCountEvent = '';
-    this.locCountEvent = '';
+    this.webCode =
+      website.websiteCode != "base" ? "/" + website.websiteCode : "";
+    this.nameCountEvent = "";
+    this.locCountEvent = "";
+    this.intervalBetweenPopup = 0;
     this.init();
   }
 
@@ -258,19 +319,22 @@ class ExitIntentPopup {
 
     this.styleAppend();
 
-    if (this.userId == true && !sessionStorage.getItem('popupShownC') && !sessionStorage.getItem('popupShownB')) {
+    if (
+      this.userId == true &&
+      !sessionStorage.getItem("popupShownC") &&
+      !sessionStorage.getItem("popupShownB")
+    ) {
       this.addPopupAlmost();
       this.addPopupNewCollection();
     } else {
       this.addPopupFirst();
       this.addPopupWelcomeTo();
-      setCookie()
+      setCookie();
     }
 
     this.updateProductsInPopup();
 
     const globalMutation = new MutationObserver((mutations) => {
-
       if (
         this.checkPageUrl() === "basket" ||
         this.checkPageUrl() === "checkout"
@@ -278,12 +342,21 @@ class ExitIntentPopup {
         this.longInactivityInBag();
       }
 
-      this.locCountEvent = this.itemsLengthBasket == 1 ? 'Popup One product ' :  this.itemsLengthBasket > 1 ? 'Popup Several products ' : 'Popup '
-      this.nameCountEvent = this.locCountEvent.includes('One') ? 'one' : this.locCountEvent.includes('Several') ? 'seve' : ''
+      this.locCountEvent =
+        this.itemsLengthBasket == 1
+          ? "Popup One product "
+          : this.itemsLengthBasket > 1
+          ? "Popup Several products "
+          : "Popup ";
+      this.nameCountEvent = this.locCountEvent.includes("One")
+        ? "one"
+        : this.locCountEvent.includes("Several")
+        ? "seve"
+        : "";
 
       $$el("action").forEach((item) => {
         item.addEventListener("click", (e) => {
-          e.stopPropagation()
+          e.stopPropagation();
           this.isUpdateItemsInPopup = false;
         });
       });
@@ -291,7 +364,6 @@ class ExitIntentPopup {
       if (this.isUpdateItemsInPopup == false) {
         this.isUpdateItemsInPopup = true;
 
-        console.log('updated ProductsInPopup: ' + this.isUpdateItemsInPopup);
         this.updateProductsInPopup();
       }
 
@@ -644,17 +716,14 @@ class ExitIntentPopup {
     let idleTimer;
     const idleTime = 60000; // час (в мілісекундах), який вважається "неактивним"
 
-    const page = this.checkPageUrl()
-    const showPopupTimer = () => this.showPopup()
+    const page = this.checkPageUrl();
+    const showPopupTimer = () => this.showPopup();
 
     function resetIdleTimer() {
       clearTimeout(idleTimer);
       idleTimer = setTimeout(() => {
-        if (
-          page === "basket" ||
-          page === "checkout"
-        ) {
-          showPopupTimer()
+        if (page === "basket" || page === "checkout") {
+          showPopupTimer();
         }
       }, idleTime);
     }
@@ -670,14 +739,16 @@ class ExitIntentPopup {
 
   showPopup() {
     if ($el(".crs_popup.active")) return;
-
-    console.log(this.itemsLengthBasket)
+    if (this.intervalBetweenPopup != 0) return;
 
     startTime = 0;
 
+    console.log(this.itemsLengthBasket);
     if ($el(`.crs_popup .crs_list`)) {
       $el(`.crs_popup .crs_list`).scrollLeft =
-        ($el(".crs_list").scrollWidth - $el(".crs_list").clientWidth) / 2;
+        this.itemsLengthBasket > 2
+          ? 122
+          : ($el(".crs_list").scrollWidth - $el(".crs_list").clientWidth) / 2;
     }
 
     startTimeInterval = setInterval(() => {
@@ -695,12 +766,16 @@ class ExitIntentPopup {
         window._klOnsite.push(["openForm", this.idKlaviyoForm]);
 
         $el(`.crs_popup[data-query="b"]`).classList.add("active");
+
+        this.intervalBetweenPopup = 100; // Corrected assignment
       } else if (
         !sessionStorage.getItem("popupShownD") &&
         $el(`.crs_popup[data-query="d"]`)
       ) {
         sessionStorage.setItem("popupShownD", "true");
         $el(`.crs_popup[data-query="d"]`).classList.add("active");
+
+        this.intervalBetweenPopup = 100; // Corrected assignment
       }
     } else {
       if (
@@ -709,6 +784,7 @@ class ExitIntentPopup {
       ) {
         sessionStorage.setItem("popupShownA", "true");
         $el(`.crs_popup[data-query="a"]`).classList.add("active");
+
       } else if (
         !sessionStorage.getItem("popupShownC") &&
         $el(`.crs_popup[data-query="c"]`)
@@ -716,16 +792,22 @@ class ExitIntentPopup {
         sessionStorage.setItem("popupShownC", "true");
         $el(`.crs_popup[data-query="c"]`).classList.add("active");
         startTimer();
+
       }
+    }
+
+    if (this.intervalBetweenPopup == 100) {
+      setTimeout(() => {
+        console.log("close intervalBetweenPopup: 1 min");
+        this.intervalBetweenPopup = 0;
+      }, 60000);
     }
   }
 
   actionExitIntentPopup() {
-
     const showPopupDesk = () => {
-      console.log(this.itemsLengthBasket);
-      this.showPopup()
-    }
+      this.showPopup();
+    };
 
     if (this.device == "desktop") {
       let x = 0,
@@ -744,9 +826,8 @@ class ExitIntentPopup {
             y > window.innerHeight - 50
           ) {
             if ($$el(".crs_popup").length > 1) {
-              showPopupDesk()
+              showPopupDesk();
             }
-            
           }
         },
         { once: true }
@@ -767,7 +848,11 @@ class ExitIntentPopup {
 
       currentSpeed = newPosition - lastPosition;
 
-      if (currentSpeed > speedValue && window.scrollY != 0) {
+      if (
+        currentSpeed > speedValue &&
+        window.scrollY != 0 &&
+        this.intervalBetweenPopup == 0
+      ) {
         console.log("currentSpeed: " + currentSpeed);
 
         document.removeEventListener("scroll", scrollSpeed);
@@ -779,26 +864,45 @@ class ExitIntentPopup {
   }
 
   actionPopup(selector) {
-    let title = selector.querySelector('h2').innerText;
-    let locEvent = title.includes('Would you like') ? 'Welcome to LeMieux' : title.includes('almost yours') ? 'It’s almost yours!' : title.includes('Autumn/winter') ? 'Autumn/winter 2024most wanted' : 'Check out now and get 10% off your first order'
-    let nameEvent = locEvent.toLowerCase().includes('almost yours') ? 'almo' : locEvent.toLowerCase().includes('welcome') ? 'welcome' : locEvent.toLowerCase().includes('check out now') ? 'first' : 'autwint'
+    let title = selector.querySelector("h2").innerText;
+    let locEvent = title.includes("Would you like")
+      ? "Welcome to LeMieux"
+      : title.includes("almost yours")
+      ? "It’s almost yours!"
+      : title.includes("Autumn/winter")
+      ? "Autumn/winter 2024most wanted"
+      : "Check out now and get 10% off your first order";
+    let nameEvent = locEvent.toLowerCase().includes("almost yours")
+      ? "almo"
+      : locEvent.toLowerCase().includes("welcome")
+      ? "welcome"
+      : locEvent.toLowerCase().includes("check out now")
+      ? "first"
+      : "autwint";
+
+    if (selector.querySelector(`.crs_list`)) {
+      $el(`.crs_popup .crs_list`).addEventListener("scroll", function () {
+        updatePeopleCountInView(selector.querySelector(`.crs_list`));
+      });
+      updatePeopleCountInView(selector.querySelector(`.crs_list`));
+    }
 
     selector.querySelector(".crs_popup_close").addEventListener("click", () => {
       clearInterval(startTimeInterval);
       selector.classList.remove("active");
 
       pushDataLayer([
-        `exp_exi_int_popup_but_${this.nameCountEvent+nameEvent}_clos`,
+        `exp_exi_int_popup_but_${this.nameCountEvent + nameEvent}_clos`,
         "Close",
         "Button",
-        this.locCountEvent + locEvent
-      ])
+        this.locCountEvent + locEvent,
+      ]);
       pushDataLayer([
-        `exp_exi_int_popup_vis_${this.nameCountEvent+nameEvent}_focu`,
+        `exp_exi_int_popup_vis_${this.nameCountEvent + nameEvent}_focu`,
         startTime,
         "Visibility",
-        this.locCountEvent + locEvent
-      ])
+        this.locCountEvent + locEvent,
+      ]);
     });
 
     selector.addEventListener("click", (e) => {
@@ -807,23 +911,25 @@ class ExitIntentPopup {
         selector.classList.remove("active");
 
         pushDataLayer([
-          `exp_exi_int_popup_vis_${this.nameCountEvent+nameEvent}_focu`,
+          `exp_exi_int_popup_vis_${this.nameCountEvent + nameEvent}_focu`,
           startTime,
           "Visibility",
-          this.locCountEvent + locEvent
-        ])
+          this.locCountEvent + locEvent,
+        ]);
       }
     });
 
-    if (selector.getAttribute('data-query') == 'd') {
-      selector.querySelectorAll(".crs_popup_complete").forEach(item => {
-        item.addEventListener('click', (e) => {
+    if (selector.getAttribute("data-query") == "d") {
+      selector.querySelectorAll(".crs_popup_complete").forEach((item) => {
+        item.addEventListener("click", (e) => {
           pushDataLayer([
             `exp_exi_int_popup_but_autwint_kit`,
-            `${item.closest('.col-md-4').querySelector('p').innerText} - Shop Now`,
+            `${
+              item.closest(".col-md-4").querySelector("p").innerText
+            } - Shop Now`,
             "Button",
-            "Popup Autumn/winter 2024 most wanted"
-          ])
+            "Popup Autumn/winter 2024 most wanted",
+          ]);
 
           clearInterval(startTimeInterval);
 
@@ -831,12 +937,12 @@ class ExitIntentPopup {
             `exp_exi_int_popup_vis_autwint_focu`,
             startTime,
             "Visibility",
-            this.locCountEvent + locEvent
-          ])
-        })
-      })
+            this.locCountEvent + locEvent,
+          ]);
+        });
+      });
 
-      return
+      return;
     }
 
     selector
@@ -844,21 +950,23 @@ class ExitIntentPopup {
       .addEventListener("click", (e) => {
         e.preventDefault();
 
-        console.log( e.target)
-        let nameBtn = e.target.innerText.includes('Complete') ? 'compl' : e.target.innerText.includes('Sign up') ? 'sign' : 'check'
+        let nameBtn = e.target.innerText.includes("Complete")
+          ? "compl"
+          : e.target.innerText.includes("Sign up")
+          ? "sign"
+          : "check";
 
         pushDataLayer([
-          `exp_exi_int_popup_but_${this.nameCountEvent+nameEvent}_${nameBtn}`,
+          `exp_exi_int_popup_but_${this.nameCountEvent + nameEvent}_${nameBtn}`,
           e.target.innerText,
           "Button",
-          this.locCountEvent + locEvent
-        ])
+          this.locCountEvent + locEvent,
+        ]);
 
         if (selector.getAttribute("data-query") == "b") {
           let value = selector.querySelector("input").value;
 
           if (value != "" && isUrlValid(value)) {
-            console.log("sing up true");
             selector
               .querySelector("input")
               .parentElement.classList.remove("crs_error");
@@ -877,12 +985,6 @@ class ExitIntentPopup {
                   new Event("input", { bubbles: true })
                 );
 
-                console.log(
-                  $el(
-                    '.needsclick.kl-private-reset-css-Xuajs1 [data-testid="form-component"] button'
-                  )
-                );
-
                 $el(
                   '.needsclick.kl-private-reset-css-Xuajs1 [data-testid="form-component"] button'
                 ).click();
@@ -890,7 +992,9 @@ class ExitIntentPopup {
                 let waitGetDiscount = setInterval(() => {
                   if (
                     $el(".needsclick.kl-private-reset-css-Xuajs1") &&
-                    $el('form.needsclick > div > div > div > div > div > div') &&
+                    $el(
+                      "form.needsclick > div > div > div > div > div > div"
+                    ) &&
                     ($el(".needsclick.kl-private-reset-css-Xuajs1")
                       .innerText.toUpperCase()
                       .includes("LMWELCOME10") ||
@@ -904,50 +1008,53 @@ class ExitIntentPopup {
                     selector.classList.remove("active");
 
                     pushDataLayer([
-                      `exp_exi_int_popup_vis_${this.nameCountEvent+nameEvent}_focu`,
+                      `exp_exi_int_popup_vis_${
+                        this.nameCountEvent + nameEvent
+                      }_focu`,
                       startTime,
                       "Visibility",
-                      this.locCountEvent + locEvent
-                    ])
+                      this.locCountEvent + locEvent,
+                    ]);
 
-                    $el('form.needsclick > div > div > div > div > div > div').addEventListener('click', (e) => {
+                    $el(
+                      "form.needsclick > div > div > div > div > div > div"
+                    ).addEventListener("click", (e) => {
                       pushDataLayer([
                         `exp_use_this_popup_copy_button`,
-                        'Copy',
+                        "Copy",
                         "Button",
-                        "Popup Use this code"
-                      ])
-                    })
-                    $el('form.needsclick > div > div > div > div > div svg').addEventListener('click', (e) => {
+                        "Popup Use this code",
+                      ]);
+                    });
+                    $el(
+                      "form.needsclick > div > div > div > div > div svg"
+                    ).addEventListener("click", (e) => {
                       pushDataLayer([
                         `exp_use_this_popup_copy_button`,
-                        'Copy',
+                        "Copy",
                         "Button",
-                        "Popup Use this code"
-                      ])
-                    })
-                    startTime = 0
+                        "Popup Use this code",
+                      ]);
+                    });
+                    startTime = 0;
 
                     startTimeInterval = setInterval(() => {
                       startTime += 1;
                     }, 1000);
 
                     let waitCloseDiscount = setInterval(() => {
-                      if (
-                        !$el(".needsclick.kl-private-reset-css-Xuajs1")
-                      ) {
-                        clearInterval(waitCloseDiscount)
-                        clearInterval(startTimeInterval)
+                      if (!$el(".needsclick.kl-private-reset-css-Xuajs1")) {
+                        clearInterval(waitCloseDiscount);
+                        clearInterval(startTimeInterval);
 
                         pushDataLayer([
                           `exp_use_this_popup_vis_focus`,
                           startTime,
                           "Visibility",
-                          "Popup Use this code"
-                        ])
+                          "Popup Use this code",
+                        ]);
                       }
-                    }, 100)
-                   
+                    }, 100);
 
                     document.body.insertAdjacentHTML(
                       "afterbegin",
@@ -967,7 +1074,6 @@ class ExitIntentPopup {
               }
             }, 100);
           } else {
-            console.log("sing up false");
             selector
               .querySelector("input")
               .parentElement.classList.add("crs_error");
@@ -977,20 +1083,19 @@ class ExitIntentPopup {
         }
 
         clearInterval(startTimeInterval);
-    
+
         pushDataLayer([
-          `exp_exi_int_popup_vis_${this.nameCountEvent+nameEvent}_focu`,
+          `exp_exi_int_popup_vis_${this.nameCountEvent + nameEvent}_focu`,
           startTime,
           "Visibility",
-          this.locCountEvent + locEvent
-        ])
+          this.locCountEvent + locEvent,
+        ]);
 
         if (this.checkPageUrl() != "checkout") {
           window.location.href = this.webCode + "/checkout/";
         } else {
           selector.classList.remove("active");
         }
-
       });
   }
 
@@ -1143,9 +1248,11 @@ class ExitIntentPopup {
             </button>
             <div class="crs_popup_content">
               <h2 class="text-center">
-                ${this.idKlaviyoForm == "RQWev3" ? 
-                `Check out now and get <br><span class="crs_c-red">free delivery</span>  on your first order` : 
-                `Check out now and get <br><span class="crs_c-red">10% off</span> your first order`}
+                ${
+                  this.idKlaviyoForm == "RQWev3"
+                    ? `Check out now and get <br><span class="crs_c-red">free delivery</span>  on your first order`
+                    : `Check out now and get <br><span class="crs_c-red">10% off</span> your first order`
+                }
               </h2>
               <div class="crs_timer flex text-center flex-justify-center">
                 <div>
@@ -1171,9 +1278,17 @@ class ExitIntentPopup {
               </div>
               <div class="crs_code">
                 <h4 class="text-center">Enter code at checkout</h4>
-                <input type="text" value="${this.idKlaviyoForm == "RQWev3" ? 'FIRSTORDERFREE' : 'LMWELCOME10'}" hidden>
+                <input type="text" value="${
+                  this.idKlaviyoForm == "RQWev3"
+                    ? "FIRSTORDERFREE"
+                    : "LMWELCOME10"
+                }" hidden>
                 <button type="button" class="flex flex-justify-between flex-middle" onclick="copyText('.crs_code input')">
-                  <span>${this.idKlaviyoForm == "RQWev3" ? 'FIRSTORDERFREE' : 'LMWELCOME10'}</span>
+                  <span>${
+                    this.idKlaviyoForm == "RQWev3"
+                      ? "FIRSTORDERFREE"
+                      : "LMWELCOME10"
+                  }</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M14.3877 0H5.30462C4.8775 0.00162093 4.46835 0.172009 4.16633 0.474025C3.86432 0.77604 3.69393 1.1852 3.69231 1.61231V3.69231H1.61231C1.1852 3.69393 0.77604 3.86432 0.474025 4.16633C0.172009 4.46835 0.00162093 4.8775 0 5.30462V14.3877C0.00162093 14.8148 0.172009 15.224 0.474025 15.526C0.77604 15.828 1.1852 15.9984 1.61231 16H10.6954C11.1225 15.9984 11.5317 15.828 11.8337 15.526C12.1357 15.224 12.3061 14.8148 12.3077 14.3877V12.3077H14.3877C14.8148 12.3061 15.224 12.1357 15.526 11.8337C15.828 11.5317 15.9984 11.1225 16 10.6954V1.61231C15.9984 1.1852 15.828 0.77604 15.526 0.474025C15.224 0.172009 14.8148 0.00162093 14.3877 0ZM11.0769 14.3877C11.0769 14.4889 11.0367 14.5859 10.9652 14.6575C10.8936 14.729 10.7966 14.7692 10.6954 14.7692H1.61231C1.51112 14.7692 1.41407 14.729 1.34252 14.6575C1.27097 14.5859 1.23077 14.4889 1.23077 14.3877V5.30462C1.23077 5.20343 1.27097 5.10638 1.34252 5.03483C1.41407 4.96327 1.51112 4.92308 1.61231 4.92308H10.6954C10.7966 4.92308 10.8936 4.96327 10.9652 5.03483C11.0367 5.10638 11.0769 5.20343 11.0769 5.30462V14.3877ZM14.7692 10.6954C14.7692 10.7966 14.729 10.8936 14.6575 10.9652C14.5859 11.0367 14.4889 11.0769 14.3877 11.0769H12.3077V5.30462C12.3061 4.8775 12.1357 4.46835 11.8337 4.16633C11.5317 3.86432 11.1225 3.69393 10.6954 3.69231H4.92308V1.61231C4.92308 1.51112 4.96327 1.41407 5.03483 1.34252C5.10638 1.27097 5.20343 1.23077 5.30462 1.23077H14.3877C14.4889 1.23077 14.5859 1.27097 14.6575 1.34252C14.729 1.41407 14.7692 1.51112 14.7692 1.61231V10.6954Z" fill="#8E1538"/>
                   </svg>
@@ -1225,7 +1340,6 @@ class ExitIntentPopup {
 
     if ($el(".crs_popup[data-query='a']")) return;
 
-    console.log("addPopupAlmost");
     document.body.insertAdjacentHTML("beforeend", popup);
 
     this.actionPopup($el(".crs_popup[data-query='a']"));
@@ -1335,34 +1449,35 @@ class ExitIntentPopup {
 
     document.body.insertAdjacentHTML("beforeend", popup);
 
-    console.log(
-      "addPopupWelcomeTo this.itemsLengthBasket: " + this.itemsLengthBasket
-    );
-    console.log("addPopupWelcomeTo id: " + id);
-
-    $el('.crs_popup[data-query="b"] input[type="email"]').addEventListener('input', (e) => {
-      if (e.target.closest('.crs_error')) {
-        e.target.closest('.crs_error').classList.remove('crs_error')
+    $el('.crs_popup[data-query="b"] input[type="email"]').addEventListener(
+      "input",
+      (e) => {
+        if (e.target.closest(".crs_error")) {
+          e.target.closest(".crs_error").classList.remove("crs_error");
+        }
       }
-    })
+    );
 
     this.actionPopup($el('.crs_popup[data-query="b"]'));
 
-    setTimeout(() => {
-      if (
-        !sessionStorage.getItem("popupShownB") &&
-        this.itemsLengthBasket == 0
-      ) {
-        console.log('setTimeout showPopupWelcomeTo: ' + this.itemsLengthBasket)
+    let waitOneMinutes = setInterval(() => {
+      if (this.intervalBetweenPopup == 0) {
+        clearInterval(waitOneMinutes);
+        setTimeout(() => {
+          if (
+            !sessionStorage.getItem("popupShownB") &&
+            this.itemsLengthBasket == 0
+          ) {
+            sessionStorage.setItem("popupShownB", "true");
 
-        sessionStorage.setItem("popupShownB", "true");
+            window._klOnsite = window._klOnsite || [];
+            window._klOnsite.push(["openForm", id]);
 
-        window._klOnsite = window._klOnsite || [];
-        window._klOnsite.push(["openForm", id]);
-
-        $el(`.crs_popup[data-query="b"]`).classList.add("active");
+            $el(`.crs_popup[data-query="b"]`).classList.add("active");
+          }
+        }, 20000);
       }
-    }, 20000);
+    });
   }
 
   addPopupNewCollection() {
@@ -1485,13 +1600,9 @@ class ExitIntentPopup {
 
     listPopup.innerHTML = "";
 
-    console.log("updateProductsInPopup");
-
     getFetch("p/customer/data").then((data) => {
       const itemsBasket = data["customer"]["cart"]["items"];
       let slide = "";
-
-      console.log(itemsBasket);
 
       this.itemsLengthBasket = itemsBasket.length;
 
@@ -1509,15 +1620,13 @@ class ExitIntentPopup {
             (dataItem) => {
               const item = dataItem.result[0];
 
-              console.log(item);
-
               let size;
               let color;
-              let options = ''
+              let options = "";
 
-              const isBundle = item.type_id == "bundle" ? 'Bundle' : ''
+              const isBundle = item.type_id == "bundle" ? "Bundle" : "";
 
-              if (isBundle == '') {
+              if (isBundle == "") {
                 if (item.size) {
                   size = JSON.stringify(window.autoInitData.data.attribute)
                     .split(`${item.size},"label":"`)[1]
@@ -1529,41 +1638,42 @@ class ExitIntentPopup {
                     .split(`${item.color},"label":"`)[1]
                     .split('"')[0];
                 }
-                options = `${size} | ${color}`
+                options = `${size} | ${color}`;
               } else {
-                options = isBundle
+                options = isBundle;
               }
 
-              let stars = '';
-              
+              let stars = "";
+
               if (item.reviews) {
-                  //stars
-                  let reviewRating = (item.reviews.rating / 10 / 2).toFixed(1);
+                //stars
+                let reviewRating = (item.reviews.rating / 10 / 2).toFixed(1);
 
-                  let iWholeStars = Math.floor(reviewRating);
-                  let iEmptyStars = 5 - Math.ceil(reviewRating);
+                let iWholeStars = Math.floor(reviewRating);
+                let iEmptyStars = 5 - Math.ceil(reviewRating);
 
-                  let blnHalfStar = (iWholeStars < reviewRating);
-              
-                  for (var iStar = 1; iStar <= iWholeStars; iStar++) {
-                      stars += '<i class="rate-full"></i>'
-                  }
-              
-                  if (blnHalfStar) {
-                      stars += '<i class="rate-half"></i>'
-                  } 
-                  for (let iEmp = 0; iEmp < iEmptyStars; iEmp++) {
-                      stars += '<i class="rate-empty"></i>'
-                  }
-                
+                let blnHalfStar = iWholeStars < reviewRating;
 
+                for (var iStar = 1; iStar <= iWholeStars; iStar++) {
+                  stars += '<i class="rate-full"></i>';
+                }
+
+                if (blnHalfStar) {
+                  stars += '<i class="rate-half"></i>';
+                }
+                for (let iEmp = 0; iEmp < iEmptyStars; iEmp++) {
+                  stars += '<i class="rate-empty"></i>';
+                }
               }
-
+              let from =
+                $el(`.crs_popup`).getAttribute("data-query") == "a" ? 4 : 1;
+              let to =
+                $el(`.crs_popup`).getAttribute("data-query") == "a" ? 15 : 10;
               $el(`.crs_popup .crs_list`).insertAdjacentHTML(
                 "beforeend",
                 `<li data-id="${itemsBasket[i].id}" data-product="${
                   itemsBasket[i].product
-                }">
+                }" data-people="${this.getRandomNumber(from, to)}">
                 <img src="/static/media/catalog${item.image}" alt="${
                   item.meta.title
                 }">
@@ -1573,14 +1683,21 @@ class ExitIntentPopup {
                     <p class="crs_popup_price"><b>${
                       this.currency + itemsBasket[i].price
                     }</b></p>
-                    ${stars != '' ? `<rating class="crs_popup_stars flex">${stars} <b>(${item.reviews.count})</b></rating>` : ''}
+                    ${
+                      stars != ""
+                        ? `<rating class="crs_popup_stars flex">${stars} <b>(${item.reviews.count})</b></rating>`
+                        : ""
+                    }
                 </div>
               </li>`
               );
 
               if ($el('.crs_popup[data-query="c"] .swiper-wrapper')) {
-                let image = item.image_alt && item.image_alt != 'undefined' ? item.image_alt : item.media[0].image
-                console.log(image)
+                let image =
+                  item.image_alt && item.image_alt != "undefined"
+                    ? item.image_alt
+                    : item.media[0].image;
+
                 slide += `<div class="swiper-slide"><img src="/static/media/catalog${image}" alt="image"></div>`;
               }
 
@@ -1588,7 +1705,6 @@ class ExitIntentPopup {
                 i >= this.itemsLengthBasket - 1 &&
                 $el('.crs_popup[data-query="c"] .swiper-wrapper')
               ) {
-                console.log("init swiper");
                 $el('.crs_popup[data-query="c"] .swiper-wrapper').innerHTML =
                   slide;
                 initSwiper();
@@ -1606,11 +1722,10 @@ class ExitIntentPopup {
 let waitWebsiteCode = setInterval(() => {
   const websiteData = window.autoInitData.website;
   if (websiteData?.websiteCode && websiteData.currency?.list[0]?.symbol) {
-    clearInterval(waitWebsiteCode)
+    clearInterval(waitWebsiteCode);
 
     const userId = document.cookie.includes("user_id=");
-    const website = window.autoInitData.website
-    console.log(website.currency.list[0].symbol)
+    const website = window.autoInitData.website;
     new ExitIntentPopup(device, userId, website);
   }
-})
+});

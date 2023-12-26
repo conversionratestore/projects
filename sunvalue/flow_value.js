@@ -114,22 +114,22 @@ const dataIcons = {
 };
 
 const dataSavings = {
-  '$50': ['$13,498', '$14,442', '$944'],
-  '$100': ['$21,785', '$29,464', '$7,679'],
-  '$150': ['$30,060', '$44,487', '$14,427'],
-  '$200': ['$38,202', '$59,510', '$21,308'],
-  '$250': ['$46,503', '$74,533', '$28,03'],
-  '$300': ['$54,828', '$89,556', '$34,728'],
-  '$350': ['$63,189', '$104,578', '$41,389'],
-  '$400': ['$71,569', '$119,601', '$48,032'],
-  '$450': ['$80,013', '$134,624', '$54,611'],
-  '$500': ['$88,495', '$149,647', '$61,152'],
-  '$550': ['$96,977', '$164,670', '$68,075'],
-  '$600': ['$104,918', '$179,692', '$74,775'],
-  '$650': ['$113,241', '$194,715', '$81,474'],
-  '$700': ['$121,565', '$209,738', '$88,173'],
-  '$750': ['$129,889', '$224,761', '$94,872'],
-  '$800': ['$138,212', '$239,784', '$101,571']
+  $50: ["$13,498", "$14,442", "$944"],
+  $100: ["$21,785", "$29,464", "$7,679"],
+  $150: ["$30,060", "$44,487", "$14,427"],
+  $200: ["$38,202", "$59,510", "$21,308"],
+  $250: ["$46,503", "$74,533", "$28,03"],
+  $300: ["$54,828", "$89,556", "$34,728"],
+  $350: ["$63,189", "$104,578", "$41,389"],
+  $400: ["$71,569", "$119,601", "$48,032"],
+  $450: ["$80,013", "$134,624", "$54,611"],
+  $500: ["$88,495", "$149,647", "$61,152"],
+  $550: ["$96,977", "$164,670", "$68,075"],
+  $600: ["$104,918", "$179,692", "$74,775"],
+  $650: ["$113,241", "$194,715", "$81,474"],
+  $700: ["$121,565", "$209,738", "$88,173"],
+  $750: ["$129,889", "$224,761", "$94,872"],
+  $800: ["$138,212", "$239,784", "$101,571"],
 };
 
 function handleVisibility(el, eventParams) {
@@ -193,6 +193,37 @@ function roundToNearestMultiple(number) {
   return Math.ceil(number / multiple) * multiple;
 }
 
+let viewedOne = false;
+let viewedTwo = false;
+
+function visibleAfterTimer() {
+  setTimeout(() => {
+    if (
+      viewedOne == false &&
+      $(".swiper-slide").eq(0).hasClass("swiper-slide-active")
+    ) {
+      viewedOne = true;
+      pushDataLayer([
+        "exp_valu_prop_vis_discov_full",
+        "Full page view",
+        "Visibility",
+        "Discover Incentive Program in City",
+      ]);
+    }
+    if (
+      viewedTwo == false &&
+      $(".swiper-slide").eq(1).hasClass("swiper-slide-active")
+    ) {
+      viewedTwo = true;
+      pushDataLayer([
+        "exp_valu_prop_vis_energybill_full",
+        "Full page view",
+        "Visibility",
+        "How much is your monthly energy bill?",
+      ]);
+    }
+  }, 3000);
+}
 class changeFlow {
   constructor(device) {
     this.device = device;
@@ -217,14 +248,15 @@ class changeFlow {
           $(".wrapper").removeClass("slide-active-analyzing");
         }, 7500);
       });
-      document.body.insertAdjacentHTML('afterbegin', `
+      document.body.insertAdjacentHTML(
+        "afterbegin",
+        `
       <style>
         .site-footer {
           display: none!important;
         }
-      </style>`)
-
-    
+      </style>`
+      );
     } else {
       this.addThankPage();
     }
@@ -243,21 +275,29 @@ class changeFlow {
         data.lastInfo == "";
 
         localStorage.setItem("crs_data", JSON.stringify(data));
-        
       }
       if (!media && this.checkPageUrl() == "save") {
-
-        $('.radioNext').click(function() {
-          console.log('radioNext')
-          $('#slider-block .default').attr('style','')
-        })
-
-
-        if ($('.swiper-slide').eq(2).hasClass('swiper-slide-active') || $('.swiper-slide').eq(4).hasClass('swiper-slide-active')) {
-          $('#slider-block .default').attr('style','display: none!important;')
+        if (
+          $(".swiper-slide").eq(2).hasClass("swiper-slide-active") ||
+          $(".swiper-slide").eq(4).hasClass("swiper-slide-active")
+        ) {
+          $("#slider-block .default").attr("style", "display: none!important;");
         } else {
-          $('#slider-block .default').attr('style','')
+          $("#slider-block .default").attr("style", "");
         }
+      }
+
+      //events
+      if ($(".swiper-slide").eq(0).hasClass("swiper-slide-active")) {
+        visibleAfterTimer();
+      } else {
+        viewedOne = false;
+      }
+
+      if ($(".swiper-slide").eq(1).hasClass("swiper-slide-active")) {
+        visibleAfterTimer();
+      } else {
+        viewedTwo = false;
       }
 
       globalMutation.disconnect();
@@ -362,6 +402,7 @@ class changeFlow {
             }
             .wrapper .form-list {
                 margin-top: 16px;
+                max-width: 100%;
             }
             .wrapper .form-list li, .wrapper .form-list li.full {
                 margin: 0 0 16px 0;
@@ -442,6 +483,8 @@ class changeFlow {
                 text-transform: uppercase;
                 padding: 12px;
                 min-height: 56px;
+                max-width: 100%;
+                font-weight: 700;
             }
             .underline {
                 text-decoration: underline;
@@ -620,15 +663,64 @@ class changeFlow {
       $("#submit").click();
     });
 
-    if (!media) {
-      $('#slider-block .default').click(function (e) {
-        e.preventDefault()
-        console.log('click')
+    $("#slider-block .default").click(function (e) {
+      if ($(".swiper-slide").eq(2).hasClass("swiper-slide-active")) {
+        pushDataLayer([
+          "exp_valu_prop_but_energybill_next",
+          $(".rangeslider-tooltip").text(),
+          "Button",
+          "How much is your monthly energy bill?",
+        ]);
+      }
+
+      if (!media) {
+        e.preventDefault();
+        console.log("click");
         $("#next-block .nextSlide").click();
+      }
+    });
+    $(".back-link").click(function () {
+      let title = $(".swiper-slide-active .title").text();
+      let eventName = title.includes("How much is you")
+        ? "energybill"
+        : title.includes("Who is your utility")
+        ? "utilprov"
+        : title.includes("Where is your home")
+        ? "homeloc"
+        : title.includes("Does Your Roof Get")
+        ? "sunlight"
+        : title.includes("What is your name")
+        ? "youname"
+        : title.includes("What is your email")
+        ? "emailaddres"
+        : "onestep";
 
-      });
+      pushDataLayer([
+        `exp_valu_prop_but_${eventName}_next`,
+        "Back",
+        "Button",
+        title,
+      ]);
+    });
 
-    }
+    $(".radioNext").click(function (e) {
+      let eventName = this.text().includes(
+        "Los Angeles Department of Water & Power"
+      )
+        ? "angdep"
+        : this.text().includes("Glendale Water & Power")
+        ? "watpow"
+        : this.text().includes("Other")
+        ? "other"
+        : this.text().split(" ")[1].trim().replace(" ", "").toLowerCase();
+
+      pushDataLayer([
+        "exp_valu_prop_but_utilprov_" + eventName,
+        this.text(),
+        "Button",
+        "Who is your utility provider?",
+      ]);
+    });
 
     $(".swiper-wrapper .swiper-slide").each(function (index, element) {
       let _this = $(element);
@@ -647,6 +739,15 @@ class changeFlow {
           dataIcons.settings,
           "SunValue will assist you in verifying the availability of your address for the Incentive Program"
         );
+
+        _this.find("#calculateYourSavings").click(function () {
+          pushDataLayer([
+            "exp_valu_prop_but_discov_next",
+            "Discover Incentive Program",
+            "Button",
+            "Discover Incentive Program in City",
+          ]);
+        });
       } else if (index == 1) {
         self.addBlock(
           index,
@@ -719,18 +820,27 @@ class changeFlow {
         $(".rangeslider-tooltip").text()
       );
       $(".crs_analyzing li:nth-child(2) span").html((price / 50) * 8);
+
+      pushDataLayer([
+        "exp_valu_prop_range_energybill_slider",
+        "Slider",
+        "Range slider",
+        "How much is your monthly energy bill?",
+      ]);
     });
 
     initRangeSlider();
   }
 
   addAnalyzedInfo(data) {
-    const price = data.price ? data.price : '$50',
+    const price = data.price ? data.price : "$50",
       city = data.city,
       panels = (parseFloat(price.replace(price[0], "")) / 50) * 8,
       costWit = dataSavings[price][0],
       costWithout = dataSavings[price][1],
-      toPrice = roundToNearestMultiple(parseFloat(costWithout.replace(costWithout[0],'').split(',')[0])),
+      toPrice = roundToNearestMultiple(
+        parseFloat(costWithout.replace(costWithout[0], "").split(",")[0])
+      ),
       fromPrice = Math.round(toPrice / 2),
       partners =
         data.partners == "loader"
@@ -753,11 +863,21 @@ class changeFlow {
         <div class="crs_graphic">
             <div>
                 <p><b>Total 20-year cost without solar</b></p>
-                <div class="crs_graphic_line navy" style="width: ${100 * parseFloat(costWithout.replace(costWithout[0],'').split(',')[0]) / toPrice}%"><span>${costWithout}</span></div>
+                <div class="crs_graphic_line navy" style="width: ${
+                  (100 *
+                    parseFloat(
+                      costWithout.replace(costWithout[0], "").split(",")[0]
+                    )) /
+                  toPrice
+                }%"><span>${costWithout}</span></div>
             </div>
             <div>
                 <p><b>Total 20-year cost with solar</b></p>
-                <div class="crs_graphic_line green" style="width: ${100 * parseFloat(costWit.replace(costWit[0],'').split(',')[0]) / toPrice}%"><span>${costWit}</span></div>
+                <div class="crs_graphic_line green" style="width: ${
+                  (100 *
+                    parseFloat(costWit.replace(costWit[0], "").split(",")[0])) /
+                  toPrice
+                }%"><span>${costWit}</span></div>
             </div>
         </div>
         <div class="crs_graphic_pins">
@@ -1055,7 +1175,9 @@ class changeFlow {
     </style>
     <div class="crs_thank">
         <div class="container">
-            <h2 class="title">You'll be contacted by a Solar Expert Partner in ${data.city} within a couple of hours</h2>
+            <h2 class="title">You'll be contacted by a Solar Expert Partner in ${
+              data.city
+            } within a couple of hours</h2>
             <p><b>Next steps:</b></p>
             <ul class="crs_thank_list">
                 <li data-num="1">One of our Solar Expert Partners will call you shortly</li>
