@@ -1046,7 +1046,7 @@ let treblehealthPages = setInterval(() => {
                 </span>
                 <div>
                   <h3 class="third_title">Proven Success</h3>
-                  <p>Over <b>85%*</b> of individuals using <b>the Tinnitus Relief Bundle </b> report <b>reduced tinnitus.*</b></p>
+                  <p>Over <b>85%</b> of individuals using <b>the Tinnitus Relief Bundle </b> report <b>reduced tinnitus.</b></p>
                 </div>
               </div>
               <p class="proven_success_txt">This data comes from our 2023 results using the Tinnitus Functional Index (TFI), out of 247 patients.</p>
