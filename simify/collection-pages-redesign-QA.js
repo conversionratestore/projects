@@ -1572,7 +1572,7 @@
               </a>
             </li>
             <li>
-              <a href="${isSimsDirect ? '/products/af-es' : newUrl + 'all/products/af-es'}">
+              <a href="${isSimsDirect ? 'https://simsdirect.com.au/products/af-es' : newUrl + 'all/products/af-es'}">
                 <img src="https://conversionratestore.github.io/projects/simify/img/africa.png" alt="Africa">
                 <span>Africa</span>
               </a>
@@ -1630,7 +1630,7 @@
               </a>
             </li>
             <li>
-              <a href="${isSimsDirect ? '/products/af-es' : newUrl + 'all/products/af-es'}">
+              <a href="${isSimsDirect ? 'https://simsdirect.com.au/products/af-es' : newUrl + 'all/products/af-es'}">
                 <img src="https://conversionratestore.github.io/projects/simify/img/africa.png" alt="Africa">
                 <span>Africa</span>
               </a>
