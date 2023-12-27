@@ -14,7 +14,8 @@
           /* Client's custom styles */
     .collection-tab,
     .SectionHeader,
-    .tabs__buttons--container {
+    .tabs__buttons--container,
+    #shopify-section-traveling-globe-products {
       display: none !important;
     }    
 
@@ -33,30 +34,12 @@
       width: 100%;
       height: 176px;
       background-size: cover !important;
-    }
-
-    .custom-bg.custom-bg--country {
       background: url(${IMAGE_DIR_URL}/collection-header.png) no-repeat bottom;
-    }
-    .custom-bg.custom-bg--region {
-      background: url(${IMAGE_DIR_URL}/all-header.jpg) no-repeat bottom;
-    }
-
-    .overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 70%;
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%);
     }
 
     @media screen and (max-width: 768px) {
-      .custom-bg.custom-bg--country {
+      .custom-bg {
         background: url(${IMAGE_DIR_URL}/collection-header-mobile.png) no-repeat bottom;
-      }
-      .custom-bg.custom-bg--region {
-        background: url(${IMAGE_DIR_URL}/all-header-mobile.jpg) no-repeat bottom;
       }
     }
 
@@ -414,11 +397,11 @@
     }
 
     .switch-exist .accordion-item[data-switch="on"] {
-      display: block !important;
+      display: none !important;
     }
 
     .switch-exist .accordion-item[data-switch="off"] {
-      display: none !important;
+      display: block !important;
     }
 
     .accordion-item:first-child {
@@ -1583,7 +1566,7 @@
               </a>
             </li>
             <li>
-              <a href="${newUrl + prefix}middle-east">
+              <a href="${isSimsDirect ? newUrl + prefix + 'products/af-es' : newUrl + prefix + 'all/products/af-es'}">
                 <img src="https://conversionratestore.github.io/projects/simify/img/africa.png" alt="Africa">
                 <span>Africa</span>
               </a>
@@ -1641,7 +1624,7 @@
               </a>
             </li>
             <li>
-              <a href="${newUrl + prefix}middle-east">
+              <a href="${isSimsDirect ? newUrl + prefix + 'products/af-es' : newUrl + prefix + 'all/products/af-es'}">
                 <img src="https://conversionratestore.github.io/projects/simify/img/africa.png" alt="Africa">
                 <span>Africa</span>
               </a>
@@ -1757,24 +1740,7 @@
         pushDataLayer(['exp_onbo_plan_com_link_locpag_seeloc', 'See all locations', 'Link', 'Location page Travelling elsewhere?'])
       }))
 
-      let bgImg = ''
-
-      if (
-        pathname.includes('asia')
-        || pathname.includes('europe')
-        || pathname.includes('south-east-asia')
-        || pathname.includes('middle-east')
-        || pathname.includes('south-america')
-      ) {
-        bgImg = /*html*/`
-          <div class="custom-bg custom-bg--region"><div class="overlay"></div>
-        </div>`
-      } else {
-        bgImg = /*html*/`
-        <div class="custom-bg custom-bg--country"></div>`
-      }
-
-      waitForElement('#main').then(el => el.insertAdjacentHTML('afterbegin', bgImg))
+      waitForElement('#main').then(el => el.insertAdjacentHTML('afterbegin', /*html*/`<div class="custom-bg"></div>`))
     }
 
     waitForElement('.SectionHeader').then((el) => {
@@ -2106,6 +2072,7 @@
         }
         .collection-template .CollectionMain {
           padding-bottom: 40px;
+          padding-top: 20px;
         }
         .template-collection .product-quality .quality-list li.lav-exclude {
           align-items: flex-start;
@@ -2148,7 +2115,7 @@
         }
         .lav-dropdown__item img {
           max-width: 16px;
-          /*display: none;*/
+          display: none;
         }
         .lav-dropdown__item + .lav-dropdown__item {
           margin-top: 6px;
