@@ -7,27 +7,12 @@
   const IMAGE_DIR_URL = 'https://conversionratestore.github.io/projects/simify/img'
 
   const pathname = window.location.pathname
-
-  let newUrl = ''
-
-  // Regular expression to match the language code in the path
-  const languageRegex = /^\/([a-z]{2}(?:-[a-z]{2})?)\//
-
-  // Use the regular expression to extract the language code
-  const match = pathname.match(languageRegex)
-
-  if (match && match[1]) {
-    // If a language code is found, construct the URL with the language code before 'collections/'
-    const languageCode = match[1]
-    newUrl = `${window.location.origin}/${languageCode}/collections/`
-  } else {
-    // If no language code is found, construct the URL with 'collections/'
-    newUrl = `${window.location.origin}/collections/`
-  }
+  const newUrl = getNewUrl(pathname)
 
   const style = /*html*/`
     <style>
           /* Client's custom styles */
+    .collection-tab,
     .SectionHeader,
     .tabs__buttons--container {
       display: none !important;
@@ -38,6 +23,43 @@
     }
 
     /* Custom styles */
+    #main {
+      position: relative;
+    }
+
+    .custom-bg {
+      position: absolute;
+      top: -36px;
+      width: 100%;
+      height: 176px;
+      background-size: cover !important;
+    }
+
+    .custom-bg.custom-bg--country {
+      background: url(${IMAGE_DIR_URL}/collection-header.png) no-repeat bottom;
+    }
+    .custom-bg.custom-bg--region {
+      background: url(${IMAGE_DIR_URL}/all-header.jpg) no-repeat bottom;
+    }
+
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 70%;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%);
+    }
+
+    @media screen and (max-width: 768px) {
+      .custom-bg.custom-bg--country {
+        background: url(${IMAGE_DIR_URL}/collection-header-mobile.png) no-repeat bottom;
+      }
+      .custom-bg.custom-bg--region {
+        background: url(${IMAGE_DIR_URL}/all-header-mobile.jpg) no-repeat bottom;
+      }
+    }
+
     /* Hide on mobile, show on large screens */
     .show-on-large {
       display: none;
@@ -59,7 +81,18 @@
       }
     }
 
-    .heading p:first-child {
+    .heading > div {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .heading > div img {
+      width: 30px;
+    }
+
+    .heading .heading__title{
       color: #333F48;
       text-align: center;
       font-family: Poppins;
@@ -67,11 +100,9 @@
       font-style: normal;
       font-weight: 700;
       line-height: 42px;
-      margin-bottom: 8px;
-      /* 131.25% */
     }
 
-    .heading p:last-child {
+    .heading .heading__subtitle {
       color: #333F48;
       text-align: center;
       font-family: Roboto;
@@ -79,11 +110,12 @@
       font-style: normal;
       font-weight: 500;
       line-height: 24px;
+      margin-top: 8px;
       /* 150% */
     }
 
     @media screen and (max-width: 768px) {
-      .heading p:first-child {
+      .heading .heading__title {
         color: #333F48;
         font-family: Poppins;
         font-size: 24px;
@@ -93,7 +125,7 @@
         /* 133.333% */
       }
 
-      .heading p:last-child {
+      .heading .heading__subtitle {
         color: #333F48;
         text-align: center;
         font-family: Poppins;
@@ -105,18 +137,26 @@
       }
     }
 
+    .container-crs:not(.particular-collection) {
+      padding: 20px 40px 0px 40px;
+    }
+
     .container-crs {
       max-width: 780px;
       margin: 0 auto;
       padding: 40px 40px 0px 40px;
       border-radius: 12px;
+      background: #fff;
     }
 
     .container-crs.particular-collection {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 24px;
+      margin-top: 20px;
+      top: 5px;
     }
 
     .container-crs p {
@@ -207,7 +247,7 @@
 
     @media screen and (max-width: 768px) {
       .container-crs {
-        padding: 20px 12px 0px 12px;
+        padding: 20px 0 0 !important;
         border-radius: 6px;
       }
 
@@ -220,7 +260,6 @@
         font-size: 12px;
         font-weight: 600;
         line-height: 16px;
-        /* 133.333% */
       }
     }
 
@@ -304,7 +343,7 @@
     }
 
     .select2-results {
-      padding: 2px 0 2px 16px;
+      padding: 2px 0;
     }
 
     .select2-results__option--group {
@@ -323,9 +362,9 @@
     .select2-results__options.select2-results__options--nested::after {
       content: '';
       position: absolute;
-      left: 0;
+      left: 14px;
       bottom: -10px;
-      width: 100%;
+      width: calc(100% - 14px);
       height: 1px;
       background: url(${IMAGE_DIR_URL}/list-line-divider.svg) no-repeat center;
       background-size: cover;
@@ -344,18 +383,17 @@
       font-style: normal;
       font-weight: 700;
       line-height: 18px;
-      padding: 5px 0 !important;
+      padding: 5px 15px !important;
     }
 
-     .select2-container--default .select2-results__option .select2-results__option {
+    .select2-container--default .select2-results__option .select2-results__option {
       color: #333F48;
-      padding: 5px 0;
+      padding: 5px 16px !important;
       font-family: Poppins;
       font-size: 14px;
       font-style: normal;
       font-weight: 500;
       line-height: 20px;
-      /* 142.857% */
     }
 
     /* Accordion */
@@ -457,12 +495,12 @@
 
     .travelling {
       color: #000;
-text-align: center;
-font-family: Poppins;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: 20px; /* 142.857% */
+      text-align: center;
+      font-family: Poppins;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px; /* 142.857% */
     }
 
     .travelling a{
@@ -495,11 +533,11 @@ line-height: 20px; /* 142.857% */
 
     .switcher p {
       margin: 0;     
-font-family: Poppins;
-font-size: 14px;
-font-style: normal;
-font-weight: 500;
-line-height: 20px; /* 142.857% */
+      font-family: Poppins;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 20px; /* 142.857% */
     }
 
     .switcher::before {
@@ -1069,7 +1107,26 @@ line-height: 20px; /* 142.857% */
     }
   }
 
+  function getNewUrl(pathname) {
+    let newUrl = ''
 
+    // Regular expression to match the language code in the path
+    const languageRegex = /^\/([a-z]{2}(?:-[a-z]{2})?)\//
+
+    // Use the regular expression to extract the language code
+    const match = pathname.match(languageRegex)
+
+    if (match && match[1]) {
+      // If a language code is found, construct the URL with the language code before 'collections/'
+      const languageCode = match[1]
+      newUrl = `${window.location.origin}/${languageCode}/collections/`
+    } else {
+      // If no language code is found, construct the URL with 'collections/'
+      newUrl = `${window.location.origin}/collections/`
+    }
+
+    return newUrl
+  }
 
   function capitalizeWords(string) {
     return string
@@ -1078,7 +1135,7 @@ line-height: 20px; /* 142.857% */
       .join(' ')
   }
 
-  function addHeading() {
+  function addHeader() {
     const faqHTML = /*html*/`
     <div class="accordion">
             <div class="accordion-item" data-switch="on">
@@ -1454,7 +1511,6 @@ line-height: 20px; /* 142.857% */
           // Redirect to the selected country's page when an option is selected
           select2.on('select2:select', function (e) {
             var selectedCountry = e.params.data
-            // console.log(selectedCountry)
 
             pushDataLayer(['exp_onbo_plan_com_sel_allockor_contr', 'Choose of country', 'Select', 'All locations Where are you going? or'])
 
@@ -1468,43 +1524,46 @@ line-height: 20px; /* 142.857% */
     let heading = ''
 
     if (pathname.includes('collections/all')) {
+      const isSimsDirect = window.location.hostname.includes('simsdirect') ? true : false
+      const prefix = isSimsDirect ? 'esim-' : ''
+
       heading = /*html*/`
       <div class="container-crs">
         <div class="all-head-event-wrapper">
 
         <div class="heading">
-          <p>Where are you going?</p>
-          <p>Select your travel region to see all plans</p>
+          <p class="heading__title">Where are you going?</p>
+          <p class="heading__subtitle">Select your travel region to see all plans</p>
         </div>
 
         <nav class="countries-nav show-on-large">
           <ul>
             <li>
-              <a href="${newUrl}europe">
+              <a href="${newUrl + prefix}europe">
                 <img src="https://conversionratestore.github.io/projects/simify/img/europe.png" alt="Europe & UK">
                 <span>Europe & UK</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}usa">
+              <a href="${newUrl + prefix}usa">
                 <img src="https://conversionratestore.github.io/projects/simify/img/usa.png" alt="USA, Canada & Mexico">
                 <span>USA, Canada & Mexico</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}japan">
+              <a href="${newUrl + prefix}japan">
                 <img src="https://conversionratestore.github.io/projects/simify/img/japan.png" alt="Japan">
                 <span>Japan</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}asia">
+              <a href="${newUrl + prefix}asia">
                 <img src="https://conversionratestore.github.io/projects/simify/img/asia.png" alt="Asia">
                 <span>Asia</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}new-zealand">
+              <a href="${newUrl + prefix}new-zealand">
                 <img src="https://conversionratestore.github.io/projects/simify/img/australia.png" alt="New Zealand & Australia">
                 <span>New Zealand & Australia</span>
               </a>
@@ -1512,7 +1571,7 @@ line-height: 20px; /* 142.857% */
           </ul>
           <ul>
             <li>
-              <a href="${newUrl}south-east-asia">
+              <a href="${isSimsDirect ? newUrl + 'south-east-asia' : newUrl + 'south-america-esim'}">
                 <img src="https://conversionratestore.github.io/projects/simify/img/south-america.png" alt="South America">
                 <span>South America</span>
               </a>
@@ -1524,7 +1583,7 @@ line-height: 20px; /* 142.857% */
               </a>
             </li>
             <li>
-              <a href="${newUrl}middle-east">
+              <a href="${newUrl + prefix}middle-east">
                 <img src="https://conversionratestore.github.io/projects/simify/img/africa.png" alt="Africa">
                 <span>Africa</span>
               </a>
@@ -1540,49 +1599,49 @@ line-height: 20px; /* 142.857% */
         <nav class="countries-nav show-on-mobile">
           <ul>
           <li>
-              <a href="${newUrl}europe">
+              <a href="${newUrl + prefix}europe">
                 <img src="https://conversionratestore.github.io/projects/simify/img/europe.png" alt="Europe & UK">
                 <span>Europe & UK</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}usa">
+              <a href="${newUrl + prefix}usa">
                 <img src="https://conversionratestore.github.io/projects/simify/img/usa.png" alt="USA, Canada & Mexico">
                 <span>USA, Canada & Mexico</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}japan">
+              <a href="${newUrl + prefix}japan">
                 <img src="https://conversionratestore.github.io/projects/simify/img/japan.png" alt="Japan">
                 <span>Japan</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}asia">
+              <a href="${newUrl + prefix}asia">
                 <img src="https://conversionratestore.github.io/projects/simify/img/asia.png" alt="Asia">
                 <span>Asia</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}new-zealand">
+              <a href="${newUrl + prefix}new-zealand">
                 <img src="https://conversionratestore.github.io/projects/simify/img/australia.png" alt="New Zealand & Australia">
                 <span>New Zealand & Australia</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}south-east-asia">
+              <a href="${isSimsDirect ? newUrl + 'south-east-asia' : newUrl + 'south-america-esim'}">
                 <img src="https://conversionratestore.github.io/projects/simify/img/south-america.png" alt="South America">
                 <span>South America</span>
               </a>
             </li>
             <li>
-            <a href="${newUrl}middle-east">
+            <a href="${newUrl + prefix}middle-east">
                 <img src="https://conversionratestore.github.io/projects/simify/img/east.png" alt="Middle East">
                 <span>Middle East</span>
               </a>
             </li>
             <li>
-              <a href="${newUrl}middle-east">
+              <a href="${newUrl + prefix}middle-east">
                 <img src="https://conversionratestore.github.io/projects/simify/img/africa.png" alt="Africa">
                 <span>Africa</span>
               </a>
@@ -1629,8 +1688,8 @@ line-height: 20px; /* 142.857% */
         ${faqHTML}
 
         <div class="heading heading--alt">
-          <p>All SIM plans:</p>
-          <p>Select the plan that suits you best </p>
+          <p class="heading__title">All SIM plans:</p>
+          <p class="heading__subtitle">Select the plan that suits you best </p>
         </div>
       </div>
       `
@@ -1650,30 +1709,45 @@ line-height: 20px; /* 142.857% */
           })
         }
       }, WAIT_INTERVAL_TIMEOUT)
-
     } else {
       let title = ''
       let subtitle = ''
       // let typeofPage = ''
       let place
+      let countryHandle = pathname.split('collections/')[1].replace('-sim-card', '').replace('-esim', '').replace('esim', '')
 
       if (pathname.includes('esim')) {
-        place = capitalizeWords(pathname.split('collections/')[1])
+        place = capitalizeWords(countryHandle)
+
+        if (place === 'Usa') {
+          place = 'USA'
+        }
 
         title = `${place} eSIM plans:`
         subtitle = 'Select the plan that suits you best'
       } else {
-        place = capitalizeWords(pathname.split('collections/')[1])
+        place = capitalizeWords(countryHandle)
+
+        if (place === 'Usa') {
+          place = 'USA'
+        }
 
         title = `${place} plans:`
         subtitle = 'Select the plan that suits you best'
       }
 
+      let flagImage = countries[countryHandle] && countries[countryHandle].flag
+        ? `<img src="${IMAGE_DIR_URL}/flags/${countries[countryHandle].flag}.svg" alt="">`
+        : ''
+
       heading = /*html*/`
       <div class="container-crs particular-collection">
         <div class="heading heading--alt">
-          <p>${title}</p>
-          <p>${subtitle}</p>
+          <div>
+              ${flagImage}
+            <p class="heading__title">${title}</p>
+          </div>
+          <p class="heading__subtitle">${subtitle}</p>
         </div>
         ${faqHTML}
         <p class="travelling">Travelling elsewhere? <a href="${newUrl}all">See all locations</a></p>
@@ -1682,14 +1756,108 @@ line-height: 20px; /* 142.857% */
       waitForElement('.travelling a').then(el => el.addEventListener('click', () => {
         pushDataLayer(['exp_onbo_plan_com_link_locpag_seeloc', 'See all locations', 'Link', 'Location page Travelling elsewhere?'])
       }))
+
+      let bgImg = ''
+
+      if (
+        pathname.includes('asia')
+        || pathname.includes('europe')
+        || pathname.includes('south-east-asia')
+        || pathname.includes('middle-east')
+        || pathname.includes('south-america')
+      ) {
+        bgImg = /*html*/`
+          <div class="custom-bg custom-bg--region"><div class="overlay"></div>
+        </div>`
+      } else {
+        bgImg = /*html*/`
+        <div class="custom-bg custom-bg--country"></div>`
+      }
+
+      waitForElement('#main').then(el => el.insertAdjacentHTML('afterbegin', bgImg))
     }
 
     waitForElement('.SectionHeader').then((el) => {
       el.insertAdjacentHTML('afterend', heading)
     })
 
-    waitForElement('[data-tab-id="esim"]').then((el) => {
-      const switcher = /*html*/`
+    addCustomSwitch()
+    addAccordionFAQLogic()
+  }
+
+  function addCustomSwitch() {
+    const isSimsDirect = window.location.hostname.includes('simsdirect') ? true : false
+
+    if (isSimsDirect) {
+      waitForElement('.collection-tab .active').then(activeTab => {
+        let switcher = ``
+        let addSwitchExistClass = true
+
+        if (activeTab.innerText.toLowerCase().includes('esims')) {
+          switcher = /*html*/`
+            <div class="switcher">
+              <div>
+                <p>eSIM</p>
+              </div>
+              <div>
+                <p>SIM</p>
+              </div>
+            </div>`
+
+
+        } else {
+          switcher = /*html*/`
+            <div class="switcher switcher--right">
+              <div>
+                <p>eSIM</p>
+              </div>
+              <div>
+                <p>SIM</p>
+              </div>
+            </div>`
+
+          addSwitchExistClass = false
+        }
+
+        waitForElement('.heading--alt').then(el => el.insertAdjacentHTML('afterend', switcher))
+
+        const handleSwitcherLogic = setInterval(() => {
+          const accordion = document.querySelector('.accordion')
+
+          if (document.querySelector('.switcher') && document.querySelectorAll('.switcher>div')[1] && accordion) {
+            clearInterval(handleSwitcherLogic)
+
+            const switcher = document.querySelector('.switcher')
+            const left = switcher.querySelector('div:first-child')
+            const right = switcher.querySelector('div:last-child')
+
+            if (addSwitchExistClass) {
+              accordion.classList.add('switch-exist')
+            }
+
+            left.addEventListener('click', () => {
+              document.querySelectorAll('.collection-tab ul li a')[1].click()
+
+              pushDataLayer(['exp_onbo_plan_com_but_simdire_card', 'eSIM - Select', 'Button', 'All SIM plans: Select the plan that suits you best'])
+
+              accordion.classList.add('switch-exist')
+            })
+
+            right.addEventListener('click', () => {
+              switcher.classList.add('switcher--right')
+
+              document.querySelector('.collection-tab ul li a').click()
+
+              pushDataLayer(['exp_onbo_plan_com_but_simdire_card', 'SIM - Select', 'Button', 'All SIM plans: Select the plan that suits you best'])
+
+              accordion.classList.remove('switch-exist')
+            })
+          }
+        }, WAIT_INTERVAL_TIMEOUT)
+      })
+    } else {
+      waitForElement('[data-tab-id="esim"]').then((el) => {
+        const switcher = /*html*/`
         <div class="switcher">
           <div>
             <p>eSIM</p>
@@ -1697,47 +1865,44 @@ line-height: 20px; /* 142.857% */
           <div>
             <p>SIM</p>
           </div>
-        </div>
-      `
+        </div>`
 
-      waitForElement('.heading--alt').then(el => el.insertAdjacentHTML('afterend', switcher))
+        waitForElement('.heading--alt').then(el => el.insertAdjacentHTML('afterend', switcher))
 
+        const handleSwitcherLogic = setInterval(() => {
+          const accordion = document.querySelector('.accordion')
 
-      const handleSwitcherLogic = setInterval(() => {
-        const accordion = document.querySelector('.accordion')
+          if (document.querySelector('.switcher') && document.querySelectorAll('.switcher>div')[1] && accordion) {
+            clearInterval(handleSwitcherLogic)
 
-        if (document.querySelector('.switcher') && document.querySelectorAll('.switcher>div')[1] && accordion) {
-          clearInterval(handleSwitcherLogic)
-
-          const switcher = document.querySelector('.switcher')
-          const left = switcher.querySelector('div:first-child')
-          const right = switcher.querySelector('div:last-child')
-
-          accordion.classList.add('switch-exist')
-
-          left.addEventListener('click', () => {
-            switcher.classList.remove('switcher--right')
-            document.querySelector('[data-tab-id="sim"]').click()
-
-            pushDataLayer(['exp_onbo_plan_com_but_simdire_card', 'eSIM - Select', 'Button', 'All SIM plans: Select the plan that suits you best'])
+            const switcher = document.querySelector('.switcher')
+            const left = switcher.querySelector('div:first-child')
+            const right = switcher.querySelector('div:last-child')
 
             accordion.classList.add('switch-exist')
-          })
 
-          right.addEventListener('click', () => {
-            switcher.classList.add('switcher--right')
-            document.querySelector('[data-tab-id="esim"]').click()
+            left.addEventListener('click', () => {
+              switcher.classList.remove('switcher--right')
+              document.querySelector('[data-tab-id="sim"]').click()
 
-            pushDataLayer(['exp_onbo_plan_com_but_simdire_card', 'SIM - Select', 'Button', 'All SIM plans: Select the plan that suits you best'])
+              pushDataLayer(['exp_onbo_plan_com_but_simdire_card', 'eSIM - Select', 'Button', 'All SIM plans: Select the plan that suits you best'])
 
-            accordion.classList.remove('switch-exist')
-          })
-        }
-      }, WAIT_INTERVAL_TIMEOUT)
+              accordion.classList.add('switch-exist')
+            })
 
-    })
+            right.addEventListener('click', () => {
+              switcher.classList.add('switcher--right')
 
-    addAccordionFAQLogic()
+              document.querySelector('[data-tab-id="esim"]').click()
+
+              pushDataLayer(['exp_onbo_plan_com_but_simdire_card', 'SIM - Select', 'Button', 'All SIM plans: Select the plan that suits you best'])
+
+              accordion.classList.remove('switch-exist')
+            })
+          }
+        }, WAIT_INTERVAL_TIMEOUT)
+      })
+    }
   }
 
   function initCards() {
@@ -1864,18 +2029,18 @@ line-height: 20px; /* 142.857% */
     function addCardStyles() {
       const styles = `
         .collection-template .ProductList {
-          display: grid;
+          display: grid !important;
           gap: 28px;
           grid-template-columns: 1fr 1fr 1fr;
           max-width: 700px;
           width: 100%;
-          margin-left: auto;
-          margin-right: auto;
+          margin-left: auto !important;
+          margin-right: auto !important;
         }
         .collection-template .ProductList .Grid__Cell {
           display: block;
           width: 100%;
-          padding: 0;
+          padding: 0 !important;
           margin: 0;
         }
         .ProductList .ProductItem {
@@ -1983,7 +2148,7 @@ line-height: 20px; /* 142.857% */
         }
         .lav-dropdown__item img {
           max-width: 16px;
-          display: none;
+          /*display: none;*/
         }
         .lav-dropdown__item + .lav-dropdown__item {
           margin-top: 6px;
@@ -2064,7 +2229,7 @@ line-height: 20px; /* 142.857% */
       }
     }, WAIT_INTERVAL_TIMEOUT)
 
-    addHeading()
+    addHeader()
     initCards()
   }
 })()
