@@ -200,6 +200,11 @@ function roundToNearestMultiple(number) {
 let viewedOne = false;
 let viewedTwo = false;
 let viewedTree = false;
+let viewedFour = false;
+let viewedFive = false;
+let viewedSix = false;
+let viewedSeven = false;
+let viewedEight = false;
 
 function visibleAfterTimer() {
   setTimeout(() => {
@@ -239,6 +244,115 @@ function visibleAfterTimer() {
         "Where is your home located?",
       ]);
     }
+    if (
+      viewedFour == false &&
+      $(".swiper-slide").eq(4).hasClass("swiper-slide-active")
+    ) {
+      viewedFour = true;
+      pushDataLayer([
+        "exp_valu_prop_vis_sunlight_full",
+        "Full page view",
+        "Visibility",
+        "Does Your Roof Get Sunlight?",
+      ]);
+    }
+    if (
+      viewedFive == false &&
+      $(".swiper-slide").eq(5).hasClass("swiper-slide-active") && 
+      $('.slide-active-analyzing').length > 0
+    ) {
+      viewedFive = true;
+      pushDataLayer([
+        "exp_valu_prop_vis_analyz_full",
+        "Full page view",
+        "Visibility",
+        "Analyzing provided information",
+      ]);
+      pushDataLayer([
+        "exp_valu_prop_vis_analyz_bill",
+        "Your Latest Energy Bill",
+        "Visibility",
+        "Analyzing provided information",
+      ]);
+      pushDataLayer([
+        "exp_valu_prop_vis_analyz_numb",
+        "Recommended Number of Panels",
+        "Visibility",
+        "Analyzing provided information",
+      ]);
+      pushDataLayer([
+        "exp_valu_prop_vis_analyz_partne",
+        "City Solar Partners",
+        "Visibility",
+        "Analyzing provided information",
+      ]);
+      pushDataLayer([
+        "exp_valu_prop_vis_analyz_savin",
+        "Estimated 20-Year Savings",
+        "Visibility",
+        "Analyzing provided information",
+      ]);
+    }
+
+    if (
+      viewedSix == false &&
+      $(".swiper-slide").eq(5).hasClass("swiper-slide-active") &&
+      $('.slide-active-analyzing').length < 1
+    ) {
+      viewedSix = true;
+      pushDataLayer([
+        "exp_valu_prop_vis_emailaddres_full",
+        "Full page view",
+        "Visibility",
+        "What is your email address?",
+      ]);
+
+      pushDataLayer([
+        "exp_valu_prop_vis_emailaddres_text",
+        "Text",
+        "Visibility",
+        "What is your email address?",
+      ]);
+    }
+    if (
+      viewedSeven == false &&
+      $(".swiper-slide").eq(6).hasClass("swiper-slide-active")
+    ) {
+      viewedSeven = true;
+      pushDataLayer([
+        "exp_valu_prop_vis_youname_full",
+        "Full page view",
+        "Visibility",
+        "What is your name?",
+      ]);
+
+      pushDataLayer([
+        "exp_valu_prop_vis_youname_text",
+        "Text",
+        "Visibility",
+        "What is your name?",
+      ]);
+    }
+
+    if (
+      viewedEight == false &&
+      $(".swiper-slide").eq(7).hasClass("swiper-slide-active")
+    ) {
+      viewedEight = true;
+      pushDataLayer([
+        "exp_valu_prop_vis_onestep_full",
+        "Full page view",
+        "Visibility",
+        "One step before the finish line",
+      ]);
+      pushDataLayer([
+        "exp_valu_prop_vis_onestep_text",
+        "Text",
+        "Visibility",
+        "One step before the finish line",
+      ]);
+    }
+    
   }, 3000);
 }
 class changeFlow {
@@ -304,6 +418,9 @@ class changeFlow {
         }
       }
 
+      if ($(".swiper-slide").eq(7).hasClass("swiper-slide-active")){
+
+      }
       //events
       if ($(".swiper-slide").eq(0).hasClass("swiper-slide-active")) {
         visibleAfterTimer();
@@ -321,7 +438,33 @@ class changeFlow {
       } else {
         viewedTree = false;
       }
+      if ($(".swiper-slide").eq(4).hasClass("swiper-slide-active")) {
+        visibleAfterTimer();
+      } else {
+        viewedFour = false;
+      }
 
+      if ($(".swiper-slide").eq(5).hasClass("swiper-slide-active") && 
+        $('.slide-active-analyzing').length > 0
+      ) {
+        visibleAfterTimer();
+      } else {
+        viewedFive = false;
+      }
+
+      if ($(".swiper-slide").eq(5).hasClass("swiper-slide-active") &&
+        $('.slide-active-analyzing').length < 1
+      ) {
+        visibleAfterTimer();
+      } else {
+        viewedSix = false;
+      }
+      if ($(".swiper-slide").eq(7).hasClass("swiper-slide-active")) {
+        visibleAfterTimer();
+      } else {
+        viewedEight = false;
+      }
+        
       globalMutation.disconnect();
 
       globalMutation.observe(document.body, {
@@ -645,7 +788,6 @@ class changeFlow {
               .wrapper .text-field,
               .wrapper .form-list a.btn {
                 border-radius: 5px;
-                display: block;
               }
               .wrapper .custom-radio.borderd.with-img .custom-radio-item {
                 margin: 0 20px 10px 0;
@@ -686,6 +828,12 @@ class changeFlow {
       `<a href="#" class="btn default crs_submit">SUBMIT</a>`
     );
     $(".crs_submit").click(function () {
+      pushDataLayer([
+        "exp_valu_prop_but_onestep_nex",
+        "Submit",
+        "Button",
+        "One step before the finish line",
+      ]);
       $("#submit").click();
     });
 
@@ -704,6 +852,22 @@ class changeFlow {
           "Next",
           "Button",
           "Where is your home located",
+        ]);
+      }
+      if ($(".swiper-slide").eq(6).hasClass("swiper-slide-active")) {
+        pushDataLayer([
+          "exp_valu_prop_but_emailaddres_nex",
+          "Next",
+          "Button",
+          "What is your email address?",
+        ]);
+      }
+      if ($(".swiper-slide").eq(7).hasClass("swiper-slide-active")) {
+        pushDataLayer([
+          "exp_valu_prop_but_youname_next",
+          "Next",
+          "Button",
+          "What is your name?",
         ]);
       }
 
@@ -766,6 +930,46 @@ class changeFlow {
       ]);
     });
 
+    $('.swiper-slide:nth-child(5) .radioNext').click(function(){
+      let eventName = $(this).text().includes('Some Shade') ? 'shade' 
+      : $(this).text().includes('Full Sunlight') ? 'full' 
+      : $(this).text().includes('Severe Shade') ? 'severe' : 'uncer'
+      
+      pushDataLayer([
+        "exp_valu_prop_but_sunlight_" + eventName,
+        $(this).text(),
+        "Button",
+        "Does Your Roof Get Sunlight?",
+      ]);
+    })
+    $(".swiper-wrapper .swiper-slide:nth-child(6) input").change(function() {
+      pushDataLayer([
+        "exp_valu_prop_inp_emailaddres_emai",
+        "Email",
+        "Input",
+        "What is your email address? We have a strict spam-free privacy policy",
+      ]);
+    })
+    $(".swiper-wrapper .swiper-slide:nth-child(7) input").change(function() {
+      let eventName = $(this).attr('placeholder') === 'Enter first name' ? 'firs' : 'fami';
+      let eventDesk = eventName == 'firs' ? 'First' : 'Family';
+
+      pushDataLayer([
+        "exp_valu_prop_inp_youname_" + eventName,
+        eventDesk + " Name",
+        "Input",
+        "What is your name?",
+      ]);
+    })
+    $(".swiper-wrapper .swiper-slide:nth-child(8) input").change(function() {
+      pushDataLayer([
+        "exp_valu_prop_inp_onestep_phone",
+        "Enter your mobile phone number",
+        "Input",
+        "One step before the finish line",
+      ]);
+    })
+
     $(".swiper-wrapper .swiper-slide").each(function (index, element) {
       let _this = $(element);
 
@@ -801,7 +1005,7 @@ class changeFlow {
           console.log(_this.find("h1.title").text().split('in')[1].trim())
           console.log(findZipCodes)
           console.log(zipCode)
-          
+
           const inputElement = document.querySelector('input#zip');
           inputElement.value = zipCode;
           inputElement.dispatchEvent(new Event('input', { bubbles: true }));
