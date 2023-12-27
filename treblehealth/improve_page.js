@@ -223,9 +223,7 @@ let treblehealthPages = setInterval(() => {
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-14.png" alt="product" />
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-11.png" alt="product" />
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-6.png" alt="product" />
-          <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-8.png" alt="product" />
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-9.png" alt="product" />
-          <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-12.png" alt="product" />
           <img src="https://drive.google.com/uc?export=view&id=1rzQ2UBJSHjK8jJgzv2cJf3Y16bcoT5qC" alt="product" />
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-15.png" alt="product" />
         </div>
@@ -904,7 +902,7 @@ let treblehealthPages = setInterval(() => {
               cursor: pointer;
             }
             .chart_wrapp{
-              margin: 32px 0 0;
+              margin: 49px 0 0;
             }
             .chart_img_wrapp{
               margin-bottom: 24px;
@@ -947,6 +945,9 @@ let treblehealthPages = setInterval(() => {
               .chart_wrapp{
                 margin: 0;
               }
+              .product_scroll_trigger{
+                display: block;
+             }
               .chart_img_wrapp{
                 margin: 35px 0 20px;
               }
@@ -963,9 +964,6 @@ let treblehealthPages = setInterval(() => {
               }
               #hero .hero_txt{
                 margin: 0 auto;
-              }
-              #hero .hero_txt br{
-                display: none;
               }
               .current_month_txt, .relief_month_txt, .next_current_month_txt{
                 font-size: 12px;
@@ -984,8 +982,8 @@ let treblehealthPages = setInterval(() => {
           <div class="container_var">
             <div class="hero_wrapp">
               <p class="hero_txt">Based on your answers,</p>
-              <h1 class="hero_title">Your tinnitus is <b>${this.level}</b></h1>
-              <p class="hero_txt">We’ve identified key points to help treat your tinnitus,<br> and you can experience relief from tinnitus <b>by ${this.reliefDate}*</b> <span class="txt_underline"><b class="product_scroll_trigger">the Tinnitus Relief Bundle</b></p>
+              <h1 class="hero_title">your tinnitus is <b>${this.level}</b></h1>
+              <p class="hero_txt">We’ve identified key points to help <br class="mob_var"/>treat your tinnitus,<br class="desktop_var"> and you can experience relief from tinnitus <b>by ${this.reliefDate}*</b> <span class="txt_underline"><b class="product_scroll_trigger"> with the Tinnitus Relief Bundle</b></p>
               <div class="chart_wrapp">
                 <div class="chart_img_wrapp">
                   <img src="${this.levelImg}" alt="chart">
@@ -1005,22 +1003,30 @@ let treblehealthPages = setInterval(() => {
               padding: 24px 0 32px;
             }
             .proven_success_wrapp{
-              display: flex;
-              align-items: center;
-              justify-content: center;
               max-width: 800px;
               width: 100%;
               margin: 0 auto;
               border-radius: 8px;
               background: #FFF;
               box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-              padding: 20px 16px;
+              padding: 20px 50px;
+            }
+            .proven_success_main{
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
               gap: 20px;
+            }
+            .proven_success_wrapp p.proven_success_txt{
+              color: #636A85;
+              font-size: 13px;
+              line-height: 16px;
+              margin-top: 8px;
             }
             .proven_success_wrapp .third_title{
               margin-bottom: 4px;
             }
-            .proven_success_wrapp p{
+            .proven_success_main p{
               font-weight: 500;
             }
             @media (max-width: 768px) {
@@ -1034,13 +1040,16 @@ let treblehealthPages = setInterval(() => {
           </style>
           <div class="container_var">
             <div class="proven_success_wrapp">
-              <span class="desktop_var">
-                ${svgObj.ear}
-              </span>
-              <div>
-                <h3 class="third_title">Proven Success</h3>
-                <p>Over <b>85%*</b> of individuals using <b>the Tinnitus Relief Bundle </b> report <b>reduced tinnitus.*</b></p>
+              <div class="proven_success_main">
+                <span class="desktop_var">
+                  ${svgObj.ear}
+                </span>
+                <div>
+                  <h3 class="third_title">Proven Success</h3>
+                  <p>Over <b>85%*</b> of individuals using <b>the Tinnitus Relief Bundle </b> report <b>reduced tinnitus.*</b></p>
+                </div>
               </div>
+              <p class="proven_success_txt">This data comes from our 2023 results using the Tinnitus Functional Index (TFI), out of 247 patients.</p>
             </div>
           </div>
         </section>
