@@ -1560,7 +1560,7 @@
           </ul>
           <ul>
             <li>
-              <a href="${isSimsDirect ? newUrl + 'south-east-asia' : newUrl + 'south-america-esim'}">
+              <a href="${isSimsDirect ? newUrl + 'south-america-esim' : newUrl + 'south-america'}">
                 <img src="https://conversionratestore.github.io/projects/simify/img/south-america.png" alt="South America">
                 <span>South America</span>
               </a>
@@ -1572,7 +1572,7 @@
               </a>
             </li>
             <li>
-              <a href="${isSimsDirect ? newUrl + prefix + 'products/af-es' : newUrl + prefix + 'all/products/af-es'}">
+              <a href="${isSimsDirect ? '/products/af-es' : newUrl + 'all/products/af-es'}">
                 <img src="https://conversionratestore.github.io/projects/simify/img/africa.png" alt="Africa">
                 <span>Africa</span>
               </a>
@@ -1618,7 +1618,7 @@
               </a>
             </li>
             <li>
-              <a href="${isSimsDirect ? newUrl + 'south-east-asia' : newUrl + 'south-america-esim'}">
+              <a href="${isSimsDirect ? newUrl + 'south-america-esim' : newUrl + 'south-america'}">
                 <img src="https://conversionratestore.github.io/projects/simify/img/south-america.png" alt="South America">
                 <span>South America</span>
               </a>
@@ -1630,7 +1630,7 @@
               </a>
             </li>
             <li>
-              <a href="${isSimsDirect ? newUrl + prefix + 'products/af-es' : newUrl + prefix + 'all/products/af-es'}">
+              <a href="${isSimsDirect ? '/products/af-es' : newUrl + 'all/products/af-es'}">
                 <img src="https://conversionratestore.github.io/projects/simify/img/africa.png" alt="Africa">
                 <span>Africa</span>
               </a>
@@ -1747,6 +1747,16 @@
       }))
 
       waitForElement('#main').then(el => el.insertAdjacentHTML('afterbegin', /*html*/`<div class="custom-bg"></div>`))
+      waitForElement('.EmptyState').then(() => {
+        document.head.insertAdjacentHTML('beforeend', /*html*/`
+          <style>
+            .custom-bg,
+            .container-crs {
+              display: none !important;
+            }
+          </style>
+        `)
+      })
     }
 
     waitForElement('.SectionHeader').then((el) => {
