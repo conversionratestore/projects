@@ -394,16 +394,20 @@
       background: #EEF4FC;
     }
 
-    .accordion-item[data-switch="on"] {
+    .accordion.show-what-is-better [data-switch-text="sim"] {
+      display: block;
+    }
+
+    .accordion.show-what-is-better [data-switch-text="esim"] {
       display: none;
     }
 
-    .switch-exist .accordion-item[data-switch="on"] {
-      display: none !important;
+    .accordion:not(.show-what-is-better) [data-switch-text="sim"] {
+      display: none;
     }
 
-    .switch-exist .accordion-item[data-switch="off"] {
-      display: block !important;
+    .accordion:not(.show-what-is-better) [data-switch-text="esim"] {
+      display: block;
     }
 
     .accordion-item:first-child {
@@ -1061,7 +1065,7 @@
     }
 
     function push() {
-      if (document.querySelector('.switch-exist')) {
+      if (document.querySelector('.show-what-is-better')) {
         pushDataLayer(['exp_onbo_plan_com_vis_simdire_faq', 'View FAQ ', 'Visibility ', 'Simsdirect FAQ Expanded'])
       } else {
         pushDataLayer(['exp_onbo_plan_com_vis_locpag_faq', 'View FAQ ', 'Visibility ', 'Location page FAQ Expanded'])
@@ -1123,7 +1127,7 @@
   function addHeader() {
     const faqHTML = /*html*/`
     <div class="accordion">
-            <div class="accordion-item" data-switch="on">
+            <div class="accordion-item" data-switch-text="sim">
               <div class="accordion-title">
                 <div class="accordion-title-text">
                   <p>What is better, SIM or eSIM?</p>
@@ -1148,7 +1152,7 @@
               </div>
             </div>
 
-            <div class="accordion-item" data-switch="off">
+            <div class="accordion-item" data-switch-text="esim">
               <div class="accordion-title">
                 <div class="accordion-title-text">
                   <p>What is an eSIM?</p>
@@ -1243,7 +1247,7 @@
 
               let title = $(this).children('.accordion-title-text').text().trim()
 
-              if (document.querySelector('.switch-exist')) {
+              if (document.querySelector('.show-what-is-better')) {
                 pushDataLayer(['exp_onbo_plan_com_acc_simdire_ques', `${title} - Select`, 'Accordion', 'Simsdirect FAQ Expanded'])
               } else {
                 pushDataLayer(['exp_onbo_plan_com_acc_locpag_ques', `${title} - Select`, 'Accordion', 'Location page FAQ Expanded'])
@@ -1759,7 +1763,8 @@
     if (isSimsDirect) {
       waitForElement('.collection-tab .active').then(activeTab => {
         let switcher = ``
-        let addSwitchExistClass = true
+        let whatIsBetter = false
+        
 
         if (activeTab.innerText.toLowerCase().includes('esims')) {
           switcher = /*html*/`
@@ -1771,8 +1776,6 @@
                 <p>SIM</p>
               </div>
             </div>`
-
-
         } else {
           switcher = /*html*/`
             <div class="switcher switcher--right">
@@ -1784,7 +1787,7 @@
               </div>
             </div>`
 
-          addSwitchExistClass = false
+            whatIsBetter = true
         }
 
         waitForElement('.heading--alt').then(el => el.insertAdjacentHTML('afterend', switcher))
@@ -1799,8 +1802,8 @@
             const left = switcher.querySelector('div:first-child')
             const right = switcher.querySelector('div:last-child')
 
-            if (addSwitchExistClass) {
-              accordion.classList.add('switch-exist')
+            if (whatIsBetter) {
+              accordion.classList.add('show-what-is-better')
             }
 
             left.addEventListener('click', () => {
@@ -1808,7 +1811,7 @@
 
               pushDataLayer(['exp_onbo_plan_com_but_simdire_card', 'eSIM - Select', 'Button', 'All SIM plans: Select the plan that suits you best'])
 
-              accordion.classList.add('switch-exist')
+              accordion.classList.remove('show-what-is-better')
             })
 
             right.addEventListener('click', () => {
@@ -1818,7 +1821,7 @@
 
               pushDataLayer(['exp_onbo_plan_com_but_simdire_card', 'SIM - Select', 'Button', 'All SIM plans: Select the plan that suits you best'])
 
-              accordion.classList.remove('switch-exist')
+              accordion.classList.add('show-what-is-better')
             })
           }
         }, WAIT_INTERVAL_TIMEOUT)
@@ -1847,7 +1850,7 @@
             const left = switcher.querySelector('div:first-child')
             const right = switcher.querySelector('div:last-child')
 
-            accordion.classList.add('switch-exist')
+            
 
             left.addEventListener('click', () => {
               switcher.classList.remove('switcher--right')
@@ -1855,7 +1858,7 @@
 
               pushDataLayer(['exp_onbo_plan_com_but_simdire_card', 'eSIM - Select', 'Button', 'All SIM plans: Select the plan that suits you best'])
 
-              accordion.classList.add('switch-exist')
+              accordion.classList.remove('show-what-is-better')
             })
 
             right.addEventListener('click', () => {
@@ -1865,7 +1868,7 @@
 
               pushDataLayer(['exp_onbo_plan_com_but_simdire_card', 'SIM - Select', 'Button', 'All SIM plans: Select the plan that suits you best'])
 
-              accordion.classList.remove('switch-exist')
+              accordion.classList.add('show-what-is-better')
             })
           }
         }, WAIT_INTERVAL_TIMEOUT)
@@ -2074,7 +2077,7 @@
         }
         .collection-template .CollectionMain {
           padding-bottom: 40px;
-          padding-top: 20px;
+          padding-top: 20px !important;
         }
         .template-collection .product-quality .quality-list li.lav-exclude {
           align-items: flex-start;
