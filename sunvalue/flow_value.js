@@ -139,6 +139,8 @@ const dataSavings = {
 function handleVisibility(el, eventParams) {
   let isVisible = false;
   let entryTime;
+  let visibilityTimer; // Timer to track visibility duration
+  const visibilityThreshold = 3000; // 3 seconds in milliseconds
   const config = {
     root: null,
     threshold: 0, // Trigger when any part of the element is out of viewport
@@ -151,26 +153,33 @@ function handleVisibility(el, eventParams) {
           // The element has become visible
           isVisible = true;
           entryTime = new Date().getTime();
+          // Set a timer to check visibility duration
+          visibilityTimer = setTimeout(() => checkVisibilityDuration(), visibilityThreshold);
         }
       } else if (isVisible) {
-        // The element is out of the viewport, calculate visibility duration
+        // The element is out of the viewport, clear the timer
         isVisible = false;
-        const exitTime = new Date().getTime();
-        const visibilityDuration = (exitTime - entryTime) / 1000; // Convert to seconds
-        const roundedDuration = Math.round(visibilityDuration);
-
-        if (roundedDuration) {
-          const eventData = eventParams;
-          eventData[1] = roundedDuration;
-          pushDataLayer(eventData);
-          observer.disconnect();
-        }
+        clearTimeout(visibilityTimer);
       }
     });
   }, config);
 
+  const checkVisibilityDuration = () => {
+    const exitTime = new Date().getTime();
+    const visibilityDuration = exitTime - entryTime;
+
+    if (visibilityDuration >= visibilityThreshold) {
+      // The element was visible for more than 3 seconds
+      const eventData = eventParams;
+      eventData[1] = visibilityDuration / 1000; // Convert to seconds
+      pushDataLayer(eventData);
+      observer.disconnect();
+    }
+  };
+
   observer.observe(el);
 }
+
 
 function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
   // Send a Google Analytics event
@@ -968,6 +977,14 @@ class changeFlow {
         "One step before the finish line",
       ]);
     })
+    $('.tcpa_label a').click(function() {
+      pushDataLayer([
+        "exp_valu_prop_lin_onestep_solpart",
+        "4 solar partners",
+        "Link",
+        "One step before the finish line",
+      ]);
+    })
 
     $(".swiper-wrapper .swiper-slide").each(function (index, element) {
       let _this = $(element);
@@ -1423,6 +1440,20 @@ class changeFlow {
         .site-footer {
           margin: 0 -15px;
         }
+        p.crs_text {
+          color: #757575;
+          font-family: 'Noto Sans SC', sans-serif;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 350;
+          line-height: normal;
+          padding: 10px 0;
+        }
+        p.crs_text a {
+          text-decoration: underline;
+          color: #757575;
+          font-family: 'Noto Sans SC', sans-serif;
+        }
         @media (min-width: 770px) {
           .crs_thank_list li:first-child  {
             display: flex;
@@ -1448,12 +1479,32 @@ class changeFlow {
             </ul>
             <p><b>Your estimated solar system savings</b></p>
             ${this.addAnalyzedInfo(data)}
+            <p class="crs_text">These numbers are just estimates according to our <span class="text-nowrap">marketplace <a href="https://sunroof.withgoogle.com">research</a></span>. For a more exact estimate, please talk <span class="text-nowrap">to one</span> of our experts as savings can vary depending on roof type, sun exposure, electrical utility, etc.<p>
         </div>
     </div>
     `;
 
     $(".logo").html(dataIcons.logo);
     $(".steps-wrapper").prepend(page);
+
+    handleVisibility(document.querySelector('.crs_thank'), [
+      "exp_valu_prop_vis_thankpage_full",
+      "Full page view",
+      "Visibility ",
+      "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
+    ])
+    handleVisibility(document.querySelector('.crs_analyzing li:nth-child(1)'), [
+      "exp_valu_prop_vis_thankpage_bill",
+      "Your Latest Energy Bill",
+      "Visibility ",
+      "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
+    ])
+    handleVisibility(document.querySelector('.crs_analyzing li:nth-child(2)'), [
+      "exp_valu_prop_vis_thankpage_recom",
+      "Recommended Number of Panels",
+      "Visibility ",
+      "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
+    ])
   }
 }
 
