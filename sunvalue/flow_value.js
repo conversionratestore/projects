@@ -492,14 +492,14 @@ class changeFlow {
   }
 
   styleAppend() {
-    const style = /* html   // .wrapper .error-msg, */ `
+    const style = /* html    */ `
         <style class="crs-style">
-          //  .banner-slider .swiper-slide:nth-child(1) h4 {
-          //     opacity: 0;
-          //     pointer-events: none;
-          //     position: absolute;
-          //   } 
-            .banner-slider .swiper-slide:nth-child(2) h4,
+           .banner-slider .swiper-slide:nth-child(2) h4 {
+              opacity: 0;
+              pointer-events: none;
+              position: absolute;
+            } 
+            
             .banner,
             .wrapper:not(.slide-active-last) .crs_submit,
             .final-btn,
@@ -690,7 +690,6 @@ class changeFlow {
               .d-md-none {
                 display: none!important;
               }
-              .wrapper .custom-radio .custom-radio-item input[type=radio],
               #next-block {
                 opacity: 0;
               }
