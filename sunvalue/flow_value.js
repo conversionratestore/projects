@@ -6,6 +6,10 @@ console.log(
 const dir = "https://conversionratestore.github.io/projects/sunvalue/img/";
 const media = window.innerWidth < 769;
 
+const dataState = new Promise((resolve, reject) => { 
+  fetch('https://raw.githubusercontent.com/millbj92/US-Zip-Codes-JSON/master/USCities.json').then(data => data.json()).then(data => resolve(data))
+})
+
 const clarityInterval = setInterval(function () {
   if (typeof clarity == "function") {
     clearInterval(clarityInterval);
@@ -788,6 +792,22 @@ class changeFlow {
             "Discover Incentive Program in City",
           ]);
         });
+        dataState.then(data => {
+          let stringData = JSON.stringify(data)
+          let findCity = stringData.split('"'+_this.find("h1.title").text().split('in')[1].trim())[0]
+          let findZipCodes = findCity.split('"zip_code":');
+          let zipCode = findZipCodes[findZipCodes.length - 1].split(',')[0]
+
+          console.log(_this.find("h1.title").text().split('in')[1].trim())
+          console.log(findZipCodes)
+          console.log(zipCode)
+          
+          const inputElement = document.querySelector('input#zip');
+          inputElement.value = zipCode;
+          inputElement.dispatchEvent(new Event('input', { bubbles: true }));
+        })
+
+       
       } else if (index == 1) {
         self.addBlock(
           index,
