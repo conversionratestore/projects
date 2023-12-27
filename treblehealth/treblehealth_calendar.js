@@ -75,6 +75,9 @@ p.mob_txt,
 main#content {
   display: none;
 }
+[data-elementor-id="659"]{
+display: block !important;
+}
 /* */
 .new_body {
   background: #fff;
