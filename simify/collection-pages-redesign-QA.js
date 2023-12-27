@@ -234,6 +234,8 @@
         border-radius: 6px;
       }
 
+      .container-crs.particular-collection { padding: 20px 20px 0 !important; border-radius: 6px; }
+
       .countries-nav ul {
         flex-wrap: wrap;
         gap: 13px;
