@@ -195,6 +195,7 @@ function roundToNearestMultiple(number) {
 
 let viewedOne = false;
 let viewedTwo = false;
+let viewedTree = false;
 
 function visibleAfterTimer() {
   setTimeout(() => {
@@ -220,6 +221,18 @@ function visibleAfterTimer() {
         "Full page view",
         "Visibility",
         "How much is your monthly energy bill?",
+      ]);
+    }
+    if (
+      viewedTree == false &&
+      $(".swiper-slide").eq(3).hasClass("swiper-slide-active")
+    ) {
+      viewedTree = true;
+      pushDataLayer([
+        "exp_valu_prop_vis_homeloc_full",
+        "Full page view",
+        "Visibility",
+        "Where is your home located?",
       ]);
     }
   }, 3000);
@@ -299,6 +312,11 @@ class changeFlow {
       } else {
         viewedTwo = false;
       }
+      if ($(".swiper-slide").eq(3).hasClass("swiper-slide-active")) {
+        visibleAfterTimer();
+      } else {
+        viewedTree = false;
+      }
 
       globalMutation.disconnect();
 
@@ -327,13 +345,17 @@ class changeFlow {
   }
 
   styleAppend() {
-    const style = /* html */ `
+    const style = /* html   // .wrapper .error-msg, */ `
         <style class="crs-style">
-            .wrapper:not(.slide-active-last) .crs_submit,
-            .final-btn,
+          //  .banner-slider .swiper-slide:nth-child(1) h4 {
+          //     opacity: 0;
+          //     pointer-events: none;
+          //     position: absolute;
+          //   } 
             .banner-slider .swiper-slide:nth-child(2) h4,
             .banner,
-            .wrapper .error-msg,
+            .wrapper:not(.slide-active-last) .crs_submit,
+            .final-btn,
             .slide-active-analyzing.wrapper .swiper-slide-analyzing + .container,
             .wrapper:not(.slide-active-analyzing) .swiper-slide-analyzing {
                 display: none!important;
@@ -672,6 +694,14 @@ class changeFlow {
           "How much is your monthly energy bill?",
         ]);
       }
+      if ($(".swiper-slide").eq(3).hasClass("swiper-slide-active")) {
+        pushDataLayer([
+          "exp_valu_prop_but_homeloc_next",
+          "Next",
+          "Button",
+          "Where is your home located",
+        ]);
+      }
 
       if (!media) {
         e.preventDefault();
@@ -680,12 +710,12 @@ class changeFlow {
       }
     });
     $(".back-link").click(function () {
-      let title = $(".swiper-slide-active .title").text();
+      let title = $(".swiper-slide-next .title").text();
       let eventName = title.includes("How much is you")
         ? "energybill"
         : title.includes("Who is your utility")
         ? "utilprov"
-        : title.includes("Where is your home")
+        : title.includes("Find your roof")
         ? "homeloc"
         : title.includes("Does Your Roof Get")
         ? "sunlight"
@@ -694,29 +724,39 @@ class changeFlow {
         : title.includes("What is your email")
         ? "emailaddres"
         : "onestep";
+        
 
       pushDataLayer([
-        `exp_valu_prop_but_${eventName}_next`,
+        `exp_valu_prop_but_${eventName}_back`,
         "Back",
         "Button",
         title,
       ]);
     });
 
-    $(".radioNext").click(function (e) {
-      let eventName = this.text().includes(
+    $('#autoaddress').change(function() {
+      pushDataLayer([
+        `exp_valu_prop_inp_homeloc_infor`,
+        "information",
+        "Input",
+        "Where is your home located? This helps us find your home's position relative to the sun."
+      ]);
+    })
+
+    $(".swiper-slide:nth-child(3) .radioNext").click(function (e) {
+      let eventName = $(this).text().includes(
         "Los Angeles Department of Water & Power"
       )
         ? "angdep"
-        : this.text().includes("Glendale Water & Power")
+        : $(this).text().includes("Glendale Water & Power")
         ? "watpow"
-        : this.text().includes("Other")
+        : $(this).text().includes("Other")
         ? "other"
-        : this.text().split(" ")[1].trim().replace(" ", "").toLowerCase();
+        : $(this).text().split(" ")[1].trim().replace(" ", "").toLowerCase();
 
       pushDataLayer([
         "exp_valu_prop_but_utilprov_" + eventName,
-        this.text(),
+        $(this).text(),
         "Button",
         "Who is your utility provider?",
       ]);
