@@ -255,10 +255,10 @@ function visibleAfterTimer() {
     ) {
       viewedTree = true;
       pushDataLayer([
-        "exp_valu_prop_vis_homeloc_full",
+        "exp_valu_prop_vis_findroof_full",
         "Full page view",
         "Visibility",
-        "Where is your home located?",
+        "Find your roof",
       ]);
     }
     if (
@@ -415,7 +415,7 @@ class changeFlow {
         this.checkPageUrl() == "save" &&
         $(".swiper-slide").eq(7).hasClass("swiper-slide-active")
       ) {
-        $(".wrapper").addClass('active-last-slide')
+        $(".wrapper").addClass("active-last-slide");
 
         let data = {};
         data.price = $(".rangeslider-tooltip").text();
@@ -425,12 +425,14 @@ class changeFlow {
 
         localStorage.setItem("crs_data", JSON.stringify(data));
       } else {
-        $(".wrapper").removeClass('active-last-slide')
+        $(".wrapper").removeClass("active-last-slide");
       }
 
       //change address-error text
-      if ($("#address-error").html() !== '') {
-        $("#address-error").html("Your address should contain both letters and numbers")
+      if ($("#address-error").html() !== "") {
+        $("#address-error").html(
+          "Your address should contain both letters and numbers"
+        );
       }
 
       //hide next btn for 2 and 4 slide (desktop)
@@ -457,17 +459,22 @@ class changeFlow {
       } else {
         viewedTwo = false;
       }
-      if ($(".swiper-slide").eq(2).hasClass("swiper-slide-active") && clickRadioNext == false) {
-        clickRadioNext = true
+      if (
+        $(".swiper-slide").eq(2).hasClass("swiper-slide-active") &&
+        clickRadioNext == false
+      ) {
+        clickRadioNext = true;
         $(".swiper-slide:nth-child(3) .radioNext input").change(function (e) {
-          let spt = $(this).val().trim().split(" ")
-          let eventName = $(this).val().includes("Los Angeles Department of Water & Power")
+          let spt = $(this).val().trim().split(" ");
+          let eventName = $(this)
+            .val()
+            .includes("Los Angeles Department of Water & Power")
             ? "angdep"
             : $(this).val().includes("Glendale Water & Power")
             ? "watpow"
             : $(this).val().includes("Other")
             ? "other"
-            : spt[spt.length - 1].toLowerCase()
+            : spt[spt.length - 1].toLowerCase();
 
           pushDataLayer([
             "exp_valu_prop_but_utilprov_" + eventName,
@@ -510,7 +517,6 @@ class changeFlow {
       } else {
         viewedEight = false;
       }
-
 
       globalMutation.disconnect();
 
@@ -898,9 +904,7 @@ class changeFlow {
     const self = this;
 
     //add submit btn for last step
-    $(".nextSlide").after(
-      `<a href="#" class="btn crs_submit">SUBMIT</a>`
-    );
+    $(".nextSlide").after(`<a href="#" class="btn crs_submit">SUBMIT</a>`);
     $(".crs_submit").click(function () {
       pushDataLayer([
         "exp_valu_prop_but_onestep_nex",
@@ -924,10 +928,10 @@ class changeFlow {
       }
       if ($(".swiper-slide").eq(3).hasClass("swiper-slide-active")) {
         pushDataLayer([
-          "exp_valu_prop_but_homeloc_next",
+          "exp_valu_prop_but_findroof_next",
           "Next",
           "Button",
-          "Where is your home located",
+          "Find your roof",
         ]);
       }
       if ($(".swiper-slide").eq(6).hasClass("swiper-slide-active")) {
@@ -951,27 +955,45 @@ class changeFlow {
         e.preventDefault();
         $("#next-block .nextSlide").click();
 
-        if ($(".swiper-wrapper .swiper-slide").eq(6).hasClass('swiper-slide-active') && clickCount == 0) {
-          clickCount = 1
-          $(".swiper-wrapper .swiper-slide").eq(6).find('.input-error').removeClass('input-error')
-          $(".swiper-wrapper .swiper-slide").eq(6).find('.error-msg').html('')
+        if (
+          $(".swiper-wrapper .swiper-slide")
+            .eq(6)
+            .hasClass("swiper-slide-active") &&
+          clickCount == 0
+        ) {
+          clickCount = 1;
+          $(".swiper-wrapper .swiper-slide")
+            .eq(6)
+            .find(".input-error")
+            .removeClass("input-error");
+          $(".swiper-wrapper .swiper-slide").eq(6).find(".error-msg").html("");
         }
-        if ($(".swiper-wrapper .swiper-slide").eq(7).hasClass('swiper-slide-active') && clickCount == 1) {
-          clickCount = 2
-          $(".swiper-wrapper .swiper-slide").eq(7).find('.input-error').removeClass('input-error')
-          $(".swiper-wrapper .swiper-slide").eq(7).find('.error-msg').html('')
+        if (
+          $(".swiper-wrapper .swiper-slide")
+            .eq(7)
+            .hasClass("swiper-slide-active") &&
+          clickCount == 1
+        ) {
+          clickCount = 2;
+          $(".swiper-wrapper .swiper-slide")
+            .eq(7)
+            .find(".input-error")
+            .removeClass("input-error");
+          $(".swiper-wrapper .swiper-slide").eq(7).find(".error-msg").html("");
         }
-       
       }
     });
     $(".back-link").click(function () {
-      let title = $(".swiper-slide-next .title").text();
+      let title = $(".swiper-slide-next .title").eq(0).text();
+      title = title.includes("By providing your")
+        ? "One step before the finish line"
+        : title;
       let eventName = title.includes("How much is you")
         ? "energybill"
         : title.includes("Who is your utility")
         ? "utilprov"
         : title.includes("Find your roof")
-        ? "homeloc"
+        ? "findroof"
         : title.includes("Does Your Roof Get")
         ? "sunlight"
         : title.includes("What is your name")
@@ -987,35 +1009,43 @@ class changeFlow {
         title,
       ]);
     });
-    const zip = $('#zip').val()
-    $('#zip').change(function(e) {
+    const zip = $("#zip").val();
+    $("#zip").change(function (e) {
       if (zip != $(this).val()) {
-        console.log($(this).val())
-        clickRadioNext = false
+        console.log($(this).val());
+        clickRadioNext = false;
       }
-    })
+    });
 
     $("#autoaddress").change(function () {
       pushDataLayer([
-        `exp_valu_prop_inp_homeloc_infor`,
+        `exp_valu_prop_inp_findroof_infor`,
         "information",
         "Input",
-        "Where is your home located? This helps us find your home's position relative to the sun.",
+        "Find your roof Where is your home located? Check how much",
       ]);
     });
 
-    $(".swiper-slide:nth-child(5) .radioNext").click(function () {
-      let eventName = $(this).text().includes("Some Shade")
+    $(".swiper-slide:nth-child(5) .radioNext input").change(function () {
+      let eventName = $(this).parent().text().includes("Some")
         ? "shade"
-        : $(this).text().includes("Full Sunlight")
+        : $(this).parent().text().includes("Sunlight")
         ? "full"
-        : $(this).text().includes("Severe Shade")
+        : $(this).parent().text().includes("Severe")
         ? "severe"
         : "uncer";
 
+      let eventDesk = $(this).parent().text().includes("Some")
+        ? "Some Shade"
+        : $(this).parent().text().includes("Sunlight")
+        ? "Full Sunlight"
+        : $(this).parent().text().includes("Severe")
+        ? "Severe Shade"
+        : "Uncertain";
+
       pushDataLayer([
         "exp_valu_prop_but_sunlight_" + eventName,
-        $(this).text().trim(),
+        eventDesk,
         "Button",
         "Does Your Roof Get Sunlight?",
       ]);
@@ -1028,9 +1058,10 @@ class changeFlow {
         "What is your email address? We have a strict spam-free privacy policy",
       ]);
     });
-    $(".swiper-wrapper .swiper-slide:nth-child(7) input").change(function () {
-      let eventName =
-        $(this).attr("placeholder") === "Enter first name" ? "firs" : "fami";
+    $(".swiper-wrapper .swiper-slide:nth-child(7) input").change(function (e) {
+      let eventName = $(this).attr("placeholder").includes("First Name")
+        ? "firs"
+        : "fami";
       let eventDesk = eventName == "firs" ? "First" : "Family";
 
       pushDataLayer([
@@ -1184,7 +1215,7 @@ class changeFlow {
   }
 
   addAnalyzedInfo(data) {
-    const price = data.price ? data.price.replace('+','') : "$50",
+    const price = data.price ? data.price.replace("+", "") : "$50",
       city = data.city,
       panels = (parseFloat(price.replace(price[0], "")) / 50) * 8,
       costWit = dataSavings[price][0],
@@ -1386,7 +1417,7 @@ class changeFlow {
     <ul class="crs_analyzing">
         <li>
             <p>Your Latest Energy Bill</p>
-            <p><b>${price + (price.includes('800') ? '+' : '')}</b></p>
+            <p><b>${price + (price.includes("800") ? "+" : "")}</b></p>
         </li>
         <li>
             <p>Recommended Number of Panels</p>
