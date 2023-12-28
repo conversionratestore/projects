@@ -220,6 +220,7 @@ let viewedFive = false;
 let viewedSix = false;
 let viewedSeven = false;
 let viewedEight = false;
+let viewedUtilprov = false;
 
 let clickRadioNext = false;
 
@@ -247,6 +248,18 @@ function visibleAfterTimer() {
         "Full page view",
         "Visibility",
         "How much is your monthly energy bill?",
+      ]);
+    }
+    if (
+      viewedUtilprov == false &&
+      $(".swiper-slide").eq(2).hasClass("swiper-slide-active")
+    ) {
+      viewedUtilprov = true;
+      pushDataLayer([
+        "exp_valu_prop_vis_utilprov_full",
+        "Full page view",
+        "Visibility",
+        "Who is your utility provider?",
       ]);
     }
     if (
@@ -483,6 +496,11 @@ class changeFlow {
             "Who is your utility provider?",
           ]);
         });
+      }
+      if ($(".swiper-slide").eq(2).hasClass("swiper-slide-active")) {
+        visibleAfterTimer();
+      } else {
+        viewedUtilprov = false;
       }
       if ($(".swiper-slide").eq(3).hasClass("swiper-slide-active")) {
         visibleAfterTimer();
@@ -921,7 +939,7 @@ class changeFlow {
       if ($(".swiper-slide").eq(2).hasClass("swiper-slide-active")) {
         pushDataLayer([
           "exp_valu_prop_but_energybill_next",
-          $(".rangeslider-tooltip").text(),
+          $(".rangeslider-tooltip").text() + " - Next",
           "Button",
           "How much is your monthly energy bill?",
         ]);
@@ -984,7 +1002,7 @@ class changeFlow {
       }
     });
     $(".back-link").click(function () {
-      let title = $(".swiper-slide-next .title").eq(0).text();
+      let title = $(".swiper-slide-next .title").eq(1).text();
       title = title.includes("By providing your")
         ? "One step before the finish line"
         : title;
@@ -998,7 +1016,7 @@ class changeFlow {
         ? "sunlight"
         : title.includes("What is your name")
         ? "youname"
-        : title.includes("What is your email")
+        : title.includes("email address")
         ? "emailaddres"
         : "onestep";
 
@@ -1015,6 +1033,15 @@ class changeFlow {
         console.log($(this).val());
         clickRadioNext = false;
       }
+    });
+
+    $("#tcpa_label a").click(function (e) {
+      pushDataLayer([
+        "exp_valu_prop_lin_onestep_solpart",
+        "4 solar partners",
+        "Link",
+        "One step before the finish line",
+      ]);
     });
 
     $("#autoaddress").change(function () {
@@ -1076,14 +1103,6 @@ class changeFlow {
         "exp_valu_prop_inp_onestep_phone",
         "Enter your mobile phone number",
         "Input",
-        "One step before the finish line",
-      ]);
-    });
-    $(".tcpa_label a").click(function () {
-      pushDataLayer([
-        "exp_valu_prop_lin_onestep_solpart",
-        "4 solar partners",
-        "Link",
         "One step before the finish line",
       ]);
     });
@@ -1579,7 +1598,13 @@ class changeFlow {
             </ul>
             <p><b>Your estimated solar system savings</b></p>
             ${this.addAnalyzedInfo(data)}
-            <p class="crs_text">These numbers are just estimates according to our <span class="text-nowrap">marketplace <a href="https://sunroof.withgoogle.com">research</a></span>. For a more exact estimate, please talk <span class="text-nowrap">to one</span> of our experts as savings can vary depending on roof type, sun exposure, electrical utility, etc.<p>
+            <p class="crs_text">These numbers are just estimates according to our <span class="text-nowrap">marketplace <a href="https://sunroof.withgoogle.com" 
+              onclick="pushDataLayer([
+                "exp_valu_prop_lin_thankpage_research",
+                "Research",
+                "Link",
+                "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
+              ])">research</a></span>. For a more exact estimate, please talk <span class="text-nowrap">to one</span> of our experts as savings can vary depending on roof type, sun exposure, electrical utility, etc.<p>
         </div>
     </div>
     `;
@@ -1605,6 +1630,16 @@ class changeFlow {
       "Visibility ",
       "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
     ]);
+    handleVisibility(document.querySelector(".crs_analyzing li:nth-child(2)"), [
+      "exp_valu_prop_vis_thankpage_savin",
+      "Estimated 20-Year Savings",
+      "Visibility ",
+      "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
+    ]);
+
+    
+
+    
   }
 }
 
