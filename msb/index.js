@@ -1680,8 +1680,8 @@ function extractCurrency(str) {
   return currencySymbols ? currencySymbols[0] : null;
 }
 
-function klarna(price) {
-  return `<p class="crs_klarna">or 3 interest-free payments of <b>£${addCommasToNumber(
+function klarna(price, currency) {
+  return `<p class="crs_klarna">or 3 interest-free payments of <b>${currency + addCommasToNumber(
     (price / 3).toFixed(2)
   )}</b> with <img src="${dir}klarna.png" alt="klarna"></p>`;
 }
@@ -2012,9 +2012,9 @@ function handleCartMutation(mutationsList, observer) {
             .insertAdjacentHTML(
               "afterend",
               klarna(
-                newPrice != ""
+                (newPrice != ""
                   ? extractNumbers(newPrice)
-                  : extractNumbers(price)
+                  : extractNumbers(price)), currency
               )
             );
 
@@ -2102,13 +2102,11 @@ function start() {
         waitForElement(".product-info-stock-and-review").then((el) => {
           el.children[0].before(document.querySelector(".product-info-price"));
 
+          currency = extractCurrency(el.querySelector(".normal-price .price").innerText);
+
           el.insertAdjacentHTML(
             "afterend",
-            klarna(
-              document
-                .querySelector(".product-info-price [data-price-amount]")
-                .getAttribute("data-price-amount")
-            )
+            klarna(extractNumbers(el.querySelector(".normal-price .price").innerText), currency)
           );
 
           if (sessionStorage.getItem("crsDiscount")) {
