@@ -681,6 +681,9 @@ const styleCart = `
 .minicart-wrapper .block-minicart  {
   height: 100vh!important;
 }
+.minicart-regular-price {
+  display: block;
+}
 .mobile-basket-block,
 .minicart-wrapper .block-minicart {
     height: 100vh;
@@ -747,6 +750,9 @@ const styleCart = `
     width: 100%;
     flex: auto;
 }
+.minicart-items .product > .col-9 > .row {
+  flex-wrap: nowrap!important;
+}
 .minicart-items .product-item-name {
     font-size: 18px;
     line-height: 24px;
@@ -775,10 +781,10 @@ const styleCart = `
 }
 .minicart-items-wrapper .product-item > .product > .col-9 .col-7 {
     flex: auto;
-    max-width: 75%;
+    max-width: none;
 }
 .minicart-items-wrapper .product-item > .product > .col-9 .col-5 {
-    max-width: 25%;
+    max-width: none;
     flex: auto;
 }
 .block-content .crs_discount {
@@ -1568,6 +1574,15 @@ const highlight = `
     </div>
 </div>`;
 
+const testId =
+  window.location.host == "au.maxwellscottbags.com"
+    ? "Wpgeya"
+    : window.location.host == "us.maxwellscottbags.com"
+    ? "TKAxwu"
+    : "Xv5Qvf";
+
+let currency = "$";
+
 start();
 
 const record = setInterval(() => {
@@ -1648,7 +1663,20 @@ function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
 
   window.dataLayer = window.dataLayer || [];
   dataLayer.push(eventData);
-  console.log(eventData);
+}
+function extractNumbers(str) {
+  // Use a regular expression to match only digits and dots
+  var numbers = str.match(/[0-9.]+/g);
+
+  // Join the matched numbers and convert to a floating-point number
+  return numbers ? parseFloat(numbers.join("")).toFixed(2) : null;
+}
+function extractCurrency(str) {
+  // Use a regular expression to match currency symbols
+  var currencySymbols = str.match(/[^\d.]+/g);
+
+  // Return the matched currency symbols
+  return currencySymbols ? currencySymbols.join("") : null;
 }
 
 function klarna(price) {
@@ -1669,43 +1697,46 @@ function setStickyBtn(title, span) {
 
 function openDiscount(parent) {
   let intervalDiscount = setInterval(() => {
-    if (
-      document.querySelector("body > div > button.needsclick") &&
-      document
-        .querySelector("body > div > button.needsclick")
-        .innerText.includes("10% OFF") &&
-      parent.querySelector(".crs_klarna")
-    ) {
+    if (parent.querySelector(".crs_klarna")) {
       clearInterval(intervalDiscount);
 
-      console.log(parent);
-
       if (!parent.querySelector(".crs_discount")) {
-        if (parent.classList.contains('product-info-main')) {
-          parent.querySelector(".crs_klarna").insertAdjacentHTML("afterend", getDiscount);
+        if (parent.classList.contains("product-info-main")) {
+          parent
+            .querySelector(".crs_klarna")
+            .insertAdjacentHTML("afterend", getDiscount);
         } else {
-          parent.querySelector(".subtotal").insertAdjacentHTML("beforebegin", getDiscount);
+          parent
+            .querySelector(".subtotal")
+            .insertAdjacentHTML("beforebegin", getDiscount);
         }
       }
-   
+
       parent.querySelector(".crs_discount").addEventListener("click", () => {
-        if (document.querySelector("body > div > button.needsclick")) {
-          document.querySelector("body > div > button.needsclick").click();
-          if (parent.closest(".product-info-main")) {
-            pushDataLayer([
-              "exp_inc_soc_trus_lin_pdpunpri_getdis",
-              "Get Discount",
-              "Link",
-              "PDP Under the price",
-            ]);
-          } else {
-            pushDataLayer([
-              "exp_inc_soc_trus_lin_cart_discou",
-              "Get  discount",
-              "Link",
-              "Cart",
-            ]);
-          }
+        window._klOnsite = window._klOnsite || [];
+        window._klOnsite.push(["openForm", testId]);
+
+        document
+          .querySelector("li.minicart-wrapper")
+          ?.classList.remove("active");
+        document
+          .querySelector(".mobile-basket-block")
+          ?.classList.remove("active");
+
+        if (parent.closest(".product-info-main")) {
+          pushDataLayer([
+            "exp_inc_soc_trus_lin_pdpunpri_getdis",
+            "Get Discount",
+            "Link",
+            "PDP Under the price",
+          ]);
+        } else {
+          pushDataLayer([
+            "exp_inc_soc_trus_lin_cart_discou",
+            "Get  discount",
+            "Link",
+            "Cart",
+          ]);
         }
       });
     }
@@ -1719,7 +1750,7 @@ function changeStateDiscountBtn(parent) {
       sessionStorage.getItem("crsDiscount")
     ) {
       clearInterval(changeStateDiscountBtn);
-      console.log("applied");
+
       parent.querySelector(".crs_discount > span").innerHTML =
         "10% discount will be applied at Cart";
 
@@ -1753,25 +1784,23 @@ let isSaved = false;
 function setSaved(targetElement, price) {
   isSaved = true;
 
+  currency = extractCurrency(price);
+
   let isDiscount =
     targetElement.querySelectorAll(".block-content .subtotal").length > 1;
 
-  console.log("isDiscount: " + isDiscount);
+  // console.log("isDiscount: " + isDiscount);
 
-  let subtotal = parseFloat(price.replace(price[0], "").split(",").join(""));
+  let subtotal = extractNumbers(price);
   let saved = isDiscount
     ? ((subtotal * 10) / 90).toFixed(2)
     : ((subtotal * 10) / 100).toFixed(2);
-  let subtotalNew = isDiscount
-    ? subtotal.toFixed(2)
-    : (subtotal - saved).toFixed(2);
-  let oldPrice = isDiscount
-    ? (subtotal + +saved).toFixed(2)
-    : subtotal.toFixed(2);
-  console.log("subtotal: " + subtotal);
-  console.log("saved: " + saved);
-  console.log("subtotalNew: " + subtotalNew);
-  console.log("oldPrice: " + oldPrice);
+  let subtotalNew = isDiscount ? subtotal : (subtotal - saved).toFixed(2);
+  let oldPrice = isDiscount ? (subtotal + +saved).toFixed(2) : subtotal;
+  // console.log("subtotal: " + subtotal);
+  // console.log("saved: " + saved);
+  // console.log("subtotalNew: " + subtotalNew);
+  // console.log("oldPrice: " + oldPrice);
 
   targetElement.querySelector(".crs_regular")?.remove();
 
@@ -1784,7 +1813,7 @@ function setSaved(targetElement, price) {
         <div class="crs_regular">
           <p class="d-flex justify-content-between"><b>Regular price</b> <b>${price}</b></p>
           <p class="d-flex justify-content-between">Sign up discount savings <span>-${
-            price[0] + saved
+            currency + saved
           }</span></p>
         </div>`
     );
@@ -1802,8 +1831,8 @@ function setSaved(targetElement, price) {
         isDiscount ? "afterbegin" : "beforeend",
         `<span class="crs_price_new">${
           isDiscount
-            ? price[0] + addCommasToNumber(oldPrice)
-            : price[0] + addCommasToNumber(subtotalNew)
+            ? currency + addCommasToNumber(oldPrice)
+            : currency + addCommasToNumber(subtotalNew)
         }</span>`
       );
   }
@@ -1830,7 +1859,7 @@ function setSaved(targetElement, price) {
       .insertAdjacentHTML(
         "afterend",
         `<div class="crs_saved ml-auto">You just saved ${
-          price[0] + saved
+          currency + saved
         }</div>`
       );
 
@@ -1838,14 +1867,19 @@ function setSaved(targetElement, price) {
       "padding-bottom: 220px";
   }
   targetElement.querySelector(".crs_klarna b").innerHTML =
-    price[0] +
-    addCommasToNumber(
-      (
-        parseFloat(
-          priceFooter.replace(priceFooter[0], "").split(",").join("")
-        ) / 3
-      ).toFixed(2)
-    );
+    currency + addCommasToNumber(extractCurrency(priceFooter));
+}
+
+function handleStickyMutation(mutationsList, observer) {
+  for (const mutation of mutationsList) {
+    if (mutation.attributeName === "class") {
+      const targetElement = mutation.target;
+      if (targetElement.classList.contains("tocart")) {
+        document.querySelector(".crs_sticky_btn b").innerHTML =
+          targetElement.innerText;
+      }
+    }
+  }
 }
 
 // Function to handle the observed mutations on the cart element.
@@ -1880,7 +1914,6 @@ function handleCartMutation(mutationsList, observer) {
             item.innerHTML = dataIcons.deleteIcon;
             item.addEventListener("click", () => {
               isSaved = false;
-              console.log("click delete");
             });
           });
 
@@ -1902,17 +1935,17 @@ function handleCartMutation(mutationsList, observer) {
           ".block-content > .actions > .primary .paypal input"
         ).src = dir + "paypal-logo.svg";
 
-        console.log("." + targetElement.className.split(" ")[0]);
 
         waitForElement(
           "." +
             targetElement.className.split(" ")[0] +
             " .subtotal .amount.price-container .price"
         ).then((el) => {
-          console.log(el);
           let price = el.innerText;
 
-          console.log("price: " + price);
+          currency = extractCurrency(price);
+
+          // console.log("price: " + price);
 
           targetElement.querySelector(".crs_cart_subtotal")?.remove();
 
@@ -1925,23 +1958,18 @@ function handleCartMutation(mutationsList, observer) {
               targetElement.querySelectorAll(".block-content .subtotal")
                 .length > 1
                 ? 0
-                : +selectorNewPrice.innerText.split(
-                    selectorNewPrice.innerText[1]
-                  )[1];
+                : extractNumbers(selectorNewPrice.innerText);
 
             newPrice =
-              price[0] +
-              addCommasToNumber(
-                (
-                  +price.replace(price[0], "").split(",").join("") -
-                  haveDiscount
-                ).toFixed(2)
-              );
+              currency +
+              addCommasToNumber(extractNumbers(price) - haveDiscount);
           }
-          console.log("newPrice: " + newPrice);
+          // console.log("newPrice: " + newPrice);
 
           if (!targetElement.querySelector(".crs_discount")) {
-            targetElement.querySelector(".subtotal").insertAdjacentHTML("beforebegin", getDiscount);
+            targetElement
+              .querySelector(".subtotal")
+              .insertAdjacentHTML("beforebegin", getDiscount);
           }
 
           targetElement
@@ -1959,10 +1987,10 @@ function handleCartMutation(mutationsList, observer) {
               </div>`
             );
 
-          console.log(
-            ".crs_cart_subtotal .pr: " +
-              targetElement.querySelector(".crs_cart_subtotal .pr").innerText
-          );
+          // console.log(
+          //   ".crs_cart_subtotal .pr: " +
+          //     targetElement.querySelector(".crs_cart_subtotal .pr").innerText
+          // );
 
           if (!targetElement.querySelector(".crs_highlight")) {
             targetElement
@@ -1977,15 +2005,15 @@ function handleCartMutation(mutationsList, observer) {
               "afterend",
               klarna(
                 newPrice != ""
-                  ? +newPrice.replace(newPrice[0], "").split(",").join("")
-                  : +price.replace(price[0], "").split(",").join("")
+                  ? extractNumbers(newPrice)
+                  : extractNumbers(price)
               )
             );
 
-          console.log(
-            ".crs_klarna b: " +
-              targetElement.querySelector(".crs_klarna b").innerHTML
-          );
+          // console.log(
+          //   ".crs_klarna b: " +
+          //     targetElement.querySelector(".crs_klarna b").innerHTML
+          // );
 
           if (
             targetElement.querySelector(".shipping-costs .shipping-costs-desc")
@@ -2076,8 +2104,10 @@ function start() {
           );
 
           if (sessionStorage.getItem("crsDiscount")) {
-            document.querySelector(".product-info-main .crs_klarna").insertAdjacentHTML("afterend", getDiscount);
-          } 
+            document
+              .querySelector(".product-info-main .crs_klarna")
+              .insertAdjacentHTML("afterend", getDiscount);
+          }
 
           openDiscount(document.querySelector(".product-info-main"));
           changeStateDiscountBtn(document.querySelector(".product-info-main"));
@@ -2151,8 +2181,6 @@ function start() {
             .querySelector(".crs_country")
             .addEventListener("change", (e) => {
               let selectedOption = e.target.options[e.target.selectedIndex];
-
-              console.log(selectedOption);
 
               document.querySelector(".crs_est b").innerHTML =
                 formatDate(selectedOption.dataset.days.split("-")[0]) +
@@ -2292,6 +2320,24 @@ function start() {
           let stickyBlock = document.querySelector(".crs_sticky");
           let btnAddToCart = document.querySelector(".product-options-bottom");
 
+          stickyBlock.querySelector(".crs_sticky_btn b").innerHTML =
+            btnAddToCart.querySelector(".tocart").innerText;
+
+          const cartObserver = new MutationObserver(handleStickyMutation);
+
+          // Define the options for the Mutation Observer.
+          const observerOptions = {
+            childList: true,
+            subtree: true,
+            attributes: true,
+          };
+
+          // Start observing the cart element.
+          cartObserver.observe(
+            btnAddToCart.querySelector(".tocart"),
+            observerOptions
+          );
+
           let clickAddToCart = false;
           stickyBlock.querySelector("button").addEventListener("click", () => {
             clickAddToCart = true;
@@ -2396,13 +2442,6 @@ function start() {
           );
         });
       }
-
-      let testId =
-        window.location.host == "au.maxwellscottbags.com"
-          ? "RmpLmq"
-          : window.location.host == "us.maxwellscottbags.com"
-          ? "UqUKjW"
-          : "YaXKHq";
 
       let findUsedDiscount = setInterval(() => {
         if (
