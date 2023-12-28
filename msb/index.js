@@ -1671,12 +1671,13 @@ function extractNumbers(str) {
   // Join the matched numbers and convert to a floating-point number
   return numbers ? parseFloat(numbers.join("")).toFixed(2) : null;
 }
+
 function extractCurrency(str) {
   // Use a regular expression to match currency symbols
-  var currencySymbols = str.match(/[^\d.]+/g);
+  var currencySymbols = str.match(/[^\d.]+/);
 
-  // Return the matched currency symbols
-  return currencySymbols ? currencySymbols.join("") : null;
+  // Return the matched currency symbol
+  return currencySymbols ? currencySymbols[0] : null;
 }
 
 function klarna(price) {
@@ -1713,31 +1714,34 @@ function openDiscount(parent) {
       }
 
       parent.querySelector(".crs_discount").addEventListener("click", () => {
-        window._klOnsite = window._klOnsite || [];
-        window._klOnsite.push(["openForm", testId]);
-
-        document
-          .querySelector("li.minicart-wrapper")
-          ?.classList.remove("active");
-        document
-          .querySelector(".mobile-basket-block")
-          ?.classList.remove("active");
-
-        if (parent.closest(".product-info-main")) {
-          pushDataLayer([
-            "exp_inc_soc_trus_lin_pdpunpri_getdis",
-            "Get Discount",
-            "Link",
-            "PDP Under the price",
-          ]);
-        } else {
-          pushDataLayer([
-            "exp_inc_soc_trus_lin_cart_discou",
-            "Get  discount",
-            "Link",
-            "Cart",
-          ]);
+        if (!sessionStorage.getItem("crsDiscount")) {
+          window._klOnsite = window._klOnsite || [];
+          window._klOnsite.push(["openForm", testId]);
+  
+          document
+            .querySelector("li.minicart-wrapper")
+            ?.classList.remove("active");
+          document
+            .querySelector(".mobile-basket-block")
+            ?.classList.remove("active");
+  
+          if (parent.closest(".product-info-main")) {
+            pushDataLayer([
+              "exp_inc_soc_trus_lin_pdpunpri_getdis",
+              "Get Discount",
+              "Link",
+              "PDP Under the price",
+            ]);
+          } else {
+            pushDataLayer([
+              "exp_inc_soc_trus_lin_cart_discou",
+              "Get  discount",
+              "Link",
+              "Cart",
+            ]);
+          }
         }
+     
       });
     }
   });
@@ -1795,8 +1799,9 @@ function setSaved(targetElement, price) {
   let saved = isDiscount
     ? ((subtotal * 10) / 90).toFixed(2)
     : ((subtotal * 10) / 100).toFixed(2);
-  let subtotalNew = isDiscount ? subtotal : (subtotal - saved).toFixed(2);
-  let oldPrice = isDiscount ? (subtotal + +saved).toFixed(2) : subtotal;
+  let subtotalNew = (subtotal - saved).toFixed(2);
+  let oldPrice = isDiscount ? parseFloat(subtotal + +saved).toFixed(2) : subtotal;
+
   // console.log("subtotal: " + subtotal);
   // console.log("saved: " + saved);
   // console.log("subtotalNew: " + subtotalNew);
@@ -1828,22 +1833,20 @@ function setSaved(targetElement, price) {
     targetElement
       .querySelector(".subtotal .price-container.amount")
       .insertAdjacentHTML(
-        isDiscount ? "afterbegin" : "beforeend",
+        "beforeend",
         `<span class="crs_price_new">${
-          isDiscount
-            ? currency + addCommasToNumber(oldPrice)
-            : currency + addCommasToNumber(subtotalNew)
+          currency + addCommasToNumber(subtotalNew)
         }</span>`
       );
   }
 
   let priceFooter = targetElement.querySelector(".crs_change")
-    ? targetElement.querySelector(".crs_price_new").innerText
-    : targetElement.querySelector(".subtotal .amount.price-container .price")
-        .innerText;
+    ? subtotalNew
+    : extractCurrency(targetElement.querySelector(".subtotal .amount.price-container .price").innerText);
+        
   targetElement.querySelector(
     ".crs_cart_subtotal .pr b:not(.pr_old)"
-  ).innerHTML = priceFooter;
+  ).innerHTML = currency + priceFooter;
 
   targetElement.querySelector(".crs_cart_subtotal .pr .pr_old").innerHTML =
     targetElement.querySelector(".crs_change")
@@ -1866,8 +1869,12 @@ function setSaved(targetElement, price) {
     targetElement.querySelector(".block-content").style =
       "padding-bottom: 220px";
   }
+  // console.log(priceFooter)
+  // console.log(extractCurrency(priceFooter))
+  // console.log(addCommasToNumber(priceFooter))
+  console.log(priceFooter / 3)
   targetElement.querySelector(".crs_klarna b").innerHTML =
-    currency + addCommasToNumber(extractCurrency(priceFooter));
+    currency + addCommasToNumber((priceFooter / 3).toFixed(2));
 }
 
 function handleStickyMutation(mutationsList, observer) {
@@ -1945,7 +1952,7 @@ function handleCartMutation(mutationsList, observer) {
 
           currency = extractCurrency(price);
 
-          // console.log("price: " + price);
+          console.log("price: " + price);
 
           targetElement.querySelector(".crs_cart_subtotal")?.remove();
 
@@ -1954,17 +1961,18 @@ function handleCartMutation(mutationsList, observer) {
             let selectorNewPrice = targetElement.querySelector(
               ".crs_regular > p > span"
             );
+            console.log(extractNumbers(price))
             let haveDiscount =
               targetElement.querySelectorAll(".block-content .subtotal")
                 .length > 1
-                ? 0
-                : extractNumbers(selectorNewPrice.innerText);
+                ? extractNumbers(price) - (extractNumbers(price) * 10 / 90)
+                : extractNumbers(price) - extractNumbers(selectorNewPrice.innerText);
 
             newPrice =
               currency +
-              addCommasToNumber(extractNumbers(price) - haveDiscount);
+              addCommasToNumber(haveDiscount.toFixed(2));
           }
-          // console.log("newPrice: " + newPrice);
+          console.log("newPrice: " + newPrice);
 
           if (!targetElement.querySelector(".crs_discount")) {
             targetElement
@@ -2010,10 +2018,10 @@ function handleCartMutation(mutationsList, observer) {
               )
             );
 
-          // console.log(
-          //   ".crs_klarna b: " +
-          //     targetElement.querySelector(".crs_klarna b").innerHTML
-          // );
+          console.log(
+            ".crs_klarna b: " +
+              targetElement.querySelector(".crs_klarna b").innerHTML
+          );
 
           if (
             targetElement.querySelector(".shipping-costs .shipping-costs-desc")
