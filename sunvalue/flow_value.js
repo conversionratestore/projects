@@ -458,22 +458,20 @@ class changeFlow {
         viewedTwo = false;
       }
       if ($(".swiper-slide").eq(2).hasClass("swiper-slide-active") && clickRadioNext == false) {
-        $(".swiper-slide:nth-child(3) .radioNext").click(function (e) {
-          clickRadioNext = true
-          let spt = $(this).text().trim().split(" ")
-          let eventName = $(this)
-            .text()
-            .includes("Los Angeles Department of Water & Power")
+        clickRadioNext = true
+        $(".swiper-slide:nth-child(3) .radioNext input").change(function (e) {
+          let spt = $(this).val().trim().split(" ")
+          let eventName = $(this).val().includes("Los Angeles Department of Water & Power")
             ? "angdep"
-            : $(this).text().includes("Glendale Water & Power")
+            : $(this).val().includes("Glendale Water & Power")
             ? "watpow"
-            : $(this).text().includes("Other")
+            : $(this).val().includes("Other")
             ? "other"
             : spt[spt.length - 1].toLowerCase()
 
           pushDataLayer([
             "exp_valu_prop_but_utilprov_" + eventName,
-            $(this).text().trim(),
+            $(this).val(),
             "Button",
             "Who is your utility provider?",
           ]);
@@ -808,7 +806,7 @@ class changeFlow {
               .wrapper .progress-block {
                 top: 84px!important;
               }
-              .wrapper #slider-block .btn {
+              .wrapper #slider-block a:not(.back-link) {
                 width: 300px!important;
                 border-radius: 5px;
                 padding: 16px;
@@ -989,8 +987,12 @@ class changeFlow {
         title,
       ]);
     });
-    $('#zip').change(function() {
-      clickRadioNext = false
+    const zip = $('#zip').val()
+    $('#zip').change(function(e) {
+      if (zip != $(this).val()) {
+        console.log($(this).val())
+        clickRadioNext = false
+      }
     })
 
     $("#autoaddress").change(function () {
