@@ -6,9 +6,13 @@ console.log(
 const dir = "https://conversionratestore.github.io/projects/sunvalue/img/";
 const media = window.innerWidth < 769;
 
-const dataState = new Promise((resolve, reject) => { 
-  fetch('https://raw.githubusercontent.com/millbj92/US-Zip-Codes-JSON/master/USCities.json').then(data => data.json()).then(data => resolve(data))
-})
+const dataState = new Promise((resolve, reject) => {
+  fetch(
+    "https://raw.githubusercontent.com/millbj92/US-Zip-Codes-JSON/master/USCities.json"
+  )
+    .then((data) => data.json())
+    .then((data) => resolve(data));
+});
 
 const clarityInterval = setInterval(function () {
   if (typeof clarity == "function") {
@@ -154,7 +158,10 @@ function handleVisibility(el, eventParams) {
           isVisible = true;
           entryTime = new Date().getTime();
           // Set a timer to check visibility duration
-          visibilityTimer = setTimeout(() => checkVisibilityDuration(), visibilityThreshold);
+          visibilityTimer = setTimeout(
+            () => checkVisibilityDuration(),
+            visibilityThreshold
+          );
         }
       } else if (isVisible) {
         // The element is out of the viewport, clear the timer
@@ -179,7 +186,6 @@ function handleVisibility(el, eventParams) {
 
   observer.observe(el);
 }
-
 
 function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
   // Send a Google Analytics event
@@ -267,8 +273,8 @@ function visibleAfterTimer() {
     }
     if (
       viewedFive == false &&
-      $(".swiper-slide").eq(5).hasClass("swiper-slide-active") && 
-      $('.slide-active-analyzing').length > 0
+      $(".swiper-slide").eq(5).hasClass("swiper-slide-active") &&
+      $(".slide-active-analyzing").length > 0
     ) {
       viewedFive = true;
       pushDataLayer([
@@ -306,7 +312,7 @@ function visibleAfterTimer() {
     if (
       viewedSix == false &&
       $(".swiper-slide").eq(5).hasClass("swiper-slide-active") &&
-      $('.slide-active-analyzing').length < 1
+      $(".slide-active-analyzing").length < 1
     ) {
       viewedSix = true;
       pushDataLayer([
@@ -361,7 +367,6 @@ function visibleAfterTimer() {
         "One step before the finish line",
       ]);
     }
-    
   }, 3000);
 }
 class changeFlow {
@@ -406,7 +411,7 @@ class changeFlow {
         this.checkPageUrl() == "save" &&
         $(".swiper-slide").eq(7).hasClass("swiper-slide-active")
       ) {
-        $(".wrapper").addClass("slide-active-last");
+        $(".crs_submit").attr("style","display: block!important;");
 
         let data = {};
         data.price = $(".rangeslider-tooltip").text();
@@ -415,7 +420,10 @@ class changeFlow {
         data.lastInfo == "";
 
         localStorage.setItem("crs_data", JSON.stringify(data));
+      } else {
+        $(".crs_submit").attr("style","");
       }
+
       if (!media && this.checkPageUrl() == "save") {
         if (
           $(".swiper-slide").eq(2).hasClass("swiper-slide-active") ||
@@ -427,8 +435,7 @@ class changeFlow {
         }
       }
 
-      if ($(".swiper-slide").eq(7).hasClass("swiper-slide-active")){
-
+      if ($(".swiper-slide").eq(7).hasClass("swiper-slide-active")) {
       }
       //events
       if ($(".swiper-slide").eq(0).hasClass("swiper-slide-active")) {
@@ -453,16 +460,18 @@ class changeFlow {
         viewedFour = false;
       }
 
-      if ($(".swiper-slide").eq(5).hasClass("swiper-slide-active") && 
-        $('.slide-active-analyzing').length > 0
+      if (
+        $(".swiper-slide").eq(5).hasClass("swiper-slide-active") &&
+        $(".slide-active-analyzing").length > 0
       ) {
         visibleAfterTimer();
       } else {
         viewedFive = false;
       }
 
-      if ($(".swiper-slide").eq(5).hasClass("swiper-slide-active") &&
-        $('.slide-active-analyzing').length < 1
+      if (
+        $(".swiper-slide").eq(5).hasClass("swiper-slide-active") &&
+        $(".slide-active-analyzing").length < 1
       ) {
         visibleAfterTimer();
       } else {
@@ -473,7 +482,7 @@ class changeFlow {
       } else {
         viewedEight = false;
       }
-        
+
       globalMutation.disconnect();
 
       globalMutation.observe(document.body, {
@@ -509,8 +518,8 @@ class changeFlow {
               position: absolute;
             } 
             
+            .crs_submit,
             .banner,
-            .wrapper:not(.slide-active-last) .crs_submit,
             .final-btn,
             .slide-active-analyzing.wrapper .swiper-slide-analyzing + .container,
             .wrapper:not(.slide-active-analyzing) .swiper-slide-analyzing {
@@ -689,6 +698,9 @@ class changeFlow {
             }
             .wrapper .vsmall-container {
               max-width: 100%;
+            }
+            .wrapper h1, .wrapper h2 {
+              font-size: 24px!important; 
             }
             @media (max-width: 769px) {
               .wrapper:not(.slide-active-analyzing,.show)::before {
@@ -900,7 +912,6 @@ class changeFlow {
         : title.includes("What is your email")
         ? "emailaddres"
         : "onestep";
-        
 
       pushDataLayer([
         `exp_valu_prop_but_${eventName}_back`,
@@ -910,19 +921,19 @@ class changeFlow {
       ]);
     });
 
-    $('#autoaddress').change(function() {
+    $("#autoaddress").change(function () {
       pushDataLayer([
         `exp_valu_prop_inp_homeloc_infor`,
         "information",
         "Input",
-        "Where is your home located? This helps us find your home's position relative to the sun."
+        "Where is your home located? This helps us find your home's position relative to the sun.",
       ]);
-    })
+    });
 
     $(".swiper-slide:nth-child(3) .radioNext").click(function (e) {
-      let eventName = $(this).text().includes(
-        "Los Angeles Department of Water & Power"
-      )
+      let eventName = $(this)
+        .text()
+        .includes("Los Angeles Department of Water & Power")
         ? "angdep"
         : $(this).text().includes("Glendale Water & Power")
         ? "watpow"
@@ -938,29 +949,34 @@ class changeFlow {
       ]);
     });
 
-    $('.swiper-slide:nth-child(5) .radioNext').click(function(){
-      let eventName = $(this).text().includes('Some Shade') ? 'shade' 
-      : $(this).text().includes('Full Sunlight') ? 'full' 
-      : $(this).text().includes('Severe Shade') ? 'severe' : 'uncer'
-      
+    $(".swiper-slide:nth-child(5) .radioNext").click(function () {
+      let eventName = $(this).text().includes("Some Shade")
+        ? "shade"
+        : $(this).text().includes("Full Sunlight")
+        ? "full"
+        : $(this).text().includes("Severe Shade")
+        ? "severe"
+        : "uncer";
+
       pushDataLayer([
         "exp_valu_prop_but_sunlight_" + eventName,
         $(this).text(),
         "Button",
         "Does Your Roof Get Sunlight?",
       ]);
-    })
-    $(".swiper-wrapper .swiper-slide:nth-child(6) input").change(function() {
+    });
+    $(".swiper-wrapper .swiper-slide:nth-child(6) input").change(function () {
       pushDataLayer([
         "exp_valu_prop_inp_emailaddres_emai",
         "Email",
         "Input",
         "What is your email address? We have a strict spam-free privacy policy",
       ]);
-    })
-    $(".swiper-wrapper .swiper-slide:nth-child(7) input").change(function() {
-      let eventName = $(this).attr('placeholder') === 'Enter first name' ? 'firs' : 'fami';
-      let eventDesk = eventName == 'firs' ? 'First' : 'Family';
+    });
+    $(".swiper-wrapper .swiper-slide:nth-child(7) input").change(function () {
+      let eventName =
+        $(this).attr("placeholder") === "Enter first name" ? "firs" : "fami";
+      let eventDesk = eventName == "firs" ? "First" : "Family";
 
       pushDataLayer([
         "exp_valu_prop_inp_youname_" + eventName,
@@ -968,23 +984,23 @@ class changeFlow {
         "Input",
         "What is your name?",
       ]);
-    })
-    $(".swiper-wrapper .swiper-slide:nth-child(8) input").change(function() {
+    });
+    $(".swiper-wrapper .swiper-slide:nth-child(8) input").change(function () {
       pushDataLayer([
         "exp_valu_prop_inp_onestep_phone",
         "Enter your mobile phone number",
         "Input",
         "One step before the finish line",
       ]);
-    })
-    $('.tcpa_label a').click(function() {
+    });
+    $(".tcpa_label a").click(function () {
       pushDataLayer([
         "exp_valu_prop_lin_onestep_solpart",
         "4 solar partners",
         "Link",
         "One step before the finish line",
       ]);
-    })
+    });
 
     $(".swiper-wrapper .swiper-slide").each(function (index, element) {
       let _this = $(element);
@@ -1012,22 +1028,22 @@ class changeFlow {
             "Discover Incentive Program in City",
           ]);
         });
-        dataState.then(data => {
-          let stringData = JSON.stringify(data)
-          let findCity = stringData.split('"'+_this.find("h1.title").text().split('in')[1].trim())[0]
+        dataState.then((data) => {
+          let stringData = JSON.stringify(data);
+          let findCity = stringData.split(
+            '"' + _this.find("h1.title").text().split("in")[1].trim()
+          )[0];
           let findZipCodes = findCity.split('"zip_code":');
-          let zipCode = findZipCodes[findZipCodes.length - 1].split(',')[0]
+          let zipCode = findZipCodes[findZipCodes.length - 1].split(",")[0];
 
-          console.log(_this.find("h1.title").text().split('in')[1].trim())
-          console.log(findZipCodes)
-          console.log(zipCode)
+          console.log(_this.find("h1.title").text().split("in")[1].trim());
+          console.log(findZipCodes);
+          console.log(zipCode);
 
-          const inputElement = document.querySelector('input#zip');
+          const inputElement = document.querySelector("input#zip");
           inputElement.value = zipCode;
-          inputElement.dispatchEvent(new Event('input', { bubbles: true }));
-        })
-
-       
+          inputElement.dispatchEvent(new Event("input", { bubbles: true }));
+        });
       } else if (index == 1) {
         self.addBlock(
           index,
@@ -1045,8 +1061,11 @@ class changeFlow {
         _this
           .find(".sub-title ")
           .html("We have a strict spam-free privacy policy");
+        _this.find("#email").attr("placeholder", "Enter your email");
       } else if (index == 6) {
         _this.find("h2").html("What is your name?");
+        _this.find("#fname").attr("placeholder", "First Name");
+        _this.find("#lname").attr("placeholder", "Family Name");
       } else if (index == 7) {
         _this
           .find("h2")
@@ -1113,7 +1132,7 @@ class changeFlow {
   }
 
   addAnalyzedInfo(data) {
-    const price = data.price ? data.price : "$50",
+    const price = data.price ? data.price.replace('+','') : "$50",
       city = data.city,
       panels = (parseFloat(price.replace(price[0], "")) / 50) * 8,
       costWit = dataSavings[price][0],
@@ -1487,24 +1506,24 @@ class changeFlow {
     $(".logo").html(dataIcons.logo);
     $(".steps-wrapper").prepend(page);
 
-    handleVisibility(document.querySelector('.crs_thank'), [
+    handleVisibility(document.querySelector(".crs_thank"), [
       "exp_valu_prop_vis_thankpage_full",
       "Full page view",
       "Visibility ",
       "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
-    ])
-    handleVisibility(document.querySelector('.crs_analyzing li:nth-child(1)'), [
+    ]);
+    handleVisibility(document.querySelector(".crs_analyzing li:nth-child(1)"), [
       "exp_valu_prop_vis_thankpage_bill",
       "Your Latest Energy Bill",
       "Visibility ",
       "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
-    ])
-    handleVisibility(document.querySelector('.crs_analyzing li:nth-child(2)'), [
+    ]);
+    handleVisibility(document.querySelector(".crs_analyzing li:nth-child(2)"), [
       "exp_valu_prop_vis_thankpage_recom",
       "Recommended Number of Panels",
       "Visibility ",
       "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
-    ])
+    ]);
   }
 }
 
