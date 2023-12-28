@@ -407,6 +407,7 @@ class changeFlow {
     }
 
     const globalMutation = new MutationObserver((mutations) => {
+      //add data in Storange for thank you page
       if (
         this.checkPageUrl() == "save" &&
         $(".swiper-slide").eq(7).hasClass("swiper-slide-active")
@@ -424,6 +425,12 @@ class changeFlow {
         $(".crs_submit").attr("style","");
       }
 
+      //change address-error text
+      if ($("#address-error").html() !== '') {
+        $("#address-error").html("Your address should contain both letters and numbers")
+      }
+
+      //hide next btn for 2 and 4 slide (desktop)
       if (!media && this.checkPageUrl() == "save") {
         if (
           $(".swiper-slide").eq(2).hasClass("swiper-slide-active") ||
@@ -435,8 +442,6 @@ class changeFlow {
         }
       }
 
-      if ($(".swiper-slide").eq(7).hasClass("swiper-slide-active")) {
-      }
       //events
       if ($(".swiper-slide").eq(0).hasClass("swiper-slide-active")) {
         visibleAfterTimer();
@@ -734,6 +739,11 @@ class changeFlow {
               .wrapper .container h2 {
                 margin-bottom: 26px!important;
               }
+              .wrapper h4,
+              .wrapper h5 {
+                font-size: 16px!important;
+                font-weight: 400!important;
+              }
               .banner-slider .v-center {
                 padding-top: 60px;
                 top: 0;
@@ -768,8 +778,10 @@ class changeFlow {
                 line-height: 24px; /* 150% */
                 letter-spacing: 0.5px;
                 text-transform: uppercase;
-                display: block!important;
                 margin-left: auto;
+              }
+              #slider-block .default:not(.crs_submit) {
+                display: block!important;
               }
               #slider-block {
                 max-width: 540px;
@@ -844,6 +856,7 @@ class changeFlow {
   changeSlides() {
     const self = this;
 
+    //add submit btn for last step
     $(".nextSlide").after(
       `<a href="#" class="btn default crs_submit">SUBMIT</a>`
     );
@@ -857,6 +870,7 @@ class changeFlow {
       $("#submit").click();
     });
 
+    //events
     $("#slider-block .default").click(function (e) {
       if ($(".swiper-slide").eq(2).hasClass("swiper-slide-active")) {
         pushDataLayer([
@@ -893,7 +907,6 @@ class changeFlow {
 
       if (!media) {
         e.preventDefault();
-        console.log("click");
         $("#next-block .nextSlide").click();
       }
     });
@@ -1002,6 +1015,7 @@ class changeFlow {
       ]);
     });
 
+    //change slides
     $(".swiper-wrapper .swiper-slide").each(function (index, element) {
       let _this = $(element);
 
@@ -1334,7 +1348,7 @@ class changeFlow {
     <ul class="crs_analyzing">
         <li>
             <p>Your Latest Energy Bill</p>
-            <p><b>${price}</b></p>
+            <p><b>${price + (price.includes('800') ? '+' : '')}</b></p>
         </li>
         <li>
             <p>Recommended Number of Panels</p>
