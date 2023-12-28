@@ -1,21 +1,37 @@
 let startFunk = setInterval(() => {
-  if (document.querySelector(".site-header")) {
-    clearInterval(startFunk);
+  if (document.querySelector('#shopify-section-header-new') || document.querySelector('#shopify-section-header')) {
+    clearInterval(startFunk)
+
+    console.log(
+      '%c EXP: NOVORAL CARE PRO upsell (DEV: SKh)',
+      'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;'
+    )
+
+    const $$el = selector => document.querySelectorAll(selector)
+    const $el = selector => document.querySelector(selector)
+    const git = 'https://conversionratestore.github.io/projects/'
+
+    const clarityInterval = setInterval(function () {
+      if (typeof clarity == 'function') {
+        clearInterval(clarityInterval)
+        clarity('set', 'exp_nov_oral', 'variant_1')
+      }
+    }, 1000)
 
     function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
-      console.log(event_name + " / " + event_desc + " / " + event_type + " / " + event_loc);
+      console.log(event_name + ' / ' + event_desc + ' / ' + event_type + ' / ' + event_loc)
 
       // Send a Google Analytics event
       const eventData = {
-        event: "event-to-ga4",
+        event: 'event-to-ga4',
         event_name,
         event_desc,
         event_type,
-        event_loc,
-      };
+        event_loc
+      }
 
-      window.dataLayer = window.dataLayer || [];
-      dataLayer.push(eventData);
+      window.dataLayer = window.dataLayer || []
+      dataLayer.push(eventData)
     }
 
     let style = /*html */ `
@@ -530,7 +546,7 @@ span.accent_weight_bold {
   content: "";
   width: 28px;
   height: 28px;
-  background: url(https://conversionratestore.github.io/projects/novaalab/img/free_shipping_empty_cart_icon.svg) no-repeat center center;
+  background: url(${git}novaalab/img/free_shipping_empty_cart_icon.svg) no-repeat center center;
   top: 50%;
   left: 0;
   background-size: contain;
@@ -540,7 +556,7 @@ span.accent_weight_bold {
   padding: 20px 12px;
 }
 .empty_cart_quarantee span::before {
-  background: url(https://conversionratestore.github.io/projects/novaalab/img/guarantee_empty_cart_icon.svg) no-repeat center center;
+  background: url(${git}novaalab/img/guarantee_empty_cart_icon.svg) no-repeat center center;
   background-size: contain;
 }
 .empty_cart_title {
@@ -666,21 +682,21 @@ span.accent_weight_bold {
   content: "";
   width: 40px;
   height: 40px;
-  background: url(https://conversionratestore.github.io/projects/novaalab/img/sensitive_icon.svg) no-repeat center center;
+  background: url(${git}novaalab/img/sensitive_icon.svg) no-repeat center center;
   top: 0;
   left: 0;
   background-size: contain;
 }
 .product_upsell_item:nth-child(2):before {
-  background: url(https://conversionratestore.github.io/projects/novaalab/img/vibrations_icon.svg) no-repeat center center;
+  background: url(${git}novaalab/img/vibrations_icon.svg) no-repeat center center;
   background-size: contain;
 }
 .product_upsell_item:nth-child(3):before {
-  background: url(https://conversionratestore.github.io/projects/novaalab/img/pressure_sensor_icon.svg) no-repeat center center;
+  background: url(${git}novaalab/img/pressure_sensor_icon.svg) no-repeat center center;
   background-size: contain;
 }
 .product_upsell_item:nth-child(4):before {
-  background: url(https://conversionratestore.github.io/projects/novaalab/img/battery_icon.svg) no-repeat center center;
+  background: url(${git}novaalab/img/battery_icon.svg) no-repeat center center;
   background-size: contain;
 }
 .product_upsell_item b {
@@ -1050,13 +1066,13 @@ span.accent_weight_bold {
 }
 
     </style>
-    `;
+    `
 
     let emptySlideInHTML = /*html */ `
     <div class="slide_in_empty">
   <div class="empty_cart_info">
     <div class="empty_cart_img_wrap">
-      <img src="https://conversionratestore.github.io/projects/novaalab/img/empty_cart_icon.svg" alt="empty cart icon">
+      <img src="${git}novaalab/img/empty_cart_icon.svg" alt="empty cart icon">
     </div>
     <h3 class="empty_cart_title">Your cart is empty</h3>
     <p class="empty_cart_descr">Our red light therapy products can help reduce pain, improve circulation, and relieve muscle tension</p>
@@ -1070,7 +1086,7 @@ span.accent_weight_bold {
     <span><b>FREE US SHIPPING</b></span>
   </div>
 </div>
-`;
+`
 
     let slideInCartHTML = /*html */ `
     <div class="slide_in_cart">
@@ -1115,7 +1131,7 @@ span.accent_weight_bold {
       </div>
   </div>
 </div>
-`;
+`
 
     let popUpSonicToothbrush = /*html */ `
 <div class="overlay_popup">
@@ -1130,8 +1146,8 @@ span.accent_weight_bold {
       <p class="product_upsell_descr">Clean your teeth while protecting your gum</p>
       <div class="product_upsell_descr_wrapp">
         <div class="product_upsell_img_wrap">
-          <img src="https://conversionratestore.github.io/projects/novaalab/img/sonic_toothbrush_popup.png" alt="sonic toothbrush photo" class="desk_var"/>
-          <img src="https://conversionratestore.github.io/projects/novaalab/img/sonic_toothbrush_popup_mob.png" alt="sonic toothbrush photo" class="mob_var"/>
+          <img src="${git}novaalab/img/sonic_toothbrush_popup.png" alt="sonic toothbrush photo" class="desk_var"/>
+          <img src="${git}novaalab/img/sonic_toothbrush_popup_mob.png" alt="sonic toothbrush photo" class="mob_var"/>
         </div>
         <div class="product_upsell_info_wrapp">
           <ul class="product_upsell_list">
@@ -1153,17 +1169,57 @@ span.accent_weight_bold {
     </div>
   </div>
 </div>
-`;
+`
 
     let upselsObjNovaa = {
-      "": ["Novaa oral Care Pro", "https://novaalab.com/cdn/shop/products/IMG_1001-600pxquaqre_medium.jpg?v=1662108128", "$99.90", "$199.90", "https://conversionratestore.github.io/projects/novaalab/img/rating_stars.svg", "4.8", "50", "gum & teeth treatment", "https://novaalab.com/products/novaa-oral-care-gums-periodontal-treatment", "link", "upsels_novaa", "Novoral Care Pro - Oral Care at home"],
-    };
+      '': [
+        'Novaa oral Care Pro',
+        'https://novaalab.com/cdn/shop/products/IMG_1001-600pxquaqre_medium.jpg?v=1662108128',
+        '$99.90',
+        '$199.90',
+        `${git}novaalab/img/rating_stars.svg`,
+        '4.8',
+        '50',
+        'gum & teeth treatment',
+        'https://novaalab.com/products/novaa-oral-care-gums-periodontal-treatment',
+        'link',
+        'upsels_novaa',
+        'Novoral Care Pro - Oral Care at home'
+      ]
+    }
 
     let upselsObjSonic = {
-      46932997865817: ["Sonic toothbrush", "https://conversionratestore.github.io/projects/novaalab/img/sonic_toothbrush.png", "$49.90", "$129.90", "https://conversionratestore.github.io/projects/novaalab/img/rating_stars.svg", "4.8", "60", "a gentle Sonic Toothbrush ", "", "popup", "upsels_sonic", "Sonic toothbrush"],
-    };
+      46932997865817: [
+        'Sonic toothbrush',
+        `${git}novaalab/img/sonic_toothbrush.png`,
+        '$49.90',
+        '$129.90',
+        `${git}novaalab/img/rating_stars.svg`,
+        '4.8',
+        '60',
+        'a gentle Sonic Toothbrush ',
+        '',
+        'popup',
+        'upsels_sonic',
+        'Sonic toothbrush'
+      ]
+    }
 
-    function renderUpselCard(id, title, linkImg, newPrice, oldPrice, linkRating, rating, discount, descr, linkPdp, type, style, dataName) {
+    function renderUpselCard(
+      id,
+      title,
+      linkImg,
+      newPrice,
+      oldPrice,
+      linkRating,
+      rating,
+      discount,
+      descr,
+      linkPdp,
+      type,
+      style,
+      dataName
+    ) {
       return /*html */ `<div class="upsell_card ${style}" data-id="${id}" data-name="${dataName}">
   <div class="upsell_header">
     <p><span class="discount_box">Get ${discount}% OFF</span><b>${descr}</b></p>
@@ -1190,7 +1246,7 @@ span.accent_weight_bold {
       </div>
     </div>
   </div>
-</div>`;
+</div>`
     }
 
     function renderUpselCardPage(id, linkImg, newPrice, oldPrice, discount, descr, style, newTitle, dataName) {
@@ -1216,631 +1272,752 @@ span.accent_weight_bold {
     </div>
   </div>
 </div>
-      `;
+      `
     }
 
-    document.head.insertAdjacentHTML("beforeend", style);
-    document.body.insertAdjacentHTML("beforeend", slideInCartHTML);
+    document.head.insertAdjacentHTML('beforeend', style)
+    document.body.insertAdjacentHTML('beforeend', slideInCartHTML)
 
-    if (!document.querySelector(".product_upsell_descr_wrapp")) {
-      document.body.insertAdjacentHTML("afterbegin", popUpSonicToothbrush);
+    if (!$el('.product_upsell_descr_wrapp')) {
+      document.body.insertAdjacentHTML('afterbegin', popUpSonicToothbrush)
     }
 
-    if (document.querySelector(".slide_in_cart")) {
-      slideInCart();
+    if ($el('.slide_in_cart')) {
+      slideInCart()
     }
 
     function slideInCart() {
       let body = document.body,
-        html = document.querySelector("html"),
-        overlay = body.querySelector(".slide_in_cart"),
-        btnClose = body.querySelectorAll(".slide_in_cart_close");
+        html = $el('html'),
+        overlay = body.querySelector('.slide_in_cart'),
+        btnClose = body.querySelectorAll('.slide_in_cart_close')
 
       // click on icon CART (header)
-      document.querySelectorAll('[href="/cart"]').forEach((item) => {
-        item.addEventListener("click", (e) => {
-          if (!e.target.getAttribute("data-test")) {
-            if (e.currentTarget.closest(".bubble-cart") || e.currentTarget.closest(".site-nav__item--compressed") || e.currentTarget.closest(".site-nav--mobile") || e.currentTarget.closest(".custom-header--fixed")) {
-              e.preventDefault();
-              e.stopImmediatePropagation();
-              console.log(`>>>MyCart`);
+      $$el('[href="/cart"]').forEach(item => {
+        item.addEventListener('click', e => {
+          if (!e.target.getAttribute('data-test')) {
+            if (
+              e.currentTarget.closest('.parent-li-header-new') ||
+              e.currentTarget.closest('.site-nav__item--compressed') ||
+              e.currentTarget.closest('.site-nav--mobile') ||
+              e.currentTarget.closest('.custom-header--fixed')
+            ) {
+              e.preventDefault()
+              e.stopImmediatePropagation()
+              console.log(`>>>MyCart`)
 
-              addBlurLoadCart();
-              onOpenPopup();
-              getCartCheckout();
+              addBlurLoadCart()
+              onOpenPopup()
+              getCartCheckout()
             }
           }
-          e.target.setAttribute("data-test", "1");
+          e.target.setAttribute('data-test', '1')
           setTimeout(() => {
-            if (e.target.getAttribute("data-test")) {
-              e.target.removeAttribute("data-test");
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test')
             }
-          }, 1000);
-        });
-      });
+          }, 1000)
+        })
+      })
 
       // click on icon  add to cart LISTING
-      document.querySelectorAll(".nc-submit-btn")?.forEach((el) => {
-        el.addEventListener("click", (e) => {
-          if (!e.target.getAttribute("data-test")) {
-            e.preventDefault();
-            pushDataLayer(["exp_nov_oral_butt_add_cart_pdp", "Add to Cart", "Button", "PDP"]);
-            addToCartCheckout(e.currentTarget.closest("form").querySelector('[name="id"]').value, 1);
+      $$el('.nc-submit-btn')?.forEach(el => {
+        el.addEventListener('click', e => {
+          if (!e.target.getAttribute('data-test')) {
+            e.preventDefault()
+            pushDataLayer(['exp_nov_oral_butt_add_cart_pdp', 'Add to Cart', 'Button', 'PDP'])
+            addToCartCheckout(e.currentTarget.closest('form').querySelector('[name="id"]').value, 1)
           }
-          e.target.setAttribute("data-test", "1");
+          e.target.setAttribute('data-test', '1')
           setTimeout(() => {
-            if (e.target.getAttribute("data-test")) {
-              e.target.removeAttribute("data-test");
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test')
             }
-          }, 1000);
-        });
-      });
+          }, 1000)
+        })
+      })
       // click on icon  add to cart MAIN
-      document.querySelectorAll("[data-product-id]")?.forEach((el) => {
-        el.addEventListener("click", (e) => {
-          if (!e.target.getAttribute("data-test")) {
-            e.preventDefault();
-            e.stopPropagation();
-            e.stopImmediatePropagation();
-            addToCartCheckout(e.currentTarget.getAttribute("data-product-id"), 1);
+      $$el('[data-product-id]')?.forEach(el => {
+        el.addEventListener('click', e => {
+          if (!e.target.getAttribute('data-test')) {
+            e.preventDefault()
+            e.stopPropagation()
+            e.stopImmediatePropagation()
+            addToCartCheckout(e.currentTarget.getAttribute('data-product-id'), 1)
           }
-          e.target.setAttribute("data-test", "1");
+          e.target.setAttribute('data-test', '1')
           setTimeout(() => {
-            if (e.target.getAttribute("data-test")) {
-              e.target.removeAttribute("data-test");
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test')
             }
-          }, 1000);
-        });
-      });
+          }, 1000)
+        })
+      })
 
       // add to cart PDP bundle ->>>>>>>>>>>>> render new btn
-      document.querySelectorAll(".bundle__wrap .add-to-cart-btn")?.forEach((el) => {
-        let valueId = "";
-        if (!document.querySelector(".add_bundle_new_btn")) {
-          if (document.querySelector(".bundle__wrap .bundle__text")?.textContent.includes("GumCare Sonic Toothbrush")) {
-            valueId = 46932997865817;
+      $$el('.bundle__wrap .add-to-cart-btn')?.forEach(el => {
+        let valueId = ''
+        if (!$el('.add_bundle_new_btn')) {
+          if ($el('.bundle__wrap .bundle__text')?.textContent.includes('GumCare Sonic Toothbrush')) {
+            valueId = 46932997865817
           }
-          if (document.querySelector(".bundle__wrap .bundle__text")?.textContent.includes("portable Novaa Light Pro")) {
-            valueId = 47057278992729;
+          if ($el('.bundle__wrap .bundle__text')?.textContent.includes('portable Novaa Light Pro')) {
+            valueId = 47057278992729
           }
-          el.insertAdjacentHTML("beforebegin", `<button class="add_bundle_new_btn" data-id=${valueId}>Add to Cart</button>`);
+          el.insertAdjacentHTML(
+            'beforebegin',
+            `<button class="add_bundle_new_btn" data-id=${valueId}>Add to Cart</button>`
+          )
         }
-      });
+      })
 
       // add to cart PDP Choose your kit ->>>>>>>>>>>>> render btn
-      document.querySelectorAll("button.add-to-cart")?.forEach((el) => {
-        if (!document.querySelector(".add_to_cart_new_btn")) {
-          el.insertAdjacentHTML("beforebegin", `<button class="add_to_cart_new_btn" data-count=${el.closest(".choose-kit__right").querySelector('input[name="quantity"]:checked').value} data-id=${el.nextElementSibling.querySelector('[name="id"]').value}>Add to Cart</button>`);
+      $$el('button.add-to-cart')?.forEach(el => {
+        if (!$el('.add_to_cart_new_btn')) {
+          el.insertAdjacentHTML(
+            'beforebegin',
+            `<button class="add_to_cart_new_btn" data-count=${
+              el.closest('.choose-kit__right').querySelector('input[name="quantity"]:checked').value
+            } data-id=${el.nextElementSibling.querySelector('[name="id"]').value}>Add to Cart</button>`
+          )
         }
-      });
+      })
 
-      if (window.location.pathname === "/products/novaa-glow-therapy-mask" && window.innerWidth <= 768) {
-        document.querySelectorAll(".item-content button.gf_add-to-cart")?.forEach((el) => {
-          if (!document.querySelector(`[data-id="${el.closest(".AddToCartForm").querySelector('[name="id"]').value}"] + .add_to_cart_new_btn_mask`)) {
-            console.log(`object`);
-            let count = 1;
-            if (el.closest(".AddToCartForm").querySelector('input[name="quantity"]')) {
-              count = el.closest(".AddToCartForm").querySelector('input[name="quantity"]').value;
+      if (window.location.pathname === '/products/novaa-glow-therapy-mask' && window.innerWidth <= 768) {
+        $$el('.item-content button.gf_add-to-cart')?.forEach(el => {
+          if (
+            !$el(
+              `[data-id="${
+                el.closest('.AddToCartForm').querySelector('[name="id"]').value
+              }"] + .add_to_cart_new_btn_mask`
+            )
+          ) {
+            let count = 1
+            if (el.closest('.AddToCartForm').querySelector('input[name="quantity"]')) {
+              count = el.closest('.AddToCartForm').querySelector('input[name="quantity"]').value
             }
-            el.insertAdjacentHTML("beforebegin", `<button class="add_to_cart_new_btn_mask" data-count=${count} data-id=${el.closest(".AddToCartForm").querySelector('[name="id"]').value}>Add to Cart</button>`);
+            el.insertAdjacentHTML(
+              'beforebegin',
+              `<button class="add_to_cart_new_btn_mask" data-count=${count} data-id=${
+                el.closest('.AddToCartForm').querySelector('[name="id"]').value
+              }>Add to Cart</button>`
+            )
           }
-        });
+        })
 
         let w = setInterval(() => {
-          if (document.querySelectorAll('.AddToCartForm input[name="quantity"]') && document.querySelectorAll(".add_to_cart_new_btn_mask")) {
-            clearInterval(w);
-            document.querySelectorAll(".add_to_cart_new_btn_mask")?.forEach((el) => {
-              el.addEventListener("click", (e) => {
-                if (!e.target.getAttribute("data-test")) {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  pushDataLayer(["exp_nov_oral_butt_add_cart_pdp", "Add to Cart", "Button", "PDP"]);
-                  let count = 1;
-                  if (el.closest(".AddToCartForm").querySelector('input[name="quantity"]')) {
-                    count = +el.closest(".AddToCartForm").querySelector('input[name="quantity"]').value;
+          if ($$el('.AddToCartForm input[name="quantity"]') && $$el('.add_to_cart_new_btn_mask')) {
+            clearInterval(w)
+            $$el('.add_to_cart_new_btn_mask')?.forEach(el => {
+              el.addEventListener('click', e => {
+                if (!e.target.getAttribute('data-test')) {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  pushDataLayer(['exp_nov_oral_butt_add_cart_pdp', 'Add to Cart', 'Button', 'PDP'])
+                  let count = 1
+                  if (el.closest('.AddToCartForm').querySelector('input[name="quantity"]')) {
+                    count = +el.closest('.AddToCartForm').querySelector('input[name="quantity"]').value
                   }
 
-                  addToCartCheckout(+e.currentTarget.getAttribute("data-id"), count);
+                  addToCartCheckout(+e.currentTarget.getAttribute('data-id'), count)
                 }
-                e.target.setAttribute("data-test", "1");
+                e.target.setAttribute('data-test', '1')
                 setTimeout(() => {
-                  if (e.target.getAttribute("data-test")) {
-                    e.target.removeAttribute("data-test");
+                  if (e.target.getAttribute('data-test')) {
+                    e.target.removeAttribute('data-test')
                   }
-                }, 1000);
-              });
-            });
+                }, 1000)
+              })
+            })
           }
-        }, 100);
+        }, 100)
+      }
+
+      if (window.location.pathname === '/products/novoral-sonic-toothbrush') {
+        $$el('.item-content button.gf_add-to-cart')?.forEach(el => {
+          if (!el.closest('div').querySelector('.add_to_cart_new_btn_mask')) {
+            el.insertAdjacentHTML(
+              'beforebegin',
+              `<button class="add_to_cart_new_btn_mask" data-count=1 data-id=${
+                el.closest('.AddToCartForm').querySelector('[name="id"]').value
+              }>Add to Cart</button>`
+            )
+          }
+        })
+
+        let w = setInterval(() => {
+          if ($$el('.AddToCartForm input[name="quantity"]') && $$el('.add_to_cart_new_btn_mask')) {
+            clearInterval(w)
+            $$el('.add_to_cart_new_btn_mask')?.forEach(el => {
+              el.addEventListener('click', e => {
+                if (!e.target.getAttribute('data-test')) {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  pushDataLayer(['exp_nov_oral_butt_add_cart_pdp', 'Add to Cart', 'Button', 'PDP'])
+                  let count = 1
+                  if (el.closest('.AddToCartForm').querySelector('input[name="quantity"]')) {
+                    count = +el.closest('.AddToCartForm').querySelector('input[name="quantity"]').value
+                  }
+
+                  addToCartCheckout(+e.currentTarget.getAttribute('data-id'), count)
+                }
+                e.target.setAttribute('data-test', '1')
+                setTimeout(() => {
+                  if (e.target.getAttribute('data-test')) {
+                    e.target.removeAttribute('data-test')
+                  }
+                }, 1000)
+              })
+            })
+          }
+        }, 100)
       }
 
       // click on radioBTN Choose your kit
-      if (document.querySelectorAll('.choose-kit__kits input[name="quantity"]')) {
-        document.querySelectorAll('.choose-kit__kits input[name="quantity"]').forEach((el) => {
-          el.addEventListener("click", () => {
-            document.querySelector(".add_to_cart_new_btn")?.setAttribute("data-count", el.value);
-          });
-        });
+      if ($$el('.choose-kit__kits input[name="quantity"]')) {
+        $$el('.choose-kit__kits input[name="quantity"]').forEach(el => {
+          el.addEventListener('click', () => {
+            $el('.add_to_cart_new_btn')?.setAttribute('data-count', el.value)
+          })
+        })
       }
       //add to cart with icon PDP
-      if (!document.querySelector(".new_btn_icon") && document.querySelector(".gf_tab .item-content .gf_add-to-cart")) {
-        document.querySelector(".gf_tab .item-content .gf_add-to-cart")?.insertAdjacentHTML("afterend", `<button class="new_btn_icon">Add To Cart</button>`);
+      if (!$el('.new_btn_icon') && $el('.gf_tab .item-content .gf_add-to-cart')) {
+        $el('.gf_tab .item-content .gf_add-to-cart')?.insertAdjacentHTML(
+          'afterend',
+          `<button class="new_btn_icon">Add To Cart</button>`
+        )
       }
 
-      document.querySelector(".new_btn_icon")?.addEventListener("click", (e) => {
-        if (!e.target.getAttribute("data-test")) {
-          e.preventDefault();
-          e.stopPropagation();
-          pushDataLayer(["exp_nov_oral_butt_add_cart_nav_bar", "Add to cart", "Button", "Navigation bar"]);
-          addToCartCheckout(e.currentTarget.closest(".AddToCartForm").querySelector('[name="id"]').getAttribute("data-value"), e.currentTarget.closest(".AddToCartForm").querySelector('[name="quantity"]') ? e.currentTarget.closest(".AddToCartForm").querySelector('[name="quantity"]')?.value : 1);
+      $el('.new_btn_icon')?.addEventListener('click', e => {
+        if (!e.target.getAttribute('data-test')) {
+          e.preventDefault()
+          e.stopPropagation()
+          pushDataLayer(['exp_nov_oral_butt_add_cart_nav_bar', 'Add to cart', 'Button', 'Navigation bar'])
+          addToCartCheckout(
+            e.currentTarget.closest('.AddToCartForm').querySelector('[name="id"]').getAttribute('data-value'),
+            e.currentTarget.closest('.AddToCartForm').querySelector('[name="quantity"]')
+              ? e.currentTarget.closest('.AddToCartForm').querySelector('[name="quantity"]')?.value
+              : 1
+          )
         }
-        e.target.setAttribute("data-test", "1");
+        e.target.setAttribute('data-test', '1')
         setTimeout(() => {
-          if (e.target.getAttribute("data-test")) {
-            e.target.removeAttribute("data-test");
+          if (e.target.getAttribute('data-test')) {
+            e.target.removeAttribute('data-test')
           }
-        }, 1000);
-      });
+        }, 1000)
+      })
 
       // add to cart PDP Pick your bundle
-      document.querySelectorAll(".item-content .gf_add-to-cart")?.forEach((el) => {
-        el.addEventListener("click", (e) => {
-          if (!e.target.getAttribute("data-test")) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log(`object`);
-            pushDataLayer(["exp_nov_oral_butt_add_cart_pdp", "Add to Cart", "Button", "PDP"]);
-            addToCartCheckout(e.currentTarget.closest(".AddToCartForm").querySelector('[name="id"]').getAttribute("data-value"), e.currentTarget.closest(".AddToCartForm").querySelector('[name="quantity"]') ? e.currentTarget.closest(".AddToCartForm").querySelector('[name="quantity"]')?.value : 1);
+      $$el('.item-content .gf_add-to-cart')?.forEach(el => {
+        el.addEventListener('click', e => {
+          if (!e.target.getAttribute('data-test')) {
+            e.preventDefault()
+            e.stopPropagation()
+            pushDataLayer(['exp_nov_oral_butt_add_cart_pdp', 'Add to Cart', 'Button', 'PDP'])
+            addToCartCheckout(
+              e.currentTarget.closest('.AddToCartForm').querySelector('[name="id"]').getAttribute('data-value'),
+              e.currentTarget.closest('.AddToCartForm').querySelector('[name="quantity"]')
+                ? e.currentTarget.closest('.AddToCartForm').querySelector('[name="quantity"]')?.value
+                : 1
+            )
           }
-          e.target.setAttribute("data-test", "1");
+          e.target.setAttribute('data-test', '1')
           setTimeout(() => {
-            if (e.target.getAttribute("data-test")) {
-              e.target.removeAttribute("data-test");
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test')
             }
-          }, 1000);
-        });
-      });
+          }, 1000)
+        })
+      })
 
       // add to cart PDP ---> PACK 2 BRUSH HEADS
-      document.querySelectorAll("#product_form_8465377984857 button[type='submit']")?.forEach((el) => {
-        el.addEventListener("click", (e) => {
-          if (!e.target.getAttribute("data-test")) {
-            e.preventDefault();
-            e.stopPropagation();
-            pushDataLayer(["exp_nov_oral_butt_add_cart_pdp", "Add to Cart", "Button", "PDP"]);
-            addToCartCheckout(e.currentTarget.closest("#product_form_8465377984857").querySelector('[name="id"]').value, e.currentTarget.closest("#product_form_8465377984857").querySelector('[name="quantity"]').value);
+      $$el("#product_form_8465377984857 button[type='submit']")?.forEach(el => {
+        el.addEventListener('click', e => {
+          if (!e.target.getAttribute('data-test')) {
+            e.preventDefault()
+            e.stopPropagation()
+            pushDataLayer(['exp_nov_oral_butt_add_cart_pdp', 'Add to Cart', 'Button', 'PDP'])
+            addToCartCheckout(
+              e.currentTarget.closest('#product_form_8465377984857').querySelector('[name="id"]').value,
+              e.currentTarget.closest('#product_form_8465377984857').querySelector('[name="quantity"]').value
+            )
           }
-          e.target.setAttribute("data-test", "1");
+          e.target.setAttribute('data-test', '1')
           setTimeout(() => {
-            if (e.target.getAttribute("data-test")) {
-              e.target.removeAttribute("data-test");
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test')
             }
-          }, 1000);
-        });
-      });
+          }, 1000)
+        })
+      })
 
       // NEW add to cart PDP
       let lookForBtn = setInterval(() => {
-        if (document.querySelectorAll(".add_to_cart_new_btn")) {
-          clearInterval(lookForBtn);
-          document.querySelectorAll(".add_to_cart_new_btn")?.forEach((el) => {
-            el.addEventListener("click", (e) => {
-              if (!e.target.getAttribute("data-test")) {
-                e.preventDefault();
-                e.stopPropagation();
-                pushDataLayer(["exp_nov_oral_butt_add_cart_pdp", "Add to Cart", "Button", "PDP"]);
-                addToCartCheckout(e.currentTarget.getAttribute("data-id"), e.currentTarget.getAttribute("data-count"));
+        if ($$el('.add_to_cart_new_btn')) {
+          clearInterval(lookForBtn)
+          $$el('.add_to_cart_new_btn')?.forEach(el => {
+            el.addEventListener('click', e => {
+              if (!e.target.getAttribute('data-test')) {
+                e.preventDefault()
+                e.stopPropagation()
+                pushDataLayer(['exp_nov_oral_butt_add_cart_pdp', 'Add to Cart', 'Button', 'PDP'])
+                addToCartCheckout(e.currentTarget.getAttribute('data-id'), e.currentTarget.getAttribute('data-count'))
               }
-              e.target.setAttribute("data-test", "1");
+              e.target.setAttribute('data-test', '1')
               setTimeout(() => {
-                if (e.target.getAttribute("data-test")) {
-                  e.target.removeAttribute("data-test");
+                if (e.target.getAttribute('data-test')) {
+                  e.target.removeAttribute('data-test')
                 }
-              }, 1000);
-            });
-          });
+              }, 1000)
+            })
+          })
         }
-      }, 100);
+      }, 100)
 
       // NEW add to cart PDP bundle
       let lookForBtnBundle = setInterval(() => {
-        if (document.querySelectorAll(".add_bundle_new_btn")) {
-          clearInterval(lookForBtnBundle);
-          document.querySelectorAll(".add_bundle_new_btn")?.forEach((el) => {
-            el.addEventListener("click", (e) => {
-              if (!e.target.getAttribute("data-test")) {
-                e.preventDefault();
-                e.stopPropagation();
-                pushDataLayer(["exp_nov_oral_butt_add_cart_pdp", "Add to Cart", "Button", "PDP"]);
-                addToCartCheckout(e.currentTarget.getAttribute("data-id"), 1);
+        if ($$el('.add_bundle_new_btn')) {
+          clearInterval(lookForBtnBundle)
+          $$el('.add_bundle_new_btn')?.forEach(el => {
+            el.addEventListener('click', e => {
+              if (!e.target.getAttribute('data-test')) {
+                e.preventDefault()
+                e.stopPropagation()
+                pushDataLayer(['exp_nov_oral_butt_add_cart_pdp', 'Add to Cart', 'Button', 'PDP'])
+                addToCartCheckout(e.currentTarget.getAttribute('data-id'), 1)
               }
-              e.target.setAttribute("data-test", "1");
+              e.target.setAttribute('data-test', '1')
               setTimeout(() => {
-                if (e.target.getAttribute("data-test")) {
-                  e.target.removeAttribute("data-test");
+                if (e.target.getAttribute('data-test')) {
+                  e.target.removeAttribute('data-test')
                 }
-              }, 1000);
-            });
-          });
+              }, 1000)
+            })
+          })
         }
-      }, 100);
+      }, 100)
       // learn more Sonic Toothbrush
       let lookForBtnUpselsObjSonic = setInterval(() => {
-        if (document.querySelector(".upsell_card[data-id='46932997865817'] .upsell_learn_more_btn")) {
-          clearInterval(lookForBtnUpselsObjSonic);
-          document.querySelectorAll(".upsell_card[data-id='46932997865817'] .upsell_learn_more_btn").forEach((el) => {
-            el.addEventListener("click", (e) => {
-              if (!e.target.getAttribute("data-test")) {
-                e.preventDefault();
-                pushDataLayer(["exp_nov_oral_butt_slidcartsonic_learn", "Learn more", "Button", "Slide-in cart Sonic Toothbrush"]);
-                renderPopupSonicToothbrush();
+        if ($el(".upsell_card[data-id='46932997865817'] .upsell_learn_more_btn")) {
+          clearInterval(lookForBtnUpselsObjSonic)
+          $$el(".upsell_card[data-id='46932997865817'] .upsell_learn_more_btn").forEach(el => {
+            el.addEventListener('click', e => {
+              if (!e.target.getAttribute('data-test')) {
+                e.preventDefault()
+                pushDataLayer([
+                  'exp_nov_oral_butt_slidcartsonic_learn',
+                  'Learn more',
+                  'Button',
+                  'Slide-in cart Sonic Toothbrush'
+                ])
+                renderPopupSonicToothbrush()
               }
-              e.target.setAttribute("data-test", "1");
+              e.target.setAttribute('data-test', '1')
               setTimeout(() => {
-                if (e.target.getAttribute("data-test")) {
-                  e.target.removeAttribute("data-test");
+                if (e.target.getAttribute('data-test')) {
+                  e.target.removeAttribute('data-test')
                 }
-              }, 1000);
-            });
-          });
+              }, 1000)
+            })
+          })
         }
-      }, 100);
+      }, 100)
       // learn more Novoral Care Pro
       let lookForBtNovoralCarePro = setInterval(() => {
-        if (document.querySelector(".upsell_learn_more_btn")) {
-          clearInterval(lookForBtNovoralCarePro);
-          document.querySelectorAll('.upsell_learn_more_btn[href="https://novaalab.com/products/novaa-oral-care-gums-periodontal-treatment"]').forEach((el) => {
-            el.addEventListener("click", (e) => {
-              if (!e.target.getAttribute("data-test")) {
-                pushDataLayer(["exp_nov_oral_butt_slidcartoral_lern", "Learn more", "Button", "Slide-in cart Novaa oral Care Pro"]);
+        if ($el('.upsell_learn_more_btn')) {
+          clearInterval(lookForBtNovoralCarePro)
+          $$el(
+            '.upsell_learn_more_btn[href="https://novaalab.com/products/novaa-oral-care-gums-periodontal-treatment"]'
+          ).forEach(el => {
+            el.addEventListener('click', e => {
+              if (!e.target.getAttribute('data-test')) {
+                pushDataLayer([
+                  'exp_nov_oral_butt_slidcartoral_lern',
+                  'Learn more',
+                  'Button',
+                  'Slide-in cart Novaa oral Care Pro'
+                ])
               }
-              e.target.setAttribute("data-test", "1");
+              e.target.setAttribute('data-test', '1')
               setTimeout(() => {
-                if (e.target.getAttribute("data-test")) {
-                  e.target.removeAttribute("data-test");
+                if (e.target.getAttribute('data-test')) {
+                  e.target.removeAttribute('data-test')
                 }
-              }, 1000);
-            });
-          });
+              }, 1000)
+            })
+          })
         }
-      }, 100);
+      }, 100)
       //add to cart Sonic Toothbrush popup
-      document.querySelectorAll(".product_upsell_add_btn")?.forEach((el) => {
-        el.addEventListener("click", (e) => {
-          if (!e.target.getAttribute("data-test")) {
-            e.preventDefault();
-            e.stopPropagation();
-            pushDataLayer(["exp_nov_oral_but_popup_add", "Add to Cart", "Button", "Pop up did you now"]);
+      $$el('.product_upsell_add_btn')?.forEach(el => {
+        el.addEventListener('click', e => {
+          if (!e.target.getAttribute('data-test')) {
+            e.preventDefault()
+            e.stopPropagation()
+            pushDataLayer(['exp_nov_oral_but_popup_add', 'Add to Cart', 'Button', 'Pop up did you now'])
 
-            localStorage.setItem("upsellInit", `yes`);
-            localStorage.setItem("upselsAddBtn", "yes");
+            localStorage.setItem('upsellInit', `yes`)
+            localStorage.setItem('upselsAddBtn', 'yes')
 
-            addToCartCheckout(46932997865817, 1);
+            addToCartCheckout(46932997865817, 1)
 
-            document.querySelector(".overlay_popup").classList.remove("active");
-            body.style.overflow = "auto";
-            html.style.overflow = "auto";
+            $el('.overlay_popup').classList.remove('active')
+            body.style.overflow = 'auto'
+            html.style.overflow = 'auto'
           }
-          e.target.setAttribute("data-test", "1");
+          e.target.setAttribute('data-test', '1')
           setTimeout(() => {
-            if (e.target.getAttribute("data-test")) {
-              e.target.removeAttribute("data-test");
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test')
             }
-          }, 1000);
-        });
-      });
+          }, 1000)
+        })
+      })
       // upsell add btn slide-in-cart Sonic Toothbrush && Novoral Care Pro - Oral Care at home [New 2023] - Complete Oral Care
-      document.querySelectorAll(".upsell_add_btn")?.forEach((el) => {
-        el.addEventListener("click", (e) => {
-          if (!e.target.getAttribute("data-test")) {
-            e.preventDefault();
-            e.stopPropagation();
-            if (window.location.pathname.match("/cart")) {
-              if (e.target.closest(".upsels_sonic")) {
-                pushDataLayer(["exp_nov_oral_butt_cart_sonic_add", "Add to Cart", "Button", "Cart Sonic Toothbrush"]);
+      $$el('.upsell_add_btn')?.forEach(el => {
+        el.addEventListener('click', e => {
+          if (!e.target.getAttribute('data-test')) {
+            e.preventDefault()
+            e.stopPropagation()
+            if (window.location.pathname.match('/cart')) {
+              if (e.target.closest('.upsels_sonic')) {
+                pushDataLayer(['exp_nov_oral_butt_cart_sonic_add', 'Add to Cart', 'Button', 'Cart Sonic Toothbrush'])
               } else {
-                pushDataLayer(["exp_nov_oral_butt_cart_oral_add", `Add to Cart ${e.target.closest(".upsell_card").getAttribute("data-name")}`, "Button", `Cart Novaa oral Care Pro`]);
+                pushDataLayer([
+                  'exp_nov_oral_butt_cart_oral_add',
+                  `Add to Cart ${e.target.closest('.upsell_card').getAttribute('data-name')}`,
+                  'Button',
+                  `Cart Novaa oral Care Pro`
+                ])
               }
             } else {
-              if (e.target.closest(".upsels_sonic")) {
-                pushDataLayer(["exp_nov_oral_butt_slidcartsonic_add", "Add", "Button", "Slide-in cart Sonic Toothbrush"]);
+              if (e.target.closest('.upsels_sonic')) {
+                pushDataLayer([
+                  'exp_nov_oral_butt_slidcartsonic_add',
+                  'Add',
+                  'Button',
+                  'Slide-in cart Sonic Toothbrush'
+                ])
               } else {
-                pushDataLayer(["exp_nov_oral_butt_slidcartoral_add", `Add ${e.target.closest(".upsell_card").getAttribute("data-name")}`, "Button", `"Slide-in cart Novaa oral Care Pro"`]);
+                pushDataLayer([
+                  'exp_nov_oral_butt_slidcartoral_add',
+                  `Add ${e.target.closest('.upsell_card').getAttribute('data-name')}`,
+                  'Button',
+                  `"Slide-in cart Novaa oral Care Pro"`
+                ])
               }
             }
-            localStorage.setItem("upsellInit", `yes`);
-            localStorage.setItem("upselsAddBtn", "yes");
+            localStorage.setItem('upsellInit', `yes`)
+            localStorage.setItem('upselsAddBtn', 'yes')
 
-            addToCartCheckout(el.getAttribute("data-variant"), 1);
+            addToCartCheckout(el.getAttribute('data-variant'), 1)
           }
-          e.target.setAttribute("data-test", "1");
+          e.target.setAttribute('data-test', '1')
           setTimeout(() => {
-            if (e.target.getAttribute("data-test")) {
-              e.target.removeAttribute("data-test");
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test')
             }
-          }, 1000);
-        });
-      });
+          }, 1000)
+        })
+      })
       //Proceed to secure checkout
       let lookForBtnProceedCheckout = setInterval(() => {
-        if (document.querySelectorAll(".slide_in_to_checkout")) {
-          clearInterval(lookForBtnProceedCheckout);
-          document.querySelectorAll(".slide_in_to_checkout")?.forEach((el) => {
-            el.addEventListener("click", (e) => {
-              if (!e.target.getAttribute("data-test")) {
-                e.preventDefault();
-                e.stopPropagation();
-                pushDataLayer(["exp_nov_oral_butt_slidcart_check", "Proceed to secure checkout", "Button", "Slide-in cart"]);
-                window.appikonDiscount.checkoutEventHandler(jQuery, e);
+        if ($$el('.slide_in_to_checkout')) {
+          clearInterval(lookForBtnProceedCheckout)
+          $$el('.slide_in_to_checkout')?.forEach(el => {
+            el.addEventListener('click', e => {
+              if (!e.target.getAttribute('data-test')) {
+                e.preventDefault()
+                e.stopPropagation()
+                pushDataLayer([
+                  'exp_nov_oral_butt_slidcart_check',
+                  'Proceed to secure checkout',
+                  'Button',
+                  'Slide-in cart'
+                ])
+                window.appikonDiscount.checkoutEventHandler(jQuery, e)
                 // setTimeout(() => {
                 //   window.location.pathname = "/checkout";
                 // }, 300);
               }
-              e.target.setAttribute("data-test", "1");
+              e.target.setAttribute('data-test', '1')
               setTimeout(() => {
-                if (e.target.getAttribute("data-test")) {
-                  e.target.removeAttribute("data-test");
+                if (e.target.getAttribute('data-test')) {
+                  e.target.removeAttribute('data-test')
                 }
-              }, 1000);
-            });
-          });
+              }, 1000)
+            })
+          })
         }
-      }, 100);
+      }, 100)
       // Shop All Products
       let lookForBtnShopAllProducts = setInterval(() => {
-        if (document.querySelectorAll(".empty_cart_btn_shop_all")) {
-          clearInterval(lookForBtnShopAllProducts);
-          document.querySelectorAll(".empty_cart_btn_shop_all")?.forEach((el) => {
-            el.addEventListener("click", (e) => {
-              if (!e.target.getAttribute("data-test")) {
-                pushDataLayer(["exp_nov_oral_but_slidcart_shop_all", "Shop all products", "Button", "Slide-in cart"]);
+        if ($$el('.empty_cart_btn_shop_all')) {
+          clearInterval(lookForBtnShopAllProducts)
+          $$el('.empty_cart_btn_shop_all')?.forEach(el => {
+            el.addEventListener('click', e => {
+              if (!e.target.getAttribute('data-test')) {
+                pushDataLayer(['exp_nov_oral_but_slidcart_shop_all', 'Shop all products', 'Button', 'Slide-in cart'])
               }
-              e.target.setAttribute("data-test", "1");
+              e.target.setAttribute('data-test', '1')
               setTimeout(() => {
-                if (e.target.getAttribute("data-test")) {
-                  e.target.removeAttribute("data-test");
+                if (e.target.getAttribute('data-test')) {
+                  e.target.removeAttribute('data-test')
                 }
-              }, 1000);
-            });
-          });
+              }, 1000)
+            })
+          })
         }
-      }, 100);
+      }, 100)
 
       //add to cart to checkout
       async function addToCartCheckout(idValue, qt) {
-        addBlurLoadCart();
+        addBlurLoadCart()
         let formData = {
           items: [
             {
               id: idValue,
-              quantity: qt,
-            },
-          ],
-        };
+              quantity: qt
+            }
+          ]
+        }
 
-        await fetch("/cart/add.js", {
-          method: "POST",
+        await fetch('/cart/add.js', {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json'
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify(formData)
         })
-          .then((response) => {
-            response.json();
+          .then(response => {
+            response.json()
 
-            getCartCheckout();
+            getCartCheckout()
           })
           .then(() => {
             let q = setInterval(() => {
-              if (localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
-                clearInterval(q);
+              if (
+                localStorage.getItem('upsellInit') &&
+                localStorage.getItem('firstUpsellId') &&
+                localStorage.getItem('upselsAddBtn')
+              ) {
+                clearInterval(q)
                 setTimeout(() => {
-                  let id = localStorage.getItem("firstUpsellId");
-                  let count = +localStorage.getItem("countForUps");
-                  console.log(count, `count`);
-                  changeCartCheckout(id, count);
-                }, 200);
+                  let id = localStorage.getItem('firstUpsellId')
+                  let count = +localStorage.getItem('countForUps')
+                  changeCartCheckout(id, count)
+                }, 200)
               }
-            }, 700);
+            }, 700)
 
-            if (window.location.pathname.match("/cart") && localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
+            if (
+              window.location.pathname.match('/cart') &&
+              localStorage.getItem('upsellInit') &&
+              localStorage.getItem('firstUpsellId') &&
+              localStorage.getItem('upselsAddBtn')
+            ) {
               setTimeout(() => {
                 // window.location = "/cart";
-              }, 700);
+              }, 700)
             } else {
-              onOpenPopup();
+              onOpenPopup()
             }
-            document.querySelector(".slide_in_products")?.scrollIntoView({ block: "start", behavior: "smooth" });
+            $el('.slide_in_products')?.scrollIntoView({ block: 'start', behavior: 'smooth' })
           })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
+          .catch(error => {
+            console.error('Error:', error)
+          })
       }
 
-      btnClose.forEach((el) => {
-        el.addEventListener("click", (e) => {
-          if (!e.target.getAttribute("data-test")) {
-            pushDataLayer(["exp_nov_oral_but_slidcart_close", "Close", "Button", "Slide-in cart"]);
-            onClosePopup();
+      btnClose.forEach(el => {
+        el.addEventListener('click', e => {
+          if (!e.target.getAttribute('data-test')) {
+            pushDataLayer(['exp_nov_oral_but_slidcart_close', 'Close', 'Button', 'Slide-in cart'])
+            onClosePopup()
           }
-          e.target.setAttribute("data-test", "1");
+          e.target.setAttribute('data-test', '1')
           setTimeout(() => {
-            if (e.target.getAttribute("data-test")) {
-              e.target.removeAttribute("data-test");
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test')
             }
-          }, 1000);
-        });
-      });
+          }, 1000)
+        })
+      })
 
       // click on overlay popup
-      overlay.addEventListener("click", (e) => {
-        if (e.target.matches(".slide_in_cart")) {
-          if (!e.target.getAttribute("data-test")) {
-            onClosePopup();
+      overlay.addEventListener('click', e => {
+        if (e.target.matches('.slide_in_cart')) {
+          if (!e.target.getAttribute('data-test')) {
+            onClosePopup()
           }
-          e.target.setAttribute("data-test", "1");
+          e.target.setAttribute('data-test', '1')
           setTimeout(() => {
-            if (e.target.getAttribute("data-test")) {
-              e.target.removeAttribute("data-test");
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test')
             }
-          }, 1000);
+          }, 1000)
         }
-      });
+      })
 
       function onOpenPopup() {
-        html.classList.add("active");
-        body.classList.add("active");
-        overlay.classList.add("active");
-        if (!document.querySelector(".visib_cart")) {
-          document.querySelector(".slide_in_header")?.insertAdjacentHTML("afterbegin", `<span class="visib_cart"></span>`);
+        html.classList.add('active')
+        body.classList.add('active')
+        overlay.classList.add('active')
+        if (!$el('.visib_cart')) {
+          $el('.slide_in_header')?.insertAdjacentHTML('afterbegin', `<span class="visib_cart"></span>`)
         }
-        if (!document.querySelector(".visib_guarantee")) {
-          document.querySelector(".slide_in_guarantee")?.insertAdjacentHTML("beforeend", `<span class="visib_guarantee"></span>`);
+        if (!$el('.visib_guarantee')) {
+          $el('.slide_in_guarantee')?.insertAdjacentHTML('beforeend', `<span class="visib_guarantee"></span>`)
         }
 
-        waitForElement(".visib_guarantee").then((el) => {
-          handleVisibility(el, ["exp_nov_oral_butt_slidcartguar_check", " {{focusTime}} ", "Visibility ", "Slide-in cart 60-day money back guarantee"]);
-        });
-        waitForElement(".visib_cart").then((el) => {
-          handleVisibility(el, ["exp_nov_oral_vis_slidcart_focus", " {{focusTime}} ", "Visibility ", "Slide-in cart"]);
-        });
+        waitForElement('.visib_guarantee').then(el => {
+          handleVisibility(el, [
+            'exp_nov_oral_butt_slidcartguar_check',
+            ' {{focusTime}} ',
+            'Visibility ',
+            'Slide-in cart 60-day money back guarantee'
+          ])
+        })
+        waitForElement('.visib_cart').then(el => {
+          handleVisibility(el, ['exp_nov_oral_vis_slidcart_focus', ' {{focusTime}} ', 'Visibility ', 'Slide-in cart'])
+        })
       }
 
       function onClosePopup() {
-        html.classList.remove("active");
-        overlay.classList.remove("active");
-        body.classList.remove("active");
-        body.style.overflow = "auto";
-        html.style.overflow = "auto";
+        html.classList.remove('active')
+        overlay.classList.remove('active')
+        body.classList.remove('active')
+        body.style.overflow = 'auto'
+        html.style.overflow = 'auto'
 
         setTimeout(() => {
-          document.querySelector(".visib_cart")?.remove();
-          document.querySelector(".visib_guarantee")?.remove();
-        }, 10);
+          $el('.visib_cart')?.remove()
+          $el('.visib_guarantee')?.remove()
+        }, 10)
       }
     }
 
     // renderPopupSonicToothbrush
     function renderPopupSonicToothbrush() {
       let body = document.body,
-        html = document.querySelector("html"),
-        overlay = body.querySelector(".overlay_popup"),
-        btnClose = body.querySelectorAll(".popup_close");
+        html = $el('html'),
+        overlay = body.querySelector('.overlay_popup'),
+        btnClose = body.querySelectorAll('.popup_close')
 
-      btnClose.forEach((el) => {
-        el.addEventListener("click", (e) => {
-          if (!e.target.getAttribute("data-test")) {
-            pushDataLayer(["exp_nov_oral_but_popup_close", "Close", "Button", "Pop up did you now"]);
-            onClosePopup();
+      btnClose.forEach(el => {
+        el.addEventListener('click', e => {
+          if (!e.target.getAttribute('data-test')) {
+            pushDataLayer(['exp_nov_oral_but_popup_close', 'Close', 'Button', 'Pop up did you now'])
+            onClosePopup()
           }
-          e.target.setAttribute("data-test", "1");
+          e.target.setAttribute('data-test', '1')
           setTimeout(() => {
-            if (e.target.getAttribute("data-test")) {
-              e.target.removeAttribute("data-test");
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test')
             }
-          }, 1000);
-        });
-      });
+          }, 1000)
+        })
+      })
 
       // click on overlay popup
-      overlay.addEventListener("click", (e) => {
-        if (e.target.matches(".overlay_popup")) {
-          onClosePopup();
+      overlay.addEventListener('click', e => {
+        if (e.target.matches('.overlay_popup')) {
+          onClosePopup()
         }
-      });
+      })
 
-      if (document.querySelector(".product_upsell_descr_wrapp")) {
-        onOpenPopup();
+      if ($el('.product_upsell_descr_wrapp')) {
+        onOpenPopup()
       }
 
       function onOpenPopup() {
-        if (!document.querySelector(".visib_product_upsell")) {
-          document.querySelector(".product_upsell_descr")?.insertAdjacentHTML("afterbegin", `<span class="visib_product_upsell"></span>`);
+        if (!$el('.visib_product_upsell')) {
+          $el('.product_upsell_descr')?.insertAdjacentHTML('afterbegin', `<span class="visib_product_upsell"></span>`)
         }
-        waitForElement(".visib_product_upsell").then((el) => {
-          handleVisibility(el, ["exp_nov_oral_vis_popup_focus", " {{focusTime}} ", "Visibility ", "Pop up did you now"]);
-        });
-        overlay.classList.add("active");
-        body.style.overflow = "hidden";
-        html.style.overflow = "hidden";
-        body.style.display = "block";
+        waitForElement('.visib_product_upsell').then(el => {
+          handleVisibility(el, ['exp_nov_oral_vis_popup_focus', ' {{focusTime}} ', 'Visibility ', 'Pop up did you now'])
+        })
+        overlay.classList.add('active')
+        body.style.overflow = 'hidden'
+        html.style.overflow = 'hidden'
+        body.style.display = 'block'
       }
 
       function onClosePopup() {
-        overlay.classList.remove("active");
+        overlay.classList.remove('active')
         setTimeout(() => {
-          document.querySelector(".visib_product_upsell")?.remove();
-        }, 10);
+          $el('.visib_product_upsell')?.remove()
+        }, 10)
       }
     }
 
     //get cart on checkout
     async function getCartCheckout() {
-      await fetch("/cart.js", {
-        method: "GET",
+      await fetch('/cart.js', {
+        method: 'GET'
       })
-        .then((response) => {
-          return response.json();
+        .then(response => {
+          return response.json()
         })
-        .then((data) => {
-          // console.log(data, `getCartCheckout`);
+        .then(data => {
+          $el('.slide_in_products').innerHTML = ''
+          $el('.upsells_wrapp').innerHTML = ''
 
-          document.querySelector(".slide_in_products").innerHTML = "";
-          document.querySelector(".upsells_wrapp").innerHTML = "";
-
-          if (localStorage.getItem("novaaLightPad")) {
-            localStorage.removeItem("novaaLightPad");
+          if (localStorage.getItem('novaaLightPad')) {
+            localStorage.removeItem('novaaLightPad')
           }
 
-          if (localStorage.getItem("novaaLightPadXl")) {
-            localStorage.removeItem("novaaLightPadXl");
+          if (localStorage.getItem('novaaLightPadXl')) {
+            localStorage.removeItem('novaaLightPadXl')
           }
 
-          if (localStorage.getItem("novaaGlowTherapyMask")) {
-            localStorage.removeItem("novaaGlowTherapyMask");
+          if (localStorage.getItem('novaaGlowTherapyMask')) {
+            localStorage.removeItem('novaaGlowTherapyMask')
           }
 
-          if (localStorage.getItem("novaaLightPro")) {
-            localStorage.removeItem("novaaLightPro");
+          if (localStorage.getItem('novaaLightPro')) {
+            localStorage.removeItem('novaaLightPro')
           }
 
-          if (localStorage.getItem("novaaExtraStrengthLaser")) {
-            localStorage.removeItem("novaaExtraStrengthLaser");
+          if (localStorage.getItem('novaaExtraStrengthLaser')) {
+            localStorage.removeItem('novaaExtraStrengthLaser')
           }
-          if (localStorage.getItem("novaaLightPadForKneePain")) {
-            localStorage.removeItem("novaaLightPadForKneePain");
+          if (localStorage.getItem('novaaLightPadForKneePain')) {
+            localStorage.removeItem('novaaLightPadForKneePain')
           }
-          if (localStorage.getItem("upselsSonic")) {
-            localStorage.removeItem("upselsSonic");
+          if (localStorage.getItem('upselsSonic')) {
+            localStorage.removeItem('upselsSonic')
           }
 
-          if (localStorage.getItem("firstUpsellId")) {
-            localStorage.removeItem("firstUpsellId");
+          if (localStorage.getItem('firstUpsellId')) {
+            localStorage.removeItem('firstUpsellId')
           }
-          if (localStorage.getItem("countForUps")) {
-            localStorage.removeItem("countForUps");
+          if (localStorage.getItem('countForUps')) {
+            localStorage.removeItem('countForUps')
           }
 
           if (data.item_count === 0) {
-            if (!document.querySelector(".slide_in_empty")) {
-              if (localStorage.getItem("upsellInit")) {
-                localStorage.removeItem("upsellInit");
+            if (!$el('.slide_in_empty')) {
+              if (localStorage.getItem('upsellInit')) {
+                localStorage.removeItem('upsellInit')
               }
-              document.querySelector(".slide_in_body").insertAdjacentHTML("afterbegin", emptySlideInHTML);
-              document.querySelector(".slide_in_footer").style.display = "none";
-              document.querySelector(".upsells_wrapp").style.opacity = "0";
+              $el('.slide_in_body').insertAdjacentHTML('afterbegin', emptySlideInHTML)
+              $el('.slide_in_footer').style.display = 'none'
+              $el('.upsells_wrapp').style.opacity = '0'
             }
-            removeBlurLoadCart();
+            removeBlurLoadCart()
           } else {
-            document.querySelector(".slide_in_empty")?.remove();
-            document.querySelector(".slide_in_footer").style.display = "block";
-            document.querySelector(".upsells_wrapp").style.opacity = "1";
+            $el('.slide_in_empty')?.remove()
+            $el('.slide_in_footer').style.display = 'block'
+            $el('.upsells_wrapp').style.opacity = '1'
           }
 
-          document.querySelector(".cart_length span").textContent = `${data.item_count}`;
-          let arrOldPr = [];
+          $el('.cart_length span').textContent = `${data.item_count}`
+          let arrOldPr = []
 
-          data.items.forEach((el) => {
+          data.items.forEach(el => {
             let itemCart = `                         
 <div class="product_wrap" id="${el.key}" data-id="${el.id}">
 <a class="img_wrap" href="${el.url}"><img src="${el.image}" alt="" /></a>
@@ -1848,7 +2025,7 @@ span.accent_weight_bold {
 <div>
   <h2><a href="${el.url}">${el.product_title}</a></h2>
   <div class="price_wrap">
-  <span class="my_price">$${(el.final_line_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}</span>
+  <span class="my_price">$${(el.final_line_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}</span>
   <span class="my_old_price"></span>
   <span class="discount_txt"></span>
   </div>
@@ -1885,515 +2062,661 @@ span.accent_weight_bold {
 </div>
 </div>
 </div>
-`;
+`
 
-            document.querySelector(".slide_in_products").insertAdjacentHTML("beforeend", itemCart);
+            $el('.slide_in_products').insertAdjacentHTML('beforeend', itemCart)
 
             fetch(`/products/${el.handle}.js`, {
-              method: "GET",
+              method: 'GET'
             })
-              .then((response) => {
-                return response.json();
+              .then(response => {
+                return response.json()
               })
-              .then((res) => {
-                // console.log(res, `RES`);
-                document.querySelectorAll(".product_wrap").forEach((items) => {
-                  if (+items.getAttribute("data-id") === res.variants[0].id) {
-                    arrOldPr.push((res.variants[0].compare_at_price / 100) * items.querySelector(".count_var").value);
+              .then(res => {
+                $$el('.product_wrap').forEach(items => {
+                  if (+items.getAttribute('data-id') === res.variants[0].id) {
+                    arrOldPr.push((res.variants[0].compare_at_price / 100) * items.querySelector('.count_var').value)
 
-                    items.querySelector(".my_old_price").textContent = `$${((res.variants[0].compare_at_price / 100) * items.querySelector(".count_var").value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`;
+                    items.querySelector('.my_old_price').textContent = `$${(
+                      (res.variants[0].compare_at_price / 100) *
+                      items.querySelector('.count_var').value
+                    )
+                      .toFixed(2)
+                      .replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}`
 
-                    items.querySelector(".discount_txt").textContent = `${(((el.final_line_price / 100) * 100) / ((res.variants[0].compare_at_price / 100) * items.querySelector(".count_var").value) - 100).toFixed(0)}%`;
-                    console.log((el.final_line_price / 100) * 100, `el.final_line_price / 100) * 100`, res.variants[0].id);
-                    console.log(res.variants[0].compare_at_price / 100 - 100, `res.variants[0].compare_at_price / 100) - 100`, res.variants[0].id);
+                    items.querySelector('.discount_txt').textContent = `${(
+                      ((el.final_line_price / 100) * 100) /
+                        ((res.variants[0].compare_at_price / 100) * items.querySelector('.count_var').value) -
+                      100
+                    ).toFixed(0)}%`
                   }
 
                   let appikonF = setInterval(() => {
-                    if (typeof window.appikon.discounts === "object" && window.appikon.discounts.discounted_price_html !== undefined) {
-                      clearInterval(appikonF);
+                    if (
+                      typeof window.appikon.discounts === 'object' &&
+                      window.appikon.discounts.discounted_price_html !== undefined
+                    ) {
+                      clearInterval(appikonF)
 
-                      document.querySelector(".sub_total_original_price").textContent = window.appikon.discounts.discounted_price_html;
+                      $el('.sub_total_original_price').textContent = window.appikon.discounts.discounted_price_html
 
-                      window.appikon.discounts.cart.items.forEach((appikonItem) => {
+                      window.appikon.discounts.cart.items.forEach(appikonItem => {
                         if (appikonItem.discounted_line_price_format && appikonItem.quantity > 1) {
-                          let currPrDsc = appikonItem.discounted_line_price_format;
-                          let oldPr = appikonItem.compare_at_line_price_format;
+                          let currPrDsc = appikonItem.discounted_line_price_format
+                          let oldPr = appikonItem.compare_at_line_price_format
 
                           if (items.id === appikonItem.key) {
-                            // console.log(oldPr, appikonItem.key, `oldPr`);
-                            items.querySelector(".my_price").textContent = currPrDsc;
-                            items.querySelector(".my_old_price").textContent = oldPr;
-                            items.querySelector(".discount_txt").textContent = `${((appikonItem.discounted_line_price * 100) / appikonItem.compare_at_line_price - 100).toFixed(0)}%`;
-                            console.log(appikonItem.discounted_line_price * 100, `(appikonItem.discounted_line_price * 100)`, res.variants[0].id);
-                            console.log(appikonItem.compare_at_line_price - 100, `appikonItem.compare_at_line_price - 100`, res.variants[0].id);
+                            items.querySelector('.my_price').textContent = currPrDsc
+                            items.querySelector('.my_old_price').textContent = oldPr
+                            items.querySelector('.discount_txt').textContent = `${(
+                              (appikonItem.discounted_line_price * 100) / appikonItem.compare_at_line_price -
+                              100
+                            ).toFixed(0)}%`
                           }
                         }
-                      });
+                      })
                     }
-                  }, 10);
-                });
+                  }, 10)
+                })
               })
-              .catch((error) => {
-                console.error("Error:", error);
-              });
+              .catch(error => {
+                console.error('Error:', error)
+              })
 
-            if (document.querySelector(".btn_remove_item")) {
-              document.querySelectorAll(".btn_remove_item").forEach((el) => {
-                el.addEventListener("click", (e) => {
-                  if (!e.target.getAttribute("data-test")) {
-                    pushDataLayer(["exp_nov_oral_butt_slidcart_delete", "Delete", "Button", "Slide-in cart"]);
-                    if (localStorage.getItem("upsellInit") && (+e.target.closest(".product_wrap").getAttribute("data-id") === 46932997865817 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368669593945 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368670118233 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368679293273 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368679752025 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368681161049 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47442481348953)) {
-                      localStorage.removeItem("upsellInit");
+            if ($el('.btn_remove_item')) {
+              $$el('.btn_remove_item').forEach(el => {
+                el.addEventListener('click', e => {
+                  if (!e.target.getAttribute('data-test')) {
+                    pushDataLayer(['exp_nov_oral_butt_slidcart_delete', 'Delete', 'Button', 'Slide-in cart'])
+                    if (
+                      localStorage.getItem('upsellInit') &&
+                      (+e.target.closest('.product_wrap').getAttribute('data-id') === 46932997865817 ||
+                        +e.target.closest('.product_wrap').getAttribute('data-id') === 47368669593945 ||
+                        +e.target.closest('.product_wrap').getAttribute('data-id') === 47368670118233 ||
+                        +e.target.closest('.product_wrap').getAttribute('data-id') === 47368679293273 ||
+                        +e.target.closest('.product_wrap').getAttribute('data-id') === 47368679752025 ||
+                        +e.target.closest('.product_wrap').getAttribute('data-id') === 47368681161049 ||
+                        +e.target.closest('.product_wrap').getAttribute('data-id') === 47442481348953)
+                    ) {
+                      localStorage.removeItem('upsellInit')
                     }
-                    changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), 0);
+                    changeCartCheckout(e.target.closest('.product_wrap').getAttribute('id'), 0)
                   }
-                  e.target.setAttribute("data-test", "1");
+                  e.target.setAttribute('data-test', '1')
                   setTimeout(() => {
-                    if (e.target.getAttribute("data-test")) {
-                      e.target.removeAttribute("data-test");
+                    if (e.target.getAttribute('data-test')) {
+                      e.target.removeAttribute('data-test')
                     }
-                  }, 1000);
-                });
-              });
+                  }, 1000)
+                })
+              })
             }
 
-            if (document.querySelector(".increment")) {
-              document.querySelectorAll(".increment").forEach((item) => {
-                item.addEventListener("click", (e) => {
-                  if (!e.target.getAttribute("data-test")) {
-                    pushDataLayer(["exp_nov_oral_butt_slidcart_name", "plus", "Button", "Slide-in cart"]);
-                    let qvt = +e.target.closest("div.cart_popup_qty").querySelector(".count_var").value;
-                    e.target.closest("div.cart_popup_qty").querySelector(".count_var").value = qvt + 1;
+            if ($el('.increment')) {
+              $$el('.increment').forEach(item => {
+                item.addEventListener('click', e => {
+                  if (!e.target.getAttribute('data-test')) {
+                    pushDataLayer(['exp_nov_oral_butt_slidcart_name', 'plus', 'Button', 'Slide-in cart'])
+                    let qvt = +e.target.closest('div.cart_popup_qty').querySelector('.count_var').value
+                    e.target.closest('div.cart_popup_qty').querySelector('.count_var').value = qvt + 1
 
-                    changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), e.target.closest("div.cart_popup_qty").querySelector(".count_var").value);
+                    changeCartCheckout(
+                      e.target.closest('.product_wrap').getAttribute('id'),
+                      e.target.closest('div.cart_popup_qty').querySelector('.count_var').value
+                    )
                   }
-                  e.target.setAttribute("data-test", "1");
+                  e.target.setAttribute('data-test', '1')
                   setTimeout(() => {
-                    if (e.target.getAttribute("data-test")) {
-                      e.target.removeAttribute("data-test");
+                    if (e.target.getAttribute('data-test')) {
+                      e.target.removeAttribute('data-test')
                     }
-                  }, 1000);
-                });
-              });
+                  }, 1000)
+                })
+              })
             }
 
-            if (document.querySelector(".decrement")) {
-              document.querySelectorAll(".decrement").forEach((item) => {
-                if (item.closest(".cart_popup_qty").querySelector(".count_var").value !== "1") {
-                  if (item.getAttribute("disabled")) {
-                    item.removeAttribute("disabled");
+            if ($el('.decrement')) {
+              $$el('.decrement').forEach(item => {
+                if (item.closest('.cart_popup_qty').querySelector('.count_var').value !== '1') {
+                  if (item.getAttribute('disabled')) {
+                    item.removeAttribute('disabled')
                   }
 
-                  item.addEventListener("click", (e) => {
-                    if (!e.target.getAttribute("data-test")) {
-                      pushDataLayer(["exp_nov_oral_butt_slidcart_name", "minus", "Button", "Slide-in cart"]);
-                      let qvt = +e.target.closest("div.cart_popup_qty").querySelector(".count_var").value;
+                  item.addEventListener('click', e => {
+                    if (!e.target.getAttribute('data-test')) {
+                      pushDataLayer(['exp_nov_oral_butt_slidcart_name', 'minus', 'Button', 'Slide-in cart'])
+                      let qvt = +e.target.closest('div.cart_popup_qty').querySelector('.count_var').value
 
-                      if (+e.target.closest("div.cart_popup_qty").querySelector(".count_var").value >= 0) {
-                        e.target.closest("div.cart_popup_qty").querySelector(".count_var").value = qvt - 1;
-                        changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), e.target.closest("div.cart_popup_qty").querySelector(".count_var").value);
+                      if (+e.target.closest('div.cart_popup_qty').querySelector('.count_var').value >= 0) {
+                        e.target.closest('div.cart_popup_qty').querySelector('.count_var').value = qvt - 1
+                        changeCartCheckout(
+                          e.target.closest('.product_wrap').getAttribute('id'),
+                          e.target.closest('div.cart_popup_qty').querySelector('.count_var').value
+                        )
                       }
 
-                      if (+e.target.closest("div.cart_popup_qty").querySelector(".count_var").value === 0) {
-                        e.target.closest(".product_wrap").remove();
-                        changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), e.target.closest("div.cart_popup_qty").querySelector(".count_var").value);
+                      if (+e.target.closest('div.cart_popup_qty').querySelector('.count_var').value === 0) {
+                        e.target.closest('.product_wrap').remove()
+                        changeCartCheckout(
+                          e.target.closest('.product_wrap').getAttribute('id'),
+                          e.target.closest('div.cart_popup_qty').querySelector('.count_var').value
+                        )
                       }
                     }
-                    e.target.setAttribute("data-test", "1");
+                    e.target.setAttribute('data-test', '1')
                     setTimeout(() => {
-                      if (e.target.getAttribute("data-test")) {
-                        e.target.removeAttribute("data-test");
+                      if (e.target.getAttribute('data-test')) {
+                        e.target.removeAttribute('data-test')
                       }
-                    }, 1000);
-                  });
+                    }, 1000)
+                  })
                 } else {
-                  item.setAttribute("disabled", "disabled");
+                  item.setAttribute('disabled', 'disabled')
                 }
-              });
+              })
             }
 
-            document.querySelectorAll(".count_var")?.forEach((el) => {
-              el.addEventListener("change", (e) => {
-                if (!e.target.getAttribute("data-test")) {
-                  localStorage.setItem("count", e.currentTarget.value);
+            $$el('.count_var')?.forEach(el => {
+              el.addEventListener('change', e => {
+                if (!e.target.getAttribute('data-test')) {
+                  localStorage.setItem('count', e.currentTarget.value)
 
-                  if (localStorage.getItem("count")) {
-                    changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), localStorage.getItem("count"));
+                  if (localStorage.getItem('count')) {
+                    changeCartCheckout(
+                      e.target.closest('.product_wrap').getAttribute('id'),
+                      localStorage.getItem('count')
+                    )
                   }
                 }
-                e.target.setAttribute("data-test", "1");
+                e.target.setAttribute('data-test', '1')
                 setTimeout(() => {
-                  if (e.target.getAttribute("data-test")) {
-                    e.target.removeAttribute("data-test");
+                  if (e.target.getAttribute('data-test')) {
+                    e.target.removeAttribute('data-test')
                   }
-                }, 1000);
-              });
-            });
+                }, 1000)
+              })
+            })
 
-            if (data.item_count !== 0 && document.querySelector(".slide_in_products").children.length === data.items.length) {
-              let firstUpsell;
+            if (data.item_count !== 0 && $el('.slide_in_products').children.length === data.items.length) {
+              let firstUpsell
 
-              let firstUpsellId = +document.querySelector(".slide_in_products")?.lastElementChild.getAttribute("data-id");
+              let firstUpsellId = +$el('.slide_in_products')?.lastElementChild.getAttribute('data-id')
 
-              let countForUps = +document.querySelector(".slide_in_products")?.lastElementChild.querySelector(".count_var").value - 1;
+              let countForUps = +$el('.slide_in_products')?.lastElementChild.querySelector('.count_var').value - 1
 
-              if (!localStorage.getItem("firstUpsellId")) {
-                localStorage.setItem("firstUpsellId", firstUpsellId);
+              if (!localStorage.getItem('firstUpsellId')) {
+                localStorage.setItem('firstUpsellId', firstUpsellId)
               }
-              if (!localStorage.getItem("countForUps")) {
-                localStorage.setItem("countForUps", countForUps);
+              if (!localStorage.getItem('countForUps')) {
+                localStorage.setItem('countForUps', countForUps)
               }
 
               setTimeout(() => {
-                if (localStorage.getItem("firstUpsellId") && !localStorage.getItem("upsellInit")) {
-                  firstUpsell = +localStorage.getItem("firstUpsellId");
+                if (localStorage.getItem('firstUpsellId') && !localStorage.getItem('upsellInit')) {
+                  firstUpsell = +localStorage.getItem('firstUpsellId')
                   if (firstUpsell === 46883225993561) {
-                    onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPad", 46883225993561, "novaa_light_pad", 47368669593945);
+                    onRenderUpsell(
+                      data.items,
+                      upselsObjNovaa,
+                      'novaaLightPad',
+                      46883225993561,
+                      'novaa_light_pad',
+                      47368669593945
+                    )
                   } else if (firstUpsell === 47116576588121) {
-                    onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPadXl", 47116576588121, "novaa_light_pad_xl", 47368670118233);
+                    onRenderUpsell(
+                      data.items,
+                      upselsObjNovaa,
+                      'novaaLightPadXl',
+                      47116576588121,
+                      'novaa_light_pad_xl',
+                      47368670118233
+                    )
                   } else if (firstUpsell === 47048817607001) {
-                    onRenderUpsell(data.items, upselsObjNovaa, "novaaGlowTherapyMask", 47048817607001, "novaa_glow_therapy_mask", 47368679293273);
+                    onRenderUpsell(
+                      data.items,
+                      upselsObjNovaa,
+                      'novaaGlowTherapyMask',
+                      47048817607001,
+                      'novaa_glow_therapy_mask',
+                      47368679293273
+                    )
                   } else if (firstUpsell === 32854816784438) {
-                    onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPro", 32854816784438, "novaa_light_pro", 47368679752025);
+                    onRenderUpsell(
+                      data.items,
+                      upselsObjNovaa,
+                      'novaaLightPro',
+                      32854816784438,
+                      'novaa_light_pro',
+                      47368679752025
+                    )
                   } else if (firstUpsell === 40156488761398) {
-                    onRenderUpsell(data.items, upselsObjNovaa, "novaaExtraStrengthLaser", 40156488761398, "novaa_extra_strength_laser", 47442481348953);
+                    onRenderUpsell(
+                      data.items,
+                      upselsObjNovaa,
+                      'novaaExtraStrengthLaser',
+                      40156488761398,
+                      'novaa_extra_strength_laser',
+                      47442481348953
+                    )
                   }
                   if (firstUpsell === 39782656311350) {
-                    onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPadForKneePain", 39782656311350, "novaa_light_padfor_knee_pain", 47368681161049);
+                    onRenderUpsell(
+                      data.items,
+                      upselsObjNovaa,
+                      'novaaLightPadForKneePain',
+                      39782656311350,
+                      'novaa_light_padfor_knee_pain',
+                      47368681161049
+                    )
                   }
                   if (firstUpsell === 39737414484022) {
-                    onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPadForKneePain", 39737414484022, "novaa_light_padfor_knee_pain", 47368681161049);
+                    onRenderUpsell(
+                      data.items,
+                      upselsObjNovaa,
+                      'novaaLightPadForKneePain',
+                      39737414484022,
+                      'novaa_light_padfor_knee_pain',
+                      47368681161049
+                    )
                   } else if (firstUpsell === 47100514140505) {
-                    onRenderUpsell(data.items, upselsObjSonic, "upselsSonic", 47100514140505, "upsels_sonic", 46932997865817);
+                    onRenderUpsell(
+                      data.items,
+                      upselsObjSonic,
+                      'upselsSonic',
+                      47100514140505,
+                      'upsels_sonic',
+                      46932997865817
+                    )
                   } else if (firstUpsell === 40365298679862) {
-                    onRenderUpsell(data.items, upselsObjSonic, "upselsSonic", 40365298679862, "upsels_sonic", 46932997865817);
+                    onRenderUpsell(
+                      data.items,
+                      upselsObjSonic,
+                      'upselsSonic',
+                      40365298679862,
+                      'upsels_sonic',
+                      46932997865817
+                    )
                   } else {
-                    if (localStorage.getItem("upsellInit")) {
-                      localStorage.removeItem("upsellInit");
+                    if (localStorage.getItem('upsellInit')) {
+                      localStorage.removeItem('upsellInit')
                     }
                   }
                 }
-              }, 1000);
+              }, 1000)
             }
-          });
+          })
 
-          document.querySelectorAll(".sub_total_last_price").forEach((p) => {
+          $$el('.sub_total_last_price').forEach(p => {
             setTimeout(() => {
-              if (arrOldPr.length === document.querySelector(".slide_in_products").children.length && window.appikon.discounts.discounted_price_html === undefined) {
-                let newSubTotalLastPrice;
+              if (
+                arrOldPr.length === $el('.slide_in_products').children.length &&
+                window.appikon.discounts.discounted_price_html === undefined
+              ) {
+                let newSubTotalLastPrice
 
                 arrOldPr.reduce(function (total, amount) {
-                  return (newSubTotalLastPrice = total + amount);
-                }, 0);
+                  return (newSubTotalLastPrice = total + amount)
+                }, 0)
 
-                p.textContent = `$${newSubTotalLastPrice?.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`;
-                removeBlurLoadCart();
+                p.textContent = `$${newSubTotalLastPrice?.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}`
+                removeBlurLoadCart()
               } else {
-                p.textContent = `$${(data.original_total_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`;
-                removeBlurLoadCart();
+                p.textContent = `$${(data.original_total_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}`
+                removeBlurLoadCart()
               }
-            }, 1000);
-          });
+            }, 1000)
+          })
 
-          document.querySelectorAll(".sub_total_original_price").forEach((p) => {
-            p.textContent = `$${(data.total_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`;
-          });
+          $$el('.sub_total_original_price').forEach(p => {
+            p.textContent = `$${(data.total_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}`
+          })
         })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+        .catch(error => {
+          console.error('Error:', error)
+        })
     }
 
     //remove item cart on checkout
     async function changeCartCheckout(idValue, qntValue) {
       let formData = {
         id: idValue,
-        quantity: qntValue,
-      };
+        quantity: qntValue
+      }
 
-      await fetch("/cart/change.js", {
-        method: "POST",
+      await fetch('/cart/change.js', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData)
       })
-        .then((response) => {
-          response.json();
+        .then(response => {
+          response.json()
         })
-        .then((data) => {
-          addBlurLoadCart();
+        .then(data => {
+          addBlurLoadCart()
 
-          if (localStorage.getItem("upselsAddBtn")) {
-            localStorage.removeItem("upselsAddBtn");
+          if (localStorage.getItem('upselsAddBtn')) {
+            localStorage.removeItem('upselsAddBtn')
           }
-          if (!localStorage.getItem("upselsAddBtn")) {
-            getCartCheckout();
+          if (!localStorage.getItem('upselsAddBtn')) {
+            getCartCheckout()
           }
 
-          if (window.location.pathname.match("/cart")) {
-            window.location = "/cart";
+          if (window.location.pathname.match('/cart')) {
+            window.location = '/cart'
           }
         })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+        .catch(error => {
+          console.error('Error:', error)
+        })
     }
 
     function addBlurLoadCart() {
-      document.querySelectorAll(".slide_in_body")?.forEach((el) => {
-        el.classList.add("blur_var");
-      });
+      $$el('.slide_in_body')?.forEach(el => {
+        el.classList.add('blur_var')
+      })
     }
 
     function removeBlurLoadCart() {
-      if (document.querySelector(".slide_in_body")?.classList.contains("blur_var")) {
-        document.querySelectorAll(".slide_in_body")?.forEach((el) => {
-          el.classList.remove("blur_var");
-        });
+      if ($el('.slide_in_body')?.classList.contains('blur_var')) {
+        $$el('.slide_in_body')?.forEach(el => {
+          el.classList.remove('blur_var')
+        })
       }
     }
 
     function onRenderUpsell(dataInfo, bundle, nameLocalStor, idProductForUpsell, className, idBundl) {
       for (let key in bundle) {
-        Object.values(dataInfo).some((el) => {
+        Object.values(dataInfo).some(el => {
           if (el.id === +idBundl) {
-            localStorage.setItem(nameLocalStor, "yes");
+            localStorage.setItem(nameLocalStor, 'yes')
           }
           setTimeout(() => {
             if (el.id !== +key) {
-              if (!document.querySelector(`.slide_in_cart .upsells_wrapp .${className}`) && !localStorage.getItem(nameLocalStor) && el.id === idProductForUpsell) {
-                document.querySelector(".slide_in_cart .upsells_wrapp").insertAdjacentHTML("beforeend", renderUpselCard(idBundl, bundle[key][0], bundle[key][1], bundle[key][2], bundle[key][3], bundle[key][4], bundle[key][5], bundle[key][6], bundle[key][7], bundle[key][8], bundle[key][9], className, nameLocalStor));
+              if (
+                !$el(`.slide_in_cart .upsells_wrapp .${className}`) &&
+                !localStorage.getItem(nameLocalStor) &&
+                el.id === idProductForUpsell
+              ) {
+                $el('.slide_in_cart .upsells_wrapp').insertAdjacentHTML(
+                  'beforeend',
+                  renderUpselCard(
+                    idBundl,
+                    bundle[key][0],
+                    bundle[key][1],
+                    bundle[key][2],
+                    bundle[key][3],
+                    bundle[key][4],
+                    bundle[key][5],
+                    bundle[key][6],
+                    bundle[key][7],
+                    bundle[key][8],
+                    bundle[key][9],
+                    className,
+                    nameLocalStor
+                  )
+                )
               }
 
-              if (window.location.pathname.match("/cart")) {
-                if (document.querySelector(".cartouter .upsellbox") && !document.querySelector(`.cartouter .${className}`) && !localStorage.getItem(nameLocalStor) && el.id === idProductForUpsell) {
-                  document.querySelector(".cartouter .upsellbox").insertAdjacentHTML("afterend", renderUpselCardPage(idBundl, bundle[key][1], bundle[key][2], bundle[key][3], bundle[key][6], bundle[key][7], className, bundle[key][11], nameLocalStor));
+              if (window.location.pathname.match('/cart')) {
+                if (
+                  $el('.cartouter .upsellbox') &&
+                  !$el(`.cartouter .${className}`) &&
+                  !localStorage.getItem(nameLocalStor) &&
+                  el.id === idProductForUpsell
+                ) {
+                  $el('.cartouter .upsellbox').insertAdjacentHTML(
+                    'afterend',
+                    renderUpselCardPage(
+                      idBundl,
+                      bundle[key][1],
+                      bundle[key][2],
+                      bundle[key][3],
+                      bundle[key][6],
+                      bundle[key][7],
+                      className,
+                      bundle[key][11],
+                      nameLocalStor
+                    )
+                  )
                 }
               }
             }
-          }, 700);
-        });
+          }, 700)
+        })
       }
     }
 
-    if (window.location.pathname.match("/cart")) {
-      if (localStorage.getItem("upsellInit")) {
-        localStorage.removeItem("upsellInit");
+    if (window.location.pathname.match('/cart')) {
+      if (localStorage.getItem('upsellInit')) {
+        localStorage.removeItem('upsellInit')
       }
-      getCartCheckout();
+      getCartCheckout()
 
-      document.querySelectorAll(".btnqty").forEach((el) => {
-        el.addEventListener("click", () => {
-          let countForUps = +el.closest(".qtybox").querySelector(".quantity-input").value - 1;
+      $$el('.btnqty').forEach(el => {
+        el.addEventListener('click', () => {
+          let countForUps = +el.closest('.qtybox').querySelector('.quantity-input').value - 1
 
-          localStorage.setItem("countForUps", countForUps);
-        });
-      });
+          localStorage.setItem('countForUps', countForUps)
+        })
+      })
     }
 
     // Observe
-    let observer = new MutationObserver((mutations) => {
+    let observer = new MutationObserver(mutations => {
       for (let mutation of mutations) {
         for (let node of mutation.addedNodes) {
-          if (!(node instanceof HTMLElement)) continue;
+          if (!(node instanceof HTMLElement)) continue
           if (document) {
-            observer.disconnect();
-            // console.log(`observer`);
+            observer.disconnect()
 
-            if (document.querySelector(".slide_in_cart")) {
-              slideInCart();
+            if ($el('.slide_in_cart')) {
+              slideInCart()
             }
 
             observer.observe(document, {
               childList: true,
-              subtree: true,
-            });
+              subtree: true
+            })
           }
         }
       }
-    });
+    })
 
     observer.observe(document, {
       childList: true,
-      subtree: true,
-    });
+      subtree: true
+    })
 
     function handleVisibility(el, eventParams) {
-      let isVisible = false;
-      let entryTime;
+      let isVisible = false
+      let entryTime
       const config = {
         root: null,
-        threshold: 0, // Trigger when any part of the element is out of viewport
-      };
+        threshold: 0 // Trigger when any part of the element is out of viewport
+      }
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
             if (!isVisible) {
               // The element has become visible
-              isVisible = true;
-              entryTime = new Date().getTime();
+              isVisible = true
+              entryTime = new Date().getTime()
             }
           } else if (isVisible) {
             // The element is out of the viewport, calculate visibility duration
-            isVisible = false;
-            const exitTime = new Date().getTime();
-            const visibilityDuration = exitTime - entryTime; // / 1000 Convert to seconds
-            const roundedDuration = Math.round(visibilityDuration);
+            isVisible = false
+            const exitTime = new Date().getTime()
+            const visibilityDuration = exitTime - entryTime // / 1000 Convert to seconds
+            const roundedDuration = Math.round(visibilityDuration)
 
             if (roundedDuration) {
-              const eventData = eventParams;
-              eventData[1] = roundedDuration;
-              pushDataLayer(eventData);
-              observer.disconnect();
+              const eventData = eventParams
+              eventData[1] = roundedDuration
+              pushDataLayer(eventData)
+              observer.disconnect()
             }
           }
-        });
-      }, config);
+        })
+      }, config)
 
-      observer.observe(el);
+      observer.observe(el)
     }
 
     function waitForElement(selector) {
-      return new Promise((resolve) => {
-        if (document.querySelector(selector)) {
-          return resolve(document.querySelector(selector));
+      return new Promise(resolve => {
+        if ($el(selector)) {
+          return resolve($el(selector))
         }
 
         const observer = new MutationObserver(() => {
-          if (document.querySelector(selector)) {
-            resolve(document.querySelector(selector));
-            observer.disconnect();
+          if ($el(selector)) {
+            resolve($el(selector))
+            observer.disconnect()
           }
-        });
+        })
 
         observer.observe(document.documentElement, {
           childList: true,
-          subtree: true,
-        });
-      });
+          subtree: true
+        })
+      })
     }
-
-    const record = setInterval(() => {
-      if (typeof clarity === "function") {
-        clearInterval(record);
-        clarity("set", "exp_nov_oral", "variant_1");
-      }
-    }, 200);
   }
-}, 600);
+}, 600)
 
 let startFunkCheckout = setInterval(() => {
   // checkout
-  if (window.location.pathname.match("checkout")) {
-    clearInterval(startFunkCheckout);
+  if (window.location.pathname.match('checkout')) {
+    clearInterval(startFunkCheckout)
+
+    console.log(
+      '%c EXP: NOVORAL CARE PRO upsell (DEV: SKh)',
+      'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;'
+    )
+
+    const $$el = selector => document.querySelectorAll(selector)
+    const $el = selector => document.querySelector(selector)
+    const git = 'https://conversionratestore.github.io/projects/'
+
+    const clarityInterval = setInterval(function () {
+      if (typeof clarity == 'function') {
+        clearInterval(clarityInterval)
+        clarity('set', 'exp_nov_oral', 'variant_1')
+      }
+    }, 1000)
 
     function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
-      console.log(event_name + " / " + event_desc + " / " + event_type + " / " + event_loc);
+      console.log(event_name + ' / ' + event_desc + ' / ' + event_type + ' / ' + event_loc)
 
       // Send a Google Analytics event
       const eventData = {
-        event: "event-to-ga4",
+        event: 'event-to-ga4',
         event_name,
         event_desc,
         event_type,
-        event_loc,
-      };
+        event_loc
+      }
 
-      window.dataLayer = window.dataLayer || [];
-      dataLayer.push(eventData);
+      window.dataLayer = window.dataLayer || []
+      dataLayer.push(eventData)
     }
 
-    renderLink();
-    renderLinkReturnToCart();
+    renderLink()
+    renderLinkReturnToCart()
 
     function renderLink() {
-      if (document.querySelector(".breadcrumb.breadcrumb--center") && !document.querySelector(".new_cart_link") && !document.querySelector(".breadcrumb__item")?.textContent.includes("Cart")) {
-        document.querySelector(".breadcrumb.breadcrumb--center").insertAdjacentHTML(
-          "afterbegin",
+      if (
+        $el('.breadcrumb.breadcrumb--center') &&
+        !$el('.new_cart_link') &&
+        !$el('.breadcrumb__item')?.textContent.includes('Cart')
+      ) {
+        $el('.breadcrumb.breadcrumb--center').insertAdjacentHTML(
+          'afterbegin',
           `<li class="breadcrumb__item breadcrumb__item--completed new_cart_link">
             <a class="breadcrumb__link" href="https://novaalab.com/cart">Cart</a>
             <svg class="icon-svg icon-svg--color-adaptive-light icon-svg--size-10 breadcrumb__chevron-icon" aria-hidden="true" focusable="false"> <use xlink:href="#chevron-right"></use> </svg>
           </li>`
-        );
+        )
       }
 
-      if (document.querySelector(".new_cart_link")) {
-        document.querySelector(".new_cart_link").addEventListener("click", (e) => {
-          if (!e.target.getAttribute("data-test")) {
-            pushDataLayer(["exp_nov_oral_butt_cart_checkout", "Cart", "Link", "Checkout"]);
+      if ($el('.new_cart_link')) {
+        $el('.new_cart_link').addEventListener('click', e => {
+          if (!e.target.getAttribute('data-test')) {
+            pushDataLayer(['exp_nov_oral_butt_cart_checkout', 'Cart', 'Link', 'Checkout'])
           }
-          e.target.setAttribute("data-test", "1");
+          e.target.setAttribute('data-test', '1')
           setTimeout(() => {
-            if (e.target.getAttribute("data-test")) {
-              e.target.removeAttribute("data-test");
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test')
             }
-          }, 1000);
-        });
+          }, 1000)
+        })
       }
     }
 
     function renderLinkReturnToCart() {
-      if (document.querySelector(".step__footer") && !document.querySelector(".new_return_cart_link") && !document.querySelector(".new_return_cart_link .step__footer__previous-link-content")?.textContent.includes("Return to cart")) {
-        document.querySelector(".step__footer #continue_button").insertAdjacentHTML("afterend", `<a class="step__footer__previous-link new_return_cart_link" href="https://novaalab.com/cart"><svg focusable="false" aria-hidden="true" class="icon-svg icon-svg--color-accent icon-svg--size-10 previous-link__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M8 1L7 0 3 4 2 5l1 1 4 4 1-1-4-4"></path></svg><span class="step__footer__previous-link-content">Return to cart</span></a>`);
+      if (
+        $el('.step__footer') &&
+        !$el('.new_return_cart_link') &&
+        !$el('.new_return_cart_link .step__footer__previous-link-content')?.textContent.includes('Return to cart')
+      ) {
+        $el('.step__footer #continue_button').insertAdjacentHTML(
+          'afterend',
+          `<a class="step__footer__previous-link new_return_cart_link" href="https://novaalab.com/cart"><svg focusable="false" aria-hidden="true" class="icon-svg icon-svg--color-accent icon-svg--size-10 previous-link__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M8 1L7 0 3 4 2 5l1 1 4 4 1-1-4-4"></path></svg><span class="step__footer__previous-link-content">Return to cart</span></a>`
+        )
       }
 
-      if (document.querySelector(".new_return_cart_link")) {
-        document.querySelector(".new_return_cart_link").addEventListener("click", (e) => {
-          if (!e.target.getAttribute("data-test")) {
-            pushDataLayer(["exp_nov_oral_butt_return_cart_checkout", "Return to cart", "Link", "Checkout"]);
+      if ($el('.new_return_cart_link')) {
+        $el('.new_return_cart_link').addEventListener('click', e => {
+          if (!e.target.getAttribute('data-test')) {
+            pushDataLayer(['exp_nov_oral_butt_return_cart_checkout', 'Return to cart', 'Link', 'Checkout'])
           }
-          e.target.setAttribute("data-test", "1");
+          e.target.setAttribute('data-test', '1')
           setTimeout(() => {
-            if (e.target.getAttribute("data-test")) {
-              e.target.removeAttribute("data-test");
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test')
             }
-          }, 1000);
-        });
+          }, 1000)
+        })
 
-        if (!document.querySelector(".step__footer").lastElementChild.classList.contains("new_return_cart_link")) {
-          document.querySelector(".new_return_cart_link").style.display = "none";
+        if (!$el('.step__footer').lastElementChild.classList.contains('new_return_cart_link')) {
+          $el('.new_return_cart_link').style.display = 'none'
         }
       }
     }
 
     // Observe
-    let observer = new MutationObserver((mutations) => {
+    let observer = new MutationObserver(mutations => {
       for (let mutation of mutations) {
         for (let node of mutation.addedNodes) {
-          if (!(node instanceof HTMLElement)) continue;
+          if (!(node instanceof HTMLElement)) continue
           if (document) {
-            observer.disconnect();
-            // console.log(`observer`);
+            observer.disconnect()
 
-            if (!document.querySelector(".new_cart_link")) {
-              renderLink();
+            if (!$el('.new_cart_link')) {
+              renderLink()
             }
 
-            if (!document.querySelector(".new_return_cart_link")) {
-              renderLinkReturnToCart();
+            if (!$el('.new_return_cart_link')) {
+              renderLinkReturnToCart()
             }
 
             observer.observe(document, {
               childList: true,
-              subtree: true,
-            });
+              subtree: true
+            })
           }
         }
       }
-    });
+    })
 
     observer.observe(document, {
       childList: true,
-      subtree: true,
-    });
-
-    const record = setInterval(() => {
-      if (typeof clarity === "function") {
-        clearInterval(record);
-        clarity("set", "exp_nov_oral", "variant_1");
-      }
-    }, 200);
+      subtree: true
+    })
   }
-}, 500);
+}, 500)
