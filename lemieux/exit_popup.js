@@ -9,10 +9,10 @@
   const $$el = (selector) => document.querySelectorAll(selector);
   const $el = (selector) => document.querySelector(selector);
 
-  const clarityInterval = setInterval(function () {
-    if (typeof clarity == "function") {
-      clearInterval(clarityInterval);
-      clarity("set", "exit_intent_popup", "variant_1");
+  const hjInterval = setInterval(function () {
+    if (typeof hj == "function") {
+      clearInterval(hjInterval);
+      hj('event', 'ext_int_p');
     }
   }, 200);
 
