@@ -412,7 +412,7 @@ class changeFlow {
         this.checkPageUrl() == "save" &&
         $(".swiper-slide").eq(7).hasClass("swiper-slide-active")
       ) {
-        $(".crs_submit").attr("style","display: block!important;");
+        $(".wrapper").addClass('active-last-slide')
 
         let data = {};
         data.price = $(".rangeslider-tooltip").text();
@@ -422,7 +422,7 @@ class changeFlow {
 
         localStorage.setItem("crs_data", JSON.stringify(data));
       } else {
-        $(".crs_submit").attr("style","");
+        $(".wrapper").removeClass('active-last-slide')
       }
 
       //change address-error text
@@ -523,7 +523,8 @@ class changeFlow {
               position: absolute;
             } 
             
-            .crs_submit,
+            .wrapper:not(.active-last-slide) .crs_submit,
+            .wrapper.active-last-slide #slider-block .default:not(.crs_submit),
             .banner,
             .final-btn,
             .slide-active-analyzing.wrapper .swiper-slide-analyzing + .container,
@@ -681,6 +682,9 @@ class changeFlow {
             .underline {
                 text-decoration: underline;
             }
+            .c-yellow {
+              color: #FFD125;
+            }
             .crs_list_info {
                 padding-bottom: 4px;
             }
@@ -780,7 +784,7 @@ class changeFlow {
                 text-transform: uppercase;
                 margin-left: auto;
               }
-              #slider-block .default:not(.crs_submit) {
+              .wrapper:not(.active-last-slide) #slider-block .default:not(.crs_submit) {
                 display: block!important;
               }
               #slider-block {
@@ -871,6 +875,7 @@ class changeFlow {
     });
 
     //events
+    let clickCount = 0;
     $("#slider-block .default").click(function (e) {
       if ($(".swiper-slide").eq(2).hasClass("swiper-slide-active")) {
         pushDataLayer([
@@ -908,6 +913,18 @@ class changeFlow {
       if (!media) {
         e.preventDefault();
         $("#next-block .nextSlide").click();
+
+        if ($(".swiper-wrapper .swiper-slide").eq(6).hasClass('swiper-slide-active') && clickCount == 0) {
+          clickCount = 1
+          $(".swiper-wrapper .swiper-slide").eq(6).find('.input-error').removeClass('input-error')
+          $(".swiper-wrapper .swiper-slide").eq(6).find('.error-msg').html('')
+        }
+        if ($(".swiper-wrapper .swiper-slide").eq(7).hasClass('swiper-slide-active') && clickCount == 1) {
+          clickCount = 2
+          $(".swiper-wrapper .swiper-slide").eq(7).find('.input-error').removeClass('input-error')
+          $(".swiper-wrapper .swiper-slide").eq(7).find('.error-msg').html('')
+        }
+       
       }
     });
     $(".back-link").click(function () {
@@ -1108,7 +1125,7 @@ class changeFlow {
         self.addBlock(
           index,
           dataIcons.info,
-          `Provide your contact details for an immediate <span class="underline">free</span> solar quote and qualification status information`
+          `Provide your contact details for an immediate <span class="c-yellow">free</span> solar quote and qualification status information`
         );
       }
     });
