@@ -221,6 +221,8 @@ let viewedSix = false;
 let viewedSeven = false;
 let viewedEight = false;
 
+let clickRadioNext = false;
+
 function visibleAfterTimer() {
   setTimeout(() => {
     if (
@@ -369,6 +371,7 @@ function visibleAfterTimer() {
     }
   }, 3000);
 }
+
 class changeFlow {
   constructor(device) {
     this.device = device;
@@ -454,6 +457,28 @@ class changeFlow {
       } else {
         viewedTwo = false;
       }
+      if ($(".swiper-slide").eq(2).hasClass("swiper-slide-active") && clickRadioNext == false) {
+        $(".swiper-slide:nth-child(3) .radioNext").click(function (e) {
+          clickRadioNext = true
+          let spt = $(this).text().trim().split(" ")
+          let eventName = $(this)
+            .text()
+            .includes("Los Angeles Department of Water & Power")
+            ? "angdep"
+            : $(this).text().includes("Glendale Water & Power")
+            ? "watpow"
+            : $(this).text().includes("Other")
+            ? "other"
+            : spt[spt.length - 1].toLowerCase()
+
+          pushDataLayer([
+            "exp_valu_prop_but_utilprov_" + eventName,
+            $(this).text().trim(),
+            "Button",
+            "Who is your utility provider?",
+          ]);
+        });
+      }
       if ($(".swiper-slide").eq(3).hasClass("swiper-slide-active")) {
         visibleAfterTimer();
       } else {
@@ -487,6 +512,7 @@ class changeFlow {
       } else {
         viewedEight = false;
       }
+
 
       globalMutation.disconnect();
 
@@ -571,6 +597,20 @@ class changeFlow {
                 font-size: 16px;
                 font-weight: 350;
                 line-height: 28px;
+            }
+
+            .btn.crs_submit {
+              border-radius: 5px;
+              color: #FFF;
+              text-align: center;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: 24px; /* 150% */
+              letter-spacing: 0.5px;
+              text-transform: uppercase;
+              background: #83BE63;
+              margin-left: auto;
             }
             .wrapper .input-error + .error-msg {
                 display: block!important;
@@ -723,7 +763,6 @@ class changeFlow {
               #next-block {
                 opacity: 0;
               }
-          
               .wrapper {
                 align-items: flex-start;
               }
@@ -769,8 +808,8 @@ class changeFlow {
               .wrapper .progress-block {
                 top: 84px!important;
               }
-              #slider-block .default {
-                width: 300px;
+              .wrapper #slider-block .btn {
+                width: 300px!important;
                 border-radius: 5px;
                 padding: 16px;
                 background: #83BE63;
@@ -862,7 +901,7 @@ class changeFlow {
 
     //add submit btn for last step
     $(".nextSlide").after(
-      `<a href="#" class="btn default crs_submit">SUBMIT</a>`
+      `<a href="#" class="btn crs_submit">SUBMIT</a>`
     );
     $(".crs_submit").click(function () {
       pushDataLayer([
@@ -950,6 +989,9 @@ class changeFlow {
         title,
       ]);
     });
+    $('#zip').change(function() {
+      clickRadioNext = false
+    })
 
     $("#autoaddress").change(function () {
       pushDataLayer([
@@ -957,25 +999,6 @@ class changeFlow {
         "information",
         "Input",
         "Where is your home located? This helps us find your home's position relative to the sun.",
-      ]);
-    });
-
-    $(".swiper-slide:nth-child(3) .radioNext").click(function (e) {
-      let eventName = $(this)
-        .text()
-        .includes("Los Angeles Department of Water & Power")
-        ? "angdep"
-        : $(this).text().includes("Glendale Water & Power")
-        ? "watpow"
-        : $(this).text().includes("Other")
-        ? "other"
-        : $(this).text().split(" ")[1].trim().replace(" ", "").toLowerCase();
-
-      pushDataLayer([
-        "exp_valu_prop_but_utilprov_" + eventName,
-        $(this).text(),
-        "Button",
-        "Who is your utility provider?",
       ]);
     });
 
@@ -990,7 +1013,7 @@ class changeFlow {
 
       pushDataLayer([
         "exp_valu_prop_but_sunlight_" + eventName,
-        $(this).text(),
+        $(this).text().trim(),
         "Button",
         "Does Your Roof Get Sunlight?",
       ]);
@@ -1066,10 +1089,6 @@ class changeFlow {
           )[0];
           let findZipCodes = findCity.split('"zip_code":');
           let zipCode = findZipCodes[findZipCodes.length - 1].split(",")[0];
-
-          console.log(_this.find("h1.title").text().split("in")[1].trim());
-          console.log(findZipCodes);
-          console.log(zipCode);
 
           const inputElement = document.querySelector("input#zip");
           inputElement.value = zipCode;
@@ -1391,11 +1410,9 @@ class changeFlow {
 
     const newSlide = `
         <div class="swiper-slide-analyzing">
-            <div class="v-center">
-                <div class="container text-center">
-                    <h2 class="title">Analyzing provided information</h2>
-                    ${this.addAnalyzedInfo(data)}
-                </div>
+            <div class="container text-center">
+                <h2 class="title">Analyzing provided information</h2>
+                ${this.addAnalyzedInfo(data)}
             </div>
         </div>`;
 
