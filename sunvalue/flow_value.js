@@ -217,7 +217,6 @@ let viewedTwo = false;
 let viewedTree = false;
 let viewedFour = false;
 let viewedFive = false;
-let viewedSix = false;
 let viewedSeven = false;
 let viewedEight = false;
 let viewedUtilprov = false;
@@ -322,28 +321,24 @@ function visibleAfterTimer() {
         "Visibility",
         "Analyzing provided information",
       ]);
+
+      setTimeout(() => {
+        pushDataLayer([
+          "exp_valu_prop_vis_emailaddres_full",
+          "Full page view",
+          "Visibility",
+          "What is your email address?",
+        ]);
+
+        pushDataLayer([
+          "exp_valu_prop_vis_emailaddres_text",
+          "Text",
+          "Visibility",
+          "What is your email address?",
+        ]);
+      }, 7500);
     }
 
-    if (
-      viewedSix == false &&
-      $(".swiper-slide").eq(5).hasClass("swiper-slide-active") &&
-      $(".slide-active-analyzing").length < 1
-    ) {
-      viewedSix = true;
-      pushDataLayer([
-        "exp_valu_prop_vis_emailaddres_full",
-        "Full page view",
-        "Visibility",
-        "What is your email address?",
-      ]);
-
-      pushDataLayer([
-        "exp_valu_prop_vis_emailaddres_text",
-        "Text",
-        "Visibility",
-        "What is your email address?",
-      ]);
-    }
     if (
       viewedSeven == false &&
       $(".swiper-slide").eq(6).hasClass("swiper-slide-active")
@@ -447,6 +442,10 @@ class changeFlow {
           "Your address should contain both letters and numbers"
         );
       }
+      //change Family name error text
+      if ($("#lname-error").html() !== "") {
+        $("#lname-error").html("Please Enter Your Family Name");
+      }
 
       //hide next btn for 2 and 4 slide (desktop)
       if (!media && this.checkPageUrl() == "save") {
@@ -522,14 +521,6 @@ class changeFlow {
         viewedFive = false;
       }
 
-      if (
-        $(".swiper-slide").eq(5).hasClass("swiper-slide-active") &&
-        $(".slide-active-analyzing").length < 1
-      ) {
-        visibleAfterTimer();
-      } else {
-        viewedSix = false;
-      }
       if ($(".swiper-slide").eq(7).hasClass("swiper-slide-active")) {
         visibleAfterTimer();
       } else {
@@ -785,6 +776,15 @@ class changeFlow {
               #next-block {
                 opacity: 0;
               }
+              .wrapper .banner-slider {
+                width: 100%;
+              }
+              .banner-slider .swiper-slide {
+                left: 50%;
+                width: 100%!important;
+                transform: translateX(-50%)!important;
+                position: absolute;
+              }
               .wrapper {
                 align-items: flex-start;
               }
@@ -852,7 +852,7 @@ class changeFlow {
                 max-width: 540px;
                 width: 100%!important;
                 left: 50%!important;
-                bottom: 5.83vw!important;
+                bottom: 5.83vh!important;
                 transform: translateX(-50%);
                 border-radius: 8px;
                 border-top: 1px solid #E0E4EB;
@@ -922,7 +922,12 @@ class changeFlow {
     const self = this;
 
     //add submit btn for last step
-    $(".nextSlide").after(`<a href="#" class="btn crs_submit">SUBMIT</a>`);
+    $("#next-block .nextSlide").after(
+      `<a href="#" class="btn crs_submit">SUBMIT</a>`
+    );
+    $("#slider-block .nextSlide").after(
+      `<a href="#" class="btn crs_submit">SUBMIT</a>`
+    );
     $(".crs_submit").click(function () {
       pushDataLayer([
         "exp_valu_prop_but_onestep_nex",
@@ -944,7 +949,7 @@ class changeFlow {
           "How much is your monthly energy bill?",
         ]);
       }
-      if ($(".swiper-slide").eq(3).hasClass("swiper-slide-active")) {
+      if ($(".swiper-slide").eq(4).hasClass("swiper-slide-active")) {
         pushDataLayer([
           "exp_valu_prop_but_findroof_next",
           "Next",
@@ -968,10 +973,10 @@ class changeFlow {
           "What is your name?",
         ]);
       }
-
+      //hide error message 1 entry
       if (!media) {
-        e.preventDefault();
-        $("#next-block .nextSlide").click();
+        // e.preventDefault();
+        // $("#next-block .nextSlide").click();
 
         if (
           $(".swiper-wrapper .swiper-slide")
@@ -1049,7 +1054,7 @@ class changeFlow {
         `exp_valu_prop_inp_findroof_infor`,
         "information",
         "Input",
-        "Find your roof Where is your home located? Check how much",
+        "Find your roof Check how much",
       ]);
     });
 
@@ -1598,13 +1603,7 @@ class changeFlow {
             </ul>
             <p><b>Your estimated solar system savings</b></p>
             ${this.addAnalyzedInfo(data)}
-            <p class="crs_text">These numbers are just estimates according to our <span class="text-nowrap">marketplace <a href="https://sunroof.withgoogle.com" 
-              onclick="pushDataLayer([
-                "exp_valu_prop_lin_thankpage_research",
-                "Research",
-                "Link",
-                "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
-              ])">research</a></span>. For a more exact estimate, please talk <span class="text-nowrap">to one</span> of our experts as savings can vary depending on roof type, sun exposure, electrical utility, etc.<p>
+            <p class="crs_text">These numbers are just estimates according to our <span class="text-nowrap">marketplace <a href="https://sunroof.withgoogle.com">research</a></span>. For a more exact estimate, please talk <span class="text-nowrap">to one</span> of our experts as savings can vary depending on roof type, sun exposure, electrical utility, etc.<p>
         </div>
     </div>
     `;
@@ -1612,7 +1611,15 @@ class changeFlow {
     $(".logo").html(dataIcons.logo);
     $(".steps-wrapper").prepend(page);
 
-    handleVisibility(document.querySelector(".crs_thank"), [
+    $(".crs_text a").click(function () {
+      pushDataLayer([
+        "exp_valu_prop_lin_thankpage_research",
+        "Research",
+        "Link",
+        "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
+      ]);
+    });
+    handleVisibility(document.querySelector(".crs_thank h2"), [
       "exp_valu_prop_vis_thankpage_full",
       "Full page view",
       "Visibility ",
@@ -1630,16 +1637,12 @@ class changeFlow {
       "Visibility ",
       "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
     ]);
-    handleVisibility(document.querySelector(".crs_analyzing li:nth-child(2)"), [
+    handleVisibility(document.querySelector(".crs_analyzing li:nth-child(3)"), [
       "exp_valu_prop_vis_thankpage_savin",
       "Estimated 20-Year Savings",
       "Visibility ",
       "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
     ]);
-
-    
-
-    
   }
 }
 
