@@ -356,17 +356,13 @@ let startFuncShopPay = setInterval(() => {
   line-height: 16px;
 }
 body .icart .additional-checkout-buttons {
-  position: relative;
-  margin-top: 40px !important;
   display: block !important;
 }
-.icart-all-btn-shopify {
-  display: flex !important;
+.dynamic-checkout__content {
   position: relative;
-  margin-top: 40px !important;
+ padding-top: 40px !important;
 }
-body .icart .additional-checkout-buttons::before,
-.icart-all-btn-shopify::before {
+.dynamic-checkout__content::before {
   position: absolute;
   content: "Or";
   color: #5b5b5b;
@@ -381,8 +377,13 @@ body .icart .additional-checkout-buttons::before,
   background: #fff;
   padding: 0 10px;
 }
-body .icart .additional-checkout-buttons::after,
-.icart-all-btn-shopify::after {
+.dynamic-checkout__content::before {
+  top: 9px;
+}
+.cart__footer .dynamic-checkout__content::before {
+  background: #EFEFEF;
+}
+.dynamic-checkout__content::after {
   position: absolute;
   content: "";
   background: #d9d9d9;
@@ -392,6 +393,9 @@ body .icart .additional-checkout-buttons::after,
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
+}
+.dynamic-checkout__content::after{
+  top: 19px;
 }
 .icart .icart-main .icart-inner .icart-cart-main .icart-content .icart-checkout label {
   color: #000 !important;
