@@ -140,53 +140,6 @@ const dataSavings = {
   $800: ["$138,212", "$239,784", "$101,571"],
 };
 
-function handleVisibility(el, eventParams) {
-  let isVisible = false;
-  let entryTime;
-  let visibilityTimer; // Timer to track visibility duration
-  const visibilityThreshold = 3000; // 3 seconds in milliseconds
-  const config = {
-    root: null,
-    threshold: 0, // Trigger when any part of the element is out of viewport
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        if (!isVisible) {
-          // The element has become visible
-          isVisible = true;
-          entryTime = new Date().getTime();
-          // Set a timer to check visibility duration
-          visibilityTimer = setTimeout(
-            () => checkVisibilityDuration(),
-            visibilityThreshold
-          );
-        }
-      } else if (isVisible) {
-        // The element is out of the viewport, clear the timer
-        isVisible = false;
-        clearTimeout(visibilityTimer);
-      }
-    });
-  }, config);
-
-  const checkVisibilityDuration = () => {
-    const exitTime = new Date().getTime();
-    const visibilityDuration = exitTime - entryTime;
-
-    if (visibilityDuration >= visibilityThreshold) {
-      // The element was visible for more than 3 seconds
-      const eventData = eventParams;
-      eventData[1] = visibilityDuration / 1000; // Convert to seconds
-      pushDataLayer(eventData);
-      observer.disconnect();
-    }
-  };
-
-  observer.observe(el);
-}
-
 function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
   // Send a Google Analytics event
   const eventData = {
@@ -1623,30 +1576,72 @@ class changeFlow {
         "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
       ]);
     });
-    handleVisibility(document.querySelector(".crs_thank h2"), [
-      "exp_valu_prop_vis_thankpage_full",
-      "Full page view",
-      "Visibility ",
-      "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
-    ]);
-    handleVisibility(document.querySelector(".crs_analyzing li:nth-child(1)"), [
-      "exp_valu_prop_vis_thankpage_bill",
-      "Your Latest Energy Bill",
-      "Visibility ",
-      "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
-    ]);
-    handleVisibility(document.querySelector(".crs_analyzing li:nth-child(2)"), [
-      "exp_valu_prop_vis_thankpage_recom",
-      "Recommended Number of Panels",
-      "Visibility ",
-      "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
-    ]);
-    handleVisibility(document.querySelector(".crs_analyzing li:nth-child(3)"), [
-      "exp_valu_prop_vis_thankpage_savin",
-      "Estimated 20-Year Savings",
-      "Visibility ",
-      "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
-    ]);
+    setTimeout(() => {
+      if ($(".crs_thank").length > 0) {
+        pushDataLayer([
+          "exp_valu_prop_vis_thankpage_full",
+          "Full page view",
+          "Visibility ",
+          "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
+        ])
+      }
+    }, 3000)
+   
+    window.addEventListener('scroll', () => {
+
+    })
+
+    // Options for the Intersection Observer
+    let options = {
+      threshold: 1.0, // Trigger when the target is fully visible
+    };
+  
+    // Callback function to be executed when the target element is visible
+    let callback = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // The target element is visible
+          setTimeout(() => {
+            if (entry.isIntersecting) {
+              console.log(entry.target)
+              if (entry.target.innerText.includes('nergy Bill')) {
+                pushDataLayer([
+                  "exp_valu_prop_vis_thankpage_bill",
+                  "Your Latest Energy Bill",
+                  "Visibility ",
+                  "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
+                ])
+              }
+              if (entry.target.innerText.includes('Recommended')) {
+                pushDataLayer([
+                  "exp_valu_prop_vis_thankpage_recom",
+                  "Recommended Number of Panels",
+                  "Visibility ",
+                  "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
+                ])
+              }
+
+              if (entry.target.innerText.includes('Savings')) {
+                pushDataLayer([
+                  "exp_valu_prop_vis_thankpage_savin",
+                  "Estimated 20-Year Savings",
+                  "Visibility ",
+                  "You'll be contacted by a Solar Expert Partner in City within a couple of hours",
+                ])
+              }
+            }
+          }, 3000);
+        }
+      });
+    };
+  
+    // Create an Intersection Observer instance
+    let observer = new IntersectionObserver(callback, options);
+  
+    // Start observing the target element
+    observer.observe(document.querySelector(".crs_analyzing li:nth-child(1)"));
+    observer.observe(document.querySelector(".crs_analyzing li:nth-child(2)"));
+    observer.observe(document.querySelector(".crs_analyzing li:nth-child(3)"));
   }
 }
 
