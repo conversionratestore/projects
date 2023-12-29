@@ -1134,6 +1134,28 @@ const popupDiscount = (parent, data, link, image) => {
     });
 };
 
+function formatTimestamp(timestamp) {
+    // Створення нового об'єкта Date на основі переданого мілісекундного таймстемпа
+    var date = new Date(timestamp * 1000); // timestamp повинен бути у секундах, а не мілісекундах, тому помножимо на 1000
+  
+    // Масив назв місяців
+    var monthNames = [
+      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+  
+    // Отримання значень дня, місяця і року
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+  
+    // Форматування рядка
+    var formattedDate = monthNames[monthIndex] + ' ' + day + ', ' + year;
+  
+    return formattedDate;
+}
+
+  
 const init = setInterval(() => {
   if (
     window.location.href.includes("/subscription/id/") &&
@@ -1148,6 +1170,20 @@ const init = setInterval(() => {
       .querySelector("#main-content")
       .insertAdjacentHTML("beforeend", html);
 
+    let metrics = JSON.parse(JSON.stringify(dataLayer).split('"metrics":')[1].split(',"user"')[0])
+
+    document.querySelectorAll('.crs_page_item').forEach((item, index) => {
+        if (index == 0) {
+            item.querySelector('p:last-child').innerHTML = formatTimestamp(metrics['account_created'])
+        } else if (index == 1) {
+            item.querySelector('p:last-child').innerHTML = metrics['videos_watched']
+        } else if (index == 2) {
+            item.querySelector('p:last-child').innerHTML = metrics['estimated_active_days']
+        } else if (index == 3) {
+            item.querySelector('p:last-child').innerHTML = metrics['watchtime_minutes']
+        }
+    })
+ 
     if (media) {
       swipedUp(
         document.querySelector('.crs_popup[data-index="0"] .crs_swiper')
