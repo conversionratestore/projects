@@ -1058,7 +1058,7 @@ const popupDiscount = (parent, data, link, image) => {
                   data.btn
                 }</div>
             </div>
-            <img src="${dir}image-${image}${
+            <img src="${dirProject}image-${image}${
       media ? "_mob" : ""
     }.png" alt="image">
         </div>
