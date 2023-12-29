@@ -259,6 +259,12 @@ class Popup {
             width: 100px;
             height: 100px;
           }
+          .popup_cart_list li.one_item .descr p {
+            font-size: 16px;
+          }
+          .popup_cart_list li.one_item .descr p:first-of-type {
+            font-size: 18px;
+          }
           @media (max-width: 768px) {
             .crs_popup {
               height: 100dvh;
@@ -333,6 +339,10 @@ class Popup {
     const cartJson = await cart.json()
     console.log(cartJson)
     if (cartJson.items.length === 0 || sessionStorage.getItem('crs_popup')) return
+    cartJson.items.length > 1
+      ? ($el('.crs_info p').innerText =
+          'We can’t guarantee the availability of all products in your cart if you don’t complete the purchase now')
+      : ''
     const listItems = cartJson.items.map(item => {
       let oldPrice, newPrice
       $$el('#shopify-section-minicart .item_block').forEach(el => {
