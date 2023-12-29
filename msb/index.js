@@ -1872,7 +1872,6 @@ function setSaved(targetElement, price) {
   // console.log(priceFooter)
   // console.log(extractCurrency(priceFooter))
   // console.log(addCommasToNumber(priceFooter))
-  console.log(priceFooter / 3)
   targetElement.querySelector(".crs_klarna b").innerHTML =
     currency + addCommasToNumber((priceFooter / 3).toFixed(2));
 }
@@ -1952,7 +1951,7 @@ function handleCartMutation(mutationsList, observer) {
 
           currency = extractCurrency(price);
 
-          console.log("price: " + price);
+          // console.log("price: " + price);
 
           targetElement.querySelector(".crs_cart_subtotal")?.remove();
 
@@ -1961,7 +1960,7 @@ function handleCartMutation(mutationsList, observer) {
             let selectorNewPrice = targetElement.querySelector(
               ".crs_regular > p > span"
             );
-            console.log(extractNumbers(price))
+            // console.log(extractNumbers(price))
             let haveDiscount =
               targetElement.querySelectorAll(".block-content .subtotal")
                 .length > 1
@@ -1972,7 +1971,7 @@ function handleCartMutation(mutationsList, observer) {
               currency +
               addCommasToNumber(haveDiscount.toFixed(2));
           }
-          console.log("newPrice: " + newPrice);
+          // console.log("newPrice: " + newPrice);
 
           if (!targetElement.querySelector(".crs_discount")) {
             targetElement
@@ -2018,10 +2017,10 @@ function handleCartMutation(mutationsList, observer) {
               )
             );
 
-          console.log(
-            ".crs_klarna b: " +
-              targetElement.querySelector(".crs_klarna b").innerHTML
-          );
+          // console.log(
+          //   ".crs_klarna b: " +
+          //     targetElement.querySelector(".crs_klarna b").innerHTML
+          // );
 
           if (
             targetElement.querySelector(".shipping-costs .shipping-costs-desc")
@@ -2400,19 +2399,23 @@ function start() {
         });
       }
 
-      if (location.href.includes("/checkout/")) {
+      if (location.href.includes("/checkout")) {
         if (
           sessionStorage.getItem("crsDiscount") &&
           sessionStorage.getItem("crsDiscount") == "true"
         ) {
           sessionStorage.setItem("crsDiscount", false);
-
-          fetch(
-            `https://www.maxwellscottbags.com/rest/default/V1/guest-carts/${window.checkoutConfig.quoteData.entity_id}/coupons/welcome10`,
+         
+          let url = isCountry == 'us' ? `https://us.maxwellscottbags.com/rest/default_us/`
+          : isCountry == 'au' ? `https://au.maxwellscottbags.com/rest/default_australia/`
+          : `https://www.maxwellscottbags.com/rest/default/`
+          
+          fetch(url + `V1/guest-carts/${window.checkoutConfig.quoteData.entity_id}/coupons/welcome10`,
             {
               method: "PUT",
             }
           ).then((data) => {
+            console.log(data)
             window.location.reload();
           });
         }
