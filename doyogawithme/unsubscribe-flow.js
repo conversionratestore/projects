@@ -1,4 +1,5 @@
-let dir = "https://conversionratestore.github.io/projects/doyogawithme/img/";
+
+let dirProject = "https://conversionratestore.github.io/projects/doyogawithme/img/";
 
 const dataRadio = [
   `I don't have the time for regular yoga`,
@@ -136,7 +137,7 @@ const style = `
     font-weight: 700;
     line-height: 20px; /* 142.857% */
     text-transform: uppercase;
-    background: url('${dir}discount-bg.svg') no-repeat left center / cover;
+    background: url('${dirProject}discount-bg.svg') no-repeat left center / cover;
     padding: 6px 12px 6px 27px;
     width: fit-content;
     margin-bottom: 16px;
@@ -880,7 +881,7 @@ const html = `
                 </div>
             </div>
 
-            <img src="${dir}image-2.png" alt="image">
+            <img src="${dirProject}image-2.png" alt="image">
         </div>
     </div>
     <div class="crs_page">
@@ -1018,7 +1019,7 @@ const html = `
                     </a>
                 </div>
             </div>
-            <img src="${dir}image-1.png" alt="image 1">
+            <img src="${dirProject}image-1.png" alt="image 1">
         </div>
     </div>
     <div class="crs_popup" data-index="1">
@@ -1135,7 +1136,7 @@ const popupDiscount = (parent, data, link, image) => {
 
 const init = setInterval(() => {
   if (
-    window.location.href.includes("/yogi/exampleexample/subscription/id/") &&
+    window.location.href.includes("/subscription/id/") &&
     document.querySelector(
       ".recurly-subscription-cancel-confirm-form .c-button--inlineBlock"
     )
@@ -1421,7 +1422,7 @@ form input:not([data-drupal-selector="edit-search-api-fulltext"]):-ms-input-plac
     border: none;
     height: 100%;
     width: 12px;
-    background: url(${dir}arrow-down.svg) no-repeat center / contain;
+    background: url(${dirProject}arrow-down.svg) no-repeat center / contain;
     left: 0;
     top: 0;
     margin: 0;
@@ -1451,7 +1452,7 @@ form input:not([data-drupal-selector="edit-search-api-fulltext"]):-ms-input-plac
 }
 input[type="checkbox"]:checked ~ .check {
     border-color: #027DB8;
-    background: #027DB8 url(${dir}checked.svg) no-repeat center / 12px 10px;
+    background: #027DB8 url(${dirProject}checked.svg) no-repeat center / 12px 10px;
 }
 .form-actions {
     margin: 0;
