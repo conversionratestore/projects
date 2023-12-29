@@ -1220,19 +1220,23 @@ class changeFlow {
     let slider = $("#bill-slider");
     slider.html(rangeBlock);
 
+    let changeSlider = 0
     $("[data-rangeslider]").change(function (e) {
-      const price = e.target.value;
-      $(".crs_analyzing li:first-child b").html(
-        $(".rangeslider-tooltip").text()
-      );
-      $(".crs_analyzing li:nth-child(2) span").html((price / 50) * 8);
-
-      pushDataLayer([
-        "exp_valu_prop_range_energybill_slider",
-        "Slider",
-        "Range slider",
-        "How much is your monthly energy bill?",
-      ]);
+      if (changeSlider == 1) {
+        const price = e.target.value;
+        $(".crs_analyzing li:first-child b").html(
+          $(".rangeslider-tooltip").text()
+        );
+        $(".crs_analyzing li:nth-child(2) span").html((price / 50) * 8);
+  
+        pushDataLayer([
+          "exp_valu_prop_range_energybill_slider",
+          "Slider",
+          "Range slider",
+          "How much is your monthly energy bill?",
+        ]);
+      }
+      changeSlider = 1
     });
 
     initRangeSlider();
