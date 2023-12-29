@@ -922,10 +922,10 @@ class changeFlow {
     const self = this;
 
     //add submit btn for last step
-    $("#next-block .nextSlide").after(
+    $("#next-block .default").after(
       `<a href="#" class="btn crs_submit">SUBMIT</a>`
     );
-    $("#slider-block .nextSlide").after(
+    $("#slider-block .default").after(
       `<a href="#" class="btn crs_submit">SUBMIT</a>`
     );
     $(".crs_submit").click(function () {
