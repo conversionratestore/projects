@@ -874,7 +874,7 @@
         : title.includes("almost yours")
         ? "It’s almost yours!"
         : title.includes("Autumn/winter")
-        ? "Autumn/winter 2024most wanted"
+        ? "Autumn/winter 2023most wanted"
         : "Check out now and get 10% off your first order";
       let nameEvent = locEvent.toLowerCase().includes("almost yours")
         ? "almo"
@@ -932,7 +932,7 @@
                 item.closest(".col-md-4").querySelector("p").innerText
               } - Shop Now`,
               "Button",
-              "Popup Autumn/winter 2024 most wanted",
+              "Popup Autumn/winter 2023 most wanted",
             ]);
 
             clearInterval(startTimeInterval);
@@ -1568,7 +1568,7 @@
               <button class="crs_popup_close" type="button">
                   ${dataIcons.closeIcon}
               </button>
-              <h2 class="text-center">Autumn/winter 2024 most wanted
+              <h2 class="text-center">Autumn/winter 2023 most wanted
                 <span>SHOP the season’s most popular designs</span>
               </h2>
               <div class="flex-md">
