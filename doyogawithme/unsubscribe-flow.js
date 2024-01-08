@@ -22,7 +22,7 @@ const dataPopup = [
   },
   {
     year: "0, 3",
-    mounthly: ["0", "3"],
+    mounthly: "0, 3",
     discount: "",
     title: "Need a break?",
     content: `Pause for a month and resume later without losing any of your progress or membership activity`,
@@ -1273,8 +1273,7 @@ const init = setInterval(() => {
               console.log(radioIndex);
               for (let i = 0; i < dataPopup.length; i++) {
                 if (
-                  dataPopup[i][plan] &&
-                  dataPopup[i][plan].includes(radioIndex)
+                  dataPopup[i][plan]?.includes(radioIndex)
                 ) {
                   console.log(dataPopup[i]);
                   document
