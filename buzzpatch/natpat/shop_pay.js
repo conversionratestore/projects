@@ -467,6 +467,7 @@ body .icart .additional-checkout-buttons {
   border-top: unset;
   padding: 0 10px 20px;
   margin: 0;
+  max-width: 100% !important;
 }
 ul[data-shopify-buttoncontainer] li:nth-child(1){
   margin: 0 !important;
