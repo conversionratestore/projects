@@ -19,6 +19,7 @@ const dataPopup = [
     content: `Get an exclusive <b class="c-blue">40% discount</b> and continue taking care of your wellbeing for just <b class="c-blue">$65.40 on our annual plan.</b> <br>
         <b class="mt-2 d-block"> How's that for affordable well-being?  </b>`,
     btn: "Get my 40% off next year",
+    img: 'image-3'
   },
   {
     year: "0, 3",
@@ -30,6 +31,7 @@ const dataPopup = [
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                 <path d="M12.5 0C19.1094 0 24.5 5.39062 24.5 12C24.5 18.6562 19.1094 24 12.5 24C5.84375 24 0.5 18.6562 0.5 12C0.5 5.39062 5.84375 0 12.5 0ZM11 9C11 8.20312 10.2031 7.5 9.45312 7.5C8.65625 7.5 8 8.20312 8 9V15C8 15.8438 8.65625 16.5 9.5 16.5C10.2969 16.5 11 15.8438 11 15V9ZM17 9C17 8.20312 16.2031 7.5 15.4531 7.5C14.6562 7.5 14 8.20312 14 9V15C14 15.8438 14.6562 16.5 15.5 16.5C16.2969 16.5 17 15.8438 17 15V9Z" fill="white"/>
             </svg>Pause Membership for 1 month`,
+    img: 'image-4'
   },
   {
     year: "4",
@@ -39,6 +41,7 @@ const dataPopup = [
         Starting today you can enjoy <b class="c-blue">40% discount</b> and continue taking care of your wellbeing for just <b class="c-blue">$65.40 on our annual plan. </b> <br>
         <br><b class="mt-2 d-block"> How's that for affordable well-being?</b> `,
     btn: "Get my 40% off next year",
+    img: 'image-5'
   },
   {
     year: "2, 5",
@@ -47,6 +50,7 @@ const dataPopup = [
     content: `As a valued member, you can enjoy a <b class="c-blue">40% discount</b> on the annual plan and continue your wellness journey with all your favorite yoga classes for only <b class="c-blue">$65.40.</b><br>
     <br><b> How's that for affordable well-being?</b> `,
     btn: "Get my 40% off next year",
+    img: 'image-6'
   },
   {
     mounthly: "1, 6",
@@ -55,6 +59,7 @@ const dataPopup = [
     content: `Get the next <b class="c-blue">3 months for just $13.99</b> and continue on your wellness journey with our premier platform.<br>
     <br><b class="mt-2 d-block">How's that for affordable well-being?</b>`,
     btn: "Get my 3 months for $13.99",
+    img: 'image-3'
   },
   {
     mounthly: "4",
@@ -63,6 +68,7 @@ const dataPopup = [
     content: `Our catalog is packed with over 350 beginner-friendly lasses. Starting today you can enjoy <b class="c-blue">3 months of classes for just $13.99</b>. <br>
     <br> <b class="mt-2 d-block">How's that for affordable well-being?`,
     btn: "Get my 3 months for $13.99</b>",
+    img: 'image-5'
   },
   {
     mounthly: "2, 5",
@@ -71,6 +77,7 @@ const dataPopup = [
     content: `As a valued member, you can enjoy the next <b class="c-blue">3 months for just $13.99</b> and continue on your wellness journey with all your favorite yoga classes!<br>
     <br><b class="mt-2 d-block">How's that for affordable well-being?</b>`,
     btn: "Get my 3 months for $13.99",
+    img: 'image-6'
   },
 ];
 
@@ -436,7 +443,7 @@ const style = `
     line-height: 32px;
     border-radius: 30px;
     background: var(--Gray-1, #F6F6F6);
-    padding: 0 2px;
+    padding: 0 11.5px;
     margin-left: 13px;
 }
 .crs_radios {
@@ -562,6 +569,9 @@ const style = `
     }
     .crs_swiper {
         display: none!important;
+    }
+    .crs_popup .crs_container {
+        min-height: 624px;
     }
 }
 @media only screen and (max-width: 767px) {
@@ -886,7 +896,7 @@ const html = `
     </div>
     <div class="crs_page">
         <div class="crs_container">
-            <h1 class="text-md-center"><span>[Username]</span>,you can choose to cancel today or commit to a lifelong journey of self-care, love, and acceptance</h1>
+            <h1 class="text-md-center"><span>${window.location.href.split('yogi/')[1].split('/subscription')[0]}</span>,you can choose to cancel today or commit to a lifelong journey of self-care, love, and acceptance</h1>
             <p class="text-md-center">Before you leave, why not take a look at all the self-care progress you've made?</p>
             <div class="d-md-flex">
                 <div class="">
@@ -1033,7 +1043,7 @@ const html = `
 
 const media = window.matchMedia("(max-width: 767px)").matches;
 
-const popupDiscount = (parent, data, link, image) => {
+const popupDiscount = (parent, data, link) => {
   parent.insertAdjacentHTML(
     "beforeend",
     ` 
@@ -1058,7 +1068,7 @@ const popupDiscount = (parent, data, link, image) => {
                   data.btn
                 }</div>
             </div>
-            <img src="${dirProject}image-${image}${
+            <img src="${dirProject}${data.img}${
       media ? "_mob" : ""
     }.png" alt="image">
         </div>
@@ -1155,6 +1165,26 @@ function formatTimestamp(timestamp) {
     return formattedDate;
 }
 
+function addMonthsOrYearsToUnixTimestamp(timestamp, type) {
+    // Перетворюємо Unix timestamp в об'єкт дати
+    let date = new Date(timestamp * 1000);
+  
+    // Додаємо місяці або роки в залежності від типу (months або years)
+    if (type === 'mounthly') {
+      date.setMonth(date.getMonth() + 1);
+    } else {
+      date.setFullYear(date.getFullYear() + 12);
+    }
+  
+    // Отримуємо числові значення дня та місяця
+    let day = date.getDate();
+    let month = date.toLocaleString('en-US', { month: 'long' });
+  
+    // Форматуємо результат у вигляді "dd Month"
+    let result = day + ' ' + month;
+  
+    return result;
+}
   
 const init = setInterval(() => {
   if (
@@ -1172,6 +1202,10 @@ const init = setInterval(() => {
 
     let metrics = JSON.parse(JSON.stringify(dataLayer).split('"metrics":')[1].split(',"user"')[0])
 
+    let resultAfterAdding = addMonthsOrYearsToUnixTimestamp(metrics['account_created'], localStorage.getItem("crsPlan"));
+    
+    document.querySelector('.crs_questions_block').innerHTML = `If you proceed with the cancellation now, you will still be able to access premium content until ${resultAfterAdding}`
+    
     document.querySelectorAll('.crs_page_item').forEach((item, index) => {
         if (index == 0) {
             item.querySelector('p:last-child').innerHTML = formatTimestamp(metrics['account_created'])
@@ -1200,8 +1234,7 @@ const init = setInterval(() => {
       popupDiscount(
         document.querySelector("#main-content"),
         data.dataPopup,
-        data.href,
-        data.i
+        data.href
       );
       localStorage.removeItem("crsRoute");
 
@@ -1222,6 +1255,38 @@ const init = setInterval(() => {
             .querySelector(".crs_questions .crs_btn.white")
             .removeAttribute("disabled");
           radioIndex = index;
+
+          if (localStorage.getItem("crsPlan")) {
+            const plan = localStorage.getItem("crsPlan");
+
+            const link =
+              "https://www.doyogawithme.com/express-checkout/" +
+              (plan == "year" ? "142" : "141");
+            console.log(plan);
+            console.log(link);
+            console.log(radioIndex);
+            for (let i = 0; i < dataPopup.length; i++) {
+              if (
+                dataPopup[i][plan]?.includes(radioIndex)
+              ) {
+                console.log(dataPopup[i]);
+                document
+                  .querySelector('.crs_popup[data-index="2"]')
+                  ?.remove();
+                document
+                  .querySelector('.crs_popup[data-index="3"]')
+                  ?.remove();
+                popupDiscount(
+                  document.querySelector("#main-content"),
+                  dataPopup[i],
+                  link
+                );
+                document
+                  .querySelector('.crs_popup[data-index="2"]')
+                  .classList.add("active");
+              }
+            }
+          }
         }
       });
     });
@@ -1262,38 +1327,7 @@ const init = setInterval(() => {
             !item.hasAttribute("disabled")
           ) {
             console.log("click questions cancel");
-            if (localStorage.getItem("crsPlan")) {
-              const plan = localStorage.getItem("crsPlan");
-
-              const link =
-                "https://www.doyogawithme.com/express-checkout/" +
-                (plan == "year" ? "142" : "141");
-              console.log(plan);
-              console.log(link);
-              console.log(radioIndex);
-              for (let i = 0; i < dataPopup.length; i++) {
-                if (
-                  dataPopup[i][plan]?.includes(radioIndex)
-                ) {
-                  console.log(dataPopup[i]);
-                  document
-                    .querySelector('.crs_popup[data-index="2"]')
-                    ?.remove();
-                  document
-                    .querySelector('.crs_popup[data-index="3"]')
-                    ?.remove();
-                  popupDiscount(
-                    document.querySelector("#main-content"),
-                    dataPopup[i],
-                    link,
-                    i + 3
-                  );
-                  document
-                    .querySelector('.crs_popup[data-index="2"]')
-                    .classList.add("active");
-                }
-              }
-            }
+            document.querySelector("#edit-cancel--3").click()
           }
 
           window.scrollTo(0, 0);
