@@ -1072,7 +1072,7 @@ class changeFlow {
       if (index == 0) {
         _this.find("h1.title").html(`Discover Incentive  <br class="d-md-none">
             Program in ${
-              _this.find("h1.title").html().split("City")[0].split("Solar")[0]
+              _this.find("h1.title").html().split("City")[0].split("Solar")[0].split(":")[0]
             }`);
 
         _this.find("h5").html("Enter Zip Code below:");
