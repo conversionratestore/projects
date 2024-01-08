@@ -1,5 +1,5 @@
-
-let dirProject = "https://conversionratestore.github.io/projects/doyogawithme/img/";
+let dirProject =
+  "https://conversionratestore.github.io/projects/doyogawithme/img/";
 
 const dataRadio = [
   `I don't have the time for regular yoga`,
@@ -19,7 +19,7 @@ const dataPopup = [
     content: `Get an exclusive <b class="c-blue">40% discount</b> and continue taking care of your wellbeing for just <b class="c-blue">$65.40 on our annual plan.</b> <br>
         <b class="mt-2 d-block"> How's that for affordable well-being?  </b>`,
     btn: "Get my 40% off next year",
-    img: 'image-3'
+    img: "image-3",
   },
   {
     year: "0, 3",
@@ -31,7 +31,7 @@ const dataPopup = [
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                 <path d="M12.5 0C19.1094 0 24.5 5.39062 24.5 12C24.5 18.6562 19.1094 24 12.5 24C5.84375 24 0.5 18.6562 0.5 12C0.5 5.39062 5.84375 0 12.5 0ZM11 9C11 8.20312 10.2031 7.5 9.45312 7.5C8.65625 7.5 8 8.20312 8 9V15C8 15.8438 8.65625 16.5 9.5 16.5C10.2969 16.5 11 15.8438 11 15V9ZM17 9C17 8.20312 16.2031 7.5 15.4531 7.5C14.6562 7.5 14 8.20312 14 9V15C14 15.8438 14.6562 16.5 15.5 16.5C16.2969 16.5 17 15.8438 17 15V9Z" fill="white"/>
             </svg>Pause Membership for 1 month`,
-    img: 'image-4'
+    img: "image-4",
   },
   {
     year: "4",
@@ -41,7 +41,7 @@ const dataPopup = [
         Starting today you can enjoy <b class="c-blue">40% discount</b> and continue taking care of your wellbeing for just <b class="c-blue">$65.40 on our annual plan. </b> <br>
         <br><b class="mt-2 d-block"> How's that for affordable well-being?</b> `,
     btn: "Get my 40% off next year",
-    img: 'image-5'
+    img: "image-5",
   },
   {
     year: "2, 5",
@@ -50,7 +50,7 @@ const dataPopup = [
     content: `As a valued member, you can enjoy a <b class="c-blue">40% discount</b> on the annual plan and continue your wellness journey with all your favorite yoga classes for only <b class="c-blue">$65.40.</b><br>
     <br><b> How's that for affordable well-being?</b> `,
     btn: "Get my 40% off next year",
-    img: 'image-6'
+    img: "image-6",
   },
   {
     mounthly: "1, 6",
@@ -59,7 +59,7 @@ const dataPopup = [
     content: `Get the next <b class="c-blue">3 months for just $13.99</b> and continue on your wellness journey with our premier platform.<br>
     <br><b class="mt-2 d-block">How's that for affordable well-being?</b>`,
     btn: "Get my 3 months for $13.99",
-    img: 'image-3'
+    img: "image-3",
   },
   {
     mounthly: "4",
@@ -68,7 +68,7 @@ const dataPopup = [
     content: `Our catalog is packed with over 350 beginner-friendly lasses. Starting today you can enjoy <b class="c-blue">3 months of classes for just $13.99</b>. <br>
     <br> <b class="mt-2 d-block">How's that for affordable well-being?`,
     btn: "Get my 3 months for $13.99</b>",
-    img: 'image-5'
+    img: "image-5",
   },
   {
     mounthly: "2, 5",
@@ -77,7 +77,7 @@ const dataPopup = [
     content: `As a valued member, you can enjoy the next <b class="c-blue">3 months for just $13.99</b> and continue on your wellness journey with all your favorite yoga classes!<br>
     <br><b class="mt-2 d-block">How's that for affordable well-being?</b>`,
     btn: "Get my 3 months for $13.99",
-    img: 'image-6'
+    img: "image-6",
   },
 ];
 
@@ -896,7 +896,9 @@ const html = `
     </div>
     <div class="crs_page">
         <div class="crs_container">
-            <h1 class="text-md-center"><span>${window.location.href.split('yogi/')[1].split('/subscription')[0]}</span>,you can choose to cancel today or commit to a lifelong journey of self-care, love, and acceptance</h1>
+            <h1 class="text-md-center"><span>${
+              window.location.href.split("yogi/")[1].split("/subscription")[0]
+            }</span>,you can choose to cancel today or commit to a lifelong journey of self-care, love, and acceptance</h1>
             <p class="text-md-center">Before you leave, why not take a look at all the self-care progress you've made?</p>
             <div class="d-md-flex">
                 <div class="">
@@ -1145,47 +1147,57 @@ const popupDiscount = (parent, data, link) => {
 };
 
 function formatTimestamp(timestamp) {
-    // Створення нового об'єкта Date на основі переданого мілісекундного таймстемпа
-    var date = new Date(timestamp * 1000); // timestamp повинен бути у секундах, а не мілісекундах, тому помножимо на 1000
-  
-    // Масив назв місяців
-    var monthNames = [
-      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-    ];
-  
-    // Отримання значень дня, місяця і року
-    var day = date.getDate();
-    var monthIndex = date.getMonth();
-    var year = date.getFullYear();
-  
-    // Форматування рядка
-    var formattedDate = monthNames[monthIndex] + ' ' + day + ', ' + year;
-  
-    return formattedDate;
+  // Створення нового об'єкта Date на основі переданого мілісекундного таймстемпа
+  var date = new Date(timestamp * 1000); // timestamp повинен бути у секундах, а не мілісекундах, тому помножимо на 1000
+
+  // Масив назв місяців
+  var monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  // Отримання значень дня, місяця і року
+  var day = date.getDate();
+  var monthIndex = date.getMonth();
+  var year = date.getFullYear();
+
+  // Форматування рядка
+  var formattedDate = monthNames[monthIndex] + " " + day + ", " + year;
+
+  return formattedDate;
 }
 
 function addMonthsOrYearsToUnixTimestamp(timestamp, type) {
-    // Перетворюємо Unix timestamp в об'єкт дати
-    let date = new Date(timestamp * 1000);
-  
-    // Додаємо місяці або роки в залежності від типу (months або years)
-    if (type === 'mounthly') {
-      date.setMonth(date.getMonth() + 1);
-    } else {
-      date.setFullYear(date.getFullYear() + 12);
-    }
-  
-    // Отримуємо числові значення дня та місяця
-    let day = date.getDate();
-    let month = date.toLocaleString('en-US', { month: 'long' });
-  
-    // Форматуємо результат у вигляді "dd Month"
-    let result = day + ' ' + month;
-  
-    return result;
+  // Перетворюємо Unix timestamp в об'єкт дати
+  let date = new Date(timestamp * 1000);
+
+  // Додаємо місяці або роки в залежності від типу (months або years)
+  if (type === "mounthly") {
+    date.setMonth(date.getMonth() + 1);
+  } else {
+    date.setFullYear(date.getFullYear() + 12);
+  }
+
+  // Отримуємо числові значення дня та місяця
+  let day = date.getDate();
+  let month = date.toLocaleString("en-US", { month: "long" });
+
+  // Форматуємо результат у вигляді "dd Month"
+  let result = day + " " + month;
+
+  return result;
 }
-  
+
 const init = setInterval(() => {
   if (
     window.location.href.includes("/subscription/id/") &&
@@ -1200,24 +1212,36 @@ const init = setInterval(() => {
       .querySelector("#main-content")
       .insertAdjacentHTML("beforeend", html);
 
-    let metrics = JSON.parse(JSON.stringify(dataLayer).split('"metrics":')[1].split(',"user"')[0])
+    let metrics = JSON.parse(
+      JSON.stringify(dataLayer).split('"metrics":')[1].split(',"user"')[0]
+    );
 
-    let resultAfterAdding = addMonthsOrYearsToUnixTimestamp(metrics['account_created'], localStorage.getItem("crsPlan"));
-    
-    document.querySelector('.crs_questions_block').innerHTML = `If you proceed with the cancellation now, you will still be able to access premium content until ${resultAfterAdding}`
-    
-    document.querySelectorAll('.crs_page_item').forEach((item, index) => {
-        if (index == 0) {
-            item.querySelector('p:last-child').innerHTML = formatTimestamp(metrics['account_created'])
-        } else if (index == 1) {
-            item.querySelector('p:last-child').innerHTML = metrics['videos_watched']
-        } else if (index == 2) {
-            item.querySelector('p:last-child').innerHTML = metrics['estimated_active_days']
-        } else if (index == 3) {
-            item.querySelector('p:last-child').innerHTML = metrics['watchtime_minutes']
-        }
-    })
- 
+    let resultAfterAdding = addMonthsOrYearsToUnixTimestamp(
+      metrics["account_created"],
+      localStorage.getItem("crsPlan")
+    );
+
+    document.querySelector(
+      ".crs_questions_block"
+    ).innerHTML = `If you proceed with the cancellation now, you will still be able to access premium content until ${resultAfterAdding}`;
+
+    document.querySelectorAll(".crs_page_item").forEach((item, index) => {
+      if (index == 0) {
+        item.querySelector("p:last-child").innerHTML = formatTimestamp(
+          metrics["account_created"]
+        );
+      } else if (index == 1) {
+        item.querySelector("p:last-child").innerHTML =
+          metrics["videos_watched"];
+      } else if (index == 2) {
+        item.querySelector("p:last-child").innerHTML =
+          metrics["estimated_active_days"];
+      } else if (index == 3) {
+        item.querySelector("p:last-child").innerHTML =
+          metrics["watchtime_minutes"];
+      }
+    });
+
     if (media) {
       swipedUp(
         document.querySelector('.crs_popup[data-index="0"] .crs_swiper')
@@ -1266,16 +1290,10 @@ const init = setInterval(() => {
             console.log(link);
             console.log(radioIndex);
             for (let i = 0; i < dataPopup.length; i++) {
-              if (
-                dataPopup[i][plan]?.includes(radioIndex)
-              ) {
+              if (dataPopup[i][plan]?.includes(radioIndex)) {
                 console.log(dataPopup[i]);
-                document
-                  .querySelector('.crs_popup[data-index="2"]')
-                  ?.remove();
-                document
-                  .querySelector('.crs_popup[data-index="3"]')
-                  ?.remove();
+                document.querySelector('.crs_popup[data-index="2"]')?.remove();
+                document.querySelector('.crs_popup[data-index="3"]')?.remove();
                 popupDiscount(
                   document.querySelector("#main-content"),
                   dataPopup[i],
@@ -1327,7 +1345,7 @@ const init = setInterval(() => {
             !item.hasAttribute("disabled")
           ) {
             console.log("click questions cancel");
-            document.querySelector("#edit-cancel--3").click()
+            document.querySelector("#edit-cancel--3").click();
           }
 
           window.scrollTo(0, 0);
@@ -1344,13 +1362,16 @@ const subscription = setInterval(() => {
       .querySelectorAll(".subscription-links li.cancel a")
       .forEach((item) => {
         item.addEventListener("click", () => {
-          const plan = item
+          const title = item
             .closest(".subscription")
-            .querySelector(".total")
-            .innerText.includes("108")
+            .querySelector(".total").innerText;
+          const plan = title.includes("108")
             ? "year"
-            : "mounthly";
+            : title.includes("13.99")
+            ? "mounthly"
+            : "";
           console.log(plan);
+          if (plan == "") return;
           localStorage.setItem("crsPlan", plan);
         });
       });
@@ -2032,7 +2053,9 @@ input[readonly] {
 let headHTML = `
 <div class="topbar">
     <a href="${
-        window.location.href.includes('/review') ? 'https://www.doyogawithme.com/checkout/23893/order_information' : localStorage.getItem('crsHref')
+      window.location.href.includes("/review")
+        ? "https://www.doyogawithme.com/checkout/23893/order_information"
+        : localStorage.getItem("crsHref")
     }" class="btn-back flex items-center">
         <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0.255198 7.39519C-0.0850662 7.72509 -0.0850662 8.27491 0.255198 8.60481L7.58979 15.7526C7.96786 16.0825 8.53497 16.0825 8.87524 15.7526L9.7448 14.9095C10.0851 14.5796 10.0851 14.0298 9.7448 13.6632L3.9225 7.98167L9.7448 2.33677C10.0851 1.97022 10.0851 1.42039 9.7448 1.09049L8.87524 0.247423C8.53497 -0.0824742 7.96786 -0.0824742 7.58979 0.247423L0.255198 7.39519Z" fill="#027DB8"/>
@@ -2048,149 +2071,187 @@ function initCheckout() {
       !window.location.href.includes("/login") &&
       document.querySelector(".o-page__mainContentWrapper")
     ) {
-        if (!document.querySelector(".styleCheckout")) {
-            document.body.insertAdjacentHTML("afterbegin", styleCheckout);
-        }
+      if (!document.querySelector(".styleCheckout")) {
+        document.body.insertAdjacentHTML("afterbegin", styleCheckout);
+      }
 
-        if (!document.querySelector(".header-logo")) {//add logo
-            document .querySelector(".o-page__mainContentWrapper").insertAdjacentHTML("beforebegin",
-                `<div class="header-logo text-center"> <a href="/" class="logo"><img src="/themes/custom/lotus/logo.png" alt="image"></a></div>`
-            );
-        }
+      if (!document.querySelector(".header-logo")) {
+        //add logo
+        document
+          .querySelector(".o-page__mainContentWrapper")
+          .insertAdjacentHTML(
+            "beforebegin",
+            `<div class="header-logo text-center"> <a href="/" class="logo"><img src="/themes/custom/lotus/logo.png" alt="image"></a></div>`
+          );
+      }
 
-        if (!document.querySelector(".topbar")) {//add topbar
-            document.querySelector(".o-page__mainContent").insertAdjacentHTML("afterbegin", headHTML); 
-        }
+      if (!document.querySelector(".topbar")) {
+        //add topbar
+        document
+          .querySelector(".o-page__mainContent")
+          .insertAdjacentHTML("afterbegin", headHTML);
+      }
 
-        if (document.querySelector(".checkout-pane .fieldset-legend") &&
-            document.querySelector(".checkout-pane .fieldset-legend").innerHTML.includes('Payment information')
-        ) {
+      if (
+        document.querySelector(".checkout-pane .fieldset-legend") &&
+        document
+          .querySelector(".checkout-pane .fieldset-legend")
+          .innerHTML.includes("Payment information")
+      ) {
+        document.querySelector(".checkout-pane .fieldset-legend").innerHTML =
+          "Enter your card information";
+      }
+      if (!document.querySelector(".btn_start_membership")) {
+        const isDonation =
+          document
+            .querySelector(
+              '[data-drupal-selector="edit-sidebar-order-summary-summary"] .views-field-title'
+            )
+            ?.textContent.toLowerCase()
+            .trim() === "donation";
 
-            document.querySelector(".checkout-pane .fieldset-legend").innerHTML =
-            "Enter your card information";
-        }
-        if (!document.querySelector(".btn_start_membership")) {
-            const isDonation = document.querySelector('[data-drupal-selector="edit-sidebar-order-summary-summary"] .views-field-title')?.textContent.toLowerCase().trim() === "donation";
-            
-            document.querySelector(".layout-region.layout-region-checkout-main").insertAdjacentHTML("beforeend",
-                `<button type="button" class="btn_start_membership">
+        document
+          .querySelector(".layout-region.layout-region-checkout-main")
+          .insertAdjacentHTML(
+            "beforeend",
+            `<button type="button" class="btn_start_membership">
                     ${isDonation ? "Continue to review" : "Start membership"}
                 </button>`
-            );
-        }
+          );
+      }
 
-        // Continue to review
+      // Continue to review
 
-        let waitEmail = setInterval(() => {
-          if (
-            document.querySelector(".recurly-hosted-field") &&
-            !document.querySelector(".form-radios")
-          ) {
-            clearInterval(waitEmail);
-            if (localStorage.getItem("email")) {
-              let email = localStorage.getItem("email");
+      let waitEmail = setInterval(() => {
+        if (
+          document.querySelector(".recurly-hosted-field") &&
+          !document.querySelector(".form-radios")
+        ) {
+          clearInterval(waitEmail);
+          if (localStorage.getItem("email")) {
+            let email = localStorage.getItem("email");
 
-              document
-                .querySelector(
-                  '[data-drupal-selector="edit-payment-information-add-payment-method-payment-details"]'
-                )
-                .insertAdjacentHTML(
-                  "beforebegin",
-                  `
+            document
+              .querySelector(
+                '[data-drupal-selector="edit-payment-information-add-payment-method-payment-details"]'
+              )
+              .insertAdjacentHTML(
+                "beforebegin",
+                `
                               <div class="field-email form-item">
                                   <label>Email</label>
                                   <input type="email" readonly value="${email}">
                               </div>`
-                );
-            }
-
-            document
-              .querySelector(".recurly-hosted-field")
-              .insertAdjacentHTML(
-                "beforebegin",
-                `<label>Card Information</label>`
               );
-            document.querySelector(".btn_start_membership").disabled = true;
           }
-        });
 
-        if (!document.querySelector(".samsara .form-type-checkbox .check") &&
-            document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]')
-        ) {
-          document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]').insertAdjacentHTML("afterend", `<span class="check"></span>`);
+          document
+            .querySelector(".recurly-hosted-field")
+            .insertAdjacentHTML(
+              "beforebegin",
+              `<label>Card Information</label>`
+            );
+          document.querySelector(".btn_start_membership").disabled = true;
         }
-        
-        if (document.querySelector(".form-item-commerce-donation-pane-donation-toggler label") &&
-            document.querySelector(".form-item-commerce-donation-pane-donation-toggler label").innerHTML.includes(`Yes, I'd `)
-        ) {
-            document.querySelector(".form-item-commerce-donation-pane-donation-toggler label").innerHTML = `I'd like to make a donation to support instructors and free content creation `;
-        }
+      });
 
-        if (localStorage.getItem("crsPlan")) {
-          let price = document.querySelector(
-            ".views-field.views-field-total-price__number"
-          );
-          if (!document.querySelector(".c-green")) {
-            price.innerHTML = `
+      if (
+        !document.querySelector(".samsara .form-type-checkbox .check") &&
+        document.querySelector(
+          '[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]'
+        )
+      ) {
+        document
+          .querySelector(
+            '[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]'
+          )
+          .insertAdjacentHTML("afterend", `<span class="check"></span>`);
+      }
+
+      if (
+        document.querySelector(
+          ".form-item-commerce-donation-pane-donation-toggler label"
+        ) &&
+        document
+          .querySelector(
+            ".form-item-commerce-donation-pane-donation-toggler label"
+          )
+          .innerHTML.includes(`Yes, I'd `)
+      ) {
+        document.querySelector(
+          ".form-item-commerce-donation-pane-donation-toggler label"
+        ).innerHTML = `I'd like to make a donation to support instructors and free content creation `;
+      }
+
+      if (localStorage.getItem("crsPlan")) {
+        let price = document.querySelector(
+          ".views-field.views-field-total-price__number"
+        );
+        if (!document.querySelector(".c-green")) {
+          price.innerHTML = `
                             <p><span>$108.99</span> ${price.innerHTML}</p>
                             <p class="c-green">${
                               localStorage.getItem("crsPlan") == "year"
                                 ? "Just $5.42/month!"
                                 : "enjoy 2 free months!"
                             }</p>`;
-          }
-
-          document.querySelector(".views-field.views-field-title").innerHTML =
-            localStorage.getItem("crsPlan") == "year"
-              ? `1-Year DYWM Subscription`
-              : "3-month DYWM Subscription";
-          if (!document.querySelector(".saved_block")) {
-            document
-              .querySelector(".order-total-line__total")
-              .insertAdjacentHTML(
-                "afterend",
-                ` <div class="saved_block">You just saved $65.04 (40% off)</div>`
-              );
-            document.querySelector(".saved_block").innerHTML =
-              localStorage.getItem("crsPlan") == "year"
-                ? "You just saved $65.04 (40% off)"
-                : "You just saved $27.98 (67% off)";
-          }
         }
 
-        if (
-          document.querySelector("#edit-coupon-redemption") &&
-          !document.querySelector(".btn_got_coupon")
-        ) {
+        document.querySelector(".views-field.views-field-title").innerHTML =
+          localStorage.getItem("crsPlan") == "year"
+            ? `1-Year DYWM Subscription`
+            : "3-month DYWM Subscription";
+        if (!document.querySelector(".saved_block")) {
           document
-            .querySelector("#edit-coupon-redemption")
+            .querySelector(".order-total-line__total")
             .insertAdjacentHTML(
-              "beforebegin",
-              ` <a href="#" class="btn_got_coupon">Got a Coupon?</a>`
+              "afterend",
+              ` <div class="saved_block">You just saved $65.04 (40% off)</div>`
             );
-          if (
-            document.querySelector(
-              '[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]'
-            )
-          ) {
-            document.querySelector(
-              '[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]'
-            ).innerHTML = "Apply";
-          }
-          document
-            .querySelector(".btn_got_coupon")
-            .addEventListener("click", (e) => {
-              e.preventDefault();
-              document
-                .querySelector("#edit-coupon-redemption")
-                .classList.toggle("active");
-            });
+          document.querySelector(".saved_block").innerHTML =
+            localStorage.getItem("crsPlan") == "year"
+              ? "You just saved $65.04 (40% off)"
+              : "You just saved $27.98 (67% off)";
         }
+      }
 
-        if (!document.querySelector('.infos_dashed') && 
-            document.querySelector(".layout-region-checkout-secondary")
+      if (
+        document.querySelector("#edit-coupon-redemption") &&
+        !document.querySelector(".btn_got_coupon")
+      ) {
+        document
+          .querySelector("#edit-coupon-redemption")
+          .insertAdjacentHTML(
+            "beforebegin",
+            ` <a href="#" class="btn_got_coupon">Got a Coupon?</a>`
+          );
+        if (
+          document.querySelector(
+            '[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]'
+          )
         ) {
-            document.querySelector(".layout-region-checkout-secondary").insertAdjacentHTML("beforeend",
+          document.querySelector(
+            '[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]'
+          ).innerHTML = "Apply";
+        }
+        document
+          .querySelector(".btn_got_coupon")
+          .addEventListener("click", (e) => {
+            e.preventDefault();
+            document
+              .querySelector("#edit-coupon-redemption")
+              .classList.toggle("active");
+          });
+      }
+
+      if (
+        !document.querySelector(".infos_dashed") &&
+        document.querySelector(".layout-region-checkout-secondary")
+      ) {
+        document
+          .querySelector(".layout-region-checkout-secondary")
+          .insertAdjacentHTML(
+            "beforeend",
             `<div class="flex items-center justify-between infos_dashed">
                 <div class="info_dashed flex items-center justify-center">
                     <svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2207,79 +2268,85 @@ function initCheckout() {
                     </svg>
                     100% money back guarantee
                 </div>
-            </div>`)
-        }
-       
-        document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])').forEach((item) => {
-            item.addEventListener("input", () => {
-                disabledBtnFun();
-            });
-        });
+            </div>`
+          );
+      }
 
-        document.querySelector(".btn_start_membership").addEventListener("click", (e) => {
-            document.querySelector('[data-drupal-selector="edit-actions-next"]').click();
-
-            let invalidCard = setInterval(() => {
-              if (
-                document.querySelector(
-                  ".recurly-hosted-field.recurly-hosted-field-invalid"
-                )
-              ) {
-                clearInterval(invalidCard);
-                window.scrollTo(0, 0);
-              }
-            });
+      document
+        .querySelectorAll(
+          'form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])'
+        )
+        .forEach((item) => {
+          item.addEventListener("input", () => {
+            disabledBtnFun();
           });
-
-        let waitRadios = setInterval(() => {
-          if (
-            document.querySelectorAll(
-              ".form-item-payment-information-payment-method input"
-            ).length > 1 &&
-            document.querySelector(
-              '[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]'
-            ) != null
-          ) {
-            clearInterval(waitRadios);
-            setTimeout(() => {
-              disabledBtnFun();
-            }, 200);
-          }
         });
-        let waitFormEdit = setInterval(() => {
-          if (
-            document.querySelector(".address-book-edit-button") == null &&
-            document.querySelectorAll(
-              ".form-item-payment-information-payment-method"
-            ).length > 1 &&
-            document.querySelectorAll(
-              'form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])'
-            ).length > 1
-          ) {
-            clearInterval(waitFormEdit);
 
-            document
-              .querySelectorAll(
-                'form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])'
+      document
+        .querySelector(".btn_start_membership")
+        .addEventListener("click", (e) => {
+          document
+            .querySelector('[data-drupal-selector="edit-actions-next"]')
+            .click();
+
+          let invalidCard = setInterval(() => {
+            if (
+              document.querySelector(
+                ".recurly-hosted-field.recurly-hosted-field-invalid"
               )
-              .forEach((item) => {
-                item.addEventListener("input", (e) => {
-                  setTimeout(() => {
-                    disabledBtnFun();
-                  }, 200);
-                });
-              });
+            ) {
+              clearInterval(invalidCard);
+              window.scrollTo(0, 0);
+            }
+          });
+        });
 
-            document
-              .querySelector(".country")
-              .addEventListener("change", (e) => {
+      let waitRadios = setInterval(() => {
+        if (
+          document.querySelectorAll(
+            ".form-item-payment-information-payment-method input"
+          ).length > 1 &&
+          document.querySelector(
+            '[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]'
+          ) != null
+        ) {
+          clearInterval(waitRadios);
+          setTimeout(() => {
+            disabledBtnFun();
+          }, 200);
+        }
+      });
+      let waitFormEdit = setInterval(() => {
+        if (
+          document.querySelector(".address-book-edit-button") == null &&
+          document.querySelectorAll(
+            ".form-item-payment-information-payment-method"
+          ).length > 1 &&
+          document.querySelectorAll(
+            'form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])'
+          ).length > 1
+        ) {
+          clearInterval(waitFormEdit);
+
+          document
+            .querySelectorAll(
+              'form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])'
+            )
+            .forEach((item) => {
+              item.addEventListener("input", (e) => {
                 setTimeout(() => {
                   disabledBtnFun();
                 }, 200);
               });
-          }
-        });
-      
+            });
+
+          document.querySelector(".country").addEventListener("change", (e) => {
+            setTimeout(() => {
+              disabledBtnFun();
+            }, 200);
+          });
+        }
+      });
     }
   });
 }
@@ -2345,12 +2412,16 @@ let mut = new MutationObserver(function (muts) {
   if (
     document.querySelectorAll("[data-drupal-messages]") &&
     document.querySelector('[data-drupal-selector="edit-coupon-redemption"]') &&
-    !document.querySelector('[data-drupal-selector="edit-coupon-redemption"] + [data-drupal-messages]')
+    !document.querySelector(
+      '[data-drupal-selector="edit-coupon-redemption"] + [data-drupal-messages]'
+    )
   ) {
     mut.disconnect();
     document.querySelectorAll("[data-drupal-messages]").forEach((item) => {
       if (item.innerHTML.includes("coupon code")) {
-        document.querySelector('[data-drupal-selector="edit-coupon-redemption"]').after(item);
+        document
+          .querySelector('[data-drupal-selector="edit-coupon-redemption"]')
+          .after(item);
       }
     });
   }
@@ -2377,9 +2448,9 @@ const disabledBtnFun = () => {
           .querySelector(
             '[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"] + .select2 .select2-selection__rendered'
           )
-          .innerHTML.includes("Select")
+          .innerHTML.includes("Select");
 
-      clearInterval(disabledBtn)
+      clearInterval(disabledBtn);
 
       let inputs = document.querySelectorAll(
         'form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"],.address-line2)'
@@ -2392,7 +2463,7 @@ const disabledBtnFun = () => {
           let name = item.parentElement
             .querySelector("label")
             .innerText.replace("*", "")
-            .toLowerCase()
+            .toLowerCase();
         });
       });
 
@@ -2418,13 +2489,13 @@ const disabledBtnFun = () => {
               inputs[i].classList.contains("locality") ||
               inputs[i].classList.contains("postal-code")
             ) {
-              error = true
+              error = true;
             }
           }
         }
       }
 
-      document.querySelector(".btn_start_membership").disabled = error
+      document.querySelector(".btn_start_membership").disabled = error;
     }
-  })
-}
+  });
+};
