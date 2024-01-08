@@ -561,7 +561,7 @@ const style = `
         margin: auto -60px 0 ;
     }
     .crs_swiper {
-        display: none;
+        display: none!important;
     }
 }
 @media only screen and (max-width: 767px) {
