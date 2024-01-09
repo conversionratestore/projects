@@ -24,7 +24,7 @@
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
       clearInterval(clarityInterval)
-      clarity("set", "exp_soc_trust_object", "variant_1");
+      clarity('set', 'exp_soc_trust_object', 'variant_1')
     }
   }, 1000)
 
@@ -549,6 +549,7 @@
       this.device = screen.width <= 768 ? 'Mobile' : 'Desktop'
       this.targetPage = 'maxwellscottbags.com/products'
       this.currentCountry = window.location.href.split('maxwellscottbags.')[0].includes('us') ? 'US' : 'GB'
+      this.init()
     }
 
     init() {
@@ -596,7 +597,12 @@
         elem.addEventListener('click', event => {
           if (event.target.matches('.swatch-option')) {
             const color = event.target.dataset.optionLabel
-            pushDataLayer('exp_soc_trus_objec_icon_pdp_chooscol', `${color} - Choose colour`)
+            pushDataLayer(
+              'exp_soc_trus_objec_icon_pdp_chooscol',
+              'Choose colour',
+              'Icone',
+              'PDP Product colour options'
+            )
           }
         })
       })
@@ -651,11 +657,6 @@
         'PDP Sticky CTA'
       )
 
-      waitForElement('.footer-newsletter-block-content button.needsclick').then(elem => {
-        elem.addEventListener('click', () => {
-          console.log('click')
-        })
-      })
       waitForElement('.tocart').then(elem => {
         elem.addEventListener('click', () => {
           pushDataLayer('exp_soc_trus_objec_but_pdp_add', 'Add to basket', 'Button', 'PDP Under Block Extra option')
@@ -701,7 +702,7 @@
         blockVisibility(
           'button.needsclick',
           3,
-          'exp_soc_trus_objec_stic_discorder_disc',
+          'exp_soc_trus_objec_vis_discorder_view',
           'View discount',
           'Visibility',
           'Discount badge 10% Off Your First Order'
@@ -974,26 +975,42 @@
     #changeRelatedPosition() {
       const relatedContainer = $el('.related').parentNode
       $el('.container .product-view-container').after(relatedContainer)
+
       if (this.device === 'Mobile') {
         relatedContainer.querySelector('.block-title strong').textContent = 'Similar products'
-
-        const similarProductHtml = /* HTML */ `
-          <div class="crs_similar">
-            <div class="crs_similar_container"></div>
-            <button class="crs_similar_btn">View more</button>
-          </div>
-        `
-        this.#insertToDom(similarProductHtml, '.related')
-        $$el('.related .item.product').forEach(item => {
-          $el('.related .crs_similar_container').append(item)
-        })
+        this.#insertToDom(
+          /* HTML */ `
+            <div class="crs_similar">
+              <div class="crs_similar_container"></div>
+              <button class="crs_similar_btn">View more</button>
+            </div>
+          `,
+          '.related'
+        )
+        $$el('.related .item.product').forEach(item => $el('.related .crs_similar_container').append(item))
       }
 
       $el('.crs_similar_btn')?.addEventListener('click', () => {
         $el('.crs_similar').classList.toggle('view_more')
         pushDataLayer('exp_soc_trus_objec_link_similar_more', 'View more', 'Link', 'PDP Block Similar products')
       })
+
       waitForElement('.related').then(elem => {
+        const selectors = ['.product-item-photo', '.product-item-link', '.synopsis-text']
+        selectors.forEach(selector => {
+          elem.querySelectorAll(selector).forEach(item => {
+            item.addEventListener('click', () => {
+              const type = selector === '.product-item-photo' ? 'Image' : 'Text'
+              pushDataLayer(
+                `exp_soc_trus_objec_${type.toLowerCase()}_similar_selec`,
+                'Select',
+                type,
+                '"PDP Block Similar products"'
+              )
+            })
+          })
+        })
+
         blockVisibility(
           '.related',
           3,
@@ -1002,22 +1019,6 @@
           'Visibility',
           '"PDP Block Similar products"'
         )
-        elem.querySelectorAll('.product-item-photo').forEach(item => {
-          console.log(item)
-          item.addEventListener('mousedown', () => {
-            pushDataLayer('exp_soc_trus_objec_imag_similar_selec', 'Select', 'Image', '"PDP Block Similar products"')
-          })
-        })
-        elem.querySelectorAll('.product-item-link').forEach(item => {
-          item.addEventListener('mousedown', () => {
-            pushDataLayer('exp_soc_trus_objec_text_similar_selec', 'Select', 'Text', '"PDP Block Similar products"')
-          })
-        })
-        elem.querySelectorAll('.synopsis-text').forEach(item => {
-          item.addEventListener('mousedown', () => {
-            pushDataLayer('exp_soc_trus_objec_text_similar_selec', 'Select', 'Text', '"PDP Block Similar products"')
-          })
-        })
       })
     }
     #createProductSticky() {
@@ -1116,15 +1117,18 @@
       waitForElement('.gift-popup').then(el => {
         const content = el.querySelector('.content')
         content.querySelector('.title').textContent = 'OUR GIFT WRAPPING SERVICE'
-        content.querySelector('.description').innerHTML = `
+        content.querySelector('.description').innerHTML = /* HTML */ `
           <div>
             <p><span>Premium Presentation:</span> Wrapped in luxurious signature tissue paper.</p>
             <p><span>Elegant Keepsake Box:</span> Tucked into a stylish box for a memorable unboxing experience.</p>
             <p><span>Stylish Gift Wrap:</span> Covered to create the perfect gift impression.</p>
             <p><span>Personal Touch:</span> Add a custom message for a more intimate gifting experience.</p>
           </div>
-          <div><p>Your message on a gift card (optional):<p></div>
-          `
+          <div>
+            <p>Your message on a gift card (optional):</p>
+            <p></p>
+          </div>
+        `
         const priceHtml = /* HTML */ ` <div class="crs_popup__price">Just <span></span> for all wrapping options</div> `
         const footer = el.querySelector('.modal-footer')
         footer.insertAdjacentHTML('afterbegin', priceHtml)
@@ -1472,12 +1476,17 @@
           )
           $el('.crs_category_products_btn')?.addEventListener('click', () => {
             $el('.crs_category_products').classList.toggle('view_more')
-            pushDataLayer('exp_soc_trus_objec_link_businbag_more', 'View more', 'Link', 'PDP Block All business bags for men')
+            pushDataLayer(
+              'exp_soc_trus_objec_link_businbag_more',
+              'View more',
+              'Link',
+              'PDP Block All business bags for men'
+            )
           })
         } catch (error) {
           console.log(error.message)
         }
-        
+
         $$el('.crs_slider_item').forEach(item => {
           item.addEventListener('mousedown', event => {
             if (event.target.tagName === 'IMG') {
@@ -2636,6 +2645,5 @@
     }
   }
 
-  const pdp = new EnhancePdp()
-  pdp.init()
+  new EnhancePdp()
 })()
