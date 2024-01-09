@@ -369,6 +369,8 @@ class changeFlow {
     } else {
       this.addThankPage();
     }
+    
+    document.querySelector('.exp-loading')?.remove();
 
     const globalMutation = new MutationObserver((mutations) => {
       //add data in Storange for thank you page
