@@ -570,7 +570,7 @@ const style = `
     .crs_swiper {
         display: none!important;
     }
-    .crs_popup:not([data-index="1"]) .crs_container {
+    .crs_popup:not([data-index="1"], [data-index="3"]) .crs_container {
         min-height: 624px;
     }
     
@@ -786,7 +786,7 @@ const style = `
 }
 </style>`;
 
-let startTime = 0;
+var startTime = 0;
 let startTimeInterval;
 
 function handleVisibility(el, eventParams) {
@@ -1157,75 +1157,151 @@ const popupDiscount = (parent, data, link) => {
   if (media) {
     swipedUp(parent.querySelector('.crs_popup[data-index="2"] .crs_swiper'));
   }
-  parent
-    .querySelector('.crs_popup[data-index="0"] .crs_popup_close')
-    .addEventListener("click", (e) => {
-      clearInterval(startTimeInterval);
-      pushDataLayer([
-        "exp_impr_acc_v_pdynym_ft",
-        startTime,
-        "Visibility",
-        "Pop up did you now Your Membership Allows Us To Support Free Yoga",
-      ]);
-    });
-  parent
-    .querySelector('.crs_popup[data-index="2"] .crs_popup_close')
-    .addEventListener("click", (e) => {
-      e.preventDefault();
-      parent
-        .querySelector('.crs_popup[data-index="2"]')
-        .classList.remove("active");
-      parent.querySelector(".crs_questions").classList.add("active");
-      localStorage.removeItem("crsRoute");
-    });
-  parent
-    .querySelector('.crs_popup[data-index="2"] .crs_btn')
-    .addEventListener("click", (e) => {
-      if (e.target.innerText.includes("Pause Membership")) {
-        document
-          .querySelector(
-            ".recurly-subscription-cancel-confirm-form .c-button--inlineBlock"
-          )
-          .click();
-      } else {
-        parent
-          .querySelector('.crs_popup[data-index="2"]')
-          .classList.remove("active");
+
+  let plan = localStorage.getItem("crsPlan");
+  let eventName = plan == "year" ? "yd" : "md";
+
+  parent.querySelectorAll(".crs_popup .crs_popup_close").forEach((item) => {
+    item.addEventListener("click", (e) => {
+      if (item.closest('[data-index="0"]')) {
+        clearInterval(startTimeInterval);
+        pushDataLayer([
+          "exp_impr_acc_v_pdynym_ft",
+          startTime,
+          "Visibility",
+          "Pop up did you now Your Membership Allows Us To Support Free Yoga",
+        ]);
+      } else if (item.closest('[data-index="2"]')) {
+        e.preventDefault();
+        item.closest('[data-index="2"]').classList.remove("active");
+        parent.querySelector(".crs_questions").classList.add("active");
+        localStorage.removeItem("crsRoute");
+
+        clearInterval(startTimeInterval);
+        if (parent.innerText.includes("Pause Membership")) {
+          pushDataLayer([
+            `exp_impr_acc_b_pudnpm_c`,
+            "Close",
+            "Button",
+            "Pop up did you now Pause Membership for 1 month",
+          ]);
+          pushDataLayer([
+            `exp_impr_acc_v_pudnpm_ft`,
+            startTime,
+            "Visibility",
+            `Pop up did you now Pause Membership for 1 month`,
+          ]);
+        } else {
+          pushDataLayer([
+            `exp_impr_acc_b_pudn${eventName}_c`,
+            "Close",
+            "Button",
+            `Pop up did you now ${plan} discount`,
+          ]);
+          pushDataLayer([
+            `exp_impr_acc_v_pudn${eventName}_ft`,
+            startTime,
+            "Visibility",
+            `Pop up did you now ${plan} discount`,
+          ]);
+        }
+      } else if (item.closest('[data-index="3"]')) {
+        e.preventDefault();
         parent
           .querySelector('.crs_popup[data-index="3"]')
+          .classList.remove("active");
+        parent
+          .querySelector('.crs_popup[data-index="2"]')
           .classList.add("active");
+
+        pushDataLayer([
+          "exp_impr_acc_b_pudngs_c",
+          "Close",
+          "Button",
+          "Pop up did you now Gratitude for the support ",
+        ]);
+        clearInterval(startTimeInterval);
+        pushDataLayer([
+          "exp_impr_acc_v_pudngs_ft",
+          startTime,
+          "Visibility",
+          "Pop up did you now Gratitude for the support",
+        ]);
       }
 
-      clearInterval(startTimeInterval);
-      pushDataLayer([
-        "exp_impr_acc_v_pudnyd_ft",
-        startTime,
-        "Visibility",
-        "Pop up did you now Year discount",
-      ]);
-    });
-  parent
-    .querySelector('.crs_popup[data-index="3"] .crs_popup_close')
-    .addEventListener("click", (e) => {
-      e.preventDefault();
-      parent
-        .querySelector('.crs_popup[data-index="3"]')
-        .classList.remove("active");
-      parent
-        .querySelector('.crs_popup[data-index="2"]')
-        .classList.add("active");
-    });
-  parent
-    .querySelector('.crs_popup[data-index="3"] .crs_btn')
-    .addEventListener("click", () => {
-      let obj = {};
+      startTime = 0;
 
-      obj.dataPopup = data;
-      obj.href = link;
-      obj.i = image;
-
-      localStorage.setItem("crsRoute", JSON.stringify(obj));
+      startTimeInterval = setInterval(() => {
+        startTime += 1;
+      }, 1000);
     });
+  });
+  parent.querySelectorAll(".crs_popup .crs_btn").forEach((item) => {
+    item.addEventListener("click", (e) => {
+      if (item.closest('[data-index="2"]')) {
+        if (e.target.innerText.includes("Pause Membership")) {
+          document
+            .querySelector(
+              ".recurly-subscription-cancel-confirm-form .c-button--inlineBlock"
+            )
+            .click();
+        } else {
+          parent
+            .querySelector('.crs_popup[data-index="2"]')
+            .classList.remove("active");
+          parent
+            .querySelector('.crs_popup[data-index="3"]')
+            .classList.add("active");
+        }
+
+        clearInterval(startTimeInterval);
+        if (parent.innerText.includes("Pause Membership")) {
+          pushDataLayer([
+            `exp_impr_acc_v_pudnpm_ft`,
+            startTime,
+            "Visibility",
+            `Pop up did you now Pause Membership for 1 month`,
+          ]);
+        } else {
+          pushDataLayer([
+            `exp_impr_acc_v_pudn${eventName}_ft`,
+            startTime,
+            "Visibility",
+            `Pop up did you now ${plan} discount`,
+          ]);
+        }
+      } else if (item.closest('[data-index="3"]')) {
+        let obj = {};
+
+        obj.dataPopup = data;
+        obj.href = link;
+        obj.i = image;
+
+        localStorage.setItem("crsRoute", JSON.stringify(obj));
+
+        pushDataLayer([
+          "exp_impr_acc_b_pudngs_s",
+          "Submit",
+          "Button",
+          "Pop up did you now Gratitude for the support",
+        ]);
+
+        clearInterval(startTimeInterval);
+        pushDataLayer([
+          "exp_impr_acc_v_pudngs_ft",
+          startTime,
+          "Visibility",
+          "Pop up did you now Gratitude for the support",
+        ]);
+      }
+
+      startTime = 0;
+
+      startTimeInterval = setInterval(() => {
+        startTime += 1;
+      }, 1000);
+    });
+  });
 };
 
 function formatTimestamp(timestamp) {
@@ -1288,6 +1364,9 @@ const init = setInterval(() => {
     )
   ) {
     clearInterval(init);
+
+    let plan = localStorage.getItem("crsPlan");
+    let eventName = plan == "year" ? "yd" : "md";
 
     startTime = 0;
 
@@ -1439,6 +1518,7 @@ const init = setInterval(() => {
             if (item.closest('.crs_popup[data-index="0"]')) {
               //event
               clearInterval(startTimeInterval);
+              console.log(startTime);
               pushDataLayer([
                 "exp_impr_acc_v_pdynym_ft",
                 startTime,
@@ -1457,12 +1537,6 @@ const init = setInterval(() => {
               .querySelector('.crs_popup[data-index="1"]')
               .classList.add("active");
 
-            startTime = 0;
-
-            startTimeInterval = setInterval(() => {
-              startTime += 1;
-            }, 1000);
-
             setTimeout(() => {
               if (document.querySelector('.crs_popup.active[data-index="1"]')) {
                 clearInterval(startTimeInterval);
@@ -1477,6 +1551,12 @@ const init = setInterval(() => {
                   "https://www.doyogawithme.com/yoga-classes";
               }
             }, 3500);
+
+            startTime = 0;
+
+            startTimeInterval = setInterval(() => {
+              startTime += 1;
+            }, 1000);
           }
 
           if (item.closest('.crs_popup[data-index="1"]')) {
@@ -1501,20 +1581,49 @@ const init = setInterval(() => {
               "Website presence statistics",
             ]);
           } else if (item.closest(".crs_questions")) {
-            pushDataLayer(
+            pushDataLayer([
               "exp_impr_acc_b_sdc_like",
               `I’d like to keep my membership - {{input_value}} - {{radio_button}}`,
               "Button",
               "Still decided to cancel?"
-            );
+            ]);
           } else if (item.closest('.crs_popup[data-index="2"]')) {
             clearInterval(startTimeInterval);
-            pushDataLayer([
-              "exp_impr_acc_v_pudnyd_ft",
-              startTime,
-              "Visibility",
-              "Pop up did you now Year discount",
-            ]);
+            if (item.innerText.includes("Pause")) {
+              pushDataLayer([
+                `exp_impr_acc_b_pudnpm_p`,
+                "Pause",
+                "Button",
+                "Pop up did you now Pause Membership for 1 month",
+              ]);
+
+              pushDataLayer([
+                `exp_impr_acc_v_pudnpm_ft`,
+                startTime,
+                "Visibility",
+                `Pop up did you now Pause Membership for 1 month`,
+              ]);
+            } else {
+              pushDataLayer([
+                `exp_impr_acc_b_pudn${eventName}_gdy`,
+                item.innerText,
+                "Button",
+                `Pop up did you now ${plan} discount`,
+              ]);
+
+              pushDataLayer([
+                `exp_impr_acc_v_pudn${eventName}_ft`,
+                startTime,
+                "Visibility",
+                `Pop up did you now ${plan} discount`,
+              ]);
+            }
+
+            startTime = 0;
+
+            startTimeInterval = setInterval(() => {
+              startTime += 1;
+            }, 1000);
           }
         } else if (item.className.includes("white")) {
           if (item.closest('.crs_popup[data-index="0"]')) {
@@ -2323,7 +2432,7 @@ let headHTML = `
             <path d="M0.255198 7.39519C-0.0850662 7.72509 -0.0850662 8.27491 0.255198 8.60481L7.58979 15.7526C7.96786 16.0825 8.53497 16.0825 8.87524 15.7526L9.7448 14.9095C10.0851 14.5796 10.0851 14.0298 9.7448 13.6632L3.9225 7.98167L9.7448 2.33677C10.0851 1.97022 10.0851 1.42039 9.7448 1.09049L8.87524 0.247423C8.53497 -0.0824742 7.96786 -0.0824742 7.58979 0.247423L0.255198 7.39519Z" fill="#027DB8"/>
         </svg>
         <span>Back</span>
-    </a>
+    </a onclick="pushDataLayer(['exp_impr_acc_b_pudngs_c', 'Back', 'Button', 'Your card']);">
 </div>`;
 
 function initCheckout() {
@@ -2399,11 +2508,10 @@ function initCheckout() {
               )
               .insertAdjacentHTML(
                 "beforebegin",
-                `
-                              <div class="field-email form-item">
-                                  <label>Email</label>
-                                  <input type="email" readonly value="${email}">
-                              </div>`
+                ` <div class="field-email form-item">
+                      <label>Email</label>
+                      <input type="email" readonly value="${email}">
+                  </div>`
               );
           }
 
