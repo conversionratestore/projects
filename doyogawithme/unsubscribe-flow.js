@@ -37,7 +37,7 @@ const dataPopup = [
     year: "4",
     discount: "40% discount",
     title: "We have something just for you!",
-    content: `Our catalog is packed with over <b>350 beginner-friendly classes.</b> <br>
+    content: `Our catalog is packed with over <b>350 beginner-friendly classes.</b> <br><span class="mt-3 d-block"></span>
         Starting today you can enjoy <b class="c-blue">40% discount</b> and continue taking care of your wellbeing for just <b class="c-blue">$65.40 on our annual plan. </b> <br>
         <br><b class="mt-2 d-block"> How's that for affordable well-being?</b> `,
     btn: "Get my 40% off next year",
@@ -47,7 +47,7 @@ const dataPopup = [
     year: "2, 5",
     discount: "40% discount",
     title: "Continue your practice with a special offer",
-    content: `As a valued member, you can enjoy a <b class="c-blue">40% discount</b> on the annual plan and continue your wellness journey with all your favorite yoga classes for only <b class="c-blue">$65.40.</b><br><br><b> How's that for affordable well-being?</b> `,
+    content: `As a valued member, you can enjoy a <b class="c-blue">40% discount on the annual plan</b> and continue your wellness journey with all your favorite yoga classes for only <b class="c-blue">$65.40.</b><br><br><b> How's that for affordable well-being?</b> `,
     btn: "Get my 40% off next year",
     img: "image-6",
   },
@@ -63,7 +63,7 @@ const dataPopup = [
     mounthly: "4",
     discount: "3 months for just $13.99",
     title: "We have something just for you!",
-    content: `Our catalog is packed with over 350 beginner-friendly lasses. Starting today you can enjoy <b class="c-blue">3 months of classes for just $13.99</b>. <br><br> <b class="mt-2 d-block">How's that for affordable well-being?</b>`,
+    content: `Our catalog is packed with over 350 beginner-friendly classes. Starting today you can enjoy <b class="c-blue">3 months of classes for just $13.99</b>. <br><br> <b class="mt-2 d-block">How's that for affordable well-being?</b>`,
     btn: "Get my 3 months for $13.99</b>",
     img: "image-5",
   },
@@ -1107,7 +1107,72 @@ const html = `
 
 const media = window.matchMedia("(max-width: 767px)").matches;
 
+
+function formatTimestamp(timestamp) {
+  // Створення нового об'єкта Date на основі переданого мілісекундного таймстемпа
+  var date = new Date(timestamp * 1000); // timestamp повинен бути у секундах, а не мілісекундах, тому помножимо на 1000
+
+  // Масив назв місяців
+  var monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  // Отримання значень дня, місяця і року
+  var day = date.getDate();
+  var monthIndex = date.getMonth();
+  var year = date.getFullYear();
+
+  // Форматування рядка
+  var formattedDate = monthNames[monthIndex] + " " + day + ", " + year;
+
+  return formattedDate;
+}
+
+function addMonthsOrYearsToUnixTimestamp(timestamp, type) {
+  // Перетворюємо Unix timestamp в об'єкт дати
+  let date = new Date(timestamp * 1000);
+
+  // Додаємо місяці або роки в залежності від типу (months або years)
+  if (type === "mounthly") {
+    date.setMonth(date.getMonth() + 1);
+  } else {
+    date.setFullYear(date.getFullYear() + 12);
+  }
+
+  // Отримуємо числові значення дня та місяця
+  let day = date.getDate();
+  let month = date.toLocaleString("en-US", { month: "long" });
+
+  // Форматуємо результат у вигляді "dd Month"
+  let result = day + " " + month;
+
+  return result;
+}
+
 const popupDiscount = (parent, data, link) => {
+  let metrics = JSON.parse(
+    JSON.stringify(dataLayer).split('"metrics":')[1].split(',"user"')[0]
+  );
+
+  let resultAfterAdding = addMonthsOrYearsToUnixTimestamp(
+    metrics["account_created"],
+    localStorage.getItem("crsPlan")
+  );
+
+  let plan = localStorage.getItem("crsPlan");
+  let eventName = plan == "year" ? "yd" : "md";
+
   parent.insertAdjacentHTML(
     "beforeend",
     ` 
@@ -1145,8 +1210,8 @@ const popupDiscount = (parent, data, link) => {
                 </svg>
             </a>
             <h2>Thanks for being a DoYogaWithMe member!</h2>
-            <p class="c-green"><b>Annual membership</b></p>
-            <p>The new discounted plan will be billed immediately activated on your next renewal date on 18 August</p>
+            <p class="c-green"><b>${plan == "year" ? 'Annual membership' : '3 months membership'}</b></p>
+            <p>The new discounted plan will be billed immediately and activated on your next renewal date on ${resultAfterAdding}</p>
             <a href="${link}" class="crs_btn blue" onclick="localStorage.setItem('crsHref', window.location.href)">Submit</a>
         </div>
     </div>`
@@ -1156,8 +1221,6 @@ const popupDiscount = (parent, data, link) => {
     swipedUp(parent.querySelector('.crs_popup[data-index="2"] .crs_swiper'));
   }
 
-  let plan = localStorage.getItem("crsPlan");
-  let eventName = plan == "year" ? "yd" : "md";
 
   parent.querySelectorAll(".crs_popup .crs_popup_close").forEach((item) => {
     item.addEventListener("click", (e) => {
@@ -1313,58 +1376,6 @@ const popupDiscount = (parent, data, link) => {
   });
 };
 
-function formatTimestamp(timestamp) {
-  // Створення нового об'єкта Date на основі переданого мілісекундного таймстемпа
-  var date = new Date(timestamp * 1000); // timestamp повинен бути у секундах, а не мілісекундах, тому помножимо на 1000
-
-  // Масив назв місяців
-  var monthNames = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-
-  // Отримання значень дня, місяця і року
-  var day = date.getDate();
-  var monthIndex = date.getMonth();
-  var year = date.getFullYear();
-
-  // Форматування рядка
-  var formattedDate = monthNames[monthIndex] + " " + day + ", " + year;
-
-  return formattedDate;
-}
-
-function addMonthsOrYearsToUnixTimestamp(timestamp, type) {
-  // Перетворюємо Unix timestamp в об'єкт дати
-  let date = new Date(timestamp * 1000);
-
-  // Додаємо місяці або роки в залежності від типу (months або years)
-  if (type === "mounthly") {
-    date.setMonth(date.getMonth() + 1);
-  } else {
-    date.setFullYear(date.getFullYear() + 12);
-  }
-
-  // Отримуємо числові значення дня та місяця
-  let day = date.getDate();
-  let month = date.toLocaleString("en-US", { month: "long" });
-
-  // Форматуємо результат у вигляді "dd Month"
-  let result = day + " " + month;
-
-  return result;
-}
-
 const init = setInterval(() => {
   if (
     window.location.href.includes("/subscription/id/") &&
@@ -1400,7 +1411,7 @@ const init = setInterval(() => {
     document.querySelector(
       ".crs_questions_block"
     ).innerHTML = `If you proceed with the cancellation now, you will still be able to access premium content until ${resultAfterAdding}`;
-
+    
     document.querySelectorAll(".crs_page_item").forEach((item, index) => {
       if (index == 0) {
         item.querySelector("p:last-child").innerHTML = formatTimestamp(
