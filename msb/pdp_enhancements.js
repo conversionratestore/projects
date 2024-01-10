@@ -921,7 +921,7 @@
             <div class="crs__accordion_content" data-accordion="faq"></div>
           </li>
           <li class="crs__accordion_item">
-            <a href="#leather-unique-block-desktop" class="crs__accordion_title">Why Is Our Leather Unique?</a>
+            <a href="#leather-unique-block-desktop" class="crs__accordion_title link">Why Is Our Leather Unique?</a>
           </li>
           <li class="crs__accordion_item">
             <span class="crs__accordion_title">About Maxwell Scott Brand</span>
@@ -967,7 +967,11 @@
             item.classList.remove('active')
           }
         })
-        if (event.target && event.target.classList.contains('crs__accordion_title')) {
+        if (
+          event.target &&
+          event.target.classList.contains('crs__accordion_title') &&
+          !event.target.classList.contains('link')
+        ) {
           event.target.classList.toggle('active')
         }
       })
@@ -1557,6 +1561,9 @@
     #initStyles() {
       const style = /* HTML */ `
         <style>
+          .msb-product-details-col-left .features-wrapper {
+            border-bottom: none;
+          }
           .crs_size_chart {
             width: 100%;
             border: 1px solid #ccc;
@@ -1869,6 +1876,13 @@
             margin: 0 auto;
             padding: 0;
             padding-left: 20px;
+          }
+          .crs__accordion ul {
+            list-style: inside;
+            padding-left: 0 !important;
+          }
+          .crs__accordion ul li {
+            margin: 0 !important;
           }
           .crs__accordion_content {
             height: 0;
