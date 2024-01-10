@@ -1232,15 +1232,30 @@ const popupDiscount = (parent, data, link) => {
       }, 1000);
     });
   });
+
   parent.querySelectorAll(".crs_popup .crs_btn").forEach((item) => {
     item.addEventListener("click", (e) => {
       if (item.closest('[data-index="2"]')) {
+        clearInterval(startTimeInterval);
         if (e.target.innerText.includes("Pause Membership")) {
           document
             .querySelector(
               ".recurly-subscription-cancel-confirm-form .c-button--inlineBlock"
             )
             .click();
+            pushDataLayer([
+              `exp_impr_acc_b_pudnpm_p`,
+              "Pause",
+              "Button",
+              "Pop up did you now Pause Membership for 1 month",
+            ]);
+        
+            pushDataLayer([
+              `exp_impr_acc_v_pudnpm_ft`,
+              startTime,
+              "Visibility",
+              `Pop up did you now Pause Membership for 1 month`,
+            ]);
         } else {
           parent
             .querySelector('.crs_popup[data-index="2"]')
@@ -1248,23 +1263,20 @@ const popupDiscount = (parent, data, link) => {
           parent
             .querySelector('.crs_popup[data-index="3"]')
             .classList.add("active");
-        }
 
-        clearInterval(startTimeInterval);
-        if (parent.innerText.includes("Pause Membership")) {
-          pushDataLayer([
-            `exp_impr_acc_v_pudnpm_ft`,
-            startTime,
-            "Visibility",
-            `Pop up did you now Pause Membership for 1 month`,
-          ]);
-        } else {
-          pushDataLayer([
-            `exp_impr_acc_v_pudn${eventName}_ft`,
-            startTime,
-            "Visibility",
-            `Pop up did you now ${plan} discount`,
-          ]);
+            pushDataLayer([
+              `exp_impr_acc_b_pudn${eventName}_gdy`,
+              item.innerText,
+              "Button",
+              `Pop up did you now ${plan} discount`,
+            ]);
+        
+            pushDataLayer([
+              `exp_impr_acc_v_pudn${eventName}_ft`,
+              startTime,
+              "Visibility",
+              `Pop up did you now ${plan} discount`,
+            ]);
         }
       } else if (item.closest('[data-index="3"]')) {
         let obj = {};
@@ -1583,43 +1595,6 @@ const init = setInterval(() => {
               "Button",
               "Still decided to cancel?"
             ]);
-          } else if (item.closest('.crs_popup[data-index="2"]')) {
-            clearInterval(startTimeInterval);
-            if (item.innerText.includes("Pause")) {
-              pushDataLayer([
-                `exp_impr_acc_b_pudnpm_p`,
-                "Pause",
-                "Button",
-                "Pop up did you now Pause Membership for 1 month",
-              ]);
-
-              pushDataLayer([
-                `exp_impr_acc_v_pudnpm_ft`,
-                startTime,
-                "Visibility",
-                `Pop up did you now Pause Membership for 1 month`,
-              ]);
-            } else {
-              pushDataLayer([
-                `exp_impr_acc_b_pudn${eventName}_gdy`,
-                item.innerText,
-                "Button",
-                `Pop up did you now ${plan} discount`,
-              ]);
-
-              pushDataLayer([
-                `exp_impr_acc_v_pudn${eventName}_ft`,
-                startTime,
-                "Visibility",
-                `Pop up did you now ${plan} discount`,
-              ]);
-            }
-
-            startTime = 0;
-
-            startTimeInterval = setInterval(() => {
-              startTime += 1;
-            }, 1000);
           }
         } else if (item.className.includes("white")) {
           if (item.closest('.crs_popup[data-index="0"]')) {
@@ -1651,8 +1626,8 @@ const init = setInterval(() => {
               "Website presence statistics",
             ]);
             pushDataLayer([
-              "exp_impr_acc_b_wps_like",
-              "I’d like to keep my membership",
+              "exp_impr_acc_b_wps_cs",
+              "Cancel subscription",
               "Button",
               "Website presence statistics",
             ]);
