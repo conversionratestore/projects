@@ -47,8 +47,7 @@ const dataPopup = [
     year: "2, 5",
     discount: "40% discount",
     title: "Continue your practice with a special offer",
-    content: `As a valued member, you can enjoy a <b class="c-blue">40% discount</b> on the annual plan and continue your wellness journey with all your favorite yoga classes for only <b class="c-blue">$65.40.</b><br>
-    <br><b> How's that for affordable well-being?</b> `,
+    content: `As a valued member, you can enjoy a <b class="c-blue">40% discount</b> on the annual plan and continue your wellness journey with all your favorite yoga classes for only <b class="c-blue">$65.40.</b><br><br><b> How's that for affordable well-being?</b> `,
     btn: "Get my 40% off next year",
     img: "image-6",
   },
@@ -56,8 +55,7 @@ const dataPopup = [
     mounthly: "1, 6",
     discount: "3 months for just $13.99",
     title: "Continue your practice with a special offer!",
-    content: `Get the next <b class="c-blue">3 months for just $13.99</b> and continue on your wellness journey with our premier platform.<br>
-    <br><b class="mt-2 d-block">How's that for affordable well-being?</b>`,
+    content: `Get the next <b class="c-blue">3 months for just $13.99</b> and continue on your wellness journey with our premier platform.<br><br><b class="mt-2 d-block">How's that for affordable well-being?</b>`,
     btn: "Get my 3 months for $13.99",
     img: "image-3",
   },
@@ -65,8 +63,7 @@ const dataPopup = [
     mounthly: "4",
     discount: "3 months for just $13.99",
     title: "We have something just for you!",
-    content: `Our catalog is packed with over 350 beginner-friendly lasses. Starting today you can enjoy <b class="c-blue">3 months of classes for just $13.99</b>. <br>
-    <br> <b class="mt-2 d-block">How's that for affordable well-being?`,
+    content: `Our catalog is packed with over 350 beginner-friendly lasses. Starting today you can enjoy <b class="c-blue">3 months of classes for just $13.99</b>. <br><br> <b class="mt-2 d-block">How's that for affordable well-being?</b>`,
     btn: "Get my 3 months for $13.99</b>",
     img: "image-5",
   },
@@ -74,8 +71,7 @@ const dataPopup = [
     mounthly: "2, 5",
     discount: "3 months for just $13.99",
     title: "Continue your practice with a special offer",
-    content: `As a valued member, you can enjoy the next <b class="c-blue">3 months for just $13.99</b> and continue on your wellness journey with all your favorite yoga classes!<br>
-    <br><b class="mt-2 d-block">How's that for affordable well-being?</b>`,
+    content: `As a valued member, you can enjoy the next <b class="c-blue">3 months for just $13.99</b> and continue on your wellness journey with all your favorite yoga classes!<br><br><b class="mt-2 d-block">How's that for affordable well-being?</b>`,
     btn: "Get my 3 months for $13.99",
     img: "image-6",
   },
