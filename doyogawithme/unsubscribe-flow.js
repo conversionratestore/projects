@@ -1053,7 +1053,9 @@ const html = `
     </div>
     <div class="crs_popup active" data-index="0">
         <div class="crs_container d-flex">
-            <a href="https://www.doyogawithme.com/yogi/exampleexample/subscription" class="crs_popup_close" onclick="pushDataLayer(['exp_impr_acc_b_pdynym_c', 'Close', 'Button', 'Pop up did you now Your Membership Allows Us To Support Free Yoga'])">
+            <a href="https://www.doyogawithme.com/yogi/${
+              window.location.href.split("yogi/")[1].split("/subscription")[0]
+            }/subscription" class="crs_popup_close" onclick="pushDataLayer(['exp_impr_acc_b_pdynym_c', 'Close', 'Button', 'Pop up did you now Your Membership Allows Us To Support Free Yoga'])">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M20 20L4 4M20 4L4 20" stroke="white" stroke-width="2" stroke-linecap="round"/>
                 </svg>
@@ -1280,10 +1282,9 @@ const popupDiscount = (parent, data, link) => {
         }
       } else if (item.closest('[data-index="3"]')) {
         let obj = {};
-
+        
         obj.dataPopup = data;
         obj.href = link;
-        obj.i = image;
 
         localStorage.setItem("crsRoute", JSON.stringify(obj));
 
@@ -2395,15 +2396,13 @@ input[readonly] {
 let headHTML = `
 <div class="topbar">
     <a href="${
-      window.location.href.includes("/review")
-        ? "https://www.doyogawithme.com/checkout/23893/order_information"
-        : localStorage.getItem("crsHref")
+      localStorage.getItem("crsHref")
     }" class="btn-back flex items-center">
         <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0.255198 7.39519C-0.0850662 7.72509 -0.0850662 8.27491 0.255198 8.60481L7.58979 15.7526C7.96786 16.0825 8.53497 16.0825 8.87524 15.7526L9.7448 14.9095C10.0851 14.5796 10.0851 14.0298 9.7448 13.6632L3.9225 7.98167L9.7448 2.33677C10.0851 1.97022 10.0851 1.42039 9.7448 1.09049L8.87524 0.247423C8.53497 -0.0824742 7.96786 -0.0824742 7.58979 0.247423L0.255198 7.39519Z" fill="#027DB8"/>
         </svg>
         <span>Back</span>
-    </a onclick="pushDataLayer(['exp_impr_acc_b_pudngs_c', 'Back', 'Button', 'Your card']);">
+    </a onclick="pushDataLayer(['exp_impr_acc_b_pudngs_b', 'Back', 'Button', 'Your card']);">
 </div>`;
 
 function initCheckout() {
