@@ -957,7 +957,7 @@ const html = `
     <div class="crs_page">
         <div class="crs_container">
             <h1 class="text-md-center"><span>${
-              window.location.href.split("yogi/")[1].split("/subscription")[0]
+              window.location.href.includes('/subscription') ? window.location.href.split("yogi/")[1].split("/subscription")[0] : ''
             }</span>,you can choose to cancel today or commit to a lifelong journey of self-care, love, and acceptance</h1>
             <p class="text-md-center">Before you leave, why not take a look at all the self-care progress you've made?</p>
             <div class="d-md-flex">
@@ -1054,7 +1054,7 @@ const html = `
     <div class="crs_popup active" data-index="0">
         <div class="crs_container d-flex">
             <a href="https://www.doyogawithme.com/yogi/${
-              window.location.href.split("yogi/")[1].split("/subscription")[0]
+              window.location.href.includes('/subscription') ? window.location.href.split("yogi/")[1].split("/subscription")[0] : ''
             }/subscription" class="crs_popup_close" onclick="pushDataLayer(['exp_impr_acc_b_pdynym_c', 'Close', 'Button', 'Pop up did you now Your Membership Allows Us To Support Free Yoga'])">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M20 20L4 4M20 4L4 20" stroke="white" stroke-width="2" stroke-linecap="round"/>
