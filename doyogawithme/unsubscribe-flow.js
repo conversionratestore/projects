@@ -570,9 +570,10 @@ const style = `
     .crs_swiper {
         display: none!important;
     }
-    .crs_popup .crs_container {
+    .crs_popup:not([data-index="1"]) .crs_container {
         min-height: 624px;
     }
+    
 }
 @media only screen and (max-width: 767px) {
     .crs_popup[data-index="0"] img,
@@ -785,6 +786,69 @@ const style = `
 }
 </style>`;
 
+let startTime = 0;
+let startTimeInterval;
+
+function handleVisibility(el, eventParams) {
+  let isVisible = false;
+  let entryTime;
+  const config = {
+    root: null,
+    threshold: 0, // Trigger when any part of the element is out of viewport
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        if (!isVisible) {
+          // The element has become visible
+          isVisible = true;
+          entryTime = new Date().getTime();
+        }
+      } else if (isVisible) {
+        // The element is out of the viewport, calculate visibility duration
+        isVisible = false;
+        const exitTime = new Date().getTime();
+        const visibilityDuration = (exitTime - entryTime) / 1000; // Convert to seconds
+        const roundedDuration = Math.round(visibilityDuration);
+
+        if (roundedDuration) {
+          const eventData = eventParams;
+          eventData[1] = roundedDuration;
+          pushDataLayer(eventData);
+          observer.disconnect();
+        }
+      }
+    });
+  }, config);
+
+  observer.observe(el);
+}
+
+function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
+  // Send a Google Analytics event
+  const eventData = {
+    event: "event-to-ga4",
+    event_name,
+    event_desc,
+    event_type,
+    event_loc,
+  };
+
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push(eventData);
+  console.log(
+    event_name + " / " + event_desc + " / " + event_type + " / " + event_loc
+  );
+}
+
+const clarityInterval = setInterval(function () {
+  if (typeof clarity == "function") {
+    clearInterval(clarityInterval);
+    clarity("set", " exp_impr_acc", "variant_1");
+  }
+}, 200);
+
 const swipedUp = (swiper) => {
   const popup = swiper.closest(".crs_popup");
 
@@ -993,7 +1057,7 @@ const html = `
     </div>
     <div class="crs_popup active" data-index="0">
         <div class="crs_container d-flex">
-            <a href="https://www.doyogawithme.com/yogi/exampleexample/subscription" class="crs_popup_close">
+            <a href="https://www.doyogawithme.com/yogi/exampleexample/subscription" class="crs_popup_close" onclick="pushDataLayer(['exp_impr_acc_b_pdynym_c', 'Close', 'Button', 'Pop up did you now Your Membership Allows Us To Support Free Yoga'])">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M20 20L4 4M20 4L4 20" stroke="white" stroke-width="2" stroke-linecap="round"/>
                 </svg>
@@ -1093,7 +1157,17 @@ const popupDiscount = (parent, data, link) => {
   if (media) {
     swipedUp(parent.querySelector('.crs_popup[data-index="2"] .crs_swiper'));
   }
-
+  parent
+    .querySelector('.crs_popup[data-index="0"] .crs_popup_close')
+    .addEventListener("click", (e) => {
+      clearInterval(startTimeInterval);
+      pushDataLayer([
+        "exp_impr_acc_v_pdynym_ft",
+        startTime,
+        "Visibility",
+        "Pop up did you now Your Membership Allows Us To Support Free Yoga",
+      ]);
+    });
   parent
     .querySelector('.crs_popup[data-index="2"] .crs_popup_close')
     .addEventListener("click", (e) => {
@@ -1121,6 +1195,14 @@ const popupDiscount = (parent, data, link) => {
           .querySelector('.crs_popup[data-index="3"]')
           .classList.add("active");
       }
+
+      clearInterval(startTimeInterval);
+      pushDataLayer([
+        "exp_impr_acc_v_pudnyd_ft",
+        startTime,
+        "Visibility",
+        "Pop up did you now Year discount",
+      ]);
     });
   parent
     .querySelector('.crs_popup[data-index="3"] .crs_popup_close')
@@ -1207,6 +1289,12 @@ const init = setInterval(() => {
   ) {
     clearInterval(init);
 
+    startTime = 0;
+
+    startTimeInterval = setInterval(() => {
+      startTime += 1;
+    }, 1000);
+
     document.head.insertAdjacentHTML("beforeend", style);
     document
       .querySelector("#main-content")
@@ -1286,9 +1374,7 @@ const init = setInterval(() => {
             const link =
               "https://www.doyogawithme.com/express-checkout/" +
               (plan == "year" ? "142" : "141");
-            console.log(plan);
-            console.log(link);
-            console.log(radioIndex);
+
             for (let i = 0; i < dataPopup.length; i++) {
               if (dataPopup[i][plan]?.includes(radioIndex)) {
                 console.log(dataPopup[i]);
@@ -1304,9 +1390,38 @@ const init = setInterval(() => {
                   .classList.add("active");
               }
             }
+            pushDataLayer([
+              "exp_impr_acc_r_sdc_ac",
+              check.parentElement.innerText,
+              "Radio button",
+              "Still decided to cancel?",
+            ]);
+
+            clearInterval(startTimeInterval);
+            pushDataLayer([
+              "exp_impr_acc_v_sdc_ft",
+              startTime,
+              "Visibility",
+              "Still decided to cancel?",
+            ]);
+
+            startTime = 0;
+
+            startTimeInterval = setInterval(() => {
+              startTime += 1;
+            }, 1000);
           }
         }
       });
+    });
+
+    document.querySelector("textarea").addEventListener("change", () => {
+      pushDataLayer([
+        "exp_impr_acc_i_sdc_ya",
+        "Your answer",
+        "Input",
+        "Still decided to cancel?",
+      ]);
     });
 
     document.querySelectorAll(".crs_btn").forEach((item) => {
@@ -1320,16 +1435,86 @@ const init = setInterval(() => {
             document
               .querySelector('.crs_popup[data-index="0"]')
               .classList.remove("active");
+
+            if (item.closest('.crs_popup[data-index="0"]')) {
+              //event
+              clearInterval(startTimeInterval);
+              pushDataLayer([
+                "exp_impr_acc_v_pdynym_ft",
+                startTime,
+                "Visibility",
+                "Pop up did you now Your Membership Allows Us To Support Free Yoga",
+              ]);
+              pushDataLayer([
+                "exp_impr_acc_b_pdynym_like",
+                "I’d like to keep my membership",
+                "Button",
+                "Pop up did you now Your Membership Allows Us To Support Free Yoga",
+              ]);
+            }
+
             document
               .querySelector('.crs_popup[data-index="1"]')
               .classList.add("active");
 
+            startTime = 0;
+
+            startTimeInterval = setInterval(() => {
+              startTime += 1;
+            }, 1000);
+
             setTimeout(() => {
               if (document.querySelector('.crs_popup.active[data-index="1"]')) {
+                clearInterval(startTimeInterval);
+                pushDataLayer([
+                  "exp_impr_acc_v_pdynty_ft",
+                  startTime,
+                  "Visibility",
+                  "Pop up did you now Thank you for staying with us",
+                ]);
+
                 window.location.href =
                   "https://www.doyogawithme.com/yoga-classes";
               }
             }, 3500);
+          }
+
+          if (item.closest('.crs_popup[data-index="1"]')) {
+            clearInterval(startTimeInterval);
+            pushDataLayer([
+              "exp_impr_acc_v_pdynty_ft",
+              startTime,
+              "Visibility",
+              "Pop up did you now Thank you for staying with us",
+            ]);
+            pushDataLayer([
+              "exp_impr_acc_b_pdynty_c",
+              "Explore New Classes",
+              "Button",
+              "Pop up did you now Thank you for staying with us",
+            ]);
+          } else if (item.closest(".crs_page")) {
+            pushDataLayer([
+              "exp_impr_acc_b_wps_like",
+              "I’d like to keep my membership",
+              "Button",
+              "Website presence statistics",
+            ]);
+          } else if (item.closest(".crs_questions")) {
+            pushDataLayer(
+              "exp_impr_acc_b_sdc_like",
+              `I’d like to keep my membership - {{input_value}} - {{radio_button}}`,
+              "Button",
+              "Still decided to cancel?"
+            );
+          } else if (item.closest('.crs_popup[data-index="2"]')) {
+            clearInterval(startTimeInterval);
+            pushDataLayer([
+              "exp_impr_acc_v_pudnyd_ft",
+              startTime,
+              "Visibility",
+              "Pop up did you now Year discount",
+            ]);
           }
         } else if (item.className.includes("white")) {
           if (item.closest('.crs_popup[data-index="0"]')) {
@@ -1337,20 +1522,75 @@ const init = setInterval(() => {
               .querySelector('.crs_popup[data-index="0"]')
               .classList.remove("active");
             document.querySelector(".crs_page").classList.add("active");
+            clearInterval(startTimeInterval);
+            pushDataLayer([
+              "exp_impr_acc_v_pdynym_ft",
+              startTime,
+              "Visibility",
+              "Pop up did you now Your Membership Allows Us To Support Free Yoga",
+            ]);
+            pushDataLayer([
+              "exp_impr_acc_b_pdynym_cs",
+              "Cancel subscription",
+              "Button",
+              "Pop up did you now Your Membership Allows Us To Support Free Yoga",
+            ]);
           } else if (item.closest(".crs_page")) {
             document.querySelector(".crs_page").classList.remove("active");
             document.querySelector(".crs_questions").classList.add("active");
+            clearInterval(startTimeInterval);
+            pushDataLayer([
+              "exp_impr_acc_v_wps_ft",
+              startTime,
+              "Visibility",
+              "Website presence statistics",
+            ]);
+            pushDataLayer([
+              "exp_impr_acc_b_wps_like",
+              "I’d like to keep my membership",
+              "Button",
+              "Website presence statistics",
+            ]);
           } else if (
             item.closest(".crs_questions") &&
             !item.hasAttribute("disabled")
           ) {
             console.log("click questions cancel");
             document.querySelector("#edit-cancel--3").click();
+            pushDataLayer([
+              "exp_impr_acc_b_sdc_cs",
+              "Cancel subscription",
+              "Button",
+              "Still decided to cancel?",
+            ]);
           }
+
+          startTime = 0;
+
+          startTimeInterval = setInterval(() => {
+            startTime += 1;
+          }, 1000);
 
           window.scrollTo(0, 0);
         }
       });
+    });
+
+    //events
+    document.querySelector(".crs_btn_pause").addEventListener("click", () => {
+      clearInterval(startTimeInterval);
+      pushDataLayer([
+        "exp_impr_acc_v_pdynym_ft",
+        startTime,
+        "Visibility",
+        "Pop up did you now Your Membership Allows Us To Support Free Yoga",
+      ]);
+      pushDataLayer([
+        "exp_impr_acc_b_pdynym_ps",
+        "Pause subscription",
+        "Button",
+        "Pop up did you now Your Membership Allows Us To Support Free Yoga",
+      ]);
     });
   }
 });
@@ -1358,23 +1598,45 @@ const init = setInterval(() => {
 const subscription = setInterval(() => {
   if (document.querySelector(".subscription-links li.cancel a")) {
     clearInterval(subscription);
-    document
-      .querySelectorAll(".subscription-links li.cancel a")
-      .forEach((item) => {
-        item.addEventListener("click", () => {
+    document.querySelectorAll(".subscription-links li").forEach((item) => {
+      item.querySelector("a").addEventListener("click", () => {
+        if (item.classList.contains("cancel")) {
           const title = item
             .closest(".subscription")
             .querySelector(".total").innerText;
-          const plan = title.includes("108")
-            ? "year"
-            : title.includes("13.99")
-            ? "mounthly"
-            : "";
+          const plan =
+            title.includes("108") || title.includes("65")
+              ? "year"
+              : title.includes("13.99")
+              ? "mounthly"
+              : "";
           console.log(plan);
           if (plan == "") return;
           localStorage.setItem("crsPlan", plan);
-        });
+
+          pushDataLayer([
+            "exp_impr_acc_b_ysrm_c",
+            "Cancel",
+            "Button",
+            "Your Subscription Renews monthly",
+          ]);
+        } else if (item.classList.contains("pause")) {
+          pushDataLayer([
+            "exp_impr_acc_b_ysrm_p",
+            "Pause",
+            "Button",
+            "Your Subscription Renews monthly",
+          ]);
+        } else if (item.classList.contains("change")) {
+          pushDataLayer([
+            "exp_impr_acc_b_ysrm_cp",
+            "Change plan",
+            "Button",
+            "Your Subscription Renews monthly",
+          ]);
+        }
       });
+    });
   }
 });
 
