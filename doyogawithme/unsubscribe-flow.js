@@ -1523,6 +1523,8 @@ const init = setInterval(() => {
       ]);
     });
 
+    handleVisibility(document.querySelector('.crs_questions_block'), ['exp_impr_acc_v_sdc_info', '{{focusTime}}', 'Visibility', 'Still decided to cancel? If you proceed with the cancellation'])
+
     document.querySelectorAll(".crs_btn").forEach((item) => {
       item.addEventListener("click", (e) => {
         if (item.className.includes("green")) {
@@ -1600,10 +1602,17 @@ const init = setInterval(() => {
               "Button",
               "Website presence statistics",
             ]);
+            clearInterval(startTimeInterval);
+            pushDataLayer([
+              "exp_impr_acc_v_wps_ft",
+              startTime,
+              "Visibility",
+              "Website presence statistics",
+            ]);
           } else if (item.closest(".crs_questions")) {
             pushDataLayer([
               "exp_impr_acc_b_sdc_like",
-              `I’d like to keep my membership - {{input_value}} - {{radio_button}}`,
+              `I’d like to keep my membership - ${document.querySelector('textarea').value} - ${document.querySelector('.crs_radios input:checked').parentElement.innerText}`,
               "Button",
               "Still decided to cancel?"
             ]);
