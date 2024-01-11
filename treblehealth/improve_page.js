@@ -548,6 +548,9 @@ let treblehealthPages = setInterval(() => {
             }
             el.addEventListener("click", (e) => {
               if (!e.target.getAttribute("data-test")) {
+                if (e.currentTarget.closest("#hero")) {
+                  pushDataLayer("exp_res_surv_fun_but_based_answers", "Book a FREE Discovery Call", "Button", "Based on your answers");
+                }
                 if (e.currentTarget.closest("#frequentlyAskedQuestionsBlock")) {
                   pushDataLayer("exp_res_surv_fun_but_quest_discov", "Book a FREE Discovery Call", "Button", "Frequently Asked Questions");
                 }
@@ -869,7 +872,7 @@ let treblehealthPages = setInterval(() => {
         <section id="hero">
           <style>
             #hero{
-              padding: 60px 0 78px;
+              padding: 60px 0 32px;
               background: #FFF;
             }
             .new_header.is_fixed + #hero{
@@ -938,9 +941,13 @@ let treblehealthPages = setInterval(() => {
               color: #636A85;
               line-height: 20px;
             }
+            .chart_wrapp .call_your_free_btn{
+              max-width: 400px;
+              margin-top: 20px;
+            }
             @media (max-width: 768px) {
               #hero {
-                padding: 24px 0 15px;
+                padding: 24px 0;
               }
               .chart_wrapp{
                 margin: 0;
@@ -990,6 +997,7 @@ let treblehealthPages = setInterval(() => {
                   <p class=""><span class="current_month_txt">${this.currentMonth}</span><span class="next_current_month_txt">${this.nextCurrentMonth}</span><span class="relief_month_txt">${this.reliefMonth}</span></p>
                 </div>
                 <p class="chart_txt">*based on Treble Health users like you, <br class="mob_var"/> we predict you’ll find relief from tinnitus in <span>${this.disclaimerDates}</span> days</p>
+                <button class="call_your_free_btn">Book a FREE Discovery Call</button>              
               </div>
             </div>
           </div>
@@ -1028,6 +1036,7 @@ let treblehealthPages = setInterval(() => {
             }
             .proven_success_main p{
               font-weight: 500;
+              max-width: 295px;
             }
             @media (max-width: 768px) {
               #provenSuccess{
