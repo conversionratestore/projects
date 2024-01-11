@@ -79,6 +79,9 @@ const dataPopup = [
 
 const style = `
 <style>
+body.crs_fixed {
+  overflow: hidden!important;
+}
 #main-content * {
     box-sizing: border-box;
 }
@@ -617,7 +620,7 @@ const style = `
         position: absolute;
         left: 0;
         top: 0;
-        height: 12px;
+        height: 30px;
         width: 100%;
         z-index: 1;
         padding: 0!important;
@@ -625,7 +628,7 @@ const style = `
     .crs_swiper:before {
         content: '';
         position: absolute;
-        bottom: 0;
+        bottom: 18px;
         left: 50%;
         transform: translateX(-50%);
         height: 4px;
@@ -861,6 +864,8 @@ const swipedUp = (swiper) => {
           "https://www.doyogawithme.com/yogi/exampleexample/subscription";
       }
       popup.classList.remove("active");
+
+      document.body.classList.remove('crs_fixed')
     }
   });
 
@@ -896,6 +901,7 @@ const swipedUp = (swiper) => {
             "https://www.doyogawithme.com/yogi/exampleexample/subscription";
         }
         swiper.closest(".active").classList.remove("active");
+        document.body.classList.remove('crs_fixed')
       }
     }
   });
@@ -1224,6 +1230,9 @@ const popupDiscount = (parent, data, link) => {
 
   parent.querySelectorAll(".crs_popup .crs_popup_close").forEach((item) => {
     item.addEventListener("click", (e) => {
+
+      document.body.classList.remove('crs_fixed')
+
       if (item.closest('[data-index="0"]')) {
         clearInterval(startTimeInterval);
         pushDataLayer([
@@ -1274,6 +1283,8 @@ const popupDiscount = (parent, data, link) => {
         parent
           .querySelector('.crs_popup[data-index="2"]')
           .classList.add("active");
+
+        document.body.classList.add('crs_fixed')
 
         pushDataLayer([
           "exp_impr_acc_b_pudngs_c",
@@ -1328,6 +1339,8 @@ const popupDiscount = (parent, data, link) => {
           parent
             .querySelector('.crs_popup[data-index="3"]')
             .classList.add("active");
+
+            document.body.classList.add('crs_fixed')
 
             pushDataLayer([
               `exp_impr_acc_b_pudn${eventName}_gdy`,
@@ -1399,6 +1412,8 @@ const init = setInterval(() => {
       .querySelector("#main-content")
       .insertAdjacentHTML("beforeend", html);
 
+    document.body.classList.add('crs_fixed')
+
     let metrics = JSON.parse(
       JSON.stringify(dataLayer).split('"metrics":')[1].split(',"user"')[0]
     );
@@ -1452,6 +1467,8 @@ const init = setInterval(() => {
       document
         .querySelector('.crs_popup[data-index="2"]')
         .classList.add("active");
+
+        document.body.classList.add('crs_fixed')
     }
 
     document.querySelector(".crs_btn_pause").href = document.querySelector(
@@ -1487,6 +1504,9 @@ const init = setInterval(() => {
                 document
                   .querySelector('.crs_popup[data-index="2"]')
                   .classList.add("active");
+
+
+                document.body.classList.add('crs_fixed')
               }
             }
             pushDataLayer([
@@ -1559,6 +1579,8 @@ const init = setInterval(() => {
               .querySelector('.crs_popup[data-index="1"]')
               .classList.add("active");
 
+            document.body.classList.add('crs_fixed')
+
             setTimeout(() => {
               if (document.querySelector('.crs_popup.active[data-index="1"]')) {
                 clearInterval(startTimeInterval);
@@ -1623,6 +1645,9 @@ const init = setInterval(() => {
               .querySelector('.crs_popup[data-index="0"]')
               .classList.remove("active");
             document.querySelector(".crs_page").classList.add("active");
+
+            document.body.classList.remove('crs_fixed')
+
             clearInterval(startTimeInterval);
             pushDataLayer([
               "exp_impr_acc_v_pdynym_ft",
@@ -1639,6 +1664,9 @@ const init = setInterval(() => {
           } else if (item.closest(".crs_page")) {
             document.querySelector(".crs_page").classList.remove("active");
             document.querySelector(".crs_questions").classList.add("active");
+
+            document.body.classList.remove('crs_fixed')
+
             clearInterval(startTimeInterval);
             pushDataLayer([
               "exp_impr_acc_v_wps_ft",
@@ -1657,13 +1685,13 @@ const init = setInterval(() => {
             !item.hasAttribute("disabled")
           ) {
             console.log("click questions cancel");
-            document.querySelector("#edit-cancel--3").click();
             pushDataLayer([
               "exp_impr_acc_b_sdc_cs",
               "Cancel subscription",
               "Button",
               "Still decided to cancel?",
             ]);
+            document.querySelector("#edit-cancel--3").click();
           }
 
           startTime = 0;
@@ -2422,7 +2450,7 @@ let headHTML = `
             <path d="M0.255198 7.39519C-0.0850662 7.72509 -0.0850662 8.27491 0.255198 8.60481L7.58979 15.7526C7.96786 16.0825 8.53497 16.0825 8.87524 15.7526L9.7448 14.9095C10.0851 14.5796 10.0851 14.0298 9.7448 13.6632L3.9225 7.98167L9.7448 2.33677C10.0851 1.97022 10.0851 1.42039 9.7448 1.09049L8.87524 0.247423C8.53497 -0.0824742 7.96786 -0.0824742 7.58979 0.247423L0.255198 7.39519Z" fill="#027DB8"/>
         </svg>
         <span>Back</span>
-    </a onclick="pushDataLayer(['exp_impr_acc_b_pudngs_b', 'Back', 'Button', 'Your card']);">
+    </a>
 </div>`;
 
 function initCheckout() {
@@ -2451,6 +2479,11 @@ function initCheckout() {
         document
           .querySelector(".o-page__mainContent")
           .insertAdjacentHTML("afterbegin", headHTML);
+
+        //event
+        document.querySelector('.topbar a').addEventListener('click', () => {
+          pushDataLayer(['exp_impr_acc_b_pudngs_b', 'Back', 'Button', 'Your card']);
+        })
       }
 
       if (
