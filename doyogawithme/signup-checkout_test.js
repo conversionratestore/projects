@@ -1163,6 +1163,9 @@ function init() {
                 #edit-sidebar-coupon-redemption-form {
                     display: flex;
                 }
+                .coupon-redemption-form__coupons {
+                  width: 100%;
+                }
                 [data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"] {
                     height: fit-content;
                     margin: 28px 0 0 16px!important;
@@ -1632,7 +1635,10 @@ function init() {
         }
       }, 100);
 
-      if (document.querySelector("#edit-coupon-redemption") != null && document.querySelector(".btn_got_coupon") == null) {
+      if (document.querySelector("#edit-coupon-redemption") != null && 
+        document.querySelector(".btn_got_coupon") == null && 
+        !document.querySelector("#edit-coupon-redemption")?.innerText.includes('Applied')
+      ) {
         document.querySelector("#edit-coupon-redemption").insertAdjacentHTML(
           "beforebegin",
           `
@@ -1648,6 +1654,9 @@ function init() {
           clickApplyCoupon = false;
           pushDataLayer("exp_ch_pl_page_coupon_link", "Got a Coupon?", "Link", loc);
         });
+      } 
+      if (document.querySelector("#edit-coupon-redemption")?.innerText.includes('Applied')) {
+        document.querySelector("#edit-coupon-redemption").classList.add("active");
       }
 
       document.querySelector(".layout-region-checkout-secondary").insertAdjacentHTML(
@@ -1755,7 +1764,11 @@ let setLabelObls = setInterval(() => {
 });
 
 let applyCoupon = setInterval(() => {
-  if (document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]') != null && document.querySelector(".field-email") == null && document.querySelector(".btn_got_coupon") == null) {
+  if (document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]') != null && 
+    document.querySelector(".field-email") == null && 
+    document.querySelector(".btn_got_coupon") == null &&
+    !document.querySelector("#edit-coupon-redemption")?.innerText.includes('Applied')
+  ) {
     init();
   }
 }, 200);
@@ -1826,7 +1839,11 @@ let optionMut = {
 };
 
 let mut = new MutationObserver(function (muts) {
-  if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value !== "" && !document.querySelector(".saved_block") && window.location.pathname.includes("checkout/")) {
+  if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value !== "" && 
+    !document.querySelector(".saved_block") && 
+    window.location.pathname.includes("checkout/") && 
+    document.querySelector(".views-field.views-field-total-price__number")?.innerHTML.includes("$108.99")
+  ) {
     mut.disconnect();
     console.log(`object >>>>>>>>>>>>>>>>>>>>`);
     init();
