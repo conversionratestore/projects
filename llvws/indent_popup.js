@@ -130,6 +130,7 @@ class IndentPopup {
 
   init() {
     const currentUrl = location.href
+    console.log(currentUrl.includes(this.targetUrl))
     if (!currentUrl.includes(this.targetUrl)) {
       return
     }
@@ -1142,6 +1143,9 @@ const nyeFireworkYachtCruise = new IndentPopup(
     image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/Fireworks__1___1__lg.png'
   }
 )
+
+nyeFireworkYachtCruise.init();
+
 const jingleOnTheWaves = new IndentPopup(
   'jingle-on-the-waves-christmas-cruise',
   24.99,
