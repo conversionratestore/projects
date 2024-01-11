@@ -1895,6 +1895,12 @@
     }
 
     $(document).on('click', function (e) {
+      if (e.target.closest('.lav-dropdown__item')) {
+        pushDataLayer(['exp_onbo_plan_com_drop_allwhere_item', 'Countries', 'Item', 'All locations. Where are you going?']);
+
+        e.target.closest('.ProductItem').querySelector('a').click();
+      }
+
       if (!e.target.closest('.lav-dropdown')) {
         $('.lav-dropdown__body').slideUp()
         $('.lav-dropdown').removeClass('active')
@@ -2199,7 +2205,7 @@
       const stylesEl = document.createElement('style')
       stylesEl.classList.add('exp-cards')
       stylesEl.innerHTML = styles
-      document.head.appendChild(stylesEl)
+      document.body.appendChild(stylesEl)
     }
   }
 

@@ -1896,7 +1896,6 @@
 
     $(document).on('click', function (e) {
       if (e.target.closest('.lav-dropdown__item')) {
-        console.debug('push')
         pushDataLayer(['exp_onbo_plan_com_drop_allwhere_item', 'Countries', 'Item', 'All locations. Where are you going?']);
 
         e.target.closest('.ProductItem').querySelector('a').click();
