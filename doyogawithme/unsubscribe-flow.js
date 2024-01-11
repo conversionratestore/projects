@@ -566,9 +566,6 @@ body.crs_fixed {
         width: auto;
         margin: auto -60px 0 ;
     }
-    .crs_swiper {
-        display: none!important;
-    }
     .crs_popup:not([data-index="1"], [data-index="3"]) .crs_container {
         min-height: 624px;
     }
@@ -576,7 +573,6 @@ body.crs_fixed {
 }
 @media only screen and (max-width: 767px) {
     .crs_popup[data-index="0"] img,
-    .crs_popup:not([data-index="3"]) .crs_popup_close,
     .crs_questions > div > img {
         display: none;
     }
@@ -615,29 +611,6 @@ body.crs_fixed {
     }
     .crs_btn.blue {
         margin-top; 16px;
-    }
-    .crs_swiper {
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 30px;
-        width: 100%;
-        z-index: 1;
-        padding: 0!important;
-    }
-    .crs_swiper:before {
-        content: '';
-        position: absolute;
-        bottom: 18px;
-        left: 50%;
-        transform: translateX(-50%);
-        height: 4px;
-        border-radius: 10px;
-        background: #017922;     
-        width: 80px;
-    }
-    .crs_swiper.white:before {
-        background: #fff;
     }
     .crs_gray_block {
         padding: 12px 10px;
@@ -782,6 +755,19 @@ body.crs_fixed {
     .crs_btn_pause {
         font-size: 16px!important;
     }
+    .crs_popup_close {
+      top: 4px;
+      right: 0;
+    }
+    .crs_popup .crs_container > div {
+      padding-top: 12px;
+    }
+    .crs_popup[data-index="0"] h2 {
+      padding-right: 24px;
+    }
+    .crs_popup[data-index="0"] .crs_popup_close svg path {
+      stroke: #000;
+    }
 }
 </style>`;
 
@@ -847,67 +833,6 @@ const clarityInterval = setInterval(function () {
     clarity("set", " exp_impr_acc", "variant_1");
   }
 }, 200);
-
-const swipedUp = (swiper) => {
-  const popup = swiper.closest(".crs_popup");
-
-  console.log(swiper);
-  console.log(popup);
-
-  popup.addEventListener("click", (e) => {
-    if (e.target.className.includes("crs_popup")) {
-      if (swiper.closest(".active").dataset.index == "2") {
-        document.querySelector(".crs_questions").classList.add("active");
-        localStorage.removeItem("crsRoute");
-      } else {
-        window.location.href =
-          "https://www.doyogawithme.com/yogi/exampleexample/subscription";
-      }
-      popup.classList.remove("active");
-
-      document.body.classList.remove('crs_fixed')
-    }
-  });
-
-  let touchStartX = 0;
-  let touchStartY = 0;
-
-  swiper.addEventListener("touchstart", (e) => {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-  });
-
-  swiper.addEventListener("touchend", (e) => {
-    const touchEndX = e.changedTouches[0].clientX;
-    const touchEndY = e.changedTouches[0].clientY;
-    const deltaX = touchEndX - touchStartX;
-    const deltaY = touchEndY - touchStartY;
-
-    if (Math.abs(deltaX) > Math.abs(deltaY)) {
-      if (deltaX > 0) {
-        console.log("Swiped right");
-      } else {
-        console.log("Swiped left");
-      }
-    } else {
-      if (deltaY > 0) {
-        console.log("Swiped down");
-
-        if (swiper.closest(".active").dataset.index == "2") {
-          document.querySelector(".crs_questions").classList.add("active");
-          localStorage.removeItem("crsRoute");
-        } else {
-          window.location.href =
-            "https://www.doyogawithme.com/yogi/exampleexample/subscription";
-        }
-        swiper.closest(".active").classList.remove("active");
-        document.body.classList.remove('crs_fixed')
-      }
-    }
-  });
-};
-
-// Додаємо обробник події для свайпу вниз
 
 const lotus = `
 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1067,7 +992,6 @@ const html = `
                 </svg>
             </a>
             <div>
-                <div class="crs_swiper"></div>
                 <h2>Your Membership Allows Us To Support Free Yoga</h2>
                 <p>Thanks to your membership we can:</p>
                 <ul>
@@ -1166,6 +1090,83 @@ function addMonthsOrYearsToUnixTimestamp(timestamp, type) {
   return result;
 }
 
+function closeOutside(parent) {
+  parent.querySelectorAll('.crs_popup').forEach((item) => {
+    item.addEventListener("click", (e) => {
+      if (!e.target.closest('.crs_container')) {
+        if (item.dataset.index == "2") {
+          parent.querySelector(".crs_questions").classList.add("active");
+          localStorage.removeItem("crsRoute");
+
+          let plan = localStorage.getItem("crsPlan");
+          let eventName = plan == "year" ? "yd" : "md";
+
+          clearInterval(startTimeInterval);
+          if (parent.innerText.includes("Pause Membership")) {
+            pushDataLayer([
+              `exp_impr_acc_b_pudnpm_co`,
+              "Close Outside",
+              "Button",
+              "Pop up did you now Pause Membership for 1 month",
+            ]);
+            pushDataLayer([
+              `exp_impr_acc_v_pudnpm_ft`,
+              startTime,
+              "Visibility",
+              `Pop up did you now Pause Membership for 1 month`,
+            ]);
+          } else {
+            pushDataLayer([
+              `exp_impr_acc_b_pudn${eventName}_co`,
+              "Close Outside",
+              "Button",
+              `Pop up did you now ${plan} discount`,
+            ]);
+            pushDataLayer([
+              `exp_impr_acc_v_pudn${eventName}_ft`,
+              startTime,
+              "Visibility",
+              `Pop up did you now ${plan} discount`,
+            ]);
+          }
+        } else if (item.dataset.index == "3") {
+          parent.querySelector('.crs_popup[data-index="2"]').classList.add("active");
+          pushDataLayer([
+            "exp_impr_acc_b_pudngs_co",
+            "Close Outside",
+            "Button",
+            "Pop up did you now Gratitude for the support ",
+          ]);
+
+          clearInterval(startTimeInterval);
+          pushDataLayer([
+            "exp_impr_acc_v_pudngs_ft",
+            startTime,
+            "Visibility",
+            "Pop up did you now Gratitude for the support",
+          ]);
+        } else {
+          pushDataLayer(['exp_impr_acc_b_pdynym_co', 'Close Outside', 'Button', 'Pop up did you now Your Membership Allows Us To Support Free Yoga'])
+          clearInterval(startTimeInterval);
+          pushDataLayer([
+            "exp_impr_acc_v_pdynym_ft",
+            startTime,
+            "Visibility",
+            "Pop up did you now Your Membership Allows Us To Support Free Yoga",
+          ]);
+
+          window.location.href =
+            "https://www.doyogawithme.com/yogi/exampleexample/subscription";
+
+        }
+        item.classList.remove("active");
+        
+        document.body.classList.remove('crs_fixed')
+      }
+    });
+  });
+}
+
 const popupDiscount = (parent, data, link) => {
   let metrics = JSON.parse(
     JSON.stringify(dataLayer).split('"metrics":')[1].split(',"user"')[0]
@@ -1184,7 +1185,6 @@ const popupDiscount = (parent, data, link) => {
     ` 
     <div class="crs_popup" data-index="2">
         <div class="crs_container d-flex">
-            <div class="crs_swiper white"></div>
             <a href="#" class="crs_popup_close">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M20 20L4 4M20 4L4 20" stroke="white" stroke-width="2" stroke-linecap="round"/>
@@ -1222,11 +1222,6 @@ const popupDiscount = (parent, data, link) => {
         </div>
     </div>`
   );
-
-  if (media) {
-    swipedUp(parent.querySelector('.crs_popup[data-index="2"] .crs_swiper'));
-  }
-
 
   parent.querySelectorAll(".crs_popup .crs_popup_close").forEach((item) => {
     item.addEventListener("click", (e) => {
@@ -1387,6 +1382,10 @@ const popupDiscount = (parent, data, link) => {
       }, 1000);
     });
   });
+  if (media) {
+    closeOutside(parent)
+  }
+
 };
 
 const init = setInterval(() => {
@@ -1408,9 +1407,12 @@ const init = setInterval(() => {
     }, 1000);
 
     document.head.insertAdjacentHTML("beforeend", style);
-    document
-      .querySelector("#main-content")
+    document.querySelector("#main-content")
       .insertAdjacentHTML("beforeend", html);
+
+    if (media) {
+      closeOutside(document.querySelector("#main-content"))
+    }
 
     document.body.classList.add('crs_fixed')
 
@@ -1443,12 +1445,6 @@ const init = setInterval(() => {
           metrics["watchtime_minutes"];
       }
     });
-
-    if (media) {
-      swipedUp(
-        document.querySelector('.crs_popup[data-index="0"] .crs_swiper')
-      );
-    }
 
     if (localStorage.getItem("crsRoute")) {
       let data = JSON.parse(localStorage.getItem("crsRoute"));
