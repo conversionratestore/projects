@@ -1895,6 +1895,13 @@
     }
 
     $(document).on('click', function (e) {
+      if (e.target.closest('.lav-dropdown__item')) {
+        console.debug('push')
+        pushDataLayer(['exp_onbo_plan_com_drop_allwhere_item', 'Countries', 'Item', 'All locations. Where are you going?']);
+
+        e.target.closest('.ProductItem').querySelector('a').click();
+      }
+
       if (!e.target.closest('.lav-dropdown')) {
         $('.lav-dropdown__body').slideUp()
         $('.lav-dropdown').removeClass('active')
@@ -1971,7 +1978,7 @@
         )
       }
 
-      dropdownEl.addEventListener('click', function () {
+      dropdownEl.addEventListener('click', function (e) {
         if (window.innerWidth > 767) return false
 
         pushDataLayer(['exp_onbo_plan_com_drop_allwhere_coun', 'Countries', 'Dropdown', 'All locations. Where are you going?'])
@@ -2199,7 +2206,7 @@
       const stylesEl = document.createElement('style')
       stylesEl.classList.add('exp-cards')
       stylesEl.innerHTML = styles
-      document.head.appendChild(stylesEl)
+      document.body.appendChild(stylesEl)
     }
   }
 
