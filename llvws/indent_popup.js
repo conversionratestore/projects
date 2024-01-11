@@ -130,7 +130,7 @@ class IndentPopup {
 
   init() {
     const currentUrl = location.href
-    console.log(currentUrl.includes(this.targetUrl))
+
     if (!currentUrl.includes(this.targetUrl)) {
       return
     }
@@ -237,8 +237,8 @@ class IndentPopup {
     const discountPopup = /* HTML */ `
       <div class="discount__popup">
         <div class="discount__header">
-          BOOK NOW
-          & <br> get <span>10% OFF</span> on your tickets
+          BOOK NOW & <br />
+          get <span>10% OFF</span> on your tickets
         </div>
         ${timer}
         <div class="discount__product">
@@ -1132,19 +1132,21 @@ const nyeFireworkYachtCruise = new IndentPopup(
   'nye-firework-yacht-cruise',
   54.99,
   'https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/nye.png',
-  {
-    title: 'Jingle On The Waves: Christmas Cruise',
-    link: 'https://lakelasvegaswatersports.com/jingle-on-the-waves-christmas-cruise/',
-    image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/11/red_xmas_yacht.png'
-  },
-  {
-    title: 'New Years Eve Electric Boat Rental (Champagne included)',
-    link: 'https://lakelasvegaswatersports.com/new-years-eve-electric-boat-rental-champagne-included-at-lake-las-vegas/',
-    image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/Fireworks__1___1__lg.png'
-  }
+  [
+    {
+      title: 'Jingle On The Waves: Christmas Cruise',
+      link: 'https://lakelasvegaswatersports.com/jingle-on-the-waves-christmas-cruise/',
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/11/red_xmas_yacht.png'
+    },
+    {
+      title: 'New Years Eve Electric Boat Rental (Champagne included)',
+      link: 'https://lakelasvegaswatersports.com/new-years-eve-electric-boat-rental-champagne-included-at-lake-las-vegas/',
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/Fireworks__1___1__lg.png'
+    }
+  ]
 )
 
-nyeFireworkYachtCruise.init();
+nyeFireworkYachtCruise.init()
 
 const jingleOnTheWaves = new IndentPopup(
   'jingle-on-the-waves-christmas-cruise',
