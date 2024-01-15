@@ -39,6 +39,16 @@ class DoubleTap {
       }
       pack.addEventListener('click', e => {
         e.preventDefault()
+        const qty = +pack.querySelector('label').childNodes[0].textContent.trim().split(' ')[0]
+        const price = +pack
+          .querySelector('label span')
+          .innerText.trim()
+          .split(' ')[0]
+          .replace(/[^0-9.-]+/g, '')
+
+        const total = (price * qty).toLocaleString(undefined, { minimumFractionDigits: 2 })
+        const save = [40, 45, 51, 57]
+
         pack.querySelector('input').checked = true
         let hrefArr = $el('#addToCart').getAttribute('href').split('?')
         let href = `/cart/${pack.querySelector('input').value}:1${hrefArr[1] ? '?' + hrefArr[1] : ''}`
@@ -52,7 +62,16 @@ class DoubleTap {
           )
           window.location.href = href
         } else {
+          pushDataLayer(
+            'exp_first_tap_click',
+            `First tap ${pack.querySelector('label').childNodes[0].textContent.trim()}`,
+            'click',
+            'packs'
+          )
           $el('.js-packs.crs-double-tap').classList.remove('crs-double-tap')
+          $el('.js-total .pr').innerText = `${total}`
+          $el('.js-total .ps').innerText = `${save[qty - 1]}`
+
           pack.classList.add('crs-double-tap')
         }
       })
