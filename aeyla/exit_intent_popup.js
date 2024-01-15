@@ -20,7 +20,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
 const clarityInterval = setInterval(function () {
   if (typeof clarity == 'function') {
     clearInterval(clarityInterval)
-    clarity('set', '', 'variant_1')
+    clarity('set', 'exp_exit_popup', 'variant_1')
   }
 }, 1000)
 
