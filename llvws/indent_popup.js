@@ -1013,9 +1013,9 @@ const pontoonBoat = new IndentPopup(
   'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/P2_lg-1024x683.png',
   [
     {
-      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/nye.png',
-      title: 'Nye Firework Yacht Cruise',
-      link: 'https://lakelasvegaswatersports.com/nye-firework-yacht-cruise/'
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/photo_2023_06_02_00_32_05_lg.jpg',
+      title: 'Pink Electric Boat Rental at Lake Las Vegas',
+      link: 'https://lakelasvegaswatersports.com/pink-electric-boat-rental-at-lake-las-vegas/'
     },
     {
       image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2022/10/IMG_9594-3-1024x683.jpg',
@@ -1032,9 +1032,9 @@ const pinkElectricBoat = new IndentPopup(
   'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/photo_2023_06_02_00_32_05_lg.jpg',
   [
     {
-      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/Fireworks_lg.jpeg',
-      title: 'New Years Eve Electric Boat',
-      link: 'https://lakelasvegaswatersports.com/new-years-eve-electric-boat-rental-champagne-included-at-lake-las-vegas/'
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/P2_lg-1024x683.png',
+      title: 'Swimmable Pontoon Boat Rental at Lake Las Vegas',
+      link: 'https://lakelasvegaswatersports.com/swimmable-pontoon-boat-rental-at-lake-las-vegas/'
     },
     {
       image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2022/06/DuffyDate-5-1-1024x683.jpg',
@@ -1052,174 +1052,16 @@ const twoHourElectricBoat = new IndentPopup(
   'https://lakelasvegaswatersports.com/wp-content/uploads/2022/06/772A2702-1-scaled.jpg',
   [
     {
-      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/11/red_xmas_yacht.png',
-      link: 'https://lakelasvegaswatersports.com/jingle-on-the-waves-christmas-cruise',
-      title: 'Jingle On The Waves: Christmas Cruise'
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/P2_lg-1024x683.png',
+      title: 'Swimmable Pontoon Boat Rental at Lake Las Vegas',
+      link: 'https://lakelasvegaswatersports.com/swimmable-pontoon-boat-rental-at-lake-las-vegas/'
     },
     {
-      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2022/09/IMG_0092__2__transformed_lg.jpeg',
-      link: 'https://lakelasvegaswatersports.com/kayak-rentals/',
-      title: 'Kayak Rentals'
-    }
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/photo_2023_06_02_00_32_05_lg.jpg',
+      title: 'Pink Electric Boat Rental at Lake Las Vegas',
+      link: 'https://lakelasvegaswatersports.com/pink-electric-boat-rental-at-lake-las-vegas/'
+    },
   ]
 )
 
 twoHourElectricBoat.init()
-
-const kayakRentals = new IndentPopup(
-  'kayak-rentals',
-  28,
-  'https://lakelasvegaswatersports.com/wp-content/uploads/2022/09/IMG_0092__2__transformed_lg.jpeg',
-  [
-    {
-      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2022/06/772A2702-1-scaled.jpg',
-      link: 'https://lakelasvegaswatersports.com/2-hour-electric-boat-rental/',
-      title: '2 Hour Electric Boat'
-    },
-    {
-      image:
-        'https://lakelasvegaswatersports.com/wp-content/uploads/2023/11/Red_Santa_Hat_Christmas_Greeting_Card-1024x538.png',
-      link: 'https://lakelasvegaswatersports.com/santa-sail-kid-friendly-yacht-cruise/',
-      title: 'Santa Sail - Kid Friendly Yacht Cruise'
-    }
-  ]
-)
-
-kayakRentals.init()
-
-const electricSurfboardExperience = new IndentPopup(
-  'e-foil-lessons',
-  225,
-  'https://lakelasvegaswatersports.com/wp-content/uploads/2022/04/2022_04_26_10.42.09_lg-1024x682.jpg',
-  [
-    {
-      title: 'Nye Firework Yacht Cruise',
-      link: 'https://lakelasvegaswatersports.com/nye-firework-yacht-cruise/',
-      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/nye.png'
-    },
-    {
-      title: '2 Hour Electric Boat',
-      link: 'https://lakelasvegaswatersports.com/2-hour-electric-boat-rental/',
-      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2022/06/772A2702-1-scaled.jpg'
-    }
-  ]
-)
-
-electricSurfboardExperience.init()
-
-const newYearsEveElectricBoat = new IndentPopup(
-  'new-years-eve-electric-boat-rental-champagne-included-at-lake-las-vegas',
-  58,
-  'https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/Fireworks__1___1__lg.png',
-  [
-    {
-      title: 'Jingle On The Waves: Christmas Cruise',
-      link: 'https://lakelasvegaswatersports.com/jingle-on-the-waves-christmas-cruise/',
-      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/11/red_xmas_yacht.png'
-    },
-    {
-      title: 'Santa Sail - Kid Friendly Yacht Cruise',
-      link: 'https://lakelasvegaswatersports.com/santa-sail-kid-friendly-yacht-cruise/',
-      image:
-        'https://lakelasvegaswatersports.com/wp-content/uploads/2023/11/Red_Santa_Hat_Christmas_Greeting_Card-1024x538.png'
-    }
-  ]
-)
-
-newYearsEveElectricBoat.init()
-
-const nyeFireworkYachtCruise = new IndentPopup(
-  'nye-firework-yacht-cruise',
-  54.99,
-  'https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/nye.png',
-  [
-    {
-      title: 'Jingle On The Waves: Christmas Cruise',
-      link: 'https://lakelasvegaswatersports.com/jingle-on-the-waves-christmas-cruise/',
-      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/11/red_xmas_yacht.png'
-    },
-    {
-      title: 'New Years Eve Electric Boat Rental (Champagne included)',
-      link: 'https://lakelasvegaswatersports.com/new-years-eve-electric-boat-rental-champagne-included-at-lake-las-vegas/',
-      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/Fireworks__1___1__lg.png'
-    }
-  ]
-)
-
-nyeFireworkYachtCruise.init()
-
-const jingleOnTheWaves = new IndentPopup(
-  'jingle-on-the-waves-christmas-cruise',
-  24.99,
-  'https://lakelasvegaswatersports.com/wp-content/uploads/2023/11/red_xmas_yacht.png',
-  [
-    {
-      title: 'Nye Firework Yacht Cruise',
-      link: 'https://lakelasvegaswatersports.com/nye-firework-yacht-cruise/',
-      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/nye.png'
-    },
-    {
-      title: 'Santa Sail - Kid Friendly Yacht Cruise',
-      link: 'https://lakelasvegaswatersports.com/santa-sail-kid-friendly-yacht-cruise/',
-      image:
-        'https://lakelasvegaswatersports.com/wp-content/uploads/2023/11/Red_Santa_Hat_Christmas_Greeting_Card-1024x538.png'
-    }
-  ]
-)
-
-jingleOnTheWaves.init()
-
-const santaSail = new IndentPopup(
-  'santa-sail-kid-friendly-yacht-cruise',
-  24.99,
-  'https://lakelasvegaswatersports.com/wp-content/uploads/2023/11/Red_Santa_Hat_Christmas_Greeting_Card-1024x538.png',
-  [
-    {
-      title: 'Nye Firework Yacht Cruise',
-      link: 'https://lakelasvegaswatersports.com/nye-firework-yacht-cruise/',
-      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/nye.png'
-    },
-    {
-      title: 'Jingle On The Waves: Christmas Cruise',
-      link: 'https://lakelasvegaswatersports.com/jingle-on-the-waves-christmas-cruise/',
-      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/11/red_xmas_yacht.png'
-    }
-  ]
-)
-
-santaSail.init()
-
-const mimosaCruise = new IndentPopup(
-  'mimosa-cruise-lake-las-vegas',
-  19.99,
-  'https://lakelasvegaswatersports.com/wp-content/uploads/2023/07/photo_2023-07-06_04-11-13-1-1024x536.jpg',
-  [
-    {
-      title: 'New Years Eve Electric Boat Rental (Champagne included)',
-      link: 'https://lakelasvegaswatersports.com/new-years-eve-electric-boat-rental-champagne-included-at-lake-las-vegas/',
-      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/Fireworks__1___1__lg.png'
-    },
-    {
-      title: 'Jingle On The Waves: Christmas Cruise',
-      link: 'https://lakelasvegaswatersports.com/jingle-on-the-waves-christmas-cruise/',
-      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/11/red_xmas_yacht.png'
-    }
-  ]
-)
-
-mimosaCruise.init()
-
-const latinNightCruise = new IndentPopup('latin-night-cruise-at-lake-las-vegas', 19.99, '', [
-  {
-    title: 'New Years Eve Electric Boat Rental (Champagne included)',
-    link: 'https://lakelasvegaswatersports.com/new-years-eve-electric-boat-rental-champagne-included-at-lake-las-vegas/',
-    image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/Fireworks__1___1__lg.png'
-  },
-  {
-    title: 'Nye Firework Yacht Cruise',
-    link: 'https://lakelasvegaswatersports.com/nye-firework-yacht-cruise/',
-    image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/12/nye.png'
-  }
-])
-
-latinNightCruise.init()
