@@ -875,7 +875,7 @@
     }
     #mobilePdpChanges() {
       waitForElement('.product-info-stock-and-review').then(el => {
-        const reviewSummary = el.querySelector('.product-reviews-summary');
+        const reviewSummary = el.querySelector('.product-reviews-summary')
         if (reviewSummary) {
           $el('.product-info-main .page-title-wrapper').after(reviewSummary)
         }
@@ -2134,6 +2134,7 @@
           }
           .product-social-links {
             visibility: hidden;
+            position: absolute;
             height: 0;
           }
 
@@ -2612,18 +2613,26 @@
             }
           }
           @media (max-width: 769px) {
+            .product-info-main {
+              padding: 0 20px;
+            }
+            .product-info-main .msb-product-details-col-right,
+            .product-info-main .msb-product-details-col-left {
+              padding: 0 !important;
+            }
+
             .product-info-main .page-title-wrapper {
               order: 0 !important;
-              padding-left: 20px !important;
+              padding: 0 !important;
             }
             .msb-product-details-col-right {
-              padding: 0 20px !important;
+              padding: 0 !important;
             }
             .modal-popup {
               height: 100dvh;
             }
             .product-info-main .price-box {
-              padding-left: 20px;
+              padding-left: 0 !important;
             }
             .product-info-main .page-title-wrapper .page-title,
             .product-name-sub,
@@ -2635,11 +2644,14 @@
             }
             .product-info-main .product-reviews-summary {
               margin-top: 10px !important;
-              margin-left: 0 !important;
-              padding-left: 10px;
+              width: 100%;
+            }
+            .product-info-price {
+              border-top: 1px solid #ccc;
             }
             .crs_klarna {
-              padding-left: 20px;
+              padding-left: 0;
+              border-bottom: 1px solid #ccc;
             }
             .product-info-main .price-box {
               display: flex;
