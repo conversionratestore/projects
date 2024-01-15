@@ -569,6 +569,7 @@
         this.#changePopups()
         this.#allGroupProductSlider()
         this.#addLaptopBriefcaseSizeChart()
+        this.#mobilePdpChanges()
         this.#events()
       }
       this.#cartEvents()
@@ -670,7 +671,7 @@
         'Visibility',
         'PDP Block Warranty and Returns'
       )
-      waitForElement('.badges__warranty span:nth-of-type(2)').then(elem => {
+      waitForElement('.badges__warranty').then(elem => {
         elem.addEventListener('click', () => {
           pushDataLayer(
             'exp_soc_trus_objec_but_pdpwarra_more',
@@ -688,7 +689,7 @@
         'Visibility',
         'PDP Block Warranty and Returns'
       )
-      waitForElement('.badges__return span:nth-of-type(2)').then(elem => {
+      waitForElement('.badges__return').then(elem => {
         elem.addEventListener('click', () => {
           pushDataLayer(
             'exp_soc_trus_objec_but_pdprisk_more',
@@ -762,8 +763,13 @@
           </a>
         </div>
       `
+
       waitForElement('.page-layout-1column .product.media .sticky_container').then(el => {
         el.insertAdjacentHTML('afterbegin', topBadgeContainer)
+        $el('.crs_top_badges .crs_wishlist').addEventListener('click', e => {
+          e.preventDefault()
+          document.querySelector('.product-addto-links .ajax_wishlist').click()
+        })
         document.querySelector('.crs_top_badges .crs_warranty').addEventListener('click', () => {
           document.querySelectorAll('.crs_popup')[0].classList.add('active')
         })
@@ -851,7 +857,7 @@
           </svg>
           <p>
             <b>Excellent</b>
-            565 Reviews
+            573 Reviews
           </p>
         </a>
       </div>`
@@ -867,6 +873,16 @@
         )
       })
     }
+    #mobilePdpChanges() {
+      waitForElement('.product-info-stock-and-review').then(el => {
+        const reviewSummary = el.querySelector('.product-reviews-summary');
+        if (reviewSummary) {
+          $el('.product-info-main .page-title-wrapper').after(reviewSummary)
+        }
+        $el('.product-info-main .price-box').append(el.querySelector('.stock.available'))
+        el.style.display = 'none'
+      })
+    }
     #addBadges() {
       $el('.product-warranty-leather').innerHTML = /* HTML */ `
         <button class="badges_button badges__warranty">
@@ -876,10 +892,11 @@
           <span>${iconsData.freeReturnIcon} 60-day risk-free return</span> <span>LEARN MORE</span>
         </button>
       `
-      $el('.product-info-price').after($el('.product-warranty-leather'))
+      $el('.product-info-price').before($el('.product-warranty-leather'))
 
       $el('.badges__warranty').addEventListener('click', event => {
         $$el('.crs_popup')[0].classList.add('active')
+        document.body.style.overflow = 'hidden'
         blockVisibility(
           '.crs_popup.warranty',
           3,
@@ -891,6 +908,7 @@
       })
       $el('.badges__return').addEventListener('click', event => {
         $$el('.crs_popup')[1].classList.add('active')
+        document.body.style.overflow = 'hidden'
         blockVisibility(
           '.crs_popup.return',
           3,
@@ -941,7 +959,7 @@
                   always will.
                 </p>
 
-                <div>What Sets Us Apart</div>
+                <div><b>What Sets Us Apart</b></div>
                 <p>
                   We believe in fine quality, genuine leather goods that are made to last, which is why we offer a
                   unique 25-year warranty and friendly, hassle-free customer service for your peace of mind. You can
@@ -980,8 +998,8 @@
       const relatedContainer = $el('.related').parentNode
       $el('.container .product-view-container').after(relatedContainer)
 
+      relatedContainer.querySelector('.block-title strong').textContent = 'Similar products'
       if (this.device === 'Mobile') {
-        relatedContainer.querySelector('.block-title strong').textContent = 'Similar products'
         this.#insertToDom(
           /* HTML */ `
             <div class="crs_similar">
@@ -996,6 +1014,11 @@
 
       $el('.crs_similar_btn')?.addEventListener('click', () => {
         $el('.crs_similar').classList.toggle('view_more')
+        if ($el('.crs_similar').classList.contains('view_more')) {
+          $el('.crs_similar_btn').textContent = 'View less'
+        } else {
+          $el('.crs_similar_btn').textContent = 'View more'
+        }
         pushDataLayer('exp_soc_trus_objec_link_similar_more', 'View more', 'Link', 'PDP Block Similar products')
       })
 
@@ -1094,9 +1117,11 @@
       }
 
       function klarna(price) {
-        return `<p class="crs_klarna">or 3 interest-free payments of <b>£${addCommasToNumber(
-          (price / 3).toFixed(2)
-        )}</b> with <img src="${dir}klarna.png" alt="klarna"></p>`
+        return /* HTML */ `<p class="crs_klarna">
+          or 3 interest-free payments of <b>£${addCommasToNumber((price / 3).toFixed(2))}</b> with
+          <img src="${dir}klarna.png" alt="klarna" />
+          <a href="https://www.klarna.com/us/pay-with-klarna/">Learn more</a>
+        </p> `
       }
       waitForElement('.product-info-price').then(elem => {
         elem.insertAdjacentHTML(
@@ -1150,11 +1175,18 @@
               <li class="crs__accordion_item">
                 <span class="crs__accordion_title">Can I send my gift directly to the recipient’s address?</span>
                 <div class="crs__accordion_content">
-                  Yes! There’s no need to worry about telltale receipts. If you’ve chosen our gift wrapping service,
-                  we’re also able to personalise your notecard for you: please do notify us accordingly, via our contact
-                  form, so we can accommodate your wishes. N.B. Please note that if the payment of the order is made
-                  with an American Express Card the delivery can only be made to the billing address for the card. This
-                  is required of us by American Express.
+                  <p>
+                    Yes! There’s no need to worry about telltale receipts. If you’ve chosen our gift wrapping service,
+                    we’re also able to personalise your notecard for you: please do notify us accordingly, via our
+                    contact form, so we can accommodate your wishes.
+                  </p>
+                  <p>
+                    <i>
+                      N.B. Please note that if the payment of the order is made with an American Express Card the
+                      delivery can only be made to the billing address for the card. This is required of us by American
+                      Express.
+                    </i>
+                  </p>
                 </div>
               </li>
               <li class="crs__accordion_item">
@@ -1162,28 +1194,51 @@
                   >Can my loved one exchange their gift for another colour or style?</span
                 >
                 <div class="crs__accordion_content">
-                  Although we’re sure they’ll love their Maxwell-Scott gift, we do offer exchanges and returns within 60
-                  days of ordering on all non-personalised items.
+                  <p>
+                    Although we’re sure they’ll love their Maxwell-Scott gift, we do offer exchanges and returns within
+                    60 days of ordering on all non-personalised items.
+                  </p>
                 </div>
               </li>
               <li class="crs__accordion_item">
                 <span class="crs__accordion_title">How soon can my order be delivered?</span>
                 <div class="crs__accordion_content">
-                  For UK orders, Next Working Day Delivery is free or Timed Next Working Day Delivery is available at a
-                  small cost. For US/AUS orders, Standard Delivery to the US is free or Express Delivery is available at
-                  a small cost. Kindly note that personalised gifts will take 24-48 hours longer to process and be
-                  delivered, even if Next Working Day of Express Delivery is selected. Personalised orders will be sent
-                  on the selected delivery service once the personalisation has been applied to the product.
+                  <p>
+                    For UK orders, Next Working Day Delivery is free or Timed Next Working Day Delivery is available at
+                    a small cost. For US/AUS orders, Standard Delivery to the US is free or Express Delivery is
+                    available at a small cost. Kindly note that personalised gifts will take 24-48 hours longer to
+                    process and be delivered, even if Next Working Day of Express Delivery is selected. Personalised
+                    orders will be sent on the selected delivery service once the personalisation has been applied to
+                    the product.
+                  </p>
+
+                  <p>
+                    <a href="https://www.maxwellscottbags.com/delivery-and-returns"
+                      >More information on delivery & returns</a
+                    >
+                  </p>
+                  <p></p>
                 </div>
               </li>
               <li class="crs__accordion_item">
                 <span class="crs__accordion_title">How will my gift be presented?</span>
                 <div class="crs__accordion_content">
-                  How will my gift be presented? All of our products are wrapped with care as standard. However, an
-                  additional gift wrap service is a paid-for service and can be applied to your order. Standard
-                  wrapping: Maxwell-Scott monogrammed tissue paper and logo sticker Gift wrap service: Smaller goods -
-                  luxury presentation box wrapped in silver paper, added ribbon & gift card Larger goods - luxury
-                  presentation box finished with a ribbon and gift card
+                  <p>
+                    All of our products are wrapped with care as standard. However, an additional gift wrap service is a
+                    paid-for service and can be applied to your order.
+                  </p>
+                  <ul>
+                    <li>Standard wrapping: Maxwell-Scott monogrammed tissue paper and logo sticker</li>
+                    <li>
+                      Gift wrap service:
+                      <ul>
+                        <li>
+                          Smaller goods - luxury presentation box wrapped in silver paper, added ribbon & gift card
+                        </li>
+                        <li>Larger goods - luxury presentation box finished with a ribbon and gift card</li>
+                      </ul>
+                    </li>
+                  </ul>
                 </div>
               </li>
             </ul>
@@ -1205,9 +1260,9 @@
         $el('.crs_faq').addEventListener('click', () => {
           const faqContent = el.querySelector('.crs_faq_content')
           if (faqContent.style.display === 'none') {
-            const height = el.querySelector('.content').clientHeight - el.querySelector('.modal-footer').offsetHeight
+            $el('.modal-popup.modal-slide .modal-inner-wrap').scrollTop = $el('.modal-popup').scrollHeight
+            console.log($el('.modal-popup').scrollHeight)
             el.querySelector('.crs_faq_content').style.display = 'block'
-            el.querySelector('.crs_faq_content').style.height = `${height}px`
             el.querySelector('.modal-content').dataset.faq = 'open'
           } else {
             el.querySelector('.crs_faq_content').style.display = 'none'
@@ -1216,42 +1271,75 @@
         })
       })
       waitForElement('.personalize-popup').then(el => {
-        const faqHtml = /* HTML */ ` <div class="crs_faq">Gifting FAQs</div>
+        el.querySelector('.description').textContent = `
+        Add a personal touch with our in-house embossing service. The process is usually complete within 24 hours*. There is a flat rate of €15 for up to 6 letters/characters (including full stops). Due to their unique nature, we cannot accept returns of personalised items.
+        `
+        const faqHtml = /* HTML */ ` <div class="crs_faq">Personalisation FAQs</div>
           <div class="crs_faq_content" style="display: none">
             <ul class="crs__accordion">
               <li class="crs__accordion_item">
                 <span class="crs__accordion_title">Positioning</span>
                 <div class="crs__accordion_content">
-                  We use our expertise and experience to determine the best placement of the lettering appropriate to
-                  the design of the product. You have the opportunity to select Blind (no colour added), Gold or Silver
-                  lettering.
+                  <p>
+                    We use our expertise and experience to determine the best placement of the lettering for your
+                    personalised leather gift, appropriate to the design of each product. If you have any questions
+                    regarding the positioning of the letters or how many letters will fit on a specific product please
+                    contact us via the <a href="https://www.maxwellscottbags.com/contact">contact us page</a>.
+                  </p>
                 </div>
               </li>
               <li class="crs__accordion_item">
                 <span class="crs__accordion_title">Pricing</span>
                 <div class="crs__accordion_content">
-                  The price for embossing is a £15 flat fee of up to three initials. If an item requires specialised
-                  hand embossing due to the size or complex positioning, then this will incur additional costs.
+                  <p>The price for embossing is a £10 / AUS 24 flat fee for up to 6 characters.</p>
+
+                  <p>
+                    Where an item requires specialised personalisation with more than 6 characters or complex
+                    positioning, this will incur additional costs. Please contact us for a bespoke quote via email
+                    <a href="mailto:info@maxwellscottbags.com">info@maxwellscottbags.com</a> or call us on 0870 242
+                    4684.
+                  </p>
+
+                  <p>
+                    <i
+                      >Please note that our Croco leather cannot be embossed due to the textured finish of the
+                      leather.</i
+                    >
+                  </p>
                 </div>
               </li>
               <li class="crs__accordion_item">
                 <span class="crs__accordion_title">Ordering & Delivery</span>
                 <div class="crs__accordion_content">
-                  Please call our customer services team on 0870 2424684 for further information and enquiries. They
-                  will be delighted to take your order over the phone and/or answer any further queries. Kindly allow an
-                  additional 5 days for personalisation. Please note that some larger items may need to be hand embossed
-                  out of house which can take longer. Due to the personalised nature of embossed items, you will not be
-                  able to return an item that has been embossed. Unfortunately, we are unable to offer embossing on the
-                  following products: The Piazzale, The Varese, The VareseW, The Scanno, The Buroni, The Strada, The
-                  Bellino & The Rovello.
+                  <p>
+                    If you opt for personalisation on your purchased item(s), please allow an additional 48h for the
+                    embossing process during busy periods. Where possible, we will send out your items to you within the
+                    first 24 hours.
+                  </p>
+
+                  <p>
+                    Due to the unique nature of embossed items, we, unfortunately, cannot accept the return of an item
+                    that has been personalised. However, we are more than happy for you to purchase an item and return
+                    it to us to be embossed, once you are pleased with your delivery.
+                  </p>
+
+                  <p>
+                    If you have any other inquiries or require further information, please call our Customer Services
+                    team on 0870 242 4684.
+                  </p>
                 </div>
               </li>
               <li class="crs__accordion_item">
-                <span class="crs__accordion_title">Corporate Enquires</span>
+                <span class="crs__accordion_title">Corporate Inquiries</span>
                 <div class="crs__accordion_content">
-                  We have worked with some of the finest and prevalent companies in the world to help provide
-                  unforgettable products for both their clients and staff alike. For larger orders, we are able to offer
-                  an exclusive service for embossing company logos, crest’s or emblem’s onto our products
+                  <p>
+                    A bespoke corporate leather gift is ideal for a client, as rewards or incentives for your staff
+                    members, or for corporate branding. Liaising with our Italian factory, we provide a 1-to-1 service
+                    in order to ensure that you can create the ideal gift for any corporate occasion. We can emboss your
+                    company logo onto corporate gifts to create the right impression for your event. Further information
+                    is available by contacting our Corporate Sales Manager, Charlotte, with your proposition here:
+                    <a href="mailto:charlotte@maxwellscottbags.com">charlotte@maxwellscottbags.com</a>
+                  </p>
                 </div>
               </li>
             </ul>
@@ -1278,9 +1366,7 @@
         el.querySelector('.crs_faq').addEventListener('click', () => {
           const faqContent = el.querySelector('.crs_faq_content')
           if (faqContent.style.display === 'none') {
-            const height = el.querySelector('.content').clientHeight - el.querySelector('.modal-footer').offsetHeight
             el.querySelector('.crs_faq_content').style.display = 'block'
-            el.querySelector('.crs_faq_content').style.height = `${height}px`
             el.querySelector('.modal-content').dataset.faq = 'open'
           } else {
             el.querySelector('.crs_faq_content').style.display = 'none'
@@ -1294,8 +1380,21 @@
         input.maxLength = 6
         input.insertAdjacentHTML('afterend', characterCountHtml)
         input.addEventListener('input', event => {
-          const inputLength = event.target.value.length
-          el.querySelector('.crs_caracter_count span').textContent = inputLength
+          const inputValue = event.target.value
+          el.querySelector('.crs_caracter_count span').textContent = inputValue.length
+          if (inputValue.length > 0) {
+            el.querySelector('.note').textContent = inputValue.toUpperCase()
+          } else {
+            el.querySelector('.note').textContent = 'MSB'
+          }
+        })
+        const errorWrapHtml = /* HTML */ ` <div class="crs_error_wrap"></div>`
+        this.#insertToDom(errorWrapHtml, '.personalize-popup .modal-footer .btn-personalize', 'afterend')
+        waitForElement('.personolize-color-err').then(el => {
+          $el('.crs_error_wrap').prepend(el)
+        })
+        waitForElement('.personolize-initials-err').then(el => {
+          $el('.crs_error_wrap').prepend(el)
         })
       })
     }
@@ -1355,10 +1454,12 @@
           item.addEventListener('click', e => {
             if (e.target.className == 'crs_popup active') {
               e.target.classList.remove('active')
+              document.body.style.overflow = ''
             }
           })
           item.querySelector('.crs_popup_close').addEventListener('click', event => {
             item.classList.remove('active')
+            document.body.style.overflow = ''
           })
         })
       })
@@ -1471,7 +1572,7 @@
           `
           this.#insertToDom(mobileProductsHtml, '.related', 'afterend')
           blockVisibility(
-            '.crs_category_products',
+            '.products_category',
             3,
             'exp_soc_trus_objec_vis_businbag_block',
             'Block view',
@@ -1480,6 +1581,11 @@
           )
           $el('.crs_category_products_btn')?.addEventListener('click', () => {
             $el('.crs_category_products').classList.toggle('view_more')
+            if ($el('.crs_category_products').classList.contains('view_more')) {
+              $el('.crs_category_products_btn').textContent = 'View less'
+            } else {
+              $el('.crs_category_products_btn').textContent = 'View more'
+            }
             pushDataLayer(
               'exp_soc_trus_objec_link_businbag_more',
               'View more',
@@ -1550,7 +1656,7 @@
         `
       }
       waitForElement('.msb-product-details-col-left .crs__accordion').then(el => {
-        if (categoryId === '72' || categoryId === '73') {
+        if (categoryId === '72' || categoryId === '73' || categoryId === '75') {
           el.insertAdjacentHTML('beforeend', buildBrifcaseChartSize(briefcases.man))
         }
         if (categoryId === '120' || categoryId === '91') {
@@ -1561,8 +1667,46 @@
     #initStyles() {
       const style = /* HTML */ `
         <style>
+          .fotorama__arr,
+          .fotorama__thumb__arr {
+            background-color: transparent !important;
+          }
+          .fotorama__arr--prev .fotorama__arr__arr:after {
+            top: 0 !important;
+            left: 0;
+          }
+          .fotorama__arr--next .fotorama__arr__arr:after {
+            left: auto;
+            top: 0 !important;
+            right: 0;
+          }
+          .fotorama__stage {
+            top: 20px !important;
+          }
+          body:not(.fotorama__fullscreen) .fotorama__stage__frame .fotorama__img {
+            width: 70% !important;
+          }
+          .product-info-main .price-box {
+            display: flex;
+            align-items: center;
+          }
+          .product-info-main .price-box .old-price.sly-old-price.msb-gray.special-price {
+            display: inline-flex !important;
+          }
+          .stock.available {
+            margin-left: 10px;
+          }
+          .old-price {
+            text-decoration: none;
+          }
+          .old-price .price {
+            text-decoration: line-through;
+          }
           .msb-product-details-col-left .features-wrapper {
             border-bottom: none;
+          }
+          .msb-product-details-col-right {
+            padding: 0 !important;
           }
           .crs_size_chart {
             width: 100%;
@@ -1575,6 +1719,9 @@
           .crs_size_chart tr,
           .crs_size_chart td {
             padding: 5px;
+          }
+          .product-info-main .price-box {
+            margin-bottom: 0 !important;
           }
           .crs_size_chart tr:nth-child(even) {
             background: #ccc;
@@ -1599,6 +1746,9 @@
             font-size: 12px;
             font-weight: 700;
             line-height: 16px;
+          }
+          .product-info-main .product-reviews-summary {
+            margin-left: -10px !important;
           }
           .crs_size_product {
             display: flex;
@@ -1875,11 +2025,14 @@
             gap: 0;
             margin: 0 auto;
             padding: 0;
-            padding-left: 20px;
           }
           .crs__accordion ul {
             list-style: inside;
-            padding-left: 0 !important;
+            padding-left: 15px !important;
+          }
+          .crs__accordion ul ul {
+            list-style: circle !important;
+            padding-left: 30px !important;
           }
           .crs__accordion ul li {
             margin: 0 !important;
@@ -1980,7 +2133,8 @@
             display: block;
           }
           .product-social-links {
-            display: none;
+            visibility: hidden;
+            height: 0;
           }
 
           .crs_klarna {
@@ -1991,6 +2145,14 @@
           .crs_klarna img {
             margin: 0 3px;
             max-width: 38px;
+          }
+          .crs_klarna a {
+            color: #333;
+            font-family: Arial;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 22px;
+            text-decoration: underline !important;
           }
           .product-warranty-leather {
             display: flex;
@@ -2129,6 +2291,9 @@
           .crs_faq_content {
             background: #fff;
           }
+          .crs_faq_content a {
+            text-decoration: underline;
+          }
           .modal-popup {
             top: 50% !important;
             left: 50% !important;
@@ -2230,6 +2395,7 @@
             position: static !important;
             display: flex;
             flex-direction: column;
+            justify-content: flex-start !important;
             gap: 14px;
             margin: 14px 0 !important;
             width: 100% !important;
@@ -2258,6 +2424,10 @@
           .personalize-popup._inner-scroll .modal-inner-wrap {
             overflow-y: auto;
           }
+          .personolize-popup-wrapper .content .description {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+          }
           .personalize-popup .modal-inner-wrap {
             padding: 20px 20px 30px !important;
           }
@@ -2281,6 +2451,18 @@
           .personalize-initial-block {
             flex: 0 0 100% !important;
             max-width: 100% !important;
+          }
+          .personalize-popup .error-message {
+            position: static !important;
+          }
+          .crs_error_wrap {
+            display: flex;
+            flex-direction: column;
+            max-width: 300px;
+            width: 100%;
+          }
+          .crs_error_wrap > * {
+            width: 100% !important;
           }
           .personolize-popup-wrapper {
             padding: 0 !important;
@@ -2430,6 +2612,42 @@
             }
           }
           @media (max-width: 769px) {
+            .product-info-main .page-title-wrapper {
+              order: 0 !important;
+              padding-left: 20px !important;
+            }
+            .msb-product-details-col-right {
+              padding: 0 20px !important;
+            }
+            .modal-popup {
+              height: 100dvh;
+            }
+            .product-info-main .price-box {
+              padding-left: 20px;
+            }
+            .product-info-main .page-title-wrapper .page-title,
+            .product-name-sub,
+            .product-info-main .price-box {
+              text-align: left !important;
+            }
+            .product-name-sub {
+              margin-top: 5px !important;
+            }
+            .product-info-main .product-reviews-summary {
+              margin-top: 10px !important;
+              margin-left: 0 !important;
+              padding-left: 10px;
+            }
+            .crs_klarna {
+              padding-left: 20px;
+            }
+            .product-info-main .price-box {
+              display: flex;
+              width: 100%;
+              align-items: center;
+              gap: 10px;
+              margin-bottom: 0 !important ;
+            }
             .crs_top_badges {
               padding-left: 20px;
             }
@@ -2556,6 +2774,11 @@
               top: 30%;
               transform: translateY(-50%);
             }
+            .crs_popup {
+              height: 100dvh !important;
+              padding: 0 !important;
+              width: 100vw !important;
+            }
 
             .crs_popup.active .container {
               position: absolute;
@@ -2646,6 +2869,9 @@
               padding: 0;
               padding-bottom: 1px;
               margin-top: 33px;
+            }
+            .crs_slider_image {
+              width: 100px !important;
             }
           }
         </style>
