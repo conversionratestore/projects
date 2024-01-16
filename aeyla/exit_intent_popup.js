@@ -418,4 +418,4 @@ class Popup {
   }
 }
 
-new Popup()
+new Popup(device)
