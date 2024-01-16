@@ -1391,6 +1391,13 @@
             el.querySelector('.note').textContent = 'MSB'
           }
         })
+
+        waitForElement('.remove-personlized-link').then(remLink => {
+          remLink.addEventListener('click', () => {
+            characterCountHtml
+            el.querySelector('.note').textContent = 'MSB'
+          })
+        })
         const errorWrapHtml = /* HTML */ ` <div class="crs_error_wrap"></div>`
         this.#insertToDom(errorWrapHtml, '.personalize-popup .modal-footer .btn-personalize', 'afterend')
         waitForElement('.personolize-color-err').then(el => {
