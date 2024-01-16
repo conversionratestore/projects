@@ -1837,16 +1837,33 @@
         }, WAIT_INTERVAL_TIMEOUT)
       })
     } else {
-      waitForElement('[data-tab-id="esim"]').then((el) => {
-        const switcher = /*html*/`
-        <div class="switcher">
-          <div>
-            <p>eSIM</p>
-          </div>
-          <div>
-            <p>SIM</p>
-          </div>
-        </div>`
+      waitForElement('.tabs__tab-btn--not-selected').then((NotActiveTab) => {
+        let switcher = ``
+        let whatIsBetter = false
+        
+        if (NotActiveTab.innerText.toLowerCase().includes('esims')) {
+          switcher = /*html*/`
+          <div class="switcher switcher--right">
+            <div>
+              <p>eSIM</p>
+            </div>
+            <div>
+              <p>SIM</p>
+            </div>
+          </div>`
+
+          whatIsBetter = true
+        } else {
+          switcher = /*html*/`
+          <div class="switcher">
+            <div>
+              <p>eSIM</p>
+            </div>
+            <div>
+              <p>SIM</p>
+            </div>
+          </div>`
+        }
 
         waitForElement('.heading--alt').then(el => el.insertAdjacentHTML('afterend', switcher))
 
@@ -1860,11 +1877,14 @@
             const left = switcher.querySelector('div:first-child')
             const right = switcher.querySelector('div:last-child')
 
-            
+            if (whatIsBetter) {
+              accordion.classList.add('show-what-is-better')
+            }
 
             left.addEventListener('click', () => {
               switcher.classList.remove('switcher--right')
-              document.querySelector('[data-tab-id="sim"]').click()
+
+              document.querySelector('[data-tab-id="esim"]').click()
 
               pushDataLayer(['exp_onbo_plan_com_but_simdire_card', 'eSIM - Select', 'Button', 'All SIM plans: Select the plan that suits you best'])
 
@@ -1874,7 +1894,7 @@
             right.addEventListener('click', () => {
               switcher.classList.add('switcher--right')
 
-              document.querySelector('[data-tab-id="esim"]').click()
+              document.querySelector('[data-tab-id="sim"]').click()
 
               pushDataLayer(['exp_onbo_plan_com_but_simdire_card', 'SIM - Select', 'Button', 'All SIM plans: Select the plan that suits you best'])
 
