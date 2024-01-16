@@ -344,8 +344,8 @@ class IndentPopup {
         setTimeout(() => {
           $el('.copy_code_inform').remove()
         }, 1000)
-        console.log(event.currentTarget, this.targetUrl)
-        if (event.currentTarget.dataset.target === 'block' && this.targetUrl === '2-hour-electric-boat-rental') {
+
+        if (event.currentTarget.dataset.target === 'block') {
           pushDataLayer(
             'exp_exit_popup_ico_hourelec_prom',
             'Promo code',
@@ -434,7 +434,7 @@ class IndentPopup {
         <div class="sellout__header">
           <span class="sellout__title">Likely to sell out</span>
         </div>
-        <div class="sellout__price">Starting from $${this.startingPrice} per person</div>
+        ${this.startingPrice ? `<div class="sellout__price">Starting from $${this.startingPrice} per person</div>`: ''}
         <div class="sellout_dates">Available for the next dates:</div>
       </div>
     `
@@ -1060,8 +1060,176 @@ const twoHourElectricBoat = new IndentPopup(
       image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/photo_2023_06_02_00_32_05_lg.jpg',
       title: 'Pink Electric Boat Rental at Lake Las Vegas',
       link: 'https://lakelasvegaswatersports.com/pink-electric-boat-rental-at-lake-las-vegas/'
-    },
+    }
   ]
 )
 
 twoHourElectricBoat.init()
+
+const kayakRentals = new IndentPopup(
+  'kayak-rentals',
+  28,
+  'https://lakelasvegaswatersports.com/wp-content/uploads/2022/09/IMG_0092__2__transformed_lg.jpeg',
+  [
+    {
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/P2_lg-1024x683.png',
+      title: 'Swimmable Pontoon Boat Rental at Lake Las Vegas',
+      link: 'https://lakelasvegaswatersports.com/swimmable-pontoon-boat-rental-at-lake-las-vegas/'
+    },
+    {
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/photo_2023_06_02_00_32_05_lg.jpg',
+      title: 'Pink Electric Boat Rental at Lake Las Vegas',
+      link: 'https://lakelasvegaswatersports.com/pink-electric-boat-rental-at-lake-las-vegas/'
+    }
+  ]
+)
+
+kayakRentals.init()
+
+const electricSurfboardExperience = new IndentPopup(
+  'e-foil-lessons',
+  225,
+  'https://lakelasvegaswatersports.com/wp-content/uploads/2022/04/2022_04_26_10.42.09_lg-1024x682.jpg',
+  [
+    {
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/P2_lg-1024x683.png',
+      title: 'Swimmable Pontoon Boat Rental at Lake Las Vegas',
+      link: 'https://lakelasvegaswatersports.com/swimmable-pontoon-boat-rental-at-lake-las-vegas/'
+    },
+    {
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/photo_2023_06_02_00_32_05_lg.jpg',
+      title: 'Pink Electric Boat Rental at Lake Las Vegas',
+      link: 'https://lakelasvegaswatersports.com/pink-electric-boat-rental-at-lake-las-vegas/'
+    }
+  ]
+)
+
+electricSurfboardExperience.init()
+
+const mimosaCruise = new IndentPopup(
+  'mimosa-cruise-lake-las-vegas',
+  19.99,
+  'https://lakelasvegaswatersports.com/wp-content/uploads/2023/07/photo_2023-07-06_04-11-13-1-1024x536.jpg',
+  [
+    {
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/P2_lg-1024x683.png',
+      title: 'Swimmable Pontoon Boat Rental at Lake Las Vegas',
+      link: 'https://lakelasvegaswatersports.com/swimmable-pontoon-boat-rental-at-lake-las-vegas/'
+    },
+    {
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/photo_2023_06_02_00_32_05_lg.jpg',
+      title: 'Pink Electric Boat Rental at Lake Las Vegas',
+      link: 'https://lakelasvegaswatersports.com/pink-electric-boat-rental-at-lake-las-vegas/'
+    }
+  ]
+)
+
+mimosaCruise.init()
+
+const latinNightCruise = new IndentPopup(
+  'latin-night-cruise-at-lake-las-vegas',
+  19.99,
+  'https://lakelasvegaswatersports.com/wp-content/uploads/2023/07/photo_2023-07-10_01-29-13-1024x536.jpg',
+  [
+    {
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/P2_lg-1024x683.png',
+      title: 'Swimmable Pontoon Boat Rental at Lake Las Vegas',
+      link: 'https://lakelasvegaswatersports.com/swimmable-pontoon-boat-rental-at-lake-las-vegas/'
+    },
+    {
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/photo_2023_06_02_00_32_05_lg.jpg',
+      title: 'Pink Electric Boat Rental at Lake Las Vegas',
+      link: 'https://lakelasvegaswatersports.com/pink-electric-boat-rental-at-lake-las-vegas/'
+    }
+  ]
+)
+
+latinNightCruise.init()
+
+const yachtAfterDarkNeonParty = new IndentPopup(
+  'yacht-after-dark-neon-party',
+  null,
+  'https://lakelasvegaswatersports.com/wp-content/uploads/2023/08/party_after_dark-1024x512.png',
+  [
+    {
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/P2_lg-1024x683.png',
+      title: 'Swimmable Pontoon Boat Rental at Lake Las Vegas',
+      link: 'https://lakelasvegaswatersports.com/swimmable-pontoon-boat-rental-at-lake-las-vegas/'
+    },
+    {
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/photo_2023_06_02_00_32_05_lg.jpg',
+      title: 'Pink Electric Boat Rental at Lake Las Vegas',
+      link: 'https://lakelasvegaswatersports.com/pink-electric-boat-rental-at-lake-las-vegas/'
+    }
+  ]
+)
+yachtAfterDarkNeonParty.init()
+
+const countryCruiseatLakeLasVegas = new IndentPopup(
+  'country-cruise-at-lake-las-vegas',
+  null,
+  'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/photo_2023-06-03_03-06-42-1024x683.jpg',
+  [
+    {
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/P2_lg-1024x683.png',
+      title: 'Swimmable Pontoon Boat Rental at Lake Las Vegas',
+      link: 'https://lakelasvegaswatersports.com/swimmable-pontoon-boat-rental-at-lake-las-vegas/'
+    },
+    {
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/photo_2023_06_02_00_32_05_lg.jpg',
+      title: 'Pink Electric Boat Rental at Lake Las Vegas',
+      link: 'https://lakelasvegaswatersports.com/pink-electric-boat-rental-at-lake-las-vegas/'
+    }
+  ]
+)
+
+countryCruiseatLakeLasVegas.init()
+
+const paddleboardRentals = new IndentPopup(
+  'paddleboard-rentals',
+  null,
+  'https://lakelasvegaswatersports.com/wp-content/uploads/2020/03/516A2129_lg.jpg',
+  [
+    {
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/P2_lg-1024x683.png',
+      title: 'Swimmable Pontoon Boat Rental at Lake Las Vegas',
+      link: 'https://lakelasvegaswatersports.com/swimmable-pontoon-boat-rental-at-lake-las-vegas/'
+    },
+    {
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2022/06/DuffyDate-5-1-1024x683.jpg',
+      title: '2 Hour Electric Boat',
+      link: 'https://lakelasvegaswatersports.com/2-hour-electric-boat-rental/'
+    }
+  ]
+)
+paddleboardRentals.init();
+
+const сableParkPass = new IndentPopup('cable-park', null, 'https://lakelasvegaswatersports.com/wp-content/uploads/2020/03/3a8261e17dc84b8280f0ddacf6e254aatripadvisor_CABLE_PARK.jpg', [
+  {
+    image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/P2_lg-1024x683.png',
+    title: 'Swimmable Pontoon Boat Rental at Lake Las Vegas',
+    link: 'https://lakelasvegaswatersports.com/swimmable-pontoon-boat-rental-at-lake-las-vegas/'
+  },
+  {
+    image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2022/06/DuffyDate-5-1-1024x683.jpg',
+    title: '2 Hour Electric Boat',
+    link: 'https://lakelasvegaswatersports.com/2-hour-electric-boat-rental/'
+  }
+])
+
+сableParkPass.init()
+
+const flyboardExperience = new IndentPopup('flyboard-water-jetpack', null, 'https://lakelasvegaswatersports.com/wp-content/uploads/2020/03/c4ad0b9f08a44e5faf8bdce6323ae364LLV72_110__1__lg.jpg', [
+  {
+    image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/P2_lg-1024x683.png',
+    title: 'Swimmable Pontoon Boat Rental at Lake Las Vegas',
+    link: 'https://lakelasvegaswatersports.com/swimmable-pontoon-boat-rental-at-lake-las-vegas/'
+  },
+  {
+    image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2022/06/DuffyDate-5-1-1024x683.jpg',
+    title: '2 Hour Electric Boat',
+    link: 'https://lakelasvegaswatersports.com/2-hour-electric-boat-rental/'
+  }
+])
+
+flyboardExperience.init()
