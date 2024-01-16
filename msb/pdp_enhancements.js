@@ -541,6 +541,7 @@
       }
     ]
   }
+
   const dir = `https://conversionratestore.github.io/projects/msb/img/`
   const media = window.matchMedia('(max-width: 768px)').matches
 
@@ -726,6 +727,16 @@
       waitForElement('.block-minicart').then(elem => {
         blockVisibility(
           '.block-minicart',
+          3,
+          'exp_soc_trus_objec_vis_shopopup_page',
+          'Page view',
+          'Visibility',
+          'Shopping cart Popup'
+        )
+      })
+      waitForElement('.mobile-basket-block').then(() => {
+        blockVisibility(
+          '.mobile-basket-block',
           3,
           'exp_soc_trus_objec_vis_shopopup_page',
           'Page view',
@@ -1216,9 +1227,7 @@
                   </p>
 
                   <p>
-                    <a href="https://www.maxwellscottbags.com/delivery-and-returns"
-                      >More information on delivery & returns</a
-                    >
+                    <a href="/delivery-and-returns">More information on delivery & returns</a>
                   </p>
                   <p></p>
                 </div>
@@ -1287,20 +1296,24 @@
                     We use our expertise and experience to determine the best placement of the lettering for your
                     personalised leather gift, appropriate to the design of each product. If you have any questions
                     regarding the positioning of the letters or how many letters will fit on a specific product please
-                    contact us via the <a href="https://www.maxwellscottbags.com/contact">contact us page</a>.
+                    contact us via the
+                    <a href="/contact">contact us page</a>.
                   </p>
                 </div>
               </li>
               <li class="crs__accordion_item">
                 <span class="crs__accordion_title">Pricing</span>
                 <div class="crs__accordion_content">
-                  <p>The price for embossing is a £10 / AUS 24 flat fee for up to 6 characters.</p>
+                  <p>
+                    The price for embossing is a ${this.currentCountry === 'US' ? '$15' : '£10 / AUS 24'} flat fee for
+                    up to 6 characters.
+                  </p>
 
                   <p>
                     Where an item requires specialised personalisation with more than 6 characters or complex
                     positioning, this will incur additional costs. Please contact us for a bespoke quote via email
-                    <a href="mailto:info@maxwellscottbags.com">info@maxwellscottbags.com</a> or call us on 0870 242
-                    4684.
+                    <a href="mailto:info@maxwellscottbags.com">info@maxwellscottbags.com</a> or call us on
+                    ${this.currentCountry === 'US' ? '917 795 4392' : '0870 242 4684'}.
                   </p>
 
                   <p>
@@ -1328,7 +1341,7 @@
 
                   <p>
                     If you have any other inquiries or require further information, please call our Customer Services
-                    team on 0870 242 4684.
+                    team on ${this.currentCountry === 'US' ? '917 795 4392' : '0870 242 4684'}.
                   </p>
                 </div>
               </li>
