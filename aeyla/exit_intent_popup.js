@@ -20,7 +20,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
 const clarityInterval = setInterval(function () {
   if (typeof clarity == 'function') {
     clearInterval(clarityInterval)
-    clarity('set', 'exp_exit_popup', 'variant_1')
+    clarity('set', '', 'variant_1')
   }
 }, 1000)
 
@@ -321,8 +321,8 @@ class Popup {
     })
 
     checkoutBtn.addEventListener('click', () => {
-      window.location.href = '/checkout'
       pushDataLayer('exp_eip_btn_checkout', 'Exit intent popup checkout button', 'Click', 'Popup')
+      window.location.href = '/checkout'
     })
 
     $el('.crs_popup_wrapper').addEventListener('click', e => {
@@ -387,12 +387,6 @@ class Popup {
         }
       })
     } else {
-      checkScrollSpeed(window, speed => {
-        if (speed > 100) {
-          this.drawCart()
-        }
-      })
-
       document.addEventListener('mouseleave', () => {
         this.drawCart()
       })
@@ -409,11 +403,15 @@ class Popup {
     const timer = setInterval(() => {
       const time = new Date().getTime()
       const timeAction = document.body.getAttribute('data-time')
-      if (time - timeAction > 60000) {
+      if (
+        time - timeAction > 60000 &&
+        $el('#shopify-section-minicart').getBoundingClientRect().right < window.innerWidth + 20
+      ) {
         if (sessionStorage.getItem('crs_popup')) {
           clearInterval(timer)
           return
         }
+        clearInterval(timer)
         this.drawCart()
       }
     }, 1000)
