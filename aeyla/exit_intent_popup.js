@@ -322,6 +322,7 @@ class Popup {
 
     checkoutBtn.addEventListener('click', () => {
       pushDataLayer('exp_eip_btn_checkout', 'Exit intent popup checkout button', 'Click', 'Popup')
+      sessionStorage.setItem('crs_popup', true)
       window.location.href = '/checkout'
     })
 
@@ -382,6 +383,7 @@ class Popup {
 
     if (this.D === 'mobile') {
       checkScrollSpeed(window, speed => {
+        console.log(speed)
         if (speed > 150) {
           this.drawCart()
         }
