@@ -339,13 +339,13 @@ class IndentPopup {
   #copyDiscount() {
     $$el('[data-discount]').forEach(btn => {
       btn.addEventListener('click', event => {
-        console.log('copy')
         navigator.clipboard.writeText('BOOK10')
         event.currentTarget.insertAdjacentHTML('afterbegin', this.#showCopiedBadge())
         setTimeout(() => {
           $el('.copy_code_inform').remove()
         }, 1000)
-        if (event.target.dataset.target === 'block' && this.targetUrl === '2-hour-electric-boat-rental') {
+        console.log(event.currentTarget, this.targetUrl)
+        if (event.currentTarget.dataset.target === 'block' && this.targetUrl === '2-hour-electric-boat-rental') {
           pushDataLayer(
             'exp_exit_popup_ico_hourelec_prom',
             'Promo code',
@@ -353,7 +353,7 @@ class IndentPopup {
             'Block Offer reserved only for:2 Hour Electric Boat Rental'
           )
         }
-        if (event.target.dataset.target === 'popup') {
+        if (event.currentTarget.dataset.target === 'popup') {
           pushDataLayer(
             'exp_exit_popup_ico_popbook_prom',
             'Promo code',
