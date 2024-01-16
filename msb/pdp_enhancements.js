@@ -803,7 +803,7 @@
         })
       })
     }
-    #addTrustpilot() {
+    async #addTrustpilot() {
       const trustpilot = /* HTML */ ` <div class="crs_trustpilot">
         <a
           href=" https://www.trustpilot.com/review/www.maxwellscottbags.com"
@@ -857,10 +857,11 @@
           </svg>
           <p>
             <b>Excellent</b>
-            573 Reviews
+            574 Reviews
           </p>
         </a>
       </div>`
+
       waitForElement('.product-add-form').then(el => {
         el.insertAdjacentHTML('afterend', trustpilot)
         blockVisibility(
@@ -1117,11 +1118,13 @@
       }
 
       function klarna(price) {
-        return /* HTML */ `<p class="crs_klarna">
-          or 3 interest-free payments of <b>£${addCommasToNumber((price / 3).toFixed(2))}</b> with
-          <img src="${dir}klarna.png" alt="klarna" />
+        return /* HTML */ `<div class="crs_klarna">
+          <span> or 3 interest-free payments of <b>£${addCommasToNumber((price / 3).toFixed(2))}</b> with</span>
+          <span class="crs_klarna_img">
+            <img src="${dir}klarna.png" alt="klarna" />
+          </span>
           <a href="https://www.klarna.com/us/pay-with-klarna/">Learn more</a>
-        </p> `
+        </div> `
       }
       waitForElement('.product-info-price').then(elem => {
         elem.insertAdjacentHTML(
@@ -2142,6 +2145,9 @@
             font-size: 12px;
             line-height: 22px;
             width: 100%;
+          }
+          .crs_klarna_img {
+            display: inline-flex;
           }
           .crs_klarna img {
             margin: 0 3px;
