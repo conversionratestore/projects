@@ -1312,10 +1312,10 @@
                   <p>
                     Where an item requires specialised personalisation with more than 6 characters or complex
                     positioning, this will incur additional costs. Please contact us for a bespoke quote via email
-                    <a href="mailto:info@maxwellscottbags.com">info@maxwellscottbags.com</a> or call us on
+                    ${this.currentCountry === 'US' ? '<a href="mailto:info.us@maxwellscottbags.com">info.us@maxwellscottbags.com</a>' : '<a href="mailto:info@maxwellscottbags.com">info@maxwellscottbags.com</a>'} or call us on
                     ${this.currentCountry === 'US' ? '917 795 4392' : '0870 242 4684'}.
                   </p>
-
+                  
                   <p>
                     <i
                       >Please note that our Croco leather cannot be embossed due to the textured finish of the
