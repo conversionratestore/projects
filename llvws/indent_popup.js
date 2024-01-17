@@ -118,11 +118,12 @@ function getCookie(name) {
 }
 
 class IndentPopup {
-  constructor(targetUrl, startingPrice, image, interestedProduct = []) {
+  constructor(targetUrl, startingPrice, image, interestedProduct = [], showTimer = true) {
     this.targetUrl = targetUrl
     this.startingPrice = startingPrice
     this.image = image
     this.interestedProduct = interestedProduct
+    this.showTimer = showTimer
     this.device = screen.width <= 768 ? 'Mobile' : 'Desktop'
     this.productName = null
     this.timer = getCookie('discount_timer') || 30 * 60
@@ -136,12 +137,16 @@ class IndentPopup {
     }
     this.productName = $el('.fl-heading .fl-heading-text').textContent
     this.#initStyles()
-    this.#createOfferReservedBlock()
+    if (this.showTimer) {
+      this.#createOfferReservedBlock()
+    }
     this.#createLikelyToSellOutBlock()
     this.#createPopup()
     this.#popupTriggers()
     this.#copyDiscount()
-    this.#initTimer()
+    if (this.showTimer) {
+      this.#initTimer()
+    }
   }
 
   #popupTriggers() {
@@ -161,7 +166,7 @@ class IndentPopup {
       })
     }
 
-    if (this.device === 'Mobile') {
+    if (this.device === 'Mobile' && this.showTimer) {
       const timer = setTimeout(() => {
         preventTriggersDuringBooking()
         this.#showDiscountPopup()
@@ -169,7 +174,7 @@ class IndentPopup {
 
       window.addEventListener('scroll', () => {
         const scrollSpeed = checkScrollSpeed()
-        if (scrollSpeed < -100 && scrollSpeed > 100) {
+        if (scrollSpeed < -100 && scrollSpeed > 100 && this.showTimer) {
           preventTriggersDuringBooking()
           this.#showDiscountPopup()
         }
@@ -184,7 +189,7 @@ class IndentPopup {
           event.clientX >= window.innerWidth ||
           event.clientY >= window.innerHeight
         ) {
-          if (this.timer > 0) {
+          if (this.timer > 0 && this.showTimer) {
             preventTriggersDuringBooking()
             this.#showDiscountPopup()
           }
@@ -434,7 +439,7 @@ class IndentPopup {
         <div class="sellout__header">
           <span class="sellout__title">Likely to sell out</span>
         </div>
-        ${this.startingPrice ? `<div class="sellout__price">Starting from $${this.startingPrice} per person</div>`: ''}
+        ${this.startingPrice ? `<div class="sellout__price">Starting from $${this.startingPrice} per person</div>` : ''}
         <div class="sellout_dates">Available for the next dates:</div>
       </div>
     `
@@ -1121,7 +1126,8 @@ const mimosaCruise = new IndentPopup(
       title: 'Pink Electric Boat Rental at Lake Las Vegas',
       link: 'https://lakelasvegaswatersports.com/pink-electric-boat-rental-at-lake-las-vegas/'
     }
-  ]
+  ],
+  false
 )
 
 mimosaCruise.init()
@@ -1141,7 +1147,8 @@ const latinNightCruise = new IndentPopup(
       title: 'Pink Electric Boat Rental at Lake Las Vegas',
       link: 'https://lakelasvegaswatersports.com/pink-electric-boat-rental-at-lake-las-vegas/'
     }
-  ]
+  ],
+  false
 )
 
 latinNightCruise.init()
@@ -1161,7 +1168,8 @@ const yachtAfterDarkNeonParty = new IndentPopup(
       title: 'Pink Electric Boat Rental at Lake Las Vegas',
       link: 'https://lakelasvegaswatersports.com/pink-electric-boat-rental-at-lake-las-vegas/'
     }
-  ]
+  ],
+  false
 )
 yachtAfterDarkNeonParty.init()
 
@@ -1180,7 +1188,8 @@ const countryCruiseatLakeLasVegas = new IndentPopup(
       title: 'Pink Electric Boat Rental at Lake Las Vegas',
       link: 'https://lakelasvegaswatersports.com/pink-electric-boat-rental-at-lake-las-vegas/'
     }
-  ]
+  ],
+  false
 )
 
 countryCruiseatLakeLasVegas.init()
@@ -1202,34 +1211,44 @@ const paddleboardRentals = new IndentPopup(
     }
   ]
 )
-paddleboardRentals.init();
+paddleboardRentals.init()
 
-const сableParkPass = new IndentPopup('cable-park', null, 'https://lakelasvegaswatersports.com/wp-content/uploads/2020/03/3a8261e17dc84b8280f0ddacf6e254aatripadvisor_CABLE_PARK.jpg', [
-  {
-    image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/P2_lg-1024x683.png',
-    title: 'Swimmable Pontoon Boat Rental at Lake Las Vegas',
-    link: 'https://lakelasvegaswatersports.com/swimmable-pontoon-boat-rental-at-lake-las-vegas/'
-  },
-  {
-    image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2022/06/DuffyDate-5-1-1024x683.jpg',
-    title: '2 Hour Electric Boat',
-    link: 'https://lakelasvegaswatersports.com/2-hour-electric-boat-rental/'
-  }
-])
+const сableParkPass = new IndentPopup(
+  'cable-park',
+  null,
+  'https://lakelasvegaswatersports.com/wp-content/uploads/2020/03/3a8261e17dc84b8280f0ddacf6e254aatripadvisor_CABLE_PARK.jpg',
+  [
+    {
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/P2_lg-1024x683.png',
+      title: 'Swimmable Pontoon Boat Rental at Lake Las Vegas',
+      link: 'https://lakelasvegaswatersports.com/swimmable-pontoon-boat-rental-at-lake-las-vegas/'
+    },
+    {
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2022/06/DuffyDate-5-1-1024x683.jpg',
+      title: '2 Hour Electric Boat',
+      link: 'https://lakelasvegaswatersports.com/2-hour-electric-boat-rental/'
+    }
+  ]
+)
 
 сableParkPass.init()
 
-const flyboardExperience = new IndentPopup('flyboard-water-jetpack', null, 'https://lakelasvegaswatersports.com/wp-content/uploads/2020/03/c4ad0b9f08a44e5faf8bdce6323ae364LLV72_110__1__lg.jpg', [
-  {
-    image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/P2_lg-1024x683.png',
-    title: 'Swimmable Pontoon Boat Rental at Lake Las Vegas',
-    link: 'https://lakelasvegaswatersports.com/swimmable-pontoon-boat-rental-at-lake-las-vegas/'
-  },
-  {
-    image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2022/06/DuffyDate-5-1-1024x683.jpg',
-    title: '2 Hour Electric Boat',
-    link: 'https://lakelasvegaswatersports.com/2-hour-electric-boat-rental/'
-  }
-])
+const flyboardExperience = new IndentPopup(
+  'flyboard-water-jetpack',
+  null,
+  'https://lakelasvegaswatersports.com/wp-content/uploads/2020/03/c4ad0b9f08a44e5faf8bdce6323ae364LLV72_110__1__lg.jpg',
+  [
+    {
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/P2_lg-1024x683.png',
+      title: 'Swimmable Pontoon Boat Rental at Lake Las Vegas',
+      link: 'https://lakelasvegaswatersports.com/swimmable-pontoon-boat-rental-at-lake-las-vegas/'
+    },
+    {
+      image: 'https://lakelasvegaswatersports.com/wp-content/uploads/2022/06/DuffyDate-5-1-1024x683.jpg',
+      title: '2 Hour Electric Boat',
+      link: 'https://lakelasvegaswatersports.com/2-hour-electric-boat-rental/'
+    }
+  ]
+)
 
 flyboardExperience.init()
