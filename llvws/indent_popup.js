@@ -166,17 +166,25 @@ class IndentPopup {
       })
     }
 
-    if (this.device === 'Mobile' && this.showTimer) {
+    if (this.device === 'Mobile') {
       const timer = setTimeout(() => {
         preventTriggersDuringBooking()
-        this.#showDiscountPopup()
+        if (this.showTimer) {
+          this.#showDiscountPopup()
+        } else {
+          this.#showInterestedPopup()
+        }
       }, 20000)
 
       window.addEventListener('scroll', () => {
         const scrollSpeed = checkScrollSpeed()
-        if (scrollSpeed < -100 && scrollSpeed > 100 && this.showTimer) {
+        if (scrollSpeed < -100 && scrollSpeed > 100) {
           preventTriggersDuringBooking()
-          this.#showDiscountPopup()
+          if (this.showTimer) {
+            this.#showDiscountPopup()
+          } else {
+            this.#showInterestedPopup()
+          }
         }
       })
 
@@ -189,9 +197,14 @@ class IndentPopup {
           event.clientX >= window.innerWidth ||
           event.clientY >= window.innerHeight
         ) {
-          if (this.timer > 0 && this.showTimer) {
+          if (this.timer > 0) {
             preventTriggersDuringBooking()
-            this.#showDiscountPopup()
+            if (this.showTimer) {
+              this.#showDiscountPopup()
+            } else {
+              console.log('HERE')
+              this.#showInterestedPopup()
+            }
           }
         }
       })
