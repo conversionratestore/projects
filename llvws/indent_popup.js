@@ -144,9 +144,8 @@ class IndentPopup {
     this.#createPopup()
     this.#popupTriggers()
     this.#copyDiscount()
-    if (this.showTimer) {
-      this.#initTimer()
-    }
+
+    this.#initTimer()
   }
 
   #popupTriggers() {
@@ -178,7 +177,7 @@ class IndentPopup {
 
       window.addEventListener('scroll', () => {
         const scrollSpeed = checkScrollSpeed()
-        if (scrollSpeed < -100 && scrollSpeed > 100) {
+        if (scrollSpeed < -100 || scrollSpeed > 100) {
           preventTriggersDuringBooking()
           if (this.showTimer) {
             this.#showDiscountPopup()
@@ -202,7 +201,6 @@ class IndentPopup {
             if (this.showTimer) {
               this.#showDiscountPopup()
             } else {
-              console.log('HERE')
               this.#showInterestedPopup()
             }
           }
