@@ -1745,6 +1745,24 @@
         if (categoryId === '120' || categoryId === '91') {
           el.insertAdjacentHTML('beforeend', buildBrifcaseChartSize(briefcases.woman, 'woman'))
         }
+        $$el('.crs__accordion_title').forEach(item => {
+          if (item.textContent.includes('Laptop briefcase size chart')) {
+            item.addEventListener('click', () => {
+              pushDataLayer(
+                'exp_soc_trus_objec_accord_lap_brief_size',
+                item.textContent,
+                'Accordion',
+                'PDP'
+              )
+            })
+          }
+        })
+        pushDataLayer(
+          'exp_soc_trus_objec_accord_details_pdp',
+          item.textContent,
+          'Accordion',
+          'PDP'
+        )
       })
     }
     #initStyles() {
