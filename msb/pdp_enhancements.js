@@ -1011,6 +1011,7 @@
       $el('.container .product-view-container').after(relatedContainer)
 
       relatedContainer.querySelector('.block-title strong').textContent = 'Similar products'
+      console.log('here', this.device)
       if (this.device === 'Mobile') {
         this.#insertToDom(
           /* HTML */ `
@@ -1312,10 +1313,12 @@
                   <p>
                     Where an item requires specialised personalisation with more than 6 characters or complex
                     positioning, this will incur additional costs. Please contact us for a bespoke quote via email
-                    ${this.currentCountry === 'US' ? '<a href="mailto:info.us@maxwellscottbags.com">info.us@maxwellscottbags.com</a>' : '<a href="mailto:info@maxwellscottbags.com">info@maxwellscottbags.com</a>'} or call us on
-                    ${this.currentCountry === 'US' ? '917 795 4392' : '0870 242 4684'}.
+                    ${this.currentCountry === 'US'
+                      ? '<a href="mailto:info.us@maxwellscottbags.com">info.us@maxwellscottbags.com</a>'
+                      : '<a href="mailto:info@maxwellscottbags.com">info@maxwellscottbags.com</a>'}
+                    or call us on ${this.currentCountry === 'US' ? '917 795 4392' : '0870 242 4684'}.
                   </p>
-                  
+
                   <p>
                     <i
                       >Please note that our Croco leather cannot be embossed due to the textured finish of the
@@ -1494,6 +1497,7 @@
       ]).then(async () => {
         const breadcrumpItem = $el('.breadcrumbs .items li:nth-last-of-type(2)')
         const title = breadcrumpItem.querySelector('a').textContent
+        const link = breadcrumpItem.querySelector('a').href
         const categoryId = Array.from(breadcrumpItem.classList)
           .filter(item => item.includes('category'))[0]
           .replace(/^\D+/g, '')
@@ -1535,9 +1539,19 @@
               <div class="swiper-button-prev"><i class="material-icons">chevron_left</i></div>
               <div class="swiper-button-next"><i class="material-icons">chevron_right</i></div>
             </div>
+            <div class="crs_category_products_action">
+              <a class="crs_category_products_link" href=${link}>View more</a>
+            </div>
           </div>`
           this.#insertToDom(swiperHtml, '.related', 'afterend')
-
+          $el('.crs_category_products_link').addEventListener('click', () => {
+            pushDataLayer(
+              'exp_soc_trus_objec_link_businbag_more',
+              'View more',
+              'Link',
+              'PDP Block All business bags for men'
+            )
+          })
           const swiper = new Swiper('.swiper', {
             direction: 'horizontal',
             loop: true,
@@ -2534,6 +2548,32 @@
             background-position: center;
             background-color: #5e9371;
           }
+          .crs_category_products_link {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+          }
+          .crs_category_products_link {
+            display: block;
+            margin: 0 auto;
+            width: max-content;
+            color: #333;
+            text-align: center;
+            font-family: Arial;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 16px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #000;
+            padding: 0;
+            padding-bottom: 1px;
+            margin-top: 33px;
+          }
+          .crs_category_products_link:hover {
+            text-decoration: none;
+            border-color: #b58b4f;
+          }
           .personolize-popup-wrapper .col-left > .field .control .options-list .field label span {
             height: 32px;
             bottom: -32px;
@@ -2887,8 +2927,10 @@
 
             .crs_similar_btn,
             .crs_similar_btn:focus,
+            .crs_similar_btn:hover,
             .crs_similar_btn:active,
             .crs_category_products_btn,
+            .crs_category_products_btn:hover,
             .crs_category_products_btn:focus,
             .crs_category_products_btn:active {
               display: block;
@@ -2908,6 +2950,12 @@
               padding-bottom: 1px;
               margin-top: 33px;
             }
+            .crs_similar_btn:hover,
+            .crs_category_products_btn:hover {
+              border-color: #b58b4f;
+              color: #b58b4f;
+            }
+
             .crs_slider_image {
               width: 100px !important;
             }
