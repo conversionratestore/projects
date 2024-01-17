@@ -875,6 +875,12 @@
 
       waitForElement('.product-add-form').then(el => {
         el.insertAdjacentHTML('afterend', trustpilot)
+        document.addEventListener('mousedown', event => {
+          if (event.target.closest('.crs_trustpilot')) {
+            pushDataLayer('exp_soc_trus_objec_link_trustp_pdp', 'Trustpilot', 'Link', 'PDP')
+          }
+        })
+
         blockVisibility(
           '.crs_trustpilot',
           3,
@@ -987,6 +993,16 @@
       `
       $$el('.features-static-link-block').forEach(item => (item.style.display = 'none'))
       $el('.msb-product-details-col-left style').insertAdjacentHTML('beforebegin', accordion)
+      $$el('.msb-product-details-col-left .crs__accordion_title').forEach(item => {
+        item.addEventListener('click', () => {
+          pushDataLayer(
+            'exp_soc_trus_objec_accord_details_pdp',
+            item.textContent,
+            'Accordion',
+            'PDP'
+          )
+        })
+      })
       $el('[data-accordion="product"]').append(productDetails)
       $el('[data-accordion="faq"]').append(deliveryFaq)
       const ul = $el('.crs__accordion')
@@ -1258,6 +1274,17 @@
           </div>
         `
         el.querySelector('.modal-footer').insertAdjacentHTML('beforeend', faqHtml)
+     
+        $$el('.gift-popup .crs__accordion_title').forEach(item => {
+          item.addEventListener('click', () => {
+            pushDataLayer(
+              'exp_soc_trus_objec_accord_faqs_popup',
+              item.textContent,
+              'Accordion',
+              'Popup OUR GIFT WRAPPING SERVICE'
+            )
+          })
+        })
         const ul = el.querySelector('.crs__accordion')
         const titles = ul.querySelectorAll('.crs__accordion_title')
         ul.addEventListener('click', event => {
@@ -1270,7 +1297,8 @@
             event.target.classList.toggle('active')
           }
         })
-        $el('.crs_faq').addEventListener('click', () => {
+        $el('.gift-popup .crs_faq').addEventListener('click', () => {
+          pushDataLayer('exp_soc_trus_objec_link_gift_faqs_popup', 'Gifting FAQs', 'Link', 'Popup OUR GIFT WRAPPING SERVICE')
           const faqContent = el.querySelector('.crs_faq_content')
           if (faqContent.style.display === 'none') {
             $el('.modal-popup.modal-slide .modal-inner-wrap').scrollTop = $el('.modal-popup').scrollHeight
@@ -1363,7 +1391,17 @@
               </li>
             </ul>
           </div>`
-        el.querySelector('.modal-footer').insertAdjacentHTML('beforeend', faqHtml)
+          el.querySelector('.modal-footer').insertAdjacentHTML('beforeend', faqHtml)
+          $$el('.personalize-popup .crs__accordion_title').forEach(item => {
+            item.addEventListener('click', () => {
+              pushDataLayer(
+                'exp_soc_trus_objec_accord_faqs_popup',
+                item.textContent,
+                'Accordion',
+                'Popup CTA PERSONALISE YOUR ORDER'
+              )
+            })
+          })
         const ul = el.querySelector('.crs__accordion')
         const titles = ul.querySelectorAll('.crs__accordion_title')
         ul.addEventListener('click', event => {
@@ -1382,7 +1420,9 @@
         content.append(el.querySelector('.personalize-initial-block'))
         content.append(el.querySelector('.modal-footer'))
         content.insertAdjacentHTML('beforebegin', bgHtml)
-        el.querySelector('.crs_faq').addEventListener('click', () => {
+        $el('.personalize-popup .crs_faq').addEventListener('click', () => {
+          pushDataLayer('exp_soc_trus_objec_link_per_faqs_popup', 'Personalisation FAQs', 'Link', 'Popup CTA PERSONALISE YOUR ORDER')
+
           const faqContent = el.querySelector('.crs_faq_content')
           if (faqContent.style.display === 'none') {
             el.querySelector('.crs_faq_content').style.display = 'block'
