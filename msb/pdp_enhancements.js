@@ -1039,6 +1039,9 @@
           '.related'
         )
         $$el('.related .item.product').forEach(item => $el('.related .crs_similar_container').append(item))
+        if ($$el('.related .item.product').length < 3) {
+          $el('.crs_similar_btn').style.display = 'none'
+        }
       }
 
       $el('.crs_similar_btn')?.addEventListener('click', () => {
@@ -1648,6 +1651,9 @@
             </div>
           `
           this.#insertToDom(mobileProductsHtml, '.related', 'afterend')
+          if (result.items.length < 3) {
+            $el('.crs_category_products_btn').style.display = 'none'
+          }
           blockVisibility(
             '.products_category',
             3,
