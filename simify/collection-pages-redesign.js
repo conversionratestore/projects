@@ -1940,20 +1940,31 @@
         text &&
         !['calls', 'texts'].some((word) => text.toLowerCase().includes(word))
       ) {
-        el.querySelector('.quality-list').insertAdjacentHTML(
-          'beforeend',
+        if (el.querySelector('.ProductItem__Title')?.innerText.toLowerCase().trim() === 'europe & uk esim (50 countries)') {
+          el.querySelector('.quality-list').insertAdjacentHTML(
+            'beforeend',
+            `
+            <li>
+              Calls & Texts: Unlimited calls ONLY to EU & UK numbers
+            </li>
           `
-          <li class='lav-exclude'>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-              <g opacity="0.4">
-              <path d="M8 8.49951L16.0009 16.5004" stroke="#333F48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M7.99915 16.5004L16 8.49951" stroke="#333F48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </g>
-            </svg>
-            Phone calls and texts
-          </li>
-        `
-        )
+          )
+        } else {
+          el.querySelector('.quality-list').insertAdjacentHTML(
+            'beforeend',
+            `
+            <li class='lav-exclude'>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                <g opacity="0.4">
+                <path d="M8 8.49951L16.0009 16.5004" stroke="#333F48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7.99915 16.5004L16 8.49951" stroke="#333F48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+              </svg>
+              Phone calls and texts
+            </li>
+          `
+          )
+        }
       }
 
       const countriesLength = el.querySelectorAll('.country_list li').length
@@ -2103,12 +2114,14 @@
           font-family: Roboto;
           font-size: 14px;
           font-weight: 400;
-          line-height: 20px; 
+          line-height: 20px;
+          align-items: flex-start;
         }
         .template-collection .product-quality .quality-list li:not(:last-child) {
           margin-right: 0;
         }
         .template-collection .product-quality .quality-list li:before {
+          margin-top: 6px;
           filter: invert(66%) sepia(53%) saturate(2880%) hue-rotate(2deg) brightness(107%) contrast(102%);
         }
         .collection-template .CollectionMain {
@@ -2118,10 +2131,12 @@
         .template-collection .product-quality .quality-list li.lav-exclude {
           align-items: flex-start;
           margin-top: 1px;
-          margin-left: -6px;
+          margin-left: -7px;
         }
         .template-collection .product-quality .quality-list li.lav-exclude svg {
-          margin-top: -2px;
+          margin-top: -3px;
+          flex-shrink: 0;
+          margin-right: 1px;
         }
         .template-collection .product-quality .quality-list li.lav-exclude:before {
           display: none;
