@@ -307,6 +307,12 @@ p {
     height: 100%;
     object-fit: contain;
 }
+.crs_video img {
+    position: initial;
+    object-fit: contain;
+    height: 100%;
+    border-radius: 12px;
+}
 .crs_instructors {
     overflow: hidden;
     padding: 80px 0;
@@ -493,7 +499,7 @@ p {
         padding: 0;
         margin-bottom: 20px;
     }
-    .crs_community img.crs_video {
+    .crs_community .crs_video {
         max-width: 100%;
         position: initial;
     }
@@ -851,8 +857,8 @@ const html = `
     </section>
     <section class="crs_community crs_community_collection" >
         <div class="container d-lg-flex align-items-center">
-            <a href="https://www.doyogawithme.com/yoga-classes" target=”_blank” >
-                <img class="crs_video" src="${dir}video${media ? '-2' : ''}.png" alt="video img">
+            <a href="https://www.doyogawithme.com/yoga-classes" target=”_blank” class="crs_video">
+                <img src="${dir}video${media ? '-2' : ''}.png" alt="video img">
             </a>
             <div>
                 <h2 class="mb-md-4 mb-2">Our classes collection</h2>
