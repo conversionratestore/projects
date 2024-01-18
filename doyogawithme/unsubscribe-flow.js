@@ -1766,45 +1766,69 @@ const subscription = setInterval(() => {
 });
 
 //checkout
-const checkout = setInterval(() => {
-  if (
-    window.location.href.includes("/checkout/") &&
-    document.querySelector('.topbar a') &&
-    localStorage.getItem("crsHref") && 
-    localStorage.getItem("crsPlan")
+function changeCheckout() {
+  const checkout = setInterval(() => {
+    if (
+      window.location.href.includes("/checkout/") &&
+      document.querySelector('.topbar a') &&
+      localStorage.getItem("crsPlan")
+    ) {
+      clearInterval(checkout)
+  
+      document.querySelector('.topbar a').href = localStorage.getItem("crsHref")
+  
+      let plan = localStorage.getItem("crsPlan");
+  
+      let price = document.querySelector(
+        ".views-field.views-field-total-price__number"
+      );
+      if (!document.querySelector(".c-green")) {
+        price.innerHTML = 
+          `<p><span>${plan == 'year' ? '$108.99' : '$41.97'}</span> ${price.innerHTML}</p>
+           <p class="c-green">${
+              plan == "year"
+                ? "Just $5.42/month!"
+                : "enjoy 2 free months!"
+            }</p>`;
+      }
+  
+      document.querySelector(".views-field.views-field-title").innerHTML =
+        plan == "year"
+          ? `1-Year DYWM Subscription`
+          : "3-month DYWM Subscription";
+  
+      if (!document.querySelector(".saved_block")) {
+        document.querySelector(".order-total-line__total")
+          .insertAdjacentHTML( "afterend",` <div class="saved_block"></div>` );
+      }
+  
+      document.querySelector(".saved_block").innerHTML =
+        plan == "year"
+            ? "You just saved $65.04 (40% off)"
+            : "You just saved $27.98 (67% off)";
+    }
+  });
+}
+
+changeCheckout();
+
+let mutChangeCheckout = new MutationObserver(function (muts) {
+  if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value !== "" && 
+    !document.querySelector(".saved_block") && 
+    window.location.pathname.includes("checkout/") && 
+    localStorage.getItem("crsHref")
   ) {
-    clearInterval(checkout)
-
-    document.querySelector('.topbar a').href = localStorage.getItem("crsHref")
-
-    let plan = localStorage.getItem("crsPlan");
-
-    let price = document.querySelector(
-      ".views-field.views-field-total-price__number"
-    );
-    if (!document.querySelector(".c-green")) {
-      price.innerHTML = 
-        `<p><span>${plan == 'year' ? '$108.99' : '$41.97'}</span> ${price.innerHTML}</p>
-         <p class="c-green">${
-            plan == "year"
-              ? "Just $5.42/month!"
-              : "enjoy 2 free months!"
-          }</p>`;
-    }
-
-    document.querySelector(".views-field.views-field-title").innerHTML =
-      plan == "year"
-        ? `1-Year DYWM Subscription`
-        : "3-month DYWM Subscription";
-
-    if (!document.querySelector(".saved_block")) {
-      document.querySelector(".order-total-line__total")
-        .insertAdjacentHTML( "afterend",` <div class="saved_block"></div>` );
-    }
-
-    document.querySelector(".saved_block").innerHTML =
-      plan == "year"
-          ? "You just saved $65.04 (40% off)"
-          : "You just saved $27.98 (67% off)";
+    mutChangeCheckout.disconnect();
+    console.log(`mut ChangeCheckout >>>>>>>>>>>>>>>>>>>>`);
+    changeCheckout();
   }
+  mutChangeCheckout.observe(document, {
+    childList: true,
+    subtree: true,
+  });
+})
+
+mutChangeCheckout.observe(document, {
+  childList: true,
+  subtree: true,
 });
