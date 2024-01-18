@@ -154,10 +154,12 @@
 
     init() {
       let previousUrl = ''
-      const globalMutation = new MutationObserver(mutations => {
+      const globalMutation = new MutationObserver(() => {
         this.initStyles()
 
         if (this.checkPageUrl() === 'bag' && location.href !== previousUrl) {
+          this.currentCountry = this.checkLocale()
+          this.eventCountry = this.currentCountry === countries.gb ? 'UK' : 'US'
           this.cart()
           previousUrl = location.href
         }
@@ -296,7 +298,6 @@
           $el('.crs_cart_shipping')?.remove()
           $el('.crs_shippinig__warning')?.remove()
           $el('.crs_free_notification')?.remove()
-
           $$el('h5').forEach(elem => {
             if (elem.textContent.includes('Total')) {
               this.cartTotalPrice = +elem.nextElementSibling.textContent.replace(/^\D+/g, '').replace(',', '')
