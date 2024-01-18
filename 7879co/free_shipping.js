@@ -148,15 +148,16 @@
     constructor() {
       this.currentCountry = this.checkLocale()
       this.eventCountry = this.currentCountry === countries.gb ? 'UK' : 'US'
+      this.usFreeDelivery = 350
+      this.cartTotalPrice = 0
     }
 
     init() {
       let previousUrl = ''
-      const globalMutation = new MutationObserver(() => {
+      const globalMutation = new MutationObserver(mutations => {
         this.initStyles()
-        console.log(this.checkPageUrl(), location.href, previousUrl)
+
         if (this.checkPageUrl() === 'bag' && location.href !== previousUrl) {
-          console.log('bag page')
           this.cart()
           previousUrl = location.href
         }
@@ -164,7 +165,6 @@
         if (this.checkPageUrl() === 'shop' && location.href !== previousUrl) {
           this.currentCountry = this.checkLocale()
           this.eventCountry = this.currentCountry === countries.gb ? 'UK' : 'US'
-          console.log('shop')
           this.pdp()
           previousUrl = location.href
         }
@@ -176,17 +176,25 @@
       globalMutation.observe(document.body, {
         childList: true
       })
+      if (this.checkPageUrl() === 'bag') {
+        this.cart()
+        previousUrl = location.href
+      }
+
+      if (this.checkPageUrl() === 'shop') {
+        this.pdp()
+        previousUrl = location.href
+      }
     }
-    events() {}
     pdp() {
       waitForElement('#add-cart-button-fixed').then(elem => {
         const container = elem.parentNode.nextElementSibling
         const warranty = container.children[0]
         const shipping = container.children[1]
-        console.log(warranty, shipping)
         const productPrice = $el('h3.text-h3.font-semibold').textContent.replace(/^\D+/g, '').replace(',', '')
+        // $el('.crs_shipping')?.remove()
 
-        $el('.crs_shipping')?.remove()
+        const { firstDay, lastDay } = this.estimateDelivery()
 
         const shippingHtml = /* HTML */ `
           <div class="crs_shipping">
@@ -201,33 +209,39 @@
             <div class="crs_shipping__body">
               <div class="crs_shipping__date"></div>
               <div class="crs_shipping__estimate">
-                <span>Estimated delivery:</span> <span class="crs_shipping__estimate_range"></span>
+                <span>Est. Delivery:</span>
+                <span class="crs_shipping__estimate_range"
+                  >${firstDay.getDate()}
+                  ${firstDay.toLocaleString('en-GB', {
+                    month: 'short'
+                  })}
+                  - ${lastDay.getDate()}
+                  ${lastDay.toLocaleString('en-GB', {
+                    month: 'short'
+                  })}</span
+                >
               </div>
             </div>
           </div>
         `
-        container.insertAdjacentHTML('beforeend', shippingHtml)
-        if (this.currentCountry === countries.us && productPrice < 499.99) {
+        const oldElement = document.querySelector('.crs_shipping')
+
+        if (!oldElement) {
+          container.insertAdjacentHTML('beforeend', shippingHtml)
+          $el('.crs_shipping__date').append(shipping)
+          container.append(warranty)
+        }
+        if (this.currentCountry === countries.us && productPrice < this.usFreeDelivery) {
           $el('.crs_shipping').classList.add('crs_shipping--inactive')
           const shippingTitle = /* HTML */ `
             <span class="crs_shipping__title">
               <span>FREE US Shipping</span>
               on orders over
-              <span>$499.99</span>
+              <span>$${this.usFreeDelivery}</span>
             </span>
           `
           $el('.crs_shipping__header').innerHTML = shippingTitle
         }
-        $el('.crs_shipping__date').append(shipping)
-        container.append(warranty)
-
-        const { firstDay, lastDay } = this.estimateDelivery()
-
-        $el('.crs_shipping__estimate_range').innerHTML = `${firstDay.getDate()} ${firstDay.toLocaleString('en-GB', {
-          month: 'short'
-        })} - ${lastDay.getDate()} ${lastDay.toLocaleString('en-GB', {
-          month: 'short'
-        })}`
 
         $$el('p').forEach(elem => {
           if (elem.textContent.includes('Made for You')) {
@@ -237,18 +251,24 @@
         document.addEventListener('click', event => {
           const target = event.target
           if (target.closest('button[data-testid="add-to-bag"]')) {
-            pushDataLayer('exp_cust_free_del_but_pdpuk_adbag', 'Add to bag', 'Button', `PDP ${this.eventCountry}`)
-            if (this.currentCountry === countries.us && productPrice > 499.99) {
+            pushDataLayer(
+              `exp_cust_free_del_but_pdp${this.eventCountry.toLowerCase()}_adbag`,
+              'Add to bag',
+              'Button',
+              `PDP ${this.eventCountry}`
+            )
+
+            if (this.currentCountry === countries.us && productPrice > this.usFreeDelivery) {
               pushDataLayer(
                 'exp_cust_free_del_but_pdpusorov_adbag',
                 'Add to bag',
                 'Button',
-                'PDP US FREE US Shipping on orders over $499.99'
+                `PDP US FREE US Shipping on orders over $${this.usFreeDelivery}`
               )
             }
           }
         })
-        console.log('taget?', this.currentCountry, productPrice, typeof productPrice)
+
         blockVisibility(
           '.crs_shipping',
           3,
@@ -257,42 +277,38 @@
           'Visibility',
           `PDP ${this.eventCountry} Shipping`
         )
-        if (this.currentCountry === countries.us && productPrice > 499.99) {
+        if (this.currentCountry === countries.us && productPrice >= this.usFreeDelivery) {
           blockVisibility(
             '.crs_shipping',
             3,
             `exp_cust_free_del_vis_pdpusorov_elem`,
             'Element view',
             'Visibility',
-            'PDP US Shipping FREE US Shipping on orders over $499.99'
+            `PDP US Shipping FREE US Shipping on orders over $${this.usFreeDelivery}`
           )
         }
       })
     }
 
     cart() {
-
       const cartChanges = () => {
-        console.log('hrere')
         waitForElement('[data-testid="checkout-button"]').then(elem => {
-          console.log('cart', elem)
-          let totalPrice
           $el('.crs_cart_shipping')?.remove()
           $el('.crs_shippinig__warning')?.remove()
           $el('.crs_free_notification')?.remove()
+
           $$el('h5').forEach(elem => {
             if (elem.textContent.includes('Total')) {
-              totalPrice = +elem.nextElementSibling.textContent.replace(/^\D+/g, '').replace(',', '')
+              this.cartTotalPrice = +elem.nextElementSibling.textContent.replace(/^\D+/g, '').replace(',', '')
             }
           })
 
           $$el('h3').forEach(elem => {
             const elemStyle = getComputedStyle(elem)
-            console.log('elem', elem)
             if (elem.textContent.includes('In Your Bag') && elemStyle.display !== 'none') {
               if (
                 this.currentCountry === countries.gb ||
-                (this.currentCountry === countries.us && totalPrice > 499.99)
+                (this.currentCountry === countries.us && this.cartTotalPrice > this.usFreeDelivery)
               ) {
                 const cartFreeShippingHtml = /* HTML */ `
                   <div class="crs_shipping crs_cart_shipping">
@@ -300,40 +316,24 @@
                       <span class="crs_shipping__icon">${icons.shipping}</span>
                       <span class="crs_shipping__title">
                         <span>Congratulations!</span>
-                        You have FREE
-                        <span>${this.currentCountry === countries.gb ? 'UK' : 'US'} Shipping</span>
+                        You have
+                        <span>FREE ${this.currentCountry === countries.gb ? 'UK' : 'US'} Shipping</span>
                       </span>
                     </div>
                   </div>
                 `
 
                 elem.insertAdjacentHTML('afterend', cartFreeShippingHtml)
-
-                blockVisibility(
-                  '.crs_cart_shipping',
-                  `exp_cust_free_del_vis_shop${this.eventCountry.toLowerCase()}_elem`,
-                  'Element view',
-                  'Visibility',
-                  `Shopping bag page ${this.eventCountry} Shipping`
-                )
-                if (this.currentCountry === countries.us && totalPrice > 499.99) {
-                  blockVisibility(
-                    '.crs_cart_shipping',
-                    'exp_cust_free_del_vis_shopusorov_elem',
-                    'Element view',
-                    'Visibility',
-                    'Shopping bag page US Shipping FREE US Shipping on orders over $499.99'
-                  )
-                }
               }
-              if (this.currentCountry === countries.us && totalPrice < 499.99) {
+              if (this.currentCountry === countries.us && this.cartTotalPrice < this.usFreeDelivery) {
                 const cartFreeShippingHtmlUSA = /* HTML */ `
                   <div class="crs_shippinig__warning">
                     <button class="crs_return" onclick="history.back()">
                       <span>${icons.back}</span> Continue shopping
                     </button>
                     <div class="crs_shipping__warning_title">
-                      You are $<span>${(499.99 - totalPrice).toFixed(2)}</span> away from FREE US Shipping
+                      You are $<span>${(this.usFreeDelivery - this.cartTotalPrice).toFixed(2)}</span> away from FREE US
+                      Shipping
                     </div>
 
                     <div class="crs_shipping__progress_container" style="width: 100%">
@@ -351,30 +351,14 @@
                     'Shopping bag page US Shipping'
                   )
                 })
-                if (this.currentCountry === countries.us && totalPrice > 499.99) {
-                  pushDataLayer(
-                    'exp_cust_free_del_but_shopusorov_check',
-                    'Go to Checkout',
-                    'Button',
-                    'Shopping bag page US Shipping FREE US Shipping on orders over $499.99'
-                  )
-                }
-                const maxPrice = 499.99
+
                 const progressBar = $el('.crs_shipping__progress_bar')
-                const percentage = Math.min((totalPrice / maxPrice) * 100, 100)
+                const percentage = Math.min((this.cartTotalPrice / this.usFreeDelivery) * 100, 100)
                 progressBar.style.width = percentage + '%'
               }
-              $el('button[data-testid="checkout-button"]')?.addEventListener('click', () => {
-                pushDataLayer(
-                  `exp_cust_free_del_but_shop${this.eventCountry.toLowerCase()}_check`,
-                  'Go to Checkout',
-                  'Button',
-                  `Shopping bag page ${this.eventCountry} Shipping`
-                )
-              })
             }
             if (elem.textContent.includes('Summary')) {
-              if (this.currentCountry === countries.us && totalPrice < 499.99) {
+              if (this.currentCountry === countries.us && this.cartTotalPrice < this.usFreeDelivery) {
                 return
               }
               const targetDiv = elem.nextElementSibling.nextElementSibling
@@ -390,15 +374,15 @@
           })
         })
       }
-      
+      const observedElement = document.querySelector('[data-testid="checkout-button"]').parentNode.previousSibling
       const cartMutation = new MutationObserver(mutation => {
         mutation.forEach(item => {
-          if(item.type === 'characterData') {
+          if (item.type === 'characterData') {
             cartMutation.disconnect()
             cartChanges()
           }
         })
-        cartMutation.observe(document.body, {
+        cartMutation.observe(observedElement, {
           childList: true,
           characterData: true,
           characterDataOldValue: true,
@@ -406,7 +390,7 @@
           subtree: true
         })
       })
-      cartMutation.observe(document.body, {
+      cartMutation.observe(observedElement, {
         childList: true,
         characterData: true,
         characterDataOldValue: true,
@@ -414,6 +398,44 @@
         subtree: true
       })
       cartChanges()
+
+      waitForElement('[data-testid="checkout-button"]').then(elem => {
+        elem.addEventListener('click', () => {
+          pushDataLayer(
+            `exp_cust_free_del_but_shop${this.eventCountry.toLowerCase()}_check`,
+            'Go to Checkout',
+            'Button',
+            `Shopping bag page ${this.eventCountry} Shipping`
+          )
+          if (this.currentCountry === countries.us && this.cartTotalPrice > this.usFreeDelivery) {
+            pushDataLayer(
+              'exp_cust_free_del_but_shopusorov_check',
+              'Go to Checkout',
+              'Button',
+              `Shopping bag page US Shipping FREE US Shipping on orders over $${this.usFreeDelivery}`
+            )
+          }
+        })
+      })
+
+      waitForElement('.crs_cart_shipping').then(() => {
+        blockVisibility(
+          '.crs_cart_shipping',
+          `exp_cust_free_del_vis_shop${this.eventCountry.toLowerCase()}_elem`,
+          'Element view',
+          'Visibility',
+          `Shopping bag page ${this.eventCountry} Shipping`
+        )
+        if (this.currentCountry === countries.us && this.cartTotalPrice > this.usFreeDelivery) {
+          blockVisibility(
+            '.crs_cart_shipping',
+            'exp_cust_free_del_vis_shopusorov_elem',
+            'Element view',
+            'Visibility',
+            `Shopping bag page US Shipping FREE US Shipping on orders over $${this.usFreeDelivery}`
+          )
+        }
+      })
     }
 
     checkPageUrl() {
@@ -439,14 +461,32 @@
     }
 
     estimateDelivery() {
+      const addBusinessDays = (date, days) => {
+        let count = 0
+        while (count < days) {
+          date.setDate(date.getDate() + 1)
+          if (date.getDay() !== 0 && date.getDay() !== 6) {
+            count++
+          }
+        }
+        return new Date(date)
+      }
       const currentDate = new Date()
-      const firstDay = new Date(currentDate.setDate(currentDate.getDate() + 3))
-      const lastDay = new Date(currentDate.setDate(currentDate.getDate() + 2))
+      let extraDay = 0
+      if (currentDate.getUTCHours() >= 13 && currentDate.getDay() !== 0 && currentDate.getDay() !== 6) {
+        extraDay = 1
+      }
+
+      const firstDay = addBusinessDays(currentDate, 2 + extraDay)
+      const lastDay = addBusinessDays(currentDate, 4)
       return { firstDay, lastDay }
     }
     initStyles() {
       const style = /* HTML */ `
         <style>
+          #add-cart-button-fixed + div {
+            padding-bottom: 0 !important;
+          }
           .crs_shipping {
             width: 100%;
             font-family:
@@ -520,6 +560,7 @@
           .crs_cart_shipping {
             margin-left: -1.25rem;
             width: calc(100% + 2.5rem);
+            margin-top: -20px;
             margin-bottom: 1.25rem;
           }
           .crs_text_green {
@@ -592,10 +633,14 @@
           }
 
           @media (min-width: 767px) {
-            .crs_cart_shipping, .crs_shippinig__warning {
+            .crs_cart_shipping,
+            .crs_shippinig__warning {
               margin: 0;
               margin-bottom: 24px;
               max-width: 480px;
+            }
+            .crs_cart_shipping {
+              margin-top: -20px;
             }
             .crs_cart_shipping .crs_shipping__header {
               display: flex;
