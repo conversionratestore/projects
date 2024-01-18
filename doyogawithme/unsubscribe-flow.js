@@ -1218,7 +1218,7 @@ const popupDiscount = (parent, data, link) => {
             <h2>Thanks for being a DoYogaWithMe member!</h2>
             <p class="c-green"><b>${plan == "year" ? 'Annual membership' : '3 months membership'}</b></p>
             <p>The new discounted plan will be billed immediately and activated on your next renewal date on ${resultAfterAdding}</p>
-            <a href="${link}" class="crs_btn blue" onclick="localStorage.setItem('crsHref', window.location.href)">Submit</a>
+            <a href="${link}" class="crs_btn blue">Submit</a>
         </div>
     </div>`
   );
@@ -1775,7 +1775,7 @@ function changeCheckout() {
     ) {
       clearInterval(checkout)
   
-      document.querySelector('.topbar a').href = localStorage.getItem("crsHref")
+      document.querySelector('.topbar a').href = document.referrer;
   
       let plan = localStorage.getItem("crsPlan");
   
@@ -1815,8 +1815,8 @@ changeCheckout();
 let mutChangeCheckout = new MutationObserver(function (muts) {
   if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value !== "" && 
     !document.querySelector(".saved_block") && 
-    window.location.pathname.includes("checkout/") && 
-    localStorage.getItem("crsHref")
+    window.location.pathname.includes("checkout/") &&
+    document.referrer.includes('/subscription/')
   ) {
     mutChangeCheckout.disconnect();
     console.log(`mut ChangeCheckout >>>>>>>>>>>>>>>>>>>>`);
