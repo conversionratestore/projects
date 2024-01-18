@@ -559,6 +559,9 @@ body.crs_fixed {
     .d-md-flex {
         display: flex;
     }
+    .d-md-none {
+      display: none!important;
+    }
     .crs_questions .crs_page_footer {
         position: sticky;
         bottom: 0;
@@ -1028,7 +1031,7 @@ const html = `
     </div>
     <div class="crs_popup" data-index="1">
         <div class="crs_container text-md-center">
-            <h2>Thank you for staying <br>with us</h2>
+            <h2>Thank you for staying <br class="d-md-none">with us</h2>
             <p>You're our yoga hero!</p>
             <a href="https://www.doyogawithme.com/yoga-classes" class="crs_btn green">Explore New Classes</a>
         </div>
