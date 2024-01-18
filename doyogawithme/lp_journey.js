@@ -1,3 +1,4 @@
+; (function () {
 const dir = "https://conversionratestore.github.io/projects/doyogawithme/img/";
 
 const media = window.innerWidth < 769 ? 'mobile' : 'desktop'
@@ -1379,3 +1380,5 @@ const init = setInterval(() => {
     document.querySelector('.exp-loading')?.remove()
   }
 });
+
+})()
