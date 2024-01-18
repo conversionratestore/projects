@@ -13,7 +13,7 @@
     <style>
           /* Client's custom styles */
     .collection-tab,
-    .SectionHeader,
+    .PageHeader .SectionHeader,
     .tabs__buttons--container,
     #shopify-section-traveling-globe-products {
       display: none !important;
@@ -460,8 +460,8 @@
 
     .accordion-inner {
       padding: 12px;
-      color: #7B8791;
-      font-family: Poppins;
+      color: #333F48;
+      font-family: 'Roboto', sans-serif;
       font-size: 12px;
       font-style: normal;
       font-weight: 500;
@@ -1759,7 +1759,7 @@
       })
     }
 
-    waitForElement('.SectionHeader').then((el) => {
+    waitForElement('.PageHeader .SectionHeader').then((el) => {
       el.insertAdjacentHTML('afterend', heading)
     })
 
