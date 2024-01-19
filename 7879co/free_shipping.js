@@ -520,8 +520,8 @@
         extraDay = 1
       }
 
-      const firstDay = addBusinessDays(new Date(), 2 + extraDay)
-      const lastDay = addBusinessDays(new Date(), 4 + extraDay)
+      const firstDay = addBusinessDays(new Date(), 3 + extraDay)
+      const lastDay = addBusinessDays(new Date(), 5 + extraDay)
       return { firstDay, lastDay }
     }
     initStyles() {
