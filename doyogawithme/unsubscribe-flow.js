@@ -191,6 +191,9 @@ body.crs_fixed {
     text-transform: inherit;
     margin: 0 0 16px 0;
 }
+.crs_popup[data-index="1"] h2 {
+  text-transform: inherit;
+}
 .crs_popup p,
 .crs_popup ul li {
     color: var(--Body-color, #555);
@@ -1774,7 +1777,8 @@ function changeCheckout() {
     if (
       window.location.href.includes("/checkout/") &&
       document.querySelector('.topbar a') &&
-      localStorage.getItem("crsPlan")
+      localStorage.getItem("crsPlan") &&
+      document.referrer.includes('/subscription/')
     ) {
       clearInterval(checkout)
   
