@@ -260,7 +260,7 @@
               `PDP ${this.eventCountry}`
             )
 
-            if (this.currentCountry === countries.us && productPrice > this.usFreeDelivery) {
+            if (this.currentCountry === countries.us && productPrice >= this.usFreeDelivery) {
               pushDataLayer(
                 'exp_cust_free_del_but_pdpusorov_adbag',
                 'Add to bag',
@@ -270,7 +270,7 @@
             }
           }
         })
-
+        if (this.currentCountry === countries.gb || (this.currentCountry === countries.us && productPrice <= this.usFreeDelivery)) {
         blockVisibility(
           '.crs_shipping',
           3,
@@ -278,7 +278,7 @@
           'Element view',
           'Visibility',
           `PDP ${this.eventCountry} Shipping`
-        )
+        )}
         if (this.currentCountry === countries.us && productPrice >= this.usFreeDelivery) {
           blockVisibility(
             '.crs_shipping',
@@ -328,7 +328,7 @@
               }
               if (this.currentCountry === countries.us && this.cartTotalPrice < this.usFreeDelivery) {
                 const cartFreeShippingHtmlUSA = /* HTML */ `
-                  <div class="crs_shippinig__warning">
+                  <div class="crs_free_notification">
                     <button class="crs_return" onclick="history.back()">
                       <span>${icons.back}</span> Continue shopping
                     </button>
@@ -420,20 +420,34 @@
       })
 
       waitForElement('.crs_cart_shipping').then(() => {
-        blockVisibility(
-          '.crs_cart_shipping',
-          `exp_cust_free_del_vis_shop${this.eventCountry.toLowerCase()}_elem`,
-          'Element view',
-          'Visibility',
-          `Shopping bag page ${this.eventCountry} Shipping`
-        )
-        if (this.currentCountry === countries.us && this.cartTotalPrice > this.usFreeDelivery) {
+        if (this.currentCountry === countries.gb) {
+          blockVisibility(
+            '.crs_cart_shipping',
+            `exp_cust_free_del_vis_shop${this.eventCountry.toLowerCase()}_elem`,
+            'Element view',
+            'Visibility',
+            `Shopping bag page ${this.eventCountry} Shipping`
+          )
+        }
+        
+        if (this.currentCountry === countries.us && this.cartTotalPrice >= this.usFreeDelivery) {
           blockVisibility(
             '.crs_cart_shipping',
             'exp_cust_free_del_vis_shopusorov_elem',
             'Element view',
             'Visibility',
             `Shopping bag page US Shipping FREE US Shipping on orders over $${this.usFreeDelivery}`
+          )
+        }
+      })
+      waitForElement('.crs_free_notification').then(() => {
+        if (this.currentCountry === countries.us && this.cartTotalPrice < this.usFreeDelivery) {
+          blockVisibility(
+            '.crs_free_notification',
+            `exp_cust_free_del_vis_shop${this.eventCountry.toLowerCase()}_elem`,
+            'Element view',
+            'Visibility',
+            `Shopping bag page ${this.eventCountry} Shipping`
           )
         }
       })
@@ -581,7 +595,7 @@
             font-weight: 600;
             line-height: 20px;
           }
-          .crs_shippinig__warning {
+          .crs_free_notification {
             position: relative;
             margin-left: -1.25rem;
             font-family:
@@ -635,7 +649,7 @@
 
           @media (min-width: 767px) {
             .crs_cart_shipping,
-            .crs_shippinig__warning {
+            .crs_free_notification {
               margin: 0;
               margin-bottom: 24px;
               max-width: 480px;
