@@ -1695,7 +1695,7 @@ const initUnSub = setInterval(() => {
               "Button",
               "Still decided to cancel?",
             ]);
-            document.querySelector("#edit-cancel--3").click();
+            document.querySelector("#edit-cancel--2").click();
           }
 
           startTime = 0;
