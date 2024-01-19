@@ -1380,17 +1380,6 @@ function init() {
                     text-transform: capitalize;
                     color: #272727;
                 }
-                .saved_block {
-                    margin: 0 0 16px auto;
-                    font-weight: 600;
-                    font-size: 14px;
-                    line-height: 20px;
-                    color: #272727;
-                    padding: 4px 8px;
-                    background: #F3A83C;
-                    border-radius: 8px;
-                    width: fit-content;
-                }
                 .field--name-total-price--recurly {
                     border-bottom: 1px solid #E0E0E0;
                 }
@@ -1590,7 +1579,7 @@ function init() {
 
         document.querySelector(".views-field.views-field-title").innerHTML = `1-Year DYWM Subscription`;
         if (!document.querySelector(".saved_block")) {
-          document.querySelector(".order-total-line__total").insertAdjacentHTML("afterend", ` <div class="saved_block">You just saved <span class="saved_var">$58.89</span> (<span class="percent_var">35%</span> off)</div>`);
+          document.querySelector(".order-total-line__total").insertAdjacentHTML("afterend", ` <div class="saved_block"></div>`);
         }
 
         let l = setInterval(() => {
