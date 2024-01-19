@@ -1811,7 +1811,21 @@ function changeCheckout() {
   
       if (!document.querySelector(".saved_block")) {
         document.querySelector(".order-total-line__total")
-          .insertAdjacentHTML( "afterend",` <div class="saved_block"></div>` );
+          .insertAdjacentHTML( "afterend",`
+            <style> 
+              .saved_block {
+                margin: 0 0 16px auto;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 20px;
+                color: #272727;
+                padding: 4px 8px;
+                background: #F3A83C;
+                border-radius: 8px;
+                width: fit-content;
+              }
+            </style> 
+            <div class="saved_block"></div>` );
       }
   
       document.querySelector(".saved_block").innerHTML =
