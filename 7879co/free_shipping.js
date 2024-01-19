@@ -270,15 +270,19 @@
             }
           }
         })
-        if (this.currentCountry === countries.gb || (this.currentCountry === countries.us && productPrice <= this.usFreeDelivery)) {
-        blockVisibility(
-          '.crs_shipping',
-          3,
-          `exp_cust_free_del_vis_pdp${this.eventCountry.toLowerCase()}_elem`,
-          'Element view',
-          'Visibility',
-          `PDP ${this.eventCountry} Shipping`
-        )}
+        if (
+          this.currentCountry === countries.gb ||
+          (this.currentCountry === countries.us && productPrice < this.usFreeDelivery)
+        ) {
+          blockVisibility(
+            '.crs_shipping',
+            3,
+            `exp_cust_free_del_vis_pdp${this.eventCountry.toLowerCase()}_elem`,
+            'Element view',
+            'Visibility',
+            `PDP ${this.eventCountry} Shipping`
+          )
+        }
         if (this.currentCountry === countries.us && productPrice >= this.usFreeDelivery) {
           blockVisibility(
             '.crs_shipping',
@@ -402,13 +406,18 @@
 
       waitForElement('[data-testid="checkout-button"]').then(elem => {
         elem.addEventListener('click', () => {
-          pushDataLayer(
-            `exp_cust_free_del_but_shop${this.eventCountry.toLowerCase()}_check`,
-            'Go to Checkout',
-            'Button',
-            `Shopping bag page ${this.eventCountry} Shipping`
-          )
-          if (this.currentCountry === countries.us && this.cartTotalPrice > this.usFreeDelivery) {
+          if (
+            this.currentCountry === countries.gb ||
+            (this.currentCountry === countries.us && this.cartTotalPrice < this.usFreeDelivery)
+          ) {
+            pushDataLayer(
+              `exp_cust_free_del_but_shop${this.eventCountry.toLowerCase()}_check`,
+              'Go to Checkout',
+              'Button',
+              `Shopping bag page ${this.eventCountry} Shipping`
+            )
+          }
+          if (this.currentCountry === countries.us && this.cartTotalPrice >= this.usFreeDelivery) {
             pushDataLayer(
               'exp_cust_free_del_but_shopusorov_check',
               'Go to Checkout',
@@ -429,7 +438,7 @@
             `Shopping bag page ${this.eventCountry} Shipping`
           )
         }
-        
+
         if (this.currentCountry === countries.us && this.cartTotalPrice >= this.usFreeDelivery) {
           blockVisibility(
             '.crs_cart_shipping',
