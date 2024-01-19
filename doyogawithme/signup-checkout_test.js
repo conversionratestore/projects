@@ -1582,21 +1582,21 @@ function init() {
           document.querySelector(".order-total-line__total").insertAdjacentHTML("afterend", ` <div class="saved_block"></div>`);
         }
 
-        let l = setInterval(() => {
-          if (document.querySelector(".saved_var")?.textContent !== "$75.24" && document.querySelector(".order-total-line.order-total-line__total .order-total-line-value")?.textContent === "$92.64") {
-            clearInterval(l);
-            value = 92.64;
-            document.querySelector(".saved_var").textContent = "$75.24";
-            document.querySelector(".percent_var").textContent = "45%";
-            document.querySelectorAll(".current_price").forEach((el) => {
-              el.textContent = "$92.64";
-            });
-            document.querySelector(".green_price").textContent = `${(value / 12).toFixed(2)}`;
-            if (document.querySelector(".views-field.views-field-total-price__number") && !document.querySelector(".c-green")) {
-              document.querySelector(".views-field.views-field-total-price__number").innerHTML = '<p><span>$167.88</span> $92.64</p> <p class="c-green">Just $7,83/month!</p>';
-            }
-          }
-        }, 100);
+        // let l = setInterval(() => {
+        //   if (document.querySelector(".saved_var")?.textContent !== "$75.24" && document.querySelector(".order-total-line.order-total-line__total .order-total-line-value")?.textContent === "$92.64") {
+        //     clearInterval(l);
+        //     value = 92.64;
+        //     document.querySelector(".saved_var").textContent = "$75.24";
+        //     document.querySelector(".percent_var").textContent = "45%";
+        //     document.querySelectorAll(".current_price").forEach((el) => {
+        //       el.textContent = "$92.64";
+        //     });
+        //     document.querySelector(".green_price").textContent = `${(value / 12).toFixed(2)}`;
+        //     if (document.querySelector(".views-field.views-field-total-price__number") && !document.querySelector(".c-green")) {
+        //       document.querySelector(".views-field.views-field-total-price__number").innerHTML = '<p><span>$167.88</span> $92.64</p> <p class="c-green">Just $7,83/month!</p>';
+        //     }
+        //   }
+        // }, 100);
       } else if (document.querySelector(".views-field.views-field-total-price__number").innerHTML.includes("$13.99 ")) {
         document.querySelector(".views-field.views-field-title").innerHTML = `1-Month DYWM Subscription`;
       }
