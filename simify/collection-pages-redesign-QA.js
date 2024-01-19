@@ -1705,7 +1705,11 @@
       let place
       let countryHandle = pathname.split('collections/')[1].replace('-sim-card', '').replace('-esim', '').replace('esim', '')
 
-      if (pathname.includes('esim')) {
+      if (pathname.includes('esims')) {
+        title = `eSim plans:`
+        subtitle = 'Select the plan that suits you best'
+      }
+      else if (pathname.includes('esim')) {
         place = capitalizeWords(countryHandle)
 
         if (place === 'Usa') {
@@ -1774,7 +1778,7 @@
       waitForElement('.collection-tab .active').then(activeTab => {
         let switcher = ``
         let whatIsBetter = false
-        
+
 
         if (activeTab.innerText.toLowerCase().includes('esims')) {
           switcher = /*html*/`
@@ -1797,7 +1801,7 @@
               </div>
             </div>`
 
-            whatIsBetter = true
+          whatIsBetter = true
         }
 
         waitForElement('.heading--alt').then(el => el.insertAdjacentHTML('afterend', switcher))
@@ -1840,7 +1844,7 @@
       waitForElement('.tabs__tab-btn--not-selected').then((NotActiveTab) => {
         let switcher = ``
         let whatIsBetter = false
-        
+
         if (NotActiveTab.innerText.toLowerCase().includes('esims')) {
           switcher = /*html*/`
           <div class="switcher switcher--right">
@@ -1916,9 +1920,9 @@
 
     $(document).on('click', function (e) {
       if (e.target.closest('.lav-dropdown__item')) {
-        pushDataLayer(['exp_onbo_plan_com_drop_allwhere_item', 'Countries', 'Item', 'All locations. Where are you going?']);
+        pushDataLayer(['exp_onbo_plan_com_drop_allwhere_item', 'Countries', 'Item', 'All locations. Where are you going?'])
 
-        e.target.closest('.ProductItem').querySelector('a').click();
+        e.target.closest('.ProductItem').querySelector('a').click()
       }
 
       if (!e.target.closest('.lav-dropdown')) {
