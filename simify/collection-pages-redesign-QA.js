@@ -1706,7 +1706,7 @@
       let countryHandle = pathname.split('collections/')[1].replace('-sim-card', '').replace('-esim', '').replace('esim', '')
 
       if (pathname.includes('esims')) {
-        title = `eSim plans:`
+        title = `All eSim plans:`
         subtitle = 'Select the plan that suits you best'
       }
       else if (pathname.includes('esim')) {
