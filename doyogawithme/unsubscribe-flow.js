@@ -1,4 +1,5 @@
-let dirProject =
+; (function () {
+  let dirProject =
   "https://conversionratestore.github.io/projects/doyogawithme/img/";
 
 const dataRadio = [
@@ -1858,3 +1859,4 @@ mutChangeCheckout.observe(document, {
   childList: true,
   subtree: true,
 });
+})()
