@@ -780,40 +780,40 @@ body.crs_fixed {
 var startTime = 0;
 let startTimeInterval;
 
-function handleVisibility(el, eventParams) {
-  let isVisible = false;
-  let entryTime;
-  const config = {
-    root: null,
-    threshold: 0, // Trigger when any part of the element is out of viewport
+function trackVisibility() {
+  const questionsBlock = document.querySelector('.crs_questions_block');
+
+  if (!questionsBlock) {
+    console.error('Елемент .crs_questions_block не знайдено');
+    return;
+  }
+
+  let previousFocusTime = 0;
+
+  const options = {
+    threshold: 0.5,
   };
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        if (!isVisible) {
-          // The element has become visible
-          isVisible = true;
-          entryTime = new Date().getTime();
-        }
-      } else if (isVisible) {
-        // The element is out of the viewport, calculate visibility duration
-        isVisible = false;
-        const exitTime = new Date().getTime();
-        const visibilityDuration = (exitTime - entryTime) / 1000; // Convert to seconds
-        const roundedDuration = Math.round(visibilityDuration);
-
-        if (roundedDuration) {
-          const eventData = eventParams;
-          eventData[1] = roundedDuration;
-          pushDataLayer(eventData);
-          observer.disconnect();
+        // Почати заново при входженні в поле зору
+        previousFocusTime = performance.now();
+      } else {
+        // При виході із поля зору, і якщо .crs_questions активний
+        const isQuestionsActive = document.querySelector('.crs_questions.active');
+        if (isQuestionsActive) {
+          const exitTime = performance.now();
+          const focusTime = (exitTime - previousFocusTime) / 1000; // Перевести мілісекунди в секунди
+          // Додати до попереднього часу фокусування
+          previousFocusTime = exitTime;
+          pushDataLayer(['exp_impr_acc_v_sdc_info', focusTime.toFixed(0), 'Visibility', 'Still decided to cancel? If you proceed with the cancellation']);
         }
       }
     });
-  }, config);
+  }, options);
 
-  observer.observe(el);
+  observer.observe(questionsBlock);
 }
 
 function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
@@ -1544,8 +1544,9 @@ const initUnSub = setInterval(() => {
         "Still decided to cancel?",
       ]);
     });
-
-    handleVisibility(document.querySelector('.crs_questions_block'), ['exp_impr_acc_v_sdc_info', '{{focusTime}}', 'Visibility', 'Still decided to cancel? If you proceed with the cancellation'])
+    
+    trackVisibility();
+    
 
     document.querySelectorAll(".crs_btn").forEach((item) => {
       item.addEventListener("click", (e) => {
@@ -1784,6 +1785,10 @@ function changeCheckout() {
   
       document.querySelector('.topbar a').href = document.referrer;
   
+      document.querySelector('.topbar a').addEventListener('click', (e) => {
+        pushDataLayer(['exp_impr_acc_b_pudngs_b', 'Back', 'Button', 'Your card']);
+      })
+
       let plan = localStorage.getItem("crsPlan");
   
       let price = document.querySelector(
