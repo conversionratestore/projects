@@ -516,7 +516,7 @@
       }
 
       let extraDay = 0
-      if (new Date().getUTCHours() >= 13 && new Date().getDay() !== 0 && currentDate.getDay() !== 6) {
+      if (new Date().getUTCHours() >= 13 && new Date().getDay() !== 0 && new Date().getDay() !== 6) {
         extraDay = 1
       }
 
