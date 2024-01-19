@@ -153,40 +153,81 @@
     }
 
     init() {
+      let isPdp =
+        this.currentCountry === countries.gb
+          ? location.pathname.split('/').length === 5
+          : location.pathname.split('/').length === 6
       let previousUrl = ''
-      const globalMutation = new MutationObserver(() => {
-        this.initStyles()
+      const globalMutation = new MutationObserver(mutations => {
+        mutations.forEach(m => {
+          if (m.previousSibling?.nodeName !== 'IFRAME') {
+            this.currentCountry = this.checkLocale()
+            this.eventCountry = this.currentCountry === countries.gb ? 'UK' : 'US'
+            isPdp =
+              this.currentCountry === countries.gb
+                ? location.pathname.split('/').length === 5
+                : location.pathname.split('/').length === 6
 
-        if (this.checkPageUrl() === 'bag' && location.href !== previousUrl) {
-          this.currentCountry = this.checkLocale()
-          this.eventCountry = this.currentCountry === countries.gb ? 'UK' : 'US'
-          this.cart()
-          previousUrl = location.href
-        }
+            if (this.checkPageUrl() === 'bag' && location.href !== previousUrl) {
+             
+              this.cart()
+              previousUrl = location.href
+            }
 
-        if (this.checkPageUrl() === 'shop' && location.href !== previousUrl) {
-          this.currentCountry = this.checkLocale()
-          this.eventCountry = this.currentCountry === countries.gb ? 'UK' : 'US'
-          this.pdp()
-          previousUrl = location.href
-        }
-        globalMutation.disconnect()
-        globalMutation.observe(document.body, {
-          childList: true
+            if (this.checkPageUrl() === 'shop' && location.href !== previousUrl && isPdp) {
+              this.pdp()
+              previousUrl = location.href
+            }
+            globalMutation.disconnect()
+            globalMutation.observe(document.body, {
+              childList: true
+            })
+          }
         })
       })
       globalMutation.observe(document.body, {
         childList: true
       })
+      this.initStyles()
       if (this.checkPageUrl() === 'bag') {
         this.cart()
         previousUrl = location.href
       }
 
-      if (this.checkPageUrl() === 'shop') {
+      if (this.checkPageUrl() === 'shop' && isPdp) {
         this.pdp()
+        this.eventsPdp()
+
         previousUrl = location.href
       }
+    }
+    eventsPdp() {
+      waitForElement('#add-cart-button-fixed').then(elem => {
+        const productPrice = $el('h3.text-h3.font-semibold').textContent.replace(/^\D+/g, '').replace(',', '')
+        document.addEventListener('click', event => {
+          if (event.target.textContent.includes('Add to bag')) {
+            if (
+              this.currentCountry === countries.gb ||
+              (this.currentCountry === countries.us && productPrice >= this.usFreeDelivery)
+            ) {
+              pushDataLayer(
+                `exp_cust_free_del_but_pdp${this.eventCountry.toLowerCase()}_adbag`,
+                'Add to bag',
+                'Button',
+                `PDP ${this.eventCountry}`
+              )
+            }
+            if (this.currentCountry === countries.us && productPrice < this.usFreeDelivery) {
+              pushDataLayer(
+                'exp_cust_free_del_but_pdpusorov_adbag',
+                'Add to bag',
+                'Button',
+                `PDP US FREE US Shipping on orders over $${this.usFreeDelivery}`
+              )
+            }
+          }
+        })
+      })
     }
     pdp() {
       waitForElement('#add-cart-button-fixed').then(elem => {
@@ -204,8 +245,8 @@
               <span class="crs_shipping__icon">${icons.shipping}</span>
               <span class="crs_shipping__title">
                 <span>Congratulations!</span>
-                You have FREE
-                <span>${this.currentCountry === countries.gb ? 'UK' : 'US'} Shipping</span>
+                You have
+                <span>FREE ${this.currentCountry === countries.gb ? 'UK' : 'US'} Shipping</span>
               </span>
             </div>
             <div class="crs_shipping__body">
@@ -250,29 +291,10 @@
             $el('.crs_shipping__body').style.display = 'none'
           }
         })
-        document.addEventListener('click', event => {
-          const target = event.target
-          if (target.closest('button[data-testid="add-to-bag"]')) {
-            pushDataLayer(
-              `exp_cust_free_del_but_pdp${this.eventCountry.toLowerCase()}_adbag`,
-              'Add to bag',
-              'Button',
-              `PDP ${this.eventCountry}`
-            )
 
-            if (this.currentCountry === countries.us && productPrice >= this.usFreeDelivery) {
-              pushDataLayer(
-                'exp_cust_free_del_but_pdpusorov_adbag',
-                'Add to bag',
-                'Button',
-                `PDP US FREE US Shipping on orders over $${this.usFreeDelivery}`
-              )
-            }
-          }
-        })
         if (
           this.currentCountry === countries.gb ||
-          (this.currentCountry === countries.us && productPrice < this.usFreeDelivery)
+          (this.currentCountry === countries.us && productPrice >= this.usFreeDelivery)
         ) {
           blockVisibility(
             '.crs_shipping',
@@ -283,7 +305,7 @@
             `PDP ${this.eventCountry} Shipping`
           )
         }
-        if (this.currentCountry === countries.us && productPrice >= this.usFreeDelivery) {
+        if (this.currentCountry === countries.us && productPrice < this.usFreeDelivery) {
           blockVisibility(
             '.crs_shipping',
             3,
@@ -300,7 +322,7 @@
       const cartChanges = () => {
         waitForElement('[data-testid="checkout-button"]').then(elem => {
           $el('.crs_cart_shipping')?.remove()
-          $el('.crs_shippinig__warning')?.remove()
+          $el('.crs_free_text')?.remove()
           $el('.crs_free_notification')?.remove()
           $$el('h5').forEach(elem => {
             if (elem.textContent.includes('Total')) {
@@ -369,7 +391,7 @@
               const targetDiv = elem.nextElementSibling.nextElementSibling
 
               const freeHtml = /* HTML */ `
-                <div class="flex w-full justify-between font-normal crs_free_notification">
+                <div class="flex w-full justify-between font-normal crs_free_text">
                   <h5 class="text-h5 text-platinum-32">Shipping</h5>
                   <h5 class="text-h5 crs_text_green">Free</h5>
                 </div>
@@ -408,7 +430,7 @@
         elem.addEventListener('click', () => {
           if (
             this.currentCountry === countries.gb ||
-            (this.currentCountry === countries.us && this.cartTotalPrice < this.usFreeDelivery)
+            (this.currentCountry === countries.us && this.cartTotalPrice > this.usFreeDelivery)
           ) {
             pushDataLayer(
               `exp_cust_free_del_but_shop${this.eventCountry.toLowerCase()}_check`,
@@ -417,7 +439,7 @@
               `Shopping bag page ${this.eventCountry} Shipping`
             )
           }
-          if (this.currentCountry === countries.us && this.cartTotalPrice >= this.usFreeDelivery) {
+          if (this.currentCountry === countries.us && this.cartTotalPrice < this.usFreeDelivery) {
             pushDataLayer(
               'exp_cust_free_del_but_shopusorov_check',
               'Go to Checkout',
@@ -429,9 +451,13 @@
       })
 
       waitForElement('.crs_cart_shipping').then(() => {
-        if (this.currentCountry === countries.gb) {
+        if (
+          this.currentCountry === countries.gb ||
+          (this.currentCountry === countries.us && this.cartTotalPrice >= this.usFreeDelivery)
+        ) {
           blockVisibility(
             '.crs_cart_shipping',
+            3,
             `exp_cust_free_del_vis_shop${this.eventCountry.toLowerCase()}_elem`,
             'Element view',
             'Visibility',
@@ -439,24 +465,17 @@
           )
         }
 
-        if (this.currentCountry === countries.us && this.cartTotalPrice >= this.usFreeDelivery) {
-          blockVisibility(
-            '.crs_cart_shipping',
-            'exp_cust_free_del_vis_shopusorov_elem',
-            'Element view',
-            'Visibility',
-            `Shopping bag page US Shipping FREE US Shipping on orders over $${this.usFreeDelivery}`
-          )
-        }
+        
       })
       waitForElement('.crs_free_notification').then(() => {
         if (this.currentCountry === countries.us && this.cartTotalPrice < this.usFreeDelivery) {
           blockVisibility(
             '.crs_free_notification',
-            `exp_cust_free_del_vis_shop${this.eventCountry.toLowerCase()}_elem`,
+            3,
+            'exp_cust_free_del_vis_shopusorov_elem',
             'Element view',
             'Visibility',
-            `Shopping bag page ${this.eventCountry} Shipping`
+            `Shopping bag page US Shipping FREE US Shipping on orders over $${this.usFreeDelivery}`
           )
         }
       })
@@ -495,14 +514,14 @@
         }
         return new Date(date)
       }
-      const currentDate = new Date()
+
       let extraDay = 0
-      if (currentDate.getUTCHours() >= 13 && currentDate.getDay() !== 0 && currentDate.getDay() !== 6) {
+      if (new Date().getUTCHours() >= 13 && currentDate.getDay() !== 0 && currentDate.getDay() !== 6) {
         extraDay = 1
       }
 
-      const firstDay = addBusinessDays(currentDate, 2 + extraDay)
-      const lastDay = addBusinessDays(currentDate, 4)
+      const firstDay = addBusinessDays(new Date(), 2 + extraDay)
+      const lastDay = addBusinessDays(new Date(), 4 + extraDay)
       return { firstDay, lastDay }
     }
     initStyles() {
@@ -510,6 +529,7 @@
         <style>
           #add-cart-button-fixed + div {
             padding-bottom: 0 !important;
+            margin-bottom: 0 !important;
           }
           .crs_shipping {
             width: 100%;
