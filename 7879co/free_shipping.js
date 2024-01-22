@@ -153,7 +153,6 @@
       this.usFreeDelivery = 350
       this.cartTotalPrice = +localStorage.getItem(CRS_CART_TOTAL_PRICE) || 0
       this.productPrice = 0
-      this.pdpClickHandler = null
     }
 
     init() {
@@ -173,7 +172,7 @@
                 : location.pathname.split('/').length === 6
             if (this.checkPageUrl() === 'bag' && location.href !== previousUrl) {
               this.cart()
-              document.removeEventListener('click', this.pdpClickHandler)
+
               previousUrl = location.href
             }
 
@@ -182,9 +181,6 @@
               previousUrl = location.href
             }
 
-            if (this.checkPageUrl() === 'shop' && !isPdp) {
-              document.removeEventListener('click', this.pdpClickHandler)
-            }
             previousUrl = location.href
             mutation.disconnect()
             mutation.observe(document.body, {
@@ -283,12 +279,10 @@
               $el('.crs_shipping__body').style.display = 'none'
             }
           })
-      
+
           if (
             (!isFreeshippingShown && this.currentCountry === countries.gb) ||
-            (!isFreeshippingShown &&
-              this.currentCountry === countries.us &&
-              this.cartTotalPrice >= this.usFreeDelivery)
+            (!isFreeshippingShown && this.currentCountry === countries.us && this.cartTotalPrice >= this.usFreeDelivery)
           ) {
             isFreeshippingShown = true
             isOverFreeShippingShown = false
@@ -317,45 +311,46 @@
               `PDP US Shipping FREE US Shipping on orders over $${this.usFreeDelivery}`
             )
           }
+          $$el('button').forEach(elem => {
+            elem.addEventListener('click', event => {
+              if (event.currentTarget.dataset.testid === 'add-to-bag') {
+                if (this.currentCountry === countries.gb) {
+                  pushDataLayer(
+                    `exp_cust_free_del_but_pdp${this.eventCountry.toLowerCase()}_adbag`,
+                    'Add to bag',
+                    'Button',
+                    `PDP ${this.eventCountry}`
+                  )
+                }
+                if (this.currentCountry === countries.us) {
+                  this.productPrice = +$el('h3.text-h3.font-semibold').textContent.replace(/^\D+/g, '').replace(',', '')
+
+                  this.cartTotalPrice += this.productPrice
+
+                  localStorage.setItem(CRS_CART_TOTAL_PRICE, this.cartTotalPrice.toFixed(2))
+                  pdpChanges()
+                  if (this.cartTotalPrice < this.usFreeDelivery) {
+                    pushDataLayer(
+                      'exp_cust_free_del_but_pdpusorov_adbag',
+                      'Add to bag',
+                      'Button',
+                      `PDP US FREE US Shipping on orders over $${this.usFreeDelivery}`
+                    )
+                  } else {
+                    pushDataLayer(
+                      `exp_cust_free_del_but_pdp${this.eventCountry.toLowerCase()}_adbag`,
+                      'Add to bag',
+                      'Button',
+                      `PDP ${this.eventCountry}`
+                    )
+                  }
+                }
+              }
+            })
+          })
         })
       }
       pdpChanges()
-      this.pdpClickHandler = event => {
-        if (event.target.textContent.includes('Add to bag')) {
-          if (this.currentCountry === countries.gb) {
-            pushDataLayer(
-              `exp_cust_free_del_but_pdp${this.eventCountry.toLowerCase()}_adbag`,
-              'Add to bag',
-              'Button',
-              `PDP ${this.eventCountry}`
-            )
-          }
-          if (this.currentCountry === countries.us) {
-            this.productPrice = +$el('h3.text-h3.font-semibold').textContent.replace(/^\D+/g, '').replace(',', '')
-
-            this.cartTotalPrice += this.productPrice
-
-            localStorage.setItem(CRS_CART_TOTAL_PRICE, this.cartTotalPrice.toFixed(2))
-            pdpChanges()
-            if (this.cartTotalPrice < this.usFreeDelivery) {
-              pushDataLayer(
-                'exp_cust_free_del_but_pdpusorov_adbag',
-                'Add to bag',
-                'Button',
-                `PDP US FREE US Shipping on orders over $${this.usFreeDelivery}`
-              )
-            } else {
-              pushDataLayer(
-                `exp_cust_free_del_but_pdp${this.eventCountry.toLowerCase()}_adbag`,
-                'Add to bag',
-                'Button',
-                `PDP ${this.eventCountry}`
-              )
-            }
-          }
-        }
-      }
-      document.addEventListener('click', this.pdpClickHandler)
     }
 
     cart() {
@@ -451,7 +446,7 @@
             }
           })
           if (
-            !isFreeshippingShown && this.currentCountry === countries.gb ||
+            (!isFreeshippingShown && this.currentCountry === countries.gb) ||
             (!isFreeshippingShown && this.currentCountry === countries.us && this.cartTotalPrice >= this.usFreeDelivery)
           ) {
             isFreeshippingShown = true
@@ -466,8 +461,12 @@
               `Shopping bag page ${this.eventCountry} Shipping`
             )
           }
-  
-          if (!isOverFreeShippingShown && this.currentCountry === countries.us && this.cartTotalPrice < this.usFreeDelivery) {
+
+          if (
+            !isOverFreeShippingShown &&
+            this.currentCountry === countries.us &&
+            this.cartTotalPrice < this.usFreeDelivery
+          ) {
             isOverFreeShippingShown = true
             isFreeshippingShown = false
             blockVisibility(
@@ -534,8 +533,6 @@
             )
           }
         })
-
-        
       })
     }
 
