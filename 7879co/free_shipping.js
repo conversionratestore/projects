@@ -144,12 +144,14 @@
     gb: 'United Kingdom'
   }
 
+  const CRS_CART_TOTAL_PRICE = 'crsCartTotalPrice'
+
   class FreeShipping {
     constructor() {
       this.currentCountry = this.checkLocale()
       this.eventCountry = this.currentCountry === countries.gb ? 'UK' : 'US'
       this.usFreeDelivery = 350
-      this.cartTotalPrice = 0
+      this.cartTotalPrice = +localStorage.getItem(CRS_CART_TOTAL_PRICE) || 0
       this.productPrice = 0
       this.pdpClickHandler = null
     }
@@ -208,98 +210,119 @@
     }
 
     pdp() {
-      waitForElement('#add-cart-button-fixed').then(elem => {
-        const container = elem.parentNode.nextElementSibling
-        const warranty = container.children[0]
-        const shipping = container.children[1]
-        this.productPrice = $el('h3.text-h3.font-semibold').textContent.replace(/^\D+/g, '').replace(',', '')
-        // $el('.crs_shipping')?.remove()
+      let isFreeshippingShown = false
+      let isOverFreeShippingShown = false
 
-        const { firstDay, lastDay } = this.estimateDelivery()
+      const pdpChanges = () => {
+        waitForElement('#add-cart-button-fixed').then(elem => {
+          const container = elem.parentNode.nextElementSibling
+          const warranty = container.children[0]
+          const shipping = container.children[1]
 
-        const shippingHtml = /* HTML */ `
-          <div class="crs_shipping">
-            <div class="crs_shipping__header">
-              <span class="crs_shipping__icon">${icons.shipping}</span>
+          const { firstDay, lastDay } = this.estimateDelivery()
+
+          const shippingHtml = /* HTML */ `
+            <div class="crs_shipping">
+              <div class="crs_shipping__header">
+                <span class="crs_shipping__icon">${icons.shipping}</span>
+                <span class="crs_shipping__title">
+                  <span>Congratulations!</span>
+                  You have
+                  <span>FREE ${this.currentCountry === countries.gb ? 'UK' : 'US'} Shipping</span>
+                </span>
+              </div>
+              <div class="crs_shipping__body">
+                <div class="crs_shipping__date"></div>
+                <div class="crs_shipping__estimate">
+                  <span>Est. Delivery:</span>
+                  <span class="crs_shipping__estimate_range"
+                    >${firstDay.getDate()}
+                    ${firstDay.toLocaleString('en-GB', {
+                      month: 'short'
+                    })}
+                    - ${lastDay.getDate()}
+                    ${lastDay.toLocaleString('en-GB', {
+                      month: 'short'
+                    })}</span
+                  >
+                </div>
+              </div>
+            </div>
+          `
+          const oldElement = document.querySelector('.crs_shipping')
+
+          if (!oldElement) {
+            container.insertAdjacentHTML('beforeend', shippingHtml)
+            $el('.crs_shipping__date').append(shipping)
+            container.append(warranty)
+          }
+          if (this.currentCountry === countries.us && this.cartTotalPrice < this.usFreeDelivery) {
+            $el('.crs_shipping').classList.add('crs_shipping--inactive')
+            const shippingTitle = /* HTML */ `
+              <span class="crs_shipping__title">
+                <span>FREE US Shipping</span>
+                on orders over
+                <span>$${this.usFreeDelivery}</span>
+              </span>
+            `
+            $el('.crs_shipping__header').innerHTML = shippingTitle
+          } else {
+            $el('.crs_shipping').classList.remove('crs_shipping--inactive')
+            const shippingTitle = /* HTML */ `
               <span class="crs_shipping__title">
                 <span>Congratulations!</span>
                 You have
                 <span>FREE ${this.currentCountry === countries.gb ? 'UK' : 'US'} Shipping</span>
               </span>
-            </div>
-            <div class="crs_shipping__body">
-              <div class="crs_shipping__date"></div>
-              <div class="crs_shipping__estimate">
-                <span>Est. Delivery:</span>
-                <span class="crs_shipping__estimate_range"
-                  >${firstDay.getDate()}
-                  ${firstDay.toLocaleString('en-GB', {
-                    month: 'short'
-                  })}
-                  - ${lastDay.getDate()}
-                  ${lastDay.toLocaleString('en-GB', {
-                    month: 'short'
-                  })}</span
-                >
-              </div>
-            </div>
-          </div>
-        `
-        const oldElement = document.querySelector('.crs_shipping')
+            `
+            $el('.crs_shipping__header').innerHTML = shippingTitle
+          }
 
-        if (!oldElement) {
-          container.insertAdjacentHTML('beforeend', shippingHtml)
-          $el('.crs_shipping__date').append(shipping)
-          container.append(warranty)
-        }
-        if (this.currentCountry === countries.us && this.productPrice < this.usFreeDelivery) {
-          $el('.crs_shipping').classList.add('crs_shipping--inactive')
-          const shippingTitle = /* HTML */ `
-            <span class="crs_shipping__title">
-              <span>FREE US Shipping</span>
-              on orders over
-              <span>$${this.usFreeDelivery}</span>
-            </span>
-          `
-          $el('.crs_shipping__header').innerHTML = shippingTitle
-        }
-
-        $$el('p').forEach(elem => {
-          if (elem.textContent.includes('Made for You')) {
-            $el('.crs_shipping__body').style.display = 'none'
+          $$el('p').forEach(elem => {
+            if (elem.textContent.includes('Made for You')) {
+              $el('.crs_shipping__body').style.display = 'none'
+            }
+          })
+      
+          if (
+            (!isFreeshippingShown && this.currentCountry === countries.gb) ||
+            (!isFreeshippingShown &&
+              this.currentCountry === countries.us &&
+              this.cartTotalPrice >= this.usFreeDelivery)
+          ) {
+            isFreeshippingShown = true
+            isOverFreeShippingShown = false
+            blockVisibility(
+              '.crs_shipping',
+              3,
+              `exp_cust_free_del_vis_pdp${this.eventCountry.toLowerCase()}_elem`,
+              'Element view',
+              'Visibility',
+              `PDP ${this.eventCountry} Shipping`
+            )
+          }
+          if (
+            !isOverFreeShippingShown &&
+            this.currentCountry === countries.us &&
+            this.cartTotalPrice < this.usFreeDelivery
+          ) {
+            isOverFreeShippingShown = true
+            isFreeshippingShown = false
+            blockVisibility(
+              '.crs_shipping',
+              3,
+              `exp_cust_free_del_vis_pdpusorov_elem`,
+              'Element view',
+              'Visibility',
+              `PDP US Shipping FREE US Shipping on orders over $${this.usFreeDelivery}`
+            )
           }
         })
-
-        if (
-          this.currentCountry === countries.gb ||
-          (this.currentCountry === countries.us && this.productPrice >= this.usFreeDelivery)
-        ) {
-          blockVisibility(
-            '.crs_shipping',
-            3,
-            `exp_cust_free_del_vis_pdp${this.eventCountry.toLowerCase()}_elem`,
-            'Element view',
-            'Visibility',
-            `PDP ${this.eventCountry} Shipping`
-          )
-        }
-        if (this.currentCountry === countries.us && this.productPrice < this.usFreeDelivery) {
-          blockVisibility(
-            '.crs_shipping',
-            3,
-            `exp_cust_free_del_vis_pdpusorov_elem`,
-            'Element view',
-            'Visibility',
-            `PDP US Shipping FREE US Shipping on orders over $${this.usFreeDelivery}`
-          )
-        }
-      })
+      }
+      pdpChanges()
       this.pdpClickHandler = event => {
         if (event.target.textContent.includes('Add to bag')) {
-          if (
-            this.currentCountry === countries.gb ||
-            (this.currentCountry === countries.us && this.productPrice >= this.usFreeDelivery)
-          ) {
+          if (this.currentCountry === countries.gb) {
             pushDataLayer(
               `exp_cust_free_del_but_pdp${this.eventCountry.toLowerCase()}_adbag`,
               'Add to bag',
@@ -307,13 +330,28 @@
               `PDP ${this.eventCountry}`
             )
           }
-          if (this.currentCountry === countries.us && this.productPrice < this.usFreeDelivery) {
-            pushDataLayer(
-              'exp_cust_free_del_but_pdpusorov_adbag',
-              'Add to bag',
-              'Button',
-              `PDP US FREE US Shipping on orders over $${this.usFreeDelivery}`
-            )
+          if (this.currentCountry === countries.us) {
+            this.productPrice = +$el('h3.text-h3.font-semibold').textContent.replace(/^\D+/g, '').replace(',', '')
+
+            this.cartTotalPrice += this.productPrice
+
+            localStorage.setItem(CRS_CART_TOTAL_PRICE, this.cartTotalPrice.toFixed(2))
+            pdpChanges()
+            if (this.cartTotalPrice < this.usFreeDelivery) {
+              pushDataLayer(
+                'exp_cust_free_del_but_pdpusorov_adbag',
+                'Add to bag',
+                'Button',
+                `PDP US FREE US Shipping on orders over $${this.usFreeDelivery}`
+              )
+            } else {
+              pushDataLayer(
+                `exp_cust_free_del_but_pdp${this.eventCountry.toLowerCase()}_adbag`,
+                'Add to bag',
+                'Button',
+                `PDP ${this.eventCountry}`
+              )
+            }
           }
         }
       }
@@ -321,7 +359,17 @@
     }
 
     cart() {
+      let isFreeshippingShown = false
+      let isOverFreeShippingShown = false
+
       const cartChanges = () => {
+        waitForElement('p.tracking-tight').then(elem => {
+          if (elem.textContent.includes('Your bag is empty')) {
+            this.cartTotalPrice = 0
+            localStorage.removeItem(CRS_CART_TOTAL_PRICE)
+          }
+        })
+
         waitForElement('[data-testid="checkout-button"]').then(elem => {
           $el('.crs_cart_shipping')?.remove()
           $el('.crs_free_text')?.remove()
@@ -329,6 +377,7 @@
           $$el('h5').forEach(elem => {
             if (elem.textContent.includes('Total')) {
               this.cartTotalPrice = +elem.nextElementSibling.textContent.replace(/^\D+/g, '').replace(',', '')
+              localStorage.setItem(CRS_CART_TOTAL_PRICE, this.cartTotalPrice.toFixed(2))
             }
           })
 
@@ -401,6 +450,35 @@
               targetDiv.insertAdjacentHTML('afterend', freeHtml)
             }
           })
+          if (
+            !isFreeshippingShown && this.currentCountry === countries.gb ||
+            (!isFreeshippingShown && this.currentCountry === countries.us && this.cartTotalPrice >= this.usFreeDelivery)
+          ) {
+            isFreeshippingShown = true
+            isOverFreeShippingShown = false
+
+            blockVisibility(
+              '.crs_cart_shipping',
+              3,
+              `exp_cust_free_del_vis_shop${this.eventCountry.toLowerCase()}_elem`,
+              'Element view',
+              'Visibility',
+              `Shopping bag page ${this.eventCountry} Shipping`
+            )
+          }
+  
+          if (!isOverFreeShippingShown && this.currentCountry === countries.us && this.cartTotalPrice < this.usFreeDelivery) {
+            isOverFreeShippingShown = true
+            isFreeshippingShown = false
+            blockVisibility(
+              '.crs_free_notification',
+              3,
+              'exp_cust_free_del_vis_shopusorov_elem',
+              'Element view',
+              'Visibility',
+              `Shopping bag page US Shipping FREE US Shipping on orders over $${this.usFreeDelivery}`
+            )
+          }
         })
       }
       // const observedElement = document.querySelector('[data-testid="checkout-button"]')?.parentNode.previousSibling
@@ -457,32 +535,8 @@
           }
         })
 
-        if (
-          this.currentCountry === countries.gb ||
-          (this.currentCountry === countries.us && this.cartTotalPrice >= this.usFreeDelivery)
-        ) {
-          blockVisibility(
-            '.crs_cart_shipping',
-            3,
-            `exp_cust_free_del_vis_shop${this.eventCountry.toLowerCase()}_elem`,
-            'Element view',
-            'Visibility',
-            `Shopping bag page ${this.eventCountry} Shipping`
-          )
-        }
-  
-        if (this.currentCountry === countries.us && this.cartTotalPrice < this.usFreeDelivery) {
-          blockVisibility(
-            '.crs_free_notification',
-            3,
-            'exp_cust_free_del_vis_shopusorov_elem',
-            'Element view',
-            'Visibility',
-            `Shopping bag page US Shipping FREE US Shipping on orders over $${this.usFreeDelivery}`
-          )
-        }
+        
       })
-
     }
 
     checkPageUrl() {
