@@ -1076,28 +1076,6 @@ function formatTimestamp(timestamp) {
   return formattedDate;
 }
 
-function addMonthsOrYearsToUnixTimestamp(timestamp, type) {
-  // Перетворюємо Unix timestamp в об'єкт дати
-  let date = new Date(timestamp * 1000);
-
-  // Додаємо місяці або роки в залежності від типу (months або years)
-  if (type === "mounthly") {
-    date.setMonth(date.getMonth() + 1);
-  } else {
-    date.setFullYear(date.getFullYear() + 12);
-  }
-
-  // Отримуємо числові значення дня та місяця
-  let day = date.getDate();
-  let month = date.toLocaleString("en-US", { month: "long" });
-  let year = date.getFullYear();
-
-  // Форматуємо результат у вигляді "dd Month"
-  let result = day + " " + month + ", " + year;
-
-  return result;
-}
-
 function closeOutside(parent) {
   parent.querySelectorAll('.crs_popup').forEach((item) => {
     item.addEventListener("click", (e) => {
