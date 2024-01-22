@@ -880,7 +880,7 @@ const html = `
                     <h4>Is there anything else you would like to add or share about your experience?</h4>
                     <textarea cols="5" rows="4" placeholder="Write here"></textarea>
                     <div class="crs_questions_block">If you proceed with the cancellation now, you will still be able 
-                        to access premium content until 18 August
+                        to access premium content until 
                     </div>
                     <div class="crs_page_footer flex-md-center">
                         <div class="crs_btn green" type="button">i’d like to keep my membership</div>
@@ -1090,9 +1090,10 @@ function addMonthsOrYearsToUnixTimestamp(timestamp, type) {
   // Отримуємо числові значення дня та місяця
   let day = date.getDate();
   let month = date.toLocaleString("en-US", { month: "long" });
+  let year = date.getFullYear();
 
   // Форматуємо результат у вигляді "dd Month"
-  let result = day + " " + month;
+  let result = day + " " + month + ", " + year;
 
   return result;
 }
@@ -1175,14 +1176,9 @@ function closeOutside(parent) {
 }
 
 const popupDiscount = (parent, data, link) => {
-  let metrics = JSON.parse(
-    JSON.stringify(dataLayer).split('"metrics":')[1].split(',"user"')[0]
-  );
 
-  let resultAfterAdding = addMonthsOrYearsToUnixTimestamp(
-    metrics["account_created"],
-    localStorage.getItem("crsPlan")
-  );
+  let date = document.querySelector('.recurly-subscription-cancel-confirm-form > p > strong').innerText.split('-')[0]
+  let resultAfterAdding = date.split(', ')[1] + ', ' + date.split(', ')[2];
 
   let plan = localStorage.getItem("crsPlan");
   let eventName = plan == "year" ? "yd" : "md";
@@ -1427,10 +1423,8 @@ const initUnSub = setInterval(() => {
       JSON.stringify(dataLayer).split('"metrics":')[1].split(',"user"')[0]
     );
 
-    let resultAfterAdding = addMonthsOrYearsToUnixTimestamp(
-      metrics["account_created"],
-      localStorage.getItem("crsPlan")
-    );
+    let date = document.querySelector('.recurly-subscription-cancel-confirm-form > p > strong').innerText.split(' -')[0]
+    let resultAfterAdding = date.split(', ')[1] + ', ' + date.split(', ')[2];
 
     document.querySelector(
       ".crs_questions_block"
@@ -1831,7 +1825,7 @@ function changeCheckout() {
   
       document.querySelector(".saved_block").innerHTML =
         plan == "year"
-            ? "You just saved $65.04 (40% off)"
+            ? "You just saved $43.59 (40% off)"
             : "You just saved $27.98 (67% off)";
     }
   });
