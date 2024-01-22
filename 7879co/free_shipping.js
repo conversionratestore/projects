@@ -169,7 +169,6 @@
               this.currentCountry === countries.gb
                 ? location.pathname.split('/').length === 5
                 : location.pathname.split('/').length === 6
-
             if (this.checkPageUrl() === 'bag' && location.href !== previousUrl) {
               this.cart()
               document.removeEventListener('click', this.pdpClickHandler)
@@ -179,13 +178,12 @@
             if (this.checkPageUrl() === 'shop' && location.href !== previousUrl && isPdp) {
               this.pdp()
               previousUrl = location.href
-            } 
+            }
 
             if (this.checkPageUrl() === 'shop' && !isPdp) {
-              console.log('remove')
               document.removeEventListener('click', this.pdpClickHandler)
-          
             }
+            previousUrl = location.href
             mutation.disconnect()
             mutation.observe(document.body, {
               childList: true
@@ -297,7 +295,6 @@
         }
       })
       this.pdpClickHandler = event => {
-        console.log(event.target)
         if (event.target.textContent.includes('Add to bag')) {
           if (
             this.currentCountry === countries.gb ||
@@ -406,13 +403,24 @@
           })
         })
       }
-      const observedElement = document.querySelector('[data-testid="checkout-button"]')?.parentNode.previousSibling
-      const cartMutation = new MutationObserver(mutation => {
-        mutation.forEach(item => {
-          if (item.type === 'characterData') {
-            cartMutation.disconnect()
-            cartChanges()
-          }
+      // const observedElement = document.querySelector('[data-testid="checkout-button"]')?.parentNode.previousSibling
+      waitForElement('[data-testid="checkout-button"]').then(elem => {
+        const observedElement = elem.parentNode.previousSibling
+        const cartMutation = new MutationObserver(mutation => {
+          mutation.forEach(item => {
+            if (item.type === 'characterData') {
+              cartMutation.disconnect()
+              cartChanges()
+            }
+          })
+
+          cartMutation.observe(observedElement, {
+            childList: true,
+            characterData: true,
+            characterDataOldValue: true,
+            attributes: true,
+            subtree: true
+          })
         })
 
         cartMutation.observe(observedElement, {
@@ -422,14 +430,6 @@
           attributes: true,
           subtree: true
         })
-      })
-
-      cartMutation.observe(observedElement, {
-        childList: true,
-        characterData: true,
-        characterDataOldValue: true,
-        attributes: true,
-        subtree: true
       })
 
       cartChanges()
@@ -456,6 +456,7 @@
             )
           }
         })
+
         if (
           this.currentCountry === countries.gb ||
           (this.currentCountry === countries.us && this.cartTotalPrice >= this.usFreeDelivery)
@@ -469,7 +470,7 @@
             `Shopping bag page ${this.eventCountry} Shipping`
           )
         }
-
+  
         if (this.currentCountry === countries.us && this.cartTotalPrice < this.usFreeDelivery) {
           blockVisibility(
             '.crs_free_notification',
@@ -481,6 +482,7 @@
           )
         }
       })
+
     }
 
     checkPageUrl() {
