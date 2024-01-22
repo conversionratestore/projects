@@ -1284,7 +1284,7 @@ margin: 0 0 12px;
       document.body.insertAdjacentHTML("afterbegin", popUp);
       document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup);
 
-      exitIntentPopup();
+      //   exitIntentPopup();
       // trigger for click on video
       let findVideo = setInterval(() => {
         if (document.querySelector("video.fp-engine")) {
