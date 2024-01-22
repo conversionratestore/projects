@@ -1153,6 +1153,23 @@ function closeOutside(parent) {
   });
 }
 
+function formatMinutes(minutes) {
+  if (isNaN(minutes) || minutes < 0) {
+    return "Invalid input";
+  }
+
+  if (minutes == 0) {
+    return "0";
+  }
+
+  const hours = Math.floor(minutes / 60);
+  const remainingMinutes = minutes % 60;
+
+  const formattedTime = `${hours}h ${remainingMinutes} minutes`;
+
+  return formattedTime;
+}
+
 const popupDiscount = (parent, data, link) => {
 
   let date = document.querySelector('.recurly-subscription-cancel-confirm-form > p > strong').innerText.split('-')[0]
@@ -1421,7 +1438,7 @@ const initUnSub = setInterval(() => {
           metrics["estimated_active_days"];
       } else if (index == 3) {
         item.querySelector("p:last-child").innerHTML =
-          metrics["watchtime_minutes"];
+          formatMinutes(metrics["watchtime_minutes"]);
       }
     });
 
