@@ -161,6 +161,17 @@
           ? location.pathname.split('/').length === 5
           : location.pathname.split('/').length === 6
       let previousUrl = ''
+      this.initStyles()
+      
+      if (this.checkPageUrl() === 'bag') {
+        this.cart()
+        previousUrl = location.href
+      }
+
+      if (this.checkPageUrl() === 'shop' && isPdp) {
+        this.pdp()
+        previousUrl = location.href
+      }
       const mutation = new MutationObserver(mutations => {
         mutations.forEach(m => {
           if (m.previousSibling?.nodeName !== 'IFRAME') {
@@ -192,17 +203,7 @@
       mutation.observe(document.body, {
         childList: true
       })
-      this.initStyles()
-      if (this.checkPageUrl() === 'bag') {
-        this.cart()
-        previousUrl = location.href
-      }
 
-      if (this.checkPageUrl() === 'shop' && isPdp) {
-        this.pdp()
-
-        previousUrl = location.href
-      }
     }
 
     pdp() {
@@ -313,7 +314,8 @@
           }
           $$el('button').forEach(elem => {
             elem.addEventListener('click', event => {
-              if (event.currentTarget.dataset.testid === 'add-to-bag') {
+              console.log('fixed', event.target.closest('.fixed'))
+              if (event.currentTarget.dataset.testid === 'add-to-bag' && !event.target.closest('.fixed')) {
                 if (this.currentCountry === countries.gb) {
                   pushDataLayer(
                     `exp_cust_free_del_but_pdp${this.eventCountry.toLowerCase()}_adbag`,
@@ -342,6 +344,39 @@
                       'Add to bag',
                       'Button',
                       `PDP ${this.eventCountry}`
+                    )
+                  }
+                }
+              }
+              if (event.currentTarget.dataset.testid === 'add-to-bag' && event.target.closest('.fixed')) {
+                if (this.currentCountry === countries.gb) {
+                  pushDataLayer(
+                    `exp_cust_free_del_but_pdpuk_adbag_st`,
+                    'Add to bag',
+                    'Button',
+                    `PDP UK`
+                  )
+                }
+                if (this.currentCountry === countries.us) {
+                  this.productPrice = +$el('h3.text-h3.font-semibold').textContent.replace(/^\D+/g, '').replace(',', '')
+
+                  this.cartTotalPrice += this.productPrice
+
+                  localStorage.setItem(CRS_CART_TOTAL_PRICE, this.cartTotalPrice.toFixed(2))
+                  pdpChanges()
+                  if (this.cartTotalPrice < this.usFreeDelivery) {
+                    pushDataLayer(
+                      'exp_cust_free_del_but_pdpusorov_adbag_st',
+                      'Add to bag',
+                      'Button',
+                      `PDP US FREE US Shipping on orders over $${this.usFreeDelivery}`
+                    )
+                  } else {
+                    pushDataLayer(
+                      `exp_cust_free_del_but_pdpus_adbag_st`,
+                      'Add to bag',
+                      'Button',
+                      `PDP US`
                     )
                   }
                 }
