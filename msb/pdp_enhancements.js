@@ -951,7 +951,7 @@
         <ul class="crs__accordion">
           <li class="crs__accordion_item">
             <span class="crs__accordion_title">About The Product</span>
-            <div class="crs__accordion_content" data-accordion="product">${productDetails.innerHTML}</div>
+            <div class="crs__accordion_content" data-accordion="product"></div>
           </li>
           <li class="crs__accordion_item">
             <span class="crs__accordion_title">Delivery & Returns FAQ</span>
@@ -1004,6 +1004,7 @@
           )
         })
       })
+      $el('[data-accordion="product"]').append(productDetails)
       $el('[data-accordion="faq"]').append(deliveryFaq)
       const ul = $el('.crs__accordion')
       const titles = ul.querySelectorAll('.crs__accordion_title')
