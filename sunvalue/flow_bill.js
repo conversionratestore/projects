@@ -147,7 +147,7 @@ init() {
               } else if ($(this).text().toLowerCase().includes('other')) {
                   pushDataLayer('exp_val_incr_eng_but_thriprovid_other', 'Other', 'Button', 'Third step Who is your utility provider?');        
               } else {
-                  pushDataLayer('exp_val_incr_eng_but_thriprovid_'+$(this).text().toLowerCase().trim().split(' ')[0], $(this).text(), 'Button', 'Third step Who is your utility provider?');        
+                  pushDataLayer('exp_val_incr_eng_but_thriprovid_'+$(this).text().toLowerCase().trim().split(' ')[0], $(this).text().trim(), 'Button', 'Third step Who is your utility provider?');        
               }
           })
       }
