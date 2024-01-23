@@ -946,6 +946,7 @@
       const productDetails = $el('.product-info-main .features-wrapper')
       const deliveryFaq = $el('.product-info-main .acc-content-delivery ul')
 
+      console.log('details', productDetails)
       const accordion = /* HTML */ `
         <ul class="crs__accordion">
           <li class="crs__accordion_item">
@@ -1003,7 +1004,6 @@
           )
         })
       })
-      $el('[data-accordion="product"]').append(productDetails)
       $el('[data-accordion="faq"]').append(deliveryFaq)
       const ul = $el('.crs__accordion')
       const titles = ul.querySelectorAll('.crs__accordion_title')
