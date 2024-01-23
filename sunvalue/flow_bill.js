@@ -615,7 +615,7 @@ styleAppend() {
         </style>
     `;
 
-  $("body").prepend(style);
+  document.body.insertAdjacentHTML("afterbegin", style)
 }
 
 changeSlides() {
