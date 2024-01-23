@@ -946,12 +946,11 @@
       const productDetails = $el('.product-info-main .features-wrapper')
       const deliveryFaq = $el('.product-info-main .acc-content-delivery ul')
 
-      console.log('details', productDetails)
       const accordion = /* HTML */ `
         <ul class="crs__accordion">
           <li class="crs__accordion_item">
             <span class="crs__accordion_title">About The Product</span>
-            <div class="crs__accordion_content" data-accordion="product"></div>
+            <div class="crs__accordion_content" data-accordion="product">${productDetails.innerHTML}</div>
           </li>
           <li class="crs__accordion_item">
             <span class="crs__accordion_title">Delivery & Returns FAQ</span>
@@ -1004,7 +1003,7 @@
           )
         })
       })
-      $el('[data-accordion="product"]').append(productDetails)
+      productDetails.remove()
       $el('[data-accordion="faq"]').append(deliveryFaq)
       const ul = $el('.crs__accordion')
       const titles = ul.querySelectorAll('.crs__accordion_title')
