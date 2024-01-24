@@ -53,6 +53,7 @@ function visibleAfterTimer(i) {
   setTimeout(() => {
       if (viewedSlide != index && $('.swiper-slide').eq(index).hasClass('swiper-slide-active')) {
           viewedSlide = index
+
           if (index == 0) {
               pushDataLayer('exp_val_incr_eng_vis_firstbill_page', 'Full page view', 'Visibility', 'First step How much is your latest monthly energy bill?');
           } else if (index == 1) {
@@ -109,6 +110,27 @@ init() {
   }
 
   const globalMutation = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if ( $('.swiper-slide-active')) {
+        visibleAfterTimer($('.swiper-slide-active').attr('aria-label').split(' /')[0]);
+      }
+
+      if ($(".swiper-slide").eq(2).hasClass("swiper-slide-active") && clickRadioNext == false) {
+        clickRadioNext = true;
+        $('#companies > div').click(function(e) {
+            if ($(this).text().toLowerCase().includes('los angeles')) {
+                pushDataLayer('exp_val_incr_eng_but_thriprovid_angel', 'Los Angeles Department of Water & Power', 'Button', 'Third step Who is your utility provider?');
+            } else if ($(this).text().toLowerCase().includes('glendale water')) {
+                pushDataLayer('exp_val_incr_eng_but_thriprovid_glend', 'Glendale Water & Power', 'Button', 'Third step Who is your utility provider?');        
+            } else if ($(this).text().toLowerCase().includes('other')) {
+                pushDataLayer('exp_val_incr_eng_but_thriprovid_other', 'Other', 'Button', 'Third step Who is your utility provider?');        
+            } else {
+                pushDataLayer('exp_val_incr_eng_but_thriprovid_'+$(this).text().toLowerCase().trim().split(' ')[0], $(this).text().trim(), 'Button', 'Third step Who is your utility provider?');        
+            }
+        })
+      }
+    })
+
     if (this.checkPageUrl() === "flow-bill") {
       if (
         $(".swiper-slide").eq(1).hasClass("swiper-slide-active") ||
@@ -134,23 +156,7 @@ init() {
       }
 
       //events
-      visibleAfterTimer($('.swiper-slide-active').attr('aria-label').split(' /')[0]);
 
-
-      if ($(".swiper-slide").eq(2).hasClass("swiper-slide-active") && clickRadioNext == false) {
-          clickRadioNext = true;
-          $('#companies > div').click(function(e) {
-              if ($(this).text().toLowerCase().includes('los angeles')) {
-                  pushDataLayer('exp_val_incr_eng_but_thriprovid_angel', 'Los Angeles Department of Water & Power', 'Button', 'Third step Who is your utility provider?');
-              } else if ($(this).text().toLowerCase().includes('glendale water')) {
-                  pushDataLayer('exp_val_incr_eng_but_thriprovid_glend', 'Glendale Water & Power', 'Button', 'Third step Who is your utility provider?');        
-              } else if ($(this).text().toLowerCase().includes('other')) {
-                  pushDataLayer('exp_val_incr_eng_but_thriprovid_other', 'Other', 'Button', 'Third step Who is your utility provider?');        
-              } else {
-                  pushDataLayer('exp_val_incr_eng_but_thriprovid_'+$(this).text().toLowerCase().trim().split(' ')[0], $(this).text().trim(), 'Button', 'Third step Who is your utility provider?');        
-              }
-          })
-      }
     }
 
     //hide error message 1 entry
@@ -716,6 +722,14 @@ changeSlides() {
     $('.crs_back').click(function() {
       $('.back-link').click();
     })
+  } else {
+    $(".nextSlide").click(function () {
+      if ($('.swiper-slide').eq(5).hasClass('swiper-slide-active')) {
+          pushDataLayer('exp_val_incr_eng_but_fiftstran_next', 'Next', 'Button', 'Fifth step What is your name, stranger?');
+      } else if ($('.swiper-slide').eq(6).hasClass('swiper-slide-active')) {
+          pushDataLayer('exp_val_incr_eng_but_sixaddres_next', 'Next', 'Button', 'Sixth step What is your email address?');
+      }
+    });
   }
 
   //events
