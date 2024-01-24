@@ -249,6 +249,7 @@ class IntentPopup {
       this.newBtnSelectPlan()
       this.newBtnLearnMoreAboutHowToActivate()
       this.onClickQuantitySelectorBtn()
+      this.onClickSizeSwatchLinkBtn()
       this.onVisibleStickyBanner()
     }
   }
@@ -877,10 +878,10 @@ class IntentPopup {
       item.addEventListener('click', e => {
         if (!e.target.getAttribute('data-test')) {
           pushDataLayer(
-            'exp_pdp_learn_mr_ab_how_t_actvt',
+            'exp_pdp_enhanc_link_learn_how_activate',
             'Learn more about how to activate',
-            'Click',
-            'PDP banner Learn more about how to activate'
+            'Link',
+            'PDP Europe & UK eSIM (50 Countries) Footer'
           )
           this.showLearnMoreAboutHowToActivate()
         }
@@ -1557,6 +1558,10 @@ class IntentPopup {
       waitForElement('.is-my-device-compatible__block').then(el => {
         this.onClickIsMyDeviceCompatibleBlock(el)
       })
+      waitForElement('.stamped-product-reviews-badge').then(el => {
+        this.onClickStampedReviewsBlock(el)
+      })
+      //
 
       waitForElement('.cstm-tag').then(el => {
         if (el.textContent !== bestValueTxt) {
@@ -1616,10 +1621,10 @@ class IntentPopup {
     el.addEventListener('click', e => {
       if (!e.target.getAttribute('data-test')) {
         pushDataLayer(
-          'exp_pdp_see_wt_countr_it_work_in',
+          'exp_pdp_enhanc_link_see_what_count_work',
           'See what countries it work in',
-          'Click',
-          'PDP banner See what countries it work in'
+          'Link',
+          'PDPEurope & UK eSIM(50 Countries)Footer'
         )
         let coverageElem = $el('.link_Coverage')
 
@@ -1639,10 +1644,10 @@ class IntentPopup {
       if (!e.target.getAttribute('data-test')) {
         e.preventDefault()
         pushDataLayer(
-          'exp_pdp_is_my_dvc_cmptbl',
+          'exp_pdp_enhanc_link_is_device_compat',
           'Is my device compatible with eSIM?',
-          'Click',
-          'PDP banner Is my device compatible with eSIM?'
+          'Link',
+          'PDP Europe & UK eSIM (50 Countries) Footer'
         )
         let coverageElem = $el('#shopify-section-esim-compatible')
 
@@ -1713,6 +1718,54 @@ class IntentPopup {
       })
 
       visible(element)
+    })
+  }
+  onClickStampedReviewsBlock(el) {
+    el.addEventListener('click', e => {
+      e.preventDefault()
+      e.stopPropagation()
+      if (!e.target.getAttribute('data-test')) {
+        pushDataLayer('exp_pdp_enhanc_link_reviews', 'Reviews', 'Link', 'PDP Europe & UK eSIM (50 Countries) Footer')
+
+        let coverageElem = $el('.section-review')
+
+        checkScrollPosition(130, coverageElem)
+        coverageElem?.click()
+      }
+      e.target.setAttribute('data-test', '1')
+      setTimeout(() => {
+        if (e.target.getAttribute('data-test')) {
+          e.target.removeAttribute('data-test')
+        }
+      }, 1000)
+    })
+  }
+  onClickSizeSwatchLinkBtn() {
+    waitForElement('.hero-body').then(i => {
+      waitForElement('.ProductForm__Variants').then(i => {
+        const quantitySelectorBtn = $$el(
+          '.new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList--spacingTight input[type="checkbox"]'
+        )
+
+        quantitySelectorBtn?.forEach(btn => {
+          btn.addEventListener('click', e => {
+            if (!e.target.getAttribute('data-test')) {
+              pushDataLayer(
+                'exp_pdp_enhanc_button_esim_item',
+                `${e.target.value}`,
+                'Button',
+                'PDP Europe & UK eSIM (50 Countries) Footer'
+              )
+            }
+            e.target.setAttribute('data-test', '1')
+            setTimeout(() => {
+              if (e.target.getAttribute('data-test')) {
+                e.target.removeAttribute('data-test')
+              }
+            }, 3000)
+          })
+        })
+      })
     })
   }
 
@@ -1812,7 +1865,7 @@ class IntentPopup {
       this.copyDiscount()
     }
     if (name === 'learnMorePopup') {
-      checkFocusTime('.learn-more__popup', 'exp_pdp_learn_more_vis_expopup_elem', 'pop-up How to activateyour eSIM')
+      checkFocusTime('.learn-more__popup', 'exp_pdp_enhanc_vis_act_esim_popup_elem', 'Popup How to activate your eSim')
       if (!backdrop.classList.contains('learn-more-backdrop')) {
         backdrop.classList.add('learn-more-backdrop')
       }
@@ -1840,7 +1893,12 @@ class IntentPopup {
             )
           }
           if (backdrop.querySelector('.learn-more__popup')) {
-            pushDataLayer('exp_pdp_learn_more_expopup_clos', 'Close', 'Button', 'pop-up How to activateyour eSIM')
+            pushDataLayer(
+              'exp_pdp_enhanc_but_learn_how_activate_close',
+              'Close',
+              'Button',
+              'Popup How to activate your eSim'
+            )
           }
           setTimeout(() => {
             $el('.new-popup__content').innerHTML = ''
