@@ -40,13 +40,23 @@ class DoubleTap {
       pack.addEventListener('click', e => {
         e.preventDefault()
         const qty = +pack.querySelector('label').childNodes[0].textContent.trim().split(' ')[0]
-        const price = +pack
+        let delimeter = '.'
+        let price = pack
           .querySelector('label span')
           .innerText.trim()
           .split(' ')[0]
-          .replace(/[^0-9.-]+/g, '')
+          .replace(/[^0-9.,-]+/g, '')
+        if (price.includes(',') && !price.includes('.')) {
+          price = price.replace(',', '.')
+          delimeter = ','
+        } else {
+          price = price.replace(',', '')
+        }
 
-        const total = (price * qty).toLocaleString(undefined, { minimumFractionDigits: 2 })
+        let total = (+price * qty).toLocaleString(undefined, { minimumFractionDigits: 2 })
+        if (delimeter == ',') {
+          total = total.replace('.', ',')
+        }
         const save = [40, 45, 51, 57]
 
         pack.querySelector('input').checked = true
