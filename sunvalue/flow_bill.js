@@ -895,6 +895,7 @@ addThankPage() {
         }
         .site-footer {
           margin: 0 -15px;
+          opacity: 1;
         }
         p.crs_text {
           color: #757575;
