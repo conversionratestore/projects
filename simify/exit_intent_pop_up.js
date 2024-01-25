@@ -244,6 +244,7 @@ class IntentPopup {
     this.timeoutId = null
     this.targetUrl = targetUrl
     this.device = screen.width <= 768 ? 'Mobile' : 'Desktop'
+    this.buyNowTxt = 'Buy Now'
     this.init()
   }
 
@@ -1527,7 +1528,6 @@ class IntentPopup {
     `
 
     const bestValueTxt = '🔥Best value'
-    const buyNowTxt = 'Buy Now'
 
     waitForElement('.new_Product-inner').then(i => {
       if (!$el('.hero-header')) {
@@ -1611,13 +1611,13 @@ class IntentPopup {
       })
 
       waitForElement('[data-action="add-to-cart"]').then(el => {
-        if (el.textContent !== buyNowTxt) {
-          el.textContent = buyNowTxt
+        if (el.textContent !== this.buyNowTxt) {
+          el.textContent = this.buyNowTxt
         }
       })
       waitForElement('.product_fix_bar_inner a.Button').then(el => {
-        if (el.textContent !== buyNowTxt) {
-          el.textContent = buyNowTxt
+        if (el.textContent !== this.buyNowTxt) {
+          el.textContent = this.buyNowTxt
         }
       })
 
@@ -1805,6 +1805,11 @@ class IntentPopup {
         quantitySelectorBtn?.forEach(btn => {
           btn.addEventListener('click', e => {
             if (!e.target.getAttribute('data-test')) {
+              waitForElement('[data-action="add-to-cart"]').then(el => {
+                if (el.textContent !== this.buyNowTxt) {
+                  el.textContent = this.buyNowTxt
+                }
+              })
               pushDataLayer(
                 'exp_pdp_enhanc_button_esim_item',
                 `${e.target.value}`,
