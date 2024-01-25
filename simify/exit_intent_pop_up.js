@@ -595,9 +595,9 @@ class IntentPopup {
         .video-explanation__lists ul,
         .video-explanation__lists ol,
         .video-explanation__description p {
-          color: #7b8791;
-          font-family: Poppins;
-          font-size: 12px;
+          color: #333f48;
+          font-family: 'Roboto';
+          font-size: 14px;
           font-weight: 500;
           line-height: 20px;
           margin: 0;
@@ -1069,7 +1069,7 @@ class IntentPopup {
               display: block;
             }
             .mobile_img-esim img {
-              height: 386px;
+              height: 388px;
             }
             .hero-img__brg {
               position: absolute;
@@ -1284,7 +1284,7 @@ class IntentPopup {
         }
         .new_pro-grid .ProductForm__Variants .HorizontalList--spacingTight .HorizontalList__Item .SizeSwatch {
           justify-content: space-between;
-          padding: 10px 26px 36px 57px;
+          padding: 10px 26px 13px 57px;
         }
         .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList label span {
           color: #333f48;
@@ -1393,7 +1393,7 @@ class IntentPopup {
             margin-bottom: 16px;
           }
           .new_pro-grid .ProductForm__Variants .HorizontalList--spacingTight .HorizontalList__Item .SizeSwatch {
-            padding: 10px 16px 36px 48px;
+            padding: 10px 16px 13px 48px;
           }
           .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList label:before {
             left: 16px;
@@ -1615,6 +1615,11 @@ class IntentPopup {
           el.textContent = buyNowTxt
         }
       })
+      waitForElement('.product_fix_bar_inner a.Button').then(el => {
+        if (el.textContent !== buyNowTxt) {
+          el.textContent = buyNowTxt
+        }
+      })
 
       this.newInfoElemForInput()
     })
@@ -1623,6 +1628,7 @@ class IntentPopup {
     const infoElem = /* HTML */ `
       <style>
         .info-elem {
+          display: none;
           position: absolute;
           left: 0;
           bottom: 0;
