@@ -292,6 +292,12 @@ class IntentPopup {
     // Attach the resetTimer function to relevant events
     document.addEventListener('mousemove', () => this.resetTimer())
     document.addEventListener('keydown', () => this.resetTimer())
+
+    // Add touch event listeners for mobile devices
+    if (window.innerWidth <= 768) {
+      document.addEventListener('touchstart', () => this.resetTimer())
+      document.addEventListener('touchmove', () => this.resetTimer())
+    }
   }
   removePopupClient() {
     waitForElement('[aria-label="POPUP Form"]').then(i => {
