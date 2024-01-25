@@ -86,6 +86,13 @@ class DoubleTap {
         }
       })
     })
+
+    setInterval(() => {
+      if (!$el('.js-packs.crs-double-tap input:checked')) {
+        $el('.js-packs.crs-double-tap').classList.remove('crs-double-tap')
+        $el('.js-packs input:checked').closest('.js-packs').classList.add('crs-double-tap')
+      }
+    }, 1000)
   }
 }
 
