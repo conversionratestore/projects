@@ -281,8 +281,8 @@ class IntentPopup {
         const scrollSpeed = checkScrollSpeed()
         if (
           scrollSpeed > 70 &&
-          (!localStorage.getItem('onClickIsMyDeviceCompatibleBlock') ||
-            !localStorage.getItem('onClickStampedReviewsBlock'))
+          !localStorage.getItem('onClickIsMyDeviceCompatibleBlock') &&
+          !localStorage.getItem('onClickStampedReviewsBlock')
         ) {
           this.showIntentPopup()
         }
@@ -1697,7 +1697,7 @@ class IntentPopup {
         checkScrollPosition(130, coverageElem)
         setTimeout(() => {
           removeLocalStorage('onClickIsMyDeviceCompatibleBlock')
-        }, 800)
+        }, 1000)
       }
       e.target.setAttribute('data-test', '1')
       setTimeout(() => {
@@ -1779,7 +1779,7 @@ class IntentPopup {
         checkScrollPosition(130, coverageElem)
         setTimeout(() => {
           removeLocalStorage('onClickStampedReviewsBlock')
-        }, 800)
+        }, 1000)
       }
       e.target.setAttribute('data-test', '1')
       setTimeout(() => {
