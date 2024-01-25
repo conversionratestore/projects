@@ -462,8 +462,6 @@ class IntentPopup {
         </div>
       </div>
     `
-
-    this.removePopupClient()
     this.handleShowPopup(discountPopup, 'discountPopup')
   }
   copyDiscount() {
@@ -1668,6 +1666,7 @@ class IntentPopup {
     el.addEventListener('click', e => {
       if (!e.target.getAttribute('data-test')) {
         e.preventDefault()
+        e.stopPropagation()
         pushDataLayer(
           'exp_pdp_enhanc_link_is_device_compat',
           'Is my device compatible with eSIM?',
@@ -1984,6 +1983,9 @@ class IntentPopup {
   initMainStyles() {
     const mainStyles = /* HTML */ `
       <style>
+        .kl-private-reset-css-Xuajs1 {
+          display: none;
+        }
         .dn_desk {
           display: none;
         }
