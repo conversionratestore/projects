@@ -376,6 +376,9 @@
                 position: relative;
                 z-index: 2;
             }
+            .crs_applied input {
+              display: none;
+            }
             .pro_price + .crs_applied {
                 margin: 18px 0 16px;
             }
