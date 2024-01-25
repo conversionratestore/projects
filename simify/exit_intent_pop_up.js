@@ -224,7 +224,9 @@ const icons = {
 removeSessionStorage('learnMorePopup')
 // IntentPopup
 class IntentPopup {
-  constructor(targetUrl) {
+  constructor(targetUrl, delayTime) {
+    this.delayTime = delayTime
+    this.timeoutId = null
     this.targetUrl = targetUrl
     this.device = screen.width <= 768 ? 'Mobile' : 'Desktop'
     this.init()
@@ -256,17 +258,8 @@ class IntentPopup {
 
   // IntentPopup
   intentPopupTriggers() {
-    // let o = 0
-    // setInterval(() => {
-    //   if (o < 20) {
-    //     console.log((o += 1), `TIME`)
-    //   }
-    // }, 1000)
-    const timer = setTimeout(() => {
-      this.showIntentPopup()
-      clearTimeout(timer)
-      // console.log(`HELLO POPUP`)
-    }, 20000)
+    this.setupListeners()
+    this.resetTimer()
 
     if (this.device === 'Mobile') {
       window.addEventListener('scroll', () => {
@@ -287,6 +280,27 @@ class IntentPopup {
         }
       })
     }
+  }
+  resetTimer() {
+    // Clear the previous timeout
+    clearTimeout(this.timeoutId)
+    // Set a new timeout
+    this.timeoutId = setTimeout(() => this.showIntentPopup(), this.delayTime)
+  }
+
+  setupListeners() {
+    // Attach the resetTimer function to relevant events
+    document.addEventListener('mousemove', () => this.resetTimer())
+    document.addEventListener('keydown', () => this.resetTimer())
+  }
+  removePopupClient() {
+    waitForElement('[aria-label="POPUP Form"]').then(i => {
+      $el('[aria-label="POPUP Form"]')
+        ?.closest('.kl-private-reset-css-Xuajs1')
+        ?.closest('.kl-private-reset-css-Xuajs1')
+        ?.closest('.needsclick')
+        .parentElement.remove()
+    })
   }
   showIntentPopup() {
     const popupStyle = /* HTML */ `
@@ -442,6 +456,8 @@ class IntentPopup {
         </div>
       </div>
     `
+
+    this.removePopupClient()
     this.handleShowPopup(discountPopup, 'discountPopup')
   }
   copyDiscount() {
@@ -607,10 +623,13 @@ class IntentPopup {
               <div class="video-explanation__iframe">
                 <!-- <div class="video-explanation__bgr"></div> -->
                 <iframe
-                  src="https://drive.google.com/file/d/1WLyRJl8BMIhAcySn2IoOtql5OZZDa97_/preview"
-                  width="640"
-                  height="480"
-                  allow="autoplay"
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/OpbckLzqF-s?si=5tiqW6esFdUfkKDw"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
                 ></iframe>
               </div>
               <div class="video-explanation__description">
@@ -870,7 +889,7 @@ class IntentPopup {
     `
 
     if (!$el('#shopify-section-sim-works .learn-more__btn')) {
-      this.insert(btnLearnMoreAboutHowToActivateHtml, '.esim-work-around', 'afterend')
+      this.insert(btnLearnMoreAboutHowToActivateHtml, '.esim-work-inner', 'afterend')
     }
 
     const btnLearnMoreAboutHowToActivate = $$el('[data-learnMore]')
@@ -2041,5 +2060,5 @@ class IntentPopup {
   }
 }
 
-new IntentPopup('/collections')
-new IntentPopup('/products')
+new IntentPopup('/collections', 20000)
+new IntentPopup('/products', 20000)
