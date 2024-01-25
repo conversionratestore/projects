@@ -88,11 +88,6 @@ function checkScrollPosition(headerOff, elPosition) {
 function setSessionStorage(name, value) {
   sessionStorage.setItem(name, value)
 }
-
-function getSessionStorage(name) {
-  let getSessionStorage = sessionStorage.getItem(name)
-  return getSessionStorage
-}
 function removeSessionStorage(name) {
   let getSessionStorage = sessionStorage.getItem(name)
   let removeSessionStorage = null
@@ -101,6 +96,26 @@ function removeSessionStorage(name) {
   }
   return removeSessionStorage
 }
+function getSessionStorage(name) {
+  let getSessionStorage = sessionStorage.getItem(name)
+  return getSessionStorage
+}
+function setLocalStorage(name, value) {
+  localStorage.setItem(name, value)
+}
+function getLocalStorage(name) {
+  let getLocalStorage = localStorage.getItem(name)
+  return getLocalStorage
+}
+function removeLocalStorage(name) {
+  let getLocalStorage = localStorage.getItem(name)
+  let removeLocalStorage = null
+  if (getLocalStorage) {
+    removeLocalStorage = localStorage.removeItem(name)
+  }
+  return removeLocalStorage
+}
+
 function waitForElement(selector) {
   return new Promise(resolve => {
     if (document.querySelector(selector)) {
@@ -264,7 +279,11 @@ class IntentPopup {
     if (this.device === 'Mobile') {
       window.addEventListener('scroll', () => {
         const scrollSpeed = checkScrollSpeed()
-        if (scrollSpeed > 70) {
+        if (
+          scrollSpeed > 70 &&
+          (!localStorage.getItem('onClickIsMyDeviceCompatibleBlock') ||
+            !localStorage.getItem('onClickStampedReviewsBlock'))
+        ) {
           this.showIntentPopup()
         }
       })
@@ -287,7 +306,6 @@ class IntentPopup {
     // Set a new timeout
     this.timeoutId = setTimeout(() => this.showIntentPopup(), this.delayTime)
   }
-
   setupListeners() {
     // Attach the resetTimer function to relevant events
     document.addEventListener('mousemove', () => this.resetTimer())
@@ -1667,6 +1685,7 @@ class IntentPopup {
       if (!e.target.getAttribute('data-test')) {
         e.preventDefault()
         e.stopPropagation()
+        setLocalStorage('onClickIsMyDeviceCompatibleBlock', `yes`)
         pushDataLayer(
           'exp_pdp_enhanc_link_is_device_compat',
           'Is my device compatible with eSIM?',
@@ -1676,6 +1695,9 @@ class IntentPopup {
         let coverageElem = $el('#shopify-section-esim-compatible')
 
         checkScrollPosition(130, coverageElem)
+        setTimeout(() => {
+          removeLocalStorage('onClickIsMyDeviceCompatibleBlock')
+        }, 800)
       }
       e.target.setAttribute('data-test', '1')
       setTimeout(() => {
@@ -1749,12 +1771,15 @@ class IntentPopup {
       e.preventDefault()
       e.stopPropagation()
       if (!e.target.getAttribute('data-test')) {
+        setLocalStorage('onClickStampedReviewsBlock', `yes`)
         pushDataLayer('exp_pdp_enhanc_link_reviews', 'Reviews', 'Link', 'PDP Europe & UK eSIM (50 Countries) Footer')
 
         let coverageElem = $el('.section-review')
 
         checkScrollPosition(130, coverageElem)
-        coverageElem?.click()
+        setTimeout(() => {
+          removeLocalStorage('onClickStampedReviewsBlock')
+        }, 800)
       }
       e.target.setAttribute('data-test', '1')
       setTimeout(() => {
@@ -1983,8 +2008,8 @@ class IntentPopup {
   initMainStyles() {
     const mainStyles = /* HTML */ `
       <style>
-        .kl-private-reset-css-Xuajs1 {
-          display: none;
+        body div .kl-private-reset-css-Xuajs1 {
+          display: none !important;
         }
         .dn_desk {
           display: none;
