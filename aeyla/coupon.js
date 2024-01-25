@@ -44,6 +44,34 @@
         </svg>`,
   };
 
+  function checkFocusTime(selector, eventName, eventDesc, eventLocation) {
+    const checker = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (
+          entry.isIntersecting &&
+          !entry.target.getAttribute("data-startShow")
+        ) {
+          entry.target.setAttribute("data-startShow", new Date().getTime());
+        } else if (
+          !entry.isIntersecting &&
+          entry.target.getAttribute("data-startShow")
+        ) {
+          const startShow = entry.target.getAttribute("data-startShow");
+          const endShow = new Date().getTime();
+          const timeShow = Math.round(endShow - startShow);
+
+          entry.target.removeAttribute("data-startShow");
+          if (timeShow >= 3000) {
+            pushDataLayer(eventName, eventDesc, "Visibility", eventLocation);
+          }
+          checker.unobserve(entry.target);
+        }
+      });
+    });
+
+    checker.observe(document.querySelector(selector));
+  }
+
   function pushDataLayer(event_name, event_desc, event_type, event_loc) {
     // Send a Google Analytics event
     const eventData = {
@@ -147,12 +175,22 @@
     init() {
       this.styleAppend();
 
+      checkFocusTime(
+        `.minicart`,
+        "exp_disc_pdp_car_vis_cart_page",
+        "Full page view",
+        "Slide-in cart"
+      );
+
       const globalMutation = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
           if (this.checkPageUrl() === "products") {
-            if ($el(".pro_price")) {
-              this.getCoupon($el(".pro_price"));
-              this.appliedCoupon($el(".pro_price"));
+            if ($el(".pricing")) {
+              // this.getCoupon($el(".pro_price"));
+              // this.appliedCoupon($el(".pro_price"));
+
+              this.getCoupon($el(".pricing"));
+              this.appliedCoupon($el(".pricing"));
             }
             if (
               $el(".my-5.aa")?.previousElementSibling?.classList.contains(
@@ -162,8 +200,14 @@
               this.getCoupon($el(".my-5.aa").previousElementSibling);
               this.appliedCoupon($el(".my-5.aa").previousElementSibling);
             }
-            if ($el("form .shipped_within_wrapper")) {
-              this.appliedCoupon($el("form .shipped_within_wrapper"));
+
+            if (
+              $el("form .qw").previousElementSibling &&
+              !$el("form .qw").previousElementSibling.classList.contains(
+                "crs_applied"
+              )
+            ) {
+              this.appliedCoupon($el("form .qw").previousElementSibling);
             }
 
             //for https://www.aeyla.co.uk/products/eucalyptus-silk-eye-mask
@@ -176,14 +220,71 @@
                 this.getCoupon($el(".product-labels").parentElement);
                 this.appliedCoupon($el(".product-labels").parentElement);
               }
-              if ($el("form .bg-main-tertiary-100")) {
-                this.appliedCoupon($el("form .bg-main-tertiary-100"));
-              }
             }
-          }
-          if ($el(".checkout_wrapper .cart_total")) {
-            this.getCoupon($el(".checkout_wrapper .cart_total"));
-            this.appliedCoupon($el(".checkout_wrapper .cart_total"));
+
+            if ($el(".checkout_wrapper .cart_total")) {
+              this.getCoupon($el(".checkout_wrapper .cart_total"));
+              this.appliedCoupon($el(".checkout_wrapper .cart_total"));
+            }
+
+            // Start observing the target element
+            $$el(".crs_btn").forEach((item) => {
+              // obs.observe(item)
+              if (item.previousElementSibling.querySelector(".pricing")) {
+                checkFocusTime(
+                  `.crs_btn[data-parent="${item.dataset.parent}"]`,
+                  "exp_disc_pdp_car_vis_pdpaddups_elem",
+                  "Element view",
+                  "PDP Get aDDITIONAL 15% OFF Upstairs"
+                );
+              } else if (item.closest('.checkout_wrapper')) {
+                checkFocusTime(
+                  `.crs_btn[data-parent="${item.dataset.parent}"]`,
+                  "exp_disc_pdp_car_vis_cartcode_elem",
+                  "Element view",
+                  "Slide-in cart Get aDDITIONAL 15% OFF"
+                );
+              } else {
+                checkFocusTime(
+                  `.crs_btn[data-parent="${item.dataset.parent}"]`,
+                  "exp_disc_pdp_car_vis_pdpadddown_elem",
+                  "Element view",
+                  "PDP Get aDDITIONAL 15% OFF Downstairs"
+                );
+              }
+            });
+            $$el(".crs_applied").forEach((item, index) => {
+              if (item.previousElementSibling.querySelector(".pricing")) {
+                checkFocusTime(
+                  `.crs_applied[data-parent="${item.dataset.parent}"]`,
+                  "exp_disc_pdp_car_vis_pdpcodeups_elem",
+                  "Element view",
+                  "PDP 15% OFF | Use Code: HELLO15 at checkout Upstairs"
+                );
+              } else if (item.nextElementSibling.classList.contains("qw")) {
+                // console.log("event before add to cart");
+                checkFocusTime(
+                  `.crs_applied[data-parent="${item.dataset.parent}"]`,
+                  "exp_disc_pdp_car_vis_pdpcodedown_elem",
+                  "Element view",
+                  "PDP 15% OFF | Use Code: HELLO15 at checkout Downstairs 2"
+                );
+              } else if (item.closest('.checkout_wrapper')) {
+                checkFocusTime(
+                  `.crs_applied[data-parent="${item.dataset.parent}"]`,
+                  "exp_disc_pdp_car_vis_cartcode_elem",
+                  "Element view",
+                  "Slide-in cart 15% OFF | Use Code: HELLO15 at checkout"
+                );
+              } else {
+                checkFocusTime(
+                  `.crs_applied[data-parent="${item.dataset.parent}"]`,
+                  "exp_disc_pdp_car_vis_pdpcodedown_elem",
+                  "Element view",
+                  "PDP 15% OFF | Use Code: HELLO15 at checkout Downstairs"
+                );
+              }
+            });
           }
         });
 
@@ -202,6 +303,7 @@
         subtree: true,
       });
     }
+
     checkPageUrl() {
       const pageUrl = window.location.href;
       if (pageUrl.includes("/products/")) {
@@ -297,6 +399,9 @@
             }
             .crs_applied span {
                 padding-right: 2px;
+            }
+            .pre_order_wrapper + .crs_applied {
+              margin-bottom: 20px;
             }
             @media (max-width: 768px) {
               .shipped_within_wrapper {
@@ -470,7 +575,7 @@
 
     getCoupon(parent) {
       const block = `
-        <button type="button" class="crs_btn flex items-center">${dataIcons.discount} <span>Get aDDITIONAL 15% OFF</span> ${dataIcons.arrow}</button>`;
+        <button type="button" class="crs_btn flex items-center" data-parent="${parent.className}">${dataIcons.discount} <span>Get aDDITIONAL 15% OFF</span> ${dataIcons.arrow}</button>`;
 
       if (
         $el(`[class="${parent.className}"] + .crs_btn`) ||
@@ -479,7 +584,6 @@
       )
         return;
       if (parent.className.includes("pricing")) {
-        // console.log(parent.className)
         $$el(".pricing").forEach((item) => {
           if (!item.parentElement.parentElement.querySelector(".crs_btn")) {
             item.parentElement.insertAdjacentHTML("afterend", block);
@@ -487,6 +591,13 @@
             item.parentElement.nextElementSibling.addEventListener(
               "click",
               () => {
+                pushDataLayer(
+                  "exp_disc_pdp_car_but_pdpaddups_click",
+                  "Click",
+                  "Button",
+                  "PDP Get aDDITIONAL 15% OFF Upstairs"
+                );
+
                 window._klOnsite = window._klOnsite || [];
                 window._klOnsite.openForm("UgpzJ6");
               }
@@ -496,7 +607,24 @@
       } else {
         parent.insertAdjacentHTML("afterend", block);
 
-        parent.nextElementSibling.addEventListener("click", () => {
+        parent.nextElementSibling.addEventListener("click", (e) => {
+          if (e.target.closest('.checkout_wrapper')) {
+            pushDataLayer(
+              "exp_disc_pdp_car_but_cartcode_click",
+              "Click",
+              "Button",
+              "Slide-in cart Get aDDITIONAL 15% OFF"
+            );
+          } else {
+
+            pushDataLayer(
+              "exp_disc_pdp_car_but_pdpadddown_click",
+              "Click",
+              "Button",
+              "PDP Get aDDITIONAL 15% OFF Downstairs"
+            );
+          }
+
           window._klOnsite = window._klOnsite || [];
           window._klOnsite.openForm("UgpzJ6");
         });
@@ -504,7 +632,7 @@
     }
 
     appliedCoupon(parent) {
-      const block = `<button type="button" class="crs_applied flex items-center justify-center">
+      const block = `<button type="button" class="crs_applied flex items-center justify-center"  data-parent="${parent.className}">
       <input type="text" value="HELLO15" class="d-none">
       ${dataIcons.check} <span><b>15% OFF</b> | Use Code: <b>HELLO15</b></span>${dataIcons.copy} at checkout</button>`;
 
@@ -516,7 +644,6 @@
 
       if (parent.className.includes("pricing")) {
         $$el(".pricing").forEach((item) => {
-          console.log(item);
           if (!item.parentElement.parentElement.querySelector(".crs_applied")) {
             item.parentElement.insertAdjacentHTML("afterend", block);
 
@@ -526,6 +653,12 @@
                 copyText(
                   item.parentElement.nextElementSibling.querySelector(`input`)
                 );
+                pushDataLayer(
+                  "exp_disc_pdp_car_but_pdpcodeups_click",
+                  "Click",
+                  "Button",
+                  "PDP 15% OFF | Use Code: HELLO15 at checkout Upstairs"
+                );
               }
             );
           }
@@ -533,8 +666,35 @@
       } else {
         parent.insertAdjacentHTML("afterend", block);
 
-        parent.nextElementSibling.addEventListener("click", () => {
+        parent.nextElementSibling.addEventListener("click", (e) => {
           copyText($el(`[class="${parent.className}"] + .crs_applied input`));
+
+          if (parent.querySelector(".pricing")) {
+            pushDataLayer(
+              "exp_disc_pdp_car_but_pdpcodeups_click",
+              "Click",
+              "Button",
+              "PDP 15% OFF | Use Code: HELLO15 at checkout Upstairs"
+            );
+          } else if (
+            parent.nextElementSibling.nextElementSibling.classList.contains('qw')
+          ) {
+            console.log("click applied button before add to cart");
+          } else if (e.target.closest('.checkout_wrapper')) {
+            pushDataLayer(
+              "exp_disc_pdp_car_but_cartcode_click",
+              "Click",
+              "Button",
+              "Slide-in cart 15% OFF | Use Code: HELLO15 at checkout"
+            );
+          }  else {
+            pushDataLayer(
+              "exp_disc_pdp_car_but_pdpcodedown_click",
+              "Click",
+              "Button",
+              "PDP 15% OFF | Use Code: HELLO15 at checkout Downstairs"
+            );
+          }
         });
       }
     }
