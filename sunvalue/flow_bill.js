@@ -645,7 +645,7 @@ changeSlides() {
       _this
         .find("h2")
         .html(
-          `How much is your latest monthly energy bill?<span>This will help us find Incentive Programs in your ${city}</span>`
+          `How much is your latest monthly energy bill?<span>This will help us find Incentive Programs in ${city}</span>`
         );
     } else if (index == 1) {
       _this.find(".pac-target-input").before(dataIcons.location);

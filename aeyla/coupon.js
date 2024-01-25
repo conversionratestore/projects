@@ -1,7 +1,3 @@
-// Xuajs1
-
-// https://a.klaviyo.com/client/subscriptions/?company_id=PhUnCV  / POST
-
 (function () {
   console.log(
     "%c EXP: Introduce a first order discount A/B test (DEV: Olha)",
@@ -13,12 +9,12 @@
   const $$el = (selector) => document.querySelectorAll(selector);
   const $el = (selector) => document.querySelector(selector);
 
-  // const clarityInterval = setInterval(function () {
-  //   if (typeof clarity == "function") {
-  //     clearInterval(clarityInterval);
-  //     clarity("set", "exp_first_order_discount", "variant_1");
-  //   }
-  // }, 200);
+  const clarityInterval = setInterval(function () {
+    if (typeof clarity == "function") {
+      clearInterval(clarityInterval);
+      clarity("set", "exp_disc_pdp_car", "variant_1");
+    }
+  }, 200);
 
   const device = window.innerWidth < 769 ? "mobile" : "desktop";
 
@@ -88,6 +84,60 @@
     }
   }
 
+  let viewed = 0;
+
+  function visibleAfterTimer() {
+    setTimeout(() => {
+      if (
+        $el('form[data-testid="klaviyo-form-UgpzJ6"]') &&
+        !$el("button.kl-teaser-UgpzJ6 ")
+      ) {
+        let titlePopup = $el(
+          'form[data-testid="klaviyo-form-UgpzJ6"]'
+        ).innerText.toLowerCase();
+
+        if (titlePopup.includes("want an extra 15%") && viewed == 0) {
+          viewed = 1;
+          pushDataLayer(
+            "exp_disc_pdp_car_vis_popupext_page",
+            "Full page view ",
+            "Visibility ",
+            "Sitewide Popup Want an extra 15%* off?"
+          );
+        }
+        if (titlePopup.includes("unlock your savings below") && viewed == 1) {
+          viewed = 2;
+          pushDataLayer(
+            "exp_disc_pdp_car_vis_popupunl_page",
+            "Full page view ",
+            "Visibility ",
+            "Sitewide Popup Unlock Your Savings Below!"
+          );
+        }
+
+        if (titlePopup.includes("join the club") && viewed == 2) {
+          viewed = 3;
+          pushDataLayer(
+            "exp_disc_pdp_car_vis_popupclub_page",
+            "Full page view ",
+            "Visibility ",
+            "Sitewide Popup JOIN THE CLUB"
+          );
+        }
+
+        if (titlePopup.includes("use code:") && viewed == 3) {
+          viewed = 4;
+          pushDataLayer(
+            "exp_disc_pdp_car_vis_popupsucce_page",
+            "Full page view ",
+            "Visibility ",
+            "Sitewide Popup Success! Use"
+          );
+        }
+      }
+    }, 3000);
+  }
+
   class changeFlow {
     constructor(device) {
       this.device = device;
@@ -96,24 +146,16 @@
 
     init() {
       this.styleAppend();
+
       const globalMutation = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
-          // if ($el('button[aria-label="Open Form"] > [data-testid="animated-teaser"]') &&
-          //   $el('button[aria-label="Open Form"] > [data-testid="animated-teaser"]').innerText.includes('Want 15% off?')
-          // ) {
-          //   $el('button[aria-label="Open Form"] > [data-testid="animated-teaser"]').classList.add('d-none')
-          //     // button[aria-label="Open Form"] > [data-testid="animated-teaser"] {
-          //     //     display: none;
-          //     // }
-          // }
-
           if (this.checkPageUrl() === "products") {
             if ($el(".pro_price")) {
               this.getCoupon($el(".pro_price"));
               this.appliedCoupon($el(".pro_price"));
             }
             if (
-              $el(".my-5.aa").previousElementSibling.classList.contains(
+              $el(".my-5.aa")?.previousElementSibling?.classList.contains(
                 "flex-col"
               )
             ) {
@@ -122,6 +164,21 @@
             }
             if ($el("form .shipped_within_wrapper")) {
               this.appliedCoupon($el("form .shipped_within_wrapper"));
+            }
+
+            //for https://www.aeyla.co.uk/products/eucalyptus-silk-eye-mask
+            if (!$el(".pro_price")) {
+              if ($$el(".pricing").length > 1) {
+                this.getCoupon($el(".pricing"));
+                this.appliedCoupon($el(".pricing"));
+              }
+              if ($el(".product-labels").parentElement) {
+                this.getCoupon($el(".product-labels").parentElement);
+                this.appliedCoupon($el(".product-labels").parentElement);
+              }
+              if ($el("form .bg-main-tertiary-100")) {
+                this.appliedCoupon($el("form .bg-main-tertiary-100"));
+              }
             }
           }
           if ($el(".checkout_wrapper .cart_total")) {
@@ -241,15 +298,27 @@
             .crs_applied span {
                 padding-right: 2px;
             }
-            .shipped_within_wrapper {
+            @media (max-width: 768px) {
+              .shipped_within_wrapper {
                 padding-left: 18px;
+              }
             }
             @media (min-width: 768px) {
               #MainProductForm .crs_applied {
                 width: fit-content;
               }
-              #MainProductForm .crs_btn {
+              #MainProductForm .crs_btn,
+              #ProductInfo .crs_btn {
                 margin-left: 0;
+              }
+              #ProductInfo .crs_btn,
+              #ProductInfo .crs_applied {
+                margin: -10px 0 20px;
+                width: fit-content;
+              }
+              #ProductInfo .product-info-component .crs_btn,
+              #ProductInfo .product-info-component .crs_applied {
+                margin: 16px 0 0 0;
               }
             }
           </style>
@@ -267,11 +336,135 @@
       ) {
         localStorage.setItem("appliedCoupon", true);
 
+        viewed = 2;
+
         if ($el(".crs_btn")) {
           $$el(".crs_btn").forEach((item) => {
             item.remove();
           });
         }
+      }
+      if (
+        $el('form[data-testid="klaviyo-form-UgpzJ6"]') &&
+        !$el("button.kl-teaser-UgpzJ6 ")
+      ) {
+        let titlePopup = $el(
+          'form[data-testid="klaviyo-form-UgpzJ6"]'
+        ).innerText.toLowerCase();
+
+        if (titlePopup.includes("want an extra 15%")) {
+          viewed = 0;
+        } else if (titlePopup.includes("unlock your savings below")) {
+          viewed = 1;
+        } else if (titlePopup.includes("use code:")) {
+          viewed = 3;
+        }
+        visibleAfterTimer();
+
+        $$el('form[data-testid="klaviyo-form-UgpzJ6"] button').forEach(
+          (item) => {
+            item.addEventListener("click", (e) => {
+              e.stopImmediatePropagation();
+              if (item.innerText.includes("Yes please!")) {
+                pushDataLayer(
+                  "exp_disc_pdp_car_but_popupext_yes",
+                  "Yes please",
+                  "Button",
+                  "Sitewide Popup Want an extra 15%* off?"
+                );
+              } else if (
+                item.innerText.includes(`No thanks, I'll pay full price`)
+              ) {
+                pushDataLayer(
+                  "exp_disc_pdp_car_lin_popupext_no",
+                  "No thanks...",
+                  "Link",
+                  "Sitewide Popup Want an extra 15%* off?"
+                );
+              } else if (item.innerText.includes("Unlock Your Offer Now")) {
+                pushDataLayer(
+                  "exp_disc_pdp_car_but_popupunl_now",
+                  "Unlock your offer now",
+                  "Button",
+                  "Sitewide Popup Unlock Your Savings Below!"
+                );
+              } else if (item.innerText.includes("Get Exclusive Offers 1st")) {
+                pushDataLayer(
+                  "exp_disc_pdp_car_but_popupclub_get",
+                  "Get explusive offers 1st",
+                  "Button",
+                  "Sitewide Popup JOIN THE CLUB"
+                );
+              } else if (item.innerText.includes(`No Thanks`)) {
+                pushDataLayer(
+                  "exp_disc_pdp_car_but_popupclub_no",
+                  "No thanks..",
+                  "Button",
+                  "Sitewide Popup JOIN THE CLUB"
+                );
+              }
+            });
+          }
+        );
+        $el("button.klaviyo-close-form").addEventListener("click", (e) => {
+          e.stopImmediatePropagation();
+
+          let titlePopup = $el(
+            'form[data-testid="klaviyo-form-UgpzJ6"]'
+          ).innerText.toLowerCase();
+
+          if (titlePopup.includes("want an extra 15%")) {
+            pushDataLayer(
+              "exp_disc_pdp_car_but_popupext_close",
+              "Close",
+              "Button",
+              "Sitewide Popup Want an extra 15%* off?"
+            );
+          } else if (titlePopup.includes("unlock your savings below")) {
+            pushDataLayer(
+              "exp_disc_pdp_car_but_popupunl_close",
+              "Close",
+              "Button",
+              "Sitewide Popup Unlock Your Savings Below!"
+            );
+          } else if (titlePopup.includes("join the club")) {
+            pushDataLayer(
+              "exp_disc_pdp_car_but_popupclub_clos",
+              "Close",
+              "Button",
+              "Sitewide Popup JOIN THE CLUB"
+            );
+          } else if (titlePopup.includes("use code:")) {
+            pushDataLayer(
+              "exp_disc_pdp_car_but_popupsucce_close",
+              "Close",
+              "Button",
+              "Sitewide Popup Success! Use"
+            );
+          }
+        });
+        $$el('form[data-testid="klaviyo-form-UgpzJ6"] input').forEach(
+          (item) => {
+            item.addEventListener("click", (e) => {
+              e.stopImmediatePropagation();
+              if (item.name == "email") {
+                pushDataLayer(
+                  "exp_disc_pdp_car_inp_popupunl_email",
+                  "Email",
+                  "Input",
+                  "Sitewide Popup Unlock Your Savings Below!"
+                );
+              } else if (item.name == "phone-number") {
+                pushDataLayer(
+                  "exp_disc_pdp_car_inp_popupclub_phon",
+                  "Phone",
+                  "Input",
+                  "Sitewide Popup JOIN THE CLUB"
+                );
+              }
+            });
+          }
+        );
       }
     }
 
@@ -282,22 +475,38 @@
       if (
         $el(`[class="${parent.className}"] + .crs_btn`) ||
         localStorage.getItem("appliedCoupon") ||
-        parent.nextElementSibling.classList.contains("crs_btn")
+        parent.nextElementSibling?.classList.contains("crs_btn")
       )
         return;
+      if (parent.className.includes("pricing")) {
+        // console.log(parent.className)
+        $$el(".pricing").forEach((item) => {
+          if (!item.parentElement.parentElement.querySelector(".crs_btn")) {
+            item.parentElement.insertAdjacentHTML("afterend", block);
 
-      parent.insertAdjacentHTML("afterend", block);
+            item.parentElement.nextElementSibling.addEventListener(
+              "click",
+              () => {
+                window._klOnsite = window._klOnsite || [];
+                window._klOnsite.openForm("UgpzJ6");
+              }
+            );
+          }
+        });
+      } else {
+        parent.insertAdjacentHTML("afterend", block);
 
-      parent.nextElementSibling.addEventListener("click", () => {
-        window._klOnsite = window._klOnsite || [];
-        window._klOnsite.openForm("UgpzJ6");
-      });
+        parent.nextElementSibling.addEventListener("click", () => {
+          window._klOnsite = window._klOnsite || [];
+          window._klOnsite.openForm("UgpzJ6");
+        });
+      }
     }
 
     appliedCoupon(parent) {
       const block = `<button type="button" class="crs_applied flex items-center justify-center">
-    <input type="text" value="HELLO15" class="d-none">
-    ${dataIcons.check} <span><b>15% OFF</b> | Use Code: <b>HELLO15</b></span>${dataIcons.copy} at checkout</button>`;
+      <input type="text" value="HELLO15" class="d-none">
+      ${dataIcons.check} <span><b>15% OFF</b> | Use Code: <b>HELLO15</b></span>${dataIcons.copy} at checkout</button>`;
 
       if (
         $el(`[class="${parent.className}"] + .crs_applied`) ||
@@ -305,10 +514,29 @@
       )
         return;
 
-      parent.insertAdjacentHTML("afterend", block);
-      parent.nextElementSibling.addEventListener("click", () => {
-        copyText($el(`[class="${parent.className}"] + .crs_applied input`));
-      });
+      if (parent.className.includes("pricing")) {
+        $$el(".pricing").forEach((item) => {
+          console.log(item);
+          if (!item.parentElement.parentElement.querySelector(".crs_applied")) {
+            item.parentElement.insertAdjacentHTML("afterend", block);
+
+            item.parentElement.nextElementSibling.addEventListener(
+              "click",
+              () => {
+                copyText(
+                  item.parentElement.nextElementSibling.querySelector(`input`)
+                );
+              }
+            );
+          }
+        });
+      } else {
+        parent.insertAdjacentHTML("afterend", block);
+
+        parent.nextElementSibling.addEventListener("click", () => {
+          copyText($el(`[class="${parent.className}"] + .crs_applied input`));
+        });
+      }
     }
   }
 
