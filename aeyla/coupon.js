@@ -202,7 +202,7 @@
             }
 
             if (
-              $el("form .qw").previousElementSibling &&
+              $el("form .qw")?.previousElementSibling &&
               !$el("form .qw").previousElementSibling.classList.contains(
                 "crs_applied"
               )
@@ -216,9 +216,20 @@
                 this.getCoupon($el(".pricing"));
                 this.appliedCoupon($el(".pricing"));
               }
-              if ($el(".product-labels").parentElement) {
-                this.getCoupon($el(".product-labels").parentElement);
-                this.appliedCoupon($el(".product-labels").parentElement);
+              if ($$el(".product-labels")) {
+                this.getCoupon(
+                  $$el(".product-labels")[$$el(".product-labels").length - 1]
+                    .parentElement
+                );
+                this.appliedCoupon(
+                  $$el(".product-labels")[$$el(".product-labels").length - 1]
+                    .parentElement
+                );
+              }
+
+              if ($el("#AddToCart")) {
+                $el("#AddToCart").parentElement.previousElementSibling.classList.add('crs_parent')
+                this.appliedCoupon($el('.crs_parent'));
               }
             }
 
@@ -237,7 +248,7 @@
                   "Element view",
                   "PDP Get aDDITIONAL 15% OFF Upstairs"
                 );
-              } else if (item.closest('.checkout_wrapper')) {
+              } else if (item.closest(".checkout_wrapper")) {
                 checkFocusTime(
                   `.crs_btn[data-parent="${item.dataset.parent}"]`,
                   "exp_disc_pdp_car_vis_cartcode_elem",
@@ -261,7 +272,7 @@
                   "Element view",
                   "PDP 15% OFF | Use Code: HELLO15 at checkout Upstairs"
                 );
-              } else if (item.nextElementSibling.classList.contains("qw")) {
+              } else if (item.nextElementSibling?.classList.contains("qw")) {
                 // console.log("event before add to cart");
                 checkFocusTime(
                   `.crs_applied[data-parent="${item.dataset.parent}"]`,
@@ -269,7 +280,7 @@
                   "Element view",
                   "PDP 15% OFF | Use Code: HELLO15 at checkout Downstairs 2"
                 );
-              } else if (item.closest('.checkout_wrapper')) {
+              } else if (item.closest(".checkout_wrapper")) {
                 checkFocusTime(
                   `.crs_applied[data-parent="${item.dataset.parent}"]`,
                   "exp_disc_pdp_car_vis_cartcode_elem",
@@ -611,7 +622,7 @@
         parent.insertAdjacentHTML("afterend", block);
 
         parent.nextElementSibling.addEventListener("click", (e) => {
-          if (e.target.closest('.checkout_wrapper')) {
+          if (e.target.closest(".checkout_wrapper")) {
             pushDataLayer(
               "exp_disc_pdp_car_but_cartcode_click",
               "Click",
@@ -619,7 +630,6 @@
               "Slide-in cart Get aDDITIONAL 15% OFF"
             );
           } else {
-
             pushDataLayer(
               "exp_disc_pdp_car_but_pdpadddown_click",
               "Click",
@@ -680,17 +690,19 @@
               "PDP 15% OFF | Use Code: HELLO15 at checkout Upstairs"
             );
           } else if (
-            parent.nextElementSibling.nextElementSibling.classList.contains('qw')
+            parent.nextElementSibling.nextElementSibling.classList.contains(
+              "qw"
+            )
           ) {
             console.log("click applied button before add to cart");
-          } else if (e.target.closest('.checkout_wrapper')) {
+          } else if (e.target.closest(".checkout_wrapper")) {
             pushDataLayer(
               "exp_disc_pdp_car_but_cartcode_click",
               "Click",
               "Button",
               "Slide-in cart 15% OFF | Use Code: HELLO15 at checkout"
             );
-          }  else {
+          } else {
             pushDataLayer(
               "exp_disc_pdp_car_but_pdpcodedown_click",
               "Click",
