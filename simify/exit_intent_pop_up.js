@@ -269,6 +269,7 @@ class IntentPopup {
       this.onClickQuantitySelectorBtn()
       this.onClickSizeSwatchLinkBtn()
       this.onVisibleStickyBanner()
+      this.initMutationObserver()
     }
   }
 
@@ -1610,18 +1611,22 @@ class IntentPopup {
         }
       })
 
-      waitForElement('[data-action="add-to-cart"]').then(el => {
-        if (el.textContent !== this.buyNowTxt) {
-          el.textContent = this.buyNowTxt
-        }
-      })
-      waitForElement('.product_fix_bar_inner a.Button').then(el => {
-        if (el.textContent !== this.buyNowTxt) {
-          el.textContent = this.buyNowTxt
-        }
-      })
+      this.onChangeTxtMainBtn()
 
       this.newInfoElemForInput()
+    })
+  }
+  onChangeTxtMainBtn() {
+    waitForElement('[data-action="add-to-cart"]').then(el => {
+      if (el.textContent !== this.buyNowTxt) {
+        el.textContent = this.buyNowTxt
+      }
+    })
+
+    waitForElement('.product_fix_bar_inner a.Button').then(el => {
+      if (el.textContent !== this.buyNowTxt) {
+        el.textContent = this.buyNowTxt
+      }
     })
   }
   newInfoElemForInput() {
@@ -1805,11 +1810,6 @@ class IntentPopup {
         quantitySelectorBtn?.forEach(btn => {
           btn.addEventListener('click', e => {
             if (!e.target.getAttribute('data-test')) {
-              waitForElement('[data-action="add-to-cart"]').then(el => {
-                if (el.textContent !== this.buyNowTxt) {
-                  el.textContent = this.buyNowTxt
-                }
-              })
               pushDataLayer(
                 'exp_pdp_enhanc_button_esim_item',
                 `${e.target.value}`,
@@ -1826,6 +1826,25 @@ class IntentPopup {
           })
         })
       })
+    })
+  }
+  initMutationObserver() {
+    let observer = new MutationObserver(() => {
+      if (document) {
+        observer.disconnect()
+
+        this.onChangeTxtMainBtn()
+
+        observer.observe(document, {
+          childList: true,
+          subtree: true
+        })
+      }
+    })
+
+    observer.observe(document, {
+      childList: true,
+      subtree: true
     })
   }
 
