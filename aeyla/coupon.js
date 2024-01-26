@@ -174,6 +174,15 @@
 
     init() {
       this.styleAppend();
+      
+      if (this.checkPageUrl() === "products") {
+        document.body.insertAdjacentHTML('afterbegin', `
+        <style>
+          button[aria-label="Open Form"] > [data-testid="animated-teaser"] {
+            opacity: 0;
+          }
+        </style>`)
+      }
 
       checkFocusTime(
         `.minicart`,
@@ -362,9 +371,6 @@
     styleAppend() {
       const style = /* html    */ `
           <style class="crs-style">
-            button[aria-label="Open Form"] > [data-testid="animated-teaser"] {
-                opacity: 0;
-            }
             .crs_copied {
                 position: absolute;
                 right: 20px;
