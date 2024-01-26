@@ -3,19 +3,23 @@
     '%c EXP: Add free shipping info A/B test (DEV: OS)',
     'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;'
   )
+  ;(function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        ;(h.hj.q = h.hj.q || []).push(arguments)
+      }
+    h._hjSettings = { hjid: 2667925, hjsv: 6 }
+    a = o.getElementsByTagName('head')[0]
+    r = o.createElement('script')
+    r.async = 1
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+    a.appendChild(r)
+  })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=')
+  hj('event', 'free_shipping')
   const $$el = selector => document.querySelectorAll(selector)
   const $el = selector => document.querySelector(selector)
   const git = 'https://conversionratestore.github.io/projects/'
-
-  (function(h,o,t,j,a,r){
-    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-    h._hjSettings={hjid:2667925,hjsv:6};
-    a=o.getElementsByTagName('head')[0];
-    r=o.createElement('script');r.async=1;
-    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-    a.appendChild(r);
-  })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-  hj('event', 'free_shipping')
 
   const pushDataLayer = (name, desc, type = '', loc = '') => {
     window.dataLayer = window.dataLayer || []
@@ -164,7 +168,7 @@
           : location.pathname.split('/').length === 6
       let previousUrl = ''
       this.initStyles()
-      
+
       if (this.checkPageUrl() === 'bag') {
         this.cart()
         previousUrl = location.href
@@ -205,7 +209,6 @@
       mutation.observe(document.body, {
         childList: true
       })
-
     }
 
     pdp() {
@@ -352,12 +355,7 @@
               }
               if (event.currentTarget.dataset.testid === 'add-to-bag' && event.target.closest('.fixed')) {
                 if (this.currentCountry === countries.gb) {
-                  pushDataLayer(
-                    `exp_cust_free_del_but_pdpuk_adbag_st`,
-                    'Add to bag',
-                    'Button',
-                    `PDP UK`
-                  )
+                  pushDataLayer(`exp_cust_free_del_but_pdpuk_adbag_st`, 'Add to bag', 'Button', `PDP UK`)
                 }
                 if (this.currentCountry === countries.us) {
                   this.productPrice = +$el('h3.text-h3.font-semibold').textContent.replace(/^\D+/g, '').replace(',', '')
@@ -374,12 +372,7 @@
                       `PDP US FREE US Shipping on orders over $${this.usFreeDelivery}`
                     )
                   } else {
-                    pushDataLayer(
-                      `exp_cust_free_del_but_pdpus_adbag_st`,
-                      'Add to bag',
-                      'Button',
-                      `PDP US`
-                    )
+                    pushDataLayer(`exp_cust_free_del_but_pdpus_adbag_st`, 'Add to bag', 'Button', `PDP US`)
                   }
                 }
               }
