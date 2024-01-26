@@ -279,14 +279,14 @@ class IntentPopup {
     this.resetTimer()
 
     if (this.device === 'Mobile') {
-      window.addEventListener('scroll', () => {
+      document.addEventListener('scroll', () => {
         const scrollSpeed = checkScrollSpeed()
         if (
-          scrollSpeed < -100 &&
-          scrollSpeed > 100 &&
+          (+scrollSpeed < -100 || +scrollSpeed > 100) &&
           !localStorage.getItem('onClickIsMyDeviceCompatibleBlock') &&
           !localStorage.getItem('onClickStampedReviewsBlock')
         ) {
+          console.log(`scroll`)
           this.showIntentPopup()
         }
       })
