@@ -227,10 +227,31 @@
                 );
               }
 
-              if ($el("#AddToCart")) {
-                $el("#AddToCart").parentElement.previousElementSibling.classList.add('crs_parent')
-                this.appliedCoupon($el('.crs_parent'));
+              if ($el("#AddToCart") && !$el("#AddToCart").parentElement.previousElementSibling.querySelector('.product-labels')) {
+                $el(
+                  "#AddToCart"
+                ).parentElement.previousElementSibling.classList.add(
+                  "crs_parent"
+                );
+                this.appliedCoupon($el(".crs_parent"));
               }
+
+              if (device !== "mobile") return;
+              $$el(".crs_btn").forEach((item, index) => {
+                if (index == 0) {
+                  item.style = "margin: 16px 0 0 0!important;";
+                } else { 
+                  item.style = "margin: 0 0 16px 0!important;";
+                }
+              });
+              $$el(".crs_applied").forEach((item, index) => {
+                if (index == 0) {
+                  item.style = "margin: 16px -1rem 0!important; width: calc(100% + 2rem);";
+                 
+                } else {
+                  item.style = "margin: 0 -1rem 16px!important; width: calc(100% + 2rem);";
+                }
+              });
             }
 
             if ($el(".checkout_wrapper .cart_total")) {
@@ -690,7 +711,7 @@
               "PDP 15% OFF | Use Code: HELLO15 at checkout Upstairs"
             );
           } else if (
-            parent.nextElementSibling.nextElementSibling.classList.contains(
+            parent.nextElementSibling?.nextElementSibling?.classList.contains(
               "qw"
             )
           ) {
