@@ -227,31 +227,43 @@
                 );
               }
 
-              if ($el("#AddToCart") && !$el("#AddToCart").parentElement.previousElementSibling.querySelector('.product-labels')) {
-                $el(
-                  "#AddToCart"
-                ).parentElement.previousElementSibling.classList.add(
-                  "crs_parent"
-                );
-                this.appliedCoupon($el(".crs_parent"));
+              if ($el("#AddToCart")) {
+                if ($el("#AddToCart").parentElement.previousElementSibling) {
+                  $el(
+                    "#AddToCart"
+                  ).parentElement.previousElementSibling.classList.add(
+                    "crs_parent"
+                  );
+                } else if ($el("#AddToCart").closest("b") && 
+                  !$el("#AddToCart").closest("b").previousElementSibling.classList.contains('crs_parent')
+                ) {
+                  $el("#AddToCart").closest("b").previousElementSibling.classList.add("crs_parent");
+                  
+                }
+
+                if ($el(".crs_parent")) {
+                  this.appliedCoupon($el(".crs_parent"));
+                }
               }
 
-              if (device !== "mobile") return;
-              $$el(".crs_btn").forEach((item, index) => {
-                if (index == 0) {
-                  item.style = "margin: 16px 0 0 0!important;";
-                } else { 
-                  item.style = "margin: 0 0 16px 0!important;";
-                }
-              });
-              $$el(".crs_applied").forEach((item, index) => {
-                if (index == 0) {
-                  item.style = "margin: 16px -1rem 0!important; width: calc(100% + 2rem);";
-                 
-                } else {
-                  item.style = "margin: 0 -1rem 16px!important; width: calc(100% + 2rem);";
-                }
-              });
+              if (device == "mobile") {
+                $$el(".crs_btn").forEach((item, index) => {
+                  if (index == 0) {
+                    item.style = "margin: 16px 0 0 0!important;";
+                  } else {
+                    item.style = "margin: 0 0 16px 0!important;";
+                  }
+                });
+                $$el(".crs_applied").forEach((item, index) => {
+                  if (index == 0) {
+                    item.style =
+                      "margin: 16px -1rem 0!important; width: calc(100% + 2rem);";
+                  } else {
+                    item.style =
+                      "margin: 0 -1rem 16px!important; width: calc(100% + 2rem);";
+                  }
+                });
+              }
             }
 
             if ($el(".checkout_wrapper .cart_total")) {
@@ -260,25 +272,25 @@
             }
 
             // Start observing the target element
-            $$el(".crs_btn").forEach((item) => {
-              // obs.observe(item)
+            $$el(".crs_btn").forEach((item, index) => {
+              item.dataset.index = index;
               if (item.previousElementSibling.querySelector(".pricing")) {
                 checkFocusTime(
-                  `.crs_btn[data-parent="${item.dataset.parent}"]`,
+                  `.crs_btn[data-index="${index}"]`,
                   "exp_disc_pdp_car_vis_pdpaddups_elem",
                   "Element view",
                   "PDP Get aDDITIONAL 15% OFF Upstairs"
                 );
               } else if (item.closest(".checkout_wrapper")) {
                 checkFocusTime(
-                  `.crs_btn[data-parent="${item.dataset.parent}"]`,
+                  `.crs_btn[data-index="${index}"]`,
                   "exp_disc_pdp_car_vis_cartcode_elem",
                   "Element view",
                   "Slide-in cart Get aDDITIONAL 15% OFF"
                 );
               } else {
                 checkFocusTime(
-                  `.crs_btn[data-parent="${item.dataset.parent}"]`,
+                  `.crs_btn[data-index="${index}"]`,
                   "exp_disc_pdp_car_vis_pdpadddown_elem",
                   "Element view",
                   "PDP Get aDDITIONAL 15% OFF Downstairs"
@@ -286,31 +298,33 @@
               }
             });
             $$el(".crs_applied").forEach((item, index) => {
+              item.dataset.index = index;
               if (item.previousElementSibling.querySelector(".pricing")) {
                 checkFocusTime(
-                  `.crs_applied[data-parent="${item.dataset.parent}"]`,
+                  `.crs_applied[data-index="${index}"]`,
                   "exp_disc_pdp_car_vis_pdpcodeups_elem",
                   "Element view",
                   "PDP 15% OFF | Use Code: HELLO15 at checkout Upstairs"
                 );
-              } else if (item.nextElementSibling?.classList.contains("qw")) {
-                // console.log("event before add to cart");
+              } else if (
+                item.previousElementSibling.querySelector(".product-labels")
+              ) {
                 checkFocusTime(
-                  `.crs_applied[data-parent="${item.dataset.parent}"]`,
-                  "exp_disc_pdp_car_vis_pdpcodedown_elem",
+                  `.crs_applied[data-index="${index}"]`,
+                  "exp_disc_pdp_car_vis_pdpcodeaver_elem",
                   "Element view",
-                  "PDP 15% OFF | Use Code: HELLO15 at checkout Downstairs 2"
+                  "PDP 15% OFF | Use Code: HELLO15 at checkout Average"
                 );
               } else if (item.closest(".checkout_wrapper")) {
                 checkFocusTime(
-                  `.crs_applied[data-parent="${item.dataset.parent}"]`,
+                  `.crs_applied[data-index="${index}"]`,
                   "exp_disc_pdp_car_vis_cartcode_elem",
                   "Element view",
                   "Slide-in cart 15% OFF | Use Code: HELLO15 at checkout"
                 );
               } else {
                 checkFocusTime(
-                  `.crs_applied[data-parent="${item.dataset.parent}"]`,
+                  `.crs_applied[data-index="${index}"]`,
                   "exp_disc_pdp_car_vis_pdpcodedown_elem",
                   "Element view",
                   "PDP 15% OFF | Use Code: HELLO15 at checkout Downstairs"
@@ -476,8 +490,6 @@
       ) {
         localStorage.setItem("appliedCoupon", true);
 
-        viewed = 2;
-
         if ($el(".crs_btn")) {
           $$el(".crs_btn").forEach((item) => {
             item.remove();
@@ -498,7 +510,10 @@
           viewed = 1;
         } else if (titlePopup.includes("use code:")) {
           viewed = 3;
+        } else {
+          viewed = 2;
         }
+        
         visibleAfterTimer();
 
         $$el('form[data-testid="klaviyo-form-UgpzJ6"] button').forEach(
@@ -703,19 +718,20 @@
         parent.nextElementSibling.addEventListener("click", (e) => {
           copyText($el(`[class="${parent.className}"] + .crs_applied input`));
 
-          if (parent.querySelector(".pricing")) {
+          if (parent.className.includes("pricing")) {
             pushDataLayer(
               "exp_disc_pdp_car_but_pdpcodeups_click",
               "Click",
               "Button",
               "PDP 15% OFF | Use Code: HELLO15 at checkout Upstairs"
             );
-          } else if (
-            parent.nextElementSibling?.nextElementSibling?.classList.contains(
-              "qw"
-            )
-          ) {
-            console.log("click applied button before add to cart");
+          } else if (e.target.nextElementSibling?.classList.contains("qw")) {
+            pushDataLayer(
+              "exp_disc_pdp_car_but_pdpcodedown_click",
+              "Click",
+              "Button",
+              "PDP 15% OFF | Use Code: HELLO15 at checkout Downstairs"
+            );
           } else if (e.target.closest(".checkout_wrapper")) {
             pushDataLayer(
               "exp_disc_pdp_car_but_cartcode_click",
@@ -725,10 +741,10 @@
             );
           } else {
             pushDataLayer(
-              "exp_disc_pdp_car_but_pdpcodedown_click",
+              "exp_disc_pdp_car_but_pdpcodeaver_click",
               "Click",
               "Button",
-              "PDP 15% OFF | Use Code: HELLO15 at checkout Downstairs"
+              "PDP 15% OFF | Use Code: HELLO15 at checkout Average"
             );
           }
         });
