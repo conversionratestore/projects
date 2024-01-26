@@ -1334,6 +1334,16 @@ class IntentPopup {
           justify-content: space-between;
           padding: 10px 26px 13px 57px;
         }
+        .new_pro-grid
+          .ProductForm__Variants
+          .HorizontalList--spacingTight
+          .HorizontalList__Item
+          .SizeSwatch
+          > div:nth-child(2) {
+          min-width: 70px;
+          display: flex;
+          flex-direction: column;
+        }
         .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList label span {
           color: #333f48;
         }
@@ -1355,6 +1365,7 @@ class IntentPopup {
           line-height: 33px;
           text-transform: uppercase;
           margin: 0;
+          min-width: 33px;
         }
         .new_pro-grid .ProductForm__Variants .SizeSwatch > div:nth-of-type(1) span {
           color: rgba(51, 63, 72, 0.8);
