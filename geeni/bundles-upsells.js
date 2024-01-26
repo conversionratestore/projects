@@ -1836,7 +1836,7 @@ line-height: 22px;
 
 <div class="bundle__title-wrapper">
   <h2 class="bundle__title">Buy Together and </h2>
-  <p class="bundle__save">Save 15%</p>
+  <p class="bundle__save">Save 5%</p>
 </div>
 
 <div class="bundle__content">
