@@ -54,7 +54,7 @@ const checkScrollSpeed = (function (settings) {
   let newPos
   let timer
   let delta,
-    delay = settings.delay || 70
+    delay = settings.delay || 50
 
   function clear() {
     lastPos = null
@@ -282,7 +282,8 @@ class IntentPopup {
       window.addEventListener('scroll', () => {
         const scrollSpeed = checkScrollSpeed()
         if (
-          scrollSpeed > 70 &&
+          scrollSpeed < -100 &&
+          scrollSpeed > 100 &&
           !localStorage.getItem('onClickIsMyDeviceCompatibleBlock') &&
           !localStorage.getItem('onClickStampedReviewsBlock')
         ) {
@@ -1294,6 +1295,10 @@ class IntentPopup {
         .new_pro-grid .ProductForm__Variants .SizeSwatch > div:nth-of-type(1) {
           display: flex;
           align-items: center;
+          justify-content: space-between;
+          max-width: 150px;
+          width: 100%;
+          margin-right: 2px;
           flex-direction: row-reverse;
           gap: 30px;
         }
