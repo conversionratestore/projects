@@ -99,10 +99,6 @@ let treblehealthPages = setInterval(() => {
       })
     }
 
-    let timeCount = 15
-    if (!sessionStorage.getItem('time')) {
-      sessionStorage.setItem('time', timeCount)
-    }
     let level = ''
     let disclaimerDates = ''
     let levelImg = ''
@@ -1153,7 +1149,7 @@ let treblehealthPages = setInterval(() => {
             <div class="hero_wrapp">
               <p class="hero_txt">Based on your answers,</p>
               <h1 class="hero_title">your tinnitus is <b>${this.level}</b></h1>
-              <p class="hero_txt">We’ve identified key points to help treat your tinnitus. You can experience relief from tinnitus <b>by ${this.reliefDate}*</b> <span class=""><b class="product_scroll_trigger"> with the Tinnitus Relief Bundle</b></p>
+              <p class="hero_txt">We’ve identified <b>key points</b> to help treat your tinnitus. You can experience relief from tinnitus <b>by ${this.reliefDate}*</b> <span class=""><b class="product_scroll_trigger"> with the Tinnitus Relief Bundle</b></p>
               <div class="chart_wrapp">
                 <div class="chart_img_wrapp">
                   <img src="${this.levelImg}" alt="chart">
