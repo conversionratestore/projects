@@ -250,7 +250,7 @@ let treblehealthPages = setInterval(() => {
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-11.png" alt="product" />
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-6.png" alt="product" />
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-9.png" alt="product" />
-          <img src="https://drive.google.com/uc?export=view&id=1rzQ2UBJSHjK8jJgzv2cJf3Y16bcoT5qC" alt="product" />
+          <img src='${git}/treblehealth/img/frame-135.png.png' alt="product" />
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-15.png" alt="product" />
         </div>
         <ul class="bundle_tooltip_list">
