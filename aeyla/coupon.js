@@ -274,73 +274,73 @@
                 });
               }
             }
-
-            if ($el(".checkout_wrapper .cart_total")) {
-              this.getCoupon($el(".checkout_wrapper .cart_total"));
-              this.appliedCoupon($el(".checkout_wrapper .cart_total"));
-            }
-
-            // Start observing the target element
-            $$el(".crs_btn").forEach((item, index) => {
-              item.dataset.index = index;
-              if (item.previousElementSibling.querySelector(".pricing")) {
-                checkFocusTime(
-                  `.crs_btn[data-index="${index}"]`,
-                  "exp_disc_pdp_car_vis_pdpaddups_elem",
-                  "Element view",
-                  "PDP Get aDDITIONAL 15% OFF Upstairs"
-                );
-              } else if (item.closest(".checkout_wrapper")) {
-                checkFocusTime(
-                  `.crs_btn[data-index="${index}"]`,
-                  "exp_disc_pdp_car_vis_cartcode_elem",
-                  "Element view",
-                  "Slide-in cart Get aDDITIONAL 15% OFF"
-                );
-              } else {
-                checkFocusTime(
-                  `.crs_btn[data-index="${index}"]`,
-                  "exp_disc_pdp_car_vis_pdpadddown_elem",
-                  "Element view",
-                  "PDP Get aDDITIONAL 15% OFF Downstairs"
-                );
-              }
-            });
-            $$el(".crs_applied").forEach((item, index) => {
-              item.dataset.index = index;
-              if (item.previousElementSibling.querySelector(".pricing")) {
-                checkFocusTime(
-                  `.crs_applied[data-index="${index}"]`,
-                  "exp_disc_pdp_car_vis_pdpcodeups_elem",
-                  "Element view",
-                  "PDP 15% OFF | Use Code: HELLO15 at checkout Upstairs"
-                );
-              } else if (
-                item.previousElementSibling.querySelector(".product-labels")
-              ) {
-                checkFocusTime(
-                  `.crs_applied[data-index="${index}"]`,
-                  "exp_disc_pdp_car_vis_pdpcodeaver_elem",
-                  "Element view",
-                  "PDP 15% OFF | Use Code: HELLO15 at checkout Average"
-                );
-              } else if (item.closest(".checkout_wrapper")) {
-                checkFocusTime(
-                  `.crs_applied[data-index="${index}"]`,
-                  "exp_disc_pdp_car_vis_cartcode_elem",
-                  "Element view",
-                  "Slide-in cart 15% OFF | Use Code: HELLO15 at checkout"
-                );
-              } else {
-                checkFocusTime(
-                  `.crs_applied[data-index="${index}"]`,
-                  "exp_disc_pdp_car_vis_pdpcodedown_elem",
-                  "Element view",
-                  "PDP 15% OFF | Use Code: HELLO15 at checkout Downstairs"
-                );
-              }
-            });
           }
+
+          if ($el(".checkout_wrapper .cart_total")) {
+            this.getCoupon($el(".checkout_wrapper .cart_total"));
+            this.appliedCoupon($el(".checkout_wrapper .cart_total"));
+          }
+
+          // Start observing the target element
+          $$el(".crs_btn").forEach((item, index) => {
+            item.dataset.index = index;
+            if (item.previousElementSibling.querySelector(".pricing")) {
+              checkFocusTime(
+                `.crs_btn[data-index="${index}"]`,
+                "exp_disc_pdp_car_vis_pdpaddups_elem",
+                "Element view",
+                "PDP Get aDDITIONAL 15% OFF Upstairs"
+              );
+            } else if (item.closest(".checkout_wrapper")) {
+              checkFocusTime(
+                `.crs_btn[data-index="${index}"]`,
+                "exp_disc_pdp_car_vis_cartcode_elem",
+                "Element view",
+                "Slide-in cart Get aDDITIONAL 15% OFF"
+              );
+            } else {
+              checkFocusTime(
+                `.crs_btn[data-index="${index}"]`,
+                "exp_disc_pdp_car_vis_pdpadddown_elem",
+                "Element view",
+                "PDP Get aDDITIONAL 15% OFF Downstairs"
+              );
+            }
+          });
+          $$el(".crs_applied").forEach((item, index) => {
+            item.dataset.index = index;
+            if (item.previousElementSibling.querySelector(".pricing")) {
+              checkFocusTime(
+                `.crs_applied[data-index="${index}"]`,
+                "exp_disc_pdp_car_vis_pdpcodeups_elem",
+                "Element view",
+                "PDP 15% OFF | Use Code: HELLO15 at checkout Upstairs"
+              );
+            } else if (
+              item.previousElementSibling.querySelector(".product-labels")
+            ) {
+              checkFocusTime(
+                `.crs_applied[data-index="${index}"]`,
+                "exp_disc_pdp_car_vis_pdpcodeaver_elem",
+                "Element view",
+                "PDP 15% OFF | Use Code: HELLO15 at checkout Average"
+              );
+            } else if (item.closest(".checkout_wrapper")) {
+              checkFocusTime(
+                `.crs_applied[data-index="${index}"]`,
+                "exp_disc_pdp_car_vis_cartcode_elem",
+                "Element view",
+                "Slide-in cart 15% OFF | Use Code: HELLO15 at checkout"
+              );
+            } else {
+              checkFocusTime(
+                `.crs_applied[data-index="${index}"]`,
+                "exp_disc_pdp_car_vis_pdpcodedown_elem",
+                "Element view",
+                "PDP 15% OFF | Use Code: HELLO15 at checkout Downstairs"
+              );
+            }
+          });
         });
 
         this.setAppliedCoupon();
@@ -639,6 +639,7 @@
         parent.nextElementSibling?.classList.contains("crs_btn")
       )
         return;
+
       if (parent.className.includes("pricing")) {
         $$el(".pricing").forEach((item) => {
           if (!item.parentElement.parentElement.querySelector(".crs_btn")) {
