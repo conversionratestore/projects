@@ -518,13 +518,16 @@
                 margin: 0 auto 8px!important;
               }
               .stock_wrapper {
-                padding: 12px 14px!important;
+                padding: 12px 14px 11px!important;
               }
               .shipping_wrapper {
                 padding: 18.01px 14px 10.79px!important;
               }
               .secure_checkout {
-                margin: 17px 14px 14px!important;
+                margin: 14px 14px 14px!important;
+              }
+              .klarna_wrapper p {
+                margin-bottom: 14px!important;
               }
               .minicart_header {
                 padding: 14px 16px;
