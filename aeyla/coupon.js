@@ -484,6 +484,7 @@
               }
               .items_wrapper {
                 min-height: 82px!important;
+                height: auto!important;
               }
               .shipping, .total {
                 margin-bottom: 16px!important;
