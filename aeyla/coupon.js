@@ -114,7 +114,17 @@
 
   function appHeight(selector) {
     selector.style.height = window.innerHeight + "px";
-    console.log(selector)
+
+    let downSelector = selector.querySelector('.checkout_wrapper').clientHeight;
+    let topSelector = 0;
+
+    Array.from(selector.querySelector('.mn').children).forEach(item => {
+      if (!item.classList.contains('items_wrapper')) {
+        topSelector += item.clientHeight;
+      }
+    })
+    selector.querySelector('.items_wrapper').style = `max-height: calc(100vh - 45px - ${downSelector + topSelector}px);`
+    
   };
 
   let viewed = 0;
@@ -474,7 +484,7 @@
                 width: 100%;
             }
             .checkout_wrapper .crs_btn {
-                margin: 0 14px 17px;
+                margin: 0 14px 14px;
                 width: calc(100% - 28px);
             }
             .checkout_wrapper .crs_btn span {
@@ -503,9 +513,6 @@
               }
               .free_shipping_wrapper {
                 padding: 15px 0 10px!importantt;
-              }
-              .checkout_wrapper .crs_btn {
-                margin-top: 3px;
               }
               .free_shipping_wrapper .bar {
                 margin: 0 auto 8px!important;
