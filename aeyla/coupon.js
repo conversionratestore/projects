@@ -371,6 +371,9 @@
     styleAppend() {
       const style = /* html    */ `
           <style class="crs-style">
+            button.needsclick.kl-teaser-UgpzJ6.kl-private-reset-css-Xuajs1 {
+              z-index: 90!important;
+            }
             .crs_copied {
                 position: absolute;
                 right: 20px;
