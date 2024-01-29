@@ -768,6 +768,7 @@
               color: #253189;
               padding-right: 140px;
               text-decoration: none;
+              display: block;
             }
             #kits #new-kit-container .kit-block .desc {
               margin: 0 0 12px !important;
@@ -1262,6 +1263,7 @@
           'button',
           `Products Touch Up Paint Kits ${kitType} Paint Kit`
         )
+        checkCart()
       })
       blockVisibility(
         '.spray-kit .shipping.active',
@@ -1299,6 +1301,23 @@
       $('#kits .category-heading .sub_heading+p').html(
         "Our kits include all the essentials for your touch-up work and are a popular choice among customers for their value and convenience. If you're looking for specific items, you'll find them available lower on the page."
       )
+
+      function checkCart() {
+        let cartLength = window.currcart.length
+        let totalItems = 0
+        window.currcart.forEach(item => {
+          const itemData = item.split('|')
+          totalItems += +itemData[0]
+        })
+        console.log(cartLength)
+        if (cartLength > 0) {
+          $('.to_cart').addClass('fix')
+          $('.to_cart button span').append(/* html */ `<b>${totalItems}</b>`)
+        } else {
+          $('.to_cart').removeClass('fix')
+          $('.to_cart button span b').remove()
+        }
+      }
     }
 
     redrawKitBlock(id, selector) {
