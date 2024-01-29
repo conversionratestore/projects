@@ -465,6 +465,30 @@
               .shipped_within_wrapper {
                 padding-left: 18px;
               }
+              .items_wrapper {
+                min-height: 100px!important;
+              }
+              .shipping, .total {
+                margin-bottom: 16px!important;
+              }
+              .free_shipping_wrapper {
+                padding: 15px 0 10px!importantt;
+              }
+              .checkout_wrapper .crs_btn {
+                margin-top: 3px;
+              }
+              .free_shipping_wrapper .bar {
+                margin: 0 auto 8px!important;
+              }
+              .stock_wrapper {
+                padding: 12px 14px!important;
+              }
+              .shipping_wrapper {
+                padding: 18.01px 14px 10.79px!important;
+              }
+              .secure_checkout {
+                margin: 17px 14px 14px!important;
+              }
             }
             @media (min-width: 768px) {
               #MainProductForm .crs_applied {
