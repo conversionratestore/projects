@@ -294,19 +294,23 @@
 
               if (device == "mobile") {
                 $$el(".crs_btn").forEach((item, index) => {
-                  if (index == 0) {
-                    item.style = "margin: 16px 0 0 0!important;";
-                  } else {
-                    item.style = "margin: 0 0 16px 0!important;";
+                  if (!item.closest('.checkout_wrapper')) {
+                    if (index == 0) {
+                      item.style = "margin: 16px 0 0 0!important;";
+                    } else {
+                      item.style = "margin: 0 0 16px 0!important;";
+                    }
                   }
                 });
                 $$el(".crs_applied").forEach((item, index) => {
-                  if (index == 0) {
-                    item.style =
-                      "margin: 16px -1rem 0!important; width: calc(100% + 2rem);";
-                  } else {
-                    item.style =
-                      "margin: 0 -1rem 16px!important; width: calc(100% + 2rem);";
+                  if (!item.closest('.checkout_wrapper')) {
+                    if (index == 0) {
+                      item.style =
+                        "margin: 16px -1rem 0!important; width: calc(100% + 2rem);";
+                    } else {
+                      item.style =
+                        "margin: 0 -1rem 16px!important; width: calc(100% + 2rem);";
+                    }
                   }
                 });
               }
