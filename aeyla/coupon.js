@@ -123,7 +123,7 @@
         topSelector += item.clientHeight;
       }
     })
-    selector.querySelector('.items_wrapper').style = `max-height: calc(100vh - 45px - ${downSelector + topSelector}px);`
+    selector.querySelector('.items_wrapper').style = `max-height: calc(100vh - ${downSelector + topSelector}px);`
     
   };
 
