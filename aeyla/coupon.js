@@ -112,10 +112,8 @@
     }
   }
 
-  const appHeight = () => {
-    if ($el(".minicart") && device == "mobile") {
-      $el(".minicart").style.height = window.innerHeight + "px";
-    }
+  const appHeight = (selector) => {
+    selector.style.height = window.innerHeight + "px";
   };
 
   let viewed = 0;
@@ -190,8 +188,10 @@
           }
         </style>`)
       }
-      window.addEventListener("resize", appHeight);
-      appHeight();
+      if ($el(".minicart")) {
+        window.addEventListener("resize", appHeight($el(".minicart")));
+        appHeight($el(".minicart"));
+      }
 
       checkFocusTime(
         `.minicart`,
@@ -351,12 +351,14 @@
             }
           });
 
-          if ($el('.minicart.activated') && minicartShow == false) {
-            minicartShow = true;
-            window.addEventListener("resize", appHeight);
-            appHeight();
-          } else {
-            minicartShow = false
+          if (device == "mobile") {
+            if ($el('.minicart.activated') && minicartShow == false) {
+              minicartShow = true;
+              window.addEventListener("resize", appHeight($el(".minicart")));
+              appHeight($el(".minicart"));
+            } else {
+              minicartShow = false
+            }
           }
         });
 
