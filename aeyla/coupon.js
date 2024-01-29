@@ -112,7 +112,7 @@
     }
   }
 
-  const appHeight = (selector) => {
+  function appHeight(selector) {
     selector.style.height = window.innerHeight + "px";
     console.log(selector)
   };
@@ -190,18 +190,25 @@
         </style>`)
       }
 
-      let waitMinicart = setInterval(() => {
-        if (device == "mobile" && $el('.minicart.activated')) {
-          if (minicartShow == false) {
-            minicartShow = true;
-            window.addEventListener("resize", appHeight($el(".minicart")));
-            appHeight($el(".minicart"));
+      if (device == "mobile") {
+        let waitMinicart = setInterval(() => {
+          if ($el('.minicart')) {
+            if (minicartShow == false) {
+              minicartShow = true;
+
+              appHeight($el(".minicart"));
+            }
+          } else {
+            minicartShow = false
           }
-        } else {
-          minicartShow = false
+        });
+      }
+
+      window.addEventListener("resize", () => {
+        if ($el(".minicart") && device == "mobile") {
+          appHeight($el(".minicart"))
         }
       });
-    
 
       checkFocusTime(
         `.minicart`,
@@ -360,6 +367,7 @@
               );
             }
           });
+          
 
         });
 
