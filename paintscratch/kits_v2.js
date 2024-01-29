@@ -720,6 +720,13 @@
               background-color: #FFFCF4;
               padding: 12px;
             }
+            .regular #wrapper #page #main #kits .category-heading p.sub_heading {
+              padding-bottom: 12px !important;
+              color: #1B3D71;
+              font-size: 14px;
+              font-weight: 700;
+              line-height: 16px !important;
+            }
             #kits #new-kit-container * {
               box-sizing: border-box;
             }
@@ -863,9 +870,8 @@
               height: 10px;
               top: 50%;
               left: 50%;
-              transform: translate(-50%, -50%);
-              background-color: #333;
-              border-radius: 2px;
+              transform: translate(-50%, -35%);
+              background: url(${git}/check.svg) no-repeat center center;
             }
             #kits #new-kit-container .kit-block .variants label input[type="radio"] + span {
               width: 14px;
@@ -891,7 +897,7 @@
               display: flex;
               gap: 4px;
               flex-direction: column;
-              padding-left: 24px;
+              padding-left: 24px !important;
             }
             #kits #new-kit-container .spray-kit .variants>label:first-of-type,
             #kits #new-kit-container .brush-kit .variants>label:first-of-type,
@@ -900,8 +906,8 @@
               padding-bottom: 4px !important;
               border-bottom: 1px solid #D9D9D9;
             }
-            #kits #new-kit-container .brush-kit .variants>label:last-of-type {
-              padding-left: 24px;
+            #kits #new-kit-container .brush-kit .variants>label.add_primer {
+              padding-left: 24px !important;
             }
             @media (max-width: 768px) {
               #kits #new-kit-container  .kit-block {
@@ -923,6 +929,9 @@
                 flex-direction: column;
                 align-items: center;
                 gap: 12px;
+              }
+              #kits #new-kit-container .kit-block .variants label input[type="checkbox"]:checked + span::after {
+                transform: translate(-50%, -50%);
               }
             }
           </style>
@@ -1012,7 +1021,7 @@
                   <span></span>
                   <p>2 oz. bottle (Best for spraying) - <b>${tricoat ? '$90.83' : '$59.29'}</b></p>
                 </label>
-                <label>
+                <label class="add_primer">
                   <input type="checkbox" name="primer" checked>
                   <span></span>
                   <p>Include 2 oz. Primer for unpainted surfaces <b>+$9.95</b></p>
@@ -1069,6 +1078,7 @@
       $('#new-kit-container .prof-kit .variants input').on('change', e => {
         const id = $(e.target).val()
         const selector = $(e.target).closest('.kit-block')
+        $('#new-kit-container .prof-kit .title').attr('href', this.getLinks(id, 2))
         this.redrawKitBlock(id, selector)
         if (id === profKit.pint) {
           pushDataLayer(
@@ -1103,6 +1113,7 @@
         } else {
           id = penKit.no_pen
         }
+        $('#new-kit-container .pen-kit .title').attr('href', this.getLinks(id, 0))
         pushDataLayer(
           'exp_kits_upsell_check_pdppen_primer',
           'Include Primer for unpainted surfaces',
@@ -1115,27 +1126,30 @@
       $('#new-kit-container .brush-kit .variants input').on('change', e => {
         const oz = $('input[name="oz"]:checked').val()
         const primer = $('input[name="primer"]').prop('checked')
-        const primerBlock = $('#new-kit-container .brush-kit .variants label:last-of-type p')
+        const primerBlock = $('#new-kit-container .brush-kit .variants label.add_primer')
+        const primerBlockText = primerBlock.find('p')
         let id = brushKit.base
 
         const selector = $(e.target).closest('.kit-block')
         if (oz === '1' && primer) {
           id = brushKit.oz1_primer
-          primerBlock.html('Include 1 oz. Primer for unpainted surfaces <b>+$7.95</b>')
+          primerBlockText.html('Include 1 oz. Primer for unpainted surfaces <b>+$7.95</b>')
         } else if (oz === '2' && primer) {
           id = brushKit.base
-          primerBlock.html('Include 2 oz. Primer for unpainted surfaces <b>+$9.95</b>')
+          primerBlockText.html('Include 2 oz. Primer for unpainted surfaces <b>+$9.95</b>')
         } else if (oz === '1' && !primer) {
           id = brushKit.oz1_no_primer
-          primerBlock.html('Include 1 oz. Primer for unpainted surfaces <b>+$7.95</b>')
+          primerBlockText.html('Include 1 oz. Primer for unpainted surfaces <b>+$7.95</b>')
         } else if (oz === '2' && !primer) {
           id = brushKit.oz2_no_primer
-          primerBlock.html('Include 2 oz. Primer for unpainted surfaces <b>+$9.95</b>')
+          primerBlockText.html('Include 2 oz. Primer for unpainted surfaces <b>+$9.95</b>')
         }
+        $('#new-kit-container .brush-kit .title').attr('href', this.getLinks(id, 0))
         this.redrawKitBlock(id, selector)
 
         if (e.target.name === 'oz') {
           if ($(e.target).val() === '1') {
+            $('#new-kit-container .brush-kit .variants label:first-of-type').after(primerBlock)
             pushDataLayer(
               'exp_kits_upsell_radio_pdpbott_chipscrat',
               '1 oz. bottle Many small chips & scratches',
@@ -1143,6 +1157,7 @@
               'Products Touch Up Paint Kits Brush Paint Kit'
             )
           } else {
+            $('#new-kit-container .brush-kit .variants label:last-of-type').after(primerBlock)
             pushDataLayer(
               'exp_kits_upsell_radio_pdpbott_spray',
               '2 oz. bottle Best for spraying',
@@ -1177,6 +1192,7 @@
         } else if (!adhesion && !respirator) {
           id = sprayKit.non_ra
         }
+        $('#new-kit-container .spray-kit .title').attr('href', this.getLinks(id, 1))
         this.redrawKitBlock(id, selector)
         if (kitsData[id].price > 149) {
           $('.spray-kit .shipping').addClass('active')
@@ -1270,6 +1286,19 @@
           `Products Touch Up Paint Kits ${kitType} Paint Kit`
         )
       })
+
+      const mainTitle = $('#kits .category-heading h2').html()
+      if (mainTitle.includes('tricoat')) {
+        $('#kits .category-heading h2').html('Touch Up Paint Kits (tricoat)')
+      } else {
+        $('#kits .category-heading h2').html('Touch Up Paint Kits')
+      }
+      $('#kits .category-heading h2').after(
+        '<p class="sub_heading">Get All You Need for Car Repairs at a Better Price</p>'
+      )
+      $('#kits .category-heading .sub_heading+p').html(
+        "Our kits include all the essentials for your touch-up work and are a popular choice among customers for their value and convenience. If you're looking for specific items, you'll find them available lower on the page."
+      )
     }
 
     redrawKitBlock(id, selector) {
