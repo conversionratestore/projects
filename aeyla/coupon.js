@@ -114,6 +114,7 @@
 
   const appHeight = (selector) => {
     selector.style.height = window.innerHeight + "px";
+    console.log(selector)
   };
 
   let viewed = 0;
@@ -188,10 +189,19 @@
           }
         </style>`)
       }
-      if ($el(".minicart")) {
-        window.addEventListener("resize", appHeight($el(".minicart")));
-        appHeight($el(".minicart"));
-      }
+
+      let waitMinicart = setInterval(() => {
+        if (device == "mobile" && $el('.minicart.activated')) {
+          if (minicartShow == false) {
+            minicartShow = true;
+            window.addEventListener("resize", appHeight($el(".minicart")));
+            appHeight($el(".minicart"));
+          }
+        } else {
+          minicartShow = false
+        }
+      });
+    
 
       checkFocusTime(
         `.minicart`,
@@ -351,15 +361,6 @@
             }
           });
 
-          if (device == "mobile") {
-            if ($el('.minicart.activated') && minicartShow == false) {
-              minicartShow = true;
-              window.addEventListener("resize", appHeight($el(".minicart")));
-              appHeight($el(".minicart"));
-            } else {
-              minicartShow = false
-            }
-          }
         });
 
         this.setAppliedCoupon();
