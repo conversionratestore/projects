@@ -183,6 +183,13 @@
           }
         </style>`)
       }
+      const appHeight = () => {
+        if ($el(".minicart") && device == "mobile") {
+          $el(".minicart").style.height = window.innerHeight + "px";
+        }
+      };
+      window.addEventListener("resize", appHeight);
+      appHeight();
 
       checkFocusTime(
         `.minicart`,
