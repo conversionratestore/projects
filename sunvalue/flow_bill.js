@@ -296,6 +296,9 @@ styleAppend() {
                 line-height: 36px;
                 text-transform: lowercase;
             } 
+            .wrapper #estimate-bill .container h2 {
+              text-transform: none;
+            }
             .wrapper .container h2::first-letter {
               text-transform: uppercase;
             }
@@ -325,7 +328,10 @@ styleAppend() {
                 height: auto!important;
             }
             .wrapper {
-                padding: 106px 0 0 0!important;
+                padding: 110px 0 0 0!important;
+            }
+            .wrapper.show {
+              padding: 52px 0 0 0!important;
             }
             .banner-slider .swiper-slide.one {
                 margin-top: -54px;
@@ -625,8 +631,7 @@ styleAppend() {
 }
 
 changeSlides() {
-  let city = $("title")
-    .text()
+  let city = $("title").text()
     .split("City")[0]
     .split("Solar")[0]
     .split(":")[0]
@@ -645,7 +650,7 @@ changeSlides() {
       _this
         .find("h2")
         .html(
-          `How much is your latest monthly energy bill?<span>This will help us find Incentive Programs in ${city}</span>`
+          `${city} Solar Incentive Program<span>How much is your latest monthly energy bill?</span>`
         );
     } else if (index == 1) {
       _this.find(".pac-target-input").before(dataIcons.location);
@@ -672,7 +677,7 @@ changeSlides() {
       _this
         .find(".small-container")
         .after(
-          `<p class="crs_text_s">${dataIcons.chieldCheck} Your data is safe and secure. No ads or spam</p>`
+          `<p class="crs_text_s">${dataIcons.chieldCheck} Your data is safe and secure.</p>`
         );
     }
   });
@@ -952,7 +957,7 @@ addThankPage() {
     </style>
     <div class="crs_thank">
         <div class="container">
-            <h2 class="title">You'll be contacted by a Solar Expert Partner in ${data.city} within a couple of hours</h2>
+            <h2 class="title">You'll be contacted by a Solar Expert Partner in ${data.city}</h2>
             <p><b>Next steps:</b></p>
             <ul class="crs_thank_list">
                 <li data-num="1">One of our Solar Expert Partners will call you shortly</li>
