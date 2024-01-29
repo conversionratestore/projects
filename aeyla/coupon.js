@@ -192,11 +192,11 @@
 
       if (device == "mobile") {
         let waitMinicart = setInterval(() => {
-          if ($el('.minicart')) {
+          if ($el('.activated .minicart_inner')) {
             if (minicartShow == false) {
               minicartShow = true;
 
-              appHeight($el(".minicart"));
+              appHeight($el(".minicart_inner"));
             }
           } else {
             minicartShow = false
@@ -205,10 +205,11 @@
       }
 
       window.addEventListener("resize", () => {
-        if ($el(".minicart") && device == "mobile") {
-          appHeight($el(".minicart"))
+        if ($el(".activated .minicart_inner") && device == "mobile") {
+          appHeight($el(".minicart_inner"))
         }
       });
+
 
       checkFocusTime(
         `.minicart`,
