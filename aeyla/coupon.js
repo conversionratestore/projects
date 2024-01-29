@@ -112,7 +112,14 @@
     }
   }
 
+  const appHeight = () => {
+    if ($el(".minicart") && device == "mobile") {
+      $el(".minicart").style.height = window.innerHeight + "px";
+    }
+  };
+
   let viewed = 0;
+  let minicartShow = false;
 
   function visibleAfterTimer() {
     setTimeout(() => {
@@ -183,11 +190,6 @@
           }
         </style>`)
       }
-      const appHeight = () => {
-        if ($el(".minicart") && device == "mobile") {
-          $el(".minicart").style.height = window.innerHeight + "px";
-        }
-      };
       window.addEventListener("resize", appHeight);
       appHeight();
 
@@ -348,6 +350,14 @@
               );
             }
           });
+
+          if ($el('.minicart.activated') && minicartShow == false) {
+            minicartShow = true;
+            window.addEventListener("resize", appHeight);
+            appHeight();
+          } else {
+            minicartShow = false
+          }
         });
 
         this.setAppliedCoupon();
