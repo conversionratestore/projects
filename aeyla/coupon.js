@@ -483,7 +483,7 @@
                 padding-left: 18px;
               }
               .items_wrapper {
-                min-height: 100px!important;
+                min-height: 82px!important;
               }
               .shipping, .total {
                 margin-bottom: 16px!important;
