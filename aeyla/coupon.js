@@ -512,7 +512,7 @@
                 margin-bottom: 16px!important;
               }
               .free_shipping_wrapper {
-                padding: 15px 0 10px!importantt;
+                padding: 14px 0 8px!important;
               }
               .free_shipping_wrapper .bar {
                 margin: 0 auto 8px!important;
@@ -525,6 +525,9 @@
               }
               .secure_checkout {
                 margin: 17px 14px 14px!important;
+              }
+              .minicart_header {
+                padding: 14px 16px;
               }
             }
             @media (min-width: 768px) {
