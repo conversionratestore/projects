@@ -834,7 +834,7 @@ class IntentPopup {
             width: 100%;
           }
           .new-video__list .new-video__item {
-            margin-bottom: 40px;
+            margin: 0 auto 40px;
             padding: 75px 0 0;
             text-align: center;
             max-width: 318px;
