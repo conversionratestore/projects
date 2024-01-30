@@ -2,6 +2,13 @@ console.log(
   '%c EXP: exit intent popup (DEV: SKh)',
   'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;'
 )
+
+// scriptTrustpilot
+let scriptTrustpilot = document.createElement('script')
+scriptTrustpilot.src = 'https://www.youtube.com/iframe_api'
+scriptTrustpilot.async = false
+document.head.appendChild(scriptTrustpilot)
+
 const $$el = selector => document.querySelectorAll(selector)
 const $el = selector => document.querySelector(selector)
 const git = 'https://conversionratestore.github.io/projects/'
@@ -878,6 +885,7 @@ class IntentPopup {
         </div>
         <div class="video-explanation__iframe">
           <div class="video-explanation__bgr" data-video="MVLj0z__LkM"></div>
+          <div id="player"></div>
         </div>
       </div>
     `
@@ -920,11 +928,23 @@ class IntentPopup {
         'PDP Europe & UK eSIM (50 Countries) Learn how to activate your eSIM'
       )
 
-      $videoPlayer.html(
-        '<iframe src="https://www.youtube.com/embed/' +
-          $videoUrl +
-          '?autoplay=1" title="YouTube video player" frameborder="0" allow="autoplay" allowfullscreen></iframe>'
-      )
+      // $videoPlayer.html(
+      //   '<iframe src="https://www.youtube.com/embed/' +
+      //     $videoUrl +
+      //     '?autoplay=1" title="YouTube video player" frameborder="0" allow="autoplay" allowfullscreen" id="player"></iframe>'
+      // )
+
+      const player = new YT.Player('player', {
+        height: '315',
+        width: '560',
+        videoId: $videoUrl,
+        events: {
+          onReady: function (event) {
+            // Воспроизводим видео после создания плеера
+            event.target.playVideo()
+          }
+        }
+      })
 
       $videoCover.fadeOut()
     })
