@@ -299,12 +299,13 @@ class IntentPopup {
       this.onClickQuantitySelectorBtn()
       this.onClickSizeSwatchLinkBtn()
       this.onVisibleStickyBanner()
+      this.initMutationObserverPdp()
     }
 
     if (currentUrl.includes(this.targetUrl) && (this.targetUrl === '/simsdirect' || this.targetUrl === '/simify')) {
       console.log(`ONLY SLIDE-IN-CART!!!!!`)
       this.initUpsellBlock()
-      this.initMutationObserver()
+      this.initMutationObserverCart()
     }
   }
 
@@ -917,7 +918,6 @@ class IntentPopup {
   }
   initPlayVideo() {
     const $videoCover = $('.video-explanation__bgr')
-    const $videoPlayer = $('.video-explanation__iframe')
     const $videoUrl = $('.video-explanation__bgr').data('video')
 
     $videoCover.on('click', function () {
@@ -927,20 +927,12 @@ class IntentPopup {
         'Play',
         'PDP Europe & UK eSIM (50 Countries) Learn how to activate your eSIM'
       )
-
-      // $videoPlayer.html(
-      //   '<iframe src="https://www.youtube.com/embed/' +
-      //     $videoUrl +
-      //     '?autoplay=1" title="YouTube video player" frameborder="0" allow="autoplay" allowfullscreen" id="player"></iframe>'
-      // )
-
       const player = new YT.Player('player', {
         height: '315',
         width: '560',
         videoId: $videoUrl,
         events: {
           onReady: function (event) {
-            // Воспроизводим видео после создания плеера
             event.target.playVideo()
           }
         }
@@ -2247,7 +2239,7 @@ class IntentPopup {
     select.dispatchEvent(event)
   }
 
-  initMutationObserver() {
+  initMutationObserverCart() {
     const cartList = $el('#sidebar-cart')
     let observer = new MutationObserver(muts => {
       if (cartList) {
@@ -2265,6 +2257,27 @@ class IntentPopup {
     })
 
     observer.observe(cartList, {
+      childList: true,
+      subtree: true
+    })
+  }
+
+  initMutationObserverPdp() {
+    const pdpPage = $el('section.Product')
+    let observer = new MutationObserver(muts => {
+      if (pdpPage) {
+        observer.disconnect()
+
+        this.onChangeTxtMainBtn()
+
+        observer.observe(pdpPage, {
+          childList: true,
+          subtree: true
+        })
+      }
+    })
+
+    observer.observe(pdpPage, {
       childList: true,
       subtree: true
     })
