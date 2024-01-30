@@ -923,7 +923,7 @@ class IntentPopup {
       $videoPlayer.html(
         '<iframe src="https://www.youtube.com/embed/' +
           $videoUrl +
-          '?feature=oembed&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
+          '?autoplay=1" title="YouTube video player" frameborder="0" allow="autoplay" allowfullscreen></iframe>'
       )
 
       $videoCover.fadeOut()
