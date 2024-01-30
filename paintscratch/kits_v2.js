@@ -1254,6 +1254,9 @@
           ? 'pen'
           : 'prof'
         kitsData[id].products.forEach(item => {
+          if (item === 'MMM07193' && $('input[name="size_resp"]:checked').val() === 'medium') {
+            item = 'MMM07192'
+          }
           AddCart(1, item)
         })
         $('.to_cart').addClass('fix')
