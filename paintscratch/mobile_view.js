@@ -1455,7 +1455,7 @@ class mobileDesign {
       })
 
       $('.slide_cart ul').on('change', 'input', function () {
-        const id = $(this).closest('li').data('id')
+        const id = $(this).closest('li').index()
         const qty = $(this).val()
         ChangeCartQty(qty, id)
         if (qty === '0') {
@@ -1635,7 +1635,7 @@ class mobileDesign {
         const itemData = item.split('|')
         total += itemData[2] * itemData[0]
         $('.slide_cart ul').append(/* html */ `
-          <li data-id="${i}" >
+          <li>
             <div class="img"><img src="https://www.paintscratch.com/content/images/product-thumbs/thumb${itemData[3]}image1.jpg" alt="${itemData[3]}"></div>
             <div class="descr">
               <h4>${itemData[1]}</h4>
