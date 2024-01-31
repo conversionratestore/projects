@@ -64,6 +64,7 @@
 
   const $$el = selector => document.querySelectorAll(selector)
   const $el = selector => document.querySelector(selector)
+  const git = 'https://conversionratestore.github.io/projects/'
 
   // load script
   const loadScriptOrStyle = url => {
@@ -936,10 +937,26 @@
       const currentUrl = window.location.pathname
       if (currentUrl.includes('products')) return
       const subcategories = [
-        { title: 'All Cameras', link: '/collections/smart-security-cameras?filter.v.availability=1', image: '' },
-        { title: 'Indoor', link: '/collections/indoor-cameras?filter.v.availability=1', image: '' },
-        { title: 'Outdoor', link: '/collections/outdoor-cameras?filter.v.availability=1', image: '' },
-        { title: 'PTZ Cameras', link: '/collections/pan-tilt-zoom-cameras?filter.v.availability=1', image: '' }
+        {
+          title: 'All Cameras',
+          link: '/collections/smart-security-cameras?filter.v.availability=1',
+          image: `${git}/geeni/img/cameras/all_cameras.png`
+        },
+        {
+          title: 'Indoor',
+          link: '/collections/indoor-cameras?filter.v.availability=1',
+          image: `${git}/geeni/img/cameras/indoor_cameras.png`
+        },
+        {
+          title: 'Outdoor',
+          link: '/collections/outdoor-cameras?filter.v.availability=1',
+          image: `${git}/geeni/img/cameras/outdoor_cameras.png`
+        },
+        {
+          title: 'PTZ Cameras',
+          link: '/collections/pan-tilt-zoom-cameras?filter.v.availability=1',
+          image: `${git}/geeni/img/cameras/ptz_cameras.png`
+        }
       ]
 
       if (
@@ -973,10 +990,26 @@
       if (currentUrl.includes('products')) return
 
       const subcategories = [
-        { title: 'All Lighting', link: '/collections/lighting?filter.v.availability=1', image: '' },
-        { title: 'Color Lights', link: '/collections/colored-lights?filter.v.availability=1', image: '' },
-        { title: 'White Lights', link: '/collections/white-lights?filter.v.availability=1', image: '' },
-        { title: 'Light Strips', link: '/collections/strip-lights?filter.v.availability=1', image: '' }
+        {
+          title: 'All Lighting',
+          link: '/collections/lighting?filter.v.availability=1',
+          image: `${git}/geeni/img/lighting/all_lighting.png`
+        },
+        {
+          title: 'Color Lights',
+          link: '/collections/colored-lights?filter.v.availability=1',
+          image: `${git}/geeni/img/lighting/color_lights.png`
+        },
+        {
+          title: 'White Lights',
+          link: '/collections/white-lights?filter.v.availability=1',
+          image: `${git}/geeni/img/lighting/white_lights.png`
+        },
+        {
+          title: 'Light Strips',
+          link: '/collections/strip-lights?filter.v.availability=1',
+          image: `${git}/geeni/img/lighting/strip_lighting.png`
+        }
       ]
 
       if (
@@ -1010,10 +1043,26 @@
       if (currentUrl.includes('products')) return
 
       const subcategories = [
-        { title: 'All Power', link: '/collections/power?filter.v.availability=1', image: '' },
-        { title: 'Plugs', link: '/collections/plugs?filter.v.availability=1', image: '' },
-        { title: 'Surge Protectors', link: '/collections/surge-protectors?filter.v.availability=1', image: '' },
-        { title: 'Switches & Outlets', link: '/collections/switches-outlets?filter.v.availability=1', image: '' }
+        {
+          title: 'All Power',
+          link: '/collections/power?filter.v.availability=1',
+          image: `${git}/geeni/img/power/all_power.png`
+        },
+        {
+          title: 'Plugs',
+          link: '/collections/plugs?filter.v.availability=1',
+          image: `${git}/geeni/img/power/plugs.png`
+        },
+        {
+          title: 'Surge Protectors',
+          link: '/collections/surge-protectors?filter.v.availability=1',
+          image: `${git}/geeni/img/power/surge_protectors.png`
+        },
+        {
+          title: 'Switches & Outlets',
+          link: '/collections/switches-outlets?filter.v.availability=1',
+          image: `${git}/geeni/img/power/switches_&_outlets.png`
+        }
       ]
 
       if (
@@ -1048,8 +1097,16 @@
       if (currentUrl.includes('products')) return
 
       const subcategories = [
-        { title: 'All Lifestyle & Health', link: '/collections/smart-appliances?filter.v.availability=1', image: '' },
-        { title: 'Pet Supplies', link: '/collections/pet-supplies?filter.v.availability=1', image: '' }
+        {
+          title: 'All Lifestyle & Health',
+          link: '/collections/smart-appliances?filter.v.availability=1',
+          image: `${git}/geeni/img/lifestyle/lifestyle_&_lealth.png`
+        },
+        {
+          title: 'Pet Supplies',
+          link: '/collections/pet-supplies?filter.v.availability=1',
+          image: `${git}/geeni/img/lifestyle/pet_care.png`
+        }
       ]
 
       if (currentUrl.includes('smart-appliances') || currentUrl.includes('pet-supplies')) {
@@ -1135,7 +1192,6 @@
       this.handleFilters(filters)
 
       waitForElement('#CollectionStickyBar').then(elem => {
-       
         let showIsSticky = false
         let showIsNoSticky = false
 
@@ -1799,10 +1855,19 @@
             display: none;
           }
           .subcategory .sticky-filters__btn {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
             height: 100%;
             border-radius: 8px;
             width: 105px;
             height: 128px;
+            text-wrap: wrap;
+            text-align: center;
+          }
+          .subcategory .sticky-filters__btn img {
+            width: 70px;
+            height: 70px;
           }
           .subcategory__item--active .sticky-filters__btn {
             border: 1px solid var(--Bliue-2, #00b0ee);
@@ -1846,8 +1911,23 @@
             }
             .subcategory {
               gap: 32px;
+              height: 188px;
               width: 100% !important;
               justify-content: flex-start;
+            }
+            .subcategory .sticky-filters__btn {
+              width: 200px;
+              height: 188px;
+              gap: 12px;
+            }
+            .subcategory .sticky-filters__btn img {
+              height: 120px;
+              width: 120px;
+            }
+            .isSticky .sticky-filters__btn {
+              width: fit-content;
+              height: fit-content;
+              border-radius: 4px;
             }
             .collection__sort-bar {
               margin-left: 0 !important;
