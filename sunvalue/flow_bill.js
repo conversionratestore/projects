@@ -106,7 +106,8 @@ init() {
     this.styleAppend();
     this.addThankPage();
   } else {
-    window.location.href = "https://go.sunvalue.com/bill/?bill=buttons&s=YT";
+    let queryParameters = window.location.search;
+    window.location.href = "https://go.sunvalue.com/bill/?bill=buttons"+queryParameters.replace('?','&');
   }
 
   const globalMutation = new MutationObserver((mutations) => {
