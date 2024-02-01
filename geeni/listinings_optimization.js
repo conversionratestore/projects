@@ -311,7 +311,7 @@
           position: 'afterbegin'
         })
       } else {
-        this.backNavigation({ selector: '.banner.section-padding', text: 'back', link: '/collections/all', position: 'afterbegin' })
+        this.backNavigation({ selector: '.banner.section-padding', text: 'back', link: '/', position: 'afterbegin' })
       }
       this.stickyFilters()
       this.allGeeniProducts()
