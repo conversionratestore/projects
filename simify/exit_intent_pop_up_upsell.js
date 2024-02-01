@@ -262,6 +262,14 @@ const icons = {
       </clipPath>
     </defs>
   </svg>
+  `,
+  successfully: /* HTML */ `
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 31 30" fill="none">
+      <path
+        d="M15.5 2.5C8.6125 2.5 3 8.1125 3 15C3 21.8875 8.6125 27.5 15.5 27.5C22.3875 27.5 28 21.8875 28 15C28 8.1125 22.3875 2.5 15.5 2.5ZM21.475 12.125L14.3875 19.2125C14.2125 19.3875 13.975 19.4875 13.725 19.4875C13.475 19.4875 13.2375 19.3875 13.0625 19.2125L9.525 15.675C9.1625 15.3125 9.1625 14.7125 9.525 14.35C9.8875 13.9875 10.4875 13.9875 10.85 14.35L13.725 17.225L20.15 10.8C20.5125 10.4375 21.1125 10.4375 21.475 10.8C21.8375 11.1625 21.8375 11.75 21.475 12.125Z"
+        fill="white"
+      />
+    </svg>
   `
 }
 
@@ -2214,6 +2222,7 @@ class IntentPopup {
       el.addEventListener('click', e => {
         if (!e.target.getAttribute('data-test')) {
           e.preventDefault()
+          $el('#cardAddedSuccessfullyBlock')?.remove()
           const select = e.target.closest('.CartItemWrapper')?.querySelector('[name="quantity-selector"]')
           pushDataLayer(
             'exp_pdp_enhanc_but_slidcarlim_add',
@@ -2237,6 +2246,9 @@ class IntentPopup {
 
     let event = new Event('change', { bubbles: true })
     select.dispatchEvent(event)
+
+    this.renderCardAddedSuccessfullyBlock()
+    this.removeCardAddedSuccessfullyBlock()
   }
 
   initMutationObserverCart() {
@@ -2280,6 +2292,55 @@ class IntentPopup {
     observer.observe(pdpPage, {
       childList: true,
       subtree: true
+    })
+  }
+
+  cardAddedSuccessfullyHtml() {
+    const cardAddedSuccessfullyStyle = /* HTML */ `
+      <style>
+        #cardAddedSuccessfullyBlock {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 8px;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          padding: 15px;
+          background: #00a469;
+          box-shadow: 0px 4px 14px 0px rgba(73, 149, 87, 0.2);
+          z-index: 1;
+          color: #fff;
+          font-family: 'Poppins';
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 150%;
+        }
+        @media (max-width: 768px) {
+        }
+      </style>
+    `
+    const cardAddedSuccessfullyBlock = /* HTML */ `
+      ${cardAddedSuccessfullyStyle}
+      <div id="cardAddedSuccessfullyBlock">${icons.successfully}Card added successfully!</div>
+    `
+    return cardAddedSuccessfullyBlock
+  }
+
+  renderCardAddedSuccessfullyBlock() {
+    waitForElement('#sidebar-cart .Drawer__Header').then(el => {
+      if (!$el('#cardAddedSuccessfullyBlock')) {
+        this.insert(this.cardAddedSuccessfullyHtml(), '#sidebar-cart .Drawer__Header', 'afterbegin')
+      }
+    })
+  }
+  removeCardAddedSuccessfullyBlock() {
+    waitForElement('#cardAddedSuccessfullyBlock').then(el => {
+      setTimeout(() => {
+        el.remove()
+      }, 2000)
+      $$el('.cardAddedSuccessfullyBlock').forEach(i => {})
     })
   }
 
@@ -2496,6 +2557,10 @@ class IntentPopup {
         #sidebar-cart {
           max-width: 355px !important;
           width: 100% !important;
+        }
+        body #sidebar-cart .Drawer__Header {
+          position: relative;
+          height: 36px;
         }
         @media (max-width: 768px) {
           .dn_mob {
