@@ -311,7 +311,7 @@
           position: 'afterbegin'
         })
       } else {
-        this.backNavigation({ selector: '.banner.section-padding', text: 'back', link: '/', position: 'afterbegin' })
+        this.backNavigation({ selector: '.banner.section-padding', text: 'back', link: '/collections/all', position: 'afterbegin' })
       }
       this.stickyFilters()
       this.allGeeniProducts()
@@ -328,6 +328,8 @@
       document.addEventListener('click', e => {
         if (e.target.closest('.shopify-section.collection-section a.product-grid-item__shop_now')) {
           const title = e.target.closest('section').querySelector('h2').textContent
+          if (!title) return
+          
           let event
           let location
 
@@ -362,6 +364,7 @@
           e.target.closest('.shopify-section.collection-section a.product__media__holder')
         ) {
           const title = e.target.closest('section')?.querySelector('h2').textContent
+          if (!title) return
           let event
           let location
 
@@ -755,6 +758,25 @@
       let showIsSticky = false
       let showIsNoSticky = false
 
+      const filterCategoryNoStickyClickEvent = event => {
+        const category = event.target.closest('.sticky-filters__btn').textContent.trim()
+        pushDataLayer(
+          'exp_list_optim_ima_listsubcateg_pdp',
+          `${category} - click PDP`,
+          'Icone',
+          'Listing with category of products Banner subcategories'
+        )
+      }
+
+      const filterCategoryStickyClickEvent = event => {
+        const category = event.target.closest('.sticky-filters__btn').textContent.trim()
+        pushDataLayer(
+          'exp_list_optim_but_liststicsubcat_titl',
+          `${category} - Click`,
+          'Button',
+          'Listing with category of products Head Sticky banner subcategories'
+        )
+      }
       const filterStickyClickEvent = () => {
         pushDataLayer(
           'exp_list_optim_but_liststicsubcat_filt',
@@ -807,7 +829,12 @@
 
           $el('.collection__filters__toggle').addEventListener('click', filterStickyClickEvent)
           $el('#crs_in_stock_switch').addEventListener('change', inStockStickyClickEvent)
-
+          $$el('.subcategory__item').forEach(item => {
+            item.removeEventListener('click', filterCategoryNoStickyClickEvent)
+          })
+          $$el('.subcategory__item').forEach(item => {
+            item.addEventListener('click', filterCategoryStickyClickEvent)
+          })
           showIsSticky = true
           showIsNoSticky = false
         }
@@ -817,6 +844,12 @@
           $el('#crs_in_stock_switch').removeEventListener('change', inStockStickyClickEvent)
           $el('.collection__filters__toggle').addEventListener('click', filterNoStickyClickEvent)
           $el('#crs_in_stock_switch').addEventListener('change', inStockNoStickyClickEvent)
+          $$el('.subcategory__item').forEach(item => {
+            item.removeEventListener('click', filterCategoryStickyClickEvent)
+          })
+          $$el('.subcategory__item').forEach(item => {
+            item.addEventListener('click', filterCategoryNoStickyClickEvent)
+          })
           showIsNoSticky = true
           showIsSticky = false
         }
@@ -825,6 +858,11 @@
       observer.observe(el)
 
       this.handleFilters()
+      $el('.collection__filters__toggle').addEventListener('click', filterNoStickyClickEvent)
+      $$el('.subcategory__item').forEach(item => {
+        item.addEventListener('click', filterCategoryNoStickyClickEvent)
+      })
+      $el('#crs_in_stock_switch').addEventListener('change', inStockNoStickyClickEvent)
 
       waitForElement('.subcategory').then(() => {
         blockVisibility(
@@ -833,18 +871,6 @@
           'Element view',
           'Listing with category of products Banner subcategories'
         )
-      })
-
-      $$el('.subcategory__item').forEach(item => {
-        item.addEventListener('click', () => {
-          const category = item.querySelector('.sticky-filters__btn').textContent.trim()
-          pushDataLayer(
-            'exp_list_optim_ima_listsubcateg_pdp',
-            `${category} - click PDP`,
-            'Icone',
-            'Listing with category of products Banner subcategories'
-          )
-        })
       })
 
       waitForElement('.collection__products').then(elem => {
@@ -991,7 +1017,7 @@
       }
 
       if (currentUrl.includes('smart-security-cameras')) {
-        this.backNavigation({ selector: '.banner.section-padding', text: 'back', link: '/', position: 'afterbegin' })
+        this.backNavigation({ selector: '.banner.section-padding', text: 'back', link: '/collections/all', position: 'afterbegin' })
       }
       if (
         currentUrl.includes('indoor-cameras') ||
@@ -1044,7 +1070,7 @@
       }
 
       if (currentUrl.includes('lighting')) {
-        this.backNavigation({ selector: '.banner.section-padding', text: 'back', link: '/', position: 'afterbegin' })
+        this.backNavigation({ selector: '.banner.section-padding', text: 'back', link: '/collections/all', position: 'afterbegin' })
       }
       if (
         currentUrl.includes('colored-lights') ||
@@ -1097,7 +1123,7 @@
       }
 
       if (currentUrl.includes('power')) {
-        this.backNavigation({ selector: '.banner.section-padding', text: 'back', link: '/', position: 'afterbegin' })
+        this.backNavigation({ selector: '.banner.section-padding', text: 'back', link: '/collections/all', position: 'afterbegin' })
       }
 
       if (
@@ -1136,7 +1162,7 @@
       }
 
       if (currentUrl.includes('smart-appliances')) {
-        this.backNavigation({ selector: '.banner.section-padding', text: 'back', link: '/', position: 'afterbegin' })
+        this.backNavigation({ selector: '.banner.section-padding', text: 'back', link: '/collections/all', position: 'afterbegin' })
       }
       if (currentUrl.includes('pet-supplies')) {
         this.backNavigation({
@@ -1332,7 +1358,7 @@
           </a>
         </div>
       `
-      console.log('history', history.length)
+
       waitForElement(selector).then(elem => {
         elem.insertAdjacentHTML(position, backNavigationHtml)
         $el('.back-navigation a').addEventListener('click', () => {
@@ -1347,6 +1373,8 @@
                 'Button',
                 'Listing with category of products Subcategories'
               )
+            } else if (window.location.pathname.includes('products')) {
+              pushDataLayer('exp_list_optim_but_pdp_back', 'Back', 'Button', 'PDP')
             } else {
               pushDataLayer('exp_list_optim_but_listcateg_back', 'Back', 'Button', 'Listing with category of products')
             }
@@ -1586,6 +1614,13 @@
             font-size: 14px;
             font-weight: 600;
             line-height: 24px;
+          }
+          .menu-popular-products .product-grid-item__shop_now.product-grid-item__shop_now--sold {
+            border-radius: 30px;
+            background: #cdcdcd;
+            text-transform: uppercase;
+            border: none;
+            color: #fff;
           }
           .site-header {
             position: fixed;
@@ -1967,6 +2002,9 @@
             }
             .back-navigation {
               display: none;
+            }
+            .collection--breadcrumbs-disabled .collection__filters__top {
+              align-items: flex-end !important;
             }
           }
           @media screen and (min-width: 1440px) {
