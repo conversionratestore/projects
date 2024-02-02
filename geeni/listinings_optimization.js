@@ -288,12 +288,12 @@
         this.lifestyleHealthCategory()
 
         if (window.location.href.includes('products')) {
-          const pathArr = window.location.pathname.split('/')
           this.backNavigation({
             selector: '.main-content',
             text: 'back',
             position: 'beforebegin'
           })
+          document.body.style.overflowX = 'hidden'
         }
       })
     }
@@ -319,10 +319,10 @@
       this.lightingSection()
       this.lifestyleHealthSection()
       this.changeLinks()
+ 
       if (history.scrollRestoration) {
         history.scrollRestoration = 'manual'
       }
-
       document.addEventListener('click', e => {
         if (e.target.closest('.shopify-section.collection-section a.product-grid-item__shop_now')) {
           const title = e.target.closest('section').querySelector('h2').textContent
@@ -506,15 +506,14 @@
                   <ul class="alternative-options"></ul>
                 </div></div
             ></product-alternates>
-
+          </div>
+          <div class="product-grid-item__action">
             <a
               class="product-grid-item__price price"
               href="/collections/all/products/${product.handle}"
               data-grid-link=""
               ><span class="product-grid-item__price__new">From $${product.variants[0].price}</span>
             </a>
-          </div>
-          <div class="product-grid-item__action">
             ${product.variants[0].available
               ? /* HTML */ `<a class="product-grid-item__shop_now" href="/collections/all/products/${product.handle}"
                   >Shop now</a
@@ -744,6 +743,8 @@
         </div>
       `
       $el('.collection__sticky-bar').insertAdjacentHTML('afterbegin', subcategoriesHtml)
+      this.scrollToActiveElement()
+
       const filterToggleBtn = $el('.collection__filters__toggle')
       if (filterToggleBtn) {
         filterToggleBtn.insertAdjacentHTML('beforeend', '<span>Filter and sort</span>')
@@ -853,8 +854,6 @@
         }
       })
 
-      observer.observe(el)
-
       this.handleFilters()
       $el('.collection__filters__toggle').addEventListener('click', filterNoStickyClickEvent)
       $$el('.subcategory__item').forEach(item => {
@@ -892,6 +891,22 @@
       })
     }
 
+    scrollToActiveElement() {
+      $el('.sticky-filters').scrollLeft = 0
+      $$el('.sticky-filters__btn').forEach((btn, index) => {
+        if (btn.classList.contains('sticky-filters__btn--active')) {
+          $el('.sticky-filters').scrollLeft = btn.offsetLeft
+        }
+      })
+
+      const cateogries = $$el('.subcategory__item')
+      if (!cateogries || cateogries.length === 0) return
+      cateogries.forEach((item, index) => {
+        if (item.classList.contains('subcategory__item--active')) {
+          $el('.subcategory').scrollLeft = item.offsetLeft
+        }
+      })
+    }
     handleFilters(filters = []) {
       const params = new URLSearchParams(document.location.href)
 
@@ -928,7 +943,7 @@
 
       lockTouchObserver.observe(document.documentElement, { attributes: true })
 
-      if (activeAvaibility === '0') {
+      if (activeAvaibility !== '1') {
         $el('#crs_in_stock_switch').checked = false
       }
 
@@ -943,11 +958,7 @@
               input.click()
             }
           }
-          if (!event.target.checked) {
-            if (input.id === 'filter-Availability-2') {
-              input.click()
-            }
-          }
+    
         })
       })
       filters.length > 0 &&
@@ -960,6 +971,7 @@
               btn.classList.remove('sticky-filters__btn--active')
             })
             event.currentTarget.classList.add('sticky-filters__btn--active')
+            this.scrollToActiveElement()
             $el('.collection__filters__reset').click()
             setTimeout(() => {
               $$el('input.filter__input').forEach(input => {
@@ -971,7 +983,7 @@
             document.body.classList.add('scrolable')
           })
         })
-
+      this.scrollToActiveElement()
       $el('.collection__filters__toggle').addEventListener('click', () => {
         isCustomFilter = false
         $el('.collection__filters').classList.add('collection__filters--visible')
@@ -1197,9 +1209,7 @@
         <div class="crs_all_products_banner">
           <h3>Shop all Geeni products</h3>
 
-          <div class="crs_all_products_banner__description">
-            Putting the power of vibrant illumination at your fingertips.
-          </div>
+          <div class="crs_all_products_banner__description">Filter and sort to find exactly what you need.</div>
         </div>
       `
       $el('.shopify-section.collection-section').insertAdjacentHTML('afterbegin', allProductsHtml)
@@ -1632,6 +1642,7 @@
             font-size: 14px;
             font-weight: 600;
             line-height: 24px;
+            text-transform: uppercase;
           }
           .menu-popular-products .product-grid-item__shop_now.product-grid-item__shop_now--sold {
             border-radius: 30px;
@@ -1713,6 +1724,7 @@
             line-height: 24px;
             width: 100%;
             text-align: center;
+            text-transform: uppercase;
           }
           .product-grid-item__rating {
             display: flex;
@@ -1781,6 +1793,7 @@
           .sticky-filters {
             display: flex;
             flex-wrap: nowrap;
+            white-space: nowrap;
             overflow: hidden;
             overflow-x: auto;
             height: 35px;
@@ -1872,7 +1885,17 @@
           .swiper-slide {
             padding: 4px;
             display: flex !important;
+            height: auto !important;
             justify-content: center;
+          }
+          .swiper-slide .product-grid-item__inner {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+          }
+
+          .swiper-slide .product-grid-item__inner .product-grid-item__action {
+            margin-top: auto;
           }
           .swiper-navigation {
             display: flex;
@@ -1893,8 +1916,14 @@
             display: inline-flex;
             width: fit-content !important;
           }
+          .product-grid-item__price {
+            width: 100%;
+            text-align: left;
+            justify-content: flex-start;
+          }
           .product-grid-item__action {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
           }
