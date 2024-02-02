@@ -997,22 +997,22 @@
       const subcategories = [
         {
           title: 'All Cameras',
-          link: '/collections/smart-security-cameras?filter.v.availability=1',
+          link: '/collections/smart-security-cameras?sort_by=manual&filter.v.availability=1',
           image: `${git}/geeni/img/cameras/all_cameras.png`
         },
         {
           title: 'Indoor',
-          link: '/collections/indoor-cameras?filter.v.availability=1',
+          link: '/collections/indoor-cameras?sort_by=manual&filter.v.availability=1',
           image: `${git}/geeni/img/cameras/indoor_cameras.png`
         },
         {
           title: 'Outdoor',
-          link: '/collections/outdoor-cameras?filter.v.availability=1',
+          link: '/collections/outdoor-cameras?sort_by=manual&filter.v.availability=1',
           image: `${git}/geeni/img/cameras/outdoor_cameras.png`
         },
         {
           title: 'PTZ Cameras',
-          link: '/collections/pan-tilt-zoom-cameras?filter.v.availability=1',
+          link: '/collections/pan-tilt-zoom-cameras?sort_by=manual&filter.v.availability=1',
           image: `${git}/geeni/img/cameras/ptz_cameras.png`
         }
       ]
@@ -1042,7 +1042,7 @@
         this.backNavigation({
           selector: '.banner.section-padding',
           text: 'back to all Cameras',
-          link: '/collections/smart-security-cameras?filter.v.availability=1',
+          link: '/collections/smart-security-cameras?sort_by=manual&filter.v.availability=1',
           position: 'afterbegin'
         })
       }
@@ -1055,22 +1055,22 @@
       const subcategories = [
         {
           title: 'All Lighting',
-          link: '/collections/lighting?filter.v.availability=1',
+          link: '/collections/lighting?sort_by=manual&filter.v.availability=1',
           image: `${git}/geeni/img/lighting/all_lighting.png`
         },
         {
           title: 'Color Lights',
-          link: '/collections/colored-lights?filter.v.availability=1',
+          link: '/collections/colored-lights?sort_by=manual&filter.v.availability=1',
           image: `${git}/geeni/img/lighting/color_lights.png`
         },
         {
           title: 'White Lights',
-          link: '/collections/white-lights?filter.v.availability=1',
+          link: '/collections/white-lights?sort_by=manual&filter.v.availability=1',
           image: `${git}/geeni/img/lighting/white_lights.png`
         },
         {
           title: 'Light Strips',
-          link: '/collections/strip-lights?filter.v.availability=1',
+          link: '/collections/strip-lights?sort_by=manual&filter.v.availability=1',
           image: `${git}/geeni/img/lighting/strip_lighting.png`
         }
       ]
@@ -1100,7 +1100,7 @@
         this.backNavigation({
           selector: '.banner.section-padding',
           text: 'back to all Lighting',
-          link: '/collections/lighting?filter.v.availability=1',
+          link: '/collections/lighting?sort_by=manual&filter.v.availability=1',
           position: 'afterbegin'
         })
       }
@@ -1113,22 +1113,22 @@
       const subcategories = [
         {
           title: 'All Power',
-          link: '/collections/power?filter.v.availability=1',
+          link: '/collections/power?sort_by=manual&filter.v.availability=1',
           image: `${git}/geeni/img/power/all_power.png`
         },
         {
           title: 'Plugs',
-          link: '/collections/plugs?filter.v.availability=1',
+          link: '/collections/plugs?sort_by=manual&filter.v.availability=1',
           image: `${git}/geeni/img/power/plugs.png`
         },
         {
           title: 'Surge Protectors',
-          link: '/collections/surge-protectors?filter.v.availability=1',
+          link: '/collections/surge-protectors?sort_by=manual&filter.v.availability=1',
           image: `${git}/geeni/img/power/surge_protectors.png`
         },
         {
           title: 'Switches & Outlets',
-          link: '/collections/switches-outlets?filter.v.availability=1',
+          link: '/collections/switches-outlets?sort_by=manual&filter.v.availability=1',
           image: `${git}/geeni/img/power/switches_&_outlets.png`
         }
       ]
@@ -1159,7 +1159,7 @@
         this.backNavigation({
           selector: '.banner.section-padding',
           text: 'back to all Power',
-          link: '/collections/power?filter.v.availability=1',
+          link: '/collections/power?sort_by=manual&filter.v.availability=1',
           position: 'afterbegin'
         })
       }
@@ -1172,12 +1172,12 @@
       const subcategories = [
         {
           title: 'All Lifestyle & Health',
-          link: '/collections/smart-appliances?filter.v.availability=1',
+          link: '/collections/smart-appliances?sort_by=manual&filter.v.availability=1',
           image: `${git}/geeni/img/lifestyle/lifestyle_&_lealth.png`
         },
         {
           title: 'Pet Supplies',
-          link: '/collections/pet-supplies?filter.v.availability=1',
+          link: '/collections/pet-supplies?sort_by=manual&filter.v.availability=1',
           image: `${git}/geeni/img/lifestyle/pet_care.png`
         }
       ]
@@ -1198,7 +1198,7 @@
         this.backNavigation({
           selector: '.banner.section-padding',
           text: 'back to all Lifestyle & Health',
-          link: '/collections/smart-appliances?filter.v.availability=1',
+          link: '/collections/smart-appliances?sort_by=manual&filter.v.availability=1',
           position: 'afterbegin'
         })
       }
