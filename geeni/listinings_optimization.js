@@ -274,6 +274,8 @@
     }
     init() {
       this.initStyles()
+      this.changeLinks()
+
       loadScriptsOrStyles([
         'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
         'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js'
@@ -318,7 +320,6 @@
       this.powerSection()
       this.lightingSection()
       this.lifestyleHealthSection()
-      this.changeLinks()
  
       if (history.scrollRestoration) {
         history.scrollRestoration = 'manual'
@@ -526,7 +527,7 @@
 
     changeLinks() {
       $$el('a[href^="/collections"]').forEach(link => {
-        link.href = link.href + '?filter.v.availability=1'
+        link.href = link.href + '?sort_by=manual&filter.v.availability=1'
       })
     }
 
@@ -909,7 +910,6 @@
     }
     handleFilters(filters = []) {
       const params = new URLSearchParams(document.location.href)
-
       const activeAvaibility = params.get('filter.v.availability')
       const elem = document.querySelector('[data-collection-filters]')
       let isCustomFilter = false
@@ -942,7 +942,7 @@
       })
 
       lockTouchObserver.observe(document.documentElement, { attributes: true })
-
+ 
       if (activeAvaibility !== '1') {
         $el('#crs_in_stock_switch').checked = false
       }
