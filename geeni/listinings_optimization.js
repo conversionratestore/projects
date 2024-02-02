@@ -292,7 +292,6 @@
           this.backNavigation({
             selector: '.main-content',
             text: 'back',
-            link: `/${pathArr[1]}/${pathArr[2]}`,
             position: 'beforebegin'
           })
         }
@@ -307,7 +306,6 @@
         this.backNavigation({
           selector: '.banner.section-padding',
           text: 'back',
-          link: '/collections/all',
           position: 'afterbegin'
         })
       } else {
@@ -329,7 +327,7 @@
         if (e.target.closest('.shopify-section.collection-section a.product-grid-item__shop_now')) {
           const title = e.target.closest('section').querySelector('h2').textContent
           if (!title) return
-          
+
           let event
           let location
 
@@ -1017,7 +1015,12 @@
       }
 
       if (currentUrl.includes('smart-security-cameras')) {
-        this.backNavigation({ selector: '.banner.section-padding', text: 'back', link: '/collections/all', position: 'afterbegin' })
+        this.backNavigation({
+          selector: '.banner.section-padding',
+          text: 'back',
+          link: '/collections/all',
+          position: 'afterbegin'
+        })
       }
       if (
         currentUrl.includes('indoor-cameras') ||
@@ -1070,7 +1073,12 @@
       }
 
       if (currentUrl.includes('lighting')) {
-        this.backNavigation({ selector: '.banner.section-padding', text: 'back', link: '/collections/all', position: 'afterbegin' })
+        this.backNavigation({
+          selector: '.banner.section-padding',
+          text: 'back',
+          link: '/collections/all',
+          position: 'afterbegin'
+        })
       }
       if (
         currentUrl.includes('colored-lights') ||
@@ -1123,7 +1131,12 @@
       }
 
       if (currentUrl.includes('power')) {
-        this.backNavigation({ selector: '.banner.section-padding', text: 'back', link: '/collections/all', position: 'afterbegin' })
+        this.backNavigation({
+          selector: '.banner.section-padding',
+          text: 'back',
+          link: '/collections/all',
+          position: 'afterbegin'
+        })
       }
 
       if (
@@ -1162,7 +1175,12 @@
       }
 
       if (currentUrl.includes('smart-appliances')) {
-        this.backNavigation({ selector: '.banner.section-padding', text: 'back', link: '/collections/all', position: 'afterbegin' })
+        this.backNavigation({
+          selector: '.banner.section-padding',
+          text: 'back',
+          link: '/collections/all',
+          position: 'afterbegin'
+        })
       }
       if (currentUrl.includes('pet-supplies')) {
         this.backNavigation({
@@ -1343,10 +1361,10 @@
       })
     }
 
-    backNavigation({ selector, link, text, position = 'afterend' }) {
+    backNavigation({ selector, link, text, position = 'afterend', history = false }) {
       const backNavigationHtml = /* HTML */ `
         <div class="back-navigation">
-          <a href=${link}>
+          <a href=${link || 'javascript:history.back()'}>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path
                 d="M11.0004 14C11.1399 14 11.2795 13.9467 11.386 13.8402C11.5992 13.627 11.5992 13.2819 11.386 13.0689L6.31713 7.99999L11.386 2.93107C11.5992 2.71794 11.5992 2.3728 11.386 2.1598C11.1729 1.9468 10.8278 1.94666 10.6148 2.1598L5.16022 7.61435C4.94708 7.82749 4.94708 8.17263 5.16022 8.38563L10.6148 13.8402C10.7213 13.9467 10.8609 14 11.0004 14Z"
