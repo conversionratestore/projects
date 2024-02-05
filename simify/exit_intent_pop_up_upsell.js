@@ -937,14 +937,16 @@ class IntentPopup {
             videoId: $videoUrl,
             events: {
               onReady: function (event) {
-                event.target.playVideo()
+                setTimeout(function () {
+                  event.target.playVideo()
+                }, 2000)
               }
             }
           })
 
           $videoCover.fadeOut()
         }
-      }, 700)
+      }, 500)
     })
   }
   onClickVideoExplanationBlock() {
