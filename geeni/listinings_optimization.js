@@ -186,25 +186,29 @@
         fill="black"
       />
     </svg>`,
-    phone: /* HTML */ `
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path
-          d="m20.744 15.752-2.859-1.65a1.955 1.955 0 0 0-1.493-.196 1.955 1.955 0 0 0-1.196.916l-.113.196c-.17.296-.416.473-.75.54-.335.07-.63.003-.903-.202-.88-.66-1.74-1.41-2.559-2.228a24.067 24.067 0 0 1-2.228-2.559 1.072 1.072 0 0 1-.202-.903c.068-.335.245-.58.54-.75l.196-.114a1.971 1.971 0 0 0 .72-2.69l-1.65-2.858a1.957 1.957 0 0 0-2.424-.848l-.034.013c-1.418.557-2.38.953-2.804 1.378C1.8 4.983 1.68 7.016 2.65 9.519c.888 2.291 2.602 4.779 4.827 7.004 2.224 2.225 4.711 3.94 7.002 4.827 1.12.434 2.146.65 3.043.65 1.11 0 2.024-.33 2.68-.986.424-.424.82-1.385 1.377-2.802l.013-.035a1.957 1.957 0 0 0-.848-2.425zm-.646 1.838-.014.035c-.255.65-.785 2-1.018 2.254-.699.7-2.16.69-4.007-.026-2.087-.809-4.377-2.395-6.447-4.465C4.208 10.983 2.71 6.342 4.118 4.934c.256-.235 1.608-.766 2.257-1.02L6.41 3.9a.356.356 0 0 1 .447.157l1.651 2.858c.1.174.04.397-.133.497l-.195.113a2.664 2.664 0 0 0-1.311 1.82 2.664 2.664 0 0 0 .491 2.188c.705.94 1.505 1.858 2.377 2.73.872.872 1.79 1.672 2.73 2.377.644.483 1.4.653 2.188.492a2.664 2.664 0 0 0 1.82-1.312l.112-.195a.362.362 0 0 1 .221-.168.362.362 0 0 1 .276.035l2.858 1.65c.16.093.224.277.157.448zM17.944 4.186a.803.803 0 0 1 1.133-.074c.328.289.638.604.92.936a.803.803 0 1 1-1.223 1.04 7.42 7.42 0 0 0-.756-.769.803.803 0 0 1-.074-1.133zm-3.92-1.489a.803.803 0 0 1 .947-.626c.44.09.875.213 1.295.368a.803.803 0 0 1-.555 1.507 7.306 7.306 0 0 0-1.06-.302.803.803 0 0 1-.627-.947zm6.579 4.697a.803.803 0 0 1 1.023.492c.143.41.258.836.34 1.263a.803.803 0 1 1-1.577.302 7.32 7.32 0 0 0-.279-1.035.803.803 0 0 1 .493-1.022zM9.547 3.499a.803.803 0 0 1 .467-1.034 8.908 8.908 0 0 1 1.688-.454.802.802 0 1 1 .262 1.584 7.292 7.292 0 0 0-1.383.372.8.8 0 0 1-1.034-.468zm12.44 8.92a8.916 8.916 0 0 1-.433 1.577.803.803 0 1 1-1.502-.565 7.3 7.3 0 0 0 .355-1.293.803.803 0 0 1 1.58.28z"
-        />
-        <clipPath id="a">
-          <path
-            fill-rule="evenodd"
-            d="m20.744 8.248-2.859 1.65a1.955 1.955 0 0 1-1.493.196 1.955 1.955 0 0 1-1.196-.916l-.113-.196a1.071 1.071 0 0 0-.75-.54 1.072 1.072 0 0 0-.903.202c-.88.66-1.74 1.41-2.559 2.228a24.067 24.067 0 0 0-2.228 2.559 1.072 1.072 0 0 0-.202.903c.068.335.245.58.54.75l.196.114c.94.543 1.263 1.75.72 2.69l-1.65 2.858a1.957 1.957 0 0 1-2.424.848l-.034-.013c-1.418-.557-2.38-.953-2.804-1.378-1.186-1.186-1.305-3.219-.335-5.722.888-2.291 2.602-4.779 4.827-7.004 2.224-2.225 4.711-3.94 7.002-4.827C15.6 2.216 16.625 2 17.522 2c1.11 0 2.024.33 2.68.986.424.424.82 1.385 1.377 2.802l.013.035a1.957 1.957 0 0 1-.848 2.425zm-.646-1.838-.014-.035c-.255-.65-.785-2-1.018-2.254-.699-.7-2.16-.69-4.007.026-2.087.809-4.377 2.395-6.447 4.465-4.404 4.405-5.902 9.046-4.494 10.454.256.235 1.608.766 2.257 1.02l.034.014a.356.356 0 0 0 .447-.157l1.651-2.858a.364.364 0 0 0-.133-.497l-.195-.113a2.664 2.664 0 0 1-1.311-1.82 2.664 2.664 0 0 1 .491-2.188 25.685 25.685 0 0 1 2.377-2.73 25.682 25.682 0 0 1 2.73-2.377 2.663 2.663 0 0 1 2.188-.492 2.664 2.664 0 0 1 1.82 1.312l.112.195a.362.362 0 0 0 .221.168c.055.015.163.03.276-.035l2.858-1.65a.357.357 0 0 0 .157-.448zm-2.154 13.404c.292.333.8.366 1.133.074.328-.289.638-.604.92-.936a.803.803 0 1 0-1.223-1.04 7.42 7.42 0 0 1-.756.769.803.803 0 0 0-.074 1.133zm-3.92 1.489a.803.803 0 0 0 .947.626c.44-.09.875-.213 1.295-.368a.803.803 0 0 0-.555-1.507c-.344.127-.7.229-1.06.302a.803.803 0 0 0-.627.947zm6.579-4.697a.803.803 0 0 0 1.023-.492c.143-.41.258-.836.34-1.263a.803.803 0 1 0-1.577-.302 7.32 7.32 0 0 1-.279 1.035.803.803 0 0 0 .493 1.022zM9.547 20.501a.803.803 0 0 0 .467 1.034 8.908 8.908 0 0 0 1.688.454.802.802 0 1 0 .262-1.584 7.292 7.292 0 0 1-1.383-.372.8.8 0 0 0-1.034.468zm12.44-8.92a8.916 8.916 0 0 0-.433-1.577.803.803 0 1 0-1.502.565 7.3 7.3 0 0 1 .355 1.293.803.803 0 0 0 1.58-.28z"
-            transform="matrix(1 0 0 -1 0 24)"
-          />
-        </clipPath>
-        <g clip-path="url(#a)">
-          <path
-            d="m20.744 15.752-.5.866.5-.866zm-2.859-1.65.5-.866-.5.866zm-1.493-.196-.259-.966.259.966zm-1.196.916.866.5-.866-.5zm-.113.196-.866-.5.866.5zm-.75.54-.2-.979.2.98zm-.903-.202-.6.8.6-.8zm-2.559-2.228.707-.707-.707.707zM8.643 10.57l-.8.6.8-.6zm-.202-.903.98.2-.98-.2zm.54-.75.5.865h.001l-.5-.866zm.196-.114-.5-.866.5.866zm.72-2.69-.866.5.867-.5zm-1.65-2.858-.866.5.866-.5zm-2.424-.848-.366-.931.366.93zm-.034.013-.366-.93.366.93zM2.985 3.797l.708.707-.708-.707zM2.65 9.519l.932-.36v-.001l-.932.361zm4.827 7.004.707-.707-.707.707zm7.002 4.827.362-.932-.362.932zm3.043.65v-1 1zm2.68-.986.707.707-.707-.707zm1.377-2.802-.931-.366.93.366zm.013-.035.931.366-.93-.366zm-1.494-.587.93.366-.93-.366zm-.014.035-.93-.365.93.365zm-1.018 2.254.707.707.016-.015.014-.016-.737-.676zm-4.007-.026.362-.932-.362.932zm-6.447-4.465-.707.707.707-.707zM4.118 4.934l-.676-.737-.016.015-.015.015.707.707zm2.257-1.02.366.93-.366-.93zM6.41 3.9l-.365-.93.365.93zm.448.157-.866.5.866-.5zm1.65 2.858.866-.5-.866.5zm-.133.497-.5-.866.5.866zm-.195.113.5.866-.5-.866zm-1.311 1.82-.98-.201.98.2zm.491 2.188.8-.6-.8.6zm2.377 2.73-.707.707.707-.707zm2.73 2.377.6-.8-.6.8zm2.188.492-.2-.98.2.98zm1.82-1.312-.866-.5.866.5zm.112-.195.866.5-.866-.5zm.497-.133.5-.866-.5.866zm2.858 1.65.5-.865-.5.866zM17.944 4.187l.751.66-.751-.66zm1.133-.074.66-.751-.66.751zm.92.936.763-.647-.762.647zm-.091 1.132-.648-.762.648.762zm-1.132-.092-.762.647.762-.647zm-.756-.769.66-.752-.66.752zm-3.994-2.622.98.2-.98-.2zm.947-.626.2-.98-.2.98zm1.295.368-.346.938.346-.938zm.476 1.03-.939-.345.939.346zm-1.03.477.345-.939-.346.939zm-1.062-.302.2-.98-.2.98zm5.953 3.75.33.943-.33-.943zm1.023.492.944-.33-.944.33zm.34 1.263-.982.188.982-.188zm-.637.94.188.982-.188-.983zm-.94-.638-.982.189.982-.189zm-.279-1.035.944-.33-.944.33zM9.547 3.5l.935-.353-.935.353zm.467-1.034-.353-.936.353.936zm1.688-.454.163.987h.001l-.164-.987zm.262 1.584.164.986-.164-.986zm-1.383.372.353.935-.353-.935zm11.407 8.451-.985-.175.985.175zm-.434 1.578-.935-.352.935.352zm-1.034.469-.352.936.352-.936zm-.468-1.034-.936-.353.936.353zm.355-1.293-.985-.175.985.175zm.93-.65.175-.985-.174.985zm-.093 3.398-2.858-1.65-1 1.732 2.858 1.65 1-1.732zm-2.859-1.65a2.955 2.955 0 0 0-2.252-.296l.518 1.932a.956.956 0 0 1 .735.096l1-1.732zm-2.252-.296a2.955 2.955 0 0 0-1.803 1.383l1.732 1a.955.955 0 0 1 .589-.451l-.518-1.932zm-1.803 1.382-.113.196 1.732 1 .113-.195-1.732-1zm-.113.196a.237.237 0 0 1-.034.045.238.238 0 0 1-.05.016l.4 1.96a2.07 2.07 0 0 0 1.417-1.021l-1.733-1zm-.085.061a.237.237 0 0 1-.055.005h-.002a.238.238 0 0 1-.046-.028l-1.2 1.6a2.07 2.07 0 0 0 1.704.383l-.4-1.96zm-.102-.023a23.062 23.062 0 0 1-2.452-2.135l-1.414 1.414c.85.85 1.746 1.631 2.665 2.32l1.201-1.599zm-2.452-2.135A23.068 23.068 0 0 1 9.443 9.97l-1.6 1.2c.69.92 1.471 1.816 2.321 2.666l1.414-1.414zM9.443 9.97a.238.238 0 0 1-.028-.047v-.01c0-.007 0-.022.005-.046l-1.96-.4a2.07 2.07 0 0 0 .383 1.703l1.6-1.2zm-.023-.103a.237.237 0 0 1 .018-.054l.006-.005a.238.238 0 0 1 .038-.026l-1-1.732A2.07 2.07 0 0 0 7.46 9.466l1.96.4zm.062-.085.195-.113-1-1.732-.196.113 1.001 1.732zm.195-.113a2.971 2.971 0 0 0 1.087-4.055l-1.733 1a.971.971 0 0 1-.354 1.323l1 1.732zm1.087-4.055-1.65-2.859-1.733 1 1.65 2.859 1.733-1zm-1.65-2.859a2.957 2.957 0 0 0-3.657-1.28l.731 1.863a.957.957 0 0 1 1.193.417l1.732-1zm-3.657-1.28-.034.014.731 1.862.034-.013-.73-1.862zm-.034.014c-.704.277-1.33.527-1.835.765-.485.228-.967.494-1.31.837l1.415 1.414c.081-.082.292-.227.748-.442.436-.205 1-.432 1.713-.712l-.73-1.862zM2.278 3.09C.664 4.704.7 7.254 1.718 9.881l1.864-.723c-.922-2.38-.648-3.896.11-4.654L2.279 3.089zm-.56 6.792c.95 2.451 2.755 5.052 5.052 7.349l1.414-1.414c-2.153-2.154-3.776-4.527-4.602-6.658l-1.864.723zm5.051 7.349c2.297 2.297 4.897 4.102 7.349 5.052l.723-1.864c-2.13-.826-4.504-2.45-6.657-4.602L6.769 17.23zm7.349 5.052c1.201.466 2.351.718 3.404.718v-2c-.742 0-1.643-.18-2.681-.582l-.723 1.864zm3.404.718c1.311 0 2.503-.395 3.387-1.279l-1.415-1.414c-.427.428-1.064.693-1.972.693v2zm3.387-1.279c.342-.342.608-.824.836-1.31.238-.504.488-1.13.764-1.834l-1.861-.73c-.28.713-.507 1.277-.712 1.712-.215.456-.36.667-.442.748l1.415 1.414zm1.6-3.144.014-.034-1.862-.732-.013.035 1.861.731zm.014-.035c.54-1.374 0-2.917-1.279-3.656l-1 1.733c.422.243.595.74.417 1.193l1.862.73zm-3.356-1.317-.014.035 1.862.73.014-.034-1.862-.731zm-.014.035c-.128.327-.319.812-.505 1.246-.094.218-.18.41-.255.557-.093.188-.114.195-.064.14l1.474 1.352c.167-.181.3-.438.379-.596.099-.197.204-.43.304-.664.2-.467.402-.982.529-1.304l-1.862-.731zm-.794 1.912c-.092.092-.327.228-.86.225-.523-.003-1.226-.146-2.078-.476l-.723 1.865c.995.385 1.946.605 2.789.61.835.006 1.679-.202 2.286-.81l-1.414-1.414zm-2.938-.251c-1.925-.746-4.101-2.24-6.102-4.24l-1.414 1.414c2.14 2.14 4.543 3.818 6.793 4.69l.723-1.864zm-6.102-4.24c-2.125-2.126-3.514-4.276-4.204-6.013-.346-.871-.5-1.598-.508-2.142-.009-.557.131-.798.218-.885L3.411 4.227c-.617.617-.817 1.484-.804 2.331.014.86.246 1.833.65 2.848.808 2.037 2.369 4.41 4.648 6.689l1.414-1.414zM4.794 5.67c-.053.05-.044.028.142-.066.148-.074.34-.161.558-.255.434-.187.92-.378 1.247-.506L6.01 2.982c-.323.127-.838.33-1.306.53-.233.1-.467.206-.665.306-.16.08-.415.213-.597.38L4.794 5.67zm1.947-.827.034-.013-.732-1.862-.033.014.731 1.86zm.034-.013a.625.625 0 0 1-.229.042v-2c-.173 0-.343.034-.502.096l.73 1.862zm-.229.042a.644.644 0 0 1-.555-.317l1.732-1a1.356 1.356 0 0 0-1.177-.683v2zm-.555-.316 1.65 2.858 1.732-1-1.65-2.858-1.732 1zm1.65 2.858a.636.636 0 0 1 .233-.869l1 1.732c.652-.376.876-1.21.5-1.863l-1.733 1zm.233-.869-.195.113 1 1.732.195-.113-1-1.732zm-.195.113a3.664 3.664 0 0 0-1.791 2.485l1.96.4c.103-.507.382-.894.83-1.153l-1-1.732zM5.888 9.144a3.664 3.664 0 0 0 .671 2.989l1.6-1.2a1.665 1.665 0 0 1-.312-1.388l-1.96-.401zm.671 2.989c.735.98 1.566 1.933 2.47 2.837l1.414-1.414a24.686 24.686 0 0 1-2.284-2.624l-1.6 1.2zm2.47 2.837a26.681 26.681 0 0 0 2.837 2.47l1.2-1.6a24.682 24.682 0 0 1-2.623-2.284L9.029 14.97zm2.837 2.47c.872.654 1.92.89 2.989.671l-.401-1.959c-.508.104-.973 0-1.388-.312l-1.2 1.6zm2.989.671a3.663 3.663 0 0 0 2.485-1.79l-1.732-1c-.26.448-.646.727-1.154.83l.4 1.96zm2.485-1.79.112-.196-1.732-1-.112.195 1.732 1zm.113-.196a.638.638 0 0 1-.387.298l-.518-1.932c-.192.051-.58.204-.828.634l1.733 1zm-.387.298a.638.638 0 0 1-.482-.065l.998-1.733a1.362 1.362 0 0 0-1.034-.134l.518 1.932zm-.483-.065 2.858 1.65 1-1.731-2.858-1.651-1 1.732zm2.858 1.65a.643.643 0 0 1-.274-.783l1.862.73c.248-.63 0-1.339-.587-1.678l-1.001 1.731zm-.745-13.162a.197.197 0 0 1-.279.018l1.32-1.503a1.803 1.803 0 0 0-2.545.166l1.504 1.319zm-.279.018c.292.256.568.536.819.832l1.524-1.295c-.315-.37-.659-.72-1.023-1.04l-1.32 1.503zm.819.832a.197.197 0 0 1 .022-.278l1.295 1.524A1.803 1.803 0 0 0 20.76 4.4l-1.524 1.295zm.022-.278a.2.2 0 0 1 .129-.047v2a1.8 1.8 0 0 0 1.166-.43l-1.295-1.523zm.129-.047a.2.2 0 0 1 .15.07l-1.524 1.295c.356.42.865.635 1.374.635v-2zm.15.07a8.42 8.42 0 0 0-.86-.874l-1.319 1.504c.233.204.454.428.654.664l1.524-1.295zm-.86-.874c.082.072.09.197.018.279l-1.503-1.32a1.803 1.803 0 0 0 .166 2.545l1.32-1.504zm-3.673-1.67a.197.197 0 0 1-.232.154l.4-1.96a1.803 1.803 0 0 0-2.127 1.406l1.96.4zm-.233.154c.39.08.777.19 1.15.326l.69-1.876a9.918 9.918 0 0 0-1.44-.41l-.4 1.96zm1.15.326a.197.197 0 0 1-.118-.253l1.877.691a1.803 1.803 0 0 0-1.069-2.314l-.69 1.876zm-.118-.253a.197.197 0 0 1 .185-.129v2c.732 0 1.423-.45 1.692-1.18l-1.877-.69zm.185-.129a.2.2 0 0 1 .069.012l-.692 1.877a1.8 1.8 0 0 0 .623.111v-2zm.069.012a8.306 8.306 0 0 0-1.207-.343l-.4 1.96c.311.063.62.15.915.26l.692-1.877zm-1.207-.343a.197.197 0 0 1 .154.233l-1.96-.4c-.199.975.43 1.928 1.406 2.127l.4-1.96zm6.083 5.673a.197.197 0 0 1-.251-.12l1.888-.661a1.803 1.803 0 0 0-2.297-1.106l.66 1.887zm-.251-.12c.127.364.229.741.302 1.12l1.964-.376a9.926 9.926 0 0 0-.378-1.405l-1.888.66zm.302 1.12a.197.197 0 0 1 .156-.23l.377 1.964a1.803 1.803 0 0 0 1.43-2.11l-1.963.376zm.157-.23a.191.191 0 0 1 .036-.004v2c.113 0 .227-.01.34-.032l-.376-1.965zm.036-.004c.093 0 .176.064.194.16l-1.964.377a1.803 1.803 0 0 0 1.77 1.463v-2zm.194.16a8.32 8.32 0 0 0-.317-1.177l-1.888.66c.102.291.183.592.241.894l1.964-.377zm-.317-1.177a.197.197 0 0 1-.12.251l-.661-1.887a1.803 1.803 0 0 0-1.106 2.297l1.887-.661zm-10.572-4.94a.197.197 0 0 1-.115.254l-.706-1.87a1.803 1.803 0 0 0-1.05 2.323l1.871-.706zm-.115.254a7.908 7.908 0 0 1 1.498-.402l-.326-1.974a9.908 9.908 0 0 0-1.878.505l.706 1.871zm1.5-.403a.198.198 0 0 1-.228-.162l1.973-.326a1.802 1.802 0 0 0-2.074-1.484l.328 1.972zm-.228-.162a.197.197 0 0 1 .162-.227l.327 1.973a1.803 1.803 0 0 0 1.484-2.072l-1.973.326zm.162-.227a8.292 8.292 0 0 0-1.573.423l.706 1.871a6.292 6.292 0 0 1 1.194-.32L11.8 2.607zm-1.573.423a.2.2 0 0 1 .07-.013v2a1.8 1.8 0 0 0 .636-.116l-.706-1.871zm.07-.013c.078 0 .154.047.184.128l-1.87.706c.272.724.96 1.166 1.686 1.166v-2zm10.705 9.226a7.916 7.916 0 0 1-.384 1.4l1.871.705a9.916 9.916 0 0 0 .482-1.756l-1.969-.35zm-.384 1.4a.197.197 0 0 1 .184-.128v2c.727 0 1.415-.443 1.687-1.167l-1.871-.705zm.184-.128c.024 0 .048.005.07.013l-.705 1.872c.208.078.423.115.635.115v-2zm.07.013a.197.197 0 0 1 .115.254l-1.872-.704c-.35.931.12 1.971 1.052 2.322l.705-1.872zm.115.254a8.3 8.3 0 0 0 .403-1.47l-1.969-.35a6.3 6.3 0 0 1-.306 1.115l1.872.705zm.403-1.47a.197.197 0 0 1-.228.16l.35-1.97a1.803 1.803 0 0 0-2.09 1.46l1.968.35zm-.228.16a.197.197 0 0 1-.16-.23l1.97.35a1.803 1.803 0 0 0-1.46-2.09l-.35 1.97z"
-          />
-        </g>
-      </svg>
-    `,
+    phone: /* HTML */ `<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+    width="24.000000pt" height="24.000000pt" viewBox="0 0 24.000000 24.000000"
+    preserveAspectRatio="xMidYMid meet">
+   
+   <g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)"
+   fill="#000000" stroke="none">
+   <path d="M42 204 c-28 -20 -28 -37 3 -90 28 -48 101 -97 136 -92 12 2 26 13
+   30 25 7 18 3 26 -16 39 -19 12 -28 14 -39 5 -10 -8 -20 -6 -40 10 -22 17 -26
+   26 -21 53 5 24 2 36 -12 49 -17 15 -21 15 -41 1z m30 -44 c-4 -48 39 -91 88
+   -88 44 4 51 -25 6 -30 -23 -3 -37 6 -77 47 -46 47 -61 86 -42 105 15 14 28 -3
+   25 -34z"/>
+   <path d="M100 210 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0
+   -10 -4 -10 -10z"/>
+   <path d="M140 210 c0 -5 7 -10 16 -10 8 0 12 5 9 10 -3 6 -10 10 -16 10 -5 0
+   -9 -4 -9 -10z"/>
+   <path d="M180 190 c0 -5 5 -10 11 -10 5 0 7 5 4 10 -3 6 -8 10 -11 10 -2 0 -4
+   -4 -4 -10z"/>
+   <path d="M200 150 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0
+   -10 -4 -10 -10z"/>
+   <path d="M200 110 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0
+   -10 -4 -10 -10z"/>
+   </g>
+   </svg> `,
     fillStar: /* HTML */ ` <svg
       xmlns="http://www.w3.org/2000/svg"
       width="15"
@@ -274,7 +278,6 @@
     }
     init() {
       this.initStyles()
-      this.changeLinks()
 
       loadScriptsOrStyles([
         'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
@@ -522,12 +525,6 @@
           </div>
         </div>
       </div>`
-    }
-
-    changeLinks() {
-      $$el('a[href^="/collections"]').forEach(link => {
-        link.href = link.href + '?sort_by=manual&filter.v.availability=1'
-      })
     }
 
     changeMenu() {
@@ -822,27 +819,29 @@
       let observer = new IntersectionObserver(
         (entries, observer) => {
           entries.forEach(entry => {
+            console.log(entry)
             if (!entry.isIntersecting) {
               $el('.sticky-filters.subcategory').classList.add('isSticky')
 
-              $el('.collection__filters__toggle').removeEventListener('click', filterNoStickyClickEvent)
-              $el('#crs_in_stock_switch').removeEventListener('change', inStockNoStickyClickEvent)
-              blockVisibility(
-                '.subcategory.isSticky',
-                'exp_list_optim_vis_liststicsubcat_elem',
-                'Element view',
-                'Listing with category of products Head Sticky banner subcategories'
-              )
+              // $el('.collection__filters__toggle').removeEventListener('click', filterNoStickyClickEvent)
+              // $el('#crs_in_stock_switch').removeEventListener('change', inStockNoStickyClickEvent)
+              // blockVisibility(
+              //   '.subcategory.isSticky',
+              //   'exp_list_optim_vis_liststicsubcat_elem',
+              //   'Element view',
+              //   'Listing with category of products Head Sticky banner subcategories'
+              // )
 
-              $el('.collection__filters__toggle').addEventListener('click', filterStickyClickEvent)
-              $el('#crs_in_stock_switch').addEventListener('change', inStockStickyClickEvent)
-              $$el('.subcategory__item').forEach(item => {
-                item.removeEventListener('click', filterCategoryNoStickyClickEvent)
-              })
-              $$el('.subcategory__item').forEach(item => {
-                item.addEventListener('click', filterCategoryStickyClickEvent)
-              })
+              // $el('.collection__filters__toggle').addEventListener('click', filterStickyClickEvent)
+              // $el('#crs_in_stock_switch').addEventListener('change', inStockStickyClickEvent)
+              // $$el('.subcategory__item').forEach(item => {
+              //   item.removeEventListener('click', filterCategoryNoStickyClickEvent)
+              // })
+              // $$el('.subcategory__item').forEach(item => {
+              //   item.addEventListener('click', filterCategoryStickyClickEvent)
+              // })
             } else {
+              $el('.sticky-filters.subcategory').classList.remove('isSticky')
 
               waitForElement('.subcategory').then(() => {
                 blockVisibility(
@@ -852,7 +851,6 @@
                   'Listing with category of products Banner subcategories'
                 )
               })
-              $el('.sticky-filters.subcategory').classList.remove('isSticky')
 
               $el('.collection__filters__toggle').removeEventListener('click', filterStickyClickEvent)
               $el('#crs_in_stock_switch').removeEventListener('change', inStockStickyClickEvent)
@@ -871,7 +869,6 @@
       )
 
       observer.observe(sentinel)
-
 
       this.handleFilters()
       $el('.collection__filters__toggle').addEventListener('click', filterNoStickyClickEvent)
@@ -957,6 +954,7 @@
 
       $el('#crs_in_stock_switch').addEventListener('change', event => {
         isCustomFilter = true
+        $el('.sticky-filters').classList.add('isSticky')
         $$el('input[name="filter.v.availability"]').forEach(input => {
           if (input.checked) {
             input.click()
@@ -1004,22 +1002,22 @@
       const subcategories = [
         {
           title: 'All Cameras',
-          link: '/collections/smart-security-cameras?sort_by=manual&filter.v.availability=1',
+          link: '/collections/smart-security-cameras',
           image: `${git}/geeni/img/cameras/all_cameras.png`
         },
         {
           title: 'Indoor',
-          link: '/collections/indoor-cameras?sort_by=manual&filter.v.availability=1',
+          link: '/collections/indoor-cameras',
           image: `${git}/geeni/img/cameras/indoor_cameras.png`
         },
         {
           title: 'Outdoor',
-          link: '/collections/outdoor-cameras?sort_by=manual&filter.v.availability=1',
+          link: '/collections/outdoor-cameras',
           image: `${git}/geeni/img/cameras/outdoor_cameras.png`
         },
         {
           title: 'PTZ Cameras',
-          link: '/collections/pan-tilt-zoom-cameras?sort_by=manual&filter.v.availability=1',
+          link: '/collections/pan-tilt-zoom-cameras',
           image: `${git}/geeni/img/cameras/ptz_cameras.png`
         }
       ]
@@ -1049,7 +1047,7 @@
         this.backNavigation({
           selector: '.banner.section-padding',
           text: 'back to all Cameras',
-          link: '/collections/smart-security-cameras?sort_by=manual&filter.v.availability=1',
+          link: '/collections/smart-security-cameras',
           position: 'afterbegin'
         })
       }
@@ -1062,22 +1060,22 @@
       const subcategories = [
         {
           title: 'All Lighting',
-          link: '/collections/lighting?sort_by=manual&filter.v.availability=1',
+          link: '/collections/lighting',
           image: `${git}/geeni/img/lighting/all_lighting.png`
         },
         {
           title: 'Color Lights',
-          link: '/collections/colored-lights?sort_by=manual&filter.v.availability=1',
+          link: '/collections/colored-lights',
           image: `${git}/geeni/img/lighting/color_lights.png`
         },
         {
           title: 'White Lights',
-          link: '/collections/white-lights?sort_by=manual&filter.v.availability=1',
+          link: '/collections/white-lights',
           image: `${git}/geeni/img/lighting/white_lights.png`
         },
         {
           title: 'Light Strips',
-          link: '/collections/strip-lights?sort_by=manual&filter.v.availability=1',
+          link: '/collections/strip-lights',
           image: `${git}/geeni/img/lighting/strip_lighting.png`
         }
       ]
@@ -1107,7 +1105,7 @@
         this.backNavigation({
           selector: '.banner.section-padding',
           text: 'back to all Lighting',
-          link: '/collections/lighting?sort_by=manual&filter.v.availability=1',
+          link: '/collections/lighting',
           position: 'afterbegin'
         })
       }
@@ -1120,22 +1118,22 @@
       const subcategories = [
         {
           title: 'All Power',
-          link: '/collections/power?sort_by=manual&filter.v.availability=1',
+          link: '/collections/power',
           image: `${git}/geeni/img/power/all_power.png`
         },
         {
           title: 'Plugs',
-          link: '/collections/plugs?sort_by=manual&filter.v.availability=1',
+          link: '/collections/plugs',
           image: `${git}/geeni/img/power/plugs.png`
         },
         {
           title: 'Surge Protectors',
-          link: '/collections/surge-protectors?sort_by=manual&filter.v.availability=1',
+          link: '/collections/surge-protectors',
           image: `${git}/geeni/img/power/surge_protectors.png`
         },
         {
           title: 'Switches & Outlets',
-          link: '/collections/switches-outlets?sort_by=manual&filter.v.availability=1',
+          link: '/collections/switches-outlets',
           image: `${git}/geeni/img/power/switches_&_outlets.png`
         }
       ]
@@ -1166,7 +1164,7 @@
         this.backNavigation({
           selector: '.banner.section-padding',
           text: 'back to all Power',
-          link: '/collections/power?sort_by=manual&filter.v.availability=1',
+          link: '/collections/power',
           position: 'afterbegin'
         })
       }
@@ -1179,12 +1177,12 @@
       const subcategories = [
         {
           title: 'All Lifestyle & Health',
-          link: '/collections/smart-appliances?sort_by=manual&filter.v.availability=1',
+          link: '/collections/smart-appliances',
           image: `${git}/geeni/img/lifestyle/lifestyle_&_lealth.png`
         },
         {
           title: 'Pet Supplies',
-          link: '/collections/pet-supplies?sort_by=manual&filter.v.availability=1',
+          link: '/collections/pet-supplies',
           image: `${git}/geeni/img/lifestyle/pet_care.png`
         }
       ]
@@ -1205,7 +1203,7 @@
         this.backNavigation({
           selector: '.banner.section-padding',
           text: 'back to all Lifestyle & Health',
-          link: '/collections/smart-appliances?sort_by=manual&filter.v.availability=1',
+          link: '/collections/smart-appliances',
           position: 'afterbegin'
         })
       }
@@ -1383,7 +1381,7 @@
       })
     }
 
-    backNavigation({ selector, link, text, position = 'afterend'}) {
+    backNavigation({ selector, link, text, position = 'afterend' }) {
       const backNavigationHtml = /* HTML */ `
         <div class="back-navigation">
           <a href=${link || 'javascript:history.back()'}>
@@ -1619,7 +1617,8 @@
           }
           .banner-inner {
             background: #fff;
-            height: fit-content;
+            height: fit-content !important;
+            min-height: fit-content !important;
           }
           .mobile-navlink--flex span {
             width: 24px;
