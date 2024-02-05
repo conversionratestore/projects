@@ -186,29 +186,44 @@
         fill="black"
       />
     </svg>`,
-    phone: /* HTML */ `<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-    width="24.000000pt" height="24.000000pt" viewBox="0 0 24.000000 24.000000"
-    preserveAspectRatio="xMidYMid meet">
-   
-   <g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)"
-   fill="#000000" stroke="none">
-   <path d="M42 204 c-28 -20 -28 -37 3 -90 28 -48 101 -97 136 -92 12 2 26 13
+    phone: /* HTML */ `<svg
+      version="1.0"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24.000000pt"
+      height="24.000000pt"
+      viewBox="0 0 24.000000 24.000000"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+        <path
+          d="M42 204 c-28 -20 -28 -37 3 -90 28 -48 101 -97 136 -92 12 2 26 13
    30 25 7 18 3 26 -16 39 -19 12 -28 14 -39 5 -10 -8 -20 -6 -40 10 -22 17 -26
    26 -21 53 5 24 2 36 -12 49 -17 15 -21 15 -41 1z m30 -44 c-4 -48 39 -91 88
    -88 44 4 51 -25 6 -30 -23 -3 -37 6 -77 47 -46 47 -61 86 -42 105 15 14 28 -3
-   25 -34z"/>
-   <path d="M100 210 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0
-   -10 -4 -10 -10z"/>
-   <path d="M140 210 c0 -5 7 -10 16 -10 8 0 12 5 9 10 -3 6 -10 10 -16 10 -5 0
-   -9 -4 -9 -10z"/>
-   <path d="M180 190 c0 -5 5 -10 11 -10 5 0 7 5 4 10 -3 6 -8 10 -11 10 -2 0 -4
-   -4 -4 -10z"/>
-   <path d="M200 150 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0
-   -10 -4 -10 -10z"/>
-   <path d="M200 110 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0
-   -10 -4 -10 -10z"/>
-   </g>
-   </svg> `,
+   25 -34z"
+        />
+        <path
+          d="M100 210 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0
+   -10 -4 -10 -10z"
+        />
+        <path
+          d="M140 210 c0 -5 7 -10 16 -10 8 0 12 5 9 10 -3 6 -10 10 -16 10 -5 0
+   -9 -4 -9 -10z"
+        />
+        <path
+          d="M180 190 c0 -5 5 -10 11 -10 5 0 7 5 4 10 -3 6 -8 10 -11 10 -2 0 -4
+   -4 -4 -10z"
+        />
+        <path
+          d="M200 150 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0
+   -10 -4 -10 -10z"
+        />
+        <path
+          d="M200 110 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0
+   -10 -4 -10 -10z"
+        />
+      </g>
+    </svg> `,
     fillStar: /* HTML */ ` <svg
       xmlns="http://www.w3.org/2000/svg"
       width="15"
@@ -819,29 +834,31 @@
       let observer = new IntersectionObserver(
         (entries, observer) => {
           entries.forEach(entry => {
-            console.log(entry)
             if (!entry.isIntersecting) {
+              this.scrollToActiveElement()
+
               $el('.sticky-filters.subcategory').classList.add('isSticky')
 
-              // $el('.collection__filters__toggle').removeEventListener('click', filterNoStickyClickEvent)
-              // $el('#crs_in_stock_switch').removeEventListener('change', inStockNoStickyClickEvent)
-              // blockVisibility(
-              //   '.subcategory.isSticky',
-              //   'exp_list_optim_vis_liststicsubcat_elem',
-              //   'Element view',
-              //   'Listing with category of products Head Sticky banner subcategories'
-              // )
+              $el('.collection__filters__toggle').removeEventListener('click', filterNoStickyClickEvent)
+              $el('#crs_in_stock_switch').removeEventListener('change', inStockNoStickyClickEvent)
+              blockVisibility(
+                '.subcategory.isSticky',
+                'exp_list_optim_vis_liststicsubcat_elem',
+                'Element view',
+                'Listing with category of products Head Sticky banner subcategories'
+              )
 
-              // $el('.collection__filters__toggle').addEventListener('click', filterStickyClickEvent)
-              // $el('#crs_in_stock_switch').addEventListener('change', inStockStickyClickEvent)
-              // $$el('.subcategory__item').forEach(item => {
-              //   item.removeEventListener('click', filterCategoryNoStickyClickEvent)
-              // })
-              // $$el('.subcategory__item').forEach(item => {
-              //   item.addEventListener('click', filterCategoryStickyClickEvent)
-              // })
+              $el('.collection__filters__toggle').addEventListener('click', filterStickyClickEvent)
+              $el('#crs_in_stock_switch').addEventListener('change', inStockStickyClickEvent)
+              $$el('.subcategory__item').forEach(item => {
+                item.removeEventListener('click', filterCategoryNoStickyClickEvent)
+              })
+              $$el('.subcategory__item').forEach(item => {
+                item.addEventListener('click', filterCategoryStickyClickEvent)
+              })
             } else {
               $el('.sticky-filters.subcategory').classList.remove('isSticky')
+              this.scrollToActiveElement()
 
               waitForElement('.subcategory').then(() => {
                 blockVisibility(
