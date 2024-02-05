@@ -944,7 +944,7 @@ class IntentPopup {
 
           $videoCover.fadeOut()
         }
-      }, 500)
+      }, 700)
     })
   }
   onClickVideoExplanationBlock() {
