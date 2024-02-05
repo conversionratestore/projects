@@ -330,18 +330,12 @@ class IntentPopup {
           !localStorage.getItem('onClickIsMyDeviceCompatibleBlock') &&
           !localStorage.getItem('onClickStampedReviewsBlock')
         ) {
-          console.log(`scroll`)
           this.showIntentPopup()
         }
       })
     } else {
-      document.addEventListener('mouseleave', event => {
-        if (
-          event.clientY <= 0 ||
-          event.clientX <= 0 ||
-          event.clientX >= window.innerWidth ||
-          event.clientY >= window.innerHeight
-        ) {
+      document.addEventListener('mouseout', event => {
+        if (!event.relatedTarget && event.toElement == null) {
           this.showIntentPopup()
         }
       })
