@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* CSS Reset */
+    /*
+  1. Use a more-intuitive box-sizing model.
+*/
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /*
+  2. Remove default margin
+*/
+    * {
+      margin: 0;
+    }
+
+    /*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
+    body {
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /*
+  5. Improve media defaults
+*/
+    img,
+    picture,
+    video,
+    canvas,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    /*
+  6. Remove built-in form typography styles
+*/
+    input,
+    button,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    /*
+  7. Avoid text overflows
+*/
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      overflow-wrap: break-word;
+    }
+
+    /*
+  8. Create a root stacking context
+*/
+    #root,
+    #__next {
+      isolation: isolate;
+    }
+
+    .txl {
+      text-align: left;
+    }
+
+    .txc {
+      text-align: center;
+    }
+
+    /* Overlay */
+    .overlay {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 1;
+      /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
+      display: flex;
+      /* NEW: Use Flexbox */
+      align-items: center;
+      /* NEW: Center items vertically */
+      justify-content: center;
+      /* NEW: Center items horizontally */
+      transition: opacity 0.3s ease-out;
+      opacity: 0;
+      z-index: -1;
+    }
+
+    .overlay.show {
+      opacity: 1;
+      z-index: 100;
+    }
+
+    /* The popup content */
+    .popup {
+      position: relative;
+      background-color: #fefefe;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 600px;
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .popup>*:not(:last-child) {
+      margin-bottom: 20px;
+    }
+
+    .popup>* {
+      max-width: 418px;
+      width: 100%;
+    }
+
+    /* The close button */
+    .close-popup {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: auto;
+      margin: 0;
+    }
+
+    .close-popup:hover,
+    .close-popup:focus,
+    .back-popup:hover,
+    .back-popup:focus {
+      cursor: pointer;
+    }
+
+    /* Popup */
+    .popup {
+      max-width: 578px;
+      text-align: center;
+    }
+
+    .popup b {
+      font-weight: 600;
+    }
+
+    .popup__title {
+      color: var(--Dark-blue-1, #21293E);
+      font-family: "FONTSPRING DEMO - Bebas Neue Pro";
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 36px;
+      /* 112.5% */
+    }
+
+    .popup .popup__blue {
+      background: #0E2141;
+      margin-bottom: 16px;
+      padding: 8px 24px;
+    }
+
+    .popup__blue p {
+      color: #FFF;
+      font-family: Inter;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 20px;
+    }
+
+    .in-one-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .popup__gold {
+      padding: 16px;
+      border: 1px solid #9D6B29;
+      background: #FFF;
+      box-shadow: 0px 15px 30px 0px rgba(0, 0, 0, 0.12);
+      text-align: left;
+    }
+
+    .popup__gold>div {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .popup__gold>div:first-child {
+      margin-bottom: 12px;
+    }
+
+    .popup__gold>div p {
+      color: #0E2242;
+      font-family: Inter;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18px;
+      /* 138.462% */
+    }
+
+    .popup .popup__text {
+      margin-bottom: 16px;
+      max-width: 441px;
+      color: #0E2242;
+      font-family: "EB Garamond";
+      font-size: 20px;
+      line-height: 24px;
+    }
+
+    .popup__learn {
+      color: #0E2242;
+      font-family: Inter;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      /* 142.857% */
+    }
+
+    .popup__btn {
+      border-radius: 2px;
+      border: 1px solid #000;
+      background: linear-gradient(269deg, #9D6B29 0%, #BD8432 4.43%, #EBB858 43.36%, #BD8432 86.26%, #835721 100%), linear-gradient(140deg, #02102F 16.4%, #12162F 28.44%, #12162F 36.41%, #11132B 53.66%, #020B22 73.88%, #11132B 85.38%);
+      padding: 16px;
+      color: #0E2242;
+      font-family: Avenir;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 24px;
+      /* 150% */
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 0;
+      width: 100%;
+    }
+
+    .popup__remind {
+      color: #0E2242;
+      font-family: Inter;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 20px;
+      /* 142.857% */
+      letter-spacing: 1px;
+      text-decoration-line: underline;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    /* Popup 2 */
+    .list-heading {
+      color: #0E2242;
+      font-family: "EB Garamond";
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 20px;
+      /* 111.111% */
+      margin-bottom: 12px;
+    }
+
+    .list {
+      padding-left: 16px;
+    }
+
+    .list li {
+      color: #0E2242;
+      font-family: Inter;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18px;
+      margin-bottom: 2px;
+    }
+
+    /* Popup 3 */
+    .overlay--3 .popup>* {
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .overlay--3 .close-popup {
+      position: absolute;
+      top: 24px;
+      right: 20px;
+      width: auto;
+    }
+
+    .overlay--3 .back-popup {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: auto;
+      margin: 0;
+    }
+
+    .overlay--3 .popup__title {
+      margin-bottom: 16px;
+    }
+
+    .overlay--3 .popup__text {
+      max-width: 339px;
+    }
+
+    #contactForm>div {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .overlay--3 .popup__btn {
+      margin-top: 8px;
+    }
+
+
+    #contactForm textarea {
+      resize: none;
+    }
+
+    #contactForm label {
+      color: #21293E;
+      font-family: Inter;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 20px;
+      /* 142.857% */
+    }
+
+    #contactForm input,
+    #contactForm textarea {
+      border-radius: 2px;
+      border: 1px solid var(--Light-blue-2, #DFE3EE);
+      padding: 12px 16px;
+      font-family: "EB Garamond";
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+      color: #21293E;
+    }
+
+    #contactForm input::placeholder,
+    #contactForm textarea::placeholder {
+      color: #7B8190;
+    }
+
+    @media screen and (max-width: 768px) {
+      .overlay {
+        align-items: flex-end;
+      }
+
+      .popup {
+        width: 100%;
+        border-radius: 4px 4px 0px 0px;
+        padding: 24px;
+        text-align: left;
+      }
+
+      .close-popup {
+        top: 12px;
+        right: 12px;
+      }
+
+      .popup__title {
+        font-size: 28px;
+        line-height: 28px;
+        /* 100% */
+      }
+
+      .popup .popup__blue {
+        padding: 8px 20px;
+      }
+
+      .in-one-line {
+        justify-content: flex-start;
+      }
+
+      .popup .popup__text {
+        font-size: 18px;
+        line-height: 24px;
+      }
+
+      .overlay--3 .popup {
+        padding: 48px 24px 32px 24px;
+      }
+
+      .overlay--3 .back-popup {
+        top: 12px;
+        left: 12px;
+      }
+
+      .overlay--3 .close-popup {
+        top: 16px;
+        right: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Button to open the popup -->
+  <button id="openPopup">Open Popup</button>
+
+  <!-- The Popup -->
+  <!-- <div class="overlay overlay--1">
+    <div class="popup">
+      <img class="close-popup" src="./img/cross.svg" alt="close popup">
+      <p class="popup__title">Did you know that one of the biggest problems with getting into college is that:</p>
+      <div class="popup__blue">
+        <p class="in-one-line">HAVING GOOD GPA / SAT SCORES <img src="./img/not-equal-to.svg" alt="not equal to"></p>
+        <p> Getting Accepted into a Good University</p>
+      </div>
+      <div class="popup__gold">
+        <div>
+          <img src="./img/berkeley.svg" alt="Berkeley">
+          <p>For every 1 spot available at Berkeley, there are <b>~3 students</b> that apply with a <b>4.0+ GPA</b></p>
+        </div>
+        <div>
+          <img src="./img/stanford.svg" alt="Stanford">
+          <p>For every 1 spot available at Stanford, there are <b>12 students</b> that apply with a <b>4.0+ GPA</b></p>
+        </div>
+      </div>
+      <p class="popup__text">Improve your child's university chances with
+        <b>Zenith Prep Academy's</b> tailored college prep roadmap for <b>6th-12th graders.</b>
+        <b>The earlier they start, the more powerful it will be.</b>
+      </p>
+      <p class="popup__learn">To learn more, book a <b>FREE 45 min</b> consultation</p>
+      <button class="popup__btn">BOOK A CONSULTATION NOW</button>
+      <p class="popup__remind">I don't have time now. Remind me later</p>
+    </div>
+  </div> -->
+
+  <div class="overlay overlay--2">
+    <div class="popup">
+      <img class="close-popup" src="./img/cross.svg" alt="close popup">
+      <p class="popup__title">Youʼre just a step away from giving your child access to a dream university</p>
+      <div class="popup__blue">
+        <p class="txl"><b>Busy parents often miss important steps</b> that can help their child get into a good
+          university.</p>
+      </div>
+      <div class="popup__gold">
+        <p class="list-heading">For only during the <b>next 45 minutes, you will learn:</b></p>
+        <ul class="list">
+          <li>At <b>what age</b> you should start preparation to secure a spot in <b>a good college</b></li>
+          <li>What universities actually <b>want in</b> an applicant (but never say)</li>
+          <li><b>How you, as a parent,</b> can assist your child in securing admission to the university they deserve
+          </li>
+        </ul>
+      </div>
+      <p class="popup__text">To find out how you <b>can help your child get into a good university,</b> click the button
+        below and book a complimentary consultation call.
+      </p>
+      <p class="popup__learn">To learn more, book a <b>FREE 45 min</b> consultation</p>
+      <button class="popup__btn">BOOK A CONSULTATION NOW</button>
+      <p class="popup__remind">I don't have time now. Remind me later</p>
+    </div>
+  </div>
+
+  <!-- <div class="overlay overlay--3">
+    <div class="popup">
+      <img class="close-popup" src="./img/cross.svg" alt="close popup">
+      <img class="back-popup" src="./img/cross.svg" alt="back to popup">
+      <p class="popup__title txc">How can we contact you?</p>
+      <p class="popup__text txc">We will call you back within 3 hours to choose a time that fits your schedule. </p>
+      <form id="contactForm" action="/submit" method="post">
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Name" required>
+        </div>
+        <div>
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" pattern="\+?[0-9]{3}-?[0-9]{3}-?[0-9]{4}" placeholder="+1" required>
+        </div>
+        <div>
+          <label for="message">Preferred time to call you back (optional)</label>
+          <textarea id="message" name="message" placeholder="Message here"></textarea>
+        </div>
+        <button type="submit" class="popup__btn">request a call back</button>
+      </form>
+    </div>
+  </div> -->
+  <script>
+    // Get the popup
+    const overlay = document.querySelector(".overlay")
+
+    // Get the button that opens the popup
+    const openBtn = document.getElementById("openPopup")
+
+    // Get the element that closes the popup
+    const closeBtn = document.querySelector(".close-popup")
+
+    // When the user clicks the button, open the popup
+    openBtn.onclick = () => {
+      overlay.classList.add("show")
+    }
+
+    // When the user clicks on <span> (x), close the popup
+    closeBtn.onclick = () => {
+      overlay.classList.remove("show")
+    }
+
+    // When the user clicks anywhere outside of the popup, close it
+    window.onclick = (event) => {
+      if (event.target == overlay) {
+        overlay.classList.remove("show")
+      }
+    }
+
+    overlay.classList.add("show")
+  </script>
+</body>
+
+</html>
