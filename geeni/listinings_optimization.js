@@ -320,10 +320,9 @@
       this.powerSection()
       this.lightingSection()
       this.lifestyleHealthSection()
- 
-      if (history.scrollRestoration) {
-        history.scrollRestoration = 'manual'
-      }
+
+      history.scrollRestoration = 'manual'
+
       document.addEventListener('click', e => {
         if (e.target.closest('.shopify-section.collection-section a.product-grid-item__shop_now')) {
           const title = e.target.closest('section').querySelector('h2').textContent
@@ -755,8 +754,6 @@
       $el('.sticky-filters__actions').append($el('.collection__sort-bar'))
       $el('.sticky-filters__actions').append($el('.collection__products-count'))
       const el = $el('.collection__sticky-bar')
-      let showIsSticky = false
-      let showIsNoSticky = false
 
       const filterCategoryNoStickyClickEvent = event => {
         const category = event.target.closest('.sticky-filters__btn').textContent.trim()
@@ -812,48 +809,69 @@
           'Listing with category of products Banner subcategories'
         )
       }
-      window.addEventListener('scroll', () => {
-        const stickyTop = parseInt(window.getComputedStyle(el).top)
-        const currentTop = el.getBoundingClientRect().top
-        $el('.sticky-filters.subcategory').classList.toggle('isSticky', currentTop === stickyTop)
-        const isSticky = $el('.sticky-filters.subcategory').classList.contains('isSticky')
-        if (isSticky && !showIsSticky) {
-          $el('.collection__filters__toggle').removeEventListener('click', filterNoStickyClickEvent)
-          $el('#crs_in_stock_switch').removeEventListener('change', inStockNoStickyClickEvent)
-          blockVisibility(
-            '.subcategory.isSticky',
-            'exp_list_optim_vis_liststicsubcat_elem',
-            'Element view',
-            'Listing with category of products Head Sticky banner subcategories'
-          )
 
-          $el('.collection__filters__toggle').addEventListener('click', filterStickyClickEvent)
-          $el('#crs_in_stock_switch').addEventListener('change', inStockStickyClickEvent)
-          $$el('.subcategory__item').forEach(item => {
-            item.removeEventListener('click', filterCategoryNoStickyClickEvent)
-          })
-          $$el('.subcategory__item').forEach(item => {
-            item.addEventListener('click', filterCategoryStickyClickEvent)
-          })
-          showIsSticky = true
-          showIsNoSticky = false
-        }
+      let sentinel = document.createElement('div')
+      sentinel.style.position = 'absolute'
+      sentinel.style.top = '-91px'
+      sentinel.style.height = '1px'
+      sentinel.style.width = '1px'
 
-        if (!isSticky && !showIsNoSticky) {
-          $el('.collection__filters__toggle').removeEventListener('click', filterStickyClickEvent)
-          $el('#crs_in_stock_switch').removeEventListener('change', inStockStickyClickEvent)
-          $el('.collection__filters__toggle').addEventListener('click', filterNoStickyClickEvent)
-          $el('#crs_in_stock_switch').addEventListener('change', inStockNoStickyClickEvent)
-          $$el('.subcategory__item').forEach(item => {
-            item.removeEventListener('click', filterCategoryStickyClickEvent)
+      let stickyElement = document.querySelector('.collection__sticky-bar')
+      stickyElement.parentElement.insertBefore(sentinel, stickyElement)
+
+      let observer = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+              $el('.sticky-filters.subcategory').classList.add('isSticky')
+
+              $el('.collection__filters__toggle').removeEventListener('click', filterNoStickyClickEvent)
+              $el('#crs_in_stock_switch').removeEventListener('change', inStockNoStickyClickEvent)
+              blockVisibility(
+                '.subcategory.isSticky',
+                'exp_list_optim_vis_liststicsubcat_elem',
+                'Element view',
+                'Listing with category of products Head Sticky banner subcategories'
+              )
+
+              $el('.collection__filters__toggle').addEventListener('click', filterStickyClickEvent)
+              $el('#crs_in_stock_switch').addEventListener('change', inStockStickyClickEvent)
+              $$el('.subcategory__item').forEach(item => {
+                item.removeEventListener('click', filterCategoryNoStickyClickEvent)
+              })
+              $$el('.subcategory__item').forEach(item => {
+                item.addEventListener('click', filterCategoryStickyClickEvent)
+              })
+            } else {
+
+              waitForElement('.subcategory').then(() => {
+                blockVisibility(
+                  '.subcategory',
+                  'exp_list_optim_vis_listsubcateg_elem',
+                  'Element view',
+                  'Listing with category of products Banner subcategories'
+                )
+              })
+              $el('.sticky-filters.subcategory').classList.remove('isSticky')
+
+              $el('.collection__filters__toggle').removeEventListener('click', filterStickyClickEvent)
+              $el('#crs_in_stock_switch').removeEventListener('change', inStockStickyClickEvent)
+              $el('.collection__filters__toggle').addEventListener('click', filterNoStickyClickEvent)
+              $el('#crs_in_stock_switch').addEventListener('change', inStockNoStickyClickEvent)
+              $$el('.subcategory__item').forEach(item => {
+                item.removeEventListener('click', filterCategoryStickyClickEvent)
+              })
+              $$el('.subcategory__item').forEach(item => {
+                item.addEventListener('click', filterCategoryNoStickyClickEvent)
+              })
+            }
           })
-          $$el('.subcategory__item').forEach(item => {
-            item.addEventListener('click', filterCategoryNoStickyClickEvent)
-          })
-          showIsNoSticky = true
-          showIsSticky = false
-        }
-      })
+        },
+        { threshold: [1] }
+      )
+
+      observer.observe(sentinel)
+
 
       this.handleFilters()
       $el('.collection__filters__toggle').addEventListener('click', filterNoStickyClickEvent)
@@ -861,16 +879,6 @@
         item.addEventListener('click', filterCategoryNoStickyClickEvent)
       })
       $el('#crs_in_stock_switch').addEventListener('change', inStockNoStickyClickEvent)
-
-      waitForElement('.subcategory').then(() => {
-        blockVisibility(
-          '.subcategory',
-          'exp_list_optim_vis_listsubcateg_elem',
-          'Element view',
-          'Listing with category of products Banner subcategories'
-        )
-      })
-
       waitForElement('.collection__products').then(elem => {
         elem.querySelectorAll('.product-grid-item').forEach(item => {
           item.addEventListener('click', event => {
@@ -942,7 +950,7 @@
       })
 
       lockTouchObserver.observe(document.documentElement, { attributes: true })
- 
+
       if (activeAvaibility !== '1') {
         $el('#crs_in_stock_switch').checked = false
       }
@@ -958,7 +966,6 @@
               input.click()
             }
           }
-    
         })
       })
       filters.length > 0 &&
@@ -1268,9 +1275,6 @@
       this.handleFilters(filters)
 
       waitForElement('#CollectionStickyBar').then(elem => {
-        let showIsSticky = false
-        let showIsNoSticky = false
-
         const filterStickyClickEvent = () => {
           pushDataLayer(
             'exp_list_optim_but_liststickbann_filt',
@@ -1330,48 +1334,56 @@
             'Listing with all products Under Shop all Geeni products Banner with categories'
           )
         }
-        window.addEventListener('scroll', () => {
-          const stickyTop = parseInt(window.getComputedStyle(elem).top)
-          const currentTop = elem.getBoundingClientRect().top
-          const isSticky = currentTop === stickyTop
-          if (isSticky && !showIsSticky) {
-            $el('.collection__filters__toggle').removeEventListener('click', filterNoStickyClickEvent)
-            $el('#crs_in_stock_switch').removeEventListener('change', inStockNoStickyClickEvent)
-            blockVisibility(
-              '.all-products-filters',
-              'exp_list_optim_vis_liststickbann_elem',
-              'Element view',
-              'Listing with all products Head Sticky banner with categories'
-            )
 
-            $el('.collection__filters__toggle').addEventListener('click', filterStickyClickEvent)
-            $el('#crs_in_stock_switch').addEventListener('change', inStockStickyClickEvent)
-            $$el('.sticky-filters__btn').forEach(item => {
-              item.removeEventListener('click', filterBtnsNoStickyEvent)
-              item.addEventListener('click', filterBtnsStickyEvent)
+        let sentinel = document.createElement('div')
+        sentinel.style.position = 'absolute'
+        sentinel.style.top = '-91px'
+        sentinel.style.height = '1px'
+        sentinel.style.width = '1px'
+
+        let stickyElement = document.querySelector('.collection__sticky-bar')
+        stickyElement.parentElement.insertBefore(sentinel, stickyElement)
+
+        let observer = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach(entry => {
+              if (!entry.isIntersecting) {
+                $el('.collection__filters__toggle').removeEventListener('click', filterNoStickyClickEvent)
+                $el('#crs_in_stock_switch').removeEventListener('change', inStockNoStickyClickEvent)
+                blockVisibility(
+                  '.all-products-filters',
+                  'exp_list_optim_vis_liststickbann_elem',
+                  'Element view',
+                  'Listing with all products Head Sticky banner with categories'
+                )
+
+                $el('.collection__filters__toggle').addEventListener('click', filterStickyClickEvent)
+                $el('#crs_in_stock_switch').addEventListener('change', inStockStickyClickEvent)
+                $$el('.sticky-filters__btn').forEach(item => {
+                  item.removeEventListener('click', filterBtnsNoStickyEvent)
+                  item.addEventListener('click', filterBtnsStickyEvent)
+                })
+              } else {
+                $el('.collection__filters__toggle').removeEventListener('click', filterStickyClickEvent)
+                $el('#crs_in_stock_switch').removeEventListener('change', inStockStickyClickEvent)
+
+                $el('.collection__filters__toggle').addEventListener('click', filterNoStickyClickEvent)
+                $el('#crs_in_stock_switch').addEventListener('change', inStockNoStickyClickEvent)
+                $$el('.sticky-filters__btn').forEach(item => {
+                  item.removeEventListener('click', filterBtnsStickyEvent)
+                  item.addEventListener('click', filterBtnsNoStickyEvent)
+                })
+              }
             })
-            showIsSticky = true
-            showIsNoSticky = false
-          }
+          },
+          { threshold: [1] }
+        )
 
-          if (!isSticky && !showIsNoSticky) {
-            $el('.collection__filters__toggle').removeEventListener('click', filterStickyClickEvent)
-            $el('#crs_in_stock_switch').removeEventListener('change', inStockStickyClickEvent)
-
-            $el('.collection__filters__toggle').addEventListener('click', filterNoStickyClickEvent)
-            $el('#crs_in_stock_switch').addEventListener('change', inStockNoStickyClickEvent)
-            $$el('.sticky-filters__btn').forEach(item => {
-              item.removeEventListener('click', filterBtnsStickyEvent)
-              item.addEventListener('click', filterBtnsNoStickyEvent)
-            })
-            showIsNoSticky = true
-            showIsSticky = false
-          }
-        })
+        observer.observe(sentinel)
       })
     }
 
-    backNavigation({ selector, link, text, position = 'afterend', history = false }) {
+    backNavigation({ selector, link, text, position = 'afterend'}) {
       const backNavigationHtml = /* HTML */ `
         <div class="back-navigation">
           <a href=${link || 'javascript:history.back()'}>
@@ -1971,6 +1983,8 @@
             width: 105px;
             height: 128px;
             text-wrap: wrap;
+            white-space: normal;
+
             text-align: center;
           }
           .subcategory .sticky-filters__btn img {
@@ -1987,6 +2001,7 @@
             height: fit-content;
             border-radius: 4px;
             text-wrap: nowrap;
+            white-space: nowrap;
           }
           .isSticky .subcategory__item--active .sticky-filters__btn {
             background: var(--Blue, #00b3f0);
@@ -1995,6 +2010,8 @@
             font-size: 13px;
             font-weight: 500;
             line-height: 20px;
+            text-wrap: nowrap;
+            white-space: nowrap;
           }
 
           .subcategory__item_wrap {
