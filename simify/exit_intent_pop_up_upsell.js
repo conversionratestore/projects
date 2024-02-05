@@ -143,7 +143,6 @@ function waitForElement(selector) {
     })
   })
 }
-
 const icons = {
   close: /* HTML */ `
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -335,7 +334,7 @@ class IntentPopup {
       })
     } else {
       document.addEventListener('mouseout', event => {
-        if (!event.relatedTarget && event.toElement == null) {
+        if (!event.relatedTarget) {
           this.showIntentPopup()
         }
       })
@@ -929,18 +928,23 @@ class IntentPopup {
         'Play',
         'PDP Europe & UK eSIM (50 Countries) Learn how to activate your eSIM'
       )
-      const player = new YT.Player('player', {
-        height: '315',
-        width: '560',
-        videoId: $videoUrl,
-        events: {
-          onReady: function (event) {
-            event.target.playVideo()
-          }
-        }
-      })
+      let windowYT = setInterval(() => {
+        if (window.YT) {
+          clearInterval(windowYT)
+          const player = new YT.Player('player', {
+            height: '315',
+            width: '560',
+            videoId: $videoUrl,
+            events: {
+              onReady: function (event) {
+                event.target.playVideo()
+              }
+            }
+          })
 
-      $videoCover.fadeOut()
+          $videoCover.fadeOut()
+        }
+      }, 500)
     })
   }
   onClickVideoExplanationBlock() {
