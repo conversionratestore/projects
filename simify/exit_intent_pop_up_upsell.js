@@ -327,7 +327,9 @@ class IntentPopup {
         if (
           (+scrollSpeed < -100 || +scrollSpeed > 100) &&
           !localStorage.getItem('onClickIsMyDeviceCompatibleBlock') &&
-          !localStorage.getItem('onClickStampedReviewsBlock')
+          !localStorage.getItem('onClickStampedReviewsBlock') &&
+          !localStorage.getItem('onClickBtnSelectPlan') &&
+          !localStorage.getItem('onClickItWorkInBlock')
         ) {
           this.showIntentPopup()
         }
@@ -1084,6 +1086,7 @@ class IntentPopup {
               'PDP Europe & UK eSIM (50 Countries) Footer'
             )
           }
+          setLocalStorage('onClickBtnSelectPlan', `yes`)
           let coverageElem = $el('.Product__InfoWrap .ProductForm')
 
           if (window.innerWidth > 768) {
@@ -1091,6 +1094,10 @@ class IntentPopup {
           } else {
             checkScrollPosition(120, coverageElem)
           }
+
+          setTimeout(() => {
+            removeLocalStorage('onClickBtnSelectPlan')
+          }, 1000)
         }
         e.target.setAttribute('data-test', '1')
         setTimeout(() => {
@@ -1926,6 +1933,7 @@ class IntentPopup {
   onClickItWorkInBlock(el) {
     el.addEventListener('click', e => {
       if (!e.target.getAttribute('data-test')) {
+        setLocalStorage('onClickItWorkInBlock', `yes`)
         pushDataLayer(
           'exp_pdp_enhanc_link_see_what_count_work',
           'See what countries it work in',
@@ -1935,6 +1943,9 @@ class IntentPopup {
         let coverageElem = $el('.link_Coverage')
 
         checkScrollPosition(130, coverageElem)
+        setTimeout(() => {
+          removeLocalStorage('onClickItWorkInBlock')
+        }, 1000)
         coverageElem?.click()
       }
       e.target.setAttribute('data-test', '1')
