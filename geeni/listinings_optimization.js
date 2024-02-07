@@ -7,7 +7,7 @@
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
       clearInterval(clarityInterval)
-      clarity('set', '', 'variant_1')
+      clarity('set', 'list_opt', 'variant_1')
     }
   }, 1000)
 
