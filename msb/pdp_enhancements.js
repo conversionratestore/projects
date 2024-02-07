@@ -1756,14 +1756,14 @@
               )
             })
           }
+          pushDataLayer(
+            'exp_soc_trus_objec_accord_details_pdp',
+            item.textContent,
+            'Accordion',
+            'PDP'
+          )
         })
-        pushDataLayer(
-          'exp_soc_trus_objec_accord_details_pdp',
-          item.textContent,
-          'Accordion',
-          'PDP'
-        )
-      })
+        })
     }
     #initStyles() {
       const style = /* HTML */ `
@@ -1983,13 +1983,12 @@
           .crs_top_badges {
             position: absolute;
             top: 19px;
-            left: 0;
+            left: 70px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
+            width: 95%;
             padding: 0 20px;
-            padding-left: 75px;
             z-index: 10;
           }
           .crs_warranty {
@@ -2743,6 +2742,12 @@
             }
           }
           @media (max-width: 769px) {
+            .footer-newsletter-block-outer {
+              justify-content: center;
+            }
+            .footer-newsletter-block-content, .footer-newsletter-block-content > div {
+              min-width: 90%!important;
+            }
             .product-info-main {
               padding: 0 20px;
             }
@@ -2791,7 +2796,8 @@
               margin-bottom: 0 !important ;
             }
             .crs_top_badges {
-              padding-left: 20px;
+              width: 100%;
+              left: 0;
             }
             .crs__accordion {
               padding-left: 0;
