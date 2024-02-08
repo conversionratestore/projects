@@ -315,7 +315,13 @@ class IntentPopup {
         currentPath === '/products/ultd-eu-uk-es' ||
         currentPath === '/products/ultd-jp-es' ||
         currentPath === '/products/ultd-sk-es' ||
-        currentPath === '/products/ultd-am-ca-es'
+        currentPath === '/products/ultd-am-ca-es' ||
+        currentPath === '/collections/esim-asia/products/ultd-jp-es' ||
+        currentPath === '/collections/esim-asia/products/ultd-as-es' ||
+        currentPath === '/collections/esim-europe/products/ultd-eu-uk-es' ||
+        currentPath === '/collections/esim-usa/products/ultd-am-ca-es' ||
+        currentPath === '/collections/esim-asia/products/ultd-sk-es' ||
+        currentPath === '/collections/esim-asia/products/ultd-ch-es'
       ) {
         this.newPdpReDesignInput()
       }
