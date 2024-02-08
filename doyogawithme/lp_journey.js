@@ -378,8 +378,9 @@ p {
 .crs_instructors .crs_surface {
     left: auto;
     right: 0;
-    transform: translate(44%, 52%);
+    transform: translateY(50%);
     z-index: -1;
+    width: auto;
 }
 .crs_ways {
     background: var(--Blue-dark, #003A67);
