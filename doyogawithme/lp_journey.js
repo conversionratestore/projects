@@ -28,7 +28,7 @@ const style = `
     outline: none;
 }
 .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
-    bottom: 0px!important;
+    bottom: -13px!important;
 }
 * {
     box-sizing: border-box;
@@ -47,6 +47,14 @@ const style = `
 .crs_header {
     background: #fff;
     padding: 8px 0 9px;
+}
+.crs_header a,
+.crs_header_sticky a {
+    display: block;
+}
+.crs_header img,
+.crs_header_sticky img {
+    height: 37px;
 }
 .crs_header_sticky {
     opacity: 0;
@@ -229,6 +237,8 @@ p {
 .lav-instr__info {
     padding: 20px;
     border-radius: 0 0 12px 12px;
+    min-height: 120px;
+    background-color: #fff;
 }
 .lav-instr__caption {
     color: var(--Body-color, #555);
@@ -300,8 +310,12 @@ p {
 .crs_community {
     padding: 90px 0 65px;
 }
+.crs_community .crs_btn {
+    max-width: 250px;
+}
 .crs_community img,
-.crs_video {
+.crs_video,
+.crs_instructors .crs_surface {
     position: absolute;
     top: 0;
     height: 100%;
@@ -351,6 +365,21 @@ p {
 }
 .crs_community_collection.crs_community p {
     max-width: 449px;
+}
+
+.crs_community_collection.crs_community .crs_surface,
+.crs_instructors .crs_surface {
+    bottom: 0;
+    width: 682.665px;
+    height: 682.667px;
+    transform: translate(-44%, 32%);
+}
+
+.crs_instructors .crs_surface {
+    left: auto;
+    right: 0;
+    transform: translate(44%, 52%);
+    z-index: -1;
 }
 .crs_ways {
     background: var(--Blue-dark, #003A67);
@@ -500,8 +529,13 @@ p {
         margin-bottom: 20px;
     }
     .crs_community .crs_video {
+        display: block;
+        height: fit-content;
         max-width: 100%;
         position: initial;
+    }
+    .crs_video img {
+        height: auto;
     }
     .crs_community > div > div:last-child {
         margin: -42px auto 0;
@@ -512,6 +546,10 @@ p {
     }
 }
 @media (max-width: 767px) {
+    .crs_header img,
+    .crs_header_sticky img {
+        height: 33px;
+    }
     .crs_sticky {
         position: fixed;
         bottom: 0;
@@ -524,7 +562,7 @@ p {
     }
     .crs_offer .container {
         position: absolute;
-        top: calc(100% - 55px);
+        bottom: 0;
         left: 20px;
         width: calc(100% - 40px);
         border-radius: 12px;
@@ -548,8 +586,8 @@ p {
         line-height: 24px; /* 150% */
     }
     .crs_offer {
-        min-height: 324px;
-        background: url('${dir}image-10-mob.png') no-repeat center / cover
+        min-height: 531px;
+        background: #F6F6F6 url('${dir}image-10-mob.png') no-repeat center top / 100% 86.93vw;
     }
     .crs_btn {
         font-size: 16px;
@@ -628,7 +666,7 @@ p {
         line-height: 22px;
     }
     .crs_unlock {
-        padding: 230px 0 30px;
+        padding: 24px 0 30px;
     }
     .crs_unlock h2 {
         padding: 0 10px 4px;
@@ -821,11 +859,15 @@ for (let i = 0; i < reviewData.length; i++) {
 
 const html = `
     <header class="crs_header d-flex justify-content-center">
-        <img src="${dir}logo.png" alt="logo" class="d-md-block d-none">
-        <img src="${dir}logo-white.png" alt="logo" class="d-md-none">
+        <a href="https://www.doyogawithme.com/">
+            <img src="${dir}logo.png" alt="logo" class="d-md-block d-none">
+            <img src="https://www.doyogawithme.com/themes/custom/samsara/logo.png" alt="logo" class="d-md-none">
+        </a>
     </header>
     <header class="crs_header_sticky d-flex justify-content-center">
-        <img src="${dir}logo-white.png" alt="logo">
+        <a href="https://www.doyogawithme.com/">
+            <img src="https://www.doyogawithme.com/themes/custom/samsara/logo.png" alt="logo">
+        </a>
     </header>
     <section class="crs_offer d-flex align-items-center">
         <div class="container">
@@ -856,9 +898,10 @@ const html = `
         </div>
     </section>
     <section class="crs_community crs_community_collection" >
+        <img class="crs_surface" src="${dir}surface1.svg" alt="surface1">
         <div class="container d-lg-flex align-items-center">
             <a href="https://www.doyogawithme.com/yoga-classes" target=”_blank” class="crs_video">
-                <img src="${dir}video${media ? '-2' : ''}.png" alt="video img">
+                <img src="${dir}video${media == 'mobile' ? '-2' : ''}.png" alt="video img">
             </a>
             <div>
                 <h2 class="mb-md-4 mb-2">Our classes collection</h2>
@@ -871,7 +914,7 @@ const html = `
         <div class="container">
             <div class="d-flex align-items-center justify-content-between mb-3">
                 <h2 class="d-md-block d-none">Real Stories, Real Transformations</h2>
-                <h2 class="d-md-none">Join the Excitement of Our Inaugural Yoga Challenges!</h2>
+                <h2 class="d-md-none">Real Stories, Real Transformations</h2>
                 <div class="d-md-flex d-none">
                     <button type="button" class="crs_button_swiper crs_button_prev d-flex">
                         <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
@@ -892,6 +935,7 @@ const html = `
         </div>
     </section>
     <section class="crs_instructors">
+        <img class="crs_surface" src="${dir}surface2.svg" alt="surface2">
         <div class="container">
             <div class="d-flex align-items-center justify-content-between mb-3">
                 <h2>Our Instructors</h2>
