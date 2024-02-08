@@ -868,12 +868,12 @@ const html = `
     <header class="crs_header d-flex justify-content-center">
         <a href="https://www.doyogawithme.com/">
             <img src="${dir}logo.png" alt="logo" class="d-md-block d-none">
-            <img src="${dir}logo-white.png" alt="logo" class="d-md-none">
+            <img src="https://www.doyogawithme.com/themes/custom/lotus/logo.png" alt="logo" class="d-md-none">
         </a>
     </header>
     <header class="crs_header_sticky d-flex justify-content-center">
         <a href="https://www.doyogawithme.com/">
-            <img src="https://www.doyogawithme.com/themes/custom/samsara/logo.png" alt="logo">
+            <img src="https://www.doyogawithme.com/themes/custom/lotus/logo.png" alt="logo">
         </a>
     </header>
     <section class="crs_offer d-flex align-items-center">
