@@ -37,7 +37,7 @@ function checkFocusTime(selector, event, location) {
         console.log(timeShow, `timeShow`)
         entry.target.removeAttribute('data-startShow')
         if (timeShow >= 3000) {
-          pushDataLayer(event, timeShow, 'Visibility', location)
+          pushDataLayer(event, `Page view ${timeShow}`, 'Visibility', location)
         }
         checker.unobserve(entry.target)
       }
@@ -221,7 +221,7 @@ class HomePage {
     `
     const scheduleFreeConsultationBtn = /* HTML */ `
       ${scheduleFreeConsultationBtnStyle}
-      <a class="schedule_a_free_link" href="#"
+      <a class="schedule_a_free_link" href="https://app.grantme.com/assessment-outcome?user_type=parent"
         >Schedule a free consultation call <span>now</span> ${icons.arrowBlue}
       </a>
     `
@@ -851,6 +851,8 @@ class HomePage {
               )
             }
           }
+
+          window.location.href = 'https://app.grantme.com/assessment-outcome?user_type=parent'
         })
       })
     })
@@ -1166,4 +1168,443 @@ class HomePage {
   }
 }
 
+class BookingPage {
+  constructor(targetUrl) {
+    this.targetUrl = targetUrl
+    this.device = innerWidth <= 768 ? 'Mobile' : 'Desktop'
+    this.newNameBtn = 'Request Consultation'
+    this.init()
+  }
+
+  init() {
+    const currentUrl = location.pathname
+
+    if (currentUrl === this.targetUrl) {
+      console.log(`ONLY BookingPage >>>>>`)
+      this.initMainStyles()
+      this.reDesignHero()
+      this.addTitleFaqStart()
+      this.onChangeTxtFooterBtn()
+      this.onClickYellowBtns()
+      this.onClickVideo()
+      this.onClickSlickArrow()
+      this.onClickAccordion()
+      this.visibleBookingCalendar()
+
+      if (this.device === 'Mobile') {
+        this.replaceElement()
+      }
+    }
+  }
+  reDesignHero() {
+    const titleHtml = /* HTML */ `
+      <style>
+        .new_hero_title {
+          color: #fff;
+          font-family: 'Bitter';
+          font-size: 48px;
+          font-weight: 600;
+          line-height: 56px;
+          margin: 0 0 40px;
+          max-width: 510px;
+        }
+        .new_hero_title span {
+          display: inline-block;
+          position: relative;
+          color: #ebbd45;
+        }
+        .new_hero_title span:before {
+          position: absolute;
+          content: '';
+          background: url(/themes/custom/grantmenew2/css/features/../../images/booking/right-arrow-yellow.svg) no-repeat
+            center center;
+          width: 24px;
+          height: 24px;
+          top: 50%;
+          right: -50px;
+          transform: translateY(-50%);
+        }
+        @media (max-width: 768px) {
+          .new_hero_title {
+            display: none;
+          }
+        }
+      </style>
+      <h2 class="new_hero_title">Unlock Your <span>University Potential</span></h2>
+    `
+
+    waitForElement('.greetings_box').then(el => {
+      if (!$el('.new_hero_title')) {
+        el.insertAdjacentHTML('beforebegin', titleHtml)
+      }
+    })
+    waitForElement('.consultation_descr_box').then(el => {
+      el.querySelectorAll('.parent_child_change').forEach(el => {
+        el.textContent = 'you'
+      })
+
+      el.querySelectorAll('.user_check_reference_your').forEach(el => {
+        el.textContent = 'your'
+      })
+      el.querySelectorAll('.user_check_reference').forEach(el => {
+        el.textContent = 'are'
+      })
+    })
+    waitForElement('.calc_step_third>p>span:nth-child(1)').then(el => {
+      if (el.textContent !== '15 min') {
+        el.textContent = '15 min'
+      }
+    })
+
+    waitForElement('.calendar').then(el => {
+      $$el('.day.has-event').forEach(el => {
+        el.addEventListener('click', e => {
+          const parentElem = $el('.chosen_select')
+          parentElem.style.opacity = '0'
+          setTimeout(() => {
+            waitForElement('.chosen_select div.select_custom').then(el => {
+              el.click()
+              setTimeout(() => {
+                parentElem.style.opacity = '1'
+              }, 200)
+            })
+          }, 100)
+        })
+      })
+    })
+  }
+  replaceElement() {
+    waitForElement('.what_users_say_box').then(el => {
+      waitForElement('.as_seen_on_box').then(i => {
+        el.after(i)
+      })
+    })
+  }
+  addTitleFaqStart() {
+    const titleHtml = /* HTML */ `
+      <style>
+        .title_faq {
+          color: #2b3e51;
+          text-align: center;
+          font-family: 'Bitter';
+          font-size: 48px;
+          font-weight: 400;
+          line-height: 40px;
+          letter-spacing: -0.24px;
+          text-transform: capitalize;
+          margin-bottom: 58px;
+        }
+        @media (max-width: 768px) {
+          .title_faq {
+            margin: 0 auto 10px !important;
+            font-size: 32px !important;
+            max-width: 255px;
+          }
+        }
+      </style>
+      <h2 class="title_faq">Frequently Asked Questions</h2>
+    `
+    waitForElement('.path-start-free-trial .faqstartfreetrial').then(el => {
+      $$el('.path-start-free-trial .faqstartfreetrial').forEach(i => {
+        if (!i.querySelector('.title_faq')) {
+          i.insertAdjacentHTML('afterbegin', titleHtml)
+        }
+      })
+    })
+  }
+  onChangeTxtFooterBtn() {
+    waitForElement('.footer-start-free-trial a.btn.primary-solid-yellow').then(el => {
+      if (el.textContent !== this.newNameBtn) {
+        el.textContent = this.newNameBtn
+      }
+
+      el.addEventListener('click', e => {
+        e.preventDefault()
+        pushDataLayer(
+          'exp_add_flow_but_bookcons_reque',
+          'Request Consultation',
+          'Button',
+          'Booking page  Schedule a Complimentary Consultation'
+        )
+        let coverageElem = $el('#newScheduleBox')
+        checkScrollPosition(0, coverageElem)
+      })
+    })
+  }
+  onClickYellowBtns() {
+    waitForElement('.book_free_call_btn').then(el => {
+      $$el('.book_free_call_btn')?.forEach(el => {
+        el.addEventListener('click', e => {
+          e.preventDefault()
+          e.stopPropagation()
+
+          if (e.target.closest('.is_fixed') || e.target.closest('.sticky_box')) {
+            pushDataLayer(
+              'exp_add_flow_sticbut_bookcons_bookcall',
+              'Book a Free Call',
+              'Sticky button ',
+              'Booking page  Schedule a Complimentary Consultation'
+            )
+          }
+          let coverageElem = $el('#newScheduleBox')
+          checkScrollPosition(0, coverageElem)
+        })
+      })
+    })
+  }
+  onClickSlickArrow() {
+    waitForElement('.slick-arrow').then(el => {
+      $$el('.slick-arrow').forEach(el => {
+        el.addEventListener('click', function (e) {
+          if (e.currentTarget.classList.contains('testimonials_arrow_prev')) {
+            pushDataLayer(
+              'exp_add_flow_but_bookcons_arrow',
+              'left',
+              'Button',
+              'Booking page  Schedule a Complimentary Consultation'
+            )
+          } else {
+            pushDataLayer(
+              'exp_add_flow_but_bookcons_arrow',
+              'right',
+              'Button',
+              'Booking page  Schedule a Complimentary Consultation'
+            )
+          }
+        })
+      })
+    })
+  }
+  onClickVideo() {
+    waitForElement('.testimonials_video').then(el => {
+      $$el('.wistia_responsive_padding').forEach(el => {
+        el.addEventListener('click', () => {
+          pushDataLayer(
+            'exp_add_flow_clic_bookcons_video',
+            'Video',
+            'Click',
+            'Booking page Schedule a Complimentary Consultation'
+          )
+        })
+      })
+    })
+  }
+  onClickAccordion() {
+    waitForElement('#accordion').then(el => {
+      $$el('#accordion .panel .panel-heading a').forEach(el => {
+        el.addEventListener('click', link => {
+          pushDataLayer(
+            'exp_add_flow_accor_bookcons_quest',
+            `${link.currentTarget.textContent} - Questions`,
+            'Accordion',
+            'Booking page  Schedule a Complimentary Consultation'
+          )
+        })
+      })
+    })
+  }
+  visibleBookingCalendar() {
+    waitForElement('#newScheduleBox').then(el => {
+      checkFocusTime(
+        '#newScheduleBox',
+        'exp_add_flow_vis_bookcons_page',
+        'Booking page Schedule a Complimentary Consultation'
+      )
+    })
+  }
+  // common func
+  initMainStyles() {
+    const mainStyles = /* HTML */ `
+      <style>
+        /*header */
+        .sticky_header .book_free_call_btn {
+          display: flex !important;
+          max-width: 164px;
+        }
+        /*hero */
+        .greetings_box,
+        .consultation_descr_box h2 {
+          display: none;
+        }
+        .consultation_descr_box {
+          padding: 24px 32px 24px 24px;
+          margin: 0;
+        }
+        body .consultation_descr_box > div + div,
+        body .consultation_descr_box > div.no_commitments_wrapper {
+          margin-top: 24px;
+        }
+        body .consultation_descr_box > div h3 {
+          font-size: 24px !important;
+          font-weight: 600 !important;
+          line-height: 36px !important;
+          margin-bottom: 12px !important;
+        }
+        body .consultation_descr_box > div ul {
+          list-style: none;
+        }
+        body .consultation_descr_box > div ul li {
+          position: relative;
+          padding-left: 15px;
+        }
+        body .consultation_descr_box > div ul li::before {
+          position: absolute;
+          content: '';
+          width: 7px;
+          height: 6px;
+          border-radius: 50%;
+          background: #fff;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+        }
+        body .consultation_descr_box > div ul li + li {
+          margin-top: 16px;
+        }
+        .our_consultants_wrapper > p:before {
+          background: url(${git}/grantme/img/telephone_blue.svg) no-repeat center center;
+        }
+        .new_schedule_box > h2 {
+          margin: 0 auto;
+          max-width: 358px;
+        }
+        .path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center {
+          max-width: 590px;
+        }
+        .chosen_select {
+          transition: all 250ms cubic-bezier(0.4, 0, 1, 1);
+        }
+        /*as_seen_on_box */
+        body .as_seen_on_box h2 {
+          margin-bottom: 43px !important;
+        }
+        /* what_users_say_box*/
+        .what_users_say_box {
+          padding-top: 0;
+        }
+        .what_users_say_box h2 {
+          margin-bottom: 36px;
+        }
+        .testimonials_arrows {
+          margin-bottom: 0;
+        }
+        /* faqstartfreetrial*/
+        .path-start-free-trial .faqstartfreetrial {
+          padding: 100px 0;
+        }
+        .path-start-free-trial .faqstartfreetrial .panel-group {
+          margin: 0;
+        }
+        /*competition-section  */
+        .competition-section {
+          display: none;
+        }
+        /*footer */
+        .footer-start-free-trial h2 {
+          padding-top: 97px;
+        }
+        .footer-start-free-trial > p {
+          padding-top: 32px;
+        }
+        @media (max-width: 768px) {
+          .path-schedule-consultation .block-schedule-consulation-header #scholarshipListContent .academy-waiting {
+            display: flex;
+            flex-direction: column-reverse;
+          }
+          .new_schedule_box {
+            background: #2b3e51;
+            padding: 24px 16px;
+          }
+          .new_schedule_box > h2,
+          .new_schedule_box .new_schedule_descr span {
+            color: #fff;
+          }
+          .new_schedule_box .new_schedule_descr span:before {
+            background: url(${git}/grantme/img/dollar_yellow.svg) no-repeat center center;
+          }
+          .new_schedule_box .new_schedule_descr span:nth-child(2):before {
+            background: url(${git}/grantme/img/clock_yellow.svg) no-repeat center center;
+          }
+          .new_schedule_box .new_schedule_descr span:nth-child(3):before {
+            background: url(${git}/grantme/img/zoom_yellow.svg) no-repeat center center;
+          }
+          body .our_consultants_wrapper h3 {
+            color: #fff !important;
+          }
+          .our_consultants_wrapper .path-start-free-trial #scholarshipListContent .academy-waiting p,
+          body .our_consultants_wrapper > p a,
+          .our_consultants_wrapper > p,
+          .our_consultants_wrapper > div p {
+            color: #fff !important;
+          }
+          .row.academy-waiting > .col-lg-5.academy-waiting-left {
+            padding: 0px 16px 24px;
+          }
+          .our_consultants_wrapper > p:before {
+            background: url(/themes/custom/grantmenew2/css/features/../../images/booking/telephone-yellow.svg) no-repeat
+              center center;
+          }
+          body .consultation_descr_box > div h3 {
+            font-size: 18px !important;
+            font-weight: 700 !important;
+            line-height: 24px !important;
+          }
+          body .consultation_descr_box > div ul li {
+            color: #ccc;
+          }
+          body .consultation_descr_box > div ul {
+            padding: 0 0 0 5px;
+          }
+          body .consultation_descr_box > div ul li::before {
+            top: 10px;
+            transform: unset;
+          }
+          body .consultation_descr_box > div ul li span {
+            color: #fff;
+          }
+          body .consultation_descr_box > div ul li + li {
+            margin-top: 8px;
+          }
+          .what_users_say_box {
+            padding: 40px 16px 0;
+          }
+          .what_users_say_box h2 {
+            margin-bottom: 20px;
+          }
+          .as_seen_on_box {
+            padding: 40px 16px 0;
+          }
+          body .as_seen_on_box h2 {
+            margin-bottom: 17px !important;
+          }
+          .reviews_btn_box {
+            display: none;
+          }
+          .path-start-free-trial .faqstartfreetrial {
+            padding: 21px 0;
+          }
+          .footer-start-free-trial h2 {
+            padding-top: 47px;
+          }
+          .footer-start-free-trial > p {
+            padding-top: 32px;
+            max-width: 360px;
+            margin: 0 auto;
+          }
+        }
+
+        @media (max-width: 391px) {
+        }
+        @media (max-width: 376px) {
+        }
+      </style>
+    `
+    this.insert(mainStyles, 'head')
+  }
+  insert(html, selector, position = 'beforeend') {
+    $el(selector).insertAdjacentHTML(position, html)
+  }
+}
+
 new HomePage('/')
+new BookingPage('/assessment-outcome')
