@@ -289,6 +289,7 @@ class IntentPopup {
     this.createPopup()
 
     const currentUrl = location.href
+    const currentPath = window.location.pathname
 
     if (currentUrl.includes(this.targetUrl) && this.targetUrl === '/collections') {
       console.log(`ONLY POPUP >>>>>`)
@@ -307,6 +308,17 @@ class IntentPopup {
       this.onClickSizeSwatchLinkBtn()
       this.onVisibleStickyBanner()
       this.initMutationObserverPdp()
+
+      if (
+        currentPath === '/products/ultd-as-es' ||
+        currentPath === '/products/ultd-ch-es' ||
+        currentPath === '/products/ultd-eu-uk-es' ||
+        currentPath === '/products/ultd-jp-es' ||
+        currentPath === '/products/ultd-sk-es' ||
+        currentPath === '/products/ultd-am-ca-es'
+      ) {
+        this.newPdpReDesignInput()
+      }
     }
 
     if (currentUrl.includes(this.targetUrl) && (this.targetUrl === '/simsdirect' || this.targetUrl === '/simify')) {
@@ -2350,6 +2362,87 @@ class IntentPopup {
         el.remove()
       }, 2000)
       $$el('.cardAddedSuccessfullyBlock').forEach(i => {})
+    })
+  }
+
+  newPdpReDesignInput() {
+    const newElemStyle = /* HTML */ `
+      <style>
+        .new_pro-grid .ProductForm__Variants .SizeSwatch > div:nth-of-type(1) p {
+          font-size: 18px;
+          line-height: 26px;
+        }
+        .new_pro-grid .ProductForm__Variants .SizeSwatch > div:nth-of-type(1) span.unlimited-data-txt {
+          line-height: 130%;
+          color: #333;
+          font-size: 14px;
+          font-weight: 500;
+        }
+        .new_pro-grid .ProductForm__Variants .SizeSwatch > div:nth-of-type(1) {
+          max-width: 185px;
+        }
+        .new_pro-grid
+          .ProductForm__Variants
+          .HorizontalList--spacingTight
+          .HorizontalList__Item
+          .SizeSwatch
+          > div:nth-child(2)
+          .Pro-varint-price-inner {
+          color: #333f48;
+          font-size: 18px;
+          font-weight: 600;
+          line-height: 26px;
+          text-transform: uppercase;
+        }
+        .new_pro-grid
+          .ProductForm__Variants
+          .HorizontalList--spacingTight
+          .HorizontalList__Item
+          .SizeSwatch
+          > div:nth-child(2)
+          span.per-day-txt {
+          color: #333f48;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 23.1px;
+        }
+        .new_pro-grid .ProductForm__Variants .HorizontalList--spacingTight .HorizontalList__Item .SizeSwatch {
+          padding: 14px 18px 13px 50px;
+        }
+        .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList label:before {
+          left: 18px;
+          top: 27px;
+        }
+        .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList input[type='radio']:checked + label:after,
+        .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList label:after {
+          left: 24px;
+          top: 33px;
+        }
+      </style>
+    `
+
+    waitForElement('.ProductForm__Variants').then(el => {
+      this.insert(newElemStyle, '.ProductForm__Variants')
+    })
+
+    const unlimitedDataElem = /* HTML */ ` <span class="unlimited-data-txt">Unlimited Data</span> `
+    const variantItem = $$el('.new_pro-grid .ProductForm__Variants .SizeSwatch > div:nth-of-type(1)')
+    variantItem?.forEach(i => {
+      if (!i.querySelector('.unlimited-data-txt')) {
+        i.insertAdjacentHTML('afterbegin', unlimitedDataElem)
+      }
+    })
+
+    const variantItem2 = $$el(
+      '.new_pro-grid .ProductForm__Variants .HorizontalList--spacingTight .HorizontalList__Item .SizeSwatch > div:nth-child(2)'
+    )
+    variantItem2?.forEach(i => {
+      const price = +i.querySelector('.Pro-varint-price-inner').textContent.split('$')[1]
+      const day = +i.closest('label').querySelector('div:nth-of-type(1) p').textContent.split(' ')[0]
+      const perDay = price / day
+      if (!i.querySelector('.per-day-txt')) {
+        i.insertAdjacentHTML('beforeend', `<span class="per-day-txt">$${perDay.toFixed(2)}/day</span>`)
+      }
     })
   }
 
