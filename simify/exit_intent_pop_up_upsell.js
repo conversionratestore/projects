@@ -2371,6 +2371,8 @@ class IntentPopup {
         .new_pro-grid .ProductForm__Variants .SizeSwatch > div:nth-of-type(1) p {
           font-size: 18px;
           line-height: 26px;
+          min-width: 80px;
+          text-align: left;
         }
         .new_pro-grid .ProductForm__Variants .SizeSwatch > div:nth-of-type(1) span.unlimited-data-txt {
           line-height: 130%;
@@ -2417,6 +2419,15 @@ class IntentPopup {
         .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList label:after {
           left: 24px;
           top: 33px;
+        }
+
+        @media (max-width: 768px) {
+          .new_pro-grid .ProductForm__Variants .SizeSwatch > div:nth-of-type(1) {
+            gap: 15px;
+          }
+          .esim-tabs {
+            justify-content: flex-start;
+          }
         }
       </style>
     `
