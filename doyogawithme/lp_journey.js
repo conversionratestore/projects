@@ -311,7 +311,7 @@ p {
     padding: 90px 0 65px;
 }
 .crs_community .crs_btn {
-    max-width: 250px;
+    max-width: 350px;
 }
 .crs_community img,
 .crs_video,
@@ -536,6 +536,7 @@ p {
     }
     .crs_video img {
         height: auto;
+        width: 100%;
     }
     .crs_community > div > div:last-child {
         margin: -42px auto 0;
@@ -587,7 +588,7 @@ p {
     }
     .crs_offer {
         min-height: 531px;
-        background: #F6F6F6 url('${dir}image-10-mob.png') no-repeat center top / 100% 86.93vw;
+        background: #F6F6F6 url('${dir}image-10-mob.png') no-repeat center top / 100%;
     }
     .crs_btn {
         font-size: 16px;
@@ -684,6 +685,11 @@ p {
         height: 42px;
     }
 }
+// @media (max-width: 374px) {
+//     .crs_offer {
+//         background-size:100% 86.93vw;
+//     }
+// }
 </style>`;
 
 const dataIcons = {
@@ -861,7 +867,7 @@ const html = `
     <header class="crs_header d-flex justify-content-center">
         <a href="https://www.doyogawithme.com/">
             <img src="${dir}logo.png" alt="logo" class="d-md-block d-none">
-            <img src="https://www.doyogawithme.com/themes/custom/samsara/logo.png" alt="logo" class="d-md-none">
+            <img src="${dir}logo-white.png" alt="logo" class="d-md-none">
         </a>
     </header>
     <header class="crs_header_sticky d-flex justify-content-center">
