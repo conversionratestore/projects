@@ -651,11 +651,13 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        border-radius: 5px;
-        background: #eef4fc;
+        border-radius: 12px;
+        background: #EEF4FC;
         padding: 12px;
         gap: 12px;
+        margin-top: 12px;
       }
+
       .upsell-block__limited {
         display: block;
         width: max-content;
@@ -841,13 +843,12 @@
             width: 100% !important;
           }
           .Cart .cart-updates .CartItemWrapper {
-            padding: 0;
-            margin: 0 0 4px 0;
-            box-shadow: none;
+            padding: 12px;
+            margin: 0 0 12px 0;
           }
           .Cart .cart-updates .CartItemWrapper .CartItem {
             position: relative;
-            padding: 12px;
+            padding: 0;
             margin: 0;
           }
           .cart-updates .CartItemWrapper .CartItem__Info {
@@ -917,8 +918,6 @@
                       break;
                     }
                   }
-
-                  console.dir(itemPrevDataCollections);
 
                   const costPerGB1 = itemDataCollections.priceGB; //selected data price
                   const costPerGB2 = itemPrevDataCollections.priceGB; //upgrade data price
