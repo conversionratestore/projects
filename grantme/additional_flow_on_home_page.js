@@ -139,6 +139,7 @@ class HomePage {
       this.onClickTrustScoreStarsBlocks()
       this.onClickScheduleFreeConsultationBtns()
       this.onClickDifferentBtns()
+      this.onChangeTxtTuitionSection()
     }
   }
   scheduleFreeConsultationBtnHtml() {
@@ -913,6 +914,17 @@ class HomePage {
       }, 1000)
     })
   }
+  onChangeTxtTuitionSection() {
+    waitForElement('.tuition_section').then(el => {
+      if (el.querySelector('h2').textContent !== 'Got 15-Minutes? We’ll Save You Up To 30 Hours') {
+        el.querySelector('h2').textContent = 'Got 15-Minutes? We’ll Save You Up To 30 Hours'
+      }
+      if (!el.querySelector('p:nth-of-type(1)').textContent.includes('15-minute')) {
+        el.querySelector('p:nth-of-type(1)').textContent =
+          'GrantMe offers a 15-minute complimentary initial consultation to learn about our consulting programs & pricing. You’ll also learn how you can increase your odds of getting into university, securing funding, & save more than 30 hours as you do it.'
+      }
+    })
+  }
 
   // common func
   initMainStyles() {
@@ -1129,6 +1141,9 @@ class HomePage {
           }
           .elementor-24572 .elementor-element.elementor-element-e3c03f0 .hfe-nav-menu__toggle {
             margin: 0;
+          }
+          .elementor-kit-31553 h2 {
+            font-size: 29px;
           }
         }
         @media only screen and (min-width: 710px) and (max-width: 1026px) {
@@ -1506,6 +1521,31 @@ class BookingPage {
         .footer-start-free-trial > p {
           padding-top: 32px;
         }
+        @media only screen and (min-width: 768px) and (max-width: 1199px) {
+          .path-schedule-consultation
+            .block-schedule-consulation-header
+            #scholarshipListContent
+            .academy-waiting-left
+            * {
+            text-align: left;
+          }
+          .navbar-default .region.region-navigation {
+            width: 100%;
+          }
+
+          .container_video.container {
+            max-width: 912px;
+            width: 100%;
+          }
+        }
+        @media only screen and (min-width: 768px) and (max-width: 1080px) {
+          .new_hero_title {
+            font-size: 39px !important;
+          }
+          .new_hero_title span:before {
+            right: -35px;
+          }
+        }
         @media (max-width: 768px) {
           .path-schedule-consultation .block-schedule-consulation-header #scholarshipListContent .academy-waiting {
             display: flex;
@@ -1591,11 +1631,6 @@ class BookingPage {
             max-width: 360px;
             margin: 0 auto;
           }
-        }
-
-        @media (max-width: 391px) {
-        }
-        @media (max-width: 376px) {
         }
       </style>
     `
