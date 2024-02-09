@@ -831,7 +831,12 @@ class HomePage {
             )
           }
           if (e.target.closest('.tuition_section')) {
-            pushDataLayer('exp_add_flow_but_homfirshead_menu', 'Menu', 'Button', 'Homepage First screen Header')
+            pushDataLayer(
+              'exp_add_flow_but_homsave_concall',
+              'Schedule a free consultation call',
+              'Button',
+              'Homepage Got 15-Minutes? We’ll Save You Up To 30 Hours'
+            )
           }
           if (e.target.closest('.sticky_header.is_fixed')) {
             let maxScrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
@@ -885,7 +890,7 @@ class HomePage {
             'exp_add_flow_but_stud_takasse',
             'Take Assessment',
             'Button',
-            'Homepage Block Leave Your Competition In The Dust'
+            '"Homepage Block Get Into Top Universities'
           )
         }
         if (targetElement.matches('.new_btn_burger_menu .log_in_link')) {
