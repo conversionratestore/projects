@@ -818,7 +818,7 @@ class HomePage {
     waitForElement('.schedule_a_free_link').then(el => {
       $$el('.schedule_a_free_link').forEach(el => {
         el.addEventListener('click', e => {
-          e.preventDefault()
+          //   e.preventDefault()
           if (e.target.closest('.new_btn_burger_menu')) {
             pushDataLayer('exp_add_flow_but_menu_consultain', 'Schedule a free consultation call', 'Button', 'Menu')
           }
@@ -858,7 +858,7 @@ class HomePage {
             }
           }
 
-          window.location.href = 'https://app.grantme.com/assessment-outcome?user_type=parent'
+          //   window.location.href = 'https://app.grantme.com/assessment-outcome?user_type=parent'
         })
       })
     })
