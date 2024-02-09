@@ -1526,10 +1526,10 @@ const initUnSub = setInterval(() => {
       });
     });
 
-    document.querySelector("textarea").addEventListener("change", () => {
+    document.querySelector("textarea").addEventListener("change", (e) => {
       pushDataLayer([
         "exp_impr_acc_i_sdc_ya",
-        "Your answer",
+        e.target.value,
         "Input",
         "Still decided to cancel?",
       ]);
