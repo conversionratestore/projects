@@ -9,12 +9,12 @@
   const $$el = (selector) => document.querySelectorAll(selector);
   const $el = (selector) => document.querySelector(selector);
 
-  // const clarityInterval = setInterval(function () {
-  //   if (typeof clarity == "function") {
-  //     clearInterval(clarityInterval);
-  //     clarity("set", "exp_upgeade_plan", "variant_1");
-  //   }
-  // }, 200);
+  const clarityInterval = setInterval(function () {
+    if (typeof clarity == "function") {
+      clearInterval(clarityInterval);
+      clarity("set", "exp_aov_improv", "variant_1");
+    }
+  }, 200);
 
   const dataIcons = {
     phone: `
@@ -446,9 +446,37 @@
 
     window.dataLayer = window.dataLayer || [];
     dataLayer.push(eventData);
-    console.log(
+    console.dir(
       event_name + " / " + event_desc + " / " + event_type + " / " + event_loc
     );
+  }
+
+  function checkFocusTime(selector, eventName, eventDesc, eventLocation) {
+    const checker = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (
+          entry.isIntersecting &&
+          !entry.target.getAttribute("data-startShow")
+        ) {
+          entry.target.setAttribute("data-startShow", new Date().getTime());
+        } else if (
+          !entry.isIntersecting &&
+          entry.target.getAttribute("data-startShow")
+        ) {
+          const startShow = entry.target.getAttribute("data-startShow");
+          const endShow = new Date().getTime();
+          const timeShow = Math.round(endShow - startShow);
+
+          entry.target.removeAttribute("data-startShow");
+          if (timeShow >= 3000) {
+            pushDataLayer(eventName, eventDesc, "Visibility", eventLocation);
+          }
+          checker.unobserve(entry.target);
+        }
+      });
+    });
+
+    checker.observe($el(selector));
   }
 
   function waitForElement(selector) {
@@ -608,7 +636,7 @@
       });
     }
 
-    upsellBlockHtml(data, dataUpgrade, dataItem) {
+    upsellBlockHtml(data, dataUpgrade, dataItem, index) {
       let text = "";
       let upgrade = "";
 
@@ -792,7 +820,7 @@
       /* HTML */
       return `
       ${style}
-      <div class="upsell-block__wrapper">
+      <div class="upsell-block__wrapper" data-index="${index}">
         <div class="upsell-block__descr">
           ${dataIcons.phone}
           <p>
@@ -891,7 +919,7 @@
 
       let dataCollections = getLocalStorage("dataCollections");
 
-      $$el("#sidebar-cart .CartItemWrapper .CartItem").forEach((el) => {
+      $$el("#sidebar-cart .CartItemWrapper .CartItem").forEach((el, index) => {
         if (el.parentElement.querySelector(`.upsell-block__wrapper`)) return;
 
         const vidEl = el
@@ -919,6 +947,8 @@
                     }
                   }
 
+                  console.dir(itemPrevDataCollections);
+
                   const costPerGB1 = itemDataCollections.priceGB; //selected data price
                   const costPerGB2 = itemPrevDataCollections.priceGB; //upgrade data price
 
@@ -937,12 +967,13 @@
                   let html = this.upsellBlockHtml(
                     [costDifference, costGb, percentageDifference],
                     itemPrevDataCollections,
-                    itemDataCollections
+                    itemDataCollections,
+                    index
                   );
 
                   el.insertAdjacentHTML("afterend", html);
                 } else {
-                  if (!window.location.origin.includes('simsdirect')) return
+                  if (!window.location.origin.includes("simsdirect")) return;
 
                   const title = el
                     .querySelector(".CartItem__Title a")
@@ -975,7 +1006,8 @@
                       let html = this.upsellBlockHtml(
                         [arr[k].price - itemDataCollections.priceGB],
                         arr[k],
-                        itemDataCollections
+                        itemDataCollections,
+                        index
                       );
 
                       el.insertAdjacentHTML("afterend", html);
@@ -986,11 +1018,31 @@
             }
           }
         }
+
+        if (!el.parentElement.querySelector(".upsell-block__wrapper")) return
+        let eventName = el.parentElement
+          .querySelector(".upsell-block__wrapper")
+          .innerText.includes("unlimited")
+          ? "exp_aov_improv_vis_cartunlimit_elem"
+          : "exp_aov_improv_vis_cartlimit_elem";
+
+        let eventLoc = el.parentElement
+          .querySelector(".upsell-block__wrapper")
+          .innerText.includes("unlimited")
+          ? "Unlimited"
+          : "Limited";
+
+        checkFocusTime(
+          `.upsell-block__wrapper[data-index='${index}']`,
+          eventName,
+          `${el.querySelector(".CartItem__Title a").innerHTML} - Element view`,
+          `Cart Don’t run out of data overseas! ${eventLoc} plan`
+        );
       });
-      this.onClickBtnUpdateProduct();
+      this.onClickBtnUpsell();
     }
 
-    onClickBtnUpdateProduct() {
+    onClickBtnUpsell() {
       $$el(".upsell-block__btn").forEach((el) => {
         let post = {
           form_type: "product",
@@ -1047,12 +1099,21 @@
                   $el(".loading")?.classList.remove("loading");
                 });
             });
+
+          pushDataLayer('exp_aov_improv_but_cartovers_upgra','Upgrade plan','Button','Cart Don’t run out of data overseas!')
+
         });
       });
 
       $$el(".upsell-block__arrow").forEach((el) => {
-        el.addEventListener("click", () => {
+        el.addEventListener("click", (e) => {
+          e.stopImmediatePropagation();
           el.closest(".upsell-block__wrapper").classList.toggle("active");
+          if (el.closest(".upsell-block__wrapper").classList.contains('active')) {
+            pushDataLayer('exp_aov_improv_drop_cartovers_open','Open','Dropdown','Cart Don’t run out of data overseas!')
+          } else {
+            pushDataLayer('exp_aov_improv_drop_cartovers_close','Close','Dropdown','Cart Don’t run out of data overseas!')
+          }
         });
       });
 
