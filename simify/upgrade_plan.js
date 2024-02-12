@@ -1274,6 +1274,14 @@
     reDesign() {
       let styleRed = `
       <style class="styleRed">
+      #sidebar-cart .Drawer__Content .cart-drawer-annoucement-bar {
+        background: #ffefd3 !important;
+        padding: 8px 16px !important;
+      }
+      #sidebar-cart .Drawer__Content .cart-drawer-annoucement-bar p {
+        font-weight: 600 !important;
+        line-height: normal !important;
+      }
       .crs_hidden {
         display: none!important;
       }
