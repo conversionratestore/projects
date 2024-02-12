@@ -75,7 +75,7 @@ const style = `
 .crs_offer {
     min-height: 100vh;
     position: relative;
-    background: linear-gradient(90deg, #272727 0%, rgba(39, 39, 39, 0.00) 100.59%), url('${dir}image-10.png') no-repeat center / cover;
+    background: linear-gradient(90deg, #272727 0%, rgba(39, 39, 39, 0.00) 100.59%), url('${dir}image-12.png') no-repeat center top 40% / cover;
 }
 .container {
     max-width: 1264px;
@@ -589,7 +589,7 @@ p {
     }
     .crs_offer {
         min-height: 531px;
-        background: #F6F6F6 url('${dir}image-10-mob.png') no-repeat center top / 100%;
+        background: #F6F6F6 url('${dir}image-12.png') no-repeat center top / 133%;
     }
     .crs_btn {
         font-size: 16px;
