@@ -1567,7 +1567,6 @@ class BookingPage {
         }
         .new_schedule_box > h2 {
           margin: 0 auto;
-          max-width: 358px;
         }
         .path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center {
           max-width: 590px;
@@ -1632,6 +1631,9 @@ class BookingPage {
             right: -35px;
           }
         }
+        .new_schedule_box .new_schedule_descr span:nth-child(3):before {
+          background: url(${git}/grantme/img/telephone_blue.svg) no-repeat center center;
+        }
         @media (max-width: 768px) {
           .path-schedule-consultation .block-schedule-consulation-header #scholarshipListContent .academy-waiting {
             display: flex;
@@ -1652,7 +1654,8 @@ class BookingPage {
             background: url(${git}/grantme/img/clock_yellow.svg) no-repeat center center;
           }
           .new_schedule_box .new_schedule_descr span:nth-child(3):before {
-            background: url(${git}/grantme/img/zoom_yellow.svg) no-repeat center center;
+            background: url(https://app.grantme.com/themes/custom/grantmenew2/images/booking/telephone-yellow.svg)
+              no-repeat center center;
           }
           body .our_consultants_wrapper h3 {
             color: #fff !important;
