@@ -673,7 +673,7 @@
       }
 
       const style = `
-      <style>
+      <style class="crs_style_upsell">
       
       .upsell_wrapper {
         position: relative;
@@ -1254,6 +1254,7 @@
 
       selector?.querySelector(".CartItem")?.remove();
       selector?.querySelector(".upsell_wrapper")?.remove();
+      selector?.querySelector(".crs_style_upsell")?.remove();
       selector?.insertAdjacentHTML("afterbegin", productHTML);
     }
 
