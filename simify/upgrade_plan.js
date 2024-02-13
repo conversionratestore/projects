@@ -651,7 +651,7 @@
         GB by <span>${data[2]}%</span>.`;
 
         upgrade = `
-        <div class="upsell-block__col">
+        <div class="upsell_col">
           <b>Best value plan</b>
           <p>${dataUpgrade.gb} GB</p>
           <p>${dataUpgrade.days} days</p>
@@ -663,7 +663,7 @@
           dataItem.currency + data[0]
         }</span> more, get unlimited data plan. Don’t worry and enjoy your trip!`;
         upgrade = `
-        <div class="upsell-block__col">
+        <div class="upsell_col">
           <b>Unlimited plan</b>
           <p>${dataIcons.unlimited}</p>
           <p>${dataUpgrade["option-0"].toLowerCase()}</p>
@@ -675,7 +675,7 @@
       const style = `
       <style>
       
-      .upsell-block__wrapper {
+      .upsell_wrapper {
         position: relative;
         display: flex;
         flex-direction: column;
@@ -685,30 +685,16 @@
         gap: 12px;
         margin-top: 12px;
       }
-
-      .upsell-block__limited {
-        display: block;
-        width: max-content;
-        margin-top: 34px;
-        color: #fff;
-        font-family: "Poppins";
-        font-size: 12px;
-        font-weight: 500;
-        line-height: 18px;
-        border-radius: 5px;
-        background: #188ff8;
-        padding: 3px 16px 12px 16px;
-      }
-      .upsell-block__descr {
+      .upsell_descr {
         display: flex;
         gap: 8px;
         z-index: 2;
         position: relative;
       }
-      .upsell-block__descr > svg {
+      .upsell_descr > svg {
         flex: 0 0 52px;
       }
-      .upsell-block__descr p {
+      .upsell_descr p {
         max-width: 230px;
         color: #333f48;
         font-family: "Poppins";
@@ -717,15 +703,15 @@
         line-height: 20px;
         margin: 0;
       }
-      .upsell-block__descr b {
+      .upsell_descr b {
         margin-bottom: 6px;
         display: block;
         line-height: 15px; 
       }
-      .upsell-block__descr p span {
+      .upsell_descr p span {
         color: #188FF8;
       }
-      .upsell-block__arrow {
+      .upsell_arrow {
         position: absolute;
         right: -12px;
         top: -12px;
@@ -734,7 +720,7 @@
         transition: all 0.25s ease;
         z-index: 2;
       }
-      .upsell-block__btn {
+      .upsell_btn {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -749,31 +735,31 @@
         font-weight: 500;
         line-height: 24px;
       }
-      .active .upsell-block__arrow {
+      .active .upsell_arrow {
         transform: scaleY(-1);
       }
-      .upsell-block__dropdown {
+      .upsell_dropdown {
         height: 0;
         opacity: 0;
         margin-top: -10px;
         transition: all 0.25s ease;
       }
-      .active .upsell-block__dropdown {
+      .active .upsell_dropdown {
         height: 125px;
         opacity: 1;
         margin-top: 0;
       }
-      .upsell-block__row {
+      .upsell_row {
         display: flex;
       }
-      .upsell-block__col {
+      .upsell_col {
         width: 100%;
       }
-      .upsell-block__col:first-child {
+      .upsell_col:first-child {
         width: 69%;
       }
-      .upsell-block__col p,
-      .upsell-block__col b {
+      .upsell_col p,
+      .upsell_col b {
         color: #333F48;
         font-size: 12px;
         font-style: normal;
@@ -784,35 +770,35 @@
         height: 25px;
         display: block;
       }
-      .upsell-block__col p:not(:last-child) {
+      .upsell_col p:not(:last-child) {
         border-bottom: 1px solid #FFF;
       }
-      .upsell-block__col b {
+      .upsell_col b {
         font-weight: 600;
         text-align: center;
       }
-      .upsell-block__col:not(:first-child) p {
+      .upsell_col:not(:first-child) p {
         text-align: center;
       }
-      .upsell-block__col:last-child {
+      .upsell_col:last-child {
         border-radius: 6px;
         background: #FFF;
       }
-      .upsell-block__col:last-child b {
+      .upsell_col:last-child b {
         font-weight: 700;
         color: #FFF;
         border-radius: 6px 6px 0 0;
         background: #188FF8;
       }
-      .upsell-block__col:last-child p {
+      .upsell_col:last-child p {
         border-color: #EEF4FC;
         color: #188FF8;
       }
-      .upsell-block__col:first-child p {
+      .upsell_col:first-child p {
         border-right: 1px solid #fff;
       }
       @media (max-width: 768px) {
-        .upsell-block__descr p {
+        .upsell_descr p {
           max-width: unset;
         }
       }</style>`;
@@ -820,32 +806,32 @@
       /* HTML */
       return `
       ${style}
-      <div class="upsell-block__wrapper" data-index="${index}">
-        <div class="upsell-block__descr">
+      <div class="upsell_wrapper" data-index="${index}">
+        <div class="upsell_descr">
           ${dataIcons.phone}
           <p>
             <b>Don’t run out of data overseas!</b>
             ${text}
           </p>
-          <button type="button" class="upsell-block__arrow">${
+          <button type="button" class="upsell_arrow">${
             dataIcons.arrow
           }</button>
         </div>
-        <button type="button" class="upsell-block__btn" data-specCheck="${
+        <button type="button" class="upsell_btn" data-specCheck="${
           dataUpgrade.specCheck
         }" data-option="${dataUpgrade.option}" data-productId="${
           dataUpgrade.productId
         }" data-vid="${dataUpgrade.vid}">Upgrade plan</button>
-        <div class="upsell-block__dropdown">
-          <div class="upsell-block__row">
-            <div class="upsell-block__col">
+        <div class="upsell_dropdown">
+          <div class="upsell_row">
+            <div class="upsell_col">
               <b></b>
               <p>Data </p>
               <p>Days</p>
               <p>Price</p>
               <p>${dataItem.currency} per GB</p>
             </div>
-            <div class="upsell-block__col">
+            <div class="upsell_col">
               <b>Selected plan</b>
               <p>${dataItem.gb} GB</p>
               <p>${dataItem.days} days</p>
@@ -920,7 +906,7 @@
       let dataCollections = getLocalStorage("dataCollections");
 
       $$el("#sidebar-cart .CartItemWrapper .CartItem").forEach((el, index) => {
-        if (el.parentElement.querySelector(`.upsell-block__wrapper`)) return;
+        if (el.parentElement.querySelector(`.upsell_wrapper`)) return;
 
         const vidEl = el
           .querySelector(".CartItem__Title a")
@@ -1019,21 +1005,21 @@
           }
         }
 
-        if (!el.parentElement.querySelector(".upsell-block__wrapper")) return
+        if (!el.parentElement.querySelector(".upsell_wrapper")) return
         let eventName = el.parentElement
-          .querySelector(".upsell-block__wrapper")
+          .querySelector(".upsell_wrapper")
           .innerText.includes("unlimited")
           ? "exp_aov_improv_vis_cartunlimit_elem"
           : "exp_aov_improv_vis_cartlimit_elem";
 
         let eventLoc = el.parentElement
-          .querySelector(".upsell-block__wrapper")
+          .querySelector(".upsell_wrapper")
           .innerText.includes("unlimited")
           ? "Unlimited"
           : "Limited";
 
         checkFocusTime(
-          `.upsell-block__wrapper[data-index='${index}']`,
+          `.upsell_wrapper[data-index='${index}']`,
           eventName,
           `${el.querySelector(".CartItem__Title a").innerHTML} - Element view`,
           `Cart Don’t run out of data overseas! ${eventLoc} plan`
@@ -1043,7 +1029,7 @@
     }
 
     onClickBtnUpsell() {
-      $$el(".upsell-block__btn").forEach((el) => {
+      $$el(".upsell_btn").forEach((el) => {
         let post = {
           form_type: "product",
           utf8: "✓",
@@ -1105,11 +1091,11 @@
         });
       });
 
-      $$el(".upsell-block__arrow").forEach((el) => {
+      $$el(".upsell_arrow").forEach((el) => {
         el.addEventListener("click", (e) => {
           e.stopImmediatePropagation();
-          el.closest(".upsell-block__wrapper").classList.toggle("active");
-          if (el.closest(".upsell-block__wrapper").classList.contains('active')) {
+          el.closest(".upsell_wrapper").classList.toggle("active");
+          if (el.closest(".upsell_wrapper").classList.contains('active')) {
             pushDataLayer('exp_aov_improv_drop_cartovers_open','Open','Dropdown','Cart Don’t run out of data overseas!')
           } else {
             pushDataLayer('exp_aov_improv_drop_cartovers_close','Close','Dropdown','Cart Don’t run out of data overseas!')
@@ -1267,13 +1253,17 @@
       </div>`;
 
       selector?.querySelector(".CartItem")?.remove();
-      selector?.querySelector(".upsell-block__wrapper")?.remove();
+      selector?.querySelector(".upsell_wrapper")?.remove();
       selector?.insertAdjacentHTML("afterbegin", productHTML);
     }
 
     reDesign() {
       let styleRed = `
       <style class="styleRed">
+      #sidebar-cart .upsell-block__wrapper,
+      #sidebar-cart .upsell-block__limited {
+        display: none!important;
+      }
       #sidebar-cart .Drawer__Content .cart-drawer-annoucement-bar {
         background: #ffefd3 !important;
         padding: 8px 16px !important;
