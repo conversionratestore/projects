@@ -384,7 +384,7 @@ class HomePage {
     `
     const telLink = /* HTML */ `
       ${telLinkStyle}
-      <a class="tel_link" href="tel:+18004934084">(800) 493-4084</a>
+      <a class="tel_link" href="tel:+16042565139">(604) 256-5139</a>
     `
     return telLink
   }
@@ -1228,6 +1228,7 @@ class BookingPage {
       this.onClickTrustScoreStarsBlocks()
       this.fixIconAccordion()
       this.observerBookingSteps()
+      this.onChangeTelTxt()
 
       if (this.device === 'Mobile') {
         this.replaceElement()
@@ -1507,6 +1508,16 @@ class BookingPage {
         'exp_add_flow_vis_bookcons_page',
         'Booking page Schedule a Complimentary Consultation'
       )
+    })
+  }
+  onChangeTelTxt() {
+    waitForElement('.our_consultants_wrapper>p a').then(el => {
+      if (el.textContent !== '(604) 256-5139') {
+        el.textContent = '(604) 256-5139'
+      }
+      if (el.href !== 'tel:+16042565139') {
+        el.href = 'tel:+16042565139'
+      }
     })
   }
 
