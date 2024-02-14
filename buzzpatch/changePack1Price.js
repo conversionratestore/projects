@@ -1,11 +1,4 @@
 ; (function () {
-  const recordClarity = setInterval(() => {
-    if (typeof clarity === 'function') {
-      clearInterval(recordClarity)
-      clarity('set', `exp_1pack_price`, 'variant_1')
-    }
-  }, 100)
-
   // Run on page load
   runCode()
 
@@ -15,6 +8,13 @@
   })
 
   function runCode() {
+    const recordClarity = setInterval(() => {
+      if (typeof clarity === 'function') {
+        clearInterval(recordClarity)
+        clarity('set', `exp_1pack_price`, 'variant_1')
+      }
+    }, 100)
+
     const localizationData = getCookieValue('localization')
     const url = checkUrl()
 
