@@ -1,12 +1,20 @@
 ; (function () {
-  function runCode() {
-    const recordClarity = setInterval(() => {
-      if (typeof clarity === 'function') {
-        clearInterval(recordClarity)
-        clarity('set', `exp_1pack_price`, 'variant_1')
-      }
-    }, 100)
+  const recordClarity = setInterval(() => {
+    if (typeof clarity === 'function') {
+      clearInterval(recordClarity)
+      clarity('set', `exp_1pack_price`, 'variant_1')
+    }
+  }, 100)
 
+  // Run on page load
+  runCode()
+
+  // Run on popstate event
+  window.addEventListener('popstate', function () {
+    runCode()
+  })
+
+  function runCode() {
     const localizationData = getCookieValue('localization')
     const url = checkUrl()
 
@@ -202,12 +210,4 @@
 
     changeInitialPackPrice()
   }
-
-  // Run on page load
-  runCode()
-
-  // Run on popstate event
-  window.addEventListener('popstate', function () {
-    runCode()
-  })
 })()
