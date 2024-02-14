@@ -259,7 +259,7 @@ class ExitPopup {
       .crs-promo-form__title,
       #rich-text-100045185 > p:first-child span,
       #rich-text-100045289 > p:first-child span,
-      #rich-text-100045427 > p:first-child span{
+      #rich-text-100045427 > p:first-child span {
         color: var(--MSB-UI-Black, #333);
         font-family: 'adobe-garamond-pro', serif;
         font-size: 26px;
@@ -349,8 +349,28 @@ class ExitPopup {
         text-transform: uppercase;
       }
       @media (min-width: 768px) {
-        .crs-promo-form__close {
-          padding-bottom: 100px;
+        .crs-promo-form,
+        [data-testid^='klaviyo-form'] > div:first-of-type {
+          padding-block: 40px !important;
+        }
+
+        #rich-text-100045421,
+        #rich-text-100045179,
+        #rich-text-100045283,
+        .crs-promo-form__title,
+        #rich-text-100045185 > p:first-child span,
+        #rich-text-100045289 > p:first-child span,
+        #rich-text-100045427 > p:first-child span {
+          font-size: 40px;
+        }
+        [data-testid^='klaviyo-form'] {
+          width: 890px !important;
+          & > div {
+            min-width: 50% !important;
+          }
+        }
+        .crs-promocode {
+          gap: 8px;
         }
       }
     </style>`
@@ -492,7 +512,8 @@ class ExitPopup {
                 if (item.innerText.includes('SUBSCRIBE NOW')) {
                   item.querySelector('button').classList.add('crs-hide-font')
                 }
-                if (item.innerText.includes('SKIP AND REVEAL CODE >')) {
+                console.log(item.innerText)
+                if (item.innerText.includes('SKIP AND REVEAL CODE')) {
                   item.parentElement.style.display = 'none'
                 }
                 if (item.innerText.includes('SUBMIT')) {
@@ -656,7 +677,7 @@ class ExitPopup {
             title.innerHTML =
               this.country === 'UK'
                 ? 'Get <span>10% Off</span> Plus Free Next-Day UK Delivery!'
-                : 'Get <span>10% Off</span> Your First Order!'
+                : 'Get <span>10% Off</span> <br> Your First Order!'
           }
         })
         const descrSelectors = ['#rich-text-100045180', '#rich-text-100045422', '#rich-text-100045284']
@@ -835,7 +856,7 @@ class ExitPopup {
     const PROMO_POPUP_SHOWN = 'promoPopupShown'
     const promoPopup = $el('#promo-popup')
     const isPopupShownDuringSession = sessionStorage.getItem(PROMO_POPUP_SHOWN)
-    // if (isPopupShownDuringSession) return
+    if (isPopupShownDuringSession) return
 
     let gender = 'men'
 
@@ -915,7 +936,7 @@ class ExitPopup {
     const CART_POPUP_SHOWN = 'cartPopupShown'
     const cartPopup = $el('#cart-popup')
     const isPopupShownDuringSession = sessionStorage.getItem(CART_POPUP_SHOWN)
-    // if (isPopupShownDuringSession) return
+    if (isPopupShownDuringSession) return
     const cart = JSON.parse(localStorage.getItem('mage-cache-storage'))?.cart?.items
 
     if (!cart) return
@@ -1207,10 +1228,13 @@ class ExitPopup {
           .crs-dialog__wrap {
             padding: 35px 50px;
           }
-
+ 
           .crs-dialog__title,
           .crs-dialog__descr {
             text-align: center;
+          }
+          .crs-dialog__title {
+            font-size: 40px;
           }
           .crs-promo__blocks {
             flex-direction: row;
@@ -1334,7 +1358,7 @@ class ExitPopup {
             width: 100% !important;
           }
           .crs-dialog__title {
-            padding: 0 60px;
+            padding: 0 10px;
           }
           .crs-cart__badges {
             justify-content: center;
@@ -1345,7 +1369,7 @@ class ExitPopup {
       <dialog id="cart-popup" class="crs-dialog crs-cart">
         <div class="crs-dialog__wrap">
           <button class="crs-dialog__close">${icons.close}</button>
-          <h2 class="crs-dialog__title">Check Out Now And Get <span>10% Off</span> Your First Order</h2>
+          <h2 class="crs-dialog__title">Check out now and get <span>10% Off</span> your first order</h2>
           ${this.country === 'UK' ? '<div>+ Free next-day UK delivery</div>' : ''}
           <div class="crs-dialog__descr">
             <span class="crs-dialog__descr-icon">${icons.fire}</span> High Demand! Limited stock available. Secure yours
