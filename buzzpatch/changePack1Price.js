@@ -8,14 +8,16 @@
   })
 
   function runCode() {
-    console.log("%c Running test on: " + window.location.pathname, 'color: #ff00ff');
+    console.log("%c Running test on: " + window.location.pathname, 'color: #ff00ff')
+
+    const WAIT_INTERVAL_TIMEOUT = 100
 
     const recordClarity = setInterval(() => {
       if (typeof clarity === 'function') {
         clearInterval(recordClarity)
         clarity('set', `exp_1pack_price`, 'variant_1')
       }
-    }, 100)
+    }, WAIT_INTERVAL_TIMEOUT)
 
     const localizationData = getCookieValue('localization')
     const url = checkUrl()
@@ -45,6 +47,26 @@
 
     const currencySymbol = currency[localizationData][0]
     const packPrice = packPriceObj[url][localizationData]
+
+    function waitForElement(selector) {
+      return new Promise(resolve => {
+        if (document.querySelector(selector)) {
+          return resolve(document.querySelector(selector))
+        }
+
+        const observer = new MutationObserver(() => {
+          if (document.querySelector(selector)) {
+            resolve(document.querySelector(selector))
+            observer.disconnect()
+          }
+        })
+
+        observer.observe(document.documentElement, {
+          childList: true,
+          subtree: true
+        })
+      })
+    }
 
     function calculateDiscountPercent(oldPrice, currentPrice) {
       // Calculate the discount percent
@@ -98,7 +120,7 @@
     }
 
     function addPack(packId) {
-      console.log('addPack', packId);
+      console.log('addPack', packId)
 
       let formData = { 'items': [{ 'id': packId, 'quantity': 1 }] }
 
@@ -124,90 +146,139 @@
         const packId = '42607831679020'
 
         // pdp pack price
-        const pdpPack = document.querySelector('.package .list-packs[data-index="4"]')
+        waitForElement('.package .list-packs[data-index="4"]').then(pdpPack => {
+          const waitForEls = setInterval(() => {
+            if (
+              pdpPack.querySelector('.info .pack-price') &&
+              pdpPack.querySelector('.info2 .pcs') &&
+              pdpPack.querySelector('.after-price') &&
+              pdpPack.querySelector('.save-btn span') 
+            ) {
+              clearInterval(waitForEls)
 
-        pdpPack.querySelector('.info .pack-price').textContent = `${currencySymbol}${packPrice[1]}/Pack`
-        pdpPack.querySelector('.info2 .pcs').textContent = `${currencySymbol}${packPrice[1]}/Pack`
-        pdpPack.querySelector('.after-price').textContent = `${currencySymbol}${packPrice[1]}`
-        pdpPack.querySelector('.save-btn span').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
+              pdpPack.querySelector('.info .pack-price').textContent = `${currencySymbol}${packPrice[1]}/Pack`
+              pdpPack.querySelector('.info2 .pcs').textContent = `${currencySymbol}${packPrice[1]}/Pack`
+              pdpPack.querySelector('.after-price').textContent = `${currencySymbol}${packPrice[1]}`
+              pdpPack.querySelector('.save-btn span').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
+
+              pdpPack.addEventListener('click', () => {
+                document.querySelector('.package .pr').textContent = `${packPrice[1]}`
+                document.querySelector('.package .ps').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
+                document.querySelector('.package .rs').textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
+              })
+            }
+          }, WAIT_INTERVAL_TIMEOUT)
+        })
+        waitForElement('#addToCart').then(el => {
+          el.addEventListener('click', (e) => {
+            if (pdpPack.classList.contains('active-slide')) {
+              e.preventDefault()
+
+              addPack(packId)
+            }
+          })
+        })
 
         // cart pack price
-        const cartPack = document.querySelector('.slide-packs .list-packs[data-index="4"]')
+        waitForElement('.slide-packs .list-packs[data-index="4"]').then(cartPack => {
+          const waitForEls = setInterval(() => {
+            if (
+              cartPack.querySelector('.pack-price') &&
+              cartPack.querySelector('.save-price-1') &&
+              cartPack.querySelector('.save-percent-1')
+            ) {
+              clearInterval(waitForEls)
 
-        cartPack.querySelector('.pack-price').textContent = `${currencySymbol}${packPrice[1]}/Pack`
-        cartPack.querySelector('.save-price-1').textContent = packPrice[1]
-        cartPack.querySelector('.save-percent-1').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
+              cartPack.querySelector('.pack-price').textContent = `${currencySymbol}${packPrice[1]}/Pack`
+              cartPack.querySelector('.save-price-1').textContent = packPrice[1]
+              cartPack.querySelector('.save-percent-1').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
 
-        pdpPack.addEventListener('click', () => {
-          document.querySelector('.package .pr').textContent = `${packPrice[1]}`
-          document.querySelector('.package .ps').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
-          document.querySelector('.package .rs').textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
+              cartPack.addEventListener('click', () => {
+                document.querySelector('.sidebar .sale-price').textContent = `${packPrice[1]}`
+                document.querySelector('.sidebar .off-price').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
+                document.querySelector('.sidebar .save').textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
+              })
+            }
+          }, WAIT_INTERVAL_TIMEOUT)
+        })
+        waitForElement('.sidebar .button-proceed').then(el => {
+          el.addEventListener('click', (e) => {
+            if (cartPack.classList.contains('active-slide')) {
+              e.preventDefault()
+
+              addPack(packId)
+            }
+          })
         })
 
-        cartPack.addEventListener('click', () => {
-          document.querySelector('.sidebar .sale-price').textContent = `${packPrice[1]}`
-          document.querySelector('.sidebar .off-price').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
-          document.querySelector('.sidebar .save').textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
-        })
-
-        document.getElementById('addToCart').addEventListener('click', (e) => {
-          if (pdpPack.classList.contains('active-slide')) {
-            e.preventDefault()
-
-            addPack(packId)
-          }
-        })
-
-        document.querySelector('.sidebar .button-proceed').addEventListener('click', (e) => {
-          if (cartPack.classList.contains('active-slide')) {
-            e.preventDefault()
-
-            addPack(packId)
-          }
-        })
       } else if (url === 'sleepypatch') {
         const packId = '39836565143596'
 
         // pdp pack price
-        const pdpPack = document.querySelector('#purchase .list-packs-1')
+        waitForElement('#purchase .list-packs-1').then(pdpPack => {
+          const waitForEls = setInterval(() => {
+            if (
+              pdpPack.querySelector('.info .pack-price') &&
+              pdpPack.querySelector('.save-price-1') &&
+              pdpPack.querySelector('.save-btn span')
+            ) {
+              clearInterval(waitForEls)
 
-        pdpPack.querySelector('.info .pack-price').textContent = `${currencySymbol}${packPrice[1]}/Pack`
-        pdpPack.querySelector('.save-price-1').textContent = `${packPrice[1]}`
-        pdpPack.querySelector('.save-btn span').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
+              pdpPack.querySelector('.info .pack-price').textContent = `${currencySymbol}${packPrice[1]}/Pack`
+              pdpPack.querySelector('.save-price-1').textContent = `${packPrice[1]}`
+              pdpPack.querySelector('.save-btn span').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
+
+              pdpPack.addEventListener('click', () => {
+                document.querySelector('#purchase .sale-price').textContent = `${packPrice[1]}`
+                document.querySelector('#purchase .off-price').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
+                document.querySelector('#purchase .text-save').textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
+              })
+
+            }
+          }, WAIT_INTERVAL_TIMEOUT)
+        })
+
+        waitForElement('#no-icart-open').then(el => {
+          el.addEventListener('click', (e) => {
+            if (pdpPack.classList.contains('active-slide')) {
+              e.preventDefault()
+
+              addPack(packId)
+            }
+          })
+        })
 
         // cart pack price
-        const cartPack = document.querySelector('.sidebar .list-packs-1')
+        waitForElement('.sidebar .list-packs-1').then(cartPack => {
+          const waitForEls = setInterval(() => {
+            if (
+              cartPack.querySelector('.pack-price') &&
+              cartPack.querySelector('.save-price-1') &&
+              cartPack.querySelector('.save-percent-1')
+            ) {
+              clearInterval(waitForEls)
 
-        cartPack.querySelector('.pack-price').textContent = `${currencySymbol}${packPrice[1]}/Pack`
-        cartPack.querySelector('.save-price-1').textContent = packPrice[1]
-        cartPack.querySelector('.save-percent-1').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
+              cartPack.querySelector('.pack-price').textContent = `${currencySymbol}${packPrice[1]}/Pack`
+              cartPack.querySelector('.save-price-1').textContent = packPrice[1]
+              cartPack.querySelector('.save-percent-1').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
 
-        pdpPack.addEventListener('click', () => {
-          document.querySelector('#purchase .sale-price').textContent = `${packPrice[1]}`
-          document.querySelector('#purchase .off-price').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
-          document.querySelector('#purchase .text-save').textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
+              cartPack.addEventListener('click', () => {
+                document.querySelector('.sidebar .sale-price').textContent = `${packPrice[1]}`
+                document.querySelector('.sidebar .off-price').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
+                document.querySelector('.sidebar .text-save').textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
+              })
+            }
+          }, WAIT_INTERVAL_TIMEOUT)
         })
 
-        cartPack.addEventListener('click', () => {
-          document.querySelector('.sidebar .sale-price').textContent = `${packPrice[1]}`
-          document.querySelector('.sidebar .off-price').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
-          document.querySelector('.sidebar .text-save').textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
-        })
+        waitForElement('.sidebar .button-proceed').then(el => {
+          el.addEventListener('click', (e) => {
+            if (cartPack.classList.contains('active-slide')) {
+              e.preventDefault()
 
-        document.getElementById('no-icart-open').addEventListener('click', (e) => {
-          if (pdpPack.classList.contains('active-slide')) {
-            e.preventDefault()
-
-            addPack(packId)
-          }
-        })
-
-        document.querySelector('.sidebar .button-proceed').addEventListener('click', (e) => {
-          if (cartPack.classList.contains('active-slide')) {
-            e.preventDefault()
-
-            addPack(packId)
-          }
+              addPack(packId)
+            }
+          })
         })
       }
     }
