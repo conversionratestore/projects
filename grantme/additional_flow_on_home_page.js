@@ -223,7 +223,7 @@ class HomePage {
     `
     const scheduleFreeConsultationBtn = /* HTML */ `
       ${scheduleFreeConsultationBtnStyle}
-      <a class="schedule_a_free_link" href="https://app.grantme.com/assessment-outcome?user_type=parent"
+      <a class="schedule_a_free_link" target="_blank" href="https://app.grantme.com/assessment-outcome?user_type=parent"
         >Schedule a free consultation call <span>now</span> ${icons.arrowBlue}
       </a>
     `
@@ -1516,7 +1516,6 @@ class BookingPage {
       <style>
         /*header */
         .sticky_header .book_free_call_btn {
-          display: flex !important;
           max-width: 164px;
         }
         .reviews_btn_wrapper p:last-child {
@@ -1561,9 +1560,6 @@ class BookingPage {
         }
         body .consultation_descr_box > div ul li + li {
           margin-top: 16px;
-        }
-        .our_consultants_wrapper > p:before {
-          background: url(${git}/grantme/img/telephone_blue.svg) no-repeat center center;
         }
         .new_schedule_box > h2 {
           margin: 0 auto;
@@ -1635,6 +1631,9 @@ class BookingPage {
           background: url(${git}/grantme/img/telephone_blue.svg) no-repeat center center;
         }
         @media (max-width: 768px) {
+          .our_consultants_wrapper > p:before {
+            background: url(${git}/grantme/img/telephone_blue.svg) no-repeat center center;
+          }
           .path-schedule-consultation .block-schedule-consulation-header #scholarshipListContent .academy-waiting {
             display: flex;
             flex-direction: column-reverse;
