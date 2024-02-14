@@ -41,8 +41,14 @@
       'GB': ['£', 'GBP']
     }
 
-    if (url === 'zenpatch' && linksOfPacks && currency[localizationData]) {
-      linksOfPacks.linkOf1Pack = `/cart/42607831679020:1?currency=${currency[localizationData][1]}`
+    if (url === 'zenpatch' && currency[localizationData]) {
+      const waitForEl = setInterval(() => {
+        if(linksOfPacks?.linkOf1Pack) {
+          clearInterval(waitForEl)
+      
+          linksOfPacks.linkOf1Pack = `/cart/42607831679020:1?currency=${currency[localizationData][1]}`
+        }
+      }, WAIT_INTERVAL_TIMEOUT)
     }
 
     const currencySymbol = currency[localizationData][0]
