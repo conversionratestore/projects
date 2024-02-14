@@ -43,9 +43,9 @@
 
     if (url === 'zenpatch' && currency[localizationData]) {
       const waitForEl = setInterval(() => {
-        if(linksOfPacks?.linkOf1Pack) {
+        if (linksOfPacks?.linkOf1Pack) {
           clearInterval(waitForEl)
-      
+
           linksOfPacks.linkOf1Pack = `/cart/42607831679020:1?currency=${currency[localizationData][1]}`
         }
       }, WAIT_INTERVAL_TIMEOUT)
@@ -126,8 +126,6 @@
     }
 
     function addPack(packId) {
-      console.log('addPack', packId)
-
       let formData = { 'items': [{ 'id': packId, 'quantity': 1 }] }
 
         ; (async () => {
@@ -158,7 +156,7 @@
               pdpPack.querySelector('.info .pack-price') &&
               pdpPack.querySelector('.info2 .pcs') &&
               pdpPack.querySelector('.after-price') &&
-              pdpPack.querySelector('.save-btn span') 
+              pdpPack.querySelector('.save-btn span')
             ) {
               clearInterval(waitForEls)
 
@@ -174,14 +172,15 @@
               })
             }
           }, WAIT_INTERVAL_TIMEOUT)
-        })
-        waitForElement('#addToCart').then(el => {
-          el.addEventListener('click', (e) => {
-            if (pdpPack.classList.contains('active-slide')) {
-              e.preventDefault()
 
-              addPack(packId)
-            }
+          waitForElement('#addToCart').then(el => {
+            el.addEventListener('click', (e) => {
+              if (pdpPack.classList.contains('active-slide')) {
+                e.preventDefault()
+
+                addPack(packId)
+              }
+            })
           })
         })
 
@@ -206,14 +205,15 @@
               })
             }
           }, WAIT_INTERVAL_TIMEOUT)
-        })
-        waitForElement('.sidebar .button-proceed').then(el => {
-          el.addEventListener('click', (e) => {
-            if (cartPack.classList.contains('active-slide')) {
-              e.preventDefault()
 
-              addPack(packId)
-            }
+          waitForElement('.sidebar .button-proceed').then(el => {
+            el.addEventListener('click', (e) => {
+              if (cartPack.classList.contains('active-slide')) {
+                e.preventDefault()
+
+                addPack(packId)
+              }
+            })
           })
         })
 
@@ -242,15 +242,15 @@
 
             }
           }, WAIT_INTERVAL_TIMEOUT)
-        })
 
-        waitForElement('#no-icart-open').then(el => {
-          el.addEventListener('click', (e) => {
-            if (pdpPack.classList.contains('active-slide')) {
-              e.preventDefault()
+          waitForElement('#no-icart-open').then(el => {
+            el.addEventListener('click', (e) => {
+              if (pdpPack.classList.contains('active-slide')) {
+                e.preventDefault()
 
-              addPack(packId)
-            }
+                addPack(packId)
+              }
+            })
           })
         })
 
@@ -275,15 +275,14 @@
               })
             }
           }, WAIT_INTERVAL_TIMEOUT)
-        })
+          waitForElement('.sidebar .button-proceed').then(el => {
+            el.addEventListener('click', (e) => {
+              if (cartPack.classList.contains('active-slide')) {
+                e.preventDefault()
 
-        waitForElement('.sidebar .button-proceed').then(el => {
-          el.addEventListener('click', (e) => {
-            if (cartPack.classList.contains('active-slide')) {
-              e.preventDefault()
-
-              addPack(packId)
-            }
+                addPack(packId)
+              }
+            })
           })
         })
       }
