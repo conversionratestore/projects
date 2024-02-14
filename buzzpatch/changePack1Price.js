@@ -8,6 +8,8 @@
   })
 
   function runCode() {
+    console.log("%c Running test on: " + window.location.pathname, 'color: #ff00ff');
+
     const recordClarity = setInterval(() => {
       if (typeof clarity === 'function') {
         clearInterval(recordClarity)
@@ -96,6 +98,8 @@
     }
 
     function addPack(packId) {
+      console.log('addPack', packId);
+
       let formData = { 'items': [{ 'id': packId, 'quantity': 1 }] }
 
         ; (async () => {
