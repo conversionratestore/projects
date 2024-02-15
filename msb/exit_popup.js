@@ -901,7 +901,8 @@ class ExitPopup {
     const PROMO_POPUP_SHOWN = 'promoPopupShown'
     const promoPopup = $el('#promo-popup')
     const isPopupShownDuringSession = sessionStorage.getItem(PROMO_POPUP_SHOWN)
-    if (isPopupShownDuringSession) return
+
+    if (isPopupShownDuringSession || location.pathname.includes('checkout')) return
 
     let gender = 'men'
 
@@ -981,7 +982,7 @@ class ExitPopup {
     const CART_POPUP_SHOWN = 'cartPopupShown'
     const cartPopup = $el('#cart-popup')
     const isPopupShownDuringSession = sessionStorage.getItem(CART_POPUP_SHOWN)
-    if (isPopupShownDuringSession) return
+    if (isPopupShownDuringSession || location.pathname.includes('checkout')) return
     const cart = JSON.parse(localStorage.getItem('mage-cache-storage'))?.cart?.items
 
     if (!cart) return
@@ -1385,7 +1386,7 @@ class ExitPopup {
           font-weight: 400;
           line-height: 22px;
         }
-        .crs-cart__checkout {
+        .crs-cart__checkout, .crs-cart__checkout:visited {
           display: block;
           width: 100%;
           background: var(--MSB-UI-Red, #a11a17);
@@ -1430,7 +1431,7 @@ class ExitPopup {
           </div>
           ${this.promoCode()}
           <div class="crs-dialog__action">
-            <a class="crs-cart__checkout" href="/checkout/klarna/">Complete my order now</a>
+            <a class="crs-cart__checkout" href="/checkout">Complete my order now</a>
           </div>
         </div>
       </dialog>`
