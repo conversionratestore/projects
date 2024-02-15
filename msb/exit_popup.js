@@ -260,11 +260,28 @@ class ExitPopup {
       #rich-text-100045185 > p:first-child span,
       #rich-text-100045289 > p:first-child span,
       #rich-text-100045427 > p:first-child span {
-        color: var(--MSB-UI-Black, #333);
-        font-family: 'adobe-garamond-pro', serif;
-        font-size: 26px;
+        color: var(--MSB-UI-Black, #333) !important;
+        font-family: 'adobe-garamond-pro', serif !important;
+        font-size: 32px !important;
         font-weight: 400;
         line-height: 40px;
+        margin-top: -40px;
+        margin-bottom: -15px;
+      }
+      #rich-text-100045185,
+      #rich-text-100045289,
+      #rich-text-100045427 {
+        margin-top: -40px;
+      }
+      .crs-promo-form__title {
+        margin-top: 0 !important;
+        margin-bottom: 10px !important;
+      }
+      .crs-promo-form__list {
+        margin-bottom: 10px;
+      }
+      #rich-text-100045179 {
+        font-size: 30px !important;
       }
       :is(#rich-text-100045421, #rich-text-100045179, #rich-text-100045283, ) span {
         color: var(--MSB-UI-Red, #a11a17);
@@ -280,6 +297,11 @@ class ExitPopup {
         font-style: normal;
         font-weight: 400;
         line-height: 22px; /* 137.5% */
+      }
+      label[id^='label-DateOfBirth'],
+      label[id^='kl_Content'] {
+        font-size: 12px !important;
+        margin-bottom: 6px !important;
       }
       .crs-promo-form__close {
         display: flex;
@@ -349,11 +371,16 @@ class ExitPopup {
         text-transform: uppercase;
       }
       @media (min-width: 768px) {
-        .crs-promo-form,
-        [data-testid^='klaviyo-form'] > div:first-of-type {
-          padding-block: 40px !important;
-        }
+      
+        [data-testid^='klaviyo-form'] > div.needsclick:first-of-type {
+          padding: 25px 0!important;
 
+        }
+   
+        .crs-promo-form__list {
+          margin-top: 20px;
+          padding-left: 30px;
+        }
         #rich-text-100045421,
         #rich-text-100045179,
         #rich-text-100045283,
@@ -362,6 +389,14 @@ class ExitPopup {
         #rich-text-100045289 > p:first-child span,
         #rich-text-100045427 > p:first-child span {
           font-size: 40px;
+          margin-top: 0;
+          margin-bottom: -10px;
+        }
+        #rich-text-100045185,
+        #rich-text-100045289,
+        #rich-text-100045427 {
+          margin-top: 0;
+          padding-right: 20px;
         }
         [data-testid^='klaviyo-form'] {
           width: 890px !important;
@@ -369,8 +404,18 @@ class ExitPopup {
             min-width: 50% !important;
           }
         }
-        .crs-promocode {
+        .crs-promo-form__content {
+          padding-bottom: 0 !important;
+          padding: 50px 36px 20px;
+          margin-bottom: 50px;
+
+        }
+        .crs-promo-form__content .crs-promocode {
           gap: 8px;
+        }
+
+        .crs-promo-form__content .crs-promocode__code {
+          padding: 12px !important;
         }
       }
     </style>`
@@ -439,7 +484,7 @@ class ExitPopup {
                   <h2 class="crs-promo-form__title">You are on the list</h2>
 
                   ${this.country === 'UK'
-                    ? /* HTML */ `<ul>
+                    ? /* HTML */ `<ul class="crs-promo-form__list">
                         <li>Your 10% first order discount is ready (no minimum spend, no exclusions).</li>
                         <li>Plus, <b>FREE</b> next-day UK delivery by FedEx.</li>
                       </ul>`
@@ -455,7 +500,8 @@ class ExitPopup {
               </div>
             `
             if ($el('.crs-promo-form')) return
-            enhanceForm.closest('form').insertAdjacentHTML('afterbegin', newPopupWithPromoHtml)
+            const form = enhanceForm.closest('form')
+            form.insertAdjacentHTML('afterbegin', newPopupWithPromoHtml)
 
             if (this.country === 'UK') {
               blockVisibility(
@@ -512,7 +558,6 @@ class ExitPopup {
                 if (item.innerText.includes('SUBSCRIBE NOW')) {
                   item.querySelector('button').classList.add('crs-hide-font')
                 }
-                console.log(item.innerText)
                 if (item.innerText.includes('SKIP AND REVEAL CODE')) {
                   item.parentElement.style.display = 'none'
                 }
@@ -1143,6 +1188,9 @@ class ExitPopup {
           line-height: 36px;
           margin: 0;
         }
+        #cart-popup .crs-dialog__title {
+          text-align: left;
+        }
         .crs-dialog__title span {
           color: var(--MSB-UI-Red, var(--H1-Font, #a11a17));
           text-transform: uppercase;
@@ -1228,7 +1276,7 @@ class ExitPopup {
           .crs-dialog__wrap {
             padding: 35px 50px;
           }
- 
+
           .crs-dialog__title,
           .crs-dialog__descr {
             text-align: center;
