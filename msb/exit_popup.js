@@ -215,7 +215,13 @@ class ExitPopup {
     this.idleTime = 60
     this.sessionTime = 180
     this.device = screen.width <= 768 ? 'Mobile' : 'Desktop'
-    this.country = window.location.host.includes('au') ? 'AU' : window.location.host.includes('us') ? 'US' : 'UK'
+    this.country = window.location.host.includes('au')
+      ? 'AU'
+      : window.location.host.includes('us')
+      ? 'US'
+      : window.location.host.includes('ca')
+      ? 'CA'
+      : 'UK'
     this.testId = window.location.host.includes('au')
       ? 'Wpgeya'
       : window.location.host.includes('us')
@@ -371,12 +377,10 @@ class ExitPopup {
         text-transform: uppercase;
       }
       @media (min-width: 768px) {
-      
         [data-testid^='klaviyo-form'] > div.needsclick:first-of-type {
-          padding: 25px 0!important;
-
+          padding: 25px 0 !important;
         }
-   
+
         .crs-promo-form__list {
           margin-top: 20px;
           padding-left: 30px;
@@ -408,7 +412,6 @@ class ExitPopup {
           padding-bottom: 0 !important;
           padding: 50px 36px 20px;
           margin-bottom: 50px;
-
         }
         .crs-promo-form__content .crs-promocode {
           gap: 8px;
@@ -518,8 +521,8 @@ class ExitPopup {
                   'Pop up You are on the list UK'
                 )
               }
-              $el('div[role="dialog"] .klaviyo-close-form').removeEventListener('mousedown', closeBtnEvent)
-              $el('div[role="dialog"] .klaviyo-close-form').addEventListener('mousedown', closeBtnEvent)
+              $el('div[role="dialog"] .klaviyo-close-form').removeEventListener('click', closeBtnEvent)
+              $el('div[role="dialog"] .klaviyo-close-form').addEventListener('click', closeBtnEvent)
             } else {
               blockVisibility(
                 '.crs-promo-form',
@@ -535,8 +538,8 @@ class ExitPopup {
                   'Pop up You are on the list USA, Canada, Australia'
                 )
               }
-              $el('div[role="dialog"] .klaviyo-close-form').removeEventListener('mousedown', closeBtnEvent)
-              $el('div[role="dialog"] .klaviyo-close-form').addEventListener('mousedown', closeBtnEvent)
+              $el('div[role="dialog"] .klaviyo-close-form').removeEventListener('click', closeBtnEvent)
+              $el('div[role="dialog"] .klaviyo-close-form').addEventListener('click', closeBtnEvent)
             }
 
             if (this.device === 'Mobile') {
@@ -562,6 +565,7 @@ class ExitPopup {
                   item.parentElement.style.display = 'none'
                 }
                 if (item.innerText.includes('SUBMIT')) {
+                  $el('div[role="dialog"] .klaviyo-close-form').removeEventListener('click', closeBtnEvent)
                   item.querySelector('button').addEventListener('click', () => {
                     $el('.klaviyo-close-form')?.click()
                   })
@@ -640,12 +644,13 @@ class ExitPopup {
               )
             }
             if (target.closest('.crs-promo-form__close')) {
+              
               pushDataLayer(
                 'exp_pop_car_retent_but_fredeluk_no',
                 'No, thanks',
                 'Button',
                 'Pop up Get 10% Off plus Free Next-Day UK Delivery! UK'
-              )
+                )
             }
             if (target.closest('.crs-promocode__copy-btn')) {
               pushDataLayer(
@@ -681,6 +686,8 @@ class ExitPopup {
               )
             }
             if (target.closest('.crs-promo-form__close')) {
+              $el('div[role="dialog"] .klaviyo-close-form').removeEventListener('click', closeBtnEvent)
+
               pushDataLayer(
                 'exp_pop_car_retent_but_firorduca_no',
                 'No, thanks',
@@ -742,6 +749,7 @@ class ExitPopup {
             const newButton = document.createElement('button')
             newButton.classList.add('crs-promo-form__continue')
             newButton.innerHTML = '<span>Get 10% discount</span>'
+            newButton.dataset.popup = 'email'
             item.parentElement.appendChild(newButton)
             newButton.addEventListener('click', () => {
               item.click()
@@ -758,8 +766,12 @@ class ExitPopup {
         elem
           .querySelector('button.needsclick.go397051626:first-child')
           .parentElement.parentElement.insertAdjacentHTML('afterend', exitButtonHtml)
-        $el('.crs-promo-form__close').addEventListener('click', () => {
+        $el('.crs-promo-form__close').addEventListener('click', event => {
+          event.preventDefault()
+          $el('div[role="dialog"] .klaviyo-close-form').removeEventListener('click', closeBtnEvent)
           $el('.klaviyo-close-form')?.click()
+          $el('div[role="dialog"] .klaviyo-close-form').addEventListener('click', closeBtnEvent)
+
         })
         popupMutationObserver.observe(elem, {
           childList: true,
@@ -1386,7 +1398,8 @@ class ExitPopup {
           font-weight: 400;
           line-height: 22px;
         }
-        .crs-cart__checkout, .crs-cart__checkout:visited {
+        .crs-cart__checkout,
+        .crs-cart__checkout:visited {
           display: block;
           width: 100%;
           background: var(--MSB-UI-Red, #a11a17);
