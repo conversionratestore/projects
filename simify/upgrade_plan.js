@@ -1303,15 +1303,7 @@
         margin: 0 !important;
       }
       .cart-updates .cartItem__Specification ul li .tick-icon svg path {
-        stroke: rgba(254, 170, 0, 1);
-      }
-      .cart-updates .cartItem__Specification ul li.list-item {
-        color: #333f48;
-        font-family: "Roboto";
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 20px;
-        display: flex;
+        stroke: rgb(51, 63, 72)!important;
       }
       .cart-updates .CartItemWrapper .CartItem__Title {
         padding-right: 40px!important;
