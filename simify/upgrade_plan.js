@@ -1143,6 +1143,17 @@
               <h2 class="CartItem__Title Heading">
                   <a href="${data.url}">${data.product_title}</a>
               </h2>
+              <div class="cartItem__Specification">
+                <ul class="specification-list">
+                  <li class="list-item">
+                    <span class="tick-icon">
+                      <svg width="8" height="7" viewBox="0 0 8 7" fill="none" xmlns="http://www.w3.org/2000/svg"> 
+                        <path d="M1 3.32727L3 5.36364L7 1" stroke="#333F48" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> 
+                      </svg>
+                    </span>${data['variant_title'].split(' |')[0] }
+                  </li>
+                </ul>
+              </div>
               <div class="CartItem__Meta Heading Text--subdued">
                   <ul class="CartItem__PropertyList"></ul><!-- Disc  |  |  |  -->
                   <div class="CartItem__PriceList" data-disccode="">
@@ -1302,7 +1313,11 @@
         line-height: 20px;
         display: flex;
       }
-      .cartItem__Specification {
+      .cart-updates .CartItemWrapper .CartItem__Title {
+        padding-right: 40px!important;
+        margin-bottom: 0!important;
+      }
+      .cart-updates .cartItem__Specification li.list-item:not(:first-child) {
         display: none;
       }
       .CartItem__QuantitySelector {
