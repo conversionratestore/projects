@@ -505,6 +505,7 @@ class ExitPopup {
             if ($el('.crs-promo-form')) return
             const form = enhanceForm.closest('form')
             form.insertAdjacentHTML('afterbegin', newPopupWithPromoHtml)
+            $el('div[role="dialog"] .klaviyo-close-form').removeEventListener('click', closeBtnEvent)
 
             if (this.country === 'UK') {
               blockVisibility(
@@ -547,7 +548,9 @@ class ExitPopup {
               $el('.crs-promo-form').prepend(copyImage)
             }
             $el('.crs-promo-form__continue').addEventListener('click', () => {
+              $el('div[role="dialog"] .klaviyo-close-form').removeEventListener('click', closeBtnEvent)
               $el('.klaviyo-close-form')?.click()
+              $el('div[role="dialog"] .klaviyo-close-form').addEventListener('click', closeBtnEvent)
             })
             $el('.crs-promo-form__enhance').addEventListener('click', () => {
               enhanceForm.style.display = 'block'
@@ -644,13 +647,12 @@ class ExitPopup {
               )
             }
             if (target.closest('.crs-promo-form__close')) {
-              
               pushDataLayer(
                 'exp_pop_car_retent_but_fredeluk_no',
                 'No, thanks',
                 'Button',
                 'Pop up Get 10% Off plus Free Next-Day UK Delivery! UK'
-                )
+              )
             }
             if (target.closest('.crs-promocode__copy-btn')) {
               pushDataLayer(
@@ -661,6 +663,7 @@ class ExitPopup {
               )
             }
             if (target.closest('button[data-popup="promocode"]')) {
+              $el('div[role="dialog"] .klaviyo-close-form').removeEventListener('click', closeBtnEvent)
               pushDataLayer(
                 'exp_pop_car_retent_but_youlisuk_cont',
                 'Continue shopping',
@@ -704,6 +707,8 @@ class ExitPopup {
               )
             }
             if (target.closest('button[data-popup="promocode"]')) {
+              $el('div[role="dialog"] .klaviyo-close-form').removeEventListener('click', closeBtnEvent)
+
               pushDataLayer(
                 'exp_pop_car_retent_but_youlisuca_cont',
                 'Continue shopping',
@@ -771,7 +776,6 @@ class ExitPopup {
           $el('div[role="dialog"] .klaviyo-close-form').removeEventListener('click', closeBtnEvent)
           $el('.klaviyo-close-form')?.click()
           $el('div[role="dialog"] .klaviyo-close-form').addEventListener('click', closeBtnEvent)
-
         })
         popupMutationObserver.observe(elem, {
           childList: true,
