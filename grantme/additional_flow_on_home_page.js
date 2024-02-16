@@ -749,11 +749,7 @@ class HomePage {
               <img src="${git}/grantme/img/our_consultants.png" alt="Our consultants" />
             </div>
             <h2 class="schedule_title">Get in touch with a program advisor today</h2>
-            <p class="schedule_txt deck_var">
-              Discuss your (your child) background and interests with one of our expert program advisors—they’ll help
-              you figure out if a GrantMe education program is right for you.
-            </p>
-            <p class="schedule_txt mob_var">
+            <p class="schedule_txt">
               In a quick <b>15-minute call</b> with one of our expert advisors, explore whether a GrantMe education
               program suits you. <br />
               <b>Open to parents and students.</b>
