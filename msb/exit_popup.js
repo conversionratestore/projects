@@ -211,10 +211,10 @@ const icons = {
 }
 const CART_POPUP_SHOWN = 'cartPopupShown'
 const PROMO_POPUP_SHOWN = 'promoPopupShown'
+const USER_WATCHED_POPUP = 'userWatchedPopup'
 
 class ExitPopup {
   constructor() {
-    this.isUserWatchedPopup = false
     this.idleTime = 60
     this.sessionTime = 180
     this.device = screen.width <= 768 ? 'Mobile' : 'Desktop'
@@ -225,11 +225,7 @@ class ExitPopup {
       : window.location.host.includes('ca')
       ? 'CA'
       : 'UK'
-    this.testId = window.location.host.includes('au')
-      ? 'Wpgeya'
-      : window.location.host.includes('us')
-      ? 'TKAxwu'
-      : 'Xv5Qvf'
+
     this.init()
   }
   init() {
@@ -238,6 +234,9 @@ class ExitPopup {
     this.popupsShowTriggers()
   }
 
+  isUserWatchedPopup() {
+    return sessionStorage.getItem(USER_WATCHED_POPUP) || false
+  }
   async firstOrderDiscountPopup() {
     const style = /* HTML */ ` <style>
       .popup-hidden {
@@ -445,7 +444,7 @@ class ExitPopup {
             }
 
             if (item.isIntersecting && init) {
-              this.isUserWatchedPopup = true
+              sessionStorage.setItem(USER_WATCHED_POPUP, 'true')
             }
 
             if (item.isIntersecting) {
@@ -582,7 +581,7 @@ class ExitPopup {
         })
       })
 
-      const selector = `form[data-testid="klaviyo-form-${this.testId}"]`
+      const selector = `form[data-testid^="klaviyo-form"].klaviyo-form-version-cid_3`
       waitForElement(selector).then(elem => {
         if (this.country === 'UK') {
           blockVisibility(
@@ -811,7 +810,7 @@ class ExitPopup {
           if (isProductInCart) {
             this.showCartPopup()
           }
-          if (this.isUserWatchedPopup && !isProductInCart) {
+          if (this.isUserWatchedPopup() && !isProductInCart) {
             this.showPromoPopup()
           }
           resetTimer()
@@ -827,13 +826,13 @@ class ExitPopup {
         if (isProductInCart) {
           this.showCartPopup()
         }
-        if (this.isUserWatchedPopup && !isProductInCart) {
+        if (this.isUserWatchedPopup() && !isProductInCart) {
           this.showPromoPopup()
           clearInterval(timerId)
         } else {
           const waitForUserWatchedPopup = () => {
             setTimeout(() => {
-              if (this.isUserWatchedPopup) {
+              if (this.isUserWatchedPopup()) {
                 this.showPromoPopup()
                 clearInterval(timerId)
               } else {
@@ -862,7 +861,7 @@ class ExitPopup {
         if (isProductInCart) {
           this.showCartPopup()
         } else {
-          if (this.isUserWatchedPopup) {
+          if (this.isUserWatchedPopup()) {
             this.showPromoPopup()
           }
         }
@@ -874,7 +873,7 @@ class ExitPopup {
       const scrolled = window.scrollY
 
       const scrollPercentage = (scrolled / (scrollHeight - visibleHeight)) * 100
-      if (scrollPercentage >= 50 && this.isUserWatchedPopup) {
+      if (scrollPercentage >= 50 && this.isUserWatchedPopup()) {
         this.showPromoPopup()
       }
 
@@ -885,7 +884,7 @@ class ExitPopup {
           if (isProductInCart) {
             this.showCartPopup()
           } else {
-            if (this.isUserWatchedPopup) {
+            if (this.isUserWatchedPopup()) {
               this.showPromoPopup()
             }
           }
@@ -905,7 +904,7 @@ class ExitPopup {
           if (isProductInCart) {
             this.showCartPopup()
           } else {
-            if (this.isUserWatchedPopup) {
+            if (this.isUserWatchedPopup()) {
               this.showPromoPopup()
             }
           }
@@ -917,7 +916,7 @@ class ExitPopup {
         if (isProductInCart) {
           this.showCartPopup()
         } else {
-          if (this.isUserWatchedPopup) {
+          if (this.isUserWatchedPopup()) {
             this.showPromoPopup()
           }
         }
