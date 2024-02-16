@@ -209,6 +209,9 @@ const icons = {
     />
   </svg>`
 }
+const CART_POPUP_SHOWN = 'cartPopupShown'
+const PROMO_POPUP_SHOWN = 'promoPopupShown'
+
 class ExitPopup {
   constructor() {
     this.isUserWatchedPopup = false
@@ -844,15 +847,15 @@ class ExitPopup {
     }
 
     $el('#product-addtocart-button')?.addEventListener('click', () => {
-      sessionStorage.removeItem(CART_POPUP_SHOWN)
       setTimeout(() => {
         const isProductInCart = this.checkProductsInCart()
         if (isProductInCart) {
-          this.showCartPopup()
+          this.showCartPopup(false)
         }
       }, 120000)
     })
     window.addEventListener('scroll', () => {
+      // show popup when user scrolls fast
       const scrollSpeed = checkScrollSpeed()
       if (scrollSpeed < -120 || scrollSpeed > 120) {
         const isProductInCart = this.checkProductsInCart()
@@ -864,6 +867,8 @@ class ExitPopup {
           }
         }
       }
+
+      // show popup when user reaches the center of the page
       const scrollHeight = document.documentElement.scrollHeight
       const visibleHeight = window.innerHeight
       const scrolled = window.scrollY
@@ -871,6 +876,20 @@ class ExitPopup {
       const scrollPercentage = (scrolled / (scrollHeight - visibleHeight)) * 100
       if (scrollPercentage >= 50 && this.isUserWatchedPopup) {
         this.showPromoPopup()
+      }
+
+      // show popup when user reaches the bottom of the page
+      if (this.device === 'Mobile') {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
+          const isProductInCart = this.checkProductsInCart()
+          if (isProductInCart) {
+            this.showCartPopup()
+          } else {
+            if (this.isUserWatchedPopup) {
+              this.showPromoPopup()
+            }
+          }
+        }
       }
     })
     if (this.device === 'Desktop') {
@@ -914,7 +933,6 @@ class ExitPopup {
     return cart?.length > 0
   }
   showPromoPopup() {
-    const PROMO_POPUP_SHOWN = 'promoPopupShown'
     const promoPopup = $el('#promo-popup')
     const isPopupShownDuringSession = sessionStorage.getItem(PROMO_POPUP_SHOWN)
 
@@ -994,10 +1012,9 @@ class ExitPopup {
     sessionStorage.setItem(PROMO_POPUP_SHOWN, true)
   }
 
-  showCartPopup() {
-    const CART_POPUP_SHOWN = 'cartPopupShown'
+  showCartPopup(oncePerSession = true) {
     const cartPopup = $el('#cart-popup')
-    const isPopupShownDuringSession = sessionStorage.getItem(CART_POPUP_SHOWN)
+    const isPopupShownDuringSession = oncePerSession ? sessionStorage.getItem(CART_POPUP_SHOWN) : false
     if (isPopupShownDuringSession || location.pathname.includes('checkout')) return
     const cart = JSON.parse(localStorage.getItem('mage-cache-storage'))?.cart?.items
 
