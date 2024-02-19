@@ -1,4 +1,4 @@
-; (function () {
+// ; (function () {
   console.log(
     "%c EXP: AOV hypothesis (DEV: Olha)",
     "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
@@ -1141,7 +1141,7 @@
     addUpdatedProduct(data, selector, line) {
       console.dir(data);
       const productHTML = `
-      <div class="CartItem esim_show" data-price="${data.price}" data-handle="${
+      <div class="CartItem esim_show" data-price="${data.final_price}" data-handle="${
         data.handle
       }">
           <div class="CartItem__ImageWrapper AspectRatio">
@@ -1416,4 +1416,4 @@
   }
 
   new UpgradePlan();
-})();
+// })();
