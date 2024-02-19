@@ -670,7 +670,7 @@
           <b>Unlimited plan</b>
           <p>${dataIcons.unlimited}</p>
           <p>${dataUpgrade["option-0"].toLowerCase()}</p>
-          <p><span class="upsell_compare">${dataItem.currency + dataUpgrade.priceGBCompare}</span>${dataItem.currency + dataUpgrade.price}</p>
+          <p>${dataItem.currency + dataUpgrade.price}</p>
           <p>-</p>
         </div>`;
       }
