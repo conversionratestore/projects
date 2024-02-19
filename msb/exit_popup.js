@@ -111,40 +111,150 @@ const checkScrollSpeed = (function (settings) {
 })()
 
 const promoPopupContent = {
-  men: [
-    {
-      title: "Men's wallets",
-      image: 'img/exit_popup/mens_wallets.png',
-      link: '/men/personalised-leather-wallet-mens.html'
-    },
-    {
-      title: 'men’s briefcases',
-      image: 'img/exit_popup/mens_briefcases.png',
-      link: '/men/business/luxury-leather-briefcases.html'
-    },
-    {
-      title: 'men’s luggage',
-      image: 'img/exit_popup/mens_luggage.png',
-      link: '/men/travel/luxury-leather-luggage.html'
-    }
-  ],
-  women: [
-    {
-      title: "women's handbags",
-      image: 'img/exit_popup/womens_handbags.png',
-      link: '/women/classic-ladies-leather-handbags.html'
-    },
-    {
-      title: 'women’s purses',
-      image: 'img/exit_popup/womens_purses.png',
-      link: '/women/classic-leather-purses-ladies.html'
-    },
-    {
-      title: 'women’s briefcases',
-      image: 'img/exit_popup/womens_briefcases.png',
-      link: '/women/business/ladies-best-leather-briefcases.html'
-    }
-  ]
+  uk: {
+    men: [
+      {
+        title: "Men's wallets",
+        image: 'img/exit_popup/mens_wallets.png',
+        link: '/men/personalised-leather-wallet-mens.html'
+      },
+      {
+        title: 'men’s briefcases',
+        image: 'img/exit_popup/mens_briefcases.png',
+        link: '/men/business/luxury-leather-briefcases.html'
+      },
+      {
+        title: 'men’s luggage',
+        image: 'img/exit_popup/mens_luggage.png',
+        link: '/men/travel/luxury-leather-luggage.html'
+      }
+    ],
+    women: [
+      {
+        title: "women's handbags",
+        image: 'img/exit_popup/womens_handbags.png',
+        link: '/women/classic-ladies-leather-handbags.html'
+      },
+      {
+        title: 'women’s purses',
+        image: 'img/exit_popup/womens_purses.png',
+        link: '/women/classic-leather-purses-ladies.html'
+      },
+      {
+        title: 'women’s briefcases',
+        image: 'img/exit_popup/womens_briefcases.png',
+        link: '/women/business/ladies-best-leather-briefcases.html'
+      }
+    ]
+  },
+  us: {
+    men: [
+      {
+        title: "Men's wallets",
+        image: 'img/exit_popup/mens_wallets.png',
+        link: '/men/leather-wallets.html'
+      },
+      {
+        title: 'men’s briefcases',
+        image: 'img/exit_popup/mens_briefcases.png',
+        link: '/men/business/best-leather-briefcases.html'
+      },
+      {
+        title: 'men’s luggage',
+        image: 'img/exit_popup/mens_luggage.png',
+        link: '/men/travel/leather-duffel-bags.html'
+      }
+    ],
+    women: [
+      {
+        title: 'Leather Purses',
+        image: 'img/exit_popup/womens_handbags.png',
+        link: '/women/leather-handbags-purses.html'
+      },
+      {
+        title: "Ladies' Wallets",
+        image: 'img/exit_popup/womens_purses.png',
+        link: '/women/ladies-leather-wallets.html'
+      },
+      {
+        title: 'women’s briefcases',
+        image: 'img/exit_popup/womens_briefcases.png',
+        link: '/women/business/ladies-leather-briefcases.html'
+      }
+    ]
+  },
+  au: {
+    men: [
+      {
+        title: "Men's wallets",
+        image: 'img/exit_popup/mens_wallets.png',
+        link: '/men/leather-wallets.html'
+      },
+      {
+        title: 'men’s briefcases',
+        image: 'img/exit_popup/mens_briefcases.png',
+        link: '/men/business/leather-briefcases.html'
+      },
+      {
+        title: 'men’s luggage',
+        image: 'img/exit_popup/mens_luggage.png',
+        link: '/men/travel/luxury-leather-luggage.html'
+      }
+    ],
+    women: [
+      {
+        title: 'Leather Handbags',
+        image: 'img/exit_popup/womens_handbags.png',
+        link: '/women/leather-handbags.html'
+      },
+      {
+        title: "Leather Purses",
+        image: 'img/exit_popup/womens_purses.png',
+        link: '/women/classic-leather-purses-ladies.html'
+      },
+      {
+        title: 'women’s briefcases',
+        image: 'img/exit_popup/womens_briefcases.png',
+        link: '/women/business/ladies-leather-briefcases.html'
+      }
+    ]
+  },
+  ca: {
+    men: [
+      {
+        title: "Men's wallets",
+        image: 'img/exit_popup/mens_wallets.png',
+        link: '/men/personalised-leather-wallet-mens.html'
+      },
+      {
+        title: 'men’s briefcases',
+        image: 'img/exit_popup/mens_briefcases.png',
+        link: '/men/business/luxury-leather-briefcases.html'
+      },
+      {
+        title: 'men’s luggage',
+        image: 'img/exit_popup/mens_luggage.png',
+        link: '/men/travel/luxury-leather-luggage.html'
+      }
+    ],
+    women: [
+      {
+        title: 'Leather Handbags',
+        image: 'img/exit_popup/womens_handbags.png',
+        link: '/women/classic-ladies-leather-handbags.html'
+      },
+      {
+        title: "Leather Purses",
+        image: 'img/exit_popup/womens_purses.png',
+        link: '/women/classic-leather-purses-ladies.html'
+      },
+      {
+        title: 'women’s briefcases',
+        image: 'img/exit_popup/womens_briefcases.png',
+        link: '/women/business/ladies-best-leather-briefcases.html'
+      }
+    ]
+  }
 }
 
 const icons = {
@@ -296,6 +406,9 @@ class ExitPopup {
         font-family: 'adobe-garamond-pro', serif;
         text-transform: uppercase;
       }
+      [id^='first_name'] {
+        display: none;
+      }
       #rich-text-100045180,
       #rich-text-100045422,
       #rich-text-100045284 {
@@ -442,7 +555,6 @@ class ExitPopup {
                 }
               }, 50)
             }
-
             if (item.isIntersecting && init) {
               sessionStorage.setItem(USER_WATCHED_POPUP, 'true')
             }
@@ -566,7 +678,7 @@ class ExitPopup {
                 if (item.innerText.includes('SUBSCRIBE NOW')) {
                   item.querySelector('button').classList.add('crs-hide-font')
                 }
-                if (item.innerText.includes('SKIP AND REVEAL CODE')) {
+                if (item.innerText.toLowerCase().includes('skip')) {
                   item.parentElement.style.display = 'none'
                 }
                 if (item.innerText.includes('SUBMIT')) {
@@ -581,7 +693,7 @@ class ExitPopup {
         })
       })
 
-      const selector = `form[data-testid^="klaviyo-form"].klaviyo-form-version-cid_3`
+      const selector = `form[data-testid^="klaviyo-form"]:has([id^="first_name"])`
       waitForElement(selector).then(elem => {
         if (this.country === 'UK') {
           blockVisibility(
@@ -977,7 +1089,7 @@ class ExitPopup {
 
     $el('.crs-promo__content').innerHTML = /* HTML */ `
       <div class="crs-promo__blocks">
-        ${promoPopupContent[gender]
+        ${promoPopupContent[this.country.toLowerCase()][gender]
           .map(item => {
             return /* HTML */ `
               <div class="crs-promo__block">
