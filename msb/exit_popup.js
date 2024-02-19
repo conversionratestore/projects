@@ -325,7 +325,7 @@ const USER_WATCHED_POPUP = 'userWatchedPopup'
 
 class ExitPopup {
   constructor() {
-    this.idleTime = 60
+    this.idleTime = 40
     this.sessionTime = 180
     this.device = screen.width <= 768 ? 'Mobile' : 'Desktop'
     this.country = window.location.host.includes('au')
