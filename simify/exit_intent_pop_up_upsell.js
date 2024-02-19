@@ -1632,7 +1632,7 @@ class IntentPopup {
           }
           .esim-tabs {
             margin-bottom: 24px;
-            justify-content: space-between;
+            justify-content: flex-start;
           }
           .esim-tabs .tab-link {
             margin: 0 !important;
