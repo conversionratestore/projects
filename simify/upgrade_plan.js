@@ -605,8 +605,11 @@
 
             this.dataCollections[idPDP].push({
               priceGB: (+extractNumber(
-                item.querySelector(".pdp-cmp-price").innerText
-              )).toFixed(2), //pdp-cmp-price
+                item.querySelector(".pdp-cmp-price p").innerText
+              )).toFixed(2),
+              priceGBCompare: (+extractNumber(
+                item.querySelector(".pdp-cmp-price s")?.innerText
+              )).toFixed(2), 
               priceOneGB: (+extractNumber(
                 item.querySelector(".Pro-varint-price-inner").innerText
               )).toFixed(2),
@@ -655,7 +658,7 @@
           <b>Best value plan</b>
           <p>${dataUpgrade.gb} GB</p>
           <p>${dataUpgrade.days} days</p>
-          <p>${dataItem.currency + dataUpgrade.priceGB}</p>
+          <p><span class="upsell_compare">${dataItem.currency + dataUpgrade.priceGBCompare}</span>${dataItem.currency + dataUpgrade.priceGB}</p>
           <p>${dataItem.currency + dataUpgrade.priceOneGB}</p>
         </div>`;
       } else {
@@ -667,7 +670,7 @@
           <b>Unlimited plan</b>
           <p>${dataIcons.unlimited}</p>
           <p>${dataUpgrade["option-0"].toLowerCase()}</p>
-          <p>${dataItem.currency + dataUpgrade.price}</p>
+          <p><span class="upsell_compare">${dataItem.currency + dataUpgrade.priceGBCompare}</span>${dataItem.currency + dataUpgrade.price}</p>
           <p>-</p>
         </div>`;
       }
@@ -797,6 +800,11 @@
       .upsell_col:first-child p {
         border-right: 1px solid #fff;
       }
+      .upsell_col span.upsell_compare {
+        color: var(--simify-com-collections-esim-europe-products-eu-uk-bt-esim-768-x-1365-default-limed-spruce-40, rgba(51, 63, 72, 0.40));
+        text-decoration-line: line-through;
+        margin-right: 4px;
+      }
       @media (max-width: 768px) {
         .upsell_descr p {
           max-width: unset;
@@ -835,7 +843,7 @@
               <b>Selected plan</b>
               <p>${dataItem.gb} GB</p>
               <p>${dataItem.days} days</p>
-              <p>${dataItem.currency + dataItem.priceGB}</p>
+              <p><span class="upsell_compare">${dataItem.currency + dataItem.priceGBCompare}</span>${dataItem.currency + dataItem.priceGB}</p>
               <p>${dataItem.currency + dataItem.priceOneGB}</p>
             </div>
             ${upgrade}
@@ -849,6 +857,9 @@
     initUpsellBlock() {
       const mainCartStyles = /* HTML */ `
         <style class="style_cart">
+          .CartItem__DiscountList {
+            display: none;
+          }
           #sidebar-cart .Drawer__Content .Drawer__Container {
             padding: 0 !important;
           }
@@ -961,6 +972,9 @@
                 } else {
                   if (!window.location.origin.includes("simsdirect")) return;
 
+                  console.dir(vidEl);
+                  console.dir(priceEl);
+
                   const title = el
                     .querySelector(".CartItem__Title a")
                     .innerHTML.toLowerCase();
@@ -985,9 +999,6 @@
                       arr[k]["option-0"].toLowerCase().split(" days")[0] ==
                       itemDataCollections.days
                     ) {
-                      console.dir(arr[k].price);
-                      console.dir(itemDataCollections.priceGB);
-                      console.dir(arr[k].price - itemDataCollections.priceGB);
 
                       let html = this.upsellBlockHtml(
                         [arr[k].price - itemDataCollections.priceGB],
@@ -1157,11 +1168,12 @@
               <div class="CartItem__Meta Heading Text--subdued">
                   <ul class="CartItem__PropertyList"></ul><!-- Disc  |  |  |  -->
                   <div class="CartItem__PriceList" data-disccode="">
-                      <!-- 222 line_item.final_price => 1300 -->
-                      <span class="CartItem__Price Price">${this.currency}${
-                        addDotIfNeeded(data.price).split(".00")[0]
-                      }</span>
-
+                    <span class="CartItem__OriginalPrice Price Price--compareAt">${this.currency}${
+                      addDotIfNeeded(data.price).split(".00")[0]
+                    }</span>
+                    <span class="CartItem__Price Price Price--highlight">${this.currency}${
+                      addDotIfNeeded(data.final_price).split(".00")[0]
+                    }</span>
                   </div>
               </div>
               <div class="CartItem__Actions Heading Text--subdued" style="text-align: center">
