@@ -218,7 +218,7 @@
         })
 
       } else if (url === 'sleepypatch') {
-        const packId = '39836565143596'
+        const packId = '42607794290732'
 
         // pdp pack price
         waitForElement('#purchase .list-packs-1').then(pdpPack => {
