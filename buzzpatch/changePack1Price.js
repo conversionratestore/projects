@@ -44,6 +44,16 @@
     const currencySymbol = currency[localizationData][0]
     const packPrice = packPriceObj[url][localizationData]
 
+    if (url === 'zenpatch' && currency[localizationData]) {
+      const waitForEl = setInterval(() => {
+        if (linksOfPacks?.linkOf1Pack) {
+          clearInterval(waitForEl)
+
+          linksOfPacks.linkOf1Pack = `/cart/42607831679020:1?currency=${currency[localizationData][1]}`
+        }
+      }, WAIT_INTERVAL_TIMEOUT)
+    }
+
     function waitForElement(selector) {
       return new Promise(resolve => {
         if (document.querySelector(selector)) {
@@ -124,10 +134,10 @@
           clearInterval(waitForPackageBtn)
 
           pack1.addEventListener('click', () => {
-            let originalHref = btn.getAttribute('href');
-            let originalCurrency = originalHref.split('=')[1];
+            let originalHref = btn.getAttribute('href')
+            let originalCurrency = originalHref.split('=')[1]
 
-            btn.setAttribute('href', `/cart/42607831679020:1?currency=${originalCurrency}`);
+            btn.setAttribute('href', `/cart/42607831679020:1?currency=${originalCurrency}`)
           })
         }
       }, WAIT_INTERVAL_TIMEOUT)
