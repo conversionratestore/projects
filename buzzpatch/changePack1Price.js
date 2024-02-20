@@ -124,7 +124,10 @@
           clearInterval(waitForPackageBtn)
 
           pack1.addEventListener('click', () => {
-            btn.href = btn.href.replace('39998449221676', '42607831679020')
+            let originalHref = btn.getAttribute('href');
+            let originalCurrency = originalHref.split('=')[1];
+
+            btn.setAttribute('href', `/cart/42607831679020:1?currency=${originalCurrency}`);
           })
         }
       }, WAIT_INTERVAL_TIMEOUT)
