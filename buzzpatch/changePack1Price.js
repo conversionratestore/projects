@@ -41,16 +41,6 @@
       'GB': ['£', 'GBP']
     }
 
-    if (url === 'zenpatch' && currency[localizationData]) {
-      const waitForEl = setInterval(() => {
-        if (linksOfPacks?.linkOf1Pack) {
-          clearInterval(waitForEl)
-
-          linksOfPacks.linkOf1Pack = `/cart/42607831679020:1?currency=${currency[localizationData][1]}`
-        }
-      }, WAIT_INTERVAL_TIMEOUT)
-    }
-
     const currencySymbol = currency[localizationData][0]
     const packPrice = packPriceObj[url][localizationData]
 
@@ -125,30 +115,8 @@
       }
     }
 
-    function addPack(packId) {
-      let formData = { 'items': [{ 'id': packId, 'quantity': 1 }] }
-
-        ; (async () => {
-          try {
-            await fetch('/cart/clear.js', { method: 'POST', headers: { 'Content-Type': 'application/json' } })
-
-            await fetch('/cart/add.js', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(formData),
-            }).then(() => {
-              window.location.href = '/checkout'
-            })
-          } catch (err) {
-            console.error(err)
-          }
-        })()
-    }
-
     function changeInitialPackPrice() {
       if (url === 'zenpatch') {
-        const packId = '42607831679020'
-
         // pdp pack price
         waitForElement('.package .list-packs[data-index="4"]').then(pdpPack => {
           const waitForEls = setInterval(() => {
@@ -173,15 +141,18 @@
             }
           }, WAIT_INTERVAL_TIMEOUT)
 
-          waitForElement('#addToCart').then(el => {
-            el.addEventListener('click', (e) => {
-              if (pdpPack.classList.contains('active-slide')) {
-                e.preventDefault()
+          const waitForPackageBtn = setInterval(() => {
+            const sidebarBtn = document.querySelector('.package  .button-proceed')
+            const pack1 = document.querySelector('.package  .list-packs[data-index="4"]')
 
-                addPack(packId)
-              }
-            })
-          })
+            if (sidebarBtn && pack1) {
+              clearInterval(waitForPackageBtn)
+
+              pack1.addEventListener('click', () => {
+                sidebarBtn.href = sidebarBtn.href.replace('39998449221676', '42607831679020')
+              })
+            }
+          }, WAIT_INTERVAL_TIMEOUT)
         })
 
         // cart pack price
@@ -206,20 +177,21 @@
             }
           }, WAIT_INTERVAL_TIMEOUT)
 
-          waitForElement('.sidebar .button-proceed').then(el => {
-            el.addEventListener('click', (e) => {
-              if (cartPack.classList.contains('active-slide')) {
-                e.preventDefault()
+          const waitForSidebarBtn = setInterval(() => {
+            const sidebarBtn = document.querySelector('.sidebar .button-proceed')
+            const pack1 = document.querySelector('.sidebar .list-packs[data-index="4"]')
 
-                addPack(packId)
-              }
-            })
-          })
+            if (sidebarBtn && pack1) {
+              clearInterval(waitForSidebarBtn)
+
+              pack1.addEventListener('click', () => {
+                sidebarBtn.href = sidebarBtn.href.replace('39998449221676', '42607831679020')
+              })
+            }
+          }, WAIT_INTERVAL_TIMEOUT)
         })
 
-      } else if (url === 'sleepypatch') {
-        const packId = '42607794290732'
-
+      } else if (url === 'sleepypatch') {        
         // pdp pack price
         waitForElement('#purchase .list-packs-1').then(pdpPack => {
           const waitForEls = setInterval(() => {
@@ -242,16 +214,6 @@
 
             }
           }, WAIT_INTERVAL_TIMEOUT)
-
-          waitForElement('#no-icart-open').then(el => {
-            el.addEventListener('click', (e) => {
-              if (pdpPack.classList.contains('active-slide')) {
-                e.preventDefault()
-
-                addPack(packId)
-              }
-            })
-          })
         })
 
         // cart pack price
@@ -275,16 +237,17 @@
               })
             }
           }, WAIT_INTERVAL_TIMEOUT)
-          waitForElement('.sidebar .button-proceed').then(el => {
-            el.addEventListener('click', (e) => {
-              if (cartPack.classList.contains('active-slide')) {
-                e.preventDefault()
-
-                addPack(packId)
-              }
-            })
-          })
         })
+
+        const waitForEl = setInterval(() => {
+          if (document.querySelectorAll('.list-packs-1')[1]) {
+            clearInterval(waitForEl)
+
+            document.querySelectorAll('.list-packs-1').forEach(pack => {
+              pack.dataset.id = '42607794290732'
+            })
+          }
+        }, WAIT_INTERVAL_TIMEOUT)
       }
     }
 
