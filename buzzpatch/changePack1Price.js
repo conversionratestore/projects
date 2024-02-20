@@ -115,6 +115,21 @@
       }
     }
 
+    function changeIdOfPack(parent) {
+      const waitForPackageBtn = setInterval(() => {
+        const btn = document.querySelector(`.${parent} .btn`)
+        const pack1 = document.querySelector(`.${parent} .list-packs[data-index="4"]`)
+
+        if (btn && pack1) {
+          clearInterval(waitForPackageBtn)
+
+          pack1.addEventListener('click', () => {
+            btn.href = btn.href.replace('39998449221676', '42607831679020')
+          })
+        }
+      }, WAIT_INTERVAL_TIMEOUT)
+    }
+
     function changeInitialPackPrice() {
       if (url === 'zenpatch') {
         // pdp pack price
@@ -141,18 +156,7 @@
             }
           }, WAIT_INTERVAL_TIMEOUT)
 
-          const waitForPackageBtn = setInterval(() => {
-            const sidebarBtn = document.querySelector('.package  .button-proceed')
-            const pack1 = document.querySelector('.package  .list-packs[data-index="4"]')
-
-            if (sidebarBtn && pack1) {
-              clearInterval(waitForPackageBtn)
-
-              pack1.addEventListener('click', () => {
-                sidebarBtn.href = sidebarBtn.href.replace('39998449221676', '42607831679020')
-              })
-            }
-          }, WAIT_INTERVAL_TIMEOUT)
+          changeIdOfPack('package')
         })
 
         // cart pack price
@@ -177,21 +181,10 @@
             }
           }, WAIT_INTERVAL_TIMEOUT)
 
-          const waitForSidebarBtn = setInterval(() => {
-            const sidebarBtn = document.querySelector('.sidebar .button-proceed')
-            const pack1 = document.querySelector('.sidebar .list-packs[data-index="4"]')
-
-            if (sidebarBtn && pack1) {
-              clearInterval(waitForSidebarBtn)
-
-              pack1.addEventListener('click', () => {
-                sidebarBtn.href = sidebarBtn.href.replace('39998449221676', '42607831679020')
-              })
-            }
-          }, WAIT_INTERVAL_TIMEOUT)
+          changeIdOfPack('sidebar')
         })
 
-      } else if (url === 'sleepypatch') {        
+      } else if (url === 'sleepypatch') {
         // pdp pack price
         waitForElement('#purchase .list-packs-1').then(pdpPack => {
           const waitForEls = setInterval(() => {
