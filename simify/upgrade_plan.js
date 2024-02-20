@@ -1,4 +1,4 @@
-// ; (function () {
+; (function () {
   console.log(
     "%c EXP: AOV hypothesis (DEV: Olha)",
     "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
@@ -1416,4 +1416,4 @@
   }
 
   new UpgradePlan();
-// })();
+})();
