@@ -950,7 +950,6 @@ class HomePage {
           padding: 24px 0 0;
         }
         .main_section p {
-          margin: 0;
           font-size: 18px;
           line-height: 25px;
         }
