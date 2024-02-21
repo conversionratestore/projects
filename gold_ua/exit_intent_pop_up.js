@@ -884,11 +884,6 @@ class IntentPopup {
             }, 500)
           }
           e.currentTarget.setAttribute('data-test', '1')
-          setTimeout(() => {
-            if (e.currentTarget.getAttribute('data-test')) {
-              e.currentTarget.removeAttribute('data-test')
-            }
-          }, 1000)
         }
       })
     })
