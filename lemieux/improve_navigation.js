@@ -647,6 +647,7 @@
       const selectedSize = +params.get('selection.size')
       const selectedColor = +params.get('selection.color')
       $el('.crs-size-chart')?.remove()
+      $el('.crs-color-chart')?.remove()
       if (productResponse.result[0].size.lentgth === 1) return
       for (let param of params) {
         obj[param[0]] = +param[1]
