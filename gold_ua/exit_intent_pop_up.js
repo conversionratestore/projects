@@ -731,7 +731,7 @@ class IntentPopup {
   checkLastAddedTime() {
     let timer = setInterval(() => {
       const timesTamp = sessionStorage.getItem('lastAddedTime')
-      if (new Date().getTime() - +timesTamp >= 30000 && window.location.href !== localTxtValue['hrefBtn']) {
+      if (new Date().getTime() - +timesTamp >= 180000 && window.location.href !== localTxtValue['hrefBtn']) {
         clearInterval(timer)
         this.getItemsBasket()
       }
