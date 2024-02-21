@@ -808,6 +808,7 @@ class Popup {
         }
       </style>
     `
+
     document.body.insertAdjacentHTML('beforeend', style)
 
     setTimeout(() => {
@@ -817,7 +818,7 @@ class Popup {
 
     setTimeout(() => {
       $el('.fix_form').remove()
-    }, 9000)
+    }, 12000)
   }
 
   async drawCart() {
@@ -965,9 +966,11 @@ class Popup {
 
     observeElement('shopify-section-minicart')
 
-    document.querySelector('#AddToCart').addEventListener('click', e => {
-      document.body.setAttribute('data-time', new Date().getTime())
-    })
+    if ($el('#AddToCart')) {
+      $el('#AddToCart').addEventListener('click', e => {
+        document.body.setAttribute('data-time', new Date().getTime())
+      })
+    }
 
     const timer = setInterval(() => {
       const timeout = this.D === 'mobile' ? 10000 : this.user === 0 ? 10000 : 20000
@@ -1033,8 +1036,6 @@ class Popup {
       .split(';')
       .find(c => c.trim().startsWith('_ga='))
       ?.split('.')[3]
-
-    const date = new Date(userGaId * 1000).getTime()
 
     if (new Date().getTime() - +userGaId * 1000 > 1000 * 30 * 60) {
       user = 1
