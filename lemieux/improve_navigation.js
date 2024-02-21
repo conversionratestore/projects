@@ -7,6 +7,15 @@
   const $el = selector => document.querySelector(selector)
   const git = 'https://conversionratestore.github.io/projects/'
 
+
+  // clarity script
+const clarityInterval = setInterval(function () {
+  if (typeof clarity == 'function') {
+    clearInterval(clarityInterval)
+    clarity('set', 'exp_impro_pdp', 'variant_1')
+  }
+}, 1000)
+
   // funtion for push data to GA4
   const pushDataLayer = (name, desc, type = '', loc = '') => {
     window.dataLayer = window.dataLayer || []
