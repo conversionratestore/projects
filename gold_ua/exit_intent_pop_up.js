@@ -867,30 +867,31 @@ class IntentPopup {
       closePopupBtns = popup.querySelectorAll('[data-popup="close"]')
     closePopupBtns.forEach(btn => {
       btn.addEventListener('click', e => {
-        if (!e.target.getAttribute('data-test')) {
-          backdrop.classList.add('is-hidden')
-          body.style.overflow = 'initial'
+        if (e.currentTarget) {
+          if (!e.currentTarget.getAttribute('data-test')) {
+            backdrop.classList.add('is-hidden')
+            body.style.overflow = 'initial'
 
-          pushDataLayer(
-            'exp_exit_pop_up_but_prodcart_close',
-            'Close',
-            'Button',
-            'Exit popup for users with product in cart'
-          )
+            pushDataLayer(
+              'exp_exit_pop_up_but_prodcart_close',
+              'Close',
+              'Button',
+              'Exit popup for users with product in cart'
+            )
 
-          setTimeout(() => {
-            $el('.new-popup__content').innerHTML = ''
-          }, 500)
-        }
-        e.target.setAttribute('data-test', '1')
-        setTimeout(() => {
-          if (e.target.getAttribute('data-test')) {
-            e.target.removeAttribute('data-test')
+            setTimeout(() => {
+              $el('.new-popup__content').innerHTML = ''
+            }, 500)
           }
-        }, 1000)
+          e.currentTarget.setAttribute('data-test', '1')
+          setTimeout(() => {
+            if (e.currentTarget.getAttribute('data-test')) {
+              e.currentTarget.removeAttribute('data-test')
+            }
+          }, 1000)
+        }
       })
     })
-
     backdrop.addEventListener(this.device === 'Mobile' ? 'click' : 'mousedown', e => {
       if (!e.target.getAttribute('data-test')) {
         if (e.target.matches('.new-popup-backdrop')) {
