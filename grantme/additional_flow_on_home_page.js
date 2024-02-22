@@ -1206,9 +1206,9 @@ class BookingPage {
   }
 
   init() {
-    const currentUrl = location.pathname
+    const currentUrl = location.href
 
-    if (currentUrl === this.targetUrl) {
+    if (currentUrl.includes(this.targetUrl)) {
       console.log(`ONLY BookingPage >>>>>`)
       this.initMainStyles()
       this.reDesignHero()
@@ -1736,4 +1736,4 @@ class BookingPage {
 }
 
 new HomePage('/')
-new BookingPage('/assessment-outcome')
+new BookingPage('https://app.grantme.com/assessment-outcome?user_type=parent')
