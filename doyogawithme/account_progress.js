@@ -165,6 +165,9 @@
     initBlock() {
       const style = `
           <style>
+              #main-content {
+                z-index: 3;
+              }
               .sfc-nodePlayable__lockContainerInner,
               .crs_form h1,
               .crs_form .form-actions,
@@ -614,7 +617,11 @@
               $el(".crs_block:not(.crs_form)").style.display = "block";
             }
           });
-          $el(".crs_swipe").addEventListener("click, touchmove", (e) => {
+          $el(".crs_swipe").addEventListener("click", (e) => {
+            $el(".crs_form").style.display = "none";
+            $el(".crs_block:not(.crs_form)").style.display = "block";
+          });
+          $el(".crs_swipe").addEventListener("touchmove", (e) => {
             $el(".crs_form").style.display = "none";
             $el(".crs_block:not(.crs_form)").style.display = "block";
           });
