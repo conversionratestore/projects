@@ -483,6 +483,12 @@
                       margin-bottom: 12px;
                   }
               }
+  
+              @media (max-width: 370px) {
+                .crs_block {
+                  width: 100%;
+                }
+              }
           </style>`;
   
       const content1 = `
@@ -523,7 +529,7 @@
   
       let thisClass = $el(
         ".sfc-nodePlayable__lockContainerInner header > .sfc-item__headline"
-      ).innerHTML.includes("premium")
+      )?.innerHTML.includes("premium")
         ? "Premium"
         : "Free"; // 'premium'
   
