@@ -989,7 +989,7 @@
     }
 
     init() {
-      console.dir("init");
+     
       const pageUrl = window.location.href;
 
       if (pageUrl.includes("/products/")) {
@@ -1032,7 +1032,6 @@
 
     setDataCollections() {
       waitForElement(".ProductForm__AddToCart").then((el) => {
-        console.dir(el);
         el.addEventListener("click", () => {
           let dataCollectionsStorage = getLocalStorage("dataCollections");
 
@@ -1117,8 +1116,14 @@
           <p>${dataItem.currency + dataUpgrade.priceOneGB}</p>
         </div>`;
       } else {
-        let price = nameDomain == "simify" ? dataUpgrade.price[this.indexCurrencySelect] : dataUpgrade.price;
-        let justPrice = nameDomain == "simify" ? ((price - price * 25 / 100) - dataItem.priceGB).toFixed(2) : data[0];
+        let price = nameDomain == "simify" ? dataUpgrade.price[this.indexCurrencySelect] : (dataUpgrade.price  - dataUpgrade.price * 25 / 100).toFixed(2);
+        let justPrice = nameDomain == "simify" ? dataUpgrade.price[this.indexCurrencySelect] - dataItem.priceGB  //((price - price * 25 / 100) - dataItem.priceGB).toFixed(2) 
+        : price - dataItem.priceGB;
+
+        console.dir("------")
+        console.dir(price)
+        console.dir(justPrice)
+        console.dir(dataUpgrade.price[this.indexCurrencySelect] )
 
         text = `For just <span>${
           dataItem.currency + justPrice
@@ -1128,10 +1133,11 @@
           <b>Unlimited plan</b>
           <p>${dataIcons.unlimited}</p>
           <p>${dataUpgrade["option-0"].toLowerCase()}</p>
-          <p><span class="upsell_compare">${
-            dataItem.currency + price
+          <p><span class="upsell_compare" style="${nameDomain == "simify" ? 'display: none;' : ''}">${
+            dataItem.currency + (nameDomain == "simify" ? dataUpgrade.price[this.indexCurrencySelect] * 100 / 75 : dataUpgrade.price )
           }</span>${
-            dataItem.currency + (price - price * 25 / 100).toFixed(2)
+            dataItem.currency + (nameDomain == "simify" ? dataUpgrade.price[this.indexCurrencySelect]
+            : price)
           }</p>
           <p>-</p>
         </div>`;
@@ -1390,7 +1396,7 @@
           .querySelector(".specification-list .list-item")
           .innerText.trim()
           .split("GB")[0];
-        console.dir(gbEl);
+        
         for (const key in dataCollections) {
           if (dataCollections[key]) {
             for (let i = 0; i < dataCollections[key].length; i++) {
@@ -1598,7 +1604,6 @@
         el.addEventListener("click", (e) => {
           e.stopImmediatePropagation();
 
-          console.dir('click')
           let input = el.parentElement.querySelector("input");
           if (el.dataset.action == "increase-quantity") {
             if (parseInt(input.value) < 10) {
