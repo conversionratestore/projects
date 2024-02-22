@@ -1,6 +1,6 @@
 (function () {
   console.dir(
-    "%c QA EXP: AOV hypothesis (DEV: Olha)",
+    "%c EXP: AOV hypothesis (DEV: Olha)",
     "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
   );
 
@@ -668,7 +668,7 @@
       ],
       simify: [
         {
-          price: [186.75],
+          price: [186.75, 171, 100.50, 204.75, 123.75], //AUD, CAD, GBP, NZD, USD
           "option-0": "90 Days",
           vid: "43495352762558",
           mediaId: "26922197123262",
@@ -679,7 +679,7 @@
           },
         },
         {
-          price: [134.25],
+          price: [134.25, 123, 72, 147.75, 89.25],
           "option-0": "60 Days",
           vid: "43495352795326",
           mediaId: "26922197090494",
@@ -690,7 +690,7 @@
           },
         },
         {
-          price: [75],
+          price: [75, 67.50, 39.75, 81, 48.75],
           "option-0": "30 Days",
           vid: "43495352828094",
           mediaId: "26922197057726",
@@ -701,7 +701,7 @@
           },
         },
         {
-          price: [63.75],
+          price: [63.75, 57, 33.75, 68.25, 41.25],
           "option-0": "21 Days",
           vid: "43495352860862",
           mediaId: "26922197024958",
@@ -712,7 +712,7 @@
           },
         },
         {
-          price: [51],
+          price: [51, 45.75, 27, 54.75, 33],
           "option-0": "15 Days",
           vid: "43495352893630",
           mediaId: "26922196992190",
@@ -723,7 +723,7 @@
           },
         },
         {
-          price: [33],
+          price: [33, 30, 18, 36, 21.75],
           "option-0": "7 Days",
           vid: "40722100387938",
           mediaId: "22362788167778",
@@ -731,10 +731,11 @@
           properties: {
             _spec_check: "Unlimited Data, 7 Days, eSIM ⚡️ Delivered Instantly",
           },
-        },
-      ],
+        }
+      ]
     },
-    USA: [
+    USA: {
+      simsdirect: [
       {
         price: 269,
         "option-0": "90 Days",
@@ -795,7 +796,70 @@
           _spec_check: "Unlimited Data, 7 days, eSIM ⚡️ Delivered Instantly",
         },
       },
-    ],
+      ],
+      simify: [
+        {
+          price: [201.75, 184.50, 108, 220.50, 133.50], //AUD, CAD, GBP, NZD, USD
+          "option-0": "90 Days",
+          vid: "43495335887038",
+          mediaId: "26922202202302",
+          productId: "7880807153854",
+          properties: {
+            _spec_check: "Unlimited Data, 90 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: [141.75, 129.75, 75.75, 154.50, 93.75],
+          "option-0": "60 Days",
+          vid: "43495335919806",
+          mediaId: "26922202169534",
+          productId: "7880807153854",
+          properties: {
+            _spec_check: "Unlimited Data, 60 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: [75, 67.50, 39.75, 81, 48.75],
+          "option-0": "30 Days",
+          vid: "43495335952574",
+          mediaId: "26922202136766",
+          productId: "7880807153854",
+          properties: {
+            _spec_check: "Unlimited Data, 30 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: [64.50, 58.50, 34.50, 69.75, 42],
+          "option-0": "21 Days",
+          vid: "43495335985342",
+          mediaId: "26922202103998",
+          productId: "7880807153854",
+          properties: {
+            _spec_check: "Unlimited Data, 21 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: [51, 45.75, 27, 54.75, 33],
+          "option-0": "15 Days",
+          vid: "43495336018110",
+          mediaId: "26922202071230",
+          productId: "7880807153854",
+          properties: {
+            _spec_check: "Unlimited Data, 15 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: [33.75, 30, 18, 36, 21.75],
+          "option-0": "7 Days",
+          vid: "43495336050878",
+          mediaId: "26922202038462",
+          productId: "7880807153854",
+          properties: {
+            _spec_check: "Unlimited Data, 7 days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+      ]
+    }
   };
 
   function pushDataLayer(event_name, event_desc, event_type, event_loc) {
