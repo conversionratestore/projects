@@ -128,7 +128,7 @@
     function changeIdOfPack(parent) {
       const waitForPackageBtn = setInterval(() => {
         const btn = document.querySelector(`.${parent} .btn`)
-        const pack1 = document.querySelector(`.${parent} .list-packs[data-index="4"]`)
+        const pack1 = document.querySelector(`.${parent} .list-packs + .list-packs + .list-packs + .list-packs`)
 
         if (btn && pack1) {
           clearInterval(waitForPackageBtn)
