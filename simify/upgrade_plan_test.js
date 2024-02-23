@@ -134,7 +134,7 @@
       ],
       simify: [
         {
-          price: [186.75, 171, 100.5, 204.75, 123.75], //AUD, CAD, GBP, NZD, USD
+          price: [249, 227, 133, 272, 165], //AUD, CAD, GBP, NZD, USD
           "option-0": "90 Days",
           vid: "43495156351166",
           mediaId: "26922185982142",
@@ -145,7 +145,7 @@
           },
         },
         {
-          price: [134.25, 123, 72.75, 147.75, 89.25],
+          price: [179, 164, 96, 196, 119],
           "option-0": "60 Days",
           vid: "43495156383934",
           mediaId: "26922185949374",
@@ -156,7 +156,7 @@
           },
         },
         {
-          price: [75, 67.5, 39.75, 81, 48.75],
+          price: [99, 90, 53, 107, 65],
           "option-0": "30 Days",
           vid: "43495156416702",
           mediaId: "26922185916606",
@@ -167,7 +167,7 @@
           },
         },
         {
-          price: [64.5, 58.5, 34.5, 69.75, 42],
+          price: [86, 77, 46, 93, 56],
           "option-0": "21 Days",
           vid: "43495157727422",
           mediaId: "26922185883838",
@@ -178,7 +178,7 @@
           },
         },
         {
-          price: [51, 45.75, 27, 54.75, 33],
+          price: [67, 61, 36, 73, 44],
           "option-0": "15 Days",
           vid: "43495156449470",
           mediaId: "26922185851070",
@@ -189,7 +189,7 @@
           },
         },
         {
-          price: [33.75, 30, 18, 36, 21.75],
+          price: [45, 40, 24, 48, 29],
           "option-0": "7 Days",
           vid: "43495156482238",
           mediaId: "26922185818302",
@@ -532,7 +532,7 @@
       ],
       simify: [
         {
-          price: [209.25, 191.25, 112.5, 228.75, 138.75], //AUD, CAD, GBP, NZD, USD
+          price: [279, 255, 149, 305, 185], //AUD, CAD, GBP, NZD, USD
           "option-0": "90 Days",
           vid: "43495365574846",
           mediaId: "26922180706494",
@@ -543,7 +543,7 @@
           },
         },
         {
-          price: [141.75, 129, 75.75, 154.5, 93.75],
+          price: [189, 172, 101, 206, 125],
           "option-0": "60 Days",
           vid: "43495365607614",
           mediaId: "26922180673726",
@@ -554,7 +554,7 @@
           },
         },
         {
-          price: [75, 67.5, 39.75, 81, 48.75],
+          price: [99, 90, 53, 107, 65],
           "option-0": "30 Days",
           vid: "43495365640382",
           mediaId: "26922180640958",
@@ -565,7 +565,7 @@
           },
         },
         {
-          price: [4.5, 58.5, 34.5, 69.75, 42],
+          price: [86, 77, 46, 93, 56],
           "option-0": "21 Days",
           vid: "43495365673150",
           mediaId: "26922180608190",
@@ -576,7 +576,7 @@
           },
         },
         {
-          price: [51.75, 46.5, 27.75, 56.25, 33.75],
+          price: [69, 62, 37, 75, 45],
           "option-0": "15 Days",
           vid: "43495365705918",
           mediaId: "26922180575422",
@@ -587,7 +587,7 @@
           },
         },
         {
-          price: [29.25, 27, 15.75, 32.25, 19.5],
+          price: [39, 36, 21, 43, 26],
           "option-0": "7 Days",
           vid: "43495365738686",
           mediaId: "26922180542654",
@@ -668,7 +668,7 @@
       ],
       simify: [
         {
-          price: [186.75, 171, 100.50, 204.75, 123.75], //AUD, CAD, GBP, NZD, USD
+          price: [249, 227, 133, 272, 165], //AUD, CAD, GBP, NZD, USD
           "option-0": "90 Days",
           vid: "43495352762558",
           mediaId: "26922197123262",
@@ -679,7 +679,7 @@
           },
         },
         {
-          price: [134.25, 123, 72, 147.75, 89.25],
+          price: [179, 164, 96, 196, 119],
           "option-0": "60 Days",
           vid: "43495352795326",
           mediaId: "26922197090494",
@@ -690,7 +690,7 @@
           },
         },
         {
-          price: [75, 67.50, 39.75, 81, 48.75],
+          price: [99, 90, 53, 107, 65],
           "option-0": "30 Days",
           vid: "43495352828094",
           mediaId: "26922197057726",
@@ -701,7 +701,7 @@
           },
         },
         {
-          price: [63.75, 57, 33.75, 68.25, 41.25],
+          price: [85, 76, 45, 91, 55],
           "option-0": "21 Days",
           vid: "43495352860862",
           mediaId: "26922197024958",
@@ -712,7 +712,7 @@
           },
         },
         {
-          price: [51, 45.75, 27, 54.75, 33],
+          price: [67, 61, 36, 73, 44],
           "option-0": "15 Days",
           vid: "43495352893630",
           mediaId: "26922196992190",
@@ -723,7 +723,7 @@
           },
         },
         {
-          price: [33, 30, 18, 36, 21.75],
+          price: [44, 40, 24, 48, 29],
           "option-0": "7 Days",
           vid: "40722100387938",
           mediaId: "22362788167778",
@@ -799,7 +799,7 @@
       ],
       simify: [
         {
-          price: [201.75, 184.50, 108, 220.50, 133.50], //AUD, CAD, GBP, NZD, USD
+          price: [269, 245, 144, 293, 178], //AUD, CAD, GBP, NZD, USD
           "option-0": "90 Days",
           vid: "43495335887038",
           mediaId: "26922202202302",
@@ -809,7 +809,7 @@
           },
         },
         {
-          price: [141.75, 129.75, 75.75, 154.50, 93.75],
+          price: [189, 90, 101, 206, 125],
           "option-0": "60 Days",
           vid: "43495335919806",
           mediaId: "26922202169534",
@@ -819,7 +819,7 @@
           },
         },
         {
-          price: [75, 67.50, 39.75, 81, 48.75],
+          price: [99, 172, 53, 107, 65],
           "option-0": "30 Days",
           vid: "43495335952574",
           mediaId: "26922202136766",
@@ -829,7 +829,7 @@
           },
         },
         {
-          price: [64.50, 58.50, 34.50, 69.75, 42],
+          price: [86, 77, 46, 93, 56],
           "option-0": "21 Days",
           vid: "43495335985342",
           mediaId: "26922202103998",
@@ -839,7 +839,7 @@
           },
         },
         {
-          price: [51, 45.75, 27, 54.75, 33],
+          price: [67, 61, 36, 73, 44],
           "option-0": "15 Days",
           vid: "43495336018110",
           mediaId: "26922202071230",
@@ -849,7 +849,7 @@
           },
         },
         {
-          price: [33.75, 30, 18, 36, 21.75],
+          price: [45, 40, 24, 48, 29],
           "option-0": "7 Days",
           vid: "43495336050878",
           mediaId: "26922202038462",
@@ -1110,13 +1110,11 @@
           <b>Best value plan</b>
           <p>${dataUpgrade.gb} GB</p>
           <p>${dataUpgrade.days} days</p>
-          <p><span class="upsell_compare" style="${dataUpgrade.priceGBCompare != 0 ? '':'display: none'}">${
-            dataItem.currency + dataUpgrade.priceGBCompare
-          }</span>${dataItem.currency + dataUpgrade.priceGB}</p>
+          <p>${dataItem.currency + dataUpgrade.priceGB}</p>
           <p>${dataItem.currency + dataUpgrade.priceOneGB}</p>
         </div>`;
       } else {
-        let price = nameDomain == "simify" ? dataUpgrade.price[this.indexCurrencySelect] : (dataUpgrade.price  - dataUpgrade.price * 25 / 100).toFixed(2);
+        let price = nameDomain == "simify" ? dataUpgrade.price[this.indexCurrencySelect] : dataUpgrade.price;
         let justPrice = nameDomain == "simify" ? dataUpgrade.price[this.indexCurrencySelect] - dataItem.priceGB  //((price - price * 25 / 100) - dataItem.priceGB).toFixed(2) 
         : price - dataItem.priceGB;
 
@@ -1133,11 +1131,8 @@
           <b>Unlimited plan</b>
           <p>${dataIcons.unlimited}</p>
           <p>${dataUpgrade["option-0"].toLowerCase()}</p>
-          <p><span class="upsell_compare"  style="${dataItem.priceGBCompare != 0 ? '':'display: none'}">${
-            dataItem.currency + (nameDomain == "simify" ? dataUpgrade.price[this.indexCurrencySelect] * 100 / 75 : dataUpgrade.price )
-          }</span>${
-            dataItem.currency + (nameDomain == "simify" ? dataUpgrade.price[this.indexCurrencySelect]
-            : price)
+          <p>${
+            dataItem.currency + price
           }</p>
           <p>-</p>
         </div>`;

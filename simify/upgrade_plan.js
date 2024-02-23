@@ -1,5 +1,5 @@
-; (function () {
-  console.log(
+(function () {
+  console.dir(
     "%c EXP: AOV hypothesis (DEV: Olha)",
     "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
   );
@@ -8,6 +8,10 @@
 
   const $$el = (selector) => document.querySelectorAll(selector);
   const $el = (selector) => document.querySelector(selector);
+
+  const nameDomain = window.location.origin.includes("simsdirect")
+    ? "simsdirect"
+    : "simify";
 
   const clarityInterval = setInterval(function () {
     if (typeof clarity == "function") {
@@ -60,322 +64,683 @@
   };
 
   const unlimitedData = {
-    UK: [
-      {
-        price: 249,
-        "option-0": "90 Days",
-        vid: "40714106699874",
-        mediaId: "22362787283042",
-        productId: "6981743345762",
-        properties: {
-          _spec_check: "Unlimited Data, 90 Days, eSIM ⚡️ Delivered Instantly",
+    UK: {
+      simsdirect: [
+        {
+          price: 249,
+          "option-0": "90 Days",
+          vid: "40714106699874",
+          mediaId: "22362787283042",
+          productId: "6981743345762",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 90 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 179,
-        "option-0": "60 Days",
-        vid: "40714106732642",
-        mediaId: "22362786955362",
-        productId: "6981743345762",
-        properties: {
-          _spec_check: "Unlimited Data, 60 Days, eSIM ⚡️ Delivered Instantly",
+        {
+          price: 179,
+          "option-0": "60 Days",
+          vid: "40714106732642",
+          mediaId: "22362786955362",
+          productId: "6981743345762",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 60 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 99,
-        "option-0": "30 Days",
-        vid: "40714106765410",
-        mediaId: "22362786791522",
-        productId: "6981743345762",
-        properties: {
-          _spec_check: "Unlimited Data, 30 Days, eSIM ⚡️ Delivered Instantly",
+        {
+          price: 99,
+          "option-0": "30 Days",
+          vid: "40714106765410",
+          mediaId: "22362786791522",
+          productId: "6981743345762",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 30 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 85,
-        "option-0": "21 Days",
-        vid: "40714165321826",
-        mediaId: "22362786070626",
-        productId: "6981743345762",
-        properties: {
-          _spec_check: "Unlimited Data, 21 Days, eSIM ⚡️ Delivered Instantly",
+        {
+          price: 85,
+          "option-0": "21 Days",
+          vid: "40714165321826",
+          mediaId: "22362786070626",
+          productId: "6981743345762",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 21 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 67,
-        "option-0": "15 Days",
-        vid: "40714106798178",
-        mediaId: "22362784858210",
-        productId: "6981743345762",
-        properties: {
-          _spec_check: "Unlimited Data, 15 Days, eSIM ⚡️ Delivered Instantly",
+        {
+          price: 67,
+          "option-0": "15 Days",
+          vid: "40714106798178",
+          mediaId: "22362784858210",
+          productId: "6981743345762",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 15 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 44,
-        "option-0": "7 Days",
-        vid: "40714106830946",
-        mediaId: "22362778599522",
-        productId: "6981743345762",
-        properties: {
-          _spec_check: "Unlimited Data, 7 Days, eSIM ⚡️ Delivered Instantly",
+        {
+          price: 44,
+          "option-0": "7 Days",
+          vid: "40714106830946",
+          mediaId: "22362778599522",
+          productId: "6981743345762",
+          properties: {
+            _spec_check: "Unlimited Data, 7 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-    ],
-    Japan: [
-      {
-        price: 229,
-        "option-0": "90 Days",
-        vid: "40714096279650",
-        mediaId: "22362763264098",
-        productId: "6981740200034",
-        properties: {
-          _spec_check: "Unlimited Data, 90 days, eSIM ⚡️ Delivered Instantly",
+      ],
+      simify: [
+        {
+          price: [249, 227, 133, 272, 165], //AUD, CAD, GBP, NZD, USD
+          "option-0": "90 Days",
+          vid: "43495156351166",
+          mediaId: "26922185982142",
+          productId: "7880726642878",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 90 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 179,
-        "option-0": "60 Days",
-        vid: "40714096312418",
-        mediaId: "22362762674274",
-        productId: "6981740200034",
-        properties: {
-          _spec_check: "Unlimited Data, 60 Days, eSIM ⚡️ Delivered Instantly",
+        {
+          price: [179, 164, 96, 196, 119],
+          "option-0": "60 Days",
+          vid: "43495156383934",
+          mediaId: "26922185949374",
+          productId: "7880726642878",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 60 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 99,
-        "option-0": "30 Days",
-        vid: "40714096345186",
-        mediaId: "22362761035874",
-        productId: "6981740200034",
-        properties: {
-          _spec_check: "Unlimited Data, 30 Days, eSIM ⚡️ Delivered Instantly",
+        {
+          price: [99, 90, 53, 107, 65],
+          "option-0": "30 Days",
+          vid: "43495156416702",
+          mediaId: "26922185916606",
+          productId: "7880726642878",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 30 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 85,
-        "option-0": "21 Days",
-        vid: "40714096377954",
-        mediaId: "22362761035874",
-        productId: "6981740200034",
-        properties: {
-          _spec_check: "Unlimited Data, 21 Days, eSIM ⚡️ Delivered Instantly",
+        {
+          price: [86, 77, 46, 93, 56],
+          "option-0": "21 Days",
+          vid: "43495157727422",
+          mediaId: "26922185883838",
+          productId: "7880726642878",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 21 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 67,
-        "option-0": "15 Days",
-        vid: "40714096410722",
-        mediaId: "22362742685794",
-        productId: "6981740200034",
-        properties: {
-          _spec_check: "Unlimited Data, 15 Days, eSIM ⚡️ Delivered Instantly",
+        {
+          price: [67, 61, 36, 73, 44],
+          "option-0": "15 Days",
+          vid: "43495156449470",
+          mediaId: "26922185851070",
+          productId: "7880726642878",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 15 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 39,
-        "option-0": "7 Days",
-        vid: "40714096443490",
-        mediaId: "22362717421666",
-        productId: "6981740200034",
-        properties: {
-          _spec_check: "Unlimited Data, 7 Days, eSIM ⚡️ Delivered Instantly",
+        {
+          price: [45, 40, 24, 48, 29],
+          "option-0": "7 Days",
+          vid: "43495156482238",
+          mediaId: "26922185818302",
+          productId: "7880726642878",
+          properties: {
+            _spec_check: "Unlimited Data, 7 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-    ],
-    Asia: [
-      {
-        price: 199,
-        "option-0": "90 Days",
-        vid: "40714425696354",
-        mediaId: "22362773782626",
-        productId: "6981806915682",
-        properties: {
-          _spec_check: "Unlimited Data, 90 Days, eSIM Delivered Instantly",
+      ],
+    },
+    Japan: {
+      simsdirect: [
+        {
+          price: 229,
+          "option-0": "90 Days",
+          vid: "40714096279650",
+          mediaId: "22362763264098",
+          productId: "6981740200034",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 90 days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 169,
-        "option-0": "60 Days",
-        vid: "40714425729122",
-        mediaId: "22362772832354",
-        productId: "6981806915682",
-        properties: {
-          _spec_check: "Unlimited Data, 60 Days, eSIM Delivered Instantly",
+        {
+          price: 179,
+          "option-0": "60 Days",
+          vid: "40714096312418",
+          mediaId: "22362762674274",
+          productId: "6981740200034",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 60 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 99,
-        "option-0": "30 Days",
-        vid: "40714425761890",
-        mediaId: "22362767949922",
-        productId: "6981806915682",
-        properties: {
-          _spec_check: "Unlimited Data, 30 Days, eSIM Delivered Instantly",
+        {
+          price: 99,
+          "option-0": "30 Days",
+          vid: "40714096345186",
+          mediaId: "22362761035874",
+          productId: "6981740200034",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 30 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 75,
-        "option-0": "21 Days",
-        vid: "40714425794658",
-        mediaId: "22362765983842",
-        productId: "6981806915682",
-        properties: {
-          _spec_check: "Unlimited Data, 21 Days, eSIM Delivered Instantly",
+        {
+          price: 85,
+          "option-0": "21 Days",
+          vid: "40714096377954",
+          mediaId: "22362761035874",
+          productId: "6981740200034",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 21 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 59,
-        "option-0": "15 Days",
-        vid: "40714425827426",
-        mediaId: "22362765131874",
-        productId: "6981806915682",
-        properties: {
-          _spec_check: "Unlimited Data, 15 Days, eSIM Delivered Instantly",
+        {
+          price: 67,
+          "option-0": "15 Days",
+          vid: "40714096410722",
+          mediaId: "22362742685794",
+          productId: "6981740200034",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 15 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 39,
-        "option-0": "7 Days",
-        vid: "40722316787810",
-        mediaId: "22362764181602",
-        productId: "6981806915682",
-        properties: {
-          _spec_check: "Unlimited Data, 7 Days, eSIM Delivered Instantly",
+        {
+          price: 39,
+          "option-0": "7 Days",
+          vid: "40714096443490",
+          mediaId: "22362717421666",
+          productId: "6981740200034",
+          properties: {
+            _spec_check: "Unlimited Data, 7 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-    ],
-    China: [
-      {
-        price: 279,
-        "option-0": "90 Days",
-        vid: "40714480451682",
-        mediaId: "22362815627362",
-        productId: "6981812977762",
-        properties: {
-          _spec_check: "Unlimited Data, 90 Days, eSIM ⚡️ Delivered Instantly",
+      ],
+      simify: [
+        {
+          price: [171.75, 157.5, 92.25, 188.25, 114.0], //AUD, CAD, GBP, NZD, USD
+          "option-0": "90 Days",
+          vid: "43495069122750",
+          mediaId: "26922191913150",
+          productId: "7880706261182",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 90 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 189,
-        "option-0": "60 Days",
-        vid: "40714480517218",
-        mediaId: "22362815135842",
-        productId: "6981812977762",
-        properties: {
-          _spec_check: "Unlimited Data, 60 Days, eSIM ⚡️ Delivered Instantly",
+        {
+          price: [134.25, 123, 72.75, 147.75, 89.25],
+          "option-0": "60 Days",
+          vid: "43495069155518",
+          mediaId: "26922191880382",
+          productId: "7880706261182",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 60 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 99,
-        "option-0": "30 Days",
-        vid: "40714480648290",
-        mediaId: "22362813235298",
-        productId: "6981812977762",
-        properties: {
-          _spec_check: "Unlimited Data, 30 Days, eSIM ⚡️ Delivered Instantly",
+        {
+          price: [74.25, 67.5, 39.75, 81, 48.75],
+          "option-0": "30 Days",
+          vid: "43495069188286",
+          mediaId: "26922191847614",
+          productId: "7880706261182",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 30 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 85,
-        "option-0": "21 Days",
-        vid: "40714480713826",
-        mediaId: "22362804846690",
-        productId: "6981812977762",
-        properties: {
-          _spec_check: "Unlimited Data, 21 Days, eSIM ⚡️ Delivered Instantly",
+        {
+          price: [63.75, 58.5, 34.5, 69.75, 42],
+          "option-0": "21 Days",
+          vid: "43495069221054",
+          mediaId: "26922191814846",
+          productId: "7880706261182",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 21 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 69,
-        "option-0": "15 Days",
-        vid: "40722256592994",
-        mediaId: "22362803634274",
-        productId: "6981812977762",
-        properties: {
-          _spec_check: "Unlimited Data, 15 Days, eSIM ⚡️ Delivered Instantly",
+        {
+          price: [50.25, 45.75, 27, 54.75, 33],
+          "option-0": "15 Days",
+          vid: "43495069253822",
+          mediaId: "26922191782078",
+          productId: "7880706261182",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 15 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 39,
-        "option-0": "7 Days",
-        vid: "40722256625762",
-        mediaId: "22362803404898",
-        productId: "6981812977762",
-        properties: {
-          _spec_check: "Unlimited Data, 7 Days, eSIM ⚡️ Delivered Instantly",
+        {
+          price: [33.75, 30, 18, 36, 21.75],
+          "option-0": "7 Days",
+          vid: "43495069286590",
+          mediaId: "26922191749310",
+          productId: "7880706261182",
+          properties: {
+            _spec_check: "Unlimited Data, 7 Days, eSIM ⚡️ Delivered Instantly",
+          },
         },
-      },
-    ],
-    Korea: [
-      {
-        price: 179,
-        "option-0": "60 Days",
-        vid: "40714432282722",
-        mediaId: "22362789052514",
-        productId: "6981809700962",
-        properties: {
-          _spec_check: "Unlimited Data, 60 Days, eSIM ⚡️ Delivered Instantly",
+      ],
+    },
+    Asia: {
+      simsdirect: [
+        {
+          price: 199,
+          "option-0": "90 Days",
+          vid: "40714425696354",
+          mediaId: "22362773782626",
+          productId: "6981806915682",
+          properties: {
+            _spec_check: "Unlimited Data, 90 Days, eSIM Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 67,
-        "option-0": "15 Days",
-        vid: "40722100355170",
-        mediaId: "22362788266082",
-        productId: "6981809700962",
-        properties: {
-          _spec_check: "Unlimited Data, 15 Days, eSIM ⚡️ Delivered Instantly",
+        {
+          price: 169,
+          "option-0": "60 Days",
+          vid: "40714425729122",
+          mediaId: "22362772832354",
+          productId: "6981806915682",
+          properties: {
+            _spec_check: "Unlimited Data, 60 Days, eSIM Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 249,
-        "option-0": "90 Days",
-        vid: "40714432249954",
-        mediaId: "22362789216354",
-        productId: "6981809700962",
-        properties: {
-          _spec_check: "Unlimited Data, 90 Days, eSIM ⚡️ Delivered Instantly",
+        {
+          price: 99,
+          "option-0": "30 Days",
+          vid: "40714425761890",
+          mediaId: "22362767949922",
+          productId: "6981806915682",
+          properties: {
+            _spec_check: "Unlimited Data, 30 Days, eSIM Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 99,
-        "option-0": "30 Days",
-        vid: "40714432348258",
-        mediaId: "22362788823138",
-        productId: "6981809700962",
-        properties: {
-          _spec_check: "Unlimited Data, 30 Days, eSIM ⚡️ Delivered Instantly",
+        {
+          price: 75,
+          "option-0": "21 Days",
+          vid: "40714425794658",
+          mediaId: "22362765983842",
+          productId: "6981806915682",
+          properties: {
+            _spec_check: "Unlimited Data, 21 Days, eSIM Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 85,
-        "option-0": "21 Days",
-        vid: "40714432381026",
-        mediaId: "22362788429922",
-        productId: "6981809700962",
-        properties: {
-          _spec_check: "Unlimited Data, 21 Days, eSIM ⚡️ Delivered Instantly",
+        {
+          price: 59,
+          "option-0": "15 Days",
+          vid: "40714425827426",
+          mediaId: "22362765131874",
+          productId: "6981806915682",
+          properties: {
+            _spec_check: "Unlimited Data, 15 Days, eSIM Delivered Instantly",
+          },
         },
-      },
-      {
-        price: 39,
-        "option-0": "7 Days",
-        vid: "40722100387938",
-        mediaId: "22362788167778",
-        productId: "6981809700962",
-        properties: {
-          _spec_check: "Unlimited Data, 7 Days, eSIM ⚡️ Delivered Instantly",
+        {
+          price: 39,
+          "option-0": "7 Days",
+          vid: "40722316787810",
+          mediaId: "22362764181602",
+          productId: "6981806915682",
+          properties: {
+            _spec_check: "Unlimited Data, 7 Days, eSIM Delivered Instantly",
+          },
         },
-      },
-    ],
-    USA: [
+      ],
+      simify: [
+        {
+          price: [149.25, 136.5, 80.25, 163.5, 99], //AUD, CAD, GBP, NZD, USD
+          "option-0": "90 Days",
+          vid: "43495323173054",
+          mediaId: "26922178478270",
+          productId: "7880799158462",
+          properties: {
+            _spec_check: "Unlimited Data, 90 Days, eSIM Delivered Instantly",
+          },
+        },
+        {
+          price: [126.75, 114.75, 67.5, 137.25, 83.25],
+          "option-0": "60 Days",
+          vid: "43495323205822",
+          mediaId: "26922177396926",
+          productId: "7880799158462",
+          properties: {
+            _spec_check: "Unlimited Data, 60 Days, eSIM Delivered Instantly",
+          },
+        },
+        {
+          price: [74.25, 67.5, 39.75, 81, 48.75],
+          "option-0": "30 Days",
+          vid: "43495323238590",
+          mediaId: "26922176217278",
+          productId: "7880799158462",
+          properties: {
+            _spec_check: "Unlimited Data, 30 Days, eSIM Delivered Instantly",
+          },
+        },
+        {
+          price: [56.25, 51, 30, 60.75, 36.75],
+          "option-0": "21 Days",
+          vid: "43495323271358",
+          mediaId: "26922175299774",
+          productId: "7880799158462",
+          properties: {
+            _spec_check: "Unlimited Data, 21 Days, eSIM Delivered Instantly",
+          },
+        },
+        {
+          price: [44.25, 40.5, 24, 48.75, 29.25],
+          "option-0": "15 Days",
+          vid: "43495323304126",
+          mediaId: "26922174349502",
+          productId: "7880799158462",
+          properties: {
+            _spec_check: "Unlimited Data, 15 Days, eSIM Delivered Instantly",
+          },
+        },
+        {
+          price: [29.25, 26.25, 15.75, 31.5, 18.75],
+          "option-0": "7 Days",
+          vid: "43495323304126",
+          mediaId: "26922174349502",
+          productId: "7880799158462",
+          properties: {
+            _spec_check: "Unlimited Data, 7 Days, eSIM Delivered Instantly",
+          },
+        },
+      ],
+    },
+    China: {
+      simsdirect: [
+        {
+          price: 279,
+          "option-0": "90 Days",
+          vid: "40714480451682",
+          mediaId: "22362815627362",
+          productId: "6981812977762",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 90 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: 189,
+          "option-0": "60 Days",
+          vid: "40714480517218",
+          mediaId: "22362815135842",
+          productId: "6981812977762",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 60 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: 99,
+          "option-0": "30 Days",
+          vid: "40714480648290",
+          mediaId: "22362813235298",
+          productId: "6981812977762",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 30 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: 85,
+          "option-0": "21 Days",
+          vid: "40714480713826",
+          mediaId: "22362804846690",
+          productId: "6981812977762",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 21 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: 69,
+          "option-0": "15 Days",
+          vid: "40722256592994",
+          mediaId: "22362803634274",
+          productId: "6981812977762",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 15 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: 39,
+          "option-0": "7 Days",
+          vid: "40722256625762",
+          mediaId: "22362803404898",
+          productId: "6981812977762",
+          properties: {
+            _spec_check: "Unlimited Data, 7 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+      ],
+      simify: [
+        {
+          price: [279, 255, 149, 305, 185], //AUD, CAD, GBP, NZD, USD
+          "option-0": "90 Days",
+          vid: "43495365574846",
+          mediaId: "26922180706494",
+          productId: "7880821801150",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 90 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: [189, 172, 101, 206, 125],
+          "option-0": "60 Days",
+          vid: "43495365607614",
+          mediaId: "26922180673726",
+          productId: "7880821801150",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 60 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: [99, 90, 53, 107, 65],
+          "option-0": "30 Days",
+          vid: "43495365640382",
+          mediaId: "26922180640958",
+          productId: "7880821801150",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 30 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: [86, 77, 46, 93, 56],
+          "option-0": "21 Days",
+          vid: "43495365673150",
+          mediaId: "26922180608190",
+          productId: "7880821801150",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 21 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: [69, 62, 37, 75, 45],
+          "option-0": "15 Days",
+          vid: "43495365705918",
+          mediaId: "26922180575422",
+          productId: "7880821801150",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 15 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: [39, 36, 21, 43, 26],
+          "option-0": "7 Days",
+          vid: "43495365738686",
+          mediaId: "26922180542654",
+          productId: "7880821801150",
+          properties: {
+            _spec_check: "Unlimited Data, 7 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+      ],
+    },
+    Korea: {
+      simsdirect: [
+        {
+          price: 249,
+          "option-0": "90 Days",
+          vid: "40714432249954",
+          mediaId: "22362789216354",
+          productId: "6981809700962",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 90 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: 179,
+          "option-0": "60 Days",
+          vid: "40714432282722",
+          mediaId: "22362789052514",
+          productId: "6981809700962",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 60 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: 99,
+          "option-0": "30 Days",
+          vid: "40714432348258",
+          mediaId: "22362788823138",
+          productId: "6981809700962",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 30 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: 67,
+          "option-0": "15 Days",
+          vid: "40722100355170",
+          mediaId: "22362788266082",
+          productId: "6981809700962",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 15 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: 85,
+          "option-0": "21 Days",
+          vid: "40714432381026",
+          mediaId: "22362788429922",
+          productId: "6981809700962",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 21 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: 39,
+          "option-0": "7 Days",
+          vid: "40722100387938",
+          mediaId: "22362788167778",
+          productId: "6981809700962",
+          properties: {
+            _spec_check: "Unlimited Data, 7 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+      ],
+      simify: [
+        {
+          price: [249, 227, 133, 272, 165], //AUD, CAD, GBP, NZD, USD
+          "option-0": "90 Days",
+          vid: "43495352762558",
+          mediaId: "26922197123262",
+          productId: "7880816689342",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 90 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: [179, 164, 96, 196, 119],
+          "option-0": "60 Days",
+          vid: "43495352795326",
+          mediaId: "26922197090494",
+          productId: "7880816689342",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 60 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: [99, 90, 53, 107, 65],
+          "option-0": "30 Days",
+          vid: "43495352828094",
+          mediaId: "26922197057726",
+          productId: "7880816689342",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 30 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: [85, 76, 45, 91, 55],
+          "option-0": "21 Days",
+          vid: "43495352860862",
+          mediaId: "26922197024958",
+          productId: "7880816689342",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 21 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: [67, 61, 36, 73, 44],
+          "option-0": "15 Days",
+          vid: "43495352893630",
+          mediaId: "26922196992190",
+          productId: "7880816689342",
+          properties: {
+            _spec_check:
+              "Unlimited Data, 15 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: [44, 40, 24, 48, 29],
+          "option-0": "7 Days",
+          vid: "40722100387938",
+          mediaId: "22362788167778",
+          productId: "7880816689342",
+          properties: {
+            _spec_check: "Unlimited Data, 7 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        }
+      ]
+    },
+    USA: {
+      simsdirect: [
       {
         price: 269,
         "option-0": "90 Days",
-        vid: "40714428514402",
-        mediaId: "22362802061410",
+        vid: "43495352926398",
+        mediaId: "26922196959422",
         productId: "6981808521314",
         properties: {
           _spec_check: "Unlimited Data, 90 Days, eSIM ⚡️ Delivered Instantly",
@@ -431,7 +796,70 @@
           _spec_check: "Unlimited Data, 7 days, eSIM ⚡️ Delivered Instantly",
         },
       },
-    ],
+      ],
+      simify: [
+        {
+          price: [269, 245, 144, 293, 178], //AUD, CAD, GBP, NZD, USD
+          "option-0": "90 Days",
+          vid: "43495335887038",
+          mediaId: "26922202202302",
+          productId: "7880807153854",
+          properties: {
+            _spec_check: "Unlimited Data, 90 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: [189, 90, 101, 206, 125],
+          "option-0": "60 Days",
+          vid: "43495335919806",
+          mediaId: "26922202169534",
+          productId: "7880807153854",
+          properties: {
+            _spec_check: "Unlimited Data, 60 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: [99, 172, 53, 107, 65],
+          "option-0": "30 Days",
+          vid: "43495335952574",
+          mediaId: "26922202136766",
+          productId: "7880807153854",
+          properties: {
+            _spec_check: "Unlimited Data, 30 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: [86, 77, 46, 93, 56],
+          "option-0": "21 Days",
+          vid: "43495335985342",
+          mediaId: "26922202103998",
+          productId: "7880807153854",
+          properties: {
+            _spec_check: "Unlimited Data, 21 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: [67, 61, 36, 73, 44],
+          "option-0": "15 Days",
+          vid: "43495336018110",
+          mediaId: "26922202071230",
+          productId: "7880807153854",
+          properties: {
+            _spec_check: "Unlimited Data, 15 Days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+        {
+          price: [45, 40, 24, 48, 29],
+          "option-0": "7 Days",
+          vid: "43495336050878",
+          mediaId: "26922202038462",
+          productId: "7880807153854",
+          properties: {
+            _spec_check: "Unlimited Data, 7 days, eSIM ⚡️ Delivered Instantly",
+          },
+        },
+      ]
+    }
   };
 
   function pushDataLayer(event_name, event_desc, event_type, event_loc) {
@@ -555,11 +983,13 @@
       this.device = window.innerWidth < 769 ? "mobile" : "desktop";
       this.dataCollections = {};
       this.currency = "$";
+      //AUD, CAD, GBP, NZD, USD
+      this.indexCurrencySelect = "";
       this.init();
     }
 
     init() {
-      console.log("init");
+     
       const pageUrl = window.location.href;
 
       if (pageUrl.includes("/products/")) {
@@ -568,6 +998,21 @@
       this.initUpsellBlock();
       this.reDesign();
       const globalMutation = new MutationObserver((mutations) => {
+        if ($el("#currency [selected]")) {
+          let currencySelect = $el("#currency [selected]").innerText;
+          this.indexCurrencySelect = currencySelect.includes("AUD")
+            ? 0
+            : currencySelect.includes("CAD")
+            ? 1
+            : currencySelect.includes("GBP")
+            ? 2
+            : currencySelect.includes("NZD")
+            ? 3
+            : currencySelect.includes("USD")
+            ? 4
+            : "";
+        }
+
         this.initUpsellBlock();
         this.reDesign();
 
@@ -587,7 +1032,6 @@
 
     setDataCollections() {
       waitForElement(".ProductForm__AddToCart").then((el) => {
-        console.log(el);
         el.addEventListener("click", () => {
           let dataCollectionsStorage = getLocalStorage("dataCollections");
 
@@ -602,38 +1046,40 @@
 
           $$el(".ProductForm__Variants li").forEach((item, index) => {
             let input = item.querySelector('input[type="radio"]');
+            if (input.value.includes("GB")) {
+              let p = item.querySelector(".pdp-cmp-price p")?.innerText;
+              let s = item.querySelector(".pdp-cmp-price s")?.innerText;
+              let priceInner = item.querySelector(
+                ".Pro-varint-price-inner"
+              )?.innerText;
 
-            this.dataCollections[idPDP].push({
-              priceGB: (+extractNumber(
-                item.querySelector(".pdp-cmp-price p").innerText
-              )).toFixed(2),
-              priceGBCompare: (+extractNumber(
-                item.querySelector(".pdp-cmp-price s")?.innerText
-              )).toFixed(2), 
-              priceOneGB: (+extractNumber(
-                item.querySelector(".Pro-varint-price-inner").innerText
-              )).toFixed(2),
-              gb: +input.value.split("GB")[0],
-              days: +input.value.split("GB | ")[1].split(" Days")[0],
-              vid: input.dataset.vid,
-              mediaId: input.dataset.mediaId,
-              productId: idPDP,
-              option: input.value,
-              currency: extractCurrency(
-                item
-                  .querySelector(".Pro-varint-price-inner")
-                  .innerHTML.split("/")[0]
-              ),
-              image: $el(
-                `.Product__Gallery .Product__SlideItem[data-media-id="${input.dataset.mediaId}"] img`
-              ).srcset,
-              specCheck: input.dataset.speclistarr,
-            });
+              this.dataCollections[idPDP].push({
+                priceGB: p != undefined ? (+extractNumber(p)).toFixed(2) : 0,
+                priceGBCompare:
+                  s != undefined ? (+extractNumber(s)).toFixed(2) : 0,
+                priceOneGB:
+                  priceInner != undefined
+                    ? (+extractNumber(priceInner)).toFixed(2)
+                    : 0,
+                gb: +input.value.split("GB")[0],
+                days: +input.value.split(" Days")[0].split("GB | ")[1],
+                vid: input.dataset.vid,
+                mediaId: input.dataset.mediaId,
+                productId: idPDP,
+                option: input.value,
+                currency: extractCurrency(
+                  item
+                    .querySelector(".Pro-varint-price-inner")
+                    .innerHTML.split("/")[0]
+                ),
+                image: $el(
+                  `.Product__Gallery .Product__SlideItem[data-media-id="${input.dataset.mediaId}"] img`
+                ).srcset,
+                specCheck: input.dataset.speclistarr,
+              });
 
-            console.log(this.dataCollections);
-
-            setLocalStorage("dataCollections", this.dataCollections);
-            // }
+              setLocalStorage("dataCollections", this.dataCollections);
+            }
           });
         });
       });
@@ -658,19 +1104,25 @@
           <b>Best value plan</b>
           <p>${dataUpgrade.gb} GB</p>
           <p>${dataUpgrade.days} days</p>
-          <p><span class="upsell_compare">${dataItem.currency + dataUpgrade.priceGBCompare}</span>${dataItem.currency + dataUpgrade.priceGB}</p>
+          <p>${dataItem.currency + dataUpgrade.priceGB}</p>
           <p>${dataItem.currency + dataUpgrade.priceOneGB}</p>
         </div>`;
       } else {
+        let price = nameDomain == "simify" ? dataUpgrade.price[this.indexCurrencySelect] : dataUpgrade.price;
+        let justPrice = nameDomain == "simify" ? dataUpgrade.price[this.indexCurrencySelect] - dataItem.priceGB  //((price - price * 25 / 100) - dataItem.priceGB).toFixed(2) 
+        : price - dataItem.priceGB;
+
         text = `For just <span>${
-          dataItem.currency + data[0]
+          dataItem.currency + justPrice
         }</span> more, get unlimited data plan. Don’t worry and enjoy your trip!`;
         upgrade = `
         <div class="upsell_col">
           <b>Unlimited plan</b>
           <p>${dataIcons.unlimited}</p>
           <p>${dataUpgrade["option-0"].toLowerCase()}</p>
-          <p>${dataItem.currency + dataUpgrade.price}</p>
+          <p>${
+            dataItem.currency + price
+          }</p>
           <p>-</p>
         </div>`;
       }
@@ -821,9 +1273,7 @@
             <b>Don’t run out of data overseas!</b>
             ${text}
           </p>
-          <button type="button" class="upsell_arrow">${
-            dataIcons.arrow
-          }</button>
+          <button type="button" class="upsell_arrow">${dataIcons.arrow}</button>
         </div>
         <button type="button" class="upsell_btn" data-specCheck="${
           dataUpgrade.specCheck
@@ -843,7 +1293,9 @@
               <b>Selected plan</b>
               <p>${dataItem.gb} GB</p>
               <p>${dataItem.days} days</p>
-              <p><span class="upsell_compare">${dataItem.currency + dataItem.priceGBCompare}</span>${dataItem.currency + dataItem.priceGB}</p>
+              <p><span class="upsell_compare" style="${dataItem.priceGBCompare != 0 ? '':'display: none'}">${
+                dataItem.currency + dataItem.priceGBCompare
+              }</span>${dataItem.currency + dataItem.priceGB}</p>
               <p>${dataItem.currency + dataItem.priceOneGB}</p>
             </div>
             ${upgrade}
@@ -924,15 +1376,22 @@
           .href.split("variant=")[1];
 
         const priceEl = addDotIfNeeded(el.dataset.price);
-
+        const gbEl = el
+          .querySelector(".specification-list .list-item")
+          .innerText.trim()
+          .split("GB")[0];
+        
         for (const key in dataCollections) {
           if (dataCollections[key]) {
             for (let i = 0; i < dataCollections[key].length; i++) {
               if (
                 dataCollections[key][i].vid == vidEl &&
-                dataCollections[key][i].priceGB == priceEl
+                (dataCollections[key][i].gb == +gbEl ||
+                  gbEl == "Unlimited Data")
+                // dataCollections[key][i].priceGB == priceEl
               ) {
                 const itemDataCollections = dataCollections[key][i]; //selected data
+
                 if (i != 0) {
                   //upgrade data
 
@@ -943,8 +1402,6 @@
                       break;
                     }
                   }
-
-                  console.dir(itemPrevDataCollections);
 
                   const costPerGB1 = itemDataCollections.priceGB; //selected data price
                   const costPerGB2 = itemPrevDataCollections.priceGB; //upgrade data price
@@ -970,11 +1427,6 @@
 
                   el.insertAdjacentHTML("afterend", html);
                 } else {
-                  if (!window.location.origin.includes("simsdirect")) return;
-
-                  console.dir(vidEl);
-                  console.dir(priceEl);
-
                   const title = el
                     .querySelector(".CartItem__Title a")
                     .innerHTML.toLowerCase();
@@ -992,16 +1444,20 @@
                       ? "USA"
                       : "Asia";
 
-                  console.dir(title);
-                  let arr = unlimitedData[keyUnlimitedData];
+                  let arr = unlimitedData[keyUnlimitedData][nameDomain];
+
                   for (let k = 0; k < arr.length; k++) {
                     if (
                       arr[k]["option-0"].toLowerCase().split(" days")[0] ==
                       itemDataCollections.days
                     ) {
+                      let price =
+                        this.indexCurrencySelect != ""
+                          ? arr[k].price[this.indexCurrencySelect]
+                          : arr[k].price;
 
                       let html = this.upsellBlockHtml(
-                        [arr[k].price - itemDataCollections.priceGB],
+                        [price - itemDataCollections.priceGB],
                         arr[k],
                         itemDataCollections,
                         index
@@ -1016,7 +1472,7 @@
           }
         }
 
-        if (!el.parentElement.querySelector(".upsell_wrapper")) return
+        if (!el.parentElement.querySelector(".upsell_wrapper")) return;
         let eventName = el.parentElement
           .querySelector(".upsell_wrapper")
           .innerText.includes("unlimited")
@@ -1097,8 +1553,12 @@
                 });
             });
 
-          pushDataLayer('exp_aov_improv_but_cartovers_upgra','Upgrade plan','Button','Cart Don’t run out of data overseas!')
-
+          pushDataLayer(
+            "exp_aov_improv_but_cartovers_upgra",
+            "Upgrade plan",
+            "Button",
+            "Cart Don’t run out of data overseas!"
+          );
         });
       });
 
@@ -1106,10 +1566,20 @@
         el.addEventListener("click", (e) => {
           e.stopImmediatePropagation();
           el.closest(".upsell_wrapper").classList.toggle("active");
-          if (el.closest(".upsell_wrapper").classList.contains('active')) {
-            pushDataLayer('exp_aov_improv_drop_cartovers_open','Open','Dropdown','Cart Don’t run out of data overseas!')
+          if (el.closest(".upsell_wrapper").classList.contains("active")) {
+            pushDataLayer(
+              "exp_aov_improv_drop_cartovers_open",
+              "Open",
+              "Dropdown",
+              "Cart Don’t run out of data overseas!"
+            );
           } else {
-            pushDataLayer('exp_aov_improv_drop_cartovers_close','Close','Dropdown','Cart Don’t run out of data overseas!')
+            pushDataLayer(
+              "exp_aov_improv_drop_cartovers_close",
+              "Close",
+              "Dropdown",
+              "Cart Don’t run out of data overseas!"
+            );
           }
         });
       });
@@ -1139,11 +1609,10 @@
     }
 
     addUpdatedProduct(data, selector, line) {
-      console.dir(data);
       const productHTML = `
-      <div class="CartItem esim_show" data-price="${data.final_price}" data-handle="${
-        data.handle
-      }">
+      <div class="CartItem esim_show" data-price="${
+        data.final_price
+      }" data-handle="${data.handle}">
           <div class="CartItem__ImageWrapper AspectRatio">
               <div class="AspectRatio" style="--aspect-ratio: 1.0">
                   <img class="CartItem__Image"
@@ -1161,19 +1630,19 @@
                       <svg width="8" height="7" viewBox="0 0 8 7" fill="none" xmlns="http://www.w3.org/2000/svg"> 
                         <path d="M1 3.32727L3 5.36364L7 1" stroke="#333F48" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> 
                       </svg>
-                    </span>${data['variant_title'].split(' |')[0] }
+                    </span>${data["variant_title"].split(" |")[0]}
                   </li>
                 </ul>
               </div>
               <div class="CartItem__Meta Heading Text--subdued">
                   <ul class="CartItem__PropertyList"></ul><!-- Disc  |  |  |  -->
                   <div class="CartItem__PriceList" data-disccode="">
-                    <span class="CartItem__OriginalPrice Price Price--compareAt">${this.currency}${
-                      addDotIfNeeded(data.price).split(".00")[0]
-                    }</span>
-                    <span class="CartItem__Price Price Price--highlight">${this.currency}${
-                      addDotIfNeeded(data.final_price).split(".00")[0]
-                    }</span>
+                    <span class="CartItem__OriginalPrice Price Price--compareAt">${
+                      this.currency
+                    }${addDotIfNeeded(data.price).split(".00")[0]}</span>
+                    <span class="CartItem__Price Price Price--highlight">${
+                      this.currency
+                    }${addDotIfNeeded(data.final_price).split(".00")[0]}</span>
                   </div>
               </div>
               <div class="CartItem__Actions Heading Text--subdued" style="text-align: center">
