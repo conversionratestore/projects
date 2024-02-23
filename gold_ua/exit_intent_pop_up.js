@@ -383,7 +383,7 @@ class IntentPopup {
       <div class="product_item_wrapper swiper-slide">
         <div class="product_item">
           <div class="img_wrapper">
-            <a href="${pdpLink}"> ${img} </a>
+            <a data-info="${pdpLink}" href="${pdpLink}"> ${img} </a>
           </div>
           <div class="product_item_descr">
             <div class="out_of_stock_wrapper">${icons.flames} ${outOfStock}</div>
@@ -710,10 +710,16 @@ class IntentPopup {
     return $el('.new-popup__content')?.children.length > 0
   }
   onClickProductItemInfo() {
-    waitForElement('.product_item_info').then(el => {
-      $$el('.product_item_info').forEach(el => {
+    waitForElement('.product_item_wrapper').then(el => {
+      $$el('[data-info]')?.forEach(el => {
         el.addEventListener('click', e => {
           if (e.currentTarget.getAttribute('data-info')) {
+            pushDataLayer(
+              'exp_exit_pop_up_link_prodcart_item',
+              e.currentTarget.getAttribute('data-info'),
+              'Link',
+              'Exit popup for users with product in cart'
+            )
           }
         })
       })
