@@ -144,9 +144,14 @@
     }
 
     function changeInitialPackPrice() {
+      console.log('changeInitialPackPrice')
+
+      console.log('url', url)
       if (url === 'zenpatch') {
         // pdp pack price
-        waitForElement('.package .list-packs[data-index="4"]').then(pdpPack => {
+        waitForElement('.package .list-packs + .list-packs + .list-packs + .list-packs').then(pdpPack => {
+          console.log('pdpPack', pdpPack)
+
           const waitForEls = setInterval(() => {
             if (
               pdpPack.querySelector('.info .pack-price') &&
@@ -173,7 +178,7 @@
         })
 
         // cart pack price
-        waitForElement('.slide-packs .list-packs[data-index="4"]').then(cartPack => {
+        waitForElement('.slide-packs .list-packs + .list-packs + .list-packs + .list-packs').then(cartPack => {
           const waitForEls = setInterval(() => {
             if (
               cartPack.querySelector('.pack-price') &&
