@@ -8,8 +8,6 @@
   })
 
   function runCode() {
-    console.log("%c Running test on: " + window.location.pathname, 'color: #ff00ff')
-
     const WAIT_INTERVAL_TIMEOUT = 100
 
     const recordClarity = setInterval(() => {
@@ -144,14 +142,9 @@
     }
 
     function changeInitialPackPrice() {
-      console.log('changeInitialPackPrice')
-
-      console.log('url', url)
       if (url === 'zenpatch') {
         // pdp pack price
         waitForElement('.package .list-packs + .list-packs + .list-packs + .list-packs').then(pdpPack => {
-          console.log('pdpPack', pdpPack)
-
           const waitForEls = setInterval(() => {
             if (
               pdpPack.querySelector('.info .pack-price') &&
