@@ -206,7 +206,7 @@ class Popup {
             justify-content: center;
             color: #2B4632;
             align-items: center;
-            margin-bottom: 41px;
+            margin: 5px 0 20px;
             font-family: "Bianco Serif";
             font-weight: 700;
           }
@@ -307,7 +307,7 @@ class Popup {
           .crs_popup_footer .discount p:last-of-type {
             margin: 0;
             font-size: 16px;
-            line-height: 20px;
+            line-height: 24px;
             color: #CE603A;
             font-weight: 700;
             text-transform: uppercase;
@@ -319,8 +319,9 @@ class Popup {
           .crs_popup_footer .discount p.copied {
             border-radius: 10px;
             background: #FFF;
-            padding: 8px 10px;
+            padding: 4px 10px;
             font-size: 14px;
+            line-height: 16px;
             display: flex;
             gap: 6px;
             align-items: center;
@@ -387,6 +388,7 @@ class Popup {
             flex-direction: column;
             gap: 4px;
             margin-top: auto;
+            width: 100%;
           }
           .popup_cart_list .item .descr p {
             font-size: 14px;
@@ -394,6 +396,12 @@ class Popup {
             color: #646464;
             margin: 0;
             text-align: center;
+          }
+          .popup_cart_list .item .descr p:nth-of-type(2) {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
           }
           .popup_cart_list .item .descr p:first-of-type {
             font-weight: 700;
@@ -432,6 +440,9 @@ class Popup {
             }
             .popup_cart_list {
               max-height: calc(100dvh - 325px);
+            }
+            .crs_popup_footer .discount p:first-of-type {
+              padding-right: 0;
             }
           }
         </style>
@@ -479,9 +490,9 @@ class Popup {
             </ul>
             <div class="crs_info">
               ${svg.people}
-              <span>There are <b>${randomUser} people</b> looking at this product. ${
+              <span>There are <b>${randomUser} people</b> looking at this product. <span>${
                 this.user === 0 ? '' : "We can’t guarantee its availability if you don't complete the purchase now."
-              }</span>
+              }</span></span>
             </div>
           </div>
           <div class="crs_popup_footer">
@@ -523,6 +534,7 @@ class Popup {
     })
 
     checkoutBtn.addEventListener('click', () => {
+      closePopup.click()
       window.location.href = '/checkout'
       pushDataLayer(
         'exp_eip_v2_btn_checkout',
@@ -721,7 +733,7 @@ class Popup {
         </style>
         <div class="crs_popup2">
           <span class="close">${svg.close}</span>
-          <h3>Osteopath-approved, award-winning products for better sleepand stress relief</h3>
+          <h3>Osteopath-approved, award-winning products for better sleep and stress relief</h3>
           <p>Shop Our Collection Today</p>
           <ul class="crs_popup2_links">
             <li>
@@ -801,31 +813,32 @@ class Popup {
           opacity: 0 !important;
           pointer-events: none !important;
         }
-      </style>
-      <style class="fix_form">
-        .needsclick.go1272136950+.needsclick {
-          display: none !important;
+        .first_popup  {
+          opacity: 0 !important;
+          pointer-events: none !important;
         }
       </style>
     `
 
     document.body.insertAdjacentHTML('beforeend', style)
-
-    setTimeout(() => {
-      if ($el('button.needsclick[aria-label="Open Form"]')) return
-      $el('.klaviyo-close-form').click()
-    }, 8000)
-
-    setTimeout(() => {
-      $el('.fix_form').remove()
-    }, 12000)
+    const fix = setInterval(() => {
+      if ($el('.klaviyo-close-form')) {
+        clearInterval(fix)
+        $el('.needsclick.go1272136950+.needsclick').closest('.needsclick:not([style])').classList.add('first_popup')
+        if ($el('button.needsclick[aria-label="Open Form"]')) return
+        $el('.klaviyo-close-form').click()
+        setTimeout(() => {
+          $el('.first_popup').classList.remove('first_popup')
+        }, 1500)
+      }
+    }, 100)
   }
 
   async drawCart() {
     const cart = await fetch('/cart.js')
     const cartJson = await cart.json()
 
-    const listItems = cartJson.items.map(item => {
+    const listItems = cartJson.items.reverse().map(item => {
       let oldPrice, newPrice
       $$el('#shopify-section-minicart .item_block').forEach(el => {
         if (el.querySelector('h3').innerText.includes(item.product_title)) {
@@ -844,7 +857,7 @@ class Popup {
               ${item.product_title}
             </p>
             <p>
-              ${item.variant_title}
+              ${item.variant_title ? item.variant_title : ''}
             </p>
             <p class="price">
               <span class="old">${oldPrice}</span>
@@ -856,6 +869,10 @@ class Popup {
     })
     $el('.crs_popup1_wrapper .popup_cart_list').innerHTML = listItems.join('')
     $el('.crs_popup1_wrapper').classList.add('show')
+    if (cartJson.items.length > 1) {
+      $el('.crs_info span span').innerHTML =
+        'We can’t guarantee the availability of all products in your cart if you don’t complete the purchase now.'
+    }
 
     const interObserver = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
@@ -895,13 +912,25 @@ class Popup {
         if (typeof $().slick === 'function' && !$el('.popup_cart_list.slick-initialized')) {
           clearInterval(slider)
           $('.popup_cart_list').slick({
-            infinite: true,
+            infinite: false,
             slidesToShow: 1,
             slidesToScroll: 1,
             dots: true,
             arrows: false,
             centerMode: true,
-            centerPadding: '125px'
+            centerPadding: '125px',
+            responsive: [
+              {
+                breakpoint: 500,
+                settings: {
+                  centerPadding: '80px'
+                },
+                breakpoint: 400,
+                settings: {
+                  centerPadding: '50px'
+                }
+              }
+            ]
           })
         }
       }, 100)
@@ -912,31 +941,36 @@ class Popup {
     const combine = this.combinePopup.bind(this)
     if (!sessionStorage.getItem('session_time')) {
       sessionStorage.setItem('session_time', new Date().getTime())
-    } else {
-      const sessionTime = sessionStorage.getItem('session_time')
-      const checkTime = setInterval(() => {
-        if (new Date().getTime() - sessionTime > 180000) {
-          clearInterval(checkTime)
-          combine()
-        }
-      }, 1000)
     }
-
     document.body.setAttribute('data-time', new Date().getTime())
+    const sessionTime = sessionStorage.getItem('session_time')
+    const checkTime = setInterval(() => {
+      if (new Date().getTime() - sessionTime > 180000) {
+        console.log('%c 180 seconds trigger', 'color: red; background: white;')
+        clearInterval(checkTime)
+        combine()
+      }
+      if (new Date().getTime() - sessionTime > 600000) {
+        sessionStorage.removeItem('base_popup')
+      }
+    }, 1000)
 
     if (this.D === 'mobile') {
       checkScrollSpeed(window, speed => {
         if (speed > 120) {
+          console.log('%c mobile scroll trigger', 'color: red; background: white;')
           combine()
         }
       })
     } else {
-      document.addEventListener('mouseleave', () => {
+      document.body.addEventListener('mouseleave', () => {
+        console.log('%c mouse leave trigger', 'color: red; background: white;')
         combine()
       })
 
       document.addEventListener('visibilitychange', function () {
         if (document.visibilityState === 'visible') {
+          console.log('%c tab focus trigger', 'color: red; background: white;')
           combine()
         }
       })
@@ -947,13 +981,33 @@ class Popup {
 
       let timeout
 
+      function setTime() {
+        timeout = setTimeout(function () {
+          clearTimeout(timeout)
+          console.log('%c cart timeout trigger', 'color: red; background: white;')
+          combine()
+        }, 5000)
+      }
+
       let observer = new IntersectionObserver(
         function (entries) {
-          if (entries[0].isIntersecting === true) {
-            timeout = setTimeout(function () {
+          if (entries[0].isIntersecting === true && !entries[0].target.querySelector('.empty_cart')) {
+            if (!sessionStorage.getItem('showCountTime')) {
+              sessionStorage.setItem('showCountTime', new Date().getTime())
+            }
+            let showCount = sessionStorage.getItem('showCount') || 0
+            showCount++
+            sessionStorage.setItem('showCount', showCount)
+            setTime()
+            $el('#shopify-section-minicart').addEventListener('click', e => {
+              clearTimeout(timeout)
+              setTime()
+            })
+            if (showCount > 1 && new Date().getTime() - sessionStorage.getItem('showCountTime') > 120000) {
+              console.log('%c cart visible 2 time after 120 sec trigger', 'color: red; background: white;')
               clearTimeout(timeout)
               combine()
-            }, 5000)
+            }
           } else {
             clearInterval(timeout)
           }
@@ -978,13 +1032,14 @@ class Popup {
       const timeAction = document.body.getAttribute('data-time')
       if (
         time - timeAction > timeout &&
-        $el('#shopify-section-minicart').getBoundingClientRect().right < window.innerWidth + 20
+        $el('#shopify-section-minicart').getBoundingClientRect().right > window.innerWidth + 20
       ) {
         if (sessionStorage.getItem('crs_popup')) {
           clearInterval(timer)
           return
         }
         clearInterval(timer)
+        console.log('%c 10 or 20 sec trigger', 'color: red; background: white;')
         combine()
       }
     }, 1000)
@@ -1010,10 +1065,11 @@ class Popup {
     const cartLength = await this.checkCartLength()
     if (this.user === 0) {
       if (cartLength > 0) {
-        if (sessionStorage.getItem('crs_popup')) return
+        if (sessionStorage.getItem('crs_popup') || sessionStorage.getItem('base_popup')) return
         this.drawCart()
         sessionStorage.setItem('crs_popup', true)
       } else {
+        console.log('>>> !!!')
         if (sessionStorage.getItem('base_popup')) return
         $el('button.needsclick[aria-label="Open Form"]').click()
         sessionStorage.setItem('base_popup', true)
