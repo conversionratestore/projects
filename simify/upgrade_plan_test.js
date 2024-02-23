@@ -1110,7 +1110,7 @@
           <b>Best value plan</b>
           <p>${dataUpgrade.gb} GB</p>
           <p>${dataUpgrade.days} days</p>
-          <p><span class="upsell_compare">${
+          <p><span class="upsell_compare" style="${dataUpgrade.priceGBCompare != 0 ? '':'display: none'}">${
             dataItem.currency + dataUpgrade.priceGBCompare
           }</span>${dataItem.currency + dataUpgrade.priceGB}</p>
           <p>${dataItem.currency + dataUpgrade.priceOneGB}</p>
@@ -1133,7 +1133,7 @@
           <b>Unlimited plan</b>
           <p>${dataIcons.unlimited}</p>
           <p>${dataUpgrade["option-0"].toLowerCase()}</p>
-          <p><span class="upsell_compare" style="">${
+          <p><span class="upsell_compare"  style="${dataItem.priceGBCompare != 0 ? '':'display: none'}">${
             dataItem.currency + (nameDomain == "simify" ? dataUpgrade.price[this.indexCurrencySelect] * 100 / 75 : dataUpgrade.price )
           }</span>${
             dataItem.currency + (nameDomain == "simify" ? dataUpgrade.price[this.indexCurrencySelect]
@@ -1309,7 +1309,7 @@
               <b>Selected plan</b>
               <p>${dataItem.gb} GB</p>
               <p>${dataItem.days} days</p>
-              <p><span class="upsell_compare">${
+              <p><span class="upsell_compare" style="${dataItem.priceGBCompare != 0 ? '':'display: none'}">${
                 dataItem.currency + dataItem.priceGBCompare
               }</span>${dataItem.currency + dataItem.priceGB}</p>
               <p>${dataItem.currency + dataItem.priceOneGB}</p>
