@@ -544,7 +544,7 @@ class IntentPopup {
           display: block;
           max-width: 220px;
           max-height: 220px;
-          object-fit: contain;
+          object-fit: none;
         }
         .product_item .out_of_stock_wrapper {
           display: flex;
