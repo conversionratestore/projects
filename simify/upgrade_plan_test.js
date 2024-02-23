@@ -1133,7 +1133,7 @@
           <b>Unlimited plan</b>
           <p>${dataIcons.unlimited}</p>
           <p>${dataUpgrade["option-0"].toLowerCase()}</p>
-          <p><span class="upsell_compare" style="${nameDomain == "simify" ? 'display: none;' : ''}">${
+          <p><span class="upsell_compare" style="">${
             dataItem.currency + (nameDomain == "simify" ? dataUpgrade.price[this.indexCurrencySelect] * 100 / 75 : dataUpgrade.price )
           }</span>${
             dataItem.currency + (nameDomain == "simify" ? dataUpgrade.price[this.indexCurrencySelect]
