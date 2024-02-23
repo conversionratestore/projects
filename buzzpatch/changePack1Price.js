@@ -211,9 +211,13 @@
               pdpPack.querySelector('.save-btn span').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
 
               pdpPack.addEventListener('click', () => {
-                document.querySelector('#purchase .sale-price').textContent = `${packPrice[1]}`
-                document.querySelector('#purchase .off-price').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
-                document.querySelector('#purchase .text-save').textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
+                document.querySelector('#purchase .sale-price')?.textContent = `${packPrice[1]}`
+                document.querySelector('#purchase .off-price')?.textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
+                document.querySelector('#purchase .text-save')?.textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
+
+                document.querySelector('.sidebar .sale-price')?.textContent = `${packPrice[1]}`
+                document.querySelector('.sidebar .off-price')?.textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
+                document.querySelector('.sidebar .text-save')?.textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
               })
 
             }
@@ -235,9 +239,13 @@
               cartPack.querySelector('.save-percent-1').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
 
               cartPack.addEventListener('click', () => {
-                document.querySelector('.sidebar .sale-price').textContent = `${packPrice[1]}`
-                document.querySelector('.sidebar .off-price').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
-                document.querySelector('.sidebar .text-save').textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
+                document.querySelector('#purchase .sale-price')?.textContent = `${packPrice[1]}`
+                document.querySelector('#purchase .off-price')?.textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
+                document.querySelector('#purchase .text-save')?.textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
+
+                document.querySelector('.sidebar .sale-price')?.textContent = `${packPrice[1]}`
+                document.querySelector('.sidebar .off-price')?.textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
+                document.querySelector('.sidebar .text-save')?.textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
               })
             }
           }, WAIT_INTERVAL_TIMEOUT)
