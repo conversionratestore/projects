@@ -35,6 +35,10 @@
         display: none !important;
       }
 
+      footer[role=contentinfo] .logo-container .logos .logo-wrapper + .logo-wrapper img:not(.custom-paypal-logo) {
+        display: none;
+      }
+
       /* Large devices such as laptops (1024px and up) */
       @media only screen and (min-width: 64em) {
         .wrap {
@@ -100,7 +104,7 @@
     })
   }
 
-  const handleVisibilityAndHoverWithStepChecker = (el, event_name, event_desc, event_type, event_loc) => {
+  function handleVisibilityAndHoverWithStepChecker(el, event_name, event_desc, event_type, event_loc) {
     const ms = 3000
     let timer
 
@@ -125,7 +129,7 @@
     observer.observe(el)
   }
 
-  const handleVisibilityAndHoverStandart = (el, event_name, event_desc, event_type, event_loc) => {
+  function handleVisibilityAndHoverStandart(el, event_name, event_desc, event_type, event_loc) {
     const ms = 3000
     let timer
 
@@ -997,7 +1001,6 @@
           font-family: "Nunito Sans";
           font-size: 0.875rem;
           font-style: normal;
-          font-weight: 700;
           line-height: 1.5rem; /* 171.429% */
         }
 
@@ -1288,7 +1291,7 @@
         line-height: 1.5rem; /* 150% */
       }
 
-      .desktop-none {
+      .choose-payment-method--special {
         display: none;
       }
 
@@ -1310,12 +1313,12 @@
       }
 
       @media only screen and (max-width: 64em) {
-        .contact-info {
-          padding: 1.5rem 1.25rem;
+        [data-current-step="2"] + #content .choose-payment-method--special {
+          display: block;
         }
 
-        .desktop-none {
-          display: none;
+        .contact-info {
+          padding: 1.5rem 1.25rem;
         }
 
         .choose-payment-method {
@@ -1353,7 +1356,7 @@
     // Create a new div
     const wrapper = /*html*/`
     <h3>${DEVICE === 'desktop' ? '2. ' : ''}Fill your contact info</h3>
-    <h4 class="choose-payment-method desktop-none">Fill the information about yourself, so we can c<b>ontact you</b> and provide with a <b>Free Prepaid Shipping Label.</b></h4>
+    <h4 class="choose-payment-method choose-payment-method--special">Fill the information about yourself, so we can c<b>ontact you</b> and provide with a <b>Free Prepaid Shipping Label.</b></h4>
     <div class="contact-info"> 
       ${style}     
       <h4 class="choose-payment-method">Fill the information about yourself, so we can contact you and provide with a Free Prepaid Shipping Label.</h4>
@@ -2100,12 +2103,16 @@
       }
 
       .block-wrapper {
-        margin: 0 auto;
+        margin: 1.25rem auto 0;
         width: 90%;
       }
 
       .options {
         margin: 1.5rem 0;
+      }
+
+      [data-current-step="3"] + #content + .block-wrapper .options {
+        margin: 0 0 1.5rem 0;
       }
 
       .options > div {
@@ -2246,6 +2253,12 @@
     observer.observe(targetNode, config)
   }
 
+  function addPaypal() {
+    waitForElement('footer[role=contentinfo] .logo-container .logos .logo-wrapper + .logo-wrapper').then(el => el.insertAdjacentHTML('afterend', /*html*/`
+      <img class="custom-paypal-logo" src="${IMAGE_DIR_URL}/paypal-seeklogo.svg" alt="paypal">
+    `))
+  }
+
   function start() {
     if (DEVICE === 'mobile') {
       pushDataLayer('exp_chec_enhanc_vis_checkstep1_page', 'Full page view  ', 'Visibility ', 'Checkout 1-rd Step ')
@@ -2262,6 +2275,7 @@
     handleClickOnSubmit()
     addIconsHowItWorks()
 
+    addPaypal()
     changeFooter()
   }
 })()
