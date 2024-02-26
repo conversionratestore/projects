@@ -8,7 +8,7 @@
   })
 
   function runCode() {
-    console.log('%c Running on: ' + window.location.href, 'color: #bada55');
+    console.log('%c Running on: ' + window.location.href, 'color: #bada55')
 
     const WAIT_INTERVAL_TIMEOUT = 100
 
@@ -213,13 +213,7 @@
               pdpPack.querySelector('.save-btn span').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
 
               pdpPack.addEventListener('click', () => {
-                document.querySelector('#purchase .sale-price')?.textContent = `${packPrice[1]}`
-                document.querySelector('#purchase .off-price')?.textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
-                document.querySelector('#purchase .text-save')?.textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
-
-                document.querySelector('.sidebar .sale-price')?.textContent = `${packPrice[1]}`
-                document.querySelector('.sidebar .off-price')?.textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
-                document.querySelector('.sidebar .text-save')?.textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
+                changeSleepyPackDisplayingInfo()
               })
 
             }
@@ -241,13 +235,7 @@
               cartPack.querySelector('.save-percent-1').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
 
               cartPack.addEventListener('click', () => {
-                document.querySelector('#purchase .sale-price')?.textContent = `${packPrice[1]}`
-                document.querySelector('#purchase .off-price')?.textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
-                document.querySelector('#purchase .text-save')?.textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
-
-                document.querySelector('.sidebar .sale-price')?.textContent = `${packPrice[1]}`
-                document.querySelector('.sidebar .off-price')?.textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
-                document.querySelector('.sidebar .text-save')?.textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
+                changeSleepyPackDisplayingInfo()
               })
             }
           }, WAIT_INTERVAL_TIMEOUT)
@@ -262,6 +250,38 @@
             })
           }
         }, WAIT_INTERVAL_TIMEOUT)
+      }
+    }
+
+    function changeSleepyPackDisplayingInfo() {
+      let purchaseSalePriceElement = document.querySelector('#purchase .sale-price')
+      if (purchaseSalePriceElement) {
+        purchaseSalePriceElement.textContent = `${packPrice[1]}`
+      }
+
+      let purchaseOffPriceElement = document.querySelector('#purchase .off-price')
+      if (purchaseOffPriceElement) {
+        purchaseOffPriceElement.textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
+      }
+
+      let purchaseTextSaveElement = document.querySelector('#purchase .text-save')
+      if (purchaseTextSaveElement) {
+        purchaseTextSaveElement.textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
+      }
+
+      let sidebarSalePriceElement = document.querySelector('.sidebar .sale-price')
+      if (sidebarSalePriceElement) {
+        sidebarSalePriceElement.textContent = `${packPrice[1]}`
+      }
+
+      let sidebarOffPriceElement = document.querySelector('.sidebar .off-price')
+      if (sidebarOffPriceElement) {
+        sidebarOffPriceElement.textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
+      }
+
+      let sidebarTextSaveElement = document.querySelector('.sidebar .text-save')
+      if (sidebarTextSaveElement) {
+        sidebarTextSaveElement.textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
       }
     }
 
