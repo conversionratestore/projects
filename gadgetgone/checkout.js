@@ -109,30 +109,20 @@
       threshold: 1,
     }
 
-    if (DEVICE === 'mobile') {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            timer = setTimeout(() => {
-              const currentStep = DEVICE === 'mobile' ? document.querySelector('[data-current-step]').dataset.currentStep : 'desktop'
-              pushDataLayer(event_name, `${currentStep} - ${event_desc}`, event_type, event_loc)
-            }, ms)
-          } else {
-            clearTimeout(timer)
-          }
-        })
-      }, config)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          timer = setTimeout(() => {
+            const currentStep = DEVICE === 'mobile' ? document.querySelector('[data-current-step]').dataset.currentStep : 'desktop'
+            pushDataLayer(event_name, `${currentStep} - ${event_desc}`, event_type, event_loc)
+          }, ms)
+        } else {
+          clearTimeout(timer)
+        }
+      })
+    }, config)
 
-      observer.observe(el)
-    } else {
-      function handleHover() {
-        const currentStep = DEVICE === 'mobile' ? document.querySelector('[data-current-step]').dataset.currentStep : 'desktop'
-        pushDataLayer(event_name, `${currentStep} - ${event_desc}`, event_type, event_loc)
-        el.removeEventListener('mouseenter', handleHover)
-      }
-
-      el.addEventListener('mouseenter', handleHover)
-    }
+    observer.observe(el)
   }
 
   const handleVisibilityAndHoverStandart = (el, event_name, event_desc, event_type, event_loc) => {
@@ -144,30 +134,20 @@
       threshold: 1,
     }
 
-    if (DEVICE === 'mobile') {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            timer = setTimeout(() => {
-              pushDataLayer(event_name, event_desc, event_type, event_loc)
-            }, ms)
-          } else {
-            clearTimeout(timer)
-          }
-        })
-      }, config)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          timer = setTimeout(() => {
+            pushDataLayer(event_name, event_desc, event_type, event_loc)
+          }, ms)
+        } else {
+          clearTimeout(timer)
+        }
+      })
+    }, config)
 
-      observer.observe(el)
-    } else {
-      function handleHover() {
-        pushDataLayer(event_name, event_desc, event_type, event_loc)
-        el.removeEventListener('mouseenter', handleHover)
-      }
-
-      el.addEventListener('mouseenter', handleHover)
-    }
+    observer.observe(el)
   }
-
 
   function pushDataLayer(event_name, event_desc, event_type, event_loc) { // Send a Google Analytics event
     const eventData = {
@@ -2284,6 +2264,4 @@
 
     changeFooter()
   }
-
-
 })()
