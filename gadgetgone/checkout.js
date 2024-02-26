@@ -579,6 +579,10 @@
         display: block !important;
       }
 
+      .coupon-field .woocommerce-error {
+        color: #fa0f48;
+      }
+
       .coupon-toggle {
         padding: 1.25rem 0;
         border-bottom:  1px solid #F0F2F4;
