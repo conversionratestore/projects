@@ -293,7 +293,7 @@ class IntentPopup {
 
     if (currentUrl.includes(this.targetUrl) && this.targetUrl === '/collections') {
       console.log(`ONLY POPUP >>>>>`)
-      // this.intentPopupTriggers()
+      this.intentPopupTriggers()
     }
 
     // reDesignPdp
@@ -2707,11 +2707,9 @@ class IntentPopup {
   initMainStyles() {
     const mainStyles = /* HTML */ `
       <style>
-        /*
         body div .kl-private-reset-css-Xuajs1 {
           display: none !important;
         }
-        */
         .dn_desk {
           display: none;
         }
