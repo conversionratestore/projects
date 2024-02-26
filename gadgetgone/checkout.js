@@ -2254,7 +2254,7 @@
   }
 
   function addPaypal() {
-    waitForElement('footer[role=contentinfo] .logo-container .logos .logo-wrapper + .logo-wrapper').then(el => el.insertAdjacentHTML('afterend', /*html*/`
+    waitForElement('footer[role=contentinfo] .logo-container .logos .logo-wrapper + .logo-wrapper').then(el => el.insertAdjacentHTML('beforeend', /*html*/`
       <img class="custom-paypal-logo" src="${IMAGE_DIR_URL}/paypal-seeklogo.svg" alt="paypal">
     `))
   }
