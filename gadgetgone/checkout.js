@@ -1963,8 +1963,6 @@
     }
 
     if (firstInvalidElement) {
-      console.log(errors.join('\n'))
-      console.log('firstInvalidElement: ', firstInvalidElement)
       const formRow = firstInvalidElement?.closest('p.form-row')
       const headerOffset = document.querySelector('.custom-header')?.offsetHeight || 0
       const offsetPosition = formRow.getBoundingClientRect().top + window.scrollY - headerOffset - 32
