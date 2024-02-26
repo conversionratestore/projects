@@ -222,7 +222,7 @@
       }
 
       .trustpilot p {
-        margin: 0.75rem 0 0 0;
+        margin: 0.5rem 0 0 0;
         color: var(--dark-blue-main-text, #29353C);
         font-family: "Roboto", "Nunito Sans";
         font-size: 0.8125rem;
@@ -702,6 +702,14 @@
         }
       }, WAIT_INTERVAL_TIMEOUT)
     })
+
+    waitForElement('#order_review [name="apply_coupon"]').then(el => el.addEventListener('click', () => {
+      pushDataLayer('exp_chec_enhanc_but_checstep3_apply_coup', 'Apply coupon', 'Button', 'Checkout 3-rd Step')
+    }))
+
+    waitForElement('#order_review #coupon_code').then(el => el.addEventListener('click', () => {
+      pushDataLayer('exp_chec_enhanc_but_checstep3_apply_coup', 'Apply coupon', 'Button', 'Checkout 3-rd Step')
+    }))
 
     document.head.insertAdjacentHTML('beforeend', style)
   }
@@ -1616,13 +1624,13 @@
     }
 
     .item__img {
-      max-width: 7.5rem;
-      max-height: 8.0125rem;
+      width: 7.5rem;
+      height: 8.0125rem;
     }
 
     .item[data-type="laptop"] .item__img {
-      max-width: 14.1rem;
-      max-height: 8.125rem;
+      width: 14.1rem;
+      height: 8.125rem;
     }
 
     .item[data-type="laptop"] > a {
@@ -1807,7 +1815,7 @@
 
       return /*html*/`
         <div class="item" ${item.isLaptop ? `data-type="laptop"` : ''}>
-          <a href="${item.link}">
+          <a href="${item.link}" data-event="img">
           <img class="item__img" src="${item.img}" alt="${item.title}">
           </a>
           <div class="item__info">
@@ -1835,6 +1843,18 @@
           el.addEventListener('click', () => {
             pushDataLayer('exp_chec_enhanc_but_checdetstep3_del', 'Delete', 'Button', 'Checkout 3-rd Step Your Offer Details')
             cartItems[i].querySelector('a.remove').click()
+          })
+        })
+
+        document.querySelectorAll('.item__name').forEach((el) => {
+          el.addEventListener('click', () => {
+            pushDataLayer('exp_chec_enhanc_link_checstep3_item', `${el.innerText}`, 'Link', 'Checkout 3-rd Step')
+          })
+        })
+
+        document.querySelectorAll('[data-event="img"]').forEach((el) => {
+          el.addEventListener('click', () => {
+            pushDataLayer('exp_chec_enhanc_link_checstep3_item_pict', `${el.closest('.item').querySelector('.item__name').innerText} - picture`, 'Link', 'Checkout 3-rd Step')
           })
         })
 
