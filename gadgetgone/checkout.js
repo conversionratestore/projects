@@ -221,8 +221,12 @@
         margin-left: auto;
       }
 
+      .trustpilot img {
+        display: block;
+      }
+
       .trustpilot p {
-        margin: 0.5rem 0 0 0;
+        margin: 0.75rem 0 0 0;
         color: var(--dark-blue-main-text, #29353C);
         font-family: "Roboto", "Nunito Sans";
         font-size: 0.8125rem;
