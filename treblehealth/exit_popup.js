@@ -98,6 +98,24 @@
     }
   })()
 
+  const icons = {
+    close: /* HTML */ `
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M11.7071 11.7071C11.3166 12.0976 10.6834 12.0976 10.2929 11.7071L5.29287 6.7071C4.90237 6.3166 4.90237 5.6834 5.29287 5.2929L10.2929 0.292897C10.6834 -0.0976325 11.3166 -0.0976325 11.7071 0.292897C12.0976 0.683398 12.0976 1.3166 11.7071 1.7071L7.41417 6L11.7071 10.2929C12.0976 10.6834 12.0976 11.3166 11.7071 11.7071Z"
+          fill="#2E168D"
+        />
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M0.292897 11.7071C0.683398 12.0976 1.3166 12.0976 1.7071 11.7071L6.7071 6.7071C7.0976 6.3166 7.0976 5.6834 6.7071 5.2929L1.7071 0.292897C1.3166 -0.0976325 0.683398 -0.0976325 0.292897 0.292897C-0.0976325 0.683398 -0.0976325 1.3166 0.292897 1.7071L4.5858 6L0.292897 10.2929C-0.0976325 10.6834 -0.0976325 11.3166 0.292897 11.7071Z"
+          fill="#2E168D"
+        />
+      </svg>
+    `
+  }
   class Timer {
     constructor(callback, delay) {
       let timerId,
@@ -218,7 +236,7 @@
         <style>
           .crs-popup {
             width: 822px;
-            height: 668px;
+            height: 631px;
             flex-grow: 0;
             padding: 0;
             border-radius: 10px;
@@ -291,11 +309,20 @@
           .crs-popup p {
             font-size: 14px;
           }
-
+          .crs-popup__image img {
+            width: 100%;
+            height: 151px;
+          }
           .crs-popup__highlight {
             padding: 10px 16px;
             border-radius: 8px;
             background-color: #f0edfc;
+            color: #2e168d;
+
+            & span {
+              font-weight: 700;
+              color: #4622da;
+            }
           }
           .crs-popup__actions {
             display: flex;
@@ -307,6 +334,12 @@
             font-size: 16px !important;
             width: 100%;
           }
+          .crs-popup__actions button:first-child {
+            font-weight: bold;
+          }
+          .crs-popup__actions button:last-child {
+            text-decoration: underline;
+          }
           .crs-popup__exit {
             padding: 0 !important;
             background-color: transparent !important;
@@ -317,8 +350,8 @@
             .crs-popup {
               height: auto;
               overflow: auto;
-              max-width: 375px;
-              width: 95%;
+              width: 375px;
+              max-height: 601px;
             }
             .crs-popup__bg {
               display: none;
@@ -326,29 +359,38 @@
             .crs-popup__title {
               padding-right: 31px;
             }
+          
             .crs-popup__content {
               width: 100%;
               padding: 16px;
               border: none;
               border-radius: 0;
+              gap: 11px;
+            }
+            .crs-popup__highlight {
+              padding: 10px;
             }
           }
         </style>
         <dialog class="crs-popup">
           <div class="crs-popup__wrap">
-            <button class="crs-popup__close" data-popup="exit">✖</button>
+            <button class="crs-popup__close" data-popup="exit">${icons.close}</button>
             <div class="crs-popup__content">
-              <h2 class="crs-popup__title">Don't Ignore the Ringing. Discover Relief Today!</h2>
+              <h2 class="crs-popup__title">
+                Don't Ignore the Ringing. <br />
+                Discover Relief Today!
+              </h2>
               <p>
-                The National Health and Nutrition Examination Surveys reveal that nearly 1 in 10 U.S. adults is affected
-                by tinnitus with 27% experiencing symptoms for over 15 years and a 36% suffering constantly.
+                The National Health and Nutrition Examination Surveys reveal that nearly
+                <b>1 in 10 U.S. adults is affected by tinnitus</b> with 27% experiencing symptoms for over 15 years and
+                a 36% suffering constantly.
               </p>
-              <div>
+              <div class="crs-popup__image">
                 <img src="${git}/img/tr_medication.png" alt="treblehealth medication" />
               </div>
               <p class="crs-popup__highlight">
-                While medications do not always help, TrebleHealth's Tinnitus Relief Bundle yields improvements in 6
-                months for 82% of patients
+                While medications do not always help, TrebleHealth's Tinnitus Relief Bundle yields
+                <span>improvements in 6 months for 82% of patients</span>
               </p>
               <div class="crs-popup__actions">
                 <button href="#" class="elementor-button" data-popup="grab">Grab My Free Seat Now</button>
