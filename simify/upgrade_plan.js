@@ -1447,11 +1447,11 @@
                       ? "UK"
                       : title.includes("japan")
                       ? "Japan"
-                      : title.includes("China")
+                      : title.includes("china")
                       ? "China"
-                      : title.includes("South Korea")
+                      : title.includes("south korea")
                       ? "Korea"
-                      : title.includes("USA")
+                      : title.includes("usa")
                       ? "USA"
                       : "Asia";
 
