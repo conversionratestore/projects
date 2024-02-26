@@ -1630,6 +1630,7 @@
     .item__img {
       width: 7.5rem;
       height: 8.0125rem;
+      object-fit: contain;
     }
 
     .item[data-type="laptop"] .item__img {
