@@ -98,6 +98,27 @@
     }
   })()
 
+  function waitForElement(selector) {
+    return new Promise(resolve => {
+      if (document.querySelector(selector)) {
+        return resolve(document.querySelector(selector))
+      }
+
+      const observer = new MutationObserver(() => {
+        if (document.querySelector(selector)) {
+          resolve(document.querySelector(selector))
+          observer.disconnect()
+        }
+      })
+
+      observer.observe(document.documentElement, {
+        childList: true,
+        subtree: true,
+        characterData: true
+      })
+    })
+  }
+
   const icons = {
     close: /* HTML */ `
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -220,8 +241,9 @@
           })
         }, options)
 
-        const element = $el(selectors.calendlyIframe)
-        observer.observe(element)
+        waitForElement(selectors.calendlyIframe).then(element => {
+          observer.observe(element)
+        })
       }
       $$el('a').forEach(link => {
         link.addEventListener('click', () => {
@@ -367,7 +389,7 @@
             .crs-popup__title {
               padding-right: 31px;
             }
-          
+
             .crs-popup__content {
               width: 100%;
               padding: 16px;
