@@ -1606,6 +1606,14 @@
           }
         })
       })
+      $el('#cart-popup .crs-promocode__copy-btn').addEventListener('click', (event) => {
+        pushDataLayer(
+          'exp_pop_car_retent_but_with_prod_code',
+          'Promo code',
+          'Button',
+          'Pop up Check out now and get 10% Off your first order'
+        )
+      })
       waitForElement('#cart-popup').then(() => {
         if (this.country === 'UK') {
           blockVisibility(
