@@ -152,7 +152,8 @@
     }
 
     init() {
-      if ($el(selectors.calendlyIframe)) {
+      const currentUrl = window.location.href
+      if ($el(selectors.calendlyIframe) || currentUrl.includes('group-calendly-v1')) {
         console.log('ExitPopup initialized!')
 
         this.render()
@@ -161,10 +162,13 @@
     }
 
     popupTriggers() {
+      window.addEventListener('resize', () => {
+        this.device = screen.width <= 768 ? devices.mobile : devices.desktop
+      })
+
       if (this.device === devices.desktop) {
         document.addEventListener('mouseleave', event => {
           if (!event.toElement && !event.relatedTarget && event.target.localName !== 'iframe') {
-            console.log('mouseleave')
             this.showPopup()
           }
         })
@@ -204,9 +208,9 @@
 
         const observer = new IntersectionObserver((entries, observer) => {
           entries.forEach(entry => {
-            const isVisivle = entry.isIntersecting
-            console.log('isVisivle', isVisivle)
-            if (isVisivle) {
+            const isVisible = entry.isIntersecting
+            console.log('isVisible', isVisible)
+            if (isVisible) {
               timer.pause()
               isTimerPaused = true
             } else if (isTimerPaused) {
@@ -216,7 +220,7 @@
           })
         }, options)
 
-        const element = $$el(selectors.calendlyIframe)[1]
+        const element = $el(selectors.calendlyIframe)
         observer.observe(element)
       }
       $$el('a').forEach(link => {
@@ -339,6 +343,7 @@
           }
           .crs-popup__actions button:last-child {
             text-decoration: underline;
+            text-underline-offset: 5px;
           }
           .crs-popup__exit {
             padding: 0 !important;
@@ -372,7 +377,7 @@
             }
           }
         </style>
-        <dialog class="crs-popup">
+        <dialog class="crs-popup" autoFocus>
           <div class="crs-popup__wrap">
             <button class="crs-popup__close" data-popup="exit">${icons.close}</button>
             <div class="crs-popup__content">
