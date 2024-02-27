@@ -192,7 +192,7 @@
       })
 
       if (this.device === devices.desktop) {
-        document.addEventListener('mouseleave', event => {
+        document.addEventListener('mouseout', event => {
           if (!event.toElement && !event.relatedTarget && event.target.localName !== 'iframe') {
             this.showPopup()
           }
@@ -209,7 +209,7 @@
 
       let i = 0
       const timer = new Timer(() => {
-        console.log('timer')
+        console.log('timer out')
         this.showPopup()
       }, this.time)
 
@@ -234,7 +234,6 @@
         const observer = new IntersectionObserver((entries, observer) => {
           entries.forEach(entry => {
             const isVisible = entry.isIntersecting
-            console.log('isVisible', isVisible)
             if (isVisible) {
               timer.pause()
               isTimerPaused = true
@@ -249,7 +248,7 @@
           observer.observe(element)
         })
       }
-      $$el('a').forEach(link => {
+      $$el('a[href="#"]').forEach(link => {
         link.addEventListener('click', () => {
           sessionStorage.setItem(IS_POPUP_SHOWN, true)
         })
