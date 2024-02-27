@@ -279,6 +279,9 @@
             border: none !important;
             background-color: transparent !important;
             background: #efecfb !important ;
+            &:focus {
+              outline: none;
+            }
           }
           .crs-popup__content,
           .crs-popup__bg {
@@ -377,7 +380,7 @@
             }
           }
         </style>
-        <dialog class="crs-popup" autoFocus>
+        <dialog class="crs-popup">
           <div class="crs-popup__wrap">
             <button class="crs-popup__close" data-popup="exit">${icons.close}</button>
             <div class="crs-popup__content">
