@@ -174,7 +174,11 @@
 
     init() {
       const currentUrl = window.location.href
-      if ($el(selectors.calendlyIframe) || currentUrl.includes('group-calendly-v1')) {
+      if (
+        $el(selectors.calendlyIframe) ||
+        currentUrl.includes('group-calendly-v1') ||
+        currentUrl.includes('individual-calendly-v2')
+      ) {
         console.log('ExitPopup initialized!')
 
         this.render()
@@ -340,7 +344,7 @@
           }
           .crs-popup__image img {
             width: 100%;
-            height: 151px;
+            height: 150px;
           }
           .crs-popup__highlight {
             padding: 10px 16px;
