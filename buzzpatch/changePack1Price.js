@@ -44,6 +44,12 @@
     const currencySymbol = currency[localizationData][0]
     const packPrice = packPriceObj[url][localizationData]
 
+    const priceBlock = /*html*/`
+      <div class="custom-price-block">
+        <p>${currencySymbol}${packPrice[1]}</p>
+      </div>
+    `
+
     if (url === 'zenpatch' && currency[localizationData]) {
       const waitForEl = setInterval(() => {
         if (linksOfPacks?.linkOf1Pack) {
@@ -72,34 +78,6 @@
           subtree: true
         })
       })
-    }
-
-    function calculateDiscountPercent(oldPrice, currentPrice) {
-      // Calculate the discount percent
-      const discountPercent = ((oldPrice - currentPrice) / oldPrice) * 100
-
-      // Round the result to the nearest integer
-      const roundedDiscountPercent = Math.round(discountPercent)
-
-      // Return the result as a string
-      return `${roundedDiscountPercent}`
-    }
-
-    function calculateMoneyDifference(oldPrice, currentPrice) {
-      // Calculate the price difference
-      const priceDifference = oldPrice - currentPrice
-
-      if (url === 'zenpatch') {
-        // If the price difference is a whole number, return it as a whole number
-        if (Math.floor(priceDifference) === priceDifference) {
-          return priceDifference
-        }
-        else {
-          return priceDifference.toFixed(2)
-        }
-      } else if (url === 'sleepypatch') {
-        return priceDifference.toFixed(2)
-      }
     }
 
     function getCookieValue(cookieName) {
@@ -145,26 +123,95 @@
 
     function changeInitialPackPrice() {
       if (url === 'zenpatch') {
+        const style = /*html*/`
+          <style>
+          .list-packs+.list-packs+.list-packs+.list-packs .save-btn,
+          .before-after-prices {
+            display: none !important;
+          }
+
+          .custom-price-block {
+            display: none;
+          }
+
+          #getNow:has(.slide-packs .list-packs:nth-child(4).active-slide) .prices {
+            display: none;
+          }
+
+          #getNow:has(.slide-packs .list-packs:nth-child(4).active-slide) .custom-price-block {
+            display: block;
+          }
+
+          #cons:has(.slide-packs .list-packs:nth-child(4).active-slide) .view-prices h3,
+          #cons:has(.slide-packs .list-packs:nth-child(4).active-slide) .view-prices h3+p {
+            display: none;
+          }
+
+          #cons:has(.slide-packs .list-packs:nth-child(4).active-slide) .custom-price-block {
+            display: block;
+          }
+
+          #cons:has(.slide-packs .list-packs:nth-child(4).active-slide) .pdp-popup-discount {
+            margin-top: 55px;
+          }
+
+          #getNow .custom-price-block {
+            margin-bottom: 20px;
+          }
+
+          @media screen and (max-width: 749px) {
+            #cons .custom-price-block {
+              margin-bottom: 10px;
+            }
+          }
+
+          #getNow .custom-price-block p {
+            font-size: 40px !important;
+            color: #000;
+            margin: 0 !important;
+            font-family: roboto, sans-serif !important;
+            font-weight: 700;
+            line-height: 1;
+          }
+
+          #cons .custom-price-block p {
+            color: #000;
+            font-size: 24px !important;
+            margin: 0 !important;
+            font-family: roboto, sans-serif !important;
+            font-weight: 700;
+          }
+
+          @media screen and (max-width: 1420px) {
+            #getNow .custom-price-block p {
+              font-size: 30px !important;
+            }
+          }
+
+          @media screen and (max-width: 1280px) {
+            #getNow .custom-price-block p {
+              font-size: 25px !important;
+            }
+          }
+          </style>
+          `
+
+        document.head.insertAdjacentHTML('beforeend', style)
+
         // pdp pack price
         waitForElement('.package .list-packs + .list-packs + .list-packs + .list-packs').then(pdpPack => {
           const waitForEls = setInterval(() => {
             if (
               pdpPack.querySelector('.info .pack-price') &&
-              pdpPack.querySelector('.info2 .pcs') &&
-              pdpPack.querySelector('.after-price') &&
-              pdpPack.querySelector('.save-btn span')
+              pdpPack.querySelector('.info2 .pcs')
             ) {
               clearInterval(waitForEls)
 
               pdpPack.querySelector('.info .pack-price').textContent = `${currencySymbol}${packPrice[1]}/Pack`
               pdpPack.querySelector('.info2 .pcs').textContent = `${currencySymbol}${packPrice[1]}/Pack`
-              pdpPack.querySelector('.after-price').textContent = `${currencySymbol}${packPrice[1]}`
-              pdpPack.querySelector('.save-btn span').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
 
               pdpPack.addEventListener('click', () => {
-                document.querySelector('.package .pr').textContent = `${packPrice[1]}`
-                document.querySelector('.package .ps').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
-                document.querySelector('.package .rs').textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
+
               })
             }
           }, WAIT_INTERVAL_TIMEOUT)
@@ -172,24 +219,23 @@
           changeIdOfPack('package')
         })
 
+        waitForElement('.package .prices').then(el => {
+          el.insertAdjacentHTML('afterend', priceBlock)
+        })
+
         // cart pack price
         waitForElement('.slide-packs .list-packs + .list-packs + .list-packs + .list-packs').then(cartPack => {
           const waitForEls = setInterval(() => {
             if (
               cartPack.querySelector('.pack-price') &&
-              cartPack.querySelector('.save-price-1') &&
-              cartPack.querySelector('.save-percent-1')
+              cartPack.querySelector('.save-price-1')
             ) {
               clearInterval(waitForEls)
 
               cartPack.querySelector('.pack-price').textContent = `${currencySymbol}${packPrice[1]}/Pack`
               cartPack.querySelector('.save-price-1').textContent = packPrice[1]
-              cartPack.querySelector('.save-percent-1').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
 
               cartPack.addEventListener('click', () => {
-                document.querySelector('.sidebar .sale-price').textContent = `${packPrice[1]}`
-                document.querySelector('.sidebar .off-price').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
-                document.querySelector('.sidebar .save').textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
               })
             }
           }, WAIT_INTERVAL_TIMEOUT)
@@ -197,20 +243,62 @@
           changeIdOfPack('sidebar')
         })
 
+        waitForElement('#cons h3').then(el => {
+          el.insertAdjacentHTML('beforebegin', priceBlock)
+        })
+
       } else if (url === 'sleepypatch') {
+        const style = /*html*/`
+        <style>
+          .list-packs + .list-packs + .list-packs + .list-packs .buttons-sticker,
+          .before-after-prices {
+            display: none !important;
+          }
+
+          .custom-price-block {
+            display: none;
+          }
+
+          #getNow:has(.list-packs:nth-child(4).active-slide) .view-prices h3,
+          #getNow:has(.list-packs:nth-child(4).active-slide) .view-prices h3 + p {
+            display: none;
+          }
+          #getNow:has(.list-packs:nth-child(4).active-slide) .custom-price-block {
+            display: block;
+          }
+
+          #cons:has(.list-packs:nth-child(4).active-slide) .view-prices h3,
+          #cons:has(.list-packs:nth-child(4).active-slide) .view-prices h3 + p {
+            display: none;
+          }
+          #cons:has(.list-packs:nth-child(4).active-slide) .custom-price-block {
+            display: block;
+          }
+
+          .view-prices .custom-price-block p,
+          .custom-price-block p {
+            color: #000;
+            font-size: 24px !important;
+            margin: 0 !important;
+            font-family: roboto, sans-serif !important;
+            font-weight: 700;
+          }
+        </style>
+        `
+
+        document.head.insertAdjacentHTML('beforeend', style)
+
         // pdp pack price
         waitForElement('#purchase .list-packs-1').then(pdpPack => {
           const waitForEls = setInterval(() => {
             if (
               pdpPack.querySelector('.info .pack-price') &&
-              pdpPack.querySelector('.save-price-1') &&
-              pdpPack.querySelector('.save-btn span')
+              pdpPack.querySelector('.save-price-1')
             ) {
               clearInterval(waitForEls)
 
               pdpPack.querySelector('.info .pack-price').textContent = `${currencySymbol}${packPrice[1]}/Pack`
               pdpPack.querySelector('.save-price-1').textContent = `${packPrice[1]}`
-              pdpPack.querySelector('.save-btn span').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
 
               pdpPack.addEventListener('click', () => {
                 changeSleepyPackDisplayingInfo()
@@ -220,25 +308,31 @@
           }, WAIT_INTERVAL_TIMEOUT)
         })
 
+        waitForElement('#getNow .view-prices h3').then(el => {
+          el.insertAdjacentHTML('beforebegin', priceBlock)
+        })
+
         // cart pack price
         waitForElement('.sidebar .list-packs-1').then(cartPack => {
           const waitForEls = setInterval(() => {
             if (
               cartPack.querySelector('.pack-price') &&
-              cartPack.querySelector('.save-price-1') &&
-              cartPack.querySelector('.save-percent-1')
+              cartPack.querySelector('.save-price-1')
             ) {
               clearInterval(waitForEls)
 
               cartPack.querySelector('.pack-price').textContent = `${currencySymbol}${packPrice[1]}/Pack`
               cartPack.querySelector('.save-price-1').textContent = packPrice[1]
-              cartPack.querySelector('.save-percent-1').textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
 
               cartPack.addEventListener('click', () => {
                 changeSleepyPackDisplayingInfo()
               })
             }
           }, WAIT_INTERVAL_TIMEOUT)
+        })
+
+        waitForElement('#cons .view-prices h3').then(el => {
+          el.insertAdjacentHTML('beforebegin', priceBlock)
         })
 
         const waitForEl = setInterval(() => {
@@ -259,29 +353,9 @@
         purchaseSalePriceElement.textContent = `${packPrice[1]}`
       }
 
-      let purchaseOffPriceElement = document.querySelector('#purchase .off-price')
-      if (purchaseOffPriceElement) {
-        purchaseOffPriceElement.textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
-      }
-
-      let purchaseTextSaveElement = document.querySelector('#purchase .text-save')
-      if (purchaseTextSaveElement) {
-        purchaseTextSaveElement.textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
-      }
-
       let sidebarSalePriceElement = document.querySelector('.sidebar .sale-price')
       if (sidebarSalePriceElement) {
         sidebarSalePriceElement.textContent = `${packPrice[1]}`
-      }
-
-      let sidebarOffPriceElement = document.querySelector('.sidebar .off-price')
-      if (sidebarOffPriceElement) {
-        sidebarOffPriceElement.textContent = calculateDiscountPercent(packPrice[0], packPrice[1])
-      }
-
-      let sidebarTextSaveElement = document.querySelector('.sidebar .text-save')
-      if (sidebarTextSaveElement) {
-        sidebarTextSaveElement.textContent = `${currencySymbol}${calculateMoneyDifference(packPrice[0], packPrice[1])}`
       }
     }
 
