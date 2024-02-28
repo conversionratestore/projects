@@ -301,9 +301,10 @@
             border: none !important;
             background-color: transparent !important;
             background: #efecfb !important ;
-            &:focus {
-              outline: none;
-            }
+           
+          }
+          .crs-popup__close:is(:focus, :focus-visible) {
+            outline: none;
           }
           .crs-popup__content,
           .crs-popup__bg {
@@ -376,10 +377,6 @@
             border: none !important;
             color: var(--e-global-color-accent) !important;
           }
-          [data-popup='grab']:focus,
-          [data-popup='grab']:hover {
-            outline: none;
-          }
           @media (max-width: 768px) {
             .crs-popup {
               height: auto;
@@ -427,7 +424,7 @@
                 <span>improvements in 6 months for 82% of patients</span>
               </p>
               <div class="crs-popup__actions">
-                <button href="#" class="elementor-button" data-popup="grab" autofocus>Grab My Free Seat Now</button>
+                <button href="#" class="elementor-button" data-popup="grab">Grab My Free Seat Now</button>
                 <button class="crs-popup__exit" data-popup="exit">No, thanks, I'll keep the ringing</button>
               </div>
             </div>
