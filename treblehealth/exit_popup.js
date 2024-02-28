@@ -179,8 +179,6 @@
         currentUrl.includes('group-calendly-v1') ||
         currentUrl.includes('individual-calendly-v2')
       ) {
-        console.log('ExitPopup initialized!')
-
         this.render()
         this.popupTriggers()
       }
@@ -209,7 +207,6 @@
 
       let i = 0
       const timer = new Timer(() => {
-        console.log('timer out')
         this.showPopup()
       }, this.time)
 
@@ -379,6 +376,10 @@
             border: none !important;
             color: var(--e-global-color-accent) !important;
           }
+          [data-popup='grab']:focus,
+          [data-popup='grab']:hover {
+            outline: none;
+          }
           @media (max-width: 768px) {
             .crs-popup {
               height: auto;
@@ -426,7 +427,7 @@
                 <span>improvements in 6 months for 82% of patients</span>
               </p>
               <div class="crs-popup__actions">
-                <button href="#" class="elementor-button" data-popup="grab">Grab My Free Seat Now</button>
+                <button href="#" class="elementor-button" data-popup="grab" autofocus>Grab My Free Seat Now</button>
                 <button class="crs-popup__exit" data-popup="exit">No, thanks, I'll keep the ringing</button>
               </div>
             </div>
@@ -443,16 +444,14 @@
       const grabBtn = $el('[data-popup="grab"]')
 
       grabBtn.addEventListener('click', event => {
-        const iframe = $$el(selectors.calendlyIframe)[1]
+        const link = $el('a[href="#"]')
         pushDataLayer(
           'exp_enh_exit_int_but_popignor_free',
           'Grab My Free Seat Now',
           'Button',
           "Pop up Don't Ignore the Ringing. Discover Relief Today!"
         )
-        if (iframe) {
-          iframe.closest('section').scrollIntoView({ behavior: 'smooth' })
-        }
+        link.click()
         this.popup.close()
       })
 
