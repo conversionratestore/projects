@@ -8,8 +8,6 @@
   })
 
   function runCode() {
-    console.log('%c Running on: ' + window.location.href, 'color: #bada55')
-
     const WAIT_INTERVAL_TIMEOUT = 100
 
     const recordClarity = setInterval(() => {
