@@ -298,7 +298,7 @@ class Popup {
             font-weight: 600;
             padding-right: 100px;
           }
-          .crs_popup_footer .discount span {
+          .crs_popup_footer .discount>span {
             display: block;
             width: 1px;
             height: 20px;
@@ -326,6 +326,9 @@ class Popup {
             gap: 6px;
             align-items: center;
             color: #2B4632;
+          }
+          .crs_popup_footer .discount p.copied span {
+            margin: 2px 0 -1px;
           }
           .crs_info {
             border-radius: 6px;
@@ -526,7 +529,7 @@ class Popup {
       $el('.popup_cart_list').classList.remove('slick-slider')
       $el('.popup_cart_list').classList.remove('slick-dotted')
       pushDataLayer(
-        'exp_eip_v2_btn_close',
+        `exp_eip_v2_btn_close_${this.user === 0 ? 'nu' : 'ru'}`,
         `Close button ${this.user === 0 ? 'New user' : 'Returning User'}`,
         'Click',
         'Main Popup'
@@ -537,7 +540,7 @@ class Popup {
       closePopup.click()
       window.location.href = '/checkout'
       pushDataLayer(
-        'exp_eip_v2_btn_checkout',
+        `exp_eip_v2_btn_checkout${this.user === 0 ? 'nu' : 'ru'}`,
         `Checkout button ${this.user === 0 ? 'New user' : 'Returning User'}`,
         'Click',
         'Main Popup'
@@ -551,7 +554,7 @@ class Popup {
         $el('.popup_cart_list').classList.remove('slick-slider')
         $el('.popup_cart_list').classList.remove('slick-dotted')
         pushDataLayer(
-          'exp_eip_v2_bg_close',
+          `exp_eip_v2_bg_close_${this.user === 0 ? 'nu' : 'ru'}`,
           `Close by bg ${this.user === 0 ? 'New user' : 'Returning User'}`,
           'Click',
           'Main Popup'
@@ -562,7 +565,7 @@ class Popup {
       copy.addEventListener('click', () => {
         const copyText = $el('.crs_popup_footer .discount p:last-of-type')
         navigator.clipboard.writeText('HELLO15')
-        copyText.innerHTML = `${svg.check}copied`
+        copyText.innerHTML = `${svg.check}<span>copied</span>`
         copyText.classList.add('copied')
         pushDataLayer(
           'exp_eip_v2_btn_copy',
@@ -793,10 +796,10 @@ class Popup {
       }
     })
 
-    $$el('.crs_popup2_links .crs_btn').forEach(btn => {
+    $$el('.crs_popup2_links .crs_btn').forEach((btn, i) => {
       btn.addEventListener('click', () => {
         pushDataLayer(
-          'exp_eip_v2_btn_shop',
+          `exp_eip_v2_btn_shop_${i}`,
           `Shop button ${this.user === 0 ? 'New user' : 'Returning User'} ${btn.previousElementSibling.innerText}`,
           'Click',
           'Secondary Popup'
@@ -877,7 +880,7 @@ class Popup {
     const interObserver = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
         pushDataLayer(
-          'exp_eip_v2_popup_view',
+          `exp_eip_v2_popup_view${this.user === 0 ? 'nu' : 'ru'}`,
           `Popup visible ${this.user === 0 ? 'New user' : 'Returning User'}`,
           'Visible',
           'Main Popup'
@@ -944,9 +947,15 @@ class Popup {
     }
     document.body.setAttribute('data-time', new Date().getTime())
     const sessionTime = sessionStorage.getItem('session_time')
+    const showCountTime = sessionStorage.getItem('showCountTime')
     const checkTime = setInterval(() => {
-      if (new Date().getTime() - sessionTime > 180000) {
+      if (sessionTime && new Date().getTime() - sessionTime > 180000) {
         console.log('%c 180 seconds trigger', 'color: red; background: white;')
+        clearInterval(checkTime)
+        combine()
+      }
+      if (showCountTime && new Date().getTime() - showCountTime > 120000) {
+        console.log('%c 120 seconds cart trigger', 'color: red; background: white;')
         clearInterval(checkTime)
         combine()
       }
@@ -982,8 +991,8 @@ class Popup {
       let timeout
 
       function setTime() {
+        clearTimeout(timeout)
         timeout = setTimeout(function () {
-          clearTimeout(timeout)
           console.log('%c cart timeout trigger', 'color: red; background: white;')
           combine()
         }, 5000)
@@ -992,22 +1001,16 @@ class Popup {
       let observer = new IntersectionObserver(
         function (entries) {
           if (entries[0].isIntersecting === true && !entries[0].target.querySelector('.empty_cart')) {
-            if (!sessionStorage.getItem('showCountTime')) {
+            let showCount = sessionStorage.getItem('showCount') || 0
+            if (!sessionStorage.getItem('showCountTime') && +showCount >= 2) {
               sessionStorage.setItem('showCountTime', new Date().getTime())
             }
-            let showCount = sessionStorage.getItem('showCount') || 0
             showCount++
             sessionStorage.setItem('showCount', showCount)
             setTime()
             $el('#shopify-section-minicart').addEventListener('click', e => {
-              clearTimeout(timeout)
               setTime()
             })
-            if (showCount > 1 && new Date().getTime() - sessionStorage.getItem('showCountTime') > 120000) {
-              console.log('%c cart visible 2 time after 120 sec trigger', 'color: red; background: white;')
-              clearTimeout(timeout)
-              combine()
-            }
           } else {
             clearInterval(timeout)
           }
