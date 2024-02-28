@@ -126,7 +126,7 @@
         const style = /*html*/`
           <style>
           .list-packs+.list-packs+.list-packs+.list-packs .save-btn,
-          .before-after-prices {
+          .list-packs+.list-packs+.list-packs+.list-packs .before-after-prices {
             display: none !important;
           }
 
@@ -251,7 +251,7 @@
         const style = /*html*/`
         <style>
           .list-packs + .list-packs + .list-packs + .list-packs .buttons-sticker,
-          .before-after-prices {
+          .list-packs + .list-packs + .list-packs + .list-packs .before-after-prices {
             display: none !important;
           }
 
