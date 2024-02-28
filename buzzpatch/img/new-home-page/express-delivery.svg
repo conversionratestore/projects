@@ -1,0 +1,17 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M28.4455 28.948H15.8008" stroke="#1F4FC9" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<mask id="mask0_619_31409" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="40" height="40">
+<path d="M0 7.62939e-06H40V40H0V7.62939e-06Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_619_31409)">
+<path d="M36.1444 28.948H38.8287V20.7977L32.1062 13.8517H26.6055V13.8616V28.874" stroke="#1F4FC9" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M38.8272 20.7976H26.6035" stroke="#1F4FC9" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M9.40652 26.1135C10.8392 24.6807 13.1618 24.6807 14.5945 26.1135C16.0271 27.5461 16.0271 29.869 14.5945 31.3017C13.1618 32.7344 10.8392 32.7344 9.40652 31.3017C7.97387 29.869 7.97387 27.5461 9.40652 26.1135Z" stroke="#1F4FC9" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M29.8557 26.1135C31.2883 24.6807 33.611 24.6807 35.0437 26.1135C36.4763 27.5461 36.4763 29.869 35.0437 31.3017C33.611 32.7344 31.2883 32.7344 29.8557 31.3017C28.4231 29.869 28.4231 27.5461 29.8557 26.1135Z" stroke="#1F4FC9" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M4.87305 7.62381V28.9351H8.18312" stroke="#1F4FC9" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M26.639 13.8616V7.62384H4.87305" stroke="#1F4FC9" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.004 7.62378H4.87305" stroke="#1F4FC9" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.0024 12.3125H2.8125" stroke="#1F4FC9" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12.1432 17.001H1.17188" stroke="#1F4FC9" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>
