@@ -154,7 +154,7 @@
           }
 
           #cons:has(.slide-packs .list-packs:nth-child(4).active-slide) .pdp-popup-discount {
-            margin-top: 55px;
+            margin-top: 60px;
           }
 
           #getNow .custom-price-block {
