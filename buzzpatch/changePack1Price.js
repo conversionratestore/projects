@@ -131,6 +131,10 @@
           .custom-price-block {
             display: none;
           }
+          
+          .list-packs+.list-packs+.list-packs+.list-packs .stickers-prices{
+            align-items: flex-start !important;
+          }
 
           #getNow:has(.slide-packs .list-packs:nth-child(4).active-slide) .prices {
             display: none;
@@ -251,6 +255,10 @@
           .list-packs + .list-packs + .list-packs + .list-packs .buttons-sticker,
           .list-packs + .list-packs + .list-packs + .list-packs .before-after-prices {
             display: none !important;
+          }
+
+          .list-packs+.list-packs+.list-packs+.list-packs .stickers-prices{
+            align-items: flex-start !important;
           }
 
           .custom-price-block {
