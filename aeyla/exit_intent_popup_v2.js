@@ -954,7 +954,7 @@ class Popup {
         clearInterval(checkTime)
         combine()
       }
-      if (showCountTime && new Date().getTime() - showCountTime > 120000) {
+      if (showCountTime && new Date().getTime() - showCountTime > 60000) {
         console.log('%c 120 seconds cart trigger', 'color: red; background: white;')
         clearInterval(checkTime)
         combine()
