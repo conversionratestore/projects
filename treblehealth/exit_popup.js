@@ -376,6 +376,7 @@
             font-weight: bold;
             text-align: center;
             color: #fff;
+            cursor: pointer;
           }
           button.crs-popup__exit {
             padding: 0 !important;
