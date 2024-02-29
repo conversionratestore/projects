@@ -319,7 +319,7 @@
             border-right: none;
           }
           .crs-popup__bg {
-            width: 40%;
+            width: 39%;
             height: 532px;
             background: url('${git}/img/popup_bg.png') no-repeat center center;
           }
