@@ -179,8 +179,8 @@
         currentUrl.includes('group-calendly-v1') ||
         currentUrl.includes('individual-calendly-v2')
       ) {
-      this.render()
-      this.popupTriggers()
+        this.render()
+        this.popupTriggers()
       }
     }
 
@@ -369,7 +369,7 @@
             border-radius: 5px;
             padding: 12px !important;
 
-            border: 2px solid #4622da!important;
+            border: 2px solid #4622da !important;
             background-color: #4622da;
             font-size: 16px;
             font-weight: bold;
@@ -378,9 +378,8 @@
             cursor: pointer;
             &:hover {
               background-color: #fff;
-              border: 2px solid #4622da!important;
+              border: 2px solid #4622da !important;
               color: #4622da !important;
-              
             }
           }
           button.crs-popup__exit {
@@ -414,6 +413,9 @@
             .crs-popup__highlight {
               padding: 10px;
             }
+            button.crs-popup__exit {
+              font-size: 15px;
+            }
           }
         </style>
         <dialog class="crs-popup">
@@ -436,9 +438,7 @@
                 <span>improvements in 6 months for 82% of patients</span>
               </p>
               <div class="crs-popup__actions">
-                <button href="#" class="crs-popup__grab" data-popup="grab">
-                  Grab My Free Seat Now
-                </button>
+                <button href="#" class="crs-popup__grab" data-popup="grab">Grab My Free Seat Now</button>
                 <button class="crs-popup__exit" data-popup="exit">No thanks, I don't want to treat my tinnitus</button>
               </div>
             </div>
