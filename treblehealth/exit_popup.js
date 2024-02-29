@@ -262,7 +262,7 @@
         <style>
           .crs-popup {
             width: 822px;
-            height: 631px;
+            height: fit-content;
             flex-grow: 0;
             padding: 0;
             border-radius: 10px;
@@ -323,14 +323,10 @@
           }
           .crs-popup__bg {
             width: 40%;
-            overflow: hidden;
+            height: 532px;
+            background: url('${git}/img/popup_bg.png') no-repeat center center;
           }
 
-          .crs-popup__bg img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-          }
           .crs-popup__title {
             font-size: 24px !important;
             margin: 0;
@@ -369,6 +365,17 @@
           .crs-popup__actions button:last-child {
             text-decoration: underline;
             text-underline-offset: 5px;
+          }
+          button.crs-popup__grab {
+            border-radius: 5px;
+            padding: 12px !important;
+
+            border: none !important;
+            background-color: #4622da;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
           }
           button.crs-popup__exit {
             padding: 0 !important;
@@ -419,17 +426,17 @@
                 <img src="${git}/img/tr_medication.png" alt="treblehealth medication" />
               </div>
               <p class="crs-popup__highlight">
-                While medications do not always help, TrebleHealth's Tinnitus Relief Bundle yields
+                While medication typically does not help, Treble Health's Tinnitus Relief Bundle yields
                 <span>improvements in 6 months for 82% of patients</span>
               </p>
               <div class="crs-popup__actions">
-                <button href="#" class="elementor-button" data-popup="grab">Grab My Free Seat Now</button>
+                <button href="#" class="elementor-button crs-popup__grab" data-popup="grab">
+                  Grab My Free Seat Now
+                </button>
                 <button class="crs-popup__exit" data-popup="exit">No thanks, I don't want to treat my tinnitus</button>
               </div>
             </div>
-            <div class="crs-popup__bg">
-              <img src="${git}/img/popup_bg.png" alt="" />
-            </div>
+            <div class="crs-popup__bg"></div>
           </div>
         </dialog>
       `
