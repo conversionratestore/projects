@@ -72,7 +72,7 @@
       total: 40,
       currency: '$'
     },
-    UK: {
+    GB: {
       by_one: 10,
       total: 40,
       currency: '£'
@@ -98,7 +98,7 @@
     }
 
     init() {
-      if (this.loc === 'US' || this.loc === 'UK' || this.loc === 'AU' || this.loc === 'NZ') {
+      if (this.loc === 'US' || this.loc === 'GB' || this.loc === 'AU' || this.loc === 'NZ') {
         this.drawBundle()
       }
     }
