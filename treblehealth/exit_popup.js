@@ -301,7 +301,6 @@
             border: none !important;
             background-color: transparent !important;
             background: #efecfb !important ;
-           
           }
           .crs-popup__close:is(:focus, :focus-visible) {
             outline: none;
@@ -382,7 +381,7 @@
               height: auto;
               overflow: auto;
               width: 375px;
-              max-height: 601px;
+              max-height: fit-content;
             }
             .crs-popup__bg {
               display: none;
@@ -393,7 +392,7 @@
 
             .crs-popup__content {
               width: 100%;
-              padding: 16px;
+              padding: 19px 16px;
               border: none;
               border-radius: 0;
               gap: 11px;
@@ -412,9 +411,8 @@
                 Discover Relief Today!
               </h2>
               <p>
-                The National Health and Nutrition Examination Surveys reveal that nearly
-                <b>1 in 10 U.S. adults is affected by tinnitus</b> with 27% experiencing symptoms for over 15 years and
-                a 36% suffering constantly.
+                The National Health and Nutrition Examination Surveys reveal that nearly <b>1 in 10 U.S. adults is affected
+                by tinnitus</b>.
               </p>
               <div class="crs-popup__image">
                 <img src="${git}/img/tr_medication.png" alt="treblehealth medication" />
@@ -425,7 +423,7 @@
               </p>
               <div class="crs-popup__actions">
                 <button href="#" class="elementor-button" data-popup="grab">Grab My Free Seat Now</button>
-                <button class="crs-popup__exit" data-popup="exit">No, thanks, I'll keep the ringing</button>
+                <button class="crs-popup__exit" data-popup="exit">No thanks, I don't want to treat my tinnitus</button>
               </div>
             </div>
             <div class="crs-popup__bg">
