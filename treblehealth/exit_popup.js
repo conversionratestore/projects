@@ -394,7 +394,6 @@
               height: auto;
               overflow: auto;
               width: 375px;
-              max-height: fit-content;
             }
             .crs-popup__bg {
               display: none;
