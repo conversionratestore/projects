@@ -179,8 +179,8 @@
         currentUrl.includes('group-calendly-v1') ||
         currentUrl.includes('individual-calendly-v2')
       ) {
-        this.render()
-        this.popupTriggers()
+      this.render()
+      this.popupTriggers()
       }
     }
 
@@ -262,7 +262,7 @@
         <style>
           .crs-popup {
             width: 822px;
-            height: fit-content;
+            height: 531px;
             flex-grow: 0;
             padding: 0;
             border-radius: 10px;
@@ -305,10 +305,7 @@
           .crs-popup__close:is(:focus, :focus-visible) {
             outline: none;
           }
-          .crs-popup__content,
-          .crs-popup__bg {
-            height: 100%;
-          }
+
           .crs-popup__content {
             width: 60%;
             padding: 40px;
@@ -367,16 +364,24 @@
             text-underline-offset: 5px;
           }
           button.crs-popup__grab {
+            box-sizing: border-box;
+
             border-radius: 5px;
             padding: 12px !important;
 
-            border: none !important;
+            border: 2px solid #4622da!important;
             background-color: #4622da;
             font-size: 16px;
             font-weight: bold;
             text-align: center;
             color: #fff;
             cursor: pointer;
+            &:hover {
+              background-color: #fff;
+              border: 2px solid #4622da!important;
+              color: #4622da !important;
+              
+            }
           }
           button.crs-popup__exit {
             padding: 0 !important;
@@ -431,7 +436,7 @@
                 <span>improvements in 6 months for 82% of patients</span>
               </p>
               <div class="crs-popup__actions">
-                <button href="#" class="elementor-button crs-popup__grab" data-popup="grab">
+                <button href="#" class="crs-popup__grab" data-popup="grab">
                   Grab My Free Seat Now
                 </button>
                 <button class="crs-popup__exit" data-popup="exit">No thanks, I don't want to treat my tinnitus</button>
