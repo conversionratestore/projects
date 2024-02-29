@@ -3,6 +3,64 @@ const $$el = selector => document.querySelectorAll(selector)
 const $el = selector => document.querySelector(selector)
 const git = 'https://conversionratestore.github.io/projects/keenethics/'
 
+const clarityInterval = setInterval(function () {
+  if (typeof clarity == 'function') {
+    clearInterval(clarityInterval)
+    clarity('set', 'exp_exi_inte_popup', 'variant_1')
+  }
+}, 1000)
+
+const pushDataLayer = (name, desc, type = '', loc = '') => {
+  window.dataLayer = window.dataLayer || []
+  window.dataLayer.push({
+    event: 'event-to-ga4',
+    event_name: name,
+    event_desc: desc,
+    event_type: type,
+    event_loc: loc
+  })
+  console.log(`Event: ${name} ${desc} ${type} ${loc}`)
+}
+
+const blockVisibility = (selector, event, descr, location) => {
+  let v1 = new IntersectionObserver(
+    entries => {
+      entries.forEach(item => {
+        if (item.isIntersecting) {
+          v1.unobserve(item.target)
+          setTimeout(function () {
+            v2.observe(item.target)
+          }, 1000 * 3)
+        }
+      })
+    },
+    {
+      threshold: 0.5
+    }
+  )
+
+  let v2 = new IntersectionObserver(entries => {
+    entries.forEach(item => {
+      if (item.isIntersecting) {
+        pushDataLayer(
+          event || `view_element_${item.target.id}`,
+          descr || 'Element visibility',
+          'Visibility',
+          location || item.target.id
+        )
+        v1.unobserve(item.target)
+      } else {
+        v1.observe(item.target)
+      }
+      v2.unobserve(item.target)
+    })
+  })
+
+  document.querySelectorAll(selector).forEach(item => {
+    v1.observe(item)
+  })
+}
+
 const checkScrollSpeed = (function (settings) {
   settings = settings || {}
 
@@ -100,7 +158,15 @@ class Popup {
   }
 
   show() {
+    const POPUP_ID_SHOWN = 'popup_id_shown'
+    const isPopupShown = sessionStorage.getItem(this.id)
+
+    if (isPopupShown) {
+      return
+    }
+
     this.popup.showModal()
+    sessionStorage.setItem(this.id, 'true')
   }
 
   close() {
@@ -138,6 +204,10 @@ const devices = {
   desktop: 'Desktop'
 }
 
+const USER_ENGAGAMENT_WITH_PAGE = 'userEngagamentWithPage'
+const USER_SUBMIT_FORM = 'userSubmitForm'
+const USER_CONTACT_DATA = 'userContactData'
+
 class IndentPopup {
   constructor() {
     this.firstPopup = new Popup('crs-tpopup')
@@ -148,42 +218,73 @@ class IndentPopup {
   }
 
   init() {
-    // this.triggers()
+    this.triggers()
     if (window.location.href.includes('contacts')) {
       this.forms()
     }
   }
 
+  isUserSubmitForm() {
+    return sessionStorage.getItem(USER_SUBMIT_FORM) || false
+  }
+
+  isUserEngagamentWithPage() {
+    return sessionStorage.getItem(USER_ENGAGAMENT_WITH_PAGE) || false
+  }
+
   triggers() {
     const currentURL = window.location.href
 
-    if (!currentURL.includes('contacts') || !currentURL.includes('estimate')) {
+    if (!currentURL.includes('contacts') && !currentURL.includes('estimate')) {
       if (this.device === devices.mobile) {
         const timer = setTimeout(() => {
+          if (this.isUserSubmitForm()) return
           this.firstPopup.show()
         }, 20000)
+
         document.addEventListener('scroll', () => {
+          if (this.isUserSubmitForm()) return
           if (checkScrollSpeed() >= 150 || checkScrollSpeed() <= -150) {
             this.thirdPopup.show()
           }
         })
       }
+
+      // save user engagament with page
+      $$el('button').forEach(button => {
+        button.addEventListener('click', () => {
+          sessionStorage.setItem(USER_ENGAGAMENT_WITH_PAGE, 'true')
+        })
+      })
+      $$el('a').forEach(button => {
+        button.addEventListener('click', () => {
+          sessionStorage.setItem(USER_ENGAGAMENT_WITH_PAGE, 'true')
+        })
+      })
+
       if (this.device === devices.desktop) {
         let timerOut = false
         const timer = setTimeout(() => {
           timerOut = true
         }, 20000)
         document.addEventListener('mouseleave', event => {
-          console.log('timerOut', timerOut)
           if (!event.toElement && !event.relatedTarget && timerOut) {
-            this.firstPopup.show()
+            if (this.isUserSubmitForm()) return
+            if (this.isUserEngagamentWithPage()) {
+              this.thirdPopup.show()
+            } else {
+              this.firstPopup.show()
+            }
           }
         })
       }
     }
     if (currentURL.includes('contacts') || currentURL.includes('estimate')) {
+      if (this.isUserSubmitForm()) return
+
       if (this.device === devices.mobile) {
         const timer = setTimeout(() => {
+          if (this.isUserSubmitForm()) return
           this.secondPopup.show()
         }, 20000)
 
@@ -206,8 +307,10 @@ class IndentPopup {
         })
       }
       if (this.device === devices.desktop) {
-        document.addEventListener('mouseleave', event => {
+        document.addEventListener('mouseout', event => {
+          if (this.isUserSubmitForm()) return
           if (!event.toElement && !event.relatedTarget) {
+            if (this.isUserSubmitForm()) return
             this.secondPopup.show()
           }
         })
@@ -216,14 +319,45 @@ class IndentPopup {
   }
 
   forms() {
-    const hash = window.location.hash
+    const formSubmit = (phoneData = null) => {
+      const contactData = JSON.parse(sessionStorage.getItem(USER_CONTACT_DATA))
+
+      const nameInput = $el('input#user-name')
+      const emailInput = $el('input#user-mail')
+      const messageInput = $el('textarea#user-message')
+
+      nameInput.value = contactData.firstname + ' ' + contactData.lastname
+      nameInput.dispatchEvent(new Event('input'))
+
+      emailInput.value = contactData.email
+      emailInput.dispatchEvent(new Event('input'))
+
+      let messageParts = []
+
+      if (contactData?.appeal) {
+        messageParts.push(`I need help with: ${contactData.appeal}`)
+      }
+
+      if (phoneData) {
+        messageParts.push(`Phone: ${phoneData}`)
+      }
+
+      messageInput.value = messageParts.join('\n\n')
+      messageInput.dispatchEvent(new Event('input'))
+    }
+    const search = window.location.search
     const firstForm = /* HTML */ `
       <style>
+        section#contact-us .container > .row {
+          display: none;
+        }
         section.contact-nav {
           display: none;
         }
         .crs-tsform {
-          display: flex;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto;
           max-width: 1110px;
           margin: 0 auto;
           gap: 40px;
@@ -237,6 +371,7 @@ class IndentPopup {
         .crs-tsform__left {
           flex: 1;
           width: 100%;
+          grid-column: 1 / 2;
         }
 
         .crs-tsform__title {
@@ -244,6 +379,7 @@ class IndentPopup {
           font-weight: bold;
           line-height: 1.25;
           color: #12233d;
+          grid-column: 1 / 2;
         }
 
         .crs-tsform__descr {
@@ -305,6 +441,7 @@ class IndentPopup {
             width: 100%;
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 25px;
           }
 
@@ -318,6 +455,8 @@ class IndentPopup {
           border-radius: 8px;
           background-color: #12233d;
           padding: 40px;
+          grid-column: 2 / 3;
+          grid-row: 1 / 3;
         }
         .crs-tsform__at {
           font-size: 12px;
@@ -341,6 +480,11 @@ class IndentPopup {
           }
           .crs-select {
             position: relative;
+          }
+          & :is(summary, input, input::placeholder) {
+            font-size: 16px;
+            color: #6f7a88;
+            font-family: inherit;
           }
           & details {
             width: 100%;
@@ -412,10 +556,28 @@ class IndentPopup {
           display: flex;
           gap: 8px;
         }
+        @media (max-width: 768px) {
+          .crs-tsform {
+            grid-template-columns: 1fr;
+            max-width: 100%;
+          }
+          .crs-tsform__title {
+            grid-column: 1 / 2;
+            grid-row: 1 / 2;
+          }
+          .crs-tsform__left {
+            grid-column: 1 / 2;
+            grid-row: 3 / 4;
+          }
+          .crs-tsform__right {
+            grid-column: 1 / 2;
+            grid-row: 2 / 3;
+          }
+        }
       </style>
       <div class="crs-tsform">
+        <h2 class="crs-tsform__title">Tech Solutions for Next-Level Business Growth</h2>
         <div class="crs-tsform__left">
-          <h2 class="crs-tsform__title">Tech Solutions for Next-Level Business Growth</h2>
           <p class="crs-tsform__descr">Contact us to learn about our solutions:</p>
           <div class="crs-tsform__lists">
             <ul class="crs-tsform__list">
@@ -598,8 +760,8 @@ class IndentPopup {
         </div>
       </div>
     `
-    if (hash === '#solutions') {
-      $el('section#contact-us').innerHTML = firstForm
+    if (search === '?solutions') {
+      $el('section#contact-us .container').insertAdjacentHTML('afterbegin', firstForm)
 
       $el('.crs-select details').addEventListener('click', event => {
         const details = event.currentTarget
@@ -617,7 +779,685 @@ class IndentPopup {
         const form = event.currentTarget
         const formData = new FormData(form)
 
-        console.log(Object.fromEntries(formData.entries()))
+        const data = Object.fromEntries(formData.entries())
+
+        if (!data.firstname || !data.email) {
+          return
+        }
+
+        sessionStorage.setItem(USER_SUBMIT_FORM, 'true')
+        sessionStorage.setItem(USER_CONTACT_DATA, JSON.stringify(data))
+        location.href = `${location.origin}/${location.pathname}?success`
+      })
+
+      blockVisibility(
+        '.crs-tsform__form',
+        'exp_exi_inte_popup_vis_web1grow_block',
+        'Block view',
+        'Web form 1 Tech Solutions for Next-Level Business Growth'
+      )
+      $el('.crs-tsform details').addEventListener('click', () => {
+        pushDataLayer(
+          'exp_exi_inte_popup_drop_web1grow_help',
+          'I need help with',
+          'Dropdown',
+          'Web form 1 Tech Solutions for Next-Level Business Growth'
+        )
+      })
+      $el('.crs-tsform__form input[name="firstname"]').addEventListener('change', () => {
+        pushDataLayer(
+          'exp_exi_inte_popup_inp_web1grow_firs',
+          'First Name',
+          'Input',
+          'Web form 1 Tech Solutions for Next-Level Business Growth'
+        )
+      })
+      $el('.crs-tsform__form input[name="email"]').addEventListener('change', () => {
+        pushDataLayer(
+          'exp_exi_inte_popup_inp_web1grow_emai',
+          'Business Email',
+          'Input',
+          'Web form 1 Tech Solutions for Next-Level Business Growth'
+        )
+      })
+
+      $el('.crs-tsform__form button[type="submit"]').addEventListener('click', event => {
+        pushDataLayer(
+          'exp_exi_inte_popup_but_web1grow_cont',
+          'Contact US',
+          'Button',
+          'Web form 1 Tech Solutions for Next-Level Business Growth'
+        )
+      })
+    }
+
+    const secondForm = /* HTML */ `
+      <style>
+        section#contact-us .container > .row {
+          display: none;
+        }
+        section.contact-nav {
+          display: none;
+        }
+        .crs-auform {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: min-content auto;
+          max-width: 1110px;
+          margin: 0 auto;
+          gap: 0 40px;
+          font-family: Raleway;
+          padding-inline: 40px;
+        }
+        .crs-auform > * {
+          font-family: inherit;
+        }
+
+        .crs-auform__left {
+          flex: 1;
+          width: 100%;
+          grid-column: 1 / 2;
+          grid-row: 2 / 3;
+        }
+
+        .crs-auform__title {
+          font-size: 54px;
+          font-weight: 800;
+          color: #12233d;
+          grid-column: 1 / 2;
+          grid-row: 1 / 2;
+        }
+
+        .crs-auform__descr {
+          font-size: 18px;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: 1.33;
+          letter-spacing: normal;
+          text-align: left;
+          color: #12233d;
+          & span {
+            font-weight: bold;
+          }
+          &:first-of-type {
+            margin-top: 32px;
+          }
+          &:last-of-type {
+            margin-top: 24px;
+          }
+        }
+        .crs-auform__lists {
+          margin-top: 24px;
+          display: flex;
+          padding-inline: 24px;
+          gap: 40px;
+        }
+
+        .crs-auform__list {
+          display: grid;
+          gap: 16px;
+          list-style: circle;
+          & li::marker {
+            color: #d62c2c;
+          }
+        }
+        .crs-auform__right {
+          flex: 1;
+          width: 100%;
+          border-radius: 8px;
+          background-color: #12233d;
+          padding: 40px;
+          grid-column: 2 / 3;
+          grid-row: 1 / 3;
+          &:has(.crs-auform__right-img:not([data-action='download-step-2'])) {
+            background-color: transparent;
+            padding: 0;
+          }
+          .crs-auform__right-img {
+            overflow: hidden;
+            width: auto;
+            height: 100%;
+            background-image: url('${git}/img/h-woman.png');
+            background-position: right;
+            border-radius: 8px;
+          }
+        }
+        .crs-auform__at {
+          font-size: 12px;
+          color: #dae4f2;
+        }
+        .crs-auform__form {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          & :is(input, details) {
+            padding: 16px 21px;
+            border-radius: 10px;
+            border: none;
+          }
+          & input[required]::after {
+            content: '*';
+            color: #d62c2c;
+            position: absolute;
+            right: 0;
+          }
+          .crs-select {
+            position: relative;
+          }
+          & :is(summary, input, input::placeholder) {
+            font-size: 16px;
+            color: #6f7a88;
+            font-family: inherit;
+          }
+          & details {
+            width: 100%;
+            background: #fff;
+          }
+          & details summary::marker {
+            content: none;
+          }
+          & details summary::after {
+            content: '';
+            background-image: url('data:image/svg+xml,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m24 20-7.873-8L8 20" stroke="%236F7A88" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+            background-size: contain;
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            transform: rotate(180deg);
+          }
+          & details[open] {
+            position: absolute;
+            z-index: 1000;
+            & :is(ul, label) {
+              cursor: pointer;
+            }
+            & ul {
+              margin-top: 10px;
+              display: grid;
+              gap: 8px;
+            }
+            & li {
+              padding-block: 10px;
+              &:hover {
+                background-color: #f4f5f7;
+              }
+            }
+
+            & input {
+              position: absolute;
+              left: 0;
+              opacity: 0;
+            }
+          }
+        }
+        .crs-auform__actions {
+          position: relative;
+          margin-top: 32px;
+          & button {
+            padding: 12px 20px;
+            border-radius: 8px;
+            background-color: #d62c2c;
+            border: none;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            color: #fff;
+            text-transform: uppercase;
+            cursor: pointer;
+          }
+        }
+        .crs-auform__privacy {
+          margin-top: 24px;
+          color: #dae4f2;
+          & a {
+            color: inherit;
+          }
+        }
+        .crs-auform__privacy-descr {
+          margin-top: 8px;
+          display: flex;
+          gap: 8px;
+        }
+        .crs-auform__download {
+          display: none;
+        }
+        @media (max-width: 768px) {
+          .crs-auform {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
+            max-width: 100%;
+            gap: 16px;
+          }
+          .crs-auform__title {
+            grid-column: 1 / 2;
+            grid-row: 1 / 2;
+            font-size: 32px;
+          }
+          .crs-auform__right {
+            display: flex;
+            justify-content: center;
+          }
+          .crs-auform__right .crs-auform__right-img {
+            max-width: 345px;
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            object-fit: cover;
+            border-radius: 8px;
+            background-image: url('${git}/img/h-woman-mob.png');
+          }
+          .crs-auform[data-action='download-step-2'] .crs-auform__download {
+            display: block;
+            grid-row: 2 / 3;
+          }
+          .crs-auform__left {
+            grid-column: 1 / 2;
+            grid-row: 4 / 5;
+            display: flex;
+            flex-direction: column;
+            & .crs-auform__actions {
+              order: 2;
+            }
+            & .crs-auform__descr {
+              margin: 0;
+            }
+            & .crs-auform__descr:last-of-type {
+              margin-top: 24px;
+              order: 3;
+            }
+            .crs-auform[data-action='download-step-2'] & .crs-auform__descr:last-of-type {
+              order: 2;
+            }
+            & .crs-auform__lists {
+              order: 3;
+            }
+          }
+          .crs-auform[data-action='download-step-2'] .crs-auform__desc {
+            margin: 0;
+          }
+          .crs-auform[data-action='download-step-2'] .crs-auform__descr:first-of-type {
+            display: none;
+          }
+          .crs-auform[data-action='download-step-2'] .crs-auform__actions {
+            margin: 0;
+          }
+          .crs-auform__right {
+            grid-column: 1 / 2;
+            grid-row: 3 / 4;
+          }
+        }
+      </style>
+      <div class="crs-auform">
+        <h2 class="crs-auform__title">Get Our Free UX Audit Guide</h2>
+        <p class="crs-auform__download">
+          Download our free report to find out how you can <span>launch your projects up to 40% faster</span>.
+        </p>
+        <div class="crs-auform__left">
+          <p class="crs-auform__descr">
+            Download our free report to find out how you can <span>launch your projects up to 40% faster</span>.
+          </p>
+          <p class="crs-auform__descr"><span>In this report you will discover:</span>.</p>
+          <div class="crs-auform__lists">
+            <ul class="crs-auform__list">
+              <li>The essentials of UX audits, their benefits, and our methodology.</li>
+              <li>Success stories from our detailed UX case studies.</li>
+              <li>Insights into our expert team and our comprehensive design services.</li>
+            </ul>
+          </div>
+          <div class="crs-auform__actions">
+            <button data-action="download-step-1">Download Now</button>
+          </div>
+        </div>
+
+        <div class="crs-auform__right">
+          <div class="crs-auform__right-img"></div>
+          <form class="crs-auform__form" action="" style="display:none">
+            <div class="crs-auform__at">Fields marked with * are mandatory</div>
+
+            <input type="text" name="firstname" placeholder="First Name*" required />
+            <input type="text" name="lastname" placeholder="Last Name" />
+            <input type="email" name="email" placeholder="Business Email*" required />
+            <div class="crs-select">
+              <details>
+                <summary>How about request a consultation call?</summary>
+                <ul>
+                  <li>
+                    <label><input type="radio" name="call" value="Yes" />Yes</label>
+                  </li>
+                  <li>
+                    <label><input type="radio" name="call" value="No" />No</label>
+                  </li>
+                </ul>
+              </details>
+            </div>
+            <div class="crs-auform__actions">
+              <button type="submit">Download Now</button>
+              <div class="crs-auform__privacy">
+                <div class="crs-auform__privacy-link">
+                  By submitting, I agree to Keenethics’ <a href="/privacy-policy">Privacy Policy</a>
+                </div>
+                <div class="crs-auform__privacy-descr">
+                  <span>${icons.shield}</span>
+                  <p>Keenethics ensures your privacy and keeps your personal information secure.</p>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    `
+
+    if (search === '?download') {
+      $el('section#contact-us .container').insertAdjacentHTML('afterbegin', secondForm)
+
+      $el('button[data-action="download-step-1"]').addEventListener('click', () => {
+        $el('.crs-auform__form').style.display = 'flex'
+        $el('button[data-action="download-step-1"]').style.display = 'none'
+        $el('.crs-auform__right-img').style.display = 'none'
+        $el('.crs-auform').dataset.action = 'download-step-2'
+        $el('.crs-auform__right-img').dataset.action = 'download-step-2'
+      })
+
+      $el('.crs-auform__form').addEventListener('submit', event => {
+        event.preventDefault()
+        const form = event.currentTarget
+        const formData = new FormData(form)
+
+        const data = Object.fromEntries(formData.entries())
+        sessionStorage.setItem(USER_SUBMIT_FORM, 'true')
+        sessionStorage.setItem(USER_CONTACT_DATA, JSON.stringify(data))
+
+        fetch(`${git}/files/uxaudit_keenethics.pdf`, {
+          method: 'GET'
+        })
+          .then(resp => resp.blob())
+          .then(blob => {
+            const url = window.URL.createObjectURL(blob)
+            const a = document.createElement('a')
+            a.style.display = 'none'
+            a.href = url
+            a.target = '_blank'
+            a.download = 'uxaudit_keenethics'
+            document.body.appendChild(a)
+            a.click()
+            window.URL.revokeObjectURL(url)
+            if (data.call === 'Yes') {
+              location.href = `${location.origin}/${location.pathname}?success`
+              return
+            }
+            formSubmit()
+            $el('form.contact-us__form').querySelector('button').click()
+          })
+      })
+
+      $el('.crs-select details').addEventListener('click', event => {
+        const details = event.currentTarget
+        const summary = details.querySelector('summary')
+
+        if (event.target.closest('li') && details.hasAttribute('open')) {
+          const text = event.target.textContent
+          summary.textContent = text
+          details.removeAttribute('open')
+        }
+      })
+
+      blockVisibility(
+        '.crs-auform',
+        'exp_exi_inte_popup_vis_web2audi_block',
+        'Block view',
+        'Web form 2 Get Our Free UX Audit Guide'
+      )
+
+      $el('button[data-action="download-step-1"]').addEventListener('click', event => {
+        pushDataLayer(
+          'exp_exi_inte_popup_but_web2audi_dowl',
+          'Dowload free guide',
+          'Button',
+          'Web form 2 Get Our Free UX Audit Guide'
+        )
+      })
+      blockVisibility(
+        '.crs-auform__form',
+        'exp_exi_inte_popup_vis_web22audi_block',
+        'Block view',
+        'Web form 2, state 2 Get Our Free UX Audit Guide'
+      )
+
+      $el('.crs-auform__form details').addEventListener('click', () => {
+        pushDataLayer(
+          'exp_exi_inte_popup_but_web22audi_call',
+          'How about request a consultation call?',
+          'Button',
+          'Web form 2, state 2 Get Our Free UX Audit Guide'
+        )
+      })
+
+      $el('.crs-auform__form input[name="firstname"]').addEventListener('change', () => {
+        pushDataLayer(
+          'exp_exi_inte_popup_inp_web22audi_firs',
+          'First Name',
+          'Input',
+          'Web form 2, state 2 Get Our Free UX Audit Guide'
+        )
+      })
+
+      $el('.crs-auform__form input[name="email"]').addEventListener('change', () => {
+        pushDataLayer(
+          'exp_exi_inte_popup_inp_web22audi_ema',
+          'Business Email',
+          'Input',
+          'Web form 2, state 2 Get Our Free UX Audit Guide'
+        )
+      })
+
+      $el('.crs-auform__form button[type="submit"]').addEventListener('click', () => {
+        pushDataLayer(
+          'exp_exi_inte_popup_but_web22audi_down',
+          'Download now',
+          'Button',
+          'Web form 2, state 2 Get Our Free UX Audit Guide'
+        )
+      })
+    }
+
+    const hash = window.location.hash
+    const thanksForm = /* HTML */ `
+      <style>
+        .form-row div:first-child {
+          flex: 0 0 100%;
+          max-width: 100%;
+          display: flex;
+          justify-content: center;
+        }
+        .form-row div:last-child {
+          display: none !important;
+        }
+        .form-row form.form > * {
+          display: none;
+        }
+        .form-row form.form > button {
+          background-color: #2969cc;
+          border: none;
+          width: 380px;
+        }
+        section.contact-nav {
+          display: none;
+        }
+        .thanks-section {
+          & h1 {
+            margin-bottom: 24px;
+            text-transform: none;
+            color: #12233d;
+            font-size: 54px;
+            font-weight: 800;
+            line-height: 64px;
+            text-align: center;
+          }
+
+          & .section-form-result__text {
+            margin-bottom: 32px;
+            text-align: center;
+          }
+
+          & .section-form-result__img {
+            bottom: -96px;
+            position: absolute;
+            right: -270px;
+          }
+        }
+        section:has(.section-form-result__img) {
+          position: relative;
+        }
+        @media screen and (max-width: 1279px) {
+          .thanks-section .section-form-result__img {
+            display: block;
+            margin: 0 auto;
+            position: static;
+          }
+        }
+
+        @media screen and (max-width: 1679.6px) {
+          .thanks-section .section-form-result__img {
+            bottom: 0;
+            right: 0;
+          }
+        }
+        .crs-thform {
+          font-family: Raleway;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 24px;
+
+          & form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 11px;
+            width: 380px;
+
+            & input {
+              border-radius: 10px;
+              border: solid 1px #e3e3e3;
+              background-color: #fff;
+              padding: 12px;
+              width: 100%;
+              font-size: 16px;
+              font-weight: 600;
+              text-align: left;
+              color: #6f7a88;
+            }
+            & .error {
+              visibility: hidden;
+              height: 11px;
+              line-height: 11px;
+              font-size: 14px;
+              color: #d62c2c;
+            }
+            & button {
+              padding: 12px;
+              width: 100%;
+              border: none;
+              border-radius: 8px;
+              background-color: #2969cc;
+              font-size: 16px;
+              font-weight: 600;
+              color: #fff;
+              text-transform: uppercase;
+              cursor: pointer;
+            }
+          }
+        }
+        @media (max-width: 768px) {
+          .crs-thform {
+            padding-inline: 15px;
+
+            & form {
+              width: 100%;
+            }
+          }
+        }
+      </style>
+
+      <div class="thanks-section">
+        <div class="section-form-result__data">
+          <h1 class="h1 section-form-result__title">Thank you for the request!</h1>
+          <div class="text-2 section-form-result__text">I will get back to you within 1 business day</div>
+          <div class="crs-thform">
+            <form>
+              <input type="tel" name="phone" placeholder="Phone number" required />
+              <div class="error">The phone number must consist of digits only</div>
+              <button type="submit">send</button>
+            </form>
+          </div>
+        </div>
+        <img
+          src="https://keenethics.com/wp-content/uploads/2023/11/Daria.webp"
+          alt="Daria"
+          width="368"
+          height="371"
+          class="section-form-result__img"
+        />
+      </div>
+    `
+    if (search === '?success') {
+      $el('section#contact-us .container').insertAdjacentHTML('afterbegin', thanksForm)
+      const regex = /^\d+$/
+
+      $el('.form-row form.form > button').textContent = 'send'
+
+      $el('.crs-thform form').addEventListener('submit', event => {
+        event.preventDefault()
+        const form = event.currentTarget
+        const formData = new FormData(form)
+        const phoneData = Object.fromEntries(formData.entries())
+        if (!phoneData.phone || !regex.test(phoneData.phone)) {
+          return
+        }
+        $el('form.contact-us__form').querySelector('button').click()
+      })
+      $el('.crs-thform input').addEventListener('input', event => {
+        const value = event.target.value
+
+        if (!regex.test(value)) {
+          $el('.crs-thform form .error').style.visibility = 'visible'
+        } else {
+          formSubmit(value)
+          $el('.crs-thform form .error').style.visibility = ''
+        }
+      })
+      formSubmit()
+      $el('.crs-thform form')?.addEventListener('submit', event => {
+        event.preventDefault()
+        const form = event.currentTarget
+        const formData = new FormData(form)
+        const phoneData = Object.fromEntries(formData.entries())
+
+        formSubmit(phoneData)
+      })
+
+      blockVisibility(
+        '.crs-thform',
+        'exp_exi_inte_popup_vis_thankrequ_bloc',
+        'Block view',
+        'Thank you for your request'
+      )
+
+      $el('.crs-thform form input')?.addEventListener('change', () => {
+        pushDataLayer('exp_exi_inte_popup_inp_thankrequ_phon', 'Phone number', 'Input', 'Thank you for your request')
+      })
+
+      $el('.crs-thform form button')?.addEventListener('click', () => {
+        pushDataLayer('exp_exi_inte_popup_but_thankrequ_send', 'Send', 'Button', 'Thank you for your request')
       })
     }
   }
@@ -735,13 +1575,37 @@ class IndentPopup {
           <p class="crs-tpopup__text">
             Our Sales team is on standby and ready to help. Get in touch and we’ll help you find the right choice.
           </p>
-          <a href="/contacts" class="crs-tpopup__button">Talk to Us</a>
+          <a href="/contacts?solutions" class="crs-tpopup__button">Talk to Us</a>
         </div>
         <div class="crs-tpopup__image">
           <img src="${git}/img/woman_think.png" alt="Indent Popup" />
         </div>
       </div>
     `)
+    blockVisibility(
+      '#crs-tpopup',
+      'exp_exi_inte_popup_vis_p1suropt_block',
+      'Block view',
+      'Pop-up 1 Not sure what option is right for you?'
+    )
+    $el('#crs-tpopup [data-close]').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_exi_inte_popup_but_p1suropt_close',
+        'Close',
+        'Button',
+        'Pop-up 1 Not sure what option is right for you?'
+      )
+    })
+
+    $el('#crs-tpopup .crs-tpopup__button').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_exi_inte_popup_but_p1suropt_talk',
+        'Talk to Us',
+        'Button',
+        'Pop-up 1 Not sure what option is right for you?'
+      )
+    })
+
     this.secondPopup.render(/* HTML */ `
       <style>
         #crs-blpopup {
@@ -903,7 +1767,7 @@ class IndentPopup {
             <li>How others have succeeded with UX.</li>
             <li>Unique insights from our UX and design team.</li>
           </ul>
-          <a href="/contacts#download" class="crs-blpopup__button">Download Free Guide</a>
+          <a href="/contacts?download" target="_blank" class="crs-blpopup__button">Download Free Guide</a>
         </div>
         <div class="crs-blpopup__image">
           <img src="${git}/img/work.png" alt="Indent Popup" />
@@ -911,6 +1775,40 @@ class IndentPopup {
         </div>
       </div>
     `)
+
+    const secondPopup = $el('#crs-blpopup')
+
+    secondPopup.addEventListener('click', event => {
+      if (event.target.closest('a')) {
+        secondPopup.close()
+      }
+    })
+
+    blockVisibility(
+      '#crs-blpopup',
+      'exp_exi_inte_popup_vis_p2sbefor_block',
+      'Block view',
+      'Pop-up 2 Before you leave, get our FREE UX audit guide.'
+    )
+
+    $el('#crs-blpopup [data-close]').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_exi_inte_popup_but_p2sbefor_close',
+        'Close',
+        'Button',
+        'Pop-up 2 Before you leave, get our FREE UX audit guide.'
+      )
+    })
+
+    $el('#crs-blpopup .crs-blpopup__button').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_exi_inte_popup_but_p2sbefor_talk',
+        'Download Free Guide',
+        'Button',
+        'Pop-up 2 Before you leave, get our FREE UX audit guide.'
+      )
+    })
+
     this.thirdPopup.render(/* HTML */ `
       <style>
         #crs-sdpopup {
@@ -1110,6 +2008,9 @@ class IndentPopup {
             font-size: 14px;
             padding: 12px;
           }
+          .crs-sdpopup__details summary {
+            padding-right: 35px;
+          }
           .crs-sdpopup__details summary::after {
             right: 12px;
             width: 24px;
@@ -1146,7 +2047,7 @@ class IndentPopup {
                   Our MVP development service transforms your concept into a market-ready product efficiently and
                   reliably.
                 </p>
-                <a href="/approach-minimum-viable-product">Discover MVP Development</a>
+                <a href="/approach-minimum-viable-product" data-event="discover">Discover MVP Development</a>
               </div>
             </details>
             <details class="crs-sdpopup__details">
@@ -1156,7 +2057,7 @@ class IndentPopup {
                   Our custom software solutions streamline your processes so that you can optimize operations, overcome
                   budgetary constraints, and enhance organizational productivity.
                 </p>
-                <a href="/services-development-and-quality-assurance">Optimize My Business</a>
+                <a href="/services-development-and-quality-assurance" data-event="optimize">Optimize My Business</a>
               </div>
             </details>
             <details class="crs-sdpopup__details">
@@ -1166,7 +2067,7 @@ class IndentPopup {
                   Scale your project with a team dedicated to giving you the tech foundations necessary for a smooth and
                   successful expansion.
                 </p>
-                <a href="/services-dedicated-development-team">Scale My Project</a>
+                <a href="/services-dedicated-development-team" data-event="scale">Scale My Project</a>
               </div>
             </details>
           </div>
@@ -1176,13 +2077,99 @@ class IndentPopup {
           </p>
           <div class="crs-sdpopup__actions">
             <a href="/contacts" class="crs-sdpopup__button">Talk to us</a>
-            <a href="https://keenethics.com/#services" class="crs-sdpopup__button--secondary"
+            <a href="https://keenethics.com/?services" class="crs-sdpopup__button--secondary"
               >Learn More About Our Solutions</a
             >
           </div>
         </div>
       </div>
     `)
+    blockVisibility(
+      '#crs-sdpopup',
+      'exp_exi_inte_popup_vis_p3softwar_block',
+      'Block view',
+      'Pop-up 3 Software development headaches? Keenethics has got you covered.'
+    )
+
+    $el('#crs-sdpopup [data-close]').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_exi_inte_popup_but_p3softwar_close',
+        'Close',
+        'Button',
+        'Pop-up 3 Software development headaches? Keenethics has got you covered.'
+      )
+    })
+
+    $el('#crs-sdpopup .crs-sdpopup__button').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_exi_inte_popup_but_p3softwar_talk',
+        'Talk to us',
+        'Button',
+        'Pop-up 3 Software development headaches? Keenethics has got you covered.'
+      )
+    })
+
+    $el('#crs-sdpopup .crs-sdpopup__button--secondary').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_exi_inte_popup_but_p3softwar_learn',
+        'Learn More About Our Solutions',
+        'Button',
+        'Pop-up 3 Software development headaches? Keenethics has got you covered.'
+      )
+    })
+
+    $$el('#crs-sdpopup .crs-sdpopup__details').forEach(detail => {
+      detail.addEventListener('click', event => {
+        const details = event.currentTarget
+        const title = details.querySelector('summary').textContent
+        const isUserOpenDetails = !details.open
+
+        if (event.target.closest('a')) return
+
+        if (isUserOpenDetails) {
+          pushDataLayer(
+            'exp_exi_inte_popup_drop_p3softwar_open',
+            `${title} - Open`,
+            'Dropdown',
+            'Pop-up 3 Software development headaches? Keenethics has got you covered.'
+          )
+        } else {
+          pushDataLayer(
+            'exp_exi_inte_popup_drop_p3softwar_clos',
+            `${title} - Close`,
+            'Dropdown',
+            'Pop-up 3 Software development headaches? Keenethics has got you covered.'
+          )
+        }
+      })
+    })
+
+    $el('#crs-sdpopup [data-event="discover"]').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_exi_inte_popup_but_p3softwar_mvp',
+        'Discover MVP Development',
+        'Button',
+        'Pop-up 3 Software development headaches? Keenethics has got you covered.'
+      )
+    })
+
+    $el('#crs-sdpopup [data-event="optimize"]').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_exi_inte_popup_but_p3softwar_optim',
+        'Optimize My Business',
+        'Button',
+        'Pop-up 3 Software development headaches? Keenethics has got you covered.'
+      )
+    })
+
+    $el('#crs-sdpopup [data-event="scale"]').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_exi_inte_popup_but_p3softwar_scale',
+        'Scale My Project',
+        'Button',
+        'Pop-up 3 Software development headaches? Keenethics has got you covered.'
+      )
+    })
   }
 }
 
