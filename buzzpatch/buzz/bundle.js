@@ -188,14 +188,17 @@
             position: relative;
             z-index: 1;
           }
-          .crm_bundle .tooltip_bundle.active span {
+          .crm_bundle .bundle_item.active .tooltip_bundle span {
             background: #fff;
+            z-index: 1000000;
+          }
+          .crm_bundle .tooltip_bundle.active span {
             z-index: 1000000;
           }
           .crm_bundle .tooltip_bundle span svg {
             fill: #fff;
           }
-          .crm_bundle .tooltip_bundle.active span svg {
+          .crm_bundle .bundle_item.active .tooltip_bundle span svg {
             fill: #FF3C7F;
           }
           .crm_bundle .tooltip_bundle .tooltipbox {
@@ -363,19 +366,7 @@
 
     checkLocalization() {
       const localization = document.cookie.match(/localization=([^;]+)/g)
-      let loc
-      if (localization && localization.length === 1) {
-        loc = localization[0].split('=')[1]
-        console.log(`Localization: ${loc}`)
-      } else if (localization && localization.length > 1) {
-        localization.forEach(el => {
-          if (!el.includes('US')) {
-            loc = el.split('=')[1]
-            console.log(`Localization: ${loc}`)
-          }
-        })
-      }
-
+      let loc = localization[0].split('=')[1]
       return loc
     }
   }
