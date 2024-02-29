@@ -393,7 +393,7 @@
             .crs-popup {
               overflow: auto;
               width: 375px;
-              height: 630px;
+              height: 615px;
               max-height: fit-content;
             }
             .crs-popup__bg {
@@ -414,7 +414,7 @@
               padding: 10px;
             }
             button.crs-popup__exit {
-              font-size: 15px;
+              font-size: 15px!important;
             }
           }
         </style>
