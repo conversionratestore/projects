@@ -370,11 +370,12 @@
             text-decoration: underline;
             text-underline-offset: 5px;
           }
-          .crs-popup__exit {
+          button.crs-popup__exit {
             padding: 0 !important;
             background-color: transparent !important;
             border: none !important;
-            color: var(--e-global-color-accent) !important;
+            font-weight: 500 !important;
+            color: #2e168d !important;
           }
           @media (max-width: 768px) {
             .crs-popup {
@@ -411,8 +412,8 @@
                 Discover Relief Today!
               </h2>
               <p>
-                The National Health and Nutrition Examination Surveys reveal that nearly <b>1 in 10 U.S. adults is affected
-                by tinnitus</b>.
+                The National Health and Nutrition Examination Surveys reveal that nearly
+                <b>1 in 10 U.S. adults is affected by tinnitus</b>.
               </p>
               <div class="crs-popup__image">
                 <img src="${git}/img/tr_medication.png" alt="treblehealth medication" />
