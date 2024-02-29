@@ -393,7 +393,7 @@
             .crs-popup {
               overflow: auto;
               width: 375px;
-              height: min-content !important;
+              height: 615px !important;
               max-height: fit-content;
             }
             .crs-popup__bg {
