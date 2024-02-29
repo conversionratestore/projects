@@ -391,9 +391,10 @@
           }
           @media (max-width: 768px) {
             .crs-popup {
-              height: auto;
               overflow: auto;
               width: 375px;
+              height: 630px;
+              max-height: fit-content;
             }
             .crs-popup__bg {
               display: none;
