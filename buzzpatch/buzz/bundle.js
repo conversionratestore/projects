@@ -363,7 +363,7 @@
       })
 
       VisibilityofTime('.bundle_item', 'bundle', 'select items block', 1000)
-      VisibilityofTime('.tooltipbox', 'bundle', 'select items block', 1000)
+      VisibilityofTime('.tooltipbox', 'bundle_tooltip', 'select items block', 1000)
     }
 
     checkLocalization() {
