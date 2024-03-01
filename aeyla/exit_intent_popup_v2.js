@@ -945,13 +945,21 @@ class Popup {
     if (!sessionStorage.getItem('session_time')) {
       sessionStorage.setItem('session_time', new Date().getTime())
     }
+    if (!sessionStorage.getItem('once_time')) {
+      sessionStorage.setItem('once_time', new Date().getTime())
+    }
     document.body.setAttribute('data-time', new Date().getTime())
     const sessionTime = sessionStorage.getItem('session_time')
+    const onceTime = sessionStorage.getItem('once_time')
     const checkTime = setInterval(() => {
-      if (new Date().getTime() - sessionTime > 600000 && this.user === 0) {
+      if (new Date().getTime() - sessionTime > 1800000) {
+        console.log('%c mobile scroll trigger', 'color: red; background: white;')
+        combine()
+      }
+      if (new Date().getTime() - onceTime > 600000 && this.user === 0) {
         sessionStorage.removeItem('base_popup')
         sessionStorage.removeItem('crs_popup')
-        sessionStorage.setItem('session_time', new Date().getTime())
+        sessionStorage.setItem('once_time', new Date().getTime())
       }
     }, 1000)
 
