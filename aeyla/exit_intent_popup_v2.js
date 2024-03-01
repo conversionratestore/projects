@@ -2,7 +2,6 @@ console.log(
   '%c EXP: Exit intent popup (DEV: YK)',
   'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;'
 )
-
 const $$el = selector => document.querySelectorAll(selector)
 const $el = selector => document.querySelector(selector)
 
@@ -926,10 +925,6 @@ class Popup {
             responsive: [
               {
                 breakpoint: 500,
-                settings: {
-                  centerPadding: '80px'
-                },
-                breakpoint: 400,
                 settings: {
                   centerPadding: '50px'
                 }
