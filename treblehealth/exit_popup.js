@@ -297,6 +297,7 @@
             border: none !important;
             background-color: transparent !important;
             background: #efecfb !important ;
+            z-index: 100;
           }
           .crs-popup__close:is(:focus, :focus-visible) {
             outline: none;
