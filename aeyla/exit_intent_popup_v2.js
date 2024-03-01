@@ -952,8 +952,12 @@ class Popup {
     const sessionTime = sessionStorage.getItem('session_time')
     const onceTime = sessionStorage.getItem('once_time')
     const checkTime = setInterval(() => {
-      if (new Date().getTime() - sessionTime > 1800000) {
-        console.log('%c mobile scroll trigger', 'color: red; background: white;')
+      if (sessionStorage.getItem('crs_popup') || sessionStorage.getItem('base_popup')) {
+        clearInterval(checkTime)
+        return
+      }
+      if (new Date().getTime() - sessionTime > 180000) {
+        console.log('%c 180 sec  trigger', 'color: red; background: white;')
         combine()
       }
       if (new Date().getTime() - onceTime > 600000 && this.user === 0) {
