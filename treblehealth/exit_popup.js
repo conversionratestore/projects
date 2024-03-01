@@ -262,12 +262,9 @@
         <style>
           .crs-popup {
             width: 822px;
-            height: 531px;
-            flex-grow: 0;
             padding: 0;
             border-radius: 10px;
             background-color: #fff;
-            overflow: hidden;
             border: none;
           }
           .crs-popup::backdrop {
@@ -282,7 +279,6 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            height: 100%;
           }
           .crs-popup__close {
             position: absolute;
@@ -307,7 +303,7 @@
           }
 
           .crs-popup__content {
-            width: 60%;
+            width: 61%;
             padding: 40px;
             display: flex;
             flex-direction: column;
@@ -319,8 +315,11 @@
             border-right: none;
           }
           .crs-popup__bg {
+            position: absolute;
+            top: 0;
+            right: 0;
             width: 39%;
-            height: 532px;
+            height: 100%;
             background: url('${git}/img/popup_bg.png') no-repeat center center;
           }
 
@@ -365,10 +364,8 @@
           }
           button.crs-popup__grab {
             box-sizing: border-box;
-
             border-radius: 5px;
             padding: 12px !important;
-
             border: 2px solid #4622da !important;
             background-color: #4622da;
             font-size: 16px;
@@ -391,10 +388,10 @@
           }
           @media (max-width: 768px) {
             .crs-popup {
-              overflow: auto;
               width: 375px;
-              height: 615px !important;
-              max-height: fit-content;
+            }
+            .crs-popup__wrap {
+              height: min-content;
             }
             .crs-popup__bg {
               display: none;
@@ -405,6 +402,7 @@
 
             .crs-popup__content {
               width: 100%;
+              height: min-content;
               padding: 19px 16px;
               border: none;
               border-radius: 0;
@@ -414,7 +412,7 @@
               padding: 10px;
             }
             button.crs-popup__exit {
-              font-size: 15px!important;
+              font-size: 15px !important;
             }
           }
         </style>
@@ -442,6 +440,7 @@
                 <button class="crs-popup__exit" data-popup="exit">No thanks, I don't want to treat my tinnitus</button>
               </div>
             </div>
+
             <div class="crs-popup__bg"></div>
           </div>
         </dialog>
