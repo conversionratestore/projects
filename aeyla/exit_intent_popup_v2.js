@@ -828,11 +828,11 @@ class Popup {
       if ($el('.klaviyo-close-form')) {
         clearInterval(fix)
         $el('.needsclick.go1272136950+.needsclick').closest('.needsclick:not([style])').classList.add('first_popup')
-        if ($el('button.needsclick[aria-label="Open Form"]')) return
-        $el('.klaviyo-close-form').click()
         setTimeout(() => {
           $el('.first_popup').classList.remove('first_popup')
         }, 1500)
+        if ($el('button.needsclick[aria-label="Open Form"]')) return
+        $el('.klaviyo-close-form').click()
       }
     }, 100)
   }
