@@ -948,8 +948,10 @@ class Popup {
     document.body.setAttribute('data-time', new Date().getTime())
     const sessionTime = sessionStorage.getItem('session_time')
     const checkTime = setInterval(() => {
-      if (new Date().getTime() - sessionTime > 600000) {
+      if (new Date().getTime() - sessionTime > 600000 && this.user === 0) {
         sessionStorage.removeItem('base_popup')
+        sessionStorage.removeItem('crs_popup')
+        sessionStorage.setItem('session_time', new Date().getTime())
       }
     }, 1000)
 
@@ -1062,7 +1064,7 @@ class Popup {
         sessionStorage.setItem('crs_popup', true)
       } else {
         console.log('>>> !!!')
-        if (sessionStorage.getItem('base_popup')) return
+        if (sessionStorage.getItem('base_popup') || sessionStorage.getItem('crs_popup')) return
         $el('button.needsclick[aria-label="Open Form"]').click()
         sessionStorage.setItem('base_popup', true)
       }
