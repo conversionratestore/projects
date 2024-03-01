@@ -872,7 +872,7 @@ class Popup {
     })
     $el('.crs_popup1_wrapper .popup_cart_list').innerHTML = listItems.join('')
     $el('.crs_popup1_wrapper').classList.add('show')
-    if (cartJson.items.length > 1) {
+    if (cartJson.items.length > 1 && this.user === 1) {
       $el('.crs_info span span').innerHTML =
         'We can’t guarantee the availability of all products in your cart if you don’t complete the purchase now.'
     }
