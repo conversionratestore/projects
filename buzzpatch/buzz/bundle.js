@@ -111,7 +111,7 @@
           .crm_bundle {
             padding: 0 5px;
             max-width: 320px;
-            margin: 0 auto;
+            margin: 5px auto 9px;
           }
           .crm_bundle h3 {
             color: #212529;
