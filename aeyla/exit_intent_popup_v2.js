@@ -947,18 +947,7 @@ class Popup {
     }
     document.body.setAttribute('data-time', new Date().getTime())
     const sessionTime = sessionStorage.getItem('session_time')
-    const showCountTime = sessionStorage.getItem('showCountTime')
     const checkTime = setInterval(() => {
-      if (sessionTime && new Date().getTime() - sessionTime > 180000) {
-        console.log('%c 180 seconds trigger', 'color: red; background: white;')
-        clearInterval(checkTime)
-        combine()
-      }
-      if (showCountTime && new Date().getTime() - showCountTime > 60000) {
-        console.log('%c 120 seconds cart trigger', 'color: red; background: white;')
-        clearInterval(checkTime)
-        combine()
-      }
       if (new Date().getTime() - sessionTime > 600000) {
         sessionStorage.removeItem('base_popup')
       }
