@@ -109,7 +109,9 @@
       <div class="crm_bundle_wrapper">
         <style>
           .crm_bundle {
-            padding: 0 20px;
+            padding: 0 5px;
+            max-width: 320px;
+            margin: 0 auto;
           }
           .crm_bundle h3 {
             color: #212529;
@@ -204,6 +206,7 @@
           .crm_bundle .tooltip_bundle .tooltipbox {
             position: absolute;
             width: calc(100vw - 46px);
+            max-width: 320px;
             padding: 16px;
             background: #FFF;
             border-radius: 6px;
@@ -325,8 +328,7 @@
                 <p>The same #1 best selling BuzzPatch your kiddos know and love, but with grown-up sizes and colors! (No judgment if you still want to wear the smiley faces, though.)</p>
               </div>
               <div class="tooltip_overlay"> 
-
-                  </div>
+              </div>
             </div>
           </div>
         </div>
