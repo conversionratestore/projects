@@ -1710,6 +1710,7 @@ class changeFlow {
       if (changeSlider == 1) {
         if (!e.target.getAttribute("data-test")) {
           pushDataLayer("exp_intr_sol_sav_range_enerbill_slider", "Slider", "Range slider", "How much was your latest monthly energy bill? 2nd step");
+          e.target.setAttribute("data-style", $(".rangeslider-tooltip")?.text());
         }
         e.target.setAttribute("data-test", "1");
         setTimeout(() => {
@@ -2778,13 +2779,13 @@ class changeFlow {
         #estimate-bill .with-gradient .rangeslider__handle[style="left: 0px;"] .rangeslider-tooltip {
           left: 0;
         }
-        #estimate-bill .with-gradient .rangeslider__handle[style="left: 510px;"] .rangeslider-tooltip {
+        #estimate-bill .with-gradient input[data-style="$800+"] + .rangeslider--horizontal .rangeslider-tooltip {
           left: -54px;
         }
         #estimate-bill .with-gradient .rangeslider__handle[style="left: 0px;"] .rangeslider-tooltip::before {
           left: 16%;
         }
-        #estimate-bill .with-gradient .rangeslider__handle[style="left: 510px;"] .rangeslider-tooltip::before {
+        #estimate-bill .with-gradient input[data-style="$800+"] + .rangeslider--horizontal .rangeslider-tooltip::before {
           left: 82%;
         }
         #estimate-bill .sliderLegend {
@@ -3145,57 +3146,12 @@ class changeFlow {
             content: unset;
           }
         }
-        @media (max-width: 431px) {
-          #estimate-bill .with-gradient .rangeslider__handle[style="left: 360px;"] .rangeslider-tooltip {
-            left: -54px;
-          }
-          #estimate-bill .with-gradient .rangeslider__handle[style="left: 360px;"] .rangeslider-tooltip::before {
-            left: 82%;
-          }
-        }
-        @media (max-width: 415px) {
-          #estimate-bill .with-gradient .rangeslider__handle[style="left: 344px;"] .rangeslider-tooltip {
-            left: -54px;
-          }
-          #estimate-bill .with-gradient .rangeslider__handle[style="left: 344px;"] .rangeslider-tooltip::before {
-            left: 82%;
-          }
-        }
-        @media (max-width: 413px) {
-          #estimate-bill .with-gradient .rangeslider__handle[style="left: 342px;"] .rangeslider-tooltip {
-            left: -54px;
-          }
-          #estimate-bill .with-gradient .rangeslider__handle[style="left: 342px;"] .rangeslider-tooltip::before {
-            left: 82%;
-          }
-        }
-        @media (max-width: 391px) {
-          #estimate-bill .with-gradient .rangeslider__handle[style="left: 320px;"] .rangeslider-tooltip {
-            left: -54px;
-          }
-          #estimate-bill .with-gradient .rangeslider__handle[style="left: 320px;"] .rangeslider-tooltip::before {
-            left: 82%;
-          }
-        }
-        @media (max-width: 376px) {
-          #estimate-bill .with-gradient .rangeslider__handle[style="left: 305px;"] .rangeslider-tooltip {
-            left: -54px;
-          }
-          #estimate-bill .with-gradient .rangeslider__handle[style="left: 305px;"] .rangeslider-tooltip::before {
-            left: 82%;
-          }
-        }
+
         @media (max-width: 361px) {
           [aria-label="6 / 8"] {
             min-height: 520px !important;
             height: 100% !important;
             margin-right: 3px;
-          }
-          #estimate-bill .with-gradient .rangeslider__handle[style="left: 290px;"] .rangeslider-tooltip {
-            left: -54px;
-          }
-          #estimate-bill .with-gradient .rangeslider__handle[style="left: 290px;"] .rangeslider-tooltip::before {
-            left: 82%;
           }
         }
       </style>
