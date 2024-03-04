@@ -3033,10 +3033,6 @@ class changeFlow {
           .wrapper.is_step_three::before {
             content: unset;
           }
-          .wrapper.is_step_name {
-            display: flex;
-            align-items: center;
-          }
           .site-header {
             padding: 15px 0;
           }
