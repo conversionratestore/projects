@@ -2286,7 +2286,13 @@
     `))
   }
 
+  function changeViewportRules() {
+    waitForElement('meta[name="viewport"]').then(viewport => viewport.content = 'width=device-width, initial-scale=1, maximum-scale=1')
+  }
+
   function start() {
+    changeViewportRules()
+
     if (DEVICE === 'mobile') {
       pushDataLayer('exp_chec_enhanc_vis_checkstep1_page', 'Full page view  ', 'Visibility ', 'Checkout 1-rd Step ')
     }
