@@ -3145,11 +3145,57 @@ class changeFlow {
             content: unset;
           }
         }
+        @media (max-width: 431px) {
+          #estimate-bill .with-gradient .rangeslider__handle[style="left: 360px;"] .rangeslider-tooltip {
+            left: -54px;
+          }
+          #estimate-bill .with-gradient .rangeslider__handle[style="left: 360px;"] .rangeslider-tooltip::before {
+            left: 82%;
+          }
+        }
+        @media (max-width: 415px) {
+          #estimate-bill .with-gradient .rangeslider__handle[style="left: 344px;"] .rangeslider-tooltip {
+            left: -54px;
+          }
+          #estimate-bill .with-gradient .rangeslider__handle[style="left: 344px;"] .rangeslider-tooltip::before {
+            left: 82%;
+          }
+        }
+        @media (max-width: 413px) {
+          #estimate-bill .with-gradient .rangeslider__handle[style="left: 342px;"] .rangeslider-tooltip {
+            left: -54px;
+          }
+          #estimate-bill .with-gradient .rangeslider__handle[style="left: 342px;"] .rangeslider-tooltip::before {
+            left: 82%;
+          }
+        }
+        @media (max-width: 391px) {
+          #estimate-bill .with-gradient .rangeslider__handle[style="left: 320px;"] .rangeslider-tooltip {
+            left: -54px;
+          }
+          #estimate-bill .with-gradient .rangeslider__handle[style="left: 320px;"] .rangeslider-tooltip::before {
+            left: 82%;
+          }
+        }
+        @media (max-width: 376px) {
+          #estimate-bill .with-gradient .rangeslider__handle[style="left: 305px;"] .rangeslider-tooltip {
+            left: -54px;
+          }
+          #estimate-bill .with-gradient .rangeslider__handle[style="left: 305px;"] .rangeslider-tooltip::before {
+            left: 82%;
+          }
+        }
         @media (max-width: 361px) {
           [aria-label="6 / 8"] {
             min-height: 520px !important;
             height: 100% !important;
             margin-right: 3px;
+          }
+          #estimate-bill .with-gradient .rangeslider__handle[style="left: 290px;"] .rangeslider-tooltip {
+            left: -54px;
+          }
+          #estimate-bill .with-gradient .rangeslider__handle[style="left: 290px;"] .rangeslider-tooltip::before {
+            left: 82%;
           }
         }
       </style>
