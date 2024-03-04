@@ -1,4 +1,5 @@
-console.log('%c EXP: Exit popup (DEV: OS)', 'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;')
+(() => {
+  console.log('%c EXP: Exit popup (DEV: OS)', 'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;')
 const $$el = selector => document.querySelectorAll(selector)
 const $el = selector => document.querySelector(selector)
 const git = 'https://conversionratestore.github.io/projects/keenethics/'
@@ -150,6 +151,15 @@ const icons = {
   </svg> `
 }
 
+function getCookie(name) {
+  let cookie = {}
+  document.cookie.split(';').forEach(function (el) {
+    let split = el.split('=')
+    cookie[split[0].trim()] = split.slice(1).join('=')
+  })
+  return cookie[name]
+}
+
 class Popup {
   constructor(id) {
     this.id = id
@@ -158,15 +168,14 @@ class Popup {
   }
 
   show() {
-    const POPUP_ID_SHOWN = 'popup_id_shown'
-    const isPopupShown = sessionStorage.getItem(this.id)
+    const isPopupShown = getCookie(this.id)
 
     if (isPopupShown) {
       return
     }
 
     this.popup.showModal()
-    sessionStorage.setItem(this.id, 'true')
+    document.cookie = `${this.id}=true`
   }
 
   close() {
@@ -195,6 +204,10 @@ class Popup {
       if (event.target === this.popup) {
         this.popup.close()
       }
+
+      if (event.target.closest('button') || event.target.closest('a')) {
+        this.popup.close()
+      }
     })
   }
 }
@@ -218,6 +231,7 @@ class IndentPopup {
   }
 
   init() {
+
     this.triggers()
     if (window.location.href.includes('contacts')) {
       this.forms()
@@ -225,11 +239,11 @@ class IndentPopup {
   }
 
   isUserSubmitForm() {
-    return sessionStorage.getItem(USER_SUBMIT_FORM) || false
+    return getCookie(USER_SUBMIT_FORM) || false
   }
 
   isUserEngagamentWithPage() {
-    return sessionStorage.getItem(USER_ENGAGAMENT_WITH_PAGE) || false
+    return getCookie(USER_ENGAGAMENT_WITH_PAGE) || false
   }
 
   triggers() {
@@ -237,11 +251,50 @@ class IndentPopup {
 
     if (!currentURL.includes('contacts') && !currentURL.includes('estimate')) {
       if (this.device === devices.mobile) {
-        const timer = setTimeout(() => {
+        let timer
+        let thirdPopupObserver
+        let thirdPopupVisible = false
+
+        const showPopup = () => {
           if (this.isUserSubmitForm()) return
           this.firstPopup.show()
-        }, 20000)
+          thirdPopupObserver.disconnect()
+        }
+        const resetTimer = () => {
+          clearTimeout(timer)
+          thirdPopupObserver.disconnect()
+          thirdPopupObserver.observe($el('#crs-sdpopup'))
 
+          timer = setTimeout(showPopup, 20000)
+        }
+        timer = setTimeout(showPopup, 20000)
+
+        thirdPopupObserver = new IntersectionObserver(
+          entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                thirdPopupVisible = true
+                clearInterval(timer)
+                thirdPopupObserver.disconnect()
+              } else {
+                thirdPopupVisible = false
+                document.onclick = resetTimer
+                document.onkeydown = resetTimer
+              }
+            })
+          },
+          {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+          }
+        )
+        thirdPopupObserver.observe($el('#crs-sdpopup'))
+
+        if (!thirdPopupVisible) {
+          document.onclick = resetTimer
+          document.onkeydown = resetTimer
+        }
         document.addEventListener('scroll', () => {
           if (this.isUserSubmitForm()) return
           if (checkScrollSpeed() >= 150 || checkScrollSpeed() <= -150) {
@@ -253,12 +306,12 @@ class IndentPopup {
       // save user engagament with page
       $$el('button').forEach(button => {
         button.addEventListener('click', () => {
-          sessionStorage.setItem(USER_ENGAGAMENT_WITH_PAGE, 'true')
+          document.cookie = `${USER_ENGAGAMENT_WITH_PAGE}=true`
         })
       })
-      $$el('a').forEach(button => {
-        button.addEventListener('click', () => {
-          sessionStorage.setItem(USER_ENGAGAMENT_WITH_PAGE, 'true')
+      $$el('a').forEach(link => {
+        link.addEventListener('click', () => {
+          document.cookie = `${USER_ENGAGAMENT_WITH_PAGE}=true`
         })
       })
 
@@ -272,6 +325,7 @@ class IndentPopup {
             if (this.isUserSubmitForm()) return
             if (this.isUserEngagamentWithPage()) {
               this.thirdPopup.show()
+              clearInterval(timer)
             } else {
               this.firstPopup.show()
             }
@@ -279,24 +333,45 @@ class IndentPopup {
         })
       }
     }
-    if (currentURL.includes('contacts') || currentURL.includes('estimate')) {
+    if (
+      (currentURL.includes('estimate') || currentURL.includes('contacts')) &&
+      !currentURL.includes('contacts?download') &&
+      !currentURL.includes('contacts?solutions')
+    ) {
       if (this.isUserSubmitForm()) return
 
       if (this.device === devices.mobile) {
-        const timer = setTimeout(() => {
+        let timer
+
+        const showPopup = () => {
           if (this.isUserSubmitForm()) return
           this.secondPopup.show()
-        }, 20000)
+        }
 
+        const resetTimer = () => {
+          clearTimeout(timer)
+          timer = setTimeout(showPopup, 20000)
+        }
+
+        timer = setTimeout(showPopup, 20000)
+
+        let secondTimer
+
+        const resetSecondTimer = () => {
+          clearTimeout(secondTimer)
+          secondTimer = setTimeout(showPopup, 60000)
+        }
         $$el('input').forEach(input => {
           input.addEventListener('focus', () => {
             clearTimeout(timer)
+            resetSecondTimer()
           })
         })
 
         $$el('textarea').forEach(input => {
           input.addEventListener('focus', () => {
             clearTimeout(timer)
+            resetSecondTimer()
           })
         })
 
@@ -360,7 +435,7 @@ class IndentPopup {
           grid-template-rows: auto;
           max-width: 1110px;
           margin: 0 auto;
-          gap: 40px;
+          gap: 16px 40px;
           font-family: Raleway;
           padding-inline: 40px;
         }
@@ -384,7 +459,6 @@ class IndentPopup {
 
         .crs-tsform__descr {
           font-size: 18px;
-          margin-top: 16px;
           font-weight: bold;
           color: #12233d;
         }
@@ -396,6 +470,8 @@ class IndentPopup {
         }
 
         .crs-tsform__list {
+          display: grid;
+          gap: 8px;
           list-style: circle;
           & li::marker {
             color: #d62c2c;
@@ -404,6 +480,8 @@ class IndentPopup {
 
         .crs-tsform__hero {
           display: flex;
+          border-top: solid 1px #e3e3e3;
+          border-bottom: solid 1px #e3e3e3;
           gap: 16px;
           padding-block: 24px;
           margin-top: 40px;
@@ -436,13 +514,13 @@ class IndentPopup {
           display: flex;
           flex-direction: column;
           gap: 24px;
-
+          margin-top: 32px;
           & ul {
             width: 100%;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 25px;
+            gap: 20px;
           }
 
           & li {
@@ -452,6 +530,7 @@ class IndentPopup {
         .crs-tsform__right {
           flex: 1;
           width: 100%;
+          height: fit-content;
           border-radius: 8px;
           background-color: #12233d;
           padding: 40px;
@@ -469,15 +548,11 @@ class IndentPopup {
           gap: 20px;
           & :is(input, details) {
             padding: 16px 21px;
+            height: 61px;
             border-radius: 10px;
             border: none;
           }
-          & input[required]::after {
-            content: '*';
-            color: #d62c2c;
-            position: absolute;
-            right: 0;
-          }
+
           .crs-select {
             position: relative;
           }
@@ -486,9 +561,16 @@ class IndentPopup {
             color: #6f7a88;
             font-family: inherit;
           }
+
+          & summary {
+            display: flex;
+            align-items: center;
+            height: 100%;
+          }
           & details {
             width: 100%;
             background: #fff;
+            cursor: pointer;
           }
           & details summary::marker {
             content: none;
@@ -500,22 +582,35 @@ class IndentPopup {
             width: 24px;
             height: 24px;
             position: absolute;
-            top: 15px;
+            top: 50%;
             right: 15px;
-            transform: rotate(180deg);
+            transform: rotate(180deg) translateY(50%);
           }
+
           & details[open] {
-            position: absolute;
+            & summary::after {
+              transform: rotate(0deg) translateY(-50%);
+            }
             & :is(ul, label) {
               cursor: pointer;
             }
             & ul {
+              position: absolute;
+              top: 61px;
+              border-radius: 8px;
+              box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+              left: 0;
               margin-top: 10px;
               display: grid;
               gap: 8px;
+              background: #fff;
+              width: 100%;
+              overflow: hidden;
+              z-index: 100;
             }
-            & li {
-              padding-block: 10px;
+            & li label {
+              display: block;
+              padding: 20px;
               &:hover {
                 background-color: #f4f5f7;
               }
@@ -526,6 +621,30 @@ class IndentPopup {
               left: 0;
               opacity: 0;
             }
+          }
+        }
+        label:has(.placeholder) {
+          position: relative;
+          & .placeholder {
+            position: absolute;
+            top: 50%;
+            left: 21px;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: #6f7a88;
+          }
+          & input {
+            width: 100%;
+          }
+          & input + .placeholder {
+            display: none;
+          }
+          & input:placeholder-shown + .placeholder {
+            display: block;
+          }
+          & input[required] + .placeholder::after {
+            content: '*';
+            color: #d62c2c;
           }
         }
         .crs-tsform__actions {
@@ -546,6 +665,7 @@ class IndentPopup {
         }
         .crs-tsform__privacy {
           margin-top: 24px;
+          font-size: 14px;
           color: #dae4f2;
           & a {
             color: inherit;
@@ -560,10 +680,13 @@ class IndentPopup {
           .crs-tsform {
             grid-template-columns: 1fr;
             max-width: 100%;
+            padding-inline: 0;
           }
           .crs-tsform__title {
             grid-column: 1 / 2;
             grid-row: 1 / 2;
+            max-width: 300px;
+            font-size: 32px;
           }
           .crs-tsform__left {
             grid-column: 1 / 2;
@@ -573,10 +696,24 @@ class IndentPopup {
             grid-column: 1 / 2;
             grid-row: 2 / 3;
           }
+          .crs-tsform__lists {
+            flex-direction: column;
+            margin-top: 16px;
+            gap: 8px;
+          }
+          .crs-tsform__hero {
+            & img {
+              width: 64px;
+              height: 64px;
+            }
+          }
         }
       </style>
       <div class="crs-tsform">
-        <h2 class="crs-tsform__title">Tech Solutions for Next-Level Business Growth</h2>
+        <h2 class="crs-tsform__title">
+          Tech Solutions<br />
+          for Next-Level Business Growth
+        </h2>
         <div class="crs-tsform__left">
           <p class="crs-tsform__descr">Contact us to learn about our solutions:</p>
           <div class="crs-tsform__lists">
@@ -672,18 +809,7 @@ class IndentPopup {
                   loading="lazy"
                 />
               </li>
-              <li>
-                <img
-                  src="https://keenethics.com/wp-content/uploads/2023/08/AwardTOP_React.js_development_Company.svg"
-                  alt="Top ReactJS development company"
-                  width="64"
-                  height="64"
-                  loading="lazy"
-                  width="64"
-                  height="64"
-                  loading="lazy"
-                />
-              </li>
+
               <li>
                 <img
                   src="https://keenethics.com/wp-content/uploads/2023/08/AwardTOP_10_Best_web_development.svg"
@@ -700,6 +826,18 @@ class IndentPopup {
                 <img
                   src="https://keenethics.com/wp-content/uploads/2023/08/AwardSelectFirms_TOP_website_development_company.svg"
                   alt="Top website development company"
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                />
+              </li>
+              <li>
+                <img
+                  src="https://keenethics.com/wp-content/uploads/2023/08/AwardMost_reviewed.svg"
+                  alt="Most reviewed social media app agencies"
+                  width="64"
+                  height="64"
+                  loading="lazy"
                   width="64"
                   height="64"
                   loading="lazy"
@@ -740,10 +878,18 @@ class IndentPopup {
                 </ul>
               </details>
             </div>
-
-            <input type="text" name="firstname" placeholder="First Name*" required />
-            <input type="text" name="lastname" placeholder="Last Name" />
-            <input type="email" name="email" placeholder="Business Email*" required />
+            <label>
+              <input type="text" name="firstname" placeholder="" required />
+              <span class="placeholder">First Name</span>
+            </label>
+            <label>
+              <input type="text" name="lastname" placeholder="" />
+              <span class="placeholder">Last Name</span>
+            </label>
+            <label>
+              <input type="email" name="email" placeholder="" required />
+              <span class="placeholder"> Business Email</span>
+            </label>
             <div class="crs-tsform__actions">
               <button type="submit">Contact US</button>
               <div class="crs-tsform__privacy">
@@ -774,6 +920,12 @@ class IndentPopup {
         }
       })
 
+      document.addEventListener('click', event => {
+        if (!event.target.closest('.crs-select')) {
+          $el('.crs-select details').removeAttribute('open')
+        }
+      })
+
       $el('.crs-tsform__form').addEventListener('submit', event => {
         event.preventDefault()
         const form = event.currentTarget
@@ -785,7 +937,7 @@ class IndentPopup {
           return
         }
 
-        sessionStorage.setItem(USER_SUBMIT_FORM, 'true')
+        document.cookie = `${USER_SUBMIT_FORM}=true`
         sessionStorage.setItem(USER_CONTACT_DATA, JSON.stringify(data))
         location.href = `${location.origin}/${location.pathname}?success`
       })
@@ -842,7 +994,7 @@ class IndentPopup {
         .crs-auform {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          grid-template-rows: min-content auto;
+          grid-template-rows: auto;
           max-width: 1110px;
           margin: 0 auto;
           gap: 0 40px;
@@ -852,22 +1004,21 @@ class IndentPopup {
         .crs-auform > * {
           font-family: inherit;
         }
-
-        .crs-auform__left {
-          flex: 1;
-          width: 100%;
-          grid-column: 1 / 2;
-          grid-row: 2 / 3;
-        }
-
-        .crs-auform__title {
+        .crs-auform__title,
+        .crs-auform__title--mobile {
           font-size: 54px;
           font-weight: 800;
           color: #12233d;
-          grid-column: 1 / 2;
-          grid-row: 1 / 2;
+        }
+        .crs-auform__title--mobile {
+          display: none;
         }
 
+        .crs-auform__left {
+          width: 100%;
+          grid-column: 1 / 2;
+          grid-row: 1 / 3;
+        }
         .crs-auform__descr {
           font-size: 18px;
           font-weight: normal;
@@ -932,7 +1083,7 @@ class IndentPopup {
           display: flex;
           flex-direction: column;
           gap: 20px;
-          & :is(input, details) {
+          & :is(input, summary) {
             padding: 16px 21px;
             border-radius: 10px;
             border: none;
@@ -953,7 +1104,10 @@ class IndentPopup {
           }
           & details {
             width: 100%;
+            border-radius: 10px;
+
             background: #fff;
+            cursor: pointer;
           }
           & details summary::marker {
             content: none;
@@ -970,18 +1124,27 @@ class IndentPopup {
             transform: rotate(180deg);
           }
           & details[open] {
-            position: absolute;
             z-index: 1000;
             & :is(ul, label) {
               cursor: pointer;
             }
             & ul {
+              position: absolute;
+              top: 61px;
+              border-radius: 8px;
+              box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+              left: 0;
               margin-top: 10px;
               display: grid;
               gap: 8px;
+              background: #fff;
+              width: 100%;
+              overflow: hidden;
+              z-index: 100;
             }
-            & li {
-              padding-block: 10px;
+            & li label {
+              display: block;
+              padding: 20px;
               &:hover {
                 background-color: #f4f5f7;
               }
@@ -1012,8 +1175,12 @@ class IndentPopup {
           }
         }
         .crs-auform__privacy {
+          font-size: 14px;
           margin-top: 24px;
           color: #dae4f2;
+          & * {
+            font-size: inherit;
+          }
           & a {
             color: inherit;
           }
@@ -1032,8 +1199,13 @@ class IndentPopup {
             grid-template-rows: auto;
             max-width: 100%;
             gap: 16px;
+            padding: 0;
           }
           .crs-auform__title {
+            display: none;
+          }
+          .crs-auform__title--mobile {
+            display: block;
             grid-column: 1 / 2;
             grid-row: 1 / 2;
             font-size: 32px;
@@ -1056,6 +1228,9 @@ class IndentPopup {
           .crs-auform[data-action='download-step-2'] .crs-auform__download {
             display: block;
             grid-row: 2 / 3;
+            & span {
+              font-weight: bold;
+            }
           }
           .crs-auform__left {
             grid-column: 1 / 2;
@@ -1095,11 +1270,18 @@ class IndentPopup {
         }
       </style>
       <div class="crs-auform">
-        <h2 class="crs-auform__title">Get Our Free UX Audit Guide</h2>
+        <h2 class="crs-auform__title--mobile">
+          Get Our Free <br />
+          UX Audit Guide
+        </h2>
         <p class="crs-auform__download">
           Download our free report to find out how you can <span>launch your projects up to 40% faster</span>.
         </p>
         <div class="crs-auform__left">
+          <h2 class="crs-auform__title">
+            Get Our Free <br />
+            UX Audit Guide
+          </h2>
           <p class="crs-auform__descr">
             Download our free report to find out how you can <span>launch your projects up to 40% faster</span>.
           </p>
@@ -1112,7 +1294,7 @@ class IndentPopup {
             </ul>
           </div>
           <div class="crs-auform__actions">
-            <button data-action="download-step-1">Download Now</button>
+            <button data-action="download-step-1">Dowload free guide</button>
           </div>
         </div>
 
@@ -1171,7 +1353,7 @@ class IndentPopup {
         const formData = new FormData(form)
 
         const data = Object.fromEntries(formData.entries())
-        sessionStorage.setItem(USER_SUBMIT_FORM, 'true')
+        document.cookie = `${USER_SUBMIT_FORM}=true`
         sessionStorage.setItem(USER_CONTACT_DATA, JSON.stringify(data))
 
         fetch(`${git}/files/uxaudit_keenethics.pdf`, {
@@ -1208,6 +1390,11 @@ class IndentPopup {
         }
       })
 
+      document.addEventListener('click', event => {
+        if (!event.target.closest('.crs-select')) {
+          $el('.crs-select details').removeAttribute('open')
+        }
+      })
       blockVisibility(
         '.crs-auform',
         'exp_exi_inte_popup_vis_web2audi_block',
@@ -1291,6 +1478,7 @@ class IndentPopup {
           display: none;
         }
         .thanks-section {
+          position: relative;
           & h1 {
             margin-bottom: 24px;
             text-transform: none;
@@ -1307,7 +1495,7 @@ class IndentPopup {
           }
 
           & .section-form-result__img {
-            bottom: -96px;
+            bottom: -48px;
             position: absolute;
             right: -270px;
           }
@@ -1316,6 +1504,14 @@ class IndentPopup {
           position: relative;
         }
         @media screen and (max-width: 1279px) {
+          .thanks-section {
+            & .section-form-result__text br {
+              display: none;
+            }
+          }
+          #contact-us {
+            padding-bottom: 0 !important;
+          }
           .thanks-section .section-form-result__img {
             display: block;
             margin: 0 auto;
@@ -1325,8 +1521,8 @@ class IndentPopup {
 
         @media screen and (max-width: 1679.6px) {
           .thanks-section .section-form-result__img {
-            bottom: 0;
-            right: 0;
+            bottom: -48px;
+            right: -82px;
           }
         }
         .crs-thform {
@@ -1391,7 +1587,10 @@ class IndentPopup {
       <div class="thanks-section">
         <div class="section-form-result__data">
           <h1 class="h1 section-form-result__title">Thank you for the request!</h1>
-          <div class="text-2 section-form-result__text">I will get back to you within 1 business day</div>
+          <div class="text-2 section-form-result__text">
+            We will get back to you within 1 business day.<br />
+            Please provide your phone number to enable us to call you.
+          </div>
           <div class="crs-thform">
             <form>
               <input type="tel" name="phone" placeholder="Phone number" required />
@@ -1488,6 +1687,10 @@ class IndentPopup {
           cursor: pointer;
           border: none;
           background: none;
+          &:focus,
+          &:focus-visible {
+            outline: none;
+          }
         }
         .crs-tpopup__header {
           display: flex;
@@ -1521,10 +1724,12 @@ class IndentPopup {
         }
 
         .crs-tpopup__button {
-          display: block;
-          padding: 12px 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           border-radius: 8px;
           width: 320px;
+          height: 48px;
           border: none;
           background-color: #d62c2c;
           font-size: 16px;
@@ -1538,7 +1743,7 @@ class IndentPopup {
         }
 
         .crs-tpopup__image {
-          width: 460px;
+          width: 380px;
         }
         @media (max-width: 768px) {
           #crs-tpopup {
@@ -1550,6 +1755,9 @@ class IndentPopup {
           .crs-tpopup__close {
             top: 24px;
             right: 24px;
+          }
+          .crs-tpopup__title {
+            font-size: 24px;
           }
           .crs-tpopup__content {
             flex-direction: column;
@@ -1573,9 +1781,10 @@ class IndentPopup {
         <div class="crs-tpopup__body">
           <h2 class="crs-tpopup__title">Not sure what option is right for you?</h2>
           <p class="crs-tpopup__text">
-            Our Sales team is on standby and ready to help. Get in touch and we’ll help you find the right choice.
+            Our Sales team is on standby and ready to help. <br />
+            Get in touch and we’ll help you find the right choice.
           </p>
-          <a href="/contacts?solutions" class="crs-tpopup__button">Talk to Us</a>
+          <a href="/contacts?solutions" target="_blank" class="crs-tpopup__button">Talk to Us</a>
         </div>
         <div class="crs-tpopup__image">
           <img src="${git}/img/woman_think.png" alt="Indent Popup" />
@@ -1632,6 +1841,10 @@ class IndentPopup {
           cursor: pointer;
           border: none;
           background: none;
+          &:focus,
+          &:focus-visible {
+            outline: none;
+          }
         }
         .crs-blpopup__header {
           display: flex;
@@ -1649,7 +1862,7 @@ class IndentPopup {
         .crs-blpopup__body {
           padding: 0;
           margin: 0;
-          width: 60%;
+          width: 55%;
         }
         .crs-blpopup__title {
           font-size: 32px;
@@ -1683,10 +1896,12 @@ class IndentPopup {
         }
 
         .crs-blpopup__button {
-          display: block;
-          padding: 12px 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           border-radius: 8px;
           width: 320px;
+          height: 48px;
           border: none;
           background-color: #d62c2c;
           font-size: 16px;
@@ -1701,7 +1916,7 @@ class IndentPopup {
         }
 
         .crs-blpopup__image {
-          width: 40%;
+          width: 45%;
           overflow: hidden;
           display: flex;
           flex-direction: column;
@@ -1835,6 +2050,10 @@ class IndentPopup {
           cursor: pointer;
           border: none;
           background: none;
+          &:focus,
+          &:focus-visible {
+            outline: none;
+          }
         }
         .crs-sdpopup__header {
           display: flex;
@@ -1912,6 +2131,9 @@ class IndentPopup {
         .crs-sdpopup__details[open] .crs-content {
           padding: 24px;
           padding-top: 0;
+          & * {
+            font-size: 16px;
+          }
         }
         .crs-sdpopup__details summary::marker {
           content: none;
@@ -1949,9 +2171,12 @@ class IndentPopup {
         .crs-sdpopup__button,
         .crs-sdpopup__button--secondary {
           margin: 0 auto;
-          padding: 12px 5px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           border-radius: 8px;
           width: 320px;
+          height: 48px;
           border: none;
           background-color: #d62c2c;
           font-size: 16px;
@@ -1985,6 +2210,7 @@ class IndentPopup {
           }
           .crs-sdpopup__title {
             font-size: 24px;
+            line-height: 32px;
           }
           .crs-sdpopup__content {
             flex-direction: column;
@@ -1997,6 +2223,7 @@ class IndentPopup {
           }
           .crs-sdpopup__actions {
             flex-direction: column;
+            margin-top: 0;
           }
           .crs-sdpopup__button,
           .crs-sdpopup__button--secondary {
@@ -2010,6 +2237,8 @@ class IndentPopup {
           }
           .crs-sdpopup__details summary {
             padding-right: 35px;
+            font-size: 16px;
+            line-height: 24px;
           }
           .crs-sdpopup__details summary::after {
             right: 12px;
@@ -2029,6 +2258,14 @@ class IndentPopup {
           }
           .crs-sdpopup__details a {
             width: 100%;
+          }
+          .crs-sdpopup__details[open] .crs-content {
+            & * {
+              font-size: 14px;
+            }
+          }
+          .crs-sdpopup__text {
+            font-size: 14px;
           }
         }
       </style>
@@ -2076,8 +2313,8 @@ class IndentPopup {
             business.
           </p>
           <div class="crs-sdpopup__actions">
-            <a href="/contacts" class="crs-sdpopup__button">Talk to us</a>
-            <a href="https://keenethics.com/?services" class="crs-sdpopup__button--secondary"
+            <a href="/contacts" class="crs-sdpopup__button" target="__blank">Talk to us</a>
+            <a href="https://keenethics.com/#services" target="__blank" class="crs-sdpopup__button--secondary"
               >Learn More About Our Solutions</a
             >
           </div>
@@ -2124,6 +2361,11 @@ class IndentPopup {
         const title = details.querySelector('summary').textContent
         const isUserOpenDetails = !details.open
 
+        $$el('#crs-sdpopup .crs-sdpopup__details').forEach(detail => {
+          if (detail !== details) {
+            detail.removeAttribute('open')
+          }
+        })
         if (event.target.closest('a')) return
 
         if (isUserOpenDetails) {
@@ -2175,3 +2417,4 @@ class IndentPopup {
 
 const indentPopup = new IndentPopup()
 indentPopup.init()
+})()
