@@ -361,6 +361,9 @@
               .d-none {
                   display: none;
               }
+              .text-nowrap {
+                  text-wrap: nowrap;
+              }
               @media (min-width: 768px) {
                   .d-md-none {
                       display: none;
@@ -409,6 +412,7 @@
                       font-size: 22px!important;
                       line-height: normal!important;
                       margin-bottom: 6px;
+                      text-transform: capitalize;
                   }
                   .crs_block p {
                       font-size: 14px!important;
@@ -509,7 +513,7 @@
               ${dataIcons.email}
               <span>Sign Up with Email</span>
           </a>
-          <p class="crs_block_terms">By creating an account, you accept the Do Yoga With Me <a href="/legal">Terms of Service</a> & <a href="/privacy">Privacy Policy</a></p>
+          <p class="crs_block_terms">By creating an account, you accept the Do Yoga With Me <a href="/legal" target="_blank">Terms of Service</a> & <a href="/privacy" target="_blank">Privacy Policy</a></p>
           <hr>
           <p>Already have an account? <a href="/yogi/login?destination=${window.location.pathname}" class="c-green">Log in</a></p>`;
   
@@ -531,26 +535,36 @@
         ".sfc-nodePlayable__lockContainerInner header > .sfc-item__headline"
       )?.innerHTML.includes("premium")
         ? "Premium"
-        : "Free"; // 'premium'
+        : "free";
   
       const formHTML = `
           <div class="crs_block crs_form">
               <div class="crs_form_container">
                   <div class="crs_swipe"></div>
-                  <h2>Sign up to get access to this ${thisClass} class</h2>
+                  <h2>
+                  ${
+                    thisClass === 'Premium' ? 'Subscribe to unlock this <span class="text-nowrap">Premium class</span>' : 
+                    'Sign up to get access <span class="text-nowrap">to this free class</span>'
+                  }
+                 </h2>
                  
                   <div class="flex-center">
                       <a href="#" class="crs_btn_back d-md-block d-none">${dataIcons.arrowLeft} Back</a>
                       <button class="sfc-nodePlayable__lockCta" type="button">Create Free Account</button>
                   </div>
-                  <p class="crs_block_terms">By creating an account, you accept the Do Yoga With Me <a href="/legal">Terms of Service</a> & <a href="/privacy">Privacy Policy</a></p>
+                  <p class="crs_block_terms">By creating an account, you accept the Do Yoga With Me <a href="/legal" target="_blank">Terms of Service</a> & <a href="/privacy" target="_blank">Privacy Policy</a></p>
               </div>
           </div>`;
   
       const firstBlockHTML = `
           ${style}
           <div class="crs_block">
-              <h2>Sign up to get access to this ${thisClass} class</h2>
+              <h2>
+                ${
+                  thisClass === 'Premium' ? 'Subscribe to unlock this <span class="text-nowrap">Premium class</span>' : 
+                  'Sign up to get access <span class="text-nowrap">to this free class</span>'
+                }
+              </h2>
               <p class="crs_block_subtotal">
                   ${
                     thisClass === "Premium"
