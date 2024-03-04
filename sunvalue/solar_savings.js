@@ -1734,7 +1734,6 @@ class changeFlow {
     data.city = $el(".htitle")?.textContent.split("Solar")[0].trim();
 
     localStorage.setItem("crs_data", JSON.stringify(data));
-    console.log(data, `data`);
   }
   setNameCity() {
     const crsData = JSON.parse(localStorage.getItem("crs_data"));
@@ -1752,57 +1751,82 @@ class changeFlow {
   changeProgressBar() {
     switch ($el(".progress-width")?.textContent) {
       case "25%":
-        $el(".progress-width").textContent = "12%";
-        $el(".progress-bar").style.width = "12%";
+        $el(".progress-width").textContent = "9%";
+        $el(".progress-bar").style.width = "9%";
         break;
       case "38%":
-        $el(".progress-width").textContent = "24%";
-        $el(".progress-bar").style.width = "24%";
+        $el(".progress-width").textContent = "18%";
+        $el(".progress-bar").style.width = "18%";
         break;
       case "50%":
-        $el(".progress-width").textContent = "36%";
-        $el(".progress-bar").style.width = "36%";
+        $el(".progress-width").textContent = "27%";
+        $el(".progress-bar").style.width = "27%";
         break;
       case "63%":
-        $el(".progress-width").textContent = "48%";
-        $el(".progress-bar").style.width = "48%";
+        if (!$el(".wrapper.lifetime_cost_step") && !$el(".wrapper.monthly_bill_step")) {
+          $el(".progress-width").textContent = "36%";
+          $el(".progress-bar").style.width = "36%";
+        }
+        if ($el(".wrapper.monthly_bill_step")) {
+          $el(".progress-width").textContent = "54%";
+          $el(".progress-bar").style.width = "54%";
+        }
+        if ($el(".wrapper.estimated_lifetime_step")) {
+          $el(".progress-width").textContent = "72%";
+          $el(".progress-bar").style.width = "72%";
+        }
         break;
       case "75%":
-        if ($el(".wrapper.is_step_monthly") || $el(".wrapper.slide-active-analyzing")) {
-          $el(".progress-width").textContent = "60%";
-          $el(".progress-bar").style.width = "60%";
+        if ($el(".wrapper.slide-active-analyzing")) {
+          $el(".progress-width").textContent = "45%";
+          $el(".progress-bar").style.width = "45%";
         }
         if ($el(".wrapper.is_step_email")) {
-          $el(".progress-width").textContent = "72%";
-          $el(".progress-bar").style.width = "72%";
+          $el(".progress-width").textContent = "81%";
+          $el(".progress-bar").style.width = "81%";
         }
         break;
-      case "60%":
-        if ($el(".wrapper.is_step_email")) {
-          $el(".progress-width").textContent = "72%";
-          $el(".progress-bar").style.width = "72%";
+      case "45%":
+        if ($el(".wrapper.monthly_bill_step")) {
+          $el(".progress-width").textContent = "54%";
+          $el(".progress-bar").style.width = "54%";
+        }
+        break;
+      case "54%":
+        if ($el(".wrapper.lifetime_cost_step")) {
+          $el(".progress-width").textContent = "63%";
+          $el(".progress-bar").style.width = "63%";
+        }
+        if ($el(".wrapper.available_incentives_step")) {
+          $el(".progress-width").textContent = "45%";
+          $el(".progress-bar").style.width = "45%";
         }
         break;
       case "72%":
-        if ($el(".wrapper.is_step_name")) {
-          $el(".progress-width").textContent = "84%";
-          $el(".progress-bar").style.width = "84%";
+        if ($el(".wrapper.is_step_email")) {
+          $el(".progress-width").textContent = "81%";
+          $el(".progress-bar").style.width = "81%";
         }
-        if ($el(".wrapper.is_step_monthly")) {
-          $el(".progress-width").textContent = "60%";
-          $el(".progress-bar").style.width = "60%";
+        break;
+      case "81%":
+        if ($el(".wrapper.is_step_name")) {
+          $el(".progress-width").textContent = "90%";
+          $el(".progress-bar").style.width = "90%";
+        }
+        if ($el(".wrapper.estimated_lifetime_step")) {
+          $el(".progress-width").textContent = "72%";
+          $el(".progress-bar").style.width = "72%";
         }
         break;
       case "88%":
         if ($el(".wrapper.is_step_name")) {
-          $el(".progress-width").textContent = "84%";
-          $el(".progress-bar").style.width = "84%";
+          $el(".progress-width").textContent = "90%";
+          $el(".progress-bar").style.width = "90%";
         } else {
-          $el(".progress-width").textContent = "72%";
-          $el(".progress-bar").style.width = "72%";
+          $el(".progress-width").textContent = "81%";
+          $el(".progress-bar").style.width = "81%";
         }
         break;
-
       default:
         break;
     }
@@ -2074,6 +2098,10 @@ class changeFlow {
         $el(".monthly_bill_btns_wrapper.monthly_bill_comparison").classList.toggle("is_hidden");
         $el(".incentive_wrapper").classList.add("is_hidden");
         $el(".show_solar_savings_wrapper").classList.add("is_hidden");
+        $el(".wrapper").classList.toggle("monthly_bill_step");
+        if ($el(".wrapper").classList.contains("available_incentives_step")) {
+          $el(".wrapper").classList.remove("available_incentives_step");
+        }
       });
     });
   }
@@ -2088,6 +2116,8 @@ class changeFlow {
               $el(".lifetime_cost_analysis_wrapper.monthly_bill_comparison").classList.add("is_hidden");
               $el(".lifetime_cost_analysis").classList.toggle("is_hidden");
               $el(".monthly_bill_btns_wrapper.lifetime_cost_analysis").classList.toggle("is_hidden");
+              $el(".wrapper").classList.toggle("monthly_bill_step");
+              $el(".wrapper").classList.toggle("lifetime_cost_step");
             }
             if (e.target.closest(".lifetime_cost_analysis")) {
               pushDataLayer("exp_intr_sol_sav_but_lifeanalys_next", "Next", "Button", "Lifetime cost analysis with and without solar  9th step");
@@ -2095,6 +2125,9 @@ class changeFlow {
               $el(".lifetime_cost_analysis_wrapper.lifetime_cost_analysis").classList.add("is_hidden");
               $el(".estimated_lifetime_sav_wrapper").classList.toggle("is_hidden");
               $el(".find_out_if_you_qualify_wrapper").classList.toggle("is_hidden");
+              $el(".wrapper").classList.toggle("lifetime_cost_step");
+              $el(".wrapper").classList.toggle("estimated_lifetime_step");
+              // Estimated lifetime
             }
           }
           e.target.setAttribute("data-test", "1");
@@ -2116,6 +2149,7 @@ class changeFlow {
         $el(".wrapper #slider-block .default")?.classList.toggle("is_hidden");
         $el(".new_btn_prev.step_email").classList.toggle("is_hidden");
         $el(".wrapper").classList.toggle("is_step_monthly");
+        $el(".wrapper").classList.toggle("estimated_lifetime_step");
         $el(".wrapper").classList.add("is_step_email");
         $el(".estimated_lifetime_sav_wrapper").classList.add("is_hidden");
         $el(".wrapper .btn-block .back-link").classList.add("is_hidden");
@@ -2172,6 +2206,8 @@ class changeFlow {
             $el(".incentive_wrapper").classList.toggle("is_hidden");
             $el(".lifetime_cost_analysis_wrapper.monthly_bill_comparison").classList.add("is_hidden");
             $el(".show_solar_savings_wrapper").classList.toggle("is_hidden");
+            $el(".wrapper").classList.toggle("monthly_bill_step");
+            $el(".wrapper").classList.add("available_incentives_step");
           }
           if (step.includes("7") && e.target.closest(".lifetime_cost_analysis")) {
             pushDataLayer("exp_intr_sol_sav_but_lifeanalys_back", "Back", "Button", "Lifetime cost analysis with and without solar  9th step");
@@ -2179,6 +2215,8 @@ class changeFlow {
             $el(".lifetime_cost_analysis_wrapper.lifetime_cost_analysis").classList.add("is_hidden");
             $el(".lifetime_cost_analysis_wrapper.monthly_bill_comparison").classList.toggle("is_hidden");
             $el(".monthly_bill_btns_wrapper.monthly_bill_comparison").classList.toggle("is_hidden");
+            $el(".wrapper").classList.toggle("lifetime_cost_step");
+            $el(".wrapper").classList.toggle("monthly_bill_step");
           }
         });
       });
@@ -2195,6 +2233,8 @@ class changeFlow {
       $el(".find_out_if_you_qualify_wrapper")?.classList.toggle("is_hidden");
       $el(".wrapper .btn-block .back-link")?.classList.toggle("is_hidden");
       $el(".wrapper")?.classList.toggle("is_step_monthly");
+      $el(".wrapper")?.classList.toggle("estimated_lifetime_step");
+      // estimated_lifetime_step
     });
   }
   onClickReadMore() {
@@ -2887,9 +2927,9 @@ class changeFlow {
           border-radius: unset;
           color: #2b3d50;
           padding: 6px 0px 8px 0px;
-          background: linear-gradient(90deg, rgba(255, 255, 255, 0) -0.23%, #fff 32.32%, #fff 66.9%, rgba(255, 255, 255, 0) 99.77%);
+          background: linear-gradient(90deg, rgba(255, 255, 255, 0) -0.23%, rgba(255, 255, 255, 0.6) 32.32%, rgba(255, 255, 255, 0.6) 66.9%, rgba(255, 255, 255, 0) 99.77%);
           font-size: 14px;
-          font-weight: 500;
+          font-weight: 350;
           line-height: 20px;
         }
         #estimate-email > div > h4.sub-title.hide-in-mobile.banner,
@@ -3115,7 +3155,7 @@ class changeFlow {
           }
           #estimate-email > div > h4.sub-title.show-in-mobile.banner img {
             display: inline;
-            margin-right: 2px;
+            margin-right: 4px;
           }
           #estimate-phone .sub-title {
             max-width: 298px;
