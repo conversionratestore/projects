@@ -2222,7 +2222,7 @@ class changeFlow {
     });
     $(".swiper-wrapper .swiper-slide:nth-child(7) input").change(function (e) {
       let eventName = $(this).attr("placeholder").includes("First Name") ? "first" : "family";
-      let eventDesk = eventName == "firs" ? "First" : "Family";
+      let eventDesk = eventName == "first" ? "First" : "Family";
       pushDataLayer("exp_intr_sol_sav_inp_yourname" + eventName, eventDesk + " Name", "Input", "What is your name?");
     });
     $(".swiper-wrapper .swiper-slide:nth-child(8) input").change(function () {
