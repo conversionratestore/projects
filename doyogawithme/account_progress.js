@@ -207,7 +207,7 @@
                   text-align: center;
                   font-size: 30px;
                   font-style: normal;
-                  font-weight: 700!important;
+                  font-weight: 600!important;
                   line-height: 38px!important;
                   margin-bottom: 16px;
               }
