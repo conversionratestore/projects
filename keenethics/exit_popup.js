@@ -231,7 +231,6 @@ class IndentPopup {
   }
 
   init() {
-
     this.triggers()
     if (window.location.href.includes('contacts')) {
       this.forms()
@@ -2313,7 +2312,7 @@ class IndentPopup {
             business.
           </p>
           <div class="crs-sdpopup__actions">
-            <a href="/contacts" class="crs-sdpopup__button" target="__blank">Talk to us</a>
+            <a href="/contacts?solutions" class="crs-sdpopup__button" target="__blank">Talk to us</a>
             <a href="https://keenethics.com/#services" target="__blank" class="crs-sdpopup__button--secondary"
               >Learn More About Our Solutions</a
             >
@@ -2386,7 +2385,7 @@ class IndentPopup {
       })
     })
 
-    $el('#crs-sdpopup [data-event="discover"]').addEventListener('click', () => {
+    $el('#crs-sdpopup [data-event="discover"]').addEventListener('mousedown', () => {
       pushDataLayer(
         'exp_exi_inte_popup_but_p3softwar_mvp',
         'Discover MVP Development',
@@ -2395,7 +2394,7 @@ class IndentPopup {
       )
     })
 
-    $el('#crs-sdpopup [data-event="optimize"]').addEventListener('click', () => {
+    $el('#crs-sdpopup [data-event="optimize"]').addEventListener('mousedown', () => {
       pushDataLayer(
         'exp_exi_inte_popup_but_p3softwar_optim',
         'Optimize My Business',
@@ -2404,7 +2403,7 @@ class IndentPopup {
       )
     })
 
-    $el('#crs-sdpopup [data-event="scale"]').addEventListener('click', () => {
+    $el('#crs-sdpopup [data-event="scale"]').addEventListener('mousedown', () => {
       pushDataLayer(
         'exp_exi_inte_popup_but_p3softwar_scale',
         'Scale My Project',
