@@ -154,15 +154,49 @@
     </svg> `
   }
 
-  // function getCookie(name) {
-  //   let cookie = {}
-  //   document.cookie.split(';').forEach(function (el) {
-  //     let split = el.split('=')
-  //     cookie[split[0].trim()] = split.slice(1).join('=')
-  //   })
-  //   return cookie[name]
-  // }
+  function storeValue(key, value) {
+    sessionStorage.setItem(key, value)
+    let date = new Date()
+    date.setTime(date.getTime() + 30 * 60 * 1000)
+    let expires = '; expires=' + date.toUTCString()
+    document.cookie = key + '=' + value + expires + '; path=/'
+  }
 
+  function getCookie(key) {
+    let name = key + '='
+    let decodedCookie = decodeURIComponent(document.cookie)
+    let ca = decodedCookie.split(';')
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i]
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1)
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length)
+      }
+    }
+    return ''
+  }
+
+  function checkAndSync(key) {
+    let sessionValue = sessionStorage.getItem(key)
+    let cookieValue = getCookie(key)
+    if (sessionValue && !cookieValue) {
+      storeValue(key, sessionValue)
+    } else if (!sessionValue && cookieValue) {
+      sessionStorage.setItem(key, cookieValue)
+    }
+  }
+
+  function getValue(key) {
+    // Спочатку синхронізуємо дані
+    checkAndSync(key)
+
+    // Потім отримуємо значення за ключем
+    let value = sessionStorage.getItem(key) || getCookie(key)
+
+    return value
+  }
   class Popup {
     constructor(id) {
       this.id = id
@@ -171,19 +205,19 @@
     }
 
     show() {
-      const isPopupShown = sessionStorage.getItem(this.id) || false
+      const isPopupShown = getValue(this.id) || false
 
       if (isPopupShown) {
         return
       }
 
       this.popup.showModal()
-      sessionStorage.setItem(this.id, true)
+      storeValue(this.id, true)
       if (this.id === 'crs-tpopup') {
-        sessionStorage.setItem('crs-sdpopup', true)
+        storeValue('crs-sdpopup', true)
       }
       if (this.id === 'crs-sdpopup') {
-        sessionStorage.setItem('crs-tpopup', true)
+        storeValue('crs-tpopup', true)
       }
     }
 
@@ -247,12 +281,12 @@
     }
 
     isUserSubmitForm() {
-      return sessionStorage.getItem(USER_SUBMIT_FORM) || false
+      return getValue(USER_SUBMIT_FORM) || false
       // return getCookie(USER_SUBMIT_FORM) || false
     }
 
     isUserEngagamentWithPage() {
-      return sessionStorage.getItem(USER_ENGAGAMENT_WITH_PAGE) || false
+      return getValue(USER_ENGAGAMENT_WITH_PAGE) || false
     }
 
     triggers() {
@@ -260,50 +294,21 @@
 
       if (!currentURL.includes('contacts') && !currentURL.includes('estimate')) {
         if (this.device === devices.mobile) {
-          let timer
-          let thirdPopupObserver
-          let thirdPopupVisible = false
-
           const showPopup = () => {
             if (this.isUserSubmitForm()) return
             this.firstPopup.show()
             thirdPopupObserver.disconnect()
           }
-          const resetTimer = () => {
-            clearTimeout(timer)
-            thirdPopupObserver.disconnect()
-            thirdPopupObserver.observe($el('#crs-sdpopup'))
+          const timer = setTimeout(showPopup, 20000)
 
-            timer = setTimeout(showPopup, 20000)
-          }
-          timer = setTimeout(showPopup, 20000)
-
-          thirdPopupObserver = new IntersectionObserver(
-            entries => {
-              entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                  thirdPopupVisible = true
-                  clearInterval(timer)
-                  thirdPopupObserver.disconnect()
-                } else {
-                  thirdPopupVisible = false
-                  document.onclick = resetTimer
-                  document.onkeydown = resetTimer
-                }
+          ;[('button', 'a')].forEach(tag => {
+            $$el(tag).forEach(el => {
+              el.addEventListener('click', () => {
+                clearTimeout(timer)
               })
-            },
-            {
-              root: null,
-              rootMargin: '0px',
-              threshold: 0.5
-            }
-          )
-          thirdPopupObserver.observe($el('#crs-sdpopup'))
-
-          if (!thirdPopupVisible) {
-            document.onclick = resetTimer
-            document.onkeydown = resetTimer
-          }
+            })
+          })
+          
           document.addEventListener('scroll', () => {
             if (this.isUserSubmitForm()) return
             if (checkScrollSpeed() >= 150 || checkScrollSpeed() <= -150) {
@@ -315,12 +320,12 @@
         // save user engagament with page
         $$el('button').forEach(button => {
           button.addEventListener('click', () => {
-            sessionStorage.setItem(USER_ENGAGAMENT_WITH_PAGE, true)
+            storeValue(USER_ENGAGAMENT_WITH_PAGE, true)
           })
         })
         $$el('a').forEach(link => {
           link.addEventListener('click', () => {
-            sessionStorage.setItem(USER_ENGAGAMENT_WITH_PAGE, true)
+            storeValue(USER_ENGAGAMENT_WITH_PAGE, true)
           })
         })
 
@@ -350,19 +355,12 @@
         if (this.isUserSubmitForm()) return
 
         if (this.device === devices.mobile) {
-          let timer
+          const timer = setTimeout(showPopup, 20000)
 
           const showPopup = () => {
             if (this.isUserSubmitForm()) return
             this.secondPopup.show()
           }
-
-          const resetTimer = () => {
-            clearTimeout(timer)
-            timer = setTimeout(showPopup, 20000)
-          }
-
-          timer = setTimeout(showPopup, 20000)
 
           let secondTimer
 
@@ -392,7 +390,6 @@
         }
         if (this.device === devices.desktop) {
           document.addEventListener('mouseout', event => {
-            if (this.isUserSubmitForm()) return
             if (!event.toElement && !event.relatedTarget) {
               if (this.isUserSubmitForm()) return
               this.secondPopup.show()
@@ -404,7 +401,7 @@
 
     forms() {
       const formSubmit = (phoneData = null) => {
-        const contactData = JSON.parse(sessionStorage.getItem(USER_CONTACT_DATA))
+        const contactData = JSON.parse(getValue(USER_CONTACT_DATA))
 
         const nameInput = $el('input#user-name')
         const emailInput = $el('input#user-mail')
@@ -948,8 +945,8 @@
           }
 
           // document.cookie = `${USER_SUBMIT_FORM}=true`
-          sessionStorage.setItem(USER_SUBMIT_FORM, true)
-          sessionStorage.setItem(USER_CONTACT_DATA, JSON.stringify(data))
+          storeValue(USER_SUBMIT_FORM, true)
+          storeValue(USER_CONTACT_DATA, JSON.stringify(data))
           location.href = `${location.origin}/${location.pathname}?success`
         })
 
@@ -1365,8 +1362,8 @@
 
           const data = Object.fromEntries(formData.entries())
           // document.cookie = `${USER_SUBMIT_FORM}=true`
-          sessionStorage.setItem(USER_SUBMIT_FORM, true)
-          sessionStorage.setItem(USER_CONTACT_DATA, JSON.stringify(data))
+          storeValue(USER_SUBMIT_FORM, true)
+          storeValue(USER_CONTACT_DATA, JSON.stringify(data))
 
           fetch(`${git}/files/uxaudit_keenethics.pdf`, {
             method: 'GET'
