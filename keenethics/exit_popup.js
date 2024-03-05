@@ -287,6 +287,12 @@
     triggers() {
       const currentURL = window.location.href
 
+      let stroredTimer = localStorage.getItem('timer')
+      if (!stroredTimer) {
+        localStorage.setItem('timer', new Date().getTime())
+        stroredTimer = localStorage.getItem('timer')
+      }
+
       if (!currentURL.includes('contacts') && !currentURL.includes('estimate')) {
         if (this.device === devices.mobile) {
           const showPopup = () => {
@@ -304,8 +310,13 @@
           })
 
           document.addEventListener('scroll', () => {
+            const timeOnPage = currentTime - stroredTimer
             if (this.isUserSubmitForm()) return
-            if ((checkScrollSpeed() >= 150 || checkScrollSpeed() <= -150) && this.isUserEngagamentWithPage()) {
+            if (
+              (checkScrollSpeed() >= 150 || checkScrollSpeed() <= -150) &&
+              this.isUserEngagamentWithPage() &&
+              timeOnPage >= 20000
+            ) {
               this.thirdPopup.show()
             }
           })
@@ -329,11 +340,6 @@
             timerOut = true
           }, 20000)
 
-          let stroredTimer = localStorage.getItem('timer')
-          if (!stroredTimer) {
-            localStorage.setItem('timer', new Date().getTime())
-            stroredTimer = localStorage.getItem('timer')
-          }
           document.addEventListener('mouseleave', event => {
             if (!event.toElement && !event.relatedTarget) {
               if (this.isUserSubmitForm()) return
