@@ -189,12 +189,8 @@
   }
 
   function getValue(key) {
-    // Спочатку синхронізуємо дані
     checkAndSync(key)
-
-    // Потім отримуємо значення за ключем
     let value = sessionStorage.getItem(key) || getCookie(key)
-
     return value
   }
   class Popup {
@@ -282,7 +278,6 @@
 
     isUserSubmitForm() {
       return getValue(USER_SUBMIT_FORM) || false
-      // return getCookie(USER_SUBMIT_FORM) || false
     }
 
     isUserEngagamentWithPage() {
@@ -297,7 +292,6 @@
           const showPopup = () => {
             if (this.isUserSubmitForm()) return
             this.firstPopup.show()
-            thirdPopupObserver.disconnect()
           }
           const timer = setTimeout(showPopup, 20000)
 
@@ -311,7 +305,7 @@
 
           document.addEventListener('scroll', () => {
             if (this.isUserSubmitForm()) return
-            if (checkScrollSpeed() >= 150 || checkScrollSpeed() <= -150) {
+            if ((checkScrollSpeed() >= 150 || checkScrollSpeed() <= -150) && this.isUserEngagamentWithPage()) {
               this.thirdPopup.show()
             }
           })
