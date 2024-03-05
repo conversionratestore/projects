@@ -811,7 +811,7 @@ class Popup {
   fixBasePopup() {
     const style = /*html*/ `
       <style>
-        button.needsclick.kl-teaser-UgpzJ6
+        div:not(.needsclick)>button.needsclick
          { 
           opacity: 0 !important;
           pointer-events: none !important;
@@ -831,7 +831,7 @@ class Popup {
         setTimeout(() => {
           $el('.first_popup').classList.remove('first_popup')
         }, 1500)
-        if ($el('button.needsclick.kl-teaser-UgpzJ6')) return
+        if ($el('div:not(.needsclick)>button.needsclick')) return
         $el('.klaviyo-close-form').click()
       }
     }, 100)
@@ -1073,7 +1073,7 @@ class Popup {
       } else {
         console.log('>>> !!!')
         if (sessionStorage.getItem('base_popup') || sessionStorage.getItem('crs_popup')) return
-        $el('button.needsclick.kl-teaser-UgpzJ6').click()
+        $el('div:not(.needsclick)>button.needsclick').click()
         sessionStorage.setItem('base_popup', true)
       }
     } else {
