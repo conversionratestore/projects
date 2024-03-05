@@ -308,7 +308,7 @@
               })
             })
           })
-          
+
           document.addEventListener('scroll', () => {
             if (this.isUserSubmitForm()) return
             if (checkScrollSpeed() >= 150 || checkScrollSpeed() <= -150) {
@@ -334,14 +334,24 @@
           const timer = setTimeout(() => {
             timerOut = true
           }, 20000)
+
+          let stroredTimer = localStorage.getItem('timer')
+          if (!stroredTimer) {
+            localStorage.setItem('timer', new Date().getTime())
+            stroredTimer = localStorage.getItem('timer')
+          }
           document.addEventListener('mouseleave', event => {
-            if (!event.toElement && !event.relatedTarget && timerOut) {
+            if (!event.toElement && !event.relatedTarget) {
               if (this.isUserSubmitForm()) return
-              if (this.isUserEngagamentWithPage()) {
-                this.thirdPopup.show()
-                clearInterval(timer)
-              } else {
+              if (!this.isUserEngagamentWithPage() && timerOut) {
                 this.firstPopup.show()
+                clearInterval(timer)
+              }
+              const currentTime = new Date().getTime()
+              const timeOnPage = currentTime - stroredTimer
+              if (timeOnPage >= 20000 && this.isUserEngagamentWithPage()) {
+                this.thirdPopup.show()
+                localStorage.removeItem('timer')
               }
             }
           })
