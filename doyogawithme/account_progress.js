@@ -1,4 +1,4 @@
-(function () {
+;(function () {
   console.log(
     "%c EXP: Account to membership stepped progress (DEV: Olha)",
     "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
@@ -7,12 +7,12 @@
   const $$el = (selector) => document.querySelectorAll(selector);
   const $el = (selector) => document.querySelector(selector);
   
-  // const clarityInterval = setInterval(function () {
-  //   if (typeof clarity == "function") {
-  //     clearInterval(clarityInterval);
-  //     clarity("set", "exp_account_progress", "variant_1");
-  //   }
-  // }, 200);
+  const clarityInterval = setInterval(function () {
+    if (typeof clarity == "function") {
+      clearInterval(clarityInterval);
+      clarity("set", "exp_trail", "variant_1");
+    }
+  }, 200);
   
   const dataIcons = {
     google: `
@@ -90,37 +90,32 @@
   
     window.dataLayer = window.dataLayer || [];
     dataLayer.push(eventData);
-    console.dir(
+    console.log(
       event_name + " / " + event_desc + " / " + event_type + " / " + event_loc
     );
   }
-  
-  function checkFocusTime(selector, eventName, eventDesc, eventLocation) {
-    const checker = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (
-          entry.isIntersecting &&
-          !entry.target.getAttribute("data-startShow")
-        ) {
-          entry.target.setAttribute("data-startShow", new Date().getTime());
-        } else if (
-          !entry.isIntersecting &&
-          entry.target.getAttribute("data-startShow")
-        ) {
-          const startShow = entry.target.getAttribute("data-startShow");
-          const endShow = new Date().getTime();
-          const timeShow = Math.round(endShow - startShow);
-  
-          entry.target.removeAttribute("data-startShow");
-          if (timeShow >= 3000) {
-            pushDataLayer(eventName, eventDesc, "Visibility", eventLocation);
-          }
-          checker.unobserve(entry.target);
-        }
-      });
-    });
-  
-    checker.observe($el(selector));
+    
+  const checkVisibilityAfterMs = (el, eventName, eventLocation, threshold = 1) => { // Checks element visibility after a specified time. 
+    let timer
+
+    const config = {
+        root: null,
+        threshold
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                timer = setTimeout(() => {
+                    pushDataLayer(eventName, "Section", "Visibility", eventLocation);
+                }, 3000)
+            } else {
+                clearTimeout(timer)
+            }
+        })
+    }, config)
+
+    observer.observe($el(el))
   }
   
   function insert(selector, html, position = "afterbegin") {
@@ -602,34 +597,66 @@
             "afterend"
           );
         }
-  
+        let eventName = '';
+        let eventLocation = $el('.crs_block h2').innerText + (authorized === false ? ` Unauthorised ${thisClass} class`:' Authorized Premium class only');
+
+        if (authorized === false) {
+          if (thisClass === "free") {
+            eventName = 'exp_trailvideo_section_01';
+          } else {
+            eventName = 'exp_trailvideo_section_02';
+          }
+        } else {
+          if (thisClass === "Premium") {
+            eventName = 'exp_trailvideo_section_03';
+          }
+        }
+
+        checkVisibilityAfterMs('.crs_block:not(.crs_form)', eventName, eventLocation)
+
+
+        if ($el('.crs_block.crs_form')) {
+          let eventName = thisClass === 'free' ? 'exp_trailvideo_section_04' : 'exp_trailvideo_section_05';
+
+          checkVisibilityAfterMs('.crs_block.crs_form', eventName, eventLocation);
+        }
+
         this.actionsBlock(thisClass);
       }
     }
   
     actionsBlock(thisClass) {
+      let eventName = '';
       if ($el(".btn_next_signUp")) {
         $el(".btn_next_signUp").addEventListener("click", (e) => {
           e.preventDefault();
           e.target.closest(".crs_block").style.display = "none";
           $el(".crs_form").style.display = "flex";
-        });
-  
+
+          eventName = thisClass === 'free' ? 'exp_trailvideo_button_02' : 'exp_trailvideo_button_04';
+          let locEvent = $el('.crs_block h2').innerText + ` Unauthorised ${thisClass} class`;
+          pushDataLayer(eventName, 'Sign Up with Email', 'Button', locEvent);
+       });
+        
+        $el('.crs_btn_white').addEventListener("click", (e) => { //event Continue with Google
+          eventName = thisClass === 'free' ? 'exp_trailvideo_button_01' : 'exp_trailvideo_button_03';
+          pushDataLayer(eventName, 'Continue with Google', 'Button', $el('.crs_block h2').innerText + ` Unauthorised ${thisClass} class`);
+        })
+
         $el(".crs_btn_back").addEventListener("click", (e) => {
           e.preventDefault();
           e.target.closest(".crs_block").style.display = "none";
           $el(".crs_block:not(.crs_form)").style.display = "block";
         });
   
-        $el(".crs_form .sfc-nodePlayable__lockCta").addEventListener(
-          "click",
-          (e) => {
-            e.preventDefault();
-            localStorage.setItem("isClass", thisClass);
-  
-            $el('.crs_form .form-actions button').click();
-          }
-        );
+        $el(".crs_form .sfc-nodePlayable__lockCta").addEventListener( "click", (e) => {
+          e.preventDefault();
+          localStorage.setItem("isClass", thisClass);
+          eventName = thisClass === 'free' ? '06' : '07';
+          pushDataLayer('exp_trailvideo_button_'+eventName, 'Create Free Account', 'Button', `Pop up ${$el(".crs_block h2").innerText} Unauthorised ${thisClass} class`);
+          $el('.crs_form .form-actions button').click();
+
+        });
         if (this.device == "mobile") {
           $el(".crs_form").addEventListener("click", (e) => {
             if (e.target.classList.contains("crs_form")) {
@@ -646,6 +673,21 @@
             $el(".crs_block:not(.crs_form)").style.display = "block";
           });
         }
+        $$el('.crs_form input').forEach((input, index) => {
+          input.addEventListener('click', () => {
+            let count = index + 1;
+            if (thisClass === 'Premium') {
+              count = index + 4;
+            }
+            pushDataLayer('exp_trailvideo_input_0'+count, input.placeholder, 'Input', `${$el('.crs_block h2').innerText} Unauthorised ${thisClass} class`)
+          })
+        })
+      }
+
+      if ($el(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta")) {
+        $el(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta").addEventListener('click', (e) => {
+          pushDataLayer('exp_trailvideo_button_05', 'Get Full Access Now', 'Button', 'Pop up Subscribe to unlock this Premium class Authorized Premium class only');
+        })
       }
     }
   
@@ -653,7 +695,7 @@
       if (localStorage.getItem("isClass") && $el(".new_box_subscriber")) {
         let isClass = localStorage.getItem("isClass");
   
-        if (isClass == "Free") {
+        if (isClass == "free") {
           insert(
             $el(".new_box_subscriber"),
             `<style>
@@ -682,6 +724,10 @@
               </style>
               <a href="${document.referrer}" class="crs_back">${dataIcons.arrowLeftWhite}Back</a>`
           );
+
+          $el('.crs_back').addEventListener('click', () => {
+            pushDataLayer('exp_trailvideo_button_08', 'Back', 'Button', 'Page Begin Your Transformation with a Free Trial of our Premium Yoga Classes Unauthorised Free class')
+          })
         } else {
           insert(
             $el(".new_box_subscriber"),
@@ -713,6 +759,9 @@
               <a href="https://www.doyogawithme.com/yoga-classes?field_subscribers_only_value=1&sort_by=created" class="crs_browse_free">Browse free classes${dataIcons.arrowRight}</a>`,
             "beforeend"
           );
+          $el('.crs_browse_free').addEventListener('click', () => {
+            pushDataLayer('exp_trailvideo_button_09', 'Browse free classes', 'Button', 'Page Begin Your Transformation with a Free Trial of our Premium Yoga Classes Unauthorised Free class');
+          })
         }
       }
     }
