@@ -266,7 +266,6 @@
     }
 
     init() {
-      this.thirdPopup.show()
       this.triggers()
       if (window.location.href.includes('contacts')) {
         this.forms()
