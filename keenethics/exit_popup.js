@@ -308,8 +308,10 @@
           document.addEventListener('scroll', () => {
             const currentTime = new Date().getTime()
             const timeOnPage = currentTime - stroredTimer
+            const scrollSpeed = checkScrollSpeed()  
+    
             if (this.isUserSubmitForm()) return
-            if ((checkScrollSpeed() >= 120 || checkScrollSpeed() <= -120) && timeOnPage >= 20000) {
+            if ((scrollSpeed >= 120 || scrollSpeed <= -120) && timeOnPage >= 20000) {
               this.thirdPopup.show()
               clearTimeout(timer)
             }
