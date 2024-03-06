@@ -266,6 +266,7 @@
     }
 
     init() {
+      this.thirdPopup.show()
       this.triggers()
       if (window.location.href.includes('contacts')) {
         this.forms()
@@ -1103,7 +1104,7 @@
             font-weight: normal;
             font-stretch: normal;
             font-style: normal;
-            line-height: 1.33;
+            line-height: 24px;
             letter-spacing: normal;
             text-align: left;
             color: #12233d;
@@ -1119,6 +1120,7 @@
           }
           .crs-auform__lists {
             margin-top: 24px;
+            line-height: 24px!important;
             display: flex;
             padding-inline: 24px;
             gap: 40px;
@@ -2324,6 +2326,8 @@
             height: 80px;
             font-weight: bold;
             color: #2969cc;
+            display: flex;
+            align-items: center;
           }
 
           .crs-sdpopup__details a {
