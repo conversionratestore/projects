@@ -296,7 +296,7 @@
       if (!currentURL.includes('contacts') && !currentURL.includes('estimate')) {
         if (this.device === devices.mobile) {
           const showPopup = () => {
-            if (this.isUserSubmitForm()) return
+            if (this.isUserSubmitForm() || this.isUserEngagamentWithPage()) return
             this.firstPopup.show()
           }
           const timer = setTimeout(showPopup, 20000)
@@ -310,13 +310,10 @@
           })
 
           document.addEventListener('scroll', () => {
+            const currentTime = new Date().getTime()
             const timeOnPage = currentTime - stroredTimer
             if (this.isUserSubmitForm()) return
-            if (
-              (checkScrollSpeed() >= 150 || checkScrollSpeed() <= -150) &&
-              this.isUserEngagamentWithPage() &&
-              timeOnPage >= 20000
-            ) {
+            if ((checkScrollSpeed() >= 150 || checkScrollSpeed() <= -150) && timeOnPage >= 20000) {
               this.thirdPopup.show()
             }
           })
@@ -365,7 +362,9 @@
         if (this.isUserSubmitForm()) return
 
         if (this.device === devices.mobile) {
-          const timer = setTimeout(showPopup, 20000)
+          const timer = setTimeout(() => {
+            this.secondPopup.show()
+          }, 20000)
 
           const showPopup = () => {
             if (this.isUserSubmitForm()) return
@@ -395,6 +394,7 @@
           $$el('button').forEach(input => {
             input.addEventListener('click', () => {
               clearTimeout(timer)
+              clearTimeout(secondTimer)
             })
           })
         }
@@ -660,12 +660,16 @@
             }
             & input[required] + .placeholder::after {
               content: '*';
+              top: -2px;
+              position: absolute;
+              font-size: 25px;
               color: #d62c2c;
             }
           }
           .crs-tsform__actions {
             margin-top: 32px;
             & button {
+              height: 48px;
               padding: 12px 20px;
               border-radius: 8px;
               background-color: #d62c2c;
@@ -688,11 +692,18 @@
             }
           }
           .crs-tsform__privacy-descr {
+            font-size: 14px;
             margin-top: 8px;
             display: flex;
             gap: 8px;
+            & p {
+              font-size: inherit;
+            }
           }
           @media (max-width: 768px) {
+            #contact-us {
+              padding: 20px 0;
+            }
             .crs-tsform {
               grid-template-columns: 1fr;
               max-width: 100%;
@@ -709,6 +720,7 @@
               grid-row: 3 / 4;
             }
             .crs-tsform__right {
+              padding: 20px;
               grid-column: 1 / 2;
               grid-row: 2 / 3;
             }
@@ -718,6 +730,9 @@
               gap: 8px;
             }
             .crs-tsform__hero {
+              & h3 {
+                font-size: 18px;
+              }
               & img {
                 width: 64px;
                 height: 64px;
@@ -805,8 +820,7 @@
                     loading="lazy"
                   />
                 </li>
-              </ul>
-              <ul>
+
                 <li>
                   <img
                     src="https://keenethics.com/wp-content/uploads/2023/08/AwardGoodFirms.svg"
@@ -951,7 +965,7 @@
           const data = Object.fromEntries(formData.entries())
 
           if (!data.firstname || !data.email) {
-            return
+            return true
           }
 
           // document.cookie = `${USER_SUBMIT_FORM}=true`
@@ -1074,11 +1088,15 @@
           .crs-auform__right {
             flex: 1;
             width: 100%;
+
             border-radius: 8px;
             background-color: #12233d;
             padding: 40px;
             grid-column: 2 / 3;
             grid-row: 1 / 3;
+            .crs-auform[data-action='download-step-2'] & {
+              height: fit-content;
+            }
             &:has(.crs-auform__right-img:not([data-action='download-step-2'])) {
               background-color: transparent;
               padding: 0;
@@ -1108,9 +1126,10 @@
             }
             & input[required]::after {
               content: '*';
-              color: #d62c2c;
+              top: -2px;
               position: absolute;
-              right: 0;
+              font-size: 25px;
+              color: #d62c2c;
             }
             .crs-select {
               position: relative;
@@ -1175,15 +1194,43 @@
               }
             }
           }
+          label:has(.placeholder) {
+            position: relative;
+            & .placeholder {
+              position: absolute;
+              top: 50%;
+              left: 21px;
+              transform: translateY(-50%);
+              font-size: 16px;
+              color: #6f7a88;
+            }
+            & input {
+              width: 100%;
+            }
+            & input + .placeholder {
+              display: none;
+            }
+            & input:placeholder-shown + .placeholder {
+              display: block;
+            }
+            & input[required] + .placeholder::after {
+              content: '*';
+              top: -2px;
+              position: absolute;
+              font-size: 25px;
+              color: #d62c2c;
+            }
+          }
           .crs-auform__actions {
             position: relative;
             margin-top: 32px;
             & button {
+              height: 48px;
               padding: 12px 20px;
               border-radius: 8px;
               background-color: #d62c2c;
               border: none;
-              width: 100%;
+              width: 320px;
               font-size: 16px;
               font-weight: 600;
               text-align: center;
@@ -1211,7 +1258,16 @@
           .crs-auform__download {
             display: none;
           }
+          [data-phone='hidden'] {
+            display: none;
+          }
+          [data-phone='visible'] {
+            display: block;
+          }
           @media (max-width: 768px) {
+            #contact-us {
+              padding: 20px 0;
+            }
             .crs-auform {
               grid-template-columns: 1fr;
               grid-template-rows: auto;
@@ -1231,6 +1287,7 @@
             .crs-auform__right {
               display: flex;
               justify-content: center;
+              padding: 20px;
             }
             .crs-auform__right .crs-auform__right-img {
               max-width: 345px;
@@ -1257,6 +1314,9 @@
               flex-direction: column;
               & .crs-auform__actions {
                 order: 2;
+                & button {
+                  width: 100%;
+                }
               }
               & .crs-auform__descr {
                 margin: 0;
@@ -1280,6 +1340,9 @@
             }
             .crs-auform[data-action='download-step-2'] .crs-auform__actions {
               margin: 0;
+              & button {
+                width: 100%;
+              }
             }
             .crs-auform__right {
               grid-column: 1 / 2;
@@ -1320,10 +1383,19 @@
             <div class="crs-auform__right-img"></div>
             <form class="crs-auform__form" action="" style="display:none">
               <div class="crs-auform__at">Fields marked with * are mandatory</div>
+              <label>
+                <input type="text" name="firstname" placeholder="" required />
+                <span class="placeholder">First Name</span>
+              </label>
+              <label>
+                <input type="text" name="lastname" placeholder="" />
+                <span class="placeholder">Last Name</span>
+              </label>
+              <label>
+                <input type="text" name="email" placeholder="" required />
+                <span class="placeholder">Business Email</span>
+              </label>
 
-              <input type="text" name="firstname" placeholder="First Name*" required />
-              <input type="text" name="lastname" placeholder="Last Name" />
-              <input type="email" name="email" placeholder="Business Email*" required />
               <div class="crs-select">
                 <details>
                   <summary>How about request a consultation call?</summary>
@@ -1337,6 +1409,10 @@
                   </ul>
                 </details>
               </div>
+              <label data-phone="hidden">
+                <input type="text" name="phone" placeholder="" />
+                <span class="placeholder">Enter phone number</span>
+              </label>
               <div class="crs-auform__actions">
                 <button type="submit">Download Now</button>
                 <div class="crs-auform__privacy">
@@ -1364,7 +1440,12 @@
           $el('.crs-auform').dataset.action = 'download-step-2'
           $el('.crs-auform__right-img').dataset.action = 'download-step-2'
         })
-
+        $el('.crs-auform__form details').addEventListener('click', event => {
+          if (event.target.closest('input[name=call]')) {
+            const value = event.target.closest('input[name=call]').value
+            $el('label[data-phone]').dataset.phone = value === 'Yes' ? 'visible' : 'hidden'
+          }
+        })
         $el('.crs-auform__form').addEventListener('submit', event => {
           event.preventDefault()
           const form = event.currentTarget
@@ -1389,7 +1470,7 @@
               document.body.appendChild(a)
               a.click()
               window.URL.revokeObjectURL(url)
-              if (data.call === 'Yes') {
+              if (!data.call || data.call === 'No') {
                 location.href = `${location.origin}/${location.pathname}?success`
                 return
               }
@@ -1476,6 +1557,22 @@
       const hash = window.location.hash
       const thanksForm = /* HTML */ `
         <style>
+          #contact-us {
+            padding: 96px 0 68px;
+            &:before {
+              content: '';
+              background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='579' height='579' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='289.5' cy='289.5' r='229.5' stroke='%23F2F7FF' stroke-width='120'/%3E%3C/svg%3E");
+              height: 579px;
+              left: -289px;
+              position: absolute;
+              top: -289px;
+              width: 579px;
+              z-index: -1;
+            }
+          }
+          .section-form-result__text {
+            line-height: 28px;
+          }
           .form-row div:first-child {
             flex: 0 0 100%;
             max-width: 100%;
@@ -1496,6 +1593,9 @@
           section.contact-nav {
             display: none;
           }
+          .section-form-result__title {
+            font-weight: 700 !important;
+          }
           .thanks-section {
             position: relative;
             & h1 {
@@ -1514,7 +1614,7 @@
             }
 
             & .section-form-result__img {
-              bottom: -48px;
+              bottom: -68px;
               position: absolute;
               right: -270px;
             }
@@ -1540,7 +1640,7 @@
 
           @media screen and (max-width: 1679.6px) {
             .thanks-section .section-form-result__img {
-              bottom: -48px;
+              bottom: -68px;
               right: -82px;
             }
           }
@@ -1570,6 +1670,7 @@
                 font-weight: 600;
                 text-align: left;
                 color: #6f7a88;
+                height: 62px;
               }
               & .error {
                 visibility: hidden;
@@ -1589,15 +1690,23 @@
                 color: #fff;
                 text-transform: uppercase;
                 cursor: pointer;
+                height: 48px;
               }
             }
           }
           @media (max-width: 768px) {
+            .section-form-result__title {
+              font-size: 48px !important;
+            }
             .crs-thform {
               padding-inline: 15px;
+              padding-bottom: 25px;
 
               & form {
                 width: 100%;
+                & input {
+                  height: 52px;
+                }
               }
             }
           }
@@ -1605,7 +1714,7 @@
 
         <div class="thanks-section">
           <div class="section-form-result__data">
-            <h1 class="h1 section-form-result__title">Thank you for the request!</h1>
+            <h1 class="h1 section-form-result__title">Thank you for your request!</h1>
             <div class="text-2 section-form-result__text">
               We will get back to you within 1 business day.<br />
               Please provide your phone number to enable us to call you.
@@ -1766,7 +1875,8 @@
           }
           @media (max-width: 768px) {
             #crs-tpopup {
-              width: 95%;
+              width: 343px;
+              max-width: 95%;
             }
             .crs-tpopup__container {
               padding: 24px;
@@ -1908,7 +2018,7 @@
             gap: 8px;
             list-style-type: circle;
             padding-left: 25px;
-
+            line-height: 24px;
             & li::marker {
               color: #d62c2c;
             }
@@ -1956,7 +2066,8 @@
 
           @media (max-width: 768px) {
             #crs-blpopup {
-              width: 90%;
+              width: 343px;
+              max-width: 95%;
             }
             .crs-blpopup__container {
               padding: 24px;
@@ -2078,7 +2189,7 @@
             display: flex;
             padding: 0;
             margin: 0;
-            padding-bottom: 30px;
+            padding-bottom: 16px;
           }
           .crs-sdpopup__content {
             display: flex;
@@ -2106,11 +2217,12 @@
             font-family: inherit;
             margin-top: 16px;
           }
-          .crs-sdpopup__details {
+          .crs-sdpopup__accordion {
             display: grid;
             gap: 8px;
             margin-top: 24px;
           }
+
           .crs-sdpopup__details summary {
             position: relative;
             background-color: #edf2fa;
@@ -2118,6 +2230,7 @@
             border-radius: 8px;
             cursor: pointer;
             font-size: 18px;
+            line-height: 24px;
             font-weight: bold;
             color: #2969cc;
           }
@@ -2150,6 +2263,12 @@
           .crs-sdpopup__details[open] .crs-content {
             padding: 24px;
             padding-top: 0;
+            & a {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 42px;
+            }
             & * {
               font-size: 16px;
             }
@@ -2215,7 +2334,8 @@
 
           @media (max-width: 768px) {
             #crs-sdpopup {
-              width: 90%;
+              width: 343px;
+              max-width: 95%;
             }
             .crs-sdpopup__container {
               padding: 24px;
@@ -2234,6 +2354,9 @@
             .crs-sdpopup__content {
               flex-direction: column;
             }
+            .crs-sdpopup__subtitle {
+              font-size: 16px;
+            }
             .crs-sdpopup__image {
               display: none;
             }
@@ -2242,6 +2365,7 @@
             }
             .crs-sdpopup__actions {
               flex-direction: column;
+              gap: 8px;
               margin-top: 0;
             }
             .crs-sdpopup__button,
@@ -2250,7 +2374,7 @@
               margin-top: 24px;
             }
             .crs-sdpopup__button--secondary {
-              margin-top: 8px;
+              margin-top: 0;
               font-size: 14px;
               padding: 12px;
             }
@@ -2281,6 +2405,11 @@
             .crs-sdpopup__details[open] .crs-content {
               & * {
                 font-size: 14px;
+              }
+
+              & a {
+                height: 32px;
+                text-transform: capitalize;
               }
             }
             .crs-sdpopup__text {
