@@ -209,12 +209,6 @@
 
       this.popup.showModal()
       storeValue(this.id, true)
-      if (this.id === 'crs-tpopup') {
-        storeValue('crs-sdpopup', true)
-      }
-      if (this.id === 'crs-sdpopup') {
-        storeValue('crs-tpopup', true)
-      }
     }
 
     close() {
@@ -315,6 +309,7 @@
             if (this.isUserSubmitForm()) return
             if ((checkScrollSpeed() >= 150 || checkScrollSpeed() <= -150) && timeOnPage >= 20000) {
               this.thirdPopup.show()
+              clearTimeout(timer)
             }
           })
         }
@@ -348,6 +343,7 @@
               const timeOnPage = currentTime - stroredTimer
               if (timeOnPage >= 20000 && this.isUserEngagamentWithPage()) {
                 this.thirdPopup.show()
+                clearTimeout(timer)
                 localStorage.removeItem('timer')
               }
             }
@@ -356,8 +352,9 @@
       }
       if (
         (currentURL.includes('estimate') || currentURL.includes('contacts')) &&
-        !currentURL.includes('contacts?download') &&
-        !currentURL.includes('contacts?solutions')
+        !currentURL.includes('contacts?form=download') &&
+        !currentURL.includes('contacts?form=solutions') &&
+        !currentURL.includes('contacts?form=success')
       ) {
         if (this.isUserSubmitForm()) return
 
@@ -400,7 +397,12 @@
         }
         if (this.device === devices.desktop) {
           document.addEventListener('mouseout', event => {
-            if (!event.toElement && !event.relatedTarget) {
+            if (
+              event.clientY <= 0 ||
+              event.clientX <= 0 ||
+              event.clientX >= window.innerWidth ||
+              event.clientY >= window.innerHeight
+            ) {
               if (this.isUserSubmitForm()) return
               this.secondPopup.show()
             }
@@ -436,7 +438,10 @@
         messageInput.value = messageParts.join('\n\n')
         messageInput.dispatchEvent(new Event('input'))
       }
-      const search = window.location.search
+
+      let params = new URL(document.location).searchParams
+      let formTarget = params.get('form')
+
       const firstForm = /* HTML */ `
         <style>
           section#contact-us .container > .row {
@@ -697,6 +702,9 @@
             margin-top: 24px;
             font-size: 14px;
             color: #dae4f2;
+            & * {
+              line-height: 24px;
+            }
             & a {
               color: inherit;
             }
@@ -949,7 +957,8 @@
           </div>
         </div>
       `
-      if (search === '?solutions') {
+
+      if (formTarget === 'solutions') {
         $el('section#contact-us .container').insertAdjacentHTML('afterbegin', firstForm)
 
         $el('.crs-select details').addEventListener('click', event => {
@@ -999,7 +1008,7 @@
           // document.cookie = `${USER_SUBMIT_FORM}=true`
           storeValue(USER_SUBMIT_FORM, true)
           storeValue(USER_CONTACT_DATA, JSON.stringify(data))
-          location.href = `${location.origin}/${location.pathname}?success`
+          location.href = `${location.origin}/${location.pathname}?form=success`
         })
 
         blockVisibility(
@@ -1276,6 +1285,9 @@
               text-transform: uppercase;
               cursor: pointer;
             }
+            .crs-auform[data-action='download-step-2'] & button {
+              width: 100%;
+            }
           }
           .crs-auform__privacy {
             font-size: 14px;
@@ -1283,6 +1295,7 @@
             color: #dae4f2;
             & * {
               font-size: inherit;
+              line-height: 24px;
             }
             & a {
               color: inherit;
@@ -1367,6 +1380,7 @@
                 order: 2;
               }
               & .crs-auform__lists {
+                line-height: 24px;
                 order: 3;
               }
             }
@@ -1470,7 +1484,7 @@
         </div>
       `
 
-      if (search === '?download') {
+      if (formTarget === 'download') {
         $el('section#contact-us .container').insertAdjacentHTML('afterbegin', secondForm)
 
         $el('button[data-action="download-step-1"]').addEventListener('click', () => {
@@ -1502,9 +1516,8 @@
           const form = event.currentTarget
           const formData = new FormData(form)
 
-       
           const data = Object.fromEntries(formData.entries())
-          
+
           if (!data.firstname) {
             $el('.crs-auform__form input[name="firstname"]').classList.add('invalid')
             $el('.crs-auform__form input[name="firstname"] ~ .error').style.visibility = 'visible'
@@ -1534,7 +1547,7 @@
               a.click()
               window.URL.revokeObjectURL(url)
               if (!data.call || data.call === 'No') {
-                location.href = `${location.origin}/${location.pathname}?success`
+                location.href = `${location.origin}/${location.pathname}?form=success`
                 return
               }
               formSubmit()
@@ -1758,8 +1771,12 @@
             }
           }
           @media (max-width: 768px) {
+            #contact-us {
+              padding-top: 48px;
+            }
             .section-form-result__title {
-              font-size: 48px !important;
+              font-size: 42px !important;
+              line-height: 54px !important;
             }
             .crs-thform {
               padding-inline: 15px;
@@ -1799,7 +1816,7 @@
           />
         </div>
       `
-      if (search === '?success') {
+      if (formTarget === 'success') {
         $el('section#contact-us .container').insertAdjacentHTML('afterbegin', thanksForm)
         const regex = /^\d+$/
 
@@ -1976,7 +1993,7 @@
               Our Sales team is on standby and ready to help. <br />
               Get in touch and we’ll help you find the right choice.
             </p>
-            <a href="/contacts?solutions" target="_blank" class="crs-tpopup__button">Talk to Us</a>
+            <a href="/contacts?form=solutions" target="_blank" class="crs-tpopup__button">Talk to Us</a>
           </div>
           <div class="crs-tpopup__image">
             <img src="${git}/img/woman_think.png" alt="Indent Popup" />
@@ -2175,7 +2192,7 @@
               <li>How others have succeeded with UX.</li>
               <li>Unique insights from our UX and design team.</li>
             </ul>
-            <a href="/contacts?download" target="_blank" class="crs-blpopup__button">Download Free Guide</a>
+            <a href="/contacts?form=download" target="_blank" class="crs-blpopup__button">Download Free Guide</a>
           </div>
           <div class="crs-blpopup__image">
             <img src="${git}/img/work.png" alt="Indent Popup" />
@@ -2294,6 +2311,7 @@
             cursor: pointer;
             font-size: 18px;
             line-height: 24px;
+            height: 80px;
             font-weight: bold;
             color: #2969cc;
           }
@@ -2442,7 +2460,9 @@
               padding: 12px;
             }
             .crs-sdpopup__details summary {
+              padding: 12px;
               padding-right: 35px;
+              height: 72px;
               font-size: 16px;
               line-height: 24px;
             }
@@ -2524,7 +2544,7 @@
               your business.
             </p>
             <div class="crs-sdpopup__actions">
-              <a href="/contacts?solutions" class="crs-sdpopup__button" target="__blank">Talk to us</a>
+              <a href="/contacts?form=solutions" class="crs-sdpopup__button" target="__blank">Talk to us</a>
               <a href="https://keenethics.com/#services" target="__blank" class="crs-sdpopup__button--secondary"
                 >Learn More About Our Solutions</a
               >
