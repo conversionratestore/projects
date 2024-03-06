@@ -361,19 +361,16 @@
         !currentURL.includes('contacts?form=success')
       ) {
         if (this.isUserSubmitForm()) return
+        document.addEventListener('click', event => {
+          const target = event.target
 
-  
-          document.addEventListener('click', event => {
-            const target = event.target
-            console.log(target)
-            if (
-              target.textContent.trim().toLowerCase().includes('send') ||
-              target.textContent.trim().toLowerCase().includes("let's talk")
-            ) {
-              storeValue(USER_SUBMIT_FORM, true)
-            }
-          })
-        
+          if (
+            target.textContent.trim().toLowerCase().includes('send') ||
+            target.textContent.trim().toLowerCase().includes("let's talk")
+          ) {
+            storeValue(USER_SUBMIT_FORM, true)
+          }
+        })
 
         if (this.device === devices.mobile) {
           const timer = setTimeout(() => {
@@ -2647,7 +2644,7 @@
           'exp_exi_inte_popup_but_p3softwar_mvp',
           'Discover MVP Development',
           'Button',
-          'Pop-up 3 Software development headaches? Keenethics has got you covered.'
+          'Pop-up 3 What describes your situation best? Starting Up and Need to Build My Vision'
         )
       })
 
@@ -2656,7 +2653,7 @@
           'exp_exi_inte_popup_but_p3softwar_optim',
           'Optimize My Business',
           'Button',
-          'Pop-up 3 Software development headaches? Keenethics has got you covered.'
+          'Pop-up 3 What describes your situation best? Managing My Business and Need Optimization'
         )
       })
 
