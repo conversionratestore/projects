@@ -362,6 +362,19 @@
       ) {
         if (this.isUserSubmitForm()) return
 
+  
+          document.addEventListener('click', event => {
+            const target = event.target
+            console.log(target)
+            if (
+              target.textContent.trim().toLowerCase().includes('send') ||
+              target.textContent.trim().toLowerCase().includes("let's talk")
+            ) {
+              storeValue(USER_SUBMIT_FORM, true)
+            }
+          })
+        
+
         if (this.device === devices.mobile) {
           const timer = setTimeout(() => {
             this.secondPopup.show()
@@ -398,7 +411,7 @@
               clearTimeout(timer)
               if (
                 target.textContent.trim().toLowerCase().includes('send') ||
-                target.textContent.trim().toLowerCase().includes("LET'S TALK")
+                target.textContent.trim().toLowerCase().includes("let's talk")
               ) {
                 clearTimeout(secondTimer)
               }
@@ -1015,7 +1028,6 @@
             return
           }
 
-          // document.cookie = `${USER_SUBMIT_FORM}=true`
           storeValue(USER_SUBMIT_FORM, true)
           storeValue(USER_CONTACT_DATA, JSON.stringify(data))
           location.href = `${location.origin}/${location.pathname}?form=success`
@@ -1119,7 +1131,7 @@
           }
           .crs-auform__lists {
             margin-top: 24px;
-            line-height: 24px!important;
+            line-height: 24px !important;
             display: flex;
             padding-inline: 24px;
             gap: 40px;
