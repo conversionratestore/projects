@@ -658,13 +658,23 @@
             & input:placeholder-shown + .placeholder {
               display: block;
             }
-            & input[required] + .placeholder::after {
+            & input[data-required] + .placeholder::after {
               content: '*';
               top: -2px;
               position: absolute;
               font-size: 25px;
               color: #d62c2c;
             }
+            & input.invalid {
+              border: 2px solid #d62c2c;
+            }
+          }
+          label .error {
+            color: #d62c2c;
+            position: absolute;
+            font-size: 12px;
+            bottom: -17px;
+            visibility: hidden;
           }
           .crs-tsform__actions {
             margin-top: 32px;
@@ -910,16 +920,18 @@
                 </details>
               </div>
               <label>
-                <input type="text" name="firstname" placeholder="" required />
+                <input type="text" name="firstname" placeholder="" data-required />
                 <span class="placeholder">First Name</span>
+                <div class="error">Please enter a valid name</div>
               </label>
               <label>
                 <input type="text" name="lastname" placeholder="" />
                 <span class="placeholder">Last Name</span>
               </label>
               <label>
-                <input type="email" name="email" placeholder="" required />
+                <input type="email" name="email" placeholder="" data-required />
                 <span class="placeholder"> Business Email</span>
+                <div class="error">Please enter a valid email</div>
               </label>
               <div class="crs-tsform__actions">
                 <button type="submit">Contact US</button>
@@ -956,16 +968,32 @@
             $el('.crs-select details').removeAttribute('open')
           }
         })
+        $el('.crs-tsform__form input[name="firstname"]').addEventListener('input', () => {
+          $el('.crs-tsform__form input[name="firstname"]').classList.remove('invalid')
+          $el('.crs-tsform__form input[name="firstname"] ~ .error').style.visibility = 'hidden'
+        })
 
+        $el('.crs-tsform__form input[name="email"]').addEventListener('input', () => {
+          $el('.crs-tsform__form input[name="email"]').classList.remove('invalid')
+          $el('.crs-tsform__form input[name="email"] ~ .error').style.visibility = 'hidden'
+        })
         $el('.crs-tsform__form').addEventListener('submit', event => {
           event.preventDefault()
           const form = event.currentTarget
           const formData = new FormData(form)
 
           const data = Object.fromEntries(formData.entries())
+          const nameInput = $el('.crs-tsform__form input[name="firstname"]')
+          if (!data.firstname) {
+            nameInput.classList.add('invalid')
+            $el('.crs-tsform__form input[name="firstname"] ~ .error').style.visibility = 'visible'
+            return
+          }
 
-          if (!data.firstname || !data.email) {
-            return true
+          if (!data.email) {
+            $el('.crs-tsform__form input[name="email"]').classList.add('invalid')
+            $el('.crs-tsform__form input[name="email"] ~ .error').style.visibility = 'visible'
+            return
           }
 
           // document.cookie = `${USER_SUBMIT_FORM}=true`
@@ -1213,17 +1241,27 @@
             & input:placeholder-shown + .placeholder {
               display: block;
             }
-            & input[required] + .placeholder::after {
+            & input[data-required] + .placeholder::after {
               content: '*';
               top: -2px;
               position: absolute;
               font-size: 25px;
               color: #d62c2c;
             }
+            & input.invalid {
+              border: 2px solid #d62c2c;
+            }
+          }
+          label .error {
+            color: #d62c2c;
+            position: absolute;
+            font-size: 12px;
+            bottom: -17px;
+            visibility: hidden;
           }
           .crs-auform__actions {
             position: relative;
-            margin-top: 32px;
+            margin-top: 12px;
             & button {
               height: 48px;
               padding: 12px 20px;
@@ -1384,16 +1422,18 @@
             <form class="crs-auform__form" action="" style="display:none">
               <div class="crs-auform__at">Fields marked with * are mandatory</div>
               <label>
-                <input type="text" name="firstname" placeholder="" required />
+                <input type="text" name="firstname" placeholder="" data-required />
                 <span class="placeholder">First Name</span>
+                <div class="error">Please enter a valid name</div>
               </label>
               <label>
                 <input type="text" name="lastname" placeholder="" />
                 <span class="placeholder">Last Name</span>
               </label>
               <label>
-                <input type="text" name="email" placeholder="" required />
+                <input type="text" name="email" placeholder="" data-required />
                 <span class="placeholder">Business Email</span>
+                <div class="error">Please enter a valid email</div>
               </label>
 
               <div class="crs-select">
@@ -1446,13 +1486,36 @@
             $el('label[data-phone]').dataset.phone = value === 'Yes' ? 'visible' : 'hidden'
           }
         })
+
+        $el('.crs-auform__form input[name="firstname"]').addEventListener('input', () => {
+          $el('.crs-auform__form input[name="firstname"]').classList.remove('invalid')
+          $el('.crs-auform__form input[name="firstname"] ~ .error').style.visibility = 'hidden'
+        })
+
+        $el('.crs-auform__form input[name="email"]').addEventListener('input', () => {
+          $el('.crs-auform__form input[name="email"]').classList.remove('invalid')
+          $el('.crs-auform__form input[name="email"] ~ .error').style.visibility = 'hidden'
+        })
+
         $el('.crs-auform__form').addEventListener('submit', event => {
           event.preventDefault()
           const form = event.currentTarget
           const formData = new FormData(form)
 
+       
           const data = Object.fromEntries(formData.entries())
-          // document.cookie = `${USER_SUBMIT_FORM}=true`
+          
+          if (!data.firstname) {
+            $el('.crs-auform__form input[name="firstname"]').classList.add('invalid')
+            $el('.crs-auform__form input[name="firstname"] ~ .error').style.visibility = 'visible'
+            return
+          }
+
+          if (!data.email) {
+            $el('.crs-auform__form input[name="email"]').classList.add('invalid')
+            $el('.crs-auform__form input[name="email"] ~ .error').style.visibility = 'visible'
+            return
+          }
           storeValue(USER_SUBMIT_FORM, true)
           storeValue(USER_CONTACT_DATA, JSON.stringify(data))
 
