@@ -337,12 +337,14 @@
               if (this.isUserSubmitForm()) return
               if (!this.isUserEngagamentWithPage() && timerOut) {
                 this.firstPopup.show()
+                storeValue('crs-sdpopup', true)
                 clearInterval(timer)
               }
               const currentTime = new Date().getTime()
               const timeOnPage = currentTime - stroredTimer
               if (timeOnPage >= 20000 && this.isUserEngagamentWithPage()) {
                 this.thirdPopup.show()
+                storeValue('crs-tpopup', true)
                 clearTimeout(timer)
                 localStorage.removeItem('timer')
               }
@@ -445,8 +447,8 @@
         messageInput.dispatchEvent(new Event('input'))
       }
 
-      let params = new URL(document.location).searchParams
-      let formTarget = params.get('form')
+      let searchParams = new URL(document.location).searchParams
+      let formTarget = searchParams.get('form')
 
       const firstForm = /* HTML */ `
         <style>
