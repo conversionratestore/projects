@@ -388,10 +388,16 @@
             })
           })
 
-          $$el('button').forEach(input => {
-            input.addEventListener('click', () => {
+          $$el('button').forEach(button => {
+            button.addEventListener('click', event => {
+              const target = event.target
               clearTimeout(timer)
-              clearTimeout(secondTimer)
+              if (
+                target.textContent.trim().toLowerCase().includes('send') ||
+                target.textContent.trim().toLowerCase().includes("LET'S TALK")
+              ) {
+                clearTimeout(secondTimer)
+              }
             })
           })
         }
