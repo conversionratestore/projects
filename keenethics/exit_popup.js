@@ -309,7 +309,7 @@
             const currentTime = new Date().getTime()
             const timeOnPage = currentTime - stroredTimer
             if (this.isUserSubmitForm()) return
-            if ((checkScrollSpeed() >= 150 || checkScrollSpeed() <= -150) && timeOnPage >= 20000) {
+            if ((checkScrollSpeed() >= 120 || checkScrollSpeed() <= -120) && timeOnPage >= 20000) {
               this.thirdPopup.show()
               clearTimeout(timer)
             }
@@ -1452,7 +1452,7 @@
               </ul>
             </div>
             <div class="crs-auform__actions">
-              <button data-action="download-step-1">Dowload free guide</button>
+              <button data-action="download-step-1">Download free guide</button>
             </div>
           </div>
 
