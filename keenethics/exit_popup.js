@@ -677,7 +677,7 @@
             visibility: hidden;
           }
           .crs-tsform__actions {
-            margin-top: 32px;
+            margin-top: 12px;
             & button {
               height: 48px;
               padding: 12px 20px;
