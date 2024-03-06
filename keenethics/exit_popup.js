@@ -201,7 +201,8 @@
     }
 
     show() {
-      const isPopupShown = getValue(this.id) || false
+      // const isPopupShown = getValue(this.id) || false
+      const isPopupShown = getValue('modalShown') || false
 
       if (isPopupShown) {
         return
@@ -209,6 +210,7 @@
 
       this.popup.showModal()
       storeValue(this.id, true)
+      storeValue('modalShown', true)
     }
 
     close() {
