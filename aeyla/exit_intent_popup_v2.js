@@ -156,7 +156,7 @@ class Popup {
             height: 100dvh;
             background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(5px);
-            z-index: 99999;
+            z-index: 999999999999;
             justify-content: center;
             align-items: center;
           }
@@ -493,7 +493,7 @@ class Popup {
             </ul>
             <div class="crs_info">
               ${svg.people}
-              <span>There are <b>${randomUser} people</b> looking at this product. <span>${
+              <span>There are <b>${randomUser} people</b> looking at <span>this product</span>.<span>${
                 this.user === 0 ? '' : "We can’t guarantee its availability if you don't complete the purchase now."
               }</span></span>
             </div>
@@ -873,8 +873,11 @@ class Popup {
     $el('.crs_popup1_wrapper .popup_cart_list').innerHTML = listItems.join('')
     $el('.crs_popup1_wrapper').classList.add('show')
     if (cartJson.items.length > 1 && this.user === 1) {
-      $el('.crs_info span span').innerHTML =
+      $el('.crs_info span>span:last-of-type').innerHTML =
         'We can’t guarantee the availability of all products in your cart if you don’t complete the purchase now.'
+    }
+    if (cartJson.items.length > 1) {
+      $el('.crs_info span>span:first-of-type').innerHTML = `these products`
     }
 
     const interObserver = new IntersectionObserver(entries => {
