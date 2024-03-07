@@ -337,7 +337,7 @@
             this.firstPopup.show()
           }, 20000)
 
-          document.addEventListener('mouseleave', event => {
+          document.addEventListener('mouseout', event => {
             if (
               event.clientY <= 0 ||
               event.clientX <= 0 ||
