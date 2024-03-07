@@ -270,6 +270,9 @@
       if (window.location.href.includes('contacts')) {
         this.forms()
       }
+      if (window.location.href.includes('success')) {
+        this.phoneNumber()
+      }
     }
 
     isUserSubmitForm() {
@@ -306,12 +309,10 @@
           })
 
           document.addEventListener('scroll', () => {
-            const currentTime = new Date().getTime()
-            const timeOnPage = currentTime - stroredTimer
-            const scrollSpeed = checkScrollSpeed()  
-    
+            const scrollSpeed = checkScrollSpeed()
+
             if (this.isUserSubmitForm()) return
-            if ((scrollSpeed >= 120 || scrollSpeed <= -120) && timeOnPage >= 20000) {
+            if (scrollSpeed >= 120 || scrollSpeed <= -120) {
               this.thirdPopup.show()
               clearTimeout(timer)
             }
@@ -331,9 +332,9 @@
         })
 
         if (this.device === devices.desktop) {
-          let timerOut = false
           const timer = setTimeout(() => {
-            timerOut = true
+            if (this.isUserSubmitForm()) return
+            this.firstPopup.show()
           }, 20000)
 
           document.addEventListener('mouseleave', event => {
@@ -344,14 +345,13 @@
               event.clientY >= window.innerHeight
             ) {
               if (this.isUserSubmitForm()) return
-              if (!this.isUserEngagamentWithPage() && timerOut) {
+              if (!this.isUserEngagamentWithPage()) {
                 this.firstPopup.show()
                 storeValue('crs-sdpopup', true)
                 clearInterval(timer)
               }
-              const currentTime = new Date().getTime()
-              const timeOnPage = currentTime - stroredTimer
-              if (timeOnPage >= 20000 && this.isUserEngagamentWithPage()) {
+
+              if (this.isUserEngagamentWithPage()) {
                 this.thirdPopup.show()
                 storeValue('crs-tpopup', true)
                 clearTimeout(timer)
@@ -365,9 +365,8 @@
         (currentURL.includes('estimate') || currentURL.includes('contacts')) &&
         !currentURL.includes('contacts?form=download') &&
         !currentURL.includes('contacts?form=solutions') &&
-        !currentURL.includes('contacts?form=success')
+        !currentURL.includes('success')
       ) {
-        if (this.isUserSubmitForm()) return
         document.addEventListener('click', event => {
           const target = event.target
 
@@ -379,49 +378,53 @@
           }
         })
 
-        if (this.device === devices.mobile) {
-          const timer = setTimeout(() => {
-            this.secondPopup.show()
-          }, 20000)
+        const timer = setTimeout(() => {
+          if (this.isUserSubmitForm()) return
+          this.secondPopup.show()
+        }, 20000)
 
-          const showPopup = () => {
-            if (this.isUserSubmitForm()) return
-            this.secondPopup.show()
-          }
-
-          let secondTimer
-
-          const resetSecondTimer = () => {
-            clearTimeout(secondTimer)
-            secondTimer = setTimeout(showPopup, 60000)
-          }
-          $$el('input').forEach(input => {
-            input.addEventListener('focus', () => {
-              clearTimeout(timer)
-              resetSecondTimer()
-            })
-          })
-
-          $$el('textarea').forEach(input => {
-            input.addEventListener('focus', () => {
-              clearTimeout(timer)
-              resetSecondTimer()
-            })
-          })
-
-          $$el('button').forEach(button => {
-            button.addEventListener('click', event => {
-              const target = event.target
-              clearTimeout(timer)
-              if (
-                target.textContent.trim().toLowerCase().includes('send') ||
-                target.textContent.trim().toLowerCase().includes("let's talk")
-              ) {
-                clearTimeout(secondTimer)
-              }
-            })
-          })
+        const showPopup = () => {
+          if (this.isUserSubmitForm()) return
+          this.secondPopup.show()
         }
+
+        let secondTimer
+        let firstInteractWithForm = false
+
+        const resetSecondTimer = () => {
+          secondTimer = setTimeout(showPopup, 60000)
+        }
+        $$el('input').forEach(input => {
+          input.addEventListener('focus', () => {
+            clearTimeout(timer)
+            if (firstInteractWithForm) return
+            firstInteractWithForm = true
+            resetSecondTimer()
+          })
+        })
+
+        $$el('textarea').forEach(input => {
+          input.addEventListener('focus', () => {
+            clearTimeout(timer)
+            if (firstInteractWithForm) return
+            firstInteractWithForm = true
+            resetSecondTimer()
+          })
+        })
+
+        $$el('button').forEach(button => {
+          button.addEventListener('click', event => {
+            const target = event.target
+            clearTimeout(timer)
+            if (
+              target.textContent.trim().toLowerCase().includes('send') ||
+              target.textContent.trim().toLowerCase().includes("let's talk")
+            ) {
+              clearTimeout(secondTimer)
+            }
+          })
+        })
+
         if (this.device === devices.desktop) {
           document.addEventListener('mouseout', event => {
             if (
@@ -438,9 +441,223 @@
       }
     }
 
+    phoneNumber() {
+      const thanksForm = /* HTML */ `
+        <style>
+          #contact-us {
+            padding: 96px 0 68px;
+            &:before {
+              content: '';
+              background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='579' height='579' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='289.5' cy='289.5' r='229.5' stroke='%23F2F7FF' stroke-width='120'/%3E%3C/svg%3E");
+              height: 579px;
+              left: -289px;
+              position: absolute;
+              top: -289px;
+              width: 579px;
+              z-index: -1;
+            }
+          }
+          .section-form-result__text {
+            line-height: 28px;
+          }
+          .btn-primary {
+            display: none;
+          }
+          .form-row div:first-child {
+            flex: 0 0 100%;
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+          }
+          .form-row div:last-child {
+            display: none !important;
+          }
+          .form-row form.form > * {
+            display: none;
+          }
+          .form-row form.form > button {
+            background-color: #2969cc;
+            border: none;
+            width: 380px;
+          }
+          section.contact-nav {
+            display: none;
+          }
+          .section-form-result__title {
+            font-weight: 700 !important;
+          }
+          .thanks-section {
+            position: relative;
+            & h1 {
+              margin-bottom: 24px;
+              text-transform: none;
+              color: #12233d;
+              font-size: 54px;
+              font-weight: 800;
+              line-height: 64px;
+              text-align: center;
+            }
+
+            & .section-form-result__text {
+              margin-bottom: 32px;
+              text-align: center;
+            }
+
+            & .section-form-result__img {
+              bottom: -68px;
+              position: absolute;
+              right: -270px;
+            }
+          }
+          section:has(.section-form-result__img) {
+            position: relative;
+          }
+          .crs-thform {
+            font-family: Raleway;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+
+            & form {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              gap: 11px;
+              width: 380px;
+
+              & input {
+                border-radius: 10px;
+                border: solid 1px #e3e3e3;
+                background-color: #fff;
+                padding: 12px;
+                width: 100%;
+                font-size: 16px;
+                font-weight: 600;
+                text-align: left;
+                color: #6f7a88;
+                height: 62px;
+                color: #12233D;
+              }
+              & .error {
+                visibility: hidden;
+                height: 11px;
+                line-height: 11px;
+                font-size: 14px;
+                color: #d62c2c;
+              }
+              & button {
+                padding: 12px;
+                width: 100%;
+                border: none;
+                border-radius: 8px;
+                background-color: #2969cc;
+                font-size: 16px;
+                font-weight: 600;
+                color: #fff;
+                text-transform: uppercase;
+                cursor: pointer;
+                height: 48px;
+              }
+            }
+          }
+          @media (max-width: 768px) {
+            #contact-us {
+              padding-top: 48px;
+            }
+            .section-form-result__title {
+              font-size: 42px !important;
+              line-height: 54px !important;
+            }
+            .crs-thform {
+              padding-inline: 15px;
+              padding-bottom: 25px;
+
+              & form {
+                width: 100%;
+                & input {
+                  height: 52px;
+                }
+              }
+            }
+          }
+        </style>
+
+            <div class="crs-thform">
+              <form>
+                <input type="tel" name="phone" placeholder="Phone number" required />
+                <div class="error">Please enter a valid phone</div>
+                <button type="submit">send</button>
+              </form>
+            </div>
+          </div>
+      `
+
+      const noPhone = localStorage.getItem('noPhone')
+
+      $el('.btn-primary').insertAdjacentHTML('afterend', thanksForm)
+
+      if (noPhone) {
+        $el('.crs-thform form').style.display = 'none'
+      }
+
+      const regex = /^\d+$/
+
+      $el('.h1.section-form-result__title').textContent = 'Thank you for your request!'
+      $el('.text-2.section-form-result__text').innerHTML =
+        'We will get back to you within 1 business day. <br> Please provide your phone number to enable us to call you.'
+
+      $el('.crs-thform form').addEventListener('submit', async event => {
+        event.preventDefault()
+        const form = event.currentTarget
+        const formData = new FormData(form)
+        const phoneData = Object.fromEntries(formData.entries())
+        if (!phoneData.phone || !regex.test(phoneData.phone)) {
+          return
+        }
+
+        try {
+          await fetch('/contacts', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(phoneData)
+          })
+        } catch (error) {}
+        $el('.crs-thform').style.display = 'none'
+      })
+      $el('.crs-thform input').addEventListener('input', event => {
+        const value = event.target.value
+
+        if (!regex.test(value)) {
+          $el('.crs-thform form .error').style.visibility = 'visible'
+        } else {
+          $el('.crs-thform form .error').style.visibility = ''
+        }
+      })
+
+      blockVisibility(
+        '.crs-thform',
+        'exp_exi_inte_popup_vis_thankrequ_bloc',
+        'Block view',
+        'Thank you for your request'
+      )
+
+      $el('.crs-thform form input')?.addEventListener('change', () => {
+        pushDataLayer('exp_exi_inte_popup_inp_thankrequ_phon', 'Phone number', 'Input', 'Thank you for your request')
+      })
+
+      $el('.crs-thform form button')?.addEventListener('click', () => {
+        pushDataLayer('exp_exi_inte_popup_but_thankrequ_send', 'Send', 'Button', 'Thank you for your request')
+      })
+    }
+
     forms() {
-      const formSubmit = (phoneData = null) => {
-        const contactData = JSON.parse(getValue(USER_CONTACT_DATA))
+      const formSubmit = contactData => {
+        // const contactData = JSON.parse(getValue(USER_CONTACT_DATA))
 
         const nameInput = $el('input#user-name')
         const emailInput = $el('input#user-mail')
@@ -458,8 +675,8 @@
           messageParts.push(`I need help with: ${contactData.appeal}`)
         }
 
-        if (phoneData) {
-          messageParts.push(`Phone: ${phoneData}`)
+        if (contactData?.phone) {
+          messageParts.push(`Phone: ${contactData.phone}`)
         }
 
         messageInput.value = messageParts.join('\n\n')
@@ -594,6 +811,10 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+            & input {
+              color: #12233d;
+              font-size: 16px;
+            }
             & :is(input, details) {
               padding: 16px 21px;
               height: 61px;
@@ -614,6 +835,13 @@
               display: flex;
               align-items: center;
               height: 100%;
+              padding-right: 10px;
+            }
+
+            & summary[data-choosen] {
+              color: #12233d;
+              font-size: 16px;
+              font-weight: bold;
             }
             & details {
               width: 100%;
@@ -622,6 +850,11 @@
             }
             & details summary::marker {
               content: none;
+              display: none;
+            }
+            & details summary::-webkit-details-marker {
+              content: none;
+              display: none;
             }
             & details summary::after {
               content: '';
@@ -671,6 +904,7 @@
               }
             }
           }
+
           label:has(.placeholder) {
             position: relative;
             & .placeholder {
@@ -683,6 +917,9 @@
             }
             & input {
               width: 100%;
+              color: #12233d;
+              font-weight: bold;
+              font-size: 16px;
             }
             & input + .placeholder {
               display: none;
@@ -995,6 +1232,7 @@
           if (event.target.closest('li') && details.hasAttribute('open')) {
             const text = event.target.textContent
             summary.textContent = text
+            summary.dataset.choosen = true
             details.removeAttribute('open')
           }
         })
@@ -1032,9 +1270,8 @@
             return
           }
 
-          storeValue(USER_SUBMIT_FORM, true)
-          storeValue(USER_CONTACT_DATA, JSON.stringify(data))
-          location.href = `${location.origin}/${location.pathname}?form=success`
+          formSubmit(data)
+          $el('form.contact-us__form').querySelector('button').click()
         })
 
         blockVisibility(
@@ -1183,10 +1420,14 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
-            & :is(input, summary) {
+
+            & input {
               padding: 16px 21px;
               border-radius: 10px;
               border: none;
+              color: #12233d !important;
+              font-size: 16px;
+              font-weight: bold;
             }
             & input[required]::after {
               content: '*';
@@ -1203,6 +1444,24 @@
               color: #6f7a88;
               font-family: inherit;
             }
+            & :is(input, details) {
+              padding: 16px 21px;
+              height: 61px;
+              border-radius: 10px;
+              border: none;
+            }
+            & summary {
+              display: flex;
+              align-items: center;
+              height: 100%;
+              padding: 0;
+              padding-right: 10px;
+            }
+            & summary[data-choosen] {
+              color: #12233d;
+              font-size: 16px;
+              font-weight: bold;
+            }
             & details {
               width: 100%;
               border-radius: 10px;
@@ -1212,6 +1471,11 @@
             }
             & details summary::marker {
               content: none;
+              display: none;
+            }
+            & details summary::-webkit-details-marker {
+              content: none;
+              display: none;
             }
             & details summary::after {
               content: '';
@@ -1220,9 +1484,9 @@
               width: 24px;
               height: 24px;
               position: absolute;
-              top: 15px;
+              top: 50%;
               right: 15px;
-              transform: rotate(180deg);
+              transform: rotate(180deg) translateY(50%);
             }
             & details[open] {
               z-index: 1000;
@@ -1557,7 +1821,6 @@
             return
           }
           storeValue(USER_SUBMIT_FORM, true)
-          storeValue(USER_CONTACT_DATA, JSON.stringify(data))
 
           fetch(`${git}/files/uxaudit_keenethics.pdf`, {
             method: 'GET'
@@ -1573,11 +1836,13 @@
               document.body.appendChild(a)
               a.click()
               window.URL.revokeObjectURL(url)
-              if (!data.call || data.call === 'No') {
-                location.href = `${location.origin}/${location.pathname}?form=success`
-                return
+              if (data.call) {
+                localStorage.setItem('noPhone', true)
+              } else {
+                localStorage.removeItem('noPhone')
               }
-              formSubmit()
+
+              formSubmit(data)
               $el('form.contact-us__form').querySelector('button').click()
             })
         })
@@ -1589,6 +1854,7 @@
           if (event.target.closest('li') && details.hasAttribute('open')) {
             const text = event.target.textContent
             summary.textContent = text
+            summary.dataset.choosen = true
             details.removeAttribute('open')
           }
         })
@@ -1654,244 +1920,6 @@
             'Button',
             'Web form 2, state 2 Get Our Free UX Audit Guide'
           )
-        })
-      }
-
-      const hash = window.location.hash
-      const thanksForm = /* HTML */ `
-        <style>
-          #contact-us {
-            padding: 96px 0 68px;
-            &:before {
-              content: '';
-              background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='579' height='579' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='289.5' cy='289.5' r='229.5' stroke='%23F2F7FF' stroke-width='120'/%3E%3C/svg%3E");
-              height: 579px;
-              left: -289px;
-              position: absolute;
-              top: -289px;
-              width: 579px;
-              z-index: -1;
-            }
-          }
-          .section-form-result__text {
-            line-height: 28px;
-          }
-          .form-row div:first-child {
-            flex: 0 0 100%;
-            max-width: 100%;
-            display: flex;
-            justify-content: center;
-          }
-          .form-row div:last-child {
-            display: none !important;
-          }
-          .form-row form.form > * {
-            display: none;
-          }
-          .form-row form.form > button {
-            background-color: #2969cc;
-            border: none;
-            width: 380px;
-          }
-          section.contact-nav {
-            display: none;
-          }
-          .section-form-result__title {
-            font-weight: 700 !important;
-          }
-          .thanks-section {
-            position: relative;
-            & h1 {
-              margin-bottom: 24px;
-              text-transform: none;
-              color: #12233d;
-              font-size: 54px;
-              font-weight: 800;
-              line-height: 64px;
-              text-align: center;
-            }
-
-            & .section-form-result__text {
-              margin-bottom: 32px;
-              text-align: center;
-            }
-
-            & .section-form-result__img {
-              bottom: -68px;
-              position: absolute;
-              right: -270px;
-            }
-          }
-          section:has(.section-form-result__img) {
-            position: relative;
-          }
-          @media screen and (max-width: 1279px) {
-            .thanks-section {
-              & .section-form-result__text br {
-                display: none;
-              }
-            }
-            #contact-us {
-              padding-bottom: 0 !important;
-            }
-            .thanks-section .section-form-result__img {
-              display: block;
-              margin: 0 auto;
-              position: static;
-            }
-          }
-
-          @media screen and (max-width: 1679.6px) {
-            .thanks-section .section-form-result__img {
-              bottom: -68px;
-              right: -82px;
-            }
-          }
-          .crs-thform {
-            font-family: Raleway;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 24px;
-
-            & form {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              justify-content: center;
-              gap: 11px;
-              width: 380px;
-
-              & input {
-                border-radius: 10px;
-                border: solid 1px #e3e3e3;
-                background-color: #fff;
-                padding: 12px;
-                width: 100%;
-                font-size: 16px;
-                font-weight: 600;
-                text-align: left;
-                color: #6f7a88;
-                height: 62px;
-              }
-              & .error {
-                visibility: hidden;
-                height: 11px;
-                line-height: 11px;
-                font-size: 14px;
-                color: #d62c2c;
-              }
-              & button {
-                padding: 12px;
-                width: 100%;
-                border: none;
-                border-radius: 8px;
-                background-color: #2969cc;
-                font-size: 16px;
-                font-weight: 600;
-                color: #fff;
-                text-transform: uppercase;
-                cursor: pointer;
-                height: 48px;
-              }
-            }
-          }
-          @media (max-width: 768px) {
-            #contact-us {
-              padding-top: 48px;
-            }
-            .section-form-result__title {
-              font-size: 42px !important;
-              line-height: 54px !important;
-            }
-            .crs-thform {
-              padding-inline: 15px;
-              padding-bottom: 25px;
-
-              & form {
-                width: 100%;
-                & input {
-                  height: 52px;
-                }
-              }
-            }
-          }
-        </style>
-
-        <div class="thanks-section">
-          <div class="section-form-result__data">
-            <h1 class="h1 section-form-result__title">Thank you for your request!</h1>
-            <div class="text-2 section-form-result__text">
-              We will get back to you within 1 business day.<br />
-              Please provide your phone number to enable us to call you.
-            </div>
-            <div class="crs-thform">
-              <form>
-                <input type="tel" name="phone" placeholder="Phone number" required />
-                <div class="error">The phone number must consist of digits only</div>
-                <button type="submit">send</button>
-              </form>
-            </div>
-          </div>
-          <img
-            src="https://keenethics.com/wp-content/uploads/2023/11/Daria.webp"
-            alt="Daria"
-            width="368"
-            height="371"
-            class="section-form-result__img"
-          />
-        </div>
-      `
-      if (formTarget === 'success') {
-        $el('section#contact-us .container').insertAdjacentHTML('afterbegin', thanksForm)
-        const regex = /^\d+$/
-
-        $el('.form-row form.form > button').textContent = 'send'
-
-        $el('.crs-thform form').addEventListener('submit', event => {
-          event.preventDefault()
-          const form = event.currentTarget
-          const formData = new FormData(form)
-          const phoneData = Object.fromEntries(formData.entries())
-          if (!phoneData.phone || !regex.test(phoneData.phone)) {
-            return
-          }
-          $el('form.contact-us__form').querySelector('button').click()
-        })
-        $el('.crs-thform input').addEventListener('input', event => {
-          const value = event.target.value
-
-          if (!regex.test(value)) {
-            $el('.crs-thform form .error').style.visibility = 'visible'
-          } else {
-            formSubmit(value)
-            $el('.crs-thform form .error').style.visibility = ''
-          }
-        })
-        formSubmit()
-        $el('.crs-thform form')?.addEventListener('submit', event => {
-          event.preventDefault()
-          const form = event.currentTarget
-          const formData = new FormData(form)
-          const phoneData = Object.fromEntries(formData.entries())
-
-          formSubmit(phoneData)
-        })
-
-        blockVisibility(
-          '.crs-thform',
-          'exp_exi_inte_popup_vis_thankrequ_bloc',
-          'Block view',
-          'Thank you for your request'
-        )
-
-        $el('.crs-thform form input')?.addEventListener('change', () => {
-          pushDataLayer('exp_exi_inte_popup_inp_thankrequ_phon', 'Phone number', 'Input', 'Thank you for your request')
-        })
-
-        $el('.crs-thform form button')?.addEventListener('click', () => {
-          pushDataLayer('exp_exi_inte_popup_but_thankrequ_send', 'Send', 'Button', 'Thank you for your request')
         })
       }
     }
@@ -2385,6 +2413,7 @@
           }
           .crs-sdpopup__details summary::marker {
             content: none;
+            display: none;
           }
           .crs-sdpopup__details summary::after {
             content: '';
@@ -2669,7 +2698,7 @@
           'exp_exi_inte_popup_but_p3softwar_scale',
           'Scale My Project',
           'Button',
-          'Pop-up 3 Software development headaches? Keenethics has got you covered.'
+          'Pop-up 3 What describes your situation best? Scaling Up and Need Robust Support'
         )
       })
     }
