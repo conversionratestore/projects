@@ -1,11 +1,11 @@
 (function() {
   "use strict";
-  const p = ({ name: e, dev: t }) => {
+  const d = ({ name: e, dev: t }) => {
     console.log(
       `%c EXP: ${e} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, n = "https://conversionratestore.github.io/projects/buzzpatch", c = [
+  }, n = "https://conversionratestore.github.io/projects/buzzpatch", h = [
     {
       patchType: "SleepyPatch for Kids",
       text: "Helps My asd child!! My son is 8 and struggles to fall asleep. He is autistic so I guess This can be normal. Well tried melatonin and yes it works but idk not a fan. Tried these and wow work great and as routines work for him using this daily works!! Bought many times so far and will keep purchasing. Thank you for making these. Even got the adult ones. And they help me If I need it."
@@ -78,7 +78,7 @@
       patchType: "CravePatch Sugar Craving Relief",
       text: "All day my daughter asks me for either something starchy or filled with sugar! I finally gave in and purchased the CravePatch to see if it would make a difference. She’s been eating her meals and snack without constantly asking me for sweets now. Its been fantastic!"
     }
-  ], l = [
+  ], g = [
     {
       text: "“The first thing I noticed when I opened the package were that these smelled seriously amazing. They're citrusy without being overpowering.”",
       img: `${n}/img/new-home-page/slider_logo_1.png`
@@ -99,13 +99,13 @@
       text: '“The Buzzpatch scent creates a virtual shield by "camouflaging" your kids from mosquitos) Genius!”',
       img: `${n}/img/new-home-page/slider_logo_5.png`
     }
-  ], d = () => {
+  ], m = () => {
     let e = $("#featured-reviews2 .carousel-item:not(.slick-cloned)"), t = [];
     return e.each((r, i) => {
       let a = {};
       a.name = $(i).find(".name").text(), a.img = $(i).find(".review-header>img").attr("data-src") || "no_img", a.text = $(i).find(".review-text p").text(), t.push(a);
     }), console.log(t), t;
-  }, h = [
+  }, f = [
     {
       name: "SleepyPatch for Kids",
       subText: "Sleep Promoting Stickers",
@@ -158,7 +158,7 @@
       link: "https://www.natpat.com/products/sunnypatch",
       variants: [41098474946604, 41098474979372, 41098474913836, 41098475012140]
     }
-  ], g = (
+  ], u = (
     /* HTML */
     `
   <section class="new_main_block">
@@ -258,8 +258,8 @@
 \r
   & .hi {\r
     position: absolute;\r
-    top: -42;\r
-    right: 0;\r
+    top: -42px;\r
+    right: -5px;\r
     z-index: 100;\r
   }\r
 \r
@@ -609,6 +609,26 @@
       }\r
     }\r
   }\r
+\r
+  & .pages_r {\r
+    display: flex;\r
+    justify-content: center;\r
+    align-items: center;\r
+    gap: 10px;\r
+    margin-top: 40px;\r
+\r
+    & span {\r
+      font-weight: 500;\r
+      font-size: 16px;\r
+      cursor: pointer;\r
+      transition: all 0.3s;\r
+    }\r
+\r
+    & span.active {\r
+      font-weight: 700;\r
+      font-size: 18px;\r
+    }\r
+  }\r
 }\r
 \r
 .new_slider_news {\r
@@ -636,7 +656,6 @@
       display: flex;\r
       flex-direction: column;\r
       justify-content: space-between;\r
-      max-width: 360px;\r
 \r
       & .bg {\r
         position: absolute;\r
@@ -1047,6 +1066,59 @@
   }\r
 }\r
 \r
+.new_slider_news .slick-arrow::before {\r
+  content: '';\r
+  height: 78px;\r
+  width: 78px;\r
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/arrow.svg) no-repeat center\r
+    center;\r
+  background-size: contain;\r
+  display: block;\r
+}\r
+\r
+.new_slider_news .slick-arrow.slick-next::before {\r
+  transform: rotate(180deg);\r
+}\r
+\r
+.new_slider_news .slick-arrow.slick-next {\r
+  right: 50px;\r
+  height: 78px;\r
+  width: 78px;\r
+  z-index: 1;\r
+}\r
+\r
+.new_slider_news .slick-arrow.slick-prev {\r
+  left: 50px;\r
+  height: 78px;\r
+  width: 78px;\r
+  z-index: 1;\r
+}\r
+\r
+.new_stickers_slider .slick-arrow {\r
+  height: 52px;\r
+  width: 52px;\r
+  z-index: 1;\r
+}\r
+\r
+.new_stickers_slider .slick-arrow.slick-prev {\r
+  transform: rotate(180deg);\r
+  left: -50px;\r
+}\r
+\r
+.new_stickers_slider .slick-arrow.slick-next {\r
+  right: -50px;\r
+}\r
+\r
+.new_stickers_slider .slick-arrow::before {\r
+  content: '';\r
+  height: 52px;\r
+  width: 52px;\r
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/arrow-blue.svg) no-repeat\r
+    center center;\r
+  background-size: contain;\r
+  display: block;\r
+}\r
+\r
 footer {\r
   margin-top: 0 !important;\r
   padding-top: 100px !important;\r
@@ -1055,6 +1127,31 @@ footer {\r
 @media (min-width: 769px) {\r
   .mobile {\r
     display: none !important;\r
+  }\r
+\r
+  .new_main_block .images a img,\r
+  .new_main_block .crs_btn,\r
+  .new_stickers_slider span,\r
+  .new_stickers_slider .btns > * {\r
+    transition: all 0.3s;\r
+  }\r
+  .new_main_block .images a:hover img {\r
+    transform: scale(1.1);\r
+  }\r
+\r
+  .new_main_block .crs_btn:hover {\r
+    background: #3363dd;\r
+  }\r
+\r
+  .new_stickers_slider .qty > span:hover {\r
+    border: 1px solid #1f1f5b;\r
+  }\r
+  .new_stickers_slider .btns a:hover {\r
+    color: #ff209e;\r
+  }\r
+\r
+  .new_stickers_slider .btns button:hover {\r
+    background-color: #ff5fba;\r
   }\r
 }\r
 @media (max-width: 500px) {\r
@@ -1381,6 +1478,56 @@ footer {\r
     }\r
   }\r
 }\r
+\r
+@keyframes swing {\r
+  25%,\r
+  35%,\r
+  45%,\r
+  55%,\r
+  65%,\r
+  75% {\r
+    transform: rotate(-2deg);\r
+  }\r
+  30%,\r
+  40%,\r
+  50%,\r
+  60%,\r
+  70% {\r
+    transform: rotate(2deg);\r
+  }\r
+}\r
+\r
+@keyframes slideInOut {\r
+  0% {\r
+    transform: translateX(100%);\r
+  }\r
+  20% {\r
+    transform: translateX(100%);\r
+  }\r
+  25% {\r
+    transform: translateX(0);\r
+  }\r
+  75% {\r
+    transform: translateX(0);\r
+  }\r
+  80% {\r
+    transform: translateX(100%);\r
+  }\r
+  100% {\r
+    transform: translateX(100%);\r
+  }\r
+}\r
+\r
+.hi {\r
+  transform-origin: right center;\r
+  animation:\r
+    slideInOut 10s ease-in-out infinite,\r
+    swing 10s ease-in-out infinite;\r
+}\r
+\r
+body {\r
+  overflow-x: hidden;\r
+}\r
 
     </style>
     <span class="hi desktop">
@@ -1421,14 +1568,14 @@ footer {\r
     </p>
   </section>
 `
-  ), m = (
+  ), w = (
     /* HTML */
     `
   <section class="new_stickers_slider">
     <h2>Discover our plant-powered sticker range</h2>
     <div class="content_wrapper">
       <div class="slider_wrapper parent_slider">
-        ${h.map((e, t) => (
+        ${f.map((e, t) => (
       /* HTML */
       ` <div class="item">
               <img src="${n}/img/new-home-page/as_seen.svg" class="tv" alt="tv" />
@@ -1475,7 +1622,7 @@ footer {\r
     </div>
   </section>
 `
-  ), u = (
+  ), b = (
     /* HTML */
     `
   <section class="new_trustpilot_reviews content_wrapper">
@@ -1487,7 +1634,7 @@ footer {\r
     <h2>Trusted by over 1 million customers</h2>
     <div class="insta_widget"></div>
     <ul class="reviews_trust parent_slider">
-      ${c.map((e, t) => (
+      ${h.map((e, t) => (
       /* HTML */
       ` <li>
             <p>${e.patchType}</p>
@@ -1517,18 +1664,18 @@ footer {\r
       <span><i></i></span>
     </div>
     <div class="pages_r desktop">
-      <span>1</span>
+      <span class="active">1</span>
       <span>2</span>
       <span>3</span>
     </div>
   </section>
 `
-  ), f = (
+  ), x = (
     /* HTML */
     ` <section class="new_slider_news">
   <h2>We're in the news... for good reasons.</h2>
   <div class="slider_wrapper parent_slider">
-    ${l.map((e, t) => (
+    ${g.map((e, t) => (
       /* HTML */
       `
           <div class="slide">
@@ -1547,7 +1694,7 @@ footer {\r
     <span><i></i></span>
   </div>
 </section>`
-  ), b = (
+  ), v = (
     /* HTML */
     `
   <section class="new_science_block">
@@ -1576,7 +1723,7 @@ footer {\r
     </div>
   </section>
 `
-  ), w = (
+  ), y = (
     /* HTML */
     ` <section class="new_natpat_block">
   <div class="layer">
@@ -1587,7 +1734,7 @@ footer {\r
     </p>
   </div>
 </section>`
-  ), x = (
+  ), k = (
     /* HTML */
     `<section class="new_info_block">
   <div class="content_wrapper">
@@ -1623,13 +1770,13 @@ footer {\r
     </div>
   </div>
 </section>`
-  ), v = (
+  ), _ = (
     /* HTML */
     `
   <section class="new_reviews_block">
     <div class="content_wrapper">
       <div class="basic_slider parent_slider">
-        ${d().map((e, t) => (
+        ${m().map((e, t) => (
       /* HTML */
       `
               <div class="slide">
@@ -1658,7 +1805,7 @@ footer {\r
     </div>
   </section>
 `
-  ), y = (
+  ), z = (
     /* HTML */
     `
   <section class="new_info2_block">
@@ -1696,21 +1843,21 @@ footer {\r
   </section>
 `
   );
-  p({ name: "HomePage Redesign", dev: "YK" });
-  const k = window.innerWidth < 768 ? "mobile" : "desktop", o = document.createElement("link");
-  o.rel = "stylesheet", o.href = "https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=M+PLUS+Rounded+1c:wght@900&display=swap", document.head.appendChild(o);
-  class _ {
+  d({ name: "HomePage Redesign", dev: "YK" });
+  const T = window.innerWidth < 768 ? "mobile" : "desktop", c = document.createElement("link");
+  c.rel = "stylesheet", c.href = "https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=M+PLUS+Rounded+1c:wght@900&display=swap", document.head.appendChild(c);
+  class j {
     constructor(t) {
       this.device = t, this.init();
     }
     init() {
-      this.clearOldContent(), this.addBlocks(), this.patchesCardsFunctionality();
+      this.clearOldContent(), this.addBlocks(), this.patchesCardsFunctionality(), this.addEvents();
     }
     clearOldContent() {
       $("#MainContent .icartShopifyCartContent").css("display", "none"), $("#MainContent .icartShopifyCartContent").after('<div class="new_home_page"></div>');
     }
     addBlocks() {
-      $(".new_home_page").append(g).append(m).append(u).append(f).append(b).append(w).append(x).append(v).append(y), $(".insta_widget").append($("#shopify-section-template--15241309847596__17097813754ae81b0d")), $("#shopify-block-archive_detect_ugc_gallery_8cpCVL").css("display", "block"), this.device === "mobile" && $(".new_info2_block").prepend($(".slider_photo")), $(".new_stickers_slider .slider_wrapper").slick({
+      if ($(".new_home_page").append(u).append(w).append(b).append(x).append(v).append(y).append(k).append(_).append(z), $(".insta_widget").append($("#shopify-section-template--15241309847596__17097813754ae81b0d")), $("#shopify-block-archive_detect_ugc_gallery_8cpCVL").css("display", "block"), this.device === "mobile" && $(".new_info2_block").prepend($(".slider_photo")), $(".new_stickers_slider .slider_wrapper").slick({
         slidesToShow: this.device === "mobile" ? 1 : 3,
         slidesToScroll: 1,
         arrows: this.device !== "mobile",
@@ -1762,21 +1909,35 @@ footer {\r
           asNavFor: $(r).closest("section").find(".parent_slider")
         });
       }), $(".reviews_trust p:nth-child(2)").each(function(t, r) {
-        if ($(r).text().length > 250) {
-          const i = $(r).text(), a = i.slice(0, 250).lastIndexOf(" ");
+        if ($(r).text().length > 200) {
+          const i = $(r).text(), a = i.slice(0, 200).lastIndexOf(" ");
           a !== -1 && $(r).text(i.slice(0, a) + "..."), $(r).after('<span class="read_more">Read more</span>'), $(r).next().on("click", function() {
             $(r).text(i), $(this).remove(), $(r).closest(".reviews_trust").slick("setPosition");
           });
         }
-      });
+      }), this.device === "desktop") {
+        const r = $(".new_trustpilot_reviews .reviews_trust li");
+        r.each(function(i, a) {
+          i >= 6 && $(a).css("display", "none");
+        }), $(".pages_r span").on("click", function() {
+          if ($(this).hasClass("active"))
+            return;
+          const i = +$(this).text(), a = (i - 1) * 6, s = i * 6 - 1, o = $(".new_trustpilot_reviews .reviews_trust");
+          o.fadeOut(function() {
+            r.each(function(p, l) {
+              p >= a && p <= s ? $(l).show() : $(l).hide();
+            }), o.fadeIn();
+          }), $(this).addClass("active").siblings().removeClass("active");
+        });
+      }
     }
     patchesCardsFunctionality() {
       $(".new_stickers_slider .item").each(function(t, r) {
-        const i = $(r).find("span"), a = $(r).find(".img img[alt=main]"), s = $(r).find("button"), z = $(r).find(".price"), T = $(r).find(".save");
+        const i = $(r).find("span"), a = $(r).find(".img img[alt=main]"), s = $(r).find("button"), o = $(r).find(".price"), p = $(r).find(".save");
         i.on("click", function() {
-          $(this).addClass("active").siblings().removeClass("active"), a.attr("src", $(this).data("img")), s.attr("data-id", $(this).data("variant")), z.text(`$${$(this).data("price")} each`), T.text(`${$(this).data("save")}% off`);
+          $(this).addClass("active").siblings().removeClass("active"), a.attr("src", $(this).data("img")), s.attr("data-id", $(this).data("variant")), o.text(`$${$(this).data("price")} each`), p.text(`${$(this).data("save")}% off`);
         }), s.on("click", function() {
-          const j = {
+          const P = {
             items: [
               {
                 id: $(this).data("id"),
@@ -1789,12 +1950,14 @@ footer {\r
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify(j)
-          }).then((P) => P.json());
+            body: JSON.stringify(P)
+          }).then((S) => S.json());
         });
       });
     }
+    addEvents() {
+    }
   }
-  new _(k);
+  new j(T);
 })();
 //# sourceMappingURL=index.js.map
