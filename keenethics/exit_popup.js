@@ -298,7 +298,7 @@
             if (this.isUserSubmitForm() || this.isUserEngagamentWithPage()) return
             this.firstPopup.show()
           }
-          const timer = setTimeout(showPopup, 20000)
+          const timer = setTimeout(showPopup, 15000)
 
           ;[('button', 'a')].forEach(tag => {
             $$el(tag).forEach(el => {
@@ -335,7 +335,7 @@
           const timer = setTimeout(() => {
             if (this.isUserSubmitForm()) return
             this.firstPopup.show()
-          }, 20000)
+          }, 15000)
 
           document.addEventListener('mouseout', event => {
             if (
@@ -381,7 +381,7 @@
         const timer = setTimeout(() => {
           if (this.isUserSubmitForm()) return
           this.secondPopup.show()
-        }, 20000)
+        }, 15000)
 
         const showPopup = () => {
           if (this.isUserSubmitForm()) return
