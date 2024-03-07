@@ -1224,18 +1224,18 @@
 
       if (formTarget === 'solutions') {
         $el('section#contact-us .container').insertAdjacentHTML('afterbegin', firstForm)
-        $$el('input').forEach((input) => {
-          input.addEventListener('input', (event) => {
+        $$el('input').forEach(input => {
+          input.addEventListener('input', event => {
             const target = event.target
-            const placeholder = target.nextElementSibling
-            console.log(placeholder)
-            if (target.value) {
-              placeholder.style.display = 'none';
-            } else {
-      
-              placeholder.style.display = 'block';
+            const placeholder = target.parentNode.querySelector('.placeholder')
+            if (placeholder) {
+              if (target.value) {
+                placeholder.style.display = 'none'
+              } else {
+                placeholder.style.display = 'block'
+              }
             }
-          });
+          })
         })
         $el('.crs-select details').addEventListener('click', event => {
           const details = event.currentTarget
@@ -1263,6 +1263,7 @@
           $el('.crs-tsform__form input[name="email"]').classList.remove('invalid')
           $el('.crs-tsform__form input[name="email"] ~ .error').style.visibility = 'hidden'
         })
+        
         $el('.crs-tsform__form').addEventListener('submit', event => {
           event.preventDefault()
           const form = event.currentTarget
@@ -1767,8 +1768,9 @@
                 </details>
               </div>
               <label data-phone="hidden">
-                <input type="text" name="phone" placeholder="" />
+                <input type="tel" name="phone" placeholder="" />
                 <span class="placeholder">Enter phone number</span>
+                <div class="error">Please enter a valid phone</div>
               </label>
               <div class="crs-auform__actions">
                 <button type="submit">Download Now</button>
@@ -1790,18 +1792,18 @@
       if (formTarget === 'download') {
         $el('section#contact-us .container').insertAdjacentHTML('afterbegin', secondForm)
 
-        $$el('input').forEach((input) => {
-          input.addEventListener('input', (event) => {
+        $$el('input').forEach(input => {
+          input.addEventListener('input', event => {
             const target = event.target
-            const placeholder = target.nextElementSibling
-            console.log(placeholder)
-            if (target.value) {
-              placeholder.style.display = 'none';
-            } else {
-      
-              placeholder.style.display = 'block';
+            const placeholder = target.parentNode.querySelector('.placeholder')
+            if (placeholder) {
+              if (target.value) {
+                placeholder.style.display = 'none'
+              } else {
+                placeholder.style.display = 'block'
+              }
             }
-          });
+          })
         })
         $el('button[data-action="download-step-1"]').addEventListener('click', () => {
           $el('.crs-auform__form').style.display = 'flex'
@@ -1827,6 +1829,11 @@
           $el('.crs-auform__form input[name="email"] ~ .error').style.visibility = 'hidden'
         })
 
+        $el('.crs-auform__form input[name="phone"]').addEventListener('input', () => {
+          $el('.crs-auform__form input[name="phone"]').classList.remove('invalid')
+          $el('.crs-auform__form input[name="phone"] ~ .error').style.visibility = 'hidden'
+        })
+
         $el('.crs-auform__form').addEventListener('submit', event => {
           event.preventDefault()
           const form = event.currentTarget
@@ -1843,6 +1850,12 @@
           if (!data.email) {
             $el('.crs-auform__form input[name="email"]').classList.add('invalid')
             $el('.crs-auform__form input[name="email"] ~ .error').style.visibility = 'visible'
+            return
+          }
+          const regex = /^\d+$/
+          if (data.phone && !regex.test(data.phone)) {
+            $el('.crs-auform__form input[name="phone"]').classList.add('invalid')
+            $el('.crs-auform__form input[name="phone"] ~ .error').style.visibility = 'visible'
             return
           }
           storeValue(USER_SUBMIT_FORM, true)
