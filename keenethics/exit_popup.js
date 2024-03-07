@@ -597,11 +597,9 @@
 
       const noPhone = localStorage.getItem('noPhone')
 
-      $el('.btn-primary').insertAdjacentHTML('afterend', thanksForm)
+      if (noPhone) return
 
-      if (noPhone) {
-        $el('.crs-thform form').style.display = 'none'
-      }
+      $el('.btn-primary').insertAdjacentHTML('afterend', thanksForm)
 
       const regex = /^\d+$/
 
@@ -1263,7 +1261,7 @@
           $el('.crs-tsform__form input[name="email"]').classList.remove('invalid')
           $el('.crs-tsform__form input[name="email"] ~ .error').style.visibility = 'hidden'
         })
-        
+
         $el('.crs-tsform__form').addEventListener('submit', event => {
           event.preventDefault()
           const form = event.currentTarget
@@ -1874,10 +1872,10 @@
               document.body.appendChild(a)
               a.click()
               window.URL.revokeObjectURL(url)
-              if (data.call) {
-                localStorage.setItem('noPhone', true)
-              } else {
+              if (!data.call || data.call === 'No') {
                 localStorage.removeItem('noPhone')
+              } else {
+                localStorage.setItem('noPhone', true)
               }
 
               formSubmit(data)
@@ -2453,6 +2451,10 @@
             content: none;
             display: none;
           }
+          .crs-sdpopup__details summary::-webkit-details-marker {
+            content: none;
+            display: none;
+          }
           .crs-sdpopup__details summary::after {
             content: '';
             background-image: url('data:image/svg+xml,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m24 20-7.873-8L8 20" stroke="%232969CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
@@ -2687,7 +2689,13 @@
           const details = event.currentTarget
           const title = details.querySelector('summary').textContent
           const isUserOpenDetails = !details.open
-
+          console.log(event.target)
+          if (isUserOpenDetails) {
+            const currPopup = document.querySelector('#crs-sdpopup')
+            setTimeout(() => {
+              currPopup.scrollTop = currPopup.scrollHeight
+            }, 0)
+          }
           $$el('#crs-sdpopup .crs-sdpopup__details').forEach(detail => {
             if (detail !== details) {
               detail.removeAttribute('open')
