@@ -922,10 +922,13 @@
               font-size: 16px;
             }
             & input + .placeholder {
-              display: none;
+              display: block;
             }
             & input:placeholder-shown + .placeholder {
               display: block;
+            }
+            & input:focus + .placeholder {
+              display: none;
             }
             & input[data-required] + .placeholder::after {
               content: '*';
@@ -1536,10 +1539,13 @@
               width: 100%;
             }
             & input + .placeholder {
-              display: none;
+              display: block;
             }
             & input:placeholder-shown + .placeholder {
               display: block;
+            }
+            & input:focus + .placeholder {
+              display: none;
             }
             & input[data-required] + .placeholder::after {
               content: '*';
