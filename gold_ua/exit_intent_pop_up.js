@@ -1,148 +1,143 @@
-console.log(
-  '%c EXP: exit intent popup (DEV: SKh)',
-  'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;'
-)
+console.log("%c EXP: exit intent popup (DEV: SKh)", "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;");
 
-const $$el = selector => document.querySelectorAll(selector)
-const $el = selector => document.querySelector(selector)
-const git = 'https://conversionratestore.github.io/projects/'
+const $$el = (selector) => document.querySelectorAll(selector);
+const $el = (selector) => document.querySelector(selector);
+const git = "https://conversionratestore.github.io/projects/";
 // clarity script
 const clarityInterval = setInterval(function () {
-  if (typeof clarity == 'function') {
-    clearInterval(clarityInterval)
-    clarity('set', 'exp_exit_pop_up', 'variant_1')
+  if (typeof clarity == "function") {
+    clearInterval(clarityInterval);
+    clarity("set", "exp_exit_pop_up", "variant_1");
   }
-}, 1000)
+}, 1000);
 // funtion for push data to GA4
-const pushDataLayer = (name, desc, type = '', loc = '') => {
-  window.dataLayer = window.dataLayer || []
+const pushDataLayer = (name, desc, type = "", loc = "") => {
+  window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
-    event: 'event-to-ga4',
+    event: "event-to-ga4",
     event_name: name,
     event_desc: desc,
     event_type: type,
-    event_loc: loc
-  })
-  console.log(`Event: ${name} ${desc} ${type} ${loc}`)
-}
+    event_loc: loc,
+  });
+  console.log(`Event: ${name} ${desc} ${type} ${loc}`);
+};
 
 function checkFocusTime(selector, event, location) {
-  const checker = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !entry.target.getAttribute('data-startShow')) {
-        entry.target.setAttribute('data-startShow', new Date().getTime())
-      } else if (!entry.isIntersecting && entry.target.getAttribute('data-startShow')) {
-        const startShow = entry.target.getAttribute('data-startShow')
-        const endShow = new Date().getTime()
-        const timeShow = Math.round(endShow - startShow)
-        console.log(timeShow, `timeShow`)
-        entry.target.removeAttribute('data-startShow')
-        if (timeShow >= 3000) {
-          pushDataLayer(event, `Block view ${timeShow}`, 'Visibility', location)
-        }
-        checker.unobserve(entry.target)
+  const checker = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !entry.target.getAttribute("data-startShow")) {
+        entry.target.setAttribute("data-startShow", new Date().getTime());
+      } else if (!entry.isIntersecting && entry.target.getAttribute("data-startShow")) {
+        const startShow = entry.target.getAttribute("data-startShow");
+        const endShow = new Date().getTime();
+        const timeShow = Math.round(endShow - startShow);
+        console.log(timeShow, `timeShow`);
+        entry.target.removeAttribute("data-startShow");
+        pushDataLayer(event, `Block view`, "Visibility", location);
+        checker.unobserve(entry.target);
       }
-    })
-  })
+    });
+  });
 
-  checker.observe(document.querySelector(selector))
+  checker.observe(document.querySelector(selector));
 }
 
 const checkScrollSpeed = (function (settings) {
-  settings = settings || {}
+  settings = settings || {};
 
-  let lastPos
-  let newPos
-  let timer
+  let lastPos;
+  let newPos;
+  let timer;
   let delta,
-    delay = settings.delay || 50
+    delay = settings.delay || 50;
 
   function clear() {
-    lastPos = null
-    delta = 0
+    lastPos = null;
+    delta = 0;
   }
 
-  clear()
+  clear();
 
   return function () {
-    newPos = window.scrollY
+    newPos = window.scrollY;
     if (lastPos != null) {
-      delta = newPos - lastPos
+      delta = newPos - lastPos;
     }
-    lastPos = newPos
-    clearTimeout(timer)
-    timer = setTimeout(clear, delay)
-    return delta
-  }
-})()
+    lastPos = newPos;
+    clearTimeout(timer);
+    timer = setTimeout(clear, delay);
+    return delta;
+  };
+})();
 
 function checkScrollPosition(headerOff, elPosition) {
-  const headerOffset = headerOff
-  const elementPosition = elPosition?.getBoundingClientRect().top
-  const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+  const headerOffset = headerOff;
+  const elementPosition = elPosition?.getBoundingClientRect().top;
+  const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
   window.scrollTo({
     top: offsetPosition,
-    behavior: 'smooth'
-  })
+    behavior: "smooth",
+  });
 }
 // load script
-const loadScriptOrStyle = url => {
+const loadScriptOrStyle = (url) => {
   return new Promise((resolve, reject) => {
     // check script by document.scripts
-    const type = url.split('.').pop()
-    if (type === 'js') {
-      const loadedScripts = Array.from(document.scripts).map(script => script.src.toLowerCase())
+    const type = url.split(".").pop();
+    if (type === "js") {
+      const loadedScripts = Array.from(document.scripts).map((script) => script.src.toLowerCase());
       if (loadedScripts.includes(url.toLowerCase())) {
-        console.log(`Script ${url} allready downloaded!`)
-        return resolve('')
+        console.log(`Script ${url} allready downloaded!`);
+        return resolve("");
       }
-      const script = document.createElement('script')
-      script.src = url
-      script.onload = resolve
-      script.onerror = reject
-      document.head.appendChild(script)
-    } else if (type === 'css') {
-      const loadedStyles = Array.from(document.styleSheets).map(style => style.href?.toLowerCase())
+      const script = document.createElement("script");
+      script.src = url;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    } else if (type === "css") {
+      const loadedStyles = Array.from(document.styleSheets).map((style) => style.href?.toLowerCase());
       if (loadedStyles.includes(url.toLowerCase())) {
-        console.log(`Style ${url} allready downloaded!`)
-        return resolve('')
+        console.log(`Style ${url} allready downloaded!`);
+        return resolve("");
       }
-      const style = document.createElement('link')
-      style.rel = 'stylesheet'
-      style.href = url
-      style.onload = resolve
-      style.onerror = reject
-      document.head.appendChild(style)
+      const style = document.createElement("link");
+      style.rel = "stylesheet";
+      style.href = url;
+      style.onload = resolve;
+      style.onerror = reject;
+      document.head.appendChild(style);
     }
-  })
-}
+  });
+};
 // load list of scripts
-const loadScriptsOrStyles = async urls => {
+const loadScriptsOrStyles = async (urls) => {
   for (const url of urls) {
-    await loadScriptOrStyle(url)
-    console.log(`Loaded librari ${url}`)
+    await loadScriptOrStyle(url);
+    console.log(`Loaded librari ${url}`);
   }
-  console.log('All libraries loaded!')
-}
+  console.log("All libraries loaded!");
+};
 function waitForElement(selector) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     if (document.querySelector(selector)) {
-      return resolve(document.querySelector(selector))
+      return resolve(document.querySelector(selector));
     }
 
     const observer = new MutationObserver(() => {
       if (document.querySelector(selector)) {
-        resolve(document.querySelector(selector))
-        observer.disconnect()
+        resolve(document.querySelector(selector));
+        observer.disconnect();
       }
-    })
+    });
 
     observer.observe(document.documentElement, {
       childList: true,
       subtree: true,
-      characterData: true
-    })
-  })
+      characterData: true,
+    });
+  });
 }
 const icons = {
   close: /* HTML */ `
@@ -175,207 +170,202 @@ const icons = {
     <svg xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10" fill="none">
       <path d="M1 1.5L4.5 5L1 8.5" stroke="#212529" stroke-width="2" stroke-linecap="round" />
     </svg>
-  `
-}
+  `,
+};
 
 const localTxt = {
   ua: {
-    productsHeaderTitle: 'Вже майже ваше!',
-    outOfStockTxtPart1: 'Залишилося менше',
-    outOfStockTxtPart2: 'шт. на складі',
-    productsPriceTxt: 'Ціна зі знижкою:',
-    productsFooterInfoTxt:
-      'Ми не можемо гарантувати наявність, якщо ви не <span class="accent_color">зробите замовлення зараз</span>',
-    orderBtn: 'Оформити замовлення',
-    hrefBtn: 'https://gold.ua/ua/order/create'
+    productsHeaderTitle: "Вже майже ваше!",
+    outOfStockTxtPart1: "Залишилося менше",
+    outOfStockTxtPart2: "шт. на складі",
+    productsPriceTxt: "Ціна зі знижкою:",
+    productsFooterInfoTxt: 'Ми не можемо гарантувати наявність, якщо ви не <span class="accent_color">зробите замовлення зараз</span>',
+    orderBtn: "Оформити замовлення",
+    hrefBtn: "https://gold.ua/ua/order/create",
   },
   ru: {
-    productsHeaderTitle: 'Уже почти ваше!',
-    outOfStockTxtPart1: 'Осталось меньше',
-    outOfStockTxtPart2: 'шт. на складе',
-    productsPriceTxt: 'Цена со скидкой:',
-    productsFooterInfoTxt:
-      'Мы не можем гарантировать наличие, если вы не <span class="accent_color">сделаете заказ сейчас</span>',
-    orderBtn: 'Оформить заказ',
-    hrefBtn: 'https://gold.ua/order/create'
-  }
-}
+    productsHeaderTitle: "Уже почти ваше!",
+    outOfStockTxtPart1: "Осталось меньше",
+    outOfStockTxtPart2: "шт. на складе",
+    productsPriceTxt: "Цена со скидкой:",
+    productsFooterInfoTxt: 'Мы не можем гарантировать наличие, если вы не <span class="accent_color">сделаете заказ сейчас</span>',
+    orderBtn: "Оформить заказ",
+    hrefBtn: "https://gold.ua/order/create",
+  },
+};
 
-const locationHref = window.location.href
-let locale = null
-let localTxtValue = null
-if (locationHref.includes('/ua/')) {
-  locale = 'ua'
+const locationHref = window.location.href;
+let locale = null;
+let localTxtValue = null;
+if (locationHref.includes("/ua/")) {
+  locale = "ua";
 } else {
-  locale = 'ru'
+  locale = "ru";
 }
 
 // IntentPopup
 class IntentPopup {
   constructor(locale, delayTime, lastAddedTimerStart) {
-    this.locale = locale
-    this.delayTime = delayTime
-    this.timeoutId = null
-    this.sessionKey = 'exitIntentPopupShown'
-    this.checkLastAddedTimer = null
-    this.lastAddedTimerStart = lastAddedTimerStart
-    this.maxPopupCount = 1
-    this.outOfStockNumbers = [2, 3, 4, 5]
-    this.device = screen.width <= 768 ? 'Mobile' : 'Desktop'
+    this.locale = locale;
+    this.delayTime = delayTime;
+    this.timeoutId = null;
+    this.sessionKey = "exitIntentPopupShown";
+    this.checkLastAddedTimer = null;
+    this.lastAddedTimerStart = lastAddedTimerStart;
+    this.maxPopupCount = 1;
+    this.outOfStockNumbers = [2, 3, 4, 5];
+    this.device = screen.width <= 768 ? "Mobile" : "Desktop";
   }
 
   init() {
-    localTxtValue = localTxt[this.locale]
-    this.initMainStyles()
-    this.createPopup()
-    this.intentPopupTriggers()
+    localTxtValue = localTxt[this.locale];
+    this.initMainStyles();
+    this.createPopup();
+    this.intentPopupTriggers();
 
-    console.log(`ONLY POPUP >>>>>`, this.locale)
+    console.log(`ONLY POPUP >>>>>`, this.locale);
   }
 
   // IntentPopup
   intentPopupTriggers() {
-    if (this.device === 'Mobile') {
+    if (this.device === "Mobile") {
       // Скролл вверх (JS speed value: 70) для всіх сторінок
       // Свайп різкий вверх, вниз для всіх сторінок
-      document.addEventListener('scroll', () => {
-        const scrollSpeed = checkScrollSpeed()
+      document.addEventListener("scroll", () => {
+        const scrollSpeed = checkScrollSpeed();
         if (+scrollSpeed < -100 || +scrollSpeed > 100) {
-          if (!sessionStorage.getItem('scrollForPopup')) {
-            console.log(scrollSpeed, `scrollSpeed`)
-            sessionStorage.setItem('scrollForPopup', 'yes')
-            this.getItemsBasket()
+          if (!sessionStorage.getItem("scrollForPopup")) {
+            console.log(scrollSpeed, `scrollSpeed`);
+            sessionStorage.setItem("scrollForPopup", "yes");
+            this.getItemsBasket();
           }
         }
-      })
+      });
 
       // На 30ту секунду на поп-апі із чекаутом (https://monosnap.com/file/CCs1KFK0zBy9c4uMsOGY1SuxdXipot)
       // чи на чекаут сторінці(https://gold.ua/ua/order/create), якщо немає ніякої активності ці 30 сек.
-      waitForElement('#b4Modal').then(i => {
-        this.delayTime = 30000
-        this.setupListeners()
-        this.resetTimer()
-      })
+      waitForElement("#b4Modal").then((i) => {
+        this.delayTime = 30000;
+        this.setupListeners();
+        this.resetTimer();
+      });
 
-      if (window.location.href === localTxtValue['hrefBtn']) {
-        this.delayTime = 30000
-        this.setupListeners()
-        this.resetTimer()
+      if (window.location.href === localTxtValue["hrefBtn"]) {
+        this.delayTime = 30000;
+        this.setupListeners();
+        this.resetTimer();
       }
     }
 
-    if (this.device === 'Desktop') {
+    if (this.device === "Desktop") {
       // Скролл вверх (JS speed value: 70) для всіх сторінок
-      document.addEventListener('scroll', () => {
-        const scrollSpeed = checkScrollSpeed()
+      document.addEventListener("scroll", () => {
+        const scrollSpeed = checkScrollSpeed();
 
         if (+scrollSpeed < -70) {
-          if (!sessionStorage.getItem('scrollForPopup')) {
-            sessionStorage.setItem('scrollForPopup', 'yes')
-            this.getItemsBasket()
+          if (!sessionStorage.getItem("scrollForPopup")) {
+            sessionStorage.setItem("scrollForPopup", "yes");
+            this.getItemsBasket();
           }
         }
-      })
+      });
       // Курсор виходить за межі рамки сторінки в браузері, для вісх сторінок
-      document.addEventListener('mouseout', event => {
+      document.addEventListener("mouseout", (event) => {
         if (!event.relatedTarget) {
-          this.getItemsBasket()
+          this.getItemsBasket();
         }
-      })
+      });
     }
 
     // На 180 секунду після додовання крайнього товару в кошик, на будь якій сторінці сайту,
     // якщо не було чекауту(користувач додав товар у кошик і серфить сайт далі та не повертається у кошик, та не додає нові товари)
-    this.initMutationObserverCartPopup()
-    this.checkLastAddedTime()
+    this.initMutationObserverCartPopup();
+    this.checkLastAddedTime();
 
     // На 60 секунду на будь якій сторінці на сайті, якщо не відбувається ніякої дії.
-    this.setupListeners()
-    this.resetTimer()
+    this.setupListeners();
+    this.resetTimer();
 
     // Зміна фокусу екрану, якщо користувач перемкнувся на інше вікно/інший таб у браузері (чи відкрив якийсь інший додаток і тп)
     // і знову повернувся на сайт, і при цьому у нього доданий товар у кошик.
-    document.addEventListener('visibilitychange', () => {
+    document.addEventListener("visibilitychange", () => {
       if (!document.hidden) {
-        console.log('Зміна фокусу екрану: сторінка стала видимою')
-        this.getItemsBasket()
+        console.log("Зміна фокусу екрану: сторінка стала видимою");
+        this.getItemsBasket();
       }
-    })
+    });
   }
   async getItemsBasket() {
     if (this.isPopupOpen()) {
-      return
+      return;
     }
 
-    if (sessionStorage.getItem('intentPopup')) {
-      sessionStorage.removeItem('intentPopup')
+    if (sessionStorage.getItem("intentPopup")) {
+      sessionStorage.removeItem("intentPopup");
     }
 
-    let res = await fetch(localTxtValue['hrefBtn'])
-    res = await res.text()
+    let res = await fetch(localTxtValue["hrefBtn"]);
+    res = await res.text();
 
-    const parser = new DOMParser()
-    const doc = parser.parseFromString(res, 'text/html')
-    const itemsBasket = doc.querySelectorAll('.basket-page .product-item')
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(res, "text/html");
+    const itemsBasket = doc.querySelectorAll(".basket-page .product-item");
     if (itemsBasket.length !== 0) {
-      this.showIntentPopup()
+      this.showIntentPopup();
 
-      itemsBasket.forEach(el => {
-        const link = el.querySelector('.image.me-3 > a')?.href
-        const img = el.querySelector('.image.me-3 > a')?.innerHTML
-        const title = el.querySelector('.info .name a')?.textContent
-        const price = el.querySelector('.info .price')?.textContent.split('x')[0]
+      itemsBasket.forEach((el) => {
+        const link = el.querySelector(".image.me-3 > a")?.href;
+        const img = el.querySelector(".image.me-3 > a")?.innerHTML;
+        const title = el.querySelector(".info .name a")?.textContent;
+        const price = el.querySelector(".info .price")?.textContent.split("x")[0];
 
-        waitForElement('.product_list').then(i => {
+        waitForElement(".product_list").then((i) => {
           if (itemsBasket.length === 1) {
-            i.closest('.swiper').classList.add('one_item')
+            i.closest(".swiper").classList.add("one_item");
           }
           if (i.length !== el.children.length) {
-            i.insertAdjacentHTML(
-              'beforeend',
-              this.productItemHtml(link, img, this.generateMessageOutOfStock(), title, price)
-            )
+            i.insertAdjacentHTML("beforeend", this.productItemHtml(link, img, this.generateMessageOutOfStock(), title, price));
           }
-        })
-      })
+        });
+      });
 
-      this.allGroupProductSlider()
-      this.onClickProductItemInfo()
-      this.onClickOrderBtn()
+      this.allGroupProductSlider();
+      this.onClickProductItemInfo();
+      this.onClickOrderBtn();
     }
   }
   // Тріггери для поп-апу (товар доданий до кошику)
   initMutationObserverCartPopup() {
-    const cartList = document.body
-    let observer = new MutationObserver(muts => {
+    const cartList = document.body;
+    let observer = new MutationObserver((muts) => {
       for (let mutation of muts) {
         for (let node of mutation.addedNodes) {
-          if (!(node instanceof HTMLElement)) continue
-          if (node.matches('.modal-backdrop.show')) {
-            sessionStorage.setItem('lastAddedTime', new Date().getTime())
+          if (!(node instanceof HTMLElement)) continue;
+          if (node.matches(".modal-backdrop.show")) {
+            sessionStorage.setItem("lastAddedTime", new Date().getTime());
           }
         }
       }
-    })
+    });
 
     observer.observe(cartList, {
       childList: true,
-      subtree: true
-    })
+      subtree: true,
+    });
   }
   resetTimer() {
-    clearTimeout(this.timeoutId) // Clear the previous timeout
-    this.timeoutId = setTimeout(() => this.getItemsBasket(), this.delayTime) // Set a new timeout
+    clearTimeout(this.timeoutId); // Clear the previous timeout
+    this.timeoutId = setTimeout(() => this.getItemsBasket(), this.delayTime); // Set a new timeout
   }
   setupListeners() {
     // Attach the resetTimer function to relevant events
-    document.addEventListener('mousemove', () => this.resetTimer())
-    document.addEventListener('keydown', () => this.resetTimer())
+    document.addEventListener("mousemove", () => this.resetTimer());
+    document.addEventListener("keydown", () => this.resetTimer());
 
     // Add touch event listeners for mobile devices
-    if (this.device === 'Mobile') {
-      document.addEventListener('touchstart', () => this.resetTimer())
-      document.addEventListener('touchmove', () => this.resetTimer())
+    if (this.device === "Mobile") {
+      document.addEventListener("touchstart", () => this.resetTimer());
+      document.addEventListener("touchmove", () => this.resetTimer());
     }
   }
   productItemHtml(pdpLink, img, outOfStock, title, price) {
@@ -393,7 +383,7 @@ class IntentPopup {
               </a>
               <a href="${pdpLink}">
                 <div class="product_item_price_wrapper">
-                  <span class="product_item_price_txt">${localTxtValue['productsPriceTxt']}</span>
+                  <span class="product_item_price_txt">${localTxtValue["productsPriceTxt"]}</span>
                   <span class="product_item_price_value">${price}</span>
                 </div>
               </a>
@@ -401,14 +391,14 @@ class IntentPopup {
           </div>
         </div>
       </div>
-    `
-    return productItem
+    `;
+    return productItem;
   }
   generateMessageOutOfStock() {
-    const randomIndex = Math.floor(Math.random() * this.outOfStockNumbers.length)
-    const randomNumber = this.outOfStockNumbers[randomIndex]
-    const outOfStockTxt = `<p>${localTxtValue['outOfStockTxtPart1']} <span class="out_of_stock_count">${randomNumber}</span> ${localTxtValue['outOfStockTxtPart2']}</p>`
-    return outOfStockTxt
+    const randomIndex = Math.floor(Math.random() * this.outOfStockNumbers.length);
+    const randomNumber = this.outOfStockNumbers[randomIndex];
+    const outOfStockTxt = `<p>${localTxtValue["outOfStockTxtPart1"]} <span class="out_of_stock_count">${randomNumber}</span> ${localTxtValue["outOfStockTxtPart2"]}</p>`;
+    return outOfStockTxt;
   }
   showIntentPopup() {
     const popupStyle = /* HTML */ `
@@ -429,7 +419,7 @@ class IntentPopup {
         .products_header h2 {
           color: #000;
           text-align: center;
-          font-family: 'Lora';
+          font-family: "Lora";
           font-size: 22px;
           font-weight: 400;
           line-height: 28px;
@@ -439,7 +429,7 @@ class IntentPopup {
         .products_header p {
           color: #666;
           text-align: center;
-          font-family: 'Euclid Circular A';
+          font-family: "Euclid Circular A";
           font-size: 14px;
           font-weight: 400;
           line-height: 20px;
@@ -453,7 +443,7 @@ class IntentPopup {
         .products_banner_limit p {
           color: #000;
           text-align: center;
-          font-family: 'Euclid Circular A';
+          font-family: "Euclid Circular A";
           font-size: 14px;
           font-weight: 400;
           line-height: 20px;
@@ -479,7 +469,7 @@ class IntentPopup {
         }
         .products_footer_info p {
           color: #666;
-          font-family: 'Euclid Circular A';
+          font-family: "Euclid Circular A";
           font-size: 14px;
           font-style: normal;
           font-weight: 400;
@@ -497,7 +487,7 @@ class IntentPopup {
           width: 100%;
           height: 56px;
           color: #fff;
-          font-family: 'Euclid Circular A';
+          font-family: "Euclid Circular A";
           font-size: 16px;
           font-weight: 600;
           line-height: 24px;
@@ -515,7 +505,7 @@ class IntentPopup {
           }
         }
       </style>
-    `
+    `;
 
     const productItemStyle = /* HTML */ `
       <style>
@@ -555,7 +545,7 @@ class IntentPopup {
         }
         .product_item .out_of_stock_wrapper p {
           color: #eb3300;
-          font-family: 'Euclid Circular A';
+          font-family: "Euclid Circular A";
           font-size: 12px;
           font-weight: 400;
           line-height: 16px;
@@ -571,7 +561,7 @@ class IntentPopup {
         .product_item .product_item_title {
           color: #000;
           text-overflow: ellipsis;
-          font-family: 'Lora';
+          font-family: "Lora";
           font-size: 16px;
           font-weight: 500;
           line-height: 22px;
@@ -582,7 +572,7 @@ class IntentPopup {
         .product_item_price_txt {
           color: #666;
           text-align: center;
-          font-family: 'Euclid Circular A';
+          font-family: "Euclid Circular A";
           font-size: 16px;
           font-weight: 400;
           line-height: 24px;
@@ -590,7 +580,7 @@ class IntentPopup {
         }
         .product_item_price_value {
           color: #3f1263;
-          font-family: 'Euclid Circular A';
+          font-family: "Euclid Circular A";
           font-size: 18px;
           font-weight: 600;
           line-height: 24px;
@@ -661,12 +651,12 @@ class IntentPopup {
           }
         }
       </style>
-    `
+    `;
     const productsPopup = /* HTML */ `
       ${popupStyle}
       <div class="products_popup">
         <div class="products_header">
-          <h2>${localTxtValue['productsHeaderTitle']}</h2>
+          <h2>${localTxtValue["productsHeaderTitle"]}</h2>
         </div>
         <div class="products_body">
           <div class="product_list_wrapper">
@@ -682,99 +672,86 @@ class IntentPopup {
         <div class="products_footer">
           <div class="products_footer_info">
             ${icons.info}
-            <p>${localTxtValue['productsFooterInfoTxt']}</p>
+            <p>${localTxtValue["productsFooterInfoTxt"]}</p>
           </div>
-          <a class="order_btn" href="${localTxtValue['hrefBtn']}">${localTxtValue['orderBtn']}</a>
+          <a class="order_btn" href="${localTxtValue["hrefBtn"]}">${localTxtValue["orderBtn"]}</a>
         </div>
       </div>
-    `
+    `;
 
     // Показувати поп-ап максимум 3 рази на унікальну сессію
-    const popupCount = this.getPopupCount()
-    if (popupCount < this.maxPopupCount && !sessionStorage.getItem('intentPopup')) {
-      if (sessionStorage.getItem('scrollForPopup')) {
-        sessionStorage.removeItem('scrollForPopup')
+    const popupCount = this.getPopupCount();
+    if (popupCount < this.maxPopupCount && !sessionStorage.getItem("intentPopup")) {
+      if (sessionStorage.getItem("scrollForPopup")) {
+        sessionStorage.removeItem("scrollForPopup");
       }
-      this.handleShowPopup(productsPopup)
-      this.savePopupCount(popupCount + 1)
+      this.handleShowPopup(productsPopup);
+      this.savePopupCount(popupCount + 1);
     }
   }
   getPopupCount() {
-    const sessionData = sessionStorage.getItem(this.sessionKey)
-    return sessionData ? parseInt(sessionData, 10) : 0
+    const sessionData = sessionStorage.getItem(this.sessionKey);
+    return sessionData ? parseInt(sessionData, 10) : 0;
   }
   savePopupCount(count) {
-    sessionStorage.setItem(this.sessionKey, count)
+    sessionStorage.setItem(this.sessionKey, count);
   }
   isPopupOpen() {
-    return $el('.new-popup__content')?.children.length > 0
+    return $el(".new-popup__content")?.children.length > 0;
   }
   onClickProductItemInfo() {
-    waitForElement('.product_item_wrapper').then(el => {
-      $$el('[data-info]')?.forEach(el => {
-        el.addEventListener('click', e => {
-          if (e.currentTarget.getAttribute('data-info')) {
-            pushDataLayer(
-              'exp_exit_pop_up_link_prodcart_item',
-              e.currentTarget.getAttribute('data-info'),
-              'Link',
-              'Exit popup for users with product in cart'
-            )
+    waitForElement(".product_item_wrapper").then((el) => {
+      $$el("[data-info]")?.forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (e.currentTarget.getAttribute("data-info")) {
+            pushDataLayer("exp_exit_pop_up_link_prodcart_item", e.currentTarget.getAttribute("data-info"), "Link", "Exit popup for users with product in cart");
           }
-        })
-      })
-    })
+        });
+      });
+    });
   }
   onClickOrderBtn() {
-    waitForElement('.products_footer .order_btn').then(el => {
-      el.addEventListener('click', e => {
-        pushDataLayer(
-          'exp_exit_pop_up_but_prodcart_order',
-          'Make an order',
-          'Button',
-          'Exit popup for users with product in cart'
-        )
-      })
-    })
+    waitForElement(".products_footer .order_btn").then((el) => {
+      el.addEventListener("click", (e) => {
+        pushDataLayer("exp_exit_pop_up_but_prodcart_order", "Make an order", "Button", "Exit popup for users with product in cart");
+      });
+    });
   }
   checkLastAddedTime() {
     let timer = setInterval(() => {
-      const timesTamp = sessionStorage.getItem('lastAddedTime')
-      if (new Date().getTime() - +timesTamp >= 180000 && window.location.href !== localTxtValue['hrefBtn']) {
-        clearInterval(timer)
-        this.getItemsBasket()
+      const timesTamp = sessionStorage.getItem("lastAddedTime");
+      if (new Date().getTime() - +timesTamp >= 180000 && window.location.href !== localTxtValue["hrefBtn"]) {
+        clearInterval(timer);
+        this.getItemsBasket();
       }
-    }, 1000)
+    }, 1000);
   }
   allGroupProductSlider() {
-    loadScriptsOrStyles([
-      'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
-      'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js'
-    ]).then(async () => {
+    loadScriptsOrStyles(["https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css", "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"]).then(async () => {
       let s = setInterval(() => {
-        if (typeof Swiper === 'function' && $el('.swiper')) {
-          clearInterval(s)
-          console.log(typeof Swiper, `typeof Swiper `)
+        if (typeof Swiper === "function" && $el(".swiper")) {
+          clearInterval(s);
+          console.log(typeof Swiper, `typeof Swiper `);
 
-          const swiperMain = new Swiper('.swiper', {
+          const swiperMain = new Swiper(".swiper", {
             // Optional parameters
-            direction: 'horizontal',
-            slidesPerView: 'auto',
+            direction: "horizontal",
+            slidesPerView: "auto",
 
             pagination: {
-              el: '.swiper-pagination',
+              el: ".swiper-pagination",
               dynamicBullets: true,
-              clickable: true
+              clickable: true,
             },
 
             navigation: {
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev'
-            }
-          })
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+          });
         }
-      }, 100)
-    })
+      }, 100);
+    });
   }
 
   // common func
@@ -837,7 +814,7 @@ class IntentPopup {
           }
         }
       </style>
-    `
+    `;
     const popup = /* HTML */ `
       ${popupStyle}
       <div class="new-popup-backdrop is-hidden">
@@ -846,116 +823,102 @@ class IntentPopup {
           <div class="new-popup__content"></div>
         </div>
       </div>
-    `
+    `;
 
-    if (!$el('.new-popup-backdrop')) {
-      this.insert(popup, 'body', 'afterbegin')
+    if (!$el(".new-popup-backdrop")) {
+      this.insert(popup, "body", "afterbegin");
     }
-    waitForElement('.new-popup-backdrop').then(el => {
-      this.handleClosePopup()
-    })
+    waitForElement(".new-popup-backdrop").then((el) => {
+      this.handleClosePopup();
+    });
   }
   handleShowPopup(content) {
-    const body = $el('body'),
-      backdrop = $el('.new-popup-backdrop'),
-      popup = $el('.new-popup .new-popup__content')
+    const body = $el("body"),
+      backdrop = $el(".new-popup-backdrop"),
+      popup = $el(".new-popup .new-popup__content");
 
-    if (backdrop.classList.contains('is-hidden')) {
-      backdrop.classList.remove('is-hidden')
+    if (backdrop.classList.contains("is-hidden")) {
+      backdrop.classList.remove("is-hidden");
     }
-    body.style.overflow = 'hidden'
-    popup.innerHTML = content
-    sessionStorage.setItem('intentPopup', `yes`)
-    checkFocusTime('.products_popup', 'exp_exit_pop_up_vis_prodcart_block', 'Exit popup for users with product in cart')
-    this.handleClosePopup()
+    body.style.overflow = "hidden";
+    popup.innerHTML = content;
+    sessionStorage.setItem("intentPopup", `yes`);
+    checkFocusTime(".products_popup", "exp_exit_pop_up_vis_prodcart_block", "Exit popup for users with product in cart");
+    this.handleClosePopup();
   }
   handleClosePopup() {
-    const body = $el('body'),
-      backdrop = $el('.new-popup-backdrop'),
-      popup = $el('.new-popup'),
-      closePopupBtns = popup.querySelectorAll('[data-popup="close"]')
-    closePopupBtns.forEach(btn => {
-      btn.addEventListener('click', e => {
+    const body = $el("body"),
+      backdrop = $el(".new-popup-backdrop"),
+      popup = $el(".new-popup"),
+      closePopupBtns = popup.querySelectorAll('[data-popup="close"]');
+    closePopupBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
         if (e.currentTarget) {
-          if (!e.currentTarget.getAttribute('data-test')) {
-            backdrop.classList.add('is-hidden')
-            body.style.overflow = 'initial'
+          if (!e.currentTarget.getAttribute("data-test")) {
+            backdrop.classList.add("is-hidden");
+            body.style.overflow = "initial";
 
-            pushDataLayer(
-              'exp_exit_pop_up_but_prodcart_close',
-              'Close',
-              'Button',
-              'Exit popup for users with product in cart'
-            )
+            pushDataLayer("exp_exit_pop_up_but_prodcart_close", "Close", "Button", "Exit popup for users with product in cart");
 
             setTimeout(() => {
-              $el('.new-popup__content').innerHTML = ''
-            }, 500)
+              $el(".new-popup__content").innerHTML = "";
+            }, 500);
           }
-          e.currentTarget.setAttribute('data-test', '1')
+          e.currentTarget.setAttribute("data-test", "1");
         }
-      })
-    })
-    backdrop.addEventListener(this.device === 'Mobile' ? 'click' : 'mousedown', e => {
-      if (!e.target.getAttribute('data-test')) {
-        if (e.target.matches('.new-popup-backdrop')) {
-          backdrop.classList.add('is-hidden')
-          body.style.overflow = 'initial'
+      });
+    });
+    backdrop.addEventListener(this.device === "Mobile" ? "click" : "mousedown", (e) => {
+      if (!e.target.getAttribute("data-test")) {
+        if (e.target.matches(".new-popup-backdrop")) {
+          backdrop.classList.add("is-hidden");
+          body.style.overflow = "initial";
 
-          pushDataLayer(
-            'exp_exit_pop_up_clibeh_prodcart_close',
-            'Close',
-            'Сlick behind the pop-up area',
-            'Exit popup for users with product in cart'
-          )
+          pushDataLayer("exp_exit_pop_up_clibeh_prodcart_close", "Close", "Сlick behind the pop-up area", "Exit popup for users with product in cart");
           setTimeout(() => {
-            $el('.new-popup__content').innerHTML = ''
-          }, 500)
+            $el(".new-popup__content").innerHTML = "";
+          }, 500);
         }
       }
-      e.target.setAttribute('data-test', '1')
+      e.target.setAttribute("data-test", "1");
       setTimeout(() => {
-        if (e.target.getAttribute('data-test')) {
-          e.target.removeAttribute('data-test')
+        if (e.target.getAttribute("data-test")) {
+          e.target.removeAttribute("data-test");
         }
-      }, 1000)
-    })
+      }, 1000);
+    });
   }
-  insertElem(html, selector, position = 'afterbegin') {
-    $el(selector)?.insertAdjacentElement(position, html)
+  insertElem(html, selector, position = "afterbegin") {
+    $el(selector)?.insertAdjacentElement(position, html);
   }
-  insert(html, selector, position = 'beforeend') {
-    $el(selector).insertAdjacentHTML(position, html)
+  insert(html, selector, position = "beforeend") {
+    $el(selector).insertAdjacentHTML(position, html);
   }
   // common styles
   initMainStyles() {
     const mainStyles = /* HTML */ `
       <style>
         @font-face {
-          font-family: 'Euclid Circular A';
-          src: url(https://conversionratestore.github.io/projects/gold_ua/fonts/EuclidCircularA/EuclidCircularA-Bold.woff)
-            format('woff');
+          font-family: "Euclid Circular A";
+          src: url(https://conversionratestore.github.io/projects/gold_ua/fonts/EuclidCircularA/EuclidCircularA-Bold.woff) format("woff");
           font-weight: 700;
           font-style: normal;
         }
         @font-face {
-          font-family: 'Euclid Circular A';
-          src: url(https://conversionratestore.github.io/projects/gold_ua/fonts/EuclidCircularA/EuclidCircularA-SemiBold.woff)
-            format('woff');
+          font-family: "Euclid Circular A";
+          src: url(https://conversionratestore.github.io/projects/gold_ua/fonts/EuclidCircularA/EuclidCircularA-SemiBold.woff) format("woff");
           font-weight: 600;
           font-style: normal;
         }
         @font-face {
-          font-family: 'Euclid Circular A';
-          src: url(https://conversionratestore.github.io/projects/gold_ua/fonts/EuclidCircularA/EuclidCircularA-Medium.woff)
-            format('woff');
+          font-family: "Euclid Circular A";
+          src: url(https://conversionratestore.github.io/projects/gold_ua/fonts/EuclidCircularA/EuclidCircularA-Medium.woff) format("woff");
           font-weight: 500;
           font-style: normal;
         }
         @font-face {
-          font-family: 'Euclid Circular A';
-          src: url(https://conversionratestore.github.io/projects/gold_ua/fonts/EuclidCircularA/EuclidCircularA-Regular.woff)
-            format('woff');
+          font-family: "Euclid Circular A";
+          src: url(https://conversionratestore.github.io/projects/gold_ua/fonts/EuclidCircularA/EuclidCircularA-Regular.woff) format("woff");
           font-weight: 400;
           font-style: normal;
         }
@@ -972,10 +935,10 @@ class IntentPopup {
           }
         }
       </style>
-    `
-    this.insert(mainStyles, 'head')
+    `;
+    this.insert(mainStyles, "head");
   }
 }
 
-const exitIntentPopup = new IntentPopup(locale, 60000, 180000)
-exitIntentPopup.init()
+const exitIntentPopup = new IntentPopup(locale, 60000, 180000);
+exitIntentPopup.init();
