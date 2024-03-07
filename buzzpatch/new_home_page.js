@@ -1,8 +1,8 @@
 (function() {
   "use strict";
-  const p = ({ name: e, dev: r }) => {
+  const p = ({ name: e, dev: t }) => {
     console.log(
-      `%c EXP: ${e} (DEV: ${r})`,
+      `%c EXP: ${e} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   }, n = "https://conversionratestore.github.io/projects/buzzpatch", c = [
@@ -99,13 +99,13 @@
       text: '“The Buzzpatch scent creates a virtual shield by "camouflaging" your kids from mosquitos) Genius!”',
       img: `${n}/img/new-home-page/slider_logo_5.png`
     }
-  ], h = () => {
-    let e = $("#featured-reviews2 .carousel-item:not(.slick-cloned)"), r = [];
-    return e.each((t, i) => {
+  ], d = () => {
+    let e = $("#featured-reviews2 .carousel-item:not(.slick-cloned)"), t = [];
+    return e.each((r, i) => {
       let a = {};
-      a.name = $(i).find(".name").text(), a.img = $(i).find(".review-header>img").attr("data-src") || "no_img", a.text = $(i).find(".review-text p").text(), r.push(a);
-    }), console.log(r), r;
-  }, d = [
+      a.name = $(i).find(".name").text(), a.img = $(i).find(".review-header>img").attr("data-src") || "no_img", a.text = $(i).find(".review-text p").text(), t.push(a);
+    }), console.log(t), t;
+  }, h = [
     {
       name: "SleepyPatch for Kids",
       subText: "Sleep Promoting Stickers",
@@ -163,7 +163,11 @@
     `
   <section class="new_main_block">
     <style>
-      .new_home_page {\r
+      .new_trustpilot_reviews.content_wrapper .insta_widget {\r
+  margin-bottom: 60px;\r
+}\r
+\r
+.new_home_page {\r
   & * {\r
     box-sizing: border-box;\r
     padding: 0;\r
@@ -208,11 +212,56 @@
     opacity: 1;\r
     font-size: 16px;\r
   }\r
+\r
+  & .slider_dots {\r
+    max-width: 200px;\r
+    margin: 0 auto;\r
+    display: flex;\r
+    align-items: center;\r
+  }\r
+\r
+  & .slider_dots span {\r
+    height: 12px;\r
+    width: 12px;\r
+    margin: 0 4px;\r
+    display: flex;\r
+    align-items: center;\r
+    justify-content: center;\r
+  }\r
+\r
+  & .slider_dots span i {\r
+    display: flex;\r
+    background: #9aabd5;\r
+    opacity: 0.5;\r
+    border-radius: 50%;\r
+    transition: all 0.3s;\r
+    height: 12px;\r
+    width: 12px;\r
+    scale: 0.5;\r
+  }\r
+\r
+  & .slider_dots span.slick-active i {\r
+    scale: 0.75;\r
+  }\r
+\r
+  & .slider_dots span.slick-current i {\r
+    background: #ff209e;\r
+    opacity: 1;\r
+    scale: 1;\r
+  }\r
 }\r
 \r
 .new_main_block {\r
   padding: 70px 0 120px;\r
   text-align: center;\r
+  position: relative;\r
+\r
+  & .hi {\r
+    position: absolute;\r
+    top: -42;\r
+    right: 0;\r
+    z-index: 100;\r
+  }\r
 \r
   & .crs_btn {\r
     border-radius: 100px;\r
@@ -810,6 +859,44 @@
       scale: 0.8;\r
       z-index: -2;\r
     }\r
+\r
+    & .slick-arrow {\r
+      height: 82px;\r
+      width: 82px;\r
+      background: #1f4fc9;\r
+      border-radius: 50%;\r
+      display: flex;\r
+      justify-content: center;\r
+      align-items: center;\r
+      z-index: 1;\r
+\r
+      &.slick-next {\r
+        right: -41px;\r
+\r
+        &::before {\r
+          content: '';\r
+          height: 52px;\r
+          width: 52px;\r
+          background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/arrow-blue.svg)\r
+            no-repeat center center;\r
+          background-size: contain;\r
+        }\r
+      }\r
+\r
+      &.slick-prev {\r
+        left: -41px;\r
+\r
+        &::before {\r
+          content: '';\r
+          height: 52px;\r
+          width: 52px;\r
+          background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/arrow-blue.svg)\r
+            no-repeat center center;\r
+          background-size: contain;\r
+          transform: rotate(180deg);\r
+        }\r
+      }\r
+    }\r
   }\r
 }\r
 \r
@@ -971,6 +1058,14 @@ footer {\r
   }\r
 }\r
 @media (max-width: 500px) {\r
+  #shopify-section-template--15241309847596__17097813754ae81b0d {\r
+    padding: 0 24px !important;\r
+  }\r
+\r
+  .new_trustpilot_reviews.content_wrapper .insta_widget {\r
+    margin-bottom: -20px;\r
+  }\r
+\r
   .desktop {\r
     display: none !important;\r
   }\r
@@ -1127,6 +1222,7 @@ footer {\r
     & .content_wrapper {\r
       flex-direction: column;\r
       gap: 10px;\r
+      overflow: hidden;\r
 \r
       & > div {\r
         width: 100%;\r
@@ -1287,6 +1383,9 @@ footer {\r
 }\r
 
     </style>
+    <span class="hi desktop">
+      <img src="${n}/img/new-home-page/side.svg" alt="hi" />
+    </span>
     <p class="total_reviews desktop">
       <img src="${n}/img/new-home-page/stars_green.svg" alt="stars" />
       <span>Excellent | 2,943</span>
@@ -1328,12 +1427,12 @@ footer {\r
   <section class="new_stickers_slider">
     <h2>Discover our plant-powered sticker range</h2>
     <div class="content_wrapper">
-      <div class="slider_wrapper">
-        ${d.map((e, r) => (
+      <div class="slider_wrapper parent_slider">
+        ${h.map((e, t) => (
       /* HTML */
       ` <div class="item">
               <img src="${n}/img/new-home-page/as_seen.svg" class="tv" alt="tv" />
-              <span class="save">51% off</span>
+              <span class="save">40% off</span>
               <div class="img">
                 <img src="${e.img[2]}" alt="main" />
                 <img class="sub_img" src="${e.img2}" alt="illustration" />
@@ -1341,10 +1440,23 @@ footer {\r
               <p class="name">${e.name}</p>
               <p class="sub_text">${e.subText}</p>
               <div class="qty">
-                <span class="active" data-variant="${e.variants[2]}" data-img="${e.img[2]}">3 packs</span>
-                <span data-variant="${e.variants[0]}" data-img="${e.img[0]}">1 pack</span>
-                <span data-variant="${e.variants[1]}" data-img="${e.img[1]}">2 packs</span>
-                <span data-variant="${e.variants[3]}" data-img="${e.img[3]}">4 packs</span>
+                <span
+                  class="active"
+                  data-variant="${e.variants[2]}"
+                  data-img="${e.img[2]}"
+                  data-price="12.00"
+                  data-save="40"
+                  >3 packs</span
+                >
+                <span data-variant="${e.variants[0]}" data-img="${e.img[0]}" data-price="14.99" data-save="50"
+                  >1 pack</span
+                >
+                <span data-variant="${e.variants[1]}" data-img="${e.img[1]}" data-price="13.50" data-save="33"
+                  >2 packs</span
+                >
+                <span data-variant="${e.variants[3]}" data-img="${e.img[3]}" data-price="10.50" data-save="48"
+                  >4 packs</span
+                >
               </div>
               <p class="price">$12.00 each</p>
               <div class="btns">
@@ -1353,6 +1465,12 @@ footer {\r
               </div>
             </div>`
     )).join("")}
+      </div>
+      <div class="slider_dots slider_dots1">
+        <span><i></i></span>
+        <span><i></i></span>
+        <span><i></i></span>
+        <span><i></i></span>
       </div>
     </div>
   </section>
@@ -1368,8 +1486,8 @@ footer {\r
     </p>
     <h2>Trusted by over 1 million customers</h2>
     <div class="insta_widget"></div>
-    <ul class="reviews_trust">
-      ${c.map((e, r) => (
+    <ul class="reviews_trust parent_slider">
+      ${c.map((e, t) => (
       /* HTML */
       ` <li>
             <p>${e.patchType}</p>
@@ -1378,23 +1496,55 @@ footer {\r
           </li>`
     )).join("")}
     </ul>
+    <div class="slider_dots slider_dots2 mobile">
+      <span><i></i></span>
+      <span><i></i></span>
+      <span><i></i></span>
+      <span><i></i></span>
+      <span><i></i></span>
+      <span><i></i></span>
+      <span><i></i></span>
+      <span><i></i></span>
+      <span><i></i></span>
+      <span><i></i></span>
+      <span><i></i></span>
+      <span><i></i></span>
+      <span><i></i></span>
+      <span><i></i></span>
+      <span><i></i></span>
+      <span><i></i></span>
+      <span><i></i></span>
+      <span><i></i></span>
+    </div>
+    <div class="pages_r desktop">
+      <span>1</span>
+      <span>2</span>
+      <span>3</span>
+    </div>
   </section>
 `
   ), f = (
     /* HTML */
     ` <section class="new_slider_news">
   <h2>We're in the news... for good reasons.</h2>
-  <div class="slider_wrapper">
-    ${l.map((e, r) => (
+  <div class="slider_wrapper parent_slider">
+    ${l.map((e, t) => (
       /* HTML */
       `
           <div class="slide">
-            <div class="bg"><img src="${n}/img/slide_bg_${r + 1}.png" /></div>
+            <div class="bg"><img src="${n}/img/slide_bg_${t + 1}.png" /></div>
             <p>${e.text}</p>
             <img src="${e.img}" alt="press logo" />
           </div>
         `
     )).join("")}
+  </div>
+  <div class="slider_dots slider_dots3">
+    <span><i></i></span>
+    <span><i></i></span>
+    <span><i></i></span>
+    <span><i></i></span>
+    <span><i></i></span>
   </div>
 </section>`
   ), b = (
@@ -1442,15 +1592,12 @@ footer {\r
     `<section class="new_info_block">
   <div class="content_wrapper">
     <div class="slider_photo">
-      <div class="img_slide">
-        <img src="${n}/img/new-home-page/in_use_1.jpg" alt="img1" />
-      </div>
-      <div class="img_slide">
-        <img src="${n}/img/new-home-page/in_use_2.jpg" alt="img2" />
-      </div>
-      <div class="img_slide">
-        <img src="${n}/img/new-home-page/in_use_3.jpg" alt="img3" />
-      </div>
+      ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((e) => (
+      /*HTML*/
+      `<div class="img_slide">
+            <img src="${n}/img/new-home-page/slider_photo_${e}.jpg" alt="img1" />
+          </div>`
+    )).join("")}
     </div>
     <div>
       <p>
@@ -1476,13 +1623,13 @@ footer {\r
     </div>
   </div>
 </section>`
-  ), y = (
+  ), v = (
     /* HTML */
     `
   <section class="new_reviews_block">
     <div class="content_wrapper">
-      <div class="basic_slider">
-        ${h().map((e, r) => (
+      <div class="basic_slider parent_slider">
+        ${d().map((e, t) => (
       /* HTML */
       `
               <div class="slide">
@@ -1502,10 +1649,16 @@ footer {\r
             `
     )).join("")}
       </div>
+      <div class="slider_dots slider_dots4">
+        <span><i></i></span>
+        <span><i></i></span>
+        <span><i></i></span>
+        <span><i></i></span>
+      </div>
     </div>
   </section>
 `
-  ), v = (
+  ), y = (
     /* HTML */
     `
   <section class="new_info2_block">
@@ -1547,8 +1700,8 @@ footer {\r
   const k = window.innerWidth < 768 ? "mobile" : "desktop", o = document.createElement("link");
   o.rel = "stylesheet", o.href = "https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=M+PLUS+Rounded+1c:wght@900&display=swap", document.head.appendChild(o);
   class _ {
-    constructor(r) {
-      this.device = r, this.init();
+    constructor(t) {
+      this.device = t, this.init();
     }
     init() {
       this.clearOldContent(), this.addBlocks(), this.patchesCardsFunctionality();
@@ -1557,39 +1710,39 @@ footer {\r
       $("#MainContent .icartShopifyCartContent").css("display", "none"), $("#MainContent .icartShopifyCartContent").after('<div class="new_home_page"></div>');
     }
     addBlocks() {
-      $(".new_home_page").append(g).append(m).append(u).append(f).append(b).append(w).append(x).append(y).append(v), this.device === "mobile" && $(".new_info2_block").prepend($(".slider_photo")), $(".new_stickers_slider .slider_wrapper").slick({
+      $(".new_home_page").append(g).append(m).append(u).append(f).append(b).append(w).append(x).append(v).append(y), $(".insta_widget").append($("#shopify-section-template--15241309847596__17097813754ae81b0d")), $("#shopify-block-archive_detect_ugc_gallery_8cpCVL").css("display", "block"), this.device === "mobile" && $(".new_info2_block").prepend($(".slider_photo")), $(".new_stickers_slider .slider_wrapper").slick({
         slidesToShow: this.device === "mobile" ? 1 : 3,
         slidesToScroll: 1,
         arrows: this.device !== "mobile",
         infinite: !0,
-        dots: !0,
         centerMode: this.device === "mobile",
-        centerPadding: this.device === "mobile" ? "24px" : "0"
+        centerPadding: this.device === "mobile" ? "24px" : "0",
+        asNavFor: ".new_stickers_slider .slider_dots"
       }), this.device === "mobile" && $(".new_trustpilot_reviews .reviews_trust").slick({
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: !1,
         infinite: !0,
-        dots: !0,
         centerMode: !0,
         centerPadding: "24px",
-        adaptiveHeight: !0
+        adaptiveHeight: !0,
+        asNavFor: ".new_trustpilot_reviews .slider_dots"
       }), $(".new_slider_news .slider_wrapper").slick({
         slidesToShow: this.device === "mobile" ? 1 : 3,
         slidesToScroll: 1,
         arrows: this.device !== "mobile",
         infinite: !0,
         centerMode: !0,
-        dots: !0,
-        centerPadding: this.device === "mobile" ? "24px" : "0"
+        centerPadding: this.device === "mobile" ? "24px" : "0",
+        asNavFor: ".new_slider_news .slider_dots"
       }), $(".basic_slider").slick({
         slidesToShow: this.device === "mobile" ? 1 : 3,
         slidesToScroll: 1,
         arrows: !1,
         infinite: !0,
-        dots: !0,
         centerMode: this.device === "mobile",
-        centerPadding: this.device === "mobile" ? "24px" : "0"
+        centerPadding: this.device === "mobile" ? "24px" : "0",
+        asNavFor: ".new_reviews_block .slider_dots"
       }), $(".slider_photo").slick({
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -1597,22 +1750,33 @@ footer {\r
         infinite: !0,
         centerMode: this.device === "mobile",
         fade: this.device !== "mobile"
-      }), $(".reviews_trust p:nth-child(2)").each(function(r, t) {
-        if ($(t).text().length > 250) {
-          const i = $(t).text(), a = i.slice(0, 250).lastIndexOf(" ");
-          a !== -1 && $(t).text(i.slice(0, a) + "..."), $(t).after('<span class="read_more">Read more</span>'), $(t).next().on("click", function() {
-            $(t).text(i), $(this).remove(), $(t).closest(".reviews_trust").slick("setPosition");
+      }), $(".slider_dots").each(function(t, r) {
+        $(r).slick({
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          arrows: !1,
+          infinite: !0,
+          centerMode: !0,
+          centerPadding: "60px",
+          focusOnSelect: !0,
+          asNavFor: $(r).closest("section").find(".parent_slider")
+        });
+      }), $(".reviews_trust p:nth-child(2)").each(function(t, r) {
+        if ($(r).text().length > 250) {
+          const i = $(r).text(), a = i.slice(0, 250).lastIndexOf(" ");
+          a !== -1 && $(r).text(i.slice(0, a) + "..."), $(r).after('<span class="read_more">Read more</span>'), $(r).next().on("click", function() {
+            $(r).text(i), $(this).remove(), $(r).closest(".reviews_trust").slick("setPosition");
           });
         }
       });
     }
     patchesCardsFunctionality() {
-      $(".new_stickers_slider .item").each(function(r, t) {
-        const i = $(t).find("span"), a = $(t).find(".img img[alt=main]"), s = $(t).find("button");
+      $(".new_stickers_slider .item").each(function(t, r) {
+        const i = $(r).find("span"), a = $(r).find(".img img[alt=main]"), s = $(r).find("button"), z = $(r).find(".price"), T = $(r).find(".save");
         i.on("click", function() {
-          $(this).addClass("active").siblings().removeClass("active"), a.attr("src", $(this).data("img")), s.attr("data-id", $(this).data("variant"));
+          $(this).addClass("active").siblings().removeClass("active"), a.attr("src", $(this).data("img")), s.attr("data-id", $(this).data("variant")), z.text(`$${$(this).data("price")} each`), T.text(`${$(this).data("save")}% off`);
         }), s.on("click", function() {
-          const z = {
+          const j = {
             items: [
               {
                 id: $(this).data("id"),
@@ -1625,8 +1789,8 @@ footer {\r
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify(z)
-          }).then((T) => T.json());
+            body: JSON.stringify(j)
+          }).then((P) => P.json());
         });
       });
     }
