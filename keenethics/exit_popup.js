@@ -927,9 +927,6 @@
             & input:placeholder-shown + .placeholder {
               display: block;
             }
-            & input:focus + .placeholder {
-              display: none;
-            }
             & input[data-required] + .placeholder::after {
               content: '*';
               top: -2px;
@@ -1227,7 +1224,19 @@
 
       if (formTarget === 'solutions') {
         $el('section#contact-us .container').insertAdjacentHTML('afterbegin', firstForm)
-
+        $$el('input').forEach((input) => {
+          input.addEventListener('input', (event) => {
+            const target = event.target
+            const placeholder = target.nextElementSibling
+            console.log(placeholder)
+            if (target.value) {
+              placeholder.style.display = 'none';
+            } else {
+      
+              placeholder.style.display = 'block';
+            }
+          });
+        })
         $el('.crs-select details').addEventListener('click', event => {
           const details = event.currentTarget
           const summary = details.querySelector('summary')
@@ -1544,9 +1553,6 @@
             & input:placeholder-shown + .placeholder {
               display: block;
             }
-            & input:focus + .placeholder {
-              display: none;
-            }
             & input[data-required] + .placeholder::after {
               content: '*';
               top: -2px;
@@ -1784,6 +1790,19 @@
       if (formTarget === 'download') {
         $el('section#contact-us .container').insertAdjacentHTML('afterbegin', secondForm)
 
+        $$el('input').forEach((input) => {
+          input.addEventListener('input', (event) => {
+            const target = event.target
+            const placeholder = target.nextElementSibling
+            console.log(placeholder)
+            if (target.value) {
+              placeholder.style.display = 'none';
+            } else {
+      
+              placeholder.style.display = 'block';
+            }
+          });
+        })
         $el('button[data-action="download-step-1"]').addEventListener('click', () => {
           $el('.crs-auform__form').style.display = 'flex'
           $el('button[data-action="download-step-1"]').style.display = 'none'
