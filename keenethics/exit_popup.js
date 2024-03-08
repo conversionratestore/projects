@@ -626,6 +626,8 @@
           })
         } catch (error) {}
         $el('.crs-thform').style.display = 'none'
+        $el('.text-2.section-form-result__text').innerHTML = 'We will get back to you within 1 business day.'
+        $el('.btn-primary').style.display = 'inline-block'
       })
       $el('.crs-thform input').addEventListener('input', event => {
         const value = event.target.value
