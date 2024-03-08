@@ -597,7 +597,10 @@
 
       const noPhone = localStorage.getItem('noPhone')
 
-      if (noPhone) return
+      if (noPhone) {
+        localStorage.removeItem('noPhone')
+        return
+      }
 
       $el('.btn-primary').insertAdjacentHTML('afterend', thanksForm)
 
