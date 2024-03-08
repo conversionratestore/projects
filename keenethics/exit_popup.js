@@ -461,7 +461,7 @@
           .section-form-result__text {
             line-height: 28px;
           }
-          .btn-primary {
+          .section-form-result__data .btn-primary:first-of-type {
             display: none;
             width: 377px;
             max-width: 100%;
@@ -603,22 +603,24 @@
           </div>
       `
       const styles = /* HTML */ `<style>
-        .btn-primary {
+        .section-form-result__data .btn-primary {
           width: 377px;
           max-width: 100%;
         }
       </style>`
       const noPhone = localStorage.getItem('noPhone')
-
+      const ourformSubmitted = localStorage.getItem('ourformSubmitted');
+      if (!ourformSubmitted) return 
+      localStorage.removeItem('ourformSubmitted')
       if (noPhone) {
         localStorage.removeItem('noPhone')
-        $el('.btn-primary').insertAdjacentHTML('afterend', styles)
+        $el('.section-form-result__data .btn-primary').insertAdjacentHTML('afterend', styles)
 
         return
       }
 
       $el('.crs-thform')?.remove()
-      $el('.btn-primary').insertAdjacentHTML('afterend', thanksForm)
+      $el('.section-form-result__data .btn-primary').insertAdjacentHTML('afterend', thanksForm)
 
       const regex = /^\d+$/
 
@@ -1302,7 +1304,7 @@
             $el('.crs-tsform__form input[name="email"] ~ .error').style.visibility = 'visible'
             return
           }
-
+          localStorage.setItem('ourformSubmitted', true)
           formSubmit(data)
           $el('form.contact-us__form').querySelector('button').click()
         })
@@ -1905,7 +1907,7 @@
               } else {
                 localStorage.setItem('noPhone', true)
               }
-
+              localStorage.setItem('ourformSubmitted', true)
               formSubmit(data)
               $el('form.contact-us__form').querySelector('button').click()
             })
@@ -2718,7 +2720,6 @@
           const details = event.currentTarget
           const title = details.querySelector('summary').textContent
           const isUserOpenDetails = !details.open
-          console.log(event.target)
           if (isUserOpenDetails) {
             const currPopup = document.querySelector('#crs-sdpopup')
             setTimeout(() => {
