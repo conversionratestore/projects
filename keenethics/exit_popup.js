@@ -462,6 +462,8 @@
           }
           .btn-primary {
             display: none;
+            width: 377px;
+            max-width: 100%;
           }
           .form-row div:first-child {
             flex: 0 0 100%;
@@ -570,6 +572,12 @@
             .section-form-result__title {
               font-size: 42px !important;
               line-height: 54px !important;
+            }
+            .section-form-result__text br {
+              display: none;
+            }
+            .section-form-result__data {
+              margin-bottom: 0;
             }
             .crs-thform {
               padding-inline: 15px;
