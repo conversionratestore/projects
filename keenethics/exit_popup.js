@@ -226,6 +226,7 @@
           </div>
         </dialog>
       `
+      $el(`#${this.id}`)?.remove()
       document.body.insertAdjacentHTML('beforeend', popupHTML)
       this.popup = $el(`#${this.id}`)
       this.closeBtn = $el(`#${this.id} [data-close]`)
@@ -610,6 +611,7 @@
         return
       }
 
+      $el('.crs-thform')?.remove()
       $el('.btn-primary').insertAdjacentHTML('afterend', thanksForm)
 
       const regex = /^\d+$/
@@ -1234,6 +1236,7 @@
       `
 
       if (formTarget === 'solutions') {
+        $el('.crs-tsform')?.remove()
         $el('section#contact-us .container').insertAdjacentHTML('afterbegin', firstForm)
         $$el('input').forEach(input => {
           input.addEventListener('input', event => {
@@ -1699,6 +1702,11 @@
                 order: 3;
               }
             }
+            .crs-auform__form {
+              & summary {
+                padding-right: 50px;
+              }
+            }
             .crs-auform[data-action='download-step-2'] .crs-auform__desc {
               margin: 0;
             }
@@ -1801,6 +1809,7 @@
       `
 
       if (formTarget === 'download') {
+        $el('.crs-auform')?.remove()
         $el('section#contact-us .container').insertAdjacentHTML('afterbegin', secondForm)
 
         $$el('input').forEach(input => {
@@ -2265,6 +2274,7 @@
             }
             .crs-blpopup__title {
               font-size: 24px;
+              line-height: 32px;
             }
             .crs-blpopup__content {
               flex-direction: column;
