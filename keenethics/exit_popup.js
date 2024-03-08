@@ -299,7 +299,7 @@
             if (this.isUserSubmitForm() || this.isUserEngagamentWithPage()) return
             this.firstPopup.show()
           }
-          const timer = setTimeout(showPopup, 15000)
+          const timer = setTimeout(showPopup, 20000)
 
           ;[('button', 'a')].forEach(tag => {
             $$el(tag).forEach(el => {
@@ -336,7 +336,7 @@
           const timer = setTimeout(() => {
             if (this.isUserSubmitForm()) return
             this.firstPopup.show()
-          }, 15000)
+          }, 20000)
 
           document.addEventListener('mouseout', event => {
             if (
@@ -382,7 +382,7 @@
         const timer = setTimeout(() => {
           if (this.isUserSubmitForm()) return
           this.secondPopup.show()
-        }, 15000)
+        }, 20000)
 
         const showPopup = () => {
           if (this.isUserSubmitForm()) return
@@ -593,7 +593,6 @@
             }
           }
         </style>
-
             <div class="crs-thform">
               <form>
                 <input type="tel" name="phone" placeholder="Phone number" required />
@@ -603,11 +602,18 @@
             </div>
           </div>
       `
-
+      const styles = /* HTML */ `<style>
+        .btn-primary {
+          width: 377px;
+          max-width: 100%;
+        }
+      </style>`
       const noPhone = localStorage.getItem('noPhone')
 
       if (noPhone) {
         localStorage.removeItem('noPhone')
+        $el('.btn-primary').insertAdjacentHTML('afterend', styles)
+
         return
       }
 
@@ -1894,7 +1900,7 @@
               document.body.appendChild(a)
               a.click()
               window.URL.revokeObjectURL(url)
-              if (!data.call || data.call === 'No') {
+              if (!data.call || data.call === 'No' || data?.phone.trim() === '') {
                 localStorage.removeItem('noPhone')
               } else {
                 localStorage.setItem('noPhone', true)
