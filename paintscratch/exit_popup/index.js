@@ -2886,13 +2886,13 @@
           "Exit intent pop-up empty cart Don’t leave just yet! Get 5% Off Your Purchase Now!"
         )), r.target === this.popup && this.hide(), r.target.closest('[data-button="select-products"]')) {
           this.hide();
-          const n = new URL(location.href);
+          const n = new URL("https://www.paintscratch.com/cgi-bin/order-form.cgi");
           V(
             "exp_exitintent_button_01",
             "Select products",
             "click",
             "Exit intent pop-up empty cart Don’t leave just yet! Get 5% Off Your Purchase Now!"
-          ), location.href.includes("order-form") || location.href.includes("select-color") ? document.cookie = `discount_code=${J}` : (n.searchParams.append("discount_code", J), window.location.href = n.toString());
+          ), location.href.includes("order-form") || location.href.includes("select-color") || location.href.includes("guided-orde") ? document.cookie = `discount_code=${J}` : (n.searchParams.append("discount_code", J), window.location.href = n.toString());
         }
       });
     }
@@ -2997,8 +2997,8 @@
                           </div>
                           <div class="os-text-center os-text-[#555] ">
                             <span class="os-font-bold os-text-[12px]"
-                              ><span class="os-text-[14px] os-line-through">$${(i.price * 1.05).toFixed(2)}</span
-                              ><span class="os-text-[#900] os-text-[18px]"> $${i.price}</span></span
+                              ><span class="os-text-[14px] os-line-through">$${i.price.toFixed(2)}</span
+                              ><span class="os-text-[#900] os-text-[18px]"> $${(i.price * 0.95).toFixed(2)}</span></span
                             >
                             / Each
                           </div>
@@ -3033,12 +3033,12 @@
                 ${e.products.length === 1 ? (
             /* HTML */
             `<span class="os-font-bold os-text-[12px]"
-                      ><span class="os-text-[14px] os-line-through"> $${(e.total * 1.05).toFixed(2)}</span
-                      ><span class="os-text-[#900] os-text-[18px]"> $${e.total.toFixed(2)}</span></span
+                      ><span class="os-text-[14px] os-line-through"> $${e.total.toFixed(2)}</span
+                      ><span class="os-text-[#900] os-text-[18px]"> $${(e.total * 0.95).toFixed(2)}</span></span
                     >`
           ) : (
             /* HTML */
-            `<span class="os-flex os-items-center">$${e.total.toFixed(2)}</span>`
+            `<span class="os-flex os-items-center">$${(e.total * 0.95).toFixed(2)}</span>`
           )}
               </div>
               <div
@@ -3197,3 +3197,4 @@
   }
   new os().init();
 })();
+//# sourceMappingURL=index.js.map
