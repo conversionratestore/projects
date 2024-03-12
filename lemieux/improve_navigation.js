@@ -614,6 +614,9 @@ window.onload = () => {
           if (recentlyViewed.innerHTML === '<!----><!---->') {
             recentlyViewed.remove()
           }
+          if (perfectlyWith.innerHTML === '<!----><!---->') {
+            recentlyViewed.remove()
+          }
         }
 
         blockVisibility('.recently', 'exp_impro_pdp_vis_recently_block', 'Block view', `PDP Recently viewed`)
@@ -647,7 +650,7 @@ window.onload = () => {
             pushDataLayer('exp_impro_pdp_icon_recenview_prod', title, 'Icone', 'PDP Recently viewed')
           }
         })
-        $el('.perfectly').addEventListener('mousedown', e => {
+        $el('.perfectly')?.addEventListener('mousedown', e => {
           const target = e.target
           if (target.closest('a[cy-listingproductname]')) {
             const title = target.closest('a[cy-listingproductname]').textContent
@@ -658,7 +661,7 @@ window.onload = () => {
             pushDataLayer('exp_impro_pdp_icon_perfect_prod', title, 'Icone', 'PDP Goes Perfectly With')
           }
         })
-      }, 1000)
+      }, 1500)
     }
 
     async sizeChart() {
@@ -794,6 +797,8 @@ window.onload = () => {
               justify-content: center;
               align-items: center;
               font-size: 14px;
+              font-weight: 600;
+              line-height: 24px;
             }
             .crs-size-chart__dialog {
               z-index: 1000;
@@ -818,6 +823,11 @@ window.onload = () => {
               border-bottom: 1px solid #cfd2d3;
               padding-block: 10px;
               cursor: pointer;
+            }
+            .crs-size-chart__dialog li div span:first-child {
+              font-size: 16px;
+              font-weight: 600;
+              line-height: 24px;
             }
             .crs-size-chart__dialog li[data-checked='true'] {
               background: #f6f5f5;
@@ -893,6 +903,7 @@ window.onload = () => {
               }
               .crs-size-chart__btn {
                 padding: 12px 16px;
+                margin-bottom: 0;
               }
               .crs-size-chart__dialog {
                 position: absolute;
