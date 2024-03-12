@@ -1,8 +1,9 @@
-;(() => {
+window.addEventListener('load', event => {
   console.log(
     '%c EXP: Improve navigation on PDP (DEV: OS)',
     'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;'
   )
+
   const $$el = selector => document.querySelectorAll(selector)
   const $el = selector => document.querySelector(selector)
   const git = 'https://conversionratestore.github.io/projects/'
@@ -375,7 +376,7 @@
         'exp_impro_pdp_vis_polic_block',
         'Block view',
         `PDP
-      Add message about return policy`
+        Add message about return policy`
       )
 
       $el('.return-badge__inform')?.addEventListener('mouseleave', () => {
@@ -402,7 +403,7 @@
       const productId = this.getCurrentProductId()
       const productResponse = await this.getFetch(`n/product/${productId}/verbosity/3`)
       const categoryId = productResponse.result[0]?.categories?.last || productResponse.result[0]?.categories?.first
-      $el('.similar-products')?.remove()
+
       const categoryResponse = await this.getFetch(`n/category/${categoryId}/verbosity/3`)
       if (!productResponse || !categoryResponse) return
       const filteredCatalog = categoryResponse.catalog.filter(item => item.type === 'product')
@@ -416,86 +417,86 @@
         )
       })
       const similarProductsHTML = /* HTML */ `
-        <style>
-          .similar-products {
-            margin-bottom: 20px;
-            padding-inline: 20px;
-          }
-          .similar-products img {
-            width: 100%;
-            height: auto;
-          }
-          .similar-products h2 {
-            color: var(--Black, #212121);
-            margin-block: 32px;
-            font-family: baskerville-urw, sans-serif;
-            font-size: 32px;
-
-            line-height: 1.25;
-            letter-spacing: 0.5px;
-            text-align: center;
-            color: #212121;
-          }
-
-          .wishlist-wrap {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-          }
-          .swipe-item h3 {
-            margin-block: 10px;
-            font-size: 0.9375rem;
-            letter-spacing: 0.0625rem;
-            line-height: 1.25rem;
-          }
-          .swipe-item h3 + div {
-            font-size: 0.9375rem;
-            letter-spacing: 0.0625rem;
-            line-height: 1.25rem;
-            color: var(--atomic-color-12, #acacac);
-          }
-          .swipe-item p {
-            font-size: 0.9375rem;
-            letter-spacing: 0.0625rem;
-            line-height: 1.25rem;
-          }
-          .swiper-scrollbar-container {
-            margin-top: 20px;
-          }
-          .similar-products .swiper-scrollbar {
-            width: 13.75rem;
-            background-color: #f6f5f5;
-            height: 2px;
-            left: 50%;
-            bottom: 0;
-            transform: translate(-50%);
-            z-index: 1;
-          }
-          .similar-products .swiper-scrollbar-drag {
-            background-color: #595959;
-          }
-
-          @media (min-width: 1024px) {
-            .similar-products h2 {
-              margin-block: 48px;
-              text-align: center;
-              font-family: baskerville-urw, sans-serif;
-              font-size: 48px;
-              line-height: 56px;
-              color: #212121;
+        <div class="similar-products">
+          <style>
+            .similar-products {
+              margin-bottom: 20px;
+              padding-inline: 20px;
             }
             .similar-products img {
               width: 100%;
-              height: 500px;
-              object-fit: cover;
+              height: auto;
             }
-            .similar-products a[cy-listingproductname] {
-              display: block;
-              min-height: 60px;
+            .similar-products h2 {
+              color: var(--Black, #212121);
+              margin-block: 32px;
+              font-family: baskerville-urw, sans-serif;
+              font-size: 32px;
+
+              line-height: 1.25;
+              letter-spacing: 0.5px;
+              text-align: center;
+              color: #212121;
             }
-          }
-        </style>
-        <div class="similar-products">
+
+            .wishlist-wrap {
+              position: absolute;
+              top: 10px;
+              right: 10px;
+            }
+            .swipe-item h3 {
+              margin-block: 10px;
+              font-size: 0.9375rem;
+              letter-spacing: 0.0625rem;
+              line-height: 1.25rem;
+            }
+            .swipe-item h3 + div {
+              font-size: 0.9375rem;
+              letter-spacing: 0.0625rem;
+              line-height: 1.25rem;
+              color: var(--atomic-color-12, #acacac);
+            }
+            .swipe-item p {
+              font-size: 0.9375rem;
+              letter-spacing: 0.0625rem;
+              line-height: 1.25rem;
+            }
+            .swiper-scrollbar-container {
+              margin-top: 20px;
+            }
+            .similar-products .swiper-scrollbar {
+              width: 13.75rem;
+              background-color: #f6f5f5;
+              height: 2px;
+              left: 50%;
+              bottom: 0;
+              transform: translate(-50%);
+              z-index: 1;
+            }
+            .similar-products .swiper-scrollbar-drag {
+              background-color: #595959;
+            }
+
+            @media (min-width: 1024px) {
+              .similar-products h2 {
+                margin-block: 48px;
+                text-align: center;
+                font-family: baskerville-urw, sans-serif;
+                font-size: 48px;
+                line-height: 56px;
+                color: #212121;
+              }
+              .similar-products img {
+                width: 100%;
+                height: 500px;
+                object-fit: cover;
+              }
+              .similar-products a[cy-listingproductname] {
+                display: block;
+                min-height: 60px;
+              }
+            }
+          </style>
           <h2>Similar items</h2>
           <div class="swiper">
             <div class="swiper-wrapper">
@@ -558,7 +559,7 @@
           </div>
         </div>
       `
-
+      $el('.similar-products')?.remove()
       $el('product-highlights')?.insertAdjacentHTML('beforebegin', similarProductsHTML)
 
       blockVisibility(
@@ -566,7 +567,7 @@
         'exp_impro_pdp_vis_similar_block',
         'Block view',
         `PDP
-        Similar items`
+          Similar items`
       )
       new Swiper('.similar-products .swiper', swiperConfig)
 
@@ -635,7 +636,7 @@
           }
         })
 
-        $el('.recently').addEventListener('mousedown', e => {
+        $el('.recently')?.addEventListener('mousedown', e => {
           const target = e.target
           if (target.closest('a[cy-listingproductname]')) {
             const title = target.closest('a[cy-listingproductname]').textContent
@@ -792,6 +793,7 @@
               display: flex;
               justify-content: center;
               align-items: center;
+              font-size: 14px;
             }
             .crs-size-chart__dialog {
               z-index: 1000;
@@ -1543,4 +1545,4 @@
   const pdpImprovement = new PdpImprovement()
   pdpImprovement.init()
   pdpImprovement.observePageChange()
-})()
+})
