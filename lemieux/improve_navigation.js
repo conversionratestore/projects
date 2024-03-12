@@ -1,4 +1,4 @@
-window.addEventListener('load', event => {
+window.onload = () => {
   console.log(
     '%c EXP: Improve navigation on PDP (DEV: OS)',
     'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;'
@@ -1545,4 +1545,4 @@ window.addEventListener('load', event => {
   const pdpImprovement = new PdpImprovement()
   pdpImprovement.init()
   pdpImprovement.observePageChange()
-})
+}
