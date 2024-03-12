@@ -1695,7 +1695,7 @@ class mobileDesign {
     const style = /* html */ `
       <style>
         #color_search_pop a.action-button-orange {
-          width: 185px;
+          width: 185px!important;
         }
         #show_any_warnings .closebutton {
           position: absolute;
