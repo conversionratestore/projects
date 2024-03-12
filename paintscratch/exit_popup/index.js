@@ -2889,7 +2889,7 @@
           "Select products",
           "click",
           "Exit intent pop-up empty cart Don’t leave just yet! Get 5% Off Your Purchase Now!"
-        ), new URL("https://www.paintscratch.com/cgi-bin/order-form.cgi"), (location.href.includes("order-form") || location.href.includes("select-color") || location.href.includes("guided-order")) && (r.preventDefault(), document.cookie = `discount_code=${de}`), this.hide());
+        ), (location.href.includes("order-form") || location.href.includes("select-color") || location.href.includes("guided-order")) && (r.preventDefault(), document.cookie = `discount_code=${de};path=/`), this.hide());
       });
     }
     show() {
@@ -2954,7 +2954,9 @@
           "Exit intent pop-up filled cart You're Almost There! Less 100 dollars"
         );
         const n = new URL("https://www.paintscratch.com/cgi-bin/shopping-cart.cgi");
-        n.searchParams.append("discount_code", de), document.cookie = `discount_code=${de}`, window.location.href = n.toString();
+        n.searchParams.set("discount_code", de), document.cookie = `discount_code=${de};path=/`, setTimeout(() => {
+          window.location.href = n.toString();
+        }, 500);
       }), this.popup.addEventListener("click", (n) => {
         n.target.closest("[data-popup-close]") && (this.total >= 100 && V(
           "exp_exitintent_button_04",
@@ -2994,7 +2996,9 @@
                           <div class="os-text-center os-text-[#555] ">
                             <span class="os-font-bold os-text-[12px]"
                               ><span class="os-text-[14px] os-line-through">$${i.price.toFixed(2)}</span
-                              ><span class="os-text-[#900] os-text-[18px]"> $${(i.price * 0.95).toFixed(2)}</span></span
+                              ><span class="os-text-[#900] os-text-[18px]">
+                                $${(i.price * 0.95).toFixed(2)}</span
+                              ></span
                             >
                             / Each
                           </div>
@@ -3193,3 +3197,4 @@
   }
   new os().init();
 })();
+//# sourceMappingURL=index.js.map
