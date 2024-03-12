@@ -68,6 +68,29 @@ window.onload = () => {
     })
   }
 
+  const handleTouch = cb => {
+    let touchStartY = 0
+    let touchEndY = 0
+
+    function handleTouchStart(evt) {
+      touchStartY = evt.touches[0].clientY
+    }
+
+    function handleTouchMove(evt) {
+      touchEndY = evt.touches[0].clientY
+    }
+    function handleTouchEnd(evt) {
+      if (touchStartY - touchEndY < 150) {
+        console.log('touch')
+        cb()
+        console.log('Dialog closed')
+      }
+    }
+
+    document.addEventListener('touchstart', handleTouchStart, false)
+    document.addEventListener('touchmove', handleTouchMove, false)
+    document.addEventListener('touchend', handleTouchEnd, false)
+  }
   // load script
   const loadScriptOrStyle = url => {
     return new Promise((resolve, reject) => {
@@ -308,7 +331,8 @@ window.onload = () => {
             justify-content: flex-start;
             padding: 0;
             margin-bottom: 20px;
-
+            border-bottom: 1px solid #cfd2d3;
+            padding-bottom: 20px;
             margin-top: 16px;
           }
           .return-badge,
@@ -356,6 +380,7 @@ window.onload = () => {
           @media (min-width: 1024px) {
             .return-badge {
               margin-top: 12px;
+              border: 0;
               padding: 0;
             }
           }
@@ -611,12 +636,15 @@ window.onload = () => {
         if (recentlyViewed) {
           recentlyViewed?.insertAdjacentHTML('beforebegin', '<h2 class="recently">Recently viewed</h2>')
           recentlyViewed.parentElement.after(perfectlyWith.parentElement)
-          if (recentlyViewed.innerHTML === '<!----><!---->') {
-            recentlyViewed.remove()
-          }
-          if (perfectlyWith.innerHTML === '<!----><!---->') {
-            recentlyViewed.remove()
-          }
+        }
+
+        if (!$el('.perfectly').nextElementSibling.innerText) {
+          console.log('empty')
+          $el('.perfectly').parentElement.style.visibility = 'hidden'
+        }
+
+        if (!$el('.recently').nextElementSibling.innerText) {
+          $el('.recently').parentElement.style.visibility = 'hidden'
         }
 
         blockVisibility('.recently', 'exp_impro_pdp_vis_recently_block', 'Block view', `PDP Recently viewed`)
@@ -824,10 +852,15 @@ window.onload = () => {
               padding-block: 10px;
               cursor: pointer;
             }
-            .crs-size-chart__dialog li div span:first-child {
+            .crs-size-chart__dialog li > div > span:first-child {
               font-size: 16px;
               font-weight: 600;
               line-height: 24px;
+            }
+            .crs-size-chart__dialog .crs-size-chart__title {
+              font-size: 18px !important;
+              font-weight: 400 !important;
+              line-height: 26px !important;
             }
             .crs-size-chart__dialog li[data-checked='true'] {
               background: #f6f5f5;
@@ -946,7 +979,7 @@ window.onload = () => {
           <dialog class="crs-size-chart__dialog">
             <ul class="crs-size-chart__list">
               <li data-select-size>
-                <div><span>Select size</span></div>
+                <div><span class="crs-size-chart__title">Select size</span></div>
               </li>
               ${productSizes
                 .map(size => {
@@ -1347,6 +1380,14 @@ window.onload = () => {
           })
         })
       })
+
+      if (this.device === devices.mobile) {
+        handleTouch(() => {
+          $el('.crs-size-chart__dialog')?.close()
+          $el('.crs-size-chart__notify')?.close()
+          $el('.crs-size-chart__backdrop')?.click()
+        })
+      }
     }
 
     async initSwiper() {
@@ -1394,14 +1435,14 @@ window.onload = () => {
 
       if (this.device === devices.mobile) {
         $el('#new-sta-btn')?.remove()
-        waitForElement('.crs-size-chart__btn').then(() => {
-          $el('.crs-size-chart__btn').insertAdjacentHTML('afterend', html)
-          $el('[data-add-to-bag]').addEventListener('click', () => {
-            $el('action[cy-basketaddbutton]').click()
-          })
-          $el('[data-add-to-wishlist]').addEventListener('click', () => {
-            $el('product-view-wishlist-toggle action:not([data-add-to-wishlist])').click()
-          })
+
+        $el('product-configurable-options').insertAdjacentHTML('beforeend', html)
+        console.log('we are here')
+        $el('[data-add-to-bag]').addEventListener('click', () => {
+          $el('action[cy-basketaddbutton]').click()
+        })
+        $el('[data-add-to-wishlist]').addEventListener('click', () => {
+          $el('product-view-wishlist-toggle action:not([data-add-to-wishlist])').click()
         })
       }
     }
@@ -1479,8 +1520,23 @@ window.onload = () => {
 
     initStyles() {
       const styles = /* HTML */ ` <style>
+        ._button[_ngcontent-ng-c710315143] {
+          padding: 8px 16px;
+          font-size: 16px;
+          line-height: 24px;
+          cursor: pointer;
+        }
+        body:has(dialog[open]) {
+          overflow: hidden;
+        }
+        product-view-fashion-recommendation h5 {
+          text-align: center;
+        }
         .forward-block {
           display: block !important;
+        }
+        product-configurable-options div:empty:not(.crs-size-chart__backdrop) {
+          display: none !important;
         }
         product-gallery swiper-dots {
           display: flex;
