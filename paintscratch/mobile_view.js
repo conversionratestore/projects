@@ -171,6 +171,9 @@ class mobileDesign {
   globalStyle() {
     const style = /* html */ `
       <style>
+        .green-check-mark, .warning-sign {
+          flex-shrink: 0;
+        }
         #wrapper {
           width: 100%;
           margin-top: 0;
@@ -550,10 +553,13 @@ class mobileDesign {
           display: flex;
           align-items: center;
           font-size: 14px;
+          flex-wrap: wrap;
         }
         .select-color ul#benefit-list li span {
           font-weight: 400;
           line-height: 22px;
+          margin-left: 10px!important;
+          flex: 1 0 48%;
         }
         .select-color span.instructions {
           display: flex !important;
@@ -1688,6 +1694,21 @@ class mobileDesign {
   cartPage() {
     const style = /* html */ `
       <style>
+        #color_search_pop a.action-button-orange {
+          width: 185px;
+        }
+        #show_any_warnings .closebutton {
+          position: absolute;
+          right: 5px;
+          top: 5px;
+          margin: 0;
+        }
+        #show_any_warnings .inner table {
+          min-width: 185px;
+        }
+        #show_any_warnings .inner table a.silver-button {
+          height: auto;
+        }
         .cart table.cart-group, #bottom-secure-checkout, .cart h1, .cart-group+hr {
           display: none;
         }
@@ -1705,6 +1726,7 @@ class mobileDesign {
           align-items: center;
           column-gap: 12px;
           margin-bottom: 24px;
+          padding-top: 2px;
         }
         .color_head .color {
           width: 50px;
@@ -1987,13 +2009,13 @@ class mobileDesign {
     const totalBlock = /* html */ `
       <div class="total_block">
         <p class="sub">Subtotal:<span>${
-          $('#subtotals_and_shipping .right_side_text').html().split('<br>')[0]
+          $('#subtotals_and_shipping .right_side_text').html()?.split('<br>')[0]
         }</span></p>
         <p class="ship">Shipping:<span>${
-          $('#subtotals_and_shipping .right_side_text').html().split('<br>')[1]
+          $('#subtotals_and_shipping .right_side_text').html()?.split('<br>')[1]
         }</span></p>
         <p>Free shipping on orders over $149.00</p>
-        <p class="total">Total:<span>${$('#total_and_checkout .right_side_text').text()}</span></p>
+        <p class="total">Total:<span>${$('#total_and_checkout .right_side_text')?.text()}</span></p>
         <div class="btns">
           <button class="checkout">Secure checkout${btnArrowSvg}</button>
           <div class="or"><span>OR</span></div>
