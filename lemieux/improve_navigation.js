@@ -1254,7 +1254,7 @@ window.onload = () => {
             $el('.crs-size-chart__dialog').close()
             $el('.crs-stock__wrap')?.append($el('.crs-size-chart__info'))
             const productDats = products.find(item => item.color === obj['selection.color'] && item.size === obj['selection.size'])
-            const isOut = !productDats?.qty
+            const isOut = productDats?.qty
             $el('.crs-stock').style.display = isOut ? 'none' : 'flex'
           }, 200)
 
