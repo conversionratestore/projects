@@ -314,7 +314,7 @@ window.onload = () => {
       this.similarProducts()
       this.returnBadge()
       this.footer()
-      this.newStaButton()
+      this.newCtaButton()
       this.splitCarrousels()
     }
     disconnectObserver() {
@@ -1437,7 +1437,7 @@ window.onload = () => {
       ])
     }
 
-    newStaButton() {
+    newCtaButton() {
       const html = /* HTML */ `
         <div _ngcontent-ng-c48037730="" class="wrap p-t p-b" id="new-sta-btn">
           <style>
@@ -1475,18 +1475,20 @@ window.onload = () => {
 
       if (this.device === devices.mobile) {
         $el('#new-sta-btn')?.remove()
+        setTimeout(() => {
+          $el('product-configurable-options')?.insertAdjacentHTML('beforeend', html)
 
-        $el('product-configurable-options')?.insertAdjacentHTML('beforeend', html)
-        $el('[data-add-to-bag]')?.addEventListener('click', () => {
-          clickCTAButtonUnderSize = true
-          $el('action[cy-basketaddbutton]').click()
-          setTimeout(() => {
-            clickCTAButtonUnderSize = false
-          }, 50)
-        })
-        $el('[data-add-to-wishlist]')?.addEventListener('click', () => {
-          $el('product-view-wishlist-toggle action:not([data-add-to-wishlist])').click()
-        })
+          $el('[data-add-to-bag]')?.addEventListener('click', () => {
+            clickCTAButtonUnderSize = true
+            $el('action[cy-basketaddbutton]').click()
+            setTimeout(() => {
+              clickCTAButtonUnderSize = false
+            }, 50)
+          })
+          $el('[data-add-to-wishlist]')?.addEventListener('click', () => {
+            $el('product-view-wishlist-toggle action:not([data-add-to-wishlist])').click()
+          })
+        }, 400)
       }
     }
     footer() {
