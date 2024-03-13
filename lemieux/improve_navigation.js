@@ -636,7 +636,6 @@ window.onload = () => {
           recentlyViewed.parentElement.after(perfectlyWith.parentElement)
         }
 
-
         blockVisibility('.recently', 'exp_impro_pdp_vis_recently_block', 'Block view', `PDP Recently viewed`)
         blockVisibility(
           'page-footer rating',
@@ -716,7 +715,6 @@ window.onload = () => {
           colors.push({ id: item.id, color: item.color, image: item.image })
         }
       })
-     
 
       // get product size
       const productSizesIds = productResponse.result[0].size
@@ -1079,10 +1077,9 @@ window.onload = () => {
           <div class="crs-size-chart__backdrop"></div>
         </div>
       `
-      const isInStock = productResponse.catalog.find(item => item.type === 'stock' && item.id === productId)
-      const isProduct = productResponse.catalog.find(item => item.type === 'product' && item.id === productId)
-
-      const isOut = isProduct ? isInStock.isOut : true
+   
+      const productDats = products.find(item => item.color === obj['selection.color'] && item.size === obj['selection.size'])
+      const isOut = !productDats.qty || productDats.qty === 0
 
       const inStock = /* HTML */ `
         <div class="crs-stock__wrap">
@@ -1274,9 +1271,8 @@ window.onload = () => {
         e.target.closest('.crs-color-chart__color').dataset.checked = true
         updateHash({ color })
         setTimeout(() => {
-          document.querySelector('swatch:has(.is-checked)')?.click()
-        }, 200)
-        // location.reload()
+          document.querySelector('swatch .is-checked')?.click()
+        }, 500)
       })
 
       $el('.crs-size-chart__notify__close')?.addEventListener('click', () => {
@@ -1535,12 +1531,21 @@ window.onload = () => {
         div:has(> related-product:empty) {
           display: none;
         }
+        xnotif-form {
+          display: none !important;
+        }
         page-component-product-carousel h3 {
           position: absolute;
           left: 9999px;
         }
         page-component-product-carousel > div div.underline {
           display: none !important;
+        }
+        div:has(> div action[cy-basketaddbutton]) {
+          margin-top: 0 !important;
+        }
+        product-view-add-to-basket {
+          margin-top: 16px !important;
         }
         .swiper-horizontal > .swiper-scrollbar,
         .swiper-scrollbar.swiper-scrollbar-horizontal {
@@ -1559,7 +1564,7 @@ window.onload = () => {
           color: #212121;
           padding-bottom: 48px;
         }
-        :is(.perfectly, .recently):has( ~ related-products:empty) {
+        :is(.perfectly, .recently):has(~ related-products:empty) {
           visibility: hidden;
         }
         scroll-nav button {
