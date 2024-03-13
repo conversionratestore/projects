@@ -811,30 +811,20 @@ class Popup {
   fixBasePopup() {
     const style = /*html*/ `
       <style>
-        div:not(.needsclick)>button.needsclick
-         { 
-          opacity: 0 !important;
-          pointer-events: none !important;
+        .needsclick button[aria-label="Close teaser"] {
+          display: none !important;
         }
-        .first_popup  {
-          opacity: 0 !important;
-          pointer-events: none !important;
+        #shopify-section-minicart {
+          z-index: 9999999 !important;
+        }
+        ${
+          window.location.href.includes('/products/')
+            ? 'div:not(.needsclick)>button.needsclick { opacity: 0; pointer-events: none;}'
+            : ''
         }
       </style>
     `
-
-    document.body.insertAdjacentHTML('beforeend', style)
-    const fix = setInterval(() => {
-      if ($el('.klaviyo-close-form')) {
-        clearInterval(fix)
-        $el('.needsclick.go1272136950+.needsclick').closest('.needsclick:not([style])').classList.add('first_popup')
-        setTimeout(() => {
-          $el('.first_popup').classList.remove('first_popup')
-        }, 1500)
-        if ($el('div:not(.needsclick)>button.needsclick')) return
-        $el('.klaviyo-close-form').click()
-      }
-    }, 100)
+    document.head.insertAdjacentHTML('beforeend', style)
   }
 
   async drawCart() {
@@ -951,7 +941,7 @@ class Popup {
     const sessionTime = sessionStorage.getItem('session_time')
     const onceTime = sessionStorage.getItem('once_time')
     const checkTime = setInterval(() => {
-      if (sessionStorage.getItem('crs_popup') || sessionStorage.getItem('base_popup')) {
+      if (sessionStorage.getItem('crs_popup')) {
         clearInterval(checkTime)
         return
       }
@@ -960,7 +950,6 @@ class Popup {
         combine()
       }
       if (new Date().getTime() - onceTime > 600000 && this.user === 0) {
-        sessionStorage.removeItem('base_popup')
         sessionStorage.removeItem('crs_popup')
         sessionStorage.setItem('once_time', new Date().getTime())
       }
@@ -1070,24 +1059,21 @@ class Popup {
     const cartLength = await this.checkCartLength()
     if (this.user === 0) {
       if (cartLength > 0) {
-        if (sessionStorage.getItem('crs_popup') || sessionStorage.getItem('base_popup')) return
+        if (sessionStorage.getItem('crs_popup')) return
         this.drawCart()
         sessionStorage.setItem('crs_popup', true)
-      } else {
-        console.log('>>> !!!')
-        if (sessionStorage.getItem('base_popup') || sessionStorage.getItem('crs_popup')) return
-        $el('div:not(.needsclick)>button.needsclick').click()
-        sessionStorage.setItem('base_popup', true)
       }
     } else {
-      if (sessionStorage.getItem('crs_popup')) return
       if (cartLength > 0) {
+        if (sessionStorage.getItem('crs_popup2')) return
         this.drawCart()
+        sessionStorage.setItem('crs_popup2', true)
       } else {
+        if (sessionStorage.getItem('crs_popup3')) return
         $el('.crs_popup2_wrapper').classList.add('show')
         this.visibleSecondPopup()
+        sessionStorage.setItem('crs_popup3', true)
       }
-      sessionStorage.setItem('crs_popup', true)
     }
   }
 
