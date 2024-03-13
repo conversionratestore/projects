@@ -83,7 +83,7 @@ window.onload = () => {
         return `$${price}`
       case 'sa':
         return `ZAR ${price}`
-        case 'uae':
+      case 'uae':
         return `AED ${price}`
       default:
         return `${price} €`
@@ -1346,9 +1346,9 @@ window.onload = () => {
       }
 
       $el('action[cy-basketaddbutton]')?.addEventListener('click', () => {
-        const selectedSize = +params.get('selection.size')
-        console.log('selected size', selectedSize)
-        if (!selectedSize) {
+        const hash = window.location.hash
+        const isUserSelectSize = hash.includes('selection.size')
+        if (!isUserSelectSize) {
           $el('.crs-size-chart__dialog')?.show()
           $el('.crs-size-chart__list li:first-child div').append($el('.crs-size-chart__info'))
         }
