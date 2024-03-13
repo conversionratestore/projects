@@ -432,13 +432,19 @@ window.onload = () => {
         'Element view',
         'PDP Tips We accept returns on all items within 60 days of purchase.'
       )
-      blockVisibility('product-view-klarna-msg', 'exp_impro_pdp_vis_klarna_block', 'Block view', 'PDP Klarna')
 
       blockVisibility(
-        'bottom-panel action[cy-basketaddbutton]',
+        'action[cy-basketaddbutton]:first-of-type',
         'exp_impro_pdp_vis_addbag_button',
         'Button view',
         'PDP Add to bag'
+      )
+
+      blockVisibility(
+        'product-view-klarna-msg:first-child',
+        'exp_impro_pdp_vis_klarna_block',
+        'Block view',
+        'PDP Klarna'
       )
     }
 
@@ -658,46 +664,35 @@ window.onload = () => {
         }
 
         blockVisibility('.recently', 'exp_impro_pdp_vis_recently_block', 'Block view', `PDP Recently viewed`)
-        blockVisibility(
-          'page-footer rating',
-          'exp_impro_pdp_vis_review_block',
-          'Block view',
-          'PDP Rated as ‘excellent’ by our customers'
-        )
-        waitForElement('.recently swiper').then(() => {
-          const swiperEl = $el('.recently swiper')
-          if (swiperEl.swiper) {
-            swiperEl.swiper.params.touchStartPreventDefault = false
-          }
-        })
-        waitForElement('.perfectly swiper').then(() => {
-          const swiperEl = $el('.perfectly swiper')
-          if (swiperEl.swiper) {
-            swiperEl.swiper.params.touchStartPreventDefault = false
-          }
-        })
 
-        $el('.recently')?.addEventListener('mousedown', e => {
-          const target = e.target
-          if (target.closest('a[cy-listingproductname]')) {
-            const title = target.closest('a[cy-listingproductname]').textContent
-            pushDataLayer('exp_impro_pdp_selec_recenview_text', title, 'Select', 'PDP Recently viewed')
-          }
-          if (target.closest('img')) {
-            const title = target.closest('product').querySelector('a[cy-listingproductname]').textContent
-            pushDataLayer('exp_impro_pdp_icon_recenview_prod', title, 'Icone', 'PDP Recently viewed')
-          }
-        })
-        $el('.perfectly')?.addEventListener('mousedown', e => {
-          const target = e.target
-          if (target.closest('a[cy-listingproductname]')) {
-            const title = target.closest('a[cy-listingproductname]').textContent
-            pushDataLayer('exp_impro_pdp_selec_perfect_text', title, 'Select', 'PDP Goes Perfectly With')
-          }
-          if (target.closest('img')) {
-            const title = target.closest('product').querySelector('a[cy-listingproductname]').textContent
-            pushDataLayer('exp_impro_pdp_icon_perfect_prod', title, 'Icone', 'PDP Goes Perfectly With')
-          }
+        waitForElement('related-products swiper').then(() => {
+          $$el('related-products swiper').forEach(swiperEl => {
+            if (swiperEl.swiper) {
+              swiperEl.swiper.params.touchStartPreventDefault = false
+            }
+          })
+          $el('.recently + related-products')?.addEventListener('mousedown', e => {
+            const target = e.target
+            if (target.closest('a[cy-listingproductname]')) {
+              const title = target.closest('a[cy-listingproductname]').textContent
+              pushDataLayer('exp_impro_pdp_selec_recenview_text', title, 'Select', 'PDP Recently viewed')
+            }
+            if (target.closest('img')) {
+              const title = target.closest('product').querySelector('a[cy-listingproductname]').textContent
+              pushDataLayer('exp_impro_pdp_icon_recenview_prod', title, 'Icone', 'PDP Recently viewed')
+            }
+          })
+          $el('.perfectly + related-products')?.addEventListener('mousedown', e => {
+            const target = e.target
+            if (target.closest('a[cy-listingproductname]')) {
+              const title = target.closest('a[cy-listingproductname]').textContent
+              pushDataLayer('exp_impro_pdp_selec_perfect_text', title, 'Select', 'PDP Goes Perfectly With')
+            }
+            if (target.closest('img')) {
+              const title = target.closest('product').querySelector('a[cy-listingproductname]').textContent
+              pushDataLayer('exp_impro_pdp_icon_perfect_prod', title, 'Icone', 'PDP Goes Perfectly With')
+            }
+          })
         })
       }, 1500)
     }
@@ -1018,17 +1013,19 @@ window.onload = () => {
               position: fixed;
               bottom: 0;
               width: 100%;
-              height: 50%;
               border-radius: 2px 2px 0px 0px;
               border: 1px solid var(--Background-2, #f6f5f5);
               background: #fff;
               animation: hide 0.3s ease-in-out;
+              padding: 32px 24px;
+              line-height: 24px;
             }
             .crs-size-chart__notify h3 {
               color: var(--Black, #212121);
               text-align: center;
               font-family: baskerville-urw, sans-serif;
               font-size: 32px;
+              line-height: 40px;
               font-weight: 400;
               letter-spacing: 0.5px;
             }
@@ -1045,15 +1042,23 @@ window.onload = () => {
               display: flex;
               flex-direction: column;
               margin-top: 24px;
-              gap: 16px;
+              gap: 4px;
             }
             .crs-size-chart__notify label {
+              font-size: 14px;
+              line-height: 24px;
+              color: #212121;
             }
             .crs-size-chart__notify input {
               border-radius: 2px;
               border: 1px solid var(--Borders, #cecdcd);
               background: var(--White, #fff);
               padding: 12px 16px;
+            }
+            .crs-size-chart__notify input::placeholder {
+              font-size: 14px;
+              line-height: 24px;
+              color: #acacac;
             }
             .crs-size-chart__notify button {
               border-radius: 2px;
@@ -1067,6 +1072,8 @@ window.onload = () => {
               letter-spacing: 1px;
               display: block;
               margin: 0 auto;
+              margin-top: 4px;
+              width: 100%;
             }
             .crs-size-chart__notify[open] ~ .crs-size-chart__backdrop {
               display: block;
@@ -1082,17 +1089,44 @@ window.onload = () => {
                 max-width: 465px;
                 height: fit-content;
                 padding: 48px;
+                animation: none;
+              }
+              .crs-size-chart__notify h3 {
+                font-size: 36px;
+                line-height: 44px;
+              }
+              .crs-size-chart__notify p {
+                line-height: 24px;
+              }
+              .crs-size-chart__notify label {
+                font-size: 14px;
+                line-height: 24px;
+                letter-spacing: 1px;
+                text-align: left;
+                color: #212121;
+              }
+              .crs-size-chart__notify form {
+                gap: 4px;
+              }
+              .crs-size-chart__notify button {
+                padding: 12px;
+                margin-top: 12px;
+                font-size: 16px;
+                line-height: 24px;
               }
             }
           </style>
           <dialog class="crs-size-chart__notify">
             <div class="crs-size-chart__notify__close">${icons.close}</div>
             <h3>Currently Out of Stock</h3>
-            <p>Receive an email notification when this item becomes available.</p>
+            <p>
+              Receive an email notification when <br />
+              this item becomes available.
+            </p>
             <form action="">
               <label for="email">Email Address: </label>
               <input type="email" id="email" required placeholder="Email Address" />
-              <button>Notify me</button>
+              <button>Notify Me When Available</button>
             </form>
           </dialog>
           <div class="crs-size-chart__backdrop"></div>
@@ -1183,7 +1217,7 @@ window.onload = () => {
           title.parentElement.insertAdjacentHTML('afterend', inStock)
         }
       })
-      blockVisibility('.crs-stock', 'exp_impro_pdp_vis_stock_block', 'Block view', 'PDP In Stock')
+      blockVisibility('.crs-stock:first-child', 'exp_impro_pdp_vis_stock_block', 'Block view', 'PDP In Stock')
 
       blockVisibility('.crs-size-chart__dialog', 'exp_impro_pdp_vis_selecsize_block', 'Block view', 'PDP Select Size')
       blockVisibility(
@@ -1359,7 +1393,9 @@ window.onload = () => {
           pushDataLayer('exp_impro_pdp_but_undsize_addbag', 'Add to bag', 'Button', 'PDP Under View size guide')
         }
       })
-
+      $el('[data-add-to-bag]').addEventListener('click', (event) => {
+        pushDataLayer('exp_impro_pdp_but_undsize_addbag', 'Add to bag', 'Button', 'PDP Under View size guide')
+      })
       $$el('product-reviews-summary').forEach(item => {
         item.addEventListener('click', () => {
           waitForElement('product-reviews-modal').then(() => {
@@ -1389,7 +1425,6 @@ window.onload = () => {
           })
         })
       })
-
     }
 
     async initSwiper() {
@@ -1403,12 +1438,12 @@ window.onload = () => {
     newStaButton() {
       const html = /* HTML */ `
         <div _ngcontent-ng-c48037730="" class="wrap p-t p-b" id="new-sta-btn">
-        <style>
-          #new-sta-btn {
-            margin-top: 8px;
-            padding: 0 !important;
-          }
-        </style>
+          <style>
+            #new-sta-btn {
+              margin-top: 8px;
+              padding: 0 !important;
+            }
+          </style>
           <div class="flex ng-star-inserted">
             <action data-add-to-bag class="button p-r-0-s p-l-0-s p-r-0-m p-l-0-m flex-grow"
               ><span _ngcontent-ng-c3660662962="" class="button__busy"
@@ -1440,7 +1475,7 @@ window.onload = () => {
         $el('#new-sta-btn')?.remove()
 
         $el('product-configurable-options')?.insertAdjacentHTML('beforeend', html)
-        $el('[data-add-to-bag]').addEventListener('click', () => {
+        $el('[data-add-to-bag]')?.addEventListener('click', () => {
           $el('action[cy-basketaddbutton]').click()
         })
         $el('[data-add-to-wishlist]').addEventListener('click', () => {
@@ -1449,9 +1484,13 @@ window.onload = () => {
       }
     }
     footer() {
-      waitForElement('page-footer footer').then(elem => {
-        const targetDiv = elem.querySelector('div')
-        const modal = $el('product-reviews-modal')
+      waitForElement('page-footer .logo-feefo ').then(() => {
+        blockVisibility(
+          'page-footer .logo-feefo ',
+          'exp_impro_pdp_vis_review_block',
+          'Block view',
+          'PDP Rated as ‘excellent’ by our customers'
+        )
       })
     }
     breadcrumps() {
