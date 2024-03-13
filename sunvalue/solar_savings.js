@@ -352,29 +352,31 @@ class changeFlow {
   }
 
   init() {
-    if (location.pathname === "/save/") {
-      this.initMainStyles();
-      this.createPopup();
-      this.updateRangeSliderSteps();
-      this.initSliderReviews();
-      this.changeSlidesSteps();
-      this.setLocalStorageDataInfo();
-      this.onClickYourSavingsBtn();
-      this.onClickNewNextBtns();
-      this.onClickOldNextBtn();
-      this.onClickOldBtnBack();
-      this.observereProgressBar();
-      this.setNameCity();
-      this.onClickElemPushDataLayer();
-      this.visibScreenView();
-    }
+    waitForElement(".swiper-slide-active").then(() => {
+      if (location.pathname === "/save/") {
+        this.initMainStyles();
+        this.createPopup();
+        this.updateRangeSliderSteps();
+        this.initSliderReviews();
+        this.changeSlidesSteps();
+        this.setLocalStorageDataInfo();
+        this.onClickYourSavingsBtn();
+        this.onClickNewNextBtns();
+        this.onClickOldNextBtn();
+        this.onClickOldBtnBack();
+        this.observereProgressBar();
+        this.setNameCity();
+        this.onClickElemPushDataLayer();
+        this.visibScreenView();
+      }
 
-    if (location.pathname === "/received/" || location.pathname === "/thankyou/") {
-      document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">`);
-      this.changeReceivedPage();
-      this.setNameCity();
-      checkVisibilityElem(".crs_thank", "exp_intr_sol_sav_vis_thankyou_page", "You'll be contacted by a Solar Expert Partner in [City]  Thank you page");
-    }
+      if (location.pathname === "/received/" || location.pathname === "/thankyou/") {
+        document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">`);
+        this.changeReceivedPage();
+        this.setNameCity();
+        checkVisibilityElem(".crs_thank", "exp_intr_sol_sav_vis_thankyou_page", "You'll be contacted by a Solar Expert Partner in [City]  Thank you page");
+      }
+    });
   }
 
   // HTML ---------------->
