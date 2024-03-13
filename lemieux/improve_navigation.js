@@ -278,7 +278,7 @@ window.onload = () => {
   }
 
   const observerConfig = { attributes: true, attributeOldValue: true, attributeFilter: ['class', 'id'] }
-
+  let clickCTAButtonUnderSize = false
   class PdpImprovement {
     constructor() {
       this.observer = null
@@ -644,7 +644,7 @@ window.onload = () => {
         })
       })
       $el('page-component-instagram-feed-product-page')?.addEventListener('click', e => {
-        if (e.target.closest('.snpt-atm-el')) {
+        if (e.target.closest('page-component-instagram-feed-product-page')) {
           pushDataLayer('exp_impro_pdp_lin_worn_sharstyl', 'Share your style using', 'Link', 'PDP As Worn By You')
         }
       })
@@ -1258,7 +1258,6 @@ window.onload = () => {
 
       // Size chart
       $el('.crs-size-chart__dialog')?.addEventListener('click', e => {
-        console.log(e.target, e.target.closest('li'))
         const listItem = e.target.closest('li')
         if (listItem) {
           if (listItem.dataset.stock === 'unavailable') {
@@ -1388,12 +1387,15 @@ window.onload = () => {
           $el('.crs-size-chart__list li:first-child div').append($el('.crs-size-chart__info'))
         }
         if (this.device === devices.mobile) {
-          pushDataLayer('exp_impro_pdp_sticbut_product_add', 'Add to bag', 'Sticky button', 'PDP')
+          if (!clickCTAButtonUnderSize) {
+            pushDataLayer('exp_impro_pdp_sticbut_product_add', 'Add to bag', 'Sticky button', 'PDP')
+            clickCTAButtonUnderSize = false
+          }
         } else {
           pushDataLayer('exp_impro_pdp_but_undsize_addbag', 'Add to bag', 'Button', 'PDP Under View size guide')
         }
       })
-      $el('[data-add-to-bag]').addEventListener('click', (event) => {
+      $el('[data-add-to-bag]')?.addEventListener('click', event => {
         pushDataLayer('exp_impro_pdp_but_undsize_addbag', 'Add to bag', 'Button', 'PDP Under View size guide')
       })
       $$el('product-reviews-summary').forEach(item => {
@@ -1476,14 +1478,26 @@ window.onload = () => {
 
         $el('product-configurable-options')?.insertAdjacentHTML('beforeend', html)
         $el('[data-add-to-bag]')?.addEventListener('click', () => {
+          clickCTAButtonUnderSize = true
           $el('action[cy-basketaddbutton]').click()
+          setTimeout(() => {
+            clickCTAButtonUnderSize = false
+          }, 50)
         })
-        $el('[data-add-to-wishlist]').addEventListener('click', () => {
+        $el('[data-add-to-wishlist]')?.addEventListener('click', () => {
           $el('product-view-wishlist-toggle action:not([data-add-to-wishlist])').click()
         })
       }
     }
     footer() {
+      waitForElement('product-reviews-modal').then(() => {
+        blockVisibility(
+          'product-reviews-modal',
+          'exp_impro_pdp_vis_review_modal',
+          'Block view',
+          'PDP Rated as ‘excellent’ by our customers'
+        )
+      })
       waitForElement('page-footer .logo-feefo ').then(() => {
         blockVisibility(
           'page-footer .logo-feefo ',
