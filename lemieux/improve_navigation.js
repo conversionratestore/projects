@@ -1224,6 +1224,7 @@ window.onload = () => {
 
       // Size chart
       $el('.crs-size-chart__dialog')?.addEventListener('click', e => {
+        console.log(e.target, e.target.closest('li'))
         const listItem = e.target.closest('li')
         if (listItem) {
           if (listItem.dataset.stock === 'unavailable') {
@@ -1281,7 +1282,7 @@ window.onload = () => {
             )
             const isOut = productDats?.qty
             $el('.crs-stock').style.display = isOut ? 'none' : 'flex'
-          }, 200)
+          }, 300)
 
           if (listItem.innerText.includes('Only')) {
             pushDataLayer('exp_impro_pdp_selec_popsize_only', 'Only ', 'Select', 'PDP Pop up Select Size')
@@ -1389,13 +1390,6 @@ window.onload = () => {
         })
       })
 
-      if (this.device === devices.mobile) {
-        handleTouch(() => {
-          $el('.crs-size-chart__dialog')?.close()
-          $el('.crs-size-chart__notify')?.close()
-          $el('.crs-size-chart__backdrop')?.click()
-        })
-      }
     }
 
     async initSwiper() {
@@ -1408,12 +1402,13 @@ window.onload = () => {
 
     newStaButton() {
       const html = /* HTML */ `
+        <div _ngcontent-ng-c48037730="" class="wrap p-t p-b" id="new-sta-btn">
         <style>
           #new-sta-btn {
+            margin-top: 8px;
             padding: 0 !important;
           }
         </style>
-        <div _ngcontent-ng-c48037730="" class="wrap p-t p-b" id="new-sta-btn">
           <div class="flex ng-star-inserted">
             <action data-add-to-bag class="button p-r-0-s p-l-0-s p-r-0-m p-l-0-m flex-grow"
               ><span _ngcontent-ng-c3660662962="" class="button__busy"
@@ -1444,7 +1439,7 @@ window.onload = () => {
       if (this.device === devices.mobile) {
         $el('#new-sta-btn')?.remove()
 
-        $el('product-configurable-options').insertAdjacentHTML('beforeend', html)
+        $el('product-configurable-options')?.insertAdjacentHTML('beforeend', html)
         $el('[data-add-to-bag]').addEventListener('click', () => {
           $el('action[cy-basketaddbutton]').click()
         })
