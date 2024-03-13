@@ -934,12 +934,13 @@ class Popup {
     if (!sessionStorage.getItem('session_time')) {
       sessionStorage.setItem('session_time', new Date().getTime())
     }
-    if (!sessionStorage.getItem('once_time')) {
-      sessionStorage.setItem('once_time', new Date().getTime())
+    if (!localStorage.getItem('once_time')) {
+      localStorage.setItem('once_time', new Date().getTime())
+      sessionStorage.setItem('base_popup', true)
     }
     document.body.setAttribute('data-time', new Date().getTime())
     const sessionTime = sessionStorage.getItem('session_time')
-    const onceTime = sessionStorage.getItem('once_time')
+    const onceTime = localStorage.getItem('once_time')
     const checkTime = setInterval(() => {
       if (sessionStorage.getItem('crs_popup')) {
         clearInterval(checkTime)
@@ -951,7 +952,8 @@ class Popup {
       }
       if (new Date().getTime() - onceTime > 600000 && this.user === 0) {
         sessionStorage.removeItem('crs_popup')
-        sessionStorage.setItem('once_time', new Date().getTime())
+        sessionStorage.removeItem('base_popup')
+        localStorage.setItem('once_time', new Date().getTime())
       }
     }, 1000)
 
@@ -1062,6 +1064,10 @@ class Popup {
         if (sessionStorage.getItem('crs_popup')) return
         this.drawCart()
         sessionStorage.setItem('crs_popup', true)
+      } else {
+        if (sessionStorage.getItem('base_popup')) return
+        $el('div:not(.needsclick)>button.needsclick').click()
+        sessionStorage.setItem('base_popup', true)
       }
     } else {
       if (cartLength > 0) {
