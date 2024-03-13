@@ -67,7 +67,28 @@ window.onload = () => {
       v1.observe(item)
     })
   }
+  const priceVariant = price => {
+    const country = window?.autoInitData?.website?.websiteCode
 
+    switch (country) {
+      case 'base':
+        return `£${price}`
+      case 'us':
+        return `$${price}`
+      case 'au':
+        return `$${price}`
+      case 'ca':
+        return `$${price}`
+      case 'nz':
+        return `$${price}`
+      case 'sa':
+        return `ZAR ${price}`
+        case 'uae':
+        return `AED ${price}`
+      default:
+        return `${price} €`
+    }
+  }
   const handleTouch = cb => {
     let touchStartY = 0
     let touchEndY = 0
@@ -566,7 +587,7 @@ window.onload = () => {
                         <img src="/static/media/catalog/${product.image}" alt="${product.name}" />
                         <h3>${product.name}</h3>
                         <div>${product.color?.length || 1} colours</div>
-                        <p>${product.price}</p>
+                        <p>${priceVariant(product.price)}</p>
                         ${product.reviews
                           ? `<rating class="inline-flex fs-7-x fs-7-l ng-star-inserted">${stars} (${product.reviews.count})</rating>`
                           : ''}
@@ -1077,8 +1098,10 @@ window.onload = () => {
           <div class="crs-size-chart__backdrop"></div>
         </div>
       `
-   
-      const productDats = products.find(item => item.color === obj['selection.color'] && item.size === obj['selection.size'])
+
+      const productDats = products.find(
+        item => item.color === obj['selection.color'] && item.size === obj['selection.size']
+      )
       const isOut = !productDats?.qty
 
       const inStock = /* HTML */ `
@@ -1253,7 +1276,9 @@ window.onload = () => {
             $el('box.is-selected')?.click()
             $el('.crs-size-chart__dialog').close()
             $el('.crs-stock__wrap')?.append($el('.crs-size-chart__info'))
-            const productDats = products.find(item => item.color === obj['selection.color'] && item.size === obj['selection.size'])
+            const productDats = products.find(
+              item => item.color === obj['selection.color'] && item.size === obj['selection.size']
+            )
             const isOut = productDats?.qty
             $el('.crs-stock').style.display = isOut ? 'none' : 'flex'
           }, 200)
@@ -1322,6 +1347,7 @@ window.onload = () => {
 
       $el('action[cy-basketaddbutton]')?.addEventListener('click', () => {
         const selectedSize = +params.get('selection.size')
+        console.log('selected size', selectedSize)
         if (!selectedSize) {
           $el('.crs-size-chart__dialog')?.show()
           $el('.crs-size-chart__list li:first-child div').append($el('.crs-size-chart__info'))
