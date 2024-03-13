@@ -81,9 +81,7 @@ window.onload = () => {
     }
     function handleTouchEnd(evt) {
       if (touchStartY - touchEndY < 150) {
-        console.log('touch')
         cb()
-        console.log('Dialog closed')
       }
     }
 
@@ -638,14 +636,6 @@ window.onload = () => {
           recentlyViewed.parentElement.after(perfectlyWith.parentElement)
         }
 
-        if (!$el('.perfectly').nextElementSibling.innerText) {
-          console.log('empty')
-          $el('.perfectly').parentElement.style.visibility = 'hidden'
-        }
-
-        if (!$el('.recently').nextElementSibling.innerText) {
-          $el('.recently').parentElement.style.visibility = 'hidden'
-        }
 
         blockVisibility('.recently', 'exp_impro_pdp_vis_recently_block', 'Block view', `PDP Recently viewed`)
         blockVisibility(
@@ -726,15 +716,8 @@ window.onload = () => {
           colors.push({ id: item.id, color: item.color, image: item.image })
         }
       })
-      // const allIds = productResponse.catalog
-      //   .map(item => {
-      //     if (item.type === 'stock' && item.id) return item.id
-      //   })
-      //   .filter(Boolean)
-      // const reviews = await this.getFetch(
-      //   `/n/bundle?requests=[{"type":"review","verbosity":3,"limit":0,"filter":{"type_id":1,"entity_id":{"$in":[${allIds}]}},"sort":{"date":+1},"skip":0,"action":"find","children":[{"_reqId":0}]}]&pushDeps=true`
-      // )
-      // console.log(reviews)
+     
+
       // get product size
       const productSizesIds = productResponse.result[0].size
       const productSizes = sizeResponse.result[0].options.filter(size => productSizesIds.includes(size.value))
@@ -1437,7 +1420,6 @@ window.onload = () => {
         $el('#new-sta-btn')?.remove()
 
         $el('product-configurable-options').insertAdjacentHTML('beforeend', html)
-        console.log('we are here')
         $el('[data-add-to-bag]').addEventListener('click', () => {
           $el('action[cy-basketaddbutton]').click()
         })
@@ -1526,6 +1508,9 @@ window.onload = () => {
           line-height: 24px;
           cursor: pointer;
         }
+        add-this:has(> div:empty) {
+          display: none !important;
+        }
         body:has(dialog[open]) {
           overflow: hidden;
         }
@@ -1573,6 +1558,9 @@ window.onload = () => {
           text-align: center;
           color: #212121;
           padding-bottom: 48px;
+        }
+        :is(.perfectly, .recently):has( ~ related-products:empty) {
+          visibility: hidden;
         }
         scroll-nav button {
           border-radius: 2px !important;
