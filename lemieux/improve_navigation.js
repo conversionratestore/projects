@@ -330,81 +330,81 @@ window.onload = () => {
     returnBadge() {
       $el('.return-badge')?.remove()
       const returnBadge = /* HTML */ `
-        <style>
-          product-view-delivery-note div:first-child {
-            background: none;
-          }
-          product-view-delivery-note :is(p, i) {
-            color: #212121 !important;
-            font-size: 16px;
-            font-weight: 600 !important;
-          }
-          product-view-delivery-note i {
-            font-size: 1.7em !important;
-            padding-right: 0.3em !important;
-            color: #212121 !important;
-          }
-          .return-badge {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 0;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #cfd2d3;
-            padding-bottom: 20px;
-            margin-top: 16px;
-          }
-          .return-badge,
-          product-view-delivery-note div:first-child {
-            justify-content: flex-start;
-          }
-          .return-badge svg {
-            margin-right: 10px;
-          }
-          .return-badge p {
-            color: #212121;
-            font-size: 16px;
-            font-weight: 600;
-          }
-          .return-badge__inform {
-            position: relative;
-            cursor: pointer;
-          }
-          .return-badge__inform:hover .return-badge__message {
-            display: block;
-          }
-          .return-badge__message {
-            position: absolute;
-            display: none;
-            top: -10px;
-            left: 20px;
-            width: 200px;
-            border-radius: 5px;
-            border: 1px solid var(--Stroke, #cfd2d3);
-            background: #fff;
-            padding: 10px;
-          }
-
-          .return-badge__message::before {
-            content: '';
-            content: '';
-            width: 7px;
-            height: 12px;
-            top: 10px;
-            left: -7px;
-            position: absolute;
-            position: absolute;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='12' viewBox='0 0 7 12' fill='none'%3E%3Cpath d='M7.5 11L7.5 12.0675L6.67991 11.3841L0.679908 6.38411L0.218975 6L0.679908 5.61589L6.67991 0.61589L7.5 -0.0675211L7.5 1L7.5 11Z' fill='white' stroke='%23CFD2D3' stroke-linejoin='round'/%3E%3C/svg%3E");
-          }
-          @media (min-width: 1024px) {
-            .return-badge {
-              margin-top: 12px;
-              border: 0;
-              padding: 0;
-            }
-          }
-        </style>
         <div class="return-badge">
+          <style>
+            product-view-delivery-note div:first-child {
+              background: none;
+            }
+            product-view-delivery-note :is(p, i) {
+              color: #212121 !important;
+              font-size: 16px;
+              font-weight: 600 !important;
+            }
+            product-view-delivery-note i {
+              font-size: 1.7em !important;
+              padding-right: 0.3em !important;
+              color: #212121 !important;
+            }
+            .return-badge {
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              padding: 0;
+              margin-bottom: 20px;
+              border-bottom: 1px solid #cfd2d3;
+              padding-bottom: 20px;
+              margin-top: 16px;
+            }
+            .return-badge,
+            product-view-delivery-note div:first-child {
+              justify-content: flex-start;
+            }
+            .return-badge svg {
+              margin-right: 10px;
+            }
+            .return-badge p {
+              color: #212121;
+              font-size: 16px;
+              font-weight: 600;
+            }
+            .return-badge__inform {
+              position: relative;
+              cursor: pointer;
+            }
+            .return-badge__inform:hover .return-badge__message {
+              display: block;
+            }
+            .return-badge__message {
+              position: absolute;
+              display: none;
+              top: -10px;
+              left: 20px;
+              width: 200px;
+              border-radius: 5px;
+              border: 1px solid var(--Stroke, #cfd2d3);
+              background: #fff;
+              padding: 10px;
+            }
+
+            .return-badge__message::before {
+              content: '';
+              content: '';
+              width: 7px;
+              height: 12px;
+              top: 10px;
+              left: -7px;
+              position: absolute;
+              position: absolute;
+              background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='12' viewBox='0 0 7 12' fill='none'%3E%3Cpath d='M7.5 11L7.5 12.0675L6.67991 11.3841L0.679908 6.38411L0.218975 6L0.679908 5.61589L6.67991 0.61589L7.5 -0.0675211L7.5 1L7.5 11Z' fill='white' stroke='%23CFD2D3' stroke-linejoin='round'/%3E%3C/svg%3E");
+            }
+            @media (min-width: 1024px) {
+              .return-badge {
+                margin-top: 12px;
+                border: 0;
+                padding: 0;
+              }
+            }
+          </style>
           ${icons.return}
           <p>60 day return policy</p>
           <div class="return-badge__inform">
@@ -414,7 +414,17 @@ window.onload = () => {
           </div>
         </div>
       `
-      $el('product-view-delivery-note')?.insertAdjacentHTML('beforeend', returnBadge)
+      setTimeout(() => {
+      if ($el('product-view-delivery-note')) {
+        $el('product-view-delivery-note')?.insertAdjacentHTML('beforeend', returnBadge)
+      } else {
+          if (this.device === devices.mobile) {
+            $el('product-configurable-options')?.insertAdjacentHTML('afterend', returnBadge)
+          } else {
+            $el('product-view-details').insertAdjacentHTML('beforebegin', returnBadge)
+          }
+        }
+      }, 400)
       blockVisibility(
         '.return-badge',
         'exp_impro_pdp_vis_polic_block',
@@ -1577,6 +1587,13 @@ window.onload = () => {
 
     initStyles() {
       const styles = /* HTML */ ` <style>
+        product-configurable-options + .return-badge {
+          margin-top: 30px;
+          margin-bottom: 0;
+        }
+        .return-badge:has(+ product-view-details) {
+          margin-top: 30px;
+        }
         ._button[_ngcontent-ng-c710315143] {
           padding: 8px 16px;
           font-size: 16px;
