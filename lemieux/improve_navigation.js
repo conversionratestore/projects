@@ -385,7 +385,12 @@ window.onload = () => {
               border-radius: 5px;
               border: 1px solid var(--Stroke, #cfd2d3);
               background: #fff;
-              padding: 10px;
+              padding: 4px 7px;
+              font-size: 13px;
+              line-height: 18px;
+              color: #212121;
+              max-width: calc(90vw / 2.5);
+              z-index: 100;
             }
 
             .return-badge__message::before {
@@ -1261,7 +1266,9 @@ window.onload = () => {
         })
         $el('.crs-size-chart__btn')?.addEventListener('click', () => {
           $el('.crs-size-chart__dialog').show()
-          $el('.crs-size-chart__list li:first-child div').append($el('.crs-size-chart__info'))
+          if (this.device === devices.mobile) {
+            $el('.crs-size-chart__list li:first-child div').append($el('.crs-size-chart__info'))
+          }
         })
 
         const updateHash = ({ size, color }) => {
@@ -1404,9 +1411,9 @@ window.onload = () => {
           const isUserSelectSize = hash.includes('selection.size')
           if (!isUserSelectSize) {
             $el('.crs-size-chart__dialog')?.show()
-            $el('.crs-size-chart__list li:first-child div').append($el('.crs-size-chart__info'))
           }
           if (this.device === devices.mobile) {
+            $el('.crs-size-chart__list li:first-child div').append($el('.crs-size-chart__info'))
             if (!clickCTAButtonUnderSize) {
               pushDataLayer('exp_impro_pdp_sticbut_product_add', 'Add to bag', 'Sticky button', 'PDP')
               clickCTAButtonUnderSize = false
