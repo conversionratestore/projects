@@ -1428,7 +1428,6 @@ window.onload = () => {
           if (!isUserSelectSize) {
             $el('.crs-size-chart__dialog')?.show()
             if (this.device === devices.mobile) {
-              console.log('mobile')
               const sizeInfo = $el('.crs-size-chart__info')
               const sizeInfoClone = sizeInfo.cloneNode(true)
               sizeInfoClone.dataset.cloned = true
@@ -1646,9 +1645,7 @@ window.onload = () => {
         add-this:has(> div:empty) {
           display: none !important;
         }
-        body:has(dialog[open]) {
-          overflow: hidden;
-        }
+  
         product-view-fashion-recommendation h5 {
           text-align: center;
         }
