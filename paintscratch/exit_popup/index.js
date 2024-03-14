@@ -2909,8 +2909,8 @@
             "Exit intent pop-up empty cart Don’t leave just yet! Get 5% Off Your Purchase Now!"
           );
           const n = R("makeSelected"), l = R("yearSelected"), a = decodeURIComponent(R("modelSelected")), o = R("ColorNameSelectedLast"), p = R("ColorRgbSelectedLast");
-          if (n && l && a && o && p) {
-            console.log({ makeSelected: n, yearSelected: l, modelSelected: a, colorNameSelectedLast: o, colorRgbSelectedLast: p }), r.preventDefault(), this.hide();
+          if (this.hide(), n && l && a && o && p) {
+            console.log({ makeSelected: n, yearSelected: l, modelSelected: a, colorNameSelectedLast: o, colorRgbSelectedLast: p });
             const c = document.createElement("form");
             c.method = "POST", c.action = "https://www.paintscratch.com/cgi-bin/order-form.cgi?discount_code=FIRSTORDER5";
             const f = document.createElement("input");
@@ -2926,7 +2926,7 @@
             const b = document.createElement("input");
             b.type = "hidden", b.name = "color", b.value = p, c.appendChild(b), document.body.appendChild(c), c.submit();
           } else
-            r.preventDefault(), document.location.href = "https://www.paintscratch.com/cgi-bin/order-form.cgi?discount_code=FIRSTORDER5";
+            document.location.href = "https://www.paintscratch.com/cgi-bin/order-form.cgi?discount_code=FIRSTORDER5";
         }
       });
     }
