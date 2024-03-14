@@ -812,7 +812,8 @@ class Popup {
     const style = /*html*/ `
       <style>
         .needsclick button[aria-label="Close teaser"] {
-          display: none !important;
+          opacity: 0;
+          pointer-events: none;
         }
         #shopify-section-minicart {
           z-index: 9999999 !important;
