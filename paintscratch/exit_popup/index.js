@@ -2910,7 +2910,7 @@
           );
           const n = R("makeSelected"), l = R("yearSelected"), a = decodeURIComponent(R("modelSelected")), o = R("ColorNameSelectedLast"), p = R("ColorRgbSelectedLast");
           if (n && l && a && o && p) {
-            console.log({ makeSelected: n, yearSelected: l, modelSelected: a, colorNameSelectedLast: o, colorRgbSelectedLast: p }), r.preventDefault(), this.popup.close();
+            console.log({ makeSelected: n, yearSelected: l, modelSelected: a, colorNameSelectedLast: o, colorRgbSelectedLast: p }), r.preventDefault(), this.hide();
             const c = document.createElement("form");
             c.method = "POST", c.action = "https://www.paintscratch.com/cgi-bin/order-form.cgi?discount_code=FIRSTORDER5";
             const f = document.createElement("input");
@@ -2990,7 +2990,7 @@
           "Complete my order",
           "click",
           "Exit intent pop-up filled cart You're Almost There! Less 100 dollars"
-        );
+        ), this.hide();
         const n = new URL("https://www.paintscratch.com/cgi-bin/shopping-cart.cgi");
         n.searchParams.set("discount_code", Ee), document.cookie = `discount_code=${Ee};path=/`, setTimeout(() => {
           window.location.href = n.toString();
