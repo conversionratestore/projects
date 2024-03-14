@@ -125,6 +125,7 @@
   class InitUnlockBlock {
     constructor() {
       this.device = window.innerWidth < 769 ? "mobile" : "desktop";
+      this.thisClass = '';
       this.init();
     }
   
@@ -142,20 +143,21 @@
         if (pageUrl.includes("/content/")) {
           this.initBlock();
 
-          if ( $el('.crs_form input.password-field') && !$el("#block-userregistrationform form").action.includes('destination=/become-a-subscriber')) {
+          if ($el('.crs_form input.password-field') && this.thisClass != '') {
             $el('.crs_form input.form-email').placeholder = 'Your email';
             $el('.crs_form input.username').placeholder = 'Your username';
             $el('.crs_form input.password-field').placeholder = 'Password';
-
-            // $el("#block-userregistrationform form").action = '/become-a-subscriber?' +  $el("#block-userregistrationform form").action.split('?')[1]
-            // $el("#block-userregistrationform form").action = $el("#block-userregistrationform form").action + '&destination=/become-a-subscriber'
-            // /become-a-subscriber?check_logged_in=1
-              // ?destination=/content/elemental-practice-fire
-  
-            // $el("#block-userregistrationform form").addEventListener('submit', (event) => {
-            //   event.preventDefault();
-            //   window.location.href = '/become-a-subscriber'
-            // });
+          
+            $$el('.crs_form input').forEach((input, index) => {
+              input.addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
+                let count = index + 1;
+                if (this.thisClass === 'Premium') {
+                  count = index + 4;
+                }
+                pushDataLayer('exp_trailvideo_input_0'+count, input.placeholder, 'Input', `${$el('.crs_block h2').innerText.trim()} Unauthorised ${this.thisClass} class`)
+              })
+            })
 
             $el('.crs_form input.password-field').addEventListener('input', (e) => {
               $el('.crs_form input.password-confirm').value = e.target.value;
@@ -200,9 +202,6 @@
               }
               .crs_form #block-userregistrationform {
                 width: 100%;
-              }
-              .h-captcha iframe {
-                margin-left: 55px;
               }
               .crs_block {
                   padding: 32px 14px 24px;
@@ -419,6 +418,9 @@
                     justify-content: center;
                     align-items: center;
                   }
+                  .h-captcha iframe {
+                    margin-left: 55px;
+                  }
               }
               @media (max-width: 767px) {
                   .o-page__header {
@@ -493,7 +495,7 @@
                       line-height: 24px!important;
                   }
                   .crs_form input {
-                      max-width: 100%;
+                      max-width: 100%!important;
                   }
                   .crs_form > div p {
                       margin: 6px 0;
@@ -510,7 +512,8 @@
                       line-height: 22px;
                   }
                   .sfc-nodePlayable__lockCta {
-                      margin-bottom: 12px;
+                      margin-bottom: 12px!important;
+                      height: 52px;
                   }
               }
   
@@ -557,7 +560,7 @@
         ? false
         : true;
   
-      let thisClass = $el(
+      this.thisClass = $el(
         ".sfc-nodePlayable__lockContainerInner header > .sfc-item__headline"
       )?.innerHTML.includes("premium")
         ? "Premium"
@@ -569,7 +572,7 @@
                   <div class="crs_swipe"></div>
                   <h2>
                   ${
-                    thisClass === 'Premium' ? 'Subscribe to unlock this <span class="text-nowrap">Premium class</span>' : 
+                    this.thisClass === 'Premium' ? 'Subscribe to unlock this <span class="text-nowrap">Premium class</span>' : 
                     'Sign up to get access <span class="text-nowrap">to this free class</span>'
                   }
                  </h2>
@@ -587,26 +590,26 @@
           <div class="crs_block">
               <h2>
                 ${
-                  thisClass === 'Premium' ? 'Subscribe to unlock this <span class="text-nowrap">Premium class</span>' : 
+                  this.thisClass === 'Premium' ? 'Subscribe to unlock this <span class="text-nowrap">Premium class</span>' : 
                   'Sign up to get access <span class="text-nowrap">to this free class</span>'
                 }
               </h2>
               <p class="crs_block_subtotal">
                   ${
-                    thisClass === "Premium"
+                    this.thisClass === "Premium"
                       ? `Get access to this and 500+ other premium <br class="d-md-none"> classes`
                       : `Watch this and 500+ other free classes <br class="d-md-none"> after the sign up`
                   }
               </p>
               <div class="crs_block_content">
-                  ${thisClass === "Premium" && authorized ? content1 : content2}
+                  ${this.thisClass === "Premium" && authorized ? content1 : content2}
               </div>
           </div>
           ${authorized === false ? formHTML : ""}`;
   
       if (
         authorized === false ||
-        (authorized === true && thisClass === "Premium")
+        (authorized === true && this.thisClass === "Premium")
       ) {
         insert($el(".sfc-nodePlayable__primaryContentContainer"), firstBlockHTML);
   
@@ -615,16 +618,16 @@
 
         }
         let eventName = '';
-        let eventLocation = $el('.crs_block h2').innerText + (authorized === false ? ` Unauthorised ${thisClass} class`:' Authorized Premium class only');
+        let eventLocation = $el('.crs_block h2').innerText.trim() + (authorized === false ? ` Unauthorised ${this.thisClass} class`:' Authorized Premium class only');
 
         if (authorized === false) {
-          if (thisClass === "free") {
+          if (this.thisClass === "free") {
             eventName = 'exp_trailvideo_section_01';
           } else {
             eventName = 'exp_trailvideo_section_02';
           }
         } else {
-          if (thisClass === "Premium") {
+          if (this.thisClass === "Premium") {
             eventName = 'exp_trailvideo_section_03';
           }
         }
@@ -633,12 +636,12 @@
 
 
         if ($el('.crs_block.crs_form')) {
-          let eventName = thisClass === 'free' ? 'exp_trailvideo_section_04' : 'exp_trailvideo_section_05';
+          let eventName = this.thisClass === 'free' ? 'exp_trailvideo_section_04' : 'exp_trailvideo_section_05';
 
           checkVisibilityAfterMs('.crs_block.crs_form', eventName, eventLocation);
         }
 
-        this.actionsBlock(thisClass);
+        this.actionsBlock(this.thisClass);
       }
     }
   
@@ -651,13 +654,13 @@
           $el(".crs_form").style.display = "flex";
 
           eventName = thisClass === 'free' ? 'exp_trailvideo_button_02' : 'exp_trailvideo_button_04';
-          let locEvent = $el('.crs_block h2').innerText + ` Unauthorised ${thisClass} class`;
+          let locEvent = $el('.crs_block h2').innerText.trim() + ` Unauthorised ${thisClass} class`;
           pushDataLayer(eventName, 'Sign Up with Email', 'Button', locEvent);
        });
         
         $el('.crs_btn_white').addEventListener("click", (e) => { //event Continue with Google
           eventName = thisClass === 'free' ? 'exp_trailvideo_button_01' : 'exp_trailvideo_button_03';
-          pushDataLayer(eventName, 'Continue with Google', 'Button', $el('.crs_block h2').innerText + ` Unauthorised ${thisClass} class`);
+          pushDataLayer(eventName, 'Continue with Google', 'Button', $el('.crs_block h2').innerText.trim() + ` Unauthorised ${thisClass} class`);
         })
 
         $el(".crs_btn_back").addEventListener("click", (e) => {
@@ -670,9 +673,25 @@
           e.preventDefault();
           localStorage.setItem("isClass", thisClass);
           eventName = thisClass === 'free' ? '06' : '07';
-          pushDataLayer('exp_trailvideo_button_'+eventName, 'Create Free Account', 'Button', `Pop up ${$el(".crs_block h2").innerText} Unauthorised ${thisClass} class`);
+          pushDataLayer('exp_trailvideo_button_'+eventName, 'Create Free Account', 'Button', `Pop up ${$el(".crs_block h2").innerText.trim()} Unauthorised ${thisClass} class`);
 
-          $el('.crs_form .form-actions button').click();
+          const formData = new FormData($el('.crs_form form'));
+
+          fetch($el('.crs_form form').action, {
+              method: 'POST',
+              body: formData
+          })
+          .then(response => {
+            console.log(response)
+              if (response.ok) {
+                  // window.location.href = '/become-a-subscriber';
+              } else {
+                  console.error('Error');
+              }
+          })
+          .catch(error => {
+              console.error('Error:', error);
+          });
 
         });
         if (this.device == "mobile") {
@@ -691,15 +710,6 @@
             $el(".crs_block:not(.crs_form)").style.display = "block";
           });
         }
-        $$el('.crs_form input').forEach((input, index) => {
-          input.addEventListener('click', () => {
-            let count = index + 1;
-            if (thisClass === 'Premium') {
-              count = index + 4;
-            }
-            pushDataLayer('exp_trailvideo_input_0'+count, input.placeholder, 'Input', `${$el('.crs_block h2').innerText} Unauthorised ${thisClass} class`)
-          })
-        })
       }
 
       if ($el(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta")) {
