@@ -675,25 +675,10 @@
           eventName = thisClass === 'free' ? '06' : '07';
           pushDataLayer('exp_trailvideo_button_'+eventName, 'Create Free Account', 'Button', `Pop up ${$el(".crs_block h2").innerText.trim()} Unauthorised ${thisClass} class`);
 
-          const formData = new FormData($el('.crs_form form'));
-
-          fetch($el('.crs_form form').action, {
-              method: 'POST',
-              body: formData
-          })
-          .then(response => {
-            console.log(response)
-              if (response.ok) {
-                  // window.location.href = '/become-a-subscriber';
-              } else {
-                  console.error('Error');
-              }
-          })
-          .catch(error => {
-              console.error('Error:', error);
-          });
-
+          $el('.crs_form .sfc-button').click()
+        
         });
+
         if (this.device == "mobile") {
           $el(".crs_form").addEventListener("click", (e) => {
             if (e.target.classList.contains("crs_form")) {
