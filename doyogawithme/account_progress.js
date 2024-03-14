@@ -141,6 +141,26 @@
       const globalMutation = new MutationObserver((mutations) => {
         if (pageUrl.includes("/content/")) {
           this.initBlock();
+
+          if ( $el('.crs_form input.password-field') && !$el("#block-userregistrationform form").action.includes('destination=/become-a-subscriber')) {
+            $el('.crs_form input.form-email').placeholder = 'Your email';
+            $el('.crs_form input.username').placeholder = 'Your username';
+            $el('.crs_form input.password-field').placeholder = 'Password';
+
+            // $el("#block-userregistrationform form").action = '/become-a-subscriber?' +  $el("#block-userregistrationform form").action.split('?')[1]
+            // $el("#block-userregistrationform form").action = $el("#block-userregistrationform form").action + '&destination=/become-a-subscriber'
+            // /become-a-subscriber?check_logged_in=1
+              // ?destination=/content/elemental-practice-fire
+  
+            // $el("#block-userregistrationform form").addEventListener('submit', (event) => {
+            //   event.preventDefault();
+            //   window.location.href = '/become-a-subscriber'
+            // });
+
+            $el('.crs_form input.password-field').addEventListener('input', (e) => {
+              $el('.crs_form input.password-confirm').value = e.target.value;
+            })
+          }
         }
   
         globalMutation.disconnect();
@@ -163,6 +183,11 @@
               #main-content {
                 z-index: 3;
               }
+              .password-suggestions,
+              .ac-newsletter-reg-suffix,
+              .field--widget-boolean-checkbox,
+              .password-strength,
+              .form-item-pass-pass2,
               .sfc-nodePlayable__lockContainerInner,
               .crs_form h1,
               .crs_form .form-actions,
@@ -173,8 +198,11 @@
               .form-required:after {
                 content: none;
               }
-              .crs_form #block-userlogin {
+              .crs_form #block-userregistrationform {
                 width: 100%;
+              }
+              .h-captcha iframe {
+                margin-left: 55px;
               }
               .crs_block {
                   padding: 32px 14px 24px;
@@ -209,8 +237,11 @@
               .crs_form h2 {
                   margin-bottom: 24px;
               }
-              .crs_form_container > div#block-userlogin {
-                  margin: 0 auto 14px!important;
+              .crs_form_container > div#block-userregistrationform {
+                  margin: 0 auto!important;
+              }
+              .form-item-pass-pass1 {
+                width: 100%;
               }
               .crs_form .form-item label,
               .crs_block p,
@@ -518,7 +549,7 @@
         !$el(
           ".sfc-nodePlayable__lockContainerInner header > .sfc-item__headline"
         ) &&
-        !$el("#block-userlogin")
+        !$el("#block-userregistrationform")
       )
         return;
   
@@ -580,22 +611,8 @@
         insert($el(".sfc-nodePlayable__primaryContentContainer"), firstBlockHTML);
   
         if ($el(".crs_form h2")) {
-          const usernameHTML = `
-            <div class="js-form-item form-item js-form-type-textfield form-type-textfield js-form-item-name form-item-name">
-                <label for="edit-username">Username</label>
-                <input type="text" placeholder="Your username" id="edit-username">
-            </div>  `;
-  
-          $el('.js-form-item-name label').innerHTML = 'Email address';
-          $el('.js-form-item-name input').placeholder = 'Your email';
-          $el('.form-item-pass input').placeholder = 'Password';
-  
-          $el(".crs_form h2").after($el("#block-userlogin"));
-          insert(
-            $el("#block-userlogin .js-form-item-name"),
-            usernameHTML,
-            "afterend"
-          );
+          $el(".crs_form h2").after($el("#block-userregistrationform"));
+
         }
         let eventName = '';
         let eventLocation = $el('.crs_block h2').innerText + (authorized === false ? ` Unauthorised ${thisClass} class`:' Authorized Premium class only');
@@ -654,6 +671,7 @@
           localStorage.setItem("isClass", thisClass);
           eventName = thisClass === 'free' ? '06' : '07';
           pushDataLayer('exp_trailvideo_button_'+eventName, 'Create Free Account', 'Button', `Pop up ${$el(".crs_block h2").innerText} Unauthorised ${thisClass} class`);
+
           $el('.crs_form .form-actions button').click();
 
         });
