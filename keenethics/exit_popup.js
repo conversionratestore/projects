@@ -293,7 +293,7 @@
         stroredTimer = localStorage.getItem('timer')
       }
 
-      if (!currentURL.includes('contacts') && !currentURL.includes('estimate')) {
+      if (!currentURL.includes('contacts') && !currentURL.includes('estimate') && !currentURL.includes('success')) {
         if (this.device === devices.mobile) {
           const showPopup = () => {
             if (this.isUserSubmitForm() || this.isUserEngagamentWithPage()) return
@@ -609,8 +609,8 @@
         }
       </style>`
       const noPhone = localStorage.getItem('noPhone')
-      const ourformSubmitted = localStorage.getItem('ourformSubmitted');
-      if (!ourformSubmitted) return 
+      const ourformSubmitted = localStorage.getItem('ourformSubmitted')
+      if (!ourformSubmitted) return
       localStorage.removeItem('ourformSubmitted')
       if (noPhone) {
         localStorage.removeItem('noPhone')
