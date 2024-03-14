@@ -353,22 +353,24 @@ class changeFlow {
 
   init() {
     waitForElement(".swiper-slide-active").then(() => {
-      if (location.pathname === "/save/") {
-        this.initMainStyles();
-        this.createPopup();
-        this.updateRangeSliderSteps();
-        this.initSliderReviews();
-        this.changeSlidesSteps();
-        this.setLocalStorageDataInfo();
-        this.onClickYourSavingsBtn();
-        this.onClickNewNextBtns();
-        this.onClickOldNextBtn();
-        this.onClickOldBtnBack();
-        this.observereProgressBar();
-        this.setNameCity();
-        this.onClickElemPushDataLayer();
-        this.visibScreenView();
-      }
+      waitForElement(".wrapper #slider-block .default").then(() => {
+        if (location.pathname === "/save/") {
+          this.initMainStyles();
+          this.createPopup();
+          this.updateRangeSliderSteps();
+          this.initSliderReviews();
+          this.changeSlidesSteps();
+          this.setLocalStorageDataInfo();
+          this.onClickYourSavingsBtn();
+          this.onClickNewNextBtns();
+          this.onClickOldNextBtn();
+          this.onClickOldBtnBack();
+          this.observereProgressBar();
+          this.setNameCity();
+          this.onClickElemPushDataLayer();
+          this.visibScreenView();
+        }
+      });
     });
 
     if (location.pathname === "/received/" || location.pathname === "/thankyou/") {
