@@ -309,13 +309,15 @@ window.onload = () => {
       this.observer.observe(document.body, observerConfig)
     }
     initComponents() {
-      this.breadcrumps()
-      this.sizeChart()
-      this.similarProducts()
-      this.returnBadge()
-      this.footer()
-      this.newCtaButton()
-      this.splitCarrousels()
+      if ($el('product-view-layout')) {
+        this.breadcrumps()
+        this.sizeChart()
+        this.similarProducts()
+        this.returnBadge()
+        this.footer()
+        this.newCtaButton()
+        this.splitCarrousels()
+      }
     }
     disconnectObserver() {
       if (this.observer) {
@@ -415,13 +417,13 @@ window.onload = () => {
         </div>
       `
       setTimeout(() => {
-      if ($el('product-view-delivery-note')) {
-        $el('product-view-delivery-note')?.insertAdjacentHTML('beforeend', returnBadge)
-      } else {
+        if ($el('product-view-delivery-note')) {
+          $el('product-view-delivery-note')?.insertAdjacentHTML('beforeend', returnBadge)
+        } else {
           if (this.device === devices.mobile) {
             $el('product-configurable-options')?.insertAdjacentHTML('afterend', returnBadge)
           } else {
-            $el('product-view-details').insertAdjacentHTML('beforebegin', returnBadge)
+            $el('product-view-details')?.insertAdjacentHTML('beforebegin', returnBadge)
           }
         }
       }, 400)
@@ -459,205 +461,212 @@ window.onload = () => {
     }
 
     async similarProducts() {
-      await this.initSwiper()
-      const productId = this.getCurrentProductId()
-      const productResponse = await this.getFetch(`n/product/${productId}/verbosity/3`)
-      const categoryId = productResponse.result[0]?.categories?.last || productResponse.result[0]?.categories?.first
+      try {
+        await this.initSwiper()
+        const productId = this.getCurrentProductId()
+        const productResponse = await this.getFetch(`n/product/${productId}/verbosity/3`)
+        const categoryId = productResponse.result[0]?.categories?.last || productResponse.result[0]?.categories?.first
 
-      const categoryResponse = await this.getFetch(`n/category/${categoryId}/verbosity/3`)
-      if (!productResponse || !categoryResponse) return
-      const filteredCatalog = categoryResponse.catalog.filter(item => item.type === 'product')
-      let filteredArray = filteredCatalog.filter((value, index, self) => {
-        let words = value.url.split('/')
-        return (
-          self.findIndex(val => {
-            let otherWords = val.url.split('/')
-            return words[2] === otherWords[2]
-          }) === index
-        )
-      })
-      const similarProductsHTML = /* HTML */ `
-        <div class="similar-products">
-          <style>
-            .similar-products {
-              margin-bottom: 20px;
-              padding-inline: 20px;
-            }
-            .similar-products img {
-              width: 100%;
-              height: auto;
-            }
-            .similar-products h2 {
-              color: var(--Black, #212121);
-              margin-block: 32px;
-              font-family: baskerville-urw, sans-serif;
-              font-size: 32px;
-
-              line-height: 1.25;
-              letter-spacing: 0.5px;
-              text-align: center;
-              color: #212121;
-            }
-
-            .wishlist-wrap {
-              position: absolute;
-              top: 10px;
-              right: 10px;
-            }
-            .swipe-item h3 {
-              margin-block: 10px;
-              font-size: 0.9375rem;
-              letter-spacing: 0.0625rem;
-              line-height: 1.25rem;
-            }
-            .swipe-item h3 + div {
-              font-size: 0.9375rem;
-              letter-spacing: 0.0625rem;
-              line-height: 1.25rem;
-              color: var(--atomic-color-12, #acacac);
-            }
-            .swipe-item p {
-              font-size: 0.9375rem;
-              letter-spacing: 0.0625rem;
-              line-height: 1.25rem;
-            }
-            .swiper-scrollbar-container {
-              margin-top: 20px;
-            }
-            .similar-products .swiper-scrollbar {
-              width: 13.75rem;
-              background-color: #f6f5f5;
-              height: 2px;
-              left: 50%;
-              bottom: 0;
-              transform: translate(-50%);
-              z-index: 1;
-            }
-            .similar-products .swiper-scrollbar-drag {
-              background-color: #595959;
-            }
-
-            @media (min-width: 1024px) {
-              .similar-products h2 {
-                margin-block: 48px;
-                text-align: center;
-                font-family: baskerville-urw, sans-serif;
-                font-size: 48px;
-                line-height: 56px;
-                color: #212121;
+        const categoryResponse = await this.getFetch(`n/category/${categoryId}/verbosity/3`)
+        if (!productResponse || !categoryResponse) return
+        const filteredCatalog = categoryResponse.catalog.filter(item => item.type === 'product')
+        let filteredArray = filteredCatalog.filter((value, index, self) => {
+          let words = value.url.split('/')
+          return (
+            self.findIndex(val => {
+              let otherWords = val.url.split('/')
+              return words[2] === otherWords[2]
+            }) === index
+          )
+        })
+        const similarProductsHTML = /* HTML */ `
+          <div class="similar-products">
+            <style>
+              .similar-products {
+                margin-bottom: 20px;
+                padding-inline: 20px;
               }
               .similar-products img {
                 width: 100%;
-                height: 500px;
-                object-fit: cover;
+                height: auto;
               }
-              .similar-products a[cy-listingproductname] {
-                display: block;
-                min-height: 60px;
+              .similar-products h2 {
+                color: var(--Black, #212121);
+                margin-block: 32px;
+                font-family: baskerville-urw, sans-serif;
+                font-size: 32px;
+
+                line-height: 1.25;
+                letter-spacing: 0.5px;
+                text-align: center;
+                color: #212121;
               }
-            }
-          </style>
-          <h2>Similar items</h2>
-          <div class="swiper">
-            <div class="swiper-wrapper">
-              ${filteredArray
-                .map(product => {
-                  let stars = ''
 
-                  if (product.reviews) {
-                    let reviewRating = (product.reviews.rating / 10 / 2).toFixed(1)
+              .wishlist-wrap {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+              }
+              .swipe-item h3 {
+                margin-block: 10px;
+                font-size: 0.9375rem;
+                letter-spacing: 0.0625rem;
+                line-height: 1.25rem;
+              }
+              .swipe-item h3 + div {
+                font-size: 0.9375rem;
+                letter-spacing: 0.0625rem;
+                line-height: 1.25rem;
+                color: var(--atomic-color-12, #acacac);
+              }
+              .swipe-item p {
+                font-size: 0.9375rem;
+                letter-spacing: 0.0625rem;
+                line-height: 1.25rem;
+              }
+              .swiper-scrollbar-container {
+                margin-top: 20px;
+              }
+              .similar-products .swiper-scrollbar {
+                width: 13.75rem;
+                background-color: #f6f5f5;
+                height: 2px;
+                left: 50%;
+                bottom: 0;
+                transform: translate(-50%);
+                z-index: 1;
+              }
+              .similar-products .swiper-scrollbar-drag {
+                background-color: #595959;
+              }
 
-                    let iWholeStars = Math.floor(reviewRating)
-                    let iEmptyStars = 5 - Math.ceil(reviewRating)
+              @media (min-width: 1024px) {
+                .similar-products h2 {
+                  margin-block: 48px;
+                  text-align: center;
+                  font-family: baskerville-urw, sans-serif;
+                  font-size: 48px;
+                  line-height: 56px;
+                  color: #212121;
+                }
+                .similar-products img {
+                  width: 100%;
+                  height: 500px;
+                  object-fit: cover;
+                }
+                .similar-products a[cy-listingproductname] {
+                  display: block;
+                  min-height: 60px;
+                }
+              }
+            </style>
+            <h2>Similar items</h2>
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                ${filteredArray
+                  .map(product => {
+                    let stars = ''
 
-                    let blnHalfStar = iWholeStars < reviewRating
+                    if (product.reviews) {
+                      let reviewRating = (product.reviews.rating / 10 / 2).toFixed(1)
 
-                    for (var iStar = 1; iStar <= iWholeStars; iStar++) {
-                      stars += '<i class="rate-full"></i>'
+                      let iWholeStars = Math.floor(reviewRating)
+                      let iEmptyStars = 5 - Math.ceil(reviewRating)
+
+                      let blnHalfStar = iWholeStars < reviewRating
+
+                      for (var iStar = 1; iStar <= iWholeStars; iStar++) {
+                        stars += '<i class="rate-full"></i>'
+                      }
+
+                      if (blnHalfStar) {
+                        stars += '<i class="rate-half"></i>'
+                      }
+                      for (let iEmp = 0; iEmp < iEmptyStars; iEmp++) {
+                        stars += '<i class="rate-empty"></i>'
+                      }
                     }
 
-                    if (blnHalfStar) {
-                      stars += '<i class="rate-half"></i>'
-                    }
-                    for (let iEmp = 0; iEmp < iEmptyStars; iEmp++) {
-                      stars += '<i class="rate-empty"></i>'
-                    }
-                  }
-
-                  return /* HTML */ `
-                    <div class="swiper-slide">
-                      <a class="swipe-item" href="${product.url}">
-                        <div class="wishlist-wrap" data-product-id="${product.id}">
-                          <action cy-wishlistaddbtn="" class="wishlist-button cursor-pointer" _nghost-ng-c3660662962=""
-                            ><span _ngcontent-ng-c3660662962="" class="button__busy"
-                              ><span _ngcontent-ng-c3660662962="" class="bounce1"></span
-                              ><span _ngcontent-ng-c3660662962="" class="bounce2"></span></span
-                            ><!----><span _ngcontent-ng-c3660662962="" class="button__body"
-                              ><i
-                                aria-hidden="true"
-                                class="inline-flex icon-wishlist"
-                                style="font-size: 1.1em;"
-                              ></i></span
-                          ></action>
-                        </div>
-                        <img src="/static/media/catalog/${product.image}" alt="${product.name}" />
-                        <h3>${product.name}</h3>
-                        <div>${product.color?.length || 1} colours</div>
-                        <p>${priceVariant(product.price)}</p>
-                        ${product.reviews
-                          ? `<rating class="inline-flex fs-7-x fs-7-l ng-star-inserted">${stars} (${product.reviews.count})</rating>`
-                          : ''}
-                      </a>
-                    </div>
-                  `
-                })
-                .join('')}
-            </div>
-            <div class="swiper-scrollbar-container">
-              <div class="swiper-scrollbar"></div>
+                    return /* HTML */ `
+                      <div class="swiper-slide">
+                        <a class="swipe-item" href="${product.url}">
+                          <div class="wishlist-wrap" data-product-id="${product.id}">
+                            <action
+                              cy-wishlistaddbtn=""
+                              class="wishlist-button cursor-pointer"
+                              _nghost-ng-c3660662962=""
+                              ><span _ngcontent-ng-c3660662962="" class="button__busy"
+                                ><span _ngcontent-ng-c3660662962="" class="bounce1"></span
+                                ><span _ngcontent-ng-c3660662962="" class="bounce2"></span></span
+                              ><!----><span _ngcontent-ng-c3660662962="" class="button__body"
+                                ><i
+                                  aria-hidden="true"
+                                  class="inline-flex icon-wishlist"
+                                  style="font-size: 1.1em;"
+                                ></i></span
+                            ></action>
+                          </div>
+                          <img src="/static/media/catalog/${product.image}" alt="${product.name}" />
+                          <h3>${product.name}</h3>
+                          <div>${product.color?.length || 1} colours</div>
+                          <p>${priceVariant(product.price)}</p>
+                          ${product.reviews
+                            ? `<rating class="inline-flex fs-7-x fs-7-l ng-star-inserted">${stars} (${product.reviews.count})</rating>`
+                            : ''}
+                        </a>
+                      </div>
+                    `
+                  })
+                  .join('')}
+              </div>
+              <div class="swiper-scrollbar-container">
+                <div class="swiper-scrollbar"></div>
+              </div>
             </div>
           </div>
-        </div>
-      `
-      $el('.similar-products')?.remove()
-      $el('product-highlights')?.insertAdjacentHTML('beforebegin', similarProductsHTML)
+        `
+        $el('.similar-products')?.remove()
+        $el('product-highlights')?.insertAdjacentHTML('beforebegin', similarProductsHTML)
 
-      blockVisibility(
-        '.similar-products',
-        'exp_impro_pdp_vis_similar_block',
-        'Block view',
-        `PDP
-          Similar items`
-      )
-      new Swiper('.similar-products .swiper', swiperConfig)
+        blockVisibility(
+          '.similar-products',
+          'exp_impro_pdp_vis_similar_block',
+          'Block view',
+          `PDP
+            Similar items`
+        )
+        new Swiper('.similar-products .swiper', swiperConfig)
 
-      $$el('.similar-products action').forEach(btn => {
-        btn.addEventListener('click', e => {
-          e.preventDefault()
-          const productId = e.target.closest('.wishlist-wrap').dataset.productId
-          const body = {
-            product: productId
-          }
-          this.postFetch('wishlist/add', body).then(dataWishlist => {
-            let webCode =
-              window?.autoInitData?.website?.websiteCode != 'base'
-                ? '/' + window?.autoInitData?.website.websiteCode
-                : ''
-            if (dataWishlist.error && dataWishlist.error == 'LOGGEDOUT') {
-              window.location.href = webCode + '/login'
-            } else {
-              e.target.closest(
-                '.product-wishlist'
-              ).innerHTML = `<div class="pos-absolute top-2 z-1 w-12 center p-l-2 p-r-2"><div class="p-a-1 bg-col-w flex flex-middle flex-justify-center"><action cy-wishlistaddbtn="" class="wishlist-button cursor-pointer" _nghost-app-c81=""><span _ngcontent-app-c81="" class="button__busy"><span _ngcontent-app-c81="" class="bounce1"></span><span _ngcontent-app-c81="" class="bounce2"></span></span><span _ngcontent-app-c81="" class="button__body"><i aria-hidden="true" class="inline-flex icon-wishlist-fill col-1" style="font-size: 1.1em;"></i></span></action><span sizeclass="XL:p1" class="p-l-2 p3 ng-star-inserted">Added to wishlist</span></div></div>`
+        $$el('.similar-products action').forEach(btn => {
+          btn.addEventListener('click', e => {
+            e.preventDefault()
+            const productId = e.target.closest('.wishlist-wrap').dataset.productId
+            const body = {
+              product: productId
             }
+            this.postFetch('wishlist/add', body).then(dataWishlist => {
+              let webCode =
+                window?.autoInitData?.website?.websiteCode != 'base'
+                  ? '/' + window?.autoInitData?.website.websiteCode
+                  : ''
+              if (dataWishlist.error && dataWishlist.error == 'LOGGEDOUT') {
+                window.location.href = webCode + '/login'
+              } else {
+                e.target.closest(
+                  '.product-wishlist'
+                ).innerHTML = `<div class="pos-absolute top-2 z-1 w-12 center p-l-2 p-r-2"><div class="p-a-1 bg-col-w flex flex-middle flex-justify-center"><action cy-wishlistaddbtn="" class="wishlist-button cursor-pointer" _nghost-app-c81=""><span _ngcontent-app-c81="" class="button__busy"><span _ngcontent-app-c81="" class="bounce1"></span><span _ngcontent-app-c81="" class="bounce2"></span></span><span _ngcontent-app-c81="" class="button__body"><i aria-hidden="true" class="inline-flex icon-wishlist-fill col-1" style="font-size: 1.1em;"></i></span></action><span sizeclass="XL:p1" class="p-l-2 p3 ng-star-inserted">Added to wishlist</span></div></div>`
+              }
+            })
           })
         })
-      })
-      $el('page-component-instagram-feed-product-page')?.addEventListener('click', e => {
-        if (e.target.closest('page-component-instagram-feed-product-page')) {
-          pushDataLayer('exp_impro_pdp_lin_worn_sharstyl', 'Share your style using', 'Link', 'PDP As Worn By You')
-        }
-      })
+        $el('page-component-instagram-feed-product-page')?.addEventListener('click', e => {
+          if (e.target.closest('page-component-instagram-feed-product-page')) {
+            pushDataLayer('exp_impro_pdp_lin_worn_sharstyl', 'Share your style using', 'Link', 'PDP As Worn By You')
+          }
+        })
+      } catch (error) {
+        console.log('server not responding')
+      }
     }
 
     splitCarrousels() {
@@ -708,735 +717,739 @@ window.onload = () => {
     }
 
     async sizeChart() {
-      const productId = this.getCurrentProductId()
-      const [productResponse, sizeResponse] = await Promise.all([
-        this.getFetch(`n/product/${productId}/verbosity/3`),
-        this.getFetch(`n/attribute/size/verbosity/3`)
-      ])
-      const hash = window.location.hash.substring(1)
-      const params = new URLSearchParams(hash)
-      const obj = {}
-      const selectedSize = +params.get('selection.size')
-      const selectedColor = +params.get('selection.color')
-      $el('.crs-size-chart')?.remove()
-      $el('.crs-color-chart')?.remove()
-      if (productResponse.result[0].size.lentgth === 1) return
-      for (let param of params) {
-        obj[param[0]] = +param[1]
-      }
-      // get product color
-      const colors = []
-      const stockMap = {}
-      for (const item of productResponse.catalog) {
-        if (item.type === 'stock') {
-          stockMap[item.id] = item
+      try {
+        const productId = this.getCurrentProductId()
+        const [productResponse, sizeResponse] = await Promise.all([
+          this.getFetch(`n/product/${productId}/verbosity/3`),
+          this.getFetch(`n/attribute/size/verbosity/3`)
+        ])
+        const hash = window.location.hash.substring(1)
+        const params = new URLSearchParams(hash)
+        const obj = {}
+        const selectedSize = +params.get('selection.size')
+        const selectedColor = +params.get('selection.color')
+        $el('.crs-size-chart')?.remove()
+        $el('.crs-color-chart')?.remove()
+        if (productResponse.result[0].size.lentgth === 1) return
+        for (let param of params) {
+          obj[param[0]] = +param[1]
         }
-      }
-      productResponse.catalog.forEach(item => {
-        if (
-          item?.color &&
-          stockMap[item.id]?.isOutTemp === false &&
-          !colors.find(color => color.color === item.color)
-        ) {
-          colors.push({ id: item.id, color: item.color, image: item.image })
+        // get product color
+        const colors = []
+        const stockMap = {}
+        for (const item of productResponse.catalog) {
+          if (item.type === 'stock') {
+            stockMap[item.id] = item
+          }
         }
-      })
+        productResponse.catalog.forEach(item => {
+          if (
+            item?.color &&
+            stockMap[item.id]?.isOutTemp === false &&
+            !colors.find(color => color.color === item.color)
+          ) {
+            colors.push({ id: item.id, color: item.color, image: item.image })
+          }
+        })
 
-      // get product size
-      const productSizesIds = productResponse.result[0].size
-      const productSizes = sizeResponse.result[0].options.filter(size => productSizesIds.includes(size.value))
-      const selectedSizeOBJ = productSizes.find(size => size.value === +selectedSize)
+        // get product size
+        const productSizesIds = productResponse.result[0].size
+        const productSizes = sizeResponse.result[0].options.filter(size => productSizesIds.includes(size.value))
+        const selectedSizeOBJ = productSizes.find(size => size.value === +selectedSize)
 
-      // get product quantity
-      const products = []
-      productResponse.catalog.forEach(item => {
-        if (item?.color) {
-          products.push({ id: item.id, color: item.color, size: item.size })
-        }
-        if (item.type === 'stock') {
-          products.forEach(product => {
-            if (product.id === item.id) {
-              product.qty = item.qty
-            }
-          })
-        }
-      })
-
-      const review = $$el('product-reviews-summary')[0]
-
-      $el('h1')?.parentElement.prepend(review)
-
-      const colorChartHTML = /* HTML */ `
-        <div class="crs-color-chart" data-id="${productId}">
-          <style>
-            .crs-color-chart__colors {
-              display: flex;
-              flex-wrap: wrap;
-              gap: 20px;
-            }
-            .crs-color-chart__color {
-              width: 36px;
-              height: auto;
-              cursor: pointer;
-              padding: 4px;
-            }
-            .crs-color-chart__color[data-checked='true'] {
-              border: 1px solid #000;
-            }
-            .crs-color-chart__color img {
-              width: 100%;
-              height: 100%;
-            }
-            .crs-color-chart + div:has(h6) {
-              display: none;
-            }
-            #pdpConfigurableOptions h6 + div {
-              visibility: hidden;
-              height: 0;
-            }
-          </style>
-          <div class="crs-color-chart__colors">
-            ${colors
-              .reverse()
-              .map(
-                color => /* HTML */ `
-                  <div
-                    class="crs-color-chart__color"
-                    data-color="${color.color}"
-                    data-checked="${color.color === selectedColor}"
-                  >
-                    <img src="/static/media/catalog/${color.image}" alt="${color.color}" />
-                  </div>
-                `
-              )
-              .join('')}
-          </div>
-        </div>
-      `
-      const sizeChartHTML = /* HTML */ `
-        <div class="crs-size-chart" data-id=${productId}>
-          <style>
-            .crs-size-chart__btn {
-              margin-bottom: 20px;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              border-radius: 2px;
-              border: 1px solid var(--Borders, #cecdcd);
-              background: var(--White, #fff);
-              padding: 10px 20px;
-              width: 100%;
-            }
-            .crs-size-chart__btn span {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              font-size: 14px;
-              font-weight: 600;
-              line-height: 24px;
-            }
-            .crs-size-chart__dialog {
-              z-index: 1000;
-              z-index: 50;
-              position: fixed;
-              bottom: 0;
-              width: 100%;
-              height: 50%;
-              border-radius: 2px 2px 0px 0px;
-              border: 1px solid var(--Background-2, #f6f5f5);
-              background: #fff;
-              animation: hide 0.3s ease-in-out;
-            }
-
-            .crs-size-chart__dialog[open] {
-              animation: show 0.3s ease-in-out;
-            }
-            .crs-size-chart__dialog li div {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              border-bottom: 1px solid #cfd2d3;
-              padding-block: 10px;
-              cursor: pointer;
-            }
-            .crs-size-chart__dialog li > div > span:first-child {
-              font-size: 16px;
-              font-weight: 600;
-              line-height: 24px;
-            }
-            .crs-size-chart__dialog .crs-size-chart__title {
-              font-size: 18px !important;
-              font-weight: 400 !important;
-              line-height: 26px !important;
-            }
-            .crs-size-chart__dialog li[data-checked='true'] {
-              background: #f6f5f5;
-            }
-            .crs-size-chart__dialog li:not([data-select-size]):hover {
-              background: #f6f5f5;
-            }
-            .crs-size-chart__dialog li:last-child {
-              border-bottom: none;
-            }
-            .crs-size-chart__dialog li[data-stock='unavailable'] {
-              color: #acacac;
-            }
-            .crs-size-chart__dialog li [data-qty='1'] {
-              color: #8e1538;
-            }
-            .crs-size-chart__backdrop {
-              display: none;
-              width: 100vw;
-              height: 100vh;
-              position: fixed;
-              top: 0;
-              left: 0;
-              z-index: 20;
-              background: rgba(33, 33, 33, 0.5);
-            }
-            .crs-size-chart__dialog[open] ~ .crs-size-chart__backdrop {
-              display: block;
-            }
-            [data-qty] {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              gap: 4px;
-            }
-            .crs-size-chart__mail {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
-            .crs-size-chart__notify-text {
-              font-size: 14px;
-              text-decoration: underline;
-              line-height: 24px;
-              letter-spacing: 1px;
-              text-align: right;
-              color: #212121;
-            }
-            .crs-size-chart__list .crs-size-chart__info {
-              margin-top: 0 !important;
-            }
-            @keyframes show {
-              from {
-                transform: translateY(110%);
+        // get product quantity
+        const products = []
+        productResponse.catalog.forEach(item => {
+          if (item?.color) {
+            products.push({ id: item.id, color: item.color, size: item.size })
+          }
+          if (item.type === 'stock') {
+            products.forEach(product => {
+              if (product.id === item.id) {
+                product.qty = item.qty
               }
-              to {
-                transform: translateY(0%);
-              }
-            }
-            @keyframes hide {
-              from {
-                transform: translateY(0%);
-              }
-              to {
-                transform: translateY(110%);
-              }
-            }
+            })
+          }
+        })
 
-            @media (min-width: 1100px) {
-              .crs-size-chart {
-                position: relative;
-                display: grid;
+        const review = $$el('product-reviews-summary')[0]
+
+        $el('h1')?.parentElement.prepend(review)
+
+        const colorChartHTML = /* HTML */ `
+          <div class="crs-color-chart" data-id="${productId}">
+            <style>
+              .crs-color-chart__colors {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
               }
-              .crs-size-chart__btn {
-                padding: 12px 16px;
-                margin-bottom: 0;
-              }
-              .crs-size-chart__dialog {
-                position: absolute;
-                border-radius: 0px 0px 2px 2px;
-                border-right: 1px solid var(--Stroke, #cfd2d3);
-                border-bottom: 1px solid var(--Stroke, #cfd2d3);
-                border-left: 1px solid var(--Stroke, #cfd2d3);
-                border-top: none;
-                background: #fff;
+              .crs-color-chart__color {
+                width: 36px;
                 height: auto;
-                bottom: auto;
-                top: 45px;
-                padding: 0;
-                animation: none;
+                cursor: pointer;
+                padding: 4px;
               }
-              .crs-size-chart__dialog li:first-child {
+              .crs-color-chart__color[data-checked='true'] {
+                border: 1px solid #000;
+              }
+              .crs-color-chart__color img {
+                width: 100%;
+                height: 100%;
+              }
+              .crs-color-chart + div:has(h6) {
                 display: none;
               }
-              .crs-size-chart__dialog li {
-                padding: 0 16px;
+              #pdpConfigurableOptions h6 + div {
+                visibility: hidden;
+                height: 0;
+              }
+            </style>
+            <div class="crs-color-chart__colors">
+              ${colors
+                .reverse()
+                .map(
+                  color => /* HTML */ `
+                    <div
+                      class="crs-color-chart__color"
+                      data-color="${color.color}"
+                      data-checked="${color.color === selectedColor}"
+                    >
+                      <img src="/static/media/catalog/${color.image}" alt="${color.color}" />
+                    </div>
+                  `
+                )
+                .join('')}
+            </div>
+          </div>
+        `
+        const sizeChartHTML = /* HTML */ `
+          <div class="crs-size-chart" data-id=${productId}>
+            <style>
+              .crs-size-chart__btn {
+                margin-bottom: 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: 2px;
+                border: 1px solid var(--Borders, #cecdcd);
+                background: var(--White, #fff);
+                padding: 10px 20px;
+                width: 100%;
+              }
+              .crs-size-chart__btn span {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 24px;
+              }
+              .crs-size-chart__dialog {
+                z-index: 1000;
+                z-index: 50;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                height: 50%;
+                border-radius: 2px 2px 0px 0px;
+                border: 1px solid var(--Background-2, #f6f5f5);
+                background: #fff;
+                animation: hide 0.3s ease-in-out;
+              }
+
+              .crs-size-chart__dialog[open] {
+                animation: show 0.3s ease-in-out;
               }
               .crs-size-chart__dialog li div {
-                padding: 8px 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid #cfd2d3;
+                padding-block: 10px;
+                cursor: pointer;
               }
-              .crs-size-chart__dialog[open] {
-                animation: none;
+              .crs-size-chart__dialog li > div > span:first-child {
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 24px;
+              }
+              .crs-size-chart__dialog .crs-size-chart__title {
+                font-size: 18px !important;
+                font-weight: 400 !important;
+                line-height: 26px !important;
+              }
+              .crs-size-chart__dialog li[data-checked='true'] {
+                background: #f6f5f5;
+              }
+              .crs-size-chart__dialog li:not([data-select-size]):hover {
+                background: #f6f5f5;
+              }
+              .crs-size-chart__dialog li:last-child {
+                border-bottom: none;
+              }
+              .crs-size-chart__dialog li[data-stock='unavailable'] {
+                color: #acacac;
+              }
+              .crs-size-chart__dialog li [data-qty='1'] {
+                color: #8e1538;
               }
               .crs-size-chart__backdrop {
-                background: transparent;
+                display: none;
+                width: 100vw;
+                height: 100vh;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 20;
+                background: rgba(33, 33, 33, 0.5);
               }
-              .crs-size-chart__btn:has(+ .crs-size-chart__dialog[open]) .crs-size-chart__arrow {
-                transform: rotate(180deg);
+              .crs-size-chart__dialog[open] ~ .crs-size-chart__backdrop {
+                display: block;
               }
-            }
-          </style>
-          <button class="crs-size-chart__btn">
-            <span>${selectedSizeOBJ?.label || 'Select size'}</span>
-            <span class="crs-size-chart__arrow">${icons.arrowDown}</span>
-          </button>
-          <dialog class="crs-size-chart__dialog">
-            <ul class="crs-size-chart__list">
-              <li data-select-size>
-                <div><span class="crs-size-chart__title">Select size</span></div>
-              </li>
-              ${productSizes
-                .map(size => {
-                  const product = products.find(
-                    item => item.color === obj['selection.color'] && item.size === size.value
-                  )
-                  const qty = product?.qty
-                  return /* HTML */ `
-                    <li
-                      data-value="${size.value}"
-                      data-checked="${size.value === +selectedSizeOBJ?.value}"
-                      data-stock="${qty ? 'available' : 'unavailable'}"
-                    >
-                      <div>
-                        <span>${size.label}</span>
-                        <span data-qty="${qty || 0}">
-                          ${qty <= 5 && qty > 0
-                            ? `Only ${qty} left`
-                            : !qty || qty === 0
-                            ? `<span class="crs-size-chart__mail">${icons.mail}</span> <span class="crs-size-chart__notify-text">Notify me</span>`
-                            : ''}
-                        </span>
-                      </div>
-                    </li>
-                  `
-                })
-                .join('')}
-            </ul>
-          </dialog>
-          <style>
-            .crs-size-chart__notify {
-              z-index: 1000;
-              z-index: 50;
-              position: fixed;
-              bottom: 0;
-              width: 100%;
-              border-radius: 2px 2px 0px 0px;
-              border: 1px solid var(--Background-2, #f6f5f5);
-              background: #fff;
-              animation: hide 0.3s ease-in-out;
-              padding: 32px 24px;
-              line-height: 24px;
-            }
-            .crs-size-chart__notify h3 {
-              color: var(--Black, #212121);
-              text-align: center;
-              font-family: baskerville-urw, sans-serif;
-              font-size: 32px;
-              line-height: 40px;
-              font-weight: 400;
-              letter-spacing: 0.5px;
-            }
-            .crs-size-chart__notify p {
-              color: var(--Text, #595959);
-              text-align: center;
-              font-family: 'Source Sans 3';
-              font-size: 16px;
-              margin-top: 16px;
-              font-weight: 400;
-              letter-spacing: 1px;
-            }
-            .crs-size-chart__notify form {
-              display: flex;
-              flex-direction: column;
-              margin-top: 24px;
-              gap: 4px;
-            }
-            .crs-size-chart__notify label {
-              font-size: 14px;
-              line-height: 24px;
-              color: #212121;
-            }
-            .crs-size-chart__notify input {
-              border-radius: 2px;
-              border: 1px solid var(--Borders, #cecdcd);
-              background: var(--White, #fff);
-              padding: 12px 16px;
-            }
-            .crs-size-chart__notify input::placeholder {
-              font-size: 14px;
-              line-height: 24px;
-              color: #acacac;
-            }
-            .crs-size-chart__notify button {
-              border-radius: 2px;
-              padding: 12px 32px;
-              background: var(--Black, #212121);
-              color: #fff;
-              text-align: center;
-              font-family: 'Source Sans 3';
-              font-size: 16px;
-              font-weight: 600;
-              letter-spacing: 1px;
-              display: block;
-              margin: 0 auto;
-              margin-top: 4px;
-              width: 100%;
-            }
-            .crs-size-chart__notify[open] ~ .crs-size-chart__backdrop {
-              display: block;
-            }
-            .crs-size-chart__notify__close {
-              cursor: pointer;
-              position: absolute;
-              top: 20px;
-              right: 20px;
-            }
-            @media (min-width: 1100px) {
+              [data-qty] {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 4px;
+              }
+              .crs-size-chart__mail {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              }
+              .crs-size-chart__notify-text {
+                font-size: 14px;
+                text-decoration: underline;
+                line-height: 24px;
+                letter-spacing: 1px;
+                text-align: right;
+                color: #212121;
+              }
+              .crs-size-chart__list .crs-size-chart__info {
+                margin-top: 0 !important;
+              }
+              @keyframes show {
+                from {
+                  transform: translateY(110%);
+                }
+                to {
+                  transform: translateY(0%);
+                }
+              }
+              @keyframes hide {
+                from {
+                  transform: translateY(0%);
+                }
+                to {
+                  transform: translateY(110%);
+                }
+              }
+
+              @media (min-width: 1100px) {
+                .crs-size-chart {
+                  position: relative;
+                  display: grid;
+                }
+                .crs-size-chart__btn {
+                  padding: 12px 16px;
+                  margin-bottom: 0;
+                }
+                .crs-size-chart__dialog {
+                  position: absolute;
+                  border-radius: 0px 0px 2px 2px;
+                  border-right: 1px solid var(--Stroke, #cfd2d3);
+                  border-bottom: 1px solid var(--Stroke, #cfd2d3);
+                  border-left: 1px solid var(--Stroke, #cfd2d3);
+                  border-top: none;
+                  background: #fff;
+                  height: auto;
+                  bottom: auto;
+                  top: 45px;
+                  padding: 0;
+                  animation: none;
+                }
+                .crs-size-chart__dialog li:first-child {
+                  display: none;
+                }
+                .crs-size-chart__dialog li {
+                  padding: 0 16px;
+                }
+                .crs-size-chart__dialog li div {
+                  padding: 8px 0;
+                }
+                .crs-size-chart__dialog[open] {
+                  animation: none;
+                }
+                .crs-size-chart__backdrop {
+                  background: transparent;
+                }
+                .crs-size-chart__btn:has(+ .crs-size-chart__dialog[open]) .crs-size-chart__arrow {
+                  transform: rotate(180deg);
+                }
+              }
+            </style>
+            <button class="crs-size-chart__btn">
+              <span>${selectedSizeOBJ?.label || 'Select size'}</span>
+              <span class="crs-size-chart__arrow">${icons.arrowDown}</span>
+            </button>
+            <dialog class="crs-size-chart__dialog">
+              <ul class="crs-size-chart__list">
+                <li data-select-size>
+                  <div><span class="crs-size-chart__title">Select size</span></div>
+                </li>
+                ${productSizes
+                  .map(size => {
+                    const product = products.find(
+                      item => item.color === obj['selection.color'] && item.size === size.value
+                    )
+                    const qty = product?.qty
+                    return /* HTML */ `
+                      <li
+                        data-value="${size.value}"
+                        data-checked="${size.value === +selectedSizeOBJ?.value}"
+                        data-stock="${qty ? 'available' : 'unavailable'}"
+                      >
+                        <div>
+                          <span>${size.label}</span>
+                          <span data-qty="${qty || 0}">
+                            ${qty <= 5 && qty > 0
+                              ? `Only ${qty} left`
+                              : !qty || qty === 0
+                              ? `<span class="crs-size-chart__mail">${icons.mail}</span> <span class="crs-size-chart__notify-text">Notify me</span>`
+                              : ''}
+                          </span>
+                        </div>
+                      </li>
+                    `
+                  })
+                  .join('')}
+              </ul>
+            </dialog>
+            <style>
               .crs-size-chart__notify {
-                max-width: 465px;
-                height: fit-content;
-                padding: 48px;
-                animation: none;
+                z-index: 1000;
+                z-index: 50;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                border-radius: 2px 2px 0px 0px;
+                border: 1px solid var(--Background-2, #f6f5f5);
+                background: #fff;
+                animation: hide 0.3s ease-in-out;
+                padding: 32px 24px;
+                line-height: 24px;
               }
               .crs-size-chart__notify h3 {
-                font-size: 36px;
-                line-height: 44px;
+                color: var(--Black, #212121);
+                text-align: center;
+                font-family: baskerville-urw, sans-serif;
+                font-size: 32px;
+                line-height: 40px;
+                font-weight: 400;
+                letter-spacing: 0.5px;
               }
               .crs-size-chart__notify p {
-                line-height: 24px;
+                color: var(--Text, #595959);
+                text-align: center;
+                font-family: 'Source Sans 3';
+                font-size: 16px;
+                margin-top: 16px;
+                font-weight: 400;
+                letter-spacing: 1px;
+              }
+              .crs-size-chart__notify form {
+                display: flex;
+                flex-direction: column;
+                margin-top: 24px;
+                gap: 4px;
               }
               .crs-size-chart__notify label {
                 font-size: 14px;
                 line-height: 24px;
-                letter-spacing: 1px;
-                text-align: left;
                 color: #212121;
               }
-              .crs-size-chart__notify form {
-                gap: 4px;
+              .crs-size-chart__notify input {
+                border-radius: 2px;
+                border: 1px solid var(--Borders, #cecdcd);
+                background: var(--White, #fff);
+                padding: 12px 16px;
+              }
+              .crs-size-chart__notify input::placeholder {
+                font-size: 14px;
+                line-height: 24px;
+                color: #acacac;
               }
               .crs-size-chart__notify button {
-                padding: 12px;
-                margin-top: 12px;
+                border-radius: 2px;
+                padding: 12px 32px;
+                background: var(--Black, #212121);
+                color: #fff;
+                text-align: center;
+                font-family: 'Source Sans 3';
+                font-size: 16px;
+                font-weight: 600;
+                letter-spacing: 1px;
+                display: block;
+                margin: 0 auto;
+                margin-top: 4px;
+                width: 100%;
+              }
+              .crs-size-chart__notify[open] ~ .crs-size-chart__backdrop {
+                display: block;
+              }
+              .crs-size-chart__notify__close {
+                cursor: pointer;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+              }
+              @media (min-width: 1100px) {
+                .crs-size-chart__notify {
+                  max-width: 465px;
+                  height: fit-content;
+                  padding: 48px;
+                  animation: none;
+                }
+                .crs-size-chart__notify h3 {
+                  font-size: 36px;
+                  line-height: 44px;
+                }
+                .crs-size-chart__notify p {
+                  line-height: 24px;
+                }
+                .crs-size-chart__notify label {
+                  font-size: 14px;
+                  line-height: 24px;
+                  letter-spacing: 1px;
+                  text-align: left;
+                  color: #212121;
+                }
+                .crs-size-chart__notify form {
+                  gap: 4px;
+                }
+                .crs-size-chart__notify button {
+                  padding: 12px;
+                  margin-top: 12px;
+                  font-size: 16px;
+                  line-height: 24px;
+                }
+              }
+            </style>
+            <dialog class="crs-size-chart__notify">
+              <div class="crs-size-chart__notify__close">${icons.close}</div>
+              <h3>Currently Out of Stock</h3>
+              <p>
+                Receive an email notification when <br />
+                this item becomes available.
+              </p>
+              <form action="">
+                <label for="email">Email Address: </label>
+                <input type="email" id="email" required placeholder="Email Address" />
+                <button>Notify Me When Available</button>
+              </form>
+            </dialog>
+            <div class="crs-size-chart__backdrop"></div>
+          </div>
+        `
+
+        const productDats = products.find(
+          item => item.color === obj['selection.color'] && item.size === obj['selection.size']
+        )
+        const isOut = !productDats?.qty
+
+        const inStock = /* HTML */ `
+          <div class="crs-stock__wrap">
+            <style>
+              .crs-stock__wrap {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 10px;
+                margin-bottom: 8px;
+              }
+              .crs-stock__wrap:has(.crs-stock[style*='display: none']) {
+                justify-content: flex-end;
+              }
+              .crs-stock {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+              }
+              .crs-stock .icon {
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                background: #2c7226;
+              }
+              .crs-stock .text {
+                text-transform: uppercase;
+                color: var(--Green, #2c7226);
+                text-align: right;
+                font-family: 'Source Sans 3';
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 24px; /* 171.429% */
+                letter-spacing: 1px;
+                text-transform: uppercase;
+              }
+              .crs-stock__wrap .crs-size-chart__info {
+                margin-top: 0 !important;
+              }
+              .crs-stock__wrap .crs-size-chart__info span {
+                font-size: 14px;
+                line-height: 24px;
+                color: #595959;
+              }
+              .title_color {
+                font-size: 16px;
+                line-height: 24px;
+                color: #595959;
+              }
+              .type_color {
+                color: #212121;
                 font-size: 16px;
                 line-height: 24px;
               }
-            }
-          </style>
-          <dialog class="crs-size-chart__notify">
-            <div class="crs-size-chart__notify__close">${icons.close}</div>
-            <h3>Currently Out of Stock</h3>
-            <p>
-              Receive an email notification when <br />
-              this item becomes available.
-            </p>
-            <form action="">
-              <label for="email">Email Address: </label>
-              <input type="email" id="email" required placeholder="Email Address" />
-              <button>Notify Me When Available</button>
-            </form>
-          </dialog>
-          <div class="crs-size-chart__backdrop"></div>
-        </div>
-      `
+            </style>
 
-      const productDats = products.find(
-        item => item.color === obj['selection.color'] && item.size === obj['selection.size']
-      )
-      const isOut = !productDats?.qty
+            <span class="crs-stock" style="display: ${isOut ? 'none' : 'flex'}">
+              <span class="icon"></span>
+              <span class="text">In Stock</span>
+            </span>
+          </div>
+        `
 
-      const inStock = /* HTML */ `
-        <div class="crs-stock__wrap">
-          <style>
-            .crs-stock__wrap {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              margin-top: 10px;
-              margin-bottom: 8px;
-            }
-            .crs-stock__wrap:has(.crs-stock[style*='display: none']) {
-              justify-content: flex-end;
-            }
-            .crs-stock {
-              display: flex;
-              align-items: center;
-              gap: 5px;
-            }
-            .crs-stock .icon {
-              width: 5px;
-              height: 5px;
-              border-radius: 50%;
-              background: #2c7226;
-            }
-            .crs-stock .text {
-              text-transform: uppercase;
-              color: var(--Green, #2c7226);
-              text-align: right;
-              font-family: 'Source Sans 3';
-              font-size: 14px;
-              font-style: normal;
-              font-weight: 400;
-              line-height: 24px; /* 171.429% */
-              letter-spacing: 1px;
-              text-transform: uppercase;
-            }
-            .crs-stock__wrap .crs-size-chart__info {
-              margin-top: 0 !important;
-            }
-            .crs-stock__wrap .crs-size-chart__info span {
-              font-size: 14px;
-              line-height: 24px;
-              color: #595959;
-            }
-            .title_color {
-              font-size: 16px;
-              line-height: 24px;
-              color: #595959;
-            }
-            .type_color {
-              color: #212121;
-              font-size: 16px;
-              line-height: 24px;
-            }
-          </style>
+        $el('.crs-size-chart')?.remove()
+        $el('.crs-color-chart')?.remove()
+        $el('.crs-stock__wrap')?.remove()
+        $$el('#pdpConfigurableOptions h6').forEach(title => {
+          if (title.textContent.toLowerCase().includes('colour')) {
+            let text = title.textContent.split(':')
+            title.innerHTML = `<span class="title_color">${text[0]}:</span> <span class="type_color">${text[1]}</span>`
+            title.parentElement.insertAdjacentHTML('afterend', colorChartHTML)
+          }
+          if (title.textContent.toLowerCase().includes('size')) {
+            title.parentElement.style.display = 'none'
+            title.parentElement.insertAdjacentHTML('afterend', sizeChartHTML)
 
-          <span class="crs-stock" style="display: ${isOut ? 'none' : 'flex'}">
-            <span class="icon"></span>
-            <span class="text">In Stock</span>
-          </span>
-        </div>
-      `
+            title.parentElement.insertAdjacentHTML('afterend', inStock)
+          }
+        })
+        blockVisibility('.crs-stock:first-child', 'exp_impro_pdp_vis_stock_block', 'Block view', 'PDP In Stock')
 
-      $el('.crs-size-chart')?.remove()
-      $el('.crs-color-chart')?.remove()
-      $el('.crs-stock__wrap')?.remove()
-      $$el('#pdpConfigurableOptions h6').forEach(title => {
-        if (title.textContent.toLowerCase().includes('colour')) {
-          let text = title.textContent.split(':')
-          title.innerHTML = `<span class="title_color">${text[0]}:</span> <span class="type_color">${text[1]}</span>`
-          title.parentElement.insertAdjacentHTML('afterend', colorChartHTML)
-        }
-        if (title.textContent.toLowerCase().includes('size')) {
-          title.parentElement.style.display = 'none'
-          title.parentElement.insertAdjacentHTML('afterend', sizeChartHTML)
+        blockVisibility('.crs-size-chart__dialog', 'exp_impro_pdp_vis_selecsize_block', 'Block view', 'PDP Select Size')
+        blockVisibility(
+          '.crs-size-chart__notify',
+          'exp_impro_pdp_vis_currently_block',
+          'Block view',
+          '"PDP Currently Out of Stock"'
+        )
 
-          title.parentElement.insertAdjacentHTML('afterend', inStock)
-        }
-      })
-      blockVisibility('.crs-stock:first-child', 'exp_impro_pdp_vis_stock_block', 'Block view', 'PDP In Stock')
+        $$el('#pdpConfigurableOptions button').forEach(btn => {
+          if (btn.textContent.includes('View size guide') && !$el('button.crs-size-chart__info')) {
+            btn.classList.add('crs-size-chart__info')
 
-      blockVisibility('.crs-size-chart__dialog', 'exp_impro_pdp_vis_selecsize_block', 'Block view', 'PDP Select Size')
-      blockVisibility(
-        '.crs-size-chart__notify',
-        'exp_impro_pdp_vis_currently_block',
-        'Block view',
-        '"PDP Currently Out of Stock"'
-      )
+            $el('.crs-stock__wrap')?.append(btn)
 
-      $$el('#pdpConfigurableOptions button').forEach(btn => {
-        if (btn.textContent.includes('View size guide') && !$el('button.crs-size-chart__info')) {
-          btn.classList.add('crs-size-chart__info')
-
-          $el('.crs-stock__wrap')?.append(btn)
-
-          btn.addEventListener('click', () => {
-            pushDataLayer('exp_impro_pdp_lin_popsize_viewguid', 'View size guide', 'Link', 'PDP Pop up Select Size')
-          })
-          return
-        }
-      })
-      $el('.crs-size-chart__btn')?.addEventListener('click', () => {
-        $el('.crs-size-chart__dialog').show()
-        $el('.crs-size-chart__list li:first-child div').append($el('.crs-size-chart__info'))
-      })
-
-      const updateHash = ({ size, color }) => {
-        const hash = window.location.hash.substring(1)
-        const params = new URLSearchParams(hash)
-        if (size) {
-          params.set('selection.size', size)
-        }
-        if (color) {
-          params.set('selection.color', color)
-        }
-        window.location.hash = params.toString()
-      }
-
-      // Size chart
-      $el('.crs-size-chart__dialog')?.addEventListener('click', e => {
-        const listItem = e.target.closest('li')
-        if (listItem) {
-          if (listItem.dataset.stock === 'unavailable') {
-            if (this.device === devices.mobile) {
-              $el('.crs-size-chart__notify').show()
-            } else {
-              $el('.crs-size-chart__notify').showModal()
-            }
-            $el('.crs-size-chart__notify form').addEventListener('submit', event => {
-              event.preventDefault()
-              const body = {
-                product_id: productId,
-                guest_email: $el('.crs-size-chart__notify input').value
-              }
-              this.postFetch('email/stock', body).then(res => {
-                $el('.crs-size-chart__notify').close()
-              })
+            btn.addEventListener('click', () => {
+              pushDataLayer('exp_impro_pdp_lin_popsize_viewguid', 'View size guide', 'Link', 'PDP Pop up Select Size')
             })
-            $el('.crs-size-chart__notify input').addEventListener('change', e => {
-              pushDataLayer(
-                'exp_impro_pdp_inp_popstock_email',
-                'Email Address',
-                'Input',
-                'PDP Pop up Currently Out of Stock'
-              )
-            })
-            $el('.crs-size-chart__notify button').addEventListener('click', e => {
-              pushDataLayer(
-                'exp_impro_pdp_but_popstock_notif',
-                'Notify Me When Available',
-                'Button',
-                'PDP Pop up Currently Out of Stock'
-              )
-            })
-            $el('.crs-size-chart__dialog').close()
-            $el('.crs-stock__wrap')?.append($el('.crs-size-chart__info'))
-            pushDataLayer('exp_impro_pdp_lin_popsize_notif', 'Notify me', 'Link', 'PDP Pop up Select Size')
-
             return
           }
-
-          updateHash({ size: e.target.closest('li').dataset.value })
-          const title = listItem.querySelector('span:first-child').textContent
-          $el('.crs-size-chart__btn span:first-child').textContent = title
-          $$el('li[data-checked="true"]').forEach(li => {
-            li.dataset.checked = false
-          })
-          listItem.dataset.checked = true
-          setTimeout(() => {
-            $el('box.is-selected')?.click()
-            $el('.crs-size-chart__dialog').close()
-            $el('.crs-stock__wrap')?.append($el('.crs-size-chart__info'))
-            const productDats = products.find(
-              item => item.color === obj['selection.color'] && item.size === obj['selection.size']
-            )
-            const isOut = productDats?.qty
-            $el('.crs-stock').style.display = isOut ? 'none' : 'flex'
-          }, 300)
-
-          if (listItem.innerText.includes('Only')) {
-            pushDataLayer('exp_impro_pdp_selec_popsize_only', 'Only ', 'Select', 'PDP Pop up Select Size')
-          } else {
-            pushDataLayer('exp_impro_pdp_drop_change_size', 'Select Size', 'Dropdown', 'PDP Change size selector')
-          }
-        }
-      })
-
-      // Color chart
-      $el('.crs-color-chart__colors')?.addEventListener('click', e => {
-        if (!e.target.closest('.crs-color-chart__color')) return
-        const color = e.target.parentElement.dataset.color
-        $$el('.crs-color-chart__color').forEach(item => (item.dataset.checked = false))
-        e.target.closest('.crs-color-chart__color').dataset.checked = true
-        updateHash({ color })
-        setTimeout(() => {
-          document.querySelector('swatch .is-checked')?.click()
-        }, 500)
-      })
-
-      $el('.crs-size-chart__notify__close')?.addEventListener('click', () => {
-        pushDataLayer('exp_impro_pdp_but_popstock_clos', 'Close', 'Button', 'PDP Pop up Currently Out of Stock')
-        $el('.crs-size-chart__notify').close()
-      })
-
-      $el('.crs-size-chart__notify')?.addEventListener('click', e => {
-        if (e.target === $el('.crs-size-chart__notify')) {
-          pushDataLayer(
-            'exp_impro_pdp_click_popstock_behin',
-            'Close behind the pop-up area',
-            'Link',
-            'PDP Pop up Currently Out of Stock'
-          )
-          $el('.crs-size-chart__notify')?.close()
-        }
-      })
-      $el('.crs-size-chart__backdrop')?.addEventListener('click', e => {
-        if ($el('.crs-size-chart__dialog[open]')) {
-          pushDataLayer(
-            'exp_impro_pdp_clic_popsize_behin',
-            'Close behind the pop-up area',
-            'Link',
-            'PDP Pop up Select Size'
-          )
-        }
-        if ($el('.crs-size-chart__notify[open]')) {
-          pushDataLayer(
-            'exp_impro_pdp_click_popstock_behin',
-            'Close behind the pop-up area',
-            'Link',
-            'PDP Pop up Currently Out of Stock'
-          )
-        }
-        $$el('dialog').forEach(item => item.close())
-        $el('.crs-stock__wrap')?.append($el('.crs-size-chart__info'))
-      })
-
-      const ctaButtonInner = $el('action[cy-basketaddbutton] > span:last-child')
-      if (ctaButtonInner) {
-        ctaButtonInner.textContent = 'Add to bag'
-      }
-
-      $el('action[cy-basketaddbutton]')?.addEventListener('click', () => {
-        const hash = window.location.hash
-        const isUserSelectSize = hash.includes('selection.size')
-        if (!isUserSelectSize) {
-          $el('.crs-size-chart__dialog')?.show()
+        })
+        $el('.crs-size-chart__btn')?.addEventListener('click', () => {
+          $el('.crs-size-chart__dialog').show()
           $el('.crs-size-chart__list li:first-child div').append($el('.crs-size-chart__info'))
-        }
-        if (this.device === devices.mobile) {
-          if (!clickCTAButtonUnderSize) {
-            pushDataLayer('exp_impro_pdp_sticbut_product_add', 'Add to bag', 'Sticky button', 'PDP')
-            clickCTAButtonUnderSize = false
-          }
-        } else {
-          pushDataLayer('exp_impro_pdp_but_undsize_addbag', 'Add to bag', 'Button', 'PDP Under View size guide')
-        }
-      })
-      $el('[data-add-to-bag]')?.addEventListener('click', event => {
-        pushDataLayer('exp_impro_pdp_but_undsize_addbag', 'Add to bag', 'Button', 'PDP Under View size guide')
-      })
-      $$el('product-reviews-summary').forEach(item => {
-        item.addEventListener('click', () => {
-          waitForElement('product-reviews-modal').then(() => {
-            $el('._sortLabel').addEventListener('click', () => {
-              pushDataLayer(
-                'exp_impro_pdp_dropd_customer_sort',
-                'Sort by',
-                'Dropdown',
-                '"PDP Rated as ‘excellent’ by our customers"'
-              )
-            })
+        })
 
-            waitForElement('product-reviews button').then(() => {
-              $$el('button').forEach(btn => {
-                btn.addEventListener('click', () => {
-                  if (btn.textContent.includes('Show more')) {
-                    pushDataLayer(
-                      'exp_impro_pdp_review_customer_read',
-                      'Read more',
-                      'Review',
-                      'PDP Rated as ‘excellent’ by our customers'
-                    )
-                  }
+        const updateHash = ({ size, color }) => {
+          const hash = window.location.hash.substring(1)
+          const params = new URLSearchParams(hash)
+          if (size) {
+            params.set('selection.size', size)
+          }
+          if (color) {
+            params.set('selection.color', color)
+          }
+          window.location.hash = params.toString()
+        }
+
+        // Size chart
+        $el('.crs-size-chart__dialog')?.addEventListener('click', e => {
+          const listItem = e.target.closest('li')
+          if (listItem) {
+            if (listItem.dataset.stock === 'unavailable') {
+              if (this.device === devices.mobile) {
+                $el('.crs-size-chart__notify').show()
+              } else {
+                $el('.crs-size-chart__notify').showModal()
+              }
+              $el('.crs-size-chart__notify form').addEventListener('submit', event => {
+                event.preventDefault()
+                const body = {
+                  product_id: productId,
+                  guest_email: $el('.crs-size-chart__notify input').value
+                }
+                this.postFetch('email/stock', body).then(res => {
+                  $el('.crs-size-chart__notify').close()
+                })
+              })
+              $el('.crs-size-chart__notify input').addEventListener('change', e => {
+                pushDataLayer(
+                  'exp_impro_pdp_inp_popstock_email',
+                  'Email Address',
+                  'Input',
+                  'PDP Pop up Currently Out of Stock'
+                )
+              })
+              $el('.crs-size-chart__notify button').addEventListener('click', e => {
+                pushDataLayer(
+                  'exp_impro_pdp_but_popstock_notif',
+                  'Notify Me When Available',
+                  'Button',
+                  'PDP Pop up Currently Out of Stock'
+                )
+              })
+              $el('.crs-size-chart__dialog').close()
+              $el('.crs-stock__wrap')?.append($el('.crs-size-chart__info'))
+              pushDataLayer('exp_impro_pdp_lin_popsize_notif', 'Notify me', 'Link', 'PDP Pop up Select Size')
+
+              return
+            }
+
+            updateHash({ size: e.target.closest('li').dataset.value })
+            const title = listItem.querySelector('span:first-child').textContent
+            $el('.crs-size-chart__btn span:first-child').textContent = title
+            $$el('li[data-checked="true"]').forEach(li => {
+              li.dataset.checked = false
+            })
+            listItem.dataset.checked = true
+            setTimeout(() => {
+              $el('box.is-selected')?.click()
+              $el('.crs-size-chart__dialog').close()
+              $el('.crs-stock__wrap')?.append($el('.crs-size-chart__info'))
+              const productDats = products.find(
+                item => item.color === obj['selection.color'] && item.size === obj['selection.size']
+              )
+              const isOut = productDats?.qty
+              $el('.crs-stock').style.display = isOut ? 'none' : 'flex'
+            }, 300)
+
+            if (listItem.innerText.includes('Only')) {
+              pushDataLayer('exp_impro_pdp_selec_popsize_only', 'Only ', 'Select', 'PDP Pop up Select Size')
+            } else {
+              pushDataLayer('exp_impro_pdp_drop_change_size', 'Select Size', 'Dropdown', 'PDP Change size selector')
+            }
+          }
+        })
+
+        // Color chart
+        $el('.crs-color-chart__colors')?.addEventListener('click', e => {
+          if (!e.target.closest('.crs-color-chart__color')) return
+          const color = e.target.parentElement.dataset.color
+          $$el('.crs-color-chart__color').forEach(item => (item.dataset.checked = false))
+          e.target.closest('.crs-color-chart__color').dataset.checked = true
+          updateHash({ color })
+          setTimeout(() => {
+            document.querySelector('swatch .is-checked')?.click()
+          }, 500)
+        })
+
+        $el('.crs-size-chart__notify__close')?.addEventListener('click', () => {
+          pushDataLayer('exp_impro_pdp_but_popstock_clos', 'Close', 'Button', 'PDP Pop up Currently Out of Stock')
+          $el('.crs-size-chart__notify').close()
+        })
+
+        $el('.crs-size-chart__notify')?.addEventListener('click', e => {
+          if (e.target === $el('.crs-size-chart__notify')) {
+            pushDataLayer(
+              'exp_impro_pdp_click_popstock_behin',
+              'Close behind the pop-up area',
+              'Link',
+              'PDP Pop up Currently Out of Stock'
+            )
+            $el('.crs-size-chart__notify')?.close()
+          }
+        })
+        $el('.crs-size-chart__backdrop')?.addEventListener('click', e => {
+          if ($el('.crs-size-chart__dialog[open]')) {
+            pushDataLayer(
+              'exp_impro_pdp_clic_popsize_behin',
+              'Close behind the pop-up area',
+              'Link',
+              'PDP Pop up Select Size'
+            )
+          }
+          if ($el('.crs-size-chart__notify[open]')) {
+            pushDataLayer(
+              'exp_impro_pdp_click_popstock_behin',
+              'Close behind the pop-up area',
+              'Link',
+              'PDP Pop up Currently Out of Stock'
+            )
+          }
+          $$el('dialog').forEach(item => item.close())
+          $el('.crs-stock__wrap')?.append($el('.crs-size-chart__info'))
+        })
+
+        const ctaButtonInner = $el('action[cy-basketaddbutton] > span:last-child')
+        if (ctaButtonInner) {
+          ctaButtonInner.textContent = 'Add to bag'
+        }
+
+        $el('action[cy-basketaddbutton]')?.addEventListener('click', () => {
+          const hash = window.location.hash
+          const isUserSelectSize = hash.includes('selection.size')
+          if (!isUserSelectSize) {
+            $el('.crs-size-chart__dialog')?.show()
+            $el('.crs-size-chart__list li:first-child div').append($el('.crs-size-chart__info'))
+          }
+          if (this.device === devices.mobile) {
+            if (!clickCTAButtonUnderSize) {
+              pushDataLayer('exp_impro_pdp_sticbut_product_add', 'Add to bag', 'Sticky button', 'PDP')
+              clickCTAButtonUnderSize = false
+            }
+          } else {
+            pushDataLayer('exp_impro_pdp_but_undsize_addbag', 'Add to bag', 'Button', 'PDP Under View size guide')
+          }
+        })
+        $el('[data-add-to-bag]')?.addEventListener('click', event => {
+          pushDataLayer('exp_impro_pdp_but_undsize_addbag', 'Add to bag', 'Button', 'PDP Under View size guide')
+        })
+        $$el('product-reviews-summary').forEach(item => {
+          item.addEventListener('click', () => {
+            waitForElement('product-reviews-modal').then(() => {
+              $el('._sortLabel').addEventListener('click', () => {
+                pushDataLayer(
+                  'exp_impro_pdp_dropd_customer_sort',
+                  'Sort by',
+                  'Dropdown',
+                  '"PDP Rated as ‘excellent’ by our customers"'
+                )
+              })
+
+              waitForElement('product-reviews button').then(() => {
+                $$el('button').forEach(btn => {
+                  btn.addEventListener('click', () => {
+                    if (btn.textContent.includes('Show more')) {
+                      pushDataLayer(
+                        'exp_impro_pdp_review_customer_read',
+                        'Read more',
+                        'Review',
+                        'PDP Rated as ‘excellent’ by our customers'
+                      )
+                    }
+                  })
                 })
               })
             })
           })
         })
-      })
+      } catch (error) {
+        console.log('server not responding')
+      }
     }
 
     async initSwiper() {
