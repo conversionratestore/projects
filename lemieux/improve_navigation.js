@@ -89,27 +89,7 @@ window.onload = () => {
         return `${price} €`
     }
   }
-  const handleTouch = cb => {
-    let touchStartY = 0
-    let touchEndY = 0
 
-    function handleTouchStart(evt) {
-      touchStartY = evt.touches[0].clientY
-    }
-
-    function handleTouchMove(evt) {
-      touchEndY = evt.touches[0].clientY
-    }
-    function handleTouchEnd(evt) {
-      if (touchStartY - touchEndY < 150) {
-        cb()
-      }
-    }
-
-    document.addEventListener('touchstart', handleTouchStart, false)
-    document.addEventListener('touchmove', handleTouchMove, false)
-    document.addEventListener('touchend', handleTouchEnd, false)
-  }
   // load script
   const loadScriptOrStyle = url => {
     return new Promise((resolve, reject) => {
@@ -781,53 +761,6 @@ window.onload = () => {
 
         $el('h1')?.parentElement.prepend(review)
 
-        const colorChartHTML = /* HTML */ `
-          <div class="crs-color-chart" data-id="${productId}">
-            <style>
-              .crs-color-chart__colors {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 20px;
-              }
-              .crs-color-chart__color {
-                width: 36px;
-                height: auto;
-                cursor: pointer;
-                padding: 4px;
-              }
-              .crs-color-chart__color[data-checked='true'] {
-                border: 1px solid #000;
-              }
-              .crs-color-chart__color img {
-                width: 100%;
-                height: 100%;
-              }
-              .crs-color-chart + div:has(h6) {
-                display: none;
-              }
-              #pdpConfigurableOptions h6 + div {
-                visibility: hidden;
-                height: 0;
-              }
-            </style>
-            <div class="crs-color-chart__colors">
-              ${colors
-                .reverse()
-                .map(
-                  color => /* HTML */ `
-                    <div
-                      class="crs-color-chart__color"
-                      data-color="${color.color}"
-                      data-checked="${color.color === selectedColor}"
-                    >
-                      <img src="/static/media/catalog/${color.image}" alt="${color.color}" />
-                    </div>
-                  `
-                )
-                .join('')}
-            </div>
-          </div>
-        `
         const sizeChartHTML = /* HTML */ `
           <div class="crs-size-chart" data-id=${productId}>
             <style>
@@ -1235,13 +1168,13 @@ window.onload = () => {
         $el('.crs-color-chart')?.remove()
         $el('.crs-stock__wrap')?.remove()
         $$el('#pdpConfigurableOptions h6').forEach(title => {
-          if (title.textContent.toLowerCase().includes('colour')) {
-            let text = title.textContent.split(':')
-            title.innerHTML = `<span class="title_color">${text[0]}:</span> <span class="type_color">${text[1]}</span>`
-            title.parentElement.insertAdjacentHTML('afterend', colorChartHTML)
-          }
+          // if (title.textContent.toLowerCase().includes('colour')) {
+          //   let text = title.textContent.split(':')
+          //   title.innerHTML = `<span class="title_color">${text[0]}:</span> <span class="type_color">${text[1]}</span>`
+          //   title.parentElement.insertAdjacentHTML('afterend', colorChartHTML)
+          // }
           if (title.textContent.toLowerCase().includes('size')) {
-            title.parentElement.style.display = 'none'
+            // title.parentElement.style.display = 'none'
             title.parentElement.insertAdjacentHTML('afterend', sizeChartHTML)
 
             title.parentElement.insertAdjacentHTML('afterend', inStock)
@@ -1629,6 +1562,12 @@ window.onload = () => {
 
     initStyles() {
       const styles = /* HTML */ ` <style>
+        div:has(> h6):has(box) {
+          display: none;
+        }
+        product-configurable-options h6:first-child {
+          font-size: 16px !important;  
+        }
         product-configurable-options + .return-badge {
           margin-top: 30px;
           margin-bottom: 0;
@@ -1652,9 +1591,7 @@ window.onload = () => {
         .forward-block {
           display: block !important;
         }
-        product-configurable-options div:empty:not(.crs-size-chart__backdrop) {
-          display: none !important;
-        }
+ 
         product-gallery swiper-dots {
           display: flex;
           justify-content: center;
