@@ -884,11 +884,13 @@ window.onload = () => {
                 font-weight: 400 !important;
                 line-height: 26px !important;
               }
-              .crs-size-chart__dialog li[data-checked='true'] {
+              .crs-size-chart__dialog li[data-checked='true']:not([data-select-size]),
+              .crs-size-chart__dialog li:hover {
                 background: #f6f5f5;
               }
-              .crs-size-chart__dialog li:not([data-select-size]):hover {
-                background: #f6f5f5;
+
+              .crs-size-chart__dialog li[data-select-size]:hover {
+                background: none;
               }
               .crs-size-chart__dialog li:last-child {
                 border-bottom: none;
@@ -960,12 +962,15 @@ window.onload = () => {
                   padding: 12px 16px;
                   margin-bottom: 0;
                 }
+                .crs-size-chart__btn:has(+ .crs-size-chart__dialog[open]) {
+                  border-color: #212121;
+                }
                 .crs-size-chart__dialog {
                   position: absolute;
                   border-radius: 0px 0px 2px 2px;
-                  border-right: 1px solid var(--Stroke, #cfd2d3);
-                  border-bottom: 1px solid var(--Stroke, #cfd2d3);
-                  border-left: 1px solid var(--Stroke, #cfd2d3);
+                  border-right: 1px solid var(--Stroke, #212121);
+                  border-bottom: 1px solid var(--Stroke, #212121);
+                  border-left: 1px solid var(--Stroke, #212121);
                   border-top: none;
                   background: #fff;
                   height: auto;
@@ -1267,7 +1272,13 @@ window.onload = () => {
         $el('.crs-size-chart__btn')?.addEventListener('click', () => {
           $el('.crs-size-chart__dialog').show()
           if (this.device === devices.mobile) {
-            $el('.crs-size-chart__list li:first-child div').append($el('.crs-size-chart__info'))
+            $el('.crs-size-chart__info[data-cloned="true"]')?.remove()
+
+            const sizeInfo = $el('.crs-size-chart__info')
+            const sizeInfoClone = sizeInfo.cloneNode(true)
+            sizeInfoClone.dataset.cloned = true
+            $el('.crs-size-chart__list li:first-child div').append(sizeInfo)
+            $el('.crs-stock__wrap')?.append(sizeInfoClone)
           }
         })
 
@@ -1320,6 +1331,7 @@ window.onload = () => {
                 )
               })
               $el('.crs-size-chart__dialog').close()
+              $el('.crs-size-chart__info[data-cloned="true"]')?.remove()
               $el('.crs-stock__wrap')?.append($el('.crs-size-chart__info'))
               pushDataLayer('exp_impro_pdp_lin_popsize_notif', 'Notify me', 'Link', 'PDP Pop up Select Size')
 
@@ -1336,6 +1348,8 @@ window.onload = () => {
             setTimeout(() => {
               $el('box.is-selected')?.click()
               $el('.crs-size-chart__dialog').close()
+              $el('.crs-size-chart__info[data-cloned="true"]')?.remove()
+
               $el('.crs-stock__wrap')?.append($el('.crs-size-chart__info'))
               const productDats = products.find(
                 item => item.color === obj['selection.color'] && item.size === obj['selection.size']
@@ -1398,6 +1412,8 @@ window.onload = () => {
             )
           }
           $$el('dialog').forEach(item => item.close())
+          $el('.crs-size-chart__info[data-cloned="true"]')?.remove()
+
           $el('.crs-stock__wrap')?.append($el('.crs-size-chart__info'))
         })
 
@@ -1411,9 +1427,16 @@ window.onload = () => {
           const isUserSelectSize = hash.includes('selection.size')
           if (!isUserSelectSize) {
             $el('.crs-size-chart__dialog')?.show()
+            if (this.device === devices.mobile) {
+              console.log('mobile')
+              const sizeInfo = $el('.crs-size-chart__info')
+              const sizeInfoClone = sizeInfo.cloneNode(true)
+              sizeInfoClone.dataset.cloned = true
+              $el('.crs-size-chart__list li:first-child div').append(sizeInfo)
+              $el('.crs-stock__wrap')?.append(sizeInfoClone)
+            }
           }
           if (this.device === devices.mobile) {
-            $el('.crs-size-chart__list li:first-child div').append($el('.crs-size-chart__info'))
             if (!clickCTAButtonUnderSize) {
               pushDataLayer('exp_impro_pdp_sticbut_product_add', 'Add to bag', 'Sticky button', 'PDP')
               clickCTAButtonUnderSize = false
