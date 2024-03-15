@@ -262,12 +262,16 @@
               }
               .crs_form .shwpd {
                 transform: translate(0, -50%);
-                margin: 0 0 0 10px;
+                margin: 0;
                 display: block;
-                top: 50%;
-                left: calc(50% + (455px / 2));
+                top: 52%;
+                left: calc(50% + (455px / 2) - 24px - 16px);
                 right: auto;
+                opacity: 0.3;
               }
+              // .crs_form .shwpd.eye-open {
+              //   opacity: 0.9;
+              // }
               .crs_form_container > div a {
                   font-size: 18px;
                   line-height: 26px;
@@ -291,6 +295,7 @@
                   line-height: 24px!important;
                   max-width: 350px!important;
                   width: 100%;
+                  outline: none;
               }
               .crs_form input::placeholder {
                   color: var(--Body-100, #A5A5A5);
@@ -423,6 +428,11 @@
                   }
               }
               @media (max-width: 767px) {
+                  .crs_form .shwpd {
+                    top: calc(50% + 17px);
+                    left: auto;
+                    right: 16px;
+                  }
                   .o-page__header {
                       z-index: 1;
                   }
