@@ -815,9 +815,6 @@ class Popup {
           opacity: 0;
           pointer-events: none;
         }
-        #shopify-section-minicart {
-          z-index: 9999999 !important;
-        }
         ${
           window.location.href.includes('/products/')
             ? 'div:not(.needsclick)>button.needsclick { opacity: 0; pointer-events: none;}'
