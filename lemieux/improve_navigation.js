@@ -306,7 +306,9 @@ window.onload = () => {
     }
     getCurrentProductId() {
       let productId = null
-      productId = JSON.parse(localStorage.getItem('ngStorage-/-recentlyViewed'))[0]
+      const country = window?.autoInitData?.website?.websiteCode
+      const localStorageKey = country === 'base' ? 'ngStorage-/-recentlyViewed' : `ngStorage-/${country}/-recentlyViewed`
+      productId = JSON.parse(localStorage.getItem(localStorageKey))[0]
       return productId
     }
     returnBadge() {
