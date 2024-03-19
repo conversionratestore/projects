@@ -1709,7 +1709,6 @@ window.onload = () => {
           order: 3;
         }
         div:empty,
-        div:has(> p:empty),
         p:empty {
           height: 0;
           padding: 0 !important;
