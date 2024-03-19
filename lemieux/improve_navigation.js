@@ -865,6 +865,12 @@ window.onload = () => {
               .crs-size-chart__dialog li[data-stock='unavailable'] {
                 color: #acacac;
               }
+              .crs-size-chart__dialog li[data-soldout=true], .crs-size-chart__dialog li[data-soldout=true] div {
+                cursor: not-allowed !important;
+              }
+              .crs-size-chart__dialog li[data-soldout=true] {
+                background: none !important;
+              }
               .crs-size-chart__dialog li [data-qty='1'] {
                 color: #8e1538;
               }
@@ -985,13 +991,14 @@ window.onload = () => {
                       item => item.type === 'product' && item.id === product.id
                     )
 
-                    const isSold = !productStock.in_stock_date
+                    const isSold = !productStock.in_stock_date && !qty
 
                     return /* HTML */ `
                       <li
                         data-value="${size.value}"
                         data-checked="${size.value === +selectedSizeOBJ?.value}"
                         data-stock="${qty ? 'available' : 'unavailable'}"
+                        data-soldout="${isSold}"
                       >
                         <div>
                           <span>${size.label}</span>
@@ -1274,7 +1281,7 @@ window.onload = () => {
         $el('.crs-size-chart__dialog')?.addEventListener('click', e => {
           const listItem = e.target.closest('li')
           if (listItem) {
-            if (listItem.dataset.stock === 'unavailable') {
+            if (listItem.dataset.stock === 'unavailable' && listItem.dataset.soldout !== 'true') {
               if (this.device === devices.mobile) {
                 $el('.crs-size-chart__notify').show()
               } else {
@@ -1708,12 +1715,7 @@ window.onload = () => {
           margin-top: 0 !important;
           order: 3;
         }
-        div:empty,
-        p:empty {
-          height: 0;
-          padding: 0 !important;
-          margin: 0;
-        }
+
         @media (max-width: 1100px) {
           .perfectly,
           .recently {
