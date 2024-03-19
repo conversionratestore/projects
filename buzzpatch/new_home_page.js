@@ -1,46 +1,46 @@
 (function() {
   "use strict";
-  const c = (e, n, a, r = "") => {
+  const c = (n, e, o, r = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: e,
-      event_desc: n,
-      event_type: a,
+      event_name: n,
+      event_desc: e,
+      event_type: o,
       event_loc: r
-    }), console.log(`Event: ${e} | ${n} | ${a} | ${r}`);
-  }, g = ({ name: e, dev: n }) => {
+    }), console.log(`Event: ${n} | ${e} | ${o} | ${r}`);
+  }, g = ({ name: n, dev: e }) => {
     console.log(
-      `%c EXP: ${e} (DEV: ${n})`,
+      `%c EXP: ${n} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, m = (e) => {
-    let n = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
+  }, w = (n) => {
+    let e = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", n, "variant_1"));
     }, 1e3);
-  }, o = (e, n, a, r, i = 1e3, s = 0.5) => {
+  }, s = (n, e, o, r, i = 1e3, a = 0.5) => {
     let p, d;
     if (p = new IntersectionObserver(
       function(l) {
         l[0].isIntersecting === !0 ? d = setTimeout(() => {
           c(
-            n,
+            e,
             l[0].target.dataset.visible || r || "",
             "view",
-            a
+            o
           ), p.disconnect();
         }, i) : (console.log("Element is not fully visible"), clearTimeout(d));
       },
-      { threshold: [s] }
-    ), typeof e == "string") {
-      const l = document.querySelector(e);
+      { threshold: [a] }
+    ), typeof n == "string") {
+      const l = document.querySelector(n);
       l && p.observe(l);
     } else
-      p.observe(e);
-  }, u = (e) => {
-    const n = document.querySelector(e);
-    if (!n)
+      p.observe(n);
+  }, m = (n) => {
+    const e = document.querySelector(n);
+    if (!e)
       return;
-    const r = n.getBoundingClientRect().top - 100;
+    const r = e.getBoundingClientRect().top - 100;
     window.scrollBy({
       top: r,
       behavior: "smooth"
@@ -118,7 +118,7 @@
       patchType: "CravePatch Sugar Craving Relief",
       text: "All day my daughter asks me for either something starchy or filled with sugar! I finally gave in and purchased the CravePatch to see if it would make a difference. She’s been eating her meals and snack without constantly asking me for sweets now. Its been fantastic!"
     }
-  ], w = [
+  ], u = [
     {
       text: "“The first thing I noticed when I opened the package were that these smelled seriously amazing. They're citrusy without being overpowering.”",
       img: `${t}/img/new-home-page/slider_logo_1.png`
@@ -139,13 +139,13 @@
       text: '“The Buzzpatch scent creates a virtual shield by "camouflaging" your kids from mosquitos) Genius!”',
       img: `${t}/img/new-home-page/slider_logo_5.png`
     }
-  ], b = () => {
-    let e = $("#featured-reviews2 .carousel-item:not(.slick-cloned)"), n = [];
-    return e.each((a, r) => {
+  ], _ = () => {
+    let n = $("#featured-reviews2 .carousel-item:not(.slick-cloned)"), e = [];
+    return n.each((o, r) => {
       let i = {};
-      i.name = $(r).find(".name").text(), i.img = $(r).find(".review-header>img").attr("data-src") || "no_img", i.text = $(r).find(".review-text p").text(), n.push(i);
-    }), console.log(n), n;
-  }, x = [
+      i.name = $(r).find(".name").text(), i.img = $(r).find(".review-header>img").attr("data-src") || "no_img", i.text = $(r).find(".review-text p").text(), e.push(i);
+    }), console.log(e), e;
+  }, b = [
     {
       name: "SleepyPatch for Kids",
       subText: "Sleep Promoting Stickers",
@@ -198,7 +198,7 @@
       link: "https://www.natpat.com/products/sunnypatch",
       variants: [41098474946604, 41098474979372, 41098474913836, 41098475012140]
     }
-  ], v = `.new_trustpilot_reviews.content_wrapper .insta_widget {\r
+  ], x = `.new_trustpilot_reviews.content_wrapper .insta_widget {\r
   margin-bottom: 60px;\r
 }\r
 \r
@@ -218,132 +218,131 @@
   padding: 0 !important;\r
 }\r
 \r
-.new_home_page {\r
-  & * {\r
-    box-sizing: border-box;\r
-    padding: 0;\r
-    margin: 0;\r
-    font-family: 'Barlow', sans-serif;\r
-    letter-spacing: 0;\r
-  }\r
-  & li {\r
-    list-style: none;\r
-  }\r
+.new_home_page * {\r
+  box-sizing: border-box;\r
+  padding: 0;\r
+  margin: 0;\r
+  font-family: 'Barlow', sans-serif;\r
+  letter-spacing: 0;\r
+}\r
+.new_home_page li {\r
+  list-style: none;\r
+}\r
 \r
-  & .content_wrapper {\r
-    max-width: 1200px;\r
-    margin: 0 auto;\r
-  }\r
+.new_home_page .content_wrapper {\r
+  max-width: 1200px;\r
+  margin: 0 auto;\r
+}\r
 \r
-  & h2 {\r
-    color: #1f4fc9;\r
-    text-align: center;\r
-    font-family: 'Urbane', sans-serif;\r
-    font-size: 38px;\r
-    font-weight: 900;\r
-    line-height: 46px;\r
-    margin-bottom: 40px;\r
-  }\r
+.new_home_page h2 {\r
+  color: #1f4fc9;\r
+  text-align: center;\r
+  font-family: 'Urbane', sans-serif !important;\r
+  font-size: 38px;\r
+  font-weight: 900;\r
+  line-height: 46px;\r
+  margin-bottom: 40px;\r
+  text-transform: none !important;\r
+}\r
 \r
-  & .slick-slider {\r
-    margin-bottom: 0px;\r
-  }\r
+.new_home_page .slick-slider {\r
+  margin-bottom: 0px;\r
+}\r
 \r
-  & .slick-dots {\r
-    bottom: -70px;\r
-  }\r
+.new_home_page .slick-dots {\r
+  bottom: -70px;\r
+}\r
 \r
-  & .slick-dots li button::before {\r
-    color: #9aabd5;\r
-    transition: all 0.3s;\r
-  }\r
+.new_home_page .slick-dots li button::before {\r
+  color: #9aabd5;\r
+  transition: all 0.3s;\r
+}\r
 \r
-  & li.slick-active button:before {\r
-    color: #ff209e;\r
-    opacity: 1;\r
-    font-size: 16px;\r
-  }\r
+.new_home_page li.slick-active button:before {\r
+  color: #ff209e;\r
+  opacity: 1;\r
+  font-size: 16px;\r
+}\r
 \r
-  & .slider_dots {\r
-    max-width: 200px;\r
-    margin: 0 auto;\r
-    display: flex;\r
-    align-items: center;\r
-  }\r
+.new_home_page .slider_dots {\r
+  max-width: 200px;\r
+  margin: 0 auto;\r
+  display: flex;\r
+  align-items: center;\r
+}\r
 \r
-  & .slider_dots span {\r
-    height: 12px;\r
-    width: 12px;\r
-    margin: 0 4px;\r
-    display: flex;\r
-    align-items: center;\r
-    justify-content: center;\r
-  }\r
+.new_home_page .slider_dots span {\r
+  height: 12px;\r
+  width: 12px;\r
+  margin: 0 4px;\r
+  display: flex;\r
+  align-items: center;\r
+  justify-content: center;\r
+}\r
 \r
-  & .slider_dots span i {\r
-    display: flex;\r
-    background: #9aabd5;\r
-    opacity: 0.5;\r
-    border-radius: 50%;\r
-    transition: all 0.3s;\r
-    height: 12px;\r
-    width: 12px;\r
-    scale: 0.5;\r
-    cursor: pointer;\r
-  }\r
+.new_home_page .slider_dots span i {\r
+  display: flex;\r
+  background: #9aabd5;\r
+  opacity: 0.5;\r
+  border-radius: 50%;\r
+  transition: all 0.3s;\r
+  height: 12px;\r
+  width: 12px;\r
+  scale: 0.5;\r
+  cursor: pointer;\r
+}\r
 \r
-  & .slider_dots span.slick-active i {\r
-    scale: 0.75;\r
-  }\r
+.new_home_page .slider_dots span.slick-active i {\r
+  scale: 0.75;\r
+}\r
 \r
-  & .slider_dots span.slick-current i {\r
-    background: #ff209e;\r
-    opacity: 1;\r
-    scale: 1;\r
-  }\r
+.new_home_page .slider_dots span.slick-current i {\r
+  background: #ff209e;\r
+  opacity: 1;\r
+  scale: 1;\r
 }\r
 \r
 .new_main_block {\r
   padding: 70px 0 120px;\r
   text-align: center;\r
   position: relative;\r
+}\r
 \r
-  & .hi {\r
-    position: absolute;\r
-    top: -42px;\r
-    right: -5px;\r
-    z-index: 100;\r
-  }\r
+.new_main_block .hi {\r
+  position: absolute;\r
+  top: -42px;\r
+  right: -5px;\r
+  z-index: 100;\r
+}\r
 \r
-  & .crs_btn {\r
-    border-radius: 100px;\r
-    background: #1f4fc9;\r
-    color: #fff;\r
-    font-size: 20px;\r
-    font-weight: 600;\r
-    line-height: 24px;\r
-    text-transform: uppercase;\r
-    cursor: pointer;\r
-    padding: 16px 32px;\r
-    border: none;\r
-    margin-bottom: 20px;\r
-    display: inline-flex;\r
-    text-decoration: none;\r
-    width: 100%;\r
-    max-width: 400px;\r
-    justify-content: center;\r
+.new_main_block .crs_btn {\r
+  border-radius: 100px;\r
+  background: #1f4fc9;\r
+  color: #fff;\r
+  font-size: 20px;\r
+  font-weight: 600;\r
+  line-height: 24px;\r
+  text-transform: uppercase;\r
+  cursor: pointer;\r
+  padding: 16px 32px;\r
+  border: none;\r
+  margin-bottom: 20px;\r
+  display: inline-flex;\r
+  text-decoration: none;\r
+  width: 100%;\r
+  max-width: 400px;\r
+  justify-content: center;\r
+}\r
 \r
-    & + p {\r
-      display: flex;\r
-      justify-content: center;\r
-      align-items: center;\r
-      gap: 8px;\r
-      color: #1f1f5b;\r
-      font-size: 16px;\r
-      font-weight: 600;\r
-      line-height: 24px;\r
-    }\r
-  }\r
+.new_main_block .crs_btn + p {\r
+  display: flex;\r
+  justify-content: center;\r
+  align-items: center;\r
+  gap: 8px;\r
+  color: #1f1f5b;\r
+  font-size: 16px;\r
+  font-weight: 600;\r
+  line-height: 24px;\r
 }\r
 \r
 .new_main_block .total_reviews {\r
@@ -376,17 +375,17 @@
   gap: 34px;\r
   max-width: 1250px;\r
   margin: 0 auto;\r
+}\r
 \r
-  & a {\r
-    display: flex;\r
-    width: calc((100% - 68px) / 3);\r
+.new_main_block .images a {\r
+  display: flex;\r
+  width: calc((100% - 68px) / 3);\r
+}\r
 \r
-    & img {\r
-      width: 100%;\r
-      height: 100%;\r
-      object-fit: contain;\r
-    }\r
-  }\r
+.new_main_block .images a img {\r
+  width: 100%;\r
+  height: 100%;\r
+  object-fit: contain;\r
 }\r
 \r
 .new_main_block .points {\r
@@ -398,358 +397,356 @@
   background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/main_bg.svg) no-repeat\r
     center center;\r
   background-size: contain;\r
+}\r
 \r
-  & li {\r
-    display: flex;\r
-    align-items: center;\r
-    gap: 18px;\r
-    color: #1f1f5b;\r
-    font-size: 16px;\r
-    font-weight: 600;\r
-    line-height: 24px;\r
+.new_main_block .points li {\r
+  display: flex;\r
+  align-items: center;\r
+  gap: 18px;\r
+  color: #1f1f5b;\r
+  font-size: 16px;\r
+  font-weight: 600;\r
+  line-height: 24px;\r
+}\r
 \r
-    & img {\r
-      width: 40px;\r
-      height: 40px;\r
-    }\r
-  }\r
+.new_main_block .points li img {\r
+  width: 40px;\r
+  height: 40px;\r
 }\r
 \r
 .new_stickers_slider {\r
   background: #f0f0f4;\r
   position: relative;\r
   padding: 0 0 50px;\r
+}\r
 \r
-  &::before,\r
-  &::after {\r
-    position: absolute;\r
-    content: '';\r
-    width: 100%;\r
-    height: 0;\r
-    background-clip: padding-box;\r
-    left: 0;\r
-  }\r
+.new_stickers_slider::before,\r
+.new_stickers_slider::after {\r
+  position: absolute;\r
+  content: '';\r
+  width: 100%;\r
+  height: 0;\r
+  background-clip: padding-box;\r
+  left: 0;\r
+}\r
 \r
-  &::after {\r
-    top: calc(100% - 1px);\r
-    border-bottom: 50px solid transparent;\r
-    border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bdr_gray_bot.png) 75\r
-      round;\r
-  }\r
+.new_stickers_slider::after {\r
+  top: calc(100% - 1px);\r
+  border-bottom: 50px solid transparent;\r
+  border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bdr_gray_bot.png) 75\r
+    round;\r
+}\r
 \r
-  &::before {\r
-    bottom: calc(100% - 1px);\r
-    border-top: 50px solid transparent;\r
-    border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bdr_gray_top.png) 75\r
-      round;\r
-  }\r
+.new_stickers_slider::before {\r
+  bottom: calc(100% - 1px);\r
+  border-top: 50px solid transparent;\r
+  border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bdr_gray_top.png) 75\r
+    round;\r
+}\r
 \r
-  & .item {\r
-    background: #fff;\r
-    padding: 24px 28px;\r
-    border-radius: 12px;\r
-    border: 1px solid #e0e4ed;\r
-    position: relative;\r
-    margin: 0 12px;\r
+.new_stickers_slider .item {\r
+  background: #fff;\r
+  padding: 24px 28px;\r
+  border-radius: 12px;\r
+  border: 1px solid #e0e4ed;\r
+  position: relative;\r
+  margin: 0 12px;\r
+}\r
 \r
-    & .tv {\r
-      position: absolute;\r
-      top: 16px;\r
-      left: 16px;\r
-      z-index: 1;\r
-    }\r
+.new_stickers_slider .item .tv {\r
+  position: absolute;\r
+  top: 16px;\r
+  left: 16px;\r
+  z-index: 1;\r
+}\r
 \r
-    & .save {\r
-      display: flex;\r
-      justify-content: center;\r
-      align-items: center;\r
-      position: absolute;\r
-      top: 16px;\r
-      right: 0;\r
-      background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/label_item.png)\r
-        no-repeat center center;\r
-      background-size: 100% 100%;\r
-      color: #fff;\r
-      font-size: 14px;\r
-      font-weight: 700;\r
-      line-height: 20px;\r
-      text-transform: uppercase;\r
-      z-index: 1;\r
-      padding: 4px 11px;\r
-    }\r
+.new_stickers_slider .item .save {\r
+  display: flex;\r
+  justify-content: center;\r
+  align-items: center;\r
+  position: absolute;\r
+  top: 16px;\r
+  right: 0;\r
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/label_item.png) no-repeat\r
+    center center;\r
+  background-size: 100% 100%;\r
+  color: #fff;\r
+  font-size: 14px;\r
+  font-weight: 700;\r
+  line-height: 20px;\r
+  text-transform: uppercase;\r
+  z-index: 1;\r
+  padding: 4px 11px;\r
+}\r
 \r
-    & .img {\r
-      width: 80%;\r
-      margin: 0 auto 20px;\r
-      position: relative;\r
+.new_stickers_slider .item .img {\r
+  width: 80%;\r
+  margin: 0 auto 20px;\r
+  position: relative;\r
+}\r
 \r
-      & img:not(.sub_img) {\r
-        width: 100%;\r
-        height: 100%;\r
-        object-fit: contain;\r
-      }\r
+.new_stickers_slider .item .img img:not(.sub_img) {\r
+  width: 100%;\r
+  height: 100%;\r
+  object-fit: contain;\r
+}\r
 \r
-      & img.sub_img {\r
-        position: absolute;\r
-        right: 0;\r
-        bottom: -10px;\r
-        height: 90px;\r
-      }\r
-    }\r
+.new_stickers_slider .item .img img.sub_img {\r
+  position: absolute;\r
+  right: 0;\r
+  bottom: -10px;\r
+  height: 90px;\r
+}\r
 \r
-    & .name {\r
-      color: #1f1f5b;\r
-      text-align: center;\r
-      font-size: 23px;\r
-      font-weight: 700;\r
-      line-height: 24px;\r
-      margin: 0 0 4px;\r
-    }\r
+.new_stickers_slider .item .name {\r
+  color: #1f1f5b;\r
+  text-align: center;\r
+  font-size: 23px;\r
+  font-weight: 700;\r
+  line-height: 24px;\r
+  margin: 0 0 4px;\r
+}\r
 \r
-    & .sub_text {\r
-      color: #1f1f5b;\r
-      text-align: center;\r
-      font-size: 16px;\r
-      font-weight: 500;\r
-      line-height: 24px;\r
-    }\r
+.new_stickers_slider .item .sub_text {\r
+  color: #1f1f5b;\r
+  text-align: center;\r
+  font-size: 16px;\r
+  font-weight: 500;\r
+  line-height: 24px;\r
+}\r
 \r
-    & .qty {\r
-      display: flex;\r
-      justify-content: center;\r
-      align-items: center;\r
-      flex-wrap: wrap;\r
-      gap: 8px;\r
-      margin: 18px 0;\r
+.new_stickers_slider .item .qty {\r
+  display: flex;\r
+  justify-content: center;\r
+  align-items: center;\r
+  flex-wrap: wrap;\r
+  gap: 8px;\r
+  margin: 18px 0;\r
+}\r
 \r
-      & span {\r
-        display: flex;\r
-        justify-content: center;\r
-        align-items: center;\r
-        width: calc((100% - 8px) / 2);\r
-        border: 1px solid #e5e5e5;\r
-        border-radius: 50px;\r
-        padding: 12px 0;\r
-        color: #1f1f5b;\r
-        font-size: 14px;\r
-        font-weight: 600;\r
-        line-height: 12px;\r
-        text-transform: uppercase;\r
-        cursor: pointer;\r
+.new_stickers_slider .item .qty span {\r
+  display: flex;\r
+  justify-content: center;\r
+  align-items: center;\r
+  width: calc((100% - 8px) / 2);\r
+  border: 1px solid #e5e5e5;\r
+  border-radius: 50px;\r
+  padding: 12px 0;\r
+  color: #1f1f5b;\r
+  font-size: 14px;\r
+  font-weight: 600;\r
+  line-height: 12px;\r
+  text-transform: uppercase;\r
+  cursor: pointer;\r
+}\r
 \r
-        &.active {\r
-          border: 1px solid #ff209e;\r
-          color: #ff209e;\r
-        }\r
-      }\r
-    }\r
+.new_stickers_slider .item .qty span.active {\r
+  border: 1px solid #ff209e;\r
+  color: #ff209e;\r
+}\r
 \r
-    & .price {\r
-      color: #1f1f5b;\r
-      font-size: 20px;\r
-      font-weight: 700;\r
-      line-height: 24px;\r
-      margin-bottom: 18px;\r
-      text-align: center;\r
-    }\r
+.new_stickers_slider .item .price {\r
+  color: #1f1f5b;\r
+  font-size: 20px;\r
+  font-weight: 700;\r
+  line-height: 24px;\r
+  margin-bottom: 18px;\r
+  text-align: center;\r
+}\r
 \r
-    & .btns {\r
-      display: flex;\r
-      justify-content: flex-end;\r
-      align-items: center;\r
-      gap: 18px;\r
+.new_stickers_slider .item .btns {\r
+  display: flex;\r
+  justify-content: flex-end;\r
+  align-items: center;\r
+  gap: 18px;\r
+}\r
 \r
-      & button {\r
-        border-radius: 100px;\r
-        background: #ff209e;\r
-        color: #fff;\r
-        font-size: 16px;\r
-        font-weight: 700;\r
-        line-height: 20px;\r
-        text-transform: uppercase;\r
-        cursor: pointer;\r
-        padding: 17px 32px;\r
-        border: none;\r
-      }\r
+.new_stickers_slider .item .btns button {\r
+  border-radius: 100px;\r
+  background: #ff209e;\r
+  color: #fff;\r
+  font-size: 16px;\r
+  font-weight: 700;\r
+  line-height: 20px;\r
+  text-transform: uppercase;\r
+  cursor: pointer;\r
+  padding: 17px 32px;\r
+  border: none;\r
+}\r
 \r
-      & a {\r
-        color: #1f1f5b;\r
-        font-size: 16px;\r
-        font-weight: 500;\r
-        line-height: 20px;\r
-        text-decoration: underline;\r
-        display: inline-flex;\r
-        padding: 0 24px;\r
-      }\r
-    }\r
-  }\r
+.new_stickers_slider .item .btns a {\r
+  color: #1f1f5b;\r
+  font-size: 16px;\r
+  font-weight: 500;\r
+  line-height: 20px;\r
+  text-decoration: underline;\r
+  display: inline-flex;\r
+  padding: 0 24px;\r
 }\r
 \r
 .new_trustpilot_reviews {\r
   padding: 120px 0 0;\r
+}\r
+.new_trustpilot_reviews > p {\r
+  display: flex;\r
+  justify-content: center;\r
+  align-items: center;\r
+  gap: 8px;\r
+  color: #1f1f5b;\r
+  font-size: 16px;\r
+  font-weight: 600;\r
+  line-height: 14px;\r
+  margin-bottom: 8px;\r
+}\r
 \r
-  & > p {\r
-    display: flex;\r
-    justify-content: center;\r
-    align-items: center;\r
-    gap: 8px;\r
-    color: #1f1f5b;\r
-    font-size: 16px;\r
-    font-weight: 600;\r
-    line-height: 14px;\r
-    margin-bottom: 8px;\r
-  }\r
+.new_trustpilot_reviews .reviews_trust {\r
+  display: flex;\r
+  flex-wrap: wrap;\r
+  gap: 40px;\r
+}\r
 \r
-  & .reviews_trust {\r
-    display: flex;\r
-    flex-wrap: wrap;\r
-    gap: 40px;\r
+.new_trustpilot_reviews .reviews_trust li:not([role='presentation']) {\r
+  border-radius: 12px;\r
+  background: #f0f0f4;\r
+  padding: 22px;\r
+  width: calc((100% - 80px) / 3);\r
+  display: flex;\r
+  flex-direction: column;\r
+  justify-content: stretch;\r
+  gap: 8px;\r
+  align-items: start;\r
+}\r
 \r
-    & li:not([role='presentation']) {\r
-      border-radius: 12px;\r
-      background: #f0f0f4;\r
-      padding: 22px;\r
-      width: calc((100% - 80px) / 3);\r
-      display: flex;\r
-      flex-direction: column;\r
-      justify-content: stretch;\r
-      gap: 8px;\r
-      align-items: start;\r
+.new_trustpilot_reviews .reviews_trust li:not([role='presentation']) p:first-of-type {\r
+  color: #1f1f5b;\r
+  font-size: 18px;\r
+  font-weight: 700;\r
+  line-height: 30px;\r
+}\r
 \r
-      & p:first-of-type {\r
-        color: #1f1f5b;\r
-        font-size: 18px;\r
-        font-weight: 700;\r
-        line-height: 30px;\r
-      }\r
+.new_trustpilot_reviews .reviews_trust li:not([role='presentation']) p:last-of-type {\r
+  color: #1f1f5b;\r
+  font-size: 16px;\r
+  font-weight: 500;\r
+  line-height: 22px;\r
+}\r
 \r
-      & p:last-of-type {\r
-        color: #1f1f5b;\r
-        font-size: 16px;\r
-        font-weight: 500;\r
-        line-height: 22px;\r
-      }\r
+.new_trustpilot_reviews .reviews_trust li:not([role='presentation']) p.small {\r
+  max-height: 110px;\r
+  overflow: hidden;\r
+  color: #1f1f5b;\r
+  font-size: 16px;\r
+  font-weight: 500;\r
+  line-height: 22px;\r
+  position: relative;\r
+}\r
 \r
-      & p.small {\r
-        max-height: 110px;\r
-        overflow: hidden;\r
-        color: #1f1f5b;\r
-        font-size: 16px;\r
-        font-weight: 500;\r
-        line-height: 22px;\r
-        position: relative;\r
+.new_trustpilot_reviews .reviews_trust li:not([role='presentation']) p.small::after {\r
+  content: '...';\r
+  position: absolute;\r
+  bottom: 0;\r
+  right: 0;\r
+  width: 50%;\r
+  height: 22px;\r
+  background: #f0f0f4;\r
+}\r
 \r
-        &::after {\r
-          content: '...';\r
-          position: absolute;\r
-          bottom: 0;\r
-          right: 0;\r
-          width: 50%;\r
-          height: 22px;\r
-          background: #f0f0f4;\r
-        }\r
-      }\r
+.new_trustpilot_reviews .reviews_trust li:not([role='presentation']) .read_more {\r
+  color: #616267;\r
+  font-size: 16px;\r
+  font-weight: 500;\r
+  line-height: 22px;\r
+  text-decoration-line: underline;\r
+  cursor: pointer;\r
+}\r
 \r
-      & .read_more {\r
-        color: #616267;\r
-        font-size: 16px;\r
-        font-weight: 500;\r
-        line-height: 22px;\r
-        text-decoration-line: underline;\r
-        cursor: pointer;\r
-      }\r
+.new_trustpilot_reviews .reviews_trust li:not([role='presentation']) img {\r
+  margin-top: auto;\r
+}\r
 \r
-      & img {\r
-        margin-top: auto;\r
-      }\r
-    }\r
-  }\r
+.new_trustpilot_reviews .pages_r {\r
+  display: flex;\r
+  justify-content: center;\r
+  align-items: center;\r
+  gap: 10px;\r
+  margin-top: 40px;\r
+}\r
 \r
-  & .pages_r {\r
-    display: flex;\r
-    justify-content: center;\r
-    align-items: center;\r
-    gap: 10px;\r
-    margin-top: 40px;\r
+.new_trustpilot_reviews .pages_r span {\r
+  font-weight: 500;\r
+  font-size: 16px;\r
+  cursor: pointer;\r
+  transition: all 0.3s;\r
+}\r
 \r
-    & span {\r
-      font-weight: 500;\r
-      font-size: 16px;\r
-      cursor: pointer;\r
-      transition: all 0.3s;\r
-    }\r
-\r
-    & span.active {\r
-      font-weight: 700;\r
-      font-size: 18px;\r
-    }\r
-  }\r
+.new_trustpilot_reviews .pages_r span.active {\r
+  font-weight: 700;\r
+  font-size: 18px;\r
 }\r
 \r
 .new_slider_news {\r
   padding: 70px 0;\r
+}\r
+.new_slider_news h2 {\r
+  width: fit-content;\r
+  margin: 0 auto 40px;\r
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/h2_bg.png) no-repeat center center;\r
+  background-size: contain;\r
+  padding: 26px 90px;\r
+  color: #fff;\r
+}\r
 \r
-  & h2 {\r
-    width: fit-content;\r
-    margin: 0 auto 40px;\r
-    background: url(https://conversionratestore.github.io/projects/buzzpatch/img/h2_bg.png) no-repeat center center;\r
-    background-size: contain;\r
-    padding: 26px 90px;\r
-    color: #fff;\r
-  }\r
+.new_slider_news .slider_wrapper {\r
+  display: flex;\r
+  margin-bottom: 40px;\r
+}\r
 \r
-  & .slider_wrapper {\r
-    display: flex;\r
-    margin-bottom: 40px;\r
+.new_slider_news .slider_wrapper .slide {\r
+  position: relative;\r
+  margin: 0 15px;\r
+  padding: 34px 38px 32px;\r
+  text-align: center;\r
+  min-height: 275px;\r
+  display: flex;\r
+  flex-direction: column;\r
+  justify-content: space-between;\r
+}\r
 \r
-    & .slide {\r
-      position: relative;\r
-      margin: 0 15px;\r
-      padding: 34px 38px 32px;\r
-      text-align: center;\r
-      min-height: 275px;\r
-      display: flex;\r
-      flex-direction: column;\r
-      justify-content: space-between;\r
+.new_slider_news .slider_wrapper .slide .bg {\r
+  position: absolute;\r
+  top: 0;\r
+  left: 0;\r
+  width: 100%;\r
+  height: 100%;\r
+  z-index: 0;\r
+}\r
 \r
-      & .bg {\r
-        position: absolute;\r
-        top: 0;\r
-        left: 0;\r
-        width: 100%;\r
-        height: 100%;\r
-        z-index: 0;\r
+.new_slider_news .slider_wrapper .slide .bg img {\r
+  width: 100%;\r
+  height: 100%;\r
+  display: block;\r
+}\r
 \r
-        & img {\r
-          width: 100%;\r
-          height: 100%;\r
-          display: block;\r
-        }\r
-      }\r
+.new_slider_news .slider_wrapper .slide p {\r
+  position: relative;\r
+  z-index: 1;\r
+  color: #fff;\r
+  text-align: center;\r
+  font-size: 18px;\r
+  font-weight: 600;\r
+  line-height: 26px;\r
+}\r
 \r
-      & p {\r
-        position: relative;\r
-        z-index: 1;\r
-        color: #fff;\r
-        text-align: center;\r
-        font-size: 18px;\r
-        font-weight: 600;\r
-        line-height: 26px;\r
-      }\r
+.new_slider_news .slider_wrapper .slide > img {\r
+  position: relative;\r
+  z-index: 1;\r
+  max-height: 40px;\r
+  max-width: 70%;\r
+  margin: 10px auto 0;\r
+}\r
 \r
-      & > img {\r
-        position: relative;\r
-        z-index: 1;\r
-        max-height: 40px;\r
-        max-width: 70%;\r
-        margin: 10px auto 0;\r
-      }\r
-    }\r
-  }\r
-\r
-  & .slick-track {\r
-    height: 100%;\r
-  }\r
+.new_slider_news .slick-track {\r
+  height: 100%;\r
 }\r
 \r
 .new_science_block {\r
@@ -760,48 +757,43 @@
   position: relative;\r
   margin-bottom: -48px;\r
   padding-bottom: 50px;\r
+}\r
+.new_science_block .content_wrapper {\r
+  display: flex;\r
+  justify-content: space-between;\r
+  align-items: start;\r
+  gap: 76px;\r
+}\r
+.new_science_block .content_wrapper > div {\r
+  width: calc((100% - 76px) / 2);\r
+  aspect-ratio: 1/1;\r
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/gray_bg.svg) no-repeat\r
+    center center;\r
+  background-size: 100% 100%;\r
+}\r
+.new_science_block .content_wrapper > div:first-of-type img {\r
+  right: -100%;\r
+  top: 0;\r
+}\r
 \r
-  & .content_wrapper {\r
-    display: flex;\r
-    justify-content: space-between;\r
-    align-items: start;\r
-    gap: 76px;\r
+.new_science_block .content_wrapper > div:last-of-type {\r
+  margin-top: 380px;\r
+}\r
+.new_science_block .content_wrapper > div:last-of-type img {\r
+  top: 85px;\r
+  left: -100%;\r
+}\r
 \r
-    & > div {\r
-      width: calc((100% - 76px) / 2);\r
-      aspect-ratio: 1/1;\r
-      background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/gray_bg.svg) no-repeat\r
-        center center;\r
-      background-size: 100% 100%;\r
-\r
-      &:first-of-type img {\r
-        right: -100%;\r
-        top: 0;\r
-      }\r
-\r
-      &:last-of-type {\r
-        margin-top: 380px;\r
-\r
-        & img {\r
-          top: 85px;\r
-          left: -100%;\r
-        }\r
-      }\r
-\r
-      & p {\r
-        color: #1f1f5b;\r
-        font-size: 22px;\r
-        font-weight: 500;\r
-        line-height: 32px;\r
-        padding: 64px;\r
-        position: relative;\r
-\r
-        & img {\r
-          position: absolute;\r
-        }\r
-      }\r
-    }\r
-  }\r
+.new_science_block .content_wrapper > div p {\r
+  color: #1f1f5b;\r
+  font-size: 22px;\r
+  font-weight: 500;\r
+  line-height: 32px;\r
+  padding: 64px;\r
+  position: relative;\r
+}\r
+.new_science_block .content_wrapper > div p img {\r
+  position: absolute;\r
 }\r
 \r
 .new_natpat_block {\r
@@ -812,313 +804,300 @@
   background: url(https://conversionratestore.github.io/projects/buzzpatch/img/big_bg.webp) no-repeat center center;\r
   background-size: cover;\r
   background-attachment: fixed;\r
-\r
-  & p {\r
-    color: #1f1f5b;\r
-    text-align: center;\r
-    font-size: 26px;\r
-    font-weight: 600;\r
-    line-height: 36px;\r
-    position: relative;\r
-    background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/white_bg.svg) no-repeat\r
-      center center;\r
-    background-size: 100% 100%;\r
-    max-width: 630px;\r
-    padding: 80px 66px 108px;\r
-    filter: drop-shadow(0px 4px 24px rgba(31, 31, 91, 0.35));\r
-\r
-    & img {\r
-      position: absolute;\r
-      left: 50%;\r
-      top: calc(100% - 110px);\r
-      transform: translateX(-50%);\r
-    }\r
-  }\r
+}\r
+.new_natpat_block p {\r
+  color: #1f1f5b;\r
+  text-align: center;\r
+  font-size: 26px;\r
+  font-weight: 600;\r
+  line-height: 36px;\r
+  position: relative;\r
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/white_bg.svg) no-repeat\r
+    center center;\r
+  background-size: 100% 100%;\r
+  max-width: 630px;\r
+  padding: 80px 66px 108px;\r
+  filter: drop-shadow(0px 4px 24px rgba(31, 31, 91, 0.35));\r
+}\r
+.new_natpat_block p img {\r
+  position: absolute;\r
+  left: 50%;\r
+  top: calc(100% - 110px);\r
+  transform: translateX(-50%);\r
 }\r
 \r
 .new_info_block {\r
   background: #1f4fc9;\r
   padding: 80px 0;\r
   position: relative;\r
+}\r
+.new_info_block::before,\r
+.new_info_block::after {\r
+  position: absolute;\r
+  content: '';\r
+  width: 100%;\r
+  height: 0;\r
+  background-clip: padding-box;\r
+  left: 0;\r
+}\r
 \r
-  &::before,\r
-  &::after {\r
-    position: absolute;\r
-    content: '';\r
-    width: 100%;\r
-    height: 0;\r
-    background-clip: padding-box;\r
-    left: 0;\r
-  }\r
+.new_info_block::before {\r
+  bottom: calc(100% - 3px);\r
+  border-top: 50px solid transparent;\r
+  border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/brdr_blue_top.png) 75\r
+    round;\r
+}\r
 \r
-  &::before {\r
-    bottom: calc(100% - 3px);\r
-    border-top: 50px solid transparent;\r
-    border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/brdr_blue_top.png) 75\r
-      round;\r
-  }\r
+.new_info_block::after {\r
+  top: calc(100% - 3px);\r
+  border-bottom: 50px solid transparent;\r
+  border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/brdr_blue_bot.png) 75\r
+    round;\r
+}\r
 \r
-  &::after {\r
-    top: calc(100% - 3px);\r
-    border-bottom: 50px solid transparent;\r
-    border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/brdr_blue_bot.png) 75\r
-      round;\r
-  }\r
+.new_info_block .content_wrapper {\r
+  display: flex;\r
+  justify-content: center;\r
+  align-items: start;\r
+  gap: 76px;\r
+}\r
+.new_info_block .content_wrapper > div {\r
+  width: calc((100% - 76px) / 2);\r
+}\r
 \r
-  & .content_wrapper {\r
-    display: flex;\r
-    justify-content: center;\r
-    align-items: start;\r
-    gap: 76px;\r
+.new_info_block .content_wrapper p {\r
+  color: #fff;\r
+  font-size: 16px;\r
+  font-weight: 500;\r
+  line-height: 24px;\r
+}\r
 \r
-    & > div {\r
-      width: calc((100% - 76px) / 2);\r
-    }\r
+.new_info_block .content_wrapper p.special {\r
+  font-size: 18px;\r
+  font-weight: 600;\r
+  line-height: 26px;\r
+  margin-top: 38px;\r
+  padding: 24px 32px;\r
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/special_bg.png) no-repeat\r
+    center center;\r
+  background-size: 100% 100%;\r
+}\r
 \r
-    & p {\r
-      color: #fff;\r
-      font-size: 16px;\r
-      font-weight: 500;\r
-      line-height: 24px;\r
-    }\r
+.new_info_block .img_slide {\r
+  aspect-ratio: 1/1;\r
+  border-radius: 24px;\r
+  overflow: hidden;\r
+}\r
+.new_info_block .img_slide img {\r
+  width: 100%;\r
+  height: 100%;\r
+  object-fit: cover;\r
+}\r
 \r
-    & p.special {\r
-      font-size: 18px;\r
-      font-weight: 600;\r
-      line-height: 26px;\r
-      margin-top: 38px;\r
-      padding: 24px 32px;\r
-      background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/special_bg.png)\r
-        no-repeat center center;\r
-      background-size: 100% 100%;\r
-    }\r
-  }\r
+.new_info_block .slider_photo {\r
+  z-index: 5;\r
+}\r
+.new_info_block .slider_photo::before,\r
+.new_info_block .slider_photo::after {\r
+  content: '';\r
+  position: absolute;\r
+  width: 100%;\r
+  height: 100%;\r
+  border-radius: 24px;\r
+}\r
 \r
-  & .img_slide {\r
-    aspect-ratio: 1/1;\r
-    border-radius: 24px;\r
-    overflow: hidden;\r
+.new_info_block .slider_photo::before {\r
+  bottom: -60px;\r
+  left: 0;\r
+  background: #5e7ac2;\r
+  scale: 0.9;\r
+  z-index: -1;\r
+}\r
 \r
-    & img {\r
-      width: 100%;\r
-      height: 100%;\r
-      object-fit: cover;\r
-    }\r
-  }\r
+.new_info_block .slider_photo::after {\r
+  bottom: -120px;\r
+  right: 0;\r
+  background: rgba(255, 255, 255, 0.3);\r
+  scale: 0.8;\r
+  z-index: -2;\r
+}\r
 \r
-  & .slider_photo {\r
-    z-index: 5;\r
+.new_info_block .slider_photo .slick-arrow {\r
+  height: 82px;\r
+  width: 82px;\r
+  background: #1f4fc9;\r
+  border-radius: 50%;\r
+  display: flex;\r
+  justify-content: center;\r
+  align-items: center;\r
+  z-index: 1;\r
+}\r
+.new_info_block .slider_photo .slick-arrow.slick-next {\r
+  right: -41px;\r
+}\r
+.new_info_block .slider_photo .slick-arrow.slick-next::before {\r
+  content: '';\r
+  height: 52px;\r
+  width: 52px;\r
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/arrow-blue.svg) no-repeat\r
+    center center;\r
+  background-size: contain;\r
+}\r
 \r
-    &::before,\r
-    &::after {\r
-      content: '';\r
-      position: absolute;\r
-      width: 100%;\r
-      height: 100%;\r
-      border-radius: 24px;\r
-    }\r
-\r
-    &::before {\r
-      bottom: -60px;\r
-      left: 0;\r
-      background: #5e7ac2;\r
-      scale: 0.9;\r
-      z-index: -1;\r
-    }\r
-\r
-    &::after {\r
-      bottom: -120px;\r
-      right: 0;\r
-      background: rgba(255, 255, 255, 0.3);\r
-      scale: 0.8;\r
-      z-index: -2;\r
-    }\r
-\r
-    & .slick-arrow {\r
-      height: 82px;\r
-      width: 82px;\r
-      background: #1f4fc9;\r
-      border-radius: 50%;\r
-      display: flex;\r
-      justify-content: center;\r
-      align-items: center;\r
-      z-index: 1;\r
-\r
-      &.slick-next {\r
-        right: -41px;\r
-\r
-        &::before {\r
-          content: '';\r
-          height: 52px;\r
-          width: 52px;\r
-          background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/arrow-blue.svg)\r
-            no-repeat center center;\r
-          background-size: contain;\r
-        }\r
-      }\r
-\r
-      &.slick-prev {\r
-        left: -41px;\r
-\r
-        &::before {\r
-          content: '';\r
-          height: 52px;\r
-          width: 52px;\r
-          background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/arrow-blue.svg)\r
-            no-repeat center center;\r
-          background-size: contain;\r
-          transform: rotate(180deg);\r
-        }\r
-      }\r
-    }\r
-  }\r
+.new_info_block .slider_photo .slick-arrow.slick-prev {\r
+  left: -41px;\r
+}\r
+.new_info_block .slider_photo .slick-arrow.slick-prev::before {\r
+  content: '';\r
+  height: 52px;\r
+  width: 52px;\r
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/arrow-blue.svg) no-repeat\r
+    center center;\r
+  background-size: contain;\r
+  transform: rotate(180deg);\r
 }\r
 \r
 .new_reviews_block {\r
   background: #93c3e9;\r
   padding: 150px 0;\r
+}\r
+.new_reviews_block .basic_slider {\r
+  display: flex;\r
+}\r
 \r
-  & .basic_slider {\r
-    display: flex;\r
-  }\r
+.new_reviews_block .slick-track {\r
+  height: 100%;\r
+}\r
 \r
-  & .slick-track {\r
-    height: 100%;\r
-  }\r
+.new_reviews_block .slide {\r
+  margin: 0 20px;\r
+  background: #fff;\r
+  padding: 0 0 24px;\r
+  display: flex;\r
+  flex-direction: column;\r
+  justify-content: space-between;\r
+  border-radius: 12px;\r
+  overflow: hidden;\r
+}\r
+.new_reviews_block .slide > *:not(:is(.img, span)) {\r
+  padding: 0 22px;\r
+}\r
 \r
-  & .slide {\r
-    margin: 0 20px;\r
-    background: #fff;\r
-    padding: 0 0 24px;\r
-    display: flex;\r
-    flex-direction: column;\r
-    justify-content: space-between;\r
-    border-radius: 12px;\r
-    overflow: hidden;\r
+.new_reviews_block .slide span {\r
+  margin: auto 0 0 22px;\r
+  display: flex;\r
+  width: fit-content;\r
+  justify-content: space-between;\r
+  gap: 7px;\r
+  padding: 2px 6px;\r
+  border-radius: 20px;\r
+  background: #00b67e;\r
+  color: #fff;\r
+  font-size: 13px;\r
+  font-weight: 700;\r
+  line-height: 22px;\r
+}\r
 \r
-    & > *:not(:is(.img, span)) {\r
-      padding: 0 22px;\r
-    }\r
+.new_reviews_block .head {\r
+  margin: 27px 0 16px;\r
+  color: #1f1f5b;\r
+  font-size: 20px;\r
+  font-weight: 600;\r
+  line-height: 30px;\r
+}\r
+.new_reviews_block .head img {\r
+  margin-bottom: 2px;\r
+}\r
 \r
-    & span {\r
-      margin: auto 0 0 22px;\r
-      display: flex;\r
-      width: fit-content;\r
-      justify-content: space-between;\r
-      gap: 7px;\r
-      padding: 2px 6px;\r
-      border-radius: 20px;\r
-      background: #00b67e;\r
-      color: #fff;\r
-      font-size: 13px;\r
-      font-weight: 700;\r
-      line-height: 22px;\r
-    }\r
-  }\r
+.new_reviews_block .text {\r
+  color: #1f1f5b;\r
+  font-size: 16px;\r
+  font-weight: 500;\r
+  line-height: 22px;\r
+  margin-bottom: 16px;\r
+}\r
 \r
-  & .head {\r
-    margin: 27px 0 16px;\r
-    color: #1f1f5b;\r
-    font-size: 20px;\r
-    font-weight: 600;\r
-    line-height: 30px;\r
+.new_reviews_block .img {\r
+  width: 100%;\r
+  height: 240px;\r
+}\r
+.new_reviews_block .img img {\r
+  width: 100%;\r
+  height: 100%;\r
+  object-fit: cover;\r
+}\r
 \r
-    & img {\r
-      margin-bottom: 2px;\r
-    }\r
-  }\r
+.new_reviews_block .slider_dots {\r
+  margin-top: 24px;\r
+}\r
 \r
-  & .text {\r
-    color: #1f1f5b;\r
-    font-size: 16px;\r
-    font-weight: 500;\r
-    line-height: 22px;\r
-    margin-bottom: 16px;\r
-  }\r
+.new_reviews_block .slick-dots li button::before {\r
+  color: #fff;\r
+}\r
 \r
-  & .img {\r
-    width: 100%;\r
-    height: 240px;\r
-\r
-    & img {\r
-      width: 100%;\r
-      height: 100%;\r
-      object-fit: cover;\r
-    }\r
-  }\r
-\r
-  & .slick-dots li button::before {\r
-    color: #fff;\r
-  }\r
-\r
-  & .slick-dots li.slick-active button::before {\r
-    color: #ff209e;\r
-  }\r
+.new_reviews_block .slick-dots li.slick-active button::before {\r
+  color: #ff209e;\r
 }\r
 \r
 .new_info2_block {\r
   padding: 50px 0 70px;\r
   position: relative;\r
+}\r
+.new_info2_block::before,\r
+.new_info2_block::after {\r
+  position: absolute;\r
+  content: '';\r
+  width: 100%;\r
+  height: 0;\r
+  background-clip: padding-box;\r
+  left: 0;\r
+}\r
 \r
-  &::before,\r
-  &::after {\r
-    position: absolute;\r
-    content: '';\r
-    width: 100%;\r
-    height: 0;\r
-    background-clip: padding-box;\r
-    left: 0;\r
-  }\r
+.new_info2_block::before {\r
+  bottom: calc(100% - 2px);\r
+  border-top: 50px solid transparent;\r
+  border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bdr_white_top.png) 75\r
+    round;\r
+}\r
 \r
-  &::before {\r
-    bottom: calc(100% - 2px);\r
-    border-top: 50px solid transparent;\r
-    border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bdr_white_top.png) 75\r
-      round;\r
-  }\r
+.new_info2_block::after {\r
+  top: calc(100% - 2px);\r
+  border-bottom: 50px solid transparent;\r
+  border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bdr_white_bot.png) 75\r
+    round;\r
+}\r
 \r
-  &::after {\r
-    top: calc(100% - 2px);\r
-    border-bottom: 50px solid transparent;\r
-    border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bdr_white_bot.png) 75\r
-      round;\r
-  }\r
+.new_info2_block .content_wrapper > div {\r
+  display: flex;\r
+  gap: 76px;\r
+  align-items: start;\r
+}\r
+.new_info2_block .content_wrapper > div > * {\r
+  width: calc((100% - 76px) / 2);\r
+}\r
 \r
-  & .content_wrapper > div {\r
-    display: flex;\r
-    gap: 76px;\r
-    align-items: start;\r
+.new_info2_block .content_wrapper > div .img {\r
+  aspect-ratio: 1/1;\r
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bg_info2.png) no-repeat\r
+    center center;\r
+  background-size: 100% 100%;\r
+  padding: 50px;\r
+}\r
+.new_info2_block .content_wrapper > div .img img {\r
+  width: 100%;\r
+  height: 100%;\r
+  object-fit: contain;\r
+}\r
 \r
-    & > * {\r
-      width: calc((100% - 76px) / 2);\r
-    }\r
-\r
-    & .img {\r
-      aspect-ratio: 1/1;\r
-      background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bg_info2.png) no-repeat\r
-        center center;\r
-      background-size: 100% 100%;\r
-      padding: 50px;\r
-\r
-      & img {\r
-        width: 100%;\r
-        height: 100%;\r
-        object-fit: contain;\r
-      }\r
-    }\r
-\r
-    & p {\r
-      color: #1f1f5b;\r
-      font-size: 16px;\r
-      font-weight: 500;\r
-      line-height: 22px;\r
-\r
-      & a {\r
-        color: #1f4fc9;\r
-        text-decoration: underline;\r
-      }\r
-    }\r
-  }\r
+.new_info2_block .content_wrapper > div p {\r
+  color: #1f1f5b;\r
+  font-size: 16px;\r
+  font-weight: 500;\r
+  line-height: 22px;\r
+}\r
+.new_info2_block .content_wrapper > div p a {\r
+  color: #1f4fc9;\r
+  text-decoration: underline;\r
 }\r
 \r
 .new_slider_news .slick-arrow::before {\r
@@ -1208,6 +1187,9 @@ footer {\r
   .new_stickers_slider .btns button:hover {\r
     background-color: #ff5fba;\r
   }\r
+  .new_home_page h2 b {\r
+    font-family: 'Urbane', sans-serif !important;\r
+  }\r
 }\r
 @media (max-width: 500px) {\r
   #shopify-section-template--15241309847596__17097813754ae81b0d {\r
@@ -1227,343 +1209,313 @@ footer {\r
     display: none !important;\r
   }\r
 \r
-  .new_home_page {\r
-    & section {\r
-      padding: 80px 24px;\r
-    }\r
+  .new_home_page section {\r
+    padding: 80px 24px;\r
+  }\r
 \r
-    & h2 {\r
-      font-size: 24px;\r
-      line-height: 30px;\r
-      margin-bottom: 24px;\r
-      padding: 0 24px;\r
-      font-family: 'Urbane', sans-serif !important;\r
-      text-align: left;\r
-    }\r
+  .new_home_page h2 {\r
+    font-size: 24px;\r
+    line-height: 30px;\r
+    margin-bottom: 24px;\r
+    padding: 0 24px;\r
+    font-family: 'Urbane', sans-serif !important;\r
+    text-align: left;\r
   }\r
 \r
   .new_main_block {\r
     padding: 20px 24px 80px !important;\r
+  }\r
+  .new_main_block h1 {\r
+    font-size: 28px;\r
+    line-height: 32px;\r
+    margin: 0 0 28px;\r
+    text-align: left;\r
+  }\r
 \r
-    & h1 {\r
-      font-size: 28px;\r
-      line-height: 32px;\r
-      margin: 0 0 28px;\r
-    }\r
+  .new_main_block .images {\r
+    flex-direction: column;\r
+    gap: 18px;\r
+  }\r
+  .new_main_block .images a {\r
+    width: 100%;\r
+  }\r
 \r
-    & .images {\r
-      flex-direction: column;\r
-      gap: 18px;\r
+  .new_main_block .points {\r
+    gap: unset;\r
+    padding: 0 0 18px;\r
+    background: none;\r
+    border-bottom: 1px solid #f0f0f4;\r
+    margin: 18px 0;\r
+  }\r
+  .new_main_block .points li {\r
+    flex-direction: column;\r
+    gap: 2px;\r
+    font-size: 14px;\r
+    line-height: 20px;\r
+  }\r
+  .new_main_block .points li img {\r
+    width: 34px;\r
+    height: 34px;\r
+  }\r
 \r
-      & a {\r
-        width: 100%;\r
-      }\r
-    }\r
+  .new_main_block .total_reviews {\r
+    font-size: 14px;\r
+    margin-bottom: 18px;\r
+    gap: 6px;\r
+  }\r
 \r
-    & .points {\r
-      gap: unset;\r
-      padding: 0 0 18px;\r
-      background: none;\r
-      border-bottom: 1px solid #f0f0f4;\r
-      margin: 18px 0;\r
+  .new_main_block .crs_btn + p {\r
+    font-size: 14px;\r
+    gap: 6px;\r
+  }\r
 \r
-      & li {\r
-        flex-direction: column;\r
-        gap: 2px;\r
-        font-size: 14px;\r
-        line-height: 20px;\r
-\r
-        & img {\r
-          width: 34px;\r
-          height: 34px;\r
-        }\r
-      }\r
-    }\r
-\r
-    & .total_reviews {\r
-      font-size: 14px;\r
-      margin-bottom: 18px;\r
-      gap: 6px;\r
-    }\r
-\r
-    & .crs_btn + p {\r
-      font-size: 14px;\r
-      gap: 6px;\r
-    }\r
-\r
-    & .crs_btn + p img {\r
-      width: 24px;\r
-      height: 24px;\r
-    }\r
+  .new_main_block .crs_btn + p img {\r
+    width: 24px;\r
+    height: 24px;\r
   }\r
 \r
   .new_stickers_slider {\r
     padding: 0 0 1px !important;\r
+  }\r
+  .new_stickers_slider::before {\r
+    border-top: 40px solid transparent;\r
+    border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bdr_gray_top_mob.png)\r
+      65 round;\r
+  }\r
 \r
-    &::before {\r
-      border-top: 40px solid transparent;\r
-      border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bdr_gray_top_mob.png)\r
-        65 round;\r
-    }\r
+  .new_stickers_slider::after {\r
+    border-bottom: 40px solid transparent;\r
+    border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bdr_gray_bot_mob.png)\r
+      65 round;\r
+  }\r
 \r
-    &::after {\r
-      border-bottom: 40px solid transparent;\r
-      border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bdr_gray_bot_mob.png)\r
-        65 round;\r
-    }\r
+  .new_stickers_slider .item {\r
+    margin: 0;\r
+    padding: 20px;\r
+    scale: 0.95;\r
+    transition: all 0.3s;\r
+  }\r
+  .new_stickers_slider .item.slick-current {\r
+    scale: 1;\r
+  }\r
 \r
-    & .item {\r
-      margin: 0;\r
-      padding: 20px;\r
-      scale: 0.95;\r
-      transition: all 0.3s;\r
+  .new_stickers_slider .slick-slider {\r
+    margin-bottom: 50px;\r
+  }\r
 \r
-      &.slick-current {\r
-        scale: 1;\r
-      }\r
-    }\r
-\r
-    & .slick-slider {\r
-      margin-bottom: 50px;\r
-    }\r
-\r
-    & .slick-dots {\r
-      bottom: -50px;\r
-    }\r
+  .new_stickers_slider .slick-dots {\r
+    bottom: -50px;\r
   }\r
 \r
   .new_trustpilot_reviews {\r
-    & h2 {\r
-      font-family: 'Barlow', sans-serif !important;\r
-      font-size: 16px;\r
-      font-weight: 500;\r
-      color: #1f1f5b;\r
-      text-transform: unset;\r
-      margin-bottom: 9px !important;\r
-      text-align: center;\r
-    }\r
-\r
     padding: 80px 0 40px !important;\r
+  }\r
+  .new_trustpilot_reviews h2 {\r
+    font-family: 'Barlow', sans-serif !important;\r
+    font-size: 16px;\r
+    font-weight: 500;\r
+    color: #1f1f5b;\r
+    text-transform: unset;\r
+    margin-bottom: 9px !important;\r
+    text-align: center;\r
+  }\r
 \r
-    & .slick-slide {\r
-      scale: 0.9;\r
-      transition: all 0.3s;\r
-    }\r
+  .new_trustpilot_reviews .slick-slide {\r
+    scale: 0.9;\r
+    transition: all 0.3s;\r
+  }\r
 \r
-    & .slick-current {\r
-      scale: 1;\r
-    }\r
+  .new_trustpilot_reviews .slick-current {\r
+    scale: 1;\r
+  }\r
 \r
-    & .slick-dots {\r
-      bottom: -50px;\r
-    }\r
+  .new_trustpilot_reviews .slick-dots {\r
+    bottom: -50px;\r
+  }\r
 \r
-    & .reviews_trust {\r
-      margin-bottom: 0;\r
-    }\r
+  .new_trustpilot_reviews .reviews_trust {\r
+    margin-bottom: 0;\r
+  }\r
 \r
-    & .slider_dots {\r
-      margin-top: 30px;\r
-    }\r
+  .new_trustpilot_reviews .slider_dots {\r
+    margin-top: 30px;\r
   }\r
 \r
   .new_slider_news {\r
     padding: 40px 0 !important;\r
+  }\r
+  .new_slider_news h2 {\r
+    position: relative;\r
+    z-index: 1;\r
+    width: 80%;\r
+    padding: 52px 30px;\r
+    margin: 0 auto -30px;\r
+    background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bg_news_h2_mob.png)\r
+      no-repeat center center;\r
+    background-size: 100% 100%;\r
+  }\r
 \r
-    & h2 {\r
-      position: relative;\r
-      z-index: 1;\r
-      width: 80%;\r
-      padding: 52px 30px;\r
-      margin: 0 auto -30px;\r
-      background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bg_news_h2_mob.png)\r
-        no-repeat center center;\r
-      background-size: 100% 100%;\r
-    }\r
+  .new_info_block::before {\r
+    border-top: 40px solid transparent;\r
+    border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/brdr_blue_top_mob.png)\r
+      65 round;\r
+  }\r
 \r
-    .new_info_block {\r
-      &::before {\r
-        border-top: 40px solid transparent;\r
-        border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/brdr_blue_top_mob.png)\r
-          65 round;\r
-      }\r
-    }\r
-\r
-    & .slider_wrapper .slide {\r
-      margin: 0 8px;\r
-    }\r
+  .new_slider_news .slider_wrapper .slide {\r
+    margin: 0 8px;\r
   }\r
 \r
   .new_science_block {\r
     padding: 30px 0 50px !important;\r
+  }\r
+  .new_science_block .content_wrapper {\r
+    flex-direction: column;\r
+    gap: 10px;\r
+    overflow: hidden;\r
+  }\r
+  .new_science_block .content_wrapper > div {\r
+    width: 100%;\r
+    margin-top: 0 !important;\r
+    background: none !important;\r
+  }\r
+  .new_science_block .content_wrapper > div p {\r
+    font-size: 16px;\r
+    line-height: 22px;\r
+    background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bg_science_mob.png)\r
+      no-repeat;\r
+    background-size: calc(100% + 24px) 100%;\r
+    width: 75%;\r
+    max-width: 300px;\r
+  }\r
+  .new_science_block .content_wrapper > div p img {\r
+    height: 250px;\r
+    top: calc(50% - 100px) !important;\r
+  }\r
 \r
-    & .content_wrapper {\r
-      flex-direction: column;\r
-      gap: 10px;\r
-      overflow: hidden;\r
+  .new_science_block .content_wrapper > div:first-of-type p {\r
+    padding: 40px 24px;\r
+    background-position: right center;\r
+  }\r
+  .new_science_block .content_wrapper > div:first-of-type p img {\r
+    right: -60%;\r
+  }\r
 \r
-      & > div {\r
-        width: 100%;\r
-        margin-top: 0 !important;\r
-        background: none !important;\r
-\r
-        & p {\r
-          font-size: 16px;\r
-          line-height: 22px;\r
-          background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bg_science_mob.png)\r
-            no-repeat;\r
-          background-size: calc(100% + 24px) 100%;\r
-          width: 75%;\r
-          max-width: 300px;\r
-\r
-          & img {\r
-            height: 250px;\r
-            top: calc(50% - 100px) !important;\r
-          }\r
-        }\r
-\r
-        &:first-of-type p {\r
-          padding: 40px 24px;\r
-          background-position: right center;\r
-\r
-          & img {\r
-            right: -60%;\r
-          }\r
-        }\r
-\r
-        &:last-of-type p {\r
-          margin-left: auto;\r
-          padding: 40px 24px 40px 42px;\r
-          background-position: left center;\r
-\r
-          & img {\r
-            left: -40%;\r
-          }\r
-        }\r
-      }\r
-    }\r
+  .new_science_block .content_wrapper > div:last-of-type p {\r
+    margin-left: auto;\r
+    padding: 40px 24px 40px 42px;\r
+    background-position: left center;\r
+  }\r
+  .new_science_block .content_wrapper > div:last-of-type p img {\r
+    left: -40%;\r
   }\r
 \r
   .new_natpat_block {\r
     padding: 80px 10px !important;\r
+  }\r
+  .new_natpat_block .layer {\r
+    margin-top: -70px;\r
+  }\r
 \r
-    & .layer {\r
-      margin-top: -70px;\r
-    }\r
-\r
-    & p {\r
-      font-size: 20px;\r
-      line-height: 28px;\r
-      padding: 45px 45px 84px;\r
-      background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/natpat_bg_mob.png)\r
-        no-repeat center center;\r
-      background-size: 100% 100%;\r
-      font-weight: 700;\r
-\r
-      & img {\r
-        width: 153px;\r
-        top: calc(100% - 70px);\r
-      }\r
-    }\r
+  .new_natpat_block p {\r
+    font-size: 20px;\r
+    line-height: 28px;\r
+    padding: 45px 45px 84px;\r
+    background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/natpat_bg_mob.png)\r
+      no-repeat center center;\r
+    background-size: 100% 100%;\r
+    font-weight: 700;\r
+  }\r
+  .new_natpat_block p img {\r
+    width: 153px;\r
+    top: calc(100% - 70px);\r
   }\r
 \r
   .new_info_block {\r
     padding: 24px !important;\r
+  }\r
+  .new_info_block::after {\r
+    content: none;\r
+  }\r
 \r
-    &::after {\r
-      content: none;\r
-    }\r
+  .new_info_block .content_wrapper > div {\r
+    width: 100%;\r
+  }\r
 \r
-    & .content_wrapper > div {\r
-      width: 100%;\r
-    }\r
-\r
-    & .content_wrapper > div p.special {\r
-      background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bg_special_mob.png)\r
-        no-repeat center center;\r
-      background-size: 100% 100%;\r
-      width: calc(100% + 48px);\r
-      margin-left: -24px;\r
-      padding: 52px 24px;\r
-      margin-bottom: -60px;\r
-      text-align: center;\r
-    }\r
+  .new_info_block .content_wrapper > div p.special {\r
+    background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bg_special_mob.png)\r
+      no-repeat center center;\r
+    background-size: 100% 100%;\r
+    width: calc(100% + 48px);\r
+    margin-left: -24px;\r
+    padding: 52px 24px;\r
+    margin-bottom: -60px;\r
+    text-align: center;\r
   }\r
 \r
   .new_reviews_block {\r
     padding: 80px 0 !important;\r
-\r
-    & .slide {\r
-      margin: 0 5px;\r
-    }\r
-\r
-    & .slider_dots {\r
-      margin-top: 24px;\r
-    }\r
+  }\r
+  .new_reviews_block .slide {\r
+    margin: 0 5px;\r
   }\r
 \r
   .new_info2_block {\r
     padding: 40px 0 !important;\r
+  }\r
+  .new_info2_block ::before {\r
+    border-top: 40px solid transparent;\r
+    border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bdr_white_top_mob.png)\r
+      65 round;\r
+  }\r
 \r
-    &::before {\r
-      border-top: 40px solid transparent;\r
-      border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bdr_white_top_mob.png)\r
-        65 round;\r
-    }\r
+  .new_info2_block ::after {\r
+    border-bottom: 40px solid transparent;\r
+    border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bdr_white_bot_mob.png)\r
+      65 round;\r
+  }\r
 \r
-    &::after {\r
-      border-bottom: 40px solid transparent;\r
-      border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bdr_white_bot_mob.png)\r
-        65 round;\r
-    }\r
-\r
-    & .content_wrapper > div > p {\r
-      width: 100%;\r
-      padding: 0 24px;\r
-\r
-      & .img {\r
-        display: flex;\r
-        justify-content: center;\r
-        align-items: center;\r
-        background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bg_info2_mob.png)\r
-          no-repeat center center;\r
-        background-size: 100% 100%;\r
-        height: 280px;\r
-        width: calc(100% + 48px);\r
-        margin-left: -24px;\r
-        padding: 30px 24px;\r
-        margin-bottom: 24px;\r
-\r
-        & img {\r
-          width: 100%;\r
-          height: 100%;\r
-          object-fit: contain;\r
-        }\r
-      }\r
-    }\r
+  .new_info2_block .content_wrapper > div > p {\r
+    width: 100%;\r
+    padding: 0 24px;\r
+  }\r
+  .new_info2_block .content_wrapper > div > p .img {\r
+    display: flex;\r
+    justify-content: center;\r
+    align-items: center;\r
+    background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bg_info2_mob.png)\r
+      no-repeat center center;\r
+    background-size: 100% 100%;\r
+    height: 280px;\r
+    width: calc(100% + 48px);\r
+    margin-left: -24px;\r
+    padding: 30px 24px;\r
+    margin-bottom: 24px;\r
+  }\r
+  .new_info2_block .content_wrapper > div > p .img img {\r
+    width: 100%;\r
+    height: 100%;\r
+    object-fit: contain;\r
   }\r
 \r
   .slider_photo {\r
     margin-bottom: 40px !important;\r
+  }\r
+  .slider_photo .img_slide {\r
+    margin: 0;\r
+    aspect-ratio: 1/1;\r
+    border-radius: 24px;\r
+    scale: 0.9;\r
+    transition: all 0.3s;\r
+    overflow: hidden;\r
+  }\r
+  .slider_photo .img_slide img {\r
+    width: 100%;\r
+    height: 100%;\r
+    object-fit: cover;\r
+  }\r
 \r
-    & .img_slide {\r
-      margin: 0;\r
-      aspect-ratio: 1/1;\r
-      border-radius: 24px;\r
-      scale: 0.9;\r
-      transition: all 0.3s;\r
-      overflow: hidden;\r
-\r
-      & img {\r
-        width: 100%;\r
-        height: 100%;\r
-        object-fit: cover;\r
-      }\r
-\r
-      &.slick-current {\r
-        scale: 1;\r
-      }\r
-    }\r
+  .slider_photo .img_slide.slick-current {\r
+    scale: 1;\r
   }\r
 \r
   .up_btn {\r
@@ -1625,44 +1577,44 @@ body {\r
   overflow-x: hidden;\r
 }\r
 `;
-  `${x.map((e, n) => (
+  `${b.map((n, e) => (
     /* HTML */
     ` <div class="item">
               <img src="${t}/img/new-home-page/as_seen.svg" class="tv" alt="tv" />
               <span class="save">40% off</span>
               <div class="img">
-                <img src="${e.img[2]}" alt="main" />
-                <img class="sub_img" src="${e.img2}" alt="illustration" />
+                <img src="${n.img[2]}" alt="main" />
+                <img class="sub_img" src="${n.img2}" alt="illustration" />
               </div>
-              <p class="name">${e.name}</p>
-              <p class="sub_text">${e.subText}</p>
+              <p class="name">${n.name}</p>
+              <p class="sub_text">${n.subText}</p>
               <div class="qty">
                 <span
                   class="active"
-                  data-variant="${e.variants[2]}"
-                  data-img="${e.img[2]}"
+                  data-variant="${n.variants[2]}"
+                  data-img="${n.img[2]}"
                   data-price="12.00"
                   data-save="40"
                   >3 packs</span
                 >
-                <span data-variant="${e.variants[0]}" data-img="${e.img[0]}" data-price="14.99" data-save="50"
+                <span data-variant="${n.variants[0]}" data-img="${n.img[0]}" data-price="14.99" data-save="50"
                   >1 pack</span
                 >
-                <span data-variant="${e.variants[1]}" data-img="${e.img[1]}" data-price="13.50" data-save="33"
+                <span data-variant="${n.variants[1]}" data-img="${n.img[1]}" data-price="13.50" data-save="33"
                   >2 packs</span
                 >
-                <span data-variant="${e.variants[3]}" data-img="${e.img[3]}" data-price="10.50" data-save="48"
+                <span data-variant="${n.variants[3]}" data-img="${n.img[3]}" data-price="10.50" data-save="48"
                   >4 packs</span
                 >
               </div>
               <p class="price">$12.00 each</p>
               <div class="btns">
-                <a href="${e.link}">Learn More</a>
-                <button data-id="${e.variants[2]}">Add to cart</button>
+                <a href="${n.link}">Learn More</a>
+                <button data-id="${n.variants[2]}">Add to cart</button>
               </div>
             </div>`
   )).join("")}`;
-  const _ = (
+  const k = (
     /* HTML */
     `
   <div class="up_btn mobile">
@@ -1682,28 +1634,31 @@ body {\r
     </svg>
   </div>
 `
-  ), y = (e) => (
+  ), v = (n) => (
     /* HTML */
     `
     <section class="new_main_block">
       <style>
-        ${v}
+        ${x}
       </style>
       <span class="hi desktop">
         <img src="${t}/img/new-home-page/side.svg" alt="hi" />
       </span>
-      <p class="total_reviews desktop">
+      <a class="total_reviews desktop">
         <img src="${t}/img/new-home-page/stars_green.svg" alt="stars" />
         <span>Excellent | 2,943</span>
         <span>Customer reviews</span>
-      </p>
-      <h1>Natural solutions for better<br class="desktop" />sleep, mood, focus and more!</h1>
+      </a>
+      <h1>
+        Natural solutions for better<br class="desktop" />
+        sleep, mood, focus and more!
+      </h1>
       <div class="images">
         <a href="https://www.natpat.com/collections/wellness-cognitive"
-          ><img src="${t}/img/new-home-page/img_1${e === "mobile" ? "_mob" : ""}.webp" alt="img1"
+          ><img src="${t}/img/new-home-page/img_1${n === "mobile" ? "_mob" : ""}.webp" alt="img1"
         /></a>
         <a href="https://www.natpat.com/collections/outdoor-protection"
-          ><img src="${t}/img/new-home-page/img_2${e === "mobile" ? "_mob" : ""}.webp" alt="img2"
+          ><img src="${t}/img/new-home-page/img_2${n === "mobile" ? "_mob" : ""}.webp" alt="img2"
         /></a>
         <a href="https://www.natpat.com/collections/respiratory-allergy-relief"
           ><img src="${t}/img/new-home-page/img_3.webp" alt="img3"
@@ -1727,7 +1682,7 @@ body {\r
       </p>
     </section>
   `
-  ), k = (
+  ), y = (
     /* HTML */
     ' <section class="new_stickers_slider"></section> '
   ), z = (
@@ -1742,11 +1697,11 @@ body {\r
     <h2>Trusted by over <b>1 million</b> customers</h2>
     <div class="insta_widget"></div>
     <ul class="reviews_trust parent_slider">
-      ${f.map((e, n) => (
+      ${f.map((n, e) => (
       /* HTML */
       ` <li>
-            <p>${e.patchType}</p>
-            <p>${e.text}</p>
+            <p>${n.patchType}</p>
+            <p>${n.text}</p>
             <img src="${t}/img/new-home-page/stars_green.svg" alt="stars" />
           </li>`
     )).join("")}
@@ -1783,13 +1738,13 @@ body {\r
     ` <section class="new_slider_news">
   <h2>We're in the news... for good reasons</h2>
   <div class="slider_wrapper parent_slider">
-    ${w.map((e, n) => (
+    ${u.map((n, e) => (
       /* HTML */
       `
           <div class="slide">
-            <div class="bg"><img src="${t}/img/slide_bg_${n + 1}.png" /></div>
-            <p>${e.text}</p>
-            <img src="${e.img}" alt="press logo" />
+            <div class="bg"><img src="${t}/img/slide_bg_${e + 1}.png" /></div>
+            <p>${n.text}</p>
+            <img src="${n.img}" alt="press logo" />
           </div>
         `
     )).join("")}
@@ -1847,10 +1802,10 @@ body {\r
     `<section class="new_info_block">
   <div class="content_wrapper">
     <div class="slider_photo">
-      ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((e) => (
+      ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((n) => (
       /*HTML*/
       `<div class="img_slide">
-            <img src="${t}/img/new-home-page/slider_photo_${e}.jpg" alt="img1" />
+            <img src="${t}/img/new-home-page/slider_photo_${n}.jpg" alt="img1" />
           </div>`
     )).join("")}
     </div>
@@ -1884,18 +1839,18 @@ body {\r
   <section class="new_reviews_block">
     <div class="content_wrapper">
       <div class="basic_slider parent_slider">
-        ${b().map((e, n) => (
+        ${_().map((n, e) => (
       /* HTML */
       `
               <div class="slide">
                 <div class="img">
-                  <img src="${e.img}" alt="review img" />
+                  <img src="${n.img}" alt="review img" />
                 </div>
                 <p class="head">
                   <img src="${t}/img/new-home-page/stars_green.svg" alt="stars" />
-                  ${e.name}
+                  ${n.name}
                 </p>
-                <p class="text">${e.text}</p>
+                <p class="text">${n.text}</p>
                 <span>
                   <img src="${t}/img/new-home-page/check_white.svg" alt="verified" />
                   Verified Buyer
@@ -1979,12 +1934,12 @@ body {\r
   </section>
 `
   );
-  g({ name: "HomePage Redesign", dev: "YK" }), m("HomePage_Redesign");
+  g({ name: "HomePage Redesign", dev: "YK" }), w("HomePage_Redesign");
   const q = window.innerWidth < 768 ? "mobile" : "desktop", h = document.createElement("link");
   h.rel = "stylesheet", h.href = "https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=M+PLUS+Rounded+1c:wght@900&display=swap", document.head.appendChild(h);
   class C {
-    constructor(n) {
-      this.device = n, this.init();
+    constructor(e) {
+      this.device = e, this.init();
     }
     init() {
       this.clearOldContent(), this.addBlocks(), this.patchesCardsFunctionality(), this.addEvents();
@@ -1993,7 +1948,7 @@ body {\r
       $("#MainContent .icartShopifyCartContent").css("display", "none"), $("#MainContent .icartShopifyCartContent").after('<div class="new_home_page"></div>');
     }
     addBlocks() {
-      if ($(".new_home_page").append(y(this.device)).append(k).append(z).append(T).append(j).append(S).append(P).append(I).append(A).append(_), $(".insta_widget").append($("#shopify-section-template--15241309847596__17097813754ae81b0d")), $(".new_stickers_slider").append($("#shopify-section-template--15241309847596__custom_liquid_HmbWPi")), $("#shopify-block-archive_detect_ugc_gallery_8cpCVL").css("display", "block"), $(window).on("scroll", function() {
+      if ($(".new_home_page").append(v(this.device)).append(y).append(z).append(T).append(j).append(S).append(P).append(I).append(A).append(k), $(".insta_widget").append($("#shopify-section-template--15241309847596__17097813754ae81b0d")), $(".new_stickers_slider").append($("#shopify-section-template--15241309847596__custom_liquid_HmbWPi")), $("#shopify-block-archive_detect_ugc_gallery_8cpCVL").css("display", "block"), $(window).on("scroll", function() {
         $(window).scrollTop() || 0 > 100 ? $(".up_btn").fadeIn() : $(".up_btn").fadeOut();
       }), $(".up_btn").on("click", function() {
         $("html, body").animate({ scrollTop: 0 }, 500);
@@ -2037,8 +1992,8 @@ body {\r
         infinite: !0,
         centerMode: this.device === "mobile",
         fade: this.device !== "mobile"
-      }), $(".slider_dots").each(function(n, a) {
-        $(a).slick({
+      }), $(".slider_dots").each(function(e, o) {
+        $(o).slick({
           slidesToShow: 3,
           slidesToScroll: 1,
           arrows: !1,
@@ -2046,39 +2001,39 @@ body {\r
           centerMode: !0,
           centerPadding: "60px",
           focusOnSelect: !0,
-          asNavFor: $(a).closest("section").find(".parent_slider")
+          asNavFor: $(o).closest("section").find(".parent_slider")
         });
-      }), $("a.total_reviews").on("click", function(n) {
-        n.preventDefault(), u(".new_trustpilot_reviews");
-      }), $(".reviews_trust p:nth-child(2)").each(function(n, a) {
-        if ($(a).text().length > 200) {
-          const r = $(a).text(), i = r.slice(0, 200).lastIndexOf(" ");
-          i !== -1 && $(a).text(r.slice(0, i) + "..."), $(a).after('<span class="read_more">Read more</span>'), $(a).next().on("click", function() {
-            $(a).text(r), $(this).remove(), $(a).closest(".reviews_trust").slick("setPosition");
+      }), $("a.total_reviews").on("click", function(e) {
+        e.preventDefault(), m(".new_trustpilot_reviews");
+      }), $(".reviews_trust p:nth-child(2)").each(function(e, o) {
+        if ($(o).text().length > 200) {
+          const r = $(o).text(), i = r.slice(0, 200).lastIndexOf(" ");
+          i !== -1 && $(o).text(r.slice(0, i) + "..."), $(o).after('<span class="read_more">Read more</span>'), $(o).next().on("click", function() {
+            $(o).text(r), $(this).remove(), $(o).closest(".reviews_trust").slick("setPosition");
           });
         }
       }), this.device === "desktop") {
-        const a = $(".new_trustpilot_reviews .reviews_trust li");
-        a.each(function(r, i) {
+        const o = $(".new_trustpilot_reviews .reviews_trust li");
+        o.each(function(r, i) {
           r >= 6 && $(i).css("display", "none");
         }), $(".pages_r span").on("click", function() {
           if ($(this).hasClass("active"))
             return;
-          const r = +$(this).text(), i = (r - 1) * 6, s = r * 6 - 1, p = $(".new_trustpilot_reviews .reviews_trust");
+          const r = +$(this).text(), i = (r - 1) * 6, a = r * 6 - 1, p = $(".new_trustpilot_reviews .reviews_trust");
           p.fadeOut(function() {
-            a.each(function(d, l) {
-              d >= i && d <= s ? $(l).show() : $(l).hide();
+            o.each(function(d, l) {
+              d >= i && d <= a ? $(l).show() : $(l).hide();
             }), p.fadeIn();
           }), $(this).addClass("active").siblings().removeClass("active");
         });
       }
     }
     patchesCardsFunctionality() {
-      $(".new_stickers_slider .item").each(function(n, a) {
-        const r = $(a).find("span"), i = $(a).find(".img img[alt=main]"), s = $(a).find("button"), p = $(a).find(".price"), d = $(a).find(".save");
+      $(".new_stickers_slider .item").each(function(e, o) {
+        const r = $(o).find("span"), i = $(o).find(".img img[alt=main]"), a = $(o).find("button"), p = $(o).find(".price"), d = $(o).find(".save");
         r.on("click", function() {
-          $(this).addClass("active").siblings().removeClass("active"), i.attr("src", $(this).data("img")), s.attr("data-id", $(this).data("variant")), p.text(`$${$(this).data("price")} each`), d.text(`${$(this).data("save")}% off`);
-        }), s.on("click", function() {
+          $(this).addClass("active").siblings().removeClass("active"), i.attr("src", $(this).data("img")), a.attr("data-id", $(this).data("variant")), p.text(`$${$(this).data("price")} each`), d.text(`${$(this).data("save")}% off`);
+        }), a.on("click", function() {
           const M = {
             items: [
               {
@@ -2098,70 +2053,70 @@ body {\r
       });
     }
     addEvents() {
-      const n = "exp_homepage_";
+      const e = "exp_homepage_";
       $(".new_main_block .crs_btn").on("click", function() {
-        c(`${n}main_button`, "Button", "click", "Main block");
+        c(`${e}main_button`, "Button", "click", "Main block");
       }), $(".new_main_block .images a").each(function(r, i) {
-        let s = r === 0 ? "Sleep" : r === 1 ? "Allergy" : "Protection";
-        o(i, `${n}main_image_${r}`, "Main block", s), $(i).on("click", function() {
-          c(`${n}main_image_${r}`, s, "click", "Main block");
+        let a = r === 0 ? "Sleep" : r === 1 ? "Allergy" : "Protection";
+        s(i, `${e}main_image_${r}`, "Main block", a), $(i).on("click", function() {
+          c(`${e}main_image_${r}`, a, "click", "Main block");
         });
       }), $(".new_stickers_slider .item:not(.slick-cloned)").each(function(r, i) {
-        o(i, `${n}stickers_slider_${r}`, "Stickers slider", $(i).find(".name").text()), $(i).find(".qty>span").on("click", function() {
+        s(i, `${e}stickers_slider_${r}`, "Stickers slider", $(i).find(".name").text()), $(i).find(".qty>span").on("click", function() {
           c(
-            `${n}stickers_slider_${r}`,
+            `${e}stickers_slider_${r}`,
             `Quantity ${$(this).text()}`,
             "click",
             `Stickers slider ${$(i).find(".name").text()}`
           );
         }), $(i).find(".btns a").on("click", function() {
           c(
-            `${n}stickers_slider_${r}`,
+            `${e}stickers_slider_${r}`,
             "Learn more",
             "click",
             `Stickers slider ${$(i).find(".name").text()}`
           );
         }), $(i).find(".btns button").on("click", function() {
           c(
-            `${n}stickers_slider_${r}`,
+            `${e}stickers_slider_${r}`,
             "Add to cart",
             "click",
             `Stickers slider ${$(i).find(".name").text()}`
           );
         });
       }), $(".slider_dots1 span").on("click", function() {
-        c(`${n}stickers_pagination`, "Dots", "click", "Stickers slider");
+        c(`${e}stickers_pagination`, "Dots", "click", "Stickers slider");
       }), $(".slider_photo").on("afterChange", function() {
-        c(`${n}slider_photo`, "Slider photo", "change", "Slider photo");
+        c(`${e}slider_photo`, "Slider photo", "change", "Slider photo");
       });
-      const a = setInterval(() => {
+      const o = setInterval(() => {
         var r, i;
-        ($(".insta_widget [data-widget-host]")[0].shadowRoot && ((r = $(".insta_widget [data-widget-host]")[0].shadowRoot) != null && r.querySelectorAll("img").length) || 0 > 0) && (clearInterval(a), (i = $(".insta_widget [data-widget-host]")[0].shadowRoot) == null || i.querySelectorAll("img").forEach((s, p) => {
-          s.addEventListener("click", () => {
-            c(`${n}insta_image_${p}`, "Image", "click", "Instagram widget");
+        ($(".insta_widget [data-widget-host]")[0].shadowRoot && ((r = $(".insta_widget [data-widget-host]")[0].shadowRoot) != null && r.querySelectorAll("img").length) || 0 > 0) && (clearInterval(o), (i = $(".insta_widget [data-widget-host]")[0].shadowRoot) == null || i.querySelectorAll("img").forEach((a, p) => {
+          a.addEventListener("click", () => {
+            c(`${e}insta_image_${p}`, "Image", "click", "Instagram widget");
           });
         }));
       }, 1e3);
       $(".new_trustpilot_reviews .reviews_trust li:not(.slick-cloned)").each(function(r, i) {
-        o(
+        s(
           i,
-          `${n}trustpilot_reviews_${r}`,
+          `${e}trustpilot_reviews_${r}`,
           "Trustpilot reviews block",
           $(i).find("p:first-of-type").text()
         );
-      }), o(".new_main_block .crs_btn", `${n}main_button`, "Main block", "Button"), o(
+      }), s(".new_main_block .crs_btn", `${e}main_button`, "Main block", "Button"), s(
         ".new_trustpilot_reviews .reviews_trust",
-        `${n}trustpilot_reviews`,
+        `${e}trustpilot_reviews`,
         "Trustpilot reviews block",
         "Trustpilot reviews"
-      ), o(".new_slider_news .slider_wrapper", `${n}slider_news`, "Slider news block", "Slider news"), o(".new_science_block .content_wrapper", `${n}science_block`, "Science block", "Science block"), o(".new_natpat_block .layer", `${n}natpat_block`, "NatPat block", "Parallax NatPat block"), o(".new_info_block .content_wrapper p", `${n}info_block`, "Info block", "Blue info block"), o(".new_reviews_block .basic_slider", `${n}reviews_block`, "Reviews block", "Reviews block"), o(
+      ), s(".new_slider_news .slider_wrapper", `${e}slider_news`, "Slider news block", "Slider news"), s(".new_science_block .content_wrapper", `${e}science_block`, "Science block", "Science block"), s(".new_natpat_block .layer", `${e}natpat_block`, "NatPat block", "Parallax NatPat block"), s(".new_info_block .content_wrapper p", `${e}info_block`, "Info block", "Blue info block"), s(".new_reviews_block .basic_slider", `${e}reviews_block`, "Reviews block", "Reviews block"), s(
         ".new_info2_block .content_wrapper",
-        `${n}info2_block`,
+        `${e}info2_block`,
         "Info2 block",
         "Last info block",
         1e3,
         0.3
-      ), o(".slider_photo", `${n}slider_photo`, "Slider photo", "Slider photo");
+      ), s(".slider_photo", `${e}slider_photo`, "Slider photo", "Slider photo");
     }
   }
   new C(q);
