@@ -307,12 +307,15 @@ window.onload = () => {
     getCurrentProductId() {
       let productId = null
       const country = window?.autoInitData?.website?.websiteCode
-      const localStorageKey = country === 'base' ? 'ngStorage-/-recentlyViewed' : `ngStorage-/${country}/-recentlyViewed`
+      const localStorageKey =
+        country === 'base' ? 'ngStorage-/-recentlyViewed' : `ngStorage-/${country}/-recentlyViewed`
       productId = JSON.parse(localStorage.getItem(localStorageKey))[0]
       return productId
     }
     returnBadge() {
       $el('.return-badge')?.remove()
+      let webCode =
+        window?.autoInitData?.website?.websiteCode != 'base' ? '/' + window?.autoInitData?.website.websiteCode : ''
       const returnBadge = /* HTML */ `
         <div class="return-badge">
           <style>
@@ -386,6 +389,9 @@ window.onload = () => {
               position: absolute;
               background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='12' viewBox='0 0 7 12' fill='none'%3E%3Cpath d='M7.5 11L7.5 12.0675L6.67991 11.3841L0.679908 6.38411L0.218975 6L0.679908 5.61589L6.67991 0.61589L7.5 -0.0675211L7.5 1L7.5 11Z' fill='white' stroke='%23CFD2D3' stroke-linejoin='round'/%3E%3C/svg%3E");
             }
+            .return-badge__message a {
+              text-decoration: underline;
+            }
             @media (min-width: 1024px) {
               .return-badge {
                 margin-top: 12px;
@@ -399,7 +405,10 @@ window.onload = () => {
           <div class="return-badge__inform">
             ${icons.inform}
 
-            <div class="return-badge__message">We accept returns on all items within 60 days of purchase.</div>
+            <div class="return-badge__message">
+              We accept returns on all items within 60 days of purchase. Subject to
+              <a href="${webCode}/conditions-of-use">terms and conditions</a>.
+            </div>
           </div>
         </div>
       `
@@ -710,6 +719,7 @@ window.onload = () => {
           this.getFetch(`n/product/${productId}/verbosity/3`),
           this.getFetch(`n/attribute/size/verbosity/3`)
         ])
+
         const hash = window.location.hash.substring(1)
         const params = new URLSearchParams(hash)
         const obj = {}
@@ -762,6 +772,9 @@ window.onload = () => {
         const review = $$el('product-reviews-summary')[0]
 
         $el('h1')?.parentElement.prepend(review)
+        const availableSizes = productSizes.filter(size => {
+          return products.find(product => product.size === size.value && product.color === selectedColor)
+        })
 
         const sizeChartHTML = /* HTML */ `
           <div class="crs-size-chart" data-id=${productId}>
@@ -943,12 +956,18 @@ window.onload = () => {
                 <li data-select-size>
                   <div><span class="crs-size-chart__title">Select size</span></div>
                 </li>
-                ${productSizes
+                ${availableSizes
                   .map(size => {
                     const product = products.find(
                       item => item.color === obj['selection.color'] && item.size === size.value
                     )
                     const qty = product?.qty
+                    const productStock = productResponse.catalog.find(
+                      item => item.type === 'product' && item.id === product.id
+                    )
+
+                    const isSold = !productStock.in_stock_date
+
                     return /* HTML */ `
                       <li
                         data-value="${size.value}"
@@ -961,7 +980,9 @@ window.onload = () => {
                             ${qty <= 5 && qty > 0
                               ? `Only ${qty} left`
                               : !qty || qty === 0
-                              ? `<span class="crs-size-chart__mail">${icons.mail}</span> <span class="crs-size-chart__notify-text">Notify me</span>`
+                              ? isSold
+                                ? '<span>Sold out</span>'
+                                : `<span class="crs-size-chart__mail">${icons.mail}</span> <span class="crs-size-chart__notify-text">Notify me</span>`
                               : ''}
                           </span>
                         </div>
@@ -1101,6 +1122,7 @@ window.onload = () => {
         const productDats = products.find(
           item => item.color === obj['selection.color'] && item.size === obj['selection.size']
         )
+
         const isOut = !productDats?.qty
 
         const inStock = /* HTML */ `
@@ -1568,7 +1590,7 @@ window.onload = () => {
           display: none;
         }
         product-configurable-options h6:first-child {
-          font-size: 16px !important;  
+          font-size: 16px !important;
         }
         product-configurable-options + .return-badge {
           margin-top: 30px;
@@ -1586,14 +1608,14 @@ window.onload = () => {
         add-this:has(> div:empty) {
           display: none !important;
         }
-  
+
         product-view-fashion-recommendation h5 {
           text-align: center;
         }
         .forward-block {
           display: block !important;
         }
- 
+
         product-gallery swiper-dots {
           display: flex;
           justify-content: center;
@@ -1641,6 +1663,9 @@ window.onload = () => {
         }
         :is(.perfectly, .recently):has(~ related-products:empty) {
           visibility: hidden;
+        }
+        div:has(> related-products:empty) {
+          height: 0;
         }
         scroll-nav button {
           border-radius: 2px !important;
