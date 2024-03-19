@@ -1761,7 +1761,7 @@ body {\r
     /* HTML */
     `
   <section class="new_science_block">
-    <h2>Unlocking the science behind natpat patches</h2>
+    <h2>Unlocking the science behind NATPAT patches</h2>
     <div class="content_wrapper">
       <div>
         <p>
