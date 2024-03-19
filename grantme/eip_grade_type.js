@@ -1715,6 +1715,10 @@
 }\r
 \r
 @media (max-width: 768px) {\r
+  .popup_content {\r
+    padding: 16px;\r
+  }\r
+\r
   .crs_popup_wrapper {\r
     background: rgba(43, 62, 81, 0.75);\r
     backdrop-filter: unset;\r
