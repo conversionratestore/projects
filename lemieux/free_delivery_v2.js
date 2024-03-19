@@ -1,39 +1,39 @@
 (function() {
   "use strict";
-  const _ = (i, e, r, t = "") => {
+  const C = (i, e, r, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: i,
       event_desc: e,
       event_type: r,
-      event_loc: t
-    }), console.log(`Event: ${i} | ${e} | ${r} | ${t}`);
-  }, g = ({ name: i, dev: e }) => {
+      event_loc: n
+    }), console.log(`Event: ${i} | ${e} | ${r} | ${n}`);
+  }, y = ({ name: i, dev: e }) => {
     console.log(
       `%c EXP: ${i} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, C = (i) => document.querySelectorAll(i), n = (i) => document.querySelector(i), f = (i) => {
+  }, u = (i) => document.querySelectorAll(i), t = (i) => document.querySelector(i), m = (i) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", i, "variant_1"));
     }, 1e3);
-  }, o = (i, e, r, t, a = 3e3, l = 0.5) => {
-    let s, d;
+  }, d = (i, e, r, n, a = 3e3, l = 0.5) => {
+    let s, c;
     if (s = new IntersectionObserver(
-      function(c) {
-        c[0].isIntersecting === !0 ? d = setTimeout(() => {
-          _(
+      function(o) {
+        o[0].isIntersecting === !0 ? c = setTimeout(() => {
+          C(
             e,
-            c[0].target.dataset.visible || t || "",
+            o[0].target.dataset.visible || n || "",
             "visibility",
             r
           ), s.disconnect();
-        }, a) : clearTimeout(d);
+        }, a) : clearTimeout(c);
       },
       { threshold: [l] }
     ), typeof i == "string") {
-      const c = document.querySelector(i);
-      c && s.observe(c);
+      const o = document.querySelector(i);
+      o && s.observe(o);
     } else
       s.observe(i);
   };
@@ -51,7 +51,7 @@
       });
     });
   }
-  const y = `.free_delivery_banner {\r
+  const w = `.free_delivery_banner {\r
   display: flex;\r
   justify-content: center;\r
   align-items: center;\r
@@ -97,7 +97,7 @@
     border: none;\r
   }\r
 }\r
-`, v = `.threshold_banner {\r
+`, _ = `.threshold_banner {\r
   display: flex;\r
   align-items: center;\r
   gap: 12px;\r
@@ -262,12 +262,12 @@ basket-view .threshold_banner.crs_complete {\r
     </svg>
     `
     )
-  }, b = (i, e) => (
+  }, f = (i, e) => (
     /* HTML */
     `
     <div class="free_delivery_banner">
       <style>
-        ${y}
+        ${w}
       </style>
       <div class="free_delivery_banner_item">
         ${p.deliveryBox}
@@ -279,12 +279,12 @@ basket-view .threshold_banner.crs_complete {\r
       </div>
     </div>
   `
-  ), u = (i, e, r) => (
+  ), k = (i, e, r) => (
     /* HTML */
     `
     <div class="crs_need_more threshold_banner">
       <style>
-        ${v}
+        ${_}
       </style>
       ${p.packMore}
       <p>
@@ -293,12 +293,12 @@ basket-view .threshold_banner.crs_complete {\r
       </p>
     </div>
   `
-  ), m = (i) => (
+  ), x = (i) => (
     /* HTML */
     `
     <div class="crs_complete threshold_banner">
       <style>
-        ${v}
+        ${_}
       </style>
       ${p.packSuccess}
       <p>
@@ -306,61 +306,61 @@ basket-view .threshold_banner.crs_complete {\r
       </p>
     </div>
   `
-  ), w = (i, e, r, t, a) => (
+  ), H = (i, e, r, n, a) => (
     /*html*/
     `
   <div class="crs_progress threshold_banner">
     <style>
-      ${v}
+      ${_}
     </style>
     <div class="crs_progress_bar">
         <div class="crs_progress_line" style="width: ${i.toFixed(2)}%"></div>
     </div>
-    <p>You are <span class="accent_color_red">${e}${(r - t).toFixed(
+    <p>You are <span class="accent_color_red">${e}${(r - n).toFixed(
       2
     )} </span> away from <b>Free Express ${a} Delivery</b></p>
   </div>
 `
-  ), k = `.is_homepage header:not(.is-sticky) .header_icon path {\r
+  ), L = `.is_homepage header:not(.is-sticky) .header_icon path {\r
   fill: white;\r
 }\r
 .is_homepage .page-header__wrapper:hover .header_icon path {\r
   fill: #2c7226;\r
 }\r
 `;
-  f("exp_free_delivery"), g({ name: "Free Delivery Threshold_2nd iteration", dev: "SKh" });
-  const x = window.location.pathname, H = window.innerWidth < 768 ? "mobile" : "desktop";
-  class L {
+  m("exp_free_delivery"), y({ name: "Free Delivery Threshold_2nd iteration", dev: "SKh" });
+  const V = window.location.pathname, M = window.innerWidth < 768 ? "mobile" : "desktop";
+  class P {
     constructor(e, r) {
       this.observer = null, this.lastPath = window.location.pathname, this.device = r, this.baseUrl = e, this.country = "UK", this.currency = "£", this.threshold = 75, this.init(), this.observePageChange();
     }
     init() {
       h("body.content-initiated").then(() => {
-        this.visibleHandler(), this.getGrandTotalPriceFromWindow(), this.renderFreeDeliveryBanner(), this.productPage(), this.cartPage(), this.addEventListeners(), document.head.insertAdjacentHTML("afterbegin", `<style>${k}</style>`);
+        this.visibleHandler(), this.getGrandTotalPriceFromWindow(), this.renderFreeDeliveryBanner(), this.productPage(), this.cartPage(), this.addEventListeners(), document.head.insertAdjacentHTML("afterbegin", `<style>${L}</style>`);
       });
     }
     observePageChange() {
       this.observer = new MutationObserver((r) => {
-        r.forEach((t) => {
+        r.forEach((n) => {
           window.location.pathname !== this.lastPath && (this.lastPath === "/basket" ? setTimeout(() => {
             this.renderFreeDeliveryBanner();
           }, 400) : this.renderFreeDeliveryBanner(), this.lastPath = window.location.pathname, this.productPage(!0)), window.location.pathname === "/" ? document.body.classList.add("is_homepage") : document.body.classList.contains("is_homepage") && document.body.classList.remove("is_homepage");
-          for (let a of t.addedNodes)
-            a instanceof HTMLElement && ((a.matches("basket-view-totals > .flex") || a.matches("modal-bottom-container basket-add-notice")) && (this.getGrandTotalPriceFromWindow(), this.cartPage(), this.addEventListeners(), this.device === "desktop" ? this.checkBasketDesktop() : this.checkBasketMobile()), a.matches("[cy-basketempty]") && localStorage.getItem("basketPriceForIcon") && (localStorage.removeItem("basketPriceForIcon"), this.changeIconHeader()));
+          for (let a of n.addedNodes)
+            a instanceof HTMLElement && ((a.matches("basket-view-totals > .flex") || a.matches("modal-bottom-container basket-add-notice")) && (this.getGrandTotalPriceFromWindow(), this.cartPage(), this.productPage(), this.addEventListeners(), this.device === "desktop" ? this.checkBasketDesktop() : this.checkBasketMobile()), a.matches("[cy-basketempty]") && localStorage.getItem("basketPriceForIcon") && (localStorage.removeItem("basketPriceForIcon"), this.changeIconHeader(), this.productPage()));
         });
       });
       const e = { childList: !0, subtree: !0 };
       this.observer.observe(document.body, e);
     }
     renderFreeDeliveryBanner() {
-      var t, a, l, s, d;
+      var n, a, l, s, c;
       let e = "", r = this.checkPage();
       switch (console.log(r), r) {
         case "product":
-          (t = n("header .listing_var.free_delivery_banner")) == null || t.remove(), this.device === "desktop" ? e = "beforebegin" : e = "afterend", n("header .free_delivery_banner") || ((a = n("#header > .page-header__inner")) == null || a.insertAdjacentHTML(
+          (n = t("header .listing_var.free_delivery_banner")) == null || n.remove(), this.device === "desktop" ? e = "beforebegin" : e = "afterend", t("header .free_delivery_banner") || ((a = t("#header > .page-header__inner")) == null || a.insertAdjacentHTML(
             e,
-            b(this.currency, this.threshold)
-          ), n("header .free_delivery_banner") && n("header .free_delivery_banner").classList.add("product_var"), o(
+            f(this.currency, this.threshold)
+          ), t("header .free_delivery_banner") && t("header .free_delivery_banner").classList.add("product_var"), d(
             "header .product_var.free_delivery_banner",
             "exp_free_delivery_stickybanner_01",
             "Sticky banner",
@@ -368,10 +368,10 @@ basket-view .threshold_banner.crs_complete {\r
           ));
           break;
         case "listing":
-          (l = n("header .product_var.free_delivery_banner")) == null || l.remove(), e = "afterend", n("header .free_delivery_banner") || ((s = n("#header > .page-header__inner")) == null || s.insertAdjacentHTML(
+          (l = t("header .product_var.free_delivery_banner")) == null || l.remove(), e = "afterend", t("header .free_delivery_banner") || ((s = t("#header > .page-header__inner")) == null || s.insertAdjacentHTML(
             e,
-            b(this.currency, this.threshold)
-          ), n("header .free_delivery_banner") && n("header .free_delivery_banner").classList.add("listing_var"), o(
+            f(this.currency, this.threshold)
+          ), t("header .free_delivery_banner") && t("header .free_delivery_banner").classList.add("listing_var"), d(
             "header .listing_var.free_delivery_banner",
             "exp_free_delivery_stickybanner_03",
             "Sticky banner",
@@ -379,25 +379,26 @@ basket-view .threshold_banner.crs_complete {\r
           ));
           break;
         default:
-          (d = n("header .free_delivery_banner")) == null || d.remove();
+          (c = t("header .free_delivery_banner")) == null || c.remove();
           break;
       }
     }
     productPage(e = !1) {
       setTimeout(() => {
-        var l;
-        let r = 0, t = n("product-view-delivery-note"), a = n("product-view-price .price");
-        if (localStorage.getItem("basketPriceForIcon"), (l = n("product-view-layout .threshold_banner")) == null || l.remove(), t && (t.style.display = "none", a)) {
-          let s = this.priceToNumber(a.textContent);
-          if (s !== r && (r = s, !n("product-view-layout .threshold_banner"))) {
-            t.insertAdjacentHTML("beforebegin", this.drawThreshold(s));
-            let d = setInterval(() => {
-              n(".cdk-overlay-backdrop") || (clearInterval(d), o(
+        var c;
+        let r = 0, n = t("product-view-delivery-note"), a = t("product-view-price .price"), l = localStorage.getItem("basketPriceForIcon");
+        const s = l !== null;
+        if (e && ((c = t("product-view-layout .threshold_banner")) == null || c.remove(), console.log("remove >>>>>>>>>.")), n && (n.style.display = "none", a)) {
+          let o = this.priceToNumber(a.textContent);
+          if (o !== r && (r = o, s && o <= +l && (o = +l), !t("product-view-layout .threshold_banner"))) {
+            n.insertAdjacentHTML("beforebegin", this.drawThreshold(o));
+            let b = setInterval(() => {
+              t(".cdk-overlay-backdrop") || (clearInterval(b), d(
                 "product-view-layout .crs_need_more.threshold_banner",
                 "exp_free_delivery_banner_01",
                 "Banner",
                 "PDP Free Express UK Delivery on orders over £"
-              ), o(
+              ), d(
                 "product-view-layout .crs_complete.threshold_banner",
                 "exp_free_delivery_banner_02",
                 "Banner",
@@ -411,10 +412,10 @@ basket-view .threshold_banner.crs_complete {\r
     checkBasketMobile() {
       this.device === "mobile" && h("basket-add-notice .b-t").then((e) => {
         var r;
-        n("basket-add-notice .free_delivery_banner") || ((r = n("basket-add-notice .b-t")) == null || r.insertAdjacentHTML(
+        t("basket-add-notice .free_delivery_banner") || ((r = t("basket-add-notice .b-t")) == null || r.insertAdjacentHTML(
           "beforebegin",
-          b(this.currency, this.threshold)
-        ), o(
+          f(this.currency, this.threshold)
+        ), d(
           "basket-add-notice .free_delivery_banner",
           "exp_free_delivery_stickybanner_02",
           "Sticky banner",
@@ -424,14 +425,14 @@ basket-view .threshold_banner.crs_complete {\r
     }
     checkBasketDesktop() {
       h("minibasket basket-view-totals").then((e) => {
-        n("minibasket .custom-scrollbar>div:first-child") && (n("minibasket .custom-scrollbar>div:first-child").style.display = "none");
+        t("minibasket .custom-scrollbar>div:first-child") && (t("minibasket .custom-scrollbar>div:first-child").style.display = "none");
         let r = localStorage.getItem("basketPriceForIcon");
-        r !== null && (r = +r, n("minibasket .threshold_banner") && n("minibasket .threshold_banner").remove(), n("minibasket basket-view-totals").insertAdjacentHTML("afterend", this.drawThreshold(r, !0)), o(
+        r !== null && (r = +r, t("minibasket .threshold_banner") && t("minibasket .threshold_banner").remove(), t("minibasket basket-view-totals").insertAdjacentHTML("afterend", this.drawThreshold(r, !0)), d(
           "minibasket .crs_progress.threshold_banner",
           "exp_free_delivery_banner_05",
           "Banner",
           "Cart You are £ away from Free Express UK  Delivery"
-        ), o(
+        ), d(
           "minibasket .crs_complete.threshold_banner",
           "exp_free_delivery_banner_06",
           "Banner",
@@ -443,34 +444,36 @@ basket-view .threshold_banner.crs_complete {\r
       h("basket-view-totals>div:first-of-type>div").then((e) => {
         var r;
         if (this.checkPage() === "basket") {
-          let t = localStorage.getItem("basketPriceForIcon");
-          t !== null && (t = +t, n("basket-view .threshold_banner") && n("basket-view .threshold_banner").remove(), this.device === "mobile" ? n("basket-view bottom-panel").insertAdjacentHTML("afterbegin", this.drawThreshold(t)) : n("basket-view ul").insertAdjacentHTML("beforebegin", this.drawThreshold(t)), o(
+          let n = localStorage.getItem("basketPriceForIcon");
+          n !== null && (n = +n, t("basket-view .threshold_banner") && t("basket-view .threshold_banner").remove(), this.device === "mobile" ? t("basket-view bottom-panel").insertAdjacentHTML("afterbegin", this.drawThreshold(n)) : t("basket-view ul").insertAdjacentHTML("beforebegin", this.drawThreshold(n)), d(
             "basket-view .crs_progress.threshold_banner",
             "exp_free_delivery_banner_03",
             "Banner",
             "Shopping Bag You are £ away from Free Express UK  Delivery"
-          ), o(
+          ), d(
             "basket-view .crs_complete.threshold_banner",
             "exp_free_delivery_banner_04",
             "Banner",
             "Shopping Bag Congratulations! You have Free Express UK Delivery"
-          )), (r = n("basket-view>div>div>div>div>*:nth-child(3)>div.inline-block")) == null || r.remove();
+          )), (r = t("basket-view>div>div>div>div>*:nth-child(3)>div.inline-block")) == null || r.remove();
         }
       });
     }
     changeIconHeader() {
       let e = !1;
-      const r = localStorage.getItem("basketPriceForIcon"), t = r !== null && +r >= this.threshold;
-      C("basket-qty").forEach((a) => {
-        var d;
+      const r = localStorage.getItem("basketPriceForIcon"), n = r !== null && +r >= this.threshold;
+      u("basket-qty").forEach((a) => {
+        var c, o, b;
         const l = !!a.querySelector(".header_icon"), s = a.querySelector("[cy-basketbagbtn]");
-        if (t) {
+        if (n) {
           if (!l) {
             if (e)
               return;
             e = !0, a.insertAdjacentHTML("beforeend", p.headerIcon);
-            let c = setInterval(() => {
-              n(".cdk-overlay-backdrop") || (clearInterval(c), o(
+            let v = t("product-view-price .price");
+            v && this.priceToNumber(v.textContent) < this.threshold && ((c = t("product-view-layout .threshold_banner")) == null || c.remove());
+            let g = setInterval(() => {
+              t(".cdk-overlay-backdrop") || (clearInterval(g), d(
                 "header .header_icon",
                 "exp_free_delivery_icon_vis_02",
                 "Icone",
@@ -482,9 +485,11 @@ basket-view .threshold_banner.crs_complete {\r
         } else {
           if (a.querySelector(".header_icon") == null)
             return;
-          e = !1, (d = a.querySelector(".header_icon")) == null || d.remove(), s.style.display = "block";
-          let c = setInterval(() => {
-            n(".cdk-overlay-backdrop") || (clearInterval(c), o(
+          e = !1, (o = a.querySelector(".header_icon")) == null || o.remove();
+          let v = t("product-view-price .price");
+          v && this.priceToNumber(v.textContent) < this.threshold && ((b = t("product-view-layout .threshold_banner")) == null || b.remove()), s.style.display = "block";
+          let g = setInterval(() => {
+            t(".cdk-overlay-backdrop") || (clearInterval(g), d(
               "basket-qty .page-header__icon",
               "exp_free_delivery_icon_vis_01",
               "Icone",
@@ -497,9 +502,9 @@ basket-view .threshold_banner.crs_complete {\r
     checkPage() {
       const e = window.location.href;
       switch (!0) {
-        case n("product-view-layout") !== null:
+        case t("product-view-layout") !== null:
           return "product";
-        case n("category-view-layout") !== null:
+        case t("category-view-layout") !== null:
           return "listing";
         case e.includes("/basket"):
           return "basket";
@@ -508,25 +513,25 @@ basket-view .threshold_banner.crs_complete {\r
       }
     }
     getGrandTotalPriceFromWindow() {
-      var r, t, a, l, s;
-      const e = (s = (l = (a = (t = (r = window == null ? void 0 : window.app) == null ? void 0 : r.customer) == null ? void 0 : t.basket) == null ? void 0 : a.data) == null ? void 0 : l.totals) == null ? void 0 : s.grand_total;
+      var r, n, a, l, s;
+      const e = (s = (l = (a = (n = (r = window == null ? void 0 : window.app) == null ? void 0 : r.customer) == null ? void 0 : n.basket) == null ? void 0 : a.data) == null ? void 0 : l.totals) == null ? void 0 : s.grand_total;
       e !== void 0 && localStorage.setItem("basketPriceForIcon", `${e}`), this.changeIconHeader();
     }
     priceToNumber(e) {
       return parseFloat(e.replace(",", ".").replace(/[^0-9.]/g, ""));
     }
     drawThreshold(e, r = !1) {
-      const t = e / this.threshold * 100;
+      const n = e / this.threshold * 100;
       if (e < this.threshold && this.checkPage() === "product" && !r)
-        return u(this.country, this.currency, this.threshold);
+        return k(this.country, this.currency, this.threshold);
       if (e < this.threshold)
-        return w(t, this.currency, this.threshold, e, this.country);
+        return H(n, this.currency, this.threshold, e, this.country);
       if (e >= this.threshold)
-        return m(this.country);
+        return x(this.country);
     }
     visibleHandler() {
       h("basket-qty .page-header__icon").then((e) => {
-        o(
+        d(
           "basket-qty .page-header__icon",
           "exp_free_delivery_icon_vis_01",
           "Icone",
@@ -537,14 +542,14 @@ basket-view .threshold_banner.crs_complete {\r
     addEventListeners() {
       h("header .header_icon").then((e) => {
         var r;
-        (r = n("header .header_icon")) == null || r.addEventListener("click", (t) => {
-          t.target.getAttribute("data-test") || _("exp_free_delivery_icon_01", "Icone", "click", "Header Free delivery icon  visibility"), t.target.setAttribute("data-test", "1"), setTimeout(() => {
-            t.target.getAttribute("data-test") && t.target.removeAttribute("data-test");
+        (r = t("header .header_icon")) == null || r.addEventListener("click", (n) => {
+          n.target.getAttribute("data-test") || C("exp_free_delivery_icon_01", "Icone", "click", "Header Free delivery icon  visibility"), n.target.setAttribute("data-test", "1"), setTimeout(() => {
+            n.target.getAttribute("data-test") && n.target.removeAttribute("data-test");
           }, 1e3);
         });
       });
     }
   }
-  new L(x, H);
+  new P(V, M);
 })();
 //# sourceMappingURL=index.js.map
