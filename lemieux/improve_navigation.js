@@ -461,7 +461,7 @@ window.onload = () => {
         await this.initSwiper()
         const productId = this.getCurrentProductId()
         const productResponse = await this.getFetch(`n/product/${productId}/verbosity/3`)
-        const categoryId = productResponse.result[0]?.categories?.last || productResponse.result[0]?.categories?.first
+        const categoryId = productResponse.result[0]?.categories?.first || productResponse.result[0]?.categories?.last
 
         const categoryResponse = await this.getFetch(`n/category/${categoryId}/verbosity/3`)
         if (!productResponse || !categoryResponse) return
