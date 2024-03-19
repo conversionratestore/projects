@@ -865,10 +865,12 @@ window.onload = () => {
               .crs-size-chart__dialog li[data-stock='unavailable'] {
                 color: #acacac;
               }
-              .crs-size-chart__dialog li[data-soldout=true], .crs-size-chart__dialog li[data-soldout=true] div {
+              .crs-size-chart__dialog li[data-soldout='true'],
+              .crs-size-chart__dialog li[data-soldout='true'] div {
                 cursor: not-allowed !important;
+                pointer-events: none;
               }
-              .crs-size-chart__dialog li[data-soldout=true] {
+              .crs-size-chart__dialog li[data-soldout='true'] {
                 background: none !important;
               }
               .crs-size-chart__dialog li [data-qty='1'] {
@@ -990,9 +992,13 @@ window.onload = () => {
                     const productStock = productResponse.catalog.find(
                       item => item.type === 'product' && item.id === product.id
                     )
+                    console.log(productStock)
+                    const currentDate = new Date()
+                    const inStockDate = new Date(productStock.in_stock_date)
 
-                    const isSold = !productStock.in_stock_date && !qty
+                    const isSold = (!productStock.in_stock_date || inStockDate < currentDate) && !qty
 
+                    console.log(isSold)
                     return /* HTML */ `
                       <li
                         data-value="${size.value}"
@@ -1337,7 +1343,9 @@ window.onload = () => {
               const productDats = products.find(
                 item => item.color === obj['selection.color'] && item.size === obj['selection.size']
               )
-              const isOut = productDats?.qty
+              const listItem = e.target.closest('li')
+              const isOut = listItem.dataset.stock === 'unavailable' && listItem.dataset.soldout !== 'true'
+           
               $el('.crs-stock').style.display = isOut ? 'none' : 'flex'
             }, 300)
 
