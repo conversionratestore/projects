@@ -461,20 +461,35 @@ window.onload = () => {
         await this.initSwiper()
         const productId = this.getCurrentProductId()
         const productResponse = await this.getFetch(`n/product/${productId}/verbosity/3`)
-        const categoryId = productResponse.result[0]?.categories?.first || productResponse.result[0]?.categories?.last
+        const categoryFirstId = productResponse.result[0]?.categories?.first
+        const categoryLastId = productResponse.result[0]?.categories?.last
 
-        const categoryResponse = await this.getFetch(`n/category/${categoryId}/verbosity/3`)
+        const categoryFResponse = await this.getFetch(`n/category/${categoryFirstId}/verbosity/3`)
+        const categoryLResponse = await this.getFetch(`n/category/${categoryLastId}/verbosity/3`)
+
+        const breadcrumbs = await waitForElement('breadcrumbs')
+
+        const category = breadcrumbs?.querySelector('a:last-of-type')?.textContent
+
+        let categoryResponse
+        if (categoryFResponse.result[0].name === category) {
+          categoryResponse = categoryFResponse
+        } else if (categoryLResponse.result[0].name === category) {
+          categoryResponse = categoryLResponse
+        }
         if (!productResponse || !categoryResponse) return
         const filteredCatalog = categoryResponse.catalog.filter(item => item.type === 'product')
-        let filteredArray = filteredCatalog.filter((value, index, self) => {
-          let words = value.url.split('/')
-          return (
-            self.findIndex(val => {
-              let otherWords = val.url.split('/')
-              return words[2] === otherWords[2]
-            }) === index
-          )
-        })
+        let filteredArray = filteredCatalog
+          .filter((value, index, self) => {
+            let words = value.name.split(' ').slice(0, 2).join(' ')
+            return (
+              self.findIndex(val => {
+                let otherWords = val.name.split(' ').slice(0, 2).join(' ')
+                return words === otherWords
+              }) === index
+            )
+          })
+          .slice(0, 20)
         const similarProductsHTML = /* HTML */ `
           <div class="similar-products">
             <style>
