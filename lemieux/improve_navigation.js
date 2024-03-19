@@ -464,8 +464,10 @@ window.onload = () => {
         const categoryFirstId = productResponse.result[0]?.categories?.first
         const categoryLastId = productResponse.result[0]?.categories?.last
 
-        const categoryFResponse = await this.getFetch(`n/category/${categoryFirstId}/verbosity/3`)
-        const categoryLResponse = await this.getFetch(`n/category/${categoryLastId}/verbosity/3`)
+        const [categoryFResponse, categoryLResponse] = await Promise.all([
+          this.getFetch(`n/category/${categoryFirstId}/verbosity/3`),
+          this.getFetch(`n/category/${categoryLastId}/verbosity/3`)
+        ])
 
         const breadcrumbs = await waitForElement('breadcrumbs')
 
@@ -476,6 +478,8 @@ window.onload = () => {
           categoryResponse = categoryFResponse
         } else if (categoryLResponse.result[0].name === category) {
           categoryResponse = categoryLResponse
+        } else {
+          categoryResponse = categoryFResponse
         }
         if (!productResponse || !categoryResponse) return
         const filteredCatalog = categoryResponse.catalog.filter(item => item.type === 'product')
@@ -1703,6 +1707,13 @@ window.onload = () => {
         page-footer footer > div rating {
           margin-top: 0 !important;
           order: 3;
+        }
+        div:empty,
+        div:has(> p:empty),
+        p:empty {
+          height: 0;
+          padding: 0 !important;
+          margin: 0;
         }
         @media (max-width: 1100px) {
           .perfectly,
