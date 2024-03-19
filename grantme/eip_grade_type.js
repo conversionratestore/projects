@@ -1379,6 +1379,7 @@
   display: flex;\r
   position: relative;\r
   max-width: 760px;\r
+  overflow: hidden;\r
 }\r
 .popup_root .popup_close {\r
   position: absolute;\r
@@ -1400,7 +1401,6 @@
   padding: 40px;\r
   background: url(https://grantme.ca/wp-content/uploads/2022/01/landing-hero-image.jpg) center bottom no-repeat;\r
   background-size: cover;\r
-  border-radius: 0 10px 10px 0;\r
 }\r
 .slider_desktop h3 {\r
   font-family: 'Bitter', serif;\r
@@ -1575,7 +1575,7 @@
 .popup_content .main {\r
   font-size: 20px;\r
   line-height: 1;\r
-  padding: 11px;\r
+  padding: 20px 10px;\r
   border-radius: 6px;\r
   background: #ebbd45;\r
   color: #2b3e51;\r
@@ -1587,6 +1587,7 @@
   display: flex;\r
   justify-content: center;\r
   align-items: center;\r
+  font-weight: 700;\r
 }\r
 .popup_content button.secondary {\r
   display: flex;\r
@@ -1929,8 +1930,8 @@
     }
   </style>
   <span class="back">${Bn.back}Back</span>
-  <h2>When is the best time to remind you?</h2>
-  <p>We'll email you a link to access the FREE webinar at your convenience.</p>
+  <h2>Share My Results with Parents/Guardians</h2>
+  <p>We'll email a link to your parents or guardians for accessing the page with your assessment results, or we can call them to provide more details.</p>
   <div class="popup_form">
   <label>
     <input type="email" placeholder="Your parents email">
@@ -1941,7 +1942,7 @@
     ${Bn.phone}
   </label>
   </div>
-  <button class="main">Get a Reminder</button>
+  <button class="main">Share Results</button>
 </div>
 `
   ), Kr = (n, i) => {
