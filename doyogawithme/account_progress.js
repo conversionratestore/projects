@@ -722,7 +722,7 @@
     addElementBecomeSubscriber() {
       let selector = this.device == "mobile" ?  $el("#promoteSubscriptionWrap") : $el(".new_box_subscriber");
 
-      if (localStorage.getItem("isClass") && selector) {
+      if (localStorage.getItem("isClass") && selector.querySelector('h2')) {
         let isClass = localStorage.getItem("isClass");
         let referrerInfo = localStorage.getItem('referrerInfo');
   
@@ -798,7 +798,7 @@
                   }
               </style>
               <a href="https://www.doyogawithme.com/yoga-classes?field_subscribers_only_value=1&sort_by=created" class="crs_browse_free">Browse free classes${dataIcons.arrowRight}</a>`,
-            "beforeend"
+              this.device == "mobile" ? "afterbegin" : "beforeend"
           );
           $el('.crs_browse_free').addEventListener('click', () => {
             pushDataLayer('exp_trailvideo_button_09', 'Browse free classes', 'Button', 'Page Begin Your Transformation with a Free Trial of our Premium Yoga Classes Unauthorised Free class');
