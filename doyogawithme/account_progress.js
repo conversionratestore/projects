@@ -766,9 +766,9 @@
           $el('.crs_back').addEventListener('click', () => {
             pushDataLayer('exp_trailvideo_button_08', 'Back', 'Button', 'Page Begin Your Transformation with a Free Trial of our Premium Yoga Classes Unauthorised Free class')
           })
-        } else if (isClass != '') {
+        } else if (isClass != 'Premium') {
           insert(
-            $el(".new_box_subscriber"),
+            selector,
             `<style>
                   .crs_browse_free {
                       color: var(--white, #FFF);
@@ -802,10 +802,8 @@
           })
         }
 
-        if (referrerInfo) {
-          localStorage.remove("isClass")
-        }
-      
+        localStorage.removeItem("isClass")
+        
       }
     }
   }
