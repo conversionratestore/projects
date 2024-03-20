@@ -690,7 +690,7 @@ window.onload = () => {
           }
         })
       } catch (error) {
-        console.log('server not responding')
+        console.log('server not responding', error)
       }
     }
 
@@ -802,13 +802,24 @@ window.onload = () => {
         const review = $$el('product-reviews-summary')[0]
 
         $el('h1')?.parentElement.prepend(review)
-        const availableSizes = productSizes.filter(size => {
-          return products.find(product => product.size === size.value && product.color === selectedColor)
-        })
 
+        const availableSizes = productSizes.filter(size => {
+          return products.find(product => {
+            if (!selectedColor) {
+              return product.size === size.value;
+            } else {
+              return product.size === size.value && product.color === selectedColor;
+            }
+          });
+        });
+  
         const sizeChartHTML = /* HTML */ `
           <div class="crs-size-chart" data-id=${productId}>
             <style>
+              dialog:focus, dialog:focus-within {
+                outline: none;
+                
+              }
               .crs-size-chart__btn {
                 margin-bottom: 20px;
                 display: flex;
@@ -996,18 +1007,24 @@ window.onload = () => {
                 </li>
                 ${availableSizes
                   .map(size => {
-                    const product = products.find(
-                      item => item.color === obj['selection.color'] && item.size === size.value
-                    )
+                    const product = products.find(item => {
+                      if (!obj['selection.color']) {
+                        return item?.size === size.value;
+                      } else {
+                        return item.color === obj['selection.color'] && item.size === size.value;
+                      }
+                    })
+          
                     const qty = product?.qty
+        
                     const productStock = productResponse.catalog.find(
-                      item => item.type === 'product' && item.id === product.id
+                      item => item.type === 'product' && item.id === product?.id
                     )
-
+                    
                     const currentDate = new Date()
                     const inStockDate = new Date(productStock.in_stock_date)
 
-                    const isSold = (!productStock.in_stock_date || inStockDate < currentDate) && !qty
+                    const isSold = (!productStock?.in_stock_date || inStockDate < currentDate) && !qty
 
                     return /* HTML */ `
                       <li
