@@ -726,6 +726,7 @@
         let isClass = localStorage.getItem("isClass");
         let referrerInfo = localStorage.getItem('referrerInfo');
   
+        console.log(isClass)
         if (isClass == "free") {
           insert(
             selector,
@@ -768,7 +769,7 @@
           $el('.crs_back').addEventListener('click', () => {
             pushDataLayer('exp_trailvideo_button_08', 'Back', 'Button', 'Page Begin Your Transformation with a Free Trial of our Premium Yoga Classes Unauthorised Free class')
           })
-        } else if (isClass != 'Premium') {
+        } else if (isClass == 'Premium') {
           insert(
             selector,
             `<style>
