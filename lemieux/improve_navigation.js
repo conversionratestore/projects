@@ -264,6 +264,8 @@ window.onload = () => {
       this.observer = null
       this.lastPath = window.location.pathname
       this.device = screen.width <= 1100 ? devices.mobile : devices.desktop
+      this.event
+      this.clickEvent;
       this.initStyles()
     }
 
@@ -281,6 +283,8 @@ window.onload = () => {
         mutations.forEach(mutation => {
           if (window.location.pathname !== this.lastPath) {
             this.lastPath = window.location.pathname
+        $el('action[cy-basketaddbutton]')?.removeEventListener('click', this.clickEvent)
+
             this.initComponents()
           }
         })
@@ -407,7 +411,7 @@ window.onload = () => {
 
             <div class="return-badge__message">
               We accept returns on all items within 60 days of purchase. Subject to
-              <a href="${webCode}/conditions-of-use">terms and conditions</a>.
+              <a href="${webCode}/conditions-of-use" target="__blank">terms and conditions</a>.
             </div>
           </div>
         </div>
@@ -485,7 +489,7 @@ window.onload = () => {
             categoryResponse = categoryLResponse
           }
         }
- 
+
         if (!productResponse || !categoryResponse) return
         const filteredCatalog = categoryResponse.catalog.filter(item => item.type === 'product')
         let filteredArray = filteredCatalog
@@ -752,6 +756,7 @@ window.onload = () => {
         const selectedColor = +params.get('selection.color')
         $el('.crs-size-chart')?.remove()
         $el('.crs-color-chart')?.remove()
+
         if (productResponse.result[0].size.lentgth === 1) return
         for (let param of params) {
           obj[param[0]] = +param[1]
@@ -1350,7 +1355,7 @@ window.onload = () => {
               )
               const listItem = e.target.closest('li')
               const isOut = listItem.dataset.stock === 'unavailable' && listItem.dataset.soldout !== 'true'
-           
+
               $el('.crs-stock').style.display = isOut ? 'none' : 'flex'
             }, 300)
 
@@ -1418,7 +1423,7 @@ window.onload = () => {
           ctaButtonInner.textContent = 'Add to bag'
         }
 
-        $el('action[cy-basketaddbutton]')?.addEventListener('click', () => {
+       this.clickEvent = () => {
           const hash = window.location.hash
           const isUserSelectSize = hash.includes('selection.size')
           if (!isUserSelectSize) {
@@ -1430,6 +1435,17 @@ window.onload = () => {
               $el('.crs-size-chart__list li:first-child div').append(sizeInfo)
               $el('.crs-stock__wrap')?.append(sizeInfoClone)
             }
+            this.event = e => {
+              const listItem = e.target.closest('li')
+              if (listItem) {
+                setTimeout(() => {
+                  $el('action[cy-basketaddbutton]').click()
+                }, 600)
+              }
+            }
+            $el('.crs-size-chart__list')?.removeEventListener('click', this.event)
+
+            $el('.crs-size-chart__list').addEventListener('click', this.event)
           }
           if (this.device === devices.mobile) {
             if (!clickCTAButtonUnderSize) {
@@ -1439,7 +1455,9 @@ window.onload = () => {
           } else {
             pushDataLayer('exp_impro_pdp_but_undsize_addbag', 'Add to bag', 'Button', 'PDP Under View size guide')
           }
-        })
+        }
+
+        $el('action[cy-basketaddbutton]')?.addEventListener('click', this.clickEvent)
         $el('[data-add-to-bag]')?.addEventListener('click', event => {
           pushDataLayer('exp_impro_pdp_but_undsize_addbag', 'Add to bag', 'Button', 'PDP Under View size guide')
         })
@@ -1473,6 +1491,7 @@ window.onload = () => {
           })
         })
       } catch (error) {
+        console.log('Error:', error)
         console.log('server not responding')
       }
     }
