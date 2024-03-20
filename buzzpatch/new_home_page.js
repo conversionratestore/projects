@@ -802,7 +802,7 @@
   justify-content: center;\r
   align-items: center;\r
   background: url(https://conversionratestore.github.io/projects/buzzpatch/img/big_bg.webp) no-repeat center center;\r
-  background-size: cover;\r
+  background-size: auto 100%;\r
   background-attachment: fixed;\r
 }\r
 .new_natpat_block p {\r
@@ -1158,6 +1158,15 @@ footer {\r
   padding-top: 100px !important;\r
 }\r
 \r
+.up_btn {\r
+  position: fixed;\r
+  right: 6px;\r
+  bottom: 20px;\r
+  display: none;\r
+  z-index: 1000;\r
+  cursor: pointer;\r
+}\r
+\r
 @media (min-width: 769px) {\r
   .mobile {\r
     display: none !important;\r
@@ -1358,7 +1367,7 @@ footer {\r
   .new_info_block::before {\r
     border-top: 40px solid transparent;\r
     border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/brdr_blue_top_mob.png)\r
-      65 round;\r
+      45 round;\r
   }\r
 \r
   .new_slider_news .slider_wrapper .slide {\r
@@ -1462,13 +1471,13 @@ footer {\r
   .new_info2_block {\r
     padding: 40px 0 !important;\r
   }\r
-  .new_info2_block ::before {\r
+  .new_info2_block::before {\r
     border-top: 40px solid transparent;\r
     border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bdr_white_top_mob.png)\r
       65 round;\r
   }\r
 \r
-  .new_info2_block ::after {\r
+  .new_info2_block::after {\r
     border-bottom: 40px solid transparent;\r
     border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bdr_white_bot_mob.png)\r
       65 round;\r
@@ -1516,14 +1525,6 @@ footer {\r
 \r
   .slider_photo .img_slide.slick-current {\r
     scale: 1;\r
-  }\r
-\r
-  .up_btn {\r
-    position: fixed;\r
-    right: 6px;\r
-    bottom: 20px;\r
-    display: none;\r
-    z-index: 1000;\r
   }\r
 }\r
 \r
@@ -1617,7 +1618,7 @@ body {\r
   const k = (
     /* HTML */
     `
-  <div class="up_btn mobile">
+  <div class="up_btn">
     <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52" fill="none">
       <path
         d="M26.0002 47.6666C37.9663 47.6666 47.6668 37.9661 47.6668 25.9999C47.6668 14.0337 37.9663 4.33325 26.0002 4.33325C14.034 4.33325 4.3335 14.0337 4.3335 25.9999C4.3335 37.9661 14.034 47.6666 26.0002 47.6666Z"
@@ -1786,7 +1787,7 @@ body {\r
     </div>
   </section>
 `
-  ), S = (
+  ), P = (
     /* HTML */
     ` <section class="new_natpat_block">
   <div class="layer">
@@ -1797,7 +1798,7 @@ body {\r
     </p>
   </div>
 </section>`
-  ), P = (
+  ), S = (
     /* HTML */
     `<section class="new_info_block">
   <div class="content_wrapper">
@@ -1948,7 +1949,7 @@ body {\r
       $("#MainContent .icartShopifyCartContent").css("display", "none"), $("#MainContent .icartShopifyCartContent").after('<div class="new_home_page"></div>');
     }
     addBlocks() {
-      if ($(".new_home_page").append(v(this.device)).append(y).append(z).append(T).append(j).append(S).append(P).append(I).append(A).append(k), $(".insta_widget").append($("#shopify-section-template--15241309847596__17097813754ae81b0d")), $(".new_stickers_slider").append($("#shopify-section-template--15241309847596__custom_liquid_HmbWPi")), $("#shopify-block-archive_detect_ugc_gallery_8cpCVL").css("display", "block"), $(window).on("scroll", function() {
+      if ($(".new_home_page").append(v(this.device)).append(y).append(z).append(T).append(j).append(P).append(S).append(I).append(A).append(k), $(".insta_widget").append($("#shopify-section-template--15241309847596__17097813754ae81b0d")), $(".new_stickers_slider").append($("#shopify-section-template--15241309847596__custom_liquid_HmbWPi")), $("#shopify-block-archive_detect_ugc_gallery_8cpCVL").css("display", "block"), $(window).on("scroll", function() {
         $(window).scrollTop() || 0 > 100 ? $(".up_btn").fadeIn() : $(".up_btn").fadeOut();
       }), $(".up_btn").on("click", function() {
         $("html, body").animate({ scrollTop: 0 }, 500);
