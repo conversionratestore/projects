@@ -802,7 +802,7 @@
   justify-content: center;\r
   align-items: center;\r
   background: url(https://conversionratestore.github.io/projects/buzzpatch/img/big_bg.webp) no-repeat center center;\r
-  background-size: auto 100%;\r
+  background-size: cover;\r
   background-attachment: fixed;\r
 }\r
 .new_natpat_block p {\r
