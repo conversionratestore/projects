@@ -721,7 +721,7 @@
   
     addElementBecomeSubscriber() {
       let selector = this.device == "mobile" ?  $el("#promoteSubscriptionWrap") : $el(".new_box_subscriber");
-      
+
       if (localStorage.getItem("isClass") && selector) {
         let isClass = localStorage.getItem("isClass");
         let referrerInfo = localStorage.getItem('referrerInfo');
@@ -758,6 +758,7 @@
                     .crs_back {
                       position: initial;
                       margin-bottom: 16px;
+                      margin-left: 16px;
                     }
                   }
               </style>
