@@ -850,6 +850,7 @@
   height: 0;\r
   background-clip: padding-box;\r
   left: 0;\r
+  z-index: 2;\r
 }\r
 \r
 .new_info_block::before {\r
