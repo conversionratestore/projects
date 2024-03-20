@@ -1,51 +1,51 @@
 (function() {
   "use strict";
-  const c = (n, e, o, r = "") => {
+  const c = (e, n, o, r = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: n,
-      event_desc: e,
+      event_name: e,
+      event_desc: n,
       event_type: o,
       event_loc: r
-    }), console.log(`Event: ${n} | ${e} | ${o} | ${r}`);
-  }, g = ({ name: n, dev: e }) => {
+    }), console.log(`Event: ${e} | ${n} | ${o} | ${r}`);
+  }, g = ({ name: e, dev: n }) => {
     console.log(
-      `%c EXP: ${n} (DEV: ${e})`,
+      `%c EXP: ${e} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, w = (n) => {
-    let e = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", n, "variant_1"));
+  }, w = (e) => {
+    let n = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, s = (n, e, o, r, i = 1e3, a = 0.5) => {
+  }, s = (e, n, o, r, t = 1e3, a = 0.5) => {
     let p, d;
     if (p = new IntersectionObserver(
       function(l) {
         l[0].isIntersecting === !0 ? d = setTimeout(() => {
           c(
-            e,
+            n,
             l[0].target.dataset.visible || r || "",
             "view",
             o
           ), p.disconnect();
-        }, i) : (console.log("Element is not fully visible"), clearTimeout(d));
+        }, t) : (console.log("Element is not fully visible"), clearTimeout(d));
       },
       { threshold: [a] }
-    ), typeof n == "string") {
-      const l = document.querySelector(n);
+    ), typeof e == "string") {
+      const l = document.querySelector(e);
       l && p.observe(l);
     } else
-      p.observe(n);
-  }, m = (n) => {
-    const e = document.querySelector(n);
-    if (!e)
+      p.observe(e);
+  }, m = (e) => {
+    const n = document.querySelector(e);
+    if (!n)
       return;
-    const r = e.getBoundingClientRect().top - 100;
+    const r = n.getBoundingClientRect().top - 100;
     window.scrollBy({
       top: r,
       behavior: "smooth"
     });
-  }, t = "https://conversionratestore.github.io/projects/buzzpatch", f = [
+  }, i = "https://conversionratestore.github.io/projects/buzzpatch", f = [
     {
       patchType: "SleepyPatch for Kids",
       text: "Helps My asd child!! My son is 8 and struggles to fall asleep. He is autistic so I guess This can be normal. Well tried melatonin and yes it works but idk not a fan. Tried these and wow work great and as routines work for him using this daily works!! Bought many times so far and will keep purchasing. Thank you for making these. Even got the adult ones. And they help me If I need it."
@@ -121,30 +121,30 @@
   ], u = [
     {
       text: "“The first thing I noticed when I opened the package were that these smelled seriously amazing. They're citrusy without being overpowering.”",
-      img: `${t}/img/new-home-page/slider_logo_1.png`
+      img: `${i}/img/new-home-page/slider_logo_1.png`
     },
     {
       text: "“I will say that I did not get bit at all while wearing the BuzzPatch patch mosquito repellent patches! I have used them a couple times since then and have not been bit, either.”",
-      img: `${t}/img/new-home-page/slider_logo_2.png`
+      img: `${i}/img/new-home-page/slider_logo_2.png`
     },
     {
       text: "“Like Garlic for Vampires: These Stickers Help Repel Mosquitoes. Because every kid loves stickers anyway.”",
-      img: `${t}/img/new-home-page/slider_logo_3.png`
+      img: `${i}/img/new-home-page/slider_logo_3.png`
     },
     {
       text: "“These anti-mosquito stickers were technically developed for kids, but we think they're also perfect for any outdoorsy dads who also happen to be mosquito magnets”",
-      img: `${t}/img/new-home-page/slider_logo_4.png`
+      img: `${i}/img/new-home-page/slider_logo_4.png`
     },
     {
       text: '“The Buzzpatch scent creates a virtual shield by "camouflaging" your kids from mosquitos) Genius!”',
-      img: `${t}/img/new-home-page/slider_logo_5.png`
+      img: `${i}/img/new-home-page/slider_logo_5.png`
     }
   ], _ = () => {
-    let n = $("#featured-reviews2 .carousel-item:not(.slick-cloned)"), e = [];
-    return n.each((o, r) => {
-      let i = {};
-      i.name = $(r).find(".name").text(), i.img = $(r).find(".review-header>img").attr("data-src") || "no_img", i.text = $(r).find(".review-text p").text(), e.push(i);
-    }), console.log(e), e;
+    let e = $("#featured-reviews2 .carousel-item:not(.slick-cloned)"), n = [];
+    return e.each((o, r) => {
+      let t = {};
+      t.name = $(r).find(".name").text(), t.img = $(r).find(".review-header>img").attr("data-src") || "no_img", t.text = $(r).find(".review-text p").text(), n.push(t);
+    }), console.log(n), n;
   }, b = [
     {
       name: "SleepyPatch for Kids",
@@ -155,7 +155,7 @@
         "//www.natpat.com/cdn/shop/files/natpat-sleepy-patch-for-kids-the-ticket-to-sweet-dreams-deep-sleep-35986330648620.png?v=1708349499",
         "//www.natpat.com/cdn/shop/files/natpat-sleepy-patch-for-kids-the-ticket-to-sweet-dreams-deep-sleep-35986330452012.png?v=1708349191"
       ],
-      img2: `${t}/img/new-home-page/sleppypatch.png`,
+      img2: `${i}/img/new-home-page/sleppypatch.png`,
       link: "https://www.natpat.com/products/sleepypatch-sleep-promoting-stickers",
       variants: [39836565143596, 39836565176364, 39836565110828, 39836565209132]
     },
@@ -168,7 +168,7 @@
         "//www.natpat.com/cdn/shop/files/natpat-zenpatch-mood-calming-patches-for-natural-stress-relief-35986371149868.png?v=1708349363",
         "//www.natpat.com/cdn/shop/files/natpat-zenpatch-mood-calming-patches-for-natural-stress-relief-35986371248172.png?v=1708349370"
       ],
-      img2: `${t}/img/new-home-page/zenpatch.png`,
+      img2: `${i}/img/new-home-page/zenpatch.png`,
       link: "https://www.natpat.com/products/zenpatch-mood-calming-stickers",
       variants: [39998449221676, 39998449254444, 39998449188908, 39998449287212]
     },
@@ -181,7 +181,7 @@
         "//www.natpat.com/cdn/shop/files/natpat-mosquito-patches-for-kids-happy-outings-with-bite-free-fun-35981853294636.jpg?v=1708329739",
         "//www.natpat.com/cdn/shop/files/natpat-mosquito-patches-for-kids-happy-outings-with-bite-free-fun-35981853753388.jpg?v=1708329575"
       ],
-      img2: `${t}/img/new-home-page/buzzpatch.png`,
+      img2: `${i}/img/new-home-page/buzzpatch.png`,
       link: "https://www.natpat.com/products/buzzpatch-bundles",
       variants: [39542857695276, 39542857728044, 39542857760812, 39542857793580]
     },
@@ -194,7 +194,7 @@
         "//www.natpat.com/cdn/shop/files/natpat-uv-stickers-for-security-and-style-detect-sun-exposure-quickly-35986223726636.png?v=1708349007",
         "//www.natpat.com/cdn/shop/files/natpat-uv-stickers-for-security-and-style-detect-sun-exposure-quickly-35986223857708.png?v=1708348995"
       ],
-      img2: `${t}/img/new-home-page/sunnypatch.png`,
+      img2: `${i}/img/new-home-page/sunnypatch.png`,
       link: "https://www.natpat.com/products/sunnypatch",
       variants: [41098474946604, 41098474979372, 41098474913836, 41098475012140]
     }
@@ -801,9 +801,19 @@
   display: flex;\r
   justify-content: center;\r
   align-items: center;\r
+  position: relative;\r
+  overflow: hidden;\r
+}\r
+.new_natpat_block .parallax {\r
+  position: absolute;\r
+  top: 0;\r
+  left: 0;\r
+  width: 100%;\r
+  height: 100%;\r
   background: url(https://conversionratestore.github.io/projects/buzzpatch/img/big_bg.webp) no-repeat center center;\r
   background-size: cover;\r
-  background-attachment: fixed;\r
+  z-index: -1;\r
+  display: block !important;\r
 }\r
 .new_natpat_block p {\r
   color: #1f1f5b;\r
@@ -1578,40 +1588,40 @@ body {\r
   overflow-x: hidden;\r
 }\r
 `;
-  `${b.map((n, e) => (
+  `${b.map((e, n) => (
     /* HTML */
     ` <div class="item">
-              <img src="${t}/img/new-home-page/as_seen.svg" class="tv" alt="tv" />
+              <img src="${i}/img/new-home-page/as_seen.svg" class="tv" alt="tv" />
               <span class="save">40% off</span>
               <div class="img">
-                <img src="${n.img[2]}" alt="main" />
-                <img class="sub_img" src="${n.img2}" alt="illustration" />
+                <img src="${e.img[2]}" alt="main" />
+                <img class="sub_img" src="${e.img2}" alt="illustration" />
               </div>
-              <p class="name">${n.name}</p>
-              <p class="sub_text">${n.subText}</p>
+              <p class="name">${e.name}</p>
+              <p class="sub_text">${e.subText}</p>
               <div class="qty">
                 <span
                   class="active"
-                  data-variant="${n.variants[2]}"
-                  data-img="${n.img[2]}"
+                  data-variant="${e.variants[2]}"
+                  data-img="${e.img[2]}"
                   data-price="12.00"
                   data-save="40"
                   >3 packs</span
                 >
-                <span data-variant="${n.variants[0]}" data-img="${n.img[0]}" data-price="14.99" data-save="50"
+                <span data-variant="${e.variants[0]}" data-img="${e.img[0]}" data-price="14.99" data-save="50"
                   >1 pack</span
                 >
-                <span data-variant="${n.variants[1]}" data-img="${n.img[1]}" data-price="13.50" data-save="33"
+                <span data-variant="${e.variants[1]}" data-img="${e.img[1]}" data-price="13.50" data-save="33"
                   >2 packs</span
                 >
-                <span data-variant="${n.variants[3]}" data-img="${n.img[3]}" data-price="10.50" data-save="48"
+                <span data-variant="${e.variants[3]}" data-img="${e.img[3]}" data-price="10.50" data-save="48"
                   >4 packs</span
                 >
               </div>
               <p class="price">$12.00 each</p>
               <div class="btns">
-                <a href="${n.link}">Learn More</a>
-                <button data-id="${n.variants[2]}">Add to cart</button>
+                <a href="${e.link}">Learn More</a>
+                <button data-id="${e.variants[2]}">Add to cart</button>
               </div>
             </div>`
   )).join("")}`;
@@ -1635,7 +1645,7 @@ body {\r
     </svg>
   </div>
 `
-  ), v = (n) => (
+  ), v = (e) => (
     /* HTML */
     `
     <section class="new_main_block">
@@ -1643,10 +1653,10 @@ body {\r
         ${x}
       </style>
       <span class="hi desktop">
-        <img src="${t}/img/new-home-page/side.svg" alt="hi" />
+        <img src="${i}/img/new-home-page/side.svg" alt="hi" />
       </span>
       <a class="total_reviews desktop">
-        <img src="${t}/img/new-home-page/stars_green.svg" alt="stars" />
+        <img src="${i}/img/new-home-page/stars_green.svg" alt="stars" />
         <span>Excellent | 2,943</span>
         <span>Customer reviews</span>
       </a>
@@ -1656,29 +1666,29 @@ body {\r
       </h1>
       <div class="images">
         <a href="https://www.natpat.com/collections/wellness-cognitive"
-          ><img src="${t}/img/new-home-page/img_1${n === "mobile" ? "_mob" : ""}.webp" alt="img1"
+          ><img src="${i}/img/new-home-page/img_1${e === "mobile" ? "_mob" : ""}.webp" alt="img1"
         /></a>
         <a href="https://www.natpat.com/collections/outdoor-protection"
-          ><img src="${t}/img/new-home-page/img_2${n === "mobile" ? "_mob" : ""}.webp" alt="img2"
+          ><img src="${i}/img/new-home-page/img_2${e === "mobile" ? "_mob" : ""}.webp" alt="img2"
         /></a>
         <a href="https://www.natpat.com/collections/respiratory-allergy-relief"
-          ><img src="${t}/img/new-home-page/img_3.webp" alt="img3"
+          ><img src="${i}/img/new-home-page/img_3.webp" alt="img3"
         /></a>
       </div>
       <ul class="points content_wrapper">
-        <li><img src="${t}/img/new-home-page/non-toxic.svg" alt="non_toxic" /><span>Non Toxic, DEET free</span></li>
-        <li><img src="${t}/img/new-home-page/baby-boy.svg" alt="kid" /><span>Safe for kids (0+)</span></li>
-        <li><img src="${t}/img/new-home-page/australia.svg" alt="au" /><span>Designed in Australia</span></li>
-        <li><img src="${t}/img/new-home-page/express-delivery.svg" alt="ship" /><span>FREE Shipping </span></li>
+        <li><img src="${i}/img/new-home-page/non-toxic.svg" alt="non_toxic" /><span>Non Toxic, DEET free</span></li>
+        <li><img src="${i}/img/new-home-page/baby-boy.svg" alt="kid" /><span>Safe for kids (0+)</span></li>
+        <li><img src="${i}/img/new-home-page/australia.svg" alt="au" /><span>Designed in Australia</span></li>
+        <li><img src="${i}/img/new-home-page/express-delivery.svg" alt="ship" /><span>FREE Shipping </span></li>
       </ul>
       <a class="total_reviews mobile" href="#">
-        <img src="${t}/img/new-home-page/stars_green.svg" alt="stars" />
+        <img src="${i}/img/new-home-page/stars_green.svg" alt="stars" />
         <span>Excellent | 2,943</span>
         <span>Customer reviews</span>
       </a>
       <a class="crs_btn" href="https://natpat.com/collections/homepage">Explore NatPat Stickers</a>
       <p>
-        <img src="${t}/img/new-home-page/express-delivery.svg" alt="ship" />
+        <img src="${i}/img/new-home-page/express-delivery.svg" alt="ship" />
         FREE Shipping | 365-day Money Back Guarantee
       </p>
     </section>
@@ -1691,19 +1701,19 @@ body {\r
     `
   <section class="new_trustpilot_reviews content_wrapper">
     <p>
-      <img src="${t}/img/trustpilot.svg" alt="trustpilot" />
-      <img src="${t}/img/stars-trust.svg" alt="trustpilot stars" />
+      <img src="${i}/img/trustpilot.svg" alt="trustpilot" />
+      <img src="${i}/img/stars-trust.svg" alt="trustpilot stars" />
       <span>Excellent</span>
     </p>
     <h2>Trusted by over <b>1 million</b> customers</h2>
     <div class="insta_widget"></div>
     <ul class="reviews_trust parent_slider">
-      ${f.map((n, e) => (
+      ${f.map((e, n) => (
       /* HTML */
       ` <li>
-            <p>${n.patchType}</p>
-            <p>${n.text}</p>
-            <img src="${t}/img/new-home-page/stars_green.svg" alt="stars" />
+            <p>${e.patchType}</p>
+            <p>${e.text}</p>
+            <img src="${i}/img/new-home-page/stars_green.svg" alt="stars" />
           </li>`
     )).join("")}
     </ul>
@@ -1739,13 +1749,13 @@ body {\r
     ` <section class="new_slider_news">
   <h2>We're in the news... for good reasons</h2>
   <div class="slider_wrapper parent_slider">
-    ${u.map((n, e) => (
+    ${u.map((e, n) => (
       /* HTML */
       `
           <div class="slide">
-            <div class="bg"><img src="${t}/img/slide_bg_${e + 1}.png" /></div>
-            <p>${n.text}</p>
-            <img src="${n.img}" alt="press logo" />
+            <div class="bg"><img src="${i}/img/slide_bg_${n + 1}.png" /></div>
+            <p>${e.text}</p>
+            <img src="${e.img}" alt="press logo" />
           </div>
         `
     )).join("")}
@@ -1771,7 +1781,7 @@ body {\r
           science, offering you peace of mind with every NATPAT patch. From natural essential oils to cutting-edge
           slow-release technology, every detail of NATPAT patches is meticulously planned to ensure safety, avoid
           allergies, and deliver measurable results.
-          <img src="${t}/img/new-home-page/character1.svg" alt="character" />
+          <img src="${i}/img/new-home-page/character1.svg" alt="character" />
         </p>
       </div>
       <div>
@@ -1781,7 +1791,7 @@ body {\r
           biodegradable nature and unique ability to deliver consistent, long-lasting aromas. Join us as we delve into
           the science, sustainability, and sensory delight of AromaWeave™, and see how it's setting new standards in
           the world of aromatherapy.
-          <img src="${t}/img/new-home-page/character2.svg" alt="character" />
+          <img src="${i}/img/new-home-page/character2.svg" alt="character" />
         </p>
       </div>
     </div>
@@ -1794,19 +1804,20 @@ body {\r
     <p>
       "At NATPAT, it's not just about products; it's about a way of life. We're here to bring you a kinder, more fun,
       and totally natural approach to feeling great. Join us in this journey towards a happier, healthier you!"
-      <img src="${t}/img/new-home-page/nat_pat.svg" alt="natpat" />
+      <img src="${i}/img/new-home-page/nat_pat.svg" alt="natpat" />
     </p>
   </div>
+  <div class="parallax"></div>
 </section>`
   ), S = (
     /* HTML */
     `<section class="new_info_block">
   <div class="content_wrapper">
     <div class="slider_photo">
-      ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((n) => (
+      ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((e) => (
       /*HTML*/
       `<div class="img_slide">
-            <img src="${t}/img/new-home-page/slider_photo_${n}.jpg" alt="img1" />
+            <img src="${i}/img/new-home-page/slider_photo_${e}.jpg" alt="img1" />
           </div>`
     )).join("")}
     </div>
@@ -1840,20 +1851,20 @@ body {\r
   <section class="new_reviews_block">
     <div class="content_wrapper">
       <div class="basic_slider parent_slider">
-        ${_().map((n, e) => (
+        ${_().map((e, n) => (
       /* HTML */
       `
               <div class="slide">
                 <div class="img">
-                  <img src="${n.img}" alt="review img" />
+                  <img src="${e.img}" alt="review img" />
                 </div>
                 <p class="head">
-                  <img src="${t}/img/new-home-page/stars_green.svg" alt="stars" />
-                  ${n.name}
+                  <img src="${i}/img/new-home-page/stars_green.svg" alt="stars" />
+                  ${e.name}
                 </p>
-                <p class="text">${n.text}</p>
+                <p class="text">${e.text}</p>
                 <span>
-                  <img src="${t}/img/new-home-page/check_white.svg" alt="verified" />
+                  <img src="${i}/img/new-home-page/check_white.svg" alt="verified" />
                   Verified Buyer
                 </span>
               </div>
@@ -1877,14 +1888,14 @@ body {\r
       <h2>Health and wellness patches</h2>
       <div>
         <div class="img desktop">
-          <img src="${t}/img/new-home-page/packs.webp" alt="packs" />
+          <img src="${i}/img/new-home-page/packs.webp" alt="packs" />
         </div>
         <p>
           NATPAT stands as a beacon of innovation in the realm of health and wellness, offering a unique range of
           patches and stickers designed to enhance your daily life. Each product is crafted with care, ensuring a
           natural, effective solution to various everyday challenges. <br /><br />
           <span class="img mobile">
-            <img src="${t}/img/new-home-page/packs.webp" alt="packs" />
+            <img src="${i}/img/new-home-page/packs.webp" alt="packs" />
           </span>
           For those seeking tranquility in their hectic lives, NATPAT's <a
             href="https://www.natpat.com/en-eu/products/zenpatch-mood-calming-stickers"
@@ -1939,8 +1950,8 @@ body {\r
   const q = window.innerWidth < 768 ? "mobile" : "desktop", h = document.createElement("link");
   h.rel = "stylesheet", h.href = "https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=M+PLUS+Rounded+1c:wght@900&display=swap", document.head.appendChild(h);
   class C {
-    constructor(e) {
-      this.device = e, this.init();
+    constructor(n) {
+      this.device = n, this.init();
     }
     init() {
       this.clearOldContent(), this.addBlocks(), this.patchesCardsFunctionality(), this.addEvents();
@@ -1951,6 +1962,8 @@ body {\r
     addBlocks() {
       if ($(".new_home_page").append(v(this.device)).append(y).append(z).append(T).append(j).append(P).append(S).append(I).append(A).append(k), $(".insta_widget").append($("#shopify-section-template--15241309847596__17097813754ae81b0d")), $(".new_stickers_slider").append($("#shopify-section-template--15241309847596__custom_liquid_HmbWPi")), $("#shopify-block-archive_detect_ugc_gallery_8cpCVL").css("display", "block"), $(window).on("scroll", function() {
         $(window).scrollTop() || 0 > 100 ? $(".up_btn").fadeIn() : $(".up_btn").fadeOut();
+        const n = $(".new_natpat_block .parallax"), o = n[0].getBoundingClientRect(), r = window.scrollY || document.documentElement.scrollTop, t = o.top + r;
+        r + window.innerHeight > t && n.css("background-position-y", `${(r - t) * 0.3}px`);
       }), $(".up_btn").on("click", function() {
         $("html, body").animate({ scrollTop: 0 }, 500);
       }), this.device === "mobile" && $(".new_info2_block").prepend($(".slider_photo")), $(".new_stickers_slider .slider_wrapper").slick({
@@ -1993,7 +2006,7 @@ body {\r
         infinite: !0,
         centerMode: this.device === "mobile",
         fade: this.device !== "mobile"
-      }), $(".slider_dots").each(function(e, o) {
+      }), $(".slider_dots").each(function(n, o) {
         $(o).slick({
           slidesToShow: 3,
           slidesToScroll: 1,
@@ -2004,36 +2017,36 @@ body {\r
           focusOnSelect: !0,
           asNavFor: $(o).closest("section").find(".parent_slider")
         });
-      }), $("a.total_reviews").on("click", function(e) {
-        e.preventDefault(), m(".new_trustpilot_reviews");
-      }), $(".reviews_trust p:nth-child(2)").each(function(e, o) {
+      }), $("a.total_reviews").on("click", function(n) {
+        n.preventDefault(), m(".new_trustpilot_reviews");
+      }), $(".reviews_trust p:nth-child(2)").each(function(n, o) {
         if ($(o).text().length > 200) {
-          const r = $(o).text(), i = r.slice(0, 200).lastIndexOf(" ");
-          i !== -1 && $(o).text(r.slice(0, i) + "..."), $(o).after('<span class="read_more">Read more</span>'), $(o).next().on("click", function() {
+          const r = $(o).text(), t = r.slice(0, 200).lastIndexOf(" ");
+          t !== -1 && $(o).text(r.slice(0, t) + "..."), $(o).after('<span class="read_more">Read more</span>'), $(o).next().on("click", function() {
             $(o).text(r), $(this).remove(), $(o).closest(".reviews_trust").slick("setPosition");
           });
         }
       }), this.device === "desktop") {
         const o = $(".new_trustpilot_reviews .reviews_trust li");
-        o.each(function(r, i) {
-          r >= 6 && $(i).css("display", "none");
+        o.each(function(r, t) {
+          r >= 6 && $(t).css("display", "none");
         }), $(".pages_r span").on("click", function() {
           if ($(this).hasClass("active"))
             return;
-          const r = +$(this).text(), i = (r - 1) * 6, a = r * 6 - 1, p = $(".new_trustpilot_reviews .reviews_trust");
+          const r = +$(this).text(), t = (r - 1) * 6, a = r * 6 - 1, p = $(".new_trustpilot_reviews .reviews_trust");
           p.fadeOut(function() {
             o.each(function(d, l) {
-              d >= i && d <= a ? $(l).show() : $(l).hide();
+              d >= t && d <= a ? $(l).show() : $(l).hide();
             }), p.fadeIn();
           }), $(this).addClass("active").siblings().removeClass("active");
         });
       }
     }
     patchesCardsFunctionality() {
-      $(".new_stickers_slider .item").each(function(e, o) {
-        const r = $(o).find("span"), i = $(o).find(".img img[alt=main]"), a = $(o).find("button"), p = $(o).find(".price"), d = $(o).find(".save");
+      $(".new_stickers_slider .item").each(function(n, o) {
+        const r = $(o).find("span"), t = $(o).find(".img img[alt=main]"), a = $(o).find("button"), p = $(o).find(".price"), d = $(o).find(".save");
         r.on("click", function() {
-          $(this).addClass("active").siblings().removeClass("active"), i.attr("src", $(this).data("img")), a.attr("data-id", $(this).data("variant")), p.text(`$${$(this).data("price")} each`), d.text(`${$(this).data("save")}% off`);
+          $(this).addClass("active").siblings().removeClass("active"), t.attr("src", $(this).data("img")), a.attr("data-id", $(this).data("variant")), p.text(`$${$(this).data("price")} each`), d.text(`${$(this).data("save")}% off`);
         }), a.on("click", function() {
           const M = {
             items: [
@@ -2054,70 +2067,70 @@ body {\r
       });
     }
     addEvents() {
-      const e = "exp_homepage_";
+      const n = "exp_homepage_";
       $(".new_main_block .crs_btn").on("click", function() {
-        c(`${e}main_button`, "Button", "click", "Main block");
-      }), $(".new_main_block .images a").each(function(r, i) {
+        c(`${n}main_button`, "Button", "click", "Main block");
+      }), $(".new_main_block .images a").each(function(r, t) {
         let a = r === 0 ? "Sleep" : r === 1 ? "Allergy" : "Protection";
-        s(i, `${e}main_image_${r}`, "Main block", a), $(i).on("click", function() {
-          c(`${e}main_image_${r}`, a, "click", "Main block");
+        s(t, `${n}main_image_${r}`, "Main block", a), $(t).on("click", function() {
+          c(`${n}main_image_${r}`, a, "click", "Main block");
         });
-      }), $(".new_stickers_slider .item:not(.slick-cloned)").each(function(r, i) {
-        s(i, `${e}stickers_slider_${r}`, "Stickers slider", $(i).find(".name").text()), $(i).find(".qty>span").on("click", function() {
+      }), $(".new_stickers_slider .item:not(.slick-cloned)").each(function(r, t) {
+        s(t, `${n}stickers_slider_${r}`, "Stickers slider", $(t).find(".name").text()), $(t).find(".qty>span").on("click", function() {
           c(
-            `${e}stickers_slider_${r}`,
+            `${n}stickers_slider_${r}`,
             `Quantity ${$(this).text()}`,
             "click",
-            `Stickers slider ${$(i).find(".name").text()}`
+            `Stickers slider ${$(t).find(".name").text()}`
           );
-        }), $(i).find(".btns a").on("click", function() {
+        }), $(t).find(".btns a").on("click", function() {
           c(
-            `${e}stickers_slider_${r}`,
+            `${n}stickers_slider_${r}`,
             "Learn more",
             "click",
-            `Stickers slider ${$(i).find(".name").text()}`
+            `Stickers slider ${$(t).find(".name").text()}`
           );
-        }), $(i).find(".btns button").on("click", function() {
+        }), $(t).find(".btns button").on("click", function() {
           c(
-            `${e}stickers_slider_${r}`,
+            `${n}stickers_slider_${r}`,
             "Add to cart",
             "click",
-            `Stickers slider ${$(i).find(".name").text()}`
+            `Stickers slider ${$(t).find(".name").text()}`
           );
         });
       }), $(".slider_dots1 span").on("click", function() {
-        c(`${e}stickers_pagination`, "Dots", "click", "Stickers slider");
+        c(`${n}stickers_pagination`, "Dots", "click", "Stickers slider");
       }), $(".slider_photo").on("afterChange", function() {
-        c(`${e}slider_photo`, "Slider photo", "change", "Slider photo");
+        c(`${n}slider_photo`, "Slider photo", "change", "Slider photo");
       });
       const o = setInterval(() => {
-        var r, i;
-        ($(".insta_widget [data-widget-host]")[0].shadowRoot && ((r = $(".insta_widget [data-widget-host]")[0].shadowRoot) != null && r.querySelectorAll("img").length) || 0 > 0) && (clearInterval(o), (i = $(".insta_widget [data-widget-host]")[0].shadowRoot) == null || i.querySelectorAll("img").forEach((a, p) => {
+        var r, t;
+        ($(".insta_widget [data-widget-host]")[0].shadowRoot && ((r = $(".insta_widget [data-widget-host]")[0].shadowRoot) != null && r.querySelectorAll("img").length) || 0 > 0) && (clearInterval(o), (t = $(".insta_widget [data-widget-host]")[0].shadowRoot) == null || t.querySelectorAll("img").forEach((a, p) => {
           a.addEventListener("click", () => {
-            c(`${e}insta_image_${p}`, "Image", "click", "Instagram widget");
+            c(`${n}insta_image_${p}`, "Image", "click", "Instagram widget");
           });
         }));
       }, 1e3);
-      $(".new_trustpilot_reviews .reviews_trust li:not(.slick-cloned)").each(function(r, i) {
+      $(".new_trustpilot_reviews .reviews_trust li:not(.slick-cloned)").each(function(r, t) {
         s(
-          i,
-          `${e}trustpilot_reviews_${r}`,
+          t,
+          `${n}trustpilot_reviews_${r}`,
           "Trustpilot reviews block",
-          $(i).find("p:first-of-type").text()
+          $(t).find("p:first-of-type").text()
         );
-      }), s(".new_main_block .crs_btn", `${e}main_button`, "Main block", "Button"), s(
+      }), s(".new_main_block .crs_btn", `${n}main_button`, "Main block", "Button"), s(
         ".new_trustpilot_reviews .reviews_trust",
-        `${e}trustpilot_reviews`,
+        `${n}trustpilot_reviews`,
         "Trustpilot reviews block",
         "Trustpilot reviews"
-      ), s(".new_slider_news .slider_wrapper", `${e}slider_news`, "Slider news block", "Slider news"), s(".new_science_block .content_wrapper", `${e}science_block`, "Science block", "Science block"), s(".new_natpat_block .layer", `${e}natpat_block`, "NatPat block", "Parallax NatPat block"), s(".new_info_block .content_wrapper p", `${e}info_block`, "Info block", "Blue info block"), s(".new_reviews_block .basic_slider", `${e}reviews_block`, "Reviews block", "Reviews block"), s(
+      ), s(".new_slider_news .slider_wrapper", `${n}slider_news`, "Slider news block", "Slider news"), s(".new_science_block .content_wrapper", `${n}science_block`, "Science block", "Science block"), s(".new_natpat_block .layer", `${n}natpat_block`, "NatPat block", "Parallax NatPat block"), s(".new_info_block .content_wrapper p", `${n}info_block`, "Info block", "Blue info block"), s(".new_reviews_block .basic_slider", `${n}reviews_block`, "Reviews block", "Reviews block"), s(
         ".new_info2_block .content_wrapper",
-        `${e}info2_block`,
+        `${n}info2_block`,
         "Info2 block",
         "Last info block",
         1e3,
         0.3
-      ), s(".slider_photo", `${e}slider_photo`, "Slider photo", "Slider photo");
+      ), s(".slider_photo", `${n}slider_photo`, "Slider photo", "Slider photo");
     }
   }
   new C(q);
