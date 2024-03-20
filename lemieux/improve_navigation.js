@@ -265,7 +265,7 @@ window.onload = () => {
       this.lastPath = window.location.pathname
       this.device = screen.width <= 1100 ? devices.mobile : devices.desktop
       this.event
-      this.clickEvent;
+      this.clickEvent
       this.initStyles()
     }
 
@@ -283,7 +283,7 @@ window.onload = () => {
         mutations.forEach(mutation => {
           if (window.location.pathname !== this.lastPath) {
             this.lastPath = window.location.pathname
-        $el('action[cy-basketaddbutton]')?.removeEventListener('click', this.clickEvent)
+            $el('action[cy-basketaddbutton]')?.removeEventListener('click', this.clickEvent)
 
             this.initComponents()
           }
@@ -1423,7 +1423,7 @@ window.onload = () => {
           ctaButtonInner.textContent = 'Add to bag'
         }
 
-       this.clickEvent = () => {
+        this.clickEvent = () => {
           const hash = window.location.hash
           const isUserSelectSize = hash.includes('selection.size')
           if (!isUserSelectSize) {
@@ -1440,6 +1440,7 @@ window.onload = () => {
               if (listItem) {
                 setTimeout(() => {
                   $el('action[cy-basketaddbutton]').click()
+                  $el('.crs-size-chart__list')?.removeEventListener('click', this.event)
                 }, 600)
               }
             }
