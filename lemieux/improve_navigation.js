@@ -474,13 +474,18 @@ window.onload = () => {
         const category = breadcrumbs?.querySelector('a:last-of-type')?.textContent
 
         let categoryResponse
-        if (categoryFResponse.result[0].name === category) {
+        if (categoryFResponse.result[0]?.name === category) {
           categoryResponse = categoryFResponse
-        } else if (categoryLResponse.result[0].name === category) {
+        } else if (categoryLResponse.result[0]?.name === category) {
           categoryResponse = categoryLResponse
         } else {
-          categoryResponse = categoryFResponse
+          if (categoryFResponse?.catalog?.length > 0) {
+            categoryResponse = categoryFResponse
+          } else {
+            categoryResponse = categoryLResponse
+          }
         }
+ 
         if (!productResponse || !categoryResponse) return
         const filteredCatalog = categoryResponse.catalog.filter(item => item.type === 'product')
         let filteredArray = filteredCatalog
@@ -494,6 +499,7 @@ window.onload = () => {
             )
           })
           .slice(0, 20)
+
         const similarProductsHTML = /* HTML */ `
           <div class="similar-products">
             <style>
@@ -992,13 +998,12 @@ window.onload = () => {
                     const productStock = productResponse.catalog.find(
                       item => item.type === 'product' && item.id === product.id
                     )
-                    console.log(productStock)
+
                     const currentDate = new Date()
                     const inStockDate = new Date(productStock.in_stock_date)
 
                     const isSold = (!productStock.in_stock_date || inStockDate < currentDate) && !qty
 
-                    console.log(isSold)
                     return /* HTML */ `
                       <li
                         data-value="${size.value}"
