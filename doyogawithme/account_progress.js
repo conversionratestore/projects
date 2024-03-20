@@ -720,11 +720,12 @@
     }
   
     addElementBecomeSubscriber() {
-      if (localStorage.getItem("isClass") && $el(".new_box_subscriber")) {
+      let selector = this.device == "mobile" ?  $el("#promoteSubscriptionWrap") : $el(".new_box_subscriber");
+      
+      if (localStorage.getItem("isClass") && selector) {
         let isClass = localStorage.getItem("isClass");
         let referrerInfo = localStorage.getItem('referrerInfo');
   
-        let selector = this.device == "mobile" ?  $el("#promoteSubscriptionWrap") : $el(".new_box_subscriber");
         if (isClass == "free") {
           insert(
             selector,
