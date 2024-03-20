@@ -1379,7 +1379,6 @@
   display: flex;\r
   position: relative;\r
   max-width: 760px;\r
-  overflow: hidden;\r
 }\r
 .popup_root .popup_close {\r
   position: absolute;\r
@@ -1401,6 +1400,7 @@
   padding: 40px;\r
   background: url(https://grantme.ca/wp-content/uploads/2022/01/landing-hero-image.jpg) center bottom no-repeat;\r
   background-size: cover;\r
+  border-radius: 0 10px 10px 0;\r
 }\r
 .slider_desktop h3 {\r
   font-family: 'Bitter', serif;\r
@@ -1659,59 +1659,56 @@
 \r
 .popup_main {\r
   display: none;\r
+}\r
+.popup_main.active {\r
+  display: block;\r
+}\r
 \r
-  &.active {\r
-    display: block;\r
-  }\r
+.popup_main h3 {\r
+  color: #2b3e51;\r
+  font-size: 25px;\r
+  font-weight: 700;\r
+  line-height: 32px;\r
+  margin: 0 0 8px;\r
+}\r
+.popup_main h3 + p {\r
+  color: #676767;\r
+  font-size: 16px;\r
+  font-weight: 400;\r
+  line-height: 24px;\r
+  margin-bottom: 20px;\r
+}\r
 \r
-  & h3 {\r
-    color: #2b3e51;\r
-    font-size: 25px;\r
-    font-weight: 700;\r
-    line-height: 32px;\r
-    margin: 0 0 8px;\r
+.popup_main > div {\r
+  border-radius: 6px;\r
+  border: 2px dashed #ebbd45;\r
+  background: rgba(235, 189, 69, 0.1);\r
+  padding: 16px;\r
+  text-align: center;\r
+}\r
+.popup_main > div img {\r
+  height: 45px;\r
+  margin-bottom: 16px;\r
+}\r
 \r
-    & + p {\r
-      color: #676767;\r
-      font-size: 16px;\r
-      font-weight: 400;\r
-      line-height: 24px;\r
-      margin-bottom: 20px;\r
-    }\r
-  }\r
+.popup_main > div p {\r
+  color: #2b3e51;\r
+  text-align: center;\r
+  font-size: 16px;\r
+  font-weight: 500;\r
+  line-height: 24px;\r
+  padding-top: 16px;\r
+  border-top: 2px dashed #ebbd45;\r
+}\r
 \r
-  & > div {\r
-    border-radius: 6px;\r
-    border: 2px dashed #ebbd45;\r
-    background: rgba(235, 189, 69, 0.1);\r
-    padding: 20px;\r
-    text-align: center;\r
-\r
-    & img {\r
-      height: 45px;\r
-      margin-bottom: 16px;\r
-    }\r
-\r
-    & p {\r
-      color: #2b3e51;\r
-      text-align: center;\r
-      font-size: 16px;\r
-      font-weight: 500;\r
-      line-height: 24px;\r
-      padding-top: 16px;\r
-      border-top: 2px dashed #ebbd45;\r
-    }\r
-\r
-    & + p {\r
-      color: #2b3e51;\r
-      text-align: center;\r
-      font-family: 'Bitter', serif;\r
-      font-size: 16px;\r
-      font-weight: 600;\r
-      line-height: 22px;\r
-      margin: 20px 0;\r
-    }\r
-  }\r
+.popup_main > div + p {\r
+  color: #2b3e51;\r
+  text-align: center;\r
+  font-family: 'Bitter', serif;\r
+  font-size: 16px;\r
+  font-weight: 600;\r
+  line-height: 22px;\r
+  margin: 20px 0;\r
 }\r
 \r
 @media (max-width: 768px) {\r
@@ -1731,18 +1728,16 @@
     display: none;\r
   }\r
 \r
-  .popup_main {\r
-    & h3 + p {\r
-      margin-bottom: 16px;\r
-    }\r
+  .popup_main h3 + p {\r
+    margin-bottom: 16px;\r
+  }\r
 \r
-    & > div img {\r
-      height: 33px;\r
-    }\r
+  .popup_main > div img {\r
+    height: 33px;\r
+  }\r
 \r
-    & > div + p {\r
-      margin: 16px 0;\r
-    }\r
+  .popup_main > div + p {\r
+    margin: 16px 0;\r
   }\r
 }\r
 `, Vr = "https://conversionratestore.github.io/projects/grantme", Bn = {
