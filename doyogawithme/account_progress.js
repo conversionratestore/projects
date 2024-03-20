@@ -229,7 +229,7 @@
                   text-align: center;
                   font-size: 30px;
                   font-style: normal;
-                  font-weight: 600!important;
+                  font-weight: 700!important;
                   line-height: 38px!important;
                   margin-bottom: 16px;
               }
@@ -331,6 +331,9 @@
                   background-color: #FFF;
                   max-width: 566px;
                   border: none;
+              }
+              .crs_block_terms + hr {
+                  max-width: 300px;
               }
               .crs_block ul {
                   padding: 0;
@@ -441,6 +444,7 @@
                   }
                   .crs_block hr {
                       margin: 12px auto;
+                      background-color: var(--Gray, #E0E0E0);
                   }
                   .crs_block {
                       width: calc(100% - 24px);
@@ -607,7 +611,7 @@
               <p class="crs_block_subtotal">
                   ${
                     this.thisClass === "Premium"
-                      ? `Get access to this and 500+ other premium <br class="d-md-none"> classes`
+                      ? `Get ${authorized === true ? 'full' : ''} access to this and 500+ other premium <br class="d-md-none"> classes`
                       : `Watch this and 500+ other free classes <br class="d-md-none"> after the sign up`
                   }
               </p>
@@ -685,6 +689,7 @@
           eventName = thisClass === 'free' ? '06' : '07';
           pushDataLayer('exp_trailvideo_button_'+eventName, 'Create Free Account', 'Button', `Pop up ${$el(".crs_block h2").innerText.trim()} Unauthorised ${thisClass} class`);
 
+          localStorage.setItem('referrerInfo', window.location.href)
           $el('.crs_form .sfc-button').click()
         
         });
@@ -717,10 +722,12 @@
     addElementBecomeSubscriber() {
       if (localStorage.getItem("isClass") && $el(".new_box_subscriber")) {
         let isClass = localStorage.getItem("isClass");
+        let referrerInfo = localStorage.getItem('referrerInfo');
   
+        let selector = this.device == "mobile" ?  $el("#promoteSubscriptionWrap") : $el(".new_box_subscriber");
         if (isClass == "free") {
           insert(
-            $el(".new_box_subscriber"),
+            selector,
             `<style>
                   .new_box_subscriber {
                       position: relative;
@@ -734,6 +741,8 @@
                       font-style: normal;
                       font-weight: 600;
                       line-height: 26px;
+                      display: flex;
+                      align-items: center;
                   }
                   a.crs_back:hover, 
                   a.crs_back:active {
@@ -744,14 +753,20 @@
                       flex-shrink: 0;
                       margin-right: 12px;
                   }
+                  @media(max-width: 767px) {
+                    .crs_back {
+                      position: initial;
+                      margin-bottom: 16px;
+                    }
+                  }
               </style>
-              <a href="${document.referrer}" class="crs_back">${dataIcons.arrowLeftWhite}Back</a>`
+              <a href="${referrerInfo}" class="crs_back">${dataIcons.arrowLeftWhite}Back</a>`
           );
 
           $el('.crs_back').addEventListener('click', () => {
             pushDataLayer('exp_trailvideo_button_08', 'Back', 'Button', 'Page Begin Your Transformation with a Free Trial of our Premium Yoga Classes Unauthorised Free class')
           })
-        } else {
+        } else if (isClass != '') {
           insert(
             $el(".new_box_subscriber"),
             `<style>
@@ -786,6 +801,11 @@
             pushDataLayer('exp_trailvideo_button_09', 'Browse free classes', 'Button', 'Page Begin Your Transformation with a Free Trial of our Premium Yoga Classes Unauthorised Free class');
           })
         }
+
+        if (referrerInfo) {
+          localStorage.remove("isClass")
+        }
+      
       }
     }
   }
