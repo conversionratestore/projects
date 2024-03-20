@@ -814,6 +814,7 @@
   background-size: cover;\r
   z-index: -1;\r
   display: block !important;\r
+  will-change: transform;\r
 }\r
 .new_natpat_block p {\r
   color: #1f1f5b;\r
@@ -1963,7 +1964,7 @@ body {\r
       if ($(".new_home_page").append(v(this.device)).append(y).append(z).append(T).append(j).append(P).append(S).append(I).append(A).append(k), $(".insta_widget").append($("#shopify-section-template--15241309847596__17097813754ae81b0d")), $(".new_stickers_slider").append($("#shopify-section-template--15241309847596__custom_liquid_HmbWPi")), $("#shopify-block-archive_detect_ugc_gallery_8cpCVL").css("display", "block"), $(window).on("scroll", function() {
         $(window).scrollTop() || 0 > 100 ? $(".up_btn").fadeIn() : $(".up_btn").fadeOut();
         const n = $(".new_natpat_block .parallax"), o = n[0].getBoundingClientRect(), r = window.scrollY || document.documentElement.scrollTop, t = o.top + r;
-        r + window.innerHeight > t && n.css("background-position-y", `${(r - t) * 0.3}px`);
+        r + window.innerHeight > t && n.css("transform", `translateY(${(r - t) * 0.3}px)`);
       }), $(".up_btn").on("click", function() {
         $("html, body").animate({ scrollTop: 0 }, 500);
       }), this.device === "mobile" && $(".new_info2_block").prepend($(".slider_photo")), $(".new_stickers_slider .slider_wrapper").slick({
