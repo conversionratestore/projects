@@ -155,7 +155,7 @@
                 if (this.thisClass === 'Premium') {
                   count = index + 4;
                 }
-                pushDataLayer('exp_trailvideo_input_0'+count, input.placeholder, 'Input', `${$el('.crs_block h2').innerText.trim()} Unauthorised ${this.thisClass} class`)
+                pushDataLayer('exp_trailvideo_input_0'+count, input.placeholder, 'Input', `Pop up ${$el('.crs_block h2').innerText.trim()} Unauthorised ${this.thisClass} class`)
               })
             })
 
@@ -632,7 +632,7 @@
 
         }
         let eventName = '';
-        let eventLocation = $el('.crs_block h2').innerText.trim() + (authorized === false ? ` Unauthorised ${this.thisClass} class`:' Authorized Premium class only');
+        let eventLocation = 'Pop up ' + $el('.crs_block h2').innerText.trim() + (authorized === false ? ` Unauthorised ${this.thisClass} class`:' Authorized Premium class only');
 
         if (authorized === false) {
           if (this.thisClass === "free") {
@@ -668,13 +668,13 @@
           $el(".crs_form").style.display = "flex";
 
           eventName = thisClass === 'free' ? 'exp_trailvideo_button_02' : 'exp_trailvideo_button_04';
-          let locEvent = $el('.crs_block h2').innerText.trim() + ` Unauthorised ${thisClass} class`;
+          let locEvent = 'Pop up ' + $el('.crs_block h2').innerText.trim() + ` Unauthorised ${thisClass} class`;
           pushDataLayer(eventName, 'Sign Up with Email', 'Button', locEvent);
        });
         
         $el('.crs_btn_white').addEventListener("click", (e) => { //event Continue with Google
           eventName = thisClass === 'free' ? 'exp_trailvideo_button_01' : 'exp_trailvideo_button_03';
-          pushDataLayer(eventName, 'Continue with Google', 'Button', $el('.crs_block h2').innerText.trim() + ` Unauthorised ${thisClass} class`);
+          pushDataLayer(eventName, 'Continue with Google', 'Button', 'Pop up ' + $el('.crs_block h2').innerText.trim() + ` Unauthorised ${thisClass} class`);
         })
 
         $el(".crs_btn_back").addEventListener("click", (e) => {
