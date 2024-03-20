@@ -467,7 +467,7 @@ window.onload = () => {
         const productResponse = await this.getFetch(`n/product/${productId}/verbosity/3`)
         const categoryFirstId = productResponse.result[0]?.categories?.first
         const categoryLastId = productResponse.result[0]?.categories?.last
-
+        
         const [categoryFResponse, categoryLResponse] = await Promise.all([
           this.getFetch(`n/category/${categoryFirstId}/verbosity/3`),
           this.getFetch(`n/category/${categoryLastId}/verbosity/3`)
@@ -748,7 +748,6 @@ window.onload = () => {
           this.getFetch(`n/product/${productId}/verbosity/3`),
           this.getFetch(`n/attribute/size/verbosity/3`)
         ])
-
         const hash = window.location.hash.substring(1)
         const params = new URLSearchParams(hash)
         const obj = {}
@@ -761,23 +760,6 @@ window.onload = () => {
         for (let param of params) {
           obj[param[0]] = +param[1]
         }
-        // get product color
-        const colors = []
-        const stockMap = {}
-        for (const item of productResponse.catalog) {
-          if (item.type === 'stock') {
-            stockMap[item.id] = item
-          }
-        }
-        productResponse.catalog.forEach(item => {
-          if (
-            item?.color &&
-            stockMap[item.id]?.isOutTemp === false &&
-            !colors.find(color => color.color === item.color)
-          ) {
-            colors.push({ id: item.id, color: item.color, image: item.image })
-          }
-        })
 
         // get product size
         const productSizesIds = productResponse.result[0].size
@@ -806,19 +788,19 @@ window.onload = () => {
         const availableSizes = productSizes.filter(size => {
           return products.find(product => {
             if (!selectedColor) {
-              return product.size === size.value;
+              return product.size === size.value
             } else {
-              return product.size === size.value && product.color === selectedColor;
+              return product.size === size.value && product.color === selectedColor
             }
-          });
-        });
-  
+          })
+        })
+
         const sizeChartHTML = /* HTML */ `
           <div class="crs-size-chart" data-id=${productId}>
             <style>
-              dialog:focus, dialog:focus-within {
+              dialog:focus,
+              dialog:focus-within {
                 outline: none;
-                
               }
               .crs-size-chart__btn {
                 margin-bottom: 20px;
@@ -1009,22 +991,19 @@ window.onload = () => {
                   .map(size => {
                     const product = products.find(item => {
                       if (!obj['selection.color']) {
-                        return item?.size === size.value;
+                        return item?.size === size.value
                       } else {
-                        return item.color === obj['selection.color'] && item.size === size.value;
+                        return item.color === obj['selection.color'] && item.size === size.value
                       }
                     })
-          
+
                     const qty = product?.qty
-        
+
                     const productStock = productResponse.catalog.find(
                       item => item.type === 'product' && item.id === product?.id
                     )
-                    
-                    const currentDate = new Date()
-                    const inStockDate = new Date(productStock.in_stock_date)
 
-                    const isSold = (!productStock?.in_stock_date || inStockDate < currentDate) && !qty
+                    const isSold = productStock.phase === 7002 && !qty
 
                     return /* HTML */ `
                       <li
@@ -1251,13 +1230,7 @@ window.onload = () => {
         $el('.crs-color-chart')?.remove()
         $el('.crs-stock__wrap')?.remove()
         $$el('#pdpConfigurableOptions h6').forEach(title => {
-          // if (title.textContent.toLowerCase().includes('colour')) {
-          //   let text = title.textContent.split(':')
-          //   title.innerHTML = `<span class="title_color">${text[0]}:</span> <span class="type_color">${text[1]}</span>`
-          //   title.parentElement.insertAdjacentHTML('afterend', colorChartHTML)
-          // }
           if (title.textContent.toLowerCase().includes('size')) {
-            // title.parentElement.style.display = 'none'
             title.parentElement.insertAdjacentHTML('afterend', sizeChartHTML)
 
             title.parentElement.insertAdjacentHTML('afterend', inStock)
