@@ -2894,7 +2894,8 @@
         `[data-popup="${this.dataPopup}"]`,
         "exp_exitintent_section_01",
         "Section",
-        "Exit intent pop-up empty cart Don’t leave just yet! Get 5% Off Your Purchase Now!"
+        "Exit intent pop-up empty cart Don’t leave just yet! Get 5% Off Your Purchase Now!",
+        0
       ), this.popup = document.querySelector(`[data-popup="${this.dataPopup}"]`), this.popup.addEventListener("click", async (r) => {
         if (r.target.closest("[data-popup-close]") && (this.hide(), V(
           "exp_exitintent_button_02",
@@ -3113,17 +3114,20 @@
         '[data-cart="more"]',
         "exp_exitintent_section_02",
         "Section",
-        "Exit intent pop-up filled cart You're Almost There! More 100 dollars"
+        "Exit intent pop-up filled cart You're Almost There! More 100 dollars",
+        0
       ), J(
         '[data-cart="less"]',
         "exp_exitintent_section_03",
         "Section",
-        "Exit intent pop-up filled cart You're Almost There! Less 100 dollars"
+        "Exit intent pop-up filled cart You're Almost There! Less 100 dollars",
+        0
       ), J(
         '[data-cart="more"]',
         "exp_exitintent_section_04",
         `${e.products.length}- section`,
-        "Exit intent pop-up filled cart You're Almost There! More 100 dollars"
+        "Exit intent pop-up filled cart You're Almost There! More 100 dollars",
+        0
       ), new $(".swiper", {
         modules: [Wt, Xt],
         direction: "horizontal",
@@ -3225,3 +3229,4 @@
   }
   new as().init();
 })();
+//# sourceMappingURL=index.js.map
