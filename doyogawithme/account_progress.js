@@ -771,7 +771,7 @@
           })
         } else if (isClass == 'Premium') {
           insert(
-            selector,
+            this.device == "mobile" ? selector.querySelector('h2') : selector,
             `<style>
                   .crs_browse_free {
                       color: var(--white, #FFF);
@@ -796,9 +796,14 @@
                   .path-become-a-subscriber .new_title_subscriber {
                       margin-bottom: 22px;
                   }
+                  @media(max-width: 767px) {
+                    a.crs_browse_free {
+                      margin: -4px auto 16px;
+                    }
+                  }
               </style>
               <a href="https://www.doyogawithme.com/yoga-classes?field_subscribers_only_value=1&sort_by=created" class="crs_browse_free">Browse free classes${dataIcons.arrowRight}</a>`,
-              this.device == "mobile" ? "afterbegin" : "beforeend"
+              this.device == "mobile" ? "afterend" : "beforeend"
           );
           $el('.crs_browse_free').addEventListener('click', () => {
             pushDataLayer('exp_trailvideo_button_09', 'Browse free classes', 'Button', 'Page Begin Your Transformation with a Free Trial of our Premium Yoga Classes Unauthorised Free class');
