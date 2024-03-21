@@ -798,7 +798,7 @@
                   }
                   @media(max-width: 767px) {
                     a.crs_browse_free {
-                      margin: -4px auto 16px;
+                      margin: -6px auto 16px;
                     }
                   }
               </style>
