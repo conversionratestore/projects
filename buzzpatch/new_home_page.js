@@ -814,7 +814,6 @@
   background-size: cover;\r
   z-index: -1;\r
   display: block !important;\r
-  will-change: transform;\r
 }\r
 .new_natpat_block p {\r
   color: #1f1f5b;\r
