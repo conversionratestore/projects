@@ -467,7 +467,7 @@ window.onload = () => {
         const productResponse = await this.getFetch(`n/product/${productId}/verbosity/3`)
         const categoryFirstId = productResponse.result[0]?.categories?.first
         const categoryLastId = productResponse.result[0]?.categories?.last
-        
+
         const [categoryFResponse, categoryLResponse] = await Promise.all([
           this.getFetch(`n/category/${categoryFirstId}/verbosity/3`),
           this.getFetch(`n/category/${categoryLastId}/verbosity/3`)
@@ -574,11 +574,6 @@ window.onload = () => {
                   line-height: 56px;
                   color: #212121;
                 }
-                .similar-products img {
-                  width: 100%;
-                  height: 500px;
-                  object-fit: cover;
-                }
                 .similar-products a[cy-listingproductname] {
                   display: block;
                   min-height: 60px;
@@ -631,7 +626,10 @@ window.onload = () => {
                                 ></i></span
                             ></action>
                           </div>
-                          <img src="/static/media/catalog/${product.image}" alt="${product.name}" />
+                          <img
+                            src="https://www.lemieux.com/tco-images/unsafe/342x456/filters:upscale():fill(white):format(webp):quality(70)/https://www.lemieux.com/static/media/catalog/${product.image}"
+                            alt="${product.name}"
+                          />
                           <h3>${product.name}</h3>
                           <div>${product.color?.length || 1} colours</div>
                           <p>${priceVariant(product.price)}</p>
