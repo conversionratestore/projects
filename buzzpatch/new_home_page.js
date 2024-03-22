@@ -1385,7 +1385,12 @@ footer {\r
   }\r
 \r
   .new_science_block {\r
-    padding: 30px 0 50px !important;\r
+    border-bottom: 40px solid transparent;\r
+    border-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bdr_white_bot_mob.png)\r
+      65 round;\r
+    background-clip: padding-box;\r
+    padding: 30px 0 40px !important;\r
+    margin-bottom: -40px;\r
   }\r
   .new_science_block .content_wrapper {\r
     flex-direction: column;\r
