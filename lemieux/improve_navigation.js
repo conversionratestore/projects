@@ -493,6 +493,7 @@ window.onload = () => {
         if (!productResponse || !categoryResponse) return
         const filteredCatalog = categoryResponse.catalog.filter(item => item.type === 'product')
         let filteredArray = filteredCatalog
+          .filter(value => value.color_org === productResponse.result[0].color_org)
           .filter((value, index, self) => {
             let words = value.name.split(' ').slice(0, 2).join(' ')
             return (
@@ -580,7 +581,7 @@ window.onload = () => {
                 }
               }
             </style>
-            <h2>Similar items</h2>
+            <h2>Similar items in this category</h2>
             <div class="swiper">
               <div class="swiper-wrapper">
                 ${filteredArray
