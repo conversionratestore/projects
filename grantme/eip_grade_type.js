@@ -2125,7 +2125,7 @@
           G(".notify").elements[0].remove();
         }, 3e3), Ne(
           `exp_eip_grade_type_submit_form_${this.userType}_${this.grade}`,
-          `Email: ${O[0].value}, Phone: ${O[1].value}`,
+          `Email: ${O.elements[0].value}, Phone: ${O.elements[1].value}`,
           "submit",
           "Second Popup"
         ));
