@@ -490,10 +490,9 @@ window.onload = () => {
           }
         }
 
-        if (!productResponse || !categoryResponse) return
+        if (!productResponse?.result || !categoryResponse?.catalog) return
         const filteredCatalog = categoryResponse.catalog.filter(item => item.type === 'product')
         let filteredArray = filteredCatalog
-          .filter(value => value.color_org === productResponse.result[0].color_org)
           .filter((value, index, self) => {
             let words = value.name.split(' ').slice(0, 2).join(' ')
             return (
