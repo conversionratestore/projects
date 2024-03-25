@@ -1,51 +1,51 @@
-(function(){"use strict";try{if(typeof document<"u"){var t=document.createElement("style");t.appendChild(document.createTextNode('@media (min-width: 1000px){div:has(>.o-sidebar__panel){display:none}}body{overflow-x:clip!important}.page,.o-sidebar--scrollable{overflow:clip!important}div:has(>.o-sidebar__workflow){flex:0 0 100%;max-width:100%}@media (min-width: 1800px){div:has(>.o-sidebar__workflow){max-width:80%}}@media (min-width: 1800px){.offset-xl-1{margin-right:8.3333333333%}}div:has(>.filter-nav){display:none}.configurator__step{margin-bottom:30px}.crs-window+div{display:grid;grid-template-columns:1fr 470px;grid-template-rows:auto auto;gap:0 18px}@media (max-width: 1280px){.crs-window+div{display:block;grid-template-columns:1fr}}.crs-window+div>.configurator__step{grid-column:1 / 2}.crs-window+div>.configurator__step:first-of-type{grid-row:1 / 2}.crs-window+div>.configurator__step:last-of-type{grid-row:2 / 3}.crs-window+div>.roller-container{grid-column:2 / 3;grid-row:1 / 3;margin:50px 0 0}.container--capped-fluid-with-gutter>div{justify-content:center!important}.flickity-viewport .flickity-slider>div:nth-child(2){left:463px!important}@media screen and (max-width: 768px){.flickity-viewport .flickity-slider>div:nth-child(2){left:262px!important}}.flickity-viewport .flickity-slider>div:nth-child(3){left:926px!important}@media screen and (max-width: 768px){.flickity-viewport .flickity-slider>div:nth-child(3){left:524px!important}}.flickity-viewport .flickity-slider>div>button{padding:0;width:-moz-max-content;width:max-content}@media screen and (max-width: 768px){.flickity-viewport .flickity-slider>div{width:246px}}.configurator__step [data-carousel]{gap:43px;flex-wrap:nowrap;justify-content:flex-start!important;align-items:center;height:270px}@media screen and (max-width: 768px){.configurator__step [data-carousel]{height:auto}}@media (max-width: 1440px){.configurator__step [data-carousel]{gap:20px}}.configurator__step [data-carousel] button.selectable-item{border:solid 2px #868ea5;box-shadow:none}.configurator__step [data-carousel] button.selectable-item.is-selected{border:solid 2px #e83b68}.configurator__step [data-carousel] .selectable-item{padding:0}@media screen and (max-width: 768px){.configurator__step [data-carousel] .selectable-item{height:100%}}.configurator__step [data-carousel] .customiser-card{display:grid;grid-template-columns:246px;grid-template-rows:207px 70px 1fr;padding:0}@media screen and (min-width: 768px){.configurator__step [data-carousel] .customiser-card{width:400px;height:243px;gap:15px 13px;grid-template-columns:50% 50%;grid-template-rows:3rem 1fr}}.configurator__step [data-carousel] .customiser-card .customiser-card__image{grid-column:1 / 2;grid-row:1 / 3;justify-content:center;align-self:center;margin:0;height:100%;width:100%;background-position:-73px -27px;background-size:365px}.configurator__step [data-carousel] .customiser-card .customiser-card__image img{display:none}@media screen and (max-width: 768px){.configurator__step [data-carousel] .customiser-card .customiser-card__image{grid-column:1 / 2;grid-row:1 / 2;height:100%;width:100%}}.configurator__step [data-carousel] .customiser-card .customiser-card__content{grid-column:2 / 3;grid-row:1 / 2;padding-top:14px;width:190px}@media screen and (max-width: 768px){.configurator__step [data-carousel] .customiser-card .customiser-card__content{grid-column:1 / 2;grid-row:2 / 3;padding:14px;width:100%}}.configurator__step [data-carousel] .customiser-card .customiser-card__content h4{font-size:14px;font-weight:700;line-height:22px;text-align:left;color:#444c5f}@media screen and (max-width: 768px){.configurator__step [data-carousel] .customiser-card .customiser-card__content h4{font-size:16px;font-weight:700;line-height:22px}}.configurator__step [data-carousel] .customiser-card .customiser-card__content h5{font-size:14px;font-weight:700;line-height:20px;text-align:left;color:#e83b68}.configurator__step [data-carousel] .customiser-card .customiser-card__attributes{grid-column:2 / 3;grid-row:2 / 3;margin:0;width:190px}@media screen and (max-width: 768px){.configurator__step [data-carousel] .customiser-card .customiser-card__attributes{grid-column:1 / 2;grid-row:3 / 4;padding:14px;width:90%}}.configurator__step [data-carousel] .customiser-card .customiser-card__attributes ul{display:grid;gap:4px}.configurator__step [data-carousel] .customiser-card .customiser-card__attributes ul li{font-size:14px;line-height:20px;text-align:left;color:#444c5f}.crs-blockout .customiser-card__image{background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/blockout.webp)}.crs-light-filtering .customiser-card__image{background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/light.webp)}.crs-sunscreen .customiser-card__image{background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/sunscreen.webp)}.crs-window__fill svg{width:100%;height:100%}.crs-window{display:grid;gap:1rem;grid-template-columns:100%;grid-template-rows:3rem max-content 1fr;height:100%;margin-bottom:10px}@media (min-width: 1280px){.crs-window{grid-template-columns:700px 1fr;grid-template-rows:3rem 1fr;height:720px}}@media (min-width: 1440px){.crs-window{grid-template-columns:818px 1fr;height:758px}}.crs-window .configurator__step-heading{grid-column:1 / 3;grid-row:1 / 2}@media (max-width: 1000px){.crs-window .configurator__step-heading{grid-column:1 / 2;grid-row:1/2}}.crs-window .crs-window__show{position:sticky;top:50px;grid-column:1 / 2;grid-row:2 / 3;width:calc(100% + 30px);z-index:5;height:242px;margin-left:-14px}.crs-window .crs-window__show .crs-window__image{overflow:hidden;width:100%;height:100%;background-size:400px;background-position:-12px -26px;background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/light.webp)}@media screen and (min-width: 380px){.crs-window .crs-window__show .crs-window__image{background-size:450px}}@media screen and (min-width: 450px){.crs-window .crs-window__show .crs-window__image{width:100%;height:100%;background-size:599px;background-position:-35px -50px}}@media screen and (min-width: 600px){.crs-window .crs-window__show .crs-window__image{width:100%;height:100%;background-size:121%;background-position:35% 26%}}@media (min-width: 380px){.crs-window .crs-window__show{height:269px}}@media (min-width: 450px){.crs-window .crs-window__show{height:390px}}@media (min-width: 600px){.crs-window .crs-window__show{width:600px;height:420px;margin:0 auto}}@media (min-width: 800px){.crs-window .crs-window__show{top:0;width:818px;height:693px;position:relative;z-index:0;justify-self:center;margin:0 auto}}@media (min-width: 1000px){.crs-window .crs-window__show{width:685px;height:604px}}@media (min-width: 1440px){.crs-window .crs-window__show{width:818px;height:693px}}.crs-window .crs-window__show .crs-window__fill{position:absolute;top:32px;left:100px;width:179px}@media screen and (min-width: 380px){.crs-window .crs-window__show .crs-window__fill{top:40px;left:113px;width:202px}}@media screen and (min-width: 450px){.crs-window .crs-window__show .crs-window__fill{top:38px;left:131px;width:269px}}@media screen and (min-width: 600px){.crs-window .crs-window__show .crs-window__fill{top:27px;left:159px;width:325px}}@media (min-width: 800px){.crs-window .crs-window__show .crs-window__fill{top:68px;left:217px;width:443px}}@media (min-width: 1000px){.crs-window .crs-window__show .crs-window__fill{top:62px;left:180px;width:372px}}@media (min-width: 1440px){.crs-window .crs-window__show .crs-window__fill{top:68px;left:215px;width:443px}}.crs-window .row.small-gutters.row-gutters{grid-column:2 / 3;grid-row:2 / 3;height:-moz-max-content;height:max-content}@media (max-width: 1280px){.crs-window .row.small-gutters.row-gutters{grid-column:1 / 2;grid-row:3 / 4}}.crs-window .row.small-gutters.row-gutters>div:last-of-type{height:100%;margin-bottom:30px}@media (min-width: 1000px){.crs-window .row.small-gutters.row-gutters>div:last-of-type{height:100%;overflow-x:hidden}}@media (min-width: 1280px){.crs-window .row.small-gutters.row-gutters>div:last-of-type{overflow-y:auto;margin-bottom:0;height:481px}}@media (min-width: 1440px){.crs-window .row.small-gutters.row-gutters>div:last-of-type{height:571px}}.crs-window .row.small-gutters.row-gutters .card-grid{height:100%;align-content:flex-start;max-height:1010px;margin-top:18px;justify-content:center;overflow:hidden;padding-top:18px}.crs-window .row.small-gutters.row-gutters .card-grid.show-more{max-height:100%}.crs-window .row.small-gutters.row-gutters .card-grid.show-more:focus{outline:none}.crs-window .row.small-gutters.row-gutters .card-grid.show-more+.crs-show-more svg{transform:rotate(180deg)}@media (min-width: 563px){.crs-window .row.small-gutters.row-gutters .card-grid{max-height:415px}}@media (min-width: 1000px){.crs-window .row.small-gutters.row-gutters .card-grid{max-height:420px}}@media (min-width: 1280px){.crs-window .row.small-gutters.row-gutters .card-grid{justify-content:flex-start;max-height:-moz-max-content;max-height:max-content;height:-moz-max-content;height:max-content}}.crs-window .row.small-gutters.row-gutters .card-grid li{max-width:-moz-max-content;max-width:max-content}.crs-window .row.small-gutters.row-gutters .card-grid li:first-child{position:relative}.crs-window .row.small-gutters.row-gutters .card-grid li:first-child button.selectable-item:before{content:"MOST POPULAR";position:absolute;display:flex;align-items:center;justify-content:center;color:#fff;top:-21px;left:0;height:21px;width:162px;background:#e83b68;font-size:10px;line-height:15px;font-weight:700;border-right:2px solid rgb(203 204 209)}.crs-window .row.small-gutters.row-gutters .card-grid li:first-child button.selectable-item.is-selected:before{border:2px solid #e83b68;left:-2px}.crs-window .row.small-gutters.row-gutters .card-grid li:has(.selectable-item){height:-moz-max-content;height:max-content}.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item{width:162px;height:190px;padding:14px 33px}.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item article{padding:0;display:flex;flex-direction:column;gap:4px}.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item article header{margin:0}.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item article h4{font-size:12px;font-weight:700;line-height:15px;text-align:center;color:#444c5f}.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item article p{font-size:12px;line-height:15px;text-align:center;color:#adb4c1}@media (min-width: 1000px){.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item{width:162px;height:192px;padding:14px 33px}}.customiser-card--fabric .customiser-card__header,.customiser-card--fabric header{height:auto;width:auto}.customiser-card--fabric footer{display:none}.roller-container{background:#fff;position:sticky;height:-moz-max-content;height:max-content;z-index:1;top:120px;padding:20px;flex-direction:column;justify-content:center;align-items:center}@media (max-width: 1000px){.roller-container{position:static;top:0;padding:0}}.roller-container>div{margin:0;padding:0}.roller{height:-moz-max-content;height:max-content;max-width:100%}.roller .cart-title__image{display:flex!important;justify-content:center}.roller .cart-title__text{display:flex;justify-content:space-between;align-items:center}@media (max-width: 768px){.roller .cart-title__text{padding:0 15px}}.roller .cart-title__text h4{margin:0;color:var(--Text, #444c5f);font-family:Libre Franklin;font-size:16px;font-weight:700;line-height:22px}.roller .cart-title__text .crs-badges{display:flex;justify-content:center;align-items:center;gap:15px}@media (max-width: 768px){.roller .cart-title__text .crs-badges{gap:10px}}.roller .cart-title__text .crs-badges span{width:45px}.roller .cart-summary,.roller .cart-summary *{font-size:12px;line-height:18px}.roller .cart-summary .features-list__attributes button{color:var(--Text, #444c5f);font-weight:700}.roller .crs-window__show{position:relative;width:430px;height:300px}@media (max-width: 500px){.roller .crs-window__show{width:300px;height:260px}}.roller .crs-window__show .crs-window__fill{position:absolute;width:208px;top:47px;left:109px}@media (max-width: 500px){.roller .crs-window__show .crs-window__fill{width:208px;top:41px;left:36px}}@media (max-width: 370px){.roller .crs-window__show .crs-window__fill{width:166px;top:32px;left:76px}}.roller .crs-window__show .crs-window__image{background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/light.webp);max-width:100%;background-size:465px;background-position:57% 13%;width:100%;height:100%}@media (max-width: 370px){.roller .crs-window__show .crs-window__image{background-size:348px;background-position:-29px -22px;background-size:372px}}.roller .features-list>li:has(>ul):has(>h3){display:grid;grid-template-columns:1fr 112px;grid-template-rows:1fr 1fr}.roller .features-list>li:has(>ul):has(>h3) h3{grid-column:1 / 2;grid-row:1 / 2}.roller .features-list>li:has(>ul):has(>h3) ul{grid-column:1 / 2;grid-row:2 / 3}.roller .features-list>li:has(>ul):has(>h3)>div{grid-column:2 / 3;grid-row:1 / 3;margin:0;padding-left:20px;border-left:1px solid #dddee9}.add-to-cart{padding:20px;height:-moz-max-content;height:max-content}.add-to-cart .cart-totals__total{display:flex;align-items:center;gap:16px}.add-to-cart .cart-totals__total small{color:var(--Text, #444c5f);font-family:Libre Franklin;font-size:14px;font-style:normal;font-weight:400;line-height:20px}.add-to-cart .cart-totals__total dt,.add-to-cart .cart-totals__footer{display:none}.o-sidebar__panel-content>.row>div{display:none}.cart-totals__footer{display:none}.measure-panel__howto>a{display:none!important}.measure-panel__howto{position:static!important}.measure-panel__howto .crs-measure{display:grid;grid-template-columns:32px 1fr 1fr;gap:14px;align-items:center;width:100%;padding:16px 24px;box-shadow:2px 2px #2e354733;background-color:#fff;margin-bottom:39px}@media screen and (max-width: 768px){.measure-panel__howto .crs-measure{grid-template-columns:32px 1fr;grid-template-rows:1fr 1fr;gap:0 14px}}.measure-panel__howto .crs-measure .icon{grid-column:1 / 2;width:32px;height:32px}@media screen and (max-width: 768px){.measure-panel__howto .crs-measure .icon{grid-column:1 / 2;grid-row:1 / 3}}.measure-panel__howto .crs-measure .title{grid-column:2 / 3;color:var(--Text, #444c5f);font-family:Libre Franklin;font-size:16px;font-weight:700;line-height:22px}@media screen and (max-width: 768px){.measure-panel__howto .crs-measure .title{grid-column:2 / 3;grid-row:1 / 2}}.measure-panel__howto .crs-measure .link{grid-column:3 / 4;justify-self:end;display:block;width:184px;border-radius:40px;border:1.5px solid #ee8fa9;padding:12px;color:var(--Primary, #e83b68);text-align:center;font-family:Libre Franklin;font-size:14px;font-style:normal;font-weight:700;line-height:20px}@media screen and (max-width: 768px){.measure-panel__howto .crs-measure .link{border:none;padding:0;grid-column:2 / 3;grid-row:2 / 3;justify-self:start;text-align:left;text-decoration:underline}}h3:has(.round-number){font-family:Libre Franklin;font-size:24px;font-weight:700;line-height:32px;margin-bottom:16px}h3:has(.round-number) span:not(.round-number){font-size:inherit;line-height:inherit;font-weight:inherit}@media screen and (max-width: 768px){h3:has(.round-number){display:flex;font-size:20px;font-weight:700;line-height:28px}h3:has(.round-number) .round-number{aspect-ratio:1}}.step-desc{color:var(--www-diyblinds-com-au-blinds-roller-blinds-order-39028570556640625-x-844-default-river-bed, #444c5f);font-family:Libre Franklin;font-size:16px;font-style:normal;font-weight:400;line-height:22px}.crs-show-more{display:block;margin-top:16px;display:flex;justify-content:center;padding:5px;width:100%}.crs-show-more button{color:var(--Text, #444c5f);font-family:Libre Franklin;font-size:14px;font-style:normal;font-weight:700;line-height:20px;text-decoration-line:underline}.crs-show-more button:focus{outline:none}@media screen and (min-width: 1280px){.crs-show-more{display:none}}.crs-preview-text{font-family:Libre Franklin;margin-bottom:30px}.crs-preview-text .title{color:var(--www-diyblinds-com-au-blinds-roller-blinds-order-39028570556640625-x-844-default-river-bed, #444c5f);font-size:30px;font-weight:700;line-height:38px;margin:0 0 10px}@media screen and (max-width: 768px){.crs-preview-text .title{font-size:20px;line-height:28px}}.crs-preview-text .desc{color:var(--www-diyblinds-com-au-blinds-roller-blinds-order-39028570556640625-x-844-default-river-bed, #444c5f);font-size:16px;font-weight:400;line-height:22px}.crs-select-color{color:var(--www-diyblinds-com-au-blinds-roller-blinds-order-39028570556640625-x-844-default-river-bed, #444c5f);font-family:Libre Franklin;font-size:20px;font-weight:700;line-height:28px;margin-bottom:8px}@media screen and (max-width: 768px){.crs-select-color{margin-bottom:16px}}@media screen and (max-width: 768px){h4:has(+.card-grid){color:var(--www-diyblinds-com-au-blinds-roller-blinds-order-39028570556640625-x-844-default-river-bed, #444c5f);font-family:Libre Franklin;font-size:14px;font-weight:700;line-height:20px;margin-top:13px}}.configurator__step .step-desc br{content:" ";display:block;height:16px}.handheld-action.is-floating{z-index:5!important}.dot.is-selected{background:#444c5f}')),document.head.appendChild(t)}}catch(i){console.error("vite-plugin-css-injected-by-js",i)}})();
+(function(){"use strict";try{if(typeof document<"u"){var t=document.createElement("style");t.id="style-injected-by-js",t.appendChild(document.createTextNode('body{overflow-x:clip!important}.page,.o-sidebar--scrollable{overflow:clip!important}div:has(>.filter-nav){display:none}.configurator__step{margin-bottom:30px}.crs-window+div{display:grid;grid-template-columns:1fr 470px;grid-template-rows:auto auto;gap:0 18px}@media (max-width: 1280px){.crs-window+div{display:block;grid-template-columns:1fr}}.crs-window+div>.configurator__step{grid-column:1 / 2}.crs-window+div>.configurator__step:first-of-type{grid-row:1 / 2}.crs-window+div>.configurator__step:last-of-type{grid-row:2 / 3}.crs-window+div>.roller-container{grid-column:2 / 3;grid-row:1 / 3;margin:50px 0 0}.container--capped-fluid-with-gutter>div{justify-content:center!important}.flickity-viewport .flickity-slider>div:nth-child(2){left:463px!important}@media screen and (max-width: 768px){.flickity-viewport .flickity-slider>div:nth-child(2){left:262px!important}}.flickity-viewport .flickity-slider>div:nth-child(3){left:926px!important}@media screen and (max-width: 768px){.flickity-viewport .flickity-slider>div:nth-child(3){left:524px!important}}.flickity-viewport .flickity-slider>div>button{padding:0;width:-moz-max-content;width:max-content}@media screen and (max-width: 768px){.flickity-viewport .flickity-slider>div{width:246px}}.configurator__step [data-carousel]{gap:43px;flex-wrap:nowrap;justify-content:flex-start!important;align-items:center;height:270px}@media screen and (max-width: 768px){.configurator__step [data-carousel]{height:auto}}@media (max-width: 1440px){.configurator__step [data-carousel]{gap:20px}}.configurator__step [data-carousel] button.selectable-item{border:solid 2px #868ea5;box-shadow:none}.configurator__step [data-carousel] button.selectable-item.is-selected{border:solid 2px #e83b68}.configurator__step [data-carousel] .selectable-item{padding:0}@media screen and (max-width: 768px){.configurator__step [data-carousel] .selectable-item{height:100%}}.configurator__step [data-carousel] .customiser-card{display:grid;grid-template-columns:246px;grid-template-rows:207px 70px 1fr;padding:0}@media screen and (min-width: 768px){.configurator__step [data-carousel] .customiser-card{width:400px;height:243px;gap:15px 13px;grid-template-columns:50% 50%;grid-template-rows:3rem 1fr}}.configurator__step [data-carousel] .customiser-card .customiser-card__image{grid-column:1 / 2;grid-row:1 / 3;justify-content:center;align-self:center;margin:0;height:100%;width:100%;background-position:-73px -27px;background-size:365px}.configurator__step [data-carousel] .customiser-card .customiser-card__image img{display:none}@media screen and (max-width: 768px){.configurator__step [data-carousel] .customiser-card .customiser-card__image{grid-column:1 / 2;grid-row:1 / 2;height:100%;width:100%}}.configurator__step [data-carousel] .customiser-card .customiser-card__content{grid-column:2 / 3;grid-row:1 / 2;padding-top:14px;width:190px}@media screen and (max-width: 768px){.configurator__step [data-carousel] .customiser-card .customiser-card__content{grid-column:1 / 2;grid-row:2 / 3;padding:14px;width:100%}}.configurator__step [data-carousel] .customiser-card .customiser-card__content h4{font-size:14px;font-weight:700;line-height:22px;text-align:left;color:#444c5f}@media screen and (max-width: 768px){.configurator__step [data-carousel] .customiser-card .customiser-card__content h4{font-size:16px;font-weight:700;line-height:22px}}.configurator__step [data-carousel] .customiser-card .customiser-card__content h5{font-size:14px;font-weight:700;line-height:20px;text-align:left;color:#e83b68}.configurator__step [data-carousel] .customiser-card .customiser-card__attributes{grid-column:2 / 3;grid-row:2 / 3;margin:0;width:190px}@media screen and (max-width: 768px){.configurator__step [data-carousel] .customiser-card .customiser-card__attributes{grid-column:1 / 2;grid-row:3 / 4;padding:14px;width:90%}}.configurator__step [data-carousel] .customiser-card .customiser-card__attributes ul{display:grid;gap:4px}.configurator__step [data-carousel] .customiser-card .customiser-card__attributes ul li{font-size:14px;line-height:20px;text-align:left;color:#444c5f}.crs-blockout .customiser-card__image{background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/blockout.webp)}.crs-light-filtering .customiser-card__image{background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/light.webp)}.crs-sunscreen .customiser-card__image{background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/sunscreen.webp)}.crs-window__fill svg{width:100%;height:100%}.crs-window{display:grid;gap:1rem;grid-template-columns:100%;grid-template-rows:3rem max-content 1fr;height:100%;margin-bottom:10px}@media (min-width: 1280px){.crs-window{grid-template-columns:700px 1fr;grid-template-rows:3rem 1fr;height:720px}}@media (min-width: 1440px){.crs-window{grid-template-columns:818px 1fr;height:758px}}.crs-window .configurator__step-heading{grid-column:1 / 3;grid-row:1 / 2}@media (max-width: 1000px){.crs-window .configurator__step-heading{grid-column:1 / 2;grid-row:1/2}}.crs-window .crs-window__show{position:sticky;top:50px;grid-column:1 / 2;grid-row:2 / 3;width:calc(100% + 30px);z-index:5;height:242px;margin-left:-14px}.crs-window .crs-window__show .crs-window__image{overflow:hidden;width:100%;height:100%;background-size:400px;background-position:-12px -26px;background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/light.webp)}@media screen and (min-width: 380px){.crs-window .crs-window__show .crs-window__image{background-size:450px}}@media screen and (min-width: 450px){.crs-window .crs-window__show .crs-window__image{width:100%;height:100%;background-size:599px;background-position:-35px -50px}}@media screen and (min-width: 600px){.crs-window .crs-window__show .crs-window__image{width:100%;height:100%;background-size:121%;background-position:35% 26%}}@media (min-width: 380px){.crs-window .crs-window__show{height:269px}}@media (min-width: 450px){.crs-window .crs-window__show{height:390px}}@media (min-width: 600px){.crs-window .crs-window__show{width:600px;height:420px;margin:0 auto}}@media (min-width: 800px){.crs-window .crs-window__show{top:0;width:818px;height:693px;position:relative;z-index:0;justify-self:center;margin:0 auto}}@media (min-width: 1000px){.crs-window .crs-window__show{width:685px;height:604px}}@media (min-width: 1440px){.crs-window .crs-window__show{width:818px;height:693px}}.crs-window .crs-window__show .crs-window__fill{position:absolute;top:32px;left:100px;width:179px}@media screen and (min-width: 380px){.crs-window .crs-window__show .crs-window__fill{top:40px;left:113px;width:202px}}@media screen and (min-width: 450px){.crs-window .crs-window__show .crs-window__fill{top:38px;left:131px;width:269px}}@media screen and (min-width: 600px){.crs-window .crs-window__show .crs-window__fill{top:27px;left:159px;width:325px}}@media (min-width: 800px){.crs-window .crs-window__show .crs-window__fill{top:68px;left:217px;width:443px}}@media (min-width: 1000px){.crs-window .crs-window__show .crs-window__fill{top:62px;left:180px;width:372px}}@media (min-width: 1440px){.crs-window .crs-window__show .crs-window__fill{top:68px;left:215px;width:443px}}.crs-window .row.small-gutters.row-gutters{grid-column:2 / 3;grid-row:2 / 3;height:-moz-max-content;height:max-content}@media (max-width: 1280px){.crs-window .row.small-gutters.row-gutters{grid-column:1 / 2;grid-row:3 / 4}}.crs-window .row.small-gutters.row-gutters>div:last-of-type{height:100%;margin-bottom:30px}@media (min-width: 1000px){.crs-window .row.small-gutters.row-gutters>div:last-of-type{height:100%;overflow-x:hidden}}@media (min-width: 1280px){.crs-window .row.small-gutters.row-gutters>div:last-of-type{overflow-y:auto;margin-bottom:0;height:481px}}@media (min-width: 1440px){.crs-window .row.small-gutters.row-gutters>div:last-of-type{height:571px}}.crs-window .row.small-gutters.row-gutters .card-grid{height:100%;align-content:flex-start;max-height:1010px;margin-top:18px;justify-content:center;overflow:hidden;padding-top:18px}.crs-window .row.small-gutters.row-gutters .card-grid.show-more{max-height:100%}.crs-window .row.small-gutters.row-gutters .card-grid.show-more:focus{outline:none}.crs-window .row.small-gutters.row-gutters .card-grid.show-more+.crs-show-more svg{transform:rotate(180deg)}@media (min-width: 563px){.crs-window .row.small-gutters.row-gutters .card-grid{max-height:415px}}@media (min-width: 1000px){.crs-window .row.small-gutters.row-gutters .card-grid{max-height:420px}}@media (min-width: 1280px){.crs-window .row.small-gutters.row-gutters .card-grid{justify-content:flex-start;max-height:-moz-max-content;max-height:max-content;height:-moz-max-content;height:max-content}}.crs-window .row.small-gutters.row-gutters .card-grid li{max-width:-moz-max-content;max-width:max-content}.crs-window .row.small-gutters.row-gutters .card-grid li:first-child{position:relative}.crs-window .row.small-gutters.row-gutters .card-grid li:first-child button.selectable-item:before{content:"MOST POPULAR";position:absolute;display:flex;align-items:center;justify-content:center;color:#fff;top:-21px;left:0;height:21px;width:162px;background:#e83b68;font-size:10px;line-height:15px;font-weight:700;border-right:2px solid rgb(203 204 209)}.crs-window .row.small-gutters.row-gutters .card-grid li:first-child button.selectable-item.is-selected:before{border:2px solid #e83b68;left:-2px}.crs-window .row.small-gutters.row-gutters .card-grid li:has(.selectable-item){height:-moz-max-content;height:max-content}.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item{width:162px;height:190px;padding:14px 33px}.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item article{padding:0;display:flex;flex-direction:column;gap:4px}.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item article header{margin:0}.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item article h4{font-size:12px;font-weight:700;line-height:15px;text-align:center;color:#444c5f}.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item article p{font-size:12px;line-height:15px;text-align:center;color:#adb4c1}@media (min-width: 1000px){.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item{width:162px;height:192px;padding:14px 33px}}.customiser-card--fabric .customiser-card__header,.customiser-card--fabric header{height:auto;width:auto}.customiser-card--fabric footer{display:none}.roller-container{background:#fff;position:sticky;height:-moz-max-content;height:max-content;z-index:1;top:120px;padding:20px;flex-direction:column;justify-content:center;align-items:center}@media (max-width: 1000px){.roller-container{position:static;top:0;padding:0}}.roller-container>div{margin:0;padding:0}.roller{height:-moz-max-content;height:max-content;max-width:100%}.roller .cart-title__image{display:flex!important;justify-content:center}.roller .cart-title__text{display:flex;justify-content:space-between;align-items:center}@media (max-width: 768px){.roller .cart-title__text{padding:0 15px}}.roller .cart-title__text h4{margin:0;color:var(--Text, #444c5f);font-family:Libre Franklin;font-size:16px;font-weight:700;line-height:22px}.roller .cart-title__text .crs-badges{display:flex;justify-content:center;align-items:center;gap:15px}@media (max-width: 768px){.roller .cart-title__text .crs-badges{gap:10px}}.roller .cart-title__text .crs-badges span{width:45px}.roller .cart-summary,.roller .cart-summary *{font-size:12px;line-height:18px}.roller .cart-summary .features-list__attributes button{color:var(--Text, #444c5f);font-weight:700}.roller .crs-window__show{position:relative;width:430px;height:300px}@media (max-width: 500px){.roller .crs-window__show{width:300px;height:260px}}.roller .crs-window__show .crs-window__fill{position:absolute;width:208px;top:47px;left:109px}@media (max-width: 500px){.roller .crs-window__show .crs-window__fill{width:208px;top:41px;left:36px}}@media (max-width: 370px){.roller .crs-window__show .crs-window__fill{width:166px;top:32px;left:76px}}.roller .crs-window__show .crs-window__image{background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/light.webp);max-width:100%;background-size:465px;background-position:57% 13%;width:100%;height:100%}@media (max-width: 370px){.roller .crs-window__show .crs-window__image{background-size:348px;background-position:-29px -22px;background-size:372px}}.roller .features-list>li:has(>ul):has(>h3){display:grid;grid-template-columns:1fr 112px;grid-template-rows:1fr 1fr}.roller .features-list>li:has(>ul):has(>h3) h3{grid-column:1 / 2;grid-row:1 / 2}.roller .features-list>li:has(>ul):has(>h3) ul{grid-column:1 / 2;grid-row:2 / 3}.roller .features-list>li:has(>ul):has(>h3)>div{grid-column:2 / 3;grid-row:1 / 3;margin:0;padding-left:20px;border-left:1px solid #dddee9}.add-to-cart{padding:20px;height:-moz-max-content;height:max-content}.add-to-cart .cart-totals__total{display:flex;align-items:center;gap:16px}.add-to-cart .cart-totals__total small{color:var(--Text, #444c5f);font-family:Libre Franklin;font-size:14px;font-style:normal;font-weight:400;line-height:20px}.add-to-cart .cart-totals__total dt,.add-to-cart .cart-totals__footer{display:none}.o-sidebar__panel-content>.row>div{display:none}.cart-totals__footer{display:none}.measure-panel__howto>a{display:none!important}.measure-panel__howto{position:static!important}.measure-panel__howto .crs-measure{display:grid;grid-template-columns:32px 1fr 1fr;gap:14px;align-items:center;width:100%;padding:16px 24px;box-shadow:2px 2px #2e354733;background-color:#fff;margin-bottom:39px}@media screen and (max-width: 768px){.measure-panel__howto .crs-measure{grid-template-columns:32px 1fr;grid-template-rows:1fr 1fr;gap:0 14px}}.measure-panel__howto .crs-measure .icon{grid-column:1 / 2;width:32px;height:32px}@media screen and (max-width: 768px){.measure-panel__howto .crs-measure .icon{grid-column:1 / 2;grid-row:1 / 3}}.measure-panel__howto .crs-measure .title{grid-column:2 / 3;color:var(--Text, #444c5f);font-family:Libre Franklin;font-size:16px;font-weight:700;line-height:22px}@media screen and (max-width: 768px){.measure-panel__howto .crs-measure .title{grid-column:2 / 3;grid-row:1 / 2}}.measure-panel__howto .crs-measure .link{grid-column:3 / 4;justify-self:end;display:block;width:184px;border-radius:40px;border:1.5px solid #ee8fa9;padding:12px;color:var(--Primary, #e83b68);text-align:center;font-family:Libre Franklin;font-size:14px;font-style:normal;font-weight:700;line-height:20px}@media screen and (max-width: 768px){.measure-panel__howto .crs-measure .link{border:none;padding:0;grid-column:2 / 3;grid-row:2 / 3;justify-self:start;text-align:left;text-decoration:underline}}h3:has(.round-number){font-family:Libre Franklin;font-size:24px;font-weight:700;line-height:32px;margin-bottom:16px}h3:has(.round-number) span:not(.round-number){font-size:inherit;line-height:inherit;font-weight:inherit}@media screen and (max-width: 768px){h3:has(.round-number){display:flex;font-size:20px;font-weight:700;line-height:28px}h3:has(.round-number) .round-number{aspect-ratio:1}}.step-desc{color:var(--www-diyblinds-com-au-blinds-roller-blinds-order-39028570556640625-x-844-default-river-bed, #444c5f);font-family:Libre Franklin;font-size:16px;font-style:normal;font-weight:400;line-height:22px}.crs-show-more{display:block;margin-top:16px;display:flex;justify-content:center;padding:5px;width:100%}.crs-show-more button{color:var(--Text, #444c5f);font-family:Libre Franklin;font-size:14px;font-style:normal;font-weight:700;line-height:20px;text-decoration-line:underline}.crs-show-more button:focus{outline:none}@media screen and (min-width: 1280px){.crs-show-more{display:none}}.crs-preview-text{font-family:Libre Franklin;margin-bottom:30px}.crs-preview-text .title{color:var(--www-diyblinds-com-au-blinds-roller-blinds-order-39028570556640625-x-844-default-river-bed, #444c5f);font-size:30px;font-weight:700;line-height:38px;margin:0 0 10px}@media screen and (max-width: 768px){.crs-preview-text .title{font-size:20px;line-height:28px}}.crs-preview-text .desc{color:var(--www-diyblinds-com-au-blinds-roller-blinds-order-39028570556640625-x-844-default-river-bed, #444c5f);font-size:16px;font-weight:400;line-height:22px}.crs-select-color{color:var(--www-diyblinds-com-au-blinds-roller-blinds-order-39028570556640625-x-844-default-river-bed, #444c5f);font-family:Libre Franklin;font-size:20px;font-weight:700;line-height:28px;margin-bottom:8px}@media screen and (max-width: 768px){.crs-select-color{margin-bottom:16px}}@media screen and (max-width: 768px){h4:has(+.card-grid){color:var(--www-diyblinds-com-au-blinds-roller-blinds-order-39028570556640625-x-844-default-river-bed, #444c5f);font-family:Libre Franklin;font-size:14px;font-weight:700;line-height:20px;margin-top:13px}}.configurator__step .step-desc br{content:" ";display:block;height:16px}.handheld-action.is-floating{z-index:5!important}.dot.is-selected{background:#444c5f}.cart-product__content .cart-product__image{width:115px;height:115px}.cart-product__content .crs-window__show{position:relative;width:115px;height:115px}@media (max-width: 1280px){.cart-product__content .crs-window__show{width:90px;height:90px}}.cart-product__content .crs-window__show .crs-window__fill{position:absolute;width:77px;top:17px;left:16px}@media (max-width: 1280px){.cart-product__content .crs-window__show .crs-window__fill{width:63px;top:13px;left:10px}}.cart-product__content .crs-window__show .crs-window__image{background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/light.webp);background-size:170px;background-position:57% 13%;width:100%;height:100%}@media (max-width: 1280px){.cart-product__content .crs-window__show .crs-window__image{background-size:140px}}')),document.head.appendChild(t)}}catch(i){console.error("vite-plugin-css-injected-by-js",i)}})();
 (function() {
   "use strict";
-  const b = (C, l, t, s = "") => {
+  const b = (e, l, t, s = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: C,
+      event_name: e,
       event_desc: l,
       event_type: t,
       event_loc: s
-    }), console.log(`Event: ${C} | ${l} | ${t} | ${s}`);
-  }, k = ({ name: C, dev: l }) => {
+    }), console.log(`Event: ${e} | ${l} | ${t} | ${s}`);
+  }, H = ({ name: e, dev: l }) => {
     console.log(
-      `%c EXP: ${C} (DEV: ${l})`,
+      `%c EXP: ${e} (DEV: ${l})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, v = (C, l, t, s, i = 3, c) => {
+  }, v = (e, l, t, s, i = 3, _) => {
     let a = new IntersectionObserver(
-      (o) => {
-        o.forEach((e) => {
-          e.isIntersecting && (a.unobserve(e.target), setTimeout(function() {
-            u.observe(e.target);
+      (C) => {
+        C.forEach((o) => {
+          o.isIntersecting && (a.unobserve(o.target), setTimeout(function() {
+            d.observe(o.target);
           }, 1e3 * i));
         });
       },
       {
         threshold: 0.5
       }
-    ), u = new IntersectionObserver((o) => {
-      o.forEach((e) => {
-        e.isIntersecting ? (b(
-          l || `view_element_${e.target.id}`,
+    ), d = new IntersectionObserver((C) => {
+      C.forEach((o) => {
+        o.isIntersecting ? (b(
+          l || `view_element_${o.target.id}`,
           t || `View element on screen (${i} sec or more)`,
           "view",
-          s || e.target.id
-        ), c && c(), a.unobserve(e.target)) : a.observe(e.target), u.unobserve(e.target);
+          s || o.target.id
+        ), _ && _(), a.unobserve(o.target)) : a.observe(o.target), d.unobserve(o.target);
       });
     });
-    document.querySelectorAll(C).forEach((o) => {
-      a.observe(o);
+    document.querySelectorAll(e).forEach((C) => {
+      a.observe(C);
     });
   };
-  function d(C) {
+  function f(e) {
     return new Promise((l) => {
-      if (document.querySelector(C))
-        return l(document.querySelector(C));
+      if (document.querySelector(e))
+        return l(document.querySelector(e));
       const t = new MutationObserver(() => {
-        document.querySelector(C) && (l(document.querySelector(C)), t.disconnect());
+        document.querySelector(e) && (l(document.querySelector(e)), t.disconnect());
       });
       t.observe(document.documentElement, {
         childList: !0,
@@ -54,11 +54,11 @@
       });
     });
   }
-  const f = (C) => document.querySelectorAll(C), r = (C) => document.querySelector(C), Z = (C) => {
+  const u = (e) => document.querySelectorAll(e), n = (e) => document.querySelector(e), Z = (e) => {
     let l = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(l), window.clarity("set", C, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(l), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, p = ({ url: C, fullSize: l = !1, opacity: t = 1 }) => l ? (
+  }, m = ({ url: e, fullSize: l = !1, opacity: t = 1 }) => l ? (
     /* HTML */
     `<svg
       width="1345"
@@ -77,7 +77,7 @@
         <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="0.992612" height="0.996911">
           <use xlink:href="#image0_26_6" transform="scale(0.000735268 0.000967875)" />
         </pattern>
-        <image id="image0_26_6" width="1350" height="1030" xlink:href="${C}" />
+        <image id="image0_26_6" width="1350" height="1030" xlink:href="${e}" />
       </defs>
     </svg>`
   ) : (
@@ -99,10 +99,10 @@
       <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="0.514688" height="0.677512">
         <use xlink:href="#image0_26_6" transform="scale(0.000735268 0.000967875)" />
       </pattern>
-      <image id="image0_26_6" width="700" height="700" xlink:href="${C}" />
+      <image id="image0_26_6" width="700" height="700" xlink:href="${e}" />
     </defs>
   </svg> `
-  ), H = [
+  ), x = [
     "skye_bo_swan",
     "chatsworth_bo_aztec",
     "chatsworth_bo_beluge",
@@ -205,7 +205,7 @@
     "jersey_lf_pavement_lf",
     "sanctuary_lf_lava_lf",
     "sanctuary_lf_ceramic_lf"
-  ], x = [
+  ], S = [
     "metro_lf_dove_white_lf",
     "linesque_lf_lily",
     "linesque_lf_oatcake",
@@ -229,7 +229,7 @@
     "serengetti_lf_jackal_lf",
     "serengetti_lf_mamba_lf",
     "serengetti_lf_panther_lf"
-  ], S = [
+  ], B = [
     "solar_view_white",
     "vivid_shade_silver__grey",
     "solar_view_black__copper",
@@ -244,7 +244,7 @@
     "one_screen_black",
     "solar_view_black",
     "vivid_shade_black"
-  ], B = [
+  ], F = [
     "one_screen_ice",
     "one_screen_white",
     "vivid_shade_white",
@@ -271,81 +271,80 @@
     "one_screen_mercury",
     "solar_view_charcoal",
     "one_screen_charcoal"
-  ], F = [
-    ...H.map((C) => ({
-      name: C,
+  ], g = [
+    ...x.map((e) => ({
+      name: e,
       opacity: 1,
       fullSize: !0
     })),
-    ...V.map((C) => ({
-      name: C,
+    ...V.map((e) => ({
+      name: e,
       opacity: 0.4,
       fullSize: !1
     })),
-    ...x.map((C) => ({
-      name: C,
+    ...S.map((e) => ({
+      name: e,
       opacity: 0.4,
       fullSize: !0
     })),
-    ...S.map((C) => ({
-      name: C,
+    ...B.map((e) => ({
+      name: e,
       opacity: 0.3,
       fullSize: !1
     })),
-    ...B.map((C) => ({
-      name: C,
+    ...F.map((e) => ({
+      name: e,
       opacity: 0.3,
       fullSize: !0
     }))
-  ], m = "https://conversionratestore.github.io/projects/diyblinds", q = [
+  ], p = "https://conversionratestore.github.io/projects/diyblinds", q = [
     "Choose 'Light Filtering' colour & fabric",
     "Choose 'Blockout' colour & fabric",
     "Choose 'Sunscreen' colour & fabric"
   ];
-  class g {
+  class M {
     constructor() {
-      this.allowEvent = !0;
     }
     render() {
       const l = (
         /* HTML */
         `<div class="crs-window__show">
-      <div class="crs-window__fill">${p({ url: `${m}/img/textures/qube_cross.jpg` })}</div>
+      <div class="crs-window__fill">${m({ url: `${p}/img/textures/qube_cross.jpg` })}</div>
       <div class="crs-window__image"></div>
     </div>`
       );
-      f(".configurator__step").forEach((t) => {
+      u(".configurator__step").forEach((t) => {
         var s;
         if (q.some((i) => t.textContent.includes(i))) {
           const i = t.querySelector(".row.small-gutters.row-gutters");
-          (s = i == null ? void 0 : i.closest(".configurator__step")) == null || s.classList.add("crs-window"), f(".crs-window__show").forEach((a) => {
+          (s = i == null ? void 0 : i.closest(".configurator__step")) == null || s.classList.add("crs-window"), u(".crs-window__show").forEach((a) => {
             a.remove();
           }), i == null || i.insertAdjacentHTML("beforebegin", l);
-          const c = setInterval(() => {
-            const a = r(".roller .cart-title__image");
-            a && (a.innerHTML = l, clearInterval(c));
+          const _ = setInterval(() => {
+            const a = n(".roller .cart-title__image");
+            a && (a.innerHTML = l, clearInterval(_));
           }, 10);
           t.addEventListener("click", (a) => {
-            var e;
-            const o = a.target.closest("button.selectable-item");
-            if (o) {
-              const _ = (e = o.querySelector("h4")) == null ? void 0 : e.innerHTML, h = _ == null ? void 0 : _.replace(/<br>| |\//g, "_").toLocaleLowerCase().trim(), n = F.find(({ name: L }) => L === h);
-              this.allowEvent, f(".crs-window__fill").forEach((L) => {
-                L.innerHTML = p({
-                  url: `${m}/img/textures/${h}.jpg`,
-                  opacity: (n == null ? void 0 : n.opacity) || 1,
-                  fullSize: (n == null ? void 0 : n.fullSize) || !1
+            var o;
+            const C = a.target.closest("button.selectable-item");
+            if (C) {
+              const r = (o = C.querySelector("h4")) == null ? void 0 : o.innerHTML, h = r == null ? void 0 : r.replace(/<br>| |\//g, "_").toLocaleLowerCase().trim(), c = g.find(({ name: w }) => w === h);
+              u(".crs-window__fill").forEach((w) => {
+                w.innerHTML = m({
+                  url: `${p}/img/textures/${h}.jpg`,
+                  opacity: (c == null ? void 0 : c.opacity) || 1,
+                  fullSize: (c == null ? void 0 : c.fullSize) || !1
                 });
               });
             }
           });
         }
       }), setTimeout(() => {
-        f(".filter-nav__item")[1].click();
+        u(".filter-nav__item")[1].click();
       }, 50);
     }
   }
-  const w = {
+  const L = {
     measure: (
       /* HTML */
       `
@@ -564,21 +563,21 @@
     </svg>
   `
     )
-  }, M = {
+  }, y = {
     mobile: "mobile",
     desktop: "desktop"
-  }, z = "https://conversionratestore.github.io/projects/diyblinds";
-  class y {
+  };
+  class k {
     constructor() {
-      this.device = window.innerWidth < 1e3 ? M.mobile : M.desktop;
+      this.device = window.innerWidth < 1e3 ? y.mobile : y.desktop;
     }
     init() {
-      var c, a, u;
-      f("h3").forEach((o) => {
-        var e;
-        (e = o.textContent) != null && e.includes("Choose your Roller Blind") && (o.innerHTML = /* HTML */
+      var _, a, d;
+      u("h3").forEach((C) => {
+        var o;
+        (o = C.textContent) != null && o.includes("Choose your Roller Blind") && (C.innerHTML = /* HTML */
         `<span class="round-number" style="background: #E83B68;">1</span>
-          <span>Select Roller Blind type</span>`, o.insertAdjacentHTML(
+          <span>Select Roller Blind type</span>`, C.insertAdjacentHTML(
           "beforebegin",
           /* HTML */
           `<div class="crs-preview-text">
@@ -586,14 +585,14 @@
           <span class="desc">Create your unique blinds with the help of our customization tool</span>
         </div>`
         ));
-      }), f(".configurator__step [data-carousel] .selectable-item").forEach((o) => {
-        var e, _, h;
-        (e = o.textContent) != null && e.includes("Light Filtering") && o.classList.add("crs-light-filtering"), (_ = o.textContent) != null && _.includes("Blockout") && o.classList.add("crs-blockout"), (h = o.textContent) != null && h.includes("Sunscreen") && o.classList.add("crs-sunscreen");
+      }), u(".configurator__step [data-carousel] .selectable-item").forEach((C) => {
+        var o, r, h;
+        (o = C.textContent) != null && o.includes("Light Filtering") && C.classList.add("crs-light-filtering"), (r = C.textContent) != null && r.includes("Blockout") && C.classList.add("crs-blockout"), (h = C.textContent) != null && h.includes("Sunscreen") && C.classList.add("crs-sunscreen");
       });
       const l = (
         /* HTML */
         ` <div class="crs-measure">
-      <span class="icon">${w.measure}</span>
+      <span class="icon">${L.measure}</span>
       <span class="title">How to measure?</span>
 
       <a class="link" href="https://www.diyblinds.com.au/guides/how-to-measure/how-to-measure-roller-blinds"
@@ -601,52 +600,52 @@
       >
     </div>`
       );
-      (c = r(".crs-measure")) == null || c.remove(), (a = r(".measure-panel__howto")) == null || a.insertAdjacentHTML("beforeend", l), f(".step-desc").forEach((o) => {
-        var e;
-        (e = o.textContent) != null && e.includes("Min/max width and drop") && (o.innerHTML = "Min/max width and drop will vary based on selected fabric range in the previous step.<br> *Motorised options available for Blinds  wider than 595mm.");
-      }), d(".colour-chooser__wrap li").then(() => {
-        var e, _;
-        const o = (
+      (_ = n(".crs-measure")) == null || _.remove(), (a = n(".measure-panel__howto")) == null || a.insertAdjacentHTML("beforeend", l), u(".step-desc").forEach((C) => {
+        var o;
+        (o = C.textContent) != null && o.includes("Min/max width and drop") && (C.innerHTML = "Min/max width and drop will vary based on selected fabric range in the previous step.<br> *Motorised options available for Blinds  wider than 595mm.");
+      }), f(".colour-chooser__wrap li").then(() => {
+        var o, r;
+        const C = (
           /* HTML */
           '<div class="crs-select-color">Select your colour</div>'
         );
-        (e = r(".crs-select-color")) == null || e.remove(), (_ = r(".colour-chooser__wrap")) == null || _.insertAdjacentHTML("beforebegin", o), f(".colour-chooser__wrap li").forEach((h) => {
-          var n;
-          (n = h.textContent) != null && n.includes("Colours") && (h.querySelector("span").style.backgroundImage = `url(${z}/img/others_color.png)`, h.querySelector("span").style.backgroundSize = "100%");
+        (o = n(".crs-select-color")) == null || o.remove(), (r = n(".colour-chooser__wrap")) == null || r.insertAdjacentHTML("beforebegin", C), u(".colour-chooser__wrap li").forEach((h) => {
+          var c;
+          (c = h.textContent) != null && c.includes("Colours") && (h.querySelector("span").style.backgroundImage = `url(${p}/img/others_color.png)`, h.querySelector("span").style.backgroundSize = "100%");
         });
-      }), d(".cart-title__text").then((o) => {
-        var _;
-        const e = (
+      }), f(".cart-title__text").then((C) => {
+        var r;
+        const o = (
           /* HTML */
           `<div class="crs-badges">
-        <span>${w.auMade}</span>
-        <span>${w.madeIn9WorkingDays}</span>
-        <span>${w.fiveYearWarranty}</span>
+        <span>${L.auMade}</span>
+        <span>${L.madeIn9WorkingDays}</span>
+        <span>${L.fiveYearWarranty}</span>
       </div>`
         );
-        (_ = r(".crs-badges")) == null || _.remove(), o.insertAdjacentHTML("beforeend", e);
+        (r = n(".crs-badges")) == null || r.remove(), C.insertAdjacentHTML("beforeend", o);
       });
       const t = (
         /* HTML */
         ' <div class="roller-container"></div>'
       );
-      if (r(".roller-container"))
+      if (n(".roller-container"))
         return;
-      (u = r(".crs-window + div")) == null || u.insertAdjacentHTML("beforeend", t);
-      const s = r(".o-sidebar__panel-content .row > div");
-      s && (s.classList.add("roller"), r(".roller-container").append(s));
-      const i = r(".o-sidebar__panel-footer .cart-totals");
-      i && (i.classList.add("add-to-cart"), r(".roller-container").append(i));
+      (d = n(".crs-window + div")) == null || d.insertAdjacentHTML("beforeend", t);
+      const s = n(".o-sidebar__panel-content .row > div");
+      s && (s.classList.add("roller"), n(".roller-container").append(s));
+      const i = n(".o-sidebar__panel-footer .cart-totals");
+      i && (i.classList.add("add-to-cart"), n(".roller-container").append(i));
     }
   }
-  class E {
+  class z {
     constructor() {
       this.isExpanded = !1, this.handleClick = (l) => {
         b("exp_visualization_link_01", "Show more fabrics", "click", "PDP Choose 'Blockout' colour & fabric");
-        const t = r(".crs-window .card-grid");
+        const t = n(".crs-window .card-grid");
         t.classList.toggle("show-more");
         const s = l.target;
-        this.isExpanded = t.classList.contains("show-more"), this.isExpanded ? s.innerHTML = "Show less fabrics <span>" + w.arrowDown + "</span>" : (s.scrollIntoView({ behavior: "instant", block: "center" }), s.innerHTML = "Show more fabrics <span>" + w.arrowDown + "</span>");
+        this.isExpanded = t.classList.contains("show-more"), this.isExpanded ? s.innerHTML = "Show less fabrics <span>" + L.arrowDown + "</span>" : (s.scrollIntoView({ behavior: "instant", block: "center" }), s.innerHTML = "Show more fabrics <span>" + L.arrowDown + "</span>");
       };
     }
     render() {
@@ -654,26 +653,26 @@
         /* HTML */
         `
       <div class="crs-show-more">
-        <button class="show-more">${this.isExpanded ? "Show less" : "Show more"} fabrics <span>${w.arrowDown}</span></button>
+        <button class="show-more">${this.isExpanded ? "Show less" : "Show more"} fabrics <span>${L.arrowDown}</span></button>
       </div>
     `
       );
-      d(".crs-window .card-grid li").then(() => {
-        var i, c;
-        const t = r(".crs-show-more .show-more");
-        t && (t.removeEventListener("click", this.handleClick), (i = t.parentElement) == null || i.remove()), f(".crs-window .card-grid li").length > 10 && ((c = r(".crs-window .row.small-gutters.row-gutters>div:last-of-type")) == null || c.insertAdjacentHTML(
+      f(".crs-window .card-grid li").then(() => {
+        var i, _;
+        const t = n(".crs-show-more .show-more");
+        t && (t.removeEventListener("click", this.handleClick), (i = t.parentElement) == null || i.remove()), u(".crs-window .card-grid li").length > 10 && ((_ = n(".crs-window .row.small-gutters.row-gutters>div:last-of-type")) == null || _.insertAdjacentHTML(
           "beforeend",
           l
-        ), r(".crs-show-more .show-more").addEventListener("click", this.handleClick));
+        ), n(".crs-show-more .show-more").addEventListener("click", this.handleClick));
       });
     }
   }
-  class j {
+  class E {
     constructor() {
       this.isCarouseiIsShown = !1, this.isMeasureIsShown = !1, this.isColorIsShown = !1, this.isWhiteFabricsIsShown = !1;
     }
     init() {
-      this.isCarouseiIsShown || d("div[data-carousel]").then(() => {
+      this.isCarouseiIsShown || f("div[data-carousel]").then(() => {
         v(
           "div[data-carousel]",
           "exp_visualization_section_01",
@@ -684,7 +683,7 @@
             this.isCarouseiIsShown = !0;
           }
         );
-      }), this.isMeasureIsShown || d(".crs-measure").then((l) => {
+      }), this.isMeasureIsShown || f(".crs-measure").then((l) => {
         v(
           ".crs-measure",
           "exp_visualization_link_vis_01",
@@ -695,7 +694,7 @@
             this.isMeasureIsShown = !0;
           }
         );
-      }), this.isColorIsShown || d(".colour-chooser__wrap li").then(() => {
+      }), this.isColorIsShown || f(".colour-chooser__wrap li").then(() => {
         v(
           ".colour-chooser__wrap",
           "exp_visualization_button_vis_01",
@@ -706,7 +705,7 @@
             this.isColorIsShown = !0;
           }
         );
-      }), this.isWhiteFabricsIsShown || d(".crs-window .small-gutters .card-grid").then(() => {
+      }), this.isWhiteFabricsIsShown || f(".crs-window .small-gutters .card-grid").then(() => {
         v(
           ".crs-window .small-gutters .card-grid",
           "exp_visualization_button_vis_02",
@@ -720,39 +719,100 @@
       });
     }
   }
-  k({ name: "Dev Visualization", dev: "OS" }), Z("exp_visualization");
-  class I {
+  class $ {
     constructor() {
-      this.allowEvent = !0, this.events = new j(), this.showMoreButton = new E();
+      console.log("Cart constructor");
     }
     init() {
-      d(".configurator").then(() => {
-        new g().render(), new y().init(), this.showMoreButton.render();
-      }), this.events.init(), document.addEventListener("click", (l) => {
-        var u, o, e, _, h;
+      f(".cart-product").then(() => {
+        u(".cart-product").forEach((l) => {
+          const t = l.querySelector(".cart-product__desc p");
+          if (t) {
+            const d = t.innerHTML.trim().replace(/<!---->/g, "").split("<br>")[1].trim().toLowerCase().replace(/\s/g, "_"), C = g.find(({ name: h }) => h === d), o = (
+              /* HTML */
+              `<div class="crs-window__show">
+            <div class="crs-window__fill">
+              ${m({
+                url: `${p}/img/textures/${d}.jpg`,
+                opacity: C == null ? void 0 : C.opacity,
+                fullSize: C == null ? void 0 : C.fullSize
+              })}
+            </div>
+            <div class="crs-window__image"></div>
+          </div>`
+            ), r = l.querySelector(".cart-product__image");
+            r && (r.innerHTML = o);
+          }
+        });
+      });
+    }
+  }
+  H({ name: "Dev Visualization", dev: "OS" }), Z("exp_visualization");
+  class j {
+    constructor() {
+      this.allowEvent = !0, this.events = new E(), this.showMoreButton = new z();
+    }
+    init() {
+      location.pathname.includes("/blinds/roller-blinds/order") && f(".configurator").then(() => {
+        document.head.insertAdjacentHTML(
+          "beforeend",
+          /* HTML */
+          `
+          <style>
+           div:has(> .o-sidebar__panel) {
+  /* Styles here */
+}
+
+@media (min-width: 1000px) {
+  div:has(> .o-sidebar__panel) {
+    display: none;
+  }
+}
+
+div:has(> .o-sidebar__workflow) {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 1800px) {
+  div:has(> .o-sidebar__workflow) {
+    max-width: 80%;
+  }
+}
+
+@media (min-width: 1800px) {
+  .offset-xl-1 {
+    margin-right: 8.3333333333%;
+  }
+}
+          </style>
+        `
+        ), new M().render(), new k().init(), this.showMoreButton.render();
+      }), location.pathname.includes("cart") && new $().init(), this.events.init(), document.addEventListener("click", (l) => {
+        var d, C, o, r, h;
         const t = l.target, s = t.closest("button.selectable-item");
-        if (s && ((u = s.textContent) != null && u.includes("Blockout Roller Blind") || (o = s.textContent) != null && o.includes("Light Filtering Roller Blind") || (e = s.textContent) != null && e.includes("Sunscreen Roller Blind"))) {
-          d(".crs-window button.selectable-item").then(() => {
+        if (s && ((d = s.textContent) != null && d.includes("Blockout Roller Blind") || (C = s.textContent) != null && C.includes("Light Filtering Roller Blind") || (o = s.textContent) != null && o.includes("Sunscreen Roller Blind"))) {
+          f(".crs-window button.selectable-item").then(() => {
             b("exp_visualization_icone_01", "Click", "click", "PDP Select Roller Blind type");
-          }), new g().render(), new y().init(), this.events.init();
-          const n = setInterval(() => {
-            const L = r(".crs-window button.selectable-item:first-child");
-            L && (this.allowEvent = !1, L.click(), clearInterval(n), this.allowEvent = !0);
+          }), new M().render(), new k().init(), this.events.init();
+          const c = setInterval(() => {
+            const w = n(".crs-window button.selectable-item:first-child");
+            w && (this.allowEvent = !1, w.click(), clearInterval(c), this.allowEvent = !0);
           }, 50);
         }
         const i = t.closest(".colour-chooser__wrap li");
         if (i) {
-          const n = (_ = i.querySelector(".sr-only")) == null ? void 0 : _.textContent;
-          b("exp_visualization_button_01", `${n}`, "click", "PDP Choose 'Blockout' colour & fabric"), this.showMoreButton.render();
+          const c = (r = i.querySelector(".sr-only")) == null ? void 0 : r.textContent;
+          b("exp_visualization_button_01", `${c}`, "click", "PDP Choose 'Blockout' colour & fabric"), this.showMoreButton.render();
         }
-        const c = t.closest(".crs-window button.selectable-item");
-        if (c) {
-          const n = (h = c.querySelector("h4")) == null ? void 0 : h.innerHTML, L = n == null ? void 0 : n.replace(/<br>| |\//g, "_").toLocaleLowerCase().trim();
-          this.allowEvent && b("exp_visualization_button_02", `${L}`, "click", "PDP Choose 'Blockout' colour & fabric");
+        const _ = t.closest(".crs-window button.selectable-item");
+        if (_) {
+          const c = (h = _.querySelector("h4")) == null ? void 0 : h.innerHTML, w = c == null ? void 0 : c.replace(/<br>| |\//g, "_").toLocaleLowerCase().trim();
+          this.allowEvent && b("exp_visualization_button_02", `${w}`, "click", "PDP Choose 'Blockout' colour & fabric");
         }
         t.closest(".crs-measure .link") && b("exp_visualization_link_02", "Check guide", "click", "PDP Measurements How to measure?");
       });
     }
   }
-  new I().init();
+  new j().init();
 })();
