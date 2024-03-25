@@ -1,64 +1,63 @@
-(function(){"use strict";try{if(typeof document<"u"){var t=document.createElement("style");t.id="style-injected-by-js",t.appendChild(document.createTextNode('body{overflow-x:clip!important}.page,.o-sidebar--scrollable{overflow:clip!important}div:has(>.filter-nav){display:none}.configurator__step{margin-bottom:30px}.crs-window+div{display:grid;grid-template-columns:1fr 470px;grid-template-rows:auto auto;gap:0 18px}@media (max-width: 1280px){.crs-window+div{display:block;grid-template-columns:1fr}}.crs-window+div>.configurator__step{grid-column:1 / 2}.crs-window+div>.configurator__step:first-of-type{grid-row:1 / 2}.crs-window+div>.configurator__step:last-of-type{grid-row:2 / 3}.crs-window+div>.roller-container{grid-column:2 / 3;grid-row:1 / 3;margin:50px 0 0}.container--capped-fluid-with-gutter>div{justify-content:center!important}.flickity-viewport .flickity-slider>div:nth-child(2){left:463px!important}@media screen and (max-width: 768px){.flickity-viewport .flickity-slider>div:nth-child(2){left:262px!important}}.flickity-viewport .flickity-slider>div:nth-child(3){left:926px!important}@media screen and (max-width: 768px){.flickity-viewport .flickity-slider>div:nth-child(3){left:524px!important}}.flickity-viewport .flickity-slider>div>button{padding:0;width:-moz-max-content;width:max-content}@media screen and (max-width: 768px){.flickity-viewport .flickity-slider>div{width:246px}}.configurator__step [data-carousel]{gap:43px;flex-wrap:nowrap;justify-content:flex-start!important;align-items:center;height:270px}@media screen and (max-width: 768px){.configurator__step [data-carousel]{height:auto}}@media (max-width: 1440px){.configurator__step [data-carousel]{gap:20px}}.configurator__step [data-carousel] button.selectable-item{border:solid 2px #868ea5;box-shadow:none}.configurator__step [data-carousel] button.selectable-item.is-selected{border:solid 2px #e83b68}.configurator__step [data-carousel] .selectable-item{padding:0}@media screen and (max-width: 768px){.configurator__step [data-carousel] .selectable-item{height:100%}}.configurator__step [data-carousel] .customiser-card{display:grid;grid-template-columns:246px;grid-template-rows:207px 70px 1fr;padding:0}@media screen and (min-width: 768px){.configurator__step [data-carousel] .customiser-card{width:400px;height:243px;gap:15px 13px;grid-template-columns:50% 50%;grid-template-rows:3rem 1fr}}.configurator__step [data-carousel] .customiser-card .customiser-card__image{grid-column:1 / 2;grid-row:1 / 3;justify-content:center;align-self:center;margin:0;height:100%;width:100%;background-position:-73px -27px;background-size:365px}.configurator__step [data-carousel] .customiser-card .customiser-card__image img{display:none}@media screen and (max-width: 768px){.configurator__step [data-carousel] .customiser-card .customiser-card__image{grid-column:1 / 2;grid-row:1 / 2;height:100%;width:100%}}.configurator__step [data-carousel] .customiser-card .customiser-card__content{grid-column:2 / 3;grid-row:1 / 2;padding-top:14px;width:190px}@media screen and (max-width: 768px){.configurator__step [data-carousel] .customiser-card .customiser-card__content{grid-column:1 / 2;grid-row:2 / 3;padding:14px;width:100%}}.configurator__step [data-carousel] .customiser-card .customiser-card__content h4{font-size:14px;font-weight:700;line-height:22px;text-align:left;color:#444c5f}@media screen and (max-width: 768px){.configurator__step [data-carousel] .customiser-card .customiser-card__content h4{font-size:16px;font-weight:700;line-height:22px}}.configurator__step [data-carousel] .customiser-card .customiser-card__content h5{font-size:14px;font-weight:700;line-height:20px;text-align:left;color:#e83b68}.configurator__step [data-carousel] .customiser-card .customiser-card__attributes{grid-column:2 / 3;grid-row:2 / 3;margin:0;width:190px}@media screen and (max-width: 768px){.configurator__step [data-carousel] .customiser-card .customiser-card__attributes{grid-column:1 / 2;grid-row:3 / 4;padding:14px;width:90%}}.configurator__step [data-carousel] .customiser-card .customiser-card__attributes ul{display:grid;gap:4px}.configurator__step [data-carousel] .customiser-card .customiser-card__attributes ul li{font-size:14px;line-height:20px;text-align:left;color:#444c5f}.crs-blockout .customiser-card__image{background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/blockout.webp)}.crs-light-filtering .customiser-card__image{background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/light.webp)}.crs-sunscreen .customiser-card__image{background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/sunscreen.webp)}.crs-window__fill svg{width:100%;height:100%}.crs-window{display:grid;gap:1rem;grid-template-columns:100%;grid-template-rows:3rem max-content 1fr;height:100%;margin-bottom:10px}@media (min-width: 1280px){.crs-window{grid-template-columns:700px 1fr;grid-template-rows:3rem 1fr;height:720px}}@media (min-width: 1440px){.crs-window{grid-template-columns:818px 1fr;height:758px}}.crs-window .configurator__step-heading{grid-column:1 / 3;grid-row:1 / 2}@media (max-width: 1000px){.crs-window .configurator__step-heading{grid-column:1 / 2;grid-row:1/2}}.crs-window .crs-window__show{position:sticky;top:50px;grid-column:1 / 2;grid-row:2 / 3;width:calc(100% + 30px);z-index:5;height:242px;margin-left:-14px}.crs-window .crs-window__show .crs-window__image{overflow:hidden;width:100%;height:100%;background-size:400px;background-position:-12px -26px;background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/light.webp)}@media screen and (min-width: 380px){.crs-window .crs-window__show .crs-window__image{background-size:450px}}@media screen and (min-width: 450px){.crs-window .crs-window__show .crs-window__image{width:100%;height:100%;background-size:599px;background-position:-35px -50px}}@media screen and (min-width: 600px){.crs-window .crs-window__show .crs-window__image{width:100%;height:100%;background-size:121%;background-position:35% 26%}}@media (min-width: 380px){.crs-window .crs-window__show{height:269px}}@media (min-width: 450px){.crs-window .crs-window__show{height:390px}}@media (min-width: 600px){.crs-window .crs-window__show{width:600px;height:420px;margin:0 auto}}@media (min-width: 800px){.crs-window .crs-window__show{top:0;width:818px;height:693px;position:relative;z-index:0;justify-self:center;margin:0 auto}}@media (min-width: 1000px){.crs-window .crs-window__show{width:685px;height:604px}}@media (min-width: 1440px){.crs-window .crs-window__show{width:818px;height:693px}}.crs-window .crs-window__show .crs-window__fill{position:absolute;top:32px;left:100px;width:179px}@media screen and (min-width: 380px){.crs-window .crs-window__show .crs-window__fill{top:40px;left:113px;width:202px}}@media screen and (min-width: 450px){.crs-window .crs-window__show .crs-window__fill{top:38px;left:131px;width:269px}}@media screen and (min-width: 600px){.crs-window .crs-window__show .crs-window__fill{top:27px;left:159px;width:325px}}@media (min-width: 800px){.crs-window .crs-window__show .crs-window__fill{top:68px;left:217px;width:443px}}@media (min-width: 1000px){.crs-window .crs-window__show .crs-window__fill{top:62px;left:180px;width:372px}}@media (min-width: 1440px){.crs-window .crs-window__show .crs-window__fill{top:68px;left:215px;width:443px}}.crs-window .row.small-gutters.row-gutters{grid-column:2 / 3;grid-row:2 / 3;height:-moz-max-content;height:max-content}@media (max-width: 1280px){.crs-window .row.small-gutters.row-gutters{grid-column:1 / 2;grid-row:3 / 4}}.crs-window .row.small-gutters.row-gutters>div:last-of-type{height:100%;margin-bottom:30px}@media (min-width: 1000px){.crs-window .row.small-gutters.row-gutters>div:last-of-type{height:100%;overflow-x:hidden}}@media (min-width: 1280px){.crs-window .row.small-gutters.row-gutters>div:last-of-type{overflow-y:auto;margin-bottom:0;height:481px}}@media (min-width: 1440px){.crs-window .row.small-gutters.row-gutters>div:last-of-type{height:571px}}.crs-window .row.small-gutters.row-gutters .card-grid{height:100%;align-content:flex-start;max-height:1010px;margin-top:18px;justify-content:center;overflow:hidden;padding-top:18px}.crs-window .row.small-gutters.row-gutters .card-grid.show-more{max-height:100%}.crs-window .row.small-gutters.row-gutters .card-grid.show-more:focus{outline:none}.crs-window .row.small-gutters.row-gutters .card-grid.show-more+.crs-show-more svg{transform:rotate(180deg)}@media (min-width: 563px){.crs-window .row.small-gutters.row-gutters .card-grid{max-height:415px}}@media (min-width: 1000px){.crs-window .row.small-gutters.row-gutters .card-grid{max-height:420px}}@media (min-width: 1280px){.crs-window .row.small-gutters.row-gutters .card-grid{justify-content:flex-start;max-height:-moz-max-content;max-height:max-content;height:-moz-max-content;height:max-content}}.crs-window .row.small-gutters.row-gutters .card-grid li{max-width:-moz-max-content;max-width:max-content}.crs-window .row.small-gutters.row-gutters .card-grid li:first-child{position:relative}.crs-window .row.small-gutters.row-gutters .card-grid li:first-child button.selectable-item:before{content:"MOST POPULAR";position:absolute;display:flex;align-items:center;justify-content:center;color:#fff;top:-21px;left:0;height:21px;width:162px;background:#e83b68;font-size:10px;line-height:15px;font-weight:700;border-right:2px solid rgb(203 204 209)}.crs-window .row.small-gutters.row-gutters .card-grid li:first-child button.selectable-item.is-selected:before{border:2px solid #e83b68;left:-2px}.crs-window .row.small-gutters.row-gutters .card-grid li:has(.selectable-item){height:-moz-max-content;height:max-content}.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item{width:162px;height:190px;padding:14px 33px}.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item article{padding:0;display:flex;flex-direction:column;gap:4px}.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item article header{margin:0}.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item article h4{font-size:12px;font-weight:700;line-height:15px;text-align:center;color:#444c5f}.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item article p{font-size:12px;line-height:15px;text-align:center;color:#adb4c1}@media (min-width: 1000px){.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item{width:162px;height:192px;padding:14px 33px}}.customiser-card--fabric .customiser-card__header,.customiser-card--fabric header{height:auto;width:auto}.customiser-card--fabric footer{display:none}.roller-container{background:#fff;position:sticky;height:-moz-max-content;height:max-content;z-index:1;top:120px;padding:20px;flex-direction:column;justify-content:center;align-items:center}@media (max-width: 1000px){.roller-container{position:static;top:0;padding:0}}.roller-container>div{margin:0;padding:0}.roller{height:-moz-max-content;height:max-content;max-width:100%}.roller .cart-title__image{display:flex!important;justify-content:center}.roller .cart-title__text{display:flex;justify-content:space-between;align-items:center}@media (max-width: 768px){.roller .cart-title__text{padding:0 15px}}.roller .cart-title__text h4{margin:0;color:var(--Text, #444c5f);font-family:Libre Franklin;font-size:16px;font-weight:700;line-height:22px}.roller .cart-title__text .crs-badges{display:flex;justify-content:center;align-items:center;gap:15px}@media (max-width: 768px){.roller .cart-title__text .crs-badges{gap:10px}}.roller .cart-title__text .crs-badges span{width:45px}.roller .cart-summary,.roller .cart-summary *{font-size:12px;line-height:18px}.roller .cart-summary .features-list__attributes button{color:var(--Text, #444c5f);font-weight:700}.roller .crs-window__show{position:relative;width:430px;height:300px}@media (max-width: 500px){.roller .crs-window__show{width:300px;height:260px}}.roller .crs-window__show .crs-window__fill{position:absolute;width:208px;top:47px;left:109px}@media (max-width: 500px){.roller .crs-window__show .crs-window__fill{width:208px;top:41px;left:36px}}@media (max-width: 370px){.roller .crs-window__show .crs-window__fill{width:166px;top:32px;left:76px}}.roller .crs-window__show .crs-window__image{background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/light.webp);max-width:100%;background-size:465px;background-position:57% 13%;width:100%;height:100%}@media (max-width: 370px){.roller .crs-window__show .crs-window__image{background-size:348px;background-position:-29px -22px;background-size:372px}}.roller .features-list>li:has(>ul):has(>h3){display:grid;grid-template-columns:1fr 112px;grid-template-rows:1fr 1fr}.roller .features-list>li:has(>ul):has(>h3) h3{grid-column:1 / 2;grid-row:1 / 2}.roller .features-list>li:has(>ul):has(>h3) ul{grid-column:1 / 2;grid-row:2 / 3}.roller .features-list>li:has(>ul):has(>h3)>div{grid-column:2 / 3;grid-row:1 / 3;margin:0;padding-left:20px;border-left:1px solid #dddee9}.add-to-cart{padding:20px;height:-moz-max-content;height:max-content}.add-to-cart .cart-totals__total{display:flex;align-items:center;gap:16px}.add-to-cart .cart-totals__total small{color:var(--Text, #444c5f);font-family:Libre Franklin;font-size:14px;font-style:normal;font-weight:400;line-height:20px}.add-to-cart .cart-totals__total dt,.add-to-cart .cart-totals__footer{display:none}.o-sidebar__panel-content>.row>div{display:none}.cart-totals__footer{display:none}.measure-panel__howto>a{display:none!important}.measure-panel__howto{position:static!important}.measure-panel__howto .crs-measure{display:grid;grid-template-columns:32px 1fr 1fr;gap:14px;align-items:center;width:100%;padding:16px 24px;box-shadow:2px 2px #2e354733;background-color:#fff;margin-bottom:39px}@media screen and (max-width: 768px){.measure-panel__howto .crs-measure{grid-template-columns:32px 1fr;grid-template-rows:1fr 1fr;gap:0 14px}}.measure-panel__howto .crs-measure .icon{grid-column:1 / 2;width:32px;height:32px}@media screen and (max-width: 768px){.measure-panel__howto .crs-measure .icon{grid-column:1 / 2;grid-row:1 / 3}}.measure-panel__howto .crs-measure .title{grid-column:2 / 3;color:var(--Text, #444c5f);font-family:Libre Franklin;font-size:16px;font-weight:700;line-height:22px}@media screen and (max-width: 768px){.measure-panel__howto .crs-measure .title{grid-column:2 / 3;grid-row:1 / 2}}.measure-panel__howto .crs-measure .link{grid-column:3 / 4;justify-self:end;display:block;width:184px;border-radius:40px;border:1.5px solid #ee8fa9;padding:12px;color:var(--Primary, #e83b68);text-align:center;font-family:Libre Franklin;font-size:14px;font-style:normal;font-weight:700;line-height:20px}@media screen and (max-width: 768px){.measure-panel__howto .crs-measure .link{border:none;padding:0;grid-column:2 / 3;grid-row:2 / 3;justify-self:start;text-align:left;text-decoration:underline}}h3:has(.round-number){font-family:Libre Franklin;font-size:24px;font-weight:700;line-height:32px;margin-bottom:16px}h3:has(.round-number) span:not(.round-number){font-size:inherit;line-height:inherit;font-weight:inherit}@media screen and (max-width: 768px){h3:has(.round-number){display:flex;font-size:20px;font-weight:700;line-height:28px}h3:has(.round-number) .round-number{aspect-ratio:1}}.step-desc{color:var(--www-diyblinds-com-au-blinds-roller-blinds-order-39028570556640625-x-844-default-river-bed, #444c5f);font-family:Libre Franklin;font-size:16px;font-style:normal;font-weight:400;line-height:22px}.crs-show-more{display:block;margin-top:16px;display:flex;justify-content:center;padding:5px;width:100%}.crs-show-more button{color:var(--Text, #444c5f);font-family:Libre Franklin;font-size:14px;font-style:normal;font-weight:700;line-height:20px;text-decoration-line:underline}.crs-show-more button:focus{outline:none}@media screen and (min-width: 1280px){.crs-show-more{display:none}}.crs-preview-text{font-family:Libre Franklin;margin-bottom:30px}.crs-preview-text .title{color:var(--www-diyblinds-com-au-blinds-roller-blinds-order-39028570556640625-x-844-default-river-bed, #444c5f);font-size:30px;font-weight:700;line-height:38px;margin:0 0 10px}@media screen and (max-width: 768px){.crs-preview-text .title{font-size:20px;line-height:28px}}.crs-preview-text .desc{color:var(--www-diyblinds-com-au-blinds-roller-blinds-order-39028570556640625-x-844-default-river-bed, #444c5f);font-size:16px;font-weight:400;line-height:22px}.crs-select-color{color:var(--www-diyblinds-com-au-blinds-roller-blinds-order-39028570556640625-x-844-default-river-bed, #444c5f);font-family:Libre Franklin;font-size:20px;font-weight:700;line-height:28px;margin-bottom:8px}@media screen and (max-width: 768px){.crs-select-color{margin-bottom:16px}}@media screen and (max-width: 768px){h4:has(+.card-grid){color:var(--www-diyblinds-com-au-blinds-roller-blinds-order-39028570556640625-x-844-default-river-bed, #444c5f);font-family:Libre Franklin;font-size:14px;font-weight:700;line-height:20px;margin-top:13px}}.configurator__step .step-desc br{content:" ";display:block;height:16px}.handheld-action.is-floating{z-index:5!important}.dot.is-selected{background:#444c5f}.cart-product__content .cart-product__image{width:115px;height:115px}.cart-product__content .crs-window__show{position:relative;width:115px;height:115px}@media (max-width: 1280px){.cart-product__content .crs-window__show{width:90px;height:90px}}.cart-product__content .crs-window__show .crs-window__fill{position:absolute;width:77px;top:17px;left:16px}@media (max-width: 1280px){.cart-product__content .crs-window__show .crs-window__fill{width:63px;top:13px;left:10px}}.cart-product__content .crs-window__show .crs-window__image{background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/light.webp);background-size:170px;background-position:57% 13%;width:100%;height:100%}@media (max-width: 1280px){.cart-product__content .crs-window__show .crs-window__image{background-size:140px}}')),document.head.appendChild(t)}}catch(i){console.error("vite-plugin-css-injected-by-js",i)}})();
 (function() {
   "use strict";
-  const b = (e, l, t, s = "") => {
+  const g = (e, i, o, s = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
-      event_desc: l,
-      event_type: t,
+      event_desc: i,
+      event_type: o,
       event_loc: s
-    }), console.log(`Event: ${e} | ${l} | ${t} | ${s}`);
-  }, H = ({ name: e, dev: l }) => {
+    }), console.log(`Event: ${e} | ${i} | ${o} | ${s}`);
+  }, M = ({ name: e, dev: i }) => {
     console.log(
-      `%c EXP: ${e} (DEV: ${l})`,
+      `%c EXP: ${e} (DEV: ${i})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, v = (e, l, t, s, i = 3, _) => {
-    let a = new IntersectionObserver(
-      (C) => {
-        C.forEach((o) => {
-          o.isIntersecting && (a.unobserve(o.target), setTimeout(function() {
-            d.observe(o.target);
-          }, 1e3 * i));
+  }, f = (e, i, o, s, n = 3, d) => {
+    let c = new IntersectionObserver(
+      (t) => {
+        t.forEach((r) => {
+          r.isIntersecting && (c.unobserve(r.target), setTimeout(function() {
+            h.observe(r.target);
+          }, 1e3 * n));
         });
       },
       {
         threshold: 0.5
       }
-    ), d = new IntersectionObserver((C) => {
-      C.forEach((o) => {
-        o.isIntersecting ? (b(
-          l || `view_element_${o.target.id}`,
-          t || `View element on screen (${i} sec or more)`,
+    ), h = new IntersectionObserver((t) => {
+      t.forEach((r) => {
+        r.isIntersecting ? (g(
+          i || `view_element_${r.target.id}`,
+          o || `View element on screen (${n} sec or more)`,
           "view",
-          s || o.target.id
-        ), _ && _(), a.unobserve(o.target)) : a.observe(o.target), d.unobserve(o.target);
+          s || r.target.id
+        ), d && d(), c.unobserve(r.target)) : c.observe(r.target), h.unobserve(r.target);
       });
     });
-    document.querySelectorAll(e).forEach((C) => {
-      a.observe(C);
+    document.querySelectorAll(e).forEach((t) => {
+      c.observe(t);
     });
   };
-  function f(e) {
-    return new Promise((l) => {
+  function w(e) {
+    return new Promise((i) => {
       if (document.querySelector(e))
-        return l(document.querySelector(e));
-      const t = new MutationObserver(() => {
-        document.querySelector(e) && (l(document.querySelector(e)), t.disconnect());
+        return i(document.querySelector(e));
+      const o = new MutationObserver(() => {
+        document.querySelector(e) && (i(document.querySelector(e)), o.disconnect());
       });
-      t.observe(document.documentElement, {
+      o.observe(document.documentElement, {
         childList: !0,
         subtree: !0,
         characterData: !0
       });
     });
   }
-  const u = (e) => document.querySelectorAll(e), n = (e) => document.querySelector(e), Z = (e) => {
-    let l = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(l), window.clarity("set", e, "variant_1"));
+  const p = (e) => document.querySelectorAll(e), l = (e) => document.querySelector(e), z = (e) => {
+    let i = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(i), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, m = ({ url: e, fullSize: l = !1, opacity: t = 1 }) => l ? (
+  }, b = ({ url: e, fullSize: i = !1, opacity: o = 1 }) => i ? (
     /* HTML */
     `<svg
       width="1345"
@@ -71,7 +70,7 @@
       <path
         d="M2.53849 0L1338.46 1.83723e-06L1344.9 516.962V646.203V768.981L1340.79 891.76V1021H2.53849L0.897461 956.38V893.375V764V704.5V672L2.53849 641.356V507.269V442.649L0.897461 367V313.5L2.53849 245.557V0Z"
         fill="url(#pattern0)"
-        fill-opacity="${t}"
+        fill-opacity="${o}"
       />
       <defs>
         <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="0.992612" height="0.996911">
@@ -93,7 +92,7 @@
     <path
       d="M2.53849 0L1338.46 1.83723e-06L1344.9 516.962V646.203V768.981L1340.79 891.76V1021H2.53849L0.897461 956.38V893.375V764V704.5V672L2.53849 641.356V507.269V442.649L0.897461 367V313.5L2.53849 245.557V0Z"
       fill="url(#pattern0)"
-      fill-opacity="${t}"
+      fill-opacity="${o}"
     />
     <defs>
       <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="0.514688" height="0.677512">
@@ -102,7 +101,7 @@
       <image id="image0_26_6" width="700" height="700" xlink:href="${e}" />
     </defs>
   </svg> `
-  ), x = [
+  ), H = [
     "skye_bo_swan",
     "chatsworth_bo_aztec",
     "chatsworth_bo_beluge",
@@ -168,7 +167,7 @@
     "matrix_binary",
     "jersey_bo_pavement_bo",
     "serengetti_bo_mamba_bo"
-  ], V = [
+  ], Z = [
     "jersey_lf_stone_lf",
     "metro_lf_ice_grey_lf",
     "balmoral_lf_white_lf",
@@ -205,7 +204,7 @@
     "jersey_lf_pavement_lf",
     "sanctuary_lf_lava_lf",
     "sanctuary_lf_ceramic_lf"
-  ], S = [
+  ], V = [
     "metro_lf_dove_white_lf",
     "linesque_lf_lily",
     "linesque_lf_oatcake",
@@ -229,7 +228,7 @@
     "serengetti_lf_jackal_lf",
     "serengetti_lf_mamba_lf",
     "serengetti_lf_panther_lf"
-  ], B = [
+  ], S = [
     "solar_view_white",
     "vivid_shade_silver__grey",
     "solar_view_black__copper",
@@ -271,23 +270,23 @@
     "one_screen_mercury",
     "solar_view_charcoal",
     "one_screen_charcoal"
-  ], g = [
-    ...x.map((e) => ({
+  ], v = [
+    ...H.map((e) => ({
       name: e,
       opacity: 1,
       fullSize: !0
     })),
-    ...V.map((e) => ({
+    ...Z.map((e) => ({
       name: e,
       opacity: 0.4,
       fullSize: !1
     })),
-    ...S.map((e) => ({
+    ...V.map((e) => ({
       name: e,
       opacity: 0.4,
       fullSize: !0
     })),
-    ...B.map((e) => ({
+    ...S.map((e) => ({
       name: e,
       opacity: 0.3,
       fullSize: !1
@@ -297,54 +296,54 @@
       opacity: 0.3,
       fullSize: !0
     }))
-  ], p = "https://conversionratestore.github.io/projects/diyblinds", q = [
+  ], x = "https://conversionratestore.github.io/projects/diyblinds", j = [
     "Choose 'Light Filtering' colour & fabric",
     "Choose 'Blockout' colour & fabric",
     "Choose 'Sunscreen' colour & fabric"
   ];
-  class M {
+  class L {
     constructor() {
     }
     render() {
-      const l = (
+      const i = (
         /* HTML */
         `<div class="crs-window__show">
-      <div class="crs-window__fill">${m({ url: `${p}/img/textures/qube_cross.jpg` })}</div>
+      <div class="crs-window__fill">${b({ url: `${x}/img/textures/qube_cross.jpg` })}</div>
       <div class="crs-window__image"></div>
     </div>`
       );
-      u(".configurator__step").forEach((t) => {
+      p(".configurator__step").forEach((o) => {
         var s;
-        if (q.some((i) => t.textContent.includes(i))) {
-          const i = t.querySelector(".row.small-gutters.row-gutters");
-          (s = i == null ? void 0 : i.closest(".configurator__step")) == null || s.classList.add("crs-window"), u(".crs-window__show").forEach((a) => {
-            a.remove();
-          }), i == null || i.insertAdjacentHTML("beforebegin", l);
-          const _ = setInterval(() => {
-            const a = n(".roller .cart-title__image");
-            a && (a.innerHTML = l, clearInterval(_));
+        if (j.some((n) => o.textContent.includes(n))) {
+          const n = o.querySelector(".row.small-gutters.row-gutters");
+          (s = n == null ? void 0 : n.closest(".configurator__step")) == null || s.classList.add("crs-window"), p(".crs-window__show").forEach((c) => {
+            c.remove();
+          }), n == null || n.insertAdjacentHTML("beforebegin", i);
+          const d = setInterval(() => {
+            const c = l(".roller .cart-title__image");
+            c && (c.innerHTML = i, clearInterval(d));
           }, 10);
-          t.addEventListener("click", (a) => {
-            var o;
-            const C = a.target.closest("button.selectable-item");
-            if (C) {
-              const r = (o = C.querySelector("h4")) == null ? void 0 : o.innerHTML, h = r == null ? void 0 : r.replace(/<br>| |\//g, "_").toLocaleLowerCase().trim(), c = g.find(({ name: w }) => w === h);
-              u(".crs-window__fill").forEach((w) => {
-                w.innerHTML = m({
-                  url: `${p}/img/textures/${h}.jpg`,
-                  opacity: (c == null ? void 0 : c.opacity) || 1,
-                  fullSize: (c == null ? void 0 : c.fullSize) || !1
+          o.addEventListener("click", (c) => {
+            var r;
+            const t = c.target.closest("button.selectable-item");
+            if (t) {
+              const a = (r = t.querySelector("h4")) == null ? void 0 : r.innerHTML, _ = a == null ? void 0 : a.replace(/<br>| |\//g, "_").toLocaleLowerCase().trim(), C = v.find(({ name: m }) => m === _);
+              p(".crs-window__fill").forEach((m) => {
+                m.innerHTML = b({
+                  url: `${x}/img/textures/${_}.jpg`,
+                  opacity: (C == null ? void 0 : C.opacity) || 1,
+                  fullSize: (C == null ? void 0 : C.fullSize) || !1
                 });
               });
             }
           });
         }
       }), setTimeout(() => {
-        u(".filter-nav__item")[1].click();
+        p(".filter-nav__item")[1].click();
       }, 50);
     }
   }
-  const L = {
+  const u = {
     measure: (
       /* HTML */
       `
@@ -572,12 +571,12 @@
       this.device = window.innerWidth < 1e3 ? y.mobile : y.desktop;
     }
     init() {
-      var _, a, d;
-      u("h3").forEach((C) => {
-        var o;
-        (o = C.textContent) != null && o.includes("Choose your Roller Blind") && (C.innerHTML = /* HTML */
+      var d, c, h;
+      p("h3").forEach((t) => {
+        var r;
+        (r = t.textContent) != null && r.includes("Choose your Roller Blind") && (t.innerHTML = /* HTML */
         `<span class="round-number" style="background: #E83B68;">1</span>
-          <span>Select Roller Blind type</span>`, C.insertAdjacentHTML(
+          <span>Select Roller Blind type</span>`, t.insertAdjacentHTML(
           "beforebegin",
           /* HTML */
           `<div class="crs-preview-text">
@@ -585,14 +584,14 @@
           <span class="desc">Create your unique blinds with the help of our customization tool</span>
         </div>`
         ));
-      }), u(".configurator__step [data-carousel] .selectable-item").forEach((C) => {
-        var o, r, h;
-        (o = C.textContent) != null && o.includes("Light Filtering") && C.classList.add("crs-light-filtering"), (r = C.textContent) != null && r.includes("Blockout") && C.classList.add("crs-blockout"), (h = C.textContent) != null && h.includes("Sunscreen") && C.classList.add("crs-sunscreen");
+      }), p(".configurator__step [data-carousel] .selectable-item").forEach((t) => {
+        var r, a, _;
+        (r = t.textContent) != null && r.includes("Light Filtering") && t.classList.add("crs-light-filtering"), (a = t.textContent) != null && a.includes("Blockout") && t.classList.add("crs-blockout"), (_ = t.textContent) != null && _.includes("Sunscreen") && t.classList.add("crs-sunscreen");
       });
-      const l = (
+      const i = (
         /* HTML */
         ` <div class="crs-measure">
-      <span class="icon">${L.measure}</span>
+      <span class="icon">${u.measure}</span>
       <span class="title">How to measure?</span>
 
       <a class="link" href="https://www.diyblinds.com.au/guides/how-to-measure/how-to-measure-roller-blinds"
@@ -600,80 +599,80 @@
       >
     </div>`
       );
-      (_ = n(".crs-measure")) == null || _.remove(), (a = n(".measure-panel__howto")) == null || a.insertAdjacentHTML("beforeend", l), u(".step-desc").forEach((C) => {
-        var o;
-        (o = C.textContent) != null && o.includes("Min/max width and drop") && (C.innerHTML = "Min/max width and drop will vary based on selected fabric range in the previous step.<br> *Motorised options available for Blinds  wider than 595mm.");
-      }), f(".colour-chooser__wrap li").then(() => {
-        var o, r;
-        const C = (
+      (d = l(".crs-measure")) == null || d.remove(), (c = l(".measure-panel__howto")) == null || c.insertAdjacentHTML("beforeend", i), p(".step-desc").forEach((t) => {
+        var r;
+        (r = t.textContent) != null && r.includes("Min/max width and drop") && (t.innerHTML = "Min/max width and drop will vary based on selected fabric range in the previous step.<br> *Motorised options available for Blinds  wider than 595mm.");
+      }), w(".colour-chooser__wrap li").then(() => {
+        var r, a;
+        const t = (
           /* HTML */
           '<div class="crs-select-color">Select your colour</div>'
         );
-        (o = n(".crs-select-color")) == null || o.remove(), (r = n(".colour-chooser__wrap")) == null || r.insertAdjacentHTML("beforebegin", C), u(".colour-chooser__wrap li").forEach((h) => {
-          var c;
-          (c = h.textContent) != null && c.includes("Colours") && (h.querySelector("span").style.backgroundImage = `url(${p}/img/others_color.png)`, h.querySelector("span").style.backgroundSize = "100%");
+        (r = l(".crs-select-color")) == null || r.remove(), (a = l(".colour-chooser__wrap")) == null || a.insertAdjacentHTML("beforebegin", t), p(".colour-chooser__wrap li").forEach((_) => {
+          var C;
+          (C = _.textContent) != null && C.includes("Colours") && (_.querySelector("span").style.backgroundImage = `url(${x}/img/others_color.png)`, _.querySelector("span").style.backgroundSize = "100%");
         });
-      }), f(".cart-title__text").then((C) => {
-        var r;
-        const o = (
+      }), w(".cart-title__text").then((t) => {
+        var a;
+        const r = (
           /* HTML */
           `<div class="crs-badges">
-        <span>${L.auMade}</span>
-        <span>${L.madeIn9WorkingDays}</span>
-        <span>${L.fiveYearWarranty}</span>
+        <span>${u.auMade}</span>
+        <span>${u.madeIn9WorkingDays}</span>
+        <span>${u.fiveYearWarranty}</span>
       </div>`
         );
-        (r = n(".crs-badges")) == null || r.remove(), C.insertAdjacentHTML("beforeend", o);
+        (a = l(".crs-badges")) == null || a.remove(), t.insertAdjacentHTML("beforeend", r);
       });
-      const t = (
+      const o = (
         /* HTML */
         ' <div class="roller-container"></div>'
       );
-      if (n(".roller-container"))
+      if (l(".roller-container"))
         return;
-      (d = n(".crs-window + div")) == null || d.insertAdjacentHTML("beforeend", t);
-      const s = n(".o-sidebar__panel-content .row > div");
-      s && (s.classList.add("roller"), n(".roller-container").append(s));
-      const i = n(".o-sidebar__panel-footer .cart-totals");
-      i && (i.classList.add("add-to-cart"), n(".roller-container").append(i));
+      (h = l(".crs-window + div")) == null || h.insertAdjacentHTML("beforeend", o);
+      const s = l(".o-sidebar__panel-content .row > div");
+      s && (s.classList.add("roller"), l(".roller-container").append(s));
+      const n = l(".o-sidebar__panel-footer .cart-totals");
+      n && (n.classList.add("add-to-cart"), l(".roller-container").append(n));
     }
   }
-  class z {
+  class B {
     constructor() {
-      this.isExpanded = !1, this.handleClick = (l) => {
-        b("exp_visualization_link_01", "Show more fabrics", "click", "PDP Choose 'Blockout' colour & fabric");
-        const t = n(".crs-window .card-grid");
-        t.classList.toggle("show-more");
-        const s = l.target;
-        this.isExpanded = t.classList.contains("show-more"), this.isExpanded ? s.innerHTML = "Show less fabrics <span>" + L.arrowDown + "</span>" : (s.scrollIntoView({ behavior: "instant", block: "center" }), s.innerHTML = "Show more fabrics <span>" + L.arrowDown + "</span>");
+      this.isExpanded = !1, this.handleClick = (i) => {
+        g("exp_visualization_link_01", "Show more fabrics", "click", "PDP Choose 'Blockout' colour & fabric");
+        const o = l(".crs-window .card-grid");
+        o.classList.toggle("show-more");
+        const s = i.target;
+        this.isExpanded = o.classList.contains("show-more"), this.isExpanded ? s.innerHTML = "Show less fabrics <span>" + u.arrowDown + "</span>" : (s.scrollIntoView({ behavior: "instant", block: "center" }), s.innerHTML = "Show more fabrics <span>" + u.arrowDown + "</span>");
       };
     }
     render() {
-      const l = (
+      const i = (
         /* HTML */
         `
       <div class="crs-show-more">
-        <button class="show-more">${this.isExpanded ? "Show less" : "Show more"} fabrics <span>${L.arrowDown}</span></button>
+        <button class="show-more">${this.isExpanded ? "Show less" : "Show more"} fabrics <span>${u.arrowDown}</span></button>
       </div>
     `
       );
-      f(".crs-window .card-grid li").then(() => {
-        var i, _;
-        const t = n(".crs-show-more .show-more");
-        t && (t.removeEventListener("click", this.handleClick), (i = t.parentElement) == null || i.remove()), u(".crs-window .card-grid li").length > 10 && ((_ = n(".crs-window .row.small-gutters.row-gutters>div:last-of-type")) == null || _.insertAdjacentHTML(
+      w(".crs-window .card-grid li").then(() => {
+        var n, d;
+        const o = l(".crs-show-more .show-more");
+        o && (o.removeEventListener("click", this.handleClick), (n = o.parentElement) == null || n.remove()), p(".crs-window .card-grid li").length > 10 && ((d = l(".crs-window .row.small-gutters.row-gutters>div:last-of-type")) == null || d.insertAdjacentHTML(
           "beforeend",
-          l
-        ), n(".crs-show-more .show-more").addEventListener("click", this.handleClick));
+          i
+        ), l(".crs-show-more .show-more").addEventListener("click", this.handleClick));
       });
     }
   }
-  class E {
+  class q {
     constructor() {
       this.isCarouseiIsShown = !1, this.isMeasureIsShown = !1, this.isColorIsShown = !1, this.isWhiteFabricsIsShown = !1;
     }
     init() {
-      this.isCarouseiIsShown || f("div[data-carousel]").then(() => {
-        v(
+      this.isCarouseiIsShown || w("div[data-carousel]").then(() => {
+        f(
           "div[data-carousel]",
           "exp_visualization_section_01",
           "Section",
@@ -683,8 +682,8 @@
             this.isCarouseiIsShown = !0;
           }
         );
-      }), this.isMeasureIsShown || f(".crs-measure").then((l) => {
-        v(
+      }), this.isMeasureIsShown || w(".crs-measure").then((i) => {
+        f(
           ".crs-measure",
           "exp_visualization_link_vis_01",
           "Link Check guide",
@@ -694,8 +693,8 @@
             this.isMeasureIsShown = !0;
           }
         );
-      }), this.isColorIsShown || f(".colour-chooser__wrap li").then(() => {
-        v(
+      }), this.isColorIsShown || w(".colour-chooser__wrap li").then(() => {
+        f(
           ".colour-chooser__wrap",
           "exp_visualization_button_vis_01",
           "Select your colour Button",
@@ -705,8 +704,8 @@
             this.isColorIsShown = !0;
           }
         );
-      }), this.isWhiteFabricsIsShown || f(".crs-window .small-gutters .card-grid").then(() => {
-        v(
+      }), this.isWhiteFabricsIsShown || w(".crs-window .small-gutters .card-grid").then(() => {
+        f(
           ".crs-window .small-gutters .card-grid",
           "exp_visualization_button_vis_02",
           "Stark white fabrics Button",
@@ -719,100 +718,88 @@
       });
     }
   }
-  class $ {
+  class T {
     constructor() {
       console.log("Cart constructor");
     }
     init() {
-      f(".cart-product").then(() => {
-        u(".cart-product").forEach((l) => {
-          const t = l.querySelector(".cart-product__desc p");
-          if (t) {
-            const d = t.innerHTML.trim().replace(/<!---->/g, "").split("<br>")[1].trim().toLowerCase().replace(/\s/g, "_"), C = g.find(({ name: h }) => h === d), o = (
+      w(".cart-product").then(() => {
+        p(".cart-product").forEach((i) => {
+          const o = i.querySelector(".cart-product__desc p");
+          if (o) {
+            const h = o.innerHTML.trim().replace(/<!---->/g, "").split("<br>")[1].trim().toLowerCase().replace(/\s/g, "_"), t = v.find(({ name: _ }) => _ === h), r = (
               /* HTML */
               `<div class="crs-window__show">
             <div class="crs-window__fill">
-              ${m({
-                url: `${p}/img/textures/${d}.jpg`,
-                opacity: C == null ? void 0 : C.opacity,
-                fullSize: C == null ? void 0 : C.fullSize
+              ${b({
+                url: `${x}/img/textures/${h}.jpg`,
+                opacity: t == null ? void 0 : t.opacity,
+                fullSize: t == null ? void 0 : t.fullSize
               })}
             </div>
             <div class="crs-window__image"></div>
           </div>`
-            ), r = l.querySelector(".cart-product__image");
-            r && (r.innerHTML = o);
+            ), a = i.querySelector(".cart-product__image");
+            a && (a.innerHTML = r);
           }
         });
       });
     }
   }
-  H({ name: "Dev Visualization", dev: "OS" }), Z("exp_visualization");
-  class j {
+  const E = '@media (min-width: 1000px){div:has(>.o-sidebar__panel){display:none}}body{overflow-x:clip!important}.page,.o-sidebar--scrollable{overflow:clip!important}div:has(>.o-sidebar__workflow){flex:0 0 100%;max-width:100%}@media (min-width: 1800px){div:has(>.o-sidebar__workflow){max-width:80%}}@media (min-width: 1800px){.offset-xl-1{margin-right:8.3333333333%}}div:has(>.filter-nav){display:none}.configurator__step{margin-bottom:30px}.crs-window+div{display:grid;grid-template-columns:1fr 470px;grid-template-rows:auto auto;gap:0 18px}@media (max-width: 1280px){.crs-window+div{display:block;grid-template-columns:1fr}}.crs-window+div>.configurator__step{grid-column:1 / 2}.crs-window+div>.configurator__step:first-of-type{grid-row:1 / 2}.crs-window+div>.configurator__step:last-of-type{grid-row:2 / 3}.crs-window+div>.roller-container{grid-column:2 / 3;grid-row:1 / 3;margin:50px 0 0}.container--capped-fluid-with-gutter>div{justify-content:center!important}.flickity-viewport .flickity-slider>div:nth-child(2){left:463px!important}@media screen and (max-width: 768px){.flickity-viewport .flickity-slider>div:nth-child(2){left:262px!important}}.flickity-viewport .flickity-slider>div:nth-child(3){left:926px!important}@media screen and (max-width: 768px){.flickity-viewport .flickity-slider>div:nth-child(3){left:524px!important}}.flickity-viewport .flickity-slider>div>button{padding:0;width:-moz-max-content;width:max-content}@media screen and (max-width: 768px){.flickity-viewport .flickity-slider>div{width:246px}}.configurator__step [data-carousel]{gap:43px;flex-wrap:nowrap;justify-content:flex-start!important;align-items:center;height:270px}@media screen and (max-width: 768px){.configurator__step [data-carousel]{height:auto}}@media (max-width: 1440px){.configurator__step [data-carousel]{gap:20px}}.configurator__step [data-carousel] button.selectable-item{border:solid 2px #868ea5;box-shadow:none}.configurator__step [data-carousel] button.selectable-item.is-selected{border:solid 2px #e83b68}.configurator__step [data-carousel] .selectable-item{padding:0}@media screen and (max-width: 768px){.configurator__step [data-carousel] .selectable-item{height:100%}}.configurator__step [data-carousel] .customiser-card{display:grid;grid-template-columns:246px;grid-template-rows:207px 70px 1fr;padding:0}@media screen and (min-width: 768px){.configurator__step [data-carousel] .customiser-card{width:400px;height:243px;gap:15px 13px;grid-template-columns:50% 50%;grid-template-rows:3rem 1fr}}.configurator__step [data-carousel] .customiser-card .customiser-card__image{grid-column:1 / 2;grid-row:1 / 3;justify-content:center;align-self:center;margin:0;height:100%;width:100%;background-position:-73px -27px;background-size:365px}.configurator__step [data-carousel] .customiser-card .customiser-card__image img{display:none}@media screen and (max-width: 768px){.configurator__step [data-carousel] .customiser-card .customiser-card__image{grid-column:1 / 2;grid-row:1 / 2;height:100%;width:100%}}.configurator__step [data-carousel] .customiser-card .customiser-card__content{grid-column:2 / 3;grid-row:1 / 2;padding-top:14px;width:190px}@media screen and (max-width: 768px){.configurator__step [data-carousel] .customiser-card .customiser-card__content{grid-column:1 / 2;grid-row:2 / 3;padding:14px;width:100%}}.configurator__step [data-carousel] .customiser-card .customiser-card__content h4{font-size:14px;font-weight:700;line-height:22px;text-align:left;color:#444c5f}@media screen and (max-width: 768px){.configurator__step [data-carousel] .customiser-card .customiser-card__content h4{font-size:16px;font-weight:700;line-height:22px}}.configurator__step [data-carousel] .customiser-card .customiser-card__content h5{font-size:14px;font-weight:700;line-height:20px;text-align:left;color:#e83b68}.configurator__step [data-carousel] .customiser-card .customiser-card__attributes{grid-column:2 / 3;grid-row:2 / 3;margin:0;width:190px}@media screen and (max-width: 768px){.configurator__step [data-carousel] .customiser-card .customiser-card__attributes{grid-column:1 / 2;grid-row:3 / 4;padding:14px;width:90%}}.configurator__step [data-carousel] .customiser-card .customiser-card__attributes ul{display:grid;gap:4px}.configurator__step [data-carousel] .customiser-card .customiser-card__attributes ul li{font-size:14px;line-height:20px;text-align:left;color:#444c5f}.crs-blockout .customiser-card__image{background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/blockout.webp)}.crs-light-filtering .customiser-card__image{background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/light.webp)}.crs-sunscreen .customiser-card__image{background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/sunscreen.webp)}.crs-window__fill svg{width:100%;height:100%}.crs-window{display:grid;gap:1rem;grid-template-columns:100%;grid-template-rows:3rem max-content 1fr;height:100%;margin-bottom:10px}@media (min-width: 1280px){.crs-window{grid-template-columns:700px 1fr;grid-template-rows:3rem 1fr;height:720px}}@media (min-width: 1440px){.crs-window{grid-template-columns:818px 1fr;height:758px}}.crs-window .configurator__step-heading{grid-column:1 / 3;grid-row:1 / 2}@media (max-width: 1000px){.crs-window .configurator__step-heading{grid-column:1 / 2;grid-row:1/2}}.crs-window .crs-window__show{position:sticky;top:50px;grid-column:1 / 2;grid-row:2 / 3;width:calc(100% + 30px);z-index:5;height:242px;margin-left:-14px}.crs-window .crs-window__show .crs-window__image{overflow:hidden;width:100%;height:100%;background-size:400px;background-position:-12px -26px;background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/light.webp)}@media screen and (min-width: 380px){.crs-window .crs-window__show .crs-window__image{background-size:450px}}@media screen and (min-width: 450px){.crs-window .crs-window__show .crs-window__image{width:100%;height:100%;background-size:599px;background-position:-35px -50px}}@media screen and (min-width: 600px){.crs-window .crs-window__show .crs-window__image{width:100%;height:100%;background-size:121%;background-position:35% 26%}}@media (min-width: 380px){.crs-window .crs-window__show{height:269px}}@media (min-width: 450px){.crs-window .crs-window__show{height:390px}}@media (min-width: 600px){.crs-window .crs-window__show{width:600px;height:420px;margin:0 auto}}@media (min-width: 800px){.crs-window .crs-window__show{top:0;width:818px;height:693px;position:relative;z-index:0;justify-self:center;margin:0 auto}}@media (min-width: 1000px){.crs-window .crs-window__show{width:685px;height:604px}}@media (min-width: 1440px){.crs-window .crs-window__show{width:818px;height:693px}}.crs-window .crs-window__show .crs-window__fill{position:absolute;top:32px;left:100px;width:179px}@media screen and (min-width: 380px){.crs-window .crs-window__show .crs-window__fill{top:40px;left:113px;width:202px}}@media screen and (min-width: 450px){.crs-window .crs-window__show .crs-window__fill{top:38px;left:131px;width:269px}}@media screen and (min-width: 600px){.crs-window .crs-window__show .crs-window__fill{top:27px;left:159px;width:325px}}@media (min-width: 800px){.crs-window .crs-window__show .crs-window__fill{top:68px;left:217px;width:443px}}@media (min-width: 1000px){.crs-window .crs-window__show .crs-window__fill{top:62px;left:180px;width:372px}}@media (min-width: 1440px){.crs-window .crs-window__show .crs-window__fill{top:68px;left:215px;width:443px}}.crs-window .row.small-gutters.row-gutters{grid-column:2 / 3;grid-row:2 / 3;height:-moz-max-content;height:max-content}@media (max-width: 1280px){.crs-window .row.small-gutters.row-gutters{grid-column:1 / 2;grid-row:3 / 4}}.crs-window .row.small-gutters.row-gutters>div:last-of-type{height:100%;margin-bottom:30px}@media (min-width: 1000px){.crs-window .row.small-gutters.row-gutters>div:last-of-type{height:100%;overflow-x:hidden}}@media (min-width: 1280px){.crs-window .row.small-gutters.row-gutters>div:last-of-type{overflow-y:auto;margin-bottom:0;height:481px}}@media (min-width: 1440px){.crs-window .row.small-gutters.row-gutters>div:last-of-type{height:571px}}.crs-window .row.small-gutters.row-gutters .card-grid{height:100%;align-content:flex-start;max-height:1010px;margin-top:18px;justify-content:center;overflow:hidden;padding-top:18px}.crs-window .row.small-gutters.row-gutters .card-grid.show-more{max-height:100%}.crs-window .row.small-gutters.row-gutters .card-grid.show-more:focus{outline:none}.crs-window .row.small-gutters.row-gutters .card-grid.show-more+.crs-show-more svg{transform:rotate(180deg)}@media (min-width: 563px){.crs-window .row.small-gutters.row-gutters .card-grid{max-height:415px}}@media (min-width: 1000px){.crs-window .row.small-gutters.row-gutters .card-grid{max-height:420px}}@media (min-width: 1280px){.crs-window .row.small-gutters.row-gutters .card-grid{justify-content:flex-start;max-height:-moz-max-content;max-height:max-content;height:-moz-max-content;height:max-content}}.crs-window .row.small-gutters.row-gutters .card-grid li{max-width:-moz-max-content;max-width:max-content}.crs-window .row.small-gutters.row-gutters .card-grid li:first-child{position:relative}.crs-window .row.small-gutters.row-gutters .card-grid li:first-child button.selectable-item:before{content:"MOST POPULAR";position:absolute;display:flex;align-items:center;justify-content:center;color:#fff;top:-21px;left:0;height:21px;width:162px;background:#e83b68;font-size:10px;line-height:15px;font-weight:700;border-right:2px solid rgb(203 204 209)}.crs-window .row.small-gutters.row-gutters .card-grid li:first-child button.selectable-item.is-selected:before{border:2px solid #e83b68;left:-2px}.crs-window .row.small-gutters.row-gutters .card-grid li:has(.selectable-item){height:-moz-max-content;height:max-content}.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item{width:162px;height:190px;padding:14px 33px}.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item article{padding:0;display:flex;flex-direction:column;gap:4px}.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item article header{margin:0}.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item article h4{font-size:12px;font-weight:700;line-height:15px;text-align:center;color:#444c5f}.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item article p{font-size:12px;line-height:15px;text-align:center;color:#adb4c1}@media (min-width: 1000px){.crs-window .row.small-gutters.row-gutters .card-grid .selectable-item{width:162px;height:192px;padding:14px 33px}}.customiser-card--fabric .customiser-card__header,.customiser-card--fabric header{height:auto;width:auto}.customiser-card--fabric footer{display:none}.roller-container{background:#fff;position:sticky;height:-moz-max-content;height:max-content;z-index:1;top:120px;padding:20px;flex-direction:column;justify-content:center;align-items:center}@media (max-width: 1000px){.roller-container{position:static;top:0;padding:0}}.roller-container>div{margin:0;padding:0}.roller{height:-moz-max-content;height:max-content;max-width:100%}.roller .cart-title__image{display:flex!important;justify-content:center}.roller .cart-title__text{display:flex;justify-content:space-between;align-items:center}@media (max-width: 768px){.roller .cart-title__text{padding:0 15px}}.roller .cart-title__text h4{margin:0;color:var(--Text, #444c5f);font-family:Libre Franklin;font-size:16px;font-weight:700;line-height:22px}.roller .cart-title__text .crs-badges{display:flex;justify-content:center;align-items:center;gap:15px}@media (max-width: 768px){.roller .cart-title__text .crs-badges{gap:10px}}.roller .cart-title__text .crs-badges span{width:45px}.roller .cart-summary,.roller .cart-summary *{font-size:12px;line-height:18px}.roller .cart-summary .features-list__attributes button{color:var(--Text, #444c5f);font-weight:700}.roller .crs-window__show{position:relative;width:430px;height:300px}@media (max-width: 500px){.roller .crs-window__show{width:300px;height:260px}}.roller .crs-window__show .crs-window__fill{position:absolute;width:208px;top:47px;left:109px}@media (max-width: 500px){.roller .crs-window__show .crs-window__fill{width:208px;top:41px;left:36px}}@media (max-width: 370px){.roller .crs-window__show .crs-window__fill{width:166px;top:32px;left:76px}}.roller .crs-window__show .crs-window__image{background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/light.webp);max-width:100%;background-size:465px;background-position:57% 13%;width:100%;height:100%}@media (max-width: 370px){.roller .crs-window__show .crs-window__image{background-size:348px;background-position:-29px -22px;background-size:372px}}.roller .features-list>li:has(>ul):has(>h3){display:grid;grid-template-columns:1fr 112px;grid-template-rows:1fr 1fr}.roller .features-list>li:has(>ul):has(>h3) h3{grid-column:1 / 2;grid-row:1 / 2}.roller .features-list>li:has(>ul):has(>h3) ul{grid-column:1 / 2;grid-row:2 / 3}.roller .features-list>li:has(>ul):has(>h3)>div{grid-column:2 / 3;grid-row:1 / 3;margin:0;padding-left:20px;border-left:1px solid #dddee9}.add-to-cart{padding:20px;height:-moz-max-content;height:max-content}.add-to-cart .cart-totals__total{display:flex;align-items:center;gap:16px}.add-to-cart .cart-totals__total small{color:var(--Text, #444c5f);font-family:Libre Franklin;font-size:14px;font-style:normal;font-weight:400;line-height:20px}.add-to-cart .cart-totals__total dt,.add-to-cart .cart-totals__footer{display:none}.o-sidebar__panel-content>.row>div{display:none}.cart-totals__footer{display:none}.measure-panel__howto>a{display:none!important}.measure-panel__howto{position:static!important}.measure-panel__howto .crs-measure{display:grid;grid-template-columns:32px 1fr 1fr;gap:14px;align-items:center;width:100%;padding:16px 24px;box-shadow:2px 2px #2e354733;background-color:#fff;margin-bottom:39px}@media screen and (max-width: 768px){.measure-panel__howto .crs-measure{grid-template-columns:32px 1fr;grid-template-rows:1fr 1fr;gap:0 14px}}.measure-panel__howto .crs-measure .icon{grid-column:1 / 2;width:32px;height:32px}@media screen and (max-width: 768px){.measure-panel__howto .crs-measure .icon{grid-column:1 / 2;grid-row:1 / 3}}.measure-panel__howto .crs-measure .title{grid-column:2 / 3;color:var(--Text, #444c5f);font-family:Libre Franklin;font-size:16px;font-weight:700;line-height:22px}@media screen and (max-width: 768px){.measure-panel__howto .crs-measure .title{grid-column:2 / 3;grid-row:1 / 2}}.measure-panel__howto .crs-measure .link{grid-column:3 / 4;justify-self:end;display:block;width:184px;border-radius:40px;border:1.5px solid #ee8fa9;padding:12px;color:var(--Primary, #e83b68);text-align:center;font-family:Libre Franklin;font-size:14px;font-style:normal;font-weight:700;line-height:20px}@media screen and (max-width: 768px){.measure-panel__howto .crs-measure .link{border:none;padding:0;grid-column:2 / 3;grid-row:2 / 3;justify-self:start;text-align:left;text-decoration:underline}}h3:has(.round-number){font-family:Libre Franklin;font-size:24px;font-weight:700;line-height:32px;margin-bottom:16px}h3:has(.round-number) span:not(.round-number){font-size:inherit;line-height:inherit;font-weight:inherit}@media screen and (max-width: 768px){h3:has(.round-number){display:flex;font-size:20px;font-weight:700;line-height:28px}h3:has(.round-number) .round-number{aspect-ratio:1}}.step-desc{color:var(--www-diyblinds-com-au-blinds-roller-blinds-order-39028570556640625-x-844-default-river-bed, #444c5f);font-family:Libre Franklin;font-size:16px;font-style:normal;font-weight:400;line-height:22px}.crs-show-more{display:block;margin-top:16px;display:flex;justify-content:center;padding:5px;width:100%}.crs-show-more button{color:var(--Text, #444c5f);font-family:Libre Franklin;font-size:14px;font-style:normal;font-weight:700;line-height:20px;text-decoration-line:underline}.crs-show-more button:focus{outline:none}@media screen and (min-width: 1280px){.crs-show-more{display:none}}.crs-preview-text{font-family:Libre Franklin;margin-bottom:30px}.crs-preview-text .title{color:var(--www-diyblinds-com-au-blinds-roller-blinds-order-39028570556640625-x-844-default-river-bed, #444c5f);font-size:30px;font-weight:700;line-height:38px;margin:0 0 10px}@media screen and (max-width: 768px){.crs-preview-text .title{font-size:20px;line-height:28px}}.crs-preview-text .desc{color:var(--www-diyblinds-com-au-blinds-roller-blinds-order-39028570556640625-x-844-default-river-bed, #444c5f);font-size:16px;font-weight:400;line-height:22px}.crs-select-color{color:var(--www-diyblinds-com-au-blinds-roller-blinds-order-39028570556640625-x-844-default-river-bed, #444c5f);font-family:Libre Franklin;font-size:20px;font-weight:700;line-height:28px;margin-bottom:8px}@media screen and (max-width: 768px){.crs-select-color{margin-bottom:16px}}@media screen and (max-width: 768px){h4:has(+.card-grid){color:var(--www-diyblinds-com-au-blinds-roller-blinds-order-39028570556640625-x-844-default-river-bed, #444c5f);font-family:Libre Franklin;font-size:14px;font-weight:700;line-height:20px;margin-top:13px}}.configurator__step .step-desc br{content:" ";display:block;height:16px}.handheld-action.is-floating{z-index:5!important}.dot.is-selected{background:#444c5f}.cart-product__content .cart-product__image{width:115px;height:115px}.cart-product__content .crs-window__show{position:relative;width:115px;height:115px}@media (max-width: 1280px){.cart-product__content .crs-window__show{width:90px;height:90px}}.cart-product__content .crs-window__show .crs-window__fill{position:absolute;width:77px;top:17px;left:16px}@media (max-width: 1280px){.cart-product__content .crs-window__show .crs-window__fill{width:63px;top:13px;left:10px}}.cart-product__content .crs-window__show .crs-window__image{background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/light.webp);background-size:170px;background-position:57% 13%;width:100%;height:100%}@media (max-width: 1280px){.cart-product__content .crs-window__show .crs-window__image{background-size:140px}}', $ = ".cart-product__content .cart-product__image{width:115px;height:115px}.cart-product__content .crs-window__show{position:relative;width:115px;height:115px}@media (max-width: 1280px){.cart-product__content .crs-window__show{width:90px;height:90px}}.cart-product__content .crs-window__show .crs-window__fill{position:absolute;width:77px;top:17px;left:16px}.cart-product__content .crs-window__show .crs-window__fill svg{width:100%;height:100%}@media (max-width: 1280px){.cart-product__content .crs-window__show .crs-window__fill{width:63px;top:13px;left:10px}}.cart-product__content .crs-window__show .crs-window__image{background-image:url(https://conversionratestore.github.io/projects/diyblinds/img/light.webp);background-size:170px;background-position:57% 13%;width:100%;height:100%}@media (max-width: 1280px){.cart-product__content .crs-window__show .crs-window__image{background-size:140px}}";
+  M({ name: "Dev Visualization", dev: "OS" }), z("exp_visualization");
+  class I {
     constructor() {
-      this.allowEvent = !0, this.events = new E(), this.showMoreButton = new z();
+      this.allowEvent = !0, this.events = new q(), this.showMoreButton = new B();
     }
     init() {
-      location.pathname.includes("/blinds/roller-blinds/order") && f(".configurator").then(() => {
-        document.head.insertAdjacentHTML(
-          "beforeend",
+      if (location.pathname.includes("/blinds/roller-blinds/order") && w(".configurator").then(() => {
+        const i = (
           /* HTML */
           `
           <style>
-           div:has(> .o-sidebar__panel) {
-  /* Styles here */
-}
-
-@media (min-width: 1000px) {
-  div:has(> .o-sidebar__panel) {
-    display: none;
-  }
-}
-
-div:has(> .o-sidebar__workflow) {
-  flex: 0 0 100%;
-  max-width: 100%;
-}
-
-@media (min-width: 1800px) {
-  div:has(> .o-sidebar__workflow) {
-    max-width: 80%;
-  }
-}
-
-@media (min-width: 1800px) {
-  .offset-xl-1 {
-    margin-right: 8.3333333333%;
-  }
-}
+            ${E}
           </style>
         `
-        ), new M().render(), new k().init(), this.showMoreButton.render();
-      }), location.pathname.includes("cart") && new $().init(), this.events.init(), document.addEventListener("click", (l) => {
-        var d, C, o, r, h;
-        const t = l.target, s = t.closest("button.selectable-item");
-        if (s && ((d = s.textContent) != null && d.includes("Blockout Roller Blind") || (C = s.textContent) != null && C.includes("Light Filtering Roller Blind") || (o = s.textContent) != null && o.includes("Sunscreen Roller Blind"))) {
-          f(".crs-window button.selectable-item").then(() => {
-            b("exp_visualization_icone_01", "Click", "click", "PDP Select Roller Blind type");
-          }), new M().render(), new k().init(), this.events.init();
-          const c = setInterval(() => {
-            const w = n(".crs-window button.selectable-item:first-child");
-            w && (this.allowEvent = !1, w.click(), clearInterval(c), this.allowEvent = !0);
+        );
+        document.head.insertAdjacentHTML("beforeend", i), new L().render(), new k().init(), this.showMoreButton.render();
+      }), location.pathname.includes("cart")) {
+        const i = (
+          /* HTML */
+          `
+      <style>
+        ${$}
+      </style>
+    `
+        );
+        document.head.insertAdjacentHTML("beforeend", i), new T().init();
+      }
+      this.events.init(), document.addEventListener("click", (i) => {
+        var h, t, r, a, _;
+        const o = i.target, s = o.closest("button.selectable-item");
+        if (s && ((h = s.textContent) != null && h.includes("Blockout Roller Blind") || (t = s.textContent) != null && t.includes("Light Filtering Roller Blind") || (r = s.textContent) != null && r.includes("Sunscreen Roller Blind"))) {
+          w(".crs-window button.selectable-item").then(() => {
+            g("exp_visualization_icone_01", "Click", "click", "PDP Select Roller Blind type");
+          }), new L().render(), new k().init(), this.events.init();
+          const C = setInterval(() => {
+            const m = l(".crs-window button.selectable-item:first-child");
+            m && (this.allowEvent = !1, m.click(), clearInterval(C), this.allowEvent = !0);
           }, 50);
         }
-        const i = t.closest(".colour-chooser__wrap li");
-        if (i) {
-          const c = (r = i.querySelector(".sr-only")) == null ? void 0 : r.textContent;
-          b("exp_visualization_button_01", `${c}`, "click", "PDP Choose 'Blockout' colour & fabric"), this.showMoreButton.render();
+        const n = o.closest(".colour-chooser__wrap li");
+        if (n) {
+          const C = (a = n.querySelector(".sr-only")) == null ? void 0 : a.textContent;
+          g("exp_visualization_button_01", `${C}`, "click", "PDP Choose 'Blockout' colour & fabric"), this.showMoreButton.render();
         }
-        const _ = t.closest(".crs-window button.selectable-item");
-        if (_) {
-          const c = (h = _.querySelector("h4")) == null ? void 0 : h.innerHTML, w = c == null ? void 0 : c.replace(/<br>| |\//g, "_").toLocaleLowerCase().trim();
-          this.allowEvent && b("exp_visualization_button_02", `${w}`, "click", "PDP Choose 'Blockout' colour & fabric");
+        const d = o.closest(".crs-window button.selectable-item");
+        if (d) {
+          const C = (_ = d.querySelector("h4")) == null ? void 0 : _.innerHTML, m = C == null ? void 0 : C.replace(/<br>| |\//g, "_").toLocaleLowerCase().trim();
+          this.allowEvent && g("exp_visualization_button_02", `${m}`, "click", "PDP Choose 'Blockout' colour & fabric");
         }
-        t.closest(".crs-measure .link") && b("exp_visualization_link_02", "Check guide", "click", "PDP Measurements How to measure?");
+        o.closest(".crs-measure .link") && g("exp_visualization_link_02", "Check guide", "click", "PDP Measurements How to measure?");
       });
     }
   }
-  new j().init();
+  new I().init();
 })();
+//# sourceMappingURL=index.js.map
