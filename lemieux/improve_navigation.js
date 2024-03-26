@@ -6,15 +6,21 @@ window.onload = () => {
 
   const $$el = selector => document.querySelectorAll(selector)
   const $el = selector => document.querySelector(selector)
-  const git = 'https://conversionratestore.github.io/projects/'
 
-  // clarity script
-  const clarityInterval = setInterval(function () {
-    if (typeof clarity == 'function') {
-      clearInterval(clarityInterval)
-      clarity('set', 'exp_impro_pdp', 'variant_1')
-    }
-  }, 1000)
+  ;(function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        ;(h.hj.q = h.hj.q || []).push(arguments)
+      }
+    h._hjSettings = { hjid: 2667925, hjsv: 6 }
+    a = o.getElementsByTagName('head')[0]
+    r = o.createElement('script')
+    r.async = 1
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+    a.appendChild(r)
+  })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=')
+  hj('event', 'imp_pdp')
 
   // funtion for push data to GA4
   const pushDataLayer = (name, desc, type = '', loc = '') => {
