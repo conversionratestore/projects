@@ -832,7 +832,7 @@
 .new_natpat_block p img {\r
   position: absolute;\r
   left: 50%;\r
-  top: calc(100% - 110px);\r
+  top: calc(100% - 85px);\r
   transform: translateX(-50%);\r
 }\r
 \r
