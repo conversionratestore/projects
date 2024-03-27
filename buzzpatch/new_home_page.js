@@ -2141,7 +2141,7 @@ body {\r
     fixes() {
       const e = setInterval(() => {
         var o, r, t;
-        document.querySelector("#amped-6269-26072") && ((o = document.querySelector("#amped-6269-26072")) != null && o.shadowRoot) && ((t = (r = document.querySelector("#amped-6269-26072")) == null ? void 0 : r.shadowRoot) != null && t.querySelector("#el_uNBrKg7ulB")) && (clearInterval(e), document.querySelector("#amped-6269-26072").shadowRoot.querySelector("#el_uNBrKg7ulB").style.top = "70%");
+        document.querySelector("#amped-6269-26072") && ((o = document.querySelector("#amped-6269-26072")) != null && o.shadowRoot) && ((t = (r = document.querySelector("#amped-6269-26072")) == null ? void 0 : r.shadowRoot) != null && t.querySelector("#el_uNBrKg7ulB")) && (clearInterval(e), document.querySelector("#amped-6269-26072").shadowRoot.querySelector("#el_uNBrKg7ulB").style.top = "80%");
       }, 100);
       setTimeout(() => {
         clearInterval(e);
