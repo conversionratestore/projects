@@ -1245,9 +1245,9 @@ footer {\r
     padding: 20px 24px 60px !important;\r
   }\r
   .new_main_block h1 {\r
-    font-size: 24px;\r
+    font-size: 28px;\r
     line-height: 32px;\r
-    margin: 0 0 28px;\r
+    margin: 0 0 24px;\r
     text-align: left;\r
     text-shadow: none;\r
   }\r
