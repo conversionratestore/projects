@@ -303,7 +303,7 @@
 }\r
 \r
 .new_main_block {\r
-  padding: 70px 0 120px;\r
+  padding: 70px 0;\r
   text-align: center;\r
   position: relative;\r
 }\r
