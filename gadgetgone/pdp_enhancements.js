@@ -1,13 +1,13 @@
 (function() {
   "use strict";
-  const h = (i, e, r, s = "") => {
+  const f = (i, e, t, d = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: i,
       event_desc: e,
-      event_type: r,
-      event_loc: s
-    }), console.log(`Event: ${i} | ${e} | ${r} | ${s}`);
+      event_type: t,
+      event_loc: d
+    }), console.log(`Event: ${i} | ${e} | ${t} | ${d}`);
   }, b = ({ name: i, dev: e }) => {
     console.log(
       `%c EXP: ${i} (DEV: ${e})`,
@@ -17,41 +17,41 @@
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", i, "variant_1"));
     }, 1e3);
-  }, g = (i, e, r, s, t = 3e3, a = 1) => {
-    let d, c;
-    if (d = new IntersectionObserver(
-      function(o) {
-        o[0].isIntersecting === !0 ? c = setTimeout(() => {
-          h(
+  }, g = (i, e, t, d, o = 3e3, a = 1) => {
+    let c, s;
+    if (c = new IntersectionObserver(
+      function(h) {
+        h[0].isIntersecting === !0 ? s = setTimeout(() => {
+          f(
             e,
-            o[0].target.dataset.visible || s || "",
+            h[0].target.dataset.visible || d || "",
             "visibility",
-            r
-          ), d.disconnect();
-        }, t) : clearTimeout(c);
+            t
+          ), c.disconnect();
+        }, o) : clearTimeout(s);
       },
       { threshold: [a] }
     ), typeof i == "string") {
-      const o = document.querySelector(i);
-      o && d.observe(o);
+      const h = document.querySelector(i);
+      h && c.observe(h);
     } else
-      d.observe(i);
+      c.observe(i);
   };
   function l(i) {
     return new Promise((e) => {
       if (document.querySelector(i))
         return e(document.querySelector(i));
-      const r = new MutationObserver(() => {
-        document.querySelector(i) && (e(document.querySelector(i)), r.disconnect());
+      const t = new MutationObserver(() => {
+        document.querySelector(i) && (e(document.querySelector(i)), t.disconnect());
       });
-      r.observe(document.documentElement, {
+      t.observe(document.documentElement, {
         childList: !0,
         subtree: !0,
         characterData: !0
       });
     });
   }
-  const m = "https://conversionratestore.github.io/projects/gadgetgone", p = {
+  const u = "https://conversionratestore.github.io/projects/gadgetgone", p = {
     smartphone: (
       /*html */
       `
@@ -321,7 +321,7 @@
 </svg>
   `
     )
-  }, u = [
+  }, m = [
     {
       name: "choose",
       class: "choose_var",
@@ -379,15 +379,15 @@
     }
   ], L = [
     {
-      imgUrl: `${m}/checkout/img/trustpilot_reviews.png`,
+      imgUrl: `${u}/checkout/img/trustpilot_reviews.png`,
       imgLink: "https://www.trustpilot.com/review/gadgetgone.com"
     },
     {
-      imgUrl: `${m}/checkout/img/google_reviews.png`,
+      imgUrl: `${u}/checkout/img/google_reviews.png`,
       imgLink: "https://www.google.com/search?q=gadget+gone&oq=gadget+gone&aqs=chrome.0.69i59j69i57j69i60l6.1656j0j7&sourceid=chrome&ie=UTF-8#lrd=0x88e76b2065fdd327:0x51404d4d0bb5c90,1,,,"
     },
     {
-      imgUrl: `${m}/checkout/img/accredited_business_reviews.png`,
+      imgUrl: `${u}/checkout/img/accredited_business_reviews.png`,
       imgLink: "https://www.bbb.org/us/fl/aloma/profile/electronics-recycling/gadgetgone-llc-0733-90332741"
     }
   ], H = [
@@ -445,7 +445,7 @@
     /* HTML */
     `
   <div id="conditionBlock">
-    ${u.map((i) => (
+    ${m.map((i) => (
       /* HTML */
       `
           <div class="${i.class}">
@@ -519,7 +519,7 @@
     </div>
   </section>
 `
-  ), I = (
+  ), B = (
     /* HTML */
     `
   <section id="frequentlyAskedQuestionSection">
@@ -544,7 +544,7 @@
     </div>
   </section>
 `
-  ), B = (i, e) => (
+  ), I = (i, e) => (
     /* HTML */
     `
     <div class="radio_block ${e}">
@@ -555,7 +555,7 @@
       <div class="radio_option_wrapp"></div>
     </div>
   `
-  ), E = (i, e, r) => (
+  ), E = (i, e, t) => (
     /* HTML */
     `
     <input class="custom_radio" id="${e}" type="radio" name="${i}" value="${e}" />
@@ -566,7 +566,7 @@
           ${e === "unlocked" ? p.unlocked : ""} ${e === "verizon" ? p.verizon : ""}
           ${e === "att" ? p.aTT : ""}
           ${e === "t-mobile" ? p.tMobile : ""}${e === "other" ? p.other : ""}
-          <span class="radio_txt">${r}</span>
+          <span class="radio_txt">${t}</span>
         </div>
         <div class="condition_level">
           <span class="green_bgr"></span>
@@ -577,13 +577,13 @@
           <span class="green_bgr"></span>
         </div>
       </div>
-      ${window.innerWidth < 1100 ? u.map((s) => {
-      if (e === s.name)
+      ${window.innerWidth < 1100 ? m.map((d) => {
+      if (e === d.name)
         return (
           /* HTML */
           `
                   <ul class="radio_descr_mob is_hidden">
-                    ${s.txt}
+                    ${d.txt}
                   </ul>
                 `
         );
@@ -594,6 +594,13 @@
     /* HTML */
     `
   <div class="new_sticky_block">
+    <div class="new_sticky_default_price is_hidden">
+      <div>
+        <h4></h4>
+        <span></span>
+      </div>
+      <p>*Please enter device details to get a quote.</p>
+    </div>
     <span class="new_sticky_default_txt">*Please enter device details to get a quote.</span>
     <button class="disabled">Trade-In</button>
   </div>
@@ -1311,6 +1318,11 @@ footer[role=contentinfo] #seo-nav li:after {
     margin: 0 0 0 auto;
   }
 }
+@media (max-width: 376px) {
+  .radio_block.pa_carrier .radio_option_wrapp label {
+    width: 46%;
+  }
+}
 
 #conditionBlock {
   border-radius: 6px;
@@ -1616,10 +1628,14 @@ footer[role=contentinfo] #seo-nav li:after {
   margin: 0;
 }
 #frequentlyAskedQuestionSection .questions_accordion li .questions_accordion_lists > div p a {
+  border: unset !important;
   color: #0092e6;
   font-weight: 700;
   text-decoration-line: underline;
   cursor: pointer;
+}
+#frequentlyAskedQuestionSection .questions_accordion li .questions_accordion_lists > div p a:hover {
+  border: none !important;
 }
 #frequentlyAskedQuestionSection .questions_accordion li.active svg {
   transform: rotateX(180deg);
@@ -1686,19 +1702,31 @@ body {
 .new_sticky_block button.disabled {
   background: #858d92;
 }
-.new_sticky_block .woocommerce-variation-price h4 {
+.new_sticky_block .new_sticky_default_price > div {
+  min-width: 143px;
+  text-align: center;
+}
+.new_sticky_block .new_sticky_default_price.is_hidden {
+  display: none;
+}
+.new_sticky_block .new_sticky_default_price h4 {
   font-size: 14px !important;
   font-weight: 600 !important;
   line-height: 12px !important;
   margin-bottom: 8px !important;
 }
-.new_sticky_block .woocommerce-Price-amount.amount {
-  font-size: 22px !important;
-  line-height: 20px !important;
+.new_sticky_block .new_sticky_default_price span {
+  color: #63dd1a;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 20px;
 }
-.new_sticky_block .woocommerce-variation-price {
-  min-width: 143px;
-  text-align: center;
+.new_sticky_block .new_sticky_default_price p {
+  color: #757575;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 0;
 }
 
 .radio_section {
@@ -1744,11 +1772,11 @@ body {
       });
     }
     observePageChange() {
-      this.observer = new MutationObserver((r) => {
-        r.forEach((s) => {
+      this.observer = new MutationObserver((t) => {
+        t.forEach((d) => {
           this.changeClassListPriceAndBtnTradeIn();
-          for (let t of s.addedNodes)
-            t instanceof HTMLElement && t.matches(".woocommerce-variation-price") && (this.addNewBlocksToOfferSummary(), this.device === "mobile" && this.renderNewStickyBlock());
+          for (let o of d.addedNodes)
+            o instanceof HTMLElement && o.matches(".woocommerce-variation-price") && (this.addNewBlocksToOfferSummary(), this.device === "mobile" && this.renderNewStickyBlock());
         });
       });
       const e = { childList: !0, subtree: !0 };
@@ -1756,8 +1784,8 @@ body {
     }
     replaceSteps() {
       let e = setInterval(() => {
-        var r, s;
-        n(".device-details-title") && (clearInterval(e), n(".device-details-title").after(n(".device-step-header.step-number-3")), (r = _(".device-step-header .progress-dots ol li")[0]) == null || r.insertAdjacentHTML("afterbegin", p.stepIcon), (s = _(".device-step-header .progress-dots ol li")[1]) == null || s.insertAdjacentHTML("afterbegin", p.stepIcon));
+        var t, d;
+        n(".device-details-title") && (clearInterval(e), n(".device-details-title").after(n(".device-step-header.step-number-3")), (t = _(".device-step-header .progress-dots ol li")[0]) == null || t.insertAdjacentHTML("afterbegin", p.stepIcon), (d = _(".device-step-header .progress-dots ol li")[1]) == null || d.insertAdjacentHTML("afterbegin", p.stepIcon));
       }, 100);
       window.innerWidth >= 1100 && n(".device-step-header.step-number-3 .step").textContent !== "Step 3: Device" && this.device === "desktop" && (n(".device-step-header.step-number-3 .step").textContent = "Step 3: Device");
     }
@@ -1770,33 +1798,33 @@ body {
     }
     addNewBlocksToOfferSummary() {
       l(".single_variation_wrap").then((e) => {
-        var r, s;
+        var t, d;
         n(".single_variation_wrap .new_title_box") || (window.innerWidth < 1100 ? n(".single_variation_wrap .single_variation_wrap--inner").insertAdjacentHTML(
           "afterbegin",
           C("Offer Summary")
-        ) : n(".single_variation_wrap").insertAdjacentHTML("afterbegin", C("Offer Summary"))), n("#benefitsBlock") || (r = n(".order_benefits")) == null || r.insertAdjacentHTML("afterend", S), this.device === "desktop" ? n("#reviewsBlock") || (s = n(".single_variation_wrap")) == null || s.insertAdjacentHTML("beforeend", v) : l("#howItWorksSection").then((t) => {
+        ) : n(".single_variation_wrap").insertAdjacentHTML("afterbegin", C("Offer Summary"))), n("#benefitsBlock") || (t = n(".order_benefits")) == null || t.insertAdjacentHTML("afterend", S), this.device === "desktop" ? n("#reviewsBlock") || (d = n(".single_variation_wrap")) == null || d.insertAdjacentHTML("beforeend", v) : l("#howItWorksSection").then((o) => {
           n("#reviewsBlock") || n("#howItWorksSection").insertAdjacentHTML("beforebegin", v);
-        }), n(".device_price_wrapper") || n(".single_variation_wrap--inner").insertAdjacentHTML("beforeend", '<div class="device_price_wrapper"></div>'), l(".device_price_wrapper").then((t) => {
+        }), n(".device_price_wrapper") || n(".single_variation_wrap--inner").insertAdjacentHTML("beforeend", '<div class="device_price_wrapper"></div>'), l(".device_price_wrapper").then((o) => {
           l(".device-placeholder-price").then((a) => {
-            var c;
-            let d = n(".device-placeholder-price").cloneNode(!0);
-            n(".device_price_wrapper .device-placeholder-price") || (c = n(".device_price_wrapper")) == null || c.appendChild(d);
-          }), l(".woocommerce-variation-price").then((a) => {
-            var c;
-            let d = n(".woocommerce-variation-price").cloneNode(!0);
-            n(".device_price_wrapper .woocommerce-variation-price") || (c = n(".device_price_wrapper")) == null || c.appendChild(d);
+            var s;
+            let c = n(".device-placeholder-price").cloneNode(!0);
+            n(".device_price_wrapper .device-placeholder-price") || (s = n(".device_price_wrapper")) == null || s.appendChild(c);
+          }), l(".add-to-cart-block .woocommerce-variation-price").then((a) => {
+            var s;
+            let c = n(".add-to-cart-block .woocommerce-variation-price").cloneNode(!0);
+            n(".device_price_wrapper .woocommerce-variation-price") || (s = n(".device_price_wrapper")) == null || s.appendChild(c);
           }), l(".woocommerce-variation-description-overview .ggv2-quantity").then((a) => {
-            var c;
-            let d = n(".woocommerce-variation-description-overview .ggv2-quantity").cloneNode(
+            var s;
+            let c = n(".woocommerce-variation-description-overview .ggv2-quantity").cloneNode(
               !0
             );
-            n(".device_price_wrapper .ggv2-quantity:not(.ggv2-quantity--disabled)") || (c = n(".device_price_wrapper")) == null || c.appendChild(d);
+            n(".device_price_wrapper .ggv2-quantity:not(.ggv2-quantity--disabled)") || (s = n(".device_price_wrapper")) == null || s.appendChild(c);
           }), l(".variation-description-overview .ggv2-quantity").then((a) => {
-            var c;
-            let d = n(".variation-description-overview .ggv2-quantity").cloneNode(!0);
-            n(".device_price_wrapper .ggv2-quantity--disabled.ggv2-quantity") || (c = n(".device_price_wrapper")) == null || c.appendChild(d);
+            var s;
+            let c = n(".variation-description-overview .ggv2-quantity").cloneNode(!0);
+            n(".device_price_wrapper .ggv2-quantity--disabled.ggv2-quantity") || (s = n(".device_price_wrapper")) == null || s.appendChild(c);
           });
-        }), l(".device_price_wrapper .price.price--empty").then((t) => {
+        }), l(".device_price_wrapper .price.price--empty").then((o) => {
           n(".device_price_wrapper .price.price--empty").textContent !== "*Please, enter device details to get a quote." && (n(".device_price_wrapper .price.price--empty").textContent = "*Please, enter device details to get a quote.");
         }), n(".single_add_to_cart_button").textContent !== "Trade-In Device" && (n(".single_add_to_cart_button").textContent = "Trade-In Device");
       });
@@ -1827,24 +1855,24 @@ body {
       }), l("#pa_controller-count").then((e) => {
         this.renderInputs("#pa_controller-count");
       }), l("#pa_condition").then((e) => {
-        this.renderInputs("#pa_condition"), window.innerWidth >= 1100 && l(".radio_block.pa_condition").then((r) => {
+        this.renderInputs("#pa_condition"), window.innerWidth >= 1100 && l(".radio_block.pa_condition").then((t) => {
           n("#conditionBlock") || n(".radio_block.pa_condition").insertAdjacentHTML("afterend", Z);
         });
       });
     }
     renderInputs(e) {
-      let r = setInterval(() => {
-        var s, t;
+      let t = setInterval(() => {
+        var d, o;
         if (n(".radio_section")) {
-          clearInterval(r);
-          let a = e.split("#")[1], d = (t = (s = n(e)) == null ? void 0 : s.closest("div").querySelector(".attribute-name")) == null ? void 0 : t.textContent, c = d.toLocaleLowerCase().trim().split(" ").join("_").split("?").join("").split("(").join("").split(")").join("");
-          n(".radio_section").insertAdjacentHTML("beforeend", B(d, a)), l(`.${a}`).then((o) => {
-            var f;
-            (f = _(`${e} option`)) == null || f.forEach((w) => {
+          clearInterval(t);
+          let a = e.split("#")[1], c = (o = (d = n(e)) == null ? void 0 : d.closest("div").querySelector(".attribute-name")) == null ? void 0 : o.textContent, s = c.toLocaleLowerCase().trim().split(" ").join("_").split("?").join("").split("(").join("").split(")").join("");
+          n(".radio_section").insertAdjacentHTML("beforeend", I(c, a)), l(`.${a}`).then((h) => {
+            var r;
+            (r = _(`${e} option`)) == null || r.forEach((w) => {
               var x;
               n(`.${a} .radio_option_wrapp`).insertAdjacentHTML(
                 "beforeend",
-                E(c, w.value === "" ? `choose_opt_${c}` : w.value, w.textContent)
+                E(s, w.value === "" ? `choose_opt_${s}` : w.value, w.textContent)
               ), (x = n(".rotate_svg")) == null || x.remove();
             });
           });
@@ -1854,68 +1882,68 @@ body {
     onClickElems() {
       let e = setInterval(() => {
         n(".clear_form_block") && (clearInterval(e), n(".clear_form_block").addEventListener("click", () => {
-          var t;
-          h("exp_pdp_improve_button_03", "Clear Form", "Button", "Step 3: Device Details"), (t = n(".reset_variations")) == null || t.click(), l(".radio_option_wrapp").then((a) => {
-            _(".radio_option_wrapp input.custom_radio").forEach((d) => {
-              d.checked = !1;
-            }), this.changeClassListConditionBlock("", !0), l(".radio_descr_mob").then((d) => {
-              _(".radio_descr_mob").forEach((c) => {
-                c.classList.add("is_hidden");
+          var o;
+          f("exp_pdp_improve_button_03", "Clear Form", "Button", "Step 3: Device Details"), (o = n(".reset_variations")) == null || o.click(), l(".radio_option_wrapp").then((a) => {
+            _(".radio_option_wrapp input.custom_radio").forEach((c) => {
+              c.checked = !1;
+            }), this.changeClassListConditionBlock("", !0), l(".radio_descr_mob").then((c) => {
+              _(".radio_descr_mob").forEach((s) => {
+                s.classList.add("is_hidden");
               });
             });
           });
         }));
-      }, 100), r = setInterval(() => {
-        n(".radio_option_wrapp") && (clearInterval(r), _(".radio_option_wrapp input.custom_radio + label").forEach((t) => {
-          let a = t.closest(".radio_block").className;
-          t.addEventListener("click", (d, c) => {
-            let o = d.currentTarget.getAttribute("for");
-            h(
+      }, 100), t = setInterval(() => {
+        n(".radio_option_wrapp") && (clearInterval(t), _(".radio_option_wrapp input.custom_radio + label").forEach((o) => {
+          let a = o.closest(".radio_block").className;
+          o.addEventListener("click", (c, s) => {
+            let h = c.currentTarget.getAttribute("for");
+            f(
               `exp_pdp_improve_button_${a.split(" ")[1]}`,
-              o,
+              h,
               "Button",
               "Step 3: Device Details Details Storage"
-            ), _(".flex-wrapper select").forEach((f) => {
-              if (a.includes(f.getAttribute("id"))) {
-                f.value = o;
+            ), _(".flex-wrapper select").forEach((r) => {
+              if (a.includes(r.getAttribute("id"))) {
+                r.value = h;
                 let w = new Event("change", { bubbles: !0 });
-                f.dispatchEvent(w);
+                r.dispatchEvent(w);
               }
-            }), t.closest(".pa_condition") && (this.changeClassListConditionBlock(o), this.changeClassListConditionBlockMob(d.currentTarget));
+            }), o.closest(".pa_condition") && (this.changeClassListConditionBlock(h), this.changeClassListConditionBlockMob(c.currentTarget));
           });
         }));
-      }, 100), s = setInterval(() => {
-        n("#reviewsBlock") && (clearInterval(s), _("#reviewsBlock a").forEach((t) => {
-          t.addEventListener("click", (a) => {
-            a.target.getAttribute("data-test") || (a.currentTarget.getAttribute("href").includes("trustpilot") && h("exp_pdp_improve_button_01", "Trustpilot", "Button", "Step 3: Reviews Block"), a.currentTarget.getAttribute("href").includes("google") && h("exp_pdp_improve_button_02", "Google", "Button", "Step 3: Reviews Block"), a.currentTarget.getAttribute("href").includes("aloma") && h("exp_pdp_improve_button_03", "AccreditedBusiness", "Button", "Step 3: Reviews Block")), a.target.setAttribute("data-test", "1"), setTimeout(() => {
+      }, 100), d = setInterval(() => {
+        n("#reviewsBlock") && (clearInterval(d), _("#reviewsBlock a").forEach((o) => {
+          o.addEventListener("click", (a) => {
+            a.target.getAttribute("data-test") || (a.currentTarget.getAttribute("href").includes("trustpilot") && f("exp_pdp_improve_button_01", "Trustpilot", "Button", "Step 3: Reviews Block"), a.currentTarget.getAttribute("href").includes("google") && f("exp_pdp_improve_button_02", "Google", "Button", "Step 3: Reviews Block"), a.currentTarget.getAttribute("href").includes("aloma") && f("exp_pdp_improve_button_03", "AccreditedBusiness", "Button", "Step 3: Reviews Block")), a.target.setAttribute("data-test", "1"), setTimeout(() => {
               a.target.getAttribute("data-test") && a.target.removeAttribute("data-test");
             }, 1e3);
           });
         }));
       }, 100);
       if (this.device === "mobile") {
-        let t = !1, a = setInterval(() => {
+        let o = !1, a = setInterval(() => {
           n(".new_sticky_block button") && (clearInterval(a), n(".new_sticky_block button").addEventListener("click", () => {
-            var c;
-            t = !0, h("exp_pdp_improve_stiky_button_01", "Trade-In", "Sticky button", "Step 3: Device Details"), (c = n(".single_variation_wrap .add-to-cart-block > div .single_add_to_cart_button")) == null || c.click(), setTimeout(() => {
-              t = !1;
+            var s;
+            o = !0, f("exp_pdp_improve_stiky_button_01", "Trade-In", "Sticky button", "Step 3: Device Details"), (s = n(".single_variation_wrap .add-to-cart-block > div .single_add_to_cart_button")) == null || s.click(), setTimeout(() => {
+              o = !1;
             }, 1e3);
           }));
-        }, 100), d = setInterval(() => {
-          n(".single_variation_wrap .add-to-cart-block > div .single_add_to_cart_button") && (clearInterval(d), n(".single_variation_wrap .add-to-cart-block > div .single_add_to_cart_button").addEventListener(
+        }, 100), c = setInterval(() => {
+          n(".single_variation_wrap .add-to-cart-block > div .single_add_to_cart_button") && (clearInterval(c), n(".single_variation_wrap .add-to-cart-block > div .single_add_to_cart_button").addEventListener(
             "click",
-            (c) => {
-              t || h("exp_pdp_improve_button_04", "Trade-In Device", "Button", "Step 3: Device Details on-page");
+            (s) => {
+              o || f("exp_pdp_improve_button_04", "Trade-In Device", "Button", "Step 3: Device Details on-page");
             }
           ));
         }, 100);
       }
     }
-    changeClassListConditionBlock(e, r = !1) {
-      let s = setInterval(() => {
-        n("#conditionBlock") && (clearInterval(s), _("#conditionBlock > div").forEach((t) => {
-          if (t.classList.add("is_hidden"), n(".txt_choose").classList.contains("is_hidden") && n(".txt_choose").classList.remove("is_hidden"), t.classList.contains(e) && t.classList.contains("is_hidden") && t.classList.remove("is_hidden"), r && t.classList.contains("is_hidden") && t.classList.contains("choose_var")) {
-            t.classList.remove("is_hidden");
+    changeClassListConditionBlock(e, t = !1) {
+      let d = setInterval(() => {
+        n("#conditionBlock") && (clearInterval(d), _("#conditionBlock > div").forEach((o) => {
+          if (o.classList.add("is_hidden"), n(".txt_choose").classList.contains("is_hidden") && n(".txt_choose").classList.remove("is_hidden"), o.classList.contains(e) && o.classList.contains("is_hidden") && o.classList.remove("is_hidden"), t && o.classList.contains("is_hidden") && o.classList.contains("choose_var")) {
+            o.classList.remove("is_hidden");
             let a = setInterval(() => {
               n(".txt_choose") && (clearInterval(a), n(".txt_choose").classList.contains("is_hidden") || n(".txt_choose").classList.add("is_hidden"));
             }, 100);
@@ -1924,60 +1952,54 @@ body {
       }, 100);
     }
     changeClassListConditionBlockMob(e) {
-      let r = setInterval(() => {
-        var s;
-        n(".radio_descr_mob") && (clearInterval(r), _(".radio_descr_mob").forEach((t) => {
-          t.classList.add("is_hidden");
-        }), (s = e.closest("label").querySelector(".radio_descr_mob")) != null && s.classList.contains("is_hidden") && e.closest("label").querySelector(".radio_descr_mob").classList.remove("is_hidden"));
+      let t = setInterval(() => {
+        var d;
+        n(".radio_descr_mob") && (clearInterval(t), _(".radio_descr_mob").forEach((o) => {
+          o.classList.add("is_hidden");
+        }), (d = e.closest("label").querySelector(".radio_descr_mob")) != null && d.classList.contains("is_hidden") && e.closest("label").querySelector(".radio_descr_mob").classList.remove("is_hidden"));
       }, 100);
     }
     initDefaultChooseSelectValue() {
       var e;
-      (e = _(".flex-wrapper select")) == null || e.forEach((r) => {
-        if (r.value !== "") {
-          let s = setInterval(() => {
-            var t;
-            _(".radio_block .radio_option_wrapp input.custom_radio") && (clearInterval(s), (t = _(".radio_block .radio_option_wrapp input.custom_radio")) == null || t.forEach((a) => {
-              r.value === a.value && (a.checked = !0, a.closest(".pa_condition") && (this.changeClassListConditionBlock(a.value), this.changeClassListConditionBlockMob(a.nextElementSibling)));
+      (e = _(".flex-wrapper select")) == null || e.forEach((t) => {
+        if (t.value !== "") {
+          let d = setInterval(() => {
+            var o;
+            _(".radio_block .radio_option_wrapp input.custom_radio") && (clearInterval(d), (o = _(".radio_block .radio_option_wrapp input.custom_radio")) == null || o.forEach((a) => {
+              t.value === a.value && (a.checked = !0, a.closest(".pa_condition") && (this.changeClassListConditionBlock(a.value), this.changeClassListConditionBlockMob(a.nextElementSibling)));
             }));
           }, 1e3);
         }
       });
     }
     changeClassListPriceAndBtnTradeIn() {
-      var c;
-      let e = _(".woocommerce-variation-price"), r = _(".ggv2-quantity:not(.ggv2-quantity--disabled)"), s = _(".device-placeholder-price"), t = _(".ggv2-quantity.ggv2-quantity--disabled"), a = n(".new_sticky_block button"), d = n(".new_sticky_block .new_sticky_default_txt");
-      (c = n(".woocommerce-variation-add-to-cart .single_add_to_cart_button.button")) != null && c.classList.contains("disabled") ? (e.forEach((o) => {
-        o && !o.classList.contains("is_hidden") && o.classList.add("is_hidden");
-      }), r.forEach((o) => {
-        o && !o.classList.contains("is_hidden") && o.classList.add("is_hidden");
-      }), s.forEach((o) => {
-        o && o.classList.contains("is_hidden") && o.classList.remove("is_hidden");
-      }), t.forEach((o) => {
-        o && o.classList.contains("is_hidden") && o.classList.remove("is_hidden");
-      }), a && !a.classList.contains("disabled") && a.classList.add("disabled"), d && d.classList.contains("is_hidden") && d.classList.remove("is_hidden")) : (s.forEach((o) => {
-        o && !o.classList.contains("is_hidden") && o.classList.add("is_hidden");
-      }), t.forEach((o) => {
-        o && !o.classList.contains("is_hidden") && o.classList.add("is_hidden");
-      }), e.forEach((o) => {
-        o && o.classList.contains("is_hidden") && o.classList.remove("is_hidden");
-      }), r.forEach((o) => {
-        o && o.classList.contains("is_hidden") && o.classList.remove("is_hidden");
-      }), a && a.classList.contains("disabled") && a.classList.remove("disabled"), d && !d.classList.contains("is_hidden") && n(".new_sticky_block .woocommerce-variation-price") && d.classList.add("is_hidden"));
+      var h;
+      let e = _(".woocommerce-variation-price"), t = _(".ggv2-quantity:not(.ggv2-quantity--disabled)"), d = _(".device-placeholder-price"), o = _(".ggv2-quantity.ggv2-quantity--disabled"), a = n(".new_sticky_block button"), c = n(".new_sticky_block .new_sticky_default_txt"), s = n(".new_sticky_block .new_sticky_default_price");
+      (h = n(".woocommerce-variation-add-to-cart .single_add_to_cart_button.button")) != null && h.classList.contains("disabled") ? (e.forEach((r) => {
+        r && !r.classList.contains("is_hidden") && r.classList.add("is_hidden");
+      }), t.forEach((r) => {
+        r && !r.classList.contains("is_hidden") && r.classList.add("is_hidden");
+      }), d.forEach((r) => {
+        r && r.classList.contains("is_hidden") && r.classList.remove("is_hidden");
+      }), o.forEach((r) => {
+        r && r.classList.contains("is_hidden") && r.classList.remove("is_hidden");
+      }), a && !a.classList.contains("disabled") && a.classList.add("disabled"), c && c.classList.contains("is_hidden") && c.classList.remove("is_hidden"), s && !s.classList.contains("is_hidden") && s.classList.add("is_hidden")) : (d.forEach((r) => {
+        r && !r.classList.contains("is_hidden") && r.classList.add("is_hidden");
+      }), o.forEach((r) => {
+        r && !r.classList.contains("is_hidden") && r.classList.add("is_hidden");
+      }), e.forEach((r) => {
+        r && r.classList.contains("is_hidden") && r.classList.remove("is_hidden");
+      }), t.forEach((r) => {
+        r && r.classList.contains("is_hidden") && r.classList.remove("is_hidden");
+      }), a && a.classList.contains("disabled") && a.classList.remove("disabled"), c && !c.classList.contains("is_hidden") && c.classList.add("is_hidden"), s && s.classList.contains("is_hidden") && s.classList.remove("is_hidden"));
     }
     renderNewStickyBlock() {
       n(".new_sticky_block") || n("body").insertAdjacentHTML("afterbegin", j);
       let e = setInterval(() => {
-        if (n(".new_sticky_block")) {
+        if (n(".new_sticky_block") && n(".device_price_wrapper > .woocommerce-variation-price bdi")) {
           clearInterval(e);
-          let r = setInterval(() => {
-            var s, t;
-            if (n(".woocommerce-variation-price")) {
-              clearInterval(r);
-              let a = (s = n(".woocommerce-variation-price")) == null ? void 0 : s.cloneNode(!0);
-              n(".new_sticky_block .woocommerce-variation-price") || (t = n(".new_sticky_block")) == null || t.appendChild(a);
-            }
-          }, 100);
+          let t = n(".device_price_wrapper > .woocommerce-variation-price bdi").textContent;
+          n(".new_sticky_block .new_sticky_default_price h4").textContent = "Device Value", n(".new_sticky_block .new_sticky_default_price span").textContent = t, n(".new_sticky_block .new_sticky_default_price p").textContent = "";
         }
       }, 100);
     }
@@ -1987,17 +2009,17 @@ body {
     }
     renderFrequentlyAskedQuestionSection() {
       let e = setTimeout(() => {
-        var r;
-        n("#howItWorksSection") && (clearInterval(e), n("#frequentlyAskedQuestionSection") || (r = n("#howItWorksSection")) == null || r.insertAdjacentHTML("afterend", I));
+        var t;
+        n("#howItWorksSection") && (clearInterval(e), n("#frequentlyAskedQuestionSection") || (t = n("#howItWorksSection")) == null || t.insertAdjacentHTML("afterend", B));
       }, 100);
       this.initAccordionQuestions();
     }
     initAccordionQuestions() {
       let e = setInterval(() => {
-        typeof jQuery == "function" && n("#frequentlyAskedQuestionSection") && (clearInterval(e), $(".questions_accordion_block").eq(1).addClass("active"), $(".questions_accordion_block .questions_accordion_link").eq(1).addClass("active"), $(".questions_accordion_block .questions_accordion_lists").eq(1).css("display", "block"), $(".questions_accordion_link").on("click", function(r) {
-          h(
+        typeof jQuery == "function" && n("#frequentlyAskedQuestionSection") && (clearInterval(e), $(".questions_accordion_block").eq(1).addClass("active"), $(".questions_accordion_block .questions_accordion_link").eq(1).addClass("active"), $(".questions_accordion_block .questions_accordion_lists").eq(1).css("display", "block"), $(".questions_accordion_link").on("click", function(t) {
+          f(
             "exp_pdp_improve_accordion_01",
-            `${r.currentTarget.querySelector("p").textContent}`,
+            `${t.currentTarget.querySelector("p").textContent}`,
             "Accordion",
             "Step 3: Device Details Frequently Asked Questions"
           ), $(this).toggleClass("active"), $(this).closest("li").toggleClass("active"), $(this).next(".questions_accordion_lists").slideToggle(), $(".questions_accordion_link").not(this).next(".questions_accordion_lists").slideUp(), $(".questions_accordion_link").not(this).removeClass("active").closest("li").removeClass("active");
