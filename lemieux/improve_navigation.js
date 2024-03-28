@@ -272,7 +272,6 @@ window.onload = () => {
       this.device = screen.width <= 1100 ? devices.mobile : devices.desktop
       this.event
       this.clickEvent
-      this.initStyles()
     }
 
     init() {
@@ -300,6 +299,8 @@ window.onload = () => {
     }
     initComponents() {
       if ($el('product-view-layout')) {
+      this.initStyles()
+
         this.breadcrumps()
         this.sizeChart()
         this.similarProducts()
@@ -1742,7 +1743,12 @@ window.onload = () => {
           margin-top: 0 !important;
           order: 3;
         }
-
+        body:has(dialog[open]) {
+          overflow: hidden;
+        }
+        body {
+          overflow: clip;
+        }
         @media (max-width: 1100px) {
           .perfectly,
           .recently {
