@@ -966,6 +966,8 @@ class changeFlow {
             bottom: 0;
             transform: unset;
             border-radius: unset;
+            border-top: 1px solid #e0e4eb;
+            background: #fff;
           }
           .monthly_bill_btns_wrapper p {
             font-size: 14px;
