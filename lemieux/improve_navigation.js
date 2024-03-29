@@ -272,11 +272,14 @@ window.onload = () => {
       this.device = screen.width <= 1100 ? devices.mobile : devices.desktop
       this.event
       this.clickEvent
+      this.checkElementInterval = null
     }
 
     init() {
       waitForElement('body.content-initiated').then(() => {
-        this.initComponents()
+        if ($el('product-view-layout')) {
+          this.initComponents()
+        }
       })
     }
     observePageChange() {
@@ -424,17 +427,17 @@ window.onload = () => {
           </div>
         </div>
       `
-      setTimeout(() => {
-        if ($el('product-view-delivery-note')) {
-          $el('product-view-delivery-note')?.insertAdjacentHTML('beforeend', returnBadge)
+
+      if ($el('product-view-delivery-note')) {
+        $el('product-view-delivery-note')?.insertAdjacentHTML('beforeend', returnBadge)
+      } else {
+        if (this.device === devices.mobile) {
+          $el('product-configurable-options')?.insertAdjacentHTML('afterend', returnBadge)
         } else {
-          if (this.device === devices.mobile) {
-            $el('product-configurable-options')?.insertAdjacentHTML('afterend', returnBadge)
-          } else {
-            $el('product-view-details')?.insertAdjacentHTML('beforebegin', returnBadge)
-          }
+          $el('product-view-details')?.insertAdjacentHTML('beforebegin', returnBadge)
         }
-      }, 400)
+      }
+
       blockVisibility(
         '.return-badge',
         'exp_impro_pdp_vis_polic_block',
