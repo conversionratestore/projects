@@ -1060,7 +1060,7 @@ footer[role=contentinfo] #seo-nav li:after {
     max-width: 115px;
   }
 }
-@media (min-width: 1290px) {
+@media (min-width: 1290px) and (max-width: 1536px) {
   .variations {
     max-width: 57% !important;
   }
