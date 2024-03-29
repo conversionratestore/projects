@@ -273,6 +273,7 @@ window.onload = () => {
       this.event
       this.clickEvent
       this.checkElementInterval = null
+      this.effects = []
     }
 
     init() {
@@ -288,15 +289,17 @@ window.onload = () => {
           if (window.location.pathname !== this.lastPath && !location.href.includes('search')) {
             this.lastPath = window.location.pathname
             $el('action[cy-basketaddbutton]')?.removeEventListener('click', this.clickEvent)
-            if (this.checkElementInterval) {
-              clearInterval(this.checkElementInterval)
-            }
+            console.log(this.effects)
+            this.effects.forEach(effect => {
+              clearInterval(effect)
+            })
             this.checkElementInterval = setInterval(() => {
               if ($el('product-view-layout')) {
                 this.initComponents()
                 clearInterval(this.checkElementInterval)
               }
             }, 100)
+            this.effects.push(this.checkElementInterval)
           }
         })
       })
@@ -428,16 +431,18 @@ window.onload = () => {
         </div>
       `
 
-      if ($el('product-view-delivery-note')) {
-        $el('product-view-delivery-note')?.insertAdjacentHTML('beforeend', returnBadge)
-      } else {
-        if (this.device === devices.mobile) {
-          $el('product-configurable-options')?.insertAdjacentHTML('afterend', returnBadge)
+      const timer = setTimeout(() => {
+        if ($el('product-view-delivery-note')) {
+          $el('product-view-delivery-note')?.insertAdjacentHTML('beforeend', returnBadge)
         } else {
-          $el('product-view-details')?.insertAdjacentHTML('beforebegin', returnBadge)
+          if (this.device === devices.mobile) {
+            $el('product-configurable-options')?.insertAdjacentHTML('afterend', returnBadge)
+          } else {
+            $el('product-view-details')?.insertAdjacentHTML('beforebegin', returnBadge)
+          }
         }
-      }
-
+      }, 400)
+      this.effects.push(timer)
       blockVisibility(
         '.return-badge',
         'exp_impro_pdp_vis_polic_block',
@@ -1341,7 +1346,7 @@ window.onload = () => {
               li.dataset.checked = false
             })
             listItem.dataset.checked = true
-            setTimeout(() => {
+            const timer = setTimeout(() => {
               $el('box.is-selected')?.click()
               $el('.crs-size-chart__dialog').close()
               $el('.crs-size-chart__info[data-cloned="true"]')?.remove()
@@ -1355,7 +1360,7 @@ window.onload = () => {
 
               $el('.crs-stock').style.display = isOut ? 'none' : 'flex'
             }, 300)
-
+            this.effects.push(timer)
             if (listItem.innerText.includes('Only')) {
               pushDataLayer('exp_impro_pdp_selec_popsize_only', 'Only ', 'Select', 'PDP Pop up Select Size')
             } else {
@@ -1371,9 +1376,10 @@ window.onload = () => {
           $$el('.crs-color-chart__color').forEach(item => (item.dataset.checked = false))
           e.target.closest('.crs-color-chart__color').dataset.checked = true
           updateHash({ color })
-          setTimeout(() => {
+          const timer = setTimeout(() => {
             document.querySelector('swatch .is-checked')?.click()
           }, 500)
+          this.effects.push(timer)
         })
 
         $el('.crs-size-chart__notify__close')?.addEventListener('click', () => {
@@ -1435,10 +1441,11 @@ window.onload = () => {
             this.event = e => {
               const listItem = e.target.closest('li')
               if (listItem) {
-                setTimeout(() => {
+                const timer = setTimeout(() => {
                   $el('action[cy-basketaddbutton]').click()
                   $el('.crs-size-chart__list')?.removeEventListener('click', this.event)
                 }, 600)
+                this.effects.push(timer)
               }
             }
             $el('.crs-size-chart__list')?.removeEventListener('click', this.event)
@@ -1546,9 +1553,10 @@ window.onload = () => {
           $el('[data-add-to-bag]')?.addEventListener('click', () => {
             clickCTAButtonUnderSize = true
             $el('action[cy-basketaddbutton]').click()
-            setTimeout(() => {
+            const timer = setTimeout(() => {
               clickCTAButtonUnderSize = false
             }, 50)
+            this.effects.push(timer)
           })
           $el('[data-add-to-wishlist]')?.addEventListener('click', () => {
             $el('product-view-wishlist-toggle action:not([data-add-to-wishlist])').click()
