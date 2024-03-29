@@ -1060,7 +1060,7 @@ footer[role=contentinfo] #seo-nav li:after {
     max-width: 115px;
   }
 }
-@media (min-width: 1290px) and (max-width: 1536px) {
+@media (min-width: 1290px) and (max-width: 1534px) {
   .variations {
     max-width: 57% !important;
   }
@@ -1675,7 +1675,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  z-index: 100;
+  z-index: 10;
   transition: bottom 0.3s ease;
 }
 .new_sticky_block.show {
