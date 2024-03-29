@@ -299,7 +299,7 @@ window.onload = () => {
     }
     initComponents() {
       if ($el('product-view-layout')) {
-      this.initStyles()
+        this.initStyles()
 
         this.breadcrumps()
         this.sizeChart()
@@ -700,7 +700,8 @@ window.onload = () => {
     }
 
     splitCarrousels() {
-      setTimeout(() => {
+      waitForElement('related-products swiper').then(() => {
+        console.log('split car')
         const el = $$el('page-component-product-carousel related-products')
         const perfectlyWith = el[0]
         const recentlyViewed = el[1]
@@ -714,39 +715,39 @@ window.onload = () => {
 
         blockVisibility('.recently', 'exp_impro_pdp_vis_recently_block', 'Block view', `PDP Recently viewed`)
 
-        waitForElement('related-products swiper').then(() => {
-          $$el('related-products swiper').forEach(swiperEl => {
-            if (swiperEl.swiper) {
-              swiperEl.swiper.params.touchStartPreventDefault = false
-            }
-          })
-          $el('.recently + related-products')?.addEventListener('mousedown', e => {
-            const target = e.target
-            if (target.closest('a[cy-listingproductname]')) {
-              const title = target.closest('a[cy-listingproductname]').textContent
-              pushDataLayer('exp_impro_pdp_selec_recenview_text', title, 'Select', 'PDP Recently viewed')
-            }
-            if (target.closest('img')) {
-              const title = target.closest('product').querySelector('a[cy-listingproductname]').textContent
-              pushDataLayer('exp_impro_pdp_icon_recenview_prod', title, 'Icone', 'PDP Recently viewed')
-            }
-          })
-          $el('.perfectly + related-products')?.addEventListener('mousedown', e => {
-            const target = e.target
-            if (target.closest('a[cy-listingproductname]')) {
-              const title = target.closest('a[cy-listingproductname]').textContent
-              pushDataLayer('exp_impro_pdp_selec_perfect_text', title, 'Select', 'PDP Goes Perfectly With')
-            }
-            if (target.closest('img')) {
-              const title = target.closest('product').querySelector('a[cy-listingproductname]').textContent
-              pushDataLayer('exp_impro_pdp_icon_perfect_prod', title, 'Icone', 'PDP Goes Perfectly With')
-            }
-          })
+        console.log()
+        $$el('related-products swiper').forEach(swiperEl => {
+          if (swiperEl.swiper) {
+            swiperEl.swiper.params.touchStartPreventDefault = false
+          }
         })
-      }, 1500)
+        $el('.recently + related-products')?.addEventListener('mousedown', e => {
+          const target = e.target
+          if (target.closest('a[cy-listingproductname]')) {
+            const title = target.closest('a[cy-listingproductname]').textContent
+            pushDataLayer('exp_impro_pdp_selec_recenview_text', title, 'Select', 'PDP Recently viewed')
+          }
+          if (target.closest('img')) {
+            const title = target.closest('product').querySelector('a[cy-listingproductname]').textContent
+            pushDataLayer('exp_impro_pdp_icon_recenview_prod', title, 'Icone', 'PDP Recently viewed')
+          }
+        })
+        $el('.perfectly + related-products')?.addEventListener('mousedown', e => {
+          const target = e.target
+          if (target.closest('a[cy-listingproductname]')) {
+            const title = target.closest('a[cy-listingproductname]').textContent
+            pushDataLayer('exp_impro_pdp_selec_perfect_text', title, 'Select', 'PDP Goes Perfectly With')
+          }
+          if (target.closest('img')) {
+            const title = target.closest('product').querySelector('a[cy-listingproductname]').textContent
+            pushDataLayer('exp_impro_pdp_icon_perfect_prod', title, 'Icone', 'PDP Goes Perfectly With')
+          }
+        })
+      })
     }
 
     async sizeChart() {
+      console.log('size chart')
       try {
         const productId = this.getCurrentProductId()
         const [productResponse, sizeResponse] = await Promise.all([
@@ -1501,6 +1502,7 @@ window.onload = () => {
     }
 
     newCtaButton() {
+      console.log('new cta button')
       const html = /* HTML */ `
         <div _ngcontent-ng-c48037730="" class="wrap p-t p-b" id="new-sta-btn">
           <style>
@@ -1538,7 +1540,8 @@ window.onload = () => {
 
       if (this.device === devices.mobile) {
         $el('#new-sta-btn')?.remove()
-        setTimeout(() => {
+
+        waitForElement('product-configurable-options').then(() => {
           $el('product-configurable-options')?.insertAdjacentHTML('beforeend', html)
 
           $el('[data-add-to-bag]')?.addEventListener('click', () => {
@@ -1551,7 +1554,7 @@ window.onload = () => {
           $el('[data-add-to-wishlist]')?.addEventListener('click', () => {
             $el('product-view-wishlist-toggle action:not([data-add-to-wishlist])').click()
           })
-        }, 400)
+        })
       }
     }
     footer() {
