@@ -275,22 +275,25 @@ window.onload = () => {
     }
 
     init() {
-      const timer = setInterval(() => {
-        const initiated = document.querySelector('body.content-initiated')
-        if (initiated) {
-          clearInterval(timer)
-          this.initComponents()
-        }
+      waitForElement('body.content-initiated').then(() => {
+        this.initComponents()
       })
     }
     observePageChange() {
       this.observer = new MutationObserver(mutations => {
         mutations.forEach(mutation => {
-          if (window.location.pathname !== this.lastPath) {
+          if (window.location.pathname !== this.lastPath && !location.href.includes('search')) {
             this.lastPath = window.location.pathname
             $el('action[cy-basketaddbutton]')?.removeEventListener('click', this.clickEvent)
-
-            this.initComponents()
+            if (this.checkElementInterval) {
+              clearInterval(this.checkElementInterval)
+            }
+            this.checkElementInterval = setInterval(() => {
+              if ($el('product-view-layout')) {
+                this.initComponents()
+                clearInterval(this.checkElementInterval)
+              }
+            }, 100)
           }
         })
       })
@@ -298,17 +301,15 @@ window.onload = () => {
       this.observer.observe(document.body, observerConfig)
     }
     initComponents() {
-      if ($el('product-view-layout')) {
-        this.initStyles()
+      this.initStyles()
 
-        this.breadcrumps()
-        this.sizeChart()
-        this.similarProducts()
-        this.returnBadge()
-        this.footer()
-        this.newCtaButton()
-        this.splitCarrousels()
-      }
+      this.breadcrumps()
+      this.sizeChart()
+      this.similarProducts()
+      this.returnBadge()
+      this.footer()
+      this.newCtaButton()
+      this.splitCarrousels()
     }
     disconnectObserver() {
       if (this.observer) {
@@ -701,7 +702,6 @@ window.onload = () => {
 
     splitCarrousels() {
       waitForElement('related-products swiper').then(() => {
-        console.log('split car')
         const el = $$el('page-component-product-carousel related-products')
         const perfectlyWith = el[0]
         const recentlyViewed = el[1]
@@ -715,7 +715,6 @@ window.onload = () => {
 
         blockVisibility('.recently', 'exp_impro_pdp_vis_recently_block', 'Block view', `PDP Recently viewed`)
 
-        console.log()
         $$el('related-products swiper').forEach(swiperEl => {
           if (swiperEl.swiper) {
             swiperEl.swiper.params.touchStartPreventDefault = false
@@ -747,7 +746,6 @@ window.onload = () => {
     }
 
     async sizeChart() {
-      console.log('size chart')
       try {
         const productId = this.getCurrentProductId()
         const [productResponse, sizeResponse] = await Promise.all([
@@ -1502,7 +1500,7 @@ window.onload = () => {
     }
 
     newCtaButton() {
-      console.log('new cta button')
+      $el('#new-sta-btn')?.remove()
       const html = /* HTML */ `
         <div _ngcontent-ng-c48037730="" class="wrap p-t p-b" id="new-sta-btn">
           <style>
@@ -1539,8 +1537,6 @@ window.onload = () => {
       `
 
       if (this.device === devices.mobile) {
-        $el('#new-sta-btn')?.remove()
-
         waitForElement('product-configurable-options').then(() => {
           $el('product-configurable-options')?.insertAdjacentHTML('beforeend', html)
 
