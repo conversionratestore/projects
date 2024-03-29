@@ -1675,7 +1675,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  z-index: 10;
+  z-index: 15;
   transition: bottom 0.3s ease;
 }
 .new_sticky_block.show {
