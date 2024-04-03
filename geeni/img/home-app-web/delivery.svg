@@ -1,0 +1,17 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.0668 17.3687H9.47998" stroke="#1B1B1B" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<mask id="mask0_4561_7332" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+<path d="M0 1.90735e-06H24V24H0V1.90735e-06Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_4561_7332)">
+<path d="M21.6862 17.3687H23.2968V12.4785L19.2633 8.31086H15.9629V8.31681V17.3243" stroke="#1B1B1B" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M23.2968 12.4785H15.9626" stroke="#1B1B1B" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M5.64494 15.6681C6.50453 14.8085 7.89813 14.8085 8.75772 15.6681C9.61727 16.5277 9.61727 17.9215 8.75772 18.7811C7.89813 19.6407 6.50453 19.6407 5.64494 18.7811C4.78535 17.9215 4.78535 16.5277 5.64494 15.6681Z" stroke="#1B1B1B" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.9135 15.6681C18.7731 14.8085 20.1666 14.8085 21.0262 15.6681C21.8858 16.5277 21.8858 17.9215 21.0262 18.7811C20.1666 19.6407 18.7731 19.6407 17.9135 18.7811C17.0539 17.9215 17.0539 16.5277 17.9135 15.6681Z" stroke="#1B1B1B" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.9231 4.57458V17.3613H4.90914" stroke="#1B1B1B" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M15.9827 8.31689V4.57425H2.9231" stroke="#1B1B1B" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.80166 4.57422H2.9231" stroke="#1B1B1B" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.8017 7.3877H1.68774" stroke="#1B1B1B" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.28592 10.2007H0.703125" stroke="#1B1B1B" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>
