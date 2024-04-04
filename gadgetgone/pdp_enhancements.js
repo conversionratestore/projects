@@ -1891,6 +1891,11 @@ body {
       }, 100);
     }
     onClickElems() {
+      $("body").on("found_variation", function(o) {
+        $(window).width() < 1200 && setTimeout(function() {
+          $("html, body").stop();
+        }, 1050);
+      });
       let e = setInterval(() => {
         n(".clear_form_block") && (clearInterval(e), n(".clear_form_block").addEventListener("click", () => {
           var o;
