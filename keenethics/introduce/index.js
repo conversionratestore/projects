@@ -14,10 +14,10 @@
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   }, R = (i, e, t, o, a = 3, s) => {
-    let r = new IntersectionObserver(
-      (n) => {
-        n.forEach((d) => {
-          d.isIntersecting && (r.unobserve(d.target), setTimeout(function() {
+    let n = new IntersectionObserver(
+      (r) => {
+        r.forEach((d) => {
+          d.isIntersecting && (n.unobserve(d.target), setTimeout(function() {
             l.observe(d.target);
           }, 1e3 * a));
         });
@@ -25,18 +25,18 @@
       {
         threshold: 0.5
       }
-    ), l = new IntersectionObserver((n) => {
-      n.forEach((d) => {
+    ), l = new IntersectionObserver((r) => {
+      r.forEach((d) => {
         d.isIntersecting ? (j(
           e || `view_element_${d.target.id}`,
           t || `View element on screen (${a} sec or more)`,
           "view",
           o || d.target.id
-        ), s && s(), r.unobserve(d.target)) : r.observe(d.target), l.unobserve(d.target);
+        ), s && s(), n.unobserve(d.target)) : n.observe(d.target), l.unobserve(d.target);
       });
     });
-    document.querySelectorAll(i).forEach((n) => {
-      r.observe(n);
+    document.querySelectorAll(i).forEach((r) => {
+      n.observe(r);
     });
   };
   function V(i) {
@@ -63,15 +63,15 @@
       this.device = window.innerWidth > 768 ? "desktop" : "mobile", this.init();
     }
     changes() {
-      var n, d;
+      var r, d;
       const e = document.querySelector("section#tech-stack"), t = document.querySelector("section#industries");
       e && t && t.after(e);
       const o = document.querySelector("section#project"), a = document.querySelector("section#CTA");
       o && a && a.after(o);
-      const s = a == null ? void 0 : a.querySelector("#user-name"), r = a == null ? void 0 : a.querySelector("#user-mail");
-      s && (s.placeholder = "First name", s.required = !0, s.nextElementSibling.textContent = "First name"), r && (r.placeholder = "Business email", r.nextElementSibling.textContent = "Business email");
+      const s = a == null ? void 0 : a.querySelector("#user-name"), n = a == null ? void 0 : a.querySelector("#user-mail");
+      s && (s.placeholder = "First name", s.required = !0, s.nextElementSibling.textContent = "First name"), n && (n.placeholder = "Business email", n.nextElementSibling.textContent = "Business email");
       const l = z("section#testimonials .swiper");
-      if (l && (l != null && l.swiper) && (l.swiper.params.touchStartPreventDefault = !1), (n = z("section#testimonials")) == null || n.addEventListener("mousedown", (p) => {
+      if (l && (l != null && l.swiper) && (l.swiper.params.touchStartPreventDefault = !1), (r = z("section#testimonials")) == null || r.addEventListener("mousedown", (p) => {
         p.target.closest("a.btn-primary") && j("exp_content_based_button_18", "Show more on Clutch", "click", "Home Page Our Partner Testimonials");
       }), ee("section#testimonials a.btn-primary").forEach((p) => {
         p.classList.contains("btn-primary_outline") && p.classList.remove("btn-primary_outline");
@@ -84,15 +84,15 @@
         <button class="btn-primary btn-primary_outline show-more">Show more</button>
       `
         );
-        const g = z("section#industries .show-more");
+        const h = z("section#industries .show-more");
         let m = !1;
         const b = () => {
           w.forEach((c, u) => {
             c.style.display = m || u < 3 ? "block" : "none";
-          }), g && (g.textContent = m ? "Show less" : "Show more");
+          }), h && (h.textContent = m ? "Show less" : "Show more");
         };
-        g == null || g.addEventListener("click", () => {
-          m = !m, b(), m || g.scrollIntoView({ behavior: "smooth" });
+        h == null || h.addEventListener("click", () => {
+          m = !m, b(), m || h.scrollIntoView({ behavior: "smooth" });
         }), b();
       }
     }
@@ -194,8 +194,8 @@
         const a = this.tabButtons[o];
         if (t.id === e) {
           t.classList.add("os-active"), a.classList.add("os-active");
-          const s = a.getBoundingClientRect(), r = this.tabsContainer.getBoundingClientRect(), l = s.left - r.left, n = s.width;
-          this.tabsContainer.style.setProperty("--after-left", `${l}px`), this.tabsContainer.style.setProperty("--after-width", `${n}px`);
+          const s = a.getBoundingClientRect(), n = this.tabsContainer.getBoundingClientRect(), l = s.left - n.left, r = s.width;
+          this.tabsContainer.style.setProperty("--after-left", `${l}px`), this.tabsContainer.style.setProperty("--after-width", `${r}px`);
         } else
           t.classList.remove("os-active"), a.classList.remove("os-active");
       });
@@ -217,9 +217,9 @@
         );
       }), (t = z(".os-tabs-container")) == null || t.addEventListener("mousedown", (o) => {
         var d, p;
-        const a = o.target, s = (d = z(".os-tab-button-container .os-active")) == null ? void 0 : d.textContent, r = a.closest(".aa-solutions a"), l = a.closest(".actions a:first-child"), n = a.closest(".actions a:last-child");
-        if (r) {
-          const f = (p = r.textContent) == null ? void 0 : p.trim();
+        const a = o.target, s = (d = z(".os-tab-button-container .os-active")) == null ? void 0 : d.textContent, n = a.closest(".aa-solutions a"), l = a.closest(".actions a:first-child"), r = a.closest(".actions a:last-child");
+        if (n) {
+          const f = (p = n.textContent) == null ? void 0 : p.trim();
           j(
             "exp_content_based_link_01",
             `${f}`,
@@ -232,9 +232,9 @@
           " Get a free assessment",
           "click",
           `Home Page Which software service best fits your needs? ${s}`
-        ), n && j(
+        ), r && j(
           "exp_content_based_button_05",
-          `${n.textContent} - Choice`,
+          `${r.textContent} - Choice`,
           "click",
           `Home Page Which software service best fits your needs? ${s}`
         );
@@ -264,7 +264,7 @@
     <circle cx="9.375" cy="6.125" r="1.125" fill="#12233D" />
   </svg>
 `
-  ), Xe = (
+  ), $e = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -297,7 +297,7 @@
     stroke-linejoin="round"
   />
 </svg>`
-  ), $e = (
+  ), Xe = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -823,14 +823,14 @@
         </li>
         <li>
           <a href="/approach-minimum-viable-product" target="_blank">
-            <i class="icon">${Xe}</i>
+            <i class="icon">${$e}</i>
             <span>Minimum Viable Product (MVP) Strategy</span>
             <img src="${H}/arrow-right.svg" alt="arrow right" />
           </a>
         </li>
         <li>
           <a href="/services-maintenance-support" target="_blank">
-            <i class="icon">${$e}</i>
+            <i class="icon">${Xe}</i>
             <span>Tech & Innovation Consultancy</span>
             <img src="${H}/arrow-right.svg" alt="arrow right" />
           </a>
@@ -1125,7 +1125,7 @@
       search: ""
     }
   };
-  function X() {
+  function $() {
     const i = typeof document < "u" ? document : {};
     return pe(i, Le), i;
   }
@@ -1222,8 +1222,8 @@
     e === void 0 && (e = "x");
     const t = F();
     let o, a, s;
-    const r = bt(i);
-    return t.WebKitCSSMatrix ? (a = r.transform || r.webkitTransform, a.split(",").length > 6 && (a = a.split(", ").map((l) => l.replace(",", ".")).join(", ")), s = new t.WebKitCSSMatrix(a === "none" ? "" : a)) : (s = r.MozTransform || r.OTransform || r.MsTransform || r.msTransform || r.transform || r.getPropertyValue("transform").replace("translate(", "matrix(1, 0, 0, 1,"), o = s.toString().split(",")), e === "x" && (t.WebKitCSSMatrix ? a = s.m41 : o.length === 16 ? a = parseFloat(o[12]) : a = parseFloat(o[4])), e === "y" && (t.WebKitCSSMatrix ? a = s.m42 : o.length === 16 ? a = parseFloat(o[13]) : a = parseFloat(o[5])), a || 0;
+    const n = bt(i);
+    return t.WebKitCSSMatrix ? (a = n.transform || n.webkitTransform, a.split(",").length > 6 && (a = a.split(", ").map((l) => l.replace(",", ".")).join(", ")), s = new t.WebKitCSSMatrix(a === "none" ? "" : a)) : (s = n.MozTransform || n.OTransform || n.MsTransform || n.msTransform || n.transform || n.getPropertyValue("transform").replace("translate(", "matrix(1, 0, 0, 1,"), o = s.toString().split(",")), e === "x" && (t.WebKitCSSMatrix ? a = s.m41 : o.length === 16 ? a = parseFloat(o[12]) : a = parseFloat(o[4])), e === "y" && (t.WebKitCSSMatrix ? a = s.m42 : o.length === 16 ? a = parseFloat(o[13]) : a = parseFloat(o[5])), a || 0;
   }
   function oe(i) {
     return typeof i == "object" && i !== null && i.constructor && Object.prototype.toString.call(i).slice(8, -1) === "Object";
@@ -1237,9 +1237,9 @@
       const o = t < 0 || arguments.length <= t ? void 0 : arguments[t];
       if (o != null && !yt(o)) {
         const a = Object.keys(Object(o)).filter((s) => e.indexOf(s) < 0);
-        for (let s = 0, r = a.length; s < r; s += 1) {
-          const l = a[s], n = Object.getOwnPropertyDescriptor(o, l);
-          n !== void 0 && n.enumerable && (oe(i[l]) && oe(o[l]) ? o[l].__swiper__ ? i[l] = o[l] : G(i[l], o[l]) : !oe(i[l]) && oe(o[l]) ? (i[l] = {}, o[l].__swiper__ ? i[l] = o[l] : G(i[l], o[l])) : i[l] = o[l]);
+        for (let s = 0, n = a.length; s < n; s += 1) {
+          const l = a[s], r = Object.getOwnPropertyDescriptor(o, l);
+          r !== void 0 && r.enumerable && (oe(i[l]) && oe(o[l]) ? o[l].__swiper__ ? i[l] = o[l] : G(i[l], o[l]) : !oe(i[l]) && oe(o[l]) ? (i[l] = {}, o[l].__swiper__ ? i[l] = o[l] : G(i[l], o[l])) : i[l] = o[l]);
         }
       }
     }
@@ -1255,19 +1255,19 @@
       side: o
     } = i;
     const a = F(), s = -e.translate;
-    let r = null, l;
-    const n = e.params.speed;
+    let n = null, l;
+    const r = e.params.speed;
     e.wrapperEl.style.scrollSnapType = "none", a.cancelAnimationFrame(e.cssModeFrameID);
     const d = t > s ? "next" : "prev", p = (w, x) => d === "next" && w >= x || d === "prev" && w <= x, f = () => {
-      l = (/* @__PURE__ */ new Date()).getTime(), r === null && (r = l);
-      const w = Math.max(Math.min((l - r) / n, 1), 0), x = 0.5 - Math.cos(w * Math.PI) / 2;
-      let g = s + x * (t - s);
-      if (p(g, t) && (g = t), e.wrapperEl.scrollTo({
-        [o]: g
-      }), p(g, t)) {
+      l = (/* @__PURE__ */ new Date()).getTime(), n === null && (n = l);
+      const w = Math.max(Math.min((l - n) / r, 1), 0), x = 0.5 - Math.cos(w * Math.PI) / 2;
+      let h = s + x * (t - s);
+      if (p(h, t) && (h = t), e.wrapperEl.scrollTo({
+        [o]: h
+      }), p(h, t)) {
         e.wrapperEl.style.overflow = "hidden", e.wrapperEl.style.scrollSnapType = "", setTimeout(() => {
           e.wrapperEl.style.overflow = "", e.wrapperEl.scrollTo({
-            [o]: g
+            [o]: h
           });
         }), a.cancelAnimationFrame(e.cssModeFrameID);
         return;
@@ -1307,7 +1307,7 @@
     }
     return t;
   }
-  function $(i, e) {
+  function X(i, e) {
     return F().getComputedStyle(i, null).getPropertyValue(e);
   }
   function re(i) {
@@ -1334,7 +1334,7 @@
   }
   let me;
   function St() {
-    const i = F(), e = X();
+    const i = F(), e = $();
     return {
       smoothScroll: e.documentElement && e.documentElement.style && "scrollBehavior" in e.documentElement.style,
       touch: !!("ontouchstart" in i || i.DocumentTouch && e instanceof i.DocumentTouch)
@@ -1348,15 +1348,15 @@
     let {
       userAgent: e
     } = i === void 0 ? {} : i;
-    const t = Te(), o = F(), a = o.navigator.platform, s = e || o.navigator.userAgent, r = {
+    const t = Te(), o = F(), a = o.navigator.platform, s = e || o.navigator.userAgent, n = {
       ios: !1,
       android: !1
-    }, l = o.screen.width, n = o.screen.height, d = s.match(/(Android);?[\s\/]+([\d.]+)?/);
+    }, l = o.screen.width, r = o.screen.height, d = s.match(/(Android);?[\s\/]+([\d.]+)?/);
     let p = s.match(/(iPad).*OS\s([\d_]+)/);
     const f = s.match(/(iPod)(.*OS\s([\d_]+))?/), w = !p && s.match(/(iPhone\sOS|iOS)\s([\d_]+)/), x = a === "Win32";
-    let g = a === "MacIntel";
+    let h = a === "MacIntel";
     const m = ["1024x1366", "1366x1024", "834x1194", "1194x834", "834x1112", "1112x834", "768x1024", "1024x768", "820x1180", "1180x820", "810x1080", "1080x810"];
-    return !p && g && t.touch && m.indexOf(`${l}x${n}`) >= 0 && (p = s.match(/(Version)\/([\d.]+)/), p || (p = [0, 1, "13_0_0"]), g = !1), d && !x && (r.os = "android", r.android = !0), (p || w || f) && (r.os = "ios", r.ios = !0), r;
+    return !p && h && t.touch && m.indexOf(`${l}x${r}`) >= 0 && (p = s.match(/(Version)\/([\d.]+)/), p || (p = [0, 1, "13_0_0"]), h = !1), d && !x && (n.os = "android", n.android = !0), (p || w || f) && (n.os = "ios", n.ios = !0), n;
   }
   function ze(i) {
     return i === void 0 && (i = {}), he || (he = At(i)), he;
@@ -1372,15 +1372,15 @@
     if (o()) {
       const l = String(i.navigator.userAgent);
       if (l.includes("Version/")) {
-        const [n, d] = l.split("Version/")[1].split(" ")[0].split(".").map((p) => Number(p));
-        t = n < 16 || n === 16 && d < 2;
+        const [r, d] = l.split("Version/")[1].split(" ")[0].split(".").map((p) => Number(p));
+        t = r < 16 || r === 16 && d < 2;
       }
     }
-    const a = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(i.navigator.userAgent), s = o(), r = s || a && e.ios;
+    const a = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(i.navigator.userAgent), s = o(), n = s || a && e.ios;
     return {
       isSafari: t || s,
       needPerspectiveFix: t,
-      need3dFix: r,
+      need3dFix: n,
       isWebView: a
     };
   }
@@ -1394,35 +1394,35 @@
       emit: o
     } = i;
     const a = F();
-    let s = null, r = null;
+    let s = null, n = null;
     const l = () => {
       !e || e.destroyed || !e.initialized || (o("beforeResize"), o("resize"));
-    }, n = () => {
+    }, r = () => {
       !e || e.destroyed || !e.initialized || (s = new ResizeObserver((f) => {
-        r = a.requestAnimationFrame(() => {
+        n = a.requestAnimationFrame(() => {
           const {
             width: w,
             height: x
           } = e;
-          let g = w, m = x;
+          let h = w, m = x;
           f.forEach((b) => {
             let {
               contentBoxSize: c,
               contentRect: u,
-              target: h
+              target: g
             } = b;
-            h && h !== e.el || (g = u ? u.width : (c[0] || c).inlineSize, m = u ? u.height : (c[0] || c).blockSize);
-          }), (g !== w || m !== x) && l();
+            g && g !== e.el || (h = u ? u.width : (c[0] || c).inlineSize, m = u ? u.height : (c[0] || c).blockSize);
+          }), (h !== w || m !== x) && l();
         });
       }), s.observe(e.el));
     }, d = () => {
-      r && a.cancelAnimationFrame(r), s && s.unobserve && e.el && (s.unobserve(e.el), s = null);
+      n && a.cancelAnimationFrame(n), s && s.unobserve && e.el && (s.unobserve(e.el), s = null);
     }, p = () => {
       !e || e.destroyed || !e.initialized || o("orientationchange");
     };
     t("init", () => {
       if (e.params.resizeObserver && typeof a.ResizeObserver < "u") {
-        n();
+        r();
         return;
       }
       a.addEventListener("resize", l), a.addEventListener("orientationchange", p);
@@ -1437,26 +1437,26 @@
       on: o,
       emit: a
     } = i;
-    const s = [], r = F(), l = function(p, f) {
+    const s = [], n = F(), l = function(p, f) {
       f === void 0 && (f = {});
-      const w = r.MutationObserver || r.WebkitMutationObserver, x = new w((g) => {
+      const w = n.MutationObserver || n.WebkitMutationObserver, x = new w((h) => {
         if (e.__preventObserver__)
           return;
-        if (g.length === 1) {
-          a("observerUpdate", g[0]);
+        if (h.length === 1) {
+          a("observerUpdate", h[0]);
           return;
         }
         const m = function() {
-          a("observerUpdate", g[0]);
+          a("observerUpdate", h[0]);
         };
-        r.requestAnimationFrame ? r.requestAnimationFrame(m) : r.setTimeout(m, 0);
+        n.requestAnimationFrame ? n.requestAnimationFrame(m) : n.setTimeout(m, 0);
       });
       x.observe(p, {
         attributes: typeof f.attributes > "u" ? !0 : f.attributes,
         childList: typeof f.childList > "u" ? !0 : f.childList,
         characterData: typeof f.characterData > "u" ? !0 : f.characterData
       }), s.push(x);
-    }, n = () => {
+    }, r = () => {
       if (e.params.observer) {
         if (e.params.observeParents) {
           const p = Ee(e.hostEl);
@@ -1478,7 +1478,7 @@
       observer: !1,
       observeParents: !1,
       observeSlideChildren: !1
-    }), o("init", n), o("destroy", d);
+    }), o("init", r), o("destroy", d);
   }
   var zt = {
     on(i, e, t) {
@@ -1496,9 +1496,9 @@
         return o;
       function a() {
         o.off(i, a), a.__emitterProxy && delete a.__emitterProxy;
-        for (var s = arguments.length, r = new Array(s), l = 0; l < s; l++)
-          r[l] = arguments[l];
-        e.apply(o, r);
+        for (var s = arguments.length, n = new Array(s), l = 0; l < s; l++)
+          n[l] = arguments[l];
+        e.apply(o, n);
       }
       return a.__emitterProxy = e, o.on(i, a, t);
     },
@@ -1529,12 +1529,12 @@
       if (!i.eventsListeners || i.destroyed || !i.eventsListeners)
         return i;
       let e, t, o;
-      for (var a = arguments.length, s = new Array(a), r = 0; r < a; r++)
-        s[r] = arguments[r];
-      return typeof s[0] == "string" || Array.isArray(s[0]) ? (e = s[0], t = s.slice(1, s.length), o = i) : (e = s[0].events, t = s[0].data, o = s[0].context || i), t.unshift(o), (Array.isArray(e) ? e : e.split(" ")).forEach((n) => {
+      for (var a = arguments.length, s = new Array(a), n = 0; n < a; n++)
+        s[n] = arguments[n];
+      return typeof s[0] == "string" || Array.isArray(s[0]) ? (e = s[0], t = s.slice(1, s.length), o = i) : (e = s[0].events, t = s[0].data, o = s[0].context || i), t.unshift(o), (Array.isArray(e) ? e : e.split(" ")).forEach((r) => {
         i.eventsAnyListeners && i.eventsAnyListeners.length && i.eventsAnyListeners.forEach((d) => {
-          d.apply(o, [n, ...t]);
-        }), i.eventsListeners && i.eventsListeners[n] && i.eventsListeners[n].forEach((d) => {
+          d.apply(o, [r, ...t]);
+        }), i.eventsListeners && i.eventsListeners[r] && i.eventsListeners[r].forEach((d) => {
           d.apply(o, t);
         });
       }), i;
@@ -1544,7 +1544,7 @@
     const i = this;
     let e, t;
     const o = i.el;
-    typeof i.params.width < "u" && i.params.width !== null ? e = i.params.width : e = o.clientWidth, typeof i.params.height < "u" && i.params.height !== null ? t = i.params.height : t = o.clientHeight, !(e === 0 && i.isHorizontal() || t === 0 && i.isVertical()) && (e = e - parseInt($(o, "padding-left") || 0, 10) - parseInt($(o, "padding-right") || 0, 10), t = t - parseInt($(o, "padding-top") || 0, 10) - parseInt($(o, "padding-bottom") || 0, 10), Number.isNaN(e) && (e = 0), Number.isNaN(t) && (t = 0), Object.assign(i, {
+    typeof i.params.width < "u" && i.params.width !== null ? e = i.params.width : e = o.clientWidth, typeof i.params.height < "u" && i.params.height !== null ? t = i.params.height : t = o.clientHeight, !(e === 0 && i.isHorizontal() || t === 0 && i.isVertical()) && (e = e - parseInt(X(o, "padding-left") || 0, 10) - parseInt(X(o, "padding-right") || 0, 10), t = t - parseInt(X(o, "padding-top") || 0, 10) - parseInt(X(o, "padding-bottom") || 0, 10), Number.isNaN(e) && (e = 0), Number.isNaN(t) && (t = 0), Object.assign(i, {
       width: e,
       height: t,
       size: i.isHorizontal() ? e : t
@@ -1559,21 +1559,21 @@
       wrapperEl: o,
       slidesEl: a,
       size: s,
-      rtlTranslate: r,
+      rtlTranslate: n,
       wrongRTL: l
-    } = i, n = i.virtual && t.virtual.enabled, d = n ? i.virtual.slides.length : i.slides.length, p = Z(a, `.${i.params.slideClass}, swiper-slide`), f = n ? i.virtual.slides.length : p.length;
+    } = i, r = i.virtual && t.virtual.enabled, d = r ? i.virtual.slides.length : i.slides.length, p = Z(a, `.${i.params.slideClass}, swiper-slide`), f = r ? i.virtual.slides.length : p.length;
     let w = [];
-    const x = [], g = [];
+    const x = [], h = [];
     let m = t.slidesOffsetBefore;
     typeof m == "function" && (m = t.slidesOffsetBefore.call(i));
     let b = t.slidesOffsetAfter;
     typeof b == "function" && (b = t.slidesOffsetAfter.call(i));
     const c = i.snapGrid.length, u = i.slidesGrid.length;
-    let h = t.spaceBetween, y = -m, k = 0, S = 0;
+    let g = t.spaceBetween, y = -m, k = 0, S = 0;
     if (typeof s > "u")
       return;
-    typeof h == "string" && h.indexOf("%") >= 0 ? h = parseFloat(h.replace("%", "")) / 100 * s : typeof h == "string" && (h = parseFloat(h)), i.virtualSize = -h, p.forEach((v) => {
-      r ? v.style.marginLeft = "" : v.style.marginRight = "", v.style.marginBottom = "", v.style.marginTop = "";
+    typeof g == "string" && g.indexOf("%") >= 0 ? g = parseFloat(g.replace("%", "")) / 100 * s : typeof g == "string" && (g = parseFloat(g)), i.virtualSize = -g, p.forEach((v) => {
+      n ? v.style.marginLeft = "" : v.style.marginRight = "", v.style.marginBottom = "", v.style.marginTop = "";
     }), t.centeredSlides && t.cssMode && (se(o, "--swiper-centered-offset-before", ""), se(o, "--swiper-centered-offset-after", ""));
     const P = t.grid && t.grid.rows > 1 && i.grid;
     P ? i.grid.initSlides(p) : i.grid && i.grid.unsetSlides();
@@ -1582,7 +1582,7 @@
     for (let v = 0; v < f; v += 1) {
       C = 0;
       let M;
-      if (p[v] && (M = p[v]), P && i.grid.updateSlide(v, M, p), !(p[v] && $(M, "display") === "none")) {
+      if (p[v] && (M = p[v]), P && i.grid.updateSlide(v, M, p), !(p[v] && X(M, "display") === "none")) {
         if (t.slidesPerView === "auto") {
           T && (p[v].style[i.getDirectionLabel("width")] = "");
           const L = getComputedStyle(M), A = M.style.transform, E = M.style.webkitTransform;
@@ -1602,11 +1602,11 @@
           }
           A && (M.style.transform = A), E && (M.style.webkitTransform = E), t.roundLengths && (C = Math.floor(C));
         } else
-          C = (s - (t.slidesPerView - 1) * h) / t.slidesPerView, t.roundLengths && (C = Math.floor(C)), p[v] && (p[v].style[i.getDirectionLabel("width")] = `${C}px`);
-        p[v] && (p[v].swiperSlideSize = C), g.push(C), t.centeredSlides ? (y = y + C / 2 + k / 2 + h, k === 0 && v !== 0 && (y = y - s / 2 - h), v === 0 && (y = y - s / 2 - h), Math.abs(y) < 1 / 1e3 && (y = 0), t.roundLengths && (y = Math.floor(y)), S % t.slidesPerGroup === 0 && w.push(y), x.push(y)) : (t.roundLengths && (y = Math.floor(y)), (S - Math.min(i.params.slidesPerGroupSkip, S)) % i.params.slidesPerGroup === 0 && w.push(y), x.push(y), y = y + C + h), i.virtualSize += C + h, k = C, S += 1;
+          C = (s - (t.slidesPerView - 1) * g) / t.slidesPerView, t.roundLengths && (C = Math.floor(C)), p[v] && (p[v].style[i.getDirectionLabel("width")] = `${C}px`);
+        p[v] && (p[v].swiperSlideSize = C), h.push(C), t.centeredSlides ? (y = y + C / 2 + k / 2 + g, k === 0 && v !== 0 && (y = y - s / 2 - g), v === 0 && (y = y - s / 2 - g), Math.abs(y) < 1 / 1e3 && (y = 0), t.roundLengths && (y = Math.floor(y)), S % t.slidesPerGroup === 0 && w.push(y), x.push(y)) : (t.roundLengths && (y = Math.floor(y)), (S - Math.min(i.params.slidesPerGroupSkip, S)) % i.params.slidesPerGroup === 0 && w.push(y), x.push(y), y = y + C + g), i.virtualSize += C + g, k = C, S += 1;
       }
     }
-    if (i.virtualSize = Math.max(i.virtualSize, s) + b, r && l && (t.effect === "slide" || t.effect === "coverflow") && (o.style.width = `${i.virtualSize + h}px`), t.setWrapperSize && (o.style[i.getDirectionLabel("width")] = `${i.virtualSize + h}px`), P && i.grid.updateWrapperSize(C, w), !t.centeredSlides) {
+    if (i.virtualSize = Math.max(i.virtualSize, s) + b, n && l && (t.effect === "slide" || t.effect === "coverflow") && (o.style.width = `${i.virtualSize + g}px`), t.setWrapperSize && (o.style[i.getDirectionLabel("width")] = `${i.virtualSize + g}px`), P && i.grid.updateWrapperSize(C, w), !t.centeredSlides) {
       const v = [];
       for (let M = 0; M < w.length; M += 1) {
         let L = w[M];
@@ -1614,8 +1614,8 @@
       }
       w = v, Math.floor(i.virtualSize - s) - Math.floor(w[w.length - 1]) > 1 && w.push(i.virtualSize - s);
     }
-    if (n && t.loop) {
-      const v = g[0] + h;
+    if (r && t.loop) {
+      const v = h[0] + g;
       if (t.slidesPerGroup > 1) {
         const M = Math.ceil((i.virtual.slidesBefore + i.virtual.slidesAfter) / t.slidesPerGroup), L = v * t.slidesPerGroup;
         for (let A = 0; A < M; A += 1)
@@ -1624,25 +1624,25 @@
       for (let M = 0; M < i.virtual.slidesBefore + i.virtual.slidesAfter; M += 1)
         t.slidesPerGroup === 1 && w.push(w[w.length - 1] + v), x.push(x[x.length - 1] + v), i.virtualSize += v;
     }
-    if (w.length === 0 && (w = [0]), h !== 0) {
-      const v = i.isHorizontal() && r ? "marginLeft" : i.getDirectionLabel("marginRight");
+    if (w.length === 0 && (w = [0]), g !== 0) {
+      const v = i.isHorizontal() && n ? "marginLeft" : i.getDirectionLabel("marginRight");
       p.filter((M, L) => !t.cssMode || t.loop ? !0 : L !== p.length - 1).forEach((M) => {
-        M.style[v] = `${h}px`;
+        M.style[v] = `${g}px`;
       });
     }
     if (t.centeredSlides && t.centeredSlidesBounds) {
       let v = 0;
-      g.forEach((L) => {
-        v += L + (h || 0);
-      }), v -= h;
+      h.forEach((L) => {
+        v += L + (g || 0);
+      }), v -= g;
       const M = v - s;
       w = w.map((L) => L <= 0 ? -m : L > M ? M + b : L);
     }
     if (t.centerInsufficientSlides) {
       let v = 0;
-      if (g.forEach((M) => {
-        v += M + (h || 0);
-      }), v -= h, v < s) {
+      if (h.forEach((M) => {
+        v += M + (g || 0);
+      }), v -= g, v < s) {
         const M = (s - v) / 2;
         w.forEach((L, A) => {
           w[A] = L - M;
@@ -1655,13 +1655,13 @@
       slides: p,
       snapGrid: w,
       slidesGrid: x,
-      slidesSizesGrid: g
+      slidesSizesGrid: h
     }), t.centeredSlides && t.cssMode && !t.centeredSlidesBounds) {
-      se(o, "--swiper-centered-offset-before", `${-w[0]}px`), se(o, "--swiper-centered-offset-after", `${i.size / 2 - g[g.length - 1] / 2}px`);
+      se(o, "--swiper-centered-offset-before", `${-w[0]}px`), se(o, "--swiper-centered-offset-after", `${i.size / 2 - h[h.length - 1] / 2}px`);
       const v = -i.snapGrid[0], M = -i.slidesGrid[0];
       i.snapGrid = i.snapGrid.map((L) => L + v), i.slidesGrid = i.slidesGrid.map((L) => L + M);
     }
-    if (f !== d && i.emit("slidesLengthChange"), w.length !== c && (i.params.watchOverflow && i.checkOverflow(), i.emit("snapGridLengthChange")), x.length !== u && i.emit("slidesGridLengthChange"), t.watchSlidesProgress && i.updateSlidesOffset(), i.emit("slidesUpdated"), !n && !t.cssMode && (t.effect === "slide" || t.effect === "fade")) {
+    if (f !== d && i.emit("slidesLengthChange"), w.length !== c && (i.params.watchOverflow && i.checkOverflow(), i.emit("snapGridLengthChange")), x.length !== u && i.emit("slidesGridLengthChange"), t.watchSlidesProgress && i.updateSlidesOffset(), i.emit("slidesUpdated"), !r && !t.cssMode && (t.effect === "slide" || t.effect === "fade")) {
       const v = `${t.containerModifierClass}backface-hidden`, M = i.el.classList.contains(v);
       f <= t.maxBackfaceHiddenSlides ? M || i.el.classList.add(v) : M && i.el.classList.remove(v);
     }
@@ -1670,7 +1670,7 @@
     const e = this, t = [], o = e.virtual && e.params.virtual.enabled;
     let a = 0, s;
     typeof i == "number" ? e.setTransition(i) : i === !0 && e.setTransition(e.params.speed);
-    const r = (l) => o ? e.slides[e.getSlideIndexByData(l)] : e.slides[l];
+    const n = (l) => o ? e.slides[e.getSlideIndexByData(l)] : e.slides[l];
     if (e.params.slidesPerView !== "auto" && e.params.slidesPerView > 1)
       if (e.params.centeredSlides)
         (e.visibleSlides || []).forEach((l) => {
@@ -1681,10 +1681,10 @@
           const l = e.activeIndex + s;
           if (l > e.slides.length && !o)
             break;
-          t.push(r(l));
+          t.push(n(l));
         }
     else
-      t.push(r(e.activeIndex));
+      t.push(n(e.activeIndex));
     for (s = 0; s < t.length; s += 1)
       if (typeof t[s] < "u") {
         const l = t[s].offsetHeight;
@@ -1707,18 +1707,18 @@
     if (o.length === 0)
       return;
     typeof o[0].swiperSlideOffset > "u" && e.updateSlidesOffset();
-    let r = -i;
-    a && (r = i), o.forEach((n) => {
-      n.classList.remove(t.slideVisibleClass, t.slideFullyVisibleClass);
+    let n = -i;
+    a && (n = i), o.forEach((r) => {
+      r.classList.remove(t.slideVisibleClass, t.slideFullyVisibleClass);
     }), e.visibleSlidesIndexes = [], e.visibleSlides = [];
     let l = t.spaceBetween;
     typeof l == "string" && l.indexOf("%") >= 0 ? l = parseFloat(l.replace("%", "")) / 100 * e.size : typeof l == "string" && (l = parseFloat(l));
-    for (let n = 0; n < o.length; n += 1) {
-      const d = o[n];
+    for (let r = 0; r < o.length; r += 1) {
+      const d = o[r];
       let p = d.swiperSlideOffset;
       t.cssMode && t.centeredSlides && (p -= o[0].swiperSlideOffset);
-      const f = (r + (t.centeredSlides ? e.minTranslate() : 0) - p) / (d.swiperSlideSize + l), w = (r - s[0] + (t.centeredSlides ? e.minTranslate() : 0) - p) / (d.swiperSlideSize + l), x = -(r - p), g = x + e.slidesSizesGrid[n], m = x >= 0 && x <= e.size - e.slidesSizesGrid[n];
-      (x >= 0 && x < e.size - 1 || g > 1 && g <= e.size || x <= 0 && g >= e.size) && (e.visibleSlides.push(d), e.visibleSlidesIndexes.push(n), o[n].classList.add(t.slideVisibleClass)), m && o[n].classList.add(t.slideFullyVisibleClass), d.progress = a ? -f : f, d.originalProgress = a ? -w : w;
+      const f = (n + (t.centeredSlides ? e.minTranslate() : 0) - p) / (d.swiperSlideSize + l), w = (n - s[0] + (t.centeredSlides ? e.minTranslate() : 0) - p) / (d.swiperSlideSize + l), x = -(n - p), h = x + e.slidesSizesGrid[r], m = x >= 0 && x <= e.size - e.slidesSizesGrid[r];
+      (x >= 0 && x < e.size - 1 || h > 1 && h <= e.size || x <= 0 && h >= e.size) && (e.visibleSlides.push(d), e.visibleSlidesIndexes.push(r), o[r].classList.add(t.slideVisibleClass)), m && o[r].classList.add(t.slideFullyVisibleClass), d.progress = a ? -f : f, d.originalProgress = a ? -w : w;
     }
   }
   function _t(i) {
@@ -1731,27 +1731,27 @@
     let {
       progress: a,
       isBeginning: s,
-      isEnd: r,
+      isEnd: n,
       progressLoop: l
     } = e;
-    const n = s, d = r;
+    const r = s, d = n;
     if (o === 0)
-      a = 0, s = !0, r = !0;
+      a = 0, s = !0, n = !0;
     else {
       a = (i - e.minTranslate()) / o;
       const p = Math.abs(i - e.minTranslate()) < 1, f = Math.abs(i - e.maxTranslate()) < 1;
-      s = p || a <= 0, r = f || a >= 1, p && (a = 0), f && (a = 1);
+      s = p || a <= 0, n = f || a >= 1, p && (a = 0), f && (a = 1);
     }
     if (t.loop) {
-      const p = e.getSlideIndexByData(0), f = e.getSlideIndexByData(e.slides.length - 1), w = e.slidesGrid[p], x = e.slidesGrid[f], g = e.slidesGrid[e.slidesGrid.length - 1], m = Math.abs(i);
-      m >= w ? l = (m - w) / g : l = (m + g - x) / g, l > 1 && (l -= 1);
+      const p = e.getSlideIndexByData(0), f = e.getSlideIndexByData(e.slides.length - 1), w = e.slidesGrid[p], x = e.slidesGrid[f], h = e.slidesGrid[e.slidesGrid.length - 1], m = Math.abs(i);
+      m >= w ? l = (m - w) / h : l = (m + h - x) / h, l > 1 && (l -= 1);
     }
     Object.assign(e, {
       progress: a,
       progressLoop: l,
       isBeginning: s,
-      isEnd: r
-    }), (t.watchSlidesProgress || t.centeredSlides && t.autoHeight) && e.updateSlidesProgress(i), s && !n && e.emit("reachBeginning toEdge"), r && !d && e.emit("reachEnd toEdge"), (n && !s || d && !r) && e.emit("fromEdge"), e.emit("progress", a);
+      isEnd: n
+    }), (t.watchSlidesProgress || t.centeredSlides && t.autoHeight) && e.updateSlidesProgress(i), s && !r && e.emit("reachBeginning toEdge"), n && !d && e.emit("reachEnd toEdge"), (r && !s || d && !n) && e.emit("fromEdge"), e.emit("progress", a);
   }
   function Bt() {
     const i = this, {
@@ -1759,20 +1759,20 @@
       params: t,
       slidesEl: o,
       activeIndex: a
-    } = i, s = i.virtual && t.virtual.enabled, r = i.grid && t.grid && t.grid.rows > 1, l = (f) => Z(o, `.${t.slideClass}${f}, swiper-slide${f}`)[0];
+    } = i, s = i.virtual && t.virtual.enabled, n = i.grid && t.grid && t.grid.rows > 1, l = (f) => Z(o, `.${t.slideClass}${f}, swiper-slide${f}`)[0];
     e.forEach((f) => {
       f.classList.remove(t.slideActiveClass, t.slideNextClass, t.slidePrevClass);
     });
-    let n, d, p;
+    let r, d, p;
     if (s)
       if (t.loop) {
         let f = a - i.virtual.slidesBefore;
-        f < 0 && (f = i.virtual.slides.length + f), f >= i.virtual.slides.length && (f -= i.virtual.slides.length), n = l(`[data-swiper-slide-index="${f}"]`);
+        f < 0 && (f = i.virtual.slides.length + f), f >= i.virtual.slides.length && (f -= i.virtual.slides.length), r = l(`[data-swiper-slide-index="${f}"]`);
       } else
-        n = l(`[data-swiper-slide-index="${a}"]`);
+        r = l(`[data-swiper-slide-index="${a}"]`);
     else
-      r ? (n = e.filter((f) => f.column === a)[0], p = e.filter((f) => f.column === a + 1)[0], d = e.filter((f) => f.column === a - 1)[0]) : n = e[a];
-    n && (n.classList.add(t.slideActiveClass), r ? (p && p.classList.add(t.slideNextClass), d && d.classList.add(t.slidePrevClass)) : (p = Ct(n, `.${t.slideClass}, swiper-slide`)[0], t.loop && !p && (p = e[0]), p && p.classList.add(t.slideNextClass), d = kt(n, `.${t.slideClass}, swiper-slide`)[0], t.loop && !d === 0 && (d = e[e.length - 1]), d && d.classList.add(t.slidePrevClass))), i.emitSlidesClasses();
+      n ? (r = e.filter((f) => f.column === a)[0], p = e.filter((f) => f.column === a + 1)[0], d = e.filter((f) => f.column === a - 1)[0]) : r = e[a];
+    r && (r.classList.add(t.slideActiveClass), n ? (p && p.classList.add(t.slideNextClass), d && d.classList.add(t.slidePrevClass)) : (p = Ct(r, `.${t.slideClass}, swiper-slide`)[0], t.loop && !p && (p = e[0]), p && p.classList.add(t.slideNextClass), d = kt(r, `.${t.slideClass}, swiper-slide`)[0], t.loop && !d === 0 && (d = e[e.length - 1]), d && d.classList.add(t.slidePrevClass))), i.emitSlidesClasses();
   }
   const le = (i, e) => {
     if (!i || i.destroyed || !i.params)
@@ -1799,23 +1799,23 @@
     e = Math.min(e, t);
     const o = i.params.slidesPerView === "auto" ? i.slidesPerViewDynamic() : Math.ceil(i.params.slidesPerView), a = i.activeIndex;
     if (i.params.grid && i.params.grid.rows > 1) {
-      const r = a, l = [r - e];
+      const n = a, l = [n - e];
       l.push(...Array.from({
         length: e
-      }).map((n, d) => r + o + d)), i.slides.forEach((n, d) => {
-        l.includes(n.column) && we(i, d);
+      }).map((r, d) => n + o + d)), i.slides.forEach((r, d) => {
+        l.includes(r.column) && we(i, d);
       });
       return;
     }
     const s = a + o - 1;
     if (i.params.rewind || i.params.loop)
-      for (let r = a - e; r <= s + e; r += 1) {
-        const l = (r % t + t) % t;
+      for (let n = a - e; n <= s + e; n += 1) {
+        const l = (n % t + t) % t;
         (l < a || l > s) && we(i, l);
       }
     else
-      for (let r = Math.max(a - e, 0); r <= Math.min(s + e, t - 1); r += 1)
-        r !== a && (r > s || r < a) && we(i, r);
+      for (let n = Math.max(a - e, 0); n <= Math.min(s + e, t - 1); n += 1)
+        n !== a && (n > s || n < a) && we(i, n);
   };
   function Ot(i) {
     const {
@@ -1832,49 +1832,49 @@
       snapGrid: o,
       params: a,
       activeIndex: s,
-      realIndex: r,
+      realIndex: n,
       snapIndex: l
     } = e;
-    let n = i, d;
+    let r = i, d;
     const p = (x) => {
-      let g = x - e.virtual.slidesBefore;
-      return g < 0 && (g = e.virtual.slides.length + g), g >= e.virtual.slides.length && (g -= e.virtual.slides.length), g;
+      let h = x - e.virtual.slidesBefore;
+      return h < 0 && (h = e.virtual.slides.length + h), h >= e.virtual.slides.length && (h -= e.virtual.slides.length), h;
     };
-    if (typeof n > "u" && (n = Ot(e)), o.indexOf(t) >= 0)
+    if (typeof r > "u" && (r = Ot(e)), o.indexOf(t) >= 0)
       d = o.indexOf(t);
     else {
-      const x = Math.min(a.slidesPerGroupSkip, n);
-      d = x + Math.floor((n - x) / a.slidesPerGroup);
+      const x = Math.min(a.slidesPerGroupSkip, r);
+      d = x + Math.floor((r - x) / a.slidesPerGroup);
     }
-    if (d >= o.length && (d = o.length - 1), n === s && !e.params.loop) {
+    if (d >= o.length && (d = o.length - 1), r === s && !e.params.loop) {
       d !== l && (e.snapIndex = d, e.emit("snapIndexChange"));
       return;
     }
-    if (n === s && e.params.loop && e.virtual && e.params.virtual.enabled) {
-      e.realIndex = p(n);
+    if (r === s && e.params.loop && e.virtual && e.params.virtual.enabled) {
+      e.realIndex = p(r);
       return;
     }
     const f = e.grid && a.grid && a.grid.rows > 1;
     let w;
     if (e.virtual && a.virtual.enabled && a.loop)
-      w = p(n);
+      w = p(r);
     else if (f) {
-      const x = e.slides.filter((m) => m.column === n)[0];
-      let g = parseInt(x.getAttribute("data-swiper-slide-index"), 10);
-      Number.isNaN(g) && (g = Math.max(e.slides.indexOf(x), 0)), w = Math.floor(g / a.grid.rows);
-    } else if (e.slides[n]) {
-      const x = e.slides[n].getAttribute("data-swiper-slide-index");
-      x ? w = parseInt(x, 10) : w = n;
+      const x = e.slides.filter((m) => m.column === r)[0];
+      let h = parseInt(x.getAttribute("data-swiper-slide-index"), 10);
+      Number.isNaN(h) && (h = Math.max(e.slides.indexOf(x), 0)), w = Math.floor(h / a.grid.rows);
+    } else if (e.slides[r]) {
+      const x = e.slides[r].getAttribute("data-swiper-slide-index");
+      x ? w = parseInt(x, 10) : w = r;
     } else
-      w = n;
+      w = r;
     Object.assign(e, {
       previousSnapIndex: l,
       snapIndex: d,
-      previousRealIndex: r,
+      previousRealIndex: n,
       realIndex: w,
       previousIndex: s,
-      activeIndex: n
-    }), e.initialized && xe(e), e.emit("activeIndexChange"), e.emit("snapIndexChange"), (e.initialized || e.params.runCallbacksOnInit) && (r !== w && e.emit("realIndexChange"), e.emit("slideChange"));
+      activeIndex: r
+    }), e.initialized && xe(e), e.emit("activeIndexChange"), e.emit("snapIndexChange"), (e.initialized || e.params.runCallbacksOnInit) && (n !== w && e.emit("realIndexChange"), e.emit("slideChange"));
   }
   function Ft(i, e) {
     const t = this, o = t.params;
@@ -1882,16 +1882,16 @@
     !a && t.isElement && e && e.length > 1 && e.includes(i) && [...e.slice(e.indexOf(i) + 1, e.length)].forEach((l) => {
       !a && l.matches && l.matches(`.${o.slideClass}, swiper-slide`) && (a = l);
     });
-    let s = !1, r;
+    let s = !1, n;
     if (a) {
       for (let l = 0; l < t.slides.length; l += 1)
         if (t.slides[l] === a) {
-          s = !0, r = l;
+          s = !0, n = l;
           break;
         }
     }
     if (a && s)
-      t.clickedSlide = a, t.virtual && t.params.virtual.enabled ? t.clickedIndex = parseInt(a.getAttribute("data-swiper-slide-index"), 10) : t.clickedIndex = r;
+      t.clickedSlide = a, t.virtual && t.params.virtual.enabled ? t.clickedIndex = parseInt(a.getAttribute("data-swiper-slide-index"), 10) : t.clickedIndex = n;
     else {
       t.clickedSlide = void 0, t.clickedIndex = void 0;
       return;
@@ -1921,22 +1921,22 @@
       return o ? -a : a;
     if (t.cssMode)
       return a;
-    let r = vt(s, i);
-    return r += e.cssOverflowAdjustment(), o && (r = -r), r || 0;
+    let n = vt(s, i);
+    return n += e.cssOverflowAdjustment(), o && (n = -n), n || 0;
   }
   function qt(i, e) {
     const t = this, {
       rtlTranslate: o,
       params: a,
       wrapperEl: s,
-      progress: r
+      progress: n
     } = t;
-    let l = 0, n = 0;
+    let l = 0, r = 0;
     const d = 0;
-    t.isHorizontal() ? l = o ? -i : i : n = i, a.roundLengths && (l = Math.floor(l), n = Math.floor(n)), t.previousTranslate = t.translate, t.translate = t.isHorizontal() ? l : n, a.cssMode ? s[t.isHorizontal() ? "scrollLeft" : "scrollTop"] = t.isHorizontal() ? -l : -n : a.virtualTranslate || (t.isHorizontal() ? l -= t.cssOverflowAdjustment() : n -= t.cssOverflowAdjustment(), s.style.transform = `translate3d(${l}px, ${n}px, ${d}px)`);
+    t.isHorizontal() ? l = o ? -i : i : r = i, a.roundLengths && (l = Math.floor(l), r = Math.floor(r)), t.previousTranslate = t.translate, t.translate = t.isHorizontal() ? l : r, a.cssMode ? s[t.isHorizontal() ? "scrollLeft" : "scrollTop"] = t.isHorizontal() ? -l : -r : a.virtualTranslate || (t.isHorizontal() ? l -= t.cssOverflowAdjustment() : r -= t.cssOverflowAdjustment(), s.style.transform = `translate3d(${l}px, ${r}px, ${d}px)`);
     let p;
     const f = t.maxTranslate() - t.minTranslate();
-    f === 0 ? p = 0 : p = (i - t.minTranslate()) / f, p !== r && t.updateProgress(i), t.emit("setTranslate", t.translate, e);
+    f === 0 ? p = 0 : p = (i - t.minTranslate()) / f, p !== n && t.updateProgress(i), t.emit("setTranslate", t.translate, e);
   }
   function Yt() {
     return -this.snapGrid[0];
@@ -1947,14 +1947,14 @@
   function Wt(i, e, t, o, a) {
     i === void 0 && (i = 0), e === void 0 && (e = this.params.speed), t === void 0 && (t = !0), o === void 0 && (o = !0);
     const s = this, {
-      params: r,
+      params: n,
       wrapperEl: l
     } = s;
-    if (s.animating && r.preventInteractionOnTransition)
+    if (s.animating && n.preventInteractionOnTransition)
       return !1;
-    const n = s.minTranslate(), d = s.maxTranslate();
+    const r = s.minTranslate(), d = s.maxTranslate();
     let p;
-    if (o && i > n ? p = n : o && i < d ? p = d : p = i, s.updateProgress(p), r.cssMode) {
+    if (o && i > r ? p = r : o && i < d ? p = d : p = i, s.updateProgress(p), n.cssMode) {
       const f = s.isHorizontal();
       if (e === 0)
         l[f ? "scrollLeft" : "scrollTop"] = -p;
@@ -1996,10 +1996,10 @@
     } = i;
     const {
       activeIndex: s,
-      previousIndex: r
+      previousIndex: n
     } = e;
     let l = o;
-    if (l || (s > r ? l = "next" : s < r ? l = "prev" : l = "reset"), e.emit(`transition${a}`), t && s !== r) {
+    if (l || (s > n ? l = "next" : s < n ? l = "prev" : l = "reset"), e.emit(`transition${a}`), t && s !== n) {
       if (l === "reset") {
         e.emit(`slideResetTransition${a}`);
         return;
@@ -2007,7 +2007,7 @@
       e.emit(`slideChangeTransition${a}`), l === "next" ? e.emit(`slideNextTransition${a}`) : e.emit(`slidePrevTransition${a}`);
     }
   }
-  function Xt(i, e) {
+  function $t(i, e) {
     i === void 0 && (i = !0);
     const t = this, {
       params: o
@@ -2019,7 +2019,7 @@
       step: "Start"
     }));
   }
-  function $t(i, e) {
+  function Xt(i, e) {
     i === void 0 && (i = !0);
     const t = this, {
       params: o
@@ -2033,48 +2033,48 @@
   }
   var Qt = {
     setTransition: Ut,
-    transitionStart: Xt,
-    transitionEnd: $t
+    transitionStart: $t,
+    transitionEnd: Xt
   };
   function Kt(i, e, t, o, a) {
     i === void 0 && (i = 0), e === void 0 && (e = this.params.speed), t === void 0 && (t = !0), typeof i == "string" && (i = parseInt(i, 10));
     const s = this;
-    let r = i;
-    r < 0 && (r = 0);
+    let n = i;
+    n < 0 && (n = 0);
     const {
       params: l,
-      snapGrid: n,
+      snapGrid: r,
       slidesGrid: d,
       previousIndex: p,
       activeIndex: f,
       rtlTranslate: w,
       wrapperEl: x,
-      enabled: g
+      enabled: h
     } = s;
-    if (s.animating && l.preventInteractionOnTransition || !g && !o && !a || s.destroyed)
+    if (s.animating && l.preventInteractionOnTransition || !h && !o && !a || s.destroyed)
       return !1;
-    const m = Math.min(s.params.slidesPerGroupSkip, r);
-    let b = m + Math.floor((r - m) / s.params.slidesPerGroup);
-    b >= n.length && (b = n.length - 1);
-    const c = -n[b];
+    const m = Math.min(s.params.slidesPerGroupSkip, n);
+    let b = m + Math.floor((n - m) / s.params.slidesPerGroup);
+    b >= r.length && (b = r.length - 1);
+    const c = -r[b];
     if (l.normalizeSlideIndex)
-      for (let h = 0; h < d.length; h += 1) {
-        const y = -Math.floor(c * 100), k = Math.floor(d[h] * 100), S = Math.floor(d[h + 1] * 100);
-        typeof d[h + 1] < "u" ? y >= k && y < S - (S - k) / 2 ? r = h : y >= k && y < S && (r = h + 1) : y >= k && (r = h);
+      for (let g = 0; g < d.length; g += 1) {
+        const y = -Math.floor(c * 100), k = Math.floor(d[g] * 100), S = Math.floor(d[g + 1] * 100);
+        typeof d[g + 1] < "u" ? y >= k && y < S - (S - k) / 2 ? n = g : y >= k && y < S && (n = g + 1) : y >= k && (n = g);
       }
-    if (s.initialized && r !== f && (!s.allowSlideNext && (w ? c > s.translate && c > s.minTranslate() : c < s.translate && c < s.minTranslate()) || !s.allowSlidePrev && c > s.translate && c > s.maxTranslate() && (f || 0) !== r))
+    if (s.initialized && n !== f && (!s.allowSlideNext && (w ? c > s.translate && c > s.minTranslate() : c < s.translate && c < s.minTranslate()) || !s.allowSlidePrev && c > s.translate && c > s.maxTranslate() && (f || 0) !== n))
       return !1;
-    r !== (p || 0) && t && s.emit("beforeSlideChangeStart"), s.updateProgress(c);
+    n !== (p || 0) && t && s.emit("beforeSlideChangeStart"), s.updateProgress(c);
     let u;
-    if (r > f ? u = "next" : r < f ? u = "prev" : u = "reset", w && -c === s.translate || !w && c === s.translate)
-      return s.updateActiveIndex(r), l.autoHeight && s.updateAutoHeight(), s.updateSlidesClasses(), l.effect !== "slide" && s.setTranslate(c), u !== "reset" && (s.transitionStart(t, u), s.transitionEnd(t, u)), !1;
+    if (n > f ? u = "next" : n < f ? u = "prev" : u = "reset", w && -c === s.translate || !w && c === s.translate)
+      return s.updateActiveIndex(n), l.autoHeight && s.updateAutoHeight(), s.updateSlidesClasses(), l.effect !== "slide" && s.setTranslate(c), u !== "reset" && (s.transitionStart(t, u), s.transitionEnd(t, u)), !1;
     if (l.cssMode) {
-      const h = s.isHorizontal(), y = w ? c : -c;
+      const g = s.isHorizontal(), y = w ? c : -c;
       if (e === 0) {
         const k = s.virtual && s.params.virtual.enabled;
         k && (s.wrapperEl.style.scrollSnapType = "none", s._immediateVirtual = !0), k && !s._cssModeVirtualInitialSet && s.params.initialSlide > 0 ? (s._cssModeVirtualInitialSet = !0, requestAnimationFrame(() => {
-          x[h ? "scrollLeft" : "scrollTop"] = y;
-        })) : x[h ? "scrollLeft" : "scrollTop"] = y, k && requestAnimationFrame(() => {
+          x[g ? "scrollLeft" : "scrollTop"] = y;
+        })) : x[g ? "scrollLeft" : "scrollTop"] = y, k && requestAnimationFrame(() => {
           s.wrapperEl.style.scrollSnapType = "", s._immediateVirtual = !1;
         });
       } else {
@@ -2082,16 +2082,16 @@
           return Me({
             swiper: s,
             targetPosition: y,
-            side: h ? "left" : "top"
+            side: g ? "left" : "top"
           }), !0;
         x.scrollTo({
-          [h ? "left" : "top"]: y,
+          [g ? "left" : "top"]: y,
           behavior: "smooth"
         });
       }
       return !0;
     }
-    return s.setTransition(e), s.setTranslate(c), s.updateActiveIndex(r), s.updateSlidesClasses(), s.emit("beforeTransitionStart", e, o), s.transitionStart(t, u), e === 0 ? s.transitionEnd(t, u) : s.animating || (s.animating = !0, s.onSlideToWrapperTransitionEnd || (s.onSlideToWrapperTransitionEnd = function(y) {
+    return s.setTransition(e), s.setTranslate(c), s.updateActiveIndex(n), s.updateSlidesClasses(), s.emit("beforeTransitionStart", e, o), s.transitionStart(t, u), e === 0 ? s.transitionEnd(t, u) : s.animating || (s.animating = !0, s.onSlideToWrapperTransitionEnd || (s.onSlideToWrapperTransitionEnd = function(y) {
       !s || s.destroyed || y.target === this && (s.wrapperEl.removeEventListener("transitionend", s.onSlideToWrapperTransitionEnd), s.onSlideToWrapperTransitionEnd = null, delete s.onSlideToWrapperTransitionEnd, s.transitionEnd(t, u));
     }), s.wrapperEl.addEventListener("transitionend", s.onSlideToWrapperTransitionEnd)), !0;
   }
@@ -2101,40 +2101,40 @@
     if (a.destroyed)
       return;
     const s = a.grid && a.params.grid && a.params.grid.rows > 1;
-    let r = i;
+    let n = i;
     if (a.params.loop)
       if (a.virtual && a.params.virtual.enabled)
-        r = r + a.virtual.slidesBefore;
+        n = n + a.virtual.slidesBefore;
       else {
         let l;
         if (s) {
-          const w = r * a.params.grid.rows;
+          const w = n * a.params.grid.rows;
           l = a.slides.filter((x) => x.getAttribute("data-swiper-slide-index") * 1 === w)[0].column;
         } else
-          l = a.getSlideIndexByData(r);
-        const n = s ? Math.ceil(a.slides.length / a.params.grid.rows) : a.slides.length, {
+          l = a.getSlideIndexByData(n);
+        const r = s ? Math.ceil(a.slides.length / a.params.grid.rows) : a.slides.length, {
           centeredSlides: d
         } = a.params;
         let p = a.params.slidesPerView;
         p === "auto" ? p = a.slidesPerViewDynamic() : (p = Math.ceil(parseFloat(a.params.slidesPerView, 10)), d && p % 2 === 0 && (p = p + 1));
-        let f = n - l < p;
+        let f = r - l < p;
         if (d && (f = f || l < Math.ceil(p / 2)), f) {
           const w = d ? l < a.activeIndex ? "prev" : "next" : l - a.activeIndex - 1 < a.params.slidesPerView ? "next" : "prev";
           a.loopFix({
             direction: w,
             slideTo: !0,
-            activeSlideIndex: w === "next" ? l + 1 : l - n + 1,
+            activeSlideIndex: w === "next" ? l + 1 : l - r + 1,
             slideRealIndex: w === "next" ? a.realIndex : void 0
           });
         }
         if (s) {
-          const w = r * a.params.grid.rows;
-          r = a.slides.filter((x) => x.getAttribute("data-swiper-slide-index") * 1 === w)[0].column;
+          const w = n * a.params.grid.rows;
+          n = a.slides.filter((x) => x.getAttribute("data-swiper-slide-index") * 1 === w)[0].column;
         } else
-          r = a.getSlideIndexByData(r);
+          n = a.getSlideIndexByData(n);
       }
     return requestAnimationFrame(() => {
-      a.slideTo(r, e, t, o);
+      a.slideTo(n, e, t, o);
     }), a;
   }
   function ei(i, e, t) {
@@ -2142,36 +2142,36 @@
     const o = this, {
       enabled: a,
       params: s,
-      animating: r
+      animating: n
     } = o;
     if (!a || o.destroyed)
       return o;
     let l = s.slidesPerGroup;
     s.slidesPerView === "auto" && s.slidesPerGroup === 1 && s.slidesPerGroupAuto && (l = Math.max(o.slidesPerViewDynamic("current", !0), 1));
-    const n = o.activeIndex < s.slidesPerGroupSkip ? 1 : l, d = o.virtual && s.virtual.enabled;
+    const r = o.activeIndex < s.slidesPerGroupSkip ? 1 : l, d = o.virtual && s.virtual.enabled;
     if (s.loop) {
-      if (r && !d && s.loopPreventsSliding)
+      if (n && !d && s.loopPreventsSliding)
         return !1;
       if (o.loopFix({
         direction: "next"
       }), o._clientLeft = o.wrapperEl.clientLeft, o.activeIndex === o.slides.length - 1 && s.cssMode)
         return requestAnimationFrame(() => {
-          o.slideTo(o.activeIndex + n, i, e, t);
+          o.slideTo(o.activeIndex + r, i, e, t);
         }), !0;
     }
-    return s.rewind && o.isEnd ? o.slideTo(0, i, e, t) : o.slideTo(o.activeIndex + n, i, e, t);
+    return s.rewind && o.isEnd ? o.slideTo(0, i, e, t) : o.slideTo(o.activeIndex + r, i, e, t);
   }
   function ti(i, e, t) {
     i === void 0 && (i = this.params.speed), e === void 0 && (e = !0);
     const o = this, {
       params: a,
       snapGrid: s,
-      slidesGrid: r,
+      slidesGrid: n,
       rtlTranslate: l,
-      enabled: n,
+      enabled: r,
       animating: d
     } = o;
-    if (!n || o.destroyed)
+    if (!r || o.destroyed)
       return o;
     const p = o.virtual && a.virtual.enabled;
     if (a.loop) {
@@ -2185,16 +2185,16 @@
     function w(c) {
       return c < 0 ? -Math.floor(Math.abs(c)) : Math.floor(c);
     }
-    const x = w(f), g = s.map((c) => w(c));
-    let m = s[g.indexOf(x) - 1];
+    const x = w(f), h = s.map((c) => w(c));
+    let m = s[h.indexOf(x) - 1];
     if (typeof m > "u" && a.cssMode) {
       let c;
-      s.forEach((u, h) => {
-        x >= u && (c = h);
+      s.forEach((u, g) => {
+        x >= u && (c = g);
       }), typeof c < "u" && (m = s[c > 0 ? c - 1 : c]);
     }
     let b = 0;
-    if (typeof m < "u" && (b = r.indexOf(m), b < 0 && (b = o.activeIndex - 1), a.slidesPerView === "auto" && a.slidesPerGroup === 1 && a.slidesPerGroupAuto && (b = b - o.slidesPerViewDynamic("previous", !0) + 1, b = Math.max(b, 0))), a.rewind && o.isBeginning) {
+    if (typeof m < "u" && (b = n.indexOf(m), b < 0 && (b = o.activeIndex - 1), a.slidesPerView === "auto" && a.slidesPerGroup === 1 && a.slidesPerGroupAuto && (b = b - o.slidesPerViewDynamic("previous", !0) + 1, b = Math.max(b, 0))), a.rewind && o.isBeginning) {
       const c = o.params.virtual && o.params.virtual.enabled && o.virtual ? o.virtual.slides.length - 1 : o.slides.length - 1;
       return o.slideTo(c, i, e, t);
     } else if (a.loop && o.activeIndex === 0 && a.cssMode)
@@ -2215,13 +2215,13 @@
     if (a.destroyed)
       return;
     let s = a.activeIndex;
-    const r = Math.min(a.params.slidesPerGroupSkip, s), l = r + Math.floor((s - r) / a.params.slidesPerGroup), n = a.rtlTranslate ? a.translate : -a.translate;
-    if (n >= a.snapGrid[l]) {
+    const n = Math.min(a.params.slidesPerGroupSkip, s), l = n + Math.floor((s - n) / a.params.slidesPerGroup), r = a.rtlTranslate ? a.translate : -a.translate;
+    if (r >= a.snapGrid[l]) {
       const d = a.snapGrid[l], p = a.snapGrid[l + 1];
-      n - d > (p - d) * o && (s += a.params.slidesPerGroup);
+      r - d > (p - d) * o && (s += a.params.slidesPerGroup);
     } else {
       const d = a.snapGrid[l - 1], p = a.snapGrid[l];
-      n - d <= (p - d) * o && (s -= a.params.slidesPerGroup);
+      r - d <= (p - d) * o && (s -= a.params.slidesPerGroup);
     }
     return s = Math.max(s, 0), s = Math.min(s, a.slidesGrid.length - 1), a.slideTo(s, i, e, t);
   }
@@ -2234,13 +2234,13 @@
       slidesEl: t
     } = i, o = e.slidesPerView === "auto" ? i.slidesPerViewDynamic() : e.slidesPerView;
     let a = i.clickedIndex, s;
-    const r = i.isElement ? "swiper-slide" : `.${e.slideClass}`;
+    const n = i.isElement ? "swiper-slide" : `.${e.slideClass}`;
     if (e.loop) {
       if (i.animating)
         return;
-      s = parseInt(i.clickedSlide.getAttribute("data-swiper-slide-index"), 10), e.centeredSlides ? a < i.loopedSlides - o / 2 || a > i.slides.length - i.loopedSlides + o / 2 ? (i.loopFix(), a = i.getSlideIndex(Z(t, `${r}[data-swiper-slide-index="${s}"]`)[0]), ue(() => {
+      s = parseInt(i.clickedSlide.getAttribute("data-swiper-slide-index"), 10), e.centeredSlides ? a < i.loopedSlides - o / 2 || a > i.slides.length - i.loopedSlides + o / 2 ? (i.loopFix(), a = i.getSlideIndex(Z(t, `${n}[data-swiper-slide-index="${s}"]`)[0]), ue(() => {
         i.slideTo(a);
-      })) : i.slideTo(a) : a > i.slides.length - o ? (i.loopFix(), a = i.getSlideIndex(Z(t, `${r}[data-swiper-slide-index="${s}"]`)[0]), ue(() => {
+      })) : i.slideTo(a) : a > i.slides.length - o ? (i.loopFix(), a = i.getSlideIndex(Z(t, `${n}[data-swiper-slide-index="${s}"]`)[0]), ue(() => {
         i.slideTo(a);
       })) : i.slideTo(a);
     } else
@@ -2266,7 +2266,7 @@
       Z(o, `.${t.slideClass}, swiper-slide`).forEach((f, w) => {
         f.setAttribute("data-swiper-slide-index", w);
       });
-    }, s = e.grid && t.grid && t.grid.rows > 1, r = t.slidesPerGroup * (s ? t.grid.rows : 1), l = e.slides.length % r !== 0, n = s && e.slides.length % t.grid.rows !== 0, d = (p) => {
+    }, s = e.grid && t.grid && t.grid.rows > 1, n = t.slidesPerGroup * (s ? t.grid.rows : 1), l = e.slides.length % n !== 0, r = s && e.slides.length % t.grid.rows !== 0, d = (p) => {
       for (let f = 0; f < p; f += 1) {
         const w = e.isElement ? ne("swiper-slide", [t.slideBlankClass]) : ne("div", [t.slideClass, t.slideBlankClass]);
         e.slidesEl.append(w);
@@ -2274,12 +2274,12 @@
     };
     if (l) {
       if (t.loopAddBlankSlides) {
-        const p = r - e.slides.length % r;
+        const p = n - e.slides.length % n;
         d(p), e.recalcSlides(), e.updateSlides();
       } else
         ae("Swiper Loop Warning: The number of slides is not even to slidesPerGroup, loop mode may not function properly. You need to add more slides (or make duplicates, or empty slides)");
       a();
-    } else if (n) {
+    } else if (r) {
       if (t.loopAddBlankSlides) {
         const p = t.grid.rows - e.slides.length % t.grid.rows;
         d(p), e.recalcSlides(), e.updateSlides();
@@ -2300,39 +2300,39 @@
       direction: o,
       setTranslate: a,
       activeSlideIndex: s,
-      byController: r,
+      byController: n,
       byMousewheel: l
     } = i === void 0 ? {} : i;
-    const n = this;
-    if (!n.params.loop)
+    const r = this;
+    if (!r.params.loop)
       return;
-    n.emit("beforeLoopFix");
+    r.emit("beforeLoopFix");
     const {
       slides: d,
       allowSlidePrev: p,
       allowSlideNext: f,
       slidesEl: w,
       params: x
-    } = n, {
-      centeredSlides: g
+    } = r, {
+      centeredSlides: h
     } = x;
-    if (n.allowSlidePrev = !0, n.allowSlideNext = !0, n.virtual && x.virtual.enabled) {
-      t && (!x.centeredSlides && n.snapIndex === 0 ? n.slideTo(n.virtual.slides.length, 0, !1, !0) : x.centeredSlides && n.snapIndex < x.slidesPerView ? n.slideTo(n.virtual.slides.length + n.snapIndex, 0, !1, !0) : n.snapIndex === n.snapGrid.length - 1 && n.slideTo(n.virtual.slidesBefore, 0, !1, !0)), n.allowSlidePrev = p, n.allowSlideNext = f, n.emit("loopFix");
+    if (r.allowSlidePrev = !0, r.allowSlideNext = !0, r.virtual && x.virtual.enabled) {
+      t && (!x.centeredSlides && r.snapIndex === 0 ? r.slideTo(r.virtual.slides.length, 0, !1, !0) : x.centeredSlides && r.snapIndex < x.slidesPerView ? r.slideTo(r.virtual.slides.length + r.snapIndex, 0, !1, !0) : r.snapIndex === r.snapGrid.length - 1 && r.slideTo(r.virtual.slidesBefore, 0, !1, !0)), r.allowSlidePrev = p, r.allowSlideNext = f, r.emit("loopFix");
       return;
     }
     let m = x.slidesPerView;
-    m === "auto" ? m = n.slidesPerViewDynamic() : (m = Math.ceil(parseFloat(x.slidesPerView, 10)), g && m % 2 === 0 && (m = m + 1));
+    m === "auto" ? m = r.slidesPerViewDynamic() : (m = Math.ceil(parseFloat(x.slidesPerView, 10)), h && m % 2 === 0 && (m = m + 1));
     const b = x.slidesPerGroupAuto ? m : x.slidesPerGroup;
     let c = b;
-    c % b !== 0 && (c += b - c % b), c += x.loopAdditionalSlides, n.loopedSlides = c;
-    const u = n.grid && x.grid && x.grid.rows > 1;
+    c % b !== 0 && (c += b - c % b), c += x.loopAdditionalSlides, r.loopedSlides = c;
+    const u = r.grid && x.grid && x.grid.rows > 1;
     d.length < m + c ? ae("Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters") : u && x.grid.fill === "row" && ae("Swiper Loop Warning: Loop mode is not compatible with grid.fill = `row`");
-    const h = [], y = [];
-    let k = n.activeIndex;
-    typeof s > "u" ? s = n.getSlideIndex(d.filter((A) => A.classList.contains(x.slideActiveClass))[0]) : k = s;
+    const g = [], y = [];
+    let k = r.activeIndex;
+    typeof s > "u" ? s = r.getSlideIndex(d.filter((A) => A.classList.contains(x.slideActiveClass))[0]) : k = s;
     const S = o === "next" || !o, P = o === "prev" || !o;
     let C = 0, T = 0;
-    const v = u ? Math.ceil(d.length / x.grid.rows) : d.length, L = (u ? d[s].column : s) + (g && typeof a > "u" ? -m / 2 + 0.5 : 0);
+    const v = u ? Math.ceil(d.length / x.grid.rows) : d.length, L = (u ? d[s].column : s) + (h && typeof a > "u" ? -m / 2 + 0.5 : 0);
     if (L < c) {
       C = Math.max(c - L, b);
       for (let A = 0; A < c - L; A += 1) {
@@ -2340,9 +2340,9 @@
         if (u) {
           const D = v - E - 1;
           for (let q = d.length - 1; q >= 0; q -= 1)
-            d[q].column === D && h.push(q);
+            d[q].column === D && g.push(q);
         } else
-          h.push(v - E - 1);
+          g.push(v - E - 1);
       }
     } else if (L + m > v - c) {
       T = Math.max(L - (v - c * 2), b);
@@ -2353,33 +2353,33 @@
         }) : y.push(E);
       }
     }
-    if (n.__preventObserver__ = !0, requestAnimationFrame(() => {
-      n.__preventObserver__ = !1;
-    }), P && h.forEach((A) => {
+    if (r.__preventObserver__ = !0, requestAnimationFrame(() => {
+      r.__preventObserver__ = !1;
+    }), P && g.forEach((A) => {
       d[A].swiperLoopMoveDOM = !0, w.prepend(d[A]), d[A].swiperLoopMoveDOM = !1;
     }), S && y.forEach((A) => {
       d[A].swiperLoopMoveDOM = !0, w.append(d[A]), d[A].swiperLoopMoveDOM = !1;
-    }), n.recalcSlides(), x.slidesPerView === "auto" ? n.updateSlides() : u && (h.length > 0 && P || y.length > 0 && S) && n.slides.forEach((A, E) => {
-      n.grid.updateSlide(E, A, n.slides);
-    }), x.watchSlidesProgress && n.updateSlidesOffset(), t) {
-      if (h.length > 0 && P) {
+    }), r.recalcSlides(), x.slidesPerView === "auto" ? r.updateSlides() : u && (g.length > 0 && P || y.length > 0 && S) && r.slides.forEach((A, E) => {
+      r.grid.updateSlide(E, A, r.slides);
+    }), x.watchSlidesProgress && r.updateSlidesOffset(), t) {
+      if (g.length > 0 && P) {
         if (typeof e > "u") {
-          const A = n.slidesGrid[k], D = n.slidesGrid[k + C] - A;
-          l ? n.setTranslate(n.translate - D) : (n.slideTo(k + Math.ceil(C), 0, !1, !0), a && (n.touchEventsData.startTranslate = n.touchEventsData.startTranslate - D, n.touchEventsData.currentTranslate = n.touchEventsData.currentTranslate - D));
+          const A = r.slidesGrid[k], D = r.slidesGrid[k + C] - A;
+          l ? r.setTranslate(r.translate - D) : (r.slideTo(k + Math.ceil(C), 0, !1, !0), a && (r.touchEventsData.startTranslate = r.touchEventsData.startTranslate - D, r.touchEventsData.currentTranslate = r.touchEventsData.currentTranslate - D));
         } else if (a) {
-          const A = u ? h.length / x.grid.rows : h.length;
-          n.slideTo(n.activeIndex + A, 0, !1, !0), n.touchEventsData.currentTranslate = n.translate;
+          const A = u ? g.length / x.grid.rows : g.length;
+          r.slideTo(r.activeIndex + A, 0, !1, !0), r.touchEventsData.currentTranslate = r.translate;
         }
       } else if (y.length > 0 && S)
         if (typeof e > "u") {
-          const A = n.slidesGrid[k], D = n.slidesGrid[k - T] - A;
-          l ? n.setTranslate(n.translate - D) : (n.slideTo(k - T, 0, !1, !0), a && (n.touchEventsData.startTranslate = n.touchEventsData.startTranslate - D, n.touchEventsData.currentTranslate = n.touchEventsData.currentTranslate - D));
+          const A = r.slidesGrid[k], D = r.slidesGrid[k - T] - A;
+          l ? r.setTranslate(r.translate - D) : (r.slideTo(k - T, 0, !1, !0), a && (r.touchEventsData.startTranslate = r.touchEventsData.startTranslate - D, r.touchEventsData.currentTranslate = r.touchEventsData.currentTranslate - D));
         } else {
           const A = u ? y.length / x.grid.rows : y.length;
-          n.slideTo(n.activeIndex - A, 0, !1, !0);
+          r.slideTo(r.activeIndex - A, 0, !1, !0);
         }
     }
-    if (n.allowSlidePrev = p, n.allowSlideNext = f, n.controller && n.controller.control && !r) {
+    if (r.allowSlidePrev = p, r.allowSlideNext = f, r.controller && r.controller.control && !n) {
       const A = {
         slideRealIndex: e,
         direction: o,
@@ -2387,17 +2387,17 @@
         activeSlideIndex: s,
         byController: !0
       };
-      Array.isArray(n.controller.control) ? n.controller.control.forEach((E) => {
+      Array.isArray(r.controller.control) ? r.controller.control.forEach((E) => {
         !E.destroyed && E.params.loop && E.loopFix({
           ...A,
           slideTo: E.params.slidesPerView === x.slidesPerView ? t : !1
         });
-      }) : n.controller.control instanceof n.constructor && n.controller.control.params.loop && n.controller.control.loopFix({
+      }) : r.controller.control instanceof r.constructor && r.controller.control.params.loop && r.controller.control.loopFix({
         ...A,
-        slideTo: n.controller.control.params.slidesPerView === x.slidesPerView ? t : !1
+        slideTo: r.controller.control.params.slidesPerView === x.slidesPerView ? t : !1
       });
     }
-    n.emit("loopFix");
+    r.emit("loopFix");
   }
   function li() {
     const i = this, {
@@ -2444,7 +2444,7 @@
   function fi(i, e) {
     e === void 0 && (e = this);
     function t(o) {
-      if (!o || o === X() || o === F())
+      if (!o || o === $() || o === F())
         return null;
       o.assignedSlot && (o = o.assignedSlot);
       const a = o.closest(i);
@@ -2455,11 +2455,11 @@
   function De(i, e, t) {
     const o = F(), {
       params: a
-    } = i, s = a.edgeSwipeDetection, r = a.edgeSwipeThreshold;
-    return s && (t <= r || t >= o.innerWidth - r) ? s === "prevent" ? (e.preventDefault(), !0) : !1 : !0;
+    } = i, s = a.edgeSwipeDetection, n = a.edgeSwipeThreshold;
+    return s && (t <= n || t >= o.innerWidth - n) ? s === "prevent" ? (e.preventDefault(), !0) : !1 : !0;
   }
   function mi(i) {
-    const e = this, t = X();
+    const e = this, t = $();
     let o = i;
     o.originalEvent && (o = o.originalEvent);
     const a = e.touchEventsData;
@@ -2475,26 +2475,26 @@
     }
     const {
       params: s,
-      touches: r,
+      touches: n,
       enabled: l
     } = e;
     if (!l || !s.simulateTouch && o.pointerType === "mouse" || e.animating && s.preventInteractionOnTransition)
       return;
     !e.animating && s.cssMode && s.loop && e.loopFix();
-    let n = o.target;
-    if (s.touchEventsTarget === "wrapper" && !e.wrapperEl.contains(n) || "which" in o && o.which === 3 || "button" in o && o.button > 0 || a.isTouched && a.isMoved)
+    let r = o.target;
+    if (s.touchEventsTarget === "wrapper" && !e.wrapperEl.contains(r) || "which" in o && o.which === 3 || "button" in o && o.button > 0 || a.isTouched && a.isMoved)
       return;
     const d = !!s.noSwipingClass && s.noSwipingClass !== "", p = o.composedPath ? o.composedPath() : o.path;
-    d && o.target && o.target.shadowRoot && p && (n = p[0]);
+    d && o.target && o.target.shadowRoot && p && (r = p[0]);
     const f = s.noSwipingSelector ? s.noSwipingSelector : `.${s.noSwipingClass}`, w = !!(o.target && o.target.shadowRoot);
-    if (s.noSwiping && (w ? fi(f, n) : n.closest(f))) {
+    if (s.noSwiping && (w ? fi(f, r) : r.closest(f))) {
       e.allowClick = !0;
       return;
     }
-    if (s.swipeHandler && !n.closest(s.swipeHandler))
+    if (s.swipeHandler && !r.closest(s.swipeHandler))
       return;
-    r.currentX = o.pageX, r.currentY = o.pageY;
-    const x = r.currentX, g = r.currentY;
+    n.currentX = o.pageX, n.currentY = o.pageY;
+    const x = n.currentX, h = n.currentY;
     if (!De(e, o, x))
       return;
     Object.assign(a, {
@@ -2503,41 +2503,41 @@
       allowTouchCallbacks: !0,
       isScrolling: void 0,
       startMoving: void 0
-    }), r.startX = x, r.startY = g, a.touchStartTime = ie(), e.allowClick = !0, e.updateSize(), e.swipeDirection = void 0, s.threshold > 0 && (a.allowThresholdMove = !1);
+    }), n.startX = x, n.startY = h, a.touchStartTime = ie(), e.allowClick = !0, e.updateSize(), e.swipeDirection = void 0, s.threshold > 0 && (a.allowThresholdMove = !1);
     let m = !0;
-    n.matches(a.focusableElements) && (m = !1, n.nodeName === "SELECT" && (a.isTouched = !1)), t.activeElement && t.activeElement.matches(a.focusableElements) && t.activeElement !== n && t.activeElement.blur();
+    r.matches(a.focusableElements) && (m = !1, r.nodeName === "SELECT" && (a.isTouched = !1)), t.activeElement && t.activeElement.matches(a.focusableElements) && t.activeElement !== r && t.activeElement.blur();
     const b = m && e.allowTouchMove && s.touchStartPreventDefault;
-    (s.touchStartForcePreventDefault || b) && !n.isContentEditable && o.preventDefault(), s.freeMode && s.freeMode.enabled && e.freeMode && e.animating && !s.cssMode && e.freeMode.onTouchStart(), e.emit("touchStart", o);
+    (s.touchStartForcePreventDefault || b) && !r.isContentEditable && o.preventDefault(), s.freeMode && s.freeMode.enabled && e.freeMode && e.animating && !s.cssMode && e.freeMode.onTouchStart(), e.emit("touchStart", o);
   }
   function hi(i) {
-    const e = X(), t = this, o = t.touchEventsData, {
+    const e = $(), t = this, o = t.touchEventsData, {
       params: a,
       touches: s,
-      rtlTranslate: r,
+      rtlTranslate: n,
       enabled: l
     } = t;
     if (!l || !a.simulateTouch && i.pointerType === "mouse")
       return;
-    let n = i;
-    if (n.originalEvent && (n = n.originalEvent), n.type === "pointermove" && (o.touchId !== null || n.pointerId !== o.pointerId))
+    let r = i;
+    if (r.originalEvent && (r = r.originalEvent), r.type === "pointermove" && (o.touchId !== null || r.pointerId !== o.pointerId))
       return;
     let d;
-    if (n.type === "touchmove") {
-      if (d = [...n.changedTouches].filter((S) => S.identifier === o.touchId)[0], !d || d.identifier !== o.touchId)
+    if (r.type === "touchmove") {
+      if (d = [...r.changedTouches].filter((S) => S.identifier === o.touchId)[0], !d || d.identifier !== o.touchId)
         return;
     } else
-      d = n;
+      d = r;
     if (!o.isTouched) {
-      o.startMoving && o.isScrolling && t.emit("touchMoveOpposite", n);
+      o.startMoving && o.isScrolling && t.emit("touchMoveOpposite", r);
       return;
     }
     const p = d.pageX, f = d.pageY;
-    if (n.preventedByNestedSwiper) {
+    if (r.preventedByNestedSwiper) {
       s.startX = p, s.startY = f;
       return;
     }
     if (!t.allowTouchMove) {
-      n.target.matches(o.focusableElements) || (t.allowClick = !1), o.isTouched && (Object.assign(s, {
+      r.target.matches(o.focusableElements) || (t.allowClick = !1), o.isTouched && (Object.assign(s, {
         startX: p,
         startY: f,
         currentX: p,
@@ -2554,11 +2554,11 @@
       } else if (p < s.startX && t.translate <= t.maxTranslate() || p > s.startX && t.translate >= t.minTranslate())
         return;
     }
-    if (e.activeElement && n.target === e.activeElement && n.target.matches(o.focusableElements)) {
+    if (e.activeElement && r.target === e.activeElement && r.target.matches(o.focusableElements)) {
       o.isMoved = !0, t.allowClick = !1;
       return;
     }
-    o.allowTouchCallbacks && t.emit("touchMove", n), s.previousX = s.currentX, s.previousY = s.currentY, s.currentX = p, s.currentY = f;
+    o.allowTouchCallbacks && t.emit("touchMove", r), s.previousX = s.currentX, s.previousY = s.currentY, s.currentX = p, s.currentY = f;
     const w = s.currentX - s.startX, x = s.currentY - s.startY;
     if (t.params.threshold && Math.sqrt(w ** 2 + x ** 2) < t.params.threshold)
       return;
@@ -2566,17 +2566,17 @@
       let S;
       t.isHorizontal() && s.currentY === s.startY || t.isVertical() && s.currentX === s.startX ? o.isScrolling = !1 : w * w + x * x >= 25 && (S = Math.atan2(Math.abs(x), Math.abs(w)) * 180 / Math.PI, o.isScrolling = t.isHorizontal() ? S > a.touchAngle : 90 - S > a.touchAngle);
     }
-    if (o.isScrolling && t.emit("touchMoveOpposite", n), typeof o.startMoving > "u" && (s.currentX !== s.startX || s.currentY !== s.startY) && (o.startMoving = !0), o.isScrolling) {
+    if (o.isScrolling && t.emit("touchMoveOpposite", r), typeof o.startMoving > "u" && (s.currentX !== s.startX || s.currentY !== s.startY) && (o.startMoving = !0), o.isScrolling) {
       o.isTouched = !1;
       return;
     }
     if (!o.startMoving)
       return;
-    t.allowClick = !1, !a.cssMode && n.cancelable && n.preventDefault(), a.touchMoveStopPropagation && !a.nested && n.stopPropagation();
-    let g = t.isHorizontal() ? w : x, m = t.isHorizontal() ? s.currentX - s.previousX : s.currentY - s.previousY;
-    a.oneWayMovement && (g = Math.abs(g) * (r ? 1 : -1), m = Math.abs(m) * (r ? 1 : -1)), s.diff = g, g *= a.touchRatio, r && (g = -g, m = -m);
+    t.allowClick = !1, !a.cssMode && r.cancelable && r.preventDefault(), a.touchMoveStopPropagation && !a.nested && r.stopPropagation();
+    let h = t.isHorizontal() ? w : x, m = t.isHorizontal() ? s.currentX - s.previousX : s.currentY - s.previousY;
+    a.oneWayMovement && (h = Math.abs(h) * (n ? 1 : -1), m = Math.abs(m) * (n ? 1 : -1)), s.diff = h, h *= a.touchRatio, n && (h = -h, m = -m);
     const b = t.touchesDirection;
-    t.swipeDirection = g > 0 ? "prev" : "next", t.touchesDirection = m > 0 ? "prev" : "next";
+    t.swipeDirection = h > 0 ? "prev" : "next", t.touchesDirection = m > 0 ? "prev" : "next";
     const c = t.params.loop && !a.cssMode, u = t.touchesDirection === "next" && t.allowSlideNext || t.touchesDirection === "prev" && t.allowSlidePrev;
     if (!o.isMoved) {
       if (c && u && t.loopFix({
@@ -2588,10 +2588,10 @@
         });
         t.wrapperEl.dispatchEvent(S);
       }
-      o.allowMomentumBounce = !1, a.grabCursor && (t.allowSlideNext === !0 || t.allowSlidePrev === !0) && t.setGrabCursor(!0), t.emit("sliderFirstMove", n);
+      o.allowMomentumBounce = !1, a.grabCursor && (t.allowSlideNext === !0 || t.allowSlidePrev === !0) && t.setGrabCursor(!0), t.emit("sliderFirstMove", r);
     }
-    let h;
-    if ((/* @__PURE__ */ new Date()).getTime(), o.isMoved && o.allowThresholdMove && b !== t.touchesDirection && c && u && Math.abs(g) >= 1) {
+    let g;
+    if ((/* @__PURE__ */ new Date()).getTime(), o.isMoved && o.allowThresholdMove && b !== t.touchesDirection && c && u && Math.abs(h) >= 1) {
       Object.assign(s, {
         startX: p,
         startY: f,
@@ -2601,18 +2601,18 @@
       }), o.loopSwapReset = !0, o.startTranslate = o.currentTranslate;
       return;
     }
-    t.emit("sliderMove", n), o.isMoved = !0, o.currentTranslate = g + o.startTranslate;
+    t.emit("sliderMove", r), o.isMoved = !0, o.currentTranslate = h + o.startTranslate;
     let y = !0, k = a.resistanceRatio;
-    if (a.touchReleaseOnEdges && (k = 0), g > 0 ? (c && u && !h && o.allowThresholdMove && o.currentTranslate > (a.centeredSlides ? t.minTranslate() - t.slidesSizesGrid[t.activeIndex + 1] : t.minTranslate()) && t.loopFix({
+    if (a.touchReleaseOnEdges && (k = 0), h > 0 ? (c && u && !g && o.allowThresholdMove && o.currentTranslate > (a.centeredSlides ? t.minTranslate() - t.slidesSizesGrid[t.activeIndex + 1] : t.minTranslate()) && t.loopFix({
       direction: "prev",
       setTranslate: !0,
       activeSlideIndex: 0
-    }), o.currentTranslate > t.minTranslate() && (y = !1, a.resistance && (o.currentTranslate = t.minTranslate() - 1 + (-t.minTranslate() + o.startTranslate + g) ** k))) : g < 0 && (c && u && !h && o.allowThresholdMove && o.currentTranslate < (a.centeredSlides ? t.maxTranslate() + t.slidesSizesGrid[t.slidesSizesGrid.length - 1] : t.maxTranslate()) && t.loopFix({
+    }), o.currentTranslate > t.minTranslate() && (y = !1, a.resistance && (o.currentTranslate = t.minTranslate() - 1 + (-t.minTranslate() + o.startTranslate + h) ** k))) : h < 0 && (c && u && !g && o.allowThresholdMove && o.currentTranslate < (a.centeredSlides ? t.maxTranslate() + t.slidesSizesGrid[t.slidesSizesGrid.length - 1] : t.maxTranslate()) && t.loopFix({
       direction: "next",
       setTranslate: !0,
       activeSlideIndex: t.slides.length - (a.slidesPerView === "auto" ? t.slidesPerViewDynamic() : Math.ceil(parseFloat(a.slidesPerView, 10)))
-    }), o.currentTranslate < t.maxTranslate() && (y = !1, a.resistance && (o.currentTranslate = t.maxTranslate() + 1 - (t.maxTranslate() - o.startTranslate - g) ** k))), y && (n.preventedByNestedSwiper = !0), !t.allowSlideNext && t.swipeDirection === "next" && o.currentTranslate < o.startTranslate && (o.currentTranslate = o.startTranslate), !t.allowSlidePrev && t.swipeDirection === "prev" && o.currentTranslate > o.startTranslate && (o.currentTranslate = o.startTranslate), !t.allowSlidePrev && !t.allowSlideNext && (o.currentTranslate = o.startTranslate), a.threshold > 0)
-      if (Math.abs(g) > a.threshold || o.allowThresholdMove) {
+    }), o.currentTranslate < t.maxTranslate() && (y = !1, a.resistance && (o.currentTranslate = t.maxTranslate() + 1 - (t.maxTranslate() - o.startTranslate - h) ** k))), y && (r.preventedByNestedSwiper = !0), !t.allowSlideNext && t.swipeDirection === "next" && o.currentTranslate < o.startTranslate && (o.currentTranslate = o.startTranslate), !t.allowSlidePrev && t.swipeDirection === "prev" && o.currentTranslate > o.startTranslate && (o.currentTranslate = o.startTranslate), !t.allowSlidePrev && !t.allowSlideNext && (o.currentTranslate = o.startTranslate), a.threshold > 0)
+      if (Math.abs(h) > a.threshold || o.allowThresholdMove) {
         if (!o.allowThresholdMove) {
           o.allowThresholdMove = !0, s.startX = s.currentX, s.startY = s.currentY, o.currentTranslate = o.startTranslate, s.diff = t.isHorizontal() ? s.currentX - s.startX : s.currentY - s.startY;
           return;
@@ -2640,19 +2640,19 @@
       return;
     t.pointerId = null, t.touchId = null;
     const {
-      params: r,
+      params: n,
       touches: l,
-      rtlTranslate: n,
+      rtlTranslate: r,
       slidesGrid: d,
       enabled: p
     } = e;
-    if (!p || !r.simulateTouch && o.pointerType === "mouse")
+    if (!p || !n.simulateTouch && o.pointerType === "mouse")
       return;
     if (t.allowTouchCallbacks && e.emit("touchEnd", o), t.allowTouchCallbacks = !1, !t.isTouched) {
-      t.isMoved && r.grabCursor && e.setGrabCursor(!1), t.isMoved = !1, t.startMoving = !1;
+      t.isMoved && n.grabCursor && e.setGrabCursor(!1), t.isMoved = !1, t.startMoving = !1;
       return;
     }
-    r.grabCursor && t.isMoved && t.isTouched && (e.allowSlideNext === !0 || e.allowSlidePrev === !0) && e.setGrabCursor(!1);
+    n.grabCursor && t.isMoved && t.isTouched && (e.allowSlideNext === !0 || e.allowSlidePrev === !0) && e.setGrabCursor(!1);
     const f = ie(), w = f - t.touchStartTime;
     if (e.allowClick) {
       const k = o.path || o.composedPath && o.composedPath();
@@ -2666,31 +2666,31 @@
     }
     t.isTouched = !1, t.isMoved = !1, t.startMoving = !1;
     let x;
-    if (r.followFinger ? x = n ? e.translate : -e.translate : x = -t.currentTranslate, r.cssMode)
+    if (n.followFinger ? x = r ? e.translate : -e.translate : x = -t.currentTranslate, n.cssMode)
       return;
-    if (r.freeMode && r.freeMode.enabled) {
+    if (n.freeMode && n.freeMode.enabled) {
       e.freeMode.onTouchEnd({
         currentPos: x
       });
       return;
     }
-    const g = x >= -e.maxTranslate() && !e.params.loop;
+    const h = x >= -e.maxTranslate() && !e.params.loop;
     let m = 0, b = e.slidesSizesGrid[0];
-    for (let k = 0; k < d.length; k += k < r.slidesPerGroupSkip ? 1 : r.slidesPerGroup) {
-      const S = k < r.slidesPerGroupSkip - 1 ? 1 : r.slidesPerGroup;
-      typeof d[k + S] < "u" ? (g || x >= d[k] && x < d[k + S]) && (m = k, b = d[k + S] - d[k]) : (g || x >= d[k]) && (m = k, b = d[d.length - 1] - d[d.length - 2]);
+    for (let k = 0; k < d.length; k += k < n.slidesPerGroupSkip ? 1 : n.slidesPerGroup) {
+      const S = k < n.slidesPerGroupSkip - 1 ? 1 : n.slidesPerGroup;
+      typeof d[k + S] < "u" ? (h || x >= d[k] && x < d[k + S]) && (m = k, b = d[k + S] - d[k]) : (h || x >= d[k]) && (m = k, b = d[d.length - 1] - d[d.length - 2]);
     }
     let c = null, u = null;
-    r.rewind && (e.isBeginning ? u = r.virtual && r.virtual.enabled && e.virtual ? e.virtual.slides.length - 1 : e.slides.length - 1 : e.isEnd && (c = 0));
-    const h = (x - d[m]) / b, y = m < r.slidesPerGroupSkip - 1 ? 1 : r.slidesPerGroup;
-    if (w > r.longSwipesMs) {
-      if (!r.longSwipes) {
+    n.rewind && (e.isBeginning ? u = n.virtual && n.virtual.enabled && e.virtual ? e.virtual.slides.length - 1 : e.slides.length - 1 : e.isEnd && (c = 0));
+    const g = (x - d[m]) / b, y = m < n.slidesPerGroupSkip - 1 ? 1 : n.slidesPerGroup;
+    if (w > n.longSwipesMs) {
+      if (!n.longSwipes) {
         e.slideTo(e.activeIndex);
         return;
       }
-      e.swipeDirection === "next" && (h >= r.longSwipesRatio ? e.slideTo(r.rewind && e.isEnd ? c : m + y) : e.slideTo(m)), e.swipeDirection === "prev" && (h > 1 - r.longSwipesRatio ? e.slideTo(m + y) : u !== null && h < 0 && Math.abs(h) > r.longSwipesRatio ? e.slideTo(u) : e.slideTo(m));
+      e.swipeDirection === "next" && (g >= n.longSwipesRatio ? e.slideTo(n.rewind && e.isEnd ? c : m + y) : e.slideTo(m)), e.swipeDirection === "prev" && (g > 1 - n.longSwipesRatio ? e.slideTo(m + y) : u !== null && g < 0 && Math.abs(g) > n.longSwipesRatio ? e.slideTo(u) : e.slideTo(m));
     } else {
-      if (!r.shortSwipes) {
+      if (!n.shortSwipes) {
         e.slideTo(e.activeIndex);
         return;
       }
@@ -2709,10 +2709,10 @@
       allowSlideNext: o,
       allowSlidePrev: a,
       snapGrid: s
-    } = i, r = i.virtual && i.params.virtual.enabled;
+    } = i, n = i.virtual && i.params.virtual.enabled;
     i.allowSlideNext = !0, i.allowSlidePrev = !0, i.updateSize(), i.updateSlides(), i.updateSlidesClasses();
-    const l = r && e.loop;
-    (e.slidesPerView === "auto" || e.slidesPerView > 1) && i.isEnd && !i.isBeginning && !i.params.centeredSlides && !l ? i.slideTo(i.slides.length - 1, 0, !1, !0) : i.params.loop && !r ? i.slideToLoop(i.realIndex, 0, !1, !0) : i.slideTo(i.activeIndex, 0, !1, !0), i.autoplay && i.autoplay.running && i.autoplay.paused && (clearTimeout(i.autoplay.resizeTimeout), i.autoplay.resizeTimeout = setTimeout(() => {
+    const l = n && e.loop;
+    (e.slidesPerView === "auto" || e.slidesPerView > 1) && i.isEnd && !i.isBeginning && !i.params.centeredSlides && !l ? i.slideTo(i.slides.length - 1, 0, !1, !0) : i.params.loop && !n ? i.slideToLoop(i.realIndex, 0, !1, !0) : i.slideTo(i.activeIndex, 0, !1, !0), i.autoplay && i.autoplay.running && i.autoplay.paused && (clearTimeout(i.autoplay.resizeTimeout), i.autoplay.resizeTimeout = setTimeout(() => {
       i.autoplay && i.autoplay.running && i.autoplay.paused && i.autoplay.resume();
     }, 500)), i.allowSlidePrev = a, i.allowSlideNext = o, i.params.watchOverflow && s !== i.snapGrid && i.checkOverflow();
   }
@@ -2742,40 +2742,40 @@
     i.documentTouchHandlerProceeded || (i.documentTouchHandlerProceeded = !0, i.params.touchReleaseOnEdges && (i.el.style.touchAction = "auto"));
   }
   const je = (i, e) => {
-    const t = X(), {
+    const t = $(), {
       params: o,
       el: a,
       wrapperEl: s,
-      device: r
-    } = i, l = !!o.nested, n = e === "on" ? "addEventListener" : "removeEventListener", d = e;
-    t[n]("touchstart", i.onDocumentTouchStart, {
+      device: n
+    } = i, l = !!o.nested, r = e === "on" ? "addEventListener" : "removeEventListener", d = e;
+    t[r]("touchstart", i.onDocumentTouchStart, {
       passive: !1,
       capture: l
-    }), a[n]("touchstart", i.onTouchStart, {
+    }), a[r]("touchstart", i.onTouchStart, {
       passive: !1
-    }), a[n]("pointerdown", i.onTouchStart, {
+    }), a[r]("pointerdown", i.onTouchStart, {
       passive: !1
-    }), t[n]("touchmove", i.onTouchMove, {
+    }), t[r]("touchmove", i.onTouchMove, {
       passive: !1,
       capture: l
-    }), t[n]("pointermove", i.onTouchMove, {
+    }), t[r]("pointermove", i.onTouchMove, {
       passive: !1,
       capture: l
-    }), t[n]("touchend", i.onTouchEnd, {
+    }), t[r]("touchend", i.onTouchEnd, {
       passive: !0
-    }), t[n]("pointerup", i.onTouchEnd, {
+    }), t[r]("pointerup", i.onTouchEnd, {
       passive: !0
-    }), t[n]("pointercancel", i.onTouchEnd, {
+    }), t[r]("pointercancel", i.onTouchEnd, {
       passive: !0
-    }), t[n]("touchcancel", i.onTouchEnd, {
+    }), t[r]("touchcancel", i.onTouchEnd, {
       passive: !0
-    }), t[n]("pointerout", i.onTouchEnd, {
+    }), t[r]("pointerout", i.onTouchEnd, {
       passive: !0
-    }), t[n]("pointerleave", i.onTouchEnd, {
+    }), t[r]("pointerleave", i.onTouchEnd, {
       passive: !0
-    }), t[n]("contextmenu", i.onTouchEnd, {
+    }), t[r]("contextmenu", i.onTouchEnd, {
       passive: !0
-    }), (o.preventClicks || o.preventClicksPropagation) && a[n]("click", i.onClick, !0), o.cssMode && s[n]("scroll", i.onScroll), o.updateOnWindowResize ? i[d](r.ios || r.android ? "resize orientationchange observerUpdate" : "resize observerUpdate", Ie, !0) : i[d]("observerUpdate", Ie, !0), a[n]("load", i.onLoad, {
+    }), (o.preventClicks || o.preventClicksPropagation) && a[r]("click", i.onClick, !0), o.cssMode && s[r]("scroll", i.onScroll), o.updateOnWindowResize ? i[d](n.ios || n.android ? "resize orientationchange observerUpdate" : "resize observerUpdate", Ie, !0) : i[d]("observerUpdate", Ie, !0), a[r]("load", i.onLoad, {
       capture: !0
     });
   };
@@ -2802,34 +2802,34 @@
     } = i, s = o.breakpoints;
     if (!s || s && Object.keys(s).length === 0)
       return;
-    const r = i.getBreakpoint(s, i.params.breakpointsBase, i.el);
-    if (!r || i.currentBreakpoint === r)
+    const n = i.getBreakpoint(s, i.params.breakpointsBase, i.el);
+    if (!n || i.currentBreakpoint === n)
       return;
-    const n = (r in s ? s[r] : void 0) || i.originalParams, d = He(i, o), p = He(i, n), f = o.enabled;
-    d && !p ? (a.classList.remove(`${o.containerModifierClass}grid`, `${o.containerModifierClass}grid-column`), i.emitContainerClasses()) : !d && p && (a.classList.add(`${o.containerModifierClass}grid`), (n.grid.fill && n.grid.fill === "column" || !n.grid.fill && o.grid.fill === "column") && a.classList.add(`${o.containerModifierClass}grid-column`), i.emitContainerClasses()), ["navigation", "pagination", "scrollbar"].forEach((c) => {
-      if (typeof n[c] > "u")
+    const r = (n in s ? s[n] : void 0) || i.originalParams, d = He(i, o), p = He(i, r), f = o.enabled;
+    d && !p ? (a.classList.remove(`${o.containerModifierClass}grid`, `${o.containerModifierClass}grid-column`), i.emitContainerClasses()) : !d && p && (a.classList.add(`${o.containerModifierClass}grid`), (r.grid.fill && r.grid.fill === "column" || !r.grid.fill && o.grid.fill === "column") && a.classList.add(`${o.containerModifierClass}grid-column`), i.emitContainerClasses()), ["navigation", "pagination", "scrollbar"].forEach((c) => {
+      if (typeof r[c] > "u")
         return;
-      const u = o[c] && o[c].enabled, h = n[c] && n[c].enabled;
-      u && !h && i[c].disable(), !u && h && i[c].enable();
+      const u = o[c] && o[c].enabled, g = r[c] && r[c].enabled;
+      u && !g && i[c].disable(), !u && g && i[c].enable();
     });
-    const w = n.direction && n.direction !== o.direction, x = o.loop && (n.slidesPerView !== o.slidesPerView || w), g = o.loop;
-    w && t && i.changeDirection(), G(i.params, n);
+    const w = r.direction && r.direction !== o.direction, x = o.loop && (r.slidesPerView !== o.slidesPerView || w), h = o.loop;
+    w && t && i.changeDirection(), G(i.params, r);
     const m = i.params.enabled, b = i.params.loop;
     Object.assign(i, {
       allowTouchMove: i.params.allowTouchMove,
       allowSlideNext: i.params.allowSlideNext,
       allowSlidePrev: i.params.allowSlidePrev
-    }), f && !m ? i.disable() : !f && m && i.enable(), i.currentBreakpoint = r, i.emit("_beforeBreakpoint", n), t && (x ? (i.loopDestroy(), i.loopCreate(e), i.updateSlides()) : !g && b ? (i.loopCreate(e), i.updateSlides()) : g && !b && i.loopDestroy()), i.emit("breakpoint", n);
+    }), f && !m ? i.disable() : !f && m && i.enable(), i.currentBreakpoint = n, i.emit("_beforeBreakpoint", r), t && (x ? (i.loopDestroy(), i.loopCreate(e), i.updateSlides()) : !h && b ? (i.loopCreate(e), i.updateSlides()) : h && !b && i.loopDestroy()), i.emit("breakpoint", r);
   }
   function Ai(i, e, t) {
     if (e === void 0 && (e = "window"), !i || e === "container" && !t)
       return;
     let o = !1;
-    const a = F(), s = e === "window" ? a.innerHeight : t.clientHeight, r = Object.keys(i).map((l) => {
+    const a = F(), s = e === "window" ? a.innerHeight : t.clientHeight, n = Object.keys(i).map((l) => {
       if (typeof l == "string" && l.indexOf("@") === 0) {
-        const n = parseFloat(l.substr(1));
+        const r = parseFloat(l.substr(1));
         return {
-          value: s * n,
+          value: s * r,
           point: l
         };
       }
@@ -2838,13 +2838,13 @@
         point: l
       };
     });
-    r.sort((l, n) => parseInt(l.value, 10) - parseInt(n.value, 10));
-    for (let l = 0; l < r.length; l += 1) {
+    n.sort((l, r) => parseInt(l.value, 10) - parseInt(r.value, 10));
+    for (let l = 0; l < n.length; l += 1) {
       const {
-        point: n,
+        point: r,
         value: d
-      } = r[l];
-      e === "window" ? a.matchMedia(`(min-width: ${d}px)`).matches && (o = n) : d <= t.clientWidth && (o = n);
+      } = n[l];
+      e === "window" ? a.matchMedia(`(min-width: ${d}px)`).matches && (o = r) : d <= t.clientWidth && (o = r);
     }
     return o || "max";
   }
@@ -2867,7 +2867,7 @@
       rtl: o,
       el: a,
       device: s
-    } = i, r = Mi(["initialized", t.direction, {
+    } = i, n = Mi(["initialized", t.direction, {
       "free-mode": i.params.freeMode && t.freeMode.enabled
     }, {
       autoheight: t.autoHeight
@@ -2888,7 +2888,7 @@
     }, {
       "watch-progress": t.watchSlidesProgress
     }], t.containerModifierClass);
-    e.push(...r), a.classList.add(...e), i.emitContainerClasses();
+    e.push(...n), a.classList.add(...e), i.emitContainerClasses();
   }
   function Ti() {
     const i = this, {
@@ -3076,10 +3076,10 @@
       for (var o = arguments.length, a = new Array(o), s = 0; s < o; s++)
         a[s] = arguments[s];
       a.length === 1 && a[0].constructor && Object.prototype.toString.call(a[0]).slice(8, -1) === "Object" ? t = a[0] : [e, t] = a, t || (t = {}), t = G({}, t), e && !t.el && (t.el = e);
-      const r = X();
-      if (t.el && typeof t.el == "string" && r.querySelectorAll(t.el).length > 1) {
+      const n = $();
+      if (t.el && typeof t.el == "string" && n.querySelectorAll(t.el).length > 1) {
         const p = [];
-        return r.querySelectorAll(t.el).forEach((f) => {
+        return n.querySelectorAll(t.el).forEach((f) => {
           const w = G({}, t, {
             el: f
           });
@@ -3090,19 +3090,19 @@
       l.__swiper__ = !0, l.support = Te(), l.device = ze({
         userAgent: t.userAgent
       }), l.browser = Mt(), l.eventsListeners = {}, l.eventsAnyListeners = [], l.modules = [...l.__modules__], t.modules && Array.isArray(t.modules) && l.modules.push(...t.modules);
-      const n = {};
+      const r = {};
       l.modules.forEach((p) => {
         p({
           params: t,
           swiper: l,
-          extendParams: Ii(t, n),
+          extendParams: Ii(t, r),
           on: l.on.bind(l),
           once: l.once.bind(l),
           off: l.off.bind(l),
           emit: l.emit.bind(l)
         });
       });
-      const d = G({}, _e, n);
+      const d = G({}, _e, r);
       return l.params = G({}, d, ve, t), l.originalParams = G({}, l.params), l.passedParams = G({}, t), l.params && l.params.on && Object.keys(l.params.on).forEach((p) => {
         l.on(p, l.params.on[p]);
       }), l.params && l.params.onAny && l.onAny(l.params.onAny), Object.assign(l, {
@@ -3218,8 +3218,8 @@
     setProgress(e, t) {
       const o = this;
       e = Math.min(Math.max(e, 0), 1);
-      const a = o.minTranslate(), r = (o.maxTranslate() - a) * e + a;
-      o.translateTo(r, typeof t > "u" ? 0 : t), o.updateActiveIndex(), o.updateSlidesClasses();
+      const a = o.minTranslate(), n = (o.maxTranslate() - a) * e + a;
+      o.translateTo(n, typeof t > "u" ? 0 : t), o.updateActiveIndex(), o.updateSlidesClasses();
     }
     emitContainerClasses() {
       const e = this;
@@ -3250,9 +3250,9 @@
       const o = this, {
         params: a,
         slides: s,
-        slidesGrid: r,
+        slidesGrid: n,
         slidesSizesGrid: l,
-        size: n,
+        size: r,
         activeIndex: d
       } = o;
       let p = 1;
@@ -3261,15 +3261,15 @@
       if (a.centeredSlides) {
         let f = s[d] ? Math.ceil(s[d].swiperSlideSize) : 0, w;
         for (let x = d + 1; x < s.length; x += 1)
-          s[x] && !w && (f += Math.ceil(s[x].swiperSlideSize), p += 1, f > n && (w = !0));
+          s[x] && !w && (f += Math.ceil(s[x].swiperSlideSize), p += 1, f > r && (w = !0));
         for (let x = d - 1; x >= 0; x -= 1)
-          s[x] && !w && (f += s[x].swiperSlideSize, p += 1, f > n && (w = !0));
+          s[x] && !w && (f += s[x].swiperSlideSize, p += 1, f > r && (w = !0));
       } else if (e === "current")
         for (let f = d + 1; f < s.length; f += 1)
-          (t ? r[f] + l[f] - r[d] < n : r[f] - r[d] < n) && (p += 1);
+          (t ? n[f] + l[f] - n[d] < r : n[f] - n[d] < r) && (p += 1);
       else
         for (let f = d - 1; f >= 0; f -= 1)
-          r[d] - r[f] < n && (p += 1);
+          n[d] - n[f] < r && (p += 1);
       return p;
     }
     update() {
@@ -3280,11 +3280,11 @@
         snapGrid: t,
         params: o
       } = e;
-      o.breakpoints && e.setBreakpoint(), [...e.el.querySelectorAll('[loading="lazy"]')].forEach((r) => {
-        r.complete && le(e, r);
+      o.breakpoints && e.setBreakpoint(), [...e.el.querySelectorAll('[loading="lazy"]')].forEach((n) => {
+        n.complete && le(e, n);
       }), e.updateSize(), e.updateSlides(), e.updateProgress(), e.updateSlidesClasses();
       function a() {
-        const r = e.rtlTranslate ? e.translate * -1 : e.translate, l = Math.min(Math.max(r, e.maxTranslate()), e.minTranslate());
+        const n = e.rtlTranslate ? e.translate * -1 : e.translate, l = Math.min(Math.max(n, e.maxTranslate()), e.minTranslate());
         e.setTranslate(l), e.updateActiveIndex(), e.updateSlidesClasses();
       }
       let s;
@@ -3292,8 +3292,8 @@
         a(), o.autoHeight && e.updateAutoHeight();
       else {
         if ((o.slidesPerView === "auto" || o.slidesPerView > 1) && e.isEnd && !o.centeredSlides) {
-          const r = e.virtual && o.virtual.enabled ? e.virtual.slides : e.slides;
-          s = e.slideTo(r.length - 1, 0, !1, !0);
+          const n = e.virtual && o.virtual.enabled ? e.virtual.slides : e.slides;
+          s = e.slideTo(n.length - 1, 0, !1, !0);
         } else
           s = e.slideTo(e.activeIndex, 0, !1, !0);
         s || a();
@@ -3320,19 +3320,19 @@
         return !1;
       o.swiper = t, o.parentNode && o.parentNode.host && o.parentNode.host.nodeName === t.params.swiperElementNodeName.toUpperCase() && (t.isElement = !0);
       const a = () => `.${(t.params.wrapperClass || "").trim().split(" ").join(".")}`;
-      let r = o && o.shadowRoot && o.shadowRoot.querySelector ? o.shadowRoot.querySelector(a()) : Z(o, a())[0];
-      return !r && t.params.createElements && (r = ne("div", t.params.wrapperClass), o.append(r), Z(o, `.${t.params.slideClass}`).forEach((l) => {
-        r.append(l);
+      let n = o && o.shadowRoot && o.shadowRoot.querySelector ? o.shadowRoot.querySelector(a()) : Z(o, a())[0];
+      return !n && t.params.createElements && (n = ne("div", t.params.wrapperClass), o.append(n), Z(o, `.${t.params.slideClass}`).forEach((l) => {
+        n.append(l);
       })), Object.assign(t, {
         el: o,
-        wrapperEl: r,
-        slidesEl: t.isElement && !o.parentNode.host.slideSlots ? o.parentNode.host : r,
+        wrapperEl: n,
+        slidesEl: t.isElement && !o.parentNode.host.slideSlots ? o.parentNode.host : n,
         hostEl: t.isElement ? o.parentNode.host : o,
         mounted: !0,
         // RTL
-        rtl: o.dir.toLowerCase() === "rtl" || $(o, "direction") === "rtl",
-        rtlTranslate: t.params.direction === "horizontal" && (o.dir.toLowerCase() === "rtl" || $(o, "direction") === "rtl"),
-        wrongRTL: $(r, "display") === "-webkit-box"
+        rtl: o.dir.toLowerCase() === "rtl" || X(o, "direction") === "rtl",
+        rtlTranslate: t.params.direction === "horizontal" && (o.dir.toLowerCase() === "rtl" || X(o, "direction") === "rtl"),
+        wrongRTL: X(n, "display") === "-webkit-box"
       }), !0;
     }
     init(e) {
@@ -3342,8 +3342,8 @@
       t.emit("beforeInit"), t.params.breakpoints && t.setBreakpoint(), t.addClasses(), t.updateSize(), t.updateSlides(), t.params.watchOverflow && t.checkOverflow(), t.params.grabCursor && t.enabled && t.setGrabCursor(), t.params.loop && t.virtual && t.params.virtual.enabled ? t.slideTo(t.params.initialSlide + t.virtual.slidesBefore, 0, t.params.runCallbacksOnInit, !1, !0) : t.slideTo(t.params.initialSlide, 0, t.params.runCallbacksOnInit, !1, !0), t.params.loop && t.loopCreate(), t.attachEvents();
       const a = [...t.el.querySelectorAll('[loading="lazy"]')];
       return t.isElement && a.push(...t.hostEl.querySelectorAll('[loading="lazy"]')), a.forEach((s) => {
-        s.complete ? le(t, s) : s.addEventListener("load", (r) => {
-          le(t, r.target);
+        s.complete ? le(t, s) : s.addEventListener("load", (n) => {
+          le(t, n.target);
         });
       }), xe(t), t.initialized = !0, xe(t), t.emit("init"), t.emit("afterInit"), t;
     }
@@ -3352,13 +3352,13 @@
       const o = this, {
         params: a,
         el: s,
-        wrapperEl: r,
+        wrapperEl: n,
         slides: l
       } = o;
-      return typeof o.params > "u" || o.destroyed || (o.emit("beforeDestroy"), o.initialized = !1, o.detachEvents(), a.loop && o.loopDestroy(), t && (o.removeClasses(), s.removeAttribute("style"), r.removeAttribute("style"), l && l.length && l.forEach((n) => {
-        n.classList.remove(a.slideVisibleClass, a.slideFullyVisibleClass, a.slideActiveClass, a.slideNextClass, a.slidePrevClass), n.removeAttribute("style"), n.removeAttribute("data-swiper-slide-index");
-      })), o.emit("destroy"), Object.keys(o.eventsListeners).forEach((n) => {
-        o.off(n);
+      return typeof o.params > "u" || o.destroyed || (o.emit("beforeDestroy"), o.initialized = !1, o.detachEvents(), a.loop && o.loopDestroy(), t && (o.removeClasses(), s.removeAttribute("style"), n.removeAttribute("style"), l && l.length && l.forEach((r) => {
+        r.classList.remove(a.slideVisibleClass, a.slideFullyVisibleClass, a.slideActiveClass, a.slideNextClass, a.slidePrevClass), r.removeAttribute("style"), r.removeAttribute("data-swiper-slide-index");
+      })), o.emit("destroy"), Object.keys(o.eventsListeners).forEach((r) => {
+        o.off(r);
       }), e !== !1 && (o.el.swiper = null, xt(o)), o.destroyed = !0), null;
     }
     static extendDefaults(e) {
@@ -3413,60 +3413,60 @@
       nextEl: null,
       prevEl: null
     };
-    function s(g) {
+    function s(h) {
       let m;
-      return g && typeof g == "string" && e.isElement && (m = e.el.querySelector(g), m) ? m : (g && (typeof g == "string" && (m = [...document.querySelectorAll(g)]), e.params.uniqueNavElements && typeof g == "string" && m.length > 1 && e.el.querySelectorAll(g).length === 1 && (m = e.el.querySelector(g))), g && !m ? g : m);
+      return h && typeof h == "string" && e.isElement && (m = e.el.querySelector(h), m) ? m : (h && (typeof h == "string" && (m = [...document.querySelectorAll(h)]), e.params.uniqueNavElements && typeof h == "string" && m.length > 1 && e.el.querySelectorAll(h).length === 1 && (m = e.el.querySelector(h))), h && !m ? h : m);
     }
-    function r(g, m) {
+    function n(h, m) {
       const b = e.params.navigation;
-      g = B(g), g.forEach((c) => {
+      h = B(h), h.forEach((c) => {
         c && (c.classList[m ? "add" : "remove"](...b.disabledClass.split(" ")), c.tagName === "BUTTON" && (c.disabled = m), e.params.watchOverflow && e.enabled && c.classList[e.isLocked ? "add" : "remove"](b.lockClass));
       });
     }
     function l() {
       const {
-        nextEl: g,
+        nextEl: h,
         prevEl: m
       } = e.navigation;
       if (e.params.loop) {
-        r(m, !1), r(g, !1);
+        n(m, !1), n(h, !1);
         return;
       }
-      r(m, e.isBeginning && !e.params.rewind), r(g, e.isEnd && !e.params.rewind);
+      n(m, e.isBeginning && !e.params.rewind), n(h, e.isEnd && !e.params.rewind);
     }
-    function n(g) {
-      g.preventDefault(), !(e.isBeginning && !e.params.loop && !e.params.rewind) && (e.slidePrev(), a("navigationPrev"));
+    function r(h) {
+      h.preventDefault(), !(e.isBeginning && !e.params.loop && !e.params.rewind) && (e.slidePrev(), a("navigationPrev"));
     }
-    function d(g) {
-      g.preventDefault(), !(e.isEnd && !e.params.loop && !e.params.rewind) && (e.slideNext(), a("navigationNext"));
+    function d(h) {
+      h.preventDefault(), !(e.isEnd && !e.params.loop && !e.params.rewind) && (e.slideNext(), a("navigationNext"));
     }
     function p() {
-      const g = e.params.navigation;
+      const h = e.params.navigation;
       if (e.params.navigation = Be(e, e.originalParams.navigation, e.params.navigation, {
         nextEl: "swiper-button-next",
         prevEl: "swiper-button-prev"
-      }), !(g.nextEl || g.prevEl))
+      }), !(h.nextEl || h.prevEl))
         return;
-      let m = s(g.nextEl), b = s(g.prevEl);
+      let m = s(h.nextEl), b = s(h.prevEl);
       Object.assign(e.navigation, {
         nextEl: m,
         prevEl: b
       }), m = B(m), b = B(b);
-      const c = (u, h) => {
-        u && u.addEventListener("click", h === "next" ? d : n), !e.enabled && u && u.classList.add(...g.lockClass.split(" "));
+      const c = (u, g) => {
+        u && u.addEventListener("click", g === "next" ? d : r), !e.enabled && u && u.classList.add(...h.lockClass.split(" "));
       };
       m.forEach((u) => c(u, "next")), b.forEach((u) => c(u, "prev"));
     }
     function f() {
       let {
-        nextEl: g,
+        nextEl: h,
         prevEl: m
       } = e.navigation;
-      g = B(g), m = B(m);
+      h = B(h), m = B(m);
       const b = (c, u) => {
-        c.removeEventListener("click", u === "next" ? d : n), c.classList.remove(...e.params.navigation.disabledClass.split(" "));
+        c.removeEventListener("click", u === "next" ? d : r), c.classList.remove(...e.params.navigation.disabledClass.split(" "));
       };
-      g.forEach((c) => b(c, "next")), m.forEach((c) => b(c, "prev"));
+      h.forEach((c) => b(c, "next")), m.forEach((c) => b(c, "prev"));
     }
     o("init", () => {
       e.params.navigation.enabled === !1 ? x() : (p(), l());
@@ -3476,15 +3476,15 @@
       f();
     }), o("enable disable", () => {
       let {
-        nextEl: g,
+        nextEl: h,
         prevEl: m
       } = e.navigation;
-      if (g = B(g), m = B(m), e.enabled) {
+      if (h = B(h), m = B(m), e.enabled) {
         l();
         return;
       }
-      [...g, ...m].filter((b) => !!b).forEach((b) => b.classList.add(e.params.navigation.lockClass));
-    }), o("click", (g, m) => {
+      [...h, ...m].filter((b) => !!b).forEach((b) => b.classList.add(e.params.navigation.lockClass));
+    }), o("click", (h, m) => {
       let {
         nextEl: b,
         prevEl: c
@@ -3494,8 +3494,8 @@
       if (e.params.navigation.hideOnClick && !c.includes(u) && !b.includes(u)) {
         if (e.pagination && e.params.pagination && e.params.pagination.clickable && (e.pagination.el === u || e.pagination.el.contains(u)))
           return;
-        let h;
-        b.length ? h = b[0].classList.contains(e.params.navigation.hiddenClass) : c.length && (h = c[0].classList.contains(e.params.navigation.hiddenClass)), a(h === !0 ? "navigationShow" : "navigationHide"), [...b, ...c].filter((y) => !!y).forEach((y) => y.classList.toggle(e.params.navigation.hiddenClass));
+        let g;
+        b.length ? g = b[0].classList.contains(e.params.navigation.hiddenClass) : c.length && (g = c[0].classList.contains(e.params.navigation.hiddenClass)), a(g === !0 ? "navigationShow" : "navigationHide"), [...b, ...c].filter((y) => !!y).forEach((y) => y.classList.toggle(e.params.navigation.hiddenClass));
       }
     });
     const w = () => {
@@ -3557,46 +3557,46 @@
       el: null,
       bullets: []
     };
-    let r, l = 0;
-    function n() {
+    let n, l = 0;
+    function r() {
       return !e.params.pagination.el || !e.pagination.el || Array.isArray(e.pagination.el) && e.pagination.el.length === 0;
     }
     function d(c, u) {
       const {
-        bulletActiveClass: h
+        bulletActiveClass: g
       } = e.params.pagination;
-      c && (c = c[`${u === "prev" ? "previous" : "next"}ElementSibling`], c && (c.classList.add(`${h}-${u}`), c = c[`${u === "prev" ? "previous" : "next"}ElementSibling`], c && c.classList.add(`${h}-${u}-${u}`)));
+      c && (c = c[`${u === "prev" ? "previous" : "next"}ElementSibling`], c && (c.classList.add(`${g}-${u}`), c = c[`${u === "prev" ? "previous" : "next"}ElementSibling`], c && c.classList.add(`${g}-${u}-${u}`)));
     }
     function p(c) {
       const u = c.target.closest(J(e.params.pagination.bulletClass));
       if (!u)
         return;
       c.preventDefault();
-      const h = re(u) * e.params.slidesPerGroup;
+      const g = re(u) * e.params.slidesPerGroup;
       if (e.params.loop) {
-        if (e.realIndex === h)
+        if (e.realIndex === g)
           return;
-        e.slideToLoop(h);
+        e.slideToLoop(g);
       } else
-        e.slideTo(h);
+        e.slideTo(g);
     }
     function f() {
       const c = e.rtl, u = e.params.pagination;
-      if (n())
+      if (r())
         return;
-      let h = e.pagination.el;
-      h = B(h);
+      let g = e.pagination.el;
+      g = B(g);
       let y, k;
       const S = e.virtual && e.params.virtual.enabled ? e.virtual.slides.length : e.slides.length, P = e.params.loop ? Math.ceil(S / e.params.slidesPerGroup) : e.snapGrid.length;
       if (e.params.loop ? (k = e.previousRealIndex || 0, y = e.params.slidesPerGroup > 1 ? Math.floor(e.realIndex / e.params.slidesPerGroup) : e.realIndex) : typeof e.snapIndex < "u" ? (y = e.snapIndex, k = e.previousSnapIndex) : (k = e.previousIndex || 0, y = e.activeIndex || 0), u.type === "bullets" && e.pagination.bullets && e.pagination.bullets.length > 0) {
         const C = e.pagination.bullets;
         let T, v, M;
-        if (u.dynamicBullets && (r = fe(C[0], e.isHorizontal() ? "width" : "height", !0), h.forEach((L) => {
-          L.style[e.isHorizontal() ? "width" : "height"] = `${r * (u.dynamicMainBullets + 4)}px`;
+        if (u.dynamicBullets && (n = fe(C[0], e.isHorizontal() ? "width" : "height", !0), g.forEach((L) => {
+          L.style[e.isHorizontal() ? "width" : "height"] = `${n * (u.dynamicMainBullets + 4)}px`;
         }), u.dynamicMainBullets > 1 && k !== void 0 && (l += y - (k || 0), l > u.dynamicMainBullets - 1 ? l = u.dynamicMainBullets - 1 : l < 0 && (l = 0)), T = Math.max(y - l, 0), v = T + (Math.min(C.length, u.dynamicMainBullets) - 1), M = (v + T) / 2), C.forEach((L) => {
           const A = [...["", "-next", "-next-next", "-prev", "-prev-prev", "-main"].map((E) => `${u.bulletActiveClass}${E}`)].map((E) => typeof E == "string" && E.includes(" ") ? E.split(" ") : E).flat();
           L.classList.remove(...A);
-        }), h.length > 1)
+        }), g.length > 1)
           C.forEach((L) => {
             const A = re(L);
             A === y ? L.classList.add(...u.bulletActiveClass.split(" ")) : e.isElement && L.setAttribute("part", "bullet"), u.dynamicBullets && (A >= T && A <= v && L.classList.add(...`${u.bulletActiveClass}-main`.split(" ")), A === T && d(L, "prev"), A === v && d(L, "next"));
@@ -3613,13 +3613,13 @@
           }
         }
         if (u.dynamicBullets) {
-          const L = Math.min(C.length, u.dynamicMainBullets + 4), A = (r * L - r) / 2 - M * r, E = c ? "right" : "left";
+          const L = Math.min(C.length, u.dynamicMainBullets + 4), A = (n * L - n) / 2 - M * n, E = c ? "right" : "left";
           C.forEach((D) => {
             D.style[e.isHorizontal() ? E : "top"] = `${A}px`;
           });
         }
       }
-      h.forEach((C, T) => {
+      g.forEach((C, T) => {
         if (u.type === "fraction" && (C.querySelectorAll(J(u.currentClass)).forEach((v) => {
           v.textContent = u.formatFractionCurrent(y + 1);
         }), C.querySelectorAll(J(u.totalClass)).forEach((v) => {
@@ -3638,11 +3638,11 @@
     }
     function w() {
       const c = e.params.pagination;
-      if (n())
+      if (r())
         return;
       const u = e.virtual && e.params.virtual.enabled ? e.virtual.slides.length : e.grid && e.params.grid.rows > 1 ? e.slides.length / Math.ceil(e.params.grid.rows) : e.slides.length;
-      let h = e.pagination.el;
-      h = B(h);
+      let g = e.pagination.el;
+      g = B(g);
       let y = "";
       if (c.type === "bullets") {
         let k = e.params.loop ? Math.ceil(u / e.params.slidesPerGroup) : e.snapGrid.length;
@@ -3650,9 +3650,9 @@
         for (let S = 0; S < k; S += 1)
           c.renderBullet ? y += c.renderBullet.call(e, S, c.bulletClass) : y += `<${c.bulletElement} ${e.isElement ? 'part="bullet"' : ""} class="${c.bulletClass}"></${c.bulletElement}>`;
       }
-      c.type === "fraction" && (c.renderFraction ? y = c.renderFraction.call(e, c.currentClass, c.totalClass) : y = `<span class="${c.currentClass}"></span> / <span class="${c.totalClass}"></span>`), c.type === "progressbar" && (c.renderProgressbar ? y = c.renderProgressbar.call(e, c.progressbarFillClass) : y = `<span class="${c.progressbarFillClass}"></span>`), e.pagination.bullets = [], h.forEach((k) => {
+      c.type === "fraction" && (c.renderFraction ? y = c.renderFraction.call(e, c.currentClass, c.totalClass) : y = `<span class="${c.currentClass}"></span> / <span class="${c.totalClass}"></span>`), c.type === "progressbar" && (c.renderProgressbar ? y = c.renderProgressbar.call(e, c.progressbarFillClass) : y = `<span class="${c.progressbarFillClass}"></span>`), e.pagination.bullets = [], g.forEach((k) => {
         c.type !== "custom" && (k.innerHTML = y || ""), c.type === "bullets" && e.pagination.bullets.push(...k.querySelectorAll(J(c.bulletClass)));
-      }), c.type !== "custom" && a("paginationRender", h[0]);
+      }), c.type !== "custom" && a("paginationRender", g[0]);
     }
     function x() {
       e.params.pagination = Be(e, e.originalParams.pagination, e.params.pagination, {
@@ -3662,20 +3662,20 @@
       if (!c.el)
         return;
       let u;
-      typeof c.el == "string" && e.isElement && (u = e.el.querySelector(c.el)), !u && typeof c.el == "string" && (u = [...document.querySelectorAll(c.el)]), u || (u = c.el), !(!u || u.length === 0) && (e.params.uniqueNavElements && typeof c.el == "string" && Array.isArray(u) && u.length > 1 && (u = [...e.el.querySelectorAll(c.el)], u.length > 1 && (u = u.filter((h) => Ee(h, ".swiper")[0] === e.el)[0])), Array.isArray(u) && u.length === 1 && (u = u[0]), Object.assign(e.pagination, {
+      typeof c.el == "string" && e.isElement && (u = e.el.querySelector(c.el)), !u && typeof c.el == "string" && (u = [...document.querySelectorAll(c.el)]), u || (u = c.el), !(!u || u.length === 0) && (e.params.uniqueNavElements && typeof c.el == "string" && Array.isArray(u) && u.length > 1 && (u = [...e.el.querySelectorAll(c.el)], u.length > 1 && (u = u.filter((g) => Ee(g, ".swiper")[0] === e.el)[0])), Array.isArray(u) && u.length === 1 && (u = u[0]), Object.assign(e.pagination, {
         el: u
-      }), u = B(u), u.forEach((h) => {
-        c.type === "bullets" && c.clickable && h.classList.add(...(c.clickableClass || "").split(" ")), h.classList.add(c.modifierClass + c.type), h.classList.add(e.isHorizontal() ? c.horizontalClass : c.verticalClass), c.type === "bullets" && c.dynamicBullets && (h.classList.add(`${c.modifierClass}${c.type}-dynamic`), l = 0, c.dynamicMainBullets < 1 && (c.dynamicMainBullets = 1)), c.type === "progressbar" && c.progressbarOpposite && h.classList.add(c.progressbarOppositeClass), c.clickable && h.addEventListener("click", p), e.enabled || h.classList.add(c.lockClass);
+      }), u = B(u), u.forEach((g) => {
+        c.type === "bullets" && c.clickable && g.classList.add(...(c.clickableClass || "").split(" ")), g.classList.add(c.modifierClass + c.type), g.classList.add(e.isHorizontal() ? c.horizontalClass : c.verticalClass), c.type === "bullets" && c.dynamicBullets && (g.classList.add(`${c.modifierClass}${c.type}-dynamic`), l = 0, c.dynamicMainBullets < 1 && (c.dynamicMainBullets = 1)), c.type === "progressbar" && c.progressbarOpposite && g.classList.add(c.progressbarOppositeClass), c.clickable && g.addEventListener("click", p), e.enabled || g.classList.add(c.lockClass);
       }));
     }
-    function g() {
+    function h() {
       const c = e.params.pagination;
-      if (n())
+      if (r())
         return;
       let u = e.pagination.el;
-      u && (u = B(u), u.forEach((h) => {
-        h.classList.remove(c.hiddenClass), h.classList.remove(c.modifierClass + c.type), h.classList.remove(e.isHorizontal() ? c.horizontalClass : c.verticalClass), c.clickable && (h.classList.remove(...(c.clickableClass || "").split(" ")), h.removeEventListener("click", p));
-      })), e.pagination.bullets && e.pagination.bullets.forEach((h) => h.classList.remove(...c.bulletActiveClass.split(" ")));
+      u && (u = B(u), u.forEach((g) => {
+        g.classList.remove(c.hiddenClass), g.classList.remove(c.modifierClass + c.type), g.classList.remove(e.isHorizontal() ? c.horizontalClass : c.verticalClass), c.clickable && (g.classList.remove(...(c.clickableClass || "").split(" ")), g.removeEventListener("click", p));
+      })), e.pagination.bullets && e.pagination.bullets.forEach((g) => g.classList.remove(...c.bulletActiveClass.split(" ")));
     }
     o("changeDirection", () => {
       if (!e.pagination || !e.pagination.el)
@@ -3684,8 +3684,8 @@
       let {
         el: u
       } = e.pagination;
-      u = B(u), u.forEach((h) => {
-        h.classList.remove(c.horizontalClass, c.verticalClass), h.classList.add(e.isHorizontal() ? c.horizontalClass : c.verticalClass);
+      u = B(u), u.forEach((g) => {
+        g.classList.remove(c.horizontalClass, c.verticalClass), g.classList.add(e.isHorizontal() ? c.horizontalClass : c.verticalClass);
       });
     }), o("init", () => {
       e.params.pagination.enabled === !1 ? b() : (x(), w(), f());
@@ -3696,7 +3696,7 @@
     }), o("snapGridLengthChange", () => {
       w(), f();
     }), o("destroy", () => {
-      g();
+      h();
     }), o("enable disable", () => {
       let {
         el: c
@@ -3705,9 +3705,9 @@
     }), o("lock unlock", () => {
       f();
     }), o("click", (c, u) => {
-      const h = u.target, y = B(e.pagination.el);
-      if (e.params.pagination.el && e.params.pagination.hideOnClick && y && y.length > 0 && !h.classList.contains(e.params.pagination.bulletClass)) {
-        if (e.navigation && (e.navigation.nextEl && h === e.navigation.nextEl || e.navigation.prevEl && h === e.navigation.prevEl))
+      const g = u.target, y = B(e.pagination.el);
+      if (e.params.pagination.el && e.params.pagination.hideOnClick && y && y.length > 0 && !g.classList.contains(e.params.pagination.bulletClass)) {
+        if (e.navigation && (e.navigation.nextEl && g === e.navigation.nextEl || e.navigation.prevEl && g === e.navigation.prevEl))
           return;
         const k = y[0].classList.contains(e.params.pagination.hiddenClass);
         a(k === !0 ? "paginationShow" : "paginationHide"), y.forEach((S) => S.classList.toggle(e.params.pagination.hiddenClass));
@@ -3724,7 +3724,7 @@
       let {
         el: c
       } = e.pagination;
-      c && (c = B(c), c.forEach((u) => u.classList.add(e.params.pagination.paginationDisabledClass))), g();
+      c && (c = B(c), c.forEach((u) => u.classList.add(e.params.pagination.paginationDisabledClass))), h();
     };
     Object.assign(e.pagination, {
       enable: m,
@@ -3732,7 +3732,7 @@
       render: w,
       update: f,
       init: x,
-      destroy: g
+      destroy: h
     });
   }
   function ji(i) {
@@ -3758,16 +3758,16 @@
         pauseOnMouseEnter: !1
       }
     });
-    let r, l, n = s && s.autoplay ? s.autoplay.delay : 3e3, d = s && s.autoplay ? s.autoplay.delay : 3e3, p, f = (/* @__PURE__ */ new Date()).getTime(), w, x, g, m, b, c, u;
-    function h(I) {
-      !e || e.destroyed || !e.wrapperEl || I.target === e.wrapperEl && (e.wrapperEl.removeEventListener("transitionend", h), !u && v());
+    let n, l, r = s && s.autoplay ? s.autoplay.delay : 3e3, d = s && s.autoplay ? s.autoplay.delay : 3e3, p, f = (/* @__PURE__ */ new Date()).getTime(), w, x, h, m, b, c, u;
+    function g(I) {
+      !e || e.destroyed || !e.wrapperEl || I.target === e.wrapperEl && (e.wrapperEl.removeEventListener("transitionend", g), !u && v());
     }
     const y = () => {
       if (e.destroyed || !e.autoplay.running)
         return;
       e.autoplay.paused ? w = !0 : w && (d = p, w = !1);
       const I = e.autoplay.paused ? p : f + d - (/* @__PURE__ */ new Date()).getTime();
-      e.autoplay.timeLeft = I, a("autoplayTimeLeft", I, I / n), l = requestAnimationFrame(() => {
+      e.autoplay.timeLeft = I, a("autoplayTimeLeft", I, I / r), l = requestAnimationFrame(() => {
         y();
       });
     }, k = () => {
@@ -3778,15 +3778,15 @@
         return;
       cancelAnimationFrame(l), y();
       let O = typeof I > "u" ? e.params.autoplay.delay : I;
-      n = e.params.autoplay.delay, d = e.params.autoplay.delay;
+      r = e.params.autoplay.delay, d = e.params.autoplay.delay;
       const _ = k();
-      !Number.isNaN(_) && _ > 0 && typeof I > "u" && (O = _, n = _, d = _), p = O;
+      !Number.isNaN(_) && _ > 0 && typeof I > "u" && (O = _, r = _, d = _), p = O;
       const U = e.params.speed, Y = () => {
         !e || e.destroyed || (e.params.autoplay.reverseDirection ? !e.isBeginning || e.params.loop || e.params.rewind ? (e.slidePrev(U, !0, !0), a("autoplay")) : e.params.autoplay.stopOnLastSlide || (e.slideTo(e.slides.length - 1, U, !0, !0), a("autoplay")) : !e.isEnd || e.params.loop || e.params.rewind ? (e.slideNext(U, !0, !0), a("autoplay")) : e.params.autoplay.stopOnLastSlide || (e.slideTo(0, U, !0, !0), a("autoplay")), e.params.cssMode && (f = (/* @__PURE__ */ new Date()).getTime(), requestAnimationFrame(() => {
           S();
         })));
       };
-      return O > 0 ? (clearTimeout(r), r = setTimeout(() => {
+      return O > 0 ? (clearTimeout(n), n = setTimeout(() => {
         Y();
       }, O)) : requestAnimationFrame(() => {
         Y();
@@ -3794,13 +3794,13 @@
     }, P = () => {
       f = (/* @__PURE__ */ new Date()).getTime(), e.autoplay.running = !0, S(), a("autoplayStart");
     }, C = () => {
-      e.autoplay.running = !1, clearTimeout(r), cancelAnimationFrame(l), a("autoplayStop");
+      e.autoplay.running = !1, clearTimeout(n), cancelAnimationFrame(l), a("autoplayStop");
     }, T = (I, O) => {
       if (e.destroyed || !e.autoplay.running)
         return;
-      clearTimeout(r), I || (c = !0);
+      clearTimeout(n), I || (c = !0);
       const _ = () => {
-        a("autoplayPause"), e.params.autoplay.waitForTransition ? e.wrapperEl.addEventListener("transitionend", h) : v();
+        a("autoplayPause"), e.params.autoplay.waitForTransition ? e.wrapperEl.addEventListener("transitionend", g) : v();
       };
       if (e.autoplay.paused = !0, O) {
         b && (p = e.params.autoplay.delay), b = !1, _();
@@ -3812,7 +3812,7 @@
     }, M = () => {
       if (e.destroyed || !e.autoplay.running)
         return;
-      const I = X();
+      const I = $();
       I.visibilityState === "hidden" && (c = !0, T(!0)), I.visibilityState === "visible" && v();
     }, L = (I) => {
       I.pointerType === "mouse" && (c = !0, u = !0, !(e.animating || e.autoplay.paused) && T(!0));
@@ -3823,16 +3823,16 @@
     }, D = () => {
       e.el.removeEventListener("pointerenter", L), e.el.removeEventListener("pointerleave", A);
     }, q = () => {
-      X().addEventListener("visibilitychange", M);
+      $().addEventListener("visibilitychange", M);
     }, W = () => {
-      X().removeEventListener("visibilitychange", M);
+      $().removeEventListener("visibilitychange", M);
     };
     o("init", () => {
       e.params.autoplay.enabled && (E(), q(), P());
     }), o("destroy", () => {
       D(), W(), e.autoplay.running && C();
     }), o("_freeModeStaticRelease", () => {
-      (g || c) && v();
+      (h || c) && v();
     }), o("_freeModeNoMomentumRelease", () => {
       e.params.autoplay.disableOnInteraction ? C() : T(!0, !0);
     }), o("beforeTransitionStart", (I, O, _) => {
@@ -3843,17 +3843,17 @@
           C();
           return;
         }
-        x = !0, g = !1, c = !1, m = setTimeout(() => {
-          c = !0, g = !0, T(!0);
+        x = !0, h = !1, c = !1, m = setTimeout(() => {
+          c = !0, h = !0, T(!0);
         }, 200);
       }
     }), o("touchEnd", () => {
       if (!(e.destroyed || !e.autoplay.running || !x)) {
-        if (clearTimeout(m), clearTimeout(r), e.params.autoplay.disableOnInteraction) {
-          g = !1, x = !1;
+        if (clearTimeout(m), clearTimeout(n), e.params.autoplay.disableOnInteraction) {
+          h = !1, x = !1;
           return;
         }
-        g && e.params.cssMode && v(), g = !1, x = !1;
+        h && e.params.cssMode && v(), h = !1, x = !1;
       }
     }), o("slideChange", () => {
       e.destroyed || !e.autoplay.running || (b = !0);
@@ -4115,7 +4115,7 @@
       return !1;
     }
   }
-  const Ni = 22429, qi = 22432, Yi = 22430, Ri = 22431, Wi = '.os-envision{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;align-items:center;justify-content:center}@media (max-width: 768px){.os-envision{flex-direction:column;gap:30px}}.os-envision form{display:none;border-radius:16px;border:1px solid #e3e3e3;background:#fff;box-shadow:0 4px 4px #00000040;padding:40px 122px}@media (max-width: 768px){.os-envision form{padding:22px 16px}}.os-envision form .title{color:#12233d;color:var(--blue-800-tangaroa, #12233d);text-align:center;font-family:Open Sans;font-size:24px;font-style:normal;font-weight:700;line-height:32px}.os-envision form .descr{color:#414f64;color:var(--gray-650-dark-gray, #414f64);text-align:center;font-family:Raleway;font-size:16px;font-style:normal;font-weight:400;line-height:24px}.os-envision form .form-controls{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;gap:24px;margin-top:30px}.os-envision form .form-controls .form-control{position:relative}.os-envision form .form-controls .form-control input{width:100%;border-radius:10px;border:1px solid #e3e3e3;border:1px solid var(--gray-250-light-gray, #e3e3e3);background:#fff;background:var(--gray-0-white, #fff);height:48px;padding-left:24px;color:#12233d;color:var(--blue-800-tangaroa, #12233d);font-family:Raleway;font-size:16px;font-weight:600;line-height:24px}.os-envision form .form-controls .form-control input::-moz-placeholder{visibility:hidden}.os-envision form .form-controls .form-control input::placeholder{visibility:hidden}.os-envision form .form-controls .form-control input:-moz-placeholder-shown+.placeholder{display:block}.os-envision form .form-controls .form-control input:placeholder-shown+.placeholder{display:block}.os-envision form .form-controls .form-control input[required]+.placeholder:after{content:"*";top:-2px;position:absolute;font-size:25px;color:#d62c2c}.os-envision form .form-controls .form-control input:user-invalid{border-color:#d62c2c;border-color:var(--red-600-valencia, #d62c2c)}.os-envision form .form-controls .form-control input.invalid{border-color:#d62c2c;border-color:var(--red-600-valencia, #d62c2c)}.os-envision form .form-controls .form-control input:user-invalid~.error{display:block}.os-envision form .form-controls .form-control input.invalid~.error{display:block}.os-envision form .form-controls .form-control .placeholder{display:none;position:absolute;top:50%;left:24px;transform:translateY(-50%);pointer-events:none;color:#6f7a88;color:var(--gray-550-clasic-gray, #6f7a88);font-family:Raleway;font-size:16px;font-weight:600;line-height:24px}.os-envision form .form-controls .form-control .error{display:none;position:absolute;color:#d62c2c;color:var(--red-600-valencia, #d62c2c);font-feature-settings:lining-nums proportional-nums;font-variant-numeric:lining-nums proportional-nums;font-family:Raleway;font-size:12px;font-weight:400;line-height:16px}.os-envision form .action{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px}.os-envision form .action .error{color:#d62c2c;font-weight:600;display:none}.os-envision form .action .error.show{display:block}.os-envision form .action button{width:100%;max-width:375px;padding:0 40px}.os-envision form .privacy{margin-top:30px;color:#414f64;color:var(--gray-650-dark-gray, #414f64);text-align:center;font-family:Raleway;font-size:14px;font-weight:400;line-height:25px}.os-envision form .privacy a{color:inherit;-webkit-text-decoration:underline;text-decoration:underline}.os-envision .left{border-radius:8px 0 0 8px;background:#f2f7ff;background:var(--Blue---100, #f2f7ff);padding:30px;flex:1 1 35%;display:grid;grid-gap:16px;gap:16px;font-family:Raleway}@media (max-width: 768px){.os-envision .left{background:transparent;padding:0}}.os-envision .left .title{color:#12233d;color:var(--blue-800-tangaroa, #12233d);font-size:24px;font-weight:700;line-height:32px}.os-envision .left .descr{color:#414f64;color:var(--gray-650-dark-gray, #414f64);font-size:16px;font-weight:400;line-height:24px}.os-envision .right{flex:1 1 65%;border-radius:16px;border:1px solid #e3e3e3;background:#fff;padding:40px 42px}@media (max-width: 768px){.os-envision .right{border-radius:10px;border:1px solid #e3e3e3;background:#f7f7f7;padding:22px 16px}}.os-envision .right .title{color:#12233d;color:var(--blue-800-tangaroa, #12233d);text-align:center;font-family:Open Sans;font-size:24px;font-weight:700;line-height:32px}.os-envision .right .descr{max-width:603px;color:#414f64;color:var(--gray-650-dark-gray, #414f64);margin-top:4px;text-align:center;font-family:Raleway;font-size:16px;font-style:normal;font-weight:400;line-height:24px}.os-envision .right .action{margin-top:24px;display:grid;justify-items:center;grid-gap:24px;gap:24px}.os-envision .right .action .descr{color:#414f64;color:var(--gray-650-dark-gray, #414f64);font-family:Raleway;font-size:18px;font-weight:500;line-height:24px;text-align:center}@media (max-width: 768px){.os-envision .right .action .descr{font-size:16px;font-weight:400}}.os-envision .right .action button{width:100%;max-width:375px;padding:0 40px}.os-range{position:relative;height:100px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;justify-content:flex-end}.os-range .info{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:space-between;margin-top:14px;color:#12233d;color:var(--blue-800-tangaroa, #12233d);font-family:Raleway;font-size:18px;font-weight:700;line-height:24px}@media (max-width: 768px){.os-range .info{font-size:16px}}.os-range .tooltip{top:0;visibility:hidden;position:absolute;border-radius:2px;border:1px solid #eee;border:1px solid var(--Gray-200, #eee);background:#fff;background:var(--gray-0-white, #fff);box-shadow:0 6px 8px #00000014;padding:5px 7px;color:#12233d;color:var(--blue-800-tangaroa, #12233d);text-align:justify;font-family:Raleway;font-size:14px;font-weight:700;line-height:14px}.js-has-pseudo [csstools-has-1a-33-37-19-36-2p-32-2v-2t-w-1a-38-33-33-30-38-2x-34-1m-2w-2p-37-14-17-w-1a-36-2p-32-2v-2t-1m-2u-33-2r-39-37-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist){visibility:visible}.os-range .tooltip:has(+.range:focus){visibility:visible}.js-has-pseudo [csstools-has-1a-33-37-19-36-2p-32-2v-2t-w-1a-38-33-33-30-38-2x-34-1m-2w-2p-37-14-17-w-1a-36-2p-32-2v-2t-1m-2w-33-3a-2t-36-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist){visibility:visible}.os-range .tooltip:has(+.range:hover){visibility:visible}.js-has-pseudo [csstools-has-1a-33-37-19-36-2p-32-2v-2t-w-1a-38-33-33-30-38-2x-34-1m-2w-2p-37-14-17-w-1a-36-2p-32-2v-2t-1m-2p-2r-38-2x-3a-2t-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist){visibility:visible}.os-range .tooltip:has(+.range:active){visibility:visible}.os-range .tooltip:after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border-width:5px;border-style:solid;border-color:#fff transparent transparent transparent;border-color:var(--gray-0-white, #fff) transparent transparent transparent}.os-range .range{--slider-progress: 0%;position:relative;-webkit-appearance:none;-moz-appearance:none;appearance:none;width:100%;height:12px;cursor:pointer;outline:none;border-radius:20px;border:1px solid #eee;border:1px solid var(--Gray-200, #eee);margin:0;padding:0}.os-range .range:before{content:"";position:absolute;top:0;height:100%;border-radius:5px;z-index:1}.os-range .range:before{left:0;background:-webkit-repeating-linear-gradient(315deg,#2969cc,#2969cc 10px,#5d8dd8 10px,#5d8dd8 20px) #2969cc;background:-moz-repeating-linear-gradient(315deg,#2969cc,#2969cc 10px,#5d8dd8 10px,#5d8dd8 20px) #2969cc;background:repeating-linear-gradient(135deg,#2969cc,#2969cc 10px,#5d8dd8 10px,#5d8dd8 20px) #2969cc;width:var(--slider-progress)}.os-range .range::-webkit-slider-thumb{position:relative;-webkit-appearance:none;-moz-appearance:none;appearance:none;width:24px;height:24px;background-color:#2969cc;background-color:var(--blue-500-clasic-blue, #2969cc);border-radius:50%;border:none;-webkit-transition:.2s ease-in-out;transition:.2s ease-in-out;z-index:2}.os-range .range::-moz-range-thumb{width:24px;height:24px;background-color:#2969cc;background-color:var(--blue-500-clasic-blue, #2969cc);border-radius:50%;border:none;-moz-transition:.2s ease-in-out;transition:.2s ease-in-out}.os-range .range::-webkit-slider-thumb:hover{box-shadow:0 0 0 10px #00000010;background-color:#508be5}.os-range .range:active::-webkit-slider-thumb{box-shadow:0 0 0 10px #00000010;background-color:#508be5}.os-range .range:focus::-webkit-slider-thumb{box-shadow:0 0 0 10px #00000010;background-color:#508be5}.os-range .range::-moz-range-thumb:hover{box-shadow:0 0 0 10px #ff55001a}.os-range .range:active::-moz-range-thumb{box-shadow:0 0 0 13px #f503}.os-range .range:focus::-moz-range-thumb{box-shadow:0 0 0 13px #f503}';
+  const Ni = 22429, qi = 22432, Yi = 22430, Ri = 22431, Wi = '.os-envision{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;align-items:center;justify-content:center}@media (max-width: 768px){.os-envision{flex-direction:column;gap:30px}}.os-envision form{display:none;border-radius:16px;border:1px solid #e3e3e3;background:#fff;box-shadow:0 4px 4px #00000040;padding:40px 122px}@media (max-width: 768px){.os-envision form{padding:22px 16px}}.os-envision form .title{color:#12233d;color:var(--blue-800-tangaroa, #12233d);text-align:center;font-family:Open Sans;font-size:24px;font-style:normal;font-weight:700;line-height:32px}.os-envision form .descr{color:#414f64;color:var(--gray-650-dark-gray, #414f64);text-align:center;font-family:Raleway;font-size:16px;font-style:normal;font-weight:400;line-height:24px}.os-envision form .form-controls{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;gap:24px;margin-top:30px}.os-envision form .form-controls .form-control{position:relative}.os-envision form .form-controls .form-control input{width:100%;border-radius:10px;border:1px solid #e3e3e3;border:1px solid var(--gray-250-light-gray, #e3e3e3);background:#fff;background:var(--gray-0-white, #fff);height:48px;padding-left:24px;color:#12233d;color:var(--blue-800-tangaroa, #12233d);font-family:Raleway;font-size:16px;font-weight:600;line-height:24px}.os-envision form .form-controls .form-control input::-moz-placeholder{visibility:hidden}.os-envision form .form-controls .form-control input::placeholder{visibility:hidden}.os-envision form .form-controls .form-control input+.placeholder{display:block}.os-envision form .form-controls .form-control input[required]+.placeholder:after{content:"*";top:-2px;position:absolute;font-size:25px;color:#d62c2c}.os-envision form .form-controls .form-control input:user-invalid{border-color:#d62c2c;border-color:var(--red-600-valencia, #d62c2c)}.os-envision form .form-controls .form-control input.invalid{border-color:#d62c2c;border-color:var(--red-600-valencia, #d62c2c)}.os-envision form .form-controls .form-control input:user-invalid~.error{display:block}.os-envision form .form-controls .form-control input.invalid~.error{display:block}.os-envision form .form-controls .form-control .placeholder{display:none;position:absolute;top:50%;left:24px;transform:translateY(-50%);pointer-events:none;color:#6f7a88;color:var(--gray-550-clasic-gray, #6f7a88);font-family:Raleway;font-size:16px;font-weight:600;line-height:24px}.os-envision form .form-controls .form-control .error{display:none;position:absolute;color:#d62c2c;color:var(--red-600-valencia, #d62c2c);font-feature-settings:lining-nums proportional-nums;font-variant-numeric:lining-nums proportional-nums;font-family:Raleway;font-size:12px;font-weight:400;line-height:16px}.os-envision form .action{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px}.os-envision form .action .error{color:#d62c2c;font-weight:600;display:none}.os-envision form .action .error.show{display:block}.os-envision form .action button{width:100%;max-width:375px;padding:0 40px}.os-envision form .privacy{margin-top:30px;color:#414f64;color:var(--gray-650-dark-gray, #414f64);text-align:center;font-family:Raleway;font-size:14px;font-weight:400;line-height:25px}.os-envision form .privacy a{color:inherit;-webkit-text-decoration:underline;text-decoration:underline}.os-envision .left{border-radius:8px 0 0 8px;background:#f2f7ff;background:var(--Blue---100, #f2f7ff);padding:30px;flex:1 1 35%;display:grid;grid-gap:16px;gap:16px;font-family:Raleway}@media (max-width: 768px){.os-envision .left{background:transparent;padding:0}}.os-envision .left .title{color:#12233d;color:var(--blue-800-tangaroa, #12233d);font-size:24px;font-weight:700;line-height:32px}.os-envision .left .descr{color:#414f64;color:var(--gray-650-dark-gray, #414f64);font-size:16px;font-weight:400;line-height:24px}.os-envision .right{flex:1 1 65%;border-radius:16px;border:1px solid #e3e3e3;background:#fff;padding:40px 42px}@media (max-width: 768px){.os-envision .right{border-radius:10px;border:1px solid #e3e3e3;background:#f7f7f7;padding:22px 16px}}.os-envision .right .title{color:#12233d;color:var(--blue-800-tangaroa, #12233d);text-align:center;font-family:Open Sans;font-size:24px;font-weight:700;line-height:32px}.os-envision .right .descr{max-width:603px;color:#414f64;color:var(--gray-650-dark-gray, #414f64);margin-top:4px;text-align:center;font-family:Raleway;font-size:16px;font-style:normal;font-weight:400;line-height:24px}.os-envision .right .action{margin-top:24px;display:grid;justify-items:center;grid-gap:24px;gap:24px}.os-envision .right .action .descr{color:#414f64;color:var(--gray-650-dark-gray, #414f64);font-family:Raleway;font-size:18px;font-weight:500;line-height:24px;text-align:center}@media (max-width: 768px){.os-envision .right .action .descr{font-size:16px;font-weight:400}}.os-envision .right .action button{width:100%;max-width:375px;padding:0 40px}.os-range{position:relative;height:100px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;justify-content:flex-end}.os-range .info{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:space-between;margin-top:14px;color:#12233d;color:var(--blue-800-tangaroa, #12233d);font-family:Raleway;font-size:18px;font-weight:700;line-height:24px}@media (max-width: 768px){.os-range .info{font-size:16px}}.os-range .tooltip{top:0;visibility:hidden;position:absolute;border-radius:2px;border:1px solid #eee;border:1px solid var(--Gray-200, #eee);background:#fff;background:var(--gray-0-white, #fff);box-shadow:0 6px 8px #00000014;padding:5px 7px;color:#12233d;color:var(--blue-800-tangaroa, #12233d);text-align:justify;font-family:Raleway;font-size:14px;font-weight:700;line-height:14px}.js-has-pseudo [csstools-has-1a-33-37-19-36-2p-32-2v-2t-w-1a-38-33-33-30-38-2x-34-1m-2w-2p-37-14-17-w-1a-36-2p-32-2v-2t-1m-2u-33-2r-39-37-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist){visibility:visible}.os-range .tooltip:has(+.range:focus){visibility:visible}.js-has-pseudo [csstools-has-1a-33-37-19-36-2p-32-2v-2t-w-1a-38-33-33-30-38-2x-34-1m-2w-2p-37-14-17-w-1a-36-2p-32-2v-2t-1m-2w-33-3a-2t-36-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist){visibility:visible}.os-range .tooltip:has(+.range:hover){visibility:visible}.js-has-pseudo [csstools-has-1a-33-37-19-36-2p-32-2v-2t-w-1a-38-33-33-30-38-2x-34-1m-2w-2p-37-14-17-w-1a-36-2p-32-2v-2t-1m-2p-2r-38-2x-3a-2t-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist){visibility:visible}.os-range .tooltip:has(+.range:active){visibility:visible}.os-range .tooltip:after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border-width:5px;border-style:solid;border-color:#fff transparent transparent transparent;border-color:var(--gray-0-white, #fff) transparent transparent transparent}.os-range .range{--slider-progress: 0%;position:relative;-webkit-appearance:none;-moz-appearance:none;appearance:none;width:100%;height:12px;cursor:pointer;outline:none;border-radius:20px;border:1px solid #eee;border:1px solid var(--Gray-200, #eee);margin:0;padding:0}.os-range .range:before{content:"";position:absolute;top:0;height:100%;border-radius:5px;z-index:1}.os-range .range:before{left:0;background:-webkit-repeating-linear-gradient(315deg,#2969cc,#2969cc 10px,#5d8dd8 10px,#5d8dd8 20px) #2969cc;background:-moz-repeating-linear-gradient(315deg,#2969cc,#2969cc 10px,#5d8dd8 10px,#5d8dd8 20px) #2969cc;background:repeating-linear-gradient(135deg,#2969cc,#2969cc 10px,#5d8dd8 10px,#5d8dd8 20px) #2969cc;width:var(--slider-progress)}.os-range .range::-webkit-slider-thumb{position:relative;-webkit-appearance:none;-moz-appearance:none;appearance:none;width:24px;height:24px;background-color:#2969cc;background-color:var(--blue-500-clasic-blue, #2969cc);border-radius:50%;border:none;-webkit-transition:.2s ease-in-out;transition:.2s ease-in-out;z-index:2}.os-range .range::-moz-range-thumb{width:24px;height:24px;background-color:#2969cc;background-color:var(--blue-500-clasic-blue, #2969cc);border-radius:50%;border:none;-moz-transition:.2s ease-in-out;transition:.2s ease-in-out}.os-range .range::-webkit-slider-thumb:hover{box-shadow:0 0 0 10px #00000010;background-color:#508be5}.os-range .range:active::-webkit-slider-thumb{box-shadow:0 0 0 10px #00000010;background-color:#508be5}.os-range .range:focus::-webkit-slider-thumb{box-shadow:0 0 0 10px #00000010;background-color:#508be5}.os-range .range::-moz-range-thumb:hover{box-shadow:0 0 0 10px #ff55001a}.os-range .range:active::-moz-range-thumb{box-shadow:0 0 0 13px #f503}.os-range .range:focus::-moz-range-thumb{box-shadow:0 0 0 13px #f503}';
   class Zi {
     constructor(e) {
       this.container = document.querySelector(e), this.init();
@@ -4150,14 +4150,14 @@
         "Section",
         "Pop up Let’s Build Your Project Roadmap Together"
       ), (o = z(".os-envision form")) == null || o.addEventListener("change", (s) => {
-        const r = s.target, l = {
+        const n = s.target, l = {
           "#os-firstname": { event: "exp_content_based_input_05", label: "First Name" },
           "#os-lastname": { event: "exp_content_based_input_06", label: "Last Name" },
           "#os-email": { event: "exp_content_based_input_07", label: "Business email" }
         };
-        for (const n in l)
-          if (r.closest(n)) {
-            const { event: p, label: f } = l[n];
+        for (const r in l)
+          if (n.closest(r)) {
+            const { event: p, label: f } = l[r];
             j(p, f, "input", "Pop up Let’s Build Your Project Roadmap Together");
             break;
           }
@@ -4175,8 +4175,8 @@
       t.setFullYear(e.getFullYear() + 1);
       const o = e.getTime();
       let a = t.getTime();
-      const s = 1e3 * 60 * 60 * 24 * 30, r = (a - o) % s;
-      r !== 0 && (a += s - r);
+      const s = 1e3 * 60 * 60 * 24 * 30, n = (a - o) % s;
+      n !== 0 && (a += s - n);
       const l = (
         /* HTML */
         `
@@ -4200,7 +4200,7 @@
               <div class="placeholder">Business email</div>
               <div class="error">Please enter a valid email</div>
             </div>
-            <input type="hidden" name="launch date" />
+            <input type="hidden" name="date" id="os-date" />
             <div class="action">
               <div class="error">There was an error trying to send your message. Please try again later.</div>
               <button class="btn-primary" type="submit">Get My Project Roadmap</button>
@@ -4238,41 +4238,47 @@
       </div>
     `
       );
-      this.container ? (document.head.insertAdjacentHTML("beforeend", `<style>${Wi}</style>`), this.container.innerHTML = l) : console.error(`Container with selector "${this.container}" not found`), V(".range").then((n) => {
-        const d = n;
+      this.container ? (document.head.insertAdjacentHTML("beforeend", `<style>${Wi}</style>`), this.container.innerHTML = l) : console.error(`Container with selector "${this.container}" not found`), V(".range").then((r) => {
+        const d = r;
         if (!d)
           return;
         const p = document.querySelector(".os-range .tooltip");
         if (!p)
           return;
         d.addEventListener("input", (x) => {
-          const g = x.target, m = Number(g.value), b = (m - o) / (a - o) * 100;
+          const h = x.target, m = Number(h.value), b = (m - o) / (a - o) * 100;
           d.style.setProperty("--slider-progress", `${b}%`);
           const c = new Date(m), u = /* @__PURE__ */ new Date();
           if (p) {
             c.getDate() === u.getDate() && c.getMonth() === u.getMonth() && c.getFullYear() === u.getFullYear() ? p.textContent = "Today" : p.textContent = c.toLocaleDateString("en-US", { month: "long", year: "numeric" });
-            const h = d.getBoundingClientRect(), y = p.getBoundingClientRect();
-            let k = h.width * b / 100 - y.width / 2;
+            const g = d.getBoundingClientRect(), y = p.getBoundingClientRect();
+            let k = g.width * b / 100 - y.width / 2;
             b === 0 && (k += 5), p.style.left = `${k}px`;
           }
         });
         const f = document.querySelector("[data-showform]"), w = document.querySelector(".os-envision form");
         f && f.addEventListener("click", () => {
-          const x = new Date(Number(d.value)), g = document.querySelector(".os-envision .left"), m = document.querySelector(".os-envision .right"), b = w.querySelector('[name="launch date"]');
-          b && (b.value = x.toLocaleDateString("en-US", { month: "long", year: "numeric" })), w.style.display = "block", g.style.display = "none", m.style.display = "none";
+          const x = new Date(Number(d.value)), h = document.querySelector(".os-envision .left"), m = document.querySelector(".os-envision .right"), b = w.querySelector("#os-date");
+          b && (b.value = x.toLocaleDateString("en-US", { month: "long", year: "numeric" })), w.style.display = "block", h.style.display = "none", m.style.display = "none";
+        }), w.querySelectorAll("input").forEach((x) => {
+          x.addEventListener("input", (h) => {
+            var c;
+            const m = h.target, b = (c = m.parentNode) == null ? void 0 : c.querySelector(".placeholder");
+            b && (m.value ? b.style.display = "none" : b.style.display = "block");
+          });
         }), w.addEventListener("submit", async (x) => {
           x.preventDefault();
-          const g = ee(".os-envision input");
+          const h = ee(".os-envision input");
           let m = !0;
-          if (g.forEach((c) => {
+          if (h.forEach((c) => {
             let u = !0;
-            const h = c.value.trim();
+            const g = c.value.trim();
             if (c.id === "os-firstname" || c.id === "os-lastname") {
-              if (c.id === "os-lastname" && h === "")
+              if (c.id === "os-lastname" && g === "")
                 return;
-              u = /^[A-Za-z\s]+$/.test(h);
+              u = /^[A-Za-z\s]+$/.test(g);
             } else
-              c.id === "os-email" && (u = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(h));
+              c.id === "os-email" && (u = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(g));
             u ? c.classList.remove("invalid") : (c.classList.add("invalid"), m = !1), c.addEventListener("input", () => {
               c.classList.remove("invalid");
             });
@@ -4293,7 +4299,7 @@
     }
   }
   const Ui = "section.partners .heading-2{text-align:center}@media (max-width: 768px){section.partners{background:#f7f7f7;padding-top:30px;padding-bottom:30px}}.os-blocks-container{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center;flex-wrap:wrap;gap:24px}@media (max-width: 768px){.os-blocks-container{gap:12px}}.os-blocks-container .block{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;justify-content:center;width:245px;height:159px;padding:0 32px;border-radius:8px;background:#fff;background:var(--gray-0-white, #fff);box-shadow:0 8px 8px #00000014}@media (max-width: 768px){.os-blocks-container .block{width:165px;height:101px;padding:0 16px}}.os-blocks-container .block .title{color:#d62c2c;color:var(--red-600-valencia, #d62c2c);font-feature-settings:lining-nums proportional-nums;font-variant-numeric:lining-nums proportional-nums;font-family:Raleway;font-size:54px;font-weight:800;line-height:64px;text-transform:uppercase}@media (max-width: 768px){.os-blocks-container .block .title{font-size:32px;line-height:40px;font-weight:700}}.os-blocks-container .block .descr{margin-top:4px;color:#12233d;color:var(--blue-800-tangaroa, #12233d);font-family:Raleway;font-size:18px;font-style:normal;font-weight:500;line-height:27px}@media (max-width: 768px){.os-blocks-container .block .descr{font-size:14px;font-weight:400;line-height:25px}}";
-  class Xi {
+  class $i {
     constructor(e) {
       this.container = document.querySelector(e), this.init();
     }
@@ -4329,13 +4335,13 @@
       this.render(), this.events();
     }
   }
-  const $i = '.os-team{position:relative;padding:185px 0;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center}@media (max-width: 768px){.os-team{flex-direction:column;padding:0;gap:30px}}.os-team .os-content{width:50%;max-width:475px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;gap:30px}@media (max-width: 768px){.os-team .os-content{width:100%;max-width:100%;padding:0}}@media (max-width: 768px){.os-team .os-content br:first-child{display:none}}.os-team .os-content .title{color:#12233d;font-family:Raleway;font-size:32px;font-style:normal;font-weight:700;line-height:40px}.os-team .os-content .descr{color:#1f2733;color:var(--Gray---800, #1f2733);font-family:Raleway;font-size:18px;font-weight:500;line-height:27px}.os-team .os-content a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center;align-items:center;width:376px;height:48px;padding:0 98px}@media (max-width: 768px){.os-team .os-content a{max-width:100%;padding:0}}.os-team .bg{position:relative;width:50%}.os-team .bg:after{content:"";display:block;position:absolute;top:-110%;right:-50%;width:1178px;height:1178px;background-image:url(https://conversionratestore.github.io/projects/keenethics/introduce/img/hero_bg.webp);background-repeat:no-repeat;z-index:-1}@media (max-width: 1000px){.os-team .bg:after{top:-75%;right:-120%;background-size:70%}}@media (max-width: 900px){.os-team .bg:after{top:-35%;right:-165%;background-size:50%}}@media (max-width: 768px){.os-team .bg:after{width:100%;height:383px;top:0;right:14px;background-size:750px;background-position:center}}@media (max-width: 768px){.os-team .bg{width:100vw;height:380px}}';
+  const Xi = '.os-team{position:relative;padding:185px 0;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center}@media (max-width: 768px){.os-team{flex-direction:column;padding:0;gap:30px}}.os-team .os-content{width:50%;max-width:475px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;gap:30px}@media (max-width: 768px){.os-team .os-content{width:100%;max-width:100%;padding:0}}@media (max-width: 768px){.os-team .os-content br:first-child{display:none}}.os-team .os-content .title{color:#12233d;font-family:Raleway;font-size:32px;font-style:normal;font-weight:700;line-height:40px}.os-team .os-content .descr{color:#1f2733;color:var(--Gray---800, #1f2733);font-family:Raleway;font-size:18px;font-weight:500;line-height:27px}.os-team .os-content a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center;align-items:center;width:376px;height:48px;padding:0 98px}@media (max-width: 768px){.os-team .os-content a{max-width:100%;padding:0}}.os-team .bg{position:relative;width:50%}.os-team .bg:after{content:"";display:block;position:absolute;top:-110%;right:-50%;width:1178px;height:1178px;background-image:url(https://conversionratestore.github.io/projects/keenethics/introduce/img/hero_bg.webp);background-repeat:no-repeat;z-index:-1}@media (max-width: 1000px){.os-team .bg:after{top:-75%;right:-120%;background-size:70%}}@media (max-width: 900px){.os-team .bg:after{top:-35%;right:-165%;background-size:50%}}@media (max-width: 768px){.os-team .bg:after{width:100%;height:383px;top:0;right:14px;background-size:750px;background-position:center}}@media (max-width: 768px){.os-team .bg{width:100vw;height:380px}}';
   class Qi {
     constructor(e) {
       this.container = document.querySelector(e), this.init();
     }
     render() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${$i}</style>`);
+      document.head.insertAdjacentHTML("beforeend", `<style>${Xi}</style>`);
       const e = (
         /* HTML */
         `<div class="os-team">
@@ -4380,21 +4386,25 @@
       <div class="full_circle">
         <div class="circle_block" data-circle="analysis">
           <h4 class="title">Business Analysis <span class="icon">${rt}</span></h4>
-          <p class="descr">The goal of business analysis is to test <br class="desktop" /> and the project idea.</p>
+          <p class="descr">
+            The goal of business analysis is to test <br class="desktop" />
+            and the project idea.
+          </p>
           <a class="btn-primary" href="/services-business-analysis" target="__blank">Learn more ${te}</a>
         </div>
         <div class="circle_block" data-circle="design">
           <h4 class="title">UI/UX design <span class="icon">${ct}</span></h4>
           <p class="descr">
-            The goal of a discovery stage is to test and develop the <br class="desktop" />
-            project idea.
+            The goal of a discovery stage is to test<br class="desktop" />and develop the project idea.
           </p>
           <a class="btn-primary" href="/services-ui-ux-design" target="__blank">Learn more ${te}</a>
         </div>
         <div class="circle_block" data-circle="dev">
           <h4 class="title">Development and testing <span class="icon">${lt}</span></h4>
           <p class="descr">
-            Through continuous testing, we make <br class="desktop" /> sure the code we develop is clean, <br class="desktop" /> effective, and free of bugs.
+            Through continuous testing, we make <br class="desktop" />
+            sure the code we develop is clean, <br class="desktop" />
+            effective, and free of bugs.
           </p>
           <a class="btn-primary" href="/services-development-and-quality-assurance" target="__blank"
             >Learn more ${te}</a
@@ -4402,7 +4412,11 @@
         </div>
         <div class="circle_block" data-circle="maintenance">
           <h4 class="title">Maintenance <span class="icon">${dt}</span></h4>
-          <p class="descr">Software grows outdated, technical errors <br class="desktop" /> occur, and the project idea undergoes <br class="desktop" /> changes.</p>
+          <p class="descr">
+            Software grows outdated, technical errors <br class="desktop" />
+            occur, and the project idea undergoes <br class="desktop" />
+            changes.
+          </p>
           <a class="btn-primary" href="/services-maintenance-support" target="__blank">Learn more ${te}</a>
         </div>
         <div class="circle"><img src="${H}/full_circle_method.svg" alt="" /></div>
@@ -4414,11 +4428,11 @@
     events() {
       var e;
       R(".full-circle", "exp_content_based_section_10", "Section", "Home Page Our Full Circle Method"), (e = z(".full_circle")) == null || e.addEventListener("mousedown", (t) => {
-        var s, r, l;
+        var s, n, l;
         const a = t.target.closest("a.btn-primary");
         if (a) {
-          const n = (l = (r = (s = a.closest(".circle_block")) == null ? void 0 : s.querySelector(".title")) == null ? void 0 : r.textContent) == null ? void 0 : l.trim();
-          j("exp_content_based_button_17", `${n} - Learn more `, "click", "Home Page Our Full Circle Method");
+          const r = (l = (n = (s = a.closest(".circle_block")) == null ? void 0 : s.querySelector(".title")) == null ? void 0 : n.textContent) == null ? void 0 : l.trim();
+          j("exp_content_based_button_17", `${r} - Learn more `, "click", "Home Page Our Full Circle Method");
         }
       });
     }
@@ -4426,7 +4440,7 @@
       this.render(), this.events();
     }
   }
-  const eo = '.hero{display:none}.aa-hero{padding-top:25px}@media (max-width: 768px){.aa-hero{padding:0}}.aa-hero__wrapper{padding-left:6.94%}@media (max-width: 768px){.aa-hero__wrapper{padding:0 16px}}.aa-content{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:space-between;padding-bottom:80px}@media (max-width: 768px){.aa-content{flex-direction:column;padding-bottom:40px}}@media (max-width: 768px){.aa-content .heading-1{color:#12233d;font-size:32px;font-weight:700;line-height:40px}}.aa-content>div:first-of-type{width:46.2%;margin-top:auto}@media (max-width: 768px){.aa-content>div:first-of-type{order:2;width:100%;margin-top:24px}}.aa-content>div:last-of-type{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:flex-start;align-items:flex-end;padding-right:30px;position:relative;z-index:1;overflow:hidden}@media (max-width: 768px){.aa-content>div:last-of-type{order:1;height:147px;justify-content:center;margin-left:-16px;margin-right:-16px}}.aa-content>div:last-of-type img{-o-object-fit:contain;object-fit:contain}@media (max-width: 768px){.aa-content>div:last-of-type img{height:100%}}.aa-content>div:last-of-type:after{content:"";position:absolute;top:50%;left:40%;width:680px;height:680px;border:162.29px solid #2969cc;border:162.29px solid var(--blue-500-clasic-blue, #2969cc);border-radius:50%;z-index:-1}@media (max-width: 768px){.aa-content>div:last-of-type:after{top:-16%;left:21%;width:354px;height:354px;border:59.29px solid #2969cc;border:59.29px solid var(--blue-500-clasic-blue, #2969cc)}}.aa-content .btn-primary{max-width:376px;width:100%}.description{color:#414f64;color:var(--gray-650-dark-gray, #414f64);font-family:Raleway;font-size:16px;font-style:normal;font-weight:400;line-height:24px;margin-bottom:32px}@media (max-width: 768px){.description{margin-bottom:24px}}.under-description{width:83.7%}@media (max-width: 768px){.under-description{width:100%}}.under-description>a{width:100%}@media (max-width: 960px){.under-description>a{font-size:14px}}@media (max-width: 768px){.under-description>a{font-size:16px}}.solutions-title{margin:32px 0 20px;color:#12233d;font-family:Raleway;font-size:18px;font-style:normal;font-weight:700;line-height:150%}@media (max-width: 768px){.solutions-title{margin:24px 0 20px;font-size:16px;line-height:24px}}.aa-solutions{padding:0}.aa-solutions li{list-style:none;border-radius:8px;background:#f7f7f7;margin-bottom:10px}.aa-solutions li:last-of-type{margin-bottom:0}.aa-solutions li a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;color:#12233d;color:var(--blue-800-tangaroa, #12233d);padding:10px 18px;font-family:Raleway;font-size:14px;font-style:normal;font-weight:700;line-height:100%;-webkit-text-decoration:none;text-decoration:none;align-items:center}.aa-solutions li a img:first-of-type{margin-right:20px}.aa-solutions li a span{margin-right:auto}.aa-solutions li a img:last-of-type{margin-left:5px}';
+  const eo = '.hero{display:none}.aa-hero{padding-top:25px}@media (max-width: 768px){.aa-hero{padding:0}}.aa-hero__wrapper{padding-left:6.94%}@media (max-width: 768px){.aa-hero__wrapper{padding:0 16px}}.aa-content{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:space-between;padding-bottom:80px}@media (max-width: 768px){.aa-content{flex-direction:column;padding-bottom:40px}}@media (max-width: 768px){.aa-content .heading-1{color:#12233d;font-size:32px;font-weight:700;line-height:40px}}.aa-content>div:first-of-type{width:60%;margin-top:auto}@media (max-width: 1200px){.aa-content>div:first-of-type{width:100%}}@media (max-width: 768px){.aa-content>div:first-of-type{order:2;width:100%;margin-top:24px}}.aa-content>div:last-of-type{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:flex-start;align-items:flex-end;padding-right:30px;position:relative;z-index:1;overflow:hidden}@media (max-width: 768px){.aa-content>div:last-of-type{order:1;height:147px;justify-content:center;margin-left:-16px;margin-right:-16px}}.aa-content>div:last-of-type img{-o-object-fit:contain;object-fit:contain}@media (max-width: 768px){.aa-content>div:last-of-type img{height:100%}}.aa-content>div:last-of-type:after{content:"";position:absolute;top:50%;left:40%;width:680px;height:680px;border:162.29px solid #2969cc;border:162.29px solid var(--blue-500-clasic-blue, #2969cc);border-radius:50%;z-index:-1}@media (max-width: 768px){.aa-content>div:last-of-type:after{top:-16%;left:21%;width:354px;height:354px;border:59.29px solid #2969cc;border:59.29px solid var(--blue-500-clasic-blue, #2969cc)}}.aa-content .btn-primary{max-width:376px;width:100%}@media (max-width: 768px){.aa-content .btn-primary{max-width:500px;display:block;margin:0 auto}}.description{color:#414f64;color:var(--gray-650-dark-gray, #414f64);font-family:Raleway;font-size:16px;font-style:normal;font-weight:400;line-height:24px;margin-bottom:32px}@media (max-width: 768px){.description{margin-bottom:24px}}.under-description{width:83.7%}@media (max-width: 768px){.under-description{width:100%}}.under-description>a{width:100%}@media (max-width: 960px){.under-description>a{font-size:14px}}@media (max-width: 768px){.under-description>a{font-size:16px}}.solutions-title{margin:32px 0 20px;color:#12233d;font-family:Raleway;font-size:18px;font-style:normal;font-weight:700;line-height:150%}@media (max-width: 768px){.solutions-title{margin:24px 0 20px;font-size:16px;line-height:24px}}.aa-solutions{padding:0}.aa-solutions li{list-style:none;border-radius:8px;background:#f7f7f7;margin-bottom:10px}.aa-solutions li:last-of-type{margin-bottom:0}.aa-solutions li a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;color:#12233d;color:var(--blue-800-tangaroa, #12233d);padding:10px 18px;font-family:Raleway;font-size:14px;font-style:normal;font-weight:700;line-height:100%;-webkit-text-decoration:none;text-decoration:none;align-items:center}.aa-solutions li a img:first-of-type{margin-right:20px}.aa-solutions li a span{margin-right:auto}.aa-solutions li a img:last-of-type{margin-left:5px}';
   class to {
     constructor(e) {
       this.container = document.querySelector(e), this.init();
@@ -4481,9 +4495,9 @@
         const o = t.target;
         console.log(o);
         const a = o.closest("a"), s = z(".os-tab-button-container");
-        a && (t.preventDefault(), s == null || s.querySelectorAll("button").forEach((r) => {
-          var l, n;
-          ((l = r.textContent) == null ? void 0 : l.trim().toLowerCase()) === ((n = a == null ? void 0 : a.textContent) == null ? void 0 : n.trim().toLowerCase()) && (r.click(), s == null || s.scrollIntoView({ behavior: "smooth" }));
+        a && (t.preventDefault(), s == null || s.querySelectorAll("button").forEach((n) => {
+          var l, r;
+          ((l = n.textContent) == null ? void 0 : l.trim().toLowerCase()) === ((r = a == null ? void 0 : a.textContent) == null ? void 0 : r.trim().toLowerCase()) && (n.click(), s == null || s.scrollIntoView({ behavior: "smooth" }));
         }));
       });
     }
@@ -4498,14 +4512,14 @@
         "Section",
         '"Home Page Empower Your Business with Ethical Software Solutions'
       ), (e = z(".aa-solutions")) == null || e.addEventListener("click", (t) => {
-        var s, r, l;
+        var s, n, l;
         const a = t.target.closest("a");
         (s = a == null ? void 0 : a.textContent) != null && s.includes("Develop My Idea") && j(
           "exp_content_based_button_01",
           "Develop My Idea",
           "click",
           "Home Page Empower Your Business with Ethical Software Solutions"
-        ), (r = a == null ? void 0 : a.textContent) != null && r.includes("Optimize My Business") && j(
+        ), (n = a == null ? void 0 : a.textContent) != null && n.includes("Optimize My Business") && j(
           "exp_content_based_button_02",
           "Optimize My Business",
           "click",
@@ -4631,7 +4645,7 @@
         `
       <div class="crs-contact">
         <header>
-          <h2 class="title">Tech Solutions for Next-Level Business Growth</h2>
+          <h2 class="title">Tech Solutions for <br class="mobile"> Next-Level Business <br class="mobile"> Growth</h2>
           <p class="descr">Contact us to learn about our solutions:</p>
 
           <ul class="list">
@@ -4736,25 +4750,25 @@
       const e = z(".crs-contact .form");
       e && (e.querySelectorAll("input").forEach((t) => {
         t.addEventListener("input", (o) => {
-          var r;
-          const a = o.target, s = (r = a.parentNode) == null ? void 0 : r.querySelector(".placeholder");
+          var n;
+          const a = o.target, s = (n = a.parentNode) == null ? void 0 : n.querySelector(".placeholder");
           s && (a.value ? s.style.display = "none" : s.style.display = "block");
         });
       }), e.addEventListener("submit", async (t) => {
         t.preventDefault();
         const o = e.querySelectorAll("inputs");
         let a = !0;
-        if (o.forEach((r) => {
+        if (o.forEach((n) => {
           let l = !0;
-          const n = r.value.trim();
-          if (r.id === "os-firstname" || r.id === "os-lastname") {
-            if (r.id === "os-lastname" && n === "")
+          const r = n.value.trim();
+          if (n.id === "os-firstname" || n.id === "os-lastname") {
+            if (n.id === "os-lastname" && r === "")
               return;
-            l = /^[A-Za-z\s]+$/.test(n);
+            l = /^[A-Za-z\s]+$/.test(r);
           } else
-            r.id === "os-email" && (l = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(n));
-          l ? r.classList.remove("invalid") : (r.classList.add("invalid"), a = !1), r.addEventListener("input", () => {
-            r.classList.remove("invalid");
+            n.id === "os-email" && (l = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(r));
+          l ? n.classList.remove("invalid") : (n.classList.add("invalid"), a = !1), n.addEventListener("input", () => {
+            n.classList.remove("invalid");
           });
         }), !a)
           return;
@@ -4764,9 +4778,9 @@
             id: Yi,
             data: s
           }) && (window.location.href = "/success");
-        } catch (r) {
+        } catch (n) {
           const l = e.querySelector(".actions .error");
-          l && l.classList.add("show"), console.log(r);
+          l && l.classList.add("show"), console.log(n);
         }
       }));
     }
@@ -4774,10 +4788,10 @@
       const e = z(".crs-contact .select details"), t = z(".crs-contact .select details summary"), o = z(".crs-contact .select details ul");
       !o || !e || !t || (o.addEventListener("click", (a) => {
         var l;
-        const r = a.target.closest("li");
-        r && (e.querySelectorAll("label").forEach((n) => {
-          n.classList.remove("selected");
-        }), (l = r.querySelector("label")) == null || l.classList.add("selected"), t && (t.textContent = r.textContent, t.classList.add("selected")), e.removeAttribute("open"));
+        const n = a.target.closest("li");
+        n && (e.querySelectorAll("label").forEach((r) => {
+          r.classList.remove("selected");
+        }), (l = n.querySelector("label")) == null || l.classList.add("selected"), t && (t.textContent = n.textContent, t.classList.add("selected")), e.removeAttribute("open"));
       }), window.addEventListener("click", (a) => {
         a.target.closest(".select") || e.removeAttribute("open");
       }));
@@ -4785,18 +4799,18 @@
     events() {
       var e, t;
       R(".crs-contact", "exp_content_based_section_11", "Section", "Web form Contacts"), (e = z(".crs-contact")) == null || e.addEventListener("mousedown", (o) => {
-        const a = o.target, s = a.closest(".select"), r = a.closest("button[type=submit]"), l = a.closest(".privacy-link a");
-        s && j("exp_content_based_dropdown_01", "I need help with", "click", "Web form Contacts"), r && j("exp_content_based_button_21", "Contact US", "click", "Web form Contacts"), l && j("exp_content_based_link_02", "Privacy Policy", "click", "Web form Contacts");
+        const a = o.target, s = a.closest(".select"), n = a.closest("button[type=submit]"), l = a.closest(".privacy-link a");
+        s && j("exp_content_based_dropdown_01", "I need help with", "click", "Web form Contacts"), n && j("exp_content_based_button_21", "Contact US", "click", "Web form Contacts"), l && j("exp_content_based_link_02", "Privacy Policy", "click", "Web form Contacts");
       }), (t = z(".crs-contact form")) == null || t.addEventListener("change", (o) => {
         const a = o.target, s = {
           "#os-firstname": { event: "exp_content_based_input_08", label: "First Name" },
           "#os-lastname": { event: "exp_content_based_input_09", label: "Last Name" },
           "#os-email": { event: "exp_content_based_input_10", label: "Email" }
         };
-        for (const r in s)
-          if (a.closest(r)) {
-            const { event: n, label: d } = s[r];
-            j(n, d, "input", "Web form Contacts");
+        for (const n in s)
+          if (a.closest(n)) {
+            const { event: r, label: d } = s[n];
+            j(r, d, "input", "Web form Contacts");
             break;
           }
       });
@@ -4815,7 +4829,7 @@
         `
       <div class="crs-contact estimate">
         <header>
-          <h2 class="title">Transform Your Business with Our Custom Tech Solutions</h2>
+          <h2 class="title">Transform Your <br class="mobile"> Business with Our <br class="mobile"> Custom Tech <br class="mobile"> Solutions</h2>
         </header>
         <div class="form-container right">
           <form class="form" action="">
@@ -4906,23 +4920,23 @@
       const e = z(".crs-contact .form");
       e && (e.querySelectorAll("input").forEach((t) => {
         t.addEventListener("input", (o) => {
-          var r;
-          const a = o.target, s = (r = a.parentNode) == null ? void 0 : r.querySelector(".placeholder");
+          var n;
+          const a = o.target, s = (n = a.parentNode) == null ? void 0 : n.querySelector(".placeholder");
           s && (a.value ? s.style.display = "none" : s.style.display = "block");
         });
       }), e.addEventListener("submit", async (t) => {
         let o = !0;
-        t.preventDefault(), ee(".crs-contact input").forEach((r) => {
+        t.preventDefault(), ee(".crs-contact input").forEach((n) => {
           let l = !0;
-          const n = r.value.trim();
-          if (r.id === "os-firstname" || r.id === "os-lastname") {
-            if (r.id === "os-lastname" && n === "")
+          const r = n.value.trim();
+          if (n.id === "os-firstname" || n.id === "os-lastname") {
+            if (n.id === "os-lastname" && r === "")
               return;
-            l = /^[A-Za-z\s]+$/.test(n);
+            l = /^[A-Za-z\s]+$/.test(r);
           } else
-            r.id === "os-email" ? l = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(n) : r.id === "os-phone" && n !== "" && (l = /^\+?[0-9\s]+$/.test(n));
-          l ? r.classList.remove("invalid") : (r.classList.add("invalid"), o = !1), r.addEventListener("input", () => {
-            r.classList.remove("invalid");
+            n.id === "os-email" ? l = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(r) : n.id === "os-phone" && r !== "" && (l = /^\+?[0-9\s]+$/.test(r));
+          l ? n.classList.remove("invalid") : (n.classList.add("invalid"), o = !1), n.addEventListener("input", () => {
+            n.classList.remove("invalid");
           });
         });
         const s = new FormData(e);
@@ -4932,9 +4946,9 @@
               id: Ri,
               data: s
             }) && (window.location.href = "/success");
-          } catch (r) {
+          } catch (n) {
             const l = e.querySelector(".actions .error");
-            l && l.classList.add("show"), console.log(r);
+            l && l.classList.add("show"), console.log(n);
           }
       }));
     }
@@ -4942,10 +4956,10 @@
       const e = z(".crs-contact .select details"), t = z(".crs-contact .select details summary"), o = z(".crs-contact .select details ul");
       !o || !e || !t || (o.addEventListener("click", (a) => {
         var l;
-        const r = a.target.closest("li");
-        r && (e.querySelectorAll("label").forEach((n) => {
-          n.classList.remove("selected");
-        }), (l = r.querySelector("label")) == null || l.classList.add("selected"), t && (t.textContent = r.textContent, t.classList.add("selected")), e.removeAttribute("open"));
+        const n = a.target.closest("li");
+        n && (e.querySelectorAll("label").forEach((r) => {
+          r.classList.remove("selected");
+        }), (l = n.querySelector("label")) == null || l.classList.add("selected"), t && (t.textContent = n.textContent, t.classList.add("selected")), e.removeAttribute("open"));
       }), window.addEventListener("click", (a) => {
         a.target.closest(".select") || e.removeAttribute("open");
       }));
@@ -4953,8 +4967,8 @@
     events() {
       var e, t;
       R(".crs-contact.estimate", "exp_content_based_section_12", "Section", "Web form Estimate"), (e = z(".crs-contact")) == null || e.addEventListener("mousedown", (o) => {
-        const a = o.target, s = a.closest(".select"), r = a.closest("button[type=submit]"), l = a.closest(".privacy-link a");
-        s && j("exp_content_based_dropdown_02", "I need help with", "click", "Web form Estimate"), r && j("exp_content_based_button_22", "Book a free call now", "click", "Web form Estimate"), l && j("exp_content_based_link_03", "Privacy Policy", "click", "Web form Estimate");
+        const a = o.target, s = a.closest(".select"), n = a.closest("button[type=submit]"), l = a.closest(".privacy-link a");
+        s && j("exp_content_based_dropdown_02", "I need help with", "click", "Web form Estimate"), n && j("exp_content_based_button_22", "Book a free call now", "click", "Web form Estimate"), l && j("exp_content_based_link_03", "Privacy Policy", "click", "Web form Estimate");
       }), (t = z(".crs-contact form")) == null || t.addEventListener("change", (o) => {
         const a = o.target, s = {
           "#os-firstname": { event: "exp_content_based_input_11", label: "First Name" },
@@ -4962,10 +4976,10 @@
           "#os-email": { event: "exp_content_based_input_13", label: "Email" },
           "#os-phone": { event: "exp_content_based_input_14", label: "Phone number" }
         };
-        for (const r in s)
-          if (a.closest(r)) {
-            const { event: n, label: d } = s[r];
-            j(n, d, "input", "Web form Estimate");
+        for (const n in s)
+          if (a.closest(n)) {
+            const { event: r, label: d } = s[n];
+            j(r, d, "input", "Web form Estimate");
             break;
           }
       });
@@ -5379,10 +5393,16 @@
           <label for="framework-custom">
             <input type="radio" name="framework" id="framework-custom" value="Custom Development" />
             Custom Development
+            <span class="os-tooltip" data-tooltip="Scalable, easy maintenance with JavaScript technologies.">
+              ${K}</span
+            >
           </label>
           <label for="framework-no-code">
             <input type="radio" name="framework" id="framework-no-code" value="No-Code" />
             No-Code
+            <span class="os-tooltip" data-tooltip="Quick, budget-friendly, but with some technical limits.">
+              ${K}</span
+            >
           </label>
           <label for="framework-not-sure">
             <input type="radio" name="framework" id="framework-not-sure" value="Not Sure" />
@@ -5396,7 +5416,7 @@
               <li>
                 <label for="framework-custom-mob">
                   <input type="radio" name="framework" id="framework-custom-mob" value="Custom Development" />
-                  Custom Development <span class="os-tooltip" data-tooltip="For projects aiming for a large scale audience."> ${K}</span>
+                  Custom Development
                 </label>
               </li>
               <li>
@@ -5421,19 +5441,25 @@
         <div class="form-control desktop">
           <label for="userbase-up-to-100">
             <input type="radio" name="userbase" id="userbase-up-to-100" value="Up to 100 Users" />
-            Up to 100 Users <span class="os-tooltip" data-tooltip="For projects expecting a modest audience."> ${K}</span>
+            Up to 100 Users
+            <span class="os-tooltip" data-tooltip="For projects expecting a modest audience."> ${K}</span>
           </label>
           <label for="userbase-100-to-1000">
             <input type="radio" name="userbase" id="userbase-100-to-1000" value="100-1,000 Users" />
-            100-1,000 Users <span class="os-tooltip" data-tooltip="If you anticipate a growing user base."> ${K}</span>
+            100-1,000 Users
+            <span class="os-tooltip" data-tooltip="If you anticipate a growing user base."> ${K}</span>
           </label>
           <label for="userbase-1000-to-10000">
             <input type="radio" name="userbase" id="userbase-1000-to-10000" value="1,000-10,000 Users" />
-            1,000-10,000 Users <span class="os-tooltip" data-tooltip="Suitable for projects with significant user engagement."> ${K}</span>
+            1,000-10,000 Users
+            <span class="os-tooltip" data-tooltip="Suitable for projects with significant user engagement.">
+              ${K}</span
+            >
           </label>
           <label for="userbase-10000-plus">
             <input type="radio" name="userbase" id="userbase-10000-plus" value="10,000+ Users" />
-            10,000+ Users <span class="os-tooltip" data-tooltip="For projects aiming for a large scale audience."> ${K}</span>
+            10,000+ Users
+            <span class="os-tooltip" data-tooltip="For projects aiming for a large scale audience."> ${K}</span>
           </label>
         </div>
         <div class="form-control mobile select">
@@ -5471,7 +5497,7 @@
     </div>
   </div>
 `
-  ), uo = `.calculator-form{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:40px;padding:60px;border-radius:20px;background:#12233d;background:var(--blue-800-tangaroa, #12233d);font-family:Raleway}@media (max-width: 768px){.calculator-form{padding:30px 16px;gap:24px;border-radius:0}}.calculator-form header{display:grid;grid-gap:12px;gap:12px}.calculator-form header .title{color:#fff;color:var(--White, #fff);font-size:32px;font-weight:700;line-height:40px;font-feature-settings:lining-nums proportional-nums;font-variant-numeric:lining-nums proportional-nums}@media (max-width: 768px){.calculator-form header .title{font-size:24px;line-height:32px}}.calculator-form header .description{color:#fff;color:var(--gray-0-white, #fff);font-size:16px;font-weight:400;line-height:24px;margin:0}.calculator-form header .step-visualization{display:grid;grid-gap:12px;gap:12px}.calculator-form header .step-visualization .current{color:#fff;color:var(--White, #fff);font-size:32px;font-weight:700;line-height:40px;font-variant-numeric:lining-nums proportional-nums;font-feature-settings:"clig" off,"liga" off,lining-nums proportional-nums,lining-nums proportional-nums}.calculator-form header .step-visualization .step-progress{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;gap:18px}.calculator-form header .step-visualization .step-progress .item{border-radius:8px;height:4px;width:100%;background:#d9d9d91a}.calculator-form header .step-visualization .step-progress .item.active{background:#d62c2c;background:var(--red-600-valencia, #d62c2c)}.calculator-form fieldset{width:100%}.calculator-form .step-container{display:grid;grid-template-columns:1fr 1fr;grid-gap:40px;gap:40px}@media (max-width: 768px){.calculator-form .step-container{grid-template-columns:1fr;gap:24px}}.calculator-form .step-container .left{grid-column:1 / 2;grid-row:1 / 2;display:grid;grid-gap:40px;gap:40px}@media (max-width: 768px){.calculator-form .step-container .left{grid-column:1 / 2;grid-row:1 / 2}}.calculator-form .step-container .right{grid-column:2 / 3;grid-row:1 / 2;display:grid;grid-gap:40px;gap:40px}@media (max-width: 768px){.calculator-form .step-container .right{grid-column:1 / 2;grid-row:2 / 3}}.calculator-form .step-container .bottom{grid-column:1 / 3;grid-row:2 / 3}@media (max-width: 768px){.calculator-form .step-container .bottom{grid-column:1 / 2;grid-row:3 / 4}}.calculator-form .step-container .block{padding:40px;border-radius:8px;background:#26354d}@media (max-width: 768px){.calculator-form .step-container .block{padding:22px 16px}}.calculator-form .step-container .block.flex{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;align-items:center;gap:54px}@media (max-width: 768px){.calculator-form .step-container .block.flex{flex-direction:column}}.calculator-form .step-container .block.flex h5{flex:1 1 60%}.calculator-form .step-container .block h5{color:#fff;color:var(--gray-0-white, #fff);font-size:24px;font-weight:700;line-height:32px}.calculator-form .step-container .block p{color:#fff;color:var(--gray-0-white, #fff);font-family:Raleway;font-size:14px;font-weight:400;line-height:25px;margin-top:8px}.calculator-form .step-container .block .form-control{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}@media (max-width: 768px){.calculator-form .step-container .block .form-control.desktop{display:none}}.calculator-form .step-container .block .form-control.mobile{display:none}@media (max-width: 768px){.calculator-form .step-container .block .form-control.mobile{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex}}.calculator-form .step-container .block .form-control.select{position:relative}.calculator-form .step-container .block .form-control.select details{border-radius:8px;width:100%;background:#fff;cursor:pointer}.calculator-form .step-container .block .form-control.select details summary{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;align-items:center;border-radius:8px;background:#fff;background:var(--gray-0-white, #fff);height:100%;padding:12px 25px 12px 16px;color:#6f7a88;color:var(--gray-550-clasic-gray, #6f7a88);font-family:Raleway;font-size:16px;font-weight:600;line-height:24px}.calculator-form .step-container .block .form-control.select details summary.selected{color:#12233d;color:var(--blue-800-tangaroa, #12233d);font-family:Raleway;font-size:16px;font-weight:600;line-height:22px}.calculator-form .step-container .block .form-control.select details summary[data-choosen]{color:#12233d;font-size:16px;font-weight:700}.calculator-form .step-container .block .form-control.select details summary::marker{content:none;display:none}.calculator-form .step-container .block .form-control.select details summary::-webkit-details-marker{content:none;display:none}.calculator-form .step-container .block .form-control.select details summary:after{content:"";background-image:url('data:image/svg+xml,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m24 20-7.873-8L8 20" stroke="%236F7A88" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');background-size:contain;width:24px;height:24px;position:absolute;top:50%;right:15px;transform:rotate(180deg) translateY(50%)}.calculator-form .step-container .block .form-control.select details[open] summary:after{transform:rotate(0) translateY(-50%)}.calculator-form .step-container .block .form-control.select details[open] ul,.calculator-form .step-container .block .form-control.select details[open] label{cursor:pointer}.calculator-form .step-container .block .form-control.select details[open] ul{position:absolute;top:61px;border-radius:8px;box-shadow:0 4px 4px #00000040;left:0;display:grid;grid-gap:8px;gap:8px;background:#fff;width:100%;overflow:hidden;z-index:100;padding-top:12px}.calculator-form .step-container .block .form-control.select details[open] ul li label{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;align-items:center;justify-content:space-between;width:100%;padding:8px 16px;color:#12233d;color:var(--blue-800-tangaroa, #12233d);font-family:Raleway;font-size:16px;font-weight:600;line-height:24px}.calculator-form .step-container .block .form-control.select details[open] ul li label:hover{background-color:#f2f7ff}.calculator-form .step-container .block .form-control.select details[open] ul li label.selected{background-color:#f2f7ff}.calculator-form .step-container .block .form-control.select details[open] ul li label.selected:after{content:"";width:24px;height:24px;display:block;background-image:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12L9.66118 17L19 7" stroke="%23D62C2C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>')}.calculator-form .step-container .block .form-control.select details[open] input{position:absolute;left:0;opacity:0}.calculator-form .step-container .block .form-control.name{gap:24px;flex-wrap:nowrap}@media (max-width: 768px){.calculator-form .step-container .block .form-control.name{flex-direction:column}}.calculator-form .step-container .block .form-control.checkboxes{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;margin:0;-moz-column-gap:115px;column-gap:115px;flex:1 1 40%}@media (max-width: 768px){.calculator-form .step-container .block .form-control.checkboxes{justify-content:flex-start;width:100%;gap:90px}}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-36-2p-2s-2x-33-13-2l-15-1m-32-33-38-14-2s-2t-38-2p-2x-30-37-w-30-2p-2q-2t-30-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;align-items:center;justify-content:flex-start;border-radius:31px;font-feature-settings:"clig" off,"liga" off;border:1px solid #6f7a88;border:1px solid var(--gray-550-clasic-gray, #6f7a88);padding:9px 16px;color:#fff;color:var(--gray-0-white, #fff);font-size:14px;font-weight:600;line-height:14px;cursor:pointer}.calculator-form .step-container .block .form-control label:has(input[type=radio]):not(details label){display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;align-items:center;justify-content:flex-start;border-radius:31px;font-feature-settings:"clig" off,"liga" off;border:1px solid #6f7a88;border:1px solid var(--gray-550-clasic-gray, #6f7a88);padding:9px 16px;color:#fff;color:var(--gray-0-white, #fff);font-size:14px;font-weight:600;line-height:14px;cursor:pointer}@media (max-width: 768px){.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-36-2p-2s-2x-33-13-2l-15-1m-32-33-38-14-2s-2t-38-2p-2x-30-37-w-30-2p-2q-2t-30-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){justify-content:flex-start;line-height:22px}.calculator-form .step-container .block .form-control label:has(input[type=radio]):not(details label){justify-content:flex-start;line-height:22px}}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-36-2p-2s-2x-33-13-2l-15-1m-32-33-38-14-2s-2t-38-2p-2x-30-37-w-30-2p-2q-2t-30-15-w-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-36-2p-2s-2x-33-13-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){display:none}.calculator-form .step-container .block .form-control label:has(input[type=radio]):not(details label) input[type=radio]{display:none}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-36-2p-2s-2x-33-13-2l-15-1m-32-33-38-14-2s-2t-38-2p-2x-30-37-w-30-2p-2q-2t-30-15-1m-2w-2p-37-14-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-36-2p-2s-2x-33-13-2l-1m-2r-2w-2t-2r-2z-2t-2s-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){background:#fff;padding:9px 16px;color:#1f2733;color:var(--Gray---800, #1f2733)}.calculator-form .step-container .block .form-control label:has(input[type=radio]):not(details label):has(input[type=radio]:checked){background:#fff;padding:9px 16px;color:#1f2733;color:var(--Gray---800, #1f2733)}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-2r-2w-2t-2r-2z-2q-33-3c-13-2l-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist){display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;align-items:center;justify-content:center;gap:20px;color:#fff;color:var(--gray-0-white, #fff);font-size:14px;font-weight:600;line-height:100%;text-transform:uppercase}.calculator-form .step-container .block .form-control label:has(input[type=checkbox]){display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;align-items:center;justify-content:center;gap:20px;color:#fff;color:var(--gray-0-white, #fff);font-size:14px;font-weight:600;line-height:100%;text-transform:uppercase}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-2r-2w-2t-2r-2z-2q-33-3c-13-2l-15-w-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-2r-2w-2t-2r-2z-2q-33-3c-13-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){width:30px;height:30px;accent-color:#d62c2c;border-radius:8px;display:none}.calculator-form .step-container .block .form-control label:has(input[type=checkbox]) input[type=checkbox]{width:30px;height:30px;accent-color:#d62c2c;border-radius:8px;display:none}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-2r-2w-2t-2r-2z-2q-33-3c-13-2l-15-w-37-34-2p-32]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){width:30px;height:30px;border-radius:4px;border:1px solid #6f7a88;border:1px solid var(--gray-550-clasic-gray, #6f7a88)}.calculator-form .step-container .block .form-control label:has(input[type=checkbox]) span{width:30px;height:30px;border-radius:4px;border:1px solid #6f7a88;border:1px solid var(--gray-550-clasic-gray, #6f7a88)}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-2r-2w-2t-2r-2z-2q-33-3c-13-2l-15-w-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-2r-2w-2t-2r-2z-2q-33-3c-13-2l-1m-2r-2w-2t-2r-2z-2t-2s-w-17-w-37-34-2p-32]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 31 30" fill="none"><rect x="0.5" width="30" height="30" rx="4" fill="%23D62C2C"/><path d="M9 16.25L12.8182 20L23 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>')}.calculator-form .step-container .block .form-control label:has(input[type=checkbox]) input[type=checkbox]:checked+span{background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 31 30" fill="none"><rect x="0.5" width="30" height="30" rx="4" fill="%23D62C2C"/><path d="M9 16.25L12.8182 20L23 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>')}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist){position:relative;width:100%}.calculator-form .step-container .block .form-control label:has(.placeholder){position:relative;width:100%}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36-15-w-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist){position:absolute;top:50%;left:21px;transform:translateY(-50%);font-size:16px;font-weight:600;color:#6f7a88;line-height:24px}.calculator-form .step-container .block .form-control label:has(.placeholder) .placeholder{position:absolute;top:50%;left:21px;transform:translateY(-50%);font-size:16px;font-weight:600;color:#6f7a88;line-height:24px}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36-15-w-2x-32-34-39-38]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist){width:100%;height:48px;color:#12233d;font-weight:700;font-size:16px;border:none;border-radius:8px;padding:12px 24px}.calculator-form .step-container .block .form-control label:has(.placeholder) input{width:100%;height:48px;color:#12233d;font-weight:700;font-size:16px;border:none;border-radius:8px;padding:12px 24px}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36-15-w-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist){display:none}.calculator-form .step-container .block .form-control label:has(.placeholder) .placeholder{display:none}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36-15-w-2x-32-34-39-38-1m-34-30-2p-2r-2t-2w-33-30-2s-2t-36-19-37-2w-33-3b-32-w-17-w-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist){display:block}.calculator-form .step-container .block .form-control label:has(.placeholder) input:-moz-placeholder-shown+.placeholder{display:block}.calculator-form .step-container .block .form-control label:has(.placeholder) input:placeholder-shown+.placeholder{display:block}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36-15-w-2x-32-34-39-38-2j-2s-2p-38-2p-19-36-2t-35-39-2x-36-2t-2s-2l-w-17-w-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):after{content:"*";top:-2px;position:absolute;font-size:25px;color:#d62c2c}.calculator-form .step-container .block .form-control label:has(.placeholder) input[data-required]+.placeholder:after{content:"*";top:-2px;position:absolute;font-size:25px;color:#d62c2c}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36-15-w-2x-32-34-39-38-1a-2x-32-3a-2p-30-2x-2s]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist){border:2px solid #d62c2c}.calculator-form .step-container .block .form-control label:has(.placeholder) input.invalid{border:2px solid #d62c2c}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36-15-w-2x-32-34-39-38-1a-2x-32-3a-2p-30-2x-2s-w-3i-w-1a-2t-36-36-33-36]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist){visibility:visible}.calculator-form .step-container .block .form-control label:has(.placeholder) input.invalid~.error{visibility:visible}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36-15-w-1a-2t-36-36-33-36]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist){color:#d62c2c;position:absolute;font-size:12px;bottom:-17px;visibility:hidden}.calculator-form .step-container .block .form-control label:has(.placeholder) .error{color:#d62c2c;position:absolute;font-size:12px;bottom:-17px;visibility:hidden}.calculator-form .step-container .block .form-control textarea{width:100%;height:120px;color:#12233d;font-weight:700;font-size:16px;padding:12px 24px;border-radius:8px}.calculator-form .step-container .block .form-control textarea::-moz-placeholder{color:#6f7a88;font-family:Raleway;font-size:16px;font-weight:600;line-height:24px}.calculator-form .step-container .block .form-control textarea::placeholder{color:#6f7a88;font-family:Raleway;font-size:16px;font-weight:600;line-height:24px}.calculator-form .step-container .block .form-control.action .error{color:#d62c2c;font-weight:600;display:none}.calculator-form .step-container .block .form-control.action .error.show{display:block}.calculator-form #next-button,.calculator-form button[type=submit]{width:376px;max-width:100%;height:48px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center;align-items:center;font-size:16px;font-weight:700;line-height:24px}.calculator-form button[type=submit]{width:100%}.calculator-form #step1 .form-control{flex-direction:column;flex-wrap:nowrap}.calculator-form .desktop.with-hero{position:relative;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;align-items:flex-end;padding:0!important;overflow:hidden}@media (max-width: 768px){.calculator-form .desktop.with-hero{display:none}}.calculator-form .desktop.with-hero img{position:relative;z-index:2;height:100%;-o-object-fit:cover;object-fit:cover}.calculator-form .desktop.with-hero .info{position:absolute;bottom:0;left:0;border-radius:0 8px;background:#3a4961e6;-webkit-backdrop-filter:blur(5.5px);backdrop-filter:blur(5.5px);width:312px;padding:21px 36px;z-index:3}.calculator-form .desktop.with-hero .info .name{color:#fff;color:var(--gray-0-white, #fff);font-size:18px;font-weight:700;line-height:24px}.calculator-form .desktop.with-hero .info .position{color:#fff;color:var(--gray-0-white, #fff);font-family:Raleway;font-size:16px;font-weight:400;line-height:24px;margin-top:6px}.calculator-form .desktop.with-hero:after{content:"";position:absolute;top:50%;left:32%;width:680px;height:680px;border:136px solid #d62c2c;border:136px solid var(--red-600-valencia, #d62c2c);border-radius:50%;z-index:1}.calculator-form .desktop.with-hero:before{content:"";position:absolute;top:-85%;left:-60%;width:680px;height:680px;border:136px solid #38455c;border:136px solid var(--red-600-valencia, #38455c);border-radius:50%;z-index:1}.calculator-form .mobile.with-hero{display:none}@media (max-width: 768px){.calculator-form .mobile.with-hero{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;gap:16px}.calculator-form .mobile.with-hero img{width:64px;height:64px;aspect-ratio:1/1}.calculator-form .mobile.with-hero .info{font-family:Raleway;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;gap:6px}.calculator-form .mobile.with-hero .info .name{font-size:18px;font-weight:700;line-height:24px;color:#fff;margin:0}.calculator-form .mobile.with-hero .info .position{font-size:16px;line-height:24px;color:#fff}}.os-tooltip{position:relative;width:20px;display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:inline-flex;justify-content:center;align-items:center;margin-left:5px;isolation:isolate}.os-tooltip:before,.os-tooltip:after{display:none;position:absolute;left:50%;transform:translate(-50%);z-index:100}.os-tooltip:before{content:attr(data-tooltip);top:-75px;width:210px;padding:12px;border-radius:8px;background:#fff;background:var(--gray-0-white, #fff);color:#1f2733;color:var(--Gray---800, #1f2733);font-feature-settings:lining-nums proportional-nums;font-variant-numeric:lining-nums proportional-nums;font-family:Raleway;font-size:12px;font-style:normal;font-weight:600;line-height:16px}.os-tooltip:after{content:"";top:-20px;border-left:10px solid transparent;border-right:10px solid transparent;border-top:10px solid #fff;border-top:10px solid var(--gray-0-white, #fff)}.os-tooltip:hover:before,.os-tooltip:hover:after{display:block}`;
+  ), uo = `.calculator-form{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:40px;padding:60px;border-radius:20px;background:#12233d;background:var(--blue-800-tangaroa, #12233d);font-family:Raleway}@media (max-width: 768px){.calculator-form{padding:30px 16px;gap:24px;border-radius:0}}.calculator-form header{display:grid;grid-gap:12px;gap:12px}.calculator-form header .title{color:#fff;color:var(--White, #fff);font-size:32px;font-weight:700;line-height:40px;font-feature-settings:lining-nums proportional-nums;font-variant-numeric:lining-nums proportional-nums}@media (max-width: 768px){.calculator-form header .title{font-size:24px;line-height:32px}}.calculator-form header .description{color:#fff;color:var(--gray-0-white, #fff);font-size:16px;font-weight:400;line-height:24px;margin:0}.calculator-form header .step-visualization{display:grid;grid-gap:12px;gap:12px}.calculator-form header .step-visualization .current{color:#fff;color:var(--White, #fff);font-size:32px;font-weight:700;line-height:40px;font-variant-numeric:lining-nums proportional-nums;font-feature-settings:"clig" off,"liga" off,lining-nums proportional-nums,lining-nums proportional-nums}.calculator-form header .step-visualization .step-progress{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;gap:18px}.calculator-form header .step-visualization .step-progress .item{border-radius:8px;height:4px;width:100%;background:#d9d9d91a}.calculator-form header .step-visualization .step-progress .item.active{background:#d62c2c;background:var(--red-600-valencia, #d62c2c)}.calculator-form fieldset{width:100%}.calculator-form .step-container{display:grid;grid-template-columns:1fr 1fr;grid-gap:40px;gap:40px}@media (max-width: 768px){.calculator-form .step-container{grid-template-columns:1fr;gap:24px}}.calculator-form .step-container .left{grid-column:1 / 2;grid-row:1 / 2;display:grid;grid-gap:40px;gap:40px}@media (max-width: 768px){.calculator-form .step-container .left{grid-column:1 / 2;grid-row:1 / 2}}.calculator-form .step-container .right{grid-column:2 / 3;grid-row:1 / 2;display:grid;grid-gap:40px;gap:40px}@media (max-width: 768px){.calculator-form .step-container .right{grid-column:1 / 2;grid-row:2 / 3}}.calculator-form .step-container .bottom{grid-column:1 / 3;grid-row:2 / 3}@media (max-width: 768px){.calculator-form .step-container .bottom{grid-column:1 / 2;grid-row:3 / 4}}.calculator-form .step-container .block{padding:40px;border-radius:8px;background:#26354d}@media (max-width: 768px){.calculator-form .step-container .block{padding:22px 16px}}.calculator-form .step-container .block.flex{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;align-items:center;gap:54px}@media (max-width: 768px){.calculator-form .step-container .block.flex{flex-direction:column}}.calculator-form .step-container .block.flex h5{flex:1 1 60%}.calculator-form .step-container .block h5{color:#fff;color:var(--gray-0-white, #fff);font-size:24px;font-weight:700;line-height:32px}.calculator-form .step-container .block p{color:#fff;color:var(--gray-0-white, #fff);font-family:Raleway;font-size:14px;font-weight:400;line-height:25px;margin-top:8px}.calculator-form .step-container .block .form-control{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}@media (max-width: 768px){.calculator-form .step-container .block .form-control.desktop{display:none}}.calculator-form .step-container .block .form-control.mobile{display:none}@media (max-width: 768px){.calculator-form .step-container .block .form-control.mobile{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex}}.calculator-form .step-container .block .form-control.select{position:relative}.calculator-form .step-container .block .form-control.select details{border-radius:8px;width:100%;background:#fff;cursor:pointer}.calculator-form .step-container .block .form-control.select details summary{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;align-items:center;border-radius:8px;background:#fff;background:var(--gray-0-white, #fff);height:100%;padding:12px 25px 12px 16px;color:#6f7a88;color:var(--gray-550-clasic-gray, #6f7a88);font-family:Raleway;font-size:16px;font-weight:600;line-height:24px}.calculator-form .step-container .block .form-control.select details summary.selected{color:#12233d;color:var(--blue-800-tangaroa, #12233d);font-family:Raleway;font-size:16px;font-weight:600;line-height:22px}.calculator-form .step-container .block .form-control.select details summary[data-choosen]{color:#12233d;font-size:16px;font-weight:700}.calculator-form .step-container .block .form-control.select details summary::marker{content:none;display:none}.calculator-form .step-container .block .form-control.select details summary::-webkit-details-marker{content:none;display:none}.calculator-form .step-container .block .form-control.select details summary:after{content:"";background-image:url('data:image/svg+xml,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m24 20-7.873-8L8 20" stroke="%236F7A88" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');background-size:contain;width:24px;height:24px;position:absolute;top:50%;right:15px;transform:rotate(180deg) translateY(50%)}.calculator-form .step-container .block .form-control.select details[open] summary:after{transform:rotate(0) translateY(-50%)}.calculator-form .step-container .block .form-control.select details[open] ul,.calculator-form .step-container .block .form-control.select details[open] label{cursor:pointer}.calculator-form .step-container .block .form-control.select details[open] ul{position:absolute;top:61px;border-radius:8px;box-shadow:0 4px 4px #00000040;left:0;display:grid;grid-gap:8px;gap:8px;background:#fff;width:100%;overflow:hidden;z-index:100;padding-top:12px}.calculator-form .step-container .block .form-control.select details[open] ul li label{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;align-items:center;justify-content:space-between;width:100%;padding:8px 16px;color:#12233d;color:var(--blue-800-tangaroa, #12233d);font-family:Raleway;font-size:16px;font-weight:600;line-height:24px}.calculator-form .step-container .block .form-control.select details[open] ul li label:hover{background-color:#f2f7ff}.calculator-form .step-container .block .form-control.select details[open] ul li label.selected{background-color:#f2f7ff}.calculator-form .step-container .block .form-control.select details[open] ul li label.selected:after{content:"";width:24px;height:24px;display:block;background-image:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12L9.66118 17L19 7" stroke="%23D62C2C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>')}.calculator-form .step-container .block .form-control.select details[open] input{position:absolute;left:0;opacity:0}.calculator-form .step-container .block .form-control.name{gap:24px;flex-wrap:nowrap}@media (max-width: 768px){.calculator-form .step-container .block .form-control.name{flex-direction:column}}.calculator-form .step-container .block .form-control.checkboxes{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;margin:0;-moz-column-gap:115px;column-gap:115px;flex:1 1 40%}@media (max-width: 768px){.calculator-form .step-container .block .form-control.checkboxes{justify-content:flex-start;width:100%;gap:90px}}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-36-2p-2s-2x-33-13-2l-15-1m-32-33-38-14-2s-2t-38-2p-2x-30-37-w-30-2p-2q-2t-30-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;align-items:center;justify-content:flex-start;border-radius:31px;font-feature-settings:"clig" off,"liga" off;border:1px solid #6f7a88;border:1px solid var(--gray-550-clasic-gray, #6f7a88);padding:9px 16px;color:#fff;color:var(--gray-0-white, #fff);font-size:14px;font-weight:600;line-height:14px;cursor:pointer}.calculator-form .step-container .block .form-control label:has(input[type=radio]):not(details label){display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;align-items:center;justify-content:flex-start;border-radius:31px;font-feature-settings:"clig" off,"liga" off;border:1px solid #6f7a88;border:1px solid var(--gray-550-clasic-gray, #6f7a88);padding:9px 16px;color:#fff;color:var(--gray-0-white, #fff);font-size:14px;font-weight:600;line-height:14px;cursor:pointer}@media (max-width: 768px){.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-36-2p-2s-2x-33-13-2l-15-1m-32-33-38-14-2s-2t-38-2p-2x-30-37-w-30-2p-2q-2t-30-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){justify-content:flex-start;line-height:22px}.calculator-form .step-container .block .form-control label:has(input[type=radio]):not(details label){justify-content:flex-start;line-height:22px}}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-36-2p-2s-2x-33-13-2l-15-1m-32-33-38-14-2s-2t-38-2p-2x-30-37-w-30-2p-2q-2t-30-15-w-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-36-2p-2s-2x-33-13-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){display:none}.calculator-form .step-container .block .form-control label:has(input[type=radio]):not(details label) input[type=radio]{display:none}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-36-2p-2s-2x-33-13-2l-15-1m-32-33-38-14-2s-2t-38-2p-2x-30-37-w-30-2p-2q-2t-30-15-1m-2w-2p-37-14-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-36-2p-2s-2x-33-13-2l-1m-2r-2w-2t-2r-2z-2t-2s-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){background:#fff;padding:9px 16px;color:#1f2733;color:var(--Gray---800, #1f2733)}.calculator-form .step-container .block .form-control label:has(input[type=radio]):not(details label):has(input[type=radio]:checked){background:#fff;padding:9px 16px;color:#1f2733;color:var(--Gray---800, #1f2733)}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-2r-2w-2t-2r-2z-2q-33-3c-13-2l-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist){display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;align-items:center;justify-content:center;gap:20px;color:#fff;color:var(--gray-0-white, #fff);font-size:14px;font-weight:600;line-height:100%;text-transform:uppercase}.calculator-form .step-container .block .form-control label:has(input[type=checkbox]){display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;align-items:center;justify-content:center;gap:20px;color:#fff;color:var(--gray-0-white, #fff);font-size:14px;font-weight:600;line-height:100%;text-transform:uppercase}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-2r-2w-2t-2r-2z-2q-33-3c-13-2l-15-w-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-2r-2w-2t-2r-2z-2q-33-3c-13-2l]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){width:30px;height:30px;accent-color:#d62c2c;border-radius:8px;display:none}.calculator-form .step-container .block .form-control label:has(input[type=checkbox]) input[type=checkbox]{width:30px;height:30px;accent-color:#d62c2c;border-radius:8px;display:none}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-2r-2w-2t-2r-2z-2q-33-3c-13-2l-15-w-37-34-2p-32]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){width:30px;height:30px;border-radius:4px;border:1px solid #6f7a88;border:1px solid var(--gray-550-clasic-gray, #6f7a88)}.calculator-form .step-container .block .form-control label:has(input[type=checkbox]) span{width:30px;height:30px;border-radius:4px;border:1px solid #6f7a88;border:1px solid var(--gray-550-clasic-gray, #6f7a88)}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-2r-2w-2t-2r-2z-2q-33-3c-13-2l-15-w-2x-32-34-39-38-2j-38-3d-34-2t-1p-13-2r-2w-2t-2r-2z-2q-33-3c-13-2l-1m-2r-2w-2t-2r-2z-2t-2s-w-17-w-37-34-2p-32]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 31 30" fill="none"><rect x="0.5" width="30" height="30" rx="4" fill="%23D62C2C"/><path d="M9 16.25L12.8182 20L23 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>')}.calculator-form .step-container .block .form-control label:has(input[type=checkbox]) input[type=checkbox]:checked+span{background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 31 30" fill="none"><rect x="0.5" width="30" height="30" rx="4" fill="%23D62C2C"/><path d="M9 16.25L12.8182 20L23 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>')}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist){position:relative;width:100%}.calculator-form .step-container .block .form-control label:has(.placeholder){position:relative;width:100%}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36-15-w-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist){position:absolute;top:50%;left:21px;transform:translateY(-50%);font-size:16px;font-weight:600;color:#6f7a88;line-height:24px}.calculator-form .step-container .block .form-control label:has(.placeholder) .placeholder{position:absolute;top:50%;left:21px;transform:translateY(-50%);font-size:16px;font-weight:600;color:#6f7a88;line-height:24px}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36-15-w-2x-32-34-39-38]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist){width:100%;height:48px;color:#12233d;font-weight:700;font-size:16px;border:none;border-radius:8px;padding:12px 24px}.calculator-form .step-container .block .form-control label:has(.placeholder) input{width:100%;height:48px;color:#12233d;font-weight:700;font-size:16px;border:none;border-radius:8px;padding:12px 24px}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36-15-w-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist){display:none}.calculator-form .step-container .block .form-control label:has(.placeholder) .placeholder{display:none}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36-15-w-2x-32-34-39-38-w-17-w-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist){display:block}.calculator-form .step-container .block .form-control label:has(.placeholder) input+.placeholder{display:block}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36-15-w-2x-32-34-39-38-2j-2s-2p-38-2p-19-36-2t-35-39-2x-36-2t-2s-2l-w-17-w-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):after{content:"*";top:-2px;position:absolute;font-size:25px;color:#d62c2c}.calculator-form .step-container .block .form-control label:has(.placeholder) input[data-required]+.placeholder:after{content:"*";top:-2px;position:absolute;font-size:25px;color:#d62c2c}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36-15-w-2x-32-34-39-38-1a-2x-32-3a-2p-30-2x-2s]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist){border:2px solid #d62c2c}.calculator-form .step-container .block .form-control label:has(.placeholder) input.invalid{border:2px solid #d62c2c}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36-15-w-2x-32-34-39-38-1a-2x-32-3a-2p-30-2x-2s-w-3i-w-1a-2t-36-36-33-36]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist){visibility:visible}.calculator-form .step-container .block .form-control label:has(.placeholder) input.invalid~.error{visibility:visible}.js-has-pseudo [csstools-has-1a-2r-2p-30-2r-39-30-2p-38-33-36-19-2u-33-36-31-w-1a-37-38-2t-34-19-2r-33-32-38-2p-2x-32-2t-36-w-1a-2q-30-33-2r-2z-w-1a-2u-33-36-31-19-2r-33-32-38-36-33-30-w-30-2p-2q-2t-30-1m-2w-2p-37-14-1a-34-30-2p-2r-2t-2w-33-30-2s-2t-36-15-w-1a-2t-36-36-33-36]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist){color:#d62c2c;position:absolute;font-size:12px;bottom:-17px;visibility:hidden}.calculator-form .step-container .block .form-control label:has(.placeholder) .error{color:#d62c2c;position:absolute;font-size:12px;bottom:-17px;visibility:hidden}.calculator-form .step-container .block .form-control textarea{width:100%;height:120px;color:#12233d;font-weight:700;font-size:16px;padding:12px 24px;border-radius:8px}.calculator-form .step-container .block .form-control textarea::-moz-placeholder{color:#6f7a88;font-family:Raleway;font-size:16px;font-weight:600;line-height:24px}.calculator-form .step-container .block .form-control textarea::placeholder{color:#6f7a88;font-family:Raleway;font-size:16px;font-weight:600;line-height:24px}.calculator-form .step-container .block .form-control.action .error{color:#d62c2c;font-weight:600;display:none}.calculator-form .step-container .block .form-control.action .error.show{display:block}.calculator-form #next-button,.calculator-form button[type=submit]{width:376px;max-width:100%;height:48px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center;align-items:center;font-size:16px;font-weight:700;line-height:24px}.calculator-form button[type=submit]{width:100%}.calculator-form #step1 .form-control{flex-direction:column;flex-wrap:nowrap}.calculator-form .desktop.with-hero{position:relative;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;align-items:flex-end;padding:0!important;overflow:hidden}@media (max-width: 768px){.calculator-form .desktop.with-hero{display:none}}.calculator-form .desktop.with-hero img{position:relative;z-index:2;height:100%;-o-object-fit:cover;object-fit:cover}.calculator-form .desktop.with-hero .info{position:absolute;bottom:0;left:0;border-radius:0 8px;background:#3a4961e6;-webkit-backdrop-filter:blur(5.5px);backdrop-filter:blur(5.5px);width:312px;padding:21px 36px;z-index:3}.calculator-form .desktop.with-hero .info .name{color:#fff;color:var(--gray-0-white, #fff);font-size:18px;font-weight:700;line-height:24px}.calculator-form .desktop.with-hero .info .position{color:#fff;color:var(--gray-0-white, #fff);font-family:Raleway;font-size:16px;font-weight:400;line-height:24px;margin-top:6px}.calculator-form .desktop.with-hero:after{content:"";position:absolute;top:50%;left:32%;width:680px;height:680px;border:136px solid #d62c2c;border:136px solid var(--red-600-valencia, #d62c2c);border-radius:50%;z-index:1}.calculator-form .desktop.with-hero:before{content:"";position:absolute;top:-85%;left:-60%;width:680px;height:680px;border:136px solid #38455c;border:136px solid var(--red-600-valencia, #38455c);border-radius:50%;z-index:1}.calculator-form .mobile.with-hero{display:none}@media (max-width: 768px){.calculator-form .mobile.with-hero{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;gap:16px}.calculator-form .mobile.with-hero img{width:64px;height:64px;aspect-ratio:1/1}.calculator-form .mobile.with-hero .info{font-family:Raleway;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;gap:6px}.calculator-form .mobile.with-hero .info .name{font-size:18px;font-weight:700;line-height:24px;color:#fff;margin:0}.calculator-form .mobile.with-hero .info .position{font-size:16px;line-height:24px;color:#fff}}.os-tooltip{position:relative;width:20px;display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:inline-flex;justify-content:center;align-items:center;margin-left:5px;isolation:isolate}.os-tooltip:before,.os-tooltip:after{display:none;position:absolute;left:50%;transform:translate(-50%);z-index:100}.os-tooltip:before{content:attr(data-tooltip);top:-75px;width:210px;padding:12px;border-radius:8px;background:#fff;background:var(--gray-0-white, #fff);color:#1f2733;color:var(--Gray---800, #1f2733);font-feature-settings:lining-nums proportional-nums;font-variant-numeric:lining-nums proportional-nums;font-family:Raleway;font-size:12px;font-style:normal;font-weight:600;line-height:16px}.os-tooltip:after{content:"";top:-20px;border-left:10px solid transparent;border-right:10px solid transparent;border-top:10px solid #fff;border-top:10px solid var(--gray-0-white, #fff)}.os-tooltip:hover:before,.os-tooltip:hover:after{display:block}`;
   class fo {
     constructor(e) {
       this.currentStep = 0, this.state = [], this.container = document.querySelector(e), this.renderForm(), this.events();
@@ -5499,11 +5525,11 @@
         "Section",
         "Home PageSoftware Project Cost Estimator Steps 4/4"
       ), (e = z("#calculator-form")) == null || e.addEventListener("click", (o) => {
-        var g, m;
+        var h, m;
         const a = z("#calculator-form"), s = Number(a.dataset.step);
         if (!s)
           return;
-        const r = {
+        const n = {
           1: "exp_content_based_button_08",
           2: "exp_content_based_button_10",
           3: "exp_content_based_button_12"
@@ -5511,16 +5537,16 @@
           1: "Home PageSoftware Project Cost Estimator Steps 1/4",
           2: "Home PageSoftware Project Cost Estimator Steps 2/4",
           3: "Home PageSoftware Project Cost Estimator Steps 3/4"
-        }, n = {
+        }, r = {
           1: "exp_content_based_button_09",
           2: "exp_content_based_button_11",
           3: "exp_content_based_button_13"
         }, d = o.target, p = d.closest('input[type="radio"]'), f = d.closest('input[type="checkbox"]'), w = d.closest("#next-button"), x = d.closest('button[type="submit"]');
         if (p || f) {
-          const b = (m = (g = d.closest("label")) == null ? void 0 : g.textContent) == null ? void 0 : m.trim();
-          j(r[s], `${b} Choice answers`, "click", l[s]);
+          const b = (m = (h = d.closest("label")) == null ? void 0 : h.textContent) == null ? void 0 : m.trim();
+          j(n[s], `${b} Choice answers`, "click", l[s]);
         }
-        w && j(n[s - 1], "Next", "click", l[s - 1]), x && j(
+        w && j(r[s - 1], "Next", "click", l[s - 1]), x && j(
           "exp_content_based_button_14",
           "Get My Estimate",
           "click",
@@ -5533,10 +5559,10 @@
           "#os-email": { event: "exp_content_based_input_03", label: "Email" },
           "#details": { event: "exp_content_based_input_04", label: "Details" }
         };
-        for (const r in s)
-          if (a.closest(r)) {
-            const { event: n, label: d } = s[r];
-            j(n, d, "input", "Home PageSoftware Project Cost Estimator Steps 4/4");
+        for (const n in s)
+          if (a.closest(n)) {
+            const { event: r, label: d } = s[n];
+            j(r, d, "input", "Home PageSoftware Project Cost Estimator Steps 4/4");
             break;
           }
       });
@@ -5574,46 +5600,52 @@
     }
     select() {
       window.addEventListener("click", (e) => {
-        var r;
+        var n;
         const t = e.target, o = t.closest("#calculator-form .select details"), a = t.closest("#calculator-form .select li"), s = o == null ? void 0 : o.querySelector("#calculator-form .select summary");
         a && o && s ? (o.querySelectorAll("label").forEach((l) => {
           l.classList.remove("selected");
-        }), (r = a.querySelector("label")) == null || r.classList.add("selected"), s.textContent = a.textContent, s.classList.add("selected"), o.removeAttribute("open")) : t.closest(".select") || ee("#calculator-form .select details").forEach((n) => {
-          n.removeAttribute("open");
+        }), (n = a.querySelector("label")) == null || n.classList.add("selected"), s.textContent = a.textContent, s.classList.add("selected"), o.removeAttribute("open")) : t.closest(".select") || ee("#calculator-form .select details").forEach((r) => {
+          r.removeAttribute("open");
         });
       });
     }
     submitForm(e) {
-      e.addEventListener("submit", async (t) => {
+      e.querySelectorAll("input").forEach((t) => {
+        t.addEventListener("input", (o) => {
+          var n;
+          const a = o.target, s = (n = a.parentNode) == null ? void 0 : n.querySelector(".placeholder");
+          s && (a.value ? s.style.display = "none" : s.style.display = "block");
+        });
+      }), e.addEventListener("submit", async (t) => {
         t.preventDefault();
         const o = e.querySelectorAll("#step4 input");
         let a = !0;
-        if (o.forEach((n) => {
-          let d = !0;
-          const p = n.value.trim();
-          if (n.id === "os-firstname" || n.id === "os-lastname") {
-            if (n.id === "os-lastname" && p === "")
+        if (o.forEach((l) => {
+          let r = !0;
+          const d = l.value.trim();
+          if (l.id === "os-firstname" || l.id === "os-lastname") {
+            if (l.id === "os-lastname" && d === "")
               return;
-            d = /^[A-Za-z\s]+$/.test(p);
+            r = /^[A-Za-z\s]+$/.test(d);
           } else
-            n.id === "os-email" && (d = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p));
-          d ? n.classList.remove("invalid") : (n.classList.add("invalid"), a = !1), n.addEventListener("input", () => {
-            n.classList.remove("invalid");
+            l.id === "os-email" && (r = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d));
+          r ? l.classList.remove("invalid") : (l.classList.add("invalid"), a = !1), l.addEventListener("input", () => {
+            l.classList.remove("invalid");
           });
         }), !a)
           return;
         const s = [];
-        e.querySelectorAll('input[name="compliance-standards"]:checked').forEach((n) => {
-          const d = n.value;
-          s.push(d);
+        e.querySelectorAll('input[name="compliance-standards"]:checked').forEach((l) => {
+          const r = l.value;
+          s.push(r);
         });
-        const r = new FormData(e), l = Object.fromEntries(r.entries());
-        r.append("compliance-standards", s.join(", ")), console.log(l);
+        const n = new FormData(e);
+        Object.fromEntries(n.entries()), n.append("compliance-standards", s.join(", "));
         try {
-          await ce({ id: Ni, data: r }) && (window.location.href = "/success");
-        } catch (n) {
-          const d = e.querySelector(".action .error");
-          d && d.classList.add("show"), console.log("error", n);
+          await ce({ id: Ni, data: n }) && (window.location.href = "/success");
+        } catch (l) {
+          const r = e.querySelector(".action .error");
+          r && r.classList.add("show"), console.log("error", l);
         }
       });
     }
@@ -5666,7 +5698,7 @@
         "Custom Development": 1,
         "No-Code": 0.6,
         "Not Sure": 1
-      }, r = {
+      }, n = {
         "We Need a Design": 1,
         "We Already Have a Design": 0.7,
         "We Have Some Sketches": 0.3
@@ -5675,7 +5707,7 @@
         "100-1,000 Users": 1,
         "1,000-10,000 Users": 1,
         "10,000+ Users": 1.1
-      }, n = {
+      }, r = {
         "payment-integration": 5,
         "ai-integration": 5,
         "third-party-integrations": {
@@ -5689,11 +5721,11 @@
           GDPR: 15
         }
       }, d = t[this.state.complexity] || 1;
-      this.state.goal && (this.state.goal.includes("Discovery") || this.state.goal.includes("Clickable Prototype")) ? e = (o[this.state.goal] || 0) + d * (this.state.goal.includes("Discovery") ? 200 : 500) : e = d * (o[this.state.goal] || 0), e *= a[this.state.dev_path] || 1, e *= s[this.state.framework] || 1, e *= r[this.state.design_stage] || 1, e *= l[this.state.userbase] || 1;
+      this.state.goal && (this.state.goal.includes("Discovery") || this.state.goal.includes("Clickable Prototype")) ? e = (o[this.state.goal] || 0) + d * (this.state.goal.includes("Discovery") ? 200 : 500) : e = d * (o[this.state.goal] || 0), e *= a[this.state.dev_path] || 1, e *= s[this.state.framework] || 1, e *= n[this.state.design_stage] || 1, e *= l[this.state.userbase] || 1;
       let p = 0;
-      for (const f in n) {
+      for (const f in r) {
         const w = this.state[f];
-        typeof n[f] == "object" ? p += n[f][w] || 0 : p += w === "Yes" ? n[f] : 0;
+        typeof r[f] == "object" ? p += r[f][w] || 0 : p += w === "Yes" ? r[f] : 0;
       }
       return e += e * (p / 100), e;
     }
@@ -5702,8 +5734,8 @@
     }
     updateForm() {
       if (this.currentStep === 3) {
-        const a = this.calculatePrice(), s = Math.max(a, 5e3 / 0.8), r = Math.round(s * 0.8), l = Math.round(s * 1.2), n = z("#calculator-form .title"), d = z("#calculator-form .description");
-        n && d && (n.textContent = `Based on the details you've shared, we estimate  your project investment to be in the range of  $${r} to $${l}`, d.textContent = "What's next? This estimate is a starting point. Let’s refine it together and align it perfectly with your vision and resources.");
+        const a = this.calculatePrice(), s = Math.max(a, 5e3 / 0.8), n = Math.round(s * 0.8), l = Math.round(s * 1.2), r = z("#calculator-form .title"), d = z("#calculator-form .description");
+        r && d && (r.textContent = `Based on the details you've shared, we estimate  your project investment to be in the range of  $${n} to $${l}`, d.textContent = "What's next? This estimate is a starting point. Let’s refine it together and align it perfectly with your vision and resources.");
       }
       for (let a = 0; a < 4; a++) {
         const s = document.getElementById(`step${a + 1}`);
@@ -5717,7 +5749,7 @@
       });
     }
   }
-  const mo = '@import"https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap";.contacts-btn{border-radius:8px;border:1px solid #d62c2c;border:1px solid var(--red-600-valencia, #d62c2c);background:#d62c2c;background:var(--red-600-valencia, #d62c2c);color:#fff}.contacts-btn:hover{background:#f33;border-color:#f33;box-shadow:0 8px 8px #00000029}.contacts-btn:active{background:#991f1f;border-color:#991f1f}.aa-container{max-width:1272px;padding:0 16px;margin:0 auto}.heading-1{color:#12233d;font-family:Raleway,sans-serif;font-size:42px;font-style:normal;font-weight:700;line-height:130%;margin-bottom:24px}.heading-2{font-family:Raleway,sans-serif;font-size:32px;font-style:normal;font-weight:700;line-height:40px}.heading-3{color:#12233d;color:var(--blue-800-tangaroa, #12233d);font-family:Raleway,sans-serif;font-size:24px;font-style:normal;font-weight:700;line-height:32px}.aa-dash-line{border-top:1px dashed #d8d8d8;margin:70px 6.94% 0 0;-webkit-mask-image:linear-gradient(to right,transparent,black,transparent);mask-image:-webkit-gradient(linear,left top,right top,from(transparent),color-stop(black),to(transparent));mask-image:linear-gradient(to right,transparent,black,transparent)}@media (max-width: 768px){.aa-dash-line{display:none}}.software,.trusted,.calculator,.envision,.partners,.team,.full-circle{margin:90px 0}@media (max-width: 768px){.software,.trusted,.calculator,.envision,.partners,.team,.full-circle{margin:30px 0}}.team{overflow-x:clip}.software .heading-2,.trusted .heading-2,.partners .heading-2{text-align:center;margin-bottom:44px}@media (max-width: 768px){.software .heading-2,.trusted .heading-2,.partners .heading-2{text-align:left;margin-bottom:30px}}.full-circle .heading-2{text-align:center;margin-bottom:24px}@media (max-width: 768px){.full-circle .heading-2{text-align:left;margin-bottom:14px;font-size:24px;line-height:32px}}.full-circle .heading-2+.under-heading{color:#414f64;color:var(--gray-650-dark-gray, #414f64);text-align:center;font-family:Raleway;font-size:16px;font-style:normal;font-weight:400;line-height:24px}@media (max-width: 768px){.full-circle .heading-2+.under-heading{text-align:left}}@media (max-width: 768px){.trusted .heading-2,.partners .heading-2{font-size:24px}}section#services,section#founders,section#our-awards{display:none}#testimonials{border-top:none!important}#industries .show-more{width:100%;height:48px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center;align-items:center;max-width:376px;margin-left:auto;margin-right:auto;margin-top:32px;border-radius:8px;border:none;background:#ffffff1a;color:#fff;text-align:center;font-family:Raleway;font-size:16px;font-weight:600;line-height:24px;text-transform:uppercase}.sticky-contact-us{display:none}@media (max-width: 768px){.sticky-contact-us{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center;align-items:center;position:fixed;height:76px;bottom:0;left:0;right:0;z-index:1000;background:#fff;box-shadow:0 -4px 8px #00000029;padding:16px}.sticky-contact-us a{box-sizing:border-box;border:1px solid rgb(214,44,44);border-radius:8px;background:#d62c2c;color:#fff;font-family:Raleway;font-size:16px;font-weight:700;line-height:24px;text-align:center;text-transform:uppercase;width:100%}}br.desktop{display:none}@media (min-width: 769px){br.desktop{display:block}}br.mobile{display:block}@media (min-width: 769px){br.mobile{display:none}}#user-name+label:after,#user-mail+label:after{color:#d62c2c;content:"*"}#user-mail+label:before{display:none}';
+  const mo = '@import"https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap";.contacts-btn{border-radius:8px;border:1px solid #d62c2c;border:1px solid var(--red-600-valencia, #d62c2c);background:#d62c2c;background:var(--red-600-valencia, #d62c2c);color:#fff}.contacts-btn:hover{background:#f33;border-color:#f33;box-shadow:0 8px 8px #00000029}.contacts-btn:active{background:#991f1f;border-color:#991f1f}.aa-container{max-width:1272px;padding:0 16px;margin:0 auto}.heading-1{color:#12233d;font-family:Raleway,sans-serif;font-size:42px;font-style:normal;font-weight:700;line-height:130%;margin-bottom:24px}.heading-2{font-family:Raleway,sans-serif;font-size:32px;font-style:normal;font-weight:700;line-height:40px}.heading-3{color:#12233d;color:var(--blue-800-tangaroa, #12233d);font-family:Raleway,sans-serif;font-size:24px;font-style:normal;font-weight:700;line-height:32px}.aa-dash-line{border-top:1px dashed #d8d8d8;margin:70px 6.94% 0 0;-webkit-mask-image:linear-gradient(to right,transparent,black,transparent);mask-image:-webkit-gradient(linear,left top,right top,from(transparent),color-stop(black),to(transparent));mask-image:linear-gradient(to right,transparent,black,transparent)}@media (max-width: 768px){.aa-dash-line{display:none}}.software,.trusted,.calculator,.envision,.partners,.team,.full-circle{margin:90px 0}@media (max-width: 768px){.software,.trusted,.calculator,.envision,.partners,.team,.full-circle{margin:30px 0}}.team{overflow-x:clip}.software .heading-2,.trusted .heading-2,.partners .heading-2{text-align:center;margin-bottom:44px}@media (max-width: 768px){.software .heading-2,.trusted .heading-2,.partners .heading-2{text-align:left;margin-bottom:30px}}.full-circle .heading-2{text-align:center;margin-bottom:24px}@media (max-width: 768px){.full-circle .heading-2{text-align:left;margin-bottom:14px;font-size:24px;line-height:32px}}.full-circle .heading-2+.under-heading{color:#414f64;color:var(--gray-650-dark-gray, #414f64);text-align:center;font-family:Raleway;font-size:16px;font-style:normal;font-weight:400;line-height:24px}@media (max-width: 768px){.full-circle .heading-2+.under-heading{text-align:left}}@media (max-width: 768px){.trusted .heading-2,.partners .heading-2{font-size:24px}}section#services,section#founders,section#our-awards{display:none}#testimonials{border-top:none!important}#industries .show-more{width:100%;height:48px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center;align-items:center;max-width:376px;margin-left:auto;margin-right:auto;margin-top:32px;border-radius:8px;border:none;background:#ffffff1a;color:#fff;text-align:center;font-family:Raleway;font-size:16px;font-weight:600;line-height:24px;text-transform:uppercase}.sticky-contact-us{display:none}@media (max-width: 768px){.sticky-contact-us{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center;align-items:center;position:fixed;height:76px;bottom:0;left:0;right:0;z-index:1000;background:#fff;box-shadow:0 -4px 8px #00000029;padding:16px}.sticky-contact-us a{box-sizing:border-box;border:1px solid rgb(214,44,44);border-radius:8px;background:#d62c2c;color:#fff;font-family:Raleway;font-size:16px;font-weight:700;line-height:24px;text-align:center;text-transform:uppercase;width:100%;max-width:500px}}br.desktop{display:none}@media (min-width: 769px){br.desktop{display:block}}br.mobile{display:block}@media (min-width: 769px){br.mobile{display:none}}#user-name+label:after,#user-mail+label:after{color:#d62c2c;content:"*"}#user-mail+label:before{display:none}';
   function ho(i) {
     if (i.slice(0, 13) !== "csstools-has-")
       return "";
@@ -5726,44 +5758,44 @@
     return t;
   }
   function go(i) {
-    for (var e, t, o = [], a = 0, s = !1, r = !1, l = 0; l < i.length; l++) {
-      var n = i[l];
-      switch (n) {
+    for (var e, t, o = [], a = 0, s = !1, n = !1, l = 0; l < i.length; l++) {
+      var r = i[l];
+      switch (r) {
         case "[":
           if (s) {
-            e += n;
+            e += r;
             continue;
           }
-          a === 0 ? e = "" : e += n, a++;
+          a === 0 ? e = "" : e += r, a++;
           continue;
         case "]":
           if (s) {
-            e += n;
+            e += r;
             continue;
           }
           if (--a === 0) {
             var d = ho(e);
-            r && o.push(d);
+            n && o.push(d);
           } else
-            e += n;
+            e += r;
           continue;
         case "\\":
           e += i[l], e += i[l + 1], l++;
           continue;
         case '"':
         case "'":
-          if (s && n === t) {
+          if (s && r === t) {
             s = !1;
             continue;
           }
           if (s) {
-            e += n;
+            e += r;
             continue;
           }
-          s = !0, t = n;
+          s = !0, t = r;
           continue;
         default:
-          e === "" && a === 1 && i.slice(l, l + 13) === "csstools-has-" && (r = !0), e += n;
+          e === "" && a === 1 && i.slice(l, l + 13) === "csstools-has-" && (n = !0), e += r;
           continue;
       }
     }
@@ -5788,20 +5820,20 @@
     return !0;
   }
   function bo(i, e) {
-    e || (e = {}), (e = { hover: !!e.hover || !1, debug: !!e.debug || !1, observedAttributes: e.observedAttributes || [], forcePolyfill: !!e.forcePolyfill || !1 }).mustPolyfill = e.forcePolyfill || !xo(), Array.isArray(e.observedAttributes) || (e.observedAttributes = []), e.observedAttributes = e.observedAttributes.filter(function(n) {
-      return typeof n == "string";
+    e || (e = {}), (e = { hover: !!e.hover || !1, debug: !!e.debug || !1, observedAttributes: e.observedAttributes || [], forcePolyfill: !!e.forcePolyfill || !1 }).mustPolyfill = e.forcePolyfill || !xo(), Array.isArray(e.observedAttributes) || (e.observedAttributes = []), e.observedAttributes = e.observedAttributes.filter(function(r) {
+      return typeof r == "string";
     }), e.observedAttributes = e.observedAttributes.concat(["accept", "accept-charset", "accesskey", "action", "align", "allow", "alt", "async", "autocapitalize", "autocomplete", "autofocus", "autoplay", "buffered", "capture", "challenge", "charset", "checked", "cite", "class", "code", "codebase", "cols", "colspan", "content", "contenteditable", "contextmenu", "controls", "coords", "crossorigin", "csp", "data", "datetime", "decoding", "default", "defer", "dir", "dirname", "disabled", "download", "draggable", "enctype", "enterkeyhint", "for", "form", "formaction", "formenctype", "formmethod", "formnovalidate", "formtarget", "headers", "hidden", "high", "href", "hreflang", "http-equiv", "icon", "id", "importance", "integrity", "intrinsicsize", "inputmode", "ismap", "itemprop", "keytype", "kind", "label", "lang", "language", "list", "loop", "low", "manifest", "max", "maxlength", "minlength", "media", "method", "min", "multiple", "muted", "name", "novalidate", "open", "optimum", "pattern", "ping", "placeholder", "poster", "preload", "radiogroup", "readonly", "referrerpolicy", "rel", "required", "reversed", "rows", "rowspan", "sandbox", "scope", "scoped", "selected", "shape", "size", "sizes", "slot", "span", "spellcheck", "src", "srcdoc", "srclang", "srcset", "start", "step", "summary", "tabindex", "target", "title", "translate", "type", "usemap", "value", "width", "wrap"]);
     var t = [], o = i.createElement("x");
     if ([].forEach.call(i.styleSheets, l), e.mustPolyfill) {
-      if (r(), "MutationObserver" in self && new MutationObserver(function(n) {
-        n.forEach(function(d) {
+      if (n(), "MutationObserver" in self && new MutationObserver(function(r) {
+        r.forEach(function(d) {
           [].forEach.call(d.addedNodes || [], function(p) {
             p.nodeType === 1 && p.sheet && l(p.sheet);
           }), [].push.apply(t, t.splice(0).filter(function(p) {
             return p.rule.parentStyleSheet && p.rule.parentStyleSheet.ownerNode && i.documentElement.contains(p.rule.parentStyleSheet.ownerNode);
-          })), r();
+          })), n();
         });
-      }).observe(i, { childList: !0, subtree: !0, attributes: !0, attributeFilter: e.observedAttributes }), i.addEventListener("focus", r, !0), i.addEventListener("blur", r, !0), i.addEventListener("input", r), i.addEventListener("change", r, !0), e.hover && ("onpointerenter" in i ? (i.addEventListener("pointerenter", r, !0), i.addEventListener("pointerleave", r, !0)) : (i.addEventListener("mouseover", r, !0), i.addEventListener("mouseout", r, !0))), "defineProperty" in Object && "getOwnPropertyDescriptor" in Object && "hasOwnProperty" in Object)
+      }).observe(i, { childList: !0, subtree: !0, attributes: !0, attributeFilter: e.observedAttributes }), i.addEventListener("focus", n, !0), i.addEventListener("blur", n, !0), i.addEventListener("input", n), i.addEventListener("change", n, !0), e.hover && ("onpointerenter" in i ? (i.addEventListener("pointerenter", n, !0), i.addEventListener("pointerleave", n, !0)) : (i.addEventListener("mouseover", n, !0), i.addEventListener("mouseout", n, !0))), "defineProperty" in Object && "getOwnPropertyDescriptor" in Object && "hasOwnProperty" in Object)
         try {
           var a = function(d, p) {
             if (d.hasOwnProperty(p)) {
@@ -5811,42 +5843,42 @@
               }, set: function() {
                 f.set.apply(this, arguments);
                 try {
-                  r();
+                  n();
                 } catch {
                 }
               } });
             }
           };
-          "HTMLElement" in self && HTMLElement.prototype && a(HTMLElement.prototype, "disabled"), ["checked", "selected", "readOnly", "required"].forEach(function(n) {
+          "HTMLElement" in self && HTMLElement.prototype && a(HTMLElement.prototype, "disabled"), ["checked", "selected", "readOnly", "required"].forEach(function(r) {
             ["HTMLButtonElement", "HTMLFieldSetElement", "HTMLInputElement", "HTMLMeterElement", "HTMLOptGroupElement", "HTMLOptionElement", "HTMLOutputElement", "HTMLProgressElement", "HTMLSelectElement", "HTMLTextAreaElement"].forEach(function(d) {
-              d in self && self[d].prototype && a(self[d].prototype, n);
+              d in self && self[d].prototype && a(self[d].prototype, r);
             });
           });
-        } catch (n) {
-          e.debug && console.error(n);
+        } catch (r) {
+          e.debug && console.error(r);
         }
       var s = !1;
     }
-    function r() {
+    function n() {
       s && cancelAnimationFrame(s), s = requestAnimationFrame(function() {
-        t.forEach(function(n) {
+        t.forEach(function(r) {
           var d = [], p = [];
           try {
-            p = i.querySelectorAll(n.selector);
+            p = i.querySelectorAll(r.selector);
           } catch (f) {
             return void (e.debug && console.error(f));
           }
           [].forEach.call(p, function(f) {
-            d.push(f), o.innerHTML = "<x " + n.attributeName + ">", f.setAttributeNode(o.children[0].attributes[0].cloneNode()), i.documentElement.style.zoom = 1, i.documentElement.style.zoom = null;
-          }), n.nodes.forEach(function(f) {
-            d.indexOf(f) === -1 && (f.removeAttribute(n.attributeName), i.documentElement.style.zoom = 1, i.documentElement.style.zoom = null);
-          }), n.nodes = d;
+            d.push(f), o.innerHTML = "<x " + r.attributeName + ">", f.setAttributeNode(o.children[0].attributes[0].cloneNode()), i.documentElement.style.zoom = 1, i.documentElement.style.zoom = null;
+          }), r.nodes.forEach(function(f) {
+            d.indexOf(f) === -1 && (f.removeAttribute(r.attributeName), i.documentElement.style.zoom = 1, i.documentElement.style.zoom = null);
+          }), r.nodes = d;
         });
       });
     }
-    function l(n) {
+    function l(r) {
       try {
-        [].forEach.call(n.cssRules || [], function(d, p) {
+        [].forEach.call(r.cssRules || [], function(d, p) {
           if (d.selectorText) {
             d.selectorText = d.selectorText.replace(/\.js-has-pseudo\s/g, "");
             try {
@@ -5854,13 +5886,13 @@
               if (f.length === 0)
                 return;
               if (!e.mustPolyfill)
-                return void n.deleteRule(p);
+                return void r.deleteRule(p);
               for (var w = 0; w < f.length; w++) {
                 var x = f[w];
                 t.push({ rule: d, selector: x, attributeName: wo(x), nodes: [] });
               }
-            } catch (g) {
-              e.debug && console.error(g);
+            } catch (h) {
+              e.debug && console.error(h);
             }
           } else
             l(d);
@@ -5876,51 +5908,51 @@
         return;
     } catch {
     }
-    var e = g(i.Element.prototype.querySelector);
+    var e = h(i.Element.prototype.querySelector);
     i.Element.prototype.querySelector = function(b) {
       return e.apply(this, arguments);
     };
-    var t = g(i.Element.prototype.querySelectorAll);
+    var t = h(i.Element.prototype.querySelectorAll);
     if (i.Element.prototype.querySelectorAll = function(b) {
       return t.apply(this, arguments);
     }, i.Element.prototype.matches) {
-      var o = g(i.Element.prototype.matches);
+      var o = h(i.Element.prototype.matches);
       i.Element.prototype.matches = function(b) {
         return o.apply(this, arguments);
       };
     }
     if (i.Element.prototype.closest) {
-      var a = g(i.Element.prototype.closest);
+      var a = h(i.Element.prototype.closest);
       i.Element.prototype.closest = function(b) {
         return a.apply(this, arguments);
       };
     }
     if ("Document" in i && "prototype" in i.Document) {
-      var s = g(i.Document.prototype.querySelector);
+      var s = h(i.Document.prototype.querySelector);
       i.Document.prototype.querySelector = function(b) {
         return s.apply(this, arguments);
       };
-      var r = g(i.Document.prototype.querySelectorAll);
+      var n = h(i.Document.prototype.querySelectorAll);
       if (i.Document.prototype.querySelectorAll = function(b) {
-        return r.apply(this, arguments);
+        return n.apply(this, arguments);
       }, i.Document.prototype.matches) {
-        var l = g(i.Document.prototype.matches);
+        var l = h(i.Document.prototype.matches);
         i.Document.prototype.matches = function(b) {
           return l.apply(this, arguments);
         };
       }
       if (i.Document.prototype.closest) {
-        var n = g(i.Document.prototype.closest);
+        var r = h(i.Document.prototype.closest);
         i.Document.prototype.closest = function(b) {
-          return n.apply(this, arguments);
+          return r.apply(this, arguments);
         };
       }
     }
     function d(m) {
-      for (var b = "", c = 0, u = 0, h = !1, y = !1, k = !1, S = !1, P = 0; P < m.length; P++) {
+      for (var b = "", c = 0, u = 0, g = !1, y = !1, k = !1, S = !1, P = 0; P < m.length; P++) {
         var C = m[P];
-        if (h)
-          b += C, h = !1;
+        if (g)
+          b += C, g = !1;
         else if (y)
           C === k && (y = !1), b += C;
         else
@@ -5940,7 +5972,7 @@
               b += C;
               continue;
             case "\\":
-              b += C, h = !0;
+              b += C, g = !0;
               continue;
             case '"':
             case "'":
@@ -5954,10 +5986,10 @@
       return !1;
     }
     function p(m, b) {
-      for (var c = [], u = "", h = !1, y = !1, k = !1, S = 0, P = 0; P < m.length; P++) {
+      for (var c = [], u = "", g = !1, y = !1, k = !1, S = 0, P = 0; P < m.length; P++) {
         var C = m[P];
-        if (h)
-          u += C, h = !1;
+        if (g)
+          u += C, g = !1;
         else if (y)
           C === k && (y = !1), u += C;
         else
@@ -5966,7 +5998,7 @@
               c.push(u), u = "", u += C;
               continue;
             case "\\":
-              u += C, h = !0;
+              u += C, g = !0;
               continue;
             case '"':
             case "'":
@@ -5986,58 +6018,58 @@
       return u.toLowerCase() === ":scope" && (c.push(u.slice(0, u.length - 6)), c.push("[" + b + "]"), u = ""), c.length === 0 ? m : c.join("") + u;
     }
     function f(m) {
-      for (var b, c, u = [], h = "", y = !1, k = !1, S = !1, P = !1, C = 0, T = 0; T < m.length; T++) {
+      for (var b, c, u = [], g = "", y = !1, k = !1, S = !1, P = !1, C = 0, T = 0; T < m.length; T++) {
         var v = m[T];
         if (y)
-          h += v, y = !1;
+          g += v, y = !1;
         else
           switch (v) {
             case ",":
               if (k) {
-                h += v;
+                g += v;
                 continue;
               }
               if (C > 0) {
-                h += v;
+                g += v;
                 continue;
               }
-              u.push(h), h = "";
+              u.push(g), g = "";
               continue;
             case "\\":
-              h += v, y = !0;
+              g += v, y = !0;
               continue;
             case '"':
             case "'":
               if (k && v === S) {
-                h += v, k = !1;
+                g += v, k = !1;
                 continue;
               }
-              h += v, k = !0, S = v;
+              g += v, k = !0, S = v;
               continue;
             case "(":
             case ")":
             case "[":
             case "]":
               if (k) {
-                h += v;
+                g += v;
                 continue;
               }
               if (b = v, (c = P) === "(" && b === ")" || c === "[" && b === "]") {
-                h += v, --C === 0 && (P = !1);
+                g += v, --C === 0 && (P = !1);
                 continue;
               }
               if (v === P) {
-                h += v, C++;
+                g += v, C++;
                 continue;
               }
-              h += v, C++, P = v;
+              g += v, C++, P = v;
               continue;
             default:
-              h += v;
+              g += v;
               continue;
           }
       }
-      return u.push(h), u;
+      return u.push(g), u;
     }
     function w(m, b, c) {
       var u = d(m);
@@ -6045,7 +6077,7 @@
         return m;
       if (b)
         return !1;
-      var h = u.innerQuery, y = "q-has" + (Math.floor(9e6 * Math.random()) + 1e6), k = "[" + y + "]", S = m;
+      var g = u.innerQuery, y = "q-has" + (Math.floor(9e6 * Math.random()) + 1e6), k = "[" + y + "]", S = m;
       if (u.innerQuery.toLowerCase().indexOf(":has(") > -1) {
         for (var P = f(u.innerQuery), C = [], T = 0; T < P.length; T++) {
           var v = P[T];
@@ -6057,7 +6089,7 @@
         var M = S.substring(0, u.start - 5), L = S.substring(u.end + 2);
         return M + C.join(", ") + L;
       }
-      if (M = S.substring(0, u.start - 5), L = S.substring(u.end + 2), S = M + k + L, c(h, y), S.toLowerCase().indexOf(":has(") > -1) {
+      if (M = S.substring(0, u.start - 5), L = S.substring(u.end + 2), S = M + k + L, c(g, y), S.toLowerCase().indexOf(":has(") > -1) {
         var A = w(S, !1, c);
         if (A)
           return A;
@@ -6069,7 +6101,7 @@
         for (var c = m.childNodes, u = 0; u < c.length; ++u)
           x(c[u], b);
     }
-    function g(m) {
+    function h(m) {
       return function(b) {
         if (!b)
           return m.apply(this, arguments);
@@ -6079,8 +6111,8 @@
         if ("getRootNode" in this)
           c = this.getRootNode();
         else
-          for (var h = this; h; )
-            c = h, h = h.parentNode;
+          for (var g = this; g; )
+            c = g, g = g.parentNode;
         var y = this;
         y === i.document && (y = i.document.documentElement);
         var k = "q-has-scope" + (Math.floor(9e6 * Math.random()) + 1e6);
@@ -6166,7 +6198,7 @@
       }), V(".envision .form").then(() => {
         new Zi(".envision .form");
       }), V(".partners .blocks").then(() => {
-        new Xi(".partners .blocks");
+        new $i(".partners .blocks");
       }), V(".team .block").then(() => {
         new Qi(".team .block");
       }), V(".full-circle .block").then(() => {
