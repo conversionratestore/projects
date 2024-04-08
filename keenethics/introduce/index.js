@@ -885,7 +885,7 @@
         <p class="descr">You dream it, we engineer it.</p>
         <div class="actions">
           <a href="/estimate">Get a free assessment</a>
-          <a href="/services-business-analysis#choose">Check step-by-step guide</a>
+          <a href="/services-business-analysis#choose" target="_blank">Check step-by-step guide</a>
         </div>
       </div>
     </div>
@@ -970,7 +970,7 @@
         <p class="descr">Multiply success by implementing robust & scalable technology</p>
         <div class="actions">
           <a href="/estimate">Get a free assessment</a>
-          <a href="/services-dedicated-development-team#services">CHECK Project’s ROADMAP</a>
+          <a href="/services-dedicated-development-team#services" target="_blank">CHECK Project’s ROADMAP</a>
         </div>
       </div>
     </div>
@@ -1055,7 +1055,7 @@
         <p class="descr">Unlock the full potential of your business.</p>
         <div class="actions">
           <a href="/estimate">Get a free assessment</a>
-          <a href="/services-ui-ux-design">Check UI/UX AUDIT GUIDE</a>
+          <a href="/services-ui-ux-design" target="_blank">Check UI/UX AUDIT GUIDE</a>
         </div>
       </div>
     </div>
@@ -4046,7 +4046,7 @@
           `<div class="swiper-slide">
                       ${t.link ? (
             /* HTML */
-            `<a class="company_item" href="${t.link}" target="__blank">
+            `<a class="company_item" href="${t.link}" target="_blank">
                             ${t != null && t.logo ? (
               /* HTML */
               `<img src="${t.logo}" alt="${t.name}" />`
@@ -4073,7 +4073,7 @@
           </div>
         </div>
         <div class="action">
-          <a class="btn-primary" href="/portfolio" target="blank">See all project cases</a>
+          <a class="btn-primary" href="/portfolio" target="_blank">See all project cases</a>
         </div>
       </div>
     `
