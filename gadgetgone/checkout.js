@@ -2113,10 +2113,8 @@
       display: none;
     }
 
-    .continue-btn {
+    button.continue-btn {
       border-radius: 100px;
-      background: var(--Green-Green-new, #63DD1A) !important;
-      border:0;
       padding: 1rem 2.375rem;
       color: #FFF;
       text-align: center;
@@ -2127,6 +2125,20 @@
       line-height: 1.5rem; /* 150% */
       width: 100%;
       display: block;
+    }
+
+    button.continue-btn,
+    button[type="submit"] {
+      background-color: var(--Green-Green-new, #63DD1A);
+      border-color: #63DD1A;
+    }
+
+    button.continue-btn:hover,
+    button[type="submit"]:hover,
+    button.continue-btn:focus,
+    button[type="submit"]:focus { 
+      background-color: #00AB03;
+      border-color: #00AB03;
     }
 
     @media only screen and (max-width: 64em) {
