@@ -823,6 +823,10 @@
         margin: 0 0 2rem 0!important;
       }
 
+      [for="payment_type_gift-card-bonus"] .label-description[data-wpmeteor-wheel="true"] {
+        display: none !important;
+      }
+
       #payment_type_field > label[for="payment_type_gift-card-bonus"] {
         display: none !important;
       }
