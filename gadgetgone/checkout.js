@@ -823,10 +823,6 @@
         margin: 0 0 2rem 0!important;
       }
 
-      [for="payment_type_gift-card-bonus"] .label-description[data-wpmeteor-wheel="true"] {
-        display: none !important;
-      }
-
       #payment_type_field > label[for="payment_type_gift-card-bonus"] {
         display: none !important;
       }
@@ -950,6 +946,10 @@
 
       [type=radio]:checked+label.radio .card-checkbox-icon>img:last-child {
         display: block;
+      }
+
+      [type=radio]:checked+label[for="payment_type_gift-card-bonus"].radio span.label-description {
+        display: none !important;
       }
 
       #billing_paypal_field [for="billing_paypal"] {
