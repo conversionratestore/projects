@@ -8,12 +8,12 @@
       event_type: t,
       event_loc: l
     }), console.log(`Event: ${i} | ${e} | ${t} | ${l}`);
-  }, b = ({ name: i, dev: e }) => {
+  }, y = ({ name: i, dev: e }) => {
     console.log(
       `%c EXP: ${i} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, _ = (i) => document.querySelectorAll(i), n = (i) => document.querySelector(i), k = (i) => {
+  }, _ = (i) => document.querySelectorAll(i), n = (i) => document.querySelector(i), L = (i) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", i, "variant_1"));
     }, 1e3);
@@ -51,7 +51,11 @@
       });
     });
   }
-  const C = "https://conversionratestore.github.io/projects/gadgetgone", p = {
+  let m = document.createElement("script");
+  m.src = "https://unpkg.com/popper.js@1", m.async = !1, document.body.appendChild(m);
+  let C = document.createElement("script");
+  C.src = "https://unpkg.com/tippy.js@5", C.async = !1, document.body.appendChild(C);
+  const v = "https://conversionratestore.github.io/projects/gadgetgone", p = {
     smartphone: (
       /*html */
       `
@@ -321,7 +325,7 @@
 </svg>
   `
     )
-  }, m = [
+  }, b = [
     {
       name: "choose",
       class: "choose_var",
@@ -364,7 +368,7 @@
       title: "Faulty",
       txt: "<li><p><span>Significant Issues:</span> Powers on but may have cracks, damaged housing, battery with <80% capacity or “service battery” message, functional defects, LCD defects, engravings, or aftermarket screen.</p></li><li><p><span>Exclusions:</span> Devices that are account locked, reported lost/stolen, won't power on, or can't be fully tested are not purchased.</p></li>"
     }
-  ], y = [
+  ], H = [
     {
       svgIcon: p.stopwatch,
       txt: "Get Paid Fast"
@@ -377,20 +381,20 @@
       svgIcon: p.sent,
       txt: "Free Prepaid Shipping"
     }
-  ], L = [
+  ], M = [
     {
-      imgUrl: `${C}/checkout/img/trustpilot_reviews.png`,
+      imgUrl: `${v}/checkout/img/trustpilot_reviews.png`,
       imgLink: "https://www.trustpilot.com/review/gadgetgone.com"
     },
     {
-      imgUrl: `${C}/checkout/img/google_reviews.png`,
+      imgUrl: `${v}/checkout/img/google_reviews.png`,
       imgLink: "https://www.google.com/search?q=gadget+gone&oq=gadget+gone&aqs=chrome.0.69i59j69i57j69i60l6.1656j0j7&sourceid=chrome&ie=UTF-8#lrd=0x88e76b2065fdd327:0x51404d4d0bb5c90,1,,,"
     },
     {
-      imgUrl: `${C}/checkout/img/accredited_business_reviews.png`,
+      imgUrl: `${v}/checkout/img/accredited_business_reviews.png`,
       imgLink: "https://www.bbb.org/us/fl/aloma/profile/electronics-recycling/gadgetgone-llc-0733-90332741"
     }
-  ], H = [
+  ], Z = [
     {
       title: "Get Your Quote",
       svgIcon: p.smartphone,
@@ -409,7 +413,7 @@
       subTitle: "Print your label and box your device.",
       txt: "Choose between a Bank Transfer, Virtual Visa Card, PayPal Payment or Amazon / Target Gift Card. We'll make sure you get paid ASAP after your device is delivered."
     }
-  ], M = [
+  ], V = [
     {
       title: "What if I’m unsure about my device’s condition?",
       txt: `<p>If you're uncertain about the condition of your device, we encourage you to reach out to us through our <a href="https://www.gadgetgone.com/support/" target="_blank">contact form</a>. Our team is ready to assist you with assessing your device's condition to ensure you receive the most accurate offer. This step can help you understand our evaluation criteria better and make an informed decision about selling your device.</p>`
@@ -441,11 +445,11 @@
   ], u = (i) => (
     /* HTML */
     ` <h2 class="new_title_box">${i}</h2> `
-  ), Z = (
+  ), q = (
     /* HTML */
     `
   <div id="conditionBlock">
-    ${m.map((i) => (
+    ${b.map((i) => (
       /* HTML */
       `
           <div class="${i.class}">
@@ -458,7 +462,7 @@
     )).join("")}
   </div>
 `
-  ), V = (
+  ), S = (
     /* HTML */
     `
   <div class="clear_form_block">
@@ -466,12 +470,12 @@
     <span>Clear Form</span>
   </div>
 `
-  ), q = (
+  ), I = (
     /* HTML */
     `
   <div id="benefitsBlock">
     <ul>
-      ${y.map((i) => (
+      ${H.map((i) => (
       /* HTML */
       `
             <li>
@@ -483,11 +487,11 @@
     </ul>
   </div>
 `
-  ), v = (
+  ), x = (
     /* HTML */
     `
   <div id="reviewsBlock">
-    ${L.map((i) => (
+    ${M.map((i) => (
       /* HTML */
       `
           <a target="_blank" href="${i.imgLink}">
@@ -497,14 +501,14 @@
     )).join("")}
   </div>
 `
-  ), S = (
+  ), B = (
     /* HTML */
     `
   <section id="howItWorksSection">
     <div class="new_container">
       <h2 class="main_title">How it works</h2>
       <ul class="how_it_works_list">
-        ${H.map((i) => (
+        ${Z.map((i) => (
       /* HTML */
       `
               <li>
@@ -519,14 +523,14 @@
     </div>
   </section>
 `
-  ), B = (
+  ), E = (
     /* HTML */
     `
   <section id="frequentlyAskedQuestionSection">
     <div class="new_container">
       <h2 class="main_title">Frequently Asked Questions</h2>
       <ul class="questions_accordion">
-        ${M.map((i, e) => (
+        ${V.map((i, e) => (
       /* HTML */
       `
               <li class="questions_accordion_block" data-visability="${e + 1}">
@@ -544,7 +548,7 @@
     </div>
   </section>
 `
-  ), I = (i, e) => (
+  ), j = (i, e) => (
     /* HTML */
     `
     <div class="radio_block ${e}">
@@ -555,7 +559,7 @@
       <div class="radio_option_wrapp"></div>
     </div>
   `
-  ), E = (i, e, t) => (
+  ), A = (i, e, t) => (
     /* HTML */
     `
     <input class="custom_radio" id="${e}" type="radio" name="${i}" value="${e}" />
@@ -577,7 +581,7 @@
           <span class="green_bgr"></span>
         </div>
       </div>
-      ${window.innerWidth < 1100 ? m.map((l) => {
+      ${window.innerWidth < 1100 ? b.map((l) => {
       if (e === l.name)
         return (
           /* HTML */
@@ -590,7 +594,7 @@
     }).join("") : ""}
     </label>
   `
-  ), j = (
+  ), T = (
     /* HTML */
     `
   <div class="new_sticky_block">
@@ -605,7 +609,7 @@
     <button class="disabled">Trade-In</button>
   </div>
 `
-  ), A = `.new_container {
+  ), z = `.new_container {
   width: 90%;
   margin: 0 auto;
 }
@@ -1135,7 +1139,7 @@ footer[role=contentinfo] #seo-nav li:after {
   align-items: center;
   flex-direction: column;
 }
-.radio_block .radio_option_wrapp label[for=choose_opt_condition], .radio_block .radio_option_wrapp label[for=choose_opt_storage], .radio_block .radio_option_wrapp label[for=choose_opt_carrier], .radio_block .radio_option_wrapp label[for=choose_opt_connectivity], .radio_block .radio_option_wrapp label[for=choose_opt_including_original_charger], .radio_block .radio_option_wrapp label[for=choose_opt_memory_ram], .radio_block .radio_option_wrapp label[for=choose_opt_hard_drive], .radio_block .radio_option_wrapp label[for=choose_opt_processor], .radio_block .radio_option_wrapp label[for=choose_opt_graphics_card], .radio_block .radio_option_wrapp label[for=choose_opt_display_resolution], .radio_block .radio_option_wrapp label[for=choose_opt_case_size], .radio_block .radio_option_wrapp label[for=choose_opt_case_type], .radio_block .radio_option_wrapp label[for=choose_opt_how_many_original_controllers] {
+.radio_block .radio_option_wrapp label[for=choose_opt_condition], .radio_block .radio_option_wrapp label[for=choose_opt_storage], .radio_block .radio_option_wrapp label[for=choose_opt_carrier], .radio_block .radio_option_wrapp label[for=choose_opt_connectivity], .radio_block .radio_option_wrapp label[for=choose_opt_including_original_charger], .radio_block .radio_option_wrapp label[for=choose_opt_memory_ram], .radio_block .radio_option_wrapp label[for=choose_opt_hard_drive], .radio_block .radio_option_wrapp label[for=choose_opt_processor], .radio_block .radio_option_wrapp label[for=choose_opt_graphics_card], .radio_block .radio_option_wrapp label[for=choose_opt_display_resolution], .radio_block .radio_option_wrapp label[for=choose_opt_case_size], .radio_block .radio_option_wrapp label[for=choose_opt_case_type], .radio_block .radio_option_wrapp label[for=choose_opt_how_many_original_controllers], .radio_block .radio_option_wrapp label[for=choose_opt_case_included] {
   display: none;
 }
 .radio_block .radio_option_wrapp label .radio_txt_box {
@@ -1761,15 +1765,15 @@ body {
     transform: rotate(360deg);
   }
 }/*# sourceMappingURL=main.css.map */`;
-  b({ name: "PDP Enhancements", dev: "SKh" }), k("exp_pdp_improvements");
-  const T = window.innerWidth < 768 ? "mobile" : "desktop";
-  class z {
+  y({ name: "PDP Enhancements", dev: "SKh" }), L("exp_pdp_improvements");
+  const W = window.innerWidth < 768 ? "mobile" : "desktop";
+  class D {
     constructor(e) {
       this.observer = null, this.device = e, this.init();
     }
     init() {
       s("div.product.type-product").then((e) => {
-        document.head.insertAdjacentHTML("beforeend", `<style>${A}</style>`), this.initDefaultChooseSelectValue(), this.replaceSteps(), this.addNewBlocksToDetails(), this.addNewBlocksToOfferSummary(), this.renderHowItWorksSection(), this.renderFrequentlyAskedQuestionSection(), this.observePageChange(), this.renderInputsWrapp(), this.onClickElems(), this.renderNewElemFooter(), this.device === "mobile" && (this.renderNewStickyBlock(), this.intersectionObserverTradeInBtn()), this.visibleHandler();
+        document.head.insertAdjacentHTML("beforeend", `<style>${z}</style>`), this.initDefaultChooseSelectValue(), this.replaceSteps(), this.addNewBlocksToDetails(), this.addNewBlocksToOfferSummary(), this.renderHowItWorksSection(), this.renderFrequentlyAskedQuestionSection(), this.observePageChange(), this.renderInputsWrapp(), this.onClickElems(), this.renderNewElemFooter(), this.device === "mobile" && (this.renderNewStickyBlock(), this.intersectionObserverTradeInBtn()), this.visibleHandler();
       });
     }
     renderNewElemFooter() {
@@ -1804,7 +1808,7 @@ body {
       s(".variations").then((e) => {
         n(".variations .new_title_box") || (window.innerWidth < 1100 ? n(".variations .variations-content").insertAdjacentHTML("afterbegin", u("Details")) : n(".variations").insertAdjacentHTML("afterbegin", u("Details")));
       }), s(".variations-content").then((e) => {
-        n(".radio_section") || n(".variations-content").insertAdjacentHTML("beforeend", `<div class="radio_section">${p.loader}</div>`), n(".clear_form_block") || n(".variations-content").insertAdjacentHTML("beforeend", V);
+        n(".radio_section") || n(".variations-content").insertAdjacentHTML("beforeend", `<div class="radio_section">${p.loader}</div>`), n(".clear_form_block") || n(".variations-content").insertAdjacentHTML("beforeend", S);
       });
     }
     addNewBlocksToOfferSummary() {
@@ -1813,8 +1817,8 @@ body {
         n(".single_variation_wrap .new_title_box") || (window.innerWidth < 1100 ? n(".single_variation_wrap .single_variation_wrap--inner").insertAdjacentHTML(
           "afterbegin",
           u("Offer Summary")
-        ) : n(".single_variation_wrap").insertAdjacentHTML("afterbegin", u("Offer Summary"))), n("#benefitsBlock") || (t = n(".order_benefits")) == null || t.insertAdjacentHTML("afterend", q), this.device === "desktop" ? n("#reviewsBlock") || (l = n(".single_variation_wrap")) == null || l.insertAdjacentHTML("beforeend", v) : s("#howItWorksSection").then((o) => {
-          n("#reviewsBlock") || n("#howItWorksSection").insertAdjacentHTML("beforebegin", v);
+        ) : n(".single_variation_wrap").insertAdjacentHTML("afterbegin", u("Offer Summary"))), n("#benefitsBlock") || (t = n(".order_benefits")) == null || t.insertAdjacentHTML("afterend", I), this.device === "desktop" ? n("#reviewsBlock") || (l = n(".single_variation_wrap")) == null || l.insertAdjacentHTML("beforeend", x) : s("#howItWorksSection").then((o) => {
+          n("#reviewsBlock") || n("#howItWorksSection").insertAdjacentHTML("beforebegin", x);
         }), n(".device_price_wrapper") || n(".single_variation_wrap--inner").insertAdjacentHTML("beforeend", '<div class="device_price_wrapper"></div>'), s(".device_price_wrapper").then((o) => {
           s(".device-placeholder-price").then((a) => {
             var d;
@@ -1865,9 +1869,11 @@ body {
         this.renderInputs("#pa_storage");
       }), s("#pa_controller-count").then((e) => {
         this.renderInputs("#pa_controller-count");
+      }), s("#pa_case-included").then((e) => {
+        this.renderInputs("#pa_case-included");
       }), s("#pa_condition").then((e) => {
         this.renderInputs("#pa_condition"), window.innerWidth >= 1100 && s(".radio_block.pa_condition").then((t) => {
-          n("#conditionBlock") || n(".radio_block.pa_condition").insertAdjacentHTML("afterend", Z);
+          n("#conditionBlock") || n(".radio_block.pa_condition").insertAdjacentHTML("afterend", q);
         });
       });
     }
@@ -1877,14 +1883,14 @@ body {
         if (n(".radio_section")) {
           clearInterval(t);
           let a = e.split("#")[1], c = (o = (l = n(e)) == null ? void 0 : l.closest("div").querySelector(".attribute-name")) == null ? void 0 : o.textContent, d = c.toLocaleLowerCase().trim().split(" ").join("_").split("?").join("").split("(").join("").split(")").join("");
-          n(".radio_section").insertAdjacentHTML("beforeend", I(c, a)), s(`.${a}`).then((h) => {
+          n(".radio_section").insertAdjacentHTML("beforeend", j(c, a)), s(`.${a}`).then((h) => {
             var r;
             (r = _(`${e} option`)) == null || r.forEach((w) => {
-              var x;
+              var k;
               n(`.${a} .radio_option_wrapp`).insertAdjacentHTML(
                 "beforeend",
-                E(d, w.value === "" ? `choose_opt_${d}` : w.value, w.textContent)
-              ), (x = n(".rotate_svg")) == null || x.remove();
+                A(d, w.value === "" ? `choose_opt_${d}` : w.value, w.textContent)
+              ), (k = n(".rotate_svg")) == null || k.remove();
             });
           });
         }
@@ -2010,7 +2016,7 @@ body {
       }), a && a.classList.contains("disabled") && a.classList.remove("disabled"), c && !c.classList.contains("is_hidden") && c.classList.add("is_hidden"), d && d.classList.contains("is_hidden") && d.classList.remove("is_hidden"));
     }
     renderNewStickyBlock() {
-      n(".new_sticky_block") || n("body").insertAdjacentHTML("afterbegin", j);
+      n(".new_sticky_block") || n("body").insertAdjacentHTML("afterbegin", T);
       let e = setInterval(() => {
         if (n(".new_sticky_block") && n(".device_price_wrapper > .woocommerce-variation-price bdi")) {
           clearInterval(e);
@@ -2028,12 +2034,12 @@ body {
     }
     renderHowItWorksSection() {
       var e;
-      n("#howItWorksSection") || (e = n(".product.type-product")) == null || e.insertAdjacentHTML("afterend", S);
+      n("#howItWorksSection") || (e = n(".product.type-product")) == null || e.insertAdjacentHTML("afterend", B);
     }
     renderFrequentlyAskedQuestionSection() {
       let e = setTimeout(() => {
         var t;
-        n("#howItWorksSection") && (clearInterval(e), n("#frequentlyAskedQuestionSection") || (t = n("#howItWorksSection")) == null || t.insertAdjacentHTML("afterend", B));
+        n("#howItWorksSection") && (clearInterval(e), n("#frequentlyAskedQuestionSection") || (t = n("#howItWorksSection")) == null || t.insertAdjacentHTML("afterend", E));
       }, 100);
       this.initAccordionQuestions();
     }
@@ -2077,6 +2083,6 @@ body {
       });
     }
   }
-  new z(T);
+  new D(W);
 })();
 //# sourceMappingURL=index.js.map
