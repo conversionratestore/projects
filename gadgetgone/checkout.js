@@ -2115,7 +2115,8 @@
 
     .continue-btn {
       border-radius: 100px;
-      background: var(--Green-Green-new, #63DD1A);
+      background: var(--Green-Green-new, #63DD1A) !important;
+      border:0;
       padding: 1rem 2.375rem;
       color: #FFF;
       text-align: center;
