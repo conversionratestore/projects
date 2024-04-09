@@ -948,7 +948,7 @@
         display: block;
       }
 
-      [type=radio]:checked+label[for="payment_type_gift-card-bonus"].radio span.label-description {
+      [type=radio]:checked+label.radio span.label-description {
         display: none !important;
       }
 
