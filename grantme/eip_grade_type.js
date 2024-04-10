@@ -2137,7 +2137,7 @@
       }), this.device === "mobile" && Ar(window, (s, l) => {
         s > 150 && l === "up" && this.showPopup();
       });
-      const i = this.device === "desktop" ? 20 : 30, a = setTimeout(() => {
+      const i = this.device === "desktop" ? 60 : 60, a = setTimeout(() => {
         this.showPopup();
       }, i * 1e3);
       G("body").on("click", ".day.has-event", () => {
