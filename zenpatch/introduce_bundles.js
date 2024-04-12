@@ -159,7 +159,7 @@ li.list-packs p.strikethrough {
   color: #6f6f6f;
   font-family: "Roboto", sans-serif !important;
   font-size: 12px !important;
-  line-height: 129% !important;
+  line-height: 128% !important;
 }
 li.list-packs p.after-price {
   color: #0c0b0b;
