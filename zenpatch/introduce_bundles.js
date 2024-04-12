@@ -1,0 +1,741 @@
+(function() {
+  "use strict";
+  const c = (e, t, n, i = "") => {
+    window.dataLayer = window.dataLayer || [], window.dataLayer.push({
+      event: "event-to-ga4",
+      event_name: e,
+      event_desc: t,
+      event_type: n,
+      event_loc: i
+    }), console.log(`Event: ${e} | ${t} | ${n} | ${i}`);
+  }, b = ({ name: e, dev: t }) => {
+    console.log(
+      `%c EXP: ${e} (DEV: ${t})`,
+      "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
+    );
+  }, a = (e) => document.querySelectorAll(e), o = (e) => document.querySelector(e), x = async (e) => {
+    const t = (n) => new Promise((i, l) => {
+      const s = n.split(".").pop();
+      if (s === "js") {
+        if (Array.from(document.scripts).map((p) => p.src.toLowerCase()).includes(n.toLowerCase()))
+          return console.log(`Script ${n} allready downloaded!`), i("");
+        const r = document.createElement("script");
+        r.src = n, r.onload = i, r.onerror = l, document.head.appendChild(r);
+      } else if (s === "css") {
+        if (Array.from(document.styleSheets).map((p) => {
+          var g;
+          return (g = p.href) == null ? void 0 : g.toLowerCase();
+        }).includes(n.toLowerCase()))
+          return console.log(`Style ${n} allready downloaded!`), i("");
+        const r = document.createElement("link");
+        r.rel = "stylesheet", r.href = n, r.onload = i, r.onerror = l, document.head.appendChild(r);
+      }
+    });
+    for (const n of e)
+      await t(n), console.log(`Loaded librari ${n}`);
+    console.log("All libraries loaded!");
+  }, k = (e) => {
+    let t = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", e, "variant_1"));
+    }, 1e3);
+  }, u = (e, t, n, i, l = 3e3, s = 0.5) => {
+    let h, r;
+    if (h = new IntersectionObserver(
+      function(p) {
+        p[0].isIntersecting === !0 ? r = setTimeout(() => {
+          c(
+            t,
+            p[0].target.dataset.visible || i || "",
+            "visibility",
+            n
+          ), h.disconnect();
+        }, l) : clearTimeout(r);
+      },
+      { threshold: [s] }
+    ), typeof e == "string") {
+      const p = document.querySelector(e);
+      p && h.observe(p);
+    } else
+      h.observe(e);
+  };
+  function d(e) {
+    return new Promise((t) => {
+      if (document.querySelector(e))
+        return t(document.querySelector(e));
+      const n = new MutationObserver(() => {
+        document.querySelector(e) && (t(document.querySelector(e)), n.disconnect());
+      });
+      n.observe(document.documentElement, {
+        childList: !0,
+        subtree: !0,
+        characterData: !0
+      });
+    });
+  }
+  const w = `.info_subscription {
+  margin: 8px 0 12px;
+  max-width: 300px;
+}
+.info_subscription p {
+  color: #0c0b0b;
+  text-align: center;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+.new_checkout_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 56px;
+  border-radius: 60px;
+  background: #2a7b72;
+  color: #fefefe;
+  font-family: "DINEngschrift LT", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+}
+.new_checkout_btn:hover {
+  background-color: #0c0b0b;
+  color: #515151;
+  text-decoration: unset;
+}
+.new_checkout_btn:active {
+  background-color: #0c0b0b;
+  color: #fff;
+  text-decoration: unset;
+}
+
+body #cons .magicpatch-packs > ul {
+  gap: 4px !important;
+}
+
+li.list-packs {
+  border-radius: 6px;
+  border: 1px solid #eceef0;
+  background: #fff !important;
+  box-shadow: 0px 2px 4px 0px rgba(12, 11, 11, 0.1), 0px 12px 32px 0px rgba(0, 0, 0, 0.05);
+}
+li.list-packs.active-slide {
+  outline: unset;
+  border: 2px solid #2a7b72;
+  background: #ecf2f1;
+  background-color: #ecf2f1 !important;
+  box-shadow: 0px 2px 4px 0px rgba(12, 11, 11, 0.1), 0px 12px 32px 0px rgba(0, 0, 0, 0.05);
+}
+li.list-packs .sticker-image {
+  border-radius: 3px;
+  border: 1px solid #eceef0;
+  background: #fff;
+  padding: 0;
+  max-width: 64px !important;
+  max-height: 64px;
+}
+li.list-packs .sticker-image img {
+  max-height: 64px;
+}
+li.list-packs .stickers-prices {
+  gap: 8px;
+}
+li.list-packs p.pcs {
+  color: #6f6f6f;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 130% !important;
+  margin: 4px 0;
+}
+li.list-packs .before-after-prices {
+  gap: 4px;
+}
+li.list-packs p.strikethrough {
+  color: #6f6f6f;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 12px !important;
+  line-height: 129% !important;
+}
+li.list-packs p.after-price {
+  color: #0c0b0b;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 130% !important;
+}
+li.list-packs.list-packs-bundle {
+  position: relative;
+}
+li.list-packs.list-packs-bundle [data-tippy-root] {
+  right: -5px !important;
+  left: unset !important;
+  z-index: 6 !important;
+}
+li.list-packs.list-packs-bundle .tippy-content {
+  padding: 16px;
+}
+li.list-packs.list-packs-bundle .tippy-box {
+  background-color: #fff;
+  filter: drop-shadow(0px 12px 32px rgba(0, 0, 0, 0.1));
+  max-width: 325px !important;
+  border-radius: 8px;
+}
+li.list-packs.list-packs-bundle .tippy-box[data-placement^=top] > .tippy-arrow {
+  border-top-color: #fff;
+  left: unset !important;
+}
+li.list-packs.list-packs-bundle .tippy-box[data-placement^=top] > .tippy-arrow::before {
+  border-top-color: white;
+}
+li.list-packs.list-packs-bundle .tippy-box[data-placement^=bottom] > .tippy-arrow {
+  border-bottom-color: #fff;
+  left: initial;
+}
+li.list-packs.list-packs-bundle .tippy-box[data-placement^=bottom] > .tippy-arrow::before {
+  border-bottom-color: white;
+}
+li.list-packs.list-packs-bundle .tippy-arrow {
+  display: block;
+}
+li.list-packs.list-packs-bundle .tippy-popper {
+  max-width: 100%;
+  /*
+  top: 12px !important;
+  */
+  left: 5px !important;
+  z-index: 3 !important;
+}
+li.list-packs.list-packs-bundle p.pack-name {
+  color: #2a7b72;
+  font-family: "DINEngschrift LT", sans-serif;
+  font-size: 20px !important;
+  line-height: 110% !important;
+  letter-spacing: 0.4px;
+}
+li.list-packs.list-packs-bundle .tooltip_zone {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  bottom: 0;
+  width: 45px;
+  height: 45px;
+  z-index: 2;
+}
+li.list-packs.list-packs-bundle .tooltip_zone .tooltip_bgr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 40px;
+  background: #0091d7;
+}
+
+.tooltip_block .tooltip_info {
+  display: flex;
+  gap: 14px;
+}
+.tooltip_block .tooltip_info img {
+  width: 100%;
+  height: 100%;
+  max-width: 80px !important;
+  max-height: 80px !important;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  background: #fff;
+}
+.tooltip_block .tooltip_info .main_title_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 9px;
+}
+.tooltip_block .tooltip_info h2 {
+  color: #222;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+  text-transform: initial;
+  margin: 0;
+}
+.tooltip_block .tooltip_info .stars_wrapper {
+  display: flex;
+}
+.tooltip_block .tooltip_info .stars_wrapper svg {
+  width: 16px;
+  height: 16px;
+}
+.tooltip_block .tooltip_info h3 {
+  color: #515151;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 400;
+  text-transform: initial;
+  margin: 4px 0;
+}
+.tooltip_block .tooltip_info p {
+  color: #0c0b0b;
+  font-family: "Barlow";
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 18px !important;
+  letter-spacing: normal;
+  text-transform: uppercase;
+}
+.tooltip_block .tooltip_txt {
+  color: #515151;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  margin-top: 14px;
+  letter-spacing: normal;
+}
+
+#cons {
+  padding: 0 !important;
+  background-color: #fcfcfa !important;
+  display: flex;
+  flex-direction: column;
+}
+#cons #slideInCartHeader {
+  padding: 16px 16px 4px 16px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+  max-width: 100%;
+  background: #f9f9f7;
+  z-index: 3;
+}
+#cons #slideInCartHeader .title-logo {
+  margin: 0 !important;
+}
+#cons #slideInCartHeader .title-logo .slide-logo {
+  color: #212529;
+  font-family: "DINEngschrift LT", sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 110%;
+  letter-spacing: 0.52px;
+  text-transform: uppercase;
+}
+#cons #slideInCartScroll {
+  position: relative;
+  max-width: 100%;
+  padding: 61px 16px 32px;
+  overflow-y: auto;
+}
+#cons #slideInCartScroll.is_checked {
+  overflow-y: auto;
+}
+#cons #slideInCartScroll .close-btn {
+  max-height: 24px;
+}
+#cons #slideInCartFooter {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 100%;
+  background: #fff;
+  box-shadow: 12px 0px 32px 0px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  z-index: 3;
+  margin: auto 0 0;
+}
+#cons #slideInCartFooter .view-prices {
+  margin: 0 !important;
+}
+
+body #purchase .js-heading > h2 {
+  color: #0c0b0b;
+  font-family: "DINEngschrift LT", sans-serif;
+  font-size: 32px !important;
+  font-weight: 400 !important;
+  line-height: 40px;
+  letter-spacing: 0.64px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+body #getNow .free-shipping-checkout {
+  margin: 0 0 16px;
+}
+
+#purchase .magicpatch-packs + .view-prices {
+  padding: 0 20px;
+  margin-top: 24px;
+}
+
+body .view-prices {
+  gap: initial;
+}
+body .view-prices h3 {
+  color: #0c0b0b;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  line-height: 28px;
+  margin-bottom: 2px;
+  letter-spacing: initial;
+}
+body .view-prices > p {
+  color: #6f6f6f;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 20px !important;
+  letter-spacing: initial;
+}
+body .view-prices .np-one-pack {
+  color: #0c0b0b;
+  font-family: "Roboto", sans-serif !important;
+  line-height: 20px !important;
+  margin: 8px 0 4px;
+  letter-spacing: initial;
+  max-width: 270px;
+}
+body .view-prices .rtx-subscription-label__header {
+  color: #2a7b72;
+  font-family: "Roboto", sans-serif !important;
+  line-height: 24px;
+  text-decoration-line: underline;
+  letter-spacing: initial;
+  text-align: center;
+  margin: 8px 0 2px;
+}
+body .view-prices .v-pack-select-label {
+  color: #0c0b0b;
+  letter-spacing: initial;
+}
+body .view-prices .sale-price__label {
+  font-family: "Roboto", sans-serif !important;
+  line-height: 20px;
+}
+body .view-prices .sale-price__label span {
+  font-weight: 700;
+}
+body .view-prices #no-icart-open {
+  width: 100%;
+  max-width: 100%;
+  height: 56px;
+  color: #fefefe;
+  text-align: center;
+  font-family: "DINEngschrift LT", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  border-radius: 60px;
+  background: #2a7b72;
+  box-shadow: none;
+  margin-top: 8px;
+}
+
+body .reviews-slide {
+  padding: 0 !important;
+  margin: 16px 0 0 !important;
+}
+body .reviews-slide img.days {
+  margin: 0 !important;
+  max-width: 267px !important;
+}
+
+@media (max-width: 376px) {
+  #cons .tippy-content {
+    padding: 10px;
+  }
+  #cons .tooltip_txt {
+    margin-top: 5px;
+    font-size: 12px !important;
+  }
+}/*# sourceMappingURL=main.css.map */`, m = "https://conversionratestore.github.io/projects/zenpatch", f = {
+    tooltip: (
+      /* HTML */
+      `
+    <svg class="tooltip_icon" xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 6 12" fill="none">
+      <path
+        class="path_var"
+        d="M2 10.2953H4V12H2V10.2953ZM0 2.54039C0 2.19499 0.0784317 1.8663 0.235294 1.55432C0.392157 1.24234 0.607843 0.974931 0.882353 0.75209C1.15686 0.518107 1.47712 0.334263 1.84314 0.200558C2.20915 0.0668529 2.60131 0 3.01961 0C3.50327 0 3.94118 0.0835661 4.33333 0.250698C4.73856 0.417828 5.0719 0.651811 5.33333 0.952647C5.46405 1.10864 5.56863 1.25348 5.64706 1.38719C5.73856 1.52089 5.81046 1.66574 5.86275 1.82173C5.91503 1.96657 5.94771 2.1337 5.96078 2.32312C5.98693 2.51253 6 2.73538 6 2.99164C6 3.28134 5.99346 3.52646 5.98039 3.72702C5.98039 3.91644 5.96732 4.08357 5.94118 4.22841C5.91503 4.37326 5.88235 4.50139 5.84314 4.61281C5.80392 4.71309 5.75163 4.8078 5.68627 4.89694L4.33333 6.86908C4.24183 7.00279 4.1634 7.14206 4.09804 7.28691C4.03268 7.42061 4 7.56546 4 7.72145V9.0585H2V7.50418C2 7.25905 2.04575 7.02507 2.13725 6.80223C2.22876 6.57939 2.3464 6.36212 2.4902 6.15042L3.7451 4.41226C3.84967 4.26741 3.91503 4.11142 3.94118 3.94429C3.98039 3.77716 4 3.61003 4 3.4429V2.5571C4 2.32312 3.90196 2.12256 3.70588 1.95543C3.52288 1.7883 3.29412 1.70474 3.01961 1.70474C2.78431 1.70474 2.55556 1.77716 2.33333 1.92201C2.11111 2.06685 2 2.27855 2 2.5571V3.52646H0V2.54039Z"
+        fill="white"
+      />
+    </svg>
+  `
+    ),
+    star: `
+    <svg class='star_icon' xmlns='http://www.w3.org/2000/svg' width='17' height='15' viewBox='0 0 17 15' fill='none'>
+      <path
+        d='M8.51514 0L10.8663 4.76393L16.1236 5.52786L12.3194 9.23607L13.2174 14.4721L8.51514 12L3.81285 14.4721L4.71091 9.23607L0.906684 5.52786L6.164 4.76393L8.51514 0Z'
+        fill='#F4BE00'
+      />
+    </svg>
+  `
+  }, y = {
+    promoting: `
+  <div class='tooltip_block'>
+    <div class='tooltip_info'>
+      <img src='${m}/img/tooltip_img_bundles.png' class='ls-is-cached lazyloaded'/>
+      <div>
+        <div class='main_title_wrapper'>
+          <h2>SleepyPatch</h2>
+          <div class='stars_wrapper'>${f.star}${f.star}${f.star}${f.star}${f.star}</div>
+        </div>
+        <h3>Sleep Promoting Stickers</h3>
+        <p>24 patches for bedtime</p>
+      </div>
+    </div>
+    <p class='tooltip_txt'>
+      Active Ingredients: Mandarin, Lavender, Sweet Marjoram, Vetiver, Essential Oils ensure the SleepyPatch improves
+      sleep quality within 30 minutes, working for 8 - 10 hours, as supported by research.
+    </p>
+  </div>`
+  }, v = (e, t, n) => (
+    /* HTML */
+    `
+    <li class="list-packs list-packs-bundle" data-pack="bundle" data-id="43053597229100">
+      <div class="stickers-prices">
+        <div class="sticker-image">
+          <img src="${m}/img/bundles_img.png" class="ls-is-cached lazyloaded" />
+        </div>
+
+        <div class="info">
+          <p class="pack-name">All-in-one stress-relief kit</p>
+          <p class="pcs pcs-bundle">3 Packs + 24 Bedtime Stickers</p>
+          <div class="before-after-prices">
+            <p class="strikethrough">
+              <span class="reg-price-bundle" data-price="${t}" data-subscription-price="${t}"
+                >${e}${t}</span
+              >
+            </p>
+            <p class="after-price">
+              <span class="save-price-bundle" data-price="${n}" data-subscription-price="${n}"
+                >${e}${n}</span
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="tooltip_zone" data-tooltip data-title="${y.promoting}">
+        <div class="tooltip_bgr">${f.tooltip}</div>
+      </div>
+    </li>
+  `
+  );
+  b({ name: "Introduce bundle on the page", dev: "SKh" }), k("exp_introduce");
+  const _ = window.innerWidth < 768 ? "mobile" : "desktop";
+  class C {
+    constructor(t) {
+      this.device = t, this.singleClick = !0, this.currency = o(".all-in-one-bundle span").getAttribute("data-currency"), this.salePrice = o(".all-in-one-bundle span").getAttribute("data-price"), this.regularPrice = o(".all-in-one-bundle span").getAttribute("data-price-compare"), this.offPrice = o(".all-in-one-bundle span").getAttribute("data-price-off"), this.savePrice = o(".all-in-one-bundle span").getAttribute("data-price-save"), this.init();
+    }
+    init() {
+      this.device === "mobile" && (document.head.insertAdjacentHTML(
+        "beforeend",
+        '<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Noto+Sans+SC:wght@100..900&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">'
+      ), document.head.insertAdjacentHTML("beforeend", `<style>${w}</style>`), this.replaceElemsSlideInCart(), this.renderNewBundleItem(), this.addClickOldPaksHandler(), this.addClickBtnsOpenSlideInCartHandler(), d(".list-packs-bundle").then((t) => {
+        this.initTooltip(), this.addClickNewBundleHandlers();
+      }), this.addClassScrollBlock(), window.addEventListener("resize", () => {
+        this.getHeightSlideInCartScroll();
+      }), this.visibleHandler());
+    }
+    replaceElemsSlideInCart() {
+      o("#cons").insertAdjacentHTML(
+        "afterbegin",
+        '<div id="slideInCartScroll"><div class="scroll_wrapper"></div></div>'
+      ), o("#cons").insertAdjacentHTML("afterbegin", '<div id="slideInCartHeader"></div>'), o("#cons").insertAdjacentHTML("beforeend", '<div id="slideInCartFooter"></div>'), d("#slideInCartHeader").then((t) => {
+        o("#slideInCartHeader").insertAdjacentElement("afterbegin", o("#cons .title-logo"));
+      }), d("#slideInCartScroll").then((t) => {
+        o("#slideInCartScroll .scroll_wrapper").insertAdjacentElement("beforeend", o("#cons .magicpatch-packs"));
+      }), d("#slideInCartFooter").then((t) => {
+        o("#slideInCartFooter").insertAdjacentElement("afterbegin", o("#cons .view-prices")), o("#slideInCartFooter").insertAdjacentElement("beforeend", o("#cons .reviews-slide"));
+      }), a(".reviews-slide img").forEach((t) => {
+        t.src = `${m}/img/new_logos.png`;
+      }), a(".close-btn").forEach((t) => {
+        t.src = `${m}/img/close_icon.svg`;
+      }), a(".np-one-pack").forEach((t) => {
+        t.innerHTML = "Select 2, 3 or 4 packs to subscribe with an <b>extra 15% off</b> - <span>save time and money</span>";
+      });
+    }
+    renderNewBundleItem() {
+      a(".list-packs.list-packs-3").forEach((t) => {
+        t.nextElementSibling.classList.contains("list-packs-bundle") || (t.insertAdjacentHTML("afterend", v(this.currency, this.regularPrice, this.salePrice)), this.getHeightSlideInCartScroll());
+      });
+    }
+    addClickOldPaksHandler() {
+      a(".list-packs").forEach((t) => {
+        t.addEventListener("click", () => {
+          t.classList.contains("list-packs-bundle") || this.removeOrChangeElems(), setTimeout(() => {
+            this.getHeightSlideInCartScroll();
+          }, 500);
+        });
+      });
+    }
+    addClickBtnsOpenSlideInCartHandler() {
+      a("#open").forEach((t) => {
+        t.addEventListener("click", () => {
+          this.removeOrChangeElems(), this.getHeightSlideInCartScroll();
+        });
+      });
+    }
+    removeOrChangeElems() {
+      this.singleClick = !0, a(".info_subscription").forEach((t) => {
+        t.remove();
+      }), a(".new_checkout_btn").forEach((t) => {
+        t.remove();
+      }), a("#no-icart-open").forEach((t) => {
+        t.style.display = "block";
+      });
+    }
+    addClickNewBundleHandlers() {
+      const t = a(".list-packs-bundle");
+      let n;
+      t.forEach((i) => {
+        i.addEventListener("click", (l) => {
+          !l.target.classList.contains("tooltip_zone") && !l.target.classList.contains("tooltip_bgr") && !l.target.classList.contains("tooltip_icon") && !l.target.classList.contains("path_var") && (a(".list-packs").forEach((s) => {
+            !s.classList.contains("list-packs-bundle") && s.classList.contains("active-slide") && s.classList.remove("active-slide"), s.classList.contains("list-packs-bundle") && s.classList.add("active-slide");
+          }), !n && this.singleClick ? n = setTimeout(() => {
+            n = null, this.singleClick = !1, this.clickBundleHandler(i);
+          }, 300) : (clearTimeout(n), n = null, this.doubleClickBundleHandler(i, 43053597229100), this.singleClick = !0));
+        });
+      });
+    }
+    clickBundleHandler(t) {
+      t.closest("#cons") ? c("exp_introduce_packs_02", "Click List Packs Bundle", "Button", "Slide-in Cart") : c("exp_introduce_packs_01", "Click List Packs Bundle", "Button", "Shopping section Stock up and save"), a(".view-prices").forEach((n) => {
+        n.querySelector(".info_subscription") || n.querySelector(".stay-container").insertAdjacentHTML(
+          "beforebegin",
+          '<div class="info_subscription"><p>Subscription is available for 2, 3, or 4 packs of ZenPatch only</p></div>'
+        ), n.querySelector(".new_checkout_btn") || (n.querySelector("#no-icart-open").insertAdjacentHTML(
+          "beforebegin",
+          '<a class="new_checkout_btn" href="#">PROCEED TO CHECKOUT</a>'
+        ), this.clickNewCheckoutBtnHandler()), n.querySelector("#no-icart-open").style.display = "none", n.querySelector(".stay-container .np-multiple-pack").style.display = "none", n.querySelector(".stay-container .np-one-pack").style.display = "none", n.querySelector(".sale-price").textContent = this.salePrice, n.querySelector(".off-price").textContent = this.offPrice, n.querySelector(".line-through").textContent = this.currency, n.querySelector(".strikethrough-lg").textContent = this.regularPrice, n.querySelector(".text-save").textContent = `${this.currency}${this.savePrice}`;
+      });
+    }
+    async doubleClickBundleHandler(t, n, i = !1) {
+      t.closest("#cons") ? t.closest(".new_checkout_btn") ? c("exp_introduce_link_02", "Click PROCEED TO CHECKOUT", "Button", "Slide-in Cart") : c("exp_introduce_packs_04", "Double Click List Packs Bundle", "Button", "Slide-in Cart") : t.closest("#getNow") && (t.closest(".new_checkout_btn") ? c("exp_introduce_link_01", "Click PROCEED TO CHECKOUT", "Button", "Shopping section Stock up and save") : c(
+        "exp_introduce_packs_03",
+        "Double Click List Packs Bundle",
+        "Button",
+        "Shopping section Stock up and save"
+      )), i || await fetch("/cart/clear.js", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).then((s) => s.json()).catch((s) => {
+        console.error("Error:", s);
+      }), await fetch("/cart/add.js", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          items: [
+            {
+              id: n,
+              quantity: 1
+            }
+          ]
+        })
+      }).then((s) => {
+        s.json(), setTimeout(() => {
+          window.location.href = "/checkout";
+        }, 400);
+      }).catch((s) => {
+        console.error("Error:", s);
+      });
+    }
+    clickNewCheckoutBtnHandler() {
+      a(".new_checkout_btn").forEach((t) => {
+        t.addEventListener("click", (n) => {
+          n.preventDefault(), n.target.getAttribute("data-test") || this.doubleClickBundleHandler(t, 43053597229100, !0), n.target.setAttribute("data-test", "1"), setTimeout(() => {
+            n.target.getAttribute("data-test") && n.target.removeAttribute("data-test");
+          }, 1e3);
+        });
+      });
+    }
+    initTooltip() {
+      x([
+        "https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js",
+        "https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"
+      ]).then(async () => {
+        let t = setInterval(() => {
+          typeof tippy == "function" && (clearInterval(t), console.log(">>>>>>>>>>>>>>>>>>>>>>."), a("[data-tooltip]").forEach((n) => {
+            tippy(n, {
+              content: n.getAttribute("data-title"),
+              trigger: "click",
+              allowHTML: !0,
+              arrow: !0,
+              arrowType: "round",
+              appendTo: function() {
+                return n.closest("li");
+              },
+              placement: "top-end",
+              interactive: !0,
+              onShow(i) {
+                n.closest("#cons") ? u(
+                  i.reference,
+                  "exp_introduce_tooltip_02",
+                  "Tooltip All-in-one stress-relief kit",
+                  "Slide-in Cart"
+                ) : u(
+                  i.reference,
+                  "exp_introduce_tooltip_01",
+                  "Tooltip All-in-one stress-relief kit",
+                  "Shopping section Stock up and save"
+                );
+              },
+              onTrigger(i) {
+                n.closest("#cons") ? c("exp_introduce_button_02", "All-in-one stress-relief kit", "Button", "Slide-in Cart") : c(
+                  "exp_introduce_button_01",
+                  "All-in-one stress-relief kit",
+                  "Button",
+                  "Shopping section Stock up and save"
+                );
+              }
+            });
+          }));
+        }, 100);
+      });
+    }
+    addClassScrollBlock() {
+      var t;
+      (t = a('[for="rtxSubscribe"]')) == null || t.forEach((n) => {
+        n.addEventListener("click", () => {
+          this.getHeightSlideInCartScroll();
+        });
+      });
+    }
+    getHeightSlideInCartScroll() {
+      d("#slideInCartScroll").then((t) => {
+        var n, i;
+        o("#slideInCartScroll").style.maxHeight = `${((n = o("#cons")) == null ? void 0 : n.clientHeight) - ((i = o("#slideInCartFooter")) == null ? void 0 : i.clientHeight) + 12}px`;
+      });
+    }
+    visibleHandler() {
+      d("#getNow .list-packs-bundle").then((t) => {
+        u(
+          "#getNow .list-packs-bundle",
+          "exp_introduce_element_01",
+          "Element",
+          "Shopping section Stock up and save All-in-one stress-relief kit"
+        );
+      }), d("#cons .list-packs-bundle").then((t) => {
+        u("#cons .list-packs-bundle", "exp_introduce_element_02", "Element", "Slide-in Cart");
+      });
+    }
+  }
+  d(".all-in-one-bundle").then((e) => {
+    window.location.pathname.match("pages") && new C(_);
+  });
+})();
+//# sourceMappingURL=index.js.map
