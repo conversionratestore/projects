@@ -739,7 +739,9 @@ body .reviews-slide img.days {
     }
   }
   d(".all-in-one-bundle").then((e) => {
-    window.location.pathname.match("pages") && new C(_);
+    setTimeout(() => {
+      window.location.pathname.match("pages") && new C(_);
+    }, 700);
   });
 })();
 //# sourceMappingURL=index.js.map
