@@ -46,7 +46,7 @@
           c(
             t,
             p[0].target.dataset.visible || i || "",
-            "visibility",
+            "Visibility",
             n
           ), h.disconnect();
         }, l) : clearTimeout(r);
@@ -690,13 +690,13 @@ body .reviews-slide img.days {
                 n.closest("#cons") ? m(
                   i.reference,
                   "exp_introduce_tooltip_02",
-                  "Tooltip All-in-one stress-relief kit",
-                  "Slide-in Cart"
+                  "Slide-in Cart",
+                  "Tooltip All-in-one stress-relief kit"
                 ) : m(
                   i.reference,
                   "exp_introduce_tooltip_01",
-                  "Tooltip All-in-one stress-relief kit",
-                  "Shopping section Stock up and save"
+                  "Shopping section Stock up and save",
+                  "Tooltip All-in-one stress-relief kit"
                 );
               },
               onTrigger(i) {
@@ -731,11 +731,11 @@ body .reviews-slide img.days {
         m(
           "#getNow .list-packs-bundle",
           "exp_introduce_element_01",
-          "Element",
-          "Shopping section Stock up and save All-in-one stress-relief kit"
+          "Shopping section Stock up and save All-in-one stress-relief kit",
+          "Element"
         );
       }), d("#cons .list-packs-bundle").then((t) => {
-        m("#cons .list-packs-bundle", "exp_introduce_element_02", "Element", "Slide-in Cart");
+        m("#cons .list-packs-bundle", "exp_introduce_element_02", "Slide-in Cart", "Element");
       });
     }
   }
