@@ -38,7 +38,7 @@
     let t = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, u = (e, t, n, i, l = 3e3, s = 0.5) => {
+  }, m = (e, t, n, i, l = 3e3, s = 0.5) => {
     let h, r;
     if (h = new IntersectionObserver(
       function(p) {
@@ -151,6 +151,8 @@ li.list-packs p.pcs {
   font-size: 14px !important;
   line-height: 130% !important;
   margin: 4px 0;
+  width: -moz-max-content;
+  width: max-content;
 }
 li.list-packs .before-after-prices {
   gap: 4px;
@@ -462,7 +464,7 @@ body .reviews-slide img.days {
     margin-top: 5px;
     font-size: 12px !important;
   }
-}/*# sourceMappingURL=main.css.map */`, m = "https://conversionratestore.github.io/projects/zenpatch", f = {
+}/*# sourceMappingURL=main.css.map */`, u = "https://conversionratestore.github.io/projects/zenpatch", f = {
     tooltip: (
       /* HTML */
       `
@@ -487,7 +489,7 @@ body .reviews-slide img.days {
     promoting: `
   <div class='tooltip_block'>
     <div class='tooltip_info'>
-      <img src='${m}/img/tooltip_img_bundles.png' class='ls-is-cached lazyloaded'/>
+      <img src='${u}/img/tooltip_img_bundles.png' class='ls-is-cached lazyloaded'/>
       <div>
         <div class='main_title_wrapper'>
           <h2>SleepyPatch</h2>
@@ -508,7 +510,7 @@ body .reviews-slide img.days {
     <li class="list-packs list-packs-bundle" data-pack="bundle" data-id="43053597229100">
       <div class="stickers-prices">
         <div class="sticker-image">
-          <img src="${m}/img/bundles_img.png" class="ls-is-cached lazyloaded" />
+          <img src="${u}/img/bundles_img.png" class="ls-is-cached lazyloaded" />
         </div>
 
         <div class="info">
@@ -561,9 +563,9 @@ body .reviews-slide img.days {
       }), d("#slideInCartFooter").then((t) => {
         o("#slideInCartFooter").insertAdjacentElement("afterbegin", o("#cons .view-prices")), o("#slideInCartFooter").insertAdjacentElement("beforeend", o("#cons .reviews-slide"));
       }), a(".reviews-slide img").forEach((t) => {
-        t.src = `${m}/img/new_logos.png`;
+        t.src = `${u}/img/new_logos.png`;
       }), a(".close-btn").forEach((t) => {
-        t.src = `${m}/img/close_icon.svg`;
+        t.src = `${u}/img/close_icon.svg`;
       }), a(".np-one-pack").forEach((t) => {
         t.innerHTML = "Select 2, 3 or 4 packs to subscribe with an <b>extra 15% off</b> - <span>save time and money</span>";
       });
@@ -684,12 +686,12 @@ body .reviews-slide img.days {
               placement: "top-end",
               interactive: !0,
               onShow(i) {
-                n.closest("#cons") ? u(
+                n.closest("#cons") ? m(
                   i.reference,
                   "exp_introduce_tooltip_02",
                   "Tooltip All-in-one stress-relief kit",
                   "Slide-in Cart"
-                ) : u(
+                ) : m(
                   i.reference,
                   "exp_introduce_tooltip_01",
                   "Tooltip All-in-one stress-relief kit",
@@ -725,14 +727,14 @@ body .reviews-slide img.days {
     }
     visibleHandler() {
       d("#getNow .list-packs-bundle").then((t) => {
-        u(
+        m(
           "#getNow .list-packs-bundle",
           "exp_introduce_element_01",
           "Element",
           "Shopping section Stock up and save All-in-one stress-relief kit"
         );
       }), d("#cons .list-packs-bundle").then((t) => {
-        u("#cons .list-packs-bundle", "exp_introduce_element_02", "Element", "Slide-in Cart");
+        m("#cons .list-packs-bundle", "exp_introduce_element_02", "Element", "Slide-in Cart");
       });
     }
   }
