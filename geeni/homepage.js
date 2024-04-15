@@ -1,71 +1,71 @@
 (function() {
   "use strict";
-  const g = (t, l, e, r = "") => {
+  const g = (t, a, e, l = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: t,
-      event_desc: l,
+      event_desc: a,
       event_type: e,
-      event_loc: r
-    }), console.log(`Event: ${t} | ${l} | ${e} | ${r}`);
-  }, w = ({ name: t, dev: l }) => {
+      event_loc: l
+    }), console.log(`Event: ${t} | ${a} | ${e} | ${l}`);
+  }, w = ({ name: t, dev: a }) => {
     console.log(
-      `%c EXP: ${t} (DEV: ${l})`,
+      `%c EXP: ${t} (DEV: ${a})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   }, h = async (t) => {
-    const l = (e) => new Promise((r, a) => {
-      const n = e.split(".").pop();
-      if (n === "js") {
-        if (Array.from(document.scripts).map((i) => i.src.toLowerCase()).includes(e.toLowerCase()))
-          return console.log(`Script ${e} allready downloaded!`), r("");
+    const a = (e) => new Promise((l, n) => {
+      const i = e.split(".").pop();
+      if (i === "js") {
+        if (Array.from(document.scripts).map((r) => r.src.toLowerCase()).includes(e.toLowerCase()))
+          return console.log(`Script ${e} allready downloaded!`), l("");
         const d = document.createElement("script");
-        d.src = e, d.onload = r, d.onerror = a, document.head.appendChild(d);
-      } else if (n === "css") {
-        if (Array.from(document.styleSheets).map((i) => {
+        d.src = e, d.onload = l, d.onerror = n, document.head.appendChild(d);
+      } else if (i === "css") {
+        if (Array.from(document.styleSheets).map((r) => {
           var p;
-          return (p = i.href) == null ? void 0 : p.toLowerCase();
+          return (p = r.href) == null ? void 0 : p.toLowerCase();
         }).includes(e.toLowerCase()))
-          return console.log(`Style ${e} allready downloaded!`), r("");
+          return console.log(`Style ${e} allready downloaded!`), l("");
         const d = document.createElement("link");
-        d.rel = "stylesheet", d.href = e, d.onload = r, d.onerror = a, document.head.appendChild(d);
+        d.rel = "stylesheet", d.href = e, d.onload = l, d.onerror = n, document.head.appendChild(d);
       }
     });
     for (const e of t)
-      await l(e), console.log(`Loaded librari ${e}`);
+      await a(e), console.log(`Loaded librari ${e}`);
     console.log("All libraries loaded!");
   }, y = (t) => {
-    let l = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(l), window.clarity("set", t, "variant_1"));
+    let a = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(a), window.clarity("set", t, "variant_1"));
     }, 1e3);
-  }, u = (t, l, e, r, a = 3e3, n = 1) => {
+  }, u = (t, a, e, l, n = 3e3, i = 1) => {
     let s, d;
     if (s = new IntersectionObserver(
-      function(i) {
-        i[0].isIntersecting === !0 ? d = setTimeout(() => {
+      function(r) {
+        r[0].isIntersecting === !0 ? d = setTimeout(() => {
           g(
-            l,
-            i[0].target.dataset.visible || r || "",
+            a,
+            r[0].target.dataset.visible || l || "",
             "Visibility",
             e
           ), s.disconnect();
-        }, a) : (console.log("Element is not fully visible"), clearTimeout(d));
+        }, n) : (console.log("Element is not fully visible"), clearTimeout(d));
       },
-      { threshold: [n] }
+      { threshold: [i] }
     ), typeof t == "string") {
-      const i = document.querySelector(t);
-      i && s.observe(i);
+      const r = document.querySelector(t);
+      r && s.observe(r);
     } else
       s.observe(t);
-  }, c = (t) => new Promise((l) => {
+  }, c = (t) => new Promise((a) => {
     const e = document.querySelector(t);
     if (e)
-      return l(e);
-    const r = new MutationObserver(() => {
-      const a = document.querySelector(t);
-      a && (l(a), r.disconnect());
+      return a(e);
+    const l = new MutationObserver(() => {
+      const n = document.querySelector(t);
+      n && (a(n), l.disconnect());
     });
-    r.observe(document.documentElement, {
+    l.observe(document.documentElement, {
       childList: !0,
       subtree: !0
     });
@@ -1937,77 +1937,74 @@
   );
   y("exp_home_optim"), w({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "Andrii" }), k(), c("head").then((t) => t.insertAdjacentHTML("afterend", b)), c("#shopify-section-template--16970486120700__section-marquee").then((t) => t.insertAdjacentHTML("afterend", F)), S(), $(), T(), c("body").then((t) => t == null ? void 0 : t.classList.add("hide-chat-btn")), c('iframe[title="Messaging window"]').then((t) => {
     new MutationObserver((e) => {
-      var r, a;
-      for (let n of e)
-        n.type === "attributes" && n.attributeName === "tabindex" && (console.log("Tabindex changed to:", t.getAttribute("tabindex")), t.getAttribute("tabindex") === "-1" ? (r = document.querySelector("body")) == null || r.classList.add("hide-chat-btn") : (a = document.querySelector("body")) == null || a.classList.remove("hide-chat-btn"));
+      var l, n;
+      for (let i of e)
+        i.type === "attributes" && i.attributeName === "tabindex" && (console.log("Tabindex changed to:", t.getAttribute("tabindex")), t.getAttribute("tabindex") === "-1" ? (l = document.querySelector("body")) == null || l.classList.add("hide-chat-btn") : (n = document.querySelector("body")) == null || n.classList.remove("hide-chat-btn"));
     }).observe(t, { attributes: !0 });
   }), B(), c(".load-more-btn").then((t) => {
     t.addEventListener("click", () => {
-      const l = document.querySelector(".trusted-load-more");
-      l && l.classList.remove("load-more-btn-visible");
+      const a = document.querySelector(".trusted-load-more");
+      a && a.classList.remove("load-more-btn-visible");
     });
   }), E(), A(), c("body").then((t) => {
-    u(".free-shipping", "exp_home_optim_section_01", "Home Page Free Shipping on Orders Over $69", "Section", 4e3), u(".shop-all .container", "exp_home_optim_section_02", "Home Page Shop by category", "Section"), u(".hero .swiper", "exp_home_optim_section_03", "Home Page Featured products PDP", "Section"), u(".warranty-sale", "exp_home_optim_section_04", "Home Page Benefits", "Section"), t.addEventListener("click", (l) => {
-      var r, a, n;
-      const e = l.target;
+    u(".free-shipping", "exp_home_optim_section_01", "Home Page Free Shipping on Orders Over $69", "Section", 4e3), u(".shop-all .container", "exp_home_optim_section_02", "Home Page Shop by category", "Section"), u(".hero .swiper", "exp_home_optim_section_03", "Home Page Featured products PDP", "Section"), u(".warranty-sale", "exp_home_optim_section_04", "Home Page Benefits", "Section"), t.addEventListener("click", (a) => {
+      var l, n, i;
+      const e = a.target;
       if (e.closest("button.mobile-menu__button") && g("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), e.closest(".shop-all__view") && g("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), e.closest(".menu-items a")) {
-        const s = (r = e.closest(".menu-items a")) == null ? void 0 : r.querySelector("p");
+        const s = (l = e.closest(".menu-items a")) == null ? void 0 : l.querySelector("p");
         g("exp_home_optim_button_05", `${s == null ? void 0 : s.innerText} - choise category`, "Button", "Home Page Shop by category");
       }
       if (e.closest(".hero .product__btn")) {
-        const s = (a = e.closest(".product")) == null ? void 0 : a.querySelector(".product__title");
+        const s = (n = e.closest(".product")) == null ? void 0 : n.querySelector(".product__title");
         g("exp_home_optim_button_06", `${s == null ? void 0 : s.innerText} - Shop now`, "Button", "Home Page Featured products PDP");
       }
       if (e.closest(".hero .product")) {
-        const s = (n = e.closest(".hero .product")) == null ? void 0 : n.querySelector(".product__type");
+        const s = (i = e.closest(".hero .product")) == null ? void 0 : i.querySelector(".product__type");
         g("exp_home_optim_button_07", `${s == null ? void 0 : s.innerText} - Click`, "Button", "Home Page Featured products PDP");
       }
     });
   });
-  function f(t, l) {
-    return fetch(`https://mygeeni.com/products/${t}.json`, {
+  async function f(t, a) {
+    var i;
+    const e = await fetch(`https://mygeeni.com/products/${t}.json`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
       }
-    }).then((e) => {
-      if (!e.ok)
-        throw new Error(`HTTP error! status: ${e.status}`);
-      return e.json();
-    }).then((e) => {
-      var a;
-      const r = e.product;
-      return {
-        title: r.title,
-        product_type: r.product_type,
-        handle: r.handle,
-        price: r.variants[0].price,
-        compare_at_price: r.variants[0].compare_at_price,
-        image_src: r.image.src,
-        description: (a = document.querySelectorAll(".products-list__item__description")[l]) == null ? void 0 : a.innerText
-      };
     });
+    if (!e.ok)
+      throw new Error(`HTTP error! status: ${e.status}`);
+    const n = (await e.json()).product;
+    return {
+      title: n.title,
+      product_type: n.product_type,
+      handle: n.handle,
+      price: n.variants[0].price,
+      compare_at_price: n.variants[0].compare_at_price,
+      image_src: n.image.src,
+      description: (i = document.querySelectorAll(".products-list__item__description")[a]) == null ? void 0 : i.innerText
+    };
   }
   function k() {
-    const t = [], l = [
+    const t = [
       "hawk-3-1080p-hd-outdoor-smart-wi-fi-security-camera-white-2-pack",
       "geeni-look-2-pack-1080p-hd-smart-home-surveillance-system-with-night-vision-motion-detection-2-way-audio-remote-access-with-ios-android-app-no-hub-required-black",
       "geeni-lookout-2k-outdoor-auto-follow-camera"
-    ];
-    document.querySelectorAll(".products-list__container .btn.btn--primary").forEach((n) => {
-      const s = n.href;
-      s && t.push(s.split("https://mygeeni.com/products/")[1]);
+    ], a = [];
+    document.querySelectorAll(".products-list__container .btn.btn--primary").forEach((i) => {
+      const s = i.href;
+      s && a.push(s.split("https://mygeeni.com/products/")[1]);
     });
-    const e = t.map((n, s) => f(n, s));
-    Promise.all(e).then((n) => {
-      console.log(n);
-      const s = n.length, i = (
+    const e = a.map((i, s) => f(i, s));
+    Promise.all(e).then((i) => {
+      console.log(i);
+      const s = i.length, r = (
         /*html*/
         `
       <div class="glide">
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
-            ${n.map((p, m) => (
+            ${i.map((p, m) => (
           /*html*/
           `
         <div class="glide__slide new-arrivals-product">
@@ -2047,11 +2044,11 @@
       </div>
     `
       );
-      c(".new-arrivals .new-arrivals__content").then((p) => p == null ? void 0 : p.insertAdjacentHTML("beforeend", i));
-    }).catch((n) => console.error("Error:", n));
-    const a = (window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0 ? t : l).map((n, s) => f(n, s));
-    Promise.all(a).then((n) => {
-      console.log(n);
+      c(".new-arrivals .new-arrivals__content").then((p) => p == null ? void 0 : p.insertAdjacentHTML("beforeend", r));
+    }).catch((i) => console.error("Error:", i));
+    const n = (window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0 ? a : t).map((i, s) => f(i, s));
+    Promise.all(n).then((i) => {
+      console.log(i);
       const d = (
         /*html*/
         `
@@ -2062,26 +2059,26 @@
               <!-- Additional required wrapper -->
               <div class="swiper-wrapper">
                 <!-- Slides -->
-                ${n.map((i, p) => {
-          const m = i.compare_at_price - i.price, I = Math.round(m / i.compare_at_price * 100), x = m > 0 ? `Save ${I}%` : "", z = i.compare_at_price && i.compare_at_price !== i.price ? `$${i.compare_at_price}` : "", j = i.product_type.toLowerCase().includes("camera") ? "Cameras" : i.product_type;
+                ${i.map((r, p) => {
+          const m = r.compare_at_price - r.price, I = Math.round(m / r.compare_at_price * 100), x = m > 0 ? `Save ${I}%` : "", z = r.compare_at_price && r.compare_at_price !== r.price ? `$${r.compare_at_price}` : "", j = r.product_type.toLowerCase().includes("camera") ? "Cameras" : r.product_type;
           return (
             /*html*/
             `
           <div class="swiper-slide product">
-            <img class="product__img" src="${i.image_src}" alt="${i.title}">
+            <img class="product__img" src="${r.image_src}" alt="${r.title}">
             <div class="product__number">
-              <p>${p + 1}/${n.length}</p>
+              <p>${p + 1}/${i.length}</p>
             </div>
             <div class="product__info">
               <p class="product__type">${j}</p>
-              <a class="product__title" href="/products/${i.handle}">${i.title}</a>
+              <a class="product__title" href="/products/${r.handle}">${r.title}</a>
               <div class="product__price">
-                <span>$${i.price}</span>
+                <span>$${r.price}</span>
                 <span>${z}</span>
                 ${x !== "" ? `<span>${x}</span>` : ""}
               </div>
   
-              <a class="product__btn" href="/products/${i.handle}">Shop now</a>
+              <a class="product__btn" href="/products/${r.handle}">Shop now</a>
             </div>
           </div>`
           );
@@ -2103,27 +2100,27 @@
         </div>
       `
       );
-      v === "desktop" ? c(".free-shipping").then((i) => i == null ? void 0 : i.insertAdjacentHTML("afterend", d)) : c(".shop-all").then((i) => i == null ? void 0 : i.insertAdjacentHTML("afterend", d));
-    }).catch((n) => console.error("Error:", n));
+      v === "desktop" ? c(".free-shipping").then((r) => r == null ? void 0 : r.insertAdjacentHTML("afterend", d)) : c(".shop-all").then((r) => r == null ? void 0 : r.insertAdjacentHTML("afterend", d));
+    }).catch((i) => console.error("Error:", i));
   }
   function S() {
-    function t(l, e, r) {
-      const a = document.createElement("link");
-      a.href = l, a.rel = e, r && (a.crossOrigin = r), document.head.appendChild(a);
+    function t(a, e, l) {
+      const n = document.createElement("link");
+      n.href = a, n.rel = e, l && (n.crossOrigin = l), document.head.appendChild(n);
     }
     t("https://fonts.googleapis.com", "preconnect"), t("https://fonts.gstatic.com", "preconnect", "true"), t("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap", "stylesheet");
   }
   function A() {
     const t = setInterval(() => {
-      const l = document.getElementById("INDmenu-btn"), e = document.getElementById("launcher");
-      l && e && (clearInterval(t), c(".additional-functional").then((r) => r.addEventListener("click", (a) => {
-        var n;
-        a.target, a.target.closest('[data-img-func="accessibility"]') ? l.click() : a.target.closest('[data-img-func="sale"]') ? (n = document.querySelector(".kl-teaser-T4UsqC")) == null || n.click() : a.target.closest('[data-img-func="chat"]') && (e.contentDocument || e.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click();
+      const a = document.getElementById("INDmenu-btn"), e = document.getElementById("launcher");
+      a && e && (clearInterval(t), c(".additional-functional").then((l) => l.addEventListener("click", (n) => {
+        var i;
+        n.target, n.target.closest('[data-img-func="accessibility"]') ? a.click() : n.target.closest('[data-img-func="sale"]') ? (i = document.querySelector(".kl-teaser-T4UsqC")) == null || i.click() : n.target.closest('[data-img-func="chat"]') && (e.contentDocument || e.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click();
       })), setInterval(() => {
-        var r, a, n;
-        if (document.querySelector('[data-testid="POPUP"]') ? (r = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || r.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (n = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || n.classList.remove("hidden-el") : (a = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || a.classList.add("hidden-el"), document.querySelector('iframe[title="Number of unread messages"]')) {
-          const s = document.querySelector('iframe[title="Number of unread messages"]'), i = (s.contentDocument || s.contentWindow.document).querySelector(".gwgkTo");
-          document.querySelector('[data-img-func="chat"] p') && (i != null && i.textContent) && (document.querySelector('[data-img-func="chat"]').classList.add("display-msg-number"), document.querySelector('[data-img-func="chat"] p').innerText = i.textContent, console.log(i.textContent));
+        var l, n, i;
+        if (document.querySelector('[data-testid="POPUP"]') ? (l = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || l.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (i = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || i.classList.remove("hidden-el") : (n = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || n.classList.add("hidden-el"), document.querySelector('iframe[title="Number of unread messages"]')) {
+          const s = document.querySelector('iframe[title="Number of unread messages"]'), r = (s.contentDocument || s.contentWindow.document).querySelector(".gwgkTo");
+          document.querySelector('[data-img-func="chat"] p') && (r != null && r.textContent) && (document.querySelector('[data-img-func="chat"]').classList.add("display-msg-number"), document.querySelector('[data-img-func="chat"] p').innerText = r.textContent, console.log(r.textContent));
         } else
           document.querySelector(".display-msg-number") && document.querySelector(".display-msg-number").classList.remove("display-msg-number");
       }, 1e3));
@@ -2132,8 +2129,8 @@
   function $() {
     h(["https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js", "https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"]).then(() => {
       const t = setInterval(() => {
-        typeof Swiper < "u" && (clearInterval(t), c(".hero .swiper").then((l) => {
-          const e = l.clientWidth, a = e * 1.07 - e + 16;
+        typeof Swiper < "u" && (clearInterval(t), c(".hero .swiper").then((a) => {
+          const e = a.clientWidth, n = e * 1.07 - e + 16;
           new Swiper(".hero .swiper", {
             navigation: {
               nextEl: ".hero .swiper-button-next",
@@ -2141,7 +2138,7 @@
             },
             slidesPerView: 1.13,
             spaceBetween: 8,
-            slidesOffsetAfter: a,
+            slidesOffsetAfter: n,
             // adjust this value as needed
             breakpoints: {
               768: {
@@ -2159,7 +2156,7 @@
               }
             }
           });
-        }), c(".trusted-reviews .swiper").then((l) => {
+        }), c(".trusted-reviews .swiper").then((a) => {
           new Swiper(".trusted-reviews .swiper", {
             slidesPerView: 3.8,
             spaceBetween: 8,
@@ -2184,18 +2181,18 @@
       document.querySelector("h1.logo").insertAdjacentElement("beforebegin", t);
     });
   }
-  function _(t, l) {
+  function _(t, a) {
     const e = `[data-products-type="${t}"] .products-wrapper`;
-    c(e).then((r) => {
-      const a = document.querySelectorAll(l);
+    c(e).then((l) => {
+      const n = document.querySelectorAll(a);
       for (let s = 0; s < 4; s++) {
-        const d = a[s];
-        r.appendChild(d);
+        const d = n[s];
+        l.appendChild(d);
       }
-      const n = setInterval(() => {
+      const i = setInterval(() => {
         const s = document.querySelectorAll(`${e} .product-grid-item__title`);
-        s[3] && (clearInterval(n), s.forEach((d, i) => {
-          document.querySelectorAll(`${e} .product-grid-item__inner`)[i].insertAdjacentHTML("beforeend", `<a class="product__shop-now" href="${d.href}">Shop now</a>`);
+        s[3] && (clearInterval(i), s.forEach((d, r) => {
+          document.querySelectorAll(`${e} .product-grid-item__inner`)[r].insertAdjacentHTML("beforeend", `<a class="product__shop-now" href="${d.href}">Shop now</a>`);
         }));
       }, 100);
     });
@@ -2227,10 +2224,10 @@
               }
             }
           }).mount();
-          const l = setInterval(() => {
-            const e = document.querySelector(".glide__arrow--left"), r = document.querySelector(".glide__arrow--right"), a = document.querySelector(".glide");
-            e && r && (console.log("Arrows are ready"), clearInterval(l), a.addEventListener("click", (n) => {
-              console.log(n.target), n.target.closest(".swiper-button-prev-mob") && e.dispatchEvent(new Event("click")), n.target.closest(".swiper-button-next-mob") && r.dispatchEvent(new Event("click"));
+          const a = setInterval(() => {
+            const e = document.querySelector(".glide__arrow--left"), l = document.querySelector(".glide__arrow--right"), n = document.querySelector(".glide");
+            e && l && (console.log("Arrows are ready"), clearInterval(a), n.addEventListener("click", (i) => {
+              console.log(i.target), i.target.closest(".swiper-button-prev-mob") && e.dispatchEvent(new Event("click")), i.target.closest(".swiper-button-next-mob") && l.dispatchEvent(new Event("click"));
             }));
           }, 100);
         }
