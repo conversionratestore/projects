@@ -1994,7 +1994,7 @@
     document.querySelectorAll(".products-list__container .btn.btn--primary").forEach((i) => {
       const s = i.href;
       s && a.push(s.split("https://mygeeni.com/products/")[1]);
-    });
+    }), console.log(a);
     const e = a.map((i, s) => f(i, s));
     Promise.all(e).then((i) => {
       console.log(i);
