@@ -601,12 +601,13 @@ body .reviews-slide img.days {
       });
     }
     addClickNewBundleHandlers() {
+      console.log("addClickNewBundleHandlers");
       const t = a(".list-packs-bundle");
       let n;
       t.forEach((i) => {
         i.addEventListener("click", (l) => {
           !l.target.classList.contains("tooltip_zone") && !l.target.classList.contains("tooltip_bgr") && !l.target.classList.contains("tooltip_icon") && !l.target.classList.contains("path_var") && (a(".list-packs").forEach((s) => {
-            !s.classList.contains("list-packs-bundle") && s.classList.contains("active-slide") && s.classList.remove("active-slide"), s.classList.contains("list-packs-bundle") && s.classList.add("active-slide");
+            !s.classList.contains("list-packs-bundle") && s.classList.contains("active-slide") && s.classList.remove("active-slide"), s.classList.contains("list-packs-bundle") && (s.classList.add("active-slide"), console.log("list-packs-bundle, .add('active-slide')"));
           }), !n && this.singleClick ? n = setTimeout(() => {
             n = null, this.singleClick = !1, this.clickBundleHandler(i);
           }, 300) : (clearTimeout(n), n = null, this.doubleClickBundleHandler(i, 43053597229100), this.singleClick = !0));
