@@ -318,7 +318,7 @@ li.list-packs.list-packs-bundle .tooltip_zone .tooltip_bgr {
   width: 100%;
   max-width: 100%;
   background: #f9f9f7;
-  z-index: 3;
+  z-index: 1;
 }
 #cons #slideInCartHeader .title-logo {
   margin: 0 !important;
@@ -337,6 +337,7 @@ li.list-packs.list-packs-bundle .tooltip_zone .tooltip_bgr {
   max-width: 100%;
   padding: 61px 16px 32px;
   overflow-y: auto;
+  z-index: 1;
 }
 #cons #slideInCartScroll.is_checked {
   overflow-y: auto;
@@ -684,7 +685,7 @@ body .reviews-slide img.days {
               appendTo: function() {
                 return n.closest("li");
               },
-              placement: "bottom-end",
+              placement: "top-end",
               interactive: !0,
               onShow(i) {
                 n.closest("#cons") ? m(
