@@ -684,7 +684,7 @@ body .reviews-slide img.days {
               appendTo: function() {
                 return n.closest("li");
               },
-              placement: "end",
+              placement: "bottom-end",
               interactive: !0,
               onShow(i) {
                 n.closest("#cons") ? m(
