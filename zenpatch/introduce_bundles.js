@@ -337,13 +337,15 @@ li.list-packs.list-packs-bundle .tooltip_zone .tooltip_bgr {
   max-width: 100%;
   padding: 61px 16px 32px;
   overflow-y: auto;
-  z-index: 1;
 }
 #cons #slideInCartScroll.is_checked {
   overflow-y: auto;
 }
 #cons #slideInCartScroll .close-btn {
   max-height: 24px;
+}
+#cons #slideInCartScroll.tooltip_open {
+  z-index: 1;
 }
 #cons #slideInCartFooter {
   position: fixed;
@@ -688,7 +690,7 @@ body .reviews-slide img.days {
               placement: "top-end",
               interactive: !0,
               onShow(i) {
-                n.closest("#cons") ? m(
+                o("#slideInCartScroll").classList.add("tooltip_open"), n.closest("#cons") ? m(
                   i.reference,
                   "exp_introduce_tooltip_02",
                   "Slide-in Cart",
@@ -707,6 +709,9 @@ body .reviews-slide img.days {
                   "Button",
                   "Shopping section Stock up and save"
                 );
+              },
+              onHide(i) {
+                o("#slideInCartScroll").classList.toggle("tooltip_open");
               }
             });
           }));
