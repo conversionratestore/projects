@@ -1,5 +1,5 @@
-(function() {
-  "use strict";
+(function () {
+  "use strict"
   const u = (t, c, e, i = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
@@ -7,68 +7,68 @@
       event_desc: c,
       event_type: e,
       event_loc: i
-    }), console.log(`Event: ${t} | ${c} | ${e} | ${i}`);
+    }), console.log(`Event: ${t} | ${c} | ${e} | ${i}`)
   }, y = ({ name: t, dev: c }) => {
     console.log(
       `%c EXP: ${t} (DEV: ${c})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
-    );
+    )
   }, h = async (t) => {
     const c = (e) => new Promise((i, o) => {
-      const r = e.split(".").pop();
+      const r = e.split(".").pop()
       if (r === "js") {
         if (Array.from(document.scripts).map((s) => s.src.toLowerCase()).includes(e.toLowerCase()))
-          return console.log(`Script ${e} allready downloaded!`), i("");
-        const l = document.createElement("script");
-        l.src = e, l.onload = i, l.onerror = o, document.head.appendChild(l);
+          return console.log(`Script ${e} allready downloaded!`), i("")
+        const l = document.createElement("script")
+        l.src = e, l.onload = i, l.onerror = o, document.head.appendChild(l)
       } else if (r === "css") {
         if (Array.from(document.styleSheets).map((s) => {
-          var d;
-          return (d = s.href) == null ? void 0 : d.toLowerCase();
+          var d
+          return (d = s.href) == null ? void 0 : d.toLowerCase()
         }).includes(e.toLowerCase()))
-          return console.log(`Style ${e} allready downloaded!`), i("");
-        const l = document.createElement("link");
-        l.rel = "stylesheet", l.href = e, l.onload = i, l.onerror = o, document.head.appendChild(l);
+          return console.log(`Style ${e} allready downloaded!`), i("")
+        const l = document.createElement("link")
+        l.rel = "stylesheet", l.href = e, l.onload = i, l.onerror = o, document.head.appendChild(l)
       }
-    });
+    })
     for (const e of t)
-      await c(e), console.log(`Loaded librari ${e}`);
-    console.log("All libraries loaded!");
+      await c(e), console.log(`Loaded librari ${e}`)
+    console.log("All libraries loaded!")
   }, b = (t) => {
-    let c = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(c), window.clarity("set", t, "variant_1"));
-    }, 1e3);
+    let c = setInterval(function () {
+      typeof window.clarity == "function" && (clearInterval(c), window.clarity("set", t, "variant_1"))
+    }, 1e3)
   }, m = (t, c, e, i, o = 1e3, r = 0.5) => {
-    let a, l;
+    let a, l
     if (a = new IntersectionObserver(
-      function(s) {
+      function (s) {
         s[0].isIntersecting === !0 ? l = setTimeout(() => {
           u(
             c,
             s[0].target.dataset.visible || i || "",
             "view",
             e
-          ), a.disconnect();
-        }, o) : (console.log("Element is not fully visible"), clearTimeout(l));
+          ), a.disconnect()
+        }, o) : (console.log("Element is not fully visible"), clearTimeout(l))
       },
       { threshold: [r] }
     ), typeof t == "string") {
-      const s = document.querySelector(t);
-      s && a.observe(s);
+      const s = document.querySelector(t)
+      s && a.observe(s)
     } else
-      a.observe(t);
+      a.observe(t)
   }, p = (t) => new Promise((c) => {
-    const e = document.querySelector(t);
+    const e = document.querySelector(t)
     if (e)
-      return c(e);
+      return c(e)
     const i = new MutationObserver(() => {
-      const o = document.querySelector(t);
-      o && (c(o), i.disconnect());
-    });
+      const o = document.querySelector(t)
+      o && (c(o), i.disconnect())
+    })
     i.observe(document.documentElement, {
       childList: !0,
       subtree: !0
-    });
+    })
   }), n = "https://conversionratestore.github.io/projects/geeni/img/home-app-web", g = window.innerWidth < 768 ? "mobile" : "desktop", $ = (
     /*html*/
     `
@@ -348,36 +348,36 @@
     </div>
   </section>
   `
-  );
+  )
   b("exp_home_optim"), y({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "Andrii" }), S(), p("#shopify-section-template--16970486120700__section-marquee").then((t) => t.insertAdjacentHTML("afterend", $)), T(), I(), E(), A(), p("body").then((t) => t == null ? void 0 : t.classList.add("hide-chat-btn")), p('iframe[title="Messaging window"]').then((t) => {
     new MutationObserver((e) => {
-      var i, o;
+      var i, o
       for (let r of e)
-        r.type === "attributes" && r.attributeName === "tabindex" && (console.log("Tabindex changed to:", t.getAttribute("tabindex")), t.getAttribute("tabindex") === "-1" ? (i = document.querySelector("body")) == null || i.classList.add("hide-chat-btn") : (o = document.querySelector("body")) == null || o.classList.remove("hide-chat-btn"));
-    }).observe(t, { attributes: !0 });
+        r.type === "attributes" && r.attributeName === "tabindex" && (console.log("Tabindex changed to:", t.getAttribute("tabindex")), t.getAttribute("tabindex") === "-1" ? (i = document.querySelector("body")) == null || i.classList.add("hide-chat-btn") : (o = document.querySelector("body")) == null || o.classList.remove("hide-chat-btn"))
+    }).observe(t, { attributes: !0 })
   }), L(), p(".load-more-btn").then((t) => {
     t.addEventListener("click", () => {
-      const c = document.querySelector(".trusted-load-more");
-      c && c.classList.remove("load-more-btn-visible");
-    });
+      const c = document.querySelector(".trusted-load-more")
+      c && c.classList.remove("load-more-btn-visible")
+    })
   }), q(), p("body").then((t) => {
     m(".free-shipping", "exp_home_optim_section_01", "Home Page Free Shipping on Orders Over $69", "Section", 4e3), m(".shop-all .container", "exp_home_optim_section_02", "Home Page Shop by category", "Section"), m(".hero .swiper", "exp_home_optim_section_03", "Home Page Featured products PDP", "Section"), m(".warranty-sale", "exp_home_optim_section_04", "Home Page Benefits", "Section"), t.addEventListener("click", (c) => {
-      var i, o, r;
-      const e = c.target;
+      var i, o, r
+      const e = c.target
       if (e.closest("button.mobile-menu__button") && u("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), e.closest(".shop-all__view") && u("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), e.closest(".menu-items a")) {
-        const a = (i = e.closest(".menu-items a")) == null ? void 0 : i.querySelector("p");
-        u("exp_home_optim_button_05", `${a == null ? void 0 : a.innerText} - choise category`, "Button", "Home Page Shop by category");
+        const a = (i = e.closest(".menu-items a")) == null ? void 0 : i.querySelector("p")
+        u("exp_home_optim_button_05", `${a == null ? void 0 : a.innerText} - choise category`, "Button", "Home Page Shop by category")
       }
       if (e.closest(".hero .product__btn")) {
-        const a = (o = e.closest(".product")) == null ? void 0 : o.querySelector(".product__title");
-        u("exp_home_optim_button_06", `${a == null ? void 0 : a.innerText} - Shop now`, "Button", "Home Page Featured products PDP");
+        const a = (o = e.closest(".product")) == null ? void 0 : o.querySelector(".product__title")
+        u("exp_home_optim_button_06", `${a == null ? void 0 : a.innerText} - Shop now`, "Button", "Home Page Featured products PDP")
       }
       if (e.closest(".hero .product")) {
-        const a = (r = e.closest(".hero .product")) == null ? void 0 : r.querySelector(".product__type");
-        u("exp_home_optim_button_07", `${a == null ? void 0 : a.innerText} - Click`, "Button", "Home Page Featured products PDP");
+        const a = (r = e.closest(".hero .product")) == null ? void 0 : r.querySelector(".product__type")
+        u("exp_home_optim_button_07", `${a == null ? void 0 : a.innerText} - Click`, "Button", "Home Page Featured products PDP")
       }
-    });
-  });
+    })
+  })
   function _(t, c) {
     return fetch(`https://mygeeni.com/products/${t}.json`, {
       method: "GET",
@@ -386,11 +386,11 @@
       }
     }).then((e) => {
       if (!e.ok)
-        throw new Error(`HTTP error! status: ${e.status}`);
-      return e.json();
+        throw new Error(`HTTP error! status: ${e.status}`)
+      return e.json()
     }).then((e) => {
-      var o;
-      const i = e.product;
+      var o
+      const i = e.product
       return {
         title: i.title,
         product_type: i.product_type,
@@ -399,22 +399,22 @@
         compare_at_price: i.variants[0].compare_at_price,
         image_src: i.image.src,
         description: (o = document.querySelectorAll(".products-list__item__description")[c]) == null ? void 0 : o.innerText
-      };
-    });
+      }
+    })
   }
   function S() {
     const t = [], c = [
       "hawk-3-1080p-hd-outdoor-smart-wi-fi-security-camera-white-2-pack",
       "geeni-look-2-pack-1080p-hd-smart-home-surveillance-system-with-night-vision-motion-detection-2-way-audio-remote-access-with-ios-android-app-no-hub-required-black",
       "geeni-lookout-2k-outdoor-auto-follow-camera"
-    ];
+    ]
     document.querySelectorAll(".products-list__container .btn.btn--primary").forEach((r) => {
-      const a = r.href;
-      a && t.push(a.split("https://mygeeni.com/products/")[1]);
-    });
-    const e = t.map((r, a) => _(r, a));
+      const a = r.href
+      a && t.push(a.split("https://mygeeni.com/products/")[1])
+    })
+    const e = t.map((r, a) => _(r, a))
     Promise.all(e).then((r) => {
-      console.log(r);
+      console.log(r)
       const a = r.length, s = (
         /*html*/
         `
@@ -464,12 +464,12 @@
         </div>
       </div>
     `
-      );
-      p(".new-arrivals .new-arrivals__content").then((d) => d == null ? void 0 : d.insertAdjacentHTML("beforeend", s));
-    }).catch((r) => console.error("Error:", r));
-    const o = (window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0 ? t : c).map((r, a) => _(r, a));
+      )
+      p(".new-arrivals .new-arrivals__content").then((d) => d == null ? void 0 : d.insertAdjacentHTML("beforeend", s))
+    }).catch((r) => console.error("Error:", r))
+    const o = (window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0 ? t : c).map((r, a) => _(r, a))
     Promise.all(o).then((r) => {
-      console.log(r);
+      console.log(r)
       const l = (
         /*html*/
         `
@@ -481,7 +481,7 @@
               <div class="swiper-wrapper">
                 <!-- Slides -->
                 ${r.map((s, d) => {
-          const v = s.compare_at_price - s.price, k = Math.round(v / s.compare_at_price * 100), f = v > 0 ? `Save ${k}%` : "", P = s.compare_at_price && s.compare_at_price !== s.price ? `$${s.compare_at_price}` : "", x = s.product_type.toLowerCase().includes("camera") ? "Cameras" : s.product_type;
+          const v = s.compare_at_price - s.price, k = Math.round(v / s.compare_at_price * 100), f = v > 0 ? `Save ${k}%` : "", P = s.compare_at_price && s.compare_at_price !== s.price ? `$${s.compare_at_price}` : "", x = s.product_type.toLowerCase().includes("camera") ? "Cameras" : s.product_type
           return (
             /*html*/
             `
@@ -502,7 +502,7 @@
               <a class="product__btn" href="/products/${s.handle}">Shop now</a>
             </div>
           </div>`
-          );
+          )
         }).join("")}
               </div>
   
@@ -520,38 +520,38 @@
           </div>
         </div>
       `
-      );
-      g === "desktop" ? p(".free-shipping").then((s) => s == null ? void 0 : s.insertAdjacentHTML("afterend", l)) : p(".shop-all").then((s) => s == null ? void 0 : s.insertAdjacentHTML("afterend", l));
-    }).catch((r) => console.error("Error:", r));
+      )
+      g === "desktop" ? p(".free-shipping").then((s) => s == null ? void 0 : s.insertAdjacentHTML("afterend", l)) : p(".shop-all").then((s) => s == null ? void 0 : s.insertAdjacentHTML("afterend", l))
+    }).catch((r) => console.error("Error:", r))
   }
   function T() {
     function t(c, e, i) {
-      const o = document.createElement("link");
-      o.href = c, o.rel = e, i && (o.crossOrigin = i), document.head.appendChild(o);
+      const o = document.createElement("link")
+      o.href = c, o.rel = e, i && (o.crossOrigin = i), document.head.appendChild(o)
     }
-    t("https://fonts.googleapis.com", "preconnect"), t("https://fonts.gstatic.com", "preconnect", "true"), t("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap", "stylesheet");
+    t("https://fonts.googleapis.com", "preconnect"), t("https://fonts.gstatic.com", "preconnect", "true"), t("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap", "stylesheet")
   }
   function I() {
     const t = setInterval(() => {
-      const c = document.getElementById("INDmenu-btn"), e = document.getElementById("launcher");
+      const c = document.getElementById("INDmenu-btn"), e = document.getElementById("launcher")
       c && e && (clearInterval(t), p(".additional-functional").then((i) => i.addEventListener("click", (o) => {
-        var r;
-        o.target, o.target.closest('[data-img-func="accessibility"]') ? c.click() : o.target.closest('[data-img-func="sale"]') ? (r = document.querySelector(".kl-teaser-T4UsqC")) == null || r.click() : o.target.closest('[data-img-func="chat"]') && (e.contentDocument || e.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click();
+        var r
+        o.target, o.target.closest('[data-img-func="accessibility"]') ? c.click() : o.target.closest('[data-img-func="sale"]') ? (r = document.querySelector(".kl-teaser-T4UsqC")) == null || r.click() : o.target.closest('[data-img-func="chat"]') && (e.contentDocument || e.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click()
       })), setInterval(() => {
-        var i, o, r;
+        var i, o, r
         if (document.querySelector('[data-testid="POPUP"]') ? (i = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || i.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (r = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || r.classList.remove("hidden-el") : (o = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || o.classList.add("hidden-el"), document.querySelector('iframe[title="Number of unread messages"]')) {
-          const a = document.querySelector('iframe[title="Number of unread messages"]'), s = (a.contentDocument || a.contentWindow.document).querySelector(".gwgkTo");
-          document.querySelector('[data-img-func="chat"] p') && (s != null && s.textContent) && (document.querySelector('[data-img-func="chat"]').classList.add("display-msg-number"), document.querySelector('[data-img-func="chat"] p').innerText = s.textContent, console.log(s.textContent));
+          const a = document.querySelector('iframe[title="Number of unread messages"]'), s = (a.contentDocument || a.contentWindow.document).querySelector(".gwgkTo")
+          document.querySelector('[data-img-func="chat"] p') && (s != null && s.textContent) && (document.querySelector('[data-img-func="chat"]').classList.add("display-msg-number"), document.querySelector('[data-img-func="chat"] p').innerText = s.textContent, console.log(s.textContent))
         } else
-          document.querySelector(".display-msg-number") && document.querySelector(".display-msg-number").classList.remove("display-msg-number");
-      }, 1e3));
-    }, 100);
+          document.querySelector(".display-msg-number") && document.querySelector(".display-msg-number").classList.remove("display-msg-number")
+      }, 1e3))
+    }, 100)
   }
   function E() {
-    h(["https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js", "https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"]);
+    h(["https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js", "https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"])
     const t = setInterval(() => {
       typeof Swiper < "u" && (clearInterval(t), p(".hero .swiper").then((c) => {
-        const e = c.clientWidth, o = e * 1.07 - e + 16;
+        const e = c.clientWidth, o = e * 1.07 - e + 16
         new Swiper(".hero .swiper", {
           navigation: {
             nextEl: ".hero .swiper-button-next",
@@ -569,14 +569,14 @@
             }
           },
           on: {
-            init: function() {
-              document.querySelector("#slide-number p").innerText = `${this.realIndex + 1}/${this.slides.length}`;
+            init: function () {
+              document.querySelector("#slide-number p").innerText = `${this.realIndex + 1}/${this.slides.length}`
             },
-            slideChange: function() {
-              document.querySelector("#slide-number p").innerText = `${this.realIndex + 1}/${this.slides.length}`;
+            slideChange: function () {
+              document.querySelector("#slide-number p").innerText = `${this.realIndex + 1}/${this.slides.length}`
             }
           }
-        });
+        })
       }), p(".trusted-reviews .swiper").then((c) => {
         new Swiper(".trusted-reviews .swiper", {
           slidesPerView: 3.8,
@@ -587,40 +587,40 @@
             prevEl: ".trusted-reviews .swiper-button-prev"
           },
           on: {
-            reachEnd: function() {
+            reachEnd: function () {
               var e;
-              (e = document.querySelector(".trusted-reviews .swiper")) == null || e.classList.add("reached-end");
+              (e = document.querySelector(".trusted-reviews .swiper")) == null || e.classList.add("reached-end")
             }
           }
-        });
-      }));
-    }, 100);
+        })
+      }))
+    }, 100)
   }
   function A() {
     g === "mobile" && p('.mobile-menu [aria-controls="nav-drawer"]').then((t) => {
-      document.querySelector("h1.logo").insertAdjacentElement("beforebegin", t);
-    });
+      document.querySelector("h1.logo").insertAdjacentElement("beforebegin", t)
+    })
   }
   function w(t, c) {
-    const e = `[data-products-type="${t}"] .products-wrapper`;
+    const e = `[data-products-type="${t}"] .products-wrapper`
     p(e).then((i) => {
-      const o = document.querySelectorAll(c);
+      const o = document.querySelectorAll(c)
       for (let a = 0; a < 4; a++) {
-        const l = o[a];
-        i.appendChild(l);
+        const l = o[a]
+        i.appendChild(l)
       }
       const r = setInterval(() => {
-        const a = document.querySelectorAll(`${e} .product-grid-item__title`);
+        const a = document.querySelectorAll(`${e} .product-grid-item__title`)
         a[3] && (clearInterval(r), a.forEach((l, s) => {
-          document.querySelectorAll(`${e} .product-grid-item__inner`)[s].insertAdjacentHTML("beforeend", `<a class="product__shop-now" href="${l.href}">Shop now</a>`);
-        }));
-      }, 100);
-    });
+          document.querySelectorAll(`${e} .product-grid-item__inner`)[s].insertAdjacentHTML("beforeend", `<a class="product__shop-now" href="${l.href}">Shop now</a>`)
+        }))
+      }, 100)
+    })
   }
   function L() {
     const t = setInterval(() => {
-      document.querySelector("#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(t), w("popular-products", "#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), w("hot-deals", "#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner"));
-    }, 100);
+      document.querySelector("#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(t), w("popular-products", "#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), w("hot-deals", "#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner"))
+    }, 100)
   }
   function q() {
     h(["https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.core.min.css", "https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/glide.min.js"]).then(() => {
@@ -643,16 +643,16 @@
                 perView: 1.6
               }
             }
-          }).mount();
+          }).mount()
           const c = setInterval(() => {
-            const e = document.querySelector(".glide__arrow--left"), i = document.querySelector(".glide__arrow--right"), o = document.querySelector(".glide");
+            const e = document.querySelector(".glide__arrow--left"), i = document.querySelector(".glide__arrow--right"), o = document.querySelector(".glide")
             e && i && (console.log("Arrows are ready"), clearInterval(c), o.addEventListener("click", (r) => {
-              console.log(r.target), r.target.closest(".swiper-button-prev-mob") && e.dispatchEvent(new Event("click")), r.target.closest(".swiper-button-next-mob") && i.dispatchEvent(new Event("click"));
-            }));
-          }, 100);
+              console.log(r.target), r.target.closest(".swiper-button-prev-mob") && e.dispatchEvent(new Event("click")), r.target.closest(".swiper-button-next-mob") && i.dispatchEvent(new Event("click"))
+            }))
+          }, 100)
         }
-      }, 100);
-    });
+      }, 100)
+    })
   }
 })();
 //# sourceMappingURL=index.js.map
