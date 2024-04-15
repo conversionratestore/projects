@@ -215,6 +215,8 @@ li.list-packs.list-packs-bundle p.pack-name {
   font-size: 20px !important;
   line-height: 110% !important;
   letter-spacing: 0.4px;
+  width: -moz-max-content;
+  width: max-content;
 }
 li.list-packs.list-packs-bundle .tooltip_zone {
   position: absolute;
