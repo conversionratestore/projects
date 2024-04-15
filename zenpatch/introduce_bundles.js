@@ -684,7 +684,7 @@ body .reviews-slide img.days {
               appendTo: function() {
                 return n.closest("li");
               },
-              placement: "top-end",
+              placement: "end",
               interactive: !0,
               onShow(i) {
                 n.closest("#cons") ? m(
@@ -742,7 +742,7 @@ body .reviews-slide img.days {
   d(".all-in-one-bundle").then((e) => {
     setTimeout(() => {
       window.location.pathname.match("pages") && new C(_);
-    }, 700);
+    }, 1e3);
   });
 })();
 //# sourceMappingURL=index.js.map
