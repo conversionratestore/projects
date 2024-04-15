@@ -93,7 +93,10 @@
     #shopify-section-template--16970486120700__5db9b97d-c9f0-498a-9645-b8e029b46984,
     #shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b,
     #shopify-section-template--16970486120700__64d03a86-9515-4123-b7eb-3658d349c1e8,
-    #INDmenu-btn, .kl-teaser-T4UsqC, .gwgkTo, [title="Number of unread messages"] {
+    #INDmenu-btn,
+    .kl-teaser-T4UsqC,
+    .gwgkTo,
+    iframe[title="Number of unread messages"] {
       display: none !important;
     }
 
@@ -558,14 +561,15 @@
       height: 600px !important;
       min-height: 260px;
       border-radius: 8px;
+      justify-content: flex-start;
     }
 
     .product__img {
       position: absolute;
       top: auto;
-      right: 12px;
       max-width: 580px;
       max-height: 580px;
+      margin-right: 17%;
     }
     
     .product__info {
@@ -1139,17 +1143,12 @@
       .glide__slide.glide__slide--active {
         transform: scale(0.8);
       }
-    }
 
-    @media screen and (max-width: 1000px) and (min-width: 768px) {
-      .glide__slide {
-        transform: scale(0.6);
-      }
-
-      .glide__slide.glide__slide--active {
-        transform: scale(0.8);
+      .product__img {
+        right: 0;
       }
     }
+
 
     @media screen and (max-width: 820px) and (min-width: 768px) {
       .glide__slide {
@@ -1173,6 +1172,7 @@
       .product__img {
         width: 209px;
         height: 209px;
+        right: 12px;
       }
 
       .heading-2 {
@@ -1964,7 +1964,7 @@
       }
     });
   });
-  function _(t, l) {
+  function f(t, l) {
     return fetch(`https://mygeeni.com/products/${t}.json`, {
       method: "GET",
       headers: {
@@ -1998,7 +1998,7 @@
       const s = n.href;
       s && t.push(s.split("https://mygeeni.com/products/")[1]);
     });
-    const e = t.map((n, s) => _(n, s));
+    const e = t.map((n, s) => f(n, s));
     Promise.all(e).then((n) => {
       console.log(n);
       const s = n.length, i = (
@@ -2053,7 +2053,7 @@
       );
       c(".new-arrivals .new-arrivals__content").then((p) => p == null ? void 0 : p.insertAdjacentHTML("beforeend", i));
     }).catch((n) => console.error("Error:", n));
-    const a = (window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0 ? t : l).map((n, s) => _(n, s));
+    const a = (window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0 ? t : l).map((n, s) => f(n, s));
     Promise.all(a).then((n) => {
       console.log(n);
       const d = (
@@ -2187,7 +2187,7 @@
       document.querySelector("h1.logo").insertAdjacentElement("beforebegin", t);
     });
   }
-  function f(t, l) {
+  function _(t, l) {
     const e = `[data-products-type="${t}"] .products-wrapper`;
     c(e).then((r) => {
       const a = document.querySelectorAll(l);
@@ -2205,7 +2205,7 @@
   }
   function B() {
     const t = setInterval(() => {
-      document.querySelector("#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(t), f("popular-products", "#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), f("hot-deals", "#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner"));
+      document.querySelector("#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(t), _("popular-products", "#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), _("hot-deals", "#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner"));
     }, 100);
   }
   function E() {
