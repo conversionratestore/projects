@@ -2019,7 +2019,7 @@
               </div>
               <a class="new-arrivals-product__title" href="/products/${e.handle}">${e.title}</a>
               <div class="new-arrivals-product__price">
-                <span>$${e.price}</span>
+                <span>${e.price}</span>
               </div>
               <p class="new-arrivals-product__description">${e.description}</p>
               <a class="crs-btn" href="/products/${e.handle}">Shop now</a>
@@ -2040,7 +2040,7 @@
           <div class="swiper-wrapper">
             <!-- Slides -->
             ${i.map((e, r) => {
-        const o = e.compare_at_price - e.price, s = Math.round(o / e.compare_at_price * 100), l = o > 0 ? `Save ${s}%` : "", d = e.compare_at_price && e.compare_at_price !== e.price ? `$${e.compare_at_price}` : "", c = e.product_type.toLowerCase().includes("camera") ? "Cameras" : e.product_type;
+        const o = e.compare_at_price - e.price, s = Math.round(o / e.compare_at_price * 100), l = o > 0 ? `Save ${s}%` : "", d = e.compare_at_price && e.compare_at_price !== e.price ? `${e.compare_at_price}` : "", c = e.product_type.toLowerCase().includes("camera") ? "Cameras" : e.product_type;
         return (
           /*html*/
           `
@@ -2053,7 +2053,7 @@
         <p class="product__type">${c}</p>
         <a class="product__title" href="/products/${e.handle}">${e.title}</a>
         <div class="product__price">
-          <span>$${e.price}</span>
+          <span>${e.price}</span>
           <span>${d}</span>
           ${l !== "" ? `<span>${l}</span>` : ""}
         </div>
@@ -2090,7 +2090,7 @@
     });
     const r = t.map((o, s) => y(o));
     Promise.allSettled(r).then((o) => {
-      console.log(o), o.forEach((l, d) => {
+      o.forEach((l, d) => {
         if (l.status === "fulfilled") {
           const c = document.querySelectorAll(".products-list__item__description")[d], I = c ? c.innerText : "", z = l.value.price ? `$${l.value.price}` : "";
           e.push({ ...l.value, description: I, price: z });
