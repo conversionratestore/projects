@@ -1,44 +1,44 @@
 (function() {
   "use strict";
-  const c = (t, n, e, s = "") => {
+  const c = (e, n, t, s = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: t,
+      event_name: e,
       event_desc: n,
-      event_type: e,
+      event_type: t,
       event_loc: s
-    }), console.log(`Event: ${t} | ${n} | ${e} | ${s}`);
-  }, x = ({ name: t, dev: n }) => {
+    }), console.log(`Event: ${e} | ${n} | ${t} | ${s}`);
+  }, x = ({ name: e, dev: n }) => {
     console.log(
-      `%c EXP: ${t} (DEV: ${n})`,
+      `%c EXP: ${e} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, u = async (t) => {
-    const n = (e) => new Promise((s, i) => {
-      const p = e.split(".").pop();
+  }, u = async (e) => {
+    const n = (t) => new Promise((s, i) => {
+      const p = t.split(".").pop();
       if (p === "js") {
-        if (Array.from(document.scripts).map((l) => l.src.toLowerCase()).includes(e.toLowerCase()))
-          return console.log(`Script ${e} allready downloaded!`), s("");
+        if (Array.from(document.scripts).map((l) => l.src.toLowerCase()).includes(t.toLowerCase()))
+          return console.log(`Script ${t} allready downloaded!`), s("");
         const r = document.createElement("script");
-        r.src = e, r.onload = s, r.onerror = i, document.head.appendChild(r);
+        r.src = t, r.onload = s, r.onerror = i, document.head.appendChild(r);
       } else if (p === "css") {
         if (Array.from(document.styleSheets).map((l) => {
           var g;
           return (g = l.href) == null ? void 0 : g.toLowerCase();
-        }).includes(e.toLowerCase()))
-          return console.log(`Style ${e} allready downloaded!`), s("");
+        }).includes(t.toLowerCase()))
+          return console.log(`Style ${t} allready downloaded!`), s("");
         const r = document.createElement("link");
-        r.rel = "stylesheet", r.href = e, r.onload = s, r.onerror = i, document.head.appendChild(r);
+        r.rel = "stylesheet", r.href = t, r.onload = s, r.onerror = i, document.head.appendChild(r);
       }
     });
-    for (const e of t)
-      await n(e), console.log(`Loaded librari ${e}`);
+    for (const t of e)
+      await n(t), console.log(`Loaded librari ${t}`);
     console.log("All libraries loaded!");
-  }, _ = (t) => {
+  }, _ = (e) => {
     let n = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", t, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, m = (t, n, e, s, i = 3e3, p = 1) => {
+  }, m = (e, n, t, s, i = 3e3, p = 1) => {
     let a, r;
     if (a = new IntersectionObserver(
       function(l) {
@@ -47,22 +47,22 @@
             n,
             l[0].target.dataset.visible || s || "",
             "Visibility",
-            e
+            t
           ), a.disconnect();
         }, i) : (console.log("Element is not fully visible"), clearTimeout(r));
       },
       { threshold: [p] }
-    ), typeof t == "string") {
-      const l = document.querySelector(t);
+    ), typeof e == "string") {
+      const l = document.querySelector(e);
       l && a.observe(l);
     } else
-      a.observe(t);
-  }, d = (t) => new Promise((n) => {
-    const e = document.querySelector(t);
-    if (e)
-      return n(e);
+      a.observe(e);
+  }, d = (e) => new Promise((n) => {
+    const t = document.querySelector(e);
+    if (t)
+      return n(t);
     const s = new MutationObserver(() => {
-      const i = document.querySelector(t);
+      const i = document.querySelector(e);
       i && (n(i), s.disconnect());
     });
     s.observe(document.documentElement, {
@@ -1935,46 +1935,46 @@
   </section>
   `
   );
-  _("exp_home_optim"), x({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "Andrii" }), F(), d("head").then((t) => t.insertAdjacentHTML("afterend", w)), d("#shopify-section-template--16970486120700__section-marquee").then((t) => t.insertAdjacentHTML("afterend", y)), k(), A(), T(), d("body").then((t) => t == null ? void 0 : t.classList.add("hide-chat-btn")), d('iframe[title="Messaging window"]').then((t) => {
-    new MutationObserver((e) => {
+  _("exp_home_optim"), x({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "Andrii" }), F(), d("head").then((e) => e.insertAdjacentHTML("afterend", w)), d("#shopify-section-template--16970486120700__section-marquee").then((e) => e.insertAdjacentHTML("afterend", y)), k(), A(), T(), d("body").then((e) => e == null ? void 0 : e.classList.add("hide-chat-btn")), d('iframe[title="Messaging window"]').then((e) => {
+    new MutationObserver((t) => {
       var s, i;
-      for (let p of e)
-        p.type === "attributes" && p.attributeName === "tabindex" && (console.log("Tabindex changed to:", t.getAttribute("tabindex")), t.getAttribute("tabindex") === "-1" ? (s = document.querySelector("body")) == null || s.classList.add("hide-chat-btn") : (i = document.querySelector("body")) == null || i.classList.remove("hide-chat-btn"));
-    }).observe(t, { attributes: !0 });
-  }), $(), d(".load-more-btn").then((t) => {
-    t.addEventListener("click", () => {
+      for (let p of t)
+        p.type === "attributes" && p.attributeName === "tabindex" && (console.log("Tabindex changed to:", e.getAttribute("tabindex")), e.getAttribute("tabindex") === "-1" ? (s = document.querySelector("body")) == null || s.classList.add("hide-chat-btn") : (i = document.querySelector("body")) == null || i.classList.remove("hide-chat-btn"));
+    }).observe(e, { attributes: !0 });
+  }), $(), d(".load-more-btn").then((e) => {
+    e.addEventListener("click", () => {
       const n = document.querySelector(".trusted-load-more");
       n && n.classList.remove("load-more-btn-visible");
     });
-  }), B(), S(), d("body").then((t) => {
-    m(".free-shipping", "exp_home_optim_section_01", "Home Page Free Shipping on Orders Over $69", "Section", 4e3), m(".shop-all .container", "exp_home_optim_section_02", "Home Page Shop by category", "Section"), m(".hero .swiper", "exp_home_optim_section_03", "Home Page Featured products PDP", "Section"), m(".warranty-sale", "exp_home_optim_section_04", "Home Page Benefits", "Section"), t.addEventListener("click", (n) => {
+  }), B(), S(), d("body").then((e) => {
+    m(".free-shipping", "exp_home_optim_section_01", "Home Page Free Shipping on Orders Over $69", "Section", 4e3), m(".shop-all .container", "exp_home_optim_section_02", "Home Page Shop by category", "Section"), m(".hero .swiper", "exp_home_optim_section_03", "Home Page Featured products PDP", "Section"), m(".warranty-sale", "exp_home_optim_section_04", "Home Page Benefits", "Section"), e.addEventListener("click", (n) => {
       var s, i, p;
-      const e = n.target;
-      if (e.closest("button.mobile-menu__button") && c("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), e.closest(".shop-all__view") && c("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), e.closest(".menu-items a")) {
-        const a = (s = e.closest(".menu-items a")) == null ? void 0 : s.querySelector("p");
+      const t = n.target;
+      if (t.closest("button.mobile-menu__button") && c("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), t.closest(".shop-all__view") && c("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), t.closest(".menu-items a")) {
+        const a = (s = t.closest(".menu-items a")) == null ? void 0 : s.querySelector("p");
         c("exp_home_optim_button_05", `${a == null ? void 0 : a.innerText} - choise category`, "Button", "Home Page Shop by category");
       }
-      if (e.closest(".hero .product__btn")) {
-        const a = (i = e.closest(".product")) == null ? void 0 : i.querySelector(".product__title");
+      if (t.closest(".hero .product__btn")) {
+        const a = (i = t.closest(".product")) == null ? void 0 : i.querySelector(".product__title");
         c("exp_home_optim_button_06", `${a == null ? void 0 : a.innerText} - Shop now`, "Button", "Home Page Featured products PDP");
       }
-      if (e.closest(".hero .product")) {
-        const a = (p = e.closest(".hero .product")) == null ? void 0 : p.querySelector(".product__type");
+      if (t.closest(".hero .product")) {
+        const a = (p = t.closest(".hero .product")) == null ? void 0 : p.querySelector(".product__type");
         c("exp_home_optim_button_07", `${a == null ? void 0 : a.innerText} - Click`, "Button", "Home Page Featured products PDP");
       }
     });
   });
-  async function b(t, n) {
+  async function b(e, n) {
     var p;
-    const e = await fetch(`https://mygeeni.com/products/${t}.json`, {
+    const t = await fetch(`https://mygeeni.com/products/${e}.json`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
       }
     });
-    if (!e.ok)
-      throw new Error(`HTTP error! status: ${e.status}`);
-    const i = (await e.json()).product;
+    if (!t.ok)
+      throw new Error(`HTTP error! status: ${t.status}`);
+    const i = (await t.json()).product;
     return {
       title: i.title,
       product_type: i.product_type,
@@ -1986,11 +1986,17 @@
     };
   }
   function F() {
-    const t = [], n = [
+    console.log("drawHeroSection");
+    const e = [], n = [
       "hawk-3-1080p-hd-outdoor-smart-wi-fi-security-camera-white-2-pack",
       "geeni-look-2-pack-1080p-hd-smart-home-surveillance-system-with-night-vision-motion-detection-2-way-audio-remote-access-with-ios-android-app-no-hub-required-black",
       "geeni-lookout-2k-outdoor-auto-follow-camera"
-    ], s = (window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0 ? t : n).map((i, p) => b(i, p));
+    ];
+    document.querySelectorAll(".products-list__container .btn.btn--primary").forEach((i) => {
+      const p = i.href;
+      p && e.push(p.split("https://mygeeni.com/products/")[1]);
+    }), console.log("dealsProductsHandles", e);
+    const s = (window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0 ? e : n).map((i, p) => b(i, p));
     Promise.all(s).then((i) => {
       console.log(i);
       const a = (
@@ -2048,18 +2054,18 @@
     }).catch((i) => console.error("Error:", i));
   }
   function k() {
-    function t(n, e, s) {
+    function e(n, t, s) {
       const i = document.createElement("link");
-      i.href = n, i.rel = e, s && (i.crossOrigin = s), document.head.appendChild(i);
+      i.href = n, i.rel = t, s && (i.crossOrigin = s), document.head.appendChild(i);
     }
-    t("https://fonts.googleapis.com", "preconnect"), t("https://fonts.gstatic.com", "preconnect", "true"), t("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap", "stylesheet");
+    e("https://fonts.googleapis.com", "preconnect"), e("https://fonts.gstatic.com", "preconnect", "true"), e("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap", "stylesheet");
   }
   function S() {
-    const t = setInterval(() => {
-      const n = document.getElementById("INDmenu-btn"), e = document.getElementById("launcher");
-      n && e && (clearInterval(t), d(".additional-functional").then((s) => s.addEventListener("click", (i) => {
+    const e = setInterval(() => {
+      const n = document.getElementById("INDmenu-btn"), t = document.getElementById("launcher");
+      n && t && (clearInterval(e), d(".additional-functional").then((s) => s.addEventListener("click", (i) => {
         var p;
-        i.target, i.target.closest('[data-img-func="accessibility"]') ? n.click() : i.target.closest('[data-img-func="sale"]') ? (p = document.querySelector(".kl-teaser-T4UsqC")) == null || p.click() : i.target.closest('[data-img-func="chat"]') && (e.contentDocument || e.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click();
+        i.target, i.target.closest('[data-img-func="accessibility"]') ? n.click() : i.target.closest('[data-img-func="sale"]') ? (p = document.querySelector(".kl-teaser-T4UsqC")) == null || p.click() : i.target.closest('[data-img-func="chat"]') && (t.contentDocument || t.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click();
       })), setInterval(() => {
         var s, i, p;
         if (document.querySelector('[data-testid="POPUP"]') ? (s = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || s.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (p = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || p.classList.remove("hidden-el") : (i = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || i.classList.add("hidden-el"), document.querySelector('iframe[title="Number of unread messages"]')) {
@@ -2072,9 +2078,9 @@
   }
   function A() {
     u(["https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js", "https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"]).then(() => {
-      const t = setInterval(() => {
-        typeof Swiper < "u" && (clearInterval(t), d(".hero .swiper").then((n) => {
-          const e = n.clientWidth, i = e * 1.07 - e + 16;
+      const e = setInterval(() => {
+        typeof Swiper < "u" && (clearInterval(e), d(".hero .swiper").then((n) => {
+          const t = n.clientWidth, i = t * 1.07 - t + 16;
           new Swiper(".hero .swiper", {
             navigation: {
               nextEl: ".hero .swiper-button-next",
@@ -2111,8 +2117,8 @@
             },
             on: {
               reachEnd: function() {
-                var e;
-                (e = document.querySelector(".trusted-reviews .swiper")) == null || e.classList.add("reached-end");
+                var t;
+                (t = document.querySelector(".trusted-reviews .swiper")) == null || t.classList.add("reached-end");
               }
             }
           });
@@ -2121,36 +2127,36 @@
     });
   }
   function T() {
-    h === "mobile" && d('.mobile-menu [aria-controls="nav-drawer"]').then((t) => {
-      document.querySelector("h1.logo").insertAdjacentElement("beforebegin", t);
+    h === "mobile" && d('.mobile-menu [aria-controls="nav-drawer"]').then((e) => {
+      document.querySelector("h1.logo").insertAdjacentElement("beforebegin", e);
     });
   }
-  function v(t, n) {
-    const e = `[data-products-type="${t}"] .products-wrapper`;
-    d(e).then((s) => {
+  function v(e, n) {
+    const t = `[data-products-type="${e}"] .products-wrapper`;
+    d(t).then((s) => {
       const i = document.querySelectorAll(n);
       for (let a = 0; a < 4; a++) {
         const r = i[a];
         s.appendChild(r);
       }
       const p = setInterval(() => {
-        const a = document.querySelectorAll(`${e} .product-grid-item__title`);
+        const a = document.querySelectorAll(`${t} .product-grid-item__title`);
         a[3] && (clearInterval(p), a.forEach((r, l) => {
-          document.querySelectorAll(`${e} .product-grid-item__inner`)[l].insertAdjacentHTML("beforeend", `<a class="product__shop-now" href="${r.href}">Shop now</a>`);
+          document.querySelectorAll(`${t} .product-grid-item__inner`)[l].insertAdjacentHTML("beforeend", `<a class="product__shop-now" href="${r.href}">Shop now</a>`);
         }));
       }, 100);
     });
   }
   function $() {
-    const t = setInterval(() => {
-      document.querySelector("#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(t), v("popular-products", "#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), v("hot-deals", "#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner"));
+    const e = setInterval(() => {
+      document.querySelector("#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(e), v("popular-products", "#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), v("hot-deals", "#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner"));
     }, 100);
   }
   function B() {
     u(["https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.core.min.css", "https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/glide.min.js"]).then(() => {
-      const t = setInterval(() => {
+      const e = setInterval(() => {
         if (typeof Glide < "u" && document.querySelector(".glide")) {
-          clearInterval(t), new Glide(".glide", {
+          clearInterval(e), new Glide(".glide", {
             type: "carousel",
             startAt: 0,
             perView: 2,
@@ -2169,9 +2175,9 @@
             }
           }).mount();
           const n = setInterval(() => {
-            const e = document.querySelector(".glide__arrow--left"), s = document.querySelector(".glide__arrow--right"), i = document.querySelector(".glide");
-            e && s && (console.log("Arrows are ready"), clearInterval(n), i.addEventListener("click", (p) => {
-              console.log(p.target), p.target.closest(".swiper-button-prev-mob") && e.dispatchEvent(new Event("click")), p.target.closest(".swiper-button-next-mob") && s.dispatchEvent(new Event("click"));
+            const t = document.querySelector(".glide__arrow--left"), s = document.querySelector(".glide__arrow--right"), i = document.querySelector(".glide");
+            t && s && (console.log("Arrows are ready"), clearInterval(n), i.addEventListener("click", (p) => {
+              console.log(p.target), p.target.closest(".swiper-button-prev-mob") && t.dispatchEvent(new Event("click")), p.target.closest(".swiper-button-next-mob") && s.dispatchEvent(new Event("click"));
             }));
           }, 100);
         }
