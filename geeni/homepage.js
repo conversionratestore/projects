@@ -1,75 +1,75 @@
 (function() {
   "use strict";
-  const g = (i, n, t, r = "") => {
+  const g = (e, s, i, r = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: i,
-      event_desc: n,
-      event_type: t,
+      event_name: e,
+      event_desc: s,
+      event_type: i,
       event_loc: r
-    }), console.log(`Event: ${i} | ${n} | ${t} | ${r}`);
-  }, _ = ({ name: i, dev: n }) => {
+    }), console.log(`Event: ${e} | ${s} | ${i} | ${r}`);
+  }, _ = ({ name: e, dev: s }) => {
     console.log(
-      `%c EXP: ${i} (DEV: ${n})`,
+      `%c EXP: ${e} (DEV: ${s})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, h = async (i) => {
-    const n = (t) => new Promise((r, e) => {
-      const l = t.split(".").pop();
+  }, h = async (e) => {
+    const s = (i) => new Promise((r, t) => {
+      const l = i.split(".").pop();
       if (l === "js") {
-        if (Array.from(document.scripts).map((d) => d.src.toLowerCase()).includes(t.toLowerCase()))
-          return console.log(`Script ${t} allready downloaded!`), r("");
-        const o = document.createElement("script");
-        o.src = t, o.onload = r, o.onerror = e, document.head.appendChild(o);
+        if (Array.from(document.scripts).map((d) => d.src.toLowerCase()).includes(i.toLowerCase()))
+          return console.log(`Script ${i} allready downloaded!`), r("");
+        const a = document.createElement("script");
+        a.src = i, a.onload = r, a.onerror = t, document.head.appendChild(a);
       } else if (l === "css") {
         if (Array.from(document.styleSheets).map((d) => {
           var c;
           return (c = d.href) == null ? void 0 : c.toLowerCase();
-        }).includes(t.toLowerCase()))
-          return console.log(`Style ${t} allready downloaded!`), r("");
-        const o = document.createElement("link");
-        o.rel = "stylesheet", o.href = t, o.onload = r, o.onerror = e, document.head.appendChild(o);
+        }).includes(i.toLowerCase()))
+          return console.log(`Style ${i} allready downloaded!`), r("");
+        const a = document.createElement("link");
+        a.rel = "stylesheet", a.href = i, a.onload = r, a.onerror = t, document.head.appendChild(a);
       }
     });
-    for (const t of i)
-      await n(t), console.log(`Loaded librari ${t}`);
+    for (const i of e)
+      await s(i), console.log(`Loaded librari ${i}`);
     console.log("All libraries loaded!");
-  }, x = (i) => {
-    let n = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", i, "variant_1"));
+  }, x = (e) => {
+    let s = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(s), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, m = (i, n, t, r, e = 3e3, l = 1) => {
-    let a, o;
-    if (a = new IntersectionObserver(
+  }, m = (e, s, i, r, t = 3e3, l = 1) => {
+    let n, a;
+    if (n = new IntersectionObserver(
       function(d) {
-        d[0].isIntersecting === !0 ? o = setTimeout(() => {
+        d[0].isIntersecting === !0 ? a = setTimeout(() => {
           g(
-            n,
+            s,
             d[0].target.dataset.visible || r || "",
             "Visibility",
-            t
-          ), a.disconnect();
-        }, e) : (console.log("Element is not fully visible"), clearTimeout(o));
+            i
+          ), n.disconnect();
+        }, t) : (console.log("Element is not fully visible"), clearTimeout(a));
       },
       { threshold: [l] }
-    ), typeof i == "string") {
-      const d = document.querySelector(i);
-      d && a.observe(d);
+    ), typeof e == "string") {
+      const d = document.querySelector(e);
+      d && n.observe(d);
     } else
-      a.observe(i);
-  }, p = (i) => new Promise((n) => {
-    const t = document.querySelector(i);
-    if (t)
-      return n(t);
+      n.observe(e);
+  }, p = (e) => new Promise((s) => {
+    const i = document.querySelector(e);
+    if (i)
+      return s(i);
     const r = new MutationObserver(() => {
-      const e = document.querySelector(i);
-      e && (n(e), r.disconnect());
+      const t = document.querySelector(e);
+      t && (s(t), r.disconnect());
     });
     r.observe(document.documentElement, {
       childList: !0,
       subtree: !0
     });
-  }), s = "https://conversionratestore.github.io/projects/geeni/img/home-app-web", v = window.innerWidth < 768 ? "mobile" : "desktop", w = (
+  }), o = "https://conversionratestore.github.io/projects/geeni/img/home-app-web", v = window.innerWidth < 768 ? "mobile" : "desktop", w = (
     /*html*/
     `
   <style>
@@ -1660,19 +1660,19 @@
     `
   <div class="additional-functional">
     <div data-img-func="accessibility" >
-      <img src="${s}/accessible.svg" alt="Open accessibility features">
+      <img src="${o}/accessible.svg" alt="Open accessibility features">
     </div>
     <div data-img-func="sale" class="hidden-el">
-      <img src="${s}/sale.svg" alt="Open sale proposition">
+      <img src="${o}/sale.svg" alt="Open sale proposition">
     </div>
     <div data-img-func="chat">
-      <img src="${s}/chat.svg" alt="Open suppport chat">
+      <img src="${o}/chat.svg" alt="Open suppport chat">
       <div><p></p></div>
     </div>
   </div>
 
   <div class="free-shipping">
-    <img src="${s}/delivery.svg" alt="shipping">
+    <img src="${o}/delivery.svg" alt="shipping">
     <p><span class="fw-700">FREE</span> Shipping on orders over <span class="fw-700">$69</span></p>
   </div>
 
@@ -1682,24 +1682,24 @@
         <h2 class="heading-2">Shop All Category</h2>
         <a href="/collections/all" class="shop-all__view">
           View all
-          <img src="${s}/arrow-r.svg" alt="">
+          <img src="${o}/arrow-r.svg" alt="">
         </a>
       </div>
       <div class="menu-items">
         <a href="/collections/smart-security-cameras">
-          <img src="${s}/cameras.jpg" alt="Cameras">
+          <img src="${o}/cameras.jpg" alt="Cameras">
           <p>Cameras</p>
         </a>
         <a href="/collections/smart-appliances">
-          <img src="${s}/lifestyle.jpg" alt="Lifestyle">
+          <img src="${o}/lifestyle.jpg" alt="Lifestyle">
           <p>Lifestyle</p>
         </a>
         <a href="/collections/lighting">
-          <img src="${s}/lighting.jpg" alt="Lighting">
+          <img src="${o}/lighting.jpg" alt="Lighting">
           <p>Lighting</p>
         </a>
         <a href="/collections/power">
-          <img src="${s}/power.jpg" alt="Power">
+          <img src="${o}/power.jpg" alt="Power">
           <p>Power</p>
         </a>
       </div>
@@ -1710,7 +1710,7 @@
     <div class="container">
       <div class="warranty-sale__container">
         <div>
-          <img src="${s}/check.svg" alt="">
+          <img src="${o}/check.svg" alt="">
           <div>
             <p><span class="fw-700">Direct from manufacturer</span></p>
             <p><span class="fw-700">365</span>-days warranty on all products</p>
@@ -1718,7 +1718,7 @@
         </div>
         <div>
           <div class="warranty-sale__buy">
-            <img src="${s}/bonus.svg" alt="">
+            <img src="${o}/bonus.svg" alt="">
             <p><span class="fw-700">Buy More, Save More</span></p>
           </div>
           <div class="saves-comparison">
@@ -1792,10 +1792,10 @@
 
           <div class="glide__arrows" data-glide-el="controls">
             <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
-              <img src="${s}/arrow-l.svg" alt="arrow left">
+              <img src="${o}/arrow-l.svg" alt="arrow left">
             </button>
             <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
-              <img src="${s}/arrow-r.svg" alt="arrow right">
+              <img src="${o}/arrow-r.svg" alt="arrow right">
             </button>
           </div>
         </div>
@@ -1808,11 +1808,11 @@
   <section class="many-devices">
     <div class="container">
       <div class="many-devices__split">
-        <img src="${s}/house-1.jpg" alt="">
-        <img src="${s}/house-2.jpg" alt="">
+        <img src="${o}/house-1.jpg" alt="">
+        <img src="${o}/house-2.jpg" alt="">
       </div>
       <div class="many-devices__mobiles">
-        <img src="${s}/many-devices.svg" alt="">
+        <img src="${o}/many-devices.svg" alt="">
       </div>
 
       <div class="index-1">
@@ -1832,13 +1832,13 @@
     <div class="container">
       <h2 class="heading-2">Trusted by over 5 million people</h2>
       <div class="trusted-reviews__rate">
-        <img src="${s}/4-stars.svg" alt="4 stars">
+        <img src="${o}/4-stars.svg" alt="4 stars">
         <p><span class="fw-700">4.4</span> stars rating</p>
       </div>
 
       <div class="trusted-load-more load-more-btn-visible">
           <div class="swiper-slide">
-            <img src="${s}/4-stars.svg" alt="4 stars">
+            <img src="${o}/4-stars.svg" alt="4 stars">
             <p class="trusted-reviews__desc">It was very easy to set up and once it was
             connected to my Wi-Fi, I was able to start
             changing the colors from white to blue to
@@ -1849,14 +1849,14 @@
           </div>
 
           <div class="swiper-slide">
-            <img src="${s}/4-stars.svg" alt="4 stars">
+            <img src="${o}/4-stars.svg" alt="4 stars">
             <p class="trusted-reviews__desc">This is a great product. The night vision is pretty good, and the image quality is great as well. I love being able to set alerts on my app for motion, and check in any time!!</p>
             <p class="trusted-reviews__author">Ninjafoot</p>
             <p class="trusted-reviews__loc">Sacramento, CA</p>
           </div>
 
           <div class="swiper-slide">
-            <img src="${s}/5-stars.svg" alt="5 stars">
+            <img src="${o}/5-stars.svg" alt="5 stars">
             <p class="trusted-reviews__desc">Great camera, it was easy to install, very clear and motion detection was work very good with instant notifications in my phone.</p>
             <p class="trusted-reviews__author">Carol71</p>
             <p class="trusted-reviews__loc">Jersey City, NJ</p>
@@ -1866,21 +1866,21 @@
 
           <div class="hidden-block">
             <div class="swiper-slide">
-              <img src="${s}/4-stars.svg" alt="4 stars">
+              <img src="${o}/4-stars.svg" alt="4 stars">
               <p class="trusted-reviews__desc">I set the camera up to keep my dog from leaving gifts in the hallway. As soon as a motion alert happens, i could hop on the camera and give a stern ‘NO'. Deer in headlights was her reaction. Love this tool in helping my dog potty train.</p>
               <p class="trusted-reviews__author">Jennifer Harden</p>
               <p class="trusted-reviews__loc">Verified customer</p>
             </div>
 
             <div class="swiper-slide">
-              <img src="${s}/4-stars.svg" alt="4 stars">
+              <img src="${o}/4-stars.svg" alt="4 stars">
               <p class="trusted-reviews__desc">The picture is perfect. We are thinking about replacing our other cameras with these. Easy to set up. Perfect camera</p>
               <p class="trusted-reviews__author">Dmitri Kristov</p>
               <p class="trusted-reviews__loc">Verified customer</p>
             </div>
 
             <div class="swiper-slide">
-              <img src="${s}/5-stars.svg" alt="5 stars">
+              <img src="${o}/5-stars.svg" alt="5 stars">
               <p class="trusted-reviews__desc">These lights are so easy to use with the app and Alexa. They look great also.</p>
               <p class="trusted-reviews__author">Amelia Ngoy</p>
               <p class="trusted-reviews__loc">Verified customer</p>
@@ -1892,7 +1892,7 @@
         <div class="swiper-wrapper">
           <!-- Slides -->
           <div class="swiper-slide">
-            <img src="${s}/4-stars.svg" alt="4 stars">
+            <img src="${o}/4-stars.svg" alt="4 stars">
             <p class="trusted-reviews__desc">It was very easy to set up and once it was
             connected to my Wi-Fi, I was able to start
             changing the colors from white to blue to
@@ -1903,35 +1903,35 @@
           </div>
 
           <div class="swiper-slide">
-            <img src="${s}/4-stars.svg" alt="4 stars">
+            <img src="${o}/4-stars.svg" alt="4 stars">
             <p class="trusted-reviews__desc">This is a great product. The night vision is pretty good, and the image quality is great as well. I love being able to set alerts on my app for motion, and check in any time!!</p>
             <p class="trusted-reviews__author">Ninjafoot</p>
             <p class="trusted-reviews__loc">Sacramento, CA</p>
           </div>
 
           <div class="swiper-slide">
-            <img src="${s}/5-stars.svg" alt="5 stars">
+            <img src="${o}/5-stars.svg" alt="5 stars">
             <p class="trusted-reviews__desc">Great camera, it was easy to install, very clear and motion detection was work very good with instant notifications in my phone.</p>
             <p class="trusted-reviews__author">Carol71</p>
             <p class="trusted-reviews__loc">Jersey City, NJ</p>
           </div>
 
           <div class="swiper-slide">
-            <img src="${s}/4-stars.svg" alt="4 stars">
+            <img src="${o}/4-stars.svg" alt="4 stars">
             <p class="trusted-reviews__desc">I set the camera up to keep my dog from leaving gifts in the hallway. As soon as a motion alert happens, i could hop on the camera and give a stern ‘NO'. Deer in headlights was her reaction. Love this tool in helping my dog potty train.</p>
             <p class="trusted-reviews__author">Jennifer Harden</p>
             <p class="trusted-reviews__loc">Verified customer</p>
           </div>
 
           <div class="swiper-slide">
-            <img src="${s}/4-stars.svg" alt="4 stars">
+            <img src="${o}/4-stars.svg" alt="4 stars">
             <p class="trusted-reviews__desc">The picture is perfect. We are thinking about replacing our other cameras with these. Easy to set up. Perfect camera</p>
             <p class="trusted-reviews__author">Dmitri Kristov</p>
             <p class="trusted-reviews__loc">Verified customer</p>
           </div>
 
           <div class="swiper-slide">
-            <img src="${s}/5-stars.svg" alt="5 stars">
+            <img src="${o}/5-stars.svg" alt="5 stars">
             <p class="trusted-reviews__desc">These lights are so easy to use with the app and Alexa. They look great also.</p>
             <p class="trusted-reviews__author">Amelia Ngoy</p>
             <p class="trusted-reviews__loc">Verified customer</p>
@@ -1941,104 +1941,106 @@
 
         <!-- If we need navigation buttons -->
         <div class="swiper-button-prev">
-          <img src="${s}/arrow-l.svg" alt="arrow left">
+          <img src="${o}/arrow-l.svg" alt="arrow left">
         </div>
         <div class="swiper-button-next">
-          <img src="${s}/arrow-r.svg" alt="arrow right">
+          <img src="${o}/arrow-r.svg" alt="arrow right">
         </div>
       </div>
     </div>
   </section>
   `
   );
-  x("exp_home_optim"), _({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "Andrii" }), p("head").then((i) => i.insertAdjacentHTML("afterend", w)), p("#shopify-section-template--16970486120700__section-marquee").then((i) => i.insertAdjacentHTML("afterend", y)), k(), T(), B(), $(), E(), I(), p("body").then((i) => i == null ? void 0 : i.classList.add("hide-chat-btn")), p('iframe[title="Messaging window"]').then((i) => {
-    new MutationObserver((t) => {
-      var r, e;
-      for (let l of t)
-        l.type === "attributes" && l.attributeName === "tabindex" && (console.log("Tabindex changed to:", i.getAttribute("tabindex")), i.getAttribute("tabindex") === "-1" ? (r = document.querySelector("body")) == null || r.classList.add("hide-chat-btn") : (e = document.querySelector("body")) == null || e.classList.remove("hide-chat-btn"));
-    }).observe(i, { attributes: !0 });
-  }), p(".load-more-btn").then((i) => {
-    i.addEventListener("click", () => {
-      const n = document.querySelector(".trusted-load-more");
-      n && n.classList.remove("load-more-btn-visible");
+  x("exp_home_optim"), _({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "Andrii" }), p("head").then((e) => e == null ? void 0 : e.insertAdjacentHTML("afterend", w)), p("#shopify-section-template--16970486120700__section-marquee").then((e) => e == null ? void 0 : e.insertAdjacentHTML("afterend", y)), k(), B(), E(), A(), T(), p("body").then((e) => e == null ? void 0 : e.classList.add("hide-chat-btn")), p('iframe[title="Messaging window"]').then((e) => {
+    e && new MutationObserver((i) => {
+      var r, t;
+      for (let l of i)
+        l.type === "attributes" && l.attributeName === "tabindex" && (console.log("Tabindex changed to:", e.getAttribute("tabindex")), (e == null ? void 0 : e.getAttribute("tabindex")) === "-1" ? (r = document.querySelector("body")) == null || r.classList.add("hide-chat-btn") : (t = document.querySelector("body")) == null || t.classList.remove("hide-chat-btn"));
+    }).observe(e, { attributes: !0 });
+  }), p(".load-more-btn").then((e) => {
+    e == null || e.addEventListener("click", () => {
+      const s = document.querySelector(".trusted-load-more");
+      s && s.classList.remove("load-more-btn-visible");
     });
-  }), A(), p("body").then((i) => {
-    m(".free-shipping", "exp_home_optim_section_01", "Home Page Free Shipping on Orders Over $69", "Section", 4e3), m(".shop-all .container", "exp_home_optim_section_02", "Home Page Shop by category", "Section"), m(".hero .swiper", "exp_home_optim_section_03", "Home Page Featured products PDP", "Section"), m(".warranty-sale", "exp_home_optim_section_04", "Home Page Benefits", "Section"), i.addEventListener("click", (n) => {
-      var r, e, l;
-      const t = n.target;
-      if (t.closest("button.mobile-menu__button") && g("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), t.closest(".shop-all__view") && g("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), t.closest(".menu-items a")) {
-        const a = (r = t.closest(".menu-items a")) == null ? void 0 : r.querySelector("p");
-        g("exp_home_optim_button_05", `${a == null ? void 0 : a.innerText} - choise category`, "Button", "Home Page Shop by category");
+  }), $(), p("body").then((e) => {
+    m(".free-shipping", "exp_home_optim_section_01", "Home Page Free Shipping on Orders Over $69", "Section", 4e3), m(".shop-all .container", "exp_home_optim_section_02", "Home Page Shop by category", "Section"), m(".hero .swiper", "exp_home_optim_section_03", "Home Page Featured products PDP", "Section"), m(".warranty-sale", "exp_home_optim_section_04", "Home Page Benefits", "Section"), e == null || e.addEventListener("click", (s) => {
+      var r, t, l;
+      const i = s.target;
+      if (i.closest("button.mobile-menu__button") && g("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), i.closest(".shop-all__view") && g("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), i.closest(".menu-items a")) {
+        const n = (r = i.closest(".menu-items a")) == null ? void 0 : r.querySelector("p");
+        g("exp_home_optim_button_05", `${n == null ? void 0 : n.innerText} - choise category`, "Button", "Home Page Shop by category");
       }
-      if (t.closest(".hero .product__btn")) {
-        const a = (e = t.closest(".product")) == null ? void 0 : e.querySelector(".product__title");
-        g("exp_home_optim_button_06", `${a == null ? void 0 : a.innerText} - Shop now`, "Button", "Home Page Featured products PDP");
+      if (i.closest(".hero .product__btn")) {
+        const n = (t = i.closest(".product")) == null ? void 0 : t.querySelector(".product__title");
+        g("exp_home_optim_button_06", `${n == null ? void 0 : n.innerText} - Shop now`, "Button", "Home Page Featured products PDP");
       }
-      if (t.closest(".hero .product")) {
-        const a = (l = t.closest(".hero .product")) == null ? void 0 : l.querySelector(".product__type");
-        g("exp_home_optim_button_07", `${a == null ? void 0 : a.innerText} - Click`, "Button", "Home Page Featured products PDP");
+      if (i.closest(".hero .product")) {
+        const n = (l = i.closest(".hero .product")) == null ? void 0 : l.querySelector(".product__type");
+        g("exp_home_optim_button_07", `${n == null ? void 0 : n.innerText} - Click`, "Button", "Home Page Featured products PDP");
       }
     });
   });
-  async function b(i, n) {
+  async function b(e, s) {
     try {
-      const t = await fetch(`https://mygeeni.com/products/${i}.json`, {
+      const i = await fetch(`https://mygeeni.com/products/${e}.json`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
         }
       });
-      if (!t.ok)
-        throw new Error(`HTTP error! status: ${t.status}`);
-      const e = (await t.json()).product;
-      if (!e.variants || e.variants.length === 0)
+      if (!i.ok)
+        throw new Error(`HTTP error! status: ${i.status}`);
+      const t = (await i.json()).product;
+      if (!t.variants || t.variants.length === 0)
         throw new Error("Product has no variants");
-      const l = e.variants[0];
+      const l = t.variants[0];
       if (!("price" in l) || !("compare_at_price" in l))
         throw new Error("Variant is missing price or compare_at_price");
       return {
-        title: e.title,
-        product_type: e.product_type,
-        handle: e.handle,
+        title: t.title,
+        product_type: t.product_type,
+        handle: t.handle,
         price: l.price,
         compare_at_price: l.compare_at_price,
-        image_src: e.image.src
+        image_src: t.image.src
       };
-    } catch (t) {
-      throw console.error(`Failed to fetch product data for handle ${i}: ${t}`), t;
+    } catch (i) {
+      throw console.error(`Failed to fetch product data for handle ${e}: ${i}`), i;
     }
   }
-  async function F(i) {
-    const n = i.length, t = i.map((r, e) => (
+  function F(e) {
+    const s = e.length, i = e.map((r, t) => (
       /*html*/
       `
-        <div class="glide__slide new-arrivals-product">
-            <div class="new-arrivals-product__img-wrap">
-              <img src="${r.image_src}" alt="${r.title}">
-            </div>
-            <div class="new-arrivals-product__content">
-              <div class="new-arrivals__nav">
-                <div class="swiper-button-prev-mob">
-                  <img src="${s}/arrow-l.svg" alt="arrow left">
-                </div>
-                <p class="new-arrivals-product__number">${e + 1}/${n}</p>
-                <div class="swiper-button-next-mob">
-                  <img src="${s}/arrow-r.svg" alt="arrow right">
-                </div>
+      <div class="glide__slide new-arrivals-product">
+          <div class="new-arrivals-product__img-wrap">
+            <img src="${r.image_src}" alt="${r.title}">
+          </div>
+          <div class="new-arrivals-product__content">
+            <div class="new-arrivals__nav">
+              <div class="swiper-button-prev-mob">
+                <img src="${o}/arrow-l.svg" alt="arrow left">
               </div>
-              <a class="new-arrivals-product__title" href="/products/${r.handle}">${r.title}</a>
-              <div class="new-arrivals-product__price">
-                <span>${r.price}</span>
+              <p class="new-arrivals-product__number">${t + 1}/${s}</p>
+              <div class="swiper-button-next-mob">
+                <img src="${o}/arrow-r.svg" alt="arrow right">
               </div>
-              <p class="new-arrivals-product__description">${r.description}</p>
-              <a class="crs-btn" href="/products/${r.handle}">Shop now</a>
             </div>
-        </div>`
+            <a class="new-arrivals-product__title" href="/products/${r.handle}">${r.title}</a>
+            <div class="new-arrivals-product__price">
+              <span>${r.price}</span>
+            </div>
+            <p class="new-arrivals-product__description">${r.description}</p>
+            <a class="crs-btn" href="/products/${r.handle}">Shop now</a>
+          </div>
+      </div>`
     )).join("");
-    p(".new-arrivals .new-arrivals__content .glide__slides").then((r) => r == null ? void 0 : r.insertAdjacentHTML("beforeend", t)).catch((r) => console.error("Failed to insert slides to new arrival slider:", r));
+    p(".new-arrivals .new-arrivals__content .glide__slides").then((r) => r == null ? void 0 : r.insertAdjacentHTML("beforeend", i)).then(() => {
+      I();
+    }).catch((r) => console.error("Failed to insert slides to new arrival slider:", r));
   }
-  async function S(i) {
-    const t = (
+  function S(e) {
+    const i = (
       /*html*/
       `
     <div class="hero">
@@ -2048,26 +2050,26 @@
           <!-- Additional required wrapper -->
           <div class="swiper-wrapper">
             <!-- Slides -->
-            ${i.map((e, l) => {
-        const a = e.compare_at_price - e.price, o = Math.round(a / e.compare_at_price * 100), d = a > 0 ? `Save ${o}%` : "", c = e.compare_at_price && e.compare_at_price !== e.price ? `${e.compare_at_price}` : "", u = e.product_type.toLowerCase().includes("camera") ? "Cameras" : e.product_type;
+            ${e.map((t, l) => {
+        const n = t.compare_at_price - t.price, a = Math.round(n / t.compare_at_price * 100), d = n > 0 ? `Save ${a}%` : "", c = t.compare_at_price && t.compare_at_price !== t.price ? `${t.compare_at_price}` : "", u = t.product_type.toLowerCase().includes("camera") ? "Cameras" : t.product_type;
         return (
           /*html*/
           `
     <div class="swiper-slide product">
-      <img class="product__img" src="${e.image_src}" alt="${e.title}">
+      <img class="product__img" src="${t.image_src}" alt="${t.title}">
       <div class="product__number">
-        <p>${l + 1}/${i.length}</p>
+        <p>${l + 1}/${e.length}</p>
       </div>
       <div class="product__info">
         <p class="product__type">${u}</p>
-        <a class="product__title" href="/products/${e.handle}">${e.title}</a>
+        <a class="product__title" href="/products/${t.handle}">${t.title}</a>
         <div class="product__price">
-          <span>${e.price}</span>
+          <span>${t.price}</span>
           <span>${c}</span>
           ${d !== "" ? `<span>${d}</span>` : ""}
         </div>
 
-        <a class="product__btn" href="/products/${e.handle}">Shop now</a>
+        <a class="product__btn" href="/products/${t.handle}">Shop now</a>
       </div>
     </div>`
         );
@@ -2076,11 +2078,11 @@
 
           <div class="hero-swiper-nav">
             <div class="swiper-button-prev">
-              <img src="${s}/arrow-l.svg" alt="arrow left">
+              <img src="${o}/arrow-l.svg" alt="arrow left">
             </div>
             <div id="slide-number"><p></p></div>
             <div class="swiper-button-next">
-              <img src="${s}/arrow-r.svg" alt="arrow right">
+              <img src="${o}/arrow-r.svg" alt="arrow right">
             </div>
           </div>
           
@@ -2089,54 +2091,54 @@
     </div>
   `
     );
-    p(v === "desktop" ? ".free-shipping" : ".shop-all").then((e) => e == null ? void 0 : e.insertAdjacentHTML("afterend", t)).catch((e) => console.error("Failed to insert slides to hero slider:", e));
+    p(v === "desktop" ? ".free-shipping" : ".shop-all").then((t) => t == null ? void 0 : t.insertAdjacentHTML("afterend", i)).catch((t) => console.error("Failed to insert slides to hero slider:", t));
   }
   async function k() {
-    const i = document.getElementById("productData");
-    if (!i || !i.textContent) {
+    const e = document.getElementById("productData");
+    if (!e || !e.textContent) {
       console.error("Product data element or its content is missing");
       return;
     }
-    let n;
+    let s;
     try {
-      n = JSON.parse(i.textContent);
-    } catch (o) {
-      console.error("Failed to parse product data:", o);
+      s = JSON.parse(e.textContent);
+    } catch (a) {
+      console.error("Failed to parse product data:", a);
       return;
     }
-    const t = [], r = [];
-    document.querySelectorAll(".products-list__container .btn.btn--primary").forEach((o) => {
-      const c = new URL(o.href).pathname.split("/products/")[1];
-      c && t.push(c);
+    const i = [], r = [];
+    document.querySelectorAll(".products-list__container .btn.btn--primary").forEach((a) => {
+      const c = new URL(a.href).pathname.split("/products/")[1];
+      c && i.push(c);
     });
-    const e = t.map((o, d) => b(o));
-    (await Promise.allSettled(e)).forEach((o, d) => {
-      if (o.status === "fulfilled") {
-        const c = document.querySelectorAll(".products-list__item__description")[d], u = c ? c.innerText : "", z = o.value.price ? `$${o.value.price}` : "";
-        r.push({ ...o.value, description: u, price: z });
+    const t = i.map((a, d) => b(a));
+    (await Promise.allSettled(t)).forEach((a, d) => {
+      if (a.status === "fulfilled") {
+        const c = document.querySelectorAll(".products-list__item__description")[d], u = c ? c.innerText : "", z = a.value.price ? `$${a.value.price}` : "";
+        r.push({ ...a.value, description: u, price: z });
       } else
-        console.error(`Failed to fetch product data for handle ${t[d]}: ${o.reason}`);
+        console.error(`Failed to fetch product data for handle ${i[d]}: ${a.reason}`);
     });
-    const a = window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0;
-    S(a ? r : n), F(r);
-  }
-  function $() {
-    function i(n, t, r) {
-      const e = document.createElement("link");
-      e.href = n, e.rel = t, r && (e.crossOrigin = r), document.head.appendChild(e);
-    }
-    i("https://fonts.googleapis.com", "preconnect"), i("https://fonts.gstatic.com", "preconnect", "true"), i("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap", "stylesheet");
+    const n = window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0;
+    S(n ? r : s), F(r);
   }
   function A() {
-    const i = setInterval(() => {
-      const n = document.getElementById("INDmenu-btn"), t = document.getElementById("launcher");
-      n && t && (clearInterval(i), p(".additional-functional").then((r) => r.addEventListener("click", (e) => {
-        var l;
-        e.target, e.target.closest('[data-img-func="accessibility"]') ? n.click() : e.target.closest('[data-img-func="sale"]') ? (l = document.querySelector(".kl-teaser-T4UsqC")) == null || l.click() : e.target.closest('[data-img-func="chat"]') && (t.contentDocument || t.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click();
+    function e(s, i, r) {
+      const t = document.createElement("link");
+      t.href = s, t.rel = i, r && (t.crossOrigin = r), document.head.appendChild(t);
+    }
+    e("https://fonts.googleapis.com", "preconnect"), e("https://fonts.gstatic.com", "preconnect", "true"), e("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap", "stylesheet");
+  }
+  function $() {
+    const e = setInterval(() => {
+      const s = document.getElementById("INDmenu-btn"), i = document.getElementById("launcher");
+      s && i && (clearInterval(e), p(".additional-functional").then((r) => r == null ? void 0 : r.addEventListener("click", (t) => {
+        var l, n, a, d;
+        t.target, (l = t.target) != null && l.closest('[data-img-func="accessibility"]') ? s.click() : (n = t.target) != null && n.closest('[data-img-func="sale"]') ? (a = document.querySelector(".kl-teaser-T4UsqC")) == null || a.click() : (d = t.target) != null && d.closest('[data-img-func="chat"]') && (i.contentDocument || i.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click();
       })), setInterval(() => {
-        var r, e, l;
-        if (document.querySelector('[data-testid="POPUP"]') ? (r = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || r.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (l = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || l.classList.remove("hidden-el") : (e = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || e.classList.add("hidden-el"), document.querySelector('iframe[title="Number of unread messages"]')) {
-          const a = document.querySelector('iframe[title="Number of unread messages"]'), d = (a.contentDocument || a.contentWindow.document).querySelector(".gwgkTo");
+        var r, t, l;
+        if (document.querySelector('[data-testid="POPUP"]') ? (r = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || r.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (l = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || l.classList.remove("hidden-el") : (t = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || t.classList.add("hidden-el"), document.querySelector('iframe[title="Number of unread messages"]')) {
+          const n = document.querySelector('iframe[title="Number of unread messages"]'), d = (n.contentDocument || n.contentWindow.document).querySelector(".gwgkTo");
           document.querySelector('[data-img-func="chat"] p') && (d != null && d.textContent) && (document.querySelector('[data-img-func="chat"]').classList.add("display-msg-number"), document.querySelector('[data-img-func="chat"] p').innerText = d.textContent, console.log(d.textContent));
         } else
           document.querySelector(".display-msg-number") && document.querySelector(".display-msg-number").classList.remove("display-msg-number");
@@ -2144,10 +2146,36 @@
     }, 100);
   }
   function T() {
+    v === "mobile" && p('.mobile-menu [aria-controls="nav-drawer"]').then((e) => {
+      document.querySelector("h1.logo").insertAdjacentElement("beforebegin", e);
+    });
+  }
+  function f(e, s) {
+    const i = `[data-products-type="${e}"] .products-wrapper`;
+    p(i).then((r) => {
+      const t = document.querySelectorAll(s);
+      for (let n = 0; n < 4; n++) {
+        const a = t[n];
+        r.appendChild(a);
+      }
+      const l = setInterval(() => {
+        const n = document.querySelectorAll(`${i} .product-grid-item__title`);
+        n[3] && (clearInterval(l), n.forEach((a, d) => {
+          document.querySelectorAll(`${i} .product-grid-item__inner`)[d].insertAdjacentHTML("beforeend", `<a class="product__shop-now" href="${a.href}">Shop now</a>`);
+        }));
+      }, 100);
+    });
+  }
+  function E() {
+    const e = setInterval(() => {
+      document.querySelector("#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(e), f("popular-products", "#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), f("hot-deals", "#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner"));
+    }, 100);
+  }
+  function B() {
     h(["https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js", "https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"]).then(() => {
-      const i = setInterval(() => {
-        typeof Swiper < "u" && (clearInterval(i), p(".hero .swiper").then((n) => {
-          const t = n.clientWidth, e = t * 1.07 - t + 16;
+      const e = setInterval(() => {
+        typeof Swiper < "u" && document.querySelectorAll(".swiper")[1] && (clearInterval(e), p(".hero .swiper").then((s) => {
+          const i = s.clientWidth, t = i * 1.07 - i + 16;
           new Swiper(".hero .swiper", {
             navigation: {
               nextEl: ".hero .swiper-button-next",
@@ -2155,7 +2183,7 @@
             },
             slidesPerView: 1.13,
             spaceBetween: 8,
-            slidesOffsetAfter: e,
+            slidesOffsetAfter: t,
             // adjust this value as needed
             breakpoints: {
               768: {
@@ -2173,7 +2201,7 @@
               }
             }
           });
-        }), p(".trusted-reviews .swiper").then((n) => {
+        }), p(".trusted-reviews .swiper").then((s) => {
           new Swiper(".trusted-reviews .swiper", {
             slidesPerView: 3.8,
             spaceBetween: 8,
@@ -2184,8 +2212,8 @@
             },
             on: {
               reachEnd: function() {
-                var t;
-                (t = document.querySelector(".trusted-reviews .swiper")) == null || t.classList.add("reached-end");
+                var i;
+                (i = document.querySelector(".trusted-reviews .swiper")) == null || i.classList.add("reached-end");
               }
             }
           });
@@ -2193,37 +2221,11 @@
       }, 100);
     });
   }
-  function E() {
-    v === "mobile" && p('.mobile-menu [aria-controls="nav-drawer"]').then((i) => {
-      document.querySelector("h1.logo").insertAdjacentElement("beforebegin", i);
-    });
-  }
-  function f(i, n) {
-    const t = `[data-products-type="${i}"] .products-wrapper`;
-    p(t).then((r) => {
-      const e = document.querySelectorAll(n);
-      for (let a = 0; a < 4; a++) {
-        const o = e[a];
-        r.appendChild(o);
-      }
-      const l = setInterval(() => {
-        const a = document.querySelectorAll(`${t} .product-grid-item__title`);
-        a[3] && (clearInterval(l), a.forEach((o, d) => {
-          document.querySelectorAll(`${t} .product-grid-item__inner`)[d].insertAdjacentHTML("beforeend", `<a class="product__shop-now" href="${o.href}">Shop now</a>`);
-        }));
-      }, 100);
-    });
-  }
-  function B() {
-    const i = setInterval(() => {
-      document.querySelector("#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(i), f("popular-products", "#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), f("hot-deals", "#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner"));
-    }, 100);
-  }
   function I() {
     h(["https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.core.min.css", "https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/glide.min.js"]).then(() => {
-      const i = setInterval(() => {
+      const e = setInterval(() => {
         if (typeof Glide < "u" && document.querySelector(".glide")) {
-          clearInterval(i), new Glide(".glide", {
+          clearInterval(e), new Glide(".glide", {
             type: "carousel",
             startAt: 0,
             perView: 2,
@@ -2241,10 +2243,11 @@
               }
             }
           }).mount();
-          const n = setInterval(() => {
-            const t = document.querySelector(".glide__arrow--left"), r = document.querySelector(".glide__arrow--right"), e = document.querySelector(".glide");
-            t && r && (console.log("Arrows are ready"), clearInterval(n), e.addEventListener("click", (l) => {
-              console.log(l.target), l.target.closest(".swiper-button-prev-mob") && t.dispatchEvent(new Event("click")), l.target.closest(".swiper-button-next-mob") && r.dispatchEvent(new Event("click"));
+          const s = setInterval(() => {
+            const i = document.querySelector(".glide__arrow--left"), r = document.querySelector(".glide__arrow--right"), t = document.querySelector(".glide");
+            i && r && (console.log("Arrows are ready"), clearInterval(s), t.addEventListener("click", (l) => {
+              var n, a;
+              console.log(l.target), (n = l.target) != null && n.closest(".swiper-button-prev-mob") && i.dispatchEvent(new Event("click")), (a = l.target) != null && a.closest(".swiper-button-next-mob") && r.dispatchEvent(new Event("click"));
             }));
           }, 100);
         }
