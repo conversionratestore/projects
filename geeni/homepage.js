@@ -1,75 +1,75 @@
 (function() {
   "use strict";
-  const g = (e, o, t, l = "") => {
+  const c = (t, s, e, i = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: e,
-      event_desc: o,
-      event_type: t,
-      event_loc: l
-    }), console.log(`Event: ${e} | ${o} | ${t} | ${l}`);
-  }, w = ({ name: e, dev: o }) => {
+      event_name: t,
+      event_desc: s,
+      event_type: e,
+      event_loc: i
+    }), console.log(`Event: ${t} | ${s} | ${e} | ${i}`);
+  }, v = ({ name: t, dev: s }) => {
     console.log(
-      `%c EXP: ${e} (DEV: ${o})`,
+      `%c EXP: ${t} (DEV: ${s})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, h = async (e) => {
-    const o = (t) => new Promise((l, n) => {
-      const i = t.split(".").pop();
-      if (i === "js") {
-        if (Array.from(document.scripts).map((r) => r.src.toLowerCase()).includes(t.toLowerCase()))
-          return console.log(`Script ${t} allready downloaded!`), l("");
-        const d = document.createElement("script");
-        d.src = t, d.onload = l, d.onerror = n, document.head.appendChild(d);
-      } else if (i === "css") {
-        if (Array.from(document.styleSheets).map((r) => {
-          var p;
-          return (p = r.href) == null ? void 0 : p.toLowerCase();
-        }).includes(t.toLowerCase()))
-          return console.log(`Style ${t} allready downloaded!`), l("");
-        const d = document.createElement("link");
-        d.rel = "stylesheet", d.href = t, d.onload = l, d.onerror = n, document.head.appendChild(d);
+  }, m = async (t) => {
+    const s = (e) => new Promise((i, r) => {
+      const o = e.split(".").pop();
+      if (o === "js") {
+        if (Array.from(document.scripts).map((d) => d.src.toLowerCase()).includes(e.toLowerCase()))
+          return console.log(`Script ${e} allready downloaded!`), i("");
+        const l = document.createElement("script");
+        l.src = e, l.onload = i, l.onerror = r, document.head.appendChild(l);
+      } else if (o === "css") {
+        if (Array.from(document.styleSheets).map((d) => {
+          var h;
+          return (h = d.href) == null ? void 0 : h.toLowerCase();
+        }).includes(e.toLowerCase()))
+          return console.log(`Style ${e} allready downloaded!`), i("");
+        const l = document.createElement("link");
+        l.rel = "stylesheet", l.href = e, l.onload = i, l.onerror = r, document.head.appendChild(l);
       }
     });
-    for (const t of e)
-      await o(t), console.log(`Loaded librari ${t}`);
+    for (const e of t)
+      await s(e), console.log(`Loaded librari ${e}`);
     console.log("All libraries loaded!");
-  }, y = (e) => {
-    let o = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(o), window.clarity("set", e, "variant_1"));
+  }, f = (t) => {
+    let s = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(s), window.clarity("set", t, "variant_1"));
     }, 1e3);
-  }, u = (e, o, t, l, n = 3e3, i = 1) => {
-    let s, d;
-    if (s = new IntersectionObserver(
-      function(r) {
-        r[0].isIntersecting === !0 ? d = setTimeout(() => {
-          g(
-            o,
-            r[0].target.dataset.visible || l || "",
+  }, g = (t, s, e, i, r = 3e3, o = 1) => {
+    let n, l;
+    if (n = new IntersectionObserver(
+      function(d) {
+        d[0].isIntersecting === !0 ? l = setTimeout(() => {
+          c(
+            s,
+            d[0].target.dataset.visible || i || "",
             "Visibility",
-            t
-          ), s.disconnect();
-        }, n) : (console.log("Element is not fully visible"), clearTimeout(d));
+            e
+          ), n.disconnect();
+        }, r) : (console.log("Element is not fully visible"), clearTimeout(l));
       },
-      { threshold: [i] }
-    ), typeof e == "string") {
-      const r = document.querySelector(e);
-      r && s.observe(r);
+      { threshold: [o] }
+    ), typeof t == "string") {
+      const d = document.querySelector(t);
+      d && n.observe(d);
     } else
-      s.observe(e);
-  }, c = (e) => new Promise((o) => {
-    const t = document.querySelector(e);
-    if (t)
-      return o(t);
-    const l = new MutationObserver(() => {
-      const n = document.querySelector(e);
-      n && (o(n), l.disconnect());
+      n.observe(t);
+  }, p = (t) => new Promise((s) => {
+    const e = document.querySelector(t);
+    if (e)
+      return s(e);
+    const i = new MutationObserver(() => {
+      const r = document.querySelector(t);
+      r && (s(r), i.disconnect());
     });
-    l.observe(document.documentElement, {
+    i.observe(document.documentElement, {
       childList: !0,
       subtree: !0
     });
-  }), a = "https://conversionratestore.github.io/projects/geeni/img/home-app-web", v = window.innerWidth < 768 ? "mobile" : "desktop", b = (
+  }), a = "https://conversionratestore.github.io/projects/geeni/img/home-app-web", x = window.innerWidth < 768 ? "mobile" : "desktop", _ = (
     /*html*/
     `
   <style>
@@ -1655,7 +1655,7 @@
       }
     }
   </style>`
-  ), F = (
+  ), w = (
     /*html*/
     `
   <div class="additional-functional">
@@ -1935,99 +1935,95 @@
   </section>
   `
   );
-  y("exp_home_optim"), w({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "Andrii" }), k(), c("head").then((e) => e.insertAdjacentHTML("afterend", b)), c("#shopify-section-template--16970486120700__section-marquee").then((e) => e.insertAdjacentHTML("afterend", F)), S(), $(), T(), c("body").then((e) => e == null ? void 0 : e.classList.add("hide-chat-btn")), c('iframe[title="Messaging window"]').then((e) => {
-    new MutationObserver((t) => {
-      var l, n;
-      for (let i of t)
-        i.type === "attributes" && i.attributeName === "tabindex" && (console.log("Tabindex changed to:", e.getAttribute("tabindex")), e.getAttribute("tabindex") === "-1" ? (l = document.querySelector("body")) == null || l.classList.add("hide-chat-btn") : (n = document.querySelector("body")) == null || n.classList.remove("hide-chat-btn"));
-    }).observe(e, { attributes: !0 });
-  }), B(), c(".load-more-btn").then((e) => {
-    e.addEventListener("click", () => {
-      const o = document.querySelector(".trusted-load-more");
-      o && o.classList.remove("load-more-btn-visible");
+  f("exp_home_optim"), v({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "Andrii" }), b(), p("head").then((t) => t.insertAdjacentHTML("afterend", _)), p("#shopify-section-template--16970486120700__section-marquee").then((t) => t.insertAdjacentHTML("afterend", w)), F(), S(), A(), p("body").then((t) => t == null ? void 0 : t.classList.add("hide-chat-btn")), p('iframe[title="Messaging window"]').then((t) => {
+    new MutationObserver((e) => {
+      var i, r;
+      for (let o of e)
+        o.type === "attributes" && o.attributeName === "tabindex" && (console.log("Tabindex changed to:", t.getAttribute("tabindex")), t.getAttribute("tabindex") === "-1" ? (i = document.querySelector("body")) == null || i.classList.add("hide-chat-btn") : (r = document.querySelector("body")) == null || r.classList.remove("hide-chat-btn"));
+    }).observe(t, { attributes: !0 });
+  }), T(), p(".load-more-btn").then((t) => {
+    t.addEventListener("click", () => {
+      const s = document.querySelector(".trusted-load-more");
+      s && s.classList.remove("load-more-btn-visible");
     });
-  }), E(), A(), c("body").then((e) => {
-    u(".free-shipping", "exp_home_optim_section_01", "Home Page Free Shipping on Orders Over $69", "Section", 4e3), u(".shop-all .container", "exp_home_optim_section_02", "Home Page Shop by category", "Section"), u(".hero .swiper", "exp_home_optim_section_03", "Home Page Featured products PDP", "Section"), u(".warranty-sale", "exp_home_optim_section_04", "Home Page Benefits", "Section"), e.addEventListener("click", (o) => {
-      var l, n, i;
-      const t = o.target;
-      if (t.closest("button.mobile-menu__button") && g("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), t.closest(".shop-all__view") && g("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), t.closest(".menu-items a")) {
-        const s = (l = t.closest(".menu-items a")) == null ? void 0 : l.querySelector("p");
-        g("exp_home_optim_button_05", `${s == null ? void 0 : s.innerText} - choise category`, "Button", "Home Page Shop by category");
+  }), $(), k(), p("body").then((t) => {
+    g(".free-shipping", "exp_home_optim_section_01", "Home Page Free Shipping on Orders Over $69", "Section", 4e3), g(".shop-all .container", "exp_home_optim_section_02", "Home Page Shop by category", "Section"), g(".hero .swiper", "exp_home_optim_section_03", "Home Page Featured products PDP", "Section"), g(".warranty-sale", "exp_home_optim_section_04", "Home Page Benefits", "Section"), t.addEventListener("click", (s) => {
+      var i, r, o;
+      const e = s.target;
+      if (e.closest("button.mobile-menu__button") && c("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), e.closest(".shop-all__view") && c("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), e.closest(".menu-items a")) {
+        const n = (i = e.closest(".menu-items a")) == null ? void 0 : i.querySelector("p");
+        c("exp_home_optim_button_05", `${n == null ? void 0 : n.innerText} - choise category`, "Button", "Home Page Shop by category");
       }
-      if (t.closest(".hero .product__btn")) {
-        const s = (n = t.closest(".product")) == null ? void 0 : n.querySelector(".product__title");
-        g("exp_home_optim_button_06", `${s == null ? void 0 : s.innerText} - Shop now`, "Button", "Home Page Featured products PDP");
+      if (e.closest(".hero .product__btn")) {
+        const n = (r = e.closest(".product")) == null ? void 0 : r.querySelector(".product__title");
+        c("exp_home_optim_button_06", `${n == null ? void 0 : n.innerText} - Shop now`, "Button", "Home Page Featured products PDP");
       }
-      if (t.closest(".hero .product")) {
-        const s = (i = t.closest(".hero .product")) == null ? void 0 : i.querySelector(".product__type");
-        g("exp_home_optim_button_07", `${s == null ? void 0 : s.innerText} - Click`, "Button", "Home Page Featured products PDP");
+      if (e.closest(".hero .product")) {
+        const n = (o = e.closest(".hero .product")) == null ? void 0 : o.querySelector(".product__type");
+        c("exp_home_optim_button_07", `${n == null ? void 0 : n.innerText} - Click`, "Button", "Home Page Featured products PDP");
       }
     });
   });
-  async function f(e, o) {
-    var i;
-    const t = await fetch(`https://mygeeni.com/products/${e}.json`, {
+  async function y(t, s) {
+    var o;
+    const e = await fetch(`https://mygeeni.com/products/${t}.json`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
       }
     });
-    if (!t.ok)
-      throw new Error(`HTTP error! status: ${t.status}`);
-    const n = (await t.json()).product;
+    if (!e.ok)
+      throw new Error(`HTTP error! status: ${e.status}`);
+    const r = (await e.json()).product;
     return {
-      title: n.title,
-      product_type: n.product_type,
-      handle: n.handle,
-      price: n.variants[0].price,
-      compare_at_price: n.variants[0].compare_at_price,
-      image_src: n.image.src,
-      description: (i = document.querySelectorAll(".products-list__item__description")[o]) == null ? void 0 : i.innerText
+      title: r.title,
+      product_type: r.product_type,
+      handle: r.handle,
+      price: r.variants[0].price,
+      compare_at_price: r.variants[0].compare_at_price,
+      image_src: r.image.src,
+      description: (o = document.querySelectorAll(".products-list__item__description")[s]) == null ? void 0 : o.innerText
     };
   }
-  function k() {
+  function b() {
     console.log("drawHeroSection");
-    const e = [], o = [
-      "hawk-3-1080p-hd-outdoor-smart-wi-fi-security-camera-white-2-pack",
-      "geeni-look-2-pack-1080p-hd-smart-home-surveillance-system-with-night-vision-motion-detection-2-way-audio-remote-access-with-ios-android-app-no-hub-required-black",
-      "geeni-lookout-2k-outdoor-auto-follow-camera"
-    ];
-    document.querySelectorAll(".products-list__container .btn.btn--primary").forEach((i) => {
-      const s = i.href;
-      s && e.push(s.split("https://mygeeni.com/products/")[1]);
-    }), console.log("dealsProductsHandles", e);
-    const t = e.map((i, s) => f(i, s));
-    Promise.all(t).then((i) => {
-      console.log(i);
-      const s = i.length, r = (
+    const t = [];
+    document.querySelectorAll(".products-list__container .btn.btn--primary").forEach((e) => {
+      const i = e.href;
+      i && t.push(i.split("https://mygeeni.com/products/")[1]);
+    }), console.log("dealsProductsHandles", t);
+    const s = t.map((e, i) => y(e, i));
+    Promise.all(s).then((e) => {
+      console.log(e);
+      const i = e.length, o = (
         /*html*/
         `
       <div class="glide">
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
-            ${i.map((p, m) => (
+            ${e.map((n, l) => (
           /*html*/
           `
         <div class="glide__slide new-arrivals-product">
             <div class="new-arrivals-product__img-wrap">
-              <img src="${p.image_src}" alt="${p.title}">
+              <img src="${n.image_src}" alt="${n.title}">
             </div>
             <div class="new-arrivals-product__content">
               <div class="new-arrivals__nav">
                 <div class="swiper-button-prev-mob">
                   <img src="${a}/arrow-l.svg" alt="arrow left">
                 </div>
-                <p class="new-arrivals-product__number">${m + 1}/${s}</p>
+                <p class="new-arrivals-product__number">${l + 1}/${i}</p>
                 <div class="swiper-button-next-mob">
                   <img src="${a}/arrow-r.svg" alt="arrow right">
                 </div>
               </div>
-              <a class="new-arrivals-product__title" href="/products/${p.handle}">${p.title}</a>
+              <a class="new-arrivals-product__title" href="/products/${n.handle}">${n.title}</a>
               <div class="new-arrivals-product__price">
-                <span>$${p.price}</span>
+                <span>$${n.price}</span>
               </div>
-              <p class="new-arrivals-product__description">${document.querySelectorAll(".products-list__item__description")[m].innerText}</p>
-              <a class="crs-btn" href="/products/${p.handle}">Shop now</a>
+              <p class="new-arrivals-product__description">${document.querySelectorAll(".products-list__item__description")[l].innerText}</p>
+              <a class="crs-btn" href="/products/${n.handle}">Shop now</a>
             </div>
         </div>`
         )).join("")}
@@ -2045,93 +2041,37 @@
       </div>
     `
       );
-      c(".new-arrivals .new-arrivals__content").then((p) => p == null ? void 0 : p.insertAdjacentHTML("beforeend", r));
-    }).catch((i) => console.error("Error:", i));
-    const n = (window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0 ? e : o).map((i, s) => f(i, s));
-    Promise.all(n).then((i) => {
-      console.log(i);
-      const d = (
-        /*html*/
-        `
-        <div class="hero">
-          <div class="container">
-            <!-- Slider main container -->
-            <div class="swiper">
-              <!-- Additional required wrapper -->
-              <div class="swiper-wrapper">
-                <!-- Slides -->
-                ${i.map((r, p) => {
-          const m = r.compare_at_price - r.price, I = Math.round(m / r.compare_at_price * 100), x = m > 0 ? `Save ${I}%` : "", z = r.compare_at_price && r.compare_at_price !== r.price ? `$${r.compare_at_price}` : "", j = r.product_type.toLowerCase().includes("camera") ? "Cameras" : r.product_type;
-          return (
-            /*html*/
-            `
-          <div class="swiper-slide product">
-            <img class="product__img" src="${r.image_src}" alt="${r.title}">
-            <div class="product__number">
-              <p>${p + 1}/${i.length}</p>
-            </div>
-            <div class="product__info">
-              <p class="product__type">${j}</p>
-              <a class="product__title" href="/products/${r.handle}">${r.title}</a>
-              <div class="product__price">
-                <span>$${r.price}</span>
-                <span>${z}</span>
-                ${x !== "" ? `<span>${x}</span>` : ""}
-              </div>
-  
-              <a class="product__btn" href="/products/${r.handle}">Shop now</a>
-            </div>
-          </div>`
-          );
-        }).join("")}
-              </div>
-  
-              <div class="hero-swiper-nav">
-                <div class="swiper-button-prev">
-                  <img src="${a}/arrow-l.svg" alt="arrow left">
-                </div>
-                <div id="slide-number"><p></p></div>
-                <div class="swiper-button-next">
-                  <img src="${a}/arrow-r.svg" alt="arrow right">
-                </div>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-      `
-      );
-      v === "desktop" ? c(".free-shipping").then((r) => r == null ? void 0 : r.insertAdjacentHTML("afterend", d)) : c(".shop-all").then((r) => r == null ? void 0 : r.insertAdjacentHTML("afterend", d));
-    }).catch((i) => console.error("Error:", i));
+      p(".new-arrivals .new-arrivals__content").then((n) => n == null ? void 0 : n.insertAdjacentHTML("beforeend", o));
+    }).catch((e) => console.error("Error:", e));
   }
-  function S() {
-    function e(o, t, l) {
-      const n = document.createElement("link");
-      n.href = o, n.rel = t, l && (n.crossOrigin = l), document.head.appendChild(n);
+  function F() {
+    function t(s, e, i) {
+      const r = document.createElement("link");
+      r.href = s, r.rel = e, i && (r.crossOrigin = i), document.head.appendChild(r);
     }
-    e("https://fonts.googleapis.com", "preconnect"), e("https://fonts.gstatic.com", "preconnect", "true"), e("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap", "stylesheet");
+    t("https://fonts.googleapis.com", "preconnect"), t("https://fonts.gstatic.com", "preconnect", "true"), t("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap", "stylesheet");
   }
-  function A() {
-    const e = setInterval(() => {
-      const o = document.getElementById("INDmenu-btn"), t = document.getElementById("launcher");
-      o && t && (clearInterval(e), c(".additional-functional").then((l) => l.addEventListener("click", (n) => {
-        var i;
-        n.target, n.target.closest('[data-img-func="accessibility"]') ? o.click() : n.target.closest('[data-img-func="sale"]') ? (i = document.querySelector(".kl-teaser-T4UsqC")) == null || i.click() : n.target.closest('[data-img-func="chat"]') && (t.contentDocument || t.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click();
+  function k() {
+    const t = setInterval(() => {
+      const s = document.getElementById("INDmenu-btn"), e = document.getElementById("launcher");
+      s && e && (clearInterval(t), p(".additional-functional").then((i) => i.addEventListener("click", (r) => {
+        var o;
+        r.target, r.target.closest('[data-img-func="accessibility"]') ? s.click() : r.target.closest('[data-img-func="sale"]') ? (o = document.querySelector(".kl-teaser-T4UsqC")) == null || o.click() : r.target.closest('[data-img-func="chat"]') && (e.contentDocument || e.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click();
       })), setInterval(() => {
-        var l, n, i;
-        if (document.querySelector('[data-testid="POPUP"]') ? (l = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || l.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (i = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || i.classList.remove("hidden-el") : (n = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || n.classList.add("hidden-el"), document.querySelector('iframe[title="Number of unread messages"]')) {
-          const s = document.querySelector('iframe[title="Number of unread messages"]'), r = (s.contentDocument || s.contentWindow.document).querySelector(".gwgkTo");
-          document.querySelector('[data-img-func="chat"] p') && (r != null && r.textContent) && (document.querySelector('[data-img-func="chat"]').classList.add("display-msg-number"), document.querySelector('[data-img-func="chat"] p').innerText = r.textContent, console.log(r.textContent));
+        var i, r, o;
+        if (document.querySelector('[data-testid="POPUP"]') ? (i = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || i.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (o = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || o.classList.remove("hidden-el") : (r = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || r.classList.add("hidden-el"), document.querySelector('iframe[title="Number of unread messages"]')) {
+          const n = document.querySelector('iframe[title="Number of unread messages"]'), d = (n.contentDocument || n.contentWindow.document).querySelector(".gwgkTo");
+          document.querySelector('[data-img-func="chat"] p') && (d != null && d.textContent) && (document.querySelector('[data-img-func="chat"]').classList.add("display-msg-number"), document.querySelector('[data-img-func="chat"] p').innerText = d.textContent, console.log(d.textContent));
         } else
           document.querySelector(".display-msg-number") && document.querySelector(".display-msg-number").classList.remove("display-msg-number");
       }, 1e3));
     }, 100);
   }
-  function $() {
-    h(["https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js", "https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"]).then(() => {
-      const e = setInterval(() => {
-        typeof Swiper < "u" && (clearInterval(e), c(".hero .swiper").then((o) => {
-          const t = o.clientWidth, n = t * 1.07 - t + 16;
+  function S() {
+    m(["https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js", "https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"]).then(() => {
+      const t = setInterval(() => {
+        typeof Swiper < "u" && (clearInterval(t), p(".hero .swiper").then((s) => {
+          const e = s.clientWidth, r = e * 1.07 - e + 16;
           new Swiper(".hero .swiper", {
             navigation: {
               nextEl: ".hero .swiper-button-next",
@@ -2139,7 +2079,7 @@
             },
             slidesPerView: 1.13,
             spaceBetween: 8,
-            slidesOffsetAfter: n,
+            slidesOffsetAfter: r,
             // adjust this value as needed
             breakpoints: {
               768: {
@@ -2157,7 +2097,7 @@
               }
             }
           });
-        }), c(".trusted-reviews .swiper").then((o) => {
+        }), p(".trusted-reviews .swiper").then((s) => {
           new Swiper(".trusted-reviews .swiper", {
             slidesPerView: 3.8,
             spaceBetween: 8,
@@ -2168,8 +2108,8 @@
             },
             on: {
               reachEnd: function() {
-                var t;
-                (t = document.querySelector(".trusted-reviews .swiper")) == null || t.classList.add("reached-end");
+                var e;
+                (e = document.querySelector(".trusted-reviews .swiper")) == null || e.classList.add("reached-end");
               }
             }
           });
@@ -2177,37 +2117,37 @@
       }, 100);
     });
   }
-  function T() {
-    v === "mobile" && c('.mobile-menu [aria-controls="nav-drawer"]').then((e) => {
-      document.querySelector("h1.logo").insertAdjacentElement("beforebegin", e);
+  function A() {
+    x === "mobile" && p('.mobile-menu [aria-controls="nav-drawer"]').then((t) => {
+      document.querySelector("h1.logo").insertAdjacentElement("beforebegin", t);
     });
   }
-  function _(e, o) {
-    const t = `[data-products-type="${e}"] .products-wrapper`;
-    c(t).then((l) => {
-      const n = document.querySelectorAll(o);
-      for (let s = 0; s < 4; s++) {
-        const d = n[s];
-        l.appendChild(d);
+  function u(t, s) {
+    const e = `[data-products-type="${t}"] .products-wrapper`;
+    p(e).then((i) => {
+      const r = document.querySelectorAll(s);
+      for (let n = 0; n < 4; n++) {
+        const l = r[n];
+        i.appendChild(l);
       }
-      const i = setInterval(() => {
-        const s = document.querySelectorAll(`${t} .product-grid-item__title`);
-        s[3] && (clearInterval(i), s.forEach((d, r) => {
-          document.querySelectorAll(`${t} .product-grid-item__inner`)[r].insertAdjacentHTML("beforeend", `<a class="product__shop-now" href="${d.href}">Shop now</a>`);
+      const o = setInterval(() => {
+        const n = document.querySelectorAll(`${e} .product-grid-item__title`);
+        n[3] && (clearInterval(o), n.forEach((l, d) => {
+          document.querySelectorAll(`${e} .product-grid-item__inner`)[d].insertAdjacentHTML("beforeend", `<a class="product__shop-now" href="${l.href}">Shop now</a>`);
         }));
       }, 100);
     });
   }
-  function B() {
-    const e = setInterval(() => {
-      document.querySelector("#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(e), _("popular-products", "#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), _("hot-deals", "#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner"));
+  function T() {
+    const t = setInterval(() => {
+      document.querySelector("#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(t), u("popular-products", "#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), u("hot-deals", "#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner"));
     }, 100);
   }
-  function E() {
-    h(["https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.core.min.css", "https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/glide.min.js"]).then(() => {
-      const e = setInterval(() => {
+  function $() {
+    m(["https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.core.min.css", "https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/glide.min.js"]).then(() => {
+      const t = setInterval(() => {
         if (typeof Glide < "u" && document.querySelector(".glide")) {
-          clearInterval(e), new Glide(".glide", {
+          clearInterval(t), new Glide(".glide", {
             type: "carousel",
             startAt: 0,
             perView: 2,
@@ -2225,10 +2165,10 @@
               }
             }
           }).mount();
-          const o = setInterval(() => {
-            const t = document.querySelector(".glide__arrow--left"), l = document.querySelector(".glide__arrow--right"), n = document.querySelector(".glide");
-            t && l && (console.log("Arrows are ready"), clearInterval(o), n.addEventListener("click", (i) => {
-              console.log(i.target), i.target.closest(".swiper-button-prev-mob") && t.dispatchEvent(new Event("click")), i.target.closest(".swiper-button-next-mob") && l.dispatchEvent(new Event("click"));
+          const s = setInterval(() => {
+            const e = document.querySelector(".glide__arrow--left"), i = document.querySelector(".glide__arrow--right"), r = document.querySelector(".glide");
+            e && i && (console.log("Arrows are ready"), clearInterval(s), r.addEventListener("click", (o) => {
+              console.log(o.target), o.target.closest(".swiper-button-prev-mob") && e.dispatchEvent(new Event("click")), o.target.closest(".swiper-button-next-mob") && i.dispatchEvent(new Event("click"));
             }));
           }, 100);
         }
