@@ -1,75 +1,75 @@
 (function() {
   "use strict";
-  const c = (e, n, t, s = "") => {
+  const g = (e, o, t, l = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
-      event_desc: n,
+      event_desc: o,
       event_type: t,
-      event_loc: s
-    }), console.log(`Event: ${e} | ${n} | ${t} | ${s}`);
-  }, x = ({ name: e, dev: n }) => {
+      event_loc: l
+    }), console.log(`Event: ${e} | ${o} | ${t} | ${l}`);
+  }, w = ({ name: e, dev: o }) => {
     console.log(
-      `%c EXP: ${e} (DEV: ${n})`,
+      `%c EXP: ${e} (DEV: ${o})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, u = async (e) => {
-    const n = (t) => new Promise((s, i) => {
-      const p = t.split(".").pop();
-      if (p === "js") {
-        if (Array.from(document.scripts).map((l) => l.src.toLowerCase()).includes(t.toLowerCase()))
-          return console.log(`Script ${t} allready downloaded!`), s("");
-        const r = document.createElement("script");
-        r.src = t, r.onload = s, r.onerror = i, document.head.appendChild(r);
-      } else if (p === "css") {
-        if (Array.from(document.styleSheets).map((l) => {
-          var g;
-          return (g = l.href) == null ? void 0 : g.toLowerCase();
+  }, h = async (e) => {
+    const o = (t) => new Promise((l, n) => {
+      const i = t.split(".").pop();
+      if (i === "js") {
+        if (Array.from(document.scripts).map((r) => r.src.toLowerCase()).includes(t.toLowerCase()))
+          return console.log(`Script ${t} allready downloaded!`), l("");
+        const d = document.createElement("script");
+        d.src = t, d.onload = l, d.onerror = n, document.head.appendChild(d);
+      } else if (i === "css") {
+        if (Array.from(document.styleSheets).map((r) => {
+          var p;
+          return (p = r.href) == null ? void 0 : p.toLowerCase();
         }).includes(t.toLowerCase()))
-          return console.log(`Style ${t} allready downloaded!`), s("");
-        const r = document.createElement("link");
-        r.rel = "stylesheet", r.href = t, r.onload = s, r.onerror = i, document.head.appendChild(r);
+          return console.log(`Style ${t} allready downloaded!`), l("");
+        const d = document.createElement("link");
+        d.rel = "stylesheet", d.href = t, d.onload = l, d.onerror = n, document.head.appendChild(d);
       }
     });
     for (const t of e)
-      await n(t), console.log(`Loaded librari ${t}`);
+      await o(t), console.log(`Loaded librari ${t}`);
     console.log("All libraries loaded!");
-  }, _ = (e) => {
-    let n = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
+  }, y = (e) => {
+    let o = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(o), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, m = (e, n, t, s, i = 3e3, p = 1) => {
-    let a, r;
-    if (a = new IntersectionObserver(
-      function(l) {
-        l[0].isIntersecting === !0 ? r = setTimeout(() => {
-          c(
-            n,
-            l[0].target.dataset.visible || s || "",
+  }, u = (e, o, t, l, n = 3e3, i = 1) => {
+    let s, d;
+    if (s = new IntersectionObserver(
+      function(r) {
+        r[0].isIntersecting === !0 ? d = setTimeout(() => {
+          g(
+            o,
+            r[0].target.dataset.visible || l || "",
             "Visibility",
             t
-          ), a.disconnect();
-        }, i) : (console.log("Element is not fully visible"), clearTimeout(r));
+          ), s.disconnect();
+        }, n) : (console.log("Element is not fully visible"), clearTimeout(d));
       },
-      { threshold: [p] }
+      { threshold: [i] }
     ), typeof e == "string") {
-      const l = document.querySelector(e);
-      l && a.observe(l);
+      const r = document.querySelector(e);
+      r && s.observe(r);
     } else
-      a.observe(e);
-  }, d = (e) => new Promise((n) => {
+      s.observe(e);
+  }, c = (e) => new Promise((o) => {
     const t = document.querySelector(e);
     if (t)
-      return n(t);
-    const s = new MutationObserver(() => {
-      const i = document.querySelector(e);
-      i && (n(i), s.disconnect());
+      return o(t);
+    const l = new MutationObserver(() => {
+      const n = document.querySelector(e);
+      n && (o(n), l.disconnect());
     });
-    s.observe(document.documentElement, {
+    l.observe(document.documentElement, {
       childList: !0,
       subtree: !0
     });
-  }), o = "https://conversionratestore.github.io/projects/geeni/img/home-app-web", h = window.innerWidth < 768 ? "mobile" : "desktop", w = (
+  }), a = "https://conversionratestore.github.io/projects/geeni/img/home-app-web", v = window.innerWidth < 768 ? "mobile" : "desktop", b = (
     /*html*/
     `
   <style>
@@ -1655,24 +1655,24 @@
       }
     }
   </style>`
-  ), y = (
+  ), F = (
     /*html*/
     `
   <div class="additional-functional">
     <div data-img-func="accessibility" >
-      <img src="${o}/accessible.svg" alt="Open accessibility features">
+      <img src="${a}/accessible.svg" alt="Open accessibility features">
     </div>
     <div data-img-func="sale" class="hidden-el">
-      <img src="${o}/sale.svg" alt="Open sale proposition">
+      <img src="${a}/sale.svg" alt="Open sale proposition">
     </div>
     <div data-img-func="chat">
-      <img src="${o}/chat.svg" alt="Open suppport chat">
+      <img src="${a}/chat.svg" alt="Open suppport chat">
       <div><p></p></div>
     </div>
   </div>
 
   <div class="free-shipping">
-    <img src="${o}/delivery.svg" alt="shipping">
+    <img src="${a}/delivery.svg" alt="shipping">
     <p><span class="fw-700">FREE</span> Shipping on orders over <span class="fw-700">$69</span></p>
   </div>
 
@@ -1682,24 +1682,24 @@
         <h2 class="heading-2">Shop All Category</h2>
         <a href="/collections/all" class="shop-all__view">
           View all
-          <img src="${o}/arrow-r.svg" alt="">
+          <img src="${a}/arrow-r.svg" alt="">
         </a>
       </div>
       <div class="menu-items">
         <a href="/collections/smart-security-cameras">
-          <img src="${o}/cameras.jpg" alt="Cameras">
+          <img src="${a}/cameras.jpg" alt="Cameras">
           <p>Cameras</p>
         </a>
         <a href="/collections/smart-appliances">
-          <img src="${o}/lifestyle.jpg" alt="Lifestyle">
+          <img src="${a}/lifestyle.jpg" alt="Lifestyle">
           <p>Lifestyle</p>
         </a>
         <a href="/collections/lighting">
-          <img src="${o}/lighting.jpg" alt="Lighting">
+          <img src="${a}/lighting.jpg" alt="Lighting">
           <p>Lighting</p>
         </a>
         <a href="/collections/power">
-          <img src="${o}/power.jpg" alt="Power">
+          <img src="${a}/power.jpg" alt="Power">
           <p>Power</p>
         </a>
       </div>
@@ -1710,7 +1710,7 @@
     <div class="container">
       <div class="warranty-sale__container">
         <div>
-          <img src="${o}/check.svg" alt="">
+          <img src="${a}/check.svg" alt="">
           <div>
             <p><span class="fw-700">Direct from manufacturer</span></p>
             <p><span class="fw-700">365</span>-days warranty on all products</p>
@@ -1718,7 +1718,7 @@
         </div>
         <div>
           <div class="warranty-sale__buy">
-            <img src="${o}/bonus.svg" alt="">
+            <img src="${a}/bonus.svg" alt="">
             <p><span class="fw-700">Buy More, Save More</span></p>
           </div>
           <div class="saves-comparison">
@@ -1792,11 +1792,11 @@
   <section class="many-devices">
     <div class="container">
       <div class="many-devices__split">
-        <img src="${o}/house-1.jpg" alt="">
-        <img src="${o}/house-2.jpg" alt="">
+        <img src="${a}/house-1.jpg" alt="">
+        <img src="${a}/house-2.jpg" alt="">
       </div>
       <div class="many-devices__mobiles">
-        <img src="${o}/many-devices.svg" alt="">
+        <img src="${a}/many-devices.svg" alt="">
       </div>
 
       <div class="index-1">
@@ -1816,13 +1816,13 @@
     <div class="container">
       <h2 class="heading-2">Trusted by over 5 million people</h2>
       <div class="trusted-reviews__rate">
-        <img src="${o}/4-stars.svg" alt="4 stars">
+        <img src="${a}/4-stars.svg" alt="4 stars">
         <p><span class="fw-700">4.4</span> stars rating</p>
       </div>
 
       <div class="trusted-load-more load-more-btn-visible">
           <div class="swiper-slide">
-            <img src="${o}/4-stars.svg" alt="4 stars">
+            <img src="${a}/4-stars.svg" alt="4 stars">
             <p class="trusted-reviews__desc">It was very easy to set up and once it was
             connected to my Wi-Fi, I was able to start
             changing the colors from white to blue to
@@ -1833,14 +1833,14 @@
           </div>
 
           <div class="swiper-slide">
-            <img src="${o}/4-stars.svg" alt="4 stars">
+            <img src="${a}/4-stars.svg" alt="4 stars">
             <p class="trusted-reviews__desc">This is a great product. The night vision is pretty good, and the image quality is great as well. I love being able to set alerts on my app for motion, and check in any time!!</p>
             <p class="trusted-reviews__author">Ninjafoot</p>
             <p class="trusted-reviews__loc">Sacramento, CA</p>
           </div>
 
           <div class="swiper-slide">
-            <img src="${o}/5-stars.svg" alt="5 stars">
+            <img src="${a}/5-stars.svg" alt="5 stars">
             <p class="trusted-reviews__desc">Great camera, it was easy to install, very clear and motion detection was work very good with instant notifications in my phone.</p>
             <p class="trusted-reviews__author">Carol71</p>
             <p class="trusted-reviews__loc">Jersey City, NJ</p>
@@ -1850,21 +1850,21 @@
 
           <div class="hidden-block">
             <div class="swiper-slide">
-              <img src="${o}/4-stars.svg" alt="4 stars">
+              <img src="${a}/4-stars.svg" alt="4 stars">
               <p class="trusted-reviews__desc">I set the camera up to keep my dog from leaving gifts in the hallway. As soon as a motion alert happens, i could hop on the camera and give a stern ‘NO'. Deer in headlights was her reaction. Love this tool in helping my dog potty train.</p>
               <p class="trusted-reviews__author">Jennifer Harden</p>
               <p class="trusted-reviews__loc">Verified customer</p>
             </div>
 
             <div class="swiper-slide">
-              <img src="${o}/4-stars.svg" alt="4 stars">
+              <img src="${a}/4-stars.svg" alt="4 stars">
               <p class="trusted-reviews__desc">The picture is perfect. We are thinking about replacing our other cameras with these. Easy to set up. Perfect camera</p>
               <p class="trusted-reviews__author">Dmitri Kristov</p>
               <p class="trusted-reviews__loc">Verified customer</p>
             </div>
 
             <div class="swiper-slide">
-              <img src="${o}/5-stars.svg" alt="5 stars">
+              <img src="${a}/5-stars.svg" alt="5 stars">
               <p class="trusted-reviews__desc">These lights are so easy to use with the app and Alexa. They look great also.</p>
               <p class="trusted-reviews__author">Amelia Ngoy</p>
               <p class="trusted-reviews__loc">Verified customer</p>
@@ -1876,7 +1876,7 @@
         <div class="swiper-wrapper">
           <!-- Slides -->
           <div class="swiper-slide">
-            <img src="${o}/4-stars.svg" alt="4 stars">
+            <img src="${a}/4-stars.svg" alt="4 stars">
             <p class="trusted-reviews__desc">It was very easy to set up and once it was
             connected to my Wi-Fi, I was able to start
             changing the colors from white to blue to
@@ -1887,35 +1887,35 @@
           </div>
 
           <div class="swiper-slide">
-            <img src="${o}/4-stars.svg" alt="4 stars">
+            <img src="${a}/4-stars.svg" alt="4 stars">
             <p class="trusted-reviews__desc">This is a great product. The night vision is pretty good, and the image quality is great as well. I love being able to set alerts on my app for motion, and check in any time!!</p>
             <p class="trusted-reviews__author">Ninjafoot</p>
             <p class="trusted-reviews__loc">Sacramento, CA</p>
           </div>
 
           <div class="swiper-slide">
-            <img src="${o}/5-stars.svg" alt="5 stars">
+            <img src="${a}/5-stars.svg" alt="5 stars">
             <p class="trusted-reviews__desc">Great camera, it was easy to install, very clear and motion detection was work very good with instant notifications in my phone.</p>
             <p class="trusted-reviews__author">Carol71</p>
             <p class="trusted-reviews__loc">Jersey City, NJ</p>
           </div>
 
           <div class="swiper-slide">
-            <img src="${o}/4-stars.svg" alt="4 stars">
+            <img src="${a}/4-stars.svg" alt="4 stars">
             <p class="trusted-reviews__desc">I set the camera up to keep my dog from leaving gifts in the hallway. As soon as a motion alert happens, i could hop on the camera and give a stern ‘NO'. Deer in headlights was her reaction. Love this tool in helping my dog potty train.</p>
             <p class="trusted-reviews__author">Jennifer Harden</p>
             <p class="trusted-reviews__loc">Verified customer</p>
           </div>
 
           <div class="swiper-slide">
-            <img src="${o}/4-stars.svg" alt="4 stars">
+            <img src="${a}/4-stars.svg" alt="4 stars">
             <p class="trusted-reviews__desc">The picture is perfect. We are thinking about replacing our other cameras with these. Easy to set up. Perfect camera</p>
             <p class="trusted-reviews__author">Dmitri Kristov</p>
             <p class="trusted-reviews__loc">Verified customer</p>
           </div>
 
           <div class="swiper-slide">
-            <img src="${o}/5-stars.svg" alt="5 stars">
+            <img src="${a}/5-stars.svg" alt="5 stars">
             <p class="trusted-reviews__desc">These lights are so easy to use with the app and Alexa. They look great also.</p>
             <p class="trusted-reviews__author">Amelia Ngoy</p>
             <p class="trusted-reviews__loc">Verified customer</p>
@@ -1925,47 +1925,47 @@
 
         <!-- If we need navigation buttons -->
         <div class="swiper-button-prev">
-          <img src="${o}/arrow-l.svg" alt="arrow left">
+          <img src="${a}/arrow-l.svg" alt="arrow left">
         </div>
         <div class="swiper-button-next">
-          <img src="${o}/arrow-r.svg" alt="arrow right">
+          <img src="${a}/arrow-r.svg" alt="arrow right">
         </div>
       </div>
     </div>
   </section>
   `
   );
-  _("exp_home_optim"), x({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "Andrii" }), F(), d("head").then((e) => e.insertAdjacentHTML("afterend", w)), d("#shopify-section-template--16970486120700__section-marquee").then((e) => e.insertAdjacentHTML("afterend", y)), k(), A(), T(), d("body").then((e) => e == null ? void 0 : e.classList.add("hide-chat-btn")), d('iframe[title="Messaging window"]').then((e) => {
+  y("exp_home_optim"), w({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "Andrii" }), k(), c("head").then((e) => e.insertAdjacentHTML("afterend", b)), c("#shopify-section-template--16970486120700__section-marquee").then((e) => e.insertAdjacentHTML("afterend", F)), S(), $(), T(), c("body").then((e) => e == null ? void 0 : e.classList.add("hide-chat-btn")), c('iframe[title="Messaging window"]').then((e) => {
     new MutationObserver((t) => {
-      var s, i;
-      for (let p of t)
-        p.type === "attributes" && p.attributeName === "tabindex" && (console.log("Tabindex changed to:", e.getAttribute("tabindex")), e.getAttribute("tabindex") === "-1" ? (s = document.querySelector("body")) == null || s.classList.add("hide-chat-btn") : (i = document.querySelector("body")) == null || i.classList.remove("hide-chat-btn"));
+      var l, n;
+      for (let i of t)
+        i.type === "attributes" && i.attributeName === "tabindex" && (console.log("Tabindex changed to:", e.getAttribute("tabindex")), e.getAttribute("tabindex") === "-1" ? (l = document.querySelector("body")) == null || l.classList.add("hide-chat-btn") : (n = document.querySelector("body")) == null || n.classList.remove("hide-chat-btn"));
     }).observe(e, { attributes: !0 });
-  }), $(), d(".load-more-btn").then((e) => {
+  }), B(), c(".load-more-btn").then((e) => {
     e.addEventListener("click", () => {
-      const n = document.querySelector(".trusted-load-more");
-      n && n.classList.remove("load-more-btn-visible");
+      const o = document.querySelector(".trusted-load-more");
+      o && o.classList.remove("load-more-btn-visible");
     });
-  }), B(), S(), d("body").then((e) => {
-    m(".free-shipping", "exp_home_optim_section_01", "Home Page Free Shipping on Orders Over $69", "Section", 4e3), m(".shop-all .container", "exp_home_optim_section_02", "Home Page Shop by category", "Section"), m(".hero .swiper", "exp_home_optim_section_03", "Home Page Featured products PDP", "Section"), m(".warranty-sale", "exp_home_optim_section_04", "Home Page Benefits", "Section"), e.addEventListener("click", (n) => {
-      var s, i, p;
-      const t = n.target;
-      if (t.closest("button.mobile-menu__button") && c("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), t.closest(".shop-all__view") && c("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), t.closest(".menu-items a")) {
-        const a = (s = t.closest(".menu-items a")) == null ? void 0 : s.querySelector("p");
-        c("exp_home_optim_button_05", `${a == null ? void 0 : a.innerText} - choise category`, "Button", "Home Page Shop by category");
+  }), E(), A(), c("body").then((e) => {
+    u(".free-shipping", "exp_home_optim_section_01", "Home Page Free Shipping on Orders Over $69", "Section", 4e3), u(".shop-all .container", "exp_home_optim_section_02", "Home Page Shop by category", "Section"), u(".hero .swiper", "exp_home_optim_section_03", "Home Page Featured products PDP", "Section"), u(".warranty-sale", "exp_home_optim_section_04", "Home Page Benefits", "Section"), e.addEventListener("click", (o) => {
+      var l, n, i;
+      const t = o.target;
+      if (t.closest("button.mobile-menu__button") && g("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), t.closest(".shop-all__view") && g("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), t.closest(".menu-items a")) {
+        const s = (l = t.closest(".menu-items a")) == null ? void 0 : l.querySelector("p");
+        g("exp_home_optim_button_05", `${s == null ? void 0 : s.innerText} - choise category`, "Button", "Home Page Shop by category");
       }
       if (t.closest(".hero .product__btn")) {
-        const a = (i = t.closest(".product")) == null ? void 0 : i.querySelector(".product__title");
-        c("exp_home_optim_button_06", `${a == null ? void 0 : a.innerText} - Shop now`, "Button", "Home Page Featured products PDP");
+        const s = (n = t.closest(".product")) == null ? void 0 : n.querySelector(".product__title");
+        g("exp_home_optim_button_06", `${s == null ? void 0 : s.innerText} - Shop now`, "Button", "Home Page Featured products PDP");
       }
       if (t.closest(".hero .product")) {
-        const a = (p = t.closest(".hero .product")) == null ? void 0 : p.querySelector(".product__type");
-        c("exp_home_optim_button_07", `${a == null ? void 0 : a.innerText} - Click`, "Button", "Home Page Featured products PDP");
+        const s = (i = t.closest(".hero .product")) == null ? void 0 : i.querySelector(".product__type");
+        g("exp_home_optim_button_07", `${s == null ? void 0 : s.innerText} - Click`, "Button", "Home Page Featured products PDP");
       }
     });
   });
-  async function b(e, n) {
-    var p;
+  async function f(e, o) {
+    var i;
     const t = await fetch(`https://mygeeni.com/products/${e}.json`, {
       method: "GET",
       headers: {
@@ -1974,32 +1974,83 @@
     });
     if (!t.ok)
       throw new Error(`HTTP error! status: ${t.status}`);
-    const i = (await t.json()).product;
+    const n = (await t.json()).product;
     return {
-      title: i.title,
-      product_type: i.product_type,
-      handle: i.handle,
-      price: i.variants[0].price,
-      compare_at_price: i.variants[0].compare_at_price,
-      image_src: i.image.src,
-      description: (p = document.querySelectorAll(".products-list__item__description")[n]) == null ? void 0 : p.innerText
+      title: n.title,
+      product_type: n.product_type,
+      handle: n.handle,
+      price: n.variants[0].price,
+      compare_at_price: n.variants[0].compare_at_price,
+      image_src: n.image.src,
+      description: (i = document.querySelectorAll(".products-list__item__description")[o]) == null ? void 0 : i.innerText
     };
   }
-  function F() {
+  function k() {
     console.log("drawHeroSection");
-    const e = [], n = [
+    const e = [], o = [
       "hawk-3-1080p-hd-outdoor-smart-wi-fi-security-camera-white-2-pack",
       "geeni-look-2-pack-1080p-hd-smart-home-surveillance-system-with-night-vision-motion-detection-2-way-audio-remote-access-with-ios-android-app-no-hub-required-black",
       "geeni-lookout-2k-outdoor-auto-follow-camera"
     ];
     document.querySelectorAll(".products-list__container .btn.btn--primary").forEach((i) => {
-      const p = i.href;
-      p && e.push(p.split("https://mygeeni.com/products/")[1]);
+      const s = i.href;
+      s && e.push(s.split("https://mygeeni.com/products/")[1]);
     }), console.log("dealsProductsHandles", e);
-    const s = (window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0 ? e : n).map((i, p) => b(i, p));
-    Promise.all(s).then((i) => {
+    const t = e.map((i, s) => f(i, s));
+    Promise.all(t).then((i) => {
       console.log(i);
-      const a = (
+      const s = i.length, r = (
+        /*html*/
+        `
+      <div class="glide">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides">
+            ${i.map((p, m) => (
+          /*html*/
+          `
+        <div class="glide__slide new-arrivals-product">
+            <div class="new-arrivals-product__img-wrap">
+              <img src="${p.image_src}" alt="${p.title}">
+            </div>
+            <div class="new-arrivals-product__content">
+              <div class="new-arrivals__nav">
+                <div class="swiper-button-prev-mob">
+                  <img src="${a}/arrow-l.svg" alt="arrow left">
+                </div>
+                <p class="new-arrivals-product__number">${m + 1}/${s}</p>
+                <div class="swiper-button-next-mob">
+                  <img src="${a}/arrow-r.svg" alt="arrow right">
+                </div>
+              </div>
+              <a class="new-arrivals-product__title" href="/products/${p.handle}">${p.title}</a>
+              <div class="new-arrivals-product__price">
+                <span>$${p.price}</span>
+              </div>
+              <p class="new-arrivals-product__description">${document.querySelectorAll(".products-list__item__description")[m].innerText}</p>
+              <a class="crs-btn" href="/products/${p.handle}">Shop now</a>
+            </div>
+        </div>`
+        )).join("")}
+          </ul>
+        </div>
+
+        <div class="glide__arrows" data-glide-el="controls">
+          <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+            <img src="${a}/arrow-l.svg" alt="arrow left">
+          </button>
+          <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+            <img src="${a}/arrow-r.svg" alt="arrow right">
+          </button>
+        </div>
+      </div>
+    `
+      );
+      c(".new-arrivals .new-arrivals__content").then((p) => p == null ? void 0 : p.insertAdjacentHTML("beforeend", r));
+    }).catch((i) => console.error("Error:", i));
+    const n = (window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0 ? e : o).map((i, s) => f(i, s));
+    Promise.all(n).then((i) => {
+      console.log(i);
+      const d = (
         /*html*/
         `
         <div class="hero">
@@ -2009,23 +2060,23 @@
               <!-- Additional required wrapper -->
               <div class="swiper-wrapper">
                 <!-- Slides -->
-                ${i.map((r, l) => {
-          const g = r.compare_at_price - r.price, E = Math.round(g / r.compare_at_price * 100), f = g > 0 ? `Save ${E}%` : "", I = r.compare_at_price && r.compare_at_price !== r.price ? `$${r.compare_at_price}` : "", z = r.product_type.toLowerCase().includes("camera") ? "Cameras" : r.product_type;
+                ${i.map((r, p) => {
+          const m = r.compare_at_price - r.price, I = Math.round(m / r.compare_at_price * 100), x = m > 0 ? `Save ${I}%` : "", z = r.compare_at_price && r.compare_at_price !== r.price ? `$${r.compare_at_price}` : "", j = r.product_type.toLowerCase().includes("camera") ? "Cameras" : r.product_type;
           return (
             /*html*/
             `
           <div class="swiper-slide product">
             <img class="product__img" src="${r.image_src}" alt="${r.title}">
             <div class="product__number">
-              <p>${l + 1}/${i.length}</p>
+              <p>${p + 1}/${i.length}</p>
             </div>
             <div class="product__info">
-              <p class="product__type">${z}</p>
+              <p class="product__type">${j}</p>
               <a class="product__title" href="/products/${r.handle}">${r.title}</a>
               <div class="product__price">
                 <span>$${r.price}</span>
-                <span>${I}</span>
-                ${f !== "" ? `<span>${f}</span>` : ""}
+                <span>${z}</span>
+                ${x !== "" ? `<span>${x}</span>` : ""}
               </div>
   
               <a class="product__btn" href="/products/${r.handle}">Shop now</a>
@@ -2037,11 +2088,11 @@
   
               <div class="hero-swiper-nav">
                 <div class="swiper-button-prev">
-                  <img src="${o}/arrow-l.svg" alt="arrow left">
+                  <img src="${a}/arrow-l.svg" alt="arrow left">
                 </div>
                 <div id="slide-number"><p></p></div>
                 <div class="swiper-button-next">
-                  <img src="${o}/arrow-r.svg" alt="arrow right">
+                  <img src="${a}/arrow-r.svg" alt="arrow right">
                 </div>
               </div>
               
@@ -2050,37 +2101,37 @@
         </div>
       `
       );
-      h === "desktop" ? d(".free-shipping").then((r) => r == null ? void 0 : r.insertAdjacentHTML("afterend", a)) : d(".shop-all").then((r) => r == null ? void 0 : r.insertAdjacentHTML("afterend", a));
+      v === "desktop" ? c(".free-shipping").then((r) => r == null ? void 0 : r.insertAdjacentHTML("afterend", d)) : c(".shop-all").then((r) => r == null ? void 0 : r.insertAdjacentHTML("afterend", d));
     }).catch((i) => console.error("Error:", i));
   }
-  function k() {
-    function e(n, t, s) {
-      const i = document.createElement("link");
-      i.href = n, i.rel = t, s && (i.crossOrigin = s), document.head.appendChild(i);
+  function S() {
+    function e(o, t, l) {
+      const n = document.createElement("link");
+      n.href = o, n.rel = t, l && (n.crossOrigin = l), document.head.appendChild(n);
     }
     e("https://fonts.googleapis.com", "preconnect"), e("https://fonts.gstatic.com", "preconnect", "true"), e("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap", "stylesheet");
   }
-  function S() {
+  function A() {
     const e = setInterval(() => {
-      const n = document.getElementById("INDmenu-btn"), t = document.getElementById("launcher");
-      n && t && (clearInterval(e), d(".additional-functional").then((s) => s.addEventListener("click", (i) => {
-        var p;
-        i.target, i.target.closest('[data-img-func="accessibility"]') ? n.click() : i.target.closest('[data-img-func="sale"]') ? (p = document.querySelector(".kl-teaser-T4UsqC")) == null || p.click() : i.target.closest('[data-img-func="chat"]') && (t.contentDocument || t.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click();
+      const o = document.getElementById("INDmenu-btn"), t = document.getElementById("launcher");
+      o && t && (clearInterval(e), c(".additional-functional").then((l) => l.addEventListener("click", (n) => {
+        var i;
+        n.target, n.target.closest('[data-img-func="accessibility"]') ? o.click() : n.target.closest('[data-img-func="sale"]') ? (i = document.querySelector(".kl-teaser-T4UsqC")) == null || i.click() : n.target.closest('[data-img-func="chat"]') && (t.contentDocument || t.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click();
       })), setInterval(() => {
-        var s, i, p;
-        if (document.querySelector('[data-testid="POPUP"]') ? (s = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || s.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (p = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || p.classList.remove("hidden-el") : (i = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || i.classList.add("hidden-el"), document.querySelector('iframe[title="Number of unread messages"]')) {
-          const a = document.querySelector('iframe[title="Number of unread messages"]'), l = (a.contentDocument || a.contentWindow.document).querySelector(".gwgkTo");
-          document.querySelector('[data-img-func="chat"] p') && (l != null && l.textContent) && (document.querySelector('[data-img-func="chat"]').classList.add("display-msg-number"), document.querySelector('[data-img-func="chat"] p').innerText = l.textContent, console.log(l.textContent));
+        var l, n, i;
+        if (document.querySelector('[data-testid="POPUP"]') ? (l = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || l.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (i = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || i.classList.remove("hidden-el") : (n = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || n.classList.add("hidden-el"), document.querySelector('iframe[title="Number of unread messages"]')) {
+          const s = document.querySelector('iframe[title="Number of unread messages"]'), r = (s.contentDocument || s.contentWindow.document).querySelector(".gwgkTo");
+          document.querySelector('[data-img-func="chat"] p') && (r != null && r.textContent) && (document.querySelector('[data-img-func="chat"]').classList.add("display-msg-number"), document.querySelector('[data-img-func="chat"] p').innerText = r.textContent, console.log(r.textContent));
         } else
           document.querySelector(".display-msg-number") && document.querySelector(".display-msg-number").classList.remove("display-msg-number");
       }, 1e3));
     }, 100);
   }
-  function A() {
-    u(["https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js", "https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"]).then(() => {
+  function $() {
+    h(["https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js", "https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"]).then(() => {
       const e = setInterval(() => {
-        typeof Swiper < "u" && (clearInterval(e), d(".hero .swiper").then((n) => {
-          const t = n.clientWidth, i = t * 1.07 - t + 16;
+        typeof Swiper < "u" && (clearInterval(e), c(".hero .swiper").then((o) => {
+          const t = o.clientWidth, n = t * 1.07 - t + 16;
           new Swiper(".hero .swiper", {
             navigation: {
               nextEl: ".hero .swiper-button-next",
@@ -2088,7 +2139,7 @@
             },
             slidesPerView: 1.13,
             spaceBetween: 8,
-            slidesOffsetAfter: i,
+            slidesOffsetAfter: n,
             // adjust this value as needed
             breakpoints: {
               768: {
@@ -2106,7 +2157,7 @@
               }
             }
           });
-        }), d(".trusted-reviews .swiper").then((n) => {
+        }), c(".trusted-reviews .swiper").then((o) => {
           new Swiper(".trusted-reviews .swiper", {
             slidesPerView: 3.8,
             spaceBetween: 8,
@@ -2127,33 +2178,33 @@
     });
   }
   function T() {
-    h === "mobile" && d('.mobile-menu [aria-controls="nav-drawer"]').then((e) => {
+    v === "mobile" && c('.mobile-menu [aria-controls="nav-drawer"]').then((e) => {
       document.querySelector("h1.logo").insertAdjacentElement("beforebegin", e);
     });
   }
-  function v(e, n) {
+  function _(e, o) {
     const t = `[data-products-type="${e}"] .products-wrapper`;
-    d(t).then((s) => {
-      const i = document.querySelectorAll(n);
-      for (let a = 0; a < 4; a++) {
-        const r = i[a];
-        s.appendChild(r);
+    c(t).then((l) => {
+      const n = document.querySelectorAll(o);
+      for (let s = 0; s < 4; s++) {
+        const d = n[s];
+        l.appendChild(d);
       }
-      const p = setInterval(() => {
-        const a = document.querySelectorAll(`${t} .product-grid-item__title`);
-        a[3] && (clearInterval(p), a.forEach((r, l) => {
-          document.querySelectorAll(`${t} .product-grid-item__inner`)[l].insertAdjacentHTML("beforeend", `<a class="product__shop-now" href="${r.href}">Shop now</a>`);
+      const i = setInterval(() => {
+        const s = document.querySelectorAll(`${t} .product-grid-item__title`);
+        s[3] && (clearInterval(i), s.forEach((d, r) => {
+          document.querySelectorAll(`${t} .product-grid-item__inner`)[r].insertAdjacentHTML("beforeend", `<a class="product__shop-now" href="${d.href}">Shop now</a>`);
         }));
       }, 100);
     });
   }
-  function $() {
+  function B() {
     const e = setInterval(() => {
-      document.querySelector("#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(e), v("popular-products", "#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), v("hot-deals", "#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner"));
+      document.querySelector("#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(e), _("popular-products", "#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), _("hot-deals", "#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner"));
     }, 100);
   }
-  function B() {
-    u(["https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.core.min.css", "https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/glide.min.js"]).then(() => {
+  function E() {
+    h(["https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.core.min.css", "https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/glide.min.js"]).then(() => {
       const e = setInterval(() => {
         if (typeof Glide < "u" && document.querySelector(".glide")) {
           clearInterval(e), new Glide(".glide", {
@@ -2174,10 +2225,10 @@
               }
             }
           }).mount();
-          const n = setInterval(() => {
-            const t = document.querySelector(".glide__arrow--left"), s = document.querySelector(".glide__arrow--right"), i = document.querySelector(".glide");
-            t && s && (console.log("Arrows are ready"), clearInterval(n), i.addEventListener("click", (p) => {
-              console.log(p.target), p.target.closest(".swiper-button-prev-mob") && t.dispatchEvent(new Event("click")), p.target.closest(".swiper-button-next-mob") && s.dispatchEvent(new Event("click"));
+          const o = setInterval(() => {
+            const t = document.querySelector(".glide__arrow--left"), l = document.querySelector(".glide__arrow--right"), n = document.querySelector(".glide");
+            t && l && (console.log("Arrows are ready"), clearInterval(o), n.addEventListener("click", (i) => {
+              console.log(i.target), i.target.closest(".swiper-button-prev-mob") && t.dispatchEvent(new Event("click")), i.target.closest(".swiper-button-next-mob") && l.dispatchEvent(new Event("click"));
             }));
           }, 100);
         }
