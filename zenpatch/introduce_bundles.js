@@ -344,14 +344,19 @@ li.list-packs.list-packs-bundle .tooltip_zone .tooltip_bgr {
   overflow: auto;
 }
 #cons #slideInCartScroll::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+#cons #slideInCartScroll::-webkit-scrollbar:vertical {
   width: 6px;
 }
 #cons #slideInCartScroll::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  border: 2px solid #ffffff;
 }
 #cons #slideInCartScroll::-webkit-scrollbar-track {
   background-color: #f1f1f1;
+  border-radius: 10px;
 }
 #cons #slideInCartScroll.is_checked {
   overflow-y: auto;
