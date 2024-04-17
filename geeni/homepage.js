@@ -1965,7 +1965,7 @@
   </section>
   `
   );
-  x("exp_home_optim"), _({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "Andrii" }), p("head").then((e) => e == null ? void 0 : e.insertAdjacentHTML("afterend", w)), p("#shopify-section-template--16970486120700__section-marquee").then((e) => e == null ? void 0 : e.insertAdjacentHTML("afterend", y)), k(), B(), E(), A(), T(), p("body").then((e) => e == null ? void 0 : e.classList.add("hide-chat-btn")), p('iframe[title="Messaging window"]').then((e) => {
+  x("exp_home_optim"), _({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "Andrii" }), p("head").then((e) => e == null ? void 0 : e.insertAdjacentHTML("afterend", w)), p("#shopify-section-template--16970486120700__section-marquee").then((e) => e == null ? void 0 : e.insertAdjacentHTML("afterend", y)), k(), E(), B(), A(), T(), p("body").then((e) => e == null ? void 0 : e.classList.add("hide-chat-btn")), p('iframe[title="Messaging window"]').then((e) => {
     e && new MutationObserver((i) => {
       var r, t;
       for (let l of i)
@@ -2108,33 +2108,34 @@
     p(v === "desktop" ? ".free-shipping" : ".shop-all").then((t) => t == null ? void 0 : t.insertAdjacentHTML("afterend", i)).catch((t) => console.error("Failed to insert slides to hero slider:", t));
   }
   async function k() {
-    const e = document.getElementById("productData");
-    if (!e || !e.textContent) {
-      console.error("Product data element or its content is missing");
-      return;
-    }
-    let s;
-    try {
-      s = JSON.parse(e.textContent);
-    } catch (a) {
-      console.error("Failed to parse product data:", a);
-      return;
-    }
-    const i = [], r = [];
-    document.querySelectorAll(".products-list__container .btn.btn--primary").forEach((a) => {
-      const c = new URL(a.href).pathname.split("/products/")[1];
-      c && i.push(c);
+    p("#productData").then(async (e) => {
+      if (!e || !e.textContent) {
+        console.error("Product data element or its content is missing");
+        return;
+      }
+      let s;
+      try {
+        s = JSON.parse(e.textContent);
+      } catch (a) {
+        console.error("Failed to parse product data:", a);
+        return;
+      }
+      const i = [], r = [];
+      document.querySelectorAll(".products-list__container .btn.btn--primary").forEach((a) => {
+        const c = new URL(a.href).pathname.split("/products/")[1];
+        c && i.push(c);
+      });
+      const t = i.map((a, d) => b(a));
+      (await Promise.allSettled(t)).forEach((a, d) => {
+        if (a.status === "fulfilled") {
+          const c = document.querySelectorAll(".products-list__item__description")[d], u = c ? c.innerText : "", z = a.value.price ? `$${a.value.price}` : "";
+          r.push({ ...a.value, description: u, price: z });
+        } else
+          console.error(`Failed to fetch product data for handle ${i[d]}: ${a.reason}`);
+      });
+      const n = window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0;
+      S(n ? r : s), F(r);
     });
-    const t = i.map((a, d) => b(a));
-    (await Promise.allSettled(t)).forEach((a, d) => {
-      if (a.status === "fulfilled") {
-        const c = document.querySelectorAll(".products-list__item__description")[d], u = c ? c.innerText : "", z = a.value.price ? `$${a.value.price}` : "";
-        r.push({ ...a.value, description: u, price: z });
-      } else
-        console.error(`Failed to fetch product data for handle ${i[d]}: ${a.reason}`);
-    });
-    const n = window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0;
-    S(n ? r : s), F(r);
   }
   function A() {
     function e(s, i, r) {
@@ -2180,12 +2181,12 @@
       }, 100);
     });
   }
-  function E() {
+  function B() {
     const e = setInterval(() => {
       document.querySelector("#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(e), f("popular-products", "#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), f("hot-deals", "#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner"));
     }, 100);
   }
-  function B() {
+  function E() {
     h(["https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js", "https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"]).then(() => {
       const e = setInterval(() => {
         typeof Swiper < "u" && document.querySelectorAll(".swiper")[1] && (clearInterval(e), p(".hero .swiper").then((s) => {
