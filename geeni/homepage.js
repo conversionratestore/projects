@@ -86,6 +86,7 @@
       font-family: 'Manrope', "Avenir Next Rounded", sans-serif !important;
     }
 
+    /*
     #shopify-section-template--16970486120700__section-marquee,
     #shopify-section-template--16970486120700__section-slideshow,
     #shopify-section-template--16970486120700__section-promotion-row-0,
@@ -98,10 +99,23 @@
     .gwgkTo,
     iframe[title="Number of unread messages"] {
       display: none !important;
+    }    */
+
+    #shopify-section-template--16970486120700__section-marquee,
+    #shopify-section-template--16970486120700__section-slideshow,
+    #shopify-section-template--16970486120700__section-promotion-row-0,
+    #shopify-section-template--16970486120700__98bb895e-b25c-4745-b5cb-457b6fdfb21c,
+    #shopify-section-template--16970486120700__5db9b97d-c9f0-498a-9645-b8e029b46984,
+    #shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b,
+    #shopify-section-template--16970486120700__64d03a86-9515-4123-b7eb-3658d349c1e8,
+    #INDmenu-btn,
+    .gwgkTo,
+    iframe[title="Number of unread messages"]{
+      display: none !important;
     }
 
-    .site-header>.wrapper {
-      
+    .kl-teaser-T4UsqC {
+      z-index: -1 !important;
     }
 
     iframe#launcher[data-garden-id="buttons.icon_button"] {
