@@ -339,10 +339,12 @@ class changeFlow {
 
   // change slides Steps
   setLocalStorageDataInfo() {
-    let data = {};
-    data.city = $el(".htitle")?.textContent.split("Solar")[0].trim();
+    waitForElement(".htitle").then((el) => {
+      let data = {};
+      data.city = $el(".htitle")?.textContent.split("Solar")[0].trim();
 
-    localStorage.setItem("crs_data", JSON.stringify(data));
+      localStorage.setItem("crs_data", JSON.stringify(data));
+    });
   }
   setNameCity() {
     const crsData = JSON.parse(localStorage.getItem("crs_data"));
