@@ -1,75 +1,75 @@
 (function() {
   "use strict";
-  const g = (e, n, i, r = "") => {
+  const c = (t, s, e, r = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: e,
-      event_desc: n,
-      event_type: i,
+      event_name: t,
+      event_desc: s,
+      event_type: e,
       event_loc: r
-    }), console.log(`Event: ${e} | ${n} | ${i} | ${r}`);
-  }, _ = ({ name: e, dev: n }) => {
+    }), console.log(`Event: ${t} | ${s} | ${e} | ${r}`);
+  }, w = ({ name: t, dev: s }) => {
     console.log(
-      `%c EXP: ${e} (DEV: ${n})`,
+      `%c EXP: ${t} (DEV: ${s})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, h = async (e) => {
-    const n = (i) => new Promise((r, t) => {
-      const l = i.split(".").pop();
-      if (l === "js") {
-        if (Array.from(document.scripts).map((d) => d.src.toLowerCase()).includes(i.toLowerCase()))
-          return console.log(`Script ${i} allready downloaded!`), r("");
-        const a = document.createElement("script");
-        a.src = i, a.onload = r, a.onerror = t, document.head.appendChild(a);
-      } else if (l === "css") {
-        if (Array.from(document.styleSheets).map((d) => {
-          var c;
-          return (c = d.href) == null ? void 0 : c.toLowerCase();
-        }).includes(i.toLowerCase()))
-          return console.log(`Style ${i} allready downloaded!`), r("");
-        const a = document.createElement("link");
-        a.rel = "stylesheet", a.href = i, a.onload = r, a.onerror = t, document.head.appendChild(a);
+  }, v = async (t) => {
+    const s = (e) => new Promise((r, i) => {
+      const d = e.split(".").pop();
+      if (d === "js") {
+        if (Array.from(document.scripts).map((l) => l.src.toLowerCase()).includes(e.toLowerCase()))
+          return console.log(`Script ${e} allready downloaded!`), r("");
+        const o = document.createElement("script");
+        o.src = e, o.onload = r, o.onerror = i, document.head.appendChild(o);
+      } else if (d === "css") {
+        if (Array.from(document.styleSheets).map((l) => {
+          var u;
+          return (u = l.href) == null ? void 0 : u.toLowerCase();
+        }).includes(e.toLowerCase()))
+          return console.log(`Style ${e} allready downloaded!`), r("");
+        const o = document.createElement("link");
+        o.rel = "stylesheet", o.href = e, o.onload = r, o.onerror = i, document.head.appendChild(o);
       }
     });
-    for (const i of e)
-      await n(i), console.log(`Loaded librari ${i}`);
+    for (const e of t)
+      await s(e), console.log(`Loaded librari ${e}`);
     console.log("All libraries loaded!");
-  }, x = (e) => {
-    let n = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
+  }, y = (t) => {
+    let s = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(s), window.clarity("set", t, "variant_1"));
     }, 1e3);
-  }, u = (e, n, i, r, t = 3e3, l = 1) => {
-    let s, a;
-    if (s = new IntersectionObserver(
-      function(d) {
-        d[0].isIntersecting === !0 ? a = setTimeout(() => {
-          g(
-            n,
-            d[0].target.dataset.visible || r || "",
+  }, g = (t, s, e, r, i = 3e3, d = 1) => {
+    let p, o;
+    if (p = new IntersectionObserver(
+      function(l) {
+        l[0].isIntersecting === !0 ? o = setTimeout(() => {
+          c(
+            s,
+            l[0].target.dataset.visible || r || "",
             "Visibility",
-            i
-          ), s.disconnect();
-        }, t) : (console.log("Element is not fully visible"), clearTimeout(a));
+            e
+          ), p.disconnect();
+        }, i) : (console.log("Element is not fully visible"), clearTimeout(o));
       },
-      { threshold: [l] }
-    ), typeof e == "string") {
-      const d = document.querySelector(e);
-      d && s.observe(d);
+      { threshold: [d] }
+    ), typeof t == "string") {
+      const l = document.querySelector(t);
+      l && p.observe(l);
     } else
-      s.observe(e);
-  }, p = (e) => new Promise((n) => {
-    const i = document.querySelector(e);
-    if (i)
-      return n(i);
+      p.observe(t);
+  }, m = (t) => new Promise((s) => {
+    const e = document.querySelector(t);
+    if (e)
+      return s(e);
     const r = new MutationObserver(() => {
-      const t = document.querySelector(e);
-      t && (n(t), r.disconnect());
+      const i = document.querySelector(t);
+      i && (s(i), r.disconnect());
     });
     r.observe(document.documentElement, {
       childList: !0,
       subtree: !0
     });
-  }), o = "https://conversionratestore.github.io/projects/geeni/img/home-app-web", v = window.innerWidth < 768 ? "mobile" : "desktop", w = (
+  }), n = "https://conversionratestore.github.io/projects/geeni/img/home-app-web", f = window.innerWidth < 768 ? "mobile" : "desktop", b = (
     /*html*/
     `
   <style>
@@ -563,7 +563,7 @@
       top: auto;
       max-width: 580px;
       max-height: 580px;
-      margin-right: 17%;
+      right: 17%;
     }
     
     .product__info {
@@ -886,6 +886,7 @@
     }
 
     .new-arrivals-product__img-wrap {
+      display: block;
       width: 380px;
       height: 380px;
       flex-shrink: 0;
@@ -1595,24 +1596,24 @@
       }
     }
   </style>`
-  ), y = (
+  ), S = (
     /*html*/
     `
   <div class="additional-functional">
     <div data-img-func="accessibility" >
-      <img src="${o}/accessible.svg" alt="Open accessibility features">
+      <img src="${n}/accessible.svg" alt="Open accessibility features">
     </div>
     <div data-img-func="sale" class="hidden-el">
-      <img src="${o}/sale.svg" alt="Open sale proposition">
+      <img src="${n}/sale.svg" alt="Open sale proposition">
     </div>
     <div data-img-func="chat">
-      <img src="${o}/chat.svg" alt="Open suppport chat">
+      <img src="${n}/chat.svg" alt="Open suppport chat">
       <div><p></p></div>
     </div>
   </div>
 
   <div class="free-shipping">
-    <img src="${o}/delivery.svg" alt="shipping">
+    <img src="${n}/delivery.svg" alt="shipping">
     <p><span class="fw-700">FREE</span> Shipping on orders over <span class="fw-700">$69</span></p>
   </div>
 
@@ -1622,24 +1623,24 @@
         <h2 class="heading-2">Shop All Category</h2>
         <a href="/collections/all" class="shop-all__view">
           View all
-          <img src="${o}/arrow-r.svg" alt="">
+          <img src="${n}/arrow-r.svg" alt="">
         </a>
       </div>
       <div class="menu-items">
         <a href="/collections/smart-security-cameras">
-          <img src="${o}/cameras.jpg" alt="Cameras">
+          <img src="${n}/cameras.jpg" alt="Cameras">
           <p>Cameras</p>
         </a>
         <a href="/collections/smart-appliances">
-          <img src="${o}/lifestyle.jpg" alt="Lifestyle">
+          <img src="${n}/lifestyle.jpg" alt="Lifestyle">
           <p>Lifestyle</p>
         </a>
         <a href="/collections/lighting">
-          <img src="${o}/lighting.jpg" alt="Lighting">
+          <img src="${n}/lighting.jpg" alt="Lighting">
           <p>Lighting</p>
         </a>
         <a href="/collections/power">
-          <img src="${o}/power.jpg" alt="Power">
+          <img src="${n}/power.jpg" alt="Power">
           <p>Power</p>
         </a>
       </div>
@@ -1650,7 +1651,7 @@
     <div class="container">
       <div class="warranty-sale__container">
         <div>
-          <img src="${o}/check.svg" alt="">
+          <img src="${n}/check.svg" alt="">
           <div>
             <p><span class="fw-700">Direct from manufacturer</span></p>
             <p><span class="fw-700">365</span>-days warranty on all products</p>
@@ -1658,7 +1659,7 @@
         </div>
         <div>
           <div class="warranty-sale__buy">
-            <img src="${o}/bonus.svg" alt="">
+            <img src="${n}/bonus.svg" alt="">
             <p><span class="fw-700">Buy More, Save More</span></p>
           </div>
           <div class="saves-comparison">
@@ -1732,10 +1733,10 @@
 
           <div class="glide__arrows" data-glide-el="controls">
             <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
-              <img src="${o}/arrow-l.svg" alt="arrow left">
+              <img src="${n}/arrow-l.svg" alt="arrow left">
             </button>
             <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
-              <img src="${o}/arrow-r.svg" alt="arrow right">
+              <img src="${n}/arrow-r.svg" alt="arrow right">
             </button>
           </div>
         </div>
@@ -1748,11 +1749,11 @@
   <section class="many-devices">
     <div class="container">
       <div class="many-devices__split">
-        <img src="${o}/house-1.jpg" alt="">
-        <img src="${o}/house-2.jpg" alt="">
+        <img src="${n}/house-1.jpg" alt="">
+        <img src="${n}/house-2.jpg" alt="">
       </div>
       <div class="many-devices__mobiles">
-        <img src="${o}/many-devices.svg" alt="">
+        <img src="${n}/many-devices.svg" alt="">
       </div>
 
       <div class="index-1">
@@ -1760,8 +1761,8 @@
         <p>Cameras, bulbs, plugs, and more</p>
       </div>
       <div class="index-1 many-devices__btns">
-        <a class="many-devices__btn" href="https://apps.apple.com/us/app/geeni/id1177386276">Download iOS</a>
-        <a class="many-devices__btn" href="https://play.google.com/store/apps/details?id=com.merkuryinnovations.geeni&amp;hl=en_US&amp;gl=US">Download Android</a>
+        <a class="many-devices__btn" data-device-app="ios" href="https://apps.apple.com/us/app/geeni/id1177386276">Download iOS</a>
+        <a class="many-devices__btn" data-device-app="android" href="https://play.google.com/store/apps/details?id=com.merkuryinnovations.geeni&amp;hl=en_US&amp;gl=US">Download Android</a>
         
       </div>
 
@@ -1772,13 +1773,13 @@
     <div class="container">
       <h2 class="heading-2">Trusted by over 5 million people</h2>
       <div class="trusted-reviews__rate">
-        <img src="${o}/4-stars.svg" alt="4 stars">
+        <img src="${n}/4-stars.svg" alt="4 stars">
         <p><span class="fw-700">4.4</span> stars rating</p>
       </div>
 
       <div class="trusted-load-more load-more-btn-visible">
           <div class="swiper-slide">
-            <img src="${o}/4-stars.svg" alt="4 stars">
+            <img src="${n}/4-stars.svg" alt="4 stars">
             <p class="trusted-reviews__desc">It was very easy to set up and once it was
             connected to my Wi-Fi, I was able to start
             changing the colors from white to blue to
@@ -1789,14 +1790,14 @@
           </div>
 
           <div class="swiper-slide">
-            <img src="${o}/4-stars.svg" alt="4 stars">
+            <img src="${n}/4-stars.svg" alt="4 stars">
             <p class="trusted-reviews__desc">This is a great product. The night vision is pretty good, and the image quality is great as well. I love being able to set alerts on my app for motion, and check in any time!!</p>
             <p class="trusted-reviews__author">Ninjafoot</p>
             <p class="trusted-reviews__loc">Sacramento, CA</p>
           </div>
 
           <div class="swiper-slide">
-            <img src="${o}/5-stars.svg" alt="5 stars">
+            <img src="${n}/5-stars.svg" alt="5 stars">
             <p class="trusted-reviews__desc">Great camera, it was easy to install, very clear and motion detection was work very good with instant notifications in my phone.</p>
             <p class="trusted-reviews__author">Carol71</p>
             <p class="trusted-reviews__loc">Jersey City, NJ</p>
@@ -1806,21 +1807,21 @@
 
           <div class="hidden-block">
             <div class="swiper-slide">
-              <img src="${o}/4-stars.svg" alt="4 stars">
+              <img src="${n}/4-stars.svg" alt="4 stars">
               <p class="trusted-reviews__desc">I set the camera up to keep my dog from leaving gifts in the hallway. As soon as a motion alert happens, i could hop on the camera and give a stern ‘NO'. Deer in headlights was her reaction. Love this tool in helping my dog potty train.</p>
               <p class="trusted-reviews__author">Jennifer Harden</p>
               <p class="trusted-reviews__loc">Verified customer</p>
             </div>
 
             <div class="swiper-slide">
-              <img src="${o}/4-stars.svg" alt="4 stars">
+              <img src="${n}/4-stars.svg" alt="4 stars">
               <p class="trusted-reviews__desc">The picture is perfect. We are thinking about replacing our other cameras with these. Easy to set up. Perfect camera</p>
               <p class="trusted-reviews__author">Dmitri Kristov</p>
               <p class="trusted-reviews__loc">Verified customer</p>
             </div>
 
             <div class="swiper-slide">
-              <img src="${o}/5-stars.svg" alt="5 stars">
+              <img src="${n}/5-stars.svg" alt="5 stars">
               <p class="trusted-reviews__desc">These lights are so easy to use with the app and Alexa. They look great also.</p>
               <p class="trusted-reviews__author">Amelia Ngoy</p>
               <p class="trusted-reviews__loc">Verified customer</p>
@@ -1832,7 +1833,7 @@
         <div class="swiper-wrapper">
           <!-- Slides -->
           <div class="swiper-slide">
-            <img src="${o}/4-stars.svg" alt="4 stars">
+            <img src="${n}/4-stars.svg" alt="4 stars">
             <p class="trusted-reviews__desc">It was very easy to set up and once it was
             connected to my Wi-Fi, I was able to start
             changing the colors from white to blue to
@@ -1843,35 +1844,35 @@
           </div>
 
           <div class="swiper-slide">
-            <img src="${o}/4-stars.svg" alt="4 stars">
+            <img src="${n}/4-stars.svg" alt="4 stars">
             <p class="trusted-reviews__desc">This is a great product. The night vision is pretty good, and the image quality is great as well. I love being able to set alerts on my app for motion, and check in any time!!</p>
             <p class="trusted-reviews__author">Ninjafoot</p>
             <p class="trusted-reviews__loc">Sacramento, CA</p>
           </div>
 
           <div class="swiper-slide">
-            <img src="${o}/5-stars.svg" alt="5 stars">
+            <img src="${n}/5-stars.svg" alt="5 stars">
             <p class="trusted-reviews__desc">Great camera, it was easy to install, very clear and motion detection was work very good with instant notifications in my phone.</p>
             <p class="trusted-reviews__author">Carol71</p>
             <p class="trusted-reviews__loc">Jersey City, NJ</p>
           </div>
 
           <div class="swiper-slide">
-            <img src="${o}/4-stars.svg" alt="4 stars">
+            <img src="${n}/4-stars.svg" alt="4 stars">
             <p class="trusted-reviews__desc">I set the camera up to keep my dog from leaving gifts in the hallway. As soon as a motion alert happens, i could hop on the camera and give a stern ‘NO'. Deer in headlights was her reaction. Love this tool in helping my dog potty train.</p>
             <p class="trusted-reviews__author">Jennifer Harden</p>
             <p class="trusted-reviews__loc">Verified customer</p>
           </div>
 
           <div class="swiper-slide">
-            <img src="${o}/4-stars.svg" alt="4 stars">
+            <img src="${n}/4-stars.svg" alt="4 stars">
             <p class="trusted-reviews__desc">The picture is perfect. We are thinking about replacing our other cameras with these. Easy to set up. Perfect camera</p>
             <p class="trusted-reviews__author">Dmitri Kristov</p>
             <p class="trusted-reviews__loc">Verified customer</p>
           </div>
 
           <div class="swiper-slide">
-            <img src="${o}/5-stars.svg" alt="5 stars">
+            <img src="${n}/5-stars.svg" alt="5 stars">
             <p class="trusted-reviews__desc">These lights are so easy to use with the app and Alexa. They look great also.</p>
             <p class="trusted-reviews__author">Amelia Ngoy</p>
             <p class="trusted-reviews__loc">Verified customer</p>
@@ -1881,61 +1882,61 @@
 
         <!-- If we need navigation buttons -->
         <div class="swiper-button-prev">
-          <img src="${o}/arrow-l.svg" alt="arrow left">
+          <img src="${n}/arrow-l.svg" alt="arrow left">
         </div>
         <div class="swiper-button-next">
-          <img src="${o}/arrow-r.svg" alt="arrow right">
+          <img src="${n}/arrow-r.svg" alt="arrow right">
         </div>
       </div>
     </div>
   </section>
   `
   );
-  x("exp_home_optim"), T(), z();
-  async function b(e, n) {
+  y("exp_home_optim"), B(), L();
+  async function F(t, s) {
     try {
-      const i = await fetch(`https://mygeeni.com/products/${e}.json`, {
+      const e = await fetch(`https://mygeeni.com/products/${t}.json`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
         }
       });
-      if (!i.ok)
-        throw new Error(`HTTP error! status: ${i.status}`);
-      const t = (await i.json()).product;
-      if (!t.variants || t.variants.length === 0)
+      if (!e.ok)
+        throw new Error(`HTTP error! status: ${e.status}`);
+      const i = (await e.json()).product;
+      if (!i.variants || i.variants.length === 0)
         throw new Error("Product has no variants");
-      const l = t.variants[0];
-      if (!("price" in l) || !("compare_at_price" in l))
+      const d = i.variants[0];
+      if (!("price" in d) || !("compare_at_price" in d))
         throw new Error("Variant is missing price or compare_at_price");
       return {
-        title: t.title,
-        product_type: t.product_type,
-        handle: t.handle,
-        price: l.price,
-        compare_at_price: l.compare_at_price,
-        image_src: t.image.src
+        title: i.title,
+        product_type: i.product_type,
+        handle: i.handle,
+        price: d.price,
+        compare_at_price: d.compare_at_price,
+        image_src: i.image.src
       };
-    } catch (i) {
-      throw console.error(`Failed to fetch product data for handle ${e}: ${i}`), i;
+    } catch (e) {
+      throw console.error(`Failed to fetch product data for handle ${t}: ${e}`), e;
     }
   }
-  function F(e) {
-    const n = e.length, i = e.map((r, t) => (
+  function k(t) {
+    const s = t.length, e = t.map((r, i) => (
       /*html*/
       `
       <div class="glide__slide new-arrivals-product">
-          <div class="new-arrivals-product__img-wrap">
+          <a href="/products/${r.handle}" class="new-arrivals-product__img-wrap">
             <img src="${r.image_src}" alt="${r.title}">
-          </div>
+          </a>
           <div class="new-arrivals-product__content">
             <div class="new-arrivals__nav">
               <div class="swiper-button-prev-mob">
-                <img src="${o}/arrow-l.svg" alt="arrow left">
+                <img src="${n}/arrow-l.svg" alt="arrow left">
               </div>
-              <p class="new-arrivals-product__number">${t + 1}/${n}</p>
+              <p class="new-arrivals-product__number">${i + 1}/${s}</p>
               <div class="swiper-button-next-mob">
-                <img src="${o}/arrow-r.svg" alt="arrow right">
+                <img src="${n}/arrow-r.svg" alt="arrow right">
               </div>
             </div>
             <a class="new-arrivals-product__title" href="/products/${r.handle}">${r.title}</a>
@@ -1947,12 +1948,12 @@
           </div>
       </div>`
     )).join("");
-    p(".new-arrivals .new-arrivals__content .glide__slides").then((r) => r == null ? void 0 : r.insertAdjacentHTML("beforeend", i)).then(() => {
-      I();
+    m(".new-arrivals .new-arrivals__content .glide__slides").then((r) => r == null ? void 0 : r.insertAdjacentHTML("beforeend", e)).then(() => {
+      z();
     }).catch((r) => console.error("Failed to insert slides to new arrival slider:", r));
   }
-  function S(e) {
-    const i = (
+  function A(t) {
+    const e = (
       /*html*/
       `
     <div class="hero">
@@ -1962,26 +1963,26 @@
           <!-- Additional required wrapper -->
           <div class="swiper-wrapper">
             <!-- Slides -->
-            ${e.map((t, l) => {
-        const s = t.compare_at_price - t.price, a = Math.round(s / t.compare_at_price * 100), d = s > 0 ? `Save ${a}%` : "", c = t.compare_at_price && t.compare_at_price !== t.price ? `${t.compare_at_price}` : "", m = t.product_type.toLowerCase().includes("camera") ? "Cameras" : t.product_type;
+            ${t.map((i, d) => {
+        const p = i.compare_at_price - i.price, o = Math.round(p / i.compare_at_price * 100), l = p > 0 ? `Save ${o}%` : "", u = i.compare_at_price && i.compare_at_price !== i.price ? `${i.compare_at_price}` : "", h = i.product_type.toLowerCase().includes("camera") ? "Cameras" : i.product_type;
         return (
           /*html*/
           `
     <div class="swiper-slide product">
-      <img class="product__img" src="${t.image_src}" alt="${t.title}">
+      <img class="product__img" src="${i.image_src}" alt="${i.title}">
       <div class="product__number">
-        <p>${l + 1}/${e.length}</p>
+        <p>${d + 1}/${t.length}</p>
       </div>
       <div class="product__info">
-        <p class="product__type">${m}</p>
-        <a class="product__title" href="/products/${t.handle}">${t.title}</a>
+        <p class="product__type">${h}</p>
+        <a class="product__title" href="/products/${i.handle}">${i.title}</a>
         <div class="product__price">
-          <span>${t.price}</span>
-          <span>${c}</span>
-          ${d !== "" ? `<span>${d}</span>` : ""}
+          <span>${i.price}</span>
+          <span>${u}</span>
+          ${l !== "" ? `<span>${l}</span>` : ""}
         </div>
 
-        <a class="product__btn" href="/products/${t.handle}">Shop now</a>
+        <a class="product__btn" href="/products/${i.handle}">Shop now</a>
       </div>
     </div>`
         );
@@ -1990,11 +1991,11 @@
 
           <div class="hero-swiper-nav">
             <div class="swiper-button-prev">
-              <img src="${o}/arrow-l.svg" alt="arrow left">
+              <img src="${n}/arrow-l.svg" alt="arrow left">
             </div>
             <div id="slide-number"><p></p></div>
             <div class="swiper-button-next">
-              <img src="${o}/arrow-r.svg" alt="arrow right">
+              <img src="${n}/arrow-r.svg" alt="arrow right">
             </div>
           </div>
           
@@ -2003,63 +2004,63 @@
     </div>
   `
     );
-    p(v === "desktop" ? ".free-shipping" : ".shop-all").then((t) => t == null ? void 0 : t.insertAdjacentHTML("afterend", i)).catch((t) => console.error("Failed to insert slides to hero slider:", t));
+    m(f === "desktop" ? ".free-shipping" : ".shop-all").then((i) => i == null ? void 0 : i.insertAdjacentHTML("afterend", e)).catch((i) => console.error("Failed to insert slides to hero slider:", i));
   }
-  async function k() {
-    p("#productData").then(async (e) => {
-      if (!e || !e.textContent) {
+  async function $() {
+    m("#productData").then(async (t) => {
+      if (!t || !t.textContent) {
         console.error("Product data element or its content is missing");
         return;
       }
-      let n;
+      let s;
       try {
-        n = JSON.parse(e.textContent);
-      } catch (a) {
-        console.error("Failed to parse product data:", a);
+        s = JSON.parse(t.textContent);
+      } catch (o) {
+        console.error("Failed to parse product data:", o);
         return;
       }
-      const i = [], r = [];
-      document.querySelectorAll(".products-list__container .btn.btn--primary").forEach((a) => {
-        const c = new URL(a.href).pathname.split("/products/")[1];
-        c && i.push(c);
+      const e = [], r = [];
+      document.querySelectorAll(".products-list__container .btn.btn--primary").forEach((o) => {
+        const u = new URL(o.href).pathname.split("/products/")[1];
+        u && e.push(u);
       });
-      const t = i.map((a, d) => b(a));
-      (await Promise.allSettled(t)).forEach((a, d) => {
-        if (a.status === "fulfilled") {
-          const c = document.querySelectorAll(".products-list__item__description")[d], m = c ? c.innerText : "", L = a.value.price ? `$${a.value.price}` : "";
-          r.push({ ...a.value, description: m, price: L });
+      const i = e.map((o, l) => F(o));
+      (await Promise.allSettled(i)).forEach((o, l) => {
+        if (o.status === "fulfilled") {
+          const u = document.querySelectorAll(".products-list__item__description")[l], h = u ? u.innerText : "", _ = o.value.price ? `$${o.value.price}` : "";
+          r.push({ ...o.value, description: h, price: _ });
         } else
-          console.error(`Failed to fetch product data for handle ${i[d]}: ${a.reason}`);
+          console.error(`Failed to fetch product data for handle ${e[l]}: ${o.reason}`);
       });
-      const s = window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0;
-      S(s ? r : n), F(r);
+      const p = window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0;
+      A(p ? r : s), k(r);
     });
   }
-  function A() {
-    function e(n, i, r) {
-      const t = document.createElement("link");
-      t.href = n, t.rel = i, r && (t.crossOrigin = r), document.head.appendChild(t);
+  function T() {
+    function t(s, e, r) {
+      const i = document.createElement("link");
+      i.href = s, i.rel = e, r && (i.crossOrigin = r), document.head.appendChild(i);
     }
-    e("https://fonts.googleapis.com", "preconnect"), e("https://fonts.gstatic.com", "preconnect", "true"), e("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap", "stylesheet");
+    t("https://fonts.googleapis.com", "preconnect"), t("https://fonts.gstatic.com", "preconnect", "true"), t("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap", "stylesheet");
   }
-  function $() {
-    const e = setInterval(() => {
-      const n = document.getElementById("INDmenu-btn"), i = document.getElementById("launcher");
-      n && i && (clearInterval(e), p(".additional-functional").then((r) => r == null ? void 0 : r.addEventListener("click", (t) => {
-        var l, s, a, d;
-        t.target, (l = t.target) != null && l.closest('[data-img-func="accessibility"]') ? n.click() : (s = t.target) != null && s.closest('[data-img-func="sale"]') ? (a = document.querySelector(".kl-teaser-T4UsqC")) == null || a.click() : (d = t.target) != null && d.closest('[data-img-func="chat"]') && (i.contentDocument || i.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click();
+  function P() {
+    const t = setInterval(() => {
+      const s = document.getElementById("INDmenu-btn"), e = document.getElementById("launcher");
+      s && e && (clearInterval(t), m(".additional-functional").then((r) => r == null ? void 0 : r.addEventListener("click", (i) => {
+        var d, p, o, l;
+        i.target, (d = i.target) != null && d.closest('[data-img-func="accessibility"]') ? (s.click(), c("exp_home_optim_button_16", "Accessibility options", "Button", "Home Page        Small Menu")) : (p = i.target) != null && p.closest('[data-img-func="sale"]') ? ((o = document.querySelector(".kl-teaser-T4UsqC")) == null || o.click(), c("exp_home_optim_button_17", "Promo", "Button", "Home Page        Small Menu")) : (l = i.target) != null && l.closest('[data-img-func="chat"]') && ((e.contentDocument || e.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click(), c("exp_home_optim_button_18", "Chat", "Button", "Home Page        Small Menu"));
       })), setInterval(() => {
-        var r, t, l;
-        if (document.querySelector('[data-testid="POPUP"]') ? (r = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || r.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (l = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || l.classList.remove("hidden-el") : (t = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || t.classList.add("hidden-el"), document.querySelector('iframe[title="Number of unread messages"]')) {
-          const s = document.querySelector('iframe[title="Number of unread messages"]'), d = (s.contentDocument || s.contentWindow.document).querySelector(".gwgkTo");
-          document.querySelector('[data-img-func="chat"] p') && (d != null && d.textContent) && (document.querySelector('[data-img-func="chat"]').classList.add("display-msg-number"), document.querySelector('[data-img-func="chat"] p').innerText = d.textContent, console.log(d.textContent));
+        var r, i, d;
+        if (document.querySelector('[data-testid="POPUP"]') ? (r = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || r.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (d = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || d.classList.remove("hidden-el") : (i = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || i.classList.add("hidden-el"), document.querySelector('iframe[title="Number of unread messages"]')) {
+          const p = document.querySelector('iframe[title="Number of unread messages"]'), l = (p.contentDocument || p.contentWindow.document).querySelector(".gwgkTo");
+          document.querySelector('[data-img-func="chat"] p') && (l != null && l.textContent) && (document.querySelector('[data-img-func="chat"]').classList.add("display-msg-number"), document.querySelector('[data-img-func="chat"] p').innerText = l.textContent, console.log(l.textContent));
         } else
           document.querySelector(".display-msg-number") && document.querySelector(".display-msg-number").classList.remove("display-msg-number");
       }, 1e3));
     }, 100);
   }
-  function T() {
-    const e = (
+  function B() {
+    const t = (
       /*html*/
       `
     <style>
@@ -2102,36 +2103,36 @@
     </style>
   `
     );
-    v === "mobile" && p('.mobile-menu [aria-controls="nav-drawer"]').then((n) => {
-      document.querySelector("h1.logo").insertAdjacentElement("beforebegin", n);
-    }), p("head").then((n) => n.insertAdjacentHTML("beforeend", e));
+    f === "mobile" && m('.mobile-menu [aria-controls="nav-drawer"]').then((s) => {
+      document.querySelector("h1.logo").insertAdjacentElement("beforebegin", s);
+    }), m("head").then((s) => s.insertAdjacentHTML("beforeend", t));
   }
-  function f(e, n) {
-    const i = `[data-products-type="${e}"] .products-wrapper`;
-    p(i).then((r) => {
-      const t = document.querySelectorAll(n);
-      for (let s = 0; s < 4; s++) {
-        const a = t[s];
-        r.appendChild(a);
+  function x(t, s) {
+    const e = `[data-products-type="${t}"] .products-wrapper`;
+    m(e).then((r) => {
+      const i = document.querySelectorAll(s);
+      for (let p = 0; p < 4; p++) {
+        const o = i[p];
+        r.appendChild(o);
       }
-      const l = setInterval(() => {
-        const s = document.querySelectorAll(`${i} .product-grid-item__title`);
-        s[3] && (clearInterval(l), s.forEach((a, d) => {
-          document.querySelectorAll(`${i} .product-grid-item__inner`)[d].insertAdjacentHTML("beforeend", `<a class="product__shop-now" href="${a.href}">Shop now</a>`);
+      const d = setInterval(() => {
+        const p = document.querySelectorAll(`${e} .product-grid-item__title`);
+        p[3] && (clearInterval(d), p.forEach((o, l) => {
+          document.querySelectorAll(`${e} .product-grid-item__inner`)[l].insertAdjacentHTML("beforeend", `<a class="product__shop-now" href="${o.href}">Shop now</a>`);
         }));
       }, 100);
     });
   }
-  function B() {
-    const e = setInterval(() => {
-      document.querySelector("#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(e), f("popular-products", "#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), f("hot-deals", "#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner"));
+  function E() {
+    const t = setInterval(() => {
+      document.querySelector("#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(t), x("popular-products", "#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), x("hot-deals", "#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner"));
     }, 100);
   }
-  function E() {
-    h(["https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js", "https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"]).then(() => {
-      const e = setInterval(() => {
-        typeof Swiper < "u" && document.querySelectorAll(".swiper")[1] && (clearInterval(e), p(".hero .swiper").then((n) => {
-          const i = n.clientWidth, t = i * 1.07 - i + 16;
+  function I() {
+    v(["https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js", "https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"]).then(() => {
+      const t = setInterval(() => {
+        typeof Swiper < "u" && document.querySelectorAll(".swiper")[1] && (clearInterval(t), m(".hero .swiper").then((s) => {
+          const e = s.clientWidth, i = e * 1.07 - e + 16;
           new Swiper(".hero .swiper", {
             navigation: {
               nextEl: ".hero .swiper-button-next",
@@ -2139,7 +2140,7 @@
             },
             slidesPerView: 1.13,
             spaceBetween: 8,
-            slidesOffsetAfter: t,
+            slidesOffsetAfter: i,
             // adjust this value as needed
             breakpoints: {
               768: {
@@ -2153,11 +2154,11 @@
                 document.querySelector("#slide-number p").innerText = `${this.realIndex + 1}/${this.slides.length}`;
               },
               slideChange: function() {
-                document.querySelector("#slide-number p").innerText = `${this.realIndex + 1}/${this.slides.length}`;
+                document.querySelector("#slide-number p").innerText = `${this.realIndex + 1}/${this.slides.length}`, c("exp_home_optim_pagination_01", "Block's Pameras Power Lifestyle & Health", "Pagination", "Home Page Featured products PDP");
               }
             }
           });
-        }), p(".trusted-reviews .swiper").then((n) => {
+        }), m(".trusted-reviews .swiper").then((s) => {
           new Swiper(".trusted-reviews .swiper", {
             slidesPerView: 3.8,
             spaceBetween: 8,
@@ -2168,8 +2169,8 @@
             },
             on: {
               reachEnd: function() {
-                var i;
-                (i = document.querySelector(".trusted-reviews .swiper")) == null || i.classList.add("reached-end");
+                var e;
+                (e = document.querySelector(".trusted-reviews .swiper")) == null || e.classList.add("reached-end");
               }
             }
           });
@@ -2177,11 +2178,11 @@
       }, 100);
     });
   }
-  function I() {
-    h(["https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.core.min.css", "https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/glide.min.js"]).then(() => {
-      const e = setInterval(() => {
+  function z() {
+    v(["https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.core.min.css", "https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/glide.min.js"]).then(() => {
+      const t = setInterval(() => {
         if (typeof Glide < "u" && document.querySelector(".glide")) {
-          clearInterval(e), new Glide(".glide", {
+          clearInterval(t), new Glide(".glide", {
             type: "carousel",
             startAt: 0,
             perView: 2,
@@ -2199,45 +2200,66 @@
               }
             }
           }).mount();
-          const n = setInterval(() => {
-            const i = document.querySelector(".glide__arrow--left"), r = document.querySelector(".glide__arrow--right"), t = document.querySelector(".glide");
-            i && r && (console.log("Arrows are ready"), clearInterval(n), t.addEventListener("click", (l) => {
-              var s, a;
-              console.log(l.target), (s = l.target) != null && s.closest(".swiper-button-prev-mob") && i.dispatchEvent(new Event("click")), (a = l.target) != null && a.closest(".swiper-button-next-mob") && r.dispatchEvent(new Event("click"));
+          const s = setInterval(() => {
+            const e = document.querySelector(".glide__arrow--left"), r = document.querySelector(".glide__arrow--right"), i = document.querySelector(".glide");
+            e && r && (console.log("Arrows are ready"), clearInterval(s), i.addEventListener("click", (d) => {
+              var p, o, l, u;
+              (p = d.target) != null && p.closest(".swiper-button-prev-mob") && (e.dispatchEvent(new Event("click")), c("exp_home_optim_arrows_01", `${(o = d.target.closest(".new-arrivals-product")) == null ? void 0 : o.querySelector(".new-arrivals-product__title")} - left, right`, "Arrows", "Home Page New Arrivals")), (l = d.target) != null && l.closest(".swiper-button-next-mob") && (r.dispatchEvent(new Event("click")), c("exp_home_optim_arrows_01", `${(u = d.target.closest(".new-arrivals-product")) == null ? void 0 : u.querySelector(".new-arrivals-product__title")} - left, right`, "Arrows", "Home Page New Arrivals"));
             }));
           }, 100);
         }
       }, 100);
     });
   }
-  function z() {
-    window.location.pathname === "/" && (_({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "Andrii" }), p("head").then((e) => e == null ? void 0 : e.insertAdjacentHTML("afterend", w)), p("#shopify-section-template--16970486120700__section-marquee").then((e) => e == null ? void 0 : e.insertAdjacentHTML("afterend", y)), k(), E(), B(), A(), p("body").then((e) => e == null ? void 0 : e.classList.add("hide-chat-btn")), p('iframe[title="Messaging window"]').then((e) => {
-      e && new MutationObserver((i) => {
-        var r, t;
-        for (let l of i)
-          l.type === "attributes" && l.attributeName === "tabindex" && (console.log("Tabindex changed to:", e.getAttribute("tabindex")), (e == null ? void 0 : e.getAttribute("tabindex")) === "-1" ? (r = document.querySelector("body")) == null || r.classList.add("hide-chat-btn") : (t = document.querySelector("body")) == null || t.classList.remove("hide-chat-btn"));
-      }).observe(e, { attributes: !0 });
-    }), p(".load-more-btn").then((e) => {
-      e == null || e.addEventListener("click", () => {
-        const n = document.querySelector(".trusted-load-more");
-        n && n.classList.remove("load-more-btn-visible");
+  function L() {
+    window.location.pathname === "/" && (w({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "Andrii" }), m("head").then((t) => t == null ? void 0 : t.insertAdjacentHTML("afterend", b)), m("#shopify-section-template--16970486120700__section-marquee").then((t) => t == null ? void 0 : t.insertAdjacentHTML("afterend", S)), $(), I(), E(), T(), m("body").then((t) => t == null ? void 0 : t.classList.add("hide-chat-btn")), m('iframe[title="Messaging window"]').then((t) => {
+      t && new MutationObserver((e) => {
+        var r, i;
+        for (let d of e)
+          d.type === "attributes" && d.attributeName === "tabindex" && (console.log("Tabindex changed to:", t.getAttribute("tabindex")), (t == null ? void 0 : t.getAttribute("tabindex")) === "-1" ? (r = document.querySelector("body")) == null || r.classList.add("hide-chat-btn") : (i = document.querySelector("body")) == null || i.classList.remove("hide-chat-btn"));
+      }).observe(t, { attributes: !0 });
+    }), m(".load-more-btn").then((t) => {
+      t == null || t.addEventListener("click", () => {
+        const s = document.querySelector(".trusted-load-more");
+        c("exp_home_optim_button_15", "Load more", "Button", "Home Page Reviews"), s && s.classList.remove("load-more-btn-visible");
       });
-    }), $(), p("body").then((e) => {
-      u(".free-shipping", "exp_home_optim_section_01", "Home Page Free Shipping on Orders Over $69", "Section", 4e3), u(".shop-all .container", "exp_home_optim_section_02", "Home Page Shop by category", "Section"), u(".hero .swiper", "exp_home_optim_section_03", "Home Page Featured products PDP", "Section"), u(".warranty-sale", "exp_home_optim_section_04", "Home Page Benefits", "Section"), e == null || e.addEventListener("click", (n) => {
-        var r, t, l;
-        const i = n.target;
-        if (i.closest("button.mobile-menu__button") && g("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), i.closest(".shop-all__view") && g("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), i.closest(".menu-items a")) {
-          const s = (r = i.closest(".menu-items a")) == null ? void 0 : r.querySelector("p");
-          g("exp_home_optim_button_05", `${s == null ? void 0 : s.innerText} - choise category`, "Button", "Home Page Shop by category");
-        }
-        if (i.closest(".hero .product__btn")) {
-          const s = (t = i.closest(".product")) == null ? void 0 : t.querySelector(".product__title");
-          g("exp_home_optim_button_06", `${s == null ? void 0 : s.innerText} - Shop now`, "Button", "Home Page Featured products PDP");
-        }
-        if (i.closest(".hero .product")) {
-          const s = (l = i.closest(".hero .product")) == null ? void 0 : l.querySelector(".product__type");
-          g("exp_home_optim_button_07", `${s == null ? void 0 : s.innerText} - Click`, "Button", "Home Page Featured products PDP");
-        }
+    }), P(), m("body").then((t) => {
+      g(".free-shipping", "exp_home_optim_section_01", "Home Page Free Shipping on Orders Over $69", "Section", 4e3), g(".shop-all .container", "exp_home_optim_section_02", "Home Page Shop by category", "Section"), g(".hero .swiper", "exp_home_optim_section_03", "Home Page Featured products PDP", "Section"), g(".warranty-sale", "exp_home_optim_section_04", "Home Page Benefits", "Section"), g('[data-products-type="hot-deals"]', "exp_home_optim_section_05", "Home Page Block Deals For You Mobile device users", "Section", 3e3, 0.5), g('[data-products-type="popular-products"]', "exp_home_optim_section_06", "Home Page      Block      Popular Products", "Section", 3e3, 0.5), g(".new-arrivals", "exp_home_optim_section_07", "Home Page New Arrivals", "Section", 4e3, 0.5), g(".many-devices", "exp_home_optim_section_08", "Home Page  Many Devices, One App", "Section", 3e3), g(".trusted-load-more .swiper-slide", "exp_home_optim_section_09", "Home Page Reviews"), t == null || t.addEventListener("click", (s) => {
+        var r, i, d, p, o, l, u, h, _;
+        const e = s.target;
+        if (e.closest("button.mobile-menu__button"))
+          c("exp_home_optim_button_01", "Menu", "Button", "Home Page Header");
+        else if (e.closest(".shop-all__view"))
+          c("exp_home_optim_button_01", "Menu", "Button", "Home Page Header");
+        else if (e.closest(".menu-items a")) {
+          const a = (r = e.closest(".menu-items a")) == null ? void 0 : r.querySelector("p");
+          c("exp_home_optim_button_05", `${a == null ? void 0 : a.innerText} - choise category`, "Button", "Home Page Shop by category");
+        } else if (e.closest(".hero .product__btn")) {
+          const a = (i = e.closest(".product")) == null ? void 0 : i.querySelector(".product__title");
+          c("exp_home_optim_button_06", `${a == null ? void 0 : a.innerText} - Shop now`, "Button", "Home Page Featured products PDP");
+        } else if (e.closest(".hero .product")) {
+          const a = (d = e.closest(".hero .product")) == null ? void 0 : d.querySelector(".product__type");
+          c("exp_home_optim_button_07", `${a == null ? void 0 : a.innerText} - Click`, "Button", "Home Page Featured products PDP");
+        } else if (e.closest('[data-products-type="hot-deals"] .product__media__image')) {
+          const a = (p = e.closest(".product-grid-item__inner")) == null ? void 0 : p.querySelector(".product-grid-item__title");
+          c("exp_home_optim_button_08", `${a == null ? void 0 : a.innerText} - click PDP`, "Button", "Home Page          Block          Deals For You          Mobile device users");
+        } else if (e.closest('[data-products-type="hot-deals"] .product__shop-now')) {
+          const a = (o = e.closest(".product-grid-item__inner")) == null ? void 0 : o.querySelector(".product-grid-item__title");
+          c("exp_home_optim_button_09", `${a == null ? void 0 : a.innerText} - SHOP NOW`, "Button", "Home Page          Block          Deals For You          Mobile device users");
+        } else if (e.closest('[data-products-type="popular-products"] .product__media__image')) {
+          const a = (l = e.closest(".product-grid-item__inner")) == null ? void 0 : l.querySelector(".product-grid-item__title");
+          c("exp_home_optim_button_10", `${a == null ? void 0 : a.innerText} - click PDP`, "Button", "Home Page          Block          Popular Products");
+        } else if (e.closest('[data-products-type="popular-products"] .product__shop-now')) {
+          const a = (u = e.closest(".product-grid-item__inner")) == null ? void 0 : u.querySelector(".product-grid-item__title");
+          c("exp_home_optim_button_11", `${a == null ? void 0 : a.innerText} - SHOP NOW`, "Button", "Home Page          Block          Popular Products");
+        } else if (e.closest(".new-arrivals .new-arrivals-product__img-wrap")) {
+          const a = (h = e.closest(".new-arrivals-product")) == null ? void 0 : h.querySelector(".new-arrivals-product__title");
+          c("exp_home_optim_button_12", `${a == null ? void 0 : a.innerText} - click PDP`, "Button", "Home Page          New Arrivals");
+        } else if (e.closest(".new-arrivals .crs-btn")) {
+          const a = (_ = e.closest(".new-arrivals-product")) == null ? void 0 : _.querySelector(".new-arrivals-product__title");
+          c("exp_home_optim_button_13", `${a == null ? void 0 : a.innerText} - SHOP NOW`, "Button", "Home Page          New Arrivals");
+        } else
+          e.closest('[data-device-app="ios"]') ? c("exp_home_optim_button_14", "Download ios", "Button", "Home Page Many Devices, One App") : e.closest('[data-device-app="android"]') && c("exp_home_optim_button_20", "Download android", "Button", "Home Page Many Devices, One App");
       });
     }));
   }
