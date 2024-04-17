@@ -72,7 +72,12 @@
       });
     });
   }
-  const w = `.info_subscription {
+  const w = `html,
+body {
+  display: block;
+}
+
+.info_subscription {
   margin: 8px 0 12px;
   max-width: 300px;
 }
@@ -339,11 +344,13 @@ li.list-packs.list-packs-bundle .tooltip_zone .tooltip_bgr {
   overflow-y: auto;
 }
 #cons #slideInCartScroll::-webkit-scrollbar {
+  -webkit-appearance: none;
   width: 5px;
 }
 #cons #slideInCartScroll::-webkit-scrollbar-thumb {
   background-color: #888;
   border-radius: 5px;
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
 #cons #slideInCartScroll::-webkit-scrollbar-track {
   background-color: #f1f1f1;
