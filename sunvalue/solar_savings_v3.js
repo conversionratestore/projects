@@ -351,11 +351,10 @@ class changeFlow {
     }, 300);
   }
   setNameCity() {
-    const crsData = JSON.parse(localStorage.getItem("crs_data"));
-    console.log(crsData, `crsData`);
     let t = setInterval(() => {
-      if (crsData) {
+      if (JSON.parse(localStorage.getItem("crs_data")) !== null) {
         clearInterval(t);
+        let crsData = JSON.parse(localStorage.getItem("crs_data"));
         waitForElement("[data-city]").then((el) => {
           console.log(`data-city]`);
           $$el("[data-city]").forEach((i) => {
