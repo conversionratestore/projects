@@ -396,9 +396,6 @@ class changeFlow {
           element.querySelectorAll(".sub-title").forEach((t) => {
             t.innerHTML = "Enter your house address to find <span data-city></span> Government  Programs";
           });
-          if (element.querySelector('[id="autoaddress"]').placeholder !== "123 Test Street") {
-            element.querySelector('[id="autoaddress"]').placeholder = "123 Test Street";
-          }
         }
         //estimate-shade
         if (element.querySelector('[id="estimate-shade"]')) {
@@ -832,10 +829,6 @@ class changeFlow {
           font-size: 16px;
           font-weight: 400;
           line-height: 24px;
-        }
-        #autoaddress::placeholder {
-          color: #2b3d50;
-          font-weight: 500;
         }
         /*#next-block */
         #next-block {
