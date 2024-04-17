@@ -8,12 +8,12 @@
       event_type: t,
       event_loc: o
     }), console.log(`Event: ${i} | ${n} | ${t} | ${o}`);
-  }, b = ({ name: i, dev: n }) => {
+  }, w = ({ name: i, dev: n }) => {
     console.log(
       `%c EXP: ${i} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, a = (i) => document.querySelectorAll(i), e = (i) => document.querySelector(i), x = async (i) => {
+  }, a = (i) => document.querySelectorAll(i), e = (i) => document.querySelector(i), y = async (i) => {
     const n = (t) => new Promise((o, r) => {
       const s = t.split(".").pop();
       if (s === "js") {
@@ -23,8 +23,8 @@
         l.src = t, l.onload = o, l.onerror = r, document.head.appendChild(l);
       } else if (s === "css") {
         if (Array.from(document.styleSheets).map((c) => {
-          var u;
-          return (u = c.href) == null ? void 0 : u.toLowerCase();
+          var m;
+          return (m = c.href) == null ? void 0 : m.toLowerCase();
         }).includes(t.toLowerCase()))
           return console.log(`Style ${t} allready downloaded!`), o("");
         const l = document.createElement("link");
@@ -34,13 +34,13 @@
     for (const t of i)
       await n(t), console.log(`Loaded librari ${t}`);
     console.log("All libraries loaded!");
-  }, k = (i) => {
+  }, v = (i) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", i, "variant_1"));
     }, 1e3);
-  }, m = (i, n, t, o, r = 3e3, s = 0.5) => {
-    let d, l;
-    if (d = new IntersectionObserver(
+  }, u = (i, n, t, o, r = 3e3, s = 0.5) => {
+    let h, l;
+    if (h = new IntersectionObserver(
       function(c) {
         c[0].isIntersecting === !0 ? l = setTimeout(() => {
           p(
@@ -48,17 +48,17 @@
             c[0].target.dataset.visible || o || "",
             "Visibility",
             t
-          ), d.disconnect();
+          ), h.disconnect();
         }, r) : clearTimeout(l);
       },
       { threshold: [s] }
     ), typeof i == "string") {
       const c = document.querySelector(i);
-      c && d.observe(c);
+      c && h.observe(c);
     } else
-      d.observe(i);
+      h.observe(i);
   };
-  function h(i) {
+  function d(i) {
     return new Promise((n) => {
       if (document.querySelector(i))
         return n(document.querySelector(i));
@@ -72,7 +72,7 @@
       });
     });
   }
-  const w = `html.is_open {
+  const _ = `html.is_open {
   display: block;
   overflow: hidden;
 }
@@ -344,19 +344,7 @@ li.list-packs.list-packs-bundle .tooltip_zone .tooltip_bgr {
   overflow: auto;
 }
 #cons #slideInCartScroll::-webkit-scrollbar {
-  -webkit-appearance: none;
-}
-#cons #slideInCartScroll::-webkit-scrollbar:vertical {
-  width: 0;
-}
-#cons #slideInCartScroll::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-  border: 2px solid #ffffff;
-}
-#cons #slideInCartScroll::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
-  border-radius: 10px;
+  display: none;
 }
 #cons #slideInCartScroll .new_scroll_bar {
   position: absolute;
@@ -528,7 +516,7 @@ body .reviews-slide img.days {
       />
     </svg>
   `
-  }, y = {
+  }, C = {
     promoting: `
   <div class='tooltip_block'>
     <div class='tooltip_info'>
@@ -547,7 +535,7 @@ body .reviews-slide img.days {
       sleep quality within 30 minutes, working for 8 - 10 hours, as supported by research.
     </p>
   </div>`
-  }, v = (i, n, t) => (
+  }, S = (i, n, t) => (
     /* HTML */
     `
     <li class="list-packs list-packs-bundle" data-pack="bundle" data-id="43053597229100">
@@ -573,15 +561,15 @@ body .reviews-slide img.days {
           </div>
         </div>
       </div>
-      <div class="tooltip_zone" data-tooltip data-title="${y.promoting}">
+      <div class="tooltip_zone" data-tooltip data-title="${C.promoting}">
         <div class="tooltip_bgr">${f.tooltip}</div>
       </div>
     </li>
   `
   );
-  b({ name: "Introduce bundle on the page", dev: "SKh" }), k("exp_introduce");
-  const _ = window.innerWidth < 768 ? "mobile" : "desktop";
-  class C {
+  w({ name: "Introduce bundle on the page", dev: "SKh" }), v("exp_introduce");
+  const L = window.innerWidth < 768 ? "mobile" : "desktop";
+  class E {
     constructor(n) {
       this.device = n, this.singleClick = !0, this.currency = e(".all-in-one-bundle span").getAttribute("data-currency"), this.salePrice = e(".all-in-one-bundle span").getAttribute("data-price"), this.regularPrice = e(".all-in-one-bundle span").getAttribute("data-price-compare"), this.offPrice = e(".all-in-one-bundle span").getAttribute("data-price-off"), this.savePrice = e(".all-in-one-bundle span").getAttribute("data-price-save"), this.observer = null, this.init();
     }
@@ -589,7 +577,7 @@ body .reviews-slide img.days {
       this.device === "mobile" && (document.head.insertAdjacentHTML(
         "beforeend",
         '<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Noto+Sans+SC:wght@100..900&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">'
-      ), document.head.insertAdjacentHTML("beforeend", `<style>${w}</style>`), this.replaceElemsSlideInCart(), this.renderNewBundleItem(), this.addClickOldPaksHandler(), this.addClickBtnsOpenSlideInCartHandler(), h(".list-packs-bundle").then((n) => {
+      ), document.head.insertAdjacentHTML("beforeend", `<style>${_}</style>`), this.replaceElemsSlideInCart(), this.renderNewBundleItem(), this.addClickOldPaksHandler(), this.addClickBtnsOpenSlideInCartHandler(), d(".list-packs-bundle").then((n) => {
         this.initTooltip(), this.addClickNewBundleHandlers();
       }), this.addClassScrollBlock(), window.addEventListener("resize", () => {
         this.getHeightSlideInCartScroll();
@@ -599,11 +587,11 @@ body .reviews-slide img.days {
       e("#cons").insertAdjacentHTML(
         "afterbegin",
         '<div id="slideInCartScroll"><div class="scroll_wrapper"></div><div class="new_scroll_bar"><div class="new_thumb"></div></div></div>'
-      ), e("#cons").insertAdjacentHTML("afterbegin", '<div id="slideInCartHeader"></div>'), e("#cons").insertAdjacentHTML("beforeend", '<div id="slideInCartFooter"></div>'), h("#slideInCartHeader").then((n) => {
+      ), e("#cons").insertAdjacentHTML("afterbegin", '<div id="slideInCartHeader"></div>'), e("#cons").insertAdjacentHTML("beforeend", '<div id="slideInCartFooter"></div>'), d("#slideInCartHeader").then((n) => {
         e("#slideInCartHeader").insertAdjacentElement("afterbegin", e("#cons .title-logo"));
-      }), h("#slideInCartScroll").then((n) => {
+      }), d("#slideInCartScroll").then((n) => {
         e("#slideInCartScroll .scroll_wrapper").insertAdjacentElement("beforeend", e("#cons .magicpatch-packs"));
-      }), h("#slideInCartFooter").then((n) => {
+      }), d("#slideInCartFooter").then((n) => {
         e("#slideInCartFooter").insertAdjacentElement("afterbegin", e("#cons .view-prices")), e("#slideInCartFooter").insertAdjacentElement("beforeend", e("#cons .reviews-slide"));
       }), a(".reviews-slide img").forEach((n) => {
         n.src = `${g}/img/new_logos.png`;
@@ -615,7 +603,7 @@ body .reviews-slide img.days {
     }
     renderNewBundleItem() {
       a(".list-packs.list-packs-3").forEach((n) => {
-        n.nextElementSibling.classList.contains("list-packs-bundle") || (n.insertAdjacentHTML("afterend", v(this.currency, this.regularPrice, this.salePrice)), this.getHeightSlideInCartScroll());
+        n.nextElementSibling.classList.contains("list-packs-bundle") || (n.insertAdjacentHTML("afterend", S(this.currency, this.regularPrice, this.salePrice)), this.getHeightSlideInCartScroll());
       });
     }
     addClickOldPaksHandler() {
@@ -714,7 +702,7 @@ body .reviews-slide img.days {
       });
     }
     initTooltip() {
-      x([
+      y([
         "https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js",
         "https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"
       ]).then(async () => {
@@ -732,12 +720,12 @@ body .reviews-slide img.days {
               placement: "top-end",
               interactive: !0,
               onShow(o) {
-                e("#slideInCartScroll").classList.add("tooltip_open"), t.closest("#cons") ? m(
+                e("#slideInCartScroll").classList.add("tooltip_open"), t.closest("#cons") ? u(
                   o.reference,
                   "exp_introduce_tooltip_02",
                   "Slide-in Cart",
                   "Tooltip All-in-one stress-relief kit"
-                ) : m(
+                ) : u(
                   o.reference,
                   "exp_introduce_tooltip_01",
                   "Shopping section Stock up and save",
@@ -769,28 +757,28 @@ body .reviews-slide img.days {
       });
     }
     getHeightSlideInCartScroll() {
-      h("#slideInCartScroll").then((n) => {
-        var c, u;
-        e("#slideInCartScroll").style.maxHeight = `${((c = e("#cons")) == null ? void 0 : c.clientHeight) - ((u = e("#slideInCartFooter")) == null ? void 0 : u.clientHeight) + 12}px`;
+      d("#slideInCartScroll").then((n) => {
+        var c, m, b, x;
+        e("#slideInCartScroll").style.maxHeight = `${((c = e("#cons")) == null ? void 0 : c.clientHeight) - ((m = e("#slideInCartFooter")) == null ? void 0 : m.clientHeight) + 12}px`;
         let t = e("#slideInCartScroll"), o = e(".new_scroll_bar"), r = e(".new_thumb");
-        t.scrollHeight > t.clientHeight ? o.style.display = "block" : o.style.display = "none";
-        let d = t.scrollHeight, l = t.clientHeight;
-        r.style.height = l / d * 100 + "%", t.addEventListener("scroll", function(H) {
-          let S = t.scrollTop, L = r.offsetHeight, E = l - L, I = S / (d - l);
-          r.style.top = I * E + "px";
+        o.style.maxHeight = `${((b = e("#cons")) == null ? void 0 : b.clientHeight) - ((x = e("#slideInCartFooter")) == null ? void 0 : x.clientHeight)}px`, t.scrollHeight > t.clientHeight ? o.style.display = "block" : o.style.display = "none";
+        let h = t.scrollHeight, l = t.clientHeight;
+        r.style.height = l / h * 100 + "%", t.addEventListener("scroll", function(B) {
+          let H = t.scrollTop, k = r.offsetHeight, I = l - k, T = H / (l - k);
+          r.style.top = T * I + "px";
         });
       });
     }
     visibleHandler() {
-      h("#getNow .list-packs-bundle").then((n) => {
-        m(
+      d("#getNow .list-packs-bundle").then((n) => {
+        u(
           "#getNow .list-packs-bundle",
           "exp_introduce_element_01",
           "Shopping section Stock up and save All-in-one stress-relief kit",
           "Element"
         );
-      }), h("#cons .list-packs-bundle").then((n) => {
-        e("html").classList.add("is_open"), document.documentElement.style.overflow = "hidden", m("#cons .list-packs-bundle", "exp_introduce_element_02", "Slide-in Cart", "Element");
+      }), d("#cons .list-packs-bundle").then((n) => {
+        e("html").classList.add("is_open"), document.documentElement.style.overflow = "hidden", u("#cons .list-packs-bundle", "exp_introduce_element_02", "Slide-in Cart", "Element");
       });
     }
     changeActiveClassHtml() {
@@ -801,9 +789,9 @@ body .reviews-slide img.days {
     initCustomScrollBar() {
     }
   }
-  h(".all-in-one-bundle").then((i) => {
+  d(".all-in-one-bundle").then((i) => {
     setTimeout(() => {
-      window.location.pathname.match("pages") && new C(_);
+      window.location.pathname.match("pages") && new E(L);
     }, 1e3);
   });
 })();
