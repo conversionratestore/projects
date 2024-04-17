@@ -365,6 +365,7 @@ li.list-packs.list-packs-bundle .tooltip_zone .tooltip_bgr {
   display: block;
   width: 6px;
   border-radius: 10px;
+  transition: top 0.5s ease-out;
 }
 #cons #slideInCartScroll.is_checked {
   overflow-y: auto;
