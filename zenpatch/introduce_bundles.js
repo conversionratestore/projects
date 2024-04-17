@@ -343,6 +343,16 @@ li.list-packs.list-packs-bundle .tooltip_zone .tooltip_bgr {
   padding: 61px 16px 32px;
   overflow: auto;
 }
+#cons #slideInCartScroll::-webkit-scrollbar {
+  width: 6px;
+}
+#cons #slideInCartScroll::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 3px;
+}
+#cons #slideInCartScroll::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
 #cons #slideInCartScroll.is_checked {
   overflow-y: auto;
 }
@@ -558,12 +568,12 @@ body .reviews-slide img.days {
         this.initTooltip(), this.addClickNewBundleHandlers();
       }), this.addClassScrollBlock(), window.addEventListener("resize", () => {
         this.getHeightSlideInCartScroll();
-      }), this.visibleHandler());
+      }), this.visibleHandler(), this.initCustomScrollBar());
     }
     replaceElemsSlideInCart() {
       e("#cons").insertAdjacentHTML(
         "afterbegin",
-        '<div id="slideInCartScroll"><div class="scroll_wrapper simplebar-scrollbar"></div></div>'
+        '<div id="slideInCartScroll"><div class="scroll_wrapper"></div></div>'
       ), e("#cons").insertAdjacentHTML("afterbegin", '<div id="slideInCartHeader"></div>'), e("#cons").insertAdjacentHTML("beforeend", '<div id="slideInCartFooter"></div>'), d("#slideInCartHeader").then((n) => {
         e("#slideInCartHeader").insertAdjacentElement("afterbegin", e("#cons .title-logo"));
       }), d("#slideInCartScroll").then((n) => {
@@ -595,7 +605,7 @@ body .reviews-slide img.days {
     addClickBtnsOpenSlideInCartHandler() {
       a("#open").forEach((n) => {
         n.addEventListener("click", () => {
-          e("html").classList.add("is_open"), this.removeOrChangeElems(), this.getHeightSlideInCartScroll(), this.changeActiveClassHtml();
+          e("html").classList.add("is_open"), document.documentElement.style.overflow = "hidden", this.removeOrChangeElems(), this.getHeightSlideInCartScroll(), this.changeActiveClassHtml();
         });
       });
     }
@@ -748,13 +758,15 @@ body .reviews-slide img.days {
           "Element"
         );
       }), d("#cons .list-packs-bundle").then((n) => {
-        e("html").classList.add("is_open"), m("#cons .list-packs-bundle", "exp_introduce_element_02", "Slide-in Cart", "Element");
+        e("html").classList.add("is_open"), document.documentElement.style.overflow = "hidden", m("#cons .list-packs-bundle", "exp_introduce_element_02", "Slide-in Cart", "Element");
       });
     }
     changeActiveClassHtml() {
       let n = setInterval(() => {
-        !e(".sidebar").classList.contains("active-sidebar") && e("html").classList.contains("is_open") && (clearInterval(n), e("html").classList.remove("is_open"));
+        !e(".sidebar").classList.contains("active-sidebar") && e("html").classList.contains("is_open") && (clearInterval(n), e("html").classList.remove("is_open"), document.documentElement.style.overflow = "");
       }, 100);
+    }
+    initCustomScrollBar() {
     }
   }
   d(".all-in-one-bundle").then((i) => {
