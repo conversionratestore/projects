@@ -1,69 +1,69 @@
 (function() {
   "use strict";
-  const c = (e, n, t, i = "") => {
+  const c = (i, n, t, o = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: e,
+      event_name: i,
       event_desc: n,
       event_type: t,
-      event_loc: i
-    }), console.log(`Event: ${e} | ${n} | ${t} | ${i}`);
-  }, b = ({ name: e, dev: n }) => {
+      event_loc: o
+    }), console.log(`Event: ${i} | ${n} | ${t} | ${o}`);
+  }, b = ({ name: i, dev: n }) => {
     console.log(
-      `%c EXP: ${e} (DEV: ${n})`,
+      `%c EXP: ${i} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, a = (e) => document.querySelectorAll(e), o = (e) => document.querySelector(e), x = async (e) => {
-    const n = (t) => new Promise((i, l) => {
+  }, a = (i) => document.querySelectorAll(i), e = (i) => document.querySelector(i), x = async (i) => {
+    const n = (t) => new Promise((o, r) => {
       const s = t.split(".").pop();
       if (s === "js") {
         if (Array.from(document.scripts).map((p) => p.src.toLowerCase()).includes(t.toLowerCase()))
-          return console.log(`Script ${t} allready downloaded!`), i("");
-        const r = document.createElement("script");
-        r.src = t, r.onload = i, r.onerror = l, document.head.appendChild(r);
+          return console.log(`Script ${t} allready downloaded!`), o("");
+        const l = document.createElement("script");
+        l.src = t, l.onload = o, l.onerror = r, document.head.appendChild(l);
       } else if (s === "css") {
         if (Array.from(document.styleSheets).map((p) => {
           var g;
           return (g = p.href) == null ? void 0 : g.toLowerCase();
         }).includes(t.toLowerCase()))
-          return console.log(`Style ${t} allready downloaded!`), i("");
-        const r = document.createElement("link");
-        r.rel = "stylesheet", r.href = t, r.onload = i, r.onerror = l, document.head.appendChild(r);
+          return console.log(`Style ${t} allready downloaded!`), o("");
+        const l = document.createElement("link");
+        l.rel = "stylesheet", l.href = t, l.onload = o, l.onerror = r, document.head.appendChild(l);
       }
     });
-    for (const t of e)
+    for (const t of i)
       await n(t), console.log(`Loaded librari ${t}`);
     console.log("All libraries loaded!");
-  }, k = (e) => {
+  }, k = (i) => {
     let n = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", i, "variant_1"));
     }, 1e3);
-  }, u = (e, n, t, i, l = 3e3, s = 0.5) => {
-    let h, r;
+  }, m = (i, n, t, o, r = 3e3, s = 0.5) => {
+    let h, l;
     if (h = new IntersectionObserver(
       function(p) {
-        p[0].isIntersecting === !0 ? r = setTimeout(() => {
+        p[0].isIntersecting === !0 ? l = setTimeout(() => {
           c(
             n,
-            p[0].target.dataset.visible || i || "",
+            p[0].target.dataset.visible || o || "",
             "Visibility",
             t
           ), h.disconnect();
-        }, l) : clearTimeout(r);
+        }, r) : clearTimeout(l);
       },
       { threshold: [s] }
-    ), typeof e == "string") {
-      const p = document.querySelector(e);
+    ), typeof i == "string") {
+      const p = document.querySelector(i);
       p && h.observe(p);
     } else
-      h.observe(e);
+      h.observe(i);
   };
-  function d(e) {
+  function d(i) {
     return new Promise((n) => {
-      if (document.querySelector(e))
-        return n(document.querySelector(e));
+      if (document.querySelector(i))
+        return n(document.querySelector(i));
       const t = new MutationObserver(() => {
-        document.querySelector(e) && (n(document.querySelector(e)), t.disconnect());
+        document.querySelector(i) && (n(document.querySelector(i)), t.disconnect());
       });
       t.observe(document.documentElement, {
         childList: !0,
@@ -72,9 +72,9 @@
       });
     });
   }
-  const w = `html,
-body {
+  const w = `html.is_open {
   display: block;
+  overflow: hidden;
 }
 
 .info_subscription {
@@ -341,19 +341,7 @@ li.list-packs.list-packs-bundle .tooltip_zone .tooltip_bgr {
   position: relative;
   max-width: 100%;
   padding: 61px 16px 32px;
-  overflow-y: auto;
-}
-#cons #slideInCartScroll::-webkit-scrollbar {
-  -webkit-appearance: none;
-  width: 5px;
-}
-#cons #slideInCartScroll::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 5px;
-  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
-}
-#cons #slideInCartScroll::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
+  overflow: auto;
 }
 #cons #slideInCartScroll.is_checked {
   overflow-y: auto;
@@ -484,7 +472,7 @@ body .reviews-slide img.days {
     margin-top: 5px;
     font-size: 12px !important;
   }
-}/*# sourceMappingURL=main.css.map */`, m = "https://conversionratestore.github.io/projects/zenpatch", f = {
+}/*# sourceMappingURL=main.css.map */`, u = "https://conversionratestore.github.io/projects/zenpatch", f = {
     tooltip: (
       /* HTML */
       `
@@ -509,7 +497,7 @@ body .reviews-slide img.days {
     promoting: `
   <div class='tooltip_block'>
     <div class='tooltip_info'>
-      <img src='${m}/img/tooltip_img_bundles.png' class='ls-is-cached lazyloaded'/>
+      <img src='${u}/img/tooltip_img_bundles.png' class='ls-is-cached lazyloaded'/>
       <div>
         <div class='main_title_wrapper'>
           <h2>SleepyPatch</h2>
@@ -524,13 +512,13 @@ body .reviews-slide img.days {
       sleep quality within 30 minutes, working for 8 - 10 hours, as supported by research.
     </p>
   </div>`
-  }, v = (e, n, t) => (
+  }, v = (i, n, t) => (
     /* HTML */
     `
     <li class="list-packs list-packs-bundle" data-pack="bundle" data-id="43053597229100">
       <div class="stickers-prices">
         <div class="sticker-image">
-          <img src="${m}/img/bundles_img.png" class="ls-is-cached lazyloaded" />
+          <img src="${u}/img/bundles_img.png" class="ls-is-cached lazyloaded" />
         </div>
 
         <div class="info">
@@ -539,12 +527,12 @@ body .reviews-slide img.days {
           <div class="before-after-prices">
             <p class="strikethrough">
               <span class="reg-price-bundle" data-price="${n}" data-subscription-price="${n}"
-                >${e}${n}</span
+                >${i}${n}</span
               >
             </p>
             <p class="after-price">
               <span class="save-price-bundle" data-price="${t}" data-subscription-price="${t}"
-                >${e}${t}</span
+                >${i}${t}</span
               >
             </p>
           </div>
@@ -560,7 +548,7 @@ body .reviews-slide img.days {
   const _ = window.innerWidth < 768 ? "mobile" : "desktop";
   class C {
     constructor(n) {
-      this.device = n, this.singleClick = !0, this.currency = o(".all-in-one-bundle span").getAttribute("data-currency"), this.salePrice = o(".all-in-one-bundle span").getAttribute("data-price"), this.regularPrice = o(".all-in-one-bundle span").getAttribute("data-price-compare"), this.offPrice = o(".all-in-one-bundle span").getAttribute("data-price-off"), this.savePrice = o(".all-in-one-bundle span").getAttribute("data-price-save"), this.init();
+      this.device = n, this.singleClick = !0, this.currency = e(".all-in-one-bundle span").getAttribute("data-currency"), this.salePrice = e(".all-in-one-bundle span").getAttribute("data-price"), this.regularPrice = e(".all-in-one-bundle span").getAttribute("data-price-compare"), this.offPrice = e(".all-in-one-bundle span").getAttribute("data-price-off"), this.savePrice = e(".all-in-one-bundle span").getAttribute("data-price-save"), this.observer = null, this.init();
     }
     init() {
       this.device === "mobile" && (document.head.insertAdjacentHTML(
@@ -573,19 +561,19 @@ body .reviews-slide img.days {
       }), this.visibleHandler());
     }
     replaceElemsSlideInCart() {
-      o("#cons").insertAdjacentHTML(
+      e("#cons").insertAdjacentHTML(
         "afterbegin",
-        '<div id="slideInCartScroll"><div class="scroll_wrapper"></div></div>'
-      ), o("#cons").insertAdjacentHTML("afterbegin", '<div id="slideInCartHeader"></div>'), o("#cons").insertAdjacentHTML("beforeend", '<div id="slideInCartFooter"></div>'), d("#slideInCartHeader").then((n) => {
-        o("#slideInCartHeader").insertAdjacentElement("afterbegin", o("#cons .title-logo"));
+        '<div id="slideInCartScroll"><div class="scroll_wrapper simplebar-scrollbar"></div></div>'
+      ), e("#cons").insertAdjacentHTML("afterbegin", '<div id="slideInCartHeader"></div>'), e("#cons").insertAdjacentHTML("beforeend", '<div id="slideInCartFooter"></div>'), d("#slideInCartHeader").then((n) => {
+        e("#slideInCartHeader").insertAdjacentElement("afterbegin", e("#cons .title-logo"));
       }), d("#slideInCartScroll").then((n) => {
-        o("#slideInCartScroll .scroll_wrapper").insertAdjacentElement("beforeend", o("#cons .magicpatch-packs"));
+        e("#slideInCartScroll .scroll_wrapper").insertAdjacentElement("beforeend", e("#cons .magicpatch-packs"));
       }), d("#slideInCartFooter").then((n) => {
-        o("#slideInCartFooter").insertAdjacentElement("afterbegin", o("#cons .view-prices")), o("#slideInCartFooter").insertAdjacentElement("beforeend", o("#cons .reviews-slide"));
+        e("#slideInCartFooter").insertAdjacentElement("afterbegin", e("#cons .view-prices")), e("#slideInCartFooter").insertAdjacentElement("beforeend", e("#cons .reviews-slide"));
       }), a(".reviews-slide img").forEach((n) => {
-        n.src = `${m}/img/new_logos.png`;
+        n.src = `${u}/img/new_logos.png`;
       }), a(".close-btn").forEach((n) => {
-        n.src = `${m}/img/close_icon.svg`;
+        n.src = `${u}/img/close_icon.svg`;
       }), a(".np-one-pack").forEach((n) => {
         n.innerHTML = "Select 2, 3 or 4 packs to subscribe with an <b>extra 15% off</b> - <span>save time and money</span>";
       });
@@ -607,7 +595,7 @@ body .reviews-slide img.days {
     addClickBtnsOpenSlideInCartHandler() {
       a("#open").forEach((n) => {
         n.addEventListener("click", () => {
-          this.removeOrChangeElems(), this.getHeightSlideInCartScroll();
+          e("html").classList.add("is_open"), this.removeOrChangeElems(), this.getHeightSlideInCartScroll(), this.changeActiveClassHtml();
         });
       });
     }
@@ -624,11 +612,11 @@ body .reviews-slide img.days {
       console.log("addClickNewBundleHandlers");
       const n = a(".list-packs-bundle");
       let t;
-      n.forEach((i) => {
-        i.addEventListener("click", (l) => {
-          !l.target.classList.contains("tooltip_zone") && !l.target.classList.contains("tooltip_bgr") && !l.target.classList.contains("tooltip_icon") && !l.target.classList.contains("path_var") && (!t && this.singleClick ? t = setTimeout(() => {
-            t = null, this.singleClick = !1, this.clickBundleHandler(i);
-          }, 300) : (clearTimeout(t), t = null, this.doubleClickBundleHandler(i, 43053597229100), this.singleClick = !0));
+      n.forEach((o) => {
+        o.addEventListener("click", (r) => {
+          !r.target.classList.contains("tooltip_zone") && !r.target.classList.contains("tooltip_bgr") && !r.target.classList.contains("tooltip_icon") && !r.target.classList.contains("path_var") && (!t && this.singleClick ? t = setTimeout(() => {
+            t = null, this.singleClick = !1, this.clickBundleHandler(o);
+          }, 300) : (clearTimeout(t), t = null, this.doubleClickBundleHandler(o, 43053597229100), this.singleClick = !0));
         });
       });
     }
@@ -645,7 +633,7 @@ body .reviews-slide img.days {
         ), this.clickNewCheckoutBtnHandler()), t.querySelector("#no-icart-open").style.display = "none", t.querySelector(".stay-container .np-multiple-pack").style.display = "none", t.querySelector(".stay-container .np-one-pack").style.display = "none", t.querySelector(".sale-price").textContent = this.salePrice, t.querySelector(".off-price").textContent = this.offPrice, t.querySelector(".line-through").textContent = this.currency, t.querySelector(".strikethrough-lg").textContent = this.regularPrice, t.querySelector(".text-save").textContent = `${this.currency}${this.savePrice}`;
       });
     }
-    async doubleClickBundleHandler(n, t, i = !1) {
+    async doubleClickBundleHandler(n, t, o = !1) {
       a(".list-packs").forEach((s) => {
         !s.classList.contains("list-packs-bundle") && s.classList.contains("active-slide") && s.classList.remove("active-slide"), s.classList.contains("list-packs-bundle") && (s.classList.add("active-slide"), console.log("list-packs-bundle, .add('active-slide')"));
       }), n.closest("#cons") ? n.closest(".new_checkout_btn") ? c("exp_introduce_link_02", "Click PROCEED TO CHECKOUT", "Button", "Slide-in Cart") : c("exp_introduce_packs_04", "Double Click List Packs Bundle", "Button", "Slide-in Cart") : n.closest("#getNow") && (n.closest(".new_checkout_btn") ? c("exp_introduce_link_01", "Click PROCEED TO CHECKOUT", "Button", "Shopping section Stock up and save") : c(
@@ -653,7 +641,7 @@ body .reviews-slide img.days {
         "Double Click List Packs Bundle",
         "Button",
         "Shopping section Stock up and save"
-      )), i || await fetch("/cart/clear.js", {
+      )), o || await fetch("/cart/clear.js", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -708,20 +696,20 @@ body .reviews-slide img.days {
               },
               placement: "top-end",
               interactive: !0,
-              onShow(i) {
-                o("#slideInCartScroll").classList.add("tooltip_open"), t.closest("#cons") ? u(
-                  i.reference,
+              onShow(o) {
+                e("#slideInCartScroll").classList.add("tooltip_open"), t.closest("#cons") ? m(
+                  o.reference,
                   "exp_introduce_tooltip_02",
                   "Slide-in Cart",
                   "Tooltip All-in-one stress-relief kit"
-                ) : u(
-                  i.reference,
+                ) : m(
+                  o.reference,
                   "exp_introduce_tooltip_01",
                   "Shopping section Stock up and save",
                   "Tooltip All-in-one stress-relief kit"
                 );
               },
-              onTrigger(i) {
+              onTrigger(o) {
                 t.closest("#cons") ? c("exp_introduce_button_02", "All-in-one stress-relief kit", "Button", "Slide-in Cart") : c(
                   "exp_introduce_button_01",
                   "All-in-one stress-relief kit",
@@ -729,8 +717,8 @@ body .reviews-slide img.days {
                   "Shopping section Stock up and save"
                 );
               },
-              onHide(i) {
-                o("#slideInCartScroll").classList.toggle("tooltip_open");
+              onHide(o) {
+                e("#slideInCartScroll").classList.toggle("tooltip_open");
               }
             });
           }));
@@ -747,24 +735,29 @@ body .reviews-slide img.days {
     }
     getHeightSlideInCartScroll() {
       d("#slideInCartScroll").then((n) => {
-        var t, i;
-        o("#slideInCartScroll").style.maxHeight = `${((t = o("#cons")) == null ? void 0 : t.clientHeight) - ((i = o("#slideInCartFooter")) == null ? void 0 : i.clientHeight) + 12}px`;
+        var t, o;
+        e("#slideInCartScroll").style.maxHeight = `${((t = e("#cons")) == null ? void 0 : t.clientHeight) - ((o = e("#slideInCartFooter")) == null ? void 0 : o.clientHeight) + 12}px`;
       });
     }
     visibleHandler() {
       d("#getNow .list-packs-bundle").then((n) => {
-        u(
+        m(
           "#getNow .list-packs-bundle",
           "exp_introduce_element_01",
           "Shopping section Stock up and save All-in-one stress-relief kit",
           "Element"
         );
       }), d("#cons .list-packs-bundle").then((n) => {
-        u("#cons .list-packs-bundle", "exp_introduce_element_02", "Slide-in Cart", "Element");
+        e("html").classList.add("is_open"), m("#cons .list-packs-bundle", "exp_introduce_element_02", "Slide-in Cart", "Element");
       });
     }
+    changeActiveClassHtml() {
+      let n = setInterval(() => {
+        !e(".sidebar").classList.contains("active-sidebar") && e("html").classList.contains("is_open") && (clearInterval(n), e("html").classList.remove("is_open"));
+      }, 100);
+    }
   }
-  d(".all-in-one-bundle").then((e) => {
+  d(".all-in-one-bundle").then((i) => {
     setTimeout(() => {
       window.location.pathname.match("pages") && new C(_);
     }, 1e3);
