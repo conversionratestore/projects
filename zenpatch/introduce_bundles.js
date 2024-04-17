@@ -338,6 +338,16 @@ li.list-packs.list-packs-bundle .tooltip_zone .tooltip_bgr {
   padding: 61px 16px 32px;
   overflow-y: auto;
 }
+#cons #slideInCartScroll::-webkit-scrollbar {
+  width: 5px;
+}
+#cons #slideInCartScroll::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 5px;
+}
+#cons #slideInCartScroll::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
 #cons #slideInCartScroll.is_checked {
   overflow-y: auto;
 }
