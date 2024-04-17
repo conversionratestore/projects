@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const c = (i, n, t, o = "") => {
+  const p = (i, n, t, o = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: i,
@@ -17,14 +17,14 @@
     const n = (t) => new Promise((o, r) => {
       const s = t.split(".").pop();
       if (s === "js") {
-        if (Array.from(document.scripts).map((p) => p.src.toLowerCase()).includes(t.toLowerCase()))
+        if (Array.from(document.scripts).map((c) => c.src.toLowerCase()).includes(t.toLowerCase()))
           return console.log(`Script ${t} allready downloaded!`), o("");
         const l = document.createElement("script");
         l.src = t, l.onload = o, l.onerror = r, document.head.appendChild(l);
       } else if (s === "css") {
-        if (Array.from(document.styleSheets).map((p) => {
-          var g;
-          return (g = p.href) == null ? void 0 : g.toLowerCase();
+        if (Array.from(document.styleSheets).map((c) => {
+          var u;
+          return (u = c.href) == null ? void 0 : u.toLowerCase();
         }).includes(t.toLowerCase()))
           return console.log(`Style ${t} allready downloaded!`), o("");
         const l = document.createElement("link");
@@ -39,26 +39,26 @@
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", i, "variant_1"));
     }, 1e3);
   }, m = (i, n, t, o, r = 3e3, s = 0.5) => {
-    let h, l;
-    if (h = new IntersectionObserver(
-      function(p) {
-        p[0].isIntersecting === !0 ? l = setTimeout(() => {
-          c(
+    let d, l;
+    if (d = new IntersectionObserver(
+      function(c) {
+        c[0].isIntersecting === !0 ? l = setTimeout(() => {
+          p(
             n,
-            p[0].target.dataset.visible || o || "",
+            c[0].target.dataset.visible || o || "",
             "Visibility",
             t
-          ), h.disconnect();
+          ), d.disconnect();
         }, r) : clearTimeout(l);
       },
       { threshold: [s] }
     ), typeof i == "string") {
-      const p = document.querySelector(i);
-      p && h.observe(p);
+      const c = document.querySelector(i);
+      c && d.observe(c);
     } else
-      h.observe(i);
+      d.observe(i);
   };
-  function d(i) {
+  function h(i) {
     return new Promise((n) => {
       if (document.querySelector(i))
         return n(document.querySelector(i));
@@ -347,7 +347,7 @@ li.list-packs.list-packs-bundle .tooltip_zone .tooltip_bgr {
   -webkit-appearance: none;
 }
 #cons #slideInCartScroll::-webkit-scrollbar:vertical {
-  width: 6px;
+  width: 0;
 }
 #cons #slideInCartScroll::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.5);
@@ -356,6 +356,26 @@ li.list-packs.list-packs-bundle .tooltip_zone .tooltip_bgr {
 }
 #cons #slideInCartScroll::-webkit-scrollbar-track {
   background-color: #f1f1f1;
+  border-radius: 10px;
+}
+#cons #slideInCartScroll .new_scroll_bar {
+  position: absolute;
+  top: 60px;
+  right: 4px;
+  background-color: #f1f1f1;
+  display: block;
+  width: 6px;
+  height: 85%;
+  border-radius: 10px;
+}
+#cons #slideInCartScroll .new_thumb {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: block;
+  width: 6px;
   border-radius: 10px;
 }
 #cons #slideInCartScroll.is_checked {
@@ -487,7 +507,7 @@ body .reviews-slide img.days {
     margin-top: 5px;
     font-size: 12px !important;
   }
-}/*# sourceMappingURL=main.css.map */`, u = "https://conversionratestore.github.io/projects/zenpatch", f = {
+}/*# sourceMappingURL=main.css.map */`, g = "https://conversionratestore.github.io/projects/zenpatch", f = {
     tooltip: (
       /* HTML */
       `
@@ -512,7 +532,7 @@ body .reviews-slide img.days {
     promoting: `
   <div class='tooltip_block'>
     <div class='tooltip_info'>
-      <img src='${u}/img/tooltip_img_bundles.png' class='ls-is-cached lazyloaded'/>
+      <img src='${g}/img/tooltip_img_bundles.png' class='ls-is-cached lazyloaded'/>
       <div>
         <div class='main_title_wrapper'>
           <h2>SleepyPatch</h2>
@@ -533,7 +553,7 @@ body .reviews-slide img.days {
     <li class="list-packs list-packs-bundle" data-pack="bundle" data-id="43053597229100">
       <div class="stickers-prices">
         <div class="sticker-image">
-          <img src="${u}/img/bundles_img.png" class="ls-is-cached lazyloaded" />
+          <img src="${g}/img/bundles_img.png" class="ls-is-cached lazyloaded" />
         </div>
 
         <div class="info">
@@ -569,7 +589,7 @@ body .reviews-slide img.days {
       this.device === "mobile" && (document.head.insertAdjacentHTML(
         "beforeend",
         '<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Noto+Sans+SC:wght@100..900&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">'
-      ), document.head.insertAdjacentHTML("beforeend", `<style>${w}</style>`), this.replaceElemsSlideInCart(), this.renderNewBundleItem(), this.addClickOldPaksHandler(), this.addClickBtnsOpenSlideInCartHandler(), d(".list-packs-bundle").then((n) => {
+      ), document.head.insertAdjacentHTML("beforeend", `<style>${w}</style>`), this.replaceElemsSlideInCart(), this.renderNewBundleItem(), this.addClickOldPaksHandler(), this.addClickBtnsOpenSlideInCartHandler(), h(".list-packs-bundle").then((n) => {
         this.initTooltip(), this.addClickNewBundleHandlers();
       }), this.addClassScrollBlock(), window.addEventListener("resize", () => {
         this.getHeightSlideInCartScroll();
@@ -578,17 +598,17 @@ body .reviews-slide img.days {
     replaceElemsSlideInCart() {
       e("#cons").insertAdjacentHTML(
         "afterbegin",
-        '<div id="slideInCartScroll"><div class="scroll_wrapper"></div></div>'
-      ), e("#cons").insertAdjacentHTML("afterbegin", '<div id="slideInCartHeader"></div>'), e("#cons").insertAdjacentHTML("beforeend", '<div id="slideInCartFooter"></div>'), d("#slideInCartHeader").then((n) => {
+        '<div id="slideInCartScroll"><div class="scroll_wrapper"></div><div class="new_scroll_bar"><div class="new_thumb"></div></div></div>'
+      ), e("#cons").insertAdjacentHTML("afterbegin", '<div id="slideInCartHeader"></div>'), e("#cons").insertAdjacentHTML("beforeend", '<div id="slideInCartFooter"></div>'), h("#slideInCartHeader").then((n) => {
         e("#slideInCartHeader").insertAdjacentElement("afterbegin", e("#cons .title-logo"));
-      }), d("#slideInCartScroll").then((n) => {
+      }), h("#slideInCartScroll").then((n) => {
         e("#slideInCartScroll .scroll_wrapper").insertAdjacentElement("beforeend", e("#cons .magicpatch-packs"));
-      }), d("#slideInCartFooter").then((n) => {
+      }), h("#slideInCartFooter").then((n) => {
         e("#slideInCartFooter").insertAdjacentElement("afterbegin", e("#cons .view-prices")), e("#slideInCartFooter").insertAdjacentElement("beforeend", e("#cons .reviews-slide"));
       }), a(".reviews-slide img").forEach((n) => {
-        n.src = `${u}/img/new_logos.png`;
+        n.src = `${g}/img/new_logos.png`;
       }), a(".close-btn").forEach((n) => {
-        n.src = `${u}/img/close_icon.svg`;
+        n.src = `${g}/img/close_icon.svg`;
       }), a(".np-one-pack").forEach((n) => {
         n.innerHTML = "Select 2, 3 or 4 packs to subscribe with an <b>extra 15% off</b> - <span>save time and money</span>";
       });
@@ -638,7 +658,7 @@ body .reviews-slide img.days {
     clickBundleHandler(n) {
       a(".list-packs").forEach((t) => {
         !t.classList.contains("list-packs-bundle") && t.classList.contains("active-slide") && t.classList.remove("active-slide"), t.classList.contains("list-packs-bundle") && (t.classList.add("active-slide"), console.log("list-packs-bundle, .add('active-slide')"));
-      }), n.closest("#cons") ? c("exp_introduce_packs_02", "Click List Packs Bundle", "Button", "Slide-in Cart") : c("exp_introduce_packs_01", "Click List Packs Bundle", "Button", "Shopping section Stock up and save"), a(".view-prices").forEach((t) => {
+      }), n.closest("#cons") ? p("exp_introduce_packs_02", "Click List Packs Bundle", "Button", "Slide-in Cart") : p("exp_introduce_packs_01", "Click List Packs Bundle", "Button", "Shopping section Stock up and save"), a(".view-prices").forEach((t) => {
         t.querySelector(".info_subscription") || t.querySelector(".stay-container").insertAdjacentHTML(
           "beforebegin",
           '<div class="info_subscription"><p>Subscription is available for 2, 3, or 4 packs of ZenPatch only</p></div>'
@@ -651,7 +671,7 @@ body .reviews-slide img.days {
     async doubleClickBundleHandler(n, t, o = !1) {
       a(".list-packs").forEach((s) => {
         !s.classList.contains("list-packs-bundle") && s.classList.contains("active-slide") && s.classList.remove("active-slide"), s.classList.contains("list-packs-bundle") && (s.classList.add("active-slide"), console.log("list-packs-bundle, .add('active-slide')"));
-      }), n.closest("#cons") ? n.closest(".new_checkout_btn") ? c("exp_introduce_link_02", "Click PROCEED TO CHECKOUT", "Button", "Slide-in Cart") : c("exp_introduce_packs_04", "Double Click List Packs Bundle", "Button", "Slide-in Cart") : n.closest("#getNow") && (n.closest(".new_checkout_btn") ? c("exp_introduce_link_01", "Click PROCEED TO CHECKOUT", "Button", "Shopping section Stock up and save") : c(
+      }), n.closest("#cons") ? n.closest(".new_checkout_btn") ? p("exp_introduce_link_02", "Click PROCEED TO CHECKOUT", "Button", "Slide-in Cart") : p("exp_introduce_packs_04", "Double Click List Packs Bundle", "Button", "Slide-in Cart") : n.closest("#getNow") && (n.closest(".new_checkout_btn") ? p("exp_introduce_link_01", "Click PROCEED TO CHECKOUT", "Button", "Shopping section Stock up and save") : p(
         "exp_introduce_packs_03",
         "Double Click List Packs Bundle",
         "Button",
@@ -725,7 +745,7 @@ body .reviews-slide img.days {
                 );
               },
               onTrigger(o) {
-                t.closest("#cons") ? c("exp_introduce_button_02", "All-in-one stress-relief kit", "Button", "Slide-in Cart") : c(
+                t.closest("#cons") ? p("exp_introduce_button_02", "All-in-one stress-relief kit", "Button", "Slide-in Cart") : p(
                   "exp_introduce_button_01",
                   "All-in-one stress-relief kit",
                   "Button",
@@ -749,20 +769,27 @@ body .reviews-slide img.days {
       });
     }
     getHeightSlideInCartScroll() {
-      d("#slideInCartScroll").then((n) => {
-        var t, o;
-        e("#slideInCartScroll").style.maxHeight = `${((t = e("#cons")) == null ? void 0 : t.clientHeight) - ((o = e("#slideInCartFooter")) == null ? void 0 : o.clientHeight) + 12}px`;
+      h("#slideInCartScroll").then((n) => {
+        var c, u;
+        e("#slideInCartScroll").style.maxHeight = `${((c = e("#cons")) == null ? void 0 : c.clientHeight) - ((u = e("#slideInCartFooter")) == null ? void 0 : u.clientHeight) + 12}px`;
+        let t = e("#slideInCartScroll"), o = e(".new_scroll_bar"), r = e(".new_thumb");
+        t.scrollHeight > t.clientHeight ? o.style.display = "block" : o.style.display = "none";
+        let d = t.scrollHeight, l = t.clientHeight;
+        r.style.height = l / d * 100 + "%", t.addEventListener("scroll", function(H) {
+          let S = t.scrollTop, L = r.offsetHeight, E = l - L, I = S / (d - l);
+          r.style.top = I * E + "px";
+        });
       });
     }
     visibleHandler() {
-      d("#getNow .list-packs-bundle").then((n) => {
+      h("#getNow .list-packs-bundle").then((n) => {
         m(
           "#getNow .list-packs-bundle",
           "exp_introduce_element_01",
           "Shopping section Stock up and save All-in-one stress-relief kit",
           "Element"
         );
-      }), d("#cons .list-packs-bundle").then((n) => {
+      }), h("#cons .list-packs-bundle").then((n) => {
         e("html").classList.add("is_open"), document.documentElement.style.overflow = "hidden", m("#cons .list-packs-bundle", "exp_introduce_element_02", "Slide-in Cart", "Element");
       });
     }
@@ -774,7 +801,7 @@ body .reviews-slide img.days {
     initCustomScrollBar() {
     }
   }
-  d(".all-in-one-bundle").then((i) => {
+  h(".all-in-one-bundle").then((i) => {
     setTimeout(() => {
       window.location.pathname.match("pages") && new C(_);
     }, 1e3);
