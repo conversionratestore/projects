@@ -340,8 +340,9 @@ class changeFlow {
   // change slides Steps
   setLocalStorageDataInfo() {
     let s = setInterval(() => {
-      if ($el(".htitle")) {
+      if ($el(".htitle") && $el(".htitle").textContent !== "") {
         clearInterval(s);
+        console.log($el(".htitle").textContent);
         let data = {};
         data.city = $el(".htitle").textContent.split("Solar")[0].trim();
 
