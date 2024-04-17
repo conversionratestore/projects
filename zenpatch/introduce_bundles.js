@@ -657,11 +657,9 @@ body .reviews-slide img.days {
           ]
         })
       }).then((s) => {
-        s.json(), setInterval(() => {
-          setTimeout(() => {
-            console.log("Go to checkout !!!!!!!!!!!!!! "), window.location.href = "/checkout";
-          }, 350);
-        }, 100);
+        s.json(), setTimeout(() => {
+          console.log("Go to checkout !!!!!!!!!!!!!! "), window.location.href = "/checkout";
+        }, 350);
       }).catch((s) => {
         console.error("Error:", s);
       });
