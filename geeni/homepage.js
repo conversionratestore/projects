@@ -1,20 +1,20 @@
 (function() {
   "use strict";
-  const g = (e, s, i, r = "") => {
+  const g = (e, n, i, r = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
-      event_desc: s,
+      event_desc: n,
       event_type: i,
       event_loc: r
-    }), console.log(`Event: ${e} | ${s} | ${i} | ${r}`);
-  }, _ = ({ name: e, dev: s }) => {
+    }), console.log(`Event: ${e} | ${n} | ${i} | ${r}`);
+  }, _ = ({ name: e, dev: n }) => {
     console.log(
-      `%c EXP: ${e} (DEV: ${s})`,
+      `%c EXP: ${e} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   }, h = async (e) => {
-    const s = (i) => new Promise((r, t) => {
+    const n = (i) => new Promise((r, t) => {
       const l = i.split(".").pop();
       if (l === "js") {
         if (Array.from(document.scripts).map((d) => d.src.toLowerCase()).includes(i.toLowerCase()))
@@ -32,38 +32,38 @@
       }
     });
     for (const i of e)
-      await s(i), console.log(`Loaded librari ${i}`);
+      await n(i), console.log(`Loaded librari ${i}`);
     console.log("All libraries loaded!");
   }, x = (e) => {
-    let s = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(s), window.clarity("set", e, "variant_1"));
+    let n = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, m = (e, s, i, r, t = 3e3, l = 1) => {
-    let n, a;
-    if (n = new IntersectionObserver(
+  }, u = (e, n, i, r, t = 3e3, l = 1) => {
+    let s, a;
+    if (s = new IntersectionObserver(
       function(d) {
         d[0].isIntersecting === !0 ? a = setTimeout(() => {
           g(
-            s,
+            n,
             d[0].target.dataset.visible || r || "",
             "Visibility",
             i
-          ), n.disconnect();
+          ), s.disconnect();
         }, t) : (console.log("Element is not fully visible"), clearTimeout(a));
       },
       { threshold: [l] }
     ), typeof e == "string") {
       const d = document.querySelector(e);
-      d && n.observe(d);
+      d && s.observe(d);
     } else
-      n.observe(e);
-  }, p = (e) => new Promise((s) => {
+      s.observe(e);
+  }, p = (e) => new Promise((n) => {
     const i = document.querySelector(e);
     if (i)
-      return s(i);
+      return n(i);
     const r = new MutationObserver(() => {
       const t = document.querySelector(e);
-      t && (s(t), r.disconnect());
+      t && (n(t), r.disconnect());
     });
     r.observe(document.documentElement, {
       childList: !0,
@@ -85,21 +85,6 @@
     body {
       font-family: 'Manrope', "Avenir Next Rounded", sans-serif !important;
     }
-
-    /*
-    #shopify-section-template--16970486120700__section-marquee,
-    #shopify-section-template--16970486120700__section-slideshow,
-    #shopify-section-template--16970486120700__section-promotion-row-0,
-    #shopify-section-template--16970486120700__98bb895e-b25c-4745-b5cb-457b6fdfb21c,
-    #shopify-section-template--16970486120700__5db9b97d-c9f0-498a-9645-b8e029b46984,
-    #shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b,
-    #shopify-section-template--16970486120700__64d03a86-9515-4123-b7eb-3658d349c1e8,
-    #INDmenu-btn,
-    .kl-teaser-T4UsqC,
-    .gwgkTo,
-    iframe[title="Number of unread messages"] {
-      display: none !important;
-    }    */
 
     #shopify-section-template--16970486120700__section-marquee,
     #shopify-section-template--16970486120700__section-slideshow,
@@ -152,11 +137,6 @@
       font-weight: 600;
       line-height: 40px; /* 125% */
       margin: 0;
-    }
-
-    .mobile-menu [aria-controls="nav-drawer"] {
-      padding-left: 0;
-      justify-content: flex-start !important;
     }
 
     .additional-functional {
@@ -1105,44 +1085,6 @@
       display: flex;
     }
 
-    #NavStandard .menu__item.menu__item--compress + .menu__item .navtext {
-      color: var(--Light-blue-900, #00B0EE);
-    }
-
-    .logo {
-      width: 144px;
-      height: 56px;
-    }
-
-    
-
-    /*
-
-    .logo__image-link {
-      width: 144px !important;
-      height: 56px !important;
-      padding: 0;
-      margin: 0;
-    }
-
-    .logo__image-push {
-      padding-top: 0 !important;
-    }
-    
-    .logo {
-      margin: 12px 0 !important;
-    }
-
-        #PageContainer {
-      padding-top: 80px !important;
-    }
-
-    */
-
-    .navlink--toplevel {
-      padding: 15px 20px !important;
-    }
-
     @media screen and (max-width: 1100px) and (min-width: 768px) {
       .new-arrivals-product {
         gap: 20px;
@@ -1175,14 +1117,6 @@
     }
 
     @media screen and (max-width: 768px) {
-      #PageContainer {
-        padding-top: 60px !important;
-      }
-
-      .site-header>.wrapper {
-        height: 56px !important;
-      }
-
       .product__img {
         width: 209px;
         height: 209px;
@@ -1255,14 +1189,6 @@
         align-items: flex-end;
         /* background-position: right center;
         background: linear-gradient(232deg, rgba(0, 0, 0, 0.00) 26.22%, rgba(0, 0, 0, 0.60) 87.38%); */
-      }
-
-      .logo__image-link {
-        height: 40px !important;
-      }
-
-      .logo {
-        margin: 8px 0;
       }
 
       .hero .product::after {
@@ -1965,36 +1891,8 @@
   </section>
   `
   );
-  x("exp_home_optim"), _({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "Andrii" }), p("head").then((e) => e == null ? void 0 : e.insertAdjacentHTML("afterend", w)), p("#shopify-section-template--16970486120700__section-marquee").then((e) => e == null ? void 0 : e.insertAdjacentHTML("afterend", y)), k(), E(), B(), A(), T(), p("body").then((e) => e == null ? void 0 : e.classList.add("hide-chat-btn")), p('iframe[title="Messaging window"]').then((e) => {
-    e && new MutationObserver((i) => {
-      var r, t;
-      for (let l of i)
-        l.type === "attributes" && l.attributeName === "tabindex" && (console.log("Tabindex changed to:", e.getAttribute("tabindex")), (e == null ? void 0 : e.getAttribute("tabindex")) === "-1" ? (r = document.querySelector("body")) == null || r.classList.add("hide-chat-btn") : (t = document.querySelector("body")) == null || t.classList.remove("hide-chat-btn"));
-    }).observe(e, { attributes: !0 });
-  }), p(".load-more-btn").then((e) => {
-    e == null || e.addEventListener("click", () => {
-      const s = document.querySelector(".trusted-load-more");
-      s && s.classList.remove("load-more-btn-visible");
-    });
-  }), $(), p("body").then((e) => {
-    m(".free-shipping", "exp_home_optim_section_01", "Home Page Free Shipping on Orders Over $69", "Section", 4e3), m(".shop-all .container", "exp_home_optim_section_02", "Home Page Shop by category", "Section"), m(".hero .swiper", "exp_home_optim_section_03", "Home Page Featured products PDP", "Section"), m(".warranty-sale", "exp_home_optim_section_04", "Home Page Benefits", "Section"), e == null || e.addEventListener("click", (s) => {
-      var r, t, l;
-      const i = s.target;
-      if (i.closest("button.mobile-menu__button") && g("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), i.closest(".shop-all__view") && g("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), i.closest(".menu-items a")) {
-        const n = (r = i.closest(".menu-items a")) == null ? void 0 : r.querySelector("p");
-        g("exp_home_optim_button_05", `${n == null ? void 0 : n.innerText} - choise category`, "Button", "Home Page Shop by category");
-      }
-      if (i.closest(".hero .product__btn")) {
-        const n = (t = i.closest(".product")) == null ? void 0 : t.querySelector(".product__title");
-        g("exp_home_optim_button_06", `${n == null ? void 0 : n.innerText} - Shop now`, "Button", "Home Page Featured products PDP");
-      }
-      if (i.closest(".hero .product")) {
-        const n = (l = i.closest(".hero .product")) == null ? void 0 : l.querySelector(".product__type");
-        g("exp_home_optim_button_07", `${n == null ? void 0 : n.innerText} - Click`, "Button", "Home Page Featured products PDP");
-      }
-    });
-  });
-  async function b(e, s) {
+  x("exp_home_optim"), T(), z();
+  async function b(e, n) {
     try {
       const i = await fetch(`https://mygeeni.com/products/${e}.json`, {
         method: "GET",
@@ -2023,7 +1921,7 @@
     }
   }
   function F(e) {
-    const s = e.length, i = e.map((r, t) => (
+    const n = e.length, i = e.map((r, t) => (
       /*html*/
       `
       <div class="glide__slide new-arrivals-product">
@@ -2035,7 +1933,7 @@
               <div class="swiper-button-prev-mob">
                 <img src="${o}/arrow-l.svg" alt="arrow left">
               </div>
-              <p class="new-arrivals-product__number">${t + 1}/${s}</p>
+              <p class="new-arrivals-product__number">${t + 1}/${n}</p>
               <div class="swiper-button-next-mob">
                 <img src="${o}/arrow-r.svg" alt="arrow right">
               </div>
@@ -2065,7 +1963,7 @@
           <div class="swiper-wrapper">
             <!-- Slides -->
             ${e.map((t, l) => {
-        const n = t.compare_at_price - t.price, a = Math.round(n / t.compare_at_price * 100), d = n > 0 ? `Save ${a}%` : "", c = t.compare_at_price && t.compare_at_price !== t.price ? `${t.compare_at_price}` : "", u = t.product_type.toLowerCase().includes("camera") ? "Cameras" : t.product_type;
+        const s = t.compare_at_price - t.price, a = Math.round(s / t.compare_at_price * 100), d = s > 0 ? `Save ${a}%` : "", c = t.compare_at_price && t.compare_at_price !== t.price ? `${t.compare_at_price}` : "", m = t.product_type.toLowerCase().includes("camera") ? "Cameras" : t.product_type;
         return (
           /*html*/
           `
@@ -2075,7 +1973,7 @@
         <p>${l + 1}/${e.length}</p>
       </div>
       <div class="product__info">
-        <p class="product__type">${u}</p>
+        <p class="product__type">${m}</p>
         <a class="product__title" href="/products/${t.handle}">${t.title}</a>
         <div class="product__price">
           <span>${t.price}</span>
@@ -2113,9 +2011,9 @@
         console.error("Product data element or its content is missing");
         return;
       }
-      let s;
+      let n;
       try {
-        s = JSON.parse(e.textContent);
+        n = JSON.parse(e.textContent);
       } catch (a) {
         console.error("Failed to parse product data:", a);
         return;
@@ -2128,32 +2026,32 @@
       const t = i.map((a, d) => b(a));
       (await Promise.allSettled(t)).forEach((a, d) => {
         if (a.status === "fulfilled") {
-          const c = document.querySelectorAll(".products-list__item__description")[d], u = c ? c.innerText : "", z = a.value.price ? `$${a.value.price}` : "";
-          r.push({ ...a.value, description: u, price: z });
+          const c = document.querySelectorAll(".products-list__item__description")[d], m = c ? c.innerText : "", L = a.value.price ? `$${a.value.price}` : "";
+          r.push({ ...a.value, description: m, price: L });
         } else
           console.error(`Failed to fetch product data for handle ${i[d]}: ${a.reason}`);
       });
-      const n = window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0;
-      S(n ? r : s), F(r);
+      const s = window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0;
+      S(s ? r : n), F(r);
     });
   }
   function A() {
-    function e(s, i, r) {
+    function e(n, i, r) {
       const t = document.createElement("link");
-      t.href = s, t.rel = i, r && (t.crossOrigin = r), document.head.appendChild(t);
+      t.href = n, t.rel = i, r && (t.crossOrigin = r), document.head.appendChild(t);
     }
     e("https://fonts.googleapis.com", "preconnect"), e("https://fonts.gstatic.com", "preconnect", "true"), e("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap", "stylesheet");
   }
   function $() {
     const e = setInterval(() => {
-      const s = document.getElementById("INDmenu-btn"), i = document.getElementById("launcher");
-      s && i && (clearInterval(e), p(".additional-functional").then((r) => r == null ? void 0 : r.addEventListener("click", (t) => {
-        var l, n, a, d;
-        t.target, (l = t.target) != null && l.closest('[data-img-func="accessibility"]') ? s.click() : (n = t.target) != null && n.closest('[data-img-func="sale"]') ? (a = document.querySelector(".kl-teaser-T4UsqC")) == null || a.click() : (d = t.target) != null && d.closest('[data-img-func="chat"]') && (i.contentDocument || i.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click();
+      const n = document.getElementById("INDmenu-btn"), i = document.getElementById("launcher");
+      n && i && (clearInterval(e), p(".additional-functional").then((r) => r == null ? void 0 : r.addEventListener("click", (t) => {
+        var l, s, a, d;
+        t.target, (l = t.target) != null && l.closest('[data-img-func="accessibility"]') ? n.click() : (s = t.target) != null && s.closest('[data-img-func="sale"]') ? (a = document.querySelector(".kl-teaser-T4UsqC")) == null || a.click() : (d = t.target) != null && d.closest('[data-img-func="chat"]') && (i.contentDocument || i.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click();
       })), setInterval(() => {
         var r, t, l;
         if (document.querySelector('[data-testid="POPUP"]') ? (r = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || r.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (l = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || l.classList.remove("hidden-el") : (t = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || t.classList.add("hidden-el"), document.querySelector('iframe[title="Number of unread messages"]')) {
-          const n = document.querySelector('iframe[title="Number of unread messages"]'), d = (n.contentDocument || n.contentWindow.document).querySelector(".gwgkTo");
+          const s = document.querySelector('iframe[title="Number of unread messages"]'), d = (s.contentDocument || s.contentWindow.document).querySelector(".gwgkTo");
           document.querySelector('[data-img-func="chat"] p') && (d != null && d.textContent) && (document.querySelector('[data-img-func="chat"]').classList.add("display-msg-number"), document.querySelector('[data-img-func="chat"] p').innerText = d.textContent, console.log(d.textContent));
         } else
           document.querySelector(".display-msg-number") && document.querySelector(".display-msg-number").classList.remove("display-msg-number");
@@ -2161,21 +2059,64 @@
     }, 100);
   }
   function T() {
-    v === "mobile" && p('.mobile-menu [aria-controls="nav-drawer"]').then((e) => {
-      document.querySelector("h1.logo").insertAdjacentElement("beforebegin", e);
-    });
+    const e = (
+      /*html*/
+      `
+    <style>
+      
+      .logo {
+        width: 144px;
+        height: 56px;
+      }
+
+      #NavStandard .menu__item.menu__item--compress + .menu__item .navtext {
+        color: var(--Light-blue-900, #00B0EE);
+      }
+
+      .navlink--toplevel {
+        padding: 15px 20px !important;
+      }
+
+      .mobile-menu [aria-controls="nav-drawer"] {
+        padding-left: 0;
+        justify-content: flex-start !important;
+      }
+
+      @media screen and (max-width: 768px) {
+        #PageContainer {
+          padding-top: 60px !important;
+        }
+
+        .site-header>.wrapper {
+          height: 56px !important;
+        }
+
+        .logo__image-link {
+          height: 40px !important;
+        }
+
+        .logo {
+          margin: 8px 0;
+        }
+      }
+    </style>
+  `
+    );
+    v === "mobile" && p('.mobile-menu [aria-controls="nav-drawer"]').then((n) => {
+      document.querySelector("h1.logo").insertAdjacentElement("beforebegin", n);
+    }), p("head").then((n) => n.insertAdjacentHTML("beforeend", e));
   }
-  function f(e, s) {
+  function f(e, n) {
     const i = `[data-products-type="${e}"] .products-wrapper`;
     p(i).then((r) => {
-      const t = document.querySelectorAll(s);
-      for (let n = 0; n < 4; n++) {
-        const a = t[n];
+      const t = document.querySelectorAll(n);
+      for (let s = 0; s < 4; s++) {
+        const a = t[s];
         r.appendChild(a);
       }
       const l = setInterval(() => {
-        const n = document.querySelectorAll(`${i} .product-grid-item__title`);
-        n[3] && (clearInterval(l), n.forEach((a, d) => {
+        const s = document.querySelectorAll(`${i} .product-grid-item__title`);
+        s[3] && (clearInterval(l), s.forEach((a, d) => {
           document.querySelectorAll(`${i} .product-grid-item__inner`)[d].insertAdjacentHTML("beforeend", `<a class="product__shop-now" href="${a.href}">Shop now</a>`);
         }));
       }, 100);
@@ -2189,8 +2130,8 @@
   function E() {
     h(["https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js", "https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"]).then(() => {
       const e = setInterval(() => {
-        typeof Swiper < "u" && document.querySelectorAll(".swiper")[1] && (clearInterval(e), p(".hero .swiper").then((s) => {
-          const i = s.clientWidth, t = i * 1.07 - i + 16;
+        typeof Swiper < "u" && document.querySelectorAll(".swiper")[1] && (clearInterval(e), p(".hero .swiper").then((n) => {
+          const i = n.clientWidth, t = i * 1.07 - i + 16;
           new Swiper(".hero .swiper", {
             navigation: {
               nextEl: ".hero .swiper-button-next",
@@ -2216,7 +2157,7 @@
               }
             }
           });
-        }), p(".trusted-reviews .swiper").then((s) => {
+        }), p(".trusted-reviews .swiper").then((n) => {
           new Swiper(".trusted-reviews .swiper", {
             slidesPerView: 3.8,
             spaceBetween: 8,
@@ -2258,16 +2199,47 @@
               }
             }
           }).mount();
-          const s = setInterval(() => {
+          const n = setInterval(() => {
             const i = document.querySelector(".glide__arrow--left"), r = document.querySelector(".glide__arrow--right"), t = document.querySelector(".glide");
-            i && r && (console.log("Arrows are ready"), clearInterval(s), t.addEventListener("click", (l) => {
-              var n, a;
-              console.log(l.target), (n = l.target) != null && n.closest(".swiper-button-prev-mob") && i.dispatchEvent(new Event("click")), (a = l.target) != null && a.closest(".swiper-button-next-mob") && r.dispatchEvent(new Event("click"));
+            i && r && (console.log("Arrows are ready"), clearInterval(n), t.addEventListener("click", (l) => {
+              var s, a;
+              console.log(l.target), (s = l.target) != null && s.closest(".swiper-button-prev-mob") && i.dispatchEvent(new Event("click")), (a = l.target) != null && a.closest(".swiper-button-next-mob") && r.dispatchEvent(new Event("click"));
             }));
           }, 100);
         }
       }, 100);
     });
+  }
+  function z() {
+    window.location.pathname === "/" && (_({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "Andrii" }), p("head").then((e) => e == null ? void 0 : e.insertAdjacentHTML("afterend", w)), p("#shopify-section-template--16970486120700__section-marquee").then((e) => e == null ? void 0 : e.insertAdjacentHTML("afterend", y)), k(), E(), B(), A(), p("body").then((e) => e == null ? void 0 : e.classList.add("hide-chat-btn")), p('iframe[title="Messaging window"]').then((e) => {
+      e && new MutationObserver((i) => {
+        var r, t;
+        for (let l of i)
+          l.type === "attributes" && l.attributeName === "tabindex" && (console.log("Tabindex changed to:", e.getAttribute("tabindex")), (e == null ? void 0 : e.getAttribute("tabindex")) === "-1" ? (r = document.querySelector("body")) == null || r.classList.add("hide-chat-btn") : (t = document.querySelector("body")) == null || t.classList.remove("hide-chat-btn"));
+      }).observe(e, { attributes: !0 });
+    }), p(".load-more-btn").then((e) => {
+      e == null || e.addEventListener("click", () => {
+        const n = document.querySelector(".trusted-load-more");
+        n && n.classList.remove("load-more-btn-visible");
+      });
+    }), $(), p("body").then((e) => {
+      u(".free-shipping", "exp_home_optim_section_01", "Home Page Free Shipping on Orders Over $69", "Section", 4e3), u(".shop-all .container", "exp_home_optim_section_02", "Home Page Shop by category", "Section"), u(".hero .swiper", "exp_home_optim_section_03", "Home Page Featured products PDP", "Section"), u(".warranty-sale", "exp_home_optim_section_04", "Home Page Benefits", "Section"), e == null || e.addEventListener("click", (n) => {
+        var r, t, l;
+        const i = n.target;
+        if (i.closest("button.mobile-menu__button") && g("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), i.closest(".shop-all__view") && g("exp_home_optim_button_01", "Menu", "Button", "Home Page Header"), i.closest(".menu-items a")) {
+          const s = (r = i.closest(".menu-items a")) == null ? void 0 : r.querySelector("p");
+          g("exp_home_optim_button_05", `${s == null ? void 0 : s.innerText} - choise category`, "Button", "Home Page Shop by category");
+        }
+        if (i.closest(".hero .product__btn")) {
+          const s = (t = i.closest(".product")) == null ? void 0 : t.querySelector(".product__title");
+          g("exp_home_optim_button_06", `${s == null ? void 0 : s.innerText} - Shop now`, "Button", "Home Page Featured products PDP");
+        }
+        if (i.closest(".hero .product")) {
+          const s = (l = i.closest(".hero .product")) == null ? void 0 : l.querySelector(".product__type");
+          g("exp_home_optim_button_07", `${s == null ? void 0 : s.innerText} - Click`, "Button", "Home Page Featured products PDP");
+        }
+      });
+    }));
   }
 })();
 //# sourceMappingURL=index.js.map
