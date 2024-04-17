@@ -14,21 +14,21 @@
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   }, a = (e) => document.querySelectorAll(e), o = (e) => document.querySelector(e), x = async (e) => {
-    const n = (t) => new Promise((i, r) => {
+    const n = (t) => new Promise((i, l) => {
       const s = t.split(".").pop();
       if (s === "js") {
         if (Array.from(document.scripts).map((p) => p.src.toLowerCase()).includes(t.toLowerCase()))
           return console.log(`Script ${t} allready downloaded!`), i("");
-        const l = document.createElement("script");
-        l.src = t, l.onload = i, l.onerror = r, document.head.appendChild(l);
+        const r = document.createElement("script");
+        r.src = t, r.onload = i, r.onerror = l, document.head.appendChild(r);
       } else if (s === "css") {
         if (Array.from(document.styleSheets).map((p) => {
           var g;
           return (g = p.href) == null ? void 0 : g.toLowerCase();
         }).includes(t.toLowerCase()))
           return console.log(`Style ${t} allready downloaded!`), i("");
-        const l = document.createElement("link");
-        l.rel = "stylesheet", l.href = t, l.onload = i, l.onerror = r, document.head.appendChild(l);
+        const r = document.createElement("link");
+        r.rel = "stylesheet", r.href = t, r.onload = i, r.onerror = l, document.head.appendChild(r);
       }
     });
     for (const t of e)
@@ -38,25 +38,25 @@
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, u = (e, n, t, i, r = 3e3, s = 0.5) => {
-    let f, l;
-    if (f = new IntersectionObserver(
+  }, u = (e, n, t, i, l = 3e3, s = 0.5) => {
+    let h, r;
+    if (h = new IntersectionObserver(
       function(p) {
-        p[0].isIntersecting === !0 ? l = setTimeout(() => {
+        p[0].isIntersecting === !0 ? r = setTimeout(() => {
           c(
             n,
             p[0].target.dataset.visible || i || "",
             "Visibility",
             t
-          ), f.disconnect();
-        }, r) : clearTimeout(l);
+          ), h.disconnect();
+        }, l) : clearTimeout(r);
       },
       { threshold: [s] }
     ), typeof e == "string") {
       const p = document.querySelector(e);
-      p && f.observe(p);
+      p && h.observe(p);
     } else
-      f.observe(e);
+      h.observe(e);
   };
   function d(e) {
     return new Promise((n) => {
@@ -467,7 +467,7 @@ body .reviews-slide img.days {
     margin-top: 5px;
     font-size: 12px !important;
   }
-}/*# sourceMappingURL=main.css.map */`, m = "https://conversionratestore.github.io/projects/zenpatch", h = {
+}/*# sourceMappingURL=main.css.map */`, m = "https://conversionratestore.github.io/projects/zenpatch", f = {
     tooltip: (
       /* HTML */
       `
@@ -496,7 +496,7 @@ body .reviews-slide img.days {
       <div>
         <div class='main_title_wrapper'>
           <h2>SleepyPatch</h2>
-          <div class='stars_wrapper'>${h.star}${h.star}${h.star}${h.star}${h.star}</div>
+          <div class='stars_wrapper'>${f.star}${f.star}${f.star}${f.star}${f.star}</div>
         </div>
         <h3>Sleep Promoting Stickers</h3>
         <p>24 patches for bedtime</p>
@@ -534,7 +534,7 @@ body .reviews-slide img.days {
         </div>
       </div>
       <div class="tooltip_zone" data-tooltip data-title="${y.promoting}">
-        <div class="tooltip_bgr">${h.tooltip}</div>
+        <div class="tooltip_bgr">${f.tooltip}</div>
       </div>
     </li>
   `
@@ -608,8 +608,8 @@ body .reviews-slide img.days {
       const n = a(".list-packs-bundle");
       let t;
       n.forEach((i) => {
-        i.addEventListener("click", (r) => {
-          !r.target.classList.contains("tooltip_zone") && !r.target.classList.contains("tooltip_bgr") && !r.target.classList.contains("tooltip_icon") && !r.target.classList.contains("path_var") && (!t && this.singleClick ? t = setTimeout(() => {
+        i.addEventListener("click", (l) => {
+          !l.target.classList.contains("tooltip_zone") && !l.target.classList.contains("tooltip_bgr") && !l.target.classList.contains("tooltip_icon") && !l.target.classList.contains("path_var") && (!t && this.singleClick ? t = setTimeout(() => {
             t = null, this.singleClick = !1, this.clickBundleHandler(i);
           }, 300) : (clearTimeout(t), t = null, this.doubleClickBundleHandler(i, 43053597229100), this.singleClick = !0));
         });
@@ -657,13 +657,10 @@ body .reviews-slide img.days {
           ]
         })
       }).then((s) => {
-        s.json();
-        let f = setInterval(() => {
-          a(".list-packs-bundle").forEach((l) => {
-            l.classList.contains("active-slide") && (clearInterval(f), setTimeout(() => {
-              console.log("Go to checkout !!!!!!!!!!!!!! "), window.location.href = "/checkout";
-            }, 400));
-          });
+        s.json(), setInterval(() => {
+          setTimeout(() => {
+            console.log("Go to checkout !!!!!!!!!!!!!! "), window.location.href = "/checkout";
+          }, 350);
         }, 100);
       }).catch((s) => {
         console.error("Error:", s);
