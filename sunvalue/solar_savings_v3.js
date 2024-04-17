@@ -161,10 +161,10 @@ class changeFlow {
         if (location.pathname === "/save/") {
           this.initMainStyles();
           this.setLocalStorageDataInfo();
-          this.setNameCity();
 
           this.updateRangeSliderSteps();
           this.changeSlidesSteps();
+          this.setNameCity();
           this.onClickYourSavingsBtn();
           this.onClickOldNextBtn();
           this.onClickOldBtnBack();
@@ -339,19 +339,19 @@ class changeFlow {
 
   // change slides Steps
   setLocalStorageDataInfo() {
-    waitForElement(".htitle").then((el) => {
-      let data = {};
-      data.city = $el(".htitle")?.textContent.split("Solar")[0].trim();
+    let data = {};
+    data.city = $el(".htitle")?.textContent.split("Solar")[0].trim();
 
-      localStorage.setItem("crs_data", JSON.stringify(data));
-    });
+    localStorage.setItem("crs_data", JSON.stringify(data));
   }
   setNameCity() {
     const crsData = JSON.parse(localStorage.getItem("crs_data"));
+    console.log(crsData, `crsData`);
     let t = setInterval(() => {
       if (crsData) {
         clearInterval(t);
         waitForElement("[data-city]").then((el) => {
+          console.log(`data-city]`);
           $$el("[data-city]").forEach((i) => {
             i.textContent = crsData.city;
           });
