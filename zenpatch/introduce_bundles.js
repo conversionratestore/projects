@@ -23,8 +23,8 @@
         l.src = t, l.onload = o, l.onerror = r, document.head.appendChild(l);
       } else if (s === "css") {
         if (Array.from(document.styleSheets).map((c) => {
-          var m;
-          return (m = c.href) == null ? void 0 : m.toLowerCase();
+          var u;
+          return (u = c.href) == null ? void 0 : u.toLowerCase();
         }).includes(t.toLowerCase()))
           return console.log(`Style ${t} allready downloaded!`), o("");
         const l = document.createElement("link");
@@ -38,7 +38,7 @@
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", i, "variant_1"));
     }, 1e3);
-  }, u = (i, n, t, o, r = 3e3, s = 0.5) => {
+  }, m = (i, n, t, o, r = 3e3, s = 0.5) => {
     let h, l;
     if (h = new IntersectionObserver(
       function(c) {
@@ -365,7 +365,7 @@ li.list-packs.list-packs-bundle .tooltip_zone .tooltip_bgr {
   display: block;
   width: 6px;
   border-radius: 10px;
-  transition: top 0.5s ease-out;
+  transition: top 0.6s ease-out;
 }
 #cons #slideInCartScroll.is_checked {
   overflow-y: auto;
@@ -570,7 +570,7 @@ body .reviews-slide img.days {
   );
   w({ name: "Introduce bundle on the page", dev: "SKh" }), v("exp_introduce");
   const L = window.innerWidth < 768 ? "mobile" : "desktop";
-  class E {
+  class H {
     constructor(n) {
       this.device = n, this.singleClick = !0, this.currency = e(".all-in-one-bundle span").getAttribute("data-currency"), this.salePrice = e(".all-in-one-bundle span").getAttribute("data-price"), this.regularPrice = e(".all-in-one-bundle span").getAttribute("data-price-compare"), this.offPrice = e(".all-in-one-bundle span").getAttribute("data-price-off"), this.savePrice = e(".all-in-one-bundle span").getAttribute("data-price-save"), this.observer = null, this.init();
     }
@@ -721,12 +721,12 @@ body .reviews-slide img.days {
               placement: "top-end",
               interactive: !0,
               onShow(o) {
-                e("#slideInCartScroll").classList.add("tooltip_open"), t.closest("#cons") ? u(
+                e("#slideInCartScroll").classList.add("tooltip_open"), t.closest("#cons") ? m(
                   o.reference,
                   "exp_introduce_tooltip_02",
                   "Slide-in Cart",
                   "Tooltip All-in-one stress-relief kit"
-                ) : u(
+                ) : m(
                   o.reference,
                   "exp_introduce_tooltip_01",
                   "Shopping section Stock up and save",
@@ -759,27 +759,27 @@ body .reviews-slide img.days {
     }
     getHeightSlideInCartScroll() {
       d("#slideInCartScroll").then((n) => {
-        var c, m, b, x;
-        e("#slideInCartScroll").style.maxHeight = `${((c = e("#cons")) == null ? void 0 : c.clientHeight) - ((m = e("#slideInCartFooter")) == null ? void 0 : m.clientHeight) + 12}px`;
+        var c, u, b, x;
+        e("#slideInCartScroll").style.maxHeight = `${((c = e("#cons")) == null ? void 0 : c.clientHeight) - ((u = e("#slideInCartFooter")) == null ? void 0 : u.clientHeight) + 12}px`;
         let t = e("#slideInCartScroll"), o = e(".new_scroll_bar"), r = e(".new_thumb");
         o.style.maxHeight = `${((b = e("#cons")) == null ? void 0 : b.clientHeight) - ((x = e("#slideInCartFooter")) == null ? void 0 : x.clientHeight)}px`, t.scrollHeight > t.clientHeight ? o.style.display = "block" : o.style.display = "none";
         let h = t.scrollHeight, l = t.clientHeight;
         r.style.height = l / h * 100 + "%", t.addEventListener("scroll", function(B) {
-          let H = t.scrollTop, k = r.offsetHeight, I = l - k, T = H / (l - k);
+          let E = t.scrollTop, k = r.offsetHeight, I = l - k, T = E / (l - k);
           r.style.top = T * I + "px";
         });
       });
     }
     visibleHandler() {
       d("#getNow .list-packs-bundle").then((n) => {
-        u(
+        m(
           "#getNow .list-packs-bundle",
           "exp_introduce_element_01",
           "Shopping section Stock up and save All-in-one stress-relief kit",
           "Element"
         );
       }), d("#cons .list-packs-bundle").then((n) => {
-        e("html").classList.add("is_open"), document.documentElement.style.overflow = "hidden", u("#cons .list-packs-bundle", "exp_introduce_element_02", "Slide-in Cart", "Element");
+        m("#cons .list-packs-bundle", "exp_introduce_element_02", "Slide-in Cart", "Element");
       });
     }
     changeActiveClassHtml() {
@@ -792,7 +792,7 @@ body .reviews-slide img.days {
   }
   d(".all-in-one-bundle").then((i) => {
     setTimeout(() => {
-      window.location.pathname.match("pages") && new E(L);
+      window.location.pathname.match("pages") && new H(L);
     }, 1e3);
   });
 })();
