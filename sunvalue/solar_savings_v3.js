@@ -376,10 +376,10 @@ class changeFlow {
       steps.forEach((element, index) => {
         // estimate-zip
         if (element.querySelector('[id="estimate-zip"]')) {
-          if (!element.querySelector(".new_main_title")) {
-            element.querySelector(".container").insertAdjacentHTML("afterbegin", `<h2 class="new_main_title"><span data-city></span> Government <br/> Programs to lower electric bills</h2>`);
-          }
-          element.querySelector("a.btn > span").textContent = "Discover Government Programs";
+          // if (!element.querySelector(".new_main_title")) {
+          //   element.querySelector(".container").insertAdjacentHTML("afterbegin", `<h2 class="new_main_title"><span data-city></span> Government <br/> Programs to lower electric bills</h2>`);
+          // }
+          element.querySelector("a.btn > span").textContent = "Discover Incentive Programs";
           if (!element.querySelector(".available_incentives_wrapper")) {
             element.querySelector("h1.title").insertAdjacentHTML("afterend", this.availableIncentivesHtml());
           }
@@ -401,7 +401,7 @@ class changeFlow {
             t.innerHTML = "Find your house location";
           });
           element.querySelectorAll(".sub-title").forEach((t) => {
-            t.innerHTML = "Enter your house address to find <span data-city></span> Government  Programs";
+            t.innerHTML = "Enter your house address to find <span data-city></span> Incentive Programs";
           });
         }
         //estimate-shade
@@ -772,9 +772,6 @@ class changeFlow {
           flex-direction: column;
           justify-content: space-between;
           height: 100%;
-        }
-        .wrapper #estimate-zip .title {
-          display: none !important;
         }
         h2.new_main_title,
         .wrapper .title {
