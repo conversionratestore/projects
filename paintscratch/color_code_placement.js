@@ -368,12 +368,16 @@
   }
 }
 @media screen and (max-width: 768px) {
+  #page #main p {
+    font-size: 14px;
+    line-height: 22px;
+  }
   .select-color ul#benefit-list li span {
     font-size: 14px;
     line-height: 20px;
   }
   #main h3 {
-    font-size: 16px;
+    font-size: 16px !important;
     line-height: 24px;
   }
   .crs_accordion_current {
