@@ -281,9 +281,9 @@
               During the next 1 hour, you’ll discover:
             </p>
             <ul>
-              <li>${svgObj.pencil}<p><b>Key methods</b> for getting into top schools, beyond academic scores</p></li>
-              <li>${svgObj.pencil}<p>How <b>to access thousands</b> in scholarship and grant funding</p></li>
-              <li>${svgObj.pencil}<p>What university & scholarships committees <b>look for in a student's profile</b></p></li>
+              <li>${svgObj.pencil}<p><b>Insider tips</b> for top Canadian and US university admissions</p></li>
+              <li>${svgObj.pencil}<p>A proven path to <b>securing scholarships, bursaries, and admissions</b></p></li>
+              <li>${svgObj.pencil}<p><b>Actionable steps</b> to start preparing early, enhancing your student profile, and standing out in applications</p></li>
               <li class="more"><p>...and much more.</p></li>
             </ul>
           </div>
@@ -305,9 +305,9 @@
               During the next 30 minutes, you’ll discover:
             </p>
             <ul>
-              <li>${svgObj.pencil}<p>How to <b>find scholarships</b> that are a fit for your profile & <b>prepare winning</b> university and scholarship <b>applications</b></p></li>
-              <li>${svgObj.pencil}<p><b>Success stories</b> of students who've secured over $50,000 in funding and been admitted to competitive programs</p></li>
-              <li>${svgObj.pencil}<p>How <b>to build a personal brand</b> that's attractive to university & scholarship committees</p></li>
+              <li>${svgObj.pencil}<p>How to <b>maximize your GPA</b> while fulfilling essential prerequisites</p></li>
+              <li>${svgObj.pencil}<p><b>Why starting before Grade 12</b> sets you up for success</li>
+              <li>${svgObj.pencil}<p>How to navigate the maze of funding opportunities <b>to graduate debt-free</b></p></li>
               <li class="more"><p>...and much more.</p></li>
             </ul>
           </div>
@@ -394,10 +394,10 @@
           <div class="points">
             <p>
               ${svgObj.gift}
-              In addition, you will receive the following for FREE:
+              In addition, GrantMe offers easy installment plans with our partner Affirm:
             </p>
             <ul>
-              <li><p><b>2 bonus years</b> of support, until the end of Grade 12 or University year 1 for students <b>currently in Grade 9 or 10</b>.</p></li>
+              <li><p>Secure your future with payments <b>as low as $200/month</b> — interest-free options available.<br>There is <b>no impact on your credit score.</b></p></li>
             </ul>
           </div>
           <div class="note">
@@ -413,22 +413,22 @@
           <div class="points">
             <p>
               ${svgObj.award}
-              <b>We offer a market-leading guarantee:</b>
+              We offer a market-leading guarantee:
             </p>
             <ul>
-              <li>${svgObj.pencil} <p>Acceptance into one of your top <b>5 universities</b></p></li>
-              <li>${svgObj.pencil} <p><b>At minimum</b>, the student receives <b>$3000</b> through scholarship, grants or bursaries</p></li>
+              <li>${svgObj.pencil}<p>Acceptance into one of your top <b>5 universities</b></p></li>
+              <li>${svgObj.pencil}<p><b>At least</b> recoup the GrantMe Program cost through scholarships, grants, or bursaries.</p></li>
               <li class="more"><p><b>Or your money back!</b></p></li>
             </ul>
           </div>
           <div class="satisfaction">
             <h4>100% satisfaction</h4>
-            <p>If not satisfied, full refund after the first 1-1 Action plan</p>
+            <p>Refund eligible for students who follow our action based guarantee and don't achieve the results above.</p>
             <p class="guarenteed">
               ${svgObj.guaranteed}Guaranteed
             </p>
           </div>
-          <a href="https://app.grantme.com/book-advisor-session/" class="main">Book a 15 Minute Call</a>
+          <a href="https://grantme.ca/pricing-packages/" class="main">Explore Pricing Packages</a>
       </div>
     `
 
@@ -449,6 +449,9 @@
             align-items: start;
             padding: 62px 16px;
             overflow-y: auto;
+          }
+          .crs_popup_wrapper * {
+            font-family: 'Lato', sans-serif;
           }
           .crs_popup_wrapper.show {
             display: flex;
@@ -591,7 +594,7 @@
           .popup_content .points {
             margin: 16px 0;
             border-radius: 6px;
-            border: 1.5px solid #1F72DA;
+            border: 2px solid #1F72DA;
             padding: 16px;
           }
           .popup_content .points>p{
@@ -609,6 +612,7 @@
           .popup_content .points>p svg {
             width: 48px;
             height: 48px;
+            flex-shrink: 0;
           }
           .popup_content .points ul {
             margin: 16px 0 0;
@@ -653,8 +657,10 @@
           }
           .popup_content .main {
             font-size: 20px;
+            font-weight:700;
+            font-family: 'Lato', sans-serif;
             line-height: 1;
-            padding: 11px;
+            padding: 21px;
             border-radius: 6px;
             background: #EBBD45;
             color: #2B3E51;
@@ -678,6 +684,7 @@
             border: none;
             background: transparent;
             cursor: pointer;
+            font-weight: 700;
           }
           .popup_content .back {
             display: inline-flex;
@@ -691,10 +698,11 @@
             padding: 0 9px 0 4px;
             border-radius: 36px;
             background: #E9F3FA;
+            font-weight: 700;
           }
           .popup_content .satisfaction {
             border-radius: 6px;
-            border: 1.5px dashed var(--primary-yellow, #EBBD45);
+            border: 2px dashed var(--primary-yellow, #EBBD45);
             background: rgba(235, 189, 69, 0.10);
             margin: 16px 0;
             padding: 14px;
