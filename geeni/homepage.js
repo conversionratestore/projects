@@ -1893,7 +1893,7 @@
   `
   );
   F("exp_home_optim"), L(), N();
-  async function P(t, s) {
+  async function T(t, s) {
     try {
       const e = await fetch(`https://mygeeni.com/products/${t}.json`, {
         method: "GET",
@@ -1921,7 +1921,7 @@
       throw console.error(`Failed to fetch product data for handle ${t}: ${e}`), e;
     }
   }
-  function T(t) {
+  function P(t) {
     const s = t.length, e = t.map((r, i) => (
       /*html*/
       `
@@ -2006,7 +2006,7 @@
     );
     m(b === "desktop" ? ".free-shipping" : ".shop-all").then((i) => i == null ? void 0 : i.insertAdjacentHTML("afterend", e)).catch((i) => console.error("Failed to insert slides to hero slider:", i));
   }
-  async function I() {
+  async function E() {
     m("#productData").then(async (t) => {
       if (!t || !t.textContent) {
         console.error("Product data element or its content is missing");
@@ -2024,7 +2024,7 @@
         const u = new URL(n.href).pathname.split("/products/")[1];
         u && e.push(u);
       });
-      const i = e.map((n, p) => P(n));
+      const i = e.map((n, p) => T(n));
       (await Promise.allSettled(i)).forEach((n, p) => {
         if (n.status === "fulfilled") {
           const u = document.querySelectorAll(".products-list__item__description")[p], _ = u ? u.innerText : "", h = n.value.price ? `$${n.value.price}` : "";
@@ -2033,10 +2033,10 @@
           console.error(`Failed to fetch product data for handle ${e[p]}: ${n.reason}`);
       });
       const l = window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0;
-      B(l ? r : s), T(r);
+      B(l ? r : s), P(r);
     });
   }
-  function E() {
+  function I() {
     function t(s, e, r) {
       const i = document.createElement("link");
       i.href = s, i.rel = e, r && (i.crossOrigin = r), document.head.appendChild(i);
@@ -2221,7 +2221,7 @@
     });
   }
   function N() {
-    (window.location.pathname === "/" || window.location.pathname.includes("/index")) && (O(), D(), k({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "AK" }), m("head").then((t) => t == null ? void 0 : t.insertAdjacentHTML("afterend", $)), m("#shopify-section-template--16970486120700__section-marquee").then((t) => t == null ? void 0 : t.insertAdjacentHTML("afterend", A)), I(), H(), z(), E(), m("body").then((t) => t == null ? void 0 : t.classList.add("hide-chat-btn")), m('iframe[title="Messaging window"]').then((t) => {
+    (window.location.pathname === "/" || window.location.pathname.includes("/index")) && (window.scrollTo(0, 0), k({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "AK" }), m("head").then((t) => t == null ? void 0 : t.insertAdjacentHTML("afterend", $)), m("#shopify-section-template--16970486120700__section-marquee").then((t) => t == null ? void 0 : t.insertAdjacentHTML("afterend", A)), E(), H(), z(), I(), m("body").then((t) => t == null ? void 0 : t.classList.add("hide-chat-btn")), m('iframe[title="Messaging window"]').then((t) => {
       t && new MutationObserver((e) => {
         var r, i;
         for (let c of e)
@@ -2287,15 +2287,6 @@
           e.closest(".new-arrivals-product__title") && d("exp_home_optim_link_3", `${e.closest(".new-arrivals-product__title").innerText} - click link`, "Link", "Home Page Block New Arrivals");
       });
     }));
-  }
-  function O() {
-    setInterval(() => {
-      sessionStorage.setItem("scrollPosition", window.scrollY.toString());
-    }, 1e3);
-  }
-  function D() {
-    const t = sessionStorage.getItem("scrollPosition");
-    t !== null && (window.scrollTo(0, parseInt(t)), sessionStorage.removeItem("scrollPosition"));
   }
 })();
 //# sourceMappingURL=index.js.map
