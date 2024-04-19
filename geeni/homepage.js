@@ -2009,33 +2009,34 @@
   async function E() {
     const i = window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0;
     let s;
-    const e = document.querySelector("#productData");
-    if (e && e.textContent)
-      try {
-        s = JSON.parse(e.textContent);
-      } catch (t) {
-        console.error("Failed to parse product data:", t);
+    m("#productData").then(async (e) => {
+      if (e && e.textContent)
+        try {
+          s = JSON.parse(e.textContent);
+        } catch (t) {
+          console.error("Failed to parse product data:", t);
+        }
+      else
+        console.error("Product data element or its content is missing");
+      !i && s && S(s);
+      let r = JSON.parse(sessionStorage.getItem("newArrivalsProductsData") || "[]");
+      if (!r.length) {
+        const t = [];
+        document.querySelectorAll(".products-list__container .btn.btn--primary").forEach((n) => {
+          const u = new URL(n.href).pathname.split("/products/")[1];
+          u && t.push(u);
+        });
+        const d = t.map((n, p) => T(n));
+        (await Promise.allSettled(d)).forEach((n, p) => {
+          if (n.status === "fulfilled") {
+            const u = document.querySelectorAll(".products-list__item__description")[p], _ = u ? u.innerText : "", h = n.value.price ? `$${n.value.price}` : "";
+            r.push({ ...n.value, description: _, price: h });
+          } else
+            console.error(`Failed to fetch product data for handle ${t[p]}: ${n.reason}`);
+        }), sessionStorage.setItem("newArrivalsProductsData", JSON.stringify(r));
       }
-    else
-      console.error("Product data element or its content is missing");
-    !i && s && S(s);
-    let r = JSON.parse(sessionStorage.getItem("newArrivalsProductsData") || "[]");
-    if (!r.length) {
-      const t = [];
-      document.querySelectorAll(".products-list__container .btn.btn--primary").forEach((n) => {
-        const u = new URL(n.href).pathname.split("/products/")[1];
-        u && t.push(u);
-      });
-      const d = t.map((n, p) => T(n));
-      (await Promise.allSettled(d)).forEach((n, p) => {
-        if (n.status === "fulfilled") {
-          const u = document.querySelectorAll(".products-list__item__description")[p], _ = u ? u.innerText : "", h = n.value.price ? `$${n.value.price}` : "";
-          r.push({ ...n.value, description: _, price: h });
-        } else
-          console.error(`Failed to fetch product data for handle ${t[p]}: ${n.reason}`);
-      }), sessionStorage.setItem("newArrivalsProductsData", JSON.stringify(r));
-    }
-    i && S(r), B(r);
+      i && S(r), B(r);
+    });
   }
   function I() {
     function i(s, e, r) {
