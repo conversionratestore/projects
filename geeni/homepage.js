@@ -2066,7 +2066,7 @@
       `
     <style>
       
-      .mobile-menu [aria-controls="nav-drawer"] {
+      .mobile-menu__button[aria-controls="nav-drawer"] {
         margin-left: -8px;
         justify-content: flex-start !important;
       }
