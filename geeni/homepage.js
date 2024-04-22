@@ -1,75 +1,75 @@
 (function() {
   "use strict";
-  const c = (i, s, e, r = "") => {
+  const c = (i, o, e, s = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: i,
-      event_desc: s,
+      event_desc: o,
       event_type: e,
-      event_loc: r
-    }), console.log(`Event: ${i} | ${s} | ${e} | ${r.replace(/  +/g, " ")}`);
-  }, F = ({ name: i, dev: s }) => {
+      event_loc: s
+    }), console.log(`Event: ${i} | ${o} | ${e} | ${s.replace(/  +/g, " ")}`);
+  }, $ = ({ name: i, dev: o }) => {
     console.log(
-      `%c EXP: ${i} (DEV: ${s})`,
+      `%c EXP: ${i} (DEV: ${o})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, y = async (i) => {
-    const s = (e) => new Promise((r, t) => {
+  }, b = async (i) => {
+    const o = (e) => new Promise((s, t) => {
       const d = e.split(".").pop();
       if (d === "js") {
         if (Array.from(document.scripts).map((p) => p.src.toLowerCase()).includes(e.toLowerCase()))
-          return console.log(`Script ${e} allready downloaded!`), r("");
-        const n = document.createElement("script");
-        n.src = e, n.onload = r, n.onerror = t, document.head.appendChild(n);
+          return console.log(`Script ${e} allready downloaded!`), s("");
+        const l = document.createElement("script");
+        l.src = e, l.onload = s, l.onerror = t, document.head.appendChild(l);
       } else if (d === "css") {
         if (Array.from(document.styleSheets).map((p) => {
-          var u;
-          return (u = p.href) == null ? void 0 : u.toLowerCase();
+          var m;
+          return (m = p.href) == null ? void 0 : m.toLowerCase();
         }).includes(e.toLowerCase()))
-          return console.log(`Style ${e} allready downloaded!`), r("");
-        const n = document.createElement("link");
-        n.rel = "stylesheet", n.href = e, n.onload = r, n.onerror = t, document.head.appendChild(n);
+          return console.log(`Style ${e} allready downloaded!`), s("");
+        const l = document.createElement("link");
+        l.rel = "stylesheet", l.href = e, l.onload = s, l.onerror = t, document.head.appendChild(l);
       }
     });
     for (const e of i)
-      await s(e), console.log(`Loaded librari ${e}`);
+      await o(e), console.log(`Loaded librari ${e}`);
     console.log("All libraries loaded!");
-  }, $ = (i) => {
-    let s = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(s), window.clarity("set", i, "variant_1"));
+  }, A = (i) => {
+    let o = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(o), window.clarity("set", i, "variant_1"));
     }, 1e3);
-  }, g = (i, s, e, r, t = 3e3, d = 1) => {
-    let l, n;
-    if (l = new IntersectionObserver(
+  }, g = (i, o, e, s, t = 3e3, d = 1) => {
+    let n, l;
+    if (n = new IntersectionObserver(
       function(p) {
-        p[0].isIntersecting === !0 ? n = setTimeout(() => {
+        p[0].isIntersecting === !0 ? l = setTimeout(() => {
           c(
-            s,
-            p[0].target.dataset.visible || r || "",
+            o,
+            p[0].target.dataset.visible || s || "",
             "Visibility",
             e
-          ), l.disconnect();
-        }, t) : (console.log("Element is not fully visible"), clearTimeout(n));
+          ), n.disconnect();
+        }, t) : (console.log("Element is not fully visible"), clearTimeout(l));
       },
       { threshold: [d] }
     ), typeof i == "string") {
       const p = document.querySelector(i);
-      p && l.observe(p);
+      p && n.observe(p);
     } else
-      l.observe(i);
-  }, m = (i) => new Promise((s) => {
+      n.observe(i);
+  }, u = (i) => new Promise((o) => {
     const e = document.querySelector(i);
     if (e)
-      return s(e);
-    const r = new MutationObserver(() => {
+      return o(e);
+    const s = new MutationObserver(() => {
       const t = document.querySelector(i);
-      t && (s(t), r.disconnect());
+      t && (o(t), s.disconnect());
     });
-    r.observe(document.documentElement, {
+    s.observe(document.documentElement, {
       childList: !0,
       subtree: !0
     });
-  }), a = "https://conversionratestore.github.io/projects/geeni/img/home-app-web", b = window.innerWidth < 768 ? "mobile" : "desktop", A = (
+  }), a = "https://conversionratestore.github.io/projects/geeni/img/home-app-web", S = window.innerWidth < 768 ? "mobile" : "desktop", P = (
     /*html*/
     `
   <style>
@@ -1596,7 +1596,7 @@
       }
     }
   </style>`
-  ), P = (
+  ), T = (
     /*html*/
     `
   <div class="additional-functional">
@@ -1622,7 +1622,7 @@
       <div class="shop-all__heading">
         <h2 class="heading-2">Shop All Category</h2>
         <a href="/collections/all" class="shop-all__view">
-          Shop all
+          Shop by
           <img src="${a}/arrow-r.svg" alt="">
         </a>
       </div>
@@ -1720,33 +1720,8 @@
     </div>
   </section>
 
-  <section class="new-arrivals">
-    <div class="container">
-      <div class="new-arrivals__content">
-        <h2 class="heading-2">New Arrivals</h2>
-
-        <div class="glide">
-          <div class="glide__track" data-glide-el="track">
-            <ul class="glide__slides">
-            </ul>
-          </div>
-
-          <div class="glide__arrows" data-glide-el="controls">
-            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
-              <img src="${a}/arrow-l.svg" alt="arrow left">
-            </button>
-            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
-              <img src="${a}/arrow-r.svg" alt="arrow right">
-            </button>
-          </div>
-        </div>
-
-      </div>
-      
-    </div>
-  </section>
-
-  <section class="many-devices">
+  ${y() ? "" : `
+    <section class="many-devices">
     <div class="container">
       <div class="many-devices__split">
         <img src="${a}/house-1.jpg" alt="">
@@ -1767,7 +1742,7 @@
       </div>
 
     </div>
-  </section>
+  </section>`}
 
   <section class="trusted-reviews">
     <div class="container">
@@ -1892,8 +1867,8 @@
   </section>
   `
   );
-  $("exp_home_optim"), L(), N();
-  async function T(i, s) {
+  A("exp_home_optim"), z(), O();
+  async function B(i, o) {
     try {
       const e = await fetch(`https://mygeeni.com/products/${i}.json`, {
         method: "GET",
@@ -1921,38 +1896,67 @@
       throw console.error(`Failed to fetch product data for handle ${i}: ${e}`), e;
     }
   }
-  function B(i) {
-    const s = i.length, e = i.map((r, t) => (
+  function E(i) {
+    const o = i.length, s = (
       /*html*/
       `
+      <section class="new-arrivals">
+    <div class="container">
+      <div class="new-arrivals__content">
+        <h2 class="heading-2">New Arrivals</h2>
+
+        <div class="glide">
+          <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+              ${i.map((t, d) => (
+        /*html*/
+        `
       <div class="glide__slide new-arrivals-product">
-          <a href="/products/${r.handle}" class="new-arrivals-product__img-wrap">
-            <img src="${r.image_src}" alt="${r.title}">
+          <a href="/products/${t.handle}" class="new-arrivals-product__img-wrap">
+            <img src="${t.image_src}" alt="${t.title}">
           </a>
           <div class="new-arrivals-product__content">
             <div class="new-arrivals__nav">
               <div class="swiper-button-prev-mob">
                 <img src="${a}/arrow-l.svg" alt="arrow left">
               </div>
-              <p class="new-arrivals-product__number">${t + 1}/${s}</p>
+              <p class="new-arrivals-product__number">${d + 1}/${o}</p>
               <div class="swiper-button-next-mob">
                 <img src="${a}/arrow-r.svg" alt="arrow right">
               </div>
             </div>
-            <a class="new-arrivals-product__title" href="/products/${r.handle}">${r.title}</a>
+            <a class="new-arrivals-product__title" href="/products/${t.handle}">${t.title}</a>
             <div class="new-arrivals-product__price">
-              <span>${r.price}</span>
+              <span>${t.price}</span>
             </div>
-            <p class="new-arrivals-product__description">${r.description}</p>
-            <a class="crs-btn" href="/products/${r.handle}">Shop now</a>
+            <p class="new-arrivals-product__description">${t.description}</p>
+            <a class="crs-btn" href="/products/${t.handle}">Shop now</a>
           </div>
       </div>`
-    )).join("");
-    m(".new-arrivals .new-arrivals__content .glide__slides").then((r) => r == null ? void 0 : r.insertAdjacentHTML("beforeend", e)).then(() => {
-      j();
-    }).catch((r) => console.error("Failed to insert slides to new arrival slider:", r));
+      )).join("")}
+            </ul>
+          </div>
+
+          <div class="glide__arrows" data-glide-el="controls">
+            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+              <img src="${a}/arrow-l.svg" alt="arrow left">
+            </button>
+            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+              <img src="${a}/arrow-r.svg" alt="arrow right">
+            </button>
+          </div>
+        </div>
+
+      </div>
+      
+    </div>
+  </section>`
+    );
+    u('[data-products-type="popular-products"]').then((t) => t == null ? void 0 : t.insertAdjacentHTML("afterend", s)).then(() => {
+      N();
+    });
   }
-  function S(i) {
+  function k(i) {
     const e = (
       /*html*/
       `
@@ -1964,7 +1968,7 @@
           <div class="swiper-wrapper">
             <!-- Slides -->
             ${i.map((t, d) => {
-        const l = t.compare_at_price - t.price, n = Math.round(l / t.compare_at_price * 100), p = l > 0 ? `Save ${n}%` : "", u = t.compare_at_price && t.compare_at_price !== t.price ? `${t.compare_at_price}` : "", _ = t.product_type.toLowerCase().includes("camera") ? "Cameras" : t.product_type;
+        const n = t.compare_at_price - t.price, l = Math.round(n / t.compare_at_price * 100), p = n > 0 ? `Save ${l}%` : "", m = t.compare_at_price && t.compare_at_price !== t.price ? `${t.compare_at_price}` : "", _ = t.product_type.toLowerCase().includes("camera") ? "Cameras" : t.product_type;
         return (
           /*html*/
           `
@@ -1978,7 +1982,7 @@
         <a class="product__title" href="/products/${t.handle}">${t.title}</a>
         <div class="product__price">
           <span>${t.price}</span>
-          <span>${u}</span>
+          <span>${m}</span>
           ${p !== "" ? `<span>${p}</span>` : ""}
         </div>
 
@@ -2004,64 +2008,66 @@
     </div>
   `
     );
-    m(b === "desktop" ? ".free-shipping" : ".shop-all").then((t) => t == null ? void 0 : t.insertAdjacentHTML("afterend", e)).catch((t) => console.error("Failed to insert slides to hero slider:", t));
+    u(S === "desktop" ? ".free-shipping" : ".shop-all").then((t) => t == null ? void 0 : t.insertAdjacentHTML("afterend", e)).catch((t) => console.error("Failed to insert slides to hero slider:", t));
   }
-  async function E() {
-    const i = window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0;
-    let s;
-    m("#productData").then(async (e) => {
-      if (e && e.textContent)
+  function y() {
+    return window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0;
+  }
+  async function I() {
+    let i;
+    u("#productData").then(async (o) => {
+      if (o && o.textContent)
         try {
-          s = JSON.parse(e.textContent);
-        } catch (t) {
-          console.error("Failed to parse product data:", t);
+          i = JSON.parse(o.textContent);
+        } catch (s) {
+          console.error("Failed to parse product data:", s);
         }
       else
         console.error("Product data element or its content is missing");
-      !i && s && S(s);
-      let r = JSON.parse(sessionStorage.getItem("newArrivalsProductsData") || "[]");
-      if (!r.length) {
-        const t = [];
+      !y() && i && k(i);
+      let e = JSON.parse(sessionStorage.getItem("newArrivalsProductsData") || "[]");
+      if (!e.length) {
+        const s = [];
         document.querySelectorAll(".products-list__container .btn.btn--primary").forEach((n) => {
-          const u = new URL(n.href).pathname.split("/products/")[1];
-          u && t.push(u);
+          const p = new URL(n.href).pathname.split("/products/")[1];
+          p && s.push(p);
         });
-        const d = t.map((n, p) => T(n));
-        (await Promise.allSettled(d)).forEach((n, p) => {
+        const t = s.map((n, l) => B(n));
+        (await Promise.allSettled(t)).forEach((n, l) => {
           if (n.status === "fulfilled") {
-            const u = document.querySelectorAll(".products-list__item__description")[p], _ = u ? u.innerText : "", h = n.value.price ? `$${n.value.price}` : "";
-            r.push({ ...n.value, description: _, price: h });
+            const p = document.querySelectorAll(".products-list__item__description")[l], m = p ? p.innerText : "", _ = n.value.price ? `$${n.value.price}` : "";
+            e.push({ ...n.value, description: m, price: _ });
           } else
-            console.error(`Failed to fetch product data for handle ${t[p]}: ${n.reason}`);
-        }), sessionStorage.setItem("newArrivalsProductsData", JSON.stringify(r));
+            console.error(`Failed to fetch product data for handle ${s[l]}: ${n.reason}`);
+        }), sessionStorage.setItem("newArrivalsProductsData", JSON.stringify(e));
       }
-      i && S(r), B(r);
+      y() ? k(e) : E(e);
     });
   }
-  function I() {
-    function i(s, e, r) {
+  function q() {
+    function i(o, e, s) {
       const t = document.createElement("link");
-      t.href = s, t.rel = e, r && (t.crossOrigin = r), document.head.appendChild(t);
+      t.href = o, t.rel = e, s && (t.crossOrigin = s), document.head.appendChild(t);
     }
     i("https://fonts.googleapis.com", "preconnect"), i("https://fonts.gstatic.com", "preconnect", "true"), i("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap", "stylesheet");
   }
-  function q() {
+  function L() {
     const i = setInterval(() => {
-      const s = document.getElementById("INDmenu-btn"), e = document.getElementById("launcher");
-      s && e && (clearInterval(i), m(".additional-functional").then((r) => r == null ? void 0 : r.addEventListener("click", (t) => {
-        var d, l, n, p;
-        t.target, (d = t.target) != null && d.closest('[data-img-func="accessibility"]') ? (s.click(), c("exp_home_optim_button_16", "Accessibility options", "Button", "Home Page        Small Menu")) : (l = t.target) != null && l.closest('[data-img-func="sale"]') ? ((n = document.querySelector(".kl-teaser-T4UsqC")) == null || n.click(), c("exp_home_optim_button_17", "Promo", "Button", "Home Page        Small Menu")) : (p = t.target) != null && p.closest('[data-img-func="chat"]') && ((e.contentDocument || e.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click(), c("exp_home_optim_button_18", "Chat", "Button", "Home Page        Small Menu"));
+      const o = document.getElementById("INDmenu-btn"), e = document.getElementById("launcher");
+      o && e && (clearInterval(i), u(".additional-functional").then((s) => s == null ? void 0 : s.addEventListener("click", (t) => {
+        var d, n, l, p;
+        t.target, (d = t.target) != null && d.closest('[data-img-func="accessibility"]') ? (o.click(), c("exp_home_optim_button_16", "Accessibility options", "Button", "Home Page        Small Menu")) : (n = t.target) != null && n.closest('[data-img-func="sale"]') ? ((l = document.querySelector(".kl-teaser-T4UsqC")) == null || l.click(), c("exp_home_optim_button_17", "Promo", "Button", "Home Page        Small Menu")) : (p = t.target) != null && p.closest('[data-img-func="chat"]') && ((e.contentDocument || e.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click(), c("exp_home_optim_button_18", "Chat", "Button", "Home Page        Small Menu"));
       })), setInterval(() => {
-        var r, t, d;
-        if (document.querySelector('[data-testid="POPUP"]') ? (r = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || r.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (d = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || d.classList.remove("hidden-el") : (t = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || t.classList.add("hidden-el"), document.querySelector('iframe[title="Number of unread messages"]')) {
-          const l = document.querySelector('iframe[title="Number of unread messages"]'), p = (l.contentDocument || l.contentWindow.document).querySelector(".gwgkTo");
+        var s, t, d;
+        if (document.querySelector('[data-testid="POPUP"]') ? (s = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || s.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (d = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || d.classList.remove("hidden-el") : (t = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || t.classList.add("hidden-el"), document.querySelector('iframe[title="Number of unread messages"]')) {
+          const n = document.querySelector('iframe[title="Number of unread messages"]'), p = (n.contentDocument || n.contentWindow.document).querySelector(".gwgkTo");
           document.querySelector('[data-img-func="chat"] p') && (p != null && p.textContent) && (document.querySelector('[data-img-func="chat"]').classList.add("display-msg-number"), document.querySelector('[data-img-func="chat"] p').innerText = p.textContent);
         } else
           document.querySelector(".display-msg-number") && document.querySelector(".display-msg-number").classList.remove("display-msg-number");
       }, 1e3));
     }, 100);
   }
-  function L() {
+  function z() {
     const i = (
       /*html*/
       `
@@ -2110,36 +2116,36 @@
     </style>
   `
     );
-    b === "mobile" && m('.mobile-menu [aria-controls="nav-drawer"]').then((s) => {
-      document.querySelector("h1.logo").insertAdjacentElement("beforebegin", s);
-    }), m("head").then((s) => s.insertAdjacentHTML("beforeend", i));
+    S === "mobile" && u('.mobile-menu [aria-controls="nav-drawer"]').then((o) => {
+      document.querySelector("h1.logo").insertAdjacentElement("beforebegin", o);
+    }), u("head").then((o) => o.insertAdjacentHTML("beforeend", i));
   }
-  function k(i, s) {
+  function F(i, o) {
     const e = `[data-products-type="${i}"] .products-wrapper`;
-    m(e).then((r) => {
-      const t = document.querySelectorAll(s);
-      for (let l = 0; l < 4; l++) {
-        const n = t[l];
-        r.appendChild(n);
+    u(e).then((s) => {
+      const t = document.querySelectorAll(o);
+      for (let n = 0; n < 4; n++) {
+        const l = t[n];
+        s.appendChild(l);
       }
       const d = setInterval(() => {
-        const l = document.querySelectorAll(`${e} .product-grid-item__title`);
-        l[3] && (clearInterval(d), l.forEach((n, p) => {
-          document.querySelectorAll(`${e} .product-grid-item__inner`)[p].insertAdjacentHTML("beforeend", `<a class="product__shop-now" href="${n.href}">Shop now</a>`);
+        const n = document.querySelectorAll(`${e} .product-grid-item__title`);
+        n[3] && (clearInterval(d), n.forEach((l, p) => {
+          document.querySelectorAll(`${e} .product-grid-item__inner`)[p].insertAdjacentHTML("beforeend", `<a class="product__shop-now" href="${l.href}">Shop now</a>`);
         }));
       }, 100);
     });
   }
-  function z() {
+  function H() {
     const i = setInterval(() => {
-      document.querySelector("#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(i), k("popular-products", "#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), k("hot-deals", "#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner"));
+      document.querySelector("#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(i), F("popular-products", "#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), F("hot-deals", "#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner"));
     }, 100);
   }
-  function H() {
-    y(["https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js", "https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"]).then(() => {
+  function j() {
+    b(["https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js", "https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"]).then(() => {
       const i = setInterval(() => {
-        typeof Swiper < "u" && document.querySelectorAll(".swiper")[1] && (clearInterval(i), m(".hero .swiper").then((s) => {
-          const e = s.clientWidth, t = e * 1.07 - e + 16;
+        typeof Swiper < "u" && document.querySelectorAll(".swiper")[1] && (clearInterval(i), u(".hero .swiper").then((o) => {
+          const e = o.clientWidth, t = e * 1.07 - e + 16;
           new Swiper(".hero .swiper", {
             navigation: {
               nextEl: ".hero .swiper-button-next",
@@ -2165,7 +2171,7 @@
               }
             }
           }), g(".hero .swiper", "exp_home_optim_section_03", "Home Page Featured products PDP", "Section", 3e3);
-        }), m(".trusted-reviews .swiper").then((s) => {
+        }), u(".trusted-reviews .swiper").then((o) => {
           new Swiper(".trusted-reviews .swiper", {
             slidesPerView: 3.8,
             spaceBetween: 8,
@@ -2185,12 +2191,12 @@
       }, 100);
     });
   }
-  function j() {
-    y(["https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.core.min.css", "https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/glide.min.js"]).then(() => {
+  function N() {
+    b(["https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.core.min.css", "https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/glide.min.js"]).then(() => {
       const i = setInterval(() => {
         if (typeof Glide < "u" && document.querySelector(".glide")) {
           clearInterval(i);
-          const s = new Glide(".glide", {
+          const o = new Glide(".glide", {
             type: "carousel",
             startAt: 0,
             perView: 2,
@@ -2208,67 +2214,67 @@
               }
             }
           }).mount(), e = setInterval(() => {
-            const r = document.querySelector(".glide__arrow--left"), t = document.querySelector(".glide__arrow--right"), d = document.querySelector(".glide");
-            r && t && (clearInterval(e), d.addEventListener("click", (l) => {
-              var n, p, u, _, h, f;
-              if ((n = l.target) != null && n.closest(".glide__arrow.glide__arrow--right") || (p = l.target) != null && p.closest(".glide__arrow.glide__arrow--left")) {
-                let x = l.target.closest(".glide"), w = x ? x.querySelector(".glide__slide--active .new-arrivals-product__title") : null, o = w ? w.innerText : "No title found";
-                c("exp_home_optim_arrows_01", `${o} - left, right`, "Arrows", "Home Page New Arrivals");
+            const s = document.querySelector(".glide__arrow--left"), t = document.querySelector(".glide__arrow--right"), d = document.querySelector(".glide");
+            s && t && (clearInterval(e), d.addEventListener("click", (n) => {
+              var l, p, m, _, v, f;
+              if ((l = n.target) != null && l.closest(".glide__arrow.glide__arrow--right") || (p = n.target) != null && p.closest(".glide__arrow.glide__arrow--left")) {
+                let x = n.target.closest(".glide"), w = x ? x.querySelector(".glide__slide--active .new-arrivals-product__title") : null, r = w ? w.innerText : "No title found";
+                c("exp_home_optim_arrows_01", `${r} - left, right`, "Arrows", "Home Page New Arrivals");
               } else
-                (u = l.target) != null && u.closest(".swiper-button-prev-mob") ? (s.go("<"), c("exp_home_optim_arrows_01", `${(_ = l.target.closest(".new-arrivals-product")) == null ? void 0 : _.querySelector(".new-arrivals-product__title").innerText} - left, right`, "Arrows", "Home Page New Arrivals")) : (h = l.target) != null && h.closest(".swiper-button-next-mob") && (s.go(">"), c("exp_home_optim_arrows_01", `${(f = l.target.closest(".new-arrivals-product")) == null ? void 0 : f.querySelector(".new-arrivals-product__title").innerText} - left, right`, "Arrows", "Home Page New Arrivals"));
+                (m = n.target) != null && m.closest(".swiper-button-prev-mob") ? (o.go("<"), c("exp_home_optim_arrows_01", `${(_ = n.target.closest(".new-arrivals-product")) == null ? void 0 : _.querySelector(".new-arrivals-product__title").innerText} - left, right`, "Arrows", "Home Page New Arrivals")) : (v = n.target) != null && v.closest(".swiper-button-next-mob") && (o.go(">"), c("exp_home_optim_arrows_01", `${(f = n.target.closest(".new-arrivals-product")) == null ? void 0 : f.querySelector(".new-arrivals-product__title").innerText} - left, right`, "Arrows", "Home Page New Arrivals"));
             }));
           }, 100);
         }
       }, 100);
     });
   }
-  function N() {
-    (window.location.pathname === "/" || window.location.pathname.includes("/index")) && (F({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "AK" }), m("head").then((i) => i == null ? void 0 : i.insertAdjacentHTML("afterend", A)), m("#shopify-section-template--16970486120700__section-marquee").then((i) => i == null ? void 0 : i.insertAdjacentHTML("afterend", P)), E(), H(), z(), I(), m("body").then((i) => i == null ? void 0 : i.classList.add("hide-chat-btn")), m('iframe[title="Messaging window"]').then((i) => {
+  function O() {
+    (window.location.pathname === "/" || window.location.pathname.includes("/index")) && ($({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "AK" }), u("head").then((i) => i == null ? void 0 : i.insertAdjacentHTML("afterend", P)), u("#shopify-section-template--16970486120700__section-marquee").then((i) => i == null ? void 0 : i.insertAdjacentHTML("afterend", T)), I(), j(), H(), q(), u("body").then((i) => i == null ? void 0 : i.classList.add("hide-chat-btn")), u('iframe[title="Messaging window"]').then((i) => {
       i && new MutationObserver((e) => {
-        var r, t;
+        var s, t;
         for (let d of e)
-          d.type === "attributes" && d.attributeName === "tabindex" && ((i == null ? void 0 : i.getAttribute("tabindex")) === "-1" ? (r = document.querySelector("body")) == null || r.classList.add("hide-chat-btn") : (t = document.querySelector("body")) == null || t.classList.remove("hide-chat-btn"));
+          d.type === "attributes" && d.attributeName === "tabindex" && ((i == null ? void 0 : i.getAttribute("tabindex")) === "-1" ? (s = document.querySelector("body")) == null || s.classList.add("hide-chat-btn") : (t = document.querySelector("body")) == null || t.classList.remove("hide-chat-btn"));
       }).observe(i, { attributes: !0 });
-    }), m(".load-more-btn").then((i) => {
+    }), u(".load-more-btn").then((i) => {
       i == null || i.addEventListener("click", () => {
-        const s = document.querySelector(".trusted-load-more");
-        c("exp_home_optim_button_15", "Load more", "Button", "Home Page Reviews"), s && s.classList.remove("load-more-btn-visible");
+        const o = document.querySelector(".trusted-load-more");
+        c("exp_home_optim_button_15", "Load more", "Button", "Home Page Reviews"), o && o.classList.remove("load-more-btn-visible");
       });
-    }), q(), m("body").then((i) => {
-      g(".free-shipping", "exp_home_optim_section_01", "Home Page Free Shipping on Orders Over $69", "Section", 4e3), g(".shop-all .container", "exp_home_optim_section_02", "Home Page Shop by category", "Section"), g(".warranty-sale", "exp_home_optim_section_04", "Home Page Benefits", "Section"), g('[data-products-type="hot-deals"]', "exp_home_optim_section_05", "Home Page Block Deals For You Mobile device users", "Section", 3e3, 0.5), g('[data-products-type="popular-products"]', "exp_home_optim_section_06", "Home Page      Block      Popular Products", "Section", 3e3, 0.5), g(".new-arrivals", "exp_home_optim_section_07", "Home Page New Arrivals", "Section", 4e3, 0.5), g(".many-devices", "exp_home_optim_section_08", "Home Page  Many Devices, One App", "Section", 3e3), g(".trusted-load-more .swiper-slide", "exp_home_optim_section_09", "Home Page Reviews"), g(".trusted-reviews .swiper .swiper-slide", "exp_home_optim_section_09", "Home Page Reviews"), i == null || i.addEventListener("click", (s) => {
-        var r, t, d, l, n, p, u, _, h, f, x, w;
-        const e = s.target;
+    }), L(), u("body").then((i) => {
+      g(".free-shipping", "exp_home_optim_section_01", "Home Page Free Shipping on Orders Over $69", "Section", 4e3), g(".shop-all .container", "exp_home_optim_section_02", "Home Page Shop by category", "Section"), g(".warranty-sale", "exp_home_optim_section_04", "Home Page Benefits", "Section"), g('[data-products-type="hot-deals"]', "exp_home_optim_section_05", "Home Page Block Deals For You Mobile device users", "Section", 3e3, 0.5), g('[data-products-type="popular-products"]', "exp_home_optim_section_06", "Home Page      Block      Popular Products", "Section", 3e3, 0.5), g(".new-arrivals", "exp_home_optim_section_07", "Home Page New Arrivals", "Section", 4e3, 0.5), g(".many-devices", "exp_home_optim_section_08", "Home Page  Many Devices, One App", "Section", 3e3), g(".trusted-load-more .swiper-slide", "exp_home_optim_section_09", "Home Page Reviews"), g(".trusted-reviews .swiper .swiper-slide", "exp_home_optim_section_09", "Home Page Reviews"), i == null || i.addEventListener("click", (o) => {
+        var s, t, d, n, l, p, m, _, v, f, x, w;
+        const e = o.target;
         if (e.closest("button.mobile-menu__button"))
           c("exp_home_optim_button_01", "Menu", "Button", "Home Page Header");
         else if (e.closest(".shop-all__view"))
           c("exp_home_optim_button_04", "Shop all", "Button", "Home Page Shop by category");
         else if (e.closest(".menu-items a")) {
-          const o = (r = e.closest(".menu-items a")) == null ? void 0 : r.querySelector("p");
-          c("exp_home_optim_button_05", `${o == null ? void 0 : o.innerText} - choise category`, "Button", "Home Page Shop by category");
+          const r = (s = e.closest(".menu-items a")) == null ? void 0 : s.querySelector("p");
+          c("exp_home_optim_button_05", `${r == null ? void 0 : r.innerText} - choise category`, "Button", "Home Page Shop by category");
         } else if (e.closest(".hero .product__btn")) {
-          const o = (t = e.closest(".product")) == null ? void 0 : t.querySelector(".product__title");
-          c("exp_home_optim_button_06", `${o == null ? void 0 : o.innerText} - Shop now`, "Button", "Home Page Featured products PDP");
+          const r = (t = e.closest(".product")) == null ? void 0 : t.querySelector(".product__title");
+          c("exp_home_optim_button_06", `${r == null ? void 0 : r.innerText} - Shop now`, "Button", "Home Page Featured products PDP");
         } else if (e.closest(".hero .product__title")) {
-          const o = e.closest(".hero .product__title");
-          c("exp_home_optim_button_07", `${o == null ? void 0 : o.innerText} - Click`, "Button", "Home Page Featured products PDP");
+          const r = e.closest(".hero .product__title");
+          c("exp_home_optim_button_07", `${r == null ? void 0 : r.innerText} - Click`, "Button", "Home Page Featured products PDP");
         } else if (e.closest('[data-products-type="hot-deals"] .product__media__image')) {
-          const o = (d = e.closest(".product-grid-item__inner")) == null ? void 0 : d.querySelector(".product-grid-item__title");
-          c("exp_home_optim_button_08", `${o == null ? void 0 : o.innerText} - click PDP`, "Button", "Home Page          Block          Deals For You          Mobile device users");
+          const r = (d = e.closest(".product-grid-item__inner")) == null ? void 0 : d.querySelector(".product-grid-item__title");
+          c("exp_home_optim_button_08", `${r == null ? void 0 : r.innerText} - click PDP`, "Button", "Home Page          Block          Deals For You          Mobile device users");
         } else if (e.closest('[data-products-type="hot-deals"] .product__shop-now')) {
-          const o = (l = e.closest(".product-grid-item__inner")) == null ? void 0 : l.querySelector(".product-grid-item__title");
-          c("exp_home_optim_button_09", `${o == null ? void 0 : o.innerText} - SHOP NOW`, "Button", "Home Page          Block          Deals For You          Mobile device users");
+          const r = (n = e.closest(".product-grid-item__inner")) == null ? void 0 : n.querySelector(".product-grid-item__title");
+          c("exp_home_optim_button_09", `${r == null ? void 0 : r.innerText} - SHOP NOW`, "Button", "Home Page          Block          Deals For You          Mobile device users");
         } else if (e.closest('[data-products-type="popular-products"] .product__media__image')) {
-          const o = (n = e.closest(".product-grid-item__inner")) == null ? void 0 : n.querySelector(".product-grid-item__title");
-          c("exp_home_optim_button_10", `${o == null ? void 0 : o.innerText} - click PDP`, "Button", "Home Page          Block          Popular Products");
+          const r = (l = e.closest(".product-grid-item__inner")) == null ? void 0 : l.querySelector(".product-grid-item__title");
+          c("exp_home_optim_button_10", `${r == null ? void 0 : r.innerText} - click PDP`, "Button", "Home Page          Block          Popular Products");
         } else if (e.closest('[data-products-type="popular-products"] .product__shop-now')) {
-          const o = (p = e.closest(".product-grid-item__inner")) == null ? void 0 : p.querySelector(".product-grid-item__title");
-          c("exp_home_optim_button_11", `${o == null ? void 0 : o.innerText} - SHOP NOW`, "Button", "Home Page          Block          Popular Products");
+          const r = (p = e.closest(".product-grid-item__inner")) == null ? void 0 : p.querySelector(".product-grid-item__title");
+          c("exp_home_optim_button_11", `${r == null ? void 0 : r.innerText} - SHOP NOW`, "Button", "Home Page          Block          Popular Products");
         } else if (e.closest(".new-arrivals .new-arrivals-product__img-wrap")) {
-          const o = (u = e.closest(".new-arrivals-product")) == null ? void 0 : u.querySelector(".new-arrivals-product__title");
-          c("exp_home_optim_button_12", `${o == null ? void 0 : o.innerText} - click PDP`, "Button", "Home Page          New Arrivals");
+          const r = (m = e.closest(".new-arrivals-product")) == null ? void 0 : m.querySelector(".new-arrivals-product__title");
+          c("exp_home_optim_button_12", `${r == null ? void 0 : r.innerText} - click PDP`, "Button", "Home Page          New Arrivals");
         } else if (e.closest(".new-arrivals .crs-btn")) {
-          const o = (_ = e.closest(".new-arrivals-product")) == null ? void 0 : _.querySelector(".new-arrivals-product__title");
-          c("exp_home_optim_button_13", `${o == null ? void 0 : o.innerText} - SHOP NOW`, "Button", "Home Page          New Arrivals");
+          const r = (_ = e.closest(".new-arrivals-product")) == null ? void 0 : _.querySelector(".new-arrivals-product__title");
+          c("exp_home_optim_button_13", `${r == null ? void 0 : r.innerText} - SHOP NOW`, "Button", "Home Page          New Arrivals");
         } else if (e.closest('[data-device-app="ios"]'))
           c("exp_home_optim_button_14", "Download ios", "Button", "Home Page Many Devices, One App");
         else if (e.closest('[data-device-app="android"]'))
@@ -2278,13 +2284,13 @@
         else if (e.closest('[data-products-type="hot-deals"] .product-grid-item__title'))
           c("exp_home_optim_link_1", `${e.closest('[data-products-type="hot-deals"] .product-grid-item__title').innerText}  - click link`, "Link", "Home Page Block Deals For You");
         else if (e.closest('[data-products-type="hot-deals"] .alternative-options__item')) {
-          const o = (h = e.closest(".product-grid-item__inner")) == null ? void 0 : h.querySelector(".product-grid-item__title"), v = (f = e.closest(".alternative-options__item")) == null ? void 0 : f.querySelector(".alternative-options__item-label");
-          c("exp_home_optim_button_22", `${o == null ? void 0 : o.innerText} - click ${v == null ? void 0 : v.innerText}`, "Button", "Home Page          Block          Deals For You");
+          const r = (v = e.closest(".product-grid-item__inner")) == null ? void 0 : v.querySelector(".product-grid-item__title"), h = (f = e.closest(".alternative-options__item")) == null ? void 0 : f.querySelector(".alternative-options__item-label");
+          c("exp_home_optim_button_22", `${r == null ? void 0 : r.innerText} - click ${h == null ? void 0 : h.innerText}`, "Button", "Home Page          Block          Deals For You");
         } else if (e.closest('[data-products-type="popular-products"] .product-grid-item__title'))
-          c("exp_home_optim_link_2", `${e.closest('[data-products-type="hot-deals"] .product-grid-item__title').innerText}  - click link`, "Link", "Home Page           Block          Popular Products");
+          c("exp_home_optim_link_2", `${e.closest('[data-products-type="popular-products"] .product-grid-item__title').innerText}  - click link`, "Link", "Home Page           Block          Popular Products");
         else if (e.closest('[data-products-type="popular-products"] .alternative-options__item')) {
-          const o = (x = e.closest(".product-grid-item__inner")) == null ? void 0 : x.querySelector(".product-grid-item__title"), v = (w = e.closest(".alternative-options__item")) == null ? void 0 : w.querySelector(".alternative-options__item-label");
-          c("exp_home_optim_button_23", `${o == null ? void 0 : o.innerText} - click ${v == null ? void 0 : v.innerText}`, "Button", "Home Page Block  Popular Products");
+          const r = (x = e.closest(".product-grid-item__inner")) == null ? void 0 : x.querySelector(".product-grid-item__title"), h = (w = e.closest(".alternative-options__item")) == null ? void 0 : w.querySelector(".alternative-options__item-label");
+          c("exp_home_optim_button_23", `${r == null ? void 0 : r.innerText} - click ${h == null ? void 0 : h.innerText}`, "Button", "Home Page Block  Popular Products");
         } else
           e.closest(".new-arrivals-product__title") && c("exp_home_optim_link_3", `${e.closest(".new-arrivals-product__title").innerText} - click link`, "Link", "Home Page Block New Arrivals");
       });
