@@ -95,7 +95,7 @@
     #shopify-section-template--16970486120700__64d03a86-9515-4123-b7eb-3658d349c1e8,
     #INDmenu-btn,
     .gwgkTo,
-    iframe[title="Number of unread messages"]{
+    .btn--scroll-top.is-visible~div[style="visibility: visible;"] iframe[style*="height: 20px; width: 40px; position: fixed;"]{
       display: none !important;
     }
 
@@ -1867,7 +1867,7 @@
   </section>
   `
   );
-  A("exp_home_optim"), z(), O();
+  A("exp_home_optim"), z(), N();
   async function B(i, o) {
     try {
       const e = await fetch(`https://mygeeni.com/products/${i}.json`, {
@@ -1896,7 +1896,7 @@
       throw console.error(`Failed to fetch product data for handle ${i}: ${e}`), e;
     }
   }
-  function E(i) {
+  function I(i) {
     const o = i.length, s = (
       /*html*/
       `
@@ -1953,7 +1953,7 @@
   </section>`
     );
     u('[data-products-type="popular-products"]').then((t) => t == null ? void 0 : t.insertAdjacentHTML("afterend", s)).then(() => {
-      N();
+      O();
     });
   }
   function k(i) {
@@ -2013,7 +2013,7 @@
   function y() {
     return window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0;
   }
-  async function I() {
+  async function E() {
     let i;
     u("#productData").then(async (o) => {
       if (o && o.textContent)
@@ -2041,7 +2041,7 @@
             console.error(`Failed to fetch product data for handle ${s[l]}: ${n.reason}`);
         }), sessionStorage.setItem("newArrivalsProductsData", JSON.stringify(e));
       }
-      y() ? k(e) : E(e);
+      y() ? k(e) : I(e);
     });
   }
   function q() {
@@ -2059,8 +2059,8 @@
         t.target, (d = t.target) != null && d.closest('[data-img-func="accessibility"]') ? (o.click(), c("exp_home_optim_button_16", "Accessibility options", "Button", "Home Page        Small Menu")) : (n = t.target) != null && n.closest('[data-img-func="sale"]') ? ((l = document.querySelector(".kl-teaser-T4UsqC")) == null || l.click(), c("exp_home_optim_button_17", "Promo", "Button", "Home Page        Small Menu")) : (p = t.target) != null && p.closest('[data-img-func="chat"]') && ((e.contentDocument || e.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click(), c("exp_home_optim_button_18", "Chat", "Button", "Home Page        Small Menu"));
       })), setInterval(() => {
         var s, t, d;
-        if (document.querySelector('[data-testid="POPUP"]') ? (s = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || s.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (d = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || d.classList.remove("hidden-el") : (t = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || t.classList.add("hidden-el"), document.querySelector('iframe[title="Number of unread messages"]')) {
-          const n = document.querySelector('iframe[title="Number of unread messages"]'), p = (n.contentDocument || n.contentWindow.document).querySelector(".gwgkTo");
+        if (document.querySelector('[data-testid="POPUP"]') ? (s = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || s.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (d = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || d.classList.remove("hidden-el") : (t = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || t.classList.add("hidden-el"), document.querySelector('.btn--scroll-top.is-visible~div[style="visibility: visible;"] iframe[style*="height: 20px; width: 40px; position: fixed;"]')) {
+          const n = document.querySelector('.btn--scroll-top.is-visible~div[style="visibility: visible;"] iframe[style*="height: 20px; width: 40px; position: fixed;"]'), p = (n.contentDocument || n.contentWindow.document).querySelector(".gwgkTo");
           document.querySelector('[data-img-func="chat"] p') && (p != null && p.textContent) && (document.querySelector('[data-img-func="chat"]').classList.add("display-msg-number"), document.querySelector('[data-img-func="chat"] p').innerText = p.textContent);
         } else
           document.querySelector(".display-msg-number") && document.querySelector(".display-msg-number").classList.remove("display-msg-number");
@@ -2154,6 +2154,10 @@
             slidesPerView: 1.13,
             spaceBetween: 8,
             touchRatio: 0.5,
+            keyboard: {
+              enabled: !0,
+              onlyInViewport: !0
+            },
             slidesOffsetAfter: t,
             // adjust this value as needed
             breakpoints: {
@@ -2177,6 +2181,10 @@
             slidesPerView: 3.8,
             spaceBetween: 8,
             loop: !1,
+            keyboard: {
+              enabled: !0,
+              onlyInViewport: !0
+            },
             navigation: {
               nextEl: ".trusted-reviews .swiper-button-next",
               prevEl: ".trusted-reviews .swiper-button-prev"
@@ -2192,7 +2200,7 @@
       }, 100);
     });
   }
-  function N() {
+  function O() {
     b(["https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.core.min.css", "https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/glide.min.js"]).then(() => {
       const i = setInterval(() => {
         if (typeof Glide < "u" && document.querySelector(".glide")) {
@@ -2202,7 +2210,7 @@
             startAt: 0,
             perView: 2,
             focusAt: "center",
-            keyboard: !1,
+            keyboard: !0,
             bound: !0,
             rewind: !0,
             controls: {
@@ -2229,8 +2237,8 @@
       }, 100);
     });
   }
-  function O() {
-    (window.location.pathname === "/" || window.location.pathname.includes("/index")) && ($({ name: 'Keenethics: "Introduce content based on JBTD on HP"', dev: "AK" }), u("head").then((i) => i == null ? void 0 : i.insertAdjacentHTML("afterend", P)), u("#shopify-section-template--16970486120700__section-marquee").then((i) => i == null ? void 0 : i.insertAdjacentHTML("afterend", T)), I(), j(), H(), q(), u("body").then((i) => i == null ? void 0 : i.classList.add("hide-chat-btn")), u('iframe[title="Messaging window"]').then((i) => {
+  function N() {
+    (window.location.pathname === "/" || window.location.pathname.includes("/index")) && ($({ name: "Geeni: Homepage Optimization", dev: "AK" }), u("head").then((i) => i == null ? void 0 : i.insertAdjacentHTML("afterend", P)), u("#shopify-section-template--16970486120700__section-marquee").then((i) => i == null ? void 0 : i.insertAdjacentHTML("afterend", T)), E(), j(), H(), q(), u("body").then((i) => i == null ? void 0 : i.classList.add("hide-chat-btn")), u('iframe[title="Messaging window"]').then((i) => {
       i && new MutationObserver((e) => {
         var s, t;
         for (let d of e)
