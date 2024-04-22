@@ -2153,6 +2153,7 @@
             },
             slidesPerView: 1.13,
             spaceBetween: 8,
+            touchRatio: 0.5,
             slidesOffsetAfter: t,
             // adjust this value as needed
             breakpoints: {
