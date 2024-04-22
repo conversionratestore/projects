@@ -95,7 +95,7 @@
     #shopify-section-template--16970486120700__64d03a86-9515-4123-b7eb-3658d349c1e8,
     #INDmenu-btn,
     .gwgkTo,
-    .iframe[style*="height: 20px; width: 40px; position: fixed;"]{
+    div[style="visibility: visible;"] iframe[style*="height: 20px; width: 40px; position: fixed;"] {
       display: none !important;
     }
 
@@ -1867,7 +1867,7 @@
   </section>
   `
   );
-  A("exp_home_optim"), z(), N();
+  A("exp_home_optim"), L(), N();
   async function B(i, o) {
     try {
       const e = await fetch(`https://mygeeni.com/products/${i}.json`, {
@@ -2051,7 +2051,7 @@
     }
     i("https://fonts.googleapis.com", "preconnect"), i("https://fonts.gstatic.com", "preconnect", "true"), i("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap", "stylesheet");
   }
-  function L() {
+  function z() {
     const i = setInterval(() => {
       const o = document.getElementById("INDmenu-btn"), e = document.getElementById("launcher");
       o && e && (clearInterval(i), u(".additional-functional").then((s) => s == null ? void 0 : s.addEventListener("click", (t) => {
@@ -2059,15 +2059,15 @@
         t.target, (d = t.target) != null && d.closest('[data-img-func="accessibility"]') ? (o.click(), c("exp_home_optim_button_16", "Accessibility options", "Button", "Home Page        Small Menu")) : (n = t.target) != null && n.closest('[data-img-func="sale"]') ? ((l = document.querySelector(".kl-teaser-T4UsqC")) == null || l.click(), c("exp_home_optim_button_17", "Promo", "Button", "Home Page        Small Menu")) : (p = t.target) != null && p.closest('[data-img-func="chat"]') && ((e.contentDocument || e.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click(), c("exp_home_optim_button_18", "Chat", "Button", "Home Page        Small Menu"));
       })), setInterval(() => {
         var s, t, d;
-        if (document.querySelector('[data-testid="POPUP"]') ? (s = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || s.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (d = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || d.classList.remove("hidden-el") : (t = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || t.classList.add("hidden-el"), document.querySelector('iframe[style*="height: 20px; width: 40px; position: fixed;"]')) {
-          const n = document.querySelector('iframe[style*="height: 20px; width: 40px; position: fixed;"]'), p = (n.contentDocument || n.contentWindow.document).querySelector(".gwgkTo");
+        if (document.querySelector('[data-testid="POPUP"]') ? (s = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || s.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (d = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || d.classList.remove("hidden-el") : (t = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || t.classList.add("hidden-el"), document.querySelector('div[style="visibility: visible;"] iframe[style*="height: 20px; width: 40px; position: fixed;"]')) {
+          const n = document.querySelector('div[style="visibility: visible;"] iframe[style*="height: 20px; width: 40px; position: fixed;"]'), p = (n.contentDocument || n.contentWindow.document).querySelector(".gwgkTo");
           document.querySelector('[data-img-func="chat"] p') && (p != null && p.textContent) && (document.querySelector('[data-img-func="chat"]').classList.add("display-msg-number"), document.querySelector('[data-img-func="chat"] p').innerText = p.textContent);
         } else
           document.querySelector(".display-msg-number") && document.querySelector(".display-msg-number").classList.remove("display-msg-number");
       }, 1e3));
     }, 100);
   }
-  function z() {
+  function L() {
     const i = (
       /*html*/
       `
@@ -2225,12 +2225,12 @@
           }).mount(), e = setInterval(() => {
             const s = document.querySelector(".glide__arrow--left"), t = document.querySelector(".glide__arrow--right"), d = document.querySelector(".glide");
             s && t && (clearInterval(e), d.addEventListener("click", (n) => {
-              var l, p, m, _, v, f;
+              var l, p, m, _, v, x;
               if ((l = n.target) != null && l.closest(".glide__arrow.glide__arrow--right") || (p = n.target) != null && p.closest(".glide__arrow.glide__arrow--left")) {
-                let x = n.target.closest(".glide"), w = x ? x.querySelector(".glide__slide--active .new-arrivals-product__title") : null, r = w ? w.innerText : "No title found";
+                let f = n.target.closest(".glide"), w = f ? f.querySelector(".glide__slide--active .new-arrivals-product__title") : null, r = w ? w.innerText : "No title found";
                 c("exp_home_optim_arrows_01", `${r} - left, right`, "Arrows", "Home Page New Arrivals");
               } else
-                (m = n.target) != null && m.closest(".swiper-button-prev-mob") ? (o.go("<"), c("exp_home_optim_arrows_01", `${(_ = n.target.closest(".new-arrivals-product")) == null ? void 0 : _.querySelector(".new-arrivals-product__title").innerText} - left, right`, "Arrows", "Home Page New Arrivals")) : (v = n.target) != null && v.closest(".swiper-button-next-mob") && (o.go(">"), c("exp_home_optim_arrows_01", `${(f = n.target.closest(".new-arrivals-product")) == null ? void 0 : f.querySelector(".new-arrivals-product__title").innerText} - left, right`, "Arrows", "Home Page New Arrivals"));
+                (m = n.target) != null && m.closest(".swiper-button-prev-mob") ? (o.go("<"), c("exp_home_optim_arrows_01", `${(_ = n.target.closest(".new-arrivals-product")) == null ? void 0 : _.querySelector(".new-arrivals-product__title").innerText} - left, right`, "Arrows", "Home Page New Arrivals")) : (v = n.target) != null && v.closest(".swiper-button-next-mob") && (o.go(">"), c("exp_home_optim_arrows_01", `${(x = n.target.closest(".new-arrivals-product")) == null ? void 0 : x.querySelector(".new-arrivals-product__title").innerText} - left, right`, "Arrows", "Home Page New Arrivals"));
             }));
           }, 100);
         }
@@ -2238,7 +2238,7 @@
     });
   }
   function N() {
-    (window.location.pathname === "/" || window.location.pathname.includes("/index")) && ($({ name: "Geeni: Homepage Optimization", dev: "AK" }), u("head").then((i) => i == null ? void 0 : i.insertAdjacentHTML("afterend", P)), u("#shopify-section-template--16970486120700__section-marquee").then((i) => i == null ? void 0 : i.insertAdjacentHTML("afterend", T)), E(), j(), H(), q(), u("body").then((i) => i == null ? void 0 : i.classList.add("hide-chat-btn")), u('iframe[title="Messaging window"]').then((i) => {
+    (window.location.pathname === "/" || window.location.pathname.includes("/index")) && ($({ name: "Geeni: Homepage Optimization", dev: "AK" }), u("head").then((i) => i == null ? void 0 : i.insertAdjacentHTML("afterend", P)), u("#shopify-section-template--16970486120700__section-marquee").then((i) => i == null ? void 0 : i.insertAdjacentHTML("afterend", T)), E(), j(), H(), q(), u("body").then((i) => i == null ? void 0 : i.classList.add("hide-chat-btn")), u('iframe[style*="position: fixed; box-shadow: rgba(23, 73, 77, 0.15) 0px 20px 30px; z-index: 999999;"]').then((i) => {
       i && new MutationObserver((e) => {
         var s, t;
         for (let d of e)
@@ -2249,9 +2249,9 @@
         const o = document.querySelector(".trusted-load-more");
         c("exp_home_optim_button_15", "Load more", "Button", "Home Page Reviews"), o && o.classList.remove("load-more-btn-visible");
       });
-    }), L(), u("body").then((i) => {
+    }), z(), u("body").then((i) => {
       g(".free-shipping", "exp_home_optim_section_01", "Home Page Free Shipping on Orders Over $69", "Section", 4e3), g(".shop-all .container", "exp_home_optim_section_02", "Home Page Shop by category", "Section"), g(".warranty-sale", "exp_home_optim_section_04", "Home Page Benefits", "Section"), g('[data-products-type="hot-deals"]', "exp_home_optim_section_05", "Home Page Block Deals For You Mobile device users", "Section", 3e3, 0.5), g('[data-products-type="popular-products"]', "exp_home_optim_section_06", "Home Page      Block      Popular Products", "Section", 3e3, 0.5), g(".new-arrivals", "exp_home_optim_section_07", "Home Page New Arrivals", "Section", 4e3, 0.5), g(".many-devices", "exp_home_optim_section_08", "Home Page  Many Devices, One App", "Section", 3e3), g(".trusted-load-more .swiper-slide", "exp_home_optim_section_09", "Home Page Reviews"), g(".trusted-reviews .swiper .swiper-slide", "exp_home_optim_section_09", "Home Page Reviews"), i == null || i.addEventListener("click", (o) => {
-        var s, t, d, n, l, p, m, _, v, f, x, w;
+        var s, t, d, n, l, p, m, _, v, x, f, w;
         const e = o.target;
         if (e.closest("button.mobile-menu__button"))
           c("exp_home_optim_button_01", "Menu", "Button", "Home Page Header");
@@ -2293,12 +2293,12 @@
         else if (e.closest('[data-products-type="hot-deals"] .product-grid-item__title'))
           c("exp_home_optim_link_1", `${e.closest('[data-products-type="hot-deals"] .product-grid-item__title').innerText}  - click link`, "Link", "Home Page Block Deals For You");
         else if (e.closest('[data-products-type="hot-deals"] .alternative-options__item')) {
-          const r = (v = e.closest(".product-grid-item__inner")) == null ? void 0 : v.querySelector(".product-grid-item__title"), h = (f = e.closest(".alternative-options__item")) == null ? void 0 : f.querySelector(".alternative-options__item-label");
+          const r = (v = e.closest(".product-grid-item__inner")) == null ? void 0 : v.querySelector(".product-grid-item__title"), h = (x = e.closest(".alternative-options__item")) == null ? void 0 : x.querySelector(".alternative-options__item-label");
           c("exp_home_optim_button_22", `${r == null ? void 0 : r.innerText} - click ${h == null ? void 0 : h.innerText}`, "Button", "Home Page          Block          Deals For You");
         } else if (e.closest('[data-products-type="popular-products"] .product-grid-item__title'))
           c("exp_home_optim_link_2", `${e.closest('[data-products-type="popular-products"] .product-grid-item__title').innerText}  - click link`, "Link", "Home Page           Block          Popular Products");
         else if (e.closest('[data-products-type="popular-products"] .alternative-options__item')) {
-          const r = (x = e.closest(".product-grid-item__inner")) == null ? void 0 : x.querySelector(".product-grid-item__title"), h = (w = e.closest(".alternative-options__item")) == null ? void 0 : w.querySelector(".alternative-options__item-label");
+          const r = (f = e.closest(".product-grid-item__inner")) == null ? void 0 : f.querySelector(".product-grid-item__title"), h = (w = e.closest(".alternative-options__item")) == null ? void 0 : w.querySelector(".alternative-options__item-label");
           c("exp_home_optim_button_23", `${r == null ? void 0 : r.innerText} - click ${h == null ? void 0 : h.innerText}`, "Button", "Home Page Block  Popular Products");
         } else
           e.closest(".new-arrivals-product__title") && c("exp_home_optim_link_3", `${e.closest(".new-arrivals-product__title").innerText} - click link`, "Link", "Home Page Block New Arrivals");
