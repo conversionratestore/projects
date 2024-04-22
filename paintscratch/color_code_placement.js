@@ -1,11 +1,11 @@
 (function() {
   "use strict";
-  const l = ({ name: e, dev: n }) => {
+  const p = ({ name: e, dev: n }) => {
     console.log(
       `%c EXP: ${e} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, c = (e) => document.querySelectorAll(e), i = (e) => document.querySelector(e), p = (e) => {
+  }, c = (e) => document.querySelectorAll(e), i = (e) => document.querySelector(e), l = (e) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
     }, 1e3);
@@ -34,76 +34,76 @@
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
     <path d="M14.0375 1.3061C13.6432 0.911714 13.0061 0.911714 12.6117 1.3061L7.66667 6.241L2.72165 1.29599C2.32727 0.901601 1.69018 0.901601 1.29579 1.29599C0.901403 1.69038 0.901403 2.32746 1.29579 2.72185L6.2408 7.66687L1.29579 12.6119C0.901403 13.0063 0.901403 13.6434 1.29579 14.0377C1.69018 14.4321 2.32727 14.4321 2.72165 14.0377L7.66667 9.09273L12.6117 14.0377C13.0061 14.4321 13.6432 14.4321 14.0375 14.0377C14.4319 13.6434 14.4319 13.0063 14.0375 12.6119L9.09253 7.66687L14.0375 2.72185C14.4218 2.33758 14.4218 1.69038 14.0375 1.3061Z" fill="white"/>
   </svg>`
-  }, t = {
-    Acura: ["ford_toyota_acura_lincoln_mercury.jpg", "Acura-Paint-Code.gif"],
-    "Alfa-Romeo": ["default", "Hyundai-Paint-Code.gif"],
-    "American-Coach": ["default", "Hyundai-Paint-Code.gif"],
-    "Aston-Martin": ["default", "Hyundai-Paint-Code.gif"],
-    Audi: ["audi.jpg", "Audi-Paint-Code.png"],
-    Bentley: ["default", "Hyundai-Paint-Code.gif"],
-    BMW: ["bmw.jpg", "BMW-Paint-Code.gif", "BMW-Paint-Code-2.png"],
-    "BMW-Motorcycles": ["default", "Hyundai-Paint-Code.gif"],
-    Buick: ["buick.jpg", "Buick-Paint-Code.png"],
-    Cadillac: ["gmc_cadillac.jpg", "Cadillac-Paint-Code.png"],
-    Chevrolet: ["chevy.jpg", "Chevy-Paint-Code.jpg"],
-    Chrysler: ["jeep_dodge_chrysler.jpg", "Chrysler-Paint-Code.png"],
-    Citroen: ["default", "Hyundai-Paint-Code.gif"],
-    "Coachmen-RV": ["default", "Hyundai-Paint-Code.gif"],
-    Daewoo: ["default", "Hyundai-Paint-Code.gif"],
+  }, a = {
+    Acura: ["ford_toyota_acura_lincoln_mercury.png", "Acura-Paint-Code.gif"],
+    "Alfa-Romeo": ["mazda.png", "Hyundai-Paint-Code.gif"],
+    "American-Coach": ["mazda.png", "Hyundai-Paint-Code.gif"],
+    "Aston-Martin": ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Audi: ["audi.png", "Audi-Paint-Code.png"],
+    Bentley: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    BMW: ["bmw.png", "BMW-Paint-Code.gif", "BMW-Paint-Code-2.png"],
+    "BMW-Motorcycles": ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Buick: ["buick.png", "Buick-Paint-Code.png"],
+    Cadillac: ["gmc_cadillac.png", "Cadillac-Paint-Code.png"],
+    Chevrolet: ["chevy.png", "Chevy-Paint-Code.jpg"],
+    Chrysler: ["jeep_dodge_chrysler.png", "Chrysler-Paint-Code.png"],
+    Citroen: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    "Coachmen-RV": ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Daewoo: ["mazda.png", "Hyundai-Paint-Code.gif"],
     Dodge: ["jeep_dodge_chrysler.jpg", "Dodge-Paint-Code.png"],
-    Duckworth: ["default", "Hyundai-Paint-Code.gif"],
-    Ferrari: ["default", "Hyundai-Paint-Code.gif"],
-    Fiat: ["default", "Hyundai-Paint-Code.gif"],
-    Fleetwood: ["default", "Hyundai-Paint-Code.gif"],
+    Duckworth: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Ferrari: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Fiat: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Fleetwood: ["mazda.png", "Hyundai-Paint-Code.gif"],
     Ford: ["ford_toyota_acura_lincoln_mercury.jpg", "Ford-Paint-Code.gif"],
-    "Forest-River": ["default", "Hyundai-Paint-Code.gif"],
-    Fountain: ["default", "Hyundai-Paint-Code.gif"],
-    Freightliner: ["default", "Hyundai-Paint-Code.gif"],
-    GMC: ["gmc_cadillac.jpg", "GMC-Paint-Code.png", "Pontiac-Paint-Code.png"],
-    "Harley-Davidson": ["default", "Hyundai-Paint-Code.gif"],
-    Honda: ["honda.jpg", "Honda-Paint-Code.gif"],
-    "Honda-Motorcycle": ["default", "Hyundai-Paint-Code.gif"],
-    Hyundai: ["hyundai.jpg", "Hyundai-Paint-Code.gif"],
-    Infiniti: ["infiniti.jpg", "Infiniti-Paint-Code.png"],
-    International: ["default", "Hyundai-Paint-Code.gif"],
-    Isata: ["default", "Hyundai-Paint-Code.gif"],
-    Itasca: ["default", "Hyundai-Paint-Code.gif"],
-    Jaguar: ["jaguar.jpg", "Jaguar-Paint-Code.gif"],
-    Jeep: ["jeep_dodge_chrysler.jpg", "Jeep-Paint-Code.png"],
-    Kia: ["kia.jpg", "Kia-Paint-Code.gif"],
-    Lamborghini: ["default", "Hyundai-Paint-Code.gif"],
-    "Land-Rover": ["land-rover.jpg", "Land-Rover-Paint-Code.png"],
-    Lexus: ["lexus.jpg", "Lexus-Paint-Code.gif"],
-    Lincoln: ["ford_toyota_acura_lincoln_mercury.jpg", "Lincoln-Paint-Code.gif"],
-    Lotus: ["default", "Hyundai-Paint-Code.gif"],
-    Lund: ["default", "Hyundai-Paint-Code.gif"],
-    Maserati: ["default", "Hyundai-Paint-Code.gif"],
-    Mazda: ["mazda.jpg", "Mazda-Paint-Code.gif"],
-    "Mercedes-Benz": ["mercedes.jpg", "Mercedes-Benz-Paint-Code.png", "Mercedes-Benz-Paint-Code-2.png"],
-    Mini: ["mini.jpg", "Mini-Paint-Code.png", ""],
-    Mitsubishi: ["mitsubishi.jpg", "Mitsubishi-Paint-Code.gif"],
-    Newmar: ["default", "Hyundai-Paint-Code.gif"],
-    Nissan: ["nissan.jpg", "Nissan-Paint-Code.png"],
-    Opel: ["default", "Hyundai-Paint-Code.gif"],
-    Peterbilt: ["default", "Hyundai-Paint-Code.gif"],
-    Peugeot: ["default", "Hyundai-Paint-Code.gif"],
-    Porsche: ["porsche.jpg", "Porsche-Paint-Code.png"],
-    Renault: ["default", "Hyundai-Paint-Code.gif"],
-    "Rolls-Royce": ["default", "Hyundai-Paint-Code.gif"],
-    "RV-Other": ["default", "Hyundai-Paint-Code.gif"],
-    Saab: ["saab.jpg", "Hyundai-Paint-Code.gif"],
-    Scion: ["scion.jpg", "Scion-Paint-Code.png"],
-    SEAT: ["default", "Hyundai-Paint-Code.gif"],
-    Smart: ["default", "Hyundai-Paint-Code.gif"],
-    Subaru: ["subaru.jpg", "Subaru-Paint-Code.gif"],
-    Suzuki: ["default", "Hyundai-Paint-Code.gif"],
-    "Suzuki-Motorcycle": ["default", "Hyundai-Paint-Code.gif"],
-    Tesla: ["tesla.jpg", "Tesla-Paint-Code.png"],
-    Toyota: ["ford_toyota_acura_lincoln_mercury.jpg", "Toyota-Paint-Code.gif"],
-    Volkswagen: ["VW.jpg", "Volkswagen-Paint-Code.gif"],
-    Volvo: ["volvo.jpg", "Volvo-Paint-Code.png"],
-    Winnebago: ["default", "Hyundai-Paint-Code.gif"],
-    Yamaha: ["default", "Hyundai-Paint-Code.gif"]
+    "Forest-River": ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Fountain: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Freightliner: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    GMC: ["gmc_cadillac.png", "GMC-Paint-Code.png", "Pontiac-Paint-Code.png"],
+    "Harley-Davidson": ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Honda: ["honda.png", "Honda-Paint-Code.gif"],
+    "Honda-Motorcycle": ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Hyundai: ["hyundai.png", "Hyundai-Paint-Code.gif"],
+    Infiniti: ["infiniti.png", "Infiniti-Paint-Code.png"],
+    International: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Isata: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Itasca: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Jaguar: ["jaguar.png", "Jaguar-Paint-Code.gif"],
+    Jeep: ["jeep_dodge_chrysler.png", "Jeep-Paint-Code.png"],
+    Kia: ["kia.png", "Kia-Paint-Code.gif"],
+    Lamborghini: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    "Land-Rover": ["land-rover.png", "Land-Rover-Paint-Code.png"],
+    Lexus: ["lexus.png", "Lexus-Paint-Code.gif"],
+    Lincoln: ["ford_toyota_acura_lincoln_mercury.png", "Lincoln-Paint-Code.gif"],
+    Lotus: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Lund: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Maserati: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Mazda: ["mazda.png", "Mazda-Paint-Code.gif"],
+    "Mercedes-Benz": ["mercedes.png", "Mercedes-Benz-Paint-Code.png", "Mercedes-Benz-Paint-Code-2.png"],
+    Mini: ["mini.png", "Mini-Paint-Code.png", ""],
+    Mitsubishi: ["mitsubishi.png", "Mitsubishi-Paint-Code.gif"],
+    Newmar: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Nissan: ["nissan.png", "Nissan-Paint-Code.png"],
+    Opel: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Peterbilt: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Peugeot: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Porsche: ["porsche.png", "Porsche-Paint-Code.png"],
+    Renault: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    "Rolls-Royce": ["mazda.png", "Hyundai-Paint-Code.gif"],
+    "RV-Other": ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Saab: ["saab.png", "Hyundai-Paint-Code.gif"],
+    Scion: ["scion.png", "Scion-Paint-Code.png"],
+    SEAT: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Smart: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Subaru: ["subaru.png", "Subaru-Paint-Code.gif"],
+    Suzuki: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    "Suzuki-Motorcycle": ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Tesla: ["tesla.png", "Tesla-Paint-Code.png"],
+    Toyota: ["ford_toyota_acura_lincoln_mercury.png", "Toyota-Paint-Code.gif"],
+    Volkswagen: ["VW.png", "Volkswagen-Paint-Code.gif"],
+    Volvo: ["volvo.png", "Volvo-Paint-Code.png"],
+    Winnebago: ["mazda.png", "Hyundai-Paint-Code.gif"],
+    Yamaha: ["mazda.png", "Hyundai-Paint-Code.gif"]
   }, s = {
     Toyota: "/aJhKZ8l5YRk?si=QY48QFGYDJAXPSCn",
     Chevrolet: "/aJhKZ8l5YRk?si=2BSk4WFSkWyXlSXd",
@@ -137,7 +137,7 @@
 </div>
 <button type="button" class="crs_video" style="display: none">${o.play} <span>Video instruction on how to find your color code</span></button>
 <h3>Select the paint color based only on your color code:</h3>`
-  ), f = (e) => (
+  ), m = (e) => (
     /* HTML */
     `<div class="crs_popup crs_popup_video">
   <div class="crs_popup_container">
@@ -145,7 +145,7 @@
     <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${e}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </div> 
 </div>`
-  ), h = (
+  ), f = (
     /* HTML */
     `<div class="crs_popup crs_popup_image">
   <div class="crs_popup_container">
@@ -153,7 +153,7 @@
     <img src="#" alt="image">
   </div> 
 </div>`
-  ), m = `#page {
+  ), h = `#page {
   margin-top: 0;
 }
 
@@ -394,15 +394,15 @@
   .crs_popup iframe {
     min-height: 300px;
   }
-}/*# sourceMappingURL=main.css.map */`;
-  l({ name: "Color code placement", dev: "Olha" }), p("exp_сolor_code_placement");
+}`;
+  p({ name: "Color code placement", dev: "Olha" }), l("exp_сolor_code_placement");
   const y = window.innerWidth < 768 ? "mobile" : "desktop";
   class _ {
     constructor(n) {
       this.device = n, this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${m}</style>`), this.addAccordion(), this.addImages(), this.addVideo(), this.closePopup();
+      document.head.insertAdjacentHTML("beforeend", `<style>${h}</style>`), this.addAccordion(), this.addImages(), this.addVideo(), this.closePopup();
     }
     addAccordion() {
       i(".crs_accordion") || i(".select-color span.instructions + p") && (i(".select-color span.instructions + p").insertAdjacentHTML("afterend", g), i(".crs_accordion_current").addEventListener("click", (n) => {
@@ -412,11 +412,11 @@
     addImages() {
       if (i("#color-display-table") && !i(".crs_images")) {
         i("#color-display-table").insertAdjacentHTML("beforebegin", u);
-        for (let n in t)
+        for (let n in a)
           if (i("#page #main h1").innerText.toLowerCase().includes(n.toLowerCase())) {
             console.log(n);
-            let a = t[n][2] != null ? `<div class="relative"><img src="${r + "color-id-tag/" + t[n][2]}" alt="image">${o.zoom}</div>` : "";
-            i(".crs_images_left img").src = r + "paint-code-locations/" + t[n][0], i(".crs_images_right").innerHTML = `<div class="relative"><img src="${r + "color-id-tag/" + t[n][1]}" alt="image">${o.zoom}</div>` + a, document.body.insertAdjacentHTML("beforeend", h), c(".crs_icon_zoom").forEach((d, C) => {
+            let t = a[n][2] != null ? `<div class="relative"><img src="${r + "color-id-tag/" + a[n][2]}" alt="image">${o.zoom}</div>` : "";
+            i(".crs_images_left img").src = r + "paint-code-locations/" + a[n][0], i(".crs_images_right").innerHTML = `<div class="relative"><img src="${r + "color-id-tag/" + a[n][1]}" alt="image">${o.zoom}</div>` + t, document.body.insertAdjacentHTML("beforeend", f), c(".crs_icon_zoom").forEach((d, C) => {
               d.addEventListener("click", (v) => {
                 i(".crs_popup_image img").src = d.parentElement.querySelector("img").src, setTimeout(() => {
                   i(".crs_popup_image").classList.add("active");
@@ -430,8 +430,8 @@
       if (!i(".crs_video") || i(".crs_popup_video"))
         return;
       let n = i(".crs_video");
-      for (let a in s)
-        i("#page #main h1").innerText.toLowerCase().includes(a.toLowerCase()) && (n.insertAdjacentHTML("afterend", f(s[a])), n.style.display = "flex", n.addEventListener("click", (d) => {
+      for (let t in s)
+        i("#page #main h1").innerText.toLowerCase().includes(t.toLowerCase()) && (n.insertAdjacentHTML("afterend", m(s[t])), n.style.display = "flex", n.addEventListener("click", (d) => {
           i(".crs_popup_video").classList.add("active");
         }));
     }
@@ -443,7 +443,7 @@
     }
     closePopup() {
       c(".crs_popup_head svg").forEach((n) => {
-        n.addEventListener("click", (a) => {
+        n.addEventListener("click", (t) => {
           n.closest(".crs_popup").classList.remove("active"), this.stopVideo();
         });
       }), document.addEventListener("click", (n) => {
