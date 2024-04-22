@@ -59,7 +59,7 @@
     "Forest-River": ["default", "Hyundai-Paint-Code.gif"],
     Fountain: ["default", "Hyundai-Paint-Code.gif"],
     Freightliner: ["default", "Hyundai-Paint-Code.gif"],
-    GMC: ["gmc_cadillac.jpg", "GMC-Paint-Code.png", "Pontiac-Paint-Code"],
+    GMC: ["gmc_cadillac.jpg", "GMC-Paint-Code.png", "Pontiac-Paint-Code.png"],
     "Harley-Davidson": ["default", "Hyundai-Paint-Code.gif"],
     Honda: ["honda.jpg", "Honda-Paint-Code.gif"],
     "Honda-Motorcycle": ["default", "Hyundai-Paint-Code.gif"],
@@ -397,7 +397,7 @@
 }/*# sourceMappingURL=main.css.map */`;
   l({ name: "Color code placement", dev: "Olha" }), p("exp_сolor_code_placement");
   const y = window.innerWidth < 768 ? "mobile" : "desktop";
-  class C {
+  class _ {
     constructor(n) {
       this.device = n, this.init();
     }
@@ -416,9 +416,11 @@
           if (i("#page #main h1").innerText.toLowerCase().includes(n.toLowerCase())) {
             console.log(n);
             let a = t[n][2] != null ? `<div class="relative"><img src="${r + "color-id-tag/" + t[n][2]}" alt="image">${o.zoom}</div>` : "";
-            i(".crs_images_left img").src = r + "paint-code-locations/" + t[n][0], i(".crs_images_right").innerHTML = `<div class="relative"><img src="${r + "color-id-tag/" + t[n][1]}" alt="image">${o.zoom}</div>` + a, document.body.insertAdjacentHTML("beforeend", h), c(".crs_icon_zoom").forEach((d, _) => {
+            i(".crs_images_left img").src = r + "paint-code-locations/" + t[n][0], i(".crs_images_right").innerHTML = `<div class="relative"><img src="${r + "color-id-tag/" + t[n][1]}" alt="image">${o.zoom}</div>` + a, document.body.insertAdjacentHTML("beforeend", h), c(".crs_icon_zoom").forEach((d, C) => {
               d.addEventListener("click", (v) => {
-                i(".crs_popup_image img").src = d.parentElement.querySelector("img").src, i(".crs_popup_image").classList.add("active");
+                i(".crs_popup_image img").src = d.parentElement.querySelector("img").src, setTimeout(() => {
+                  i(".crs_popup_image").classList.add("active");
+                }, 200);
               });
             });
           }
@@ -433,15 +435,21 @@
           i(".crs_popup_video").classList.add("active");
         }));
     }
+    stopVideo() {
+      if (!i(".crs_popup_video iframe"))
+        return;
+      let n = i(".crs_popup_video iframe").src;
+      i(".crs_popup_video iframe").src = n;
+    }
     closePopup() {
       c(".crs_popup_head svg").forEach((n) => {
         n.addEventListener("click", (a) => {
-          n.closest(".crs_popup").classList.remove("active");
+          n.closest(".crs_popup").classList.remove("active"), this.stopVideo();
         });
       }), document.addEventListener("click", (n) => {
-        n.target.classList.contains("crs_popup") && n.target.classList.remove("active");
+        n.target.classList.contains("crs_popup") && (n.target.classList.remove("active"), this.stopVideo());
       });
     }
   }
-  new C(y);
+  new _(y);
 })();
