@@ -1,15 +1,23 @@
 (function() {
   "use strict";
-  const p = ({ name: e, dev: n }) => {
+  const t = (e, n, o, a = "") => {
+    window.dataLayer = window.dataLayer || [], window.dataLayer.push({
+      event: "event-to-ga4",
+      event_name: e,
+      event_desc: n,
+      event_type: o,
+      event_loc: a
+    }), console.log(`Event: ${e} | ${n} | ${o} | ${a}`);
+  }, l = ({ name: e, dev: n }) => {
     console.log(
       `%c EXP: ${e} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, c = (e) => document.querySelectorAll(e), i = (e) => document.querySelector(e), l = (e) => {
+  }, s = (e) => document.querySelectorAll(e), i = (e) => document.querySelector(e), g = (e) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, r = "https://conversionratestore.github.io/projects/paintscratch/img/", o = {
+  }, c = "https://conversionratestore.github.io/projects/paintscratch/img/", r = {
     zoom: (
       /*html */
       `
@@ -34,7 +42,7 @@
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
     <path d="M14.0375 1.3061C13.6432 0.911714 13.0061 0.911714 12.6117 1.3061L7.66667 6.241L2.72165 1.29599C2.32727 0.901601 1.69018 0.901601 1.29579 1.29599C0.901403 1.69038 0.901403 2.32746 1.29579 2.72185L6.2408 7.66687L1.29579 12.6119C0.901403 13.0063 0.901403 13.6434 1.29579 14.0377C1.69018 14.4321 2.32727 14.4321 2.72165 14.0377L7.66667 9.09273L12.6117 14.0377C13.0061 14.4321 13.6432 14.4321 14.0375 14.0377C14.4319 13.6434 14.4319 13.0063 14.0375 12.6119L9.09253 7.66687L14.0375 2.72185C14.4218 2.33758 14.4218 1.69038 14.0375 1.3061Z" fill="white"/>
   </svg>`
-  }, a = {
+  }, d = {
     Acura: ["ford_toyota_acura_lincoln_mercury.png", "Acura-Paint-Code.gif"],
     "Alfa-Romeo": ["mazda.png", "Hyundai-Paint-Code.gif"],
     "American-Coach": ["mazda.png", "Hyundai-Paint-Code.gif"],
@@ -104,7 +112,7 @@
     Volvo: ["volvo.png", "Volvo-Paint-Code.png"],
     Winnebago: ["mazda.png", "Hyundai-Paint-Code.gif"],
     Yamaha: ["mazda.png", "Hyundai-Paint-Code.gif"]
-  }, s = {
+  }, p = {
     Toyota: "/aJhKZ8l5YRk?si=QY48QFGYDJAXPSCn",
     Chevrolet: "/aJhKZ8l5YRk?si=2BSk4WFSkWyXlSXd",
     Volkswagen: "/XF4WvErVRoY?si=DflJ6t0zyB_9COKc",
@@ -113,7 +121,7 @@
     GMC: "/aJhKZ8l5YRk?si=2BSk4WFSkWyXlSXd",
     Cadillac: "/aJhKZ8l5YRk?si=2BSk4WFSkWyXlSXd",
     Pontiac: "/aJhKZ8l5YRk?si=2BSk4WFSkWyXlSXd"
-  }, g = (
+  }, u = (
     /* HTML */
     `<div class="crs_accordion">
   <h3>To proceed to paint selection, start with finding your car color code</h3>
@@ -126,34 +134,34 @@
     <p><b>Remember: To avoid color mismatches, never rely on visual impressions from a screen or paint names. Always refer to the color code.</b></p>
   </div>
 </div>`
-  ), u = (
+  ), m = (
     /* HTML */
     `<div class="crs_images">
   <h3>Where to find your vehicle’s color code:</h3>
   <div class="d-lg-flex crs_images_row">
-    <div class="crs_images_left relative"><img src="" alt="image">${o.zoom}</div>
+    <div class="crs_images_left relative"><img src="${c}/color-id-tag/mazda.png" alt="image">${r.zoom}</div>
     <div class="crs_images_right"></div>
   </div>
 </div>
-<button type="button" class="crs_video" style="display: none">${o.play} <span>Video instruction on how to find your color code</span></button>
+<button type="button" class="crs_video" style="display: none">${r.play} <span>Video instruction on how to find your color code</span></button>
 <h3>Select the paint color based only on your color code:</h3>`
-  ), m = (e) => (
+  ), f = (e) => (
     /* HTML */
     `<div class="crs_popup crs_popup_video">
   <div class="crs_popup_container">
-    <div class="crs_popup_head">Video instruction ${o.close}</div> 
+    <div class="crs_popup_head">Video instruction ${r.close}</div> 
     <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${e}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </div> 
 </div>`
-  ), f = (
+  ), h = (
     /* HTML */
     `<div class="crs_popup crs_popup_image">
   <div class="crs_popup_container">
-    <div class="crs_popup_head">${o.close}</div> 
+    <div class="crs_popup_head">${r.close}</div> 
     <img src="#" alt="image">
   </div> 
 </div>`
-  ), h = `#page {
+  ), _ = `#page {
   margin-top: 0;
 }
 
@@ -394,33 +402,34 @@
   .crs_popup iframe {
     min-height: 300px;
   }
-}`;
-  p({ name: "Color code placement", dev: "Olha" }), l("exp_сolor_code_placement");
+}/*# sourceMappingURL=main.css.map */`;
+  l({ name: "Color code placement", dev: "Olha" }), g("exp_сolor_code_placement");
   const y = window.innerWidth < 768 ? "mobile" : "desktop";
-  class _ {
+  class v {
     constructor(n) {
       this.device = n, this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${h}</style>`), this.addAccordion(), this.addImages(), this.addVideo(), this.closePopup();
+      document.head.insertAdjacentHTML("beforeend", `<style>${_}</style>`), this.addAccordion(), this.addImages(), this.addVideo(), this.closePopup();
     }
     addAccordion() {
-      i(".crs_accordion") || i(".select-color span.instructions + p") && (i(".select-color span.instructions + p").insertAdjacentHTML("afterend", g), i(".crs_accordion_current").addEventListener("click", (n) => {
+      i(".crs_accordion") || i(".select-color span.instructions + p") && (i(".select-color span.instructions + p").insertAdjacentHTML("afterend", u), i(".crs_accordion_current").addEventListener("click", (n) => {
         i(".crs_accordion").classList.toggle("active");
       }));
     }
     addImages() {
       if (i("#color-display-table") && !i(".crs_images")) {
-        i("#color-display-table").insertAdjacentHTML("beforebegin", u);
-        for (let n in a)
+        i("#color-display-table").insertAdjacentHTML("beforebegin", m);
+        for (let n in d)
           if (i("#page #main h1").innerText.toLowerCase().includes(n.toLowerCase())) {
-            console.log(n);
-            let t = a[n][2] != null ? `<div class="relative"><img src="${r + "color-id-tag/" + a[n][2]}" alt="image">${o.zoom}</div>` : "";
-            i(".crs_images_left img").src = r + "paint-code-locations/" + a[n][0], i(".crs_images_right").innerHTML = `<div class="relative"><img src="${r + "color-id-tag/" + a[n][1]}" alt="image">${o.zoom}</div>` + t, document.body.insertAdjacentHTML("beforeend", f), c(".crs_icon_zoom").forEach((d, C) => {
-              d.addEventListener("click", (v) => {
-                i(".crs_popup_image img").src = d.parentElement.querySelector("img").src, setTimeout(() => {
+            let o = d[n][2] != null ? `<div class="relative"><img src="${c + "color-id-tag/" + d[n][2]}" alt="image">${r.zoom}</div>` : "";
+            i(".crs_images_left img").src.includes(d[n][0]) || (i(".crs_images_left img").src = c + "paint-code-locations/" + d[n][0]), i(".crs_images_right").innerHTML = `<div class="relative"><img src="${c + "color-id-tag/" + d[n][1]}" alt="image">${r.zoom}</div>` + o, document.body.insertAdjacentHTML("beforeend", h), s(".crs_icon_zoom").forEach((a, x) => {
+              a.addEventListener("click", (w) => {
+                i(".crs_popup_image img").src = a.parentElement.querySelector("img").src, setTimeout(() => {
                   i(".crs_popup_image").classList.add("active");
                 }, 200);
+                let C = a.closest(".crs_images_right") ? "Color plate" : "Where to find your color";
+                t("exp_color_code_image_01", "Section", "Image", C);
               });
             });
           }
@@ -430,9 +439,11 @@
       if (!i(".crs_video") || i(".crs_popup_video"))
         return;
       let n = i(".crs_video");
-      for (let t in s)
-        i("#page #main h1").innerText.toLowerCase().includes(t.toLowerCase()) && (n.insertAdjacentHTML("afterend", m(s[t])), n.style.display = "flex", n.addEventListener("click", (d) => {
-          i(".crs_popup_video").classList.add("active");
+      for (let o in p)
+        i("#page #main h1").innerText.toLowerCase().includes(o.toLowerCase()) && (n.insertAdjacentHTML("afterend", f(p[o])), i(".crs_popup_video iframe").addEventListener("click", (a) => {
+          t("exp_color_code_button_01", "Play", "Button", "Video instruction pop up");
+        }), n.style.display = "flex", n.addEventListener("click", (a) => {
+          i(".crs_popup_video").classList.add("active"), t("exp_color_code_link_01", "Video", "Link", "Video instruction on how to find your color code");
         }));
     }
     stopVideo() {
@@ -442,14 +453,14 @@
       i(".crs_popup_video iframe").src = n;
     }
     closePopup() {
-      c(".crs_popup_head svg").forEach((n) => {
-        n.addEventListener("click", (t) => {
-          n.closest(".crs_popup").classList.remove("active"), this.stopVideo();
+      s(".crs_popup_head svg").forEach((n) => {
+        n.addEventListener("click", (o) => {
+          n.closest(".crs_popup").classList.remove("active"), this.stopVideo(), n.closest(".crs_popup_video") ? t("exp_color_code_button_02", "Close", "Button", "Video instruction pop up") : t("exp_color_code_button_02", "Close", "Button", "Image pop up");
         });
       }), document.addEventListener("click", (n) => {
-        n.target.classList.contains("crs_popup") && (n.target.classList.remove("active"), this.stopVideo());
+        n.target.classList.contains("crs_popup") && (n.target.classList.remove("active"), this.stopVideo(), n.target.classList.contains("crs_popup_video") ? t("exp_color_code_under_01", "Close", "Under", "Video instruction pop up") : t("exp_color_code_under_01", "Close", "Under", "Image pop up"));
       });
     }
   }
-  new _(y);
+  new v(y);
 })();
