@@ -95,7 +95,7 @@
     #shopify-section-template--16970486120700__64d03a86-9515-4123-b7eb-3658d349c1e8,
     #INDmenu-btn,
     .gwgkTo,
-    .btn--scroll-top.is-visible~div[style="visibility: visible;"] iframe[style*="height: 20px; width: 40px; position: fixed;"]{
+    .iframe[style*="height: 20px; width: 40px; position: fixed;"]{
       display: none !important;
     }
 
@@ -2059,8 +2059,8 @@
         t.target, (d = t.target) != null && d.closest('[data-img-func="accessibility"]') ? (o.click(), c("exp_home_optim_button_16", "Accessibility options", "Button", "Home Page        Small Menu")) : (n = t.target) != null && n.closest('[data-img-func="sale"]') ? ((l = document.querySelector(".kl-teaser-T4UsqC")) == null || l.click(), c("exp_home_optim_button_17", "Promo", "Button", "Home Page        Small Menu")) : (p = t.target) != null && p.closest('[data-img-func="chat"]') && ((e.contentDocument || e.contentWindow.document).querySelector('[data-garden-id="buttons.icon_button"]').click(), c("exp_home_optim_button_18", "Chat", "Button", "Home Page        Small Menu"));
       })), setInterval(() => {
         var s, t, d;
-        if (document.querySelector('[data-testid="POPUP"]') ? (s = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || s.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (d = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || d.classList.remove("hidden-el") : (t = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || t.classList.add("hidden-el"), document.querySelector('.btn--scroll-top.is-visible~div[style="visibility: visible;"] iframe[style*="height: 20px; width: 40px; position: fixed;"]')) {
-          const n = document.querySelector('.btn--scroll-top.is-visible~div[style="visibility: visible;"] iframe[style*="height: 20px; width: 40px; position: fixed;"]'), p = (n.contentDocument || n.contentWindow.document).querySelector(".gwgkTo");
+        if (document.querySelector('[data-testid="POPUP"]') ? (s = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || s.classList.remove("hidden-el") : document.querySelector(".kl-teaser-T4UsqC") ? (d = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || d.classList.remove("hidden-el") : (t = document.querySelector('.additional-functional [data-img-func="sale"]')) == null || t.classList.add("hidden-el"), document.querySelector('iframe[style*="height: 20px; width: 40px; position: fixed;"]')) {
+          const n = document.querySelector('iframe[style*="height: 20px; width: 40px; position: fixed;"]'), p = (n.contentDocument || n.contentWindow.document).querySelector(".gwgkTo");
           document.querySelector('[data-img-func="chat"] p') && (p != null && p.textContent) && (document.querySelector('[data-img-func="chat"]').classList.add("display-msg-number"), document.querySelector('[data-img-func="chat"] p').innerText = p.textContent);
         } else
           document.querySelector(".display-msg-number") && document.querySelector(".display-msg-number").classList.remove("display-msg-number");
