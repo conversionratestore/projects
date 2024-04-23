@@ -278,7 +278,7 @@
           <div class="points">
             <p>
               ${svgObj.hat}
-              During the next 1 hour, you’ll discover:
+              During the next 25 minutes, you’ll discover:
             </p>
             <ul>
               <li>${svgObj.pencil}<p><b>Insider tips</b> for top Canadian and US university admissions</p></li>
@@ -302,7 +302,7 @@
           <div class="points">
             <p>
               ${svgObj.hat}
-              During the next 30 minutes, you’ll discover:
+              During the next 15 minutes, you’ll discover:
             </p>
             <ul>
               <li>${svgObj.pencil}<p>How to <b>maximize your GPA</b> while fulfilling essential prerequisites</p></li>
@@ -359,6 +359,7 @@
             outline: none;
             width: 100%;
             background: transparent;
+            cursor: pointer;
           }
           .popup2_1 label svg {
             position: absolute;
@@ -366,6 +367,7 @@
             right: 13px;
             transform: translateY(-50%);
             z-index: 6;
+            cursor: pointer;
           }
           .popup2_1 label:first-of-type svg {
             pointer-events: none;
@@ -397,7 +399,7 @@
               In addition, GrantMe offers easy installment plans with our partner Affirm:
             </p>
             <ul>
-              <li><p>Secure your future with payments <b>as low as $200/month</b> — interest-free options available.<br>There is <b>no impact on your credit score.</b></p></li>
+              <li><p>Secure your future with payments <b>as low as $200/month</b>&nbsp;— interest-free options available.<br>There is <b>no impact on your credit score.</b></p></li>
             </ul>
           </div>
           <div class="note">
@@ -571,6 +573,7 @@
           .slider_desktop .slider_stories .slide .description {
             font-size: 14px;
             line-height: 1.5;
+            color: #2B3E51;
           }
           .slider_desktop .tns-outer [data-action] {
             display: none;
@@ -591,6 +594,9 @@
             font-size: 16px;
             line-height: 1.5;
           }
+          .popup_content h2+p b {
+            color: #2B3E51;
+          }
           .popup_content .points {
             margin: 16px 0;
             border-radius: 6px;
@@ -604,7 +610,7 @@
             gap: 12px;
             color: #2B3E51;
             align-items: center;
-            font-size: 18px;
+            font-size: 16px;
             line-height: 1.3;
             font-family: 'Bitter', serif;
             font-weight: 700;
@@ -715,6 +721,7 @@
             margin-bottom: 4px;
             text-transform: uppercase;
             font-weight: 700;
+            font-family: 'Bitter', serif;
           }
           .popup_content .satisfaction h4+p {
             color: #676767;
@@ -752,6 +759,9 @@
             }
             .slider_desktop {
               display: none;
+            }
+            .popup_content {
+              padding: 20px 16px;
             }
           }
 
@@ -916,6 +926,14 @@
             this.createPopup(this.videoTime)
           }
         })
+      }
+
+      const originalConsoleLog = console.log
+      console.log = message => {
+        if (message === 'Leaving fullscreen mode') {
+          this.createPopup(this.videoTime)
+        }
+        originalConsoleLog.apply(console, arguments)
       }
     }
 
