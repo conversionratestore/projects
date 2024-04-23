@@ -1,32 +1,33 @@
-console.log(
-  '%c EXP: Introduce express checkout buttons ',
-  'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;'
-)
-const $$el = selector => document.querySelectorAll(selector)
-const $el = selector => document.querySelector(selector)
-const git = 'https://conversionratestore.github.io/projects/'
+window.onload = () => {
+  console.log(
+    '%c EXP: Introduce express checkout buttons ',
+    'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;'
+  )
+  const $$el = selector => document.querySelectorAll(selector)
+  const $el = selector => document.querySelector(selector)
+  const git = 'https://conversionratestore.github.io/projects/'
 
-// funtion for push data to GA4
-const pushDataLayer = (name, desc, type = '', loc = '') => {
-  window.dataLayer = window.dataLayer || []
-  window.dataLayer.push({
-    event: 'event-to-ga4',
-    event_name: name,
-    event_desc: desc,
-    event_type: type,
-    event_loc: loc
-  })
-  console.log(`Event: ${name} ${desc} ${type} ${loc}`)
-}
-
-const clarityInterval = setInterval(function () {
-  if (typeof clarity == 'function') {
-    clearInterval(clarityInterval)
-    clarity('set', 'express_checkout_buttons', 'variant_1')
+  // funtion for push data to GA4
+  const pushDataLayer = (name, desc, type = '', loc = '') => {
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push({
+      event: 'event-to-ga4',
+      event_name: name,
+      event_desc: desc,
+      event_type: type,
+      event_loc: loc
+    })
+    console.log(`Event: ${name} ${desc} ${type} ${loc}`)
   }
-}, 1000)
 
-const img1 = /* html */ `
+  const clarityInterval = setInterval(function () {
+    if (typeof clarity == 'function') {
+      clearInterval(clarityInterval)
+      clarity('set', 'express_checkout_buttons', 'variant_1')
+    }
+  }, 1000)
+
+  const img1 = /* html */ `
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
     <g clip-path="url(#clip0_50_391)">
     <path d="M6.33333 16C5.88733 16 5.46867 15.8267 5.154 15.5113L0.488 10.8447C0.173333 10.5307 0 10.112 0 9.66667C0 9.23867 0.162 8.832 0.456 8.52133L7.974 0.728C8.41 0.266 9.028 0 9.66667 0H14.3333C15.2527 0 16 0.748 16 1.66667V6.33333C16 6.97133 15.7347 7.58867 15.2713 8.02733L7.48067 15.542C7.16733 15.838 6.76133 16 6.33333 16ZM9.66667 0.666667C9.204 0.666667 8.77333 0.852 8.456 1.188L0.938 8.982C0.764 9.166 0.666667 9.41 0.666667 9.66667C0.666667 9.934 0.770667 10.1847 0.959333 10.3733L5.626 15.04C5.996 15.4107 6.64 15.42 7.02 15.0593L14.81 7.546C14.8107 7.54533 14.8113 7.54467 14.812 7.544C15.1487 7.226 15.3333 6.796 15.3333 6.33333V1.66667C15.3333 1.11533 14.8847 0.666667 14.3333 0.666667H9.66667Z" fill="#212121"/>
@@ -43,7 +44,7 @@ const img1 = /* html */ `
   </svg>
 `
 
-const img2 = /* html */ `
+  const img2 = /* html */ `
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
     <g clip-path="url(#clip0_50_409)">
     <path d="M14.3333 2.6665H1.66666C0.747344 2.6665 0 3.4145 0 4.33319V11.6665C0 12.5852 0.747344 13.3332 1.66666 13.3332H14.3333C15.2527 13.3332 16 12.5852 16 11.6665V4.33319C16 3.4145 15.2527 2.6665 14.3333 2.6665ZM15.3333 11.6665C15.3333 12.2178 14.8847 12.6665 14.3333 12.6665H1.66666C1.11531 12.6665 0.666656 12.2178 0.666656 11.6665V4.33319C0.666656 3.78185 1.11531 3.33319 1.66666 3.33319H14.3333C14.8847 3.33319 15.3333 3.78185 15.3333 4.33319V11.6665H15.3333Z" fill="#212121"/>
@@ -63,26 +64,26 @@ const img2 = /* html */ `
   </svg>
 `
 
-const device = window.innerWidth < 768 ? 'mobile' : 'desktop'
+  const device = window.innerWidth < 768 ? 'mobile' : 'desktop'
 
-class ExpCheckoutBtns {
-  constructor(d) {
-    this.device = d
-    this.country = window.location.pathname.includes('us') ? 'us' : 'uk'
-    this.init()
-  }
+  class ExpCheckoutBtns {
+    constructor(d) {
+      this.device = d
+      this.country = window.location.pathname.includes('us') ? 'us' : 'uk'
+      this.init()
+    }
 
-  init() {
-    this.styles()
-    this.mainScript()
-    this.addCouponField()
-    this.stylingBasecouponFields()
-    this.controlMutation()
-    this.visibleHandler()
-  }
+    init() {
+      this.styles()
+      this.mainScript()
+      this.addCouponField()
+      this.stylingBasecouponFields()
+      this.controlMutation()
+      this.visibleHandler()
+    }
 
-  styles() {
-    const style = /* html */ `
+    styles() {
+      const style = /* html */ `
       <style>
         .hiddeExpressPayments {
           height: auto;
@@ -219,29 +220,31 @@ class ExpCheckoutBtns {
           border: none;
         }
         @media (max-width: 767px) {
-
+          [zippyname="gift"].m-t-2-s {
+            margin-top: 0 !important;
+          }
         }
       </style>
     `
 
-    $el('head').insertAdjacentHTML('beforeend', style)
-  }
+      $el('head').insertAdjacentHTML('beforeend', style)
+    }
 
-  mainScript() {
-    $$el('.button__body').forEach(btn => {
-      if (
-        btn.innerText.toLowerCase() === 'continue shopping' &&
-        !btn.parentElement.classList.contains('continue_shopping')
-      ) {
-        btn.parentElement.classList.add('continue_shopping')
-      }
-    })
-  }
+    mainScript() {
+      $$el('.button__body').forEach(btn => {
+        if (
+          btn.innerText.toLowerCase() === 'continue shopping' &&
+          !btn.parentElement.classList.contains('continue_shopping')
+        ) {
+          btn.parentElement.classList.add('continue_shopping')
+        }
+      })
+    }
 
-  addCouponField() {
-    const cart = app.customer.basket.data
+    addCouponField() {
+      const cart = app.customer.basket.data
 
-    const couponField = /* html */ `
+      const couponField = /* html */ `
       <div class="crs_wrapper">
         <div class="promocode">
           <p>
@@ -276,220 +279,254 @@ class ExpCheckoutBtns {
       </div>
     `
 
-    function setHandlers() {
-      $el('.promocode .btns button:last-of-type').addEventListener('click', () => {
-        $el('.promocode .hideblock').style.height = `0px`
-        pushDataLayer(
-          'exp_int_exp_check_butt_promo_canc',
-          'Cancel',
-          'Button',
-          'Checkout page Have you got a promo code?'
-        )
-        setTimeout(() => {
-          $el('.promocode').classList.remove('show')
-        }, 300)
-      })
-
-      $el('.promocode .btns button:first-of-type').addEventListener('click', async () => {
-        const code = $el('.promocode input').value
-        if (code) {
-          const data = await applyCoupon(code, 'coupon')
-          if (data.error) {
-            showError('coupon', data.error)
-          }
-        } else {
-          showError('coupon')
-        }
-        pushDataLayer(
-          'exp_int_exp_check_butt_promo_appl',
-          'Apply',
-          'Button',
-          'Checkout page Have you got a promo code?'
-        )
-      })
-
-      $el('.promocode p').addEventListener('click', () => {
-        if (!$el('.promocode').classList.contains('show')) {
-          $el('.promocode').classList.add('show')
-          const scrollHeight = $el('.promocode .hideblock').scrollHeight
-          $el('.promocode .hideblock').style.height = `${scrollHeight}px`
-          $el('.promocode input').focus()
-          pushDataLayer(
-            'exp_int_exp_check_drop_check_promo',
-            'Click Have you got a promo code?',
-            'Dropdown',
-            'Checkout page'
-          )
-        } else {
+      function setHandlers() {
+        $el('.promocode .btns button:last-of-type').addEventListener('click', () => {
           $el('.promocode .hideblock').style.height = `0px`
+          pushDataLayer(
+            'exp_int_exp_check_butt_promo_canc',
+            'Cancel',
+            'Button',
+            'Checkout page Have you got a promo code?'
+          )
           setTimeout(() => {
             $el('.promocode').classList.remove('show')
           }, 300)
-        }
-      })
+        })
 
-      $el('.giftcard p').addEventListener('click', () => {
-        if (!$el('.giftcard').classList.contains('show')) {
-          $el('.giftcard').classList.add('show')
-          const scrollHeight = $el('.giftcard .hideblock').scrollHeight
-          $el('.giftcard .hideblock').style.height = `${scrollHeight}px`
-          $el('.giftcard input').focus()
-          pushDataLayer(
-            'exp_int_exp_check_drop_check_gift',
-            'Click Have you got a gift card?',
-            'Dropdown',
-            'Checkout page'
-          )
-        } else {
-          $el('.giftcard .hideblock').style.height = `0px`
-          setTimeout(() => {
-            $el('.giftcard').classList.remove('show')
-          }, 300)
-        }
-      })
-
-      $el('.giftcard .btns button:last-of-type').addEventListener('click', async () => {
-        const code = $el('.giftcard input').value
-        if (code) {
-          const data = await applyCoupon(code, 'giftcard', 'balance')
-          if (data.error) {
-            showError('giftcard', data.error)
+        $el('.promocode .btns button:first-of-type').addEventListener('click', async () => {
+          const code = $el('.promocode input').value
+          if (code) {
+            const data = await applyCoupon(code, 'coupon')
+            if (data.error) {
+              showError('coupon', data.error)
+            }
           } else {
-            if ($el('.giftcard .balance')) $el('.giftcard .balance').remove()
-            $el('.giftcard').insertAdjacentHTML(
-              'beforeend',
-              `<p class="balance">Your balance is  ${this.country === 'uk' ? '£' : '$'}${data.balance}</p>`
-            )
-            setTimeout(() => {
-              $el('.giftcard .error').remove()
-            }, 6000)
+            showError('coupon')
           }
-        } else {
-          showError('giftcard')
-        }
-        pushDataLayer(
-          'exp_int_exp_check_butt_gift_check',
-          'Check balance',
-          'Button',
-          'Checkout page Have you got a gift code?'
-        )
-      })
+          pushDataLayer(
+            'exp_int_exp_check_butt_promo_appl',
+            'Apply',
+            'Button',
+            'Checkout page Have you got a promo code?'
+          )
+        })
 
-      $el('.giftcard .btns button:first-of-type').addEventListener('click', async () => {
-        const code = $el('.giftcard input').value
-        if (code) {
-          const data = await applyCoupon(code, 'giftcard')
-        } else {
-          showError('giftcard')
-        }
-        pushDataLayer('exp_int_exp_check_butt_gift_appl', 'Apply', 'Button', 'Checkout page Have you got a gift card?')
-      })
-    }
+        $el('.promocode p').addEventListener('click', () => {
+          if (!$el('.promocode').classList.contains('show')) {
+            $el('.promocode').classList.add('show')
+            const scrollHeight = $el('.promocode .hideblock').scrollHeight
+            $el('.promocode .hideblock').style.height = `${scrollHeight}px`
+            $el('.promocode input').focus()
+            pushDataLayer(
+              'exp_int_exp_check_drop_check_promo',
+              'Click Have you got a promo code?',
+              'Dropdown',
+              'Checkout page'
+            )
+          } else {
+            $el('.promocode .hideblock').style.height = `0px`
+            setTimeout(() => {
+              $el('.promocode').classList.remove('show')
+            }, 300)
+          }
+        })
 
-    function showError(type, txt) {
-      const text = txt ? txt : type === 'coupon' ? 'Please enter a coupon code' : 'Please enter a gift card'
-      const block = type === 'coupon' ? '.promocode' : '.giftcard'
-      let random = (Math.random().toFixed(3) * 1000).toString()
-      if ($el(`${block} .error`)) $el(`${block} .error`).remove()
-      $el(block).insertAdjacentHTML('beforeend', `<p class="error r${random}">${text}</p>`)
+        $el('.giftcard p').addEventListener('click', () => {
+          if (!$el('.giftcard').classList.contains('show')) {
+            $el('.giftcard').classList.add('show')
+            const scrollHeight = $el('.giftcard .hideblock').scrollHeight
+            $el('.giftcard .hideblock').style.height = `${scrollHeight}px`
+            $el('.giftcard input').focus()
+            pushDataLayer(
+              'exp_int_exp_check_drop_check_gift',
+              'Click Have you got a gift card?',
+              'Dropdown',
+              'Checkout page'
+            )
+          } else {
+            $el('.giftcard .hideblock').style.height = `0px`
+            setTimeout(() => {
+              $el('.giftcard').classList.remove('show')
+            }, 300)
+          }
+        })
+
+        $el('.giftcard .btns button:last-of-type').addEventListener('click', async () => {
+          const code = $el('.giftcard input').value
+          if (code) {
+            const data = await applyCoupon(code, 'giftcard', 'balance')
+            if (data.error) {
+              showError('giftcard', data.error)
+            } else {
+              if ($el('.giftcard .balance')) $el('.giftcard .balance').remove()
+              $el('.giftcard').insertAdjacentHTML(
+                'beforeend',
+                `<p class="balance">Your balance is  ${this.country === 'uk' ? '£' : '$'}${data.balance}</p>`
+              )
+              setTimeout(() => {
+                $el('.giftcard .error').remove()
+              }, 6000)
+            }
+          } else {
+            showError('giftcard')
+          }
+          pushDataLayer(
+            'exp_int_exp_check_butt_gift_check',
+            'Check balance',
+            'Button',
+            'Checkout page Have you got a gift code?'
+          )
+        })
+
+        $el('.giftcard .btns button:first-of-type').addEventListener('click', async () => {
+          const code = $el('.giftcard input').value
+          if (code) {
+            const data = await applyCoupon(code, 'giftcard')
+            if (data.error) {
+              showError('giftcard', data.error)
+            }
+          } else {
+            showError('giftcard')
+          }
+          pushDataLayer(
+            'exp_int_exp_check_butt_gift_appl',
+            'Apply',
+            'Button',
+            'Checkout page Have you got a gift card?'
+          )
+        })
+      }
+
+      function showError(type, txt) {
+        const text = txt ? txt : type === 'coupon' ? 'Please enter a coupon code' : 'Please enter a gift card'
+        const block = type === 'coupon' ? '.promocode' : '.giftcard'
+        let random = (Math.random().toFixed(3) * 1000).toString()
+        if ($el(`${block} .error`)) $el(`${block} .error`).remove()
+        $el(block).insertAdjacentHTML('beforeend', `<p class="error r${random}">${text}</p>`)
+        setTimeout(() => {
+          $el(`${block} .error.r${random}`)?.remove()
+        }, 6000)
+      }
+
+      function hideBlocks() {
+        if (cart.coupon) {
+          $el('.promocode').style.display = 'none'
+        }
+
+        if (cart.giftcards.length) {
+          $el('.giftcard').style.display = 'none'
+        }
+      }
+
       setTimeout(() => {
-        $el(`${block} .error.r${random}`)?.remove()
-      }, 6000)
+        if (
+          window.location.pathname.includes('/checkout') &&
+          !$el('.promocode') &&
+          !window.location.hash.includes('step=payment')
+        ) {
+          $el('[zippyname="basketTab"]').insertAdjacentHTML('beforeend', couponField)
+          setHandlers()
+          hideBlocks()
+        } else if (
+          window.location.pathname.includes('/checkout') &&
+          $el('.promocode') &&
+          window.location.hash.includes('step=payment')
+        ) {
+          $el('.crs_wrapper')?.remove()
+          this.stylingBasecouponFields()
+        } else if (window.location.pathname.includes('/basket')) {
+          this.stylingBasecouponFields()
+        }
+      }, 1000)
     }
 
-    function hideBlocks() {
-      if (cart.coupon) {
-        $el('.promocode').style.display = 'none'
+    stylingBasecouponFields() {
+      if ($el('coupon-form [zippyclass="is-open"]') && !$el('coupon-form [zippyclass="is-open"] span svg')) {
+        $el('coupon-form [zippyclass="is-open"] span').insertAdjacentHTML('afterbegin', img1)
       }
 
-      if (cart.giftcards.length) {
-        $el('.giftcard').style.display = 'none'
+      if ($el('giftcards-form [zippyclass="is-open"]') && !$el('giftcards-form [zippyclass="is-open"] span svg')) {
+        $el('giftcards-form [zippyclass="is-open"] span').insertAdjacentHTML('afterbegin', img2)
       }
     }
 
-    setTimeout(() => {
-      if (
-        window.location.pathname.includes('/checkout') &&
-        !$el('.promocode') &&
-        !window.location.hash.includes('step=payment')
-      ) {
-        $el('[zippyname="basketTab"]').insertAdjacentHTML('beforeend', couponField)
-        setHandlers()
-        hideBlocks()
-      } else if (
-        window.location.pathname.includes('/checkout') &&
-        $el('.promocode') &&
-        window.location.hash.includes('step=payment')
-      ) {
-        $el('.crs_wrapper')?.remove()
-        this.stylingBasecouponFields()
+    controlMutation() {
+      const config = { childList: true, subtree: true }
+
+      const callback = (mutationsList, observer) => {
+        observer.disconnect()
+        this.mainScript()
+        this.addCouponField()
+        $$el('.hiddeExpressPayments').forEach((el, i) => {
+          if (el.getAttribute('data-gaevent')) return
+          let page = window.location.pathname.split('/')[1]
+          if (window.location.pathname.includes('/us/')) {
+            page = page = window.location.pathname.split('/')[2]
+          }
+          el.setAttribute('data-gaevent', `exp_int_exp_check_visib_${page}_${i}`)
+          el.setAttribute('data-visible', `express_checkout_buttons_${page}_${i}`)
+        })
+        observer.observe(document.body, config)
       }
-    }, 500)
-  }
 
-  stylingBasecouponFields() {
-    if ($el('coupon-form') && !$el('coupon-form [zippyclass="is-open"] span svg')) {
-      $el('coupon-form [zippyclass="is-open"] span').insertAdjacentHTML('afterbegin', img1)
-    }
-
-    if ($el('giftcards-form') && !$el('giftcards-form [zippyclass="is-open"] span svg')) {
-      $el('giftcards-form [zippyclass="is-open"] span').insertAdjacentHTML('afterbegin', img2)
-    }
-  }
-
-  controlMutation() {
-    const config = { childList: true, subtree: true }
-
-    const callback = (mutationsList, observer) => {
-      observer.disconnect()
-      this.mainScript()
-      this.addCouponField()
-      $$el('.hiddeExpressPayments').forEach(el => {
-        if (el.getAttribute('data-gaevent')) return
-        el.setAttribute('data-gaevent', `exp_int_exp_check_visib_${window.location.pathname.split('/')[1]}`)
-        el.setAttribute('data-visible', `express_checkout_buttons_${window.location.pathname.split('/')[1]}`)
-      })
+      const observer = new MutationObserver(callback)
       observer.observe(document.body, config)
     }
-
-    const observer = new MutationObserver(callback)
-    observer.observe(document.body, config)
-  }
-  visibleHandler() {
-    setInterval(() => {
-      $$el('.hiddeExpressPayments[data-visible]').forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight) {
-          pushDataLayer(el.dataset.gaevent, 'View element', 'Visibility', el.dataset.visible)
-          el.removeAttribute('data-visible')
-        }
-      })
-    }, 2000)
-  }
-}
-
-new ExpCheckoutBtns(device)
-
-// apply coupon or giftcard
-
-async function applyCoupon(coupon, type, action = 'add') {
-  try {
-    const body = type === 'coupon' ? { coupon: coupon } : { code: coupon }
-    const API = `https://www.lemieux.com/api/p/${type}/${action}`
-    const res = await fetch(API, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    })
-    const data = await res.json()
-    if (!data.error && action !== 'balance') {
-      window.location.reload()
-      return
+    visibleHandler() {
+      setInterval(() => {
+        $$el('.hiddeExpressPayments[data-visible]').forEach(el => {
+          if (el.getBoundingClientRect().top < window.innerHeight) {
+            pushDataLayer(el.dataset.gaevent, 'View element', 'Visibility', el.dataset.visible)
+            el.removeAttribute('data-visible')
+          }
+        })
+      }, 2000)
     }
-    return data
-  } catch (error) {
-    console.log(error)
-    return error
   }
+
+  new ExpCheckoutBtns(device)
+
+  // apply coupon or giftcard
+
+  async function applyCoupon(coupon, type, action = 'add') {
+    try {
+      let us = ''
+      if (window.location.pathname.includes('/us/')) {
+        us = '/us'
+      }
+      const body = type === 'coupon' ? { coupon: coupon } : { code: coupon }
+      const API = `https://www.lemieux.com${us}/api/p/${type}/${action}`
+      const res = await fetch(API, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      })
+      const data = await res.json()
+      if (!data.error && action !== 'balance') {
+        window.location.reload()
+        return
+      }
+      return data
+    } catch (error) {
+      console.log(error)
+      return error
+    }
+  }
+
+  ;(function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        ;(h.hj.q = h.hj.q || []).push(arguments)
+      }
+    h._hjSettings = { hjid: 1847916, hjsv: 6 }
+    a = o.getElementsByTagName('head')[0]
+    r = o.createElement('script')
+    r.async = 1
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+    a.appendChild(r)
+  })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=')
+  hj('event', 'express_checkout_buttons')
 }
