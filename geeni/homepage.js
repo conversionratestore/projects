@@ -1620,9 +1620,9 @@
   <section class="shop-all">
     <div class="container">
       <div class="shop-all__heading">
-        <h2 class="heading-2">Shop All Category</h2>
+        <h2 class="heading-2">Shop By Category</h2>
         <a href="/collections/all" class="shop-all__view">
-          Shop by
+          Shop All
           <img src="${a}/arrow-r.svg" alt="">
         </a>
       </div>
