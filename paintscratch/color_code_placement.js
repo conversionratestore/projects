@@ -316,6 +316,7 @@
   z-index: 999;
   overflow-y: auto;
   padding: 10px;
+  box-sizing: border-box;
 }
 .crs_popup.active {
   opacity: 1;
@@ -325,20 +326,18 @@
   transform: translateY(0);
 }
 .crs_popup iframe {
-  min-height: 338px;
+  height: 338px;
 }
 .crs_popup_container {
   max-width: 600px;
   width: 100%;
   margin: auto;
-  height: -moz-fit-content;
-  height: fit-content;
   transform: translateY(100px);
   transition: all 0.3s ease;
-  background-color: #fff;
 }
 .crs_popup_container img {
   width: 100%;
+  background-color: #fff;
 }
 .crs_popup_head {
   background: #0373BD;
@@ -400,7 +399,13 @@
     line-height: 18px;
   }
   .crs_popup iframe {
-    min-height: 300px;
+    height: 300px;
+  }
+  #color_search_pop a.action-button-orange {
+    width: 66%;
+  }
+  .crs_images_right {
+    max-width: 300px;
   }
 }/*# sourceMappingURL=main.css.map */`;
   l({ name: "Color code placement", dev: "Olha" }), g("exp_сolor_code_placement");
@@ -423,13 +428,13 @@
         for (let n in d)
           if (i("#page #main h1").innerText.toLowerCase().includes(n.toLowerCase())) {
             let o = d[n][2] != null ? `<div class="relative"><img src="${c + "color-id-tag/" + d[n][2]}" alt="image">${r.zoom}</div>` : "";
-            i(".crs_images_left img").src.includes(d[n][0]) || (i(".crs_images_left img").src = c + "paint-code-locations/" + d[n][0]), i(".crs_images_right").innerHTML = `<div class="relative"><img src="${c + "color-id-tag/" + d[n][1]}" alt="image">${r.zoom}</div>` + o, document.body.insertAdjacentHTML("beforeend", h), s(".crs_icon_zoom").forEach((a, x) => {
-              a.addEventListener("click", (w) => {
+            i(".crs_images_left img").src.includes(d[n][0]) || (i(".crs_images_left img").src = c + "paint-code-locations/" + d[n][0]), i(".crs_images_right").innerHTML = `<div class="relative"><img src="${c + "color-id-tag/" + d[n][1]}" alt="image">${r.zoom}</div>` + o, document.body.insertAdjacentHTML("beforeend", h), s(".crs_icon_zoom").forEach((a, w) => {
+              a.addEventListener("click", (b) => {
                 i(".crs_popup_image img").src = a.parentElement.querySelector("img").src, setTimeout(() => {
                   i(".crs_popup_image").classList.add("active");
                 }, 200);
-                let C = a.closest(".crs_images_right") ? "Color plate" : "Where to find your color";
-                t("exp_color_code_image_01", "Section", "Image", C);
+                let x = a.closest(".crs_images_right") ? "Color plate" : "Where to find your color";
+                t("exp_color_code_image_01", "Section", "Image", x);
               });
             });
           }
@@ -462,5 +467,7 @@
       });
     }
   }
-  new v(y);
+  let C = setInterval(() => {
+    i('#no_car_selected[style*="block"]') || (clearInterval(C), new v(y));
+  });
 })();
