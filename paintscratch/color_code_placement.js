@@ -17,7 +17,7 @@
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", i, "variant_1"));
     }, 1e3);
-  }, c = "https://conversionratestore.github.io/projects/paintscratch/img/", r = {
+  }, d = "https://conversionratestore.github.io/projects/paintscratch/img/", r = {
     zoom: (
       /*html */
       `
@@ -42,7 +42,7 @@
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
     <path d="M14.0375 1.3061C13.6432 0.911714 13.0061 0.911714 12.6117 1.3061L7.66667 6.241L2.72165 1.29599C2.32727 0.901601 1.69018 0.901601 1.29579 1.29599C0.901403 1.69038 0.901403 2.32746 1.29579 2.72185L6.2408 7.66687L1.29579 12.6119C0.901403 13.0063 0.901403 13.6434 1.29579 14.0377C1.69018 14.4321 2.32727 14.4321 2.72165 14.0377L7.66667 9.09273L12.6117 14.0377C13.0061 14.4321 13.6432 14.4321 14.0375 14.0377C14.4319 13.6434 14.4319 13.0063 14.0375 12.6119L9.09253 7.66687L14.0375 2.72185C14.4218 2.33758 14.4218 1.69038 14.0375 1.3061Z" fill="white"/>
   </svg>`
-  }, d = {
+  }, c = {
     Acura: ["ford_toyota_acura_lincoln_mercury.png", "Acura-Paint-Code.gif"],
     "Alfa-Romeo": ["mazda.png", "Hyundai-Paint-Code.gif"],
     "American-Coach": ["mazda.png", "Hyundai-Paint-Code.gif"],
@@ -139,7 +139,7 @@
     `<div class="crs_images">
   <h3>Where to find your vehicle’s color code:</h3>
   <div class="d-lg-flex crs_images_row">
-    <div class="crs_images_left relative"><img src="${c}/color-id-tag/mazda.png" alt="image">${r.zoom}</div>
+    <div class="crs_images_left relative"><img src="${d}/color-id-tag/mazda.png" alt="image">${r.zoom}</div>
     <div class="crs_images_right"></div>
   </div>
 </div>
@@ -425,10 +425,10 @@
     addImages() {
       if (e("#color-display-table") && !e(".crs_images")) {
         e("#color-display-table").insertAdjacentHTML("beforebegin", m);
-        for (let n in d)
+        for (let n in c)
           if (e("#page #main h1").innerText.toLowerCase().includes(n.toLowerCase())) {
-            let o = d[n][2] != null ? `<div class="relative"><img src="${c + "color-id-tag/" + d[n][2]}" alt="image">${r.zoom}</div>` : "";
-            e(".crs_images_left img").src.includes(d[n][0]) || (e(".crs_images_left img").src = c + "paint-code-locations/" + d[n][0]), e(".crs_images_right").innerHTML = `<div class="relative"><img src="${c + "color-id-tag/" + d[n][1]}" alt="image">${r.zoom}</div>` + o, document.body.insertAdjacentHTML("beforeend", h), s(".crs_icon_zoom").forEach((a, w) => {
+            let o = c[n][2] != null ? `<div class="relative"><img src="${d + "color-id-tag/" + c[n][2]}" alt="image">${r.zoom}</div>` : "";
+            e(".crs_images_left img").src.includes(c[n][0]) || (e(".crs_images_left img").src = d + "paint-code-locations/" + c[n][0]), e(".crs_images_right").innerHTML = `<div class="relative"><img src="${d + "color-id-tag/" + c[n][1]}" alt="image">${r.zoom}</div>` + o, document.body.insertAdjacentHTML("beforeend", h), s(".crs_icon_zoom").forEach((a, w) => {
               a.addEventListener("click", (b) => {
                 e(".crs_popup_image img").src = a.parentElement.querySelector("img").src, setTimeout(() => {
                   e(".crs_popup_image").classList.add("active");
@@ -468,11 +468,11 @@
     }
   }
   let C = setInterval(() => {
-    e('#no_car_selected[style*="block"]') || (clearInterval(C), new v(y)), e('#no_car_selected[style*="block"]') && !e(".crs_style") && document.head.insertAdjacentHTML("beforeend", `
-    <style class="crs_style">
-      div.screenpop #color_search_pop a.action-button-orange {
-        margin-left: 0!impotant;
-      } 
-    </style>`);
+    window.location.href.includes("cgi-bin/select-color.cgi") && (e('#no_car_selected[style*="block"]') || (clearInterval(C), new v(y)), e('#no_car_selected[style*="block"]') && !e(".crs_style") && document.head.insertAdjacentHTML("beforeend", `
+      <style class="crs_style">
+        div.screenpop #color_search_pop a.action-button-orange {
+          margin-left: 0!important;
+        } 
+      </style>`));
   });
 })();
