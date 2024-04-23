@@ -391,7 +391,7 @@ class changeFlow {
         // estimate-bill
         if (element.querySelector('[id="estimate-bill"]')) {
           element.querySelectorAll(".title").forEach((t) => {
-            t.innerHTML = "How much was <br/> your average monthly energy bill?";
+            t.innerHTML = "How much is <br/> your average monthly energy bill?";
           });
           element.querySelector(".with-gradient .rangeslider__handle").insertAdjacentElement("beforeend", element.querySelector(".rangeslider-tooltip"));
         }
@@ -460,10 +460,10 @@ class changeFlow {
   }
   updateRangeSliderSteps() {
     const rangeBlock = /* HTML */ `
-      <input type="range" min="50" value="300" max="800" step="50" name="monthly_elec" data-rangeslider />
+      <input type="range" min="101" value="300" max="800" step="1" name="monthly_elec" data-rangeslider />
       <div class="rangeslider-tooltip">$<output></output></div>
       <div class="sliderLegend">
-        <p class="sliderLegendItem--start">$50</p>
+        <p class="sliderLegendItem--start">$101</p>
         <p class="sliderLegendItem--end">$800+</p>
       </div>
     `;
