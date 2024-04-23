@@ -1,21 +1,21 @@
 (function() {
   "use strict";
-  const t = (e, n, o, a = "") => {
+  const t = (i, n, o, a = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: e,
+      event_name: i,
       event_desc: n,
       event_type: o,
       event_loc: a
-    }), console.log(`Event: ${e} | ${n} | ${o} | ${a}`);
-  }, l = ({ name: e, dev: n }) => {
+    }), console.log(`Event: ${i} | ${n} | ${o} | ${a}`);
+  }, l = ({ name: i, dev: n }) => {
     console.log(
-      `%c EXP: ${e} (DEV: ${n})`,
+      `%c EXP: ${i} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, s = (e) => document.querySelectorAll(e), i = (e) => document.querySelector(e), g = (e) => {
+  }, s = (i) => document.querySelectorAll(i), e = (i) => document.querySelector(i), g = (i) => {
     let n = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", i, "variant_1"));
     }, 1e3);
   }, c = "https://conversionratestore.github.io/projects/paintscratch/img/", r = {
     zoom: (
@@ -145,12 +145,12 @@
 </div>
 <button type="button" class="crs_video" style="display: none">${r.play} <span>Video instruction on how to find your color code</span></button>
 <h3>Select the paint color based only on your color code:</h3>`
-  ), f = (e) => (
+  ), f = (i) => (
     /* HTML */
     `<div class="crs_popup crs_popup_video">
   <div class="crs_popup_container">
     <div class="crs_popup_head">Video instruction ${r.close}</div> 
-    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${e}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${i}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </div> 
 </div>`
   ), h = (
@@ -418,20 +418,20 @@
       document.head.insertAdjacentHTML("beforeend", `<style>${_}</style>`), this.addAccordion(), this.addImages(), this.addVideo(), this.closePopup();
     }
     addAccordion() {
-      i(".crs_accordion") || i(".select-color span.instructions + p") && (i(".select-color span.instructions + p").insertAdjacentHTML("afterend", u), i(".crs_accordion_current").addEventListener("click", (n) => {
-        i(".crs_accordion").classList.toggle("active");
+      e(".crs_accordion") || e(".select-color span.instructions + p") && (e(".select-color span.instructions + p").insertAdjacentHTML("afterend", u), e(".crs_accordion_current").addEventListener("click", (n) => {
+        e(".crs_accordion").classList.toggle("active");
       }));
     }
     addImages() {
-      if (i("#color-display-table") && !i(".crs_images")) {
-        i("#color-display-table").insertAdjacentHTML("beforebegin", m);
+      if (e("#color-display-table") && !e(".crs_images")) {
+        e("#color-display-table").insertAdjacentHTML("beforebegin", m);
         for (let n in d)
-          if (i("#page #main h1").innerText.toLowerCase().includes(n.toLowerCase())) {
+          if (e("#page #main h1").innerText.toLowerCase().includes(n.toLowerCase())) {
             let o = d[n][2] != null ? `<div class="relative"><img src="${c + "color-id-tag/" + d[n][2]}" alt="image">${r.zoom}</div>` : "";
-            i(".crs_images_left img").src.includes(d[n][0]) || (i(".crs_images_left img").src = c + "paint-code-locations/" + d[n][0]), i(".crs_images_right").innerHTML = `<div class="relative"><img src="${c + "color-id-tag/" + d[n][1]}" alt="image">${r.zoom}</div>` + o, document.body.insertAdjacentHTML("beforeend", h), s(".crs_icon_zoom").forEach((a, w) => {
+            e(".crs_images_left img").src.includes(d[n][0]) || (e(".crs_images_left img").src = c + "paint-code-locations/" + d[n][0]), e(".crs_images_right").innerHTML = `<div class="relative"><img src="${c + "color-id-tag/" + d[n][1]}" alt="image">${r.zoom}</div>` + o, document.body.insertAdjacentHTML("beforeend", h), s(".crs_icon_zoom").forEach((a, w) => {
               a.addEventListener("click", (b) => {
-                i(".crs_popup_image img").src = a.parentElement.querySelector("img").src, setTimeout(() => {
-                  i(".crs_popup_image").classList.add("active");
+                e(".crs_popup_image img").src = a.parentElement.querySelector("img").src, setTimeout(() => {
+                  e(".crs_popup_image").classList.add("active");
                 }, 200);
                 let x = a.closest(".crs_images_right") ? "Color plate" : "Where to find your color";
                 t("exp_color_code_image_01", "Section", "Image", x);
@@ -441,21 +441,21 @@
       }
     }
     addVideo() {
-      if (!i(".crs_video") || i(".crs_popup_video"))
+      if (!e(".crs_video") || e(".crs_popup_video"))
         return;
-      let n = i(".crs_video");
+      let n = e(".crs_video");
       for (let o in p)
-        i("#page #main h1").innerText.toLowerCase().includes(o.toLowerCase()) && (n.insertAdjacentHTML("afterend", f(p[o])), i(".crs_popup_video iframe").addEventListener("click", (a) => {
+        e("#page #main h1").innerText.toLowerCase().includes(o.toLowerCase()) && (n.insertAdjacentHTML("afterend", f(p[o])), e(".crs_popup_video iframe").addEventListener("click", (a) => {
           t("exp_color_code_button_01", "Play", "Button", "Video instruction pop up");
         }), n.style.display = "flex", n.addEventListener("click", (a) => {
-          i(".crs_popup_video").classList.add("active"), t("exp_color_code_link_01", "Video", "Link", "Video instruction on how to find your color code");
+          e(".crs_popup_video").classList.add("active"), t("exp_color_code_link_01", "Video", "Link", "Video instruction on how to find your color code");
         }));
     }
     stopVideo() {
-      if (!i(".crs_popup_video iframe"))
+      if (!e(".crs_popup_video iframe"))
         return;
-      let n = i(".crs_popup_video iframe").src;
-      i(".crs_popup_video iframe").src = n;
+      let n = e(".crs_popup_video iframe").src;
+      e(".crs_popup_video iframe").src = n;
     }
     closePopup() {
       s(".crs_popup_head svg").forEach((n) => {
@@ -468,6 +468,11 @@
     }
   }
   let C = setInterval(() => {
-    i('#no_car_selected[style*="block"]') || (clearInterval(C), new v(y));
+    e('#no_car_selected[style*="block"]') || (clearInterval(C), new v(y)), e('#no_car_selected[style*="block"]') && !e(".crs_style") && document.head.insertAdjacentHTML("beforeend", `
+    <style class="crs_style">
+      div.screenpop #color_search_pop a.action-button-orange {
+        margin-left: 0!impotant;
+      } 
+    </style>`);
   });
 })();
