@@ -1121,7 +1121,7 @@ body .form-item.form-type-tel label:not(.error) {
       let t = 0, i = null;
       (() => {
         n[t].style.display = "block", t++, i = setInterval(() => {
-          n[t - 1].style.display = "none", t < n.length && (n[t].style.display = "block"), t >= n.length && clearInterval(i), t++;
+          n[t - 1].style.display = "none", t < n.length && (n[t].style.display = "block"), t >= n.length && (n[t - 1].style.display = "block", clearInterval(i)), t++;
         }, 12e3 / n.length);
       })();
     }
