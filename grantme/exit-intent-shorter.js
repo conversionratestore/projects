@@ -234,7 +234,6 @@
     }
 
     init() {
-      console.log('First time: ' + this.videoTime)
       this.ExitIntentPopup()
       this.changeVideoTime()
     }
@@ -787,14 +786,12 @@
     `
 
       if (!$el('.crs_popup_wrapper') && sessionStorage.getItem('popup') !== 'true') {
-        console.log('Render time: ' + time)
         document.body.insertAdjacentHTML('beforeend', popupBase)
         this.popup = $el('.crs_popup_wrapper')
         const popupClose = $el('.popup_close')
         $el('.popup_content>div').setAttribute('data', new Date().getTime())
         popupClose.addEventListener('click', () => {
           const popup = $el('.popup_content > div h2').innerText
-          visibilityTime()
           this.popup.remove()
           sessionStorage.setItem('popup', 'true')
           pushDataLayer('exp_exit_popup_but_close', 'Close', 'Button', popup)
@@ -828,7 +825,6 @@
         if ($el('.continue_watch')) {
           $el('.continue_watch').addEventListener('click', () => {
             const popup = $el('.popup_content > div h2').innerText
-            visibilityTime()
             this.popup.remove()
             sessionStorage.setItem('popup', 'true')
             pushDataLayer('exp_exit_popup_but_cw', 'Continue Watching', 'Button', popup)
@@ -842,12 +838,11 @@
           $el('.secondary').addEventListener('click', () => {
             const popupText = $el('.popup_content > div h2').innerText
             pushDataLayer('exp_exit_popup_but_rml', 'Remind Me Later', 'Button', popupText)
-            visibilityTime()
             this.popup.querySelector('.popup_content').innerHTML = popup2_1
             $el('.popup_content>div').setAttribute('data', new Date().getTime())
+            visibilityTime()
 
             $el('.back').addEventListener('click', () => {
-              visibilityTime()
               this.popup.remove()
               this.createPopup(time)
               const popupTextSub = $el('.popup_content > div h2').innerText
@@ -857,7 +852,6 @@
             $el('.popup2_1 button').addEventListener('click', () => {
               if ($el('.popup2_1 input[type="date"]').value && $el('.popup2_1 input[type="text"]').value) {
                 const popupTextSub = $el('.popup_content > div h2').innerText
-                visibilityTime()
                 this.popup.remove()
                 sessionStorage.setItem('popup', 'true')
                 pushDataLayer('exp_exit_popup_but_gr', 'Get a Reminder', 'Button', popupTextSub)
@@ -889,7 +883,6 @@
           $el('.main:not(.continue_watch)').addEventListener('click', () => {
             const popupText = $el('.popup_content > div h2').innerText
             const btnText = $el('.main:not(.continue_watch)').innerText
-            visibilityTime()
             this.popup.remove()
             sessionStorage.setItem('popup', 'true')
             pushDataLayer('exp_exit_popup_but_gso', btnText, 'Button', popupText)
@@ -899,18 +892,18 @@
         $el('.crs_popup_wrapper').addEventListener('click', e => {
           if (e.target === $el('.crs_popup_wrapper')) {
             const popupText = $el('.popup_content > div h2').innerText
-            visibilityTime()
             this.popup.remove()
             sessionStorage.setItem('popup', 'true')
             pushDataLayer('exp_exit_popup_but_bg', 'Background', 'Button', popupText)
           }
         })
-      }
 
-      function visibilityTime() {
-        const popup = $el('.popup_content > div h2').innerText
-        const time = ((new Date().getTime() - $el('.popup_content>div').getAttribute('data')) / 1000).toFixed(0)
-        pushDataLayer('exp_exit_popup_focus', time, 'Visibility ', popup)
+        const visibilityTime = () => {
+          const popup = $el('.popup_content > div h2').innerText
+          const time = this.videoTime.toFixed(2)
+          pushDataLayer('exp_exit_popup_focus', time, 'Visibility ', popup)
+        }
+        visibilityTime()
       }
     }
 
@@ -931,11 +924,11 @@
       }
 
       const originalConsoleLog = console.log
-      console.log = message => {
+      console.log = function (message) {
         if (message === 'Leaving fullscreen mode') {
           this.createPopup(this.videoTime)
         }
-        originalConsoleLog.apply(console, arguments)
+        originalConsoleLog.apply(message, arguments)
       }
     }
 
