@@ -1,13 +1,13 @@
 (function() {
   "use strict";
-  const a = (i, n, o, t = "") => {
+  const t = (i, n, o, a = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: i,
       event_desc: n,
       event_type: o,
-      event_loc: t
-    }), console.log(`Event: ${i} | ${n} | ${o} | ${t}`);
+      event_loc: a
+    }), console.log(`Event: ${i} | ${n} | ${o} | ${a}`);
   }, u = ({ name: i, dev: n }) => {
     console.log(
       `%c EXP: ${i} (DEV: ${n})`,
@@ -444,7 +444,7 @@
     }
     addAccordion() {
       e(".crs_accordion") || e(".select-color span.instructions + p") && (e(".select-color span.instructions + p").insertAdjacentHTML("afterend", f), e(".crs_accordion_current").addEventListener("click", (n) => {
-        e(".crs_accordion").classList.toggle("active");
+        e(".crs_accordion").classList.toggle("active"), e(".crs_accordion").classList.contains("active") ? t("exp_color_code_button_03", "Open", "Button", "What is a color code?") : t("exp_color_code_button_04", "Close", "Button", "What is a color code?");
       }));
     }
     addImages() {
@@ -456,12 +456,12 @@
             e(".crs_images_left img").src.includes(c[n][0]) || (e(".crs_images_left img").src = s + "paint-code-locations/" + c[n][0]), e(".crs_images_right").innerHTML = `<div class="relative"><img src="${s}color-id-tag/${c[n][1]}" alt="image">${r.zoom}</div>` + o;
           }
         d(".crs_images_row .relative > img").forEach((n, o) => {
-          n.addEventListener("click", (t) => {
+          n.addEventListener("click", (a) => {
             e(".crs_popup_image img").src = n.src, setTimeout(() => {
               e(".crs_popup_image").classList.add("active");
             }, 200);
             let l = n.closest(".crs_images_right") ? "Color plate" : "Where to find your color";
-            a("exp_color_code_image_01", "Section", "Image", l);
+            t("exp_color_code_image_01", "Section", "Image", l);
           });
         });
       }
@@ -471,10 +471,10 @@
         return;
       let n = e(".crs_video");
       for (let o in g)
-        e("#page #main h1").innerText.toLowerCase().includes(o.toLowerCase()) && (n.insertAdjacentHTML("afterend", y(g[o])), e(".crs_popup_video iframe").addEventListener("click", (t) => {
-          a("exp_color_code_button_01", "Play", "Button", "Video instruction pop up");
-        }), n.style.display = "flex", n.addEventListener("click", (t) => {
-          e(".crs_popup_video").classList.add("active"), a("exp_color_code_link_01", "Video", "Link", "Video instruction on how to find your color code");
+        e("#page #main h1").innerText.toLowerCase().includes(o.toLowerCase()) && (n.insertAdjacentHTML("afterend", y(g[o])), e(".crs_popup_video iframe").addEventListener("click", (a) => {
+          t("exp_color_code_button_01", "Play", "Button", "Video instruction pop up");
+        }), n.style.display = "flex", n.addEventListener("click", (a) => {
+          e(".crs_popup_video").classList.add("active"), t("exp_color_code_link_01", "Video", "Link", "Video instruction on how to find your color code");
         }));
     }
     stopVideo() {
@@ -486,18 +486,18 @@
     closePopup() {
       d(".crs_popup_head svg").forEach((n) => {
         n.addEventListener("click", (o) => {
-          n.closest(".crs_popup").classList.remove("active"), this.stopVideo(), n.closest(".crs_popup_video") ? a("exp_color_code_button_02", "Close", "Button", "Video instruction pop up") : a("exp_color_code_button_02", "Close", "Button", "Image pop up");
+          n.closest(".crs_popup").classList.remove("active"), this.stopVideo(), n.closest(".crs_popup_video") ? t("exp_color_code_button_02", "Close", "Button", "Video instruction pop up") : t("exp_color_code_button_02", "Close", "Button", "Image pop up");
         });
       }), document.addEventListener("click", (n) => {
-        n.target.classList.contains("crs_popup") && (n.target.classList.remove("active"), this.stopVideo(), n.target.classList.contains("crs_popup_video") ? a("exp_color_code_under_01", "Close", "Under", "Video instruction pop up") : a("exp_color_code_under_01", "Close", "Under", "Image pop up"));
+        n.target.classList.contains("crs_popup") && (n.target.classList.remove("active"), this.stopVideo(), n.target.classList.contains("crs_popup_video") ? t("exp_color_code_under_01", "Close", "Under", "Video instruction pop up") : t("exp_color_code_under_01", "Close", "Under", "Image pop up"));
       });
     }
     addReadMore() {
       d("#main h3").forEach((n) => {
         if (n.innerText.includes("Color Code Information") && !n.nextElementSibling.querySelector(".crs_read_more")) {
-          const o = n.nextElementSibling, t = o.innerText, l = h(t);
+          const o = n.nextElementSibling, a = o.innerText, l = h(a);
           o.innerHTML = l, e(".crs_read_more").addEventListener("click", (b) => {
-            o.innerHTML = t, a("exp_color_code_link_02", "More", "Link", "Color Code Information");
+            o.innerHTML = a, t("exp_color_code_link_02", "More", "Link", "Color Code Information");
           });
         }
       });
