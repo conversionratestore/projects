@@ -297,9 +297,6 @@
   align-items: center;
   cursor: pointer;
 }
-.crs_video:hover {
-  text-decoration: underline;
-}
 .crs_video svg {
   margin-right: 8px;
 }
@@ -425,6 +422,12 @@
   }
   .crs_images_right {
     max-width: 300px;
+  }
+  .select-color ul#benefit-list li#guarantee_benefit_li {
+    align-items: flex-start;
+  }
+  .green-check-mark {
+    width: 22px;
   }
 }/*# sourceMappingURL=main.css.map */`;
   u({ name: "Color code placement", dev: "Olha" }), m("exp_сolor_code_placement");
