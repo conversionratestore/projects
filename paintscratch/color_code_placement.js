@@ -8,16 +8,16 @@
       event_type: o,
       event_loc: a
     }), console.log(`Event: ${i} | ${n} | ${o} | ${a}`);
-  }, l = ({ name: i, dev: n }) => {
+  }, u = ({ name: i, dev: n }) => {
     console.log(
       `%c EXP: ${i} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, s = (i) => document.querySelectorAll(i), e = (i) => document.querySelector(i), g = (i) => {
+  }, d = (i) => document.querySelectorAll(i), e = (i) => document.querySelector(i), m = (i) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", i, "variant_1"));
     }, 1e3);
-  }, d = "https://conversionratestore.github.io/projects/paintscratch/img/", r = {
+  }, f = (i) => i.length <= 300 ? i : `${i.substring(0, 300)} <a class="crs_read_more">...More</a>`, s = "https://conversionratestore.github.io/projects/paintscratch/img/", r = {
     zoom: (
       /*html */
       `
@@ -121,7 +121,7 @@
     GMC: "/aJhKZ8l5YRk?si=2BSk4WFSkWyXlSXd",
     Cadillac: "/aJhKZ8l5YRk?si=2BSk4WFSkWyXlSXd",
     Pontiac: "/aJhKZ8l5YRk?si=2BSk4WFSkWyXlSXd"
-  }, u = (
+  }, h = (
     /* HTML */
     `<div class="crs_accordion">
   <h3>To proceed to paint selection, start with finding your car color code</h3>
@@ -134,18 +134,20 @@
     <p><b>Remember: To avoid color mismatches, never rely on visual impressions from a screen or paint names. Always refer to the color code.</b></p>
   </div>
 </div>`
-  ), m = (
+  ), _ = (
     /* HTML */
     `<div class="crs_images">
   <h3>Where to find your vehicle’s color code:</h3>
   <div class="d-lg-flex crs_images_row">
-    <div class="crs_images_left relative"><img src="${d}/color-id-tag/mazda.png" alt="image">${r.zoom}</div>
-    <div class="crs_images_right"></div>
+    <div class="crs_images_left relative"><img src="${s}paint-code-locations/mazda.png" alt="image">${r.zoom}</div>
+    <div class="crs_images_right">
+      <div class="relative"><img src="${s}color-id-tag/Hyundai-Paint-Code.gif" alt="image">${r.zoom}</div>
+    </div>
   </div>
 </div>
 <button type="button" class="crs_video" style="display: none">${r.play} <span>Video instruction on how to find your color code</span></button>
 <h3>Select the paint color based only on your color code:</h3>`
-  ), f = (i) => (
+  ), y = (i) => (
     /* HTML */
     `<div class="crs_popup crs_popup_video">
   <div class="crs_popup_container">
@@ -153,7 +155,7 @@
     <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${i}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </div> 
 </div>`
-  ), h = (
+  ), v = (
     /* HTML */
     `<div class="crs_popup crs_popup_image">
   <div class="crs_popup_container">
@@ -161,13 +163,18 @@
     <img src="#" alt="image">
   </div> 
 </div>`
-  ), _ = `#page {
+  ), C = `#page {
   margin-top: 0;
 }
 
-.select-color ul#benefit-list li {
-  display: flex;
-  align-items: center;
+.select-color #color-display-table .color-box span,
+.select-color #color-display-table td.color-info input,
+#color-display-table tr {
+  cursor: pointer !important;
+}
+
+.select-color ul#benefit-list li .warning-sign {
+  margin-top: 2px;
 }
 .select-color ul#benefit-list li span {
   color: var(--www-paintscratch-com-black, #000);
@@ -271,6 +278,7 @@
 }
 .crs_images img {
   width: 100%;
+  cursor: pointer;
 }
 
 .crs_icon_zoom {
@@ -279,6 +287,7 @@
   cursor: pointer;
   right: 12px;
   bottom: 12px;
+  pointer-events: none;
 }
 
 .crs_video {
@@ -286,6 +295,10 @@
   background-color: transparent;
   border: none;
   align-items: center;
+  cursor: pointer;
+}
+.crs_video:hover {
+  text-decoration: underline;
 }
 .crs_video svg {
   margin-right: 8px;
@@ -361,6 +374,12 @@
   cursor: pointer;
 }
 
+.crs_read_more {
+  cursor: pointer;
+  color: rgb(0, 0, 238);
+  text-decoration: underline;
+}
+
 .relative {
   position: relative;
 }
@@ -408,36 +427,37 @@
     max-width: 300px;
   }
 }/*# sourceMappingURL=main.css.map */`;
-  l({ name: "Color code placement", dev: "Olha" }), g("exp_сolor_code_placement");
-  const y = window.innerWidth < 768 ? "mobile" : "desktop";
-  class v {
+  u({ name: "Color code placement", dev: "Olha" }), m("exp_сolor_code_placement");
+  const g = window.innerWidth < 768 ? "mobile" : "desktop";
+  class x {
     constructor(n) {
       this.device = n, this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${_}</style>`), this.addAccordion(), this.addImages(), this.addVideo(), this.closePopup();
+      document.head.insertAdjacentHTML("beforeend", `<style>${C}</style>`), this.addAccordion(), this.addImages(), this.addVideo(), this.closePopup(), this.addReadMore();
     }
     addAccordion() {
-      e(".crs_accordion") || e(".select-color span.instructions + p") && (e(".select-color span.instructions + p").insertAdjacentHTML("afterend", u), e(".crs_accordion_current").addEventListener("click", (n) => {
+      e(".crs_accordion") || e(".select-color span.instructions + p") && (e(".select-color span.instructions + p").insertAdjacentHTML("afterend", h), e(".crs_accordion_current").addEventListener("click", (n) => {
         e(".crs_accordion").classList.toggle("active");
       }));
     }
     addImages() {
       if (e("#color-display-table") && !e(".crs_images")) {
-        e("#color-display-table").insertAdjacentHTML("beforebegin", m);
+        e("#color-display-table").insertAdjacentHTML("beforebegin", _), document.body.insertAdjacentHTML("beforeend", v);
         for (let n in c)
           if (e("#page #main h1").innerText.toLowerCase().includes(n.toLowerCase())) {
-            let o = c[n][2] != null ? `<div class="relative"><img src="${d + "color-id-tag/" + c[n][2]}" alt="image">${r.zoom}</div>` : "";
-            e(".crs_images_left img").src.includes(c[n][0]) || (e(".crs_images_left img").src = d + "paint-code-locations/" + c[n][0]), e(".crs_images_right").innerHTML = `<div class="relative"><img src="${d + "color-id-tag/" + c[n][1]}" alt="image">${r.zoom}</div>` + o, document.body.insertAdjacentHTML("beforeend", h), s(".crs_icon_zoom").forEach((a, w) => {
-              a.addEventListener("click", (b) => {
-                e(".crs_popup_image img").src = a.parentElement.querySelector("img").src, setTimeout(() => {
-                  e(".crs_popup_image").classList.add("active");
-                }, 200);
-                let x = a.closest(".crs_images_right") ? "Color plate" : "Where to find your color";
-                t("exp_color_code_image_01", "Section", "Image", x);
-              });
-            });
+            let o = c[n][2] != null ? `<div class="relative"><img src="${s}color-id-tag/${c[n][2]}" alt="image">${r.zoom}</div>` : "";
+            e(".crs_images_left img").src.includes(c[n][0]) || (e(".crs_images_left img").src = s + "paint-code-locations/" + c[n][0]), e(".crs_images_right").innerHTML = `<div class="relative"><img src="${s}color-id-tag/${c[n][1]}" alt="image">${r.zoom}</div>` + o;
           }
+        d(".crs_images_row .relative > img").forEach((n, o) => {
+          n.addEventListener("click", (a) => {
+            e(".crs_popup_image img").src = n.src, setTimeout(() => {
+              e(".crs_popup_image").classList.add("active");
+            }, 200);
+            let l = n.closest(".crs_images_right") ? "Color plate" : "Where to find your color";
+            t("exp_color_code_image_01", "Section", "Image", l);
+          });
+        });
       }
     }
     addVideo() {
@@ -445,7 +465,7 @@
         return;
       let n = e(".crs_video");
       for (let o in p)
-        e("#page #main h1").innerText.toLowerCase().includes(o.toLowerCase()) && (n.insertAdjacentHTML("afterend", f(p[o])), e(".crs_popup_video iframe").addEventListener("click", (a) => {
+        e("#page #main h1").innerText.toLowerCase().includes(o.toLowerCase()) && (n.insertAdjacentHTML("afterend", y(p[o])), e(".crs_popup_video iframe").addEventListener("click", (a) => {
           t("exp_color_code_button_01", "Play", "Button", "Video instruction pop up");
         }), n.style.display = "flex", n.addEventListener("click", (a) => {
           e(".crs_popup_video").classList.add("active"), t("exp_color_code_link_01", "Video", "Link", "Video instruction on how to find your color code");
@@ -458,7 +478,7 @@
       e(".crs_popup_video iframe").src = n;
     }
     closePopup() {
-      s(".crs_popup_head svg").forEach((n) => {
+      d(".crs_popup_head svg").forEach((n) => {
         n.addEventListener("click", (o) => {
           n.closest(".crs_popup").classList.remove("active"), this.stopVideo(), n.closest(".crs_popup_video") ? t("exp_color_code_button_02", "Close", "Button", "Video instruction pop up") : t("exp_color_code_button_02", "Close", "Button", "Image pop up");
         });
@@ -466,9 +486,19 @@
         n.target.classList.contains("crs_popup") && (n.target.classList.remove("active"), this.stopVideo(), n.target.classList.contains("crs_popup_video") ? t("exp_color_code_under_01", "Close", "Under", "Video instruction pop up") : t("exp_color_code_under_01", "Close", "Under", "Image pop up"));
       });
     }
+    addReadMore() {
+      d("#main h3").forEach((n) => {
+        if (n.innerText.includes("Color Code Information") && !n.nextElementSibling.querySelector(".crs_read_more")) {
+          const o = n.nextElementSibling, a = o.innerText, l = f(a);
+          o.innerHTML = l, e(".crs_read_more").addEventListener("click", (w) => {
+            o.innerHTML = a;
+          });
+        }
+      });
+    }
   }
-  let C = setInterval(() => {
-    window.location.href.includes("cgi-bin/select-color.cgi") && (e('#no_car_selected[style*="block"]') || (clearInterval(C), new v(y)), e('#no_car_selected[style*="block"]') && !e(".crs_style") && document.head.insertAdjacentHTML("beforeend", `
+  let b = setInterval(() => {
+    window.location.href.includes("cgi-bin/select-color.cgi") && (e('#no_car_selected[style*="block"]') || (clearInterval(b), new x(g)), e('#no_car_selected[style*="block"]') && !e(".crs_style") && g == "mobile" && document.head.insertAdjacentHTML("beforeend", `
       <style class="crs_style">
         div.screenpop #color_search_pop a.action-button-orange {
           margin-left: 0!important;
