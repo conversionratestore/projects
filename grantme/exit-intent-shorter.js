@@ -448,6 +448,7 @@
             z-index: 9999;
             background: rgba(60, 60, 60, 0.40);
             backdrop-filter: blur(38px);
+            -webkit-backdrop-filter: blur(38px);
             display: none;
             justify-content: center;
             align-items: start;
