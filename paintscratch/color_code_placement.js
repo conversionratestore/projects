@@ -8,16 +8,16 @@
       event_type: o,
       event_loc: a
     }), console.log(`Event: ${i} | ${n} | ${o} | ${a}`);
-  }, u = ({ name: i, dev: n }) => {
+  }, g = ({ name: i, dev: n }) => {
     console.log(
       `%c EXP: ${i} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, d = (i) => document.querySelectorAll(i), e = (i) => document.querySelector(i), m = (i) => {
+  }, d = (i) => document.querySelectorAll(i), e = (i) => document.querySelector(i), u = (i) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", i, "variant_1"));
     }, 1e3);
-  }, f = (i) => i.length <= 300 ? i : `${i.substring(0, 300)} <a class="crs_read_more"> More...</a>`, s = "https://conversionratestore.github.io/projects/paintscratch/img/", r = {
+  }, m = (i) => i.length <= 300 ? i : `${i.substring(0, 300)} <a class="crs_read_more"> More...</a>`, s = "https://conversionratestore.github.io/projects/paintscratch/img/", r = {
     zoom: (
       /*html */
       `
@@ -58,7 +58,7 @@
     Citroen: ["mazda.png", "Hyundai-Paint-Code.gif"],
     "Coachmen-RV": ["mazda.png", "Hyundai-Paint-Code.gif"],
     Daewoo: ["mazda.png", "Hyundai-Paint-Code.gif"],
-    Dodge: ["jeep_dodge_chrysler.jpg", "Dodge-Paint-Code.png"],
+    Dodge: ["jeep_dodge_chrysler.png", "Dodge-Paint-Code.png"],
     Duckworth: ["mazda.png", "Hyundai-Paint-Code.gif"],
     Ferrari: ["mazda.png", "Hyundai-Paint-Code.gif"],
     Fiat: ["mazda.png", "Hyundai-Paint-Code.gif"],
@@ -121,7 +121,7 @@
     GMC: "/aJhKZ8l5YRk?si=2BSk4WFSkWyXlSXd",
     Cadillac: "/aJhKZ8l5YRk?si=2BSk4WFSkWyXlSXd",
     Pontiac: "/aJhKZ8l5YRk?si=2BSk4WFSkWyXlSXd"
-  }, h = (
+  }, f = (
     /* HTML */
     `<div class="crs_accordion">
   <h3>To proceed to paint selection, start with finding your car color code</h3>
@@ -134,7 +134,7 @@
     <p><b>Remember: To avoid color mismatches, never rely on visual impressions from a screen or paint names. Always refer to the color code.</b></p>
   </div>
 </div>`
-  ), _ = (
+  ), h = (
     /* HTML */
     `<div class="crs_images">
   <h3>Where to find your vehicle’s color code:</h3>
@@ -147,7 +147,7 @@
 </div>
 <button type="button" class="crs_video" style="display: none">${r.play} <span>Video instruction on how to find your color code</span></button>
 <h3>Select the paint color based only on your color code:</h3>`
-  ), y = (i) => (
+  ), _ = (i) => (
     /* HTML */
     `<div class="crs_popup crs_popup_video">
   <div class="crs_popup_container">
@@ -155,7 +155,7 @@
     <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${i}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </div> 
 </div>`
-  ), v = (
+  ), y = (
     /* HTML */
     `<div class="crs_popup crs_popup_image">
   <div class="crs_popup_container">
@@ -163,7 +163,7 @@
     <img src="#" alt="image">
   </div> 
 </div>`
-  ), C = `#page {
+  ), v = `#page {
   margin-top: 0;
 }
 
@@ -430,23 +430,23 @@
     width: 22px;
   }
 }/*# sourceMappingURL=main.css.map */`;
-  u({ name: "Color code placement", dev: "Olha" }), m("exp_сolor_code_placement");
-  const g = window.innerWidth < 768 ? "mobile" : "desktop";
+  g({ name: "Color code placement", dev: "Olha" }), u("exp_сolor_code_placement");
+  const C = window.innerWidth < 768 ? "mobile" : "desktop";
   class x {
     constructor(n) {
       this.device = n, this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${C}</style>`), this.addAccordion(), this.addImages(), this.addVideo(), this.closePopup(), this.device == "mobile" && this.addReadMore();
+      document.head.insertAdjacentHTML("beforeend", `<style>${v}</style>`), this.addAccordion(), this.addImages(), this.addVideo(), this.closePopup(), window.innerWidth < 768 && this.addReadMore();
     }
     addAccordion() {
-      e(".crs_accordion") || e(".select-color span.instructions + p") && (e(".select-color span.instructions + p").insertAdjacentHTML("afterend", h), e(".crs_accordion_current").addEventListener("click", (n) => {
+      e(".crs_accordion") || e(".select-color span.instructions + p") && (e(".select-color span.instructions + p").insertAdjacentHTML("afterend", f), e(".crs_accordion_current").addEventListener("click", (n) => {
         e(".crs_accordion").classList.toggle("active");
       }));
     }
     addImages() {
       if (e("#color-display-table") && !e(".crs_images")) {
-        e("#color-display-table").insertAdjacentHTML("beforebegin", _), document.body.insertAdjacentHTML("beforeend", v);
+        e("#color-display-table").insertAdjacentHTML("beforebegin", h), document.body.insertAdjacentHTML("beforeend", y);
         for (let n in c)
           if (e("#page #main h1").innerText.toLowerCase().includes(n.toLowerCase())) {
             let o = c[n][2] != null ? `<div class="relative"><img src="${s}color-id-tag/${c[n][2]}" alt="image">${r.zoom}</div>` : "";
@@ -468,7 +468,7 @@
         return;
       let n = e(".crs_video");
       for (let o in p)
-        e("#page #main h1").innerText.toLowerCase().includes(o.toLowerCase()) && (n.insertAdjacentHTML("afterend", y(p[o])), e(".crs_popup_video iframe").addEventListener("click", (a) => {
+        e("#page #main h1").innerText.toLowerCase().includes(o.toLowerCase()) && (n.insertAdjacentHTML("afterend", _(p[o])), e(".crs_popup_video iframe").addEventListener("click", (a) => {
           t("exp_color_code_button_01", "Play", "Button", "Video instruction pop up");
         }), n.style.display = "flex", n.addEventListener("click", (a) => {
           e(".crs_popup_video").classList.add("active"), t("exp_color_code_link_01", "Video", "Link", "Video instruction on how to find your color code");
@@ -492,7 +492,7 @@
     addReadMore() {
       d("#main h3").forEach((n) => {
         if (n.innerText.includes("Color Code Information") && !n.nextElementSibling.querySelector(".crs_read_more")) {
-          const o = n.nextElementSibling, a = o.innerText, l = f(a);
+          const o = n.nextElementSibling, a = o.innerText, l = m(a);
           o.innerHTML = l, e(".crs_read_more").addEventListener("click", (w) => {
             o.innerHTML = a;
           });
@@ -501,11 +501,13 @@
     }
   }
   let b = setInterval(() => {
-    window.location.href.includes("cgi-bin/select-color.cgi") && (e('#no_car_selected[style*="block"]') || (clearInterval(b), new x(g)), e('#no_car_selected[style*="block"]') && !e(".crs_style") && g == "mobile" && document.head.insertAdjacentHTML("beforeend", `
-      <style class="crs_style">
-        div.screenpop #color_search_pop a.action-button-orange {
-          margin-left: 0!important;
-        } 
-      </style>`));
+    window.location.href.includes("cgi-bin/select-color.cgi") && (e('#no_car_selected[style*="block"]') || (clearInterval(b), new x(C)), e('#no_car_selected[style*="block"]') && !e(".crs_style") && document.head.insertAdjacentHTML("beforeend", `
+        <style class="crs_style">
+          @media screen and (max-width: 768px) {
+            div.screenpop #color_search_pop a.action-button-orange {
+              margin-left: 0!important;
+            } 
+          }
+        </style>`));
   });
 })();
