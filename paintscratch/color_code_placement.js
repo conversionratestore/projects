@@ -17,7 +17,7 @@
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", i, "variant_1"));
     }, 1e3);
-  }, f = (i) => i.length <= 300 ? i : `${i.substring(0, 300)} <a class="crs_read_more">...More</a>`, s = "https://conversionratestore.github.io/projects/paintscratch/img/", r = {
+  }, f = (i) => i.length <= 300 ? i : `${i.substring(0, 300)} <a class="crs_read_more"> More...</a>`, s = "https://conversionratestore.github.io/projects/paintscratch/img/", r = {
     zoom: (
       /*html */
       `
