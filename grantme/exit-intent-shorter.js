@@ -378,7 +378,9 @@
         <p>We'll email you a link to access the FREE webinar at your convenience.</p>
         <div class="popup_form">
         <label>
-          <input type="date" value="${this.date.getFullYear()}-${this.date.getMonth() + 1}-${this.date.getDate()}">
+          <input type="date" value="${this.date.getFullYear()}-${(this.date.getMonth() + 1)
+            .toString()
+            .padStart(2, '0')}-${this.date.getDate()}">
           ${svgObj.calendar}
         </label>
         <label>
@@ -399,7 +401,7 @@
               In addition, GrantMe offers easy installment plans with our partner Affirm:
             </p>
             <ul>
-              <li><p>Secure your future with payments <b>as low as $200/month</b>&nbsp;— interest-free options available.<br>There is <b>no impact on your credit score.</b></p></li>
+              <li><p>Secure your future with payments <b>as low as $200/month</b> — interest-free options available.<br>There is <b>no impact on your credit score.</b></p></li>
             </ul>
           </div>
           <div class="note">
