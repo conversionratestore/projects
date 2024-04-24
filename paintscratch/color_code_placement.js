@@ -1,23 +1,23 @@
 (function() {
   "use strict";
-  const t = (i, n, o, a = "") => {
+  const a = (i, n, o, t = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: i,
       event_desc: n,
       event_type: o,
-      event_loc: a
-    }), console.log(`Event: ${i} | ${n} | ${o} | ${a}`);
-  }, g = ({ name: i, dev: n }) => {
+      event_loc: t
+    }), console.log(`Event: ${i} | ${n} | ${o} | ${t}`);
+  }, u = ({ name: i, dev: n }) => {
     console.log(
       `%c EXP: ${i} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, d = (i) => document.querySelectorAll(i), e = (i) => document.querySelector(i), u = (i) => {
+  }, d = (i) => document.querySelectorAll(i), e = (i) => document.querySelector(i), m = (i) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", i, "variant_1"));
     }, 1e3);
-  }, m = (i) => i.length <= 300 ? i : `${i.substring(0, 300)} <a class="crs_read_more"> More...</a>`, h = () => {
+  }, h = (i) => i.length <= 300 ? i : `${i.substring(0, 300)} <a class="crs_read_more"> More...</a>`, p = () => {
     const i = navigator.userAgent;
     return i.match(/Android/i) || i.match(/webOS/i) || i.match(/iPhone/i) || i.match(/iPad/i) || i.match(/iPod/i) || i.match(/BlackBerry/i) || i.match(/Windows Phone/i) ? "mobile" : "desktop";
   }, s = "https://conversionratestore.github.io/projects/paintscratch/img/", r = {
@@ -115,7 +115,7 @@
     Volvo: ["volvo.png", "Volvo-Paint-Code.png"],
     Winnebago: ["mazda.png", "Hyundai-Paint-Code.gif"],
     Yamaha: ["mazda.png", "Hyundai-Paint-Code.gif"]
-  }, p = {
+  }, g = {
     Toyota: "/aJhKZ8l5YRk?si=QY48QFGYDJAXPSCn",
     Chevrolet: "/aJhKZ8l5YRk?si=2BSk4WFSkWyXlSXd",
     Volkswagen: "/XF4WvErVRoY?si=DflJ6t0zyB_9COKc",
@@ -434,10 +434,10 @@
     width: 22px;
   }
 }/*# sourceMappingURL=main.css.map */`;
-  g({ name: "Color code placement", dev: "Olha" }), u("exp_сolor_code_placement");
+  u({ name: "Color code placement", dev: "Olha" }), m("exp_сolor_code_placement");
   class x {
     constructor() {
-      this.device = h(), this.init();
+      this.device = p(), this.init();
     }
     init() {
       document.head.insertAdjacentHTML("beforeend", `<style>${C}</style>`), this.addAccordion(), this.addImages(), this.addVideo(), this.closePopup(), this.device === "mobile" && this.addReadMore();
@@ -456,12 +456,12 @@
             e(".crs_images_left img").src.includes(c[n][0]) || (e(".crs_images_left img").src = s + "paint-code-locations/" + c[n][0]), e(".crs_images_right").innerHTML = `<div class="relative"><img src="${s}color-id-tag/${c[n][1]}" alt="image">${r.zoom}</div>` + o;
           }
         d(".crs_images_row .relative > img").forEach((n, o) => {
-          n.addEventListener("click", (a) => {
+          n.addEventListener("click", (t) => {
             e(".crs_popup_image img").src = n.src, setTimeout(() => {
               e(".crs_popup_image").classList.add("active");
             }, 200);
             let l = n.closest(".crs_images_right") ? "Color plate" : "Where to find your color";
-            t("exp_color_code_image_01", "Section", "Image", l);
+            a("exp_color_code_image_01", "Section", "Image", l);
           });
         });
       }
@@ -470,11 +470,11 @@
       if (!e(".crs_video") || e(".crs_popup_video"))
         return;
       let n = e(".crs_video");
-      for (let o in p)
-        e("#page #main h1").innerText.toLowerCase().includes(o.toLowerCase()) && (n.insertAdjacentHTML("afterend", y(p[o])), e(".crs_popup_video iframe").addEventListener("click", (a) => {
-          t("exp_color_code_button_01", "Play", "Button", "Video instruction pop up");
-        }), n.style.display = "flex", n.addEventListener("click", (a) => {
-          e(".crs_popup_video").classList.add("active"), t("exp_color_code_link_01", "Video", "Link", "Video instruction on how to find your color code");
+      for (let o in g)
+        e("#page #main h1").innerText.toLowerCase().includes(o.toLowerCase()) && (n.insertAdjacentHTML("afterend", y(g[o])), e(".crs_popup_video iframe").addEventListener("click", (t) => {
+          a("exp_color_code_button_01", "Play", "Button", "Video instruction pop up");
+        }), n.style.display = "flex", n.addEventListener("click", (t) => {
+          e(".crs_popup_video").classList.add("active"), a("exp_color_code_link_01", "Video", "Link", "Video instruction on how to find your color code");
         }));
     }
     stopVideo() {
@@ -486,24 +486,32 @@
     closePopup() {
       d(".crs_popup_head svg").forEach((n) => {
         n.addEventListener("click", (o) => {
-          n.closest(".crs_popup").classList.remove("active"), this.stopVideo(), n.closest(".crs_popup_video") ? t("exp_color_code_button_02", "Close", "Button", "Video instruction pop up") : t("exp_color_code_button_02", "Close", "Button", "Image pop up");
+          n.closest(".crs_popup").classList.remove("active"), this.stopVideo(), n.closest(".crs_popup_video") ? a("exp_color_code_button_02", "Close", "Button", "Video instruction pop up") : a("exp_color_code_button_02", "Close", "Button", "Image pop up");
         });
       }), document.addEventListener("click", (n) => {
-        n.target.classList.contains("crs_popup") && (n.target.classList.remove("active"), this.stopVideo(), n.target.classList.contains("crs_popup_video") ? t("exp_color_code_under_01", "Close", "Under", "Video instruction pop up") : t("exp_color_code_under_01", "Close", "Under", "Image pop up"));
+        n.target.classList.contains("crs_popup") && (n.target.classList.remove("active"), this.stopVideo(), n.target.classList.contains("crs_popup_video") ? a("exp_color_code_under_01", "Close", "Under", "Video instruction pop up") : a("exp_color_code_under_01", "Close", "Under", "Image pop up"));
       });
     }
     addReadMore() {
       d("#main h3").forEach((n) => {
         if (n.innerText.includes("Color Code Information") && !n.nextElementSibling.querySelector(".crs_read_more")) {
-          const o = n.nextElementSibling, a = o.innerText, l = m(a);
+          const o = n.nextElementSibling, t = o.innerText, l = h(t);
           o.innerHTML = l, e(".crs_read_more").addEventListener("click", (w) => {
-            o.innerHTML = a;
+            o.innerHTML = t;
           });
         }
       });
     }
   }
   let b = setInterval(() => {
-    window.location.href.includes("cgi-bin/select-color.cgi") && (e('#no_car_selected[style*="block"]') || (clearInterval(b), new x()));
+    window.location.href.includes("cgi-bin/select-color.cgi") && (e('#no_car_selected[style*="block"]') || (clearInterval(b), new x()), e('#no_car_selected[style*="block"]') && !e(".crs_style") && p() === "mobile" && document.head.insertAdjacentHTML("beforeend", `
+      <style class="crs_style">
+        @media screen and (max-width: 768px) {
+          #color_search_pop a.action-button-orange {
+            margin-left: 0!important;
+            width: 100%;
+          }
+        }
+      </style>`));
   });
 })();
