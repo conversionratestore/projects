@@ -66,7 +66,7 @@
     Ferrari: ["mazda.png", "Hyundai-Paint-Code.gif"],
     Fiat: ["mazda.png", "Hyundai-Paint-Code.gif"],
     Fleetwood: ["mazda.png", "Hyundai-Paint-Code.gif"],
-    Ford: ["ford_toyota_acura_lincoln_mercury.jpg", "Ford-Paint-Code.gif"],
+    Ford: ["ford_toyota_acura_lincoln_mercury.png", "Ford-Paint-Code.gif"],
     "Forest-River": ["mazda.png", "Hyundai-Paint-Code.gif"],
     Fountain: ["mazda.png", "Hyundai-Paint-Code.gif"],
     Freightliner: ["mazda.png", "Hyundai-Paint-Code.gif"],
