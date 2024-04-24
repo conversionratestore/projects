@@ -549,10 +549,11 @@
     .product__img {
       mix-blend-mode: darken;
       position: absolute;
-      top: auto;
-      max-width: 580px;
-      max-height: 580px;
-      right: 17%;
+      top: 50%;
+      transform: translateY(-50%);
+      max-width: 514px;
+      max-height: 514px;
+      right: 19%;
     }
     
     .product__info {
@@ -1078,6 +1079,10 @@
     @media screen and (max-width: 1100px) and (min-width: 768px) {
       .new-arrivals-product {
         gap: 20px;
+      }
+
+      .product__img {
+        right: 14%;
       }
     }
 
