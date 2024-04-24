@@ -444,7 +444,9 @@
     }
     addAccordion() {
       e(".crs_accordion") || e(".select-color span.instructions + p") && (e(".select-color span.instructions + p").insertAdjacentHTML("afterend", f), e(".crs_accordion_current").addEventListener("click", (n) => {
-        e(".crs_accordion").classList.toggle("active"), e(".crs_accordion").classList.contains("active") ? t("exp_color_code_button_03", "Open", "Button", "What is a color code?") : t("exp_color_code_button_04", "Close", "Button", "What is a color code?");
+        e(".crs_accordion").classList.toggle("active");
+        let o = "";
+        e(".crs_accordion").classList.contains("active") ? o = "Open" : o = "Close", t("exp_color_code_button_03", o, "Button", "What is a color code?");
       }));
     }
     addImages() {
