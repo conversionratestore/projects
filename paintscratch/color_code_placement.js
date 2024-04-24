@@ -440,7 +440,7 @@
       this.device = p(), this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style class="crs_style_color">${C}</style>`), this.addAccordion(), this.addImages(), this.addVideo(), this.closePopup(), this.device === "mobile" && this.addReadMore();
+      e(".crs_style_color") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style_color">${C}</style>`), this.addAccordion(), this.addImages(), this.addVideo(), this.closePopup(), this.device === "mobile" && this.addReadMore();
     }
     addAccordion() {
       e(".crs_accordion") || e(".select-color span.instructions + p") && (e(".select-color span.instructions + p").insertAdjacentHTML("afterend", f), e(".crs_accordion_current").addEventListener("click", (n) => {
@@ -504,7 +504,7 @@
     }
   }
   setInterval(() => {
-    window.location.href.includes("cgi-bin/select-color.cgi") && (!e('#no_car_selected[style*="block"]') && !e(".crs_style_color") && new x(), e('#no_car_selected[style*="block"]') && !e(".crs_style") && p() === "mobile" && document.head.insertAdjacentHTML("beforeend", `
+    window.location.href.includes("cgi-bin/select-color.cgi") && (!e('#no_car_selected[style*="block"]') && !e(".crs_accordion") && (console.log("init ColorCodePlacement"), new x()), e('#no_car_selected[style*="block"]') && !e(".crs_style") && p() === "mobile" && (console.log("add crs_style"), document.head.insertAdjacentHTML("beforeend", `
       <style class="crs_style">
         @media screen and (max-width: 768px) {
           #color_search_pop a.action-button-orange {
@@ -512,6 +512,6 @@
             width: 100%;
           }
         }
-      </style>`));
+      </style>`)));
   });
 })();
