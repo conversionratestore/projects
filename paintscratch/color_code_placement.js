@@ -504,7 +504,7 @@
     }
   }
   setInterval(() => {
-    window.location.href.includes("cgi-bin/select-color.cgi") && (!e('#no_car_selected[style*="block"]') && !e(".crs_accordion") && (console.log("init ColorCodePlacement"), new x()), e('#no_car_selected[style*="block"]') && !e(".crs_style") && p() === "mobile" && (console.log("add crs_style"), document.head.insertAdjacentHTML("beforeend", `
+    window.location.href.includes("cgi-bin/select-color.cgi") && (!e('#no_car_selected[style*="block"]') && !e(".crs_images") && e("#color-display-table") && (console.log("init ColorCodePlacement"), new x()), e('#no_car_selected[style*="block"]') && !e(".crs_style") && p() === "mobile" && (console.log("add crs_style"), document.head.insertAdjacentHTML("beforeend", `
       <style class="crs_style">
         @media screen and (max-width: 768px) {
           #color_search_pop a.action-button-orange {
