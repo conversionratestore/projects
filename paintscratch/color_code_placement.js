@@ -440,7 +440,7 @@
       this.device = p(), this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${C}</style>`), this.addAccordion(), this.addImages(), this.addVideo(), this.closePopup(), this.device === "mobile" && this.addReadMore();
+      document.head.insertAdjacentHTML("beforeend", `<style class="crs_style_color">${C}</style>`), this.addAccordion(), this.addImages(), this.addVideo(), this.closePopup(), this.device === "mobile" && this.addReadMore();
     }
     addAccordion() {
       e(".crs_accordion") || e(".select-color span.instructions + p") && (e(".select-color span.instructions + p").insertAdjacentHTML("afterend", f), e(".crs_accordion_current").addEventListener("click", (n) => {
@@ -496,15 +496,15 @@
       d("#main h3").forEach((n) => {
         if (n.innerText.includes("Color Code Information") && !n.nextElementSibling.querySelector(".crs_read_more")) {
           const o = n.nextElementSibling, a = o.innerText, l = h(a);
-          o.innerHTML = l, e(".crs_read_more").addEventListener("click", (w) => {
+          o.innerHTML = l, e(".crs_read_more").addEventListener("click", (b) => {
             o.innerHTML = a;
           });
         }
       });
     }
   }
-  let b = setInterval(() => {
-    window.location.href.includes("cgi-bin/select-color.cgi") && (e('#no_car_selected[style*="block"]') || (clearInterval(b), new x()), e('#no_car_selected[style*="block"]') && !e(".crs_style") && p() === "mobile" && document.head.insertAdjacentHTML("beforeend", `
+  setInterval(() => {
+    window.location.href.includes("cgi-bin/select-color.cgi") && (!e('#no_car_selected[style*="block"]') && !e(".crs_style_color") && new x(), e('#no_car_selected[style*="block"]') && !e(".crs_style") && p() === "mobile" && document.head.insertAdjacentHTML("beforeend", `
       <style class="crs_style">
         @media screen and (max-width: 768px) {
           #color_search_pop a.action-button-orange {
