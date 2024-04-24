@@ -434,7 +434,7 @@
       this.device = n, this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${C}</style>`), this.addAccordion(), this.addImages(), this.addVideo(), this.closePopup(), this.addReadMore();
+      document.head.insertAdjacentHTML("beforeend", `<style>${C}</style>`), this.addAccordion(), this.addImages(), this.addVideo(), this.closePopup(), this.device == "mobile" && this.addReadMore();
     }
     addAccordion() {
       e(".crs_accordion") || e(".select-color span.instructions + p") && (e(".select-color span.instructions + p").insertAdjacentHTML("afterend", h), e(".crs_accordion_current").addEventListener("click", (n) => {
