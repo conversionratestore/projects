@@ -600,6 +600,7 @@
         }
 
         let closeBtnEvent = event => {}
+        let closeByClickOutsideEvent = event => {}
         const popupMutationObserver = new MutationObserver(mutations => {
           mutations.forEach(mutation => {
             const enhancePopupTarget = mutation.target.querySelector('[id^="DateOfBirth"]')
@@ -723,8 +724,20 @@
                 'Pop up Get 10% Off plus Free Next-Day UK Delivery! UK'
               )
             }
+            closeByClickOutsideEvent = e => {
+           
+              if (e.target.closest('div[role="dialog"]')) return
+              pushDataLayer(
+                'exp_pop_car_retent_backd_fredeluk_clos',
+                'Close',
+                'Button',
+                'Pop up Get 10% Off plus Free Next-Day UK Delivery! UK'
+              )
+            }
             $el('div[role="dialog"] .klaviyo-close-form').removeEventListener('click', closeBtnEvent)
             $el('div[role="dialog"] .klaviyo-close-form').addEventListener('click', closeBtnEvent)
+            $el('div[role="dialog"] .klaviyo-close-form').closest('div[role="dialog"]').parentElement.removeEventListener('mousedown', closeByClickOutsideEvent)
+            $el('div[role="dialog"] .klaviyo-close-form').closest('div[role="dialog"]').parentElement.addEventListener('mousedown', closeByClickOutsideEvent)
             const emailInput = elem.querySelector('input[id^="email"]')
             emailInput.addEventListener('change', e => {
               pushDataLayer(
@@ -749,8 +762,20 @@
                 'Pop upGet 10% Off Your First Order! USA, Canada, Australia'
               )
             }
+            closeByClickOutsideEvent = e => {
+           
+              if (e.target.closest('div[role="dialog"]')) return
+              pushDataLayer(
+                'exp_pop_car_retent_backd_firorduca_clos',
+                'Close',
+                'Button',
+                'Pop upGet 10% Off Your First Order! USA, Canada, Australia'
+              )
+            }
             $el('div[role="dialog"] .klaviyo-close-form').removeEventListener('click', closeBtnEvent)
             $el('div[role="dialog"] .klaviyo-close-form').addEventListener('click', closeBtnEvent)
+            $el('div[role="dialog"] .klaviyo-close-form').closest('div[role="dialog"]').parentElement.removeEventListener('mousedown', closeByClickOutsideEvent)
+            $el('div[role="dialog"] .klaviyo-close-form').closest('div[role="dialog"]').parentElement.addEventListener('mousedown', closeByClickOutsideEvent)
             const emailInput = elem.querySelector('input[id^="email"]')
             emailInput.addEventListener('change', e => {
               pushDataLayer(
@@ -1606,7 +1631,7 @@
           }
         })
       })
-      $el('#cart-popup .crs-promocode__copy-btn').addEventListener('click', (event) => {
+      $el('#cart-popup .crs-promocode__copy-btn').addEventListener('click', event => {
         pushDataLayer(
           'exp_pop_car_retent_but_with_prod_code',
           'Promo code',
