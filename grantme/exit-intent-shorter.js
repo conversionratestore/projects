@@ -230,6 +230,8 @@
           : +$$el('.rc-slider-handle')[0].ariaValueNow / 60
       this.date = new Date(new Date().getTime() + 1000 * 60 * 60 * 24)
       this.playClick = 0
+      this.fullScreenClick = 0
+      this.timeVideoOnShowPopup = null
       this.init()
     }
 
@@ -240,6 +242,7 @@
     }
 
     createPopup(time) {
+      this.timeVideoOnShowPopup = $$el('.rc-slider-handle')[1].ariaValueNow
       let thumbs = ''
       let slides = ''
       sliderData.forEach(item => {
@@ -432,7 +435,7 @@
               ${svgObj.guaranteed}Guaranteed
             </p>
           </div>
-          <a href="https://grantme.ca/pricing-packages/" class="main">Explore Pricing Packages</a>
+          <a href="https://grantme.ca/offer-for-webinar-attendees/" class="main">Explore Pricing Packages</a>
       </div>
     `
 
@@ -831,6 +834,9 @@
             const popup = $el('.popup_content > div h2').innerText
             visibilityTime()
             this.popup.remove()
+            if ($$el('.rc-slider-handle')[1].ariaValueNow === this.timeVideoOnShowPopup) {
+              $el('#playButton').click()
+            }
             sessionStorage.setItem('popup', 'true')
             pushDataLayer('exp_exit_popup_but_cw', 'Continue Watching', 'Button', popup)
             if ($el('.btn-unmute')) {
@@ -931,12 +937,13 @@
         })
       }
 
-      const originalConsoleLog = console.log
-      console.log = function (message) {
-        if (message === 'Leaving fullscreen mode') {
-          this.createPopup(this.videoTime)
-        }
-        originalConsoleLog.apply(console, arguments)
+      if ($el('#leftControls>div:last-of-type button')) {
+        $el('#leftControls>div:last-of-type button').addEventListener('click', () => {
+          this.fullScreenClick++
+          if (this.fullScreenClick > 1) {
+            this.createPopup(this.videoTime)
+          }
+        })
       }
     }
 
