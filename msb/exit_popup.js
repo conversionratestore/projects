@@ -34,7 +34,7 @@
             v1.unobserve(item.target)
             setTimeout(function () {
               v2.observe(item.target)
-            }, 1000 * 3)
+            }, 1000)
           }
         })
       },
