@@ -242,7 +242,10 @@
     }
 
     createPopup(time) {
-      this.timeVideoOnShowPopup = $$el('.rc-slider-handle')[1].ariaValueNow
+      this.timeVideoOnShowPopup =
+        this.device === 'desktop'
+          ? $$el('.rc-slider-handle')[1].ariaValueNow
+          : $$el('.rc-slider-handle')[0].ariaValueNow
       let thumbs = ''
       let slides = ''
       sliderData.forEach(item => {
@@ -834,13 +837,14 @@
             const popup = $el('.popup_content > div h2').innerText
             visibilityTime()
             this.popup.remove()
-            if ($$el('.rc-slider-handle')[1].ariaValueNow === this.timeVideoOnShowPopup) {
-              $el('#playButton').click()
-            }
             sessionStorage.setItem('popup', 'true')
             pushDataLayer('exp_exit_popup_but_cw', 'Continue Watching', 'Button', popup)
-            if ($el('.btn-unmute')) {
-              $el('.btn-unmute').click()
+            const time =
+              this.device === 'desktop'
+                ? $$el('.rc-slider-handle')[1].ariaValueNow
+                : $$el('.rc-slider-handle')[0].ariaValueNow
+            if (time === this.timeVideoOnShowPopup) {
+              $el('#playButton').click()
             }
           })
         }
