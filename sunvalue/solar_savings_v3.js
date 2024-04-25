@@ -4,13 +4,6 @@ const $$el = (selector) => document.querySelectorAll(selector);
 const $el = (selector) => document.querySelector(selector);
 const git = "https://conversionratestore.github.io/projects/";
 
-const clarityInterval = setInterval(function () {
-  if (typeof clarity == "function") {
-    clearInterval(clarityInterval);
-    clarity("set", "exp_intr_sol_sav", "variant_1");
-  }
-}, 200);
-
 function waitForElement(selector) {
   return new Promise((resolve) => {
     if (document.querySelector(selector)) {
@@ -159,6 +152,12 @@ class changeFlow {
     waitForElement(".swiper-slide-active").then(() => {
       waitForElement(".wrapper #slider-block .default").then(() => {
         if (location.pathname === "/save/") {
+          const clarityInterval = setInterval(function () {
+            if (typeof clarity == "function") {
+              clearInterval(clarityInterval);
+              clarity("set", "exp_intr_sol_sav", "variant_1");
+            }
+          }, 200);
           this.initMainStyles();
           this.setLocalStorageDataInfo();
 
