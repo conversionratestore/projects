@@ -238,6 +238,7 @@
   display: none;
 }
 .new_reviews_block .new_reviews_main_title {
+  font-family: "Lato", sans-serif;
   color: #2b3e51;
   text-align: center;
   font-size: 18px;
@@ -280,6 +281,7 @@
   margin-bottom: 12px;
 }
 .new_reviews_block .new_reviews_item_title {
+  font-family: "Lato", sans-serif;
   display: block;
   width: -moz-max-content;
   width: max-content;
@@ -290,6 +292,7 @@
   margin: 0;
 }
 .new_reviews_block .new_reviews_item_subtitle {
+  font-family: "Lato", sans-serif;
   color: #3e78ba;
   font-size: 14px;
   font-weight: 400;
@@ -396,6 +399,7 @@
   display: none;
 }
 .last_steps_wrapper .last_steps_main_title {
+  font-family: "Lato", sans-serif;
   color: #2b3e51;
   font-size: 32px;
   font-weight: 700;
@@ -420,6 +424,7 @@
   border-radius: 6px;
   background: #3d78ba;
   color: #fff;
+  font-family: "Lato", sans-serif;
   font-size: 16px;
   font-weight: 700;
   line-height: normal;
