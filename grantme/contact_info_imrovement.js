@@ -4489,7 +4489,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
             Q.target.getAttribute("name") !== "mobile_number" ? this.validationFormEmailNameBox(Q.target) : setTimeout(() => {
               this.validationFormPhoneBox(Q.target);
             }, 400);
-          }), z.addEventListener("change", (Q) => {
+          }), z.addEventListener("input", (Q) => {
             Q.target.getAttribute("name") === "mobile_number" && ge("exp_improve_contact_input_01", "Mobile phone number", "Input", "Almost done! Step 3");
           });
         });
