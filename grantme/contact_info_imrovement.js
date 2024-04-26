@@ -4338,14 +4338,14 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       this.device = H, this.observer = null, this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${Be}</style>`), this.observePhoneNumberPlaceholderChange(), this.observerBagControlVersion(), this.renderNewFormStep(), this.initLoaderStep(), this.initSliderReviews(), this.clickInputs(), this.clickContinueBtn(), this.clickSeeMyResultsBtn(), this.clickGoogleSignInBtn(), this.visibleHandler();
+      document.head.insertAdjacentHTML("beforeend", `<style>${Be}</style>`), this.observerBagControlVersion(), this.renderNewFormStep(), this.initLoaderStep(), this.initSliderReviews(), this.clickInputs(), this.clickContinueBtn(), this.clickSeeMyResultsBtn(), this.clickGoogleSignInBtn(), this.visibleHandler();
       const H = document.createElement("script");
       H.src = "https://accounts.google.com/gsi/client", H.async = !0, document.head.appendChild(H);
     }
     initLoaderStep() {
       ke("#edit-what-is-your-family-s-approximate-yearly-household-income- label").forEach((H) => {
         H.addEventListener("click", (z) => {
-          console.log("#edit-what-is-your-family-s-approximate-yearly-household-income- label", z.target), setTimeout(() => {
+          setTimeout(() => {
             var Q, ee, re;
             (Q = R(".dialog-off-canvas-main-canvas")) == null || Q.classList.add("is_loader"), (ee = R(".dialog-off-canvas-main-canvas")) == null || ee.classList.add("is_loader_active"), (re = R('section.form-wrapper.webform-card[data-title="What is your contact info?"]')) == null || re.classList.add("is_loader"), this.renderNewLoaderBlock(), this.createLoader(), this.renderReviewsBlock(), this.changeLogoImg();
           }, 300);
@@ -4365,7 +4365,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         h.textContent !== "What you’ll get:" && (h.textContent = "What you’ll get:"), R(".email_name_box").insertAdjacentElement("beforeend", w);
       }), de(".phone_box").then((H) => {
         let z = R(".form-type-tel"), Q = R(".form-type-tel label:not(.error)"), ee = R("#edit-mobile-number");
-        $e("(999) 999-9999").mask(ee), Q.textContent !== "Mobile phone number" && (Q.textContent = "Mobile phone number"), ee.placeholder !== "(___) ___-____" && (console.log(ee.placeholder, "1"), ee.placeholder = "(___) ___-____"), R(".phone_box #seeMyResultsBtn").insertAdjacentElement("beforebegin", z);
+        Q.textContent !== "Mobile phone number" && (Q.textContent = "Mobile phone number"), ee.placeholder !== "(___) ___-____" && (ee.placeholder = "(___) ___-____"), this.observePhoneNumberPlaceholderChange(), R(".phone_box #seeMyResultsBtn").insertAdjacentElement("beforebegin", z);
       });
     }
     renderNewLoaderBlock() {
@@ -4466,9 +4466,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     clickGoogleSignInBtn() {
       window.onSignIn = function(H) {
         ge("exp_improve_contact_button_03", "Google", "Button", "Your results are ready! Step 2");
-        let z = H.credential.split("."), Q = JSON.parse(atob(z[1]));
-        console.log(Q);
-        let ee = Q.given_name, re = Q.email;
+        let z = H.credential.split("."), Q = JSON.parse(atob(z[1])), ee = Q.given_name, re = Q.email;
         R("#edit-first-name") && (R("#edit-first-name").value = ee), R("#edit-email-address") && (R("#edit-email-address").value = re), setTimeout(() => {
           R("#edit-first-name").value !== "" && R("#edit-email-address").value !== "" && (R(".email_name_box").classList.add("is_hidden"), R(".phone_box").classList.contains("is_hidden") && R(".phone_box").classList.remove("is_hidden"), R(".new_reviews_block").classList.contains("is_hidden") || R(".new_reviews_block").classList.add("is_hidden"));
         }, 500);
@@ -4518,7 +4516,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
           (re = R("#edit-first-name-error")) == null || re.remove();
       if (H.getAttribute("name") === "email_address")
         if (ee === null) {
-          console.log("inputValueEmail === null"), R("#edit-email-address-error") || H.insertAdjacentHTML(
+          R("#edit-email-address-error") || H.insertAdjacentHTML(
             "afterend",
             '<label id="edit-email-address-error" class="error" for="edit-email-address">Please Enter Valid Email Address</label>'
           );
@@ -4526,7 +4524,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
             R("#edit-email-address-error") && R("#edit-email-address-error").textContent !== "Please Enter Valid Email Address" && (clearInterval(k), R("#edit-email-address-error").textContent = "Please Enter Valid Email Address");
           }, 100);
         } else
-          console.log("$el(`#edit-email-address-error`)?.remove()"), (G = R("#edit-email-address-error")) == null || G.remove();
+          (G = R("#edit-email-address-error")) == null || G.remove();
       if (ee !== null && Q !== null && z) {
         R(".email_name_box").classList.add("is_hidden"), R(".phone_box").classList.contains("is_hidden") && R(".phone_box").classList.remove("is_hidden"), R(".new_reviews_block").classList.contains("is_hidden") || R(".new_reviews_block").classList.add("is_hidden");
         let k = R("#edit-mobile-number");
@@ -4575,9 +4573,9 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     }
     observePhoneNumberPlaceholderChange() {
       const H = new MutationObserver(() => {
-        if (R("#edit-mobile-number")) {
+        if (R("#edit-mobile-number") && R("#edit-mobile-number").placeholder !== "(___) ___-____") {
           let z = R("#edit-mobile-number");
-          z && z.placeholder !== "(___) ___-____" && (z.placeholder = "(___) ___-____"), H.disconnect();
+          new $e("(999) 999-9999").mask(z), z.placeholder = "(___) ___-____", H.disconnect();
         }
       });
       H.observe(document.documentElement, {
