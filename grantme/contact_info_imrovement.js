@@ -4553,24 +4553,24 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         ye(
           ".guarantee_block",
           "exp_improve_contact_banner_01",
-          "Banner",
-          "Contact info Step 1 Qualified GrantMe students are guaranteed scholarship winnings"
+          "Contact info Step 1 Qualified GrantMe students are guaranteed scholarship winnings",
+          "Banner"
         );
       }), de(".loader_timing_box").then((H) => {
         ye(
           ".loader_timing_box",
           "exp_improve_contact_block_01",
-          "Block",
-          "Contact infoStep 1 Searching for scholarship opportunities"
+          "Contact infoStep 1 Searching for scholarship opportunities",
+          "Block"
         );
       }), de(".leyton").then((H) => {
-        ye(".leyton", "exp_improve_contact_review_01", "Leyton - Review", "Contact info Step 1");
+        ye(".leyton", "exp_improve_contact_review_01", "Contact info Step 1", "Leyton - Review");
       }), de(".lauren").then((H) => {
-        ye(".lauren", "exp_improve_contact_review_01", "Lauren - Review", "Contact info Step 1");
+        ye(".lauren", "exp_improve_contact_review_01", "Contact info Step 1", "Lauren - Review");
       }), de(".ashleigh").then((H) => {
-        ye(".ashleigh", "exp_improve_contact_review_01", "Ashleigh - Review", "Contact info Step 1");
+        ye(".ashleigh", "exp_improve_contact_review_01", "Contact info Step 1", "Ashleigh - Review");
       }), de(".salwa").then((H) => {
-        ye(".salwa", "exp_improve_contact_review_01", "Salwa- Review", "Contact info Step 1");
+        ye(".salwa", "exp_improve_contact_review_01", "Contact info Step 1", "Salwa- Review");
       });
     }
     observePhoneNumberPlaceholderChange() {
