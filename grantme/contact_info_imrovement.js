@@ -4431,7 +4431,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
               initialSlide: 0,
               adaptiveHeight: !0,
               autoplay: !0,
-              autoplaySpeed: 2e3,
+              autoplaySpeed: 4e3,
               prevArrow: `<div class="prev_btn slider_arrow">${ae.arrPrev}</div>`,
               nextArrow: `<div class="next_btn slider_arrow">${ae.arrNext}</div>`,
               responsive: [
