@@ -4603,7 +4603,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       D("#newLastName").value === "CRO test" && (D("#newLastName").value = "");
     }), de("#edit-parent-last-name").then((J) => {
       D("#edit-parent-last-name").value === "CRO test" && (D("#edit-parent-last-name").value = "");
-    }), de("#v").then((J) => {
+    }), de("#edit-last-name").then((J) => {
       D("#edit-last-name").value === "CRO test" && (D("#edit-last-name").value = "");
     }));
   }, 1e3);
