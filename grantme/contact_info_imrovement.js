@@ -4599,7 +4599,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     new Ge(He);
   });
   let Ue = setTimeout(() => {
-    location.pathname.match("assessment-results") && (clearInterval(Ue), de("#newLastName").then((X) => {
+    (location.pathname.match("assessment-results") || location.pathname.match("book-call")) && (clearInterval(Ue), console.log(">>>>>>>>>>>>>>>>>>"), de("#newLastName").then((X) => {
       R("#newLastName").value === "CRO test" && (R("#newLastName").value = "");
     }));
   }, 1e3);
