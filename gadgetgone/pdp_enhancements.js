@@ -1,4607 +1,2091 @@
 (function() {
   "use strict";
-  const ge = (X, H, z, Q = "") => {
+  const f = (i, e, t, l = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: X,
-      event_desc: H,
-      event_type: z,
-      event_loc: Q
-    }), console.log(`Event: ${X} | ${H} | ${z} | ${Q}`);
-  }, Oe = ({ name: X, dev: H }) => {
+      event_name: i,
+      event_desc: e,
+      event_type: t,
+      event_loc: l
+    }), console.log(`Event: ${i} | ${e} | ${t} | ${l}`);
+  }, x = ({ name: i, dev: e }) => {
     console.log(
-      `%c EXP: ${X} (DEV: ${H})`,
+      `%c EXP: ${i} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, ke = (X) => document.querySelectorAll(X), R = (X) => document.querySelector(X), Te = async (X) => {
-    const H = (z) => new Promise((Q, ee) => {
-      const re = z.split(".").pop();
-      if (re === "js") {
-        if (Array.from(document.scripts).map((w) => w.src.toLowerCase()).includes(z.toLowerCase()))
-          return console.log(`Script ${z} allready downloaded!`), Q("");
-        const k = document.createElement("script");
-        k.src = z, k.onload = Q, k.onerror = ee, document.head.appendChild(k);
-      } else if (re === "css") {
-        if (Array.from(document.styleSheets).map((w) => {
-          var h;
-          return (h = w.href) == null ? void 0 : h.toLowerCase();
-        }).includes(z.toLowerCase()))
-          return console.log(`Style ${z} allready downloaded!`), Q("");
-        const k = document.createElement("link");
-        k.rel = "stylesheet", k.href = z, k.onload = Q, k.onerror = ee, document.head.appendChild(k);
-      }
-    });
-    for (const z of X)
-      await H(z), console.log(`Loaded librari ${z}`);
-    console.log("All libraries loaded!");
-  }, Ae = (X) => {
-    let H = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(H), window.clarity("set", X, "variant_1"));
+  }, _ = (i) => document.querySelectorAll(i), n = (i) => document.querySelector(i), k = (i) => {
+    let e = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", i, "variant_1"));
     }, 1e3);
-  }, ye = (X, H, z, Q, ee = 3e3, re = 0.5) => {
-    let G, k;
-    if (G = new IntersectionObserver(
-      function(w) {
-        w[0].isIntersecting === !0 ? k = setTimeout(() => {
-          ge(
-            H,
-            w[0].target.dataset.visible || Q || "",
+  }, w = (i, e, t, l, c = 3e3, a = 0.5) => {
+    let r, d;
+    if (r = new IntersectionObserver(
+      function(h) {
+        h[0].isIntersecting === !0 ? d = setTimeout(() => {
+          f(
+            e,
+            h[0].target.dataset.visible || l || "",
             "Visibility",
-            z
-          ), G.disconnect();
-        }, ee) : clearTimeout(k);
+            t
+          ), r.disconnect();
+        }, c) : clearTimeout(d);
       },
-      { threshold: [re] }
-    ), typeof X == "string") {
-      const w = document.querySelector(X);
-      w && G.observe(w);
+      { threshold: [a] }
+    ), typeof i == "string") {
+      const h = document.querySelector(i);
+      h && r.observe(h);
     } else
-      G.observe(X);
+      r.observe(i);
   };
-  function de(X) {
-    return new Promise((H) => {
-      if (document.querySelector(X))
-        return H(document.querySelector(X));
-      const z = new MutationObserver(() => {
-        document.querySelector(X) && (H(document.querySelector(X)), z.disconnect());
+  function s(i) {
+    return new Promise((e) => {
+      if (document.querySelector(i))
+        return e(document.querySelector(i));
+      const t = new MutationObserver(() => {
+        document.querySelector(i) && (e(document.querySelector(i)), t.disconnect());
       });
-      z.observe(document.documentElement, {
+      t.observe(document.documentElement, {
         childList: !0,
         subtree: !0,
         characterData: !0
       });
     });
   }
-  const Be = `.new_loader_block {
-  margin: 0 auto 40px;
-}
-@media (max-width: 768px) {
-  .new_loader_block {
-    margin: 0 auto 36px;
-  }
-}
-
-.loader_timing_box {
-  position: relative;
-  width: 220px;
-  height: 220px;
-  margin: 0 auto;
-}
-.loader_timing_box svg.rotating {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotateZ(-90deg);
-  width: 100%;
-  height: 100%;
-}
-.loader_timing_box svg.loader_bgr {
-  width: 200px;
-  height: 200px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.loader_timing_box .percentage {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  height: 1em;
-  width: 2em;
-  text-align: center;
-  line-height: 1;
-  color: #3e78ba;
-  text-align: center;
-  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.3), 0px 1px 0px rgba(255, 255, 255, 0.5);
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 24px;
-}
-@keyframes fill {
-  0% {
-    fill: #f2f2f2;
-  }
-  100% {
-    fill: #3e78ba;
-  }
-}
-@media (max-width: 768px) {
-  .loader_timing_box {
-    width: 166px;
-    height: 166px;
-  }
-  .loader_timing_box svg.loader_bgr {
-    width: 150px;
-    height: 150px;
-  }
-}
-
-.loading_txt_wrapper {
-  text-align: center;
-  margin: 40px auto 0;
-}
-.loading_txt_wrapper p {
-  display: none;
-  color: #3e78ba;
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 36px;
-  margin: 0;
-}
-.loading_txt_wrapper p:first-child {
-  display: block;
-}
-.loading_txt_wrapper p span:nth-child(1) {
-  animation: blink 1s linear infinite;
-}
-.loading_txt_wrapper p span:nth-child(2) {
-  animation: blink 1s linear infinite;
-  animation-delay: 0.2s;
-}
-.loading_txt_wrapper p span:nth-child(3) {
-  animation: blink 1s linear infinite;
-  animation-delay: 0.4s;
-}
-@keyframes blink {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-@media (max-width: 768px) {
-  .loading_txt_wrapper {
-    margin-top: 24px;
-  }
-  .loading_txt_wrapper p {
-    font-size: 18px;
-    line-height: 25px;
-    max-width: 305px;
-    margin: 0 auto;
-  }
-}
-
-.guarantee_block {
-  padding: 0 0 40px;
-}
-.guarantee_block .guarantee_block_container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  border-radius: 6px;
-  border: 1px solid #e1e1e1;
-  background: linear-gradient(180deg, #fff 84%, #f7f7f8 100%);
-  padding: 16px;
-  margin: 0 auto;
-  max-width: 558px;
-}
-.guarantee_block .guarantee_block_container svg {
-  max-width: 44px;
-  height: 44px;
-  width: 100%;
-}
-.guarantee_block .guarantee_block_container p {
-  color: #2b3e51;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
-  margin: 0;
-}
-@media (max-width: 768px) {
-  .guarantee_block {
-    padding: 0 16px 24px;
-    border-bottom: 1px solid #e1e1e1;
-    background: #f7f7f8;
-    margin-bottom: 36px;
-  }
-  .guarantee_block .guarantee_block_container {
-    border: none;
-    background: #fff;
-  }
-}
-
-.new_reviews_block {
-  width: 100%;
-  padding: 40px 0;
-  margin: 0 auto;
-  border-top: 1px solid #e1e1e1;
-  background: #f7f7f8;
-}
-.new_reviews_block.is_hidden {
-  display: none;
-}
-.new_reviews_block .new_reviews_main_title {
-  font-family: "Lato", sans-serif;
-  color: #2b3e51;
-  text-align: center;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 24px;
-  margin: 0 0 2px;
-}
-.new_reviews_block .new_reviews_main_txt {
-  color: #2b3e51;
-  text-align: center;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  margin: 0;
-}
-.new_reviews_block .new_reviews_list {
-  position: relative;
-  margin: 24px 0 0 56px;
-  padding-bottom: 56px;
-  visibility: hidden;
-}
-.new_reviews_block .new_reviews_item {
-  position: relative;
-  border-radius: 6px;
-  background: #fff;
-  padding: 24px;
-}
-.new_reviews_block .received_box {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  align-items: flex-end;
-}
-.new_reviews_block .stars_wrapper {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 12px;
-}
-.new_reviews_block .new_reviews_item_title {
-  font-family: "Lato", sans-serif;
-  display: block;
-  width: -moz-max-content;
-  width: max-content;
-  color: #2b3e51;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 22px;
-  margin: 0;
-}
-.new_reviews_block .new_reviews_item_subtitle {
-  font-family: "Lato", sans-serif;
-  color: #3e78ba;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 21px;
-  margin: 8px 0 12px;
-}
-.new_reviews_block .new_reviews_item_txt {
-  color: #676767;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 21px;
-  margin: 0;
-}
-.new_reviews_block .received_box_txt {
-  color: #2b3e51;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 21px;
-}
-.new_reviews_block .received_box_price {
-  color: #ebbd45;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 21px;
-}
-.new_reviews_block .slick-track {
-  margin-left: -15px;
-}
-.new_reviews_block .slick-slide {
-  margin: 0 16px 0 0;
-  height: 100%;
-}
-.new_reviews_block .slick-slide > div {
-  height: 100%;
-}
-.new_reviews_block .slider_arrow {
-  position: absolute;
-  bottom: 0;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 32px;
-  max-height: 32px;
-}
-.new_reviews_block .slider_arrow svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-width: 32px;
-  min-height: 32px;
-}
-.new_reviews_block .prev_btn.slider_arrow {
-  left: 47%;
-}
-.new_reviews_block .next_btn.slider_arrow {
-  right: 47%;
-}
-@media (min-width: 912px) and (max-width: 1300px) {
-  .new_reviews_block .prev_btn.slider_arrow {
-    left: 46%;
-  }
-  .new_reviews_block .next_btn.slider_arrow {
-    right: 46%;
-  }
-}
-@media (min-width: 769px) and (max-width: 911px) {
-  .new_reviews_block .prev_btn.slider_arrow {
-    left: 44%;
-  }
-  .new_reviews_block .next_btn.slider_arrow {
-    right: 44%;
-  }
-}
-@media (max-width: 768px) {
-  .new_reviews_block {
-    padding: 24px 16px;
-  }
-  .new_reviews_block .new_reviews_main_title {
-    font-size: 16px;
-  }
-  .new_reviews_block .new_reviews_list {
-    margin: 16px 0 0;
-  }
-  .new_reviews_block .slick-track {
-    margin: 0;
-  }
-  .new_reviews_block .slick-slide {
-    margin: 0 4px;
-  }
-  .new_reviews_block .prev_btn.slider_arrow {
-    left: 38%;
-  }
-  .new_reviews_block .next_btn.slider_arrow {
-    right: 38%;
-  }
-}
-
-.last_steps_wrapper {
-  max-width: 552px;
-  margin: 0 auto 40px;
-}
-.last_steps_wrapper .phone_box.is_hidden, .last_steps_wrapper .email_name_box.is_hidden {
-  display: none;
-}
-.last_steps_wrapper .last_steps_main_title {
-  font-family: "Lato", sans-serif;
-  color: #2b3e51;
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 48px;
-  letter-spacing: -0.48px;
-  margin: 0 0 8px;
-  text-transform: initial;
-}
-.last_steps_wrapper .last_steps_main_txt {
-  color: #676767;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  margin: 0 0 24px;
-}
-.last_steps_wrapper #continueValidationBtn, .last_steps_wrapper #seeMyResultsBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 56px;
-  width: 100%;
-  border-radius: 6px;
-  background: #3d78ba;
-  color: #fff;
-  font-family: "Lato", sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: normal;
-  cursor: pointer;
-  margin: 16px 0;
-  outline: none;
-  border: none;
-}
-.last_steps_wrapper .safe_and_secure_box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-.last_steps_wrapper .safe_and_secure_box span {
-  color: #2b3e51;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  margin: 0;
-}
-.last_steps_wrapper .or_txt {
-  position: relative;
-  margin: 16px 0;
-}
-.last_steps_wrapper .or_txt span {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: -moz-max-content;
-  width: max-content;
-  color: #676767;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 24px;
-  background: #fff;
-  padding: 0 23px;
-  z-index: 1111;
-  margin: 0 auto;
-}
-.last_steps_wrapper .or_txt::before {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 1px;
-  background: #e9e9e9;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.last_steps_wrapper #btnSignInBlock {
-  width: 100%;
-  height: 100%;
-  margin-bottom: 16px;
-}
-.last_steps_wrapper #btnSignInBlock #googleSignInBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 51px;
-  gap: 10px;
-  width: 100%;
-  border-radius: 6px;
-  background: #f2f2f2;
-  color: #2b3e51;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: normal;
-  margin: 0;
-  cursor: pointer;
-}
-.last_steps_wrapper .new_footnote {
-  color: #676767;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 21px;
-  margin: 0;
-}
-.last_steps_wrapper .new_footnote a {
-  color: #3e78ba;
-  cursor: pointer;
-}
-.last_steps_wrapper .benefits {
-  margin: 24px 0 0;
-  padding-top: 24px;
-  border-top: 1px solid #e9e9e9;
-}
-.last_steps_wrapper .benefits > div > p {
-  color: #2b3e51;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 140%;
-  margin: 0 0 16px;
-}
-.last_steps_wrapper .benefits ul {
-  margin: 0;
-}
-.last_steps_wrapper .benefits ul li {
-  color: #2b3e51;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  margin: 0;
-  padding-bottom: 8px;
-}
-.last_steps_wrapper .benefits ul li:last-child {
-  padding: 0;
-}
-.last_steps_wrapper .benefits ul li img {
-  max-width: 40px;
-  max-height: 40px;
-  -o-object-fit: contain;
-     object-fit: contain;
-  width: 100%;
-  height: 100%;
-}
-@media (max-width: 768px) {
-  .last_steps_wrapper {
-    margin: -8px 16px 0;
-  }
-  .last_steps_wrapper .last_steps_main_title {
-    font-size: 24px;
-    line-height: 36px;
-  }
-  .last_steps_wrapper #continueValidationBtn {
-    margin: 12px 0;
-  }
-  .last_steps_wrapper .safe_and_secure_box span {
-    font-size: 14px;
-  }
-  .last_steps_wrapper .or_txt {
-    margin: 12px 0;
-  }
-  .last_steps_wrapper #btnSignInBlock {
-    margin-bottom: 12px;
-  }
-  .last_steps_wrapper .new_footnote {
-    font-size: 12px;
-    line-height: 16px;
-  }
-  .last_steps_wrapper .benefits {
-    margin-top: 16px;
-    padding-top: 16px;
-  }
-  .last_steps_wrapper .benefits ul li {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 12px;
-  }
-  .last_steps_wrapper .benefits ul li:last-child {
-    padding-bottom: 16px;
-  }
-  .last_steps_wrapper .benefits .hidden-xs {
-    display: block !important;
-  }
-  .last_steps_wrapper .benefits .hidden-xs ul {
-    display: none;
-  }
-  .last_steps_wrapper .benefits .visible-xs > p {
-    display: none !important;
-  }
-  .last_steps_wrapper .benefits > div > p {
-    line-height: 24px;
-  }
-}
-
-.g_id_signin > div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.g_id_signin iframe {
-  margin: 0 !important;
-}
-
-#edit-processed-text-73 .card-dark-blue,
-.testimonials .container-fluid,
-#edit-loading-screen.webform-card--active,
-html.js .webform-card.webform-card--active.is_loader,
-.form-item-last-name,
-#edit-what-is-your-contact-info- .js-form-type-processed-text,
-#edit-what-is-your-contact-info-2 .js-form-type-processed-text,
-.webform-button--submit,
-.is_loader .webform-progress-wrapper,
-.is_loader .webform-progress,
-.is_loader .back-button-wrapper,
-.is_loader .quiz-title {
-  display: none !important;
-}
-
-.is_loader form {
-  padding: 0 !important;
-}
-
-.is_loader .navbar-top .navbar-header {
-  margin: 0;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.is_loader .navbar-default {
-  background: none;
-}
-
-.is_loader .navbar .logo {
-  padding: 40px 0;
-}
-
-#webform-submission-grantme-program-assessment-add-form {
-  min-height: 100% !important;
-}
-
-.path-scholarship-eligibility-quiz .is_loader .form-wrapper {
-  padding: 0;
-  margin: 0;
-}
-
-.testimonials,
-.path-scholarship-eligibility-quiz .main-container {
-  background: none;
-  padding: 0;
-}
-
-.navbar-header .logo img {
-  width: 236px !important;
-  max-height: 71px;
-  height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-
-body .form-type-textfield .form-text,
-body .form-type-tel .form-tel {
-  height: 56px;
-  border-radius: 6px;
-  border: 1px solid #3d78ba;
-  background: #fafafb;
-  padding: 12px;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-}
-body .form-type-textfield .form-text::-moz-placeholder, body .form-type-tel .form-tel::-moz-placeholder {
-  color: #8b8b8b;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-}
-body .form-type-textfield .form-text::placeholder,
-body .form-type-tel .form-tel::placeholder {
-  color: #8b8b8b;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-}
-
-body .form-group {
-  margin-bottom: 12px;
-}
-body .form-group.form-item-email-address {
-  margin: 0;
-}
-body .form-group.form-item-mobile-number {
-  margin-bottom: 16px;
-}
-
-body .form-item-email-address label:not(.error),
-body .form-item-first-name label:not(.error),
-body .form-item.form-type-tel label:not(.error) {
-  display: inline-block !important;
-  color: #2b3e51 !important;
-  font-size: 16px !important;
-  font-weight: 400 !important;
-  line-height: 24px !important;
-  margin: 0 0 8px !important;
-}
-
-.last_steps_wrapper .error {
-  display: block !important;
-  text-align: left !important;
-}
-
-.last_steps_wrapper strong.error {
-  display: none !important;
-}
-
-#edit-qa13-wrap.panel .panel-body {
-  padding: 0;
-}
-
-.is_loader .navbar-top .navbar-header .col-md-offset-2 {
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100%;
-}
-
-@media (max-width: 768px) {
-  .dialog-off-canvas-main-canvas.is_loader_active .navbar-default {
-    background: #f7f7f8;
-  }
-  .dialog-off-canvas-main-canvas.is_loader .navbar-header .logo {
-    padding: 24px 0;
-  }
-  .dialog-off-canvas-main-canvas.is_loader .navbar-header .logo img {
-    width: 90px !important;
-    min-width: 100% !important;
-  }
-  .is_loader .main-container .row,
-  .is_loader .main-container .row > .col-sm-12 {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-}/*# sourceMappingURL=main.css.map */`, ae = {
-    guaranteeIcon: `
-    <svg xmlns="http://www.w3.org/2000/svg" width="44" height="45" viewBox="0 0 44 45" fill="none">
-  <g clip-path="url(#clip0_4895_2988)">
-    <mask id="mask0_4895_2988" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="44" height="45">
-      <path d="M0 0.799992H44V44.8H0V0.799992Z" fill="white"/>
-    </mask>
-    <g mask="url(#mask0_4895_2988)">
-      <path d="M20.2709 33.2655L20.7176 32.3707L20.7153 32.3696L20.2709 33.2655ZM15.8761 43.5109L14.9475 43.882C15.0976 44.2576 15.4592 44.5058 15.8636 44.5108C16.268 44.5159 16.6357 44.2768 16.7951 43.9051L15.8761 43.5109ZM13.1587 36.7116L14.0873 36.3404C13.8824 35.8276 13.3006 35.578 12.7877 35.7829L13.1587 36.7116ZM6.35938 39.428L5.44038 39.0338C5.28092 39.4055 5.36105 39.8366 5.64343 40.1262C5.9258 40.4158 6.35479 40.5067 6.73038 40.3567L6.35938 39.428ZM11.8499 29.9766L12.4931 29.2109L12.4921 29.21L11.8499 29.9766ZM14.4934 30.8824L15.3778 30.4157C15.1983 30.0756 14.8397 29.8686 14.4555 29.8831L14.4934 30.8824ZM16.5988 32.7189L16.2563 33.6584L16.2573 33.6588L16.5988 32.7189ZM19.3927 32.6656L20.065 31.9253C19.7798 31.6664 19.3713 31.5942 19.0147 31.7398L19.3927 32.6656ZM37.6406 39.428L37.2696 40.3567C37.6452 40.5067 38.0742 40.4158 38.3566 40.1262C38.6389 39.8366 38.7191 39.4055 38.5596 39.0338L37.6406 39.428ZM30.8412 36.7116L31.2123 35.7829C30.6994 35.578 30.1176 35.8276 29.9127 36.3404L30.8412 36.7116ZM28.1239 43.5109L27.2049 43.9051C27.3643 44.2768 27.732 44.5159 28.1364 44.5108C28.5408 44.5058 28.9024 44.2576 29.0525 43.882L28.1239 43.5109ZM23.7291 33.2655L23.2847 32.3696L23.2824 32.3707L23.7291 33.2655ZM24.6073 32.6656L24.9853 31.7398C24.6287 31.5942 24.2202 31.6664 23.935 31.9253L24.6073 32.6656ZM27.4012 32.7189L27.7427 33.6588L27.7437 33.6584L27.4012 32.7189ZM29.5066 30.8824L29.5445 29.8831C29.1602 29.8686 28.8017 30.0756 28.6222 30.4157L29.5066 30.8824ZM32.1501 29.9766L31.5079 29.21L31.5069 29.2109L32.1501 29.9766ZM37.0133 17.8801L36.1672 17.3471C35.962 17.6728 35.962 18.0873 36.1672 18.4131L37.0133 17.8801ZM36.1084 23.0148L35.4956 22.2246C35.1916 22.4603 35.0498 22.8495 35.1308 23.2255L36.1084 23.0148ZM35.6752 25.776L36.5411 26.2762L36.5414 26.2758L35.6752 25.776ZM33.501 27.5308L33.1953 26.5787C32.8288 26.6964 32.5624 27.0139 32.5102 27.3953L33.501 27.5308ZM10.499 27.5308L11.4898 27.3953C11.4376 27.0139 11.1712 26.6964 10.8047 26.5787L10.499 27.5308ZM8.32477 25.776L7.45864 26.2758L7.45885 26.2762L8.32477 25.776ZM7.89164 23.0148L8.8692 23.2255C8.95023 22.8495 8.80841 22.4603 8.50443 22.2246L7.89164 23.0148ZM6.98672 17.8801L7.83285 18.4131C8.03801 18.0873 8.03801 17.6728 7.83285 17.3471L6.98672 17.8801ZM7.89164 12.7453L8.50443 13.5355C8.80841 13.2998 8.95023 12.9107 8.8692 12.5346L7.89164 12.7453ZM8.32477 9.98499L9.19068 10.4852L9.1909 10.4848L8.32477 9.98499ZM10.499 8.22929L10.8047 9.18142C11.171 9.06379 11.4374 8.74638 11.4897 8.36514L10.499 8.22929ZM11.8499 5.7835L12.4922 6.54997L12.4931 6.54919L11.8499 5.7835ZM14.4934 4.87772L14.4555 5.87701C14.8398 5.89157 15.1983 5.68451 15.3778 5.34442L14.4934 4.87772ZM16.5988 3.04124L16.2573 2.10137L16.2563 2.10175L16.5988 3.04124ZM19.3927 3.09452L19.0147 4.02036C19.371 4.16579 19.7792 4.09387 20.0643 3.83542L19.3927 3.09452ZM24.6073 3.09452L23.9357 3.83542C24.2208 4.09387 24.629 4.16579 24.9853 4.02036L24.6073 3.09452ZM27.4012 3.04124L27.7437 2.10175L27.7427 2.10137L27.4012 3.04124ZM29.5066 4.87772L28.6222 5.34442C28.8017 5.68451 29.1603 5.89157 29.5445 5.87701L29.5066 4.87772ZM32.1501 5.7835L31.5069 6.54919L31.5078 6.54997L32.1501 5.7835ZM33.501 8.22929L32.5103 8.36514C32.5626 8.74638 32.829 9.06379 33.1953 9.18142L33.501 8.22929ZM35.6752 9.98499L34.8091 10.4848L34.8093 10.4852L35.6752 9.98499ZM36.1084 12.7453L35.1308 12.5346C35.0498 12.9107 35.1916 13.2998 35.4956 13.5355L36.1084 12.7453ZM19.3519 32.8712L14.9571 43.1167L16.7951 43.9051L21.19 33.6597L19.3519 32.8712ZM16.8047 43.1398L14.0873 36.3404L12.2302 37.0827L14.9475 43.882L16.8047 43.1398ZM12.7877 35.7829L5.98837 38.4994L6.73038 40.3567L13.5298 37.6402L12.7877 35.7829ZM7.27837 39.8223L11.8305 29.2116L9.99249 28.4231L5.44038 39.0338L7.27837 39.8223ZM10.0271 29.2842C10.3144 29.8284 10.7097 30.326 11.2078 30.7432L12.4921 29.21C12.1961 28.9621 11.964 28.6691 11.7958 28.3505L10.0271 29.2842ZM11.2067 30.7423C12.1731 31.5541 13.3638 31.9259 14.5312 31.8817L14.4555 29.8831C13.7632 29.9094 13.0633 29.6899 12.4931 29.2109L11.2067 30.7423ZM13.6089 31.3491C14.1541 32.3823 15.0716 33.2264 16.2563 33.6584L16.9414 31.7794C16.2406 31.5239 15.7005 31.0274 15.3778 30.4157L13.6089 31.3491ZM16.2573 33.6588C17.4427 34.0895 18.6882 34.0332 19.7706 33.5915L19.0147 31.7398C18.3749 32.001 17.6422 32.0341 16.9404 31.779L16.2573 33.6588ZM18.7203 33.4059C19.05 33.7053 19.4222 33.9607 19.8266 34.1613L20.7153 32.3696C20.4786 32.2522 20.2595 32.102 20.065 31.9253L18.7203 33.4059ZM38.0116 38.4994L31.2123 35.7829L30.4702 37.6402L37.2696 40.3567L38.0116 38.4994ZM29.9127 36.3404L27.1953 43.1398L29.0525 43.882L31.7698 37.0827L29.9127 36.3404ZM29.0429 43.1167L24.6481 32.8712L22.81 33.6597L27.2049 43.9051L29.0429 43.1167ZM24.1734 34.1613C24.5778 33.9607 24.95 33.7053 25.2796 33.4059L23.935 31.9253C23.7405 32.102 23.5214 32.2522 23.2847 32.3696L24.1734 34.1613ZM24.2294 33.5915C25.3118 34.0332 26.5573 34.0895 27.7427 33.6588L27.0596 31.779C26.3578 32.0341 25.6251 32.001 24.9853 31.7398L24.2294 33.5915ZM27.7437 33.6584C28.9284 33.2264 29.8459 32.3823 30.3911 31.3491L28.6222 30.4157C28.2995 31.0274 27.7594 31.5239 27.0586 31.7794L27.7437 33.6584ZM29.4688 31.8817C30.6362 31.9259 31.8269 31.5541 32.7933 30.7423L31.5069 29.2109C30.9367 29.6899 30.2368 29.9094 29.5445 29.8831L29.4688 31.8817ZM32.7922 30.7432C33.2903 30.326 33.6856 29.8284 33.9729 29.2842L32.2042 28.3505C32.036 28.6691 31.8039 28.9621 31.5079 29.21L32.7922 30.7432ZM32.1695 29.2116L36.7216 39.8223L38.5596 39.0338L34.0075 28.4231L32.1695 29.2116ZM36.1672 18.4131C36.536 18.9986 36.696 19.7146 36.5665 20.4485L38.536 20.7962C38.7554 19.5535 38.4823 18.3359 37.8594 17.3471L36.1672 18.4131ZM36.5665 20.4485C36.4368 21.183 36.0416 21.8011 35.4956 22.2246L36.7211 23.8051C37.6446 23.089 38.3168 22.0382 38.536 20.7962L36.5665 20.4485ZM35.1308 23.2255C35.2766 23.9021 35.1821 24.6299 34.8091 25.2762L36.5414 26.2758C37.1722 25.1827 37.332 23.946 37.0859 22.8042L35.1308 23.2255ZM34.8093 25.2758C34.4363 25.9216 33.854 26.3673 33.1953 26.5787L33.8067 28.483C34.9201 28.1255 35.9105 27.368 36.5411 26.2762L34.8093 25.2758ZM32.5102 27.3953C32.4649 27.7268 32.3621 28.0506 32.2037 28.3514L33.9733 29.2832C34.2412 28.7745 34.4151 28.2269 34.4918 27.6664L32.5102 27.3953ZM23.2824 32.3707C22.8984 32.5624 22.4632 32.6711 22 32.6711V34.6711C22.7795 34.6711 23.5199 34.4875 24.1757 34.1602L23.2824 32.3707ZM22 32.6711C21.5368 32.6711 21.1016 32.5624 20.7176 32.3707L19.8243 34.1602C20.4801 34.4875 21.2205 34.6711 22 34.6711V32.6711ZM11.7963 28.3514C11.6379 28.0506 11.5351 27.7269 11.4898 27.3953L9.50821 27.6664C9.58489 28.2269 9.75877 28.7745 10.0266 29.2832L11.7963 28.3514ZM10.8047 26.5787C10.146 26.3673 9.56374 25.9216 9.19068 25.2758L7.45885 26.2762C8.08955 27.368 9.07992 28.1255 10.1933 28.483L10.8047 26.5787ZM9.1909 25.2762C8.81794 24.6299 8.72339 23.9021 8.8692 23.2255L6.91408 22.8042C6.66802 23.946 6.82785 25.1827 7.45864 26.2758L9.1909 25.2762ZM8.50443 22.2246C7.95837 21.8011 7.56319 21.183 7.43353 20.4485L5.46398 20.7962C5.68322 22.0382 6.35539 23.089 7.27885 23.8051L8.50443 22.2246ZM7.43353 20.4485C7.30398 19.7146 7.46402 18.9986 7.83285 18.4131L6.1406 17.3471C5.5177 18.3359 5.24462 19.5535 5.46398 20.7962L7.43353 20.4485ZM7.83285 17.3471C7.46402 16.7616 7.30398 16.0455 7.43353 15.3116L5.46398 14.964C5.24462 16.2066 5.5177 17.4242 6.1406 18.4131L7.83285 17.3471ZM7.43353 15.3116C7.56319 14.5771 7.95837 13.959 8.50443 13.5355L7.27885 11.9551C6.35539 12.6711 5.68322 13.7219 5.46398 14.964L7.43353 15.3116ZM8.8692 12.5346C8.72336 11.8579 8.81802 11.1303 9.19068 10.4852L7.45885 9.4848C6.82777 10.5773 6.66805 11.8143 6.91408 12.956L8.8692 12.5346ZM9.1909 10.4848C9.56395 9.83836 10.1461 9.39285 10.8047 9.18142L10.1933 7.27715C9.07983 7.63463 8.08934 8.39224 7.45864 9.48517L9.1909 10.4848ZM11.4897 8.36514C11.5837 7.67976 11.9214 7.02832 12.4922 6.54997L11.2076 5.01704C10.2402 5.82775 9.66693 6.93631 9.50826 8.09343L11.4897 8.36514ZM12.4931 6.54919C13.0633 6.07024 13.7632 5.85077 14.4555 5.87701L14.5312 3.87844C13.3638 3.83421 12.1731 4.20599 11.2067 5.01781L12.4931 6.54919ZM15.3778 5.34442C15.7005 4.73276 16.2406 4.23626 16.9414 3.98073L16.2563 2.10175C15.0716 2.53372 14.1541 3.37784 13.6089 4.41102L15.3778 5.34442ZM16.9404 3.98111C17.6422 3.72607 18.3749 3.75918 19.0147 4.02036L19.7706 2.16868C18.6882 1.72689 17.4427 1.67062 16.2573 2.10137L16.9404 3.98111ZM20.0643 3.83542C20.5768 3.37082 21.2541 3.08905 22 3.08905V1.08905C20.7384 1.08905 19.587 1.56868 18.721 2.35362L20.0643 3.83542ZM22 3.08905C22.7459 3.08905 23.4232 3.37082 23.9357 3.83542L25.279 2.35362C24.413 1.56868 23.2616 1.08905 22 1.08905V3.08905ZM24.9853 4.02036C25.6251 3.75918 26.3578 3.72607 27.0596 3.98111L27.7427 2.10137C26.5573 1.67062 25.3118 1.72689 24.2294 2.16868L24.9853 4.02036ZM27.0586 3.98073C27.7594 4.23626 28.2995 4.73276 28.6222 5.34442L30.3911 4.41102C29.8459 3.37784 28.9284 2.53372 27.7437 2.10175L27.0586 3.98073ZM29.5445 5.87701C30.2368 5.85077 30.9367 6.07024 31.5069 6.54919L32.7933 5.01781C31.8269 4.20599 30.6362 3.83421 29.4688 3.87844L29.5445 5.87701ZM31.5078 6.54997C32.0786 7.02832 32.4163 7.67976 32.5103 8.36514L34.4917 8.09343C34.3331 6.93631 33.7598 5.82775 32.7924 5.01704L31.5078 6.54997ZM33.1953 9.18142C33.8539 9.39285 34.4361 9.83836 34.8091 10.4848L36.5414 9.48517C35.9107 8.39224 34.9202 7.63463 33.8067 7.27715L33.1953 9.18142ZM34.8093 10.4852C35.182 11.1303 35.2766 11.8579 35.1308 12.5346L37.0859 12.956C37.332 11.8143 37.1722 10.5773 36.5411 9.4848L34.8093 10.4852ZM35.4956 13.5355C36.0416 13.959 36.4368 14.5771 36.5665 15.3116L38.536 14.964C38.3168 13.7219 37.6446 12.6711 36.7211 11.9551L35.4956 13.5355ZM36.5665 15.3116C36.696 16.0455 36.536 16.7616 36.1672 17.3471L37.8594 18.4131C38.4823 17.4242 38.7554 16.2066 38.536 14.964L36.5665 15.3116Z" fill="url(#paint0_linear_4895_2988)"/>
-      <path d="M31.444 17.6223C31.444 22.8382 27.2157 27.0665 21.9998 27.0665C16.784 27.0665 12.5557 22.8382 12.5557 17.6223C12.5557 12.4064 16.784 8.17809 21.9998 8.17809C27.2157 8.17809 31.444 12.4064 31.444 17.6223Z" stroke="url(#paint1_linear_4895_2988)" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M18.5068 17.7261L20.8805 20.0998L25.4928 15.1447" stroke="url(#paint2_linear_4895_2988)" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    </g>
-  </g>
-  <defs>
-    <linearGradient id="paint0_linear_4895_2988" x1="22.1099" y1="32.7439" x2="11.8454" y2="29.6118" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#1F72DA"/>
-      <stop offset="0.515625" stop-color="#A25BB6"/>
-      <stop offset="1" stop-color="#E6AD19"/>
-    </linearGradient>
-    <linearGradient id="paint1_linear_4895_2988" x1="22.0663" y1="26.5119" x2="15.8688" y2="24.599" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#1F72DA"/>
-      <stop offset="0.515625" stop-color="#A25BB6"/>
-      <stop offset="1" stop-color="#E6AD19"/>
-    </linearGradient>
-    <linearGradient id="paint2_linear_4895_2988" x1="22.0244" y1="19.9543" x2="19.9136" y2="19.0358" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#1F72DA"/>
-      <stop offset="0.515625" stop-color="#A25BB6"/>
-      <stop offset="1" stop-color="#E6AD19"/>
-    </linearGradient>
-    <clipPath id="clip0_4895_2988">
-      <rect width="44" height="44" fill="white" transform="translate(0 0.799988)"/>
+  const C = "https://conversionratestore.github.io/projects/gadgetgone", p = {
+    smartphone: (
+      /*html */
+      `
+  <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+   <g clip-path="url(#clip0_119_3298)">
+    <path d="M30.5386 0.0205078H11.7944C10.9889 0.0214197 10.2165 0.341833 9.64693 0.911453C9.07731 1.48107 8.75689 2.25338 8.75598 3.05895V38.9822C8.75692 39.7877 9.07736 40.56 9.64701 41.1297C10.2167 41.6993 10.989 42.0196 11.7946 42.0205H30.5387C31.3443 42.0196 32.1166 41.6992 32.6862 41.1296C33.2558 40.56 33.5762 39.7877 33.5772 38.9822V3.05895C33.5762 2.25335 33.2558 1.48102 32.6862 0.911395C32.1165 0.34177 31.3442 0.0213763 30.5386 0.0205078ZM11.7944 1.98926H30.5386C30.8222 1.98958 31.094 2.10239 31.2946 2.30292C31.4951 2.50346 31.6079 2.77535 31.6082 3.05895V33.6118H10.7249V3.05895C10.7252 2.77535 10.838 2.50346 11.0386 2.30292C11.2391 2.10239 11.511 1.98958 11.7946 1.98926H11.7944ZM30.5386 40.0518H11.7944C11.5108 40.0515 11.2389 39.9387 11.0384 39.7381C10.8379 39.5376 10.7251 39.2657 10.7247 38.9822V35.5806H31.6082V38.9822C31.6079 39.2657 31.4951 39.5376 31.2946 39.7381C31.094 39.9387 30.8221 40.0515 30.5386 40.0518ZM17.8971 5.05198C17.8971 4.7909 18.0008 4.54052 18.1854 4.35592C18.37 4.17131 18.6204 4.0676 18.8814 4.0676H23.3173C23.5783 4.0676 23.8287 4.17131 24.0133 4.35592C24.1979 4.54052 24.3016 4.7909 24.3016 5.05198C24.3016 5.31305 24.1979 5.56343 24.0133 5.74803C23.8287 5.93264 23.5783 6.03635 23.3173 6.03635H18.8814C18.6204 6.03635 18.37 5.93264 18.1854 5.74803C18.0008 5.56343 17.8971 5.31305 17.8971 5.05198ZM23.3229 37.8162C23.3229 38.0772 23.2192 38.3276 23.0346 38.5122C22.85 38.6968 22.5996 38.8005 22.3386 38.8005H19.9946C19.7335 38.8005 19.4831 38.6968 19.2985 38.5122C19.1139 38.3276 19.0102 38.0772 19.0102 37.8162C19.0102 37.5551 19.1139 37.3047 19.2985 37.1201C19.4831 36.9355 19.7335 36.8318 19.9946 36.8318H22.3386C22.5996 36.8318 22.85 36.9355 23.0346 37.1201C23.2192 37.3047 23.3229 37.5551 23.3229 37.8162Z" fill="#29353C"/>
+   </g>
+   <defs>
+    <clipPath id="clip0_119_3298">
+      <rect width="42" height="42" fill="white" transform="translate(0.166626 0.0205078)"/>
     </clipPath>
-  </defs>
-</svg>
-    `,
-    star: (
+   </defs>
+  </svg>
+  `
+    ),
+    deliveryTruck: (
+      /*html */
+      `
+  <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+   <g clip-path="url(#clip0_119_3311)">
+    <path d="M42.4819 28.7552C42.3179 27.9199 40.8704 20.563 40.5128 19.489C39.6531 16.9065 37.5876 13.9667 34.9877 11.625C32.2846 9.19027 29.4839 7.79388 27.3037 7.79388H6.09565C4.99655 7.79388 4.10231 8.68812 4.10231 9.78723V12.9194H2.63385C2.09532 12.9194 1.65871 13.356 1.65871 13.8945C1.65871 14.433 2.09532 14.8696 2.63385 14.8696H4.10223V17.1957H1.47513C0.936605 17.1957 0.5 17.6323 0.5 18.1708C0.5 18.7094 0.936605 19.146 1.47513 19.146H4.10223V28.9428C4.10223 30.0419 4.99647 30.9361 6.09557 30.9361H8.52679C8.8903 33.3517 10.9795 35.2098 13.4949 35.2098C16.0102 35.2098 18.0995 33.3517 18.4629 30.9361H27.4073C27.7707 33.3517 29.8601 35.2098 32.3754 35.2098C34.8907 35.2098 36.98 33.3517 37.3434 30.9361H40.5066C41.6058 30.9361 42.5 30.0419 42.5 28.9428C42.5 28.8799 42.4939 28.8171 42.4819 28.7552ZM38.5508 19.7906L28.5025 19.7905V9.91849C32.0623 10.8745 36.9963 15.6106 38.5508 19.7906ZM13.495 33.2596C11.7999 33.2596 10.4208 31.8806 10.4208 30.1855C10.4208 28.4904 11.7999 27.1114 13.495 27.1114C15.19 27.1114 16.569 28.4904 16.569 30.1855C16.5689 31.8806 15.19 33.2596 13.495 33.2596ZM32.3755 33.2596C30.6805 33.2595 29.3014 31.8805 29.3014 30.1855C29.3014 28.4904 30.6805 27.1114 32.3755 27.1114C34.0705 27.1114 35.4495 28.4904 35.4495 30.1855C35.4495 31.8806 34.0705 33.2596 32.3755 33.2596ZM40.4584 28.9859C39.6452 28.9859 37.254 28.9859 37.254 28.9859C36.7146 26.793 34.7325 25.1613 32.3755 25.1613C30.0185 25.1613 28.0363 26.793 27.4969 28.9859H18.3734C17.8341 26.793 15.852 25.1613 13.495 25.1613C11.1379 25.1613 9.15579 26.793 8.61642 28.9859H6.09565C6.07191 28.9859 6.05258 28.9666 6.05258 28.9429V19.146H18.003C18.5415 19.146 18.9781 18.7094 18.9781 18.1709C18.9781 17.6324 18.5415 17.1958 18.003 17.1958H6.05249V14.8697H11.5531C12.0916 14.8697 12.5282 14.4331 12.5282 13.8946C12.5282 13.356 12.0916 12.9194 11.5531 12.9194H6.05249V9.78731C6.05249 9.76357 6.07183 9.74424 6.09557 9.74424H26.5522V20.7656C26.5522 21.3041 26.9888 21.7407 27.5274 21.7407L39.0556 21.7408C39.4714 23.6369 40.0417 26.676 40.5273 28.9258C40.5371 28.9711 40.5088 28.9859 40.4584 28.9859Z" fill="#29353C"/>
+   </g>
+   <defs>
+    <clipPath id="clip0_119_3311">
+      <rect width="42" height="42" fill="white" transform="translate(0.5 0.501953)"/>
+    </clipPath>
+    </defs>
+  </svg>
+  `
+    ),
+    money: (
+      /*html */
+      `
+  <svg xmlns="http://www.w3.org/2000/svg" width="47" height="43" viewBox="0 0 47 43" fill="none">
+   <g clip-path="url(#clip0_119_3326)">
+    <path d="M26.5253 17.3649C25.8591 17.1243 25.5196 16.3894 25.7603 15.7233C26.001 15.0571 26.7358 14.7176 27.402 14.9583C28.0681 15.1989 28.4076 15.9338 28.1669 16.6C27.9263 17.2661 27.1914 17.6056 26.5253 17.3649Z" fill="#29353C"/>
+    <path d="M12.0897 12.109C11.4236 11.8683 11.0841 11.1335 11.3247 10.4673C11.5654 9.80121 12.3003 9.4617 12.9664 9.70237C13.6325 9.94303 13.972 10.6779 13.7314 11.344C13.4907 12.0102 12.7558 12.3497 12.0897 12.109Z" fill="#29353C"/>
+    <path d="M33.7494 19.9821L36.8136 11.5675C32.6965 8.30135 27.6297 6.4577 22.3781 6.31159C17.1222 6.16977 12.0596 4.24017 7.94259 0.969727L2.59644 15.4955C6.71349 18.7616 11.8663 20.6053 17.1179 20.7514C19.8253 20.8244 22.4812 21.3487 24.9824 22.2899" stroke="#29353C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M22.1503 14.4079C21.6646 15.7359 20.1992 16.4235 18.8669 15.9379C17.539 15.4522 16.8514 13.9868 17.337 12.6545C17.8226 11.3266 19.2881 10.639 20.6203 11.1246C21.9483 11.6102 22.6359 13.0757 22.1503 14.4079Z" stroke="#29353C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M19.8081 33.3862C20.4742 33.1455 20.8137 32.4106 20.573 31.7445C20.3324 31.0784 19.5975 30.7389 18.9314 30.9795C18.2653 31.2202 17.9258 31.9551 18.1664 32.6212C18.4071 33.2873 19.142 33.6268 19.8081 33.3862Z" fill="#29353C"/>
+    <path d="M34.2436 28.1303C34.9097 27.8896 35.2493 27.1548 35.0086 26.4886C34.7679 25.8225 34.033 25.483 33.3669 25.7237C32.7008 25.9643 32.3613 26.6992 32.602 27.3653C32.8426 28.0315 33.5775 28.371 34.2436 28.1303Z" fill="#29353C"/>
+    <path d="M9.52405 27.5931C13.6411 24.3269 18.7079 22.4833 23.9595 22.3371C29.2154 22.1953 34.278 20.3517 38.395 17.0812L43.7369 31.5167C39.6198 34.7829 34.4671 36.6265 29.2154 36.7726C23.9595 36.9145 18.897 38.8441 14.78 42.1145L9.52405 27.5931Z" stroke="#29353C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M24.1788 30.4295C24.6644 31.7574 26.1299 32.445 27.4621 31.9594C28.7901 31.4738 29.4777 30.0083 28.9921 28.6761C28.5064 27.3481 27.041 26.6605 25.7087 27.1461C24.3808 27.6318 23.6932 29.0972 24.1788 30.4295Z" stroke="#29353C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+   </g>
+   <defs>
+    <clipPath id="clip0_119_3326">
+      <rect width="46" height="42" fill="white" transform="translate(0.166748 0.543945)"/>
+    </clipPath>
+   </defs>
+  </svg>
+  `
+    ),
+    arrow: (
       /* HTML */
       `
-    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11" fill="none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="12" viewBox="0 0 20 12" fill="none">
       <path
-        d="M10.713 4.57848C10.6443 4.36718 10.4568 4.21759 10.236 4.1976L7.2237 3.92413L6.03322 1.13698C5.94532 0.932209 5.74533 0.800049 5.52273 0.800049C5.30013 0.800049 5.10006 0.932209 5.01272 1.13698L3.82224 3.92413L0.809461 4.1976C0.58861 4.21799 0.401595 4.36758 0.33249 4.57848C0.263782 4.78978 0.327235 5.02154 0.494267 5.16803L2.77133 7.16468L2.09994 10.1217C2.05081 10.3392 2.1352 10.564 2.31561 10.6944C2.41258 10.7649 2.52651 10.8 2.64084 10.8C2.73908 10.8 2.83741 10.7739 2.92522 10.7214L5.52273 9.16827L8.11976 10.7214C8.31028 10.8352 8.54984 10.8248 8.72985 10.6944C8.91025 10.564 8.99465 10.3392 8.94552 10.1217L8.27413 7.16468L10.5512 5.16803C10.7181 5.02154 10.7817 4.79026 10.713 4.57848Z"
-        fill="#2B3E51"
+        d="M19.8408 1.71586L18.9466 0.902754C18.7343 0.709743 18.3911 0.709743 18.1788 0.902754L10 8.3234L1.82116 0.902754C1.6089 0.709743 1.26567 0.709743 1.0534 0.902754L0.159196 1.71586C-0.0530654 1.90887 -0.0530654 2.22098 0.159196 2.41399L9.61612 11.0132C9.82838 11.2062 10.1716 11.2062 10.3839 11.0132L19.8408 2.41399C20.0531 2.22098 20.0531 1.90887 19.8408 1.71586Z"
+        fill="#5FDF00"
       />
     </svg>
   `
     ),
-    loaderIcon: (
+    stopwatch: (
+      /* html */
+      `
+  <svg xmlns="http://www.w3.org/2000/svg" width="27" height="29" viewBox="0 0 27 29" fill="none">
+   <path d="M8.15278 9.7971C10.0135 7.84568 12.523 6.77096 15.2199 6.76988C15.2213 6.76988 15.2224 6.77066 15.2238 6.77066C15.2251 6.77066 15.2263 6.76988 15.2276 6.76988C20.6235 6.77193 25.0134 11.1678 25.0134 16.5699C25.0134 21.9685 20.6214 26.3605 15.2238 26.3605C12.5284 26.3605 10.0163 25.2883 8.15085 23.3418C7.95651 23.14 7.69751 23.0421 7.43778 23.0421C7.19193 23.0421 6.94536 23.1294 6.75343 23.3128C6.35969 23.6902 6.34618 24.3155 6.72448 24.7103C8.93351 27.0148 12.0314 28.337 15.2238 28.337C21.7119 28.337 26.9899 23.0581 26.9899 16.5699C26.9899 13.6789 25.9395 11.0318 24.2063 8.98006L25.7121 7.47419C26.0982 7.08817 26.0982 6.46281 25.7121 6.07678C25.3261 5.69075 24.7007 5.69075 24.3147 6.07678L22.8096 7.58192C20.996 6.04608 18.715 5.05315 16.212 4.84337V2.64308H17.7754C18.3217 2.64308 18.7637 2.20108 18.7637 1.65485C18.7637 1.10863 18.3217 0.666626 17.7754 0.666626H12.6712C12.125 0.666626 11.683 1.10863 11.683 1.65485C11.683 2.20108 12.125 2.64308 12.6712 2.64308H14.2356V4.84421C11.3954 5.08729 8.69937 6.35966 6.72255 8.4325C6.34618 8.82818 6.36065 9.45354 6.75536 9.82992C6.94735 10.0121 7.19308 10.0986 7.43778 10.0989C7.69871 10.0994 7.95856 10.0013 8.15278 9.7971Z" fill="#0092E6"/>
+   <path d="M17.2003 17.5543H19.5145C20.0607 17.5543 20.5027 17.1123 20.5027 16.5661C20.5027 16.0198 20.0607 15.5778 19.5145 15.5778H17.2003C16.655 15.5778 16.212 15.1349 16.212 14.5896V12.0853C16.212 11.539 15.77 11.097 15.2238 11.097C14.6776 11.097 14.2356 11.539 14.2356 12.0853V14.5896C14.2356 16.2244 15.5655 17.5543 17.2003 17.5543Z" fill="#0092E6"/>
+   <path d="M10.6871 16.5661C10.6871 16.0199 10.2451 15.5779 9.69883 15.5779H3.44135C2.89512 15.5779 2.45312 16.0199 2.45312 16.5661C2.45312 17.1123 2.89512 17.5543 3.44135 17.5543H9.69883C10.2451 17.5543 10.6871 17.1123 10.6871 16.5661Z" fill="#0092E6"/>
+   <path d="M8.55717 12.3054C8.55717 11.7591 8.11517 11.3171 7.56895 11.3171H1.31147C0.765242 11.3171 0.323242 11.7591 0.323242 12.3054C0.323242 12.8516 0.765242 13.2936 1.31147 13.2936H7.56895C8.11517 13.2936 8.55717 12.8516 8.55717 12.3054Z" fill="#0092E6"/>
+   <path d="M8.55717 20.8259C8.55717 20.2796 8.11517 19.8376 7.56895 19.8376H1.31147C0.765242 19.8376 0.323242 20.2796 0.323242 20.8259C0.323242 21.3721 0.765242 21.8141 1.31147 21.8141H7.56895C8.11517 21.8141 8.55717 21.3721 8.55717 20.8259Z" fill="#0092E6"/>
+  </svg>
+  `
+    ),
+    moneyBlue: (
+      /* html */
+      `
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+   <mask id="mask0_288_22" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="-1" y="0" width="33" height="32">
+    <path d="M31.29 31.3V0.700003H0.68999V31.3H31.29Z" fill="white" stroke="white" stroke-width="1.4"/>
+   </mask>
+   <g mask="url(#mask0_288_22)">
+    <path d="M18.8982 12.2336L18.8982 12.2337C18.858 12.3441 18.7359 12.4011 18.6253 12.3609L18.8982 12.2336ZM18.8982 12.2336C18.9384 12.1232 18.8815 12.0011 18.771 11.9608L18.8982 12.2336ZM18.7709 11.9608C18.6605 11.9207 18.5384 11.9776 18.4981 12.088L18.7709 11.9608ZM18.4981 12.0881C18.4579 12.1986 18.515 12.3207 18.6253 12.3609L18.4981 12.0881Z" fill="#0092E6" stroke="#0092E6" stroke-width="1.4"/>
+    <path d="M8.60448 8.48707L8.60446 8.48712C8.56429 8.59749 8.44215 8.65453 8.33161 8.61432L8.60448 8.48707ZM8.60448 8.48707C8.64467 8.37666 8.58781 8.25453 8.47726 8.21426L8.60448 8.48707ZM8.20442 8.34144C8.16419 8.45197 8.22122 8.57412 8.33158 8.61431L8.47721 8.21424C8.3667 8.17405 8.24458 8.23109 8.20442 8.34144Z" fill="#0092E6" stroke="#0092E6" stroke-width="1.4"/>
+    <path d="M23.5347 14.8868L25.7183 8.88743C22.7827 6.55781 19.1708 5.24317 15.4245 5.1408C11.6784 5.03844 8.06637 3.66294 5.13085 1.33332L1.32336 11.6879C4.25894 14.0175 7.93175 15.3322 11.678 15.4345C13.6071 15.4872 15.5007 15.8614 17.2846 16.5302" stroke="#0092E6" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15.2668 10.912C14.9219 11.8595 13.8743 12.348 12.9268 12.0032C11.9792 11.6583 11.4907 10.6106 11.8356 9.66313C12.1804 8.71565 13.2282 8.22708 14.1756 8.57196C15.1232 8.91678 15.6117 9.9645 15.2668 10.912Z" stroke="#0092E6" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.0819 23.6584L13.0819 23.6583C13.0417 23.5479 13.0985 23.4258 13.2091 23.3855L13.0819 23.6584ZM13.0819 23.6584C13.1221 23.7688 13.2441 23.8258 13.3547 23.7856L13.0819 23.6584ZM13.3548 23.7856C13.4651 23.7454 13.5221 23.6233 13.482 23.5128L13.3548 23.7856ZM13.4819 23.5127C13.4417 23.4023 13.3195 23.3454 13.2091 23.3855L13.4819 23.5127Z" fill="#0092E6" stroke="#0092E6" stroke-width="1.4"/>
+    <path d="M23.3756 19.9118L23.3756 19.9117C23.3354 19.8013 23.3922 19.6792 23.5028 19.6389L23.3756 19.9118ZM23.3756 19.9118C23.4158 20.0222 23.5379 20.0792 23.6484 20.039L23.3756 19.9118ZM23.6485 20.039C23.7588 19.9988 23.8158 19.8767 23.7756 19.7661L23.6485 20.039ZM23.7756 19.7661C23.7354 19.6558 23.6133 19.5988 23.5028 19.6389L23.7756 19.7661Z" fill="#0092E6" stroke="#0092E6" stroke-width="1.4"/>
+    <path d="M6.26184 20.312C9.19736 17.9824 12.8093 16.6678 16.5556 16.5654C20.3017 16.463 23.9137 15.1484 26.8492 12.8188L30.6567 23.1125C27.7211 25.4421 24.0483 26.7568 20.3021 26.8591C16.5559 26.9615 12.944 28.337 10.0084 30.6666L6.26184 20.312Z" stroke="#0092E6" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M16.7132 22.3367C17.058 23.2842 18.1057 23.7727 19.0532 23.4278C20.0007 23.083 20.4892 22.0353 20.1444 21.0878C19.7995 20.1403 18.7518 19.6518 17.8043 19.9966C16.8568 20.3415 16.3683 21.3892 16.7132 22.3367Z" stroke="#0092E6" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+   </g>
+  </svg>
+  `
+    ),
+    sent: (
       /* HTML */
       `
-    <svg
-      class="loader_bgr"
-      xmlns="http://www.w3.org/2000/svg"
-      width="196"
-      height="196"
-      viewBox="0 0 196 196"
-      fill="none"
-    >
-      <circle cx="98" cy="98.0002" r="94" fill="url(#paint0_linear_4895_3006)" stroke="white" stroke-width="8" />
+    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="28" viewBox="0 0 25 28" fill="none">
+      <path
+        d="M24.2148 7.9393L24.1944 7.90405C24.1662 7.84543 24.1336 7.78929 24.0972 7.73594L20.2632 1.1074C19.987 0.629959 19.4728 0.333374 18.9213 0.333374H5.72634C5.17392 0.333374 4.65933 0.630659 4.38326 1.10939L0.486743 7.86927C0.451648 7.93021 0.426349 7.99394 0.408479 8.05869C0.353629 8.20677 0.323486 8.36679 0.323486 8.53376V25.9933C0.323486 27.0405 1.17551 27.8925 2.22276 27.8925H22.4241C23.4714 27.8925 24.3234 27.0405 24.3234 25.9933V8.46976C24.3234 8.44635 24.3227 8.4231 24.3215 8.39995C24.3325 8.24455 24.2988 8.08431 24.2148 7.9393ZM13.1588 1.94877H18.8837L21.8997 7.16312H13.1588V1.94877ZM5.76397 1.94877H11.5434V7.16312H2.75828L5.76397 1.94877ZM22.708 25.9933C22.708 26.1498 22.5807 26.2772 22.4241 26.2772H2.22276C2.06623 26.2772 1.93888 26.1498 1.93888 25.9933V8.77851H22.708V25.9933Z"
+        fill="#0092E6"
+      />
+      <path
+        d="M15.1088 14.9366C14.8508 14.5926 14.4323 14.5926 14.1742 14.9366L11.2235 18.871L10.0888 17.3581C9.83079 17.0141 9.41232 17.0141 9.15425 17.3581C8.89617 17.7022 8.89617 18.2601 9.15425 18.6042L10.7562 20.7401C10.8853 20.9121 11.0544 20.9982 11.2235 20.9982C11.3926 20.9982 11.5618 20.9121 11.6908 20.7401L15.1088 16.1827C15.3669 15.8386 15.3669 15.2807 15.1088 14.9366Z"
+        fill="#0092E6"
+      />
+    </svg>
+  `
+    ),
+    clearForm: (
+      /* HTML */
+      `
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
+      <path
+        d="M10.708 0.972493C11.1652 0.0897742 12.2514 -0.255168 13.1341 0.202054C14.0183 0.659997 14.3627 1.74875 13.9027 2.63185L12.054 6.18133C11.9801 6.32341 11.8884 6.45306 11.7824 6.56803C12.2876 7.31605 12.4442 8.27786 12.1241 9.18837C12.0511 9.39583 11.9741 9.61211 11.8941 9.83322C11.86 9.92734 11.7507 9.96966 11.662 9.9233L5.69687 6.80605C5.60026 6.75557 5.5779 6.62718 5.65092 6.54627C5.7994 6.38181 5.94394 6.21671 6.08272 6.05431C6.73519 5.2907 7.70209 4.85876 8.67869 4.89077C8.68975 4.86801 8.70141 4.84536 8.71366 4.82279L10.708 0.972493Z"
+        fill="#858D92"
+      />
+      <path
+        d="M4.82229 7.56375C4.7596 7.531 4.6831 7.54176 4.63127 7.5899C4.2641 7.93107 3.89777 8.22887 3.556 8.44088C2.40194 9.15681 1.44787 9.41483 0.855384 9.50641C0.508871 9.55997 0.227618 9.78306 0.0906158 10.0724C-0.0524949 10.3746 -0.0417078 10.7706 0.236397 11.077C0.542826 11.4147 0.996755 11.8616 1.65146 12.3992C1.68984 12.4308 1.74045 12.4431 1.78914 12.4334C2.24711 12.3413 2.72392 12.2544 3.14002 12.0369C3.26112 11.9736 3.44243 11.8608 3.66981 11.6658C3.89622 11.4716 4.24082 11.4925 4.43951 11.7123C4.63817 11.9322 4.61568 12.2679 4.38928 12.462C4.10177 12.7086 3.85178 12.8689 3.65356 12.9725C3.49138 13.0573 3.32166 13.1277 3.14838 13.1878C3.01674 13.2334 2.98593 13.4108 3.10024 13.4904C3.43003 13.7202 3.78969 13.9602 4.18165 14.2095C4.38211 14.337 4.57978 14.4568 4.77355 14.5694C4.82886 14.6015 4.89782 14.5986 4.94985 14.5614C5.22957 14.3613 5.47047 14.1605 5.66686 13.9763C6.11114 13.5595 6.4945 13.1002 6.80452 12.5721C6.95537 12.3151 7.28718 12.2246 7.54562 12.3701C7.80405 12.5155 7.89124 12.8418 7.74037 13.0989C7.37752 13.7171 6.92847 14.2584 6.4079 14.7468C6.31781 14.8313 6.21988 14.9187 6.11447 15.0077C6.0212 15.0865 6.03784 15.2364 6.14847 15.2881C6.8077 15.5959 7.36247 15.8037 7.7442 15.9326C8.29794 16.1197 8.88972 15.9058 9.20746 15.4299C9.60915 14.8283 10.3147 13.6937 10.9204 12.3132C11.0776 11.955 11.2374 11.5644 11.3942 11.1642C11.4249 11.0857 11.3914 10.9966 11.3167 10.9576L4.82229 7.56375Z"
+        fill="#858D92"
+      />
+    </svg>
+  `
+    ),
+    unlocked: (
+      /* HTML */
+      `
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <path
+        d="M16.6937 10.8929C15.232 10.3537 14.4684 9.90643 10.9184 9.86846C9.76832 9.8488 8.6191 9.94324 7.48764 10.1504V6.75056C7.66651 2.20387 14.1783 2.20179 14.3492 6.75059V8.30782C14.3522 8.56391 14.456 8.80852 14.6381 8.98858C14.8202 9.16863 15.066 9.26961 15.3221 9.26961C15.5782 9.2696 15.824 9.16861 16.0061 8.98855C16.1883 8.80849 16.292 8.56387 16.295 8.30778V6.75056C16.2972 6.02136 16.1497 5.29946 15.8618 4.62951C15.5738 3.95957 15.1514 3.35584 14.6208 2.85565C11.1983 -0.426271 5.49955 2.11216 5.54194 6.89845L5.5419 10.7417C4.88519 10.9185 4.26278 11.3658 4.28034 12.1065L4.28027 18.3871C4.26395 19.1442 4.90683 19.5809 5.57288 19.7655C6.50445 20.1265 7.77639 20.625 10.9184 20.625C14.0605 20.625 15.3324 20.1265 16.264 19.7656C16.928 19.5788 17.5756 19.147 17.5565 18.387L17.5566 12.1064C17.5555 11.8399 17.472 11.5802 17.3175 11.3629C17.163 11.1457 16.9452 10.9815 16.6937 10.8929ZM11.9497 15.4685V16.8436C11.9466 17.115 11.8365 17.3742 11.6434 17.565C11.4504 17.7558 11.1899 17.8629 10.9184 17.8629C10.647 17.8628 10.3865 17.7558 10.1934 17.565C10.0003 17.3742 9.8903 17.1149 9.88713 16.8435V15.4685C9.67387 15.3082 9.50076 15.1005 9.38145 14.8619C9.26214 14.6233 9.19988 14.3602 9.19959 14.0934C9.27009 11.8223 12.5666 11.8215 12.6373 14.0935C12.637 14.3602 12.5747 14.6233 12.4554 14.8619C12.3361 15.1005 12.163 15.3082 11.9497 15.4685Z"
+        fill="#29353C"
+      />
+      <path
+        d="M17.7938 7.21789C17.8389 7.21794 17.8836 7.20907 17.9254 7.19179C17.9671 7.1745 18.0049 7.14915 18.0368 7.11717L18.7243 6.42963C18.7867 6.36475 18.8212 6.27799 18.8203 6.18798C18.8194 6.09796 18.7833 6.01189 18.7196 5.94823C18.656 5.88458 18.5699 5.84843 18.4799 5.84755C18.3899 5.84667 18.3031 5.88113 18.2382 5.94353L17.5507 6.63106C17.5038 6.67954 17.472 6.74071 17.4593 6.80703C17.4467 6.87335 17.4537 6.94192 17.4795 7.0043C17.5054 7.06667 17.5489 7.12013 17.6047 7.15808C17.6605 7.19604 17.7263 7.21683 17.7938 7.21789Z"
+        fill="#29353C"
+      />
+      <path
+        d="M18.9544 8.24927H17.9231C17.8331 8.25102 17.7473 8.28801 17.6843 8.35228C17.6213 8.41656 17.5859 8.503 17.5859 8.59302C17.5859 8.68305 17.6212 8.76949 17.6843 8.83377C17.7473 8.89805 17.833 8.93504 17.9231 8.9368H18.9544C19.0444 8.93505 19.1301 8.89806 19.1931 8.83378C19.2562 8.7695 19.2915 8.68306 19.2915 8.59304C19.2915 8.50301 19.2562 8.41657 19.1931 8.35229C19.1301 8.28801 19.0444 8.25102 18.9544 8.24927Z"
+        fill="#29353C"
+      />
+    </svg>
+  `
+    ),
+    aTT: (
+      /* HTML */
+      `
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+      <path
+        d="M3.48103 16.1084C5.00687 17.29 6.92205 18 8.99993 18C11.2738 18 13.3468 17.1554 14.9289 15.7691C14.9481 15.7521 14.9386 15.7409 14.9197 15.7521C14.2098 16.2264 12.1864 17.2618 9.00002 17.2618C6.23094 17.2618 4.48099 16.6437 3.49276 16.0919C3.47385 16.0826 3.46685 16.0968 3.48103 16.1084ZM9.61086 16.5685C11.8256 16.5685 14.2594 15.9645 15.7149 14.7689C16.1133 14.4432 16.4927 14.0096 16.8325 13.4269C17.0281 13.0917 17.2194 12.6934 17.3752 12.3018C17.3822 12.2827 17.3704 12.2735 17.356 12.2949C16.0024 14.2877 12.0827 15.5307 8.03543 15.5307C5.17464 15.5307 2.09649 14.6155 0.891366 12.868C0.879504 12.8518 0.867642 12.8587 0.874864 12.8773C1.99752 15.2644 5.40339 16.5685 9.61086 16.5685ZM7.19103 12.6083C2.58476 12.6083 0.412811 10.4621 0.0188218 8.99748C0.0139632 8.97629 0 8.98093 0 8.99998C0 9.49305 0.0493307 10.1294 0.134204 10.5517C0.174693 10.7573 0.341944 11.0799 0.587153 11.3371C1.70254 12.5002 4.48336 14.13 9.29929 14.13C15.8608 14.13 17.3611 11.9434 17.6674 11.2243C17.8865 10.71 18 9.7807 18 9.00002C18 8.81111 17.9953 8.66022 17.9881 8.51207C17.9881 8.48803 17.9742 8.48606 17.9694 8.50949C17.6415 10.269 12.0355 12.6083 7.19103 12.6083ZM0.867642 5.13897C0.603699 5.663 0.311129 6.54706 0.224155 7.00462C0.18603 7.20067 0.202269 7.29481 0.27099 7.44111C0.823082 8.61297 3.61567 10.4879 10.1297 10.4879C14.1037 10.4879 17.1908 9.51122 17.691 7.72886C17.7831 7.40074 17.788 7.05432 17.6697 6.58752C17.5375 6.0659 17.2899 5.45762 17.0804 5.0305C17.0735 5.01657 17.0613 5.01863 17.0638 5.0351C17.1416 7.37285 10.625 8.87951 7.33701 8.87951C3.77552 8.87951 0.80426 7.45994 0.80426 5.66746C0.80426 5.49524 0.839891 5.32297 0.884363 5.1437C0.888827 5.12732 0.87482 5.1246 0.867642 5.13897ZM14.9435 2.26869C14.9813 2.32798 15.0002 2.39126 15.0002 2.47643C15.0002 3.47641 11.9409 5.24542 7.071 5.24542C3.49276 5.24542 2.82283 3.91746 2.82283 3.07293C2.82283 2.77105 2.93857 2.46215 3.19345 2.14845C3.20737 2.12979 3.19555 2.12261 3.17949 2.13649C2.71463 2.5306 2.28751 2.97405 1.91282 3.45276C1.7338 3.67915 1.62266 3.87971 1.62266 3.99987C1.62266 5.75001 6.00928 7.01894 10.1109 7.01894C14.4812 7.01894 16.4317 5.59166 16.4317 4.33735C16.4317 3.88908 16.2573 3.62739 15.8111 3.12005C15.5214 2.79001 15.2475 2.52127 14.9575 2.25674C14.9435 2.24518 14.9337 2.25459 14.9435 2.26869ZM13.6037 1.26893C12.2549 0.460141 10.6886 0 9.00002 0C7.29967 0 5.6862 0.476211 4.33256 1.30642C3.92654 1.55641 3.698 1.75675 3.698 2.01428C3.698 2.77341 5.47141 3.58965 8.61768 3.58965C11.7313 3.58965 14.1463 2.6956 14.1463 1.835C14.1463 1.62958 13.9668 1.48587 13.6037 1.26893Z"
+        fill="#00A8E0"
+      />
+    </svg>
+  `
+    ),
+    verizon: (
+      /* HTML */
+      `
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 16 18" fill="none">
+      <path
+        d="M0.459473 8.99056H3.19812L5.93677 14.9969L12.7834 0H15.5406L7.3061 18H4.56745L0.459473 8.99056Z"
+        fill="#EE0000"
+      />
+    </svg>
+  `
+    ),
+    tMobile: (
+      /* HTML */
+      `
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 16 18" fill="none">
+      <path d="M15.3163 8.21423H11.7114V11.893H15.3163V8.21423Z" fill="#999B9E" />
+      <path d="M4.28839 8.21423H0.683472V11.893H4.28839V8.21423Z" fill="#999B9E" />
+      <path
+        d="M9.34116 0.871741H9.76886C12.5314 0.871741 13.8189 2.34957 14.357 6.29065L15.2124 6.25283L15.0982 0H1.04113L0.902588 6.25283L1.72576 6.29065C1.86833 4.81283 2.03932 4.01696 2.4104 3.22109C3.06639 1.74304 4.43544 0.871741 6.11806 0.871741H6.71697V14.4759C6.71697 15.9159 6.63148 16.3707 6.28949 16.7117C6.00414 16.977 5.43364 17.0907 4.77743 17.0907H4.12144V18H11.9367V17.0907H11.2767C10.6247 17.0907 10.0502 16.9767 9.76908 16.7117C9.42688 16.3707 9.34138 15.9156 9.34138 14.4759V0.871741"
+        fill="#ED008C"
+      />
+    </svg>
+  `
+    ),
+    other: (
+      /* HTML */
+      `
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="4" viewBox="0 0 14 4" fill="none">
+      <path
+        d="M11.8742 3.50095C12.7031 3.50095 13.3751 2.82897 13.3751 2.00005C13.3751 1.17112 12.7031 0.499146 11.8742 0.499146C11.0453 0.499146 10.3733 1.17112 10.3733 2.00005C10.3733 2.82897 11.0453 3.50095 11.8742 3.50095Z"
+        fill="#29353C"
+      />
+      <path
+        d="M7.00005 3.50095C7.82897 3.50095 8.50095 2.82897 8.50095 2.00005C8.50095 1.17112 7.82897 0.499146 7.00005 0.499146C6.17112 0.499146 5.49915 1.17112 5.49915 2.00005C5.49915 2.82897 6.17112 3.50095 7.00005 3.50095Z"
+        fill="#29353C"
+      />
+      <path
+        d="M2.1259 3.50095C2.95482 3.50095 3.6268 2.82897 3.6268 2.00005C3.6268 1.17112 2.95482 0.499146 2.1259 0.499146C1.29698 0.499146 0.625 1.17112 0.625 2.00005C0.625 2.82897 1.29698 3.50095 2.1259 3.50095Z"
+        fill="#29353C"
+      />
+    </svg>
+  `
+    ),
+    bgrFooter: (
+      /* html */
+      `
+    <svg class="bgr_footer" width="208" height="361" viewBox="0 0 208 361" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M181.273 0.699524C181.273 0.699524 181.337 0.681641 181.337 0.687866C181.345 0.736084 177.294 1.13354 177.205 1.14285C84.488 11.4996 28.038 99.0261 28.038 99.0261C-13.6488 163.661 4.51125 206.975 -34.7378 238.894C-67.176 265.273 -105.481 256.751 -113.208 255.032C-166.134 243.258 -181.829 194.511 -211.296 201.237C-223.979 204.132 -241.929 219.913 -258.378 287.31C-258.45 191.773 -258.523 96.2363 -258.596 0.699524H181.273Z" fill="url(#paint0_linear_288_298)"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M208 0.688446C161.941 4.20468 111.555 17.6901 56.8432 41.1447C-25.2251 76.3265 -91.4821 144.177 -161.504 245.534C-231.525 346.891 -272.183 250.56 -373.074 250.56C-440.335 250.56 -477.605 317.936 -484.885 452.686C-485.037 251.989 -485.152 101.466 -485.228 1.11786L208 0.688446Z" fill="url(#paint1_linear_288_298)"/>
       <defs>
-        <linearGradient
-          id="paint0_linear_4895_3006"
-          x1="98"
-          y1="8.00018"
-          x2="98"
-          y2="188"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset="0.575" stop-color="white" />
-          <stop offset="0.785" stop-color="#F7F7F8" />
-        </linearGradient>
+      <linearGradient id="paint0_linear_288_298" x1="181.337" y1="-28375" x2="-43555" y2="-28375" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0092E6"/>
+      <stop offset="1" stop-color="#5109E6"/>
+      </linearGradient>
+      <linearGradient id="paint1_linear_288_298" x1="-4097.24" y1="-31755.1" x2="-61854.4" y2="1863.8" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5FDF00"/>
+      <stop offset="1" stop-color="#00AB03"/>
+      </linearGradient>
       </defs>
     </svg>
   `
     ),
-    loaderRotating: (
-      /* HTML */
+    loader: (
+      /*html */
       `
-    <svg class="rotating" xmlns="http://www.w3.org/2000/svg" width="149" height="148" viewBox="0 0 149 148" fill="none">
-      <circle class="loader_cover" cx="74.5" cy="74" r="71" stroke="#F2F2F2" stroke-width="6" />
-      <circle class="loader_cover_fill" cx="74.5" cy="74" r="71" stroke="#3E78BA" stroke-width="6" />
-    </svg>
-  `
-    ),
-    arrNext: (
-      /* HTML */
-      `
-    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="33" viewBox="0 0 34 33" fill="none">
-      <path
-        d="M17.0002 1.6C8.60546 1.6 1.80019 8.40527 1.80019 16.8C1.8002 25.1947 8.60547 32 17.0002 32C25.3949 32 32.2002 25.1947 32.2002 16.8C32.2002 8.40527 25.3949 1.6 17.0002 1.6Z"
-        stroke="#3D78BA"
-        stroke-width="2"
-      />
-      <path
-        d="M10.5999 16.8001L23.3999 16.8001M23.3999 16.8001L17.3199 23.2001M23.3999 16.8001L17.3199 10.4001"
-        stroke="#3D78BA"
-        stroke-width="2"
-        stroke-linecap="round"
-      />
-    </svg>
-  `
-    ),
-    arrPrev: (
-      /* HTML */
-      `
-    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="33" viewBox="0 0 34 33" fill="none">
-      <path
-        d="M16.9998 32.0001C25.3945 32.0001 32.1998 25.1948 32.1998 16.8001C32.1998 8.40537 25.3945 1.6001 16.9998 1.6001C8.60508 1.6001 1.7998 8.40537 1.7998 16.8001C1.7998 25.1948 8.60508 32.0001 16.9998 32.0001Z"
-        stroke="#3D78BA"
-        stroke-width="2"
-      />
-      <path
-        d="M23.4001 16.8H10.6001M10.6001 16.8L16.6801 10.4M10.6001 16.8L16.6801 23.2"
-        stroke="#3D78BA"
-        stroke-width="2"
-        stroke-linecap="round"
-      />
-    </svg>
-  `
-    ),
-    secureIcon: (
-      /* HTML */
-      `
-    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
-      <g clip-path="url(#clip0_4895_3128)">
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M10.0728 1.62819L15.7888 3.03733C16.0858 3.09831 16.35 3.25251 16.5239 3.49266C16.6937 3.727 16.7572 4.01575 16.7081 4.31261V9.85185C16.7081 12.3224 15.4544 14.6213 13.3026 15.9475L13.3017 15.948L10.1624 17.8724L10.1449 17.8811C9.71214 18.0944 9.20979 18.125 8.79992 17.8591L5.68137 15.9475C3.52955 14.6213 2.27588 12.3224 2.27588 9.85185V4.27551C2.27588 3.63719 2.77784 3.16103 3.27072 3.03951L8.99552 1.62819C9.32702 1.52368 9.74132 1.52368 10.0728 1.62819ZM12.7473 8.19351C13.0769 7.86848 13.0769 7.34151 12.7473 7.01648C12.4177 6.69145 11.8833 6.69145 11.5537 7.01648L8.77457 9.75713L7.68336 8.68103C7.35376 8.35598 6.81938 8.35598 6.48978 8.68103C6.16018 9.00608 6.16018 9.53303 6.48978 9.85808L8.17779 11.5226C8.50734 11.8477 9.04172 11.8477 9.37134 11.5226L12.7473 8.19351Z"
-          fill="#2A3653"
-        />
+    <svg class="rotate_svg" xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none">
+      <g clip-path="url(#clip0_3504_3548)">
+        <path d="M17.7273 29.9997C17.7273 28.4936 16.5062 27.2725 15 27.2725H4.09092C2.58474 27.2725 1.36365 28.4936 1.36365 29.9997C1.36365 31.5059 2.58474 32.727 4.09092 32.727H15C16.5062 32.727 17.7273 31.5059 17.7273 29.9997Z" fill="#83BE63"/>
+        <path d="M55.9092 27.2725H50.4547C48.9485 27.2725 47.7274 28.4936 47.7274 29.9997C47.7274 31.5059 48.9485 32.727 50.4547 32.727H55.9092C57.4154 32.727 58.6365 31.5059 58.6365 29.9997C58.6365 28.4936 57.4154 27.2725 55.9092 27.2725Z" fill="#83BE63"/>
+        <path d="M31.3636 16.3636C32.8698 16.3636 34.0909 15.1425 34.0909 13.6364V2.72727C34.0909 1.22109 32.8698 0 31.3636 0C29.8574 0 28.6364 1.22109 28.6364 2.72727V13.6364C28.6364 15.1425 29.8574 16.3636 31.3636 16.3636Z" fill="#83BE63"/>
+        <path d="M31.3639 43.6367C29.8577 43.6367 28.6366 44.8578 28.6366 46.364V57.2731C28.6366 58.7793 29.8577 60.0004 31.3639 60.0004C32.8701 60.0004 34.0911 58.7793 34.0911 57.2731V46.364C34.0911 44.8578 32.8701 43.6367 31.3639 43.6367Z" fill="#83BE63"/>
+        <path d="M14.0073 8.78679C12.9426 7.7217 11.2157 7.72188 10.1504 8.78679C9.08529 9.85188 9.08529 11.5786 10.1504 12.6437L17.8644 20.3579C18.3969 20.8904 19.0949 21.1568 19.7927 21.1568C20.4906 21.1568 21.1887 20.8904 21.7211 20.3581C22.7862 19.293 22.7862 17.5662 21.7211 16.5012L14.0073 8.78679Z" fill="#83BE63"/>
+        <path d="M44.8629 39.6424C43.798 38.5775 42.0711 38.5775 41.006 39.6424C39.9409 40.7075 39.9411 42.4342 41.006 43.4993L48.7202 51.2132C49.2528 51.7457 49.9507 52.0119 50.6487 52.0119C51.3467 52.0119 52.0448 51.7455 52.5771 51.2132C53.6422 50.1481 53.6422 48.4213 52.5771 47.3562L44.8629 39.6424Z" fill="#83BE63"/>
+        <path d="M17.8642 39.6428L10.1504 47.3566C9.08529 48.4217 9.08529 50.1484 10.1504 51.2135C10.6829 51.7461 11.3809 52.0123 12.0789 52.0123C12.7769 52.0123 13.4749 51.7461 14.0073 51.2135L21.7211 43.4997C22.7862 42.4346 22.7862 40.7079 21.7211 39.6428C20.656 38.5777 18.9291 38.5777 17.8642 39.6428Z" fill="#83BE63"/>
       </g>
       <defs>
-        <clipPath id="clip0_4895_3128">
-          <rect width="18" height="18" fill="white" transform="translate(0.5 0.799805)" />
+        <clipPath id="clip0_3504_3548">
+          <rect width="60" height="60" fill="white"/>
         </clipPath>
       </defs>
     </svg>
   `
     ),
-    googleIcon: (
-      /* HTML */
+    accreditedBusinessImg: (
+      /*html */
       `
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
-      <path
-        d="M16.8458 9.60604C16.8458 9.07096 16.8017 8.53787 16.7094 8.01074H9.25439V11.0303H13.5233C13.3468 12.005 12.7774 12.8663 11.9453 13.4133V15.3746H14.4938C15.9856 14.012 16.8458 11.993 16.8458 9.60604Z"
-        fill="#4285F4"
-      />
-      <path
-        d="M9.25489 17.2701C11.3883 17.2701 13.1849 16.5759 14.4943 15.3764L11.9458 13.4151C11.2359 13.8925 10.3236 14.1651 9.25489 14.1651C7.19363 14.1651 5.44316 12.7866 4.81757 10.9287H2.19287V12.9497C3.53429 15.5992 6.26727 17.2701 9.25489 17.2701Z"
-        fill="#34A853"
-      />
-      <path
-        d="M4.81938 10.929C4.48854 9.95628 4.48854 8.90004 4.81938 7.92735V5.90637H2.19469C1.07182 8.12229 1.07182 10.734 2.19469 12.95L4.81938 10.929Z"
-        fill="#FBBC04"
-      />
-      <path
-        d="M9.25489 4.69111C10.3818 4.67321 11.4705 5.09491 12.2866 5.8667L14.5444 3.62891C13.1127 2.29617 11.2179 1.56417 9.25489 1.58605C6.26727 1.58605 3.53429 3.25892 2.19287 5.90648L4.81757 7.92746C5.44316 6.06959 7.19363 4.69111 9.25489 4.69111Z"
-        fill="#EA4335"
-      />
-    </svg>
+  <svg class="accredited_business_img" xmlns="http://www.w3.org/2000/svg" width="96" height="37" viewBox="0 0 96 37" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.72666 36.958C2.13492 36.9545 0.00290228 34.8231 0 32.2308V5.68526C0.00290228 3.09293 2.13492 0.961491 4.72666 0.958008H91.1328C93.7246 0.961491 95.8566 3.09293 95.8595 5.68526V32.2308C95.8566 34.8231 93.7246 36.9545 91.1328 36.958H4.72666Z" fill="#015A75"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.72672 1.69635C2.53956 1.69867 0.740725 3.49809 0.738403 5.68526V32.2308C0.740725 34.4179 2.53956 36.2173 4.72672 36.2197H32.4963V1.69635H4.72672ZM70.1012 25.7227L70.6927 24.892C71.1182 25.3361 71.7079 25.5863 72.3232 25.5839C72.9228 25.5839 73.2154 25.3047 73.2154 25.0151C73.2154 24.639 72.7382 24.531 72.1775 24.3928C71.3387 24.2013 70.2631 23.9732 70.2631 22.8012C70.2631 21.9479 71.0015 21.2404 72.2083 21.2404C73.0238 21.2404 73.7006 21.4865 74.2085 21.9549L73.6002 22.7565C73.1898 22.3908 72.6575 22.1912 72.1078 22.197C71.6394 22.197 71.3776 22.4053 71.3776 22.7118C71.3776 23.0433 71.8478 23.1495 72.3998 23.2807C73.2391 23.4809 74.3229 23.7352 74.3229 24.8961C74.3229 25.8347 73.6542 26.5423 72.2698 26.5423C71.2842 26.5324 70.5766 26.2068 70.1012 25.7227ZM65.4274 25.7227L66.0189 24.892C66.4443 25.3361 67.0341 25.5863 67.6494 25.5839C68.2495 25.5839 68.5415 25.3047 68.5415 25.0151C68.5415 24.639 68.065 24.531 67.5042 24.3928C66.6649 24.2013 65.5893 23.9732 65.5893 22.8012C65.5893 21.9479 66.3277 21.2404 67.535 21.2404C68.35 21.2404 69.0268 21.4865 69.5347 21.9549L68.9304 22.7565C68.5206 22.3908 67.9878 22.1912 67.4381 22.197C66.9696 22.197 66.7084 22.4053 66.7084 22.7118C66.7084 23.0433 67.178 23.1495 67.7306 23.2807C68.5694 23.4809 69.6537 23.7352 69.6537 24.8961C69.6537 25.8347 68.985 26.5423 67.6006 26.5423C66.6161 26.5324 65.9086 26.2068 65.4274 25.7227ZM48.402 25.7227L48.9941 24.892C49.4195 25.3361 50.0093 25.5863 50.6246 25.5839C51.2242 25.5839 51.5167 25.3047 51.5167 25.0151C51.5167 24.639 51.0396 24.531 50.4789 24.3928C49.6401 24.2013 48.5645 23.9732 48.5645 22.8012C48.5645 21.9479 49.3029 21.2404 50.5096 21.2404C51.3252 21.2404 52.002 21.4865 52.5093 21.9549L51.901 22.7565C51.4912 22.3903 50.9589 22.1906 50.4092 22.197C49.9408 22.197 49.679 22.4053 49.679 22.7118C49.679 23.0433 50.1474 23.1495 50.7012 23.2807C51.5405 23.4809 52.6242 23.7352 52.6242 24.8961C52.6242 25.8347 51.9556 26.5423 50.5712 26.5423C49.5867 26.5324 48.8791 26.2068 48.402 25.7227ZM43.0519 24.3998V21.3158H44.1705V24.3621C44.1705 25.0766 44.5901 25.5688 45.3772 25.5688C46.1649 25.5688 46.577 25.0766 46.577 24.3621V21.3158H47.6962V24.3928C47.6962 25.6693 46.9422 26.5382 45.3813 26.5382C43.821 26.5382 43.0519 25.6611 43.0519 24.3998ZM59.1161 26.4459L56.67 23.1007V26.4459H55.5776V21.3158H56.6967L59.0743 24.5327V21.3158H60.1661V26.4459H59.1161ZM53.4171 26.4459V21.3158H54.5096V26.4459H53.4171ZM61.2388 26.4459V21.3158H64.8748V22.2771H62.3312V23.3608H64.815V24.3214H62.3312V25.4824H64.8678V26.443L61.2388 26.4459ZM37.9039 26.4459V21.3158H40.603C41.5816 21.3158 42.0797 21.9387 42.0797 22.6236C42.0797 23.2696 41.6797 23.7003 41.1956 23.7996C41.7413 23.8838 42.1749 24.4149 42.1749 25.0586C42.1749 25.8277 41.66 26.443 40.6825 26.443L37.9039 26.4459ZM41.0644 24.9071C41.0644 24.5844 40.8334 24.3075 40.4027 24.3075H38.9963V25.4992H40.4027C40.8143 25.4992 41.0644 25.274 41.0644 24.9071ZM40.9652 22.8099V22.8082C40.9652 22.5011 40.7127 22.2486 40.4056 22.2486C40.3923 22.2486 40.3789 22.2492 40.365 22.2504H38.9963V23.3689H40.365C40.733 23.3689 40.964 23.1385 40.964 22.8152L40.9652 22.8099ZM42.9718 15.073C42.9718 13.4971 44.1635 12.4162 45.7017 12.4162C46.5974 12.3913 47.4321 12.8812 47.8471 13.6747L46.9085 14.1361C46.6757 13.6869 46.2148 13.399 45.7087 13.3868C44.7788 13.3868 44.102 14.1013 44.102 15.0649C44.102 16.0284 44.7788 16.743 45.7087 16.743C46.2172 16.7372 46.6827 16.4498 46.9155 15.9977L47.8482 16.4632C47.4791 17.1011 46.833 17.7222 45.7035 17.7222C44.1705 17.7222 42.9718 16.6507 42.9718 15.073ZM48.3097 15.073C48.3097 13.4971 49.5014 12.4162 51.0396 12.4162C51.9352 12.3913 52.7699 12.8812 53.185 13.6747L52.2464 14.1361C52.0124 13.6845 51.5481 13.3966 51.0396 13.3868C50.1097 13.3868 49.4329 14.1013 49.4329 15.0649C49.4329 16.0284 50.1097 16.743 51.0396 16.743C51.5481 16.7372 52.0136 16.4498 52.2464 15.9977L53.185 16.451C52.8158 17.0884 52.1697 17.7094 51.0396 17.7094C49.5031 17.7222 48.3097 16.6507 48.3097 15.073ZM56.7931 17.6351L55.786 15.8172H54.9861V17.6351H53.8943V12.5056H56.2939C57.3625 12.5056 58.0167 13.2051 58.0167 14.1588C58.0167 15.066 57.4478 15.5571 56.8981 15.6813L58.0515 17.6392L56.7931 17.6351ZM41.4406 17.6351L41.126 16.7668H38.926L38.6033 17.6351H37.3571L39.3417 12.5056H40.7104L42.6868 17.6351H41.4406ZM80.2371 17.6351V12.5056H82.2594C83.8661 12.5056 84.9824 13.5278 84.9824 15.0747C84.9824 16.6217 83.8632 17.6351 82.2594 17.6351H80.2371ZM75.6991 17.6351V12.5056H79.3351V13.4663H76.791V14.55H79.2724V15.5112H76.791V16.6716H79.3293V17.6322L75.6991 17.6351ZM69.0088 17.6351V12.5056H70.1012V17.6351H69.0088ZM63.4318 17.6351V12.5056H65.4541C67.0608 12.5056 68.1764 13.5278 68.1764 15.0747C68.1764 16.6217 67.0579 17.6351 65.4541 17.6351H63.4318ZM58.8937 17.6351V12.5056H62.5297V13.4663H59.9856V14.55H62.4694V15.5112H59.9856V16.6716H62.5239V17.6322L58.8937 17.6351ZM72.354 17.6351V13.4663H70.8535V12.5056H74.9451V13.4663H73.4533V17.6351H72.354ZM83.8731 15.0747C83.8731 14.1669 83.3135 13.468 82.2664 13.468H81.3365V16.6733H82.2664C83.2758 16.6733 83.8673 15.9431 83.8673 15.073L83.8731 15.0747ZM67.0677 15.0747C67.0677 14.1669 66.5082 13.468 65.461 13.468H64.5306V16.6733H65.461C66.4693 16.6733 67.0619 15.9431 67.0619 15.073L67.0677 15.0747ZM40.0266 13.5963L39.2267 15.8032H40.8265L40.0266 13.5963ZM56.8964 14.1588C56.8964 13.7281 56.5667 13.4663 56.1273 13.4663H54.9821V14.8507H56.1273C56.5708 14.8507 56.8964 14.5895 56.8964 14.1588Z" fill="white"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4884 30.6177C12.2169 30.9421 12.575 31.1558 12.7144 32.0607C12.9494 33.6407 11.4954 34.2409 10.122 34.2409H6.90515V27.3421H10.1499C11.312 27.3421 12.376 27.8721 12.376 29.1712C12.376 29.8207 12.0387 30.2944 11.4884 30.6177ZM17.9303 30.6177C18.6582 30.9421 19.0164 31.1558 19.1557 32.0607C19.3908 33.6407 17.935 34.2409 16.5634 34.2409H13.3465V27.3421H16.5912C17.7533 27.3421 18.8173 27.8721 18.8173 29.1712C18.8173 29.8207 18.48 30.2944 17.9303 30.6177ZM25.5958 32.0619C25.456 31.1569 25.0978 30.9433 24.3693 30.6188C24.9202 30.2955 25.2592 29.8219 25.2592 29.1712C25.2592 27.8721 24.1946 27.3421 23.0326 27.3421H19.7878V34.2409H23.0047C24.3763 34.2409 25.8321 33.6407 25.5976 32.0607L25.5958 32.0619ZM26.4915 32.5901V32.5767C26.4915 31.7043 27.2089 30.9863 28.0814 30.9863C28.9526 30.9863 29.6695 31.702 29.6718 32.5727V32.5854C29.6718 33.4579 28.9544 34.1759 28.0814 34.1759C27.2107 34.1759 26.4938 33.4608 26.4915 32.5901ZM29.5273 32.5854V32.5727C29.5244 31.7815 28.8731 31.1314 28.0814 31.1314C27.2885 31.1314 26.636 31.7838 26.636 32.5767V32.5901C26.6389 33.3812 27.2902 34.0308 28.0814 34.0308C28.8743 34.0308 29.5273 33.3783 29.5273 32.5854ZM27.4579 31.72H28.1899C28.3669 31.7118 28.5411 31.7734 28.6734 31.8918C28.7593 31.9742 28.8069 32.0886 28.8052 32.2081V32.2168C28.8052 32.4804 28.6293 32.6382 28.3832 32.6957L28.8888 33.3499H28.5898L28.1197 32.7352H27.7023V33.3499H27.4609L27.4579 31.72ZM10.2532 32.9372H8.36964V31.3641H10.2532C11.6365 31.3641 11.5511 32.9372 10.2532 32.9372ZM16.6963 32.936H14.815V31.3641H16.6945C18.0766 31.3641 17.9924 32.9372 16.6945 32.9372L16.6963 32.936ZM21.2564 31.3641V32.9372H23.1359C24.4338 32.9372 24.5179 31.3641 23.1359 31.3641H21.2564ZM28.1649 32.5198C28.3936 32.5198 28.5515 32.4142 28.5515 32.2267V32.218C28.5515 32.0468 28.4111 31.9371 28.1783 31.9371H27.6994V32.5169L28.1649 32.5198ZM11.4884 30.6177L11.4879 30.6171L11.4867 30.6188L11.4884 30.6177ZM17.9303 30.6177L17.9298 30.6171L17.928 30.6188L17.9303 30.6177ZM8.36964 28.6621H10.0588C11.1117 28.6621 11.1494 30.1336 10.1244 30.1336H8.36964V28.6621ZM21.2622 28.6609H22.9414C23.9949 28.6609 24.0327 30.1318 23.0076 30.1318H21.2564L21.2622 28.6609ZM14.8168 28.6592H16.5018C17.5548 28.6592 17.5925 30.1307 16.5674 30.1307H14.815L14.8168 28.6592ZM10.017 24.2559H13.1538L13.7133 26.1574H18.8399L19.3995 24.2559H22.5374L22.1265 22.8569H10.4279L10.017 24.2559ZM13.8166 12.9799L12.2964 15.0777C11.5343 16.1277 11.7705 17.9875 12.8113 18.7386L15.6306 20.7737C16.1141 21.1231 16.1518 21.4726 15.9225 21.8377L16.3323 22.1424L17.7603 20.1654C18.6426 18.9429 18.5659 17.2799 17.257 16.328L14.4122 14.2551C14.0726 14.0061 14.0361 13.6608 14.2247 13.2765L13.8155 12.9839L13.8166 12.9799ZM16.2557 3.72157L13.888 6.99594C12.7776 8.53125 13.1816 11.1491 14.6989 12.2677L18.5909 15.1252C19.3797 15.704 19.4831 17.1795 18.9084 17.9347L19.2387 18.1819L21.9233 14.4061C23.1289 12.71 23.0593 10.2035 21.1658 8.82902L17.0022 5.80426C16.4194 5.38458 16.128 4.66133 16.6133 3.97523L16.2557 3.72157Z" fill="#015A75"/>
+  </svg>
+  `
+    ),
+    payPalImg: (
+      /*html */
+      `
+  <svg class="pay_pal_img" xmlns="http://www.w3.org/2000/svg" width="116" height="29" viewBox="0 0 116 29" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M10.0849 7.54877H17.9824C22.2227 7.54877 23.8189 9.6954 23.5722 12.8491C23.1645 18.0556 20.0169 20.9362 15.8419 20.9362H13.734C13.1611 20.9362 12.7758 21.3153 12.6209 22.3428L11.726 28.3159C11.6668 28.7032 11.463 28.9274 11.1572 28.958H6.19528C5.72844 28.958 5.56331 28.6013 5.68563 27.8286L8.7109 8.68019C8.82913 7.91368 9.24908 7.54877 10.0849 7.54877Z" fill="#009EE3"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M44.3719 7.19403C47.0363 7.19403 49.4949 8.63939 49.1585 12.2416C48.7508 16.5226 46.4574 18.8914 42.8389 18.9016H39.677C39.2224 18.9016 39.0022 19.2727 38.884 20.0331L38.2724 23.9206C38.1807 24.5078 37.879 24.7972 37.4346 24.7972H34.4929C34.024 24.7972 33.8609 24.4976 33.9649 23.8269L36.3929 8.24594C36.5131 7.47943 36.8006 7.19403 37.3245 7.19403H44.3658H44.3719ZM39.5812 15.5359H41.9765C43.4749 15.4788 44.4697 14.4412 44.5696 12.5698C44.6308 11.4139 43.85 10.5862 42.6085 10.5924L40.3538 10.6025L39.5812 15.5359ZM57.1559 23.6047C57.425 23.36 57.6981 23.2336 57.6594 23.5353L57.5636 24.257C57.5147 24.6341 57.6635 24.8339 58.0141 24.8339H60.6276C61.0679 24.8339 61.282 24.6566 61.39 23.9757L63.0005 13.8684C63.082 13.3608 62.9577 13.1121 62.5724 13.1121H59.698C59.4391 13.1121 59.3127 13.2568 59.2454 13.6523L59.1394 14.274C59.0844 14.5982 58.9356 14.6553 58.7969 14.3291C58.3097 13.1752 57.0662 12.6574 55.3313 12.6982C51.301 12.7818 48.5836 15.8417 48.2921 19.764C48.0678 22.7974 50.241 25.1805 53.1072 25.1805C55.1866 25.1805 56.1162 24.5689 57.164 23.6108L57.1559 23.6047ZM54.9664 22.0492C53.2316 22.0492 52.0227 20.665 52.2734 18.9689C52.5242 17.2728 54.1469 15.8886 55.8817 15.8886C57.6166 15.8886 58.8255 17.2728 58.5747 18.9689C58.324 20.665 56.7033 22.0492 54.9664 22.0492ZM68.1153 13.0794H65.4651C64.9188 13.0794 64.6966 13.4871 64.8699 13.9886L68.1602 23.623L64.9331 28.2078C64.6619 28.591 64.8719 28.9396 65.2531 28.9396H68.2315C68.4051 28.9597 68.5808 28.9294 68.7377 28.8525C68.8945 28.7755 69.0259 28.655 69.1163 28.5054L79.2358 13.9907C79.5477 13.5442 79.4009 13.0754 78.8893 13.0754H76.0699C75.5867 13.0754 75.3931 13.267 75.1158 13.6686L70.8959 19.7843L69.0103 13.6543C68.9002 13.2833 68.625 13.0794 68.1173 13.0794H68.1153Z" fill="#113984"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M89.763 7.19405C92.4275 7.19405 94.886 8.63941 94.5496 12.2416C94.1419 16.5226 91.8485 18.8915 88.23 18.9017H85.0702C84.6156 18.9017 84.3954 19.2727 84.2772 20.0331L83.6656 23.9207C83.5739 24.5078 83.2722 24.7973 82.8278 24.7973H79.8861C79.4172 24.7973 79.2541 24.4976 79.3581 23.8269L81.7901 8.24188C81.9104 7.47537 82.1978 7.18997 82.7218 7.18997H89.763V7.19405ZM84.9723 15.5359H87.3677C88.866 15.4789 89.8609 14.4412 89.9608 12.5698C90.0219 11.4139 89.2412 10.5863 87.9997 10.5924L85.745 10.6026L84.9723 15.5359ZM102.547 23.6047C102.816 23.3601 103.089 23.2337 103.051 23.5354L102.955 24.257C102.906 24.6342 103.055 24.834 103.405 24.834H106.019C106.459 24.834 106.673 24.6566 106.781 23.9757L108.392 13.8684C108.473 13.3608 108.349 13.1121 107.964 13.1121H105.093C104.834 13.1121 104.708 13.2568 104.641 13.6523L104.535 14.2741C104.48 14.5982 104.331 14.6553 104.192 14.3291C103.705 13.1753 102.461 12.6575 100.727 12.6982C96.6963 12.7818 93.9788 15.8417 93.6873 19.764C93.4631 22.7974 95.6362 25.1805 98.5024 25.1805C100.582 25.1805 101.511 24.5689 102.559 23.6108L102.547 23.6047ZM100.36 22.0492C98.6248 22.0492 97.4159 20.665 97.6666 18.9689C97.9174 17.2728 99.5401 15.8886 101.275 15.8886C103.01 15.8886 104.219 17.2728 103.968 18.9689C103.717 20.665 102.094 22.0492 100.36 22.0492ZM112.414 24.8503H109.397C109.344 24.8526 109.292 24.8433 109.243 24.8231C109.195 24.8029 109.151 24.7722 109.116 24.7332C109.081 24.6943 109.055 24.648 109.039 24.5978C109.024 24.5475 109.02 24.4945 109.028 24.4425L111.678 7.65274C111.703 7.53815 111.766 7.43549 111.858 7.36147C111.949 7.28744 112.062 7.2464 112.179 7.24502H115.196C115.249 7.24267 115.301 7.25194 115.35 7.27217C115.398 7.29239 115.442 7.32308 115.477 7.36203C115.512 7.40098 115.538 7.44723 115.554 7.49748C115.569 7.54774 115.573 7.60075 115.565 7.65274L112.915 24.4425C112.891 24.5579 112.828 24.6615 112.737 24.7363C112.646 24.8111 112.532 24.8527 112.414 24.8543V24.8503Z" fill="#009EE3"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M5.14542 0.958008H13.0511C15.2772 0.958008 17.9192 1.02936 19.6846 2.58888C20.865 3.6306 21.4847 5.28797 21.342 7.07377C20.8568 13.11 17.2465 16.492 12.4028 16.492H8.50501C7.84043 16.492 7.40213 16.9324 7.21458 18.1229L6.12598 25.0541C6.05463 25.5026 5.86096 25.7676 5.5144 25.8002H0.636063C0.0958373 25.8002 -0.0957918 25.3925 0.0448708 24.4915L3.55124 2.27493C3.6919 1.38203 4.1832 0.958008 5.14542 0.958008Z" fill="#113984"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M7.32874 17.4196L8.70886 8.68018C8.82914 7.91367 9.24909 7.54672 10.0849 7.54672H17.9824C19.2891 7.54672 20.3472 7.75058 21.1748 8.12772C20.3818 13.5014 16.906 16.4859 12.3559 16.4859H8.46423C7.94235 16.488 7.5591 16.7489 7.32874 17.4196Z" fill="#172C70"/>
+</svg>
+  `
+    ),
+    stepIcon: (
+      /*html */
+      `
+  <svg class="step_icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="8" cy="8" r="8" fill="white"/>
+<path d="M6.99999 11C6.86738 11 6.7402 10.9473 6.64644 10.8535L4.64644 8.85353C4.45119 8.65828 4.45119 8.3417 4.64644 8.14644C4.84172 7.95116 5.15831 7.95118 5.35355 8.14644L6.99997 9.7929L11.6465 5.14644C11.8417 4.95119 12.1583 4.95119 12.3536 5.14644C12.5488 5.3417 12.5488 5.65828 12.3536 5.85354L7.35355 10.8535C7.25979 10.9473 7.13261 11 6.99999 11Z" fill="#63DD1A"/>
+</svg>
   `
     )
-  }, je = [
+  }, v = [
     {
-      svgIcon: `${ae.star}${ae.star}${ae.star}${ae.star}${ae.star}`,
-      title: "Leyton",
-      subTitle: "University of Alberta",
-      txt: `"After enrolling, I no longer had to worry about my next steps. GrantMe's team was always there to guide me."`,
-      receivedTxt: "Received",
-      price: "$140,500"
+      name: "choose",
+      class: "choose_var",
+      title: "Choose to see criteria",
+      txt: ""
     },
     {
-      svgIcon: `${ae.star}${ae.star}${ae.star}${ae.star}${ae.star}`,
-      title: "Lauren",
-      subTitle: "Western University",
-      txt: '"GrantMe did not just improve my writing abilities and applications but also equipped me with the skills to be a successful student"',
-      receivedTxt: "Received",
-      price: "$65,000"
+      name: "brandnew",
+      class: "brandnew is_hidden",
+      title: "Brand New",
+      txt: "<li><p><span>Factory sealed:</span> Original packaging with all included accessories, never activated.</p></li><li><p><span>Clean ESN:</span> No financial balances or blocks on the device.</p></li>"
     },
     {
-      title: "Ashleigh",
-      subTitle: "Queen’s University",
-      svgIcon: `${ae.star}${ae.star}${ae.star}${ae.star}${ae.star}`,
-      txt: "“Everything that I could possibly be worrying about with university and saving money ... have been answered ... it’s been tons of fun!”",
-      receivedTxt: "Received",
-      price: "$30,000"
+      name: "flawless",
+      class: "flawless is_hidden",
+      title: "Flawless",
+      txt: '<li><p><span>Perfect condition:</span> Fully Functional with no scratches, blemishes, or flaws.</p></li><li><p><span>Clean ESN:</span> No financial balances or blocks on the device.</p></li><li><p><span>Battery health:</span> Minimum 80% capacity without "service battery" alert.</p></li>'
     },
     {
-      svgIcon: `${ae.star}${ae.star}${ae.star}${ae.star}${ae.star}`,
-      title: "Salwa",
-      subTitle: "UBC",
-      txt: '"I have realized financially that I do have the ability to control my future. I can take responsibility for my finances"',
-      receivedTxt: "Received",
-      price: "$75,000"
+      name: "good",
+      class: "good is_hidden",
+      title: "Good",
+      txt: '<li><p><span>Minimal wear:</span> Fully functional with only light scratches or scuffs not visible from 8 inches away.</p></li><li><p><span>Clean ESN:</span> No financial balances or blocks on the device.</p></li><li><p><span>Battery health:</span> Minimum 80% capacity without "service battery" alert.</p></li>'
+    },
+    {
+      name: "average",
+      class: "average is_hidden",
+      title: "Average",
+      txt: '<li><p><span>Moderate wear:</span> Fully functional with moderate dings, scuffs or scratches that don’t catch your fingernail.</p></li><li><p><span>Clean ESN:</span> No financial balances or blocks on the device.</p></li><li><p><span>Battery health:</span> Minimum 80% capacity without "service battery" alert.</p></li>'
+    },
+    {
+      name: "fair",
+      class: "fair is_hidden",
+      title: "Fair",
+      txt: '<li><p><span>Heavy wear:</span> Fully functional with excessive scratches, dings, scuffs or deep scratches that catch your fingernail; but no cracks.</p></li><li><p><span>Clean ESN:</span> No financial balances or blocks on the device.</p></li><li><p><span>Battery health:</span> Minimum 80% capacity without "service battery" alert.</p></li>'
+    },
+    {
+      name: "faulty",
+      class: "faulty is_hidden",
+      title: "Faulty",
+      txt: "<li><p><span>Significant Issues:</span> Powers on but may have cracks, damaged housing, battery with <80% capacity or “service battery” message, functional defects, LCD defects, engravings, or aftermarket screen.</p></li><li><p><span>Exclusions:</span> Devices that are account locked, reported lost/stolen, won't power on, or can't be fully tested are not purchased.</p></li>"
     }
-  ], De = (
+  ], y = [
+    {
+      svgIcon: p.stopwatch,
+      txt: "Get Paid Fast"
+    },
+    {
+      svgIcon: p.moneyBlue,
+      txt: "Multiple Payment Options"
+    },
+    {
+      svgIcon: p.sent,
+      txt: "Free Prepaid Shipping"
+    }
+  ], L = [
+    {
+      imgUrl: `${C}/checkout/img/trustpilot_reviews.png`,
+      imgLink: "https://www.trustpilot.com/review/gadgetgone.com"
+    },
+    {
+      imgUrl: `${C}/checkout/img/google_reviews.png`,
+      imgLink: "https://www.google.com/search?q=gadget+gone&oq=gadget+gone&aqs=chrome.0.69i59j69i57j69i60l6.1656j0j7&sourceid=chrome&ie=UTF-8#lrd=0x88e76b2065fdd327:0x51404d4d0bb5c90,1,,,"
+    },
+    {
+      imgUrl: `${C}/checkout/img/accredited_business_reviews.png`,
+      imgLink: "https://www.bbb.org/us/fl/aloma/profile/electronics-recycling/gadgetgone-llc-0733-90332741"
+    }
+  ], H = [
+    {
+      title: "Get Your Quote",
+      svgIcon: p.smartphone,
+      subTitle: "Fill out our simple form.",
+      txt: "Select your device type and model from the home page to get an obligation-free, instant quote."
+    },
+    {
+      title: "Ship Your Device",
+      svgIcon: p.deliveryTruck,
+      subTitle: "Print your label and box your device.",
+      txt: "Box up your device and ship it to us with our free, pre-paid shipping label."
+    },
+    {
+      title: "Get Paid",
+      svgIcon: p.money,
+      subTitle: "Print your label and box your device.",
+      txt: "Choose between a Bank Transfer, Virtual Visa Card, PayPal Payment or Amazon / Target Gift Card. We'll make sure you get paid ASAP after your device is delivered."
+    }
+  ], M = [
+    {
+      title: "What if I’m unsure about my device’s condition?",
+      txt: `<p>If you're uncertain about the condition of your device, we encourage you to reach out to us through our <a href="https://www.gadgetgone.com/support/" target="_blank">contact form</a>. Our team is ready to assist you with assessing your device's condition to ensure you receive the most accurate offer. This step can help you understand our evaluation criteria better and make an informed decision about selling your device.</p>`
+    },
+    {
+      title: "What if I don’t agree with GadgetGone’s evaluation?",
+      txt: "<p>If unsatisfied with our revised offer for your device, you can opt to have it returned for free. Please respond to our re-quote email promptly. Without a response within 14 days, we'll proceed with the revised offer payment and consider the device for resale.</p>"
+    },
+    {
+      title: "How soon after delivery will my device be evaluated?",
+      txt: "<p>We aim to evaluate devices within 3-7 business days post-delivery. However, due to high volume periods like after new product launches, evaluations might take slightly longer.</p>"
+    },
+    {
+      title: "What is checked during the evaluation process?",
+      txt: "<p>We verify your device's stated specifications (model, carrier, storage) and condition through inspections and tests. We do not accept devices that are blacklisted, iCloud locked, remote managed, or too damaged for proper assessment.</p>"
+    },
+    {
+      title: "What are my payment options?",
+      txt: "<p>Choose from PayPal, Direct Bank Transfer, Virtual Visa Card, or PrizeOut gift cards. PayPal transactions incur a fee of 2.9% + $0.30, which we do not cover. Bank Transfers and Virtual Visa Cards are fee-free and delivered via email. PrizeOut offers numerous gift card options, some with up to a 20% bonus.</p>"
+    },
+    {
+      title: "When will I be paid?",
+      txt: "<p>Payments are issued the same day your device is evaluated. Bank transfers take 2-4 business days, while other methods are sent via email immediately.</p>"
+    },
+    {
+      title: "Do you price match?",
+      txt: `<p>Found a better offer elsewhere? We'll match it! <a href="https://www.gadgetgone.com/support/" target="_blank">Contact us</a> before accepting our offer. This applies to trade-in sites with instant cash offers only and excludes retail and in-store credit offers. We reserve the right to decline price match requests at our discretion.</p>`
+    }
+  ], u = (i) => (
+    /* HTML */
+    ` <h2 class="new_title_box">${i}</h2> `
+  ), Z = (
     /* HTML */
     `
-  <div class="guarantee_block">
-    <div class="guarantee_block_container">
-      ${ae.guaranteeIcon}
-      <p>
-        Qualified GrantMe students are guaranteed scholarship winnings and admission to their top-choice universities.
-      </p>
-    </div>
-  </div>
-`
-  ), Fe = (X) => (
-    /* HTML */
-    `
-    <section class="new_loader_block">
-      ${De}
-      <div class="loader_timing_box">
-        ${ae.loaderIcon} ${ae.loaderRotating}
-        <div class="percentage"></div>
-      </div>
-      <div class="loading_txt_wrapper">
-        ${X.map((H) => `<p>${H}<span>.</span><span>.</span><span>.</span></p>`).join("")}
-      </div>
-    </section>
-  `
-  ), Re = (
-    /* HTML */
-    `
-  <div class="last_steps_wrapper">
-    <div class="email_name_box">
-      <h2 class="last_steps_main_title">Your results are ready!</h2>
-      <p class="last_steps_main_txt">
-        ${window.innerWidth < 768 ? "Unlock your chances of admission and scholarship funding by providing the information below." : "Unlock your chances of admission and scholarship funding by signing in below."}
-      </p>
-      <button id="continueValidationBtn">Continue</button>
-      <div class="safe_and_secure_box">
-        ${ae.secureIcon}
-        <span>Your data is safe and secure. No ads or spam</span>
-      </div>
-      <p class="or_txt"><span>OR</span></p>
-      <div id="btnSignInBlock">
-        <div
-          id="g_id_onload"
-          data-client_id="569574819297-i3o28u5doob33c39p0aqd8slo5jg4rc0.apps.googleusercontent.com"
-          data-context="signin"
-          data-ux_mode="popup"
-          data-callback="onSignIn"
-          data-auto_prompt="false"
-        ></div>
-
-        <div
-          class="g_id_signin"
-          data-type="standard"
-          data-shape="rectangular"
-          data-theme="outline"
-          data-text="signin_with"
-          data-size="large"
-          data-locale="en-US"
-          data-logo_alignment="center"
-          data-width="${window.innerWidth < 768 ? "300" : "900"}"
-        ></div>
-      </div>
-      <p class="new_footnote">
-        By clicking, “Continue”, “Sign in with Google” I Agree to GrantMe’s
-        <a
-          href="https://grantme.ca/privacy-policy/?__hstc=166450401.8cd64e907f4dabce6c645e168a8c017d.1713536092845.1713536092845.1713536092845.1&amp;__hssc=166450401.9.1713536092846&amp;__hsfp=1735953969"
-          style="color:#3e78ba"
-          target="_blank"
-          >Privacy Policy</a
-        >,
-        <a
-          href="https://grantme.ca/terms-of-use/?__hstc=166450401.8cd64e907f4dabce6c645e168a8c017d.1713536092845.1713536092845.1713536092845.1&amp;__hssc=166450401.9.1713536092846&amp;__hsfp=1735953969"
-          style="color:#3e78ba"
-          target="_blank"
-          >Terms of Use</a
-        >
-        and consent to receiving promotional messages.
-      </p>
-    </div>
-    <div class="phone_box is_hidden">
-      <h2 class="last_steps_main_title">Almost done!</h2>
-      <p class="last_steps_main_txt">
-        Please provide your mobile phone number below to receive personalised content and offers based on your
-        assessment results, totally free.
-      </p>
-      <button id="seeMyResultsBtn" class="">See My Results</button>
-    </div>
-  </div>
-`
-  ), Ie = (
-    /* HTML */
-    `
-  <div class="new_reviews_block">
-    <h2 class="new_reviews_main_title">Trusted by over 20,000 students</h2>
-    <p class="new_reviews_main_txt">who've secured funding and applied to the university of their dreams.</p>
-    <div class="new_reviews_list">
-      ${je.map((X, H) => (
+  <div id="conditionBlock">
+    ${v.map((i) => (
       /* HTML */
       `
-            <div class="new_reviews_item ${X.title.toLocaleLowerCase()}">
-              <div class="stars_wrapper">${X.svgIcon}</div>
-              <h3 class="new_reviews_item_title">${X.title}</h3>
-              <h4 class="new_reviews_item_subtitle">${X.subTitle}</h4>
-              <p class="new_reviews_item_txt">${X.txt}</p>
-              <div class="received_box">
-                <span class="received_box_txt">${X.receivedTxt}</span>
-                <span class="received_box_price">${X.price}</span>
-              </div>
-            </div>
-          `
+          <div class="${i.class}">
+            <h5>${i.title}</h5>
+            <ul>
+              ${i.txt}
+            </ul>
+          </div>
+        `
     )).join("")}
-    </div>
   </div>
 `
-  );
-  var Ne = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-  function Ve(X) {
-    return X && X.__esModule && Object.prototype.hasOwnProperty.call(X, "default") ? X.default : X;
+  ), V = (
+    /* HTML */
+    `
+  <div class="clear_form_block">
+    ${p.clearForm}
+    <span>Clear Form</span>
+  </div>
+`
+  ), q = (
+    /* HTML */
+    `
+  <div id="benefitsBlock">
+    <ul>
+      ${y.map((i) => (
+      /* HTML */
+      `
+            <li>
+              <span>${i.svgIcon}</span>
+              <p>${i.txt}</p>
+            </li>
+          `
+    )).join("")}
+    </ul>
+  </div>
+`
+  ), b = (
+    /* HTML */
+    `
+  <div id="reviewsBlock">
+    ${L.map((i) => (
+      /* HTML */
+      `
+          <a target="_blank" href="${i.imgLink}">
+            <img src="${i.imgUrl}" alt="logo" />
+          </a>
+        `
+    )).join("")}
+  </div>
+`
+  ), S = (
+    /* HTML */
+    `
+  <section id="howItWorksSection">
+    <div class="new_container">
+      <h2 class="main_title">How it works</h2>
+      <ul class="how_it_works_list">
+        ${H.map((i) => (
+      /* HTML */
+      `
+              <li>
+                <span>${i.svgIcon}</span>
+                <h3>${i.title}</h3>
+                <h4>${i.subTitle}</h4>
+                <p>${i.txt}</p>
+              </li>
+            `
+    )).join("")}
+      </ul>
+    </div>
+  </section>
+`
+  ), I = (
+    /* HTML */
+    `
+  <section id="frequentlyAskedQuestionSection">
+    <div class="new_container">
+      <h2 class="main_title">Frequently Asked Questions</h2>
+      <ul class="questions_accordion">
+        ${M.map((i, e) => (
+      /* HTML */
+      `
+              <li class="questions_accordion_block" data-visability="${e + 1}">
+                <div class="questions_accordion_link">
+                  <p>${i.title}</p>
+                  <span class="accordion_icon">${p.arrow}</span>
+                </div>
+                <div class="questions_accordion_lists" data-visability-open="${e + 1}">
+                  <div>${i.txt}</div>
+                </div>
+              </li>
+            `
+    )).join("")}
+      </ul>
+    </div>
+  </section>
+`
+  ), B = (i, e) => (
+    /* HTML */
+    `
+    <div class="radio_block ${e}">
+      <h3>
+        <span>${i} *</span>
+        ${e === "pa_condition" ? '<span class="txt_choose is_hidden">choose to see criteria</span>' : ""}
+      </h3>
+      <div class="radio_option_wrapp"></div>
+    </div>
+  `
+  ), E = (i, e, t) => (
+    /* HTML */
+    `
+    <input class="custom_radio" id="${e}" type="radio" name="${i}" value="${e}" />
+    <label for="${e}" tabindex="0" data-name="">
+      <div class="radio_info">
+        <div class="radio_txt_box">
+          <span class="new_custom_radio"></span>
+          ${e === "unlocked" ? p.unlocked : ""} ${e === "verizon" ? p.verizon : ""}
+          ${e === "att" ? p.aTT : ""}
+          ${e === "t-mobile" ? p.tMobile : ""}${e === "other" ? p.other : ""}
+          <span class="radio_txt">${t}</span>
+        </div>
+        <div class="condition_level">
+          <span class="green_bgr"></span>
+          <span class="green_bgr"></span>
+          <span class="green_bgr"></span>
+          <span class="green_bgr"></span>
+          <span class="green_bgr"></span>
+          <span class="green_bgr"></span>
+        </div>
+      </div>
+      ${window.innerWidth < 1100 ? v.map((l) => {
+      if (e === l.name)
+        return (
+          /* HTML */
+          `
+                  <ul class="radio_descr_mob is_hidden">
+                    ${l.txt}
+                  </ul>
+                `
+        );
+    }).join("") : ""}
+    </label>
+  `
+  ), j = (
+    /* HTML */
+    `
+  <div class="new_sticky_block">
+    <div class="new_sticky_default_price is_hidden">
+      <div>
+        <h4></h4>
+        <span></span>
+      </div>
+      <p>*Please enter device details to get a quote.</p>
+    </div>
+    <span class="new_sticky_default_txt">*Please enter device details to get a quote.</span>
+    <button class="disabled">Trade-In</button>
+  </div>
+`
+  ), A = `.new_container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.new_title_box {
+  color: #29353c;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 32px;
+  margin: 0 0 24px;
+}
+
+.main_title {
+  color: #29353c;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 32px;
+  margin: 0 0 24px;
+}
+
+.device-step-header .progress-dots li svg.step_icon {
+  width: 13px;
+}
+
+.step_icon + svg {
+  display: none;
+}
+
+.reset_variations {
+  display: none !important;
+}
+
+.device-details-title {
+  padding: 40px 0 16px;
+}
+
+.device-details-title h5 {
+  color: #757575;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  margin: 0 0 4px;
+}
+
+.device-details-title h1 {
+  color: #29353c;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 48px;
+  letter-spacing: -0.69px;
+}
+
+.device-step-header.step-number-3 {
+  display: flex;
+  justify-content: center;
+  gap: 56px;
+  border: none;
+  margin: 0 0 60px;
+  padding: 0;
+}
+
+.device-step-header .bread-crumbs {
+  color: #29353c;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 33px;
+}
+
+.device-step-header .progress-dots li {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.device-step-header .progress-dots li::before {
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 20px;
+}
+
+.woocommerce #content div.product div.summary .add-to-cart-block {
+  padding: 0;
+  border: none;
+  background: inherit;
+  box-shadow: none;
+}
+
+.variations-content > .row,
+.variations-content > .row > h4,
+.variation-description-overview > h4,
+.order_benefits,
+.support-link,
+.order_reviews,
+.add-to-cart-block .device-placeholder-price,
+.add-to-cart-block .woocommerce-variation-price,
+.woocommerce-variation-description-overview .ggv2-quantity,
+.variation-description-overview .ggv2-quantity,
+.woocommerce-variation.single_variation h4 {
+  display: none !important;
+}
+
+.summary.entry-summary {
+  padding: 0 !important;
+}
+
+.variations {
+  flex: 1 0 820px !important;
+  max-width: 60% !important;
+  margin: 0 !important;
+}
+
+form.variations_form {
+  justify-content: center !important;
+  align-items: flex-start !important;
+  gap: 55px !important;
+}
+
+.variations > .variations-content {
+  padding: 40px 48px !important;
+  border-radius: 16px !important;
+  border: 1px solid #f0f2f4 !important;
+  background: #fff !important;
+  box-shadow: 0px 8px 16px 0px rgba(41, 53, 60, 0.03) !important;
+}
+
+.single_variation_wrap {
+  flex: 1 1 36% !important;
+  max-width: 36% !important;
+}
+.single_variation_wrap .ggv2-variation-condition {
+  gap: 4px;
+}
+.single_variation_wrap .single_variation_wrap--inner {
+  border-radius: 16px !important;
+  border: 1px solid #f0f2f4 !important;
+  background: #fff !important;
+  box-shadow: 0px 8px 16px 0px rgba(41, 53, 60, 0.03) !important;
+  padding: 20px 24px !important;
+  margin: 0 0 24px !important;
+  align-items: center !important;
+}
+.single_variation_wrap .single_variation_wrap--inner .woocommerce-product-gallery {
+  padding: 0 !important;
+  max-width: 99px !important;
+  margin-right: 20px !important;
+  max-height: 130px;
+}
+.single_variation_wrap .single_variation_wrap--inner .woocommerce-product-gallery img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  max-height: 130px;
+}
+.single_variation_wrap .single_variation_wrap--inner .variation-description-overview-placeholder {
+  padding: 0 !important;
+  flex: 1 0 59% !important;
+  max-width: 59% !important;
+}
+.single_variation_wrap .single_variation_wrap--inner .variation-title, .single_variation_wrap .single_variation_wrap--inner .condition-title {
+  color: #29353c !important;
+  font-size: 16px !important;
+  line-height: 24px;
+  font-weight: 400;
+  margin: 0 !important;
+}
+.single_variation_wrap .single_variation_wrap--inner .variation-title b, .single_variation_wrap .single_variation_wrap--inner .condition-title b {
+  font-weight: 700;
+}
+.single_variation_wrap .single_variation_wrap--inner .condition-title {
+  order: 1;
+}
+.single_variation_wrap .add-to-cart-block {
+  margin: 0 !important;
+}
+.single_variation_wrap .add-to-cart-block > div {
+  width: 100%;
+}
+.single_variation_wrap .add-to-cart-block > div .single_add_to_cart_button {
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 20px 38px !important;
+  width: 100% !important;
+  color: #fff !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  line-height: 24px !important;
+}
+
+.woocommerce-variation.single_variation {
+  padding: 0 !important;
+}
+
+.device-placeholder-price h4,
+.woocommerce-variation-price h4,
+.ggv2-quantity .quantity-title {
+  color: #29353c !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 24px !important;
+  margin: 0 0 16px !important;
+}
+
+.woocommerce-variation-price .offer-container {
+  margin: 0 !important;
+}
+
+.device-placeholder-price .price.price--empty {
+  color: #757575;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 0;
+  max-width: 240px;
+}
+
+.woocommerce-variation-price .woocommerce-Price-amount.amount {
+  color: #63dd1a !important;
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  line-height: 32px !important;
+}
+
+.woocommerce-variation-price .price {
+  margin-top: 10px;
+}
+
+.ggv2-quantity {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ggv2-quantity--disabled .qty-itputbox .qty_button {
+  cursor: initial;
+}
+
+.qty-itputbox .qty_button {
+  height: 100%;
+  top: 0;
+}
+
+.qty-itputbox {
+  border-radius: 6px;
+  border: 2px solid #d6d9dc;
+}
+
+.qty-itputbox input.input-text.qty {
+  height: 45px !important;
+  width: 118px !important;
+  border: unset;
+  color: #29353c;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px !important;
+}
+
+.qty-itputbox .qty_button.plus {
+  border-left: 1px solid #f0f2f4;
+  right: 0;
+}
+
+.qty-itputbox .qty_button.minus {
+  left: 0;
+  border-right: 1px solid #f0f2f4;
+}
+
+footer[role=contentinfo] {
+  padding: 72px 0 40px !important;
+}
+
+.menu-seo-menu-container {
+  border-bottom: 1px solid #f0f2f4;
+  margin: 32px 0;
+}
+
+.copyright {
+  padding: 0 !important;
+  color: #29353c;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+footer[role=contentinfo] #seo-nav {
+  margin: 0 0 22px;
+}
+
+footer[role=contentinfo] #seo-nav li:after {
+  width: 1px;
+  height: 20px;
+}
+
+@media (min-width: 1100px) {
+  footer[role=contentinfo] .nav-container {
+    padding: 47px 72px 47px 0 !important;
   }
-  var Ce = { exports: {} };
-  /*!
-   * dist/inputmask
-   * https://github.com/RobinHerbots/Inputmask
-   * Copyright (c) 2010 - 2023 Robin Herbots
-   * Licensed under the MIT license
-   * Version: 5.0.8
-   */
-  (function(X, H) {
-    (function(z, Q) {
-      X.exports = Q();
-    })(typeof self < "u" ? self : Ne, function() {
-      return function() {
-        var z = {
-          8741: function(G, k) {
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.default = void 0;
-            var w = !(typeof window > "u" || !window.document || !window.document.createElement);
-            k.default = w;
-          },
-          3976: function(G, k, w) {
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.default = void 0;
-            var h = w(2839), _ = {
-              _maxTestPos: 500,
-              placeholder: "_",
-              optionalmarker: ["[", "]"],
-              quantifiermarker: ["{", "}"],
-              groupmarker: ["(", ")"],
-              alternatormarker: "|",
-              escapeChar: "\\",
-              mask: null,
-              regex: null,
-              oncomplete: function() {
-              },
-              onincomplete: function() {
-              },
-              oncleared: function() {
-              },
-              repeat: 0,
-              greedy: !1,
-              autoUnmask: !1,
-              removeMaskOnSubmit: !1,
-              clearMaskOnLostFocus: !0,
-              insertMode: !0,
-              insertModeVisual: !0,
-              clearIncomplete: !1,
-              alias: null,
-              onKeyDown: function() {
-              },
-              onBeforeMask: null,
-              onBeforePaste: function(M, B) {
-                return typeof B.onBeforeMask == "function" ? B.onBeforeMask.call(this, M, B) : M;
-              },
-              onBeforeWrite: null,
-              onUnMask: null,
-              showMaskOnFocus: !0,
-              showMaskOnHover: !0,
-              onKeyValidation: function() {
-              },
-              skipOptionalPartCharacter: " ",
-              numericInput: !1,
-              rightAlign: !1,
-              undoOnEscape: !0,
-              radixPoint: "",
-              _radixDance: !1,
-              groupSeparator: "",
-              keepStatic: null,
-              positionCaretOnTab: !0,
-              tabThrough: !1,
-              supportsInputType: ["text", "tel", "url", "password", "search"],
-              ignorables: [h.keys.Backspace, h.keys.Tab, h.keys.Pause, h.keys.Escape, h.keys.PageUp, h.keys.PageDown, h.keys.End, h.keys.Home, h.keys.ArrowLeft, h.keys.ArrowUp, h.keys.ArrowRight, h.keys.ArrowDown, h.keys.Insert, h.keys.Delete, h.keys.ContextMenu, h.keys.F1, h.keys.F2, h.keys.F3, h.keys.F4, h.keys.F5, h.keys.F6, h.keys.F7, h.keys.F8, h.keys.F9, h.keys.F10, h.keys.F11, h.keys.F12, h.keys.Process, h.keys.Unidentified, h.keys.Shift, h.keys.Control, h.keys.Alt, h.keys.Tab, h.keys.AltGraph, h.keys.CapsLock],
-              isComplete: null,
-              preValidation: null,
-              postValidation: null,
-              staticDefinitionSymbol: void 0,
-              jitMasking: !1,
-              nullable: !0,
-              inputEventOnly: !1,
-              noValuePatching: !1,
-              positionCaretOnClick: "lvp",
-              casing: null,
-              inputmode: "text",
-              importDataAttributes: !0,
-              shiftPositions: !0,
-              usePrototypeDefinitions: !0,
-              validationEventTimeOut: 3e3,
-              substitutes: {}
-            };
-            k.default = _;
-          },
-          7392: function(G, k) {
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.default = void 0, k.default = {
-              9: {
-                validator: "[0-9０-９]",
-                definitionSymbol: "*"
-              },
-              a: {
-                validator: "[A-Za-zА-яЁёÀ-ÿµ]",
-                definitionSymbol: "*"
-              },
-              "*": {
-                validator: "[0-9０-９A-Za-zА-яЁёÀ-ÿµ]"
-              }
-            };
-          },
-          253: function(G, k) {
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.default = function(w, h, _) {
-              if (_ === void 0)
-                return w.__data ? w.__data[h] : null;
-              w.__data = w.__data || {}, w.__data[h] = _;
-            };
-          },
-          3776: function(G, k, w) {
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.Event = void 0, k.off = function(c, a) {
-              var e, o;
-              return p(this[0]) && c && (e = this[0].eventRegistry, o = this[0], c.split(" ").forEach(function(n) {
-                var t = I(n.split("."), 2);
-                (function(i, l) {
-                  var s, d, r = [];
-                  if (i.length > 0)
-                    if (a === void 0)
-                      for (s = 0, d = e[i][l].length; s < d; s++)
-                        r.push({
-                          ev: i,
-                          namespace: l && l.length > 0 ? l : "global",
-                          handler: e[i][l][s]
-                        });
-                    else
-                      r.push({
-                        ev: i,
-                        namespace: l && l.length > 0 ? l : "global",
-                        handler: a
-                      });
-                  else if (l.length > 0) {
-                    for (var u in e)
-                      for (var g in e[u])
-                        if (g === l)
-                          if (a === void 0)
-                            for (s = 0, d = e[u][g].length; s < d; s++)
-                              r.push({
-                                ev: u,
-                                namespace: g,
-                                handler: e[u][g][s]
-                              });
-                          else
-                            r.push({
-                              ev: u,
-                              namespace: g,
-                              handler: a
-                            });
-                  }
-                  return r;
-                })(t[0], t[1]).forEach(function(i) {
-                  var l = i.ev, s = i.handler;
-                  (function(d, r, u) {
-                    if (d in e == 1)
-                      if (o.removeEventListener ? o.removeEventListener(d, u, !1) : o.detachEvent && o.detachEvent("on".concat(d), u), r === "global")
-                        for (var g in e[d])
-                          e[d][g].splice(e[d][g].indexOf(u), 1);
-                      else
-                        e[d][r].splice(e[d][r].indexOf(u), 1);
-                  })(l, i.namespace, s);
-                });
-              })), this;
-            }, k.on = function(c, a) {
-              if (p(this[0])) {
-                var e = this[0].eventRegistry, o = this[0];
-                c.split(" ").forEach(function(n) {
-                  var t = I(n.split("."), 2), i = t[0], l = t[1];
-                  (function(s, d) {
-                    o.addEventListener ? o.addEventListener(s, a, !1) : o.attachEvent && o.attachEvent("on".concat(s), a), e[s] = e[s] || {}, e[s][d] = e[s][d] || [], e[s][d].push(a);
-                  })(i, l === void 0 ? "global" : l);
-                });
-              }
-              return this;
-            }, k.trigger = function(c) {
-              var a = arguments;
-              if (p(this[0]))
-                for (var e = this[0].eventRegistry, o = this[0], n = typeof c == "string" ? c.split(" ") : [c.type], t = 0; t < n.length; t++) {
-                  var i = n[t].split("."), l = i[0], s = i[1] || "global";
-                  if (document !== void 0 && s === "global") {
-                    var d, r = {
-                      bubbles: !0,
-                      cancelable: !0,
-                      composed: !0,
-                      detail: arguments[1]
-                    };
-                    if (document.createEvent) {
-                      try {
-                        l === "input" ? (r.inputType = "insertText", d = new InputEvent(l, r)) : d = new CustomEvent(l, r);
-                      } catch {
-                        (d = document.createEvent("CustomEvent")).initCustomEvent(l, r.bubbles, r.cancelable, r.detail);
-                      }
-                      c.type && (0, _.default)(d, c), o.dispatchEvent(d);
-                    } else
-                      (d = document.createEventObject()).eventType = l, d.detail = arguments[1], c.type && (0, _.default)(d, c), o.fireEvent("on" + d.eventType, d);
-                  } else if (e[l] !== void 0) {
-                    arguments[0] = arguments[0].type ? arguments[0] : B.default.Event(arguments[0]), arguments[0].detail = arguments.slice(1);
-                    var u = e[l];
-                    (s === "global" ? Object.values(u).flat() : u[s]).forEach(function(g) {
-                      return g.apply(o, a);
-                    });
-                  }
-                }
-              return this;
-            };
-            var h, _ = m(w(600)), M = m(w(9380)), B = m(w(4963)), j = m(w(8741));
-            function I(c, a) {
-              return function(e) {
-                if (Array.isArray(e))
-                  return e;
-              }(c) || function(e, o) {
-                var n = e == null ? null : typeof Symbol < "u" && e[Symbol.iterator] || e["@@iterator"];
-                if (n != null) {
-                  var t, i, l, s, d = [], r = !0, u = !1;
-                  try {
-                    if (l = (n = n.call(e)).next, o === 0) {
-                      if (Object(n) !== n)
-                        return;
-                      r = !1;
-                    } else
-                      for (; !(r = (t = l.call(n)).done) && (d.push(t.value), d.length !== o); r = !0)
-                        ;
-                  } catch (g) {
-                    u = !0, i = g;
-                  } finally {
-                    try {
-                      if (!r && n.return != null && (s = n.return(), Object(s) !== s))
-                        return;
-                    } finally {
-                      if (u)
-                        throw i;
-                    }
-                  }
-                  return d;
-                }
-              }(c, a) || function(e, o) {
-                if (e) {
-                  if (typeof e == "string")
-                    return b(e, o);
-                  var n = Object.prototype.toString.call(e).slice(8, -1);
-                  if (n === "Object" && e.constructor && (n = e.constructor.name), n === "Map" || n === "Set")
-                    return Array.from(e);
-                  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-                    return b(e, o);
-                }
-              }(c, a) || function() {
-                throw new TypeError(`Invalid attempt to destructure non-iterable instance.
-In order to be iterable, non-array objects must have a [Symbol.iterator]() method.`);
-              }();
-            }
-            function b(c, a) {
-              (a == null || a > c.length) && (a = c.length);
-              for (var e = 0, o = new Array(a); e < a; e++)
-                o[e] = c[e];
-              return o;
-            }
-            function m(c) {
-              return c && c.__esModule ? c : {
-                default: c
-              };
-            }
-            function p(c) {
-              return c instanceof Element;
-            }
-            k.Event = h, typeof M.default.CustomEvent == "function" ? k.Event = h = M.default.CustomEvent : j.default && (k.Event = h = function(c, a) {
-              a = a || {
-                bubbles: !1,
-                cancelable: !1,
-                composed: !0,
-                detail: void 0
-              };
-              var e = document.createEvent("CustomEvent");
-              return e.initCustomEvent(c, a.bubbles, a.cancelable, a.detail), e;
-            }, h.prototype = M.default.Event.prototype);
-          },
-          600: function(G, k) {
-            function w(h) {
-              return w = typeof Symbol == "function" && typeof Symbol.iterator == "symbol" ? function(_) {
-                return typeof _;
-              } : function(_) {
-                return _ && typeof Symbol == "function" && _.constructor === Symbol && _ !== Symbol.prototype ? "symbol" : typeof _;
-              }, w(h);
-            }
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.default = function h() {
-              var _, M, B, j, I, b, m = arguments[0] || {}, p = 1, c = arguments.length, a = !1;
-              for (typeof m == "boolean" && (a = m, m = arguments[p] || {}, p++), w(m) !== "object" && typeof m != "function" && (m = {}); p < c; p++)
-                if ((_ = arguments[p]) != null)
-                  for (M in _)
-                    B = m[M], m !== (j = _[M]) && (a && j && (Object.prototype.toString.call(j) === "[object Object]" || (I = Array.isArray(j))) ? (I ? (I = !1, b = B && Array.isArray(B) ? B : []) : b = B && Object.prototype.toString.call(B) === "[object Object]" ? B : {}, m[M] = h(a, b, j)) : j !== void 0 && (m[M] = j));
-              return m;
-            };
-          },
-          4963: function(G, k, w) {
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.default = void 0;
-            var h = j(w(600)), _ = j(w(9380)), M = j(w(253)), B = w(3776);
-            function j(p) {
-              return p && p.__esModule ? p : {
-                default: p
-              };
-            }
-            var I = _.default.document;
-            function b(p) {
-              return p instanceof b ? p : this instanceof b ? void (p != null && p !== _.default && (this[0] = p.nodeName ? p : p[0] !== void 0 && p[0].nodeName ? p[0] : I.querySelector(p), this[0] !== void 0 && this[0] !== null && (this[0].eventRegistry = this[0].eventRegistry || {}))) : new b(p);
-            }
-            b.prototype = {
-              on: B.on,
-              off: B.off,
-              trigger: B.trigger
-            }, b.extend = h.default, b.data = M.default, b.Event = B.Event;
-            var m = b;
-            k.default = m;
-          },
-          9845: function(G, k, w) {
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.mobile = k.iphone = k.ie = void 0;
-            var h, _ = (h = w(9380)) && h.__esModule ? h : {
-              default: h
-            }, M = _.default.navigator && _.default.navigator.userAgent || "", B = M.indexOf("MSIE ") > 0 || M.indexOf("Trident/") > 0, j = navigator.userAgentData && navigator.userAgentData.mobile || _.default.navigator && _.default.navigator.maxTouchPoints || "ontouchstart" in _.default, I = /iphone/i.test(M);
-            k.iphone = I, k.mobile = j, k.ie = B;
-          },
-          7184: function(G, k) {
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.default = function(h) {
-              return h.replace(w, "\\$1");
-            };
-            var w = new RegExp("(\\" + ["/", ".", "*", "+", "?", "|", "(", ")", "[", "]", "{", "}", "\\", "$", "^"].join("|\\") + ")", "gim");
-          },
-          6030: function(G, k, w) {
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.EventHandlers = void 0;
-            var h = w(8711), _ = w(2839), M = w(9845), B = w(7215), j = w(7760), I = w(4713);
-            function b(c, a) {
-              var e = typeof Symbol < "u" && c[Symbol.iterator] || c["@@iterator"];
-              if (!e) {
-                if (Array.isArray(c) || (e = function(s, d) {
-                  if (s) {
-                    if (typeof s == "string")
-                      return m(s, d);
-                    var r = Object.prototype.toString.call(s).slice(8, -1);
-                    if (r === "Object" && s.constructor && (r = s.constructor.name), r === "Map" || r === "Set")
-                      return Array.from(s);
-                    if (r === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r))
-                      return m(s, d);
-                  }
-                }(c)) || a && c && typeof c.length == "number") {
-                  e && (c = e);
-                  var o = 0, n = function() {
-                  };
-                  return {
-                    s: n,
-                    n: function() {
-                      return o >= c.length ? {
-                        done: !0
-                      } : {
-                        done: !1,
-                        value: c[o++]
-                      };
-                    },
-                    e: function(s) {
-                      throw s;
-                    },
-                    f: n
-                  };
-                }
-                throw new TypeError(`Invalid attempt to iterate non-iterable instance.
-In order to be iterable, non-array objects must have a [Symbol.iterator]() method.`);
-              }
-              var t, i = !0, l = !1;
-              return {
-                s: function() {
-                  e = e.call(c);
-                },
-                n: function() {
-                  var s = e.next();
-                  return i = s.done, s;
-                },
-                e: function(s) {
-                  l = !0, t = s;
-                },
-                f: function() {
-                  try {
-                    i || e.return == null || e.return();
-                  } finally {
-                    if (l)
-                      throw t;
-                  }
-                }
-              };
-            }
-            function m(c, a) {
-              (a == null || a > c.length) && (a = c.length);
-              for (var e = 0, o = new Array(a); e < a; e++)
-                o[e] = c[e];
-              return o;
-            }
-            var p = {
-              keyEvent: function(c, a, e, o, n) {
-                var t = this.inputmask, i = t.opts, l = t.dependencyLib, s = t.maskset, d = this, r = l(d), u = c.key, g = h.caret.call(t, d), L = i.onKeyDown.call(this, c, h.getBuffer.call(t), g, i);
-                if (L !== void 0)
-                  return L;
-                if (u === _.keys.Backspace || u === _.keys.Delete || M.iphone && u === _.keys.BACKSPACE_SAFARI || c.ctrlKey && u === _.keys.x && !("oncut" in d))
-                  c.preventDefault(), B.handleRemove.call(t, d, u, g), (0, j.writeBuffer)(d, h.getBuffer.call(t, !0), s.p, c, d.inputmask._valueGet() !== h.getBuffer.call(t).join(""));
-                else if (u === _.keys.End || u === _.keys.PageDown) {
-                  c.preventDefault();
-                  var y = h.seekNext.call(t, h.getLastValidPosition.call(t));
-                  h.caret.call(t, d, c.shiftKey ? g.begin : y, y, !0);
-                } else
-                  u === _.keys.Home && !c.shiftKey || u === _.keys.PageUp ? (c.preventDefault(), h.caret.call(t, d, 0, c.shiftKey ? g.begin : 0, !0)) : i.undoOnEscape && u === _.keys.Escape && c.altKey !== !0 ? ((0, j.checkVal)(d, !0, !1, t.undoValue.split("")), r.trigger("click")) : u !== _.keys.Insert || c.shiftKey || c.ctrlKey || t.userOptions.insertMode !== void 0 ? i.tabThrough === !0 && u === _.keys.Tab ? c.shiftKey === !0 ? (g.end = h.seekPrevious.call(t, g.end, !0), I.getTest.call(t, g.end - 1).match.static === !0 && g.end--, g.begin = h.seekPrevious.call(t, g.end, !0), g.begin >= 0 && g.end > 0 && (c.preventDefault(), h.caret.call(t, d, g.begin, g.end))) : (g.begin = h.seekNext.call(t, g.begin, !0), g.end = h.seekNext.call(t, g.begin, !0), g.end < s.maskLength && g.end--, g.begin <= s.maskLength && (c.preventDefault(), h.caret.call(t, d, g.begin, g.end))) : c.shiftKey || i.insertModeVisual && i.insertMode === !1 && (u === _.keys.ArrowRight ? setTimeout(function() {
-                    var x = h.caret.call(t, d);
-                    h.caret.call(t, d, x.begin);
-                  }, 0) : u === _.keys.ArrowLeft && setTimeout(function() {
-                    var x = h.translatePosition.call(t, d.inputmask.caretPos.begin);
-                    h.translatePosition.call(t, d.inputmask.caretPos.end), t.isRTL ? h.caret.call(t, d, x + (x === s.maskLength ? 0 : 1)) : h.caret.call(t, d, x - (x === 0 ? 0 : 1));
-                  }, 0)) : B.isSelection.call(t, g) ? i.insertMode = !i.insertMode : (i.insertMode = !i.insertMode, h.caret.call(t, d, g.begin, g.begin));
-                return t.isComposing = u == _.keys.Process || u == _.keys.Unidentified, t.ignorable = i.ignorables.includes(u), p.keypressEvent.call(this, c, a, e, o, n);
-              },
-              keypressEvent: function(c, a, e, o, n) {
-                var t = this.inputmask || this, i = t.opts, l = t.dependencyLib, s = t.maskset, d = t.el, r = l(d), u = c.key;
-                if (a === !0 || c.ctrlKey && c.altKey || !(c.ctrlKey || c.metaKey || t.ignorable)) {
-                  if (u) {
-                    var g, L = a ? {
-                      begin: n,
-                      end: n
-                    } : h.caret.call(t, d);
-                    u = i.substitutes[u] || u, s.writeOutBuffer = !0;
-                    var y = B.isValid.call(t, L, u, o, void 0, void 0, void 0, a);
-                    if (y !== !1 && (h.resetMaskSet.call(t, !0), g = y.caret !== void 0 ? y.caret : h.seekNext.call(t, y.pos.begin ? y.pos.begin : y.pos), s.p = g), g = i.numericInput && y.caret === void 0 ? h.seekPrevious.call(t, g) : g, e !== !1 && (setTimeout(function() {
-                      i.onKeyValidation.call(d, u, y);
-                    }, 0), s.writeOutBuffer && y !== !1)) {
-                      var x = h.getBuffer.call(t);
-                      (0, j.writeBuffer)(d, x, g, c, a !== !0);
-                    }
-                    if (c.preventDefault(), a)
-                      return y !== !1 && (y.forwardPosition = g), y;
-                  }
-                } else
-                  u === _.keys.Enter && t.undoValue !== t._valueGet(!0) && (t.undoValue = t._valueGet(!0), setTimeout(function() {
-                    r.trigger("change");
-                  }, 0));
-              },
-              pasteEvent: function(c) {
-                var a, e = this.inputmask, o = e.opts, n = e._valueGet(!0), t = h.caret.call(e, this);
-                e.isRTL && (a = t.end, t.end = h.translatePosition.call(e, t.begin), t.begin = h.translatePosition.call(e, a));
-                var i = n.substr(0, t.begin), l = n.substr(t.end, n.length);
-                if (i == (e.isRTL ? h.getBufferTemplate.call(e).slice().reverse() : h.getBufferTemplate.call(e)).slice(0, t.begin).join("") && (i = ""), l == (e.isRTL ? h.getBufferTemplate.call(e).slice().reverse() : h.getBufferTemplate.call(e)).slice(t.end).join("") && (l = ""), window.clipboardData && window.clipboardData.getData)
-                  n = i + window.clipboardData.getData("Text") + l;
-                else {
-                  if (!c.clipboardData || !c.clipboardData.getData)
-                    return !0;
-                  n = i + c.clipboardData.getData("text/plain") + l;
-                }
-                var s = n;
-                if (e.isRTL) {
-                  s = s.split("");
-                  var d, r = b(h.getBufferTemplate.call(e));
-                  try {
-                    for (r.s(); !(d = r.n()).done; ) {
-                      var u = d.value;
-                      s[0] === u && s.shift();
-                    }
-                  } catch (g) {
-                    r.e(g);
-                  } finally {
-                    r.f();
-                  }
-                  s = s.join("");
-                }
-                if (typeof o.onBeforePaste == "function") {
-                  if ((s = o.onBeforePaste.call(e, s, o)) === !1)
-                    return !1;
-                  s || (s = n);
-                }
-                (0, j.checkVal)(this, !0, !1, s.toString().split(""), c), c.preventDefault();
-              },
-              inputFallBackEvent: function(c) {
-                var a = this.inputmask, e = a.opts, o = a.dependencyLib, n, t = this, i = t.inputmask._valueGet(!0), l = (a.isRTL ? h.getBuffer.call(a).slice().reverse() : h.getBuffer.call(a)).join(""), s = h.caret.call(a, t, void 0, void 0, !0);
-                if (l !== i) {
-                  if (n = function(r, u, g) {
-                    for (var L, y, x, E = r.substr(0, g.begin).split(""), f = r.substr(g.begin).split(""), v = u.substr(0, g.begin).split(""), C = u.substr(g.begin).split(""), S = E.length >= v.length ? E.length : v.length, T = f.length >= C.length ? f.length : C.length, D = "", A = [], F = "~"; E.length < S; )
-                      E.push(F);
-                    for (; v.length < S; )
-                      v.push(F);
-                    for (; f.length < T; )
-                      f.unshift(F);
-                    for (; C.length < T; )
-                      C.unshift(F);
-                    var O = E.concat(f), N = v.concat(C);
-                    for (y = 0, L = O.length; y < L; y++)
-                      switch (x = I.getPlaceholder.call(a, h.translatePosition.call(a, y)), D) {
-                        case "insertText":
-                          N[y - 1] === O[y] && g.begin == O.length - 1 && A.push(O[y]), y = L;
-                          break;
-                        case "insertReplacementText":
-                        case "deleteContentBackward":
-                          O[y] === F ? g.end++ : y = L;
-                          break;
-                        default:
-                          O[y] !== N[y] && (O[y + 1] !== F && O[y + 1] !== x && O[y + 1] !== void 0 || (N[y] !== x || N[y + 1] !== F) && N[y] !== F ? N[y + 1] === F && N[y] === O[y + 1] ? (D = "insertText", A.push(O[y]), g.begin--, g.end--) : O[y] !== x && O[y] !== F && (O[y + 1] === F || N[y] !== O[y] && N[y + 1] === O[y + 1]) ? (D = "insertReplacementText", A.push(O[y]), g.begin--) : O[y] === F ? (D = "deleteContentBackward", (h.isMask.call(a, h.translatePosition.call(a, y), !0) || N[y] === e.radixPoint) && g.end++) : y = L : (D = "insertText", A.push(O[y]), g.begin--, g.end--));
-                      }
-                    return {
-                      action: D,
-                      data: A,
-                      caret: g
-                    };
-                  }(i, l, s), (t.inputmask.shadowRoot || t.ownerDocument).activeElement !== t && t.focus(), (0, j.writeBuffer)(t, h.getBuffer.call(a)), h.caret.call(a, t, s.begin, s.end, !0), !M.mobile && a.skipNextInsert && c.inputType === "insertText" && n.action === "insertText" && a.isComposing)
-                    return !1;
-                  switch (c.inputType === "insertCompositionText" && n.action === "insertText" && a.isComposing ? a.skipNextInsert = !0 : a.skipNextInsert = !1, n.action) {
-                    case "insertText":
-                    case "insertReplacementText":
-                      n.data.forEach(function(r, u) {
-                        var g = new o.Event("keypress");
-                        g.key = r, a.ignorable = !1, p.keypressEvent.call(t, g);
-                      }), setTimeout(function() {
-                        a.$el.trigger("keyup");
-                      }, 0);
-                      break;
-                    case "deleteContentBackward":
-                      var d = new o.Event("keydown");
-                      d.key = _.keys.Backspace, p.keyEvent.call(t, d);
-                      break;
-                    default:
-                      (0, j.applyInputValue)(t, i), h.caret.call(a, t, s.begin, s.end, !0);
-                  }
-                  c.preventDefault();
-                }
-              },
-              setValueEvent: function(c) {
-                var a = this.inputmask, e = this, o = c && c.detail ? c.detail[0] : arguments[1];
-                o === void 0 && (o = e.inputmask._valueGet(!0)), (0, j.applyInputValue)(e, o), (c.detail && c.detail[1] !== void 0 || arguments[2] !== void 0) && h.caret.call(a, e, c.detail ? c.detail[1] : arguments[2]);
-              },
-              focusEvent: function(c) {
-                var a = this.inputmask, e = a.opts, o = a == null ? void 0 : a._valueGet();
-                e.showMaskOnFocus && o !== h.getBuffer.call(a).join("") && (0, j.writeBuffer)(this, h.getBuffer.call(a), h.seekNext.call(a, h.getLastValidPosition.call(a))), e.positionCaretOnTab !== !0 || a.mouseEnter !== !1 || B.isComplete.call(a, h.getBuffer.call(a)) && h.getLastValidPosition.call(a) !== -1 || p.clickEvent.apply(this, [c, !0]), a.undoValue = a == null ? void 0 : a._valueGet(!0);
-              },
-              invalidEvent: function(c) {
-                this.inputmask.validationEvent = !0;
-              },
-              mouseleaveEvent: function() {
-                var c = this.inputmask, a = c.opts, e = this;
-                c.mouseEnter = !1, a.clearMaskOnLostFocus && (e.inputmask.shadowRoot || e.ownerDocument).activeElement !== e && (0, j.HandleNativePlaceholder)(e, c.originalPlaceholder);
-              },
-              clickEvent: function(c, a) {
-                var e = this.inputmask;
-                e.clicked++;
-                var o = this;
-                if ((o.inputmask.shadowRoot || o.ownerDocument).activeElement === o) {
-                  var n = h.determineNewCaretPosition.call(e, h.caret.call(e, o), a);
-                  n !== void 0 && h.caret.call(e, o, n);
-                }
-              },
-              cutEvent: function(c) {
-                var a = this.inputmask, e = a.maskset, o = this, n = h.caret.call(a, o), t = a.isRTL ? h.getBuffer.call(a).slice(n.end, n.begin) : h.getBuffer.call(a).slice(n.begin, n.end), i = a.isRTL ? t.reverse().join("") : t.join("");
-                window.navigator.clipboard ? window.navigator.clipboard.writeText(i) : window.clipboardData && window.clipboardData.getData && window.clipboardData.setData("Text", i), B.handleRemove.call(a, o, _.keys.Delete, n), (0, j.writeBuffer)(o, h.getBuffer.call(a), e.p, c, a.undoValue !== a._valueGet(!0));
-              },
-              blurEvent: function(c) {
-                var a = this.inputmask, e = a.opts, o = a.dependencyLib;
-                a.clicked = 0;
-                var n = o(this), t = this;
-                if (t.inputmask) {
-                  (0, j.HandleNativePlaceholder)(t, a.originalPlaceholder);
-                  var i = t.inputmask._valueGet(), l = h.getBuffer.call(a).slice();
-                  i !== "" && (e.clearMaskOnLostFocus && (h.getLastValidPosition.call(a) === -1 && i === h.getBufferTemplate.call(a).join("") ? l = [] : j.clearOptionalTail.call(a, l)), B.isComplete.call(a, l) === !1 && (setTimeout(function() {
-                    n.trigger("incomplete");
-                  }, 0), e.clearIncomplete && (h.resetMaskSet.call(a), l = e.clearMaskOnLostFocus ? [] : h.getBufferTemplate.call(a).slice())), (0, j.writeBuffer)(t, l, void 0, c)), a.undoValue !== a._valueGet(!0) && (a.undoValue = a._valueGet(!0), n.trigger("change"));
-                }
-              },
-              mouseenterEvent: function() {
-                var c = this.inputmask, a = c.opts.showMaskOnHover, e = this;
-                if (c.mouseEnter = !0, (e.inputmask.shadowRoot || e.ownerDocument).activeElement !== e) {
-                  var o = (c.isRTL ? h.getBufferTemplate.call(c).slice().reverse() : h.getBufferTemplate.call(c)).join("");
-                  a && (0, j.HandleNativePlaceholder)(e, o);
-                }
-              },
-              submitEvent: function() {
-                var c = this.inputmask, a = c.opts;
-                c.undoValue !== c._valueGet(!0) && c.$el.trigger("change"), h.getLastValidPosition.call(c) === -1 && c._valueGet && c._valueGet() === h.getBufferTemplate.call(c).join("") && c._valueSet(""), a.clearIncomplete && B.isComplete.call(c, h.getBuffer.call(c)) === !1 && c._valueSet(""), a.removeMaskOnSubmit && (c._valueSet(c.unmaskedvalue(), !0), setTimeout(function() {
-                  (0, j.writeBuffer)(c.el, h.getBuffer.call(c));
-                }, 0));
-              },
-              resetEvent: function() {
-                var c = this.inputmask;
-                c.refreshValue = !0, setTimeout(function() {
-                  (0, j.applyInputValue)(c.el, c._valueGet(!0));
-                }, 0);
-              }
-            };
-            k.EventHandlers = p;
-          },
-          9716: function(G, k, w) {
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.EventRuler = void 0;
-            var h, _ = (h = w(2394)) && h.__esModule ? h : {
-              default: h
-            }, M = w(2839), B = w(8711), j = w(7760), I = {
-              on: function(b, m, p) {
-                var c = b.inputmask.dependencyLib, a = function(e) {
-                  e.originalEvent && (e = e.originalEvent || e, arguments[0] = e);
-                  var o, n = this, t = n.inputmask, i = t ? t.opts : void 0;
-                  if (t === void 0 && this.nodeName !== "FORM") {
-                    var l = c.data(n, "_inputmask_opts");
-                    c(n).off(), l && new _.default(l).mask(n);
-                  } else {
-                    if (["submit", "reset", "setvalue"].includes(e.type) || this.nodeName === "FORM" || !(n.disabled || n.readOnly && !(e.type === "keydown" && e.ctrlKey && e.key === M.keys.c || i.tabThrough === !1 && e.key === M.keys.Tab))) {
-                      switch (e.type) {
-                        case "input":
-                          if (t.skipInputEvent === !0)
-                            return t.skipInputEvent = !1, e.preventDefault();
-                          break;
-                        case "click":
-                        case "focus":
-                          return t.validationEvent ? (t.validationEvent = !1, b.blur(), (0, j.HandleNativePlaceholder)(b, (t.isRTL ? B.getBufferTemplate.call(t).slice().reverse() : B.getBufferTemplate.call(t)).join("")), setTimeout(function() {
-                            b.focus();
-                          }, i.validationEventTimeOut), !1) : (o = arguments, void setTimeout(function() {
-                            b.inputmask && p.apply(n, o);
-                          }, 0));
-                      }
-                      var s = p.apply(n, arguments);
-                      return s === !1 && (e.preventDefault(), e.stopPropagation()), s;
-                    }
-                    e.preventDefault();
-                  }
-                };
-                ["submit", "reset"].includes(m) ? (a = a.bind(b), b.form !== null && c(b.form).on(m, a)) : c(b).on(m, a), b.inputmask.events[m] = b.inputmask.events[m] || [], b.inputmask.events[m].push(a);
-              },
-              off: function(b, m) {
-                if (b.inputmask && b.inputmask.events) {
-                  var p = b.inputmask.dependencyLib, c = b.inputmask.events;
-                  for (var a in m && ((c = [])[m] = b.inputmask.events[m]), c) {
-                    for (var e = c[a]; e.length > 0; ) {
-                      var o = e.pop();
-                      ["submit", "reset"].includes(a) ? b.form !== null && p(b.form).off(a, o) : p(b).off(a, o);
-                    }
-                    delete b.inputmask.events[a];
-                  }
-                }
-              }
-            };
-            k.EventRuler = I;
-          },
-          219: function(G, k, w) {
-            var h = c(w(2394)), _ = w(2839), M = c(w(7184)), B = w(8711), j = w(4713);
-            function I(f, v) {
-              return function(C) {
-                if (Array.isArray(C))
-                  return C;
-              }(f) || function(C, S) {
-                var T = C == null ? null : typeof Symbol < "u" && C[Symbol.iterator] || C["@@iterator"];
-                if (T != null) {
-                  var D, A, F, O, N = [], V = !0, U = !1;
-                  try {
-                    if (F = (T = T.call(C)).next, S === 0) {
-                      if (Object(T) !== T)
-                        return;
-                      V = !1;
-                    } else
-                      for (; !(V = (D = F.call(T)).done) && (N.push(D.value), N.length !== S); V = !0)
-                        ;
-                  } catch (P) {
-                    U = !0, A = P;
-                  } finally {
-                    try {
-                      if (!V && T.return != null && (O = T.return(), Object(O) !== O))
-                        return;
-                    } finally {
-                      if (U)
-                        throw A;
-                    }
-                  }
-                  return N;
-                }
-              }(f, v) || function(C, S) {
-                if (C) {
-                  if (typeof C == "string")
-                    return b(C, S);
-                  var T = Object.prototype.toString.call(C).slice(8, -1);
-                  if (T === "Object" && C.constructor && (T = C.constructor.name), T === "Map" || T === "Set")
-                    return Array.from(C);
-                  if (T === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(T))
-                    return b(C, S);
-                }
-              }(f, v) || function() {
-                throw new TypeError(`Invalid attempt to destructure non-iterable instance.
-In order to be iterable, non-array objects must have a [Symbol.iterator]() method.`);
-              }();
-            }
-            function b(f, v) {
-              (v == null || v > f.length) && (v = f.length);
-              for (var C = 0, S = new Array(v); C < v; C++)
-                S[C] = f[C];
-              return S;
-            }
-            function m(f) {
-              return m = typeof Symbol == "function" && typeof Symbol.iterator == "symbol" ? function(v) {
-                return typeof v;
-              } : function(v) {
-                return v && typeof Symbol == "function" && v.constructor === Symbol && v !== Symbol.prototype ? "symbol" : typeof v;
-              }, m(f);
-            }
-            function p(f, v) {
-              for (var C = 0; C < v.length; C++) {
-                var S = v[C];
-                S.enumerable = S.enumerable || !1, S.configurable = !0, "value" in S && (S.writable = !0), Object.defineProperty(f, (T = S.key, D = void 0, D = function(A, F) {
-                  if (m(A) !== "object" || A === null)
-                    return A;
-                  var O = A[Symbol.toPrimitive];
-                  if (O !== void 0) {
-                    var N = O.call(A, F || "default");
-                    if (m(N) !== "object")
-                      return N;
-                    throw new TypeError("@@toPrimitive must return a primitive value.");
-                  }
-                  return (F === "string" ? String : Number)(A);
-                }(T, "string"), m(D) === "symbol" ? D : String(D)), S);
-              }
-              var T, D;
-            }
-            function c(f) {
-              return f && f.__esModule ? f : {
-                default: f
-              };
-            }
-            var a = h.default.dependencyLib, e = function() {
-              function f(S, T, D) {
-                (function(A, F) {
-                  if (!(A instanceof F))
-                    throw new TypeError("Cannot call a class as a function");
-                })(this, f), this.mask = S, this.format = T, this.opts = D, this._date = new Date(1, 0, 1), this.initDateObject(S, this.opts);
-              }
-              var v, C;
-              return v = f, (C = [{
-                key: "date",
-                get: function() {
-                  return this._date === void 0 && (this._date = new Date(1, 0, 1), this.initDateObject(void 0, this.opts)), this._date;
-                }
-              }, {
-                key: "initDateObject",
-                value: function(S, T) {
-                  var D;
-                  for (r(T).lastIndex = 0; D = r(T).exec(this.format); ) {
-                    var A = new RegExp("\\d+$").exec(D[0]), F = A ? D[0][0] + "x" : D[0], O = void 0;
-                    if (S !== void 0) {
-                      if (A) {
-                        var N = r(T).lastIndex, V = E(D.index, T);
-                        r(T).lastIndex = N, O = S.slice(0, S.indexOf(V.nextMatch[0]));
-                      } else
-                        O = S.slice(0, t[F] && t[F][4] || F.length);
-                      S = S.slice(O.length);
-                    }
-                    Object.prototype.hasOwnProperty.call(t, F) && this.setValue(this, O, F, t[F][2], t[F][1]);
-                  }
-                }
-              }, {
-                key: "setValue",
-                value: function(S, T, D, A, F) {
-                  if (T !== void 0 && (S[A] = A === "ampm" ? T : T.replace(/[^0-9]/g, "0"), S["raw" + A] = T.replace(/\s/g, "_")), F !== void 0) {
-                    var O = S[A];
-                    (A === "day" && parseInt(O) === 29 || A === "month" && parseInt(O) === 2) && (parseInt(S.day) !== 29 || parseInt(S.month) !== 2 || S.year !== "" && S.year !== void 0 || S._date.setFullYear(2012, 1, 29)), A === "day" && (n = !0, parseInt(O) === 0 && (O = 1)), A === "month" && (n = !0), A === "year" && (n = !0, O.length < 4 && (O = L(O, 4, !0))), O === "" || isNaN(O) || F.call(S._date, O), A === "ampm" && F.call(S._date, O);
-                  }
-                }
-              }, {
-                key: "reset",
-                value: function() {
-                  this._date = new Date(1, 0, 1);
-                }
-              }, {
-                key: "reInit",
-                value: function() {
-                  this._date = void 0, this.date;
-                }
-              }]) && p(v.prototype, C), Object.defineProperty(v, "prototype", {
-                writable: !1
-              }), f;
-            }(), o = (/* @__PURE__ */ new Date()).getFullYear(), n = !1, t = {
-              d: ["[1-9]|[12][0-9]|3[01]", Date.prototype.setDate, "day", Date.prototype.getDate],
-              dd: ["0[1-9]|[12][0-9]|3[01]", Date.prototype.setDate, "day", function() {
-                return L(Date.prototype.getDate.call(this), 2);
-              }],
-              ddd: [""],
-              dddd: [""],
-              m: ["[1-9]|1[012]", function(f) {
-                var v = f ? parseInt(f) : 0;
-                return v > 0 && v--, Date.prototype.setMonth.call(this, v);
-              }, "month", function() {
-                return Date.prototype.getMonth.call(this) + 1;
-              }],
-              mm: ["0[1-9]|1[012]", function(f) {
-                var v = f ? parseInt(f) : 0;
-                return v > 0 && v--, Date.prototype.setMonth.call(this, v);
-              }, "month", function() {
-                return L(Date.prototype.getMonth.call(this) + 1, 2);
-              }],
-              mmm: [""],
-              mmmm: [""],
-              yy: ["[0-9]{2}", Date.prototype.setFullYear, "year", function() {
-                return L(Date.prototype.getFullYear.call(this), 2);
-              }],
-              yyyy: ["[0-9]{4}", Date.prototype.setFullYear, "year", function() {
-                return L(Date.prototype.getFullYear.call(this), 4);
-              }],
-              h: ["[1-9]|1[0-2]", Date.prototype.setHours, "hours", Date.prototype.getHours],
-              hh: ["0[1-9]|1[0-2]", Date.prototype.setHours, "hours", function() {
-                return L(Date.prototype.getHours.call(this), 2);
-              }],
-              hx: [function(f) {
-                return "[0-9]{".concat(f, "}");
-              }, Date.prototype.setHours, "hours", function(f) {
-                return Date.prototype.getHours;
-              }],
-              H: ["1?[0-9]|2[0-3]", Date.prototype.setHours, "hours", Date.prototype.getHours],
-              HH: ["0[0-9]|1[0-9]|2[0-3]", Date.prototype.setHours, "hours", function() {
-                return L(Date.prototype.getHours.call(this), 2);
-              }],
-              Hx: [function(f) {
-                return "[0-9]{".concat(f, "}");
-              }, Date.prototype.setHours, "hours", function(f) {
-                return function() {
-                  return L(Date.prototype.getHours.call(this), f);
-                };
-              }],
-              M: ["[1-5]?[0-9]", Date.prototype.setMinutes, "minutes", Date.prototype.getMinutes],
-              MM: ["0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]", Date.prototype.setMinutes, "minutes", function() {
-                return L(Date.prototype.getMinutes.call(this), 2);
-              }],
-              s: ["[1-5]?[0-9]", Date.prototype.setSeconds, "seconds", Date.prototype.getSeconds],
-              ss: ["0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]", Date.prototype.setSeconds, "seconds", function() {
-                return L(Date.prototype.getSeconds.call(this), 2);
-              }],
-              l: ["[0-9]{3}", Date.prototype.setMilliseconds, "milliseconds", function() {
-                return L(Date.prototype.getMilliseconds.call(this), 3);
-              }, 3],
-              L: ["[0-9]{2}", Date.prototype.setMilliseconds, "milliseconds", function() {
-                return L(Date.prototype.getMilliseconds.call(this), 2);
-              }, 2],
-              t: ["[ap]", l, "ampm", s, 1],
-              tt: ["[ap]m", l, "ampm", s, 2],
-              T: ["[AP]", l, "ampm", s, 1],
-              TT: ["[AP]M", l, "ampm", s, 2],
-              Z: [".*", void 0, "Z", function() {
-                var f = this.toString().match(/\((.+)\)/)[1];
-                return f.includes(" ") && (f = (f = f.replace("-", " ").toUpperCase()).split(" ").map(function(v) {
-                  return I(v, 1)[0];
-                }).join("")), f;
-              }],
-              o: [""],
-              S: [""]
-            }, i = {
-              isoDate: "yyyy-mm-dd",
-              isoTime: "HH:MM:ss",
-              isoDateTime: "yyyy-mm-dd'T'HH:MM:ss",
-              isoUtcDateTime: "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'"
-            };
-            function l(f) {
-              var v = this.getHours();
-              f.toLowerCase().includes("p") ? this.setHours(v + 12) : f.toLowerCase().includes("a") && v >= 12 && this.setHours(v - 12);
-            }
-            function s() {
-              var f = this.getHours();
-              return (f = f || 12) >= 12 ? "PM" : "AM";
-            }
-            function d(f) {
-              var v = new RegExp("\\d+$").exec(f[0]);
-              if (v && v[0] !== void 0) {
-                var C = t[f[0][0] + "x"].slice("");
-                return C[0] = C[0](v[0]), C[3] = C[3](v[0]), C;
-              }
-              if (t[f[0]])
-                return t[f[0]];
-            }
-            function r(f) {
-              if (!f.tokenizer) {
-                var v = [], C = [];
-                for (var S in t)
-                  if (/\.*x$/.test(S)) {
-                    var T = S[0] + "\\d+";
-                    C.indexOf(T) === -1 && C.push(T);
-                  } else
-                    v.indexOf(S[0]) === -1 && v.push(S[0]);
-                f.tokenizer = "(" + (C.length > 0 ? C.join("|") + "|" : "") + v.join("+|") + ")+?|.", f.tokenizer = new RegExp(f.tokenizer, "g");
-              }
-              return f.tokenizer;
-            }
-            function u(f, v, C) {
-              if (!n)
-                return !0;
-              if (f.rawday === void 0 || !isFinite(f.rawday) && new Date(f.date.getFullYear(), isFinite(f.rawmonth) ? f.month : f.date.getMonth() + 1, 0).getDate() >= f.day || f.day == "29" && (!isFinite(f.rawyear) || f.rawyear === void 0 || f.rawyear === "") || new Date(f.date.getFullYear(), isFinite(f.rawmonth) ? f.month : f.date.getMonth() + 1, 0).getDate() >= f.day)
-                return v;
-              if (f.day == "29") {
-                var S = E(v.pos, C);
-                if (S.targetMatch[0] === "yyyy" && v.pos - S.targetMatchIndex == 2)
-                  return v.remove = v.pos + 1, v;
-              } else if (f.month == "02" && f.day == "30" && v.c !== void 0)
-                return f.day = "03", f.date.setDate(3), f.date.setMonth(1), v.insert = [{
-                  pos: v.pos,
-                  c: "0"
-                }, {
-                  pos: v.pos + 1,
-                  c: v.c
-                }], v.caret = B.seekNext.call(this, v.pos + 1), v;
-              return !1;
-            }
-            function g(f, v, C, S) {
-              var T, D, A = "";
-              for (r(C).lastIndex = 0; T = r(C).exec(f); )
-                if (v === void 0)
-                  if (D = d(T))
-                    A += "(" + D[0] + ")";
-                  else
-                    switch (T[0]) {
-                      case "[":
-                        A += "(";
-                        break;
-                      case "]":
-                        A += ")?";
-                        break;
-                      default:
-                        A += (0, M.default)(T[0]);
-                    }
-                else
-                  (D = d(T)) ? S !== !0 && D[3] ? A += D[3].call(v.date) : D[2] ? A += v["raw" + D[2]] : A += T[0] : A += T[0];
-              return A;
-            }
-            function L(f, v, C) {
-              for (f = String(f), v = v || 2; f.length < v; )
-                f = C ? f + "0" : "0" + f;
-              return f;
-            }
-            function y(f, v, C) {
-              return typeof f == "string" ? new e(f, v, C) : f && m(f) === "object" && Object.prototype.hasOwnProperty.call(f, "date") ? f : void 0;
-            }
-            function x(f, v) {
-              return g(v.inputFormat, {
-                date: f
-              }, v);
-            }
-            function E(f, v) {
-              var C, S, T = 0, D = 0;
-              for (r(v).lastIndex = 0; S = r(v).exec(v.inputFormat); ) {
-                var A = new RegExp("\\d+$").exec(S[0]);
-                if ((T += D = A ? parseInt(A[0]) : S[0].length) >= f + 1) {
-                  C = S, S = r(v).exec(v.inputFormat);
-                  break;
-                }
-              }
-              return {
-                targetMatchIndex: T - D,
-                nextMatch: S,
-                targetMatch: C
-              };
-            }
-            h.default.extendAliases({
-              datetime: {
-                mask: function(f) {
-                  return f.numericInput = !1, t.S = f.i18n.ordinalSuffix.join("|"), f.inputFormat = i[f.inputFormat] || f.inputFormat, f.displayFormat = i[f.displayFormat] || f.displayFormat || f.inputFormat, f.outputFormat = i[f.outputFormat] || f.outputFormat || f.inputFormat, f.placeholder = f.placeholder !== "" ? f.placeholder : f.inputFormat.replace(/[[\]]/, ""), f.regex = g(f.inputFormat, void 0, f), f.min = y(f.min, f.inputFormat, f), f.max = y(f.max, f.inputFormat, f), null;
-                },
-                placeholder: "",
-                inputFormat: "isoDateTime",
-                displayFormat: null,
-                outputFormat: null,
-                min: null,
-                max: null,
-                skipOptionalPartCharacter: "",
-                i18n: {
-                  dayNames: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-                  monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-                  ordinalSuffix: ["st", "nd", "rd", "th"]
-                },
-                preValidation: function(f, v, C, S, T, D, A, F) {
-                  if (F)
-                    return !0;
-                  if (isNaN(C) && f[v] !== C) {
-                    var O = E(v, T);
-                    if (O.nextMatch && O.nextMatch[0] === C && O.targetMatch[0].length > 1) {
-                      var N = t[O.targetMatch[0]][0];
-                      if (new RegExp(N).test("0" + f[v - 1]))
-                        return f[v] = f[v - 1], f[v - 1] = "0", {
-                          fuzzy: !0,
-                          buffer: f,
-                          refreshFromBuffer: {
-                            start: v - 1,
-                            end: v + 1
-                          },
-                          pos: v + 1
-                        };
-                    }
-                  }
-                  return !0;
-                },
-                postValidation: function(f, v, C, S, T, D, A, F) {
-                  var O, N;
-                  if (A)
-                    return !0;
-                  if (S === !1 && (((O = E(v + 1, T)).targetMatch && O.targetMatchIndex === v && O.targetMatch[0].length > 1 && t[O.targetMatch[0]] !== void 0 || (O = E(v + 2, T)).targetMatch && O.targetMatchIndex === v + 1 && O.targetMatch[0].length > 1 && t[O.targetMatch[0]] !== void 0) && (N = t[O.targetMatch[0]][0]), N !== void 0 && (D.validPositions[v + 1] !== void 0 && new RegExp(N).test(C + "0") ? (f[v] = C, f[v + 1] = "0", S = {
-                    pos: v + 2,
-                    caret: v
-                  }) : new RegExp(N).test("0" + C) && (f[v] = "0", f[v + 1] = C, S = {
-                    pos: v + 2
-                  })), S === !1))
-                    return S;
-                  if (S.fuzzy && (f = S.buffer, v = S.pos), (O = E(v, T)).targetMatch && O.targetMatch[0] && t[O.targetMatch[0]] !== void 0) {
-                    var V = t[O.targetMatch[0]];
-                    N = V[0];
-                    var U = f.slice(O.targetMatchIndex, O.targetMatchIndex + O.targetMatch[0].length);
-                    if (new RegExp(N).test(U.join("")) === !1 && O.targetMatch[0].length === 2 && D.validPositions[O.targetMatchIndex] && D.validPositions[O.targetMatchIndex + 1] && (D.validPositions[O.targetMatchIndex + 1].input = "0"), V[2] == "year")
-                      for (var P = j.getMaskTemplate.call(this, !1, 1, void 0, !0), Z = v + 1; Z < f.length; Z++)
-                        f[Z] = P[Z], delete D.validPositions[Z];
-                  }
-                  var W = S, oe = y(f.join(""), T.inputFormat, T);
-                  return W && !isNaN(oe.date.getTime()) && (T.prefillYear && (W = function(q, ne, se) {
-                    if (q.year !== q.rawyear) {
-                      var K = o.toString(), te = q.rawyear.replace(/[^0-9]/g, ""), Y = K.slice(0, te.length), J = K.slice(te.length);
-                      if (te.length === 2 && te === Y) {
-                        var ie = new Date(o, q.month - 1, q.day);
-                        q.day == ie.getDate() && (!se.max || se.max.date.getTime() >= ie.getTime()) && (q.date.setFullYear(o), q.year = K, ne.insert = [{
-                          pos: ne.pos + 1,
-                          c: J[0]
-                        }, {
-                          pos: ne.pos + 2,
-                          c: J[1]
-                        }]);
-                      }
-                    }
-                    return ne;
-                  }(oe, W, T)), W = function(q, ne, se, K, te) {
-                    if (!ne)
-                      return ne;
-                    if (ne && se.min && !isNaN(se.min.date.getTime())) {
-                      var Y;
-                      for (q.reset(), r(se).lastIndex = 0; Y = r(se).exec(se.inputFormat); ) {
-                        var J;
-                        if ((J = d(Y)) && J[3]) {
-                          for (var ie = J[1], pe = q[J[2]], le = se.min[J[2]], be = se.max ? se.max[J[2]] : le, ue = [], fe = !1, me = 0; me < le.length; me++)
-                            K.validPositions[me + Y.index] !== void 0 || fe ? (ue[me] = pe[me], fe = fe || pe[me] > le[me]) : (ue[me] = le[me], J[2] === "year" && pe.length - 1 == me && le != be && (ue = (parseInt(ue.join("")) + 1).toString().split("")), J[2] === "ampm" && le != be && se.min.date.getTime() > q.date.getTime() && (ue[me] = be[me]));
-                          ie.call(q._date, ue.join(""));
-                        }
-                      }
-                      ne = se.min.date.getTime() <= q.date.getTime(), q.reInit();
-                    }
-                    return ne && se.max && (isNaN(se.max.date.getTime()) || (ne = se.max.date.getTime() >= q.date.getTime())), ne;
-                  }(oe, W = u.call(this, oe, W, T), T, D)), v !== void 0 && W && S.pos !== v ? {
-                    buffer: g(T.inputFormat, oe, T).split(""),
-                    refreshFromBuffer: {
-                      start: v,
-                      end: S.pos
-                    },
-                    pos: S.caret || S.pos
-                  } : W;
-                },
-                onKeyDown: function(f, v, C, S) {
-                  f.ctrlKey && f.key === _.keys.ArrowRight && (this.inputmask._valueSet(x(/* @__PURE__ */ new Date(), S)), a(this).trigger("setvalue"));
-                },
-                onUnMask: function(f, v, C) {
-                  return v && g(C.outputFormat, y(f, C.inputFormat, C), C, !0);
-                },
-                casing: function(f, v, C, S) {
-                  return v.nativeDef.indexOf("[ap]") == 0 ? f.toLowerCase() : v.nativeDef.indexOf("[AP]") == 0 ? f.toUpperCase() : f;
-                },
-                onBeforeMask: function(f, v) {
-                  return Object.prototype.toString.call(f) === "[object Date]" && (f = x(f, v)), f;
-                },
-                insertMode: !1,
-                insertModeVisual: !1,
-                shiftPositions: !1,
-                keepStatic: !1,
-                inputmode: "numeric",
-                prefillYear: !0
-              }
-            });
-          },
-          3851: function(G, k, w) {
-            var h, _ = (h = w(2394)) && h.__esModule ? h : {
-              default: h
-            }, M = w(8711), B = w(4713);
-            _.default.extendDefinitions({
-              A: {
-                validator: "[A-Za-zА-яЁёÀ-ÿµ]",
-                casing: "upper"
-              },
-              "&": {
-                validator: "[0-9A-Za-zА-яЁёÀ-ÿµ]",
-                casing: "upper"
-              },
-              "#": {
-                validator: "[0-9A-Fa-f]",
-                casing: "upper"
-              }
-            });
-            var j = new RegExp("25[0-5]|2[0-4][0-9]|[01][0-9][0-9]");
-            function I(b, m, p, c, a) {
-              return p - 1 > -1 && m.buffer[p - 1] !== "." ? (b = m.buffer[p - 1] + b, b = p - 2 > -1 && m.buffer[p - 2] !== "." ? m.buffer[p - 2] + b : "0" + b) : b = "00" + b, j.test(b);
-            }
-            _.default.extendAliases({
-              cssunit: {
-                regex: "[+-]?[0-9]+\\.?([0-9]+)?(px|em|rem|ex|%|in|cm|mm|pt|pc)"
-              },
-              url: {
-                regex: "(https?|ftp)://.*",
-                autoUnmask: !1,
-                keepStatic: !1,
-                tabThrough: !0
-              },
-              ip: {
-                mask: "i{1,3}.j{1,3}.k{1,3}.l{1,3}",
-                definitions: {
-                  i: {
-                    validator: I
-                  },
-                  j: {
-                    validator: I
-                  },
-                  k: {
-                    validator: I
-                  },
-                  l: {
-                    validator: I
-                  }
-                },
-                onUnMask: function(b, m, p) {
-                  return b;
-                },
-                inputmode: "decimal",
-                substitutes: {
-                  ",": "."
-                }
-              },
-              email: {
-                mask: function(b) {
-                  var m = b.separator, p = b.quantifier, c = "*{1,64}[.*{1,64}][.*{1,64}][.*{1,63}]@-{1,63}.-{1,63}[.-{1,63}][.-{1,63}]", a = c;
-                  if (m)
-                    for (var e = 0; e < p; e++)
-                      a += "[".concat(m).concat(c, "]");
-                  return a;
-                },
-                greedy: !1,
-                casing: "lower",
-                separator: null,
-                quantifier: 5,
-                skipOptionalPartCharacter: "",
-                onBeforePaste: function(b, m) {
-                  return (b = b.toLowerCase()).replace("mailto:", "");
-                },
-                definitions: {
-                  "*": {
-                    validator: "[0-9１-９A-Za-zА-яЁёÀ-ÿµ!#$%&'*+/=?^_`{|}~-]"
-                  },
-                  "-": {
-                    validator: "[0-9A-Za-z-]"
-                  }
-                },
-                onUnMask: function(b, m, p) {
-                  return b;
-                },
-                inputmode: "email"
-              },
-              mac: {
-                mask: "##:##:##:##:##:##"
-              },
-              vin: {
-                mask: "V{13}9{4}",
-                definitions: {
-                  V: {
-                    validator: "[A-HJ-NPR-Za-hj-npr-z\\d]",
-                    casing: "upper"
-                  }
-                },
-                clearIncomplete: !0,
-                autoUnmask: !0
-              },
-              ssn: {
-                mask: "999-99-9999",
-                postValidation: function(b, m, p, c, a, e, o) {
-                  var n = B.getMaskTemplate.call(this, !0, M.getLastValidPosition.call(this), !0, !0);
-                  return /^(?!219-09-9999|078-05-1120)(?!666|000|9.{2}).{3}-(?!00).{2}-(?!0{4}).{4}$/.test(n.join(""));
-                }
-              }
-            });
-          },
-          207: function(G, k, w) {
-            var h = j(w(2394)), _ = j(w(7184)), M = w(8711), B = w(2839);
-            function j(e) {
-              return e && e.__esModule ? e : {
-                default: e
-              };
-            }
-            var I = h.default.dependencyLib;
-            function b(e, o) {
-              for (var n = "", t = 0; t < e.length; t++)
-                h.default.prototype.definitions[e.charAt(t)] || o.definitions[e.charAt(t)] || o.optionalmarker[0] === e.charAt(t) || o.optionalmarker[1] === e.charAt(t) || o.quantifiermarker[0] === e.charAt(t) || o.quantifiermarker[1] === e.charAt(t) || o.groupmarker[0] === e.charAt(t) || o.groupmarker[1] === e.charAt(t) || o.alternatormarker === e.charAt(t) ? n += "\\" + e.charAt(t) : n += e.charAt(t);
-              return n;
-            }
-            function m(e, o, n, t) {
-              if (e.length > 0 && o > 0 && (!n.digitsOptional || t)) {
-                var i = e.indexOf(n.radixPoint), l = !1;
-                n.negationSymbol.back === e[e.length - 1] && (l = !0, e.length--), i === -1 && (e.push(n.radixPoint), i = e.length - 1);
-                for (var s = 1; s <= o; s++)
-                  isFinite(e[i + s]) || (e[i + s] = "0");
-              }
-              return l && e.push(n.negationSymbol.back), e;
-            }
-            function p(e, o) {
-              var n = 0;
-              for (var t in e === "+" && (n = M.seekNext.call(this, o.validPositions.length - 1)), o.tests)
-                if ((t = parseInt(t)) >= n) {
-                  for (var i = 0, l = o.tests[t].length; i < l; i++)
-                    if ((o.validPositions[t] === void 0 || e === "-") && o.tests[t][i].match.def === e)
-                      return t + (o.validPositions[t] !== void 0 && e !== "-" ? 1 : 0);
-                }
-              return n;
-            }
-            function c(e, o) {
-              for (var n = -1, t = 0, i = o.validPositions.length; t < i; t++) {
-                var l = o.validPositions[t];
-                if (l && l.match.def === e) {
-                  n = t;
-                  break;
-                }
-              }
-              return n;
-            }
-            function a(e, o, n, t, i) {
-              var l = o.buffer ? o.buffer.indexOf(i.radixPoint) : -1, s = (l !== -1 || t && i.jitMasking) && new RegExp(i.definitions[9].validator).test(e);
-              return i._radixDance && l !== -1 && s && o.validPositions[l] == null ? {
-                insert: {
-                  pos: l === n ? l + 1 : l,
-                  c: i.radixPoint
-                },
-                pos: n
-              } : s;
-            }
-            h.default.extendAliases({
-              numeric: {
-                mask: function(e) {
-                  e.repeat = 0, e.groupSeparator === e.radixPoint && e.digits && e.digits !== "0" && (e.radixPoint === "." ? e.groupSeparator = "," : e.radixPoint === "," ? e.groupSeparator = "." : e.groupSeparator = ""), e.groupSeparator === " " && (e.skipOptionalPartCharacter = void 0), e.placeholder.length > 1 && (e.placeholder = e.placeholder.charAt(0)), e.positionCaretOnClick === "radixFocus" && e.placeholder === "" && (e.positionCaretOnClick = "lvp");
-                  var o = "0", n = e.radixPoint;
-                  e.numericInput === !0 && e.__financeInput === void 0 ? (o = "1", e.positionCaretOnClick = e.positionCaretOnClick === "radixFocus" ? "lvp" : e.positionCaretOnClick, e.digitsOptional = !1, isNaN(e.digits) && (e.digits = 2), e._radixDance = !1, n = e.radixPoint === "," ? "?" : "!", e.radixPoint !== "" && e.definitions[n] === void 0 && (e.definitions[n] = {}, e.definitions[n].validator = "[" + e.radixPoint + "]", e.definitions[n].placeholder = e.radixPoint, e.definitions[n].static = !0, e.definitions[n].generated = !0)) : (e.__financeInput = !1, e.numericInput = !0);
-                  var t, i = "[+]";
-                  if (i += b(e.prefix, e), e.groupSeparator !== "" ? (e.definitions[e.groupSeparator] === void 0 && (e.definitions[e.groupSeparator] = {}, e.definitions[e.groupSeparator].validator = "[" + e.groupSeparator + "]", e.definitions[e.groupSeparator].placeholder = e.groupSeparator, e.definitions[e.groupSeparator].static = !0, e.definitions[e.groupSeparator].generated = !0), i += e._mask(e)) : i += "9{+}", e.digits !== void 0 && e.digits !== 0) {
-                    var l = e.digits.toString().split(",");
-                    isFinite(l[0]) && l[1] && isFinite(l[1]) ? i += n + o + "{" + e.digits + "}" : (isNaN(e.digits) || parseInt(e.digits) > 0) && (e.digitsOptional || e.jitMasking ? (t = i + n + o + "{0," + e.digits + "}", e.keepStatic = !0) : i += n + o + "{" + e.digits + "}");
-                  } else
-                    e.inputmode = "numeric";
-                  return i += b(e.suffix, e), i += "[-]", t && (i = [t + b(e.suffix, e) + "[-]", i]), e.greedy = !1, function(s) {
-                    s.parseMinMaxOptions === void 0 && (s.min !== null && (s.min = s.min.toString().replace(new RegExp((0, _.default)(s.groupSeparator), "g"), ""), s.radixPoint === "," && (s.min = s.min.replace(s.radixPoint, ".")), s.min = isFinite(s.min) ? parseFloat(s.min) : NaN, isNaN(s.min) && (s.min = Number.MIN_VALUE)), s.max !== null && (s.max = s.max.toString().replace(new RegExp((0, _.default)(s.groupSeparator), "g"), ""), s.radixPoint === "," && (s.max = s.max.replace(s.radixPoint, ".")), s.max = isFinite(s.max) ? parseFloat(s.max) : NaN, isNaN(s.max) && (s.max = Number.MAX_VALUE)), s.parseMinMaxOptions = "done");
-                  }(e), e.radixPoint !== "" && e.substituteRadixPoint && (e.substitutes[e.radixPoint == "." ? "," : "."] = e.radixPoint), i;
-                },
-                _mask: function(e) {
-                  return "(" + e.groupSeparator + "999){+|1}";
-                },
-                digits: "*",
-                digitsOptional: !0,
-                enforceDigitsOnBlur: !1,
-                radixPoint: ".",
-                positionCaretOnClick: "radixFocus",
-                _radixDance: !0,
-                groupSeparator: "",
-                allowMinus: !0,
-                negationSymbol: {
-                  front: "-",
-                  back: ""
-                },
-                prefix: "",
-                suffix: "",
-                min: null,
-                max: null,
-                SetMaxOnOverflow: !1,
-                step: 1,
-                inputType: "text",
-                unmaskAsNumber: !1,
-                roundingFN: Math.round,
-                inputmode: "decimal",
-                shortcuts: {
-                  k: "1000",
-                  m: "1000000"
-                },
-                placeholder: "0",
-                greedy: !1,
-                rightAlign: !0,
-                insertMode: !0,
-                autoUnmask: !1,
-                skipOptionalPartCharacter: "",
-                usePrototypeDefinitions: !1,
-                stripLeadingZeroes: !0,
-                substituteRadixPoint: !0,
-                definitions: {
-                  0: {
-                    validator: a
-                  },
-                  1: {
-                    validator: a,
-                    definitionSymbol: "9"
-                  },
-                  9: {
-                    validator: "[0-9０-９٠-٩۰-۹]",
-                    definitionSymbol: "*"
-                  },
-                  "+": {
-                    validator: function(e, o, n, t, i) {
-                      return i.allowMinus && (e === "-" || e === i.negationSymbol.front);
-                    }
-                  },
-                  "-": {
-                    validator: function(e, o, n, t, i) {
-                      return i.allowMinus && e === i.negationSymbol.back;
-                    }
-                  }
-                },
-                preValidation: function(e, o, n, t, i, l, s, d) {
-                  if (i.__financeInput !== !1 && n === i.radixPoint)
-                    return !1;
-                  var r = e.indexOf(i.radixPoint), u = o;
-                  if (o = function(x, E, f, v, C) {
-                    return C._radixDance && C.numericInput && E !== C.negationSymbol.back && x <= f && (f > 0 || E == C.radixPoint) && (v.validPositions[x - 1] === void 0 || v.validPositions[x - 1].input !== C.negationSymbol.back) && (x -= 1), x;
-                  }(o, n, r, l, i), n === "-" || n === i.negationSymbol.front) {
-                    if (i.allowMinus !== !0)
-                      return !1;
-                    var g = !1, L = c("+", l), y = c("-", l);
-                    return L !== -1 && (g = [L, y]), g !== !1 ? {
-                      remove: g,
-                      caret: u - i.negationSymbol.back.length
-                    } : {
-                      insert: [{
-                        pos: p.call(this, "+", l),
-                        c: i.negationSymbol.front,
-                        fromIsValid: !0
-                      }, {
-                        pos: p.call(this, "-", l),
-                        c: i.negationSymbol.back,
-                        fromIsValid: void 0
-                      }],
-                      caret: u + i.negationSymbol.back.length
-                    };
-                  }
-                  if (n === i.groupSeparator)
-                    return {
-                      caret: u
-                    };
-                  if (d)
-                    return !0;
-                  if (r !== -1 && i._radixDance === !0 && t === !1 && n === i.radixPoint && i.digits !== void 0 && (isNaN(i.digits) || parseInt(i.digits) > 0) && r !== o)
-                    return {
-                      caret: i._radixDance && o === r - 1 ? r + 1 : r
-                    };
-                  if (i.__financeInput === !1) {
-                    if (t) {
-                      if (i.digitsOptional)
-                        return {
-                          rewritePosition: s.end
-                        };
-                      if (!i.digitsOptional) {
-                        if (s.begin > r && s.end <= r)
-                          return n === i.radixPoint ? {
-                            insert: {
-                              pos: r + 1,
-                              c: "0",
-                              fromIsValid: !0
-                            },
-                            rewritePosition: r
-                          } : {
-                            rewritePosition: r + 1
-                          };
-                        if (s.begin < r)
-                          return {
-                            rewritePosition: s.begin - 1
-                          };
-                      }
-                    } else if (!i.showMaskOnHover && !i.showMaskOnFocus && !i.digitsOptional && i.digits > 0 && this.__valueGet.call(this.el) === "")
-                      return {
-                        rewritePosition: r
-                      };
-                  }
-                  return {
-                    rewritePosition: o
-                  };
-                },
-                postValidation: function(e, o, n, t, i, l, s) {
-                  if (t === !1)
-                    return t;
-                  if (s)
-                    return !0;
-                  if (i.min !== null || i.max !== null) {
-                    var d = i.onUnMask(e.slice().reverse().join(""), void 0, I.extend({}, i, {
-                      unmaskAsNumber: !0
-                    }));
-                    if (i.min !== null && d < i.min && (d.toString().length > i.min.toString().length || d < 0))
-                      return !1;
-                    if (i.max !== null && d > i.max)
-                      return !!i.SetMaxOnOverflow && {
-                        refreshFromBuffer: !0,
-                        buffer: m(i.max.toString().replace(".", i.radixPoint).split(""), i.digits, i).reverse()
-                      };
-                  }
-                  return t;
-                },
-                onUnMask: function(e, o, n) {
-                  if (o === "" && n.nullable === !0)
-                    return o;
-                  var t = e.replace(n.prefix, "");
-                  return t = (t = t.replace(n.suffix, "")).replace(new RegExp((0, _.default)(n.groupSeparator), "g"), ""), n.placeholder.charAt(0) !== "" && (t = t.replace(new RegExp(n.placeholder.charAt(0), "g"), "0")), n.unmaskAsNumber ? (n.radixPoint !== "" && t.indexOf(n.radixPoint) !== -1 && (t = t.replace(_.default.call(this, n.radixPoint), ".")), t = (t = t.replace(new RegExp("^" + (0, _.default)(n.negationSymbol.front)), "-")).replace(new RegExp((0, _.default)(n.negationSymbol.back) + "$"), ""), Number(t)) : t;
-                },
-                isComplete: function(e, o) {
-                  var n = (o.numericInput ? e.slice().reverse() : e).join("");
-                  return n = (n = (n = (n = (n = n.replace(new RegExp("^" + (0, _.default)(o.negationSymbol.front)), "-")).replace(new RegExp((0, _.default)(o.negationSymbol.back) + "$"), "")).replace(o.prefix, "")).replace(o.suffix, "")).replace(new RegExp((0, _.default)(o.groupSeparator) + "([0-9]{3})", "g"), "$1"), o.radixPoint === "," && (n = n.replace((0, _.default)(o.radixPoint), ".")), isFinite(n);
-                },
-                onBeforeMask: function(e, o) {
-                  var n = o.radixPoint || ",";
-                  isFinite(o.digits) && (o.digits = parseInt(o.digits)), typeof e != "number" && o.inputType !== "number" || n === "" || (e = e.toString().replace(".", n));
-                  var t = e.charAt(0) === "-" || e.charAt(0) === o.negationSymbol.front, i = e.split(n), l = i[0].replace(/[^\-0-9]/g, ""), s = i.length > 1 ? i[1].replace(/[^0-9]/g, "") : "", d = i.length > 1;
-                  e = l + (s !== "" ? n + s : s);
-                  var r = 0;
-                  if (n !== "" && (r = o.digitsOptional ? o.digits < s.length ? o.digits : s.length : o.digits, s !== "" || !o.digitsOptional)) {
-                    var u = Math.pow(10, r || 1);
-                    e = e.replace((0, _.default)(n), "."), isNaN(parseFloat(e)) || (e = (o.roundingFN(parseFloat(e) * u) / u).toFixed(r)), e = e.toString().replace(".", n);
-                  }
-                  if (o.digits === 0 && e.indexOf(n) !== -1 && (e = e.substring(0, e.indexOf(n))), o.min !== null || o.max !== null) {
-                    var g = e.toString().replace(n, ".");
-                    o.min !== null && g < o.min ? e = o.min.toString().replace(".", n) : o.max !== null && g > o.max && (e = o.max.toString().replace(".", n));
-                  }
-                  return t && e.charAt(0) !== "-" && (e = "-" + e), m(e.toString().split(""), r, o, d).join("");
-                },
-                onBeforeWrite: function(e, o, n, t) {
-                  function i(x, E) {
-                    if (t.__financeInput !== !1 || E) {
-                      var f = x.indexOf(t.radixPoint);
-                      f !== -1 && x.splice(f, 1);
-                    }
-                    if (t.groupSeparator !== "")
-                      for (; (f = x.indexOf(t.groupSeparator)) !== -1; )
-                        x.splice(f, 1);
-                    return x;
-                  }
-                  var l, s;
-                  if (t.stripLeadingZeroes && (s = function(x, E) {
-                    var f = new RegExp("(^" + (E.negationSymbol.front !== "" ? (0, _.default)(E.negationSymbol.front) + "?" : "") + (0, _.default)(E.prefix) + ")(.*)(" + (0, _.default)(E.suffix) + (E.negationSymbol.back != "" ? (0, _.default)(E.negationSymbol.back) + "?" : "") + "$)").exec(x.slice().reverse().join("")), v = f ? f[2] : "", C = !1;
-                    return v && (v = v.split(E.radixPoint.charAt(0))[0], C = new RegExp("^[0" + E.groupSeparator + "]*").exec(v)), !(!C || !(C[0].length > 1 || C[0].length > 0 && C[0].length < v.length)) && C;
-                  }(o, t)))
-                    for (var d = o.join("").lastIndexOf(s[0].split("").reverse().join("")) - (s[0] == s.input ? 0 : 1), r = s[0] == s.input ? 1 : 0, u = s[0].length - r; u > 0; u--)
-                      delete this.maskset.validPositions[d + u], delete o[d + u];
-                  if (e)
-                    switch (e.type) {
-                      case "blur":
-                      case "checkval":
-                        if (t.min !== null) {
-                          var g = t.onUnMask(o.slice().reverse().join(""), void 0, I.extend({}, t, {
-                            unmaskAsNumber: !0
-                          }));
-                          if (t.min !== null && g < t.min)
-                            return {
-                              refreshFromBuffer: !0,
-                              buffer: m(t.min.toString().replace(".", t.radixPoint).split(""), t.digits, t).reverse()
-                            };
-                        }
-                        if (o[o.length - 1] === t.negationSymbol.front) {
-                          var L = new RegExp("(^" + (t.negationSymbol.front != "" ? (0, _.default)(t.negationSymbol.front) + "?" : "") + (0, _.default)(t.prefix) + ")(.*)(" + (0, _.default)(t.suffix) + (t.negationSymbol.back != "" ? (0, _.default)(t.negationSymbol.back) + "?" : "") + "$)").exec(i(o.slice(), !0).reverse().join(""));
-                          (L ? L[2] : "") == 0 && (l = {
-                            refreshFromBuffer: !0,
-                            buffer: [0]
-                          });
-                        } else
-                          t.radixPoint !== "" && o.indexOf(t.radixPoint) === t.suffix.length && (l && l.buffer ? l.buffer.splice(0, 1 + t.suffix.length) : (o.splice(0, 1 + t.suffix.length), l = {
-                            refreshFromBuffer: !0,
-                            buffer: i(o)
-                          }));
-                        if (t.enforceDigitsOnBlur) {
-                          var y = (l = l || {}) && l.buffer || o.slice().reverse();
-                          l.refreshFromBuffer = !0, l.buffer = m(y, t.digits, t, !0).reverse();
-                        }
-                    }
-                  return l;
-                },
-                onKeyDown: function(e, o, n, t) {
-                  var i, l = I(this);
-                  if (e.location != 3) {
-                    var s, d = e.key;
-                    if ((s = t.shortcuts && t.shortcuts[d]) && s.length > 1)
-                      return this.inputmask.__valueSet.call(this, parseFloat(this.inputmask.unmaskedvalue()) * parseInt(s)), l.trigger("setvalue"), !1;
-                  }
-                  if (e.ctrlKey)
-                    switch (e.key) {
-                      case B.keys.ArrowUp:
-                        return this.inputmask.__valueSet.call(this, parseFloat(this.inputmask.unmaskedvalue()) + parseInt(t.step)), l.trigger("setvalue"), !1;
-                      case B.keys.ArrowDown:
-                        return this.inputmask.__valueSet.call(this, parseFloat(this.inputmask.unmaskedvalue()) - parseInt(t.step)), l.trigger("setvalue"), !1;
-                    }
-                  if (!e.shiftKey && (e.key === B.keys.Delete || e.key === B.keys.Backspace || e.key === B.keys.BACKSPACE_SAFARI) && n.begin !== o.length) {
-                    if (o[e.key === B.keys.Delete ? n.begin - 1 : n.end] === t.negationSymbol.front)
-                      return i = o.slice().reverse(), t.negationSymbol.front !== "" && i.shift(), t.negationSymbol.back !== "" && i.pop(), l.trigger("setvalue", [i.join(""), n.begin]), !1;
-                    if (t._radixDance === !0) {
-                      var r = o.indexOf(t.radixPoint);
-                      if (t.digitsOptional) {
-                        if (r === 0)
-                          return (i = o.slice().reverse()).pop(), l.trigger("setvalue", [i.join(""), n.begin >= i.length ? i.length : n.begin]), !1;
-                      } else if (r !== -1 && (n.begin < r || n.end < r || e.key === B.keys.Delete && (n.begin === r || n.begin - 1 === r))) {
-                        var u = void 0;
-                        return n.begin === n.end && (e.key === B.keys.Backspace || e.key === B.keys.BACKSPACE_SAFARI ? n.begin++ : e.key === B.keys.Delete && n.begin - 1 === r && (u = I.extend({}, n), n.begin--, n.end--)), (i = o.slice().reverse()).splice(i.length - n.begin, n.begin - n.end + 1), i = m(i, t.digits, t).join(""), u && (n = u), l.trigger("setvalue", [i, n.begin >= i.length ? r + 1 : n.begin]), !1;
-                      }
-                    }
-                  }
-                }
-              },
-              currency: {
-                prefix: "",
-                groupSeparator: ",",
-                alias: "numeric",
-                digits: 2,
-                digitsOptional: !1
-              },
-              decimal: {
-                alias: "numeric"
-              },
-              integer: {
-                alias: "numeric",
-                inputmode: "numeric",
-                digits: 0
-              },
-              percentage: {
-                alias: "numeric",
-                min: 0,
-                max: 100,
-                suffix: " %",
-                digits: 0,
-                allowMinus: !1
-              },
-              indianns: {
-                alias: "numeric",
-                _mask: function(e) {
-                  return "(" + e.groupSeparator + "99){*|1}(" + e.groupSeparator + "999){1|1}";
-                },
-                groupSeparator: ",",
-                radixPoint: ".",
-                placeholder: "0",
-                digits: 2,
-                digitsOptional: !1
-              }
-            });
-          },
-          9380: function(G, k, w) {
-            var h;
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.default = void 0;
-            var _ = ((h = w(8741)) && h.__esModule ? h : {
-              default: h
-            }).default ? window : {};
-            k.default = _;
-          },
-          7760: function(G, k, w) {
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.HandleNativePlaceholder = function(a, e) {
-              var o = a ? a.inputmask : this;
-              if (j.ie) {
-                if (a.inputmask._valueGet() !== e && (a.placeholder !== e || a.placeholder === "")) {
-                  var n = M.getBuffer.call(o).slice(), t = a.inputmask._valueGet();
-                  if (t !== e) {
-                    var i = M.getLastValidPosition.call(o);
-                    i === -1 && t === M.getBufferTemplate.call(o).join("") ? n = [] : i !== -1 && m.call(o, n), c(a, n);
-                  }
-                }
-              } else
-                a.placeholder !== e && (a.placeholder = e, a.placeholder === "" && a.removeAttribute("placeholder"));
-            }, k.applyInputValue = b, k.checkVal = p, k.clearOptionalTail = m, k.unmaskedvalue = function(a) {
-              var e = a ? a.inputmask : this, o = e.opts, n = e.maskset;
-              if (a) {
-                if (a.inputmask === void 0)
-                  return a.value;
-                a.inputmask && a.inputmask.refreshValue && b(a, a.inputmask._valueGet(!0));
-              }
-              for (var t = [], i = n.validPositions, l = 0, s = i.length; l < s; l++)
-                i[l] && i[l].match && (i[l].match.static != 1 || Array.isArray(n.metadata) && i[l].generatedInput !== !0) && t.push(i[l].input);
-              var d = t.length === 0 ? "" : (e.isRTL ? t.reverse() : t).join("");
-              if (typeof o.onUnMask == "function") {
-                var r = (e.isRTL ? M.getBuffer.call(e).slice().reverse() : M.getBuffer.call(e)).join("");
-                d = o.onUnMask.call(e, r, d, o);
-              }
-              return d;
-            }, k.writeBuffer = c;
-            var h = w(2839), _ = w(4713), M = w(8711), B = w(7215), j = w(9845), I = w(6030);
-            function b(a, e) {
-              var o = a ? a.inputmask : this, n = o.opts;
-              a.inputmask.refreshValue = !1, typeof n.onBeforeMask == "function" && (e = n.onBeforeMask.call(o, e, n) || e), p(a, !0, !1, e = (e || "").toString().split("")), o.undoValue = o._valueGet(!0), (n.clearMaskOnLostFocus || n.clearIncomplete) && a.inputmask._valueGet() === M.getBufferTemplate.call(o).join("") && M.getLastValidPosition.call(o) === -1 && a.inputmask._valueSet("");
-            }
-            function m(a) {
-              a.length = 0;
-              for (var e, o = _.getMaskTemplate.call(this, !0, 0, !0, void 0, !0); (e = o.shift()) !== void 0; )
-                a.push(e);
-              return a;
-            }
-            function p(a, e, o, n, t) {
-              var i = a ? a.inputmask : this, l = i.maskset, s = i.opts, d = i.dependencyLib, r = n.slice(), u = "", g = -1, L = void 0, y = s.skipOptionalPartCharacter;
-              s.skipOptionalPartCharacter = "", M.resetMaskSet.call(i), l.tests = {}, g = s.radixPoint ? M.determineNewCaretPosition.call(i, {
-                begin: 0,
-                end: 0
-              }, !1, s.__financeInput === !1 ? "radixFocus" : void 0).begin : 0, l.p = g, i.caretPos = {
-                begin: g
-              };
-              var x = [], E = i.caretPos;
-              if (r.forEach(function(D, A) {
-                if (D !== void 0) {
-                  var F = new d.Event("_checkval");
-                  F.key = D, u += D;
-                  var O = M.getLastValidPosition.call(i, void 0, !0);
-                  (function(N, V) {
-                    for (var U = _.getMaskTemplate.call(i, !0, 0).slice(N, M.seekNext.call(i, N, !1, !1)).join("").replace(/'/g, ""), P = U.indexOf(V); P > 0 && U[P - 1] === " "; )
-                      P--;
-                    var Z = P === 0 && !M.isMask.call(i, N) && (_.getTest.call(i, N).match.nativeDef === V.charAt(0) || _.getTest.call(i, N).match.static === !0 && _.getTest.call(i, N).match.nativeDef === "'" + V.charAt(0) || _.getTest.call(i, N).match.nativeDef === " " && (_.getTest.call(i, N + 1).match.nativeDef === V.charAt(0) || _.getTest.call(i, N + 1).match.static === !0 && _.getTest.call(i, N + 1).match.nativeDef === "'" + V.charAt(0)));
-                    if (!Z && P > 0 && !M.isMask.call(i, N, !1, !0)) {
-                      var W = M.seekNext.call(i, N);
-                      i.caretPos.begin < W && (i.caretPos = {
-                        begin: W
-                      });
-                    }
-                    return Z;
-                  })(g, u) ? L = I.EventHandlers.keypressEvent.call(i, F, !0, !1, o, O + 1) : (L = I.EventHandlers.keypressEvent.call(i, F, !0, !1, o, i.caretPos.begin)) && (g = i.caretPos.begin + 1, u = ""), L ? (L.pos !== void 0 && l.validPositions[L.pos] && l.validPositions[L.pos].match.static === !0 && l.validPositions[L.pos].alternation === void 0 && (x.push(L.pos), i.isRTL || (L.forwardPosition = L.pos + 1)), c.call(i, void 0, M.getBuffer.call(i), L.forwardPosition, F, !1), i.caretPos = {
-                    begin: L.forwardPosition,
-                    end: L.forwardPosition
-                  }, E = i.caretPos) : l.validPositions[A] === void 0 && r[A] === _.getPlaceholder.call(i, A) && M.isMask.call(i, A, !0) ? i.caretPos.begin++ : i.caretPos = E;
-                }
-              }), x.length > 0) {
-                var f, v, C = M.seekNext.call(i, -1, void 0, !1);
-                if (!B.isComplete.call(i, M.getBuffer.call(i)) && x.length <= C || B.isComplete.call(i, M.getBuffer.call(i)) && x.length > 0 && x.length !== C && x[0] === 0)
-                  for (var S = C; (f = x.shift()) !== void 0; ) {
-                    var T = new d.Event("_checkval");
-                    if ((v = l.validPositions[f]).generatedInput = !0, T.key = v.input, (L = I.EventHandlers.keypressEvent.call(i, T, !0, !1, o, S)) && L.pos !== void 0 && L.pos !== f && l.validPositions[L.pos] && l.validPositions[L.pos].match.static === !0)
-                      x.push(L.pos);
-                    else if (!L)
-                      break;
-                    S++;
-                  }
-              }
-              e && c.call(i, a, M.getBuffer.call(i), L ? L.forwardPosition : i.caretPos.begin, t || new d.Event("checkval"), t && (t.type === "input" && i.undoValue !== M.getBuffer.call(i).join("") || t.type === "paste")), s.skipOptionalPartCharacter = y;
-            }
-            function c(a, e, o, n, t) {
-              var i = a ? a.inputmask : this, l = i.opts, s = i.dependencyLib;
-              if (n && typeof l.onBeforeWrite == "function") {
-                var d = l.onBeforeWrite.call(i, n, e, o, l);
-                if (d) {
-                  if (d.refreshFromBuffer) {
-                    var r = d.refreshFromBuffer;
-                    B.refreshFromBuffer.call(i, r === !0 ? r : r.start, r.end, d.buffer || e), e = M.getBuffer.call(i, !0);
-                  }
-                  o !== void 0 && (o = d.caret !== void 0 ? d.caret : o);
-                }
-              }
-              if (a !== void 0 && (a.inputmask._valueSet(e.join("")), o === void 0 || n !== void 0 && n.type === "blur" || M.caret.call(i, a, o, void 0, void 0, n !== void 0 && n.type === "keydown" && (n.key === h.keys.Delete || n.key === h.keys.Backspace)), t === !0)) {
-                var u = s(a), g = a.inputmask._valueGet();
-                a.inputmask.skipInputEvent = !0, u.trigger("input"), setTimeout(function() {
-                  g === M.getBufferTemplate.call(i).join("") ? u.trigger("cleared") : B.isComplete.call(i, e) === !0 && u.trigger("complete");
-                }, 0);
-              }
-            }
-          },
-          2394: function(G, k, w) {
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.default = void 0;
-            var h = w(157), _ = n(w(4963)), M = n(w(9380)), B = w(2391), j = w(4713), I = w(8711), b = w(7215), m = w(7760), p = w(9716), c = n(w(7392)), a = n(w(3976)), e = n(w(8741));
-            function o(r) {
-              return o = typeof Symbol == "function" && typeof Symbol.iterator == "symbol" ? function(u) {
-                return typeof u;
-              } : function(u) {
-                return u && typeof Symbol == "function" && u.constructor === Symbol && u !== Symbol.prototype ? "symbol" : typeof u;
-              }, o(r);
-            }
-            function n(r) {
-              return r && r.__esModule ? r : {
-                default: r
-              };
-            }
-            var t = M.default.document, i = "_inputmask_opts";
-            function l(r, u, g) {
-              if (e.default) {
-                if (!(this instanceof l))
-                  return new l(r, u, g);
-                this.dependencyLib = _.default, this.el = void 0, this.events = {}, this.maskset = void 0, g !== !0 && (Object.prototype.toString.call(r) === "[object Object]" ? u = r : (u = u || {}, r && (u.alias = r)), this.opts = _.default.extend(!0, {}, this.defaults, u), this.noMasksCache = u && u.definitions !== void 0, this.userOptions = u || {}, s(this.opts.alias, u, this.opts)), this.refreshValue = !1, this.undoValue = void 0, this.$el = void 0, this.skipInputEvent = !1, this.validationEvent = !1, this.ignorable = !1, this.maxLength, this.mouseEnter = !1, this.clicked = 0, this.originalPlaceholder = void 0, this.isComposing = !1, this.hasAlternator = !1;
-              }
-            }
-            function s(r, u, g) {
-              var L = l.prototype.aliases[r];
-              return L ? (L.alias && s(L.alias, void 0, g), _.default.extend(!0, g, L), _.default.extend(!0, g, u), !0) : (g.mask === null && (g.mask = r), !1);
-            }
-            l.prototype = {
-              dataAttribute: "data-inputmask",
-              defaults: a.default,
-              definitions: c.default,
-              aliases: {},
-              masksCache: {},
-              get isRTL() {
-                return this.opts.isRTL || this.opts.numericInput;
-              },
-              mask: function(r) {
-                var u = this;
-                return typeof r == "string" && (r = t.getElementById(r) || t.querySelectorAll(r)), (r = r.nodeName ? [r] : Array.isArray(r) ? r : [].slice.call(r)).forEach(function(g, L) {
-                  var y = _.default.extend(!0, {}, u.opts);
-                  if (function(E, f, v, C) {
-                    function S(N, V) {
-                      var U = C === "" ? N : C + "-" + N;
-                      (V = V !== void 0 ? V : E.getAttribute(U)) !== null && (typeof V == "string" && (N.indexOf("on") === 0 ? V = M.default[V] : V === "false" ? V = !1 : V === "true" && (V = !0)), v[N] = V);
-                    }
-                    if (f.importDataAttributes === !0) {
-                      var T, D, A, F, O = E.getAttribute(C);
-                      if (O && O !== "" && (O = O.replace(/'/g, '"'), D = JSON.parse("{" + O + "}")), D) {
-                        for (F in A = void 0, D)
-                          if (F.toLowerCase() === "alias") {
-                            A = D[F];
-                            break;
-                          }
-                      }
-                      for (T in S("alias", A), v.alias && s(v.alias, v, f), f) {
-                        if (D) {
-                          for (F in A = void 0, D)
-                            if (F.toLowerCase() === T.toLowerCase()) {
-                              A = D[F];
-                              break;
-                            }
-                        }
-                        S(T, A);
-                      }
-                    }
-                    return _.default.extend(!0, f, v), (E.dir === "rtl" || f.rightAlign) && (E.style.textAlign = "right"), (E.dir === "rtl" || f.numericInput) && (E.dir = "ltr", E.removeAttribute("dir"), f.isRTL = !0), Object.keys(v).length;
-                  }(g, y, _.default.extend(!0, {}, u.userOptions), u.dataAttribute)) {
-                    var x = (0, B.generateMaskSet)(y, u.noMasksCache);
-                    x !== void 0 && (g.inputmask !== void 0 && (g.inputmask.opts.autoUnmask = !0, g.inputmask.remove()), g.inputmask = new l(void 0, void 0, !0), g.inputmask.opts = y, g.inputmask.noMasksCache = u.noMasksCache, g.inputmask.userOptions = _.default.extend(!0, {}, u.userOptions), g.inputmask.el = g, g.inputmask.$el = (0, _.default)(g), g.inputmask.maskset = x, _.default.data(g, i, u.userOptions), h.mask.call(g.inputmask));
-                  }
-                }), r && r[0] && r[0].inputmask || this;
-              },
-              option: function(r, u) {
-                return typeof r == "string" ? this.opts[r] : o(r) === "object" ? (_.default.extend(this.userOptions, r), this.el && u !== !0 && this.mask(this.el), this) : void 0;
-              },
-              unmaskedvalue: function(r) {
-                if (this.maskset = this.maskset || (0, B.generateMaskSet)(this.opts, this.noMasksCache), this.el === void 0 || r !== void 0) {
-                  var u = (typeof this.opts.onBeforeMask == "function" && this.opts.onBeforeMask.call(this, r, this.opts) || r).split("");
-                  m.checkVal.call(this, void 0, !1, !1, u), typeof this.opts.onBeforeWrite == "function" && this.opts.onBeforeWrite.call(this, void 0, I.getBuffer.call(this), 0, this.opts);
-                }
-                return m.unmaskedvalue.call(this, this.el);
-              },
-              remove: function() {
-                if (this.el) {
-                  _.default.data(this.el, i, null);
-                  var r = this.opts.autoUnmask ? (0, m.unmaskedvalue)(this.el) : this._valueGet(this.opts.autoUnmask);
-                  r !== I.getBufferTemplate.call(this).join("") ? this._valueSet(r, this.opts.autoUnmask) : this._valueSet(""), p.EventRuler.off(this.el), Object.getOwnPropertyDescriptor && Object.getPrototypeOf ? Object.getOwnPropertyDescriptor(Object.getPrototypeOf(this.el), "value") && this.__valueGet && Object.defineProperty(this.el, "value", {
-                    get: this.__valueGet,
-                    set: this.__valueSet,
-                    configurable: !0
-                  }) : t.__lookupGetter__ && this.el.__lookupGetter__("value") && this.__valueGet && (this.el.__defineGetter__("value", this.__valueGet), this.el.__defineSetter__("value", this.__valueSet)), this.el.inputmask = void 0;
-                }
-                return this.el;
-              },
-              getemptymask: function() {
-                return this.maskset = this.maskset || (0, B.generateMaskSet)(this.opts, this.noMasksCache), (this.isRTL ? I.getBufferTemplate.call(this).reverse() : I.getBufferTemplate.call(this)).join("");
-              },
-              hasMaskedValue: function() {
-                return !this.opts.autoUnmask;
-              },
-              isComplete: function() {
-                return this.maskset = this.maskset || (0, B.generateMaskSet)(this.opts, this.noMasksCache), b.isComplete.call(this, I.getBuffer.call(this));
-              },
-              getmetadata: function() {
-                if (this.maskset = this.maskset || (0, B.generateMaskSet)(this.opts, this.noMasksCache), Array.isArray(this.maskset.metadata)) {
-                  var r = j.getMaskTemplate.call(this, !0, 0, !1).join("");
-                  return this.maskset.metadata.forEach(function(u) {
-                    return u.mask !== r || (r = u, !1);
-                  }), r;
-                }
-                return this.maskset.metadata;
-              },
-              isValid: function(r) {
-                if (this.maskset = this.maskset || (0, B.generateMaskSet)(this.opts, this.noMasksCache), r) {
-                  var u = (typeof this.opts.onBeforeMask == "function" && this.opts.onBeforeMask.call(this, r, this.opts) || r).split("");
-                  m.checkVal.call(this, void 0, !0, !1, u);
-                } else
-                  r = this.isRTL ? I.getBuffer.call(this).slice().reverse().join("") : I.getBuffer.call(this).join("");
-                for (var g = I.getBuffer.call(this), L = I.determineLastRequiredPosition.call(this), y = g.length - 1; y > L && !I.isMask.call(this, y); y--)
-                  ;
-                return g.splice(L, y + 1 - L), b.isComplete.call(this, g) && r === (this.isRTL ? I.getBuffer.call(this).slice().reverse().join("") : I.getBuffer.call(this).join(""));
-              },
-              format: function(r, u) {
-                this.maskset = this.maskset || (0, B.generateMaskSet)(this.opts, this.noMasksCache);
-                var g = (typeof this.opts.onBeforeMask == "function" && this.opts.onBeforeMask.call(this, r, this.opts) || r).split("");
-                m.checkVal.call(this, void 0, !0, !1, g);
-                var L = this.isRTL ? I.getBuffer.call(this).slice().reverse().join("") : I.getBuffer.call(this).join("");
-                return u ? {
-                  value: L,
-                  metadata: this.getmetadata()
-                } : L;
-              },
-              setValue: function(r) {
-                this.el && (0, _.default)(this.el).trigger("setvalue", [r]);
-              },
-              analyseMask: B.analyseMask
-            }, l.extendDefaults = function(r) {
-              _.default.extend(!0, l.prototype.defaults, r);
-            }, l.extendDefinitions = function(r) {
-              _.default.extend(!0, l.prototype.definitions, r);
-            }, l.extendAliases = function(r) {
-              _.default.extend(!0, l.prototype.aliases, r);
-            }, l.format = function(r, u, g) {
-              return l(u).format(r, g);
-            }, l.unmask = function(r, u) {
-              return l(u).unmaskedvalue(r);
-            }, l.isValid = function(r, u) {
-              return l(u).isValid(r);
-            }, l.remove = function(r) {
-              typeof r == "string" && (r = t.getElementById(r) || t.querySelectorAll(r)), (r = r.nodeName ? [r] : r).forEach(function(u) {
-                u.inputmask && u.inputmask.remove();
-              });
-            }, l.setValue = function(r, u) {
-              typeof r == "string" && (r = t.getElementById(r) || t.querySelectorAll(r)), (r = r.nodeName ? [r] : r).forEach(function(g) {
-                g.inputmask ? g.inputmask.setValue(u) : (0, _.default)(g).trigger("setvalue", [u]);
-              });
-            }, l.dependencyLib = _.default, M.default.Inputmask = l;
-            var d = l;
-            k.default = d;
-          },
-          5296: function(G, k, w) {
-            function h(n) {
-              return h = typeof Symbol == "function" && typeof Symbol.iterator == "symbol" ? function(t) {
-                return typeof t;
-              } : function(t) {
-                return t && typeof Symbol == "function" && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;
-              }, h(n);
-            }
-            var _ = a(w(9380)), M = a(w(2394)), B = a(w(8741));
-            function j(n) {
-              var t = m();
-              return function() {
-                var i, l = c(n);
-                if (t) {
-                  var s = c(this).constructor;
-                  i = Reflect.construct(l, arguments, s);
-                } else
-                  i = l.apply(this, arguments);
-                return function(d, r) {
-                  if (r && (h(r) === "object" || typeof r == "function"))
-                    return r;
-                  if (r !== void 0)
-                    throw new TypeError("Derived constructors may only return object or undefined");
-                  return function(u) {
-                    if (u === void 0)
-                      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                    return u;
-                  }(d);
-                }(this, i);
-              };
-            }
-            function I(n) {
-              var t = typeof Map == "function" ? /* @__PURE__ */ new Map() : void 0;
-              return I = function(i) {
-                if (i === null || (l = i, Function.toString.call(l).indexOf("[native code]") === -1))
-                  return i;
-                var l;
-                if (typeof i != "function")
-                  throw new TypeError("Super expression must either be null or a function");
-                if (t !== void 0) {
-                  if (t.has(i))
-                    return t.get(i);
-                  t.set(i, s);
-                }
-                function s() {
-                  return b(i, arguments, c(this).constructor);
-                }
-                return s.prototype = Object.create(i.prototype, {
-                  constructor: {
-                    value: s,
-                    enumerable: !1,
-                    writable: !0,
-                    configurable: !0
-                  }
-                }), p(s, i);
-              }, I(n);
-            }
-            function b(n, t, i) {
-              return b = m() ? Reflect.construct.bind() : function(l, s, d) {
-                var r = [null];
-                r.push.apply(r, s);
-                var u = new (Function.bind.apply(l, r))();
-                return d && p(u, d.prototype), u;
-              }, b.apply(null, arguments);
-            }
-            function m() {
-              if (typeof Reflect > "u" || !Reflect.construct || Reflect.construct.sham)
-                return !1;
-              if (typeof Proxy == "function")
-                return !0;
-              try {
-                return Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function() {
-                })), !0;
-              } catch {
-                return !1;
-              }
-            }
-            function p(n, t) {
-              return p = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function(i, l) {
-                return i.__proto__ = l, i;
-              }, p(n, t);
-            }
-            function c(n) {
-              return c = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function(t) {
-                return t.__proto__ || Object.getPrototypeOf(t);
-              }, c(n);
-            }
-            function a(n) {
-              return n && n.__esModule ? n : {
-                default: n
-              };
-            }
-            var e = _.default.document;
-            if (B.default && e && e.head && e.head.attachShadow && _.default.customElements && _.default.customElements.get("input-mask") === void 0) {
-              var o = function(n) {
-                (function(s, d) {
-                  if (typeof d != "function" && d !== null)
-                    throw new TypeError("Super expression must either be null or a function");
-                  s.prototype = Object.create(d && d.prototype, {
-                    constructor: {
-                      value: s,
-                      writable: !0,
-                      configurable: !0
-                    }
-                  }), Object.defineProperty(s, "prototype", {
-                    writable: !1
-                  }), d && p(s, d);
-                })(l, n);
-                var t, i = j(l);
-                function l() {
-                  var s;
-                  (function(y, x) {
-                    if (!(y instanceof x))
-                      throw new TypeError("Cannot call a class as a function");
-                  })(this, l);
-                  var d = (s = i.call(this)).getAttributeNames(), r = s.attachShadow({
-                    mode: "closed"
-                  }), u = e.createElement("input");
-                  for (var g in u.type = "text", r.appendChild(u), d)
-                    Object.prototype.hasOwnProperty.call(d, g) && u.setAttribute(d[g], s.getAttribute(d[g]));
-                  var L = new M.default();
-                  return L.dataAttribute = "", L.mask(u), u.inputmask.shadowRoot = r, s;
-                }
-                return t = l, Object.defineProperty(t, "prototype", {
-                  writable: !1
-                }), t;
-              }(I(HTMLElement));
-              _.default.customElements.define("input-mask", o);
-            }
-          },
-          2839: function(G, k) {
-            function w(j, I) {
-              return function(b) {
-                if (Array.isArray(b))
-                  return b;
-              }(j) || function(b, m) {
-                var p = b == null ? null : typeof Symbol < "u" && b[Symbol.iterator] || b["@@iterator"];
-                if (p != null) {
-                  var c, a, e, o, n = [], t = !0, i = !1;
-                  try {
-                    if (e = (p = p.call(b)).next, m === 0) {
-                      if (Object(p) !== p)
-                        return;
-                      t = !1;
-                    } else
-                      for (; !(t = (c = e.call(p)).done) && (n.push(c.value), n.length !== m); t = !0)
-                        ;
-                  } catch (l) {
-                    i = !0, a = l;
-                  } finally {
-                    try {
-                      if (!t && p.return != null && (o = p.return(), Object(o) !== o))
-                        return;
-                    } finally {
-                      if (i)
-                        throw a;
-                    }
-                  }
-                  return n;
-                }
-              }(j, I) || function(b, m) {
-                if (b) {
-                  if (typeof b == "string")
-                    return h(b, m);
-                  var p = Object.prototype.toString.call(b).slice(8, -1);
-                  if (p === "Object" && b.constructor && (p = b.constructor.name), p === "Map" || p === "Set")
-                    return Array.from(b);
-                  if (p === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(p))
-                    return h(b, m);
-                }
-              }(j, I) || function() {
-                throw new TypeError(`Invalid attempt to destructure non-iterable instance.
-In order to be iterable, non-array objects must have a [Symbol.iterator]() method.`);
-              }();
-            }
-            function h(j, I) {
-              (I == null || I > j.length) && (I = j.length);
-              for (var b = 0, m = new Array(I); b < I; b++)
-                m[b] = j[b];
-              return m;
-            }
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.keys = k.keyCode = void 0, k.toKey = function(j, I) {
-              return M[j] || (I ? String.fromCharCode(j) : String.fromCharCode(j).toLowerCase());
-            }, k.toKeyCode = function(j) {
-              return _[j];
-            };
-            var _ = {
-              AltGraph: 18,
-              ArrowDown: 40,
-              ArrowLeft: 37,
-              ArrowRight: 39,
-              ArrowUp: 38,
-              Backspace: 8,
-              BACKSPACE_SAFARI: 127,
-              CapsLock: 20,
-              Delete: 46,
-              End: 35,
-              Enter: 13,
-              Escape: 27,
-              Home: 36,
-              Insert: 45,
-              PageDown: 34,
-              PageUp: 33,
-              Space: 32,
-              Tab: 9,
-              c: 67,
-              x: 88,
-              z: 90,
-              Shift: 16,
-              Control: 17,
-              Alt: 18,
-              Pause: 19,
-              Meta_LEFT: 91,
-              Meta_RIGHT: 92,
-              ContextMenu: 93,
-              Process: 229,
-              Unidentified: 229,
-              F1: 112,
-              F2: 113,
-              F3: 114,
-              F4: 115,
-              F5: 116,
-              F6: 117,
-              F7: 118,
-              F8: 119,
-              F9: 120,
-              F10: 121,
-              F11: 122,
-              F12: 123
-            };
-            k.keyCode = _;
-            var M = Object.entries(_).reduce(function(j, I) {
-              var b = w(I, 2), m = b[0], p = b[1];
-              return j[p] = j[p] === void 0 ? m : j[p], j;
-            }, {}), B = Object.entries(_).reduce(function(j, I) {
-              var b = w(I, 2), m = b[0];
-              return b[1], j[m] = m === "Space" ? " " : m, j;
-            }, {});
-            k.keys = B;
-          },
-          2391: function(G, k, w) {
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.analyseMask = function(b, m, p) {
-              var c, a, e, o, n, t, i = /(?:[?*+]|\{[0-9+*]+(?:,[0-9+*]*)?(?:\|[0-9+*]*)?\})|[^.?*+^${[]()|\\]+|./g, l = /\[\^?]?(?:[^\\\]]+|\\[\S\s]?)*]?|\\(?:0(?:[0-3][0-7]{0,2}|[4-7][0-7]?)?|[1-9][0-9]*|x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|c[A-Za-z]|[\S\s]?)|\((?:\?[:=!]?)?|(?:[?*+]|\{[0-9]+(?:,[0-9]*)?\})\??|[^.?*+^${[()|\\]+|./g, s = !1, d = new _.default(), r = [], u = [], g = !1;
-              function L(U, P, Z) {
-                Z = Z !== void 0 ? Z : U.matches.length;
-                var W = U.matches[Z - 1];
-                if (m) {
-                  if (P.indexOf("[") === 0 || s && /\\d|\\s|\\w|\\p/i.test(P) || P === ".") {
-                    var oe = p.casing ? "i" : "";
-                    /^\\p\{.*}$/i.test(P) && (oe += "u"), U.matches.splice(Z++, 0, {
-                      fn: new RegExp(P, oe),
-                      static: !1,
-                      optionality: !1,
-                      newBlockMarker: W === void 0 ? "master" : W.def !== P,
-                      casing: null,
-                      def: P,
-                      placeholder: void 0,
-                      nativeDef: P
-                    });
-                  } else
-                    s && (P = P[P.length - 1]), P.split("").forEach(function(ne, se) {
-                      W = U.matches[Z - 1], U.matches.splice(Z++, 0, {
-                        fn: /[a-z]/i.test(p.staticDefinitionSymbol || ne) ? new RegExp("[" + (p.staticDefinitionSymbol || ne) + "]", p.casing ? "i" : "") : null,
-                        static: !0,
-                        optionality: !1,
-                        newBlockMarker: W === void 0 ? "master" : W.def !== ne && W.static !== !0,
-                        casing: null,
-                        def: p.staticDefinitionSymbol || ne,
-                        placeholder: p.staticDefinitionSymbol !== void 0 ? ne : void 0,
-                        nativeDef: (s ? "'" : "") + ne
-                      });
-                    });
-                  s = !1;
-                } else {
-                  var q = p.definitions && p.definitions[P] || p.usePrototypeDefinitions && M.default.prototype.definitions[P];
-                  q && !s ? U.matches.splice(Z++, 0, {
-                    fn: q.validator ? typeof q.validator == "string" ? new RegExp(q.validator, p.casing ? "i" : "") : new function() {
-                      this.test = q.validator;
-                    }() : new RegExp("."),
-                    static: q.static || !1,
-                    optionality: q.optional || !1,
-                    defOptionality: q.optional || !1,
-                    newBlockMarker: W === void 0 || q.optional ? "master" : W.def !== (q.definitionSymbol || P),
-                    casing: q.casing,
-                    def: q.definitionSymbol || P,
-                    placeholder: q.placeholder,
-                    nativeDef: P,
-                    generated: q.generated
-                  }) : (U.matches.splice(Z++, 0, {
-                    fn: /[a-z]/i.test(p.staticDefinitionSymbol || P) ? new RegExp("[" + (p.staticDefinitionSymbol || P) + "]", p.casing ? "i" : "") : null,
-                    static: !0,
-                    optionality: !1,
-                    newBlockMarker: W === void 0 ? "master" : W.def !== P && W.static !== !0,
-                    casing: null,
-                    def: p.staticDefinitionSymbol || P,
-                    placeholder: p.staticDefinitionSymbol !== void 0 ? P : void 0,
-                    nativeDef: (s ? "'" : "") + P
-                  }), s = !1);
-                }
-              }
-              function y() {
-                if (r.length > 0) {
-                  if (L(o = r[r.length - 1], a), o.isAlternator) {
-                    n = r.pop();
-                    for (var U = 0; U < n.matches.length; U++)
-                      n.matches[U].isGroup && (n.matches[U].isGroup = !1);
-                    r.length > 0 ? (o = r[r.length - 1]).matches.push(n) : d.matches.push(n);
-                  }
-                } else
-                  L(d, a);
-              }
-              function x(U) {
-                var P = new _.default(!0);
-                return P.openGroup = !1, P.matches = U, P;
-              }
-              function E() {
-                if ((e = r.pop()).openGroup = !1, e !== void 0)
-                  if (r.length > 0) {
-                    if ((o = r[r.length - 1]).matches.push(e), o.isAlternator) {
-                      for (var U = (n = r.pop()).matches[0].matches ? n.matches[0].matches.length : 1, P = 0; P < n.matches.length; P++)
-                        n.matches[P].isGroup = !1, n.matches[P].alternatorGroup = !1, p.keepStatic === null && U < (n.matches[P].matches ? n.matches[P].matches.length : 1) && (p.keepStatic = !0), U = n.matches[P].matches ? n.matches[P].matches.length : 1;
-                      r.length > 0 ? (o = r[r.length - 1]).matches.push(n) : d.matches.push(n);
-                    }
-                  } else
-                    d.matches.push(e);
-                else
-                  y();
-              }
-              function f(U) {
-                var P = U.pop();
-                return P.isQuantifier && (P = x([U.pop(), P])), P;
-              }
-              for (m && (p.optionalmarker[0] = void 0, p.optionalmarker[1] = void 0); c = m ? l.exec(b) : i.exec(b); ) {
-                if (a = c[0], m) {
-                  switch (a.charAt(0)) {
-                    case "?":
-                      a = "{0,1}";
-                      break;
-                    case "+":
-                    case "*":
-                      a = "{" + a + "}";
-                      break;
-                    case "|":
-                      if (r.length === 0) {
-                        var v = x(d.matches);
-                        v.openGroup = !0, r.push(v), d.matches = [], g = !0;
-                      }
-                  }
-                  switch (a) {
-                    case "\\d":
-                      a = "[0-9]";
-                      break;
-                    case "\\p":
-                      a += l.exec(b)[0], a += l.exec(b)[0];
-                  }
-                }
-                if (s)
-                  y();
-                else
-                  switch (a.charAt(0)) {
-                    case "$":
-                    case "^":
-                      m || y();
-                      break;
-                    case p.escapeChar:
-                      s = !0, m && y();
-                      break;
-                    case p.optionalmarker[1]:
-                    case p.groupmarker[1]:
-                      E();
-                      break;
-                    case p.optionalmarker[0]:
-                      r.push(new _.default(!1, !0));
-                      break;
-                    case p.groupmarker[0]:
-                      r.push(new _.default(!0));
-                      break;
-                    case p.quantifiermarker[0]:
-                      var C = new _.default(!1, !1, !0), S = (a = a.replace(/[{}?]/g, "")).split("|"), T = S[0].split(","), D = isNaN(T[0]) ? T[0] : parseInt(T[0]), A = T.length === 1 ? D : isNaN(T[1]) ? T[1] : parseInt(T[1]), F = isNaN(S[1]) ? S[1] : parseInt(S[1]);
-                      D !== "*" && D !== "+" || (D = A === "*" ? 0 : 1), C.quantifier = {
-                        min: D,
-                        max: A,
-                        jit: F
-                      };
-                      var O = r.length > 0 ? r[r.length - 1].matches : d.matches;
-                      (c = O.pop()).isGroup || (c = x([c])), O.push(c), O.push(C);
-                      break;
-                    case p.alternatormarker:
-                      if (r.length > 0) {
-                        var N = (o = r[r.length - 1]).matches[o.matches.length - 1];
-                        t = o.openGroup && (N.matches === void 0 || N.isGroup === !1 && N.isAlternator === !1) ? r.pop() : f(o.matches);
-                      } else
-                        t = f(d.matches);
-                      if (t.isAlternator)
-                        r.push(t);
-                      else if (t.alternatorGroup ? (n = r.pop(), t.alternatorGroup = !1) : n = new _.default(!1, !1, !1, !0), n.matches.push(t), r.push(n), t.openGroup) {
-                        t.openGroup = !1;
-                        var V = new _.default(!0);
-                        V.alternatorGroup = !0, r.push(V);
-                      }
-                      break;
-                    default:
-                      y();
-                  }
-              }
-              for (g && E(); r.length > 0; )
-                e = r.pop(), d.matches.push(e);
-              return d.matches.length > 0 && (function U(P) {
-                P && P.matches && P.matches.forEach(function(Z, W) {
-                  var oe = P.matches[W + 1];
-                  (oe === void 0 || oe.matches === void 0 || oe.isQuantifier === !1) && Z && Z.isGroup && (Z.isGroup = !1, m || (L(Z, p.groupmarker[0], 0), Z.openGroup !== !0 && L(Z, p.groupmarker[1]))), U(Z);
-                });
-              }(d), u.push(d)), (p.numericInput || p.isRTL) && function U(P) {
-                for (var Z in P.matches = P.matches.reverse(), P.matches)
-                  if (Object.prototype.hasOwnProperty.call(P.matches, Z)) {
-                    var W = parseInt(Z);
-                    if (P.matches[Z].isQuantifier && P.matches[W + 1] && P.matches[W + 1].isGroup) {
-                      var oe = P.matches[Z];
-                      P.matches.splice(Z, 1), P.matches.splice(W + 1, 0, oe);
-                    }
-                    P.matches[Z].matches !== void 0 ? P.matches[Z] = U(P.matches[Z]) : P.matches[Z] = ((q = P.matches[Z]) === p.optionalmarker[0] ? q = p.optionalmarker[1] : q === p.optionalmarker[1] ? q = p.optionalmarker[0] : q === p.groupmarker[0] ? q = p.groupmarker[1] : q === p.groupmarker[1] && (q = p.groupmarker[0]), q);
-                  }
-                var q;
-                return P;
-              }(u[0]), u;
-            }, k.generateMaskSet = function(b, m) {
-              var p;
-              function c(o, n) {
-                var t = n.repeat, i = n.groupmarker, l = n.quantifiermarker, s = n.keepStatic;
-                if (t > 0 || t === "*" || t === "+") {
-                  var d = t === "*" ? 0 : t === "+" ? 1 : t;
-                  o = i[0] + o + i[1] + l[0] + d + "," + t + l[1];
-                }
-                if (s === !0) {
-                  var r = o.match(new RegExp("(.)\\[([^\\]]*)\\]", "g"));
-                  r && r.forEach(function(u, g) {
-                    var L = function(E, f) {
-                      return function(v) {
-                        if (Array.isArray(v))
-                          return v;
-                      }(E) || function(v, C) {
-                        var S = v == null ? null : typeof Symbol < "u" && v[Symbol.iterator] || v["@@iterator"];
-                        if (S != null) {
-                          var T, D, A, F, O = [], N = !0, V = !1;
-                          try {
-                            if (A = (S = S.call(v)).next, C === 0) {
-                              if (Object(S) !== S)
-                                return;
-                              N = !1;
-                            } else
-                              for (; !(N = (T = A.call(S)).done) && (O.push(T.value), O.length !== C); N = !0)
-                                ;
-                          } catch (U) {
-                            V = !0, D = U;
-                          } finally {
-                            try {
-                              if (!N && S.return != null && (F = S.return(), Object(F) !== F))
-                                return;
-                            } finally {
-                              if (V)
-                                throw D;
-                            }
-                          }
-                          return O;
-                        }
-                      }(E, f) || function(v, C) {
-                        if (v) {
-                          if (typeof v == "string")
-                            return j(v, C);
-                          var S = Object.prototype.toString.call(v).slice(8, -1);
-                          if (S === "Object" && v.constructor && (S = v.constructor.name), S === "Map" || S === "Set")
-                            return Array.from(v);
-                          if (S === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(S))
-                            return j(v, C);
-                        }
-                      }(E, f) || function() {
-                        throw new TypeError(`Invalid attempt to destructure non-iterable instance.
-In order to be iterable, non-array objects must have a [Symbol.iterator]() method.`);
-                      }();
-                    }(u.split("["), 2), y = L[0], x = L[1];
-                    x = x.replace("]", ""), o = o.replace(new RegExp("".concat((0, B.default)(y), "\\[").concat((0, B.default)(x), "\\]")), y.charAt(0) === x.charAt(0) ? "(".concat(y, "|").concat(y).concat(x, ")") : "".concat(y, "[").concat(x, "]"));
-                  });
-                }
-                return o;
-              }
-              function a(o, n, t) {
-                var i, l, s = !1;
-                return o !== null && o !== "" || ((s = t.regex !== null) ? o = (o = t.regex).replace(/^(\^)(.*)(\$)$/, "$2") : (s = !0, o = ".*")), o.length === 1 && t.greedy === !1 && t.repeat !== 0 && (t.placeholder = ""), o = c(o, t), l = s ? "regex_" + t.regex : t.numericInput ? o.split("").reverse().join("") : o, t.keepStatic !== null && (l = "ks_" + t.keepStatic + l), M.default.prototype.masksCache[l] === void 0 || m === !0 ? (i = {
-                  mask: o,
-                  maskToken: M.default.prototype.analyseMask(o, s, t),
-                  validPositions: [],
-                  _buffer: void 0,
-                  buffer: void 0,
-                  tests: {},
-                  excludes: {},
-                  metadata: n,
-                  maskLength: void 0,
-                  jitOffset: {}
-                }, m !== !0 && (M.default.prototype.masksCache[l] = i, i = h.default.extend(!0, {}, M.default.prototype.masksCache[l]))) : i = h.default.extend(!0, {}, M.default.prototype.masksCache[l]), i;
-              }
-              if (typeof b.mask == "function" && (b.mask = b.mask(b)), Array.isArray(b.mask)) {
-                if (b.mask.length > 1) {
-                  b.keepStatic === null && (b.keepStatic = !0);
-                  var e = b.groupmarker[0];
-                  return (b.isRTL ? b.mask.reverse() : b.mask).forEach(function(o) {
-                    e.length > 1 && (e += b.alternatormarker), o.mask !== void 0 && typeof o.mask != "function" ? e += o.mask : e += o;
-                  }), a(e += b.groupmarker[1], b.mask, b);
-                }
-                b.mask = b.mask.pop();
-              }
-              return p = b.mask && b.mask.mask !== void 0 && typeof b.mask.mask != "function" ? a(b.mask.mask, b.mask, b) : a(b.mask, b.mask, b), b.keepStatic === null && (b.keepStatic = !1), p;
-            };
-            var h = I(w(4963)), _ = I(w(9695)), M = I(w(2394)), B = I(w(7184));
-            function j(b, m) {
-              (m == null || m > b.length) && (m = b.length);
-              for (var p = 0, c = new Array(m); p < m; p++)
-                c[p] = b[p];
-              return c;
-            }
-            function I(b) {
-              return b && b.__esModule ? b : {
-                default: b
-              };
-            }
-          },
-          157: function(G, k, w) {
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.mask = function() {
-              var m = this, p = this.opts, c = this.el, a = this.dependencyLib;
-              B.EventRuler.off(c);
-              var e = function(t, i) {
-                t.tagName.toLowerCase() !== "textarea" && i.ignorables.push(h.keys.Enter);
-                var l = t.getAttribute("type"), s = t.tagName.toLowerCase() === "input" && i.supportsInputType.includes(l) || t.isContentEditable || t.tagName.toLowerCase() === "textarea";
-                if (!s)
-                  if (t.tagName.toLowerCase() === "input") {
-                    var d = document.createElement("input");
-                    d.setAttribute("type", l), s = d.type === "text", d = null;
-                  } else
-                    s = "partial";
-                return s !== !1 ? function(r) {
-                  var u, g;
-                  function L() {
-                    return this.inputmask ? this.inputmask.opts.autoUnmask ? this.inputmask.unmaskedvalue() : _.getLastValidPosition.call(m) !== -1 || i.nullable !== !0 ? (this.inputmask.shadowRoot || this.ownerDocument).activeElement === this && i.clearMaskOnLostFocus ? (m.isRTL ? M.clearOptionalTail.call(m, _.getBuffer.call(m).slice()).reverse() : M.clearOptionalTail.call(m, _.getBuffer.call(m).slice())).join("") : u.call(this) : "" : u.call(this);
-                  }
-                  function y(E) {
-                    g.call(this, E), this.inputmask && (0, M.applyInputValue)(this, E);
-                  }
-                  if (!r.inputmask.__valueGet) {
-                    if (i.noValuePatching !== !0) {
-                      if (Object.getOwnPropertyDescriptor) {
-                        var x = Object.getPrototypeOf ? Object.getOwnPropertyDescriptor(Object.getPrototypeOf(r), "value") : void 0;
-                        x && x.get && x.set ? (u = x.get, g = x.set, Object.defineProperty(r, "value", {
-                          get: L,
-                          set: y,
-                          configurable: !0
-                        })) : r.tagName.toLowerCase() !== "input" && (u = function() {
-                          return this.textContent;
-                        }, g = function(E) {
-                          this.textContent = E;
-                        }, Object.defineProperty(r, "value", {
-                          get: L,
-                          set: y,
-                          configurable: !0
-                        }));
-                      } else
-                        document.__lookupGetter__ && r.__lookupGetter__("value") && (u = r.__lookupGetter__("value"), g = r.__lookupSetter__("value"), r.__defineGetter__("value", L), r.__defineSetter__("value", y));
-                      r.inputmask.__valueGet = u, r.inputmask.__valueSet = g;
-                    }
-                    r.inputmask._valueGet = function(E) {
-                      return m.isRTL && E !== !0 ? u.call(this.el).split("").reverse().join("") : u.call(this.el);
-                    }, r.inputmask._valueSet = function(E, f) {
-                      g.call(this.el, E == null ? "" : f !== !0 && m.isRTL ? E.split("").reverse().join("") : E);
-                    }, u === void 0 && (u = function() {
-                      return this.value;
-                    }, g = function(E) {
-                      this.value = E;
-                    }, function(E) {
-                      if (a.valHooks && (a.valHooks[E] === void 0 || a.valHooks[E].inputmaskpatch !== !0)) {
-                        var f = a.valHooks[E] && a.valHooks[E].get ? a.valHooks[E].get : function(C) {
-                          return C.value;
-                        }, v = a.valHooks[E] && a.valHooks[E].set ? a.valHooks[E].set : function(C, S) {
-                          return C.value = S, C;
-                        };
-                        a.valHooks[E] = {
-                          get: function(C) {
-                            if (C.inputmask) {
-                              if (C.inputmask.opts.autoUnmask)
-                                return C.inputmask.unmaskedvalue();
-                              var S = f(C);
-                              return _.getLastValidPosition.call(m, void 0, void 0, C.inputmask.maskset.validPositions) !== -1 || i.nullable !== !0 ? S : "";
-                            }
-                            return f(C);
-                          },
-                          set: function(C, S) {
-                            var T = v(C, S);
-                            return C.inputmask && (0, M.applyInputValue)(C, S), T;
-                          },
-                          inputmaskpatch: !0
-                        };
-                      }
-                    }(r.type), function(E) {
-                      B.EventRuler.on(E, "mouseenter", function() {
-                        var f = this, v = f.inputmask._valueGet(!0);
-                        v != (f.inputmask.isRTL ? _.getBuffer.call(f.inputmask).slice().reverse() : _.getBuffer.call(f.inputmask)).join("") && (0, M.applyInputValue)(f, v);
-                      });
-                    }(r));
-                  }
-                }(t) : t.inputmask = void 0, s;
-              }(c, p);
-              if (e !== !1) {
-                m.originalPlaceholder = c.placeholder, m.maxLength = c !== void 0 ? c.maxLength : void 0, m.maxLength === -1 && (m.maxLength = void 0), "inputMode" in c && c.getAttribute("inputmode") === null && (c.inputMode = p.inputmode, c.setAttribute("inputmode", p.inputmode)), e === !0 && (p.showMaskOnFocus = p.showMaskOnFocus && ["cc-number", "cc-exp"].indexOf(c.autocomplete) === -1, j.iphone && (p.insertModeVisual = !1, c.setAttribute("autocorrect", "off")), B.EventRuler.on(c, "submit", b.EventHandlers.submitEvent), B.EventRuler.on(c, "reset", b.EventHandlers.resetEvent), B.EventRuler.on(c, "blur", b.EventHandlers.blurEvent), B.EventRuler.on(c, "focus", b.EventHandlers.focusEvent), B.EventRuler.on(c, "invalid", b.EventHandlers.invalidEvent), B.EventRuler.on(c, "click", b.EventHandlers.clickEvent), B.EventRuler.on(c, "mouseleave", b.EventHandlers.mouseleaveEvent), B.EventRuler.on(c, "mouseenter", b.EventHandlers.mouseenterEvent), B.EventRuler.on(c, "paste", b.EventHandlers.pasteEvent), B.EventRuler.on(c, "cut", b.EventHandlers.cutEvent), B.EventRuler.on(c, "complete", p.oncomplete), B.EventRuler.on(c, "incomplete", p.onincomplete), B.EventRuler.on(c, "cleared", p.oncleared), p.inputEventOnly !== !0 && B.EventRuler.on(c, "keydown", b.EventHandlers.keyEvent), (j.mobile || p.inputEventOnly) && c.removeAttribute("maxLength"), B.EventRuler.on(c, "input", b.EventHandlers.inputFallBackEvent)), B.EventRuler.on(c, "setvalue", b.EventHandlers.setValueEvent), _.getBufferTemplate.call(m).join(""), m.undoValue = m._valueGet(!0);
-                var o = (c.inputmask.shadowRoot || c.ownerDocument).activeElement;
-                if (c.inputmask._valueGet(!0) !== "" || p.clearMaskOnLostFocus === !1 || o === c) {
-                  (0, M.applyInputValue)(c, c.inputmask._valueGet(!0), p);
-                  var n = _.getBuffer.call(m).slice();
-                  I.isComplete.call(m, n) === !1 && p.clearIncomplete && _.resetMaskSet.call(m), p.clearMaskOnLostFocus && o !== c && (_.getLastValidPosition.call(m) === -1 ? n = [] : M.clearOptionalTail.call(m, n)), (p.clearMaskOnLostFocus === !1 || p.showMaskOnFocus && o === c || c.inputmask._valueGet(!0) !== "") && (0, M.writeBuffer)(c, n), o === c && _.caret.call(m, c, _.seekNext.call(m, _.getLastValidPosition.call(m)));
-                }
-              }
-            };
-            var h = w(2839), _ = w(8711), M = w(7760), B = w(9716), j = w(9845), I = w(7215), b = w(6030);
-          },
-          9695: function(G, k) {
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.default = function(w, h, _, M) {
-              this.matches = [], this.openGroup = w || !1, this.alternatorGroup = !1, this.isGroup = w || !1, this.isOptional = h || !1, this.isQuantifier = _ || !1, this.isAlternator = M || !1, this.quantifier = {
-                min: 1,
-                max: 1
-              };
-            };
-          },
-          3194: function() {
-            Array.prototype.includes || Object.defineProperty(Array.prototype, "includes", {
-              value: function(G, k) {
-                if (this == null)
-                  throw new TypeError('"this" is null or not defined');
-                var w = Object(this), h = w.length >>> 0;
-                if (h === 0)
-                  return !1;
-                for (var _ = 0 | k, M = Math.max(_ >= 0 ? _ : h - Math.abs(_), 0); M < h; ) {
-                  if (w[M] === G)
-                    return !0;
-                  M++;
-                }
-                return !1;
-              }
-            });
-          },
-          9302: function() {
-            var G = Function.bind.call(Function.call, Array.prototype.reduce), k = Function.bind.call(Function.call, Object.prototype.propertyIsEnumerable), w = Function.bind.call(Function.call, Array.prototype.concat), h = Object.keys;
-            Object.entries || (Object.entries = function(_) {
-              return G(h(_), function(M, B) {
-                return w(M, typeof B == "string" && k(_, B) ? [[B, _[B]]] : []);
-              }, []);
-            });
-          },
-          7149: function() {
-            function G(k) {
-              return G = typeof Symbol == "function" && typeof Symbol.iterator == "symbol" ? function(w) {
-                return typeof w;
-              } : function(w) {
-                return w && typeof Symbol == "function" && w.constructor === Symbol && w !== Symbol.prototype ? "symbol" : typeof w;
-              }, G(k);
-            }
-            typeof Object.getPrototypeOf != "function" && (Object.getPrototypeOf = G("test".__proto__) === "object" ? function(k) {
-              return k.__proto__;
-            } : function(k) {
-              return k.constructor.prototype;
-            });
-          },
-          4013: function() {
-            String.prototype.includes || (String.prototype.includes = function(G, k) {
-              return typeof k != "number" && (k = 0), !(k + G.length > this.length) && this.indexOf(G, k) !== -1;
-            });
-          },
-          8711: function(G, k, w) {
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.caret = function(m, p, c, a, e) {
-              var o, n = this, t = this.opts;
-              if (p === void 0)
-                return "selectionStart" in m && "selectionEnd" in m ? (p = m.selectionStart, c = m.selectionEnd) : window.getSelection ? (o = window.getSelection().getRangeAt(0)).commonAncestorContainer.parentNode !== m && o.commonAncestorContainer !== m || (p = o.startOffset, c = o.endOffset) : document.selection && document.selection.createRange && (c = (p = 0 - (o = document.selection.createRange()).duplicate().moveStart("character", -m.inputmask._valueGet().length)) + o.text.length), {
-                  begin: a ? p : b.call(n, p),
-                  end: a ? c : b.call(n, c)
-                };
-              if (Array.isArray(p) && (c = n.isRTL ? p[0] : p[1], p = n.isRTL ? p[1] : p[0]), p.begin !== void 0 && (c = n.isRTL ? p.begin : p.end, p = n.isRTL ? p.end : p.begin), typeof p == "number") {
-                p = a ? p : b.call(n, p), c = typeof (c = a ? c : b.call(n, c)) == "number" ? c : p;
-                var i = parseInt(((m.ownerDocument.defaultView || window).getComputedStyle ? (m.ownerDocument.defaultView || window).getComputedStyle(m, null) : m.currentStyle).fontSize) * c;
-                if (m.scrollLeft = i > m.scrollWidth ? i : 0, m.inputmask.caretPos = {
-                  begin: p,
-                  end: c
-                }, t.insertModeVisual && t.insertMode === !1 && p === c && (e || c++), m === (m.inputmask.shadowRoot || m.ownerDocument).activeElement)
-                  if ("setSelectionRange" in m)
-                    m.setSelectionRange(p, c);
-                  else if (window.getSelection) {
-                    if (o = document.createRange(), m.firstChild === void 0 || m.firstChild === null) {
-                      var l = document.createTextNode("");
-                      m.appendChild(l);
-                    }
-                    o.setStart(m.firstChild, p < m.inputmask._valueGet().length ? p : m.inputmask._valueGet().length), o.setEnd(m.firstChild, c < m.inputmask._valueGet().length ? c : m.inputmask._valueGet().length), o.collapse(!0);
-                    var s = window.getSelection();
-                    s.removeAllRanges(), s.addRange(o);
-                  } else
-                    m.createTextRange && ((o = m.createTextRange()).collapse(!0), o.moveEnd("character", c), o.moveStart("character", p), o.select());
-              }
-            }, k.determineLastRequiredPosition = function(m) {
-              var p, c, a = this, e = a.maskset, o = a.dependencyLib, n = h.getMaskTemplate.call(a, !0, B.call(a), !0, !0), t = n.length, i = B.call(a), l = {}, s = e.validPositions[i], d = s !== void 0 ? s.locator.slice() : void 0;
-              for (p = i + 1; p < n.length; p++)
-                d = (c = h.getTestTemplate.call(a, p, d, p - 1)).locator.slice(), l[p] = o.extend(!0, {}, c);
-              var r = s && s.alternation !== void 0 ? s.locator[s.alternation] : void 0;
-              for (p = t - 1; p > i && ((c = l[p]).match.optionality || c.match.optionalQuantifier && c.match.newBlockMarker || r && (r !== l[p].locator[s.alternation] && c.match.static != 1 || c.match.static === !0 && c.locator[s.alternation] && _.checkAlternationMatch.call(a, c.locator[s.alternation].toString().split(","), r.toString().split(",")) && h.getTests.call(a, p)[0].def !== "")) && n[p] === h.getPlaceholder.call(a, p, c.match); p--)
-                t--;
-              return m ? {
-                l: t,
-                def: l[t] ? l[t].match : void 0
-              } : t;
-            }, k.determineNewCaretPosition = function(m, p, c) {
-              var a = this, e = a.maskset, o = a.opts;
-              if (p && (a.isRTL ? m.end = m.begin : m.begin = m.end), m.begin === m.end) {
-                switch (c = c || o.positionCaretOnClick) {
-                  case "none":
-                    break;
-                  case "select":
-                    m = {
-                      begin: 0,
-                      end: M.call(a).length
-                    };
-                    break;
-                  case "ignore":
-                    m.end = m.begin = I.call(a, B.call(a));
-                    break;
-                  case "radixFocus":
-                    if (a.clicked > 1 && e.validPositions.length == 0)
-                      break;
-                    if (function(g) {
-                      if (o.radixPoint !== "" && o.digits !== 0) {
-                        var L = e.validPositions;
-                        if (L[g] === void 0 || L[g].input === h.getPlaceholder.call(a, g)) {
-                          if (g < I.call(a, -1))
-                            return !0;
-                          var y = M.call(a).indexOf(o.radixPoint);
-                          if (y !== -1) {
-                            for (var x = 0, E = L.length; x < E; x++)
-                              if (L[x] && y < x && L[x].input !== h.getPlaceholder.call(a, x))
-                                return !1;
-                            return !0;
-                          }
-                        }
-                      }
-                      return !1;
-                    }(m.begin)) {
-                      var n = M.call(a).join("").indexOf(o.radixPoint);
-                      m.end = m.begin = o.numericInput ? I.call(a, n) : n;
-                      break;
-                    }
-                  default:
-                    var t = m.begin, i = B.call(a, t, !0), l = I.call(a, i !== -1 || j.call(a, 0) ? i : -1);
-                    if (t <= l)
-                      m.end = m.begin = j.call(a, t, !1, !0) ? t : I.call(a, t);
-                    else {
-                      var s = e.validPositions[i], d = h.getTestTemplate.call(a, l, s ? s.match.locator : void 0, s), r = h.getPlaceholder.call(a, l, d.match);
-                      if (r !== "" && M.call(a)[l] !== r && d.match.optionalQuantifier !== !0 && d.match.newBlockMarker !== !0 || !j.call(a, l, o.keepStatic, !0) && d.match.def === r) {
-                        var u = I.call(a, l);
-                        (t >= u || t === l) && (l = u);
-                      }
-                      m.end = m.begin = l;
-                    }
-                }
-                return m;
-              }
-            }, k.getBuffer = M, k.getBufferTemplate = function() {
-              var m = this.maskset;
-              return m._buffer === void 0 && (m._buffer = h.getMaskTemplate.call(this, !1, 1), m.buffer === void 0 && (m.buffer = m._buffer.slice())), m._buffer;
-            }, k.getLastValidPosition = B, k.isMask = j, k.resetMaskSet = function(m) {
-              var p = this.maskset;
-              p.buffer = void 0, m !== !0 && (p.validPositions = [], p.p = 0);
-            }, k.seekNext = I, k.seekPrevious = function(m, p) {
-              var c = this, a = m - 1;
-              if (m <= 0)
-                return 0;
-              for (; a > 0 && (p === !0 && (h.getTest.call(c, a).match.newBlockMarker !== !0 || !j.call(c, a, void 0, !0)) || p !== !0 && !j.call(c, a, void 0, !0)); )
-                a--;
-              return a;
-            }, k.translatePosition = b;
-            var h = w(4713), _ = w(7215);
-            function M(m) {
-              var p = this, c = p.maskset;
-              return c.buffer !== void 0 && m !== !0 || (c.buffer = h.getMaskTemplate.call(p, !0, B.call(p), !0), c._buffer === void 0 && (c._buffer = c.buffer.slice())), c.buffer;
-            }
-            function B(m, p, c) {
-              var a = this.maskset, e = -1, o = -1, n = c || a.validPositions;
-              m === void 0 && (m = -1);
-              for (var t = 0, i = n.length; t < i; t++)
-                n[t] && (p || n[t].generatedInput !== !0) && (t <= m && (e = t), t >= m && (o = t));
-              return e === -1 || e == m ? o : o == -1 || m - e < o - m ? e : o;
-            }
-            function j(m, p, c) {
-              var a = this, e = this.maskset, o = h.getTestTemplate.call(a, m).match;
-              if (o.def === "" && (o = h.getTest.call(a, m).match), o.static !== !0)
-                return o.fn;
-              if (c === !0 && e.validPositions[m] !== void 0 && e.validPositions[m].generatedInput !== !0)
-                return !0;
-              if (p !== !0 && m > -1) {
-                if (c) {
-                  var n = h.getTests.call(a, m);
-                  return n.length > 1 + (n[n.length - 1].match.def === "" ? 1 : 0);
-                }
-                var t = h.determineTestTemplate.call(a, m, h.getTests.call(a, m)), i = h.getPlaceholder.call(a, m, t.match);
-                return t.match.def !== i;
-              }
-              return !1;
-            }
-            function I(m, p, c) {
-              var a = this;
-              c === void 0 && (c = !0);
-              for (var e = m + 1; h.getTest.call(a, e).match.def !== "" && (p === !0 && (h.getTest.call(a, e).match.newBlockMarker !== !0 || !j.call(a, e, void 0, !0)) || p !== !0 && !j.call(a, e, void 0, c)); )
-                e++;
-              return e;
-            }
-            function b(m) {
-              var p = this.opts, c = this.el;
-              return !this.isRTL || typeof m != "number" || p.greedy && p.placeholder === "" || !c || (m = this._valueGet().length - m) < 0 && (m = 0), m;
-            }
-          },
-          4713: function(G, k, w) {
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.determineTestTemplate = b, k.getDecisionTaker = B, k.getMaskTemplate = function(a, e, o, n, t) {
-              var i = this, l = this.opts, s = this.maskset, d = l.greedy;
-              t && l.greedy && (l.greedy = !1, i.maskset.tests = {}), e = e || 0;
-              var r, u, g, L, y = [], x = 0;
-              do {
-                if (a === !0 && s.validPositions[x])
-                  u = (g = t && s.validPositions[x].match.optionality && s.validPositions[x + 1] === void 0 && (s.validPositions[x].generatedInput === !0 || s.validPositions[x].input == l.skipOptionalPartCharacter && x > 0) ? b.call(i, x, c.call(i, x, r, x - 1)) : s.validPositions[x]).match, r = g.locator.slice(), y.push(o === !0 ? g.input : o === !1 ? u.nativeDef : j.call(i, x, u));
-                else {
-                  u = (g = I.call(i, x, r, x - 1)).match, r = g.locator.slice();
-                  var E = n !== !0 && (l.jitMasking !== !1 ? l.jitMasking : u.jit);
-                  (L = (L && u.static && u.def !== l.groupSeparator && u.fn === null || s.validPositions[x - 1] && u.static && u.def !== l.groupSeparator && u.fn === null) && s.tests[x]) || E === !1 || E === void 0 || typeof E == "number" && isFinite(E) && E > x ? y.push(o === !1 ? u.nativeDef : j.call(i, y.length, u)) : L = !1;
-                }
-                x++;
-              } while (u.static !== !0 || u.def !== "" || e > x);
-              return y[y.length - 1] === "" && y.pop(), o === !1 && s.maskLength !== void 0 || (s.maskLength = x - 1), l.greedy = d, y;
-            }, k.getPlaceholder = j, k.getTest = m, k.getTestTemplate = I, k.getTests = c, k.isSubsetOf = p;
-            var h, _ = (h = w(2394)) && h.__esModule ? h : {
-              default: h
-            };
-            function M(a, e) {
-              var o = (a.alternation != null ? a.mloc[B(a)] : a.locator).join("");
-              if (o !== "")
-                for (; o.length < e; )
-                  o += "0";
-              return o;
-            }
-            function B(a) {
-              var e = a.locator[a.alternation];
-              return typeof e == "string" && e.length > 0 && (e = e.split(",")[0]), e !== void 0 ? e.toString() : "";
-            }
-            function j(a, e, o) {
-              var n = this.opts, t = this.maskset;
-              if ((e = e || m.call(this, a).match).placeholder !== void 0 || o === !0)
-                return typeof e.placeholder == "function" ? e.placeholder(n) : e.placeholder;
-              if (e.static === !0) {
-                if (a > -1 && t.validPositions[a] === void 0) {
-                  var i, l = c.call(this, a), s = [];
-                  if (l.length > 1 + (l[l.length - 1].match.def === "" ? 1 : 0)) {
-                    for (var d = 0; d < l.length; d++)
-                      if (l[d].match.def !== "" && l[d].match.optionality !== !0 && l[d].match.optionalQuantifier !== !0 && (l[d].match.static === !0 || i === void 0 || l[d].match.fn.test(i.match.def, t, a, !0, n) !== !1) && (s.push(l[d]), l[d].match.static === !0 && (i = l[d]), s.length > 1 && /[0-9a-bA-Z]/.test(s[0].match.def)))
-                        return n.placeholder.charAt(a % n.placeholder.length);
-                  }
-                }
-                return e.def;
-              }
-              return n.placeholder.charAt(a % n.placeholder.length);
-            }
-            function I(a, e, o) {
-              return this.maskset.validPositions[a] || b.call(this, a, c.call(this, a, e && e.slice(), o));
-            }
-            function b(a, e) {
-              var o = this.opts, n = 0, t = function(L, y) {
-                var x = 0, E = !1;
-                return y.forEach(function(f) {
-                  f.match.optionality && (x !== 0 && x !== f.match.optionality && (E = !0), (x === 0 || x > f.match.optionality) && (x = f.match.optionality));
-                }), x && (L == 0 || y.length == 1 ? x = 0 : E || (x = 0)), x;
-              }(a, e);
-              a = a > 0 ? a - 1 : 0;
-              var i, l, s, d = M(m.call(this, a));
-              o.greedy && e.length > 1 && e[e.length - 1].match.def === "" && (n = 1);
-              for (var r = 0; r < e.length - n; r++) {
-                var u = e[r];
-                i = M(u, d.length);
-                var g = Math.abs(i - d);
-                (l === void 0 || i !== "" && g < l || s && !o.greedy && s.match.optionality && s.match.optionality - t > 0 && s.match.newBlockMarker === "master" && (!u.match.optionality || u.match.optionality - t < 1 || !u.match.newBlockMarker) || s && !o.greedy && s.match.optionalQuantifier && !u.match.optionalQuantifier) && (l = g, s = u);
-              }
-              return s;
-            }
-            function m(a, e) {
-              var o = this.maskset;
-              return o.validPositions[a] ? o.validPositions[a] : (e || c.call(this, a))[0];
-            }
-            function p(a, e, o) {
-              function n(t) {
-                for (var i, l = [], s = -1, d = 0, r = t.length; d < r; d++)
-                  if (t.charAt(d) === "-")
-                    for (i = t.charCodeAt(d + 1); ++s < i; )
-                      l.push(String.fromCharCode(s));
-                  else
-                    s = t.charCodeAt(d), l.push(t.charAt(d));
-                return l.join("");
-              }
-              return a.match.def === e.match.nativeDef || !(!(o.regex || a.match.fn instanceof RegExp && e.match.fn instanceof RegExp) || a.match.static === !0 || e.match.static === !0) && n(e.match.fn.toString().replace(/[[\]/]/g, "")).indexOf(n(a.match.fn.toString().replace(/[[\]/]/g, ""))) !== -1;
-            }
-            function c(a, e, o) {
-              var n, t, i = this, l = this.dependencyLib, s = this.maskset, d = this.opts, r = this.el, u = s.maskToken, g = e ? o : 0, L = e ? e.slice() : [0], y = [], x = !1, E = e ? e.join("") : "";
-              function f(D, A, F, O) {
-                function N(P, Z, W) {
-                  function oe(K, te) {
-                    var Y = te.matches.indexOf(K) === 0;
-                    return Y || te.matches.every(function(J, ie) {
-                      return J.isQuantifier === !0 ? Y = oe(K, te.matches[ie - 1]) : Object.prototype.hasOwnProperty.call(J, "matches") && (Y = oe(K, J)), !Y;
-                    }), Y;
-                  }
-                  function q(K, te, Y) {
-                    var J, ie;
-                    if ((s.tests[K] || s.validPositions[K]) && (s.tests[K] || [s.validPositions[K]]).every(function(le, be) {
-                      if (le.mloc[te])
-                        return J = le, !1;
-                      var ue = Y !== void 0 ? Y : le.alternation, fe = le.locator[ue] !== void 0 ? le.locator[ue].toString().indexOf(te) : -1;
-                      return (ie === void 0 || fe < ie) && fe !== -1 && (J = le, ie = fe), !0;
-                    }), J) {
-                      var pe = J.locator[J.alternation];
-                      return (J.mloc[te] || J.mloc[pe] || J.locator).slice((Y !== void 0 ? Y : J.alternation) + 1);
-                    }
-                    return Y !== void 0 ? q(K, te) : void 0;
-                  }
-                  function ne(K, te) {
-                    var Y = K.alternation, J = te === void 0 || Y === te.alternation && K.locator[Y].toString().indexOf(te.locator[Y]) === -1;
-                    if (!J && Y > te.alternation) {
-                      for (var ie = te.alternation; ie < Y; ie++)
-                        if (K.locator[ie] !== te.locator[ie]) {
-                          Y = ie, J = !0;
-                          break;
-                        }
-                    }
-                    if (J) {
-                      K.mloc = K.mloc || {};
-                      var pe = K.locator[Y];
-                      if (pe !== void 0) {
-                        if (typeof pe == "string" && (pe = pe.split(",")[0]), K.mloc[pe] === void 0 && (K.mloc[pe] = K.locator.slice()), te !== void 0) {
-                          for (var le in te.mloc)
-                            typeof le == "string" && (le = le.split(",")[0]), K.mloc[le] === void 0 && (K.mloc[le] = te.mloc[le]);
-                          K.locator[Y] = Object.keys(K.mloc).join(",");
-                        }
-                        return !0;
-                      }
-                      K.alternation = void 0;
-                    }
-                    return !1;
-                  }
-                  function se(K, te) {
-                    if (K.locator.length !== te.locator.length)
-                      return !1;
-                    for (var Y = K.alternation + 1; Y < K.locator.length; Y++)
-                      if (K.locator[Y] !== te.locator[Y])
-                        return !1;
-                    return !0;
-                  }
-                  if (g > a + d._maxTestPos)
-                    throw "Inputmask: There is probably an error in your mask definition or in the code. Create an issue on github with an example of the mask you are using. " + s.mask;
-                  if (g === a && P.matches === void 0) {
-                    if (y.push({
-                      match: P,
-                      locator: Z.reverse(),
-                      cd: E,
-                      mloc: {}
-                    }), !P.optionality || W !== void 0 || !(d.definitions && d.definitions[P.nativeDef] && d.definitions[P.nativeDef].optional || _.default.prototype.definitions[P.nativeDef] && _.default.prototype.definitions[P.nativeDef].optional))
-                      return !0;
-                    x = !0, g = a;
-                  } else if (P.matches !== void 0) {
-                    if (P.isGroup && W !== P)
-                      return function() {
-                        if (P = N(D.matches[D.matches.indexOf(P) + 1], Z, W))
-                          return !0;
-                      }();
-                    if (P.isOptional)
-                      return function() {
-                        var K = P, te = y.length;
-                        if (P = f(P, A, Z, W), y.length > 0) {
-                          if (y.forEach(function(Y, J) {
-                            J >= te && (Y.match.optionality = Y.match.optionality ? Y.match.optionality + 1 : 1);
-                          }), n = y[y.length - 1].match, W !== void 0 || !oe(n, K))
-                            return P;
-                          x = !0, g = a;
-                        }
-                      }();
-                    if (P.isAlternator)
-                      return function() {
-                        i.hasAlternator = !0;
-                        var K, te, Y, J = P, ie = [], pe = y.slice(), le = Z.length, be = !1, ue = A.length > 0 ? A.shift() : -1;
-                        if (ue === -1 || typeof ue == "string") {
-                          var fe, me = g, Pe = A.slice(), he = [];
-                          if (typeof ue == "string")
-                            he = ue.split(",");
-                          else
-                            for (fe = 0; fe < J.matches.length; fe++)
-                              he.push(fe.toString());
-                          if (s.excludes[a] !== void 0) {
-                            for (var ze = he.slice(), Le = 0, qe = s.excludes[a].length; Le < qe; Le++) {
-                              var Ee = s.excludes[a][Le].toString().split(":");
-                              Z.length == Ee[1] && he.splice(he.indexOf(Ee[0]), 1);
-                            }
-                            he.length === 0 && (delete s.excludes[a], he = ze);
-                          }
-                          (d.keepStatic === !0 || isFinite(parseInt(d.keepStatic)) && me >= d.keepStatic) && (he = he.slice(0, 1));
-                          for (var xe = 0; xe < he.length; xe++) {
-                            fe = parseInt(he[xe]), y = [], A = typeof ue == "string" && q(g, fe, le) || Pe.slice();
-                            var _e = J.matches[fe];
-                            if (_e && N(_e, [fe].concat(Z), W))
-                              P = !0;
-                            else if (xe === 0 && (be = !0), _e && _e.matches && _e.matches.length > J.matches[0].matches.length)
-                              break;
-                            K = y.slice(), g = me, y = [];
-                            for (var Me = 0; Me < K.length; Me++) {
-                              var ce = K[Me], we = !1;
-                              ce.match.jit = ce.match.jit || be, ce.alternation = ce.alternation || le, ne(ce);
-                              for (var Se = 0; Se < ie.length; Se++) {
-                                var ve = ie[Se];
-                                if (typeof ue != "string" || ce.alternation !== void 0 && he.includes(ce.locator[ce.alternation].toString())) {
-                                  if (ce.match.nativeDef === ve.match.nativeDef) {
-                                    we = !0, ne(ve, ce);
-                                    break;
-                                  }
-                                  if (p(ce, ve, d)) {
-                                    ne(ce, ve) && (we = !0, ie.splice(ie.indexOf(ve), 0, ce));
-                                    break;
-                                  }
-                                  if (p(ve, ce, d)) {
-                                    ne(ve, ce);
-                                    break;
-                                  }
-                                  if (Y = ve, (te = ce).match.static === !0 && Y.match.static !== !0 && Y.match.fn.test(te.match.def, s, a, !1, d, !1)) {
-                                    se(ce, ve) || r.inputmask.userOptions.keepStatic !== void 0 ? ne(ce, ve) && (we = !0, ie.splice(ie.indexOf(ve), 0, ce)) : d.keepStatic = !0;
-                                    break;
-                                  }
-                                }
-                              }
-                              we || ie.push(ce);
-                            }
-                          }
-                          y = pe.concat(ie), g = a, x = y.length > 0, P = ie.length > 0, A = Pe.slice();
-                        } else
-                          P = N(J.matches[ue] || D.matches[ue], [ue].concat(Z), W);
-                        if (P)
-                          return !0;
-                      }();
-                    if (P.isQuantifier && W !== D.matches[D.matches.indexOf(P) - 1])
-                      return function() {
-                        for (var K = P, te = !1, Y = A.length > 0 ? A.shift() : 0; Y < (isNaN(K.quantifier.max) ? Y + 1 : K.quantifier.max) && g <= a; Y++) {
-                          var J = D.matches[D.matches.indexOf(K) - 1];
-                          if (P = N(J, [Y].concat(Z), J)) {
-                            if (y.forEach(function(ie, pe) {
-                              (n = v(J, ie.match) ? ie.match : y[y.length - 1].match).optionalQuantifier = Y >= K.quantifier.min, n.jit = (Y + 1) * (J.matches.indexOf(n) + 1) > K.quantifier.jit, n.optionalQuantifier && oe(n, J) && (x = !0, g = a, d.greedy && s.validPositions[a - 1] == null && Y > K.quantifier.min && ["*", "+"].indexOf(K.quantifier.max) != -1 && (y.pop(), E = void 0), te = !0, P = !1), !te && n.jit && (s.jitOffset[a] = J.matches.length - J.matches.indexOf(n));
-                            }), te)
-                              break;
-                            return !0;
-                          }
-                        }
-                      }();
-                    if (P = f(P, A, Z, W))
-                      return !0;
-                  } else
-                    g++;
-                }
-                for (var V = A.length > 0 ? A.shift() : 0; V < D.matches.length; V++)
-                  if (D.matches[V].isQuantifier !== !0) {
-                    var U = N(D.matches[V], [V].concat(F), O);
-                    if (U && g === a)
-                      return U;
-                    if (g > a)
-                      break;
-                  }
-              }
-              function v(D, A) {
-                var F = D.matches.indexOf(A) != -1;
-                return F || D.matches.forEach(function(O, N) {
-                  O.matches === void 0 || F || (F = v(O, A));
-                }), F;
-              }
-              if (a > -1) {
-                if (e === void 0) {
-                  for (var C, S = a - 1; (C = s.validPositions[S] || s.tests[S]) === void 0 && S > -1; )
-                    S--;
-                  C !== void 0 && S > -1 && (L = function(D, A) {
-                    var F, O = [];
-                    return Array.isArray(A) || (A = [A]), A.length > 0 && (A[0].alternation === void 0 || d.keepStatic === !0 ? (O = b.call(i, D, A.slice()).locator.slice()).length === 0 && (O = A[0].locator.slice()) : A.forEach(function(N) {
-                      N.def !== "" && (O.length === 0 ? (F = N.alternation, O = N.locator.slice()) : N.locator[F] && O[F].toString().indexOf(N.locator[F]) === -1 && (O[F] += "," + N.locator[F]));
-                    })), O;
-                  }(S, C), E = L.join(""), g = S);
-                }
-                if (s.tests[a] && s.tests[a][0].cd === E)
-                  return s.tests[a];
-                for (var T = L.shift(); T < u.length && !(f(u[T], L, [T]) && g === a || g > a); T++)
-                  ;
-              }
-              return (y.length === 0 || x) && y.push({
-                match: {
-                  fn: null,
-                  static: !0,
-                  optionality: !1,
-                  casing: null,
-                  def: "",
-                  placeholder: ""
-                },
-                locator: [],
-                mloc: {},
-                cd: E
-              }), e !== void 0 && s.tests[a] ? t = l.extend(!0, [], y) : (s.tests[a] = l.extend(!0, [], y), t = s.tests[a]), y.forEach(function(D) {
-                D.match.optionality = D.match.defOptionality || !1;
-              }), t;
-            }
-          },
-          7215: function(G, k, w) {
-            Object.defineProperty(k, "__esModule", {
-              value: !0
-            }), k.alternate = j, k.checkAlternationMatch = function(n, t, i) {
-              for (var l, s = this.opts.greedy ? t : t.slice(0, 1), d = !1, r = i !== void 0 ? i.split(",") : [], u = 0; u < r.length; u++)
-                (l = n.indexOf(r[u])) !== -1 && n.splice(l, 1);
-              for (var g = 0; g < n.length; g++)
-                if (s.includes(n[g])) {
-                  d = !0;
-                  break;
-                }
-              return d;
-            }, k.handleRemove = function(n, t, i, l, s) {
-              var d = this, r = this.maskset, u = this.opts;
-              if ((u.numericInput || d.isRTL) && (t === _.keys.Backspace ? t = _.keys.Delete : t === _.keys.Delete && (t = _.keys.Backspace), d.isRTL)) {
-                var g = i.end;
-                i.end = i.begin, i.begin = g;
-              }
-              var L, y = M.getLastValidPosition.call(d, void 0, !0);
-              if (i.end >= M.getBuffer.call(d).length && y >= i.end && (i.end = y + 1), t === _.keys.Backspace ? i.end - i.begin < 1 && (i.begin = M.seekPrevious.call(d, i.begin)) : t === _.keys.Delete && i.begin === i.end && (i.end = M.isMask.call(d, i.end, !0, !0) ? i.end + 1 : M.seekNext.call(d, i.end) + 1), (L = o.call(d, i)) !== !1) {
-                if (l !== !0 && u.keepStatic !== !1 || u.regex !== null && h.getTest.call(d, i.begin).match.def.indexOf("|") !== -1) {
-                  var x = j.call(d, !0);
-                  if (x) {
-                    var E = x.caret !== void 0 ? x.caret : x.pos ? M.seekNext.call(d, x.pos.begin ? x.pos.begin : x.pos) : M.getLastValidPosition.call(d, -1, !0);
-                    (t !== _.keys.Delete || i.begin > E) && i.begin;
-                  }
-                }
-                l !== !0 && (r.p = t === _.keys.Delete ? i.begin + L : i.begin, r.p = M.determineNewCaretPosition.call(d, {
-                  begin: r.p,
-                  end: r.p
-                }, !1, u.insertMode === !1 && t === _.keys.Backspace ? "none" : void 0).begin);
-              }
-            }, k.isComplete = b, k.isSelection = m, k.isValid = p, k.refreshFromBuffer = a, k.revalidateMask = o;
-            var h = w(4713), _ = w(2839), M = w(8711), B = w(6030);
-            function j(n, t, i, l, s, d) {
-              var r, u, g, L, y, x, E, f, v, C, S, T = this, D = this.dependencyLib, A = this.opts, F = T.maskset, O = D.extend(!0, [], F.validPositions), N = D.extend(!0, {}, F.tests), V = !1, U = !1, P = s !== void 0 ? s : M.getLastValidPosition.call(T);
-              if (d && (C = d.begin, S = d.end, d.begin > d.end && (C = d.end, S = d.begin)), P === -1 && s === void 0)
-                r = 0, u = (L = h.getTest.call(T, r)).alternation;
-              else
-                for (; P >= 0; P--)
-                  if ((g = F.validPositions[P]) && g.alternation !== void 0) {
-                    if (P <= (n || 0) && L && L.locator[g.alternation] !== g.locator[g.alternation])
-                      break;
-                    r = P, u = F.validPositions[r].alternation, L = g;
-                  }
-              if (u !== void 0) {
-                E = parseInt(r), F.excludes[E] = F.excludes[E] || [], n !== !0 && F.excludes[E].push((0, h.getDecisionTaker)(L) + ":" + L.alternation);
-                var Z = [], W = -1;
-                for (y = E; y < M.getLastValidPosition.call(T, void 0, !0) + 1; y++)
-                  W === -1 && n <= y && t !== void 0 && (Z.push(t), W = Z.length - 1), (x = F.validPositions[y]) && x.generatedInput !== !0 && (d === void 0 || y < C || y >= S) && Z.push(x.input), delete F.validPositions[y];
-                for (W === -1 && t !== void 0 && (Z.push(t), W = Z.length - 1); F.excludes[E] !== void 0 && F.excludes[E].length < 10; ) {
-                  for (F.tests = {}, M.resetMaskSet.call(T, !0), V = !0, y = 0; y < Z.length && (f = V.caret || M.getLastValidPosition.call(T, void 0, !0) + 1, v = Z[y], V = p.call(T, f, v, !1, l, !0)); y++)
-                    y === W && (U = V), n == 1 && V && (U = {
-                      caretPos: y
-                    });
-                  if (V)
-                    break;
-                  if (M.resetMaskSet.call(T), L = h.getTest.call(T, E), F.validPositions = D.extend(!0, [], O), F.tests = D.extend(!0, {}, N), !F.excludes[E]) {
-                    U = j.call(T, n, t, i, l, E - 1, d);
-                    break;
-                  }
-                  var oe = (0, h.getDecisionTaker)(L);
-                  if (F.excludes[E].indexOf(oe + ":" + L.alternation) !== -1) {
-                    U = j.call(T, n, t, i, l, E - 1, d);
-                    break;
-                  }
-                  for (F.excludes[E].push(oe + ":" + L.alternation), y = E; y < M.getLastValidPosition.call(T, void 0, !0) + 1; y++)
-                    delete F.validPositions[y];
-                }
-              }
-              return U && A.keepStatic === !1 || delete F.excludes[E], U;
-            }
-            function I(n, t, i) {
-              var l = this.opts, s = this.maskset;
-              switch (l.casing || t.casing) {
-                case "upper":
-                  n = n.toUpperCase();
-                  break;
-                case "lower":
-                  n = n.toLowerCase();
-                  break;
-                case "title":
-                  var d = s.validPositions[i - 1];
-                  n = i === 0 || d && d.input === String.fromCharCode(_.keyCode.Space) ? n.toUpperCase() : n.toLowerCase();
-                  break;
-                default:
-                  if (typeof l.casing == "function") {
-                    var r = Array.prototype.slice.call(arguments);
-                    r.push(s.validPositions), n = l.casing.apply(this, r);
-                  }
-              }
-              return n;
-            }
-            function b(n) {
-              var t = this, i = this.opts, l = this.maskset;
-              if (typeof i.isComplete == "function")
-                return i.isComplete(n, i);
-              if (i.repeat !== "*") {
-                var s = !1, d = M.determineLastRequiredPosition.call(t, !0), r = M.seekPrevious.call(t, d.l);
-                if (d.def === void 0 || d.def.newBlockMarker || d.def.optionality || d.def.optionalQuantifier) {
-                  s = !0;
-                  for (var u = 0; u <= r; u++) {
-                    var g = h.getTestTemplate.call(t, u).match;
-                    if (g.static !== !0 && l.validPositions[u] === void 0 && g.optionality !== !0 && g.optionalQuantifier !== !0 || g.static === !0 && n[u] !== h.getPlaceholder.call(t, u, g)) {
-                      s = !1;
-                      break;
-                    }
-                  }
-                }
-                return s;
-              }
-            }
-            function m(n) {
-              var t = this.opts.insertMode ? 0 : 1;
-              return this.isRTL ? n.begin - n.end > t : n.end - n.begin > t;
-            }
-            function p(n, t, i, l, s, d, r) {
-              var u = this, g = this.dependencyLib, L = this.opts, y = u.maskset;
-              i = i === !0;
-              var x = n;
-              function E(V) {
-                if (V !== void 0) {
-                  if (V.remove !== void 0 && (Array.isArray(V.remove) || (V.remove = [V.remove]), V.remove.sort(function(P, Z) {
-                    return u.isRTL ? P.pos - Z.pos : Z.pos - P.pos;
-                  }).forEach(function(P) {
-                    o.call(u, {
-                      begin: P,
-                      end: P + 1
-                    });
-                  }), V.remove = void 0), V.insert !== void 0 && (Array.isArray(V.insert) || (V.insert = [V.insert]), V.insert.sort(function(P, Z) {
-                    return u.isRTL ? Z.pos - P.pos : P.pos - Z.pos;
-                  }).forEach(function(P) {
-                    P.c !== "" && p.call(u, P.pos, P.c, P.strict === void 0 || P.strict, P.fromIsValid !== void 0 ? P.fromIsValid : l);
-                  }), V.insert = void 0), V.refreshFromBuffer && V.buffer) {
-                    var U = V.refreshFromBuffer;
-                    a.call(u, U === !0 ? U : U.start, U.end, V.buffer), V.refreshFromBuffer = void 0;
-                  }
-                  V.rewritePosition !== void 0 && (x = V.rewritePosition, V = !0);
-                }
-                return V;
-              }
-              function f(V, U, P) {
-                var Z = !1;
-                return h.getTests.call(u, V).every(function(W, oe) {
-                  var q = W.match;
-                  if (M.getBuffer.call(u, !0), (Z = (!q.jit || y.validPositions[M.seekPrevious.call(u, V)] !== void 0) && (q.fn != null ? q.fn.test(U, y, V, P, L, m.call(u, n)) : (U === q.def || U === L.skipOptionalPartCharacter) && q.def !== "" && {
-                    c: h.getPlaceholder.call(u, V, q, !0) || q.def,
-                    pos: V
-                  })) !== !1) {
-                    var ne = Z.c !== void 0 ? Z.c : U, se = V;
-                    return ne = ne === L.skipOptionalPartCharacter && q.static === !0 ? h.getPlaceholder.call(u, V, q, !0) || q.def : ne, (Z = E(Z)) !== !0 && Z.pos !== void 0 && Z.pos !== V && (se = Z.pos), Z !== !0 && Z.pos === void 0 && Z.c === void 0 || o.call(u, n, g.extend({}, W, {
-                      input: I.call(u, ne, q, se)
-                    }), l, se) === !1 && (Z = !1), !1;
-                  }
-                  return !0;
-                }), Z;
-              }
-              n.begin !== void 0 && (x = u.isRTL ? n.end : n.begin);
-              var v = !0, C = g.extend(!0, {}, y.validPositions);
-              if (L.keepStatic === !1 && y.excludes[x] !== void 0 && s !== !0 && l !== !0)
-                for (var S = x; S < (u.isRTL ? n.begin : n.end); S++)
-                  y.excludes[S] !== void 0 && (y.excludes[S] = void 0, delete y.tests[S]);
-              if (typeof L.preValidation == "function" && l !== !0 && d !== !0 && (v = E(v = L.preValidation.call(u, M.getBuffer.call(u), x, t, m.call(u, n), L, y, n, i || s))), v === !0) {
-                if (v = f(x, t, i), (!i || l === !0) && v === !1 && d !== !0) {
-                  var T = y.validPositions[x];
-                  if (!T || T.match.static !== !0 || T.match.def !== t && t !== L.skipOptionalPartCharacter) {
-                    if (L.insertMode || y.validPositions[M.seekNext.call(u, x)] === void 0 || n.end > x) {
-                      var D = !1;
-                      if (y.jitOffset[x] && y.validPositions[M.seekNext.call(u, x)] === void 0 && (v = p.call(u, x + y.jitOffset[x], t, !0, !0)) !== !1 && (s !== !0 && (v.caret = x), D = !0), n.end > x && (y.validPositions[x] = void 0), !D && !M.isMask.call(u, x, L.keepStatic && x === 0)) {
-                        for (var A = x + 1, F = M.seekNext.call(u, x, !1, x !== 0); A <= F; A++)
-                          if ((v = f(A, t, i)) !== !1) {
-                            v = e.call(u, x, v.pos !== void 0 ? v.pos : A) || v, x = A;
-                            break;
-                          }
-                      }
-                    }
-                  } else
-                    v = {
-                      caret: M.seekNext.call(u, x)
-                    };
-                }
-                u.hasAlternator && s !== !0 && !i && (v === !1 && L.keepStatic && (b.call(u, M.getBuffer.call(u)) || x === 0) ? v = j.call(u, x, t, i, l, void 0, n) : (m.call(u, n) && y.tests[x] && y.tests[x].length > 1 && L.keepStatic || v == 1 && L.numericInput !== !0 && y.tests[x] && y.tests[x].length > 1 && M.getLastValidPosition.call(u, void 0, !0) > x) && (v = j.call(u, !0))), v === !0 && (v = {
-                  pos: x
-                });
-              }
-              if (typeof L.postValidation == "function" && l !== !0 && d !== !0) {
-                var O = L.postValidation.call(u, M.getBuffer.call(u, !0), n.begin !== void 0 ? u.isRTL ? n.end : n.begin : n, t, v, L, y, i, r);
-                O !== void 0 && (v = O === !0 ? v : O);
-              }
-              v && v.pos === void 0 && (v.pos = x), v === !1 || d === !0 ? (M.resetMaskSet.call(u, !0), y.validPositions = g.extend(!0, [], C)) : e.call(u, void 0, x, !0);
-              var N = E(v);
-              return u.maxLength !== void 0 && M.getBuffer.call(u).length > u.maxLength && !l && (M.resetMaskSet.call(u, !0), y.validPositions = g.extend(!0, [], C), N = !1), N;
-            }
-            function c(n, t, i) {
-              for (var l = this.maskset, s = !1, d = h.getTests.call(this, n), r = 0; r < d.length; r++) {
-                if (d[r].match && (d[r].match.nativeDef === t.match[i.shiftPositions ? "def" : "nativeDef"] && (!i.shiftPositions || !t.match.static) || d[r].match.nativeDef === t.match.nativeDef || i.regex && !d[r].match.static && d[r].match.fn.test(t.input, l, n, !1, i))) {
-                  s = !0;
-                  break;
-                }
-                if (d[r].match && d[r].match.def === t.match.nativeDef) {
-                  s = void 0;
-                  break;
-                }
-              }
-              return s === !1 && l.jitOffset[n] !== void 0 && (s = c.call(this, n + l.jitOffset[n], t, i)), s;
-            }
-            function a(n, t, i) {
-              var l, s, d = this, r = this.maskset, u = this.opts, g = this.dependencyLib, L = u.skipOptionalPartCharacter, y = d.isRTL ? i.slice().reverse() : i;
-              if (u.skipOptionalPartCharacter = "", n === !0)
-                M.resetMaskSet.call(d), r.tests = {}, n = 0, t = i.length, s = M.determineNewCaretPosition.call(d, {
-                  begin: 0,
-                  end: 0
-                }, !1).begin;
-              else {
-                for (l = n; l < t; l++)
-                  delete r.validPositions[l];
-                s = n;
-              }
-              var x = new g.Event("keypress");
-              for (l = n; l < t; l++) {
-                x.key = y[l].toString(), d.ignorable = !1;
-                var E = B.EventHandlers.keypressEvent.call(d, x, !0, !1, !1, s);
-                E !== !1 && E !== void 0 && (s = E.forwardPosition);
-              }
-              u.skipOptionalPartCharacter = L;
-            }
-            function e(n, t, i) {
-              var l = this, s = this.maskset, d = this.dependencyLib;
-              if (n === void 0)
-                for (n = t - 1; n > 0 && !s.validPositions[n]; n--)
-                  ;
-              for (var r = n; r < t; r++)
-                if (s.validPositions[r] === void 0 && !M.isMask.call(l, r, !1) && (r == 0 ? h.getTest.call(l, r) : s.validPositions[r - 1])) {
-                  var u = h.getTests.call(l, r).slice();
-                  u[u.length - 1].match.def === "" && u.pop();
-                  var g, L = h.determineTestTemplate.call(l, r, u);
-                  if (L && (L.match.jit !== !0 || L.match.newBlockMarker === "master" && (g = s.validPositions[r + 1]) && g.match.optionalQuantifier === !0) && ((L = d.extend({}, L, {
-                    input: h.getPlaceholder.call(l, r, L.match, !0) || L.match.def
-                  })).generatedInput = !0, o.call(l, r, L, !0), i !== !0)) {
-                    var y = s.validPositions[t].input;
-                    return s.validPositions[t] = void 0, p.call(l, t, y, !0, !0);
-                  }
-                }
-            }
-            function o(n, t, i, l) {
-              var s = this, d = this.maskset, r = this.opts, u = this.dependencyLib;
-              function g(O, N, V) {
-                var U = N[O];
-                if (U !== void 0 && U.match.static === !0 && U.match.optionality !== !0 && (N[0] === void 0 || N[0].alternation === void 0)) {
-                  var P = V.begin <= O - 1 ? N[O - 1] && N[O - 1].match.static === !0 && N[O - 1] : N[O - 1], Z = V.end > O + 1 ? N[O + 1] && N[O + 1].match.static === !0 && N[O + 1] : N[O + 1];
-                  return P && Z;
-                }
-                return !1;
-              }
-              var L = 0, y = n.begin !== void 0 ? n.begin : n, x = n.end !== void 0 ? n.end : n, E = !0;
-              if (n.begin > n.end && (y = n.end, x = n.begin), l = l !== void 0 ? l : y, i === void 0 && (y !== x || r.insertMode && d.validPositions[l] !== void 0 || t === void 0 || t.match.optionalQuantifier || t.match.optionality)) {
-                var f, v = u.extend(!0, {}, d.validPositions), C = M.getLastValidPosition.call(s, void 0, !0);
-                for (d.p = y, f = C; f >= y; f--)
-                  delete d.validPositions[f], t === void 0 && delete d.tests[f + 1];
-                var S, T, D = l, A = D;
-                for (t && (d.validPositions[l] = u.extend(!0, {}, t), A++, D++), f = t ? x : x - 1; f <= C; f++) {
-                  if ((S = v[f]) !== void 0 && S.generatedInput !== !0 && (f >= x || f >= y && g(f, v, {
-                    begin: y,
-                    end: x
-                  }))) {
-                    for (; h.getTest.call(s, A).match.def !== ""; ) {
-                      if ((T = c.call(s, A, S, r)) !== !1 || S.match.def === "+") {
-                        S.match.def === "+" && M.getBuffer.call(s, !0);
-                        var F = p.call(s, A, S.input, S.match.def !== "+", !0);
-                        if (E = F !== !1, D = (F.pos || A) + 1, !E && T)
-                          break;
-                      } else
-                        E = !1;
-                      if (E) {
-                        t === void 0 && S.match.static && f === n.begin && L++;
-                        break;
-                      }
-                      if (!E && M.getBuffer.call(s), A > d.maskLength)
-                        break;
-                      A++;
-                    }
-                    h.getTest.call(s, A).match.def == "" && (E = !1), A = D;
-                  }
-                  if (!E)
-                    break;
-                }
-                if (!E)
-                  return d.validPositions = u.extend(!0, [], v), M.resetMaskSet.call(s, !0), !1;
-              } else
-                t && h.getTest.call(s, l).match.cd === t.match.cd && (d.validPositions[l] = u.extend(!0, {}, t));
-              return M.resetMaskSet.call(s, !0), L;
-            }
-          }
-        }, Q = {};
-        function ee(G) {
-          var k = Q[G];
-          if (k !== void 0)
-            return k.exports;
-          var w = Q[G] = {
-            exports: {}
-          };
-          return z[G](w, w.exports, ee), w.exports;
-        }
-        var re = {};
-        return function() {
-          var G, k = re;
-          Object.defineProperty(k, "__esModule", {
-            value: !0
-          }), k.default = void 0, ee(7149), ee(3194), ee(9302), ee(4013), ee(3851), ee(219), ee(207), ee(5296);
-          var w = ((G = ee(2394)) && G.__esModule ? G : {
-            default: G
-          }).default;
-          k.default = w;
-        }(), re;
-      }();
-    });
-  })(Ce);
-  var Ze = Ce.exports;
-  const $e = /* @__PURE__ */ Ve(Ze);
-  Oe({ name: "Contact info imrovement", dev: "SKh" }), Ae("exp_improve_contact");
-  const He = window.innerWidth < 768 ? "mobile" : "desktop";
-  class Ge {
-    constructor(H) {
-      this.device = H, this.observer = null, this.init();
+  footer[role=contentinfo] .logo-container .logos .logo-wrapper {
+    display: none;
+  }
+  footer[role=contentinfo] .logo-container .logos {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+@media (min-width: 1100px) and (max-width: 1290px) {
+  .variations > .variations-content {
+    padding: 30px 30px !important;
+  }
+  .variations {
+    flex: 1 0 55% !important;
+    max-width: 55% !important;
+    margin: 0 !important;
+  }
+  .woocommerce #content div.product div.summary form.variations_form,
+  .woocommerce div.product div.summary form.variations_form,
+  .woocommerce-page #content div.product div.summary form.variations_form,
+  .woocommerce-page div.product div.summary form.variations_form {
+    display: flex !important;
+  }
+}
+@media (max-width: 1100px) {
+  .new_container {
+    width: 88%;
+  }
+  .new_title_box {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  .main_title {
+    margin: 0 auto 30px;
+    max-width: 210px;
+  }
+  .woocommerce #content div.product div.summary,
+  .woocommerce div.product div.summary,
+  .woocommerce-page #content div.product div.summary,
+  .woocommerce-page div.product div.summary {
+    width: 88% !important;
+  }
+  .device-details-title {
+    padding: 36px 0 24px;
+  }
+  .device-details-title h5 {
+    color: #858d92;
+    font-size: 16px;
+    line-height: 21px;
+    margin: 0;
+  }
+  .device-details-title h1 {
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 32px;
+  }
+  .device-step-header .bread-crumbs {
+    font-size: 18px;
+    line-height: 30px;
+  }
+  .device-step-header.step-number-3 {
+    gap: 12px;
+    margin: 0 0 24px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .variations {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .single_variation_wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .variations > .variations-content {
+    padding: 24px 20px !important;
+    margin-bottom: 24px !important;
+  }
+  .single_add_to_cart_button.button {
+    position: relative !important;
+    border-radius: 100px !important;
+  }
+  .single_add_to_cart_button.button::before {
+    display: none !important;
+  }
+  .single_variation_wrap .single_variation_wrap--inner {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .single_variation_wrap .single_variation_wrap--inner .new_title_box {
+    width: 100%;
+  }
+  .woocommerce-variation.single_variation {
+    max-width: 59% !important;
+  }
+  footer[role=contentinfo] {
+    padding: 24px 0 70px !important;
+  }
+  .copyright {
+    font-size: 14px;
+  }
+  .menu-seo-menu-container {
+    margin: 24px 0;
+  }
+  footer[role=contentinfo] #seo-nav {
+    margin: 0 0 24px;
+  }
+  footer[role=contentinfo] #footer-menu a {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 26px;
+    padding: 8px;
+  }
+  footer[role=contentinfo] .nav-container {
+    border-radius: 16px;
+    background: linear-gradient(0deg, #0092e6 4%, #5600e6 89%), var(--Main-White, #fff);
+    padding: 41px 0;
+  }
+  footer[role=contentinfo] .footer-svg-mobile svg {
+    border-radius: 16px 0 0;
+  }
+  footer[role=contentinfo] .socials a svg {
+    color: white;
+  }
+  footer[role=contentinfo] .footer-svg-mobile {
+    top: -1px;
+  }
+  footer[role=contentinfo] .footer-svg-mobile svg:not(.bgr_footer) {
+    display: none;
+  }
+  footer[role=contentinfo] .logo-container .logos {
+    display: flex;
+    gap: 40px;
+  }
+  footer[role=contentinfo] .logo-container {
+    margin-bottom: 24px;
+  }
+  footer[role=contentinfo] .logo-container .logos .logo-wrapper {
+    margin: 0;
+    max-height: 36px;
+  }
+  footer[role=contentinfo] .logo-container .logos .logo-wrapper img {
+    max-height: 36px;
+    min-height: 36px;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+  footer[role=contentinfo] .logo-container .logos .logo-wrapper:nth-child(1) {
+    max-width: 95px;
+  }
+  footer[role=contentinfo] .logo-container .logos .logo-wrapper:nth-child(2) {
+    max-width: 115px;
+  }
+}
+@media (min-width: 1290px) and (max-width: 1534px) {
+  .variations {
+    max-width: 57% !important;
+  }
+}
+@media (max-width: 376px) {
+  .single_variation_wrap .single_variation_wrap--inner .variation-description-overview-placeholder,
+  .woocommerce-variation.single_variation {
+    max-width: 55% !important;
+  }
+}
+.device_price_wrapper {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.device_price_wrapper .woocommerce-variation-price {
+  order: 0;
+}
+
+.woocommerce-variation-price.is_hidden,
+.ggv2-quantity:not(.ggv2-quantity--disabled).is_hidden,
+.device-placeholder-price.is_hidden,
+.ggv2-quantity.ggv2-quantity--disabled.is_hidden {
+  display: none !important;
+}
+
+.device_price_wrapper .ggv2-quantity:not(.ggv2-quantity--disabled) {
+  order: 1;
+}
+
+.radio_block + .radio_block {
+  margin-top: 24px;
+}
+.radio_block h3 {
+  color: #29353c;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 0 0 12px;
+}
+.radio_block .radio_option_wrapp {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.radio_block .radio_option_wrapp input.custom_radio {
+  z-index: -1;
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+.radio_block .radio_option_wrapp label {
+  position: relative;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 6px;
+  border: 2px solid #d6d9dc;
+  background: #fff;
+  padding: 12.5px 16px;
+  margin: 0;
+  cursor: pointer;
+}
+.radio_block .radio_option_wrapp label .radio_info {
+  gap: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.radio_block .radio_option_wrapp label[for=choose_opt_condition], .radio_block .radio_option_wrapp label[for=choose_opt_storage], .radio_block .radio_option_wrapp label[for=choose_opt_carrier], .radio_block .radio_option_wrapp label[for=choose_opt_connectivity], .radio_block .radio_option_wrapp label[for=choose_opt_including_original_charger], .radio_block .radio_option_wrapp label[for=choose_opt_memory_ram], .radio_block .radio_option_wrapp label[for=choose_opt_hard_drive], .radio_block .radio_option_wrapp label[for=choose_opt_processor], .radio_block .radio_option_wrapp label[for=choose_opt_graphics_card], .radio_block .radio_option_wrapp label[for=choose_opt_display_resolution], .radio_block .radio_option_wrapp label[for=choose_opt_case_size], .radio_block .radio_option_wrapp label[for=choose_opt_case_type], .radio_block .radio_option_wrapp label[for=choose_opt_how_many_original_controllers], .radio_block .radio_option_wrapp label[for=choose_opt_case_included] {
+  display: none;
+}
+.radio_block .radio_option_wrapp label .radio_txt_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.radio_block .radio_option_wrapp label .radio_txt_box .new_custom_radio {
+  display: none;
+}
+.radio_block .radio_option_wrapp label .radio_txt_box svg {
+  max-height: 18px;
+  height: 100%;
+}
+.radio_block .radio_option_wrapp label .radio_txt {
+  color: #29353c;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+.radio_block .radio_option_wrapp label .condition_level {
+  display: none;
+}
+.radio_block .radio_option_wrapp label::before {
+  content: unset;
+}
+.radio_block .radio_option_wrapp [type=radio]:checked + label::after {
+  content: unset;
+}
+.radio_block .radio_option_wrapp [type=radio]:checked + label {
+  border: 2px solid #63dd1a;
+}
+.radio_block.pa_condition h3 .txt_choose {
+  color: #757575;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0 0 0 10px;
+}
+.radio_block.pa_condition h3 .txt_choose.is_hidden {
+  display: none;
+}
+.radio_block.pa_condition label {
+  max-width: 110px;
+  width: 30%;
+  padding: 7px 16px 4px;
+}
+.radio_block.pa_condition label .condition_level {
+  display: flex;
+  width: 100%;
+  gap: 3px;
+}
+.radio_block.pa_condition label .condition_level span {
+  width: 15%;
+  height: 6px;
+  background: #5fdf00;
+}
+.radio_block.pa_condition label .condition_level span:first-child {
+  border-radius: 111px 0px 0px 111px;
+}
+.radio_block.pa_condition label .condition_level span:last-child {
+  border-radius: 0px 111px 111px 0px;
+}
+.radio_block.pa_condition label[for=flawless] .condition_level span:nth-child(1) {
+  background: #d6d9dc;
+}
+.radio_block.pa_condition label[for=good] .condition_level span {
+  background: #ded50e;
+}
+.radio_block.pa_condition label[for=good] .condition_level span:nth-child(1), .radio_block.pa_condition label[for=good] .condition_level span:nth-child(2) {
+  background: #d6d9dc;
+}
+.radio_block.pa_condition label[for=average] .condition_level span {
+  background: #ded50e;
+}
+.radio_block.pa_condition label[for=average] .condition_level span:nth-child(1), .radio_block.pa_condition label[for=average] .condition_level span:nth-child(2), .radio_block.pa_condition label[for=average] .condition_level span:nth-child(3) {
+  background: #d6d9dc;
+}
+.radio_block.pa_condition label[for=fair] .condition_level span {
+  background: #d6d9dc;
+}
+.radio_block.pa_condition label[for=fair] .condition_level span:nth-child(5), .radio_block.pa_condition label[for=fair] .condition_level span:nth-child(6) {
+  background: #df7800;
+}
+.radio_block.pa_condition label[for=faulty] .condition_level span {
+  background: #d6d9dc;
+}
+.radio_block.pa_condition label[for=faulty] .condition_level span:nth-child(6) {
+  background: #df7800;
+}
+@media (max-width: 1100px) {
+  .radio_block .radio_option_wrapp label {
+    padding: 12.5px 5px;
+    min-width: 63px;
+  }
+  .radio_block .radio_option_wrapp label .radio_info {
+    flex-direction: initial;
+  }
+  .radio_block.pa_carrier .radio_option_wrapp label {
+    width: 48%;
+    padding: 12.5px 16px;
+  }
+  .radio_block.pa_carrier .radio_option_wrapp label > .radio_info {
+    justify-content: flex-start;
+  }
+  .radio_block.pa_condition .radio_option_wrapp label {
+    width: 100%;
+    max-width: 100%;
+    padding: 12.5px 16px;
+  }
+  .radio_block.pa_condition .radio_option_wrapp label .radio_txt_box {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .radio_block.pa_condition .radio_option_wrapp label .radio_txt_box .new_custom_radio {
+    position: relative;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border-radius: 50%;
+    border: 2px solid #d6d9dc;
+  }
+  .radio_block.pa_condition .radio_option_wrapp label .radio_txt_box .radio_txt {
+    line-height: 24px;
+  }
+  .radio_block.pa_condition .radio_option_wrapp label .condition_level {
+    justify-content: flex-end;
+  }
+  .radio_block.pa_condition .radio_option_wrapp label .condition_level span {
+    max-width: 12px;
+    width: 100%;
+  }
+  .radio_block.pa_condition .radio_option_wrapp label .radio_descr_mob {
+    width: 100%;
+    list-style: disc;
+    padding-left: 50px;
+    margin-top: 12px;
+  }
+  .radio_block.pa_condition .radio_option_wrapp label .radio_descr_mob.is_hidden {
+    display: none;
+  }
+  .radio_block.pa_condition .radio_option_wrapp label .radio_descr_mob li {
+    color: #29353c;
+  }
+  .radio_block.pa_condition .radio_option_wrapp label .radio_descr_mob li p {
+    color: #29353c;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    margin: 0;
+  }
+  .radio_block.pa_condition .radio_option_wrapp label .radio_descr_mob li p span {
+    font-weight: 600;
+  }
+  .radio_block.pa_condition .radio_option_wrapp label .radio_descr_mob li + li {
+    margin-top: 10px;
+  }
+  .radio_block.pa_condition .radio_option_wrapp [type=radio]:checked + label {
+    padding: 14px 16px;
+  }
+  .radio_block.pa_condition .radio_option_wrapp [type=radio]:checked + label .new_custom_radio {
+    border: 2px solid #63dd1a;
+  }
+  .radio_block.pa_condition .radio_option_wrapp [type=radio]:checked + label .new_custom_radio::before {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #63dd1a;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .radio_block.pa_condition h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .radio_block.pa_condition h3 .txt_choose.is_hidden {
+    display: inline-block;
+    margin: 0 0 0 auto;
+  }
+}
+@media (max-width: 376px) {
+  .radio_block.pa_carrier .radio_option_wrapp label {
+    width: 46%;
+  }
+}
+
+#conditionBlock {
+  border-radius: 6px;
+  border: 1px solid #f0f2f4;
+  background: #fafbfb;
+  padding: 14px 16px;
+  margin: 12px 0 0;
+}
+#conditionBlock h5 {
+  color: #757575;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+}
+#conditionBlock ul {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  list-style: disc;
+  padding-left: 25px;
+  margin: 8px 0 0;
+}
+#conditionBlock ul li p {
+  color: #29353c;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0;
+}
+#conditionBlock ul li p span {
+  font-weight: 600;
+}
+#conditionBlock > div.is_hidden {
+  display: none;
+}
+#conditionBlock > div.choose_var ul {
+  display: none;
+}
+
+.clear_form_block {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+  width: -moz-max-content;
+  width: max-content;
+  cursor: pointer;
+  margin: 32px 0 0;
+}
+.clear_form_block span {
+  color: #858d92;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 24px;
+  margin: 0;
+}
+@media (max-width: 768px) {
+  .clear_form_block {
+    gap: 6px;
+    margin-top: 24px;
+  }
+  .clear_form_block span {
+    font-size: 14px;
+  }
+  .clear_form_block svg {
+    max-width: 10px;
+  }
+}
+
+#benefitsBlock {
+  margin: 24px 0;
+}
+#benefitsBlock ul {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 16px;
+}
+#benefitsBlock ul li {
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+#benefitsBlock ul li span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+#benefitsBlock ul li p {
+  color: #29353c;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+  margin: 0 auto;
+  max-width: 120px;
+}
+@media (max-width: 768px) {
+  #benefitsBlock {
+    margin: 30px 0 34px;
+  }
+  #benefitsBlock ul {
+    gap: 24px;
+  }
+  #benefitsBlock ul li p {
+    font-size: 12px;
+    line-height: normal;
+    max-width: 100%;
+  }
+}
+@media (max-width: 376px) {
+  #benefitsBlock ul {
+    gap: 15px;
+  }
+}
+
+#reviewsBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid #f0f2f4;
+  padding-top: 24px;
+}
+#reviewsBlock a {
+  max-width: 100px;
+  width: 100%;
+}
+#reviewsBlock a img {
+  width: 100%;
+  height: 100%;
+  min-height: 74px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (max-width: 768px) {
+  #reviewsBlock {
+    gap: 0;
+    padding: 24px 0;
+  }
+  #reviewsBlock a {
+    max-height: 66px;
+  }
+  #reviewsBlock a img {
+    max-height: 66px;
+    min-height: 66px;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+}
+
+#howItWorksSection {
+  padding: 60px 0;
+}
+#howItWorksSection .how_it_works_list {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 32px;
+  padding: 40px 48px;
+  margin: 0 auto;
+  border-radius: 16px;
+  border: 1px solid #f0f2f4;
+  background: #fff;
+  box-shadow: 0px 8px 16px 0px rgba(41, 53, 60, 0.03);
+}
+#howItWorksSection .how_it_works_list li {
+  width: 35%;
+  text-align: center;
+}
+#howItWorksSection .how_it_works_list li span {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: block;
+  border-radius: 100px;
+  border: 2px solid #d6d9dc;
+  margin: 0 auto 8px;
+  padding: 19px 18px;
+}
+#howItWorksSection .how_it_works_list li span::after {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  content: "1";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #0092e6;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 18px;
+}
+#howItWorksSection .how_it_works_list li h3 {
+  color: #29353c;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 28px;
+}
+#howItWorksSection .how_it_works_list li h4,
+#howItWorksSection .how_it_works_list li p {
+  color: #29353c;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+}
+#howItWorksSection .how_it_works_list li p {
+  color: #757575;
+  font-weight: 400;
+  max-width: 387px;
+  margin: 12px auto 0;
+}
+#howItWorksSection .how_it_works_list li:nth-child(2) span::after {
+  content: "2";
+}
+#howItWorksSection .how_it_works_list li:nth-child(3) span::after {
+  content: "3";
+}
+@media (max-width: 768px) {
+  #howItWorksSection {
+    border-top: 1px solid #f0f2f4;
+    padding: 24px 0;
+  }
+  #howItWorksSection .new_container {
+    border-radius: 8px;
+    border: 1px solid #f0f2f4;
+    background: #fff;
+    box-shadow: 0px 8px 16px 0px rgba(41, 53, 60, 0.03);
+    padding: 20px;
+  }
+  #howItWorksSection .new_container .main_title {
+    margin-bottom: 24px;
+    font-size: 20px;
+  }
+  #howItWorksSection .new_container .how_it_works_list {
+    flex-direction: column;
+    gap: 24px;
+    padding: 0;
+    box-shadow: none;
+    border: unset;
+    border-radius: unset;
+  }
+  #howItWorksSection .new_container .how_it_works_list li {
+    width: 100%;
+  }
+  #howItWorksSection .new_container .how_it_works_list li h4, #howItWorksSection .new_container .how_it_works_list li p {
+    font-weight: 800;
+    font-size: 14px;
+  }
+  #howItWorksSection .new_container .how_it_works_list li p {
+    font-weight: 400;
+    margin: 8px auto 0;
+    max-width: 278px;
+  }
+}
+
+#frequentlyAskedQuestionSection .questions_accordion {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+#frequentlyAskedQuestionSection .questions_accordion li {
+  border-bottom: 1px solid #d6d9dc;
+}
+#frequentlyAskedQuestionSection .questions_accordion li .questions_accordion_link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  cursor: pointer;
+}
+#frequentlyAskedQuestionSection .questions_accordion li .questions_accordion_link svg {
+  transition: all 0.5s ease;
+}
+#frequentlyAskedQuestionSection .questions_accordion li .questions_accordion_link p {
+  color: #29353c;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 0;
+}
+#frequentlyAskedQuestionSection .questions_accordion li .questions_accordion_lists {
+  display: none;
+  border-top: 1px solid #d6d9dc;
+  padding: 10px 0;
+}
+#frequentlyAskedQuestionSection .questions_accordion li .questions_accordion_lists > div {
+  padding: 14px;
+}
+#frequentlyAskedQuestionSection .questions_accordion li .questions_accordion_lists > div p {
+  color: #29353c;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0;
+}
+#frequentlyAskedQuestionSection .questions_accordion li .questions_accordion_lists > div p a {
+  border: unset !important;
+  color: #0092e6;
+  font-weight: 700;
+  text-decoration-line: underline;
+  cursor: pointer;
+}
+#frequentlyAskedQuestionSection .questions_accordion li .questions_accordion_lists > div p a:hover {
+  border: none !important;
+}
+#frequentlyAskedQuestionSection .questions_accordion li.active svg {
+  transform: rotateX(180deg);
+}
+@media (max-width: 768px) {
+  #frequentlyAskedQuestionSection .main_title {
+    margin-bottom: 16px;
+  }
+  #frequentlyAskedQuestionSection .questions_accordion li .questions_accordion_lists {
+    padding: 10px 0 14px;
+  }
+  #frequentlyAskedQuestionSection .questions_accordion li .questions_accordion_link p {
+    max-width: 267px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+body {
+  position: relative;
+}
+
+.new_sticky_block {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  border-top: 1px solid #f0f2f4;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  z-index: 15;
+  transition: bottom 0.3s ease;
+}
+.new_sticky_block.show {
+  bottom: -60px;
+  opacity: 0;
+  pointer-events: none;
+}
+.new_sticky_block .new_sticky_default_txt {
+  color: #757575;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 0;
+}
+.new_sticky_block .new_sticky_default_txt.is_hidden {
+  display: none;
+}
+.new_sticky_block button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 196px;
+  width: 100%;
+  height: 48px;
+  order: 1;
+  border-radius: 36px;
+  background: #63dd1a;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 24px;
+  border: none;
+  margin: 0 0 0 auto;
+}
+.new_sticky_block button.disabled {
+  background: #858d92;
+}
+.new_sticky_block button.whmc-spinner::after {
+  right: 24px;
+}
+.new_sticky_block .new_sticky_default_price > div {
+  min-width: 143px;
+  text-align: center;
+}
+.new_sticky_block .new_sticky_default_price.is_hidden {
+  display: none;
+}
+.new_sticky_block .new_sticky_default_price h4 {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 12px !important;
+  margin-bottom: 8px !important;
+}
+.new_sticky_block .new_sticky_default_price span {
+  color: #63dd1a;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 20px;
+}
+.new_sticky_block .new_sticky_default_price p {
+  color: #757575;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 0;
+}
+
+.radio_section {
+  position: relative;
+}
+
+.rotate_svg {
+  display: block;
+  animation: rotate 2s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.wc-no-matching-variations.woocommerce-info {
+  color: red;
+}/*# sourceMappingURL=main.css.map */`;
+  x({ name: "PDP Enhancements", dev: "SKh" }), k("exp_pdp_improvements");
+  const T = window.innerWidth < 768 ? "mobile" : "desktop";
+  class z {
+    constructor(e) {
+      this.observer = null, this.device = e, this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${Be}</style>`), this.observerBagControlVersion(), this.renderNewFormStep(), this.initLoaderStep(), this.initSliderReviews(), this.clickInputs(), this.clickContinueBtn(), this.clickSeeMyResultsBtn(), this.clickGoogleSignInBtn(), this.visibleHandler();
-      const H = document.createElement("script");
-      H.src = "https://accounts.google.com/gsi/client", H.async = !0, document.head.appendChild(H);
+      s("div.product.type-product").then((e) => {
+        document.head.insertAdjacentHTML("beforeend", `<style>${A}</style>`), this.initDefaultChooseSelectValue(), this.replaceSteps(), this.addNewBlocksToDetails(), this.addNewBlocksToOfferSummary(), this.renderHowItWorksSection(), this.renderFrequentlyAskedQuestionSection(), this.observePageChange(), this.renderInputsWrapp(), this.onClickElems(), this.renderNewElemFooter(), this.device === "mobile" && (this.renderNewStickyBlock(), this.intersectionObserverTradeInBtn()), this.visibleHandler();
+      });
     }
-    initLoaderStep() {
-      ke("#edit-what-is-your-family-s-approximate-yearly-household-income- label").forEach((H) => {
-        H.addEventListener("click", (z) => {
-          setTimeout(() => {
-            var Q, ee, re;
-            (Q = R(".dialog-off-canvas-main-canvas")) == null || Q.classList.add("is_loader"), (ee = R(".dialog-off-canvas-main-canvas")) == null || ee.classList.add("is_loader_active"), (re = R('section.form-wrapper.webform-card[data-title="What is your contact info?"]')) == null || re.classList.add("is_loader"), this.renderNewLoaderBlock(), this.createLoader(), this.renderReviewsBlock(), this.changeLogoImg();
-          }, 300);
+    renderNewElemFooter() {
+      window.innerWidth < 1100 ? s(".svg.footer-wave-mobile").then((e) => {
+        n(".bgr_footer") || n(".svg.footer-wave-mobile").insertAdjacentHTML("afterbegin", p.bgrFooter);
+      }) : s("footer[role=contentinfo] .logo-container .logos").then((e) => {
+        n(".accredited_business_img") || n("footer[role=contentinfo] .logo-container .logos").insertAdjacentHTML(
+          "afterbegin",
+          p.accreditedBusinessImg
+        ), n(".pay_pal_img") || n("footer[role=contentinfo] .logo-container .logos").insertAdjacentHTML("beforeend", p.payPalImg);
+      });
+    }
+    observePageChange() {
+      this.observer = new MutationObserver((t) => {
+        t.forEach((l) => {
+          this.changeClassListPriceAndBtnTradeIn();
+          for (let c of l.addedNodes)
+            c instanceof HTMLElement && c.matches(".woocommerce-variation-price") && (this.addNewBlocksToOfferSummary(), this.device === "mobile" && this.renderNewStickyBlock());
+        });
+      });
+      const e = { childList: !0, subtree: !0 };
+      this.observer.observe(document.body, e);
+    }
+    replaceSteps() {
+      let e = setInterval(() => {
+        var t, l;
+        n(".device-details-title") && (clearInterval(e), n(".device-details-title").after(n(".device-step-header.step-number-3")), (t = _(".device-step-header .progress-dots ol li")[0]) == null || t.insertAdjacentHTML("afterbegin", p.stepIcon), (l = _(".device-step-header .progress-dots ol li")[1]) == null || l.insertAdjacentHTML("afterbegin", p.stepIcon));
+      }, 100);
+      window.innerWidth >= 1100 && n(".device-step-header.step-number-3 .step").textContent !== "Step 3: Device" && this.device === "desktop" && (n(".device-step-header.step-number-3 .step").textContent = "Step 3: Device");
+    }
+    addNewBlocksToDetails() {
+      s(".variations").then((e) => {
+        n(".variations .new_title_box") || (window.innerWidth < 1100 ? n(".variations .variations-content").insertAdjacentHTML("afterbegin", u("Details")) : n(".variations").insertAdjacentHTML("afterbegin", u("Details")));
+      }), s(".variations-content").then((e) => {
+        n(".radio_section") || n(".variations-content").insertAdjacentHTML("beforeend", `<div class="radio_section">${p.loader}</div>`), n(".clear_form_block") || n(".variations-content").insertAdjacentHTML("beforeend", V);
+      });
+    }
+    addNewBlocksToOfferSummary() {
+      s(".single_variation_wrap").then((e) => {
+        var t, l;
+        n(".single_variation_wrap .new_title_box") || (window.innerWidth < 1100 ? n(".single_variation_wrap .single_variation_wrap--inner").insertAdjacentHTML(
+          "afterbegin",
+          u("Offer Summary")
+        ) : n(".single_variation_wrap").insertAdjacentHTML("afterbegin", u("Offer Summary"))), n("#benefitsBlock") || (t = n(".order_benefits")) == null || t.insertAdjacentHTML("afterend", q), this.device === "desktop" ? n("#reviewsBlock") || (l = n(".single_variation_wrap")) == null || l.insertAdjacentHTML("beforeend", b) : s("#howItWorksSection").then((c) => {
+          n("#reviewsBlock") || n("#howItWorksSection").insertAdjacentHTML("beforebegin", b);
+        }), n(".device_price_wrapper") || n(".single_variation_wrap--inner").insertAdjacentHTML("beforeend", '<div class="device_price_wrapper"></div>'), s(".device_price_wrapper").then((c) => {
+          s(".device-placeholder-price").then((a) => {
+            var d;
+            let r = n(".device-placeholder-price").cloneNode(!0);
+            n(".device_price_wrapper .device-placeholder-price") || (d = n(".device_price_wrapper")) == null || d.appendChild(r);
+          }), s(".add-to-cart-block .woocommerce-variation-price").then((a) => {
+            var d;
+            let r = n(".add-to-cart-block .woocommerce-variation-price").cloneNode(!0);
+            n(".device_price_wrapper .woocommerce-variation-price") || (d = n(".device_price_wrapper")) == null || d.appendChild(r);
+          }), s(".woocommerce-variation-description-overview .ggv2-quantity").then((a) => {
+            var d;
+            let r = n(".woocommerce-variation-description-overview .ggv2-quantity").cloneNode(
+              !0
+            );
+            n(".device_price_wrapper .ggv2-quantity:not(.ggv2-quantity--disabled)") || (d = n(".device_price_wrapper")) == null || d.appendChild(r);
+          }), s(".variation-description-overview .ggv2-quantity").then((a) => {
+            var d;
+            let r = n(".variation-description-overview .ggv2-quantity").cloneNode(!0);
+            n(".device_price_wrapper .ggv2-quantity--disabled.ggv2-quantity") || (d = n(".device_price_wrapper")) == null || d.appendChild(r);
+          });
+        }), s(".device_price_wrapper .price.price--empty").then((c) => {
+          n(".device_price_wrapper .price.price--empty").textContent !== "*Please, enter device details to get a quote." && (n(".device_price_wrapper .price.price--empty").textContent = "*Please, enter device details to get a quote.");
+        }), n(".single_add_to_cart_button").textContent !== "Trade-In Device" && (n(".single_add_to_cart_button").textContent = "Trade-In Device");
+      });
+    }
+    renderInputsWrapp() {
+      s("#pa_case-size").then((e) => {
+        this.renderInputs("#pa_case-size");
+      }), s("#pa_case-type").then((e) => {
+        this.renderInputs("#pa_case-type");
+      }), s("#pa_carrier").then((e) => {
+        this.renderInputs("#pa_carrier");
+      }), s("#pa_connectivity").then((e) => {
+        this.renderInputs("#pa_connectivity");
+      }), s("#pa_processor").then((e) => {
+        this.renderInputs("#pa_processor");
+      }), s("#pa_hard-drive").then((e) => {
+        this.renderInputs("#pa_hard-drive");
+      }), s("#pa_memory-ram").then((e) => {
+        this.renderInputs("#pa_memory-ram");
+      }), s("#pa_graphics-card").then((e) => {
+        this.renderInputs("#pa_graphics-card");
+      }), s("#pa_display-resolution").then((e) => {
+        this.renderInputs("#pa_display-resolution");
+      }), s("#pa_including-original-charger").then((e) => {
+        this.renderInputs("#pa_including-original-charger");
+      }), s("#pa_storage").then((e) => {
+        this.renderInputs("#pa_storage");
+      }), s("#pa_controller-count").then((e) => {
+        this.renderInputs("#pa_controller-count");
+      }), s("#pa_case-included").then((e) => {
+        this.renderInputs("#pa_case-included");
+      }), s("#pa_condition").then((e) => {
+        this.renderInputs("#pa_condition"), window.innerWidth >= 1100 && s(".radio_block.pa_condition").then((t) => {
+          n("#conditionBlock") || n(".radio_block.pa_condition").insertAdjacentHTML("afterend", Z);
         });
       });
     }
-    renderNewFormStep() {
-      de('section.form-wrapper.webform-card[data-title="What is your contact info?"]').then((H) => {
-        R(".last_steps_wrapper") || R(
-          'section.form-wrapper.webform-card[data-title="What is your contact info?"] .webform-card-wrapper'
-        ).insertAdjacentHTML("afterbegin", Re);
-      }), de(".email_name_box").then((H) => {
-        const z = R(".form-item-email-address"), Q = R(".form-item-email-address label:not(.error)"), ee = R(".form-item-first-name"), re = R(".form-item-first-name label:not(.error)"), G = R("#edit-first-name");
-        let k = R(".form-item-last-name #edit-last-name");
-        re.textContent !== "First Name" && (re.textContent = "First Name"), Q.textContent !== "Email" && (Q.textContent = "Email"), k.value !== "CRO test" && (k.value = "CRO test"), G.placeholder !== "John" && (G.placeholder = "John"), R("#continueValidationBtn").insertAdjacentElement("beforebegin", ee), R("#continueValidationBtn").insertAdjacentElement("beforebegin", z);
-        let w = R(".benefits"), h = R(".benefits > div > p");
-        h.textContent !== "What you’ll get:" && (h.textContent = "What you’ll get:"), R(".email_name_box").insertAdjacentElement("beforeend", w);
-      }), de(".phone_box").then((H) => {
-        let z = R(".form-type-tel"), Q = R(".form-type-tel label:not(.error)"), ee = R("#edit-mobile-number");
-        Q.textContent !== "Mobile phone number" && (Q.textContent = "Mobile phone number"), ee.placeholder !== "(___) ___-____" && (ee.placeholder = "(___) ___-____"), this.observePhoneNumberPlaceholderChange(), R(".phone_box #seeMyResultsBtn").insertAdjacentElement("beforebegin", z);
-      });
+    renderInputs(e) {
+      let t = setInterval(() => {
+        var l, c;
+        if (n(".radio_section")) {
+          clearInterval(t);
+          let a = e.split("#")[1], r = (c = (l = n(e)) == null ? void 0 : l.closest("div").querySelector(".attribute-name")) == null ? void 0 : c.textContent, d = r.toLocaleLowerCase().trim().split(" ").join("_").split("?").join("").split("(").join("").split(")").join("");
+          n(".radio_section").insertAdjacentHTML("beforeend", B(r, a)), s(`.${a}`).then((h) => {
+            var o;
+            (o = _(`${e} option`)) == null || o.forEach((g) => {
+              var m;
+              n(`.${a} .radio_option_wrapp`).insertAdjacentHTML(
+                "beforeend",
+                E(d, g.value === "" ? `choose_opt_${d}` : g.value, g.textContent)
+              ), (m = n(".rotate_svg")) == null || m.remove();
+            });
+          });
+        }
+      }, 100);
     }
-    renderNewLoaderBlock() {
-      de('section.form-wrapper.webform-card[data-title="What is your contact info?"]').then((H) => {
-        const z = ke(".loading-data li"), Q = Array.from(z, (ee) => ee.textContent);
-        R(".new_loader_block") || R('section.form-wrapper.webform-card[data-title="What is your contact info?"]').insertAdjacentHTML(
-          "beforebegin",
-          Fe(Q)
-        );
-      });
-    }
-    createLoader() {
-      const Q = Math.round(12e3 / 16.666666666666668);
-      let ee = 0;
-      de(".new_loader_block").then((re) => {
-        const G = R(".new_loader_block"), k = R(".loader_cover"), w = R(".loader_cover_fill"), h = R(".percentage"), M = k.r.baseVal.value * 2 * Math.PI;
-        w.style.strokeDasharray = `${M} ${M}`, w.style.strokeDashoffset = `${M}`;
-        const B = (b) => {
-          const m = M - b / 100 * M;
-          w.style.strokeDashoffset = m, h.textContent = `${Math.round(b)}%`;
-        }, j = () => {
-          var m, p;
-          const b = ee / Q * 100;
-          B(b), b >= 100 ? (G.style.display = "none", R('section.form-wrapper.webform-card[data-title="What is your contact info?"]') && R('section.form-wrapper.webform-card[data-title="What is your contact info?"]').classList.contains(
-            "is_loader"
-          ) && R('section.form-wrapper.webform-card[data-title="What is your contact info?"]').classList.remove(
-            "is_loader"
-          ), (m = R(".dialog-off-canvas-main-canvas")) != null && m.classList.contains("is_loader_active") && ((p = R(".dialog-off-canvas-main-canvas")) == null || p.classList.remove("is_loader_active")), R(".dialog-off-canvas-main-canvas") && !R(".dialog-off-canvas-main-canvas").classList.contains("is_loader") && R(".dialog-off-canvas-main-canvas").classList.add("is_loader"), this.renderReviewsBlock()) : ee < Q && (ee++, requestAnimationFrame(j));
-        };
-        j();
-        const I = Array.from(ke(".loading_txt_wrapper p"));
-        this.animateLoadingText(I);
-      });
-    }
-    animateLoadingText(H) {
-      let z = 0, Q = null;
-      (() => {
-        H[z].style.display = "block", z++, Q = setInterval(() => {
-          H[z - 1].style.display = "none", z < H.length && (H[z].style.display = "block"), z >= H.length && (H[z - 1].style.display = "block", clearInterval(Q)), z++;
-        }, 12e3 / H.length);
-      })();
-    }
-    changeLogoImg() {
-      R(".dialog-off-canvas-main-canvas.is_loader .navbar-header .logo img") && R(".dialog-off-canvas-main-canvas.is_loader .navbar-header .logo img").src !== "/sites/default/files/inline-images/GrantMe_Colour_Full_Logo_2X_0.png" && (R(".dialog-off-canvas-main-canvas.is_loader .navbar-header .logo img").src = "/sites/default/files/inline-images/GrantMe_Colour_Full_Logo_2X_0.png");
-    }
-    // SliderReviews
-    renderReviewsBlock() {
-      !R(".new_reviews_block") && R(".testimonials") && R(".testimonials").insertAdjacentHTML("afterbegin", Ie);
-    }
-    initSliderReviews() {
-      Te([
-        "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css",
-        "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
-      ]).then(async () => {
-        let H = setInterval(() => {
-          if (typeof jQuery(".new_reviews_list").slick == "function" && R(".new_reviews_list")) {
-            clearInterval(H);
-            let ee = jQuery(".new_reviews_list").on("init", function() {
-              jQuery(this).css("visibility", "visible");
-            }).slick({
-              slidesToShow: 3.92,
-              slidesToScroll: 1,
-              initialSlide: 0,
-              adaptiveHeight: !0,
-              autoplay: !0,
-              autoplaySpeed: 4e3,
-              prevArrow: `<div class="prev_btn slider_arrow">${ae.arrPrev}</div>`,
-              nextArrow: `<div class="next_btn slider_arrow">${ae.arrNext}</div>`,
-              responsive: [
-                {
-                  breakpoint: 767,
-                  settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                  }
-                }
-              ]
-            }), re = setInterval(() => {
-              if (typeof $ == "function") {
-                clearInterval(re);
-                let G = $(".new_reviews_list").find(".slick-slide").last().clone();
-                $(".new_reviews_list").slick("slickAdd", G);
-              }
-            }, 300);
-            ee.on("swipe", function(G, k, w) {
-              ge("exp_improve_contact_swipe_01", w, "Swipe slider", "Contact info Step 1 Review");
-            }), ke(".slider_arrow").forEach((G) => {
-              G.addEventListener("click", (k) => {
-                let w = null;
-                k.currentTarget.classList.contains("prev_btn") ? w = "left" : k.currentTarget.classList.contains("next_btn") && (w = "right"), ge("exp_improve_contact_arrows_01", w || "", "Arrows", "Contact info Step 1 Review");
+    onClickElems() {
+      let e = setInterval(() => {
+        typeof $ == "function" && (clearInterval(e), $("body").on("found_variation", function(a) {
+          $(window).width() < 1200 && setTimeout(function() {
+            $("html, body").stop();
+          }, 1050);
+        }));
+      }, 200), t = setInterval(() => {
+        n(".clear_form_block") && (clearInterval(t), n(".clear_form_block").addEventListener("click", () => {
+          var a;
+          f("exp_pdp_improve_button_03", "Clear Form", "Button", "Step 3: Device Details"), (a = n(".reset_variations")) == null || a.click(), s(".radio_option_wrapp").then((r) => {
+            _(".radio_option_wrapp input.custom_radio").forEach((d) => {
+              d.checked = !1;
+            }), this.changeClassListConditionBlock("", !0), s(".radio_descr_mob").then((d) => {
+              _(".radio_descr_mob").forEach((h) => {
+                h.classList.add("is_hidden");
               });
             });
-          }
-        }, 400);
-      });
-    }
-    // GoogleSignIn
-    clickGoogleSignInBtn() {
-      window.onSignIn = function(H) {
-        ge("exp_improve_contact_button_03", "Google", "Button", "Your results are ready! Step 2");
-        let z = H.credential.split("."), Q = JSON.parse(atob(z[1])), ee = Q.given_name, re = Q.email;
-        R("#edit-first-name") && (R("#edit-first-name").value = ee), R("#edit-email-address") && (R("#edit-email-address").value = re), setTimeout(() => {
-          R("#edit-first-name").value !== "" && R("#edit-email-address").value !== "" && (R(".email_name_box").classList.add("is_hidden"), R(".phone_box").classList.contains("is_hidden") && R(".phone_box").classList.remove("is_hidden"), R(".new_reviews_block").classList.contains("is_hidden") || R(".new_reviews_block").classList.add("is_hidden"));
-        }, 500);
-      };
-    }
-    //click on ----> Continue | SeeMyResults | input edit-first-name | input edit-email-address | input edit-mobile-number
-    clickContinueBtn() {
-      de("#continueValidationBtn").then((H) => {
-        R("#continueValidationBtn").addEventListener("click", (z) => {
-          z.preventDefault(), this.validationFormEmailNameBox(R("#edit-first-name"), !0), this.validationFormEmailNameBox(R("#edit-email-address"), !0), ge("exp_improve_contact_button_01", "Continue", "Button", "Your results are ready! Step 2");
-        });
-      });
-    }
-    clickInputs() {
-      de('section.form-wrapper.webform-card[data-title="What is your contact info?"]').then((H) => {
-        ke('section.form-wrapper.webform-card[data-title="What is your contact info?"] input').forEach((z) => {
-          z.addEventListener("input", (Q) => {
-            Q.target.getAttribute("name") !== "mobile_number" ? this.validationFormEmailNameBox(Q.target) : setTimeout(() => {
-              this.validationFormPhoneBox(Q.target);
-            }, 400);
-          }), z.addEventListener("blur", (Q) => {
-            Q.target.getAttribute("name") === "mobile_number" && ge("exp_improve_contact_input_01", "Mobile phone number", "Input", "Almost done! Step 3");
           });
-        });
-      });
-    }
-    clickSeeMyResultsBtn() {
-      de("#seeMyResultsBtn").then((H) => {
-        R("#seeMyResultsBtn").addEventListener("click", (z) => {
-          z.preventDefault(), ge("exp_improve_contact_button_04", "See My Results", "Button", "Almost done! Step 3"), this.validationFormPhoneBox(R("#edit-mobile-number"), !0);
-        });
-      });
-    }
-    validationFormEmailNameBox(H, z = !1) {
-      var re, G;
-      let Q = R("#edit-first-name").value.match(/\S+/), ee = R("#edit-email-address").value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/);
-      if (H.getAttribute("name") === "first_name")
-        if (Q == null) {
-          R("#edit-first-name-error") || H.insertAdjacentHTML(
-            "afterend",
-            '<label id="edit-first-name-error" class="error" for="edit-first-name">Please Enter First Name</label>'
-          );
-          let k = setInterval(() => {
-            R("#edit-first-name-error") && R("#edit-first-name-error").textContent !== "Please Enter First Name" && (clearInterval(k), R("#edit-first-name-error").textContent = "Please Enter First Name");
-          }, 100);
-        } else
-          (re = R("#edit-first-name-error")) == null || re.remove();
-      if (H.getAttribute("name") === "email_address")
-        if (ee === null) {
-          R("#edit-email-address-error") || H.insertAdjacentHTML(
-            "afterend",
-            '<label id="edit-email-address-error" class="error" for="edit-email-address">Please Enter Valid Email Address</label>'
-          );
-          let k = setInterval(() => {
-            R("#edit-email-address-error") && R("#edit-email-address-error").textContent !== "Please Enter Valid Email Address" && (clearInterval(k), R("#edit-email-address-error").textContent = "Please Enter Valid Email Address");
-          }, 100);
-        } else
-          (G = R("#edit-email-address-error")) == null || G.remove();
-      if (ee !== null && Q !== null && z) {
-        R(".email_name_box").classList.add("is_hidden"), R(".phone_box").classList.contains("is_hidden") && R(".phone_box").classList.remove("is_hidden"), R(".new_reviews_block").classList.contains("is_hidden") || R(".new_reviews_block").classList.add("is_hidden");
-        let k = R("#edit-mobile-number");
-        k && k.placeholder !== "(___) ___-____" && (k.placeholder = "(___) ___-____");
+        }));
+      }, 100), l = setInterval(() => {
+        n(".radio_option_wrapp") && (clearInterval(l), _(".radio_option_wrapp input.custom_radio + label").forEach((a) => {
+          let r = a.closest(".radio_block").className;
+          a.addEventListener("click", (d, h) => {
+            let o = d.currentTarget.getAttribute("for");
+            f(
+              `exp_pdp_improve_button_${r.split(" ")[1]}`,
+              o,
+              "Button",
+              "Step 3: Device Details Details Storage"
+            ), _(".flex-wrapper select").forEach((g) => {
+              if (r.includes(g.getAttribute("id"))) {
+                g.value = o;
+                let m = new Event("change", { bubbles: !0 });
+                g.dispatchEvent(m);
+              }
+            }), a.closest(".pa_condition") && (this.changeClassListConditionBlock(o), this.changeClassListConditionBlockMob(d.currentTarget));
+          });
+        }));
+      }, 100), c = setInterval(() => {
+        n("#reviewsBlock") && (clearInterval(c), _("#reviewsBlock a").forEach((a) => {
+          a.addEventListener("click", (r) => {
+            r.target.getAttribute("data-test") || (r.currentTarget.getAttribute("href").includes("trustpilot") && f("exp_pdp_improve_button_01", "Trustpilot", "Button", "Step 3: Reviews Block"), r.currentTarget.getAttribute("href").includes("google") && f("exp_pdp_improve_button_02", "Google", "Button", "Step 3: Reviews Block"), r.currentTarget.getAttribute("href").includes("aloma") && f("exp_pdp_improve_button_03", "AccreditedBusiness", "Button", "Step 3: Reviews Block")), r.target.setAttribute("data-test", "1"), setTimeout(() => {
+              r.target.getAttribute("data-test") && r.target.removeAttribute("data-test");
+            }, 1e3);
+          });
+        }));
+      }, 100);
+      if (this.device === "mobile") {
+        let a = !1, r = setInterval(() => {
+          n(".new_sticky_block button") && (clearInterval(r), n(".new_sticky_block button").addEventListener("click", (h) => {
+            var o;
+            a = !0, f("exp_pdp_improve_stiky_button_01", "Trade-In", "Sticky button", "Step 3: Device Details"), (o = n(".single_variation_wrap .add-to-cart-block > div .single_add_to_cart_button")) == null || o.click(), h.target.classList.contains("disabled") || h.target.classList.add("whmc-spinner"), setTimeout(() => {
+              a = !1;
+            }, 1e3);
+          }));
+        }, 100), d = setInterval(() => {
+          n(".single_variation_wrap .add-to-cart-block > div .single_add_to_cart_button") && (clearInterval(d), n(".single_variation_wrap .add-to-cart-block > div .single_add_to_cart_button").addEventListener(
+            "click",
+            (h) => {
+              a || f("exp_pdp_improve_button_04", "Trade-In Device", "Button", "Step 3: Device Details on-page");
+            }
+          ));
+        }, 100);
       }
     }
-    validationFormPhoneBox(H, z = !1) {
-      var ee;
-      let Q = R("#edit-mobile-number").value.match(/^\(\d{3}\) \d{3}-\d{4}$/);
-      if (H.getAttribute("name") === "mobile_number")
-        if (Q == null) {
-          R("#edit-mobile-number-error") || H.insertAdjacentHTML(
-            "afterend",
-            '<label id="edit-mobile-number-error" class="error" for="edit-mobile-number">Please Enter Mobile Number</label>'
-          );
-          let re = setInterval(() => {
-            R("#edit-mobile-number-error") && R("#edit-mobile-number-error").textContent !== "Please Enter Mobile Number" && (clearInterval(re), R("#edit-mobile-number-error").textContent = "Please Enter Mobile Number");
-          }, 100);
-        } else
-          (ee = R("#edit-mobile-number-error")) == null || ee.remove(), z && R(".webform-button--submit").click();
+    changeClassListConditionBlock(e, t = !1) {
+      let l = setInterval(() => {
+        n("#conditionBlock") && (clearInterval(l), _("#conditionBlock > div").forEach((c) => {
+          if (c.classList.add("is_hidden"), n(".txt_choose").classList.contains("is_hidden") && n(".txt_choose").classList.remove("is_hidden"), c.classList.contains(e) && c.classList.contains("is_hidden") && c.classList.remove("is_hidden"), t && c.classList.contains("is_hidden") && c.classList.contains("choose_var")) {
+            c.classList.remove("is_hidden");
+            let a = setInterval(() => {
+              n(".txt_choose") && (clearInterval(a), n(".txt_choose").classList.contains("is_hidden") || n(".txt_choose").classList.add("is_hidden"));
+            }, 100);
+          }
+        }));
+      }, 100);
     }
-    visibleHandler() {
-      de(".guarantee_block").then((H) => {
-        ye(
-          ".guarantee_block",
-          "exp_improve_contact_banner_01",
-          "Contact info Step 1 Qualified GrantMe students are guaranteed scholarship winnings",
-          "Banner"
-        );
-      }), de(".loader_timing_box").then((H) => {
-        ye(
-          ".loader_timing_box",
-          "exp_improve_contact_block_01",
-          "Contact infoStep 1 Searching for scholarship opportunities",
-          "Block"
-        );
-      }), de(".leyton").then((H) => {
-        ye(".leyton", "exp_improve_contact_review_01", "Contact info Step 1", "Leyton - Review");
-      }), de(".lauren").then((H) => {
-        ye(".lauren", "exp_improve_contact_review_01", "Contact info Step 1", "Lauren - Review");
-      }), de(".ashleigh").then((H) => {
-        ye(".ashleigh", "exp_improve_contact_review_01", "Contact info Step 1", "Ashleigh - Review");
-      }), de(".salwa").then((H) => {
-        ye(".salwa", "exp_improve_contact_review_01", "Contact info Step 1", "Salwa- Review");
-      });
+    changeClassListConditionBlockMob(e) {
+      let t = setInterval(() => {
+        var l;
+        n(".radio_descr_mob") && (clearInterval(t), _(".radio_descr_mob").forEach((c) => {
+          c.classList.add("is_hidden");
+        }), (l = e.closest("label").querySelector(".radio_descr_mob")) != null && l.classList.contains("is_hidden") && e.closest("label").querySelector(".radio_descr_mob").classList.remove("is_hidden"));
+      }, 100);
     }
-    observePhoneNumberPlaceholderChange() {
-      const H = new MutationObserver(() => {
-        if (R("#edit-mobile-number") && R("#edit-mobile-number").placeholder !== "(___) ___-____") {
-          let z = R("#edit-mobile-number");
-          new $e("(999) 999-9999").mask(z), z.placeholder = "(___) ___-____", H.disconnect();
+    initDefaultChooseSelectValue() {
+      var e;
+      (e = _(".flex-wrapper select")) == null || e.forEach((t) => {
+        if (t.value !== "") {
+          let l = setInterval(() => {
+            var c;
+            _(".radio_block .radio_option_wrapp input.custom_radio") && (clearInterval(l), (c = _(".radio_block .radio_option_wrapp input.custom_radio")) == null || c.forEach((a) => {
+              t.value === a.value && (a.checked = !0, a.closest(".pa_condition") && (this.changeClassListConditionBlock(a.value), this.changeClassListConditionBlockMob(a.nextElementSibling)));
+            }));
+          }, 1e3);
         }
       });
-      H.observe(document.documentElement, {
-        childList: !0,
-        subtree: !0,
-        characterData: !0
-      });
     }
-    observerBagControlVersion() {
-      const H = new MutationObserver(() => {
-        R('section.form-wrapper.webform-card[data-title="What is your contact info?"]').classList.contains("webform-card--active") && !R(".dialog-off-canvas-main-canvas").classList.contains("is_loader") && (R(".dialog-off-canvas-main-canvas").classList.add("is_loader"), this.renderReviewsBlock(), H.disconnect());
-      });
-      H.observe(document.documentElement, {
-        childList: !0,
-        subtree: !0,
-        characterData: !0
+    changeClassListPriceAndBtnTradeIn() {
+      var h;
+      let e = _(".woocommerce-variation-price"), t = _(".ggv2-quantity:not(.ggv2-quantity--disabled)"), l = _(".device-placeholder-price"), c = _(".ggv2-quantity.ggv2-quantity--disabled"), a = n(".new_sticky_block button"), r = n(".new_sticky_block .new_sticky_default_txt"), d = n(".new_sticky_block .new_sticky_default_price");
+      (h = n(".woocommerce-variation-add-to-cart .single_add_to_cart_button.button")) != null && h.classList.contains("disabled") ? (e.forEach((o) => {
+        o && !o.classList.contains("is_hidden") && o.classList.add("is_hidden");
+      }), t.forEach((o) => {
+        o && !o.classList.contains("is_hidden") && o.classList.add("is_hidden");
+      }), l.forEach((o) => {
+        o && o.classList.contains("is_hidden") && o.classList.remove("is_hidden");
+      }), c.forEach((o) => {
+        o && o.classList.contains("is_hidden") && o.classList.remove("is_hidden");
+      }), a && !a.classList.contains("disabled") && a.classList.add("disabled"), r && r.classList.contains("is_hidden") && r.classList.remove("is_hidden"), d && !d.classList.contains("is_hidden") && d.classList.add("is_hidden")) : (l.forEach((o) => {
+        o && !o.classList.contains("is_hidden") && o.classList.add("is_hidden");
+      }), c.forEach((o) => {
+        o && !o.classList.contains("is_hidden") && o.classList.add("is_hidden");
+      }), e.forEach((o) => {
+        o && o.classList.contains("is_hidden") && o.classList.remove("is_hidden");
+      }), t.forEach((o) => {
+        o && o.classList.contains("is_hidden") && o.classList.remove("is_hidden");
+      }), a && a.classList.contains("disabled") && a.classList.remove("disabled"), r && !r.classList.contains("is_hidden") && r.classList.add("is_hidden"), d && d.classList.contains("is_hidden") && d.classList.remove("is_hidden"));
+    }
+    renderNewStickyBlock() {
+      n(".new_sticky_block") || n("body").insertAdjacentHTML("afterbegin", j);
+      let e = setInterval(() => {
+        if (n(".new_sticky_block") && n(".device_price_wrapper > .woocommerce-variation-price bdi")) {
+          clearInterval(e);
+          let t = n(".device_price_wrapper > .woocommerce-variation-price bdi").textContent;
+          n(".new_sticky_block .new_sticky_default_price h4").textContent = "Device Value", n(".new_sticky_block .new_sticky_default_price span").textContent = t, n(".new_sticky_block .new_sticky_default_price p").textContent = "";
+        }
+      }, 100);
+    }
+    intersectionObserverTradeInBtn() {
+      new IntersectionObserver((t) => {
+        t.forEach((l) => {
+          l.isIntersecting ? n(".new_sticky_block").classList.add("show") : n(".new_sticky_block").classList.contains("show") && n(".new_sticky_block").classList.remove("show");
+        });
+      }).observe(n(".single_add_to_cart_button"));
+    }
+    renderHowItWorksSection() {
+      var e;
+      n("#howItWorksSection") || (e = n(".product.type-product")) == null || e.insertAdjacentHTML("afterend", S);
+    }
+    renderFrequentlyAskedQuestionSection() {
+      let e = setTimeout(() => {
+        var t;
+        n("#howItWorksSection") && (clearInterval(e), n("#frequentlyAskedQuestionSection") || (t = n("#howItWorksSection")) == null || t.insertAdjacentHTML("afterend", I));
+      }, 100);
+      this.initAccordionQuestions();
+    }
+    initAccordionQuestions() {
+      let e = setInterval(() => {
+        typeof jQuery == "function" && n("#frequentlyAskedQuestionSection") && (clearInterval(e), $(".questions_accordion_block").eq(1).addClass("active"), $(".questions_accordion_block .questions_accordion_link").eq(1).addClass("active"), $(".questions_accordion_block .questions_accordion_lists").eq(1).css("display", "block"), $(".questions_accordion_link").on("click", function(t) {
+          f(
+            "exp_pdp_improve_accordion_01",
+            `${t.currentTarget.querySelector("p").textContent}`,
+            "Accordion",
+            "Step 3: Device Details Frequently Asked Questions"
+          ), $(this).toggleClass("active"), $(this).closest("li").toggleClass("active"), $(this).next(".questions_accordion_lists").slideToggle(), $(".questions_accordion_link").not(this).next(".questions_accordion_lists").slideUp(), $(".questions_accordion_link").not(this).removeClass("active").closest("li").removeClass("active");
+        }));
+      }, 1e3);
+    }
+    visibleHandler() {
+      w(
+        ".single_variation_wrap--inner",
+        "exp_pdp_improve_section_05",
+        "Section",
+        "Step 3: Device Details Offer Summary"
+      ), w(".variations", "exp_pdp_improve_section_01", "Section", "Step 3: Device Details"), s("#reviewsBlock").then((e) => {
+        w(
+          "#reviewsBlock",
+          "exp_pdp_improve_section_02",
+          "Section",
+          "Step 3: Device Details Social Trust Section"
+        );
+      }), w(
+        "#howItWorksSection",
+        "exp_pdp_improve_section_03",
+        "Section",
+        "Step 3: Device Details How it works"
+      ), s("#frequentlyAskedQuestionSection").then((e) => {
+        w(
+          "#frequentlyAskedQuestionSection",
+          "exp_pdp_improve_section_04",
+          "Section",
+          "Step 3: Device Details Frequently Asked Questions"
+        );
       });
     }
   }
-  de("#edit-loading-screen").then((X) => {
-    new Ge(He);
-  });
-  let Ue = setTimeout(() => {
-    location.pathname.match("assessment-results") && location.pathname.match("book-call") && (clearInterval(Ue), de("#newLastName").then((X) => {
-      R("#newLastName").value === "CRO test" && (R("#newLastName").value = "");
-    }));
-  }, 1e3);
+  new z(T);
 })();
 //# sourceMappingURL=index.js.map
