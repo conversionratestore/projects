@@ -1,19 +1,19 @@
 (function() {
   "use strict";
-  const ge = (X, H, z, Q = "") => {
+  const ge = (J, H, z, Q = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: X,
+      event_name: J,
       event_desc: H,
       event_type: z,
       event_loc: Q
-    }), console.log(`Event: ${X} | ${H} | ${z} | ${Q}`);
-  }, Oe = ({ name: X, dev: H }) => {
+    }), console.log(`Event: ${J} | ${H} | ${z} | ${Q}`);
+  }, Oe = ({ name: J, dev: H }) => {
     console.log(
-      `%c EXP: ${X} (DEV: ${H})`,
+      `%c EXP: ${J} (DEV: ${H})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, ke = (X) => document.querySelectorAll(X), R = (X) => document.querySelector(X), Te = async (X) => {
+  }, ke = (J) => document.querySelectorAll(J), D = (J) => document.querySelector(J), Te = async (J) => {
     const H = (z) => new Promise((Q, ee) => {
       const re = z.split(".").pop();
       if (re === "js") {
@@ -31,14 +31,14 @@
         k.rel = "stylesheet", k.href = z, k.onload = Q, k.onerror = ee, document.head.appendChild(k);
       }
     });
-    for (const z of X)
+    for (const z of J)
       await H(z), console.log(`Loaded librari ${z}`);
     console.log("All libraries loaded!");
-  }, Ae = (X) => {
+  }, Ae = (J) => {
     let H = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(H), window.clarity("set", X, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(H), window.clarity("set", J, "variant_1"));
     }, 1e3);
-  }, ye = (X, H, z, Q, ee = 3e3, re = 0.5) => {
+  }, ye = (J, H, z, Q, ee = 3e3, re = 0.5) => {
     let G, k;
     if (G = new IntersectionObserver(
       function(w) {
@@ -52,18 +52,18 @@
         }, ee) : clearTimeout(k);
       },
       { threshold: [re] }
-    ), typeof X == "string") {
-      const w = document.querySelector(X);
+    ), typeof J == "string") {
+      const w = document.querySelector(J);
       w && G.observe(w);
     } else
-      G.observe(X);
+      G.observe(J);
   };
-  function de(X) {
+  function de(J) {
     return new Promise((H) => {
-      if (document.querySelector(X))
-        return H(document.querySelector(X));
+      if (document.querySelector(J))
+        return H(document.querySelector(J));
       const z = new MutationObserver(() => {
-        document.querySelector(X) && (H(document.querySelector(X)), z.disconnect());
+        document.querySelector(J) && (H(document.querySelector(J)), z.disconnect());
       });
       z.observe(document.documentElement, {
         childList: !0,
@@ -949,7 +949,7 @@ body .form-item.form-type-tel label:not(.error) {
     </div>
   </div>
 `
-  ), Fe = (X) => (
+  ), Fe = (J) => (
     /* HTML */
     `
     <section class="new_loader_block">
@@ -959,7 +959,7 @@ body .form-item.form-type-tel label:not(.error) {
         <div class="percentage"></div>
       </div>
       <div class="loading_txt_wrapper">
-        ${X.map((H) => `<p>${H}<span>.</span><span>.</span><span>.</span></p>`).join("")}
+        ${J.map((H) => `<p>${H}<span>.</span><span>.</span><span>.</span></p>`).join("")}
       </div>
     </section>
   `
@@ -1034,17 +1034,17 @@ body .form-item.form-type-tel label:not(.error) {
     <h2 class="new_reviews_main_title">Trusted by over 20,000 students</h2>
     <p class="new_reviews_main_txt">who've secured funding and applied to the university of their dreams.</p>
     <div class="new_reviews_list">
-      ${je.map((X, H) => (
+      ${je.map((J, H) => (
       /* HTML */
       `
-            <div class="new_reviews_item ${X.title.toLocaleLowerCase()}">
-              <div class="stars_wrapper">${X.svgIcon}</div>
-              <h3 class="new_reviews_item_title">${X.title}</h3>
-              <h4 class="new_reviews_item_subtitle">${X.subTitle}</h4>
-              <p class="new_reviews_item_txt">${X.txt}</p>
+            <div class="new_reviews_item ${J.title.toLocaleLowerCase()}">
+              <div class="stars_wrapper">${J.svgIcon}</div>
+              <h3 class="new_reviews_item_title">${J.title}</h3>
+              <h4 class="new_reviews_item_subtitle">${J.subTitle}</h4>
+              <p class="new_reviews_item_txt">${J.txt}</p>
               <div class="received_box">
-                <span class="received_box_txt">${X.receivedTxt}</span>
-                <span class="received_box_price">${X.price}</span>
+                <span class="received_box_txt">${J.receivedTxt}</span>
+                <span class="received_box_price">${J.price}</span>
               </div>
             </div>
           `
@@ -1054,8 +1054,8 @@ body .form-item.form-type-tel label:not(.error) {
 `
   );
   var Ne = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-  function Ve(X) {
-    return X && X.__esModule && Object.prototype.hasOwnProperty.call(X, "default") ? X.default : X;
+  function Ve(J) {
+    return J && J.__esModule && Object.prototype.hasOwnProperty.call(J, "default") ? J.default : J;
   }
   var Ce = { exports: {} };
   /*!
@@ -1065,9 +1065,9 @@ body .form-item.form-type-tel label:not(.error) {
    * Licensed under the MIT license
    * Version: 5.0.8
    */
-  (function(X, H) {
+  (function(J, H) {
     (function(z, Q) {
-      X.exports = Q();
+      J.exports = Q();
     })(typeof self < "u" ? self : Ne, function() {
       return function() {
         var z = {
@@ -1552,29 +1552,29 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                 var a = this.inputmask, e = a.opts, o = a.dependencyLib, n, t = this, i = t.inputmask._valueGet(!0), l = (a.isRTL ? h.getBuffer.call(a).slice().reverse() : h.getBuffer.call(a)).join(""), s = h.caret.call(a, t, void 0, void 0, !0);
                 if (l !== i) {
                   if (n = function(r, u, g) {
-                    for (var L, y, x, E = r.substr(0, g.begin).split(""), f = r.substr(g.begin).split(""), v = u.substr(0, g.begin).split(""), C = u.substr(g.begin).split(""), S = E.length >= v.length ? E.length : v.length, T = f.length >= C.length ? f.length : C.length, D = "", A = [], F = "~"; E.length < S; )
-                      E.push(F);
+                    for (var L, y, x, E = r.substr(0, g.begin).split(""), f = r.substr(g.begin).split(""), v = u.substr(0, g.begin).split(""), C = u.substr(g.begin).split(""), S = E.length >= v.length ? E.length : v.length, T = f.length >= C.length ? f.length : C.length, F = "", A = [], R = "~"; E.length < S; )
+                      E.push(R);
                     for (; v.length < S; )
-                      v.push(F);
+                      v.push(R);
                     for (; f.length < T; )
-                      f.unshift(F);
+                      f.unshift(R);
                     for (; C.length < T; )
-                      C.unshift(F);
+                      C.unshift(R);
                     var O = E.concat(f), N = v.concat(C);
                     for (y = 0, L = O.length; y < L; y++)
-                      switch (x = I.getPlaceholder.call(a, h.translatePosition.call(a, y)), D) {
+                      switch (x = I.getPlaceholder.call(a, h.translatePosition.call(a, y)), F) {
                         case "insertText":
                           N[y - 1] === O[y] && g.begin == O.length - 1 && A.push(O[y]), y = L;
                           break;
                         case "insertReplacementText":
                         case "deleteContentBackward":
-                          O[y] === F ? g.end++ : y = L;
+                          O[y] === R ? g.end++ : y = L;
                           break;
                         default:
-                          O[y] !== N[y] && (O[y + 1] !== F && O[y + 1] !== x && O[y + 1] !== void 0 || (N[y] !== x || N[y + 1] !== F) && N[y] !== F ? N[y + 1] === F && N[y] === O[y + 1] ? (D = "insertText", A.push(O[y]), g.begin--, g.end--) : O[y] !== x && O[y] !== F && (O[y + 1] === F || N[y] !== O[y] && N[y + 1] === O[y + 1]) ? (D = "insertReplacementText", A.push(O[y]), g.begin--) : O[y] === F ? (D = "deleteContentBackward", (h.isMask.call(a, h.translatePosition.call(a, y), !0) || N[y] === e.radixPoint) && g.end++) : y = L : (D = "insertText", A.push(O[y]), g.begin--, g.end--));
+                          O[y] !== N[y] && (O[y + 1] !== R && O[y + 1] !== x && O[y + 1] !== void 0 || (N[y] !== x || N[y + 1] !== R) && N[y] !== R ? N[y + 1] === R && N[y] === O[y + 1] ? (F = "insertText", A.push(O[y]), g.begin--, g.end--) : O[y] !== x && O[y] !== R && (O[y + 1] === R || N[y] !== O[y] && N[y + 1] === O[y + 1]) ? (F = "insertReplacementText", A.push(O[y]), g.begin--) : O[y] === R ? (F = "deleteContentBackward", (h.isMask.call(a, h.translatePosition.call(a, y), !0) || N[y] === e.radixPoint) && g.end++) : y = L : (F = "insertText", A.push(O[y]), g.begin--, g.end--));
                       }
                     return {
-                      action: D,
+                      action: F,
                       data: A,
                       caret: g
                     };
@@ -1723,14 +1723,14 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
               }(f) || function(C, S) {
                 var T = C == null ? null : typeof Symbol < "u" && C[Symbol.iterator] || C["@@iterator"];
                 if (T != null) {
-                  var D, A, F, O, N = [], V = !0, U = !1;
+                  var F, A, R, O, N = [], V = !0, U = !1;
                   try {
-                    if (F = (T = T.call(C)).next, S === 0) {
+                    if (R = (T = T.call(C)).next, S === 0) {
                       if (Object(T) !== T)
                         return;
                       V = !1;
                     } else
-                      for (; !(V = (D = F.call(T)).done) && (N.push(D.value), N.length !== S); V = !0)
+                      for (; !(V = (F = R.call(T)).done) && (N.push(F.value), N.length !== S); V = !0)
                         ;
                   } catch (P) {
                     U = !0, A = P;
@@ -1776,20 +1776,20 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
             function p(f, v) {
               for (var C = 0; C < v.length; C++) {
                 var S = v[C];
-                S.enumerable = S.enumerable || !1, S.configurable = !0, "value" in S && (S.writable = !0), Object.defineProperty(f, (T = S.key, D = void 0, D = function(A, F) {
+                S.enumerable = S.enumerable || !1, S.configurable = !0, "value" in S && (S.writable = !0), Object.defineProperty(f, (T = S.key, F = void 0, F = function(A, R) {
                   if (m(A) !== "object" || A === null)
                     return A;
                   var O = A[Symbol.toPrimitive];
                   if (O !== void 0) {
-                    var N = O.call(A, F || "default");
+                    var N = O.call(A, R || "default");
                     if (m(N) !== "object")
                       return N;
                     throw new TypeError("@@toPrimitive must return a primitive value.");
                   }
-                  return (F === "string" ? String : Number)(A);
-                }(T, "string"), m(D) === "symbol" ? D : String(D)), S);
+                  return (R === "string" ? String : Number)(A);
+                }(T, "string"), m(F) === "symbol" ? F : String(F)), S);
               }
-              var T, D;
+              var T, F;
             }
             function c(f) {
               return f && f.__esModule ? f : {
@@ -1797,11 +1797,11 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
               };
             }
             var a = h.default.dependencyLib, e = function() {
-              function f(S, T, D) {
-                (function(A, F) {
-                  if (!(A instanceof F))
+              function f(S, T, F) {
+                (function(A, R) {
+                  if (!(A instanceof R))
                     throw new TypeError("Cannot call a class as a function");
-                })(this, f), this.mask = S, this.format = T, this.opts = D, this._date = new Date(1, 0, 1), this.initDateObject(S, this.opts);
+                })(this, f), this.mask = S, this.format = T, this.opts = F, this._date = new Date(1, 0, 1), this.initDateObject(S, this.opts);
               }
               var v, C;
               return v = f, (C = [{
@@ -1812,26 +1812,26 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
               }, {
                 key: "initDateObject",
                 value: function(S, T) {
-                  var D;
-                  for (r(T).lastIndex = 0; D = r(T).exec(this.format); ) {
-                    var A = new RegExp("\\d+$").exec(D[0]), F = A ? D[0][0] + "x" : D[0], O = void 0;
+                  var F;
+                  for (r(T).lastIndex = 0; F = r(T).exec(this.format); ) {
+                    var A = new RegExp("\\d+$").exec(F[0]), R = A ? F[0][0] + "x" : F[0], O = void 0;
                     if (S !== void 0) {
                       if (A) {
-                        var N = r(T).lastIndex, V = E(D.index, T);
+                        var N = r(T).lastIndex, V = E(F.index, T);
                         r(T).lastIndex = N, O = S.slice(0, S.indexOf(V.nextMatch[0]));
                       } else
-                        O = S.slice(0, t[F] && t[F][4] || F.length);
+                        O = S.slice(0, t[R] && t[R][4] || R.length);
                       S = S.slice(O.length);
                     }
-                    Object.prototype.hasOwnProperty.call(t, F) && this.setValue(this, O, F, t[F][2], t[F][1]);
+                    Object.prototype.hasOwnProperty.call(t, R) && this.setValue(this, O, R, t[R][2], t[R][1]);
                   }
                 }
               }, {
                 key: "setValue",
-                value: function(S, T, D, A, F) {
-                  if (T !== void 0 && (S[A] = A === "ampm" ? T : T.replace(/[^0-9]/g, "0"), S["raw" + A] = T.replace(/\s/g, "_")), F !== void 0) {
+                value: function(S, T, F, A, R) {
+                  if (T !== void 0 && (S[A] = A === "ampm" ? T : T.replace(/[^0-9]/g, "0"), S["raw" + A] = T.replace(/\s/g, "_")), R !== void 0) {
                     var O = S[A];
-                    (A === "day" && parseInt(O) === 29 || A === "month" && parseInt(O) === 2) && (parseInt(S.day) !== 29 || parseInt(S.month) !== 2 || S.year !== "" && S.year !== void 0 || S._date.setFullYear(2012, 1, 29)), A === "day" && (n = !0, parseInt(O) === 0 && (O = 1)), A === "month" && (n = !0), A === "year" && (n = !0, O.length < 4 && (O = L(O, 4, !0))), O === "" || isNaN(O) || F.call(S._date, O), A === "ampm" && F.call(S._date, O);
+                    (A === "day" && parseInt(O) === 29 || A === "month" && parseInt(O) === 2) && (parseInt(S.day) !== 29 || parseInt(S.month) !== 2 || S.year !== "" && S.year !== void 0 || S._date.setFullYear(2012, 1, 29)), A === "day" && (n = !0, parseInt(O) === 0 && (O = 1)), A === "month" && (n = !0), A === "year" && (n = !0, O.length < 4 && (O = L(O, 4, !0))), O === "" || isNaN(O) || R.call(S._date, O), A === "ampm" && R.call(S._date, O);
                   }
                 }
               }, {
@@ -1976,11 +1976,11 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
               return !1;
             }
             function g(f, v, C, S) {
-              var T, D, A = "";
+              var T, F, A = "";
               for (r(C).lastIndex = 0; T = r(C).exec(f); )
                 if (v === void 0)
-                  if (D = d(T))
-                    A += "(" + D[0] + ")";
+                  if (F = d(T))
+                    A += "(" + F[0] + ")";
                   else
                     switch (T[0]) {
                       case "[":
@@ -1993,7 +1993,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                         A += (0, M.default)(T[0]);
                     }
                 else
-                  (D = d(T)) ? S !== !0 && D[3] ? A += D[3].call(v.date) : D[2] ? A += v["raw" + D[2]] : A += T[0] : A += T[0];
+                  (F = d(T)) ? S !== !0 && F[3] ? A += F[3].call(v.date) : F[2] ? A += v["raw" + F[2]] : A += T[0] : A += T[0];
               return A;
             }
             function L(f, v, C) {
@@ -2010,16 +2010,16 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
               }, v);
             }
             function E(f, v) {
-              var C, S, T = 0, D = 0;
+              var C, S, T = 0, F = 0;
               for (r(v).lastIndex = 0; S = r(v).exec(v.inputFormat); ) {
                 var A = new RegExp("\\d+$").exec(S[0]);
-                if ((T += D = A ? parseInt(A[0]) : S[0].length) >= f + 1) {
+                if ((T += F = A ? parseInt(A[0]) : S[0].length) >= f + 1) {
                   C = S, S = r(v).exec(v.inputFormat);
                   break;
                 }
               }
               return {
-                targetMatchIndex: T - D,
+                targetMatchIndex: T - F,
                 nextMatch: S,
                 targetMatch: C
               };
@@ -2041,8 +2041,8 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                   monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
                   ordinalSuffix: ["st", "nd", "rd", "th"]
                 },
-                preValidation: function(f, v, C, S, T, D, A, F) {
-                  if (F)
+                preValidation: function(f, v, C, S, T, F, A, R) {
+                  if (R)
                     return !0;
                   if (isNaN(C) && f[v] !== C) {
                     var O = E(v, T);
@@ -2062,11 +2062,11 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                   }
                   return !0;
                 },
-                postValidation: function(f, v, C, S, T, D, A, F) {
+                postValidation: function(f, v, C, S, T, F, A, R) {
                   var O, N;
                   if (A)
                     return !0;
-                  if (S === !1 && (((O = E(v + 1, T)).targetMatch && O.targetMatchIndex === v && O.targetMatch[0].length > 1 && t[O.targetMatch[0]] !== void 0 || (O = E(v + 2, T)).targetMatch && O.targetMatchIndex === v + 1 && O.targetMatch[0].length > 1 && t[O.targetMatch[0]] !== void 0) && (N = t[O.targetMatch[0]][0]), N !== void 0 && (D.validPositions[v + 1] !== void 0 && new RegExp(N).test(C + "0") ? (f[v] = C, f[v + 1] = "0", S = {
+                  if (S === !1 && (((O = E(v + 1, T)).targetMatch && O.targetMatchIndex === v && O.targetMatch[0].length > 1 && t[O.targetMatch[0]] !== void 0 || (O = E(v + 2, T)).targetMatch && O.targetMatchIndex === v + 1 && O.targetMatch[0].length > 1 && t[O.targetMatch[0]] !== void 0) && (N = t[O.targetMatch[0]][0]), N !== void 0 && (F.validPositions[v + 1] !== void 0 && new RegExp(N).test(C + "0") ? (f[v] = C, f[v + 1] = "0", S = {
                     pos: v + 2,
                     caret: v
                   }) : new RegExp(N).test("0" + C) && (f[v] = "0", f[v + 1] = C, S = {
@@ -2077,22 +2077,22 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                     var V = t[O.targetMatch[0]];
                     N = V[0];
                     var U = f.slice(O.targetMatchIndex, O.targetMatchIndex + O.targetMatch[0].length);
-                    if (new RegExp(N).test(U.join("")) === !1 && O.targetMatch[0].length === 2 && D.validPositions[O.targetMatchIndex] && D.validPositions[O.targetMatchIndex + 1] && (D.validPositions[O.targetMatchIndex + 1].input = "0"), V[2] == "year")
+                    if (new RegExp(N).test(U.join("")) === !1 && O.targetMatch[0].length === 2 && F.validPositions[O.targetMatchIndex] && F.validPositions[O.targetMatchIndex + 1] && (F.validPositions[O.targetMatchIndex + 1].input = "0"), V[2] == "year")
                       for (var P = j.getMaskTemplate.call(this, !1, 1, void 0, !0), Z = v + 1; Z < f.length; Z++)
-                        f[Z] = P[Z], delete D.validPositions[Z];
+                        f[Z] = P[Z], delete F.validPositions[Z];
                   }
                   var W = S, oe = y(f.join(""), T.inputFormat, T);
                   return W && !isNaN(oe.date.getTime()) && (T.prefillYear && (W = function(q, ne, se) {
                     if (q.year !== q.rawyear) {
-                      var K = o.toString(), te = q.rawyear.replace(/[^0-9]/g, ""), Y = K.slice(0, te.length), J = K.slice(te.length);
+                      var K = o.toString(), te = q.rawyear.replace(/[^0-9]/g, ""), Y = K.slice(0, te.length), X = K.slice(te.length);
                       if (te.length === 2 && te === Y) {
                         var ie = new Date(o, q.month - 1, q.day);
                         q.day == ie.getDate() && (!se.max || se.max.date.getTime() >= ie.getTime()) && (q.date.setFullYear(o), q.year = K, ne.insert = [{
                           pos: ne.pos + 1,
-                          c: J[0]
+                          c: X[0]
                         }, {
                           pos: ne.pos + 2,
-                          c: J[1]
+                          c: X[1]
                         }]);
                       }
                     }
@@ -2103,17 +2103,17 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                     if (ne && se.min && !isNaN(se.min.date.getTime())) {
                       var Y;
                       for (q.reset(), r(se).lastIndex = 0; Y = r(se).exec(se.inputFormat); ) {
-                        var J;
-                        if ((J = d(Y)) && J[3]) {
-                          for (var ie = J[1], pe = q[J[2]], le = se.min[J[2]], be = se.max ? se.max[J[2]] : le, ue = [], fe = !1, me = 0; me < le.length; me++)
-                            K.validPositions[me + Y.index] !== void 0 || fe ? (ue[me] = pe[me], fe = fe || pe[me] > le[me]) : (ue[me] = le[me], J[2] === "year" && pe.length - 1 == me && le != be && (ue = (parseInt(ue.join("")) + 1).toString().split("")), J[2] === "ampm" && le != be && se.min.date.getTime() > q.date.getTime() && (ue[me] = be[me]));
+                        var X;
+                        if ((X = d(Y)) && X[3]) {
+                          for (var ie = X[1], pe = q[X[2]], le = se.min[X[2]], be = se.max ? se.max[X[2]] : le, ue = [], fe = !1, me = 0; me < le.length; me++)
+                            K.validPositions[me + Y.index] !== void 0 || fe ? (ue[me] = pe[me], fe = fe || pe[me] > le[me]) : (ue[me] = le[me], X[2] === "year" && pe.length - 1 == me && le != be && (ue = (parseInt(ue.join("")) + 1).toString().split("")), X[2] === "ampm" && le != be && se.min.date.getTime() > q.date.getTime() && (ue[me] = be[me]));
                           ie.call(q._date, ue.join(""));
                         }
                       }
                       ne = se.min.date.getTime() <= q.date.getTime(), q.reInit();
                     }
                     return ne && se.max && (isNaN(se.max.date.getTime()) || (ne = se.max.date.getTime() >= q.date.getTime())), ne;
-                  }(oe, W = u.call(this, oe, W, T), T, D)), v !== void 0 && W && S.pos !== v ? {
+                  }(oe, W = u.call(this, oe, W, T), T, F)), v !== void 0 && W && S.pos !== v ? {
                     buffer: g(T.inputFormat, oe, T).split(""),
                     refreshFromBuffer: {
                       start: v,
@@ -2670,10 +2670,10 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                 begin: g
               };
               var x = [], E = i.caretPos;
-              if (r.forEach(function(D, A) {
-                if (D !== void 0) {
-                  var F = new d.Event("_checkval");
-                  F.key = D, u += D;
+              if (r.forEach(function(F, A) {
+                if (F !== void 0) {
+                  var R = new d.Event("_checkval");
+                  R.key = F, u += F;
                   var O = M.getLastValidPosition.call(i, void 0, !0);
                   (function(N, V) {
                     for (var U = _.getMaskTemplate.call(i, !0, 0).slice(N, M.seekNext.call(i, N, !1, !1)).join("").replace(/'/g, ""), P = U.indexOf(V); P > 0 && U[P - 1] === " "; )
@@ -2686,7 +2686,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                       });
                     }
                     return Z;
-                  })(g, u) ? L = I.EventHandlers.keypressEvent.call(i, F, !0, !1, o, O + 1) : (L = I.EventHandlers.keypressEvent.call(i, F, !0, !1, o, i.caretPos.begin)) && (g = i.caretPos.begin + 1, u = ""), L ? (L.pos !== void 0 && l.validPositions[L.pos] && l.validPositions[L.pos].match.static === !0 && l.validPositions[L.pos].alternation === void 0 && (x.push(L.pos), i.isRTL || (L.forwardPosition = L.pos + 1)), c.call(i, void 0, M.getBuffer.call(i), L.forwardPosition, F, !1), i.caretPos = {
+                  })(g, u) ? L = I.EventHandlers.keypressEvent.call(i, R, !0, !1, o, O + 1) : (L = I.EventHandlers.keypressEvent.call(i, R, !0, !1, o, i.caretPos.begin)) && (g = i.caretPos.begin + 1, u = ""), L ? (L.pos !== void 0 && l.validPositions[L.pos] && l.validPositions[L.pos].match.static === !0 && l.validPositions[L.pos].alternation === void 0 && (x.push(L.pos), i.isRTL || (L.forwardPosition = L.pos + 1)), c.call(i, void 0, M.getBuffer.call(i), L.forwardPosition, R, !1), i.caretPos = {
                     begin: L.forwardPosition,
                     end: L.forwardPosition
                   }, E = i.caretPos) : l.validPositions[A] === void 0 && r[A] === _.getPlaceholder.call(i, A) && M.isMask.call(i, A, !0) ? i.caretPos.begin++ : i.caretPos = E;
@@ -2773,19 +2773,19 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                       (V = V !== void 0 ? V : E.getAttribute(U)) !== null && (typeof V == "string" && (N.indexOf("on") === 0 ? V = M.default[V] : V === "false" ? V = !1 : V === "true" && (V = !0)), v[N] = V);
                     }
                     if (f.importDataAttributes === !0) {
-                      var T, D, A, F, O = E.getAttribute(C);
-                      if (O && O !== "" && (O = O.replace(/'/g, '"'), D = JSON.parse("{" + O + "}")), D) {
-                        for (F in A = void 0, D)
-                          if (F.toLowerCase() === "alias") {
-                            A = D[F];
+                      var T, F, A, R, O = E.getAttribute(C);
+                      if (O && O !== "" && (O = O.replace(/'/g, '"'), F = JSON.parse("{" + O + "}")), F) {
+                        for (R in A = void 0, F)
+                          if (R.toLowerCase() === "alias") {
+                            A = F[R];
                             break;
                           }
                       }
                       for (T in S("alias", A), v.alias && s(v.alias, v, f), f) {
-                        if (D) {
-                          for (F in A = void 0, D)
-                            if (F.toLowerCase() === T.toLowerCase()) {
-                              A = D[F];
+                        if (F) {
+                          for (R in A = void 0, F)
+                            if (R.toLowerCase() === T.toLowerCase()) {
+                              A = F[R];
                               break;
                             }
                         }
@@ -3269,11 +3269,11 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                       r.push(new _.default(!0));
                       break;
                     case p.quantifiermarker[0]:
-                      var C = new _.default(!1, !1, !0), S = (a = a.replace(/[{}?]/g, "")).split("|"), T = S[0].split(","), D = isNaN(T[0]) ? T[0] : parseInt(T[0]), A = T.length === 1 ? D : isNaN(T[1]) ? T[1] : parseInt(T[1]), F = isNaN(S[1]) ? S[1] : parseInt(S[1]);
-                      D !== "*" && D !== "+" || (D = A === "*" ? 0 : 1), C.quantifier = {
-                        min: D,
+                      var C = new _.default(!1, !1, !0), S = (a = a.replace(/[{}?]/g, "")).split("|"), T = S[0].split(","), F = isNaN(T[0]) ? T[0] : parseInt(T[0]), A = T.length === 1 ? F : isNaN(T[1]) ? T[1] : parseInt(T[1]), R = isNaN(S[1]) ? S[1] : parseInt(S[1]);
+                      F !== "*" && F !== "+" || (F = A === "*" ? 0 : 1), C.quantifier = {
+                        min: F,
                         max: A,
-                        jit: F
+                        jit: R
                       };
                       var O = r.length > 0 ? r[r.length - 1].matches : d.matches;
                       (c = O.pop()).isGroup || (c = x([c])), O.push(c), O.push(C);
@@ -3334,7 +3334,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                       }(E) || function(v, C) {
                         var S = v == null ? null : typeof Symbol < "u" && v[Symbol.iterator] || v["@@iterator"];
                         if (S != null) {
-                          var T, D, A, F, O = [], N = !0, V = !1;
+                          var T, F, A, R, O = [], N = !0, V = !1;
                           try {
                             if (A = (S = S.call(v)).next, C === 0) {
                               if (Object(S) !== S)
@@ -3344,14 +3344,14 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                               for (; !(N = (T = A.call(S)).done) && (O.push(T.value), O.length !== C); N = !0)
                                 ;
                           } catch (U) {
-                            V = !0, D = U;
+                            V = !0, F = U;
                           } finally {
                             try {
-                              if (!N && S.return != null && (F = S.return(), Object(F) !== F))
+                              if (!N && S.return != null && (R = S.return(), Object(R) !== R))
                                 return;
                             } finally {
                               if (V)
-                                throw D;
+                                throw F;
                             }
                           }
                           return O;
@@ -3805,37 +3805,37 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
             }
             function c(a, e, o) {
               var n, t, i = this, l = this.dependencyLib, s = this.maskset, d = this.opts, r = this.el, u = s.maskToken, g = e ? o : 0, L = e ? e.slice() : [0], y = [], x = !1, E = e ? e.join("") : "";
-              function f(D, A, F, O) {
+              function f(F, A, R, O) {
                 function N(P, Z, W) {
                   function oe(K, te) {
                     var Y = te.matches.indexOf(K) === 0;
-                    return Y || te.matches.every(function(J, ie) {
-                      return J.isQuantifier === !0 ? Y = oe(K, te.matches[ie - 1]) : Object.prototype.hasOwnProperty.call(J, "matches") && (Y = oe(K, J)), !Y;
+                    return Y || te.matches.every(function(X, ie) {
+                      return X.isQuantifier === !0 ? Y = oe(K, te.matches[ie - 1]) : Object.prototype.hasOwnProperty.call(X, "matches") && (Y = oe(K, X)), !Y;
                     }), Y;
                   }
                   function q(K, te, Y) {
-                    var J, ie;
+                    var X, ie;
                     if ((s.tests[K] || s.validPositions[K]) && (s.tests[K] || [s.validPositions[K]]).every(function(le, be) {
                       if (le.mloc[te])
-                        return J = le, !1;
+                        return X = le, !1;
                       var ue = Y !== void 0 ? Y : le.alternation, fe = le.locator[ue] !== void 0 ? le.locator[ue].toString().indexOf(te) : -1;
-                      return (ie === void 0 || fe < ie) && fe !== -1 && (J = le, ie = fe), !0;
-                    }), J) {
-                      var pe = J.locator[J.alternation];
-                      return (J.mloc[te] || J.mloc[pe] || J.locator).slice((Y !== void 0 ? Y : J.alternation) + 1);
+                      return (ie === void 0 || fe < ie) && fe !== -1 && (X = le, ie = fe), !0;
+                    }), X) {
+                      var pe = X.locator[X.alternation];
+                      return (X.mloc[te] || X.mloc[pe] || X.locator).slice((Y !== void 0 ? Y : X.alternation) + 1);
                     }
                     return Y !== void 0 ? q(K, te) : void 0;
                   }
                   function ne(K, te) {
-                    var Y = K.alternation, J = te === void 0 || Y === te.alternation && K.locator[Y].toString().indexOf(te.locator[Y]) === -1;
-                    if (!J && Y > te.alternation) {
+                    var Y = K.alternation, X = te === void 0 || Y === te.alternation && K.locator[Y].toString().indexOf(te.locator[Y]) === -1;
+                    if (!X && Y > te.alternation) {
                       for (var ie = te.alternation; ie < Y; ie++)
                         if (K.locator[ie] !== te.locator[ie]) {
-                          Y = ie, J = !0;
+                          Y = ie, X = !0;
                           break;
                         }
                     }
-                    if (J) {
+                    if (X) {
                       K.mloc = K.mloc || {};
                       var pe = K.locator[Y];
                       if (pe !== void 0) {
@@ -3872,15 +3872,15 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                   } else if (P.matches !== void 0) {
                     if (P.isGroup && W !== P)
                       return function() {
-                        if (P = N(D.matches[D.matches.indexOf(P) + 1], Z, W))
+                        if (P = N(F.matches[F.matches.indexOf(P) + 1], Z, W))
                           return !0;
                       }();
                     if (P.isOptional)
                       return function() {
                         var K = P, te = y.length;
                         if (P = f(P, A, Z, W), y.length > 0) {
-                          if (y.forEach(function(Y, J) {
-                            J >= te && (Y.match.optionality = Y.match.optionality ? Y.match.optionality + 1 : 1);
+                          if (y.forEach(function(Y, X) {
+                            X >= te && (Y.match.optionality = Y.match.optionality ? Y.match.optionality + 1 : 1);
                           }), n = y[y.length - 1].match, W !== void 0 || !oe(n, K))
                             return P;
                           x = !0, g = a;
@@ -3889,13 +3889,13 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                     if (P.isAlternator)
                       return function() {
                         i.hasAlternator = !0;
-                        var K, te, Y, J = P, ie = [], pe = y.slice(), le = Z.length, be = !1, ue = A.length > 0 ? A.shift() : -1;
+                        var K, te, Y, X = P, ie = [], pe = y.slice(), le = Z.length, be = !1, ue = A.length > 0 ? A.shift() : -1;
                         if (ue === -1 || typeof ue == "string") {
                           var fe, me = g, Pe = A.slice(), he = [];
                           if (typeof ue == "string")
                             he = ue.split(",");
                           else
-                            for (fe = 0; fe < J.matches.length; fe++)
+                            for (fe = 0; fe < X.matches.length; fe++)
                               he.push(fe.toString());
                           if (s.excludes[a] !== void 0) {
                             for (var ze = he.slice(), Le = 0, qe = s.excludes[a].length; Le < qe; Le++) {
@@ -3907,10 +3907,10 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                           (d.keepStatic === !0 || isFinite(parseInt(d.keepStatic)) && me >= d.keepStatic) && (he = he.slice(0, 1));
                           for (var xe = 0; xe < he.length; xe++) {
                             fe = parseInt(he[xe]), y = [], A = typeof ue == "string" && q(g, fe, le) || Pe.slice();
-                            var _e = J.matches[fe];
+                            var _e = X.matches[fe];
                             if (_e && N(_e, [fe].concat(Z), W))
                               P = !0;
-                            else if (xe === 0 && (be = !0), _e && _e.matches && _e.matches.length > J.matches[0].matches.length)
+                            else if (xe === 0 && (be = !0), _e && _e.matches && _e.matches.length > X.matches[0].matches.length)
                               break;
                             K = y.slice(), g = me, y = [];
                             for (var Me = 0; Me < K.length; Me++) {
@@ -3942,17 +3942,17 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                           }
                           y = pe.concat(ie), g = a, x = y.length > 0, P = ie.length > 0, A = Pe.slice();
                         } else
-                          P = N(J.matches[ue] || D.matches[ue], [ue].concat(Z), W);
+                          P = N(X.matches[ue] || F.matches[ue], [ue].concat(Z), W);
                         if (P)
                           return !0;
                       }();
-                    if (P.isQuantifier && W !== D.matches[D.matches.indexOf(P) - 1])
+                    if (P.isQuantifier && W !== F.matches[F.matches.indexOf(P) - 1])
                       return function() {
                         for (var K = P, te = !1, Y = A.length > 0 ? A.shift() : 0; Y < (isNaN(K.quantifier.max) ? Y + 1 : K.quantifier.max) && g <= a; Y++) {
-                          var J = D.matches[D.matches.indexOf(K) - 1];
-                          if (P = N(J, [Y].concat(Z), J)) {
+                          var X = F.matches[F.matches.indexOf(K) - 1];
+                          if (P = N(X, [Y].concat(Z), X)) {
                             if (y.forEach(function(ie, pe) {
-                              (n = v(J, ie.match) ? ie.match : y[y.length - 1].match).optionalQuantifier = Y >= K.quantifier.min, n.jit = (Y + 1) * (J.matches.indexOf(n) + 1) > K.quantifier.jit, n.optionalQuantifier && oe(n, J) && (x = !0, g = a, d.greedy && s.validPositions[a - 1] == null && Y > K.quantifier.min && ["*", "+"].indexOf(K.quantifier.max) != -1 && (y.pop(), E = void 0), te = !0, P = !1), !te && n.jit && (s.jitOffset[a] = J.matches.length - J.matches.indexOf(n));
+                              (n = v(X, ie.match) ? ie.match : y[y.length - 1].match).optionalQuantifier = Y >= K.quantifier.min, n.jit = (Y + 1) * (X.matches.indexOf(n) + 1) > K.quantifier.jit, n.optionalQuantifier && oe(n, X) && (x = !0, g = a, d.greedy && s.validPositions[a - 1] == null && Y > K.quantifier.min && ["*", "+"].indexOf(K.quantifier.max) != -1 && (y.pop(), E = void 0), te = !0, P = !1), !te && n.jit && (s.jitOffset[a] = X.matches.length - X.matches.indexOf(n));
                             }), te)
                               break;
                             return !0;
@@ -3964,29 +3964,29 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                   } else
                     g++;
                 }
-                for (var V = A.length > 0 ? A.shift() : 0; V < D.matches.length; V++)
-                  if (D.matches[V].isQuantifier !== !0) {
-                    var U = N(D.matches[V], [V].concat(F), O);
+                for (var V = A.length > 0 ? A.shift() : 0; V < F.matches.length; V++)
+                  if (F.matches[V].isQuantifier !== !0) {
+                    var U = N(F.matches[V], [V].concat(R), O);
                     if (U && g === a)
                       return U;
                     if (g > a)
                       break;
                   }
               }
-              function v(D, A) {
-                var F = D.matches.indexOf(A) != -1;
-                return F || D.matches.forEach(function(O, N) {
-                  O.matches === void 0 || F || (F = v(O, A));
-                }), F;
+              function v(F, A) {
+                var R = F.matches.indexOf(A) != -1;
+                return R || F.matches.forEach(function(O, N) {
+                  O.matches === void 0 || R || (R = v(O, A));
+                }), R;
               }
               if (a > -1) {
                 if (e === void 0) {
                   for (var C, S = a - 1; (C = s.validPositions[S] || s.tests[S]) === void 0 && S > -1; )
                     S--;
-                  C !== void 0 && S > -1 && (L = function(D, A) {
-                    var F, O = [];
-                    return Array.isArray(A) || (A = [A]), A.length > 0 && (A[0].alternation === void 0 || d.keepStatic === !0 ? (O = b.call(i, D, A.slice()).locator.slice()).length === 0 && (O = A[0].locator.slice()) : A.forEach(function(N) {
-                      N.def !== "" && (O.length === 0 ? (F = N.alternation, O = N.locator.slice()) : N.locator[F] && O[F].toString().indexOf(N.locator[F]) === -1 && (O[F] += "," + N.locator[F]));
+                  C !== void 0 && S > -1 && (L = function(F, A) {
+                    var R, O = [];
+                    return Array.isArray(A) || (A = [A]), A.length > 0 && (A[0].alternation === void 0 || d.keepStatic === !0 ? (O = b.call(i, F, A.slice()).locator.slice()).length === 0 && (O = A[0].locator.slice()) : A.forEach(function(N) {
+                      N.def !== "" && (O.length === 0 ? (R = N.alternation, O = N.locator.slice()) : N.locator[R] && O[R].toString().indexOf(N.locator[R]) === -1 && (O[R] += "," + N.locator[R]));
                     })), O;
                   }(S, C), E = L.join(""), g = S);
                 }
@@ -4007,8 +4007,8 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                 locator: [],
                 mloc: {},
                 cd: E
-              }), e !== void 0 && s.tests[a] ? t = l.extend(!0, [], y) : (s.tests[a] = l.extend(!0, [], y), t = s.tests[a]), y.forEach(function(D) {
-                D.match.optionality = D.match.defOptionality || !1;
+              }), e !== void 0 && s.tests[a] ? t = l.extend(!0, [], y) : (s.tests[a] = l.extend(!0, [], y), t = s.tests[a]), y.forEach(function(F) {
+                F.match.optionality = F.match.defOptionality || !1;
               }), t;
             }
           },
@@ -4047,42 +4047,42 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
             }, k.isComplete = b, k.isSelection = m, k.isValid = p, k.refreshFromBuffer = a, k.revalidateMask = o;
             var h = w(4713), _ = w(2839), M = w(8711), B = w(6030);
             function j(n, t, i, l, s, d) {
-              var r, u, g, L, y, x, E, f, v, C, S, T = this, D = this.dependencyLib, A = this.opts, F = T.maskset, O = D.extend(!0, [], F.validPositions), N = D.extend(!0, {}, F.tests), V = !1, U = !1, P = s !== void 0 ? s : M.getLastValidPosition.call(T);
+              var r, u, g, L, y, x, E, f, v, C, S, T = this, F = this.dependencyLib, A = this.opts, R = T.maskset, O = F.extend(!0, [], R.validPositions), N = F.extend(!0, {}, R.tests), V = !1, U = !1, P = s !== void 0 ? s : M.getLastValidPosition.call(T);
               if (d && (C = d.begin, S = d.end, d.begin > d.end && (C = d.end, S = d.begin)), P === -1 && s === void 0)
                 r = 0, u = (L = h.getTest.call(T, r)).alternation;
               else
                 for (; P >= 0; P--)
-                  if ((g = F.validPositions[P]) && g.alternation !== void 0) {
+                  if ((g = R.validPositions[P]) && g.alternation !== void 0) {
                     if (P <= (n || 0) && L && L.locator[g.alternation] !== g.locator[g.alternation])
                       break;
-                    r = P, u = F.validPositions[r].alternation, L = g;
+                    r = P, u = R.validPositions[r].alternation, L = g;
                   }
               if (u !== void 0) {
-                E = parseInt(r), F.excludes[E] = F.excludes[E] || [], n !== !0 && F.excludes[E].push((0, h.getDecisionTaker)(L) + ":" + L.alternation);
+                E = parseInt(r), R.excludes[E] = R.excludes[E] || [], n !== !0 && R.excludes[E].push((0, h.getDecisionTaker)(L) + ":" + L.alternation);
                 var Z = [], W = -1;
                 for (y = E; y < M.getLastValidPosition.call(T, void 0, !0) + 1; y++)
-                  W === -1 && n <= y && t !== void 0 && (Z.push(t), W = Z.length - 1), (x = F.validPositions[y]) && x.generatedInput !== !0 && (d === void 0 || y < C || y >= S) && Z.push(x.input), delete F.validPositions[y];
-                for (W === -1 && t !== void 0 && (Z.push(t), W = Z.length - 1); F.excludes[E] !== void 0 && F.excludes[E].length < 10; ) {
-                  for (F.tests = {}, M.resetMaskSet.call(T, !0), V = !0, y = 0; y < Z.length && (f = V.caret || M.getLastValidPosition.call(T, void 0, !0) + 1, v = Z[y], V = p.call(T, f, v, !1, l, !0)); y++)
+                  W === -1 && n <= y && t !== void 0 && (Z.push(t), W = Z.length - 1), (x = R.validPositions[y]) && x.generatedInput !== !0 && (d === void 0 || y < C || y >= S) && Z.push(x.input), delete R.validPositions[y];
+                for (W === -1 && t !== void 0 && (Z.push(t), W = Z.length - 1); R.excludes[E] !== void 0 && R.excludes[E].length < 10; ) {
+                  for (R.tests = {}, M.resetMaskSet.call(T, !0), V = !0, y = 0; y < Z.length && (f = V.caret || M.getLastValidPosition.call(T, void 0, !0) + 1, v = Z[y], V = p.call(T, f, v, !1, l, !0)); y++)
                     y === W && (U = V), n == 1 && V && (U = {
                       caretPos: y
                     });
                   if (V)
                     break;
-                  if (M.resetMaskSet.call(T), L = h.getTest.call(T, E), F.validPositions = D.extend(!0, [], O), F.tests = D.extend(!0, {}, N), !F.excludes[E]) {
+                  if (M.resetMaskSet.call(T), L = h.getTest.call(T, E), R.validPositions = F.extend(!0, [], O), R.tests = F.extend(!0, {}, N), !R.excludes[E]) {
                     U = j.call(T, n, t, i, l, E - 1, d);
                     break;
                   }
                   var oe = (0, h.getDecisionTaker)(L);
-                  if (F.excludes[E].indexOf(oe + ":" + L.alternation) !== -1) {
+                  if (R.excludes[E].indexOf(oe + ":" + L.alternation) !== -1) {
                     U = j.call(T, n, t, i, l, E - 1, d);
                     break;
                   }
-                  for (F.excludes[E].push(oe + ":" + L.alternation), y = E; y < M.getLastValidPosition.call(T, void 0, !0) + 1; y++)
-                    delete F.validPositions[y];
+                  for (R.excludes[E].push(oe + ":" + L.alternation), y = E; y < M.getLastValidPosition.call(T, void 0, !0) + 1; y++)
+                    delete R.validPositions[y];
                 }
               }
-              return U && A.keepStatic === !1 || delete F.excludes[E], U;
+              return U && A.keepStatic === !1 || delete R.excludes[E], U;
             }
             function I(n, t, i) {
               var l = this.opts, s = this.maskset;
@@ -4179,9 +4179,9 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                   var T = y.validPositions[x];
                   if (!T || T.match.static !== !0 || T.match.def !== t && t !== L.skipOptionalPartCharacter) {
                     if (L.insertMode || y.validPositions[M.seekNext.call(u, x)] === void 0 || n.end > x) {
-                      var D = !1;
-                      if (y.jitOffset[x] && y.validPositions[M.seekNext.call(u, x)] === void 0 && (v = p.call(u, x + y.jitOffset[x], t, !0, !0)) !== !1 && (s !== !0 && (v.caret = x), D = !0), n.end > x && (y.validPositions[x] = void 0), !D && !M.isMask.call(u, x, L.keepStatic && x === 0)) {
-                        for (var A = x + 1, F = M.seekNext.call(u, x, !1, x !== 0); A <= F; A++)
+                      var F = !1;
+                      if (y.jitOffset[x] && y.validPositions[M.seekNext.call(u, x)] === void 0 && (v = p.call(u, x + y.jitOffset[x], t, !0, !0)) !== !1 && (s !== !0 && (v.caret = x), F = !0), n.end > x && (y.validPositions[x] = void 0), !F && !M.isMask.call(u, x, L.keepStatic && x === 0)) {
+                        for (var A = x + 1, R = M.seekNext.call(u, x, !1, x !== 0); A <= R; A++)
                           if ((v = f(A, t, i)) !== !1) {
                             v = e.call(u, x, v.pos !== void 0 ? v.pos : A) || v, x = A;
                             break;
@@ -4271,8 +4271,8 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                 var f, v = u.extend(!0, {}, d.validPositions), C = M.getLastValidPosition.call(s, void 0, !0);
                 for (d.p = y, f = C; f >= y; f--)
                   delete d.validPositions[f], t === void 0 && delete d.tests[f + 1];
-                var S, T, D = l, A = D;
-                for (t && (d.validPositions[l] = u.extend(!0, {}, t), A++, D++), f = t ? x : x - 1; f <= C; f++) {
+                var S, T, F = l, A = F;
+                for (t && (d.validPositions[l] = u.extend(!0, {}, t), A++, F++), f = t ? x : x - 1; f <= C; f++) {
                   if ((S = v[f]) !== void 0 && S.generatedInput !== !0 && (f >= x || f >= y && g(f, v, {
                     begin: y,
                     end: x
@@ -4280,8 +4280,8 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                     for (; h.getTest.call(s, A).match.def !== ""; ) {
                       if ((T = c.call(s, A, S, r)) !== !1 || S.match.def === "+") {
                         S.match.def === "+" && M.getBuffer.call(s, !0);
-                        var F = p.call(s, A, S.input, S.match.def !== "+", !0);
-                        if (E = F !== !1, D = (F.pos || A) + 1, !E && T)
+                        var R = p.call(s, A, S.input, S.match.def !== "+", !0);
+                        if (E = R !== !1, F = (R.pos || A) + 1, !E && T)
                           break;
                       } else
                         E = !1;
@@ -4293,7 +4293,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                         break;
                       A++;
                     }
-                    h.getTest.call(s, A).match.def == "" && (E = !1), A = D;
+                    h.getTest.call(s, A).match.def == "" && (E = !1), A = F;
                   }
                   if (!E)
                     break;
@@ -4347,31 +4347,31 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         H.addEventListener("click", (z) => {
           setTimeout(() => {
             var Q, ee, re;
-            (Q = R(".dialog-off-canvas-main-canvas")) == null || Q.classList.add("is_loader"), (ee = R(".dialog-off-canvas-main-canvas")) == null || ee.classList.add("is_loader_active"), (re = R('section.form-wrapper.webform-card[data-title="What is your contact info?"]')) == null || re.classList.add("is_loader"), this.renderNewLoaderBlock(), this.createLoader(), this.renderReviewsBlock(), this.changeLogoImg();
+            (Q = D(".dialog-off-canvas-main-canvas")) == null || Q.classList.add("is_loader"), (ee = D(".dialog-off-canvas-main-canvas")) == null || ee.classList.add("is_loader_active"), (re = D('section.form-wrapper.webform-card[data-title="What is your contact info?"]')) == null || re.classList.add("is_loader"), this.renderNewLoaderBlock(), this.createLoader(), this.renderReviewsBlock(), this.changeLogoImg();
           }, 300);
         });
       });
     }
     renderNewFormStep() {
       de('section.form-wrapper.webform-card[data-title="What is your contact info?"]').then((H) => {
-        R(".last_steps_wrapper") || R(
+        D(".last_steps_wrapper") || D(
           'section.form-wrapper.webform-card[data-title="What is your contact info?"] .webform-card-wrapper'
         ).insertAdjacentHTML("afterbegin", Re);
       }), de(".email_name_box").then((H) => {
-        const z = R(".form-item-email-address"), Q = R(".form-item-email-address label:not(.error)"), ee = R(".form-item-first-name"), re = R(".form-item-first-name label:not(.error)"), G = R("#edit-first-name");
-        let k = R(".form-item-last-name #edit-last-name");
-        re.textContent !== "First Name" && (re.textContent = "First Name"), Q.textContent !== "Email" && (Q.textContent = "Email"), k.value !== "CRO test" && (k.value = "CRO test"), G.placeholder !== "John" && (G.placeholder = "John"), R("#continueValidationBtn").insertAdjacentElement("beforebegin", ee), R("#continueValidationBtn").insertAdjacentElement("beforebegin", z);
-        let w = R(".benefits"), h = R(".benefits > div > p");
-        h.textContent !== "What you’ll get:" && (h.textContent = "What you’ll get:"), R(".email_name_box").insertAdjacentElement("beforeend", w);
+        const z = D(".form-item-email-address"), Q = D(".form-item-email-address label:not(.error)"), ee = D(".form-item-first-name"), re = D(".form-item-first-name label:not(.error)"), G = D("#edit-first-name");
+        let k = D(".form-item-last-name #edit-last-name");
+        re.textContent !== "First Name" && (re.textContent = "First Name"), Q.textContent !== "Email" && (Q.textContent = "Email"), k.value !== "CRO test" && (k.value = "CRO test"), G.placeholder !== "John" && (G.placeholder = "John"), D("#continueValidationBtn").insertAdjacentElement("beforebegin", ee), D("#continueValidationBtn").insertAdjacentElement("beforebegin", z);
+        let w = D(".benefits"), h = D(".benefits > div > p");
+        h.textContent !== "What you’ll get:" && (h.textContent = "What you’ll get:"), D(".email_name_box").insertAdjacentElement("beforeend", w);
       }), de(".phone_box").then((H) => {
-        let z = R(".form-type-tel"), Q = R(".form-type-tel label:not(.error)"), ee = R("#edit-mobile-number");
-        Q.textContent !== "Mobile phone number" && (Q.textContent = "Mobile phone number"), ee.placeholder !== "(___) ___-____" && (ee.placeholder = "(___) ___-____"), this.observePhoneNumberPlaceholderChange(), R(".phone_box #seeMyResultsBtn").insertAdjacentElement("beforebegin", z);
+        let z = D(".form-type-tel"), Q = D(".form-type-tel label:not(.error)"), ee = D("#edit-mobile-number");
+        Q.textContent !== "Mobile phone number" && (Q.textContent = "Mobile phone number"), ee.placeholder !== "(___) ___-____" && (ee.placeholder = "(___) ___-____"), this.observePhoneNumberPlaceholderChange(), D(".phone_box #seeMyResultsBtn").insertAdjacentElement("beforebegin", z);
       });
     }
     renderNewLoaderBlock() {
       de('section.form-wrapper.webform-card[data-title="What is your contact info?"]').then((H) => {
         const z = ke(".loading-data li"), Q = Array.from(z, (ee) => ee.textContent);
-        R(".new_loader_block") || R('section.form-wrapper.webform-card[data-title="What is your contact info?"]').insertAdjacentHTML(
+        D(".new_loader_block") || D('section.form-wrapper.webform-card[data-title="What is your contact info?"]').insertAdjacentHTML(
           "beforebegin",
           Fe(Q)
         );
@@ -4381,7 +4381,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       const Q = Math.round(12e3 / 16.666666666666668);
       let ee = 0;
       de(".new_loader_block").then((re) => {
-        const G = R(".new_loader_block"), k = R(".loader_cover"), w = R(".loader_cover_fill"), h = R(".percentage"), M = k.r.baseVal.value * 2 * Math.PI;
+        const G = D(".new_loader_block"), k = D(".loader_cover"), w = D(".loader_cover_fill"), h = D(".percentage"), M = k.r.baseVal.value * 2 * Math.PI;
         w.style.strokeDasharray = `${M} ${M}`, w.style.strokeDashoffset = `${M}`;
         const B = (b) => {
           const m = M - b / 100 * M;
@@ -4389,11 +4389,11 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         }, j = () => {
           var m, p;
           const b = ee / Q * 100;
-          B(b), b >= 100 ? (G.style.display = "none", R('section.form-wrapper.webform-card[data-title="What is your contact info?"]') && R('section.form-wrapper.webform-card[data-title="What is your contact info?"]').classList.contains(
+          B(b), b >= 100 ? (G.style.display = "none", D('section.form-wrapper.webform-card[data-title="What is your contact info?"]') && D('section.form-wrapper.webform-card[data-title="What is your contact info?"]').classList.contains(
             "is_loader"
-          ) && R('section.form-wrapper.webform-card[data-title="What is your contact info?"]').classList.remove(
+          ) && D('section.form-wrapper.webform-card[data-title="What is your contact info?"]').classList.remove(
             "is_loader"
-          ), (m = R(".dialog-off-canvas-main-canvas")) != null && m.classList.contains("is_loader_active") && ((p = R(".dialog-off-canvas-main-canvas")) == null || p.classList.remove("is_loader_active")), R(".dialog-off-canvas-main-canvas") && !R(".dialog-off-canvas-main-canvas").classList.contains("is_loader") && R(".dialog-off-canvas-main-canvas").classList.add("is_loader"), this.renderReviewsBlock()) : ee < Q && (ee++, requestAnimationFrame(j));
+          ), (m = D(".dialog-off-canvas-main-canvas")) != null && m.classList.contains("is_loader_active") && ((p = D(".dialog-off-canvas-main-canvas")) == null || p.classList.remove("is_loader_active")), D(".dialog-off-canvas-main-canvas") && !D(".dialog-off-canvas-main-canvas").classList.contains("is_loader") && D(".dialog-off-canvas-main-canvas").classList.add("is_loader"), this.renderReviewsBlock()) : ee < Q && (ee++, requestAnimationFrame(j));
         };
         j();
         const I = Array.from(ke(".loading_txt_wrapper p"));
@@ -4409,11 +4409,11 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       })();
     }
     changeLogoImg() {
-      R(".dialog-off-canvas-main-canvas.is_loader .navbar-header .logo img") && R(".dialog-off-canvas-main-canvas.is_loader .navbar-header .logo img").src !== "/sites/default/files/inline-images/GrantMe_Colour_Full_Logo_2X_0.png" && (R(".dialog-off-canvas-main-canvas.is_loader .navbar-header .logo img").src = "/sites/default/files/inline-images/GrantMe_Colour_Full_Logo_2X_0.png");
+      D(".dialog-off-canvas-main-canvas.is_loader .navbar-header .logo img") && D(".dialog-off-canvas-main-canvas.is_loader .navbar-header .logo img").src !== "/sites/default/files/inline-images/GrantMe_Colour_Full_Logo_2X_0.png" && (D(".dialog-off-canvas-main-canvas.is_loader .navbar-header .logo img").src = "/sites/default/files/inline-images/GrantMe_Colour_Full_Logo_2X_0.png");
     }
     // SliderReviews
     renderReviewsBlock() {
-      !R(".new_reviews_block") && R(".testimonials") && R(".testimonials").insertAdjacentHTML("afterbegin", Ie);
+      !D(".new_reviews_block") && D(".testimonials") && D(".testimonials").insertAdjacentHTML("afterbegin", Ie);
     }
     initSliderReviews() {
       Te([
@@ -4421,7 +4421,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
       ]).then(async () => {
         let H = setInterval(() => {
-          if (typeof jQuery(".new_reviews_list").slick == "function" && R(".new_reviews_list")) {
+          if (typeof jQuery(".new_reviews_list").slick == "function" && D(".new_reviews_list")) {
             clearInterval(H);
             let ee = jQuery(".new_reviews_list").on("init", function() {
               jQuery(this).css("visibility", "visible");
@@ -4467,16 +4467,16 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       window.onSignIn = function(H) {
         ge("exp_improve_contact_button_03", "Google", "Button", "Your results are ready! Step 2");
         let z = H.credential.split("."), Q = JSON.parse(atob(z[1])), ee = Q.given_name, re = Q.email;
-        R("#edit-first-name") && (R("#edit-first-name").value = ee), R("#edit-email-address") && (R("#edit-email-address").value = re), setTimeout(() => {
-          R("#edit-first-name").value !== "" && R("#edit-email-address").value !== "" && (R(".email_name_box").classList.add("is_hidden"), R(".phone_box").classList.contains("is_hidden") && R(".phone_box").classList.remove("is_hidden"), R(".new_reviews_block").classList.contains("is_hidden") || R(".new_reviews_block").classList.add("is_hidden"));
+        D("#edit-first-name") && (D("#edit-first-name").value = ee), D("#edit-email-address") && (D("#edit-email-address").value = re), setTimeout(() => {
+          D("#edit-first-name").value !== "" && D("#edit-email-address").value !== "" && (D(".email_name_box").classList.add("is_hidden"), D(".phone_box").classList.contains("is_hidden") && D(".phone_box").classList.remove("is_hidden"), D(".new_reviews_block").classList.contains("is_hidden") || D(".new_reviews_block").classList.add("is_hidden"));
         }, 500);
       };
     }
     //click on ----> Continue | SeeMyResults | input edit-first-name | input edit-email-address | input edit-mobile-number
     clickContinueBtn() {
       de("#continueValidationBtn").then((H) => {
-        R("#continueValidationBtn").addEventListener("click", (z) => {
-          z.preventDefault(), this.validationFormEmailNameBox(R("#edit-first-name"), !0), this.validationFormEmailNameBox(R("#edit-email-address"), !0), ge("exp_improve_contact_button_01", "Continue", "Button", "Your results are ready! Step 2");
+        D("#continueValidationBtn").addEventListener("click", (z) => {
+          z.preventDefault(), this.validationFormEmailNameBox(D("#edit-first-name"), !0), this.validationFormEmailNameBox(D("#edit-email-address"), !0), ge("exp_improve_contact_button_01", "Continue", "Button", "Your results are ready! Step 2");
         });
       });
     }
@@ -4495,56 +4495,56 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     }
     clickSeeMyResultsBtn() {
       de("#seeMyResultsBtn").then((H) => {
-        R("#seeMyResultsBtn").addEventListener("click", (z) => {
-          z.preventDefault(), ge("exp_improve_contact_button_04", "See My Results", "Button", "Almost done! Step 3"), this.validationFormPhoneBox(R("#edit-mobile-number"), !0);
+        D("#seeMyResultsBtn").addEventListener("click", (z) => {
+          z.preventDefault(), ge("exp_improve_contact_button_04", "See My Results", "Button", "Almost done! Step 3"), this.validationFormPhoneBox(D("#edit-mobile-number"), !0);
         });
       });
     }
     validationFormEmailNameBox(H, z = !1) {
       var re, G;
-      let Q = R("#edit-first-name").value.match(/\S+/), ee = R("#edit-email-address").value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/);
+      let Q = D("#edit-first-name").value.match(/\S+/), ee = D("#edit-email-address").value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/);
       if (H.getAttribute("name") === "first_name")
         if (Q == null) {
-          R("#edit-first-name-error") || H.insertAdjacentHTML(
+          D("#edit-first-name-error") || H.insertAdjacentHTML(
             "afterend",
             '<label id="edit-first-name-error" class="error" for="edit-first-name">Please Enter First Name</label>'
           );
           let k = setInterval(() => {
-            R("#edit-first-name-error") && R("#edit-first-name-error").textContent !== "Please Enter First Name" && (clearInterval(k), R("#edit-first-name-error").textContent = "Please Enter First Name");
+            D("#edit-first-name-error") && D("#edit-first-name-error").textContent !== "Please Enter First Name" && (clearInterval(k), D("#edit-first-name-error").textContent = "Please Enter First Name");
           }, 100);
         } else
-          (re = R("#edit-first-name-error")) == null || re.remove();
+          (re = D("#edit-first-name-error")) == null || re.remove();
       if (H.getAttribute("name") === "email_address")
         if (ee === null) {
-          R("#edit-email-address-error") || H.insertAdjacentHTML(
+          D("#edit-email-address-error") || H.insertAdjacentHTML(
             "afterend",
             '<label id="edit-email-address-error" class="error" for="edit-email-address">Please Enter Valid Email Address</label>'
           );
           let k = setInterval(() => {
-            R("#edit-email-address-error") && R("#edit-email-address-error").textContent !== "Please Enter Valid Email Address" && (clearInterval(k), R("#edit-email-address-error").textContent = "Please Enter Valid Email Address");
+            D("#edit-email-address-error") && D("#edit-email-address-error").textContent !== "Please Enter Valid Email Address" && (clearInterval(k), D("#edit-email-address-error").textContent = "Please Enter Valid Email Address");
           }, 100);
         } else
-          (G = R("#edit-email-address-error")) == null || G.remove();
+          (G = D("#edit-email-address-error")) == null || G.remove();
       if (ee !== null && Q !== null && z) {
-        R(".email_name_box").classList.add("is_hidden"), R(".phone_box").classList.contains("is_hidden") && R(".phone_box").classList.remove("is_hidden"), R(".new_reviews_block").classList.contains("is_hidden") || R(".new_reviews_block").classList.add("is_hidden");
-        let k = R("#edit-mobile-number");
+        D(".email_name_box").classList.add("is_hidden"), D(".phone_box").classList.contains("is_hidden") && D(".phone_box").classList.remove("is_hidden"), D(".new_reviews_block").classList.contains("is_hidden") || D(".new_reviews_block").classList.add("is_hidden");
+        let k = D("#edit-mobile-number");
         k && k.placeholder !== "(___) ___-____" && (k.placeholder = "(___) ___-____");
       }
     }
     validationFormPhoneBox(H, z = !1) {
       var ee;
-      let Q = R("#edit-mobile-number").value.match(/^\(\d{3}\) \d{3}-\d{4}$/);
+      let Q = D("#edit-mobile-number").value.match(/^\(\d{3}\) \d{3}-\d{4}$/);
       if (H.getAttribute("name") === "mobile_number")
         if (Q == null) {
-          R("#edit-mobile-number-error") || H.insertAdjacentHTML(
+          D("#edit-mobile-number-error") || H.insertAdjacentHTML(
             "afterend",
             '<label id="edit-mobile-number-error" class="error" for="edit-mobile-number">Please Enter Mobile Number</label>'
           );
           let re = setInterval(() => {
-            R("#edit-mobile-number-error") && R("#edit-mobile-number-error").textContent !== "Please Enter Mobile Number" && (clearInterval(re), R("#edit-mobile-number-error").textContent = "Please Enter Mobile Number");
+            D("#edit-mobile-number-error") && D("#edit-mobile-number-error").textContent !== "Please Enter Mobile Number" && (clearInterval(re), D("#edit-mobile-number-error").textContent = "Please Enter Mobile Number");
           }, 100);
         } else
-          (ee = R("#edit-mobile-number-error")) == null || ee.remove(), z && R(".webform-button--submit").click();
+          (ee = D("#edit-mobile-number-error")) == null || ee.remove(), z && D(".webform-button--submit").click();
     }
     visibleHandler() {
       de(".guarantee_block").then((H) => {
@@ -4573,8 +4573,8 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     }
     observePhoneNumberPlaceholderChange() {
       const H = new MutationObserver(() => {
-        if (R("#edit-mobile-number") && R("#edit-mobile-number").placeholder !== "(___) ___-____") {
-          let z = R("#edit-mobile-number");
+        if (D("#edit-mobile-number") && D("#edit-mobile-number").placeholder !== "(___) ___-____") {
+          let z = D("#edit-mobile-number");
           new $e("(999) 999-9999").mask(z), z.placeholder = "(___) ___-____", H.disconnect();
         }
       });
@@ -4586,7 +4586,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     }
     observerBagControlVersion() {
       const H = new MutationObserver(() => {
-        R('section.form-wrapper.webform-card[data-title="What is your contact info?"]').classList.contains("webform-card--active") && !R(".dialog-off-canvas-main-canvas").classList.contains("is_loader") && (R(".dialog-off-canvas-main-canvas").classList.add("is_loader"), this.renderReviewsBlock(), H.disconnect());
+        D('section.form-wrapper.webform-card[data-title="What is your contact info?"]').classList.contains("webform-card--active") && !D(".dialog-off-canvas-main-canvas").classList.contains("is_loader") && (D(".dialog-off-canvas-main-canvas").classList.add("is_loader"), this.renderReviewsBlock(), H.disconnect());
       });
       H.observe(document.documentElement, {
         childList: !0,
@@ -4595,12 +4595,16 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       });
     }
   }
-  de("#edit-loading-screen").then((X) => {
+  de("#edit-loading-screen").then((J) => {
     new Ge(He);
   });
   let Ue = setTimeout(() => {
-    (location.pathname.match("assessment-results") || location.pathname.match("book-call")) && (clearInterval(Ue), console.log(">>>>>>>>>>>>>>>>>>"), de("#newLastName").then((X) => {
-      R("#newLastName").value === "CRO test" && (R("#newLastName").value = "");
+    (D(".calc_step_third") || D(".acuity-booking")) && (clearInterval(Ue), console.log(">>>>>>>>>>>>>>>>>>"), de("#newLastName").then((J) => {
+      D("#newLastName").value === "CRO test" && (D("#newLastName").value = "");
+    }), de("#edit-parent-last-name").then((J) => {
+      D("#edit-parent-last-name").value === "CRO test" && (D("#edit-parent-last-name").value = "");
+    }), de("#v").then((J) => {
+      D("#edit-last-name").value === "CRO test" && (D("#edit-last-name").value = "");
     }));
   }, 1e3);
 })();
