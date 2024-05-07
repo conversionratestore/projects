@@ -383,7 +383,7 @@
       let r = o.offsetHeight, l = n.getBoundingClientRect().top;
       const a = n.scrollHeight, c = 120;
       function p() {
-        r = o.offsetHeight, l = n.getBoundingClientRect().top, console.log(a + r + l + 70, window.innerHeight);
+        r = o.offsetHeight, l = n.getBoundingClientRect().top;
         const f = Math.max(
           c,
           Math.min(window.innerHeight - r - l, a) - (window.innerHeight < a + r + l + 70 ? 150 : 0)
