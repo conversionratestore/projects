@@ -381,7 +381,7 @@
       t.insertAdjacentHTML("afterend", e), s && s.insertAdjacentHTML("afterend", e);
       const o = document.querySelector(".d-none .ux-audit-banner"), n = document.querySelector(".article__sticky");
       let r = o.offsetHeight, l = n.getBoundingClientRect().top;
-      const a = n.scrollHeight, c = 200, p = Math.max(
+      const a = n.scrollHeight, c = 130, p = Math.max(
         c,
         Math.min(window.innerHeight - a - l, a) - (window.innerHeight < a + r + l + 100 ? 200 : 0)
       );
