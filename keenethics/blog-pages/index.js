@@ -261,7 +261,7 @@
     }
   }
   const Ne = ".os-wrapper{position:relative}.os-article-info{position:absolute;max-width:430px;bottom:0;padding-left:85px}.os-article-info .article__categories{margin:0}.d-block.d-xl-none .article__share{margin-bottom:24px}";
-  class Re {
+  class Ve {
     constructor() {
       this.init();
     }
@@ -279,7 +279,7 @@
       t && e && (t == null || t.before(e));
     }
   }
-  const Ve = (
+  const Re = (
     /* HTML */
     `<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 17">
   <path d="M0 16 16 0M0 0l16 16" stroke="#12233D" stroke-width="1.5" />
@@ -323,7 +323,7 @@
         /* HTML */
         `<dialog class="os-sticky">
       <div class="os-content">
-        <button class="os-close" data-popup="close">${Ve}</button>
+        <button class="os-close" data-popup="close">${Re}</button>
         <span>${qe} What software solution are you looking for?</span>
         <div class="os-wrap">
           <a class="contacts-btn" href="/services-business-analysis#choose">Develop My Idea</a>
@@ -343,8 +343,8 @@
       o.getBoundingClientRect().top + 300 < window.innerHeight && e.show(), window.addEventListener("scroll", () => {
         const p = window.scrollY;
         l = p > r, r = p;
-        const f = o.getBoundingClientRect(), h = n.getBoundingClientRect();
-        f.top + 300 < window.innerHeight && !a ? e.show() : l || e.close(), h.bottom > e.getBoundingClientRect().top && e.close();
+        const f = o.getBoundingClientRect();
+        n.getBoundingClientRect(), f.top + 300 < window.innerHeight && !a ? e.show() : l || e.close();
       }), t && t.addEventListener("click", () => {
         e.close(), a = !0;
       });
@@ -383,7 +383,7 @@
       let r = o.offsetHeight, l = n.getBoundingClientRect().top;
       const a = n.scrollHeight, c = 130, p = Math.max(
         c,
-        Math.min(window.innerHeight - a - l, a) - (window.innerHeight < a + r + l + 100 ? 200 : 0)
+        Math.min(window.innerHeight - l, a) - (window.innerHeight < a + r + l + 100 ? 200 : 0)
       );
       if (n.style.height = `${p}px`, n.style.overflowY = "auto", n.offsetHeight, o.style.top = `${p + 100}px`, o && n) {
         const f = n.scrollHeight;
@@ -391,14 +391,14 @@
           r = o.offsetHeight, n.offsetHeight, l = n.getBoundingClientRect().top;
           const h = Math.max(
             c,
-            Math.min(window.innerHeight - f - l, f) - (window.innerHeight < f + r + l + 100 ? 200 : 0)
+            Math.min(window.innerHeight - l, f) - (window.innerHeight < f + r + l + 100 ? 200 : 0)
           );
           n.style.height = `${h}px`, n.style.overflowY = "auto", o.style.top = `${h + 100}px`;
         }), window.addEventListener("resize", () => {
           r = o.offsetHeight, n.offsetHeight, l = n.getBoundingClientRect().top;
           const h = Math.max(
             c,
-            Math.min(window.innerHeight - f - l, f) - (window.innerHeight < f + r + l + 100 ? 200 : 0)
+            Math.min(window.innerHeight - l, f) - (window.innerHeight < f + r + l + 100 ? 200 : 0)
           );
           n.style.height = `${h}px`, n.style.overflowY = "auto", o.style.top = `${h + 100}px`;
         });
@@ -483,7 +483,7 @@
       search: ""
     }
   };
-  function R() {
+  function V() {
     const i = typeof document < "u" ? document : {};
     return se(i, be), i;
   }
@@ -665,7 +665,7 @@
     }
     return t;
   }
-  function V(i, e) {
+  function R(i, e) {
     return $().getComputedStyle(i, null).getPropertyValue(e);
   }
   function ee(i) {
@@ -692,7 +692,7 @@
   }
   let re;
   function at() {
-    const i = $(), e = R();
+    const i = $(), e = V();
     return {
       smoothScroll: e.documentElement && e.documentElement.style && "scrollBehavior" in e.documentElement.style,
       touch: !!("ontouchstart" in i || i.DocumentTouch && e instanceof i.DocumentTouch)
@@ -902,7 +902,7 @@
     const i = this;
     let e, t;
     const s = i.el;
-    typeof i.params.width < "u" && i.params.width !== null ? e = i.params.width : e = s.clientWidth, typeof i.params.height < "u" && i.params.height !== null ? t = i.params.height : t = s.clientHeight, !(e === 0 && i.isHorizontal() || t === 0 && i.isVertical()) && (e = e - parseInt(V(s, "padding-left") || 0, 10) - parseInt(V(s, "padding-right") || 0, 10), t = t - parseInt(V(s, "padding-top") || 0, 10) - parseInt(V(s, "padding-bottom") || 0, 10), Number.isNaN(e) && (e = 0), Number.isNaN(t) && (t = 0), Object.assign(i, {
+    typeof i.params.width < "u" && i.params.width !== null ? e = i.params.width : e = s.clientWidth, typeof i.params.height < "u" && i.params.height !== null ? t = i.params.height : t = s.clientHeight, !(e === 0 && i.isHorizontal() || t === 0 && i.isVertical()) && (e = e - parseInt(R(s, "padding-left") || 0, 10) - parseInt(R(s, "padding-right") || 0, 10), t = t - parseInt(R(s, "padding-top") || 0, 10) - parseInt(R(s, "padding-bottom") || 0, 10), Number.isNaN(e) && (e = 0), Number.isNaN(t) && (t = 0), Object.assign(i, {
       width: e,
       height: t,
       size: i.isHorizontal() ? e : t
@@ -940,7 +940,7 @@
     for (let b = 0; b < f; b += 1) {
       _ = 0;
       let E;
-      if (p[b] && (E = p[b]), G && i.grid.updateSlide(b, E, p), !(p[b] && V(E, "display") === "none")) {
+      if (p[b] && (E = p[b]), G && i.grid.updateSlide(b, E, p), !(p[b] && R(E, "display") === "none")) {
         if (t.slidesPerView === "auto") {
           P && (p[b].style[i.getDirectionLabel("width")] = "");
           const k = getComputedStyle(E), S = E.style.transform, M = E.style.webkitTransform;
@@ -1613,7 +1613,7 @@
     slideToClosest: jt,
     slideToClickedSlide: Ht
   };
-  function Rt(i) {
+  function Vt(i) {
     const e = this, {
       params: t,
       slidesEl: s
@@ -1651,7 +1651,7 @@
       direction: t.centeredSlides ? void 0 : "next"
     });
   }
-  function Vt(i) {
+  function Rt(i) {
     let {
       slideRealIndex: e,
       slideTo: t = !0,
@@ -1776,8 +1776,8 @@
     }), i.recalcSlides(), i.slideTo(i.realIndex, 0);
   }
   var Wt = {
-    loopCreate: Rt,
-    loopFix: Vt,
+    loopCreate: Vt,
+    loopFix: Rt,
     loopDestroy: qt
   };
   function Yt(i) {
@@ -1802,7 +1802,7 @@
   function Kt(i, e) {
     e === void 0 && (e = this);
     function t(s) {
-      if (!s || s === R() || s === $())
+      if (!s || s === V() || s === $())
         return null;
       s.assignedSlot && (s = s.assignedSlot);
       const o = s.closest(i);
@@ -1817,7 +1817,7 @@
     return n && (t <= r || t >= s.innerWidth - r) ? n === "prevent" ? (e.preventDefault(), !0) : !1 : !0;
   }
   function Zt(i) {
-    const e = this, t = R();
+    const e = this, t = V();
     let s = i;
     s.originalEvent && (s = s.originalEvent);
     const o = e.touchEventsData;
@@ -1868,7 +1868,7 @@
     (n.touchStartForcePreventDefault || y) && !a.isContentEditable && s.preventDefault(), n.freeMode && n.freeMode.enabled && e.freeMode && e.animating && !n.cssMode && e.freeMode.onTouchStart(), e.emit("touchStart", s);
   }
   function Qt(i) {
-    const e = R(), t = this, s = t.touchEventsData, {
+    const e = V(), t = this, s = t.touchEventsData, {
       params: o,
       touches: n,
       rtlTranslate: r,
@@ -2100,7 +2100,7 @@
     i.documentTouchHandlerProceeded || (i.documentTouchHandlerProceeded = !0, i.params.touchReleaseOnEdges && (i.el.style.touchAction = "auto"));
   }
   const Le = (i, e) => {
-    const t = R(), {
+    const t = V(), {
       params: s,
       el: o,
       wrapperEl: n,
@@ -2434,7 +2434,7 @@
       for (var s = arguments.length, o = new Array(s), n = 0; n < s; n++)
         o[n] = arguments[n];
       o.length === 1 && o[0].constructor && Object.prototype.toString.call(o[0]).slice(8, -1) === "Object" ? t = o[0] : [e, t] = o, t || (t = {}), t = B({}, t), e && !t.el && (t.el = e);
-      const r = R();
+      const r = V();
       if (t.el && typeof t.el == "string" && r.querySelectorAll(t.el).length > 1) {
         const p = [];
         return r.querySelectorAll(t.el).forEach((f) => {
@@ -2688,9 +2688,9 @@
         hostEl: t.isElement ? s.parentNode.host : s,
         mounted: !0,
         // RTL
-        rtl: s.dir.toLowerCase() === "rtl" || V(s, "direction") === "rtl",
-        rtlTranslate: t.params.direction === "horizontal" && (s.dir.toLowerCase() === "rtl" || V(s, "direction") === "rtl"),
-        wrongRTL: V(r, "display") === "-webkit-box"
+        rtl: s.dir.toLowerCase() === "rtl" || R(s, "direction") === "rtl",
+        rtlTranslate: t.params.direction === "horizontal" && (s.dir.toLowerCase() === "rtl" || R(s, "direction") === "rtl"),
+        wrongRTL: R(r, "display") === "-webkit-box"
       }), !0;
     }
     init(e) {
@@ -3170,7 +3170,7 @@
     }, E = () => {
       if (e.destroyed || !e.autoplay.running)
         return;
-      const z = R();
+      const z = V();
       z.visibilityState === "hidden" && (d = !0, P(!0)), z.visibilityState === "visible" && b();
     }, k = (z) => {
       z.pointerType === "mouse" && (d = !0, u = !0, !(e.animating || e.autoplay.paused) && P(!0));
@@ -3181,9 +3181,9 @@
     }, I = () => {
       e.el.removeEventListener("pointerenter", k), e.el.removeEventListener("pointerleave", S);
     }, N = () => {
-      R().addEventListener("visibilitychange", E);
+      V().addEventListener("visibilitychange", E);
     }, ue = () => {
-      R().removeEventListener("visibilitychange", E);
+      V().removeEventListener("visibilitychange", E);
     };
     s("init", () => {
       e.params.autoplay.enabled && (M(), N(), G());
@@ -3645,7 +3645,7 @@
       this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${Pi}</style>`), location.href.includes("blog") && location.pathname !== "/blog" && (new Ue(), new Ye(), new Re()), location.pathname === "/success" && new je(), location.href.includes("estimate?target=audit") && new Li(), location.href.includes("contacts?target=dev") && new _i(), new zi(Ii), new He();
+      document.head.insertAdjacentHTML("beforeend", `<style>${Pi}</style>`), location.href.includes("blog") && location.pathname !== "/blog" && (new Ue(), new Ye(), new Ve()), location.pathname === "/success" && new je(), location.href.includes("estimate?target=audit") && new Li(), location.href.includes("contacts?target=dev") && new _i(), new zi(Ii), new He();
     }
   }
   new Ai();
