@@ -133,7 +133,7 @@
     }
     blogEvents() {
       var e;
-      location.pathname.includes("blog") && (W(
+      location.pathname.includes("blog") && location.pathname !== "/blog" && (W(
         ".article__sticky + .ux-audit-banner",
         "exp_improve_navigation_section_01",
         "Section",
@@ -381,9 +381,9 @@
       t.insertAdjacentHTML("afterend", e), s && s.insertAdjacentHTML("afterend", e);
       const o = document.querySelector(".d-none .ux-audit-banner"), n = document.querySelector(".article__sticky");
       let r = o.offsetHeight, l = n.getBoundingClientRect().top;
-      const a = n.scrollHeight, c = 130, p = Math.max(
+      const a = n.scrollHeight, c = 100, p = Math.max(
         c,
-        Math.min(window.innerHeight - l, a) - (window.innerHeight < a + r + l + 100 ? 200 : 0)
+        Math.min(window.innerHeight - a - l, a) - (window.innerHeight < a + r + l + 100 ? 200 : 0)
       );
       if (n.style.height = `${p}px`, n.style.overflowY = "auto", n.offsetHeight, o.style.top = `${p + 100}px`, o && n) {
         const f = n.scrollHeight;
@@ -391,14 +391,14 @@
           r = o.offsetHeight, n.offsetHeight, l = n.getBoundingClientRect().top;
           const h = Math.max(
             c,
-            Math.min(window.innerHeight - l, f) - (window.innerHeight < f + r + l + 100 ? 200 : 0)
+            Math.min(window.innerHeight - f - l, f) - (window.innerHeight < f + r + l + 150 ? 200 : 0)
           );
           n.style.height = `${h}px`, n.style.overflowY = "auto", o.style.top = `${h + 100}px`;
         }), window.addEventListener("resize", () => {
           r = o.offsetHeight, n.offsetHeight, l = n.getBoundingClientRect().top;
           const h = Math.max(
             c,
-            Math.min(window.innerHeight - l, f) - (window.innerHeight < f + r + l + 100 ? 200 : 0)
+            Math.min(window.innerHeight - f - l, f) - (window.innerHeight < f + r + l ? 200 : 0)
           );
           n.style.height = `${h}px`, n.style.overflowY = "auto", o.style.top = `${h + 100}px`;
         });
