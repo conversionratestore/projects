@@ -32,7 +32,7 @@
       });
     });
   }
-  const l = function(e) {
+  const d = function(e) {
     e = e === void 0 ? {} : e;
     let n, t, o, a, p = (e == null ? void 0 : e.delay) || 50;
     function r() {
@@ -41,7 +41,7 @@
     return r(), function() {
       return t = window.scrollY, n != null && (a = t - n), n = t, clearTimeout(o), o = setTimeout(r, p), a;
     };
-  }(), d = "https://conversionratestore.github.io/projects/gadgetgone/checkout/img/", u = {
+  }(), l = "https://conversionratestore.github.io/projects/gadgetgone/checkout/img/", u = {
     closeIcon: (
       /* HTML */
       `
@@ -87,7 +87,7 @@
     <div class="logo_wrapper">
       <a href="https://www.gadgetgone.com/">${u.logoIcon}</a>
       <p>Get paid as you like. In no time!</p>
-      <img src="${d}logo_collection_desktop.png" alt="logo collection" />
+      <img src="${l}logo_collection_desktop.png" alt="logo collection" />
     </div>
     <div class="information_wrapper">
       <h2>Get up to $35 Extra</h2>
@@ -130,7 +130,7 @@
         >Complete Your Trade-In</a
       >
       <span class="no_thanks_btn" data-popup="close">No, thanks</span>
-      ${window.innerWidth >= 768 ? "" : `<img src="${d}logo_collection_mobile.png" alt="logo collection"/>`}
+      ${window.innerWidth >= 768 ? "" : `<img src="${l}logo_collection_mobile.png" alt="logo collection"/>`}
     </div>
   </div>
 `
@@ -190,10 +190,14 @@
 }
 
 @media (max-width: 768px) {
+  .new-popup-backdrop {
+    overflow: auto;
+  }
   .new-popup {
     max-width: 343px;
     top: 55px;
     transform: translateX(-50%);
+    padding-bottom: 5px;
   }
 }
 .exit-intent__popup {
@@ -438,10 +442,10 @@
     }
     intentPopupTriggers() {
       console.log("intentPopupTriggers"), this.device === "mobile" && document.addEventListener("scroll", () => {
-        const t = l();
-        (+t < -100 || +t > 100) && (sessionStorage.getItem("scrollForPopup") || (sessionStorage.setItem("scrollForPopup", "yes"), this.showIntentPopup("Scroll up (JS speed value: 70)/Swiping")));
+        const t = d();
+        (+t < -100 || +t > 100) && this.showIntentPopup("Scroll up (JS speed value: 70)/Swiping");
       }), this.device === "desktop" && (document.addEventListener("scroll", () => {
-        +l() < -70 && (sessionStorage.getItem("scrollForPopup") || (sessionStorage.setItem("scrollForPopup", "yes"), this.showIntentPopup("Scroll up (JS speed value: 70)")));
+        +d() < -70 && this.showIntentPopup("Scroll up (JS speed value: 70)");
       }), document.addEventListener("mouseout", (t) => {
         t.relatedTarget || this.showIntentPopup("Cursor leaving active area");
       }), document.addEventListener("visibilitychange", () => {
