@@ -500,7 +500,7 @@
         });
       }), t.addEventListener("click", (p) => {
         p.target.getAttribute("data-test") || p.target.matches(".new-popup-backdrop") && (s(
-          "exp_intent_popup_button_03",
+          "exp_intent_popup_button_05",
           "Сlick behind the pop-up area",
           "Backdrop",
           "Pop Up Get paid as you like. In no time!"
