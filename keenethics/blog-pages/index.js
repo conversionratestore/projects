@@ -266,13 +266,17 @@
       this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${He}</style>`), this.mobileChanges();
+      document.head.insertAdjacentHTML("beforeend", `<style>${He}</style>`), this.mobileChanges(), this.desktopChanges();
     }
     headerChanges() {
       const e = C(".article__img"), t = C(".article__authors"), s = C(".publish-times.article__times"), o = C(".article__categories"), n = document.createElement("div");
       n.classList.add("os-wrapper"), e.replaceWith(n);
       const r = document.createElement("div");
       r.classList.add("os-article-info"), r.appendChild(t), r.appendChild(s), r.appendChild(o), n.appendChild(e), n.appendChild(r);
+    }
+    desktopChanges() {
+      const e = C(".d-none.d-xl-block"), t = e == null ? void 0 : e.querySelector(".article__share");
+      e == null || e.prepend(t);
     }
     mobileChanges() {
       const e = C(".d-block.d-xl-none .article__share"), t = C(".d-block.d-xl-none .article__toc");
@@ -350,7 +354,7 @@
       });
     }
   }
-  const Xe = ".article__sticky{max-height:100vh!important;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;gap:24px;transition:height .3s ease-out}.article__sticky .book-call-banner{display:none!important}.article__sticky .article__toc{order:1}.article__sticky .article__share{order:0}.ux-audit-banner{--main-color: #12233d;top:196px;border-radius:20px;background:#12233d;background:var(--main-color);padding:24px;font-family:Raleway}.ux-audit-banner .os-content{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;gap:20px}.ux-audit-banner .os-content .os-title{color:#fff;font-size:32px;font-weight:700;line-height:40px}.ux-audit-banner .os-content .os-subbanner{background:#fff;border-radius:8px;height:144px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}.ux-audit-banner .os-content .os-subbanner .os-subtitle{color:var(--main-color);font-size:54px;font-weight:900;line-height:30px}.ux-audit-banner .os-content .os-subbanner p{color:#d62c2c;font-size:14px;font-weight:700;line-height:24px}.ux-audit-banner .os-content .os-text{color:#fff;font-family:Raleway;font-size:18px;font-weight:500;line-height:150%}.d-block.d-xl-none .ux-audit-banner{margin-top:32px;margin-bottom:32px}.article__sticky+.ux-audit-banner{position:-webkit-sticky;position:sticky}";
+  const Xe = ".article__sticky{max-height:100vh!important;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;gap:24px;transition:height .3s ease-out}.article__sticky .book-call-banner{display:none!important}.ux-audit-banner{--main-color: #12233d;top:196px;border-radius:20px;background:#12233d;background:var(--main-color);padding:24px;font-family:Raleway}.ux-audit-banner .os-content{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;gap:20px}.ux-audit-banner .os-content .os-title{color:#fff;font-size:32px;font-weight:700;line-height:40px}.ux-audit-banner .os-content .os-subbanner{background:#fff;border-radius:8px;height:144px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}.ux-audit-banner .os-content .os-subbanner .os-subtitle{color:var(--main-color);font-size:54px;font-weight:900;line-height:30px}.ux-audit-banner .os-content .os-subbanner p{color:#d62c2c;font-size:14px;font-weight:700;line-height:24px}.ux-audit-banner .os-content .os-text{color:#fff;font-family:Raleway;font-size:18px;font-weight:500;line-height:150%}.d-none.d-xl-block .article__share{margin-bottom:24px}.d-block.d-xl-none .ux-audit-banner{margin-top:32px;margin-bottom:32px}.article__sticky+.ux-audit-banner{position:-webkit-sticky;position:sticky}";
   class Ue {
     constructor() {
       this.init();
@@ -381,7 +385,7 @@
       t.insertAdjacentHTML("afterend", e), s && s.insertAdjacentHTML("afterend", e);
       const o = document.querySelector(".d-none .ux-audit-banner"), n = document.querySelector(".article__sticky");
       let r = o.offsetHeight, l = n.getBoundingClientRect().top;
-      const a = n.scrollHeight, p = 120;
+      const a = n.scrollHeight, p = 70;
       function c() {
         r = o.offsetHeight, l = n.getBoundingClientRect().top;
         const f = Math.max(
@@ -3381,9 +3385,9 @@
 
           <div class="info-block">
             <p class="os-title">
-              Software development <span><span class="old">from USD 10000</span> USD 6000 for MVP.</span>
+              Software development <span><span class="old">from USD 10000</span> USD 6000 for MVP</span>
             </p>
-            <p class="os-descr">A precise tailored quote for you business is available via consultation call.</p>
+            <p class="os-descr">Get a precise tailored quote for your business is available via consultation call.</p>
           </div>
         </div>
         <div class="right form-container">
@@ -3600,7 +3604,7 @@
       const e = (
         /* HTML */
         ` <div class="os-link-wrap">
-      <a href="/contacts?target=dev" class="contacts-btn os-new-cta">Get tailored quote</a>
+      <a href="/contacts?target=dev" class="contacts-btn os-new-cta">Get a tailored quote</a>
     </div>`
       ), t = C(".main-heading"), s = t.querySelector("a");
       if (t) {
