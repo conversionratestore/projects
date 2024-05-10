@@ -381,7 +381,6 @@
         font-size: 13px;
         font-style: normal;
         font-weight: 500;
-        line-height: 20px; /* 153.846% */
         text-transform: capitalize;
         margin: 0 12px;
       }
@@ -393,7 +392,6 @@
         font-size: 11px;
         font-style: normal;
         font-weight: 600;
-        line-height: 16px; /* 145.455% */
         text-transform: uppercase;
       }
     }
@@ -655,3 +653,4 @@
     });
   }
 })();
+//# sourceMappingURL=index.js.map
