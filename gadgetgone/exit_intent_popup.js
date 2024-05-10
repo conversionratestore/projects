@@ -443,9 +443,9 @@
     intentPopupTriggers() {
       console.log("intentPopupTriggers"), this.device === "mobile" && document.addEventListener("scroll", () => {
         const t = d();
-        (+t < -100 || +t > 100) && this.showIntentPopup("Scroll up (JS speed value: 70)/Swiping");
+        (+t < -100 || +t > 100) && this.showIntentPopup("Scroll up (JS speed value: 100)/Swiping");
       }), this.device === "desktop" && (document.addEventListener("scroll", () => {
-        +d() < -70 && this.showIntentPopup("Scroll up (JS speed value: 70)");
+        +d() < -100 && this.showIntentPopup("Scroll up (JS speed value: 100)");
       }), document.addEventListener("mouseout", (t) => {
         t.relatedTarget || this.showIntentPopup("Cursor leaving active area");
       }), document.addEventListener("visibilitychange", () => {
