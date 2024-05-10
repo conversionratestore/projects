@@ -35,7 +35,7 @@
     /*html*/
     `
   <style>
-    #shopify-section-template--16970486120700__section-marquee,
+    .shopify-section--marquee,
     [data-nav-search-open]
      {
       display: none !important;
