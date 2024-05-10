@@ -1,14 +1,14 @@
 (function() {
   "use strict";
-  const l = (e, t, n, a = "") => {
+  const h = (e, t, a, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
       event_desc: t,
-      event_type: n,
-      event_loc: a
-    }), console.log(`Event: ${e} | ${t} | ${n} | ${a.replace(/  +/g, " ")}`);
-  }, k = ({ name: e, dev: t }) => {
+      event_type: a,
+      event_loc: n
+    }), console.log(`Event: ${e} | ${t} | ${a} | ${n.replace(/  +/g, " ")}`);
+  }, S = ({ name: e, dev: t }) => {
     console.log(
       `%c EXP: ${e} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
@@ -18,18 +18,20 @@
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", e, "variant_1"));
     }, 1e3);
   }, s = (e) => new Promise((t) => {
-    const n = document.querySelector(e);
-    if (n)
-      return t(n);
-    const a = new MutationObserver(() => {
+    const a = document.querySelector(e);
+    if (a)
+      return t(a);
+    const n = new MutationObserver(() => {
       const r = document.querySelector(e);
-      r && (t(r), a.disconnect());
+      r && (t(r), n.disconnect());
     });
-    a.observe(document.documentElement, {
+    n.observe(document.documentElement, {
       childList: !0,
       subtree: !0
     });
-  }), g = "https://conversionratestore.github.io/projects/geeni/img/search", S = (
+  }), x = "https://conversionratestore.github.io/projects/geeni/img/search";
+  let _ = !1;
+  const T = (
     /*html*/
     `
   <style>
@@ -211,6 +213,11 @@
       margin: 0;
     }
 
+    .search-input__data {
+      display: flex;
+      width: 100%;
+    }
+
    .search-input__hot {
       display: flex;
       padding: 8px 12px;
@@ -275,23 +282,44 @@
       display: none;
     }
 
+    #PageContainer {
+      padding-top: 0 !important;
+    }
+
+    #shopify-section-header {
+      top: 0;
+    }
+
+    .opacity-0 {
+      opacity: 0;
+    }
+
     @media (min-width: 1023px) {
       #MainContent .search-input-wrapper {
         display: none;
       }
+      #PageContainer {
+        padding-top: 202px !important;
+      }
     }
 
-    @media (max-width: 1023px) and (min-width: 723px) {
-      #MainContent .search-input-wrapper {
-        margin-top: 41px;
+    @media (max-width: 1023px) and (min-width: 769px) {
+      #PageContainer {
+        padding-top: 137px !important;
+      }
+    }
+
+    @media (max-width: 769px) {
+      .search-input-wrapper {
+        margin-top: 100px;
       }
     }
 
     @media (max-width: 1023px) {
       .search-input-wrapper {
-        padding: 16px var(--gutter-mobile);
+        /* padding: 16px var(--gutter-mobile); */
+        padding: 16px;
         background: #F4F8F9;
-        margin-top: 7px;
         display: flex;
       }
 
@@ -332,6 +360,7 @@
       }
 
       .search-input {
+        /* max-height: 48px; */
         min-width: auto;
       }
 
@@ -364,37 +393,40 @@
   </style>
 `
   );
-  F("exp_search_feature"), k({ name: "Introduces personalized search", dev: "AK" }), L();
+  F("exp_search_feature"), S({ name: "Introduces personalized search", dev: "AK" }), L();
   function L() {
-    window.location.pathname.includes("/search") && M(), s("#NavStandard").then((e) => {
-      document.head.insertAdjacentHTML("beforeend", S), q(), B(), T(), E();
-    }), s(".search-input").then(() => {
-      x(".search-input", "exp_search_feature_section_01", "Visibility", "Header");
-    }), document.body.addEventListener("click", (e) => {
-      e.target.closest('[data-element="about-us"]') ? l("exp_search_feature_button_02", "About us", "Button", "Header") : e.target.closest(".back-nav__inner") && (l("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back());
+    window.location.pathname.includes("/search") && E(), s("#NavStandard").then((t) => {
+    });
+    const e = setInterval(() => {
+      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(e), document.head.insertAdjacentHTML("beforeend", T), M(), A(), I(), q());
+    }, 100);
+    s(".search-input").then(() => {
+      w(".search-input", "exp_search_feature_section_01", "Visibility", "Header");
+    }), document.body.addEventListener("click", (t) => {
+      t.target.closest('[data-element="about-us"]') ? h("exp_search_feature_button_02", "About us", "Button", "Header") : t.target.closest(".back-nav__inner") && (h("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back());
     }), s(".marquee").then(() => {
-      x(".marquee", "exp_search_feature_section_02", "Visibility", "Header");
+      w(".marquee", "exp_search_feature_section_02", "Visibility", "Header");
     });
   }
-  function q() {
+  function M() {
     const e = [
       ["Millions of Users", "smile"],
       ["<b>4.8</b> Stars with over <b>400.000</b> reviews", "star"],
       ["1-Year Warranty on All Products", "check"],
       ["<b>FREE</b> Shipping orders over <b>$69</b>", "shipping"]
     ];
-    let n = Array(4).fill(e).flat();
-    const a = (
+    let a = Array(4).fill(e).flat();
+    const n = (
       /*html*/
       `
     <div>
-      <div class="marquee marquee--hover-pause">
+      <div class="marquee">
         <ul class="marquee__content">
-        ${n.map(([r, i]) => (
+        ${a.map(([r, i]) => (
         /*html*/
         `
                   <div class="marquee__item">
-                    <img src="${g}/${i}.svg" alt="">
+                    <img src="${x}/${i}.svg" alt="">
                     <p>${r}</p>
                   </div>
                 `
@@ -402,11 +434,11 @@
         </ul>
   
         <ul aria-hidden="true" class="marquee__content">
-          ${n.map(([r, i]) => (
+          ${a.map(([r, i]) => (
         /*html*/
         `
                   <div class="marquee__item">
-                    <img src="${g}/${i}.svg" alt="">
+                    <img src="${x}/${i}.svg" alt="">
                     <p>${r}</p>
                   </div>
                 `
@@ -416,24 +448,39 @@
     </div>  
   `
     );
-    document.getElementById("SiteHeader").insertAdjacentHTML("beforebegin", a);
+    document.getElementById("SiteHeader").insertAdjacentHTML("beforebegin", n);
   }
-  function B() {
-    let e = document.querySelectorAll("#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)"), t = document.createElement("div");
-    t.className = "new-nav", e.forEach((n) => {
-      t.appendChild(n);
-    }), document.getElementById("SiteHeader").insertAdjacentElement("beforeend", t), s(".new-nav .menu__item.child:last-child").then((n) => n.insertAdjacentHTML(
-      "afterend",
-      /*html*/
-      `
+  function A() {
+    const e = setInterval(() => {
+      if (document.querySelectorAll("#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)")[3]) {
+        clearInterval(e);
+        let t = document.querySelectorAll("#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)"), a = document.createElement("div");
+        a.className = "new-nav", t.forEach((n) => {
+          a.appendChild(n);
+        }), document.getElementById("SiteHeader").insertAdjacentElement("beforeend", a), s(".new-nav .menu__item.child:last-child").then((n) => n.insertAdjacentHTML(
+          "afterend",
+          /*html*/
+          `
     <div class="menu__item child" data-element="about-us" data-nav-item="" data-hover-disclosure-toggle="">
       <a href="/pages/about-us-and-contact-us" data-top-link="" class="navlink navlink--toplevel">
         <span class="navtext">About us</span>
       </a>
     </div>`
-    ));
+        )), s(".mobile-nav.mobile-nav--weight-bold").then((n) => n.insertAdjacentHTML(
+          "beforeend",
+          /*html*/
+          `
+      <li class="mobile-menu__item mobile-menu__item--level-1">
+          <a href="/pages/about-us-and-contact-us" class="mobile-navlink mobile-navlink--level-1">
+            About us
+          </a>
+        </li>
+    `
+        ));
+      }
+    }, 100);
   }
-  function T() {
+  function I() {
     const e = [
       "Geeni Look Indoor Camera",
       "Geeni Hawk 3 Outdoor Camera",
@@ -443,7 +490,7 @@
       "Geeni Lookout 2k Outdoor Camera",
       "Geeni Doorpeek Wired Doorbell",
       "Geeni Prisma Plus 800 Smart Bulb"
-    ], n = [...e, ...t], a = n[Math.floor(Math.random() * n.length)], i = (
+    ], a = [...e, ...t], n = a[Math.floor(Math.random() * a.length)], i = (
       /*html*/
       `
   <div class="search-input-wrapper">
@@ -456,46 +503,65 @@
       </div>
     </div>
     <div class="search-input">
-      <div class="search-input__hot" ${e.includes(a) || Math.random() > 0.5 ? "" : 'style="display: none;"'}>
-        <img src="${g}/fire.svg" alt="">
-        <p>HOT</p>
+      <div class="search-input__data">
+        <div class="search-input__hot" ${e.includes(n) || Math.random() > 0.5 ? "" : 'style="display: none;"'}>
+          <img src="${x}/fire.svg" alt="">
+          <p>HOT</p>
+        </div>
+        <input type="text" value="${n}" data-search-title="">
       </div>
-      <input type="text" value="${a}" data-search-title="">
       <button class="search-btn">Search</button>
     </div>
   </div>
   `
     );
-    let f = document.getElementById("NavStandard"), p = document.getElementById("MainContent");
-    f && f.insertAdjacentHTML("beforeend", i), p && p.insertAdjacentHTML("afterbegin", i);
-    const u = setInterval(() => {
-      const c = document.querySelector("#NavStandard .search-btn"), h = document.querySelector("#NavStandard [data-search-title]"), v = document.querySelector("#MainContent .search-btn"), m = document.querySelector("#MainContent [data-search-title]");
-      if (c && h || v && m) {
-        clearInterval(u);
-        const y = (o) => {
-          const d = o.value, A = encodeURIComponent(d);
-          window.location.href = `https://mygeeni.com/search?q=${A}&type=product`;
-        };
-        let b = !1;
-        const _ = (o) => {
-          o.addEventListener("input", function() {
-            b || (this.value = "", b = !0);
-          }), o.addEventListener("keypress", function(d) {
-            d.key === "Enter" && y(o);
-          }), o.addEventListener("focus", function() {
-            l("exp_search_feature_input_01", "Search", "Input", "Header");
+    let k = document.getElementById("NavStandard"), y = document.getElementById("MainContent");
+    k.insertAdjacentHTML("beforeend", i), y.insertAdjacentHTML("afterbegin", i);
+    const m = (o) => {
+      let l = o.value;
+      const p = o.closest(".search-input").querySelector(".search-input__hot"), u = setInterval(() => {
+        var g;
+        if (_)
+          clearInterval(u);
+        else {
+          let c;
+          do
+            c = a[Math.floor(Math.random() * a.length)];
+          while (c === l);
+          o.value = c, (g = o.closest(".search-input__data")) == null || g.classList.add("opacity-0"), p && (e.includes(c) ? p.style.display = "flex" : p.style.display = Math.random() > 0.5 ? "" : "none"), l = c, setTimeout(() => {
+            var f;
+            (f = o.closest(".search-input__data")) == null || f.classList.remove("opacity-0");
+          }, 200);
+        }
+      }, 3500);
+    }, b = setInterval(() => {
+      const o = document.querySelector("#NavStandard .search-btn"), l = document.querySelector("#NavStandard [data-search-title]"), p = document.querySelector("#MainContent .search-btn"), u = document.querySelector("#MainContent [data-search-title]");
+      if (o && l || p && u) {
+        clearInterval(b);
+        const g = (d) => {
+          const v = d.value, B = encodeURIComponent(v);
+          window.location.href = `https://mygeeni.com/search?q=${B}&type=product`;
+        }, c = (d) => {
+          d.addEventListener("input", function() {
+            _ || (this.value = "", _ = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none");
+          }), d.addEventListener("keypress", function(v) {
+            v.key === "Enter" && g(d);
+          }), d.addEventListener("focus", function() {
+            h("exp_search_feature_input_01", "Search", "Input", "Header");
           });
-        }, w = (o, d) => {
-          o.addEventListener("click", () => {
-            y(d), l("exp_search_feature_button_01", "Search", "Button", "Header");
+        }, f = (d, v) => {
+          d.addEventListener("click", () => {
+            g(v), h("exp_search_feature_button_01", "Search", "Button", "Header");
           });
         };
-        c && h && (_(h), w(c, h)), v && m && (_(m), w(v, m));
+        o && l && (c(l), f(o, l), m(l)), p && u && (c(u), f(p, u), m(u));
       }
     }, 100);
   }
-  function M() {
-    const t = new URLSearchParams(window.location.search).get("q"), n = (
+  function E() {
+    const t = new URLSearchParams(window.location.search).get("q");
+    document.head.insertAdjacentHTML(
+      "beforeend",
       /*html*/
       /*html*/
       `
@@ -546,38 +612,38 @@
     }
   }
 </style>
-`
-    ), a = (
-      /*html*/
-      `
+  `
+    ), s("#SearchPage .collection__wrapper").then((n) => {
+      const r = (
+        /*html*/
+        `
     <div class="search-result">
       <p>${document.querySelectorAll(".product-grid-item").length || "0"} Search Results for: “${t}”</p>
-    </div>
-  `
-    );
-    document.head.insertAdjacentHTML("beforeend", n), s("#SearchPage .collection__wrapper").then((r) => r.insertAdjacentHTML("afterbegin", a));
+    </div>`
+      );
+      n.insertAdjacentHTML("afterbegin", r);
+    });
   }
-  function E() {
+  function q() {
     s('[href="/account"]').then((e) => e.insertAdjacentHTML(
       "beforeend",
       /*html*/
       '<span class="log">Login</span>'
     ));
   }
-  function x(e, t, n, a) {
+  function w(e, t, a, n) {
     let r = null;
     s(e).then((i) => {
-      i && new IntersectionObserver((p) => {
-        p.forEach((u) => {
-          if (u.isIntersecting && u.intersectionRatio >= 0.5)
+      i && new IntersectionObserver((y) => {
+        y.forEach((m) => {
+          if (m.isIntersecting && m.intersectionRatio >= 0.5)
             r = performance.now();
           else if (r) {
-            const c = ((performance.now() - r) / 1e3).toFixed(2);
-            l(t, c, n, a), r = null;
+            const b = ((performance.now() - r) / 1e3).toFixed(2);
+            h(t, b, a, n), r = null;
           }
         });
       }, { threshold: 0.5 }).observe(i);
     });
   }
 })();
-//# sourceMappingURL=index.js.map
