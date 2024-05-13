@@ -509,7 +509,7 @@
     if (window.location.href.includes("cgi-bin/select-color.cgi")) {
       if (!e('#no_car_selected[style*="block"]') && !e(".crs_images") && e("#color-display-table"))
         for (let i in t)
-          e("#page #main h1").innerText.toLowerCase().includes(i.toLowerCase()) && t[i][0] != "mazda.png" && new x();
+          e("#page #main h1").innerText.toLowerCase().includes(i.toLowerCase()) && !e("#page #main h1").innerText.toLowerCase().includes("motorcycle") && t[i][0] != "mazda.png" && new x();
       e('#no_car_selected[style*="block"]') && !e(".crs_style") && p() === "mobile" && document.head.insertAdjacentHTML("beforeend", `
       <style class="crs_style">
         @media screen and (max-width: 768px) {
