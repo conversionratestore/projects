@@ -644,7 +644,7 @@
         let t = 0;
         this.device === "mobile" ? t = "76px - 24px - 48px" : t = "67px - 66px", n(".css-5nnxvq .product-image-wrapper picture img").style = `max-height: calc(100vh - ${t} - ${n(".css-5nnxvq .action-wrapper").clientHeight}px`;
       }
-      n(".css-5nnxvq .unit-price .discount .subscribe") && !n(".css-5nnxvq .unit-price .subscribe") && n(".css-5nnxvq .unit-price").after(n(".css-5nnxvq .unit-price .discount .subscribe")), n(".css-5nnxvq .prices") && !n(".css-5nnxvq .unit-price .prices") && n(".css-5nnxvq .unit-price .discount").after(n(".css-5nnxvq .prices")), p('.product-wrapper .right-side img[loading="lazy"]').forEach((t) => {
+      n(".css-5nnxvq .unit-price .discount .subscribe") && !n(".css-5nnxvq .action-wrapper > .subscribe") && n(".css-5nnxvq .unit-price").after(n(".css-5nnxvq .unit-price .discount .subscribe")), n(".css-5nnxvq .prices") && !n(".css-5nnxvq .unit-price > .prices") && n(".css-5nnxvq .unit-price .discount").after(n(".css-5nnxvq .prices")), p('.product-wrapper .right-side img[loading="lazy"]').forEach((t) => {
         t.removeAttribute("loading");
       }), !n("#puree") && p(".product-wrapper .right-side section").forEach((t) => {
         var s, a;
