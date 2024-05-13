@@ -640,11 +640,11 @@
           n(".crs_show_notification") || (console.dir("click"), console.dir(s.target), document.body.classList.add("crs_show_notification"));
         });
       }), n(".crs_show_notification .modal .cart-product .product-count") && (console.dir("add to cart"), this.renderNotification(n(".modal .cart-product .product-count").innerText), l("exp_newaddtocart_vis_02", "Add to cart", "Visibility", "Popover"), n(".crs_show_notification .modal .cart-product .product-count").closest(".modal").querySelector(".default-close").click(), document.body.classList.remove("crs_show_notification")), n(".action-wrapper") && !n(".action-wrapper h2")) {
-        n(".action-wrapper").insertAdjacentHTML("afterbegin", `<h2>${(e = document.querySelector(".css-12a0csp h2")) == null ? void 0 : e.innerHTML}</h2>`), n(".css-5nnxvq .unit-price .discount .subscribe") && n(".css-5nnxvq .unit-price").after(n(".css-5nnxvq .unit-price .discount .subscribe")), n(".css-5nnxvq .prices") && n(".css-5nnxvq .unit-price .discount").after(n(".css-5nnxvq .prices")), n(".pdp-net-weight") && n(".css-5nnxvq .product-image-wrapper picture").after(n(".pdp-net-weight"));
+        n(".action-wrapper").insertAdjacentHTML("afterbegin", `<h2>${(e = document.querySelector(".css-12a0csp h2")) == null ? void 0 : e.innerHTML}</h2>`), n(".pdp-net-weight") && n(".css-5nnxvq .product-image-wrapper picture").after(n(".pdp-net-weight"));
         let t = 0;
         this.device === "mobile" ? t = "76px - 24px - 48px" : t = "67px - 66px", n(".css-5nnxvq .product-image-wrapper picture img").style = `max-height: calc(100vh - ${t} - ${n(".css-5nnxvq .action-wrapper").clientHeight}px`;
       }
-      p('.product-wrapper .right-side img[loading="lazy"]').forEach((t) => {
+      n(".css-5nnxvq .unit-price .discount .subscribe") && !n(".css-5nnxvq .unit-price .subscribe") && n(".css-5nnxvq .unit-price").after(n(".css-5nnxvq .unit-price .discount .subscribe")), n(".css-5nnxvq .prices") && !n(".css-5nnxvq .unit-price .prices") && n(".css-5nnxvq .unit-price .discount").after(n(".css-5nnxvq .prices")), p('.product-wrapper .right-side img[loading="lazy"]').forEach((t) => {
         t.removeAttribute("loading");
       }), !n("#puree") && p(".product-wrapper .right-side section").forEach((t) => {
         var s, a;
