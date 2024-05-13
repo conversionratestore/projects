@@ -44,7 +44,7 @@
     document.addEventListener("click", function() {
       e(!1);
     });
-  }), u = {
+  }), f = {
     checkbox: (
       /*html */
       `
@@ -67,11 +67,11 @@
     ` <div class="crs_notification">
   <div class="crs_notification_head justify-between">
       <div class="items-center">
-          ${u.checkbox}
+          ${f.checkbox}
           <h3>Added to cart</h3>
       </div>
       <button type="button" class="crs_close">
-          ${u.close}
+          ${f.close}
       </button>
   </div>
   <div class="crs_notification_body justify-between">
@@ -86,7 +86,7 @@
   </div>
   <div class="crs_notification_foot justify-between items-center flex-md-column-reverse">
       <a href="#" class="crs_continue_shop">Continue Shopping</a>
-      <a href="/cart" class="crs_view_cart">view cart (${r})${u.arrowRight}</a>
+      <a href="/cart" class="crs_view_cart">view cart (${r})${f.arrowRight}</a>
   </div>
 </div>`
   ), g = `
@@ -392,8 +392,8 @@
   margin-right: 8px;
   text-wrap: nowrap;
   text-decoration: none;
-  display: flex;
-  flex-wrap: nowrap;
+  display: block;
+  white-space: nowrap;
   flex-shrink: 0;
 }
 .crs_nav a.active {
@@ -577,17 +577,17 @@
           }), document.body.addEventListener(
             "mouseleave",
             function() {
-              var d, f;
-              (t < 50 || i < 50 || t > window.innerWidth - 50 || i > window.innerHeight - 50) && sessionStorage.getItem("exit_intent") == null && !n(".crs_notification") && ((f = (d = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : d.cart) == null ? void 0 : f.boxes[0]) != null && (sessionStorage.setItem("exit_intent", "true"), console.dir("exitIntent desktop: "), new h().renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"));
+              var d, u;
+              (t < 50 || i < 50 || t > window.innerWidth - 50 || i > window.innerHeight - 50) && sessionStorage.getItem("exit_intent") == null && !n(".crs_notification") && ((u = (d = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : d.cart) == null ? void 0 : u.boxes[0]) != null && (sessionStorage.setItem("exit_intent", "true"), console.dir("exitIntent desktop: "), new h().renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"));
             },
             { once: !0 }
           );
           break;
         case "mobile":
           let r = (/android/i.test(navigator.userAgent), 120), s = 0, a = 0, o = () => {
-            var f, m, v;
+            var u, m, v;
             let d = window.scrollY;
-            a = d - s, s = d, (a > r || a < -r) && sessionStorage.getItem("exit_intent") == null && !n(".crs_notification") && !n(".css-m18cj1") && ((m = (f = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : f.cart) == null ? void 0 : m.boxes[0]) != null && (console.dir("currentSpeed: " + a), sessionStorage.setItem("exit_intent", "true"), console.dir("exitIntent mobile: "), this.renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"), document.removeEventListener("scroll", o), (v = n(this.isSelectorWrapper)) == null || v.removeEventListener("scroll", o));
+            a = d - s, s = d, (a > r || a < -r) && sessionStorage.getItem("exit_intent") == null && !n(".crs_notification") && !n(".css-m18cj1") && ((m = (u = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : u.cart) == null ? void 0 : m.boxes[0]) != null && (console.dir("currentSpeed: " + a), sessionStorage.setItem("exit_intent", "true"), console.dir("exitIntent mobile: "), this.renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"), document.removeEventListener("scroll", o), (v = n(this.isSelectorWrapper)) == null || v.removeEventListener("scroll", o));
           };
           document.addEventListener("scroll", o), (e = n(this.isSelectorWrapper)) == null || e.addEventListener("scroll", o);
           break;
