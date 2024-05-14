@@ -8,12 +8,12 @@
       event_type: e,
       event_loc: i
     }), console.log(`Event: ${t} | ${n} | ${e} | ${i}`);
-  }, x = ({ name: t, dev: n }) => {
+  }, w = ({ name: t, dev: n }) => {
     console.log(
       `%c EXP: ${t} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, h = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), w = async (t) => {
+  }, h = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), m = async (t) => {
     const n = (e) => new Promise((i, p) => {
       const l = e.split(".").pop();
       if (l === "js") {
@@ -23,8 +23,8 @@
         a.src = e, a.onload = i, a.onerror = p, document.head.appendChild(a);
       } else if (l === "css") {
         if (Array.from(document.styleSheets).map((s) => {
-          var m;
-          return (m = s.href) == null ? void 0 : m.toLowerCase();
+          var x;
+          return (x = s.href) == null ? void 0 : x.toLowerCase();
         }).includes(e.toLowerCase()))
           return console.log(`Style ${e} allready downloaded!`), i("");
         const a = document.createElement("link");
@@ -155,9 +155,11 @@
   }, b = (t, n = "") => (
     /*HTML */
     `
-  <div class="gift_box ${n}">
-    ${u.giftIcon}
-    ${t ? "<p><b>Limited Time Offer:</b> Get a free NATPAT sticker set with your purchase</p>" : '<p>Get a free NATPAT sticker set with any 3-4 pack purchase. Collect all <span class="trigger_popup_open">16 magical characters!</span></p>'}
+  <div class="gift_box_wrapper">
+    <div class="gift_box ${n}">
+      ${u.giftIcon}
+      ${t ? "<p><b>Limited Time Offer:</b> Get a free NATPAT sticker set with your purchase</p>" : '<p>Get a free NATPAT sticker set with any 3-4 pack purchase. Collect all <span class="trigger_popup_open">16 magical characters!</span></p>'}
+    </div>
   </div>
 `
   ), y = (
@@ -178,12 +180,12 @@
     </div>
   </div>
 `
-  ), v = `body .gift_box {
+  ), v = `body .gift_box_wrapper .gift_box {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   gap: 8px;
-  max-width: 300px;
+  max-width: 302px;
   width: 100%;
   margin: 0 auto;
   padding: 10px 16px;
@@ -191,30 +193,29 @@
   border: 2px solid #fee6ee;
   background: #fff;
 }
-body .gift_box.cta_box {
+body .gift_box_wrapper .gift_box.cta_box {
   border-radius: 12px;
   margin-top: -15px;
   padding-top: 25px;
 }
-body .gift_box.banner_box {
+body .gift_box_wrapper .gift_box.banner_box {
   margin-top: -80px;
   z-index: 1;
   position: relative;
 }
-body .gift_box.bundle_box {
-  max-width: 323px;
+body .gift_box_wrapper .gift_box.bundle_box {
+  max-width: 100%;
   padding: 12px 16px;
   border-radius: 4px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin: 10px auto 20px;
 }
-body .gift_box svg {
+body .gift_box_wrapper .gift_box svg {
   width: 16px;
   height: 16px;
   flex: 1 0 16px;
   margin-top: 3px;
 }
-body .gift_box p {
+body .gift_box_wrapper .gift_box p {
   color: #212529 !important;
   font-family: "Roboto", sans-serif;
   font-size: 14px !important;
@@ -224,7 +225,7 @@ body .gift_box p {
   text-align: left;
   letter-spacing: normal;
 }
-body .gift_box p span {
+body .gift_box_wrapper .gift_box p span {
   color: #1e4fd1;
   font-weight: 600;
   text-decoration-line: underline;
@@ -322,8 +323,27 @@ body .hand-banner a.get-it {
   font-weight: 500;
   line-height: 18px;
 }
+#getNow .gift_box_wrapper {
+  padding: 0 14px;
+}
+#getNow .form {
+  padding: 0 14px;
+}
 #getNow .form-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
   margin: 0 !important;
+}
+#getNow .form-group .js-packs {
+  max-width: calc(50% - 8px);
+  margin: 0;
+}
+#getNow .new-bundle-pack {
+  max-width: 100%;
+  margin: auto;
+  padding: 10px 0;
 }
 #getNow .new-bundle-pack h3 {
   color: #212529;
@@ -482,7 +502,7 @@ body .hand-banner a.get-it {
       this.device = n, this.init();
     }
     init() {
-      x({ name: "Exit Intent Popup", dev: "SKh" }), _("exp_introduce_b"), document.head.insertAdjacentHTML(
+      w({ name: "Exit Intent Popup", dev: "SKh" }), _("exp_introduce_b"), document.head.insertAdjacentHTML(
         "beforeend",
         '<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">'
       ), document.head.insertAdjacentHTML("beforeend", `<style>${v}</style>`), this.createPopup(), this.rendergGiftElements(), this.triggerPopupOpen(), this.setupSwipeToClosePopup(), this.clickAddToCartBtnHandler(), this.visibleHandler();
@@ -509,7 +529,7 @@ body .hand-banner a.get-it {
       });
     }
     setupSwipeToClosePopup() {
-      w([
+      m([
         "https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js"
       ]).then(async () => {
         let n = setInterval(() => {
