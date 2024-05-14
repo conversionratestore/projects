@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const l = (c, e, t, i = "") => {
+  const p = (c, e, t, i = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: c,
@@ -13,7 +13,7 @@
       `%c EXP: ${c} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, p = (c) => document.querySelectorAll(c), n = (c) => document.querySelector(c), _ = (c) => {
+  }, l = (c) => document.querySelectorAll(c), n = (c) => document.querySelector(c), _ = (c) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", c, "variant_1"));
     }, 1e3);
@@ -22,7 +22,7 @@
     if (a = new IntersectionObserver(
       function(d) {
         d[0].isIntersecting === !0 ? o = setTimeout(() => {
-          l(
+          p(
             e,
             d[0].target.dataset.visible || t || "",
             "Visibility",
@@ -44,7 +44,7 @@
     document.addEventListener("click", function() {
       e(!1);
     });
-  }), f = {
+  }), h = {
     checkbox: (
       /*html */
       `
@@ -67,11 +67,11 @@
     ` <div class="crs_notification">
   <div class="crs_notification_head justify-between">
       <div class="items-center">
-          ${f.checkbox}
+          ${h.checkbox}
           <h3>Added to cart</h3>
       </div>
       <button type="button" class="crs_close">
-          ${f.close}
+          ${h.close}
       </button>
   </div>
   <div class="crs_notification_body justify-between">
@@ -86,10 +86,10 @@
   </div>
   <div class="crs_notification_foot justify-between items-center flex-md-column-reverse">
       <a href="#" class="crs_continue_shop">Continue Shopping</a>
-      <a href="/cart" class="crs_view_cart">view cart (${r})${f.arrowRight}</a>
+      <a href="/cart" class="crs_view_cart">view cart (${r})${h.arrowRight}</a>
   </div>
 </div>`
-  ), g = `
+  ), x = `
 <nav class="crs_nav">
   <ul class="d-flex">
     <li><a href="#ingredients">ingredients</a></li>
@@ -97,7 +97,7 @@
     <li><a href="#usvsthem">the cerebelly standard</a></li>
     <li><a href="#puree">directions & safety</a></li>
   </ul>
-</nav>`, C = `.items-center {
+</nav>`, k = `.items-center {
   display: flex;
   align-items: center;
 }
@@ -112,7 +112,7 @@
     display: flex;
     flex-direction: column-reverse;
   }
-}/*# sourceMappingURL=base.css.map */`, k = `.crs_notification {
+}/*# sourceMappingURL=base.css.map */`, C = `.crs_notification {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -210,7 +210,7 @@
   line-height: 44px;
   letter-spacing: 2.6px;
   text-transform: uppercase;
-  padding: 0 16px;
+  padding: 0;
   width: 100%;
   text-decoration: none;
 }
@@ -312,15 +312,36 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  padding: 8px;
+  padding: 5px;
   text-align: center;
   margin-bottom: 8px;
+  position: relative;
+}
+
+.modal .css-5nnxvq .subscribe:before {
+  content: "";
+  position: absolute;
+  left: calc(100% - 8px);
+  top: calc(100% - 5px);
+  background: url("https://conversionratestore.github.io/projects/cerebelly/img/arrow-arc.svg") no-repeat center/contain;
+  width: 25px;
+  height: 26px;
 }
 
 .modal .product-wrapper button.button.red {
   border-radius: 100px;
   background: var(--Orange-500, #FC4D38);
   width: 100%;
+  font-size: 16px;
+  padding: 18px 20px;
+}
+.modal .product-wrapper button.button.red:hover {
+  background-color: rgb(255, 178, 196);
+}
+
+.modal .product-wrapper .scrolled button.button.red {
+  padding: 6px 20px;
+  min-height: 48px;
 }
 
 .modal .product-wrapper .action.add {
@@ -399,6 +420,7 @@
 .crs_nav a.active {
   opacity: 1;
   border-color: #FC4D38;
+  font-weight: 600;
 }
 
 .css-12a0csp .product-wrapper .left-side section {
@@ -407,6 +429,12 @@
 
 .css-s7fk0u .explanation-video .directions-safety {
   text-decoration: underline;
+}
+
+.modal .product-wrapper .css-5nnxvq .action-wrapper > * {
+  max-width: 360px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 @media (min-width: 992px) {
@@ -428,6 +456,10 @@
   }
   .crs_notification h3 {
     font-size: 16px;
+  }
+  .crs_notification_body img {
+    width: 96px;
+    height: 96px;
   }
   .crs_view_cart {
     margin-left: 0;
@@ -453,9 +485,20 @@
     padding: 27.5px 8px;
     font-size: 16px;
     color: var(--Blue-500, #3856A7);
+    font-weight: 500;
   }
   .crs_nav ul a.active {
     color: var(--Blue-600, #15206B);
+  }
+  .crs_nav .default-close {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
   }
   .modal .css-12a0csp .product-wrapper .right-side {
     padding: 92px 0;
@@ -472,6 +515,26 @@
   }
   .css-mc9jj7 .controls .default-close {
     right: 43px;
+  }
+  .modal .css-12a0csp h2 {
+    font-size: 28px;
+    line-height: 34px;
+  }
+  .product-wrapper .css-5nnxvq .unit-price .regular {
+    font-size: 18px;
+  }
+  .product-wrapper .css-5nnxvq .unit-price .discount {
+    font-size: 20px;
+  }
+  .product-wrapper .css-5nnxvq .unit-price .prices {
+    font-size: 16px;
+  }
+  .modal .product-wrapper .css-5nnxvq .tm-text {
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .modal .css-5nnxvq .subscribe {
+    padding: 7px;
   }
 }
 @media (max-width: 1279px) {
@@ -506,10 +569,16 @@
     width: 18px;
     height: 18px;
   }
+}
+@media (max-width: 360px) {
+  .crs_notification {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }/*# sourceMappingURL=main.css.map */`;
   w({ name: "Enhancements on PDP and new Add to Cart notification", dev: "Olha" }), _("new_add_to_cart");
-  const x = window.innerWidth < 991 ? "mobile" : "desktop";
-  class h {
+  const g = window.innerWidth < 991 ? "mobile" : "desktop";
+  class f {
     constructor(e) {
       this.device = e, this.isSelectorWrapper = this.device === "desktop" ? ".product-wrapper" : ".css-12a0csp", this.init();
     }
@@ -517,17 +586,17 @@
       if (!n(".crs_style") && !n(".crs_script")) {
         let t = document.createElement("script");
         t.src = "https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js", t.async = !1, t.className = "crs_script", document.head.appendChild(t), document.head.insertAdjacentHTML("beforeend", `
-      <style class="crs_style">${C + k}</style>`);
+      <style class="crs_style">${k + C}</style>`);
       }
       y(this.device === "desktop" ? 20 : 10).then((t) => {
         var i;
-        console.dir(t), t && sessionStorage.getItem("exit_intent") == null && ((i = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : i.cart.boxes[0]) != null && this.checkPageUrl() === "other" && (sessionStorage.setItem("exit_intent", "true"), console.dir("inactive init"), this.renderNotification(), l("exp_newaddtocart_vis_04", "User inactive", "Visibility", "Popover"));
+        console.dir(t), t && sessionStorage.getItem("exit_intent") == null && ((i = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : i.cart.boxes[0]) != null && this.checkPageUrl() === "other" && (sessionStorage.setItem("exit_intent", "true"), console.dir("inactive init"), this.renderNotification(), p("exp_newaddtocart_vis_04", "User inactive", "Visibility", "Popover"));
       }), setTimeout(() => {
         var t;
-        sessionStorage.getItem("exit_intent") == null && ((t = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : t.cart.boxes[0]) != null && !n(".crs_notification") && this.checkPageUrl() === "other" && (sessionStorage.setItem("exit_intent", "true"), console.dir("after 180 seconds init"), this.renderNotification(), l("exp_newaddtocart_vis_05", "After 180 seconds", "Visibility", "Popover"));
+        sessionStorage.getItem("exit_intent") == null && ((t = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : t.cart.boxes[0]) != null && !n(".crs_notification") && this.checkPageUrl() === "other" && (sessionStorage.setItem("exit_intent", "true"), console.dir("after 180 seconds init"), this.renderNotification(), p("exp_newaddtocart_vis_05", "After 180 seconds", "Visibility", "Popover"));
       }, 18e4), this.checkPageUrl() === "other" && this.exitIntent();
       const e = new MutationObserver((t) => {
-        this.navigation(), this.changeElements(), e.disconnect(), e.observe(document.body, {
+        this.navigation(), this.changeElements(), document.body.style.overflow = this.checkPageUrl() === "pdp" ? "hidden" : "", e.disconnect(), e.observe(document.body, {
           childList: !0,
           subtree: !0,
           attributes: !0
@@ -541,7 +610,7 @@
     }
     checkPageUrl() {
       const e = window.location.href;
-      return e.includes("checkout") ? "checkout" : e.includes("/cart") ? "cart" : "other";
+      return e.includes("checkout") ? "checkout" : e.includes("/cart") ? "cart" : e.includes("/product") || e.includes("/bundle") ? "pdp" : "other";
     }
     renderNotification(e = "") {
       n(".crs_notification") && n(".crs_notification").remove();
@@ -558,18 +627,18 @@
       e.querySelector(".crs_close").addEventListener("click", (t) => {
         e.classList.remove("active"), setTimeout(() => {
           e == null || e.remove();
-        }, 200), l("exp_newaddtocart_click_03", "Close", "Button", "Popover");
+        }, 200), p("exp_newaddtocart_click_03", "Close", "Button", "Popover");
       }), e.querySelector(".crs_continue_shop").addEventListener("click", (t) => {
         t.preventDefault(), e.classList.remove("active"), setTimeout(() => {
           e == null || e.remove();
-        }, 200), l("exp_newaddtocart_click_02", "View cart", "Button", "Popover");
+        }, 200), p("exp_newaddtocart_click_02", "View cart", "Button", "Popover");
       }), e.querySelector(".crs_view_cart").addEventListener("click", (t) => {
-        l("exp_newaddtocart_click_04", "Continue Shopping", "Button", "Popover");
+        p("exp_newaddtocart_click_04", "Continue Shopping", "Button", "Popover");
       });
     }
     exitIntent() {
       var e;
-      switch (console.dir("start exitIntent"), x) {
+      switch (console.dir("start exitIntent"), g) {
         case "desktop":
           let t = 0, i = 0;
           window.addEventListener("mousemove", function(d) {
@@ -578,7 +647,7 @@
             "mouseleave",
             function() {
               var d, u;
-              (t < 50 || i < 50 || t > window.innerWidth - 50 || i > window.innerHeight - 50) && sessionStorage.getItem("exit_intent") == null && !n(".crs_notification") && ((u = (d = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : d.cart) == null ? void 0 : u.boxes[0]) != null && (sessionStorage.setItem("exit_intent", "true"), console.dir("exitIntent desktop: "), new h().renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"));
+              (t < 50 || i < 50 || t > window.innerWidth - 50 || i > window.innerHeight - 50) && sessionStorage.getItem("exit_intent") == null && !n(".crs_notification") && ((u = (d = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : d.cart) == null ? void 0 : u.boxes[0]) != null && (sessionStorage.setItem("exit_intent", "true"), console.dir("exitIntent desktop: "), new f().renderNotification(), p("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"));
             },
             { once: !0 }
           );
@@ -587,7 +656,7 @@
           let r = (/android/i.test(navigator.userAgent), 120), s = 0, a = 0, o = () => {
             var u, m, v;
             let d = window.scrollY;
-            a = d - s, s = d, (a > r || a < -r) && sessionStorage.getItem("exit_intent") == null && !n(".crs_notification") && !n(".css-m18cj1") && ((m = (u = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : u.cart) == null ? void 0 : m.boxes[0]) != null && (console.dir("currentSpeed: " + a), sessionStorage.setItem("exit_intent", "true"), console.dir("exitIntent mobile: "), this.renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"), document.removeEventListener("scroll", o), (v = n(this.isSelectorWrapper)) == null || v.removeEventListener("scroll", o));
+            a = d - s, s = d, (a > r || a < -r) && sessionStorage.getItem("exit_intent") == null && !n(".crs_notification") && !n(".css-m18cj1") && ((m = (u = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : u.cart) == null ? void 0 : m.boxes[0]) != null && (console.dir("currentSpeed: " + a), sessionStorage.setItem("exit_intent", "true"), console.dir("exitIntent mobile: "), this.renderNotification(), p("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"), document.removeEventListener("scroll", o), (v = n(this.isSelectorWrapper)) == null || v.removeEventListener("scroll", o));
           };
           document.addEventListener("scroll", o), (e = n(this.isSelectorWrapper)) == null || e.addEventListener("scroll", o);
           break;
@@ -596,9 +665,9 @@
     navigation() {
       if (n(".crs_nav") || !n(".css-12a0csp .product-wrapper .left-side"))
         return;
-      b(".crs_nav", "exp_newaddtocart_vis_01", "View navigation", "Under the add to cart"), this.device == "mobile" ? n(".css-12a0csp .product-wrapper .left-side").insertAdjacentHTML("beforeend", g) : n(".css-12a0csp .product-wrapper").insertAdjacentHTML("afterbegin", g), p(".crs_nav a").forEach((i) => {
+      b(".crs_nav", "exp_newaddtocart_vis_01", "View navigation", "Under the add to cart"), this.device === "mobile" ? n(".css-12a0csp .product-wrapper .left-side").insertAdjacentHTML("beforeend", x) : (n(".css-12a0csp .product-wrapper").insertAdjacentHTML("afterbegin", x), n(".crs_nav ul").after(n(".css-mc9jj7 .controls .default-close"))), l(".crs_nav a").forEach((i) => {
         i.addEventListener("click", (r) => {
-          r.preventDefault(), l("exp_newaddtocart_click_01", r.target.innerText, "Nav panel", "Under the add to cart");
+          r.preventDefault(), p("exp_newaddtocart_click_01", r.target.innerText, "Nav panel", "Under the add to cart");
           let s = r.target.href.split("#")[1];
           n("#" + s) && (seamless.polyfill(), seamless.scrollBy(n(this.isSelectorWrapper), { behavior: "smooth", top: n("#" + s).getBoundingClientRect().top - i.clientHeight - 20, left: 0 }));
         });
@@ -618,8 +687,8 @@
         var r = i.getBoundingClientRect();
         return r.top >= 0 && r.left >= 0 && r.bottom <= (window.innerHeight || document.documentElement.clientHeight) && r.right <= (window.innerWidth || document.documentElement.clientWidth);
       }
-      this.device === "desktop" && p(".crs_nav a")[0].classList.add("active"), n(this.isSelectorWrapper).addEventListener("scroll", (i) => {
-        const r = p(".product-wrapper .right-side section[id] h2"), s = p(".crs_nav a");
+      this.device === "desktop" && l(".crs_nav a")[0].classList.add("active"), n(this.isSelectorWrapper).addEventListener("scroll", (i) => {
+        const r = l(".product-wrapper .right-side section[id] h2"), s = l(".crs_nav a");
         var a = -1;
         r.forEach(function(o, d) {
           t(o) && a === -1 && (a = d);
@@ -630,7 +699,7 @@
     }
     changeElements() {
       var e;
-      if (p(".button").forEach((t, i) => {
+      if (l(".button").forEach((t, i) => {
         let r = t.innerText.toLowerCase();
         if (r.includes("to bag")) {
           let s = t.innerText;
@@ -639,19 +708,19 @@
         t.closest(".add") && r.includes("to cart") && t.addEventListener("click", (s) => {
           n(".crs_show_notification") || (console.dir("click"), console.dir(s.target), document.body.classList.add("crs_show_notification"));
         });
-      }), n(".crs_show_notification .modal .cart-product .product-count") && (console.dir("add to cart"), this.renderNotification(n(".modal .cart-product .product-count").innerText), l("exp_newaddtocart_vis_02", "Add to cart", "Visibility", "Popover"), n(".crs_show_notification .modal .cart-product .product-count").closest(".modal").querySelector(".default-close").click(), document.body.classList.remove("crs_show_notification")), n(".action-wrapper") && !n(".action-wrapper h2")) {
-        n(".action-wrapper").insertAdjacentHTML("afterbegin", `<h2>${(e = document.querySelector(".css-12a0csp h2")) == null ? void 0 : e.innerHTML}</h2>`), n(".pdp-net-weight") && n(".css-5nnxvq .product-image-wrapper picture").after(n(".pdp-net-weight"));
+      }), n(".crs_show_notification .modal .cart-product .product-count") && (console.dir("add to cart"), this.renderNotification(n(".modal .cart-product .product-count").innerText), p("exp_newaddtocart_vis_02", "Add to cart", "Visibility", "Popover"), n(".crs_show_notification .modal .cart-product .product-count").closest(".modal").querySelector(".default-close").click(), document.body.classList.remove("crs_show_notification")), n(".action-wrapper") && !n(".action-wrapper h2") && (n(".action-wrapper").insertAdjacentHTML("afterbegin", `<h2>${(e = document.querySelector(".css-12a0csp h2")) == null ? void 0 : e.innerHTML}</h2>`), n(".pdp-net-weight") && n(".css-5nnxvq .product-image-wrapper picture").after(n(".pdp-net-weight"))), n(".css-5nnxvq .unit-price .discount .subscribe") && !n(".css-5nnxvq .action-wrapper > .subscribe") && n(".css-5nnxvq .unit-price").after(n(".css-5nnxvq .unit-price .discount .subscribe")), n(".css-5nnxvq .prices") && !n(".css-5nnxvq .unit-price > .prices")) {
+        n(".css-5nnxvq .unit-price .discount").after(n(".css-5nnxvq .prices"));
         let t = 0;
         this.device === "mobile" ? t = "76px - 24px - 48px" : t = "67px - 66px", n(".css-5nnxvq .product-image-wrapper picture img").style = `max-height: calc(100vh - ${t} - ${n(".css-5nnxvq .action-wrapper").clientHeight}px`;
       }
-      n(".css-5nnxvq .unit-price .discount .subscribe") && !n(".css-5nnxvq .action-wrapper > .subscribe") && n(".css-5nnxvq .unit-price").after(n(".css-5nnxvq .unit-price .discount .subscribe")), n(".css-5nnxvq .prices") && !n(".css-5nnxvq .unit-price > .prices") && n(".css-5nnxvq .unit-price .discount").after(n(".css-5nnxvq .prices")), p('.product-wrapper .right-side img[loading="lazy"]').forEach((t) => {
+      l('.product-wrapper .right-side img[loading="lazy"]').forEach((t) => {
         t.removeAttribute("loading");
-      }), !n("#puree") && p(".product-wrapper .right-side section").forEach((t) => {
+      }), !n("#puree") && l(".product-wrapper .right-side section").forEach((t) => {
         var s, a;
         let i = (s = t.querySelector("h3")) == null ? void 0 : s.innerText.toLowerCase(), r = (a = t.querySelector("h2")) == null ? void 0 : a.innerText.toLowerCase();
         i != null && i.includes("ingredients") ? t.id = "ingredients" : i != null && i.includes("nutrients") ? t.id = "nutrients" : i != null && i.includes("us vs them") ? t.id = "usvsthem" : r != null && r.includes("directions & safety") && (t.id = "puree");
       });
     }
   }
-  new h(x);
+  new f(g);
 })();
