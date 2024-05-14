@@ -13,7 +13,7 @@
       `%c EXP: ${t} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, h = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), w = async (t) => {
+  }, u = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), m = async (t) => {
     const n = (e) => new Promise((i, a) => {
       const r = e.split(".").pop();
       if (r === "js") {
@@ -23,8 +23,8 @@
         p.src = e, p.onload = i, p.onerror = a, document.head.appendChild(p);
       } else if (r === "css") {
         if (Array.from(document.styleSheets).map((l) => {
-          var m;
-          return (m = l.href) == null ? void 0 : m.toLowerCase();
+          var w;
+          return (w = l.href) == null ? void 0 : w.toLowerCase();
         }).includes(e.toLowerCase()))
           return console.log(`Style ${e} allready downloaded!`), i("");
         const p = document.createElement("link");
@@ -82,7 +82,7 @@
       return e = window.scrollY, n != null && (a = e - n), n = e, clearTimeout(i), i = setTimeout(s, r), a;
     };
   })();
-  const c = "https://conversionratestore.github.io/projects/buzzpatch/img/", u = {
+  const c = "https://conversionratestore.github.io/projects/buzzpatch/img/", h = {
     giftIcon: (
       /* HTML */
       `
@@ -155,9 +155,11 @@
   }, b = (t, n = "") => (
     /*HTML */
     `
-  <div class="gift_box ${n}">
-    ${u.giftIcon}
-    ${t ? "<p><b>Limited Time Offer:</b> Get a free NATPAT sticker set with your purchase</p>" : '<p>Get a free NATPAT sticker set with any 2-4 pack purchase. Collect all <span class="trigger_popup_open">16 magical characters!</span></p>'}
+  <div class="gift_box_wrapper">
+    <div class="gift_box ${n}">
+      ${h.giftIcon}
+      ${t ? "<p><b>Limited Time Offer:</b> Get a free NATPAT sticker set with your purchase</p>" : '<p>Get a free NATPAT sticker set with any 2-4 pack purchase. Collect all <span class="trigger_popup_open">16 magical characters!</span></p>'}
+    </div>
   </div>
 `
   ), y = (
@@ -166,24 +168,24 @@
   <img src="${c}gift_img_1.png" alt="stickers 16 magical characters" />
   <img src="${c}gift_img_2.png" alt="stickers 16 magical characters" />
   <h3 class="gift_stickers_title">16 magical characters</h3>
-  <div class="border_icon">${u.borderIcon}</div>
+  <div class="border_icon">${h.borderIcon}</div>
 `
   ), C = (
     /* HTML */
     `
   <div class="new_popup_backdrop is_hidden">
     <div class="new_popup">
-      <button class="new_popup_close" data-popup="close">${u.closeIcon}</button>
+      <button class="new_popup_close" data-popup="close">${h.closeIcon}</button>
       <div class="new_popup_content">${y}</div>
     </div>
   </div>
 `
-  ), v = `body .gift_box {
+  ), v = `body .gift_box_wrapper .gift_box {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   gap: 8px;
-  max-width: 300px;
+  max-width: 302px;
   width: 100%;
   margin: 0 auto;
   padding: 10px 16px;
@@ -191,30 +193,29 @@
   border: 2px solid #fee6ee;
   background: #fff;
 }
-body .gift_box.cta_box {
+body .gift_box_wrapper .gift_box.cta_box {
   border-radius: 12px;
   margin-top: -15px;
   padding-top: 25px;
 }
-body .gift_box.banner_box {
+body .gift_box_wrapper .gift_box.banner_box {
   margin-top: -80px;
   z-index: 1;
   position: relative;
 }
-body .gift_box.bundle_box {
-  max-width: 323px;
+body .gift_box_wrapper .gift_box.bundle_box {
+  max-width: 100%;
   padding: 12px 16px;
   border-radius: 4px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin: 10px auto 20px;
 }
-body .gift_box svg {
+body .gift_box_wrapper .gift_box svg {
   width: 16px;
   height: 16px;
   flex: 1 0 16px;
   margin-top: 3px;
 }
-body .gift_box p {
+body .gift_box_wrapper .gift_box p {
   color: #212529 !important;
   font-family: "Roboto", sans-serif;
   font-size: 14px !important;
@@ -224,7 +225,7 @@ body .gift_box p {
   text-align: left;
   letter-spacing: normal;
 }
-body .gift_box p span {
+body .gift_box_wrapper .gift_box p span {
   color: #1e4fd1;
   font-weight: 600;
   text-decoration-line: underline;
@@ -322,8 +323,27 @@ body .hand-banner a.get-it {
   font-weight: 500;
   line-height: 18px;
 }
+#getNow .gift_box_wrapper {
+  padding: 0 14px;
+}
+#getNow .form {
+  padding: 0 14px;
+}
 #getNow .form-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
   margin: 0 !important;
+}
+#getNow .form-group .js-packs {
+  max-width: calc(50% - 8px);
+  margin: 0;
+}
+#getNow .new-bundle-pack {
+  max-width: 100%;
+  margin: auto;
+  padding: 10px 0;
 }
 #getNow .new-bundle-pack h3 {
   color: #212529;
@@ -488,17 +508,17 @@ body .hand-banner a.get-it {
       ), document.head.insertAdjacentHTML("beforeend", `<style>${v}</style>`), this.createPopup(), this.rendergGiftElements(), this.triggerPopupOpen(), this.setupSwipeToClosePopup(), this.clickAddToCartBtnHandler(), this.visibleHandler();
     }
     rendergGiftElements() {
-      h(".row .text-center a.get-it").forEach((n) => {
+      u(".row .text-center a.get-it").forEach((n) => {
         var e;
         n.innerHTML = "buy buzzpatch <br/> stickers", (e = n.nextElementSibling) != null && e.classList.contains(".cta_box") || n.insertAdjacentHTML("afterend", b(!0, "cta_box"));
-      }), h(".hand-banner a.get-it").forEach((n) => {
+      }), u(".hand-banner a.get-it").forEach((n) => {
         var e;
         (e = n.previousElementSibling) != null && e.classList.contains(".banner_box") || n.insertAdjacentHTML("beforebegin", b(!0, "banner_box"));
-      }), h("#getNow .prices").forEach((n) => {
+      }), u("#getNow .prices").forEach((n) => {
         var e;
         (e = n.previousElementSibling) != null && e.classList.contains(".bundle_box") || n.insertAdjacentHTML("beforebegin", b(!1, "bundle_box"));
-      }), h("#getNow input[type=radio] + label").forEach((n) => {
-        n.getAttribute("for") !== "radios-3" && n.insertAdjacentHTML("afterbegin", u.giftIcon);
+      }), u("#getNow input[type=radio] + label").forEach((n) => {
+        n.getAttribute("for") !== "radios-3" && n.insertAdjacentHTML("afterbegin", h.giftIcon);
       }), o(".new-bundle-pack img").src !== `${c}new_bundle_img.png` && (o(".new-bundle-pack img").src = `${c}new_bundle_img.png`), o("#getNow .days").src !== `${c}new_trustpilot_reviews_img.png` && (o("#getNow .days").src = `${c}new_trustpilot_reviews_img.png`);
     }
     triggerPopupOpen() {
@@ -509,7 +529,7 @@ body .hand-banner a.get-it {
       });
     }
     setupSwipeToClosePopup() {
-      w([
+      m([
         "https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js"
       ]).then(async () => {
         let n = setInterval(() => {
