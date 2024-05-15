@@ -13,13 +13,13 @@
       `%c EXP: ${t} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, d = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), m = (t) => {
+  }, d = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), w = (t) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", t, "variant_1"));
     }, 1e3);
-  }, c = (t, n, e, i, a = 3e3, r = 0.5) => {
-    let p, u;
-    if (p = new IntersectionObserver(
+  }, c = (t, n, e, i, p = 3e3, a = 0.5) => {
+    let r, u;
+    if (r = new IntersectionObserver(
       function(g) {
         g[0].isIntersecting === !0 ? u = setTimeout(() => {
           f(
@@ -27,15 +27,15 @@
             g[0].target.dataset.visible || i || "",
             "Visibility",
             e
-          ), p.disconnect();
-        }, a) : clearTimeout(u);
+          ), r.disconnect();
+        }, p) : clearTimeout(u);
       },
-      { threshold: [r] }
+      { threshold: [a] }
     ), typeof t == "string") {
       const g = document.querySelector(t);
-      g && p.observe(g);
+      g && r.observe(g);
     } else
-      p.observe(t);
+      r.observe(t);
   };
   function l(t) {
     return new Promise((n) => {
@@ -53,18 +53,18 @@
   }
   (function(t) {
     t = t === void 0 ? {} : t;
-    let n, e, i, a, r = (t == null ? void 0 : t.delay) || 50;
-    function p() {
-      n = null, a = 0;
+    let n, e, i, p, a = (t == null ? void 0 : t.delay) || 50;
+    function r() {
+      n = null, p = 0;
     }
-    return p(), function() {
-      return e = window.scrollY, n != null && (a = e - n), n = e, clearTimeout(i), i = setTimeout(p, r), a;
+    return r(), function() {
+      return e = window.scrollY, n != null && (p = e - n), n = e, clearTimeout(i), i = setTimeout(r, a), p;
     };
   })();
-  const w = (t, n) => {
-    const e = t, a = (n == null ? void 0 : n.getBoundingClientRect().top) + window.pageYOffset - e;
+  const m = (t, n) => {
+    const e = t, p = (n == null ? void 0 : n.getBoundingClientRect().top) + window.pageYOffset - e;
     window.scrollTo({
-      top: a,
+      top: p,
       behavior: "smooth"
     });
   }, s = "https://conversionratestore.github.io/projects/buzzpatch/img/", h = {
@@ -143,7 +143,7 @@
   <div class="gift_box_wrapper">
     <div class="gift_box ${n}">
       ${h.giftIcon}
-      ${t ? "<p><b>Limited Time Offer:</b> Get a free NATPAT sticker set with your purchase</p>" : '<p>Get a free NATPAT sticker set with any 2-4 pack purchase. Collect all <span class="trigger_popup_open">16 magical characters!</span></p>'}
+      ${t ? "<p><b>Limited Time Offer:</b> Get a free NATPAT sticker set with your purchase</p>" : '<p>Get a free <span class="trigger_popup_open">NATPAT sticker set</span> with any 2-4 pack purchase.</p>'}
     </div>
   </div>
 `
@@ -190,14 +190,17 @@ body .gift_box_wrapper .gift_box.banner_box {
 }
 body .gift_box_wrapper .gift_box.bundle_box {
   max-width: 100%;
-  padding: 12px 16px;
+  padding: 10.5px 16px;
   border-radius: 4px;
-  margin: 10px auto 20px;
+  margin: 0 auto 12px;
+}
+body .gift_box_wrapper .gift_box.bundle_box p {
+  max-width: 249px;
 }
 body .gift_box_wrapper .gift_box svg {
   width: 16px;
   height: 16px;
-  flex: 1 0 16px;
+  flex: 0 0 16px;
   margin-top: 3px;
 }
 body .gift_box_wrapper .gift_box p {
@@ -318,7 +321,7 @@ body .hand-banner a.get-it {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px 16px;
   margin: 0 !important;
 }
 #getNow .form-group .js-packs {
@@ -328,7 +331,7 @@ body .hand-banner a.get-it {
 #getNow .new-bundle-pack {
   max-width: 100%;
   margin: auto;
-  padding: 10px 0;
+  padding: 14px 0 12px;
 }
 #getNow .new-bundle-pack h3 {
   color: #212529;
@@ -338,7 +341,7 @@ body .hand-banner a.get-it {
   line-height: 20px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  margin: 0 0 3px;
+  margin: 0;
 }
 #getNow .new-bundle-pack .bundle-off {
   color: #fff;
@@ -354,7 +357,7 @@ body .hand-banner a.get-it {
   margin-top: -24px;
 }
 #getNow .new-bundle-pack input[type=radio] + label {
-  padding: 6px 8px 6px 11px;
+  padding: 6px 8px 3px 11px;
 }
 #getNow .new-bundle-pack input[type=radio] + label .gift_icon {
   right: 8px;
@@ -488,7 +491,7 @@ body .hand-banner a.get-it {
       this.device = n, this.init();
     }
     init() {
-      x({ name: "Exit Intent Popup", dev: "SKh" }), m("exp_introduce_b"), document.head.insertAdjacentHTML(
+      x({ name: "Exit Intent Popup v.B", dev: "SKh" }), w("exp_introduce_b"), document.head.insertAdjacentHTML(
         "beforeend",
         '<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">'
       ), document.head.insertAdjacentHTML("beforeend", `<style>${C}</style>`), this.createPopup(), this.rendergGiftElements(), this.triggerPopupOpen(), this.clickAddToCartBtnHandler(), this.visibleHandler(), this.handleClickGetNow();
@@ -524,19 +527,19 @@ body .hand-banner a.get-it {
       e.classList.contains("is_hidden") && e.classList.remove("is_hidden"), n.style.overflow = "hidden", i.style.overflow = "hidden", f("exp_introduce_b_popup_01", "16 magical characters", "Visibility", "Pop up");
     }
     handleClosePopup() {
-      const n = o("body"), e = o(".new_popup_backdrop"), i = o(".new_popup"), a = i.querySelectorAll('[data-popup="close"]'), r = o("html");
-      a.forEach((p) => {
-        p.addEventListener("click", (u) => {
-          u.currentTarget && (f("exp_introduce_b_button_01", "Close", "Button", "Pop up"), e.classList.add("is_hidden"), n.style.overflow = "initial", r.style.overflow = "initial");
+      const n = o("body"), e = o(".new_popup_backdrop"), i = o(".new_popup"), p = i.querySelectorAll('[data-popup="close"]'), a = o("html");
+      p.forEach((r) => {
+        r.addEventListener("click", (u) => {
+          u.currentTarget && (f("exp_introduce_b_button_01", "Close", "Button", "Pop up"), e.classList.add("is_hidden"), n.style.overflow = "initial", a.style.overflow = "initial");
         });
       });
     }
     clickAddToCartBtnHandler() {
       var n;
       (n = o("#addToCart")) == null || n.addEventListener("click", (e) => {
-        var r;
+        var a;
         e.preventDefault();
-        let i = (r = o(".js-packs input[type=radio]:checked+label")) == null ? void 0 : r.previousElementSibling.value;
+        let i = (a = o(".js-packs input[type=radio]:checked+label")) == null ? void 0 : a.previousElementSibling.value;
         console.log(i, "idValue"), i === "39542857695276" ? this.addToCartGiftHandler(i, !1) : this.addToCartGiftHandler(i);
       });
     }
@@ -595,11 +598,13 @@ body .hand-banner a.get-it {
       });
     }
     handleClickGetNow() {
-      d('[href="#getNow"]').forEach((n) => {
-        n.addEventListener("click", (e) => {
-          e.preventDefault(), e.stopPropagation(), $("html, body").stop();
-          let i = o("#getNow"), a = 85;
-          (e.target.closest(".hand-banner") || e.target.closest(".navbar") && !e.target.closest(".fixed-top")) && (a = 160), w(a, i), console.log(i);
+      l("#getNow").then((n) => {
+        d('[href="#getNow"]').forEach((e) => {
+          e.addEventListener("click", (i) => {
+            i.preventDefault(), i.stopPropagation(), $("html, body").stop();
+            let p = o("#getNow"), a = 65;
+            (i.target.closest(".hand-banner") || i.target.closest(".navbar") && !i.target.closest(".fixed-top")) && (a = 142), m(a, p);
+          });
         });
       });
     }
