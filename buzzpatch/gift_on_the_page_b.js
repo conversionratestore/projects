@@ -602,8 +602,8 @@ body .hand-banner a.get-it {
         d('[href="#getNow"]').forEach((e) => {
           e.addEventListener("click", (i) => {
             i.preventDefault(), i.stopPropagation(), $("html, body").stop();
-            let p = o("#getNow"), a = 65;
-            (i.target.closest(".hand-banner") || i.target.closest(".navbar") && !i.target.closest(".fixed-top")) && (a = 142), m(a, p);
+            let p = o("#getNow"), a = 35;
+            (i.target.closest(".hand-banner") || i.target.closest(".navbar") && !i.target.closest(".fixed-top")) && (a = 110), m(a, p);
           });
         });
       });
