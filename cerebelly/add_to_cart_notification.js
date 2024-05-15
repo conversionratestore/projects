@@ -677,7 +677,7 @@
         if (this.device !== "mobile")
           return;
         let r = n(".crs_nav").getBoundingClientRect().bottom;
-        r < 0 ? n(".crs_nav").classList.add("fixed") : n(".crs_nav").classList.remove("fixed"), r < -100 ? (n(".crs_nav").classList.add("active"), n(".css-mc9jj7 .controls .default-close").style.top = "68px") : (n(".crs_nav").classList.remove("active"), n(".css-mc9jj7 .controls .default-close").style = "");
+        r < 0 ? n(".crs_nav").classList.add("fixed") : n(".crs_nav").classList.remove("fixed"), r < -100 ? (n(".crs_nav").classList.add("active"), n(".css-mc9jj7 .controls .default-close").style.top = "55px") : (n(".crs_nav").classList.remove("active"), n(".css-mc9jj7 .controls .default-close").style = "");
       });
       function t(i) {
         var r = i.getBoundingClientRect();
