@@ -8,7 +8,7 @@
       event_type: e,
       event_loc: n
     }), console.log(`Event: ${i} | ${r} | ${e} | ${n.replace(/  +/g, " ")}`);
-  }, A = ({ name: i, dev: r }) => {
+  }, F = ({ name: i, dev: r }) => {
     console.log(
       `%c EXP: ${i} (DEV: ${r})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
@@ -34,7 +34,7 @@
     for (const e of i)
       await r(e), console.log(`Loaded librari ${e}`);
     console.log("All libraries loaded!");
-  }, $ = (i) => {
+  }, A = (i) => {
     let r = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(r), window.clarity("set", i, "variant_1"));
     }, 1e3);
@@ -69,7 +69,7 @@
       childList: !0,
       subtree: !0
     });
-  }), a = "https://conversionratestore.github.io/projects/geeni/img/home-app-web", b = window.innerWidth < 768 ? "mobile" : "desktop", P = (
+  }), a = "https://conversionratestore.github.io/projects/geeni/img/home-app-web", $ = window.innerWidth < 768 ? "mobile" : "desktop", P = (
     /*html*/
     `
   <style>
@@ -1837,7 +1837,7 @@
   </section>
   `
   );
-  $("exp_home_optim"), A({ name: "Geeni: Homepage Optimization", dev: "AK" }), L(), z(), D();
+  A("exp_home_optim"), F({ name: "Geeni: Homepage Optimization", dev: "AK" }), L(), z(), D();
   async function B(i, r) {
     try {
       const e = await fetch(`https://mygeeni.com/products/${i}.json`, {
@@ -1926,7 +1926,7 @@
       O();
     });
   }
-  function S(i) {
+  function b(i) {
     const e = (
       /*html*/
       `
@@ -1978,9 +1978,9 @@
     </div>
   `
     );
-    u(b === "desktop" ? ".free-shipping" : ".shop-all").then((t) => t == null ? void 0 : t.insertAdjacentHTML("afterend", e)).catch((t) => console.error("Failed to insert slides to hero slider:", t));
+    u(".shop-all").then((t) => t == null ? void 0 : t.insertAdjacentHTML("afterend", e)).catch((t) => console.error("Failed to insert slides to hero slider:", t));
   }
-  function k() {
+  function S() {
     return window._dy_customer_logged_in && window._dy_customer_logged_in.email !== void 0;
   }
   async function E() {
@@ -1994,7 +1994,7 @@
         }
       else
         console.error("Product data element or its content is missing");
-      !k() && i && S(i);
+      !S() && i && b(i);
       let e = JSON.parse(sessionStorage.getItem("newArrivalsProductsData") || "[]");
       if (!e.length) {
         const n = [];
@@ -2011,7 +2011,7 @@
             console.error(`Failed to fetch product data for handle ${n[p]}: ${s.reason}`);
         }), sessionStorage.setItem("newArrivalsProductsData", JSON.stringify(e));
       }
-      k() ? S(e) : (N(), I(e));
+      S() ? b(e) : (N(), I(e));
     });
   }
   function L() {
@@ -2109,11 +2109,11 @@
     </style>
   `
     );
-    b === "mobile" && u('.mobile-menu [aria-controls="nav-drawer"]').then((r) => {
+    $ === "mobile" && u('.mobile-menu [aria-controls="nav-drawer"]').then((r) => {
       document.querySelector("h1.logo").insertAdjacentElement("beforebegin", r);
     }), u("head").then((r) => r.insertAdjacentHTML("beforeend", i));
   }
-  function F(i, r) {
+  function k(i, r) {
     const e = `[data-products-type="${i}"] .products-wrapper`;
     u(e).then((n) => {
       const t = document.querySelectorAll(r);
@@ -2131,7 +2131,7 @@
   }
   function H() {
     const i = setInterval(() => {
-      document.querySelector("#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(i), F("popular-products", "#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), F("hot-deals", "#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner"));
+      document.querySelector("#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(i), k("popular-products", "#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), k("hot-deals", "#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner"));
     }, 100);
   }
   function j() {
