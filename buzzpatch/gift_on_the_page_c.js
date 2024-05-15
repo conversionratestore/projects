@@ -1,88 +1,73 @@
 (function() {
   "use strict";
-  const g = (t, n, e, i = "") => {
+  const f = (e, n, t, i = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: t,
+      event_name: e,
       event_desc: n,
-      event_type: e,
+      event_type: t,
       event_loc: i
-    }), console.log(`Event: ${t} | ${n} | ${e} | ${i}`);
-  }, w = ({ name: t, dev: n }) => {
+    }), console.log(`Event: ${e} | ${n} | ${t} | ${i}`);
+  }, x = ({ name: e, dev: n }) => {
     console.log(
-      `%c EXP: ${t} (DEV: ${n})`,
+      `%c EXP: ${e} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, h = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), m = async (t) => {
-    const n = (e) => new Promise((i, p) => {
-      const l = e.split(".").pop();
-      if (l === "js") {
-        if (Array.from(document.scripts).map((s) => s.src.toLowerCase()).includes(e.toLowerCase()))
-          return console.log(`Script ${e} allready downloaded!`), i("");
-        const a = document.createElement("script");
-        a.src = e, a.onload = i, a.onerror = p, document.head.appendChild(a);
-      } else if (l === "css") {
-        if (Array.from(document.styleSheets).map((s) => {
-          var x;
-          return (x = s.href) == null ? void 0 : x.toLowerCase();
-        }).includes(e.toLowerCase()))
-          return console.log(`Style ${e} allready downloaded!`), i("");
-        const a = document.createElement("link");
-        a.rel = "stylesheet", a.href = e, a.onload = i, a.onerror = p, document.head.appendChild(a);
-      }
-    });
-    for (const e of t)
-      await n(e), console.log(`Loaded librari ${e}`);
-    console.log("All libraries loaded!");
-  }, _ = (t) => {
+  }, d = (e) => document.querySelectorAll(e), o = (e) => document.querySelector(e), w = (e) => {
     let n = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", t, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, f = (t, n, e, i, p = 3e3, l = 0.5) => {
-    let r, a;
-    if (r = new IntersectionObserver(
-      function(s) {
-        s[0].isIntersecting === !0 ? a = setTimeout(() => {
-          g(
+  }, c = (e, n, t, i, p = 3e3, s = 0.5) => {
+    let a, b;
+    if (a = new IntersectionObserver(
+      function(g) {
+        g[0].isIntersecting === !0 ? b = setTimeout(() => {
+          f(
             n,
-            s[0].target.dataset.visible || i || "",
+            g[0].target.dataset.visible || i || "",
             "Visibility",
-            e
-          ), r.disconnect();
-        }, p) : clearTimeout(a);
+            t
+          ), a.disconnect();
+        }, p) : clearTimeout(b);
       },
-      { threshold: [l] }
-    ), typeof t == "string") {
-      const s = document.querySelector(t);
-      s && r.observe(s);
+      { threshold: [s] }
+    ), typeof e == "string") {
+      const g = document.querySelector(e);
+      g && a.observe(g);
     } else
-      r.observe(t);
+      a.observe(e);
   };
-  function d(t) {
+  function r(e) {
     return new Promise((n) => {
-      if (document.querySelector(t))
-        return n(document.querySelector(t));
-      const e = new MutationObserver(() => {
-        document.querySelector(t) && (n(document.querySelector(t)), e.disconnect());
+      if (document.querySelector(e))
+        return n(document.querySelector(e));
+      const t = new MutationObserver(() => {
+        document.querySelector(e) && (n(document.querySelector(e)), t.disconnect());
       });
-      e.observe(document.documentElement, {
+      t.observe(document.documentElement, {
         childList: !0,
         subtree: !0,
         characterData: !0
       });
     });
   }
-  (function(t) {
-    t = t === void 0 ? {} : t;
-    let n, e, i, p, l = (t == null ? void 0 : t.delay) || 50;
-    function r() {
+  (function(e) {
+    e = e === void 0 ? {} : e;
+    let n, t, i, p, s = (e == null ? void 0 : e.delay) || 50;
+    function a() {
       n = null, p = 0;
     }
-    return r(), function() {
-      return e = window.scrollY, n != null && (p = e - n), n = e, clearTimeout(i), i = setTimeout(r, l), p;
+    return a(), function() {
+      return t = window.scrollY, n != null && (p = t - n), n = t, clearTimeout(i), i = setTimeout(a, s), p;
     };
   })();
-  const c = "https://conversionratestore.github.io/projects/buzzpatch/img/", u = {
+  const m = (e, n) => {
+    const t = e, p = (n == null ? void 0 : n.getBoundingClientRect().top) + window.pageYOffset - t;
+    window.scrollTo({
+      top: p,
+      behavior: "smooth"
+    });
+  }, l = "https://conversionratestore.github.io/projects/buzzpatch/img/", h = {
     giftIcon: (
       /* HTML */
       `
@@ -152,35 +137,35 @@
     </svg>
   `
     )
-  }, b = (t, n = "") => (
+  }, u = (e, n = "") => (
     /*HTML */
     `
   <div class="gift_box_wrapper">
     <div class="gift_box ${n}">
-      ${u.giftIcon}
-      ${t ? "<p><b>Limited Time Offer:</b> Get a free NATPAT sticker set with your purchase</p>" : '<p>Get a free NATPAT sticker set with any 3-4 pack purchase. Collect all <span class="trigger_popup_open">16 magical characters!</span></p>'}
+      ${h.giftIcon}
+      ${e ? "<p><b>Limited Time Offer:</b> Get a free NATPAT sticker set with your purchase</p>" : '<p>Get a free NATPAT sticker set with any 3-4 pack purchase. Collect all <span class="trigger_popup_open">16 magical characters!</span></p>'}
     </div>
   </div>
+`
+  ), _ = (
+    /* HTML */
+    `
+  <img src="${l}gift_img_1.png" alt="stickers 16 magical characters" />
+  <img src="${l}gift_img_2.png" alt="stickers 16 magical characters" />
+  <h3 class="gift_stickers_title">16 magical characters</h3>
+  <div class="border_icon">${h.borderIcon}</div>
 `
   ), y = (
     /* HTML */
     `
-  <img src="${c}gift_img_1.png" alt="stickers 16 magical characters" />
-  <img src="${c}gift_img_2.png" alt="stickers 16 magical characters" />
-  <h3 class="gift_stickers_title">16 magical characters</h3>
-  <div class="border_icon">${u.borderIcon}</div>
-`
-  ), C = (
-    /* HTML */
-    `
   <div class="new_popup_backdrop is_hidden">
     <div class="new_popup">
-      <button class="new_popup_close" data-popup="close">${u.closeIcon}</button>
-      <div class="new_popup_content">${y}</div>
+      <button class="new_popup_close" data-popup="close">${h.closeIcon}</button>
+      <div class="new_popup_content">${_}</div>
     </div>
   </div>
 `
-  ), v = `body .gift_box_wrapper .gift_box {
+  ), C = `body .gift_box_wrapper .gift_box {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -465,7 +450,7 @@ body .hand-banner a.get-it {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 .new_popup_content img {
   margin: 0 auto;
@@ -492,83 +477,70 @@ body .hand-banner a.get-it {
   margin: 40px 0 12px;
 }
 .new_popup_content .border_icon {
+  display: none;
   text-align: center;
   margin: auto auto 0;
   width: -moz-max-content;
   width: max-content;
-}/*# sourceMappingURL=main.css.map */`, k = window.innerWidth < 768 ? "mobile" : "desktop";
-  class L {
+}/*# sourceMappingURL=main.css.map */`, v = window.innerWidth < 768 ? "mobile" : "desktop";
+  class k {
     constructor(n) {
       this.device = n, this.init();
     }
     init() {
-      w({ name: "Exit Intent Popup", dev: "SKh" }), _("exp_introduce_b"), document.head.insertAdjacentHTML(
+      x({ name: "Exit Intent Popup", dev: "SKh" }), w("exp_introduce_b"), document.head.insertAdjacentHTML(
         "beforeend",
         '<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">'
-      ), document.head.insertAdjacentHTML("beforeend", `<style>${v}</style>`), this.createPopup(), this.rendergGiftElements(), this.triggerPopupOpen(), this.setupSwipeToClosePopup(), this.clickAddToCartBtnHandler(), this.visibleHandler();
+      ), document.head.insertAdjacentHTML("beforeend", `<style>${C}</style>`), this.createPopup(), this.rendergGiftElements(), this.triggerPopupOpen(), this.clickAddToCartBtnHandler(), this.visibleHandler(), this.handleClickGetNow();
     }
     rendergGiftElements() {
-      h(".row .text-center a.get-it").forEach((n) => {
-        var e;
-        n.innerHTML = "buy buzzpatch <br/> stickers", (e = n.nextElementSibling) != null && e.classList.contains(".cta_box") || n.insertAdjacentHTML("afterend", b(!0, "cta_box"));
-      }), h(".hand-banner a.get-it").forEach((n) => {
-        var e;
-        (e = n.previousElementSibling) != null && e.classList.contains(".banner_box") || n.insertAdjacentHTML("beforebegin", b(!0, "banner_box"));
-      }), h("#getNow .prices").forEach((n) => {
-        var e;
-        (e = n.previousElementSibling) != null && e.classList.contains(".bundle_box") || n.insertAdjacentHTML("beforebegin", b(!1, "bundle_box"));
-      }), h("#getNow input[type=radio] + label").forEach((n) => {
-        n.getAttribute("for") === "radios-3" || n.getAttribute("for") === "radios-2" || n.insertAdjacentHTML("afterbegin", u.giftIcon);
-      }), o(".new-bundle-pack img").src !== `${c}new_bundle_img.png` && (o(".new-bundle-pack img").src = `${c}new_bundle_img.png`), o("#getNow .days").src !== `${c}new_trustpilot_reviews_img.png` && (o("#getNow .days").src = `${c}new_trustpilot_reviews_img.png`);
+      d(".row .text-center a.get-it").forEach((n) => {
+        var t;
+        n.innerHTML = "buy buzzpatch <br/> stickers", (t = n.nextElementSibling) != null && t.classList.contains(".cta_box") || n.insertAdjacentHTML("afterend", u(!0, "cta_box"));
+      }), d(".hand-banner a.get-it").forEach((n) => {
+        var t;
+        (t = n.previousElementSibling) != null && t.classList.contains(".banner_box") || n.insertAdjacentHTML("beforebegin", u(!0, "banner_box"));
+      }), d("#getNow .prices").forEach((n) => {
+        var t;
+        (t = n.previousElementSibling) != null && t.classList.contains(".bundle_box") || n.insertAdjacentHTML("beforebegin", u(!1, "bundle_box"));
+      }), d("#getNow input[type=radio] + label").forEach((n) => {
+        n.getAttribute("for") === "radios-3" || n.getAttribute("for") === "radios-2" || n.insertAdjacentHTML("afterbegin", h.giftIcon);
+      }), o(".new-bundle-pack img").src !== `${l}new_bundle_img.png` && (o(".new-bundle-pack img").src = `${l}new_bundle_img.png`), o("#getNow .days").src !== `${l}new_trustpilot_reviews_img.png` && (o("#getNow .days").src = `${l}new_trustpilot_reviews_img.png`);
     }
     triggerPopupOpen() {
-      d(".trigger_popup_open").then((n) => {
-        o(".trigger_popup_open").addEventListener("click", (e) => {
-          e.preventDefault(), g("exp_introduce_b_link_01", "16 magical characters", "Link", "Shopping section"), this.handleShowPopup();
+      r(".trigger_popup_open").then((n) => {
+        o(".trigger_popup_open").addEventListener("click", (t) => {
+          t.preventDefault(), f("exp_introduce_b_link_01", "16 magical characters", "Link", "Shopping section"), this.handleShowPopup();
         });
       });
     }
-    setupSwipeToClosePopup() {
-      m([
-        "https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js"
-      ]).then(async () => {
-        let n = setInterval(() => {
-          typeof $(".border_icon").swipe == "function" && o(".border_icon") && (clearInterval(n), $(".border_icon").swipe({
-            swipeUp: function() {
-              g("exp_introduce_b_line_01", "Swipe Up", "Line", "Pop up"), o(".new_popup_backdrop").classList.add("is_hidden"), o("body").style.overflow = "initial";
-            },
-            threshold: 0
-          }));
-        }, 400);
-      });
-    }
     createPopup() {
-      o(".new_popup_backdrop") || o("body").insertAdjacentHTML("afterbegin", C), d(".new_popup_backdrop").then((n) => {
+      o(".new_popup_backdrop") || o("body").insertAdjacentHTML("afterbegin", y), r(".new_popup_backdrop").then((n) => {
         this.handleClosePopup();
       });
     }
     handleShowPopup() {
-      const n = o("body"), e = o(".new_popup_backdrop");
-      e.classList.contains("is_hidden") && e.classList.remove("is_hidden"), n.style.overflow = "hidden", g("exp_introduce_b_popup_01", "16 magical characters", "Visibility", "Pop up");
+      const n = o("body"), t = o(".new_popup_backdrop");
+      t.classList.contains("is_hidden") && t.classList.remove("is_hidden"), n.style.overflow = "hidden", f("exp_introduce_b_popup_01", "16 magical characters", "Visibility", "Pop up");
     }
     handleClosePopup() {
-      const n = o("body"), e = o(".new_popup_backdrop");
-      o(".new_popup").querySelectorAll('[data-popup="close"]').forEach((l) => {
-        l.addEventListener("click", (r) => {
-          r.currentTarget && (g("exp_introduce_b_button_01", "Close", "Button", "Pop up"), e.classList.add("is_hidden"), n.style.overflow = "initial");
+      const n = o("body"), t = o(".new_popup_backdrop");
+      o(".new_popup").querySelectorAll('[data-popup="close"]').forEach((s) => {
+        s.addEventListener("click", (a) => {
+          a.currentTarget && (f("exp_introduce_b_button_01", "Close", "Button", "Pop up"), t.classList.add("is_hidden"), n.style.overflow = "initial");
         });
       });
     }
     clickAddToCartBtnHandler() {
       var n;
-      (n = o("#addToCart")) == null || n.addEventListener("click", (e) => {
+      (n = o("#addToCart")) == null || n.addEventListener("click", (t) => {
         var p;
-        e.preventDefault();
+        t.preventDefault();
         let i = (p = o(".js-packs input[type=radio]:checked+label")) == null ? void 0 : p.previousElementSibling.value;
         i === "39542857695276" || i === "39542857728044" ? this.addToCartGiftHandler(i, !1) : this.addToCartGiftHandler(i);
       });
     }
-    async addToCartGiftHandler(n, e = !0) {
+    async addToCartGiftHandler(n, t = !0) {
       await fetch("/cart/clear.js", {
         method: "POST",
         headers: {
@@ -581,7 +553,7 @@ body .hand-banner a.get-it {
           quantity: 1
         }
       ];
-      e && i.push({
+      t && i.push({
         id: 43320074436652,
         quantity: 1
       }), await fetch("/cart/add.js", {
@@ -595,34 +567,45 @@ body .hand-banner a.get-it {
       }), window.location.href = "/checkout";
     }
     visibleHandler() {
-      d(".hand-banner .banner_box").then((n) => {
-        f(".hand-banner .banner_box", "exp_introduce_b_element_01", "First screen", "Limited time offer");
-      }), d(".effectiveness .cta_box").then((n) => {
-        f(
+      r(".hand-banner .banner_box").then((n) => {
+        c(".hand-banner .banner_box", "exp_introduce_b_element_01", "First screen", "Limited time offer");
+      }), r(".effectiveness .cta_box").then((n) => {
+        c(
           ".effectiveness .cta_box",
           "exp_introduce_b_element_02",
           "Limited Time Offer",
           "Limited time offer - 1"
         );
-      }), d(".bp-comparison .cta_box").then((n) => {
-        f(
+      }), r(".bp-comparison .cta_box").then((n) => {
+        c(
           ".bp-comparison .cta_box",
           "exp_introduce_b_element_02",
           "Limited Time Offer",
           "Limited time offer - 2"
         );
-      }), d("#ingredients .cta_box").then((n) => {
-        f(
+      }), r("#ingredients .cta_box").then((n) => {
+        c(
           "#ingredients .cta_box",
           "exp_introduce_b_element_02",
           "Limited Time Offer",
           "Limited time offer - 3"
         );
-      }), d("#getNow .bundle_box").then((n) => {
-        f("#getNow .bundle_box", "exp_introduce_b_element_03", "Shopping section", "Limited time offer");
+      }), r("#getNow .bundle_box").then((n) => {
+        c("#getNow .bundle_box", "exp_introduce_b_element_03", "Shopping section", "Limited time offer");
+      });
+    }
+    handleClickGetNow() {
+      r("#getNow").then((n) => {
+        d('[href="#getNow"]').forEach((t) => {
+          t.addEventListener("click", (i) => {
+            i.preventDefault(), i.stopPropagation(), $("html, body").stop();
+            let p = o("#getNow"), s = 85;
+            (i.target.closest(".hand-banner") || i.target.closest(".navbar") && !i.target.closest(".fixed-top")) && (s = 160), m(s, p);
+          });
+        });
       });
     }
   }
-  window.location.pathname.match("pages") && new L(k);
+  window.location.pathname.match("pages") && new k(v);
 })();
 //# sourceMappingURL=index.js.map
