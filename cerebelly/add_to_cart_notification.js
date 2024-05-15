@@ -25,7 +25,7 @@
     document.addEventListener("click", function() {
       e(!1);
     });
-  }), x = {
+  }), g = {
     checkbox: (
       /*html */
       `
@@ -48,11 +48,11 @@
     ` <div class="crs_notification">
   <div class="crs_notification_head justify-between">
       <div class="items-center">
-          ${x.checkbox}
+          ${g.checkbox}
           <h3>Added to cart</h3>
       </div>
       <button type="button" class="crs_close">
-          ${x.close}
+          ${g.close}
       </button>
   </div>
   <div class="crs_notification_body justify-between">
@@ -67,7 +67,7 @@
   </div>
   <div class="crs_notification_foot justify-between items-center flex-md-column-reverse">
       <a href="#" class="crs_continue_shop">Continue Shopping</a>
-      <a href="/cart" class="crs_view_cart">view cart (${r})${x.arrowRight}</a>
+      <a href="/cart" class="crs_view_cart">view cart (${r})${g.arrowRight}</a>
   </div>
 </div>`
   ), m = `
@@ -525,7 +525,7 @@
 }
 @media (max-width: 1279px) {
   .crs_nav ul {
-    padding: 0 24px;
+    padding: 0 44px 0 24px;
   }
   .css-mc9jj7 .controls .default-close {
     right: 24px;
@@ -568,7 +568,7 @@
 }/*# sourceMappingURL=main.css.map */`;
   b({ name: "Enhancements on PDP and new Add to Cart notification", dev: "Olha" }), y("new_add_to_cart");
   const v = window.innerWidth < 991 ? "mobile" : "desktop";
-  class g {
+  class x {
     constructor(e) {
       this.device = e, this.isSelectorWrapper = this.device === "desktop" ? ".product-wrapper" : ".css-12a0csp", this.clickClosePdp = !1, this.init();
     }
@@ -639,7 +639,7 @@
             "mouseleave",
             function() {
               var d, p;
-              (t < 50 || i < 50 || t > window.innerWidth - 50 || i > window.innerHeight - 50) && sessionStorage.getItem("exit_intent") == null && !n(".crs_notification") && ((p = (d = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : d.cart) == null ? void 0 : p.boxes[0]) != null && (sessionStorage.setItem("exit_intent", "true"), console.dir("exitIntent desktop: "), new g().renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"));
+              (t < 50 || i < 50 || t > window.innerWidth - 50 || i > window.innerHeight - 50) && sessionStorage.getItem("exit_intent") == null && !n(".crs_notification") && ((p = (d = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : d.cart) == null ? void 0 : p.boxes[0]) != null && (sessionStorage.setItem("exit_intent", "true"), console.dir("exitIntent desktop: "), new x().renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"));
             },
             { once: !0 }
           );
@@ -657,11 +657,19 @@
     navigation() {
       if (n(".crs_nav") || !n(".css-12a0csp .product-wrapper .left-side"))
         return;
-      this.device === "mobile" ? (n(".css-12a0csp .product-wrapper .left-side").insertAdjacentHTML("beforeend", m), n(".modal.css-mc9jj7 .controls .default-close").addEventListener("click", () => {
-        this.clickClosePdp = !0, setTimeout(() => {
-          this.clickClosePdp = !1;
-        }, 500);
-      })) : (n(".css-12a0csp .product-wrapper").insertAdjacentHTML("afterbegin", m), n(".crs_nav ul").after(n(".css-mc9jj7 .controls .default-close"))), l("exp_newaddtocart_vis_01", "View navigation", "Visibility", "Under the add to cart"), u(".crs_nav a").forEach((i) => {
+      if (this.device === "mobile") {
+        n(".css-12a0csp .product-wrapper .left-side").insertAdjacentHTML("beforeend", m), n(".modal.css-mc9jj7 .controls .default-close").addEventListener("click", () => {
+          this.clickClosePdp = !0, setTimeout(() => {
+            this.clickClosePdp = !1;
+          }, 500);
+        });
+        const i = () => {
+          n(".modal .css-12a0csp .product-wrapper .left-side").style.height = window.innerHeight + "px";
+        };
+        window.addEventListener("resize", i), i();
+      } else
+        n(".css-12a0csp .product-wrapper").insertAdjacentHTML("afterbegin", m), n(".crs_nav ul").after(n(".css-mc9jj7 .controls .default-close"));
+      l("exp_newaddtocart_vis_01", "View navigation", "Visibility", "Under the add to cart"), u(".crs_nav a").forEach((i) => {
         i.addEventListener("click", (r) => {
           r.preventDefault(), l("exp_newaddtocart_click_01", r.target.innerText, "Nav panel", "Under the add to cart");
           let s = r.target.href.split("#")[1];
@@ -723,5 +731,5 @@
       });
     }
   }
-  new g(v);
+  new x(v);
 })();
