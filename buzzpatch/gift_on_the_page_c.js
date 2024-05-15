@@ -13,29 +13,29 @@
       `%c EXP: ${e} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, d = (e) => document.querySelectorAll(e), o = (e) => document.querySelector(e), w = (e) => {
+  }, d = (e) => document.querySelectorAll(e), o = (e) => document.querySelector(e), m = (e) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, c = (e, n, t, i, p = 3e3, s = 0.5) => {
-    let a, b;
-    if (a = new IntersectionObserver(
+  }, c = (e, n, t, i, a = 3e3, l = 0.5) => {
+    let p, u;
+    if (p = new IntersectionObserver(
       function(g) {
-        g[0].isIntersecting === !0 ? b = setTimeout(() => {
+        g[0].isIntersecting === !0 ? u = setTimeout(() => {
           f(
             n,
             g[0].target.dataset.visible || i || "",
             "Visibility",
             t
-          ), a.disconnect();
-        }, p) : clearTimeout(b);
+          ), p.disconnect();
+        }, a) : clearTimeout(u);
       },
-      { threshold: [s] }
+      { threshold: [l] }
     ), typeof e == "string") {
       const g = document.querySelector(e);
-      g && a.observe(g);
+      g && p.observe(g);
     } else
-      a.observe(e);
+      p.observe(e);
   };
   function r(e) {
     return new Promise((n) => {
@@ -53,21 +53,21 @@
   }
   (function(e) {
     e = e === void 0 ? {} : e;
-    let n, t, i, p, s = (e == null ? void 0 : e.delay) || 50;
-    function a() {
-      n = null, p = 0;
+    let n, t, i, a, l = (e == null ? void 0 : e.delay) || 50;
+    function p() {
+      n = null, a = 0;
     }
-    return a(), function() {
-      return t = window.scrollY, n != null && (p = t - n), n = t, clearTimeout(i), i = setTimeout(a, s), p;
+    return p(), function() {
+      return t = window.scrollY, n != null && (a = t - n), n = t, clearTimeout(i), i = setTimeout(p, l), a;
     };
   })();
-  const m = (e, n) => {
-    const t = e, p = (n == null ? void 0 : n.getBoundingClientRect().top) + window.pageYOffset - t;
+  const w = (e, n) => {
+    const t = e, a = (n == null ? void 0 : n.getBoundingClientRect().top) + window.pageYOffset - t;
     window.scrollTo({
-      top: p,
+      top: a,
       behavior: "smooth"
     });
-  }, l = "https://conversionratestore.github.io/projects/buzzpatch/img/", h = {
+  }, s = "https://conversionratestore.github.io/projects/buzzpatch/img/", h = {
     giftIcon: (
       /* HTML */
       `
@@ -137,7 +137,7 @@
     </svg>
   `
     )
-  }, u = (e, n = "") => (
+  }, b = (e, n = "") => (
     /*HTML */
     `
   <div class="gift_box_wrapper">
@@ -150,8 +150,8 @@
   ), _ = (
     /* HTML */
     `
-  <img src="${l}gift_img_1.png" alt="stickers 16 magical characters" />
-  <img src="${l}gift_img_2.png" alt="stickers 16 magical characters" />
+  <img src="${s}gift_img_1.png" alt="stickers 16 magical characters" />
+  <img src="${s}gift_img_2.png" alt="stickers 16 magical characters" />
   <h3 class="gift_stickers_title">16 magical characters</h3>
   <div class="border_icon">${h.borderIcon}</div>
 `
@@ -488,7 +488,7 @@ body .hand-banner a.get-it {
       this.device = n, this.init();
     }
     init() {
-      x({ name: "Exit Intent Popup", dev: "SKh" }), w("exp_introduce_b"), document.head.insertAdjacentHTML(
+      x({ name: "Exit Intent Popup", dev: "SKh" }), m("exp_introduce_b"), document.head.insertAdjacentHTML(
         "beforeend",
         '<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">'
       ), document.head.insertAdjacentHTML("beforeend", `<style>${C}</style>`), this.createPopup(), this.rendergGiftElements(), this.triggerPopupOpen(), this.clickAddToCartBtnHandler(), this.visibleHandler(), this.handleClickGetNow();
@@ -496,16 +496,16 @@ body .hand-banner a.get-it {
     rendergGiftElements() {
       d(".row .text-center a.get-it").forEach((n) => {
         var t;
-        n.innerHTML = "buy buzzpatch <br/> stickers", (t = n.nextElementSibling) != null && t.classList.contains(".cta_box") || n.insertAdjacentHTML("afterend", u(!0, "cta_box"));
+        n.innerHTML = "buy buzzpatch <br/> stickers", (t = n.nextElementSibling) != null && t.classList.contains(".cta_box") || n.insertAdjacentHTML("afterend", b(!0, "cta_box"));
       }), d(".hand-banner a.get-it").forEach((n) => {
         var t;
-        (t = n.previousElementSibling) != null && t.classList.contains(".banner_box") || n.insertAdjacentHTML("beforebegin", u(!0, "banner_box"));
+        (t = n.previousElementSibling) != null && t.classList.contains(".banner_box") || n.insertAdjacentHTML("beforebegin", b(!0, "banner_box"));
       }), d("#getNow .prices").forEach((n) => {
         var t;
-        (t = n.previousElementSibling) != null && t.classList.contains(".bundle_box") || n.insertAdjacentHTML("beforebegin", u(!1, "bundle_box"));
+        (t = n.previousElementSibling) != null && t.classList.contains(".bundle_box") || n.insertAdjacentHTML("beforebegin", b(!1, "bundle_box"));
       }), d("#getNow input[type=radio] + label").forEach((n) => {
         n.getAttribute("for") === "radios-3" || n.getAttribute("for") === "radios-2" || n.insertAdjacentHTML("afterbegin", h.giftIcon);
-      }), o(".new-bundle-pack img").src !== `${l}new_bundle_img.png` && (o(".new-bundle-pack img").src = `${l}new_bundle_img.png`), o("#getNow .days").src !== `${l}new_trustpilot_reviews_img.png` && (o("#getNow .days").src = `${l}new_trustpilot_reviews_img.png`);
+      }), o(".new-bundle-pack img").src !== `${s}new_bundle_img.png` && (o(".new-bundle-pack img").src = `${s}new_bundle_img.png`), o("#getNow .days").src !== `${s}new_trustpilot_reviews_img.png` && (o("#getNow .days").src = `${s}new_trustpilot_reviews_img.png`);
     }
     triggerPopupOpen() {
       r(".trigger_popup_open").then((n) => {
@@ -520,23 +520,23 @@ body .hand-banner a.get-it {
       });
     }
     handleShowPopup() {
-      const n = o("body"), t = o(".new_popup_backdrop");
-      t.classList.contains("is_hidden") && t.classList.remove("is_hidden"), n.style.overflow = "hidden", f("exp_introduce_b_popup_01", "16 magical characters", "Visibility", "Pop up");
+      const n = o("body"), t = o(".new_popup_backdrop"), i = o("html");
+      t.classList.contains("is_hidden") && t.classList.remove("is_hidden"), n.style.overflow = "hidden", i.style.overflow = "hidden", f("exp_introduce_b_popup_01", "16 magical characters", "Visibility", "Pop up");
     }
     handleClosePopup() {
-      const n = o("body"), t = o(".new_popup_backdrop");
-      o(".new_popup").querySelectorAll('[data-popup="close"]').forEach((s) => {
-        s.addEventListener("click", (a) => {
-          a.currentTarget && (f("exp_introduce_b_button_01", "Close", "Button", "Pop up"), t.classList.add("is_hidden"), n.style.overflow = "initial");
+      const n = o("body"), t = o(".new_popup_backdrop"), i = o(".new_popup"), a = i.querySelectorAll('[data-popup="close"]'), l = o("html");
+      a.forEach((p) => {
+        p.addEventListener("click", (u) => {
+          u.currentTarget && (f("exp_introduce_b_button_01", "Close", "Button", "Pop up"), t.classList.add("is_hidden"), n.style.overflow = "initial", l.style.overflow = "initial");
         });
       });
     }
     clickAddToCartBtnHandler() {
       var n;
       (n = o("#addToCart")) == null || n.addEventListener("click", (t) => {
-        var p;
+        var a;
         t.preventDefault();
-        let i = (p = o(".js-packs input[type=radio]:checked+label")) == null ? void 0 : p.previousElementSibling.value;
+        let i = (a = o(".js-packs input[type=radio]:checked+label")) == null ? void 0 : a.previousElementSibling.value;
         i === "39542857695276" || i === "39542857728044" ? this.addToCartGiftHandler(i, !1) : this.addToCartGiftHandler(i);
       });
     }
@@ -599,8 +599,8 @@ body .hand-banner a.get-it {
         d('[href="#getNow"]').forEach((t) => {
           t.addEventListener("click", (i) => {
             i.preventDefault(), i.stopPropagation(), $("html, body").stop();
-            let p = o("#getNow"), s = 85;
-            (i.target.closest(".hand-banner") || i.target.closest(".navbar") && !i.target.closest(".fixed-top")) && (s = 160), m(s, p);
+            let a = o("#getNow"), l = 85;
+            (i.target.closest(".hand-banner") || i.target.closest(".navbar") && !i.target.closest(".fixed-top")) && (l = 160), w(l, a);
           });
         });
       });
