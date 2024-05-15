@@ -143,7 +143,7 @@
   <div class="gift_box_wrapper">
     <div class="gift_box ${n}">
       ${h.giftIcon}
-      ${e ? "<p><b>Limited Time Offer:</b> Get a free NATPAT sticker set with your purchase</p>" : '<p>Get a free <span class="trigger_popup_open">NATPAT sticker set</span> with any 2-4 pack purchase.</p>'}
+      ${e ? "<p><b>Limited Time Offer:</b> Get a free NATPAT sticker set with your purchase</p>" : '<p>Get a free <span class="trigger_popup_open">NATPAT sticker set</span> with any 3-4 pack purchase.</p>'}
     </div>
   </div>
 `
