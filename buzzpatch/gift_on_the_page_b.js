@@ -13,22 +13,22 @@
       `%c EXP: ${t} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, d = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), w = (t) => {
+  }, d = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), m = (t) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", t, "variant_1"));
     }, 1e3);
   }, c = (t, n, e, i, a = 3e3, r = 0.5) => {
-    let p, b;
+    let p, u;
     if (p = new IntersectionObserver(
       function(g) {
-        g[0].isIntersecting === !0 ? b = setTimeout(() => {
+        g[0].isIntersecting === !0 ? u = setTimeout(() => {
           f(
             n,
             g[0].target.dataset.visible || i || "",
             "Visibility",
             e
           ), p.disconnect();
-        }, a) : clearTimeout(b);
+        }, a) : clearTimeout(u);
       },
       { threshold: [r] }
     ), typeof t == "string") {
@@ -61,7 +61,7 @@
       return e = window.scrollY, n != null && (a = e - n), n = e, clearTimeout(i), i = setTimeout(p, r), a;
     };
   })();
-  const m = (t, n) => {
+  const w = (t, n) => {
     const e = t, a = (n == null ? void 0 : n.getBoundingClientRect().top) + window.pageYOffset - e;
     window.scrollTo({
       top: a,
@@ -137,7 +137,7 @@
     </svg>
   `
     )
-  }, u = (t, n = "") => (
+  }, b = (t, n = "") => (
     /*HTML */
     `
   <div class="gift_box_wrapper">
@@ -488,7 +488,7 @@ body .hand-banner a.get-it {
       this.device = n, this.init();
     }
     init() {
-      x({ name: "Exit Intent Popup", dev: "SKh" }), w("exp_introduce_b"), document.head.insertAdjacentHTML(
+      x({ name: "Exit Intent Popup", dev: "SKh" }), m("exp_introduce_b"), document.head.insertAdjacentHTML(
         "beforeend",
         '<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">'
       ), document.head.insertAdjacentHTML("beforeend", `<style>${C}</style>`), this.createPopup(), this.rendergGiftElements(), this.triggerPopupOpen(), this.clickAddToCartBtnHandler(), this.visibleHandler(), this.handleClickGetNow();
@@ -496,13 +496,13 @@ body .hand-banner a.get-it {
     rendergGiftElements() {
       d(".row .text-center a.get-it").forEach((n) => {
         var e;
-        n.innerHTML = "buy buzzpatch <br/> stickers", (e = n.nextElementSibling) != null && e.classList.contains(".cta_box") || n.insertAdjacentHTML("afterend", u(!0, "cta_box"));
+        n.innerHTML = "buy buzzpatch <br/> stickers", (e = n.nextElementSibling) != null && e.classList.contains(".cta_box") || n.insertAdjacentHTML("afterend", b(!0, "cta_box"));
       }), d(".hand-banner a.get-it").forEach((n) => {
         var e;
-        (e = n.previousElementSibling) != null && e.classList.contains(".banner_box") || n.insertAdjacentHTML("beforebegin", u(!0, "banner_box"));
+        (e = n.previousElementSibling) != null && e.classList.contains(".banner_box") || n.insertAdjacentHTML("beforebegin", b(!0, "banner_box"));
       }), d("#getNow .prices").forEach((n) => {
         var e;
-        (e = n.previousElementSibling) != null && e.classList.contains(".bundle_box") || n.insertAdjacentHTML("beforebegin", u(!1, "bundle_box"));
+        (e = n.previousElementSibling) != null && e.classList.contains(".bundle_box") || n.insertAdjacentHTML("beforebegin", b(!1, "bundle_box"));
       }), d("#getNow input[type=radio] + label").forEach((n) => {
         n.getAttribute("for") !== "radios-3" && n.insertAdjacentHTML("afterbegin", h.giftIcon);
       }), o(".new-bundle-pack img").src !== `${s}new_bundle_img.png` && (o(".new-bundle-pack img").src = `${s}new_bundle_img.png`), o("#getNow .days").src !== `${s}new_trustpilot_reviews_img.png` && (o("#getNow .days").src = `${s}new_trustpilot_reviews_img.png`);
@@ -520,14 +520,14 @@ body .hand-banner a.get-it {
       });
     }
     handleShowPopup() {
-      const n = o("body"), e = o(".new_popup_backdrop");
-      e.classList.contains("is_hidden") && e.classList.remove("is_hidden"), n.style.overflow = "hidden", f("exp_introduce_b_popup_01", "16 magical characters", "Visibility", "Pop up");
+      const n = o("body"), e = o(".new_popup_backdrop"), i = o("html");
+      e.classList.contains("is_hidden") && e.classList.remove("is_hidden"), n.style.overflow = "hidden", i.style.overflow = "hidden", f("exp_introduce_b_popup_01", "16 magical characters", "Visibility", "Pop up");
     }
     handleClosePopup() {
-      const n = o("body"), e = o(".new_popup_backdrop");
-      o(".new_popup").querySelectorAll('[data-popup="close"]').forEach((r) => {
-        r.addEventListener("click", (p) => {
-          p.currentTarget && (f("exp_introduce_b_button_01", "Close", "Button", "Pop up"), e.classList.add("is_hidden"), n.style.overflow = "initial");
+      const n = o("body"), e = o(".new_popup_backdrop"), i = o(".new_popup"), a = i.querySelectorAll('[data-popup="close"]'), r = o("html");
+      a.forEach((p) => {
+        p.addEventListener("click", (u) => {
+          u.currentTarget && (f("exp_introduce_b_button_01", "Close", "Button", "Pop up"), e.classList.add("is_hidden"), n.style.overflow = "initial", r.style.overflow = "initial");
         });
       });
     }
@@ -599,7 +599,7 @@ body .hand-banner a.get-it {
         n.addEventListener("click", (e) => {
           e.preventDefault(), e.stopPropagation(), $("html, body").stop();
           let i = o("#getNow"), a = 85;
-          (e.target.closest(".hand-banner") || e.target.closest(".navbar") && !e.target.closest(".fixed-top")) && (a = 160), m(a, i), console.log(i);
+          (e.target.closest(".hand-banner") || e.target.closest(".navbar") && !e.target.closest(".fixed-top")) && (a = 160), w(a, i), console.log(i);
         });
       });
     }
