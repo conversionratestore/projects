@@ -627,7 +627,7 @@
         let o = JSON.parse(localStorage.getItem("data_notification"));
         document.body.insertAdjacentHTML("afterbegin", C(o.image, o.title, o.type, o.price, o.count)), setTimeout(() => {
           t(".crs_notification").classList.add("active");
-        }, 200), this.actionNotification();
+        }, 100), this.actionNotification();
       }, 200));
     }
     actionNotification() {
