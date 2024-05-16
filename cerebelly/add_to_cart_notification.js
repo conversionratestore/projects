@@ -482,11 +482,16 @@
   border: none;
   cursor: pointer;
 }
-
+.crs_arrow:not([hidden]) {
+  display: flex;
+}
+.crs_arrow svg {
+  margin: auto;
+  display: block;
+}
 .crs_arrow_prev {
   left: 8px;
 }
-
 .crs_arrow_next {
   right: 8px;
 }
@@ -685,8 +690,8 @@ p.crs_tastes + p {
         sessionStorage.getItem("exit_intent") == null && ((e = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : e.cart.boxes[0]) != null && !t(".crs_notification") && this.checkPageUrl() === "other" && (sessionStorage.setItem("exit_intent", "true"), this.renderNotification(), l("exp_newaddtocart_vis_05", "After 180 seconds", "Visibility", "Popover"));
       }, 18e4);
       const r = () => {
-        this.notExitPopup = !0, console.dir(this.notExitPopup), setTimeout(() => {
-          this.notExitPopup = !1, console.dir(this.notExitPopup);
+        this.notExitPopup = !0, setTimeout(() => {
+          this.notExitPopup = !1;
         }, 500);
       };
       x(".e-nav .mobile-cart-box").then((e) => {
@@ -832,7 +837,7 @@ p.crs_tastes + p {
           n.innerText = o.toLowerCase().replace("bag", "cart");
         }
         n.closest(".add") && e.includes("to cart") && n.addEventListener("click", (o) => {
-          this.clickAdd == !1 && (this.clickAdd = !0, console.dir("click add to cart"));
+          this.clickAdd == !1 && (this.clickAdd = !0);
         });
       }), t(".css-8z7pw4 .custom .default-close") && t(".css-8z7pw4 .custom .default-close").addEventListener("click", (n) => {
         document.body.classList.add("crs_hide_cart");
@@ -845,7 +850,7 @@ p.crs_tastes + p {
           });
         });
       }
-      if (t(".crs_arrow_next") && (t(".crs_arrow_next").hidden = !t(".css-12a0csp .next"), t(".crs_arrow_prev").hidden = !t(".css-12a0csp .prev")), t(".css-5nnxvq .unit-price .discount .subscribe") && !t(".css-5nnxvq .action-wrapper > .subscribe") && t(".css-5nnxvq .unit-price").after(t(".css-5nnxvq .unit-price .discount .subscribe")), t(".css-5nnxvq .prices") && !t(".css-5nnxvq .unit-price > .prices")) {
+      if (t(".crs_arrow_next") && (t(".crs_arrow_next").hidden = !t(".css-12a0csp .next"), t(".crs_arrow_prev").hidden = !t(".css-12a0csp .prev")), t(".css-5nnxvq .unit-price .discount .subscribe") && !t(".css-5nnxvq .action-wrapper > .subscribe") && t(".css-5nnxvq .unit-price").after(t(".css-5nnxvq .unit-price .discount .subscribe")), t(".css-5nnxvq .product-image-wrapper img") && t(".css-5nnxvq .prices") && !t(".css-5nnxvq .unit-price > .prices")) {
         t(".css-5nnxvq .unit-price .discount").after(t(".css-5nnxvq .prices"));
         let n = 0;
         this.device === "mobile" ? n = "76px - 24px - 48px" + (window.location.href.includes("bundle") ? " - 28px" : "") : n = "67px - 66px - 34px" + (window.location.href.includes("bundle") ? " - 34px" : ""), t(".css-5nnxvq .product-image-wrapper picture img").style = `height: calc(${window.innerHeight}px - ${n} - ${t(".css-5nnxvq .action-wrapper").clientHeight}px`;
@@ -860,9 +865,9 @@ p.crs_tastes + p {
         n.addEventListener("click", (i) => {
           var e;
           if (this.clickRemove == !1) {
-            this.clickRemove = !0, console.dir("click remove product in cart");
+            this.clickRemove = !0;
             let o = JSON.parse(localStorage.getItem("data_notification"));
-            n.closest(".cart-product").querySelector(".title").innerHTML.includes(o == null ? void 0 : o.title) && (console.dir("remove product in cart"), (e = t(".crs_notification")) == null || e.remove(), this.updateDataNotification()), setTimeout(() => {
+            n.closest(".cart-product").querySelector(".title").innerHTML.includes(o == null ? void 0 : o.title) && ((e = t(".crs_notification")) == null || e.remove(), this.updateDataNotification()), setTimeout(() => {
               this.clickRemove == !1;
             }, 200);
           }
@@ -872,10 +877,8 @@ p.crs_tastes + p {
           var e;
           if (this.clickRemove == !1) {
             this.clickRemove = !0;
-            let o = JSON.parse(localStorage.getItem("data_notification"));
-            console.dir("click remove product");
-            let s = "";
-            i.target.closest(".product") ? s = i.target.closest(".product").querySelector(".title").innerText.toLowerCase().trim() : i.target.closest(".action-wrapper") ? s = i.target.closest(".action-wrapper").querySelector("h2").innerText.toLowerCase().trim() : i.target.closest(".cart-product") && (s = i.target.closest(".cart-product").querySelector(".title").innerHTML.split("<span")[0].toLowerCase().trim()), s.includes(o == null ? void 0 : o.title.toLowerCase().trim()) && (console.dir("remove product"), (e = t(".crs_notification")) == null || e.remove(), this.updateDataNotification()), setTimeout(() => {
+            let o = JSON.parse(localStorage.getItem("data_notification")), s = "";
+            i.target.closest(".product") ? s = i.target.closest(".product").querySelector(".title").innerText.toLowerCase().trim() : i.target.closest(".action-wrapper") ? s = i.target.closest(".action-wrapper").querySelector("h2").innerText.toLowerCase().trim() : i.target.closest(".cart-product") && (s = i.target.closest(".cart-product").querySelector(".title").innerHTML.split("<span")[0].toLowerCase().trim()), s.includes(o == null ? void 0 : o.title.toLowerCase().trim()) && ((e = t(".crs_notification")) == null || e.remove(), this.updateDataNotification()), setTimeout(() => {
               this.clickRemove == !1;
             }, 200);
           }
