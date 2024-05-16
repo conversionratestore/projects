@@ -601,11 +601,11 @@
       }, 18e4), document.body.classList.add("crs_show_notification"), k(".css-1et9m3v.b-header.fw-header .e-nav .mobile-cart-box").then((n) => {
         n.addEventListener("click", (e) => {
           document.body.classList.remove("crs_show_notification");
-        });
+        }), this.exitIntent();
       });
       const i = new MutationObserver((n) => {
         var e, o;
-        this.navigation(), this.changeElements(), this.exitIntent(), document.body.style.overflow = this.checkPageUrl() === "pdp" ? "hidden" : "", ((o = (e = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : e.cart) == null ? void 0 : o.boxes[0]) == null && t(".crs_notification") && t(".crs_notification").remove(), i.disconnect(), i.observe(document.body, {
+        this.navigation(), this.changeElements(), document.body.style.overflow = this.checkPageUrl() === "pdp" ? "hidden" : "", ((o = (e = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : e.cart) == null ? void 0 : o.boxes[0]) == null && t(".crs_notification") && t(".crs_notification").remove(), i.disconnect(), i.observe(document.body, {
           childList: !0,
           subtree: !0,
           attributes: !0
@@ -666,7 +666,7 @@
           let o = (/android/i.test(navigator.userAgent), 120), r = 0, s = 0, p = () => {
             var u, d, f;
             let a = window.scrollY;
-            s = a - r, r = a, (s > o || s < -o) && sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && !t(".css-m18cj1") && ((d = (u = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : u.cart) == null ? void 0 : d.boxes[0]) != null && this.clickClosePdp === !1 && (sessionStorage.setItem("exit_intent", "true"), this.renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"), document.removeEventListener("scroll", p), (f = t(this.isSelectorWrapper)) == null || f.removeEventListener("scroll", p));
+            s = a - r, r = a, (s > o || s < -o) && sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && !t(".css-m18cj1") && ((d = (u = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : u.cart) == null ? void 0 : d.boxes[0]) != null && this.clickClosePdp === !1 && (console.dir(s), sessionStorage.setItem("exit_intent", "true"), this.renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"), document.removeEventListener("scroll", p), (f = t(this.isSelectorWrapper)) == null || f.removeEventListener("scroll", p));
           };
           document.addEventListener("scroll", p), (i = t(this.isSelectorWrapper)) == null || i.addEventListener("scroll", p);
           break;
