@@ -490,7 +490,7 @@ body .hand-banner a.get-it {
   width: max-content;
 }
 
-.nudge-ui-container {
+#nudge-ui-container {
   display: none !important;
 }/*# sourceMappingURL=main.css.map */`, k = window.innerWidth < 768 ? "mobile" : "desktop";
   class L {
