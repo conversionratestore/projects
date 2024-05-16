@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const f = (t, n, e, i = "") => {
+  const h = (t, n, e, i = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: t,
@@ -13,29 +13,29 @@
       `%c EXP: ${t} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, d = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), w = (t) => {
+  }, c = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), w = (t) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", t, "variant_1"));
     }, 1e3);
-  }, c = (t, n, e, i, p = 3e3, a = 0.5) => {
-    let r, u;
-    if (r = new IntersectionObserver(
-      function(g) {
-        g[0].isIntersecting === !0 ? u = setTimeout(() => {
-          f(
+  }, g = (t, n, e, i, a = 3e3, r = 0.5) => {
+    let p, d;
+    if (p = new IntersectionObserver(
+      function(f) {
+        f[0].isIntersecting === !0 ? d = setTimeout(() => {
+          h(
             n,
-            g[0].target.dataset.visible || i || "",
+            f[0].target.dataset.visible || i || "",
             "Visibility",
             e
-          ), r.disconnect();
-        }, p) : clearTimeout(u);
+          ), p.disconnect();
+        }, a) : clearTimeout(d);
       },
-      { threshold: [a] }
+      { threshold: [r] }
     ), typeof t == "string") {
-      const g = document.querySelector(t);
-      g && r.observe(g);
+      const f = document.querySelector(t);
+      f && p.observe(f);
     } else
-      r.observe(t);
+      p.observe(t);
   };
   function l(t) {
     return new Promise((n) => {
@@ -53,21 +53,24 @@
   }
   (function(t) {
     t = t === void 0 ? {} : t;
-    let n, e, i, p, a = (t == null ? void 0 : t.delay) || 50;
-    function r() {
-      n = null, p = 0;
+    let n, e, i, a, r = (t == null ? void 0 : t.delay) || 50;
+    function p() {
+      n = null, a = 0;
     }
-    return r(), function() {
-      return e = window.scrollY, n != null && (p = e - n), n = e, clearTimeout(i), i = setTimeout(r, a), p;
+    return p(), function() {
+      return e = window.scrollY, n != null && (a = e - n), n = e, clearTimeout(i), i = setTimeout(p, r), a;
     };
   })();
-  const m = (t, n) => {
-    const e = t, p = (n == null ? void 0 : n.getBoundingClientRect().top) + window.pageYOffset - e;
-    window.scrollTo({
-      top: p,
+  function m(t) {
+    return new Promise((n) => setTimeout(n, t));
+  }
+  const _ = async (t, n) => {
+    const e = t, a = (n == null ? void 0 : n.getBoundingClientRect().top) + window.pageYOffset - e;
+    return window.scrollTo({
+      top: a,
       behavior: "smooth"
-    });
-  }, s = "https://conversionratestore.github.io/projects/buzzpatch/img/", h = {
+    }), await m(800), !0;
+  }, s = "https://conversionratestore.github.io/projects/buzzpatch/img/", u = {
     giftIcon: (
       /* HTML */
       `
@@ -142,30 +145,30 @@
     `
   <div class="gift_box_wrapper">
     <div class="gift_box ${n}">
-      ${h.giftIcon}
+      ${u.giftIcon}
       ${t ? "<p><b>Limited Time Offer:</b> Get a free NATPAT sticker set with your purchase</p>" : '<p>Get a free <span class="trigger_popup_open">NATPAT sticker set</span> with any 2-4 pack purchase.</p>'}
     </div>
   </div>
 `
-  ), _ = (
+  ), y = (
     /* HTML */
     `
   <img src="${s}gift_img_1.png" alt="stickers 16 magical characters" />
   <img src="${s}gift_img_2.png" alt="stickers 16 magical characters" />
   <h3 class="gift_stickers_title">16 magical characters</h3>
-  <div class="border_icon">${h.borderIcon}</div>
+  <div class="border_icon">${u.borderIcon}</div>
 `
-  ), y = (
+  ), C = (
     /* HTML */
     `
   <div class="new_popup_backdrop is_hidden">
     <div class="new_popup">
-      <button class="new_popup_close" data-popup="close">${h.closeIcon}</button>
-      <div class="new_popup_content">${_}</div>
+      <button class="new_popup_close" data-popup="close">${u.closeIcon}</button>
+      <div class="new_popup_content">${y}</div>
     </div>
   </div>
 `
-  ), C = `body .gift_box_wrapper .gift_box {
+  ), v = `body .gift_box_wrapper .gift_box {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -485,8 +488,12 @@ body .hand-banner a.get-it {
   margin: auto auto 0;
   width: -moz-max-content;
   width: max-content;
-}/*# sourceMappingURL=main.css.map */`, v = window.innerWidth < 768 ? "mobile" : "desktop";
-  class k {
+}
+
+.nudge-ui-container {
+  display: none !important;
+}/*# sourceMappingURL=main.css.map */`, k = window.innerWidth < 768 ? "mobile" : "desktop";
+  class L {
     constructor(n) {
       this.device = n, this.init();
     }
@@ -494,52 +501,52 @@ body .hand-banner a.get-it {
       x({ name: "Exit Intent Popup v.B", dev: "SKh" }), w("exp_introduce_b"), document.head.insertAdjacentHTML(
         "beforeend",
         '<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">'
-      ), document.head.insertAdjacentHTML("beforeend", `<style>${C}</style>`), this.createPopup(), this.rendergGiftElements(), this.triggerPopupOpen(), this.clickAddToCartBtnHandler(), this.visibleHandler(), this.handleClickGetNow();
+      ), document.head.insertAdjacentHTML("beforeend", `<style>${v}</style>`), this.createPopup(), this.rendergGiftElements(), this.triggerPopupOpen(), this.clickAddToCartBtnHandler(), this.visibleHandler(), this.handleClickGetNow();
     }
     rendergGiftElements() {
-      d(".row .text-center a.get-it").forEach((n) => {
+      c(".row .text-center a.get-it").forEach((n) => {
         var e;
         n.innerHTML = "buy buzzpatch <br/> stickers", (e = n.nextElementSibling) != null && e.classList.contains(".cta_box") || n.insertAdjacentHTML("afterend", b(!0, "cta_box"));
-      }), d(".hand-banner a.get-it").forEach((n) => {
+      }), c(".hand-banner a.get-it").forEach((n) => {
         var e;
         (e = n.previousElementSibling) != null && e.classList.contains(".banner_box") || n.insertAdjacentHTML("beforebegin", b(!0, "banner_box"));
-      }), d("#getNow .prices").forEach((n) => {
+      }), c("#getNow .prices").forEach((n) => {
         var e;
         (e = n.previousElementSibling) != null && e.classList.contains(".bundle_box") || n.insertAdjacentHTML("beforebegin", b(!1, "bundle_box"));
-      }), d("#getNow input[type=radio] + label").forEach((n) => {
-        n.getAttribute("for") !== "radios-3" && n.insertAdjacentHTML("afterbegin", h.giftIcon);
+      }), c("#getNow input[type=radio] + label").forEach((n) => {
+        n.getAttribute("for") !== "radios-3" && n.insertAdjacentHTML("afterbegin", u.giftIcon);
       }), o(".new-bundle-pack img").src !== `${s}new_bundle_img.png` && (o(".new-bundle-pack img").src = `${s}new_bundle_img.png`), o("#getNow .days").src !== `${s}new_trustpilot_reviews_img.png` && (o("#getNow .days").src = `${s}new_trustpilot_reviews_img.png`);
     }
     triggerPopupOpen() {
       l(".trigger_popup_open").then((n) => {
         o(".trigger_popup_open").addEventListener("click", (e) => {
-          e.preventDefault(), f("exp_introduce_b_link_01", "16 magical characters", "Link", "Shopping section"), this.handleShowPopup();
+          e.preventDefault(), h("exp_introduce_b_link_01", "16 magical characters", "Link", "Shopping section"), this.handleShowPopup();
         });
       });
     }
     createPopup() {
-      o(".new_popup_backdrop") || o("body").insertAdjacentHTML("afterbegin", y), l(".new_popup_backdrop").then((n) => {
+      o(".new_popup_backdrop") || o("body").insertAdjacentHTML("afterbegin", C), l(".new_popup_backdrop").then((n) => {
         this.handleClosePopup();
       });
     }
     handleShowPopup() {
       const n = o("body"), e = o(".new_popup_backdrop"), i = o("html");
-      e.classList.contains("is_hidden") && e.classList.remove("is_hidden"), n.style.overflow = "hidden", i.style.overflow = "hidden", f("exp_introduce_b_popup_01", "16 magical characters", "Visibility", "Pop up");
+      e.classList.contains("is_hidden") && e.classList.remove("is_hidden"), n.style.overflow = "hidden", i.style.overflow = "hidden", h("exp_introduce_b_popup_01", "16 magical characters", "Visibility", "Pop up");
     }
     handleClosePopup() {
-      const n = o("body"), e = o(".new_popup_backdrop"), i = o(".new_popup"), p = i.querySelectorAll('[data-popup="close"]'), a = o("html");
-      p.forEach((r) => {
-        r.addEventListener("click", (u) => {
-          u.currentTarget && (f("exp_introduce_b_button_01", "Close", "Button", "Pop up"), e.classList.add("is_hidden"), n.style.overflow = "initial", a.style.overflow = "initial");
+      const n = o("body"), e = o(".new_popup_backdrop"), i = o(".new_popup"), a = i.querySelectorAll('[data-popup="close"]'), r = o("html");
+      a.forEach((p) => {
+        p.addEventListener("click", (d) => {
+          d.currentTarget && (h("exp_introduce_b_button_01", "Close", "Button", "Pop up"), e.classList.add("is_hidden"), n.style.overflow = "initial", r.style.overflow = "initial");
         });
       });
     }
     clickAddToCartBtnHandler() {
       var n;
       (n = o("#addToCart")) == null || n.addEventListener("click", (e) => {
-        var a;
+        var r;
         e.preventDefault();
-        let i = (a = o(".js-packs input[type=radio]:checked+label")) == null ? void 0 : a.previousElementSibling.value;
+        let i = (r = o(".js-packs input[type=radio]:checked+label")) == null ? void 0 : r.previousElementSibling.value;
         console.log(i, "idValue"), i === "39542857695276" ? this.addToCartGiftHandler(i, !1) : this.addToCartGiftHandler(i);
       });
     }
@@ -571,44 +578,45 @@ body .hand-banner a.get-it {
     }
     visibleHandler() {
       l(".hand-banner .banner_box").then((n) => {
-        c(".hand-banner .banner_box", "exp_introduce_b_element_01", "First screen", "Limited time offer");
+        g(".hand-banner .banner_box", "exp_introduce_b_element_01", "First screen", "Limited time offer");
       }), l(".effectiveness .cta_box").then((n) => {
-        c(
+        g(
           ".effectiveness .cta_box",
           "exp_introduce_b_element_02",
           "Limited Time Offer",
           "Limited time offer - 1"
         );
       }), l(".bp-comparison .cta_box").then((n) => {
-        c(
+        g(
           ".bp-comparison .cta_box",
           "exp_introduce_b_element_02",
           "Limited Time Offer",
           "Limited time offer - 2"
         );
       }), l("#ingredients .cta_box").then((n) => {
-        c(
+        g(
           "#ingredients .cta_box",
           "exp_introduce_b_element_02",
           "Limited Time Offer",
           "Limited time offer - 3"
         );
       }), l("#getNow .bundle_box").then((n) => {
-        c("#getNow .bundle_box", "exp_introduce_b_element_03", "Shopping section", "Limited time offer");
+        g("#getNow .bundle_box", "exp_introduce_b_element_03", "Shopping section", "Limited time offer");
       });
     }
     handleClickGetNow() {
       l("#getNow").then((n) => {
-        d('[href="#getNow"]').forEach((e) => {
+        c('[href="#getNow"]').forEach((e) => {
           e.addEventListener("click", (i) => {
             i.preventDefault(), i.stopPropagation(), $("html, body").stop();
-            let p = o("#getNow"), a = 35;
-            (i.target.closest(".hand-banner") || i.target.closest(".navbar") && !i.target.closest(".fixed-top")) && (a = 110), m(a, p);
+            let a = o("#getNow"), r = 35, p = !0, d = setInterval(async () => {
+              a.getBoundingClientRect().top > r - 1 && a.getBoundingClientRect().top <= r + 1 ? clearInterval(d) : p && (p = !1, p = await _(r, a));
+            }, 100);
           });
         });
       });
     }
   }
-  window.location.pathname.match("pages") && new k(v);
+  window.location.pathname.match("pages") && new L(k);
 })();
 //# sourceMappingURL=index.js.map
