@@ -228,7 +228,6 @@
 }
 .modal .product-wrapper .css-5nnxvq .product-image-wrapper picture img {
   height: 100%;
-  max-height: calc(50vh - 72px - 28px - 48px);
   width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
@@ -733,7 +732,7 @@
       }), t(".modal .cart-product .product-count") && this.clickAdd == !0 && (document.body.classList.add("crs_show_notification"), this.renderNotification(t(".modal .cart-product .product-count").innerText), p("exp_newaddtocart_vis_02", "Add to cart", "Visibility", "Popover"), t(".crs_show_notification .modal .cart-product .product-count").closest(".modal").querySelector(".default-close").click(), this.clickAdd = !1), t(".action-wrapper") && !t(".action-wrapper h2") && (t(".action-wrapper").insertAdjacentHTML("afterbegin", `<h2>${(e = document.querySelector(".css-12a0csp h2")) == null ? void 0 : e.innerHTML}</h2>`), t(".pdp-net-weight") && t(".css-5nnxvq .product-image-wrapper picture").after(t(".pdp-net-weight"))), t(".css-5nnxvq .unit-price .discount .subscribe") && !t(".css-5nnxvq .action-wrapper > .subscribe") && t(".css-5nnxvq .unit-price").after(t(".css-5nnxvq .unit-price .discount .subscribe")), t(".css-5nnxvq .prices") && !t(".css-5nnxvq .unit-price > .prices")) {
         t(".css-5nnxvq .unit-price .discount").after(t(".css-5nnxvq .prices"));
         let n = 0;
-        this.device === "mobile" ? n = "76px - 24px - 48px" : n = "67px - 66px", t(".css-5nnxvq .product-image-wrapper picture img").style = `max-height: calc(${window.innerHeight}px - ${n} - ${t(".css-5nnxvq .action-wrapper").clientHeight}px`;
+        this.device === "mobile" ? n = "76px - 24px - 48px" : n = "67px - 66px", t(".css-5nnxvq .product-image-wrapper picture img").style = `height: calc(${window.innerHeight}px - ${n} - ${t(".css-5nnxvq .action-wrapper").clientHeight}px`;
       }
       h('.product-wrapper .right-side img[loading="lazy"]').forEach((n) => {
         n.removeAttribute("loading");
