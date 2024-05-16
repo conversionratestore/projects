@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const f = (e, n, t, i = "") => {
+  const h = (e, n, t, i = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
@@ -13,31 +13,31 @@
       `%c EXP: ${e} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, d = (e) => document.querySelectorAll(e), o = (e) => document.querySelector(e), w = (e) => {
+  }, c = (e) => document.querySelectorAll(e), o = (e) => document.querySelector(e), w = (e) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, c = (e, n, t, i, p = 3e3, s = 0.5) => {
-    let a, u;
+  }, g = (e, n, t, i, p = 3e3, r = 0.5) => {
+    let a, d;
     if (a = new IntersectionObserver(
-      function(g) {
-        g[0].isIntersecting === !0 ? u = setTimeout(() => {
-          f(
+      function(f) {
+        f[0].isIntersecting === !0 ? d = setTimeout(() => {
+          h(
             n,
-            g[0].target.dataset.visible || i || "",
+            f[0].target.dataset.visible || i || "",
             "Visibility",
             t
           ), a.disconnect();
-        }, p) : clearTimeout(u);
+        }, p) : clearTimeout(d);
       },
-      { threshold: [s] }
+      { threshold: [r] }
     ), typeof e == "string") {
-      const g = document.querySelector(e);
-      g && a.observe(g);
+      const f = document.querySelector(e);
+      f && a.observe(f);
     } else
       a.observe(e);
   };
-  function r(e) {
+  function l(e) {
     return new Promise((n) => {
       if (document.querySelector(e))
         return n(document.querySelector(e));
@@ -53,21 +53,24 @@
   }
   (function(e) {
     e = e === void 0 ? {} : e;
-    let n, t, i, p, s = (e == null ? void 0 : e.delay) || 50;
+    let n, t, i, p, r = (e == null ? void 0 : e.delay) || 50;
     function a() {
       n = null, p = 0;
     }
     return a(), function() {
-      return t = window.scrollY, n != null && (p = t - n), n = t, clearTimeout(i), i = setTimeout(a, s), p;
+      return t = window.scrollY, n != null && (p = t - n), n = t, clearTimeout(i), i = setTimeout(a, r), p;
     };
   })();
-  const m = (e, n) => {
+  function m(e) {
+    return new Promise((n) => setTimeout(n, e));
+  }
+  const _ = async (e, n) => {
     const t = e, p = (n == null ? void 0 : n.getBoundingClientRect().top) + window.pageYOffset - t;
-    window.scrollTo({
+    return window.scrollTo({
       top: p,
       behavior: "smooth"
-    });
-  }, l = "https://conversionratestore.github.io/projects/buzzpatch/img/", h = {
+    }), await m(800), !0;
+  }, s = "https://conversionratestore.github.io/projects/buzzpatch/img/", u = {
     giftIcon: (
       /* HTML */
       `
@@ -142,30 +145,30 @@
     `
   <div class="gift_box_wrapper">
     <div class="gift_box ${n}">
-      ${h.giftIcon}
+      ${u.giftIcon}
       ${e ? "<p><b>Limited Time Offer:</b> Get a free NATPAT sticker set with your purchase</p>" : '<p>Get a free <span class="trigger_popup_open">NATPAT sticker set</span> with any 3-4 pack purchase.</p>'}
     </div>
   </div>
 `
-  ), _ = (
+  ), y = (
     /* HTML */
     `
-  <img src="${l}gift_img_1.png" alt="stickers 16 magical characters" />
-  <img src="${l}gift_img_2.png" alt="stickers 16 magical characters" />
+  <img src="${s}gift_img_1.png" alt="stickers 16 magical characters" />
+  <img src="${s}gift_img_2.png" alt="stickers 16 magical characters" />
   <h3 class="gift_stickers_title">16 magical characters</h3>
-  <div class="border_icon">${h.borderIcon}</div>
+  <div class="border_icon">${u.borderIcon}</div>
 `
-  ), y = (
+  ), C = (
     /* HTML */
     `
   <div class="new_popup_backdrop is_hidden">
     <div class="new_popup">
-      <button class="new_popup_close" data-popup="close">${h.closeIcon}</button>
-      <div class="new_popup_content">${_}</div>
+      <button class="new_popup_close" data-popup="close">${u.closeIcon}</button>
+      <div class="new_popup_content">${y}</div>
     </div>
   </div>
 `
-  ), C = `body .gift_box_wrapper .gift_box {
+  ), v = `body .gift_box_wrapper .gift_box {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -485,8 +488,12 @@ body .hand-banner a.get-it {
   margin: auto auto 0;
   width: -moz-max-content;
   width: max-content;
-}/*# sourceMappingURL=main.css.map */`, v = window.innerWidth < 768 ? "mobile" : "desktop";
-  class k {
+}
+
+.nudge-ui-container {
+  display: none !important;
+}/*# sourceMappingURL=main.css.map */`, k = window.innerWidth < 768 ? "mobile" : "desktop";
+  class L {
     constructor(n) {
       this.device = n, this.init();
     }
@@ -494,43 +501,43 @@ body .hand-banner a.get-it {
       x({ name: "Exit Intent Popup v.C", dev: "SKh" }), w("exp_introduce_b"), document.head.insertAdjacentHTML(
         "beforeend",
         '<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">'
-      ), document.head.insertAdjacentHTML("beforeend", `<style>${C}</style>`), this.createPopup(), this.rendergGiftElements(), this.triggerPopupOpen(), this.clickAddToCartBtnHandler(), this.visibleHandler(), this.handleClickGetNow();
+      ), document.head.insertAdjacentHTML("beforeend", `<style>${v}</style>`), this.createPopup(), this.rendergGiftElements(), this.triggerPopupOpen(), this.clickAddToCartBtnHandler(), this.visibleHandler(), this.handleClickGetNow();
     }
     rendergGiftElements() {
-      d(".row .text-center a.get-it").forEach((n) => {
+      c(".row .text-center a.get-it").forEach((n) => {
         var t;
         n.innerHTML = "buy buzzpatch <br/> stickers", (t = n.nextElementSibling) != null && t.classList.contains(".cta_box") || n.insertAdjacentHTML("afterend", b(!0, "cta_box"));
-      }), d(".hand-banner a.get-it").forEach((n) => {
+      }), c(".hand-banner a.get-it").forEach((n) => {
         var t;
         (t = n.previousElementSibling) != null && t.classList.contains(".banner_box") || n.insertAdjacentHTML("beforebegin", b(!0, "banner_box"));
-      }), d("#getNow .prices").forEach((n) => {
+      }), c("#getNow .prices").forEach((n) => {
         var t;
         (t = n.previousElementSibling) != null && t.classList.contains(".bundle_box") || n.insertAdjacentHTML("beforebegin", b(!1, "bundle_box"));
-      }), d("#getNow input[type=radio] + label").forEach((n) => {
-        n.getAttribute("for") === "radios-3" || n.getAttribute("for") === "radios-2" || n.insertAdjacentHTML("afterbegin", h.giftIcon);
-      }), o(".new-bundle-pack img").src !== `${l}new_bundle_img.png` && (o(".new-bundle-pack img").src = `${l}new_bundle_img.png`), o("#getNow .days").src !== `${l}new_trustpilot_reviews_img.png` && (o("#getNow .days").src = `${l}new_trustpilot_reviews_img.png`);
+      }), c("#getNow input[type=radio] + label").forEach((n) => {
+        n.getAttribute("for") === "radios-3" || n.getAttribute("for") === "radios-2" || n.insertAdjacentHTML("afterbegin", u.giftIcon);
+      }), o(".new-bundle-pack img").src !== `${s}new_bundle_img.png` && (o(".new-bundle-pack img").src = `${s}new_bundle_img.png`), o("#getNow .days").src !== `${s}new_trustpilot_reviews_img.png` && (o("#getNow .days").src = `${s}new_trustpilot_reviews_img.png`);
     }
     triggerPopupOpen() {
-      r(".trigger_popup_open").then((n) => {
+      l(".trigger_popup_open").then((n) => {
         o(".trigger_popup_open").addEventListener("click", (t) => {
-          t.preventDefault(), f("exp_introduce_b_link_01", "16 magical characters", "Link", "Shopping section"), this.handleShowPopup();
+          t.preventDefault(), h("exp_introduce_b_link_01", "16 magical characters", "Link", "Shopping section"), this.handleShowPopup();
         });
       });
     }
     createPopup() {
-      o(".new_popup_backdrop") || o("body").insertAdjacentHTML("afterbegin", y), r(".new_popup_backdrop").then((n) => {
+      o(".new_popup_backdrop") || o("body").insertAdjacentHTML("afterbegin", C), l(".new_popup_backdrop").then((n) => {
         this.handleClosePopup();
       });
     }
     handleShowPopup() {
       const n = o("body"), t = o(".new_popup_backdrop"), i = o("html");
-      t.classList.contains("is_hidden") && t.classList.remove("is_hidden"), n.style.overflow = "hidden", i.style.overflow = "hidden", f("exp_introduce_b_popup_01", "16 magical characters", "Visibility", "Pop up");
+      t.classList.contains("is_hidden") && t.classList.remove("is_hidden"), n.style.overflow = "hidden", i.style.overflow = "hidden", h("exp_introduce_b_popup_01", "16 magical characters", "Visibility", "Pop up");
     }
     handleClosePopup() {
-      const n = o("body"), t = o(".new_popup_backdrop"), i = o(".new_popup"), p = i.querySelectorAll('[data-popup="close"]'), s = o("html");
+      const n = o("body"), t = o(".new_popup_backdrop"), i = o(".new_popup"), p = i.querySelectorAll('[data-popup="close"]'), r = o("html");
       p.forEach((a) => {
-        a.addEventListener("click", (u) => {
-          u.currentTarget && (f("exp_introduce_b_button_01", "Close", "Button", "Pop up"), t.classList.add("is_hidden"), n.style.overflow = "initial", s.style.overflow = "initial");
+        a.addEventListener("click", (d) => {
+          d.currentTarget && (h("exp_introduce_b_button_01", "Close", "Button", "Pop up"), t.classList.add("is_hidden"), n.style.overflow = "initial", r.style.overflow = "initial");
         });
       });
     }
@@ -570,45 +577,46 @@ body .hand-banner a.get-it {
       }), window.location.href = "/checkout";
     }
     visibleHandler() {
-      r(".hand-banner .banner_box").then((n) => {
-        c(".hand-banner .banner_box", "exp_introduce_b_element_01", "First screen", "Limited time offer");
-      }), r(".effectiveness .cta_box").then((n) => {
-        c(
+      l(".hand-banner .banner_box").then((n) => {
+        g(".hand-banner .banner_box", "exp_introduce_b_element_01", "First screen", "Limited time offer");
+      }), l(".effectiveness .cta_box").then((n) => {
+        g(
           ".effectiveness .cta_box",
           "exp_introduce_b_element_02",
           "Limited Time Offer",
           "Limited time offer - 1"
         );
-      }), r(".bp-comparison .cta_box").then((n) => {
-        c(
+      }), l(".bp-comparison .cta_box").then((n) => {
+        g(
           ".bp-comparison .cta_box",
           "exp_introduce_b_element_02",
           "Limited Time Offer",
           "Limited time offer - 2"
         );
-      }), r("#ingredients .cta_box").then((n) => {
-        c(
+      }), l("#ingredients .cta_box").then((n) => {
+        g(
           "#ingredients .cta_box",
           "exp_introduce_b_element_02",
           "Limited Time Offer",
           "Limited time offer - 3"
         );
-      }), r("#getNow .bundle_box").then((n) => {
-        c("#getNow .bundle_box", "exp_introduce_b_element_03", "Shopping section", "Limited time offer");
+      }), l("#getNow .bundle_box").then((n) => {
+        g("#getNow .bundle_box", "exp_introduce_b_element_03", "Shopping section", "Limited time offer");
       });
     }
     handleClickGetNow() {
-      r("#getNow").then((n) => {
-        d('[href="#getNow"]').forEach((t) => {
+      l("#getNow").then((n) => {
+        c('[href="#getNow"]').forEach((t) => {
           t.addEventListener("click", (i) => {
             i.preventDefault(), i.stopPropagation(), $("html, body").stop();
-            let p = o("#getNow"), s = 35;
-            (i.target.closest(".hand-banner") || i.target.closest(".navbar") && !i.target.closest(".fixed-top")) && (s = 110), m(s, p);
+            let p = o("#getNow"), r = 35, a = !0, d = setInterval(async () => {
+              p.getBoundingClientRect().top > r - 1 && p.getBoundingClientRect().top <= r + 1 ? clearInterval(d) : a && (a = !1, a = await _(r, p));
+            }, 100);
           });
         });
       });
     }
   }
-  window.location.pathname.match("pages") && new k(v);
+  window.location.pathname.match("pages") && new L(k);
 })();
 //# sourceMappingURL=index.js.map
