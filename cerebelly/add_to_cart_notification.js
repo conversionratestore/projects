@@ -598,14 +598,14 @@
       }), setTimeout(() => {
         var n;
         sessionStorage.getItem("exit_intent") == null && ((n = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : n.cart.boxes[0]) != null && !t(".crs_notification") && this.checkPageUrl() === "other" && (sessionStorage.setItem("exit_intent", "true"), this.renderNotification(), l("exp_newaddtocart_vis_05", "After 180 seconds", "Visibility", "Popover"));
-      }, 18e4), this.exitIntent(), document.body.classList.add("crs_show_notification"), k(".css-1et9m3v.b-header.fw-header .e-nav .mobile-cart-box").then((n) => {
+      }, 18e4), document.body.classList.add("crs_show_notification"), k(".css-1et9m3v.b-header.fw-header .e-nav .mobile-cart-box").then((n) => {
         n.addEventListener("click", (e) => {
           document.body.classList.remove("crs_show_notification");
         });
       });
       const i = new MutationObserver((n) => {
         var e, o;
-        this.navigation(), this.changeElements(), document.body.style.overflow = this.checkPageUrl() === "pdp" ? "hidden" : "", ((o = (e = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : e.cart) == null ? void 0 : o.boxes[0]) == null && t(".crs_notification") && t(".crs_notification").remove(), i.disconnect(), i.observe(document.body, {
+        this.navigation(), this.changeElements(), this.exitIntent(), document.body.style.overflow = this.checkPageUrl() === "pdp" ? "hidden" : "", ((o = (e = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : e.cart) == null ? void 0 : o.boxes[0]) == null && t(".crs_notification") && t(".crs_notification").remove(), i.disconnect(), i.observe(document.body, {
           childList: !0,
           subtree: !0,
           attributes: !0
@@ -657,7 +657,7 @@
             "mouseleave",
             function() {
               var a, u;
-              (n < 50 || e < 50 || n > window.innerWidth - 50 || e > window.innerHeight - 50) && sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && ((u = (a = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : a.cart) == null ? void 0 : u.boxes[0]) != null && (sessionStorage.setItem("exit_intent", "true"), new g().renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"));
+              (n < 50 || e < 50 || n > window.innerWidth - 50 || e > window.innerHeight - 50) && (console.dir("leave mouse"), sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && ((u = (a = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : a.cart) == null ? void 0 : u.boxes[0]) != null && (sessionStorage.setItem("exit_intent", "true"), new g().renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover")));
             },
             { once: !0 }
           );
