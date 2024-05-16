@@ -1,55 +1,55 @@
 (function() {
   "use strict";
-  const l = (a, i, r, n = "") => {
+  const l = (c, i, r, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: a,
+      event_name: c,
       event_desc: i,
       event_type: r,
       event_loc: n
-    }), console.dir(`Event: ${a} | ${i} | ${r} | ${n}`);
-  }, k = ({ name: a, dev: i }) => {
+    }), console.dir(`Event: ${c} | ${i} | ${r} | ${n}`);
+  }, k = ({ name: c, dev: i }) => {
     console.dir(
-      `%c EXP: ${a} (DEV: ${i})`,
+      `%c EXP: ${c} (DEV: ${i})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, p = (a) => document.querySelectorAll(a), e = (a) => document.querySelector(a), L = (a) => {
+  }, p = (c) => document.querySelectorAll(c), e = (c) => document.querySelector(c), L = (c) => {
     let i = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(i), window.clarity("set", a, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(i), window.clarity("set", c, "variant_1"));
     }, 1e3);
-  }, S = (a, i, r, n, t = 1e3, o = 0.5) => {
+  }, S = (c, i, r, n, t = 1e3, o = 0.5) => {
     let s, d;
     if (s = new IntersectionObserver(
-      function(c) {
-        c[0].isIntersecting === !0 ? d = setTimeout(() => {
+      function(a) {
+        a[0].isIntersecting === !0 ? d = setTimeout(() => {
           l(
             i,
-            c[0].target.dataset.visible || r || "",
+            a[0].target.dataset.visible || r || "",
             "Visibility",
             n
           ), s.disconnect();
         }, t) : (console.log("Element is not fully visible"), clearTimeout(d));
       },
       { threshold: [o] }
-    ), typeof a == "string") {
-      const c = document.querySelector(a);
-      c && s.observe(c);
+    ), typeof c == "string") {
+      const a = document.querySelector(c);
+      a && s.observe(a);
     } else
-      s.observe(a);
-  }, m = (a) => new Promise((i) => {
-    if (e(a))
-      return i(e(a));
+      s.observe(c);
+  }, m = (c) => new Promise((i) => {
+    if (e(c))
+      return i(e(c));
     const r = new MutationObserver(() => {
-      e(a) && (i(e(a)), r.disconnect());
+      e(c) && (i(e(c)), r.disconnect());
     });
     r.observe(document.documentElement, {
       childList: !0,
       subtree: !0
     });
-  }), C = (a) => new Promise((i, r) => {
+  }), C = (c) => new Promise((i, r) => {
     var n = 0, t = setInterval(o, 1e3);
     function o() {
-      n++, n > a && (clearInterval(t), i(!0));
+      n++, n > c && (clearInterval(t), i(!0));
     }
     document.addEventListener("click", function() {
       i(!1);
@@ -80,12 +80,12 @@
   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
     <path d="M12 17L4 9L12 0.999999" stroke="#15206B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>`
-  }, v = {
+  }, w = {
     3: ["pumpkin-bundle", "bone-broth-protein-pack-3"],
     4: ["smart-bar-sampler"],
     5: ["5-7-months-bundle", "8-9-months-bundle", "10-11-months-bundle", "toddler-snack-pack", "plant-based-protein-pack", "iron-rich-heroes", "superfoods-variety-pack", "fabulous-fiber"],
     6: ["12-14-months-bundle", "15-17-months-bundle", "18-20-months-bundle", "21-24-months-bundle", "25-months", "spring-sprouts-2", "smart-picks-14"]
-  }, E = (a, i, r, n, t) => (
+  }, E = (c, i, r, n, t) => (
     /* HTML */
     ` <div class="crs_notification">
   <div class="crs_notification_head justify-between">
@@ -99,7 +99,7 @@
   </div>
   <div class="crs_notification_body justify-between">
       <div class="d-flex">
-          <img src="${a}" alt="${i}">
+          <img src="${c}" alt="${i}">
           <div>
               <div class="crs_notification_title">${i}</div>
               <div class="crs_notification_info">${r}</div>
@@ -112,7 +112,7 @@
       <a href="/cart" class="crs_view_cart">view cart (${t})${f.arrowRight}</a>
   </div>
 </div>`
-  ), w = `
+  ), _ = `
 <nav class="crs_nav">
   <ul class="d-flex">
     <li><a href="#ingredients">ingredients</a></li>
@@ -122,7 +122,7 @@
   </ul>
 </nav>`, P = `
 <button type="button" class="crs_arrow crs_arrow_prev" hidden>${f.arrowLeftSlide}</button>
-<button type="button" class="crs_arrow crs_arrow_next" hidden>${f.arrowRightSlide}</button>`, q = (a) => `<p class="crs_tastes"><span>1</span> of ${a} tastes<p>`, T = `.items-center {
+<button type="button" class="crs_arrow crs_arrow_next" hidden>${f.arrowRightSlide}</button>`, q = (c) => `<p class="crs_tastes"><span>1</span> of ${c} tastes<p>`, T = `.items-center {
   display: flex;
   align-items: center;
 }
@@ -137,7 +137,7 @@
     display: flex;
     flex-direction: column-reverse;
   }
-}/*# sourceMappingURL=base.css.map */`, j = `.crs_notification {
+}/*# sourceMappingURL=base.css.map */`, z = `.crs_notification {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -624,6 +624,9 @@ p.crs_tastes + p {
   p.crs_tastes {
     font-size: 18px;
   }
+  .css-12a0csp .product-wrapper .left-side section {
+    max-height: none;
+  }
 }
 @media (max-width: 1279px) {
   .crs_nav ul {
@@ -673,8 +676,8 @@ p.crs_tastes + p {
   }
 }/*# sourceMappingURL=main.css.map */`;
   k({ name: "Enhancements on PDP and new Add to Cart notification", dev: "Olha" }), L("new_add_to_cart");
-  const _ = window.innerWidth < 991 ? "mobile" : "desktop";
-  class x {
+  const x = window.innerWidth < 991 ? "mobile" : "desktop";
+  class v {
     constructor(i) {
       this.device = i, this.isSelectorWrapper = this.device === "desktop" ? ".product-wrapper" : ".css-12a0csp", this.clickRemove = !1, this.clickAdd = !1, this.notExitPopup = !1, this.init();
     }
@@ -682,7 +685,7 @@ p.crs_tastes + p {
       if (!e(".crs_style") && !e(".crs_script")) {
         let t = document.createElement("script");
         t.src = "https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js", t.async = !1, t.className = "crs_script", document.head.appendChild(t), document.head.insertAdjacentHTML("beforeend", `
-      <style class="crs_style">${T + j}</style>`);
+      <style class="crs_style">${T + z}</style>`);
       }
       C(this.device === "desktop" ? 20 : 10).then((t) => {
         var o;
@@ -724,8 +727,8 @@ p.crs_tastes + p {
     }
     addTastes() {
       if (!e(".crs_tastes") && e(".product-image-wrapper"))
-        for (let i in v) {
-          let r = window.location.href.split("/"), n = r[r.length - 1], t = v[i];
+        for (let i in w) {
+          let r = window.location.href.split("/"), n = r[r.length - 1], t = w[i];
           for (let o = 0; o < t.length; o++)
             if (t[o] == n) {
               e(".product-image-wrapper").insertAdjacentHTML("afterbegin", q(i)), console.dir("add arrow slider (PDP)"), e(".product-image-wrapper").insertAdjacentHTML("afterbegin", P), e(".crs_arrow_next").hidden = !1;
@@ -767,6 +770,12 @@ p.crs_tastes + p {
         l("exp_newaddtocart_click_02", "View cart", "Button", "Popover");
       });
     }
+    resizeOfferPdp() {
+      if (!e(".css-5nnxvq .product-image-wrapper img") && !e(".css-5nnxvq .action-wrapper h2"))
+        return;
+      let i = 0;
+      x === "mobile" ? i = "76px - 24px - 48px" + (window.location.href.includes("bundle") ? " - 28px" : "") : i = "67px - 66px - 34px" + (window.location.href.includes("bundle") ? " - 68px" : ""), console.dir("-----------------"), console.dir(window.innerHeight), console.dir(e(".css-5nnxvq .action-wrapper").clientHeight), console.dir("-----------------"), e(".css-5nnxvq .product-image-wrapper img").style = `height: calc(${window.innerHeight}px - ${i} - ${e(".css-5nnxvq .action-wrapper").clientHeight}px`;
+    }
     exitIntent() {
       if (console.dir("exitIntent start"), this.device === "desktop") {
         let i = 0, r = 0;
@@ -776,17 +785,17 @@ p.crs_tastes + p {
           "mouseleave",
           function() {
             var n, t;
-            (i < 50 || r < 50 || i > window.innerWidth - 50 || r > window.innerHeight - 50) && (console.dir("leave mouse"), sessionStorage.getItem("exit_intent") == null && !e(".crs_notification") && ((t = (n = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : n.cart) == null ? void 0 : t.boxes[0]) != null && (sessionStorage.setItem("exit_intent", "true"), new x(_).renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover")));
+            (i < 50 || r < 50 || i > window.innerWidth - 50 || r > window.innerHeight - 50) && (console.dir("leave mouse"), sessionStorage.getItem("exit_intent") == null && !e(".crs_notification") && ((t = (n = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : n.cart) == null ? void 0 : t.boxes[0]) != null && (sessionStorage.setItem("exit_intent", "true"), new v(x).renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover")));
           },
           { once: !1 }
         );
       } else {
         let i = (/android/i.test(navigator.userAgent), 120), r = 0, n = 0, t = (o = "window") => {
-          var d, c;
+          var d, a;
           let s = o == "window" ? window.scrollY : e(o).scrollTop;
-          n = s - r, r = s, (n > i || n < -i) && sessionStorage.getItem("exit_intent") == null && !e(".crs_notification") && !e(".css-m18cj1") && ((c = (d = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : d.cart) == null ? void 0 : c.boxes[0]) != null && this.notExitPopup === !1 && (console.dir(n), sessionStorage.setItem("exit_intent", "true"), this.renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"), o == "window" ? document.removeEventListener("scroll", t()) : e(o).removeEventListener("scroll", t()));
+          n = s - r, r = s, (n > i || n < -i) && sessionStorage.getItem("exit_intent") == null && !e(".crs_notification") && !e(".css-m18cj1") && ((a = (d = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : d.cart) == null ? void 0 : a.boxes[0]) != null && this.notExitPopup === !1 && (console.dir(n), sessionStorage.setItem("exit_intent", "true"), this.renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"), o == "window" ? document.removeEventListener("scroll", () => t()) : e(o).removeEventListener("scroll", t()));
         };
-        document.addEventListener("scroll", t()), m(this.isSelectorWrapper).then((o) => {
+        document.addEventListener("scroll", () => t()), m(this.isSelectorWrapper).then((o) => {
           e(".modal " + this.isSelectorWrapper).addEventListener("scroll", () => {
             t(this.isSelectorWrapper);
           });
@@ -796,13 +805,9 @@ p.crs_tastes + p {
     navigation() {
       if (e(".crs_nav") || !e(".css-12a0csp .product-wrapper .left-side"))
         return;
-      if (this.device === "mobile" ? e(".css-12a0csp .product-wrapper .left-side").insertAdjacentHTML("beforeend", w) : (e(".css-12a0csp .product-wrapper").insertAdjacentHTML("afterbegin", w), e(".crs_nav ul").after(e(".css-mc9jj7 .controls .default-close"))), e(".modal.css-mc9jj7 .default-close").addEventListener("click", (n) => {
+      this.device === "mobile" ? e(".css-12a0csp .product-wrapper .left-side").insertAdjacentHTML("beforeend", _) : (e(".css-12a0csp .product-wrapper").insertAdjacentHTML("afterbegin", _), e(".crs_nav ul").after(e(".css-mc9jj7 .controls .default-close"))), e(".modal.css-mc9jj7 .default-close").addEventListener("click", (n) => {
         n.target.closest(".modal").querySelector(".product-wrapper") && l("exp_newaddtocart_click_05", "Close", "Button", "Product");
-      }), l("exp_newaddtocart_vis_06", "View product", "Visibility", "Product"), l("exp_newaddtocart_vis_01", "View navigation", "Visibility", "Under the add to cart"), document.body.classList.add("crs_hide_cart"), e(".css-5nnxvq .product-image-wrapper img") && e(".css-5nnxvq .action-wrapper")) {
-        let n = 0;
-        this.device === "mobile" ? n = "76px - 24px - 48px" + (window.location.href.includes("bundle") ? " - 28px" : "") : n = "67px - 66px - 34px" + (window.location.href.includes("bundle") ? " - 68px" : ""), e(".css-5nnxvq .product-image-wrapper img").style = `height: calc(${window.innerHeight}px - ${n} - ${e(".css-5nnxvq .action-wrapper").clientHeight}px`;
-      }
-      p(".right-side section").forEach((n) => {
+      }), l("exp_newaddtocart_vis_06", "View product", "Visibility", "Product"), l("exp_newaddtocart_vis_01", "View navigation", "Visibility", "Under the add to cart"), document.body.classList.add("crs_hide_cart"), p(".right-side section").forEach((n) => {
         let t = "View Nutrition Facts section";
         n.querySelector("h3") && (t = n.querySelector("h3").innerText), S(n, "exp_newaddtocart_vis_08", t, "Product");
       }), e(".modal .product-wrapper button.button.red") && l("exp_newaddtocart_vis_07", "View " + e(".modal .product-wrapper button.button.red").innerText + " button", "Visibility", "Product"), p(".crs_nav a").forEach((n) => {
@@ -812,12 +817,12 @@ p.crs_tastes + p {
           e("#" + o) && (seamless.polyfill(), seamless.scrollBy(e(this.isSelectorWrapper), { behavior: "smooth", top: e("#" + o).getBoundingClientRect().top - n.clientHeight - 20, left: 0 }));
         });
       });
-      function i() {
-        e(".css-12a0csp .product-wrapper .right-side") && e(".crs_nav") && (e(".crs_nav").style.minWidth = e(".css-12a0csp .product-wrapper .right-side").clientWidth + "px", e(".crs_nav").style.right = window.innerWidth - e(".css-12a0csp .product-wrapper .right-side").getBoundingClientRect().right + "px");
+      function i(n) {
+        e(".css-12a0csp .product-wrapper .right-side") && e(".crs_nav") && n === "desktop" && (e(".crs_nav").style.minWidth = e(".css-12a0csp .product-wrapper .right-side").clientWidth + "px", e(".crs_nav").style.right = window.innerWidth - e(".css-12a0csp .product-wrapper .right-side").getBoundingClientRect().right + "px");
       }
       window.addEventListener("resize", () => {
-        this.device === "desktop" && i();
-      }), i(), e(".css-12a0csp").addEventListener("scroll", (n) => {
+        i(this.device);
+      }), i(this.device), e(".css-12a0csp").addEventListener("scroll", (n) => {
         if (this.device !== "mobile")
           return;
         let t = e(".crs_nav").getBoundingClientRect().bottom;
@@ -830,10 +835,10 @@ p.crs_tastes + p {
       this.device === "desktop" && p(".crs_nav a")[0].classList.add("active"), e(this.isSelectorWrapper).addEventListener("scroll", (n) => {
         const t = p(".product-wrapper .right-side section[id] h2"), o = p(".crs_nav a");
         var s = -1;
-        t.forEach(function(d, c) {
-          r(d) && s === -1 && (s = c);
-        }), s !== -1 && o.forEach(function(d, c) {
-          if (c === s) {
+        t.forEach(function(d, a) {
+          r(d) && s === -1 && (s = a);
+        }), s !== -1 && o.forEach(function(d, a) {
+          if (a === s) {
             d.classList.add("active");
             const g = e(".crs_nav ul"), u = d.getBoundingClientRect(), h = g.getBoundingClientRect();
             u.left < h.left ? g.scrollLeft -= h.left - u.left : u.right > h.right && (g.scrollLeft += u.right - h.right);
@@ -857,16 +862,16 @@ p.crs_tastes + p {
         document.body.classList.add("crs_hide_cart"), console.dir("close side cart");
       }), e(".modal .cart-product .product-count") && this.clickAdd == !0 && (console.dir("add to cart"), document.body.classList.add("crs_hide_cart"), this.renderNotification(e(".modal .cart-product .product-count").innerText), l("exp_newaddtocart_vis_02", "Add to cart", "Visibility", "Popover"), e(".crs_hide_cart .modal .cart-product .product-count").closest(".modal").querySelector(".default-close").click(), setTimeout(() => {
         this.clickAdd = !1;
-      }, 200)), e(".left-side .action-wrapper") && e(".right-side .css-s7fk0u h2")) {
+      }, 200)), e(".css-5nnxvq .unit-price .discount .subscribe") && !e(".css-5nnxvq .action-wrapper > .subscribe") && (console.dir("change subscribe (PDP)"), e(".css-5nnxvq .unit-price").after(e(".css-5nnxvq .unit-price .discount .subscribe"))), e(".css-5nnxvq .prices") && !e(".css-5nnxvq .unit-price > .prices") && (console.dir("change prices (PDP)"), e(".css-5nnxvq .unit-price .discount").after(e(".css-5nnxvq .prices"))), e(".left-side .action-wrapper") && e(".right-side .css-s7fk0u h2")) {
         if (!e(".left-side .action-wrapper > h2"))
           console.dir("add name h2 (PDP)"), e(".left-side .action-wrapper").insertAdjacentHTML("afterbegin", `<h2>${e(".right-side .css-s7fk0u h2").innerHTML}</h2>`);
         else {
           let r = e(".right-side .css-s7fk0u h2").innerHTML;
-          e(".left-side .action-wrapper > h2").innerHTML != r && (console.dir("change name h2 (PDP)"), e(".left-side .action-wrapper > h2").innerHTML = e(".right-side .css-s7fk0u h2").innerHTML);
+          e(".left-side .action-wrapper > h2").innerHTML != r && (console.dir("change name h2 (PDP)"), e(".left-side .action-wrapper > h2").innerHTML = e(".right-side .css-s7fk0u h2").innerHTML, this.resizeOfferPdp());
         }
-        e(".pdp-net-weight") && !e(".css-5nnxvq .product-image-wrapper > .pdp-net-weight") && (console.dir("change weight (PDP)"), e(".css-5nnxvq .product-image-wrapper picture").after(e(".pdp-net-weight")));
+        e(".pdp-net-weight") && !e(".css-5nnxvq .product-image-wrapper > .pdp-net-weight") && (console.dir("change weight (PDP)"), e(".css-5nnxvq .product-image-wrapper picture").after(e(".pdp-net-weight")), this.resizeOfferPdp());
       }
-      e(".css-5nnxvq .unit-price .discount .subscribe") && !e(".css-5nnxvq .action-wrapper > .subscribe") && (console.dir("change subscribe (PDP)"), e(".css-5nnxvq .unit-price").after(e(".css-5nnxvq .unit-price .discount .subscribe"))), e(".css-5nnxvq .prices") && !e(".css-5nnxvq .unit-price > .prices") && (console.dir("change prices (PDP)"), e(".css-5nnxvq .unit-price .discount").after(e(".css-5nnxvq .prices"))), p('.product-wrapper .right-side img[loading="lazy"]').forEach((r) => {
+      p('.product-wrapper .right-side img[loading="lazy"]').forEach((r) => {
         r.removeAttribute("loading");
       }), (i = e(".modal .left-side .remove")) == null || i.addEventListener("click", (r) => {
         this.clickRemove == !1 && (this.clickRemove = !0, console.dir("clickRemove true (PDP)"), console.dir("clickRemove false 500 (PDP)"), setTimeout(() => {
@@ -904,15 +909,15 @@ p.crs_tastes + p {
       setTimeout(() => {
         var i, r, n, t;
         if (((r = (i = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : i.cart) == null ? void 0 : r.boxes[0]) != null) {
-          const o = (t = (n = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : n.cart) == null ? void 0 : t.boxes, s = Object.keys(o), d = s[s.length - 1], c = o[d], g = c.image.includes("https") ? c.image : "https://cerebelly.com/wp-json/cerebelly/image/get?path=" + c.image;
+          const o = (t = (n = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : n.cart) == null ? void 0 : t.boxes, s = Object.keys(o), d = s[s.length - 1], a = o[d], g = a.image.includes("https") ? a.image : "https://cerebelly.com/wp-json/cerebelly/image/get?path=" + a.image;
           let u = {};
           p(".product").forEach((h) => {
             var b, y;
-            h.querySelector(".title").innerText.includes(c.title) && (u.type = ((b = h.querySelector(".quantity")) == null ? void 0 : b.innerHTML) || ((y = h.querySelector(".desktop")) == null ? void 0 : y.innerHTML.replace(" | ", "")));
-          }), u.title = c.title, u.image = g, u.price = c.price, u.count = parseInt(d) + 1, console.dir(u), localStorage.setItem("data_notification", JSON.stringify(u));
+            h.querySelector(".title").innerText.includes(a.title) && (u.type = ((b = h.querySelector(".quantity")) == null ? void 0 : b.innerHTML) || ((y = h.querySelector(".desktop")) == null ? void 0 : y.innerHTML.replace(" | ", "")));
+          }), u.title = a.title, u.image = g, u.price = a.price, u.count = parseInt(d) + 1, console.dir(u), localStorage.setItem("data_notification", JSON.stringify(u));
         }
       }, 200);
     }
   }
-  new x(_);
+  new v(x);
 })();
