@@ -324,8 +324,8 @@
         console.error("Step must be between 1 and 5");
         return;
       }
-      const e = (t - 1) * 25 + (t === 1 ? 1 : t === 5 ? -9 : 0), s = document.querySelector(".os-progress-bar"), a = document.querySelector(".os-steps");
-      s && (s.style.width = `${e}%`, s.setAttribute("aria-valuenow", e.toString())), a && (a.style.left = `${e}%`, a.querySelector("span").textContent = t.toString());
+      const e = (t - 1) * 25 + (t === 1 ? 1 : 0), s = document.querySelector(".os-progress-bar"), a = document.querySelector(".os-steps");
+      s && (s.style.width = `${e}%`, s.setAttribute("aria-valuenow", e.toString())), a && (a.style.left = `calc(${e}% - 31px)`, a.querySelector("span").textContent = t.toString());
     }
   }
   class B {
@@ -338,8 +338,8 @@
       s == null || s.on("transitionEnd", () => {
         const i = s.realIndex;
         a.dataset.currentSlide = i.toString();
-        const b = o(".swiper-slide-active"), g = b == null ? void 0 : b.clientHeight;
-        if (x.style.top = `${g}px`, t && (t.dataset.currentSlide = i.toString()), i === 0 && this.progressBar.update(1), i === 1 && (this.progressBar.update(2), o("#estimate-homeowner").classList.contains("os-hide") && (p == null || p.classList.remove("os-hide"))), i === 2 && this.progressBar.update(4), i === 3 && this.progressBar.update(5), i === 3 ? a.dataset.background = "false" : a.dataset.background = "", i === 7 ? a.dataset.background = "opacity" : a.dataset.background = "", i > 3 ? o(".os-progress-block").classList.add("os-hide") : o(".os-progress-block").classList.remove("os-hide"), i === 4) {
+        const b = o(".swiper-slide-active"), f = b == null ? void 0 : b.clientHeight;
+        if (x.style.top = `${f}px`, t && (t.dataset.currentSlide = i.toString()), i === 0 && this.progressBar.update(1), i === 1 && (this.progressBar.update(2), o("#estimate-homeowner").classList.contains("os-hide") && (p == null || p.classList.remove("os-hide"))), i === 2 && this.progressBar.update(4), i === 3 && this.progressBar.update(5), i === 3 ? a.dataset.background = "false" : a.dataset.background = "", i === 7 ? a.dataset.background = "opacity" : a.dataset.background = "", i > 3 ? o(".os-progress-block").classList.add("os-hide") : o(".os-progress-block").classList.remove("os-hide"), i === 4) {
           const r = o('input[value="unknown"]'), u = r.parentElement;
           r.checked = !0;
           const d = o(".os-spinner"), l = o('[data-os="result"]'), v = setTimeout(() => {
@@ -350,7 +350,7 @@
           l.classList.contains("os-passed") && (clearTimeout(v), clearTimeout(_), l.classList.remove("os-passed"), L == null || L.click());
         }
       }), e.forEach((i) => {
-        var b, g;
+        var b, f;
         if (i.querySelector("#estimate-zip")) {
           const r = i.querySelector(".title"), u = i.querySelector("h5"), d = i.querySelector("#calculateYourSavings"), l = i.querySelector("#zip"), v = i.querySelector("#zip-error");
           v && (v.textContent = ""), r && r.insertAdjacentHTML("afterend", '<h1 class="os-title">Enter your zip code</h1>'), u && (u.style.display = "none"), d && (d.textContent = "Continue"), l && l.setAttribute("placeholder", "Enter Your Zip Code"), d == null || d.addEventListener("click", () => {
@@ -358,7 +358,7 @@
           });
         }
         if (i.querySelector("#estimate-bill")) {
-          const r = i.querySelectorAll(".title:not([data-custom])"), u = i.querySelectorAll(".sub-title"), d = (g = (b = i.closest(".swiper-container")) == null ? void 0 : b.nextElementSibling) == null ? void 0 : g.querySelector(".nextSlide");
+          const r = i.querySelectorAll(".title:not([data-custom])"), u = i.querySelectorAll(".sub-title"), d = (f = (b = i.closest(".swiper-container")) == null ? void 0 : b.nextElementSibling) == null ? void 0 : f.querySelector(".nextSlide");
           r.forEach((l) => {
             l && (l.innerHTML = /* HTML */
             `How much is<br class="desktop" />
@@ -410,12 +410,12 @@
         /* HTML */
         ' <div class="rangeslider-tooltip__arrow"></div>'
       );
-      const n = document.querySelector(".rangeslider__handle"), f = o(".rangeslider-tooltip__arrow"), w = parseInt(n.style.left);
-      m.style.left = w - 18 + "px", new MutationObserver(function(i) {
+      const n = document.querySelector(".rangeslider__handle"), g = o(".rangeslider-tooltip__arrow"), w = parseInt(n.style.left);
+      m.style.left = w - 18 + "px", g && (g.style.left = w + 5 + "px"), new MutationObserver(function(i) {
         i.forEach(function(b) {
           if (b.type === "attributes" && b.attributeName === "style") {
-            const g = parseInt(n.style.left);
-            m.style.left = g - 18 + "px", f && (f.style.left = g + 5 + "px");
+            const f = parseInt(n.style.left);
+            m.style.left = f - 18 + "px", g && (g.style.left = f + 5 + "px");
             const r = m.getBoundingClientRect(), u = window.innerWidth || document.documentElement.clientWidth;
             r.right >= u - 20 && (m.style.left = u - r.width - 40 + "px"), console.log(r.left), r.left <= 20 && (m.style.left = "-1px");
           }
@@ -428,13 +428,13 @@
     estimateHomeownerHandler() {
       const t = o("#estimate-homeowner"), e = o("#estimate-bill"), s = o(".os-navigation"), a = s.querySelector(".os-next");
       e.classList.add("os-hide");
-      const x = o("#homeowner-yes"), p = o("#homeowner-no"), m = o("#homeowner-back"), h = o("#solarForm .wrapper"), n = o('#estimate-homeowner [data-step="1"]'), f = o('#estimate-homeowner [data-step="2"]'), w = o(".os-progress-block");
+      const x = o("#homeowner-yes"), p = o("#homeowner-no"), m = o("#homeowner-back"), h = o("#solarForm .wrapper"), n = o('#estimate-homeowner [data-step="1"]'), g = o('#estimate-homeowner [data-step="2"]'), w = o(".os-progress-block");
       x == null || x.addEventListener("click", () => {
         e.classList.remove("os-hide"), t.classList.add("os-hide"), s.classList.remove("os-hide"), a == null || a.classList.remove("os-hide"), this.progressBar.update(3);
       }), p == null || p.addEventListener("click", () => {
-        n.classList.add("os-hide"), f.classList.remove("os-hide"), w.classList.add("os-hide"), h.dataset.background = "false", s == null || s.classList.add("os-hide");
+        n.classList.add("os-hide"), g.classList.remove("os-hide"), w.classList.add("os-hide"), h.dataset.background = "false", s == null || s.classList.add("os-hide");
       }), m == null || m.addEventListener("click", () => {
-        n.classList.remove("os-hide"), f.classList.add("os-hide"), w.classList.remove("os-hide"), h.dataset.background = "", s == null || s.classList.remove("os-hide");
+        n.classList.remove("os-hide"), g.classList.add("os-hide"), w.classList.remove("os-hide"), h.dataset.background = "", s == null || s.classList.remove("os-hide");
       });
     }
     addSlides() {
@@ -467,10 +467,10 @@
       const a = o(".os-prev"), x = o(".os-next"), p = document.querySelector(".swiper-container"), m = p == null ? void 0 : p.swiper;
       a == null || a.addEventListener("click", () => {
         if ((m == null ? void 0 : m.realIndex) === 1) {
-          const f = o("#estimate-bill"), w = o("#estimate-homeowner");
+          const g = o("#estimate-bill"), w = o("#estimate-homeowner");
           if (w.classList.contains("os-hide")) {
-            const i = o(".os-navigation").querySelector(".os-next"), b = o('#estimate-homeowner [data-step="1"]'), g = o('#estimate-homeowner [data-step="2"]');
-            f.classList.add("os-hide"), w.classList.remove("os-hide"), i == null || i.classList.add("os-hide"), b.classList.remove("os-hide"), g.classList.add("os-hide");
+            const i = o(".os-navigation").querySelector(".os-next"), b = o('#estimate-homeowner [data-step="1"]'), f = o('#estimate-homeowner [data-step="2"]');
+            g.classList.add("os-hide"), w.classList.remove("os-hide"), i == null || i.classList.add("os-hide"), b.classList.remove("os-hide"), f.classList.add("os-hide");
             return;
           }
         }
