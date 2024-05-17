@@ -17,7 +17,7 @@
     let i = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(i), window.clarity("set", c, "variant_1"));
     }, 1e3);
-  }, v = (c, i, r, n, t = 1e3, o = 0.5) => {
+  }, w = (c, i, r, n, t = 1e3, o = 0.5) => {
     let s, d;
     if (s = new IntersectionObserver(
       function(a) {
@@ -681,7 +681,7 @@ p.crs_tastes + p {
 }/*# sourceMappingURL=main.css.map */`;
   L({ name: "Enhancements on PDP and new Add to Cart notification", dev: "Olha" }), S("new_add_to_cart");
   const x = window.innerWidth < 991 ? "mobile" : "desktop";
-  class w {
+  class v {
     constructor(i) {
       this.device = i, this.isSelectorWrapper = this.device === "desktop" ? ".product-wrapper" : ".css-12a0csp", this.clickRemove = !1, this.clickAdd = !1, this.notExitPopup = !1, this.init();
     }
@@ -743,7 +743,7 @@ p.crs_tastes + p {
               let s = 1;
               p(".crs_arrow").forEach((d) => {
                 let a = d.classList.contains("crs_arrow_prev") ? "prev" : "next";
-                v(d, "exp_newaddtocart_vis_09", `View ${a} arrow`, "Product"), d.addEventListener("click", () => {
+                w(d, "exp_newaddtocart_vis_09", `View ${a} arrow`, "Product"), d.addEventListener("click", () => {
                   console.dir("click arrow slider (PDP)"), d.classList.contains("crs_arrow_next") && e(".css-12a0csp .next") ? (e(".css-12a0csp .next").click(), s += 1, l("exp_newaddtocart_click_06", "Next", "Button", "Product")) : d.classList.contains("crs_arrow_prev") && e(".css-12a0csp .prev") && (e(".css-12a0csp .prev").click(), s -= 1, l("exp_newaddtocart_click_07", "Prev", "Button", "Product")), e(".crs_arrow_prev").hidden = s <= 1, e(".crs_arrow_next").hidden = s >= i, e(".crs_tastes > span").innerHTML = s;
                 });
               });
@@ -794,7 +794,7 @@ p.crs_tastes + p {
           "mouseleave",
           function() {
             var n, t;
-            (i < 50 || r < 50 || i > window.innerWidth - 50 || r > window.innerHeight - 50) && (console.dir("leave mouse"), sessionStorage.getItem("exit_intent") == null && !e(".crs_notification") && ((t = (n = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : n.cart) == null ? void 0 : t.boxes[0]) != null && !window.location.href.includes("cart") && !window.location.href.includes("checkout") && (sessionStorage.setItem("exit_intent", "true"), new w(x).renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover")));
+            (i < 50 || r < 50 || i > window.innerWidth - 50 || r > window.innerHeight - 50) && (console.dir("leave mouse"), sessionStorage.getItem("exit_intent") == null && !e(".crs_notification") && ((t = (n = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : n.cart) == null ? void 0 : t.boxes[0]) != null && !window.location.href.includes("cart") && !window.location.href.includes("checkout") && (sessionStorage.setItem("exit_intent", "true"), new v(x).renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover")));
           },
           { once: !1 }
         );
@@ -818,7 +818,7 @@ p.crs_tastes + p {
         n.target.closest(".modal").querySelector(".product-wrapper") && l("exp_newaddtocart_click_05", "Close", "Button", "Product");
       }), l("exp_newaddtocart_vis_06", "View product", "Visibility", "Product"), l("exp_newaddtocart_vis_01", "View navigation", "Visibility", "Under the add to cart"), document.body.classList.add("crs_hide_cart"), p(".right-side section").forEach((n) => {
         let t = "View Nutrition Facts section";
-        n.querySelector("h3") && (t = n.querySelector("h3").innerText), v(n, "exp_newaddtocart_vis_08", t, "Product");
+        n.querySelector("h3") && (t = n.querySelector("h3").innerText), w(n, "exp_newaddtocart_vis_08", t, "Product");
       }), e(".modal .product-wrapper button.button.red") && l("exp_newaddtocart_vis_07", "View " + e(".modal .product-wrapper button.button.red").innerText + " button", "Visibility", "Product"), p(".crs_nav a").forEach((n) => {
         n.addEventListener("click", (t) => {
           t.preventDefault(), l("exp_newaddtocart_click_01", t.target.innerText, "Nav panel", "Under the add to cart");
@@ -858,7 +858,7 @@ p.crs_tastes + p {
     }
     changeElements() {
       var i;
-      if (e("#attentive_creativ") && e(".crs_notification") && !e("#attentive_creativ.crs_top") && e("#attentive_creativ").classList.add("crs_top"), p(".button").forEach((r, n) => {
+      if (e("#attentive_creativ") && (e(".crs_notification") && !e("#attentive_creativ.crs_top") && e("#attentive_creativ").classList.add("crs_top"), !e(".crs_notification") && e("#attentive_creativ.crs_top") && e("#attentive_creativ").classList.remove("crs_top")), p(".button").forEach((r, n) => {
         let t = r.innerText.toLowerCase();
         if (t.includes("to bag")) {
           let o = r.innerText;
@@ -924,5 +924,5 @@ p.crs_tastes + p {
       }, 200);
     }
   }
-  new w(x);
+  new v(x);
 })();
