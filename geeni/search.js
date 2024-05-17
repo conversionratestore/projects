@@ -1,44 +1,48 @@
 (function() {
   "use strict";
-  const h = (e, t, a, n = "") => {
+  const g = (e, t, n, a = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
       event_desc: t,
-      event_type: a,
-      event_loc: n
-    }), console.log(`Event: ${e} | ${t} | ${a} | ${n.replace(/  +/g, " ")}`);
+      event_type: n,
+      event_loc: a
+    }), console.log(`Event: ${e} | ${t} | ${n} | ${a.replace(/  +/g, " ")}`);
   }, S = ({ name: e, dev: t }) => {
     console.log(
       `%c EXP: ${e} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, F = (e) => {
+  }, T = (e) => {
     let t = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, s = (e) => new Promise((t) => {
-    const a = document.querySelector(e);
-    if (a)
-      return t(a);
-    const n = new MutationObserver(() => {
-      const r = document.querySelector(e);
-      r && (t(r), n.disconnect());
+  }, p = (e) => new Promise((t) => {
+    const n = document.querySelector(e);
+    if (n)
+      return t(n);
+    const a = new MutationObserver(() => {
+      const i = document.querySelector(e);
+      i && (t(i), a.disconnect());
     });
-    n.observe(document.documentElement, {
+    a.observe(document.documentElement, {
       childList: !0,
       subtree: !0
     });
-  }), x = "https://conversionratestore.github.io/projects/geeni/img/search";
-  let _ = !1;
-  const T = (
+  }), b = "https://conversionratestore.github.io/projects/geeni/img/search";
+  let v = !1;
+  const L = (
     /*html*/
     `
   <style>
     .shopify-section--marquee,
-    [data-nav-search-open]
-     {
+    [data-nav-search-open],
+    #NavStandard  [aria-label="Search"] {
       display: none !important;
+    }
+
+    .nav-search {
+      z-index: 9999999;
     }
 
     .site-header__background {
@@ -65,10 +69,6 @@
 
     #NavStandard {
       background: #F4F8F9;
-    }
-
-    #NavStandard  [aria-label="Search"] {
-      display: none;
     }
     
     #NavStandard {
@@ -191,11 +191,6 @@
       }
     }
 
-    /* Pause on hover */
-    .marquee--hover-pause:hover .marquee__content {
-      animation-play-state: paused;
-    }
-
     /* Search input */
     .search-input {
       display: flex;
@@ -239,7 +234,6 @@
       font-style: normal;
       font-weight: 600;
       line-height: 1; /* 153.846% */
-      text-transform: capitalize;
     }
 
     .search-input button {
@@ -296,6 +290,10 @@
       opacity: 0;
     }
 
+    .empty-space {
+      display: none;
+    }
+
     @media (min-width: 1023px) {
       #MainContent .search-input-wrapper {
         display: none;
@@ -309,11 +307,50 @@
       #PageContainer {
         padding-top: 137px !important;
       }
+ 
+      .has-scrolled .empty-space {
+        display: block;
+        height: 82px;
+      }
+    }
+
+    @media (max-width: 1023px) {
+      /* .has-scrolled .site-header--fixed {
+        animation: none;
+      } */
+
+      .has-scrolled .empty-space {
+        display: block;
+      }
+
+      .has-scrolled .search-input-wrapper {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        z-index: 999;
+        width: 100%;
+        margin-top: 0;
+        animation: showCompactHeader .3s ease;
+      }
+
+      [data-section-type="image-with-title"] .banner-inner.one-fifty-height.align--middle-center.bg-secondary {
+        height: initial !important;
+      }
+
+      [data-section-type="image-with-title"] .banner-inner.one-fifty-height.align--middle-center.bg-secondary .banner-inner,
+      [data-section-type="image-with-title"] .banner-inner.one-fifty-height.align--middle-center.bg-secondary .banner-content {
+        padding: 0 !important;
+      }
     }
 
     @media (max-width: 769px) {
       .search-input-wrapper {
         margin-top: 100px;
+      }
+
+      .has-scrolled  .empty-space {
+        display: block;
+        height: 174px;
       }
     }
 
@@ -325,25 +362,15 @@
         display: flex;
       }
 
-      .search-result {
-        margin-top: 0;
-        background: #fff;
-        padding: 20px var(--gutter-mobile) 0;
-      }
-
-      .search-page {
-        padding-top: 0;
-      }
-
-      .search-page p {
-        color: var(--Black, #000);
-        font-size: 20px;
-        font-weight: 500;
-        line-height: 28px; /* 140% */
-      }
-
       .new-nav {
         display: none;
+      }
+    }
+
+    @media (min-width: 768px) {
+        /* Pause on hover */
+      .marquee--hover-pause:hover .marquee__content {
+        animation-play-state: paused;
       }
     }
     
@@ -381,7 +408,6 @@
         font-size: 13px;
         font-style: normal;
         font-weight: 500;
-        text-transform: capitalize;
         margin: 0 12px;
       }
 
@@ -399,19 +425,18 @@
   </style>
 `
   );
-  F("exp_search_feature"), S({ name: "Introduces personalized search", dev: "AK" }), L();
-  function L() {
-    window.location.pathname.includes("/search") && E(), s("#NavStandard").then((t) => {
-    });
+  T("exp_search_feature"), S({ name: "Introduces personalized search", dev: "AK" }), document.head.insertAdjacentHTML("beforeend", L), I();
+  function I() {
+    window.location.pathname.includes("/search") && q();
     const e = setInterval(() => {
-      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(e), document.head.insertAdjacentHTML("beforeend", T), M(), A(), I(), q());
+      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(e), M(), A(), E(), B());
     }, 100);
-    s(".search-input").then(() => {
-      w(".search-input", "exp_search_feature_section_01", "Visibility", "Header");
+    p(".search-input").then(() => {
+      k(".search-input", "exp_search_feature_section_01", "Visibility", "Header");
     }), document.body.addEventListener("click", (t) => {
-      t.target.closest('[data-element="about-us"]') ? h("exp_search_feature_button_02", "About us", "Button", "Header") : t.target.closest(".back-nav__inner") && (h("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back());
-    }), s(".marquee").then(() => {
-      w(".marquee", "exp_search_feature_section_02", "Visibility", "Header");
+      t.target.closest('[data-element="about-us"]') ? g("exp_search_feature_button_02", "About us", "Button", "Header") : t.target.closest(".back-nav__inner") && (g("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back());
+    }), p(".marquee").then(() => {
+      k(".marquee", "exp_search_feature_section_02", "Visibility", "Header");
     });
   }
   function M() {
@@ -421,31 +446,31 @@
       ["1-Year Warranty on All Products", "check"],
       ["<b>FREE</b> Shipping orders over <b>$69</b>", "shipping"]
     ];
-    let a = Array(4).fill(e).flat();
-    const n = (
+    let n = Array(4).fill(e).flat();
+    const a = (
       /*html*/
       `
     <div>
-      <div class="marquee">
+      <div class="marquee marquee--hover-pause">
         <ul class="marquee__content">
-        ${a.map(([r, i]) => (
+        ${n.map(([i, o]) => (
         /*html*/
         `
                   <div class="marquee__item">
-                    <img src="${x}/${i}.svg" alt="">
-                    <p>${r}</p>
+                    <img src="${b}/${o}.svg" alt="">
+                    <p>${i}</p>
                   </div>
                 `
       )).join("")}
         </ul>
   
         <ul aria-hidden="true" class="marquee__content">
-          ${a.map(([r, i]) => (
+          ${n.map(([i, o]) => (
         /*html*/
         `
                   <div class="marquee__item">
-                    <img src="${x}/${i}.svg" alt="">
-                    <p>${r}</p>
+                    <img src="${b}/${o}.svg" alt="">
+                    <p>${i}</p>
                   </div>
                 `
       )).join("")}
@@ -454,16 +479,16 @@
     </div>  
   `
     );
-    document.getElementById("SiteHeader").insertAdjacentHTML("beforebegin", n);
+    document.getElementById("SiteHeader").insertAdjacentHTML("beforebegin", a);
   }
   function A() {
     const e = setInterval(() => {
       if (document.querySelectorAll("#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)")[3]) {
         clearInterval(e);
-        let t = document.querySelectorAll("#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)"), a = document.createElement("div");
-        a.className = "new-nav", t.forEach((n) => {
-          a.appendChild(n);
-        }), document.getElementById("SiteHeader").insertAdjacentElement("beforeend", a), s(".new-nav .menu__item.child:last-child").then((n) => n.insertAdjacentHTML(
+        let t = document.querySelectorAll("#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)"), n = document.createElement("div");
+        n.className = "new-nav", t.forEach((a) => {
+          n.appendChild(a);
+        }), document.getElementById("SiteHeader").insertAdjacentElement("beforeend", n), p(".new-nav .menu__item.child:last-child").then((a) => a.insertAdjacentHTML(
           "afterend",
           /*html*/
           `
@@ -472,7 +497,7 @@
         <span class="navtext">About us</span>
       </a>
     </div>`
-        )), s(".mobile-nav.mobile-nav--weight-bold").then((n) => n.insertAdjacentHTML(
+        )), p(".mobile-nav.mobile-nav--weight-bold").then((a) => a.insertAdjacentHTML(
           "beforeend",
           /*html*/
           `
@@ -486,7 +511,7 @@
       }
     }, 100);
   }
-  function I() {
+  function E() {
     const e = [
       "Geeni Look Indoor Camera",
       "Geeni Hawk 3 Outdoor Camera",
@@ -496,7 +521,7 @@
       "Geeni Lookout 2k Outdoor Camera",
       "Geeni Doorpeek Wired Doorbell",
       "Geeni Prisma Plus 800 Smart Bulb"
-    ], a = [...e, ...t], n = a[Math.floor(Math.random() * a.length)], i = (
+    ], n = [...e, ...t], a = n[Math.floor(Math.random() * n.length)], o = (
       /*html*/
       `
   <div class="search-input-wrapper">
@@ -510,61 +535,72 @@
     </div>
     <div class="search-input">
       <div class="search-input__data">
-        <div class="search-input__hot" ${e.includes(n) || Math.random() > 0.5 ? "" : 'style="display: none;"'}>
-          <img src="${x}/fire.svg" alt="">
+        <div class="search-input__hot" ${e.includes(a) || Math.random() > 0.5 ? "" : 'style="display: none;"'}>
+          <img src="${b}/fire.svg" alt="">
           <p>HOT</p>
         </div>
-        <input type="text" value="${n}" data-search-title="">
+        <input type="text" value="" data-search-title="">
       </div>
       <button class="search-btn">Search</button>
     </div>
   </div>
   `
     );
-    let k = document.getElementById("NavStandard"), y = document.getElementById("MainContent");
-    k.insertAdjacentHTML("beforeend", i), y.insertAdjacentHTML("afterbegin", i);
-    const m = (o) => {
-      let l = o.value;
-      const p = o.closest(".search-input").querySelector(".search-input__hot"), u = setInterval(() => {
-        var g;
-        if (_)
-          clearInterval(u);
+    let F = document.getElementById("NavStandard"), x = document.getElementById("MainContent");
+    F.insertAdjacentHTML("beforeend", o), x.insertAdjacentHTML("afterbegin", o), x.insertAdjacentHTML("afterbegin", '<div class="empty-space"></div>');
+    const m = (s) => {
+      console.log("changeInputValue");
+      let l = s.value;
+      const u = s.closest(".search-input").querySelector(".search-input__hot");
+      function c() {
+        var f;
+        if (v)
+          clearInterval(y);
         else {
-          let c;
+          let d;
           do
-            c = a[Math.floor(Math.random() * a.length)];
-          while (c === l);
-          o.value = c, (g = o.closest(".search-input__data")) == null || g.classList.add("opacity-0"), p && (e.includes(c) ? p.style.display = "flex" : p.style.display = Math.random() > 0.5 ? "" : "none"), l = c, setTimeout(() => {
-            var f;
-            (f = o.closest(".search-input__data")) == null || f.classList.remove("opacity-0");
+            d = n[Math.floor(Math.random() * n.length)];
+          while (d === l);
+          s.value = d, (f = s.closest(".search-input__data")) == null || f.classList.add("opacity-0"), u && (e.includes(d) ? u.style.display = "flex" : u.style.display = Math.random() > 0.5 ? "" : "none"), l = d, setTimeout(() => {
+            var r;
+            (r = s.closest(".search-input__data")) == null || r.classList.remove("opacity-0");
           }, 200);
         }
-      }, 3500);
-    }, b = setInterval(() => {
-      const o = document.querySelector("#NavStandard .search-btn"), l = document.querySelector("#NavStandard [data-search-title]"), p = document.querySelector("#MainContent .search-btn"), u = document.querySelector("#MainContent [data-search-title]");
-      if (o && l || p && u) {
-        clearInterval(b);
-        const g = (d) => {
-          const v = d.value, B = encodeURIComponent(v);
-          window.location.href = `https://mygeeni.com/search?q=${B}&type=product`;
-        }, c = (d) => {
-          d.addEventListener("input", function() {
-            _ || (this.value = "", _ = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none");
-          }), d.addEventListener("keypress", function(v) {
-            v.key === "Enter" && g(d);
-          }), d.addEventListener("focus", function() {
-            h("exp_search_feature_input_01", "Search", "Input", "Header");
+      }
+      c();
+      const y = setInterval(c, 3500);
+    }, _ = setInterval(() => {
+      const s = document.querySelector("#NavStandard .search-btn"), l = document.querySelector("#NavStandard [data-search-title]"), u = document.querySelector("#MainContent .search-btn"), c = document.querySelector("#MainContent [data-search-title]");
+      if (s && l || u && c) {
+        clearInterval(_);
+        const y = (r) => {
+          const h = r.value, w = encodeURIComponent(h);
+          window.location.href = `https://mygeeni.com/search?q=${w}&type=product`;
+        }, f = (r) => {
+          r.addEventListener("input", function(h) {
+            if (!v) {
+              const w = h.data || "";
+              this.value = w, v = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none";
+            }
+          }), r.addEventListener("keypress", function(h) {
+            h.key === "Enter" && y(r);
+          }), r.addEventListener("focus", function() {
+            g("exp_search_feature_input_01", "Search", "Input", "Header");
+          }), r.addEventListener("blur", function() {
+            setTimeout(() => {
+              this.value === "" && (console.log("Input has been empty for 5 seconds after losing focus"), v = !1, m(this));
+            }, 5e3);
           });
-        }, f = (d, v) => {
-          d.addEventListener("click", () => {
-            g(v), h("exp_search_feature_button_01", "Search", "Button", "Header");
+        }, d = (r, h) => {
+          r.addEventListener("click", () => {
+            y(h), g("exp_search_feature_button_01", "Search", "Button", "Header");
           });
         };
-        o && l && (c(l), f(o, l), m(l)), p && u && (c(u), f(p, u), m(u));
+        s && l && (f(l), d(s, l), m(l)), u && c && (f(c), d(u, c), m(c));
       }
     }, 100);
   }
-  function E() {
+  function q() {
     const t = new URLSearchParams(window.location.search).get("q");
     document.head.insertAdjacentHTML(
       "beforeend",
@@ -581,7 +617,8 @@
     background: #F4F8F9;
     padding: 24px;
     text-align: center;
-    margin-top: 49px;
+    /* margin-top: 49px; */
+    margin-bottom: 20px;
   }
 
   .search-result p {
@@ -593,6 +630,10 @@
     font-weight: 500;
     line-height: 40px; /* 125% */
     margin: 0;
+  }
+
+  #SearchPage {
+    padding-top: 0;
   }
 
   @media (max-width: 1023px) {
@@ -616,40 +657,58 @@
       line-height: 20px; /* 142.857% */
       margin: 0 16px 0 0;
     }
+
+    .search-result {
+      margin: 0;
+      background: #fff;
+      padding: 16px;
+      border-bottom: 1px solid #F4F8F9;
+    }
+
+    .search-page {
+      padding-top: 0;
+    }
+
+    .search-page p {
+      color: var(--Black, #000);
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 28px; /* 140% */
+    }
   }
 </style>
   `
-    ), s("#SearchPage .collection__wrapper").then((n) => {
-      const r = (
+    ), p("#SearchPage .collection__wrapper").then((a) => {
+      const i = (
         /*html*/
         `
     <div class="search-result">
       <p>${document.querySelectorAll(".product-grid-item").length || "0"} Search Results for: “${t}”</p>
     </div>`
       );
-      n.insertAdjacentHTML("afterbegin", r);
+      a.insertAdjacentHTML("afterbegin", i);
     });
   }
-  function q() {
-    s('[href="/account"]').then((e) => e.insertAdjacentHTML(
+  function B() {
+    p('[href="/account"]').then((e) => e.insertAdjacentHTML(
       "beforeend",
       /*html*/
       '<span class="log">Login</span>'
     ));
   }
-  function w(e, t, a, n) {
-    let r = null;
-    s(e).then((i) => {
-      i && new IntersectionObserver((y) => {
-        y.forEach((m) => {
+  function k(e, t, n, a) {
+    let i = null;
+    p(e).then((o) => {
+      o && new IntersectionObserver((x) => {
+        x.forEach((m) => {
           if (m.isIntersecting && m.intersectionRatio >= 0.5)
-            r = performance.now();
-          else if (r) {
-            const b = ((performance.now() - r) / 1e3).toFixed(2);
-            h(t, b, a, n), r = null;
+            i = performance.now();
+          else if (i) {
+            const _ = ((performance.now() - i) / 1e3).toFixed(2);
+            g(t, _, n, a), i = null;
           }
         });
-      }, { threshold: 0.5 }).observe(i);
+      }, { threshold: 0.5 }).observe(o);
     });
   }
 })();
