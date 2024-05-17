@@ -668,7 +668,7 @@ p.crs_tastes + p {
     -webkit-appearance: none;
             appearance: none;
   }
-  #attentive_creative {
+  #attentive_creativ.crs_top {
     top: auto !important;
     bottom: 248px !important;
   }
@@ -858,7 +858,7 @@ p.crs_tastes + p {
     }
     changeElements() {
       var i;
-      if (p(".button").forEach((r, n) => {
+      if (e("#attentive_creativ") && e(".crs_notification") && !e("#attentive_creativ.crs_top") && e("#attentive_creativ").classList.add("crs_top"), p(".button").forEach((r, n) => {
         let t = r.innerText.toLowerCase();
         if (t.includes("to bag")) {
           let o = r.innerText;
