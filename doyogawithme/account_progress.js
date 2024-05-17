@@ -185,6 +185,8 @@
               #main-content {
                 z-index: 3;
               }
+              .crs_form .user-form__alternate-action,
+              .sfc-nodePlayable__primaryContentContainer .sfc-nodePlayableVideo,
               .password-suggestions,
               .ac-newsletter-reg-suffix,
               .field--widget-boolean-checkbox,
@@ -269,9 +271,6 @@
                 right: auto;
                 opacity: 0.3;
               }
-              // .crs_form .shwpd.eye-open {
-              //   opacity: 0.9;
-              // }
               .crs_form_container > div a {
                   font-size: 18px;
                   line-height: 26px;
@@ -304,9 +303,23 @@
                   font-weight: 500;
                   line-height: 24px; 
               }
+              .crs_block .sfc-nodePlayable__lockCta {
+                  border-radius: 30px;
+                  padding: 0;
+                  background: var(--Green-main, #017922);
+                  line-height: 52px;
+                  display: block;
+                  max-width: 320px;
+                  margin: 0 auto;
+                  color: #FFF;
+                  text-align: center;
+                  font-size: 18px;
+                  font-style: normal;
+                  font-weight: 700;
+                  text-transform: capitalize;
+              }
               .crs_form .sfc-nodePlayable__lockCta {
                   max-width: 350px;
-                  color: #FFF;
                   width: 100%;
                   margin: 0;
                   border: none;
@@ -425,6 +438,7 @@
                     flex-direction: row!Important;
                     justify-content: center;
                     align-items: center;
+                    margin-bottom: 14px!important;
                   }
                   .h-captcha iframe {
                     margin-left: 55px;
@@ -570,12 +584,10 @@
       )
         return;
   
-      let authorized = $el('[data-drupal-link-system-path="yogi/login"]')
-        ? false
-        : true;
+      let authorized = !$el('[data-drupal-link-system-path="yogi/login"]')
   
       this.thisClass = $el(
-        ".sfc-nodePlayable__lockContainerInner header > .sfc-item__headline"
+        ".sfc-nodePlayable__primaryContentContainer h3"
       )?.innerHTML.includes("premium")
         ? "Premium"
         : "free";
@@ -720,9 +732,9 @@
     }
   
     addElementBecomeSubscriber() {
-      let selector = this.device == "mobile" ?  $el("#promoteSubscriptionWrap") : $el(".new_box_subscriber");
+      let selector = this.device == "mobile" ?  $el("#promoteSubscriptionWrap") : $el("#block-samsara-content");
 
-      if (localStorage.getItem("isClass") && selector.querySelector('h2')) {
+      if (localStorage.getItem("isClass") && selector?.querySelector('h2')) {
         let isClass = localStorage.getItem("isClass");
         let referrerInfo = localStorage.getItem('referrerInfo');
   
@@ -731,7 +743,7 @@
           insert(
             selector,
             `<style>
-                  .new_box_subscriber {
+                  #block-samsara-content {
                       position: relative;
                   }
                   .crs_back {
@@ -745,6 +757,7 @@
                       line-height: 26px;
                       display: flex;
                       align-items: center;
+                      z-index: 1;
                   }
                   a.crs_back:hover, 
                   a.crs_back:active {
@@ -754,6 +767,9 @@
                   .crs_back svg {
                       flex-shrink: 0;
                       margin-right: 12px;
+                  }
+                  .messages--status {
+                    z-index: 1;
                   }
                   @media(max-width: 767px) {
                     .crs_back {
@@ -771,7 +787,7 @@
           })
         } else if (isClass == 'Premium') {
           insert(
-            this.device == "mobile" ? selector.querySelector('h2') : selector,
+            this.device == "mobile" ? selector.querySelector('h2') : selector.querySelector('h1'),
             `<style>
                   .crs_browse_free {
                       color: var(--white, #FFF);
@@ -803,7 +819,7 @@
                   }
               </style>
               <a href="https://www.doyogawithme.com/yoga-classes?field_subscribers_only_value=1&sort_by=created" class="crs_browse_free">Browse free classes${dataIcons.arrowRight}</a>`,
-              this.device == "mobile" ? "afterend" : "beforeend"
+              "afterend"
           );
           $el('.crs_browse_free').addEventListener('click', () => {
             pushDataLayer('exp_trailvideo_button_09', 'Browse free classes', 'Button', 'Page Begin Your Transformation with a Free Trial of our Premium Yoga Classes Unauthorised Free class');
