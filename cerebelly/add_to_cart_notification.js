@@ -137,12 +137,7 @@
     display: flex;
     flex-direction: column-reverse;
   }
-}/*# sourceMappingURL=base.css.map */`, z = `#attentive_overlay {
-  top: auto !important;
-  bottom: 248px !important;
-}
-
-.crs_notification {
+}/*# sourceMappingURL=base.css.map */`, z = `.crs_notification {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -672,6 +667,10 @@ p.crs_tastes + p {
     display: none;
     -webkit-appearance: none;
             appearance: none;
+  }
+  #attentive_overlay {
+    top: auto !important;
+    bottom: 248px !important;
   }
 }
 @media (max-width: 360px) {
