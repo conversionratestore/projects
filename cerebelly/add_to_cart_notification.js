@@ -122,7 +122,7 @@
   </ul>
 </nav>`, P = `
 <button type="button" class="crs_arrow crs_arrow_prev" hidden>${f.arrowLeftSlide}</button>
-<button type="button" class="crs_arrow crs_arrow_next" hidden>${f.arrowRightSlide}</button>`, q = (c) => `<p class="crs_tastes"><span>1</span> of ${c} tastes<p>`, T = `.items-center {
+<button type="button" class="crs_arrow crs_arrow_next" hidden>${f.arrowRightSlide}</button>`, q = (c) => `<p class="crs_tastes"><span>1</span> of ${c} flavors<p>`, T = `.items-center {
   display: flex;
   align-items: center;
 }
@@ -137,7 +137,12 @@
     display: flex;
     flex-direction: column-reverse;
   }
-}/*# sourceMappingURL=base.css.map */`, z = `.crs_notification {
+}/*# sourceMappingURL=base.css.map */`, z = `#attentive_overlay {
+  top: auto !important;
+  bottom: 248px !important;
+}
+
+.crs_notification {
   position: fixed;
   bottom: 0;
   left: 0;
