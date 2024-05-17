@@ -206,7 +206,7 @@
                 width: 100%;
               }
               .crs_block {
-                  padding: 32px 14px 24px;
+                  padding: 32px 14px 16px;
                   position: absolute;
                   left: 50%;
                   top: 50%;
@@ -732,7 +732,7 @@
     }
   
     addElementBecomeSubscriber() {
-      let selector = this.device == "mobile" ?  $el("#promoteSubscriptionWrap") : $el("#block-samsara-content");
+      let selector = $el("#block-samsara-content");
 
       if (localStorage.getItem("isClass") && selector?.querySelector('h2')) {
         let isClass = localStorage.getItem("isClass");
@@ -796,9 +796,10 @@
                       font-weight: 600;
                       line-height: normal;
                       text-decoration-line: underline;
-                      margin: 0 auto -15px;
-                      display: block;
+                      margin: 22px auto -12px;
+                      display: flex;
                       width: fit-content;
+                      align-items: center;
                   }
                   .crs_browse_free svg {
                       flex-shrink: 0;

@@ -668,7 +668,7 @@ p.crs_tastes + p {
     -webkit-appearance: none;
             appearance: none;
   }
-  #attentive_overlay {
+  #attentive_creative {
     top: auto !important;
     bottom: 248px !important;
   }
@@ -780,7 +780,7 @@ p.crs_tastes + p {
       });
     }
     resizeOfferPdp() {
-      if (!e(".css-5nnxvq .product-image-wrapper img") && !e(".css-5nnxvq .action-wrapper h2"))
+      if (!e(".css-5nnxvq .product-image-wrapper img") || !e(".css-5nnxvq .action-wrapper"))
         return;
       let i = 0;
       x === "mobile" ? i = "76px - 24px - 48px" + (window.location.href.includes("bundle") ? " - 28px" : "") : i = "67px - 66px - 34px" + (window.location.href.includes("bundle") ? " - 68px" : ""), console.dir("-----------------"), console.dir(window.innerHeight), console.dir(e(".css-5nnxvq .action-wrapper").clientHeight), console.dir("-----------------"), e(".css-5nnxvq .product-image-wrapper img").style = `height: calc(${window.innerHeight}px - ${i} - ${e(".css-5nnxvq .action-wrapper").clientHeight}px`;
