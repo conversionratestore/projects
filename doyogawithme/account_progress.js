@@ -182,6 +182,9 @@
     initBlock() {
       const style = `
           <style>
+              .o-page__header {
+                z-index: 4;
+              }
               #main-content {
                 z-index: 3;
               }
@@ -392,6 +395,9 @@
                   color: var(--Green-main, #017922);
                   text-decoration-line: underline;
               }
+              .crs_form .form-item {
+                margin-bottom: 14px!important;
+              }
               .items-center {
                   display: flex;
                   align-items: center;
@@ -438,7 +444,6 @@
                     flex-direction: row!Important;
                     justify-content: center;
                     align-items: center;
-                    margin-bottom: 14px!important;
                   }
                   .h-captcha iframe {
                     margin-left: 55px;
@@ -773,9 +778,16 @@
                   }
                   @media(max-width: 767px) {
                     .crs_back {
-                      position: initial;
-                      margin-bottom: 16px;
-                      margin-left: 16px;
+                      top: 16px;
+                    }
+                    #block-samsara-content .sfc-becomeASubscriber__section--hero  {
+                      padding-top: 60px !important;
+                    }
+                    [data-drupal-messages] + #block-samsara-content .crs_back {
+                      top: 32px;
+                    }
+                    [data-drupal-messages] + #block-samsara-content .sfc-becomeASubscriber__section--hero {
+                      padding-top: 70px !important;
                     }
                   }
               </style>
@@ -787,8 +799,12 @@
           })
         } else if (isClass == 'Premium') {
           insert(
-            this.device == "mobile" ? selector.querySelector('h2') : selector.querySelector('h1'),
+            selector.querySelector('h1'),
             `<style>
+
+                  .messages--status {
+                    z-index: 1;
+                  }
                   .crs_browse_free {
                       color: var(--white, #FFF);
                       font-size: 16px;
@@ -815,7 +831,7 @@
                   }
                   @media(max-width: 767px) {
                     a.crs_browse_free {
-                      margin: -6px auto 16px;
+                      margin: 14px auto -14px;
                     }
                   }
               </style>
