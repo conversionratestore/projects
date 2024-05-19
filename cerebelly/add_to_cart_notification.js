@@ -781,7 +781,7 @@ p.crs_tastes + p {
       if (!t(".css-5nnxvq .product-image-wrapper img") || !t(".css-5nnxvq .action-wrapper"))
         return;
       let i = 0;
-      m === "mobile" ? i = "76px - 24px - 48px" + (window.location.href.includes("bundle") ? " - 28px" : "") : i = "67px - 66px - 34px" + (window.location.href.includes("bundle") ? " - 68px" : ""), t(".css-5nnxvq .product-image-wrapper img").style = `height: calc(${window.innerHeight}px - ${i} - ${t(".css-5nnxvq .action-wrapper").clientHeight}px`;
+      m === "mobile" ? i = "76px - 24px - 48px" + (window.location.href.includes("bundle") ? " - 28px" : "") : i = "67px - 66px - 34px" + (window.location.href.includes("bundle") ? " - 68px - 28px" : ""), t(".css-5nnxvq .product-image-wrapper img").style = `height: calc(${window.innerHeight}px - ${i} - ${t(".css-5nnxvq .action-wrapper").clientHeight}px`;
     }
     exitIntent() {
       if (console.dir("exitIntent start"), this.device === "desktop") {
