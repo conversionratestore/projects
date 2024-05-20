@@ -122,7 +122,7 @@
   </ul>
 </nav>`, T = `
 <button type="button" class="crs_arrow crs_arrow_prev" hidden>${g.arrowLeftSlide}</button>
-<button type="button" class="crs_arrow crs_arrow_next" hidden>${g.arrowRightSlide}</button>`, j = (a) => `<p class="crs_tastes"><span>1</span> of ${a} flavors<p>`, z = `.items-center {
+<button type="button" class="crs_arrow crs_arrow_next" hidden>${g.arrowRightSlide}</button>`, z = (a) => `<p class="crs_tastes"><span>1</span> of ${a} flavors<p>`, j = `.items-center {
   display: flex;
   align-items: center;
 }
@@ -132,8 +132,8 @@
   justify-content: space-between;
 }
 
-@media (min-width: 768px) {
-  .flex-md-column-reverse {
+@media (min-width: 992px) {
+  .flex-lg-column-reverse {
     display: flex;
     flex-direction: column-reverse;
   }
@@ -514,6 +514,11 @@ p.crs_tastes + p {
   max-height: none;
 }
 
+.css-ylm3vf .cart-wrapper .cart-product-wrapper .cart-product .cart-product-reset {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 @media (min-width: 992px) {
   .modal .css-12a0csp .product-wrapper {
     padding: 0 20px;
@@ -687,7 +692,7 @@ p.crs_tastes + p {
       if (!t(".crs_style") && !t(".crs_script")) {
         let e = document.createElement("script");
         e.src = "https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js", e.async = !1, e.className = "crs_script", document.head.appendChild(e), document.head.insertAdjacentHTML("beforeend", `
-      <style class="crs_style">${z + B}</style>`);
+      <style class="crs_style">${j + B}</style>`);
       }
       E(this.device === "desktop" ? 20 : 10).then((e) => {
         var r;
@@ -737,7 +742,7 @@ p.crs_tastes + p {
           let o = window.location.href.split("/"), n = o[o.length - 1].split("?")[0], e = b[i];
           for (let r = 0; r < e.length; r++)
             if (e[r] == n) {
-              t(".product-image-wrapper").insertAdjacentHTML("afterbegin", j(i)), t(".product-image-wrapper").insertAdjacentHTML("beforebegin", T), t(".crs_arrow_next").hidden = !1;
+              t(".product-image-wrapper").insertAdjacentHTML("afterbegin", z(i)), t(".product-image-wrapper").insertAdjacentHTML("beforebegin", T), t(".crs_arrow_next").hidden = !1;
               let s = 1;
               p(".crs_arrow").forEach((l) => {
                 let d = l.classList.contains("crs_arrow_prev") ? "prev" : "next";
