@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const g = (e, t, n, a = "") => {
+  const m = (e, t, n, a = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
@@ -8,16 +8,16 @@
       event_type: n,
       event_loc: a
     }), console.log(`Event: ${e} | ${t} | ${n} | ${a.replace(/  +/g, " ")}`);
-  }, S = ({ name: e, dev: t }) => {
+  }, T = ({ name: e, dev: t }) => {
     console.log(
       `%c EXP: ${e} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, T = (e) => {
+  }, F = (e) => {
     let t = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, p = (e) => new Promise((t) => {
+  }, l = (e) => new Promise((t) => {
     const n = document.querySelector(e);
     if (n)
       return t(n);
@@ -29,7 +29,7 @@
       childList: !0,
       subtree: !0
     });
-  }), b = "https://conversionratestore.github.io/projects/geeni/img/search";
+  }), _ = "https://conversionratestore.github.io/projects/geeni/img/search";
   let v = !1;
   const L = (
     /*html*/
@@ -405,7 +405,7 @@
 
       .search-input input {
         color: var(--Grey-800, #4A4A4A);
-        font-size: 13px;
+        font-size: 16px;
         font-style: normal;
         font-weight: 500;
         margin: 0 12px;
@@ -425,21 +425,23 @@
   </style>
 `
   );
-  T("exp_search_feature"), S({ name: "Introduces personalized search", dev: "AK" }), document.head.insertAdjacentHTML("beforeend", L), I();
-  function I() {
+  F("exp_search_feature"), T({ name: "Introduces personalized search", dev: "AK" }), document.head.insertAdjacentHTML("beforeend", L), M();
+  function M() {
     window.location.pathname.includes("/search") && q();
     const e = setInterval(() => {
-      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(e), M(), A(), E(), B());
+      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(e), I(), A(), E(), B());
     }, 100);
-    p(".search-input").then(() => {
-      k(".search-input", "exp_search_feature_section_01", "Visibility", "Header");
+    l("#MainContent .search-input").then(() => {
+      b("#MainContent .search-input", "exp_search_feature_section_01", "Visibility", "Header");
+    }), l("#NavStandard .search-input").then(() => {
+      b("#NavStandard .search-input", "exp_search_feature_section_01", "Visibility", "Header");
     }), document.body.addEventListener("click", (t) => {
-      t.target.closest('[data-element="about-us"]') ? g("exp_search_feature_button_02", "About us", "Button", "Header") : t.target.closest(".back-nav__inner") && (g("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back());
-    }), p(".marquee").then(() => {
-      k(".marquee", "exp_search_feature_section_02", "Visibility", "Header");
+      t.target.closest('[data-element="about-us"]') ? m("exp_search_feature_button_02", "About us", "Button", "Header") : t.target.closest(".back-nav__inner") ? (m("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back()) : t.target.closest(".menu__item") && m("exp_search_feature_button_02", `${t.target.closest(".menu__item").querySelector("span").innerText}`, "Button", "Header");
+    }), l(".marquee").then(() => {
+      b(".marquee", "exp_search_feature_section_02", "Visibility", "Header");
     });
   }
-  function M() {
+  function I() {
     const e = [
       ["Millions of Users", "smile"],
       ["<b>4.8</b> Stars with over <b>400.000</b> reviews", "star"],
@@ -457,7 +459,7 @@
         /*html*/
         `
                   <div class="marquee__item">
-                    <img src="${b}/${o}.svg" alt="">
+                    <img src="${_}/${o}.svg" alt="">
                     <p>${i}</p>
                   </div>
                 `
@@ -469,7 +471,7 @@
         /*html*/
         `
                   <div class="marquee__item">
-                    <img src="${b}/${o}.svg" alt="">
+                    <img src="${_}/${o}.svg" alt="">
                     <p>${i}</p>
                   </div>
                 `
@@ -488,20 +490,20 @@
         let t = document.querySelectorAll("#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)"), n = document.createElement("div");
         n.className = "new-nav", t.forEach((a) => {
           n.appendChild(a);
-        }), document.getElementById("SiteHeader").insertAdjacentElement("beforeend", n), p(".new-nav .menu__item.child:last-child").then((a) => a.insertAdjacentHTML(
+        }), document.getElementById("SiteHeader").insertAdjacentElement("beforeend", n), l(".new-nav .menu__item.child:last-child").then((a) => a.insertAdjacentHTML(
           "afterend",
           /*html*/
           `
-    <div class="menu__item child" data-element="about-us" data-nav-item="" data-hover-disclosure-toggle="">
+    <div class="menu__item child" data-nav-item="" data-hover-disclosure-toggle="">
       <a href="/pages/about-us-and-contact-us" data-top-link="" class="navlink navlink--toplevel">
         <span class="navtext">About us</span>
       </a>
     </div>`
-        )), p(".mobile-nav.mobile-nav--weight-bold").then((a) => a.insertAdjacentHTML(
+        )), l(".mobile-nav.mobile-nav--weight-bold").then((a) => a.insertAdjacentHTML(
           "beforeend",
           /*html*/
           `
-      <li class="mobile-menu__item mobile-menu__item--level-1">
+      <li class="mobile-menu__item mobile-menu__item--level-1" data-element="about-us">
           <a href="/pages/about-us-and-contact-us" class="mobile-navlink mobile-navlink--level-1">
             About us
           </a>
@@ -536,7 +538,7 @@
     <div class="search-input">
       <div class="search-input__data">
         <div class="search-input__hot" ${e.includes(a) || Math.random() > 0.5 ? "" : 'style="display: none;"'}>
-          <img src="${b}/fire.svg" alt="">
+          <img src="${_}/fire.svg" alt="">
           <p>HOT</p>
         </div>
         <input type="text" value="" data-search-title="">
@@ -546,57 +548,56 @@
   </div>
   `
     );
-    let F = document.getElementById("NavStandard"), x = document.getElementById("MainContent");
-    F.insertAdjacentHTML("beforeend", o), x.insertAdjacentHTML("afterbegin", o), x.insertAdjacentHTML("afterbegin", '<div class="empty-space"></div>');
-    const m = (s) => {
-      console.log("changeInputValue");
-      let l = s.value;
+    let S = document.getElementById("NavStandard"), x = document.getElementById("MainContent");
+    S.insertAdjacentHTML("beforeend", o), x.insertAdjacentHTML("afterbegin", o), x.insertAdjacentHTML("afterbegin", '<div class="empty-space"></div>');
+    const g = (s) => {
+      let c = s.value;
       const u = s.closest(".search-input").querySelector(".search-input__hot");
-      function c() {
+      function d() {
         var f;
         if (v)
           clearInterval(y);
         else {
-          let d;
+          let p;
           do
-            d = n[Math.floor(Math.random() * n.length)];
-          while (d === l);
-          s.value = d, (f = s.closest(".search-input__data")) == null || f.classList.add("opacity-0"), u && (e.includes(d) ? u.style.display = "flex" : u.style.display = Math.random() > 0.5 ? "" : "none"), l = d, setTimeout(() => {
+            p = n[Math.floor(Math.random() * n.length)];
+          while (p === c);
+          s.value = p, (f = s.closest(".search-input__data")) == null || f.classList.add("opacity-0"), u && (e.includes(p) ? u.style.display = "flex" : u.style.display = Math.random() > 0.5 ? "" : "none"), c = p, setTimeout(() => {
             var r;
             (r = s.closest(".search-input__data")) == null || r.classList.remove("opacity-0");
           }, 200);
         }
       }
-      c();
-      const y = setInterval(c, 3500);
-    }, _ = setInterval(() => {
-      const s = document.querySelector("#NavStandard .search-btn"), l = document.querySelector("#NavStandard [data-search-title]"), u = document.querySelector("#MainContent .search-btn"), c = document.querySelector("#MainContent [data-search-title]");
-      if (s && l || u && c) {
-        clearInterval(_);
+      d();
+      const y = setInterval(d, 3500);
+    }, w = setInterval(() => {
+      const s = document.querySelector("#NavStandard .search-btn"), c = document.querySelector("#NavStandard [data-search-title]"), u = document.querySelector("#MainContent .search-btn"), d = document.querySelector("#MainContent [data-search-title]");
+      if (s && c || u && d) {
+        clearInterval(w);
         const y = (r) => {
-          const h = r.value, w = encodeURIComponent(h);
-          window.location.href = `https://mygeeni.com/search?q=${w}&type=product`;
+          const h = r.value, k = encodeURIComponent(h);
+          window.location.href = `https://mygeeni.com/search?q=${k}&type=product`;
         }, f = (r) => {
           r.addEventListener("input", function(h) {
             if (!v) {
-              const w = h.data || "";
-              this.value = w, v = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none";
+              const k = h.data || "";
+              this.value = k, v = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none";
             }
           }), r.addEventListener("keypress", function(h) {
             h.key === "Enter" && y(r);
           }), r.addEventListener("focus", function() {
-            g("exp_search_feature_input_01", "Search", "Input", "Header");
+            m("exp_search_feature_input_01", "Search", "Input", "Header");
           }), r.addEventListener("blur", function() {
             setTimeout(() => {
-              this.value === "" && (console.log("Input has been empty for 5 seconds after losing focus"), v = !1, m(this));
+              this.value === "" && (console.log("Input has been empty for 5 seconds after losing focus"), v = !1, g(this));
             }, 5e3);
           });
-        }, d = (r, h) => {
+        }, p = (r, h) => {
           r.addEventListener("click", () => {
-            y(h), g("exp_search_feature_button_01", "Search", "Button", "Header");
+            y(h), m("exp_search_feature_button_01", "Search", "Button", "Header");
           });
         };
-        s && l && (f(l), d(s, l), m(l)), u && c && (f(c), d(u, c), m(c));
+        s && c && (f(c), p(s, c), g(c)), u && d && (f(d), p(u, d), g(d));
       }
     }, 100);
   }
@@ -678,34 +679,34 @@
   }
 </style>
   `
-    ), p("#SearchPage .collection__wrapper").then((a) => {
-      const i = (
+    ), l("#SearchPage .collection__wrapper .pagination").then(() => {
+      const a = (
         /*html*/
         `
     <div class="search-result">
       <p>${document.querySelectorAll(".product-grid-item").length || "0"} Search Results for: “${t}”</p>
     </div>`
       );
-      a.insertAdjacentHTML("afterbegin", i);
+      document.querySelector("#SearchPage .collection__wrapper").insertAdjacentHTML("afterbegin", a);
     });
   }
   function B() {
-    p('[href="/account"]').then((e) => e.insertAdjacentHTML(
+    l('[href="/account"]').then((e) => e.insertAdjacentHTML(
       "beforeend",
       /*html*/
       '<span class="log">Login</span>'
     ));
   }
-  function k(e, t, n, a) {
+  function b(e, t, n, a) {
     let i = null;
-    p(e).then((o) => {
+    l(e).then((o) => {
       o && new IntersectionObserver((x) => {
-        x.forEach((m) => {
-          if (m.isIntersecting && m.intersectionRatio >= 0.5)
+        x.forEach((g) => {
+          if (g.isIntersecting && g.intersectionRatio >= 0.5)
             i = performance.now();
           else if (i) {
-            const _ = ((performance.now() - i) / 1e3).toFixed(2);
-            g(t, _, n, a), i = null;
+            const w = ((performance.now() - i) / 1e3).toFixed(2);
+            m(t, w, n, a), i = null;
           }
         });
       }, { threshold: 0.5 }).observe(o);
