@@ -431,10 +431,10 @@
     const e = setInterval(() => {
       document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(e), I(), A(), E(), B());
     }, 100);
-    l("#MainContent .search-input").then(() => {
-      b("#MainContent .search-input", "exp_search_feature_section_01", "Visibility", "Header");
-    }), l("#NavStandard .search-input").then(() => {
-      b("#NavStandard .search-input", "exp_search_feature_section_01", "Visibility", "Header");
+    l("#MainContent .search-input-wrapper .search-input").then(() => {
+      console.log("MainContent search input"), b("#MainContent .search-input-wrapper .search-input", "exp_search_feature_section_01", "Visibility", "Header");
+    }), l("#NavStandard .search-input-wrapper .search-input").then(() => {
+      b("#NavStandard .search-input-wrapper .search-input", "exp_search_feature_section_01", "Visibility", "Header");
     }), document.body.addEventListener("click", (t) => {
       t.target.closest('[data-element="about-us"]') ? m("exp_search_feature_button_02", "About us", "Button", "Header") : t.target.closest(".back-nav__inner") ? (m("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back()) : t.target.closest(".menu__item") && m("exp_search_feature_button_02", `${t.target.closest(".menu__item").querySelector("span").innerText}`, "Button", "Header");
     }), l(".marquee").then(() => {
@@ -713,4 +713,3 @@
     });
   }
 })();
-//# sourceMappingURL=index.js.map
