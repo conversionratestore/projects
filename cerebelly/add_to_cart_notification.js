@@ -36,7 +36,7 @@
       c && s.observe(c);
     } else
       s.observe(a);
-  }, x = (a) => new Promise((i) => {
+  }, g = (a) => new Promise((i) => {
     if (t(a))
       return i(t(a));
     const r = new MutationObserver(() => {
@@ -678,7 +678,7 @@ p.crs_tastes + p {
   }
 }/*# sourceMappingURL=main.css.map */`;
   L({ name: "Enhancements on PDP and new Add to Cart notification", dev: "Olha" }), C("new_add_to_cart");
-  const m = window.innerWidth < 991 ? "mobile" : "desktop";
+  const x = window.innerWidth < 991 ? "mobile" : "desktop";
   class v {
     constructor(i) {
       this.device = i, this.isSelectorWrapper = this.device === "desktop" ? ".product-wrapper" : ".css-12a0csp", this.clickRemove = !1, this.clickAdd = !1, this.notExitPopup = !1, this.init();
@@ -701,17 +701,17 @@ p.crs_tastes + p {
           this.notExitPopup = !1;
         }, 500);
       };
-      x(".e-nav .mobile-cart-box").then((e) => {
+      g(".e-nav .mobile-cart-box").then((e) => {
         e.addEventListener("click", (o) => {
           document.body.classList.remove("crs_hide_cart");
         }), document.body.classList.add("crs_hide_cart"), document.addEventListener("click", (o) => {
           i(), !o.target.closest(".modal") && !o.target.closest(".mobile-cart-box") && o.currentTarget && o.currentTarget.classList && !o.currentTarget.classList.contains("button") && document.body.classList.add("crs_hide_cart");
         });
-      }), x(".pageContainer .product").then((e) => {
+      }), g(".pageContainer .product").then((e) => {
         p(".sidebar a").forEach((o) => {
           o.addEventListener("click", (s) => i());
         });
-      }), x(".css-8z7pw4 .custom .default-close").then((e) => {
+      }), g(".css-8z7pw4 .custom .default-close").then((e) => {
         e.addEventListener("click", (o) => {
           document.body.classList.add("crs_hide_cart");
         });
@@ -781,7 +781,7 @@ p.crs_tastes + p {
       if (!t(".css-5nnxvq .product-image-wrapper img") || !t(".css-5nnxvq .action-wrapper"))
         return;
       let i = 0;
-      m === "mobile" ? i = "76px - 24px - 48px" + (window.location.href.includes("bundle") ? " - 28px" : "") : i = "67px - 66px - 34px" + (window.location.href.includes("bundle") ? " - 68px - 28px" : ""), t(".css-5nnxvq .product-image-wrapper img").style = `height: calc(${window.innerHeight}px - ${i} - ${t(".css-5nnxvq .action-wrapper").clientHeight}px`;
+      x === "mobile" ? i = "76px - 24px - 48px" + (window.location.href.includes("bundle") ? " - 28px" : "") : i = "67px - 66px - 34px" + (window.location.href.includes("bundle") ? " - 68px - 28px" : ""), t(".css-5nnxvq .product-image-wrapper img").style = `height: calc(${window.innerHeight}px - ${i} - ${t(".css-5nnxvq .action-wrapper").clientHeight}px`;
     }
     exitIntent() {
       if (console.dir("exitIntent start"), this.device === "desktop") {
@@ -792,7 +792,7 @@ p.crs_tastes + p {
           "mouseleave",
           function() {
             var n, e;
-            (i < 50 || r < 50 || i > window.innerWidth - 50 || r > window.innerHeight - 50) && (console.dir("leave mouse"), sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && ((e = (n = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : n.cart) == null ? void 0 : e.boxes[0]) != null && !window.location.href.includes("cart") && !window.location.href.includes("checkout") && (sessionStorage.setItem("exit_intent", "true"), new v(m).renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover")));
+            (i < 50 || r < 50 || i > window.innerWidth - 50 || r > window.innerHeight - 50) && (console.dir("leave mouse"), sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && ((e = (n = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : n.cart) == null ? void 0 : e.boxes[0]) != null && !window.location.href.includes("cart") && !window.location.href.includes("checkout") && (sessionStorage.setItem("exit_intent", "true"), new v(x).renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover")));
           },
           { once: !1 }
         );
@@ -802,9 +802,9 @@ p.crs_tastes + p {
           let s = o == "window" ? window.scrollY : t(o).scrollTop;
           n = s - r, r = s, (n > i || n < -i) && sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && !t(".css-m18cj1") && ((c = (d = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : d.cart) == null ? void 0 : c.boxes[0]) != null && this.notExitPopup === !1 && !window.location.href.includes("cart") && !window.location.href.includes("checkout") && (console.dir(n), sessionStorage.setItem("exit_intent", "true"), this.renderNotification(), l("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"), o == "window" ? document.removeEventListener("scroll", () => e()) : t(o).removeEventListener("scroll", e()));
         };
-        document.addEventListener("scroll", () => e()), x(this.isSelectorWrapper).then((o) => {
+        document.addEventListener("scroll", () => e()), g(this.isSelectorWrapper).then((o) => {
           t(".modal " + this.isSelectorWrapper).addEventListener("scroll", () => {
-            e(this.isSelectorWrapper);
+            e(this.isSelectorWrapper), this.checkAttentiveCreativ();
           });
         });
       }
@@ -847,15 +847,15 @@ p.crs_tastes + p {
         }), s !== -1 && o.forEach(function(d, c) {
           if (c === s) {
             d.classList.add("active");
-            const g = t(".crs_nav ul"), u = d.getBoundingClientRect(), f = g.getBoundingClientRect();
-            u.left < f.left ? g.scrollLeft -= f.left - u.left : u.right > f.right && (g.scrollLeft += u.right - f.right);
+            const m = t(".crs_nav ul"), u = d.getBoundingClientRect(), f = m.getBoundingClientRect();
+            u.left < f.left ? m.scrollLeft -= f.left - u.left : u.right > f.right && (m.scrollLeft += u.right - f.right);
           } else
             d.classList.remove("active");
         });
       });
     }
     checkAttentiveCreativ() {
-      t("#attentive_overlay") && (t(".crs_notification") && !t("#attentive_overlay.crs_top") && t("#attentive_overlay").classList.add("crs_top"), !t(".crs_notification") && t("#attentive_overlay.crs_top") && t("#attentive_overlay").classList.remove("crs_top"));
+      t("#attentive_overlay") && this.device === "mobile" && (t(".crs_notification") && !t("#attentive_overlay.crs_top") && t("#attentive_overlay").classList.add("crs_top"), !t(".crs_notification") && t("#attentive_overlay.crs_top") && t("#attentive_overlay").classList.remove("crs_top"), t(".bar-product-image") && (t(".scrolled .bar-product-image") ? t("#attentive_overlay iframe") && !t(".crs_notification") && t("#attentive_overlay iframe").style.bottom == "16px" && (t("#attentive_overlay iframe").style.bottom = t(".bar-product-image").clientHeight + "px") : t("#attentive_overlay iframe").style.bottom != "16px" && (t("#attentive_overlay iframe").style.bottom = "16px")));
     }
     changeElements() {
       var i;
@@ -915,15 +915,15 @@ p.crs_tastes + p {
       setTimeout(() => {
         var i, r, n, e;
         if (((r = (i = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : i.cart) == null ? void 0 : r.boxes[0]) != null) {
-          const o = (e = (n = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : n.cart) == null ? void 0 : e.boxes, s = Object.keys(o), d = s[s.length - 1], c = o[d], g = c.image.includes("https") ? c.image : "https://cerebelly.com/wp-json/cerebelly/image/get?path=" + c.image;
+          const o = (e = (n = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : n.cart) == null ? void 0 : e.boxes, s = Object.keys(o), d = s[s.length - 1], c = o[d], m = c.image.includes("https") ? c.image : "https://cerebelly.com/wp-json/cerebelly/image/get?path=" + c.image;
           let u = {};
           p(".product").forEach((f) => {
             var y, k;
             f.querySelector(".title").innerText.includes(c.title) && (u.type = ((y = f.querySelector(".quantity")) == null ? void 0 : y.innerHTML) || ((k = f.querySelector(".desktop")) == null ? void 0 : k.innerHTML.replace(" | ", "")));
-          }), u.title = c.title, u.image = g, u.price = c.price, u.count = parseInt(d) + 1, console.dir(u), localStorage.setItem("data_notification", JSON.stringify(u));
+          }), u.title = c.title, u.image = m, u.price = c.price, u.count = parseInt(d) + 1, console.dir(u), localStorage.setItem("data_notification", JSON.stringify(u));
         }
       }, 200);
     }
   }
-  new v(m);
+  new v(x);
 })();
