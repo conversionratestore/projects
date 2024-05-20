@@ -719,7 +719,7 @@ p.crs_tastes + p {
       let r = window.location.href;
       const n = new MutationObserver((e) => {
         var o, s;
-        r != window.location.href && (r = window.location.href, document.body.classList.add("crs_hide_cart")), this.navigation(), this.changeElements(), document.body.style.overflow = this.checkPageUrl() === "pdp" ? "hidden" : "", ((s = (o = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : o.cart) == null ? void 0 : s.boxes[0]) == null && t(".crs_notification") && t(".crs_notification").remove(), window.location.href.includes("/bundle") && this.addTastes(), n.disconnect(), n.observe(document.body, {
+        r != window.location.href && (r = window.location.href, document.body.classList.add("crs_hide_cart")), this.navigation(), this.changeElements(), window.location.href.includes("/bundle") && this.addTastes(), document.body.style.overflow = this.checkPageUrl() === "pdp" ? "hidden" : "", ((s = (o = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : o.cart) == null ? void 0 : s.boxes[0]) == null && t(".crs_notification") && t(".crs_notification").remove(), n.disconnect(), n.observe(document.body, {
           childList: !0,
           subtree: !0,
           attributes: !0
@@ -734,7 +734,7 @@ p.crs_tastes + p {
     addTastes() {
       if (!t(".crs_tastes") && t(".product-image-wrapper"))
         for (let i in _) {
-          let r = window.location.href.split("/"), n = r[r.length - 1], e = _[i];
+          let r = window.location.href.split("/"), n = r[r.length - 1].split("?")[0], e = _[i];
           for (let o = 0; o < e.length; o++)
             if (e[o] == n) {
               t(".product-image-wrapper").insertAdjacentHTML("afterbegin", T(i)), t(".product-image-wrapper").insertAdjacentHTML("beforebegin", q), t(".crs_arrow_next").hidden = !1;
