@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const m = (e, t, n, a = "") => {
+  const h = (e, t, n, a = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
@@ -13,11 +13,11 @@
       `%c EXP: ${e} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, F = (e) => {
+  }, S = (e) => {
     let t = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, l = (e) => new Promise((t) => {
+  }, m = (e) => new Promise((t) => {
     const n = document.querySelector(e);
     if (n)
       return t(n);
@@ -31,7 +31,7 @@
     });
   }), _ = "https://conversionratestore.github.io/projects/geeni/img/search";
   let v = !1;
-  const L = (
+  const F = (
     /*html*/
     `
   <style>
@@ -421,24 +421,19 @@
         text-transform: uppercase;
       }
     }
-
   </style>
 `
   );
-  F("exp_search_feature"), T({ name: "Introduces personalized search", dev: "AK" }), document.head.insertAdjacentHTML("beforeend", L), M();
-  function M() {
-    window.location.pathname.includes("/search") && q();
+  S("exp_search_feature"), T({ name: "Introduces personalized search", dev: "AK" }), document.head.insertAdjacentHTML("beforeend", F), L();
+  function L() {
+    window.location.pathname.includes("/search") && E();
     const e = setInterval(() => {
-      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(e), I(), A(), E(), B());
+      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(e), I(), A(), M(), q());
     }, 100);
-    l("#MainContent .search-input-wrapper .search-input").then(() => {
-      console.log("MainContent search input"), b("#MainContent .search-input-wrapper .search-input", "exp_search_feature_section_01", "Visibility", "Header");
-    }), l("#NavStandard .search-input-wrapper .search-input").then(() => {
-      b("#NavStandard .search-input-wrapper .search-input", "exp_search_feature_section_01", "Visibility", "Header");
-    }), document.body.addEventListener("click", (t) => {
-      t.target.closest('[data-element="about-us"]') ? m("exp_search_feature_button_02", "About us", "Button", "Header") : t.target.closest(".back-nav__inner") ? (m("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back()) : t.target.closest(".menu__item") && m("exp_search_feature_button_02", `${t.target.closest(".menu__item").querySelector("span").innerText}`, "Button", "Header");
-    }), l(".marquee").then(() => {
-      b(".marquee", "exp_search_feature_section_02", "Visibility", "Header");
+    document.body.addEventListener("click", (t) => {
+      t.target.closest('[data-element="about-us"]') ? h("exp_search_feature_button_04", "About us", "Button", "Slide menu") : t.target.closest(".back-nav__inner") ? (h("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back()) : t.target.closest(".menu__item") && h("exp_search_feature_button_02", `${t.target.closest(".menu__item").querySelector("span").innerText}`, "Button", "Header");
+    }), m(".marquee").then(() => {
+      B(".marquee", "exp_search_feature_section_02", "Visibility", "Header");
     });
   }
   function I() {
@@ -490,7 +485,7 @@
         let t = document.querySelectorAll("#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)"), n = document.createElement("div");
         n.className = "new-nav", t.forEach((a) => {
           n.appendChild(a);
-        }), document.getElementById("SiteHeader").insertAdjacentElement("beforeend", n), l(".new-nav .menu__item.child:last-child").then((a) => a.insertAdjacentHTML(
+        }), document.getElementById("SiteHeader").insertAdjacentElement("beforeend", n), m(".new-nav .menu__item.child:last-child").then((a) => a.insertAdjacentHTML(
           "afterend",
           /*html*/
           `
@@ -499,7 +494,7 @@
         <span class="navtext">About us</span>
       </a>
     </div>`
-        )), l(".mobile-nav.mobile-nav--weight-bold").then((a) => a.insertAdjacentHTML(
+        )), m(".mobile-nav.mobile-nav--weight-bold").then((a) => a.insertAdjacentHTML(
           "beforeend",
           /*html*/
           `
@@ -513,7 +508,7 @@
       }
     }, 100);
   }
-  function E() {
+  function M() {
     const e = [
       "Geeni Look Indoor Camera",
       "Geeni Hawk 3 Outdoor Camera",
@@ -548,60 +543,60 @@
   </div>
   `
     );
-    let S = document.getElementById("NavStandard"), x = document.getElementById("MainContent");
-    S.insertAdjacentHTML("beforeend", o), x.insertAdjacentHTML("afterbegin", o), x.insertAdjacentHTML("afterbegin", '<div class="empty-space"></div>');
+    let k = document.getElementById("NavStandard"), x = document.getElementById("MainContent");
+    k.insertAdjacentHTML("beforeend", o), x.insertAdjacentHTML("afterbegin", o), x.insertAdjacentHTML("afterbegin", '<div class="empty-space"></div>');
     const g = (s) => {
-      let c = s.value;
-      const u = s.closest(".search-input").querySelector(".search-input__hot");
-      function d() {
+      let l = s.value;
+      const p = s.closest(".search-input").querySelector(".search-input__hot");
+      function c() {
         var f;
         if (v)
           clearInterval(y);
         else {
-          let p;
+          let d;
           do
-            p = n[Math.floor(Math.random() * n.length)];
-          while (p === c);
-          s.value = p, (f = s.closest(".search-input__data")) == null || f.classList.add("opacity-0"), u && (e.includes(p) ? u.style.display = "flex" : u.style.display = Math.random() > 0.5 ? "" : "none"), c = p, setTimeout(() => {
+            d = n[Math.floor(Math.random() * n.length)];
+          while (d === l);
+          s.value = d, (f = s.closest(".search-input__data")) == null || f.classList.add("opacity-0"), p && (e.includes(d) ? p.style.display = "flex" : p.style.display = Math.random() > 0.5 ? "" : "none"), l = d, setTimeout(() => {
             var r;
             (r = s.closest(".search-input__data")) == null || r.classList.remove("opacity-0");
           }, 200);
         }
       }
-      d();
-      const y = setInterval(d, 3500);
-    }, w = setInterval(() => {
-      const s = document.querySelector("#NavStandard .search-btn"), c = document.querySelector("#NavStandard [data-search-title]"), u = document.querySelector("#MainContent .search-btn"), d = document.querySelector("#MainContent [data-search-title]");
-      if (s && c || u && d) {
-        clearInterval(w);
+      c();
+      const y = setInterval(c, 3500);
+    }, b = setInterval(() => {
+      const s = document.querySelector("#NavStandard .search-btn"), l = document.querySelector("#NavStandard [data-search-title]"), p = document.querySelector("#MainContent .search-btn"), c = document.querySelector("#MainContent [data-search-title]");
+      if (s && l || p && c) {
+        clearInterval(b);
         const y = (r) => {
-          const h = r.value, k = encodeURIComponent(h);
-          window.location.href = `https://mygeeni.com/search?q=${k}&type=product`;
+          const u = r.value, w = encodeURIComponent(u);
+          window.location.href = `https://mygeeni.com/search?q=${w}&type=product`;
         }, f = (r) => {
-          r.addEventListener("input", function(h) {
+          r.addEventListener("input", function(u) {
             if (!v) {
-              const k = h.data || "";
-              this.value = k, v = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none";
+              const w = u.data || "";
+              this.value = w, v = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none";
             }
-          }), r.addEventListener("keypress", function(h) {
-            h.key === "Enter" && y(r);
+          }), r.addEventListener("keypress", function(u) {
+            u.key === "Enter" && y(r);
           }), r.addEventListener("focus", function() {
-            m("exp_search_feature_input_01", "Search", "Input", "Header");
+            h("exp_search_feature_input_01", "Search", "Input", "Header");
           }), r.addEventListener("blur", function() {
             setTimeout(() => {
               this.value === "" && (console.log("Input has been empty for 5 seconds after losing focus"), v = !1, g(this));
             }, 5e3);
           });
-        }, p = (r, h) => {
+        }, d = (r, u) => {
           r.addEventListener("click", () => {
-            y(h), m("exp_search_feature_button_01", "Search", "Button", "Header");
+            y(u), h("exp_search_feature_button_01", "Search", "Button", "Header");
           });
         };
-        s && c && (f(c), p(s, c), g(c)), u && d && (f(d), p(u, d), g(d));
+        s && l && (f(l), d(s, l), g(l)), p && c && (f(c), d(p, c), g(c));
       }
     }, 100);
   }
-  function q() {
+  function E() {
     const t = new URLSearchParams(window.location.search).get("q");
     document.head.insertAdjacentHTML(
       "beforeend",
@@ -679,7 +674,7 @@
   }
 </style>
   `
-    ), l("#SearchPage .collection__wrapper .pagination").then(() => {
+    ), m("#SearchPage .collection__wrapper .pagination").then(() => {
       const a = (
         /*html*/
         `
@@ -690,26 +685,27 @@
       document.querySelector("#SearchPage .collection__wrapper").insertAdjacentHTML("afterbegin", a);
     });
   }
-  function B() {
-    l('[href="/account"]').then((e) => e.insertAdjacentHTML(
+  function q() {
+    m('[href="/account"]').then((e) => e.insertAdjacentHTML(
       "beforeend",
       /*html*/
       '<span class="log">Login</span>'
     ));
   }
-  function b(e, t, n, a) {
+  function B(e, t, n, a) {
     let i = null;
-    l(e).then((o) => {
+    m(e).then((o) => {
       o && new IntersectionObserver((x) => {
         x.forEach((g) => {
           if (g.isIntersecting && g.intersectionRatio >= 0.5)
             i = performance.now();
           else if (i) {
-            const w = ((performance.now() - i) / 1e3).toFixed(2);
-            m(t, w, n, a), i = null;
+            const b = ((performance.now() - i) / 1e3).toFixed(2);
+            h(t, b, n, a), i = null;
           }
         });
       }, { threshold: 0.5 }).observe(o);
     });
   }
 })();
+//# sourceMappingURL=index.js.map
