@@ -692,6 +692,7 @@
   right: 8px;
 }
 
+.css-12a0csp p.crs_tastes,
 p.crs_tastes {
   color: #FC4D38;
   text-align: center;
@@ -703,6 +704,7 @@ p.crs_tastes {
   text-transform: uppercase;
   margin-bottom: 8px;
 }
+.css-12a0csp p.crs_tastes + p,
 p.crs_tastes + p {
   display: none;
 }
@@ -821,6 +823,7 @@ p.crs_tastes + p {
   .crs_arrow_.next {
     right: 24px;
   }
+  .css-12a0csp p.crs_tastes,
   p.crs_tastes {
     font-size: 18px;
   }

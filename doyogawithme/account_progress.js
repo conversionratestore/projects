@@ -143,10 +143,10 @@
         if (pageUrl.includes("/content/")) {
           this.initBlock();
 
-          if ($el('.crs_form input.password-field') && this.thisClass != '') {
+          if ($el('.crs_form .form-item-pass input') && this.thisClass != '') {
             $el('.crs_form input.form-email').placeholder = 'Your email';
             $el('.crs_form input.username').placeholder = 'Your username';
-            $el('.crs_form input.password-field').placeholder = 'Password';
+            $el('.crs_form .form-item-pass input').placeholder = 'Password';
           
             $$el('.crs_form input').forEach((input, index) => {
               input.addEventListener('click', (e) => {
