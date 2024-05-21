@@ -1142,7 +1142,7 @@ p.crs_tastes + p {
           _.type = ((o = t(".cart-product .product-count")) == null ? void 0 : o.innerText) || ((s = JSON.parse(localStorage.getItem("data_notification"))) == null ? void 0 : s.type), k(".product").forEach((S) => {
             var L, u, h;
             (L = S == null ? void 0 : S.querySelector(".title")) != null && L.innerText.includes(l.title) && (_.type = ((u = S.querySelector(".quantity")) == null ? void 0 : u.innerHTML) || ((h = S.querySelector(".desktop")) == null ? void 0 : h.innerHTML.replace(" | ", "")));
-          }), _.title = l.title, _.image = b, _.price = l.price, _.count = parseInt(w) + 1, console.dir(_), localStorage.setItem("data_notification", JSON.stringify(_));
+          }), _.title = l.title || "", _.image = b, _.price = l.price, _.count = parseInt(w) + 1, console.dir(_), localStorage.setItem("data_notification", JSON.stringify(_));
         }
       }, 200);
     }
