@@ -25,17 +25,17 @@
       }));
     }, 1e3);
   }, E = (a, e, n, i, r = 1e3, o = 0.5) => {
-    let s, l;
+    let s, c;
     if (s = new IntersectionObserver(
       function(f) {
-        f[0].isIntersecting === !0 ? l = setTimeout(() => {
+        f[0].isIntersecting === !0 ? c = setTimeout(() => {
           g(
             e,
             f[0].target.dataset.visible || n || "",
             "Visibility",
             i
           ), s.disconnect();
-        }, r) : (console.log("Element is not fully visible"), clearTimeout(l));
+        }, r) : (console.log("Element is not fully visible"), clearTimeout(c));
       },
       { threshold: [o] }
     ), typeof a == "string") {
@@ -132,7 +132,7 @@
 <button type="button" class="crs_arrow crs_arrow_next" hidden>${C.arrowRightSlide}</button>`, H = (a) => `<p class="crs_tastes"><span>1</span> of ${a} flavors<p>`;
   var D = function() {
     var e = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {}, n = e.wnd, i = n === void 0 ? window : n;
-    (function(r, o, s, l, f, w, c, b) {
+    (function(r, o, s, c, f, w, l, b) {
       var _ = function(u) {
         return u in r ? (r.console && r.console.log && r.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].'), !1) : !0;
       }(s);
@@ -167,7 +167,7 @@
           then: y
         };
       }
-      c = r[s] = function() {
+      l = r[s] = function() {
         var u = function(v, y, d, p) {
           p = p || 2;
           function m(Q, tt) {
@@ -188,7 +188,7 @@
           function h(y) {
             typeof y[4] == "function" && y[4](new Error(u));
           }
-          var x = c.q;
+          var x = l.q;
           if (x) {
             for (var v = 0; v < x.length; v++)
               h(x[v]);
@@ -196,16 +196,16 @@
           }
         };
       }(), function() {
-        w = o.createElement(l), w.async = !0, w.crossOrigin = "anonymous", w.src = "https://" + f, w.onerror = function() {
+        w = o.createElement(c), w.async = !0, w.crossOrigin = "anonymous", w.src = "https://" + f, w.onerror = function() {
           b("Error loading " + f);
         };
-        var u = o.getElementsByTagName(l)[0];
+        var u = o.getElementsByTagName(c)[0];
         u.parentNode.insertBefore(w, u);
       }(), function() {
         function u() {
         }
         function h(d, p, m) {
-          c(d, p, m, 1);
+          l(d, p, m, 1);
         }
         function x(d, p, m) {
           h("setProperties", {
@@ -221,38 +221,38 @@
             uid: d
           }, m), p && v(p, m);
         }
-        c.identify = y, c.setUserVars = v, c.identifyAccount = u, c.clearUserCookie = u, c.setVars = x, c.event = function(d, p, m) {
+        l.identify = y, l.setUserVars = v, l.identifyAccount = u, l.clearUserCookie = u, l.setVars = x, l.event = function(d, p, m) {
           h("trackEvent", {
             name: d,
             properties: p
           }, m);
-        }, c.anonymize = function() {
+        }, l.anonymize = function() {
           y(!1);
-        }, c.shutdown = function() {
+        }, l.shutdown = function() {
           h("shutdown");
-        }, c.restart = function() {
+        }, l.restart = function() {
           h("restart");
-        }, c.log = function(d, p) {
+        }, l.log = function(d, p) {
           h("log", {
             level: d,
             msg: p
           });
-        }, c.consent = function(d) {
+        }, l.consent = function(d) {
           h("setIdentity", {
             consent: !arguments.length || d
           });
         };
       }(), function() {
         var u = "fetch", h = "XMLHttpRequest";
-        c._w = {}, c._w[h] = r[h], c._w[u] = r[u], r[u] && (r[u] = function() {
-          return c._w[u].apply(this, arguments);
+        l._w = {}, l._w[h] = r[h], l._w[u] = r[u], r[u] && (r[u] = function() {
+          return l._w[u].apply(this, arguments);
         });
-      }(), c._v = "2.0.0";
+      }(), l._v = "2.0.0";
     })(i, i.document, i._fs_namespace, "script", i._fs_script);
   }, J = function(e) {
     return e === "window" ? "document" : "".concat(e, ".document");
   }, U = function() {
-    var e = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {}, n = e.shouldInsertScript, i = n === void 0 ? !0 : n, r = e.globalVar, o = r === void 0 ? "window" : r, s = e.apiVersion, l = s === void 0 ? "1.3.0" : s;
+    var e = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {}, n = e.shouldInsertScript, i = n === void 0 ? !0 : n, r = e.globalVar, o = r === void 0 ? "window" : r, s = e.apiVersion, c = s === void 0 ? "1.3.0" : s;
     return `(function(m,n,e,t,l,o,g,y){
     if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;}
     g=m[e]=function(a,b,s){g.q?g.q.push([a,b,s]):g._api(a,b,s);};g.q=[];`.concat(i ? `
@@ -268,10 +268,10 @@
     g.setVars=function(n, p){g('setVars',[n,p]);};
     g._w={};y='XMLHttpRequest';g._w[y]=m[y];y='fetch';g._w[y]=m[y];
     if(m[y])m[y]=function(){return g._w[y].apply(this,arguments)};
-    g._v="`).concat(l, `";
+    g._v="`).concat(c, `";
 })(`).concat(o, ",").concat(J(o), ",").concat(o, "['_fs_namespace'],'script','user');");
   }, W = function(e) {
-    var n = e.orgId, i = e.namespace, r = i === void 0 ? "FS" : i, o = e.host, s = o === void 0 ? "fullstory.com" : o, l = e.script, f = l === void 0 ? "edge.fullstory.com/s/fs.js" : l;
+    var n = e.orgId, i = e.namespace, r = i === void 0 ? "FS" : i, o = e.host, s = o === void 0 ? "fullstory.com" : o, c = e.script, f = c === void 0 ? "edge.fullstory.com/s/fs.js" : c;
     if (!n)
       throw new Error("FullStory orgId is a required parameter");
     window._fs_host = s, window._fs_script = f, window._fs_org = n, window._fs_namespace = r, D();
@@ -936,21 +936,21 @@ p.crs_tastes + p {
         o.addEventListener("click", (s) => {
           document.body.classList.remove("crs_hide_cart");
         }), document.body.classList.add("crs_hide_cart"), document.addEventListener("click", (s) => {
-          var l, f, w, c, b;
-          if (e(), !s.target.closest(".modal") && !s.target.closest(".mobile-cart-box") && !s.target.closest(".cart-product") ? document.body.classList.add("crs_hide_cart") : (s.target.closest(".default-close") || s.target.closest(".default-close-container")) && this.clickAdd === !1 ? (document.body.classList.add("crs_hide_cart"), g("exp_newaddtocart_click_08", "Close", "Button", `Cart ${((f = (l = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : l.cart) == null ? void 0 : f.boxes[0]) != null ? "" : "empty"} popover`)) : s.target.closest(".css-jobqsc") && s.target.classList.contains("red") ? g("exp_newaddtocart_click_09", "Shop all", "Button", "Cart empty popover") : s.target.closest(".cart-product-reset") ? (g("exp_newaddtocart_click_10", `Remove "${s.target.closest(".cart-product-info").querySelector(".title").innerHTML.split("<span")[0]}"`, "Button", "Cart popover"), t(".modal.css-w1q39a .cart-product") || (n = 0), this.updateDataNotification()) : s.target.classList.contains("checkout") ? g("exp_newaddtocart_click_11", "Checkout", "Button", "Cart popover") : s.target.classList.contains("continue") ? g("exp_newaddtocart_click_12", "Continue shopping", "Button", "Cart popover") : s.target.closest(".added-container") && (g("exp_newaddtocart_click_13", `${s.target.closest("button").getAttribute("aria-label")}`, "Button", "Cart popover"), t(".modal.css-w1q39a .cart-product") || (n = 0), this.updateDataNotification()), t(".modal.css-w1q39a") ? n == 0 && (n = 1, E(t(".modal.css-w1q39a"), "exp_newaddtocart_vis_10", "View slide in cart", `Cart ${((c = (w = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : w.cart) == null ? void 0 : c.boxes[0]) == null ? "empty" : ""} popover`)) : n = 0, s.target.closest(".remove") || s.target.classList.contains("remove")) {
+          var c, f, w, l, b;
+          if (e(), !s.target.closest(".modal") && !s.target.closest(".mobile-cart-box") && !s.target.closest(".cart-product") ? document.body.classList.add("crs_hide_cart") : (s.target.closest(".default-close") || s.target.closest(".default-close-container")) && this.clickAdd === !1 ? (document.body.classList.add("crs_hide_cart"), g("exp_newaddtocart_click_08", "Close", "Button", `Cart ${((f = (c = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : c.cart) == null ? void 0 : f.boxes[0]) != null ? "" : "empty"} popover`)) : s.target.closest(".css-jobqsc") && s.target.classList.contains("red") ? g("exp_newaddtocart_click_09", "Shop all", "Button", "Cart empty popover") : s.target.closest(".cart-product-reset") ? (g("exp_newaddtocart_click_10", `Remove "${s.target.closest(".cart-product-info").querySelector(".title").innerHTML.split("<span")[0]}"`, "Button", "Cart popover"), t(".modal.css-w1q39a .cart-product") || (n = 0), this.updateDataNotification()) : s.target.classList.contains("checkout") ? g("exp_newaddtocart_click_11", "Checkout", "Button", "Cart popover") : s.target.classList.contains("continue") ? g("exp_newaddtocart_click_12", "Continue shopping", "Button", "Cart popover") : s.target.closest(".added-container") && (g("exp_newaddtocart_click_13", `${s.target.closest("button").getAttribute("aria-label")}`, "Button", "Cart popover"), t(".modal.css-w1q39a .cart-product") || (n = 0), this.updateDataNotification()), t(".modal.css-w1q39a") ? n == 0 && (n = 1, E(t(".modal.css-w1q39a"), "exp_newaddtocart_vis_10", "View slide in cart", `Cart ${((l = (w = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : w.cart) == null ? void 0 : l.boxes[0]) == null ? "empty" : ""} popover`)) : n = 0, s.target.closest(".remove") || s.target.classList.contains("remove")) {
             let _ = JSON.parse(localStorage.getItem("data_notification"));
             s.target.closest(".added-container").querySelector(".remove").getAttribute("aria-label").toLowerCase().trim().includes(_ == null ? void 0 : _.title.toLowerCase().trim()) && ((b = t(".crs_notification")) == null || b.remove(), this.updateDataNotification());
           }
         });
       }), I(".pageContainer .product").then((o) => {
         k(".sidebar a").forEach((s) => {
-          s.addEventListener("click", (l) => e());
+          s.addEventListener("click", (c) => e());
         });
       }), this.exitIntent();
       let i = window.location.href;
       const r = new MutationObserver((o) => {
-        var s, l;
-        i != window.location.href && (i = window.location.href, document.body.classList.add("crs_hide_cart")), this.navigation(), this.changeElements(), window.location.href.includes("/bundle") && this.addTastes(), document.body.style.overflow = this.checkPageUrl() === "pdp" ? "hidden" : "", ((l = (s = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : s.cart) == null ? void 0 : l.boxes[0]) == null && t(".crs_notification") && t(".crs_notification").remove(), r.disconnect(), r.observe(document.body, {
+        var s, c;
+        i != window.location.href && (i = window.location.href, document.body.classList.add("crs_hide_cart")), this.navigation(), this.changeElements(), window.location.href.includes("/bundle") && this.addTastes(), document.body.style.overflow = this.checkPageUrl() === "pdp" ? "hidden" : "", ((c = (s = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : s.cart) == null ? void 0 : c.boxes[0]) == null && t(".crs_notification") && t(".crs_notification").remove(), r.disconnect(), r.observe(document.body, {
           childList: !0,
           subtree: !0,
           attributes: !0
@@ -970,10 +970,10 @@ p.crs_tastes + p {
             if (r[o] == i) {
               t(".css-5nnxvq").insertAdjacentHTML("afterbegin", H(e)), t(".css-5nnxvq").insertAdjacentHTML("afterbegin", R), t(".crs_arrow_next").hidden = !1;
               let s = 1;
-              k(".crs_arrow").forEach((l) => {
-                let f = l.classList.contains("crs_arrow_prev") ? "prev" : "next";
-                E(l, "exp_newaddtocart_vis_09", `View ${f} arrow`, "Product"), l.addEventListener("click", () => {
-                  l.classList.contains("crs_arrow_next") && t(".css-12a0csp .next") ? (t(".css-12a0csp .next").click(), s += 1, g("exp_newaddtocart_click_06", "Next", "Button", "Product")) : l.classList.contains("crs_arrow_prev") && t(".css-12a0csp .prev") && (t(".css-12a0csp .prev").click(), s -= 1, g("exp_newaddtocart_click_07", "Prev", "Button", "Product")), t(".crs_arrow_prev").hidden = s <= 1, t(".crs_arrow_next").hidden = s >= e, t(".crs_tastes > span").innerHTML = s;
+              k(".crs_arrow").forEach((c) => {
+                let f = c.classList.contains("crs_arrow_prev") ? "prev" : "next";
+                E(c, "exp_newaddtocart_vis_09", `View ${f} arrow`, "Product"), c.addEventListener("click", () => {
+                  c.classList.contains("crs_arrow_next") && t(".css-12a0csp .next") ? (t(".css-12a0csp .next").click(), s += 1, g("exp_newaddtocart_click_06", "Next", "Button", "Product")) : c.classList.contains("crs_arrow_prev") && t(".css-12a0csp .prev") && (t(".css-12a0csp .prev").click(), s -= 1, g("exp_newaddtocart_click_07", "Prev", "Button", "Product")), t(".crs_arrow_prev").hidden = s <= 1, t(".crs_arrow_next").hidden = s >= e, t(".crs_tastes > span").innerHTML = s;
                 });
               });
             }
@@ -1015,7 +1015,7 @@ p.crs_tastes + p {
       z === "mobile" ? e = "76px - 24px - 48px" + (window.location.href.includes("bundle") ? " - 28px" : "") : e = "67px - 66px - 34px" + (window.location.href.includes("bundle") ? " - 68px - 28px" : ""), t(".css-5nnxvq picture img").style = `height: calc(${window.innerHeight}px - ${e} - ${t(".css-5nnxvq .action-wrapper").clientHeight}px`;
     }
     exitIntent() {
-      if (console.dir("exitIntent start"), this.device === "desktop") {
+      if (this.device === "desktop") {
         let e = 0, n = 0;
         window.addEventListener("mousemove", function(i) {
           e = i.clientX, n = i.clientY;
@@ -1023,15 +1023,15 @@ p.crs_tastes + p {
           "mouseleave",
           function() {
             var i, r;
-            (e < 50 || n < 50 || e > window.innerWidth - 50 || n > window.innerHeight - 50) && (console.dir("leave mouse"), sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && ((r = (i = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : i.cart) == null ? void 0 : r.boxes[0]) != null && !window.location.href.includes("cart") && !window.location.href.includes("checkout") && (sessionStorage.setItem("exit_intent", "true"), new T(z).renderNotification(), g("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover")));
+            (e < 50 || n < 50 || e > window.innerWidth - 50 || n > window.innerHeight - 50) && sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && ((r = (i = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : i.cart) == null ? void 0 : r.boxes[0]) != null && !window.location.href.includes("cart") && !window.location.href.includes("checkout") && (sessionStorage.setItem("exit_intent", "true"), new T(z).renderNotification(), g("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"));
           },
           { once: !1 }
         );
       } else {
         let e = (/android/i.test(navigator.userAgent), 120), n = 0, i = 0, r = (o = "window") => {
-          var l, f;
+          var c, f;
           let s = o == "window" ? window.scrollY : t(o).scrollTop;
-          i = s - n, n = s, (i > e || i < -e) && sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && !t(".css-m18cj1") && ((f = (l = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : l.cart) == null ? void 0 : f.boxes[0]) != null && this.notExitPopup === !1 && !window.location.href.includes("cart") && !window.location.href.includes("checkout") && (console.dir(i), sessionStorage.setItem("exit_intent", "true"), this.renderNotification(), g("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"), o == "window" ? document.removeEventListener("scroll", () => r()) : t(o).removeEventListener("scroll", r()));
+          i = s - n, n = s, (i > e || i < -e) && sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && !t(".css-m18cj1") && ((f = (c = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : c.cart) == null ? void 0 : f.boxes[0]) != null && this.notExitPopup === !1 && !window.location.href.includes("cart") && !window.location.href.includes("checkout") && (sessionStorage.setItem("exit_intent", "true"), this.renderNotification(), g("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"), o == "window" ? document.removeEventListener("scroll", () => r()) : t(o).removeEventListener("scroll", r()));
         };
         document.addEventListener("scroll", () => r()), I(this.isSelectorWrapper).then((o) => {
           t(".modal " + this.isSelectorWrapper).addEventListener("scroll", () => {
@@ -1073,15 +1073,15 @@ p.crs_tastes + p {
       this.device === "desktop" && k(".crs_nav a")[0].classList.add("active"), t(this.isSelectorWrapper).addEventListener("scroll", (i) => {
         const r = k(".product-wrapper .right-side section[id] h2"), o = k(".crs_nav a");
         var s = -1;
-        r.forEach(function(l, f) {
-          n(l) && s === -1 && (s = f);
-        }), s !== -1 && o.forEach(function(l, f) {
+        r.forEach(function(c, f) {
+          n(c) && s === -1 && (s = f);
+        }), s !== -1 && o.forEach(function(c, f) {
           if (f === s) {
-            l.classList.add("active");
-            const w = t(".crs_nav ul"), c = l.getBoundingClientRect(), b = w.getBoundingClientRect();
-            c.left < b.left ? w.scrollLeft -= b.left - c.left : c.right > b.right && (w.scrollLeft += c.right - b.right);
+            c.classList.add("active");
+            const w = t(".crs_nav ul"), l = c.getBoundingClientRect(), b = w.getBoundingClientRect();
+            l.left < b.left ? w.scrollLeft -= b.left - l.left : l.right > b.right && (w.scrollLeft += l.right - b.right);
           } else
-            l.classList.remove("active");
+            c.classList.remove("active");
         });
       });
     }
@@ -1135,15 +1135,14 @@ p.crs_tastes + p {
       setTimeout(() => {
         var e, n, i, r, o, s;
         if (((n = (e = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : e.cart) == null ? void 0 : n.boxes[0]) != null) {
-          const l = (r = (i = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : i.cart) == null ? void 0 : r.boxes, f = Object.keys(l), w = f[f.length - 1], c = l[w];
-          console.dir(c);
+          const c = (r = (i = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : i.cart) == null ? void 0 : r.boxes, f = Object.keys(c), w = f[f.length - 1], l = c[w];
           let b = "/wp-content/themes/cerebelly/build/21c99a25c363149c9021.jpg";
-          c.image && (b = c.image.includes("https") ? c.image : "https://cerebelly.com/wp-json/cerebelly/image/get?path=" + c.image);
+          l.image && (b = l.image.includes("https") ? l.image : "https://cerebelly.com/wp-json/cerebelly/image/get?path=" + l.image);
           let _ = {};
           _.type = ((o = t(".cart-product .product-count")) == null ? void 0 : o.innerText) || ((s = JSON.parse(localStorage.getItem("data_notification"))) == null ? void 0 : s.type), k(".product").forEach((S) => {
             var L, u, h;
-            (L = S == null ? void 0 : S.querySelector(".title")) != null && L.innerText.includes(c.title) && (_.type = ((u = S.querySelector(".quantity")) == null ? void 0 : u.innerHTML) || ((h = S.querySelector(".desktop")) == null ? void 0 : h.innerHTML.replace(" | ", "")));
-          }), _.title = c.title, _.image = b, _.price = c.price, _.count = parseInt(w) + 1, console.dir(_), localStorage.setItem("data_notification", JSON.stringify(_)), console.dir(localStorage.getItem("data_notification"));
+            (L = S == null ? void 0 : S.querySelector(".title")) != null && L.innerText.includes(l.title) && (_.type = ((u = S.querySelector(".quantity")) == null ? void 0 : u.innerHTML) || ((h = S.querySelector(".desktop")) == null ? void 0 : h.innerHTML.replace(" | ", "")));
+          }), _.title = l.title, _.image = b, _.price = l.price, _.count = parseInt(w) + 1, console.dir(_), localStorage.setItem("data_notification", JSON.stringify(_));
         }
       }, 200);
     }
