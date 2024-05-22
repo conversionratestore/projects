@@ -1072,7 +1072,7 @@ p.crs_tastes + p {
         if (this.device !== "mobile")
           return;
         let r = t(".crs_nav").getBoundingClientRect().bottom;
-        r < 0 ? t(".crs_nav").classList.add("fixed") : t(".crs_nav").classList.remove("fixed"), r < -100 ? (t(".crs_nav").classList.add("active"), t(".css-mc9jj7 .default-close, .css-1ryd8t3 .default-close, .modal.css-194jzej .default-close").style.top = "55px") : (t(".crs_nav").classList.remove("active"), t(".css-mc9jj7 .default-close, .css-1ryd8t3 .default-close, .modal.css-194jzej .default-close").style = "");
+        r < 0 ? t(".crs_nav").classList.add("fixed") : t(".crs_nav").classList.remove("fixed"), r < -100 ? (t(".crs_nav").classList.add("active"), t(".css-mc9jj7 .default-close, .css-1ryd8t3 .default-close, .modal.css-194jzej .default-close").style.top = "55px!important") : (t(".crs_nav").classList.remove("active"), t(".css-mc9jj7 .default-close, .css-1ryd8t3 .default-close, .modal.css-194jzej .default-close").style = "");
       });
       function e(i) {
         var r = i.getBoundingClientRect();
