@@ -125,7 +125,7 @@ body .floating_button a {
     changeTxtAndLinkBtns() {
       l(".elementor-button-link").then((n) => {
         a(".elementor-button-link").forEach((e) => {
-          e.textContent !== "Take the Tinnitus Quiz" && !e.closest(".elementor-location-header") && !e.closest(".elementor-popup-modal") && (e.textContent = "Take the Tinnitus Quiz"), !e.closest(".elementor-659 .elementor-element.elementor-element-e55687d") && !e.closest(".elementor-popup-modal") && e.addEventListener("click", (o) => {
+          console.log(e, " link.textContent"), e.textContent !== "Take the Tinnitus Quiz" && !e.closest(".elementor-location-header") && !e.closest(".elementor-popup-modal") && (e.textContent = "Take the Tinnitus Quiz"), !e.closest(".elementor-659 .elementor-element.elementor-element-e55687d") && !e.closest(".elementor-popup-modal") && e.addEventListener("click", (o) => {
             o.preventDefault(), window.location.href = "https://treblehealth.com/survey/";
           });
         });
@@ -146,7 +146,9 @@ body .floating_button a {
     }
   }
   l(".post-template-default").then((t) => {
-    new s(h);
+    setTimeout(() => {
+      new s(h);
+    }, 1e3);
   });
 })();
 //# sourceMappingURL=index.js.map
