@@ -880,8 +880,8 @@ p.crs_tastes + p {
   .modal.css-1ryd8t3 .default-close,
   .modal.css-mc9jj7 .default-close,
   .modal.css-194jzej .default-close {
-    right: 0 !important;
-    top: 0 !important;
+    right: 13px !important;
+    top: 13px !important;
     padding: 13px;
     display: flex;
     margin: 0;
