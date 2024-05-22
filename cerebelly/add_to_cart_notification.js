@@ -1,62 +1,62 @@
 (function() {
   "use strict";
-  const m = (a, n, e, i = "") => {
+  const m = (c, n, e, i = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: a,
+      event_name: c,
       event_desc: n,
       event_type: e,
       event_loc: i
-    }), console.dir(`Event: ${a} | ${n} | ${e} | ${i}`);
-  }, $ = ({ name: a, dev: n }) => {
+    }), console.dir(`Event: ${c} | ${n} | ${e} | ${i}`);
+  }, $ = ({ name: c, dev: n }) => {
     console.dir(
-      `%c EXP: ${a} (DEV: ${n})`,
+      `%c EXP: ${c} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, k = (a) => document.querySelectorAll(a), t = (a) => document.querySelector(a), M = (a) => {
+  }, k = (c) => document.querySelectorAll(c), t = (c) => document.querySelector(c), M = (c) => {
     let n = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", a, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", c, "variant_1"));
     }, 1e3);
-  }, N = (a) => {
+  }, N = (c) => {
     let n = setInterval(function() {
       typeof window.FS == "function" && typeof window.FS.event == "function" && (clearInterval(n), console.dir("init fullStory"), window.FS.event("SetVariant", {
-        name: a,
+        name: c,
         variant: "variant_1"
       }));
     }, 1e3);
-  }, E = (a, n, e, i, r = 1e3, s = 0.5) => {
-    let o, c;
+  }, E = (c, n, e, i, r = 1e3, s = 0.5) => {
+    let o, a;
     if (o = new IntersectionObserver(
       function(d) {
-        d[0].isIntersecting === !0 ? c = setTimeout(() => {
+        d[0].isIntersecting === !0 ? a = setTimeout(() => {
           m(
             n,
             d[0].target.dataset.visible || e || "",
             "Visibility",
             i
           ), o.disconnect();
-        }, r) : (console.log("Element is not fully visible"), clearTimeout(c));
+        }, r) : (console.log("Element is not fully visible"), clearTimeout(a));
       },
       { threshold: [s] }
-    ), typeof a == "string") {
-      const d = document.querySelector(a);
+    ), typeof c == "string") {
+      const d = document.querySelector(c);
       d && o.observe(d);
     } else
-      o.observe(a);
-  }, j = (a) => new Promise((n) => {
-    if (t(a))
-      return n(t(a));
+      o.observe(c);
+  }, j = (c) => new Promise((n) => {
+    if (t(c))
+      return n(t(c));
     const e = new MutationObserver(() => {
-      t(a) && (n(t(a)), e.disconnect());
+      t(c) && (n(t(c)), e.disconnect());
     });
     e.observe(document.documentElement, {
       childList: !0,
       subtree: !0
     });
-  }), O = (a) => new Promise((n, e) => {
+  }), O = (c) => new Promise((n, e) => {
     var i = 0, r = setInterval(s, 1e3);
     function s() {
-      i++, i > a && (clearInterval(r), n(!0));
+      i++, i > c && (clearInterval(r), n(!0));
     }
     document.addEventListener("click", function() {
       n(!1);
@@ -87,12 +87,12 @@
   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
     <path d="M12 17L4 9L12 0.999999" stroke="#15206B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>`
-  }, P = {
+  }, F = {
     3: ["pumpkin-bundle", "bone-broth-protein-pack-3"],
     4: ["smart-bar-sampler"],
     5: ["5-7-months-bundle", "8-9-months-bundle", "10-11-months-bundle", "toddler-snack-pack", "plant-based-protein-pack", "iron-rich-heroes", "superfoods-variety-pack", "fabulous-fiber"],
     6: ["12-14-months-bundle", "15-17-months-bundle", "18-20-months-bundle", "21-24-months-bundle", "25-months", "spring-sprouts-2", "smart-picks-14"]
-  }, V = (a, n, e, i, r) => (
+  }, V = (c, n, e, i, r) => (
     /* HTML */
     ` <div class="crs_notification">
   <div class="crs_notification_head justify-between">
@@ -106,7 +106,7 @@
   </div>
   <div class="crs_notification_body justify-between">
       <div class="d-flex">
-          <img src="${a}" alt="${n}">
+          <img src="${c}" alt="${n}">
           <div>
               <div class="crs_notification_title">${n}</div>
               <div class="crs_notification_info">${e}</div>
@@ -119,7 +119,7 @@
       <a href="/cart" class="crs_view_cart">view cart (${r})${C.arrowRight}</a>
   </div>
 </div>`
-  ), F = `
+  ), P = `
 <nav class="crs_nav">
   <ul class="d-flex">
     <li><a href="#ingredients">ingredients</a></li>
@@ -129,10 +129,10 @@
   </ul>
 </nav>`, R = `
 <button type="button" class="crs_arrow crs_arrow_prev" hidden>${C.arrowLeftSlide}</button>
-<button type="button" class="crs_arrow crs_arrow_next" hidden>${C.arrowRightSlide}</button>`, H = (a) => `<p class="crs_tastes"><span>1</span> of ${a} flavors<p>`;
+<button type="button" class="crs_arrow crs_arrow_next" hidden>${C.arrowRightSlide}</button>`, H = (c) => `<p class="crs_tastes"><span>1</span> of ${c} flavors<p>`;
   var D = function() {
     var n = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {}, e = n.wnd, i = e === void 0 ? window : e;
-    (function(r, s, o, c, d, h, p, b) {
+    (function(r, s, o, a, d, h, p, b) {
       var _ = function(f) {
         return f in r ? (r.console && r.console.log && r.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].'), !1) : !0;
       }(o);
@@ -196,10 +196,10 @@
           }
         };
       }(), function() {
-        h = s.createElement(c), h.async = !0, h.crossOrigin = "anonymous", h.src = "https://" + d, h.onerror = function() {
+        h = s.createElement(a), h.async = !0, h.crossOrigin = "anonymous", h.src = "https://" + d, h.onerror = function() {
           b("Error loading " + d);
         };
-        var f = s.getElementsByTagName(c)[0];
+        var f = s.getElementsByTagName(a)[0];
         f.parentNode.insertBefore(h, f);
       }(), function() {
         function f() {
@@ -251,8 +251,8 @@
     })(i, i.document, i._fs_namespace, "script", i._fs_script);
   }, J = function(n) {
     return n === "window" ? "document" : "".concat(n, ".document");
-  }, U = function() {
-    var n = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {}, e = n.shouldInsertScript, i = e === void 0 ? !0 : e, r = n.globalVar, s = r === void 0 ? "window" : r, o = n.apiVersion, c = o === void 0 ? "1.3.0" : o;
+  }, W = function() {
+    var n = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {}, e = n.shouldInsertScript, i = e === void 0 ? !0 : e, r = n.globalVar, s = r === void 0 ? "window" : r, o = n.apiVersion, a = o === void 0 ? "1.3.0" : o;
     return `(function(m,n,e,t,l,o,g,y){
     if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;}
     g=m[e]=function(a,b,s){g.q?g.q.push([a,b,s]):g._api(a,b,s);};g.q=[];`.concat(i ? `
@@ -268,34 +268,34 @@
     g.setVars=function(n, p){g('setVars',[n,p]);};
     g._w={};y='XMLHttpRequest';g._w[y]=m[y];y='fetch';g._w[y]=m[y];
     if(m[y])m[y]=function(){return g._w[y].apply(this,arguments)};
-    g._v="`).concat(c, `";
+    g._v="`).concat(a, `";
 })(`).concat(s, ",").concat(J(s), ",").concat(s, "['_fs_namespace'],'script','user');");
-  }, W = function(n) {
-    var e = n.orgId, i = n.namespace, r = i === void 0 ? "FS" : i, s = n.host, o = s === void 0 ? "fullstory.com" : s, c = n.script, d = c === void 0 ? "edge.fullstory.com/s/fs.js" : c;
+  }, U = function(n) {
+    var e = n.orgId, i = n.namespace, r = i === void 0 ? "FS" : i, s = n.host, o = s === void 0 ? "fullstory.com" : s, a = n.script, d = a === void 0 ? "edge.fullstory.com/s/fs.js" : a;
     if (!e)
       throw new Error("FullStory orgId is a required parameter");
     window._fs_host = o, window._fs_script = d, window._fs_org = e, window._fs_namespace = r, D();
   };
-  U();
-  var I = function() {
-    return I = Object.assign || function(n) {
+  W();
+  var z = function() {
+    return z = Object.assign || function(n) {
       for (var e, i = 1, r = arguments.length; i < r; i++) {
         e = arguments[i];
         for (var s in e)
           Object.prototype.hasOwnProperty.call(e, s) && (n[s] = e[s]);
       }
       return n;
-    }, I.apply(this, arguments);
+    }, z.apply(this, arguments);
   }, B = function() {
     if (window._fs_namespace)
       return window[window._fs_namespace];
-  }, Y = function(a, n) {
-    var e = I({}, a);
+  }, Y = function(c, n) {
+    var e = z({}, c);
     if (B()) {
       console.warn("The FullStory snippet has already been defined elsewhere (likely in the <head> element)");
       return;
     }
-    e.recordCrossDomainIFrames && (window._fs_run_in_iframe = !0), e.appHost && (window._fs_app_host = e.appHost), e.assetMapId && (window._fs_asset_map_id = e.assetMapId), e.startCaptureManually && (window._fs_capture_on_startup = !1), e.recordOnlyThisIFrame && (window._fs_is_outer_script = !0), e.cookieDomain && (window._fs_cookie_domain = e.cookieDomain), e.debug === !0 && (e.script ? console.warn("Ignoring `debug = true` because `script` is set") : e.script = "edge.fullstory.com/s/fs-debug.js"), W(e);
+    e.recordCrossDomainIFrames && (window._fs_run_in_iframe = !0), e.appHost && (window._fs_app_host = e.appHost), e.assetMapId && (window._fs_asset_map_id = e.assetMapId), e.startCaptureManually && (window._fs_capture_on_startup = !1), e.recordOnlyThisIFrame && (window._fs_is_outer_script = !0), e.cookieDomain && (window._fs_cookie_domain = e.cookieDomain), e.debug === !0 && (e.script ? console.warn("Ignoring `debug = true` because `script` is set") : e.script = "edge.fullstory.com/s/fs-debug.js"), U(e);
     var i = B();
     if (!i) {
       console.warn("Failed to initialize FS snippet");
@@ -310,10 +310,10 @@
         }
       }), i("shutdown"), window._fs_dev_mode = !0, console.warn(r);
     }
-  }, X = function(a) {
+  }, X = function(c) {
     return function(n, e) {
       if (window._fs_initialized) {
-        a && console.warn(a);
+        c && console.warn(c);
         return;
       }
       Y(n, e), window._fs_initialized = !0;
@@ -853,7 +853,9 @@ p.crs_tastes + p {
   .crs_nav ul {
     padding: 0 44px 0 24px;
   }
-  .css-mc9jj7 .controls .default-close {
+  .modal.css-1ryd8t3 .default-close,
+  .modal.css-mc9jj7 .default-close,
+  .modal.css-194jzej .default-close {
     right: 24px;
   }
 }
@@ -868,19 +870,25 @@ p.crs_tastes + p {
   .modal .css-12a0csp .product-wrapper .right-side {
     padding: 20px 24px 120px;
   }
+  .modal.css-194jzej .css-12a0csp .product-wrapper .right-side,
+  .modal.css-1ryd8t3 .css-12a0csp .product-wrapper .right-side {
+    padding-bottom: 0;
+  }
   .modal .css-12a0csp .product-wrapper .right-side > div[style="height: 50px;"] {
     display: none;
   }
-  .modal.css-1ryd8t3 .controls .default-close,
-  .modal.css-mc9jj7 .controls .default-close {
+  .modal.css-1ryd8t3 .default-close,
+  .modal.css-mc9jj7 .default-close,
+  .modal.css-194jzej .default-close {
     right: 0;
     top: 0;
     padding: 13px;
     display: flex;
     margin: 0;
   }
-  .modal.css-1ryd8t3 .controls .default-close img,
-  .modal.css-mc9jj7 .controls .default-close img {
+  .modal.css-1ryd8t3 .default-close img,
+  .modal.css-mc9jj7 .default-close img,
+  .modal.css-194jzej .default-close img {
     width: 18px;
     height: 18px;
   }
@@ -908,8 +916,8 @@ p.crs_tastes + p {
   $({ name: "Enhancements on PDP and new Add to Cart notification", dev: "Olha" }), M("new_add_to_cart"), G({
     orgId: "YOUR_ORG_ID"
   }), N("new_add_to_cart");
-  const T = window.innerWidth < 991 ? "mobile" : "desktop";
-  class z {
+  const I = window.innerWidth < 991 ? "mobile" : "desktop";
+  class T {
     constructor(n) {
       this.device = n, this.isSelectorWrapper = this.device === "desktop" ? ".product-wrapper" : ".css-12a0csp", this.clickRemove = !1, this.clickAdd = !1, this.notExitPopup = !1, this.type = "", this.init();
     }
@@ -936,21 +944,21 @@ p.crs_tastes + p {
         s.addEventListener("click", (o) => {
           document.body.classList.remove("crs_hide_cart");
         }), document.body.classList.add("crs_hide_cart"), document.addEventListener("click", (o) => {
-          var c, d, h, p, b;
-          if (n(), !o.target.closest(".modal") && !o.target.closest(".mobile-cart-box") && !o.target.closest(".cart-product") && document.body.classList.add("crs_hide_cart"), o.target.closest(".modal.css-w1q39a") && ((o.target.closest(".default-close") || o.target.closest(".default-close-container")) && this.clickAdd === !1 ? (document.body.classList.add("crs_hide_cart"), m("exp_newaddtocart_click_08", "Close", "Button", `Cart ${((d = (c = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : c.cart) == null ? void 0 : d.price) != 0 ? "" : "empty"} popover`)) : o.target.closest(".css-jobqsc") && o.target.classList.contains("red") ? m("exp_newaddtocart_click_09", "Shop all", "Button", "Cart empty popover") : o.target.classList.contains("continue") ? m("exp_newaddtocart_click_12", "Continue shopping", "Button", "Cart popover") : o.target.classList.contains("checkout") && m("exp_newaddtocart_click_11", "Checkout", "Button", "Cart popover")), t(".modal.css-w1q39a") && (o.target.closest(".cart-product-reset") ? (m("exp_newaddtocart_click_10", `Remove "${o.target.closest(".cart-product-info").querySelector(".title").innerHTML.split("<span")[0]}"`, "Button", "Cart popover"), t(".modal.css-w1q39a .cart-product") || (e = 0), this.updateDataNotification()) : o.target.closest(".added-container") && (m("exp_newaddtocart_click_13", `${o.target.closest("button").getAttribute("aria-label")}`, "Button", "Cart popover"), t(".modal.css-w1q39a .cart-product") || (e = 0), this.updateDataNotification())), t(".modal.css-w1q39a") ? e == 0 && (e = 1, E(t(".modal.css-w1q39a"), "exp_newaddtocart_vis_10", "View slide in cart", `Cart ${((p = (h = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : h.cart) == null ? void 0 : p.price) == 0 ? "empty" : ""} popover`)) : e = 0, o.target.closest(".remove") || o.target.classList.contains("remove")) {
+          var a, d, h, p, b;
+          if (n(), !o.target.closest(".modal") && !o.target.closest(".mobile-cart-box") && !o.target.closest(".cart-product") && document.body.classList.add("crs_hide_cart"), o.target.closest(".modal.css-w1q39a") && ((o.target.closest(".default-close") || o.target.closest(".default-close-container")) && this.clickAdd === !1 ? (document.body.classList.add("crs_hide_cart"), m("exp_newaddtocart_click_08", "Close", "Button", `Cart ${((d = (a = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : a.cart) == null ? void 0 : d.price) != 0 ? "" : "empty"} popover`)) : o.target.closest(".css-jobqsc") && o.target.classList.contains("red") ? m("exp_newaddtocart_click_09", "Shop all", "Button", "Cart empty popover") : o.target.classList.contains("continue") ? m("exp_newaddtocart_click_12", "Continue shopping", "Button", "Cart popover") : o.target.classList.contains("checkout") && m("exp_newaddtocart_click_11", "Checkout", "Button", "Cart popover")), t(".modal.css-w1q39a") && (o.target.closest(".cart-product-reset") ? (m("exp_newaddtocart_click_10", `Remove "${o.target.closest(".cart-product-info").querySelector(".title").innerHTML.split("<span")[0]}"`, "Button", "Cart popover"), t(".modal.css-w1q39a .cart-product") || (e = 0), this.updateDataNotification()) : o.target.closest(".added-container") && (m("exp_newaddtocart_click_13", `${o.target.closest("button").getAttribute("aria-label")}`, "Button", "Cart popover"), t(".modal.css-w1q39a .cart-product") || (e = 0), this.updateDataNotification())), t(".modal.css-w1q39a") ? e == 0 && (e = 1, E(t(".modal.css-w1q39a"), "exp_newaddtocart_vis_10", "View slide in cart", `Cart ${((p = (h = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : h.cart) == null ? void 0 : p.price) == 0 ? "empty" : ""} popover`)) : e = 0, o.target.closest(".remove") || o.target.classList.contains("remove")) {
             let _ = JSON.parse(localStorage.getItem("data_notification"));
             o.target.closest(".added-container").querySelector(".remove").getAttribute("aria-label").toLowerCase().trim().includes(_ == null ? void 0 : _.title.toLowerCase().trim()) && ((b = t(".crs_notification")) == null || b.remove(), this.updateDataNotification());
           }
         });
       }), j(".pageContainer .product").then((s) => {
         k(".sidebar a").forEach((o) => {
-          o.addEventListener("click", (c) => n());
+          o.addEventListener("click", (a) => n());
         });
       }), this.exitIntent();
       let i = window.location.href;
       const r = new MutationObserver((s) => {
-        var o, c;
-        i != window.location.href && (i = window.location.href, document.body.classList.add("crs_hide_cart")), this.navigation(), this.changeElements(), window.location.href.includes("/bundle") && this.addTastes(), document.body.style.overflow = this.checkPageUrl() === "pdp" ? "hidden" : "", ((c = (o = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : o.cart) == null ? void 0 : c.price) == 0 && t(".crs_notification") && t(".crs_notification").remove(), r.disconnect(), r.observe(document.body, {
+        var o, a;
+        i != window.location.href && (i = window.location.href, document.body.classList.add("crs_hide_cart")), this.navigation(), this.changeElements(), window.location.href.includes("/bundle") && this.addTastes(), document.body.style.overflow = t(".modal .product-wrapper .css-5nnxvq .action-wrapper") ? "hidden" : "", ((a = (o = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : o.cart) == null ? void 0 : a.price) == 0 && t(".crs_notification") && t(".crs_notification").remove(), r.disconnect(), r.observe(document.body, {
           childList: !0,
           subtree: !0,
           attributes: !0
@@ -964,16 +972,16 @@ p.crs_tastes + p {
     }
     addTastes() {
       if (!t(".crs_tastes") && t(".css-5nnxvq picture"))
-        for (let n in P) {
-          let e = window.location.href.split("/"), i = e[e.length - 1].split("?")[0], r = P[n];
+        for (let n in F) {
+          let e = window.location.href.split("/"), i = e[e.length - 1].split("?")[0], r = F[n];
           for (let s = 0; s < r.length; s++)
             if (r[s] == i) {
               t(".css-5nnxvq").insertAdjacentHTML("afterbegin", H(n)), t(".css-5nnxvq").insertAdjacentHTML("afterbegin", R), t(".crs_arrow_next").hidden = !1;
               let o = 1;
-              k(".crs_arrow").forEach((c) => {
-                let d = c.classList.contains("crs_arrow_prev") ? "prev" : "next";
-                E(c, "exp_newaddtocart_vis_09", `View ${d} arrow`, "Product"), c.addEventListener("click", () => {
-                  c.classList.contains("crs_arrow_next") && t(".css-12a0csp .next") ? (t(".css-12a0csp .next").click(), o += 1, m("exp_newaddtocart_click_06", "Next", "Button", "Product")) : c.classList.contains("crs_arrow_prev") && t(".css-12a0csp .prev") && (t(".css-12a0csp .prev").click(), o -= 1, m("exp_newaddtocart_click_07", "Prev", "Button", "Product")), t(".crs_arrow_prev").hidden = o <= 1, t(".crs_arrow_next").hidden = o >= n, t(".crs_tastes > span").innerHTML = o;
+              k(".crs_arrow").forEach((a) => {
+                let d = a.classList.contains("crs_arrow_prev") ? "prev" : "next";
+                E(a, "exp_newaddtocart_vis_09", `View ${d} arrow`, "Product"), a.addEventListener("click", () => {
+                  a.classList.contains("crs_arrow_next") && t(".css-12a0csp .next") ? (t(".css-12a0csp .next").click(), o += 1, m("exp_newaddtocart_click_06", "Next", "Button", "Product")) : a.classList.contains("crs_arrow_prev") && t(".css-12a0csp .prev") && (t(".css-12a0csp .prev").click(), o -= 1, m("exp_newaddtocart_click_07", "Prev", "Button", "Product")), t(".crs_arrow_prev").hidden = o <= 1, t(".crs_arrow_next").hidden = o >= n, t(".crs_tastes > span").innerHTML = o;
                 });
               });
             }
@@ -1012,7 +1020,7 @@ p.crs_tastes + p {
       if (!t(".css-5nnxvq picture img") || !t(".css-5nnxvq .action-wrapper"))
         return;
       let n = 0;
-      T === "mobile" ? n = "76px - 24px - 48px" + (window.location.href.includes("bundle") ? " - 28px" : "") : n = "67px - 66px - 34px" + (window.location.href.includes("bundle") ? " - 68px - 28px" : ""), t(".css-5nnxvq picture img").style = `height: calc(${window.innerHeight}px - ${n} - ${t(".css-5nnxvq .action-wrapper").clientHeight}px`;
+      I === "mobile" ? n = "76px - 24px - 48px" + (window.location.href.includes("bundle") ? " - 28px" : "") : n = "67px - 66px - 34px" + (window.location.href.includes("bundle") ? " - 68px - 28px" : ""), t(".css-5nnxvq picture img").style = `height: calc(${window.innerHeight}px - ${n} - ${t(".css-5nnxvq .action-wrapper").clientHeight}px`;
     }
     exitIntent() {
       if (this.device === "desktop") {
@@ -1023,15 +1031,15 @@ p.crs_tastes + p {
           "mouseleave",
           function() {
             var i, r;
-            (n < 50 || e < 50 || n > window.innerWidth - 50 || e > window.innerHeight - 50) && sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && ((r = (i = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : i.cart) == null ? void 0 : r.price) != 0 && !window.location.href.includes("cart") && !window.location.href.includes("order") && !window.location.href.includes("checkout") && (sessionStorage.setItem("exit_intent", "true"), new z(T).renderNotification(), m("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"));
+            (n < 50 || e < 50 || n > window.innerWidth - 50 || e > window.innerHeight - 50) && sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && ((r = (i = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : i.cart) == null ? void 0 : r.price) != 0 && !window.location.href.includes("cart") && !window.location.href.includes("order") && !window.location.href.includes("checkout") && (sessionStorage.setItem("exit_intent", "true"), new T(I).renderNotification(), m("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"));
           },
           { once: !1 }
         );
       } else {
         let n = (/android/i.test(navigator.userAgent), 120), e = 0, i = 0, r = (s = "window") => {
-          var c, d;
+          var a, d;
           let o = s == "window" ? window.scrollY : t(s).scrollTop;
-          i = o - e, e = o, (i > n || i < -n) && sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && !t(".css-m18cj1") && ((d = (c = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : c.cart) == null ? void 0 : d.price) != 0 && this.notExitPopup === !1 && !window.location.href.includes("cart") && !window.location.href.includes("order") && !window.location.href.includes("checkout") && (sessionStorage.setItem("exit_intent", "true"), this.renderNotification(), m("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"), s == "window" ? document.removeEventListener("scroll", () => r()) : t(s).removeEventListener("scroll", r()));
+          i = o - e, e = o, (i > n || i < -n) && sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && !t(".css-m18cj1") && ((d = (a = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : a.cart) == null ? void 0 : d.price) != 0 && this.notExitPopup === !1 && !window.location.href.includes("cart") && !window.location.href.includes("order") && !window.location.href.includes("checkout") && (sessionStorage.setItem("exit_intent", "true"), this.renderNotification(), m("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"), s == "window" ? document.removeEventListener("scroll", () => r()) : t(s).removeEventListener("scroll", r()));
         };
         document.addEventListener("scroll", () => r()), j(this.isSelectorWrapper).then((s) => {
           t(".modal " + this.isSelectorWrapper).addEventListener("scroll", () => {
@@ -1043,7 +1051,7 @@ p.crs_tastes + p {
     navigation() {
       if (t(".crs_nav") || !t(".css-12a0csp .product-wrapper .left-side"))
         return;
-      this.device === "mobile" ? t(".css-12a0csp .product-wrapper .left-side").insertAdjacentHTML("beforeend", F) : (t(".css-12a0csp .product-wrapper").insertAdjacentHTML("afterbegin", F), t(".crs_nav ul").after(t(".css-mc9jj7 .controls .default-close, .css-1ryd8t3 .controls .default-close, .css-194jzej .controls .default-close"))), t(".modal.css-1ryd8t3 .default-close, .modal.css-mc9jj7 .default-close, .modal.css-194jzej .controls .default-close").addEventListener("click", (i) => {
+      console.dir("init nav"), this.device === "mobile" ? t(".css-12a0csp .product-wrapper .left-side").insertAdjacentHTML("beforeend", P) : (t(".css-12a0csp .product-wrapper").insertAdjacentHTML("afterbegin", P), t(".crs_nav ul").after(t(".css-mc9jj7 .controls .default-close, .css-1ryd8t3 .controls .default-close, .css-194jzej .controls .default-close"))), t(".modal.css-1ryd8t3 .default-close, .modal.css-mc9jj7 .default-close, .modal.css-194jzej .default-close").addEventListener("click", (i) => {
         i.target.closest(".modal").querySelector(".product-wrapper") && m("exp_newaddtocart_click_05", "Close", "Button", "Product");
       }), m("exp_newaddtocart_vis_06", "View product", "Visibility", "Product"), m("exp_newaddtocart_vis_01", "View navigation", "Visibility", "Under the add to cart"), document.body.classList.add("crs_hide_cart"), k(".right-side section").forEach((i) => {
         let r = "View Nutrition Facts section";
@@ -1056,7 +1064,7 @@ p.crs_tastes + p {
         });
       });
       function n(i) {
-        t(".css-12a0csp .product-wrapper .right-side") && t(".crs_nav") && i === "desktop" && (t(".crs_nav").style.minWidth = t(".css-12a0csp .product-wrapper .right-side").clientWidth + "px", t(".crs_nav").style.right = window.innerWidth - t(".css-12a0csp .product-wrapper .right-side").getBoundingClientRect().right + "px");
+        t(".css-12a0csp .product-wrapper .right-side") && t(".crs_nav") && i === "desktop" && (console.dir(window.innerWidth - t(".css-12a0csp .product-wrapper .right-side").getBoundingClientRect().right + "px"), t(".crs_nav").style.minWidth = t(".css-12a0csp .product-wrapper .right-side").clientWidth + "px", t(".crs_nav").style.right = window.innerWidth - t(".css-12a0csp .product-wrapper .right-side").getBoundingClientRect().right + "px");
       }
       window.addEventListener("resize", () => {
         n(this.device);
@@ -1064,7 +1072,7 @@ p.crs_tastes + p {
         if (this.device !== "mobile")
           return;
         let r = t(".crs_nav").getBoundingClientRect().bottom;
-        r < 0 ? t(".crs_nav").classList.add("fixed") : t(".crs_nav").classList.remove("fixed"), r < -100 ? (t(".crs_nav").classList.add("active"), t(".css-mc9jj7 .controls .default-close, .css-1ryd8t3 .controls .default-close, .modal.css-194jzej .controls .default-close").style.top = "55px") : (t(".crs_nav").classList.remove("active"), t(".css-mc9jj7 .controls .default-close, .css-1ryd8t3 .controls .default-close, .modal.css-194jzej .controls .default-close").style = "");
+        r < 0 ? t(".crs_nav").classList.add("fixed") : t(".crs_nav").classList.remove("fixed"), r < -100 ? (t(".crs_nav").classList.add("active"), t(".css-mc9jj7 .default-close, .css-1ryd8t3 .default-close, .modal.css-194jzej .default-close").style.top = "55px") : (t(".crs_nav").classList.remove("active"), t(".css-mc9jj7 .default-close, .css-1ryd8t3 .default-close, .modal.css-194jzej .default-close").style = "");
       });
       function e(i) {
         var r = i.getBoundingClientRect();
@@ -1073,15 +1081,15 @@ p.crs_tastes + p {
       this.device === "desktop" && k(".crs_nav a")[0].classList.add("active"), t(this.isSelectorWrapper).addEventListener("scroll", (i) => {
         const r = k(".product-wrapper .right-side section[id] h2"), s = k(".crs_nav a");
         var o = -1;
-        r.forEach(function(c, d) {
-          e(c) && o === -1 && (o = d);
-        }), o !== -1 && s.forEach(function(c, d) {
+        r.forEach(function(a, d) {
+          e(a) && o === -1 && (o = d);
+        }), o !== -1 && s.forEach(function(a, d) {
           if (d === o) {
-            c.classList.add("active");
-            const h = t(".crs_nav ul"), p = c.getBoundingClientRect(), b = h.getBoundingClientRect();
+            a.classList.add("active");
+            const h = t(".crs_nav ul"), p = a.getBoundingClientRect(), b = h.getBoundingClientRect();
             p.left < b.left ? h.scrollLeft -= b.left - p.left : p.right > b.right && (h.scrollLeft += p.right - b.right);
           } else
-            c.classList.remove("active");
+            a.classList.remove("active");
         });
       });
     }
@@ -1116,11 +1124,11 @@ p.crs_tastes + p {
         }, 500));
       }), k(".cart-product .cart-product-reset button").forEach((e) => {
         e.addEventListener("click", (i) => {
-          var r, s, o, c;
+          var r, s, o, a;
           if (this.clickRemove == !1) {
             this.clickRemove = !0;
             let d = JSON.parse(localStorage.getItem("data_notification")), h = e.closest(".cart-product").querySelector(".title").innerHTML;
-            this.type = ((o = (s = (r = e.closest(".cart-product")) == null ? void 0 : r.nextElementSibling) == null ? void 0 : s.querySelector(".product-count")) == null ? void 0 : o.innerText) || t(".cart-product .product-count").innerText, h.includes(d == null ? void 0 : d.title) && ((c = t(".crs_notification")) == null || c.remove(), this.updateDataNotification()), setTimeout(() => {
+            this.type = ((o = (s = (r = e.closest(".cart-product")) == null ? void 0 : r.nextElementSibling) == null ? void 0 : s.querySelector(".product-count")) == null ? void 0 : o.innerText) || t(".cart-product .product-count").innerText, h.includes(d == null ? void 0 : d.title) && ((a = t(".crs_notification")) == null || a.remove(), this.updateDataNotification()), setTimeout(() => {
               this.clickRemove == !1;
             }, 200);
           }
@@ -1135,8 +1143,8 @@ p.crs_tastes + p {
       setTimeout(() => {
         var n, e, i, r, s;
         if (((e = (n = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : n.cart) == null ? void 0 : e.price) != 0) {
-          const o = (r = (i = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : i.cart) == null ? void 0 : r.boxes, c = Object.keys(o);
-          let d = c[c.length - 1], h = o[d];
+          const o = (r = (i = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : i.cart) == null ? void 0 : r.boxes, a = Object.keys(o);
+          let d = a[a.length - 1], h = o[d];
           for (; h && h.incomplete == !0 && d > 0; )
             d--, h = o[d];
           let p = 0;
@@ -1153,5 +1161,5 @@ p.crs_tastes + p {
       }, 200);
     }
   }
-  new z(T);
+  new T(I);
 })();
