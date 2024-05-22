@@ -908,15 +908,15 @@ p.crs_tastes + p {
   $({ name: "Enhancements on PDP and new Add to Cart notification", dev: "Olha" }), M("new_add_to_cart"), G({
     orgId: "YOUR_ORG_ID"
   }), N("new_add_to_cart");
-  const z = window.innerWidth < 991 ? "mobile" : "desktop";
-  class T {
+  const T = window.innerWidth < 991 ? "mobile" : "desktop";
+  class z {
     constructor(n) {
       this.device = n, this.isSelectorWrapper = this.device === "desktop" ? ".product-wrapper" : ".css-12a0csp", this.clickRemove = !1, this.clickAdd = !1, this.notExitPopup = !1, this.type = "", this.init();
     }
     init() {
       if (!t(".crs_style") && !t(".crs_script")) {
         let s = document.createElement("script");
-        s.src = "https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js", s.async = !1, s.className = "crs_script", document.head.appendChild(s), document.head.insertAdjacentHTML("beforeend", `
+        s.src = "https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js", s.async = !0, s.className = "crs_script", document.head.appendChild(s), document.head.insertAdjacentHTML("beforeend", `
       <style class="crs_style">${Z + K}</style>`);
       }
       O(this.device === "desktop" ? 20 : 10).then((s) => {
@@ -937,7 +937,7 @@ p.crs_tastes + p {
           document.body.classList.remove("crs_hide_cart");
         }), document.body.classList.add("crs_hide_cart"), document.addEventListener("click", (o) => {
           var a, d, h, p, b;
-          if (console.dir("e.target: " + o.target), n(), !o.target.closest(".modal") && !o.target.closest(".mobile-cart-box") && !o.target.closest(".cart-product") && document.body.classList.add("crs_hide_cart"), o.target.closest(".modal.css-w1q39a") && ((o.target.closest(".default-close") || o.target.closest(".default-close-container")) && this.clickAdd === !1 ? (document.body.classList.add("crs_hide_cart"), m("exp_newaddtocart_click_08", "Close", "Button", `Cart ${((d = (a = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : a.cart) == null ? void 0 : d.price) != 0 ? "" : "empty"} popover`)) : o.target.closest(".css-jobqsc") && o.target.classList.contains("red") ? m("exp_newaddtocart_click_09", "Shop all", "Button", "Cart empty popover") : o.target.classList.contains("continue") ? m("exp_newaddtocart_click_12", "Continue shopping", "Button", "Cart popover") : o.target.classList.contains("checkout") && m("exp_newaddtocart_click_11", "Checkout", "Button", "Cart popover")), t(".modal.css-w1q39a") && (o.target.closest(".cart-product-reset") ? (m("exp_newaddtocart_click_10", `Remove "${o.target.closest(".cart-product-info").querySelector(".title").innerHTML.split("<span")[0]}"`, "Button", "Cart popover"), t(".modal.css-w1q39a .cart-product") || (e = 0), this.updateDataNotification()) : o.target.closest(".added-container") && (m("exp_newaddtocart_click_13", `${o.target.closest("button").getAttribute("aria-label")}`, "Button", "Cart popover"), t(".modal.css-w1q39a .cart-product") || (e = 0), this.updateDataNotification())), t(".modal.css-w1q39a") ? e == 0 && (e = 1, E(t(".modal.css-w1q39a"), "exp_newaddtocart_vis_10", "View slide in cart", `Cart ${((p = (h = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : h.cart) == null ? void 0 : p.price) == 0 ? "empty" : ""} popover`)) : e = 0, o.target.closest(".remove") || o.target.classList.contains("remove")) {
+          if (n(), !o.target.closest(".modal") && !o.target.closest(".mobile-cart-box") && !o.target.closest(".cart-product") && document.body.classList.add("crs_hide_cart"), o.target.closest(".modal.css-w1q39a") && ((o.target.closest(".default-close") || o.target.closest(".default-close-container")) && this.clickAdd === !1 ? (document.body.classList.add("crs_hide_cart"), m("exp_newaddtocart_click_08", "Close", "Button", `Cart ${((d = (a = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : a.cart) == null ? void 0 : d.price) != 0 ? "" : "empty"} popover`)) : o.target.closest(".css-jobqsc") && o.target.classList.contains("red") ? m("exp_newaddtocart_click_09", "Shop all", "Button", "Cart empty popover") : o.target.classList.contains("continue") ? m("exp_newaddtocart_click_12", "Continue shopping", "Button", "Cart popover") : o.target.classList.contains("checkout") && m("exp_newaddtocart_click_11", "Checkout", "Button", "Cart popover")), t(".modal.css-w1q39a") && (o.target.closest(".cart-product-reset") ? (m("exp_newaddtocart_click_10", `Remove "${o.target.closest(".cart-product-info").querySelector(".title").innerHTML.split("<span")[0]}"`, "Button", "Cart popover"), t(".modal.css-w1q39a .cart-product") || (e = 0), this.updateDataNotification()) : o.target.closest(".added-container") && (m("exp_newaddtocart_click_13", `${o.target.closest("button").getAttribute("aria-label")}`, "Button", "Cart popover"), t(".modal.css-w1q39a .cart-product") || (e = 0), this.updateDataNotification())), t(".modal.css-w1q39a") ? e == 0 && (e = 1, E(t(".modal.css-w1q39a"), "exp_newaddtocart_vis_10", "View slide in cart", `Cart ${((p = (h = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : h.cart) == null ? void 0 : p.price) == 0 ? "empty" : ""} popover`)) : e = 0, o.target.closest(".remove") || o.target.classList.contains("remove")) {
             let _ = JSON.parse(localStorage.getItem("data_notification"));
             o.target.closest(".added-container").querySelector(".remove").getAttribute("aria-label").toLowerCase().trim().includes(_ == null ? void 0 : _.title.toLowerCase().trim()) && ((b = t(".crs_notification")) == null || b.remove(), this.updateDataNotification());
           }
@@ -1012,7 +1012,7 @@ p.crs_tastes + p {
       if (!t(".css-5nnxvq picture img") || !t(".css-5nnxvq .action-wrapper"))
         return;
       let n = 0;
-      z === "mobile" ? n = "76px - 24px - 48px" + (window.location.href.includes("bundle") ? " - 28px" : "") : n = "67px - 66px - 34px" + (window.location.href.includes("bundle") ? " - 68px - 28px" : ""), t(".css-5nnxvq picture img").style = `height: calc(${window.innerHeight}px - ${n} - ${t(".css-5nnxvq .action-wrapper").clientHeight}px`;
+      T === "mobile" ? n = "76px - 24px - 48px" + (window.location.href.includes("bundle") ? " - 28px" : "") : n = "67px - 66px - 34px" + (window.location.href.includes("bundle") ? " - 68px - 28px" : ""), t(".css-5nnxvq picture img").style = `height: calc(${window.innerHeight}px - ${n} - ${t(".css-5nnxvq .action-wrapper").clientHeight}px`;
     }
     exitIntent() {
       if (this.device === "desktop") {
@@ -1023,7 +1023,7 @@ p.crs_tastes + p {
           "mouseleave",
           function() {
             var i, r;
-            (n < 50 || e < 50 || n > window.innerWidth - 50 || e > window.innerHeight - 50) && sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && ((r = (i = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : i.cart) == null ? void 0 : r.price) != 0 && !window.location.href.includes("cart") && !window.location.href.includes("order") && !window.location.href.includes("checkout") && (sessionStorage.setItem("exit_intent", "true"), new T(z).renderNotification(), m("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"));
+            (n < 50 || e < 50 || n > window.innerWidth - 50 || e > window.innerHeight - 50) && sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && ((r = (i = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : i.cart) == null ? void 0 : r.price) != 0 && !window.location.href.includes("cart") && !window.location.href.includes("order") && !window.location.href.includes("checkout") && (sessionStorage.setItem("exit_intent", "true"), new z(T).renderNotification(), m("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"));
           },
           { once: !1 }
         );
@@ -1091,13 +1091,12 @@ p.crs_tastes + p {
     changeElements() {
       var n;
       if (this.checkAttentiveCreativ(), k(".button").forEach((e, i) => {
-        let r = e.innerText.toLowerCase();
-        if (r.includes("to bag")) {
+        if (e.innerText.toLowerCase().includes("to bag")) {
           let s = e.innerText;
           e.innerText = s.toLowerCase().replace("bag", "cart");
         }
-        r.includes("to cart") && (e.closest(".add") || e.closest(".sticky-button-mobile") || e.closest(".made-for-header-actions") || e.closest(".action-button-wrap") || e.closest(".css-vmdrei")) && e.addEventListener("click", (s) => {
-          this.clickAdd === !1 && (this.clickAdd = !0, t(".css-nco9x8 .tab .wrapper .text.full") ? this.type = t(".css-nco9x8 .tab .wrapper .text.full").innerText.split("/")[1] : t(".css-v9y3g3 .made-for-header .clickable") ? this.type = t(".css-v9y3g3 .made-for-header .clickable").innerText.replace("|", "") : t(".css-x4efki .box-content .box-info .blueprint") ? this.type = t(".css-x4efki .box-content .box-info .blueprint").innerText.split("|")[1] : this.type = "");
+        e.innerText.toLowerCase().includes("to cart") && e.addEventListener("click", (s) => {
+          this.clickAdd === !1 && (this.clickAdd = !0, console.dir("add to cart"), t(".css-nco9x8 .tab .wrapper .text.full") ? this.type = t(".css-nco9x8 .tab .wrapper .text.full").innerText.split("/")[1] : t(".css-v9y3g3 .made-for-header .clickable") ? this.type = t(".css-v9y3g3 .made-for-header .clickable").innerText.replace("|", "") : t(".css-x4efki .box-content .box-info .blueprint") ? this.type = t(".css-x4efki .box-content .box-info .blueprint").innerText.split("|")[1] : this.type = "");
         });
       }), t(".modal .cart-product .product-count") && this.clickAdd == !0 && (document.body.classList.add("crs_hide_cart"), this.renderNotification(t(".modal .cart-product .product-count").innerText), t(".crs_hide_cart .modal .cart-product .product-count").closest(".modal").querySelector(".default-close").click()), t(".css-5nnxvq .unit-price .discount .subscribe") && !t(".css-5nnxvq .action-wrapper > .subscribe") && t(".css-5nnxvq .unit-price").after(t(".css-5nnxvq .unit-price .discount .subscribe")), t(".css-5nnxvq .prices") && !t(".css-5nnxvq .unit-price > .prices") && t(".css-5nnxvq .unit-price .discount").after(t(".css-5nnxvq .prices")), t(".left-side .action-wrapper") && t(".right-side .css-s7fk0u h2")) {
         if (!t(".left-side .action-wrapper > h2"))
@@ -1153,5 +1152,5 @@ p.crs_tastes + p {
       }, 200);
     }
   }
-  new T(z);
+  new z(T);
 })();
