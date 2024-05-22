@@ -119,7 +119,7 @@
       <a href="/cart" class="crs_view_cart">view cart (${r})${C.arrowRight}</a>
   </div>
 </div>`
-  ), B = `
+  ), F = `
 <nav class="crs_nav">
   <ul class="d-flex">
     <li><a href="#ingredients">ingredients</a></li>
@@ -249,9 +249,9 @@
         });
       }(), p._v = "2.0.0";
     })(i, i.document, i._fs_namespace, "script", i._fs_script);
-  }, J = function(n) {
+  }, W = function(n) {
     return n === "window" ? "document" : "".concat(n, ".document");
-  }, W = function() {
+  }, J = function() {
     var n = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {}, e = n.shouldInsertScript, i = e === void 0 ? !0 : e, r = n.globalVar, s = r === void 0 ? "window" : r, o = n.apiVersion, a = o === void 0 ? "1.3.0" : o;
     return `(function(m,n,e,t,l,o,g,y){
     if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;}
@@ -269,14 +269,14 @@
     g._w={};y='XMLHttpRequest';g._w[y]=m[y];y='fetch';g._w[y]=m[y];
     if(m[y])m[y]=function(){return g._w[y].apply(this,arguments)};
     g._v="`).concat(a, `";
-})(`).concat(s, ",").concat(J(s), ",").concat(s, "['_fs_namespace'],'script','user');");
+})(`).concat(s, ",").concat(W(s), ",").concat(s, "['_fs_namespace'],'script','user');");
   }, U = function(n) {
     var e = n.orgId, i = n.namespace, r = i === void 0 ? "FS" : i, s = n.host, o = s === void 0 ? "fullstory.com" : s, a = n.script, d = a === void 0 ? "edge.fullstory.com/s/fs.js" : a;
     if (!e)
       throw new Error("FullStory orgId is a required parameter");
     window._fs_host = o, window._fs_script = d, window._fs_org = e, window._fs_namespace = r, D();
   };
-  W();
+  J();
   var z = function() {
     return z = Object.assign || function(n) {
       for (var e, i = 1, r = arguments.length; i < r; i++) {
@@ -286,17 +286,17 @@
       }
       return n;
     }, z.apply(this, arguments);
-  }, F = function() {
+  }, B = function() {
     if (window._fs_namespace)
       return window[window._fs_namespace];
   }, Y = function(c, n) {
     var e = z({}, c);
-    if (F()) {
+    if (B()) {
       console.warn("The FullStory snippet has already been defined elsewhere (likely in the <head> element)");
       return;
     }
     e.recordCrossDomainIFrames && (window._fs_run_in_iframe = !0), e.appHost && (window._fs_app_host = e.appHost), e.assetMapId && (window._fs_asset_map_id = e.assetMapId), e.startCaptureManually && (window._fs_capture_on_startup = !1), e.recordOnlyThisIFrame && (window._fs_is_outer_script = !0), e.cookieDomain && (window._fs_cookie_domain = e.cookieDomain), e.debug === !0 && (e.script ? console.warn("Ignoring `debug = true` because `script` is set") : e.script = "edge.fullstory.com/s/fs-debug.js"), U(e);
-    var i = F();
+    var i = B();
     if (!i) {
       console.warn("Failed to initialize FS snippet");
       return;
@@ -880,8 +880,8 @@ p.crs_tastes + p {
   .modal.css-1ryd8t3 .default-close,
   .modal.css-mc9jj7 .default-close,
   .modal.css-194jzej .default-close {
-    right: 0;
-    top: 0;
+    right: 0 !important;
+    top: 0 !important;
     padding: 13px;
     display: flex;
     margin: 0;
@@ -919,12 +919,12 @@ p.crs_tastes + p {
   const I = window.innerWidth < 991 ? "mobile" : "desktop";
   class T {
     constructor(n) {
-      this.device = n, this.isSelectorWrapper = this.device === "desktop" ? ".product-wrapper" : ".css-12a0csp", this.clickRemove = !1, this.clickAdd = !1, this.notExitPopup = !1, this.type = "", this.init();
+      this.device = n, this.isSelectorWrapper = this.device === "desktop" ? window.location.href.includes("box-builder") ? ".modal #pdp" : ".product-wrapper" : ".modal .css-12a0csp", this.clickRemove = !1, this.clickAdd = !1, this.notExitPopup = !1, this.type = "", this.init();
     }
     init() {
       if (!t(".crs_style") && !t(".crs_script")) {
         let s = document.createElement("script");
-        s.src = "https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js", s.async = !0, s.className = "crs_script", document.head.appendChild(s), document.head.insertAdjacentHTML("beforeend", `
+        s.src = "https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js", s.async = !1, s.className = "crs_script", document.head.appendChild(s), document.head.insertAdjacentHTML("beforeend", `
       <style class="crs_style">${Z + K}</style>`);
       }
       O(this.device === "desktop" ? 20 : 10).then((s) => {
@@ -958,7 +958,7 @@ p.crs_tastes + p {
       let i = window.location.href;
       const r = new MutationObserver((s) => {
         var o, a;
-        i != window.location.href && (i = window.location.href, document.body.classList.add("crs_hide_cart")), this.navigation(), this.changeElements(), window.location.href.includes("/bundle") && this.addTastes(), document.body.style.overflow = t(".modal .product-wrapper .css-5nnxvq .action-wrapper") ? "hidden" : "", ((a = (o = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : o.cart) == null ? void 0 : a.price) == 0 && t(".crs_notification") && t(".crs_notification").remove(), r.disconnect(), r.observe(document.body, {
+        i != window.location.href && (i = window.location.href, document.body.classList.add("crs_hide_cart")), this.isSelectorWrapper = this.device === "desktop" ? window.location.href.includes("box-builder") ? ".modal #pdp" : ".product-wrapper" : ".modal .css-12a0csp", this.navigation(), this.changeElements(), window.location.href.includes("/bundle") && this.addTastes(), document.body.style.overflow = t(".modal .product-wrapper .css-5nnxvq .action-wrapper") ? "hidden" : "", ((a = (o = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : o.cart) == null ? void 0 : a.price) == 0 && t(".crs_notification") && t(".crs_notification").remove(), r.disconnect(), r.observe(document.body, {
           childList: !0,
           subtree: !0,
           attributes: !0
@@ -1051,7 +1051,7 @@ p.crs_tastes + p {
     navigation() {
       if (t(".crs_nav") || !t(".css-12a0csp .product-wrapper .left-side"))
         return;
-      console.dir("init nav"), this.device === "mobile" ? t(".css-12a0csp .product-wrapper .left-side").insertAdjacentHTML("beforeend", B) : (t(".css-12a0csp .product-wrapper").insertAdjacentHTML("afterbegin", B), t(".crs_nav ul").after(t(".css-mc9jj7 .controls .default-close, .css-1ryd8t3 .controls .default-close, .css-194jzej .controls .default-close"))), t(".modal.css-1ryd8t3 .default-close, .modal.css-mc9jj7 .default-close, .modal.css-194jzej .default-close").addEventListener("click", (i) => {
+      this.device === "mobile" ? t(".css-12a0csp .product-wrapper .left-side").insertAdjacentHTML("beforeend", F) : (t(".css-12a0csp .product-wrapper").insertAdjacentHTML("afterbegin", F), t(".crs_nav ul").after(t(".css-mc9jj7 .controls .default-close, .css-1ryd8t3 .controls .default-close, .css-194jzej .controls .default-close"))), t(".modal.css-1ryd8t3 .default-close, .modal.css-mc9jj7 .default-close, .modal.css-194jzej .default-close").addEventListener("click", (i) => {
         i.target.closest(".modal").querySelector(".product-wrapper") && m("exp_newaddtocart_click_05", "Close", "Button", "Product");
       }), m("exp_newaddtocart_vis_06", "View product", "Visibility", "Product"), m("exp_newaddtocart_vis_01", "View navigation", "Visibility", "Under the add to cart"), document.body.classList.add("crs_hide_cart"), k(".right-side section").forEach((i) => {
         let r = "View Nutrition Facts section";
@@ -1064,7 +1064,7 @@ p.crs_tastes + p {
         });
       });
       function n(i) {
-        t(".css-12a0csp .product-wrapper .right-side") && t(".crs_nav") && i === "desktop" && (console.dir(window.innerWidth - t(".css-12a0csp .product-wrapper .right-side").getBoundingClientRect().right + "px"), t(".crs_nav").style.minWidth = t(".css-12a0csp .product-wrapper .right-side").clientWidth + "px", t(".crs_nav").style.right = window.innerWidth - t(".css-12a0csp .product-wrapper .right-side").getBoundingClientRect().right + "px");
+        t(".css-12a0csp .product-wrapper .right-side") && t(".crs_nav") && i === "desktop" && (t(".crs_nav").style.minWidth = t(".css-12a0csp .product-wrapper .right-side").clientWidth + "px", t(".crs_nav").style.right = window.innerWidth - t(".css-12a0csp .product-wrapper .right-side").getBoundingClientRect().right + "px");
       }
       window.addEventListener("resize", () => {
         n(this.device);
@@ -1078,7 +1078,7 @@ p.crs_tastes + p {
         var r = i.getBoundingClientRect();
         return r.top >= 0 && r.left >= 0 && r.bottom <= (window.innerHeight || document.documentElement.clientHeight) && r.right <= (window.innerWidth || document.documentElement.clientWidth);
       }
-      this.device === "desktop" && k(".crs_nav a")[0].classList.add("active"), t(this.isSelectorWrapper).addEventListener("scroll", (i) => {
+      this.device === "desktop" && k(".crs_nav a")[0].classList.add("active"), this.isSelectorWrapper = this.device === "desktop" ? window.location.href.includes("box-builder") ? ".modal #pdp" : ".product-wrapper" : ".modal .css-12a0csp", t(this.isSelectorWrapper).addEventListener("scroll", (i) => {
         const r = k(".product-wrapper .right-side section[id] h2"), s = k(".crs_nav a");
         var o = -1;
         r.forEach(function(a, d) {
