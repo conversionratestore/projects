@@ -5,12 +5,12 @@
       `%c EXP: ${t} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, l = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), u = (t) => {
+  }, r = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), u = (t) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", t, "variant_1"));
     }, 1e3);
   };
-  function r(t) {
+  function i(t) {
     return new Promise((e) => {
       if (document.querySelector(t))
         return e(document.querySelector(t));
@@ -26,12 +26,12 @@
   }
   (function(t) {
     t = t === void 0 ? {} : t;
-    let e, n, a, i, f = (t == null ? void 0 : t.delay) || 50;
+    let e, n, a, l, f = (t == null ? void 0 : t.delay) || 50;
     function m() {
-      e = null, i = 0;
+      e = null, l = 0;
     }
     return m(), function() {
-      return n = window.scrollY, e != null && (i = n - e), e = n, clearTimeout(a), a = setTimeout(m, f), i;
+      return n = window.scrollY, e != null && (l = n - e), e = n, clearTimeout(a), a = setTimeout(m, f), l;
     };
   })();
   const d = `.elementor-2470 .elementor-element.elementor-element-bfae500 a.elementor-button-link {
@@ -114,33 +114,35 @@ body .floating_button a {
       c({ name: "AB test Blog pages", dev: "SKh" }), u("exp_blog"), document.head.insertAdjacentHTML("beforeend", `<style>${d}</style>`), this.changeTxtHeaderBanner(), this.changeTxtAndLinkBtns(), this.changeTxtAndLinkStickyBtn(), this.changeTxtBloclNextStep();
     }
     changeTxtHeaderBanner() {
-      l(".elementor-659 .elementor-element.elementor-element-c1c5677 .elementor-button-text").forEach((e) => {
+      r(".elementor-659 .elementor-element.elementor-element-c1c5677 .elementor-button-text").forEach((e) => {
         e.innerHTML !== "Take the Tinnitus Quiz. <span>Start Now.</span>" && (e.innerHTML = "Take the Tinnitus Quiz. <span>Start Now.</span>"), e.querySelector("span").addEventListener("click", (n) => {
           n.preventDefault();
         });
       });
     }
     changeTxtAndLinkBtns() {
-      l(".elementor-button-link").forEach((e) => {
+      r(".elementor-button-link").forEach((e) => {
         e.textContent !== "Take the Tinnitus Quiz" && !e.closest(".elementor-location-header") && (e.textContent = "Take the Tinnitus Quiz"), e.addEventListener("click", (n) => {
           n.preventDefault(), window.location.href = "https://treblehealth.com/survey/";
         });
       });
     }
     changeTxtAndLinkStickyBtn() {
-      r("body .floating_button").then((e) => {
+      i("body .floating_button").then((e) => {
         o("body .floating_button a").textContent !== "Take the Tinnitus Quiz" && (o("body .floating_button a").textContent = "Take the Tinnitus Quiz"), o("body .floating_button a").addEventListener("click", (n) => {
           n.preventDefault(), window.location.href = "https://treblehealth.com/intl-survey/";
         });
       });
     }
     changeTxtBloclNextStep() {
-      r(".elementor-12397 .elementor-element.elementor-element-1878e6ea").then((e) => {
+      i(".elementor-12397 .elementor-element.elementor-element-1878e6ea").then((e) => {
         let n = o(".elementor-12397 .elementor-element.elementor-element-1878e6ea");
         n.querySelector("h3.elementor-heading-title") && n.querySelector("h3.elementor-heading-title").textContent !== "Next Step: Take the Tinnitus Quiz" && (n.querySelector("h3.elementor-heading-title").textContent = "Next Step: Take the Tinnitus Quiz"), n.querySelector(".elementor-icon-list-item:nth-child(3) .elementor-icon-list-text") && n.querySelector(".elementor-icon-list-item:nth-child(3) .elementor-icon-list-text").innerHTML !== "Join thousands of people who have reduced their tinnitus after <br/> taking the tinnitus quiz." && (n.querySelector(".elementor-icon-list-item:nth-child(3) .elementor-icon-list-text").innerHTML = "Join thousands of people who have reduced their tinnitus after <br/> taking the tinnitus quiz.");
       });
     }
   }
-  window.location.pathname.match("tinnitus-cure") && new s(h);
+  i(".post-template-default").then((t) => {
+    new s(h);
+  });
 })();
 //# sourceMappingURL=index.js.map
