@@ -122,7 +122,7 @@ body .floating_button a {
     }
     changeTxtAndLinkBtns() {
       r(".elementor-button-link").forEach((e) => {
-        e.textContent !== "Take the Tinnitus Quiz" && !e.closest(".elementor-659 .elementor-element.elementor-element-c1c5677") && (e.textContent = "Take the Tinnitus Quiz"), e.addEventListener("click", (n) => {
+        e.textContent !== "Take the Tinnitus Quiz" && !e.closest(".elementor-location-header") && (e.textContent = "Take the Tinnitus Quiz"), e.closest(".elementor-659 .elementor-element.elementor-element-e55687d") || e.addEventListener("click", (n) => {
           n.preventDefault(), window.location.href = "https://treblehealth.com/survey/";
         });
       });
