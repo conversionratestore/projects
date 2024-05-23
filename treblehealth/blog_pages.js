@@ -5,7 +5,7 @@
       `%c EXP: ${t} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, a = (t) => document.querySelectorAll(t), i = (t) => document.querySelector(t), u = (t) => {
+  }, a = (t) => document.querySelectorAll(t), r = (t) => document.querySelector(t), u = (t) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", t, "variant_1"));
     }, 1e3);
@@ -26,12 +26,12 @@
   }
   (function(t) {
     t = t === void 0 ? {} : t;
-    let n, e, o, r, p = (t == null ? void 0 : t.delay) || 50;
+    let n, e, o, i, p = (t == null ? void 0 : t.delay) || 50;
     function m() {
-      n = null, r = 0;
+      n = null, i = 0;
     }
     return m(), function() {
-      return e = window.scrollY, n != null && (r = e - n), n = e, clearTimeout(o), o = setTimeout(m, p), r;
+      return e = window.scrollY, n != null && (i = e - n), n = e, clearTimeout(o), o = setTimeout(m, p), i;
     };
   })();
   const d = `.elementor-2470 .elementor-element.elementor-element-bfae500 a.elementor-button-link {
@@ -133,14 +133,14 @@ body .floating_button a {
     }
     changeTxtAndLinkStickyBtn() {
       l("body .floating_button").then((n) => {
-        i("body .floating_button a").textContent !== "Take the Tinnitus Quiz" && (i("body .floating_button a").textContent = "Take the Tinnitus Quiz"), i("body .floating_button a").addEventListener("click", (e) => {
-          e.preventDefault(), window.location.href = "https://treblehealth.com/intl-survey/";
+        r("body .floating_button a").textContent !== "Take the Tinnitus Quiz" && (r("body .floating_button a").textContent = "Take the Tinnitus Quiz"), r("body .floating_button a").addEventListener("click", (e) => {
+          e.preventDefault(), window.location.href = "https://treblehealth.com/survey/";
         });
       });
     }
     changeTxtBloclNextStep() {
       l(".elementor-12397 .elementor-element.elementor-element-1878e6ea").then((n) => {
-        let e = i(".elementor-12397 .elementor-element.elementor-element-1878e6ea");
+        let e = r(".elementor-12397 .elementor-element.elementor-element-1878e6ea");
         e.querySelector("h3.elementor-heading-title") && e.querySelector("h3.elementor-heading-title").textContent !== "Next Step: Take the Tinnitus Quiz" && (e.querySelector("h3.elementor-heading-title").textContent = "Next Step: Take the Tinnitus Quiz"), e.querySelector(".elementor-icon-list-item:nth-child(3) .elementor-icon-list-text") && e.querySelector(".elementor-icon-list-item:nth-child(3) .elementor-icon-list-text").innerHTML !== "Join thousands of people who have reduced their tinnitus after <br/> taking the tinnitus quiz." && (e.querySelector(".elementor-icon-list-item:nth-child(3) .elementor-icon-list-text").innerHTML = "Join thousands of people who have reduced their tinnitus after <br/> taking the tinnitus quiz.");
       });
     }
