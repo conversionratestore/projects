@@ -987,7 +987,7 @@ p.crs_tastes + p {
           i = s - n, n = s, (i > e || i < -e) && !this.isExitIntentTriggered() && !t(".crs_notification") && !t(".css-m18cj1") && this.isCartNotEmpty() && this.notExitPopup === !1 && !this.isOnCartOrCheckoutPage() && (sessionStorage.setItem("exit_intent", "true"), this.renderNotification(), h("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"), o == "window" ? document.removeEventListener("scroll", () => r()) : t(o).removeEventListener("scroll", r()));
         };
         document.addEventListener("scroll", () => r()), j(this.isSelectorWrapper).then((o) => {
-          t(".modal " + this.isSelectorWrapper).addEventListener("scroll", () => {
+          t(this.isSelectorWrapper).addEventListener("scroll", () => {
             r(this.isSelectorWrapper), this.checkAttentiveCreativ();
           });
         });
@@ -1006,7 +1006,7 @@ p.crs_tastes + p {
       return e.includes("cart") || e.includes("order") || e.includes("checkout");
     }
     getSelectorWrapper() {
-      return this.device === "desktop" ? window.location.href.includes("box-builder") ? ".modal #pdp" : ".product-wrapper" : ".modal .css-12a0csp";
+      return this.device === "desktop" ? window.location.href.includes("box-builder") ? ".modal #pdp" : ".modal .product-wrapper" : ".modal .css-12a0csp";
     }
     appendStyleAndScript() {
       if (!t(".crs_style") && !t(".crs_script")) {
