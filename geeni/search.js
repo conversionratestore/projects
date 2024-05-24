@@ -466,6 +466,12 @@
         }
       } 
 
+      @media only screen and (max-width: 768px) {
+        .collection__sticky-bar {
+          top: 60px !important;
+        }
+      }
+
 
     </style>
   
@@ -774,4 +780,3 @@
     });
   }
 })();
-//# sourceMappingURL=index.js.map
