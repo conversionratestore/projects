@@ -116,7 +116,9 @@ body .floating_button a {
     changeTxtHeaderBanner() {
       l(".elementor-659 .elementor-element.elementor-element-c1c5677 .elementor-button-text").then((n) => {
         a(".elementor-659 .elementor-element.elementor-element-c1c5677 .elementor-button-text").forEach((e) => {
-          e.innerHTML !== "Take the Tinnitus Quiz. <span>Start Now.</span>" && (e.innerHTML = "Take the Tinnitus Quiz. <span>Start Now.</span>"), e.querySelector("span").addEventListener("click", (o) => {
+          e.closest(".elementor-button") && e.closest(".elementor-button").addEventListener("click", (o) => {
+            o.preventDefault(), window.location.href = "https://treblehealth.com/survey/";
+          }), e.innerHTML !== "Take the Tinnitus Quiz. <span>Start Now.</span>" && (e.innerHTML = "Take the Tinnitus Quiz. <span>Start Now.</span>"), e.querySelector("span").addEventListener("click", (o) => {
             o.preventDefault();
           });
         });
@@ -125,7 +127,7 @@ body .floating_button a {
     changeTxtAndLinkBtns() {
       l("div.post .elementor-button-link").then((n) => {
         a("div.post .elementor-button-link").forEach((e) => {
-          console.log(e.closest(".elementor-popup-modal"), " link.textContent"), e.textContent !== "Take the Tinnitus Quiz" && !e.closest(".elementor-location-header") && !e.closest(".elementor-popup-modal") && (e.textContent = "Take the Tinnitus Quiz"), !e.closest(".elementor-659 .elementor-element.elementor-element-e55687d") && !e.closest(".elementor-popup-modal") && e.addEventListener("click", (o) => {
+          e.textContent !== "Take the Tinnitus Quiz" && !e.closest(".elementor-location-header") && !e.closest(".elementor-popup-modal") && (e.textContent = "Take the Tinnitus Quiz"), !e.closest(".elementor-659 .elementor-element.elementor-element-e55687d") && !e.closest(".elementor-popup-modal") && e.addEventListener("click", (o) => {
             o.preventDefault(), window.location.href = "https://treblehealth.com/survey/";
           });
         });
