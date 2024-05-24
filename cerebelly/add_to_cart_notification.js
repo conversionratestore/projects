@@ -723,9 +723,7 @@ p.crs_tastes + p {
     padding-right: 16px;
   }
 }/*# sourceMappingURL=main.css.map */`;
-  S({ name: "Enhancements on PDP and new Add to Cart notification", dev: "Olha" }), E("new_add_to_cart"), initFullStory({
-    orgId: "YOUR_ORG_ID"
-  }), q("new_add_to_cart");
+  S({ name: "Enhancements on PDP and new Add to Cart notification", dev: "Olha" }), E("new_add_to_cart"), q("new_add_to_cart");
   const v = window.innerWidth < 991 ? "mobile" : "desktop";
   class w {
     constructor(e) {
