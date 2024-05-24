@@ -170,8 +170,8 @@
       c = r[s] = function() {
         var u = function(w, y, d, p) {
           p = p || 2;
-          function x(tt, et) {
-            g(w, y, d, tt, et, p);
+          function x(Q, tt) {
+            g(w, y, d, Q, tt, p);
           }
           var E = /Async$/;
           if (E.test(w))
@@ -1175,9 +1175,8 @@ p.crs_tastes + p {
       }, 200);
     }
   }
-  let Q = setInterval(() => {
-    t("crs_test") && b("crs_test").length <= 1 && (clearInterval(Q), console.dir(b("crs_test").length), N({ name: "Enhancements on PDP and new Add to Cart notification", dev: "Olha" }), O("new_add_to_cart"), G({
-      orgId: "P34MT"
-    }), M("new_add_to_cart"), new z(T));
-  });
+  console.dir(b("crs_test").length), N({ name: "Enhancements on PDP and new Add to Cart notification", dev: "Olha" }), O("new_add_to_cart"), G({
+    orgId: "P34MT"
+  }), M("new_add_to_cart"), new z(T);
 })();
+//# sourceMappingURL=index.js.map
