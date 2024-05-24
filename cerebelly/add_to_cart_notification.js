@@ -1,6 +1,7 @@
 let start = setInterval(() => {
-  if (!document.querySelector('.crs_test')) {
+  if (document.querySelectorAll('.crs_test').length <= 1 ) {
     clearInterval(start)
+    console.dir(document.querySelectorAll('.crs_test').length)
     (function() {
       "use strict";
       const h = (l, e, n, i = "") => {
