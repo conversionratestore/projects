@@ -1,9 +1,10 @@
-let start = setInterval(() => {
-  if (document.querySelectorAll('.crs_test').length <= 1 ) {
-    clearInterval(start)
-    console.dir(document.querySelectorAll('.crs_test').length)
-    (function() {
-      "use strict";
+(function() {
+  "use strict";
+    let start = setInterval(() => {
+      if (document.querySelectorAll('.crs_test').length <= 1 ) {
+        clearInterval(start)
+        console.dir(document.querySelectorAll('.crs_test').length)
+      
       const h = (l, e, n, i = "") => {
         window.dataLayer = window.dataLayer || [], window.dataLayer.push({
           event: "event-to-ga4",
@@ -1184,8 +1185,8 @@ let start = setInterval(() => {
         }
       }
       new z(T);
-    })();
-    //# sourceMappingURL=index.js.map
-    
-  }
-})
+    }
+  })
+})();
+//# sourceMappingURL=index.js.map
+   
