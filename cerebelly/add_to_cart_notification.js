@@ -1,5 +1,6 @@
 let start = setInterval(() => {
   if (!document.querySelector('.crs_test')) {
+    clearInterval(start)
     (function() {
       "use strict";
       const h = (l, e, n, i = "") => {
