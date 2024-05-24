@@ -1,37 +1,37 @@
 (function() {
   "use strict";
-  const h = (e, t, n, a = "") => {
+  const h = (t, e, n, a = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: e,
-      event_desc: t,
+      event_name: t,
+      event_desc: e,
       event_type: n,
       event_loc: a
-    }), console.log(`Event: ${e} | ${t} | ${n} | ${a.replace(/  +/g, " ")}`);
-  }, T = ({ name: e, dev: t }) => {
+    }), console.log(`Event: ${t} | ${e} | ${n} | ${a.replace(/  +/g, " ")}`);
+  }, w = ({ name: t, dev: e }) => {
     console.log(
-      `%c EXP: ${e} (DEV: ${t})`,
+      `%c EXP: ${t} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, S = (e) => {
-    let t = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", e, "variant_1"));
+  }, k = (t) => {
+    let e = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", t, "variant_1"));
     }, 1e3);
-  }, m = (e) => new Promise((t) => {
-    const n = document.querySelector(e);
+  }, u = (t) => new Promise((e) => {
+    const n = document.querySelector(t);
     if (n)
-      return t(n);
+      return e(n);
     const a = new MutationObserver(() => {
-      const i = document.querySelector(e);
-      i && (t(i), a.disconnect());
+      const i = document.querySelector(t);
+      i && (e(i), a.disconnect());
     });
     a.observe(document.documentElement, {
       childList: !0,
       subtree: !0
     });
-  }), _ = "https://conversionratestore.github.io/projects/geeni/img/search";
-  let v = !1;
-  const F = (
+  }), y = "https://conversionratestore.github.io/projects/geeni/img/search";
+  let g = !1, f = !1;
+  const T = (
     /*html*/
     `
   <style>
@@ -46,7 +46,7 @@
     }
 
     .site-header__background {
-      top: 40px;       
+      top: 40px;
       display: none;
     }
 
@@ -205,6 +205,14 @@
       height: auto;
     }
 
+    .search-input input::selection {
+      background: #DCEFFF !important;
+    }
+
+    .search-input input::-moz-selection {
+      background: #DCEFFF !important;
+    }
+
     .search-input p {
       margin: 0;
     }
@@ -273,7 +281,10 @@
       margin: 0 16px;
     }
 
-  
+    .search-input input::selection {
+      background: #ccc;
+    }
+
     .back-nav {
       display: none;
     }
@@ -372,6 +383,10 @@
       .marquee--hover-pause:hover .marquee__content {
         animation-play-state: paused;
       }
+
+      .transparent-header .item  .slide__text__container {
+        align-items: flex-start !important;
+      }
     }
     
     @media (max-width: 768px) {
@@ -424,37 +439,74 @@
   </style>
 `
   );
-  S("exp_search_feature"), T({ name: "Introduces personalized search", dev: "AK" }), document.head.insertAdjacentHTML("beforeend", F), L();
-  function L() {
-    window.location.pathname.includes("/search") && E();
-    const e = setInterval(() => {
-      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(e), I(), A(), M(), q());
+  if (k("exp_search_feature"), w({ name: "Introduces personalized search", dev: "AK" }), document.head.insertAdjacentHTML("beforeend", T), u("body").then(() => S()), window.location.pathname.includes("/collections/")) {
+    const t = setInterval(() => {
+      document.head.insertAdjacentHTML(
+        "beforeend",
+        /*html*/
+        `
+    <style>
+      .site-header {
+        position: relative !important;
+      }
+
+      .site-header.site-header--top-zero {
+        top: 0 !important;
+        position: fixed !important;
+      }
+
+       .collection__sticky-bar {
+        top: 95px !important;
+      }
+
+      @media only screen and (min-width: 1024px) {
+        .collection--breadcrumbs-disabled .collection__filters,
+        .collection__sticky-bar {
+          top: 161px !important;
+        }
+      } 
+
+
+    </style>
+  
+    `
+      );
+      const e = document.querySelector(".marquee"), n = document.querySelector(".site-header");
+      e && n && (clearInterval(t), window.addEventListener("scroll", () => {
+        const a = window.pageYOffset || document.documentElement.scrollTop, i = e.offsetTop + e.offsetHeight;
+        a >= i ? n.classList.add("site-header--top-zero") : n.classList.remove("site-header--top-zero");
+      }));
     }, 100);
-    document.body.addEventListener("click", (t) => {
-      t.target.closest('[data-element="about-us"]') ? h("exp_search_feature_button_04", "About us", "Button", "Slide menu") : t.target.closest(".back-nav__inner") ? (h("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back()) : t.target.closest(".menu__item") && h("exp_search_feature_button_02", `${t.target.closest(".menu__item").querySelector("span").innerText}`, "Button", "Header");
-    }), m(".marquee").then(() => {
-      B(".marquee", "exp_search_feature_section_02", "Visibility", "Header");
+  }
+  function S() {
+    window.location.pathname.includes("/search") && I();
+    const t = setInterval(() => {
+      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(t), F(), L(), A(), E());
+    }, 100);
+    document.body.addEventListener("click", (e) => {
+      e.target.closest('[data-element="about-us"]') ? h("exp_search_feature_button_04", "About us", "Button", "Slide menu") : e.target.closest(".back-nav__inner") ? (h("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back()) : e.target.closest(".menu__item") && h("exp_search_feature_button_02", `${e.target.closest(".menu__item").querySelector("span").innerText}`, "Button", "Header");
+    }), u(".marquee").then(() => {
+      q(".marquee", "exp_search_feature_section_02", "Visibility", "Header");
     });
   }
-  function I() {
-    const e = [
+  function F() {
+    const t = [
       ["Millions of Users", "smile"],
       ["<b>4.8</b> Stars with over <b>400.000</b> reviews", "star"],
       ["1-Year Warranty on All Products", "check"],
       ["<b>FREE</b> Shipping orders over <b>$69</b>", "shipping"]
     ];
-    let n = Array(4).fill(e).flat();
+    let n = Array(4).fill(t).flat();
     const a = (
       /*html*/
       `
-    <div>
       <div class="marquee marquee--hover-pause">
         <ul class="marquee__content">
-        ${n.map(([i, o]) => (
+        ${n.map(([i, l]) => (
         /*html*/
         `
                   <div class="marquee__item">
-                    <img src="${_}/${o}.svg" alt="">
+                    <img src="${y}/${l}.svg" alt="">
                     <p>${i}</p>
                   </div>
                 `
@@ -462,30 +514,29 @@
         </ul>
   
         <ul aria-hidden="true" class="marquee__content">
-          ${n.map(([i, o]) => (
+          ${n.map(([i, l]) => (
         /*html*/
         `
                   <div class="marquee__item">
-                    <img src="${_}/${o}.svg" alt="">
+                    <img src="${y}/${l}.svg" alt="">
                     <p>${i}</p>
                   </div>
                 `
       )).join("")}
         </ul>
-      </div>
     </div>  
   `
     );
     document.getElementById("SiteHeader").insertAdjacentHTML("beforebegin", a);
   }
-  function A() {
-    const e = setInterval(() => {
+  function L() {
+    const t = setInterval(() => {
       if (document.querySelectorAll("#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)")[3]) {
-        clearInterval(e);
-        let t = document.querySelectorAll("#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)"), n = document.createElement("div");
-        n.className = "new-nav", t.forEach((a) => {
+        clearInterval(t);
+        let e = document.querySelectorAll("#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)"), n = document.createElement("div");
+        n.className = "new-nav", e.forEach((a) => {
           n.appendChild(a);
-        }), document.getElementById("SiteHeader").insertAdjacentElement("beforeend", n), m(".new-nav .menu__item.child:last-child").then((a) => a.insertAdjacentHTML(
+        }), document.getElementById("SiteHeader").insertAdjacentElement("beforeend", n), u(".new-nav .menu__item.child:last-child").then((a) => a.insertAdjacentHTML(
           "afterend",
           /*html*/
           `
@@ -494,7 +545,7 @@
         <span class="navtext">About us</span>
       </a>
     </div>`
-        )), m(".mobile-nav.mobile-nav--weight-bold").then((a) => a.insertAdjacentHTML(
+        )), u(".mobile-nav.mobile-nav--weight-bold").then((a) => a.insertAdjacentHTML(
           "beforeend",
           /*html*/
           `
@@ -508,17 +559,28 @@
       }
     }, 100);
   }
-  function M() {
-    const e = [
-      "Geeni Look Indoor Camera",
-      "Geeni Hawk 3 Outdoor Camera",
-      "Geeni Dot Smart Plug"
-    ], t = [
-      "Geeni Freebird Wire-Free Battery Camera",
-      "Geeni Lookout 2k Outdoor Camera",
-      "Geeni Doorpeek Wired Doorbell",
-      "Geeni Prisma Plus 800 Smart Bulb"
-    ], n = [...e, ...t], a = n[Math.floor(Math.random() * n.length)], o = (
+  function A() {
+    const t = [
+      ["Geeni Look Indoor Camera", !0],
+      ["Geeni Hawk 3 Outdoor Camera", !0],
+      ["Geeni Dot Smart Plug", !0],
+      ["Geeni Glimpse 1080p Camera", !0],
+      ["Smart 2k Auto-Follow Camera", !0],
+      ["Geeni Lookout 2k Outdoor Camera", !0],
+      ["Geeni Doorpeek Wired Doorbell", !0],
+      ["Geeni Prisma Plus 800 Smart Bulb", !1],
+      ["Geeni Freebird Wire-Free Battery Camera", !1],
+      ["Geeni Sentinel 1080p Pan & Tilt Camera", !1],
+      ["Geeni Scope 1080p Auto-Tracking Camera", !1],
+      ["Geeni Lux A19 Smart Bulb - Warm White", !1],
+      ["Geeni PetConnect Automatic Feeder with Camera", !1],
+      ["Geeni Rise & Shine - Smart Wi-Fi Kid’s Training Light", !1],
+      ["Geeni Indoor/Outdoor Weatherproof Plug", !1],
+      ["Geeni Water Fountain Replacement Filters", !1]
+    ], e = (r) => {
+      const o = Math.floor(Math.random() * r.length);
+      return r[o];
+    }, n = (
       /*html*/
       `
   <div class="search-input-wrapper">
@@ -532,8 +594,8 @@
     </div>
     <div class="search-input">
       <div class="search-input__data">
-        <div class="search-input__hot" ${e.includes(a) || Math.random() > 0.5 ? "" : 'style="display: none;"'}>
-          <img src="${_}/fire.svg" alt="">
+        <div class="search-input__hot" style="display: none;">
+          <img src="${y}/fire.svg" alt="">
           <p>HOT</p>
         </div>
         <input type="text" value="" data-search-title="">
@@ -543,61 +605,65 @@
   </div>
   `
     );
-    let k = document.getElementById("NavStandard"), x = document.getElementById("MainContent");
-    k.insertAdjacentHTML("beforeend", o), x.insertAdjacentHTML("afterbegin", o), x.insertAdjacentHTML("afterbegin", '<div class="empty-space"></div>');
-    const g = (s) => {
-      let l = s.value;
-      const p = s.closest(".search-input").querySelector(".search-input__hot");
-      function c() {
-        var f;
-        if (v)
-          clearInterval(y);
+    let a = document.getElementById("NavStandard"), i = document.getElementById("MainContent");
+    a.insertAdjacentHTML("beforeend", n), i.insertAdjacentHTML("afterbegin", n), i.insertAdjacentHTML("afterbegin", '<div class="empty-space"></div>');
+    const l = (r) => {
+      let o = r.value;
+      const c = r.closest(".search-input").querySelector(".search-input__hot");
+      function d() {
+        var v;
+        if (g || f)
+          clearInterval(x);
         else {
-          let d;
+          let p;
           do
-            d = n[Math.floor(Math.random() * n.length)];
-          while (d === l);
-          s.value = d, (f = s.closest(".search-input__data")) == null || f.classList.add("opacity-0"), p && (e.includes(d) ? p.style.display = "flex" : p.style.display = Math.random() > 0.5 ? "" : "none"), l = d, setTimeout(() => {
-            var r;
-            (r = s.closest(".search-input__data")) == null || r.classList.remove("opacity-0");
+            p = e(t);
+          while (p === o);
+          r.value = p[0], (v = r.closest(".search-input__data")) == null || v.classList.add("opacity-0"), c && (p[1] === !0 ? c.style.display = "flex" : c.style.display = "none"), o = p, setTimeout(() => {
+            var s;
+            (s = r.closest(".search-input__data")) == null || s.classList.remove("opacity-0");
           }, 200);
         }
       }
-      c();
-      const y = setInterval(c, 3500);
+      d();
+      const x = setInterval(d, 3500);
     }, b = setInterval(() => {
-      const s = document.querySelector("#NavStandard .search-btn"), l = document.querySelector("#NavStandard [data-search-title]"), p = document.querySelector("#MainContent .search-btn"), c = document.querySelector("#MainContent [data-search-title]");
-      if (s && l || p && c) {
+      const r = document.querySelector("#NavStandard .search-btn"), o = document.querySelector("#NavStandard [data-search-title]"), c = document.querySelector("#MainContent .search-btn"), d = document.querySelector("#MainContent [data-search-title]");
+      if (r && o || c && d) {
         clearInterval(b);
-        const y = (r) => {
-          const u = r.value, w = encodeURIComponent(u);
-          window.location.href = `https://mygeeni.com/search?q=${w}&type=product`;
-        }, f = (r) => {
-          r.addEventListener("input", function(u) {
-            if (!v) {
-              const w = u.data || "";
-              this.value = w, v = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none";
+        const x = (s) => {
+          const m = s.value, _ = encodeURIComponent(m);
+          window.location.href = `https://mygeeni.com/search?q=${_}&type=product`;
+        }, v = (s) => {
+          s.addEventListener("input", function(m) {
+            if (!g) {
+              const _ = m.data || "";
+              this.value = _, g = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none";
             }
-          }), r.addEventListener("keypress", function(u) {
-            u.key === "Enter" && y(r);
-          }), r.addEventListener("focus", function() {
-            h("exp_search_feature_input_01", "Search", "Input", "Header");
-          }), r.addEventListener("blur", function() {
-            setTimeout(() => {
-              this.value === "" && (console.log("Input has been empty for 5 seconds after losing focus"), v = !1, g(this));
+          }), s.addEventListener("keypress", function(m) {
+            m.key === "Enter" && x(s);
+          }), s.addEventListener("focus", function() {
+            f = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none", h("exp_search_feature_input_01", "Search", "Input", "Header"), g || setTimeout(() => {
+              this.setSelectionRange(0, 0);
+            }, 0);
+          }), s.addEventListener("blur", function() {
+            !g && f ? setTimeout(() => {
+              f = !1, l(this);
+            }, 3500) : setTimeout(() => {
+              this.value.trim() === "" && (g = !1, f = !1, l(this));
             }, 5e3);
           });
-        }, d = (r, u) => {
-          r.addEventListener("click", () => {
-            y(u), h("exp_search_feature_button_01", "Search", "Button", "Header");
+        }, p = (s, m) => {
+          s.addEventListener("click", () => {
+            x(m), h("exp_search_feature_button_01", "Search", "Button", "Header");
           });
         };
-        s && l && (f(l), d(s, l), g(l)), p && c && (f(c), d(p, c), g(c));
+        r && o && (v(o), p(r, o), l(o)), c && d && (v(d), p(c, d), l(d));
       }
     }, 100);
   }
-  function E() {
-    const t = new URLSearchParams(window.location.search).get("q");
+  function I() {
+    const e = new URLSearchParams(window.location.search).get("q");
     document.head.insertAdjacentHTML(
       "beforeend",
       /*html*/
@@ -674,37 +740,37 @@
   }
 </style>
   `
-    ), m("#SearchPage .collection__wrapper .pagination").then(() => {
+    ), u("#SearchPage .collection__wrapper .pagination").then(() => {
       const a = (
         /*html*/
         `
     <div class="search-result">
-      <p>${document.querySelectorAll(".product-grid-item").length || "0"} Search Results for: “${t}”</p>
+      <p>${document.querySelectorAll(".product-grid-item").length || "0"} Search Results for: “${e}”</p>
     </div>`
       );
       document.querySelector("#SearchPage .collection__wrapper").insertAdjacentHTML("afterbegin", a);
     });
   }
-  function q() {
-    m('[href="/account"]').then((e) => e.insertAdjacentHTML(
+  function E() {
+    u('[href="/account"]').then((t) => t.insertAdjacentHTML(
       "beforeend",
       /*html*/
       '<span class="log">Login</span>'
     ));
   }
-  function B(e, t, n, a) {
+  function q(t, e, n, a) {
     let i = null;
-    m(e).then((o) => {
-      o && new IntersectionObserver((x) => {
-        x.forEach((g) => {
-          if (g.isIntersecting && g.intersectionRatio >= 0.5)
+    u(t).then((l) => {
+      l && new IntersectionObserver((r) => {
+        r.forEach((o) => {
+          if (o.isIntersecting && o.intersectionRatio >= 0.5)
             i = performance.now();
           else if (i) {
-            const b = ((performance.now() - i) / 1e3).toFixed(2);
-            h(t, b, n, a), i = null;
+            const c = ((performance.now() - i) / 1e3).toFixed(2);
+            h(e, c, n, a), i = null;
           }
         });
-      }, { threshold: 0.5 }).observe(o);
+      }, { threshold: 0.5 }).observe(l);
     });
   }
 })();
