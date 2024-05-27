@@ -744,6 +744,12 @@ p.crs_tastes + p {
   min-height: 100px;
 }
 
+@media (min-width: 1340px) {
+  .crs_nav ul {
+    padding: 0 80px;
+    justify-content: flex-start !important;
+  }
+}
 @media (min-width: 900px) {
   .modal .css-12a0csp .product-wrapper {
     padding: 0 20px;
