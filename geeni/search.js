@@ -1,28 +1,28 @@
 (function() {
   "use strict";
-  const g = (n, e, t, a = "") => {
+  const h = (t, e, n, a = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: n,
+      event_name: t,
       event_desc: e,
-      event_type: t,
+      event_type: n,
       event_loc: a
-    }), console.log(`Event: ${n} | ${e} | ${t} | ${a.replace(/  +/g, " ")}`);
-  }, w = ({ name: n, dev: e }) => {
+    }), console.log(`Event: ${t} | ${e} | ${n} | ${a.replace(/  +/g, " ")}`);
+  }, w = ({ name: t, dev: e }) => {
     console.log(
-      `%c EXP: ${n} (DEV: ${e})`,
+      `%c EXP: ${t} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, T = (n) => {
+  }, k = (t) => {
     let e = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", n, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", t, "variant_1"));
     }, 1e3);
-  }, u = (n) => new Promise((e) => {
-    const t = document.querySelector(n);
-    if (t)
-      return e(t);
+  }, u = (t) => new Promise((e) => {
+    const n = document.querySelector(t);
+    if (n)
+      return e(n);
     const a = new MutationObserver(() => {
-      const i = document.querySelector(n);
+      const i = document.querySelector(t);
       i && (e(i), a.disconnect());
     });
     a.observe(document.documentElement, {
@@ -30,8 +30,8 @@
       subtree: !0
     });
   }), x = "https://conversionratestore.github.io/projects/geeni/img/search";
-  let f = !1, v = !1;
-  const k = (
+  let g = !1, v = !1;
+  const T = (
     /*html*/
     `
   <style>
@@ -448,17 +448,10 @@
   </style>
 `
   );
-  if (T("exp_search_feature"), window.addEventListener("pageshow", (n) => {
-    if (n.persisted) {
-      const e = setInterval(() => {
-        const t = document.querySelectorAll(".search-input input");
-        (t == null ? void 0 : t.length) > 1 && (clearInterval(e), t.forEach((a) => {
-          a.value = "";
-        }));
-      }, 100);
-    }
-  }), w({ name: "Introduces personalized search", dev: "AK" }), document.head.insertAdjacentHTML("beforeend", k), u("body").then(() => S()), window.location.pathname.includes("/collections/") || window.location.pathname.includes("/search")) {
-    const n = setInterval(() => {
+  if (k("exp_search_feature"), window.addEventListener("pageshow", (t) => {
+    t.persisted && window.location.reload();
+  }), w({ name: "Introduces personalized search", dev: "AK" }), document.head.insertAdjacentHTML("beforeend", T), u("body").then(() => S()), window.location.pathname.includes("/collections/") || window.location.pathname.includes("/search")) {
+    const t = setInterval(() => {
       document.head.insertAdjacentHTML(
         "beforeend",
         /*html*/
@@ -495,38 +488,38 @@
   
     `
       );
-      const e = document.querySelector(".marquee"), t = document.querySelector(".site-header");
-      e && t && (clearInterval(n), window.addEventListener("scroll", () => {
-        const a = window.pageYOffset || document.documentElement.scrollTop, i = e.offsetTop + e.offsetHeight;
-        a >= i ? t.classList.add("site-header--top-zero") : t.classList.remove("site-header--top-zero");
+      const e = document.querySelector(".marquee"), n = document.querySelector(".site-header");
+      e && n && (clearInterval(t), window.addEventListener("scroll", () => {
+        const a = window.scrollY || document.documentElement.scrollTop, i = e.offsetTop + e.offsetHeight;
+        a >= i ? n.classList.add("site-header--top-zero") : n.classList.remove("site-header--top-zero");
       }));
     }, 100);
   }
   function S() {
-    window.location.pathname.includes("/search") && I();
-    const n = setInterval(() => {
-      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(n), F(), E(), L(), A());
+    window.location.pathname.includes("/search") && A();
+    const t = setInterval(() => {
+      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(t), F(), I(), L(), E());
     }, 100);
     document.body.addEventListener("click", (e) => {
-      e.target.closest('[data-element="about-us"]') ? g("exp_search_feature_button_04", "About us", "Button", "Slide menu") : e.target.closest(".back-nav__inner") ? (g("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back()) : e.target.closest(".menu__item") && g("exp_search_feature_button_02", `${e.target.closest(".menu__item").querySelector("span").innerText}`, "Button", "Header");
+      e.target.closest('[data-element="about-us"]') ? h("exp_search_feature_button_04", "About us", "Button", "Slide menu") : e.target.closest(".back-nav__inner") ? (h("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back()) : e.target.closest(".menu__item") && h("exp_search_feature_button_02", `${e.target.closest(".menu__item").querySelector("span").innerText}`, "Button", "Header");
     }), u(".marquee").then(() => {
       q(".marquee", "exp_search_feature_section_02", "Visibility", "Header");
     });
   }
   function F() {
-    const n = [
+    const t = [
       ["Millions of Users", "smile"],
       ["<b>4.8</b> Stars with over <b>400.000</b> reviews", "star"],
       ["1-Year Warranty on All Products", "check"],
       ["<b>FREE</b> Shipping orders over <b>$69</b>", "shipping"]
     ];
-    let t = Array(4).fill(n).flat();
+    let n = Array(4).fill(t).flat();
     const a = (
       /*html*/
       `
       <div class="marquee marquee--hover-pause">
         <ul class="marquee__content">
-        ${t.map(([i, s]) => (
+        ${n.map(([i, s]) => (
         /*html*/
         `
                   <div class="marquee__item">
@@ -538,7 +531,7 @@
         </ul>
   
         <ul aria-hidden="true" class="marquee__content">
-          ${t.map(([i, s]) => (
+          ${n.map(([i, s]) => (
         /*html*/
         `
                   <div class="marquee__item">
@@ -553,14 +546,14 @@
     );
     document.getElementById("SiteHeader").insertAdjacentHTML("beforebegin", a);
   }
-  function E() {
-    const n = setInterval(() => {
+  function L() {
+    const t = setInterval(() => {
       if (document.querySelectorAll("#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)")[3]) {
-        clearInterval(n);
-        let e = document.querySelectorAll("#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)"), t = document.createElement("div");
-        t.className = "new-nav", e.forEach((a) => {
-          t.appendChild(a);
-        }), document.getElementById("SiteHeader").insertAdjacentElement("beforeend", t), u(".new-nav .menu__item.child:last-child").then((a) => a.insertAdjacentHTML(
+        clearInterval(t);
+        let e = document.querySelectorAll("#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)"), n = document.createElement("div");
+        n.className = "new-nav", e.forEach((a) => {
+          n.appendChild(a);
+        }), document.getElementById("SiteHeader").insertAdjacentElement("beforeend", n), u(".new-nav .menu__item.child:last-child").then((a) => a.insertAdjacentHTML(
           "afterend",
           /*html*/
           `
@@ -583,8 +576,8 @@
       }
     }, 100);
   }
-  function L() {
-    const n = [
+  function E() {
+    const t = [
       ["Geeni Look Indoor Camera", !0],
       ["Geeni Hawk 3 Outdoor Camera", !0],
       ["Geeni Dot Smart Plug", !0],
@@ -604,7 +597,7 @@
     ], e = (r) => {
       const o = Math.floor(Math.random() * r.length);
       return r[o];
-    }, t = (
+    }, n = (
       /*html*/
       `
   <div class="search-input-wrapper">
@@ -630,22 +623,22 @@
   `
     );
     let a = document.getElementById("NavStandard"), i = document.getElementById("MainContent");
-    a.insertAdjacentHTML("beforeend", t), i.insertAdjacentHTML("afterbegin", t), i.insertAdjacentHTML("afterbegin", '<div class="empty-space"></div>');
+    a.insertAdjacentHTML("beforeend", n), i.insertAdjacentHTML("afterbegin", n), i.insertAdjacentHTML("afterbegin", '<div class="empty-space"></div>');
     const s = (r) => {
       let o = r.value;
       const l = r.closest(".search-input").querySelector(".search-input__hot");
       function d() {
-        if (f || v)
+        if (g || v)
           clearInterval(y);
         else {
           let p;
           do
-            p = e(n);
+            p = e(t);
           while (p === o);
-          const m = r.closest(".search-input__data");
-          m && m.classList.add("fade-out"), m.addEventListener("transitionend", () => {
-            r.value = p[0], l && (p[1] === !0 ? l.style.display = "flex" : l.style.display = "none"), o = p, m.classList.remove("fade-out");
-          }, { once: !0 });
+          const f = r.closest(".search-input__data");
+          f && (f.classList.add("fade-out"), setTimeout(() => {
+            r.value = p[0], l && (p[1] === !0 ? l.style.display = "flex" : l.style.display = "none"), o = p, f.classList.remove("fade-out");
+          }, 300));
         }
       }
       d();
@@ -655,37 +648,37 @@
       if (r && o || l && d) {
         clearInterval(b);
         const y = (c) => {
-          const h = c.value, _ = encodeURIComponent(h);
+          const m = c.value, _ = encodeURIComponent(m);
           window.location.href = `https://mygeeni.com/search?q=${_}&type=product`;
         }, p = (c) => {
-          c.addEventListener("input", function(h) {
-            if (this.style.color = "rgba(74, 74, 74)", !f) {
-              const _ = h.data || "";
-              this.value = _, f = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none";
+          c.addEventListener("input", function(m) {
+            if (this.style.color = "rgba(74, 74, 74)", !g) {
+              const _ = m.data || "";
+              this.value = _, g = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none";
             }
-          }), c.addEventListener("keypress", function(h) {
-            h.key === "Enter" && y(c);
+          }), c.addEventListener("keypress", function(m) {
+            m.key === "Enter" && y(c);
           }), c.addEventListener("focus", function() {
-            v = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none", g("exp_search_feature_input_01", "Search", "Input", "Header"), f || setTimeout(() => {
+            v = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none", h("exp_search_feature_input_01", "Search", "Input", "Header"), g || setTimeout(() => {
               this.setSelectionRange(0, 0), this.style.color = "rgba(74, 74, 74, 0.7)";
             }, 0);
           }), c.addEventListener("blur", function() {
-            !f && v ? setTimeout(() => {
+            !g && v ? setTimeout(() => {
               v = !1, s(this);
             }, 3500) : setTimeout(() => {
-              this.value.trim() === "" && (f = !1, v = !1, s(this));
+              this.value.trim() === "" && (g = !1, v = !1, s(this));
             }, 5e3), this.style.color = "rgba(74, 74, 74)";
           });
-        }, m = (c, h) => {
+        }, f = (c, m) => {
           c.addEventListener("click", () => {
-            y(h), g("exp_search_feature_button_01", "Search", "Button", "Header");
+            y(m), h("exp_search_feature_button_01", "Search", "Button", "Header");
           });
         };
-        r && o && (p(o), m(r, o), s(o)), l && d && (p(d), m(l, d), s(d));
+        r && o && (p(o), f(r, o), s(o)), l && d && (p(d), f(l, d), s(d));
       }
     }, 100);
   }
-  function I() {
+  function A() {
     const e = new URLSearchParams(window.location.search).get("q");
     document.head.insertAdjacentHTML(
       "beforeend",
@@ -773,26 +766,27 @@
       document.querySelector("#SearchPage .collection__wrapper").insertAdjacentHTML("afterbegin", a);
     });
   }
-  function A() {
-    u('[href="/account"]').then((n) => n.insertAdjacentHTML(
+  function I() {
+    u('[href="/account"]').then((t) => t.insertAdjacentHTML(
       "beforeend",
       /*html*/
       '<span class="log">Login</span>'
     ));
   }
-  function q(n, e, t, a) {
+  function q(t, e, n, a) {
     let i = null;
-    u(n).then((s) => {
+    u(t).then((s) => {
       s && new IntersectionObserver((r) => {
         r.forEach((o) => {
           if (o.isIntersecting && o.intersectionRatio >= 0.5)
             i = performance.now();
           else if (i) {
             const l = ((performance.now() - i) / 1e3).toFixed(2);
-            g(e, l, t, a), i = null;
+            h(e, l, n, a), i = null;
           }
         });
       }, { threshold: 0.5 }).observe(s);
     });
   }
 })();
+//# sourceMappingURL=index.js.map
