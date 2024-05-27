@@ -43,7 +43,7 @@
       f && s.observe(f);
     } else
       s.observe(l);
-  }, z = (l) => new Promise((e) => {
+  }, I = (l) => new Promise((e) => {
     if (t(l))
       return e(t(l));
     const n = new MutationObserver(() => {
@@ -127,9 +127,9 @@
     <li><a href="#usvsthem">the cerebelly standard</a></li>
     <li><a href="#puree">directions & safety</a></li>
   </ul>
-</nav>`, H = `
+</nav>`, R = `
 <button type="button" class="crs_arrow crs_arrow_prev" hidden>${L.arrowLeftSlide}</button>
-<button type="button" class="crs_arrow crs_arrow_next" hidden>${L.arrowRightSlide}</button>`, R = (l) => `<p class="crs_tastes"><span>1</span> of ${l} flavors<p>`;
+<button type="button" class="crs_arrow crs_arrow_next" hidden>${L.arrowRightSlide}</button>`, H = (l) => `<p class="crs_tastes"><span>1</span> of ${l} flavors<p>`;
   var D = function() {
     var e = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {}, n = e.wnd, i = n === void 0 ? window : n;
     (function(r, o, s, a, f, v, c, m) {
@@ -277,20 +277,20 @@
     window._fs_host = s, window._fs_script = f, window._fs_org = n, window._fs_namespace = r, D();
   };
   W();
-  var I = function() {
-    return I = Object.assign || function(e) {
+  var z = function() {
+    return z = Object.assign || function(e) {
       for (var n, i = 1, r = arguments.length; i < r; i++) {
         n = arguments[i];
         for (var o in n)
           Object.prototype.hasOwnProperty.call(n, o) && (e[o] = n[o]);
       }
       return e;
-    }, I.apply(this, arguments);
+    }, z.apply(this, arguments);
   }, B = function() {
     if (window._fs_namespace)
       return window[window._fs_namespace];
   }, Y = function(l, e) {
-    var n = I({}, l);
+    var n = z({}, l);
     if (B()) {
       console.warn("The FullStory snippet has already been defined elsewhere (likely in the <head> element)");
       return;
@@ -955,7 +955,7 @@ p.crs_tastes + p {
     init() {
       this.appendStyleAndScript(), this.handleUserInactive(this.device === "desktop" ? 20 : 10), this.handleUserAfte180();
       let e = 0;
-      z(".e-nav .mobile-cart-box").then((r) => {
+      I(".e-nav .mobile-cart-box").then((r) => {
         r.addEventListener("click", (o) => {
           document.body.classList.remove("crs_hide_cart");
         }), document.body.classList.add("crs_hide_cart"), document.addEventListener("click", (o) => {
@@ -965,7 +965,7 @@ p.crs_tastes + p {
             o.target.closest(".added-container").querySelector(".remove").getAttribute("aria-label").toLowerCase().trim().includes(m == null ? void 0 : m.title.toLowerCase().trim()) && ((c = t(".crs_notification")) == null || c.remove(), this.updateDataNotification());
           }
         });
-      }), z(".pageContainer .product").then((r) => {
+      }), I(".pageContainer .product").then((r) => {
         b(".sidebar a").forEach((o) => {
           o.addEventListener("click", (s) => this.notShowExitIntent());
         });
@@ -1013,7 +1013,7 @@ p.crs_tastes + p {
           let s = o == "window" ? window.scrollY : t(o).scrollTop;
           i = s - n, n = s, (i > e || i < -e) && !this.isExitIntentTriggered() && !t(".crs_notification") && !t(".css-m18cj1") && this.isCartNotEmpty() && this.notExitPopup === !1 && !this.isOnCartOrCheckoutPage() && (console.dir(i), sessionStorage.setItem("exit_intent", "true"), this.renderNotification(), h("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"), o == "window" ? document.removeEventListener("scroll", () => r()) : t(o).removeEventListener("scroll", r()));
         };
-        document.addEventListener("scroll", () => r()), z(this.isSelectorWrapper).then((o) => {
+        document.addEventListener("scroll", () => r()), I(this.isSelectorWrapper).then((o) => {
           t(this.isSelectorWrapper).addEventListener("scroll", () => {
             r(this.isSelectorWrapper), this.checkAttentiveCreativ();
           });
@@ -1048,7 +1048,7 @@ p.crs_tastes + p {
           let n = window.location.href.split("/"), i = n[n.length - 1].split("?")[0], r = P[e];
           for (let o = 0; o < r.length; o++)
             if (r[o] == i) {
-              t(".css-5nnxvq").insertAdjacentHTML("afterbegin", R(e)), t(".css-5nnxvq").insertAdjacentHTML("afterbegin", H), t(".crs_arrow_next").hidden = !1;
+              t(".css-5nnxvq").insertAdjacentHTML("afterbegin", H(e)), t(".css-5nnxvq").insertAdjacentHTML("afterbegin", R), t(".crs_arrow_next").hidden = !1;
               let s = 1;
               b(".crs_arrow").forEach((a) => {
                 let f = a.classList.contains("crs_arrow_prev") ? "prev" : "next";
@@ -1109,7 +1109,11 @@ p.crs_tastes + p {
         });
       });
       function e(i) {
-        t(".css-12a0csp .right-side") && t(".crs_nav") && i === "desktop" && (t(".crs_nav").style.width = t(".css-12a0csp .right-side").clientWidth + "px", t(".crs_nav").style.right = window.innerWidth - t(".css-12a0csp .right-side").getBoundingClientRect().right + "px");
+        if (t(".crs_nav") && i === "desktop") {
+          let r = setInterval(() => {
+            t(".css-12a0csp .right-side") && (clearInterval(r), t(".crs_nav").style.width = t(".css-12a0csp .right-side").clientWidth + "px", t(".crs_nav").style.right = window.innerWidth - t(".css-12a0csp .right-side").getBoundingClientRect().right + "px");
+          });
+        }
       }
       window.addEventListener("resize", () => {
         e(this.device);
@@ -1208,4 +1212,3 @@ p.crs_tastes + p {
   }
   new T(E);
 })();
-//# sourceMappingURL=index.js.map
