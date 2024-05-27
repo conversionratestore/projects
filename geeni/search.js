@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const f = (n, e, t, a = "") => {
+  const g = (n, e, t, a = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: n,
@@ -30,7 +30,7 @@
       subtree: !0
     });
   }), x = "https://conversionratestore.github.io/projects/geeni/img/search";
-  let m = !1, v = !1, b = !1;
+  let f = !1, v = !1, b = !1;
   const S = (
     /*html*/
     `
@@ -511,7 +511,7 @@
       document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(n), L(), E(), I(), q());
     }, 100);
     document.body.addEventListener("click", (e) => {
-      e.target.closest('[data-element="about-us"]') ? f("exp_search_feature_button_04", "About us", "Button", "Slide menu") : e.target.closest(".back-nav__inner") ? (f("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back()) : e.target.closest(".menu__item") && f("exp_search_feature_button_02", `${e.target.closest(".menu__item").querySelector("span").innerText}`, "Button", "Header");
+      e.target.closest('[data-element="about-us"]') ? g("exp_search_feature_button_04", "About us", "Button", "Slide menu") : e.target.closest(".back-nav__inner") ? (g("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back()) : e.target.closest(".menu__item") && g("exp_search_feature_button_02", `${e.target.closest(".menu__item").querySelector("span").innerText}`, "Button", "Header");
     }), u(".marquee").then(() => {
       C(".marquee", "exp_search_feature_section_02", "Visibility", "Header");
     });
@@ -638,16 +638,16 @@
       let o = r.value;
       const l = r.closest(".search-input").querySelector(".search-input__hot");
       function d() {
-        if (m || v)
+        if (f || v || b)
           clearInterval(y);
         else {
           let p;
           do
             p = e(n);
           while (p === o);
-          const h = r.closest(".search-input__data");
-          h && h.classList.add("fade-out"), h.addEventListener("transitionend", () => {
-            r.value = p[0], l && (p[1] === !0 ? l.style.display = "flex" : l.style.display = "none"), o = p, h.classList.remove("fade-out");
+          const m = r.closest(".search-input__data");
+          m && m.classList.add("fade-out"), m.addEventListener("transitionend", () => {
+            r.value = p[0], l && (p[1] === !0 ? l.style.display = "flex" : l.style.display = "none"), o = p, m.classList.remove("fade-out");
           }, { once: !0 });
         }
       }
@@ -658,33 +658,33 @@
       if (r && o || l && d) {
         clearInterval(w);
         const y = (c) => {
-          const g = c.value, _ = encodeURIComponent(g);
+          const h = c.value, _ = encodeURIComponent(h);
           window.location.href = `https://mygeeni.com/search?q=${_}&type=product`;
         }, p = (c) => {
-          c.addEventListener("input", function(g) {
-            if (this.style.color = "rgba(74, 74, 74)", !m) {
-              const _ = g.data || "";
-              this.value = _, m = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none";
+          c.addEventListener("input", function(h) {
+            if (this.style.color = "rgba(74, 74, 74)", !f) {
+              const _ = h.data || "";
+              this.value = _, f = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none";
             }
-          }), c.addEventListener("keypress", function(g) {
-            g.key === "Enter" && y(c);
+          }), c.addEventListener("keypress", function(h) {
+            h.key === "Enter" && y(c);
           }), c.addEventListener("focus", function() {
-            v = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none", f("exp_search_feature_input_01", "Search", "Input", "Header"), m || setTimeout(() => {
+            v = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none", g("exp_search_feature_input_01", "Search", "Input", "Header"), f || setTimeout(() => {
               this.setSelectionRange(0, 0), this.style.color = "rgba(74, 74, 74, 0.7)";
             }, 0);
           }), c.addEventListener("blur", function() {
-            !m && v ? setTimeout(() => {
+            !f && v ? setTimeout(() => {
               v = !1, s(this);
-            }, 3500) : b && this.value.trim() === "" ? (m = !1, v = !1, s(this)) : setTimeout(() => {
-              this.value.trim() === "" && (m = !1, v = !1, s(this));
+            }, 3500) : cached || setTimeout(() => {
+              this.value.trim() === "" && (f = !1, v = !1, s(this));
             }, 5e3), this.style.color = "rgba(74, 74, 74)";
           });
-        }, h = (c, g) => {
+        }, m = (c, h) => {
           c.addEventListener("click", () => {
-            y(g), f("exp_search_feature_button_01", "Search", "Button", "Header");
+            y(h), g("exp_search_feature_button_01", "Search", "Button", "Header");
           });
         };
-        r && o && (p(o), h(r, o), s(o)), l && d && (p(d), h(l, d), s(d));
+        r && o && (p(o), m(r, o), s(o)), l && d && (p(d), m(l, d), s(d));
       }
     }, 100);
   }
@@ -792,7 +792,7 @@
             i = performance.now();
           else if (i) {
             const l = ((performance.now() - i) / 1e3).toFixed(2);
-            f(e, l, t, a), i = null;
+            g(e, l, t, a), i = null;
           }
         });
       }, { threshold: 0.5 }).observe(s);
