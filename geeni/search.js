@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const h = (t, e, n, a = "") => {
+  const g = (t, e, n, a = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: t,
@@ -29,9 +29,9 @@
       childList: !0,
       subtree: !0
     });
-  }), y = "https://conversionratestore.github.io/projects/geeni/img/search";
-  let g = !1, f = !1;
-  const T = (
+  }), x = "https://conversionratestore.github.io/projects/geeni/img/search";
+  let f = !1, v = !1;
+  const S = (
     /*html*/
     `
   <style>
@@ -205,13 +205,13 @@
       height: auto;
     }
 
-    .search-input input::selection {
+    /* .search-input input::selection {
       background: #DCEFFF !important;
     }
 
     .search-input input::-moz-selection {
       background: #DCEFFF !important;
-    }
+    } */
 
     .search-input p {
       margin: 0;
@@ -297,12 +297,21 @@
       top: 0;
     }
 
-    .opacity-0 {
+    /* .opacity-0 {
       opacity: 0;
-    }
+    } */
 
     .empty-space {
       display: none;
+    }
+
+    .search-input__data {
+      transition: opacity 0.3s ease-in-out;
+      opacity: 1;
+    }
+
+    .search-input__data.fade-out {
+      opacity: 0;
     }
 
     @media (min-width: 1023px) {
@@ -439,7 +448,7 @@
   </style>
 `
   );
-  if (k("exp_search_feature"), w({ name: "Introduces personalized search", dev: "AK" }), document.head.insertAdjacentHTML("beforeend", T), u("body").then(() => S()), window.location.pathname.includes("/collections/")) {
+  if (k("exp_search_feature"), w({ name: "Introduces personalized search", dev: "AK" }), document.head.insertAdjacentHTML("beforeend", S), u("body").then(() => T()), window.location.pathname.includes("/collections/") || window.location.pathname.includes("/search")) {
     const t = setInterval(() => {
       document.head.insertAdjacentHTML(
         "beforeend",
@@ -484,13 +493,15 @@
       }));
     }, 100);
   }
-  function S() {
-    window.location.pathname.includes("/search") && I();
+  function T() {
+    window.location.pathname.includes("/search") && A();
     const t = setInterval(() => {
-      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(t), F(), L(), A(), E());
+      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(t), F(), L(), window.addEventListener("pageshow", () => {
+        E();
+      }), I());
     }, 100);
     document.body.addEventListener("click", (e) => {
-      e.target.closest('[data-element="about-us"]') ? h("exp_search_feature_button_04", "About us", "Button", "Slide menu") : e.target.closest(".back-nav__inner") ? (h("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back()) : e.target.closest(".menu__item") && h("exp_search_feature_button_02", `${e.target.closest(".menu__item").querySelector("span").innerText}`, "Button", "Header");
+      e.target.closest('[data-element="about-us"]') ? g("exp_search_feature_button_04", "About us", "Button", "Slide menu") : e.target.closest(".back-nav__inner") ? (g("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back()) : e.target.closest(".menu__item") && g("exp_search_feature_button_02", `${e.target.closest(".menu__item").querySelector("span").innerText}`, "Button", "Header");
     }), u(".marquee").then(() => {
       q(".marquee", "exp_search_feature_section_02", "Visibility", "Header");
     });
@@ -508,11 +519,11 @@
       `
       <div class="marquee marquee--hover-pause">
         <ul class="marquee__content">
-        ${n.map(([i, l]) => (
+        ${n.map(([i, s]) => (
         /*html*/
         `
                   <div class="marquee__item">
-                    <img src="${y}/${l}.svg" alt="">
+                    <img src="${x}/${s}.svg" alt="">
                     <p>${i}</p>
                   </div>
                 `
@@ -520,11 +531,11 @@
         </ul>
   
         <ul aria-hidden="true" class="marquee__content">
-          ${n.map(([i, l]) => (
+          ${n.map(([i, s]) => (
         /*html*/
         `
                   <div class="marquee__item">
-                    <img src="${y}/${l}.svg" alt="">
+                    <img src="${x}/${s}.svg" alt="">
                     <p>${i}</p>
                   </div>
                 `
@@ -565,7 +576,7 @@
       }
     }, 100);
   }
-  function A() {
+  function E() {
     const t = [
       ["Geeni Look Indoor Camera", !0],
       ["Geeni Hawk 3 Outdoor Camera", !0],
@@ -601,7 +612,7 @@
     <div class="search-input">
       <div class="search-input__data">
         <div class="search-input__hot" style="display: none;">
-          <img src="${y}/fire.svg" alt="">
+          <img src="${x}/fire.svg" alt="">
           <p>HOT</p>
         </div>
         <input type="text" value="" data-search-title="">
@@ -613,66 +624,64 @@
     );
     let a = document.getElementById("NavStandard"), i = document.getElementById("MainContent");
     a.insertAdjacentHTML("beforeend", n), i.insertAdjacentHTML("afterbegin", n), i.insertAdjacentHTML("afterbegin", '<div class="empty-space"></div>');
-    const l = (r) => {
+    const s = (r) => {
       let o = r.value;
-      const c = r.closest(".search-input").querySelector(".search-input__hot");
+      const l = r.closest(".search-input").querySelector(".search-input__hot");
       function d() {
-        var v;
-        if (g || f)
-          clearInterval(x);
+        if (f || v)
+          clearInterval(y);
         else {
           let p;
           do
             p = e(t);
           while (p === o);
-          r.value = p[0], (v = r.closest(".search-input__data")) == null || v.classList.add("opacity-0"), c && (p[1] === !0 ? c.style.display = "flex" : c.style.display = "none"), o = p, setTimeout(() => {
-            var s;
-            (s = r.closest(".search-input__data")) == null || s.classList.remove("opacity-0");
-          }, 200);
+          const m = r.closest(".search-input__data");
+          m && m.classList.add("fade-out"), m.addEventListener("transitionend", () => {
+            r.value = p[0], l && (p[1] === !0 ? l.style.display = "flex" : l.style.display = "none"), o = p, m.classList.remove("fade-out");
+          }, { once: !0 });
         }
       }
       d();
-      const x = setInterval(d, 3500);
+      const y = setInterval(d, 3500);
     }, b = setInterval(() => {
-      const r = document.querySelector("#NavStandard .search-btn"), o = document.querySelector("#NavStandard [data-search-title]"), c = document.querySelector("#MainContent .search-btn"), d = document.querySelector("#MainContent [data-search-title]");
-      if (r && o || c && d) {
+      const r = document.querySelector("#NavStandard .search-btn"), o = document.querySelector("#NavStandard [data-search-title]"), l = document.querySelector("#MainContent .search-btn"), d = document.querySelector("#MainContent [data-search-title]");
+      if (r && o || l && d) {
         clearInterval(b);
-        const x = (s) => {
-          const m = s.value, _ = encodeURIComponent(m);
+        const y = (c) => {
+          const h = c.value, _ = encodeURIComponent(h);
           window.location.href = `https://mygeeni.com/search?q=${_}&type=product`;
-        }, v = (s) => {
-          s.addEventListener("input", function(m) {
-            if (!g) {
-              const _ = m.data || "";
-              this.value = _, g = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none";
+        }, p = (c) => {
+          c.addEventListener("input", function(h) {
+            if (this.style.color = "rgba(74, 74, 74)", !f) {
+              const _ = h.data || "";
+              this.value = _, f = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none";
             }
-          }), s.addEventListener("keypress", function(m) {
-            m.key === "Enter" && x(s);
-          }), s.addEventListener("focus", function() {
-            f = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none", h("exp_search_feature_input_01", "Search", "Input", "Header"), g || setTimeout(() => {
-              this.setSelectionRange(0, 0);
+          }), c.addEventListener("keypress", function(h) {
+            h.key === "Enter" && y(c);
+          }), c.addEventListener("focus", function() {
+            v = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none", g("exp_search_feature_input_01", "Search", "Input", "Header"), f || setTimeout(() => {
+              this.setSelectionRange(0, 0), this.style.color = "rgba(74, 74, 74, 0.7)";
             }, 0);
-          }), s.addEventListener("blur", function() {
-            !g && f ? setTimeout(() => {
-              f = !1, l(this);
+          }), c.addEventListener("blur", function() {
+            !f && v ? setTimeout(() => {
+              v = !1, s(this);
             }, 3500) : setTimeout(() => {
-              this.value.trim() === "" && (g = !1, f = !1, l(this));
-            }, 5e3);
+              this.value.trim() === "" && (f = !1, v = !1, s(this));
+            }, 5e3), this.style.color = "rgba(74, 74, 74)";
           });
-        }, p = (s, m) => {
-          s.addEventListener("click", () => {
-            x(m), h("exp_search_feature_button_01", "Search", "Button", "Header");
+        }, m = (c, h) => {
+          c.addEventListener("click", () => {
+            y(h), g("exp_search_feature_button_01", "Search", "Button", "Header");
           });
         };
-        r && o && (v(o), p(r, o), l(o)), c && d && (v(d), p(c, d), l(d));
+        r && o && (p(o), m(r, o), s(o)), l && d && (p(d), m(l, d), s(d));
       }
     }, 100);
   }
-  function I() {
+  function A() {
     const e = new URLSearchParams(window.location.search).get("q");
     document.head.insertAdjacentHTML(
       "beforeend",
-      /*html*/
       /*html*/
       `
 <style>
@@ -751,13 +760,13 @@
         /*html*/
         `
     <div class="search-result">
-      <p>${document.querySelectorAll(".product-grid-item").length || "0"} Search Results for: “${e}”</p>
+      <p>${document.querySelectorAll("[data-collection-products] .product-grid-item").length || "0"} Search Results for: “${e}”</p>
     </div>`
       );
       document.querySelector("#SearchPage .collection__wrapper").insertAdjacentHTML("afterbegin", a);
     });
   }
-  function E() {
+  function I() {
     u('[href="/account"]').then((t) => t.insertAdjacentHTML(
       "beforeend",
       /*html*/
@@ -766,17 +775,17 @@
   }
   function q(t, e, n, a) {
     let i = null;
-    u(t).then((l) => {
-      l && new IntersectionObserver((r) => {
+    u(t).then((s) => {
+      s && new IntersectionObserver((r) => {
         r.forEach((o) => {
           if (o.isIntersecting && o.intersectionRatio >= 0.5)
             i = performance.now();
           else if (i) {
-            const c = ((performance.now() - i) / 1e3).toFixed(2);
-            h(e, c, n, a), i = null;
+            const l = ((performance.now() - i) / 1e3).toFixed(2);
+            g(e, l, n, a), i = null;
           }
         });
-      }, { threshold: 0.5 }).observe(l);
+      }, { threshold: 0.5 }).observe(s);
     });
   }
 })();
