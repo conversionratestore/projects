@@ -786,6 +786,7 @@ p.crs_tastes + p {
   .crs_nav ul {
     border-radius: 0px 0px 50px 50px;
     background: #F2F4FA;
+    width: 100%;
   }
   .crs_nav ul a {
     padding: 27.5px 8px;
