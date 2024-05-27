@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const g = (n, e, t, a = "") => {
+  const f = (n, e, t, a = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: n,
@@ -8,12 +8,12 @@
       event_type: t,
       event_loc: a
     }), console.log(`Event: ${n} | ${e} | ${t} | ${a.replace(/  +/g, " ")}`);
-  }, w = ({ name: n, dev: e }) => {
+  }, T = ({ name: n, dev: e }) => {
     console.log(
       `%c EXP: ${n} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, T = (n) => {
+  }, k = (n) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", n, "variant_1"));
     }, 1e3);
@@ -30,8 +30,8 @@
       subtree: !0
     });
   }), x = "https://conversionratestore.github.io/projects/geeni/img/search";
-  let f = !1, v = !1;
-  const k = (
+  let m = !1, v = !1, b = !1;
+  const S = (
     /*html*/
     `
   <style>
@@ -448,8 +448,9 @@
   </style>
 `
   );
-  if (T("exp_search_feature"), window.addEventListener("pageshow", (n) => {
+  if (k("exp_search_feature"), window.addEventListener("pageshow", (n) => {
     if (n.persisted) {
+      b = !0;
       const e = setInterval(() => {
         const t = document.querySelectorAll(".search-input input"), a = document.querySelectorAll(".search-input__hot");
         if ((t == null ? void 0 : t.length) > 1 && (a == null ? void 0 : a.length) > 1) {
@@ -459,7 +460,7 @@
         }
       }, 100);
     }
-  }), w({ name: "Introduces personalized search", dev: "AK" }), document.head.insertAdjacentHTML("beforeend", k), u("body").then(() => S()), window.location.pathname.includes("/collections/") || window.location.pathname.includes("/search")) {
+  }), T({ name: "Introduces personalized search", dev: "AK" }), document.head.insertAdjacentHTML("beforeend", S), u("body").then(() => F()), window.location.pathname.includes("/collections/") || window.location.pathname.includes("/search")) {
     const n = setInterval(() => {
       document.head.insertAdjacentHTML(
         "beforeend",
@@ -504,18 +505,18 @@
       }));
     }, 100);
   }
-  function S() {
-    window.location.pathname.includes("/search") && L();
+  function F() {
+    window.location.pathname.includes("/search") && A();
     const n = setInterval(() => {
-      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(n), F(), E(), I(), A());
+      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(n), L(), E(), I(), q());
     }, 100);
     document.body.addEventListener("click", (e) => {
-      e.target.closest('[data-element="about-us"]') ? g("exp_search_feature_button_04", "About us", "Button", "Slide menu") : e.target.closest(".back-nav__inner") ? (g("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back()) : e.target.closest(".menu__item") && g("exp_search_feature_button_02", `${e.target.closest(".menu__item").querySelector("span").innerText}`, "Button", "Header");
+      e.target.closest('[data-element="about-us"]') ? f("exp_search_feature_button_04", "About us", "Button", "Slide menu") : e.target.closest(".back-nav__inner") ? (f("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back()) : e.target.closest(".menu__item") && f("exp_search_feature_button_02", `${e.target.closest(".menu__item").querySelector("span").innerText}`, "Button", "Header");
     }), u(".marquee").then(() => {
-      q(".marquee", "exp_search_feature_section_02", "Visibility", "Header");
+      C(".marquee", "exp_search_feature_section_02", "Visibility", "Header");
     });
   }
-  function F() {
+  function L() {
     const n = [
       ["Millions of Users", "smile"],
       ["<b>4.8</b> Stars with over <b>400.000</b> reviews", "star"],
@@ -637,57 +638,57 @@
       let o = r.value;
       const l = r.closest(".search-input").querySelector(".search-input__hot");
       function d() {
-        if (f || v)
+        if (m || v)
           clearInterval(y);
         else {
           let p;
           do
             p = e(n);
           while (p === o);
-          const m = r.closest(".search-input__data");
-          m && m.classList.add("fade-out"), m.addEventListener("transitionend", () => {
-            r.value = p[0], l && (p[1] === !0 ? l.style.display = "flex" : l.style.display = "none"), o = p, m.classList.remove("fade-out");
+          const h = r.closest(".search-input__data");
+          h && h.classList.add("fade-out"), h.addEventListener("transitionend", () => {
+            r.value = p[0], l && (p[1] === !0 ? l.style.display = "flex" : l.style.display = "none"), o = p, h.classList.remove("fade-out");
           }, { once: !0 });
         }
       }
       d();
       const y = setInterval(d, 3500);
-    }, b = setInterval(() => {
+    }, w = setInterval(() => {
       const r = document.querySelector("#NavStandard .search-btn"), o = document.querySelector("#NavStandard [data-search-title]"), l = document.querySelector("#MainContent .search-btn"), d = document.querySelector("#MainContent [data-search-title]");
       if (r && o || l && d) {
-        clearInterval(b);
+        clearInterval(w);
         const y = (c) => {
-          const h = c.value, _ = encodeURIComponent(h);
+          const g = c.value, _ = encodeURIComponent(g);
           window.location.href = `https://mygeeni.com/search?q=${_}&type=product`;
         }, p = (c) => {
-          c.addEventListener("input", function(h) {
-            if (this.style.color = "rgba(74, 74, 74)", !f) {
-              const _ = h.data || "";
-              this.value = _, f = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none";
+          c.addEventListener("input", function(g) {
+            if (this.style.color = "rgba(74, 74, 74)", !m) {
+              const _ = g.data || "";
+              this.value = _, m = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none";
             }
-          }), c.addEventListener("keypress", function(h) {
-            h.key === "Enter" && y(c);
+          }), c.addEventListener("keypress", function(g) {
+            g.key === "Enter" && y(c);
           }), c.addEventListener("focus", function() {
-            v = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none", g("exp_search_feature_input_01", "Search", "Input", "Header"), f || setTimeout(() => {
+            v = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none", f("exp_search_feature_input_01", "Search", "Input", "Header"), m || setTimeout(() => {
               this.setSelectionRange(0, 0), this.style.color = "rgba(74, 74, 74, 0.7)";
             }, 0);
           }), c.addEventListener("blur", function() {
-            !f && v ? setTimeout(() => {
+            !m && v ? setTimeout(() => {
               v = !1, s(this);
-            }, 3500) : setTimeout(() => {
-              this.value.trim() === "" && (f = !1, v = !1, s(this));
+            }, 3500) : b && this.value.trim() === "" ? (m = !1, v = !1, s(this)) : setTimeout(() => {
+              this.value.trim() === "" && (m = !1, v = !1, s(this));
             }, 5e3), this.style.color = "rgba(74, 74, 74)";
           });
-        }, m = (c, h) => {
+        }, h = (c, g) => {
           c.addEventListener("click", () => {
-            y(h), g("exp_search_feature_button_01", "Search", "Button", "Header");
+            y(g), f("exp_search_feature_button_01", "Search", "Button", "Header");
           });
         };
-        r && o && (p(o), m(r, o), s(o)), l && d && (p(d), m(l, d), s(d));
+        r && o && (p(o), h(r, o), s(o)), l && d && (p(d), h(l, d), s(d));
       }
     }, 100);
   }
-  function L() {
+  function A() {
     const e = new URLSearchParams(window.location.search).get("q");
     document.head.insertAdjacentHTML(
       "beforeend",
@@ -775,14 +776,14 @@
       document.querySelector("#SearchPage .collection__wrapper").insertAdjacentHTML("afterbegin", a);
     });
   }
-  function A() {
+  function q() {
     u('[href="/account"]').then((n) => n.insertAdjacentHTML(
       "beforeend",
       /*html*/
       '<span class="log">Login</span>'
     ));
   }
-  function q(n, e, t, a) {
+  function C(n, e, t, a) {
     let i = null;
     u(n).then((s) => {
       s && new IntersectionObserver((r) => {
@@ -791,7 +792,7 @@
             i = performance.now();
           else if (i) {
             const l = ((performance.now() - i) / 1e3).toFixed(2);
-            g(e, l, t, a), i = null;
+            f(e, l, t, a), i = null;
           }
         });
       }, { threshold: 0.5 }).observe(s);
