@@ -1,15 +1,39 @@
-import { startLog, waitForElement, clarityInterval, pushDataLayer, } from '../../libraries/index.ts';
-
-// -------------------------------------
-// CONSTANTS
-// -------------------------------------
-const dir = 'https://conversionratestore.github.io/projects/geeni/img/search'
-const WAIT_INTERVAL_TIMEOUT = 100;
-
-let userHasStartedTyping = false;
-let userClicked = false;
-
-const style: string = /*html*/`
+(function() {
+  "use strict";
+  const g = (n, e, t, a = "") => {
+    window.dataLayer = window.dataLayer || [], window.dataLayer.push({
+      event: "event-to-ga4",
+      event_name: n,
+      event_desc: e,
+      event_type: t,
+      event_loc: a
+    }), console.log(`Event: ${n} | ${e} | ${t} | ${a.replace(/  +/g, " ")}`);
+  }, w = ({ name: n, dev: e }) => {
+    console.log(
+      `%c EXP: ${n} (DEV: ${e})`,
+      "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
+    );
+  }, T = (n) => {
+    let e = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", n, "variant_1"));
+    }, 1e3);
+  }, u = (n) => new Promise((e) => {
+    const t = document.querySelector(n);
+    if (t)
+      return e(t);
+    const a = new MutationObserver(() => {
+      const i = document.querySelector(n);
+      i && (e(i), a.disconnect());
+    });
+    a.observe(document.documentElement, {
+      childList: !0,
+      subtree: !0
+    });
+  }), x = "https://conversionratestore.github.io/projects/geeni/img/search";
+  let f = !1, v = !1;
+  const k = (
+    /*html*/
+    `
   <style>
     .shopify-section--marquee,
     [data-nav-search-open],
@@ -423,39 +447,22 @@ const style: string = /*html*/`
     }
   </style>
 `
-
-// -------------------------------------
-// MAKE DOM CHANGES
-// -------------------------------------
-clarityInterval('exp_search_feature')
-
-window.addEventListener('pageshow', (event) => {
-  if (event.persisted) {
-    const waitForEl = setInterval(() => {
-      const inputElements = document.querySelectorAll('.search-input input');
-      const hotLabels = document.querySelectorAll('.search-input__hot');
-
-      if (inputElements?.length > 1 && hotLabels?.length > 1) {
-        clearInterval(waitForEl)
-
-        for (let index = 0; index < inputElements.length; index++) {
-          inputElements[index].value = ''
-          hotLabels[index].style.display = 'none'
-        }
-      }
-    }, WAIT_INTERVAL_TIMEOUT)
-  }
-});
-
-startLog({ name: 'Introduces personalized search', dev: 'AK' });
-
-document.head.insertAdjacentHTML('beforeend', style)
-
-waitForElement('body').then(() => init())
-
-if (window.location.pathname.includes('/collections/') || window.location.pathname.includes('/search')) {
-  const waitForEls = setInterval(() => {
-    document.head.insertAdjacentHTML('beforeend', /*html*/`
+  );
+  if (T("exp_search_feature"), window.addEventListener("pageshow", (n) => {
+    if (n.persisted) {
+      const e = setInterval(() => {
+        const t = document.querySelectorAll(".search-input input");
+        (t == null ? void 0 : t.length) > 1 && (clearInterval(e), t.forEach((a) => {
+          a.value = "";
+        }));
+      }, 100);
+    }
+  }), w({ name: "Introduces personalized search", dev: "AK" }), document.head.insertAdjacentHTML("beforeend", k), u("body").then(() => S()), window.location.pathname.includes("/collections/") || window.location.pathname.includes("/search")) {
+    const n = setInterval(() => {
+      document.head.insertAdjacentHTML(
+        "beforeend",
+        /*html*/
+        `
     <style>
       .site-header {
         position: relative !important;
@@ -486,174 +493,120 @@ if (window.location.pathname.includes('/collections/') || window.location.pathna
 
     </style>
   
-    `)
-
-    const marquee = document.querySelector('.marquee');
-    const header = document.querySelector('.site-header');
-
-    if (marquee && header) {
-      clearInterval(waitForEls)
-
-      window.addEventListener('scroll', () => {
-        // Get the distance from the top of the document to the top of the viewport
-        const scrollTop = window.scrollY || document.documentElement.scrollTop;
-
-        // Calculate the bottom position of the marquee
-        const marqueeBottom = marquee.offsetTop + marquee.offsetHeight;
-
-        // If the scrollTop is greater than or equal to the bottom position of the marquee
-        if (scrollTop >= marqueeBottom) {
-          // Add the .site-header--top-zero class to the header
-          header.classList.add('site-header--top-zero');
-        } else {
-          // Otherwise, remove the .site-header--top-zero class
-          header.classList.remove('site-header--top-zero');
-        }
-      });
-    }
-  }, WAIT_INTERVAL_TIMEOUT);
-}
-
-// -------------------------------------
-// FUNCTIONS
-// -------------------------------------
-function init() {
-  if (window.location.pathname.includes('/search')) {
-    searchPage()
+    `
+      );
+      const e = document.querySelector(".marquee"), t = document.querySelector(".site-header");
+      e && t && (clearInterval(n), window.addEventListener("scroll", () => {
+        const a = window.pageYOffset || document.documentElement.scrollTop, i = e.offsetTop + e.offsetHeight;
+        a >= i ? t.classList.add("site-header--top-zero") : t.classList.remove("site-header--top-zero");
+      }));
+    }, 100);
   }
-
-  const waitForEl = setInterval(() => {
-    if (document.getElementById('NavStandard') && document.getElementById('MainContent')) {
-      clearInterval(waitForEl)
-
-      addMarquue()
-      moveNavItemsBelowNav()
-      addSearchInput()
-      addLoginText()
-    }
-  }, WAIT_INTERVAL_TIMEOUT)
-
-  document.body.addEventListener('click', (e) => {
-    if (e.target.closest('[data-element="about-us"]')) {
-      pushDataLayer('exp_search_feature_button_04', 'About us', 'Button', 'Slide menu');
-    } else if (e.target.closest('.back-nav__inner')) {
-      pushDataLayer('exp_search_feature_button_03', 'Back', 'Button', 'Search result')
-      window.history.back()
-    } else if (e.target.closest('.menu__item')) {
-      pushDataLayer('exp_search_feature_button_02', `${e.target.closest('.menu__item').querySelector('span').innerText}`, 'Button', 'Header');
-    }
-  })
-
-  waitForElement('.marquee').then(() => {
-    startObserving('.marquee', 'exp_search_feature_section_02', 'Visibility', 'Header')
-  })
-}
-
-function addMarquue() {
-  const marqueeList = [
-    ['Millions of Users', 'smile'],
-    [`<b>4.8</b> Stars with over <b>400.000</b> reviews`, 'star'],
-    [`1-Year Warranty on All Products`, 'check'],
-    [`<b>FREE</b> Shipping orders over <b>$69</b>`, 'shipping'],
-  ]
-
-  let repeatCount = 4;
-  let repeatedItems = Array(repeatCount).fill(marqueeList).flat();
-
-  const marqueeHTML: string = /*html*/`
+  function S() {
+    window.location.pathname.includes("/search") && I();
+    const n = setInterval(() => {
+      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(n), F(), E(), L(), A());
+    }, 100);
+    document.body.addEventListener("click", (e) => {
+      e.target.closest('[data-element="about-us"]') ? g("exp_search_feature_button_04", "About us", "Button", "Slide menu") : e.target.closest(".back-nav__inner") ? (g("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back()) : e.target.closest(".menu__item") && g("exp_search_feature_button_02", `${e.target.closest(".menu__item").querySelector("span").innerText}`, "Button", "Header");
+    }), u(".marquee").then(() => {
+      q(".marquee", "exp_search_feature_section_02", "Visibility", "Header");
+    });
+  }
+  function F() {
+    const n = [
+      ["Millions of Users", "smile"],
+      ["<b>4.8</b> Stars with over <b>400.000</b> reviews", "star"],
+      ["1-Year Warranty on All Products", "check"],
+      ["<b>FREE</b> Shipping orders over <b>$69</b>", "shipping"]
+    ];
+    let t = Array(4).fill(n).flat();
+    const a = (
+      /*html*/
+      `
       <div class="marquee marquee--hover-pause">
         <ul class="marquee__content">
-        ${repeatedItems.map(([text, icon]) => {
-    return /*html*/`
+        ${t.map(([i, s]) => (
+        /*html*/
+        `
                   <div class="marquee__item">
-                    <img src="${dir}/${icon}.svg" alt="">
-                    <p>${text}</p>
+                    <img src="${x}/${s}.svg" alt="">
+                    <p>${i}</p>
                   </div>
                 `
-  }).join('')
-    }
+      )).join("")}
         </ul>
   
         <ul aria-hidden="true" class="marquee__content">
-          ${repeatedItems.map(([text, icon]) => {
-      return /*html*/`
+          ${t.map(([i, s]) => (
+        /*html*/
+        `
                   <div class="marquee__item">
-                    <img src="${dir}/${icon}.svg" alt="">
-                    <p>${text}</p>
+                    <img src="${x}/${s}.svg" alt="">
+                    <p>${i}</p>
                   </div>
                 `
-    }).join('')
-    }
+      )).join("")}
         </ul>
     </div>  
   `
-
-  document.getElementById('SiteHeader').insertAdjacentHTML('beforebegin', marqueeHTML)
-}
-
-function moveNavItemsBelowNav() {
-  const waitForEl = setInterval(() => {
-    if (document.querySelectorAll('#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)')[3]) {
-      clearInterval(waitForEl)
-
-      let menuItems = document.querySelectorAll('#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)');
-      let wrapper = document.createElement('div');
-      wrapper.className = 'new-nav';
-
-      menuItems.forEach((item) => {
-        wrapper.appendChild(item);
-      });
-
-      document.getElementById('SiteHeader').insertAdjacentElement('beforeend', wrapper);
-
-      waitForElement('.new-nav .menu__item.child:last-child').then(el => el.insertAdjacentHTML('afterend', /*html*/`
+    );
+    document.getElementById("SiteHeader").insertAdjacentHTML("beforebegin", a);
+  }
+  function E() {
+    const n = setInterval(() => {
+      if (document.querySelectorAll("#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)")[3]) {
+        clearInterval(n);
+        let e = document.querySelectorAll("#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)"), t = document.createElement("div");
+        t.className = "new-nav", e.forEach((a) => {
+          t.appendChild(a);
+        }), document.getElementById("SiteHeader").insertAdjacentElement("beforeend", t), u(".new-nav .menu__item.child:last-child").then((a) => a.insertAdjacentHTML(
+          "afterend",
+          /*html*/
+          `
     <div class="menu__item child" data-nav-item="" data-hover-disclosure-toggle="">
       <a href="/pages/about-us-and-contact-us" data-top-link="" class="navlink navlink--toplevel">
         <span class="navtext">About us</span>
       </a>
-    </div>`))
-
-      waitForElement('.mobile-nav.mobile-nav--weight-bold').then(el => el.insertAdjacentHTML('beforeend',
-    /*html*/`
+    </div>`
+        )), u(".mobile-nav.mobile-nav--weight-bold").then((a) => a.insertAdjacentHTML(
+          "beforeend",
+          /*html*/
+          `
       <li class="mobile-menu__item mobile-menu__item--level-1" data-element="about-us">
           <a href="/pages/about-us-and-contact-us" class="mobile-navlink mobile-navlink--level-1">
             About us
           </a>
         </li>
     `
-      ))
-    }
-  }, WAIT_INTERVAL_TIMEOUT)
-}
-
-function addSearchInput() {
-  const titles = [
-    ["Geeni Look Indoor Camera", true],
-    ["Geeni Hawk 3 Outdoor Camera", true],
-    ["Geeni Dot Smart Plug", true],
-    ["Geeni Glimpse 1080p Camera", true],
-    ["Smart 2k Auto-Follow Camera", true],
-
-    ["Geeni Lookout 2k Outdoor Camera", true],
-    ["Geeni Doorpeek Wired Doorbell", true],
-    ["Geeni Prisma Plus 800 Smart Bulb", false],
-    ["Geeni Freebird Wire-Free Battery Camera", false],
-
-    ["Geeni Sentinel 1080p Pan & Tilt Camera", false],
-    ["Geeni Scope 1080p Auto-Tracking Camera", false],
-    ["Geeni Lux A19 Smart Bulb - Warm White", false],
-    ["Geeni PetConnect Automatic Feeder with Camera", false],
-    ["Geeni Rise & Shine - Smart Wi-Fi Kid’s Training Light", false],
-    ["Geeni Indoor/Outdoor Weatherproof Plug", false],
-    ["Geeni Water Fountain Replacement Filters", false],
-  ]
-
-  const getRandomTitle = (titles) => {
-    const randomIndex = Math.floor(Math.random() * titles.length);
-    return titles[randomIndex];
+        ));
+      }
+    }, 100);
   }
-
-  const searchInputHTML: string = /*html*/`
+  function L() {
+    const n = [
+      ["Geeni Look Indoor Camera", !0],
+      ["Geeni Hawk 3 Outdoor Camera", !0],
+      ["Geeni Dot Smart Plug", !0],
+      ["Geeni Glimpse 1080p Camera", !0],
+      ["Smart 2k Auto-Follow Camera", !0],
+      ["Geeni Lookout 2k Outdoor Camera", !0],
+      ["Geeni Doorpeek Wired Doorbell", !0],
+      ["Geeni Prisma Plus 800 Smart Bulb", !1],
+      ["Geeni Freebird Wire-Free Battery Camera", !1],
+      ["Geeni Sentinel 1080p Pan & Tilt Camera", !1],
+      ["Geeni Scope 1080p Auto-Tracking Camera", !1],
+      ["Geeni Lux A19 Smart Bulb - Warm White", !1],
+      ["Geeni PetConnect Automatic Feeder with Camera", !1],
+      ["Geeni Rise & Shine - Smart Wi-Fi Kid’s Training Light", !1],
+      ["Geeni Indoor/Outdoor Weatherproof Plug", !1],
+      ["Geeni Water Fountain Replacement Filters", !1]
+    ], e = (r) => {
+      const o = Math.floor(Math.random() * r.length);
+      return r[o];
+    }, t = (
+      /*html*/
+      `
   <div class="search-input-wrapper">
     <div class="back-nav">
       <div class="back-nav__inner">
@@ -666,7 +619,7 @@ function addSearchInput() {
     <div class="search-input">
       <div class="search-input__data">
         <div class="search-input__hot" style="display: none;">
-          <img src="${dir}/fire.svg" alt="">
+          <img src="${x}/fire.svg" alt="">
           <p>HOT</p>
         </div>
         <input type="text" value="" data-search-title="">
@@ -674,162 +627,70 @@ function addSearchInput() {
       <button class="search-btn">Search</button>
     </div>
   </div>
-  `;
-
-  let navElement = document.getElementById('NavStandard');
-  let mainContentElement = document.getElementById('MainContent');
-
-  navElement.insertAdjacentHTML('beforeend', searchInputHTML);
-  mainContentElement.insertAdjacentHTML('afterbegin', searchInputHTML);
-  mainContentElement.insertAdjacentHTML('afterbegin', `<div class="empty-space"></div>`);
-  // document.querySelector('[data-wrapper]').insertAdjacentHTML('beforeend', searchInputHTML);
-
-  // This function will change the input value and update the display of .search-input__hot every 5 seconds
-  const changeInputValue = (inputElement: HTMLInputElement) => {
-    let lastValue = inputElement.value;
-    const hotElement = inputElement.closest('.search-input').querySelector('.search-input__hot');
-
-    function updateInputValue() {
-      if (userHasStartedTyping || userClicked) {
-        clearInterval(changeValueInterval);
-      } else {
-        let newValue;
-
-        do {
-          newValue = getRandomTitle(titles);
-        } while (newValue === lastValue);
-
-        const dataElement = inputElement.closest('.search-input__data');
-
-        if (dataElement) {
-          dataElement.classList.add('fade-out');
+  `
+    );
+    let a = document.getElementById("NavStandard"), i = document.getElementById("MainContent");
+    a.insertAdjacentHTML("beforeend", t), i.insertAdjacentHTML("afterbegin", t), i.insertAdjacentHTML("afterbegin", '<div class="empty-space"></div>');
+    const s = (r) => {
+      let o = r.value;
+      const l = r.closest(".search-input").querySelector(".search-input__hot");
+      function d() {
+        if (f || v)
+          clearInterval(y);
+        else {
+          let p;
+          do
+            p = e(n);
+          while (p === o);
+          const m = r.closest(".search-input__data");
+          m && m.classList.add("fade-out"), m.addEventListener("transitionend", () => {
+            r.value = p[0], l && (p[1] === !0 ? l.style.display = "flex" : l.style.display = "none"), o = p, m.classList.remove("fade-out");
+          }, { once: !0 });
         }
-
-        dataElement.addEventListener('transitionend', () => {
-          inputElement.value = newValue[0];
-
-          if (hotElement) {
-            if (newValue[1] === true) {
-              hotElement.style.display = 'flex';
-            } else {
-              hotElement.style.display = 'none';
+      }
+      d();
+      const y = setInterval(d, 3500);
+    }, b = setInterval(() => {
+      const r = document.querySelector("#NavStandard .search-btn"), o = document.querySelector("#NavStandard [data-search-title]"), l = document.querySelector("#MainContent .search-btn"), d = document.querySelector("#MainContent [data-search-title]");
+      if (r && o || l && d) {
+        clearInterval(b);
+        const y = (c) => {
+          const h = c.value, _ = encodeURIComponent(h);
+          window.location.href = `https://mygeeni.com/search?q=${_}&type=product`;
+        }, p = (c) => {
+          c.addEventListener("input", function(h) {
+            if (this.style.color = "rgba(74, 74, 74)", !f) {
+              const _ = h.data || "";
+              this.value = _, f = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none";
             }
-          }
-
-          lastValue = newValue;
-
-          dataElement.classList.remove('fade-out');
-        }, { once: true });
-      }
-    }
-
-    // Execute immediately for the first change
-    updateInputValue();
-
-    // Set up the interval for subsequent changes
-    const changeValueInterval = setInterval(updateInputValue, 3500);
-  };
-
-  const waitForEl = setInterval(() => {
-    const searchButtonNav = document.querySelector('#NavStandard .search-btn') as HTMLInputElement;
-    const searchInputNav = document.querySelector('#NavStandard [data-search-title]') as HTMLInputElement;
-    const searchButtonMain = document.querySelector('#MainContent .search-btn') as HTMLInputElement;
-    const searchInputMain = document.querySelector('#MainContent [data-search-title]') as HTMLInputElement;
-
-    if (searchButtonNav && searchInputNav || searchButtonMain && searchInputMain) {
-      clearInterval(waitForEl)
-
-      const redirectToSearch = (searchInput: HTMLInputElement) => {
-        const query = searchInput.value;
-        const encodedQuery = encodeURIComponent(query);
-        window.location.href = `https://mygeeni.com/search?q=${encodedQuery}&type=product`;
-      };
-
-      const addInputListener = (searchInput: HTMLInputElement) => {
-        searchInput.addEventListener('input', function (e) {
-          this.style.color = 'rgba(74, 74, 74)';
-
-          if (!userHasStartedTyping) {
-            const inputtedSymbol = e.data || ''; // Fallback to empty string if e.data is null
-            this.value = inputtedSymbol; // Set the input value to the inputted symbol
-            userHasStartedTyping = true;
-
-            // Hide the 'search-input__hot' div
-            this.closest('.search-input').querySelector('.search-input__hot').style.display = 'none';
-          }
-        });
-
-        searchInput.addEventListener('keypress', function (e: KeyboardEvent) {
-          if (e.key === 'Enter') {
-            redirectToSearch(searchInput);
-          }
-        });
-
-        // Add focus event listener
-        searchInput.addEventListener('focus', function () {
-          userClicked = true;
-          this.closest('.search-input').querySelector('.search-input__hot').style.display = 'none';
-          pushDataLayer('exp_search_feature_input_01', 'Search', 'Input', 'Header');
-
-          if (!userHasStartedTyping) {
-            setTimeout(() => {
-              // Set the caret at the beginning of the input field
-              this.setSelectionRange(0, 0);
-              this.style.color = 'rgba(74, 74, 74, 0.7)';
+          }), c.addEventListener("keypress", function(h) {
+            h.key === "Enter" && y(c);
+          }), c.addEventListener("focus", function() {
+            v = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none", g("exp_search_feature_input_01", "Search", "Input", "Header"), f || setTimeout(() => {
+              this.setSelectionRange(0, 0), this.style.color = "rgba(74, 74, 74, 0.7)";
             }, 0);
-          }
-        });
-
-        // Assuming searchInput is the input element
-        searchInput.addEventListener('blur', function () {
-          if (!userHasStartedTyping && userClicked) {
-            setTimeout(() => {
-              userClicked = false;
-              changeInputValue(this);
-            }, 3500);
-          } else {
-            setTimeout(() => {
-              if (this.value.trim() === '') {
-                userHasStartedTyping = false;
-                userClicked = false;
-
-                changeInputValue(this)
-              }
-            }, 5000);
-          }
-
-          this.style.color = 'rgba(74, 74, 74)';
-        });
+          }), c.addEventListener("blur", function() {
+            !f && v ? setTimeout(() => {
+              v = !1, s(this);
+            }, 3500) : setTimeout(() => {
+              this.value.trim() === "" && (f = !1, v = !1, s(this));
+            }, 5e3), this.style.color = "rgba(74, 74, 74)";
+          });
+        }, m = (c, h) => {
+          c.addEventListener("click", () => {
+            y(h), g("exp_search_feature_button_01", "Search", "Button", "Header");
+          });
+        };
+        r && o && (p(o), m(r, o), s(o)), l && d && (p(d), m(l, d), s(d));
       }
-
-      const addButtonListener = (searchButton: HTMLInputElement, searchInput: HTMLInputElement) => {
-        searchButton.addEventListener('click', () => {
-          redirectToSearch(searchInput);
-          pushDataLayer('exp_search_feature_button_01', 'Search', 'Button', 'Header');
-        });
-      }
-
-      if (searchButtonNav && searchInputNav) {
-        addInputListener(searchInputNav);
-        addButtonListener(searchButtonNav, searchInputNav);
-        changeInputValue(searchInputNav);
-      }
-
-      if (searchButtonMain && searchInputMain) {
-        addInputListener(searchInputMain);
-        addButtonListener(searchButtonMain, searchInputMain);
-        changeInputValue(searchInputMain);
-      }
-    }
-  }, WAIT_INTERVAL_TIMEOUT)
-}
-
-function searchPage() {
-
-  const params = new URLSearchParams(window.location.search);
-  const query = params.get('q');
-
-  const style: string = /*html*/`
+    }, 100);
+  }
+  function I() {
+    const e = new URLSearchParams(window.location.search).get("q");
+    document.head.insertAdjacentHTML(
+      "beforeend",
+      /*html*/
+      `
 <style>
   #NavStandard {
     background: #fff !important; 
@@ -901,43 +762,37 @@ function searchPage() {
   }
 </style>
   `
-
-  document.head.insertAdjacentHTML('beforeend', style)
-
-  waitForElement('#SearchPage .collection__wrapper .pagination').then(() => {
-    const html = /*html*/`
+    ), u("#SearchPage .collection__wrapper .pagination").then(() => {
+      const a = (
+        /*html*/
+        `
     <div class="search-result">
-      <p>${document.querySelectorAll('[data-collection-products] .product-grid-item').length || '0'} Search Results for: “${query}”</p>
+      <p>${document.querySelectorAll("[data-collection-products] .product-grid-item").length || "0"} Search Results for: “${e}”</p>
     </div>`
-
-    document.querySelector('#SearchPage .collection__wrapper').insertAdjacentHTML('afterbegin', html)
-  })
-}
-
-function addLoginText() {
-  waitForElement('[href="/account"]').then(el => el.insertAdjacentHTML('beforeend', /*html*/`<span class="log">Login</span>`))
-}
-
-function startObserving(selector: string, eventId: string, eventType: string, loc: string) {
-  let visibilityStart: number | null = null;
-
-  waitForElement(selector).then(el => {
-    if (el) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-            visibilityStart = performance.now();
-          } else if (visibilityStart) {
-            const visibleTime = ((performance.now() - visibilityStart) / 1000).toFixed(2);
-
-            pushDataLayer(eventId, visibleTime, eventType, loc);
-
-            visibilityStart = null;
+      );
+      document.querySelector("#SearchPage .collection__wrapper").insertAdjacentHTML("afterbegin", a);
+    });
+  }
+  function A() {
+    u('[href="/account"]').then((n) => n.insertAdjacentHTML(
+      "beforeend",
+      /*html*/
+      '<span class="log">Login</span>'
+    ));
+  }
+  function q(n, e, t, a) {
+    let i = null;
+    u(n).then((s) => {
+      s && new IntersectionObserver((r) => {
+        r.forEach((o) => {
+          if (o.isIntersecting && o.intersectionRatio >= 0.5)
+            i = performance.now();
+          else if (i) {
+            const l = ((performance.now() - i) / 1e3).toFixed(2);
+            g(e, l, t, a), i = null;
           }
         });
-      }, { threshold: 0.5 });
-
-      observer.observe(el);
-    }
-  });
-}
+      }, { threshold: 0.5 }).observe(s);
+    });
+  }
+})();
