@@ -13,7 +13,7 @@
       `%c EXP: ${l} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, b = (l) => document.querySelectorAll(l), t = (l) => document.querySelector(l), O = (l) => {
+  }, y = (l) => document.querySelectorAll(l), t = (l) => document.querySelector(l), O = (l) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", l, "variant_1"));
     }, 1e3);
@@ -24,7 +24,7 @@
         variant: "variant_1"
       }));
     }, 1e3);
-  }, j = (l, e, n, i, r = 1e3, o = 0.5) => {
+  }, q = (l, e, n, i, r = 1e3, o = 0.5) => {
     let s, a;
     if (s = new IntersectionObserver(
       function(f) {
@@ -43,7 +43,7 @@
       f && s.observe(f);
     } else
       s.observe(l);
-  }, I = (l) => new Promise((e) => {
+  }, j = (l) => new Promise((e) => {
     if (t(l))
       return e(t(l));
     const n = new MutationObserver(() => {
@@ -158,35 +158,35 @@
           };
         }
         k(w(0), w(1));
-        function y(d, p) {
-          return C(function(x, q) {
-            u.push([d, p, x, q]), _();
+        function b(d, p) {
+          return C(function(x, E) {
+            u.push([d, p, x, E]), _();
           });
         }
         return {
-          then: y
+          then: b
         };
       }
       c = r[s] = function() {
-        var u = function(w, y, d, p) {
+        var u = function(w, b, d, p) {
           p = p || 2;
           function x(Q, tt) {
-            g(w, y, d, Q, tt, p);
+            g(w, b, d, Q, tt, p);
           }
-          var q = /Async$/;
-          if (q.test(w))
-            return w = w.replace(q, ""), typeof Promise == "function" ? new Promise(x) : C(x);
+          var E = /Async$/;
+          if (E.test(w))
+            return w = w.replace(E, ""), typeof Promise == "function" ? new Promise(x) : C(x);
           var A;
-          return g(w, y, d, A, A, p);
+          return g(w, b, d, A, A, p);
         };
-        function g(_, w, y, d, p, x) {
-          return u._api ? u._api(_, w, y, d, p, x) : (u.q && u.q.push([_, w, y, d, p, x]), null);
+        function g(_, w, b, d, p, x) {
+          return u._api ? u._api(_, w, b, d, p, x) : (u.q && u.q.push([_, w, b, d, p, x]), null);
         }
         return u.q = [], u;
       }(), m = /* @__PURE__ */ function() {
         return function(u) {
-          function g(y) {
-            typeof y[4] == "function" && y[4](new Error(u));
+          function g(b) {
+            typeof b[4] == "function" && b[4](new Error(u));
           }
           var _ = c.q;
           if (_) {
@@ -216,18 +216,18 @@
         function w(d, p) {
           _("user", d, p);
         }
-        function y(d, p, x) {
+        function b(d, p, x) {
           w({
             uid: d
           }, x), p && w(p, x);
         }
-        c.identify = y, c.setUserVars = w, c.identifyAccount = u, c.clearUserCookie = u, c.setVars = _, c.event = function(d, p, x) {
+        c.identify = b, c.setUserVars = w, c.identifyAccount = u, c.clearUserCookie = u, c.setVars = _, c.event = function(d, p, x) {
           g("trackEvent", {
             name: d,
             properties: p
           }, x);
         }, c.anonymize = function() {
-          y(!1);
+          b(!1);
         }, c.shutdown = function() {
           g("shutdown");
         }, c.restart = function() {
@@ -277,20 +277,20 @@
     window._fs_host = s, window._fs_script = f, window._fs_org = n, window._fs_namespace = r, D();
   };
   W();
-  var z = function() {
-    return z = Object.assign || function(e) {
+  var I = function() {
+    return I = Object.assign || function(e) {
       for (var n, i = 1, r = arguments.length; i < r; i++) {
         n = arguments[i];
         for (var o in n)
           Object.prototype.hasOwnProperty.call(n, o) && (e[o] = n[o]);
       }
       return e;
-    }, z.apply(this, arguments);
+    }, I.apply(this, arguments);
   }, B = function() {
     if (window._fs_namespace)
       return window[window._fs_namespace];
   }, Y = function(l, e) {
-    var n = z({}, l);
+    var n = I({}, l);
     if (B()) {
       console.warn("The FullStory snippet has already been defined elsewhere (likely in the <head> element)");
       return;
@@ -566,6 +566,9 @@
 .modal .product-wrapper button.button.red:hover {
   background-color: rgb(255, 178, 196);
 }
+.modal .product-wrapper button.button.red[disabled] {
+  background: rgb(242, 242, 242);
+}
 
 .modal .product-wrapper .scrolled button.button.red {
   padding: 6px 20px;
@@ -742,6 +745,7 @@ p.crs_tastes + p {
      object-fit: contain;
   display: block;
   min-height: 100px;
+  height: 100%;
 }
 
 @media (min-width: 1340px) {
@@ -831,6 +835,7 @@ p.crs_tastes + p {
   }
   .modal .css-12a0csp .product-wrapper .left-side {
     padding: 16px 0 50px;
+    max-height: 1000px;
   }
   .css-mc9jj7 .controls .default-close {
     right: 43px;
@@ -948,8 +953,7 @@ p.crs_tastes + p {
   N({ name: "Enhancements on PDP and new Add to Cart notification", dev: "Olha" }), O("new_add_to_cart"), G({
     orgId: "P34MT"
   }), M("new_add_to_cart");
-  const E = window.innerWidth < 900 ? "mobile" : "desktop";
-  console.dir(E);
+  const z = window.innerWidth < 900 ? "mobile" : "desktop";
   class T {
     constructor(e) {
       this.notShowExitIntent = () => {
@@ -961,18 +965,18 @@ p.crs_tastes + p {
     init() {
       this.appendStyleAndScript(), this.handleUserInactive(this.device === "desktop" ? 20 : 10), this.handleUserAfte180();
       let e = 0;
-      I(".e-nav .mobile-cart-box").then((r) => {
+      j(".e-nav .mobile-cart-box").then((r) => {
         r.addEventListener("click", (o) => {
           document.body.classList.remove("crs_hide_cart");
         }), document.body.classList.add("crs_hide_cart"), document.addEventListener("click", (o) => {
           var s, a, f, v, c;
-          if (this.notShowExitIntent(), !o.target.closest(".modal") && !o.target.closest(".mobile-cart-box") && !o.target.closest(".cart-product") && document.body.classList.add("crs_hide_cart"), o.target.closest(".modal.css-w1q39a") && ((o.target.closest(".default-close") || o.target.closest(".default-close-container")) && this.clickAdd === !1 ? (document.body.classList.add("crs_hide_cart"), h("exp_newaddtocart_click_08", "Close", "Button", `Cart ${((a = (s = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : s.cart) == null ? void 0 : a.price) != 0 ? "" : "empty"} popover`)) : o.target.closest(".css-jobqsc") && o.target.classList.contains("red") ? h("exp_newaddtocart_click_09", "Shop all", "Button", "Cart empty popover") : o.target.classList.contains("continue") ? h("exp_newaddtocart_click_12", "Continue shopping", "Button", "Cart popover") : o.target.classList.contains("checkout") && h("exp_newaddtocart_click_11", "Checkout", "Button", "Cart popover")), t(".modal.css-w1q39a") && (o.target.closest(".cart-product-reset") ? (h("exp_newaddtocart_click_10", `Remove "${o.target.closest(".cart-product-info").querySelector(".title").innerHTML.split("<span")[0]}"`, "Button", "Cart popover"), t(".modal.css-w1q39a .cart-product") || (e = 0), this.updateDataNotification()) : o.target.closest(".added-container") && (h("exp_newaddtocart_click_13", `${o.target.closest("button").getAttribute("aria-label")}`, "Button", "Cart popover"), t(".modal.css-w1q39a .cart-product") || (e = 0), this.updateDataNotification())), t(".modal.css-w1q39a") ? e == 0 && (e = 1, j(t(".modal.css-w1q39a"), "exp_newaddtocart_vis_10", "View slide in cart", `Cart ${((v = (f = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : f.cart) == null ? void 0 : v.price) == 0 ? "empty" : ""} popover`)) : e = 0, o.target.closest(".remove") || o.target.classList.contains("remove")) {
+          if (this.notShowExitIntent(), !o.target.closest(".modal") && !o.target.closest(".mobile-cart-box") && !o.target.closest(".cart-product") && document.body.classList.add("crs_hide_cart"), o.target.closest(".modal.css-w1q39a") && ((o.target.closest(".default-close") || o.target.closest(".default-close-container")) && this.clickAdd === !1 ? (document.body.classList.add("crs_hide_cart"), h("exp_newaddtocart_click_08", "Close", "Button", `Cart ${((a = (s = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : s.cart) == null ? void 0 : a.price) != 0 ? "" : "empty"} popover`)) : o.target.closest(".css-jobqsc") && o.target.classList.contains("red") ? h("exp_newaddtocart_click_09", "Shop all", "Button", "Cart empty popover") : o.target.classList.contains("continue") ? h("exp_newaddtocart_click_12", "Continue shopping", "Button", "Cart popover") : o.target.classList.contains("checkout") && h("exp_newaddtocart_click_11", "Checkout", "Button", "Cart popover")), t(".modal.css-w1q39a") && (o.target.closest(".cart-product-reset") ? (h("exp_newaddtocart_click_10", `Remove "${o.target.closest(".cart-product-info").querySelector(".title").innerHTML.split("<span")[0]}"`, "Button", "Cart popover"), t(".modal.css-w1q39a .cart-product") || (e = 0), this.updateDataNotification()) : o.target.closest(".added-container") && (h("exp_newaddtocart_click_13", `${o.target.closest("button").getAttribute("aria-label")}`, "Button", "Cart popover"), t(".modal.css-w1q39a .cart-product") || (e = 0), this.updateDataNotification())), t(".modal.css-w1q39a") ? e == 0 && (e = 1, q(t(".modal.css-w1q39a"), "exp_newaddtocart_vis_10", "View slide in cart", `Cart ${((v = (f = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : f.cart) == null ? void 0 : v.price) == 0 ? "empty" : ""} popover`)) : e = 0, o.target.closest(".remove") || o.target.classList.contains("remove")) {
             let m = JSON.parse(localStorage.getItem("data_notification"));
             o.target.closest(".added-container").querySelector(".remove").getAttribute("aria-label").toLowerCase().trim().includes(m == null ? void 0 : m.title.toLowerCase().trim()) && ((c = t(".crs_notification")) == null || c.remove(), this.updateDataNotification());
           }
         });
-      }), I(".pageContainer .product").then((r) => {
-        b(".sidebar a").forEach((o) => {
+      }), j(".pageContainer .product").then((r) => {
+        y(".sidebar a").forEach((o) => {
           o.addEventListener("click", (s) => this.notShowExitIntent());
         });
       }), this.exitIntent();
@@ -1010,7 +1014,7 @@ p.crs_tastes + p {
           "mouseleave",
           function() {
             var i, r, o, s;
-            (e < 50 || n < 50 || e > window.innerWidth - 50 || n > window.innerHeight - 50) && sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && ((r = (i = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : i.cart) == null ? void 0 : r.price) != 0 && ((s = (o = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : o.cart) == null ? void 0 : s.price) != null && !window.location.href.includes("cart") && !window.location.href.includes("order") && !window.location.href.includes("checkout") && (sessionStorage.setItem("exit_intent", "true"), new T(E).renderNotification(), h("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"));
+            (e < 50 || n < 50 || e > window.innerWidth - 50 || n > window.innerHeight - 50) && sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && ((r = (i = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : i.cart) == null ? void 0 : r.price) != 0 && ((s = (o = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : o.cart) == null ? void 0 : s.price) != null && !window.location.href.includes("cart") && !window.location.href.includes("order") && !window.location.href.includes("checkout") && (sessionStorage.setItem("exit_intent", "true"), new T(z).renderNotification(), h("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"));
           },
           { once: !1 }
         );
@@ -1019,7 +1023,7 @@ p.crs_tastes + p {
           let s = o == "window" ? window.scrollY : t(o).scrollTop;
           i = s - n, n = s, (i > e || i < -e) && !this.isExitIntentTriggered() && !t(".crs_notification") && !t(".css-m18cj1") && this.isCartNotEmpty() && this.notExitPopup === !1 && !this.isOnCartOrCheckoutPage() && (console.dir(i), sessionStorage.setItem("exit_intent", "true"), this.renderNotification(), h("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"), o == "window" ? document.removeEventListener("scroll", () => r()) : t(o).removeEventListener("scroll", r()));
         };
-        document.addEventListener("scroll", () => r()), I(this.isSelectorWrapper).then((o) => {
+        document.addEventListener("scroll", () => r()), j(this.isSelectorWrapper).then((o) => {
           t(this.isSelectorWrapper).addEventListener("scroll", () => {
             r(this.isSelectorWrapper), this.checkAttentiveCreativ();
           });
@@ -1056,9 +1060,9 @@ p.crs_tastes + p {
             if (r[o] == i) {
               t(".css-5nnxvq").insertAdjacentHTML("afterbegin", H(e)), t(".css-5nnxvq").insertAdjacentHTML("afterbegin", R), t(".crs_arrow_next").hidden = !1;
               let s = 1;
-              b(".crs_arrow").forEach((a) => {
+              y(".crs_arrow").forEach((a) => {
                 let f = a.classList.contains("crs_arrow_prev") ? "prev" : "next";
-                j(a, "exp_newaddtocart_vis_09", `View ${f} arrow`, "Product"), a.addEventListener("click", () => {
+                q(a, "exp_newaddtocart_vis_09", `View ${f} arrow`, "Product"), a.addEventListener("click", () => {
                   a.classList.contains("crs_arrow_next") && t(".css-12a0csp .next") ? (t(".css-12a0csp .next").click(), s += 1, h("exp_newaddtocart_click_06", "Next", "Button", "Product")) : a.classList.contains("crs_arrow_prev") && t(".css-12a0csp .prev") && (t(".css-12a0csp .prev").click(), s -= 1, h("exp_newaddtocart_click_07", "Prev", "Button", "Product")), t(".crs_arrow_prev").hidden = s <= 1, t(".crs_arrow_next").hidden = s >= e, t(".crs_tastes > span").innerHTML = s;
                 });
               });
@@ -1097,17 +1101,17 @@ p.crs_tastes + p {
       if (!t(".css-5nnxvq picture img") || !t(".css-5nnxvq .action-wrapper"))
         return;
       let e = 0;
-      E === "mobile" ? e = "76px - 24px - 48px" + (window.location.href.includes("bundle") ? " - 28px" : "") : e = "67px - 66px - 34px" + (window.location.href.includes("bundle") ? " - 34px - 34px" : ""), console.dir(), t(".css-5nnxvq picture img").style = `height: calc(${window.innerHeight}px - ${e} - ${t(".css-5nnxvq .action-wrapper").clientHeight}px`;
+      z === "mobile" ? e = "76px - 24px - 48px" + (window.location.href.includes("bundle") ? " - 28px" : "") : e = "67px - 66px - 34px" + (window.location.href.includes("bundle") ? " - 34px - 34px" : ""), t(".css-5nnxvq picture img").style = `max-height: calc(${window.innerHeight}px - ${e} - ${t(".css-5nnxvq .action-wrapper").clientHeight}px`;
     }
     navigation() {
       if (t(".crs_nav") || !t(".css-12a0csp .product-wrapper .left-side"))
         return;
       this.device === "mobile" ? t(".css-12a0csp .product-wrapper .left-side").insertAdjacentHTML("beforeend", F) : (t(".css-12a0csp .product-wrapper").insertAdjacentHTML("afterbegin", F), t(".crs_nav ul").after(t(".css-mc9jj7 .controls .default-close, .css-1ryd8t3 .controls .default-close, .css-194jzej .controls .default-close"))), t(".modal.css-1ryd8t3 .default-close, .modal.css-mc9jj7 .default-close, .modal.css-194jzej .default-close").addEventListener("click", (i) => {
         i.target.closest(".modal").querySelector(".product-wrapper") && h("exp_newaddtocart_click_05", "Close", "Button", "Product");
-      }), h("exp_newaddtocart_vis_06", "View product", "Visibility", "Product"), h("exp_newaddtocart_vis_01", "View navigation", "Visibility", "Under the add to cart"), document.body.classList.add("crs_hide_cart"), b(".right-side section").forEach((i) => {
+      }), h("exp_newaddtocart_vis_06", "View product", "Visibility", "Product"), h("exp_newaddtocart_vis_01", "View navigation", "Visibility", "Under the add to cart"), document.body.classList.add("crs_hide_cart"), y(".right-side section").forEach((i) => {
         let r = "View Nutrition Facts section";
-        i.querySelector("h3") && (r = i.querySelector("h3").innerText), j(i, "exp_newaddtocart_vis_08", r, "Product");
-      }), t(".modal .product-wrapper button.button.red") && h("exp_newaddtocart_vis_07", "View " + t(".modal .product-wrapper button.button.red").innerText + " button", "Visibility", "Product"), b(".crs_nav a").forEach((i) => {
+        i.querySelector("h3") && (r = i.querySelector("h3").innerText), q(i, "exp_newaddtocart_vis_08", r, "Product");
+      }), t(".modal .product-wrapper button.button.red") && h("exp_newaddtocart_vis_07", "View " + t(".modal .product-wrapper button.button.red").innerText + " button", "Visibility", "Product"), y(".crs_nav a").forEach((i) => {
         i.addEventListener("click", (r) => {
           r.preventDefault(), h("exp_newaddtocart_click_01", r.target.innerText, "Nav panel", "Under the add to cart");
           let o = r.target.href.split("#")[1];
@@ -1133,8 +1137,8 @@ p.crs_tastes + p {
         var r = i.getBoundingClientRect();
         return r.top >= 0 && r.left >= 0 && r.bottom <= (window.innerHeight || document.documentElement.clientHeight) && r.right <= (window.innerWidth || document.documentElement.clientWidth);
       }
-      this.device === "desktop" && b(".crs_nav a")[0].classList.add("active"), t(this.isSelectorWrapper).addEventListener("scroll", (i) => {
-        const r = b(".product-wrapper .right-side section[id] h2"), o = b(".crs_nav a");
+      this.device === "desktop" && y(".crs_nav a")[0].classList.add("active"), t(this.isSelectorWrapper).addEventListener("scroll", (i) => {
+        const r = y(".product-wrapper .right-side section[id] h2"), o = y(".crs_nav a");
         var s = -1;
         r.forEach(function(a, f) {
           n(a) && s === -1 && (s = f);
@@ -1153,7 +1157,7 @@ p.crs_tastes + p {
     }
     changeElements() {
       var e;
-      if (this.checkAttentiveCreativ(), b(".button").forEach((n, i) => {
+      if (this.checkAttentiveCreativ(), y(".button").forEach((n, i) => {
         let r = n.innerText.toLowerCase();
         if (r.includes("to bag")) {
           let o = n.innerText;
@@ -1171,13 +1175,13 @@ p.crs_tastes + p {
         }
         t(".pdp-net-weight") && !t(".css-5nnxvq picture + .pdp-net-weight") && (t(".css-5nnxvq picture").after(t(".pdp-net-weight")), this.resizeOfferPdp());
       }
-      b('.product-wrapper .right-side img[loading="lazy"]').forEach((n) => {
+      y('.product-wrapper .right-side img[loading="lazy"]').forEach((n) => {
         n.removeAttribute("loading");
       }), (e = t(".modal .left-side .remove")) == null || e.addEventListener("click", (n) => {
         this.clickRemove == !1 && (this.clickRemove = !0, setTimeout(() => {
           t(".modal .left-side .add button") && (h("exp_newaddtocart_vis_07", "View " + t(".modal .left-side .add button").innerText + " button", "Visibility", "Product"), this.clickRemove = !1);
         }, 500));
-      }), b(".cart-product .cart-product-reset button").forEach((n) => {
+      }), y(".cart-product .cart-product-reset button").forEach((n) => {
         n.addEventListener("click", (i) => {
           var r, o, s, a;
           if (this.clickRemove == !1) {
@@ -1188,7 +1192,7 @@ p.crs_tastes + p {
             }, 200);
           }
         });
-      }), !t("#puree") && b(".product-wrapper .right-side section").forEach((n) => {
+      }), !t("#puree") && y(".product-wrapper .right-side section").forEach((n) => {
         var o, s;
         let i = (o = n.querySelector("h3")) == null ? void 0 : o.innerText.toLowerCase(), r = (s = n.querySelector("h2")) == null ? void 0 : s.innerText.toLowerCase();
         i != null && i.includes("ingredients") ? n.id = "ingredients" : i != null && i.includes("nutrients") ? n.id = "nutrients" : i != null && i.includes("us vs them") ? n.id = "usvsthem" : r != null && r.includes("directions & safety") && (n.id = "puree");
@@ -1208,7 +1212,7 @@ p.crs_tastes + p {
           let v = "/wp-content/themes/cerebelly/build/21c99a25c363149c9021.jpg";
           a.image ? v = a.image.includes("https") ? a.image : "https://cerebelly.com/wp-json/cerebelly/image/get?path=" + a.image : a.type == "personalized" && (v = "/wp-content/themes/cerebelly/build/1167d3c7a96e3f66206f.jpg");
           let c = {};
-          this.type != "" ? (c.type = this.type, console.dir(c.type)) : (c.type = t(".cart-product .product-count") ? t(".cart-product .product-count").innerText : ((i = JSON.parse(localStorage.getItem("data_notification"))) == null ? void 0 : i.type) || "", console.dir(c.type)), b(".product").forEach((m) => {
+          this.type != "" ? (c.type = this.type, console.dir(c.type)) : (c.type = t(".cart-product .product-count") ? t(".cart-product .product-count").innerText : ((i = JSON.parse(localStorage.getItem("data_notification"))) == null ? void 0 : i.type) || "", console.dir(c.type)), y(".product").forEach((m) => {
             var S, C, k, u;
             (S = m == null ? void 0 : m.querySelector(".title")) != null && S.innerText.includes(a.title) && (c.type = ((C = m.querySelector(".quantity")) == null ? void 0 : C.innerHTML) || ((k = m.querySelector(".info")) == null ? void 0 : k.innerHTML.split(" | ")[1]) || ((u = m.querySelector(".desktop")) == null ? void 0 : u.innerHTML.replace(" | ", "")));
           }), c.title = a.title || "", c.image = v, c.price = a.price.toFixed(2), c.count = f, console.dir(c), localStorage.setItem("data_notification", JSON.stringify(c));
@@ -1216,5 +1220,5 @@ p.crs_tastes + p {
       }, 200);
     }
   }
-  new T(E);
+  new T(z);
 })();
