@@ -71,9 +71,9 @@
       this.setEvents();
     }
     setEvents() {
-      const t = document.querySelector(".swiper-container"), o = t == null ? void 0 : t.swiper, s = e(".os-navigation");
-      s.querySelector(".os-next");
-      const n = s.querySelector(".os-prev"), h = () => {
+      const t = document.querySelector(".swiper-container"), o = t == null ? void 0 : t.swiper;
+      e(".os-navigation").querySelector(".os-next");
+      const n = document.querySelector(".os-prev"), h = () => {
         k("exp_2_step_funnel_survey_1_1_back", "Back", "button", "Step 1.1");
       };
       o == null || o.on("transitionEnd", () => {
@@ -373,30 +373,30 @@
         n.dataset.currentSlide = i.toString();
         const w = e(".swiper-slide-active"), f = (w == null ? void 0 : w.clientHeight) || 0;
         if (l.style.top = `${f}px`, i === 1 && (e("#estimate-bill").classList.contains("os-hide") || (l.style.top = `${f + 50}px`)), t && (t.dataset.currentSlide = i.toString()), i === 0 && this.progressBar.update(1), i === 1 && (d == null || d.removeEventListener("click", x), e("#estimate-homeowner").classList.contains("os-hide") ? (this.progressBar.update(3), l == null || l.classList.remove("os-hide"), d == null || d.addEventListener("click", x)) : this.progressBar.update(2)), i === 2 && (d == null || d.removeEventListener("click", x), this.progressBar.update(4)), i === 3 && this.progressBar.update(5), i === 3 ? n.dataset.background = "false" : n.dataset.background = "", i === 7 ? n.dataset.background = "opacity" : n.dataset.background = "", i > 3 ? e(".os-progress-block").classList.add("os-hide") : e(".os-progress-block").classList.remove("os-hide"), i === 4) {
-          const r = e('input[value="unknown"]'), b = r.parentElement;
+          const r = e('input[value="unknown"]'), u = r.parentElement;
           r.checked = !0;
           const c = e(".os-spinner"), p = e('[data-os="result"]'), S = setTimeout(() => {
             c.classList.add("os-hide"), p.classList.remove("os-hide");
           }, 1e3), T = setTimeout(() => {
-            b && b.click(), c.classList.remove("os-hide"), p.classList.add("os-hide"), p.classList.add("os-passed");
+            u && u.click(), c.classList.remove("os-hide"), p.classList.add("os-hide"), p.classList.add("os-passed");
           }, 4e3), q = e("#slider-block .prevSlide");
           p.classList.contains("os-passed") && (clearTimeout(S), clearTimeout(T), p.classList.remove("os-passed"), q == null || q.click());
         }
       }), o.forEach((i) => {
         var w, f;
         if (i.querySelector("#estimate-zip")) {
-          const r = i.querySelector(".title"), b = i.querySelector("h5"), c = i.querySelector("#calculateYourSavings"), p = i.querySelector("#zip"), S = i.querySelector("#zip-error");
-          S && (S.textContent = ""), r && r.insertAdjacentHTML("afterend", '<h1 class="os-title">Enter your zip code</h1>'), b && (b.style.display = "none"), c && (c.textContent = "Continue"), p && p.setAttribute("placeholder", "Enter Your Zip Code"), c == null || c.addEventListener("click", () => {
+          const r = i.querySelector(".title"), u = i.querySelector("h5"), c = i.querySelector("#calculateYourSavings"), p = i.querySelector("#zip"), S = i.querySelector("#zip-error");
+          S && (S.textContent = ""), r && r.insertAdjacentHTML("afterend", '<h1 class="os-title">Enter your zip code</h1>'), u && (u.style.display = "none"), c && (c.textContent = "Continue"), p && p.setAttribute("placeholder", "Enter Your Zip Code"), c == null || c.addEventListener("click", () => {
             l == null || l.classList.add("os-hide");
           });
         }
         if (i.querySelector("#estimate-bill")) {
-          const r = i.querySelectorAll(".title:not([data-custom])"), b = i.querySelectorAll(".sub-title"), c = (f = (w = i.closest(".swiper-container")) == null ? void 0 : w.nextElementSibling) == null ? void 0 : f.querySelector(".nextSlide");
+          const r = i.querySelectorAll(".title:not([data-custom])"), u = i.querySelectorAll(".sub-title"), c = (f = (w = i.closest(".swiper-container")) == null ? void 0 : w.nextElementSibling) == null ? void 0 : f.querySelector(".nextSlide");
           r.forEach((p) => {
             p && (p.innerHTML = /* HTML */
             `How much is<br class="desktop" />
               your average monthly energy bill?`);
-          }), b.forEach((p) => {
+          }), u.forEach((p) => {
             p && p.classList.add("os-hide");
           }), c && c.classList.add("os-hide"), this.estimateHomeownerHandler();
         }
@@ -406,16 +406,16 @@
         }
         if (i.querySelector("#estimate-map")) {
           e("#estimate-map");
-          const r = i.querySelectorAll(".title"), b = i.querySelectorAll(".sub-title");
+          const r = i.querySelectorAll(".title"), u = i.querySelectorAll(".sub-title");
           r.forEach((c) => {
             c && (c.textContent = "Find your house location");
-          }), b.forEach((c) => {
+          }), u.forEach((c) => {
             c && (c.textContent = "Enter your house address to verify your eligibility for No Net Cost Solar");
           }), new z("#estimate-map .container");
         }
         if (i.querySelector("#estimate-email")) {
-          const r = i.querySelectorAll(".sub-title.banner"), b = i.querySelectorAll(".title"), c = i.querySelectorAll(".sub-title");
-          b.forEach((p) => {
+          const r = i.querySelectorAll(".sub-title.banner"), u = i.querySelectorAll(".title"), c = i.querySelectorAll(".sub-title");
+          u.forEach((p) => {
             p && (p.innerHTML = /* HTML */
             `What is your <br class="mobile" />
               email address?`);
@@ -430,11 +430,11 @@
           r && r.setAttribute("placeholder", "Enter your mobile phone number");
         }
         if (i.querySelector("#estimate-name")) {
-          const r = i.querySelectorAll(".title"), b = i.querySelector("#fname"), c = i.querySelector("#lname");
+          const r = i.querySelectorAll(".title"), u = i.querySelector("#fname"), c = i.querySelector("#lname");
           r && r.forEach((p) => {
             p && (p.innerHTML = /* HTML */
             "What is your name?");
-          }), b && b.setAttribute("placeholder", "First Name"), c && c.setAttribute("placeholder", "Family Name"), new z("#estimate-name .container");
+          }), u && u.setAttribute("placeholder", "First Name"), c && c.setAttribute("placeholder", "Family Name"), new z("#estimate-name .container");
         }
       });
       const a = e("#bill-slider .rangeslider-tooltip");
@@ -443,17 +443,17 @@
         /* HTML */
         ' <div class="rangeslider-tooltip__arrow"></div>'
       );
-      const u = document.querySelector(".rangeslider__handle"), y = e(".rangeslider-tooltip__arrow"), v = parseInt(u.style.left);
+      const b = document.querySelector(".rangeslider__handle"), y = e(".rangeslider-tooltip__arrow"), v = parseInt(b.style.left);
       a.style.left = v - 18 + "px", y && (y.style.left = v + 5 + "px"), new MutationObserver(function(i) {
         i.forEach(function(w) {
           if (w.type === "attributes" && w.attributeName === "style") {
-            const f = parseInt(u.style.left);
+            const f = parseInt(b.style.left);
             a.style.left = f - 18 + "px", y && (y.style.left = f + 5 + "px");
-            const r = a.getBoundingClientRect(), b = window.innerWidth || document.documentElement.clientWidth;
-            r.right >= b - 20 && (a.style.left = b - r.width - 40 + "px"), r.left <= 20 && (a.style.left = "-1px");
+            const r = a.getBoundingClientRect(), u = window.innerWidth || document.documentElement.clientWidth;
+            r.right >= u - 20 && (a.style.left = u - r.width - 40 + "px"), r.left <= 20 && (a.style.left = "-1px");
           }
         });
-      }).observe(u, {
+      }).observe(b, {
         attributes: !0,
         attributeFilter: ["style"]
       });
@@ -461,15 +461,15 @@
     estimateHomeownerHandler() {
       const t = e("#estimate-homeowner"), o = e("#estimate-bill"), s = e(".os-navigation"), n = s.querySelector(".os-next"), h = document.querySelector(".os-prev");
       o.classList.add("os-hide");
-      const l = e("#homeowner-yes"), d = e("#homeowner-no"), x = e("#homeowner-back"), a = e("#solarForm .wrapper"), g = e('#estimate-homeowner [data-step="1"]'), u = e('#estimate-homeowner [data-step="2"]'), y = e(".os-progress-block");
+      const l = e("#homeowner-yes"), d = e("#homeowner-no"), x = e("#homeowner-back"), a = e("#solarForm .wrapper"), g = e('#estimate-homeowner [data-step="1"]'), b = e('#estimate-homeowner [data-step="2"]'), y = e(".os-progress-block");
       l == null || l.addEventListener("click", () => {
         o.classList.remove("os-hide"), t.classList.add("os-hide"), s.classList.remove("os-hide"), n == null || n.classList.remove("os-hide");
         const v = e(".swiper-slide-active"), _ = (v == null ? void 0 : v.clientHeight) || 0;
         n && (n.style.top = `${_ + 50}px`), this.progressBar.update(3);
       }), d == null || d.addEventListener("click", () => {
-        g.classList.add("os-hide"), u.classList.remove("os-hide"), y.classList.add("os-hide"), h == null || h.classList.add("os-hide"), a.dataset.background = "false", s == null || s.classList.add("os-hide");
+        g.classList.add("os-hide"), b.classList.remove("os-hide"), y.classList.add("os-hide"), h == null || h.classList.add("os-hide"), a.dataset.background = "false", s == null || s.classList.add("os-hide");
       }), x == null || x.addEventListener("click", () => {
-        g.classList.remove("os-hide"), u.classList.add("os-hide"), y.classList.remove("os-hide"), h == null || h.classList.remove("os-hide"), a.dataset.background = "", s == null || s.classList.remove("os-hide");
+        g.classList.remove("os-hide"), b.classList.add("os-hide"), y.classList.remove("os-hide"), h == null || h.classList.remove("os-hide"), a.dataset.background = "", s == null || s.classList.remove("os-hide");
       });
     }
     addSlides() {
@@ -515,14 +515,14 @@
         g.classList.add("os-hide"), setTimeout(() => {
           g.classList.remove("os-hide");
         }, 400);
-        const u = s == null ? void 0 : s.querySelector("a:first-child");
+        const b = s == null ? void 0 : s.querySelector("a:first-child");
         setTimeout(() => {
-          u == null || u.click();
+          b == null || b.click();
         }, 0);
       }), d == null || d.addEventListener("click", () => {
-        const g = s == null ? void 0 : s.querySelector("a:last-child"), u = e(".os-navigation");
-        u.classList.add("os-hide"), setTimeout(() => {
-          u.classList.remove("os-hide");
+        const g = s == null ? void 0 : s.querySelector("a:last-child"), b = e(".os-navigation");
+        b.classList.add("os-hide"), setTimeout(() => {
+          b.classList.remove("os-hide");
         }, 400), setTimeout(() => {
           g == null || g.click();
         }, 0);
