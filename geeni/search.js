@@ -670,7 +670,7 @@
           }), c.addEventListener("focus", function() {
             v = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none", h("exp_search_feature_input_01", "Search", "Input", "Header"), g || setTimeout(() => {
               this.setSelectionRange(0, 0), this.style.color = "rgba(74, 74, 74, 0.7)";
-            }, 0);
+            }, 100);
           }), c.addEventListener("blur", function() {
             !g && v ? setTimeout(() => {
               v = !1, s(this);
