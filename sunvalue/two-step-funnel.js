@@ -1,66 +1,66 @@
 (function() {
   "use strict";
-  const v = (m, t, e, s = "") => {
+  const k = (m, t, i, s = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: m,
       event_desc: t,
-      event_type: e,
+      event_type: i,
       event_loc: s
-    }), console.log(`Event: ${m} | ${t} | ${e} | ${s}`);
+    }), console.log(`Event: ${m} | ${t} | ${i} | ${s}`);
   }, j = ({ name: m, dev: t }) => {
     console.log(
       `%c EXP: ${m} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, L = (m, t, e, s, a = 1, h) => {
-    let p = new IntersectionObserver(
+  }, L = (m, t, i, s, n = 1, h) => {
+    let l = new IntersectionObserver(
       (x) => {
-        x.forEach((n) => {
-          n.isIntersecting && (p.unobserve(n.target), setTimeout(function() {
-            d.observe(n.target);
-          }, 1e3 * a));
+        x.forEach((a) => {
+          a.isIntersecting && (l.unobserve(a.target), setTimeout(function() {
+            d.observe(a.target);
+          }, 1e3 * n));
         });
       },
       {
         threshold: 0.5
       }
     ), d = new IntersectionObserver((x) => {
-      x.forEach((n) => {
-        n.isIntersecting ? (v(
-          t || `view_element_${n.target.id}`,
-          e || `View element on screen (${a} sec or more)`,
+      x.forEach((a) => {
+        a.isIntersecting ? (k(
+          t || `view_element_${a.target.id}`,
+          i || `View element on screen (${n} sec or more)`,
           "view",
-          s || n.target.id
-        ), h && h(), p.unobserve(n.target)) : p.observe(n.target), d.unobserve(n.target);
+          s || a.target.id
+        ), h && h(), l.unobserve(a.target)) : l.observe(a.target), d.unobserve(a.target);
       });
     });
     document.querySelectorAll(m).forEach((x) => {
-      p.observe(x);
+      l.observe(x);
     });
   };
   function q(m) {
     return new Promise((t) => {
       if (document.querySelector(m))
         return t(document.querySelector(m));
-      const e = new MutationObserver(() => {
-        document.querySelector(m) && (t(document.querySelector(m)), e.disconnect());
+      const i = new MutationObserver(() => {
+        document.querySelector(m) && (t(document.querySelector(m)), i.disconnect());
       });
-      e.observe(document.documentElement, {
+      i.observe(document.documentElement, {
         childList: !0,
         subtree: !0,
         characterData: !0
       });
     });
   }
-  const i = (m) => document.querySelector(m);
+  const e = (m) => document.querySelector(m);
   (function(m = {}) {
-    let t, e, s, a, h = m.delay || 50;
-    function p() {
-      t = null, a = 0;
+    let t, i, s, n, h = m.delay || 50;
+    function l() {
+      t = null, n = 0;
     }
-    return p(), function() {
-      return e = window.scrollY, t !== null && (a = e - t), t = e, clearTimeout(s), s = setTimeout(p, h), a;
+    return l(), function() {
+      return i = window.scrollY, t !== null && (n = i - t), t = i, clearTimeout(s), s = setTimeout(l, h), n;
     };
   })();
   class C {
@@ -71,27 +71,27 @@
       this.setEvents();
     }
     setEvents() {
-      const t = document.querySelector(".swiper-container"), e = t == null ? void 0 : t.swiper, s = i(".os-navigation");
+      const t = document.querySelector(".swiper-container"), i = t == null ? void 0 : t.swiper, s = e(".os-navigation");
       s.querySelector(".os-next");
-      const a = s.querySelector(".os-prev"), h = () => {
-        v("exp_2_step_funnel_survey_1_1_back", "Back", "button", "Step 1.1");
+      const n = s.querySelector(".os-prev"), h = () => {
+        k("exp_2_step_funnel_survey_1_1_back", "Back", "button", "Step 1.1");
       };
-      e == null || e.on("transitionEnd", () => {
-        const n = e.realIndex;
-        n === 1 && i("#estimate-bill").classList.contains("os-hide") && (i('#estimate-homeowner [data-step="2"]').classList.contains("os-hide") && L("#estimate-homeowner", "exp_2_step_funnel_survey_1_1_view", "Full page view", "Step 1.1"), a.addEventListener("click", h)), n === 4 && L("#estimate-notnet", "exp_2_step_funnel_survey_4_1_view", "Full page view", "Step 4.1");
+      i == null || i.on("transitionEnd", () => {
+        const a = i.realIndex;
+        a === 1 && e("#estimate-bill").classList.contains("os-hide") && (e('#estimate-homeowner [data-step="2"]').classList.contains("os-hide") && L("#estimate-homeowner", "exp_2_step_funnel_survey_1_1_view", "Full page view", "Step 1.1"), n.addEventListener("click", h)), a === 4 && L("#estimate-notnet", "exp_2_step_funnel_survey_4_1_view", "Full page view", "Step 4.1");
       });
-      const p = i("#homeowner-yes"), d = i("#homeowner-no"), x = i("#homeowner-back");
-      p.addEventListener("click", () => {
-        v("exp_2_step_funnel_survey_1_1_yes", "Yes", "button", "Step 1.1"), a.removeEventListener("click", h);
+      const l = e("#homeowner-yes"), d = e("#homeowner-no"), x = e("#homeowner-back");
+      l.addEventListener("click", () => {
+        k("exp_2_step_funnel_survey_1_1_yes", "Yes", "button", "Step 1.1"), n.removeEventListener("click", h);
       }), d.addEventListener("click", () => {
-        v("exp_2_step_funnel_survey_1_1_no", "No", "button", "Step 1.1"), i('#estimate-homeowner [data-step="1"]').classList.contains("os-hide") && L(
+        k("exp_2_step_funnel_survey_1_1_no", "No", "button", "Step 1.1"), e('#estimate-homeowner [data-step="1"]').classList.contains("os-hide") && L(
           '#estimate-homeowner [data-step="2"]',
           "exp_2_step_funnel_survey_1_2_view",
           "Full page view",
           "Step 1.2"
         );
       }), x.addEventListener("click", () => {
-        v("exp_2_step_funnel_survey_1_2_back", "Back to previous step", "button", "Step 1.2");
+        k("exp_2_step_funnel_survey_1_2_back", "Back to previous step", "button", "Step 1.2");
       });
     }
   }
@@ -214,7 +214,38 @@
     fill="#FB7306"
   />
 </svg>`
-  ), H = ".os-secure{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;margin-top:2px;justify-content:center;align-items:center;gap:13px;font-family:Noto Sans SC;font-size:14px;font-weight:700}.os-secure span{width:20px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center;align-items:center}.os-secure span svg{width:20px;height:20px}";
+  ), H = `.os-secure {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 2px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 13px;
+  font-family: Noto Sans SC;
+  font-size: 14px;
+  font-weight: 700;
+}
+.os-secure span {
+  width: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.os-secure span svg {
+  width: 20px;
+  height: 20px;
+}`;
   class z {
     constructor(t) {
       this.container = document.querySelector(t), this.init();
@@ -227,12 +258,12 @@
       document.head.insertAdjacentHTML("beforeend", `<style>${H}</style>`), this.render();
     }
     render() {
-      var e;
+      var i;
       const t = (
         /* HTML */
         `<div class="os-secure"><span>${A}</span>Your data is safe and secure</div>`
       );
-      (e = this.container) == null || e.insertAdjacentHTML("beforeend", t);
+      (i = this.container) == null || i.insertAdjacentHTML("beforeend", t);
     }
   }
   const M = (
@@ -316,16 +347,16 @@
         </div>
       </div>
     `
-      ), e = document.querySelector("#header-with-id");
-      document.head.insertAdjacentHTML("beforeend", `<style>${B}</style>`), e == null || e.insertAdjacentHTML("beforeend", t);
+      ), i = document.querySelector("#header-with-id");
+      document.head.insertAdjacentHTML("beforeend", `<style>${B}</style>`), i == null || i.insertAdjacentHTML("beforeend", t);
     }
     update(t) {
       if (t < 1 || t > 5) {
         console.error("Step must be between 1 and 5");
         return;
       }
-      const e = (t - 1) * 25 + (t === 1 ? 1 : 0), s = document.querySelector(".os-progress-bar"), a = document.querySelector(".os-steps");
-      s && (s.style.width = `${e}%`, s.setAttribute("aria-valuenow", e.toString())), a && (a.style.left = t === 1 ? `${e}%` : `calc(${e}% - 31px)`, a.querySelector("span").textContent = t.toString());
+      const i = (t - 1) * 25 + (t === 1 ? 1 : 0), s = document.querySelector(".os-progress-bar"), n = document.querySelector(".os-steps");
+      s && (s.style.width = `${i}%`, s.setAttribute("aria-valuenow", i.toString())), n && (n.style.left = t === 1 ? `${i}%` : `calc(${i}% - 31px)`, n.querySelector("span").textContent = t.toString());
     }
   }
   class F {
@@ -334,39 +365,39 @@
       this.swiperElement = document.querySelector(".swiper-container"), this.swiper = (t = this.swiperElement) == null ? void 0 : t.swiper, this.progressBar = new I();
     }
     changeSlides() {
-      const t = document.querySelector(".swiper-container"), e = document.querySelectorAll(".swiper-slide"), s = t == null ? void 0 : t.swiper, a = i("#solarForm .wrapper"), h = i(".os-navigation"), p = h.querySelector(".os-next"), d = h.querySelector(".os-prev"), x = () => {
+      const t = document.querySelector(".swiper-container"), i = document.querySelectorAll(".swiper-slide"), s = t == null ? void 0 : t.swiper, n = e("#solarForm .wrapper"), h = e(".os-navigation"), l = h.querySelector(".os-next"), d = h.querySelector(".os-prev"), x = () => {
         this.progressBar.update(2);
       };
       s == null || s.on("transitionEnd", () => {
         const o = s.realIndex;
-        a.dataset.currentSlide = o.toString();
-        const g = i(".swiper-slide-active"), f = g == null ? void 0 : g.clientHeight;
-        if (h.style.top = `${f}px`, t && (t.dataset.currentSlide = o.toString()), o === 0 && this.progressBar.update(1), o === 1 && (d == null || d.removeEventListener("click", x), i("#estimate-homeowner").classList.contains("os-hide") ? (this.progressBar.update(3), p == null || p.classList.remove("os-hide"), d == null || d.addEventListener("click", x)) : this.progressBar.update(2)), o === 2 && (d == null || d.removeEventListener("click", x), this.progressBar.update(4)), o === 3 && this.progressBar.update(5), o === 3 ? a.dataset.background = "false" : a.dataset.background = "", o === 7 ? a.dataset.background = "opacity" : a.dataset.background = "", o > 3 ? i(".os-progress-block").classList.add("os-hide") : i(".os-progress-block").classList.remove("os-hide"), o === 4) {
-          const r = i('input[value="unknown"]'), u = r.parentElement;
+        n.dataset.currentSlide = o.toString();
+        const w = e(".swiper-slide-active"), y = (w == null ? void 0 : w.clientHeight) || 0;
+        if (l.style.top = `${y}px`, o === 1 && (e("#estimate-bill").classList.contains("os-hide") || (l.style.top = `${y + 50}px`)), t && (t.dataset.currentSlide = o.toString()), o === 0 && this.progressBar.update(1), o === 1 && (d == null || d.removeEventListener("click", x), e("#estimate-homeowner").classList.contains("os-hide") ? (this.progressBar.update(3), l == null || l.classList.remove("os-hide"), d == null || d.addEventListener("click", x)) : this.progressBar.update(2)), o === 2 && (d == null || d.removeEventListener("click", x), this.progressBar.update(4)), o === 3 && this.progressBar.update(5), o === 3 ? n.dataset.background = "false" : n.dataset.background = "", o === 7 ? n.dataset.background = "opacity" : n.dataset.background = "", o > 3 ? e(".os-progress-block").classList.add("os-hide") : e(".os-progress-block").classList.remove("os-hide"), o === 4) {
+          const r = e('input[value="unknown"]'), b = r.parentElement;
           r.checked = !0;
-          const c = i(".os-spinner"), l = i('[data-os="result"]'), S = setTimeout(() => {
-            c.classList.add("os-hide"), l.classList.remove("os-hide");
+          const c = e(".os-spinner"), p = e('[data-os="result"]'), S = setTimeout(() => {
+            c.classList.add("os-hide"), p.classList.remove("os-hide");
           }, 1e3), T = setTimeout(() => {
-            u && u.click(), c.classList.remove("os-hide"), l.classList.add("os-hide"), l.classList.add("os-passed");
-          }, 4e3), _ = i("#slider-block .prevSlide");
-          l.classList.contains("os-passed") && (clearTimeout(S), clearTimeout(T), l.classList.remove("os-passed"), _ == null || _.click());
+            b && b.click(), c.classList.remove("os-hide"), p.classList.add("os-hide"), p.classList.add("os-passed");
+          }, 4e3), _ = e("#slider-block .prevSlide");
+          p.classList.contains("os-passed") && (clearTimeout(S), clearTimeout(T), p.classList.remove("os-passed"), _ == null || _.click());
         }
-      }), e.forEach((o) => {
-        var g, f;
+      }), i.forEach((o) => {
+        var w, y;
         if (o.querySelector("#estimate-zip")) {
-          const r = o.querySelector(".title"), u = o.querySelector("h5"), c = o.querySelector("#calculateYourSavings"), l = o.querySelector("#zip"), S = o.querySelector("#zip-error");
-          S && (S.textContent = ""), r && r.insertAdjacentHTML("afterend", '<h1 class="os-title">Enter your zip code</h1>'), u && (u.style.display = "none"), c && (c.textContent = "Continue"), l && l.setAttribute("placeholder", "Enter Your Zip Code"), c == null || c.addEventListener("click", () => {
-            p == null || p.classList.add("os-hide");
+          const r = o.querySelector(".title"), b = o.querySelector("h5"), c = o.querySelector("#calculateYourSavings"), p = o.querySelector("#zip"), S = o.querySelector("#zip-error");
+          S && (S.textContent = ""), r && r.insertAdjacentHTML("afterend", '<h1 class="os-title">Enter your zip code</h1>'), b && (b.style.display = "none"), c && (c.textContent = "Continue"), p && p.setAttribute("placeholder", "Enter Your Zip Code"), c == null || c.addEventListener("click", () => {
+            l == null || l.classList.add("os-hide");
           });
         }
         if (o.querySelector("#estimate-bill")) {
-          const r = o.querySelectorAll(".title:not([data-custom])"), u = o.querySelectorAll(".sub-title"), c = (f = (g = o.closest(".swiper-container")) == null ? void 0 : g.nextElementSibling) == null ? void 0 : f.querySelector(".nextSlide");
-          r.forEach((l) => {
-            l && (l.innerHTML = /* HTML */
+          const r = o.querySelectorAll(".title:not([data-custom])"), b = o.querySelectorAll(".sub-title"), c = (y = (w = o.closest(".swiper-container")) == null ? void 0 : w.nextElementSibling) == null ? void 0 : y.querySelector(".nextSlide");
+          r.forEach((p) => {
+            p && (p.innerHTML = /* HTML */
             `How much is<br class="desktop" />
               your average monthly energy bill?`);
-          }), u.forEach((l) => {
-            l && l.classList.add("os-hide");
+          }), b.forEach((p) => {
+            p && p.classList.add("os-hide");
           }), c && c.classList.add("os-hide"), this.estimateHomeownerHandler();
         }
         if (o.querySelector("#estimate-shade")) {
@@ -374,24 +405,24 @@
           r.style.display = "none";
         }
         if (o.querySelector("#estimate-map")) {
-          i("#estimate-map");
-          const r = o.querySelectorAll(".title"), u = o.querySelectorAll(".sub-title");
+          e("#estimate-map");
+          const r = o.querySelectorAll(".title"), b = o.querySelectorAll(".sub-title");
           r.forEach((c) => {
             c && (c.textContent = "Find your house location");
-          }), u.forEach((c) => {
+          }), b.forEach((c) => {
             c && (c.textContent = "Enter your house address to verify your eligibility for No Net Cost Solar");
           }), new z("#estimate-map .container");
         }
         if (o.querySelector("#estimate-email")) {
-          const r = o.querySelectorAll(".sub-title.banner"), u = o.querySelectorAll(".title"), c = o.querySelectorAll(".sub-title");
-          u.forEach((l) => {
-            l && (l.innerHTML = /* HTML */
+          const r = o.querySelectorAll(".sub-title.banner"), b = o.querySelectorAll(".title"), c = o.querySelectorAll(".sub-title");
+          b.forEach((p) => {
+            p && (p.innerHTML = /* HTML */
             `What is your <br class="mobile" />
               email address?`);
-          }), c.forEach((l) => {
-            l && (l.textContent = "We'll send you participation details");
-          }), r.forEach((l) => {
-            l && l.classList.add("os-hide");
+          }), c.forEach((p) => {
+            p && (p.textContent = "We'll send you participation details");
+          }), r.forEach((p) => {
+            p && p.classList.add("os-hide");
           }), new z("#estimate-email .container");
         }
         if (o.querySelector("#estimate-phone")) {
@@ -399,53 +430,55 @@
           r && r.setAttribute("placeholder", "Enter your mobile phone number");
         }
         if (o.querySelector("#estimate-name")) {
-          const r = o.querySelectorAll(".title"), u = o.querySelector("#fname"), c = o.querySelector("#lname");
-          r && r.forEach((l) => {
-            l && (l.innerHTML = /* HTML */
+          const r = o.querySelectorAll(".title"), b = o.querySelector("#fname"), c = o.querySelector("#lname");
+          r && r.forEach((p) => {
+            p && (p.innerHTML = /* HTML */
             "What is your name?");
-          }), u && u.setAttribute("placeholder", "First Name"), c && c.setAttribute("placeholder", "Family Name"), new z("#estimate-name .container");
+          }), b && b.setAttribute("placeholder", "First Name"), c && c.setAttribute("placeholder", "Family Name"), new z("#estimate-name .container");
         }
       });
-      const n = i("#bill-slider .rangeslider-tooltip");
-      n.insertAdjacentHTML(
+      const a = e("#bill-slider .rangeslider-tooltip");
+      a.insertAdjacentHTML(
         "beforebegin",
         /* HTML */
         ' <div class="rangeslider-tooltip__arrow"></div>'
       );
-      const b = document.querySelector(".rangeslider__handle"), k = i(".rangeslider-tooltip__arrow"), y = parseInt(b.style.left);
-      n.style.left = y - 18 + "px", k && (k.style.left = y + 5 + "px"), new MutationObserver(function(o) {
-        o.forEach(function(g) {
-          if (g.type === "attributes" && g.attributeName === "style") {
-            const f = parseInt(b.style.left);
-            n.style.left = f - 18 + "px", k && (k.style.left = f + 5 + "px");
-            const r = n.getBoundingClientRect(), u = window.innerWidth || document.documentElement.clientWidth;
-            r.right >= u - 20 && (n.style.left = u - r.width - 40 + "px"), console.log(r.left), r.left <= 20 && (n.style.left = "-1px");
+      const u = document.querySelector(".rangeslider__handle"), g = e(".rangeslider-tooltip__arrow"), f = parseInt(u.style.left);
+      a.style.left = f - 18 + "px", g && (g.style.left = f + 5 + "px"), new MutationObserver(function(o) {
+        o.forEach(function(w) {
+          if (w.type === "attributes" && w.attributeName === "style") {
+            const y = parseInt(u.style.left);
+            a.style.left = y - 18 + "px", g && (g.style.left = y + 5 + "px");
+            const r = a.getBoundingClientRect(), b = window.innerWidth || document.documentElement.clientWidth;
+            r.right >= b - 20 && (a.style.left = b - r.width - 40 + "px"), r.left <= 20 && (a.style.left = "-1px");
           }
         });
-      }).observe(b, {
+      }).observe(u, {
         attributes: !0,
         attributeFilter: ["style"]
       });
     }
     estimateHomeownerHandler() {
-      const t = i("#estimate-homeowner"), e = i("#estimate-bill"), s = i(".os-navigation"), a = s.querySelector(".os-next");
-      s.querySelector(".os-back"), e.classList.add("os-hide");
-      const h = i("#homeowner-yes"), p = i("#homeowner-no"), d = i("#homeowner-back"), x = i("#solarForm .wrapper"), n = i('#estimate-homeowner [data-step="1"]'), w = i('#estimate-homeowner [data-step="2"]'), b = i(".os-progress-block");
+      const t = e("#estimate-homeowner"), i = e("#estimate-bill"), s = e(".os-navigation"), n = s.querySelector(".os-next");
+      s.querySelector(".os-back"), i.classList.add("os-hide");
+      const h = e("#homeowner-yes"), l = e("#homeowner-no"), d = e("#homeowner-back"), x = e("#solarForm .wrapper"), a = e('#estimate-homeowner [data-step="1"]'), v = e('#estimate-homeowner [data-step="2"]'), u = e(".os-progress-block");
       h == null || h.addEventListener("click", () => {
-        e.classList.remove("os-hide"), t.classList.add("os-hide"), s.classList.remove("os-hide"), a == null || a.classList.remove("os-hide"), this.progressBar.update(3);
-      }), p == null || p.addEventListener("click", () => {
-        n.classList.add("os-hide"), w.classList.remove("os-hide"), b.classList.add("os-hide"), x.dataset.background = "false", s == null || s.classList.add("os-hide");
+        i.classList.remove("os-hide"), t.classList.add("os-hide"), s.classList.remove("os-hide"), n == null || n.classList.remove("os-hide");
+        const g = e(".swiper-slide-active"), f = (g == null ? void 0 : g.clientHeight) || 0;
+        n && (n.style.top = `${f + 50}px`), this.progressBar.update(3);
+      }), l == null || l.addEventListener("click", () => {
+        a.classList.add("os-hide"), v.classList.remove("os-hide"), u.classList.add("os-hide"), x.dataset.background = "false", s == null || s.classList.add("os-hide");
       }), d == null || d.addEventListener("click", () => {
-        n.classList.remove("os-hide"), w.classList.add("os-hide"), b.classList.remove("os-hide"), x.dataset.background = "", s == null || s.classList.remove("os-hide");
+        a.classList.remove("os-hide"), v.classList.add("os-hide"), u.classList.remove("os-hide"), x.dataset.background = "", s == null || s.classList.remove("os-hide");
       });
     }
     addSlides() {
-      var e, s, a;
+      var i, s, n;
       const t = document.querySelectorAll(".swiper-slide");
-      (s = (e = t[1]) == null ? void 0 : e.querySelector("#estimate-bill")) == null || s.insertAdjacentHTML("afterend", M), (a = t[4]) == null || a.insertAdjacentHTML("beforeend", $);
+      (s = (i = t[1]) == null ? void 0 : i.querySelector("#estimate-bill")) == null || s.insertAdjacentHTML("afterend", M), (n = t[4]) == null || n.insertAdjacentHTML("beforeend", $);
     }
   }
-  const O = '.os-navigation{display:none;font-family:Noto Sans SC,sans-serif;width:100%;position:absolute;justify-content:space-between;align-items:center;top:-webkit-calc(50% + 50px);top:-moz-calc(50% + 50px);top:calc(50% + 50px);left:50%;transform:translate(-50%);bottom:50px;max-width:540px!important;height:-moz-min-content;height:-webkit-min-content;height:min-content;margin-top:24px;z-index:50;height:56px}@media (max-width: 768px){.os-navigation{max-width:100%;margin-top:62px;padding:0 20px}}.os-navigation .os-next{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center;align-items:center;background:#83be63;font-family:inherit;border:none;border-radius:5px;min-height:56px;color:#fff;font-size:16px;font-weight:700;line-height:24px;min-width:333px;cursor:pointer;text-transform:uppercase}@media (max-width: 768px){.os-navigation .os-next{min-width:200px}}.os-navigation .os-next:hover{background:#8fd26a;transition:background .3s}.os-navigation .os-prev{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;font-family:inherit;gap:8px;align-items:center;border:none;background:none;color:#2b3d50;font-weight:700;font-size:16px;padding-left:0;padding-right:0;cursor:pointer;text-transform:uppercase}.os-navigation .os-prev:before{content:"";display:block;width:25px;height:20px;background-image:url(/images/back.svg);background-repeat:no-repeat;background-position:left center;background-size:20px}.os-navigation .os-prev:before:hover{opacity:.8;transition:opacity .3s}[data-current-slide="1"] .os-navigation,[data-current-slide="2"] .os-navigation,[data-current-slide="3"] .os-navigation,[data-current-slide="5"] .os-navigation,[data-current-slide="6"] .os-navigation,[data-current-slide="7"] .os-navigation{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex}[data-current-slide="2"] .os-navigation .os-next,[data-current-slide="7"] .os-navigation .os-next{display:none}.js-has-pseudo [csstools-has-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-1a-38-2w-36-2t-2t-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-19-2p-2r-38-2x-3a-2t-1m-2w-2p-37-14-z-2t-37-38-2x-31-2p-38-2t-19-2q-2x-30-30-1a-33-37-19-2w-2x-2s-2t-15-w-3i-w-1a-33-37-19-32-2p-3a-2x-2v-2p-38-2x-33-32]:not(#does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist){height:24px}.swiper-slide.three.swiper-slide-active:has(#estimate-bill.os-hide)~.os-navigation{height:24px}.js-has-pseudo [csstools-has-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-1a-38-2w-36-2t-2t-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-19-2p-2r-38-2x-3a-2t-1m-2w-2p-37-14-z-2t-37-38-2x-31-2p-38-2t-19-2q-2x-30-30-1a-33-37-19-2w-2x-2s-2t-15-w-3i-w-1a-33-37-19-32-2p-3a-2x-2v-2p-38-2x-33-32-w-1a-33-37-19-34-36-2t-3a]:not(#does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist){padding:0}.swiper-slide.three.swiper-slide-active:has(#estimate-bill.os-hide)~.os-navigation .os-prev{padding:0}@media (max-width: 768px){.js-has-pseudo [csstools-has-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-1a-38-2w-36-2t-2t-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-19-2p-2r-38-2x-3a-2t-1m-2w-2p-37-14-z-2t-37-38-2x-31-2p-38-2t-19-2q-2x-30-30-1a-33-37-19-2w-2x-2s-2t-15-w-3i-w-1a-33-37-19-32-2p-3a-2x-2v-2p-38-2x-33-32]:not(#does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist){top:240px!important}.swiper-slide.three.swiper-slide-active:has(#estimate-bill.os-hide)~.os-navigation{top:240px!important}}@media (min-width: 768px){.js-has-pseudo [csstools-has-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-1a-38-2w-36-2t-2t-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-19-2p-2r-38-2x-3a-2t-1m-2w-2p-37-14-z-2t-37-38-2x-31-2p-38-2t-19-2w-33-31-2t-33-3b-32-2t-36-1a-33-37-19-2w-2x-2s-2t-15-w-3i-w-1a-33-37-19-32-2p-3a-2x-2v-2p-38-2x-33-32]:not(#does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist){top:220px!important}.swiper-slide.three.swiper-slide-active:has(#estimate-homeowner.os-hide)~.os-navigation{top:220px!important}}@media (max-width: 768px){.js-has-pseudo [csstools-has-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-19-2p-2r-38-2x-3a-2t-1m-2w-2p-37-14-z-2t-37-38-2x-31-2p-38-2t-19-34-36-33-3a-2x-2s-2t-36-15-w-3i-w-1a-33-37-19-32-2p-3a-2x-2v-2p-38-2x-33-32]:not(#does-not-exist):not(.does-not-exist),.js-has-pseudo [csstools-has-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-19-2p-2r-38-2x-3a-2t-1m-2w-2p-37-14-z-2t-37-38-2x-31-2p-38-2t-19-34-2w-33-32-2t-15-w-3i-w-1a-33-37-19-32-2p-3a-2x-2v-2p-38-2x-33-32]:not(#does-not-exist):not(.does-not-exist){margin-top:24px!important}.swiper-slide-active:has(#estimate-provider)~.os-navigation,.swiper-slide-active:has(#estimate-phone)~.os-navigation{margin-top:24px!important}}';
+  const O = '.swiper-container-android .swiper-slide,.swiper-wrapper{transform:none!important}.os-navigation{display:none;font-family:Noto Sans SC,sans-serif}@media (max-width: 768px){.os-navigation{max-width:100%;margin-top:62px;padding:0 20px}}.os-navigation .os-next{width:100%;position:absolute;justify-content:space-between;top:-webkit-calc(50% + 50px);top:-moz-calc(50% + 50px);top:calc(50% + 50px);left:50%;transform:translate(-50%);bottom:50px;max-width:550px!important;height:-moz-min-content;height:-webkit-min-content;height:min-content;margin-top:24px;z-index:50;height:56px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center;align-items:center;background:#83be63;font-family:inherit;border:none;border-radius:5px;min-height:56px;color:#fff;font-size:16px;font-weight:700;line-height:24px;min-width:333px;cursor:pointer;text-transform:uppercase}@media (max-width: 768px){.os-navigation .os-next{min-width:200px;max-width:-webkit-calc(100% - 40px)!important;max-width:-moz-calc(100% - 40px)!important;max-width:calc(100% - 40px)!important}}.os-navigation .os-next:hover{background:#8fd26a;transition:background .3s}.os-navigation .os-prev{position:fixed;bottom:60px;left:60px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;font-family:inherit;gap:8px;align-items:center;border:none;background:none;color:#2b3d50;font-weight:700;font-size:16px;padding:0;cursor:pointer;text-transform:uppercase}@media (max-width: 768px){.os-navigation .os-prev{bottom:20px;left:20px}}.os-navigation .os-prev:before{content:"";display:block;width:25px;height:20px;background-image:url(/images/back.svg);background-repeat:no-repeat;background-position:left center;background-size:20px}.os-navigation .os-prev:before:hover{opacity:.8;transition:opacity .3s}[data-current-slide="1"] .os-navigation,[data-current-slide="2"] .os-navigation,[data-current-slide="3"] .os-navigation,[data-current-slide="5"] .os-navigation,[data-current-slide="6"] .os-navigation,[data-current-slide="7"] .os-navigation{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex}[data-current-slide="2"] .os-navigation .os-next,[data-current-slide="7"] .os-navigation .os-next{display:none}.js-has-pseudo [csstools-has-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-1a-38-2w-36-2t-2t-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-19-2p-2r-38-2x-3a-2t-1m-2w-2p-37-14-z-2t-37-38-2x-31-2p-38-2t-19-2q-2x-30-30-1a-33-37-19-2w-2x-2s-2t-15-w-3i-w-1a-33-37-19-32-2p-3a-2x-2v-2p-38-2x-33-32]:not(#does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist){height:24px}.swiper-slide.three.swiper-slide-active:has(#estimate-bill.os-hide)~.os-navigation{height:24px}.js-has-pseudo [csstools-has-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-1a-38-2w-36-2t-2t-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-19-2p-2r-38-2x-3a-2t-1m-2w-2p-37-14-z-2t-37-38-2x-31-2p-38-2t-19-2q-2x-30-30-1a-33-37-19-2w-2x-2s-2t-15-w-3i-w-1a-33-37-19-32-2p-3a-2x-2v-2p-38-2x-33-32-w-1a-33-37-19-34-36-2t-3a]:not(#does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist){padding:0}.swiper-slide.three.swiper-slide-active:has(#estimate-bill.os-hide)~.os-navigation .os-prev{padding:0}@media (max-width: 768px){.js-has-pseudo [csstools-has-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-1a-38-2w-36-2t-2t-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-19-2p-2r-38-2x-3a-2t-1m-2w-2p-37-14-z-2t-37-38-2x-31-2p-38-2t-19-2q-2x-30-30-1a-33-37-19-2w-2x-2s-2t-15-w-3i-w-1a-33-37-19-32-2p-3a-2x-2v-2p-38-2x-33-32]:not(#does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist){top:240px!important}.swiper-slide.three.swiper-slide-active:has(#estimate-bill.os-hide)~.os-navigation{top:240px!important}}@media (min-width: 768px){.js-has-pseudo [csstools-has-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-1a-38-2w-36-2t-2t-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-19-2p-2r-38-2x-3a-2t-1m-2w-2p-37-14-z-2t-37-38-2x-31-2p-38-2t-19-2w-33-31-2t-33-3b-32-2t-36-1a-33-37-19-2w-2x-2s-2t-15-w-3i-w-1a-33-37-19-32-2p-3a-2x-2v-2p-38-2x-33-32]:not(#does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(.does-not-exist){top:220px!important}.swiper-slide.three.swiper-slide-active:has(#estimate-homeowner.os-hide)~.os-navigation{top:220px!important}}@media (max-width: 768px){.js-has-pseudo [csstools-has-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-19-2p-2r-38-2x-3a-2t-1m-2w-2p-37-14-z-2t-37-38-2x-31-2p-38-2t-19-34-36-33-3a-2x-2s-2t-36-15-w-3i-w-1a-33-37-19-32-2p-3a-2x-2v-2p-38-2x-33-32]:not(#does-not-exist):not(.does-not-exist),.js-has-pseudo [csstools-has-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-19-2p-2r-38-2x-3a-2t-1m-2w-2p-37-14-z-2t-37-38-2x-31-2p-38-2t-19-34-2w-33-32-2t-15-w-3i-w-1a-33-37-19-32-2p-3a-2x-2v-2p-38-2x-33-32]:not(#does-not-exist):not(.does-not-exist){margin-top:24px!important}.swiper-slide-active:has(#estimate-provider)~.os-navigation,.swiper-slide-active:has(#estimate-phone)~.os-navigation{margin-top:24px!important}}';
   class W {
     constructor() {
       this.init();
@@ -462,39 +495,39 @@
         <button type="button" class="os-next">Next</button>
       </div>
     `
-      ), e = i("#slider-block"), s = i(".swiper-wrapper");
+      ), i = e("#slider-block"), s = e(".swiper-wrapper");
       if (!s)
         return;
       document.head.insertAdjacentHTML("beforeend", `<style>${O}</style>`), s.insertAdjacentHTML("beforeend", t);
-      const a = i(".os-prev"), h = i(".os-next"), p = document.querySelector(".swiper-container"), d = p == null ? void 0 : p.swiper;
-      a == null || a.addEventListener("click", () => {
+      const n = e(".os-prev"), h = e(".os-next"), l = document.querySelector(".swiper-container"), d = l == null ? void 0 : l.swiper;
+      n == null || n.addEventListener("click", () => {
         if ((d == null ? void 0 : d.realIndex) === 1) {
-          const w = i("#estimate-bill"), b = i("#estimate-homeowner");
-          if (b.classList.contains("os-hide")) {
-            const y = i(".os-navigation").querySelector(".os-next"), E = i('#estimate-homeowner [data-step="1"]'), o = i('#estimate-homeowner [data-step="2"]');
-            w.classList.add("os-hide"), b.classList.remove("os-hide"), y == null || y.classList.add("os-hide"), E.classList.remove("os-hide"), o.classList.add("os-hide");
+          const v = e("#estimate-bill"), u = e("#estimate-homeowner");
+          if (u.classList.contains("os-hide")) {
+            const f = e(".os-navigation").querySelector(".os-next"), E = e('#estimate-homeowner [data-step="1"]'), o = e('#estimate-homeowner [data-step="2"]');
+            v.classList.add("os-hide"), u.classList.remove("os-hide"), f == null || f.classList.add("os-hide"), E.classList.remove("os-hide"), o.classList.add("os-hide");
             return;
           }
         }
-        const x = i(".os-navigation");
+        const x = e(".os-navigation");
         x.classList.add("os-hide"), setTimeout(() => {
           x.classList.remove("os-hide");
         }, 400);
-        const n = e == null ? void 0 : e.querySelector("a:first-child");
+        const a = i == null ? void 0 : i.querySelector("a:first-child");
         setTimeout(() => {
-          n == null || n.click();
+          a == null || a.click();
         }, 0);
       }), h == null || h.addEventListener("click", () => {
-        const x = e == null ? void 0 : e.querySelector("a:last-child"), n = i(".os-navigation");
-        n.classList.add("os-hide"), setTimeout(() => {
-          n.classList.remove("os-hide");
+        const x = i == null ? void 0 : i.querySelector("a:last-child"), a = e(".os-navigation");
+        a.classList.add("os-hide"), setTimeout(() => {
+          a.classList.remove("os-hide");
         }, 400), setTimeout(() => {
           x == null || x.click();
         }, 0);
       });
     }
   }
-  const P = '.site-header{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center;align-items:center;height:56px;margin-top:12px;padding:0}@media (max-width: 768px){.site-header{margin-top:10px;padding:15px 0}}.wrapper{align-items:flex-start;padding-top:188px!important}.wrapper[data-current-slide="4"],.wrapper[data-current-slide="5"],.wrapper[data-current-slide="6"],.wrapper[data-current-slide="7"]{padding-top:-webkit-calc(56px + 12px + 24px)!important;padding-top:-moz-calc(56px + 12px + 24px)!important;padding-top:92px!important}@media (max-width: 768px){.wrapper[data-current-slide="4"],.wrapper[data-current-slide="5"],.wrapper[data-current-slide="6"],.wrapper[data-current-slide="7"]{padding-top:-webkit-calc(56px + 10px + 54px)!important;padding-top:-moz-calc(56px + 10px + 54px)!important;padding-top:120px!important}}@media (max-width: 768px){.wrapper{padding-top:105px!important}}.wrapper h1,.wrapper h2.title{margin:0 auto 24px!important}.js-has-pseudo [csstools-has-1a-3b-36-2p-34-34-2t-36-w-2w-1d-1m-2w-2p-37-14-3i-w-2w-1g-1m-32-33-38-14-1a-33-37-19-2w-2x-2s-2t-15-1m-32-33-38-14-1m-2t-31-34-38-3d-15-15]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist),.js-has-pseudo [csstools-has-1a-3b-36-2p-34-34-2t-36-w-2w-1e-1a-38-2x-38-30-2t-1m-2w-2p-37-14-3i-w-2w-1g-1m-32-33-38-14-1a-33-37-19-2w-2x-2s-2t-15-1m-32-33-38-14-1m-2t-31-34-38-3d-15-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist){margin-bottom:16px!important}.wrapper h1:has(~h4:not(.os-hide):not(:empty)),.wrapper h2.title:has(~h4:not(.os-hide):not(:empty)){margin-bottom:16px!important}.small-container,.medium-container{max-width:540px!important}.medium-container{margin-top:16px}.swiper-container{overflow:visible!important;overflow-x:clip!important}@media (max-width: 768px){.js-has-pseudo [csstools-has-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-1m-2w-2p-37-14-z-2t-37-38-2x-31-2p-38-2t-19-2q-2x-30-30-15]:not(#does-not-exist){display:block!important;height:300px!important}.swiper-slide:has(#estimate-bill){display:block!important;height:300px!important}}.swiper-slide{height:-moz-min-content!important;height:-webkit-min-content!important;height:min-content!important}@media (min-width: 768px){br.mobile{display:none}}@media (max-width: 768px){br.desktop{display:none}}input{font-size:16px!important}@media (max-width: 768px){#estimate-homeowner{height:400px!important}}#estimate-homeowner h5{margin-top:16px;margin-bottom:24px;font-size:16px}#estimate-homeowner h5 strong{font-weight:400}h4{margin-bottom:24px!important;font-size:16px!important;text-height:24px!important;font-weight:400!important}#estimate-notnet .small-container{margin-top:43px}#estimate-notnet .small-container p{font-size:12px;line-height:16px}.swiper-slide .title{color:#2b3d50;font-family:Noto Sans SC;font-size:32px!important;font-weight:900!important;line-height:40px!important;letter-spacing:-1px;max-width:540px;margin-left:auto!important;margin-right:auto!important}.swiper-slide .title span{color:#fb7306;background:#fff}ul.form-list{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;gap:16px;max-width:100%!important;margin-top:0!important}ul.form-list li{margin:0!important}ul.form-list li,ul.form-list button{width:100%!important}ul.form-list input,ul.form-list a,ul.form-list button{border-radius:5px!important}ul.form-list button{border:none!important}#estimate-zip h1:not(.os-title){display:none!important}#estimate-zip .os-title{color:#2b3d50;font-family:Noto Sans SC;font-size:32px;font-weight:900;line-height:40px}#estimate-zip .form-list{gap:0}#estimate-bill h2.hide-in-mobile{margin-bottom:24px!important}#estimate-bill .container{padding-bottom:20px}#estimate-bill #js-rangeslider-0:before{background:-webkit-gradient(linear,left top,right top,from(rgba(7,128,65,1)),color-stop(25%,rgba(95,170,25,1)),color-stop(50%,rgba(255,193,4,1)),color-stop(75%,rgba(251,115,6,1)),to(rgba(243,29,29,1)))!important;background:-webkit-linear-gradient(left,rgba(7,128,65,1) 0%,rgba(95,170,25,1) 25%,rgba(255,193,4,1) 50%,rgba(251,115,6,1) 75%,rgba(243,29,29,1) 100%)!important;background:-moz-linear-gradient(left,rgba(7,128,65,1) 0%,rgba(95,170,25,1) 25%,rgba(255,193,4,1) 50%,rgba(251,115,6,1) 75%,rgba(243,29,29,1) 100%)!important;background:linear-gradient(90deg,#078041,#5faa19,#ffc104,#fb7306,#f31d1d)!important}#estimate-name .form-list{gap:8px}@media (max-width: 768px){#estimate-name .form-list{gap:0}}#solarForm .wrapper:before{opacity:.6}@media (min-width: 768px){#solarForm .wrapper:before{opacity:1;background-image:url(https://conversionratestore.github.io/projects/sunvalue/img/desktop-bg.webp)}}#solarForm .wrapper[data-background=false]:before{background-image:none!important}@media (max-width: 768px){#solarForm .wrapper[data-background=opacity]:before{opacity:.1!important}}.swiper-container[data-current-slide="2"]+#slider-block{display:none}@media (min-width: 768px){.swiper-wrapper{height:100%!important}}#next-block{display:none}#slider-block{display:none!important;margin-top:20px}#slider-block .nextSlide{min-width:200px}@media (min-width: 768px){#slider-block{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:space-between;align-items:center;width:100%;top:-webkit-calc(50% + 50px);top:-moz-calc(50% + 50px);top:calc(50% + 50px);max-width:580px;padding:0!important;height:-moz-min-content;height:-webkit-min-content;height:min-content;margin-left:auto;margin-right:auto}#slider-block a:not(.d-none){position:static!important;display:-webkit-box!important;display:-webkit-flex!important;display:-moz-box!important;display:flex!important;justify-content:center;align-items:center}#slider-block a:not(.d-none):last-child{width:333px;height:56px;border-radius:5px;background:#83be63;color:#fff;font-size:16px;font-weight:700;line-height:24px}[data-current-slide="6"]+#slider-block{top:-webkit-calc(50% + 150px);top:-moz-calc(50% + 150px);top:calc(50% + 150px)}}#estimate-name .medium-container,#estimate-phone .medium-container{max-width:580px}#estimate-phone .final-btn{padding:0!important;width:100%}#estimate-phone input{width:100%;max-width:100%;border-radius:5px}.js-has-pseudo [csstools-has-30-2x-1m-2w-2p-37-14-z-2t-37-38-2x-31-2p-38-2t-19-2q-2x-30-30-15]:not(#does-not-exist):not(does-not-exist){flex-direction:column!important}li:has(#estimate-bill){flex-direction:column!important}.os-visibility-hidden{visibility:hidden!important}.os-hide{display:none!important}.os-inline-block{display:inline-block!important}.os-block{display:block!important}.os-flex{display:-webkit-box!important;display:-webkit-flex!important;display:-moz-box!important;display:flex!important}#estimate-provider .custom-radio{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;padding-top:0!important}#estimate-provider .custom-radio .custom-radio-item{width:100%;max-width:100%;border-radius:8px;padding-top:16px;padding-bottom:16px;line-height:24px!important;font-size:16px!important;text-transform:uppercase!important;font-weight:700!important;font-family:Noto Sans SC,sans-serif!important}#autoaddress,#email,#phone{border-radius:8px}#bill-slider .rangeslider-tooltip__arrow{position:absolute;top:39px;left:166px;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:10px solid rgb(255,255,255);z-index:20}@media (max-width: 768px){#bill-slider .rangeslider-tooltip__arrow{top:83px;left:100px}}#bill-slider .rangeslider-tooltip{position:absolute;top:45px;left:-webkit-calc(160.687px - 15px);left:-moz-calc(160.687px - 15px);left:145.687px;box-sizing:border-box;border:1px solid rgba(66,117,150,.16);border-radius:5px;padding:4px 10px;background:#fff;font-size:20px}@media (max-width: 768px){#bill-slider .rangeslider-tooltip{top:90px;left:-webkit-calc(98.8841px - 15px);left:-moz-calc(98.8841px - 15px);left:83.8841px}}#bill-slider .rangeslider-tooltip:before{position:absolute;top:-8px;left:50%;transform:translate(-50%);border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:10px solid rgb(255,255,255)}#bill-slider .rangeslider{z-index:9999}#bill-slider .sliderLegend{position:absolute;top:-30px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:space-between;width:100%}@media (max-width: 768px){#bill-slider .sliderLegend{top:10px}}#bill-slider .sliderLegend p{position:static!important}.os-spinner{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center;align-items:center}.progress-block{display:none!important}#companies{display:grid;grid-gap:16px;gap:16px}#companies>div{margin:0!important;border:none!important}#companies>div:hover{background:#8fd26a;transition:background .3s}.status-indicator{display:none!important}.error-msg,.error-msg.vsmall-container.mb-20{margin:0!important;height:16px!important}.error-msg:not(:empty),.error-msg.vsmall-container.mb-20:not(:empty){margin:10px 0!important;height:auto!important}.final-btn{padding-top:8px!important}.header-right{display:none}.site-header{margin-top:0!important;padding-top:27px;min-height:56px;height:auto}.site-header.fixed{padding-top:27px}@media (max-width: 768px){.site-header,.site-header.fixed{padding-top:15px}}.site-footer{border-top:none!important}@media screen and (max-width: 575px){.banner-slider .swiper-slide,.banner-slider .swiper-slide.one{padding:25px 0 0!important}}';
+  const P = '.site-header{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center;align-items:center;height:56px;margin-top:12px;padding:0}@media (max-width: 768px){.site-header{margin-top:10px;padding:15px 0}}.wrapper{align-items:flex-start;padding-top:188px!important}.wrapper[data-current-slide="4"],.wrapper[data-current-slide="5"],.wrapper[data-current-slide="6"],.wrapper[data-current-slide="7"]{padding-top:-webkit-calc(56px + 12px + 24px)!important;padding-top:-moz-calc(56px + 12px + 24px)!important;padding-top:92px!important}@media (max-width: 768px){.wrapper[data-current-slide="4"],.wrapper[data-current-slide="5"],.wrapper[data-current-slide="6"],.wrapper[data-current-slide="7"]{padding-top:-webkit-calc(56px + 10px + 54px)!important;padding-top:-moz-calc(56px + 10px + 54px)!important;padding-top:120px!important}}@media (max-width: 768px){.wrapper{padding-top:105px!important}}.wrapper h1,.wrapper h2.title{margin:0 auto 40px!important}@media (max-width: 768px){.wrapper h1,.wrapper h2.title{margin-bottom:24px!important}}.js-has-pseudo [csstools-has-1a-3b-36-2p-34-34-2t-36-w-2w-1d-1m-2w-2p-37-14-3i-w-2w-1g-1m-32-33-38-14-1a-33-37-19-2w-2x-2s-2t-15-1m-32-33-38-14-1m-2t-31-34-38-3d-15-15]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist),.js-has-pseudo [csstools-has-1a-3b-36-2p-34-34-2t-36-w-2w-1e-1a-38-2x-38-30-2t-1m-2w-2p-37-14-3i-w-2w-1g-1m-32-33-38-14-1a-33-37-19-2w-2x-2s-2t-15-1m-32-33-38-14-1m-2t-31-34-38-3d-15-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist){margin-bottom:16px!important}.wrapper h1:has(~h4:not(.os-hide):not(:empty)),.wrapper h2.title:has(~h4:not(.os-hide):not(:empty)){margin-bottom:16px!important}.small-container,.medium-container{max-width:540px!important}.medium-container{margin-top:16px}.swiper-container{overflow:visible!important;overflow-x:clip!important}@media (max-width: 768px){.js-has-pseudo [csstools-has-1a-37-3b-2x-34-2t-36-19-37-30-2x-2s-2t-1m-2w-2p-37-14-z-2t-37-38-2x-31-2p-38-2t-19-2q-2x-30-30-15]:not(#does-not-exist){display:block!important;height:300px!important}.swiper-slide:has(#estimate-bill){display:block!important;height:300px!important}}.swiper-slide{height:-moz-min-content!important;height:-webkit-min-content!important;height:min-content!important}@media (min-width: 768px){br.mobile{display:none}}@media (max-width: 768px){br.desktop{display:none}}input{font-size:16px!important}@media (max-width: 768px){#estimate-homeowner{height:400px!important}}#estimate-homeowner h5{margin-top:16px;margin-bottom:24px;font-size:16px}#estimate-homeowner h5 strong{font-weight:400}h4{margin-bottom:24px!important;font-size:16px!important;text-height:24px!important;font-weight:400!important}#estimate-notnet .small-container{margin-top:43px}#estimate-notnet .small-container p{font-size:12px;line-height:16px}.swiper-slide .title{color:#2b3d50;font-family:Noto Sans SC;font-size:48px!important;font-weight:900!important;line-height:58px!important;letter-spacing:-1px;max-width:540px;margin-left:auto!important;margin-right:auto!important}@media (max-width: 768px){.swiper-slide .title{font-size:32px!important;line-height:40px!important}}.swiper-slide .title span{color:#fb7306;background:#fff}ul.form-list{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;gap:16px;max-width:100%!important;margin-top:0!important}ul.form-list li{margin:0!important}ul.form-list li,ul.form-list button{width:100%!important}ul.form-list input,ul.form-list a,ul.form-list button{border-radius:5px!important}ul.form-list button{border:none!important}#estimate-zip h1:not(.os-title){display:none!important}#estimate-zip .os-title{color:#2b3d50;font-family:Noto Sans SC;font-size:48px;font-weight:900;line-height:58px}@media (max-width: 768px){#estimate-zip .os-title{font-size:32px;line-height:40px}}#estimate-zip .form-list{gap:0}#estimate-bill h2.hide-in-mobile{margin-bottom:40px!important}#estimate-bill .container{padding-bottom:20px}#estimate-bill #js-rangeslider-0:before{background:-webkit-gradient(linear,left top,right top,from(rgba(7,128,65,1)),color-stop(25%,rgba(95,170,25,1)),color-stop(50%,rgba(255,193,4,1)),color-stop(75%,rgba(251,115,6,1)),to(rgba(243,29,29,1)))!important;background:-webkit-linear-gradient(left,rgba(7,128,65,1) 0%,rgba(95,170,25,1) 25%,rgba(255,193,4,1) 50%,rgba(251,115,6,1) 75%,rgba(243,29,29,1) 100%)!important;background:-moz-linear-gradient(left,rgba(7,128,65,1) 0%,rgba(95,170,25,1) 25%,rgba(255,193,4,1) 50%,rgba(251,115,6,1) 75%,rgba(243,29,29,1) 100%)!important;background:linear-gradient(90deg,#078041,#5faa19,#ffc104,#fb7306,#f31d1d)!important}#estimate-name .form-list{gap:8px}@media (max-width: 768px){#estimate-name .form-list{gap:0}}#solarForm .wrapper:before{opacity:.6}@media (min-width: 768px){#solarForm .wrapper:before{opacity:1;background-image:url(https://conversionratestore.github.io/projects/sunvalue/img/desktop-bg.webp)}}#solarForm .wrapper[data-background=false]:before{background-image:none!important}@media (max-width: 768px){#solarForm .wrapper[data-background=opacity]:before{opacity:.1!important}}.swiper-container[data-current-slide="2"]+#slider-block{display:none}@media (min-width: 768px){.swiper-wrapper{height:100%!important}}#next-block{display:none}#slider-block{display:none!important;margin-top:20px}#slider-block .nextSlide{min-width:200px}@media (min-width: 768px){#slider-block{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:space-between;align-items:center;width:100%;top:-webkit-calc(50% + 50px);top:-moz-calc(50% + 50px);top:calc(50% + 50px);max-width:580px;padding:0!important;height:-moz-min-content;height:-webkit-min-content;height:min-content;margin-left:auto;margin-right:auto}#slider-block a:not(.d-none){position:static!important;display:-webkit-box!important;display:-webkit-flex!important;display:-moz-box!important;display:flex!important;justify-content:center;align-items:center}#slider-block a:not(.d-none):last-child{width:333px;height:56px;border-radius:5px;background:#83be63;color:#fff;font-size:16px;font-weight:700;line-height:24px}[data-current-slide="6"]+#slider-block{top:-webkit-calc(50% + 150px);top:-moz-calc(50% + 150px);top:calc(50% + 150px)}}#estimate-name .medium-container,#estimate-phone .medium-container{max-width:580px}#estimate-phone .final-btn{padding:0!important;width:100%}#estimate-phone input{width:100%;max-width:100%;border-radius:5px}.js-has-pseudo [csstools-has-30-2x-1m-2w-2p-37-14-z-2t-37-38-2x-31-2p-38-2t-19-2q-2x-30-30-15]:not(#does-not-exist):not(does-not-exist){flex-direction:column!important}li:has(#estimate-bill){flex-direction:column!important}.os-visibility-hidden{visibility:hidden!important}.os-hide{display:none!important}.os-inline-block{display:inline-block!important}.os-block{display:block!important}.os-flex{display:-webkit-box!important;display:-webkit-flex!important;display:-moz-box!important;display:flex!important}#estimate-provider .custom-radio{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;padding-top:0!important}#estimate-provider .custom-radio .custom-radio-item{width:100%;max-width:100%;border-radius:8px;padding-top:16px;padding-bottom:16px;line-height:24px!important;font-size:16px!important;text-transform:uppercase!important;font-weight:700!important;font-family:Noto Sans SC,sans-serif!important}#autoaddress,#email,#phone{border-radius:8px}#bill-slider .rangeslider-tooltip__arrow{position:absolute;top:39px;left:166px;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:10px solid rgb(255,255,255);z-index:20}@media (max-width: 768px){#bill-slider .rangeslider-tooltip__arrow{top:83px;left:100px}}#bill-slider .rangeslider-tooltip{position:absolute;top:45px;left:-webkit-calc(160.687px - 15px);left:-moz-calc(160.687px - 15px);left:145.687px;box-sizing:border-box;border:1px solid rgba(66,117,150,.16);border-radius:5px;padding:4px 10px;background:#fff;font-size:20px}@media (max-width: 768px){#bill-slider .rangeslider-tooltip{top:90px;left:-webkit-calc(98.8841px - 15px);left:-moz-calc(98.8841px - 15px);left:83.8841px}}#bill-slider .rangeslider-tooltip:before{position:absolute;top:-8px;left:50%;transform:translate(-50%);border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:10px solid rgb(255,255,255)}#bill-slider .rangeslider{z-index:9999}#bill-slider .sliderLegend{position:absolute;top:-30px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:space-between;width:100%}@media (max-width: 768px){#bill-slider .sliderLegend{top:10px}}#bill-slider .sliderLegend p{position:static!important}.os-spinner{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center;align-items:center}.progress-block{display:none!important}#companies{display:grid;grid-gap:16px;gap:16px}#companies>div{margin:0!important;border:none!important}#companies>div:hover{background:#8fd26a;transition:background .3s}.status-indicator{display:none!important}.error-msg,.error-msg.vsmall-container.mb-20{margin:0!important;height:16px!important}.error-msg:not(:empty),.error-msg.vsmall-container.mb-20:not(:empty){margin:10px 0!important;height:auto!important}.final-btn{padding-top:8px!important}.header-right{display:none}.site-header{margin-top:0!important;padding-top:27px;min-height:56px;height:auto}.site-header.fixed{padding-top:27px}@media (max-width: 768px){.site-header,.site-header.fixed{padding-top:15px}}.site-footer{border-top:none!important}@media screen and (max-width: 575px){.banner-slider .swiper-slide,.banner-slider .swiper-slide.one{padding:25px 0 0!important}}';
   j({ name: "Two-step funnel with generic copy and homeowner step", dev: "OS" });
   class V {
     constructor() {
