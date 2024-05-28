@@ -414,6 +414,7 @@
 
       .crs-search-input {
         min-width: auto;
+        width: 100%;
       }
 
       .crs-search-input__hot {
