@@ -1,28 +1,28 @@
 (function() {
   "use strict";
-  const h = (t, e, n, a = "") => {
+  const h = (n, e, t, a = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: t,
+      event_name: n,
       event_desc: e,
-      event_type: n,
+      event_type: t,
       event_loc: a
-    }), console.log(`Event: ${t} | ${e} | ${n} | ${a.replace(/  +/g, " ")}`);
-  }, w = ({ name: t, dev: e }) => {
+    }), console.log(`Event: ${n} | ${e} | ${t} | ${a.replace(/  +/g, " ")}`);
+  }, w = ({ name: n, dev: e }) => {
     console.log(
-      `%c EXP: ${t} (DEV: ${e})`,
+      `%c EXP: ${n} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, k = (t) => {
+  }, T = (n) => {
     let e = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", t, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", n, "variant_1"));
     }, 1e3);
-  }, u = (t) => new Promise((e) => {
-    const n = document.querySelector(t);
-    if (n)
-      return e(n);
+  }, u = (n) => new Promise((e) => {
+    const t = document.querySelector(n);
+    if (t)
+      return e(t);
     const a = new MutationObserver(() => {
-      const i = document.querySelector(t);
+      const i = document.querySelector(n);
       i && (e(i), a.disconnect());
     });
     a.observe(document.documentElement, {
@@ -31,7 +31,7 @@
     });
   }), x = "https://conversionratestore.github.io/projects/geeni/img/search";
   let g = !1, v = !1;
-  const T = (
+  const k = (
     /*html*/
     `
   <style>
@@ -448,10 +448,19 @@
   </style>
 `
   );
-  if (k("exp_search_feature"), window.addEventListener("pageshow", (t) => {
-    t.persisted && window.location.reload();
-  }), w({ name: "Introduces personalized search", dev: "AK" }), document.head.insertAdjacentHTML("beforeend", T), u("body").then(() => S()), window.location.pathname.includes("/collections/") || window.location.pathname.includes("/search")) {
-    const t = setInterval(() => {
+  if (T("exp_search_feature"), window.addEventListener("pageshow", (n) => {
+    if (n.persisted) {
+      const e = setInterval(() => {
+        const t = document.querySelectorAll(".search-input input"), a = document.querySelectorAll(".search-input__hot");
+        if ((t == null ? void 0 : t.length) > 1 && (a == null ? void 0 : a.length) > 1) {
+          clearInterval(e);
+          for (let i = 0; i < t.length; i++)
+            t[i].value = "", a[i].style.display = "none";
+        }
+      }, 100);
+    }
+  }), w({ name: "Introduces personalized search", dev: "AK" }), document.head.insertAdjacentHTML("beforeend", k), u("body").then(() => S()), window.location.pathname.includes("/collections/") || window.location.pathname.includes("/search")) {
+    const n = setInterval(() => {
       document.head.insertAdjacentHTML(
         "beforeend",
         /*html*/
@@ -488,17 +497,17 @@
   
     `
       );
-      const e = document.querySelector(".marquee"), n = document.querySelector(".site-header");
-      e && n && (clearInterval(t), window.addEventListener("scroll", () => {
+      const e = document.querySelector(".marquee"), t = document.querySelector(".site-header");
+      e && t && (clearInterval(n), window.addEventListener("scroll", () => {
         const a = window.scrollY || document.documentElement.scrollTop, i = e.offsetTop + e.offsetHeight;
-        a >= i ? n.classList.add("site-header--top-zero") : n.classList.remove("site-header--top-zero");
+        a >= i ? t.classList.add("site-header--top-zero") : t.classList.remove("site-header--top-zero");
       }));
     }, 100);
   }
   function S() {
-    window.location.pathname.includes("/search") && A();
-    const t = setInterval(() => {
-      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(t), F(), I(), L(), E());
+    window.location.pathname.includes("/search") && E();
+    const n = setInterval(() => {
+      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(n), F(), L(), I(), A());
     }, 100);
     document.body.addEventListener("click", (e) => {
       e.target.closest('[data-element="about-us"]') ? h("exp_search_feature_button_04", "About us", "Button", "Slide menu") : e.target.closest(".back-nav__inner") ? (h("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back()) : e.target.closest(".menu__item") && h("exp_search_feature_button_02", `${e.target.closest(".menu__item").querySelector("span").innerText}`, "Button", "Header");
@@ -507,19 +516,19 @@
     });
   }
   function F() {
-    const t = [
+    const n = [
       ["Millions of Users", "smile"],
       ["<b>4.8</b> Stars with over <b>400.000</b> reviews", "star"],
       ["1-Year Warranty on All Products", "check"],
       ["<b>FREE</b> Shipping orders over <b>$69</b>", "shipping"]
     ];
-    let n = Array(4).fill(t).flat();
+    let t = Array(4).fill(n).flat();
     const a = (
       /*html*/
       `
       <div class="marquee marquee--hover-pause">
         <ul class="marquee__content">
-        ${n.map(([i, s]) => (
+        ${t.map(([i, s]) => (
         /*html*/
         `
                   <div class="marquee__item">
@@ -531,7 +540,7 @@
         </ul>
   
         <ul aria-hidden="true" class="marquee__content">
-          ${n.map(([i, s]) => (
+          ${t.map(([i, s]) => (
         /*html*/
         `
                   <div class="marquee__item">
@@ -546,14 +555,14 @@
     );
     document.getElementById("SiteHeader").insertAdjacentHTML("beforebegin", a);
   }
-  function L() {
-    const t = setInterval(() => {
+  function I() {
+    const n = setInterval(() => {
       if (document.querySelectorAll("#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)")[3]) {
-        clearInterval(t);
-        let e = document.querySelectorAll("#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)"), n = document.createElement("div");
-        n.className = "new-nav", e.forEach((a) => {
-          n.appendChild(a);
-        }), document.getElementById("SiteHeader").insertAdjacentElement("beforeend", n), u(".new-nav .menu__item.child:last-child").then((a) => a.insertAdjacentHTML(
+        clearInterval(n);
+        let e = document.querySelectorAll("#NavStandard > .menu__item:not(.menu__item--compress):not(.menu__item--icons)"), t = document.createElement("div");
+        t.className = "new-nav", e.forEach((a) => {
+          t.appendChild(a);
+        }), document.getElementById("SiteHeader").insertAdjacentElement("beforeend", t), u(".new-nav .menu__item.child:last-child").then((a) => a.insertAdjacentHTML(
           "afterend",
           /*html*/
           `
@@ -576,8 +585,8 @@
       }
     }, 100);
   }
-  function E() {
-    const t = [
+  function A() {
+    const n = [
       ["Geeni Look Indoor Camera", !0],
       ["Geeni Hawk 3 Outdoor Camera", !0],
       ["Geeni Dot Smart Plug", !0],
@@ -597,7 +606,7 @@
     ], e = (r) => {
       const o = Math.floor(Math.random() * r.length);
       return r[o];
-    }, n = (
+    }, t = (
       /*html*/
       `
   <div class="search-input-wrapper">
@@ -623,7 +632,7 @@
   `
     );
     let a = document.getElementById("NavStandard"), i = document.getElementById("MainContent");
-    a.insertAdjacentHTML("beforeend", n), i.insertAdjacentHTML("afterbegin", n), i.insertAdjacentHTML("afterbegin", '<div class="empty-space"></div>');
+    a.insertAdjacentHTML("beforeend", t), i.insertAdjacentHTML("afterbegin", t), i.insertAdjacentHTML("afterbegin", '<div class="empty-space"></div>');
     const s = (r) => {
       let o = r.value;
       const l = r.closest(".search-input").querySelector(".search-input__hot");
@@ -633,7 +642,7 @@
         else {
           let p;
           do
-            p = e(t);
+            p = e(n);
           while (p === o);
           const f = r.closest(".search-input__data");
           f && (f.classList.add("fade-out"), setTimeout(() => {
@@ -678,7 +687,7 @@
       }
     }, 100);
   }
-  function A() {
+  function E() {
     const e = new URLSearchParams(window.location.search).get("q");
     document.head.insertAdjacentHTML(
       "beforeend",
@@ -766,23 +775,23 @@
       document.querySelector("#SearchPage .collection__wrapper").insertAdjacentHTML("afterbegin", a);
     });
   }
-  function I() {
-    u('[href="/account"]').then((t) => t.insertAdjacentHTML(
+  function L() {
+    u('[href="/account"]').then((n) => n.insertAdjacentHTML(
       "beforeend",
       /*html*/
       '<span class="log">Login</span>'
     ));
   }
-  function q(t, e, n, a) {
+  function q(n, e, t, a) {
     let i = null;
-    u(t).then((s) => {
+    u(n).then((s) => {
       s && new IntersectionObserver((r) => {
         r.forEach((o) => {
           if (o.isIntersecting && o.intersectionRatio >= 0.5)
             i = performance.now();
           else if (i) {
             const l = ((performance.now() - i) / 1e3).toFixed(2);
-            h(e, l, n, a), i = null;
+            h(e, l, t, a), i = null;
           }
         });
       }, { threshold: 0.5 }).observe(s);
