@@ -22,8 +22,8 @@
     if (t)
       return e(t);
     const a = new MutationObserver(() => {
-      const i = document.querySelector(n);
-      i && (e(i), a.disconnect());
+      const r = document.querySelector(n);
+      r && (e(r), a.disconnect());
     });
     a.observe(document.documentElement, {
       childList: !0,
@@ -77,7 +77,7 @@
 
     .search-page__title,
     .search__top {
-      display: none;
+      display: none !important;
     }
 
     .logo {
@@ -192,7 +192,7 @@
     }
 
     /* Search input */
-    .search-input {
+    .crs-search-input {
       display: flex;
       align-items: center;
       padding: 4px;
@@ -205,24 +205,24 @@
       height: auto;
     }
 
-    /* .search-input input::selection {
+    /* .crs-search-input input::selection {
       background: #DCEFFF !important;
     }
 
-    .search-input input::-moz-selection {
+    .crs-search-input input::-moz-selection {
       background: #DCEFFF !important;
     } */
 
-    .search-input p {
+    .crs-search-input p {
       margin: 0;
     }
 
-    .search-input__data {
+    .crs-search-input__data {
       display: flex;
       width: 100%;
     }
 
-   .search-input__hot {
+   .crs-search-input__hot {
       display: flex;
       padding: 8px 12px;
       justify-content: center;
@@ -235,7 +235,7 @@
       min-height: 40px;
     }
 
-    .search-input__hot p {
+    .crs-search-input__hot p {
       color: var(--Black-900, #000);
       font-family: Manrope, var(--FONT-STACK-BODY);;
       font-size: 13px;
@@ -244,7 +244,7 @@
       line-height: 1; /* 153.846% */
     }
 
-    .search-input button {
+    .crs-search-input button {
       border-radius: 100px;
       background: var(--Light-blue-900, #00B0EE);
       display: inline-flex;
@@ -266,7 +266,7 @@
       margin-left: auto;
     }
 
-    .search-input input {
+    .crs-search-input input {
       padding: 0;
       border-radius: 0;
       border: 0;
@@ -281,7 +281,7 @@
       margin: 0 16px;
     }
 
-    .search-input input::selection {
+    .crs-search-input input::selection {
       background: #ccc;
     }
 
@@ -305,17 +305,17 @@
       display: none;
     }
 
-    .search-input__data {
+    .crs-search-input__data {
       transition: opacity 0.3s ease-in-out;
       opacity: 1;
     }
 
-    .search-input__data.fade-out {
+    .crs-search-input__data.fade-out {
       opacity: 0;
     }
 
     @media (min-width: 1023px) {
-      #MainContent .search-input-wrapper {
+      #MainContent .crs-search-input-wrapper {
         display: none;
       }
       #PageContainer {
@@ -343,7 +343,7 @@
         display: block;
       }
 
-      .has-scrolled .search-input-wrapper {
+      .has-scrolled .crs-search-input-wrapper {
         position: fixed;
         top: 60px;
         left: 0;
@@ -364,7 +364,7 @@
     }
 
     @media (max-width: 769px) {
-      .search-input-wrapper {
+      .crs-search-input-wrapper {
         margin-top: 100px;
       }
 
@@ -375,7 +375,7 @@
     }
 
     @media (max-width: 1023px) {
-      .search-input-wrapper {
+      .crs-search-input-wrapper {
         /* padding: 16px var(--gutter-mobile); */
         padding: 16px;
         background: #F4F8F9;
@@ -412,22 +412,22 @@
         height: 40px;
       }
 
-      .search-input {
+      .crs-search-input {
         min-width: auto;
       }
 
-      .search-input__hot {
+      .crs-search-input__hot {
         padding: 6px 8px;
         gap: 4px;
         min-height: 32px;
       }
 
-      .search-input__hot img {
+      .crs-search-input__hot img {
         width: 16px;
         height: 16px;
       }
 
-      .search-input input {
+      .crs-search-input input {
         color: var(--Grey-800, #4A4A4A);
         font-size: 16px;
         font-style: normal;
@@ -435,7 +435,7 @@
         margin: 0 12px;
       }
 
-      .search-input button {
+      .crs-search-input button {
         min-height: 32px;
         padding: 8px 10px;
         color: #FFF;
@@ -451,11 +451,11 @@
   if (T("exp_search_feature"), window.addEventListener("pageshow", (n) => {
     if (n.persisted) {
       const e = setInterval(() => {
-        const t = document.querySelectorAll(".search-input input"), a = document.querySelectorAll(".search-input__hot");
+        const t = document.querySelectorAll(".crs-search-input input"), a = document.querySelectorAll(".crs-search-input__hot");
         if ((t == null ? void 0 : t.length) > 1 && (a == null ? void 0 : a.length) > 1) {
           clearInterval(e);
-          for (let i = 0; i < t.length; i++)
-            t[i].value = "", a[i].style.display = "none";
+          for (let r = 0; r < t.length; r++)
+            t[r].value = "", a[r].style.display = "none";
         }
       }, 100);
     }
@@ -499,8 +499,8 @@
       );
       const e = document.querySelector(".marquee"), t = document.querySelector(".site-header");
       e && t && (clearInterval(n), window.addEventListener("scroll", () => {
-        const a = window.scrollY || document.documentElement.scrollTop, i = e.offsetTop + e.offsetHeight;
-        a >= i ? t.classList.add("site-header--top-zero") : t.classList.remove("site-header--top-zero");
+        const a = window.scrollY || document.documentElement.scrollTop, r = e.offsetTop + e.offsetHeight;
+        a >= r ? t.classList.add("site-header--top-zero") : t.classList.remove("site-header--top-zero");
       }));
     }, 100);
   }
@@ -528,24 +528,24 @@
       `
       <div class="marquee marquee--hover-pause">
         <ul class="marquee__content">
-        ${t.map(([i, s]) => (
+        ${t.map(([r, s]) => (
         /*html*/
         `
                   <div class="marquee__item">
                     <img src="${x}/${s}.svg" alt="">
-                    <p>${i}</p>
+                    <p>${r}</p>
                   </div>
                 `
       )).join("")}
         </ul>
   
         <ul aria-hidden="true" class="marquee__content">
-          ${t.map(([i, s]) => (
+          ${t.map(([r, s]) => (
         /*html*/
         `
                   <div class="marquee__item">
                     <img src="${x}/${s}.svg" alt="">
-                    <p>${i}</p>
+                    <p>${r}</p>
                   </div>
                 `
       )).join("")}
@@ -603,13 +603,13 @@
       ["Geeni Rise & Shine - Smart Wi-Fi Kid’s Training Light", !1],
       ["Geeni Indoor/Outdoor Weatherproof Plug", !1],
       ["Geeni Water Fountain Replacement Filters", !1]
-    ], e = (r) => {
-      const o = Math.floor(Math.random() * r.length);
-      return r[o];
+    ], e = (i) => {
+      const o = Math.floor(Math.random() * i.length);
+      return i[o];
     }, t = (
       /*html*/
       `
-  <div class="search-input-wrapper">
+  <div class="crs-search-input-wrapper">
     <div class="back-nav">
       <div class="back-nav__inner">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -618,9 +618,9 @@
   <p>back</p>
       </div>
     </div>
-    <div class="search-input">
-      <div class="search-input__data">
-        <div class="search-input__hot" style="display: none;">
+    <div class="crs-search-input">
+      <div class="crs-search-input__data">
+        <div class="crs-search-input__hot" style="display: none;">
           <img src="${x}/fire.svg" alt="">
           <p>HOT</p>
         </div>
@@ -631,11 +631,11 @@
   </div>
   `
     );
-    let a = document.getElementById("NavStandard"), i = document.getElementById("MainContent");
-    a.insertAdjacentHTML("beforeend", t), i.insertAdjacentHTML("afterbegin", t), i.insertAdjacentHTML("afterbegin", '<div class="empty-space"></div>');
-    const s = (r) => {
-      let o = r.value;
-      const l = r.closest(".search-input").querySelector(".search-input__hot");
+    let a = document.getElementById("NavStandard"), r = document.getElementById("MainContent");
+    a.insertAdjacentHTML("beforeend", t), r.insertAdjacentHTML("afterbegin", t), r.insertAdjacentHTML("afterbegin", '<div class="empty-space"></div>');
+    const s = (i) => {
+      let o = i.value;
+      const l = i.closest(".crs-search-input").querySelector(".crs-search-input__hot");
       function d() {
         if (g || v)
           clearInterval(y);
@@ -644,17 +644,17 @@
           do
             p = e(n);
           while (p === o);
-          const f = r.closest(".search-input__data");
+          const f = i.closest(".crs-search-input__data");
           f && (f.classList.add("fade-out"), setTimeout(() => {
-            r.value = p[0], l && (p[1] === !0 ? l.style.display = "flex" : l.style.display = "none"), o = p, f.classList.remove("fade-out");
+            i.value = p[0], l && (p[1] === !0 ? l.style.display = "flex" : l.style.display = "none"), o = p, f.classList.remove("fade-out");
           }, 300));
         }
       }
       d();
       const y = setInterval(d, 3500);
     }, b = setInterval(() => {
-      const r = document.querySelector("#NavStandard .search-btn"), o = document.querySelector("#NavStandard [data-search-title]"), l = document.querySelector("#MainContent .search-btn"), d = document.querySelector("#MainContent [data-search-title]");
-      if (r && o || l && d) {
+      const i = document.querySelector("#NavStandard .search-btn"), o = document.querySelector("#NavStandard [data-search-title]"), l = document.querySelector("#MainContent .search-btn"), d = document.querySelector("#MainContent [data-search-title]");
+      if (i && o || l && d) {
         clearInterval(b);
         const y = (c) => {
           const m = c.value, _ = encodeURIComponent(m);
@@ -663,12 +663,12 @@
           c.addEventListener("input", function(m) {
             if (this.style.color = "rgba(74, 74, 74)", !g) {
               const _ = m.data || "";
-              this.value = _, g = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none";
+              this.value = _, g = !0, this.closest(".crs-search-input").querySelector(".crs-search-input__hot").style.display = "none";
             }
           }), c.addEventListener("keypress", function(m) {
             m.key === "Enter" && y(c);
           }), c.addEventListener("focus", function() {
-            v = !0, this.closest(".search-input").querySelector(".search-input__hot").style.display = "none", h("exp_search_feature_input_01", "Search", "Input", "Header"), g || setTimeout(() => {
+            v = !0, this.closest(".crs-search-input").querySelector(".crs-search-input__hot").style.display = "none", h("exp_search_feature_input_01", "Search", "Input", "Header"), g || setTimeout(() => {
               this.setSelectionRange(0, 0), this.style.color = "rgba(74, 74, 74, 0.7)";
             }, 100);
           }), c.addEventListener("blur", function() {
@@ -683,7 +683,7 @@
             y(m), h("exp_search_feature_button_01", "Search", "Button", "Header");
           });
         };
-        r && o && (p(o), f(r, o), s(o)), l && d && (p(d), f(l, d), s(d));
+        i && o && (p(o), f(i, o), s(o)), l && d && (p(d), f(l, d), s(d));
       }
     }, 100);
   }
@@ -783,15 +783,15 @@
     ));
   }
   function q(n, e, t, a) {
-    let i = null;
+    let r = null;
     u(n).then((s) => {
-      s && new IntersectionObserver((r) => {
-        r.forEach((o) => {
+      s && new IntersectionObserver((i) => {
+        i.forEach((o) => {
           if (o.isIntersecting && o.intersectionRatio >= 0.5)
-            i = performance.now();
-          else if (i) {
-            const l = ((performance.now() - i) / 1e3).toFixed(2);
-            h(e, l, t, a), i = null;
+            r = performance.now();
+          else if (r) {
+            const l = ((performance.now() - r) / 1e3).toFixed(2);
+            h(e, l, t, a), r = null;
           }
         });
       }, { threshold: 0.5 }).observe(s);
