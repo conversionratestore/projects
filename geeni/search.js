@@ -51,7 +51,7 @@
     }
 
     .header__dropdown {
-      background: #fff;
+      background: #fff !important;
       /* margin-top: 0; */
     }
 
