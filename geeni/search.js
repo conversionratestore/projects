@@ -42,12 +42,12 @@
     }
 
     .nav-search {
-      z-index: 9999999;
+      z-index: 9999999 !important;
     }
 
     .site-header__background {
       top: 40px;
-      display: none;
+      display: none !important;
     }
 
     .header__dropdown {
@@ -56,11 +56,11 @@
     }
 
     #NavStandard {
-      z-index: 90;
+      z-index: 90 !important;
     }
 
     .logo {
-      z-index: 100;   
+      z-index: 100 !important;   
     }
   
     .header__dropdown__wrapper {
@@ -72,7 +72,7 @@
     }
     
     #NavStandard {
-      align-items: center;
+      align-items: center !important;
     }
 
     .search-page__title,
@@ -81,7 +81,7 @@
     }
 
     .logo {
-      margin: 20px 0;
+      margin: 20px 0 !important;
     }
 
     .logo, .logo a {
@@ -101,7 +101,7 @@
       font-family: Manrope, var(--FONT-STACK-BODY);
       font-size: 16px;
       font-style: normal;
-      font-weight: 500;
+      font-weight: 500 !important;
       line-height: 24px; /* 150% */
       margin: 0 8px 0 12px;
     }
@@ -404,7 +404,7 @@
       }
 
       .logo {
-        margin: 8px 0;
+        margin: 8px 0 !important;
       }
 
       .logo, .logo a {
@@ -720,7 +720,7 @@
   }
 
   #SearchPage {
-    padding-top: 0;
+    padding-top: 0 !important;
   }
 
   @media (max-width: 1023px) {
