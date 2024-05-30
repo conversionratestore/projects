@@ -435,7 +435,7 @@
             d && (d.innerHTML = /* HTML */
             `What is the best number <br class="desktop" />
                 to reach you at if you qualify?`);
-          }), r && r.setAttribute("placeholder", "Enter your mobile phone number");
+          }), r && r.setAttribute("placeholder", "Enter your phone number");
         }
         if (i.querySelector("#estimate-name")) {
           const r = i.querySelectorAll(".title"), x = i.querySelector("#fname"), d = i.querySelector("#lname");
