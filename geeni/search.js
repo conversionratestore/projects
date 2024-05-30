@@ -695,11 +695,6 @@
       /*html*/
       `
 <style>
-  #NavStandard {
-    background: #fff !important; 
-  }
-  
-
   .search-result {
     background: #F4F8F9;
     padding: 24px;
