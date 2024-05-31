@@ -386,9 +386,9 @@
     }
 
     @media (max-width: 769px) {
-      /* .crs-search-input-wrapper {
+      .crs-search-input-wrapper {
         margin-top: 100px;
-      } */
+      }
 
       .has-scrolled  .empty-space {
         display: block;
