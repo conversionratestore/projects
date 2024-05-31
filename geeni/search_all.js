@@ -29,7 +29,7 @@
       childList: !0,
       subtree: !0
     });
-  }), b = "https://conversionratestore.github.io/projects/geeni/img/search", s = window.location.pathname;
+  }), b = "https://conversionratestore.github.io/projects/geeni/img/search", i = window.location.pathname;
   let f = !1, v = !1;
   const T = (
     /*html*/
@@ -488,9 +488,9 @@
     }
   }), k({ name: "Introduces personalized search", dev: "AK" }), document.head.insertAdjacentHTML("beforeend", T), m("body").then(() => F()), B(), M();
   function F() {
-    s.includes("/search") && I();
+    i.includes("/search") && I();
     const t = setInterval(() => {
-      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(t), (!s.startsWith("/collections/") || s === "/collections/all") && L(), q(), (s.includes("/collections/all") || s.includes("/search") || s === "/" || s === "/index") && !s.includes("/products/") && (document.head.insertAdjacentHTML(
+      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(t), (i.startsWith("/collections/") && i !== "/collections/" || i === "/collections/all" || i.includes("/products/")) && L(), q(), (i.includes("/collections/all") || i.includes("/search") || i === "/" || i === "/index") && !i.includes("/products/") && (document.head.insertAdjacentHTML(
         "beforeend",
         /*html*/
         `
@@ -506,7 +506,7 @@
       n.target.closest('[data-element="about-us"]') ? g("exp_search_feature_button_04", "About us", "Button", "Slide menu") : n.target.closest(".back-nav__inner") ? (g("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back()) : n.target.closest(".menu__item") && g("exp_search_feature_button_02", `${n.target.closest(".menu__item").querySelector("span").innerText}`, "Button", "Header");
     }), m(".marquee").then(() => {
       C(".marquee", "exp_search_feature_section_02", "Visibility", "Header");
-    }), (s.includes("/products/") || s.includes("/about-us-and-contact-us")) && document.head.insertAdjacentHTML(
+    }), (i.includes("/products/") || i.includes("/about-us-and-contact-us")) && document.head.insertAdjacentHTML(
       "beforeend",
       /*html*/
       `
@@ -601,9 +601,9 @@
       ["Geeni Rise & Shine - Smart Wi-Fi Kid’s Training Light", !1],
       ["Geeni Indoor/Outdoor Weatherproof Plug", !1],
       ["Geeni Water Fountain Replacement Filters", !1]
-    ], n = (i) => {
-      const o = Math.floor(Math.random() * i.length);
-      return i[o];
+    ], n = (o) => {
+      const s = Math.floor(Math.random() * o.length);
+      return o[s];
     }, e = (
       /*html*/
       `
@@ -631,9 +631,9 @@
     );
     let a = document.getElementById("NavStandard"), r = document.getElementById("MainContent");
     a.insertAdjacentHTML("beforeend", e), r.insertAdjacentHTML("afterbegin", e), r.insertAdjacentHTML("afterbegin", '<div class="empty-space"></div>');
-    const c = (i) => {
-      let o = i.value;
-      const l = i.closest(".crs-search-input").querySelector(".crs-search-input__hot");
+    const c = (o) => {
+      let s = o.value;
+      const l = o.closest(".crs-search-input").querySelector(".crs-search-input__hot");
       function d() {
         if (f || v)
           clearInterval(x);
@@ -641,18 +641,18 @@
           let u;
           do
             u = n(t);
-          while (u === o);
-          const y = i.closest(".crs-search-input__data");
+          while (u === s);
+          const y = o.closest(".crs-search-input__data");
           y && (y.classList.add("fade-out"), setTimeout(() => {
-            i.value = u[0], l && (u[1] === !0 ? l.style.display = "flex" : l.style.display = "none"), o = u, y.classList.remove("fade-out");
+            o.value = u[0], l && (u[1] === !0 ? l.style.display = "flex" : l.style.display = "none"), s = u, y.classList.remove("fade-out");
           }, 300));
         }
       }
       d();
       const x = setInterval(d, 3500);
     }, _ = setInterval(() => {
-      const i = document.querySelector("#NavStandard .search-btn"), o = document.querySelector("#NavStandard [data-search-title]"), l = document.querySelector("#MainContent .search-btn"), d = document.querySelector("#MainContent [data-search-title]");
-      if (i && o || l && d) {
+      const o = document.querySelector("#NavStandard .search-btn"), s = document.querySelector("#NavStandard [data-search-title]"), l = document.querySelector("#MainContent .search-btn"), d = document.querySelector("#MainContent [data-search-title]");
+      if (o && s || l && d) {
         clearInterval(_);
         const x = (p) => {
           const h = p.value, w = encodeURIComponent(h);
@@ -681,7 +681,7 @@
             x(h), g("exp_search_feature_button_01", "Search", "Button", "Header");
           });
         };
-        i && o && (u(o), y(i, o), c(o)), l && d && (u(d), y(l, d), c(d));
+        o && s && (u(s), y(o, s), c(s)), l && d && (u(d), y(l, d), c(d));
       }
     }, 100);
   }
@@ -778,9 +778,9 @@
   function C(t, n, e, a) {
     let r = null;
     m(t).then((c) => {
-      c && new IntersectionObserver((i) => {
-        i.forEach((o) => {
-          if (o.isIntersecting && o.intersectionRatio >= 0.5)
+      c && new IntersectionObserver((o) => {
+        o.forEach((s) => {
+          if (s.isIntersecting && s.intersectionRatio >= 0.5)
             r = performance.now();
           else if (r) {
             const l = ((performance.now() - r) / 1e3).toFixed(2);
@@ -791,7 +791,7 @@
     });
   }
   function M() {
-    if ((s.includes("/collections/all") || s.includes("/search")) && !s.includes("/products/")) {
+    if ((i.includes("/collections/all") || i.includes("/search")) && !i.includes("/products/")) {
       document.head.insertAdjacentHTML(
         "beforeend",
         /*html*/
@@ -834,8 +834,8 @@
             c.style.setProperty("top", e.offsetHeight + a.offsetHeight - 1 + "px", "important");
           };
           clearInterval(t), window.addEventListener("scroll", () => {
-            const i = window.scrollY || document.documentElement.scrollTop, o = n.offsetTop + n.offsetHeight;
-            if (i >= o) {
+            const o = window.scrollY || document.documentElement.scrollTop, s = n.offsetTop + n.offsetHeight;
+            if (o >= s) {
               if (e.classList.contains("site-header--top-zero") || e.classList.add("site-header--top-zero"), !document.querySelector(".crs-search-input-wrapper--fixed")) {
                 a.style.top = e.offsetHeight + "px";
                 let l = window.getComputedStyle(a), d = parseFloat(l.getPropertyValue("margin-top"));
@@ -871,4 +871,3 @@
     ));
   }
 })();
-//# sourceMappingURL=index.js.map
