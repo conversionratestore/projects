@@ -386,9 +386,9 @@
     }
 
     @media (max-width: 769px) {
-      .crs-search-input-wrapper {
+      /* .crs-search-input-wrapper {
         margin-top: 100px;
-      }
+      } */
 
       .has-scrolled  .empty-space {
         display: block;
@@ -490,7 +490,7 @@
   function F() {
     i.includes("/search") && I();
     const t = setInterval(() => {
-      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(t), (i.startsWith("/collections/") && i !== "/collections/" || i === "/collections/all" || i.includes("/products/")) && (L(), (i === "/" || i === "/index" || i.includes("/collections/")) && document.head.insertAdjacentHTML(
+      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(t), i.includes("/collections/") && !i.includes("/products/") && i !== "/collections/all" || (L(), i !== "/" && i !== "/index" && !i.includes("/collections/") && !i.includes("/search") && document.head.insertAdjacentHTML(
         "beforeend",
         /*html*/
         `
@@ -797,6 +797,10 @@
         /*html*/
         `
       <style>
+
+.site-header {
+          position: relative !important;
+        }
   
         .crs-search-input-wrapper--fixed {
           position: fixed;
