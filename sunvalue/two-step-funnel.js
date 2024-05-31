@@ -380,7 +380,7 @@
           l.checked = !0;
           const n = i('[data-os="result"]'), m = setTimeout(() => {
             x && x.click(), n.classList.add("os-hide"), n.classList.add("os-passed");
-          }, 8e3), k = i("#slider-block .prevSlide");
+          }, 5e3), k = i("#slider-block .prevSlide");
           n.classList.contains("os-passed") && (clearTimeout(m), n.classList.remove("os-passed"), n.classList.remove("os-hide"), k == null || k.click());
         }
       }), o.forEach((e) => {
