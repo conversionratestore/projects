@@ -490,7 +490,7 @@
   function F() {
     i.includes("/search") && I();
     const t = setInterval(() => {
-      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(t), (i.startsWith("/collections/") && i !== "/collections/" || i === "/collections/all" || i.includes("/products/")) && (L(), (i === "/" || i === "/index" || !i.includes("/collections/")) && document.head.insertAdjacentHTML(
+      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(t), (i.startsWith("/collections/") && i !== "/collections/" || i === "/collections/all" || i.includes("/products/")) && (L(), (i === "/" || i === "/index" || i.includes("/collections/")) && document.head.insertAdjacentHTML(
         "beforeend",
         /*html*/
         `
@@ -871,3 +871,4 @@
     ));
   }
 })();
+//# sourceMappingURL=index.js.map
