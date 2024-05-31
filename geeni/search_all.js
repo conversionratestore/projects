@@ -307,9 +307,9 @@
       display: none;
     }
 
-    /* #PageContainer {
+    #PageContainer {
       padding-top: 0 !important;
-    } */
+    }
 
     #shopify-section-header {
       top: 0;
@@ -798,7 +798,7 @@
         `
       <style>
 
-.site-header {
+         .site-header {
           position: relative !important;
         }
   
