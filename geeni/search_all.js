@@ -490,7 +490,19 @@
   function F() {
     i.includes("/search") && I();
     const t = setInterval(() => {
-      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(t), (i.startsWith("/collections/") && i !== "/collections/" || i === "/collections/all" || i.includes("/products/")) && L(), q(), (i.includes("/collections/all") || i.includes("/search") || i === "/" || i === "/index") && !i.includes("/products/") && (document.head.insertAdjacentHTML(
+      document.getElementById("NavStandard") && document.getElementById("MainContent") && (clearInterval(t), (i.startsWith("/collections/") && i !== "/collections/" || i === "/collections/all" || i.includes("/products/")) && (L(), (i === "/" || i === "/index" || !i.includes("/collections/")) && document.head.insertAdjacentHTML(
+        "beforeend",
+        /*html*/
+        `
+          <style>
+            @media (max-width: 768px) {
+              #MainContent {
+                margin-top: 40px;
+              }
+            }
+          </style>
+        `
+      )), q(), (i.includes("/collections/all") || i.includes("/search") || i === "/" || i === "/index") && !i.includes("/products/") && (document.head.insertAdjacentHTML(
         "beforeend",
         /*html*/
         `
@@ -506,19 +518,7 @@
       n.target.closest('[data-element="about-us"]') ? g("exp_search_feature_button_04", "About us", "Button", "Slide menu") : n.target.closest(".back-nav__inner") ? (g("exp_search_feature_button_03", "Back", "Button", "Search result"), window.history.back()) : n.target.closest(".menu__item") && g("exp_search_feature_button_02", `${n.target.closest(".menu__item").querySelector("span").innerText}`, "Button", "Header");
     }), m(".marquee").then(() => {
       C(".marquee", "exp_search_feature_section_02", "Visibility", "Header");
-    }), (i.includes("/products/") || i.includes("/about-us-and-contact-us")) && document.head.insertAdjacentHTML(
-      "beforeend",
-      /*html*/
-      `
-      <style>
-        @media (max-width: 768px) {
-          #MainContent {
-            margin-top: 40px;
-          }
-        }
-      </style>
-    `
-    );
+    });
   }
   function L() {
     const t = [
