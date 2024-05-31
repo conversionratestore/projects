@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const C = (i, e, r, n = "") => {
+  const u = (i, e, r, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: i,
@@ -8,32 +8,32 @@
       event_type: r,
       event_loc: n
     }), console.log(`Event: ${i} | ${e} | ${r} | ${n}`);
-  }, y = ({ name: i, dev: e }) => {
+  }, C = ({ name: i, dev: e }) => {
     console.log(
       `%c EXP: ${i} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, u = (i) => document.querySelectorAll(i), t = (i) => document.querySelector(i), m = (i) => {
+  }, g = (i) => document.querySelectorAll(i), t = (i) => document.querySelector(i), m = (i) => {
     let e = setInterval(function() {
       typeof window.hj == "function" && (clearInterval(e), window.hj("event", i));
     }, 1e3);
-  }, d = (i, e, r, n, a = 3e3, l = 0.5) => {
+  }, d = (i, e, r, n, a = 3e3, o = 0.5) => {
     let s, c;
     if (s = new IntersectionObserver(
-      function(o) {
-        o[0].isIntersecting === !0 ? c = setTimeout(() => {
-          C(
+      function(l) {
+        l[0].isIntersecting === !0 ? c = setTimeout(() => {
+          u(
             e,
-            o[0].target.dataset.visible || n || "",
-            "visibility",
+            l[0].target.dataset.visible || n || "",
+            "Visibility",
             r
           ), s.disconnect();
         }, a) : clearTimeout(c);
       },
-      { threshold: [l] }
+      { threshold: [o] }
     ), typeof i == "string") {
-      const o = document.querySelector(i);
-      o && s.observe(o);
+      const l = document.querySelector(i);
+      l && s.observe(l);
     } else
       s.observe(i);
   };
@@ -51,6 +51,16 @@
       });
     });
   }
+  (function(i) {
+    i = i === void 0 ? {} : i;
+    let e, r, n, a, o = (i == null ? void 0 : i.delay) || 50;
+    function s() {
+      e = null, a = 0;
+    }
+    return s(), function() {
+      return r = window.scrollY, e != null && (a = r - e), e = r, clearTimeout(n), n = setTimeout(s, o), a;
+    };
+  })();
   const w = `.free_delivery_banner {\r
   display: flex;\r
   justify-content: center;\r
@@ -79,6 +89,9 @@
 @media (max-width: 768px) {\r
   .free_delivery_banner {\r
     padding: 7px 15px 7px;\r
+  }\r
+  .free_delivery_banner svg {\r
+    display: none;\r
   }\r
   .free_delivery_banner > div:nth-of-type(1) {\r
     padding-right: 12px;\r
@@ -162,8 +175,12 @@ basket-view .threshold_banner.crs_complete p {\r
     margin-top: 16px;\r
     padding: 12px;\r
   }\r
+\r
   .threshold_banner p br {\r
     display: block;\r
+  }\r
+  .threshold_banner p {\r
+    max-width: 270px;\r
   }\r
   basket-view .threshold_banner {\r
     margin: 0px;\r
@@ -171,6 +188,9 @@ basket-view .threshold_banner.crs_complete p {\r
   }\r
   basket-view .threshold_banner p br {\r
     display: none;\r
+  }\r
+  basket-view .threshold_banner p {\r
+    max-width: 300px;\r
   }\r
   bottom-panel .button,\r
   bottom-panel .button-1 {\r
@@ -243,7 +263,7 @@ basket-view .threshold_banner.crs_complete p {\r
     </svg>
     `
     )
-  }, f = (i, e) => (
+  }, f = (i, e, r) => (
     /* HTML */
     `
     <div class="free_delivery_banner">
@@ -252,7 +272,7 @@ basket-view .threshold_banner.crs_complete p {\r
       </style>
       <div class="free_delivery_banner_item">
         ${p.deliveryBox}
-        <p>FREE Delivery on ${i}${e}</p>
+        <p>FREE ${i} Delivery over ${e}${r}</p>
       </div>
       <div class="free_delivery_banner_item">
         ${p.deliveryArrows}
@@ -269,7 +289,7 @@ basket-view .threshold_banner.crs_complete p {\r
       </style>
       ${p.packMore}
       <p>
-        <b>Free Express ${i} Delivery</b> on orders over
+        <b>Free ${i} Delivery</b> on orders over
         <span class="accent_color_red">${e}${r}</span>
       </p>
     </div>
@@ -282,9 +302,7 @@ basket-view .threshold_banner.crs_complete p {\r
         ${_}
       </style>
       ${p.packSuccess}
-      <p>
-        <b>Congratulations!</b> You have <br /><span class="accent_color_green">Free Express ${i} Delivery</span>
-      </p>
+      <p><b>Congratulations!</b> You have <br /><span class="accent_color_green">Free ${i} Delivery</span></p>
     </div>
   `
   ), H = (i, e, r, n, a) => (
@@ -299,7 +317,7 @@ basket-view .threshold_banner.crs_complete p {\r
     </div>
     <p>You are <span class="accent_color_red">${e}${(r - n).toFixed(
       2
-    )} </span> away from <b>Free Express ${a} Delivery</b></p>
+    )} </span> away from <b>Free ${a} Delivery</b></p>
   </div>
 `
   ), L = `.is_homepage header:not(.is-sticky) .header_icon path {\r
@@ -309,7 +327,7 @@ basket-view .threshold_banner.crs_complete p {\r
   fill: #2c7226;\r
 }\r
 `;
-  m("free_delivery"), y({ name: "Free Delivery Threshold_2nd iteration", dev: "SKh" });
+  m("free_delivery"), C({ name: "Free Delivery Threshold_2nd iteration", dev: "SKh" });
   const V = window.location.pathname, M = window.innerWidth < 768 ? "mobile" : "desktop";
   class P {
     constructor(e, r) {
@@ -334,13 +352,13 @@ basket-view .threshold_banner.crs_complete p {\r
       this.observer.observe(document.body, e);
     }
     renderFreeDeliveryBanner() {
-      var n, a, l, s, c;
+      var n, a, o, s, c;
       let e = "", r = this.checkPage();
       switch (console.log(r), r) {
         case "product":
           (n = t("header .listing_var.free_delivery_banner")) == null || n.remove(), this.device === "desktop" ? e = "beforebegin" : e = "afterend", t("header .free_delivery_banner") || ((a = t("#header > .page-header__inner")) == null || a.insertAdjacentHTML(
             e,
-            f(this.currency, this.threshold)
+            f(this.country, this.currency, this.threshold)
           ), t("header .free_delivery_banner") && t("header .free_delivery_banner").classList.add("product_var"), d(
             "header .product_var.free_delivery_banner",
             "exp_free_delivery_stickybanner_01",
@@ -349,9 +367,9 @@ basket-view .threshold_banner.crs_complete p {\r
           ));
           break;
         case "listing":
-          (l = t("header .product_var.free_delivery_banner")) == null || l.remove(), e = "afterend", t("header .free_delivery_banner") || ((s = t("#header > .page-header__inner")) == null || s.insertAdjacentHTML(
+          (o = t("header .product_var.free_delivery_banner")) == null || o.remove(), e = "afterend", t("header .free_delivery_banner") || ((s = t("#header > .page-header__inner")) == null || s.insertAdjacentHTML(
             e,
-            f(this.currency, this.threshold)
+            f(this.country, this.currency, this.threshold)
           ), t("header .free_delivery_banner") && t("header .free_delivery_banner").classList.add("listing_var"), d(
             "header .listing_var.free_delivery_banner",
             "exp_free_delivery_stickybanner_03",
@@ -367,12 +385,12 @@ basket-view .threshold_banner.crs_complete p {\r
     productPage(e = !1) {
       setTimeout(() => {
         var c;
-        let r = 0, n = t("product-view-delivery-note"), a = t("product-view-price .price"), l = localStorage.getItem("basketPriceForIcon");
-        const s = l !== null;
+        let r = 0, n = t("product-view-delivery-note"), a = t("product-view-price .price"), o = localStorage.getItem("basketPriceForIcon");
+        const s = o !== null;
         if (e && ((c = t("product-view-layout .threshold_banner")) == null || c.remove(), console.log("remove >>>>>>>>>.")), n && (n.style.display = "none", a)) {
-          let o = this.priceToNumber(a.textContent);
-          if (o !== r && (r = o, s && o <= +l && (o = +l), !t("product-view-layout .threshold_banner"))) {
-            n.insertAdjacentHTML("beforebegin", this.drawThreshold(o));
+          let l = this.priceToNumber(a.textContent);
+          if (l !== r && (r = l, s && l <= +o && (l = +o), !t("product-view-layout .threshold_banner"))) {
+            n.insertAdjacentHTML("beforebegin", this.drawThreshold(l));
             let v = setInterval(() => {
               t(".cdk-overlay-backdrop") || (clearInterval(v), d(
                 "product-view-layout .crs_need_more.threshold_banner",
@@ -395,7 +413,7 @@ basket-view .threshold_banner.crs_complete p {\r
         var r;
         t("basket-add-notice .free_delivery_banner") || ((r = t("basket-add-notice .b-t")) == null || r.insertAdjacentHTML(
           "beforebegin",
-          f(this.currency, this.threshold)
+          f(this.country, this.currency, this.threshold)
         ), d(
           "basket-add-notice .free_delivery_banner",
           "exp_free_delivery_stickybanner_02",
@@ -443,18 +461,18 @@ basket-view .threshold_banner.crs_complete p {\r
     changeIconHeader() {
       let e = !1;
       const r = localStorage.getItem("basketPriceForIcon"), n = r !== null && +r >= this.threshold;
-      u("basket-qty").forEach((a) => {
-        var c, o, v;
-        const l = !!a.querySelector(".header_icon"), s = a.querySelector("[cy-basketbagbtn]");
+      g("basket-qty").forEach((a) => {
+        var c, l, v;
+        const o = !!a.querySelector(".header_icon"), s = a.querySelector("[cy-basketbagbtn]");
         if (n) {
-          if (!l) {
+          if (!o) {
             if (e)
               return;
             e = !0, a.insertAdjacentHTML("beforeend", p.headerIcon);
             let b = t("product-view-price .price");
             b && this.priceToNumber(b.textContent) < this.threshold && ((c = t("product-view-layout .threshold_banner")) == null || c.remove());
-            let g = setInterval(() => {
-              t(".cdk-overlay-backdrop") || (clearInterval(g), d(
+            let y = setInterval(() => {
+              t(".cdk-overlay-backdrop") || (clearInterval(y), d(
                 "header .header_icon",
                 "exp_free_delivery_icon_vis_02",
                 "Icone",
@@ -466,11 +484,11 @@ basket-view .threshold_banner.crs_complete p {\r
         } else {
           if (a.querySelector(".header_icon") == null)
             return;
-          e = !1, (o = a.querySelector(".header_icon")) == null || o.remove();
+          e = !1, (l = a.querySelector(".header_icon")) == null || l.remove();
           let b = t("product-view-price .price");
           b && this.priceToNumber(b.textContent) < this.threshold && ((v = t("product-view-layout .threshold_banner")) == null || v.remove()), s.style.display = "block";
-          let g = setInterval(() => {
-            t(".cdk-overlay-backdrop") || (clearInterval(g), d(
+          let y = setInterval(() => {
+            t(".cdk-overlay-backdrop") || (clearInterval(y), d(
               "basket-qty .page-header__icon",
               "exp_free_delivery_icon_vis_01",
               "Icone",
@@ -494,8 +512,8 @@ basket-view .threshold_banner.crs_complete p {\r
       }
     }
     getGrandTotalPriceFromWindow() {
-      var r, n, a, l, s;
-      const e = (s = (l = (a = (n = (r = window == null ? void 0 : window.app) == null ? void 0 : r.customer) == null ? void 0 : n.basket) == null ? void 0 : a.data) == null ? void 0 : l.totals) == null ? void 0 : s.grand_total;
+      var r, n, a, o, s;
+      const e = (s = (o = (a = (n = (r = window == null ? void 0 : window.app) == null ? void 0 : r.customer) == null ? void 0 : n.basket) == null ? void 0 : a.data) == null ? void 0 : o.totals) == null ? void 0 : s.grand_total;
       e !== void 0 && localStorage.setItem("basketPriceForIcon", `${e}`), this.changeIconHeader();
     }
     priceToNumber(e) {
@@ -524,7 +542,7 @@ basket-view .threshold_banner.crs_complete p {\r
       h("header .header_icon").then((e) => {
         var r;
         (r = t("header .header_icon")) == null || r.addEventListener("click", (n) => {
-          n.target.getAttribute("data-test") || C("exp_free_delivery_icon_01", "Icone", "click", "Header Free delivery icon  visibility"), n.target.setAttribute("data-test", "1"), setTimeout(() => {
+          n.target.getAttribute("data-test") || u("exp_free_delivery_icon_01", "Icone", "click", "Header Free delivery icon  visibility"), n.target.setAttribute("data-test", "1"), setTimeout(() => {
             n.target.getAttribute("data-test") && n.target.removeAttribute("data-test");
           }, 1e3);
         });
