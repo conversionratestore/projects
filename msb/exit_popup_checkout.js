@@ -4169,7 +4169,7 @@
     }
     async showPopupsBasedOnCartStatus() {
       const e = this.checkProductsInCart(), t = await this.getTotalCartValue();
-      console.log("Total cart value:", t), e && (t >= 300 && t <= 600 ? this.giftPopup.show() : this.cartPopup.show()), this.isUserWatchedPopup() && !e && this.promoPopup.show();
+      e && (t >= 300 && t <= 600 ? this.giftPopup.show() : this.cartPopup.show()), this.isUserWatchedPopup() && !e && this.promoPopup.show();
     }
   }
   const Fi = `.ampromo-overlay {
