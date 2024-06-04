@@ -333,6 +333,7 @@ basket-view .threshold_banner.crs_complete p {\r
 }\r
 .header_icon {\r
   animation: blink 1s ease-in-out infinite;\r
+    margin-top: 5px;\r
 }\r
 .is_homepage header:not(.is-sticky) .header_icon path {\r
   fill: white;\r
@@ -345,7 +346,7 @@ body basket-qty.inline-flex,\r
 body basket-qty {\r
   display: flex !important;\r
   align-items: center;\r
-  margin-top: 5px;\r
+\r
 }\r
 `;
   m("free_delivery"), C({ name: "Free Delivery Threshold_2nd iteration", dev: "SKh" });
