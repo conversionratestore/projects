@@ -17,9 +17,9 @@
     let e = setInterval(function() {
       typeof window.hj == "function" && (clearInterval(e), window.hj("event", i));
     }, 1e3);
-  }, d = (i, e, r, n, a = 3e3, s = 0.5) => {
-    let o, c;
-    if (o = new IntersectionObserver(
+  }, d = (i, e, r, n, a = 3e3, o = 0.5) => {
+    let s, c;
+    if (s = new IntersectionObserver(
       function(l) {
         l[0].isIntersecting === !0 ? c = setTimeout(() => {
           u(
@@ -27,15 +27,15 @@
             l[0].target.dataset.visible || n || "",
             "Visibility",
             r
-          ), o.disconnect();
+          ), s.disconnect();
         }, a) : clearTimeout(c);
       },
-      { threshold: [s] }
+      { threshold: [o] }
     ), typeof i == "string") {
       const l = document.querySelector(i);
-      l && o.observe(l);
+      l && s.observe(l);
     } else
-      o.observe(i);
+      s.observe(i);
   };
   function h(i) {
     return new Promise((e) => {
@@ -53,12 +53,12 @@
   }
   (function(i) {
     i = i === void 0 ? {} : i;
-    let e, r, n, a, s = (i == null ? void 0 : i.delay) || 50;
-    function o() {
+    let e, r, n, a, o = (i == null ? void 0 : i.delay) || 50;
+    function s() {
       e = null, a = 0;
     }
-    return o(), function() {
-      return r = window.scrollY, e != null && (a = r - e), e = r, clearTimeout(n), n = setTimeout(o, s), a;
+    return s(), function() {
+      return r = window.scrollY, e != null && (a = r - e), e = r, clearTimeout(n), n = setTimeout(s, o), a;
     };
   })();
   const w = `.free_delivery_banner {\r
@@ -374,7 +374,7 @@ body basket-qty {\r
       this.observer.observe(document.body, e);
     }
     renderFreeDeliveryBanner() {
-      var n, a, s, o, c;
+      var n, a, o, s, c;
       let e = "", r = this.checkPage();
       switch (console.log(r), r) {
         case "product":
@@ -389,7 +389,7 @@ body basket-qty {\r
           ));
           break;
         case "listing":
-          (s = t("header .product_var.free_delivery_banner")) == null || s.remove(), e = "afterend", t("header .free_delivery_banner") || ((o = t("#header > .page-header__inner")) == null || o.insertAdjacentHTML(
+          (o = t("header .product_var.free_delivery_banner")) == null || o.remove(), e = "afterend", t("header .free_delivery_banner") || ((s = t("#header > .page-header__inner")) == null || s.insertAdjacentHTML(
             e,
             f(this.country, this.currency, this.threshold)
           ), t("header .free_delivery_banner") && t("header .free_delivery_banner").classList.add("listing_var"), d(
@@ -407,11 +407,11 @@ body basket-qty {\r
     productPage(e = !1) {
       setTimeout(() => {
         var c;
-        let r = 0, n = t("product-view-delivery-note"), a = t("product-view-price .price"), s = localStorage.getItem("basketPriceForIcon");
-        const o = s !== null;
+        let r = 0, n = t("product-view-delivery-note"), a = t("product-view-price .price"), o = localStorage.getItem("basketPriceForIcon");
+        const s = o !== null;
         if (e && ((c = t("product-view-layout .threshold_banner")) == null || c.remove(), console.log("remove >>>>>>>>>.")), n && (n.style.display = "none", a)) {
           let l = this.priceToNumber(a.textContent);
-          if (l !== r && (r = l, o && l <= +s && (l = +s), !t("product-view-layout .threshold_banner"))) {
+          if (l !== r && (r = l, s && l <= +o && (l = +o), !t("product-view-layout .threshold_banner"))) {
             n.insertAdjacentHTML("beforebegin", this.drawThreshold(l));
             let v = setInterval(() => {
               t(".cdk-overlay-backdrop") || (clearInterval(v), d(
@@ -485,9 +485,9 @@ body basket-qty {\r
       const r = localStorage.getItem("basketPriceForIcon"), n = r !== null && +r >= this.threshold;
       g("basket-qty").forEach((a) => {
         var c, l, v;
-        const s = !!a.querySelector(".header_icon"), o = a.querySelector("[cy-basketbagbtn]");
+        const o = !!a.querySelector(".header_icon"), s = a.querySelector("[cy-basketbagbtn]");
         if (n) {
-          if (!s) {
+          if (!o) {
             if (e)
               return;
             e = !0, a.insertAdjacentHTML("beforeend", p.headerIcon);
@@ -502,13 +502,13 @@ body basket-qty {\r
               ));
             }, 100);
           }
-          o.style.display = "none";
+          s.style.display = "none";
         } else {
           if (a.querySelector(".header_icon") == null)
             return;
           e = !1, (l = a.querySelector(".header_icon")) == null || l.remove();
           let b = t("product-view-price .price");
-          b && this.priceToNumber(b.textContent) < this.threshold && ((v = t("product-view-layout .threshold_banner")) == null || v.remove()), o.style.display = "block";
+          b && this.priceToNumber(b.textContent) < this.threshold && ((v = t("product-view-layout .threshold_banner")) == null || v.remove()), s.style.display = "inline-flex";
           let y = setInterval(() => {
             t(".cdk-overlay-backdrop") || (clearInterval(y), d(
               "basket-qty .page-header__icon",
@@ -534,8 +534,8 @@ body basket-qty {\r
       }
     }
     getGrandTotalPriceFromWindow() {
-      var r, n, a, s, o;
-      const e = (o = (s = (a = (n = (r = window == null ? void 0 : window.app) == null ? void 0 : r.customer) == null ? void 0 : n.basket) == null ? void 0 : a.data) == null ? void 0 : s.totals) == null ? void 0 : o.grand_total;
+      var r, n, a, o, s;
+      const e = (s = (o = (a = (n = (r = window == null ? void 0 : window.app) == null ? void 0 : r.customer) == null ? void 0 : n.basket) == null ? void 0 : a.data) == null ? void 0 : o.totals) == null ? void 0 : s.grand_total;
       e !== void 0 && localStorage.setItem("basketPriceForIcon", `${e}`), this.changeIconHeader();
     }
     priceToNumber(e) {
