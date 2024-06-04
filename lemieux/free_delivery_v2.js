@@ -349,7 +349,7 @@ body basket-qty {\r
 \r
 }\r
 `;
-  m("free_delivery"), C({ name: "Free Delivery Threshold_2nd iteration", dev: "SKh" });
+  C({ name: "Free Delivery Threshold_2nd iteration", dev: "SKh" });
   const V = window.location.pathname, M = window.innerWidth < 768 ? "mobile" : "desktop";
   class P {
     constructor(e, r) {
@@ -357,7 +357,7 @@ body basket-qty {\r
     }
     init() {
       h("body.content-initiated").then(() => {
-        this.visibleHandler(), this.getGrandTotalPriceFromWindow(), this.renderFreeDeliveryBanner(), this.productPage(), this.cartPage(), this.addEventListeners(), document.head.insertAdjacentHTML("afterbegin", `<style>${L}</style>`);
+        m("free_delivery"), this.visibleHandler(), this.getGrandTotalPriceFromWindow(), this.renderFreeDeliveryBanner(), this.productPage(), this.cartPage(), this.addEventListeners(), document.head.insertAdjacentHTML("afterbegin", `<style>${L}</style>`);
       });
     }
     observePageChange() {
@@ -384,8 +384,8 @@ body basket-qty {\r
           ), t("header .free_delivery_banner") && t("header .free_delivery_banner").classList.add("product_var"), d(
             "header .product_var.free_delivery_banner",
             "exp_free_delivery_stickybanner_01",
-            "Sticky banner",
-            "PDP Free delivery and returns sticky banner visibility"
+            "PDP Free delivery and returns sticky banner visibility",
+            "Sticky banner"
           ));
           break;
         case "listing":
@@ -395,8 +395,8 @@ body basket-qty {\r
           ), t("header .free_delivery_banner") && t("header .free_delivery_banner").classList.add("listing_var"), d(
             "header .listing_var.free_delivery_banner",
             "exp_free_delivery_stickybanner_03",
-            "Sticky banner",
-            "Listing Free delivery and returns sticky banner visibility"
+            "Listing Free delivery and returns sticky banner visibility",
+            "Sticky banner"
           ));
           break;
         default:
@@ -417,13 +417,13 @@ body basket-qty {\r
               t(".cdk-overlay-backdrop") || (clearInterval(v), d(
                 "product-view-layout .crs_need_more.threshold_banner",
                 "exp_free_delivery_banner_01",
-                "Banner",
-                "PDP Free Express UK Delivery on orders over £"
+                "PDP Free Express UK Delivery on orders over £",
+                "Banner"
               ), d(
                 "product-view-layout .crs_complete.threshold_banner",
                 "exp_free_delivery_banner_02",
-                "Banner",
-                "PDP Congratulations! You have Free Express UK Delivery"
+                "PDP Congratulations! You have Free Express UK Delivery",
+                "Banner"
               ));
             }, 100);
           }
@@ -439,8 +439,8 @@ body basket-qty {\r
         ), d(
           "basket-add-notice .free_delivery_banner",
           "exp_free_delivery_stickybanner_02",
-          "Sticky banner",
-          "Minibasket Free delivery and returns sticky banner visibility"
+          "Minibasket Free delivery and returns sticky banner visibility",
+          "Sticky banner"
         ));
       });
     }
@@ -451,13 +451,13 @@ body basket-qty {\r
         r !== null && (r = +r, t("minibasket .threshold_banner") && t("minibasket .threshold_banner").remove(), t("minibasket basket-view-totals").insertAdjacentHTML("afterend", this.drawThreshold(r, !0)), d(
           "minibasket .crs_progress.threshold_banner",
           "exp_free_delivery_banner_05",
-          "Banner",
-          "Cart You are £ away from Free Express UK  Delivery"
+          "Cart You are £ away from Free Express UK  Delivery",
+          "Banner"
         ), d(
           "minibasket .crs_complete.threshold_banner",
           "exp_free_delivery_banner_06",
-          "Banner",
-          "Cart Congratulations! You have Free Express UK Delivery"
+          "Cart Congratulations! You have Free Express UK Delivery",
+          "Banner"
         ));
       });
     }
@@ -469,13 +469,13 @@ body basket-qty {\r
           n !== null && (n = +n, t("basket-view .threshold_banner") && t("basket-view .threshold_banner").remove(), this.device === "mobile" ? t("basket-view bottom-panel").insertAdjacentHTML("afterbegin", this.drawThreshold(n)) : t("basket-view ul").insertAdjacentHTML("beforebegin", this.drawThreshold(n)), d(
             "basket-view .crs_progress.threshold_banner",
             "exp_free_delivery_banner_03",
-            "Banner",
-            "Shopping Bag You are £ away from Free Express UK  Delivery"
+            "Shopping Bag You are £ away from Free Express UK  Delivery",
+            "Banner"
           ), d(
             "basket-view .crs_complete.threshold_banner",
             "exp_free_delivery_banner_04",
-            "Banner",
-            "Shopping Bag Congratulations! You have Free Express UK Delivery"
+            "Shopping Bag Congratulations! You have Free Express UK Delivery",
+            "Banner"
           )), (r = t("basket-view>div>div>div>div>*:nth-child(3)>div.inline-block")) == null || r.remove();
         }
       });
@@ -497,8 +497,8 @@ body basket-qty {\r
               t(".cdk-overlay-backdrop") || (clearInterval(y), d(
                 "header .header_icon",
                 "exp_free_delivery_icon_vis_02",
-                "Icone",
-                "Header Free delivery icon  visibility"
+                "Header Free delivery icon  visibility",
+                "Icone"
               ));
             }, 100);
           }
@@ -513,8 +513,8 @@ body basket-qty {\r
             t(".cdk-overlay-backdrop") || (clearInterval(y), d(
               "basket-qty .page-header__icon",
               "exp_free_delivery_icon_vis_01",
-              "Icone",
-              "Header Cart icon visibility"
+              "Header Cart icon visibility",
+              "Icone"
             ));
           }, 100);
         }
@@ -555,8 +555,8 @@ body basket-qty {\r
         d(
           "basket-qty .page-header__icon",
           "exp_free_delivery_icon_vis_01",
-          "Icone",
-          "Header Cart icon visibility"
+          "Header Cart icon visibility",
+          "Icone"
         );
       });
     }
