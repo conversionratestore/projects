@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const u = (i, e, r, n = "") => {
+  const g = (i, e, r, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: i,
@@ -8,12 +8,12 @@
       event_type: r,
       event_loc: n
     }), console.log(`Event: ${i} | ${e} | ${r} | ${n}`);
-  }, C = ({ name: i, dev: e }) => {
+  }, u = ({ name: i, dev: e }) => {
     console.log(
       `%c EXP: ${i} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, g = (i) => document.querySelectorAll(i), t = (i) => document.querySelector(i), m = (i) => {
+  }, C = (i) => document.querySelectorAll(i), t = (i) => document.querySelector(i), m = (i) => {
     let e = setInterval(function() {
       typeof window.hj == "function" && (clearInterval(e), window.hj("event", i));
     }, 1e3);
@@ -22,7 +22,7 @@
     if (s = new IntersectionObserver(
       function(l) {
         l[0].isIntersecting === !0 ? c = setTimeout(() => {
-          u(
+          g(
             e,
             l[0].target.dataset.visible || n || "",
             "Visibility",
@@ -280,7 +280,7 @@ basket-view .threshold_banner.crs_complete p {\r
       </div>
     </div>
   `
-  ), k = (i, e, r) => (
+  ), x = (i, e, r) => (
     /* HTML */
     `
     <div class="crs_need_more threshold_banner">
@@ -294,7 +294,7 @@ basket-view .threshold_banner.crs_complete p {\r
       </p>
     </div>
   `
-  ), x = (i) => (
+  ), k = (i) => (
     /* HTML */
     `
     <div class="crs_complete threshold_banner">
@@ -321,19 +321,22 @@ basket-view .threshold_banner.crs_complete p {\r
   </div>
 `
   ), L = `@keyframes blink {\r
-  0% {\r
+  0%,\r
+  49% {\r
     opacity: 1;\r
   }\r
-  50% {\r
+  50%,\r
+  100% {\r
     opacity: 0;\r
   }\r
-  100% {\r
-    opacity: 1;\r
-  }\r
 }\r
-.header_icon {\r
-  animation: blink 1s ease-in-out infinite;\r
-    margin-top: 5px;\r
+\r
+.free_delivery_icon > *:nth-child(odd) {\r
+  animation: blink 4s steps(1, start) 2s infinite;\r
+}\r
+\r
+.free_delivery_icon > *:nth-child(even) {\r
+  animation: blink 4s steps(1, start) infinite;\r
 }\r
 .is_homepage header:not(.is-sticky) .header_icon path {\r
   fill: white;\r
@@ -344,12 +347,30 @@ basket-view .threshold_banner.crs_complete p {\r
 \r
 body basket-qty.inline-flex,\r
 body basket-qty {\r
+  position: relative;\r
   display: flex !important;\r
   align-items: center;\r
-\r
+  width: 18px;\r
+  height: 18px;\r
+  @media (max-width: 768px) {\r
+    width: 24px;\r
+    height: 24px;\r
+  }\r
+  > svg,\r
+  > span {\r
+    position: absolute;\r
+    top: 50%;\r
+    left: 50%;\r
+    transform: translate(-50%, -50%);\r
+  }\r
+  > svg {\r
+    @media (max-width: 768px) {\r
+      margin-top: 2px;\r
+    }\r
+  }\r
 }\r
 `;
-  C({ name: "Free Delivery Threshold_2nd iteration", dev: "SKh" });
+  u({ name: "Free Delivery Threshold_2nd iteration", dev: "SKh" });
   const V = window.location.pathname, M = window.innerWidth < 768 ? "mobile" : "desktop";
   class P {
     constructor(e, r) {
@@ -378,7 +399,7 @@ body basket-qty {\r
       let e = "", r = this.checkPage();
       switch (console.log(r), r) {
         case "product":
-          (n = t("header .listing_var.free_delivery_banner")) == null || n.remove(), this.device === "desktop" ? e = "beforebegin" : e = "afterend", t("header .free_delivery_banner") || ((a = t("#header > .page-header__inner")) == null || a.insertAdjacentHTML(
+          (n = t("header .listing_var.free_delivery_banner")) == null || n.remove(), this.device, e = "afterend", t("header .free_delivery_banner") || ((a = t("#header > .page-header__inner")) == null || a.insertAdjacentHTML(
             e,
             f(this.country, this.currency, this.threshold)
           ), t("header .free_delivery_banner") && t("header .free_delivery_banner").classList.add("product_var"), d(
@@ -413,8 +434,8 @@ body basket-qty {\r
           let l = this.priceToNumber(a.textContent);
           if (l !== r && (r = l, s && l <= +o && (l = +o), !t("product-view-layout .threshold_banner"))) {
             n.insertAdjacentHTML("beforebegin", this.drawThreshold(l));
-            let v = setInterval(() => {
-              t(".cdk-overlay-backdrop") || (clearInterval(v), d(
+            let b = setInterval(() => {
+              t(".cdk-overlay-backdrop") || (clearInterval(b), d(
                 "product-view-layout .crs_need_more.threshold_banner",
                 "exp_free_delivery_banner_01",
                 "PDP Free Express UK Delivery on orders over £",
@@ -483,16 +504,16 @@ body basket-qty {\r
     changeIconHeader() {
       let e = !1;
       const r = localStorage.getItem("basketPriceForIcon"), n = r !== null && +r >= this.threshold;
-      g("basket-qty").forEach((a) => {
-        var c, l, v;
+      C("basket-qty").forEach((a) => {
+        var c, l, b;
         const o = !!a.querySelector(".header_icon"), s = a.querySelector("[cy-basketbagbtn]");
         if (n) {
           if (!o) {
             if (e)
               return;
             e = !0, a.insertAdjacentHTML("beforeend", p.headerIcon);
-            let b = t("product-view-price .price");
-            b && this.priceToNumber(b.textContent) < this.threshold && ((c = t("product-view-layout .threshold_banner")) == null || c.remove());
+            let v = t("product-view-price .price");
+            v && this.priceToNumber(v.textContent) < this.threshold && ((c = t("product-view-layout .threshold_banner")) == null || c.remove());
             let y = setInterval(() => {
               t(".cdk-overlay-backdrop") || (clearInterval(y), d(
                 "header .header_icon",
@@ -502,13 +523,13 @@ body basket-qty {\r
               ));
             }, 100);
           }
-          s.style.display = "none";
+          a.classList.add("free_delivery_icon"), s.style.opacity = "0";
         } else {
           if (a.querySelector(".header_icon") == null)
             return;
           e = !1, (l = a.querySelector(".header_icon")) == null || l.remove();
-          let b = t("product-view-price .price");
-          b && this.priceToNumber(b.textContent) < this.threshold && ((v = t("product-view-layout .threshold_banner")) == null || v.remove()), s.style.display = "inline-flex";
+          let v = t("product-view-price .price");
+          v && this.priceToNumber(v.textContent) < this.threshold && ((b = t("product-view-layout .threshold_banner")) == null || b.remove()), s.style.opacity = "1", a.classList.contains("free_delivery_icon") && a.classList.remove("free_delivery_icon");
           let y = setInterval(() => {
             t(".cdk-overlay-backdrop") || (clearInterval(y), d(
               "basket-qty .page-header__icon",
@@ -544,11 +565,11 @@ body basket-qty {\r
     drawThreshold(e, r = !1) {
       const n = e / this.threshold * 100;
       if (e < this.threshold && this.checkPage() === "product" && !r)
-        return k(this.country, this.currency, this.threshold);
+        return x(this.country, this.currency, this.threshold);
       if (e < this.threshold)
         return H(n, this.currency, this.threshold, e, this.country);
       if (e >= this.threshold)
-        return x(this.country);
+        return k(this.country);
     }
     visibleHandler() {
       h("basket-qty .page-header__icon").then((e) => {
@@ -564,7 +585,7 @@ body basket-qty {\r
       h("header .header_icon").then((e) => {
         var r;
         (r = t("header .header_icon")) == null || r.addEventListener("click", (n) => {
-          n.target.getAttribute("data-test") || u("exp_free_delivery_icon_01", "Icone", "Click", "Header Free delivery icon  visibility"), n.target.setAttribute("data-test", "1"), setTimeout(() => {
+          n.target.getAttribute("data-test") || g("exp_free_delivery_icon_01", "Icone", "Click", "Header Free delivery icon  visibility"), n.target.setAttribute("data-test", "1"), setTimeout(() => {
             n.target.getAttribute("data-test") && n.target.removeAttribute("data-test");
           }, 1e3);
         });
