@@ -65,7 +65,7 @@
     return a(), function() {
       return t = window.scrollY, e !== null && (o = t - e), e = t, clearTimeout(s), s = setTimeout(a, r), o;
     };
-  }(), _e = "cartPopupShown", Ce = "promoPopupShown", Ae = "giftPopupShown", ce = "userWatchedPopup", X = "CRS_DISCOUNT", Xe = "KEY0624", K = "savedGift", Ze = "https://conversionratestore.github.io/projects/msb/", Qe = (
+  }(), _e = "cartPopupShown", Ce = "promoPopupShown", Ae = "giftPopupShown", X = "userWatchedPopup", Z = "CRS_DISCOUNT", Xe = "KEY0624", J = "savedGift", Ze = "https://conversionratestore.github.io/projects/msb/", Qe = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -184,11 +184,11 @@
     }
     copyPromo(e) {
       const t = e.currentTarget, s = t.closest(".crs-promocode__code");
-      t.innerHTML = `${Ke}`, navigator.clipboard.writeText(this.promocode), s.classList.add("copied"), localStorage.setItem(X, this.promocode);
+      t.innerHTML = `${Ke}`, navigator.clipboard.writeText(this.promocode), s.classList.add("copied"), localStorage.setItem(Z, this.promocode);
     }
   }
-  var G = /* @__PURE__ */ ((i) => (i.AU = "au", i.US = "us", i.CA = "ca", i.UK = "uk", i.IE = "ie", i.NZ = "nz", i))(G || {}), Y = /* @__PURE__ */ ((i) => (i.Mobile = "Mobile", i.Desktop = "Desktop", i))(Y || {}), J = /* @__PURE__ */ ((i) => (i.WELCOME10 = "WELCOME10", i.WELCOME15 = "WELCOME15", i))(J || {});
-  const Z = [
+  var G = /* @__PURE__ */ ((i) => (i.AU = "au", i.US = "us", i.CA = "ca", i.UK = "uk", i.IE = "ie", i.NZ = "nz", i))(G || {}), Y = /* @__PURE__ */ ((i) => (i.Mobile = "Mobile", i.Desktop = "Desktop", i))(Y || {}), ee = /* @__PURE__ */ ((i) => (i.WELCOME10 = "WELCOME10", i.WELCOME15 = "WELCOME15", i))(ee || {});
+  const Q = [
     {
       id: 1,
       name: "The Mimi",
@@ -254,7 +254,7 @@
     au: "$",
     ie: "€",
     nz: "$"
-  }, W = [G.UK, G.IE, G.NZ, G.US], st = `.popup-hidden{display:none!important}.crs-hide-font{font-size:0!important}.os-subsribe{background:#a11a17;width:100%;min-height:54px;text-transform:uppercase;color:#fff;font-size:14px;font-weight:700;line-height:22px;letter-spacing:2px}.os-subsribe:hover{background:#a11a17;color:#fff}.os-submit{min-height:54px!important;font-size:14px!important;font-weight:700!important;line-height:22px!important;letter-spacing:2px!important}button.needsclick.go397051626:first-child{background:#a11a17!important;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center;align-items:center}button.needsclick.go397051626:first-child:hover,button.needsclick.go397051626:first-child:focus{background:#a11a17!important}button.needsclick.go397051626:first-child span{font-size:12px;visibility:visible;text-transform:uppercase}div[data-testid=form-component]:last-child{padding-bottom:10px!important}.js-has-pseudo [csstools-has-2u-33-36-31-1m-2w-2p-37-14-2j-2x-2s-2m-1p-13-2u-2x-36-37-38-2n-32-2p-31-2t-13-2l-15]:not(does-not-exist),.js-has-pseudo [csstools-has-2u-33-36-31-1m-2w-2p-37-14-1a-2r-36-37-19-34-36-33-31-33-19-2u-33-36-31-15]:not(does-not-exist),.js-has-pseudo [csstools-has-2u-33-36-31-1m-2w-2p-37-14-2j-2x-2s-2m-1p-13-1w-2p-38-2t-27-2u-1u-2x-36-38-2w-13-2l-15]:not(does-not-exist){border:none!important;box-shadow:0 5px 15px #00000026;min-height:537px}form:has([id^=first_name]),form:has(.crs-promo-form),form:has([id^=DateOfBirth]){border:none!important;box-shadow:0 5px 15px #00000026;min-height:537px}@media (max-width: 769px){.js-has-pseudo [csstools-has-2u-33-36-31-1m-2w-2p-37-14-2j-2x-2s-2m-1p-13-2u-2x-36-37-38-2n-32-2p-31-2t-13-2l-15]:not(does-not-exist),.js-has-pseudo [csstools-has-2u-33-36-31-1m-2w-2p-37-14-1a-2r-36-37-19-34-36-33-31-33-19-2u-33-36-31-15]:not(does-not-exist),.js-has-pseudo [csstools-has-2u-33-36-31-1m-2w-2p-37-14-2j-2x-2s-2m-1p-13-1w-2p-38-2t-27-2u-1u-2x-36-38-2w-13-2l-15]:not(does-not-exist){min-height:auto;padding-bottom:32px!important}form:has([id^=first_name]),form:has(.crs-promo-form),form:has([id^=DateOfBirth]){min-height:auto;padding-bottom:32px!important}}.js-has-pseudo [csstools-has-2s-2x-3a-1m-2w-2p-37-14-1q-w-2j-2x-2s-2m-1p-13-2u-2x-36-37-38-2n-32-2p-31-2t-13-2l-15]:not(does-not-exist){display:none!important}div:has(>[id^=first_name]){display:none!important}div.needsclick[style^=background-image]{background-image:url(https://www.maxwellscottbags.com/media/wysiwyg/Static-Pages/about/loreto-min.jpg)!important;background-position:85%!important;transform:scaleX(-1)}.js-has-pseudo [csstools-has-2s-2x-3a-1a-32-2t-2t-2s-37-2r-30-2x-2r-2z-1m-2w-2p-37-14-1q-w-2x-31-2v-1a-32-2t-2t-2s-37-2r-30-2x-2r-2z-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist){background-image:url(https://www.maxwellscottbags.com/media/wysiwyg/Static-Pages/about/loreto-min.jpg);background-size:191%;background-position:88% 77%;width:350px!important;height:160px!important}div.needsclick:has(>img.needsclick){background-image:url(https://www.maxwellscottbags.com/media/wysiwyg/Static-Pages/about/loreto-min.jpg);background-size:191%;background-position:88% 77%;width:350px!important;height:160px!important}.js-has-pseudo [csstools-has-2s-2x-3a-1a-32-2t-2t-2s-37-2r-30-2x-2r-2z-1m-2w-2p-37-14-1q-w-2x-31-2v-1a-32-2t-2t-2s-37-2r-30-2x-2r-2z-15-w-2x-31-2v]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){display:none}div.needsclick:has(>img.needsclick) img{display:none}@media (max-width: 768px){.js-has-pseudo [csstools-has-2s-2x-3a-1a-32-2t-2t-2s-37-2r-30-2x-2r-2z-1m-2w-2p-37-14-1q-w-z-36-2x-2r-2w-19-38-2t-3c-38-19-1d-1d-1d-1j-1c-1g-1e-1e-1l-15]:not(#does-not-exist):not(does-not-exist),.js-has-pseudo [csstools-has-2s-2x-3a-1a-32-2t-2t-2s-37-2r-30-2x-2r-2z-1m-2w-2p-37-14-1q-w-z-36-2x-2r-2w-19-38-2t-3c-38-19-1d-1c-1j-1d-1l-1h-1c-1i-1i-15]:not(#does-not-exist):not(does-not-exist),.js-has-pseudo [csstools-has-2s-2x-3a-1a-32-2t-2t-2s-37-2r-30-2x-2r-2z-1m-2w-2p-37-14-1q-w-z-36-2x-2r-2w-19-38-2t-3c-38-19-1d-1c-1j-1d-1l-1g-1c-1f-1d-15]:not(#does-not-exist):not(does-not-exist),.js-has-pseudo [csstools-has-2s-2x-3a-1a-32-2t-2t-2s-37-2r-30-2x-2r-2z-1m-2w-2p-37-14-1q-w-z-36-2x-2r-2w-19-38-2t-3c-38-19-1d-1d-1d-1j-1c-1g-1e-1f-1h-15]:not(#does-not-exist):not(does-not-exist),.js-has-pseudo [csstools-has-2s-2x-3a-1a-32-2t-2t-2s-37-2r-30-2x-2r-2z-1m-2w-2p-37-14-1q-w-z-36-2x-2r-2w-19-38-2t-3c-38-19-1d-1c-1j-1d-1l-1g-1c-1f-1j-15]:not(#does-not-exist):not(does-not-exist),.js-has-pseudo [csstools-has-2s-2x-3a-1a-32-2t-2t-2s-37-2r-30-2x-2r-2z-1m-2w-2p-37-14-1q-w-z-36-2x-2r-2w-19-38-2t-3c-38-19-1d-1c-1j-1d-1l-1h-1c-1j-1j-15]:not(#does-not-exist):not(does-not-exist){padding-top:20px!important}div.needsclick:has(>#rich-text-111704229),div.needsclick:has(>#rich-text-107195066),div.needsclick:has(>#rich-text-107194031),div.needsclick:has(>#rich-text-111704235),div.needsclick:has(>#rich-text-107194037),div.needsclick:has(>#rich-text-107195077){padding-top:20px!important}}.os-popup-title{color:#333!important;font-family:adobe-garamond-pro,serif!important;font-size:38px!important;font-weight:400!important;line-height:46px!important;margin-bottom:-15px!important;padding-bottom:0!important}.js-has-pseudo [csstools-has-1a-33-37-19-34-33-34-39-34-19-38-2x-38-30-2t-1m-2w-2p-37-14-1a-33-37-19-30-33-3b-19-37-2x-3e-2t-15]:not(.does-not-exist){font-size:38px!important}.os-popup-title:has(.os-low-size){font-size:38px!important}@media (max-width: 768px){.os-popup-title{font-size:32px!important;line-height:38px!important}}.js-has-pseudo [csstools-has-2s-2x-3a-1m-2w-2p-37-14-1q-w-1a-33-37-19-34-33-34-39-34-19-38-2x-38-30-2t-15]:not(does-not-exist){padding-bottom:0!important}div:has(>.os-popup-title){padding-bottom:0!important}@media (max-width: 768px){.js-has-pseudo [csstools-has-2s-2x-3a-1m-2w-2p-37-14-1q-w-1a-33-37-19-34-33-34-39-34-19-38-2x-38-30-2t-15]:not(does-not-exist){padding-top:10px!important}div:has(>.os-popup-title){padding-top:10px!important}}.os-first-descr{color:#646464!important;font-family:Arial!important;font-size:16px!important;font-weight:400!important;line-height:22px!important;text-align:left}.os-first-descr--enhance span{padding-top:4px}@media (max-width: 768px){.js-has-pseudo [csstools-has-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-1p-13-2u-33-36-31-19-36-33-3b-13-2l-1m-2w-2p-37-14-1a-33-37-19-2u-2x-36-37-38-19-2s-2t-37-2r-36-19-19-2t-32-2w-2p-32-2r-2t-15]:not(.does-not-exist){margin-bottom:20px}[data-testid=form-row]:has(.os-first-descr--enhance){margin-bottom:20px}}.crs-promo-form__title,.os-popup-title>p:first-child span{color:#333!important;font-family:adobe-garamond-pro,serif!important;font-size:32px!important;font-weight:400;line-height:40px;margin-top:-40px;margin-bottom:-15px}.crs-promo-form__title{margin-top:0!important;margin-bottom:10px!important}@media (max-width: 768px){.crs-promo-form__title{margin-top:10px!important}}.crs-promo-form__list{color:#646464;margin-bottom:10px;padding-left:25px;line-height:22px}form[data-testid^=klaviyo-form] [id^=first_name]{display:none}form[data-testid^=klaviyo-form] [id^=email],form[data-testid^=klaviyo-form] [id^=DateOfBirth]{margin-bottom:0;border:solid 1px #ccc!important;min-height:54px!important}form[data-testid^=klaviyo-form] [id^=email]{margin-bottom:14px!important}.js-has-pseudo [csstools-has-2u-33-36-31-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-13-2z-30-2p-3a-2x-3d-33-19-2u-33-36-31-13-2l-1m-2w-2p-37-14-2j-2x-2s-2m-1p-13-1w-2p-38-2t-27-2u-1u-2x-36-38-2w-13-2l-15-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-1p-13-2u-33-36-31-19-36-33-3b-13-2l]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist){margin-bottom:20px}form[data-testid^=klaviyo-form]:has([id^=DateOfBirth]) [data-testid=form-row]{margin-bottom:20px}.js-has-pseudo [csstools-has-2u-33-36-31-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-13-2z-30-2p-3a-2x-3d-33-19-2u-33-36-31-13-2l-1m-2w-2p-37-14-2j-2x-2s-2m-1p-13-1w-2p-38-2t-27-2u-1u-2x-36-38-2w-13-2l-15-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-1p-13-2u-33-36-31-19-36-33-3b-13-2l-w-1q-w-2s-2x-3a]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist){padding-top:0!important;padding-bottom:0!important}form[data-testid^=klaviyo-form]:has([id^=DateOfBirth]) [data-testid=form-row]>div{padding-top:0!important;padding-bottom:0!important}.js-has-pseudo [csstools-has-2u-33-36-31-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-13-2z-30-2p-3a-2x-3d-33-19-2u-33-36-31-13-2l-1m-2w-2p-37-14-2j-2x-2s-2m-1p-13-1w-2p-38-2t-27-2u-1u-2x-36-38-2w-13-2l-15-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-1p-13-2u-33-36-31-19-36-33-3b-13-2l-1m-2w-2p-37-14-1a-33-37-19-37-39-2q-31-2x-38-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist){margin-bottom:0}form[data-testid^=klaviyo-form]:has([id^=DateOfBirth]) [data-testid=form-row]:has(.os-submit){margin-bottom:0}.js-has-pseudo [csstools-has-2u-33-36-31-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-13-2z-30-2p-3a-2x-3d-33-19-2u-33-36-31-13-2l-1m-2w-2p-37-14-2j-2x-2s-2m-1p-13-1w-2p-38-2t-27-2u-1u-2x-36-38-2w-13-2l-15-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-1p-13-2u-33-36-31-19-36-33-3b-13-2l-1m-32-38-2w-19-33-2u-19-38-3d-34-2t-14-1e-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist){padding-bottom:10px}form[data-testid^=klaviyo-form]:has([id^=DateOfBirth]) [data-testid=form-row]:nth-of-type(2){padding-bottom:10px}.js-has-pseudo [csstools-has-2s-2x-3a-1m-2w-2p-37-14-2u-33-36-31-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-13-2z-30-2p-3a-2x-3d-33-19-2u-33-36-31-13-2l-15-w-2q-39-38-38-33-32-1a-2z-30-2p-3a-2x-3d-33-19-2r-30-33-37-2t-19-2u-33-36-31]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){background:url('data:image/svg+xml,<svg width="21" height="21" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(%23a)"><path d="m6 2 9 9m-9 0 9-9" stroke="%23fff" stroke-width="2.325" stroke-linecap="round" stroke-linejoin="round" shape-rendering="crispEdges"/></g><defs><filter id="a" x=".837" y=".837" width="19.325" height="19.325" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/><feOffset dy="4"/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1281_6731"/><feBlend in="SourceGraphic" in2="effect1_dropShadow_1281_6731" result="shape"/></filter></defs></svg>');background-repeat:no-repeat;background-position:center}div:has(form[data-testid^=klaviyo-form]) button.klaviyo-close-form{background:url('data:image/svg+xml,<svg width="21" height="21" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(%23a)"><path d="m6 2 9 9m-9 0 9-9" stroke="%23fff" stroke-width="2.325" stroke-linecap="round" stroke-linejoin="round" shape-rendering="crispEdges"/></g><defs><filter id="a" x=".837" y=".837" width="19.325" height="19.325" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/><feOffset dy="4"/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1281_6731"/><feBlend in="SourceGraphic" in2="effect1_dropShadow_1281_6731" result="shape"/></filter></defs></svg>');background-repeat:no-repeat;background-position:center}.js-has-pseudo [csstools-has-2s-2x-3a-1m-2w-2p-37-14-2u-33-36-31-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-13-2z-30-2p-3a-2x-3d-33-19-2u-33-36-31-13-2l-15-w-2q-39-38-38-33-32-1a-2z-30-2p-3a-2x-3d-33-19-2r-30-33-37-2t-19-2u-33-36-31-1m-2w-33-3a-2t-36]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){border:none}div:has(form[data-testid^=klaviyo-form]) button.klaviyo-close-form:hover{border:none}.js-has-pseudo [csstools-has-2s-2x-3a-1m-2w-2p-37-14-2u-33-36-31-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-13-2z-30-2p-3a-2x-3d-33-19-2u-33-36-31-13-2l-15-w-2q-39-38-38-33-32-1a-2z-30-2p-3a-2x-3d-33-19-2r-30-33-37-2t-19-2u-33-36-31-w-37-3a-2v]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){display:none}div:has(form[data-testid^=klaviyo-form]) button.klaviyo-close-form svg{display:none}label[id^=label-DateOfBirth],label[id^=kl_Content]{font-size:12px!important;margin-bottom:6px!important;padding-bottom:0!important;line-height:22px!important}form[data-testid^=klaviyo-form] div[role=group] label{line-height:22px!important;padding-bottom:10px!important}form[data-testid^=klaviyo-form] div[role=group] label>div{line-height:22px}form[data-testid^=klaviyo-form] div[role=group] input{margin:0!important}.crs-promo-form__close{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center;align-items:center;padding-bottom:50px}@media (max-width: 768px){.crs-promo-form__close{padding-bottom:0}}.crs-promo-form__close-btn,.crs-promo-form__close-btn:focus,.crs-promo-form__close-btn:hover,.crs-promo-form__enhance,.crs-promo-form__enhance:focus,.crs-promo-form__enhance:hover{background:none;border:none;padding:0;height:36px;margin-top:10px;cursor:pointer;color:#646464;color:var(--MSB-UI-Dark-gray, #646464);text-align:center;font-size:14px;font-weight:700;line-height:22px;letter-spacing:2px;text-transform:uppercase}.crs-promo-form__close-btn,.crs-promo-form__close-btn:focus,.crs-promo-form__close-btn:hover{margin-top:0}.crs-promo-form__img{transform:scaleX(-1)!important;background-position:85% 50%!important}.crs-promo-form{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;align-items:center}@media (max-width: 768px){.crs-promo-form{flex-direction:column}}.crs-promo-form__content{padding:0 20px}.crs-promo-form__descr{color:#646464;font-size:16px;line-height:22px}.crs-promo-form__actions{margin-top:24px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;align-items:center}.crs-promo-form__continue,.crs-promo-form__continue:focus,.crs-promo-form__continue:hover{width:100%;min-height:54px;background:#a11a17;color:#fff;color:var(--Untitled-White, #fff);text-align:center;font-size:14px;font-weight:700;line-height:22px;letter-spacing:2px;text-transform:uppercase}.crs-promo-form .crs-promocode{gap:8px}@media (min-width: 768px){.crs-promo-form__list{margin-top:20px;padding-left:25px}.os-popup-title,.crs-promo-form__title,.os-popup-title>p:first-child span{font-size:40px!important;line-height:46px;margin-top:0}[data-testid^=klaviyo-form]{width:890px!important}[data-testid^=klaviyo-form]>div{min-width:50%!important}.crs-promo-form__content{padding-bottom:0!important;padding:50px 36px 20px;margin-bottom:50px}.crs-promo-form .crs-promocode{gap:8px}.crs-promo-form__content .crs-promocode__code{padding:12px!important}}`, ot = 'input[aria-label="First Name*"]', rt = 50, ee = '.needsclick[role="dialog"]', O = 'div[role="dialog"] .klaviyo-close-form', te = ".crs-promo-form", nt = ".crs-promo-form__enhance", at = ".crs-promo-form__continue", ue = 'form[data-testid^="klaviyo-form"]:has([id^="first_name"])', fe = (i) => ({
+  }, W = [G.UK, G.IE, G.NZ, G.US], st = `.popup-hidden{display:none!important}.crs-hide-font{font-size:0!important}.os-subsribe{background:#a11a17;width:100%;min-height:54px;text-transform:uppercase;color:#fff;font-size:14px;font-weight:700;line-height:22px;letter-spacing:2px}.os-subsribe:hover{background:#a11a17;color:#fff}.os-submit{min-height:54px!important;font-size:14px!important;font-weight:700!important;line-height:22px!important;letter-spacing:2px!important}button.needsclick.go397051626:first-child{background:#a11a17!important;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center;align-items:center}button.needsclick.go397051626:first-child:hover,button.needsclick.go397051626:first-child:focus{background:#a11a17!important}button.needsclick.go397051626:first-child span{font-size:12px;visibility:visible;text-transform:uppercase}div[data-testid=form-component]:last-child{padding-bottom:10px!important}.js-has-pseudo [csstools-has-2u-33-36-31-1m-2w-2p-37-14-2j-2x-2s-2m-1p-13-2u-2x-36-37-38-2n-32-2p-31-2t-13-2l-15]:not(does-not-exist),.js-has-pseudo [csstools-has-2u-33-36-31-1m-2w-2p-37-14-1a-2r-36-37-19-34-36-33-31-33-19-2u-33-36-31-15]:not(does-not-exist),.js-has-pseudo [csstools-has-2u-33-36-31-1m-2w-2p-37-14-2j-2x-2s-2m-1p-13-1w-2p-38-2t-27-2u-1u-2x-36-38-2w-13-2l-15]:not(does-not-exist){border:none!important;box-shadow:0 5px 15px #00000026;min-height:537px}form:has([id^=first_name]),form:has(.crs-promo-form),form:has([id^=DateOfBirth]){border:none!important;box-shadow:0 5px 15px #00000026;min-height:537px}@media (max-width: 769px){.js-has-pseudo [csstools-has-2u-33-36-31-1m-2w-2p-37-14-2j-2x-2s-2m-1p-13-2u-2x-36-37-38-2n-32-2p-31-2t-13-2l-15]:not(does-not-exist),.js-has-pseudo [csstools-has-2u-33-36-31-1m-2w-2p-37-14-1a-2r-36-37-19-34-36-33-31-33-19-2u-33-36-31-15]:not(does-not-exist),.js-has-pseudo [csstools-has-2u-33-36-31-1m-2w-2p-37-14-2j-2x-2s-2m-1p-13-1w-2p-38-2t-27-2u-1u-2x-36-38-2w-13-2l-15]:not(does-not-exist){min-height:auto;padding-bottom:32px!important}form:has([id^=first_name]),form:has(.crs-promo-form),form:has([id^=DateOfBirth]){min-height:auto;padding-bottom:32px!important}}.js-has-pseudo [csstools-has-2s-2x-3a-1m-2w-2p-37-14-1q-w-2j-2x-2s-2m-1p-13-2u-2x-36-37-38-2n-32-2p-31-2t-13-2l-15]:not(does-not-exist){display:none!important}div:has(>[id^=first_name]){display:none!important}div.needsclick[style^=background-image]{background-image:url(https://www.maxwellscottbags.com/media/wysiwyg/Static-Pages/about/loreto-min.jpg)!important;background-position:85%!important;transform:scaleX(-1)}.js-has-pseudo [csstools-has-2s-2x-3a-1a-32-2t-2t-2s-37-2r-30-2x-2r-2z-1m-2w-2p-37-14-1q-w-2x-31-2v-1a-32-2t-2t-2s-37-2r-30-2x-2r-2z-15]:not(.does-not-exist):not(does-not-exist):not(does-not-exist){background-image:url(https://www.maxwellscottbags.com/media/wysiwyg/Static-Pages/about/loreto-min.jpg);background-size:191%;background-position:88% 77%;width:350px!important;height:160px!important}div.needsclick:has(>img.needsclick){background-image:url(https://www.maxwellscottbags.com/media/wysiwyg/Static-Pages/about/loreto-min.jpg);background-size:191%;background-position:88% 77%;width:350px!important;height:160px!important}.js-has-pseudo [csstools-has-2s-2x-3a-1a-32-2t-2t-2s-37-2r-30-2x-2r-2z-1m-2w-2p-37-14-1q-w-2x-31-2v-1a-32-2t-2t-2s-37-2r-30-2x-2r-2z-15-w-2x-31-2v]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){display:none}div.needsclick:has(>img.needsclick) img{display:none}@media (max-width: 768px){.js-has-pseudo [csstools-has-2s-2x-3a-1a-32-2t-2t-2s-37-2r-30-2x-2r-2z-1m-2w-2p-37-14-1q-w-z-36-2x-2r-2w-19-38-2t-3c-38-19-1d-1d-1d-1j-1c-1g-1e-1e-1l-15]:not(#does-not-exist):not(does-not-exist),.js-has-pseudo [csstools-has-2s-2x-3a-1a-32-2t-2t-2s-37-2r-30-2x-2r-2z-1m-2w-2p-37-14-1q-w-z-36-2x-2r-2w-19-38-2t-3c-38-19-1d-1c-1j-1d-1l-1h-1c-1i-1i-15]:not(#does-not-exist):not(does-not-exist),.js-has-pseudo [csstools-has-2s-2x-3a-1a-32-2t-2t-2s-37-2r-30-2x-2r-2z-1m-2w-2p-37-14-1q-w-z-36-2x-2r-2w-19-38-2t-3c-38-19-1d-1c-1j-1d-1l-1g-1c-1f-1d-15]:not(#does-not-exist):not(does-not-exist),.js-has-pseudo [csstools-has-2s-2x-3a-1a-32-2t-2t-2s-37-2r-30-2x-2r-2z-1m-2w-2p-37-14-1q-w-z-36-2x-2r-2w-19-38-2t-3c-38-19-1d-1d-1d-1j-1c-1g-1e-1f-1h-15]:not(#does-not-exist):not(does-not-exist),.js-has-pseudo [csstools-has-2s-2x-3a-1a-32-2t-2t-2s-37-2r-30-2x-2r-2z-1m-2w-2p-37-14-1q-w-z-36-2x-2r-2w-19-38-2t-3c-38-19-1d-1c-1j-1d-1l-1g-1c-1f-1j-15]:not(#does-not-exist):not(does-not-exist),.js-has-pseudo [csstools-has-2s-2x-3a-1a-32-2t-2t-2s-37-2r-30-2x-2r-2z-1m-2w-2p-37-14-1q-w-z-36-2x-2r-2w-19-38-2t-3c-38-19-1d-1c-1j-1d-1l-1h-1c-1j-1j-15]:not(#does-not-exist):not(does-not-exist){padding-top:20px!important}div.needsclick:has(>#rich-text-111704229),div.needsclick:has(>#rich-text-107195066),div.needsclick:has(>#rich-text-107194031),div.needsclick:has(>#rich-text-111704235),div.needsclick:has(>#rich-text-107194037),div.needsclick:has(>#rich-text-107195077){padding-top:20px!important}}.os-popup-title{color:#333!important;font-family:adobe-garamond-pro,serif!important;font-size:38px!important;font-weight:400!important;line-height:46px!important;margin-bottom:-15px!important;padding-bottom:0!important}.js-has-pseudo [csstools-has-1a-33-37-19-34-33-34-39-34-19-38-2x-38-30-2t-1m-2w-2p-37-14-1a-33-37-19-30-33-3b-19-37-2x-3e-2t-15]:not(.does-not-exist){font-size:38px!important}.os-popup-title:has(.os-low-size){font-size:38px!important}@media (max-width: 768px){.os-popup-title{font-size:32px!important;line-height:38px!important}}.js-has-pseudo [csstools-has-2s-2x-3a-1m-2w-2p-37-14-1q-w-1a-33-37-19-34-33-34-39-34-19-38-2x-38-30-2t-15]:not(does-not-exist){padding-bottom:0!important}div:has(>.os-popup-title){padding-bottom:0!important}@media (max-width: 768px){.js-has-pseudo [csstools-has-2s-2x-3a-1m-2w-2p-37-14-1q-w-1a-33-37-19-34-33-34-39-34-19-38-2x-38-30-2t-15]:not(does-not-exist){padding-top:10px!important}div:has(>.os-popup-title){padding-top:10px!important}}.os-first-descr{color:#646464!important;font-family:Arial!important;font-size:16px!important;font-weight:400!important;line-height:22px!important;text-align:left}.os-first-descr--enhance span{padding-top:4px}@media (max-width: 768px){.js-has-pseudo [csstools-has-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-1p-13-2u-33-36-31-19-36-33-3b-13-2l-1m-2w-2p-37-14-1a-33-37-19-2u-2x-36-37-38-19-2s-2t-37-2r-36-19-19-2t-32-2w-2p-32-2r-2t-15]:not(.does-not-exist){margin-bottom:20px}[data-testid=form-row]:has(.os-first-descr--enhance){margin-bottom:20px}}.crs-promo-form__title,.os-popup-title>p:first-child span{color:#333!important;font-family:adobe-garamond-pro,serif!important;font-size:32px!important;font-weight:400;line-height:40px;margin-top:-40px;margin-bottom:-15px}.crs-promo-form__title{margin-top:0!important;margin-bottom:10px!important}@media (max-width: 768px){.crs-promo-form__title{margin-top:10px!important}}.crs-promo-form__list{color:#646464;margin-bottom:10px;padding-left:25px;line-height:22px}form[data-testid^=klaviyo-form] [id^=first_name]{display:none}form[data-testid^=klaviyo-form] [id^=email],form[data-testid^=klaviyo-form] [id^=DateOfBirth]{margin-bottom:0;border:solid 1px #ccc!important;min-height:54px!important}form[data-testid^=klaviyo-form] [id^=email]{margin-bottom:14px!important}.js-has-pseudo [csstools-has-2u-33-36-31-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-13-2z-30-2p-3a-2x-3d-33-19-2u-33-36-31-13-2l-1m-2w-2p-37-14-2j-2x-2s-2m-1p-13-1w-2p-38-2t-27-2u-1u-2x-36-38-2w-13-2l-15-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-1p-13-2u-33-36-31-19-36-33-3b-13-2l]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist){margin-bottom:20px}form[data-testid^=klaviyo-form]:has([id^=DateOfBirth]) [data-testid=form-row]{margin-bottom:20px}.js-has-pseudo [csstools-has-2u-33-36-31-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-13-2z-30-2p-3a-2x-3d-33-19-2u-33-36-31-13-2l-1m-2w-2p-37-14-2j-2x-2s-2m-1p-13-1w-2p-38-2t-27-2u-1u-2x-36-38-2w-13-2l-15-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-1p-13-2u-33-36-31-19-36-33-3b-13-2l-w-1q-w-2s-2x-3a]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist){padding-top:0!important;padding-bottom:0!important}form[data-testid^=klaviyo-form]:has([id^=DateOfBirth]) [data-testid=form-row]>div{padding-top:0!important;padding-bottom:0!important}@media (min-width: 768px){.js-has-pseudo [csstools-has-2u-33-36-31-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-13-2z-30-2p-3a-2x-3d-33-19-2u-33-36-31-13-2l-1m-2w-2p-37-14-2j-2x-2s-2m-1p-13-1w-2p-38-2t-27-2u-1u-2x-36-38-2w-13-2l-15-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-1p-13-2u-33-36-31-19-36-33-3b-13-2l-1m-2u-2x-36-37-38-19-33-2u-19-38-3d-34-2t]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist){margin-bottom:33px}form[data-testid^=klaviyo-form]:has([id^=DateOfBirth]) [data-testid=form-row]:first-of-type{margin-bottom:33px}}.js-has-pseudo [csstools-has-2u-33-36-31-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-13-2z-30-2p-3a-2x-3d-33-19-2u-33-36-31-13-2l-1m-2w-2p-37-14-2j-2x-2s-2m-1p-13-1w-2p-38-2t-27-2u-1u-2x-36-38-2w-13-2l-15-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-1p-13-2u-33-36-31-19-36-33-3b-13-2l-1m-2w-2p-37-14-1a-33-37-19-37-39-2q-31-2x-38-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist){margin-bottom:0}form[data-testid^=klaviyo-form]:has([id^=DateOfBirth]) [data-testid=form-row]:has(.os-submit){margin-bottom:0}.js-has-pseudo [csstools-has-2u-33-36-31-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-13-2z-30-2p-3a-2x-3d-33-19-2u-33-36-31-13-2l-1m-2w-2p-37-14-2j-2x-2s-2m-1p-13-1w-2p-38-2t-27-2u-1u-2x-36-38-2w-13-2l-15-w-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-1p-13-2u-33-36-31-19-36-33-3b-13-2l-1m-32-38-2w-19-33-2u-19-38-3d-34-2t-14-1e-15]:not(.does-not-exist):not(.does-not-exist):not(.does-not-exist):not(does-not-exist){padding-bottom:10px}form[data-testid^=klaviyo-form]:has([id^=DateOfBirth]) [data-testid=form-row]:nth-of-type(2){padding-bottom:10px}.js-has-pseudo [csstools-has-2s-2x-3a-1m-2w-2p-37-14-2u-33-36-31-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-13-2z-30-2p-3a-2x-3d-33-19-2u-33-36-31-13-2l-15-w-2q-39-38-38-33-32-1a-2z-30-2p-3a-2x-3d-33-19-2r-30-33-37-2t-19-2u-33-36-31]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){background:url('data:image/svg+xml,<svg width="21" height="21" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(%23a)"><path d="m6 2 9 9m-9 0 9-9" stroke="%23fff" stroke-width="2.325" stroke-linecap="round" stroke-linejoin="round" shape-rendering="crispEdges"/></g><defs><filter id="a" x=".837" y=".837" width="19.325" height="19.325" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/><feOffset dy="4"/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1281_6731"/><feBlend in="SourceGraphic" in2="effect1_dropShadow_1281_6731" result="shape"/></filter></defs></svg>');background-repeat:no-repeat;background-position:center}div:has(form[data-testid^=klaviyo-form]) button.klaviyo-close-form{background:url('data:image/svg+xml,<svg width="21" height="21" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(%23a)"><path d="m6 2 9 9m-9 0 9-9" stroke="%23fff" stroke-width="2.325" stroke-linecap="round" stroke-linejoin="round" shape-rendering="crispEdges"/></g><defs><filter id="a" x=".837" y=".837" width="19.325" height="19.325" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/><feOffset dy="4"/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1281_6731"/><feBlend in="SourceGraphic" in2="effect1_dropShadow_1281_6731" result="shape"/></filter></defs></svg>');background-repeat:no-repeat;background-position:center}.js-has-pseudo [csstools-has-2s-2x-3a-1m-2w-2p-37-14-2u-33-36-31-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-13-2z-30-2p-3a-2x-3d-33-19-2u-33-36-31-13-2l-15-w-2q-39-38-38-33-32-1a-2z-30-2p-3a-2x-3d-33-19-2r-30-33-37-2t-19-2u-33-36-31-1m-2w-33-3a-2t-36]:not(.does-not-exist):not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){border:none}div:has(form[data-testid^=klaviyo-form]) button.klaviyo-close-form:hover{border:none}.js-has-pseudo [csstools-has-2s-2x-3a-1m-2w-2p-37-14-2u-33-36-31-2j-2s-2p-38-2p-19-38-2t-37-38-2x-2s-2m-1p-13-2z-30-2p-3a-2x-3d-33-19-2u-33-36-31-13-2l-15-w-2q-39-38-38-33-32-1a-2z-30-2p-3a-2x-3d-33-19-2r-30-33-37-2t-19-2u-33-36-31-w-37-3a-2v]:not(.does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist):not(does-not-exist){display:none}div:has(form[data-testid^=klaviyo-form]) button.klaviyo-close-form svg{display:none}label[id^=label-DateOfBirth],label[id^=kl_Content]{font-size:12px!important;margin-bottom:6px!important;padding-bottom:0!important;line-height:22px!important}form[data-testid^=klaviyo-form] div[role=group] label{line-height:22px!important;padding-bottom:10px!important}form[data-testid^=klaviyo-form] div[role=group] label>div{line-height:22px}form[data-testid^=klaviyo-form] div[role=group] input{margin:0!important}.crs-promo-form__close{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;justify-content:center;align-items:center;padding-bottom:50px}@media (max-width: 768px){.crs-promo-form__close{padding-bottom:0}}.crs-promo-form__close-btn,.crs-promo-form__close-btn:focus,.crs-promo-form__close-btn:hover,.crs-promo-form__enhance,.crs-promo-form__enhance:focus,.crs-promo-form__enhance:hover{background:none;border:none;padding:0;height:36px;margin-top:10px;cursor:pointer;color:#646464;color:var(--MSB-UI-Dark-gray, #646464);text-align:center;font-size:14px;font-weight:700;line-height:22px;letter-spacing:2px;text-transform:uppercase}.crs-promo-form__close-btn,.crs-promo-form__close-btn:focus,.crs-promo-form__close-btn:hover{margin-top:0}.crs-promo-form__img{transform:scaleX(-1)!important;background-position:85% 50%!important}.crs-promo-form{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;align-items:center}@media (max-width: 768px){.crs-promo-form{flex-direction:column}}.crs-promo-form__content{padding:0 20px}.crs-promo-form__descr{color:#646464;font-size:16px;line-height:22px}.crs-promo-form__actions{margin-top:24px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:flex;flex-direction:column;align-items:center}.crs-promo-form__continue,.crs-promo-form__continue:focus,.crs-promo-form__continue:hover{width:100%;min-height:54px;background:#a11a17;color:#fff;color:var(--Untitled-White, #fff);text-align:center;font-size:14px;font-weight:700;line-height:22px;letter-spacing:2px;text-transform:uppercase}.crs-promo-form .crs-promocode{gap:8px}@media (min-width: 768px){.crs-promo-form__list{margin-top:20px;padding-left:25px}.os-popup-title,.crs-promo-form__title,.os-popup-title>p:first-child span{font-size:40px!important;line-height:46px;margin-top:0}[data-testid^=klaviyo-form]{width:890px!important}[data-testid^=klaviyo-form]>div{min-width:50%!important}.crs-promo-form__content{padding-bottom:0!important;padding:50px 36px 20px;margin-bottom:50px}.crs-promo-form .crs-promocode{gap:8px}.crs-promo-form__content .crs-promocode__code{padding:12px!important}}`, ot = 'input[aria-label="First Name*"]', rt = 50, te = '.needsclick[role="dialog"]', O = 'div[role="dialog"] .klaviyo-close-form', ie = ".crs-promo-form", nt = ".crs-promo-form__enhance", at = ".crs-promo-form__continue", ue = 'form[data-testid^="klaviyo-form"]:has([id^="first_name"])', fe = (i) => ({
     closeBtn: (e) => {
       i();
     },
@@ -277,7 +277,7 @@
         L("exp_pop_car_retent_2_but_firorduca_clos", `Close - ${f}`, "click", "Pop up Get 10% Off");
       }), s = new MutationObserver((f) => {
         f.forEach((g) => {
-          const b = g.target.querySelector('[id^="DateOfBirth"]'), x = b == null ? void 0 : b.closest("form > div");
+          const h = g.target, b = h.querySelector('[id^="DateOfBirth"]') || h.querySelector('[id^="Birthday"]'), x = b == null ? void 0 : b.closest("form > div");
           x && x.dataset.hidden !== "not-hidden" && this.handleEnhanceForm(x, s, t);
         });
       }), o = await q(ue);
@@ -289,7 +289,7 @@
         });
       }
       (l = A(O)) == null || l.removeEventListener("click", t.closeBtn), (n = A(O)) == null || n.addEventListener("click", t.closeBtn);
-      const r = A(ee);
+      const r = A(te);
       r && ((d = r.parentElement) == null || d.removeEventListener("mousedown", t.closeByClickOutside), (c = r.parentElement) == null || c.addEventListener("mousedown", t.closeByClickOutside));
       const a = (u = A(".os-popup-title")) == null ? void 0 : u.textContent;
       V(
@@ -335,16 +335,16 @@
       var c, u, f, g, h, b, x, p;
       t.disconnect(), e.style.display = "none";
       const o = this.getNewPopupWithPromoHtml();
-      if (A(te))
+      if (A(ie))
         return;
       e.closest("form").insertAdjacentHTML("afterbegin", o);
       const a = (c = A(".crs-promo-form__title")) == null ? void 0 : c.textContent;
       V(
-        te,
+        ie,
         "exp_pop_car_retent_2_vis_youlisuca_view",
         `Pop up view - ${a}`,
         "Pop up You are on the list"
-      ), new Te(".crs-promocode__container", J.WELCOME10), (u = A(".crs-promo-form .crs-promocode__copy-btn")) == null || u.addEventListener("click", () => {
+      ), new Te(".crs-promocode__container", ee.WELCOME10), (u = A(".crs-promo-form .crs-promocode__copy-btn")) == null || u.addEventListener("click", () => {
         var w;
         const m = (w = A(".crs-promo-form__title")) == null ? void 0 : w.textContent;
         L(
@@ -354,14 +354,14 @@
           "Pop up You are on the list"
         );
       }), this.updateCloseBtnEvent(s), (f = A(O)) == null || f.removeEventListener("click", s.closeBtn);
-      const l = A(ee);
+      const l = A(te);
       (g = l == null ? void 0 : l.parentElement) == null || g.removeEventListener("mousedown", s.closeByClickOutside);
       const d = fe(() => {
         L("exp_pop_car_retent_2_but_youlisuca_clos", `Close - ${a}`, "click", "Pop up You are on the list");
       });
       if ((h = l == null ? void 0 : l.parentElement) == null || h.addEventListener("mousedown", d.closeByClickOutside), (b = A(O)) == null || b.addEventListener("click", d.closeBtn), this.device === "Mobile") {
         const m = (x = e.querySelector('[data-testid="form-row"]:first-child')) == null ? void 0 : x.cloneNode(!0);
-        (p = A(te)) == null || p.prepend(m);
+        (p = A(ie)) == null || p.prepend(m);
       }
       this.addContinueButtonListener(d), this.addEnhanceButtonListener(e, t, d);
     }
@@ -454,10 +454,10 @@
     }
     handleEnhanceButtonClick(e, t, s) {
       e.style.display = "block", e.dataset.hidden = "not-hidden";
-      const o = A(te);
+      const o = A(ie);
       o.style.display = "none";
-      const r = A("form.klaviyo-form-version-cid_3");
-      t.observe(r, {
+      const r = A("form.klaviyo-form-version-cid_3") || A("form.klaviyo-form-version-cid_2");
+      r && t.observe(r, {
         childList: !0,
         subtree: !0
       }), this.updateComponentItems(s);
@@ -471,9 +471,10 @@
           d && (d.style.display = "none");
         }
         if (s.innerText.includes("SUBMIT")) {
-          const d = A(O), c = A(ee);
+          const d = A(O), c = A(te);
           R("button.needsclick").forEach((w) => {
-            w.textContent === "SUBMIT" && w.classList.add("os-submit");
+            var v;
+            w.textContent === "SUBMIT" && w.classList.add("os-submit"), (v = w.textContent) != null && v.includes("SKIP AND REVEAL CODE") && (w.style.display = "none");
           }), d.removeEventListener("click", e.closeBtn), (a = c == null ? void 0 : c.parentElement) == null || a.removeEventListener("mousedown", e.closeByClickOutside);
           const f = '[id^="DateOfBirth"]', g = c == null ? void 0 : c.querySelectorAll('div[id^="rich-text"]');
           g == null || g.forEach((w) => {
@@ -535,16 +536,16 @@
           s.forEach((o) => {
             var r;
             if (o.isIntersecting && (this.inputInterval = setInterval(() => this.setInputValue(), rt)), o.isIntersecting) {
-              const a = A(ee);
+              const a = A(te);
               if (!a)
                 return;
               const l = (c) => {
                 var f;
-                c.target.closest('div[role="dialog"]') || (sessionStorage.setItem(ce, "true"), (f = a.parentElement) == null || f.removeEventListener("mousedown", l));
+                c.target.closest('div[role="dialog"]') || (sessionStorage.setItem(X, "true"), (f = a.parentElement) == null || f.removeEventListener("mousedown", l));
               };
               (r = a.parentElement) == null || r.addEventListener("mousedown", l);
               const n = A(O), d = () => {
-                sessionStorage.setItem(ce, "true"), n == null || n.removeEventListener("click", d);
+                sessionStorage.setItem(X, "true"), n == null || n.removeEventListener("click", d);
               };
               n == null || n.addEventListener("click", d);
             }
@@ -566,7 +567,7 @@
       this.country = e, this.device = t, this.init();
     }
     init() {
-      this.render(), this.closePopupHandlers(), new Te("#cart-popup .os-promocode-container", J.WELCOME15);
+      this.render(), this.closePopupHandlers(), new Te("#cart-popup .os-promocode-container", ee.WELCOME15);
     }
     render() {
       const e = (
@@ -645,7 +646,7 @@
       );
       const l = this.popup.querySelector(".os-checkout");
       l == null || l.addEventListener("click", () => {
-        sessionStorage.setItem(X, J.WELCOME15), setTimeout(() => {
+        sessionStorage.setItem(Z, ee.WELCOME15), setTimeout(() => {
           location.href = "/checkout";
         }), L(
           "exp_pop_car_retent_2_but_popchecuca_comp",
@@ -826,7 +827,7 @@
   function ge(i, e) {
     return e === void 0 && (e = 0), setTimeout(i, e);
   }
-  function ie() {
+  function se() {
     return Date.now();
   }
   function mt(i) {
@@ -841,7 +842,7 @@
     const a = mt(i);
     return t.WebKitCSSMatrix ? (o = a.transform || a.webkitTransform, o.split(",").length > 6 && (o = o.split(", ").map((l) => l.replace(",", ".")).join(", ")), r = new t.WebKitCSSMatrix(o === "none" ? "" : o)) : (r = a.MozTransform || a.OTransform || a.MsTransform || a.msTransform || a.transform || a.getPropertyValue("transform").replace("translate(", "matrix(1, 0, 0, 1,"), s = r.toString().split(",")), e === "x" && (t.WebKitCSSMatrix ? o = r.m41 : s.length === 16 ? o = parseFloat(s[12]) : o = parseFloat(s[4])), e === "y" && (t.WebKitCSSMatrix ? o = r.m42 : s.length === 16 ? o = parseFloat(s[13]) : o = parseFloat(s[5])), o || 0;
   }
-  function se(i) {
+  function oe(i) {
     return typeof i == "object" && i !== null && i.constructor && Object.prototype.toString.call(i).slice(8, -1) === "Object";
   }
   function ht(i) {
@@ -855,13 +856,13 @@
         const o = Object.keys(Object(s)).filter((r) => e.indexOf(r) < 0);
         for (let r = 0, a = o.length; r < a; r += 1) {
           const l = o[r], n = Object.getOwnPropertyDescriptor(s, l);
-          n !== void 0 && n.enumerable && (se(i[l]) && se(s[l]) ? s[l].__swiper__ ? i[l] = s[l] : $(i[l], s[l]) : !se(i[l]) && se(s[l]) ? (i[l] = {}, s[l].__swiper__ ? i[l] = s[l] : $(i[l], s[l])) : i[l] = s[l]);
+          n !== void 0 && n.enumerable && (oe(i[l]) && oe(s[l]) ? s[l].__swiper__ ? i[l] = s[l] : $(i[l], s[l]) : !oe(i[l]) && oe(s[l]) ? (i[l] = {}, s[l].__swiper__ ? i[l] = s[l] : $(i[l], s[l])) : i[l] = s[l]);
         }
       }
     }
     return i;
   }
-  function oe(i, e, t) {
+  function re(i, e, t) {
     i.style.setProperty(e, t);
   }
   function Le(i) {
@@ -895,14 +896,14 @@
   function H(i, e) {
     return e === void 0 && (e = ""), [...i.children].filter((t) => t.matches(e));
   }
-  function re(i) {
+  function ne(i) {
     try {
       console.warn(i);
       return;
     } catch {
     }
   }
-  function ne(i, e) {
+  function ae(i, e) {
     e === void 0 && (e = []);
     const t = document.createElement(i);
     return t.classList.add(...Array.isArray(e) ? e : ut(e)), t;
@@ -926,7 +927,7 @@
   function F(i, e) {
     return B().getComputedStyle(i, null).getPropertyValue(e);
   }
-  function ae(i) {
+  function le(i) {
     let e = i, t;
     if (e) {
       for (t = 0; (e = e.previousSibling) !== null; )
@@ -1190,7 +1191,7 @@
       return;
     typeof w == "string" && w.indexOf("%") >= 0 ? w = parseFloat(w.replace("%", "")) / 100 * r : typeof w == "string" && (w = parseFloat(w)), i.virtualSize = -w, c.forEach((y) => {
       a ? y.style.marginLeft = "" : y.style.marginRight = "", y.style.marginBottom = "", y.style.marginTop = "";
-    }), t.centeredSlides && t.cssMode && (oe(s, "--swiper-centered-offset-before", ""), oe(s, "--swiper-centered-offset-after", ""));
+    }), t.centeredSlides && t.cssMode && (re(s, "--swiper-centered-offset-before", ""), re(s, "--swiper-centered-offset-after", ""));
     const j = t.grid && t.grid.rows > 1 && i.grid;
     j ? i.grid.initSlides(c) : i.grid && i.grid.unsetSlides();
     let T;
@@ -1273,7 +1274,7 @@
       slidesGrid: g,
       slidesSizesGrid: h
     }), t.centeredSlides && t.cssMode && !t.centeredSlidesBounds) {
-      oe(s, "--swiper-centered-offset-before", `${-f[0]}px`), oe(s, "--swiper-centered-offset-after", `${i.size / 2 - h[h.length - 1] / 2}px`);
+      re(s, "--swiper-centered-offset-before", `${-f[0]}px`), re(s, "--swiper-centered-offset-after", `${i.size / 2 - h[h.length - 1] / 2}px`);
       const y = -i.snapGrid[0], C = -i.slidesGrid[0];
       i.snapGrid = i.snapGrid.map((_) => _ + y), i.slidesGrid = i.slidesGrid.map((_) => _ + C);
     }
@@ -1390,7 +1391,7 @@
       a ? (n = e.filter((u) => u.column === o)[0], c = e.filter((u) => u.column === o + 1)[0], d = e.filter((u) => u.column === o - 1)[0]) : n = e[o];
     n && (n.classList.add(t.slideActiveClass), a ? (c && c.classList.add(t.slideNextClass), d && d.classList.add(t.slidePrevClass)) : (c = bt(n, `.${t.slideClass}, swiper-slide`)[0], t.loop && !c && (c = e[0]), c && c.classList.add(t.slideNextClass), d = wt(n, `.${t.slideClass}, swiper-slide`)[0], t.loop && !d === 0 && (d = e[e.length - 1]), d && d.classList.add(t.slidePrevClass))), i.emitSlidesClasses();
   }
-  const le = (i, e) => {
+  const de = (i, e) => {
     if (!i || i.destroyed || !i.params)
       return;
     const t = () => i.isElement ? "swiper-slide" : `.${i.params.slideClass}`, s = e.closest(t());
@@ -1884,7 +1885,7 @@
       });
     }, r = e.grid && t.grid && t.grid.rows > 1, a = t.slidesPerGroup * (r ? t.grid.rows : 1), l = e.slides.length % a !== 0, n = r && e.slides.length % t.grid.rows !== 0, d = (c) => {
       for (let u = 0; u < c; u += 1) {
-        const f = e.isElement ? ne("swiper-slide", [t.slideBlankClass]) : ne("div", [t.slideClass, t.slideBlankClass]);
+        const f = e.isElement ? ae("swiper-slide", [t.slideBlankClass]) : ae("div", [t.slideClass, t.slideBlankClass]);
         e.slidesEl.append(f);
       }
     };
@@ -1893,14 +1894,14 @@
         const c = a - e.slides.length % a;
         d(c), e.recalcSlides(), e.updateSlides();
       } else
-        re("Swiper Loop Warning: The number of slides is not even to slidesPerGroup, loop mode may not function properly. You need to add more slides (or make duplicates, or empty slides)");
+        ne("Swiper Loop Warning: The number of slides is not even to slidesPerGroup, loop mode may not function properly. You need to add more slides (or make duplicates, or empty slides)");
       o();
     } else if (n) {
       if (t.loopAddBlankSlides) {
         const c = t.grid.rows - e.slides.length % t.grid.rows;
         d(c), e.recalcSlides(), e.updateSlides();
       } else
-        re("Swiper Loop Warning: The number of slides is not even to grid.rows, loop mode may not function properly. You need to add more slides (or make duplicates, or empty slides)");
+        ne("Swiper Loop Warning: The number of slides is not even to grid.rows, loop mode may not function properly. You need to add more slides (or make duplicates, or empty slides)");
       o();
     } else
       o();
@@ -1942,7 +1943,7 @@
     let p = x;
     p % x !== 0 && (p += x - p % x), p += g.loopAdditionalSlides, n.loopedSlides = p;
     const m = n.grid && g.grid && g.grid.rows > 1;
-    d.length < b + p ? re("Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters") : m && g.grid.fill === "row" && re("Swiper Loop Warning: Loop mode is not compatible with grid.fill = `row`");
+    d.length < b + p ? ne("Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters") : m && g.grid.fill === "row" && ne("Swiper Loop Warning: Loop mode is not compatible with grid.fill = `row`");
     const w = [], v = [];
     let S = n.activeIndex;
     typeof r > "u" ? r = n.getSlideIndex(d.filter((k) => k.classList.contains(g.slideActiveClass))[0]) : S = r;
@@ -2119,7 +2120,7 @@
       allowTouchCallbacks: !0,
       isScrolling: void 0,
       startMoving: void 0
-    }), a.startX = g, a.startY = h, o.touchStartTime = ie(), e.allowClick = !0, e.updateSize(), e.swipeDirection = void 0, r.threshold > 0 && (o.allowThresholdMove = !1);
+    }), a.startX = g, a.startY = h, o.touchStartTime = se(), e.allowClick = !0, e.updateSize(), e.swipeDirection = void 0, r.threshold > 0 && (o.allowThresholdMove = !1);
     let b = !0;
     n.matches(o.focusableElements) && (b = !1, n.nodeName === "SELECT" && (o.isTouched = !1)), t.activeElement && t.activeElement.matches(o.focusableElements) && t.activeElement !== n && t.activeElement.blur();
     const x = b && e.allowTouchMove && r.touchStartPreventDefault;
@@ -2158,7 +2159,7 @@
         startY: u,
         currentX: c,
         currentY: u
-      }), s.touchStartTime = ie());
+      }), s.touchStartTime = se());
       return;
     }
     if (o.touchReleaseOnEdges && !o.loop) {
@@ -2269,12 +2270,12 @@
       return;
     }
     a.grabCursor && t.isMoved && t.isTouched && (e.allowSlideNext === !0 || e.allowSlidePrev === !0) && e.setGrabCursor(!1);
-    const u = ie(), f = u - t.touchStartTime;
+    const u = se(), f = u - t.touchStartTime;
     if (e.allowClick) {
       const S = s.path || s.composedPath && s.composedPath();
       e.updateClickedSlide(S && S[0] || s.target, S), e.emit("tap click", s), f < 300 && u - t.lastClickTime < 300 && e.emit("doubleTap doubleClick", s);
     }
-    if (t.lastClickTime = ie(), ge(() => {
+    if (t.lastClickTime = se(), ge(() => {
       e.destroyed || (e.allowClick = !0);
     }), !t.isTouched || !t.isMoved || !e.swipeDirection || l.diff === 0 && !t.loopSwapReset || t.currentTranslate === t.startTranslate && !t.loopSwapReset) {
       t.isTouched = !1, t.isMoved = !1, t.startMoving = !1;
@@ -2351,7 +2352,7 @@
   }
   function mi(i) {
     const e = this;
-    le(e, i.target), !(e.params.cssMode || e.params.slidesPerView !== "auto" && !e.params.autoHeight) && e.update();
+    de(e, i.target), !(e.params.cssMode || e.params.slidesPerView !== "auto" && !e.params.autoHeight) && e.update();
   }
   function gi() {
     const i = this;
@@ -2810,8 +2811,8 @@
       const {
         slidesEl: t,
         params: s
-      } = this, o = H(t, `.${s.slideClass}, swiper-slide`), r = ae(o[0]);
-      return ae(e) - r;
+      } = this, o = H(t, `.${s.slideClass}, swiper-slide`), r = le(o[0]);
+      return le(e) - r;
     }
     getSlideIndexByData(e) {
       return this.getSlideIndex(this.slides.filter((t) => t.getAttribute("data-swiper-slide-index") * 1 === e)[0]);
@@ -2897,7 +2898,7 @@
         params: s
       } = e;
       s.breakpoints && e.setBreakpoint(), [...e.el.querySelectorAll('[loading="lazy"]')].forEach((a) => {
-        a.complete && le(e, a);
+        a.complete && de(e, a);
       }), e.updateSize(), e.updateSlides(), e.updateProgress(), e.updateSlidesClasses();
       function o() {
         const a = e.rtlTranslate ? e.translate * -1 : e.translate, l = Math.min(Math.max(a, e.maxTranslate()), e.minTranslate());
@@ -2937,7 +2938,7 @@
       s.swiper = t, s.parentNode && s.parentNode.host && s.parentNode.host.nodeName === t.params.swiperElementNodeName.toUpperCase() && (t.isElement = !0);
       const o = () => `.${(t.params.wrapperClass || "").trim().split(" ").join(".")}`;
       let a = s && s.shadowRoot && s.shadowRoot.querySelector ? s.shadowRoot.querySelector(o()) : H(s, o())[0];
-      return !a && t.params.createElements && (a = ne("div", t.params.wrapperClass), s.append(a), H(s, `.${t.params.slideClass}`).forEach((l) => {
+      return !a && t.params.createElements && (a = ae("div", t.params.wrapperClass), s.append(a), H(s, `.${t.params.slideClass}`).forEach((l) => {
         a.append(l);
       })), Object.assign(t, {
         el: s,
@@ -2958,8 +2959,8 @@
       t.emit("beforeInit"), t.params.breakpoints && t.setBreakpoint(), t.addClasses(), t.updateSize(), t.updateSlides(), t.params.watchOverflow && t.checkOverflow(), t.params.grabCursor && t.enabled && t.setGrabCursor(), t.params.loop && t.virtual && t.params.virtual.enabled ? t.slideTo(t.params.initialSlide + t.virtual.slidesBefore, 0, t.params.runCallbacksOnInit, !1, !0) : t.slideTo(t.params.initialSlide, 0, t.params.runCallbacksOnInit, !1, !0), t.params.loop && t.loopCreate(), t.attachEvents();
       const o = [...t.el.querySelectorAll('[loading="lazy"]')];
       return t.isElement && o.push(...t.hostEl.querySelectorAll('[loading="lazy"]')), o.forEach((r) => {
-        r.complete ? le(t, r) : r.addEventListener("load", (a) => {
-          le(t, a.target);
+        r.complete ? de(t, r) : r.addEventListener("load", (a) => {
+          de(t, a.target);
         });
       }), ye(t), t.initialized = !0, ye(t), t.emit("init"), t.emit("afterInit"), t;
     }
@@ -3004,7 +3005,7 @@
     return i.params.createElements && Object.keys(s).forEach((o) => {
       if (!t[o] && t.auto === !0) {
         let r = H(i.el, `.${s[o]}`)[0];
-        r || (r = ne("div", s[o]), r.className = s[o], i.el.append(r)), t[o] = r, e[o] = r;
+        r || (r = ae("div", s[o]), r.className = s[o], i.el.append(r)), t[o] = r, e[o] = r;
       }
     }), t;
   }
@@ -3127,7 +3128,7 @@
       destroy: u
     });
   }
-  function Q(i) {
+  function K(i) {
     return i === void 0 && (i = ""), `.${i.trim().replace(/([\.:!+\/])/g, "\\$1").replace(/ /g, ".")}`;
   }
   function Mi(i) {
@@ -3184,11 +3185,11 @@
       p && (p = p[`${m === "prev" ? "previous" : "next"}ElementSibling`], p && (p.classList.add(`${w}-${m}`), p = p[`${m === "prev" ? "previous" : "next"}ElementSibling`], p && p.classList.add(`${w}-${m}-${m}`)));
     }
     function c(p) {
-      const m = p.target.closest(Q(e.params.pagination.bulletClass));
+      const m = p.target.closest(K(e.params.pagination.bulletClass));
       if (!m)
         return;
       p.preventDefault();
-      const w = ae(m) * e.params.slidesPerGroup;
+      const w = le(m) * e.params.slidesPerGroup;
       if (e.params.loop) {
         if (e.realIndex === w)
           return;
@@ -3214,7 +3215,7 @@
           _.classList.remove(...k);
         }), w.length > 1)
           T.forEach((_) => {
-            const k = ae(_);
+            const k = le(_);
             k === v ? _.classList.add(...m.bulletActiveClass.split(" ")) : e.isElement && _.setAttribute("part", "bullet"), m.dynamicBullets && (k >= z && k <= y && _.classList.add(...`${m.bulletActiveClass}-main`.split(" ")), k === z && d(_, "prev"), k === y && d(_, "next"));
           });
         else {
@@ -3236,16 +3237,16 @@
         }
       }
       w.forEach((T, z) => {
-        if (m.type === "fraction" && (T.querySelectorAll(Q(m.currentClass)).forEach((y) => {
+        if (m.type === "fraction" && (T.querySelectorAll(K(m.currentClass)).forEach((y) => {
           y.textContent = m.formatFractionCurrent(v + 1);
-        }), T.querySelectorAll(Q(m.totalClass)).forEach((y) => {
+        }), T.querySelectorAll(K(m.totalClass)).forEach((y) => {
           y.textContent = m.formatFractionTotal(j);
         })), m.type === "progressbar") {
           let y;
           m.progressbarOpposite ? y = e.isHorizontal() ? "vertical" : "horizontal" : y = e.isHorizontal() ? "horizontal" : "vertical";
           const C = (v + 1) / j;
           let _ = 1, k = 1;
-          y === "horizontal" ? _ = C : k = C, T.querySelectorAll(Q(m.progressbarFillClass)).forEach((E) => {
+          y === "horizontal" ? _ = C : k = C, T.querySelectorAll(K(m.progressbarFillClass)).forEach((E) => {
             E.style.transform = `translate3d(0,0,0) scaleX(${_}) scaleY(${k})`, E.style.transitionDuration = `${e.params.speed}ms`;
           });
         }
@@ -3267,7 +3268,7 @@
           p.renderBullet ? v += p.renderBullet.call(e, P, p.bulletClass) : v += `<${p.bulletElement} ${e.isElement ? 'part="bullet"' : ""} class="${p.bulletClass}"></${p.bulletElement}>`;
       }
       p.type === "fraction" && (p.renderFraction ? v = p.renderFraction.call(e, p.currentClass, p.totalClass) : v = `<span class="${p.currentClass}"></span> / <span class="${p.totalClass}"></span>`), p.type === "progressbar" && (p.renderProgressbar ? v = p.renderProgressbar.call(e, p.progressbarFillClass) : v = `<span class="${p.progressbarFillClass}"></span>`), e.pagination.bullets = [], w.forEach((S) => {
-        p.type !== "custom" && (S.innerHTML = v || ""), p.type === "bullets" && e.pagination.bullets.push(...S.querySelectorAll(Q(p.bulletClass)));
+        p.type !== "custom" && (S.innerHTML = v || ""), p.type === "bullets" && e.pagination.bullets.push(...S.querySelectorAll(K(p.bulletClass)));
       }), p.type !== "custom" && o("paginationRender", w[0]);
     }
     function g() {
@@ -3357,7 +3358,7 @@
       this.cartItem = null, this.country = G.UK, this.country = e;
     }
     updateCart() {
-      const e = sessionStorage.getItem(K), t = sessionStorage.getItem("CRS_DISCOUNT");
+      const e = sessionStorage.getItem(J), t = sessionStorage.getItem("CRS_DISCOUNT");
       if (!e || !t)
         return;
       const { giftId: s, colour: o } = JSON.parse(e);
@@ -3365,7 +3366,7 @@
     }
     async addGiftToCart({ giftId: e, colour: t }) {
       var g;
-      const s = Z.find((h) => h.id === parseInt(e));
+      const s = Q.find((h) => h.id === parseInt(e));
       if (!s)
         return;
       const o = (
@@ -3505,20 +3506,20 @@
       ), r = await q(".mobile-basket-block #mini-cart"), a = await q(".block-minicart #mini-cart"), l = r, n = a;
       n && n.insertAdjacentHTML("beforeend", o), l && l.insertAdjacentHTML("beforeend", o);
       const d = A(".counter-number"), c = A(".mobile-basket__btn span");
-      de(d, "add"), de(c, "add");
-      const u = (g = Z.find((h) => h.id === parseInt(e))) == null ? void 0 : g.name;
-      sessionStorage.setItem(K, JSON.stringify({ giftId: e, colour: t, name: u })), R('li.item.product.product-item[data-os="product-item"]').forEach((h) => {
+      ce(d, "add"), ce(c, "add");
+      const u = (g = Q.find((h) => h.id === parseInt(e))) == null ? void 0 : g.name;
+      sessionStorage.setItem(J, JSON.stringify({ giftId: e, colour: t, name: u })), R('li.item.product.product-item[data-os="product-item"]').forEach((h) => {
         var x;
         const b = h;
         (x = b.querySelector(".action.delete")) == null || x.addEventListener("click", (p) => {
           p.preventDefault();
           const m = b.dataset.osid;
-          R(`li.item.product.product-item[data-os="product-item"][data-osid="${m}"]`).forEach((v) => v.remove()), sessionStorage.removeItem(K), de(d, "remove"), de(c, "remove");
+          R(`li.item.product.product-item[data-os="product-item"][data-osid="${m}"]`).forEach((v) => v.remove()), sessionStorage.removeItem(J), ce(d, "remove"), ce(c, "remove");
         });
       });
     }
   }
-  function de(i, e) {
+  function ce(i, e) {
     i && setTimeout(() => {
       var s;
       const t = parseInt(((s = i.textContent) == null ? void 0 : s.replace(/[^\d]/g, "")) || "0");
@@ -3586,7 +3587,7 @@
               <!-- Additional required wrapper -->
               <div class="swiper-wrapper">
                 <!-- Slides -->
-                ${Z.map(
+                ${Q.map(
           (a) => (
             /* HTML */
             `<div class="swiper-slide">
@@ -3692,7 +3693,7 @@
             if (!n)
               return;
             this.selectedColors[n] = o.dataset.color;
-            const d = Z.find((c) => c.id === parseInt(n));
+            const d = Q.find((c) => c.id === parseInt(n));
             if (d && this.selectedColors[n]) {
               const c = d.colours[this.selectedColors[n]], u = a.querySelector("img");
               u && (u.src = c);
@@ -3705,7 +3706,7 @@
       if (!this.popup)
         return;
       const e = (a) => {
-        sessionStorage.setItem(X, a), q(".minicart-coupon-input").then((l) => {
+        sessionStorage.setItem(Z, a), q(".minicart-coupon-input").then((l) => {
           const n = l;
           n.querySelector("input"), n.querySelector("span");
         });
@@ -3718,7 +3719,7 @@
         const l = (d = this.popup) == null ? void 0 : d.querySelector('[data-step="1"]'), n = (c = this.popup) == null ? void 0 : c.querySelector('[data-step="2"]');
         if (l && n) {
           l.style.display = "none", n.style.display = "block";
-          const u = Z.find((x) => x.id === parseInt(a)), f = n.querySelector(".os-product .os-title"), g = n.querySelector(".os-product img"), h = n.querySelector(".os-product .os-description"), b = n.querySelector(".os-product .os-price .old");
+          const u = Q.find((x) => x.id === parseInt(a)), f = n.querySelector(".os-product .os-title"), g = n.querySelector(".os-product img"), h = n.querySelector(".os-product .os-description"), b = n.querySelector(".os-product .os-price .old");
           u && f && g && h && b && (f.textContent = u.name, g.src = u.colours[this.selectedColors[a]] || u.colours["Chestnut Tan"], h.textContent = u.description, b.textContent = u.price[this.country]);
         }
       };
@@ -4049,7 +4050,7 @@
             n(d);
           }, 200);
         }), r;
-      }, this.idleTime = 40, this.idleTimeAfterAddToCart = 45, this.sessionTime = 18, this.device = t, this.country = e, this.cartPopupViewCount = 0, this.init();
+      }, this.idleTime = 40, this.idleTimeAfterAddToCart = 45, this.sessionTime = 180, this.device = t, this.country = e, this.cartPopupViewCount = 0, this.init();
     }
     init() {
       this.promoPopup = new ji({ country: this.country }), this.cartPopup = new ct({ country: this.country, device: this.device }), this.giftPopup = new $i({ country: this.country }), this.handleAddToCart(), this.triggers();
@@ -4060,7 +4061,7 @@
       });
     }
     isUserWatchedPopup() {
-      return sessionStorage.getItem(ce) || !1;
+      return sessionStorage.getItem(X) || !1;
     }
     checkProductsInCart() {
       var t, s;
@@ -4109,12 +4110,21 @@
       t && (s >= 300 && s <= 600 ? this.giftPopup.show(e) : this.cartPopup.show(e));
     }
     setupSessionTimeTrigger() {
-      const e = "crsVisitTime";
-      let t = sessionStorage.getItem(e);
-      t || (sessionStorage.setItem(e, Date.now().toString()), t = sessionStorage.getItem(e));
-      const s = setInterval(() => {
-        18e3 - (Date.now() - Number(t)) <= 0 && (console.log("Session time is over"), this.showPopupsBasedOnCartStatus(), this.isUserWatchedPopup() || this.waitForUserWatchedPopup(s), clearInterval(s));
-      }, 1e3);
+      const e = "crsVisitTime", t = () => {
+        let s = sessionStorage.getItem(e);
+        s || (sessionStorage.setItem(e, Date.now().toString()), s = sessionStorage.getItem(e));
+        const o = setInterval(() => {
+          18e4 - (Date.now() - Number(s)) <= 0 && (console.log("Session time is over"), this.showPopupsBasedOnCartStatus(), this.isUserWatchedPopup() || this.waitForUserWatchedPopup(o), clearInterval(o));
+        }, 1e3);
+      };
+      if (sessionStorage.getItem(X))
+        t();
+      else {
+        const s = new MutationObserver(() => {
+          sessionStorage.getItem(X) && (s.disconnect(), t());
+        });
+        s.observe(document, { childList: !0, subtree: !0 });
+      }
     }
     waitForUserWatchedPopup(e) {
       setTimeout(() => {
@@ -4174,7 +4184,7 @@
       const s = e.querySelectorAll(".ampromo-items-form");
       if (!s)
         return;
-      const o = JSON.parse(sessionStorage.getItem(K));
+      const o = JSON.parse(sessionStorage.getItem(J));
       s.forEach((r) => {
         var l;
         const a = (l = r.querySelector(".ampromo-title a")) == null ? void 0 : l.textContent;
@@ -4197,7 +4207,7 @@
     }
     async setCoupon() {
       console.log("setCoupon");
-      const e = sessionStorage.getItem(X);
+      const e = sessionStorage.getItem(Z);
       if (console.log("coupon", e), !e)
         return;
       let t = this.country === G.US ? "https://us.maxwellscottbags.com/rest/default_us/" : this.country === G.AU ? "https://au.maxwellscottbags.com/rest/default_australia/" : "https://www.maxwellscottbags.com/rest/default/";
@@ -4211,7 +4221,7 @@
         ), o = await s.json();
         if (console.log(o), !s.ok)
           throw new Error("Failed to apply coupon");
-        sessionStorage.removeItem(X), console.log("reloading"), location.reload();
+        sessionStorage.removeItem(Z), console.log("reloading"), location.reload();
       } catch (s) {
         console.log(s);
       }
