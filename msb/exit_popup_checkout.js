@@ -4164,11 +4164,11 @@
       this.device === "Mobile" && window.innerHeight + window.scrollY >= document.body.offsetHeight - 50 && (console.log("Page bottom"), this.showPopupsBasedOnCartStatus());
     }
     setupMouseLeaveAndFocusTriggers() {
-      this.device === "Desktop" && (document.addEventListener("mouseleave", (e) => {
+      this.device === "Desktop" && document.addEventListener("mouseleave", (e) => {
         (e.clientY <= 0 || e.clientX <= 0 || e.clientX >= window.innerWidth || e.clientY >= window.innerHeight) && (console.log("Mouse leave"), this.showPopupsBasedOnCartStatus());
       }), window.addEventListener("focus", () => {
         console.log("Focus"), this.showPopupsBasedOnCartStatus();
-      }));
+      });
     }
     async showPopupsBasedOnCartStatus() {
       const e = this.checkProductsInCart(), t = await this.getTotalCartValue();
