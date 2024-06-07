@@ -501,7 +501,9 @@
           const d = A(O), p = A(te), u = s.closest("form");
           R("button.needsclick").forEach((x) => {
             var y;
-            x.textContent === "SUBMIT" && x.classList.add("os-submit"), (y = x.textContent) != null && y.includes("SKIP AND REVEAL CODE") && (x.style.display = "none");
+            x.textContent === "SUBMIT" && (x.classList.add("os-submit"), location.pathname.includes("sign-up") && x.addEventListener("click", (E) => {
+              u.classList.add("os-submitted"), location.href = "/";
+            })), (y = x.textContent) != null && y.includes("SKIP AND REVEAL CODE") && (x.style.display = "none");
           }), d == null || d.removeEventListener("click", e.closeBtn), (n = p == null ? void 0 : p.parentElement) == null || n.removeEventListener("mousedown", e.closeByClickOutside);
           const h = '[id^="DateOfBirth"]', g = u == null ? void 0 : u.querySelectorAll('div[id^="rich-text"]');
           g == null || g.forEach((x) => {
@@ -4289,7 +4291,7 @@
       }, 1e3);
     }
   }
-  const Vi = "@media (min-width: 768px){br.os-mobile{display:none}}@media (max-width: 768px){br.os-desktop{display:none}}", qi = '.os-popup-title p{margin-bottom:0!important}.os-popup-title>div[style="line-height: 200%;"]{margin-top:0;line-height:0!important}.os-popup-title>div[style="line-height: 200%;"]:last-of-type{margin-top:4px}.os-popup-title>div[style="line-height: 200%;"]:last-of-type *{line-height:22px!important;font-size:16px!important;font-weight:400!important;color:#646464!important}.os-popup-title * :not(div[style="line-height: 200%;"]:last-of-type *){font-family:adobe-garamond-pro,serif!important;font-size:40px!important;line-height:46px!important}@media (max-width: 768px){.os-popup-title * :not(div[style="line-height: 200%;"]:last-of-type *){font-size:32px!important;line-height:40px!important}}div[role=group] label:last-of-type{padding-bottom:0!important}@media (max-width: 768px){form.needsclick{width:350px!important}}';
+  const Vi = "@media (min-width: 768px){br.os-mobile{display:none}}@media (max-width: 768px){br.os-desktop{display:none}}", qi = '.os-popup-title p{margin-bottom:0!important}.os-popup-title>div[style="line-height: 200%;"]{margin-top:0;line-height:0!important}.os-popup-title>div[style="line-height: 200%;"]:last-of-type{margin-top:4px}.os-popup-title>div[style="line-height: 200%;"]:last-of-type *{line-height:22px!important;font-size:16px!important;font-weight:400!important;color:#646464!important}.os-popup-title * :not(div[style="line-height: 200%;"]:last-of-type *){font-family:adobe-garamond-pro,serif!important;font-size:40px!important;line-height:46px!important}@media (max-width: 768px){.os-popup-title * :not(div[style="line-height: 200%;"]:last-of-type *){font-size:32px!important;line-height:40px!important}}div[role=group] label:last-of-type{padding-bottom:0!important}form.needsclick.os-submitted{display:none!important}@media (max-width: 768px){form.needsclick{width:350px!important}}';
   class Ri {
     constructor() {
       this.init();
