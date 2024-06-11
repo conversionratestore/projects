@@ -831,7 +831,7 @@ body .new_trustpilot_reviews.content_wrapper .insta_widget {\r
   width: 100%;\r
   height: 120%;\r
   background: url(https://conversionratestore.github.io/projects/buzzpatch/img/big_bg.webp) no-repeat center center;\r
-  background-size: cover;\r
+  background-size: cover !important;\r
   z-index: -1;\r
   display: block !important;\r
 }\r
