@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const c = (e, n, t, o = "") => {
+  const a = (e, n, t, o = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
@@ -8,7 +8,7 @@
       event_type: t,
       event_loc: o
     }), console.log(`Event: ${e} | ${n} | ${t} | ${o}`);
-  }, h = (e, n) => {
+  }, g = (e, n) => {
     const t = setInterval(() => {
       document.querySelector(e) && (clearInterval(t), n());
     }, 100);
@@ -21,25 +21,25 @@
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, a = (e, n, t, o, i = 1e3, s = 0.5) => {
-    let p, d;
-    if (p = new IntersectionObserver(
+  }, p = (e, n, t, o, i = 1e3, s = 0.5) => {
+    let c, d;
+    if (c = new IntersectionObserver(
       function(l) {
         l[0].isIntersecting === !0 ? d = setTimeout(() => {
-          c(
+          a(
             n,
             l[0].target.dataset.visible || o || "",
             "view",
             t
-          ), p.disconnect();
+          ), c.disconnect();
         }, i) : (console.log("Element is not fully visible"), clearTimeout(d));
       },
       { threshold: [s] }
     ), typeof e == "string") {
       const l = document.querySelector(e);
-      l && p.observe(l);
+      l && c.observe(l);
     } else
-      p.observe(e);
+      c.observe(e);
   }, _ = (e) => {
     const n = document.querySelector(e);
     if (!n)
@@ -2215,7 +2215,7 @@ body #purchase-slide .footer-btns {\r
     </div>
   </section>
 `
-  ), I = (
+  ), A = (
     /* HTML */
     ` <section class="new_natpat_block">
   <div class="layer">
@@ -2227,7 +2227,7 @@ body #purchase-slide .footer-btns {\r
   </div>
   <div class="parallax"></div>
 </section>`
-  ), A = (
+  ), I = (
     /* HTML */
     `<section class="new_info_block">
   <div class="content_wrapper">
@@ -2339,12 +2339,12 @@ body #purchase-slide .footer-btns {\r
   </section>
 `
   );
-  h("main", () => {
+  g("main", () => {
     document.querySelector("main").style.opacity = "0";
   }), m({ name: "HomePage Redesign 2", dev: "AK" }), u("exp_homepage");
   const M = window.innerWidth < 768 ? "mobile" : "desktop", w = document.createElement("link");
   w.rel = "stylesheet", w.href = "https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=M+PLUS+Rounded+1c:wght@900&display=swap", document.head.appendChild(w);
-  class B {
+  class N {
     constructor(n) {
       this.device = n, this.init();
     }
@@ -2352,14 +2352,14 @@ body #purchase-slide .footer-btns {\r
       this.clearOldContent();
     }
     clearOldContent() {
-      h("#MainContent .icartShopifyCartContent", () => {
-        $("#MainContent .icartShopifyCartContent").css("display", "none"), $("#MainContent .icartShopifyCartContent").after('<div class="new_home_page"></div>'), h("#featured-reviews2 .carousel-item:not(.slick-cloned)", () => {
+      g("#MainContent .icartShopifyCartContent", () => {
+        $("#MainContent .icartShopifyCartContent").css("display", "none"), $("#MainContent .icartShopifyCartContent").after('<div class="new_home_page"></div>'), g("#featured-reviews2 .carousel-item:not(.slick-cloned)", () => {
           this.addBlocks(), this.patchesCardsFunctionality(), this.addEvents(), this.fixes();
         });
       });
     }
     async addBlocks() {
-      $(".new_home_page").append(z(this.device)).append(T).append(j).append(S).append(P).append(I).append(A).append(q).append(C).append(y);
+      $(".new_home_page").append(z(this.device)).append(T).append(j).append(S).append(P).append(A).append(I).append(q).append(C).append(y);
       const n = x().map((t, o) => (
         /* HTML */
         `
@@ -2379,7 +2379,7 @@ body #purchase-slide .footer-btns {\r
           </div>
         `
       )).join("");
-      if ($(".new_reviews_block .basic_slider").append(n), h(".slider_dots-2.slick-initialized", () => {
+      if ($(".new_reviews_block .basic_slider").append(n), g(".slider_dots-2.slick-initialized", () => {
         $(".insta_widget").append($("#shopify-section-template--15241309847596__17097813754ae81b0d")), $(".new_stickers_slider").append($("#shopify-section-template--15241309847596__custom_liquid_HmbWPi")), $("#shopify-block-archive_detect_ugc_gallery_8cpCVL").css("display", "block"), $("#purchaseSlide.slick-initialized").slick("setPosition"), $(".slider_dots-2.slick-initialized").slick("setPosition");
       }), document.querySelector("main").style.opacity = "1", $(window).on("scroll", function() {
         $(window).scrollTop() || 0 > 100 ? $(".up_btn").fadeIn() : $(".up_btn").fadeOut();
@@ -2454,10 +2454,10 @@ body #purchase-slide .footer-btns {\r
         }), $(".pages_r span").on("click", function() {
           if ($(this).hasClass("active"))
             return;
-          const i = +$(this).text(), s = (i - 1) * 6, p = i * 6 - 1, d = $(".new_trustpilot_reviews .reviews_trust");
+          const i = +$(this).text(), s = (i - 1) * 6, c = i * 6 - 1, d = $(".new_trustpilot_reviews .reviews_trust");
           d.fadeOut(function() {
-            o.each(function(l, g) {
-              l >= s && l <= p ? $(g).show() : $(g).hide();
+            o.each(function(l, h) {
+              l >= s && l <= c ? $(h).show() : $(h).hide();
             }), d.fadeIn();
           }), $(this).addClass("active").siblings().removeClass("active");
         });
@@ -2465,9 +2465,9 @@ body #purchase-slide .footer-btns {\r
     }
     patchesCardsFunctionality() {
       $(".new_stickers_slider .item").each(function(n, t) {
-        const o = $(t).find("span"), i = $(t).find(".img img[alt=main]"), s = $(t).find("button"), p = $(t).find(".price"), d = $(t).find(".save");
+        const o = $(t).find("span"), i = $(t).find(".img img[alt=main]"), s = $(t).find("button"), c = $(t).find(".price"), d = $(t).find(".save");
         o.on("click", function() {
-          $(this).addClass("active").siblings().removeClass("active"), i.attr("src", $(this).data("img")), s.attr("data-id", $(this).data("variant")), p.text(`$${$(this).data("price")} each`), d.text(`${$(this).data("save")}% off`);
+          $(this).addClass("active").siblings().removeClass("active"), i.attr("src", $(this).data("img")), s.attr("data-id", $(this).data("variant")), c.text(`$${$(this).data("price")} each`), d.text(`${$(this).data("save")}% off`);
         }), s.on("click", function() {
           const H = {
             items: [
@@ -2489,11 +2489,11 @@ body #purchase-slide .footer-btns {\r
     }
     addEvents() {
       const n = "exp_hp_2_";
-      a(".big-stickers__sticker", "exp_hp_2_main_image_0", "Main block", "Sleep"), $(".big-stickers__sticker .crs_btn").each(function(i, s) {
+      p(".big-stickers__sticker", "exp_hp_2_main_image_0", "Main block", "Sleep"), $(".big-stickers__sticker .crs_btn").each(function(i, s) {
         $(s).on("click", function() {
-          i === 0 ? c("exp_hp_2_main_image_0", "Sleep Shop Now", "click", "Main block") : c("exp_hp_2_main_image_1", "Mosquito Repellent Shop Now", "click", "Main block");
+          i === 0 ? a("exp_hp_2_main_image_0", "Sleep Shop Now", "click", "Main block") : a("exp_hp_2_main_image_1", "Mosquito Repellent Shop Now", "click", "Main block");
         });
-      }), a(".big-stickers__sticker + .big-stickers__sticker", "exp_hp_2_main_image_1", "Main block", "Mosquito Repellent"), a(".wellness", "exp_hp_2_stickers_slider", "Homepage All age wellness: natural products", "Section");
+      }), p(".big-stickers__sticker + .big-stickers__sticker", "exp_hp_2_main_image_1", "Main block", "Mosquito Repellent"), p(".wellness", "exp_hp_2_stickers_slider", "Homepage All age wellness: natural products", "Section");
       let t = "";
       $(".three-products a").each(function(i, s) {
         $(s).on("click", function() {
@@ -2508,51 +2508,57 @@ body #purchase-slide .footer-btns {\r
               t = "Button Raspiratory";
               break;
           }
-          c(`exp_hp_2_button_${i + 2}`, t, "click", "Main block");
+          a(`exp_hp_2_button_${i + 2}`, t, "click", "Main block All age wellness: natural products");
         });
       }), $(".new_main_block .crs_btn").on("click", function() {
-        c(`${n}main_button`, "Button Explore All", "click", "Main block All age wellness: natural products");
-      }), a(".new_main_block .crs_btn", `${n}main_button`, "Main block All age wellness: natural products", "Button Explore All"), h(".new_stickers_slider .item:not(.slick-cloned)", () => {
+        a(`${n}main_button`, "Button Explore All", "click", "Main block All age wellness: natural products");
+      }), p(".new_main_block .crs_btn", `${n}main_button`, "Main block All age wellness: natural products", "Button Explore All"), g(".new_stickers_slider .item:not(.slick-cloned)", () => {
         console.log($(".new_stickers_slider .item:not(.slick-cloned)")), $(".new_stickers_slider .item:not(.slick-cloned)").each(function(i, s) {
-          var p;
-          a(s, `${n}stickers_slider_${(p = s.querySelector("h3")) == null ? void 0 : p.innerText}`, "Homepage Our bestsellers: Tried and True", $(s).find("h3").text() + " - Section");
+          var c;
+          p(s, `${n}stickers_slider_product_${(c = s.querySelector("h3")) == null ? void 0 : c.innerText}`, "Homepage Our bestsellers: Tried and True", $(s).find("h3").text() + " - Section");
         });
       }), $(".new_stickers_slider").on("click", ".footer-btns .learn-more", function(i) {
         const s = $(this).closest(".item").find("h3").text().trim().replace(/\s/g, "_").split("_")[0];
-        c(`${n}stick_slider_learn_${s}`, "Learn more", "click", "Stickers slider");
+        a(`${n}stick_slider_learn_${s}`, "Learn more", "click", "Stickers slider");
       }), $(".new_stickers_slider").on("click", ".footer-btns .add-to-cart", function() {
         const i = $(this).closest(".item").find("h3").text().trim().replace(/\s/g, "_").split("_")[0];
-        c(`${n}stic_slider_add_${i}`, "Add to cart", "Button", `Homepage 
+        a(`${n}stic_slider_add_${i}`, "Add to cart", "Button", `Homepage 
 Our bestsellers: Tried and True`);
-      }), a(
+      }), p(
         ".new_trustpilot_reviews__trust",
         `${n}trustpilot_reviews`,
         "Homepage Trustpilot",
         "Section"
       );
       const o = setInterval(() => {
-        var i, s, p, d;
-        ((i = $(".insta_widget [data-widget-host]")[0]) != null && i.shadowRoot && ((p = (s = $(".insta_widget [data-widget-host]")[0]) == null ? void 0 : s.shadowRoot) != null && p.querySelectorAll("img").length) || 0 > 0) && (clearInterval(o), (d = $(".insta_widget [data-widget-host]")[0].shadowRoot) == null || d.querySelectorAll("._V4fMO").forEach((l, g) => {
+        var i, s, c, d;
+        ((i = $(".insta_widget [data-widget-host]")[0]) != null && i.shadowRoot && ((c = (s = $(".insta_widget [data-widget-host]")[0]) == null ? void 0 : s.shadowRoot) != null && c.querySelectorAll("img").length) || 0 > 0) && (clearInterval(o), (d = $(".insta_widget [data-widget-host]")[0].shadowRoot) == null || d.querySelectorAll("._V4fMO").forEach((l, h) => {
           l.addEventListener("click", () => {
-            c(`${n}insta_image_${g}`, "Button", "Play", "Homepage Trustpilot");
+            a(`${n}insta_image_${h}`, "Button", "Play", "Homepage Trustpilot");
+          }), l.closest("._ZLuPP").addEventListener("mouseover", () => {
+            a(`${n}insta_image_${h}`, "Button", "Play", "Homepage Trustpilot");
           });
         }));
       }, 1e3);
       $(".new_trustpilot_reviews .reviews_trust li:not(.slick-cloned)").each(function(i, s) {
-        a(
+        p(
           s,
           `${n}trustpilot_reviews_${i}`,
           "Homepage Trustpilot",
           $(s).find("p:first-of-type").text()
         );
-      }), a(".new_slider_news .slider_wrapper", `${n}slider_news`, "Homepage We're in the news... for good reasons.", "Section"), a(".new_science_block .content_wrapper", `${n}science_block`, "Homepage Unlocking the science behind natpat patches", "Section"), a(".new_natpat_block .layer", `${n}natpat_block`, "Homepage At NATPAT, it's not just about products; it's about a way of life. We're ....", "Section"), a(".new_info_block .content_wrapper p", `${n}info_block`, `Homepage
+      }), p(".new_slider_news .slider_wrapper", `${n}slider_news`, "Homepage We're in the news... for good reasons.", "Section"), p(".new_science_block .content_wrapper", `${n}science_block`, "Homepage Unlocking the science behind natpat patches", "Section"), p(".new_natpat_block .layer", `${n}natpat_block`, "Homepage At NATPAT, it's not just about products; it's about a way of life. We're ....", "Section"), p(".new_info_block .content_wrapper p", `${n}info_block`, `Homepage
 Hey there! At NATPAT, we're all about unlocking the superhero potential in eve.....`, "Section"), $(".slider_photo").on("afterChange", function() {
-        c(`${n}slider_photo`, "Choose", "change", 'Homepage The section with photos"');
-      }), a(".slider_photo", `${n}slider_photo`, 'Homepage The section with photos"', "Section"), a(".new_reviews_block .basic_slider", `${n}reviews_block`, "Homepage Megan Hilling....", "Section"), $(".new_stickers_slider").on("click", ".slick-arrow", function() {
-        $(this).hasClass("slick-next") ? c(`${n}stickers_slider_next`, "Next", "click", "Stickers slider") : c(`${n}stickers_slider_prev`, "Prev", "click", "Stickers slider");
+        a(`${n}slider_photo`, "Choose", "change", 'Homepage The section with photos"');
+      }), p(".slider_photo", `${n}slider_photo`, 'Homepage The section with photos"', "Section"), p(".new_reviews_block .basic_slider", `${n}reviews_block`, "Homepage Megan Hilling....", "Section"), $(".new_stickers_slider").on("click", ".slick-arrow", function() {
+        $(this).hasClass("slick-next") ? a(`${n}stickers_slider_next`, "Next", "click", "Stickers slider") : a(`${n}stickers_slider_prev`, "Prev", "click", "Stickers slider");
       }), $(".new_slider_news").on("click", ".slick-arrow", function() {
-        $(this).hasClass("slick-next") ? c(`${n}slider_news_next`, "Next", "click", "Slider news") : c(`${n}slider_news_prev`, "Prev", "click", "Slider news");
-      }), a(".new_main_block .points", `${n}main_benefits`, "Main block", "Benefits"), a(
+        $(this).hasClass("slick-next") ? a(`${n}slider_news_next`, "Next", "click", "Slider news") : a(`${n}slider_news_prev`, "Prev", "click", "Slider news");
+      }), $(".new_info_block").on("click", ".slick-arrow", function() {
+        $(this).hasClass("slick-next") ? a("exp_hp_2_natpat_slider_next", "Next", "click", `Homepage
+Hey there! At NATPAT, we're all about unlocking the superhero potential in eve.....`) : a("exp_hp_2_natpat_slider_prev", "Prev", "click", `Homepage
+Hey there! At NATPAT, we're all about unlocking the superhero potential in eve.....`);
+      }), p(".new_main_block .points", `${n}main_benefits`, "Main block", "Benefits"), p(
         ".new_info2_block .content_wrapper",
         `${n}info2_block`,
         "Info2 block",
@@ -2573,8 +2579,8 @@ Hey there! At NATPAT, we're all about unlocking the superhero potential in eve..
       });
     }
   }
-  const N = setInterval(() => {
-    window.jQuery && (clearInterval(N), new B(M));
+  const B = setInterval(() => {
+    window.jQuery && (clearInterval(B), new N(M));
   }, 100);
 })();
 //# sourceMappingURL=index.js.map
