@@ -1548,6 +1548,10 @@ body #purchase-slide .footer-btns {\r
 }\r
 \r
 @media (max-width: 550px) {\r
+  .big-stickers__content .crs_btn {\r
+    padding: 8px 32px;\r
+  }\r
+\r
   .new_reviews_block .slider_dots {\r
     margin-top: 24px;\r
   }\r
@@ -2529,7 +2533,7 @@ Our bestsellers: Tried and True`);
         ((i = $(".insta_widget [data-widget-host]")[0]) != null && i.shadowRoot && ((p = (s = $(".insta_widget [data-widget-host]")[0]) == null ? void 0 : s.shadowRoot) != null && p.querySelectorAll("img").length) || 0 > 0) && (clearInterval(o), (d = $(".insta_widget [data-widget-host]")[0].shadowRoot) == null || d.querySelectorAll("._-SGJn").forEach((l, g) => {
           l.addEventListener("click", () => {
             setTimeout(() => {
-              l.querySelector("video") && l.closest("._JBvJ-") && c(`${n}insta_image_${g}`, "Button", "Play", "Homepage Trustpilot");
+              l.querySelector("video") && l.closest("._JBvJ-") && c(`${n}insta_image_${g}`, "Play", "Button", "Homepage Trustpilot");
             }, 150);
           });
         }));
