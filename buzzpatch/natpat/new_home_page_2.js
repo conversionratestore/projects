@@ -12,12 +12,12 @@
     const t = setInterval(() => {
       document.querySelector(e) && (clearInterval(t), n());
     }, 100);
-  }, m = ({ name: e, dev: n }) => {
+  }, u = ({ name: e, dev: n }) => {
     console.log(
       `%c EXP: ${e} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, u = (e) => {
+  }, _ = (e) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
     }, 1e3);
@@ -40,7 +40,7 @@
       l && c.observe(l);
     } else
       c.observe(e);
-  }, _ = (e) => {
+  }, f = (e) => {
     const n = document.querySelector(e);
     if (!n)
       return;
@@ -49,7 +49,7 @@
       top: o,
       behavior: "smooth"
     });
-  }, r = "https://conversionratestore.github.io/projects/buzzpatch", f = [
+  }, r = "https://conversionratestore.github.io/projects/buzzpatch", b = [
     {
       patchType: "SleepyPatch for Kids",
       text: "Helps My asd child!! My son is 8 and struggles to fall asleep. He is autistic so I guess This can be normal. Well tried melatonin and yes it works but idk not a fan. Tried these and wow work great and as routines work for him using this daily works!! Bought many times so far and will keep purchasing. Thank you for making these. Even got the adult ones. And they help me If I need it."
@@ -122,7 +122,7 @@
       patchType: "CravePatch Sugar Craving Relief",
       text: "All day my daughter asks me for either something starchy or filled with sugar! I finally gave in and purchased the CravePatch to see if it would make a difference. She’s been eating her meals and snack without constantly asking me for sweets now. Its been fantastic!"
     }
-  ], b = [
+  ], x = [
     {
       text: "“The first thing I noticed when I opened the package were that these smelled seriously amazing. They're citrusy without being overpowering.”",
       img: `${r}/img/new-home-page/slider_logo_1.png`
@@ -143,13 +143,13 @@
       text: '“The Buzzpatch scent creates a virtual shield by "camouflaging" your kids from mosquitos) Genius!”',
       img: `${r}/img/new-home-page/slider_logo_5.png`
     }
-  ], x = () => {
+  ], k = () => {
     let e = [];
     return $("#featured-reviews2 .carousel-item:not(.slick-cloned)").each((t, o) => {
       let i = {};
       i.name = $(o).find(".name").text(), i.img = $(o).find(".review-header>img").attr("data-src") || "no_img", i.text = $(o).find(".review-text p").text(), e.push(i);
     }), console.log(e), e;
-  }, k = [
+  }, v = [
     {
       name: "SleepyPatch for Kids",
       subText: "Sleep Promoting Stickers",
@@ -202,7 +202,7 @@
       link: "https://www.natpat.com/products/sunnypatch",
       variants: [41098474946604, 41098474979372, 41098474913836, 41098475012140]
     }
-  ], v = `.new_trustpilot_reviews.content_wrapper .insta_widget {\r
+  ], y = `.new_trustpilot_reviews.content_wrapper .insta_widget {\r
   margin-bottom: 60px;\r
 }\r
 \r
@@ -1570,10 +1570,6 @@ body #purchase-slide .footer-btns {\r
     display: none !important;\r
   }\r
 \r
-  .new_home_page section {\r
-    padding: 80px 24px;\r
-  }\r
-\r
   .new_home_page h2 {\r
     font-size: 22px;\r
     line-height: 30px;\r
@@ -1584,7 +1580,7 @@ body #purchase-slide .footer-btns {\r
   }\r
 \r
   .new_main_block {\r
-    padding: 10px 12px 50px !important;\r
+    padding: 10px 12px 55px !important;\r
   }\r
 \r
   .new_main_block h1 {\r
@@ -1644,24 +1640,6 @@ body #purchase-slide .footer-btns {\r
 \r
   .new_stickers_slider {\r
     padding: 0 0 1px !important;\r
-  }\r
-\r
-  .new_stickers_slider::before {\r
-    border: 0;\r
-    border-image: none;\r
-    background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/wave-bg.svg);\r
-    height: 15px;\r
-    width: 100%;\r
-  }\r
-\r
-  .new_stickers_slider::after {\r
-    border: 0;\r
-    border-image: none;\r
-    background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/wave-bg-bottom.svg);\r
-    width: 100%;\r
-    margin: -151px 0;\r
-    height: 167px;\r
-    z-index: -1;\r
   }\r
 \r
   .new_stickers_slider .item {\r
@@ -1730,13 +1708,6 @@ body #purchase-slide .footer-btns {\r
     margin: 0 auto -30px;\r
     background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/bg_news_h2_mob.png) no-repeat center center;\r
     background-size: 100% 100%;\r
-  }\r
-\r
-  .new_info_block::before {\r
-    border-top: 0;\r
-    border-image: none;\r
-    background: url(https://conversionratestore.github.io/projects/buzzpatch/img/new-home-page/blue-wave-white-line-bg.png);\r
-    height: 45px;\r
   }\r
 \r
   .new_slider_news .slider_wrapper .slide {\r
@@ -1811,7 +1782,7 @@ body #purchase-slide .footer-btns {\r
   }\r
 \r
   .new_natpat_block .layer {\r
-    margin-top: -80px;\r
+    margin-top: -100px;\r
   }\r
 \r
   .new_natpat_block p {\r
@@ -1926,6 +1897,14 @@ body #purchase-slide .footer-btns {\r
 }\r
 \r
 @media (max-width: 550px) {\r
+  .new_stickers_slider::after {\r
+    border-bottom: 16px solid transparent;\r
+  }\r
+\r
+  .new_stickers_slider::before {\r
+    border-top: 16px solid transparent;\r
+  }\r
+\r
   .three-products {\r
     padding: 12px 0;\r
   }\r
@@ -1987,7 +1966,7 @@ body #purchase-slide .footer-btns {\r
   }\r
 \r
   .new_natpat_block {\r
-    height: 650px;\r
+    height: 670px;\r
   }\r
 \r
   .new_natpat_block .parallax {\r
@@ -1998,7 +1977,7 @@ body #purchase-slide .footer-btns {\r
     margin: 24px auto 30px;\r
   }\r
 }`;
-  `${k.map((e, n) => (
+  `${v.map((e, n) => (
     /* HTML */
     ` <div class="item">
               <img src="${r}/img/new-home-page/as_seen.svg" class="tv" alt="tv" />
@@ -2035,7 +2014,7 @@ body #purchase-slide .footer-btns {\r
               </div>
             </div>`
   )).join("")}`;
-  const y = (
+  const z = (
     /* HTML */
     `
   <div class="up_btn">
@@ -2055,12 +2034,12 @@ body #purchase-slide .footer-btns {\r
     </svg>
   </div>
 `
-  ), z = (e) => (
+  ), T = (e) => (
     /* HTML */
     `
     <section class="new_main_block">
       <style>
-        ${v}
+        ${y}
       </style>
       <span class="hi desktop">
         <img src="${r}/img/new-home-page/side.svg" alt="hi" />
@@ -2124,10 +2103,10 @@ body #purchase-slide .footer-btns {\r
         </div>
     </section>
   `
-  ), T = (
+  ), j = (
     /* HTML */
     ' <section class="new_stickers_slider"></section> '
-  ), j = (
+  ), S = (
     /* HTML */
     `
   <section class="new_trustpilot_reviews content_wrapper">
@@ -2141,7 +2120,7 @@ body #purchase-slide .footer-btns {\r
     </div>
     <div class="insta_widget"></div>
     <ul class="reviews_trust parent_slider">
-      ${f.map((e, n) => (
+      ${b.map((e, n) => (
       /* HTML */
       ` <li>
             <p>${e.patchType}</p>
@@ -2177,12 +2156,12 @@ body #purchase-slide .footer-btns {\r
     </div>
   </section>
 `
-  ), S = (
+  ), P = (
     /* HTML */
     ` <section class="new_slider_news">
   <h2>We're in the news... for good reasons</h2>
   <div class="slider_wrapper parent_slider">
-    ${b.map((e, n) => (
+    ${x.map((e, n) => (
       /* HTML */
       `
           <div class="slide">
@@ -2201,7 +2180,7 @@ body #purchase-slide .footer-btns {\r
     <span><i></i></span>
   </div>
 </section>`
-  ), P = (
+  ), A = (
     /* HTML */
     `
   <section class="new_science_block">
@@ -2230,7 +2209,7 @@ body #purchase-slide .footer-btns {\r
     </div>
   </section>
 `
-  ), A = (
+  ), I = (
     /* HTML */
     ` <section class="new_natpat_block">
   <div class="layer">
@@ -2242,7 +2221,7 @@ body #purchase-slide .footer-btns {\r
   </div>
   <div class="parallax"></div>
 </section>`
-  ), I = (
+  ), q = (
     /* HTML */
     `<section class="new_info_block">
   <div class="content_wrapper">
@@ -2278,7 +2257,7 @@ body #purchase-slide .footer-btns {\r
     </div>
   </div>
 </section>`
-  ), q = (
+  ), C = (
     /* HTML */
     `
   <section class="new_reviews_block">
@@ -2293,7 +2272,7 @@ body #purchase-slide .footer-btns {\r
     </div>
   </section>
 `
-  ), C = (
+  ), M = (
     /* HTML */
     `
   <section class="new_info2_block">
@@ -2356,9 +2335,9 @@ body #purchase-slide .footer-btns {\r
   );
   g("main", () => {
     document.querySelector("main").style.opacity = "0";
-  }), m({ name: "HomePage Redesign 2", dev: "AK" }), u("exp_homepage");
-  const M = window.innerWidth < 768 ? "mobile" : "desktop", w = document.createElement("link");
-  w.rel = "stylesheet", w.href = "https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=M+PLUS+Rounded+1c:wght@900&display=swap", document.head.appendChild(w);
+  }), u({ name: "HomePage Redesign 2", dev: "AK" }), _("exp_homepage");
+  const H = window.innerWidth < 768 ? "mobile" : "desktop", m = document.createElement("link");
+  m.rel = "stylesheet", m.href = "https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=M+PLUS+Rounded+1c:wght@900&display=swap", document.head.appendChild(m);
   class N {
     constructor(n) {
       this.device = n, this.init();
@@ -2374,8 +2353,8 @@ body #purchase-slide .footer-btns {\r
       });
     }
     async addBlocks() {
-      $(".new_home_page").append(z(this.device)).append(T).append(j).append(S).append(P).append(A).append(I).append(q).append(C).append(y);
-      const n = x().map((t, o) => (
+      $(".new_home_page").append(T(this.device)).append(j).append(S).append(P).append(A).append(I).append(q).append(C).append(M).append(z);
+      const n = k().map((t, o) => (
         /* HTML */
         `
           <div class="slide">
@@ -2454,7 +2433,7 @@ body #purchase-slide .footer-btns {\r
           asNavFor: $(o).closest("section").find(".parent_slider")
         });
       }), $("a.total_reviews").on("click", function(t) {
-        t.preventDefault(), _(".new_trustpilot_reviews");
+        t.preventDefault(), f(".new_trustpilot_reviews");
       }), $(".reviews_trust p:nth-child(2)").each(function(t, o) {
         if ($(o).text().length > 200) {
           const i = $(o).text(), s = i.slice(0, 200).lastIndexOf(" ");
@@ -2484,7 +2463,7 @@ body #purchase-slide .footer-btns {\r
         o.on("click", function() {
           $(this).addClass("active").siblings().removeClass("active"), i.attr("src", $(this).data("img")), s.attr("data-id", $(this).data("variant")), c.text(`$${$(this).data("price")} each`), d.text(`${$(this).data("save")}% off`);
         }), s.on("click", function() {
-          const H = {
+          const w = {
             items: [
               {
                 id: $(this).data("id"),
@@ -2497,7 +2476,7 @@ body #purchase-slide .footer-btns {\r
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify(H)
+            body: JSON.stringify(w)
           }).then((F) => F.json());
         });
       });
@@ -2537,7 +2516,7 @@ body #purchase-slide .footer-btns {\r
         a(`${n}stick_slider_learn_${s}`, "Learn more", "click", "Stickers slider");
       }), $(".new_stickers_slider").on("click", ".footer-btns .add-to-cart", function() {
         const i = $(this).closest(".item").find("h3").text().trim().replace(/\s/g, "_").split("_")[0];
-        a(`${n}stic_slider_add_${i}`, "Add to cart", "Button", `Homepage 
+        a(`${n}stick_slider_add_${i}`, "Add to cart", "Button", `Homepage 
 Our bestsellers: Tried and True`);
       }), p(
         ".new_trustpilot_reviews__trust",
@@ -2548,9 +2527,10 @@ Our bestsellers: Tried and True`);
       const o = setInterval(() => {
         var i, s, c, d;
         ((i = $(".insta_widget [data-widget-host]")[0]) != null && i.shadowRoot && ((c = (s = $(".insta_widget [data-widget-host]")[0]) == null ? void 0 : s.shadowRoot) != null && c.querySelectorAll("img").length) || 0 > 0) && (clearInterval(o), (d = $(".insta_widget [data-widget-host]")[0].shadowRoot) == null || d.querySelectorAll("._V4fMO").forEach((l, h) => {
+          var w;
           l.addEventListener("click", () => {
             a(`${n}insta_image_${h}`, "Button", "Play", "Homepage Trustpilot");
-          }), l.closest("._ZLuPP").addEventListener("mouseover", () => {
+          }), (w = l.closest("._ZLuPP")) == null || w.addEventListener("mouseenter", () => {
             a(`${n}insta_image_${h}`, "Button", "Play", "Homepage Trustpilot");
           });
         }));
@@ -2565,15 +2545,13 @@ Our bestsellers: Tried and True`);
       }), p(".new_slider_news .slider_wrapper", `${n}slider_news`, "Homepage We're in the news... for good reasons.", "Section"), p(".new_science_block .content_wrapper", `${n}science_block`, "Homepage Unlocking the science behind natpat patches", "Section"), p(".new_natpat_block .layer", `${n}natpat_block`, "Homepage At NATPAT, it's not just about products; it's about a way of life. We're ....", "Section"), p(".new_info_block .content_wrapper p", `${n}info_block`, `Homepage
 Hey there! At NATPAT, we're all about unlocking the superhero potential in eve.....`, "Section"), $(".slider_photo").on("afterChange", function() {
         a(`${n}slider_photo`, "Choose", "change", 'Homepage The section with photos"');
-      }), p(".slider_photo", `${n}slider_photo`, 'Homepage The section with photos"', "Section"), p(".new_reviews_block .basic_slider", `${n}reviews_block`, "Homepage Megan Hilling....", "Section"), $(".new_stickers_slider").on("click", ".slick-arrow", function() {
-        $(this).hasClass("slick-next") ? a(`${n}stickers_slider_next`, "Next", "click", "Stickers slider") : a(`${n}stickers_slider_prev`, "Prev", "click", "Stickers slider");
-      }), $(".new_slider_news").on("click", ".slick-arrow", function() {
+      }), p(".slider_photo", `${n}slider_photo`, 'Homepage The section with photos"', "Section"), p(".new_reviews_block .basic_slider", `${n}reviews_block`, "Homepage Megan Hilling....", "Section"), $(".new_slider_news").on("click", ".slick-arrow", function() {
         $(this).hasClass("slick-next") ? a(`${n}slider_news_next`, "Next", "click", "Slider news") : a(`${n}slider_news_prev`, "Prev", "click", "Slider news");
       }), $(".new_info_block").on("click", ".slick-arrow", function() {
         $(this).hasClass("slick-next") ? a("exp_hp_2_natpat_slider_next", "Next", "click", `Homepage
 Hey there! At NATPAT, we're all about unlocking the superhero potential in eve.....`) : a("exp_hp_2_natpat_slider_prev", "Prev", "click", `Homepage
 Hey there! At NATPAT, we're all about unlocking the superhero potential in eve.....`);
-      }), p(".new_main_block .points", `${n}main_benefits`, "Main block", "Benefits"), p(
+      }), p(
         ".new_info2_block .content_wrapper",
         `${n}info2_block`,
         "Info2 block",
@@ -2595,7 +2573,7 @@ Hey there! At NATPAT, we're all about unlocking the superhero potential in eve..
     }
   }
   const B = setInterval(() => {
-    window.jQuery && (clearInterval(B), new N(M));
+    window.jQuery && (clearInterval(B), new N(H));
   }, 100);
 })();
 //# sourceMappingURL=index.js.map
