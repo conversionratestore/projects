@@ -1389,10 +1389,11 @@ form:has(.os-popup-title) [role='group'] {
       );
       const l = this.popup.querySelector(".os-checkout");
       l == null || l.addEventListener("click", () => {
+        var h;
         const m = {
           couponCode: Q.WELCOME15
         }, g = `${this.baseUrl}/scommerce/minicart/couponcode/`;
-        jQuery.ajax({
+        (h = this.popup) == null || h.close(), jQuery.ajax({
           type: "POST",
           url: g,
           data: m
@@ -4966,7 +4967,7 @@ button.swiper-pagination-bullet {
   };
   class Dn {
     constructor({ country: e }) {
-      this.giftAdded = !1, this.selectedColors = {}, this.country = e, this.baseUrl = this.country === L.US ? "https://us.maxwellscottbags.com/" : this.country === L.AU ? "https://au.maxwellscottbags.com/" : this.country === L.IE ? "https://ie.maxwellscottbags.com/" : this.country === L.CA ? "https://ca.maxwellscottbags.com/" : this.country === L.NZ ? "https://nz.maxwellscottbags.com/" : "https://www.maxwellscottbags.com/", this.init();
+      this.selectedColors = {}, this.country = e, this.baseUrl = this.country === L.US ? "https://us.maxwellscottbags.com/" : this.country === L.AU ? "https://au.maxwellscottbags.com/" : this.country === L.IE ? "https://ie.maxwellscottbags.com/" : this.country === L.CA ? "https://ca.maxwellscottbags.com/" : this.country === L.NZ ? "https://nz.maxwellscottbags.com/" : "https://www.maxwellscottbags.com/", this.init();
     }
     init() {
       this.render(), this.closePopupHandlers(), this.colorSelectionHandler(), this.addGiftHandler();
@@ -5087,14 +5088,38 @@ button.swiper-pagination-bullet {
       });
       const i = (o = this.popup) == null ? void 0 : o.querySelector('[data-btn="popup-checkout"]');
       i && i.addEventListener("click", (r) => {
-        var a, c, d;
-        const l = (c = (a = this.popup) == null ? void 0 : a.querySelector(".os-title")) == null ? void 0 : c.textContent;
+        var d, u, m;
+        r.preventDefault();
+        const l = this.selectedColors[this.selectedGiftId], a = (u = (d = this.popup) == null ? void 0 : d.querySelector(".os-title")) == null ? void 0 : u.textContent;
         P(
           "exp_pop_car_retent_2_but_popupfree_proc",
-          `Proceed to checkout - ${l}`,
+          `Proceed to checkout - ${a}`,
           "click",
           "Pop up free gift"
-        ), (d = this.popup) == null || d.close();
+        ), (m = this.popup) == null || m.close(), (() => {
+          const g = {
+            couponCode: Ce
+          }, h = `${this.baseUrl}/scommerce/minicart/couponcode/`, v = `${this.baseUrl}amasty_promo/cart/add/`, x = nt[l], p = {
+            uenc: "aHR0cHM6Ly93d3cubWF4d2VsbHNjb3R0YmFncy5jb20vY2hlY2tvdXQva2xhcm5hLw,",
+            isPromoItems: !0,
+            product_id: this.selectedGiftId,
+            "super_attribute[92]": x,
+            form_key: Ze("form_key")
+          };
+          jQuery.ajax({
+            type: "POST",
+            url: h,
+            data: g
+          }).done(function(f) {
+            jQuery.ajax({
+              type: "POST",
+              url: v,
+              data: p
+            }).done(function(w) {
+              console.log("gift added"), location.href = "/checkout";
+            });
+          });
+        })();
       });
     }
     colorSelectionHandler() {
@@ -5126,30 +5151,7 @@ button.swiper-pagination-bullet {
       const e = (r) => {
         sessionStorage.setItem(ae, r);
       }, t = (r) => {
-        const l = this.selectedColors[r] || "Chestnut Tan";
-        e(Ce);
-        const a = {
-          couponCode: Ce
-        }, c = `${this.baseUrl}/scommerce/minicart/couponcode/`, d = `${this.baseUrl}amasty_promo/cart/add/`, u = nt[l], m = {
-          uenc: "aHR0cHM6Ly93d3cubWF4d2VsbHNjb3R0YmFncy5jb20vY2hlY2tvdXQva2xhcm5hLw,",
-          isPromoItems: !0,
-          product_id: r,
-          "super_attribute[92]": u,
-          form_key: Ze("form_key")
-        };
-        jQuery.ajax({
-          type: "POST",
-          url: c,
-          data: a
-        }).done(function(g) {
-          jQuery.ajax({
-            type: "POST",
-            url: d,
-            data: m
-          }).done(function(h) {
-            console.log("gift added"), this.giftAdded = !0;
-          });
-        });
+        this.selectedColors[r], e(Ce), this.selectedGiftId = r;
       }, i = (r) => {
         var c, d;
         t(r);
