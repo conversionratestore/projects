@@ -2507,7 +2507,7 @@ body #purchase-slide .footer-btns {\r
       }), $(".new_main_block .crs_btn").on("click", function() {
         c(`${n}main_button`, "Button Explore All", "click", "Main block All age wellness: natural products");
       }), a(".new_main_block .crs_btn", `${n}main_button`, "Main block All age wellness: natural products", "Button Explore All"), h(".new_stickers_slider .item:not(.slick-cloned)", () => {
-        console.log($(".new_stickers_slider .item:not(.slick-cloned)")), $(".new_stickers_slider .item:not(.slick-cloned)").each(function(i, s) {
+        $(".new_stickers_slider .item:not(.slick-cloned)").each(function(i, s) {
           var p;
           a(s, `${n}stickers_slider_product_${(p = s.querySelector("h3")) == null ? void 0 : p.innerText}`, "Homepage Our bestsellers: Tried and True", $(s).find("h3").text() + " - Section");
         });
