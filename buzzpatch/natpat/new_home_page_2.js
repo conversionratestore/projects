@@ -2463,7 +2463,7 @@ body #purchase-slide .footer-btns {\r
         o.on("click", function() {
           $(this).addClass("active").siblings().removeClass("active"), i.attr("src", $(this).data("img")), s.attr("data-id", $(this).data("variant")), p.text(`$${$(this).data("price")} each`), d.text(`${$(this).data("save")}% off`);
         }), s.on("click", function() {
-          const B = {
+          const H = {
             items: [
               {
                 id: $(this).data("id"),
@@ -2476,7 +2476,7 @@ body #purchase-slide .footer-btns {\r
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify(B)
+            body: JSON.stringify(H)
           }).then((F) => F.json());
         });
       });
@@ -2526,9 +2526,11 @@ Our bestsellers: Tried and True`);
       );
       const o = setInterval(() => {
         var i, s, p, d;
-        ((i = $(".insta_widget [data-widget-host]")[0]) != null && i.shadowRoot && ((p = (s = $(".insta_widget [data-widget-host]")[0]) == null ? void 0 : s.shadowRoot) != null && p.querySelectorAll("img").length) || 0 > 0) && (clearInterval(o), (d = $(".insta_widget [data-widget-host]")[0].shadowRoot) == null || d.querySelectorAll("._V4fMO").forEach((l, g) => {
+        ((i = $(".insta_widget [data-widget-host]")[0]) != null && i.shadowRoot && ((p = (s = $(".insta_widget [data-widget-host]")[0]) == null ? void 0 : s.shadowRoot) != null && p.querySelectorAll("img").length) || 0 > 0) && (clearInterval(o), (d = $(".insta_widget [data-widget-host]")[0].shadowRoot) == null || d.querySelectorAll("._-SGJn").forEach((l, g) => {
           l.addEventListener("click", () => {
-            c(`${n}insta_image_${g}`, "Button", "Play", "Homepage Trustpilot");
+            setTimeout(() => {
+              l.querySelector("video") && l.closest("._JBvJ-") && c(`${n}insta_image_${g}`, "Button", "Play", "Homepage Trustpilot");
+            }, 150);
           });
         }));
       }, 1e3);
@@ -2569,8 +2571,8 @@ Hey there! At NATPAT, we're all about unlocking the superhero potential in eve..
       });
     }
   }
-  const H = setInterval(() => {
-    window.jQuery && (clearInterval(H), new N(M));
+  const B = setInterval(() => {
+    window.jQuery && (clearInterval(B), new N(M));
   }, 100);
 })();
 //# sourceMappingURL=index.js.map
