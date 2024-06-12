@@ -8,12 +8,12 @@
       event_type: t,
       event_loc: i
     }), console.log(`Event: ${n} | ${e} | ${t} | ${i}`);
-  }, Xe = ({ name: n, dev: e }) => {
+  }, Ue = ({ name: n, dev: e }) => {
     console.log(
       `%c EXP: ${n} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, _e = (n) => document.querySelector(n), Qe = (n) => {
+  }, _e = (n) => document.querySelector(n), Xe = (n) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", n, "variant_1"));
     }, 1e3);
@@ -57,7 +57,7 @@
     document.querySelectorAll(n).forEach((a) => {
       r.observe(a);
     });
-  }, Ze = function(n = {}) {
+  }, Qe = function(n = {}) {
     let e, t, i, s, o = n.delay || 50;
     function r() {
       e = null, s = 0;
@@ -66,7 +66,7 @@
       return t = window.scrollY, e !== null && (s = t - e), e = t, clearTimeout(i), i = setTimeout(r, o), s;
     };
   }();
-  function Ke(n) {
+  function Ze(n) {
     const e = document.cookie.split(";");
     for (let t = 0; t < e.length; t++) {
       const i = e[t].trim(), [s, o] = i.split("=");
@@ -74,7 +74,7 @@
         return o;
     }
   }
-  const Ae = "cartPopupShown", ke = "promoPopupShown", Te = "giftPopupShown", V = "userWatchedPopup", Q = "CRS_DISCOUNT", Ce = "KEY0624", le = "savedGift", Je = "https://conversionratestore.github.io/projects/msb/", et = (
+  const Ae = "cartPopupShown", ke = "promoPopupShown", Te = "giftPopupShown", V = "userWatchedPopup", Q = "CRS_DISCOUNT", Ce = "KEY0624", le = "savedGift", Ke = "https://conversionratestore.github.io/projects/msb/", Je = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +88,7 @@
     fill="currentColor"
   />
 </svg>`
-  ), tt = (
+  ), et = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -119,7 +119,7 @@
     stroke-linejoin="round"
   />
 </svg>`
-  ), nt = `.crs-promocode {
+  ), tt = `.crs-promocode {
   font-family: Arial;
   display: flex;
   flex-direction: column;
@@ -182,19 +182,19 @@
       <p class="crs-promocode__title">Enter code at checkout</p>
       <div class="crs-promocode__code">
         <span>${this.promocode} </span>
-        <button type="button" class="crs-promocode__copy-btn" data-action="copy-promo">${et}</button>
+        <button type="button" class="crs-promocode__copy-btn" data-action="copy-promo">${Je}</button>
       </div>
     </div>`
       );
       if (this.container) {
-        document.head.insertAdjacentHTML("beforeend", `<style>${nt}</style>`), this.container.insertAdjacentHTML("beforeend", e);
+        document.head.insertAdjacentHTML("beforeend", `<style>${tt}</style>`), this.container.insertAdjacentHTML("beforeend", e);
         const t = this.container.querySelector("[data-action='copy-promo']");
         t && t.addEventListener("click", this.copyPromo.bind(this));
       }
     }
     copyPromo(e) {
       const t = e.currentTarget, i = t.closest(".crs-promocode__code");
-      t.innerHTML = `${tt}`, navigator.clipboard.writeText(this.promocode), i.classList.add("copied"), localStorage.setItem(Q, this.promocode);
+      t.innerHTML = `${et}`, navigator.clipboard.writeText(this.promocode), i.classList.add("copied"), localStorage.setItem(Q, this.promocode);
     }
   }
   var O = /* @__PURE__ */ ((n) => (n.AU = "au", n.US = "us", n.CA = "ca", n.UK = "uk", n.IE = "ie", n.NZ = "nz", n))(O || {}), j = /* @__PURE__ */ ((n) => (n.Mobile = "Mobile", n.Desktop = "Desktop", n))(j || {}), Z = /* @__PURE__ */ ((n) => (n.WELCOME10 = "WELCOME10", n.WELCOME15 = "WELCOME15", n))(Z || {});
@@ -250,14 +250,14 @@
         "Night Black": "/media/catalog/product/cache/e796be8b07bb6c78ccb4a1b786cd7804/m/a/marco_black_back.jpg"
       }
     }
-  ], it = {
+  ], nt = {
     "Chestnut Tan": 4,
     "Dark Chocolate Brown": 5,
     "Night Black": 3,
     Wine: 93,
     Red: 80,
     Petrol: 99
-  }, st = {
+  }, it = {
     "Chestnut Tan": "https://www.maxwellscottbags.com/media/attribute/swatch/swatch_image/30x20/c/h/chestnut-tan_1.png",
     "Dark Chocolate Brown": "https://www.maxwellscottbags.com/media/attribute/swatch/swatch_image/30x20/d/a/dark-chocolate-brown_1.png",
     "Night Black": "https://www.maxwellscottbags.com/media/attribute/swatch/swatch_image/30x20/n/i/night-black_1.png",
@@ -271,7 +271,7 @@
     au: "$",
     ie: "€",
     nz: "$"
-  }, R = [O.UK, O.IE, O.NZ, O.US], ot = `.popup-hidden {
+  }, R = [O.UK, O.IE, O.NZ, O.US], st = `.popup-hidden {
   display: none !important;
 }
 .crs-hide-font {
@@ -653,7 +653,7 @@ form[data-testid^='klaviyo-form'] div[role='group'] {
 form:has(.os-popup-title) [role='group'] {
   display: block !important;
 }
-`, rt = 'input[aria-label="First Name*"]', at = 50, K = '.needsclick[role="dialog"]', B = 'div[role="dialog"] .klaviyo-close-form', J = ".crs-promo-form", lt = ".crs-promo-form__enhance", ct = ".crs-promo-form__continue", de = 'form[data-testid^="klaviyo-form"]:has([id^="first_name"])', pe = (n) => ({
+`, ot = 'input[aria-label="First Name*"]', rt = 50, K = '.needsclick[role="dialog"]', B = 'div[role="dialog"] .klaviyo-close-form', J = ".crs-promo-form", at = ".crs-promo-form__enhance", lt = ".crs-promo-form__continue", de = 'form[data-testid^="klaviyo-form"]:has([id^="first_name"])', pe = (n) => ({
     closeBtn: (e) => {
       n();
     },
@@ -666,7 +666,7 @@ form:has(.os-popup-title) [role='group'] {
       this.inputInterval = null, this.country = e, this.device = t, this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${ot}</style>`), this.checkPopupVisibility(), this.setPopupChanges();
+      document.head.insertAdjacentHTML("beforeend", `<style>${st}</style>`), this.checkPopupVisibility(), this.setPopupChanges();
     }
     async setPopupChanges() {
       var l, a, c, d, u;
@@ -853,7 +853,7 @@ form:has(.os-popup-title) [role='group'] {
     }
     addContinueButtonListener(e) {
       var t;
-      (t = document.querySelector(ct)) == null || t.addEventListener("click", () => {
+      (t = document.querySelector(lt)) == null || t.addEventListener("click", () => {
         var o, r, l;
         (o = document.querySelector(B)) == null || o.removeEventListener("click", e.closeBtn);
         const i = document.querySelector(".klaviyo-close-form"), s = (r = document.querySelector(".crs-promo-form__title")) == null ? void 0 : r.textContent;
@@ -867,7 +867,7 @@ form:has(.os-popup-title) [role='group'] {
     }
     addEnhanceButtonListener(e, t, i) {
       var s;
-      (s = document.querySelector(lt)) == null || s.addEventListener("click", () => {
+      (s = document.querySelector(at)) == null || s.addEventListener("click", () => {
         var r;
         const o = (r = document.querySelector(".crs-promo-form__title")) == null ? void 0 : r.textContent;
         P(
@@ -955,7 +955,7 @@ form:has(.os-popup-title) [role='group'] {
       });
     }
     setInputValue() {
-      const e = document.querySelector(rt);
+      const e = document.querySelector(ot);
       e && e.value !== "CRS" ? (e.value = "CRS", e.dispatchEvent(new Event("input"))) : this.inputInterval && (clearInterval(this.inputInterval), this.inputInterval = null);
     }
     async checkPopupVisibility() {
@@ -963,7 +963,7 @@ form:has(.os-popup-title) [role='group'] {
         (i) => {
           i.forEach((s) => {
             var o;
-            if (s.isIntersecting && (this.inputInterval = setInterval(() => this.setInputValue(), at)), s.isIntersecting) {
+            if (s.isIntersecting && (this.inputInterval = setInterval(() => this.setInputValue(), rt)), s.isIntersecting) {
               const r = document.querySelector(K);
               if (!r)
                 return;
@@ -989,7 +989,7 @@ form:has(.os-popup-title) [role='group'] {
       }
     }
   }
-  const dt = `.os-cart {
+  const ct = `.os-cart {
   background-color: #fff;
   border: none;
   box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.15);
@@ -1307,7 +1307,7 @@ form:has(.os-popup-title) [role='group'] {
   line-height: 20px;
 }
 `;
-  class pt {
+  class dt {
     constructor({ country: e, device: t }) {
       this.country = e, this.device = t, this.init();
     }
@@ -1341,7 +1341,7 @@ form:has(.os-popup-title) [role='group'] {
       </div>
     </dialog>`
       );
-      document.head.insertAdjacentHTML("beforeend", `<style>${dt}</style>`), document.body.insertAdjacentHTML("beforeend", e), this.popup = document.querySelector("#cart-popup");
+      document.head.insertAdjacentHTML("beforeend", `<style>${ct}</style>`), document.body.insertAdjacentHTML("beforeend", e), this.popup = document.querySelector("#cart-popup");
     }
     show(e = !0) {
       var c, d, u;
@@ -1487,7 +1487,7 @@ form:has(.os-popup-title) [role='group'] {
     const n = typeof document < "u" ? document : {};
     return ue(n, Me), n;
   }
-  const ut = {
+  const pt = {
     document: Me,
     navigator: {
       userAgent: ""
@@ -1547,12 +1547,12 @@ form:has(.os-popup-title) [role='group'] {
   };
   function z() {
     const n = typeof window < "u" ? window : {};
-    return ue(n, ut), n;
+    return ue(n, pt), n;
   }
-  function ft(n) {
+  function ut(n) {
     return n === void 0 && (n = ""), n.trim().split(" ").filter((e) => !!e.trim());
   }
-  function mt(n) {
+  function ft(n) {
     const e = n;
     Object.keys(e).forEach((t) => {
       try {
@@ -1571,29 +1571,29 @@ form:has(.os-popup-title) [role='group'] {
   function ee() {
     return Date.now();
   }
-  function gt(n) {
+  function mt(n) {
     const e = z();
     let t;
     return e.getComputedStyle && (t = e.getComputedStyle(n, null)), !t && n.currentStyle && (t = n.currentStyle), t || (t = n.style), t;
   }
-  function ht(n, e) {
+  function gt(n, e) {
     e === void 0 && (e = "x");
     const t = z();
     let i, s, o;
-    const r = gt(n);
+    const r = mt(n);
     return t.WebKitCSSMatrix ? (s = r.transform || r.webkitTransform, s.split(",").length > 6 && (s = s.split(", ").map((l) => l.replace(",", ".")).join(", ")), o = new t.WebKitCSSMatrix(s === "none" ? "" : s)) : (o = r.MozTransform || r.OTransform || r.MsTransform || r.msTransform || r.transform || r.getPropertyValue("transform").replace("translate(", "matrix(1, 0, 0, 1,"), i = o.toString().split(",")), e === "x" && (t.WebKitCSSMatrix ? s = o.m41 : i.length === 16 ? s = parseFloat(i[12]) : s = parseFloat(i[4])), e === "y" && (t.WebKitCSSMatrix ? s = o.m42 : i.length === 16 ? s = parseFloat(i[13]) : s = parseFloat(i[5])), s || 0;
   }
   function te(n) {
     return typeof n == "object" && n !== null && n.constructor && Object.prototype.toString.call(n).slice(8, -1) === "Object";
   }
-  function wt(n) {
+  function ht(n) {
     return typeof window < "u" && typeof window.HTMLElement < "u" ? n instanceof HTMLElement : n && (n.nodeType === 1 || n.nodeType === 11);
   }
   function $() {
     const n = Object(arguments.length <= 0 ? void 0 : arguments[0]), e = ["__proto__", "constructor", "prototype"];
     for (let t = 1; t < arguments.length; t += 1) {
       const i = t < 0 || arguments.length <= t ? void 0 : arguments[t];
-      if (i != null && !wt(i)) {
+      if (i != null && !ht(i)) {
         const s = Object.keys(Object(i)).filter((o) => e.indexOf(o) < 0);
         for (let o = 0, r = s.length; o < r; o += 1) {
           const l = s[o], a = Object.getOwnPropertyDescriptor(i, l);
@@ -1647,9 +1647,9 @@ form:has(.os-popup-title) [role='group'] {
   function se(n, e) {
     e === void 0 && (e = []);
     const t = document.createElement(n);
-    return t.classList.add(...Array.isArray(e) ? e : ft(e)), t;
+    return t.classList.add(...Array.isArray(e) ? e : ut(e)), t;
   }
-  function vt(n, e) {
+  function wt(n, e) {
     const t = [];
     for (; n.previousElementSibling; ) {
       const i = n.previousElementSibling;
@@ -1657,7 +1657,7 @@ form:has(.os-popup-title) [role='group'] {
     }
     return t;
   }
-  function bt(n, e) {
+  function vt(n, e) {
     const t = [];
     for (; n.nextElementSibling; ) {
       const i = n.nextElementSibling;
@@ -1691,7 +1691,7 @@ form:has(.os-popup-title) [role='group'] {
     return (Array.isArray(n) ? n : [n]).filter((e) => !!e);
   }
   let ge;
-  function xt() {
+  function bt() {
     const n = z(), e = Y();
     return {
       smoothScroll: e.documentElement && e.documentElement.style && "scrollBehavior" in e.documentElement.style,
@@ -1699,10 +1699,10 @@ form:has(.os-popup-title) [role='group'] {
     };
   }
   function ze() {
-    return ge || (ge = xt()), ge;
+    return ge || (ge = bt()), ge;
   }
   let he;
-  function yt(n) {
+  function xt(n) {
     let {
       userAgent: e
     } = n === void 0 ? {} : n;
@@ -1717,10 +1717,10 @@ form:has(.os-popup-title) [role='group'] {
     return !d && h && t.touch && v.indexOf(`${l}x${a}`) >= 0 && (d = o.match(/(Version)\/([\d.]+)/), d || (d = [0, 1, "13_0_0"]), h = !1), c && !g && (r.os = "android", r.android = !0), (d || m || u) && (r.os = "ios", r.ios = !0), r;
   }
   function $e(n) {
-    return n === void 0 && (n = {}), he || (he = yt(n)), he;
+    return n === void 0 && (n = {}), he || (he = xt(n)), he;
   }
   let we;
-  function St() {
+  function yt() {
     const n = z(), e = $e();
     let t = !1;
     function i() {
@@ -1742,10 +1742,10 @@ form:has(.os-popup-title) [role='group'] {
       isWebView: s
     };
   }
-  function _t() {
-    return we || (we = St()), we;
+  function St() {
+    return we || (we = yt()), we;
   }
-  function At(n) {
+  function _t(n) {
     let {
       swiper: e,
       on: t,
@@ -1788,7 +1788,7 @@ form:has(.os-popup-title) [role='group'] {
       c(), s.removeEventListener("resize", l), s.removeEventListener("orientationchange", d);
     });
   }
-  function kt(n) {
+  function At(n) {
     let {
       swiper: e,
       extendParams: t,
@@ -1838,7 +1838,7 @@ form:has(.os-popup-title) [role='group'] {
       observeSlideChildren: !1
     }), i("init", a), i("destroy", c);
   }
-  var Tt = {
+  var kt = {
     on(n, e, t) {
       const i = this;
       if (!i.eventsListeners || i.destroyed || typeof e != "function")
@@ -1898,7 +1898,7 @@ form:has(.os-popup-title) [role='group'] {
       }), n;
     }
   };
-  function Ct() {
+  function Tt() {
     const n = this;
     let e, t;
     const i = n.el;
@@ -1908,7 +1908,7 @@ form:has(.os-popup-title) [role='group'] {
       size: n.isHorizontal() ? e : t
     }));
   }
-  function Et() {
+  function Ct() {
     const n = this;
     function e(S, k) {
       return parseFloat(S.getPropertyValue(n.getDirectionLabel(k)) || 0);
@@ -1947,15 +1947,15 @@ form:has(.os-popup-title) [role='group'] {
           if (_ && (k.style.transform = "none"), C && (k.style.webkitTransform = "none"), t.roundLengths)
             T = n.isHorizontal() ? me(k, "width", !0) : me(k, "height", !0);
           else {
-            const I = e(A, "width"), N = e(A, "padding-left"), Xn = e(A, "padding-right"), Ye = e(A, "margin-left"), We = e(A, "margin-right"), Ue = A.getPropertyValue("box-sizing");
-            if (Ue && Ue === "border-box")
-              T = I + Ye + We;
+            const I = e(A, "width"), N = e(A, "padding-left"), Xn = e(A, "padding-right"), Re = e(A, "margin-left"), Ye = e(A, "margin-right"), We = A.getPropertyValue("box-sizing");
+            if (We && We === "border-box")
+              T = I + Re + Ye;
             else {
               const {
                 clientWidth: Qn,
                 offsetWidth: Zn
               } = k;
-              T = I + N + Xn + Ye + We + (Zn - Qn);
+              T = I + N + Xn + Re + Ye + (Zn - Qn);
             }
           }
           _ && (k.style.transform = _), C && (k.style.webkitTransform = C), t.roundLengths && (T = Math.floor(T));
@@ -2026,7 +2026,7 @@ form:has(.os-popup-title) [role='group'] {
       u <= t.maxBackfaceHiddenSlides ? k || n.el.classList.add(S) : k && n.el.classList.remove(S);
     }
   }
-  function Pt(n) {
+  function Et(n) {
     const e = this, t = [], i = e.virtual && e.params.virtual.enabled;
     let s = 0, o;
     typeof n == "number" ? e.setTransition(n) : n === !0 && e.setTransition(e.params.speed);
@@ -2052,7 +2052,7 @@ form:has(.os-popup-title) [role='group'] {
       }
     (s || s === 0) && (e.wrapperEl.style.height = `${s}px`);
   }
-  function It() {
+  function Pt() {
     const n = this, e = n.slides, t = n.isElement ? n.isHorizontal() ? n.wrapperEl.offsetLeft : n.wrapperEl.offsetTop : 0;
     for (let i = 0; i < e.length; i += 1)
       e[i].swiperSlideOffset = (n.isHorizontal() ? e[i].offsetLeft : e[i].offsetTop) - t - n.cssOverflowAdjustment();
@@ -2060,7 +2060,7 @@ form:has(.os-popup-title) [role='group'] {
   const De = (n, e, t) => {
     e && !n.classList.contains(t) ? n.classList.add(t) : !e && n.classList.contains(t) && n.classList.remove(t);
   };
-  function Lt(n) {
+  function It(n) {
     n === void 0 && (n = this && this.translate || 0);
     const e = this, t = e.params, {
       slides: i,
@@ -2082,7 +2082,7 @@ form:has(.os-popup-title) [role='group'] {
       x && (e.visibleSlides.push(c), e.visibleSlidesIndexes.push(a)), De(c, x, t.slideVisibleClass), De(c, v, t.slideFullyVisibleClass), c.progress = s ? -u : u, c.originalProgress = s ? -m : m;
     }
   }
-  function Mt(n) {
+  function Lt(n) {
     const e = this;
     if (typeof n > "u") {
       const d = e.rtlTranslate ? -1 : 1;
@@ -2117,7 +2117,7 @@ form:has(.os-popup-title) [role='group'] {
   const ve = (n, e, t) => {
     e && !n.classList.contains(t) ? n.classList.add(t) : !e && n.classList.contains(t) && n.classList.remove(t);
   };
-  function Ot() {
+  function Mt() {
     const n = this, {
       slides: e,
       params: t,
@@ -2133,7 +2133,7 @@ form:has(.os-popup-title) [role='group'] {
         a = l(`[data-swiper-slide-index="${s}"]`);
     else
       r ? (a = e.filter((u) => u.column === s)[0], d = e.filter((u) => u.column === s + 1)[0], c = e.filter((u) => u.column === s - 1)[0]) : a = e[s];
-    a && (r || (d = bt(a, `.${t.slideClass}, swiper-slide`)[0], t.loop && !d && (d = e[0]), c = vt(a, `.${t.slideClass}, swiper-slide`)[0], t.loop && !c === 0 && (c = e[e.length - 1]))), e.forEach((u) => {
+    a && (r || (d = vt(a, `.${t.slideClass}, swiper-slide`)[0], t.loop && !d && (d = e[0]), c = wt(a, `.${t.slideClass}, swiper-slide`)[0], t.loop && !c === 0 && (c = e[e.length - 1]))), e.forEach((u) => {
       ve(u, u === a, t.slideActiveClass), ve(u, u === d, t.slideNextClass), ve(u, u === c, t.slidePrevClass);
     }), n.emitSlidesClasses();
   }
@@ -2180,7 +2180,7 @@ form:has(.os-popup-title) [role='group'] {
       for (let r = Math.max(s - e, 0); r <= Math.min(o + e, t - 1); r += 1)
         r !== s && (r > o || r < s) && be(n, r);
   };
-  function Bt(n) {
+  function Ot(n) {
     const {
       slidesGrid: e,
       params: t
@@ -2190,7 +2190,7 @@ form:has(.os-popup-title) [role='group'] {
       typeof e[o + 1] < "u" ? i >= e[o] && i < e[o + 1] - (e[o + 1] - e[o]) / 2 ? s = o : i >= e[o] && i < e[o + 1] && (s = o + 1) : i >= e[o] && (s = o);
     return t.normalizeSlideIndex && (s < 0 || typeof s > "u") && (s = 0), s;
   }
-  function zt(n) {
+  function Bt(n) {
     const e = this, t = e.rtlTranslate ? e.translate : -e.translate, {
       snapGrid: i,
       params: s,
@@ -2203,7 +2203,7 @@ form:has(.os-popup-title) [role='group'] {
       let h = g - e.virtual.slidesBefore;
       return h < 0 && (h = e.virtual.slides.length + h), h >= e.virtual.slides.length && (h -= e.virtual.slides.length), h;
     };
-    if (typeof a > "u" && (a = Bt(e)), i.indexOf(t) >= 0)
+    if (typeof a > "u" && (a = Ot(e)), i.indexOf(t) >= 0)
       c = i.indexOf(t);
     else {
       const g = Math.min(s.slidesPerGroupSkip, a);
@@ -2239,7 +2239,7 @@ form:has(.os-popup-title) [role='group'] {
       activeIndex: a
     }), e.initialized && xe(e), e.emit("activeIndexChange"), e.emit("snapIndexChange"), (e.initialized || e.params.runCallbacksOnInit) && (r !== m && e.emit("realIndexChange"), e.emit("slideChange"));
   }
-  function $t(n, e) {
+  function zt(n, e) {
     const t = this, i = t.params;
     let s = n.closest(`.${i.slideClass}, swiper-slide`);
     !s && t.isElement && e && e.length > 1 && e.includes(n) && [...e.slice(e.indexOf(n) + 1, e.length)].forEach((l) => {
@@ -2261,18 +2261,18 @@ form:has(.os-popup-title) [role='group'] {
     }
     i.slideToClickedSlide && t.clickedIndex !== void 0 && t.clickedIndex !== t.activeIndex && t.slideToClickedSlide();
   }
-  var Dt = {
-    updateSize: Ct,
-    updateSlides: Et,
-    updateAutoHeight: Pt,
-    updateSlidesOffset: It,
-    updateSlidesProgress: Lt,
-    updateProgress: Mt,
-    updateSlidesClasses: Ot,
-    updateActiveIndex: zt,
-    updateClickedSlide: $t
+  var $t = {
+    updateSize: Tt,
+    updateSlides: Ct,
+    updateAutoHeight: Et,
+    updateSlidesOffset: Pt,
+    updateSlidesProgress: It,
+    updateProgress: Lt,
+    updateSlidesClasses: Mt,
+    updateActiveIndex: Bt,
+    updateClickedSlide: zt
   };
-  function Gt(n) {
+  function Dt(n) {
     n === void 0 && (n = this.isHorizontal() ? "x" : "y");
     const e = this, {
       params: t,
@@ -2284,10 +2284,10 @@ form:has(.os-popup-title) [role='group'] {
       return i ? -s : s;
     if (t.cssMode)
       return s;
-    let r = ht(o, n);
+    let r = gt(o, n);
     return r += e.cssOverflowAdjustment(), i && (r = -r), r || 0;
   }
-  function Ht(n, e) {
+  function Gt(n, e) {
     const t = this, {
       rtlTranslate: i,
       params: s,
@@ -2301,13 +2301,13 @@ form:has(.os-popup-title) [role='group'] {
     const u = t.maxTranslate() - t.minTranslate();
     u === 0 ? d = 0 : d = (n - t.minTranslate()) / u, d !== r && t.updateProgress(n), t.emit("setTranslate", t.translate, e);
   }
-  function qt() {
+  function Ht() {
     return -this.snapGrid[0];
   }
-  function Nt() {
+  function qt() {
     return -this.snapGrid[this.snapGrid.length - 1];
   }
-  function Ft(n, e, t, i, s) {
+  function Nt(n, e, t, i, s) {
     n === void 0 && (n = 0), e === void 0 && (e = this.params.speed), t === void 0 && (t = !0), i === void 0 && (i = !0);
     const o = this, {
       params: r,
@@ -2339,14 +2339,14 @@ form:has(.os-popup-title) [role='group'] {
       !o || o.destroyed || m.target === this && (o.wrapperEl.removeEventListener("transitionend", o.onTranslateToWrapperTransitionEnd), o.onTranslateToWrapperTransitionEnd = null, delete o.onTranslateToWrapperTransitionEnd, o.animating = !1, t && o.emit("transitionEnd"));
     }), o.wrapperEl.addEventListener("transitionend", o.onTranslateToWrapperTransitionEnd))), !0;
   }
-  var Vt = {
-    getTranslate: Gt,
-    setTranslate: Ht,
-    minTranslate: qt,
-    maxTranslate: Nt,
-    translateTo: Ft
+  var Ft = {
+    getTranslate: Dt,
+    setTranslate: Gt,
+    minTranslate: Ht,
+    maxTranslate: qt,
+    translateTo: Nt
   };
-  function jt(n, e) {
+  function Vt(n, e) {
     const t = this;
     t.params.cssMode || (t.wrapperEl.style.transitionDuration = `${n}ms`, t.wrapperEl.style.transitionDelay = n === 0 ? "0ms" : ""), t.emit("setTransition", n, e);
   }
@@ -2370,7 +2370,7 @@ form:has(.os-popup-title) [role='group'] {
       e.emit(`slideChangeTransition${s}`), l === "next" ? e.emit(`slideNextTransition${s}`) : e.emit(`slidePrevTransition${s}`);
     }
   }
-  function Rt(n, e) {
+  function jt(n, e) {
     n === void 0 && (n = !0);
     const t = this, {
       params: i
@@ -2382,7 +2382,7 @@ form:has(.os-popup-title) [role='group'] {
       step: "Start"
     }));
   }
-  function Yt(n, e) {
+  function Rt(n, e) {
     n === void 0 && (n = !0);
     const t = this, {
       params: i
@@ -2394,12 +2394,12 @@ form:has(.os-popup-title) [role='group'] {
       step: "End"
     }));
   }
-  var Wt = {
-    setTransition: jt,
-    transitionStart: Rt,
-    transitionEnd: Yt
+  var Yt = {
+    setTransition: Vt,
+    transitionStart: jt,
+    transitionEnd: Rt
   };
-  function Ut(n, e, t, i, s) {
+  function Wt(n, e, t, i, s) {
     n === void 0 && (n = 0), t === void 0 && (t = !0), typeof n == "string" && (n = parseInt(n, 10));
     const o = this;
     let r = n;
@@ -2459,7 +2459,7 @@ form:has(.os-popup-title) [role='group'] {
       !o || o.destroyed || b.target === this && (o.wrapperEl.removeEventListener("transitionend", o.onSlideToWrapperTransitionEnd), o.onSlideToWrapperTransitionEnd = null, delete o.onSlideToWrapperTransitionEnd, o.transitionEnd(t, f));
     }), o.wrapperEl.addEventListener("transitionend", o.onSlideToWrapperTransitionEnd)), !0;
   }
-  function Xt(n, e, t, i) {
+  function Ut(n, e, t, i) {
     n === void 0 && (n = 0), t === void 0 && (t = !0), typeof n == "string" && (n = parseInt(n, 10));
     const s = this;
     if (s.destroyed)
@@ -2502,7 +2502,7 @@ form:has(.os-popup-title) [role='group'] {
       s.slideTo(r, e, t, i);
     }), s;
   }
-  function Qt(n, e, t) {
+  function Xt(n, e, t) {
     e === void 0 && (e = !0);
     const i = this, {
       enabled: s,
@@ -2527,7 +2527,7 @@ form:has(.os-popup-title) [role='group'] {
     }
     return o.rewind && i.isEnd ? i.slideTo(0, n, e, t) : i.slideTo(i.activeIndex + a, n, e, t);
   }
-  function Zt(n, e, t) {
+  function Qt(n, e, t) {
     e === void 0 && (e = !0);
     const i = this, {
       params: s,
@@ -2570,13 +2570,13 @@ form:has(.os-popup-title) [role='group'] {
       }), !0;
     return i.slideTo(x, n, e, t);
   }
-  function Kt(n, e, t) {
+  function Zt(n, e, t) {
     e === void 0 && (e = !0);
     const i = this;
     if (!i.destroyed)
       return typeof n > "u" && (n = i.params.speed), i.slideTo(i.activeIndex, n, e, t);
   }
-  function Jt(n, e, t, i) {
+  function Kt(n, e, t, i) {
     e === void 0 && (e = !0), i === void 0 && (i = 0.5);
     const s = this;
     if (s.destroyed)
@@ -2593,7 +2593,7 @@ form:has(.os-popup-title) [role='group'] {
     }
     return o = Math.max(o, 0), o = Math.min(o, s.slidesGrid.length - 1), s.slideTo(o, n, e, t);
   }
-  function en() {
+  function Jt() {
     const n = this;
     if (n.destroyed)
       return;
@@ -2614,16 +2614,16 @@ form:has(.os-popup-title) [role='group'] {
     } else
       n.slideTo(s);
   }
-  var tn = {
-    slideTo: Ut,
-    slideToLoop: Xt,
-    slideNext: Qt,
-    slidePrev: Zt,
-    slideReset: Kt,
-    slideToClosest: Jt,
-    slideToClickedSlide: en
+  var en = {
+    slideTo: Wt,
+    slideToLoop: Ut,
+    slideNext: Xt,
+    slidePrev: Qt,
+    slideReset: Zt,
+    slideToClosest: Kt,
+    slideToClickedSlide: Jt
   };
-  function nn(n) {
+  function tn(n) {
     const e = this, {
       params: t,
       slidesEl: i
@@ -2661,7 +2661,7 @@ form:has(.os-popup-title) [role='group'] {
       direction: t.centeredSlides ? void 0 : "next"
     });
   }
-  function sn(n) {
+  function nn(n) {
     let {
       slideRealIndex: e,
       slideTo: t = !0,
@@ -2767,7 +2767,7 @@ form:has(.os-popup-title) [role='group'] {
     }
     a.emit("loopFix");
   }
-  function on() {
+  function sn() {
     const n = this, {
       params: e,
       slidesEl: t
@@ -2785,12 +2785,12 @@ form:has(.os-popup-title) [role='group'] {
       t.append(s);
     }), n.recalcSlides(), n.slideTo(n.realIndex, 0);
   }
-  var rn = {
-    loopCreate: nn,
-    loopFix: sn,
-    loopDestroy: on
+  var on = {
+    loopCreate: tn,
+    loopFix: nn,
+    loopDestroy: sn
   };
-  function an(n) {
+  function rn(n) {
     const e = this;
     if (!e.params.simulateTouch || e.params.watchOverflow && e.isLocked || e.params.cssMode)
       return;
@@ -2799,17 +2799,17 @@ form:has(.os-popup-title) [role='group'] {
       e.__preventObserver__ = !1;
     });
   }
-  function ln() {
+  function an() {
     const n = this;
     n.params.watchOverflow && n.isLocked || n.params.cssMode || (n.isElement && (n.__preventObserver__ = !0), n[n.params.touchEventsTarget === "container" ? "el" : "wrapperEl"].style.cursor = "", n.isElement && requestAnimationFrame(() => {
       n.__preventObserver__ = !1;
     }));
   }
-  var cn = {
-    setGrabCursor: an,
-    unsetGrabCursor: ln
+  var ln = {
+    setGrabCursor: rn,
+    unsetGrabCursor: an
   };
-  function dn(n, e) {
+  function cn(n, e) {
     e === void 0 && (e = this);
     function t(i) {
       if (!i || i === Y() || i === z())
@@ -2826,7 +2826,7 @@ form:has(.os-popup-title) [role='group'] {
     } = n, o = s.edgeSwipeDetection, r = s.edgeSwipeThreshold;
     return o && (t <= r || t >= i.innerWidth - r) ? o === "prevent" ? (e.preventDefault(), !0) : !1 : !0;
   }
-  function pn(n) {
+  function dn(n) {
     const e = this, t = Y();
     let i = n;
     i.originalEvent && (i = i.originalEvent);
@@ -2855,7 +2855,7 @@ form:has(.os-popup-title) [role='group'] {
     const c = !!o.noSwipingClass && o.noSwipingClass !== "", d = i.composedPath ? i.composedPath() : i.path;
     c && i.target && i.target.shadowRoot && d && (a = d[0]);
     const u = o.noSwipingSelector ? o.noSwipingSelector : `.${o.noSwipingClass}`, m = !!(i.target && i.target.shadowRoot);
-    if (o.noSwiping && (m ? dn(u, a) : a.closest(u))) {
+    if (o.noSwiping && (m ? cn(u, a) : a.closest(u))) {
       e.allowClick = !0;
       return;
     }
@@ -2877,7 +2877,7 @@ form:has(.os-popup-title) [role='group'] {
     const x = v && e.allowTouchMove && o.touchStartPreventDefault;
     (o.touchStartForcePreventDefault || x) && !a.isContentEditable && i.preventDefault(), o.freeMode && o.freeMode.enabled && e.freeMode && e.animating && !o.cssMode && e.freeMode.onTouchStart(), e.emit("touchStart", i);
   }
-  function un(n) {
+  function pn(n) {
     const e = Y(), t = this, i = t.touchEventsData, {
       params: s,
       touches: o,
@@ -2994,7 +2994,7 @@ form:has(.os-popup-title) [role='group'] {
       }
     !s.followFinger || s.cssMode || ((s.freeMode && s.freeMode.enabled && t.freeMode || s.watchSlidesProgress) && (t.updateActiveIndex(), t.updateSlidesClasses()), s.freeMode && s.freeMode.enabled && t.freeMode && t.freeMode.onTouchMove(), t.updateProgress(i.currentTranslate), t.setTranslate(i.currentTranslate));
   }
-  function fn(n) {
+  function un(n) {
     const e = this, t = e.touchEventsData;
     let i = n;
     i.originalEvent && (i = i.originalEvent);
@@ -3087,11 +3087,11 @@ form:has(.os-popup-title) [role='group'] {
       n.autoplay && n.autoplay.running && n.autoplay.paused && n.autoplay.resume();
     }, 500)), n.allowSlidePrev = s, n.allowSlideNext = i, n.params.watchOverflow && o !== n.snapGrid && n.checkOverflow();
   }
-  function mn(n) {
+  function fn(n) {
     const e = this;
     e.enabled && (e.allowClick || (e.params.preventClicks && n.preventDefault(), e.params.preventClicksPropagation && e.animating && (n.stopPropagation(), n.stopImmediatePropagation())));
   }
-  function gn() {
+  function mn() {
     const n = this, {
       wrapperEl: e,
       rtlTranslate: t,
@@ -3104,11 +3104,11 @@ form:has(.os-popup-title) [role='group'] {
     const o = n.maxTranslate() - n.minTranslate();
     o === 0 ? s = 0 : s = (n.translate - n.minTranslate()) / o, s !== n.progress && n.updateProgress(t ? -n.translate : n.translate), n.emit("setTranslate", n.translate, !1);
   }
-  function hn(n) {
+  function gn(n) {
     const e = this;
     re(e, n.target), !(e.params.cssMode || e.params.slidesPerView !== "auto" && !e.params.autoHeight) && e.update();
   }
-  function wn() {
+  function hn() {
     const n = this;
     n.documentTouchHandlerProceeded || (n.documentTouchHandlerProceeded = !0, n.params.touchReleaseOnEdges && (n.el.style.touchAction = "auto"));
   }
@@ -3150,21 +3150,21 @@ form:has(.os-popup-title) [role='group'] {
       capture: !0
     }));
   };
-  function vn() {
+  function wn() {
     const n = this, {
       params: e
     } = n;
-    n.onTouchStart = pn.bind(n), n.onTouchMove = un.bind(n), n.onTouchEnd = fn.bind(n), n.onDocumentTouchStart = wn.bind(n), e.cssMode && (n.onScroll = gn.bind(n)), n.onClick = mn.bind(n), n.onLoad = hn.bind(n), Ne(n, "on");
+    n.onTouchStart = dn.bind(n), n.onTouchMove = pn.bind(n), n.onTouchEnd = un.bind(n), n.onDocumentTouchStart = hn.bind(n), e.cssMode && (n.onScroll = mn.bind(n)), n.onClick = fn.bind(n), n.onLoad = gn.bind(n), Ne(n, "on");
   }
-  function bn() {
+  function vn() {
     Ne(this, "off");
   }
-  var xn = {
-    attachEvents: vn,
-    detachEvents: bn
+  var bn = {
+    attachEvents: wn,
+    detachEvents: vn
   };
   const Fe = (n, e) => n.grid && e.grid && e.grid.rows > 1;
-  function yn() {
+  function xn() {
     const n = this, {
       realIndex: e,
       initialized: t,
@@ -3192,7 +3192,7 @@ form:has(.os-popup-title) [role='group'] {
       allowSlidePrev: n.params.allowSlidePrev
     }), g && !p ? n.disable() : !g && p && n.enable(), n.currentBreakpoint = r, n.emit("_beforeBreakpoint", a), t && (v ? (n.loopDestroy(), n.loopCreate(e), n.updateSlides()) : !x && f ? (n.loopCreate(e), n.updateSlides()) : x && !f && n.loopDestroy()), n.emit("breakpoint", a);
   }
-  function Sn(n, e, t) {
+  function yn(n, e, t) {
     if (e === void 0 && (e = "window"), !n || e === "container" && !t)
       return;
     let i = !1;
@@ -3219,11 +3219,11 @@ form:has(.os-popup-title) [role='group'] {
     }
     return i || "max";
   }
-  var _n = {
-    setBreakpoint: yn,
-    getBreakpoint: Sn
+  var Sn = {
+    setBreakpoint: xn,
+    getBreakpoint: yn
   };
-  function An(n, e) {
+  function _n(n, e) {
     const t = [];
     return n.forEach((i) => {
       typeof i == "object" ? Object.keys(i).forEach((s) => {
@@ -3231,14 +3231,14 @@ form:has(.os-popup-title) [role='group'] {
       }) : typeof i == "string" && t.push(e + i);
     }), t;
   }
-  function kn() {
+  function An() {
     const n = this, {
       classNames: e,
       params: t,
       rtl: i,
       el: s,
       device: o
-    } = n, r = An(["initialized", t.direction, {
+    } = n, r = _n(["initialized", t.direction, {
       "free-mode": n.params.freeMode && t.freeMode.enabled
     }, {
       autoheight: t.autoHeight
@@ -3261,18 +3261,18 @@ form:has(.os-popup-title) [role='group'] {
     }], t.containerModifierClass);
     e.push(...r), s.classList.add(...e), n.emitContainerClasses();
   }
-  function Tn() {
+  function kn() {
     const n = this, {
       el: e,
       classNames: t
     } = n;
     !e || typeof e == "string" || (e.classList.remove(...t), n.emitContainerClasses());
   }
-  var Cn = {
-    addClasses: kn,
-    removeClasses: Tn
+  var Tn = {
+    addClasses: An,
+    removeClasses: kn
   };
-  function En() {
+  function Cn() {
     const n = this, {
       isLocked: e,
       params: t
@@ -3286,8 +3286,8 @@ form:has(.os-popup-title) [role='group'] {
       n.isLocked = n.snapGrid.length === 1;
     t.allowSlideNext === !0 && (n.allowSlideNext = !n.isLocked), t.allowSlidePrev === !0 && (n.allowSlidePrev = !n.isLocked), e && e !== n.isLocked && (n.isEnd = !1), e !== n.isLocked && n.emit(n.isLocked ? "lock" : "unlock");
   }
-  var Pn = {
-    checkOverflow: En
+  var En = {
+    checkOverflow: Cn
   }, Ve = {
     init: !0,
     direction: "horizontal",
@@ -3409,7 +3409,7 @@ form:has(.os-popup-title) [role='group'] {
     // Internals
     _emitClasses: !1
   };
-  function In(n, e) {
+  function Pn(n, e) {
     return function(i) {
       i === void 0 && (i = {});
       const s = Object.keys(i)[0], o = i[s];
@@ -3429,17 +3429,17 @@ form:has(.os-popup-title) [role='group'] {
     };
   }
   const ye = {
-    eventsEmitter: Tt,
-    update: Dt,
-    translate: Vt,
-    transition: Wt,
-    slide: tn,
-    loop: rn,
-    grabCursor: cn,
-    events: xn,
-    breakpoints: _n,
-    checkOverflow: Pn,
-    classes: Cn
+    eventsEmitter: kt,
+    update: $t,
+    translate: Ft,
+    transition: Yt,
+    slide: en,
+    loop: on,
+    grabCursor: ln,
+    events: bn,
+    breakpoints: Sn,
+    checkOverflow: En,
+    classes: Tn
   }, Se = {};
   class D {
     constructor() {
@@ -3460,13 +3460,13 @@ form:has(.os-popup-title) [role='group'] {
       const l = this;
       l.__swiper__ = !0, l.support = ze(), l.device = $e({
         userAgent: t.userAgent
-      }), l.browser = _t(), l.eventsListeners = {}, l.eventsAnyListeners = [], l.modules = [...l.__modules__], t.modules && Array.isArray(t.modules) && l.modules.push(...t.modules);
+      }), l.browser = St(), l.eventsListeners = {}, l.eventsAnyListeners = [], l.modules = [...l.__modules__], t.modules && Array.isArray(t.modules) && l.modules.push(...t.modules);
       const a = {};
       l.modules.forEach((d) => {
         d({
           params: t,
           swiper: l,
-          extendParams: In(t, a),
+          extendParams: Pn(t, a),
           on: l.on.bind(l),
           once: l.once.bind(l),
           off: l.off.bind(l),
@@ -3730,7 +3730,7 @@ form:has(.os-popup-title) [role='group'] {
         a.classList.remove(s.slideVisibleClass, s.slideFullyVisibleClass, s.slideActiveClass, s.slideNextClass, s.slidePrevClass), a.removeAttribute("style"), a.removeAttribute("data-swiper-slide-index");
       })), i.emit("destroy"), Object.keys(i.eventsListeners).forEach((a) => {
         i.off(a);
-      }), e !== !1 && (i.el && typeof i.el != "string" && (i.el.swiper = null), mt(i)), i.destroyed = !0), null;
+      }), e !== !1 && (i.el && typeof i.el != "string" && (i.el.swiper = null), ft(i)), i.destroyed = !0), null;
     }
     static extendDefaults(e) {
       $(Se, e);
@@ -3754,7 +3754,7 @@ form:has(.os-popup-title) [role='group'] {
     Object.keys(ye[n]).forEach((e) => {
       D.prototype[e] = ye[n][e];
     });
-  }), D.use([At, kt]);
+  }), D.use([_t, At]);
   function je(n, e, t, i) {
     return n.params.createElements && Object.keys(i).forEach((s) => {
       if (!t[s] && t.auto === !0) {
@@ -3763,7 +3763,7 @@ form:has(.os-popup-title) [role='group'] {
       }
     }), t;
   }
-  function Ln(n) {
+  function In(n) {
     let {
       swiper: e,
       extendParams: t,
@@ -3890,7 +3890,7 @@ form:has(.os-popup-title) [role='group'] {
   function X(n) {
     return n === void 0 && (n = ""), `.${n.trim().replace(/([\.:!+\/])/g, "\\$1").replace(/ /g, ".")}`;
   }
-  function Mn(n) {
+  function Ln(n) {
     let {
       swiper: e,
       extendParams: t,
@@ -4111,7 +4111,7 @@ form:has(.os-popup-title) [role='group'] {
       destroy: h
     });
   }
-  const On = `.os-gift {
+  const Mn = `.os-gift {
   background-color: #fff;
   border: none;
   box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.15);
@@ -4423,7 +4423,7 @@ form:has(.os-popup-title) [role='group'] {
 
 .os-gift .swiper-pagination .swiper-pagination-bullet-active {
   background: rgb(182, 139, 81);
-}`, Bn = `/**
+}`, On = `/**
  * Swiper 11.1.4
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
@@ -4651,7 +4651,7 @@ form:has(.os-popup-title) [role='group'] {
   }
 }
 /* Slide styles end */
-`, zn = `:root {
+`, Bn = `:root {
   --swiper-navigation-size: 44px;
   /*
   --swiper-navigation-top-offset: 50%;
@@ -4737,7 +4737,7 @@ form:has(.os-popup-title) [role='group'] {
   content: 'next';
 }
 /* Navigation font end */
-`, $n = `:root {
+`, zn = `:root {
   /*
   --swiper-pagination-color: var(--swiper-theme-color);
   --swiper-pagination-left: auto;
@@ -4921,182 +4921,8 @@ button.swiper-pagination-bullet {
 .swiper-pagination-lock {
   display: none;
 }
-`;
-  class Re {
-    constructor({ country: e }) {
-      this.cartItem = null, this.country = O.UK, this.country = e;
-    }
-    updateCart() {
-      const e = sessionStorage.getItem(le), t = sessionStorage.getItem("CRS_DISCOUNT");
-      if (!e || !t)
-        return;
-      const { giftId: i, colour: s } = JSON.parse(e);
-      this.addGiftToCart({ giftId: i, colour: s });
-    }
-    async addGiftToCart({ giftId: e, colour: t }) {
-      var g;
-      const i = U.find((h) => h.id === parseInt(e));
-      if (!i)
-        return;
-      const s = (
-        /* HTML */
-        ` <li class="item product product-item" role="product-item" data-os="product-item" data-osid="${e}">
-      <div class="product row no-gutters flex-nowrap">
-        <!-- ko if: product_has_url -->
-        <div class="col-3">
-          <a
-            data-bind="attr: {href: product_url, title: product_name}"
-            tabindex="-1"
-            class="product-item-photo"
-            href="${i.url}"
-            title="FREE -  ${i.name}"
-          >
-            <!-- ko foreach: $parent.getRegion('itemImage') -->
-            <!-- ko template: {name: getTemplate(), data: item.product_image} -->
-            <span class="product-image-container" data-bind="style: {width: width/2 + 'px'}" style="width: 75px;">
-              <span
-                class="product-image-wrapper"
-                data-bind="style: {'padding-bottom': height/width*100 + '%'}"
-                style="padding-bottom: 100%;"
-              >
-                <img
-                  class="product-image-photo"
-                  data-bind="attr: {src: src, alt: alt}, style: {width: 'auto', height: 'auto'}"
-                  src="${i.colours[t]}"
-                  alt="${i} - ${t}"
-                  style="width: auto; height: auto;"
-                />
-              </span>
-            </span>
-            <!-- /ko -->
-            <!-- /ko -->
-          </a>
-        </div>
-        <div class="col-9">
-          <div class="row no-gutters">
-            <div class="col-7">
-              <span class="product-item-name tests">
-                <!-- ko if: product_has_url -->
-                <a data-bind="attr: {href: product_url}, html: product_name" href="${i.url}">FREE - ${i.name}</a>
-                <!-- /ko -->
-                <!-- ko ifnot: product_has_url --><!-- /ko -->
-              </span>
-            </div>
-            <div class="col-5 text-right">
-              <!-- ko ifnot: canApplyMsrp -->
-              <!-- ko foreach: $parent.getRegion('priceSidebar') -->
-              <!-- ko template: {name: getTemplate(), data: item.product_price, as: 'price'} -->
-              <div class="price-container">
-                <span class="price-wrapper" data-bind="html: price">
-                  <span class="price-including-tax" data-label="Incl. VAT">
-                    <span class="minicart-price">
-                      <span class="minicart-regular-price"><span class="price">${i.price[this.country]}</span></span>
-                      <span class="minicart-sprcial-price-maroon"> <span class="price">£0.00</span> </span></span
-                    >
-                  </span>
-                </span>
-              </div>
-              <!-- /ko -->
-              <!-- /ko -->
-              <!-- /ko -->
-            </div>
-          </div>
-          <div class="product-item-details" role="tablist">
-            <!-- ko if: options.length -->
-            <div
-              class="product options"
-              data-collapsible="true"
-              role="tab"
-              aria-selected="false"
-              aria-expanded="false"
-              tabindex="0"
-            >
-              <!--<span data-role="title" class="toggle">&lt;!&ndash; ko i18n: 'See Details' &ndash;&gt;&lt;!&ndash; /ko &ndash;&gt;</span>-->
-
-              <div data-role="content" class="content">
-                <strong class="subtitle"
-                  ><!-- ko i18n: 'Options Details' --><span>Options Details</span
-                  ><!-- /ko --></strong
-                >
-                <div class="product options list">
-                  <div class="option-wrapper">
-                    <div
-                      class="label"
-                      data-bind="i18n: 'Qty', attr: {for: 'cart-item-'+item_id+'-qty'}"
-                      for="cart-item-649887-qty"
-                    >
-                      Qty
-                    </div>
-                    <div class="values">
-                      <span data-bind="text: qty">1</span>
-                    </div>
-                  </div>
-
-                  <!-- ko foreach: { data: options, as: 'option' } -->
-                  <div class="option-wrapper">
-                    <div class="label"><!-- ko text: option.label -->Colour<!-- /ko --></div>
-                    <div class="values">
-                      <!-- ko if: Array.isArray(option.value) --><!-- /ko -->
-                      <!-- ko ifnot: Array.isArray(option.value) -->
-                      <span data-bind="text: option.value">${t}</span>
-                      <!-- /ko -->
-                    </div>
-                  </div>
-                  <!-- /ko -->
-                  <!-- ko if: item.gift_message_show--><!-- /ko -->
-                </div>
-              </div>
-            </div>
-            <!-- /ko -->
-            <div class="product-item-pricing"><!-- ko if: canApplyMsrp --><!-- /ko --></div>
-          </div>
-        </div>
-        <!-- /ko -->
-        <!-- ko ifnot: product_has_url --><!-- /ko -->
-      </div>
-      <div class="row no-gutters">
-        <div class="col-11"><!-- ko if: product_out_of_stock_message --><!-- /ko --></div>
-        <div class="col-1">
-          <div class="product actions">
-            <div class="secondary">
-              <a
-                href="#"
-                data-bind="attr: {'data-cart-item': item_id, title: $t('Remove item')}"
-                class="action delete os-delete"
-                title="Remove"
-              >
-                <i class="fas fa-trash"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </li>`
-      ), o = (g = U.find((h) => h.id === parseInt(e))) == null ? void 0 : g.name;
-      sessionStorage.setItem(le, JSON.stringify({ giftId: e, colour: t, name: o }));
-      const r = await W(".mobile-basket-block #mini-cart"), l = await W(".block-minicart #mini-cart"), a = r, c = l;
-      c && c.insertAdjacentHTML("beforeend", s), a && a.insertAdjacentHTML("beforeend", s);
-      const d = document.querySelector(".counter-number"), u = document.querySelector(".mobile-basket__btn span");
-      ae(d, "add"), ae(u, "add"), document.querySelectorAll('li.item.product.product-item[data-os="product-item"]').forEach((h) => {
-        var x;
-        const v = h;
-        (x = v.querySelector(".action.delete")) == null || x.addEventListener("click", (p) => {
-          p.preventDefault();
-          const f = v.dataset.osid;
-          document.querySelectorAll(`li.item.product.product-item[data-os="product-item"][data-osid="${f}"]`).forEach((b) => b.remove()), sessionStorage.removeItem(le), ae(d, "remove"), ae(u, "remove");
-        });
-      });
-    }
-  }
-  function ae(n, e) {
-    n && setTimeout(() => {
-      var i;
-      const t = parseInt(((i = n.textContent) == null ? void 0 : i.replace(/[^\d]/g, "")) || "0");
-      n.textContent = `(${(e === "add" ? t + 1 : t - 1).toString()})`;
-    }, 0);
-  }
-  const Dn = {
-    modules: [Ln, Mn],
+`, $n = {
+    modules: [In, Ln],
     direction: "horizontal",
     slidesPerView: "auto",
     spaceBetween: 35,
@@ -5119,9 +4945,9 @@ button.swiper-pagination-bullet {
       }
     }
   };
-  class Gn {
+  class Dn {
     constructor({ country: e }) {
-      this.selectedColors = {}, this.country = e, this.baseUrl = this.country === O.US ? "https://us.maxwellscottbags.com/" : this.country === O.AU ? "https://au.maxwellscottbags.com/" : this.country === O.IE ? "https://ie.maxwellscottbags.com/" : this.country === O.CA ? "https://ca.maxwellscottbags.com/" : this.country === O.NZ ? "https://nz.maxwellscottbags.com/" : "https://www.maxwellscottbags.com/", this.init();
+      this.giftAdded = !1, this.selectedColors = {}, this.country = e, this.baseUrl = this.country === O.US ? "https://us.maxwellscottbags.com/" : this.country === O.AU ? "https://au.maxwellscottbags.com/" : this.country === O.IE ? "https://ie.maxwellscottbags.com/" : this.country === O.CA ? "https://ca.maxwellscottbags.com/" : this.country === O.NZ ? "https://nz.maxwellscottbags.com/" : "https://www.maxwellscottbags.com/", this.init();
     }
     init() {
       this.render(), this.closePopupHandlers(), this.colorSelectionHandler(), this.addGiftHandler();
@@ -5177,7 +5003,7 @@ button.swiper-pagination-bullet {
                                     class="os-color ${l === "Chestnut Tan" ? "active" : ""} "
                                     data-color="${l}"
                                   >
-                                    <img src="${st[l]}" alt="${l}" />
+                                    <img src="${it[l]}" alt="${l}" />
                                   </button>`
               )
             ).join("")}
@@ -5231,7 +5057,7 @@ button.swiper-pagination-bullet {
       </div>
     </dialog>`
       );
-      document.head.insertAdjacentHTML("beforeend", `<style>${On}</style>`), document.body.insertAdjacentHTML("beforeend", e), this.popup = document.querySelector("#gift-popup"), this.initSwiper();
+      document.head.insertAdjacentHTML("beforeend", `<style>${Mn}</style>`), document.body.insertAdjacentHTML("beforeend", e), this.popup = document.querySelector("#gift-popup"), this.initSwiper();
       const t = (s = this.popup) == null ? void 0 : s.querySelectorAll(".os-actions button");
       t && t.forEach((r) => {
         r.addEventListener("click", () => {
@@ -5241,15 +5067,15 @@ button.swiper-pagination-bullet {
         });
       });
       const i = (o = this.popup) == null ? void 0 : o.querySelector('[data-btn="popup-checkout"]');
-      i && i.addEventListener("click", () => {
-        var l, a, c;
-        const r = (a = (l = this.popup) == null ? void 0 : l.querySelector(".os-title")) == null ? void 0 : a.textContent;
+      i && i.addEventListener("click", (r) => {
+        var a, c, d;
+        const l = (c = (a = this.popup) == null ? void 0 : a.querySelector(".os-title")) == null ? void 0 : c.textContent;
         P(
           "exp_pop_car_retent_2_but_popupfree_proc",
-          `Proceed to checkout - ${r}`,
+          `Proceed to checkout - ${l}`,
           "click",
           "Pop up free gift"
-        ), (c = this.popup) == null || c.close();
+        ), (d = this.popup) == null || d.close();
       });
     }
     colorSelectionHandler() {
@@ -5282,15 +5108,15 @@ button.swiper-pagination-bullet {
         sessionStorage.setItem(Q, r);
       }, t = (r) => {
         const l = this.selectedColors[r] || "Chestnut Tan";
-        new Re({ country: this.country }).addGiftToCart({ giftId: r, colour: l }), e(Ce);
+        e(Ce);
         const a = {
           couponCode: Ce
-        }, c = `${this.baseUrl}/scommerce/minicart/couponcode/`, d = `${this.baseUrl}amasty_promo/cart/add/`, u = it[l], m = {
+        }, c = `${this.baseUrl}/scommerce/minicart/couponcode/`, d = `${this.baseUrl}amasty_promo/cart/add/`, u = nt[l], m = {
           uenc: "aHR0cHM6Ly93d3cubWF4d2VsbHNjb3R0YmFncy5jb20vY2hlY2tvdXQva2xhcm5hLw,",
           isPromoItems: !0,
           product_id: r,
           "super_attribute[92]": u,
-          form_key: Ke("form_key")
+          form_key: Ze("form_key")
         };
         console.log("giftData", m), jQuery.ajax({
           type: "POST",
@@ -5302,7 +5128,7 @@ button.swiper-pagination-bullet {
             url: d,
             data: m
           }).done(function(h) {
-            console.log("gift added");
+            console.log("gift added"), this.giftAdded = !0;
           });
         });
       }, i = (r) => {
@@ -5352,7 +5178,7 @@ button.swiper-pagination-bullet {
       this.timerId !== null && (window.clearInterval(this.timerId), this.timerId = null);
     }
     initSwiper() {
-      this.swiper = new D("#gift-popup .swiper", Dn), document.head.insertAdjacentHTML("beforeend", `<style>${Bn}</style>`), document.head.insertAdjacentHTML("beforeend", `<style>${zn}</style>`), document.head.insertAdjacentHTML("beforeend", `<style>${$n}</style>`);
+      this.swiper = new D("#gift-popup .swiper", $n), document.head.insertAdjacentHTML("beforeend", `<style>${On}</style>`), document.head.insertAdjacentHTML("beforeend", `<style>${Bn}</style>`), document.head.insertAdjacentHTML("beforeend", `<style>${zn}</style>`);
     }
     show(e = !0) {
       var s;
@@ -5386,7 +5212,7 @@ button.swiper-pagination-bullet {
       });
     }
   }
-  const Hn = {
+  const Gn = {
     uk: {
       men: [
         {
@@ -5531,7 +5357,7 @@ button.swiper-pagination-bullet {
         }
       ]
     }
-  }, qn = `.crs-promo {
+  }, Hn = `.crs-promo {
   background-color: #fff;
   border: none;
   box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.15);
@@ -5716,7 +5542,7 @@ button.swiper-pagination-bullet {
   }
 }
 `;
-  class Nn {
+  class qn {
     constructor({ country: e }) {
       this.closePopup = () => {
         var t;
@@ -5738,7 +5564,7 @@ button.swiper-pagination-bullet {
       </div>
     </dialog>`
       );
-      document.head.insertAdjacentHTML("beforeend", `<style>${qn}</style>`), document.body.insertAdjacentHTML("beforeend", e), this.popup = document.querySelector("#promo-popup");
+      document.head.insertAdjacentHTML("beforeend", `<style>${Hn}</style>`), document.body.insertAdjacentHTML("beforeend", e), this.popup = document.querySelector("#promo-popup");
     }
     show(e = !0) {
       var c;
@@ -5748,11 +5574,11 @@ button.swiper-pagination-bullet {
       l.innerHTML = /* HTML */
       `
       <div class="crs-promo__blocks">
-        ${Hn[this.country.toLowerCase()][r].map((d) => (
+        ${Gn[this.country.toLowerCase()][r].map((d) => (
         /* HTML */
         `
               <div class="crs-promo__block">
-                <img class="crs-promo__block-img" src="${Je}${d.image}" alt="" />
+                <img class="crs-promo__block-img" src="${Ke}${d.image}" alt="" />
                 <div class="crs-promo__block-header">
                   <h3 class="crs-promo__block-title">${d.title}</h3>
                 </div>
@@ -5807,7 +5633,7 @@ button.swiper-pagination-bullet {
       });
     }
   }
-  class Fn {
+  class Nn {
     constructor({ country: e, device: t }) {
       this.getTotalCartValue = async () => {
         var r, l;
@@ -5829,7 +5655,7 @@ button.swiper-pagination-bullet {
       }, this.idleTime = 40, this.idleTimeAfterAddToCart = 45, this.sessionTime = 180, this.device = t, this.country = e, this.cartPopupViewCount = 0, this.init();
     }
     init() {
-      this.promoPopup = new Nn({ country: this.country }), this.cartPopup = new pt({ country: this.country, device: this.device }), this.giftPopup = new Gn({ country: this.country }), this.handleAddToCart(), this.triggers();
+      this.promoPopup = new qn({ country: this.country }), this.cartPopup = new dt({ country: this.country, device: this.device }), this.giftPopup = new Dn({ country: this.country }), this.handleAddToCart(), this.triggers();
     }
     triggers() {
       this.setupSessionTimeTriggerToPromoPopup(), this.setupSessionTimeTriggerToCartAndGiftPopup(), this.setupAddToCartTrigger(), this.setupScrollTrigger(), this.setupMouseLeaveAndFocusTriggers(), this.setupCartPopupTrigger(), this.setupIdleTimeTrigger(this.idleTime, () => {
@@ -5934,7 +5760,7 @@ button.swiper-pagination-bullet {
       });
     }
     showPopupsOnFastScroll() {
-      const e = Ze(), t = this.device === j.Desktop ? 70 : 120;
+      const e = Qe(), t = this.device === j.Desktop ? 70 : 120;
       (e < -t || e > t) && (console.log("Fast scroll"), this.showPopupsBasedOnCartStatus());
     }
     showPopupsOnPageCenter() {
@@ -5956,7 +5782,7 @@ button.swiper-pagination-bullet {
       console.log("isProductInCart:", e), e && this.showGiftOrCartPopup(), this.isUserWatchedPopup() && !e && this.promoPopup.show();
     }
   }
-  const Vn = `.ampromo-overlay {
+  const Fn = `.ampromo-overlay {
   opacity: 0 !important;
 }
 
@@ -5969,13 +5795,186 @@ button.swiper-pagination-bullet {
 }
 
 `;
-  class jn {
+  class Vn {
     constructor({ country: e }) {
       this.country = e, this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${Vn}</style>`), sessionStorage.removeItem(Q);
+      document.head.insertAdjacentHTML("beforeend", `<style>${Fn}</style>`), sessionStorage.removeItem(Q);
     }
+  }
+  class jn {
+    constructor({ country: e }) {
+      this.cartItem = null, this.country = O.UK, this.country = e;
+    }
+    updateCart() {
+      const e = sessionStorage.getItem(le), t = sessionStorage.getItem("CRS_DISCOUNT");
+      if (!e || !t)
+        return;
+      const { giftId: i, colour: s } = JSON.parse(e);
+      this.addGiftToCart({ giftId: i, colour: s });
+    }
+    async addGiftToCart({ giftId: e, colour: t }) {
+      var g;
+      const i = U.find((h) => h.id === parseInt(e));
+      if (!i)
+        return;
+      const s = (
+        /* HTML */
+        ` <li class="item product product-item" role="product-item" data-os="product-item" data-osid="${e}">
+      <div class="product row no-gutters flex-nowrap">
+        <!-- ko if: product_has_url -->
+        <div class="col-3">
+          <a
+            data-bind="attr: {href: product_url, title: product_name}"
+            tabindex="-1"
+            class="product-item-photo"
+            href="${i.url}"
+            title="FREE -  ${i.name}"
+          >
+            <!-- ko foreach: $parent.getRegion('itemImage') -->
+            <!-- ko template: {name: getTemplate(), data: item.product_image} -->
+            <span class="product-image-container" data-bind="style: {width: width/2 + 'px'}" style="width: 75px;">
+              <span
+                class="product-image-wrapper"
+                data-bind="style: {'padding-bottom': height/width*100 + '%'}"
+                style="padding-bottom: 100%;"
+              >
+                <img
+                  class="product-image-photo"
+                  data-bind="attr: {src: src, alt: alt}, style: {width: 'auto', height: 'auto'}"
+                  src="${i.colours[t]}"
+                  alt="${i} - ${t}"
+                  style="width: auto; height: auto;"
+                />
+              </span>
+            </span>
+            <!-- /ko -->
+            <!-- /ko -->
+          </a>
+        </div>
+        <div class="col-9">
+          <div class="row no-gutters">
+            <div class="col-7">
+              <span class="product-item-name tests">
+                <!-- ko if: product_has_url -->
+                <a data-bind="attr: {href: product_url}, html: product_name" href="${i.url}">FREE - ${i.name}</a>
+                <!-- /ko -->
+                <!-- ko ifnot: product_has_url --><!-- /ko -->
+              </span>
+            </div>
+            <div class="col-5 text-right">
+              <!-- ko ifnot: canApplyMsrp -->
+              <!-- ko foreach: $parent.getRegion('priceSidebar') -->
+              <!-- ko template: {name: getTemplate(), data: item.product_price, as: 'price'} -->
+              <div class="price-container">
+                <span class="price-wrapper" data-bind="html: price">
+                  <span class="price-including-tax" data-label="Incl. VAT">
+                    <span class="minicart-price">
+                      <span class="minicart-regular-price"><span class="price">${i.price[this.country]}</span></span>
+                      <span class="minicart-sprcial-price-maroon"> <span class="price">£0.00</span> </span></span
+                    >
+                  </span>
+                </span>
+              </div>
+              <!-- /ko -->
+              <!-- /ko -->
+              <!-- /ko -->
+            </div>
+          </div>
+          <div class="product-item-details" role="tablist">
+            <!-- ko if: options.length -->
+            <div
+              class="product options"
+              data-collapsible="true"
+              role="tab"
+              aria-selected="false"
+              aria-expanded="false"
+              tabindex="0"
+            >
+              <!--<span data-role="title" class="toggle">&lt;!&ndash; ko i18n: 'See Details' &ndash;&gt;&lt;!&ndash; /ko &ndash;&gt;</span>-->
+
+              <div data-role="content" class="content">
+                <strong class="subtitle"
+                  ><!-- ko i18n: 'Options Details' --><span>Options Details</span
+                  ><!-- /ko --></strong
+                >
+                <div class="product options list">
+                  <div class="option-wrapper">
+                    <div
+                      class="label"
+                      data-bind="i18n: 'Qty', attr: {for: 'cart-item-'+item_id+'-qty'}"
+                      for="cart-item-649887-qty"
+                    >
+                      Qty
+                    </div>
+                    <div class="values">
+                      <span data-bind="text: qty">1</span>
+                    </div>
+                  </div>
+
+                  <!-- ko foreach: { data: options, as: 'option' } -->
+                  <div class="option-wrapper">
+                    <div class="label"><!-- ko text: option.label -->Colour<!-- /ko --></div>
+                    <div class="values">
+                      <!-- ko if: Array.isArray(option.value) --><!-- /ko -->
+                      <!-- ko ifnot: Array.isArray(option.value) -->
+                      <span data-bind="text: option.value">${t}</span>
+                      <!-- /ko -->
+                    </div>
+                  </div>
+                  <!-- /ko -->
+                  <!-- ko if: item.gift_message_show--><!-- /ko -->
+                </div>
+              </div>
+            </div>
+            <!-- /ko -->
+            <div class="product-item-pricing"><!-- ko if: canApplyMsrp --><!-- /ko --></div>
+          </div>
+        </div>
+        <!-- /ko -->
+        <!-- ko ifnot: product_has_url --><!-- /ko -->
+      </div>
+      <div class="row no-gutters">
+        <div class="col-11"><!-- ko if: product_out_of_stock_message --><!-- /ko --></div>
+        <div class="col-1">
+          <div class="product actions">
+            <div class="secondary">
+              <a
+                href="#"
+                data-bind="attr: {'data-cart-item': item_id, title: $t('Remove item')}"
+                class="action delete os-delete"
+                title="Remove"
+              >
+                <i class="fas fa-trash"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>`
+      ), o = (g = U.find((h) => h.id === parseInt(e))) == null ? void 0 : g.name;
+      sessionStorage.setItem(le, JSON.stringify({ giftId: e, colour: t, name: o }));
+      const r = await W(".mobile-basket-block #mini-cart"), l = await W(".block-minicart #mini-cart"), a = r, c = l;
+      c && c.insertAdjacentHTML("beforeend", s), a && a.insertAdjacentHTML("beforeend", s);
+      const d = document.querySelector(".counter-number"), u = document.querySelector(".mobile-basket__btn span");
+      ae(d, "add"), ae(u, "add"), document.querySelectorAll('li.item.product.product-item[data-os="product-item"]').forEach((h) => {
+        var x;
+        const v = h;
+        (x = v.querySelector(".action.delete")) == null || x.addEventListener("click", (p) => {
+          p.preventDefault();
+          const f = v.dataset.osid;
+          document.querySelectorAll(`li.item.product.product-item[data-os="product-item"][data-osid="${f}"]`).forEach((b) => b.remove()), sessionStorage.removeItem(le), ae(d, "remove"), ae(u, "remove");
+        });
+      });
+    }
+  }
+  function ae(n, e) {
+    n && setTimeout(() => {
+      var i;
+      const t = parseInt(((i = n.textContent) == null ? void 0 : i.replace(/[^\d]/g, "")) || "0");
+      n.textContent = `(${(e === "add" ? t + 1 : t - 1).toString()})`;
+    }, 0);
   }
   const Rn = `br.os-mobile {
   @media (min-width: 768px) {
@@ -6048,13 +6047,13 @@ form.needsclick.os-submitted {
       });
     }
   }
-  Xe({ name: "Exit Popup For Cart Retention", dev: "OS" }), Qe("exp_pop_car_retent");
+  Ue({ name: "Exit Popup For Cart Retention", dev: "OS" }), Xe("exp_pop_car_retent");
   class Un {
     constructor() {
       this.device = screen.width <= 768 ? j.Mobile : j.Desktop, this.country = window.location.host.includes("au") ? O.AU : window.location.host.includes("us") ? O.US : window.location.host.includes("ca") ? O.CA : O.UK, this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${Rn}</style>`), !location.pathname.includes("checkout") && !location.pathname.includes("sign-up") && (new Ie({ country: this.country, device: this.device }), new Fn({ country: this.country, device: this.device }), new Re({ country: this.country }).updateCart()), location.pathname.includes("sign-up") && (new Ie({ country: this.country, device: this.device }), new Wn()), location.pathname.includes("checkout") && new jn({ country: this.country });
+      document.head.insertAdjacentHTML("beforeend", `<style>${Rn}</style>`), !location.pathname.includes("checkout") && !location.pathname.includes("sign-up") && (new Ie({ country: this.country, device: this.device }), new Nn({ country: this.country, device: this.device }), new jn({ country: this.country }).updateCart()), location.pathname.includes("sign-up") && (new Ie({ country: this.country, device: this.device }), new Wn()), location.pathname.includes("checkout") && new Vn({ country: this.country });
     }
   }
   new Un();
