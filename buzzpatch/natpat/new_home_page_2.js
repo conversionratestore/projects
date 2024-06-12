@@ -1438,7 +1438,7 @@ body #purchase-slide .price-wrapper {\r
 }\r
 \r
 body #purchase-slide .item {\r
-  padding: 24px;\r
+  padding: 24px 20px;\r
 }\r
 \r
 body #purchase-slide .footer-btns {\r
@@ -1468,6 +1468,21 @@ body #purchase-slide .footer-btns {\r
 \r
   .three-products a:nth-child(3) div {\r
     padding: 20px 12px 20px;\r
+  }\r
+\r
+  .three-products a:nth-child(1) div img {\r
+    width: 109px;\r
+    height: 104px;\r
+  }\r
+\r
+  .three-products a:nth-child(2) div img {\r
+    width: 97px;\r
+    height: 104px;\r
+  }\r
+\r
+  .three-products a:nth-child(3) div img {\r
+    width: 87px;\r
+    height: 69px;\r
   }\r
 \r
   .three-products a div img:first-child {\r
@@ -1700,7 +1715,7 @@ body #purchase-slide .footer-btns {\r
   }\r
 \r
   .new_trustpilot_reviews .slider_dots {\r
-    margin-top: 30px;\r
+    margin-top: 24px;\r
   }\r
 \r
   .new_slider_news {\r
@@ -1980,7 +1995,7 @@ body #purchase-slide .footer-btns {\r
   }\r
 \r
   body .custom-dots {\r
-    margin: 0px auto 30px;\r
+    margin: 24px auto 30px;\r
   }\r
 }`;
   `${k.map((e, n) => (
