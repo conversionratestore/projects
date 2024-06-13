@@ -73,13 +73,13 @@
     /*html*/
     `
   <style>
-    #shopify-section-template--16970486120700__section-marquee,
-    #shopify-section-template--16970486120700__section-slideshow,
-    #shopify-section-template--16970486120700__section-promotion-row-0,
-    #shopify-section-template--16970486120700__98bb895e-b25c-4745-b5cb-457b6fdfb21c,
-    #shopify-section-template--16970486120700__5db9b97d-c9f0-498a-9645-b8e029b46984,
-    #shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b,
-    #shopify-section-template--16970486120700__64d03a86-9515-4123-b7eb-3658d349c1e8,
+    .shopify-section.shopify-section--marquee,
+    #shopify-section-template--17630827479292__section-slideshow,
+    #shopify-section-template--17630827479292__section-promotion-row-0,
+    #shopify-section-template--17630827479292__c779e8b3-bda2-49eb-b1f7-031ddd03321b,
+    #shopify-section-template--17630827479292__98bb895e-b25c-4745-b5cb-457b6fdfb21c,
+    #shopify-section-template--17630827479292__64d03a86-9515-4123-b7eb-3658d349c1e8,
+    #shopify-section-template--17630827479292__5db9b97d-c9f0-498a-9645-b8e029b46984,
     #INDmenu-btn,
     .gwgkTo,
     div[style="visibility: visible;"] iframe[style*="height: 20px; width: 40px; position: fixed;"] {
@@ -2131,7 +2131,7 @@
   }
   function H() {
     const i = setInterval(() => {
-      document.querySelector("#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(i), k("popular-products", "#shopify-section-template--16970486120700__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), k("hot-deals", "#shopify-section-template--16970486120700__section_collection_CbegNw .product-grid-item__inner"));
+      document.querySelector("#shopify-section-template--17630827479292__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner") && document.querySelector("#shopify-section-template--17630827479292__section_collection_CbegNw .product-grid-item__inner") && (clearInterval(i), k("popular-products", "#shopify-section-template--17630827479292__c779e8b3-bda2-49eb-b1f7-031ddd03321b .product-grid-item__inner"), k("hot-deals", "#shopify-section-template--17630827479292__section_collection_CbegNw .product-grid-item__inner"));
     }, 100);
   }
   function j() {
@@ -2218,12 +2218,12 @@
           }).mount(), e = setInterval(() => {
             const n = document.querySelector(".glide__arrow--left"), t = document.querySelector(".glide__arrow--right"), l = document.querySelector(".glide");
             n && t && (clearInterval(e), l.addEventListener("click", (s) => {
-              var p, d, m, _, v, x;
+              var p, d, m, _, v, f;
               if ((p = s.target) != null && p.closest(".glide__arrow.glide__arrow--right") || (d = s.target) != null && d.closest(".glide__arrow.glide__arrow--left")) {
-                let f = s.target.closest(".glide"), w = f ? f.querySelector(".glide__slide--active .new-arrivals-product__title") : null, o = w ? w.innerText : "No title found";
+                let x = s.target.closest(".glide"), w = x ? x.querySelector(".glide__slide--active .new-arrivals-product__title") : null, o = w ? w.innerText : "No title found";
                 c("exp_home_optim_arrows_01", `${o} - left, right`, "Arrows", "Home Page New Arrivals");
               } else
-                (m = s.target) != null && m.closest(".swiper-button-prev-mob") ? (r.go("<"), c("exp_home_optim_arrows_01", `${(_ = s.target.closest(".new-arrivals-product")) == null ? void 0 : _.querySelector(".new-arrivals-product__title").innerText} - left, right`, "Arrows", "Home Page New Arrivals")) : (v = s.target) != null && v.closest(".swiper-button-next-mob") && (r.go(">"), c("exp_home_optim_arrows_01", `${(x = s.target.closest(".new-arrivals-product")) == null ? void 0 : x.querySelector(".new-arrivals-product__title").innerText} - left, right`, "Arrows", "Home Page New Arrivals"));
+                (m = s.target) != null && m.closest(".swiper-button-prev-mob") ? (r.go("<"), c("exp_home_optim_arrows_01", `${(_ = s.target.closest(".new-arrivals-product")) == null ? void 0 : _.querySelector(".new-arrivals-product__title").innerText} - left, right`, "Arrows", "Home Page New Arrivals")) : (v = s.target) != null && v.closest(".swiper-button-next-mob") && (r.go(">"), c("exp_home_optim_arrows_01", `${(f = s.target.closest(".new-arrivals-product")) == null ? void 0 : f.querySelector(".new-arrivals-product__title").innerText} - left, right`, "Arrows", "Home Page New Arrivals"));
             }));
           }, 100);
         }
@@ -2258,7 +2258,7 @@
     u(".trusted-reviews").then((r) => r.insertAdjacentHTML("beforebegin", i));
   }
   function D() {
-    (window.location.pathname === "/" || window.location.pathname.includes("/index")) && (u("head").then((i) => i == null ? void 0 : i.insertAdjacentHTML("afterend", P)), u("#shopify-section-template--16970486120700__section-marquee").then((i) => i == null ? void 0 : i.insertAdjacentHTML("afterend", T)), E(), j(), H(), u('iframe[style*="position: fixed; box-shadow: rgba(23, 73, 77, 0.15) 0px 20px 30px; z-index: 999999;"]').then((i) => {
+    (window.location.pathname === "/" || window.location.pathname.includes("/index")) && (u("head").then((i) => i == null ? void 0 : i.insertAdjacentHTML("afterend", P)), u(".shopify-section.shopify-section--marquee").then((i) => i == null ? void 0 : i.insertAdjacentHTML("afterend", T)), E(), j(), H(), u('iframe[style*="position: fixed; box-shadow: rgba(23, 73, 77, 0.15) 0px 20px 30px; z-index: 999999;"]').then((i) => {
       i && new MutationObserver((e) => {
         var n, t;
         for (let l of e)
@@ -2271,7 +2271,7 @@
       });
     }), q(), u("body").then((i) => {
       i == null || i.classList.add("hide-chat-btn"), g(".free-shipping", "exp_home_optim_section_01", "Home Page Free Shipping on Orders Over $69", "Section", 4e3), g(".shop-all .container", "exp_home_optim_section_02", "Home Page Shop by category", "Section"), g(".warranty-sale", "exp_home_optim_section_04", "Home Page Benefits", "Section"), g('[data-products-type="hot-deals"]', "exp_home_optim_section_05", "Home Page Block Deals For You Mobile device users", "Section", 3e3, 0.5), g('[data-products-type="popular-products"]', "exp_home_optim_section_06", "Home Page      Block      Popular Products", "Section", 3e3, 0.5), g(".new-arrivals", "exp_home_optim_section_07", "Home Page New Arrivals", "Section", 4e3, 0.5), g(".many-devices", "exp_home_optim_section_08", "Home Page  Many Devices, One App", "Section", 3e3), g(".trusted-load-more .swiper-slide", "exp_home_optim_section_09", "Home Page Reviews"), g(".trusted-reviews .swiper .swiper-slide", "exp_home_optim_section_09", "Home Page Reviews"), i == null || i.addEventListener("click", (r) => {
-        var n, t, l, s, p, d, m, _, v, x, f, w;
+        var n, t, l, s, p, d, m, _, v, f, x, w;
         const e = r.target;
         if (e.closest("button.mobile-menu__button"))
           c("exp_home_optim_button_01", "Menu", "Button", "Home Page Header");
@@ -2313,12 +2313,12 @@
         else if (e.closest('[data-products-type="hot-deals"] .product-grid-item__title'))
           c("exp_home_optim_link_1", `${e.closest('[data-products-type="hot-deals"] .product-grid-item__title').innerText}  - click link`, "Link", "Home Page Block Deals For You");
         else if (e.closest('[data-products-type="hot-deals"] .alternative-options__item')) {
-          const o = (v = e.closest(".product-grid-item__inner")) == null ? void 0 : v.querySelector(".product-grid-item__title"), h = (x = e.closest(".alternative-options__item")) == null ? void 0 : x.querySelector(".alternative-options__item-label");
+          const o = (v = e.closest(".product-grid-item__inner")) == null ? void 0 : v.querySelector(".product-grid-item__title"), h = (f = e.closest(".alternative-options__item")) == null ? void 0 : f.querySelector(".alternative-options__item-label");
           c("exp_home_optim_button_22", `${o == null ? void 0 : o.innerText} - click ${h == null ? void 0 : h.innerText}`, "Button", "Home Page          Block          Deals For You");
         } else if (e.closest('[data-products-type="popular-products"] .product-grid-item__title'))
           c("exp_home_optim_link_2", `${e.closest('[data-products-type="popular-products"] .product-grid-item__title').innerText}  - click link`, "Link", "Home Page           Block          Popular Products");
         else if (e.closest('[data-products-type="popular-products"] .alternative-options__item')) {
-          const o = (f = e.closest(".product-grid-item__inner")) == null ? void 0 : f.querySelector(".product-grid-item__title"), h = (w = e.closest(".alternative-options__item")) == null ? void 0 : w.querySelector(".alternative-options__item-label");
+          const o = (x = e.closest(".product-grid-item__inner")) == null ? void 0 : x.querySelector(".product-grid-item__title"), h = (w = e.closest(".alternative-options__item")) == null ? void 0 : w.querySelector(".alternative-options__item-label");
           c("exp_home_optim_button_23", `${o == null ? void 0 : o.innerText} - click ${h == null ? void 0 : h.innerText}`, "Button", "Home Page Block  Popular Products");
         } else
           e.closest(".new-arrivals-product__title") && c("exp_home_optim_link_3", `${e.closest(".new-arrivals-product__title").innerText} - click link`, "Link", "Home Page Block New Arrivals");
