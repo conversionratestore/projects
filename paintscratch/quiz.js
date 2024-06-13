@@ -17,7 +17,7 @@
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, x = () => {
+  }, f = () => {
     const e = navigator.userAgent;
     return e.match(/Android/i) || e.match(/webOS/i) || e.match(/iPhone/i) || e.match(/iPad/i) || e.match(/iPod/i) || e.match(/BlackBerry/i) || e.match(/Windows Phone/i) ? "mobile" : "desktop";
   }, _ = (e, n, t, i, l = 1e3, d = 0.5) => {
@@ -39,7 +39,7 @@
       r && a.observe(r);
     } else
       a.observe(e);
-  }, f = {
+  }, b = {
     arrowRight: (
       /*html */
       `
@@ -82,7 +82,7 @@
       Metal: "Parts like the car's body, doors, hood, and trunk, which have metal underneath the paint.",
       "Non-metal": "Parts like bumpers, lower panels, trim, and mirrors, which have plastic or composite materials under the paint."
     }
-  }, b = {
+  }, x = {
     Small: {
       0: ["ppu/ppt", "ppc", "rc", ["alt"]],
       1: ["mar", "AF4405", ["sp"]],
@@ -228,7 +228,7 @@
         <label class="text-cust">${n}</label>
             <div class="items-lg-center">
                 <div class="select">
-                    <div class="select_current"><div>${Object.keys(g[n])[0]}</div> ${f.arrowDown}</div>
+                    <div class="select_current"><div>${Object.keys(g[n])[0]}</div> ${b.arrowDown}</div>
                     <ul class="select_dropdown">`;
       for (const l in g[n])
         e += ` 
@@ -236,7 +236,7 @@
                     <b>${l}</b> ${g[n][l]}
                 </li>`;
       e += `</ul></div>
-            <button type="button" class="">Next ${f.arrowRight}</button>
+            <button type="button" class="">Next ${b.arrowRight}</button>
         </div></div>`;
     }
     return `<div class="quiz">
@@ -260,7 +260,7 @@
                 <p>${e.desc}</p>
                 <div class="row items-center">
                     <p class="text-cust price">${e.price}</p> 
-                    <a href="${e.hrefAdd}" class="btn_add items-center">${f.basket} Add to Cart</a>
+                    <a href="${e.hrefAdd}" class="btn_add items-center">${b.basket} Add to Cart</a>
                 </div>
             </div>
         </li>`;
@@ -295,7 +295,7 @@
                     <ul>${i}</ul>
                 </div>
             </div>
-            <a href="#" class="btn_back_quiz items-center">${f.arrowLeft} Take quiz again</a>
+            <a href="#" class="btn_back_quiz items-center">${b.arrowLeft} Take quiz again</a>
         </div>`;
   }, D = `[style*="background-color: #fecc22;"],
 .orderforms #page #main .car-touch-up-paints-heading p.small-note,
@@ -753,7 +753,7 @@ ul#header-steps {
       }, this.init();
     }
     init() {
-      this.page !== "/" && x() !== "mobile" && (this.page === "/cgi-bin/select-color.cgi" || this.page === "/cgi-bin/order-form.cgi" || this.page === "/cgi-bin/guided-order.cgi" || this.page === "/cgi-bin/shopping-cart.cgi" || this.page === "/cgi-bin/check-out.cgi" || this.page === "/cgi-bin/review-order.cgi") && this.navigationChange(), this.page === "/cgi-bin/order-form.cgi" && ($("head").append(`<style class="crs_style_main">${D}</style>`), this.quiz());
+      this.page !== "/" && f() !== "mobile" && (this.page === "/cgi-bin/select-color.cgi" || this.page === "/cgi-bin/order-form.cgi" || this.page === "/cgi-bin/guided-order.cgi" || this.page === "/cgi-bin/shopping-cart.cgi" || this.page === "/cgi-bin/check-out.cgi" || this.page === "/cgi-bin/review-order.cgi") && this.navigationChange(), this.page === "/cgi-bin/order-form.cgi" && ($("head").append(`<style class="crs_style_main">${D}</style>`), this.quiz());
     }
     navigationChange() {
       $("head").append(`<style>${S}</style>`), $("#header-wrap").prepend(P);
@@ -812,15 +812,15 @@ ul#header-steps {
       let n = this.res.type, t = this.res.size, i = this.res.metal;
       const l = this.res.typeTitle + ", " + t + ", " + i;
       let d = [
-        ...b[t][0],
-        ...n != 0 ? b[t][n] : [],
+        ...x[t][0],
+        ...n != 0 ? x[t][n] : [],
         // Use an empty array instead of an empty string
-        ...i === "Non-metal" ? b[t][i] : []
+        ...i === "Non-metal" ? x[t][i] : []
         // Wrap the metal value in an array if it's not empty
       ];
       $(".quiz").after(L(d, this.res.typeTitle)), p("exp_prob_bas_vis_02", "Recommended products", "Visibility", "Results page Recommended products"), _(C(".recommended_products__need"), "exp_prob_bas_vis_03", "You might also need:", "Results page You might also need:"), $(".recommended_products li a").click(function() {
         let a = "Results page You might also need:", o = "exp_prob_bas_button_04", r = "Button", h = $(this).closest("li").find("img").attr("alt");
-        $(this).closest(".recommended_products__base") && (a = "Results page Recommended products", o = "exp_prob_bas_button_03"), $(this).hasClass("btn_add") && (o = "exp_prob_bas_button_05", r = "Add to cart Button", setTimeout(() => {
+        $(this).closest(".recommended_products__base") && (a = "Results page Recommended products", o = "exp_prob_bas_button_03"), $(this).hasClass("btn_add") && (o = "exp_prob_bas_button_05", r = "Add to cart Button", f() === "mobile" && setTimeout(() => {
           v(), y(h);
         }, 200)), p(o, h, r, a);
       }), $("html, body").animate({
@@ -829,7 +829,7 @@ ul#header-steps {
         a.preventDefault(), $(".recommended_products__base .btn_add").each(function(o, r) {
           let h = $(r).closest("li").attr("data-id");
           AddCart(1, h);
-        }), v(), y("Your base repair kit"), p("exp_prob_bas_button_02", l, "Add to cart Button", "Results page Recommended products");
+        }), f() === "mobile" && (v(), y("Your base repair kit")), p("exp_prob_bas_button_02", l, "Add to cart Button", "Results page Recommended products");
       }), $(".btn_back_quiz").click(function(a) {
         a.preventDefault(), $(".recommended_products").remove(), $(".quiz [data-index]").each(function(o, r) {
           o != 0 ? $(r).attr("hidden", !0) : $(r).removeAttr("hidden");
@@ -842,7 +842,7 @@ ul#header-steps {
   let z = "";
   setInterval(() => {
     let e = window.location.pathname;
-    z !== e && (z = e, new N(e), $('#no_car_selected[style*="block"]') && !$(".crs_style") && x() === "mobile" && document.head.insertAdjacentHTML("beforeend", `
+    z !== e && (z = e, new N(e), $('#no_car_selected[style*="block"]') && !$(".crs_style") && f() === "mobile" && document.head.insertAdjacentHTML("beforeend", `
         <style class="crs_style">
           @media screen and (max-width: 768px) {
             #color_search_pop a.action-button-orange {
