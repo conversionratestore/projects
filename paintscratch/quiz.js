@@ -64,7 +64,7 @@
   <svg xmlns="http://www.w3.org/2000/svg" width="9" height="12" viewBox="0 0 9 12" fill="none">
     <path d="M9 0.5L9 11.5L4.80825e-07 6L9 0.5Z" fill="#333333"/>
   </svg>`
-  }, g = {
+  }, m = {
     "Type of damage?": {
       "Scratches, Chips, or Peeling Paint": "Scratches, rock chips, scuffs, or paint peeling off in strips.",
       Rust: "Rusty metal spots or paint with visible rust bubbles.",
@@ -112,7 +112,7 @@
       4: ["SEM68422"],
       "Non-metal": ["sem77723"]
     }
-  }, m = {
+  }, g = {
     ppu: {
       "1/2 oz Paint Pen": "Applies paint precisely to small chips or scratches without the mess of a brush."
     },
@@ -222,18 +222,18 @@
     </div>`
   ), A = () => {
     let e = "";
-    for (const n in g) {
-      const i = Object.keys(g).indexOf(n);
+    for (const n in m) {
+      const i = Object.keys(m).indexOf(n);
       e += `<div data-index="${i}" ${i != 0 ? "hidden" : ""}>
         <label class="text-cust">${n}</label>
             <div class="items-lg-center">
                 <div class="select">
-                    <div class="select_current"><div>${Object.keys(g[n])[0]}</div> ${b.arrowDown}</div>
+                    <div class="select_current"><div>${Object.keys(m[n])[0]}</div> ${b.arrowDown}</div>
                     <ul class="select_dropdown">`;
-      for (const l in g[n])
+      for (const l in m[n])
         e += ` 
                 <li>
-                    <b>${l}</b> ${g[n][l]}
+                    <b>${l}</b> ${m[n][l]}
                 </li>`;
       e += `</ul></div>
             <button type="button" class="">Next ${b.arrowRight}</button>
@@ -270,9 +270,9 @@
     for (let s = 0; s < e.length; s++)
       if (typeof e[s] == "object")
         for (let u = 0; u < e[s].length; u++)
-          a = $(`.products-list.${e[s][u]}`), o = Object.keys(m[e[s][u]])[0], c.id = e[s][u], c.href = a.find(".related-items").attr("href"), c.image = a.find(".related-items img").attr("src"), c.desc = m[e[s][u]][o], c.title = o, c.price = a.find(".price").html(), c.hrefAdd = a.find(".add-to-cart").attr("href"), i += w(c);
+          a = $(`.products-list.${e[s][u]}`), o = Object.keys(g[e[s][u]])[0], c.id = e[s][u], c.href = a.find(".related-items").attr("href"), c.image = a.find(".related-items img").attr("src"), c.desc = g[e[s][u]][o], c.title = o, c.price = a.find(".price").html(), c.hrefAdd = a.find(".add-to-cart").attr("href"), i += w(c);
       else {
-        s == 0 ? ($(".orderforms #page #main .car-touch-up-paints-heading p").html().includes("Tricoat") && (d = !0), a = $(`.products-list.${e[s].split("/")[+d]}`), o = Object.keys(m[e[s].split("/")[+d]])[0], r = m[e[s].split("/")[+d]][o], h = e[s].split("/")[+d]) : (a = $(`.products-list.${e[s]}`), o = Object.keys(m[e[s]])[0], r = m[e[s]][o], h = e[s]), c.id = h, c.href = a.find(".related-items").attr("href"), c.image = a.find(".related-items img").attr("src"), c.desc = r, c.title = o, c.price = a.find(".price").html(), c.hrefAdd = a.find(".add-to-cart").attr("href");
+        s == 0 ? ($(".orderforms #page #main .car-touch-up-paints-heading p").html().includes("Tricoat") && (d = !0), a = $(`.products-list.${e[s].split("/")[+d]}`), o = Object.keys(g[e[s].split("/")[+d]])[0], r = g[e[s].split("/")[+d]][o], h = e[s].split("/")[+d]) : (a = $(`.products-list.${e[s]}`), o = Object.keys(g[e[s]])[0], r = g[e[s]][o], h = e[s]), c.id = h, c.href = a.find(".related-items").attr("href"), c.image = a.find(".related-items img").attr("src"), c.desc = r, c.title = o, c.price = a.find(".price").html(), c.hrefAdd = a.find(".add-to-cart").attr("href");
         const q = a.find(".price").html().match(/[\d,.]+/);
         l += parseFloat(q[0]), t += w(c);
       }
@@ -389,6 +389,8 @@ h3.h3_title {
   position: absolute;
   right: 0;
   top: 0;
+  height: 100%;
+  width: auto;
 }
 .select.active .select_dropdown {
   display: block;
@@ -590,6 +592,7 @@ h3.h3_title {
 @media (max-width: 992px) {
   .orderforms #wrapper .car-touch-up-paints-heading {
     margin-top: 0 !important;
+    padding-top: 2px;
   }
   #page #main .recommended_products,
   .quiz {
@@ -798,14 +801,14 @@ ul#header-steps {
         l.removeClass("active"), l.find(".select_current > div").html($(this).find("b").html()), $(this).closest('[data-index="0"]').length ? (n.res.type = i, n.res.typeTitle = $(this).find("b").html(), $('.quiz [data-index="1"] .select_dropdown li:last-child').attr("hidden", i == 3)) : $(this).closest('[data-index="1"]').length ? n.res.size = $(this).find("b").html() : n.res.metal = $(this).find("b").html(), p("exp_prob_bas_dropdown_02", $(this).find("b").html(), "Dropdown", $(this).closest("[data-index]").find("label").text());
       }), $(".quiz button").click(function(t) {
         let i = $(".quiz button").index(this);
-        if (console.log(n.res), p("exp_prob_bas_button_01", $(this).closest("[data-index]").find(".select_current > div").html(), "Button", $(this).closest("[data-index]").find("label").text()), i == 0) {
+        if (p("exp_prob_bas_button_01", $(this).closest("[data-index]").find(".select_current > div").html(), "Button", $(this).closest("[data-index]").find("label").text()), i == 0) {
           $(this).closest('[data-index="0"]').attr("hidden", !0), $('.quiz [data-index="1"]').removeAttr("hidden");
           return;
         } else if (i == 1 && (n.res.size == "Extensive" || n.res.size == "Large")) {
-          $('.quiz [data-index="1"]').attr("hidden", !0), $('.quiz [data-index="2"]').removeAttr("hidden"), n.res.metal = $('.quiz [data-index="2"] b').html();
+          $('.quiz [data-index="1"]').attr("hidden", !0), $('.quiz [data-index="2"]').removeAttr("hidden");
           return;
         }
-        $(".quiz").attr("hidden", !0), n.recommendedProducts();
+        console.log(n.res), $(".quiz").attr("hidden", !0), n.recommendedProducts();
       });
     }
     recommendedProducts() {
