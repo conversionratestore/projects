@@ -17,10 +17,10 @@
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, _ = () => {
+  }, x = () => {
     const e = navigator.userAgent;
     return e.match(/Android/i) || e.match(/webOS/i) || e.match(/iPhone/i) || e.match(/iPad/i) || e.match(/iPod/i) || e.match(/BlackBerry/i) || e.match(/Windows Phone/i) ? "mobile" : "desktop";
-  }, x = (e, n, t, i, l = 1e3, d = 0.5) => {
+  }, _ = (e, n, t, i, l = 1e3, d = 0.5) => {
     let a, o;
     if (a = new IntersectionObserver(
       function(r) {
@@ -109,7 +109,7 @@
       0: ["ptu/ptt", "ptc", "ptp", "AF4405", "rc", ["sp", "alt", "wag", "PRE267", "T6363"]],
       1: ["mar", "AF4405"],
       2: ["FIB157", "DYN907T", "GLE1200"],
-      3: ["spp"],
+      4: ["SEM68422"],
       "Non-metal": ["sem77723"]
     }
   }, g = {
@@ -123,19 +123,19 @@
       "1/2 oz Clearcoat Paint Pen": "To seal and protect the painted area, keeping it safe from the sun, moisture, and wear."
     },
     rc: {
-      "2 oz Rubbing Compound": "Smooths and polishes the repaired area, blending it with the rest of the paint."
+      "2 oz Rubbing Compound|4x": "Smooths and polishes the repaired area, blending it with the rest of the paint."
     },
     alt: {
-      "2 oz Acrylic Lacquer Thinner": "Cleans up mistakes and keeps the paint pen working well."
+      "2 oz Acrylic Lacquer Thinner|2x": "Cleans up mistakes and keeps the paint pen working well."
     },
     mar: {
-      "4 oz. Rust Away": "Turns rust into a stable compound and prevents further corrosion, creating a good foundation for paint or body filler."
+      "4 oz. Rust Away|2x": "Turns rust into a stable compound and prevents further corrosion, creating a good foundation for paint or body filler."
     },
     sp: {
       "Sanding Block": "Provides a firm surface for sandpaper, making sanding easier and more effective."
     },
     AF4405: {
-      "Sandpaper Pack": "Smooths and prepares the surface for painting."
+      "Sandpaper Pack|2x": "Smooths and prepares the surface for painting."
     },
     FIB157: {
       "Bondo® Body Filler  (1 quart)": "Repairs dents, dings, holes, large rusted areas, and scratches."
@@ -162,7 +162,7 @@
       "2 oz Clearcoat Bottle": "Seals and protects the painted area from sun, moisture, and wear."
     },
     wag: {
-      "2 oz Wax and Grease Remover": "Removes wax and grease before painting for better adhesion."
+      "2 oz Wax and Grease Remover|2x": "Removes wax and grease before painting for better adhesion."
     },
     tp2: {
       "2 oz. Primer Bottle": "Creates a smooth, even surface for better paint adhesion on unpainted areas."
@@ -244,21 +244,27 @@
         <p class="text-cust">Use our guide to find the perfect solution for your needs, or explore all options below</p>
         ${e}
     </div>`;
-  }, v = (e) => `
-<li data-id="${e.id}">
-    <a href="${e.href}">
-        <img src="${e.image.replace("/thumb", "/thumb2")}" alt="${e.title}">
-    </a>
-    <div>
-        <a href="${e.href}">${e.title}</a>
-        <p>${e.desc}</p>
-        <div class="row items-center">
-            <p class="text-cust price">${e.price}</p> 
-            <a href="${e.hrefAdd}" class="btn_add items-center">${f.basket} Add to Cart</a>
-        </div>
-    </div>
-</li>
-`, L = (e, n) => {
+  }, v = (e) => {
+    const n = e.title.includes("|") ? e.title.split("|")[1] : "", t = e.title.includes("|") ? e.title.split("|")[0] : e.title;
+    return `
+        <li data-id="${e.id}">
+            <a href="${e.href}">
+                <img src="${e.image.replace("/thumb", "/thumb2")}" alt="${t}">
+            </a>
+            <div>
+                <div>
+                    <a href="${e.href}">${t}</a>
+                    <p ${n == "" ? "hidden" : ""}>${n}</p>
+                </div>
+            
+                <p>${e.desc}</p>
+                <div class="row items-center">
+                    <p class="text-cust price">${e.price}</p> 
+                    <a href="${e.hrefAdd}" class="btn_add items-center">${f.basket} Add to Cart</a>
+                </div>
+            </div>
+        </li>`;
+  }, L = (e, n) => {
     let t = "", i = "", l = 0, d = !1, a, o, r, h, c = {};
     console.log("getRecommendedProducts: "), console.log(e);
     for (let s = 0; s < e.length; s++)
@@ -410,8 +416,8 @@ h3.h3_title {
   color: var(--www-paintscratch-com-blue, #00e);
   text-decoration-line: underline;
 }
-.select_dropdown li:not(:last-child) {
-  border-bottom: 1px solid #d9d9d9;
+.select_dropdown li:not(:first-child) {
+  border-top: 1px solid #d9d9d9;
 }
 .select_dropdown li b {
   display: block;
@@ -736,7 +742,7 @@ ul#header-steps {
       }, this.init();
     }
     init() {
-      this.page !== "/" && _() !== "mobile" && (this.page === "/cgi-bin/select-color.cgi" || this.page === "/cgi-bin/order-form.cgi" || this.page === "/cgi-bin/guided-order.cgi" || this.page === "/cgi-bin/shopping-cart.cgi" || this.page === "/cgi-bin/check-out.cgi" || this.page === "/cgi-bin/review-order.cgi") && this.navigationChange(), this.page === "/cgi-bin/order-form.cgi" && ($("head").append(`<style class="crs_style_main">${D}</style>`), this.quiz());
+      this.page !== "/" && x() !== "mobile" && (this.page === "/cgi-bin/select-color.cgi" || this.page === "/cgi-bin/order-form.cgi" || this.page === "/cgi-bin/guided-order.cgi" || this.page === "/cgi-bin/shopping-cart.cgi" || this.page === "/cgi-bin/check-out.cgi" || this.page === "/cgi-bin/review-order.cgi") && this.navigationChange(), this.page === "/cgi-bin/order-form.cgi" && ($("head").append(`<style class="crs_style_main">${D}</style>`), this.quiz());
     }
     navigationChange() {
       $("head").append(`<style>${S}</style>`), $("#header-wrap").prepend(P);
@@ -769,7 +775,7 @@ ul#header-steps {
     }
     quiz() {
       $(".car-touch-up-paints-heading").after(A()), M(".quiz [data-index]").forEach((t) => {
-        x(t, "exp_prob_bas_vis_01", "Quiz", t.querySelector("label").innerText);
+        _(t, "exp_prob_bas_vis_01", "Quiz", t.querySelector("label").innerText);
       }), $(".select_current").click(function(t) {
         $(this).parent().toggleClass("active"), p("exp_prob_bas_dropdown_01", "Click", "Dropdown", $(this).closest("[data-index]").find("label").text());
       });
@@ -778,7 +784,7 @@ ul#header-steps {
         let i = $(this).index();
         $(this).siblings().removeClass("active"), $(this).addClass("active");
         const l = $(this).closest(".select");
-        l.removeClass("active"), l.find(".select_current > div").html($(this).find("b").html()), $(this).closest('[data-index="0"]').length ? (n.res.type = i, n.res.typeTitle = $(this).find("b").html()) : $(this).closest('[data-index="1"]').length ? n.res.size = $(this).find("b").html() : n.res.metal = $(this).find("b").html(), p("exp_prob_bas_dropdown_02", $(this).find("b").html(), "Dropdown", $(this).closest("[data-index]").find("label").text());
+        l.removeClass("active"), l.find(".select_current > div").html($(this).find("b").html()), $(this).closest('[data-index="0"]').length ? (n.res.type = i, n.res.typeTitle = $(this).find("b").html(), $('.quiz [data-index="1"] .select_dropdown li:last-child').attr("hidden", i == 3)) : $(this).closest('[data-index="1"]').length ? n.res.size = $(this).find("b").html() : n.res.metal = $(this).find("b").html(), p("exp_prob_bas_dropdown_02", $(this).find("b").html(), "Dropdown", $(this).closest("[data-index]").find("label").text());
       }), $(".quiz button").click(function(t) {
         let i = $(".quiz button").index(this);
         if (console.log(n.res), p("exp_prob_bas_button_01", $(this).closest("[data-index]").find(".select_current > div").html(), "Button", $(this).closest("[data-index]").find("label").text()), i == 0) {
@@ -801,7 +807,7 @@ ul#header-steps {
         ...i === "Non-metal" ? b[t][i] : []
         // Wrap the metal value in an array if it's not empty
       ];
-      $(".quiz").after(L(d, this.res.typeTitle)), p("exp_prob_bas_vis_02", "Recommended products", "Visibility", "Results page Recommended products"), x(C(".recommended_products__need"), "exp_prob_bas_vis_03", "You might also need:", "Results page You might also need:"), $(".recommended_products li a").click(function() {
+      $(".quiz").after(L(d, this.res.typeTitle)), p("exp_prob_bas_vis_02", "Recommended products", "Visibility", "Results page Recommended products"), _(C(".recommended_products__need"), "exp_prob_bas_vis_03", "You might also need:", "Results page You might also need:"), $(".recommended_products li a").click(function() {
         let a = "Results page You might also need:", o = "exp_prob_bas_button_04", r = "Button", h = $(this).closest("li").find("img").attr("alt");
         $(this).closest(".recommended_products__base") && (a = "Results page Recommended products", o = "exp_prob_bas_button_03"), $(this).hasClass("btn_add") && (o = "exp_prob_bas_button_05", r = "Add to cart Button", setTimeout(() => {
           w(), y(h);
@@ -825,7 +831,7 @@ ul#header-steps {
   let z = "";
   setInterval(() => {
     let e = window.location.pathname;
-    z !== e && (z = e, new N(e), $('#no_car_selected[style*="block"]') && !$(".crs_style") && _() === "mobile" && document.head.insertAdjacentHTML("beforeend", `
+    z !== e && (z = e, new N(e), $('#no_car_selected[style*="block"]') && !$(".crs_style") && x() === "mobile" && document.head.insertAdjacentHTML("beforeend", `
         <style class="crs_style">
           @media screen and (max-width: 768px) {
             #color_search_pop a.action-button-orange {
