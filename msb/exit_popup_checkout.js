@@ -74,7 +74,7 @@
         return o;
     }
   }
-  const Ae = "cartPopupShown", ke = "promoPopupShown", Te = "giftPopupShown", V = "userWatchedPopup", ae = "CRS_DISCOUNT", Ce = "KEY0624", le = "savedGift", Ke = "https://conversionratestore.github.io/projects/msb/", Je = (
+  const Ae = "cartPopupShown", ke = "promoPopupShown", Te = "giftPopupShown", j = "userWatchedPopup", ae = "CRS_DISCOUNT", Ce = "KEY0624", le = "savedGift", Ke = "https://conversionratestore.github.io/projects/msb/", Je = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -197,7 +197,7 @@
       t.innerHTML = `${et}`, navigator.clipboard.writeText(this.promocode), i.classList.add("copied"), localStorage.setItem(ae, this.promocode);
     }
   }
-  var L = /* @__PURE__ */ ((n) => (n.AU = "au", n.US = "us", n.CA = "ca", n.UK = "uk", n.IE = "ie", n.NZ = "nz", n))(L || {}), j = /* @__PURE__ */ ((n) => (n.Mobile = "Mobile", n.Desktop = "Desktop", n))(j || {}), Q = /* @__PURE__ */ ((n) => (n.WELCOME10 = "WELCOME10", n.WELCOME15 = "WELCOME15", n))(Q || {});
+  var L = /* @__PURE__ */ ((n) => (n.AU = "au", n.US = "us", n.CA = "ca", n.UK = "uk", n.IE = "ie", n.NZ = "nz", n))(L || {}), V = /* @__PURE__ */ ((n) => (n.Mobile = "Mobile", n.Desktop = "Desktop", n))(V || {}), Q = /* @__PURE__ */ ((n) => (n.WELCOME10 = "WELCOME10", n.WELCOME15 = "WELCOME15", n))(Q || {});
   const U = [
     {
       id: 538,
@@ -969,11 +969,11 @@ form:has(.os-popup-title) [role='group'] {
                 return;
               const l = (d) => {
                 var m;
-                d.target.closest('div[role="dialog"]') || (sessionStorage.setItem(V, "true"), (m = r.parentElement) == null || m.removeEventListener("mousedown", l));
+                d.target.closest('div[role="dialog"]') || (sessionStorage.setItem(j, "true"), (m = r.parentElement) == null || m.removeEventListener("mousedown", l));
               };
               (o = r.parentElement) == null || o.addEventListener("mousedown", l);
               const a = document.querySelector(B), c = () => {
-                sessionStorage.setItem(V, "true"), a == null || a.removeEventListener("click", c);
+                sessionStorage.setItem(j, "true"), a == null || a.removeEventListener("click", c);
               };
               a == null || a.addEventListener("click", c);
             }
@@ -2366,7 +2366,7 @@ form:has(.os-popup-title) [role='group'] {
     maxTranslate: qt,
     translateTo: Nt
   };
-  function Vt(n, e) {
+  function jt(n, e) {
     const t = this;
     t.params.cssMode || (t.wrapperEl.style.transitionDuration = `${n}ms`, t.wrapperEl.style.transitionDelay = n === 0 ? "0ms" : ""), t.emit("setTransition", n, e);
   }
@@ -2390,7 +2390,7 @@ form:has(.os-popup-title) [role='group'] {
       e.emit(`slideChangeTransition${s}`), l === "next" ? e.emit(`slideNextTransition${s}`) : e.emit(`slidePrevTransition${s}`);
     }
   }
-  function jt(n, e) {
+  function Vt(n, e) {
     n === void 0 && (n = !0);
     const t = this, {
       params: i
@@ -2415,8 +2415,8 @@ form:has(.os-popup-title) [role='group'] {
     }));
   }
   var Yt = {
-    setTransition: Vt,
-    transitionStart: jt,
+    setTransition: jt,
+    transitionStart: Vt,
     transitionEnd: Rt
   };
   function Wt(n, e, t, i, s) {
@@ -3308,7 +3308,7 @@ form:has(.os-popup-title) [role='group'] {
   }
   var En = {
     checkOverflow: Cn
-  }, Ve = {
+  }, je = {
     init: !0,
     direction: "horizontal",
     oneWayMovement: !1,
@@ -3493,7 +3493,7 @@ form:has(.os-popup-title) [role='group'] {
           emit: l.emit.bind(l)
         });
       });
-      const c = $({}, Ve, a);
+      const c = $({}, je, a);
       return l.params = $({}, c, Se, t), l.originalParams = $({}, l.params), l.passedParams = $({}, t), l.params && l.params.on && Object.keys(l.params.on).forEach((d) => {
         l.on(d, l.params.on[d]);
       }), l.params && l.params.onAny && l.onAny(l.params.onAny), Object.assign(l, {
@@ -3759,7 +3759,7 @@ form:has(.os-popup-title) [role='group'] {
       return Se;
     }
     static get defaults() {
-      return Ve;
+      return je;
     }
     static installModule(e) {
       D.prototype.__modules__ || (D.prototype.__modules__ = []);
@@ -3775,7 +3775,7 @@ form:has(.os-popup-title) [role='group'] {
       D.prototype[e] = ye[n][e];
     });
   }), D.use([_t, At]);
-  function je(n, e, t, i) {
+  function Ve(n, e, t, i) {
     return n.params.createElements && Object.keys(i).forEach((s) => {
       if (!t[s] && t.auto === !0) {
         let o = H(n.el, `.${i[s]}`)[0];
@@ -3833,7 +3833,7 @@ form:has(.os-popup-title) [role='group'] {
     }
     function d() {
       const h = e.params.navigation;
-      if (e.params.navigation = je(e, e.originalParams.navigation, e.params.navigation, {
+      if (e.params.navigation = Ve(e, e.originalParams.navigation, e.params.navigation, {
         nextEl: "swiper-button-next",
         prevEl: "swiper-button-prev"
       }), !(h.nextEl || h.prevEl))
@@ -4051,7 +4051,7 @@ form:has(.os-popup-title) [role='group'] {
       }), p.type !== "custom" && s("paginationRender", w[0]);
     }
     function g() {
-      e.params.pagination = je(e, e.originalParams.pagination, e.params.pagination, {
+      e.params.pagination = Ve(e, e.originalParams.pagination, e.params.pagination, {
         el: "swiper-pagination"
       });
       const p = e.params.pagination;
@@ -4967,7 +4967,7 @@ button.swiper-pagination-bullet {
   };
   class Dn {
     constructor({ country: e }) {
-      this.selectedColors = {}, this.country = e, this.baseUrl = this.country === L.US ? "https://us.maxwellscottbags.com/" : this.country === L.AU ? "https://au.maxwellscottbags.com/" : this.country === L.IE ? "https://ie.maxwellscottbags.com/" : this.country === L.CA ? "https://ca.maxwellscottbags.com/" : this.country === L.NZ ? "https://nz.maxwellscottbags.com/" : "https://www.maxwellscottbags.com/", this.init();
+      this.selectedColors = {}, this.country = e, this.giftAjaxCall = null, this.baseUrl = this.country === L.US ? "https://us.maxwellscottbags.com/" : this.country === L.AU ? "https://au.maxwellscottbags.com/" : this.country === L.IE ? "https://ie.maxwellscottbags.com/" : this.country === L.CA ? "https://ca.maxwellscottbags.com/" : this.country === L.NZ ? "https://nz.maxwellscottbags.com/" : "https://www.maxwellscottbags.com/", this.init();
     }
     init() {
       this.render(), this.closePopupHandlers(), this.colorSelectionHandler(), this.addGiftHandler();
@@ -5088,38 +5088,19 @@ button.swiper-pagination-bullet {
       });
       const i = (o = this.popup) == null ? void 0 : o.querySelector('[data-btn="popup-checkout"]');
       i && i.addEventListener("click", (r) => {
-        var d, u, m;
-        r.preventDefault();
-        const l = this.selectedColors[this.selectedGiftId], a = (u = (d = this.popup) == null ? void 0 : d.querySelector(".os-title")) == null ? void 0 : u.textContent;
+        var a, c, d;
+        r.preventDefault(), this.selectedColors[this.selectedGiftId];
+        const l = (c = (a = this.popup) == null ? void 0 : a.querySelector(".os-title")) == null ? void 0 : c.textContent;
         P(
           "exp_pop_car_retent_2_but_popupfree_proc",
-          `Proceed to checkout - ${a}`,
+          `Proceed to checkout - ${l}`,
           "click",
           "Pop up free gift"
-        ), (m = this.popup) == null || m.close(), (() => {
-          const g = {
-            couponCode: Ce
-          }, h = `${this.baseUrl}/scommerce/minicart/couponcode/`, v = `${this.baseUrl}amasty_promo/cart/add/`, x = nt[l], p = {
-            uenc: "aHR0cHM6Ly93d3cubWF4d2VsbHNjb3R0YmFncy5jb20vY2hlY2tvdXQva2xhcm5hLw,",
-            isPromoItems: !0,
-            product_id: this.selectedGiftId,
-            "super_attribute[92]": x,
-            form_key: Ze("form_key")
-          };
-          jQuery.ajax({
-            type: "POST",
-            url: h,
-            data: g
-          }).done(function(f) {
-            jQuery.ajax({
-              type: "POST",
-              url: v,
-              data: p
-            }).done(function(w) {
-              console.log("gift added"), location.href = "/checkout";
-            });
-          });
-        })();
+        ), (d = this.popup) == null || d.close(), this.giftAjaxCall ? this.giftAjaxCall.then(() => {
+          location.href = "/checkout";
+        }).catch((u) => {
+          console.error(u);
+        }) : location.href = "/checkout";
       });
     }
     colorSelectionHandler() {
@@ -5168,7 +5149,35 @@ button.swiper-pagination-bullet {
           if (!c)
             return;
           const d = c.dataset.productId;
-          d && i(d);
+          if (!d)
+            return;
+          i(d), (() => {
+            const m = {
+              couponCode: Ce
+            }, g = `${this.baseUrl}/scommerce/minicart/couponcode/`, h = this.selectedColors[this.selectedGiftId], v = `${this.baseUrl}amasty_promo/cart/add/`, x = nt[h], p = {
+              uenc: "aHR0cHM6Ly93d3cubWF4d2VsbHNjb3R0YmFncy5jb20vY2hlY2tvdXQva2xhcm5hLw,",
+              isPromoItems: !0,
+              product_id: this.selectedGiftId,
+              "super_attribute[92]": x,
+              form_key: Ze("form_key")
+            };
+            this.giftAjaxCall = new Promise(async (f, w) => {
+              try {
+                const b = await jQuery.ajax({
+                  type: "POST",
+                  url: g,
+                  data: m
+                }), y = await jQuery.ajax({
+                  type: "POST",
+                  url: v,
+                  data: p
+                });
+                console.log("Gift added to cart"), console.log(y), f(y);
+              } catch (b) {
+                w(b);
+              }
+            });
+          })();
         });
       });
       const o = this.popup.querySelector('#gift-popup [data-btn="popup-action"]');
@@ -5684,7 +5693,7 @@ button.swiper-pagination-bullet {
       });
     }
     isUserWatchedPopup() {
-      const e = sessionStorage.getItem(V);
+      const e = sessionStorage.getItem(j);
       return e ? e === "true" : !1;
     }
     checkProductsInCart() {
@@ -5707,7 +5716,7 @@ button.swiper-pagination-bullet {
         });
       }, l = { attributes: !0, attributeFilter: ["style", "class"] };
       let a, c;
-      this.device === j.Desktop && e && (a = new MutationObserver((d) => r(d, a)), a.observe(e, l)), this.device === j.Mobile && t && (c = new MutationObserver((d) => r(d, c)), c.observe(t, l));
+      this.device === V.Desktop && e && (a = new MutationObserver((d) => r(d, a)), a.observe(e, l)), this.device === V.Mobile && t && (c = new MutationObserver((d) => r(d, c)), c.observe(t, l));
     }
     handleAddToCart() {
       const e = _e("#product-addtocart-button");
@@ -5761,11 +5770,11 @@ button.swiper-pagination-bullet {
           }
         }, 1e3);
       };
-      if (sessionStorage.getItem(V))
+      if (sessionStorage.getItem(j))
         t();
       else {
         const i = new MutationObserver(() => {
-          sessionStorage.getItem(V) && (i.disconnect(), t());
+          sessionStorage.getItem(j) && (i.disconnect(), t());
         });
         i.observe(document, { childList: !0, subtree: !0 });
       }
@@ -5781,7 +5790,7 @@ button.swiper-pagination-bullet {
       });
     }
     showPopupsOnFastScroll() {
-      const e = Qe(), t = this.device === j.Desktop ? 70 : 120;
+      const e = Qe(), t = this.device === V.Desktop ? 70 : 120;
       (e < -t || e > t) && (console.log("Fast scroll"), this.showPopupsBasedOnCartStatus());
     }
     showPopupsOnPageCenter() {
@@ -5816,7 +5825,7 @@ button.swiper-pagination-bullet {
 }
 
 `;
-  class Vn {
+  class jn {
     constructor({ country: e }) {
       this.country = e, this.init();
     }
@@ -5824,7 +5833,7 @@ button.swiper-pagination-bullet {
       document.head.insertAdjacentHTML("beforeend", `<style>${Fn}</style>`), sessionStorage.removeItem(ae);
     }
   }
-  class jn {
+  class Vn {
     constructor({ country: e }) {
       this.cartItem = null, this.country = L.UK, this.country = e;
     }
@@ -6059,7 +6068,7 @@ form.needsclick.os-submitted {
       document.head.insertAdjacentHTML("beforeend", `<style>${Yn}</style>`), console.log("hrere"), W(".os-popup-title").then(() => {
         var t;
         const e = (t = document.querySelector(".os-popup-title")) == null ? void 0 : t.textContent;
-        sessionStorage.setItem(V, "true"), F(
+        sessionStorage.setItem(j, "true"), F(
           "form.klaviyo-form",
           "exp_pop_car_retent_2_vis_firorduca_view",
           `Pop up view - ${e}`,
@@ -6071,10 +6080,10 @@ form.needsclick.os-submitted {
   Ue({ name: "Exit Popup For Cart Retention", dev: "OS" }), Xe("exp_pop_car_retent");
   class Un {
     constructor() {
-      this.device = screen.width <= 768 ? j.Mobile : j.Desktop, this.country = window.location.host.includes("au") ? L.AU : window.location.host.includes("us") ? L.US : window.location.host.includes("ca") ? L.CA : L.UK, this.init();
+      this.device = screen.width <= 768 ? V.Mobile : V.Desktop, this.country = window.location.host.includes("au") ? L.AU : window.location.host.includes("us") ? L.US : window.location.host.includes("ca") ? L.CA : L.UK, this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${Rn}</style>`), !location.pathname.includes("checkout") && !location.pathname.includes("sign-up") && (new Ie({ country: this.country, device: this.device }), new Nn({ country: this.country, device: this.device }), new jn({ country: this.country }).updateCart()), location.pathname.includes("sign-up") && (new Ie({ country: this.country, device: this.device }), new Wn()), location.pathname.includes("checkout") && new Vn({ country: this.country });
+      document.head.insertAdjacentHTML("beforeend", `<style>${Rn}</style>`), !location.pathname.includes("checkout") && !location.pathname.includes("sign-up") && (new Ie({ country: this.country, device: this.device }), new Nn({ country: this.country, device: this.device }), new Vn({ country: this.country }).updateCart()), location.pathname.includes("sign-up") && (new Ie({ country: this.country, device: this.device }), new Wn()), location.pathname.includes("checkout") && new jn({ country: this.country });
     }
   }
   new Un();
