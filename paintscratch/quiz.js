@@ -64,7 +64,7 @@
   <svg xmlns="http://www.w3.org/2000/svg" width="9" height="12" viewBox="0 0 9 12" fill="none">
     <path d="M9 0.5L9 11.5L4.80825e-07 6L9 0.5Z" fill="#333333"/>
   </svg>`
-  }, m = {
+  }, g = {
     "Type of damage?": {
       "Scratches, Chips, or Peeling Paint": "Scratches, rock chips, scuffs, or paint peeling off in strips.",
       Rust: "Rusty metal spots or paint with visible rust bubbles.",
@@ -112,7 +112,7 @@
       4: ["SEM68422"],
       "Non-metal": ["sem77723"]
     }
-  }, g = {
+  }, m = {
     ppu: {
       "1/2 oz Paint Pen": "Applies paint precisely to small chips or scratches without the mess of a brush."
     },
@@ -222,18 +222,18 @@
     </div>`
   ), A = () => {
     let e = "";
-    for (const n in m) {
-      const i = Object.keys(m).indexOf(n);
+    for (const n in g) {
+      const i = Object.keys(g).indexOf(n);
       e += `<div data-index="${i}" ${i != 0 ? "hidden" : ""}>
         <label class="text-cust">${n}</label>
             <div class="items-lg-center">
                 <div class="select">
-                    <div class="select_current"><div>${Object.keys(m[n])[0]}</div> ${f.arrowDown}</div>
+                    <div class="select_current"><div>${Object.keys(g[n])[0]}</div> ${f.arrowDown}</div>
                     <ul class="select_dropdown">`;
-      for (const l in m[n])
+      for (const l in g[n])
         e += ` 
                 <li>
-                    <b>${l}</b> ${m[n][l]}
+                    <b>${l}</b> ${g[n][l]}
                 </li>`;
       e += `</ul></div>
             <button type="button" class="">Next ${f.arrowRight}</button>
@@ -244,7 +244,7 @@
         <p class="text-cust">Use our guide to find the perfect solution for your needs, or explore all options below</p>
         ${e}
     </div>`;
-  }, v = (e) => {
+  }, w = (e) => {
     const n = e.title.includes("|") ? e.title.split("|")[1] : "", t = e.title.includes("|") ? e.title.split("|")[0] : e.title;
     return `
         <li data-id="${e.id}">
@@ -252,9 +252,9 @@
                 <img src="${e.image.replace("/thumb", "/thumb2")}" alt="${t}">
             </a>
             <div>
-                <div>
+                <div class="items-center">
                     <a href="${e.href}">${t}</a>
-                    <p ${n == "" ? "hidden" : ""}>${n}</p>
+                    <p ${n == "" ? "hidden" : ""} class="count">${n}</p>
                 </div>
             
                 <p>${e.desc}</p>
@@ -270,11 +270,11 @@
     for (let s = 0; s < e.length; s++)
       if (typeof e[s] == "object")
         for (let u = 0; u < e[s].length; u++)
-          a = $(`.products-list.${e[s][u]}`), o = Object.keys(g[e[s][u]])[0], c.id = e[s][u], c.href = a.find(".related-items").attr("href"), c.image = a.find(".related-items img").attr("src"), c.desc = g[e[s][u]][o], c.title = o, c.price = a.find(".price").html(), c.hrefAdd = a.find(".add-to-cart").attr("href"), i += v(c);
+          a = $(`.products-list.${e[s][u]}`), o = Object.keys(m[e[s][u]])[0], c.id = e[s][u], c.href = a.find(".related-items").attr("href"), c.image = a.find(".related-items img").attr("src"), c.desc = m[e[s][u]][o], c.title = o, c.price = a.find(".price").html(), c.hrefAdd = a.find(".add-to-cart").attr("href"), i += w(c);
       else {
-        s == 0 ? ($(".orderforms #page #main .car-touch-up-paints-heading p").html().includes("Tricoat") && (d = !0), a = $(`.products-list.${e[s].split("/")[+d]}`), o = Object.keys(g[e[s].split("/")[+d]])[0], r = g[e[s].split("/")[+d]][o], h = e[s].split("/")[+d]) : (a = $(`.products-list.${e[s]}`), o = Object.keys(g[e[s]])[0], r = g[e[s]][o], h = e[s]), c.id = h, c.href = a.find(".related-items").attr("href"), c.image = a.find(".related-items img").attr("src"), c.desc = r, c.title = o, c.price = a.find(".price").html(), c.hrefAdd = a.find(".add-to-cart").attr("href");
+        s == 0 ? ($(".orderforms #page #main .car-touch-up-paints-heading p").html().includes("Tricoat") && (d = !0), a = $(`.products-list.${e[s].split("/")[+d]}`), o = Object.keys(m[e[s].split("/")[+d]])[0], r = m[e[s].split("/")[+d]][o], h = e[s].split("/")[+d]) : (a = $(`.products-list.${e[s]}`), o = Object.keys(m[e[s]])[0], r = m[e[s]][o], h = e[s]), c.id = h, c.href = a.find(".related-items").attr("href"), c.image = a.find(".related-items img").attr("src"), c.desc = r, c.title = o, c.price = a.find(".price").html(), c.hrefAdd = a.find(".add-to-cart").attr("href");
         const q = a.find(".price").html().match(/[\d,.]+/);
-        l += parseFloat(q[0]), t += v(c);
+        l += parseFloat(q[0]), t += w(c);
       }
     let I = $(`.products-list.${e[1]} .price`).html().split(/[\d,.]+/g)[0];
     return `
@@ -458,11 +458,22 @@ h3.h3_title {
   margin: 0;
   display: flex;
 }
-#page #main .recommended_products li p:not(.price) {
+#page #main .recommended_products li p:not(.price, .count) {
   color: var(--Main-Black, #222);
   font-size: 12px;
   line-height: 16px;
   margin: 8px 0;
+}
+#page #main .recommended_products li p.count {
+  background: #DAE7F8;
+  margin-left: 8px;
+  padding: 2px 4px;
+  color: var(--www-paintscratch-com-blue, #00E);
+  font-family: Arial;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
 }
 #page #main .recommended_products li .price {
   color: #900;
@@ -693,7 +704,7 @@ ul#header-steps {
   display: none;
 }/*# sourceMappingURL=navigation.css.map */`;
   k({ name: "Quiz. Problem based product selection", dev: "Olha" }), T("exp_prob_bas");
-  function w() {
+  function v() {
     let e = window.currcart.length, n = 0;
     window.currcart.forEach((t) => {
       const i = t.split("|");
@@ -810,7 +821,7 @@ ul#header-steps {
       $(".quiz").after(L(d, this.res.typeTitle)), p("exp_prob_bas_vis_02", "Recommended products", "Visibility", "Results page Recommended products"), _(C(".recommended_products__need"), "exp_prob_bas_vis_03", "You might also need:", "Results page You might also need:"), $(".recommended_products li a").click(function() {
         let a = "Results page You might also need:", o = "exp_prob_bas_button_04", r = "Button", h = $(this).closest("li").find("img").attr("alt");
         $(this).closest(".recommended_products__base") && (a = "Results page Recommended products", o = "exp_prob_bas_button_03"), $(this).hasClass("btn_add") && (o = "exp_prob_bas_button_05", r = "Add to cart Button", setTimeout(() => {
-          w(), y(h);
+          v(), y(h);
         }, 200)), p(o, h, r, a);
       }), $("html, body").animate({
         scrollTop: $(".recommended_products").offset().top - 16
@@ -818,7 +829,7 @@ ul#header-steps {
         a.preventDefault(), $(".recommended_products__base .btn_add").each(function(o, r) {
           let h = $(r).closest("li").attr("data-id");
           AddCart(1, h);
-        }), w(), y("Your base repair kit"), p("exp_prob_bas_button_02", l, "Add to cart Button", "Results page Recommended products");
+        }), v(), y("Your base repair kit"), p("exp_prob_bas_button_02", l, "Add to cart Button", "Results page Recommended products");
       }), $(".btn_back_quiz").click(function(a) {
         a.preventDefault(), $(".recommended_products").remove(), $(".quiz [data-index]").each(function(o, r) {
           o != 0 ? $(r).attr("hidden", !0) : $(r).removeAttr("hidden");
