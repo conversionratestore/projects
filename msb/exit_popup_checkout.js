@@ -57,7 +57,7 @@
     document.querySelectorAll(n).forEach((a) => {
       r.observe(a);
     });
-  }, Qe = function(n = {}) {
+  }, Ze = function(n = {}) {
     let e, t, i, o, s = n.delay || 50;
     function r() {
       e = null, o = 0;
@@ -66,7 +66,7 @@
       return t = window.scrollY, e !== null && (o = t - e), e = t, clearTimeout(i), i = setTimeout(r, s), o;
     };
   }();
-  function Ze(n) {
+  function Qe(n) {
     const e = document.cookie.split(";");
     for (let t = 0; t < e.length; t++) {
       const i = e[t].trim(), [o, s] = i.split("=");
@@ -197,8 +197,8 @@
       t.innerHTML = `${et}`, navigator.clipboard.writeText(this.promocode), i.classList.add("copied"), localStorage.setItem(X, this.promocode);
     }
   }
-  var I = /* @__PURE__ */ ((n) => (n.AU = "au", n.US = "us", n.CA = "ca", n.UK = "uk", n.IE = "ie", n.NZ = "nz", n))(I || {}), V = /* @__PURE__ */ ((n) => (n.Mobile = "Mobile", n.Desktop = "Desktop", n))(V || {}), Q = /* @__PURE__ */ ((n) => (n.WELCOME10 = "WELCOME10", n.WELCOME15 = "WELCOME15", n))(Q || {});
-  const Z = [
+  var L = /* @__PURE__ */ ((n) => (n.AU = "au", n.US = "us", n.CA = "ca", n.UK = "uk", n.IE = "ie", n.NZ = "nz", n))(L || {}), V = /* @__PURE__ */ ((n) => (n.Mobile = "Mobile", n.Desktop = "Desktop", n))(V || {}), Z = /* @__PURE__ */ ((n) => (n.WELCOME10 = "WELCOME10", n.WELCOME15 = "WELCOME15", n))(Z || {});
+  const Q = [
     {
       id: 538,
       name: "The Mimi",
@@ -271,7 +271,7 @@
     au: "$",
     ie: "€",
     nz: "$"
-  }, R = [I.UK, I.IE, I.NZ, I.US], it = `.popup-hidden {
+  }, R = [L.UK, L.IE, L.NZ, L.US], it = `.popup-hidden {
   display: none !important;
 }
 .crs-hide-font {
@@ -661,7 +661,7 @@ form:has(.os-popup-title) [role='group'] {
       e.target.closest('div[role="dialog"]') || n();
     }
   });
-  class Le {
+  class Ie {
     constructor({ country: e, device: t }) {
       this.inputInterval = null, this.country = e, this.device = t, this.init();
     }
@@ -770,7 +770,7 @@ form:has(.os-popup-title) [role='group'] {
         "exp_pop_car_retent_2_vis_youlisuca_view",
         `Pop up view - ${r}`,
         "Pop up You are on the list"
-      ), new Ce(".crs-promocode__container", Q.WELCOME10), (u = document.querySelector(".crs-promo-form .crs-promocode__copy-btn")) == null || u.addEventListener("click", () => {
+      ), new Ce(".crs-promocode__container", Z.WELCOME10), (u = document.querySelector(".crs-promo-form .crs-promocode__copy-btn")) == null || u.addEventListener("click", () => {
         var w;
         const m = (w = document.querySelector(".crs-promo-form__title")) == null ? void 0 : w.textContent;
         P(
@@ -1309,10 +1309,10 @@ form:has(.os-popup-title) [role='group'] {
 `;
   class ct {
     constructor({ country: e, device: t }) {
-      this.country = e, this.device = t, this.baseUrl = this.country === I.US ? "https://us.maxwellscottbags.com/" : this.country === I.AU ? "https://au.maxwellscottbags.com/" : this.country === I.IE ? "https://ie.maxwellscottbags.com/" : this.country === I.CA ? "https://ca.maxwellscottbags.com/" : this.country === I.NZ ? "https://nz.maxwellscottbags.com/" : "https://www.maxwellscottbags.com/", this.init();
+      this.country = e, this.device = t, this.baseUrl = this.country === L.US ? "https://us.maxwellscottbags.com/" : this.country === L.AU ? "https://au.maxwellscottbags.com/" : this.country === L.IE ? "https://ie.maxwellscottbags.com/" : this.country === L.CA ? "https://ca.maxwellscottbags.com/" : this.country === L.NZ ? "https://nz.maxwellscottbags.com/" : "https://www.maxwellscottbags.com/", this.init();
     }
     init() {
-      this.render(), this.closePopupHandlers(), new Ce("#cart-popup .os-promocode-container", Q.WELCOME15);
+      this.render(), this.closePopupHandlers(), new Ce("#cart-popup .os-promocode-container", Z.WELCOME15);
     }
     render() {
       const e = (
@@ -1391,7 +1391,7 @@ form:has(.os-popup-title) [role='group'] {
       l == null || l.addEventListener("click", () => {
         var h;
         const f = {
-          couponCode: Q.WELCOME15
+          couponCode: Z.WELCOME15
         }, g = `${this.baseUrl}/scommerce/minicart/couponcode/`;
         (h = this.popup) == null || h.close(), jQuery.ajax({
           type: "POST",
@@ -1440,12 +1440,12 @@ form:has(.os-popup-title) [role='group'] {
       });
     }
   }
-  function Ie(n) {
+  function Le(n) {
     return n !== null && typeof n == "object" && "constructor" in n && n.constructor === Object;
   }
   function pe(n, e) {
     n === void 0 && (n = {}), e === void 0 && (e = {}), Object.keys(e).forEach((t) => {
-      typeof n[t] > "u" ? n[t] = e[t] : Ie(e[t]) && Ie(n[t]) && Object.keys(e[t]).length > 0 && pe(n[t], e[t]);
+      typeof n[t] > "u" ? n[t] = e[t] : Le(e[t]) && Le(n[t]) && Object.keys(e[t]).length > 0 && pe(n[t], e[t]);
     });
   }
   const Me = {
@@ -1967,15 +1967,15 @@ form:has(.os-popup-title) [role='group'] {
           if (_ && (T.style.transform = "none"), C && (T.style.webkitTransform = "none"), t.roundLengths)
             k = n.isHorizontal() ? ue(T, "width", !0) : ue(T, "height", !0);
           else {
-            const L = e(A, "width"), N = e(A, "padding-left"), Wn = e(A, "padding-right"), Re = e(A, "margin-left"), Ye = e(A, "margin-right"), We = A.getPropertyValue("box-sizing");
+            const I = e(A, "width"), N = e(A, "padding-left"), Wn = e(A, "padding-right"), Re = e(A, "margin-left"), Ye = e(A, "margin-right"), We = A.getPropertyValue("box-sizing");
             if (We && We === "border-box")
-              k = L + Re + Ye;
+              k = I + Re + Ye;
             else {
               const {
                 clientWidth: Un,
                 offsetWidth: Xn
               } = T;
-              k = L + N + Wn + Re + Ye + (Xn - Un);
+              k = I + N + Wn + Re + Ye + (Xn - Un);
             }
           }
           _ && (T.style.transform = _), C && (T.style.webkitTransform = C), t.roundLengths && (k = Math.floor(k));
@@ -2102,7 +2102,7 @@ form:has(.os-popup-title) [role='group'] {
       y && (e.visibleSlides.push(c), e.visibleSlidesIndexes.push(a)), De(c, y, t.slideVisibleClass), De(c, v, t.slideFullyVisibleClass), c.progress = o ? -u : u, c.originalProgress = o ? -f : f;
     }
   }
-  function Lt(n) {
+  function It(n) {
     const e = this;
     if (typeof n > "u") {
       const p = e.rtlTranslate ? -1 : 1;
@@ -2137,7 +2137,7 @@ form:has(.os-popup-title) [role='group'] {
   const he = (n, e, t) => {
     e && !n.classList.contains(t) ? n.classList.add(t) : !e && n.classList.contains(t) && n.classList.remove(t);
   };
-  function It() {
+  function Lt() {
     const n = this, {
       slides: e,
       params: t,
@@ -2287,8 +2287,8 @@ form:has(.os-popup-title) [role='group'] {
     updateAutoHeight: Ct,
     updateSlidesOffset: Et,
     updateSlidesProgress: Pt,
-    updateProgress: Lt,
-    updateSlidesClasses: It,
+    updateProgress: It,
+    updateSlidesClasses: Lt,
     updateActiveIndex: Ot,
     updateClickedSlide: Bt
   };
@@ -2590,13 +2590,13 @@ form:has(.os-popup-title) [role='group'] {
       }), !0;
     return i.slideTo(y, n, e, t);
   }
-  function Qt(n, e, t) {
+  function Zt(n, e, t) {
     e === void 0 && (e = !0);
     const i = this;
     if (!i.destroyed)
       return typeof n > "u" && (n = i.params.speed), i.slideTo(i.activeIndex, n, e, t);
   }
-  function Zt(n, e, t, i) {
+  function Qt(n, e, t, i) {
     e === void 0 && (e = !0), i === void 0 && (i = 0.5);
     const o = this;
     if (o.destroyed)
@@ -2639,8 +2639,8 @@ form:has(.os-popup-title) [role='group'] {
     slideToLoop: Wt,
     slideNext: Ut,
     slidePrev: Xt,
-    slideReset: Qt,
-    slideToClosest: Zt,
+    slideReset: Zt,
+    slideToClosest: Qt,
     slideToClickedSlide: Kt
   };
   function en(n) {
@@ -2726,9 +2726,9 @@ form:has(.os-popup-title) [role='group'] {
       for (let _ = 0; _ < d - A; _ += 1) {
         const C = _ - Math.floor(_ / S) * S;
         if (m) {
-          const L = S - C - 1;
+          const I = S - C - 1;
           for (let N = c.length - 1; N >= 0; N -= 1)
-            c[N].column === L && w.push(N);
+            c[N].column === I && w.push(N);
         } else
           w.push(S - C - 1);
       }
@@ -2736,8 +2736,8 @@ form:has(.os-popup-title) [role='group'] {
       O = Math.max(A - (S - d * 2), y);
       for (let _ = 0; _ < O; _ += 1) {
         const C = _ - Math.floor(_ / S) * S;
-        m ? c.forEach((L, N) => {
-          L.column === C && b.push(N);
+        m ? c.forEach((I, N) => {
+          I.column === C && b.push(N);
         }) : b.push(C);
       }
     }
@@ -2752,16 +2752,16 @@ form:has(.os-popup-title) [role='group'] {
     }), g.watchSlidesProgress && a.updateSlidesOffset(), t) {
       if (w.length > 0 && $) {
         if (typeof e > "u") {
-          const _ = a.slidesGrid[x], L = a.slidesGrid[x + k] - _;
-          l ? a.setTranslate(a.translate - L) : (a.slideTo(x + Math.ceil(k), 0, !1, !0), o && (a.touchEventsData.startTranslate = a.touchEventsData.startTranslate - L, a.touchEventsData.currentTranslate = a.touchEventsData.currentTranslate - L));
+          const _ = a.slidesGrid[x], I = a.slidesGrid[x + k] - _;
+          l ? a.setTranslate(a.translate - I) : (a.slideTo(x + Math.ceil(k), 0, !1, !0), o && (a.touchEventsData.startTranslate = a.touchEventsData.startTranslate - I, a.touchEventsData.currentTranslate = a.touchEventsData.currentTranslate - I));
         } else if (o) {
           const _ = m ? w.length / g.grid.rows : w.length;
           a.slideTo(a.activeIndex + _, 0, !1, !0), a.touchEventsData.currentTranslate = a.translate;
         }
       } else if (b.length > 0 && E)
         if (typeof e > "u") {
-          const _ = a.slidesGrid[x], L = a.slidesGrid[x - O] - _;
-          l ? a.setTranslate(a.translate - L) : (a.slideTo(x - O, 0, !1, !0), o && (a.touchEventsData.startTranslate = a.touchEventsData.startTranslate - L, a.touchEventsData.currentTranslate = a.touchEventsData.currentTranslate - L));
+          const _ = a.slidesGrid[x], I = a.slidesGrid[x - O] - _;
+          l ? a.setTranslate(a.translate - I) : (a.slideTo(x - O, 0, !1, !0), o && (a.touchEventsData.startTranslate = a.touchEventsData.startTranslate - I, a.touchEventsData.currentTranslate = a.touchEventsData.currentTranslate - I));
         } else {
           const _ = m ? b.length / g.grid.rows : b.length;
           a.slideTo(a.activeIndex - _, 0, !1, !0);
@@ -3910,7 +3910,7 @@ form:has(.os-popup-title) [role='group'] {
   function W(n) {
     return n === void 0 && (n = ""), `.${n.trim().replace(/([\.:!+\/])/g, "\\$1").replace(/ /g, ".")}`;
   }
-  function Ln(n) {
+  function In(n) {
     let {
       swiper: e,
       extendParams: t,
@@ -4003,15 +4003,15 @@ form:has(.os-popup-title) [role='group'] {
             _.setAttribute("part", C === b ? "bullet-active" : "bullet");
           }), m.dynamicBullets) {
             const _ = k[O], C = k[S];
-            for (let L = O; L <= S; L += 1)
-              k[L] && k[L].classList.add(...`${m.bulletActiveClass}-main`.split(" "));
+            for (let I = O; I <= S; I += 1)
+              k[I] && k[I].classList.add(...`${m.bulletActiveClass}-main`.split(" "));
             c(_, "prev"), c(C, "next");
           }
         }
         if (m.dynamicBullets) {
           const A = Math.min(k.length, m.dynamicMainBullets + 4), _ = (r * A - r) / 2 - T * r, C = d ? "right" : "left";
-          k.forEach((L) => {
-            L.style[e.isHorizontal() ? C : "top"] = `${_}px`;
+          k.forEach((I) => {
+            I.style[e.isHorizontal() ? C : "top"] = `${_}px`;
           });
         }
       }
@@ -4131,7 +4131,7 @@ form:has(.os-popup-title) [role='group'] {
       destroy: h
     });
   }
-  const In = `.os-gift {
+  const Ln = `.os-gift {
   background-color: #fff;
   border: none;
   box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.15);
@@ -4942,7 +4942,7 @@ button.swiper-pagination-bullet {
   display: none;
 }
 `, zn = {
-    modules: [Pn, Ln],
+    modules: [Pn, In],
     direction: "horizontal",
     slidesPerView: "auto",
     spaceBetween: 35,
@@ -4967,7 +4967,7 @@ button.swiper-pagination-bullet {
   };
   class Gn {
     constructor({ country: e }) {
-      this.selectedColors = {}, this.country = e, this.giftAjaxCall = null, this.baseUrl = this.country === I.US ? "https://us.maxwellscottbags.com/" : this.country === I.AU ? "https://au.maxwellscottbags.com/" : this.country === I.IE ? "https://ie.maxwellscottbags.com/" : this.country === I.CA ? "https://ca.maxwellscottbags.com/" : this.country === I.NZ ? "https://nz.maxwellscottbags.com/" : "https://www.maxwellscottbags.com/", this.init();
+      this.selectedColors = {}, this.country = e, this.giftAjaxCall = null, this.baseUrl = this.country === L.US ? "https://us.maxwellscottbags.com/" : this.country === L.AU ? "https://au.maxwellscottbags.com/" : this.country === L.IE ? "https://ie.maxwellscottbags.com/" : this.country === L.CA ? "https://ca.maxwellscottbags.com/" : this.country === L.NZ ? "https://nz.maxwellscottbags.com/" : "https://www.maxwellscottbags.com/", this.init();
     }
     init() {
       this.render(), this.closePopupHandlers(), this.colorSelectionHandler(), this.addGiftHandler();
@@ -5002,7 +5002,7 @@ button.swiper-pagination-bullet {
               <!-- Additional required wrapper -->
               <div class="swiper-wrapper">
                 <!-- Slides -->
-                ${Z.map(
+                ${Q.map(
           (r) => (
             /* HTML */
             `<div class="swiper-slide">
@@ -5077,7 +5077,7 @@ button.swiper-pagination-bullet {
       </div>
     </dialog>`
       );
-      document.head.insertAdjacentHTML("beforeend", `<style>${In}</style>`), document.body.insertAdjacentHTML("beforeend", e), this.popup = document.querySelector("#gift-popup"), this.initSwiper();
+      document.head.insertAdjacentHTML("beforeend", `<style>${Ln}</style>`), document.body.insertAdjacentHTML("beforeend", e), this.popup = document.querySelector("#gift-popup"), this.initSwiper();
       const t = (o = this.popup) == null ? void 0 : o.querySelectorAll(".os-actions button");
       t && t.forEach((r) => {
         r.addEventListener("click", () => {
@@ -5117,7 +5117,7 @@ button.swiper-pagination-bullet {
             if (!a)
               return;
             this.selectedColors[a] = o.dataset.color;
-            const c = Z.find((p) => p.id === parseInt(a));
+            const c = Q.find((p) => p.id === parseInt(a));
             if (c && this.selectedColors[a]) {
               const p = c.colours[this.selectedColors[a]], u = r.querySelector("img");
               u && (u.src = p);
@@ -5133,16 +5133,45 @@ button.swiper-pagination-bullet {
         sessionStorage.setItem(X, r);
       }, t = (r) => {
         var c;
-        const l = this.selectedColors[r] || "Chestnut Tan", a = (c = Z.find((p) => p.id === parseInt(r))) == null ? void 0 : c.name;
+        const l = this.selectedColors[r] || "Chestnut Tan", a = (c = Q.find((p) => p.id === parseInt(r))) == null ? void 0 : c.name;
         console.log("Gift added to storage"), sessionStorage.setItem(ke, JSON.stringify({ giftId: r, selectedColour: l, name: a })), e(Te), this.selectedGiftId = r;
       }, i = (r) => {
-        var c, p;
+        var p, u;
         t(r);
-        const l = (c = this.popup) == null ? void 0 : c.querySelector('[data-step="1"]'), a = (p = this.popup) == null ? void 0 : p.querySelector('[data-step="2"]');
-        if (l && a) {
+        const l = (p = this.popup) == null ? void 0 : p.querySelector('[data-step="1"]'), a = (u = this.popup) == null ? void 0 : u.querySelector('[data-step="2"]');
+        if ((() => {
+          const f = {
+            couponCode: Te
+          }, g = `${this.baseUrl}/scommerce/minicart/couponcode/`;
+          if (!this.selectedGiftId)
+            return;
+          const h = this.selectedColors[this.selectedGiftId], v = `${this.baseUrl}amasty_promo/cart/add/`, y = Ee[h] || Ee["Chestnut Tan"], d = {
+            uenc: "aHR0cHM6Ly93d3cubWF4d2VsbHNjb3R0YmFncy5jb20vY2hlY2tvdXQva2xhcm5hLw,",
+            isPromoItems: !0,
+            product_id: this.selectedGiftId,
+            "super_attribute[92]": y,
+            form_key: Qe("form_key")
+          };
+          this.giftAjaxCall = new Promise(async (m, w) => {
+            try {
+              const b = await jQuery.ajax({
+                type: "POST",
+                url: g,
+                data: f
+              }), x = await jQuery.ajax({
+                type: "POST",
+                url: v,
+                data: d
+              });
+              console.log("Gift added to cart", b), console.log(x), m(x);
+            } catch (b) {
+              w(b);
+            }
+          });
+        })(), l && a) {
           l.style.display = "none", a.style.display = "block";
-          const u = Z.find((y) => y.id === parseInt(r)), f = a.querySelector(".os-product .os-title"), g = a.querySelector(".os-product img"), h = a.querySelector(".os-product .os-description"), v = a.querySelector(".os-product .os-price .old");
-          u && f && g && h && v && (f.textContent = u.name, g.src = u.colours[this.selectedColors[r]] || u.colours["Chestnut Tan"], h.textContent = u.description, v.textContent = u.price[this.country]);
+          const f = Q.find((d) => d.id === parseInt(r)), g = a.querySelector(".os-product .os-title"), h = a.querySelector(".os-product img"), v = a.querySelector(".os-product .os-description"), y = a.querySelector(".os-product .os-price .old");
+          f && g && h && v && y && (g.textContent = f.name, h.src = f.colours[this.selectedColors[r]] || f.colours["Chestnut Tan"], v.textContent = f.description, y.textContent = f.price[this.country]);
         }
       };
       this.popup.querySelectorAll('#gift-popup [data-btn="item-action"]').forEach((r) => {
@@ -5151,42 +5180,7 @@ button.swiper-pagination-bullet {
           if (!c)
             return;
           const p = c.dataset.productId;
-          if (!p)
-            return;
-          i(p), (() => {
-            const f = {
-              couponCode: Te
-            }, g = `${this.baseUrl}/scommerce/minicart/couponcode/`, h = this.selectedColors[this.selectedGiftId], v = `${this.baseUrl}amasty_promo/cart/add/`, y = Ee[h] || Ee["Chestnut Tan"], d = {
-              uenc: "aHR0cHM6Ly93d3cubWF4d2VsbHNjb3R0YmFncy5jb20vY2hlY2tvdXQva2xhcm5hLw,",
-              isPromoItems: !0,
-              product_id: this.selectedGiftId,
-              "super_attribute[92]": y,
-              form_key: Ze("form_key")
-            };
-            this.giftAjaxCall = new Promise(async (m, w) => {
-              try {
-                await jQuery.ajax({
-                  type: "POST",
-                  url: g,
-                  data: f
-                });
-                const b = await jQuery.ajax({
-                  type: "POST",
-                  url: g,
-                  data: f
-                });
-                console.log(b);
-                const x = await jQuery.ajax({
-                  type: "POST",
-                  url: v,
-                  data: d
-                });
-                console.log("Gift added to cart"), console.log(x), m(x);
-              } catch (b) {
-                w(b);
-              }
-            });
-          })();
+          p && i(p);
         });
       });
       const s = this.popup.querySelector('#gift-popup [data-btn="popup-action"]');
@@ -5799,7 +5793,7 @@ button.swiper-pagination-bullet {
       });
     }
     showPopupsOnFastScroll() {
-      const e = Qe(), t = this.device === V.Desktop ? 70 : 120;
+      const e = Ze(), t = this.device === V.Desktop ? 70 : 120;
       (e < -t || e > t) && (console.log("Fast scroll"), this.showPopupsBasedOnCartStatus());
     }
     showPopupsOnPageCenter() {
@@ -5948,10 +5942,10 @@ form.needsclick.os-submitted {
   Ue({ name: "Exit Popup For Cart Retention", dev: "OS" }), Xe("exp_pop_car_retent");
   class Yn {
     constructor() {
-      this.device = screen.width <= 768 ? V.Mobile : V.Desktop, this.country = window.location.host.includes("au") ? I.AU : window.location.host.includes("us") ? I.US : window.location.host.includes("ca") ? I.CA : I.UK, this.init();
+      this.device = screen.width <= 768 ? V.Mobile : V.Desktop, this.country = window.location.host.includes("au") ? L.AU : window.location.host.includes("us") ? L.US : window.location.host.includes("ca") ? L.CA : L.UK, this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${jn}</style>`), !location.pathname.includes("checkout") && !location.pathname.includes("sign-up") && (new Le({ country: this.country, device: this.device }), new qn({ country: this.country, device: this.device })), location.pathname.includes("sign-up") && (new Le({ country: this.country, device: this.device }), new Rn()), location.pathname.includes("checkout") && new Fn({ country: this.country });
+      document.head.insertAdjacentHTML("beforeend", `<style>${jn}</style>`), !location.pathname.includes("checkout") && !location.pathname.includes("sign-up") && (new Ie({ country: this.country, device: this.device }), new qn({ country: this.country, device: this.device })), location.pathname.includes("sign-up") && (new Ie({ country: this.country, device: this.device }), new Rn()), location.pathname.includes("checkout") && new Fn({ country: this.country });
     }
   }
   new Yn();
