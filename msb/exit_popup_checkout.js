@@ -187,6 +187,8 @@
     </div>`
       );
       if (this.container) {
+        if (this.container.querySelector(".crs-promocode"))
+          return;
         document.head.insertAdjacentHTML("beforeend", `<style>${tt}</style>`), this.container.insertAdjacentHTML("beforeend", e);
         const t = this.container.querySelector("[data-action='copy-promo']");
         t && t.addEventListener("click", this.copyPromo.bind(this));
@@ -746,7 +748,7 @@ form:has(.os-popup-title) [role='group'] {
         if (r.textContent === "SUBSCRIBE NOW") {
           r.style.display = "none";
           const a = document.createElement("button");
-          a.classList.add("os-subsribe"), a.innerHTML = "Get 10% discount", (l = r.parentElement) == null || l.appendChild(a), a.addEventListener("click", () => {
+          a.classList.add("os-subsribe"), a.innerHTML = "Get 10% discount", document.querySelector(".os-subsribe") || (l = r.parentElement) == null || l.appendChild(a), a.addEventListener("click", () => {
             r.click(), I(
               "exp_pop_car_retent_2_but_firorduca_getdis",
               `Get discount - ${t}`,
