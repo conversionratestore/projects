@@ -13,7 +13,7 @@
       `%c EXP: ${n} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, ye = (n) => document.querySelector(n), Qe = (n) => {
+  }, Se = (n) => document.querySelector(n), Qe = (n) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", n, "variant_1"));
     }, 1e3);
@@ -66,7 +66,7 @@
       return t = window.scrollY, e !== null && (o = t - e), e = t, clearTimeout(i), i = setTimeout(r, s), o;
     };
   }();
-  function Se(n) {
+  function ae(n) {
     const e = document.cookie.split(";");
     for (let t = 0; t < e.length; t++) {
       const i = e[t].trim(), [o, s] = i.split("=");
@@ -102,7 +102,7 @@
     fill="#A11A17"
   />
 </svg>`
-  ), ae = (
+  ), le = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -655,7 +655,7 @@ form[data-testid^='klaviyo-form'] div[role='group'] {
 form:has(.os-popup-title) [role='group'] {
   display: block !important;
 }
-`, st = 'input[aria-label="First Name*"]', ot = 50, K = '.needsclick[role="dialog"]', B = 'div[role="dialog"] .klaviyo-close-form', J = ".crs-promo-form", rt = ".crs-promo-form__enhance", at = ".crs-promo-form__continue", le = 'form[data-testid^="klaviyo-form"]:has([id^="first_name"])', ce = (n) => ({
+`, st = 'input[aria-label="First Name*"]', ot = 50, K = '.needsclick[role="dialog"]', B = 'div[role="dialog"] .klaviyo-close-form', J = ".crs-promo-form", rt = ".crs-promo-form__enhance", at = ".crs-promo-form__continue", ce = 'form[data-testid^="klaviyo-form"]:has([id^="first_name"])', pe = (n) => ({
     closeBtn: (e) => {
       n();
     },
@@ -672,7 +672,7 @@ form:has(.os-popup-title) [role='group'] {
     }
     async setPopupChanges() {
       var l, a, c, p, u;
-      const t = ce(() => {
+      const t = pe(() => {
         var h;
         const f = (h = document.querySelector(".os-popup-title")) == null ? void 0 : h.textContent;
         P("exp_pop_car_retent_2_but_firorduca_clos", `Close - ${f}`, "click", "Pop up Get 10% Off");
@@ -681,7 +681,7 @@ form:has(.os-popup-title) [role='group'] {
           const g = h.target, v = g.querySelector('[id^="DateOfBirth"]') || g.querySelector('[id^="Birthday"]'), x = v == null ? void 0 : v.closest("form > div");
           x && x.dataset.hidden !== "not-hidden" && this.handleEnhanceForm(x, i, t);
         });
-      }), o = await U(le);
+      }), o = await U(ce);
       if (o) {
         const f = o;
         this.renderNewCloseButton(t), this.changeTextOnFirstStep(), i.observe(f, {
@@ -701,7 +701,7 @@ form:has(.os-popup-title) [role='group'] {
       );
     }
     changeTextOnFirstStep() {
-      const e = document.querySelector(le);
+      const e = document.querySelector(ce);
       if (!e)
         return;
       let t;
@@ -785,7 +785,7 @@ form:has(.os-popup-title) [role='group'] {
       }), this.updateCloseBtnEvent(i), (f = document.querySelector(B)) == null || f.removeEventListener("click", i.closeBtn);
       const l = document.querySelector(K);
       (h = l == null ? void 0 : l.parentElement) == null || h.removeEventListener("mousedown", i.closeByClickOutside);
-      const c = ce(() => {
+      const c = pe(() => {
         P("exp_pop_car_retent_2_but_youlisuca_clos", `Close - ${r}`, "click", "Pop up You are on the list");
       });
       if ((g = l == null ? void 0 : l.parentElement) == null || g.addEventListener("mousedown", c.closeByClickOutside), (v = document.querySelector(B)) == null || v.addEventListener("click", c.closeBtn), this.device === "Mobile") {
@@ -949,7 +949,7 @@ form:has(.os-popup-title) [role='group'] {
               "Pop up Enhance your experience with us"
             );
           });
-          const w = ce(x);
+          const w = pe(x);
           c == null || c.addEventListener("click", w.closeBtn), (l = p == null ? void 0 : p.parentElement) == null || l.addEventListener("mousedown", w.closeByClickOutside), (a = i.querySelector("button")) == null || a.addEventListener("click", () => {
             const b = document.querySelector(".klaviyo-close-form");
             b == null || b.removeEventListener("click", w.closeBtn), b && b.click();
@@ -985,7 +985,7 @@ form:has(.os-popup-title) [role='group'] {
         {
           threshold: 0.5
         }
-      ), t = await U(le);
+      ), t = await U(ce);
       if (t) {
         const i = t;
         e.observe(i);
@@ -1322,7 +1322,7 @@ form:has(.os-popup-title) [role='group'] {
         /* HTML */
         `<dialog id="cart-popup" class="os-dialog os-cart">
       <div class="os-wrap">
-        <button class="os-close">${ae}</button>
+        <button class="os-close">${le}</button>
         ${R.includes(this.country) ? (
           /* HTML */
           '<h2 class="os-title">Check out now and get <span>15% off & free delivery</span></h2>'
@@ -1398,10 +1398,19 @@ form:has(.os-popup-title) [role='group'] {
         }, h = `${this.baseUrl}/scommerce/minicart/couponcode/`;
         (g = this.popup) == null || g.close(), jQuery.ajax({
           type: "POST",
-          url: h,
-          data: f
+          url: `${this.baseUrl}checkout/cart/couponPost/`,
+          data: {
+            remove: 1,
+            form_key: ae("form_key")
+          }
         }).done(() => {
-          location.href = "/checkout";
+          jQuery.ajax({
+            type: "POST",
+            url: h,
+            data: f
+          }).done(() => {
+            location.href = "/checkout";
+          });
         }), P(
           "exp_pop_car_retent_2_but_popchecuca_comp",
           `Complete my order now - ${r}`,
@@ -1446,9 +1455,9 @@ form:has(.os-popup-title) [role='group'] {
   function Me(n) {
     return n !== null && typeof n == "object" && "constructor" in n && n.constructor === Object;
   }
-  function pe(n, e) {
+  function de(n, e) {
     n === void 0 && (n = {}), e === void 0 && (e = {}), Object.keys(e).forEach((t) => {
-      typeof n[t] > "u" ? n[t] = e[t] : Me(e[t]) && Me(n[t]) && Object.keys(e[t]).length > 0 && pe(n[t], e[t]);
+      typeof n[t] > "u" ? n[t] = e[t] : Me(e[t]) && Me(n[t]) && Object.keys(e[t]).length > 0 && de(n[t], e[t]);
     });
   }
   const Oe = {
@@ -1508,7 +1517,7 @@ form:has(.os-popup-title) [role='group'] {
   };
   function Y() {
     const n = typeof document < "u" ? document : {};
-    return pe(n, Oe), n;
+    return de(n, Oe), n;
   }
   const pt = {
     document: Oe,
@@ -1570,7 +1579,7 @@ form:has(.os-popup-title) [role='group'] {
   };
   function z() {
     const n = typeof window < "u" ? window : {};
-    return pe(n, pt), n;
+    return de(n, pt), n;
   }
   function dt(n) {
     return n === void 0 && (n = ""), n.trim().split(" ").filter((e) => !!e.trim());
@@ -1588,7 +1597,7 @@ form:has(.os-popup-title) [role='group'] {
       }
     });
   }
-  function de(n, e) {
+  function ue(n, e) {
     return e === void 0 && (e = 0), setTimeout(n, e);
   }
   function ee() {
@@ -1706,14 +1715,14 @@ form:has(.os-popup-title) [role='group'] {
       e ? i.matches(e) && t.push(i) : t.push(i), i = i.parentElement;
     return t;
   }
-  function ue(n, e, t) {
+  function fe(n, e, t) {
     const i = z();
     return t ? n[e === "width" ? "offsetWidth" : "offsetHeight"] + parseFloat(i.getComputedStyle(n, null).getPropertyValue(e === "width" ? "margin-right" : "margin-top")) + parseFloat(i.getComputedStyle(n, null).getPropertyValue(e === "width" ? "margin-left" : "margin-bottom")) : n.offsetWidth;
   }
   function M(n) {
     return (Array.isArray(n) ? n : [n]).filter((e) => !!e);
   }
-  let fe;
+  let me;
   function vt() {
     const n = z(), e = Y();
     return {
@@ -1722,9 +1731,9 @@ form:has(.os-popup-title) [role='group'] {
     };
   }
   function Ge() {
-    return fe || (fe = vt()), fe;
+    return me || (me = vt()), me;
   }
-  let me;
+  let he;
   function bt(n) {
     let {
       userAgent: e
@@ -1740,9 +1749,9 @@ form:has(.os-popup-title) [role='group'] {
     return !p && g && t.touch && v.indexOf(`${l}x${a}`) >= 0 && (p = s.match(/(Version)\/([\d.]+)/), p || (p = [0, 1, "13_0_0"]), g = !1), c && !h && (r.os = "android", r.android = !0), (p || f || u) && (r.os = "ios", r.ios = !0), r;
   }
   function De(n) {
-    return n === void 0 && (n = {}), me || (me = bt(n)), me;
+    return n === void 0 && (n = {}), he || (he = bt(n)), he;
   }
-  let he;
+  let ge;
   function xt() {
     const n = z(), e = De();
     let t = !1;
@@ -1766,7 +1775,7 @@ form:has(.os-popup-title) [role='group'] {
     };
   }
   function yt() {
-    return he || (he = xt()), he;
+    return ge || (ge = xt()), ge;
   }
   function St(n) {
     let {
@@ -1968,7 +1977,7 @@ form:has(.os-popup-title) [role='group'] {
           O && (p[S].style[n.getDirectionLabel("width")] = "");
           const A = getComputedStyle(T), _ = T.style.transform, C = T.style.webkitTransform;
           if (_ && (T.style.transform = "none"), C && (T.style.webkitTransform = "none"), t.roundLengths)
-            k = n.isHorizontal() ? ue(T, "width", !0) : ue(T, "height", !0);
+            k = n.isHorizontal() ? fe(T, "width", !0) : fe(T, "height", !0);
           else {
             const I = e(A, "width"), N = e(A, "padding-left"), Wn = e(A, "padding-right"), Ye = e(A, "margin-left"), We = e(A, "margin-right"), Ue = A.getPropertyValue("box-sizing");
             if (Ue && Ue === "border-box")
@@ -2137,7 +2146,7 @@ form:has(.os-popup-title) [role='group'] {
       isEnd: r
     }), (t.watchSlidesProgress || t.centeredSlides && t.autoHeight) && e.updateSlidesProgress(n), s && !a && e.emit("reachBeginning toEdge"), r && !c && e.emit("reachEnd toEdge"), (a && !s || c && !r) && e.emit("fromEdge"), e.emit("progress", o);
   }
-  const ge = (n, e, t) => {
+  const we = (n, e, t) => {
     e && !n.classList.contains(t) ? n.classList.add(t) : !e && n.classList.contains(t) && n.classList.remove(t);
   };
   function Lt() {
@@ -2157,7 +2166,7 @@ form:has(.os-popup-title) [role='group'] {
     else
       r ? (a = e.filter((u) => u.column === o)[0], p = e.filter((u) => u.column === o + 1)[0], c = e.filter((u) => u.column === o - 1)[0]) : a = e[o];
     a && (r || (p = wt(a, `.${t.slideClass}, swiper-slide`)[0], t.loop && !p && (p = e[0]), c = gt(a, `.${t.slideClass}, swiper-slide`)[0], t.loop && !c === 0 && (c = e[e.length - 1]))), e.forEach((u) => {
-      ge(u, u === a, t.slideActiveClass), ge(u, u === p, t.slideNextClass), ge(u, u === c, t.slidePrevClass);
+      we(u, u === a, t.slideActiveClass), we(u, u === p, t.slideNextClass), we(u, u === c, t.slidePrevClass);
     }), n.emitSlidesClasses();
   }
   const re = (n, e) => {
@@ -2170,12 +2179,12 @@ form:has(.os-popup-title) [role='group'] {
         i.shadowRoot && (o = i.shadowRoot.querySelector(`.${n.params.lazyPreloaderClass}`), o && o.remove());
       })), o && o.remove();
     }
-  }, we = (n, e) => {
+  }, ve = (n, e) => {
     if (!n.slides[e])
       return;
     const t = n.slides[e].querySelector('[loading="lazy"]');
     t && t.removeAttribute("loading");
-  }, ve = (n) => {
+  }, be = (n) => {
     if (!n || n.destroyed || !n.params)
       return;
     let e = n.params.lazyPreloadPrevNext;
@@ -2189,7 +2198,7 @@ form:has(.os-popup-title) [role='group'] {
       l.push(...Array.from({
         length: e
       }).map((a, c) => r + i + c)), n.slides.forEach((a, c) => {
-        l.includes(a.column) && we(n, c);
+        l.includes(a.column) && ve(n, c);
       });
       return;
     }
@@ -2197,11 +2206,11 @@ form:has(.os-popup-title) [role='group'] {
     if (n.params.rewind || n.params.loop)
       for (let r = o - e; r <= s + e; r += 1) {
         const l = (r % t + t) % t;
-        (l < o || l > s) && we(n, l);
+        (l < o || l > s) && ve(n, l);
       }
     else
       for (let r = Math.max(o - e, 0); r <= Math.min(s + e, t - 1); r += 1)
-        r !== o && (r > s || r < o) && we(n, r);
+        r !== o && (r > s || r < o) && ve(n, r);
   };
   function Mt(n) {
     const {
@@ -2260,7 +2269,7 @@ form:has(.os-popup-title) [role='group'] {
       realIndex: f,
       previousIndex: s,
       activeIndex: a
-    }), e.initialized && ve(e), e.emit("activeIndexChange"), e.emit("snapIndexChange"), (e.initialized || e.params.runCallbacksOnInit) && (r !== f && e.emit("realIndexChange"), e.emit("slideChange"));
+    }), e.initialized && be(e), e.emit("activeIndexChange"), e.emit("snapIndexChange"), (e.initialized || e.params.runCallbacksOnInit) && (r !== f && e.emit("realIndexChange"), e.emit("slideChange"));
   }
   function Bt(n, e) {
     const t = this, i = t.params;
@@ -2629,9 +2638,9 @@ form:has(.os-popup-title) [role='group'] {
     if (e.loop) {
       if (n.animating)
         return;
-      s = parseInt(n.clickedSlide.getAttribute("data-swiper-slide-index"), 10), e.centeredSlides ? o < n.loopedSlides - i / 2 || o > n.slides.length - n.loopedSlides + i / 2 ? (n.loopFix(), o = n.getSlideIndex(q(t, `${r}[data-swiper-slide-index="${s}"]`)[0]), de(() => {
+      s = parseInt(n.clickedSlide.getAttribute("data-swiper-slide-index"), 10), e.centeredSlides ? o < n.loopedSlides - i / 2 || o > n.slides.length - n.loopedSlides + i / 2 ? (n.loopFix(), o = n.getSlideIndex(q(t, `${r}[data-swiper-slide-index="${s}"]`)[0]), ue(() => {
         n.slideTo(o);
-      })) : n.slideTo(o) : o > n.slides.length - i ? (n.loopFix(), o = n.getSlideIndex(q(t, `${r}[data-swiper-slide-index="${s}"]`)[0]), de(() => {
+      })) : n.slideTo(o) : o > n.slides.length - i ? (n.loopFix(), o = n.getSlideIndex(q(t, `${r}[data-swiper-slide-index="${s}"]`)[0]), ue(() => {
         n.slideTo(o);
       })) : n.slideTo(o);
     } else
@@ -3052,7 +3061,7 @@ form:has(.os-popup-title) [role='group'] {
       const y = i.path || i.composedPath && i.composedPath();
       e.updateClickedSlide(y && y[0] || i.target, y), e.emit("tap click", i), f < 300 && u - t.lastClickTime < 300 && e.emit("doubleTap doubleClick", i);
     }
-    if (t.lastClickTime = ee(), de(() => {
+    if (t.lastClickTime = ee(), ue(() => {
       e.destroyed || (e.allowClick = !0);
     }), !t.isTouched || !t.isMoved || !e.swipeDirection || l.diff === 0 && !t.loopSwapReset || t.currentTranslate === t.startTranslate && !t.loopSwapReset) {
       t.isTouched = !1, t.isMoved = !1, t.startMoving = !1;
@@ -3451,7 +3460,7 @@ form:has(.os-popup-title) [role='group'] {
       }), G(e, i);
     };
   }
-  const be = {
+  const xe = {
     eventsEmitter: At,
     update: zt,
     translate: Nt,
@@ -3463,7 +3472,7 @@ form:has(.os-popup-title) [role='group'] {
     breakpoints: yn,
     checkOverflow: Cn,
     classes: Tn
-  }, xe = {};
+  }, ye = {};
   class D {
     constructor() {
       let e, t;
@@ -3497,7 +3506,7 @@ form:has(.os-popup-title) [role='group'] {
         });
       });
       const c = G({}, Ve, a);
-      return l.params = G({}, c, xe, t), l.originalParams = G({}, l.params), l.passedParams = G({}, t), l.params && l.params.on && Object.keys(l.params.on).forEach((p) => {
+      return l.params = G({}, c, ye, t), l.originalParams = G({}, l.params), l.passedParams = G({}, t), l.params && l.params.on && Object.keys(l.params.on).forEach((p) => {
         l.on(p, l.params.on[p]);
       }), l.params && l.params.onAny && l.onAny(l.params.onAny), Object.assign(l, {
         enabled: l.params.enabled,
@@ -3739,7 +3748,7 @@ form:has(.os-popup-title) [role='group'] {
         s.complete ? re(t, s) : s.addEventListener("load", (r) => {
           re(t, r.target);
         });
-      }), ve(t), t.initialized = !0, ve(t), t.emit("init"), t.emit("afterInit"), t;
+      }), be(t), t.initialized = !0, be(t), t.emit("init"), t.emit("afterInit"), t;
     }
     destroy(e, t) {
       e === void 0 && (e = !0), t === void 0 && (t = !0);
@@ -3756,10 +3765,10 @@ form:has(.os-popup-title) [role='group'] {
       }), e !== !1 && (i.el && typeof i.el != "string" && (i.el.swiper = null), ut(i)), i.destroyed = !0), null;
     }
     static extendDefaults(e) {
-      G(xe, e);
+      G(ye, e);
     }
     static get extendedDefaults() {
-      return xe;
+      return ye;
     }
     static get defaults() {
       return Ve;
@@ -3773,9 +3782,9 @@ form:has(.os-popup-title) [role='group'] {
       return Array.isArray(e) ? (e.forEach((t) => D.installModule(t)), D) : (D.installModule(e), D);
     }
   }
-  Object.keys(be).forEach((n) => {
-    Object.keys(be[n]).forEach((e) => {
-      D.prototype[e] = be[n][e];
+  Object.keys(xe).forEach((n) => {
+    Object.keys(xe[n]).forEach((e) => {
+      D.prototype[e] = xe[n][e];
     });
   }), D.use([St, _t]);
   function Re(n, e, t, i) {
@@ -3990,7 +3999,7 @@ form:has(.os-popup-title) [role='group'] {
       if (e.params.loop ? (y = e.previousRealIndex || 0, b = e.params.slidesPerGroup > 1 ? Math.floor(e.realIndex / e.params.slidesPerGroup) : e.realIndex) : typeof e.snapIndex < "u" ? (b = e.snapIndex, y = e.previousSnapIndex) : (y = e.previousIndex || 0, b = e.activeIndex || 0), m.type === "bullets" && e.pagination.bullets && e.pagination.bullets.length > 0) {
         const k = e.pagination.bullets;
         let O, S, T;
-        if (m.dynamicBullets && (r = ue(k[0], e.isHorizontal() ? "width" : "height", !0), w.forEach((A) => {
+        if (m.dynamicBullets && (r = fe(k[0], e.isHorizontal() ? "width" : "height", !0), w.forEach((A) => {
           A.style[e.isHorizontal() ? "width" : "height"] = `${r * (m.dynamicMainBullets + 4)}px`;
         }), m.dynamicMainBullets > 1 && y !== void 0 && (l += b - (y || 0), l > m.dynamicMainBullets - 1 ? l = m.dynamicMainBullets - 1 : l < 0 && (l = 0)), O = Math.max(b - l, 0), S = O + (Math.min(k.length, m.dynamicMainBullets) - 1), T = (S + O) / 2), k.forEach((A) => {
           const _ = [...["", "-next", "-next-next", "-prev", "-prev-prev", "-main"].map((C) => `${m.bulletActiveClass}${C}`)].map((C) => typeof C == "string" && C.includes(" ") ? C.split(" ") : C).flat();
@@ -4981,7 +4990,7 @@ button.swiper-pagination-bullet {
         /* HTML */
         `<dialog id="gift-popup" class="os-dialog os-gift">
       <div class="os-wrap">
-        <button type="button" class="os-close">${ae}</button>
+        <button type="button" class="os-close">${le}</button>
         <div data-step="1">
           ${R.includes(this.country) ? (
           /* HTML */
@@ -5153,7 +5162,7 @@ button.swiper-pagination-bullet {
             isPromoItems: !0,
             product_id: this.selectedGiftId,
             "super_attribute[92]": x,
-            form_key: Se("form_key")
+            form_key: ae("form_key")
           };
           this.giftAjaxCall = new Promise(async (m, w) => {
             try {
@@ -5162,7 +5171,7 @@ button.swiper-pagination-bullet {
                 url: `${this.baseUrl}checkout/cart/couponPost/`,
                 data: {
                   remove: 1,
-                  form_key: Se("form_key")
+                  form_key: ae("form_key")
                 }
               }), await jQuery.ajax({
                 type: "POST",
@@ -5601,7 +5610,7 @@ button.swiper-pagination-bullet {
         /* HTML */
         `<dialog id="promo-popup" class="crs-dialog crs-promo">
       <div class="crs-dialog__wrap">
-        <button class="crs-dialog__close">${ae}</button>
+        <button class="crs-dialog__close">${le}</button>
         <h2 class="crs-dialog__title">Explore our best</h2>
         <p class="crs-dialog__descr">Take a closer look at our top picks crafted just for you.</p>
         <div class="crs-dialog__content crs-promo__content"></div>
@@ -5726,14 +5735,14 @@ button.swiper-pagination-bullet {
         }
       }, r = (p, u) => {
         p.forEach((f) => {
-          f.type === "attributes" && (f.attributeName === "style" || f.attributeName === "class") && ((f.attributeName === "style" ? f.target.style.display === "block" : f.target.classList.contains("active")) && ye("#mini-cart") ? ((u === a && !i || u === c && !o) && s(), u === a ? i = !0 : u === c && (o = !0)) : u === a ? i = !1 : u === c && (o = !1));
+          f.type === "attributes" && (f.attributeName === "style" || f.attributeName === "class") && ((f.attributeName === "style" ? f.target.style.display === "block" : f.target.classList.contains("active")) && Se("#mini-cart") ? ((u === a && !i || u === c && !o) && s(), u === a ? i = !0 : u === c && (o = !0)) : u === a ? i = !1 : u === c && (o = !1));
         });
       }, l = { attributes: !0, attributeFilter: ["style", "class"] };
       let a, c;
       this.device === V.Desktop && e && (a = new MutationObserver((p) => r(p, a)), a.observe(e, l)), this.device === V.Mobile && t && (c = new MutationObserver((p) => r(p, c)), c.observe(t, l));
     }
     handleAddToCart() {
-      const e = ye("#product-addtocart-button");
+      const e = Se("#product-addtocart-button");
       e && (e == null || e.addEventListener("click", () => {
         sessionStorage.setItem("productAddedTime", Date.now().toString());
       }));
@@ -5826,9 +5835,9 @@ button.swiper-pagination-bullet {
       console.log("isProductInCart:", e), e && this.showGiftOrCartPopup(), this.isUserWatchedPopup() && !e && this.promoPopup.show();
     }
   }
-  const Nn = `.ampromo-overlay {
+  const Nn = `/* .ampromo-overlay {
   opacity: 0 !important;
-}
+} */
 
 .ampromo-overlay.os-show {
   opacity: 1 !important;
