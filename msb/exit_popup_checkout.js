@@ -8,12 +8,12 @@
       event_type: t,
       event_loc: i
     }), console.log(`Event: ${n} | ${e} | ${t} | ${i}`);
-  }, Ue = ({ name: n, dev: e }) => {
+  }, Xe = ({ name: n, dev: e }) => {
     console.log(
       `%c EXP: ${n} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, ye = (n) => document.querySelector(n), Xe = (n) => {
+  }, ye = (n) => document.querySelector(n), Qe = (n) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", n, "variant_1"));
     }, 1e3);
@@ -66,7 +66,7 @@
       return t = window.scrollY, e !== null && (o = t - e), e = t, clearTimeout(i), i = setTimeout(r, s), o;
     };
   }();
-  function Qe(n) {
+  function Se(n) {
     const e = document.cookie.split(";");
     for (let t = 0; t < e.length; t++) {
       const i = e[t].trim(), [o, s] = i.split("=");
@@ -74,7 +74,7 @@
         return s;
     }
   }
-  const Se = "cartPopupShown", _e = "promoPopupShown", Ae = "giftPopupShown", j = "userWatchedPopup", X = "CRS_DISCOUNT", Te = "KEY0624", ke = "savedGift", Ke = "https://conversionratestore.github.io/projects/msb/", Je = (
+  const _e = "cartPopupShown", Ae = "promoPopupShown", Te = "giftPopupShown", j = "userWatchedPopup", X = "CRS_DISCOUNT", ke = "KEY0624", Ce = "savedGift", Ke = "https://conversionratestore.github.io/projects/msb/", Je = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +168,7 @@
   border: none;
   background: none;
 }`;
-  class Ce {
+  class Ee {
     constructor(e, t) {
       this.container = document.querySelector(e), this.promocode = t, this.init();
     }
@@ -197,8 +197,8 @@
       t.innerHTML = `${et}`, navigator.clipboard.writeText(this.promocode), i.classList.add("copied"), localStorage.setItem(X, this.promocode);
     }
   }
-  var L = /* @__PURE__ */ ((n) => (n.AU = "au", n.US = "us", n.CA = "ca", n.UK = "uk", n.IE = "ie", n.NZ = "nz", n))(L || {}), V = /* @__PURE__ */ ((n) => (n.Mobile = "Mobile", n.Desktop = "Desktop", n))(V || {}), Z = /* @__PURE__ */ ((n) => (n.WELCOME10 = "WELCOME10", n.WELCOME15 = "WELCOME15", n))(Z || {});
-  const Q = [
+  var L = /* @__PURE__ */ ((n) => (n.AU = "au", n.US = "us", n.CA = "ca", n.UK = "uk", n.IE = "ie", n.NZ = "nz", n))(L || {}), V = /* @__PURE__ */ ((n) => (n.Mobile = "Mobile", n.Desktop = "Desktop", n))(V || {}), Q = /* @__PURE__ */ ((n) => (n.WELCOME10 = "WELCOME10", n.WELCOME15 = "WELCOME15", n))(Q || {});
+  const Z = [
     {
       id: 538,
       name: "The Mimi",
@@ -250,7 +250,7 @@
         "Night Black": "/media/catalog/product/cache/e796be8b07bb6c78ccb4a1b786cd7804/m/a/marco_black_back.jpg"
       }
     }
-  ], Ee = {
+  ], Pe = {
     "Chestnut Tan": 4,
     "Dark Chocolate Brown": 5,
     "Night Black": 3,
@@ -264,7 +264,7 @@
     Wine: "https://www.maxwellscottbags.com/media/attribute/swatch/swatch_image/30x20/w/i/wine_1.png",
     Red: "https://www.maxwellscottbags.com/media/attribute/swatch/swatch_image/30x20/r/e/red.jpg",
     Petrol: "https://www.maxwellscottbags.com/media/attribute/swatch/swatch_image/30x20/p/e/petrol_1.png"
-  }, Pe = {
+  }, Ie = {
     uk: "£",
     us: "$",
     ca: "$",
@@ -661,7 +661,7 @@ form:has(.os-popup-title) [role='group'] {
       e.target.closest('div[role="dialog"]') || n();
     }
   });
-  class Ie {
+  class Le {
     constructor({ country: e, device: t }) {
       this.inputInterval = null, this.country = e, this.device = t, this.init();
     }
@@ -770,7 +770,7 @@ form:has(.os-popup-title) [role='group'] {
         "exp_pop_car_retent_2_vis_youlisuca_view",
         `Pop up view - ${r}`,
         "Pop up You are on the list"
-      ), new Ce(".crs-promocode__container", Z.WELCOME10), (u = document.querySelector(".crs-promo-form .crs-promocode__copy-btn")) == null || u.addEventListener("click", () => {
+      ), new Ee(".crs-promocode__container", Q.WELCOME10), (u = document.querySelector(".crs-promo-form .crs-promocode__copy-btn")) == null || u.addEventListener("click", () => {
         var w;
         const m = (w = document.querySelector(".crs-promo-form__title")) == null ? void 0 : w.textContent;
         P(
@@ -1312,7 +1312,7 @@ form:has(.os-popup-title) [role='group'] {
       this.country = e, this.device = t, this.baseUrl = this.country === L.US ? "https://us.maxwellscottbags.com/" : this.country === L.AU ? "https://au.maxwellscottbags.com/" : this.country === L.IE ? "https://ie.maxwellscottbags.com/" : this.country === L.CA ? "https://ca.maxwellscottbags.com/" : this.country === L.NZ ? "https://nz.maxwellscottbags.com/" : "https://www.maxwellscottbags.com/", this.init();
     }
     init() {
-      this.render(), this.closePopupHandlers(), new Ce("#cart-popup .os-promocode-container", Z.WELCOME15);
+      this.render(), this.closePopupHandlers(), new Ee("#cart-popup .os-promocode-container", Q.WELCOME15);
     }
     render() {
       const e = (
@@ -1347,7 +1347,7 @@ form:has(.os-popup-title) [role='group'] {
     }
     show(e = !0) {
       var c, p, u;
-      if (!this.popup || (e ? JSON.parse(sessionStorage.getItem(Se)) : !1) || location.pathname.includes("checkout"))
+      if (!this.popup || (e ? JSON.parse(sessionStorage.getItem(_e)) : !1) || location.pathname.includes("checkout"))
         return;
       const i = (p = (c = JSON.parse(localStorage.getItem("mage-cache-storage"))) == null ? void 0 : c.cart) == null ? void 0 : p.items;
       if (!i)
@@ -1379,7 +1379,7 @@ form:has(.os-popup-title) [role='group'] {
         )).join("")}
     </div>`
       );
-      o.innerHTML = s, this.popup.showModal(), sessionStorage.setItem(Se, JSON.stringify(!0));
+      o.innerHTML = s, this.popup.showModal(), sessionStorage.setItem(_e, JSON.stringify(!0));
       const r = (u = this.popup.querySelector(".os-title")) == null ? void 0 : u.textContent;
       F(
         "#cart-popup",
@@ -1391,7 +1391,7 @@ form:has(.os-popup-title) [role='group'] {
       l == null || l.addEventListener("click", () => {
         var h;
         const f = {
-          couponCode: Z.WELCOME15
+          couponCode: Q.WELCOME15
         }, g = `${this.baseUrl}/scommerce/minicart/couponcode/`;
         (h = this.popup) == null || h.close(), jQuery.ajax({
           type: "POST",
@@ -1440,15 +1440,15 @@ form:has(.os-popup-title) [role='group'] {
       });
     }
   }
-  function Le(n) {
+  function Me(n) {
     return n !== null && typeof n == "object" && "constructor" in n && n.constructor === Object;
   }
   function pe(n, e) {
     n === void 0 && (n = {}), e === void 0 && (e = {}), Object.keys(e).forEach((t) => {
-      typeof n[t] > "u" ? n[t] = e[t] : Le(e[t]) && Le(n[t]) && Object.keys(e[t]).length > 0 && pe(n[t], e[t]);
+      typeof n[t] > "u" ? n[t] = e[t] : Me(e[t]) && Me(n[t]) && Object.keys(e[t]).length > 0 && pe(n[t], e[t]);
     });
   }
-  const Me = {
+  const Oe = {
     body: {},
     addEventListener() {
     },
@@ -1505,10 +1505,10 @@ form:has(.os-popup-title) [role='group'] {
   };
   function Y() {
     const n = typeof document < "u" ? document : {};
-    return pe(n, Me), n;
+    return pe(n, Oe), n;
   }
   const pt = {
-    document: Me,
+    document: Oe,
     navigator: {
       userAgent: ""
     },
@@ -1626,7 +1626,7 @@ form:has(.os-popup-title) [role='group'] {
   function ne(n, e, t) {
     n.style.setProperty(e, t);
   }
-  function Oe(n) {
+  function Be(n) {
     let {
       swiper: e,
       targetPosition: t,
@@ -1696,7 +1696,7 @@ form:has(.os-popup-title) [role='group'] {
       return t;
     }
   }
-  function Be(n, e) {
+  function ze(n, e) {
     const t = [];
     let i = n.parentElement;
     for (; i; )
@@ -1718,7 +1718,7 @@ form:has(.os-popup-title) [role='group'] {
       touch: !!("ontouchstart" in n || n.DocumentTouch && e instanceof n.DocumentTouch)
     };
   }
-  function ze() {
+  function Ge() {
     return fe || (fe = vt()), fe;
   }
   let me;
@@ -1726,7 +1726,7 @@ form:has(.os-popup-title) [role='group'] {
     let {
       userAgent: e
     } = n === void 0 ? {} : n;
-    const t = ze(), i = z(), o = i.navigator.platform, s = e || i.navigator.userAgent, r = {
+    const t = Ge(), i = z(), o = i.navigator.platform, s = e || i.navigator.userAgent, r = {
       ios: !1,
       android: !1
     }, l = i.screen.width, a = i.screen.height, c = s.match(/(Android);?[\s\/]+([\d.]+)?/);
@@ -1736,12 +1736,12 @@ form:has(.os-popup-title) [role='group'] {
     const v = ["1024x1366", "1366x1024", "834x1194", "1194x834", "834x1112", "1112x834", "768x1024", "1024x768", "820x1180", "1180x820", "810x1080", "1080x810"];
     return !p && h && t.touch && v.indexOf(`${l}x${a}`) >= 0 && (p = s.match(/(Version)\/([\d.]+)/), p || (p = [0, 1, "13_0_0"]), h = !1), c && !g && (r.os = "android", r.android = !0), (p || f || u) && (r.os = "ios", r.ios = !0), r;
   }
-  function Ge(n) {
+  function De(n) {
     return n === void 0 && (n = {}), me || (me = bt(n)), me;
   }
   let ge;
   function xt() {
-    const n = z(), e = Ge();
+    const n = z(), e = De();
     let t = !1;
     function i() {
       const l = n.navigator.userAgent.toLowerCase();
@@ -1837,7 +1837,7 @@ form:has(.os-popup-title) [role='group'] {
     }, a = () => {
       if (e.params.observer) {
         if (e.params.observeParents) {
-          const p = Be(e.hostEl);
+          const p = ze(e.hostEl);
           for (let u = 0; u < p.length; u += 1)
             l(p[u]);
         }
@@ -1967,15 +1967,15 @@ form:has(.os-popup-title) [role='group'] {
           if (_ && (T.style.transform = "none"), C && (T.style.webkitTransform = "none"), t.roundLengths)
             k = n.isHorizontal() ? ue(T, "width", !0) : ue(T, "height", !0);
           else {
-            const I = e(A, "width"), N = e(A, "padding-left"), Wn = e(A, "padding-right"), Re = e(A, "margin-left"), Ye = e(A, "margin-right"), We = A.getPropertyValue("box-sizing");
-            if (We && We === "border-box")
-              k = I + Re + Ye;
+            const I = e(A, "width"), N = e(A, "padding-left"), Wn = e(A, "padding-right"), Ye = e(A, "margin-left"), We = e(A, "margin-right"), Ue = A.getPropertyValue("box-sizing");
+            if (Ue && Ue === "border-box")
+              k = I + Ye + We;
             else {
               const {
                 clientWidth: Un,
                 offsetWidth: Xn
               } = T;
-              k = I + N + Wn + Re + Ye + (Xn - Un);
+              k = I + N + Wn + Ye + We + (Xn - Un);
             }
           }
           _ && (T.style.transform = _), C && (T.style.webkitTransform = C), t.roundLengths && (k = Math.floor(k));
@@ -2077,7 +2077,7 @@ form:has(.os-popup-title) [role='group'] {
     for (let i = 0; i < e.length; i += 1)
       e[i].swiperSlideOffset = (n.isHorizontal() ? e[i].offsetLeft : e[i].offsetTop) - t - n.cssOverflowAdjustment();
   }
-  const De = (n, e, t) => {
+  const $e = (n, e, t) => {
     e && !n.classList.contains(t) ? n.classList.add(t) : !e && n.classList.contains(t) && n.classList.remove(t);
   };
   function Pt(n) {
@@ -2099,7 +2099,7 @@ form:has(.os-popup-title) [role='group'] {
       let p = c.swiperSlideOffset;
       t.cssMode && t.centeredSlides && (p -= i[0].swiperSlideOffset);
       const u = (r + (t.centeredSlides ? e.minTranslate() : 0) - p) / (c.swiperSlideSize + l), f = (r - s[0] + (t.centeredSlides ? e.minTranslate() : 0) - p) / (c.swiperSlideSize + l), g = -(r - p), h = g + e.slidesSizesGrid[a], v = g >= 0 && g <= e.size - e.slidesSizesGrid[a], y = g >= 0 && g < e.size - 1 || h > 1 && h <= e.size || g <= 0 && h >= e.size;
-      y && (e.visibleSlides.push(c), e.visibleSlidesIndexes.push(a)), De(c, y, t.slideVisibleClass), De(c, v, t.slideFullyVisibleClass), c.progress = o ? -u : u, c.originalProgress = o ? -f : f;
+      y && (e.visibleSlides.push(c), e.visibleSlidesIndexes.push(a)), $e(c, y, t.slideVisibleClass), $e(c, v, t.slideFullyVisibleClass), c.progress = o ? -u : u, c.originalProgress = o ? -f : f;
     }
   }
   function It(n) {
@@ -2343,7 +2343,7 @@ form:has(.os-popup-title) [role='group'] {
         l[u ? "scrollLeft" : "scrollTop"] = -p;
       else {
         if (!s.support.smoothScroll)
-          return Oe({
+          return Be({
             swiper: s,
             targetPosition: -p,
             side: u ? "left" : "top"
@@ -2370,7 +2370,7 @@ form:has(.os-popup-title) [role='group'] {
     const t = this;
     t.params.cssMode || (t.wrapperEl.style.transitionDuration = `${n}ms`, t.wrapperEl.style.transitionDelay = n === 0 ? "0ms" : ""), t.emit("setTransition", n, e);
   }
-  function $e(n) {
+  function He(n) {
     let {
       swiper: e,
       runCallbacks: t,
@@ -2395,7 +2395,7 @@ form:has(.os-popup-title) [role='group'] {
     const t = this, {
       params: i
     } = t;
-    i.cssMode || (i.autoHeight && t.updateAutoHeight(), $e({
+    i.cssMode || (i.autoHeight && t.updateAutoHeight(), He({
       swiper: t,
       runCallbacks: n,
       direction: e,
@@ -2407,7 +2407,7 @@ form:has(.os-popup-title) [role='group'] {
     const t = this, {
       params: i
     } = t;
-    t.animating = !1, !i.cssMode && (t.setTransition(0), $e({
+    t.animating = !1, !i.cssMode && (t.setTransition(0), He({
       swiper: t,
       runCallbacks: n,
       direction: e,
@@ -2463,7 +2463,7 @@ form:has(.os-popup-title) [role='group'] {
         });
       } else {
         if (!s.support.smoothScroll)
-          return Oe({
+          return Be({
             swiper: s,
             targetPosition: b,
             side: w ? "left" : "top"
@@ -2590,13 +2590,13 @@ form:has(.os-popup-title) [role='group'] {
       }), !0;
     return i.slideTo(y, n, e, t);
   }
-  function Zt(n, e, t) {
+  function Qt(n, e, t) {
     e === void 0 && (e = !0);
     const i = this;
     if (!i.destroyed)
       return typeof n > "u" && (n = i.params.speed), i.slideTo(i.activeIndex, n, e, t);
   }
-  function Qt(n, e, t, i) {
+  function Zt(n, e, t, i) {
     e === void 0 && (e = !0), i === void 0 && (i = 0.5);
     const o = this;
     if (o.destroyed)
@@ -2639,8 +2639,8 @@ form:has(.os-popup-title) [role='group'] {
     slideToLoop: Wt,
     slideNext: Ut,
     slidePrev: Xt,
-    slideReset: Zt,
-    slideToClosest: Qt,
+    slideReset: Qt,
+    slideToClosest: Zt,
     slideToClickedSlide: Kt
   };
   function en(n) {
@@ -2840,7 +2840,7 @@ form:has(.os-popup-title) [role='group'] {
     }
     return t(e);
   }
-  function He(n, e, t) {
+  function qe(n, e, t) {
     const i = z(), {
       params: o
     } = n, s = o.edgeSwipeDetection, r = o.edgeSwipeThreshold;
@@ -2858,7 +2858,7 @@ form:has(.os-popup-title) [role='group'] {
     } else
       i.type === "touchstart" && i.targetTouches.length === 1 && (o.touchId = i.targetTouches[0].identifier);
     if (i.type === "touchstart") {
-      He(e, i, i.targetTouches[0].pageX);
+      qe(e, i, i.targetTouches[0].pageX);
       return;
     }
     const {
@@ -2883,7 +2883,7 @@ form:has(.os-popup-title) [role='group'] {
       return;
     r.currentX = i.pageX, r.currentY = i.pageY;
     const g = r.currentX, h = r.currentY;
-    if (!He(e, i, g))
+    if (!qe(e, i, g))
       return;
     Object.assign(o, {
       isTouched: !0,
@@ -3088,7 +3088,7 @@ form:has(.os-popup-title) [role='group'] {
       e.navigation && (i.target === e.navigation.nextEl || i.target === e.navigation.prevEl) ? i.target === e.navigation.nextEl ? e.slideTo(v + b) : e.slideTo(v) : (e.swipeDirection === "next" && e.slideTo(d !== null ? d : v + b), e.swipeDirection === "prev" && e.slideTo(m !== null ? m : v));
     }
   }
-  function qe() {
+  function Ne() {
     const n = this, {
       params: e,
       el: t
@@ -3132,7 +3132,7 @@ form:has(.os-popup-title) [role='group'] {
     const n = this;
     n.documentTouchHandlerProceeded || (n.documentTouchHandlerProceeded = !0, n.params.touchReleaseOnEdges && (n.el.style.touchAction = "auto"));
   }
-  const Ne = (n, e) => {
+  const Fe = (n, e) => {
     const t = Y(), {
       params: i,
       el: o,
@@ -3166,7 +3166,7 @@ form:has(.os-popup-title) [role='group'] {
       passive: !0
     }), t[a]("contextmenu", n.onTouchEnd, {
       passive: !0
-    }), (i.preventClicks || i.preventClicksPropagation) && o[a]("click", n.onClick, !0), i.cssMode && s[a]("scroll", n.onScroll), i.updateOnWindowResize ? n[c](r.ios || r.android ? "resize orientationchange observerUpdate" : "resize observerUpdate", qe, !0) : n[c]("observerUpdate", qe, !0), o[a]("load", n.onLoad, {
+    }), (i.preventClicks || i.preventClicksPropagation) && o[a]("click", n.onClick, !0), i.cssMode && s[a]("scroll", n.onScroll), i.updateOnWindowResize ? n[c](r.ios || r.android ? "resize orientationchange observerUpdate" : "resize observerUpdate", Ne, !0) : n[c]("observerUpdate", Ne, !0), o[a]("load", n.onLoad, {
       capture: !0
     }));
   };
@@ -3174,16 +3174,16 @@ form:has(.os-popup-title) [role='group'] {
     const n = this, {
       params: e
     } = n;
-    n.onTouchStart = cn.bind(n), n.onTouchMove = pn.bind(n), n.onTouchEnd = dn.bind(n), n.onDocumentTouchStart = gn.bind(n), e.cssMode && (n.onScroll = fn.bind(n)), n.onClick = un.bind(n), n.onLoad = mn.bind(n), Ne(n, "on");
+    n.onTouchStart = cn.bind(n), n.onTouchMove = pn.bind(n), n.onTouchEnd = dn.bind(n), n.onDocumentTouchStart = gn.bind(n), e.cssMode && (n.onScroll = fn.bind(n)), n.onClick = un.bind(n), n.onLoad = mn.bind(n), Fe(n, "on");
   }
   function wn() {
-    Ne(this, "off");
+    Fe(this, "off");
   }
   var vn = {
     attachEvents: hn,
     detachEvents: wn
   };
-  const Fe = (n, e) => n.grid && e.grid && e.grid.rows > 1;
+  const je = (n, e) => n.grid && e.grid && e.grid.rows > 1;
   function bn() {
     const n = this, {
       realIndex: e,
@@ -3196,7 +3196,7 @@ form:has(.os-popup-title) [role='group'] {
     const r = n.getBreakpoint(s, n.params.breakpointsBase, n.el);
     if (!r || n.currentBreakpoint === r)
       return;
-    const a = (r in s ? s[r] : void 0) || n.originalParams, c = Fe(n, i), p = Fe(n, a), u = n.params.grabCursor, f = a.grabCursor, g = i.enabled;
+    const a = (r in s ? s[r] : void 0) || n.originalParams, c = je(n, i), p = je(n, a), u = n.params.grabCursor, f = a.grabCursor, g = i.enabled;
     c && !p ? (o.classList.remove(`${i.containerModifierClass}grid`, `${i.containerModifierClass}grid-column`), n.emitContainerClasses()) : !c && p && (o.classList.add(`${i.containerModifierClass}grid`), (a.grid.fill && a.grid.fill === "column" || !a.grid.fill && i.grid.fill === "column") && o.classList.add(`${i.containerModifierClass}grid-column`), n.emitContainerClasses()), u && !f ? n.unsetGrabCursor() : !u && f && n.setGrabCursor(), ["navigation", "pagination", "scrollbar"].forEach((w) => {
       if (typeof a[w] > "u")
         return;
@@ -3308,7 +3308,7 @@ form:has(.os-popup-title) [role='group'] {
   }
   var Cn = {
     checkOverflow: kn
-  }, je = {
+  }, Ve = {
     init: !0,
     direction: "horizontal",
     oneWayMovement: !1,
@@ -3478,7 +3478,7 @@ form:has(.os-popup-title) [role='group'] {
         }), p;
       }
       const l = this;
-      l.__swiper__ = !0, l.support = ze(), l.device = Ge({
+      l.__swiper__ = !0, l.support = Ge(), l.device = De({
         userAgent: t.userAgent
       }), l.browser = yt(), l.eventsListeners = {}, l.eventsAnyListeners = [], l.modules = [...l.__modules__], t.modules && Array.isArray(t.modules) && l.modules.push(...t.modules);
       const a = {};
@@ -3493,7 +3493,7 @@ form:has(.os-popup-title) [role='group'] {
           emit: l.emit.bind(l)
         });
       });
-      const c = G({}, je, a);
+      const c = G({}, Ve, a);
       return l.params = G({}, c, xe, t), l.originalParams = G({}, l.params), l.passedParams = G({}, t), l.params && l.params.on && Object.keys(l.params.on).forEach((p) => {
         l.on(p, l.params.on[p]);
       }), l.params && l.params.onAny && l.onAny(l.params.onAny), Object.assign(l, {
@@ -3759,7 +3759,7 @@ form:has(.os-popup-title) [role='group'] {
       return xe;
     }
     static get defaults() {
-      return je;
+      return Ve;
     }
     static installModule(e) {
       D.prototype.__modules__ || (D.prototype.__modules__ = []);
@@ -3775,7 +3775,7 @@ form:has(.os-popup-title) [role='group'] {
       D.prototype[e] = be[n][e];
     });
   }), D.use([St, _t]);
-  function Ve(n, e, t, i) {
+  function Re(n, e, t, i) {
     return n.params.createElements && Object.keys(i).forEach((o) => {
       if (!t[o] && t.auto === !0) {
         let s = H(n.el, `.${i[o]}`)[0];
@@ -3833,7 +3833,7 @@ form:has(.os-popup-title) [role='group'] {
     }
     function p() {
       const h = e.params.navigation;
-      if (e.params.navigation = Ve(e, e.originalParams.navigation, e.params.navigation, {
+      if (e.params.navigation = Re(e, e.originalParams.navigation, e.params.navigation, {
         nextEl: "swiper-button-next",
         prevEl: "swiper-button-prev"
       }), !(h.nextEl || h.prevEl))
@@ -4051,14 +4051,14 @@ form:has(.os-popup-title) [role='group'] {
       }), d.type !== "custom" && o("paginationRender", w[0]);
     }
     function g() {
-      e.params.pagination = Ve(e, e.originalParams.pagination, e.params.pagination, {
+      e.params.pagination = Re(e, e.originalParams.pagination, e.params.pagination, {
         el: "swiper-pagination"
       });
       const d = e.params.pagination;
       if (!d.el)
         return;
       let m;
-      typeof d.el == "string" && e.isElement && (m = e.el.querySelector(d.el)), !m && typeof d.el == "string" && (m = [...document.querySelectorAll(d.el)]), m || (m = d.el), !(!m || m.length === 0) && (e.params.uniqueNavElements && typeof d.el == "string" && Array.isArray(m) && m.length > 1 && (m = [...e.el.querySelectorAll(d.el)], m.length > 1 && (m = m.filter((w) => Be(w, ".swiper")[0] === e.el)[0])), Array.isArray(m) && m.length === 1 && (m = m[0]), Object.assign(e.pagination, {
+      typeof d.el == "string" && e.isElement && (m = e.el.querySelector(d.el)), !m && typeof d.el == "string" && (m = [...document.querySelectorAll(d.el)]), m || (m = d.el), !(!m || m.length === 0) && (e.params.uniqueNavElements && typeof d.el == "string" && Array.isArray(m) && m.length > 1 && (m = [...e.el.querySelectorAll(d.el)], m.length > 1 && (m = m.filter((w) => ze(w, ".swiper")[0] === e.el)[0])), Array.isArray(m) && m.length === 1 && (m = m[0]), Object.assign(e.pagination, {
         el: m
       }), m = M(m), m.forEach((w) => {
         d.type === "bullets" && d.clickable && w.classList.add(...(d.clickableClass || "").split(" ")), w.classList.add(d.modifierClass + d.type), w.classList.add(e.isHorizontal() ? d.horizontalClass : d.verticalClass), d.type === "bullets" && d.dynamicBullets && (w.classList.add(`${d.modifierClass}${d.type}-dynamic`), l = 0, d.dynamicMainBullets < 1 && (d.dynamicMainBullets = 1)), d.type === "progressbar" && d.progressbarOpposite && w.classList.add(d.progressbarOppositeClass), d.clickable && w.addEventListener("click", p), e.enabled || w.classList.add(d.lockClass);
@@ -5002,7 +5002,7 @@ button.swiper-pagination-bullet {
               <!-- Additional required wrapper -->
               <div class="swiper-wrapper">
                 <!-- Slides -->
-                ${Q.map(
+                ${Z.map(
           (r) => (
             /* HTML */
             `<div class="swiper-slide">
@@ -5012,7 +5012,7 @@ button.swiper-pagination-bullet {
                           <div class="os-description">${r.description}</div>
                           <div class="os-price">
                             <span class="old">${r.price[this.country]}</span
-                            ><span class="new">${Pe[this.country]}0.00</span>
+                            ><span class="new">${Ie[this.country]}0.00</span>
                           </div>
                           <div class="os-colors">
                             ${Object.keys(r.colours).map(
@@ -5062,7 +5062,7 @@ button.swiper-pagination-bullet {
               <div class="os-title">The Ponte</div>
               <div class="os-description">Leather Key</div>
               <div class="os-price">
-                <span class="old"></span><span class="new">${Pe[this.country]}0.00</span>
+                <span class="old"></span><span class="new">${Ie[this.country]}0.00</span>
               </div>
             </div>
             <div class="os-promo-note">
@@ -5117,7 +5117,7 @@ button.swiper-pagination-bullet {
             if (!a)
               return;
             this.selectedColors[a] = o.dataset.color;
-            const c = Q.find((p) => p.id === parseInt(a));
+            const c = Z.find((p) => p.id === parseInt(a));
             if (c && this.selectedColors[a]) {
               const p = c.colours[this.selectedColors[a]], u = r.querySelector("img");
               u && (u.src = p);
@@ -5133,27 +5133,35 @@ button.swiper-pagination-bullet {
         sessionStorage.setItem(X, r);
       }, t = (r) => {
         var c;
-        const l = this.selectedColors[r] || "Chestnut Tan", a = (c = Q.find((p) => p.id === parseInt(r))) == null ? void 0 : c.name;
-        console.log("Gift added to storage"), sessionStorage.setItem(ke, JSON.stringify({ giftId: r, selectedColour: l, name: a })), e(Te), this.selectedGiftId = r;
+        const l = this.selectedColors[r] || "Chestnut Tan", a = (c = Z.find((p) => p.id === parseInt(r))) == null ? void 0 : c.name;
+        console.log("Gift added to storage"), sessionStorage.setItem(Ce, JSON.stringify({ giftId: r, selectedColour: l, name: a })), e(ke), this.selectedGiftId = r;
       }, i = (r) => {
         var p, u;
         t(r);
         const l = (p = this.popup) == null ? void 0 : p.querySelector('[data-step="1"]'), a = (u = this.popup) == null ? void 0 : u.querySelector('[data-step="2"]');
         if ((() => {
           const f = {
-            couponCode: Te
+            couponCode: ke
           }, g = `${this.baseUrl}/scommerce/minicart/couponcode/`;
           if (!this.selectedGiftId)
             return;
-          const h = this.selectedColors[this.selectedGiftId], v = `${this.baseUrl}amasty_promo/cart/add/`, y = Ee[h] || Ee["Chestnut Tan"], d = {
+          const h = this.selectedColors[this.selectedGiftId], v = `${this.baseUrl}amasty_promo/cart/add/`, y = Pe[h] || Pe["Chestnut Tan"], d = {
             uenc: "aHR0cHM6Ly93d3cubWF4d2VsbHNjb3R0YmFncy5jb20vY2hlY2tvdXQva2xhcm5hLw,",
             isPromoItems: !0,
             product_id: this.selectedGiftId,
             "super_attribute[92]": y,
-            form_key: Qe("form_key")
+            form_key: Se("form_key")
           };
           this.giftAjaxCall = new Promise(async (m, w) => {
             try {
+              await jQuery.ajax({
+                type: "POST",
+                url: `${this.baseUrl}checkout/cart/couponPost/`,
+                data: {
+                  remove: 1,
+                  form_key: Se("form_key")
+                }
+              });
               const b = await jQuery.ajax({
                 type: "POST",
                 url: g,
@@ -5170,7 +5178,7 @@ button.swiper-pagination-bullet {
           });
         })(), l && a) {
           l.style.display = "none", a.style.display = "block";
-          const f = Q.find((d) => d.id === parseInt(r)), g = a.querySelector(".os-product .os-title"), h = a.querySelector(".os-product img"), v = a.querySelector(".os-product .os-description"), y = a.querySelector(".os-product .os-price .old");
+          const f = Z.find((d) => d.id === parseInt(r)), g = a.querySelector(".os-product .os-title"), h = a.querySelector(".os-product img"), v = a.querySelector(".os-product .os-description"), y = a.querySelector(".os-product .os-price .old");
           f && g && h && v && y && (g.textContent = f.name, h.src = f.colours[this.selectedColors[r]] || f.colours["Chestnut Tan"], v.textContent = f.description, y.textContent = f.price[this.country]);
         }
       };
@@ -5215,9 +5223,9 @@ button.swiper-pagination-bullet {
     }
     show(e = !0) {
       var o;
-      if (!this.popup || (e ? JSON.parse(sessionStorage.getItem(Ae) || "false") : !1))
+      if (!this.popup || (e ? JSON.parse(sessionStorage.getItem(Te) || "false") : !1))
         return;
-      this.popup.showModal(), this.startTimer(), sessionStorage.setItem(Ae, JSON.stringify(!0));
+      this.popup.showModal(), this.startTimer(), sessionStorage.setItem(Te, JSON.stringify(!0));
       const i = (o = this.popup.querySelector(".os-title")) == null ? void 0 : o.textContent;
       F(
         "#gift-popup",
@@ -5601,7 +5609,7 @@ button.swiper-pagination-bullet {
     }
     show(e = !0) {
       var c;
-      if (!this.popup || (e ? sessionStorage.getItem(_e) : !1) || location.pathname.includes("checkout"))
+      if (!this.popup || (e ? sessionStorage.getItem(Ae) : !1) || location.pathname.includes("checkout"))
         return;
       const i = JSON.parse(localStorage.getItem("__kla_viewed")) || [], o = this.getGenderByViewedProducts(i), r = this.getGenderByCurrentPage() || o, l = this.popup.querySelector(".crs-promo__content");
       l.innerHTML = /* HTML */
@@ -5622,7 +5630,7 @@ button.swiper-pagination-bullet {
             `
       )).join("")}
       </div>
-    `, this.popup.showModal(), sessionStorage.setItem(_e, JSON.stringify(!0)), F(
+    `, this.popup.showModal(), sessionStorage.setItem(Ae, JSON.stringify(!0)), F(
         "#promo-popup",
         "exp_pop_car_retent_2_but_youlisuca_explore",
         "Pop up view",
@@ -5839,7 +5847,7 @@ button.swiper-pagination-bullet {
       const i = e.querySelectorAll(".ampromo-items-form");
       if (!i)
         return;
-      const o = JSON.parse(sessionStorage.getItem(ke));
+      const o = JSON.parse(sessionStorage.getItem(Ce));
       if (!o) {
         const s = document.querySelector(".ampromo-overlay");
         s && s.classList.add("os-show");
@@ -5939,13 +5947,13 @@ form.needsclick.os-submitted {
       });
     }
   }
-  Ue({ name: "Exit Popup For Cart Retention", dev: "OS" }), Xe("exp_pop_car_retent");
+  Xe({ name: "Exit Popup For Cart Retention", dev: "OS" }), Qe("exp_pop_car_retent");
   class Yn {
     constructor() {
       this.device = screen.width <= 768 ? V.Mobile : V.Desktop, this.country = window.location.host.includes("au") ? L.AU : window.location.host.includes("us") ? L.US : window.location.host.includes("ca") ? L.CA : L.UK, this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${jn}</style>`), !location.pathname.includes("checkout") && !location.pathname.includes("sign-up") && (new Ie({ country: this.country, device: this.device }), new qn({ country: this.country, device: this.device })), location.pathname.includes("sign-up") && (new Ie({ country: this.country, device: this.device }), new Rn()), location.pathname.includes("checkout") && new Fn({ country: this.country });
+      document.head.insertAdjacentHTML("beforeend", `<style>${jn}</style>`), !location.pathname.includes("checkout") && !location.pathname.includes("sign-up") && (new Le({ country: this.country, device: this.device }), new qn({ country: this.country, device: this.device })), location.pathname.includes("sign-up") && (new Le({ country: this.country, device: this.device }), new Rn()), location.pathname.includes("checkout") && new Fn({ country: this.country });
     }
   }
   new Yn();
