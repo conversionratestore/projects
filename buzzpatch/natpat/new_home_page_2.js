@@ -1214,6 +1214,19 @@ body #purchase-slide h2 {\r
   padding: 55px 20px 0px;\r
 }\r
 \r
+#purchase-slide .custom-dots .dot {\r
+  width: 12px;\r
+  height: 12px;\r
+}\r
+\r
+.dots-disabled .custom-dots .slider_navigators {\r
+  transform: scale(.75);\r
+}\r
+\r
+.dots-disabled .slider_navigators.slick-current {\r
+  transform: scale(1);\r
+}\r
+\r
 @keyframes swing {\r
 \r
   25%,\r
@@ -2468,7 +2481,7 @@ body #purchase-slide .footer-btns {\r
   }), w({ name: "HomePage Redesign 2", dev: "AK" }), _("exp_homepage");
   const M = window.innerWidth < 768 ? "mobile" : "desktop", m = document.createElement("link");
   m.rel = "stylesheet", m.href = "https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=M+PLUS+Rounded+1c:wght@900&display=swap", document.head.appendChild(m);
-  class H {
+  class N {
     constructor(n) {
       this.device = n, this.init();
     }
@@ -2615,7 +2628,7 @@ body #purchase-slide .footer-btns {\r
       const n = "exp_hp_2_";
       p(".big-stickers__sticker", "exp_hp_2_main_image_0", "Main block", "Kids Tick"), this.device === "desktop" ? $(".big-stickers__sticker .crs_btn").each(function(t, o) {
         $(o).on("click", function() {
-          t === 0 ? (window.location.href = "/products/trailpatch-kids-tick-repellent-stickers", a("exp_hp_2_main_image_0", "Kids Tick", "click", "Main block")) : (window.location.href = "/products/buzzpatch-bundles", a("exp_hp_2_main_image_1", "Mosquito Repellent Shop Now", "click", "Main block"));
+          t === 0 ? (window.location.href = "/products/trailpatch-kids-tick-repellent-stickers", a("exp_hp_2_main_image_0", "Kids Tick Shop Now", "click", "Main block")) : (window.location.href = "/products/buzzpatch-bundles", a("exp_hp_2_main_image_1", "Mosquito Repellent Shop Now", "click", "Main block"));
         });
       }) : (document.head.insertAdjacentHTML(
         "beforeend",
@@ -2629,7 +2642,7 @@ body #purchase-slide .footer-btns {\r
       `
       ), $(".big-stickers__sticker").each(function(t, o) {
         $(o).on("click", function() {
-          t === 0 ? (window.location.href = "/products/trailpatch-kids-tick-repellent-stickers", a("exp_hp_2_main_image_0", "Kids Tick", "click", "Main block")) : (window.location.href = "/products/buzzpatch-bundles", a("exp_hp_2_main_image_1", "Mosquito Repellent Shop Now", "click", "Main block"));
+          t === 0 ? (window.location.href = "/products/trailpatch-kids-tick-repellent-stickers", a("exp_hp_2_main_image_0", "Kids Tick Shop Now", "click", "Main block")) : (window.location.href = "/products/buzzpatch-bundles", a("exp_hp_2_main_image_1", "Mosquito Repellent Shop Now", "click", "Main block"));
         });
       })), p(".big-stickers__sticker + .big-stickers__sticker", "exp_hp_2_main_image_1", "Main block", "Mosquito Repellent"), p(".wellness", "exp_hp_2_stickers_slider", "Homepage All age wellness: natural products", "Section");
       let i = "";
@@ -2717,8 +2730,8 @@ Hey there! At NATPAT, we're all about unlocking the superhero potential in eve..
       });
     }
   }
-  const N = setInterval(() => {
-    window.jQuery && (clearInterval(N), new H(M));
+  const H = setInterval(() => {
+    window.jQuery && (clearInterval(H), new N(M));
   }, 100);
 })();
 //# sourceMappingURL=index.js.map
