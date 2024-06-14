@@ -13,7 +13,7 @@
       `%c EXP: ${e} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, M = (e) => document.querySelectorAll(e), C = (e) => document.querySelector(e), P = (e) => {
+  }, M = (e) => document.querySelectorAll(e), C = (e) => document.querySelector(e), T = (e) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
     }, 1e3);
@@ -207,7 +207,7 @@
     spt: {
       "12 oz. Tricoat Spray Cans (2 cans)": "Matches your car's original color and covers about 4 square feet."
     }
-  }, T = (
+  }, P = (
     /* HTML */
     `<div class="crs_steps_line">
         <div class="line">
@@ -741,7 +741,7 @@ h3.h3_title {
 ul#header-steps {
   display: none;
 }/*# sourceMappingURL=navigation.css.map */`;
-  z({ name: "Quiz. Problem based product selection", dev: "Olha" }), P("exp_prob_bas");
+  z({ name: "Quiz. Problem based product selection", dev: "Olha" }), T("exp_prob_bas");
   function w() {
     let e = window.currcart.length, n = 0;
     window.currcart.forEach((t) => {
@@ -794,7 +794,7 @@ ul#header-steps {
       this.page !== "/" && f() !== "mobile" && (this.page === "/cgi-bin/select-color.cgi" || this.page === "/cgi-bin/order-form.cgi" || this.page === "/cgi-bin/guided-order.cgi" || this.page === "/cgi-bin/shopping-cart.cgi" || this.page === "/cgi-bin/check-out.cgi" || this.page === "/cgi-bin/review-order.cgi") && this.navigationChange(), this.page === "/cgi-bin/order-form.cgi" && ($("head").append(`<style class="crs_style_main">${D}</style>`), this.quiz());
     }
     navigationChange() {
-      $("head").append(`<style>${S}</style>`), $("#header-wrap").prepend(T);
+      $("head").append(`<style>${S}</style>`), $("#header-wrap").prepend(P);
       let n = 1;
       switch (this.page) {
         case "/cgi-bin/select-color.cgi":
@@ -854,9 +854,7 @@ ul#header-steps {
       let p = [
         ..._[t][0],
         ...n != 0 ? _[t][n] : [],
-        // Use an empty array instead of an empty string
         ...i === "Non-metal" ? _[t][i] : []
-        // Wrap the metal value in an array if it's not empty
       ];
       $(".quiz").after(L(p, this.res.typeTitle)), d("exp_prob_bas_vis_02", "Recommended products", "Visibility", "Results page Recommended products"), x(C(".recommended_products__need"), "exp_prob_bas_vis_03", "You might also need:", "Results page You might also need:"), $(".recommended_products li a").click(function() {
         let a = "Results page You might also need:", o = "exp_prob_bas_button_04", r = "Button", h = $(this).closest("li").find("img").attr("alt");
@@ -882,6 +880,8 @@ ul#header-steps {
   let k = "";
   setInterval(() => {
     let e = window.location.pathname;
-    k !== e && (k = e, new N(e));
-  }, 100);
+    k !== e && (k = e, setTimeout(() => {
+      new N(e);
+    }, 100));
+  });
 })();
