@@ -1473,6 +1473,12 @@ form:has(.os-popup-title) [role='group'] {
   background: none;
 }
 
+.os-loader:focus,
+.os-loader:focus-visible,
+.os-loader:focus-within {
+  outline: none;
+}
+
 .os-loader::backdrop {
   background: #1a19191c;
 }
