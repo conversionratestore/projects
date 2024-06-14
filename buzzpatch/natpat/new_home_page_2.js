@@ -1,52 +1,52 @@
 (function() {
   "use strict";
-  const c = (e, n, t, o = "") => {
+  const a = (e, n, t, s = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
       event_desc: n,
       event_type: t,
-      event_loc: o
-    }), console.log(`Event: ${e} | ${n} | ${t} | ${o}`);
+      event_loc: s
+    }), console.log(`Event: ${e} | ${n} | ${t} | ${s}`);
   }, h = (e, n) => {
     const t = setInterval(() => {
       document.querySelector(e) && (clearInterval(t), n());
     }, 100);
-  }, m = ({ name: e, dev: n }) => {
+  }, w = ({ name: e, dev: n }) => {
     console.log(
       `%c EXP: ${e} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, u = (e) => {
+  }, _ = (e) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, a = (e, n, t, o, i = 1e3, s = 0.5) => {
-    let p, d;
-    if (p = new IntersectionObserver(
+  }, p = (e, n, t, s, i = 1e3, o = 0.5) => {
+    let c, d;
+    if (c = new IntersectionObserver(
       function(l) {
         l[0].isIntersecting === !0 ? d = setTimeout(() => {
-          c(
+          a(
             n,
-            l[0].target.dataset.visible || o || "",
+            l[0].target.dataset.visible || s || "",
             "view",
             t
-          ), p.disconnect();
+          ), c.disconnect();
         }, i) : (console.log("Element is not fully visible"), clearTimeout(d));
       },
-      { threshold: [s] }
+      { threshold: [o] }
     ), typeof e == "string") {
       const l = document.querySelector(e);
-      l && p.observe(l);
+      l && c.observe(l);
     } else
-      p.observe(e);
-  }, _ = (e) => {
+      c.observe(e);
+  }, u = (e) => {
     const n = document.querySelector(e);
     if (!n)
       return;
-    const o = n.getBoundingClientRect().top - 100;
+    const s = n.getBoundingClientRect().top - 100;
     window.scrollBy({
-      top: o,
+      top: s,
       behavior: "smooth"
     });
   }, r = "https://conversionratestore.github.io/projects/buzzpatch", f = [
@@ -145,9 +145,9 @@
     }
   ], x = () => {
     let e = [];
-    return $("#featured-reviews2 .carousel-item:not(.slick-cloned)").each((t, o) => {
+    return $("#featured-reviews2 .carousel-item:not(.slick-cloned)").each((t, s) => {
       let i = {};
-      i.name = $(o).find(".name").text(), i.img = $(o).find(".review-header>img").attr("data-src") || "no_img", i.text = $(o).find(".review-text p").text(), e.push(i);
+      i.name = $(s).find(".name").text(), i.img = $(s).find(".review-header>img").attr("data-src") || "no_img", i.text = $(s).find(".review-text p").text(), e.push(i);
     }), console.log(e), e;
   }, k = [
     {
@@ -1288,14 +1288,37 @@ body {\r
   /* display: flex;\r
   justify-content: center;\r
   align-items: center; */\r
+  text-decoration: none;\r
 }\r
 \r
-.big-stickers__sticker>img {\r
+.big-stickers__stop-sign {\r
+  position: absolute;\r
+  top: 24px;\r
+  left: 24px;\r
+  width: 43px;\r
+  height: 43px;\r
+}\r
+\r
+.big-stickers__sticker .sticker-bg-img {\r
   position: absolute;\r
   top: 0;\r
   left: 0;\r
   width: 100%;\r
   height: 100%;\r
+  object-fit: cover;\r
+}\r
+\r
+.big-stickers__right-img {\r
+  position: absolute;\r
+  top: 50%;\r
+  right: 0;\r
+  transform: translateY(-50%);\r
+}\r
+\r
+.big-stickers__new-img {\r
+  position: absolute;\r
+  top: -20px;\r
+  left: 27%;\r
 }\r
 \r
 .big-stickers__content {\r
@@ -1306,17 +1329,33 @@ body {\r
   justify-content: space-between;\r
   align-items: center;\r
   height: 100%;\r
-  padding: 16px 0;\r
-  width: 33%;\r
+  padding: 16px 5px;\r
+  width: 40%;\r
 }\r
 \r
-.big-stickers__content img {\r
+.big-stickers__product-img {\r
   position: absolute;\r
   top: 50%;\r
   right: 50%;\r
-  transform: translate(33%, -52%);\r
-  width: 272px;\r
+  transform: translate(32%, -51%);\r
+  width: 288px;\r
   height: 288px;\r
+}\r
+\r
+\r
+.big-stickers .big-stickers__sticker:last-child .big-stickers__product-img {\r
+  transform: translate(33%, -52%);\r
+}\r
+\r
+.big-stickers .big-stickers__sticker:last-child .big-stickers__right-img {\r
+  height: 79px;\r
+  right: 11px;\r
+  transform: translateY(-77%);\r
+}\r
+\r
+.big-stickers img {\r
+  display: block;\r
+  max-width: 100%;\r
 }\r
 \r
 .big-stickers__sticker:first-child .big-stickers__content {\r
@@ -1343,8 +1382,12 @@ body {\r
   z-index: 1;\r
 }\r
 \r
-.big-stickers__sticker:last-child .big-stickers__content .crs_btn {\r
+.big-stickers__sticker:first-child .big-stickers__content .crs_btn {\r
   background: #FF209E;\r
+}\r
+\r
+.big-stickers__sticker:last-child .big-stickers__content .crs_btn {\r
+  background: #1DA7F8;\r
 }\r
 \r
 .inner-padding {\r
@@ -1416,6 +1459,21 @@ body {\r
   flex-shrink: 0;\r
 }\r
 \r
+.three-products a div img {\r
+  display: block;\r
+  max-width: 100%;\r
+  max-height: 163px;\r
+}\r
+\r
+\r
+.three-products a:nth-child(2) div img {\r
+  height: 160px;\r
+}\r
+\r
+.three-products a:nth-child(3) div img {\r
+  height: 99px;\r
+}\r
+\r
 .new_main_block {\r
   overflow-x: hidden;\r
 }\r
@@ -1485,11 +1543,6 @@ body #purchase-slide .footer-btns {\r
     height: 69px;\r
   }\r
 \r
-  .three-products a div img:first-child {\r
-    display: block;\r
-    max-width: 100%;\r
-  }\r
-\r
   .three-products a p {\r
     text-align: center;\r
     /* padding: 0 12px; */\r
@@ -1502,7 +1555,7 @@ body #purchase-slide .footer-btns {\r
   }\r
 \r
   .big-stickers__content {\r
-    width: 172px;\r
+    width: 43%;\r
   }\r
 }\r
 \r
@@ -1548,9 +1601,7 @@ body #purchase-slide .footer-btns {\r
 }\r
 \r
 @media (max-width: 550px) {\r
-  .big-stickers__content .crs_btn {\r
-    padding: 8px 32px;\r
-  }\r
+\r
 \r
   .new_reviews_block .slider_dots {\r
     margin-top: 24px;\r
@@ -1917,34 +1968,8 @@ body #purchase-slide .footer-btns {\r
     font-size: 14px;\r
   }\r
 \r
-  .big-stickers {\r
-    flex-direction: column;\r
-    gap: 12px;\r
-    padding: 0;\r
-  }\r
-\r
-  .big-stickers__sticker {\r
-    height: 280px;\r
-  }\r
-\r
-  .new_trustpilot_reviews .reviews_trust {\r
-    padding: 0;\r
-  }\r
 \r
 \r
-  .big-stickers__content p {\r
-    font-size: 16px;\r
-    line-height: 24px;\r
-    /* 150% */\r
-  }\r
-\r
-  .big-stickers__content img {\r
-    transform: scale(0.62) translate(63%, -80%);\r
-  }\r
-\r
-  .big-stickers .big-stickers__sticker:last-child .big-stickers__content img {\r
-    transform: scale(0.59) translate(66%, -81%);\r
-  }\r
 \r
   .wellness {\r
     padding: 0;\r
@@ -1980,6 +2005,93 @@ body #purchase-slide .footer-btns {\r
   body .custom-dots {\r
     margin: 24px auto 30px;\r
   }\r
+\r
+\r
+  .big-stickers .big-stickers__sticker:first-child .big-stickers__right-img {\r
+    transform: translateY(-64%);\r
+    height: 100px;\r
+  }\r
+\r
+  .big-stickers .big-stickers__sticker:last-child .big-stickers__right-img {\r
+    transform: translateY(-71%);\r
+  }\r
+}\r
+\r
+@media (max-width: 1007px) and (min-width: 768px) {\r
+\r
+  .big-stickers__product-img,\r
+  .big-stickers .big-stickers__sticker:last-child .big-stickers__product-img {\r
+    transform: scale(0.8) translate(46%, -60%);\r
+  }\r
+}\r
+\r
+@media (max-width: 768px) {\r
+  .big-stickers {\r
+    flex-direction: column;\r
+    gap: 12px;\r
+    padding: 0;\r
+  }\r
+\r
+  .big-stickers__sticker {\r
+    height: 280px;\r
+  }\r
+\r
+  .big-stickers__stop-sign {\r
+    left: 12px;\r
+    top: 12px;\r
+    width: 34px;\r
+    height: 34px;\r
+  }\r
+\r
+  .new_trustpilot_reviews .reviews_trust {\r
+    padding: 0;\r
+  }\r
+\r
+\r
+  .big-stickers__content p {\r
+    font-size: 16px;\r
+    line-height: 24px;\r
+    /* 150% */\r
+  }\r
+\r
+  .big-stickers__content {\r
+    width: 49%;\r
+  }\r
+\r
+\r
+  .big-stickers__product-img {\r
+    transform: scale(0.58) translate(68%, -88%);\r
+  }\r
+\r
+  .big-stickers .big-stickers__sticker:last-child .big-stickers__product-img {\r
+    transform: scale(0.55) translate(72%, -90%);\r
+  }\r
+\r
+  .big-stickers__new-img {\r
+    top: 3px;\r
+    left: 22%;\r
+    transform: scale(1.6);\r
+  }\r
+\r
+  .big-stickers__content .crs_btn {\r
+    padding: 8px 32px;\r
+  }\r
+\r
+}\r
+\r
+\r
+\r
+@media (max-width: 768px) and (min-width: 550px) {\r
+  .big-stickers__content {\r
+    width: 33%;\r
+  }\r
+\r
+\r
+\r
+  .big-stickers {\r
+    padding: 0 16px;\r
+  }\r
+\r
 }`;
   `${k.map((e, n) => (
     /* HTML */
@@ -2059,24 +2171,33 @@ body #purchase-slide .footer-btns {\r
         </h1>
 
         <div class="big-stickers">
-          <div class="big-stickers__sticker">
-            <img src="${r}/img/new-home-page/natpat_kid1.png" alt="" />
-            <img class="mobile" src="${r}/img/new-home-page/natpat_kid1_mob.png" alt="" />
+          <a class="big-stickers__sticker" href="/products/trailpatch-kids-tick-repellent-stickers">
+            <img  class="sticker-bg-img" src="${r}/img/new-home-page/natpat_kid1.jpg" alt="" />
+            <img class="sticker-bg-img mobile" src="${r}/img/new-home-page/natpat_kid1_mob.png" alt="" />
             <div class="big-stickers__content">
-              <p>Sleep Promoting Stickers</p>
-              <img src="${r}/img/new-home-page/bedtime_stickers.png" alt="Sleep Promoting Stickers" />
-              <a class="crs_btn" href="/products/sleepypatch-sleep-promoting-stickers">Shop now</a>
+              <p>Kids Tick Repellent Stickers</p>
+              <div class="big-stickers__product-img">
+                <img src="${r}/img/new-home-page/new-label.svg" class="big-stickers__new-img" alt="">
+                <img src="${r}/img/new-home-page/kids-tick.png" alt="Kids Tick Repellent Stickers" />
+              </div>
+              <span class="crs_btn">Shop now</span>
             </div>
-          </div>
-          <div class="big-stickers__sticker">
-            <img src="${r}/img/new-home-page/natpat_kid2.png" alt="kid" />
-            <img class="mobile" src="${r}/img/new-home-page/natpat_kid2_mob.png" alt="kid" />
+            <img src="${r}/img/new-home-page/stop-bugs.svg" class="big-stickers__stop-sign" alt="stop bugs">
+            <img src="${r}/img/new-home-page/oops.svg" class="big-stickers__right-img" alt="">
+          </a>
+          <a class="big-stickers__sticker" href="/products/buzzpatch-bundles">
+            <img class="sticker-bg-img" src="${r}/img/new-home-page/natpat_kid2.jpg" alt="kid" />
+            <img class="sticker-bg-img mobile" src="${r}/img/new-home-page/natpat_kid2_mob.png" alt="" />
             <div class="big-stickers__content">
               <p>Mosquito Repellent Stickers</p>
-              <img src="${r}/img/new-home-page/mosquito_stickers.png" alt="Mosquito Repellent Stickers" />
-              <a class="crs_btn" href="/products/buzzpatch-bundles">Shop now</a>
-            </div>
-          </div>
+              <div class="big-stickers__product-img">
+                <img src="${r}/img/new-home-page/mosquito_stickers.png" alt="Mosquito Repellent Stickers" />
+              </div>
+              <span class="crs_btn">Shop now</span>
+              </div>
+            <img src="${r}/img/new-home-page/stop-mosquito.svg" class="big-stickers__stop-sign" alt="stop bugs">
+            <img src="${r}/img/new-home-page/butterflies.png" class="big-stickers__right-img" alt="">
+          </a>
         </div>
         <div class="wellness">
         <h2>All-age wellness. Natural products for:</h2>
@@ -2339,10 +2460,10 @@ body #purchase-slide .footer-btns {\r
   );
   h("main", () => {
     document.querySelector("main").style.opacity = "0";
-  }), m({ name: "HomePage Redesign 2", dev: "AK" }), u("exp_homepage");
-  const M = window.innerWidth < 768 ? "mobile" : "desktop", w = document.createElement("link");
-  w.rel = "stylesheet", w.href = "https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=M+PLUS+Rounded+1c:wght@900&display=swap", document.head.appendChild(w);
-  class N {
+  }), w({ name: "HomePage Redesign 2", dev: "AK" }), _("exp_homepage");
+  const M = window.innerWidth < 768 ? "mobile" : "desktop", m = document.createElement("link");
+  m.rel = "stylesheet", m.href = "https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=M+PLUS+Rounded+1c:wght@900&display=swap", document.head.appendChild(m);
+  class H {
     constructor(n) {
       this.device = n, this.init();
     }
@@ -2358,7 +2479,7 @@ body #purchase-slide .footer-btns {\r
     }
     async addBlocks() {
       $(".new_home_page").append(z(this.device)).append(T).append(j).append(S).append(P).append(A).append(I).append(q).append(C).append(y);
-      const n = x().map((t, o) => (
+      const n = x().map((t, s) => (
         /* HTML */
         `
           <div class="slide">
@@ -2381,8 +2502,8 @@ body #purchase-slide .footer-btns {\r
         $(".insta_widget").append($("#shopify-section-template--15241309847596__17097813754ae81b0d")), $(".new_stickers_slider").append($("#shopify-section-template--15241309847596__custom_liquid_HmbWPi")), $("#shopify-block-archive_detect_ugc_gallery_8cpCVL").css("display", "block"), $("#purchaseSlide.slick-initialized").slick("setPosition"), $(".slider_dots-2.slick-initialized").slick("setPosition");
       }), document.querySelector("main").style.opacity = "1", $(window).on("scroll", function() {
         $(window).scrollTop() || 0 > 100 ? $(".up_btn").fadeIn() : $(".up_btn").fadeOut();
-        const t = $(".new_natpat_block .parallax"), o = t[0].getBoundingClientRect(), i = window.scrollY || document.documentElement.scrollTop, s = o.top + i;
-        i + window.innerHeight > s && t.css("transform", `translateY(${(i - s) * 0.3}px)`);
+        const t = $(".new_natpat_block .parallax"), s = t[0].getBoundingClientRect(), i = window.scrollY || document.documentElement.scrollTop, o = s.top + i;
+        i + window.innerHeight > o && t.css("transform", `translateY(${(i - o) * 0.3}px)`);
       }), $(".up_btn").on("click", function() {
         $("html, body").animate({ scrollTop: 0 }, 500);
       }), this.device === "mobile" && $(".new_info2_block").prepend($(".slider_photo")), $(".new_stickers_slider .slider_wrapper").slick({
@@ -2425,8 +2546,8 @@ body #purchase-slide .footer-btns {\r
         infinite: !0,
         centerMode: this.device === "mobile",
         fade: this.device !== "mobile"
-      }), $(".slider_dots").each(function(t, o) {
-        $(o).slick({
+      }), $(".slider_dots").each(function(t, s) {
+        $(s).slick({
           slidesToShow: 3,
           slidesToScroll: 1,
           arrows: !1,
@@ -2434,28 +2555,28 @@ body #purchase-slide .footer-btns {\r
           centerMode: !0,
           centerPadding: "60px",
           focusOnSelect: !0,
-          asNavFor: $(o).closest("section").find(".parent_slider")
+          asNavFor: $(s).closest("section").find(".parent_slider")
         });
       }), $("a.total_reviews").on("click", function(t) {
-        t.preventDefault(), _(".new_trustpilot_reviews");
-      }), $(".reviews_trust p:nth-child(2)").each(function(t, o) {
-        if ($(o).text().length > 200) {
-          const i = $(o).text(), s = i.slice(0, 200).lastIndexOf(" ");
-          s !== -1 && $(o).text(i.slice(0, s) + "..."), $(o).after('<span class="read_more">Read more</span>'), $(o).next().on("click", function() {
-            $(o).text(i), $(this).remove(), $(o).closest(".reviews_trust").slick("setPosition");
+        t.preventDefault(), u(".new_trustpilot_reviews");
+      }), $(".reviews_trust p:nth-child(2)").each(function(t, s) {
+        if ($(s).text().length > 200) {
+          const i = $(s).text(), o = i.slice(0, 200).lastIndexOf(" ");
+          o !== -1 && $(s).text(i.slice(0, o) + "..."), $(s).after('<span class="read_more">Read more</span>'), $(s).next().on("click", function() {
+            $(s).text(i), $(this).remove(), $(s).closest(".reviews_trust").slick("setPosition");
           });
         }
       }), this.device === "desktop") {
-        const o = $(".new_trustpilot_reviews .reviews_trust li");
-        o.each(function(i, s) {
-          i >= 6 && $(s).css("display", "none");
+        const s = $(".new_trustpilot_reviews .reviews_trust li");
+        s.each(function(i, o) {
+          i >= 6 && $(o).css("display", "none");
         }), $(".pages_r span").on("click", function() {
           if ($(this).hasClass("active"))
             return;
-          const i = +$(this).text(), s = (i - 1) * 6, p = i * 6 - 1, d = $(".new_trustpilot_reviews .reviews_trust");
+          const i = +$(this).text(), o = (i - 1) * 6, c = i * 6 - 1, d = $(".new_trustpilot_reviews .reviews_trust");
           d.fadeOut(function() {
-            o.each(function(l, g) {
-              l >= s && l <= p ? $(g).show() : $(g).hide();
+            s.each(function(l, g) {
+              l >= o && l <= c ? $(g).show() : $(g).hide();
             }), d.fadeIn();
           }), $(this).addClass("active").siblings().removeClass("active");
         });
@@ -2463,11 +2584,11 @@ body #purchase-slide .footer-btns {\r
     }
     patchesCardsFunctionality() {
       $(".new_stickers_slider .item").each(function(n, t) {
-        const o = $(t).find("span"), i = $(t).find(".img img[alt=main]"), s = $(t).find("button"), p = $(t).find(".price"), d = $(t).find(".save");
-        o.on("click", function() {
-          $(this).addClass("active").siblings().removeClass("active"), i.attr("src", $(this).data("img")), s.attr("data-id", $(this).data("variant")), p.text(`$${$(this).data("price")} each`), d.text(`${$(this).data("save")}% off`);
-        }), s.on("click", function() {
-          const H = {
+        const s = $(t).find("span"), i = $(t).find(".img img[alt=main]"), o = $(t).find("button"), c = $(t).find(".price"), d = $(t).find(".save");
+        s.on("click", function() {
+          $(this).addClass("active").siblings().removeClass("active"), i.attr("src", $(this).data("img")), o.attr("data-id", $(this).data("variant")), c.text(`$${$(this).data("price")} each`), d.text(`${$(this).data("save")}% off`);
+        }), o.on("click", function() {
+          const B = {
             items: [
               {
                 id: $(this).data("id"),
@@ -2480,21 +2601,21 @@ body #purchase-slide .footer-btns {\r
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify(H)
+            body: JSON.stringify(B)
           }).then((F) => F.json());
         });
       });
     }
     addEvents() {
       const n = "exp_hp_2_";
-      a(".big-stickers__sticker", "exp_hp_2_main_image_0", "Main block", "Sleep"), $(".big-stickers__sticker .crs_btn").each(function(i, s) {
-        $(s).on("click", function() {
-          i === 0 ? c("exp_hp_2_main_image_0", "Sleep Shop Now", "click", "Main block") : c("exp_hp_2_main_image_1", "Mosquito Repellent Shop Now", "click", "Main block");
+      p(".big-stickers__sticker", "exp_hp_2_main_image_0", "Main block", "Sleep"), $(".big-stickers__sticker .crs_btn").each(function(i, o) {
+        $(o).on("click", function() {
+          i === 0 ? a("exp_hp_2_main_image_0", "Sleep Shop Now", "click", "Main block") : a("exp_hp_2_main_image_1", "Mosquito Repellent Shop Now", "click", "Main block");
         });
-      }), a(".big-stickers__sticker + .big-stickers__sticker", "exp_hp_2_main_image_1", "Main block", "Mosquito Repellent"), a(".wellness", "exp_hp_2_stickers_slider", "Homepage All age wellness: natural products", "Section");
+      }), p(".big-stickers__sticker + .big-stickers__sticker", "exp_hp_2_main_image_1", "Main block", "Mosquito Repellent"), p(".wellness", "exp_hp_2_stickers_slider", "Homepage All age wellness: natural products", "Section");
       let t = "";
-      $(".three-products a").each(function(i, s) {
-        $(s).on("click", function() {
+      $(".three-products a").each(function(i, o) {
+        $(o).on("click", function() {
           switch (i) {
             case 0:
               t = "Button Welness Cognitive";
@@ -2506,55 +2627,57 @@ body #purchase-slide .footer-btns {\r
               t = "Button Raspiratory";
               break;
           }
-          c(`exp_hp_2_button_${i + 2}`, t, "click", "Main block All age wellness: natural products");
+          a(`exp_hp_2_button_${i + 2}`, t, "click", "Main block All age wellness: natural products");
         });
       }), $(".new_main_block .crs_btn").on("click", function() {
-        c(`${n}main_button`, "Button Explore All", "click", "Main block All age wellness: natural products");
-      }), a(".new_main_block .crs_btn", `${n}main_button`, "Main block All age wellness: natural products", "Button Explore All"), h(".new_stickers_slider .item:not(.slick-cloned)", () => {
-        $(".new_stickers_slider .item:not(.slick-cloned)").each(function(i, s) {
-          var p;
-          a(s, `${n}stickers_slider_product_${(p = s.querySelector("h3")) == null ? void 0 : p.innerText}`, "Homepage Our bestsellers: Tried and True", $(s).find("h3").text() + " - Section");
+        a(`${n}main_button`, "Button Explore All", "click", "Main block All age wellness: natural products");
+      }), p(".new_main_block .crs_btn", `${n}main_button`, "Main block All age wellness: natural products", "Button Explore All"), h(".new_stickers_slider .item:not(.slick-cloned)", () => {
+        $(".new_stickers_slider .item:not(.slick-cloned)").each(function(i, o) {
+          var c;
+          p(o, `${n}stickers_slider_product_${(c = o.querySelector("h3")) == null ? void 0 : c.innerText}`, "Homepage Our bestsellers: Tried and True", $(o).find("h3").text() + " - Section");
         });
       }), $(".new_stickers_slider").on("click", ".footer-btns .learn-more", function(i) {
-        const s = $(this).closest(".item").find("h3").text().trim().replace(/\s/g, "_").split("_")[0];
-        c(`${n}stick_slider_learn_${s}`, "Learn more", "click", "Stickers slider");
+        const o = $(this).closest(".item").find("h3").text().trim().replace(/\s/g, "_").split("_")[0];
+        a(`${n}stick_slider_learn_${o}`, "Learn more", "click", "Stickers slider");
       }), $(".new_stickers_slider").on("click", ".footer-btns .add-to-cart", function() {
         const i = $(this).closest(".item").find("h3").text().trim().replace(/\s/g, "_").split("_")[0];
-        c(`${n}stick_slider_add_${i}`, "Add to cart", "Button", `Homepage 
+        a(`${n}stick_slider_add_${i}`, "Add to cart", "Button", `Homepage 
 Our bestsellers: Tried and True`);
-      }), a(
+      }), p(
         ".new_trustpilot_reviews__trust",
         `${n}trustpilot_reviews`,
         "Homepage Trustpilot",
         "Section"
       );
-      const o = setInterval(() => {
-        var i, s, p, d;
-        ((i = $(".insta_widget [data-widget-host]")[0]) != null && i.shadowRoot && ((p = (s = $(".insta_widget [data-widget-host]")[0]) == null ? void 0 : s.shadowRoot) != null && p.querySelectorAll("img").length) || 0 > 0) && (clearInterval(o), (d = $(".insta_widget [data-widget-host]")[0].shadowRoot) == null || d.querySelectorAll("._-SGJn").forEach((l, g) => {
+      const s = setInterval(() => {
+        var i, o, c, d;
+        ((i = $(".insta_widget [data-widget-host]")[0]) != null && i.shadowRoot && ((c = (o = $(".insta_widget [data-widget-host]")[0]) == null ? void 0 : o.shadowRoot) != null && c.querySelectorAll("img").length) || 0 > 0) && (clearInterval(s), (d = $(".insta_widget [data-widget-host]")[0].shadowRoot) == null || d.querySelectorAll("._-SGJn").forEach((l, g) => {
           l.addEventListener("click", () => {
             setTimeout(() => {
-              l.querySelector("video") && l.closest("._JBvJ-") && c(`${n}insta_image_${g}`, "Play", "Button", "Homepage Trustpilot");
+              l.querySelector("video") && l.closest("._JBvJ-") && a(`${n}insta_image_${g}`, "Play", "Button", "Homepage Trustpilot");
             }, 150);
           });
         }));
       }, 1e3);
-      $(".new_trustpilot_reviews .reviews_trust li:not(.slick-cloned)").each(function(i, s) {
-        a(
-          s,
+      $(".new_trustpilot_reviews .reviews_trust li:not(.slick-cloned)").each(function(i, o) {
+        p(
+          o,
           `${n}trustpilot_reviews_${i}`,
           "Homepage Trustpilot",
-          $(s).find("p:first-of-type").text()
+          $(o).find("p:first-of-type").text()
         );
-      }), a(".new_slider_news .slider_wrapper", `${n}slider_news`, "Homepage We're in the news... for good reasons.", "Section"), a(".new_science_block .content_wrapper", `${n}science_block`, "Homepage Unlocking the science behind natpat patches", "Section"), a(".new_natpat_block .layer", `${n}natpat_block`, "Homepage At NATPAT, it's not just about products; it's about a way of life. We're ....", "Section"), a(".new_info_block .content_wrapper p", `${n}info_block`, `Homepage
+      }), p(".new_slider_news .slider_wrapper", `${n}slider_news`, "Homepage We're in the news... for good reasons.", "Section"), p(".new_science_block .content_wrapper", `${n}science_block`, "Homepage Unlocking the science behind natpat patches", "Section"), p(".new_natpat_block .layer", `${n}natpat_block`, "Homepage At NATPAT, it's not just about products; it's about a way of life. We're ....", "Section"), p(".new_info_block .content_wrapper p", `${n}info_block`, `Homepage
 Hey there! At NATPAT, we're all about unlocking the superhero potential in eve.....`, "Section"), $(".slider_photo").on("afterChange", function() {
-        c(`${n}slider_photo`, "Choose", "change", 'Homepage The section with photos"');
-      }), a(".slider_photo", `${n}slider_photo`, 'Homepage The section with photos"', "Section"), a(".new_reviews_block .basic_slider", `${n}reviews_block`, "Homepage Megan Hilling....", "Section"), $(".new_slider_news").on("click", ".slick-arrow", function() {
-        $(this).hasClass("slick-next") ? c(`${n}slider_news_next`, "Next", "click", "Slider news") : c(`${n}slider_news_prev`, "Prev", "click", "Slider news");
+        a(`${n}slider_photo`, "Choose", "change", 'Homepage The section with photos"');
+      }), p(".slider_photo", `${n}slider_photo`, 'Homepage The section with photos"', "Section"), p(".new_reviews_block .basic_slider", `${n}reviews_block`, "Homepage Megan Hilling....", "Section"), $("#purchaseSlide").on("click", ".slick-arrow", function() {
+        $(this).hasClass("slick-next") ? a("exp_hp_2_pagination_01", "Next - Product selection", "Pagination", "Homepage Our bestsellers: Tried and True") : a("exp_hp_2_pagination_01", "Prev - Product selection", "Pagination", "Homepage Our bestsellers: Tried and True");
+      }), $(".new_slider_news").on("click", ".slick-arrow", function() {
+        $(this).hasClass("slick-next") ? a(`${n}slider_news_next`, "Next", "click", "Slider news") : a(`${n}slider_news_prev`, "Prev", "click", "Slider news");
       }), $(".new_info_block").on("click", ".slick-arrow", function() {
-        $(this).hasClass("slick-next") ? c("exp_hp_2_natpat_slider_next", "Next", "click", `Homepage
-Hey there! At NATPAT, we're all about unlocking the superhero potential in eve.....`) : c("exp_hp_2_natpat_slider_prev", "Prev", "click", `Homepage
+        $(this).hasClass("slick-next") ? a("exp_hp_2_natpat_slider_next", "Next", "click", `Homepage
+Hey there! At NATPAT, we're all about unlocking the superhero potential in eve.....`) : a("exp_hp_2_natpat_slider_prev", "Prev", "click", `Homepage
 Hey there! At NATPAT, we're all about unlocking the superhero potential in eve.....`);
-      }), a(
+      }), p(
         ".new_info2_block .content_wrapper",
         `${n}info2_block`,
         "Info2 block",
@@ -2570,13 +2693,13 @@ Hey there! At NATPAT, we're all about unlocking the superhero potential in eve..
       setTimeout(() => {
         clearInterval(n);
       }, 5e3), document.querySelectorAll(".new_home_page a:not([class]), .new_home_page a.crs_btn").forEach((t) => {
-        const o = window.location.pathname === "/" ? t.getAttribute("href") : window.location.pathname + t.getAttribute("href");
-        t.setAttribute("href", o);
+        const s = window.location.pathname === "/" ? t.getAttribute("href") : window.location.pathname + t.getAttribute("href");
+        t.setAttribute("href", s);
       });
     }
   }
-  const B = setInterval(() => {
-    window.jQuery && (clearInterval(B), new N(M));
+  const N = setInterval(() => {
+    window.jQuery && (clearInterval(N), new H(M));
   }, 100);
 })();
 //# sourceMappingURL=index.js.map
