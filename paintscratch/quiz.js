@@ -20,7 +20,7 @@
   }, f = () => {
     const e = navigator.userAgent;
     return e.match(/Android/i) || e.match(/webOS/i) || e.match(/iPhone/i) || e.match(/iPad/i) || e.match(/iPod/i) || e.match(/BlackBerry/i) || e.match(/Windows Phone/i) ? "mobile" : "desktop";
-  }, v = (e, n, i, t, a = 1e3, h = 0.5) => {
+  }, w = (e, n, i, t, a = 1e3, h = 0.5) => {
     let o, c;
     if (o = new IntersectionObserver(
       function(s) {
@@ -287,7 +287,7 @@
         const j = o.find(".price").html().match(/[\d,.]+/);
         a += parseFloat(j[0] * x(p, n)), i += k(l, x(p, n));
       }
-    let w = $(`.products-list.${e[1]} .price`).html().split(/[\d,.]+/g)[0];
+    let v = $(`.products-list.${e[1]} .price`).html().split(/[\d,.]+/g)[0];
     return `
         <div class="recommended_products">
             <h3 class="h3_title">Recommended products</h3>
@@ -298,7 +298,7 @@
                     <ul>${i}</ul>
                     <div class="items-center">
                         <a href="#" class="btn_add_all">Add to Cart</a>
-                        <p class="total">${w}${a.toFixed(2)}</p>
+                        <p class="total">${v}${a.toFixed(2)}</p>
                     </div>
                 </div>
                 <div class="recommended_products__need">
@@ -308,7 +308,7 @@
             </div>
             <a href="#" class="btn_back_quiz items-center">${u.arrowLeft} Take quiz again</a>
         </div>`;
-  }, N = `.items-center {
+  }, q = `.items-center {
   display: flex;
   align-items: center;
 }
@@ -674,7 +674,7 @@ h3.h3_title {
     width: 100%;
     max-width: 254px;
   }
-}/*# sourceMappingURL=main.css.map */`, q = `.crs_steps_line {
+}/*# sourceMappingURL=main.css.map */`, N = `.crs_steps_line {
   position: relative;
   padding: 16px 20px;
   background-color: #fff;
@@ -799,10 +799,10 @@ ul#header-steps {
       }, this.init();
     }
     init() {
-      this.page !== "/" && f() !== "mobile" && (this.page === "/cgi-bin/select-color.cgi" || this.page === "/cgi-bin/order-form.cgi" || this.page === "/cgi-bin/guided-order.cgi" || this.page === "/cgi-bin/shopping-cart.cgi" || this.page === "/cgi-bin/check-out.cgi" || this.page === "/cgi-bin/review-order.cgi") && this.navigationChange(), this.page === "/cgi-bin/order-form.cgi" && ($("head").append(`<style class="crs_style_main">${N}</style>`), this.quiz());
+      this.page !== "/" && f() !== "mobile" && (this.page === "/cgi-bin/select-color.cgi" || this.page === "/cgi-bin/order-form.cgi" || this.page === "/cgi-bin/guided-order.cgi" || this.page === "/cgi-bin/shopping-cart.cgi" || this.page === "/cgi-bin/check-out.cgi" || this.page === "/cgi-bin/review-order.cgi") && this.navigationChange(), this.page === "/cgi-bin/order-form.cgi" && ($("head").append(`<style class="crs_style_main">${q}</style>`), this.quiz());
     }
     navigationChange() {
-      $("head").append(`<style>${q}</style>`), $("#header-wrap").prepend(D);
+      $("head").append(`<style>${N}</style>`), $("#header-wrap").prepend(D);
       let n = 1;
       switch (this.page) {
         case "/cgi-bin/select-color.cgi":
@@ -832,7 +832,7 @@ ul#header-steps {
     }
     quiz() {
       $(".car-touch-up-paints-heading").after(S()), T(".quiz [data-index]").forEach((i) => {
-        v(i, "exp_prob_bas_vis_01", "Quiz", i.querySelector("label").innerText);
+        w(i, "exp_prob_bas_vis_01", "Quiz", i.querySelector("label").innerText);
       }), $(".select_current").click(function(i) {
         $(this).parent().toggleClass("active"), d("exp_prob_bas_dropdown_01", "Click", "Dropdown", $(this).closest("[data-index]").find("label").text());
       });
@@ -844,7 +844,7 @@ ul#header-steps {
         a.removeClass("active"), a.find(".select_current > div").html($(this).find("b").html()), $(this).closest('[data-index="0"]').length ? (n.res.type = t, n.res.typeTitle = $(this).find("b").html()) : $(this).closest('[data-index="1"]').length ? n.res.size = $(this).find("b").html() : n.res.metal = $(this).find("b").html(), d("exp_prob_bas_dropdown_02", $(this).find("b").html(), "Dropdown", $(this).closest("[data-index]").find("label").text());
       }), $(".btn_next_step").click(function(i) {
         let t = $(".btn_next_step").index(this);
-        if (d("exp_prob_bas_button_01", $(this).closest("[data-index]").find(".select_current > div").html(), "Button", $(this).closest("[data-index]").find("label").text()), t == 0) {
+        if (d("exp_prob_bas_button_01", $(this).closest("[data-index]").find(".select_current > div").html(), "Button", $(this).closest("[data-index]").find("label").text()), $(".quiz .select.active").removeClass("active"), t == 0) {
           $(this).closest('[data-index="0"]').attr("hidden", !0), $('.quiz [data-index="1"]').removeAttr("hidden"), n.res.metal = "";
           return;
         } else if (t == 1 && (n.res.size == "Extensive" || n.res.size == "Large")) {
@@ -864,12 +864,12 @@ ul#header-steps {
         ...n != 0 ? _[i][n] : [],
         ...t === "Non-metal" ? _[i][t] : []
       ];
-      $(".quiz").after(I(h, this.res)), d("exp_prob_bas_vis_02", "Recommended products", "Visibility", "Results page Recommended products"), v(L(".recommended_products__need"), "exp_prob_bas_vis_03", "You might also need:", "Results page You might also need:"), $(".recommended_products li a").click(function(o) {
+      $(".quiz").after(I(h, this.res)), d("exp_prob_bas_vis_02", "Recommended products", "Visibility", "Results page Recommended products"), w(L(".recommended_products__need"), "exp_prob_bas_vis_03", "You might also need:", "Results page You might also need:"), $(".recommended_products li a").click(function(o) {
         let c = "Results page You might also need", s = "exp_prob_bas_button_04", p = "Button", l = $(this).closest("li").find("img").attr("alt");
         if ($(this).closest(".recommended_products__base")[0] && (c = "Results page Recommended products", s = "exp_prob_bas_button_03"), $(this).hasClass("btn_add")) {
           o.preventDefault(), s = "exp_prob_bas_button_05", p = "Add to cart Button";
-          const w = parseInt($(this).closest("li").find(".qty").html().replace("x", "")), r = $(this).closest("li").attr("data-id");
-          AddCart(w, r), f() === "mobile" && (z(), M(l));
+          const v = parseInt($(this).closest("li").find(".qty").html().replace("x", "")), r = $(this).closest("li").attr("data-id");
+          AddCart(v, r), f() === "mobile" && (z(), M(l));
         }
         d(s, l, p, c);
       }), $("html, body").animate({
