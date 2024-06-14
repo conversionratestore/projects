@@ -247,7 +247,7 @@
         <p class="text-cust">Use our guide to find the perfect solution for your needs, or explore all options below</p>
         ${e}
     </div>`;
-  }, v = (e) => {
+  }, w = (e) => {
     const n = e.title.includes("|") ? e.title.split("|")[1] : "", t = e.title.includes("|") ? e.title.split("|")[0] : e.title;
     return `
         <li data-id="${e.id}">
@@ -273,11 +273,11 @@
     for (let s = 0; s < e.length; s++)
       if (typeof e[s] == "object")
         for (let m = 0; m < e[s].length; m++)
-          a = $(`.products-list.${e[s][m]}`), o = Object.keys(g[e[s][m]])[0], c.id = e[s][m], c.href = a.find(".related-items").attr("href"), c.image = a.find(".related-items img").attr("src"), c.desc = g[e[s][m]][o], c.title = o, c.price = a.find(".price").html(), c.hrefAdd = a.find(".add-to-cart").attr("href"), i += v(c);
+          a = $(`.products-list.${e[s][m]}`), o = Object.keys(g[e[s][m]])[0], c.id = e[s][m], c.href = a.find(".related-items").attr("href"), c.image = a.find(".related-items img").attr("src"), c.desc = g[e[s][m]][o], c.title = o, c.price = a.find(".price").html(), c.hrefAdd = a.find(".add-to-cart").attr("href"), i += w(c);
       else {
         s == 0 ? ($(".orderforms #page #main .car-touch-up-paints-heading p").html().includes("Tricoat") && (p = !0), a = $(`.products-list.${e[s].split("/")[+p]}`), o = Object.keys(g[e[s].split("/")[+p]])[0], r = g[e[s].split("/")[+p]][o], h = e[s].split("/")[+p]) : (a = $(`.products-list.${e[s]}`), o = Object.keys(g[e[s]])[0], r = g[e[s]][o], h = e[s]), c.id = h, c.href = a.find(".related-items").attr("href"), c.image = a.find(".related-items img").attr("src"), c.desc = r, c.title = o, c.price = a.find(".price").html(), c.hrefAdd = a.find(".add-to-cart").attr("href");
         const B = a.find(".price").html().match(/[\d,.]+/);
-        l += parseFloat(B[0]), t += v(c);
+        l += parseFloat(B[0]), t += w(c);
       }
     let I = $(`.products-list.${e[1]} .price`).html().split(/[\d,.]+/g)[0];
     return `
@@ -742,7 +742,7 @@ ul#header-steps {
   display: none;
 }/*# sourceMappingURL=navigation.css.map */`;
   z({ name: "Quiz. Problem based product selection", dev: "Olha" }), T("exp_prob_bas");
-  function w() {
+  function v() {
     let e = window.currcart.length, n = 0;
     window.currcart.forEach((t) => {
       const i = t.split("|");
@@ -859,7 +859,7 @@ ul#header-steps {
       $(".quiz").after(L(p, this.res.typeTitle)), d("exp_prob_bas_vis_02", "Recommended products", "Visibility", "Results page Recommended products"), x(C(".recommended_products__need"), "exp_prob_bas_vis_03", "You might also need:", "Results page You might also need:"), $(".recommended_products li a").click(function() {
         let a = "Results page You might also need:", o = "exp_prob_bas_button_04", r = "Button", h = $(this).closest("li").find("img").attr("alt");
         $(this).closest(".recommended_products__base") && (a = "Results page Recommended products", o = "exp_prob_bas_button_03"), $(this).hasClass("btn_add") && (o = "exp_prob_bas_button_05", r = "Add to cart Button", f() === "mobile" && setTimeout(() => {
-          w(), y(h);
+          v(), y(h);
         }, 200)), d(o, h, r, a);
       }), $("html, body").animate({
         scrollTop: $(".recommended_products").offset().top - 16
@@ -867,7 +867,7 @@ ul#header-steps {
         a.preventDefault(), $(".recommended_products__base .btn_add").each(function(o, r) {
           let h = $(r).closest("li").attr("data-id");
           AddCart(1, h);
-        }), f() === "mobile" && (w(), y("Your base repair kit")), d("exp_prob_bas_button_02", l, "Add to cart Button", "Results page Recommended products");
+        }), f() === "mobile" && (v(), y("Your base repair kit")), d("exp_prob_bas_button_02", l, "Add to cart Button", "Results page Recommended products");
       }), $(".btn_back_quiz").click(function(a) {
         a.preventDefault(), $(".recommended_products").remove(), $(".quiz [data-index]").each(function(o, r) {
           o != 0 ? $(r).attr("hidden", !0) : $(r).removeAttr("hidden");
@@ -880,7 +880,7 @@ ul#header-steps {
   let k = "";
   setInterval(() => {
     let e = window.location.pathname;
-    k !== e && (k = e, setTimeout(() => {
+    k !== e && typeof window.isMobile == "function" && (k = e, setTimeout(() => {
       new N(e);
     }, 100));
   });
