@@ -2608,7 +2608,7 @@ body #purchase-slide .footer-btns {\r
     }
     addEvents() {
       const n = "exp_hp_2_";
-      p(".big-stickers__sticker", "exp_hp_2_main_image_0", "Main block", "Sleep"), $(".big-stickers__sticker .crs_btn").each(function(i, o) {
+      p(".big-stickers__sticker", "exp_hp_2_main_image_0", "Main block", "Sleep"), $(".big-stickers__sticker").each(function(i, o) {
         $(o).on("click", function() {
           i === 0 ? a("exp_hp_2_main_image_0", "Sleep Shop Now", "click", "Main block") : a("exp_hp_2_main_image_1", "Mosquito Repellent Shop Now", "click", "Main block");
         });
@@ -2629,9 +2629,9 @@ body #purchase-slide .footer-btns {\r
           }
           a(`exp_hp_2_button_${i + 2}`, t, "click", "Main block All age wellness: natural products");
         });
-      }), $(".new_main_block .crs_btn").on("click", function() {
+      }), $(".new_main_block .wellness .crs_btn").on("click", function() {
         a(`${n}main_button`, "Button Explore All", "click", "Main block All age wellness: natural products");
-      }), p(".new_main_block .crs_btn", `${n}main_button`, "Main block All age wellness: natural products", "Button Explore All"), h(".new_stickers_slider .item:not(.slick-cloned)", () => {
+      }), p(".new_main_block .wellness .crs_btn", `${n}main_button`, "Main block All age wellness: natural products", "Button Explore All"), h(".new_stickers_slider .item:not(.slick-cloned)", () => {
         $(".new_stickers_slider .item:not(.slick-cloned)").each(function(i, o) {
           var c;
           p(o, `${n}stickers_slider_product_${(c = o.querySelector("h3")) == null ? void 0 : c.innerText}`, "Homepage Our bestsellers: Tried and True", $(o).find("h3").text() + " - Section");
