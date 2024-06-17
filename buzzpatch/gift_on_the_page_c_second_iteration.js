@@ -8,7 +8,7 @@
       event_type: e,
       event_loc: p
     }), console.log(`Event: ${t} | ${n} | ${e} | ${p}`);
-  }, g = ({ name: t, dev: n }) => {
+  }, f = ({ name: t, dev: n }) => {
     console.log(
       `%c EXP: ${t} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
@@ -349,6 +349,9 @@
   margin-top: 0 !important;
   margin-bottom: 23px !important;
 }
+#getNow .bestseller {
+  font-weight: 700;
+}
 
 #nudge-ui-container {
   display: none !important;
@@ -624,7 +627,7 @@
       this.device = n, this.init();
     }
     init() {
-      g({ name: "Gift hypothesis (second iteration) v.C", dev: "SKh" }), _("exp_introduce_c"), localStorage.getItem("clickCheckoutBtn") === "yes" && localStorage.removeItem("clickCheckoutBtn"), localStorage.getItem("setTimeout3000") === "yes" && localStorage.removeItem("setTimeout3000"), document.head.insertAdjacentHTML(
+      f({ name: "Gift hypothesis (second iteration) v.C", dev: "SKh" }), _("exp_introduce_c"), localStorage.getItem("clickCheckoutBtn") === "yes" && localStorage.removeItem("clickCheckoutBtn"), localStorage.getItem("setTimeout3000") === "yes" && localStorage.removeItem("setTimeout3000"), document.head.insertAdjacentHTML(
         "beforeend",
         '<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">'
       ), document.head.insertAdjacentHTML("beforeend", `<style>${k}</style>`), this.createPopup(), this.rendergGiftElements(), this.clickProceedToCheckoutBtnHandler(), this.clickNewCheckoutBtnHandler(), this.clickNewNoThanksBtnHandler(), this.clickRadioBtnHandler(), this.handleClickGetNow();
@@ -670,7 +673,7 @@
       d(".new_checkout_btn").then((n) => {
         var e;
         (e = o(".new_checkout_btn")) == null || e.addEventListener("click", (p) => {
-          var l, f;
+          var l, g;
           if (p.preventDefault(), u(
             "exp_introduce_v2_button_04",
             "Add Gift to order and check out",
@@ -678,7 +681,7 @@
             "Congratulations! You get a FREE GIFT!  "
           ), localStorage.setItem("clickCheckoutBtn", "yes"), localStorage.getItem("setTimeout3000") === "yes")
             return;
-          let i = (l = o(".js-packs input[type=radio]:checked+label")) == null ? void 0 : l.previousElementSibling.value, a = "39542857695276", r = (f = o(".socks_radio_wrapper input[type=radio]:checked")) == null ? void 0 : f.value;
+          let i = (l = o(".js-packs input[type=radio]:checked+label")) == null ? void 0 : l.previousElementSibling.value, a = "39542857695276", r = (g = o(".socks_radio_wrapper input[type=radio]:checked")) == null ? void 0 : g.value;
           i === a ? this.addToCartGiftHandler(i, !1) : this.addToCartGiftHandler(i, !0, !0, r);
         });
       });
