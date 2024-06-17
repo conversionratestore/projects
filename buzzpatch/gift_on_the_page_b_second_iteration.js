@@ -186,7 +186,7 @@
   </div>
   <div class="new_popup_footer">
     <div class="new_checkout_btn">Add Gift to order and check out ${d.arrowWhiteIcon}</div>
-    <div class="new_no_thanks_btn" data-popup="close">No, thanks. I do not want the free gift</div>
+    <div class="new_no_thanks_btn">No, thanks. I do not want the free gift</div>
   </div>
 `
   ), x = (e) => (
@@ -348,6 +348,9 @@
 #getNow .days {
   margin-top: 0 !important;
   margin-bottom: 23px !important;
+}
+#getNow .bestseller {
+  font-weight: 700;
 }
 
 #nudge-ui-container {
