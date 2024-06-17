@@ -20,7 +20,7 @@
   }, f = () => {
     const e = navigator.userAgent;
     return e.match(/Android/i) || e.match(/webOS/i) || e.match(/iPhone/i) || e.match(/iPad/i) || e.match(/iPod/i) || e.match(/BlackBerry/i) || e.match(/Windows Phone/i) ? "mobile" : "desktop";
-  }, w = (e, n, i, t, a = 1e3, h = 0.5) => {
+  }, y = (e, n, i, t, a = 1e3, m = 0.5) => {
     let o, c;
     if (o = new IntersectionObserver(
       function(s) {
@@ -33,7 +33,7 @@
           ), o.disconnect();
         }, a) : (console.log("Element is not fully visible"), clearTimeout(c));
       },
-      { threshold: [h] }
+      { threshold: [m] }
     ), typeof e == "string") {
       const s = document.querySelector(e);
       s && o.observe(s);
@@ -113,7 +113,7 @@
       4: ["SEM68422"],
       "Non-metal": ["sem77723"]
     }
-  }, A = {
+  }, S = {
     0: ["rc|4", "alt|2", "wag|2"],
     1: ["mar|2", "AF4405|2", "rc|4", "alt|2", "wag|2"]
   }, g = {
@@ -210,7 +210,7 @@
     spt: {
       "12 oz. Tricoat Spray Cans (2 cans)": "Matches your car's original color and covers about 4 square feet."
     }
-  }, D = (
+  }, A = (
     /* HTML */
     `<div class="crs_steps_line">
         <div class="line">
@@ -224,7 +224,7 @@
             <li>Checkout<span></span></li>
         </ul>
     </div>`
-  ), S = () => {
+  ), D = () => {
     let e = "";
     for (const n in b) {
       const t = Object.keys(b).indexOf(n);
@@ -250,7 +250,7 @@
         <p class="text-cust">Use our guide to find the perfect solution for your needs, or explore all options below</p>
         ${e}
     </div>`;
-  }, y = (e, n) => `
+  }, k = (e, n) => `
         <li data-id="${e.id}">
             <a href="${e.href}">
                 <img src="${e.image.replace("/thumb", "/thumb2")}" alt="${e.title}">
@@ -270,24 +270,24 @@
         </li>`, x = (e, n) => {
     let i = 1;
     if (n.size == "Extensive") {
-      let t = A[n.type == 1 ? 1 : 0];
+      let t = S[n.type == 1 ? 1 : 0];
       for (let a = 0; a < t.length; a++)
         t[a].split("|")[0] == e && (i = parseInt(t[a].split("|")[1]));
     }
     return i;
   }, I = (e, n) => {
-    let i = "", t = "", a = 0, h = !1, o, c, s, d, l = {};
+    let i = "", t = "", a = 0, m = !1, o, c, s, d, l = {};
     console.log("RecommendedProducts: "), console.log(e);
     for (let r = 0; r < e.length; r++)
       if (typeof e[r] == "object")
-        for (let m = 0; m < e[r].length; m++)
-          o = $(`.products-list.${e[r][m]}`), c = Object.keys(g[e[r][m]])[0], l.id = e[r][m], l.href = o.find(".related-items").attr("href"), l.image = o.find(".related-items img").attr("src"), l.desc = g[e[r][m]][c], l.title = c, l.price = o.find(".price").html(), t += y(l, x(e[r][m], n));
+        for (let h = 0; h < e[r].length; h++)
+          o = $(`.products-list.${e[r][h]}`), c = Object.keys(g[e[r][h]])[0], l.id = e[r][h], l.href = o.find(".related-items").attr("href"), l.image = o.find(".related-items img").attr("src"), l.desc = g[e[r][h]][c], l.title = c, l.price = o.find(".price").html(), t += k(l, x(e[r][h], n));
       else {
-        r == 0 ? ($(".orderforms #page #main .car-touch-up-paints-heading p").html().includes("Tricoat") && (h = !0), o = $(`.products-list.${e[r].split("/")[+h]}`), c = Object.keys(g[e[r].split("/")[+h]])[0], s = g[e[r].split("/")[+h]][c], d = e[r].split("/")[+h]) : (o = $(`.products-list.${e[r]}`), c = Object.keys(g[e[r]])[0], s = g[e[r]][c], d = e[r]), l.id = d, l.href = o.find(".related-items").attr("href"), l.image = o.find(".related-items img").attr("src"), l.desc = s, l.title = c, l.price = o.find(".price").html();
+        r == 0 ? ($(".orderforms #page #main .car-touch-up-paints-heading p").html().includes("Tricoat") && (m = !0), o = $(`.products-list.${e[r].split("/")[+m]}`), c = Object.keys(g[e[r].split("/")[+m]])[0], s = g[e[r].split("/")[+m]][c], d = e[r].split("/")[+m]) : (o = $(`.products-list.${e[r]}`), c = Object.keys(g[e[r]])[0], s = g[e[r]][c], d = e[r]), l.id = d, l.href = o.find(".related-items").attr("href"), l.image = o.find(".related-items img").attr("src"), l.desc = s, l.title = c, l.price = o.find(".price").html();
         const j = o.find(".price").html().match(/[\d,.]+/);
-        a += parseFloat(j[0] * x(d, n)), i += y(l, x(d, n));
+        a += parseFloat(j[0] * x(d, n)), i += k(l, x(d, n));
       }
-    let v = $(`.products-list.${e[1]} .price`).html().split(/[\d,.]+/g)[0];
+    let w = $(`.products-list.${e[1]} .price`).html().split(/[\d,.]+/g)[0];
     return `
         <div class="recommended_products">
             <h3 class="h3_title">Recommended products</h3>
@@ -298,7 +298,7 @@
                     <ul>${i}</ul>
                     <div class="items-center">
                         <a href="#" class="btn_add_all">Add to Cart</a>
-                        <p class="total">${v}${a.toFixed(2)}</p>
+                        <p class="total">${w}${a.toFixed(2)}</p>
                     </div>
                 </div>
                 <div class="recommended_products__need">
@@ -308,7 +308,7 @@
             </div>
             <a href="#" class="btn_back_quiz items-center">${u.arrowLeft} Take quiz again</a>
         </div>`;
-  }, q = `.items-center {
+  }, N = `.items-center {
   display: flex;
   align-items: center;
 }
@@ -674,7 +674,7 @@ h3.h3_title {
     width: 100%;
     max-width: 254px;
   }
-}/*# sourceMappingURL=main.css.map */`, N = `.crs_steps_line {
+}/*# sourceMappingURL=main.css.map */`, q = `.crs_steps_line {
   position: relative;
   padding: 16px 20px;
   background-color: #fff;
@@ -750,7 +750,7 @@ ul#header-steps {
   display: none;
 }/*# sourceMappingURL=navigation.css.map */`;
   C({ name: "Quiz. Problem based product selection", dev: "Olha" }), L("exp_prob_bas");
-  function k() {
+  function v() {
     let e = window.currcart.length, n = 0;
     window.currcart.forEach((i) => {
       const t = i.split("|");
@@ -799,10 +799,10 @@ ul#header-steps {
       }, this.init();
     }
     init() {
-      this.page !== "/" && f() !== "mobile" && (this.page === "/cgi-bin/select-color.cgi" || this.page === "/cgi-bin/order-form.cgi" || this.page === "/cgi-bin/guided-order.cgi" || this.page === "/cgi-bin/shopping-cart.cgi" || this.page === "/cgi-bin/check-out.cgi" || this.page === "/cgi-bin/review-order.cgi") && this.navigationChange(), this.page === "/cgi-bin/order-form.cgi" && ($("head").append(`<style class="crs_style_main">${q}</style>`), this.quiz());
+      this.page !== "/" && f() !== "mobile" && (this.page === "/cgi-bin/select-color.cgi" || this.page === "/cgi-bin/order-form.cgi" || this.page === "/cgi-bin/guided-order.cgi" || this.page === "/cgi-bin/shopping-cart.cgi" || this.page === "/cgi-bin/check-out.cgi" || this.page === "/cgi-bin/review-order.cgi") && this.navigationChange(), this.page === "/cgi-bin/order-form.cgi" && ($("head").append(`<style class="crs_style_main">${N}</style>`), this.quiz(), sessionStorage.getItem("result_recommended") && ($(".quiz").attr("hidden", !0), this.res = JSON.parse(sessionStorage.getItem("result_recommended")), this.recommendedProducts()));
     }
     navigationChange() {
-      $("head").append(`<style>${N}</style>`), $("#header-wrap").prepend(D);
+      $("head").append(`<style>${q}</style>`), $("#header-wrap").prepend(A);
       let n = 1;
       switch (this.page) {
         case "/cgi-bin/select-color.cgi":
@@ -831,10 +831,12 @@ ul#header-steps {
       $(".crs_steps_line .line p").css("width", i * n - i / 2 + "px");
     }
     quiz() {
-      $(".car-touch-up-paints-heading").after(S()), P(".quiz [data-index]").forEach((i) => {
-        w(i, "exp_prob_bas_vis_01", "Quiz", i.querySelector("label").innerText);
+      $(".car-touch-up-paints-heading").after(D()), P(".quiz [data-index]").forEach((i) => {
+        y(i, "exp_prob_bas_vis_01", "Quiz", i.querySelector("label").innerText);
       }), $(".select_current").click(function(i) {
         $(this).parent().toggleClass("active"), p("exp_prob_bas_dropdown_01", "Click", "Dropdown", $(this).closest("[data-index]").find("label").text());
+      }), $(".slide_cart .close").click(function() {
+        f() === "mobile" && v();
       });
       const n = this;
       $(".select_dropdown li").click(function(i) {
@@ -859,17 +861,17 @@ ul#header-steps {
     recommendedProducts() {
       let n = this.res.type, i = this.res.size, t = this.res.metal;
       const a = this.res.typeTitle + ", " + i + ", " + t;
-      let h = [
+      let m = [
         ..._[i][0],
         ...n != 0 ? _[i][n] : [],
         ...t === "Non-metal" ? _[i][t] : []
       ];
-      $(".quiz").after(I(h, this.res)), p("exp_prob_bas_vis_02", "Recommended products", "Visibility", "Results page Recommended products"), w(T(".recommended_products__need"), "exp_prob_bas_vis_03", "You might also need:", "Results page You might also need:"), $(".recommended_products li a").click(function(o) {
+      $(".quiz").after(I(m, this.res)), sessionStorage.setItem("result_recommended", JSON.stringify(this.res)), p("exp_prob_bas_vis_02", "Recommended products", "Visibility", "Results page Recommended products"), y(T(".recommended_products__need"), "exp_prob_bas_vis_03", "You might also need:", "Results page You might also need:"), $(".recommended_products li a").click(function(o) {
         let c = "Results page You might also need", s = "exp_prob_bas_button_04", d = "Button", l = $(this).closest("li").find("img").attr("alt");
         if ($(this).closest(".recommended_products__base")[0] && (c = "Results page Recommended products", s = "exp_prob_bas_button_03"), $(this).hasClass("btn_add")) {
           o.preventDefault(), s = "exp_prob_bas_button_05", d = "Add to cart Button";
-          const v = parseInt($(this).closest("li").find(".qty").html().replace("x", "")), r = $(this).closest("li").attr("data-id");
-          AddCart(v, r), f() === "mobile" && (k(), z(l));
+          const w = parseInt($(this).closest("li").find(".qty").html().replace("x", "")), r = $(this).closest("li").attr("data-id");
+          AddCart(w, r), f() === "mobile" && (v(), z(l));
         }
         p(s, l, d, c);
       }), $("html, body").animate({
@@ -878,13 +880,13 @@ ul#header-steps {
         o.preventDefault(), $(".recommended_products__base li").each(function(c, s) {
           const d = $(s).attr("data-id"), l = parseInt($(s).find(".qty").html());
           AddCart(l, d);
-        }), f() === "mobile" && (k(), z("Your base repair kit")), p("exp_prob_bas_button_02", a, "Add to cart Button", "Results page Recommended products");
+        }), f() === "mobile" && (v(), z("Your base repair kit")), p("exp_prob_bas_button_02", a, "Add to cart Button", "Results page Recommended products");
       }), $(".btn_back_quiz").click(function(o) {
         o.preventDefault(), $(".recommended_products").remove(), $(".quiz [data-index]").each(function(c, s) {
           c != 0 ? $(s).attr("hidden", !0) : $(s).removeAttr("hidden");
         }), $(".quiz").removeAttr("hidden"), $("html, body").animate({
           scrollTop: $(".quiz").offset().top - 16
-        }, 500), p("exp_prob_bas_link_01", "Take quiz again", "Link", "Results page You might also need:");
+        }, 500), sessionStorage.removeItem("result_recommended"), p("exp_prob_bas_link_01", "Take quiz again", "Link", "Results page You might also need:");
       });
     }
   }
