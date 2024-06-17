@@ -23,11 +23,11 @@
   }, y = (e, n, i, t, a = 1e3, m = 0.5) => {
     let o, c;
     if (o = new IntersectionObserver(
-      function(s) {
-        s[0].isIntersecting === !0 ? c = setTimeout(() => {
+      function(r) {
+        r[0].isIntersecting === !0 ? c = setTimeout(() => {
           p(
             n,
-            s[0].target.dataset.visible || i || "",
+            r[0].target.dataset.visible || i || "",
             "Visibility",
             t
           ), o.disconnect();
@@ -35,8 +35,8 @@
       },
       { threshold: [m] }
     ), typeof e == "string") {
-      const s = document.querySelector(e);
-      s && o.observe(s);
+      const r = document.querySelector(e);
+      r && o.observe(r);
     } else
       o.observe(e);
   }, u = {
@@ -276,14 +276,14 @@
     }
     return i;
   }, I = (e, n) => {
-    let i = "", t = "", a = 0, m = !1, o, c, s, d, l = {};
+    let i = "", t = "", a = 0, m = !1, o, c, r, d, l = {};
     console.log("RecommendedProducts: "), console.log(e);
-    for (let r = 0; r < e.length; r++)
-      if (typeof e[r] == "object")
-        for (let h = 0; h < e[r].length; h++)
-          o = $(`.products-list.${e[r][h]}`), c = Object.keys(g[e[r][h]])[0], l.id = e[r][h], l.href = o.find(".related-items").attr("href"), l.image = o.find(".related-items img").attr("src"), l.desc = g[e[r][h]][c], l.title = c, l.price = o.find(".price").html(), t += k(l, x(e[r][h], n));
+    for (let s = 0; s < e.length; s++)
+      if (typeof e[s] == "object")
+        for (let h = 0; h < e[s].length; h++)
+          o = $(`.products-list.${e[s][h]}`), c = Object.keys(g[e[s][h]])[0], l.id = e[s][h], l.href = o.find(".related-items").attr("href"), l.image = o.find(".related-items img").attr("src"), l.desc = g[e[s][h]][c], l.title = c, l.price = o.find(".price").html(), t += k(l, x(e[s][h], n));
       else {
-        r == 0 ? ($(".orderforms #page #main .car-touch-up-paints-heading p").html().includes("Tricoat") && (m = !0), o = $(`.products-list.${e[r].split("/")[+m]}`), c = Object.keys(g[e[r].split("/")[+m]])[0], s = g[e[r].split("/")[+m]][c], d = e[r].split("/")[+m]) : (o = $(`.products-list.${e[r]}`), c = Object.keys(g[e[r]])[0], s = g[e[r]][c], d = e[r]), l.id = d, l.href = o.find(".related-items").attr("href"), l.image = o.find(".related-items img").attr("src"), l.desc = s, l.title = c, l.price = o.find(".price").html();
+        s == 0 ? ($(".orderforms #page #main .car-touch-up-paints-heading p").html().includes("Tricoat") && (m = !0), o = $(`.products-list.${e[s].split("/")[+m]}`), c = Object.keys(g[e[s].split("/")[+m]])[0], r = g[e[s].split("/")[+m]][c], d = e[s].split("/")[+m]) : (o = $(`.products-list.${e[s]}`), c = Object.keys(g[e[s]])[0], r = g[e[s]][c], d = e[s]), l.id = d, l.href = o.find(".related-items").attr("href"), l.image = o.find(".related-items img").attr("src"), l.desc = r, l.title = c, l.price = o.find(".price").html();
         const j = o.find(".price").html().match(/[\d,.]+/);
         a += parseFloat(j[0] * x(d, n)), i += k(l, x(d, n));
       }
@@ -799,8 +799,10 @@ ul#header-steps {
       }, this.init();
     }
     init() {
-      this.page !== "/" && f() !== "mobile" && (this.page === "/cgi-bin/select-color.cgi" || this.page === "/cgi-bin/order-form.cgi" || this.page === "/cgi-bin/guided-order.cgi" || this.page === "/cgi-bin/shopping-cart.cgi" || this.page === "/cgi-bin/check-out.cgi" || this.page === "/cgi-bin/review-order.cgi") && this.navigationChange(), this.page === "/cgi-bin/order-form.cgi" && ($("head").append(`<style class="crs_style_main">${N}</style>`), this.quiz(), f() === "mobile" && $(".slide_cart").click(function(n) {
-        v(), console.log($(this)), console.log("cart close ");
+      this.page !== "/" && f() !== "mobile" && (this.page === "/cgi-bin/select-color.cgi" || this.page === "/cgi-bin/order-form.cgi" || this.page === "/cgi-bin/guided-order.cgi" || this.page === "/cgi-bin/shopping-cart.cgi" || this.page === "/cgi-bin/check-out.cgi" || this.page === "/cgi-bin/review-order.cgi") && this.navigationChange(), this.page === "/cgi-bin/order-form.cgi" && ($("head").append(`<style class="crs_style_main">${N}</style>`), this.quiz(), f() === "mobile" && $(".slide_cart .close").click(function(n) {
+        console.log("cart close"), setTimeout(() => {
+          v(), console.log($(this));
+        }, 200);
       }), sessionStorage.getItem("result_recommended") && ($(".quiz").attr("hidden", !0), this.res = JSON.parse(sessionStorage.getItem("result_recommended")), this.recommendedProducts()));
     }
     navigationChange() {
@@ -867,23 +869,23 @@ ul#header-steps {
         ...t === "Non-metal" ? _[i][t] : []
       ];
       $(".quiz").after(I(m, this.res)), sessionStorage.setItem("result_recommended", JSON.stringify(this.res)), p("exp_prob_bas_vis_02", "Recommended products", "Visibility", "Results page Recommended products"), y(T(".recommended_products__need"), "exp_prob_bas_vis_03", "You might also need:", "Results page You might also need:"), $(".recommended_products li a").click(function(o) {
-        let c = "Results page You might also need", s = "exp_prob_bas_button_04", d = "Button", l = $(this).closest("li").find("img").attr("alt");
-        if ($(this).closest(".recommended_products__base")[0] && (c = "Results page Recommended products", s = "exp_prob_bas_button_03"), $(this).hasClass("btn_add")) {
-          o.preventDefault(), s = "exp_prob_bas_button_05", d = "Add to cart Button";
-          const w = parseInt($(this).closest("li").find(".qty").html().replace("x", "")), r = $(this).closest("li").attr("data-id");
-          AddCart(w, r), f() === "mobile" && (v(), z(l));
+        let c = "Results page You might also need", r = "exp_prob_bas_button_04", d = "Button", l = $(this).closest("li").find("img").attr("alt");
+        if ($(this).closest(".recommended_products__base")[0] && (c = "Results page Recommended products", r = "exp_prob_bas_button_03"), $(this).hasClass("btn_add")) {
+          o.preventDefault(), r = "exp_prob_bas_button_05", d = "Add to cart Button";
+          const w = parseInt($(this).closest("li").find(".qty").html().replace("x", "")), s = $(this).closest("li").attr("data-id");
+          AddCart(w, s), f() === "mobile" && (v(), z(l));
         }
-        p(s, l, d, c);
+        p(r, l, d, c);
       }), $("html, body").animate({
         scrollTop: $(".recommended_products").offset().top - 16
       }, 500), $(".btn_add_all").on("click", function(o) {
-        o.preventDefault(), $(".recommended_products__base li").each(function(c, s) {
-          const d = $(s).attr("data-id"), l = parseInt($(s).find(".qty").html());
+        o.preventDefault(), $(".recommended_products__base li").each(function(c, r) {
+          const d = $(r).attr("data-id"), l = parseInt($(r).find(".qty").html());
           AddCart(l, d);
         }), f() === "mobile" && (v(), z("Your base repair kit")), p("exp_prob_bas_button_02", a, "Add to cart Button", "Results page Recommended products");
       }), $(".btn_back_quiz").click(function(o) {
-        o.preventDefault(), $(".recommended_products").remove(), $(".quiz [data-index]").each(function(c, s) {
-          c != 0 ? $(s).attr("hidden", !0) : $(s).removeAttr("hidden");
+        o.preventDefault(), $(".recommended_products").remove(), $(".quiz [data-index]").each(function(c, r) {
+          c != 0 ? $(r).attr("hidden", !0) : $(r).removeAttr("hidden");
         }), $(".quiz").removeAttr("hidden"), $("html, body").animate({
           scrollTop: $(".quiz").offset().top - 16
         }, 500), sessionStorage.removeItem("result_recommended"), p("exp_prob_bas_link_01", "Take quiz again", "Link", "Results page You might also need:");
