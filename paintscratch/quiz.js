@@ -39,7 +39,7 @@
       c && s.observe(c);
     } else
       s.observe(e);
-  }, D = (e) => new Promise((n) => {
+  }, q = (e) => new Promise((n) => {
     if (_(e))
       return n(_(e));
     const t = new MutationObserver(() => {
@@ -123,7 +123,7 @@
       4: ["SEM68422"],
       "Non-metal": ["sem77723"]
     }
-  }, q = {
+  }, D = {
     0: ["rc|4", "alt|2", "wag|2"],
     1: ["mar|2", "AF4405|2", "rc|4", "alt|2", "wag|2"]
   }, b = {
@@ -280,7 +280,7 @@
         </li>`, y = (e, n) => {
     let t = 1;
     if (n.size == "Extensive") {
-      let i = q[n.type == 1 ? 1 : 0];
+      let i = D[n.type == 1 ? 1 : 0];
       for (let r = 0; r < i.length; r++)
         i[r].split("|")[0] == e && (t = parseInt(i[r].split("|")[1]));
     }
@@ -306,7 +306,7 @@
         <div class="recommended_products">
             <h3 class="h3_title">Recommended products</h3>
             <p class="text-cust">Your custom kit comes complete with everything you need for a perfect repair. For detailed application instructions and helpful tips, browse our website to guide you through the process.</p>
-            <div class="quiz_res"><p>Type of damage: <b>${n.typeTitle}</b></p><p>Size: <b>${n.size}</b></p>${n.metal != "" ? `<p>Material type: <b>${n.metal}</b></p>` : ""}</div>
+            <div class="quiz_res"><p >Type of damage: <b>${n.typeTitle}</b></p><p>Size: <b>${n.size}</b></p>${n.metal != "" ? `<p>Material type: <b>${n.metal}</b></p>` : ""}</div>
             <div class="b-1">
                 <div class="recommended_products__base">
                     <h3 class="h3_title">What’s included in your <span class="is_desk">base</span> repair kit:</h3>
@@ -390,10 +390,14 @@ button {
   font-size: 12px !important;
   font-style: normal;
   font-weight: 400;
+  padding-right: 12px !important;
 }
 .quiz_res p.br-1 {
   border-right: 1px solid #D3DAE2;
-  padding-right: 12px !important;
+}
+.quiz_res p:last-child {
+  padding-right: 0 !important;
+  margin: 0 0 4px 0 !important;
 }
 
 .btn_next_step {
@@ -846,7 +850,7 @@ ul#header-steps {
       }, this.init();
     }
     init() {
-      this.page !== "/" && v() !== "mobile" && (this.page === "/cgi-bin/select-color.cgi" || this.page === "/cgi-bin/order-form.cgi" || this.page === "/cgi-bin/guided-order.cgi" || this.page === "/cgi-bin/shopping-cart.cgi" || this.page === "/cgi-bin/check-out.cgi" || this.page === "/cgi-bin/review-order.cgi") && this.navigationChange(), this.page === "/cgi-bin/order-form.cgi" && ($("head").append(`<style class="crs_style_main">${B}</style>`), D(".slide_cart .close").then((n) => {
+      this.page !== "/" && v() !== "mobile" && (this.page === "/cgi-bin/select-color.cgi" || this.page === "/cgi-bin/order-form.cgi" || this.page === "/cgi-bin/guided-order.cgi" || this.page === "/cgi-bin/shopping-cart.cgi" || this.page === "/cgi-bin/check-out.cgi" || this.page === "/cgi-bin/review-order.cgi") && this.navigationChange(), this.page === "/cgi-bin/order-form.cgi" && ($("head").append(`<style class="crs_style_main">${B}</style>`), q(".slide_cart .close").then((n) => {
         n.addEventListener("click", () => {
           setTimeout(() => {
             z();
