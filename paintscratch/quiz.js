@@ -21,17 +21,17 @@
     const e = navigator.userAgent;
     return e.match(/Android/i) || e.match(/webOS/i) || e.match(/iPhone/i) || e.match(/iPad/i) || e.match(/iPod/i) || e.match(/BlackBerry/i) || e.match(/Windows Phone/i) ? "mobile" : "desktop";
   }, k = (e, n, t, i, a = 1e3, u = 0.5) => {
-    let r, d;
+    let r, l;
     if (r = new IntersectionObserver(
       function(s) {
-        s[0].isIntersecting === !0 ? d = setTimeout(() => {
+        s[0].isIntersecting === !0 ? l = setTimeout(() => {
           m(
             n,
             s[0].target.dataset.visible || t || "",
             "Visibility",
             i
           ), r.disconnect();
-        }, a) : (console.log("Element is not fully visible"), clearTimeout(d));
+        }, a) : (console.log("Element is not fully visible"), clearTimeout(l));
       },
       { threshold: [u] }
     ), typeof e == "string") {
@@ -286,20 +286,20 @@
     }
     return t;
   }, N = (e, n) => {
-    let t = "", i = "", a = 0, u = !1, r, d, s, c, l = {};
+    let t = "", i = "", a = 0, u = !1, r, l, s, c, d = {};
     console.log("RecommendedProducts: "), console.log(e);
     for (let o = 0; o < e.length; o++)
       if (typeof e[o] == "object")
         for (let p = 0; p < e[o].length; p++)
-          r = $(`.products-list.${e[o][p]}`), d = Object.keys(g[e[o][p]])[0], l.id = e[o][p], l.href = r.find(".related-items").attr("href"), l.image = r.find(".related-items img").attr("src"), l.desc = g[e[o][p]][d], l.title = d, l.price = r.find(".price").html(), i += M(l, v(e[o][p], n));
+          r = $(`.products-list.${e[o][p]}`), l = Object.keys(g[e[o][p]])[0], d.id = e[o][p], d.href = r.find(".related-items").attr("href"), d.image = r.find(".related-items img").attr("src"), d.desc = g[e[o][p]][l], d.title = l, d.price = r.find(".price").html(), i += M(d, v(e[o][p], n));
       else {
-        o == 0 ? ($(".orderforms #page #main .car-touch-up-paints-heading p").html().includes("Tricoat") && (u = !0), r = $(`.products-list.${e[o].split("/")[+u]}`), d = Object.keys(g[e[o].split("/")[+u]])[0], s = g[e[o].split("/")[+u]][d], c = e[o].split("/")[+u]) : (r = $(`.products-list.${e[o]}`), d = Object.keys(g[e[o]])[0], s = g[e[o]][d], c = e[o]);
+        o == 0 ? ($(".orderforms #page #main .car-touch-up-paints-heading p").html().includes("Tricoat") && (u = !0), r = $(`.products-list.${e[o].split("/")[+u]}`), l = Object.keys(g[e[o].split("/")[+u]])[0], s = g[e[o].split("/")[+u]][l], c = e[o].split("/")[+u]) : (r = $(`.products-list.${e[o]}`), l = Object.keys(g[e[o]])[0], s = g[e[o]][l], c = e[o]);
         const p = r.find(".price").html();
-        if (l.id = c, l.href = r.find(".related-items").attr("href"), l.image = r.find(".related-items img").attr("src"), l.desc = s, l.title = d, l.price = p, p) {
+        if (d.id = c, d.href = r.find(".related-items").attr("href"), d.image = r.find(".related-items img").attr("src"), d.desc = s, d.title = l, d.price = p, p) {
           const z = p.match(/[\d,.]+/);
           z && z.length > 0 && (a += parseFloat(z[0] * v(c, n)));
         }
-        t += M(l, v(c, n));
+        t += M(d, v(c, n));
       }
     let y = $(`.products-list.${e[1]} .price`).html().split(/[\d,.]+/g)[0];
     return `
@@ -698,11 +698,12 @@ h3.h3_title {
   #page #main .recommended_products .b-1 {
     border-left: none;
     border-right: none;
+    border-top: none;
     padding: 0;
-    margin-top: 16px;
+    margin-top: 0;
   }
   #page #main .recommended_products__base {
-    padding: 20px 0;
+    padding: 16px 0 20px;
   }
   #page #main .recommended_products__need {
     padding: 20px 0 12px;
@@ -936,23 +937,23 @@ ul#header-steps {
         ...i === "Non-metal" ? x[t][i] : []
       ];
       $(".quiz").after(N(u, this.res)), sessionStorage.setItem("result_recommended", JSON.stringify(this.res)), m("exp_prob_bas_vis_02", "Recommended products", "Visibility", "Results page Recommended products"), k(f(".recommended_products__need"), "exp_prob_bas_vis_03", "You might also need:", "Results page You might also need:"), $(".recommended_products li a").click(function(r) {
-        let d = "Results page You might also need", s = "exp_prob_bas_button_04", c = "Button", l = $(this).closest("li").find("img").attr("alt");
-        if ($(this).closest(".recommended_products__base")[0] && (d = "Results page Recommended products", s = "exp_prob_bas_button_03"), $(this).hasClass("btn_add")) {
+        let l = "Results page You might also need", s = "exp_prob_bas_button_04", c = "Button", d = $(this).closest("li").find("img").attr("alt");
+        if ($(this).closest(".recommended_products__base")[0] && (l = "Results page Recommended products", s = "exp_prob_bas_button_03"), $(this).hasClass("btn_add")) {
           r.preventDefault(), s = "exp_prob_bas_button_05", c = "Add to cart Button";
           const y = parseInt($(this).closest("li").find(".qty").html().replace("x", "")), o = $(this).closest("li").attr("data-id");
-          AddCart(y, o), _() === "mobile" && (w(), C(l));
+          AddCart(y, o), _() === "mobile" && (w(), C(d));
         }
-        m(s, l, c, d);
+        m(s, d, c, l);
       }), $("html, body").animate({
         scrollTop: $(".recommended_products").offset().top - 16
       }, 500), $(".btn_add_all").on("click", function(r) {
-        r.preventDefault(), $(".recommended_products__base li").each(function(d, s) {
-          const c = $(s).attr("data-id"), l = parseInt($(s).find(".qty").html());
-          AddCart(l, c);
+        r.preventDefault(), $(".recommended_products__base li").each(function(l, s) {
+          const c = $(s).attr("data-id"), d = parseInt($(s).find(".qty").html());
+          AddCart(d, c);
         }), _() === "mobile" && (w(), C("Your base repair kit")), m("exp_prob_bas_button_02", a, "Add to cart Button", "Results page Recommended products");
       }), $(".btn_back_quiz").click(function(r) {
-        r.preventDefault(), $(".recommended_products").remove(), $(".quiz [data-index]").each(function(d, s) {
-          d != 0 ? $(s).attr("hidden", !0) : $(s).removeAttr("hidden");
+        r.preventDefault(), $(".recommended_products").remove(), $(".quiz [data-index]").each(function(l, s) {
+          l != 0 ? $(s).attr("hidden", !0) : $(s).removeAttr("hidden");
         }), $(".quiz .quiz_res").remove(), $(".quiz").removeAttr("hidden"), $("html, body").animate({
           scrollTop: $(".quiz").offset().top - 16
         }, 500), sessionStorage.removeItem("result_recommended"), m("exp_prob_bas_link_01", "Take quiz again", "Link", "Results page You might also need:");
