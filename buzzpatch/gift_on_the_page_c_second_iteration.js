@@ -610,7 +610,7 @@
   color: #fff;
 }
 .version_c .new_popup_footer .new_checkout_btn {
-  height: 48px;
+  height: 51px;
   font-size: 18px;
 }
 .version_c .new_popup_footer .new_no_thanks_btn {
