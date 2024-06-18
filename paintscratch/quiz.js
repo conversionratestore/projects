@@ -915,7 +915,7 @@ ul#header-steps {
         o.removeClass("active"), o.find(".select_current > div").html($(this).find("b").html()), $(this).closest('[data-index="0"]').length ? (n.res.type = i, n.res.typeTitle = $(this).find("b").html()) : $(this).closest('[data-index="1"]').length ? n.res.size = $(this).find("b").html() : n.res.metal = $(this).find("b").html(), m("exp_prob_bas_dropdown_02", $(this).find("b").html(), "Dropdown", $(this).closest("[data-index]").find("label").text());
       }), $(".btn_next_step").click(function(t) {
         let i = $(".btn_next_step").index(this);
-        if (m("exp_prob_bas_button_01", $(this).closest("[data-index]").find(".select_current > div").html(), "Button", $(this).closest("[data-index]").find("label").text()), $(".quiz .select.active").removeClass("active"), i == 1 && !$(".quiz_res").text().includes("Size") && (console.log("Size"), $(".quiz_res").append(`<p>Size: <b>${n.res.size}</b></p>`)), i == 0) {
+        if (m("exp_prob_bas_button_01", $(this).closest("[data-index]").find(".select_current > div").html(), "Button", $(this).closest("[data-index]").find("label").text()), $(".quiz .select.active").removeClass("active"), i == 1 && !$(".quiz .quiz_res").text().includes("Size") && (console.log("Size"), $(".quiz .quiz_res").append(`<p>Size: <b>${n.res.size}</b></p>`)), i == 0) {
           $(this).closest('[data-index="0"]').attr("hidden", !0), $(".quiz > .text-cust").after(`<div class="quiz_res"><p>Type of damage: <b>${n.res.typeTitle}</b></p></div>`), $('.quiz [data-index="1"]').removeAttr("hidden"), n.res.metal = "";
           return;
         } else if (i == 1 && (n.res.size == "Extensive" || n.res.size == "Large")) {
@@ -925,7 +925,7 @@ ul#header-steps {
         $(".quiz").attr("hidden", !0), n.recommendedProducts();
       }), $(".btn_back_step").click(function() {
         let t = $(this).closest("[data-index]").attr("data-index");
-        t == 2 ? (console.log("index == 2: " + t), $(".quiz_res p:last-child").remove()) : (console.log("index != 2: " + t), $(".quiz_res").remove()), $(this).closest("[data-index]").attr("hidden", !0), $(this).closest("[data-index]").prev().attr("hidden", !1), m("exp_prob_bas_button_06", "Back", "Button", $(this).closest("[data-index]").find("label").text());
+        t == 2 ? (console.log("index == 2: " + t), $(".quiz .quiz_res p:last-child").remove()) : (console.log("index != 2: " + t), $(".quiz .quiz_res").remove()), $(this).closest("[data-index]").attr("hidden", !0), $(this).closest("[data-index]").prev().attr("hidden", !1), m("exp_prob_bas_button_06", "Back", "Button", $(this).closest("[data-index]").find("label").text());
       });
     }
     recommendedProducts() {
