@@ -8,12 +8,12 @@
       event_type: e,
       event_loc: p
     }), console.log(`Event: ${t} | ${n} | ${e} | ${p}`);
-  }, f = ({ name: t, dev: n }) => {
+  }, _ = ({ name: t, dev: n }) => {
     console.log(
       `%c EXP: ${t} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, h = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), _ = (t) => {
+  }, g = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), f = (t) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", t, "variant_1"));
     }, 1e3);
@@ -483,7 +483,7 @@
   gap: 8px;
   width: 100%;
   color: #fff;
-  font-family: "DIN Condensed";
+  font-family: Din Condensed, Roboto, sans-serif;
   font-weight: 700;
   line-height: 16px;
   letter-spacing: 2.6px;
@@ -498,6 +498,9 @@
 .new_popup_backdrop .new_popup_footer .new_checkout_btn:active {
   background-color: #0c0b0b;
   border: none;
+}
+.new_popup_backdrop .new_popup_footer svg {
+  margin-top: -2px;
 }
 
 .version_b .new_popup_body {
@@ -627,13 +630,13 @@
       this.device = n, this.init();
     }
     init() {
-      f({ name: "Gift hypothesis (second iteration) v.C", dev: "SKh" }), _("exp_introduce_c"), localStorage.getItem("clickCheckoutBtn") === "yes" && localStorage.removeItem("clickCheckoutBtn"), localStorage.getItem("setTimeout3000") === "yes" && localStorage.removeItem("setTimeout3000"), document.head.insertAdjacentHTML(
+      _({ name: "Gift hypothesis (second iteration) v.C", dev: "SKh" }), f("exp_introduce_c"), localStorage.getItem("clickCheckoutBtn") === "yes" && localStorage.removeItem("clickCheckoutBtn"), localStorage.getItem("setTimeout3000") === "yes" && localStorage.removeItem("setTimeout3000"), document.head.insertAdjacentHTML(
         "beforeend",
         '<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">'
       ), document.head.insertAdjacentHTML("beforeend", `<style>${k}</style>`), this.createPopup(), this.rendergGiftElements(), this.clickProceedToCheckoutBtnHandler(), this.clickNewCheckoutBtnHandler(), this.clickNewNoThanksBtnHandler(), this.clickRadioBtnHandler(), this.handleClickGetNow();
     }
     rendergGiftElements() {
-      h("#getNow input[type=radio] + label").forEach((n) => {
+      g("#getNow input[type=radio] + label").forEach((n) => {
         n.getAttribute("for") !== "radios-3" && n.insertAdjacentHTML("afterbegin", c.giftIcon);
       }), o(".new-bundle-pack img").src !== `${s}new_bundle_img.png` && (o(".new-bundle-pack img").src = `${s}new_bundle_img.png`), o("#getNow .days").src !== `${s}new_trustpilot_reviews_img.png` && (o("#getNow .days").src = `${s}new_trustpilot_reviews_img.png`);
     }
@@ -673,7 +676,7 @@
       d(".new_checkout_btn").then((n) => {
         var e;
         (e = o(".new_checkout_btn")) == null || e.addEventListener("click", (p) => {
-          var l, g;
+          var l, h;
           if (p.preventDefault(), u(
             "exp_introduce_v2_button_04",
             "Add Gift to order and check out",
@@ -681,7 +684,7 @@
             "Congratulations! You get a FREE GIFT!  "
           ), localStorage.setItem("clickCheckoutBtn", "yes"), localStorage.getItem("setTimeout3000") === "yes")
             return;
-          let i = (l = o(".js-packs input[type=radio]:checked+label")) == null ? void 0 : l.previousElementSibling.value, a = "39542857695276", r = (g = o(".socks_radio_wrapper input[type=radio]:checked")) == null ? void 0 : g.value;
+          let i = (l = o(".js-packs input[type=radio]:checked+label")) == null ? void 0 : l.previousElementSibling.value, a = "39542857695276", r = (h = o(".socks_radio_wrapper input[type=radio]:checked")) == null ? void 0 : h.value;
           i === a ? this.addToCartGiftHandler(i, !1) : this.addToCartGiftHandler(i, !0, !0, r);
         });
       });
@@ -704,7 +707,7 @@
     }
     clickRadioBtnHandler() {
       d(".socks_radio_wrapper").then((n) => {
-        h(".socks_radio_wrapper label").forEach((e) => {
+        g(".socks_radio_wrapper label").forEach((e) => {
           e.addEventListener("click", (p) => {
             u(
               "exp_introduce_v2_button_03",
@@ -745,7 +748,7 @@
     }
     handleClickGetNow() {
       d("#getNow").then((n) => {
-        h('[href="#getFormNow"]').forEach((e) => {
+        g('[href="#getFormNow"]').forEach((e) => {
           e.addEventListener("click", (p) => {
             p.preventDefault(), p.stopPropagation(), $("html, body").stop();
             let i = o("#getNow"), a = 65, r = !0, l = setInterval(async () => {
