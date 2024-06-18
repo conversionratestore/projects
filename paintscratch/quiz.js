@@ -925,7 +925,7 @@ ul#header-steps {
         $(".quiz").attr("hidden", !0), n.recommendedProducts();
       }), $(".btn_back_step").click(function() {
         let t = $(this).closest("[data-index]").attr("data-index");
-        t == 2 ? (console.log("index == 2: " + t), $(".quiz > .text-cust .quiz_res p:last-child").remove()) : (console.log("index != 2: " + t), $(".quiz > .text-cust .quiz_res").remove()), $(this).closest("[data-index]").attr("hidden", !0), $(this).closest("[data-index]").prev().attr("hidden", !1), m("exp_prob_bas_button_06", "Back", "Button", $(this).closest("[data-index]").find("label").text());
+        t == 2 ? (console.log("index == 2: " + t), $(".quiz_res p:last-child").remove()) : (console.log("index != 2: " + t), $(".quiz_res").remove()), $(this).closest("[data-index]").attr("hidden", !0), $(this).closest("[data-index]").prev().attr("hidden", !1), m("exp_prob_bas_button_06", "Back", "Button", $(this).closest("[data-index]").find("label").text());
       });
     }
     recommendedProducts() {
