@@ -714,6 +714,9 @@ h3.h3_title {
   #page #main .recommended_products li {
     padding: 6px 0;
   }
+  #page #main .recommended_products li > a {
+    margin-right: 12px;
+  }
   .btn_back_quiz {
     margin-top: 20px;
   }
