@@ -483,7 +483,7 @@
   gap: 8px;
   width: 100%;
   color: #fff;
-  font-family: "DIN Condensed";
+  font-family: Din Condensed, Roboto, sans-serif;
   font-weight: 700;
   line-height: 16px;
   letter-spacing: 2.6px;
@@ -498,6 +498,9 @@
 .new_popup_backdrop .new_popup_footer .new_checkout_btn:active {
   background-color: #0c0b0b;
   border: none;
+}
+.new_popup_backdrop .new_popup_footer svg {
+  margin-top: -2px;
 }
 
 .version_b .new_popup_body {
@@ -544,7 +547,7 @@
   margin-top: 4px;
 }
 .version_b .new_popup_footer .new_checkout_btn {
-  height: 44px;
+  height: 51px;
   font-size: 20px;
 }
 
