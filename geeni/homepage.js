@@ -1589,7 +1589,7 @@
         padding: 12px;
       }
     }
-  </style>`
+</style>`
   ), T = (
     /*html*/
     `
@@ -1952,7 +1952,7 @@
         <a class="product__title" href="/products/${t.handle}">${t.title}</a>
         <div class="product__price">
           <span>${t.price}</span>
-          <span>${m}</span>
+          <span>${m !== "0.00" ? m : ""}</span>
           ${d !== "" ? `<span>${d}</span>` : ""}
         </div>
 
