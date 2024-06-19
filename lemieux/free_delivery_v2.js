@@ -276,7 +276,7 @@ basket-view .threshold_banner.crs_complete p {\r
       </div>
       <div class="free_delivery_banner_item">
         ${p.deliveryArrows}
-        <p>60 days FREE returns</p>
+        <p>60 day returns</p>
       </div>
     </div>
   `
