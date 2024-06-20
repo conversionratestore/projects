@@ -1868,7 +1868,7 @@
         h("[data-discount]").forEach((n) => {
           n.addEventListener("click", (o) => {
             let s = o.currentTarget.dataset.discount;
-            navigator.clipboard.writeText(s), o.currentTarget.textContent = "Copied!", n.closest(".first_order_discount") && i("exp_exit_intent_popup_button_05", "Code  Welcome5", "Button", "Sie stehen auf der Liste"), n.closest(".check_out_now") && i(
+            navigator.clipboard.writeText(s), o.currentTarget.textContent = "Copied!", n.closest(".first_order_discount") && i("exp_exit_intent_popup_button_05", "Code  Welcome5", "Button", "Sie stehen auf der Liste"), n.closest(".check_out_now.first_var") && i(
               "exp_exit_intent_popup_button_12",
               "Code SPORTSTECH5",
               "Button",
