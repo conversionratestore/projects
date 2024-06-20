@@ -460,7 +460,7 @@
       </div>
     </li>
   `
-  ), B = `.new-popup-backdrop {
+  ), O = `.new-popup-backdrop {
   background: rgba(0, 0, 0, 0.6);
   position: fixed;
   opacity: 1;
@@ -1639,7 +1639,7 @@
   .check_out_now_second.large_popup .exit_intent_popup .info_wrapper .body_popup .products_wrapper {
     padding-right: 12px;
   }
-}/*# sourceMappingURL=main.css.map */`, O = window.innerWidth < 768 ? "mobile" : "desktop";
+}/*# sourceMappingURL=main.css.map */`, B = window.innerWidth < 768 ? "mobile" : "desktop";
   class M {
     constructor(e) {
       this.device = e, this.timeoutId = null, this.delayTime = 6e4, this.firstSessionTime = 20 * 1e3, this.lastPopupTime = 0, this.timeLag = 3 * 60 * 1e3, this.active = !1, this.init();
@@ -1655,7 +1655,7 @@
       }, v({ name: "Exit Intent Popup", dev: "SKh" }), y("exp_exit_intent_popup"), document.head.insertAdjacentHTML(
         "afterbegin",
         '<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">'
-      ), document.head.insertAdjacentHTML("beforeend", `<style>${B}</style>`), (!sessionStorage.getItem("firstOrderDiscount") || !localStorage.getItem("initUser")) && document.body.insertAdjacentHTML(
+      ), document.head.insertAdjacentHTML("beforeend", `<style>${O}</style>`), !sessionStorage.getItem("firstOrderDiscount") && !localStorage.getItem("initUser") && document.body.insertAdjacentHTML(
         "afterbegin",
         `<style class="crs_style_klaviyo">
           .needsclick.kl-private-reset-css-Xuajs1 {
@@ -1971,8 +1971,9 @@
             const c = t('.klaviyo-form [name="email"]');
             c.value = e.value, c.dispatchEvent(new Event("input", { bubbles: !0 })), (r = t(".klaviyo-form button.needsclick.go952291206.kl-private-reset-css-Xuajs1")) == null || r.click(), console.log(c.value, "inputElement.value "), setTimeout(() => {
               this.handlerCloseKlaviyo();
-            }, 700);
-          }
+            }, 1e3);
+          } else
+            window._klOnsite = window._klOnsite || [], window._klOnsite.push(["openForm", ".get_discount_btn"]);
         }, 100);
         t(".first_order_discount.first_var") && t(".first_order_discount.first_var").classList.add("is_hidden"), t(".first_order_discount.second_var").classList.contains("is_hidden") && t(".first_order_discount.second_var").classList.remove("is_hidden"), i("exp_exit_intent_popup_section_02", "Section", "Visibility", "Sie stehen auf der Liste");
       }
@@ -2031,6 +2032,6 @@
       });
     }
   }
-  new M(O);
+  new M(B);
 })();
 //# sourceMappingURL=index.js.map
