@@ -487,26 +487,17 @@ body basket-qty {\r
         var r;
         if (this.checkPage() === "basket") {
           let n = localStorage.getItem("basketPriceForIcon");
-          if (n !== null) {
-            if (n = +n, t("basket-view .threshold_banner") && t("basket-view .threshold_banner").remove(), this.device === "mobile") {
-              let o = setInterval(() => {
-                t("page-footer") && (clearInterval(o), console.log("page-footer"), t(".threshold_banner") || t("basket-view bottom-panel").insertAdjacentHTML("afterbegin", this.drawThreshold(n)));
-              }, 10);
-            } else
-              t("basket-view ul").insertAdjacentHTML("beforebegin", this.drawThreshold(n));
-            d(
-              "basket-view .crs_progress.threshold_banner",
-              "exp_free_delivery_banner_03",
-              "Shopping Bag You are £ away from Free Express UK  Delivery",
-              "Banner"
-            ), d(
-              "basket-view .crs_complete.threshold_banner",
-              "exp_free_delivery_banner_04",
-              "Shopping Bag Congratulations! You have Free Express UK Delivery",
-              "Banner"
-            );
-          }
-          (r = t("basket-view>div>div>div>div>*:nth-child(3)>div.inline-block")) == null || r.remove();
+          n !== null && (n = +n, t("basket-view .threshold_banner") && t("basket-view .threshold_banner").remove(), this.device === "mobile" ? t("basket-view bottom-panel").insertAdjacentHTML("afterbegin", this.drawThreshold(n)) : t("basket-view ul").insertAdjacentHTML("beforebegin", this.drawThreshold(n)), d(
+            "basket-view .crs_progress.threshold_banner",
+            "exp_free_delivery_banner_03",
+            "Shopping Bag You are £ away from Free Express UK  Delivery",
+            "Banner"
+          ), d(
+            "basket-view .crs_complete.threshold_banner",
+            "exp_free_delivery_banner_04",
+            "Shopping Bag Congratulations! You have Free Express UK Delivery",
+            "Banner"
+          )), (r = t("basket-view>div>div>div>div>*:nth-child(3)>div.inline-block")) == null || r.remove();
         }
       });
     }
