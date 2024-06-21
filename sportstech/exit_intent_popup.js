@@ -13,12 +13,12 @@
       `%c EXP: ${r} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, w = (r) => document.querySelectorAll(r), t = (r) => document.querySelector(r), y = (r) => {
+  }, h = (r) => document.querySelectorAll(r), t = (r) => document.querySelector(r), y = (r) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", r, "variant_1"));
     }, 1e3);
   };
-  function h(r) {
+  function l(r) {
     return new Promise((e) => {
       if (document.querySelector(r))
         return e(document.querySelector(r));
@@ -242,7 +242,7 @@
     </div>
   </div>
 `
-  ), x = (
+  ), w = (
     /* HTML */
     `
   <div class="exit_intent_popup">
@@ -433,7 +433,7 @@
     </div>
   </div>
 `
-  ), P = (
+  ), O = (
     /* HTML */
     `
   <div class="new-popup-backdrop is-hidden">
@@ -443,7 +443,7 @@
     </div>
   </div>
 `
-  ), O = (r, e, n, p, a) => (
+  ), P = (r, e, n, p, a) => (
     /* HTML */
     `
     <li class="products_item">
@@ -1667,7 +1667,7 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       }, v({ name: "Exit Intent Popup", dev: "SKh" }), y("exp_exit_intent_popup"), document.head.insertAdjacentHTML(
         "afterbegin",
         '<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">'
-      ), document.head.insertAdjacentHTML("beforeend", `<style>${B}</style>`), (!sessionStorage.getItem("firstOrderDiscount") && !localStorage.getItem("initUser") || t("button + div.needsclick.kl-private-reset-css-Xuajs1")) && document.body.insertAdjacentHTML(
+      ), document.head.insertAdjacentHTML("beforeend", `<style>${B}</style>`), !sessionStorage.getItem("firstOrderDiscount") && !localStorage.getItem("initUser") && !localStorage.getItem("klaviyoForm") && document.body.insertAdjacentHTML(
         "afterbegin",
         `<style class="crs_style_klaviyo">
           div.needsclick.kl-private-reset-css-Xuajs1 {
@@ -1676,7 +1676,7 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
             display: none;
           }
         </style`
-      ), sessionStorage.getItem("initUser") || this.getNewUser("_ga"), this.createPopup(), setTimeout(() => {
+      ), localStorage.getItem("initUser") || this.getNewUser("_ga"), this.createPopup(), setTimeout(() => {
         this.intentPopupTriggers();
       }, 200), this.copyDiscount(), this.handlerClickBtns(), this.handlerClickInput(), this.observerKlaviyo(), this.getRating(), this.getProductInfo("9f8ea4a4f23542d9af304b6ab317924d");
     }
@@ -1723,19 +1723,14 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       sessionStorage.setItem("lastPopupTime", p.toString());
       let a = await fetch("https://www.sportstech.de/checkout/cart");
       a = await a.text();
-      const c = new DOMParser().parseFromString(a, "text/html").querySelectorAll(".checkout-product-table .line-item");
-      if (c.length !== 0) {
-        e === "differentUserCategories" && (t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), c.length > 1 ? t(".new-popup-backdrop").classList.add("large_popup") : t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), Number(localStorage.getItem("session")) > 1 ? localStorage.getItem("checkOutNowSecond") ? (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.add("check_out_now_third"), this.handleShowPopup(z, "returningUsers", n, "checkOutNowThird")) : (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.add("check_out_now_second"), this.handleShowPopup(E, "returningUsers", n, "checkOutNowSecond"), localStorage.setItem("checkOutNowSecond", "yes")) : (t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), console.log("!!!!!!!!!!!!!!!!!!!!!!"), t(".new-popup-backdrop").classList.add("check_out_now"), this.handleShowPopup(I, "checkOutNow", n, "checkOutNow")));
-        let u = c[c.length - 1];
-        console.log(u, "lastAddedProductToCart"), c.forEach((l) => {
-          var f, m, g, b, k;
-          let N = ((f = l.querySelector(".line-item-label")) == null ? void 0 : f.getAttribute("href")) ?? "", $ = ((m = l.querySelector(".line-item-img")) == null ? void 0 : m.getAttribute("srcset")) ?? "", j = ((g = l.querySelector(".line-item-label")) == null ? void 0 : g.textContent) ?? "", R = ((b = l.querySelector(".line-item-details-characteristics-option")) == null ? void 0 : b.textContent) ?? "", A = ((k = l.querySelector(".line-item-total-price-value")) == null ? void 0 : k.textContent) ?? "";
-          h(".products_list").then((V) => {
-            t(".products_list").insertAdjacentHTML("beforeend", O(N, $, j, R, A));
-          });
+      const u = new DOMParser().parseFromString(a, "text/html").querySelectorAll(".checkout-product-table .line-item");
+      u.length !== 0 ? (e === "differentUserCategories" && (t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), u.length > 1 ? t(".new-popup-backdrop").classList.add("large_popup") : t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), Number(localStorage.getItem("session")) > 1 ? localStorage.getItem("checkOutNowSecond") ? (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.add("check_out_now_third"), this.handleShowPopup(z, "returningUsers", n, "checkOutNowThird")) : (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.add("check_out_now_second"), this.handleShowPopup(E, "returningUsers", n, "checkOutNowSecond"), localStorage.setItem("checkOutNowSecond", "yes")) : (t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), console.log("!!!!!!!!!!!!!!!!!!!!!!"), t(".new-popup-backdrop").classList.add("check_out_now"), this.handleShowPopup(I, "checkOutNow", n, "checkOutNow"))), u.forEach((c) => {
+        var f, m, g, b, k;
+        let x = ((f = c.querySelector(".line-item-label")) == null ? void 0 : f.getAttribute("href")) ?? "", N = ((m = c.querySelector(".line-item-img")) == null ? void 0 : m.getAttribute("srcset")) ?? "", $ = ((g = c.querySelector(".line-item-label")) == null ? void 0 : g.textContent) ?? "", j = ((b = c.querySelector(".line-item-details-characteristics-option")) == null ? void 0 : b.textContent) ?? "", R = ((k = c.querySelector(".line-item-total-price-value")) == null ? void 0 : k.textContent) ?? "";
+        l(".products_list").then((V) => {
+          t(".products_list").insertAdjacentHTML("beforeend", P(x, N, $, j, R));
         });
-      } else
-        t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), e === "firstOrderDiscount" && (t(".new-popup-backdrop").classList.add("first_order_discount"), this.handleShowPopup(x, "firstOrderDiscount", n, "firstOrderDiscount")), e === "differentUserCategories" && (Number(localStorage.getItem("session")) > 1 ? (t(".new-popup-backdrop").classList.add("categories_product"), this.handleShowPopup(T, "returningUsers", n, "categoriesProduct")) : (t(".new-popup-backdrop").classList.add("sales_offer"), this.handleShowPopup(L, "salesOffer", n, "salesOffer")));
+      })) : (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), e === "firstOrderDiscount" && (t(".new-popup-backdrop").classList.add("first_order_discount"), this.handleShowPopup(w, "firstOrderDiscount", n, "firstOrderDiscount")), e === "differentUserCategories" && (Number(localStorage.getItem("session")) > 1 ? (t(".new-popup-backdrop").classList.add("categories_product"), this.handleShowPopup(T, "returningUsers", n, "categoriesProduct")) : (t(".new-popup-backdrop").classList.add("sales_offer"), this.handleShowPopup(L, "salesOffer", n, "salesOffer"))));
     }
     isPopupOpen() {
       var e;
@@ -1745,19 +1740,18 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       let e = 900;
       const n = setInterval(() => {
         e--;
-        const p = Math.floor(e / 60), a = e % 60, i = t(".minutes_tens"), s = t(".minutes_ones"), c = t(".seconds_tens"), u = t(".seconds_ones");
-        i && (i.textContent = Math.floor(p / 10)), s && (s.textContent = p % 10), c && (c.textContent = Math.floor(a / 10)), u && (u.textContent = a % 10), e <= 0 && clearInterval(n);
+        const p = Math.floor(e / 60), a = e % 60, i = t(".minutes_tens"), s = t(".minutes_ones"), u = t(".seconds_tens"), c = t(".seconds_ones");
+        i && (i.textContent = Math.floor(p / 10)), s && (s.textContent = p % 10), u && (u.textContent = Math.floor(a / 10)), c && (c.textContent = a % 10), e <= 0 && clearInterval(n);
       }, 1e3);
     }
     createPopup() {
-      console.log("createPopup"), t(".new-popup-backdrop") || t("body").insertAdjacentHTML("afterbegin", P);
+      console.log("createPopup"), t(".new-popup-backdrop") || t("body").insertAdjacentHTML("afterbegin", O);
     }
     handleShowPopup(e, n, p, a) {
-      if (sessionStorage.getItem(n) && n !== "firstOrderDiscountClick")
+      if (console.log("handleShowPopup", p, n), sessionStorage.getItem(n) && n !== "firstOrderDiscountClick")
         return;
-      console.log("handleShowPopup", p);
-      const s = t("body"), c = t(".new-popup-backdrop"), u = t(".new-popup .new-popup__content");
-      switch (c.classList.contains("is-hidden") && c.classList.remove("is-hidden"), s.style.overflow = "hidden", u.innerHTML = e, sessionStorage.setItem(n, "yes"), a) {
+      const s = t("body"), u = t(".new-popup-backdrop"), c = t(".new-popup .new-popup__content");
+      switch (u.classList.contains("is-hidden") && u.classList.remove("is-hidden"), s.style.overflow = "hidden", c.innerHTML = e, sessionStorage.setItem(n, "yes"), a) {
         case "firstOrderDiscount":
           o(
             "exp_exit_intent_popup_section_01",
@@ -1802,7 +1796,7 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
           o("exp_exit_intent_popup_section_07", "Section", "Visibility", "Es gehört fast Ihnen!");
           break;
       }
-      h("#counter").then((l) => {
+      l("#counter").then((x) => {
         this.startCountdown();
       }), this.handleClosePopup();
     }
@@ -1885,8 +1879,8 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       });
     }
     copyDiscount() {
-      h("[data-discount]").then((e) => {
-        w("[data-discount]").forEach((n) => {
+      l("[data-discount]").then((e) => {
+        h("[data-discount]").forEach((n) => {
           n.addEventListener("click", (p) => {
             let a = p.currentTarget.dataset.discount;
             navigator.clipboard.writeText(a), p.currentTarget.textContent = "Copied!", n.closest(".first_order_discount") && o("exp_exit_intent_popup_button_05", "Code  Welcome5", "Button", "Sie stehen auf der Liste"), n.closest(".check_out_now.first_var") && o(
@@ -1952,8 +1946,8 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       });
     }
     handlerClickInput() {
-      h("#emailNew").then((e) => {
-        w("#emailNew").forEach((n) => {
+      l("#emailNew").then((e) => {
+        h("#emailNew").forEach((n) => {
           n.addEventListener("input", (p) => {
             this.validationFormEmail(p.target);
           }), n.addEventListener("keyup", (p) => {
@@ -1989,7 +1983,7 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
             clearInterval(i);
             const s = t('.klaviyo-form [name="email"]');
             s.value = e.value, s.dispatchEvent(new Event("input")), setTimeout(() => {
-              t(".klaviyo-form button.needsclick.go952291206.kl-private-reset-css-Xuajs1").click(), console.log(s.value, "inputElement.value "), setTimeout(() => {
+              t(".klaviyo-form button.needsclick.go952291206.kl-private-reset-css-Xuajs1").click(), console.log(s.value, "inputElement.value "), localStorage.setItem("klaviyoForm", "yes"), setTimeout(() => {
                 this.handlerCloseKlaviyo();
               }, 1e3);
             }, 1500);
@@ -2007,9 +2001,9 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
     }
     hanlderClickBtnFirtsPopupKlaviyo() {
       let e = this.device === "mobile" ? "button.needsclick.kl-teaser-SP24tu" : "button.needsclick.kl-teaser-SH5AsN";
-      h(e).then((n) => {
+      l(e).then((n) => {
         t(e).addEventListener("click", (p) => {
-          p.preventDefault(), p.stopPropagation(), console.log("Click"), t(".new-popup-backdrop").classList.add("first_order_discount"), this.handleShowPopup(x, "firstOrderDiscountClick", "click", "firstOrderDiscount");
+          p.preventDefault(), p.stopPropagation(), console.log("Click"), t(".new-popup-backdrop").classList.add("first_order_discount"), this.handleShowPopup(w, "firstOrderDiscountClick", "click", "firstOrderDiscount");
         });
       });
     }
