@@ -34,18 +34,18 @@
   }
   const C = function(r) {
     r = r === void 0 ? {} : r;
-    let e, n, p, _, i = (r == null ? void 0 : r.delay) || 50;
+    let e, n, p, a, i = (r == null ? void 0 : r.delay) || 50;
     function s() {
-      e = null, _ = 0;
+      e = null, a = 0;
     }
     return s(), function() {
-      return n = window.scrollY, e != null && (_ = n - e), e = n, clearTimeout(p), p = setTimeout(s, i), _;
+      return n = window.scrollY, e != null && (a = n - e), e = n, clearTimeout(p), p = setTimeout(s, i), a;
     };
   }(), S = (r) => {
     var n;
     const e = `; ${document.cookie}`;
     return e.includes(`; ${r}=`) ? (n = e.split(`; ${r}=`).pop()) == null ? void 0 : n.split(";").shift() : (console.log("No cookie"), null);
-  }, d = "https://conversionratestore.github.io/projects/sportstech/img/", a = {
+  }, d = "https://conversionratestore.github.io/projects/sportstech/img/", _ = {
     closeIcon: (
       /* HTML */
       `
@@ -294,7 +294,7 @@
             <p class="discount_code_title">Geben Sie den Code im Warenkorb ein</p>
             <div class="discount_code_container">
               <span class="discount_code_txt">Welcome5</span>
-              <span data-discount="Welcome10">${a.copyIcon}</span>
+              <span data-discount="Welcome10">${_.copyIcon}</span>
             </div>
           </div>
           <div class="btn_wrapper">
@@ -338,7 +338,7 @@
             <ul class="products_list"></ul>
           </div>
           <div class="popular_products">
-            ${a.groupIcon}
+            ${_.groupIcon}
             <p>
               Beliebtes Produkt. <br /><b><span>${Math.floor(Math.random() * 14) + 2}</span> Personen</b> sehen es sich
               gerade an
@@ -348,7 +348,7 @@
             <p class="discount_code_title">Code beim Checkout eingeben</p>
             <div class="discount_code_container">
               <span class="discount_code_txt">SPORTSTECH5</span>
-              <span data-discount="SPORTSTECH5">${a.copyIcon}</span>
+              <span data-discount="SPORTSTECH5">${_.copyIcon}</span>
             </div>
           </div>
           <div class="btn_wrapper">
@@ -383,7 +383,7 @@
             <p class="discount_code_title">Code beim Checkout eingeben</p>
             <div class="discount_code_container">
               <span class="discount_code_txt">PRSNLoffer5</span>
-              <span data-discount="PRSNLoffer5">${a.copyIcon}</span>
+              <span data-discount="PRSNLoffer5">${_.copyIcon}</span>
             </div>
           </div>
           <div class="btn_wrapper">
@@ -407,7 +407,7 @@
         </div>
         <div class="body_popup">
           <div class="stock_wrapper">
-            ${window.innerWidth >= 768 ? `${a.bgrYellowIcon}` : `${a.bgrYellowMobIcon}`}
+            ${window.innerWidth >= 768 ? `${_.bgrYellowIcon}` : `${_.bgrYellowMobIcon}`}
             <p>
               Beliebte Wahl, wir könnten bald ausverkauft sein.
               <span class="stock_txt"
@@ -419,7 +419,7 @@
             <ul class="products_list"></ul>
           </div>
           <div class="popular_products">
-            ${a.groupIcon}
+            ${_.groupIcon}
             <p>
               <b><span>${Math.floor(Math.random() * 12) + 4}</span> Personen</b> sehen sich dieses Produkt gerade an.
               Wir können die Verfügbarkeit nicht garantieren, wenn Sie den Kauf jetzt nicht abschließen.
@@ -438,12 +438,12 @@
     `
   <div class="new-popup-backdrop is-hidden">
     <div class="new-popup">
-      <button class="new-popup__close" data-popup="close">${a.closeIcon}</button>
+      <button class="new-popup__close" data-popup="close">${_.closeIcon}</button>
       <div class="new-popup__content"></div>
     </div>
   </div>
 `
-  ), O = (r, e, n, p, _) => (
+  ), O = (r, e, n, p, a) => (
     /* HTML */
     `
     <li class="products_item">
@@ -457,10 +457,10 @@
         ${p ? `<span class="txt_descr">${p}</span>` : ""}
         <div class="price_wrapper">
           <div class="stars_wrapper">
-            ${a.starIcon}${a.starIcon}${a.starIcon}${a.starIcon}${a.starPartIcon}
+            ${_.starIcon}${_.starIcon}${_.starIcon}${_.starIcon}${_.starPartIcon}
             <span>(572)</span>
           </div>
-          <span class="price_txt">${_}</span>
+          <span class="price_txt">${a}</span>
         </div>
       </div>
     </li>
@@ -1647,6 +1647,10 @@
   .check_out_now_second.large_popup .exit_intent_popup .info_wrapper .body_popup .products_wrapper {
     padding-right: 12px;
   }
+}
+
+button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-reset-css-Xuajs1 {
+  display: none !important;
 }/*# sourceMappingURL=main.css.map */`, M = window.innerWidth < 768 ? "mobile" : "desktop";
   class N {
     constructor(e) {
@@ -1717,17 +1721,17 @@
       if (sessionStorage.getItem("lastPopupTime") && (this.lastPopupTime = Number(sessionStorage.getItem("lastPopupTime"))), p - this.lastPopupTime < this.timeLag)
         return;
       sessionStorage.setItem("lastPopupTime", p.toString());
-      let _ = await fetch("https://www.sportstech.de/checkout/cart");
-      _ = await _.text();
-      const c = new DOMParser().parseFromString(_, "text/html").querySelectorAll(".checkout-product-table .line-item");
+      let a = await fetch("https://www.sportstech.de/checkout/cart");
+      a = await a.text();
+      const c = new DOMParser().parseFromString(a, "text/html").querySelectorAll(".checkout-product-table .line-item");
       if (c.length !== 0) {
         e === "differentUserCategories" && (t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), c.length > 1 ? t(".new-popup-backdrop").classList.add("large_popup") : t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), Number(localStorage.getItem("session")) > 1 ? localStorage.getItem("checkOutNowSecond") ? (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.add("check_out_now_third"), this.handleShowPopup(E, "returningUsers", n, "checkOutNowThird")) : (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.add("check_out_now_second"), this.handleShowPopup(z, "returningUsers", n, "checkOutNowSecond"), localStorage.setItem("checkOutNowSecond", "yes")) : (t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), console.log("!!!!!!!!!!!!!!!!!!!!!!"), t(".new-popup-backdrop").classList.add("check_out_now"), this.handleShowPopup(T, "checkOutNow", n, "checkOutNow")));
         let u = c[c.length - 1];
         console.log(u, "lastAddedProductToCart"), c.forEach((l) => {
           var f, m, g, b, k;
-          let $ = ((f = l.querySelector(".line-item-label")) == null ? void 0 : f.getAttribute("href")) ?? "", H = ((m = l.querySelector(".line-item-img")) == null ? void 0 : m.getAttribute("srcset")) ?? "", j = ((g = l.querySelector(".line-item-label")) == null ? void 0 : g.textContent) ?? "", R = ((b = l.querySelector(".line-item-details-characteristics-option")) == null ? void 0 : b.textContent) ?? "", V = ((k = l.querySelector(".line-item-total-price-value")) == null ? void 0 : k.textContent) ?? "";
+          let $ = ((f = l.querySelector(".line-item-label")) == null ? void 0 : f.getAttribute("href")) ?? "", j = ((m = l.querySelector(".line-item-img")) == null ? void 0 : m.getAttribute("srcset")) ?? "", H = ((g = l.querySelector(".line-item-label")) == null ? void 0 : g.textContent) ?? "", R = ((b = l.querySelector(".line-item-details-characteristics-option")) == null ? void 0 : b.textContent) ?? "", V = ((k = l.querySelector(".line-item-total-price-value")) == null ? void 0 : k.textContent) ?? "";
           h(".products_list").then((A) => {
-            t(".products_list").insertAdjacentHTML("beforeend", O($, H, j, R, V));
+            t(".products_list").insertAdjacentHTML("beforeend", O($, j, H, R, V));
           });
         });
       } else
@@ -1741,19 +1745,19 @@
       let e = 900;
       const n = setInterval(() => {
         e--;
-        const p = Math.floor(e / 60), _ = e % 60, i = t(".minutes_tens"), s = t(".minutes_ones"), c = t(".seconds_tens"), u = t(".seconds_ones");
-        i && (i.textContent = Math.floor(p / 10)), s && (s.textContent = p % 10), c && (c.textContent = Math.floor(_ / 10)), u && (u.textContent = _ % 10), e <= 0 && clearInterval(n);
+        const p = Math.floor(e / 60), a = e % 60, i = t(".minutes_tens"), s = t(".minutes_ones"), c = t(".seconds_tens"), u = t(".seconds_ones");
+        i && (i.textContent = Math.floor(p / 10)), s && (s.textContent = p % 10), c && (c.textContent = Math.floor(a / 10)), u && (u.textContent = a % 10), e <= 0 && clearInterval(n);
       }, 1e3);
     }
     createPopup() {
       console.log("createPopup"), t(".new-popup-backdrop") || t("body").insertAdjacentHTML("afterbegin", P);
     }
-    handleShowPopup(e, n, p, _) {
+    handleShowPopup(e, n, p, a) {
       if (sessionStorage.getItem(n) && n !== "firstOrderDiscountClick")
         return;
       console.log("handleShowPopup", p);
       const s = t("body"), c = t(".new-popup-backdrop"), u = t(".new-popup .new-popup__content");
-      switch (c.classList.contains("is-hidden") && c.classList.remove("is-hidden"), s.style.overflow = "hidden", u.innerHTML = e, sessionStorage.setItem(n, "yes"), _) {
+      switch (c.classList.contains("is-hidden") && c.classList.remove("is-hidden"), s.style.overflow = "hidden", u.innerHTML = e, sessionStorage.setItem(n, "yes"), a) {
         case "firstOrderDiscount":
           o(
             "exp_exit_intent_popup_section_01",
@@ -1884,8 +1888,8 @@
       h("[data-discount]").then((e) => {
         w("[data-discount]").forEach((n) => {
           n.addEventListener("click", (p) => {
-            let _ = p.currentTarget.dataset.discount;
-            navigator.clipboard.writeText(_), p.currentTarget.textContent = "Copied!", n.closest(".first_order_discount") && o("exp_exit_intent_popup_button_05", "Code  Welcome5", "Button", "Sie stehen auf der Liste"), n.closest(".check_out_now.first_var") && o(
+            let a = p.currentTarget.dataset.discount;
+            navigator.clipboard.writeText(a), p.currentTarget.textContent = "Copied!", n.closest(".first_order_discount") && o("exp_exit_intent_popup_button_05", "Code  Welcome5", "Button", "Sie stehen auf der Liste"), n.closest(".check_out_now.first_var") && o(
               "exp_exit_intent_popup_button_12",
               "Code SPORTSTECH5",
               "Button",
@@ -1896,7 +1900,7 @@
               "Button",
               "Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2"
             ), setTimeout(() => {
-              n.innerHTML = `${a.copyIcon}`;
+              n.innerHTML = `${_.copyIcon}`;
             }, 600);
           });
         });
@@ -1966,7 +1970,7 @@
       });
     }
     validationFormEmail(e, n = !1) {
-      var _;
+      var a;
       let p = t("#emailNew").value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/);
       if (e.getAttribute("name") === "emailNew")
         if (p === null) {
@@ -1978,7 +1982,7 @@
             t("#edit-email-address-error") && t("#edit-email-address-error").textContent !== "Please Enter Valid Email Address" && (clearInterval(i), t("#edit-email-address-error").textContent = "Please Enter Valid Email Address");
           }, 100);
         } else
-          (_ = t("#edit-email-address-error")) == null || _.remove();
+          (a = t("#edit-email-address-error")) == null || a.remove();
       if (p !== null && n) {
         let i = setInterval(() => {
           if (t('.klaviyo-form [name="email"]')) {
@@ -2012,10 +2016,10 @@
     observerKlaviyo() {
       let e = this.device === "mobile" ? "button.needsclick.kl-teaser-SP24tu" : "button.needsclick.kl-teaser-SH5AsN";
       new MutationObserver((p) => {
-        p.forEach((_) => {
-          for (let i of _.removedNodes)
+        p.forEach((a) => {
+          for (let i of a.removedNodes)
             i instanceof HTMLElement && i.querySelector(".needsclick.kl-private-reset-css-Xuajs1") && this.hanlderClickBtnFirtsPopupKlaviyo();
-          for (let i of _.addedNodes)
+          for (let i of a.addedNodes)
             i instanceof HTMLElement && i.querySelector(e) && this.hanlderClickBtnFirtsPopupKlaviyo();
         });
       }).observe(document.documentElement, {
@@ -2045,8 +2049,8 @@
           "Content-Type": "application/json"
         }
       }).then((e) => e.json()).then((e) => {
-        let n = e == null ? void 0 : e.lineItems, p = Object.keys(n), _ = p[p.length - 1];
-        console.log(_), this.getProductInfo(_);
+        let n = e == null ? void 0 : e.lineItems, p = Object.keys(n), a = p[p.length - 1];
+        console.log(a), this.getProductInfo(a);
       }).catch((e) => {
         console.error("Error:", e);
       });
