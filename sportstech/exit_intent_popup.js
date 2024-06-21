@@ -202,7 +202,7 @@
     </div>
   </div>
 `
-  ), I = (
+  ), T = (
     /* HTML */
     `
   <div class="exit_intent_popup">
@@ -294,7 +294,7 @@
             <p class="discount_code_title">Geben Sie den Code im Warenkorb ein</p>
             <div class="discount_code_container">
               <span class="discount_code_txt">Welcome5</span>
-              <span data-discount="Welcome10">${_.copyIcon}</span>
+              <span data-discount="SPORTSTECH5">${_.copyIcon}</span>
             </div>
           </div>
           <div class="btn_wrapper">
@@ -309,7 +309,7 @@
     </div>
   </div>
 `
-  ), T = (
+  ), I = (
     /* HTML */
     `
   <div class="exit_intent_popup">
@@ -345,7 +345,7 @@
             </p>
           </div>
           <div class="discount_code_wrapper">
-            <p class="discount_code_title">Code beim Checkout eingeben</p>
+            <p class="discount_code_title">Der Code wird automatisch an der Kasse angewendet</p>
             <div class="discount_code_container">
               <span class="discount_code_txt">SPORTSTECH5</span>
               <span data-discount="SPORTSTECH5">${_.copyIcon}</span>
@@ -380,10 +380,10 @@
             <ul class="products_list"></ul>
           </div>
           <div class="discount_code_wrapper">
-            <p class="discount_code_title">Code beim Checkout eingeben</p>
+            <p class="discount_code_title">Der Code wird automatisch an der Kasse angewendet</p>
             <div class="discount_code_container">
               <span class="discount_code_txt">PRSNLoffer5</span>
-              <span data-discount="PRSNLoffer5">${_.copyIcon}</span>
+              <span data-discount="SPORTSTECH5">${_.copyIcon}</span>
             </div>
           </div>
           <div class="btn_wrapper">
@@ -1667,7 +1667,7 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       }, v({ name: "Exit Intent Popup", dev: "SKh" }), y("exp_exit_intent_popup"), document.head.insertAdjacentHTML(
         "afterbegin",
         '<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">'
-      ), document.head.insertAdjacentHTML("beforeend", `<style>${B}</style>`), !sessionStorage.getItem("firstOrderDiscount") && !localStorage.getItem("initUser") && document.body.insertAdjacentHTML(
+      ), document.head.insertAdjacentHTML("beforeend", `<style>${B}</style>`), !sessionStorage.getItem("firstOrderDiscount") && !localStorage.getItem("initUser") && t("button + div.needsclick.kl-private-reset-css-Xuajs1") && document.body.insertAdjacentHTML(
         "afterbegin",
         `<style class="crs_style_klaviyo">
           div.needsclick.kl-private-reset-css-Xuajs1 {
@@ -1725,17 +1725,17 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       a = await a.text();
       const c = new DOMParser().parseFromString(a, "text/html").querySelectorAll(".checkout-product-table .line-item");
       if (c.length !== 0) {
-        e === "differentUserCategories" && (t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), c.length > 1 ? t(".new-popup-backdrop").classList.add("large_popup") : t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), Number(localStorage.getItem("session")) > 1 ? localStorage.getItem("checkOutNowSecond") ? (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.add("check_out_now_third"), this.handleShowPopup(E, "returningUsers", n, "checkOutNowThird")) : (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.add("check_out_now_second"), this.handleShowPopup(z, "returningUsers", n, "checkOutNowSecond"), localStorage.setItem("checkOutNowSecond", "yes")) : (t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), console.log("!!!!!!!!!!!!!!!!!!!!!!"), t(".new-popup-backdrop").classList.add("check_out_now"), this.handleShowPopup(T, "checkOutNow", n, "checkOutNow")));
+        e === "differentUserCategories" && (t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), c.length > 1 ? t(".new-popup-backdrop").classList.add("large_popup") : t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), Number(localStorage.getItem("session")) > 1 ? localStorage.getItem("checkOutNowSecond") ? (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.add("check_out_now_third"), this.handleShowPopup(E, "returningUsers", n, "checkOutNowThird")) : (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.add("check_out_now_second"), this.handleShowPopup(z, "returningUsers", n, "checkOutNowSecond"), localStorage.setItem("checkOutNowSecond", "yes")) : (t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), console.log("!!!!!!!!!!!!!!!!!!!!!!"), t(".new-popup-backdrop").classList.add("check_out_now"), this.handleShowPopup(I, "checkOutNow", n, "checkOutNow")));
         let u = c[c.length - 1];
         console.log(u, "lastAddedProductToCart"), c.forEach((l) => {
           var f, m, g, b, k;
-          let $ = ((f = l.querySelector(".line-item-label")) == null ? void 0 : f.getAttribute("href")) ?? "", j = ((m = l.querySelector(".line-item-img")) == null ? void 0 : m.getAttribute("srcset")) ?? "", H = ((g = l.querySelector(".line-item-label")) == null ? void 0 : g.textContent) ?? "", R = ((b = l.querySelector(".line-item-details-characteristics-option")) == null ? void 0 : b.textContent) ?? "", V = ((k = l.querySelector(".line-item-total-price-value")) == null ? void 0 : k.textContent) ?? "";
+          let $ = ((f = l.querySelector(".line-item-label")) == null ? void 0 : f.getAttribute("href")) ?? "", H = ((m = l.querySelector(".line-item-img")) == null ? void 0 : m.getAttribute("srcset")) ?? "", j = ((g = l.querySelector(".line-item-label")) == null ? void 0 : g.textContent) ?? "", R = ((b = l.querySelector(".line-item-details-characteristics-option")) == null ? void 0 : b.textContent) ?? "", V = ((k = l.querySelector(".line-item-total-price-value")) == null ? void 0 : k.textContent) ?? "";
           h(".products_list").then((A) => {
-            t(".products_list").insertAdjacentHTML("beforeend", O($, j, H, R, V));
+            t(".products_list").insertAdjacentHTML("beforeend", O($, H, j, R, V));
           });
         });
       } else
-        t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), e === "firstOrderDiscount" && (t(".new-popup-backdrop").classList.add("first_order_discount"), this.handleShowPopup(x, "firstOrderDiscount", n, "firstOrderDiscount")), e === "differentUserCategories" && (Number(localStorage.getItem("session")) > 1 ? (t(".new-popup-backdrop").classList.add("categories_product"), this.handleShowPopup(I, "returningUsers", n, "categoriesProduct")) : (t(".new-popup-backdrop").classList.add("sales_offer"), this.handleShowPopup(L, "salesOffer", n, "salesOffer")));
+        t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), e === "firstOrderDiscount" && (t(".new-popup-backdrop").classList.add("first_order_discount"), this.handleShowPopup(x, "firstOrderDiscount", n, "firstOrderDiscount")), e === "differentUserCategories" && (Number(localStorage.getItem("session")) > 1 ? (t(".new-popup-backdrop").classList.add("categories_product"), this.handleShowPopup(T, "returningUsers", n, "categoriesProduct")) : (t(".new-popup-backdrop").classList.add("sales_offer"), this.handleShowPopup(L, "salesOffer", n, "salesOffer")));
     }
     isPopupOpen() {
       var e;
@@ -1938,12 +1938,12 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
           "Jetzt zur Kasse",
           "Button",
           "Jetzt zur Kasse gehen und  5% Rabatt auf Ihre erste Bestellung erhalten Step 1"
-        ), window.location.href = "/checkout/confirm"), e.target.matches(".complete_my_order_now_btn") && e.target.closest(".second_var") && e.target.closest(".check_out_now") && (o(
+        ), this.getCoupon("SPORTSTECH5")), e.target.matches(".complete_my_order_now_btn") && e.target.closest(".second_var") && e.target.closest(".check_out_now") && (o(
           "exp_exit_intent_popup_button_16",
           "Meine Bestellung jetzt abschließen",
           "Button",
           "Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2"
-        ), window.location.href = "/checkout/confirm"), e.target.matches(".complete_my_order_now_btn") && e.target.closest(".third_var") && e.target.closest(".check_out_now") && (o(
+        ), this.getCoupon("SPORTSTECH5")), e.target.matches(".complete_my_order_now_btn") && e.target.closest(".third_var") && e.target.closest(".check_out_now") && (o(
           "exp_exit_intent_popup_button_18",
           "Meine Bestellung jetzt abschließen",
           "Button",
@@ -2072,6 +2072,22 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
         console.error("Error:", e);
       });
     }
+    async getCoupon(e) {
+      await fetch("https://www.sportstech.de/checkout/promotion/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          code: e
+        })
+      }).then((n) => (console.log(n, "response"), n)).then((n) => {
+        n.status === 200 && (console.log(n.status, "getCoupon"), window.location.href = "/checkout/confirm");
+      }).catch((n) => {
+        console.error("Error:", n);
+      });
+    }
+    //
   }
   new N(M);
 })();
