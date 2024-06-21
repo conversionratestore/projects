@@ -45,7 +45,7 @@
     var n;
     const e = `; ${document.cookie}`;
     return e.includes(`; ${r}=`) ? (n = e.split(`; ${r}=`).pop()) == null ? void 0 : n.split(";").shift() : (console.log("No cookie"), null);
-  }, d = "https://conversionratestore.github.io/projects/sportstech/img/", c = {
+  }, d = "https://conversionratestore.github.io/projects/sportstech/img/", _ = {
     closeIcon: (
       /* HTML */
       `
@@ -295,7 +295,7 @@
             <p class="discount_code_title">Geben Sie den Code beim Checkout ein</p>
             <div class="discount_code_container">
               <span class="discount_code_txt">Welcome10</span>
-              <span data-discount="Welcome10">${c.copyIcon}</span>
+              <span data-discount="Welcome10">${_.copyIcon}</span>
             </div>
           </div>
           <div class="btn_wrapper">
@@ -339,7 +339,7 @@
             <ul class="products_list"></ul>
           </div>
           <div class="popular_products">
-            ${c.groupIcon}
+            ${_.groupIcon}
             <p>
               Beliebtes Produkt. <br /><b><span>${Math.floor(Math.random() * 14) + 2}</span> Personen</b> sehen es sich
               gerade an
@@ -349,7 +349,7 @@
             <p class="discount_code_title">Code beim Checkout eingeben</p>
             <div class="discount_code_container">
               <span class="discount_code_txt">SPORTSTECH5</span>
-              <span data-discount="SPORTSTECH5">${c.copyIcon}</span>
+              <span data-discount="SPORTSTECH5">${_.copyIcon}</span>
             </div>
           </div>
           <div class="btn_wrapper">
@@ -384,7 +384,7 @@
             <p class="discount_code_title">Code beim Checkout eingeben</p>
             <div class="discount_code_container">
               <span class="discount_code_txt">PRSNLoffer5</span>
-              <span data-discount="PRSNLoffer5">${c.copyIcon}</span>
+              <span data-discount="PRSNLoffer5">${_.copyIcon}</span>
             </div>
           </div>
           <div class="btn_wrapper">
@@ -408,7 +408,7 @@
         </div>
         <div class="body_popup">
           <div class="stock_wrapper">
-            ${window.innerWidth >= 768 ? `${c.bgrYellowIcon}` : `${c.bgrYellowMobIcon}`}
+            ${window.innerWidth >= 768 ? `${_.bgrYellowIcon}` : `${_.bgrYellowMobIcon}`}
             <p>
               Beliebte Wahl, wir könnten bald ausverkauft sein.
               <span class="stock_txt"
@@ -420,7 +420,7 @@
             <ul class="products_list"></ul>
           </div>
           <div class="popular_products">
-            ${c.groupIcon}
+            ${_.groupIcon}
             <p>
               <b><span>${Math.floor(Math.random() * 12) + 4}</span> Personen</b> sehen sich dieses Produkt gerade an.
               Wir können die Verfügbarkeit nicht garantieren, wenn Sie den Kauf jetzt nicht abschließen.
@@ -439,7 +439,7 @@
     `
   <div class="new-popup-backdrop is-hidden">
     <div class="new-popup">
-      <button class="new-popup__close" data-popup="close">${c.closeIcon}</button>
+      <button class="new-popup__close" data-popup="close">${_.closeIcon}</button>
       <div class="new-popup__content"></div>
     </div>
   </div>
@@ -458,7 +458,7 @@
         ${p ? `<span class="txt_descr">${p}</span>` : ""}
         <div class="price_wrapper">
           <div class="stars_wrapper">
-            ${c.starIcon}${c.starIcon}${c.starIcon}${c.starIcon}${c.starPartIcon}
+            ${_.starIcon}${_.starIcon}${_.starIcon}${_.starIcon}${_.starPartIcon}
             <span>(572)</span>
           </div>
           <span class="price_txt">${a}</span>
@@ -1717,11 +1717,11 @@
       sessionStorage.setItem("lastPopupTime", p.toString());
       let a = await fetch("https://www.sportstech.de/checkout/cart");
       a = await a.text();
-      const _ = new DOMParser().parseFromString(a, "text/html").querySelectorAll(".checkout-product-table .line-item");
-      if (_.length !== 0) {
-        e === "differentUserCategories" && (t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), _.length > 1 ? t(".new-popup-backdrop").classList.add("large_popup") : t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), Number(localStorage.getItem("session")) > 1 ? localStorage.getItem("checkOutNowSecond") ? (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.add("check_out_now_third"), this.handleShowPopup(E, "returningUsers", n, "checkOutNowThird")) : (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.add("check_out_now_second"), this.handleShowPopup(z, "returningUsers", n, "checkOutNowSecond"), localStorage.setItem("checkOutNowSecond", "yes")) : (t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), console.log("!!!!!!!!!!!!!!!!!!!!!!"), t(".new-popup-backdrop").classList.add("check_out_now"), this.handleShowPopup(I, "checkOutNow", n, "checkOutNow")));
-        let u = _[_.length - 1];
-        console.log(u, "lastAddedProductToCart"), _.forEach((l) => {
+      const c = new DOMParser().parseFromString(a, "text/html").querySelectorAll(".checkout-product-table .line-item");
+      if (c.length !== 0) {
+        e === "differentUserCategories" && (t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), c.length > 1 ? t(".new-popup-backdrop").classList.add("large_popup") : t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), Number(localStorage.getItem("session")) > 1 ? localStorage.getItem("checkOutNowSecond") ? (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.add("check_out_now_third"), this.handleShowPopup(E, "returningUsers", n, "checkOutNowThird")) : (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.add("check_out_now_second"), this.handleShowPopup(z, "returningUsers", n, "checkOutNowSecond"), localStorage.setItem("checkOutNowSecond", "yes")) : (t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), console.log("!!!!!!!!!!!!!!!!!!!!!!"), t(".new-popup-backdrop").classList.add("check_out_now"), this.handleShowPopup(I, "checkOutNow", n, "checkOutNow")));
+        let u = c[c.length - 1];
+        console.log(u, "lastAddedProductToCart"), c.forEach((l) => {
           var f, m, g, b, k;
           let $ = ((f = l.querySelector(".line-item-label")) == null ? void 0 : f.getAttribute("href")) ?? "", H = ((m = l.querySelector(".line-item-img")) == null ? void 0 : m.getAttribute("srcset")) ?? "", j = ((g = l.querySelector(".line-item-label")) == null ? void 0 : g.textContent) ?? "", R = ((b = l.querySelector(".line-item-details-characteristics-option")) == null ? void 0 : b.textContent) ?? "", V = ((k = l.querySelector(".line-item-total-price-value")) == null ? void 0 : k.textContent) ?? "";
           h(".products_list").then((A) => {
@@ -1739,8 +1739,8 @@
       let e = 900;
       const n = setInterval(() => {
         e--;
-        const p = Math.floor(e / 60), a = e % 60, i = t(".minutes_tens"), s = t(".minutes_ones"), _ = t(".seconds_tens"), u = t(".seconds_ones");
-        i && (i.textContent = Math.floor(p / 10)), s && (s.textContent = p % 10), _ && (_.textContent = Math.floor(a / 10)), u && (u.textContent = a % 10), e <= 0 && clearInterval(n);
+        const p = Math.floor(e / 60), a = e % 60, i = t(".minutes_tens"), s = t(".minutes_ones"), c = t(".seconds_tens"), u = t(".seconds_ones");
+        i && (i.textContent = Math.floor(p / 10)), s && (s.textContent = p % 10), c && (c.textContent = Math.floor(a / 10)), u && (u.textContent = a % 10), e <= 0 && clearInterval(n);
       }, 1e3);
     }
     createPopup() {
@@ -1750,8 +1750,8 @@
       if (sessionStorage.getItem(n) && n !== "firstOrderDiscountClick")
         return;
       console.log("handleShowPopup", p);
-      const s = t("body"), _ = t(".new-popup-backdrop"), u = t(".new-popup .new-popup__content");
-      switch (_.classList.contains("is-hidden") && _.classList.remove("is-hidden"), s.style.overflow = "hidden", u.innerHTML = e, sessionStorage.setItem(n, "yes"), a) {
+      const s = t("body"), c = t(".new-popup-backdrop"), u = t(".new-popup .new-popup__content");
+      switch (c.classList.contains("is-hidden") && c.classList.remove("is-hidden"), s.style.overflow = "hidden", u.innerHTML = e, sessionStorage.setItem(n, "yes"), a) {
         case "firstOrderDiscount":
           o(
             "exp_exit_intent_popup_section_01",
@@ -1894,7 +1894,7 @@
               "Button",
               "Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2"
             ), setTimeout(() => {
-              n.innerHTML = `${c.copyIcon}`;
+              n.innerHTML = `${_.copyIcon}`;
             }, 600);
           });
         });
@@ -1979,13 +1979,10 @@
           (a = t("#edit-email-address-error")) == null || a.remove();
       if (p !== null && n) {
         let i = setInterval(() => {
-          var s;
           if (t('.klaviyo-form [name="email"]')) {
             clearInterval(i);
-            const _ = t('.klaviyo-form [name="email"]');
-            _.value = e.value, _.dispatchEvent(new Event("input", { bubbles: !0 })), (s = t(".klaviyo-form button.needsclick.go952291206.kl-private-reset-css-Xuajs1")) == null || s.dispatchEvent(
-              new Event("click", { bubbles: !0 })
-            ), console.log(_.value, "inputElement.value "), setTimeout(() => {
+            const s = t('.klaviyo-form [name="email"]');
+            s.value = e.value, s.dispatchEvent(new Event("input")), t(".klaviyo-form button.needsclick.go952291206.kl-private-reset-css-Xuajs1").click(), console.log(s.value, "inputElement.value "), setTimeout(() => {
               this.handlerCloseKlaviyo();
             }, 1e3);
           }
