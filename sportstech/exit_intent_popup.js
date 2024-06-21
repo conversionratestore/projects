@@ -1664,7 +1664,7 @@
             display: none;
           }
         </style`
-      ), this.createPopup(), setTimeout(() => {
+      ), this.getNewUser("_ga"), this.createPopup(), setTimeout(() => {
         this.intentPopupTriggers();
       }, 200), this.copyDiscount(), this.handlerClickBtns(), this.handlerClickInput(), this.observerKlaviyo();
     }
@@ -1674,7 +1674,7 @@
           return;
       } else if (sessionStorage.getItem("salesOffer") && sessionStorage.getItem("checkOutNow"))
         return;
-      this.getNewUser("_ga"), this.device === "mobile" && document.addEventListener("scroll", () => {
+      this.device === "mobile" && document.addEventListener("scroll", () => {
         +C() < -150 && this.getItemsBasket("differentUserCategories", "Scroll up (JS speed value: 150) - for any page");
       }), this.device === "desktop" && document.addEventListener("mouseout", (e) => {
         e.relatedTarget || this.getItemsBasket("differentUserCategories", "cursor moved out of the page frame");
