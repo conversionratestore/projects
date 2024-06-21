@@ -1667,7 +1667,7 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       }, v({ name: "Exit Intent Popup", dev: "SKh" }), y("exp_exit_intent_popup"), document.head.insertAdjacentHTML(
         "afterbegin",
         '<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">'
-      ), document.head.insertAdjacentHTML("beforeend", `<style>${B}</style>`), !sessionStorage.getItem("firstOrderDiscount") && !localStorage.getItem("initUser") && !localStorage.getItem("klaviyoForm") && document.body.insertAdjacentHTML(
+      ), document.head.insertAdjacentHTML("beforeend", `<style>${B}</style>`), (!sessionStorage.getItem("firstOrderDiscount") || !localStorage.getItem("initUser") || !localStorage.getItem("klaviyoForm")) && document.body.insertAdjacentHTML(
         "afterbegin",
         `<style class="crs_style_klaviyo">
           div.needsclick.kl-private-reset-css-Xuajs1 {
