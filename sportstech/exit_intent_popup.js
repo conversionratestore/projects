@@ -345,7 +345,7 @@
             </p>
           </div>
           <div class="discount_code_wrapper">
-            <p class="discount_code_title">Der Code wird automatisch an der Kasse angewendet</p>
+            <p class="discount_code_title">Der Code wird beim Checkout angewendet</p>
             <div class="discount_code_container">
               <span class="discount_code_txt">SPORTSTECH5</span>
               <span data-discount="SPORTSTECH5">${_.copyIcon}</span>
@@ -380,7 +380,7 @@
             <ul class="products_list"></ul>
           </div>
           <div class="discount_code_wrapper">
-            <p class="discount_code_title">Der Code wird automatisch an der Kasse angewendet</p>
+            <p class="discount_code_title">Der Code wird beim Checkout angewendet</p>
             <div class="discount_code_container">
               <span class="discount_code_txt">PRSNLoffer5</span>
               <span data-discount="SPORTSTECH5">${_.copyIcon}</span>
@@ -1667,7 +1667,7 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       }, v({ name: "Exit Intent Popup", dev: "SKh" }), y("exp_exit_intent_popup"), document.head.insertAdjacentHTML(
         "afterbegin",
         '<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">'
-      ), document.head.insertAdjacentHTML("beforeend", `<style>${B}</style>`), !sessionStorage.getItem("firstOrderDiscount") && !localStorage.getItem("initUser") && t("button + div.needsclick.kl-private-reset-css-Xuajs1") && document.body.insertAdjacentHTML(
+      ), document.head.insertAdjacentHTML("beforeend", `<style>${B}</style>`), (!sessionStorage.getItem("firstOrderDiscount") && !localStorage.getItem("initUser") || t("button + div.needsclick.kl-private-reset-css-Xuajs1")) && document.body.insertAdjacentHTML(
         "afterbegin",
         `<style class="crs_style_klaviyo">
           div.needsclick.kl-private-reset-css-Xuajs1 {
@@ -1729,9 +1729,9 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
         let u = c[c.length - 1];
         console.log(u, "lastAddedProductToCart"), c.forEach((l) => {
           var f, m, g, b, k;
-          let $ = ((f = l.querySelector(".line-item-label")) == null ? void 0 : f.getAttribute("href")) ?? "", H = ((m = l.querySelector(".line-item-img")) == null ? void 0 : m.getAttribute("srcset")) ?? "", j = ((g = l.querySelector(".line-item-label")) == null ? void 0 : g.textContent) ?? "", R = ((b = l.querySelector(".line-item-details-characteristics-option")) == null ? void 0 : b.textContent) ?? "", V = ((k = l.querySelector(".line-item-total-price-value")) == null ? void 0 : k.textContent) ?? "";
-          h(".products_list").then((A) => {
-            t(".products_list").insertAdjacentHTML("beforeend", O($, H, j, R, V));
+          let H = ((f = l.querySelector(".line-item-label")) == null ? void 0 : f.getAttribute("href")) ?? "", $ = ((m = l.querySelector(".line-item-img")) == null ? void 0 : m.getAttribute("srcset")) ?? "", j = ((g = l.querySelector(".line-item-label")) == null ? void 0 : g.textContent) ?? "", R = ((b = l.querySelector(".line-item-details-characteristics-option")) == null ? void 0 : b.textContent) ?? "", A = ((k = l.querySelector(".line-item-total-price-value")) == null ? void 0 : k.textContent) ?? "";
+          h(".products_list").then((V) => {
+            t(".products_list").insertAdjacentHTML("beforeend", O(H, $, j, R, A));
           });
         });
       } else
