@@ -13,24 +13,24 @@
       `%c EXP: ${e} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, g = (e) => document.querySelectorAll(e), p = (e) => document.querySelector(e), v = (e) => {
+  }, g = (e) => document.querySelectorAll(e), c = (e) => document.querySelector(e), v = (e) => {
     let t = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", e, "variant_1"));
     }, 1e3);
   }, k = () => {
     const e = navigator.userAgent;
     return e.match(/Android/i) || e.match(/webOS/i) || e.match(/iPhone/i) || e.match(/iPad/i) || e.match(/iPod/i) || e.match(/BlackBerry/i) || e.match(/Windows Phone/i) ? "mobile" : "desktop";
-  }, _ = (e) => new Promise((t) => {
-    if (p(e))
-      return t(p(e));
+  }, x = (e) => new Promise((t) => {
+    if (c(e))
+      return t(c(e));
     const o = new MutationObserver(() => {
-      p(e) && (t(p(e)), o.disconnect());
+      c(e) && (t(c(e)), o.disconnect());
     });
     o.observe(document.documentElement, {
       childList: !0,
       subtree: !0
     });
-  }), u = {
+  }), w = {
     close: (
       /*html */
       `
@@ -162,7 +162,7 @@
       not_addons: 2
     }
   };
-  let x = ["eucalyptus-silk-eye-mask", "eucalyptus-silk-pillow-cases", "eucalyptus-silk-sheet-set"], y = [];
+  let _ = ["eucalyptus-silk-eye-mask", "eucalyptus-silk-pillow-cases", "eucalyptus-silk-sheet-set"], y = [];
   const C = (e) => fetch("/products/" + e + ".js").then((t) => t.json()).then((t) => {
     t.variants && t.variants.forEach(function(o) {
       y[o.id] = o.available;
@@ -191,34 +191,34 @@
         $(".ic").find(".cart_count").text(a.item_count), console.log(a), $(".modal-add span").text("ADD TO CART"), $(".modal").removeClass("active"), addToCartOK();
       });
     });
-  }, E = (e) => Promise.all(x.map(C)).then(() => {
+  }, E = (e) => Promise.all(_.map(C)).then(() => {
     let t = "", o = "";
     const n = e.select;
     for (const i in n) {
       let m = "", h = "";
       if (e.title == "Eucalyptus Silk Sheet Set")
-        for (let w = 0; w < e.desc.length; w++)
-          e.desc[w].split(":")[0] == i.split("/")[1] && (m = e.desc[w]);
+        for (let u = 0; u < e.desc.length; u++)
+          e.desc[u].split(":")[0] == i.split("/")[1] && (m = e.desc[u]);
       e.prices.constructor === Object && (h = e.prices[i.split("/")[1]]), y[n[i]] == !0 && (o += `<option value="${n[i]}" ${m != "" ? `data-desc="${m}"` : ""} ${h != "" ? `data-compare="${h[0]}" data-price="${h[1]}"` : ""} data-qty="${i.includes("4 pack") ? 2 : 1}">${i}</option>`);
     }
     let a = e.list;
     for (let i = 0; i < a.length; i++)
       t += `<li>${a[i]}</li>`;
     let s = Object.keys(e.prices)[0];
-    const c = e.prices.constructor === Object ? e.prices[s][0] : e.prices[0], l = e.prices.constructor === Object ? e.prices[s][1] : e.prices[1];
+    const p = e.prices.constructor === Object ? e.prices[s][0] : e.prices[0], l = e.prices.constructor === Object ? e.prices[s][1] : e.prices[1];
     return `
             <div class="modal">
                 <div class="modal-container">
                     <div class="modal-head">
-                        ${e.head} ${u.close}
+                        ${e.head} ${w.close}
                     </div>
                     <div class="modal-product items-center">
                         <div class="modal-product__images">${e.images}</div>
                         <div>
                             <p class="modal-product__title">${e.title}</p>
                             <p class="modal-product__desc" ${e.desc[0] == "" ? "hidden" : ""}>${e.desc[0]}</p>
-                            <p class="modal-product__prices" data-compare="${c.replace("£", "")}" data-price="${l.replace("£", "")}">
-                                <span>${c}</span>
+                            <p class="modal-product__prices" data-compare="${p.replace("£", "")}" data-price="${l.replace("£", "")}">
+                                <span>${p}</span>
                                 <b>${l}</b>
                             </p>
                         </div>
@@ -227,9 +227,9 @@
                         <ul class="modal-list">${t}</ul>
                         <div class="select-parent">
                             <select class="modal-select">${o}</select>
-                            ${u.arrowDown}
+                            ${w.arrowDown}
                         </div>
-                        <button type="button" class="modal-add items-center">${u.cart} <span>Add to cart</span></button>
+                        <button type="button" class="modal-add items-center">${w.cart} <span>Add to cart</span></button>
                     </div>
                 </div>
             </div>`;
@@ -449,34 +449,32 @@
   b({ name: "Cross-sell", dev: "Olha" }), v("exp_cross_sell");
   class L {
     constructor() {
-      this.page = window.location.pathname, this.device = k(), this.showStickyBtn = !1, this.showAddToCartBtn = !1, (JSON.stringify(r).includes(this.page) || this.page.includes("/collections/beddings") || this.page.includes("/collections/shop-all-aeyla") || this.page.includes("/collections/pillows") || this.page.includes("/collections/bundles") || this.page.includes("/collections/weighted-blanket-blanket-covers")) && this.init();
+      this.page = window.location.pathname, this.device = k(), this.showStickyBtn = !1, this.adding = !1, (JSON.stringify(r).includes(this.page) || this.page.includes("/collections/beddings") || this.page.includes("/collections/shop-all-aeyla") || this.page.includes("/collections/pillows") || this.page.includes("/collections/bundles") || this.page.includes("/collections/weighted-blanket-blanket-covers")) && this.init();
     }
     init() {
       document.head.insertAdjacentHTML("beforeend", `<style>${P}</style>`), console.log("init "), this.quickAdd(), new MutationObserver((o) => {
-        if (p(".sticky_atc_btn")) {
+        if (c(".sticky_atc_btn")) {
           if (this.showStickyBtn === !0)
             return;
           this.showStickyBtn = !0, g(".sticky_atc_btn").forEach((n) => {
             n.addEventListener("click", () => {
-              this.addToCartButton();
+              this.addToCartPDP();
             });
           });
         } else
           this.showStickyBtn = !1;
-        if (p("#AddToCart")) {
-          if (this.showAddToCartBtn === !0)
+        if (console.log(c("#AddToCart").innerText), c("#AddToCart") && c("#AddToCart").innerText.toLowerCase().includes("adding")) {
+          if (this.adding === !0)
             return;
-          this.showAddToCartBtn = !0, p("#AddToCart").addEventListener("click", () => {
-            this.addToCartButton();
-          });
+          this.adding = !0, this.addToCartPDP();
         } else
-          this.showAddToCartBtn = !1;
+          this.adding = !1;
       }).observe(document.body, {
         childList: !0,
         subtree: !0
       });
     }
-    addToCartButton() {
+    addToCartPDP() {
       console.log("click addToCart button");
       let t = "";
       g(".upsell_wrapper .chckd").forEach((o) => {
@@ -498,7 +496,7 @@
         let o = t.split(",");
         console.log(o);
         for (let n = 0; n < o.length; n++)
-          console.log(o[n]), _(`.pro_card_wrapper a[href="${o[n]}"]`).then((a) => {
+          console.log(o[n]), x(`.pro_card_wrapper a[href="${o[n]}"]`).then((a) => {
             console.log(a), a.closest(".pro_card_wrapper").querySelector(".quick_add button").addEventListener("click", () => {
               this.renderCrossSellModal(f[r[t].not_addons]);
             });
@@ -513,11 +511,11 @@
           $(".modal").removeClass("active"), d("exp_cross_sell_popup_button_01", "Close", "Button", "Cross-sell popup");
         }), $(".modal-select").on("input", (n) => {
           const a = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex], s = a.text.split("/")[0];
-          if ($(".modal-product__images img").each((c, l) => {
-            $(l).attr("style", "display: none"), (s == "White" && c == 0 || s == "Stone" && c == 1 || s == "Light Blue" && c == 2) && $(l).attr("style", "");
+          if ($(".modal-product__images img").each((p, l) => {
+            $(l).attr("style", "display: none"), (s == "White" && p == 0 || s == "Stone" && p == 1 || s == "Light Blue" && p == 2) && $(l).attr("style", "");
           }), a.getAttribute("data-desc") && $(".modal-product__desc").html(a.getAttribute("data-desc")), a.getAttribute("data-price")) {
-            const c = a.getAttribute("data-compare"), l = a.getAttribute("data-price");
-            $(".modal-product__prices span").html(c), $(".modal-product__prices b").html(l);
+            const p = a.getAttribute("data-compare"), l = a.getAttribute("data-price");
+            $(".modal-product__prices span").html(p), $(".modal-product__prices b").html(l);
           }
           d("exp_cross_sell_popup_dropdown_01", a.text, "Dropdown", "Cross-sell popup");
         }), $(".modal-add").click(function(n) {
