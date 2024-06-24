@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const r = (e, t, n, o = "") => {
+  const d = (e, t, n, o = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
@@ -13,7 +13,7 @@
       `%c EXP: ${e} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, g = (e) => document.querySelectorAll(e), d = (e) => document.querySelector(e), v = (e) => {
+  }, g = (e) => document.querySelectorAll(e), r = (e) => document.querySelector(e), v = (e) => {
     let t = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", e, "variant_1"));
     }, 1e3);
@@ -443,7 +443,7 @@
     }
     init() {
       document.head.insertAdjacentHTML("beforeend", `<style>${E}</style>`), console.log("init "), new MutationObserver((n) => {
-        if (d(".sticky_atc_btn")) {
+        if (r(".sticky_atc_btn")) {
           if (this.showStickyBtn === !0)
             return;
           this.showStickyBtn = !0, g(".sticky_atc_btn").forEach((o) => {
@@ -453,17 +453,17 @@
           });
         } else
           this.showStickyBtn = !1;
-        if (d("#AddToCart") && d("#AddToCart").innerText.toLowerCase().includes("adding")) {
+        if (r("#AddToCart") && r("#AddToCart").innerText.toLowerCase().includes("adding")) {
           if (this.adding === !0)
             return;
           this.adding = !0, this.addToCartPDP();
         } else
           this.adding = !1;
-        if (d('.quick_add .loader[style*="block"]')) {
+        if (r('.quick_add .loader[style*="block"]')) {
           if (this.addingQuick === !0)
             return;
           this.addingQuick = !0;
-          let o = d('.quick_add .loader[style*="block"]').closest(".pro_card_wrapper").querySelector("a").pathname;
+          let o = r('.quick_add .loader[style*="block"]').closest(".pro_card_wrapper").querySelector("a").pathname;
           console.log("href: ", o);
           for (const a in p)
             console.log(a), a.includes(o) && this.renderCrossSellModal(f[p[a].not_addons]);
@@ -493,9 +493,9 @@
     renderCrossSellModal(t) {
       $(".modal").length && $(".modal").remove(), S(t).then((n) => {
         document.body.insertAdjacentHTML("beforeend", n), setTimeout(() => {
-          $(".modal").addClass("active"), r("exp_cross_sell_popup_section_01", "Section", "Visibility", "Cross-sell popup");
+          $(".modal").addClass("active"), d("exp_cross_sell_popup_section_01", "Section", "Visibility", "Cross-sell popup");
         }, 500), $(".modal-head svg").click(function() {
-          $(".modal").removeClass("active"), r("exp_cross_sell_popup_button_01", "Close", "Button", "Cross-sell popup");
+          $(".modal").removeClass("active"), d("exp_cross_sell_popup_button_01", "Close", "Button", "Cross-sell popup");
         }), $(".modal-select").on("input", (o) => {
           const a = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex], s = a.text.split("/")[0];
           if ($(".modal-product__images img").each((c, l) => {
@@ -504,14 +504,16 @@
             const c = a.getAttribute("data-compare"), l = a.getAttribute("data-price");
             $(".modal-product__prices span").html(c), $(".modal-product__prices b").html(l);
           }
-          r("exp_cross_sell_popup_dropdown_01", a.text, "Dropdown", "Cross-sell popup");
+          d("exp_cross_sell_popup_dropdown_01", a.text, "Dropdown", "Cross-sell popup");
         }), $(".modal-add").click(function(o) {
           const a = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].value, s = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].getAttribute("data-qty");
-          $(this).find("span").text("Adding..."), C(a, s), r("exp_cross_sell_popup_button_02", "Add to cart", "Button", "Cross-sell popup");
+          $(this).find("span").text("Adding..."), C(a, s), d("exp_cross_sell_popup_button_02", "Add to cart", "Button", "Cross-sell popup");
         });
       });
     }
   }
-  new P();
+  let L = setInterval(() => {
+    document.body && (clearInterval(L), new P());
+  });
 })();
 //# sourceMappingURL=index.js.map
