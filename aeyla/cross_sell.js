@@ -13,11 +13,11 @@
       `%c EXP: ${e} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, g = (e) => document.querySelectorAll(e), d = (e) => document.querySelector(e), k = (e) => {
+  }, g = (e) => document.querySelectorAll(e), d = (e) => document.querySelector(e), v = (e) => {
     let t = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, v = () => {
+  }, k = () => {
     const e = navigator.userAgent;
     return e.match(/Android/i) || e.match(/webOS/i) || e.match(/iPhone/i) || e.match(/iPad/i) || e.match(/iPod/i) || e.match(/BlackBerry/i) || e.match(/Windows Phone/i) ? "mobile" : "desktop";
   }, w = {
@@ -436,10 +436,10 @@
     margin-top: 4px;
   }
 }/*# sourceMappingURL=main.css.map */`;
-  b({ name: "Cross-sell", dev: "Olha" }), k("exp_cross_sell");
+  b({ name: "Cross-sell", dev: "Olha" }), v("exp_cross_sell");
   class P {
     constructor() {
-      this.page = window.location.pathname, this.device = v(), this.showStickyBtn = !1, this.adding = !1, this.addingQuick = !1, (JSON.stringify(p).includes(this.page) || this.page.includes("/collections/beddings") || this.page.includes("/collections/shop-all-aeyla") || this.page.includes("/collections/pillows") || this.page.includes("/collections/bundles") || this.page.includes("/collections/weighted-blanket-blanket-covers")) && this.init();
+      this.page = window.location.pathname, this.device = k(), this.showStickyBtn = !1, this.adding = !1, this.addingQuick = !1, (JSON.stringify(p).includes(this.page) || this.page.includes("/collections/beddings") || this.page.includes("/collections/shop-all-aeyla") || this.page.includes("/collections/pillows") || this.page.includes("/collections/bundles") || this.page.includes("/collections/weighted-blanket-blanket-covers")) && this.init();
     }
     init() {
       document.head.insertAdjacentHTML("beforeend", `<style>${E}</style>`), console.log("init "), new MutationObserver((n) => {
@@ -464,7 +464,9 @@
             return;
           this.addingQuick = !0;
           let o = d('.quick_add .loader[style*="block"]').closest(".pro_card_wrapper").querySelector("a").pathname;
-          console.log("href: ", o), this.quickAdd(o);
+          console.log("href: ", o);
+          for (const a in p)
+            console.log(a), a.includes(o) && this.renderCrossSellModal(f[p[a].not_addons]);
         } else
           this.addingQuick = !1;
       }).observe(document.body, {
@@ -486,15 +488,6 @@
             let s = 0;
             t != "" ? s = p[n].addons[t] : s = p[n].not_addons, console.log("primaryProduct: " + s), this.renderCrossSellModal(f[s]);
           }
-      }
-    }
-    quickAdd(t) {
-      console.log("init quickAdd");
-      for (const n in p) {
-        let o = n.split(",");
-        console.log(o);
-        for (let a = 0; a < o.length; a++)
-          console.log(o[a]), o[a] == t && (console.log(o[a] + " == " + t), this.renderCrossSellModal(f[p[n].not_addons]));
       }
     }
     renderCrossSellModal(t) {
