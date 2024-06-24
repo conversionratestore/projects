@@ -13,7 +13,7 @@
       `%c EXP: ${e} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, g = (e) => document.querySelectorAll(e), c = (e) => document.querySelector(e), v = (e) => {
+  }, g = (e) => document.querySelectorAll(e), p = (e) => document.querySelector(e), v = (e) => {
     let t = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", e, "variant_1"));
     }, 1e3);
@@ -21,10 +21,10 @@
     const e = navigator.userAgent;
     return e.match(/Android/i) || e.match(/webOS/i) || e.match(/iPhone/i) || e.match(/iPad/i) || e.match(/iPod/i) || e.match(/BlackBerry/i) || e.match(/Windows Phone/i) ? "mobile" : "desktop";
   }, x = (e) => new Promise((t) => {
-    if (c(e))
-      return t(c(e));
+    if (p(e))
+      return t(p(e));
     const o = new MutationObserver(() => {
-      c(e) && (t(c(e)), o.disconnect());
+      p(e) && (t(p(e)), o.disconnect());
     });
     o.observe(document.documentElement, {
       childList: !0,
@@ -205,7 +205,7 @@
     for (let i = 0; i < a.length; i++)
       t += `<li>${a[i]}</li>`;
     let s = Object.keys(e.prices)[0];
-    const p = e.prices.constructor === Object ? e.prices[s][0] : e.prices[0], l = e.prices.constructor === Object ? e.prices[s][1] : e.prices[1];
+    const c = e.prices.constructor === Object ? e.prices[s][0] : e.prices[0], l = e.prices.constructor === Object ? e.prices[s][1] : e.prices[1];
     return `
             <div class="modal">
                 <div class="modal-container">
@@ -217,8 +217,8 @@
                         <div>
                             <p class="modal-product__title">${e.title}</p>
                             <p class="modal-product__desc" ${e.desc[0] == "" ? "hidden" : ""}>${e.desc[0]}</p>
-                            <p class="modal-product__prices" data-compare="${p.replace("£", "")}" data-price="${l.replace("£", "")}">
-                                <span>${p}</span>
+                            <p class="modal-product__prices" data-compare="${c.replace("£", "")}" data-price="${l.replace("£", "")}">
+                                <span>${c}</span>
                                 <b>${l}</b>
                             </p>
                         </div>
@@ -453,7 +453,7 @@
     }
     init() {
       document.head.insertAdjacentHTML("beforeend", `<style>${P}</style>`), console.log("init "), this.quickAdd(), new MutationObserver((o) => {
-        if (c(".sticky_atc_btn")) {
+        if (p(".sticky_atc_btn")) {
           if (this.showStickyBtn === !0)
             return;
           this.showStickyBtn = !0, g(".sticky_atc_btn").forEach((n) => {
@@ -463,7 +463,7 @@
           });
         } else
           this.showStickyBtn = !1;
-        if (console.log(c("#AddToCart").innerText), c("#AddToCart") && c("#AddToCart").innerText.toLowerCase().includes("adding")) {
+        if (p("#AddToCart") && p("#AddToCart").innerText.toLowerCase().includes("adding")) {
           if (this.adding === !0)
             return;
           this.adding = !0, this.addToCartPDP();
@@ -511,11 +511,11 @@
           $(".modal").removeClass("active"), d("exp_cross_sell_popup_button_01", "Close", "Button", "Cross-sell popup");
         }), $(".modal-select").on("input", (n) => {
           const a = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex], s = a.text.split("/")[0];
-          if ($(".modal-product__images img").each((p, l) => {
-            $(l).attr("style", "display: none"), (s == "White" && p == 0 || s == "Stone" && p == 1 || s == "Light Blue" && p == 2) && $(l).attr("style", "");
+          if ($(".modal-product__images img").each((c, l) => {
+            $(l).attr("style", "display: none"), (s == "White" && c == 0 || s == "Stone" && c == 1 || s == "Light Blue" && c == 2) && $(l).attr("style", "");
           }), a.getAttribute("data-desc") && $(".modal-product__desc").html(a.getAttribute("data-desc")), a.getAttribute("data-price")) {
-            const p = a.getAttribute("data-compare"), l = a.getAttribute("data-price");
-            $(".modal-product__prices span").html(p), $(".modal-product__prices b").html(l);
+            const c = a.getAttribute("data-compare"), l = a.getAttribute("data-price");
+            $(".modal-product__prices span").html(c), $(".modal-product__prices b").html(l);
           }
           d("exp_cross_sell_popup_dropdown_01", a.text, "Dropdown", "Cross-sell popup");
         }), $(".modal-add").click(function(n) {
