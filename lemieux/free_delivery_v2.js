@@ -276,7 +276,7 @@ basket-view .threshold_banner.crs_complete p {\r
       </div>
       <div class="free_delivery_banner_item">
         ${p.deliveryArrows}
-        <p>60 day returns</p>
+        <p>60 days returns</p>
       </div>
     </div>
   `
@@ -320,7 +320,14 @@ basket-view .threshold_banner.crs_complete p {\r
     )} </span> away from <b>Free ${a} Delivery</b></p>
   </div>
 `
-  ), L = `@keyframes blinkq {\r
+  ), L = `.is_homepage header:not(.is-sticky) .header_icon path {\r
+  /* fill: white; */\r
+}\r
+.is_homepage .page-header__wrapper:hover .header_icon path {\r
+  fill: #2c7226;\r
+}\r
+\r
+@keyframes blink {\r
   0%,\r
   49% {\r
     opacity: 1;\r
@@ -332,19 +339,11 @@ basket-view .threshold_banner.crs_complete p {\r
 }\r
 \r
 .free_delivery_icon > *:nth-child(odd) {\r
-  animation: blinkq 4s steps(1, start) 2s infinite;\r
-  will-change: opacity;\r
+  animation: blink 4s steps(1, start) 2s infinite;\r
 }\r
 \r
 .free_delivery_icon > *:nth-child(even) {\r
-  animation: blinkq 4s steps(1, start) infinite;\r
-  will-change: opacity;\r
-}\r
-.is_homepage header:not(.is-sticky) .header_icon path {\r
-  fill: white;\r
-}\r
-.is_homepage .page-header__wrapper:hover .header_icon path {\r
-  fill: #2c7226;\r
+  animation: blink 4s steps(1, start) infinite;\r
 }\r
 \r
 body basket-qty.inline-flex,\r
@@ -379,7 +378,7 @@ body basket-qty {\r
       this.observer = null, this.lastPath = window.location.pathname, this.device = r, this.baseUrl = e, this.country = "UK", this.currency = "£", this.threshold = 75, this.init(), this.observePageChange();
     }
     init() {
-      console.log("INIT"), h("body.content-initiated").then(() => {
+      h("body.content-initiated").then(() => {
         m("free_delivery"), this.visibleHandler(), this.getGrandTotalPriceFromWindow(), this.renderFreeDeliveryBanner(), this.productPage(), this.cartPage(), this.addEventListeners(), document.head.insertAdjacentHTML("afterbegin", `<style>${L}</style>`);
       });
     }
@@ -525,9 +524,7 @@ body basket-qty {\r
               ));
             }, 100);
           }
-          setTimeout(() => {
-            a.classList.add("free_delivery_icon");
-          }, 700), s.style.opacity = "0";
+          a.classList.add("free_delivery_icon"), s.style.opacity = "0";
         } else {
           if (a.querySelector(".header_icon") == null)
             return;
