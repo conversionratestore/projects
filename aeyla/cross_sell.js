@@ -1,36 +1,26 @@
 (function() {
   "use strict";
-  const d = (e, t, o, n = "") => {
+  const r = (e, t, n, o = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
       event_desc: t,
-      event_type: o,
-      event_loc: n
-    }), console.dir(`Event: ${e} | ${t} | ${o} | ${n}`);
+      event_type: n,
+      event_loc: o
+    }), console.dir(`Event: ${e} | ${t} | ${n} | ${o}`);
   }, b = ({ name: e, dev: t }) => {
     console.dir(
       `%c EXP: ${e} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, g = (e) => document.querySelectorAll(e), p = (e) => document.querySelector(e), v = (e) => {
+  }, g = (e) => document.querySelectorAll(e), d = (e) => document.querySelector(e), k = (e) => {
     let t = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, k = () => {
+  }, v = () => {
     const e = navigator.userAgent;
     return e.match(/Android/i) || e.match(/webOS/i) || e.match(/iPhone/i) || e.match(/iPad/i) || e.match(/iPod/i) || e.match(/BlackBerry/i) || e.match(/Windows Phone/i) ? "mobile" : "desktop";
-  }, x = (e) => new Promise((t) => {
-    if (p(e))
-      return t(p(e));
-    const o = new MutationObserver(() => {
-      p(e) && (t(p(e)), o.disconnect());
-    });
-    o.observe(document.documentElement, {
-      childList: !0,
-      subtree: !0
-    });
-  }), w = {
+  }, w = {
     close: (
       /*html */
       `
@@ -125,7 +115,7 @@
         "Light Blue": 44467937313054
       }
     }
-  }, r = {
+  }, p = {
     "/products/mela-weighted-blanket,/products/the-mela-weighted-blanket-with-removable-cover": {
       addons: {
         pillowcases: 2,
@@ -162,15 +152,15 @@
       not_addons: 2
     }
   };
-  let _ = ["eucalyptus-silk-eye-mask", "eucalyptus-silk-pillow-cases", "eucalyptus-silk-sheet-set"], y = [];
-  const C = (e) => fetch("/products/" + e + ".js").then((t) => t.json()).then((t) => {
-    t.variants && t.variants.forEach(function(o) {
-      y[o.id] = o.available;
+  let x = ["eucalyptus-silk-eye-mask", "eucalyptus-silk-pillow-cases", "eucalyptus-silk-sheet-set"], y = [];
+  const _ = (e) => fetch("/products/" + e + ".js").then((t) => t.json()).then((t) => {
+    t.variants && t.variants.forEach(function(n) {
+      y[n.id] = n.available;
     });
   }).catch((t) => {
     console.log("Error fetching product for handle:", e, t);
-  }), S = (e, t) => {
-    let o = {
+  }), C = (e, t) => {
+    let n = {
       items: [
         {
           id: e,
@@ -181,25 +171,25 @@
     $.ajax({
       url: "/cart/add.js",
       type: "POST",
-      data: o,
+      data: n,
       dataType: "json",
-      error: function(n) {
-        console.log(n);
+      error: function(o) {
+        console.log(o);
       }
-    }).done(function(n) {
+    }).done(function(o) {
       $.getJSON("/cart.js", function(a) {
         $(".ic").find(".cart_count").text(a.item_count), console.log(a), $(".modal-add span").text("ADD TO CART"), $(".modal").removeClass("active"), addToCartOK();
       });
     });
-  }, E = (e) => Promise.all(_.map(C)).then(() => {
-    let t = "", o = "";
-    const n = e.select;
-    for (const i in n) {
+  }, S = (e) => Promise.all(x.map(_)).then(() => {
+    let t = "", n = "";
+    const o = e.select;
+    for (const i in o) {
       let m = "", h = "";
       if (e.title == "Eucalyptus Silk Sheet Set")
         for (let u = 0; u < e.desc.length; u++)
           e.desc[u].split(":")[0] == i.split("/")[1] && (m = e.desc[u]);
-      e.prices.constructor === Object && (h = e.prices[i.split("/")[1]]), y[n[i]] == !0 && (o += `<option value="${n[i]}" ${m != "" ? `data-desc="${m}"` : ""} ${h != "" ? `data-compare="${h[0]}" data-price="${h[1]}"` : ""} data-qty="${i.includes("4 pack") ? 2 : 1}">${i}</option>`);
+      e.prices.constructor === Object && (h = e.prices[i.split("/")[1]]), y[o[i]] == !0 && (n += `<option value="${o[i]}" ${m != "" ? `data-desc="${m}"` : ""} ${h != "" ? `data-compare="${h[0]}" data-price="${h[1]}"` : ""} data-qty="${i.includes("4 pack") ? 2 : 1}">${i}</option>`);
     }
     let a = e.list;
     for (let i = 0; i < a.length; i++)
@@ -226,14 +216,14 @@
                     <div class="modal-content">
                         <ul class="modal-list">${t}</ul>
                         <div class="select-parent">
-                            <select class="modal-select">${o}</select>
+                            <select class="modal-select">${n}</select>
                             ${w.arrowDown}
                         </div>
                         <button type="button" class="modal-add items-center">${w.cart} <span>Add to cart</span></button>
                     </div>
                 </div>
             </div>`;
-  }), P = `.items-center {
+  }), E = `.items-center {
   display: flex;
   align-items: center;
 }
@@ -446,29 +436,37 @@
     margin-top: 4px;
   }
 }/*# sourceMappingURL=main.css.map */`;
-  b({ name: "Cross-sell", dev: "Olha" }), v("exp_cross_sell");
-  class L {
+  b({ name: "Cross-sell", dev: "Olha" }), k("exp_cross_sell");
+  class P {
     constructor() {
-      this.page = window.location.pathname, this.device = k(), this.showStickyBtn = !1, this.adding = !1, (JSON.stringify(r).includes(this.page) || this.page.includes("/collections/beddings") || this.page.includes("/collections/shop-all-aeyla") || this.page.includes("/collections/pillows") || this.page.includes("/collections/bundles") || this.page.includes("/collections/weighted-blanket-blanket-covers")) && this.init();
+      this.page = window.location.pathname, this.device = v(), this.showStickyBtn = !1, this.adding = !1, this.addingQuick = !1, (JSON.stringify(p).includes(this.page) || this.page.includes("/collections/beddings") || this.page.includes("/collections/shop-all-aeyla") || this.page.includes("/collections/pillows") || this.page.includes("/collections/bundles") || this.page.includes("/collections/weighted-blanket-blanket-covers")) && this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${P}</style>`), console.log("init "), this.quickAdd(), new MutationObserver((o) => {
-        if (p(".sticky_atc_btn")) {
+      document.head.insertAdjacentHTML("beforeend", `<style>${E}</style>`), console.log("init "), new MutationObserver((n) => {
+        if (d(".sticky_atc_btn")) {
           if (this.showStickyBtn === !0)
             return;
-          this.showStickyBtn = !0, g(".sticky_atc_btn").forEach((n) => {
-            n.addEventListener("click", () => {
+          this.showStickyBtn = !0, g(".sticky_atc_btn").forEach((o) => {
+            o.addEventListener("click", () => {
               this.addToCartPDP();
             });
           });
         } else
           this.showStickyBtn = !1;
-        if (p("#AddToCart") && p("#AddToCart").innerText.toLowerCase().includes("adding")) {
+        if (d("#AddToCart") && d("#AddToCart").innerText.toLowerCase().includes("adding")) {
           if (this.adding === !0)
             return;
           this.adding = !0, this.addToCartPDP();
         } else
           this.adding = !1;
+        if (d('.quick_add .loader[style*="block"]')) {
+          if (this.addingQuick === !0)
+            return;
+          this.addingQuick = !0;
+          let o = d('.quick_add .loader[style*="block"]').closest(".pro_card_wrapper").querySelector("a").pathname;
+          console.log("href: ", o), this.quickAdd(o);
+        } else
+          this.addingQuick = !1;
       }).observe(document.body, {
         childList: !0,
         subtree: !0
@@ -477,39 +475,35 @@
     addToCartPDP() {
       console.log("click addToCart button");
       let t = "";
-      g(".upsell_wrapper .chckd").forEach((o) => {
-        this.page.includes("/move-in-set-2") || (t += o.querySelector(".text-main-blue > span").innerText.toLowerCase());
+      g(".upsell_wrapper .chckd").forEach((n) => {
+        this.page.includes("/move-in-set-2") || (t += n.querySelector(".text-main-blue > span").innerText.toLowerCase());
       }), t != "" && (t = t.includes("mask") && t.includes("pillowcases") ? "pillowcases_mask" : t.includes("mask") ? "mask" : "pillowcases"), console.log("addonsName: " + t);
-      for (const o in r) {
-        let n = o.split(",");
-        for (let a = 0; a < n.length; a++)
-          if (n[a].includes(this.page)) {
-            console.log("dataCrossSell: " + n[a]);
+      for (const n in p) {
+        let o = n.split(",");
+        for (let a = 0; a < o.length; a++)
+          if (o[a].includes(this.page)) {
+            console.log("dataCrossSell: " + o[a]);
             let s = 0;
-            t != "" ? s = r[o].addons[t] : s = r[o].not_addons, console.log("primaryProduct: " + s), this.renderCrossSellModal(f[s]);
+            t != "" ? s = p[n].addons[t] : s = p[n].not_addons, console.log("primaryProduct: " + s), this.renderCrossSellModal(f[s]);
           }
       }
     }
-    quickAdd() {
+    quickAdd(t) {
       console.log("init quickAdd");
-      for (const t in r) {
-        let o = t.split(",");
+      for (const n in p) {
+        let o = n.split(",");
         console.log(o);
-        for (let n = 0; n < o.length; n++)
-          console.log(o[n]), x(`.pro_card_wrapper a[href="${o[n]}"]`).then((a) => {
-            console.log(a), a.closest(".pro_card_wrapper").querySelector(".quick_add button").addEventListener("click", () => {
-              this.renderCrossSellModal(f[r[t].not_addons]);
-            });
-          });
+        for (let a = 0; a < o.length; a++)
+          console.log(o[a]), o[a] == t && (console.log(o[a] + " == " + t), this.renderCrossSellModal(f[p[n].not_addons]));
       }
     }
     renderCrossSellModal(t) {
-      $(".modal").length && $(".modal").remove(), E(t).then((o) => {
-        document.body.insertAdjacentHTML("beforeend", o), setTimeout(() => {
-          $(".modal").addClass("active"), d("exp_cross_sell_popup_section_01", "Section", "Visibility", "Cross-sell popup");
+      $(".modal").length && $(".modal").remove(), S(t).then((n) => {
+        document.body.insertAdjacentHTML("beforeend", n), setTimeout(() => {
+          $(".modal").addClass("active"), r("exp_cross_sell_popup_section_01", "Section", "Visibility", "Cross-sell popup");
         }, 500), $(".modal-head svg").click(function() {
-          $(".modal").removeClass("active"), d("exp_cross_sell_popup_button_01", "Close", "Button", "Cross-sell popup");
-        }), $(".modal-select").on("input", (n) => {
+          $(".modal").removeClass("active"), r("exp_cross_sell_popup_button_01", "Close", "Button", "Cross-sell popup");
+        }), $(".modal-select").on("input", (o) => {
           const a = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex], s = a.text.split("/")[0];
           if ($(".modal-product__images img").each((c, l) => {
             $(l).attr("style", "display: none"), (s == "White" && c == 0 || s == "Stone" && c == 1 || s == "Light Blue" && c == 2) && $(l).attr("style", "");
@@ -517,14 +511,14 @@
             const c = a.getAttribute("data-compare"), l = a.getAttribute("data-price");
             $(".modal-product__prices span").html(c), $(".modal-product__prices b").html(l);
           }
-          d("exp_cross_sell_popup_dropdown_01", a.text, "Dropdown", "Cross-sell popup");
-        }), $(".modal-add").click(function(n) {
+          r("exp_cross_sell_popup_dropdown_01", a.text, "Dropdown", "Cross-sell popup");
+        }), $(".modal-add").click(function(o) {
           const a = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].value, s = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].getAttribute("data-qty");
-          $(this).find("span").text("Adding..."), S(a, s), d("exp_cross_sell_popup_button_02", "Add to cart", "Button", "Cross-sell popup");
+          $(this).find("span").text("Adding..."), C(a, s), r("exp_cross_sell_popup_button_02", "Add to cart", "Button", "Cross-sell popup");
         });
       });
     }
   }
-  new L();
+  new P();
 })();
 //# sourceMappingURL=index.js.map
