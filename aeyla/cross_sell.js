@@ -1,26 +1,26 @@
 (function() {
   "use strict";
-  const d = (e, t, n, o = "") => {
+  const r = (e, t, o, a = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
       event_desc: t,
-      event_type: n,
-      event_loc: o
-    }), console.dir(`Event: ${e} | ${t} | ${n} | ${o}`);
+      event_type: o,
+      event_loc: a
+    }), console.dir(`Event: ${e} | ${t} | ${o} | ${a}`);
   }, b = ({ name: e, dev: t }) => {
     console.dir(
       `%c EXP: ${e} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, g = (e) => document.querySelectorAll(e), r = (e) => document.querySelector(e), v = (e) => {
+  }, g = (e) => document.querySelectorAll(e), d = (e) => document.querySelector(e), v = (e) => {
     let t = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", e, "variant_1"));
     }, 1e3);
   }, k = () => {
     const e = navigator.userAgent;
     return e.match(/Android/i) || e.match(/webOS/i) || e.match(/iPhone/i) || e.match(/iPad/i) || e.match(/iPod/i) || e.match(/BlackBerry/i) || e.match(/Windows Phone/i) ? "mobile" : "desktop";
-  }, w = {
+  }, m = {
     close: (
       /*html */
       `
@@ -61,11 +61,6 @@
     <img src="//www.aeyla.co.uk/cdn/shop/products/06072022_Aeyla-0617x_3ff06a0c-9705-42e5-921f-d7346dc37be7.webp?crop=center&amp;height=1400&amp;v=1704709534&amp;width=1400" alt="Eucalyptus Silk Sheet Set" srcset="//www.aeyla.co.uk/cdn/shop/products/06072022_Aeyla-0617x_3ff06a0c-9705-42e5-921f-d7346dc37be7.webp?crop=center&amp;height=1400&amp;v=1704709534&amp;width=352 352w, //www.aeyla.co.uk/cdn/shop/products/06072022_Aeyla-0617x_3ff06a0c-9705-42e5-921f-d7346dc37be7.webp?crop=center&amp;height=1400&amp;v=1704709534&amp;width=832 832w, //www.aeyla.co.uk/cdn/shop/products/06072022_Aeyla-0617x_3ff06a0c-9705-42e5-921f-d7346dc37be7.webp?crop=center&amp;height=1400&amp;v=1704709534&amp;width=1200 1200w, //www.aeyla.co.uk/cdn/shop/products/06072022_Aeyla-0617x_3ff06a0c-9705-42e5-921f-d7346dc37be7.webp?crop=center&amp;height=1400&amp;v=1704709534&amp;width=1400 1400w" width="1400" height="1400" loading="lazy" sizes="(min-width: 1024) 41.6vw, 100vw" class="rounded-2xl object-cover aspect-square w-full h-full" style="display: none;">`,
       title: "Eucalyptus Silk Sheet Set",
       desc: ["Double: Duvet Cover (200cm x 200cm), Fitted Sheet (135cm x 190cm x 32cm), Pillowcases (75cm x 50cm)", "King: Duvet Cover (225cm x 220cm), Fitted Sheet (150cm x 200cm x 32cm), Pillowcases (75cm x 50cm)", "Super King: Duvet Cover (260cm x 220cm), Fitted Sheet (180cm x 200cm x 32cm), Pillowcases (75cm x 50cm)"],
-      prices: {
-        Double: ["£269.00", "£139.00"],
-        King: ["£289.00", "£149.00"],
-        "Super King": ["£309.00", "£159.00"]
-      },
       list: ["Super soft fabric prevents hair breakage and skin creases. Hypoallergenic and gentle.", "Naturally wicks away sweat to regulate body temperature and stay cool."],
       select: {
         "White/Double": 44467947864350,
@@ -86,10 +81,6 @@
     <img src="//www.aeyla.co.uk/cdn/shop/products/Stone_Pillowcase-x.webp?crop=center&amp;height=1400&amp;v=1704709097&amp;width=1400" alt="Eucalyptus Silk Pillow Cases - 2 Pack" srcset="//www.aeyla.co.uk/cdn/shop/products/Stone_Pillowcase-x.webp?crop=center&amp;height=1400&amp;v=1704709097&amp;width=352 352w, //www.aeyla.co.uk/cdn/shop/products/Stone_Pillowcase-x.webp?crop=center&amp;height=1400&amp;v=1704709097&amp;width=832 832w, //www.aeyla.co.uk/cdn/shop/products/Stone_Pillowcase-x.webp?crop=center&amp;height=1400&amp;v=1704709097&amp;width=1200 1200w, //www.aeyla.co.uk/cdn/shop/products/Stone_Pillowcase-x.webp?crop=center&amp;height=1400&amp;v=1704709097&amp;width=1400 1400w" width="1400" height="1400" loading="lazy" sizes="(min-width: 1024) 41.6vw, 100vw" class="rounded-2xl object-cover aspect-square w-full h-full" style="display: none;">`,
       title: "Eucalyptus Silk Pillow Cases",
       desc: ["For Standard Size Pillow: 50cm x 75cm"],
-      prices: {
-        "2 pack": ["£49.99", "£24.99"],
-        "4 pack": ["£99.98", "£49.98"]
-      },
       list: ["Feels like a fresh breeze, keeping that cool-side-of-the-pillow sensation.", "Super soft fabric prevents hair breakage and skin creases."],
       select: {
         "White/2 pack": 44467942981918,
@@ -107,7 +98,6 @@
     <img src="//www.aeyla.co.uk/cdn/shop/products/MEL2923-MelaComfortBLUE_705f925c-e28f-4a5d-b10a-70259fa1a23f.webp?crop=center&amp;height=1400&amp;v=1677417887&amp;width=1400" alt="Eucalyptus Silk Eye Mask" width="1400" height="1400" loading="lazy" sizes="(min-width: 1024) 41.6vw, 100vw" class="rounded-xl object-cover aspect-square w-full h-full" style="display: none;">`,
       title: "Eucalyptus Silk Eye Mask",
       desc: [""],
-      prices: ["£25.00", "£15.00"],
       list: ["Promotes good sleep. ", "Cooling, super soft, hypoallergenic & dermatologically tested material."],
       select: {
         White: 44467937280286,
@@ -152,15 +142,23 @@
       not_addons: 2
     }
   };
-  let x = ["eucalyptus-silk-eye-mask", "eucalyptus-silk-pillow-cases", "eucalyptus-silk-sheet-set"], y = [];
+  let x = ["eucalyptus-silk-eye-mask", "eucalyptus-silk-pillow-cases", "eucalyptus-silk-sheet-set"], c = [];
+  function y(e) {
+    let t = e.toString(), o = t.length;
+    return (+(t.slice(0, o - 2) + "." + t.slice(o - 2))).toFixed(2);
+  }
   const _ = (e) => fetch("/products/" + e + ".js").then((t) => t.json()).then((t) => {
-    t.variants && t.variants.forEach(function(n) {
-      y[n.id] = n.available;
+    console.log("Product:", t), t.variants && t.variants.forEach(function(o) {
+      c[o.id] = {
+        available: o.available,
+        price: y(o.price),
+        compare: y(o.compare_at_price)
+      };
     });
   }).catch((t) => {
     console.log("Error fetching product for handle:", e, t);
   }), C = (e, t) => {
-    let n = {
+    let o = {
       items: [
         {
           id: e,
@@ -171,55 +169,57 @@
     $.ajax({
       url: "/cart/add.js",
       type: "POST",
-      data: n,
+      data: o,
       dataType: "json",
-      error: function(o) {
-        console.log(o);
+      error: function(a) {
+        console.log(a);
       }
-    }).done(function(o) {
-      $.getJSON("/cart.js", function(a) {
-        $(".ic").find(".cart_count").text(a.item_count), console.log(a), $(".modal-add span").text("ADD TO CART"), $(".modal").removeClass("active"), addToCartOK();
+    }).done(function(a) {
+      $.getJSON("/cart.js", function(n) {
+        $(".ic").find(".cart_count").text(n.item_count), console.log(n), $(".modal-add span").text("ADD TO CART"), $(".modal").removeClass("active"), addToCartOK();
       });
     });
   }, S = (e) => Promise.all(x.map(_)).then(() => {
-    let t = "", n = "";
-    const o = e.select;
-    for (const i in o) {
-      let m = "", h = "";
+    console.log(c);
+    let t = "", o = "";
+    const a = e.select;
+    for (const s in a) {
+      let i = "";
       if (e.title == "Eucalyptus Silk Sheet Set")
-        for (let u = 0; u < e.desc.length; u++)
-          e.desc[u].split(":")[0] == i.split("/")[1] && (m = e.desc[u]);
-      e.prices.constructor === Object && (h = e.prices[i.split("/")[1]]), y[o[i]] == !0 && (n += `<option value="${o[i]}" ${m != "" ? `data-desc="${m}"` : ""} ${h != "" ? `data-compare="${h[0]}" data-price="${h[1]}"` : ""} data-qty="${i.includes("4 pack") ? 2 : 1}">${i}</option>`);
+        for (let w = 0; w < e.desc.length; w++)
+          e.desc[w].split(":")[0] == s.split("/")[1] && (i = e.desc[w]);
+      c[a[s]].available == !0 && (o += `<option value="${a[s]}" ${i != "" ? `data-desc="${i}"` : ""} data-compare="${(c[a[s]].compare * (s.includes("4 pack") ? 2 : 1)).toFixed(2)}" data-price="${(c[a[s]].price * (s.includes("4 pack") ? 2 : 1)).toFixed(2)}" data-qty="${s.includes("4 pack") ? 2 : 1}">${s}</option>`);
     }
-    let a = e.list;
-    for (let i = 0; i < a.length; i++)
-      t += `<li>${a[i]}</li>`;
-    let s = Object.keys(e.prices)[0];
-    const c = e.prices.constructor === Object ? e.prices[s][0] : e.prices[0], l = e.prices.constructor === Object ? e.prices[s][1] : e.prices[1];
+    let n = e.list;
+    for (let s = 0; s < n.length; s++)
+      t += `<li>${n[s]}</li>`;
+    let l = c[a[Object.keys(a)[0]]].compare, h = c[a[Object.keys(a)[0]]].price, u = Math.round(100 - h * 100 / l).toFixed(0);
     return `
             <div class="modal">
                 <div class="modal-container">
                     <div class="modal-head">
-                        ${e.head} ${w.close}
+                        ${e.head} ${m.close}
                     </div>
                     <div class="modal-product items-center">
-                        <div class="modal-product__images">${e.images}</div>
+                        <div class="modal-product__images">
+                            <div class="modal-product__save" style="${u <= 0 ? "display: none" : ""}">${u}% Off)</div>${e.images}
+                        </div>
                         <div>
                             <p class="modal-product__title">${e.title}</p>
                             <p class="modal-product__desc" ${e.desc[0] == "" ? "hidden" : ""}>${e.desc[0]}</p>
-                            <p class="modal-product__prices" data-compare="${c.replace("£", "")}" data-price="${l.replace("£", "")}">
-                                <span>${c}</span>
-                                <b>${l}</b>
+                            <p class="modal-product__prices">
+                                <span>£${l}</span>
+                                <b>£${h}</b>
                             </p>
                         </div>
                     </div>
                     <div class="modal-content">
                         <ul class="modal-list">${t}</ul>
                         <div class="select-parent">
-                            <select class="modal-select">${n}</select>
-                            ${w.arrowDown}
+                            <select class="modal-select">${o}</select>
+                            ${m.arrowDown}
                         </div>
-                        <button type="button" class="modal-add items-center">${w.cart} <span>Add to cart</span></button>
+                        <button type="button" class="modal-add items-center">${m.cart} <span>Add to cart</span></button>
                     </div>
                 </div>
             </div>`;
@@ -297,6 +297,7 @@
   margin-right: 12px;
   flex-shrink: 0;
   overflow: hidden;
+  position: relative;
 }
 .modal-product__images img {
   width: 100%;
@@ -304,6 +305,20 @@
   -o-object-fit: contain;
      object-fit: contain;
   border-radius: 0;
+}
+.modal-product__save {
+  border-radius: 0px 4px;
+  background: #A84A23;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 4px 6px;
+  color: #FFF;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 12px;
+  letter-spacing: -0.25px;
 }
 .modal-product__title {
   color: #1b2943;
@@ -442,31 +457,31 @@
       this.page = window.location.pathname, this.device = k(), this.showStickyBtn = !1, this.adding = !1, this.addingQuick = !1, (JSON.stringify(p).includes(this.page) || this.page.includes("/collections/beddings") || this.page.includes("/collections/shop-all-aeyla") || this.page.includes("/collections/pillows") || this.page.includes("/collections/bundles") || this.page.includes("/collections/weighted-blanket-blanket-covers")) && this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${E}</style>`), console.log("init "), new MutationObserver((n) => {
-        if (r(".sticky_atc_btn")) {
+      document.head.insertAdjacentHTML("beforeend", `<style>${E}</style>`), console.log("init "), new MutationObserver((o) => {
+        if (d(".sticky_atc_btn")) {
           if (this.showStickyBtn === !0)
             return;
-          this.showStickyBtn = !0, g(".sticky_atc_btn").forEach((o) => {
-            o.addEventListener("click", () => {
+          this.showStickyBtn = !0, g(".sticky_atc_btn").forEach((a) => {
+            a.addEventListener("click", () => {
               this.addToCartPDP();
             });
           });
         } else
           this.showStickyBtn = !1;
-        if (r("#AddToCart") && r("#AddToCart").innerText.toLowerCase().includes("adding")) {
+        if (d("#AddToCart") && d("#AddToCart").innerText.toLowerCase().includes("adding")) {
           if (this.adding === !0)
             return;
           this.adding = !0, this.addToCartPDP();
         } else
           this.adding = !1;
-        if (r('.quick_add .loader[style*="block"]')) {
+        if (d('.quick_add .loader[style*="block"]')) {
           if (this.addingQuick === !0)
             return;
           this.addingQuick = !0;
-          let o = r('.quick_add .loader[style*="block"]').closest(".pro_card_wrapper").querySelector("a").pathname;
-          console.log("href: ", o);
-          for (const a in p)
-            console.log(a), a.includes(o) && this.renderCrossSellModal(f[p[a].not_addons]);
+          let a = d('.quick_add .loader[style*="block"]').closest(".pro_card_wrapper").querySelector("a").pathname;
+          console.log("href: ", a);
+          for (const n in p)
+            console.log(n), n.includes(a) && this.renderCrossSellModal(f[p[n].not_addons]);
         } else
           this.addingQuick = !1;
       }).observe(document.body, {
@@ -477,37 +492,33 @@
     addToCartPDP() {
       console.log("click addToCart button");
       let t = "";
-      g(".upsell_wrapper .chckd").forEach((n) => {
-        this.page.includes("/move-in-set-2") || (t += n.querySelector(".text-main-blue > span").innerText.toLowerCase());
+      g(".upsell_wrapper .chckd").forEach((o) => {
+        this.page.includes("/move-in-set-2") || (t += o.querySelector(".text-main-blue > span").innerText.toLowerCase());
       }), t != "" && (t = t.includes("mask") && t.includes("pillowcases") ? "pillowcases_mask" : t.includes("mask") ? "mask" : "pillowcases"), console.log("addonsName: " + t);
-      for (const n in p) {
-        let o = n.split(",");
-        for (let a = 0; a < o.length; a++)
-          if (o[a].includes(this.page)) {
-            console.log("dataCrossSell: " + o[a]);
-            let s = 0;
-            t != "" ? s = p[n].addons[t] : s = p[n].not_addons, console.log("primaryProduct: " + s), this.renderCrossSellModal(f[s]);
+      for (const o in p) {
+        let a = o.split(",");
+        for (let n = 0; n < a.length; n++)
+          if (a[n].includes(this.page)) {
+            console.log("dataCrossSell: " + a[n]);
+            let l = 0;
+            t != "" ? l = p[o].addons[t] : l = p[o].not_addons, console.log("primaryProduct: " + l), this.renderCrossSellModal(f[l]);
           }
       }
     }
     renderCrossSellModal(t) {
-      $(".modal").length && $(".modal").remove(), S(t).then((n) => {
-        document.body.insertAdjacentHTML("beforeend", n), setTimeout(() => {
-          $(".modal").addClass("active"), d("exp_cross_sell_popup_section_01", "Section", "Visibility", "Cross-sell popup");
+      $(".modal").length && $(".modal").remove(), S(t).then((o) => {
+        document.body.insertAdjacentHTML("beforeend", o), setTimeout(() => {
+          $(".modal").addClass("active"), r("exp_cross_sell_popup_section_01", "Section", "Visibility", "Cross-sell popup");
         }, 500), $(".modal-head svg").click(function() {
-          $(".modal").removeClass("active"), d("exp_cross_sell_popup_button_01", "Close", "Button", "Cross-sell popup");
-        }), $(".modal-select").on("input", (o) => {
-          const a = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex], s = a.text.split("/")[0];
-          if ($(".modal-product__images img").each((c, l) => {
-            $(l).attr("style", "display: none"), (s == "White" && c == 0 || s == "Stone" && c == 1 || s == "Light Blue" && c == 2) && $(l).attr("style", "");
-          }), a.getAttribute("data-desc") && $(".modal-product__desc").html(a.getAttribute("data-desc")), a.getAttribute("data-price")) {
-            const c = a.getAttribute("data-compare"), l = a.getAttribute("data-price");
-            $(".modal-product__prices span").html(c), $(".modal-product__prices b").html(l);
-          }
-          d("exp_cross_sell_popup_dropdown_01", a.text, "Dropdown", "Cross-sell popup");
-        }), $(".modal-add").click(function(o) {
-          const a = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].value, s = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].getAttribute("data-qty");
-          $(this).find("span").text("Adding..."), C(a, s), d("exp_cross_sell_popup_button_02", "Add to cart", "Button", "Cross-sell popup");
+          $(".modal").removeClass("active"), r("exp_cross_sell_popup_button_01", "Close", "Button", "Cross-sell popup");
+        }), $(".modal-select").on("input", (a) => {
+          const n = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex], l = n.text.split("/")[0], h = n.getAttribute("data-compare"), u = n.getAttribute("data-price");
+          $(".modal-product__prices span").html("£" + h), $(".modal-product__prices b").html("£" + u), $(".modal-product__images img").each((s, i) => {
+            $(i).attr("style", "display: none"), (l == "White" && s == 0 || l == "Stone" && s == 1 || l == "Light Blue" && s == 2) && $(i).attr("style", "");
+          }), n.getAttribute("data-desc") && $(".modal-product__desc").html(n.getAttribute("data-desc")), r("exp_cross_sell_popup_dropdown_01", n.text, "Dropdown", "Cross-sell popup");
+        }), $(".modal-add").click(function(a) {
+          const n = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].value, l = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].getAttribute("data-qty");
+          $(this).find("span").text("Adding..."), C(n, l), r("exp_cross_sell_popup_button_02", "Add to cart", "Button", "Cross-sell popup");
         });
       });
     }
