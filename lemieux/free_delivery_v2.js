@@ -320,7 +320,7 @@ basket-view .threshold_banner.crs_complete p {\r
     )} </span> away from <b>Free ${a} Delivery</b></p>
   </div>
 `
-  ), L = `@keyframes blink {\r
+  ), L = `@keyframes blinkq {\r
   0%,\r
   49% {\r
     opacity: 1;\r
@@ -332,11 +332,13 @@ basket-view .threshold_banner.crs_complete p {\r
 }\r
 \r
 .free_delivery_icon > *:nth-child(odd) {\r
-  animation: blink 4s steps(1, start) 2s infinite;\r
+  animation: blinkq 4s steps(1, start) 2s infinite;\r
+  will-change: opacity;\r
 }\r
 \r
 .free_delivery_icon > *:nth-child(even) {\r
-  animation: blink 4s steps(1, start) infinite;\r
+  animation: blinkq 4s steps(1, start) infinite;\r
+  will-change: opacity;\r
 }\r
 .is_homepage header:not(.is-sticky) .header_icon path {\r
   fill: white;\r
@@ -377,7 +379,7 @@ body basket-qty {\r
       this.observer = null, this.lastPath = window.location.pathname, this.device = r, this.baseUrl = e, this.country = "UK", this.currency = "£", this.threshold = 75, this.init(), this.observePageChange();
     }
     init() {
-      h("body.content-initiated").then(() => {
+      console.log("INIT"), h("body.content-initiated").then(() => {
         m("free_delivery"), this.visibleHandler(), this.getGrandTotalPriceFromWindow(), this.renderFreeDeliveryBanner(), this.productPage(), this.cartPage(), this.addEventListeners(), document.head.insertAdjacentHTML("afterbegin", `<style>${L}</style>`);
       });
     }
