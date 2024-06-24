@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const r = (e, t, o, a = "") => {
+  const h = (e, t, o, a = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
@@ -193,7 +193,7 @@
     let n = e.list;
     for (let s = 0; s < n.length; s++)
       t += `<li>${n[s]}</li>`;
-    let l = c[a[Object.keys(a)[0]]].compare, h = c[a[Object.keys(a)[0]]].price, u = Math.round(100 - h * 100 / l).toFixed(0);
+    let l = c[a[Object.keys(a)[0]]].compare, u = c[a[Object.keys(a)[0]]].price, r = Math.round(100 - u * 100 / l).toFixed(0);
     return `
             <div class="modal">
                 <div class="modal-container">
@@ -202,14 +202,14 @@
                     </div>
                     <div class="modal-product items-center">
                         <div class="modal-product__images">
-                            <div class="modal-product__save" style="${u <= 0 ? "display: none" : ""}">${u}% Off)</div>${e.images}
+                            <div class="modal-product__save" style="${r <= 0 ? "display: none" : ""}">${r}% Off)</div>${e.images}
                         </div>
                         <div>
                             <p class="modal-product__title">${e.title}</p>
                             <p class="modal-product__desc" ${e.desc[0] == "" ? "hidden" : ""}>${e.desc[0]}</p>
                             <p class="modal-product__prices">
-                                <span>£${l}</span>
-                                <b>£${h}</b>
+                                <span style="${r <= 0 ? "display: none" : ""}">£${l}</span>
+                                <b>£${u}</b>
                             </p>
                         </div>
                     </div>
@@ -508,17 +508,17 @@
     renderCrossSellModal(t) {
       $(".modal").length && $(".modal").remove(), S(t).then((o) => {
         document.body.insertAdjacentHTML("beforeend", o), setTimeout(() => {
-          $(".modal").addClass("active"), r("exp_cross_sell_popup_section_01", "Section", "Visibility", "Cross-sell popup");
+          $(".modal").addClass("active"), h("exp_cross_sell_popup_section_01", "Section", "Visibility", "Cross-sell popup");
         }, 500), $(".modal-head svg").click(function() {
-          $(".modal").removeClass("active"), r("exp_cross_sell_popup_button_01", "Close", "Button", "Cross-sell popup");
+          $(".modal").removeClass("active"), h("exp_cross_sell_popup_button_01", "Close", "Button", "Cross-sell popup");
         }), $(".modal-select").on("input", (a) => {
-          const n = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex], l = n.text.split("/")[0], h = n.getAttribute("data-compare"), u = n.getAttribute("data-price");
-          $(".modal-product__prices span").html("£" + h), $(".modal-product__prices b").html("£" + u), $(".modal-product__images img").each((s, i) => {
+          const n = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex], l = n.text.split("/")[0], u = n.getAttribute("data-compare"), r = n.getAttribute("data-price");
+          $(".modal-product__prices span").html("£" + u), $(".modal-product__prices b").html("£" + r), $(".modal-product__images img").each((s, i) => {
             $(i).attr("style", "display: none"), (l == "White" && s == 0 || l == "Stone" && s == 1 || l == "Light Blue" && s == 2) && $(i).attr("style", "");
-          }), n.getAttribute("data-desc") && $(".modal-product__desc").html(n.getAttribute("data-desc")), r("exp_cross_sell_popup_dropdown_01", n.text, "Dropdown", "Cross-sell popup");
+          }), n.getAttribute("data-desc") && $(".modal-product__desc").html(n.getAttribute("data-desc")), h("exp_cross_sell_popup_dropdown_01", n.text, "Dropdown", "Cross-sell popup");
         }), $(".modal-add").click(function(a) {
           const n = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].value, l = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].getAttribute("data-qty");
-          $(this).find("span").text("Adding..."), C(n, l), r("exp_cross_sell_popup_button_02", "Add to cart", "Button", "Cross-sell popup");
+          $(this).find("span").text("Adding..."), C(n, l), h("exp_cross_sell_popup_button_02", "Add to cart", "Button", "Cross-sell popup");
         });
       });
     }
