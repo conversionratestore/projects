@@ -1,13 +1,13 @@
 (function() {
   "use strict";
-  const d = (e, t, a, o = "") => {
+  const d = (e, t, n, o = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
       event_desc: t,
-      event_type: a,
+      event_type: n,
       event_loc: o
-    }), console.dir(`Event: ${e} | ${t} | ${a} | ${o}`);
+    }), console.dir(`Event: ${e} | ${t} | ${n} | ${o}`);
   }, v = ({ name: e, dev: t }) => {
     console.dir(
       `%c EXP: ${e} (DEV: ${t})`,
@@ -23,10 +23,10 @@
   }, f = (e) => new Promise((t) => {
     if (r(e))
       return t(r(e));
-    const a = new MutationObserver(() => {
-      r(e) && (t(r(e)), a.disconnect());
+    const n = new MutationObserver(() => {
+      r(e) && (t(r(e)), n.disconnect());
     });
-    a.observe(document.documentElement, {
+    n.observe(document.documentElement, {
       childList: !0,
       subtree: !0
     });
@@ -164,13 +164,13 @@
   };
   let x = ["eucalyptus-silk-eye-mask", "eucalyptus-silk-pillow-cases", "eucalyptus-silk-sheet-set"], b = [];
   const C = (e) => fetch("/products/" + e + ".js").then((t) => t.json()).then((t) => {
-    t.variants && t.variants.forEach(function(a) {
-      b[a.id] = a.available;
+    t.variants && t.variants.forEach(function(n) {
+      b[n.id] = n.available;
     });
   }).catch((t) => {
     console.log("Error fetching product for handle:", e, t);
   }), S = (e, t) => {
-    let a = {
+    let n = {
       items: [
         {
           id: e,
@@ -181,29 +181,29 @@
     $.ajax({
       url: "/cart/add.js",
       type: "POST",
-      data: a,
+      data: n,
       dataType: "json",
       error: function(o) {
         console.log(o);
       }
     }).done(function(o) {
-      $.getJSON("/cart.js", function(n) {
-        $(".ic").find(".cart_count").text(n.item_count), console.log(n), $(".modal-add span").text("ADD TO CART"), $(".modal").removeClass("active"), addToCartOK();
+      $.getJSON("/cart.js", function(a) {
+        $(".ic").find(".cart_count").text(a.item_count), console.log(a), $(".modal-add span").text("ADD TO CART"), $(".modal").removeClass("active"), addToCartOK();
       });
     });
   }, E = (e) => Promise.all(x.map(C)).then(() => {
-    let t = "", a = "";
+    let t = "", n = "";
     const o = e.select;
     for (const c in o) {
       let m = "", h = "";
       if (e.title == "Eucalyptus Silk Sheet Set")
         for (let u = 0; u < e.desc.length; u++)
           e.desc[u].split(":")[0] == c.split("/")[1] && (m = e.desc[u]);
-      e.prices.constructor === Object && (h = e.prices[c.split("/")[1]]), b[o[c]] == !0 && (a += `<option value="${o[c]}" ${m != "" ? `data-desc="${m}"` : ""} ${h != "" ? `data-compare="${h[0]}" data-price="${h[1]}"` : ""} data-qty="${c.includes("4 pack") ? 2 : 1}">${c}</option>`);
+      e.prices.constructor === Object && (h = e.prices[c.split("/")[1]]), b[o[c]] == !0 && (n += `<option value="${o[c]}" ${m != "" ? `data-desc="${m}"` : ""} ${h != "" ? `data-compare="${h[0]}" data-price="${h[1]}"` : ""} data-qty="${c.includes("4 pack") ? 2 : 1}">${c}</option>`);
     }
-    let n = e.list;
-    for (let c = 0; c < n.length; c++)
-      t += `<li>${n[c]}</li>`;
+    let a = e.list;
+    for (let c = 0; c < a.length; c++)
+      t += `<li>${a[c]}</li>`;
     let l = Object.keys(e.prices)[0];
     const i = e.prices.constructor === Object ? e.prices[l][0] : e.prices[0], s = e.prices.constructor === Object ? e.prices[l][1] : e.prices[1];
     return `
@@ -226,7 +226,7 @@
                     <div class="modal-content">
                         <ul class="modal-list">${t}</ul>
                         <div class="select-parent">
-                            <select class="modal-select">${a}</select>
+                            <select class="modal-select">${n}</select>
                             ${w.arrowDown}
                         </div>
                         <button type="button" class="modal-add items-center">${w.cart} <span>Add to cart</span></button>
@@ -452,10 +452,9 @@
       this.page = window.location.pathname, this.device = _(), this.showStickyBtn = !1, (JSON.stringify(p).includes(this.page) || this.page.includes("/collections/beddings") || this.page.includes("/collections/shop-all-aeyla") || this.page.includes("/collections/pillows") || this.page.includes("/collections/bundles") || this.page.includes("/collections/weighted-blanket-blanket-covers")) && this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${L}</style>`), f("#AddToCart").then((a) => {
+      document.head.insertAdjacentHTML("beforeend", `<style>${L}</style>`), f("#AddToCart").then((n) => {
         console.log("-------"), console.log(document.querySelector("#AddToCart")), console.log("-------"), this.addToCart(document.querySelector("#AddToCart"));
-      }), console.log("init "), this.quickAdd();
-      const t = new MutationObserver((a) => {
+      }), console.log("init "), this.quickAdd(), new MutationObserver((n) => {
         if (r(".sticky_atc_btn")) {
           if (this.showStickyBtn === !0)
             return;
@@ -464,30 +463,25 @@
           });
         } else
           this.showStickyBtn = !1;
-        t.disconnect(), t.observe(document.body, {
-          childList: !0,
-          subtree: !0
-        });
-      });
-      t.observe(document.body, {
+      }).observe(document.body, {
         childList: !0,
         subtree: !0
       });
     }
     addToCart(t) {
-      console.log("init addToCart ", t), console.log("typeof ", typeof t), console.log("classList ", t.classList), t.addEventListener("click", (a) => {
+      console.log("init addToCart ", t), console.log("typeof ", typeof t), console.log("classList ", t.classList), t.addEventListener("click", (n) => {
         console.log("click addToCart");
         let o = "";
-        g(".upsell_wrapper .chckd").forEach((n) => {
-          this.page.includes("/move-in-set-2") || (o += n.querySelector(".text-main-blue > span").innerText.toLowerCase());
+        g(".upsell_wrapper .chckd").forEach((a) => {
+          this.page.includes("/move-in-set-2") || (o += a.querySelector(".text-main-blue > span").innerText.toLowerCase());
         }), o != "" && (o = o.includes("mask") && o.includes("pillowcases") ? "pillowcases_mask" : o.includes("mask") ? "mask" : "pillowcases"), console.log("addonsName: " + o);
-        for (const n in p) {
-          let l = n.split(",");
+        for (const a in p) {
+          let l = a.split(",");
           for (let i = 0; i < l.length; i++)
             if (l[i].includes(this.page)) {
               console.log("dataCrossSell: " + l[i]);
               let s = 0;
-              o != "" ? s = p[n].addons[o] : s = p[n].not_addons, console.log("primaryProduct: " + s), this.renderCrossSellModal(y[s]);
+              o != "" ? s = p[a].addons[o] : s = p[a].not_addons, console.log("primaryProduct: " + s), this.renderCrossSellModal(y[s]);
             }
         }
       });
@@ -495,34 +489,34 @@
     quickAdd() {
       console.log("init quickAdd");
       for (const t in p) {
-        let a = t.split(",");
-        console.log(a);
-        for (let o = 0; o < a.length; o++)
-          console.log(a[o]), f(`.pro_card_wrapper a[href="${a[o]}"]`).then((n) => {
-            console.log(n), n.closest(".pro_card_wrapper").querySelector(".quick_add button").addEventListener("click", () => {
+        let n = t.split(",");
+        console.log(n);
+        for (let o = 0; o < n.length; o++)
+          console.log(n[o]), f(`.pro_card_wrapper a[href="${n[o]}"]`).then((a) => {
+            console.log(a), a.closest(".pro_card_wrapper").querySelector(".quick_add button").addEventListener("click", () => {
               this.renderCrossSellModal(y[p[t].not_addons]);
             });
           });
       }
     }
     renderCrossSellModal(t) {
-      $(".modal").length && $(".modal").remove(), E(t).then((a) => {
-        document.body.insertAdjacentHTML("beforeend", a), setTimeout(() => {
+      $(".modal").length && $(".modal").remove(), E(t).then((n) => {
+        document.body.insertAdjacentHTML("beforeend", n), setTimeout(() => {
           $(".modal").addClass("active"), d("exp_cross_sell_popup_section_01", "Section", "Visibility", "Cross-sell popup");
         }, 500), $(".modal-head svg").click(function() {
           $(".modal").removeClass("active"), d("exp_cross_sell_popup_button_01", "Close", "Button", "Cross-sell popup");
         }), $(".modal-select").on("input", (o) => {
-          const n = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex], l = n.text.split("/")[0];
+          const a = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex], l = a.text.split("/")[0];
           if ($(".modal-product__images img").each((i, s) => {
             $(s).attr("style", "display: none"), (l == "White" && i == 0 || l == "Stone" && i == 1 || l == "Light Blue" && i == 2) && $(s).attr("style", "");
-          }), n.getAttribute("data-desc") && $(".modal-product__desc").html(n.getAttribute("data-desc")), n.getAttribute("data-price")) {
-            const i = n.getAttribute("data-compare"), s = n.getAttribute("data-price");
+          }), a.getAttribute("data-desc") && $(".modal-product__desc").html(a.getAttribute("data-desc")), a.getAttribute("data-price")) {
+            const i = a.getAttribute("data-compare"), s = a.getAttribute("data-price");
             $(".modal-product__prices span").html(i), $(".modal-product__prices b").html(s);
           }
-          d("exp_cross_sell_popup_dropdown_01", n.text, "Dropdown", "Cross-sell popup");
+          d("exp_cross_sell_popup_dropdown_01", a.text, "Dropdown", "Cross-sell popup");
         }), $(".modal-add").click(function(o) {
-          const n = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].value, l = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].getAttribute("data-qty");
-          $(this).find("span").text("Adding..."), S(n, l), d("exp_cross_sell_popup_button_02", "Add to cart", "Button", "Cross-sell popup");
+          const a = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].value, l = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].getAttribute("data-qty");
+          $(this).find("span").text("Adding..."), S(a, l), d("exp_cross_sell_popup_button_02", "Add to cart", "Button", "Cross-sell popup");
         });
       });
     }
