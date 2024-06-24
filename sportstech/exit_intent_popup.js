@@ -1824,17 +1824,17 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
             "Close",
             "Button",
             "Entdecken Sie unsere besten Produkte Step 1"
-          ), s.currentTarget.closest(".check_out_now") && o(
+          ), s.currentTarget.closest(".check_out_now") && (o(
             "exp_exit_intent_popup_button_11",
             "Close",
             "Button",
             "Jetzt zur Kasse gehen und  5% Rabatt auf Ihre erste Bestellung erhalten Step 1"
-          ), s.currentTarget.closest(".check_out_now_second") && o(
+          ), this.getCoupon("SPORTSTECH5", !1)), s.currentTarget.closest(".check_out_now_second") && (o(
             "exp_exit_intent_popup_button_14",
             "Close",
             "Button",
             "Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2"
-          ), s.currentTarget.closest(".check_out_now_third") && o("exp_exit_intent_popup_button_17", "Close", "Button", "Es gehört fast Ihnen!"), n.classList.add("is-hidden"), e.style.overflow = "initial", setTimeout(() => {
+          ), this.getCoupon("SPORTSTECH5", !1)), s.currentTarget.closest(".check_out_now_third") && o("exp_exit_intent_popup_button_17", "Close", "Button", "Es gehört fast Ihnen!"), n.classList.add("is-hidden"), e.style.overflow = "initial", setTimeout(() => {
             t(".new-popup__content").innerHTML = "";
           }, 500)), s.currentTarget.setAttribute("data-test", "1"), setTimeout(() => {
             i.getAttribute("data-test") && i.removeAttribute("data-test");
@@ -1861,17 +1861,17 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
           "Close behind the pop-up area",
           "Click",
           "Entdecken Sie unsere besten Produkte Step 1"
-        ), i.currentTarget.matches(".check_out_now") && o(
+        ), i.currentTarget.matches(".check_out_now") && (o(
           "exp_exit_intent_popup_click_05",
           "Close behind the pop-up area",
           "Click",
           "Jetzt zur Kasse gehen und  5% Rabatt auf Ihre erste Bestellung erhalten Step 1"
-        ), i.currentTarget.matches(".check_out_now_second") && o(
+        ), this.getCoupon("SPORTSTECH5", !1)), i.currentTarget.matches(".check_out_now_second") && (o(
           "exp_exit_intent_popup_click_06",
           "Close behind the pop-up area",
           "Click",
           "Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2"
-        ), i.currentTarget.matches(".check_out_now_third") && o("exp_exit_intent_popup_click_07", "Close behind the pop-up area", "Click", "Es gehört fast Ihnen!"), setTimeout(() => {
+        ), this.getCoupon("SPORTSTECH5", !1)), i.currentTarget.matches(".check_out_now_third") && o("exp_exit_intent_popup_click_07", "Close behind the pop-up area", "Click", "Es gehört fast Ihnen!"), setTimeout(() => {
           t(".new-popup__content").innerHTML = "";
         }, 500)), i.target.setAttribute("data-test", "1"), setTimeout(() => {
           i.target.getAttribute("data-test") && i.target.removeAttribute("data-test");
@@ -2066,7 +2066,7 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
         console.error("Error:", e);
       });
     }
-    async getCoupon(e) {
+    async getCoupon(e, n = !0) {
       await fetch("https://www.sportstech.de/checkout/promotion/add", {
         method: "POST",
         headers: {
@@ -2075,10 +2075,10 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
         body: JSON.stringify({
           code: e
         })
-      }).then((n) => (console.log(n, "response"), n)).then((n) => {
-        n.status === 200 && (console.log(n.status, "getCoupon"), window.location.href = "/checkout/confirm");
-      }).catch((n) => {
-        console.error("Error:", n);
+      }).then((p) => (console.log(p, "response"), p)).then((p) => {
+        p.status === 200 && (console.log(p.status, "getCoupon"), n && (window.location.href = "/checkout/confirm"));
+      }).catch((p) => {
+        console.error("Error:", p);
       });
     }
     //
