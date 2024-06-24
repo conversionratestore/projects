@@ -2024,7 +2024,7 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       let e = this.device === "mobile" ? "button.needsclick.kl-teaser-SP24tu" : "button.needsclick.kl-teaser-SH5AsN";
       w(e).then((n) => {
         t(e).addEventListener("click", (o) => {
-          o.preventDefault(), o.stopPropagation(), t(".new-popup-backdrop").classList.add("first_order_discount"), this.handleShowPopup(x, "firstOrderDiscountClick", "click", "firstOrderDiscount");
+          o.preventDefault(), o.stopPropagation(), t(".new-popup-backdrop").classList.add("first_order_discount"), this.handleShowPopup(x, "firstOrderDiscountClick", "click", "firstOrderDiscount"), this.copyDiscount();
         });
       });
     }
