@@ -488,7 +488,7 @@ body basket-qty {\r
         setTimeout(() => {
           h("basket-view-totals>div:first-of-type>div").then((r) => {
             var a;
-            if (this.checkPage() === "basket") {
+            if (console.log(t("page-footer")), this.checkPage() === "basket") {
               let n = localStorage.getItem("basketPriceForIcon");
               n !== null && (n = +n, t("basket-view .threshold_banner") && t("basket-view .threshold_banner").remove(), this.device === "mobile" ? t("basket-view bottom-panel").insertAdjacentHTML("afterbegin", this.drawThreshold(n)) : t("basket-view ul").insertAdjacentHTML("beforebegin", this.drawThreshold(n)), d(
                 "basket-view .crs_progress.threshold_banner",
@@ -503,7 +503,7 @@ body basket-qty {\r
               )), (a = t("basket-view>div>div>div>div>*:nth-child(3)>div.inline-block")) == null || a.remove();
             }
           });
-        }, 700);
+        }, 1100);
       });
     }
     changeIconHeader() {
