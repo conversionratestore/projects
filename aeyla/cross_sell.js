@@ -1,13 +1,13 @@
 (function() {
   "use strict";
-  const h = (e, t, o, a = "") => {
+  const h = (e, t, n, a = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
       event_desc: t,
-      event_type: o,
+      event_type: n,
       event_loc: a
-    }), console.dir(`Event: ${e} | ${t} | ${o} | ${a}`);
+    }), console.dir(`Event: ${e} | ${t} | ${n} | ${a}`);
   }, b = ({ name: e, dev: t }) => {
     console.dir(
       `%c EXP: ${e} (DEV: ${t})`,
@@ -17,7 +17,7 @@
     let t = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, k = () => {
+  }, x = () => {
     const e = navigator.userAgent;
     return e.match(/Android/i) || e.match(/webOS/i) || e.match(/iPhone/i) || e.match(/iPad/i) || e.match(/iPod/i) || e.match(/BlackBerry/i) || e.match(/Windows Phone/i) ? "mobile" : "desktop";
   }, m = {
@@ -63,15 +63,15 @@
       desc: ["Double: Duvet Cover (200cm x 200cm), Fitted Sheet (135cm x 190cm x 32cm), Pillowcases (75cm x 50cm)", "King: Duvet Cover (225cm x 220cm), Fitted Sheet (150cm x 200cm x 32cm), Pillowcases (75cm x 50cm)", "Super King: Duvet Cover (260cm x 220cm), Fitted Sheet (180cm x 200cm x 32cm), Pillowcases (75cm x 50cm)"],
       list: ["Super soft fabric prevents hair breakage and skin creases. Hypoallergenic and gentle.", "Naturally wicks away sweat to regulate body temperature and stay cool."],
       select: {
-        "White/Double": 44467947864350,
-        "White/King": 44467947962654,
-        "White/Super King": 44467948060958,
-        "Stone/Double": 44467947897118,
-        "Stone/King": 44467947995422,
-        "Stone/Super King": 44467948093726,
-        "Light Blue/Double": 48380928131358,
-        "Light Blue/King": 48380928164126,
-        "Light Blue/Super King": 48380928196894
+        "White | Double": 44467947864350,
+        "White | King": 44467947962654,
+        "White | Super King": 44467948060958,
+        "Stone | Double": 44467947897118,
+        "Stone | King": 44467947995422,
+        "Stone | Super King": 44467948093726,
+        "Light Blue | Double": 48380928131358,
+        "Light Blue | King": 48380928164126,
+        "Light Blue | Super King": 48380928196894
       }
     },
     1: {
@@ -83,12 +83,12 @@
       desc: ["For Standard Size Pillow: 50cm x 75cm"],
       list: ["Feels like a fresh breeze, keeping that cool-side-of-the-pillow sensation.", "Super soft fabric prevents hair breakage and skin creases."],
       select: {
-        "White/2 pack": 44467942981918,
-        "White/4 pack": 44467942981918,
-        "Stone/2 pack": 44467943014686,
-        "Stone/4 pack": 44467943014686,
-        "Light Blue/2 pack": 44467943047454,
-        "Light Blue/4 pack": 44467943047454
+        "White | 2 pack": 44467942981918,
+        "White | 4 pack": 44467942981918,
+        "Stone | 2 pack": 44467943014686,
+        "Stone | 4 pack": 44467943014686,
+        "Light Blue | 2 pack": 44467943047454,
+        "Light Blue | 4 pack": 44467943047454
       }
     },
     2: {
@@ -105,7 +105,7 @@
         "Light Blue": 44467937313054
       }
     }
-  }, p = {
+  }, c = {
     "/products/mela-weighted-blanket,/products/the-mela-weighted-blanket-with-removable-cover": {
       addons: {
         pillowcases: 2,
@@ -142,23 +142,23 @@
       not_addons: 2
     }
   };
-  let x = ["eucalyptus-silk-eye-mask", "eucalyptus-silk-pillow-cases", "eucalyptus-silk-sheet-set"], c = [];
+  let k = ["eucalyptus-silk-eye-mask", "eucalyptus-silk-pillow-cases", "eucalyptus-silk-sheet-set"], p = [];
   function y(e) {
-    let t = e.toString(), o = t.length;
-    return (+(t.slice(0, o - 2) + "." + t.slice(o - 2))).toFixed(2);
+    let t = e.toString(), n = t.length;
+    return (+(t.slice(0, n - 2) + "." + t.slice(n - 2))).toFixed(2);
   }
   const _ = (e) => fetch("/products/" + e + ".js").then((t) => t.json()).then((t) => {
-    console.log("Product:", t), t.variants && t.variants.forEach(function(o) {
-      c[o.id] = {
-        available: o.available,
-        price: y(o.price),
-        compare: y(o.compare_at_price)
+    console.log("Product:", t), t.variants && t.variants.forEach(function(n) {
+      p[n.id] = {
+        available: n.available,
+        price: y(n.price),
+        compare: y(n.compare_at_price)
       };
     });
   }).catch((t) => {
     console.log("Error fetching product for handle:", e, t);
-  }), C = (e, t) => {
-    let o = {
+  }), S = (e, t) => {
+    let n = {
       items: [
         {
           id: e,
@@ -169,46 +169,45 @@
     $.ajax({
       url: "/cart/add.js",
       type: "POST",
-      data: o,
+      data: n,
       dataType: "json",
       error: function(a) {
         console.log(a);
       }
     }).done(function(a) {
-      $.getJSON("/cart.js", function(n) {
-        $(".ic").find(".cart_count").text(n.item_count), console.log(n), $(".modal-add span").text("ADD TO CART"), $(".modal").removeClass("active"), addToCartOK();
+      $.getJSON("/cart.js", function(o) {
+        $(".ic").find(".cart_count").text(o.item_count), $(".modal-add span").text("ADD TO CART"), $(".modal").removeClass("active"), addToCartOK();
       });
     });
-  }, S = (e) => Promise.all(x.map(_)).then(() => {
-    console.log(c);
-    let t = "", o = "";
+  }, C = (e) => Promise.all(k.map(_)).then(() => {
+    let t = "", n = "";
     const a = e.select;
     for (const s in a) {
-      let i = "";
+      let l = "";
       if (e.title == "Eucalyptus Silk Sheet Set")
         for (let w = 0; w < e.desc.length; w++)
-          e.desc[w].split(":")[0] == s.split("/")[1] && (i = e.desc[w]);
-      c[a[s]].available == !0 && (o += `<option value="${a[s]}" ${i != "" ? `data-desc="${i}"` : ""} data-compare="${(c[a[s]].compare * (s.includes("4 pack") ? 2 : 1)).toFixed(2)}" data-price="${(c[a[s]].price * (s.includes("4 pack") ? 2 : 1)).toFixed(2)}" data-qty="${s.includes("4 pack") ? 2 : 1}">${s}</option>`);
+          e.desc[w].split(":")[0] == s.split("/")[1] && (l = e.desc[w]);
+      p[a[s]].available == !0 && (n += `<option value="${a[s]}" ${l != "" ? `data-desc="${l}"` : ""} data-compare="${(p[a[s]].compare * (s.includes("4 pack") ? 2 : 1)).toFixed(2)}" data-price="${(p[a[s]].price * (s.includes("4 pack") ? 2 : 1)).toFixed(2)}" data-qty="${s.includes("4 pack") ? 2 : 1}">${s}</option>`);
     }
-    let n = e.list;
-    for (let s = 0; s < n.length; s++)
-      t += `<li>${n[s]}</li>`;
-    let l = c[a[Object.keys(a)[0]]].compare, u = c[a[Object.keys(a)[0]]].price, r = Math.round(100 - u * 100 / l).toFixed(0);
+    let o = e.list;
+    for (let s = 0; s < o.length; s++)
+      t += `<li>${o[s]}</li>`;
+    let i = p[a[Object.keys(a)[0]]].compare, u = p[a[Object.keys(a)[0]]].price, r = Math.round(100 - u * 100 / i).toFixed(0);
     return `
             <div class="modal">
                 <div class="modal-container">
                     <div class="modal-head">
                         ${e.head} ${m.close}
                     </div>
-                    <div class="modal-product items-center">
+                    <div class="modal-product">
                         <div class="modal-product__images">
-                            <div class="modal-product__save" style="${r <= 0 ? "display: none" : ""}">${r}% Off)</div>${e.images}
+                            <div class="modal-product__save" style="${r <= 0 ? "display: none" : ""}">${r}% Off</div>${e.images}
                         </div>
-                        <div>
+                        <div class="modal-product__info">
                             <p class="modal-product__title">${e.title}</p>
-                            <p class="modal-product__desc" ${e.desc[0] == "" ? "hidden" : ""}>${e.desc[0]}</p>
+                            <p class="modal-product__desc ${e.title == "Eucalyptus Silk Sheet Set" ? "fs-12_mob" : ""}" ${e.desc[0] == "" ? "hidden" : ""}>${e.desc[0]}</p>
                             <p class="modal-product__prices">
-                                <span style="${r <= 0 ? "display: none" : ""}">£${l}</span>
+                                <span style="${r <= 0 ? "display: none" : ""}">£${i}</span>
                                 <b>£${u}</b>
                             </p>
                         </div>
@@ -216,7 +215,7 @@
                     <div class="modal-content">
                         <ul class="modal-list">${t}</ul>
                         <div class="select-parent">
-                            <select class="modal-select">${o}</select>
+                            <select class="modal-select">${n}</select>
                             ${m.arrowDown}
                         </div>
                         <button type="button" class="modal-add items-center">${m.cart} <span>Add to cart</span></button>
@@ -288,6 +287,7 @@
   background: #f8f8f8;
   border-bottom: 1px dashed #b0bfd4;
   padding: 20px 16px;
+  display: flex;
 }
 .modal-product__images {
   border-radius: 6px;
@@ -320,6 +320,9 @@
   line-height: 12px;
   letter-spacing: -0.25px;
 }
+.modal-product__info {
+  margin: auto 0;
+}
 .modal-product__title {
   color: #1b2943;
   font-size: 16px;
@@ -330,14 +333,14 @@
 }
 .modal-product__desc {
   color: #1b2943;
-  font-size: 12px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 18px;
+  line-height: 20px;
   margin-bottom: 12px;
 }
 .modal-product__prices {
-  margin-bottom: 12px;
+  margin-bottom: 0;
 }
 .modal-product__prices span {
   color: #a84624;
@@ -429,7 +432,7 @@
   }
   .modal-head {
     border-radius: 12px 12px 0 0;
-    padding: 17px;
+    padding: 16px;
   }
   .modal-product {
     padding: 16px;
@@ -443,21 +446,27 @@
     font-size: 18px;
     line-height: 24px;
   }
-  .modal-product__prices span, .modal-product__desc, .modal-list {
+  .modal-head, .modal-product__prices span, .modal-product__desc, .modal-list {
     font-size: 16px;
     line-height: 24px;
   }
   .select-parent {
     margin-top: 4px;
   }
+}
+@media (max-width: 600px) {
+  .fs-12_mob {
+    font-size: 12px;
+    line-height: 18px;
+  }
 }/*# sourceMappingURL=main.css.map */`;
   b({ name: "Cross-sell", dev: "Olha" }), v("exp_cross_sell");
   class P {
     constructor() {
-      this.page = window.location.pathname, this.device = k(), this.showStickyBtn = !1, this.adding = !1, this.addingQuick = !1, (JSON.stringify(p).includes(this.page) || this.page.includes("/collections/beddings") || this.page.includes("/collections/shop-all-aeyla") || this.page.includes("/collections/pillows") || this.page.includes("/collections/bundles") || this.page.includes("/collections/weighted-blanket-blanket-covers")) && this.init();
+      this.page = window.location.pathname, this.device = x(), this.showStickyBtn = !1, this.adding = !1, this.addingQuick = !1, (JSON.stringify(c).includes(this.page) || this.page.includes("/collections/beddings") || this.page.includes("/collections/shop-all-aeyla") || this.page.includes("/collections/pillows") || this.page.includes("/collections/bundles") || this.page.includes("/collections/weighted-blanket-blanket-covers")) && this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${E}</style>`), console.log("init "), new MutationObserver((o) => {
+      document.head.insertAdjacentHTML("beforeend", `<style>${E}</style>`), new MutationObserver((n) => {
         if (d(".sticky_atc_btn")) {
           if (this.showStickyBtn === !0)
             return;
@@ -479,9 +488,8 @@
             return;
           this.addingQuick = !0;
           let a = d('.quick_add .loader[style*="block"]').closest(".pro_card_wrapper").querySelector("a").pathname;
-          console.log("href: ", a);
-          for (const n in p)
-            console.log(n), n.includes(a) && this.renderCrossSellModal(f[p[n].not_addons]);
+          for (const o in c)
+            o.includes(a) && this.renderCrossSellModal(f[c[o].not_addons]);
         } else
           this.addingQuick = !1;
       }).observe(document.body, {
@@ -490,41 +498,39 @@
       });
     }
     addToCartPDP() {
-      console.log("click addToCart button");
       let t = "";
-      g(".upsell_wrapper .chckd").forEach((o) => {
-        this.page.includes("/move-in-set-2") || (t += o.querySelector(".text-main-blue > span").innerText.toLowerCase());
-      }), t != "" && (t = t.includes("mask") && t.includes("pillowcases") ? "pillowcases_mask" : t.includes("mask") ? "mask" : "pillowcases"), console.log("addonsName: " + t);
-      for (const o in p) {
-        let a = o.split(",");
-        for (let n = 0; n < a.length; n++)
-          if (a[n].includes(this.page)) {
-            console.log("dataCrossSell: " + a[n]);
-            let l = 0;
-            t != "" ? l = p[o].addons[t] : l = p[o].not_addons, console.log("primaryProduct: " + l), this.renderCrossSellModal(f[l]);
+      g(".upsell_wrapper .chckd").forEach((n) => {
+        this.page.includes("/move-in-set-2") || (t += n.querySelector(".text-main-blue > span").innerText.toLowerCase());
+      }), t != "" && (t = t.includes("mask") && t.includes("pillowcases") ? "pillowcases_mask" : t.includes("mask") ? "mask" : "pillowcases");
+      for (const n in c) {
+        let a = n.split(",");
+        for (let o = 0; o < a.length; o++)
+          if (a[o].includes(this.page)) {
+            let i = 0;
+            t != "" ? i = c[n].addons[t] : i = c[n].not_addons, this.renderCrossSellModal(f[i]);
           }
       }
     }
     renderCrossSellModal(t) {
-      $(".modal").length && $(".modal").remove(), S(t).then((o) => {
-        document.body.insertAdjacentHTML("beforeend", o), setTimeout(() => {
+      $(".modal").length && $(".modal").remove(), C(t).then((n) => {
+        document.body.insertAdjacentHTML("beforeend", n), setTimeout(() => {
           $(".modal").addClass("active"), h("exp_cross_sell_popup_section_01", "Section", "Visibility", "Cross-sell popup");
         }, 500), $(".modal-head svg").click(function() {
           $(".modal").removeClass("active"), h("exp_cross_sell_popup_button_01", "Close", "Button", "Cross-sell popup");
         }), $(".modal-select").on("input", (a) => {
-          const n = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex], l = n.text.split("/")[0], u = n.getAttribute("data-compare"), r = n.getAttribute("data-price");
-          $(".modal-product__prices span").html("£" + u), $(".modal-product__prices b").html("£" + r), $(".modal-product__images img").each((s, i) => {
-            $(i).attr("style", "display: none"), (l == "White" && s == 0 || l == "Stone" && s == 1 || l == "Light Blue" && s == 2) && $(i).attr("style", "");
-          }), n.getAttribute("data-desc") && $(".modal-product__desc").html(n.getAttribute("data-desc")), h("exp_cross_sell_popup_dropdown_01", n.text, "Dropdown", "Cross-sell popup");
+          const o = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex], i = o.text.split(" | ")[0], u = o.getAttribute("data-compare"), r = o.getAttribute("data-price");
+          $(".modal-product__prices span").html("£" + u), $(".modal-product__prices b").html("£" + r), $(".modal-product__images img").each((s, l) => {
+            $(l).attr("style", "display: none"), (i == "White" && s == 0 || i == "Stone" && s == 1 || i == "Light Blue" && s == 2) && $(l).attr("style", "");
+          }), o.getAttribute("data-desc") && $(".modal-product__desc").html(o.getAttribute("data-desc")), h("exp_cross_sell_popup_dropdown_01", o.text, "Dropdown", "Cross-sell popup");
         }), $(".modal-add").click(function(a) {
-          const n = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].value, l = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].getAttribute("data-qty");
-          $(this).find("span").text("Adding..."), C(n, l), h("exp_cross_sell_popup_button_02", "Add to cart", "Button", "Cross-sell popup");
+          const o = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].value, i = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].getAttribute("data-qty");
+          $(this).find("span").text("Adding..."), S(o, i), h("exp_cross_sell_popup_button_02", "Add to cart", "Button", "Cross-sell popup");
         });
       });
     }
   }
-  let L = setInterval(() => {
-    document.body && (clearInterval(L), new P());
+  let z = setInterval(() => {
+    document.body && (clearInterval(z), new P());
   });
 })();
 //# sourceMappingURL=index.js.map
