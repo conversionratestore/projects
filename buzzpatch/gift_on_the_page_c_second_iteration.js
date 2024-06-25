@@ -176,10 +176,10 @@
         <input value="43502214283308" type="radio" name="socks" id="smallSize" />
         <label for="smallSize"> small - 12*8cm </label>
 
-        <input value="43502214316076" type="radio" name="socks" id="mediumSize" checked />
+        <input value="43502214316076" type="radio" name="socks" id="mediumSize" />
         <label for="mediumSize"> Medium - 14*9cm </label>
 
-        <input value="43502214348844" type="radio" name="socks" id="largeSize" />
+        <input value="43502214348844" type="radio" name="socks" id="largeSize" checked />
         <label for="largeSize"> large - 16*10cm </label>
       </div>
     </div>
