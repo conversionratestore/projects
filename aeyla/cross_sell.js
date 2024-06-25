@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const h = (e, t, n, a = "") => {
+  const w = (e, t, n, a = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
@@ -13,7 +13,7 @@
       `%c EXP: ${e} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, g = (e) => document.querySelectorAll(e), d = (e) => document.querySelector(e), v = (e) => {
+  }, g = (e) => document.querySelectorAll(e), h = (e) => document.querySelector(e), v = (e) => {
     let t = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", e, "variant_1"));
     }, 1e3);
@@ -105,7 +105,7 @@
         "Light Blue": 44467937313054
       }
     }
-  }, c = {
+  }, d = {
     "/products/mela-weighted-blanket,/products/the-mela-weighted-blanket-with-removable-cover": {
       addons: {
         pillowcases: 2,
@@ -142,14 +142,14 @@
       not_addons: 2
     }
   };
-  let k = ["eucalyptus-silk-eye-mask", "eucalyptus-silk-pillow-cases", "eucalyptus-silk-sheet-set"], p = [];
+  let k = ["eucalyptus-silk-eye-mask", "eucalyptus-silk-pillow-cases", "eucalyptus-silk-sheet-set"], r = [];
   function y(e) {
     let t = e.toString(), n = t.length;
     return (+(t.slice(0, n - 2) + "." + t.slice(n - 2))).toFixed(2);
   }
   const _ = (e) => fetch("/products/" + e + ".js").then((t) => t.json()).then((t) => {
     console.log("Product:", t), t.variants && t.variants.forEach(function(n) {
-      p[n.id] = {
+      r[n.id] = {
         available: n.available,
         price: y(n.price),
         compare: y(n.compare_at_price)
@@ -175,24 +175,24 @@
         console.log(a);
       }
     }).done(function(a) {
-      $.getJSON("/cart.js", function(o) {
-        $(".ic").find(".cart_count").text(o.item_count), $(".modal-add span").text("ADD TO CART"), $(".modal").removeClass("active"), addToCartOK();
+      $.getJSON("/cart.js", function(i) {
+        $(".ic").find(".cart_count").text(i.item_count), $(".modal-add span").text("ADD TO CART"), $(".modal").removeClass("active"), addToCartOK();
       });
     });
   }, C = (e) => Promise.all(k.map(_)).then(() => {
     let t = "", n = "";
     const a = e.select;
     for (const s in a) {
-      let l = "";
+      let p = "";
       if (e.title == "Eucalyptus Silk Sheet Set")
-        for (let w = 0; w < e.desc.length; w++)
-          e.desc[w].split(":")[0] == s.split("/")[1] && (l = e.desc[w]);
-      p[a[s]].available == !0 && (n += `<option value="${a[s]}" ${l != "" ? `data-desc="${l}"` : ""} data-compare="${(p[a[s]].compare * (s.includes("4 pack") ? 2 : 1)).toFixed(2)}" data-price="${(p[a[s]].price * (s.includes("4 pack") ? 2 : 1)).toFixed(2)}" data-qty="${s.includes("4 pack") ? 2 : 1}">${s}</option>`);
+        for (let l = 0; l < e.desc.length; l++)
+          e.desc[l].split(":")[0] == s.split("/")[1] && (p = e.desc[l]);
+      r[a[s]].available == !0 && (n += `<option value="${a[s]}" ${p != "" ? `data-desc="${p}"` : ""} data-compare="${(r[a[s]].compare * (s.includes("4 pack") ? 2 : 1)).toFixed(2)}" data-price="${(r[a[s]].price * (s.includes("4 pack") ? 2 : 1)).toFixed(2)}" data-qty="${s.includes("4 pack") ? 2 : 1}">${s}</option>`);
     }
-    let o = e.list;
-    for (let s = 0; s < o.length; s++)
-      t += `<li>${o[s]}</li>`;
-    let i = p[a[Object.keys(a)[0]]].compare, u = p[a[Object.keys(a)[0]]].price, r = Math.round(100 - u * 100 / i).toFixed(0);
+    let i = e.list;
+    for (let s = 0; s < i.length; s++)
+      t += `<li>${i[s]}</li>`;
+    let o = r[a[Object.keys(a)[0]]].compare, c = r[a[Object.keys(a)[0]]].price, u = Math.round(100 - c * 100 / o).toFixed(0);
     return `
             <div class="modal">
                 <div class="modal-container">
@@ -201,14 +201,14 @@
                     </div>
                     <div class="modal-product">
                         <div class="modal-product__images">
-                            <div class="modal-product__save" style="${r <= 0 ? "display: none" : ""}">${r}% Off</div>${e.images}
+                            <div class="modal-product__save" style="${u <= 0 ? "display: none" : ""}">${u}% Off</div>${e.images}
                         </div>
                         <div class="modal-product__info">
                             <p class="modal-product__title">${e.title}</p>
                             <p class="modal-product__desc ${e.title == "Eucalyptus Silk Sheet Set" ? "fs-12_mob" : ""}" ${e.desc[0] == "" ? "hidden" : ""}>${e.desc[0]}</p>
                             <p class="modal-product__prices">
-                                <span style="${r <= 0 ? "display: none" : ""}">£${i}</span>
-                                <b>£${u}</b>
+                                <span style="${u <= 0 ? "display: none" : ""}">£${o}</span>
+                                <b>£${c}</b>
                             </p>
                         </div>
                     </div>
@@ -463,11 +463,11 @@
   b({ name: "Cross-sell", dev: "Olha" }), v("exp_cross_sell");
   class P {
     constructor() {
-      this.page = window.location.pathname, this.device = x(), this.showStickyBtn = !1, this.adding = !1, this.addingQuick = !1, (JSON.stringify(c).includes(this.page) || this.page.includes("/collections/beddings") || this.page.includes("/collections/shop-all-aeyla") || this.page.includes("/collections/pillows") || this.page.includes("/collections/bundles") || this.page.includes("/collections/weighted-blanket-blanket-covers")) && this.init();
+      this.page = window.location.pathname, this.device = x(), this.showStickyBtn = !1, this.adding = !1, this.addingQuick = !1, (JSON.stringify(d).includes(this.page) || this.page.includes("/collections/beddings") || this.page.includes("/collections/shop-all-aeyla") || this.page.includes("/collections/pillows") || this.page.includes("/collections/bundles") || this.page.includes("/collections/weighted-blanket-blanket-covers")) && this.init();
     }
     init() {
       document.head.insertAdjacentHTML("beforeend", `<style>${E}</style>`), new MutationObserver((n) => {
-        if (d(".sticky_atc_btn")) {
+        if (h(".sticky_atc_btn")) {
           if (this.showStickyBtn === !0)
             return;
           this.showStickyBtn = !0, g(".sticky_atc_btn").forEach((a) => {
@@ -477,19 +477,19 @@
           });
         } else
           this.showStickyBtn = !1;
-        if (d("#AddToCart") && d("#AddToCart").innerText.toLowerCase().includes("adding")) {
+        if (h("#AddToCart") && h("#AddToCart").innerText.toLowerCase().includes("adding")) {
           if (this.adding === !0)
             return;
           this.adding = !0, this.addToCartPDP();
         } else
           this.adding = !1;
-        if (d('.quick_add .loader[style*="block"]')) {
+        if (h('.quick_add .loader[style*="block"]')) {
           if (this.addingQuick === !0)
             return;
           this.addingQuick = !0;
-          let a = d('.quick_add .loader[style*="block"]').closest(".pro_card_wrapper").querySelector("a").pathname;
-          for (const o in c)
-            o.includes(a) && this.renderCrossSellModal(f[c[o].not_addons]);
+          let a = h('.quick_add .loader[style*="block"]').closest(".pro_card_wrapper").querySelector("a").pathname;
+          for (const i in d)
+            i.includes(a) && this.renderCrossSellModal(f[d[i].not_addons]);
         } else
           this.addingQuick = !1;
       }).observe(document.body, {
@@ -502,29 +502,33 @@
       g(".upsell_wrapper .chckd").forEach((n) => {
         this.page.includes("/move-in-set-2") || (t += n.querySelector(".text-main-blue > span").innerText.toLowerCase());
       }), t != "" && (t = t.includes("mask") && t.includes("pillowcases") ? "pillowcases_mask" : t.includes("mask") ? "mask" : "pillowcases");
-      for (const n in c) {
+      for (const n in d) {
         let a = n.split(",");
-        for (let o = 0; o < a.length; o++)
-          if (a[o].includes(this.page)) {
-            let i = 0;
-            t != "" ? i = c[n].addons[t] : i = c[n].not_addons, this.renderCrossSellModal(f[i]);
+        for (let i = 0; i < a.length; i++)
+          if (a[i].includes(this.page)) {
+            let o = 0;
+            t != "" ? o = d[n].addons[t] : o = d[n].not_addons, this.renderCrossSellModal(f[o]);
           }
       }
     }
     renderCrossSellModal(t) {
       $(".modal").length && $(".modal").remove(), C(t).then((n) => {
-        document.body.insertAdjacentHTML("beforeend", n), setTimeout(() => {
-          $(".modal").addClass("active"), h("exp_cross_sell_popup_section_01", "Section", "Visibility", "Cross-sell popup");
+        document.body.insertAdjacentHTML("beforeend", n);
+        const a = () => {
+          $(".modal").style.height = window.innerHeight + "px";
+        };
+        window.addEventListener("resize", a), a(), setTimeout(() => {
+          $(".modal").addClass("active"), w("exp_cross_sell_popup_section_01", "Section", "Visibility", "Cross-sell popup");
         }, 500), $(".modal-head svg").click(function() {
-          $(".modal").removeClass("active"), h("exp_cross_sell_popup_button_01", "Close", "Button", "Cross-sell popup");
-        }), $(".modal-select").on("input", (a) => {
-          const o = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex], i = o.text.split(" | ")[0], u = o.getAttribute("data-compare"), r = o.getAttribute("data-price");
-          $(".modal-product__prices span").html("£" + u), $(".modal-product__prices b").html("£" + r), $(".modal-product__images img").each((s, l) => {
-            $(l).attr("style", "display: none"), (i == "White" && s == 0 || i == "Stone" && s == 1 || i == "Light Blue" && s == 2) && $(l).attr("style", "");
-          }), o.getAttribute("data-desc") && $(".modal-product__desc").html(o.getAttribute("data-desc")), h("exp_cross_sell_popup_dropdown_01", o.text, "Dropdown", "Cross-sell popup");
-        }), $(".modal-add").click(function(a) {
-          const o = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].value, i = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].getAttribute("data-qty");
-          $(this).find("span").text("Adding..."), S(o, i), h("exp_cross_sell_popup_button_02", "Add to cart", "Button", "Cross-sell popup");
+          $(".modal").removeClass("active"), w("exp_cross_sell_popup_button_01", "Close", "Button", "Cross-sell popup");
+        }), $(".modal-select").on("input", (i) => {
+          const o = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex], c = o.text.split(" | ")[0], u = o.getAttribute("data-compare"), s = o.getAttribute("data-price");
+          $(".modal-product__prices span").html("£" + u), $(".modal-product__prices b").html("£" + s), $(".modal-product__images img").each((p, l) => {
+            $(l).attr("style", "display: none"), (c == "White" && p == 0 || c == "Stone" && p == 1 || c == "Light Blue" && p == 2) && $(l).attr("style", "");
+          }), o.getAttribute("data-desc") && $(".modal-product__desc").html(o.getAttribute("data-desc")), w("exp_cross_sell_popup_dropdown_01", o.text, "Dropdown", "Cross-sell popup");
+        }), $(".modal-add").click(function(i) {
+          const o = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].value, c = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex].getAttribute("data-qty");
+          $(this).find("span").text("Adding..."), S(o, c), w("exp_cross_sell_popup_button_02", "Add to cart", "Button", "Cross-sell popup");
         });
       });
     }
