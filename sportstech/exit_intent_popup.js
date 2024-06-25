@@ -1,13 +1,13 @@
 (function() {
   "use strict";
-  const s = (a, e, n, o = "") => {
+  const s = (a, e, n, p = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: a,
       event_desc: e,
       event_type: n,
-      event_loc: o
-    }), console.log(`Event: ${a} | ${e} | ${n} | ${o}`);
+      event_loc: p
+    }), console.log(`Event: ${a} | ${e} | ${n} | ${p}`);
   }, E = ({ name: a, dev: e }) => {
     console.log(
       `%c EXP: ${a} (DEV: ${e})`,
@@ -34,12 +34,12 @@
   }
   const P = function(a) {
     a = a === void 0 ? {} : a;
-    let e, n, o, i, p = (a == null ? void 0 : a.delay) || 50;
-    function r() {
-      e = null, i = 0;
+    let e, n, p, r, o = (a == null ? void 0 : a.delay) || 50;
+    function i() {
+      e = null, r = 0;
     }
-    return r(), function() {
-      return n = window.scrollY, e != null && (i = n - e), e = n, clearTimeout(o), o = setTimeout(r, p), i;
+    return i(), function() {
+      return n = window.scrollY, e != null && (r = n - e), e = n, clearTimeout(p), p = setTimeout(i, o), r;
     };
   }(), z = (a) => {
     var n;
@@ -446,7 +446,7 @@
     </div>
   </div>
 `
-  ), R = (
+  ), $ = (
     /* HTML */
     `
   <div class="new-popup-backdrop is-hidden">
@@ -456,7 +456,7 @@
     </div>
   </div>
 `
-  ), $ = (a, e, n, o, i, p, r) => (
+  ), R = (a, e, n, p, r, o, i) => (
     /* HTML */
     `
     <li class="products_item">
@@ -467,13 +467,13 @@
       </div>
       <div class="item_info">
         <h3><a href="${a}">${n}</a></h3>
-        ${o ? `<span class="txt_descr">${o}</span>` : ""}
+        ${p ? `<span class="txt_descr">${p}</span>` : ""}
         <div class="price_wrapper">
-          ${p ? `<div class="stars_wrapper">
-         ${r}
-            <span>(${p})</span>
+          ${o ? `<div class="stars_wrapper">
+         ${i}
+            <span>(${o})</span>
           </div>` : ""}
-          <span class="price_txt">${i}</span>
+          <span class="price_txt">${r}</span>
         </div>
       </div>
     </li>
@@ -1670,8 +1670,8 @@
 
 button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-reset-css-Xuajs1 {
   display: none !important;
-}/*# sourceMappingURL=main.css.map */`, A = window.innerWidth < 768 ? "mobile" : "desktop";
-  class V {
+}/*# sourceMappingURL=main.css.map */`, V = window.innerWidth < 768 ? "mobile" : "desktop";
+  class A {
     constructor(e) {
       this.device = e, this.timeoutId = null, this.delayTime = 6e4, this.firstSessionTime = 20 * 1e3, this.lastPopupTime = 0, this.timeLag = 3 * 60 * 1e3, this.active = !1, this.init();
     }
@@ -1727,8 +1727,8 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
           this.isPopupOpen() || (t(".new-popup-backdrop").classList.add("first_order_discount"), this.handleShowPopup(f, "firstOrderDiscount", "firstOrderDiscount", "firstOrderDiscount"), sessionStorage.getItem("firstOrderDiscount") || this.handlerCloseKlaviyo());
         }, this.firstSessionTime);
       else if (n) {
-        const o = +(n.split(".").pop() + "000");
-        +/* @__PURE__ */ new Date() - +new Date(o) <= 5 * 60 * 1e3 && (console.log("New User"), localStorage.setItem("initUser", "true"), setTimeout(() => {
+        const p = +(n.split(".").pop() + "000");
+        +/* @__PURE__ */ new Date() - +new Date(p) <= 5 * 60 * 1e3 && (console.log("New User"), localStorage.setItem("initUser", "true"), setTimeout(() => {
           this.isPopupOpen() || (t(".new-popup-backdrop").classList.add("first_order_discount"), this.handleShowPopup(f, "firstOrderDiscount", "firstOrderDiscount", "firstOrderDiscount"), sessionStorage.getItem("firstOrderDiscount") || this.handlerCloseKlaviyo());
         }, this.firstSessionTime));
       }
@@ -1737,25 +1737,24 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       var l;
       if (this.isPopupOpen())
         return;
-      const o = Date.now();
-      if (sessionStorage.getItem("lastPopupTime") && (this.lastPopupTime = Number(sessionStorage.getItem("lastPopupTime"))), o - this.lastPopupTime < this.timeLag)
+      const p = Date.now();
+      if (sessionStorage.getItem("lastPopupTime") && (this.lastPopupTime = Number(sessionStorage.getItem("lastPopupTime"))), p - this.lastPopupTime < this.timeLag)
         return;
-      sessionStorage.setItem("lastPopupTime", o.toString());
-      const i = await this.getCartCheckout();
-      console.log(i, "ratingArr");
-      let p = await fetch("https://www.sportstech.de/checkout/cart");
-      p = await p.text();
-      const c = new DOMParser().parseFromString(p, "text/html").querySelectorAll(".checkout-product-table .line-item-product");
-      c.length !== 0 ? (e === "differentUserCategories" && (t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), c.length > 1 ? t(".new-popup-backdrop").classList.add("large_popup") : t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), Number(localStorage.getItem("session")) > 1 ? localStorage.getItem("checkOutNowSecond") ? (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.add("check_out_now_third"), this.handleShowPopup(N, "returningUsers", n, "checkOutNowThird")) : (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.add("check_out_now_second"), this.handleShowPopup(M, "returningUsers", n, "checkOutNowSecond"), localStorage.setItem("checkOutNowSecond", "yes")) : (t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), console.log("!!!!!!!!!!!!!!!!!!!!!!"), t(".new-popup-backdrop").classList.add("check_out_now"), this.handleShowPopup(H, "checkOutNow", n, "checkOutNow"))), t(".new-popup-backdrop.check_out_now .first_var > .img_wrapper img") && (t(".new-popup-backdrop.check_out_now .first_var > .img_wrapper img").src = (l = c[c.length - 1].querySelector(".line-item-img")) == null ? void 0 : l.getAttribute("src")), c.forEach((x) => {
+      sessionStorage.setItem("lastPopupTime", p.toString());
+      const r = await this.getCartCheckout();
+      let o = await fetch("https://www.sportstech.de/checkout/cart");
+      o = await o.text();
+      const c = new DOMParser().parseFromString(o, "text/html").querySelectorAll(".checkout-product-table .line-item-product");
+      c.length !== 0 ? (e === "differentUserCategories" && (t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), c.length > 1 ? t(".new-popup-backdrop").classList.add("large_popup") : t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), Number(localStorage.getItem("session")) > 1 ? localStorage.getItem("checkOutNowSecond") ? (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.add("check_out_now_third"), this.handleShowPopup(N, "returningUsers", n, "checkOutNowThird")) : (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.add("check_out_now_second"), this.handleShowPopup(M, "returningUsers", n, "checkOutNowSecond"), localStorage.setItem("checkOutNowSecond", "yes")) : (t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.add("check_out_now"), this.handleShowPopup(H, "checkOutNow", n, "checkOutNow"))), t(".new-popup-backdrop.check_out_now .first_var > .img_wrapper img") && (t(".new-popup-backdrop.check_out_now .first_var > .img_wrapper img").src = (l = c[c.length - 1].querySelector(".line-item-img")) == null ? void 0 : l.getAttribute("src")), c.forEach((x) => {
         var v, y, C, S, L;
         let K = ((v = x.querySelector(".line-item-label")) == null ? void 0 : v.getAttribute("href")) ?? "", D = ((y = x.querySelector(".line-item-img")) == null ? void 0 : y.getAttribute("srcset")) ?? "", g = ((C = x.querySelector(".line-item-label")) == null ? void 0 : C.textContent) ?? "", Z = ((S = x.querySelector(".line-item-details-characteristics-option")) == null ? void 0 : S.textContent) ?? "", q = ((L = x.querySelector(".line-item-total-price-value")) == null ? void 0 : L.textContent) ?? "", b, k;
-        i.forEach((h) => {
+        r.forEach((h) => {
           var T;
           ((T = h == null ? void 0 : h.titleProduct) == null ? void 0 : T.trim().toLocaleLowerCase()) === g.trim().toLocaleLowerCase() && (b = h.numRatings, k = h.averageRating);
         }), w(".products_list").then((h) => {
           t(".products_list").insertAdjacentHTML(
             "beforeend",
-            $(K, D, g, Z, q, b, this.renderStars(k))
+            R(K, D, g, Z, q, b, this.renderStars(k))
           );
         });
       })) : (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), e === "differentUserCategories" && (Number(localStorage.getItem("session")) > 1 ? (t(".new-popup-backdrop").classList.add("categories_product"), this.handleShowPopup(B, "returningUsers", n, "categoriesProduct")) : (t(".new-popup-backdrop").classList.add("sales_offer"), this.handleShowPopup(O, "salesOffer", n, "salesOffer"))));
@@ -1768,18 +1767,18 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       let e = 900;
       const n = setInterval(() => {
         e--;
-        const o = Math.floor(e / 60), i = e % 60, p = t(".minutes_tens"), r = t(".minutes_ones"), _ = t(".seconds_tens"), c = t(".seconds_ones");
-        p && (p.textContent = Math.floor(o / 10)), r && (r.textContent = o % 10), _ && (_.textContent = Math.floor(i / 10)), c && (c.textContent = i % 10), e <= 0 && clearInterval(n);
+        const p = Math.floor(e / 60), r = e % 60, o = t(".minutes_tens"), i = t(".minutes_ones"), _ = t(".seconds_tens"), c = t(".seconds_ones");
+        o && (o.textContent = Math.floor(p / 10)), i && (i.textContent = p % 10), _ && (_.textContent = Math.floor(r / 10)), c && (c.textContent = r % 10), e <= 0 && clearInterval(n);
       }, 1e3);
     }
     createPopup() {
-      console.log("createPopup"), t(".new-popup-backdrop") || t("body").insertAdjacentHTML("afterbegin", R);
+      console.log("createPopup"), t(".new-popup-backdrop") || t("body").insertAdjacentHTML("afterbegin", $);
     }
-    handleShowPopup(e, n, o, i) {
-      if (console.log("handleShowPopup", o, n), sessionStorage.getItem(n) && n !== "firstOrderDiscountClick")
+    handleShowPopup(e, n, p, r) {
+      if (console.log("handleShowPopup", p, n), sessionStorage.getItem(n) && n !== "firstOrderDiscountClick")
         return;
-      const r = t("body"), _ = t(".new-popup-backdrop"), c = t(".new-popup .new-popup__content");
-      switch (_.classList.contains("is-hidden") && _.classList.remove("is-hidden"), r.style.overflow = "hidden", c.innerHTML = e, sessionStorage.setItem(n, "yes"), i) {
+      const i = t("body"), _ = t(".new-popup-backdrop"), c = t(".new-popup .new-popup__content");
+      switch (_.classList.contains("is-hidden") && _.classList.remove("is-hidden"), i.style.overflow = "hidden", c.innerHTML = e, sessionStorage.setItem(n, "yes"), r) {
         case "firstOrderDiscount":
           s(
             "exp_exit_intent_popup_section_01",
@@ -1830,96 +1829,95 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
     }
     handleClosePopup() {
       const e = t("body"), n = t(".new-popup-backdrop");
-      t(".new-popup").querySelectorAll('[data-popup="close"]').forEach((p) => {
-        p.addEventListener("click", (r) => {
-          r.currentTarget.getAttribute("data-test") || (r.currentTarget.matches(".no_thanks_btn") && (s(
+      t(".new-popup").querySelectorAll('[data-popup="close"]').forEach((o) => {
+        o.addEventListener("click", (i) => {
+          i.currentTarget.getAttribute("data-test") || (i.currentTarget.matches(".no_thanks_btn") && (s(
             "exp_exit_intent_popup_button_03",
             "Nein, danke",
             "Button",
             "Erhalten Sie 5% Rabatt & kostenlose Lieferung!"
-          ), this.handlerCloseKlaviyo()), r.currentTarget.matches(".continue_shopping_btn") && s("exp_exit_intent_popup_button_06", "Weiter einkaufen", "Button", "Sie stehen auf der Liste"), r.currentTarget.closest(".first_order_discount") && r.currentTarget.matches(".new-popup__close") && !r.currentTarget.closest(".first_order_discount").querySelector(".first_var").classList.contains("is_hidden") && (s(
+          ), this.handlerCloseKlaviyo()), i.currentTarget.matches(".continue_shopping_btn") && s("exp_exit_intent_popup_button_06", "Weiter einkaufen", "Button", "Sie stehen auf der Liste"), i.currentTarget.closest(".first_order_discount") && i.currentTarget.matches(".new-popup__close") && !i.currentTarget.closest(".first_order_discount").querySelector(".first_var").classList.contains("is_hidden") && (s(
             "exp_exit_intent_popup_button_01",
             "Close",
             "Button",
             "Erhalten Sie 5% Rabatt & kostenlose Lieferung!"
-          ), this.handlerCloseKlaviyo()), r.currentTarget.closest(".first_order_discount") && r.currentTarget.matches(".new-popup__close") && !r.currentTarget.closest(".first_order_discount").querySelector(".second_var").classList.contains("is_hidden") && s("exp_exit_intent_popup_button_04", "Close", "Button", "Sie stehen auf der Liste"), r.currentTarget.closest(".categories_product") && s(
+          ), this.handlerCloseKlaviyo()), i.currentTarget.closest(".first_order_discount") && i.currentTarget.matches(".new-popup__close") && !i.currentTarget.closest(".first_order_discount").querySelector(".second_var").classList.contains("is_hidden") && s("exp_exit_intent_popup_button_04", "Close", "Button", "Sie stehen auf der Liste"), i.currentTarget.closest(".categories_product") && s(
             "exp_exit_intent_popup_button_09",
             "Close",
             "Button",
             "Entdecken Sie unsere besten Produkte Step 2"
-          ), r.currentTarget.closest(".sales_offer") && s(
+          ), i.currentTarget.closest(".sales_offer") && s(
             "exp_exit_intent_popup_button_07",
             "Close",
             "Button",
             "Entdecken Sie unsere besten Produkte Step 1"
-          ), r.currentTarget.closest(".check_out_now") && (s(
+          ), i.currentTarget.closest(".check_out_now") && (s(
             "exp_exit_intent_popup_button_11",
             "Close",
             "Button",
             "Jetzt zur Kasse gehen und  5% Rabatt auf Ihre erste Bestellung erhalten Step 1"
-          ), this.getCoupon("SPORTSTECH5", !1)), r.currentTarget.closest(".check_out_now_second") && (s(
+          ), this.getCoupon("SPORTSTECH5", !1)), i.currentTarget.closest(".check_out_now_second") && (s(
             "exp_exit_intent_popup_button_14",
             "Close",
             "Button",
             "Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2"
-          ), this.getCoupon("SPORTSTECH5", !1)), r.currentTarget.closest(".check_out_now_third") && s("exp_exit_intent_popup_button_17", "Close", "Button", "Es gehört fast Ihnen!"), n.classList.add("is-hidden"), e.style.overflow = "initial", setTimeout(() => {
+          ), this.getCoupon("SPORTSTECH5", !1)), i.currentTarget.closest(".check_out_now_third") && s("exp_exit_intent_popup_button_17", "Close", "Button", "Es gehört fast Ihnen!"), n.classList.add("is-hidden"), e.style.overflow = "initial", setTimeout(() => {
             t(".new-popup__content").innerHTML = "";
-          }, 500)), r.currentTarget.setAttribute("data-test", "1"), setTimeout(() => {
-            p.getAttribute("data-test") && p.removeAttribute("data-test");
+          }, 500)), i.currentTarget.setAttribute("data-test", "1"), setTimeout(() => {
+            o.getAttribute("data-test") && o.removeAttribute("data-test");
           }, 1e3);
         });
-      }), n.addEventListener("click", (p) => {
-        p.target.getAttribute("data-test") || p.target.matches(".new-popup-backdrop") && (n.classList.add("is-hidden"), e.style.overflow = "initial", p.currentTarget.matches(".first_order_discount") && !p.currentTarget.querySelector(".first_var").classList.contains("is_hidden") && (s(
+      }), n.addEventListener("click", (o) => {
+        o.target.getAttribute("data-test") || o.target.matches(".new-popup-backdrop") && (n.classList.add("is-hidden"), e.style.overflow = "initial", o.currentTarget.matches(".first_order_discount") && !o.currentTarget.querySelector(".first_var").classList.contains("is_hidden") && (s(
           "exp_exit_intent_popup_click_01",
           "Close behind the pop-up area",
           "Click",
           "Erhalten Sie 5% Rabatt & kostenlose Lieferung!"
-        ), this.handlerCloseKlaviyo()), p.currentTarget.matches(".first_order_discount") && !p.currentTarget.querySelector(".second_var").classList.contains("is_hidden") && s(
+        ), this.handlerCloseKlaviyo()), o.currentTarget.matches(".first_order_discount") && !o.currentTarget.querySelector(".second_var").classList.contains("is_hidden") && s(
           "exp_exit_intent_popup_click_02",
           "Close behind the pop-up area",
           "Click",
           "Sie stehen auf der Liste"
-        ), p.currentTarget.matches(".categories_product") && s(
+        ), o.currentTarget.matches(".categories_product") && s(
           "exp_exit_intent_popup_click_04",
           "Close behind the pop-up area",
           "Click",
           "Entdecken Sie unsere besten Produkte Step 2"
-        ), p.currentTarget.matches(".sales_offer") && s(
+        ), o.currentTarget.matches(".sales_offer") && s(
           "exp_exit_intent_popup_click_03",
           "Close behind the pop-up area",
           "Click",
           "Entdecken Sie unsere besten Produkte Step 1"
-        ), p.currentTarget.matches(".check_out_now") && (s(
+        ), o.currentTarget.matches(".check_out_now") && (s(
           "exp_exit_intent_popup_click_05",
           "Close behind the pop-up area",
           "Click",
           "Jetzt zur Kasse gehen und  5% Rabatt auf Ihre erste Bestellung erhalten Step 1"
-        ), this.getCoupon("SPORTSTECH5", !1)), p.currentTarget.matches(".check_out_now_second") && (s(
+        ), this.getCoupon("SPORTSTECH5", !1)), o.currentTarget.matches(".check_out_now_second") && (s(
           "exp_exit_intent_popup_click_06",
           "Close behind the pop-up area",
           "Click",
           "Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2"
-        ), this.getCoupon("SPORTSTECH5", !1)), p.currentTarget.matches(".check_out_now_third") && s("exp_exit_intent_popup_click_07", "Close behind the pop-up area", "Click", "Es gehört fast Ihnen!"), setTimeout(() => {
+        ), this.getCoupon("SPORTSTECH5", !1)), o.currentTarget.matches(".check_out_now_third") && s("exp_exit_intent_popup_click_07", "Close behind the pop-up area", "Click", "Es gehört fast Ihnen!"), setTimeout(() => {
           t(".new-popup__content").innerHTML = "";
-        }, 500)), p.target.setAttribute("data-test", "1"), setTimeout(() => {
-          p.target.getAttribute("data-test") && p.target.removeAttribute("data-test");
+        }, 500)), o.target.setAttribute("data-test", "1"), setTimeout(() => {
+          o.target.getAttribute("data-test") && o.target.removeAttribute("data-test");
         }, 1e3);
       });
     }
     copyDiscount() {
       w("[data-discount]").then((e) => {
         m("[data-discount]").forEach((n) => {
-          console.log(n, "btn"), n.addEventListener("click", (o) => {
-            console.log("CLICK data-discount");
-            let i = o.currentTarget.dataset.discount;
-            console.log(i, "discount"), navigator.clipboard.writeText(i), o.currentTarget.textContent = "Copied!", n.closest(".first_order_discount") && s("exp_exit_intent_popup_button_05", "Code  SPORTSTECH5", "Button", "Sie stehen auf der Liste"), n.closest(".check_out_now.first_var") && s(
+          n.addEventListener("click", (p) => {
+            let r = p.currentTarget.dataset.discount;
+            navigator.clipboard.writeText(r), p.currentTarget.textContent = "Copied!", n.closest(".first_order_discount") && s("exp_exit_intent_popup_button_05", "Code  Welcome5", "Button", "Sie stehen auf der Liste"), n.closest(".check_out_now.first_var") && s(
               "exp_exit_intent_popup_button_12",
               "Code SPORTSTECH5",
               "Button",
               "Jetzt zur Kasse gehen und  5% Rabatt auf Ihre erste Bestellung erhalten Step 1"
             ), n.closest(".check_out_now_second") && s(
               "exp_exit_intent_popup_button_15",
-              "Code SPORTSTECH5",
+              "Code PRSNLoffer5",
               "Button",
               "Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2"
             ), setTimeout(() => {
@@ -1977,11 +1975,11 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
     handlerClickInput() {
       w("#emailNew").then((e) => {
         m("#emailNew").forEach((n) => {
-          n.addEventListener("input", (o) => {
-            this.validationFormEmail(o.target);
-          }), n.addEventListener("keyup", (o) => {
-            o.key === "Enter" && this.validationFormEmail(o.target);
-          }), n.addEventListener("blur", (o) => {
+          n.addEventListener("input", (p) => {
+            this.validationFormEmail(p.target);
+          }), n.addEventListener("keyup", (p) => {
+            p.key === "Enter" && this.validationFormEmail(p.target);
+          }), n.addEventListener("blur", (p) => {
             s(
               "exp_exit_intent_popup_input_01",
               "5% Rabatt erhalten",
@@ -1993,25 +1991,25 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       });
     }
     validationFormEmail(e, n = !1) {
-      var i;
-      let o = t("#emailNew").value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/);
+      var r;
+      let p = t("#emailNew").value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/);
       if (e.getAttribute("name") === "emailNew")
-        if (o === null) {
+        if (p === null) {
           t("#edit-email-address-error") || e.insertAdjacentHTML(
             "afterend",
             '<span id="edit-email-address-error" class="error">Please Enter Valid Email Address</span>'
           );
-          let p = setInterval(() => {
-            t("#edit-email-address-error") && t("#edit-email-address-error").textContent !== "Please Enter Valid Email Address" && (clearInterval(p), t("#edit-email-address-error").textContent = "Please Enter Valid Email Address");
+          let o = setInterval(() => {
+            t("#edit-email-address-error") && t("#edit-email-address-error").textContent !== "Please Enter Valid Email Address" && (clearInterval(o), t("#edit-email-address-error").textContent = "Please Enter Valid Email Address");
           }, 100);
         } else
-          (i = t("#edit-email-address-error")) == null || i.remove();
-      if (o !== null && n) {
-        let p = setInterval(() => {
+          (r = t("#edit-email-address-error")) == null || r.remove();
+      if (p !== null && n) {
+        let o = setInterval(() => {
           if (t('.klaviyo-form [name="email"]')) {
-            clearInterval(p);
-            const r = t('.klaviyo-form [name="email"]');
-            r.value = e.value, r.dispatchEvent(new Event("input")), setTimeout(() => {
+            clearInterval(o);
+            const i = t('.klaviyo-form [name="email"]');
+            i.value = e.value, i.dispatchEvent(new Event("input")), setTimeout(() => {
               t(".klaviyo-form button.needsclick.go952291206.kl-private-reset-css-Xuajs1").click(), localStorage.setItem("klaviyoForm", "yes"), setTimeout(() => {
                 this.handlerCloseKlaviyo();
               }, 1e3);
@@ -2031,19 +2029,19 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
     hanlderClickBtnFirtsPopupKlaviyo() {
       let e = this.device === "mobile" ? "button.needsclick.kl-teaser-SP24tu" : "button.needsclick.kl-teaser-SH5AsN";
       w(e).then((n) => {
-        t(e).addEventListener("click", (o) => {
-          o.preventDefault(), o.stopPropagation(), t(".new-popup-backdrop").classList.add("first_order_discount"), this.handleShowPopup(f, "firstOrderDiscountClick", "click", "firstOrderDiscount"), this.copyDiscount();
+        t(e).addEventListener("click", (p) => {
+          p.preventDefault(), p.stopPropagation(), t(".new-popup-backdrop").classList.add("first_order_discount"), this.handleShowPopup(f, "firstOrderDiscountClick", "click", "firstOrderDiscount"), this.copyDiscount();
         });
       });
     }
     observerKlaviyo() {
       let e = this.device === "mobile" ? "button.needsclick.kl-teaser-SP24tu" : "button.needsclick.kl-teaser-SH5AsN";
-      new MutationObserver((o) => {
-        o.forEach((i) => {
-          for (let p of i.removedNodes)
-            p instanceof HTMLElement && p.querySelector(".needsclick.kl-private-reset-css-Xuajs1") && this.hanlderClickBtnFirtsPopupKlaviyo();
-          for (let p of i.addedNodes)
-            p instanceof HTMLElement && p.querySelector(e) && this.hanlderClickBtnFirtsPopupKlaviyo();
+      new MutationObserver((p) => {
+        p.forEach((r) => {
+          for (let o of r.removedNodes)
+            o instanceof HTMLElement && o.querySelector(".needsclick.kl-private-reset-css-Xuajs1") && this.hanlderClickBtnFirtsPopupKlaviyo();
+          for (let o of r.addedNodes)
+            o instanceof HTMLElement && o.querySelector(e) && this.hanlderClickBtnFirtsPopupKlaviyo();
         });
       }).observe(document.documentElement, {
         childList: !0,
@@ -2052,12 +2050,12 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       });
     }
     renderStars(e) {
-      const n = parseFloat(e), o = Math.floor(n), p = n % 1 >= 0.5, r = 5;
+      const n = parseFloat(e), p = Math.floor(n), o = n % 1 >= 0.5, i = 5;
       let _ = "";
-      for (let l = 0; l < o; l++)
+      for (let l = 0; l < p; l++)
         _ += d.starIcon;
-      p && (_ += d.starPartIcon);
-      const c = r - o - (p ? 1 : 0);
+      o && (_ += d.starPartIcon);
+      const c = i - p - (o ? 1 : 0);
       for (let l = 0; l < c; l++)
         _ += d.starEmptyIcon;
       return _;
@@ -2071,11 +2069,11 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
           headers: {
             "Content-Type": "application/json"
           }
-        })).json(), o = n == null ? void 0 : n.lineItems, i = Object.keys(o);
+        })).json(), p = n == null ? void 0 : n.lineItems, r = Object.keys(p);
         return await Promise.all(
-          i.map(async (r) => {
-            const _ = await this.getProductInfo(r);
-            return console.log(r, _), await this.getRating(_.manufacturerNumber, _.titleProduct);
+          r.map(async (i) => {
+            const _ = await this.getProductInfo(i);
+            return await this.getRating(_.manufacturerNumber, _.titleProduct);
           })
         );
       } catch (e) {
@@ -2083,26 +2081,26 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       }
     }
     async getProductInfo(e) {
-      var n, o;
+      var n, p;
       try {
-        const i = await fetch(`https://www.sportstech.de/store-api/product/${e}`, {
+        const r = await fetch(`https://www.sportstech.de/store-api/product/${e}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             "sw-access-key": "SWSCSNIXRK51Z1JNSMZIUXHEVW"
           }
         });
-        if (!i.ok)
-          throw new Error(`Server responded with status ${i.status}`);
-        const p = await i.json(), r = (n = p == null ? void 0 : p.product) == null ? void 0 : n.name, _ = (o = p == null ? void 0 : p.product) == null ? void 0 : o.productNumber;
-        return { titleProduct: r, manufacturerNumber: _ };
-      } catch (i) {
-        throw i;
+        if (!r.ok)
+          throw new Error(`Server responded with status ${r.status}`);
+        const o = await r.json(), i = (n = o == null ? void 0 : o.product) == null ? void 0 : n.name, _ = (p = o == null ? void 0 : o.product) == null ? void 0 : p.productNumber;
+        return { titleProduct: i, manufacturerNumber: _ };
+      } catch (r) {
+        throw r;
       }
     }
     async getRating(e, n) {
       try {
-        const o = await fetch(
+        const p = await fetch(
           `https://api.reviews.io/product/rating-batch?sku=${e}&store=www.sportstech.de&lang=de&enableSyndication=true`.trim(),
           {
             method: "GET",
@@ -2111,20 +2109,20 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
             }
           }
         );
-        if (!o.ok)
-          throw new Error(`Server responded with status ${o.status}`);
-        const i = await o.json();
-        return i.hasOwnProperty("0") ? {
+        if (!p.ok)
+          throw new Error(`Server responded with status ${p.status}`);
+        const r = await p.json();
+        return r.hasOwnProperty("0") ? {
           titleProduct: n,
-          numRatings: i[0].num_ratings,
-          averageRating: i[0].average_rating
-        } : Object.keys(i).reduce((r, _) => (r[_] = {
+          numRatings: r[0].num_ratings,
+          averageRating: r[0].average_rating
+        } : Object.keys(r).reduce((i, _) => (i[_] = {
           titleProduct: n,
-          numRatings: i[_].num_ratings,
-          averageRating: i[_].average_rating
-        }, r), {});
-      } catch (o) {
-        throw o;
+          numRatings: r[_].num_ratings,
+          averageRating: r[_].average_rating
+        }, i), {});
+      } catch (p) {
+        throw p;
       }
     }
     async getCoupon(e, n = !0) {
@@ -2136,13 +2134,13 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
         body: JSON.stringify({
           code: e
         })
-      }).then((o) => o).then((o) => {
-        o.status === 200 && (console.log(o.status, "getCoupon"), n && (window.location.href = "/checkout/confirm"));
-      }).catch((o) => {
-        console.error("Error:", o);
+      }).then((p) => p).then((p) => {
+        p.status === 200 && (console.log(p.status, "getCoupon"), n && (window.location.href = "/checkout/confirm"));
+      }).catch((p) => {
+        console.error("Error:", p);
       });
     }
   }
-  new V(A);
+  new A(V);
 })();
 //# sourceMappingURL=index.js.map
