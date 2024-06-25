@@ -13,7 +13,7 @@
       `%c EXP: ${e} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, g = (e) => document.querySelectorAll(e), h = (e) => document.querySelector(e), v = (e) => {
+  }, g = (e) => document.querySelectorAll(e), d = (e) => document.querySelector(e), v = (e) => {
     let t = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", e, "variant_1"));
     }, 1e3);
@@ -105,7 +105,7 @@
         "Light Blue": 44467937313054
       }
     }
-  }, d = {
+  }, r = {
     "/products/mela-weighted-blanket,/products/the-mela-weighted-blanket-with-removable-cover": {
       addons: {
         pillowcases: 2,
@@ -142,14 +142,14 @@
       not_addons: 2
     }
   };
-  let k = ["eucalyptus-silk-eye-mask", "eucalyptus-silk-pillow-cases", "eucalyptus-silk-sheet-set"], r = [];
+  let k = ["eucalyptus-silk-eye-mask", "eucalyptus-silk-pillow-cases", "eucalyptus-silk-sheet-set"], h = [];
   function y(e) {
     let t = e.toString(), n = t.length;
     return (+(t.slice(0, n - 2) + "." + t.slice(n - 2))).toFixed(2);
   }
   const _ = (e) => fetch("/products/" + e + ".js").then((t) => t.json()).then((t) => {
     console.log("Product:", t), t.variants && t.variants.forEach(function(n) {
-      r[n.id] = {
+      h[n.id] = {
         available: n.available,
         price: y(n.price),
         compare: y(n.compare_at_price)
@@ -187,12 +187,12 @@
       if (e.title == "Eucalyptus Silk Sheet Set")
         for (let l = 0; l < e.desc.length; l++)
           e.desc[l].split(":")[0] == s.split("/")[1] && (p = e.desc[l]);
-      r[a[s]].available == !0 && (n += `<option value="${a[s]}" ${p != "" ? `data-desc="${p}"` : ""} data-compare="${(r[a[s]].compare * (s.includes("4 pack") ? 2 : 1)).toFixed(2)}" data-price="${(r[a[s]].price * (s.includes("4 pack") ? 2 : 1)).toFixed(2)}" data-qty="${s.includes("4 pack") ? 2 : 1}">${s}</option>`);
+      h[a[s]].available == !0 && (n += `<option value="${a[s]}" ${p != "" ? `data-desc="${p}"` : ""} data-compare="${(h[a[s]].compare * (s.includes("4 pack") ? 2 : 1)).toFixed(2)}" data-price="${(h[a[s]].price * (s.includes("4 pack") ? 2 : 1)).toFixed(2)}" data-qty="${s.includes("4 pack") ? 2 : 1}">${s}</option>`);
     }
     let i = e.list;
     for (let s = 0; s < i.length; s++)
       t += `<li>${i[s]}</li>`;
-    let o = r[a[Object.keys(a)[0]]].compare, c = r[a[Object.keys(a)[0]]].price, u = Math.round(100 - c * 100 / o).toFixed(0);
+    let o = h[a[Object.keys(a)[0]]].compare, c = h[a[Object.keys(a)[0]]].price, u = Math.round(100 - c * 100 / o).toFixed(0);
     return `
             <div class="modal">
                 <div class="modal-container">
@@ -463,11 +463,11 @@
   b({ name: "Cross-sell", dev: "Olha" }), v("exp_cross_sell");
   class P {
     constructor() {
-      this.page = window.location.pathname, this.device = x(), this.showStickyBtn = !1, this.adding = !1, this.addingQuick = !1, (JSON.stringify(d).includes(this.page) || this.page.includes("/collections/beddings") || this.page.includes("/collections/shop-all-aeyla") || this.page.includes("/collections/pillows") || this.page.includes("/collections/bundles") || this.page.includes("/collections/weighted-blanket-blanket-covers")) && this.init();
+      this.page = window.location.pathname, this.device = x(), this.showStickyBtn = !1, this.adding = !1, this.addingQuick = !1, (JSON.stringify(r).includes(this.page) || this.page.includes("/collections/beddings") || this.page.includes("/collections/shop-all-aeyla") || this.page.includes("/collections/pillows") || this.page.includes("/collections/bundles") || this.page.includes("/collections/weighted-blanket-blanket-covers")) && this.init();
     }
     init() {
       document.head.insertAdjacentHTML("beforeend", `<style>${E}</style>`), new MutationObserver((n) => {
-        if (h(".sticky_atc_btn")) {
+        if (d(".sticky_atc_btn")) {
           if (this.showStickyBtn === !0)
             return;
           this.showStickyBtn = !0, g(".sticky_atc_btn").forEach((a) => {
@@ -477,19 +477,19 @@
           });
         } else
           this.showStickyBtn = !1;
-        if (h("#AddToCart") && h("#AddToCart").innerText.toLowerCase().includes("adding")) {
+        if (d("#AddToCart") && d("#AddToCart").innerText.toLowerCase().includes("adding")) {
           if (this.adding === !0)
             return;
           this.adding = !0, this.addToCartPDP();
         } else
           this.adding = !1;
-        if (h('.quick_add .loader[style*="block"]')) {
+        if (d('.quick_add .loader[style*="block"]')) {
           if (this.addingQuick === !0)
             return;
           this.addingQuick = !0;
-          let a = h('.quick_add .loader[style*="block"]').closest(".pro_card_wrapper").querySelector("a").pathname;
-          for (const i in d)
-            i.includes(a) && this.renderCrossSellModal(f[d[i].not_addons]);
+          let a = d('.quick_add .loader[style*="block"]').closest(".pro_card_wrapper").querySelector("a").pathname;
+          for (const i in r)
+            i.includes(a) && this.renderCrossSellModal(f[r[i].not_addons]);
         } else
           this.addingQuick = !1;
       }).observe(document.body, {
@@ -502,12 +502,12 @@
       g(".upsell_wrapper .chckd").forEach((n) => {
         this.page.includes("/move-in-set-2") || (t += n.querySelector(".text-main-blue > span").innerText.toLowerCase());
       }), t != "" && (t = t.includes("mask") && t.includes("pillowcases") ? "pillowcases_mask" : t.includes("mask") ? "mask" : "pillowcases");
-      for (const n in d) {
+      for (const n in r) {
         let a = n.split(",");
         for (let i = 0; i < a.length; i++)
           if (a[i].includes(this.page)) {
             let o = 0;
-            t != "" ? o = d[n].addons[t] : o = d[n].not_addons, this.renderCrossSellModal(f[o]);
+            t != "" ? o = r[n].addons[t] : o = r[n].not_addons, this.renderCrossSellModal(f[o]);
           }
       }
     }
@@ -515,7 +515,7 @@
       $(".modal").length && $(".modal").remove(), C(t).then((n) => {
         document.body.insertAdjacentHTML("beforeend", n);
         const a = () => {
-          $(".modal").style.height = window.innerHeight + "px";
+          d(".modal").style.height = window.innerHeight + "px";
         };
         window.addEventListener("resize", a), a(), setTimeout(() => {
           $(".modal").addClass("active"), w("exp_cross_sell_popup_section_01", "Section", "Visibility", "Cross-sell popup");
