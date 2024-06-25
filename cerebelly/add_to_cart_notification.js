@@ -123,7 +123,7 @@
 <nav class="crs_nav">
   <ul class="d-flex justify-lg-center">
     <li><a href="#ingredients">ingredients</a></li>
-    <li><a href="#nutrients">Nutritients</a></li>
+    <li><a href="#nutrients">Nutrients</a></li>
     <li><a href="#usvsthem">the cerebelly standard</a></li>
     <li><a href="#puree">directions & safety</a></li>
   </ul>
