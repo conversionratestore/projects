@@ -8,12 +8,12 @@
       event_type: n,
       event_loc: o
     }), console.log(`Event: ${a} | ${e} | ${n} | ${o}`);
-  }, I = ({ name: a, dev: e }) => {
+  }, E = ({ name: a, dev: e }) => {
     console.log(
       `%c EXP: ${a} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, f = (a) => document.querySelectorAll(a), t = (a) => document.querySelector(a), E = (a) => {
+  }, m = (a) => document.querySelectorAll(a), t = (a) => document.querySelector(a), I = (a) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", a, "variant_1"));
     }, 1e3);
@@ -45,7 +45,7 @@
     var n;
     const e = `; ${document.cookie}`;
     return e.includes(`; ${a}=`) ? (n = e.split(`; ${a}=`).pop()) == null ? void 0 : n.split(";").shift() : (console.log("No cookie"), null);
-  }, l = "https://conversionratestore.github.io/projects/sportstech/img/", d = {
+  }, u = "https://conversionratestore.github.io/projects/sportstech/img/", d = {
     closeIcon: (
       /* HTML */
       `
@@ -205,7 +205,7 @@
       </div>
       <div class="body_popup">
         <div class="img_wrapper">
-          <img src="${l}explore_our_best_img.png" alt="photo sportstech" />
+          <img src="${u}explore_our_best_img.png" alt="photo sportstech" />
         </div>
         <div class="btn_wrapper">
           <h3>Verkauf (bis zu <span class="accent_color_red">30%</span>)</h3>
@@ -227,7 +227,7 @@
       <div class="body_popup">
         <ul class="category_list">
           <li class="category_item bestsellers_item">
-            <img src="${l}category_img_1.png" alt="photo sportstech" />
+            <img src="${u}category_img_1.png" alt="photo sportstech" />
             <h3>Bestseller</h3>
             <div class="info_wrapper">
               <h3>Bestseller</h3>
@@ -235,7 +235,7 @@
             </div>
           </li>
           <li class="category_item bikes_item">
-            <img src="${l}category_img_2.png" alt="photo sportstech" />
+            <img src="${u}category_img_2.png" alt="photo sportstech" />
             <h3>Speedbikes und Ergometer</h3>
             <div class="info_wrapper">
               <h3>Speedbikes und Ergometer</h3>
@@ -243,7 +243,7 @@
             </div>
           </li>
           <li class="category_item equipment_item">
-            <img src="${l}category_img_3.png" alt="photo sportstech" />
+            <img src="${u}category_img_3.png" alt="photo sportstech" />
             <h3>Ausrüstung</h3>
             <div class="info_wrapper">
               <h3>Ausrüstung</h3>
@@ -255,7 +255,7 @@
     </div>
   </div>
 `
-  ), x = (
+  ), f = (
     /* HTML */
     `
   <div class="exit_intent_popup">
@@ -282,8 +282,8 @@
         </div>
       </div>
       <div class="img_wrapper">
-        <img src="${l}check_out_now_img.png" alt="photo sportstech" class="desk_var" />
-        <img src="${l}first_order_discount_img_mob.png" alt="photo sportstech" class="mob_var" />
+        <img src="${u}check_out_now_img.png" alt="photo sportstech" class="desk_var" />
+        <img src="${u}first_order_discount_img_mob.png" alt="photo sportstech" class="mob_var" />
       </div>
     </div>
     <div class="first_order_discount second_var is_hidden">
@@ -316,8 +316,8 @@
         </div>
       </div>
       <div class="img_wrapper">
-        <img src="${l}first_order_discount_img_2.png" alt="photo sportstech" class="desk_var" />
-        <img src="${l}first_order_discount_img_mob.png" alt="photo sportstech" class="mob_var" />
+        <img src="${u}first_order_discount_img_2.png" alt="photo sportstech" class="desk_var" />
+        <img src="${u}first_order_discount_img_mob.png" alt="photo sportstech" class="mob_var" />
       </div>
     </div>
   </div>
@@ -370,7 +370,7 @@
         </div>
       </div>
       <div class="img_wrapper">
-        <img src="${l}check_out_now_img.png" alt="photo sportstech" class="desk_var" />
+        <img src="${u}check_out_now_img.png" alt="photo sportstech" class="desk_var" />
       </div>
     </div>
   </div>
@@ -1619,6 +1619,13 @@
     font-size: 24px;
   }
 }
+.exit_intent_popup .check_out_now.first_var > .img_wrapper {
+  background: #fff;
+}
+.exit_intent_popup .check_out_now.first_var > .img_wrapper img {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 
 .check_out_now.large_popup .exit_intent_popup .info_wrapper .header_popup {
   margin-bottom: 24px;
@@ -1676,7 +1683,7 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
         } else
           localStorage.getItem("session") || (localStorage.setItem("session", "1"), sessionStorage.setItem("session", "1"));
         Number(localStorage.getItem("session")) > 1 ? console.log("Returning users (session number > 1)", Number(localStorage.getItem("session"))) : console.log("(1st session)", Number(localStorage.getItem("session")));
-      }, I({ name: "Exit Intent Popup", dev: "SKh" }), E("exp_exit_intent_popup"), document.head.insertAdjacentHTML(
+      }, E({ name: "Exit Intent Popup", dev: "SKh" }), I("exp_exit_intent_popup"), document.head.insertAdjacentHTML(
         "afterbegin",
         '<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">'
       ), document.head.insertAdjacentHTML("beforeend", `<style>${j}</style>`), (!sessionStorage.getItem("firstOrderDiscount") || !localStorage.getItem("initUser") || !localStorage.getItem("klaviyoForm")) && document.body.insertAdjacentHTML(
@@ -1717,16 +1724,17 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       const n = z(e);
       if (!n)
         console.log("New User"), localStorage.setItem("initUser", "true"), setTimeout(() => {
-          this.isPopupOpen() || (t(".new-popup-backdrop").classList.add("first_order_discount"), this.handleShowPopup(x, "firstOrderDiscount", "firstOrderDiscount", "firstOrderDiscount"), sessionStorage.getItem("firstOrderDiscount") || this.handlerCloseKlaviyo());
+          this.isPopupOpen() || (t(".new-popup-backdrop").classList.add("first_order_discount"), this.handleShowPopup(f, "firstOrderDiscount", "firstOrderDiscount", "firstOrderDiscount"), sessionStorage.getItem("firstOrderDiscount") || this.handlerCloseKlaviyo());
         }, this.firstSessionTime);
       else if (n) {
         const o = +(n.split(".").pop() + "000");
         +/* @__PURE__ */ new Date() - +new Date(o) <= 5 * 60 * 1e3 && (console.log("New User"), localStorage.setItem("initUser", "true"), setTimeout(() => {
-          this.isPopupOpen() || (t(".new-popup-backdrop").classList.add("first_order_discount"), this.handleShowPopup(x, "firstOrderDiscount", "firstOrderDiscount", "firstOrderDiscount"), sessionStorage.getItem("firstOrderDiscount") || this.handlerCloseKlaviyo());
+          this.isPopupOpen() || (t(".new-popup-backdrop").classList.add("first_order_discount"), this.handleShowPopup(f, "firstOrderDiscount", "firstOrderDiscount", "firstOrderDiscount"), sessionStorage.getItem("firstOrderDiscount") || this.handlerCloseKlaviyo());
         }, this.firstSessionTime));
       }
     }
     async getItemsBasket(e, n) {
+      var l;
       if (this.isPopupOpen())
         return;
       const o = Date.now();
@@ -1738,16 +1746,16 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       let p = await fetch("https://www.sportstech.de/checkout/cart");
       p = await p.text();
       const c = new DOMParser().parseFromString(p, "text/html").querySelectorAll(".checkout-product-table .line-item-product");
-      c.length !== 0 ? (e === "differentUserCategories" && (t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), c.length > 1 ? t(".new-popup-backdrop").classList.add("large_popup") : t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), Number(localStorage.getItem("session")) > 1 ? localStorage.getItem("checkOutNowSecond") ? (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.add("check_out_now_third"), this.handleShowPopup(N, "returningUsers", n, "checkOutNowThird")) : (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.add("check_out_now_second"), this.handleShowPopup(M, "returningUsers", n, "checkOutNowSecond"), localStorage.setItem("checkOutNowSecond", "yes")) : (t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), console.log("!!!!!!!!!!!!!!!!!!!!!!"), t(".new-popup-backdrop").classList.add("check_out_now"), this.handleShowPopup(H, "checkOutNow", n, "checkOutNow"))), c.forEach((u) => {
-        var k, v, y, C, S, L;
-        let K = ((k = u.querySelector(".line-item-label")) == null ? void 0 : k.getAttribute("href")) ?? "", D = ((v = u.querySelector(".line-item-img")) == null ? void 0 : v.getAttribute("srcset")) ?? "", m = ((y = u.querySelector(".line-item-label")) == null ? void 0 : y.textContent) ?? "", Z = ((C = u.querySelector(".line-item-details-characteristics-option")) == null ? void 0 : C.textContent) ?? "", q = ((S = u.querySelector(".line-item-total-price-value")) == null ? void 0 : S.textContent) ?? "", g, b, J = ((L = c[c.length - 1].querySelector(".line-item-img")) == null ? void 0 : L.getAttribute("srcset")) ?? "";
-        console.log(J, "lastImg"), i.forEach((h) => {
+      c.length !== 0 ? (e === "differentUserCategories" && (t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), c.length > 1 ? t(".new-popup-backdrop").classList.add("large_popup") : t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), Number(localStorage.getItem("session")) > 1 ? localStorage.getItem("checkOutNowSecond") ? (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.add("check_out_now_third"), this.handleShowPopup(N, "returningUsers", n, "checkOutNowThird")) : (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.add("check_out_now_second"), this.handleShowPopup(M, "returningUsers", n, "checkOutNowSecond"), localStorage.setItem("checkOutNowSecond", "yes")) : (t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), console.log("!!!!!!!!!!!!!!!!!!!!!!"), t(".new-popup-backdrop").classList.add("check_out_now"), this.handleShowPopup(H, "checkOutNow", n, "checkOutNow"))), t(".new-popup-backdrop.check_out_now .first_var > .img_wrapper img") && (t(".new-popup-backdrop.check_out_now .first_var > .img_wrapper img").src = (l = c[c.length - 1].querySelector(".line-item-img")) == null ? void 0 : l.getAttribute("src")), c.forEach((x) => {
+        var v, y, C, S, L;
+        let K = ((v = x.querySelector(".line-item-label")) == null ? void 0 : v.getAttribute("href")) ?? "", D = ((y = x.querySelector(".line-item-img")) == null ? void 0 : y.getAttribute("srcset")) ?? "", g = ((C = x.querySelector(".line-item-label")) == null ? void 0 : C.textContent) ?? "", Z = ((S = x.querySelector(".line-item-details-characteristics-option")) == null ? void 0 : S.textContent) ?? "", q = ((L = x.querySelector(".line-item-total-price-value")) == null ? void 0 : L.textContent) ?? "", b, k;
+        i.forEach((h) => {
           var T;
-          ((T = h == null ? void 0 : h.titleProduct) == null ? void 0 : T.trim().toLocaleLowerCase()) === m.trim().toLocaleLowerCase() && (g = h.numRatings, b = h.averageRating);
+          ((T = h == null ? void 0 : h.titleProduct) == null ? void 0 : T.trim().toLocaleLowerCase()) === g.trim().toLocaleLowerCase() && (b = h.numRatings, k = h.averageRating);
         }), w(".products_list").then((h) => {
           t(".products_list").insertAdjacentHTML(
             "beforeend",
-            $(K, D, m, Z, q, g, this.renderStars(b))
+            $(K, D, g, Z, q, b, this.renderStars(k))
           );
         });
       })) : (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), e === "differentUserCategories" && (Number(localStorage.getItem("session")) > 1 ? (t(".new-popup-backdrop").classList.add("categories_product"), this.handleShowPopup(B, "returningUsers", n, "categoriesProduct")) : (t(".new-popup-backdrop").classList.add("sales_offer"), this.handleShowPopup(O, "salesOffer", n, "salesOffer"))));
@@ -1816,7 +1824,7 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
           s("exp_exit_intent_popup_section_07", "Section", "Visibility", "Es gehört fast Ihnen!");
           break;
       }
-      w("#counter").then((u) => {
+      w("#counter").then((l) => {
         this.startCountdown();
       }), this.handleClosePopup();
     }
@@ -1900,7 +1908,7 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
     }
     copyDiscount() {
       w("[data-discount]").then((e) => {
-        f("[data-discount]").forEach((n) => {
+        m("[data-discount]").forEach((n) => {
           console.log(n, "btn"), n.addEventListener("click", (o) => {
             console.log("CLICK data-discount");
             let i = o.currentTarget.dataset.discount;
@@ -1968,7 +1976,7 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
     }
     handlerClickInput() {
       w("#emailNew").then((e) => {
-        f("#emailNew").forEach((n) => {
+        m("#emailNew").forEach((n) => {
           n.addEventListener("input", (o) => {
             this.validationFormEmail(o.target);
           }), n.addEventListener("keyup", (o) => {
@@ -2024,7 +2032,7 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       let e = this.device === "mobile" ? "button.needsclick.kl-teaser-SP24tu" : "button.needsclick.kl-teaser-SH5AsN";
       w(e).then((n) => {
         t(e).addEventListener("click", (o) => {
-          o.preventDefault(), o.stopPropagation(), t(".new-popup-backdrop").classList.add("first_order_discount"), this.handleShowPopup(x, "firstOrderDiscountClick", "click", "firstOrderDiscount"), this.copyDiscount();
+          o.preventDefault(), o.stopPropagation(), t(".new-popup-backdrop").classList.add("first_order_discount"), this.handleShowPopup(f, "firstOrderDiscountClick", "click", "firstOrderDiscount"), this.copyDiscount();
         });
       });
     }
@@ -2046,11 +2054,11 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
     renderStars(e) {
       const n = parseFloat(e), o = Math.floor(n), p = n % 1 >= 0.5, r = 5;
       let _ = "";
-      for (let u = 0; u < o; u++)
+      for (let l = 0; l < o; l++)
         _ += d.starIcon;
       p && (_ += d.starPartIcon);
       const c = r - o - (p ? 1 : 0);
-      for (let u = 0; u < c; u++)
+      for (let l = 0; l < c; l++)
         _ += d.starEmptyIcon;
       return _;
     }
