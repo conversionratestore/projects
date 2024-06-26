@@ -13,7 +13,7 @@
       `%c EXP: ${a} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, m = (a) => document.querySelectorAll(a), t = (a) => document.querySelector(a), I = (a) => {
+  }, m = (a) => document.querySelectorAll(a), t = (a) => document.querySelector(a), P = (a) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", a, "variant_1"));
     }, 1e3);
@@ -32,7 +32,7 @@
       });
     });
   }
-  const P = function(a) {
+  const I = function(a) {
     a = a === void 0 ? {} : a;
     let e, n, p, r, o = (a == null ? void 0 : a.delay) || 50;
     function i() {
@@ -41,7 +41,7 @@
     return i(), function() {
       return n = window.scrollY, e != null && (r = n - e), e = n, clearTimeout(p), p = setTimeout(i, o), r;
     };
-  }(), z = (a) => {
+  }(), O = (a) => {
     var n;
     const e = `; ${document.cookie}`;
     return e.includes(`; ${a}=`) ? (n = e.split(`; ${a}=`).pop()) == null ? void 0 : n.split(";").shift() : (console.log("No cookie"), null);
@@ -167,13 +167,13 @@
       class="bgr_yellow_icon"
       xmlns="http://www.w3.org/2000/svg"
       width="480"
-      height="66"
-      viewBox="0 0 480 66"
+      height="45"
+      viewBox="0 0 480 45"
       fill="none"
     >
       <path
         opacity="0.5"
-        d="M0.00292969 0.964844H479.997V55.0352H38.4248L31.0029 65.0352L23.5811 55.0352H0.00292969V0.964844Z"
+        d="M0.00292969 0H479.997V34.0703H38.4248L31.0029 44.0703L23.5811 34.0703H0.00292969V0Z"
         fill="#F8CB87"
       />
     </svg>
@@ -194,22 +194,22 @@
     </svg>
   `
     )
-  }, O = (
+  }, z = (
     /* HTML */
     `
   <div class="exit_intent_popup">
     <div class="explore_our_best first_var">
       <div class="header_popup">
-        <h2 class="main_title">Entdecken Sie unsere besten Produkte</h2>
-        <p class="main_description">Werfen Sie einen genaueren Blick auf unsere Top-Auswahl nur für Sie</p>
+        <h2 class="main_title">Entdecke unsere Bestseller!</h2>
+        <p class="main_description">Die besten Deals nur für dich zusammengestellt.</p>
       </div>
       <div class="body_popup">
         <div class="img_wrapper">
           <img src="${u}explore_our_best_img.png" alt="photo sportstech" />
         </div>
         <div class="btn_wrapper">
-          <h3>Verkauf (bis zu <span class="accent_color_red">30%</span>)</h3>
-          <div class="shop_now_btn main_btn">Jetzt einkaufen</div>
+          <h3>Sale (bis zu <span class="accent_color_red">30%</span>)</h3>
+          <div class="shop_now_btn main_btn">JETZT SHOPPEN</div>
         </div>
       </div>
     </div>
@@ -221,8 +221,8 @@
   <div class="exit_intent_popup">
     <div class="explore_our_best second_var">
       <div class="header_popup">
-        <h2 class="main_title">Entdecken Sie unsere besten Produkte</h2>
-        <p class="main_description">Werfen Sie einen genaueren Blick auf unsere Top-Auswahl nur für Sie</p>
+        <h2 class="main_title">Entdecke unsere besten Produkte!</h2>
+        <p class="main_description">Schau dir unsere Top-Auswahl für dich an</p>
       </div>
       <div class="body_popup">
         <ul class="category_list">
@@ -231,7 +231,7 @@
             <h3>Bestseller</h3>
             <div class="info_wrapper">
               <h3>Bestseller</h3>
-              <div class="shop_now_btn main_btn">Jetzt einkaufen</div>
+              <div class="shop_now_btn main_btn">JETZT KAUFEN</div>
             </div>
           </li>
           <li class="category_item bikes_item">
@@ -239,15 +239,15 @@
             <h3>Speedbikes und Ergometer</h3>
             <div class="info_wrapper">
               <h3>Speedbikes und Ergometer</h3>
-              <div class="shop_now_btn main_btn">Jetzt einkaufen</div>
+              <div class="shop_now_btn main_btn">JETZT KAUFEN</div>
             </div>
           </li>
           <li class="category_item equipment_item">
-            <img src="${u}category_img_3.png" alt="photo sportstech" />
-            <h3>Ausrüstung</h3>
+            <img src="${u}category_img_3_1.png" alt="photo sportstech" />
+            <h3>Rudergeräte</h3>
             <div class="info_wrapper">
-              <h3>Ausrüstung</h3>
-              <div class="shop_now_btn main_btn">Jetzt einkaufen</div>
+              <h3>Rudergeräte</h3>
+              <div class="shop_now_btn main_btn">JETZT KAUFEN</div>
             </div>
           </li>
         </ul>
@@ -262,21 +262,19 @@
     <div class="first_order_discount first_var">
       <div class="info_wrapper">
         <div class="header_popup">
-          <h2 class="main_title">
-            <span class="accent_color_red">Erhalten Sie 5%</span> Rabatt & kostenlose Lieferung!
-          </h2>
+          <h2 class="main_title"><span class="accent_color_red">Hol dir 5 % Rabatt</span> & gratis Versand!</h2>
           <p class="main_description">
-            Abonnieren Sie unseren Newsletter und sparen Sie bei Ihrer gesamten ersten Bestellung, ohne Einschränkungen.
+            Melde dich jetzt für unseren Newsletter an und erhalte einen exklusiven Rabatt auf deine erste Bestellung.
           </p>
         </div>
         <div class="body_popup">
           <div class="email_wrapper">
             <label for="emailNew">
-              <input type="email" name="emailNew" id="emailNew" placeholder="Email" />
+              <input type="email" name="emailNew" id="emailNew" placeholder="E-Mail-Adresse eingeben" />
             </label>
           </div>
           <div class="btn_wrapper">
-            <div class="get_discount_btn main_btn">5% Rabatt erhalten</div>
+            <div class="get_discount_btn main_btn">5% RABATT SICHERN</div>
             <div class="no_thanks_btn main_btn" data-popup="close">Nein, danke</div>
           </div>
         </div>
@@ -289,29 +287,29 @@
     <div class="first_order_discount second_var is_hidden">
       <div class="info_wrapper">
         <div class="header_popup">
-          <h2 class="main_title">Sie stehen auf der Liste</h2>
+          <h2 class="main_title">Du bist angemeldet</h2>
           <ul>
             <li>
               <p>
-                Ihr <span class="accent_color_red">5% Rabatt</span> auf die erste Bestellung ist bereit (kein
-                Mindestbestellwert, keine Ausschlüsse).
+                Dein <span class="accent_color_red">5%-Rabatt</span> auf deine erste Bestellung wartet auf dich (ohne
+                Mindestbestellwert, auf das gesamte Sortiment anwendbar).
               </p>
             </li>
             <li>
-              <p>Zusätzlich <span class="accent_color_red">KOSTENLOSE</span> Lieferung vom Hersteller.</p>
+              <p>Plus <span class="accent_color_red">KOSTENLOSE</span> Lieferung</p>
             </li>
           </ul>
         </div>
         <div class="body_popup">
           <div class="discount_code_wrapper">
-            <p class="discount_code_title">Geben Sie den Code im Warenkorb ein</p>
+            <p class="discount_code_title">Gib den Code im Warenkorb ein.</p>
             <div class="discount_code_container">
               <span class="discount_code_txt">SPORTSTECH5</span>
               <span data-discount="SPORTSTECH5">${d.copyIcon}</span>
             </div>
           </div>
           <div class="btn_wrapper">
-            <div class="continue_shopping_btn main_btn" data-popup="close">Weiter einkaufen</div>
+            <div class="continue_shopping_btn main_btn" data-popup="close">WEITER SHOPPEN</div>
           </div>
         </div>
       </div>
@@ -330,7 +328,7 @@
       <div class="info_wrapper">
         <div class="header_popup">
           <h2 class="main_title">
-            Jetzt zur Kasse gehen und <span class="accent_color_red">5% Rabatt</span> auf Ihre erste Bestellung erhalten
+            Kaufe jetzt und spare <span class="accent_color_red">5%</span> bei deiner ersten Bestellung.
           </h2>
           <div id="counter">
             <div class="time_block">
@@ -358,14 +356,14 @@
             </p>
           </div>
           <div class="discount_code_wrapper">
-            <p class="discount_code_title">Der Code wird beim Checkout angewendet</p>
+            <p class="discount_code_title">Gib den Code beim Checkout ein</p>
             <div class="discount_code_container">
               <span class="discount_code_txt">SPORTSTECH5</span>
               <span data-discount="SPORTSTECH5">${d.copyIcon}</span>
             </div>
           </div>
           <div class="btn_wrapper">
-            <div class="check_out_now_btn main_btn">Jetzt zur Kasse</div>
+            <div class="check_out_now_btn main_btn">ZUR KASSE</div>
           </div>
         </div>
       </div>
@@ -375,7 +373,7 @@
     </div>
   </div>
 `
-  ), M = (
+  ), N = (
     /* HTML */
     `
   <div class="exit_intent_popup">
@@ -383,8 +381,8 @@
       <div class="info_wrapper">
         <div class="header_popup">
           <h2 class="main_title">
-            Jetzt zur Kasse gehen und<br /><span class="accent_color_red">5% Rabatt</span> sowie kostenlose Lieferung
-            erhalten
+            Bestelle jetzt und sichere dir<br /><span class="accent_color_red">5% Rabatt</span> plus kostenlose
+            Lieferung
           </h2>
           <p class="main_description">*5% Rabatt gilt nur für diese Bestellung</p>
         </div>
@@ -393,7 +391,7 @@
             <ul class="products_list"></ul>
           </div>
           <div class="discount_code_wrapper">
-            <p class="discount_code_title">Der Code wird beim Checkout angewendet</p>
+            <p class="discount_code_title">Gib den Code beim Checkout ein</p>
             <div class="discount_code_container">
               <span class="discount_code_txt">SPORTSTECH5</span>
               <span data-discount="SPORTSTECH5">${d.copyIcon}</span>
@@ -401,30 +399,30 @@
           </div>
           <div class="btn_wrapper">
             <p>*Der endgültige Preis wird beim Checkout berechnet</p>
-            <div class="complete_my_order_now_btn main_btn">Meine Bestellung jetzt abschließen</div>
+            <div class="complete_my_order_now_btn main_btn">BESTELLUNG ABSCHLIEßEN</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 `
-  ), N = (
+  ), M = (
     /* HTML */
     `
   <div class="exit_intent_popup">
     <div class="check_out_now third_var">
       <div class="info_wrapper">
         <div class="header_popup">
-          <h2 class="main_title">Es gehört fast Ihnen!</h2>
+          <h2 class="main_title">Fast deins!</h2>
           <p class="main_description">Nur noch ein Schritt:</p>
         </div>
         <div class="body_popup">
           <div class="stock_wrapper">
             ${window.innerWidth >= 768 ? `${d.bgrYellowIcon}` : `${d.bgrYellowMobIcon}`}
             <p>
-              Beliebte Wahl, wir könnten bald ausverkauft sein.
+              Sehr beliebt, bald ausverkauft. <br />
               <span class="stock_txt"
-                >Nur noch <span class="stock_value">${Math.floor(Math.random() * 10) + 1}</span> Stück übrig.</span
+                >Nur noch <span class="stock_value">${Math.floor(Math.random() * 10) + 1}</span> auf Lager.</span
               >
             </p>
           </div>
@@ -434,19 +432,19 @@
           <div class="popular_products">
             ${d.groupIcon}
             <p>
-              <b><span>${Math.floor(Math.random() * 12) + 4}</span> Personen</b> sehen sich dieses Produkt gerade an.
-              Wir können die Verfügbarkeit nicht garantieren, wenn Sie den Kauf jetzt nicht abschließen.
+              <b><span>${Math.floor(Math.random() * 12) + 4}</span> Personen</b> schauen sich dieses Produkt gerade an.
+              Wir können die Verfügbarkeit nicht garantieren, wenn du den Kauf jetzt nicht abschließt.
             </p>
           </div>
           <div class="btn_wrapper">
-            <div class="complete_my_order_now_btn main_btn">Meine Bestellung jetzt abschließen</div>
+            <div class="complete_my_order_now_btn main_btn">BESTELLUNG ABSCHLIEßEN</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 `
-  ), $ = (
+  ), R = (
     /* HTML */
     `
   <div class="new-popup-backdrop is-hidden">
@@ -456,7 +454,7 @@
     </div>
   </div>
 `
-  ), R = (a, e, n, p, r, o, i) => (
+  ), $ = (a, e, n, p, r, o, i) => (
     /* HTML */
     `
     <li class="products_item">
@@ -613,7 +611,7 @@
 @media (max-width: 768px) {
   .check_out_now_second .new-popup__close,
   .check_out_now_third .new-popup__close {
-    top: 21px;
+    top: 8px;
     right: 9px;
   }
 }
@@ -1537,7 +1535,7 @@
 .exit_intent_popup .check_out_now.second_var .info_wrapper .stock_wrapper, .exit_intent_popup .check_out_now.third_var .info_wrapper .stock_wrapper {
   position: relative;
   margin-bottom: 24px;
-  height: 64px;
+  height: 44px;
 }
 @media (max-width: 768px) {
   .exit_intent_popup .check_out_now.second_var .info_wrapper .stock_wrapper, .exit_intent_popup .check_out_now.third_var .info_wrapper .stock_wrapper {
@@ -1550,7 +1548,8 @@
   top: 0;
 }
 .exit_intent_popup .check_out_now.second_var .info_wrapper .stock_wrapper p, .exit_intent_popup .check_out_now.third_var .info_wrapper .stock_wrapper p {
-  max-width: 365px;
+  max-width: -moz-max-content;
+  max-width: max-content;
   position: relative;
   color: #000;
   font-family: "Open Sans", sans-serif;
@@ -1560,12 +1559,18 @@
   padding: 6px 12px;
   z-index: 1;
 }
+.exit_intent_popup .check_out_now.second_var .info_wrapper .stock_wrapper p br, .exit_intent_popup .check_out_now.third_var .info_wrapper .stock_wrapper p br {
+  display: none;
+}
 @media (max-width: 768px) {
   .exit_intent_popup .check_out_now.second_var .info_wrapper .stock_wrapper p, .exit_intent_popup .check_out_now.third_var .info_wrapper .stock_wrapper p {
     max-width: -moz-max-content;
     max-width: max-content;
     font-size: 13px;
     padding: 8px 12px;
+  }
+  .exit_intent_popup .check_out_now.second_var .info_wrapper .stock_wrapper p br, .exit_intent_popup .check_out_now.third_var .info_wrapper .stock_wrapper p br {
+    display: block;
   }
 }
 .exit_intent_popup .check_out_now.second_var .info_wrapper .popular_products, .exit_intent_popup .check_out_now.third_var .info_wrapper .popular_products {
@@ -1670,8 +1675,8 @@
 
 button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-reset-css-Xuajs1 {
   display: none !important;
-}/*# sourceMappingURL=main.css.map */`, V = window.innerWidth < 768 ? "mobile" : "desktop";
-  class A {
+}/*# sourceMappingURL=main.css.map */`, A = window.innerWidth < 768 ? "mobile" : "desktop";
+  class V {
     constructor(e) {
       this.device = e, this.timeoutId = null, this.delayTime = 6e4, this.firstSessionTime = 20 * 1e3, this.lastPopupTime = 0, this.timeLag = 3 * 60 * 1e3, this.active = !1, this.init();
     }
@@ -1683,7 +1688,7 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
         } else
           localStorage.getItem("session") || (localStorage.setItem("session", "1"), sessionStorage.setItem("session", "1"));
         Number(localStorage.getItem("session")) > 1 ? console.log("Returning users (session number > 1)", Number(localStorage.getItem("session"))) : console.log("(1st session)", Number(localStorage.getItem("session")));
-      }, E({ name: "Exit Intent Popup", dev: "SKh" }), I("exp_exit_intent_popup"), document.head.insertAdjacentHTML(
+      }, E({ name: "Exit Intent Popup", dev: "SKh" }), P("exp_exit_intent_popup"), document.head.insertAdjacentHTML(
         "afterbegin",
         '<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">'
       ), document.head.insertAdjacentHTML("beforeend", `<style>${j}</style>`), (!sessionStorage.getItem("firstOrderDiscount") || !localStorage.getItem("initUser") || !localStorage.getItem("klaviyoForm")) && document.body.insertAdjacentHTML(
@@ -1706,7 +1711,7 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       } else if (sessionStorage.getItem("salesOffer") && sessionStorage.getItem("checkOutNow"))
         return;
       this.device === "mobile" && document.addEventListener("scroll", () => {
-        +P() < -150 && this.getItemsBasket("differentUserCategories", "Scroll up (JS speed value: 150) - for any page");
+        +I() < -150 && this.getItemsBasket("differentUserCategories", "Scroll up (JS speed value: 150) - for any page");
       }), this.device === "desktop" && document.addEventListener("mouseout", (e) => {
         e.relatedTarget || this.getItemsBasket("differentUserCategories", "cursor moved out of the page frame");
       }), (window.location.href.match("/checkout") || window.location.href.match("/cart")) && (this.setupListeners(), this.resetTimer());
@@ -1721,7 +1726,7 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       );
     }
     getNewUser(e) {
-      const n = z(e);
+      const n = O(e);
       if (!n)
         console.log("New User"), localStorage.setItem("initUser", "true"), setTimeout(() => {
           this.isPopupOpen() || (t(".new-popup-backdrop").classList.add("first_order_discount"), this.handleShowPopup(f, "firstOrderDiscount", "firstOrderDiscount", "firstOrderDiscount"), sessionStorage.getItem("firstOrderDiscount") || this.handlerCloseKlaviyo());
@@ -1745,19 +1750,19 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       let o = await fetch("https://www.sportstech.de/checkout/cart");
       o = await o.text();
       const c = new DOMParser().parseFromString(o, "text/html").querySelectorAll(".checkout-product-table .line-item-product");
-      c.length !== 0 ? (e === "differentUserCategories" && (t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), c.length > 1 ? t(".new-popup-backdrop").classList.add("large_popup") : t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), Number(localStorage.getItem("session")) > 1 ? localStorage.getItem("checkOutNowSecond") ? (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.add("check_out_now_third"), this.handleShowPopup(N, "returningUsers", n, "checkOutNowThird")) : (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.add("check_out_now_second"), this.handleShowPopup(M, "returningUsers", n, "checkOutNowSecond"), localStorage.setItem("checkOutNowSecond", "yes")) : (t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.add("check_out_now"), this.handleShowPopup(H, "checkOutNow", n, "checkOutNow"))), t(".new-popup-backdrop.check_out_now .first_var > .img_wrapper img") && (t(".new-popup-backdrop.check_out_now .first_var > .img_wrapper img").src = (l = c[c.length - 1].querySelector(".line-item-img")) == null ? void 0 : l.getAttribute("src")), c.forEach((x) => {
+      c.length !== 0 ? (e === "differentUserCategories" && (t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), c.length > 1 ? t(".new-popup-backdrop").classList.add("large_popup") : t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), Number(localStorage.getItem("session")) > 1 ? localStorage.getItem("checkOutNowSecond") ? (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.add("check_out_now_third"), this.handleShowPopup(M, "returningUsers", n, "checkOutNowThird")) : (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.add("check_out_now_second"), this.handleShowPopup(N, "returningUsers", n, "checkOutNowSecond"), localStorage.setItem("checkOutNowSecond", "yes")) : (t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.add("check_out_now"), this.handleShowPopup(H, "checkOutNow", n, "checkOutNow"))), t(".new-popup-backdrop.check_out_now .first_var > .img_wrapper img") && (t(".new-popup-backdrop.check_out_now .first_var > .img_wrapper img").src = (l = c[c.length - 1].querySelector(".line-item-img")) == null ? void 0 : l.getAttribute("src")), c.forEach((x) => {
         var v, y, C, S, L;
-        let K = ((v = x.querySelector(".line-item-label")) == null ? void 0 : v.getAttribute("href")) ?? "", D = ((y = x.querySelector(".line-item-img")) == null ? void 0 : y.getAttribute("srcset")) ?? "", g = ((C = x.querySelector(".line-item-label")) == null ? void 0 : C.textContent) ?? "", Z = ((S = x.querySelector(".line-item-details-characteristics-option")) == null ? void 0 : S.textContent) ?? "", q = ((L = x.querySelector(".line-item-total-price-value")) == null ? void 0 : L.textContent) ?? "", b, k;
+        let K = ((v = x.querySelector(".line-item-label")) == null ? void 0 : v.getAttribute("href")) ?? "", D = ((y = x.querySelector(".line-item-img")) == null ? void 0 : y.getAttribute("srcset")) ?? "", g = ((C = x.querySelector(".line-item-label")) == null ? void 0 : C.textContent) ?? "", Z = ((S = x.querySelector(".line-item-details-characteristics-option")) == null ? void 0 : S.textContent) ?? "", U = ((L = x.querySelector(".line-item-total-price-value")) == null ? void 0 : L.textContent) ?? "", b, k;
         r.forEach((h) => {
           var T;
           ((T = h == null ? void 0 : h.titleProduct) == null ? void 0 : T.trim().toLocaleLowerCase()) === g.trim().toLocaleLowerCase() && (b = h.numRatings, k = h.averageRating);
         }), w(".products_list").then((h) => {
           t(".products_list").insertAdjacentHTML(
             "beforeend",
-            R(K, D, g, Z, q, b, this.renderStars(k))
+            $(K, D, g, Z, U, b, this.renderStars(k))
           );
         });
-      })) : (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), e === "differentUserCategories" && (Number(localStorage.getItem("session")) > 1 ? (t(".new-popup-backdrop").classList.add("categories_product"), this.handleShowPopup(B, "returningUsers", n, "categoriesProduct")) : (t(".new-popup-backdrop").classList.add("sales_offer"), this.handleShowPopup(O, "salesOffer", n, "salesOffer"))));
+      })) : (t(".new-popup-backdrop").classList.contains("check_out_now") && t(".new-popup-backdrop").classList.remove("check_out_now"), t(".new-popup-backdrop").classList.contains("check_out_now_second") && t(".new-popup-backdrop").classList.remove("check_out_now_second"), t(".new-popup-backdrop").classList.contains("check_out_now_third") && t(".new-popup-backdrop").classList.remove("check_out_now_third"), t(".new-popup-backdrop").classList.contains("large_popup") && t(".new-popup-backdrop").classList.remove("large_popup"), t(".new-popup-backdrop").classList.contains("categories_product") && t(".new-popup-backdrop").classList.remove("categories_product"), t(".new-popup-backdrop").classList.contains("sales_offer") && t(".new-popup-backdrop").classList.remove("sales_offer"), t(".new-popup-backdrop").classList.contains("first_order_discount") && t(".new-popup-backdrop").classList.remove("first_order_discount"), e === "differentUserCategories" && (Number(localStorage.getItem("session")) > 1 ? (t(".new-popup-backdrop").classList.add("categories_product"), this.handleShowPopup(B, "returningUsers", n, "categoriesProduct")) : (t(".new-popup-backdrop").classList.add("sales_offer"), this.handleShowPopup(z, "salesOffer", n, "salesOffer"))));
     }
     isPopupOpen() {
       var e;
@@ -1772,7 +1777,7 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       }, 1e3);
     }
     createPopup() {
-      console.log("createPopup"), t(".new-popup-backdrop") || t("body").insertAdjacentHTML("afterbegin", $);
+      console.log("createPopup"), t(".new-popup-backdrop") || t("body").insertAdjacentHTML("afterbegin", R);
     }
     handleShowPopup(e, n, p, r) {
       if (console.log("handleShowPopup", p, n), sessionStorage.getItem(n) && n !== "firstOrderDiscountClick")
@@ -1954,7 +1959,7 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
           "Ausrüstung - Jetzt einkaufen",
           "Button",
           "Entdecken Sie unsere besten Produkte Step 2"
-        ), window.location.href = "https://www.sportstech.de/equipment")), e.target.matches(".check_out_now_btn") && e.target.closest(".first_var") && (s(
+        ), window.location.href = "https://www.sportstech.de/rudergeraet")), e.target.matches(".check_out_now_btn") && e.target.closest(".first_var") && (s(
           "exp_exit_intent_popup_button_13",
           "Jetzt zur Kasse",
           "Button",
@@ -2141,6 +2146,6 @@ button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-
       });
     }
   }
-  new A(V);
+  new V(A);
 })();
 //# sourceMappingURL=index.js.map
