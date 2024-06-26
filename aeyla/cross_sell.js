@@ -537,7 +537,7 @@
         }, 500), $(".modal-head svg").click(function() {
           $(".modal").removeClass("active"), $("body").removeClass("not-activated-cart"), u("exp_cross_sell_popup_button_01", "Close", "Button", "Cross-sell popup");
         }), $(".modal").click(function(s) {
-          s.target === this && ($(this).removeClass("active"), $("body").removeClass("not-activated-cart"), u("exp_cross_sell_popup_button_03", "Close", "Outside", "Cross-sell popup"));
+          s.target === this && ($(this).removeClass("active"), $("body").removeClass("not-activated-cart"), u("exp_cross_sell_popup_section_02", "Close", "Outside", "Cross-sell popup"));
         }), $(".modal-select").on("input", (s) => {
           const n = $(".modal-select")[0].options[$(".modal-select")[0].selectedIndex], c = n.text.split(" | ")[0], w = n.getAttribute("data-compare"), i = n.getAttribute("data-price");
           $(".modal-product__prices span").html("£" + w), $(".modal-product__prices b").html("£" + i), $(".modal-product__images img").each((p, l) => {
