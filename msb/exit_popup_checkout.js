@@ -1209,9 +1209,9 @@ form:has(.os-popup-title) [role='group'] {
   padding-right: 10px;
 }
 
-.os-cart .os-producs .os-product:has(.minicart-regular-price) {
+/* .os-cart .os-producs .os-product:has(.minicart-regular-price) {
   display: none;
-}
+} */
 
 .os-cart .os-producs .os-product .os-img {
   width: 71px;
@@ -1565,7 +1565,7 @@ form:has(.os-popup-title) [role='group'] {
       const o = this.popup.querySelector(".os-content"), s = (
         /* HTML */
         `<div class="os-producs">
-      ${i.map((f) => (
+      ${i.map((f) => f.product_name.toLowerCase().startsWith("free -") ? "" : (
           /* HTML */
           `
             <div class="os-product">
