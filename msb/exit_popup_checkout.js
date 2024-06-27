@@ -1209,9 +1209,6 @@ form:has(.os-popup-title) [role='group'] {
   padding-right: 10px;
 }
 
-/* .os-cart .os-producs .os-product:has(.minicart-regular-price) {
-  display: none;
-} */
 
 .os-cart .os-producs .os-product .os-img {
   width: 71px;
@@ -1309,7 +1306,20 @@ form:has(.os-popup-title) [role='group'] {
   font-size: 14px !important;
   line-height: 20px;
 }
-`, pt = (
+
+
+
+.os-cart .os-producs .os-product .os-content .os-price .minicart-regular-price .price {
+  text-decoration: line-through;
+  color: #646464 !important;
+  font-size: 12px !important;
+}
+
+.os-cart .os-producs .os-product .os-content .os-price .minicart-price {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}`, pt = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -5992,10 +6002,10 @@ button.swiper-pagination-bullet {
     setupSessionTimeTriggerToPromoPopup() {
       const e = "crsVisitTime", t = () => {
         let i = sessionStorage.getItem(e);
-        i || (sessionStorage.setItem(e, Date.now().toString()), i = sessionStorage.getItem(e));
+        i || (sessionStorage.setItem(e, Date.now().toString()), i = sessionStorage.getItem(e)), console.time("Session time");
         const o = setInterval(() => {
           if (18e4 - (Date.now() - Number(i)) <= 0) {
-            console.log("Session time is over");
+            console.log("Session time is over"), console.timeEnd("Session time");
             const r = this.checkProductsInCart();
             this.isUserWatchedPopup() && !r && this.promoPopup.show(), this.isUserWatchedPopup() || this.waitForUserWatchedPopup(o), clearInterval(o);
           }
