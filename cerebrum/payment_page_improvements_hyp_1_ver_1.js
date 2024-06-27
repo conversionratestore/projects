@@ -255,7 +255,7 @@
     }
     handleVisibility() {
       s(".hero_section").then((e) => {
-        c("exp_screen_motivation_section_01", "Section", "Visibility", "First screen Header");
+        c("exp_screen_motivation_section_01_ver_1", "Section", "Visibility", "First screen Header");
       });
     }
   }
