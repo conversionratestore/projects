@@ -180,8 +180,8 @@
           var j = /Async$/;
           if (j.test(w))
             return w = w.replace(j, ""), typeof Promise == "function" ? new Promise(x) : C(x);
-          var B;
-          return g(w, b, d, B, B, p);
+          var A;
+          return g(w, b, d, A, A, p);
         };
         function g(_, w, b, d, p, x) {
           return u._api ? u._api(_, w, b, d, p, x) : (u.q && u.q.push([_, w, b, d, p, x]), null);
@@ -281,26 +281,26 @@
     window._fs_host = s, window._fs_script = f, window._fs_org = n, window._fs_namespace = r, D();
   };
   W();
-  var z = function() {
-    return z = Object.assign || function(e) {
+  var I = function() {
+    return I = Object.assign || function(e) {
       for (var n, i = 1, r = arguments.length; i < r; i++) {
         n = arguments[i];
         for (var o in n)
           Object.prototype.hasOwnProperty.call(n, o) && (e[o] = n[o]);
       }
       return e;
-    }, z.apply(this, arguments);
-  }, A = function() {
+    }, I.apply(this, arguments);
+  }, B = function() {
     if (window._fs_namespace)
       return window[window._fs_namespace];
   }, Y = function(l, e) {
-    var n = z({}, l);
-    if (A()) {
+    var n = I({}, l);
+    if (B()) {
       console.warn("The FullStory snippet has already been defined elsewhere (likely in the <head> element)");
       return;
     }
     n.recordCrossDomainIFrames && (window._fs_run_in_iframe = !0), n.appHost && (window._fs_app_host = n.appHost), n.assetMapId && (window._fs_asset_map_id = n.assetMapId), n.startCaptureManually && (window._fs_capture_on_startup = !1), n.recordOnlyThisIFrame && (window._fs_is_outer_script = !0), n.cookieDomain && (window._fs_cookie_domain = n.cookieDomain), n.debug === !0 && (n.script ? console.warn("Ignoring `debug = true` because `script` is set") : n.script = "edge.fullstory.com/s/fs-debug.js"), J(n);
-    var i = A();
+    var i = B();
     if (!i) {
       console.warn("Failed to initialize FS snippet");
       return;
@@ -971,7 +971,7 @@ p.crs_tastes + p {
     orgId: "P34MT"
   }), $("new_add_to_cart");
   const E = window.innerWidth < 900 ? "mobile" : "desktop";
-  class I {
+  class z {
     constructor(e) {
       this.notShowExitIntent = () => {
         this.notExitPopup = !0, setTimeout(() => {
@@ -1031,7 +1031,7 @@ p.crs_tastes + p {
           "mouseleave",
           function() {
             var i, r, o, s;
-            (e < 50 || n < 50 || e > window.innerWidth - 50 || n > window.innerHeight - 50) && sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && ((r = (i = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : i.cart) == null ? void 0 : r.price) != 0 && ((s = (o = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : o.cart) == null ? void 0 : s.price) != null && !window.location.href.includes("cart") && !window.location.href.includes("order") && !window.location.href.includes("checkout") && (sessionStorage.setItem("exit_intent", "true"), new I(E).renderNotification(), h("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"));
+            (e < 50 || n < 50 || e > window.innerWidth - 50 || n > window.innerHeight - 50) && sessionStorage.getItem("exit_intent") == null && !t(".crs_notification") && ((r = (i = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : i.cart) == null ? void 0 : r.price) != 0 && ((s = (o = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : o.cart) == null ? void 0 : s.price) != null && !window.location.href.includes("cart") && !window.location.href.includes("order") && !window.location.href.includes("checkout") && (sessionStorage.setItem("exit_intent", "true"), new z(E).renderNotification(), h("exp_newaddtocart_vis_03", "Exit intent", "Visibility", "Popover"));
           },
           { once: !1 }
         );
@@ -1111,7 +1111,7 @@ p.crs_tastes + p {
           e == null || e.remove();
         }, 200), h("exp_newaddtocart_click_04", "Continue Shopping", "Button", "Popover");
       }), e.querySelector(".crs_view_cart").addEventListener("click", (n) => {
-        t("body").innerText.includes("first order") && (n.preventDefault(), n.target.classList.add("spinner"), fetch("https://cerebelly.com/wp-json/cerebelly/api/checkout/cart-totals", {
+        console.dir("click: ", n.target), t("body").innerText.includes("first order") && (n.preventDefault(), n.target.classList.add("spinner"), console.dir("FIRSTBITE10"), fetch("https://cerebelly.com/wp-json/cerebelly/api/checkout/cart-totals", {
           headers: {
             "Content-Type": "application/json"
           },
@@ -1127,7 +1127,7 @@ p.crs_tastes + p {
             no_shipping: !1
           })
         }).then((i) => i.json()).then((i) => {
-          window.location.href = "/cart", n.target.classList.remove("spinner");
+          console.dir(i), console.dir("--------"), window.location.href = "/cart", n.target.classList.remove("spinner");
         }).catch((i) => {
           console.error("Error:", i);
         })), h("exp_newaddtocart_click_02", "View cart", "Button", "Popover");
@@ -1256,5 +1256,5 @@ p.crs_tastes + p {
       }, 200);
     }
   }
-  new I(E);
+  new z(E);
 })();
