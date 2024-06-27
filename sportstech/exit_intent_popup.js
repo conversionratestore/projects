@@ -262,7 +262,10 @@
     <div class="first_order_discount first_var">
       <div class="info_wrapper">
         <div class="header_popup">
-          <h2 class="main_title"><span class="accent_color_red">Hol dir 5 % Rabatt</span> & gratis Versand!</h2>
+          <h2 class="main_title">
+            <span class="accent_color_red">Hol dir 5 % Rabatt</span> & <br />
+            gratis Versand!
+          </h2>
           <p class="main_description">
             Melde dich jetzt für unseren Newsletter an und erhalte einen exklusiven Rabatt auf deine erste Bestellung.
           </p>
@@ -296,13 +299,13 @@
               </p>
             </li>
             <li>
-              <p>Plus <span class="accent_color_red">KOSTENLOSE</span> Lieferung</p>
+              <p>Plus <span class="accent_color_red">KOSTENLOSE</span> Lieferung.</p>
             </li>
           </ul>
         </div>
         <div class="body_popup">
           <div class="discount_code_wrapper">
-            <p class="discount_code_title">Gib den Code im Warenkorb ein.</p>
+            <p class="discount_code_title">Gib den Code im Warenkorb ein</p>
             <div class="discount_code_container">
               <span class="discount_code_txt">SPORTSTECH5</span>
               <span data-discount="SPORTSTECH5">${d.copyIcon}</span>
@@ -328,7 +331,7 @@
       <div class="info_wrapper">
         <div class="header_popup">
           <h2 class="main_title">
-            Kaufe jetzt und spare <span class="accent_color_red">5%</span> bei deiner ersten Bestellung.
+            Kaufe jetzt und <span class="accent_color_red">spare 5%</span> bei deiner ersten Bestellung
           </h2>
           <div id="counter">
             <div class="time_block">
@@ -579,8 +582,8 @@
 }
 @media (max-width: 768px) {
   .check_out_now .new-popup__close {
-    top: 0;
-    right: 0;
+    top: 8px;
+    right: 8px;
   }
 }
 
@@ -614,6 +617,11 @@
     top: 8px;
     right: 9px;
   }
+}
+
+.check_out_now_second .new-popup__close {
+  top: 16px;
+  right: 12px;
 }
 
 @media (max-width: 768px) {
