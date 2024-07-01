@@ -49,7 +49,7 @@
     <div class="hero_section_content">
       <h2 class="hero_section_title">
         Your score is <br /><span class="accent_color_blue">better</span> than
-        <span class="accent_color_blue">54%</span> of CerebrumIQ users!
+        <span class="accent_color_blue">54%</span> of Cerebrum IQ users!
       </h2>
       <p class="hero_section_subtitle">Continue to obtain your certificate</p>
       <!-- <button class="hero_btn">Get My IQ Certificate Now!</button> -->
