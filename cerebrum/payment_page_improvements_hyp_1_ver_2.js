@@ -8,12 +8,12 @@
       event_type: t,
       event_loc: i
     }), console.log(`Event: ${n} | ${e} | ${t} | ${i}`);
-  }, _ = ({ name: n, dev: e }) => {
+  }, h = ({ name: n, dev: e }) => {
     console.log(
       `%c EXP: ${n} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, o = (n) => document.querySelector(n), h = (n) => {
+  }, o = (n) => document.querySelector(n), l = (n) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", n, "variant_1"));
     }, 1e3);
@@ -42,7 +42,7 @@
       return t = window.scrollY, e != null && (r = t - e), e = t, clearTimeout(i), i = setTimeout(d, u), r;
     };
   })();
-  const a = "https://conversionratestore.github.io/projects/cerebrum/img/", l = (
+  const a = "https://conversionratestore.github.io/projects/cerebrum/img/", _ = (
     /* HTML */
     `
   <div class="hero_section ver_b">
@@ -219,11 +219,14 @@
       this.device = e, this.init();
     }
     init() {
-      _({ name: "Payment-Page-Improvements", dev: "SKh" }), h("exp_screen_motivation"), document.head.insertAdjacentHTML("beforeend", `<style>${p}</style>`), this.renderHerosection(), this.renderHeroBtn(), this.handleClickHeroBtn(), this.observeHeroSection(), this.handleVisibility();
+      h({ name: "Payment-Page-Improvements", dev: "SKh" }), l("exp_screen_motivation"), document.head.insertAdjacentHTML(
+        "afterbegin",
+        '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">'
+      ), document.head.insertAdjacentHTML("beforeend", `<style>${p}</style>`), this.renderHerosection(), this.renderHeroBtn(), this.handleClickHeroBtn(), this.observeHeroSection(), this.handleVisibility();
     }
     renderHerosection() {
       s("#top > div.mx-auto.flex").then(() => {
-        o(".hero_section") || o("#top").insertAdjacentHTML("afterbegin", l);
+        o(".hero_section") || o("#top").insertAdjacentHTML("afterbegin", _);
       });
     }
     renderHeroBtn() {
