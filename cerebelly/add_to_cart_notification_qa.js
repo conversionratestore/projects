@@ -17,7 +17,7 @@
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", l, "variant_1"));
     }, 1e3);
-  }, $ = (l) => {
+  }, M = (l) => {
     let e = setInterval(function() {
       typeof window.FS == "function" && typeof window.FS.event == "function" && (clearInterval(e), console.dir("init fullStory"), window.FS.event("SetVariant", {
         name: l,
@@ -53,7 +53,7 @@
       childList: !0,
       subtree: !0
     });
-  }), M = (l) => new Promise((e, n) => {
+  }), $ = (l) => new Promise((e, n) => {
     var i = 0, r = setInterval(o, 1e3);
     function o() {
       i++, i > l && (clearInterval(r), e(!0));
@@ -131,9 +131,9 @@
     <li><a href="#usvsthem">the cerebelly standard</a></li>
     <li><a href="#puree">directions & safety</a></li>
   </ul>
-</nav>`, R = `
+</nav>`, H = `
 <button type="button" class="crs_arrow crs_arrow_prev" hidden>${S.arrowLeftSlide}</button>
-<button type="button" class="crs_arrow crs_arrow_next" hidden>${S.arrowRightSlide}</button>`, H = (l) => `<p class="crs_tastes"><span>1</span> of ${l} flavors<p>`;
+<button type="button" class="crs_arrow crs_arrow_next" hidden>${S.arrowRightSlide}</button>`, R = (l) => `<p class="crs_tastes"><span>1</span> of ${l} flavors<p>`;
   var D = function() {
     var e = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {}, n = e.wnd, i = n === void 0 ? window : n;
     (function(r, o, s, a, p, d, c, m) {
@@ -180,8 +180,8 @@
           var j = /Async$/;
           if (j.test(w))
             return w = w.replace(j, ""), typeof Promise == "function" ? new Promise(x) : L(x);
-          var A;
-          return v(w, b, u, A, A, f);
+          var F;
+          return v(w, b, u, F, F, f);
         };
         function v(_, w, b, u, f, x) {
           return h._api ? h._api(_, w, b, u, f, x) : (h.q && h.q.push([_, w, b, u, f, x]), null);
@@ -290,17 +290,17 @@
       }
       return e;
     }, T.apply(this, arguments);
-  }, F = function() {
+  }, A = function() {
     if (window._fs_namespace)
       return window[window._fs_namespace];
   }, Y = function(l, e) {
     var n = T({}, l);
-    if (F()) {
+    if (A()) {
       console.warn("The FullStory snippet has already been defined elsewhere (likely in the <head> element)");
       return;
     }
     n.recordCrossDomainIFrames && (window._fs_run_in_iframe = !0), n.appHost && (window._fs_app_host = n.appHost), n.assetMapId && (window._fs_asset_map_id = n.assetMapId), n.startCaptureManually && (window._fs_capture_on_startup = !1), n.recordOnlyThisIFrame && (window._fs_is_outer_script = !0), n.cookieDomain && (window._fs_cookie_domain = n.cookieDomain), n.debug === !0 && (n.script ? console.warn("Ignoring `debug = true` because `script` is set") : n.script = "edge.fullstory.com/s/fs-debug.js"), J(n);
-    var i = F();
+    var i = A();
     if (!i) {
       console.warn("Failed to initialize FS snippet");
       return;
@@ -471,6 +471,12 @@
   box-shadow: none;
   border: none;
   cursor: pointer;
+}
+
+.css-ylm3vf .cart-wrapper .cart-product-actions button.checkout,
+.crs_hide_cart .modal.css-1m229m3,
+.crs_hide_cart .modal.css-8z7pw4 {
+  display: none !important;
 }
 
 .modal .product-wrapper .css-5nnxvq .product-image-wrapper {
@@ -760,6 +766,15 @@ p.crs_tastes + p {
   height: 100%;
 }
 
+.btn_checkout {
+  max-width: 293px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.btn_checkout:before, .btn_checkout:after {
+  content: none !important;
+}
+
 @media (min-width: 1340px) {
   .crs_nav ul {
     padding: 0 80px;
@@ -964,7 +979,7 @@ p.crs_tastes + p {
 }/*# sourceMappingURL=main.css.map */`;
   N({ name: "Enhancements on PDP and new Add to Cart notification", dev: "Olha" }), O("new_add_to_cart"), G({
     orgId: "P34MT"
-  }), $("new_add_to_cart");
+  }), M("new_add_to_cart");
   const E = window.innerWidth < 900 ? "mobile" : "desktop";
   class z {
     constructor(e) {
@@ -980,9 +995,12 @@ p.crs_tastes + p {
       I(".e-nav .mobile-cart-box").then((r) => {
         r.addEventListener("click", (o) => {
           document.body.classList.remove("crs_hide_cart");
+          let s = setInterval(() => {
+            t(".cart-product-actions") && !t(".btn_checkout") && (clearInterval(s), t(".cart-product-actions").insertAdjacentHTML("afterbegin", '<a href="/cart" class="button primary red btn_checkout">checkout</a>'));
+          });
         }), document.body.classList.add("crs_hide_cart"), document.addEventListener("click", (o) => {
           var s, a, p, d, c;
-          if (this.notShowExitIntent(), !o.target.closest(".modal") && !o.target.closest(".mobile-cart-box") && !o.target.closest(".cart-product") && document.body.classList.add("crs_hide_cart"), o.target.closest(".modal.css-w1q39a") && ((o.target.closest(".default-close") || o.target.closest(".default-close-container")) && this.clickAdd === !1 ? (document.body.classList.add("crs_hide_cart"), g("exp_newaddtocart_click_08", "Close", "Button", `Cart ${((a = (s = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : s.cart) == null ? void 0 : a.price) != 0 ? "" : "empty"} popover`)) : o.target.closest(".css-jobqsc") && o.target.classList.contains("red") ? g("exp_newaddtocart_click_09", "Shop all", "Button", "Cart empty popover") : o.target.classList.contains("continue") ? g("exp_newaddtocart_click_12", "Continue shopping", "Button", "Cart popover") : o.target.classList.contains("checkout") && g("exp_newaddtocart_click_11", "Checkout", "Button", "Cart popover")), t(".modal.css-w1q39a") && (o.target.closest(".cart-product-reset") ? (g("exp_newaddtocart_click_10", `Remove "${o.target.closest(".cart-product-info").querySelector(".title").innerHTML.split("<span")[0]}"`, "Button", "Cart popover"), t(".modal.css-w1q39a .cart-product") || (e = 0), this.updateDataNotification()) : o.target.closest(".added-container") && (g("exp_newaddtocart_click_13", `${o.target.closest("button").getAttribute("aria-label")}`, "Button", "Cart popover"), t(".modal.css-w1q39a .cart-product") || (e = 0), this.updateDataNotification())), t(".modal.css-w1q39a") ? e == 0 && (e = 1, q(t(".modal.css-w1q39a"), "exp_newaddtocart_vis_10", "View slide in cart", `Cart ${((d = (p = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : p.cart) == null ? void 0 : d.price) == 0 ? "empty" : ""} popover`)) : e = 0, o.target.closest(".remove") || o.target.classList.contains("remove")) {
+          if (this.notShowExitIntent(), !o.target.closest(".modal") && !o.target.closest(".mobile-cart-box") && !o.target.closest(".cart-product") && document.body.classList.add("crs_hide_cart"), o.target.closest(".modal.css-w1q39a") && ((o.target.closest(".default-close") || o.target.closest(".default-close-container")) && this.clickAdd === !1 ? (document.body.classList.add("crs_hide_cart"), g("exp_newaddtocart_click_08", "Close", "Button", `Cart ${((a = (s = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : s.cart) == null ? void 0 : a.price) != 0 ? "" : "empty"} popover`)) : o.target.closest(".css-jobqsc") && o.target.classList.contains("red") ? g("exp_newaddtocart_click_09", "Shop all", "Button", "Cart empty popover") : o.target.classList.contains("continue") ? g("exp_newaddtocart_click_12", "Continue shopping", "Button", "Cart popover") : o.target.classList.contains("btn_checkout") && g("exp_newaddtocart_click_11", "Checkout", "Button", "Cart popover")), t(".modal.css-w1q39a") && (o.target.closest(".cart-product-reset") ? (g("exp_newaddtocart_click_10", `Remove "${o.target.closest(".cart-product-info").querySelector(".title").innerHTML.split("<span")[0]}"`, "Button", "Cart popover"), t(".modal.css-w1q39a .cart-product") || (e = 0), this.updateDataNotification()) : o.target.closest(".added-container") && (g("exp_newaddtocart_click_13", `${o.target.closest("button").getAttribute("aria-label")}`, "Button", "Cart popover"), t(".modal.css-w1q39a .cart-product") || (e = 0), this.updateDataNotification())), t(".modal.css-w1q39a") ? e == 0 && (e = 1, q(t(".modal.css-w1q39a"), "exp_newaddtocart_vis_10", "View slide in cart", `Cart ${((d = (p = JSON.parse(localStorage.getItem("v4Cart"))) == null ? void 0 : p.cart) == null ? void 0 : d.price) == 0 ? "empty" : ""} popover`)) : e = 0, o.target.closest(".remove") || o.target.classList.contains("remove")) {
             let m = JSON.parse(localStorage.getItem("data_notification"));
             o.target.closest(".added-container").querySelector(".remove").getAttribute("aria-label").toLowerCase().trim().includes(m == null ? void 0 : m.title.toLowerCase().trim()) && ((c = t(".crs_notification")) == null || c.remove(), this.updateDataNotification());
           }
@@ -1013,7 +1031,7 @@ p.crs_tastes + p {
       }, 18e4);
     }
     handleUserInactive(e) {
-      M(e).then((n) => {
+      $(e).then((n) => {
         n && !this.isExitIntentTriggered() && this.isCartNotEmpty() && !this.isOnCartOrCheckoutPage() && (sessionStorage.setItem("exit_intent", "true"), this.renderNotification(), g("exp_newaddtocart_vis_04", "User inactive", "Visibility", "Popover"));
       });
     }
@@ -1070,7 +1088,7 @@ p.crs_tastes + p {
           let n = window.location.href.split("/"), i = n[n.length - 1].split("?")[0], r = P[e];
           for (let o = 0; o < r.length; o++)
             if (r[o] == i) {
-              t(".css-5nnxvq").insertAdjacentHTML("afterbegin", H(e)), t(".css-5nnxvq").insertAdjacentHTML("afterbegin", R), t(".crs_arrow_next").hidden = !1;
+              t(".css-5nnxvq").insertAdjacentHTML("afterbegin", R(e)), t(".css-5nnxvq").insertAdjacentHTML("afterbegin", H), t(".crs_arrow_next").hidden = !1;
               let s = 1;
               y(".crs_arrow").forEach((a) => {
                 let p = a.classList.contains("crs_arrow_prev") ? "prev" : "next";
@@ -1141,7 +1159,7 @@ p.crs_tastes + p {
           is_vegan: !1
         });
       }
-      console.dir("have first order"), console.dir(r), fetch("https://cerebelly.com/wp-json/cerebelly/api/checkout/cart-totals", {
+      console.dir(r), fetch("https://cerebelly.com/wp-json/cerebelly/api/checkout/cart-totals", {
         headers: {
           "Content-Type": "application/json"
         },
@@ -1277,10 +1295,10 @@ p.crs_tastes + p {
           let d = "/wp-content/themes/cerebelly/build/21c99a25c363149c9021.jpg";
           a.image ? d = a.image.includes("https") ? a.image : "https://cerebelly.com/wp-json/cerebelly/image/get?path=" + a.image : a.type == "personalized" && (d = "/wp-content/themes/cerebelly/build/1167d3c7a96e3f66206f.jpg");
           let c = {};
-          this.type != "" ? (c.type = this.type, console.dir(c.type)) : (c.type = t(".cart-product .product-count") ? t(".cart-product .product-count").innerText : ((i = JSON.parse(localStorage.getItem("data_notification"))) == null ? void 0 : i.type) || "", console.dir(c.type)), y(".product").forEach((m) => {
+          this.type != "" ? c.type = this.type : c.type = t(".cart-product .product-count") ? t(".cart-product .product-count").innerText : ((i = JSON.parse(localStorage.getItem("data_notification"))) == null ? void 0 : i.type) || "", y(".product").forEach((m) => {
             var C, L, k, h;
             (C = m == null ? void 0 : m.querySelector(".title")) != null && C.innerText.includes(a.title) && (c.type = ((L = m.querySelector(".quantity")) == null ? void 0 : L.innerHTML) || ((k = m.querySelector(".info")) == null ? void 0 : k.innerHTML.split(" | ")[1]) || ((h = m.querySelector(".desktop")) == null ? void 0 : h.innerHTML.replace(" | ", "")));
-          }), c.title = a.title || "", c.image = d, c.price = a.price.toFixed(2), c.count = p, console.dir(c), localStorage.setItem("data_notification", JSON.stringify(c));
+          }), c.title = a.title || "", c.image = d, c.price = a.price.toFixed(2), c.count = p, localStorage.setItem("data_notification", JSON.stringify(c));
         }
       }, 200);
     }
