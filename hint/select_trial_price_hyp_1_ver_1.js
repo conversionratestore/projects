@@ -383,7 +383,7 @@ main .styles_plans__kjWfh > :last-child::after {
       this.device = n, this.init();
     }
     init() {
-      c({ name: "select Trial Price Page Improvements", dev: "SKh" }), this.observeMain(), window.location.pathname.match("subscription-pla") ? this.handleSubscriptionPage() : window.location.pathname.match("email") ? (this.removeCustomStyles(), this.handleClickBtnContinueForEmail()) : this.removeCustomStyles();
+      c({ name: "select Trial Price Page Improvements V1", dev: "SKh" }), this.observeMain(), window.location.pathname.match("subscription-pla") ? this.handleSubscriptionPage() : window.location.pathname.match("email") ? (this.removeCustomStyles(), this.handleClickBtnContinueForEmail()) : this.removeCustomStyles();
     }
     // ___________________________________________________________________________________________________________
     // window.location.pathname.match('email')
