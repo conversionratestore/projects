@@ -1,13 +1,13 @@
 (function() {
   "use strict";
-  const c = (e, n, o, l = "") => {
+  const c = (e, n, o, a = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
       event_desc: n,
       event_type: o,
-      event_loc: l
-    }), console.log(`Event: ${e} | ${n} | ${o} | ${l}`);
+      event_loc: a
+    }), console.log(`Event: ${e} | ${n} | ${o} | ${a}`);
   }, p = ({ name: e, dev: n }) => {
     console.log(
       `%c EXP: ${e} (DEV: ${n})`,
@@ -34,12 +34,12 @@
   }
   (function(e) {
     e = e === void 0 ? {} : e;
-    let n, o, l, a, k = (e == null ? void 0 : e.delay) || 50;
+    let n, o, a, l, k = (e == null ? void 0 : e.delay) || 50;
     function r() {
-      n = null, a = 0;
+      n = null, l = 0;
     }
     return r(), function() {
-      return o = window.scrollY, n != null && (a = o - n), n = o, clearTimeout(l), l = setTimeout(r, k), a;
+      return o = window.scrollY, n != null && (l = o - n), n = o, clearTimeout(a), a = setTimeout(r, k), l;
     };
   })();
   const s = {
@@ -274,7 +274,7 @@ main .styles_plans__kjWfh > :last-child::after {
 
 .email_block {
   display: flex;
-  align-items: center;
+  align-items: center !important;
   justify-content: center;
   gap: 8px;
   padding: 4px 10px;
@@ -471,9 +471,9 @@ main .styles_plans__kjWfh > :last-child::after {
     // ___________________________________________________________________________________________________________
     observeMain() {
       new MutationObserver((o) => {
-        for (let l of o)
-          for (let a of l.removedNodes)
-            a instanceof HTMLElement && a.tagName === "MAIN" && (console.log(a), window.location.pathname.match("subscription-pla") ? this.handleSubscriptionPage() : window.location.pathname.match("email") ? (this.removeCustomStyles(), this.handleClickBtnContinueForEmail()) : this.removeCustomStyles());
+        for (let a of o)
+          for (let l of a.removedNodes)
+            l instanceof HTMLElement && l.tagName === "MAIN" && (console.log(l), window.location.pathname.match("subscription-pla") ? this.handleSubscriptionPage() : window.location.pathname.match("email") ? (this.removeCustomStyles(), this.handleClickBtnContinueForEmail()) : this.removeCustomStyles());
       }).observe(t("body"), { childList: !0, subtree: !0 });
     }
     removeCustomStyles() {
