@@ -1,21 +1,29 @@
 (function() {
   "use strict";
-  const c = ({ name: t, dev: n }) => {
+  const c = (e, n, o, l = "") => {
+    window.dataLayer = window.dataLayer || [], window.dataLayer.push({
+      event: "event-to-ga4",
+      event_name: e,
+      event_desc: n,
+      event_type: o,
+      event_loc: l
+    }), console.log(`Event: ${e} | ${n} | ${o} | ${l}`);
+  }, p = ({ name: e, dev: n }) => {
     console.log(
-      `%c EXP: ${t} (DEV: ${n})`,
+      `%c EXP: ${e} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, e = (t) => document.querySelector(t), p = (t) => {
+  }, t = (e) => document.querySelector(e), d = (e) => {
     let n = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", t, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
     }, 1e3);
   };
-  function i(t) {
+  function i(e) {
     return new Promise((n) => {
-      if (document.querySelector(t))
-        return n(document.querySelector(t));
+      if (document.querySelector(e))
+        return n(document.querySelector(e));
       const o = new MutationObserver(() => {
-        document.querySelector(t) && (n(document.querySelector(t)), o.disconnect());
+        document.querySelector(e) && (n(document.querySelector(e)), o.disconnect());
       });
       o.observe(document.documentElement, {
         childList: !0,
@@ -24,17 +32,17 @@
       });
     });
   }
-  (function(t) {
-    t = t === void 0 ? {} : t;
-    let n, o, s, l, x = (t == null ? void 0 : t.delay) || 50;
+  (function(e) {
+    e = e === void 0 ? {} : e;
+    let n, o, l, a, k = (e == null ? void 0 : e.delay) || 50;
     function r() {
-      n = null, l = 0;
+      n = null, a = 0;
     }
     return r(), function() {
-      return o = window.scrollY, n != null && (l = o - n), n = o, clearTimeout(s), s = setTimeout(r, x), l;
+      return o = window.scrollY, n != null && (a = o - n), n = o, clearTimeout(l), l = setTimeout(r, k), a;
     };
   })();
-  const a = {
+  const s = {
     peopleJoinedIcon: (
       /* HTML */
       `
@@ -107,15 +115,15 @@
     </svg>
   `
     )
-  }, d = (t, n) => (
+  }, h = (e, n) => (
     /* HTML */
     `
     <div class="email_block">
       <span class="img_box">${n}</span>
-      <span class="email_txt">${t}</span>
+      <span class="email_txt">${e}</span>
     </div>
   `
-  ), h = (
+  ), f = (
     /* HTML */
     `
   <div class="title_block">
@@ -127,44 +135,44 @@
     </p>
   </div>
 `
-  ), f = (t) => (
+  ), _ = (e) => (
     /* HTML */
     `
     <div class="note_block">
       <p>
-        <span class="accent_color">Note:</span> While it costs us <b class="price_txt">${t}</b> to compensate
+        <span class="accent_color">Note:</span> While it costs us <b class="price_txt">${e}</b> to compensate
         Hint employees & palmreaders for the trial, we want to make this valuable experience accessible to you.
       </p>
     </div>
   `
-  ), _ = (
-    /* HTML */
-    `
-  <div class="people_joined_block">
-    <span class="svg_block">${a.peopleJoinedIcon}</span>
-    <span class="txt_block"><b>776</b> people <b>joined</b> today</span>
-  </div>
-`
   ), m = (
     /* HTML */
     `
-  <div class="guarantee_block">
-    <span class="svg_block">${a.guaranteeIcon}</span>
-    <span class="txt_block">100% Money-back Guarantee</span>
+  <div class="people_joined_block">
+    <span class="svg_block">${s.peopleJoinedIcon}</span>
+    <span class="txt_block"><b>776</b> people <b>joined</b> today</span>
   </div>
 `
   ), C = (
     /* HTML */
     `
+  <div class="guarantee_block">
+    <span class="svg_block">${s.guaranteeIcon}</span>
+    <span class="txt_block">100% Money-back Guarantee</span>
+  </div>
+`
+  ), b = (
+    /* HTML */
+    `
   <div class="proceed_to_find_out_block">
-    <span class="svg_block">${a.proceedToFindOutIcon}</span>
+    <span class="svg_block">${s.proceedToFindOutIcon}</span>
     <span class="txt_block"
       >You won't be charged right now. <br />
       Proceed to find out more.</span
     >
   </div>
 `
-  ), b = `header > header {
+  ), u = `header > header {
   padding: 12px 16px !important;
   background: #eff1f5 !important;
 }
@@ -187,6 +195,7 @@ header > header > img {
 
 main > div {
   margin: 0 !important;
+  align-items: normal !important;
 }
 main > div > div {
   gap: unset !important;
@@ -381,21 +390,26 @@ main .styles_plans__kjWfh > :last-child::after {
   font-weight: 400;
   line-height: 18px;
   margin: 0;
-}/*# sourceMappingURL=main.css.map */`, u = window.innerWidth < 768 ? "mobile" : "desktop";
-  class g {
+}/*# sourceMappingURL=main.css.map */`, g = window.innerWidth < 768 ? "mobile" : "desktop";
+  class x {
     constructor(n) {
       this.device = n, this.init();
     }
     init() {
-      c({ name: "select Trial Price Page Improvements V1", dev: "SKh" }), p("exp_select_trial"), this.observeMain(), window.location.pathname.match("subscription-pla") ? this.handleSubscriptionPage() : window.location.pathname.match("email") ? (this.removeCustomStyles(), this.handleClickBtnContinueForEmail()) : this.removeCustomStyles();
+      p({ name: "select Trial Price Page Improvements V1", dev: "SKh" }), d("exp_select_trial"), c(
+        "exp_select_trial_activated_b",
+        "Select Trial Price Page Improvements",
+        "Experiment activated",
+        "Variant B"
+      ), this.observeMain(), window.location.pathname.match("subscription-pla") ? this.handleSubscriptionPage() : window.location.pathname.match("email") ? (this.removeCustomStyles(), this.handleClickBtnContinueForEmail()) : this.removeCustomStyles();
     }
     // ___________________________________________________________________________________________________________
     // window.location.pathname.match('email')
     handleClickBtnContinueForEmail() {
       i("button.z-0").then(() => {
-        e("button.z-0").addEventListener("click", () => {
+        t("button.z-0").addEventListener("click", () => {
           var o;
-          const n = (o = e('input[name="email"]')) == null ? void 0 : o.value;
+          const n = (o = t('input[name="email"]')) == null ? void 0 : o.value;
           localStorage.setItem("emailValue", n);
         });
       });
@@ -403,23 +417,23 @@ main .styles_plans__kjWfh > :last-child::after {
     // ___________________________________________________________________________________________________________
     // window.location.pathname.match('subscription-pla')
     handleSubscriptionPage() {
-      e(".crs_inter") || document.head.insertAdjacentHTML(
+      t(".crs_inter") || document.head.insertAdjacentHTML(
         "afterbegin",
         '<link class="crs_inter" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">'
-      ), e(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${b}</style>`), this.renderTitleBlock(), this.renderEmailBlock(), this.renderNoteBlock(), this.renderPeopleJoinedBlock(), this.renderGuaranteeBlock(), this.replaceTxtBtnGetStarted();
+      ), t(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${u}</style>`), this.renderTitleBlock(), this.renderEmailBlock(), this.renderNoteBlock(), this.renderPeopleJoinedBlock(), this.renderGuaranteeBlock(), this.replaceTxtBtnGetStarted();
     }
     renderTitleBlock() {
       i(".styles_plans__kjWfh").then(() => {
-        e(".title_block") || e(".styles_plans__kjWfh").insertAdjacentHTML("beforebegin", h);
+        t(".title_block") || t(".styles_plans__kjWfh").insertAdjacentHTML("beforebegin", f);
       });
     }
     renderEmailBlock() {
       i("main").then(() => {
-        if (!e(".email_block") && localStorage.getItem("emailValue")) {
+        if (!t(".email_block") && localStorage.getItem("emailValue")) {
           const n = localStorage.getItem("emailValue");
           if (n !== null) {
             const o = n.charAt(0).toUpperCase();
-            e("main").insertAdjacentHTML("afterbegin", d(n, o));
+            t("main").insertAdjacentHTML("afterbegin", h(n, o));
           }
         }
       });
@@ -427,29 +441,29 @@ main .styles_plans__kjWfh > :last-child::after {
     renderNoteBlock() {
       i(".styles_plans__kjWfh").then(() => {
         setTimeout(() => {
-          const n = e(".styles_plans__kjWfh>:last-child").textContent.trim();
-          e(".note_block") || e(".styles_plans__kjWfh").insertAdjacentHTML("afterend", f(n));
+          const n = t(".styles_plans__kjWfh>:last-child").textContent.trim();
+          t(".note_block") || t(".styles_plans__kjWfh").insertAdjacentHTML("afterend", _(n));
         }, 700);
       });
     }
     renderPeopleJoinedBlock() {
       i("button.z-0").then(() => {
-        e(".people_joined_block") || e("button.z-0").insertAdjacentHTML("beforebegin", _);
+        t(".people_joined_block") || t("button.z-0").insertAdjacentHTML("beforebegin", m);
       });
     }
     renderProceedToFindOutBlock() {
       i("button.z-0").then(() => {
-        e(".proceed_to_find_out_block") || e("button.z-0").insertAdjacentHTML("beforebegin", C);
+        t(".proceed_to_find_out_block") || t("button.z-0").insertAdjacentHTML("beforebegin", b);
       });
     }
     renderGuaranteeBlock() {
       i("button.z-0").then(() => {
-        e(".guarantee_block") || e("button.z-0").insertAdjacentHTML("afterend", m);
+        t(".guarantee_block") || t("button.z-0").insertAdjacentHTML("afterend", C);
       });
     }
     replaceTxtBtnGetStarted() {
       i("button.z-0").then(() => {
-        e("button.z-0").textContent.match("Get Started") || (e("button.z-0").innerHTML = `Get Started ${a.arrowIcon}`);
+        t("button.z-0").textContent.match("Get Started") || (t("button.z-0").innerHTML = `Get Started ${s.arrowIcon}`);
       });
     }
     handleVisibility() {
@@ -457,16 +471,16 @@ main .styles_plans__kjWfh > :last-child::after {
     // ___________________________________________________________________________________________________________
     observeMain() {
       new MutationObserver((o) => {
-        for (let s of o)
-          for (let l of s.removedNodes)
-            l instanceof HTMLElement && l.tagName === "MAIN" && (console.log(l), window.location.pathname.match("subscription-pla") ? this.handleSubscriptionPage() : window.location.pathname.match("email") ? (this.removeCustomStyles(), this.handleClickBtnContinueForEmail()) : this.removeCustomStyles());
-      }).observe(e("body"), { childList: !0, subtree: !0 });
+        for (let l of o)
+          for (let a of l.removedNodes)
+            a instanceof HTMLElement && a.tagName === "MAIN" && (console.log(a), window.location.pathname.match("subscription-pla") ? this.handleSubscriptionPage() : window.location.pathname.match("email") ? (this.removeCustomStyles(), this.handleClickBtnContinueForEmail()) : this.removeCustomStyles());
+      }).observe(t("body"), { childList: !0, subtree: !0 });
     }
     removeCustomStyles() {
       var n, o;
-      (n = e(".crs_style")) == null || n.remove(), (o = e(".crs_inter")) == null || o.remove();
+      (n = t(".crs_style")) == null || n.remove(), (o = t(".crs_inter")) == null || o.remove();
     }
   }
-  new g(u);
+  new x(g);
 })();
 //# sourceMappingURL=index.js.map
