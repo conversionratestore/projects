@@ -5,7 +5,11 @@
       `%c EXP: ${t} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, e = (t) => document.querySelector(t);
+  }, e = (t) => document.querySelector(t), p = (t) => {
+    let n = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", t, "variant_2"));
+    }, 1e3);
+  };
   function i(t) {
     return new Promise((n) => {
       if (document.querySelector(t))
@@ -22,12 +26,12 @@
   }
   (function(t) {
     t = t === void 0 ? {} : t;
-    let n, o, s, l, g = (t == null ? void 0 : t.delay) || 50;
+    let n, o, s, l, x = (t == null ? void 0 : t.delay) || 50;
     function r() {
       n = null, l = 0;
     }
     return r(), function() {
-      return o = window.scrollY, n != null && (l = o - n), n = o, clearTimeout(s), s = setTimeout(r, g), l;
+      return o = window.scrollY, n != null && (l = o - n), n = o, clearTimeout(s), s = setTimeout(r, x), l;
     };
   })();
   const a = {
@@ -103,7 +107,7 @@
     </svg>
   `
     )
-  }, p = (t, n) => (
+  }, d = (t, n) => (
     /* HTML */
     `
     <div class="email_block">
@@ -111,7 +115,7 @@
       <span class="email_txt">${t}</span>
     </div>
   `
-  ), d = (
+  ), h = (
     /* HTML */
     `
   <div class="title_block">
@@ -123,7 +127,7 @@
     </p>
   </div>
 `
-  ), h = (t) => (
+  ), f = (t) => (
     /* HTML */
     `
     <div class="note_block">
@@ -133,7 +137,7 @@
       </p>
     </div>
   `
-  ), f = (
+  ), _ = (
     /* HTML */
     `
   <div class="people_joined_block">
@@ -149,7 +153,7 @@
     <span class="txt_block">100% Money-back Guarantee</span>
   </div>
 `
-  ), _ = (
+  ), C = (
     /* HTML */
     `
   <div class="proceed_to_find_out_block">
@@ -160,7 +164,7 @@
     >
   </div>
 `
-  ), C = `header > header {
+  ), b = `header > header {
   padding: 12px 16px !important;
   background: #eff1f5 !important;
 }
@@ -377,13 +381,13 @@ main .styles_plans__kjWfh > :last-child::after {
   font-weight: 400;
   line-height: 18px;
   margin: 0;
-}/*# sourceMappingURL=main.css.map */`, b = window.innerWidth < 768 ? "mobile" : "desktop";
-  class u {
+}/*# sourceMappingURL=main.css.map */`, u = window.innerWidth < 768 ? "mobile" : "desktop";
+  class g {
     constructor(n) {
       this.device = n, this.init();
     }
     init() {
-      c({ name: "select Trial Price Page Improvements V2", dev: "SKh" }), this.observeMain(), window.location.pathname.match("subscription-pla") ? this.handleSubscriptionPage() : window.location.pathname.match("email") ? (this.removeCustomStyles(), this.handleClickBtnContinueForEmail()) : this.removeCustomStyles();
+      c({ name: "select Trial Price Page Improvements V2", dev: "SKh" }), p("exp_select_trial"), this.observeMain(), window.location.pathname.match("subscription-pla") ? this.handleSubscriptionPage() : window.location.pathname.match("email") ? (this.removeCustomStyles(), this.handleClickBtnContinueForEmail()) : this.removeCustomStyles();
     }
     // ___________________________________________________________________________________________________________
     // window.location.pathname.match('email')
@@ -402,11 +406,11 @@ main .styles_plans__kjWfh > :last-child::after {
       e(".crs_inter") || document.head.insertAdjacentHTML(
         "afterbegin",
         '<link class="crs_inter" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">'
-      ), e(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${C}</style>`), this.renderTitleBlock(), this.renderEmailBlock(), this.renderNoteBlock(), this.renderProceedToFindOutBlock(), this.renderGuaranteeBlock(), this.replaceTxtBtnGetStarted();
+      ), e(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${b}</style>`), this.renderTitleBlock(), this.renderEmailBlock(), this.renderNoteBlock(), this.renderProceedToFindOutBlock(), this.renderGuaranteeBlock(), this.replaceTxtBtnGetStarted();
     }
     renderTitleBlock() {
       i(".styles_plans__kjWfh").then(() => {
-        e(".title_block") || e(".styles_plans__kjWfh").insertAdjacentHTML("beforebegin", d);
+        e(".title_block") || e(".styles_plans__kjWfh").insertAdjacentHTML("beforebegin", h);
       });
     }
     renderEmailBlock() {
@@ -415,7 +419,7 @@ main .styles_plans__kjWfh > :last-child::after {
           const n = localStorage.getItem("emailValue");
           if (n !== null) {
             const o = n.charAt(0).toUpperCase();
-            e("main").insertAdjacentHTML("afterbegin", p(n, o));
+            e("main").insertAdjacentHTML("afterbegin", d(n, o));
           }
         }
       });
@@ -424,18 +428,18 @@ main .styles_plans__kjWfh > :last-child::after {
       i(".styles_plans__kjWfh").then(() => {
         setTimeout(() => {
           const n = e(".styles_plans__kjWfh>:last-child").textContent.trim();
-          e(".note_block") || e(".styles_plans__kjWfh").insertAdjacentHTML("afterend", h(n));
+          e(".note_block") || e(".styles_plans__kjWfh").insertAdjacentHTML("afterend", f(n));
         }, 700);
       });
     }
     renderPeopleJoinedBlock() {
       i("button.z-0").then(() => {
-        e(".people_joined_block") || e("button.z-0").insertAdjacentHTML("beforebegin", f);
+        e(".people_joined_block") || e("button.z-0").insertAdjacentHTML("beforebegin", _);
       });
     }
     renderProceedToFindOutBlock() {
       i("button.z-0").then(() => {
-        e(".proceed_to_find_out_block") || e("button.z-0").insertAdjacentHTML("beforebegin", _);
+        e(".proceed_to_find_out_block") || e("button.z-0").insertAdjacentHTML("beforebegin", C);
       });
     }
     renderGuaranteeBlock() {
@@ -463,6 +467,6 @@ main .styles_plans__kjWfh > :last-child::after {
       (n = e(".crs_style")) == null || n.remove(), (o = e(".crs_inter")) == null || o.remove();
     }
   }
-  new u(b);
+  new g(u);
 })();
 //# sourceMappingURL=index.js.map
