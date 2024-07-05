@@ -274,7 +274,7 @@ main .styles_plans__kjWfh > :last-child::after {
 
 .email_block {
   display: flex;
-  align-items: center;
+  align-items: center !important;
   justify-content: center;
   gap: 8px;
   padding: 4px 10px;
