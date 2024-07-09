@@ -1,19 +1,19 @@
 (function() {
   "use strict";
-  const u = (e, n, o, r = "") => {
+  const d = (e, n, o, i = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
       event_desc: n,
       event_type: o,
-      event_loc: r
-    }), console.log(`Event: ${e} | ${n} | ${o} | ${r.replace(/  +/g, " ")}`);
-  }, _ = ({ name: e, dev: n }) => {
+      event_loc: i
+    }), console.log(`Event: ${e} | ${n} | ${o} | ${i.replace(/  +/g, " ")}`);
+  }, b = ({ name: e, dev: n }) => {
     console.log(
       `%c EXP: ${e} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, b = (e) => {
+  }, k = (e) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
     }, 1e3);
@@ -21,15 +21,15 @@
     const o = document.querySelector(e);
     if (o)
       return n(o);
-    const r = new MutationObserver(() => {
-      const p = document.querySelector(e);
-      p && (n(p), r.disconnect());
+    const i = new MutationObserver(() => {
+      const c = document.querySelector(e);
+      c && (n(c), i.disconnect());
     });
-    r.observe(document.documentElement, {
+    i.observe(document.documentElement, {
       childList: !0,
       subtree: !0
     });
-  }), y = "https://conversionratestore.github.io/projects/geeni/img/amazon-prime/img", k = (
+  }), y = "https://conversionratestore.github.io/projects/geeni/img/amazon-prime/img", A = (
     /* HTML */
     `
 <div class="top-amazon">
@@ -38,7 +38,7 @@
     alt="Amazon Prime logo">
 </div>
 `
-  ), A = (
+  ), B = (
     /* HTML */
     `
 <div class="warranty-sale-custom">
@@ -50,9 +50,9 @@
         <p class="warranty-sale-custom__subdescription">Direct from manufacturer</p>
       </div>
       <div>
-        <p class="warranty-sale-custom__title"><span>Buy with</span> <img
+        <p class="warranty-sale-custom__title"><span>Buy with</span> <span class="prime-img-wrap"><img
             src="${y}/Amazon_Prime_Logo_Blue.svg"
-            alt="Amazon Prime logo"></p>
+            alt="Amazon Prime logo"></span></p>
         <p class="warranty-sale-custom__description">Fast, FREE Delivery & Returns</p>
         <p class="warranty-sale-custom__subdescription">Guaranteed by Amazon</p>
       </div>
@@ -77,9 +77,9 @@
     </div>
     <div class="warranty-sale-custom__container--mobile">
       <div class="warranty-sale-custom__special-block">
-        <p class="warranty-sale-custom__title"><span>Buy with</span> <img
+      <p class="warranty-sale-custom__title"><span>Buy with</span> <span class="prime-img-wrap"><img
             src="${y}/Amazon_Prime_Logo_Blue.svg"
-            alt="Amazon Prime logo"></p>
+            alt="Amazon Prime logo"></span></p>
         <p class="warranty-sale-custom__description">Fast, FREE Delivery & Returns</p>
         <p class="warranty-sale-custom__subdescription">Guaranteed by Amazon</p>
       </div>
@@ -90,7 +90,7 @@
           <p><span class="fw-700">365</span>-days warranty on all products</p>
         </div>
       </div>
-      <div>
+      <div class="warranty-sale-custom__buy-block">
         <div class="warranty-sale-custom__buy">
           <img src="https://conversionratestore.github.io/projects/geeni/img/home-app-web/bonus.svg" alt="">
           <p><span class="fw-700">Buy More, Save More</span></p>
@@ -117,7 +117,7 @@
   </div>
 </div>
 `
-  ), B = (
+  ), z = (
     /* HTML */
     `
 <div class="crs-popup">
@@ -158,7 +158,7 @@
   </div>
 </div>
 `
-  ), z = (
+  ), S = (
     /* HTML */
     `
 <div class="sticky-btn">
@@ -195,15 +195,15 @@
       </div>
     </div>
   </div>
-  ${B}
   ${z}
+  ${S}
 `
-  ), S = (
+  ), F = (
     /* HTML */
     `
   <button class="buy-with-prime">Buy with <img src="https://conversionratestore.github.io/projects/geeni/img/amazon-prime/img/Amazon_Prime_Logo_White.svg" alt="Amazon Prime logo"></button>
 `
-  ), F = `/* TOP AMAZON */
+  ), P = `/* TOP AMAZON */
 .top-amazon {
   display: flex;
   justify-content: center;
@@ -243,6 +243,17 @@
 .warranty-sale-custom {
   margin-bottom: 60px;
 }
+.warranty-sale-custom .prime-img-wrap {
+  width: 59px;
+  display: inline-block;
+}
+.warranty-sale-custom .prime-img-wrap img {
+  width: 58.821px;
+  height: 37px;
+  position: absolute;
+  top: 2px;
+  right: 0;
+}
 .warranty-sale-custom .warranty-sale-custom__container--desktop {
   display: flex;
   justify-content: space-between;
@@ -251,12 +262,11 @@
   display: flex;
   padding: 36px 18px;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   border-radius: 16px;
   background: #F8F8F8;
   text-align: center;
-  width: 28.6%;
+  width: 32.1%;
 }
 .warranty-sale-custom .warranty-sale-custom__container--desktop > div:nth-child(2) .warranty-sale-custom__title {
   display: flex;
@@ -266,13 +276,6 @@
 }
 .warranty-sale-custom .warranty-sale-custom__container--desktop > div:nth-child(2) .warranty-sale-custom__title span {
   color: var(--Black-900, #000) !important;
-}
-.warranty-sale-custom .warranty-sale-custom__container--desktop > div:nth-child(2) .warranty-sale-custom__title img {
-  position: relative;
-  top: 16px;
-}
-.warranty-sale-custom .warranty-sale-custom__container--desktop > div {
-  width: 32.1%;
 }
 .warranty-sale-custom .warranty-sale-custom__title {
   color: var(--Light-blue-900, #00B0EE);
@@ -305,6 +308,7 @@
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  gap: 2px;
 }
 .warranty-sale-custom .warranty-sale-custom__container--mobile {
   display: none;
@@ -325,7 +329,7 @@
 .warranty-sale-custom .warranty-sale-custom__container--mobile > div:first-child div {
   text-align: center;
 }
-.warranty-sale-custom .warranty-sale-custom__container--mobile > div img {
+.warranty-sale-custom .warranty-sale-custom__container--mobile .warranty-sale-custom__buy-block img {
   width: 32px;
   height: 32px;
   margin-bottom: 8px;
@@ -450,7 +454,7 @@
     justify-content: flex-start;
     width: 100%;
   }
-  .warranty-sale-custom .warranty-sale-custom__container--mobile > div img {
+  .warranty-sale-custom .warranty-sale-custom__container--mobile .warranty-sale-custom__buy-block img {
     width: 24px;
     height: 24px;
     margin-bottom: 0;
@@ -473,13 +477,7 @@
   .warranty-sale-custom .warranty-sale-custom__container--mobile > div.warranty-sale-custom__special-block .warranty-sale-custom__title {
     font-size: 18px;
     line-height: 24px;
-    /* 133.333% */
-  }
-  .warranty-sale-custom .warranty-sale-custom__container--mobile > div.warranty-sale-custom__special-block .warranty-sale-custom__title img {
-    width: 55.641px;
-    height: 35px;
     position: relative;
-    top: 18px;
   }
   .warranty-sale-custom .warranty-sale-custom__container--mobile > div.warranty-sale-custom__special-block .warranty-sale-custom__description {
     font-size: 22px;
@@ -729,6 +727,7 @@
   padding: 10px 26px;
   position: relative;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .crs-info > p {
@@ -833,7 +832,7 @@
   top: 5px;
   width: 45px;
   height: 27px;
-}/*# sourceMappingURL=styles.css.map */`, P = `.yotpo-widget-instance,
+}/*# sourceMappingURL=styles.css.map */`, I = `.yotpo-widget-instance,
 .yotpo-widget-clear {
   width: 100%;
 }
@@ -845,7 +844,7 @@
 
 .review-link {
   display: none !important;
-}`, I = `.product-single__media-slider::after {
+}`, T = `.product-single__media-slider::after {
   content: "";
   position: absolute;
   top: 6px;
@@ -862,7 +861,7 @@
     top: 0;
     right: 2px;
   }
-}`, T = `/* STICKY */
+}`, L = `/* STICKY */
 .sticky-btn {
   align-items: center;
   justify-content: center;
@@ -917,8 +916,8 @@
     display: none !important;
   }
 }`;
-  b("exp_amazon"), _({ name: "AmazonPay", dev: "AK" });
-  function f() {
+  k("exp_amazon"), b({ name: "AmazonPay", dev: "AK" });
+  function _() {
     const e = window.location.pathname;
     if (e === "/" || e === "/index")
       return "home";
@@ -927,11 +926,11 @@
     if (e.includes("/products/"))
       return "product";
   }
-  function g(e) {
+  function h(e) {
     const n = document.createElement("style");
-    n.textContent = e, document.head.insertAdjacentElement("beforeend", n), console.log("Injected CSS");
+    n.textContent = e, document.head.insertAdjacentElement("beforeend", n);
   }
-  class L {
+  class q {
     constructor() {
       this.initializePage();
     }
@@ -939,7 +938,7 @@
       this.addBlocks();
     }
     addBlocks() {
-      m("#MainContent").then((n) => n.insertAdjacentHTML("afterbegin", k)), m(".warranty-sale").then((n) => n.insertAdjacentHTML("afterend", A));
+      m("#MainContent").then((n) => n.insertAdjacentHTML("afterbegin", A)), m(".warranty-sale").then((n) => n.insertAdjacentHTML("afterend", B));
     }
     addEvents() {
     }
@@ -953,27 +952,34 @@
     }
     addComponent() {
       function n() {
-        const r = setInterval(() => {
-          const p = document.querySelector(".product__block.product__form__wrapper"), h = document.querySelector("[data-delivery-date]"), v = h ? h.textContent : "", x = E(v);
-          p && h && v && x && (clearInterval(r), p.insertAdjacentHTML("afterend", x));
+        const i = setInterval(() => {
+          var c, g;
+          if (document.querySelector(".product__block.product__form__wrapper") && ((c = document.querySelector("[data-delivery-date]")) != null && c.textContent)) {
+            clearInterval(i);
+            const v = document.querySelector(".product__block.product__form__wrapper"), x = (g = document.querySelector("[data-delivery-date]")) == null ? void 0 : g.textContent, w = E(x);
+            v.insertAdjacentHTML("afterend", w);
+          }
         }, 100);
       }
       if (n(), this.pdpType !== "bundle") {
         let o = function() {
           m(".crs-delivery").then((s) => s.dataset.hidePrime = "false");
-        }, r = function() {
-          const a = setInterval(() => {
-            var c, d;
-            const t = document.querySelector("delivery-promise-wc"), i = document.querySelector('[data-delivery-type="prime"]'), l = (d = (c = t == null ? void 0 : t.shadowRoot) == null ? void 0 : c.querySelector(".AmazonLayout__nowrap")) == null ? void 0 : d.textContent;
-            l && i && (clearInterval(a), i.innerText = p(l));
+        }, i = function() {
+          const r = setInterval(() => {
+            var a, t, l;
+            if ((t = (a = document.querySelector("delivery-promise-wc")) == null ? void 0 : a.shadowRoot) != null && t.querySelector(".AmazonLayout__nowrap") && document.querySelector('[data-delivery-type="prime"]')) {
+              clearInterval(r);
+              const p = document.querySelector('[data-delivery-type="prime"]'), u = (l = document.querySelector("delivery-promise-wc").shadowRoot.querySelector(".AmazonLayout__nowrap")) == null ? void 0 : l.textContent;
+              p.innerText = c(u);
+            }
           }, 100);
-        }, p = function(s) {
-          const a = /(?:Tomorrow )?(?:\w+ )?(\w+) (\d+)/, t = s.match(a);
-          if (!t)
+        }, c = function(s) {
+          const r = /(?:Tomorrow )?(?:\w+ )?(\w+) (\d+)/, a = s.match(r);
+          if (!a)
             return "Invalid date";
-          const [, i, l] = t, c = /* @__PURE__ */ new Date();
-          let d = /* @__PURE__ */ new Date(`${i} ${l}, ${c.getFullYear()}`);
-          return s.startsWith("Tomorrow") && d.setDate(c.getDate() + 1), d.toLocaleDateString("en-US", {
+          const [, t, l] = a, p = /* @__PURE__ */ new Date();
+          let u = /* @__PURE__ */ new Date(`${t} ${l}, ${p.getFullYear()}`);
+          return s.startsWith("Tomorrow") && u.setDate(p.getDate() + 1), u.toLocaleDateString("en-US", {
             weekday: "short",
             // "Mon" for Monday
             month: "short",
@@ -981,69 +987,72 @@
             day: "numeric"
             // "16" for the 16th
           });
-        }, h = function() {
-          const a = document.querySelector(".crs-delivery button"), t = document.querySelector(".sticky-btn"), i = setInterval(() => {
-            var l, c, d;
-            if (a && ((d = (c = (l = document.querySelector("delivery-promise-wc")) == null ? void 0 : l.querySelector("#generic-promise-wc")) == null ? void 0 : c.shadowRoot) != null && d.querySelector(".amazon-pay-button")) && t) {
-              clearInterval(i);
-              const w = document.querySelector("delivery-promise-wc").querySelector("#generic-promise-wc").shadowRoot.querySelector(".amazon-pay-button");
-              console.log("myPrimeBtn", a), console.log("iframePrimeBtn", w), a.addEventListener("click", () => {
-                w.click(), u("exp_amazon_pdp_u_buy_with_prime", "Buy with prime", "Button", "Product details");
-              }), t.addEventListener("click", () => {
-                w.click(), u("exp_amazon_pdp_s_buy_with_prime", "Buy with prime", "Button", "Sticky button");
+        }, g = function() {
+          const r = setInterval(() => {
+            var a, t, l;
+            if (document.querySelector(".crs-delivery button") && ((l = (t = (a = document.querySelector("delivery-promise-wc")) == null ? void 0 : a.querySelector("#generic-promise-wc")) == null ? void 0 : t.shadowRoot) != null && l.querySelector(".amazon-pay-button")) && document.querySelector(".sticky-btn")) {
+              clearInterval(r);
+              const p = document.querySelector(".crs-delivery button"), u = document.querySelector(".sticky-btn"), f = document.querySelector("delivery-promise-wc").querySelector("#generic-promise-wc").shadowRoot.querySelector(".amazon-pay-button");
+              p.addEventListener("click", () => {
+                f.click(), d("exp_amazon_pdp_u_buy_with_prime", "Buy with prime", "Button", "Product details");
+              }), u.addEventListener("click", () => {
+                f.click(), d("exp_amazon_pdp_s_buy_with_prime", "Buy with prime", "Button", "Sticky button");
               });
             }
           }, 100);
         }, v = function() {
-          const a = setInterval(() => {
-            const t = document.querySelector(".crs-tooltip"), i = document.querySelector(".crs-popup"), l = document.querySelector(".crs-popup_close");
-            t && i && l && (clearInterval(a), t.addEventListener("click", () => {
-              i.classList.add("active"), u("exp_amazon_pdp_learn_more", "Learn more", "Button", "Free & fast delivery guaranteed by Amazon");
-            }), l.addEventListener("click", () => {
-              i.classList.remove("active");
-            }), i.addEventListener("click", (c) => {
-              c.target.closest(".container") || c.target.classList.remove("active");
-            }));
+          const r = setInterval(() => {
+            if (document.querySelector(".crs-tooltip") && document.querySelector(".crs-popup") && document.querySelector(".crs-popup_close")) {
+              clearInterval(r);
+              const a = document.querySelector(".crs-tooltip"), t = document.querySelector(".crs-popup"), l = document.querySelector(".crs-popup_close");
+              a.addEventListener("click", () => {
+                t.classList.add("active"), d("exp_amazon_pdp_tooltip", "Tooltip", "Button", "Free & fast delivery on orders over $69");
+              }), l.addEventListener("click", () => {
+                t.classList.remove("active");
+              }), t.addEventListener("click", (p) => {
+                p.target.closest(".container") || p.target.classList.remove("active");
+              });
+            }
           }, 100);
         }, x = function() {
           setInterval(() => {
-            const s = document.querySelector(".sticky-btn-wrapper__price"), a = document.querySelector(".sticky-btn__price");
-            a && s && (a.textContent = s.textContent);
+            const s = document.querySelector(".sticky-btn-wrapper__price"), r = document.querySelector(".sticky-btn__price");
+            r && s && (r.textContent = s.textContent);
           }, 1e3);
-        }, C = function() {
-          const a = setInterval(() => {
-            var t, i;
-            (i = (t = document.querySelector("delivery-promise-wc")) == null ? void 0 : t.shadowRoot) != null && i.querySelector(".AmazonLayout__icon") && document.querySelector(".prime-tooltip") && (clearInterval(a), document.querySelector(".prime-tooltip").addEventListener("click", () => {
-              document.querySelector("delivery-promise-wc").shadowRoot.querySelector(".AmazonLayout__icon").click(), u("exp_amazon_free_delivery_view", "View on screen", "Element visibility", "Popup Get fast free delivery");
+        }, w = function() {
+          const r = setInterval(() => {
+            var a, t;
+            (t = (a = document.querySelector("delivery-promise-wc")) == null ? void 0 : a.shadowRoot) != null && t.querySelector(".AmazonLayout__icon") && document.querySelector(".prime-tooltip") && (clearInterval(r), document.querySelector(".prime-tooltip").addEventListener("click", () => {
+              document.querySelector("delivery-promise-wc").shadowRoot.querySelector(".AmazonLayout__icon").click(), d("exp_amazon_pdp_learn_more", "Learn more", "Button", "Free & fast delivery guaranteed by Amazon"), d("exp_amazon_free_delivery_view", "View on screen", "Element visibility", "Popup Get fast free delivery");
             }));
           }, 100);
         };
-        console.log("Single page"), g(T), o(), h(), r(), v(), x(), C();
+        console.log("Single page"), h(L), o(), g(), i(), v(), x(), w();
       }
     }
     hideAllReviews() {
-      g(P);
+      h(I);
     }
     addPrimeCircleIfNeeded() {
-      this.pdpType !== "bundle" && g(I);
+      this.pdpType !== "bundle" && h(T);
     }
   }
-  class j {
+  class C {
     constructor() {
       this.handleStickyCart();
     }
     handleStickyCart() {
       m(".payments-cart-exp ul #AmazonPayButton").then((n) => {
-        document.querySelector(".payments-cart-exp").insertAdjacentHTML("beforeend", S), m(".buy-with-prime").then((o) => {
-          o.addEventListener("click", (r) => {
-            r.preventDefault(), console.log(n), n.click(), u("exp_amazon_cart_buy_with_prime", "Buy with prime", "Button", "Cart");
+        document.querySelector(".payments-cart-exp").insertAdjacentHTML("beforeend", F), m(".buy-with-prime").then((o) => {
+          o.addEventListener("click", (i) => {
+            i.preventDefault(), console.log(n), n.click(), d("exp_amazon_cart_buy_with_prime", "Buy with prime", "Button", "Cart");
           });
         });
       });
     }
   }
   m("head").then(() => {
-    if (g(F), f() === "home" && new L(), f() === "product") {
+    if (h(P), _() === "home" && new q(), _() === "product") {
       let e = function() {
         const n = window.location.pathname;
         return [
@@ -1051,11 +1060,11 @@
           "/products/color-lighting-bundle",
           "/products/indoor-security-system-bundle",
           "/products/smart-home-starter-pack"
-        ].some((p) => n.includes(p)) ? "bundle" : "single";
+        ].some((c) => n.includes(c)) ? "bundle" : "single";
       };
       new R(e());
     }
-    new j();
+    new C();
   });
 })();
 //# sourceMappingURL=index.js.map
