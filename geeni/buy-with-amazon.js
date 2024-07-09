@@ -1,29 +1,29 @@
 (function() {
   "use strict";
-  const d = (e, n, o, i = "") => {
+  const d = (n, e, o, i = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: e,
-      event_desc: n,
+      event_name: n,
+      event_desc: e,
       event_type: o,
       event_loc: i
-    }), console.log(`Event: ${e} | ${n} | ${o} | ${i.replace(/  +/g, " ")}`);
-  }, b = ({ name: e, dev: n }) => {
+    }), console.log(`Event: ${n} | ${e} | ${o} | ${i.replace(/  +/g, " ")}`);
+  }, b = ({ name: n, dev: e }) => {
     console.log(
-      `%c EXP: ${e} (DEV: ${n})`,
+      `%c EXP: ${n} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, k = (e) => {
-    let n = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
+  }, k = (n) => {
+    let e = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", n, "variant_1"));
     }, 1e3);
-  }, m = (e) => new Promise((n) => {
-    const o = document.querySelector(e);
+  }, m = (n) => new Promise((e) => {
+    const o = document.querySelector(n);
     if (o)
-      return n(o);
+      return e(o);
     const i = new MutationObserver(() => {
-      const c = document.querySelector(e);
-      c && (n(c), i.disconnect());
+      const c = document.querySelector(n);
+      c && (e(c), i.disconnect());
     });
     i.observe(document.documentElement, {
       childList: !0,
@@ -172,13 +172,13 @@
   </div>
 </div>
 `
-  ), E = (e) => (
+  ), E = (n) => (
     /* HTML */
     `
 <div class="crs-delivery" data-hide-prime="true">
     <div>
       <p><span class="fw-700">Free standard delivery</span> on orders over <span class="fw-700">$69</span><br><span class="fw-700"> • 30 days free return</span></p>
-      <p>Approximate date of delivery, <span class="fw-700" data-delivery-type="standart">${e}</span> <img class="crs-tooltip" src="${y}/info_icon.svg" alt="open info popup"></p>
+      <p>Approximate date of delivery, <span class="fw-700" data-delivery-type="standart">${n}</span> <img class="crs-tooltip" src="${y}/info_icon.svg" alt="open info popup"></p>
     </div>
 
     <div class="or-divider">
@@ -918,17 +918,17 @@
 }`;
   k("exp_amazon"), b({ name: "AmazonPay", dev: "AK" });
   function _() {
-    const e = window.location.pathname;
-    if (e === "/" || e === "/index")
+    const n = window.location.pathname;
+    if (n === "/" || n === "/index")
       return "home";
-    if (e.includes("/collections/") && !e.includes("/products/"))
+    if (n.includes("/collections/") && !n.includes("/products/"))
       return "collections";
-    if (e.includes("/products/"))
+    if (n.includes("/products/"))
       return "product";
   }
-  function h(e) {
-    const n = document.createElement("style");
-    n.textContent = e, document.head.insertAdjacentElement("beforeend", n);
+  function h(n) {
+    const e = document.createElement("style");
+    e.textContent = n, document.head.insertAdjacentElement("beforeend", e);
   }
   class q {
     constructor() {
@@ -938,20 +938,20 @@
       this.addBlocks();
     }
     addBlocks() {
-      m("#MainContent").then((n) => n.insertAdjacentHTML("afterbegin", A)), m(".warranty-sale").then((n) => n.insertAdjacentHTML("afterend", B));
+      m("#MainContent").then((e) => e.insertAdjacentHTML("afterbegin", A)), m(".warranty-sale").then((e) => e.insertAdjacentHTML("afterend", B));
     }
     addEvents() {
     }
   }
   class R {
-    constructor(n) {
-      this.pdpType = n, this.initializePage();
+    constructor(e) {
+      this.pdpType = e, this.initializePage();
     }
     initializePage() {
       this.hideAllReviews(), this.addPrimeCircleIfNeeded(), this.addComponent();
     }
     addComponent() {
-      function n() {
+      function e() {
         const i = setInterval(() => {
           var c, g;
           if (document.querySelector(".product__block.product__form__wrapper") && ((c = document.querySelector("[data-delivery-date]")) != null && c.textContent)) {
@@ -961,7 +961,7 @@
           }
         }, 100);
       }
-      if (n(), this.pdpType !== "bundle") {
+      if (e(), this.pdpType !== "bundle") {
         let o = function() {
           m(".crs-delivery").then((s) => s.dataset.hidePrime = "false");
         }, i = function() {
@@ -994,9 +994,9 @@
               clearInterval(r);
               const p = document.querySelector(".crs-delivery button"), u = document.querySelector(".sticky-btn"), f = document.querySelector("delivery-promise-wc").querySelector("#generic-promise-wc").shadowRoot.querySelector(".amazon-pay-button");
               p.addEventListener("click", () => {
-                f.click(), d("exp_amazon_pdp_u_buy_with_prime", "Buy with prime", "Button", "Product details");
+                d("exp_amazon_pdp_u_buy_with_prime", "Buy with prime", "Button", "Product details"), f.click();
               }), u.addEventListener("click", () => {
-                f.click(), d("exp_amazon_pdp_s_buy_with_prime", "Buy with prime", "Button", "Sticky button");
+                d("exp_amazon_pdp_s_buy_with_prime", "Buy with prime", "Button", "Sticky button"), f.click();
               });
             }
           }, 100);
@@ -1023,7 +1023,7 @@
           const r = setInterval(() => {
             var a, t;
             (t = (a = document.querySelector("delivery-promise-wc")) == null ? void 0 : a.shadowRoot) != null && t.querySelector(".AmazonLayout__icon") && document.querySelector(".prime-tooltip") && (clearInterval(r), document.querySelector(".prime-tooltip").addEventListener("click", () => {
-              document.querySelector("delivery-promise-wc").shadowRoot.querySelector(".AmazonLayout__icon").click(), d("exp_amazon_pdp_learn_more", "Learn more", "Button", "Free & fast delivery guaranteed by Amazon"), d("exp_amazon_free_delivery_view", "View on screen", "Element visibility", "Popup Get fast free delivery");
+              d("exp_amazon_pdp_learn_more", "Learn more", "Button", "Free & fast delivery guaranteed by Amazon"), document.querySelector("delivery-promise-wc").shadowRoot.querySelector(".AmazonLayout__icon").click(), d("exp_amazon_free_delivery_view", "View on screen", "Element visibility", "Popup Get fast free delivery");
             }));
           }, 100);
         };
@@ -1042,10 +1042,10 @@
       this.handleStickyCart();
     }
     handleStickyCart() {
-      m(".payments-cart-exp ul #AmazonPayButton").then((n) => {
+      m(".payments-cart-exp ul #AmazonPayButton").then((e) => {
         document.querySelector(".payments-cart-exp").insertAdjacentHTML("beforeend", F), m(".buy-with-prime").then((o) => {
           o.addEventListener("click", (i) => {
-            i.preventDefault(), console.log(n), n.click(), d("exp_amazon_cart_buy_with_prime", "Buy with prime", "Button", "Cart");
+            i.preventDefault(), d("exp_amazon_cart_buy_with_prime", "Buy with prime", "Button", "Cart"), e.click();
           });
         });
       });
@@ -1053,16 +1053,16 @@
   }
   m("head").then(() => {
     if (h(P), _() === "home" && new q(), _() === "product") {
-      let e = function() {
-        const n = window.location.pathname;
+      let n = function() {
+        const e = window.location.pathname;
         return [
           "/products/full-security-bundle",
           "/products/color-lighting-bundle",
           "/products/indoor-security-system-bundle",
           "/products/smart-home-starter-pack"
-        ].some((c) => n.includes(c)) ? "bundle" : "single";
+        ].some((c) => e.includes(c)) ? "bundle" : "single";
       };
-      new R(e());
+      new R(n());
     }
     new C();
   });
