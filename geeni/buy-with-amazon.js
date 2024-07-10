@@ -29,7 +29,7 @@
       childList: !0,
       subtree: !0
     });
-  }), y = "https://conversionratestore.github.io/projects/geeni/img/amazon-prime/img", A = (
+  }), y = "https://conversionratestore.github.io/projects/geeni/img/amazon-prime/img", B = (
     /* HTML */
     `
 <div class="top-amazon">
@@ -38,7 +38,7 @@
     alt="Amazon Prime logo">
 </div>
 `
-  ), B = (
+  ), A = (
     /* HTML */
     `
 <div class="warranty-sale-custom">
@@ -926,7 +926,7 @@
     if (n.includes("/products/"))
       return "product";
   }
-  function h(n) {
+  function g(n) {
     const e = document.createElement("style");
     e.textContent = n, document.head.insertAdjacentElement("beforeend", e);
   }
@@ -938,7 +938,7 @@
       this.addBlocks();
     }
     addBlocks() {
-      m("#MainContent").then((e) => e.insertAdjacentHTML("afterbegin", A)), m(".warranty-sale").then((e) => e.insertAdjacentHTML("afterend", B));
+      m("#MainContent").then((e) => e.insertAdjacentHTML("afterbegin", B)), m(".warranty-sale").then((e) => e.insertAdjacentHTML("afterend", A));
     }
     addEvents() {
     }
@@ -953,10 +953,10 @@
     addComponent() {
       function e() {
         const i = setInterval(() => {
-          var c, g;
+          var c, h;
           if (document.querySelector(".product__block.product__form__wrapper") && ((c = document.querySelector("[data-delivery-date]")) != null && c.textContent)) {
             clearInterval(i);
-            const v = document.querySelector(".product__block.product__form__wrapper"), x = (g = document.querySelector("[data-delivery-date]")) == null ? void 0 : g.textContent, w = E(x);
+            const v = document.querySelector(".product__block.product__form__wrapper"), x = (h = document.querySelector("[data-delivery-date]")) == null ? void 0 : h.textContent, w = E(x);
             v.insertAdjacentHTML("afterend", w);
           }
         }, 100);
@@ -987,7 +987,7 @@
             day: "numeric"
             // "16" for the 16th
           });
-        }, g = function() {
+        }, h = function() {
           const r = setInterval(() => {
             var a, t, l;
             if (document.querySelector(".crs-delivery button") && ((l = (t = (a = document.querySelector("delivery-promise-wc")) == null ? void 0 : a.querySelector("#generic-promise-wc")) == null ? void 0 : t.shadowRoot) != null && l.querySelector(".amazon-pay-button")) && document.querySelector(".sticky-btn")) {
@@ -995,12 +995,12 @@
               const p = document.querySelector(".crs-delivery button"), u = document.querySelector(".sticky-btn"), f = document.querySelector("delivery-promise-wc").querySelector("#generic-promise-wc").shadowRoot.querySelector(".amazon-pay-button");
               p.addEventListener("click", () => {
                 d("exp_amazon_pdp_u_buy_with_prime", "Buy with prime", "Button", "Product details"), setTimeout(() => {
-                  f.click();
-                }, 100);
+                  console.log("click on iframePrimeBtn"), f.click();
+                }, 1e3);
               }), u.addEventListener("click", () => {
                 d("exp_amazon_pdp_s_buy_with_prime", "Buy with prime", "Button", "Sticky button"), setTimeout(() => {
-                  f.click();
-                }, 100);
+                  console.log("click on iframePrimeBtn"), f.click();
+                }, 1e3);
               });
             }
           }, 100);
@@ -1031,14 +1031,14 @@
             }));
           }, 100);
         };
-        console.log("Single page"), h(L), o(), g(), i(), v(), x(), w();
+        console.log("Single page"), g(L), o(), h(), i(), v(), x(), w();
       }
     }
     hideAllReviews() {
-      h(I);
+      g(I);
     }
     addPrimeCircleIfNeeded() {
-      this.pdpType !== "bundle" && h(T);
+      this.pdpType !== "bundle" && g(T);
     }
   }
   class C {
@@ -1056,7 +1056,7 @@
     }
   }
   m("head").then(() => {
-    if (h(P), _() === "home" && new q(), _() === "product") {
+    if (g(P), _() === "home" && new q(), _() === "product") {
       let n = function() {
         const e = window.location.pathname;
         return [
