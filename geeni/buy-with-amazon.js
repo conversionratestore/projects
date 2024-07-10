@@ -994,9 +994,13 @@
               clearInterval(r);
               const p = document.querySelector(".crs-delivery button"), u = document.querySelector(".sticky-btn"), f = document.querySelector("delivery-promise-wc").querySelector("#generic-promise-wc").shadowRoot.querySelector(".amazon-pay-button");
               p.addEventListener("click", () => {
-                d("exp_amazon_pdp_u_buy_with_prime", "Buy with prime", "Button", "Product details"), f.click();
+                d("exp_amazon_pdp_u_buy_with_prime", "Buy with prime", "Button", "Product details"), setTimeout(() => {
+                  f.click();
+                }, 100);
               }), u.addEventListener("click", () => {
-                d("exp_amazon_pdp_s_buy_with_prime", "Buy with prime", "Button", "Sticky button"), f.click();
+                d("exp_amazon_pdp_s_buy_with_prime", "Buy with prime", "Button", "Sticky button"), setTimeout(() => {
+                  f.click();
+                }, 100);
               });
             }
           }, 100);
