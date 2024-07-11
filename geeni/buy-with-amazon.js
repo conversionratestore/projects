@@ -998,11 +998,11 @@
               p.addEventListener("click", (_) => {
                 _.preventDefault(), d("exp_amazon_pdp_u_buy_with_prime", "Buy with prime", "Button", "Product details"), setTimeout(() => {
                   console.log("click on iframePrimeBtn"), b.click();
-                }, 5e3);
+                }, 1e4);
               }), u.addEventListener("click", (_) => {
                 _.preventDefault(), d("exp_amazon_pdp_s_buy_with_prime", "Buy with prime", "Button", "Sticky button"), setTimeout(() => {
                   console.log("click on iframePrimeBtn"), b.click();
-                }, 5e3);
+                }, 1e4);
               });
             }
           }, 100);
