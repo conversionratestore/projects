@@ -195,6 +195,10 @@
   border-radius: 4px;
   background: #8F79F7;
   margin-top: 4px;
+  transition: all 0.275s;
+}
+.crs_cta:hover {
+  background: rgba(143, 121, 247, 0.8);
 }
 
 .crs_sticky {
@@ -355,7 +359,7 @@
       document.body.insertAdjacentHTML("beforeend", w(this.headerMobile)), c(".crs_sticky", "exp_blogcontentsctas_visibility_02", this.headerMobile, "Sticky block");
       let e = 0;
       const n = () => {
-        console.log(e), i(".blog-sidebar-wrapper") && e >= 20 && (i(".blog-sidebar-wrapper").getBoundingClientRect().bottom < 0 ? i(".crs_sticky").classList.add("active") : i(".crs_sticky").classList.remove("active"));
+        i(".blog-sidebar-wrapper") && e >= 20 && (i(".blog-sidebar-wrapper").getBoundingClientRect().bottom < 0 ? i(".crs_sticky").classList.add("active") : i(".crs_sticky").classList.remove("active"));
       };
       setInterval(() => {
         e < 20 && (e += 1, n());
