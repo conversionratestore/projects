@@ -9,13 +9,13 @@
       event_type: c,
       event_loc: o.replace(/  +/g, " ")
     };
-    window.dataLayer.push(i), console.log("window.dataLayer", window.dataLayer), console.log("Event obj: ", i);
-  }, k = ({ name: n, dev: e }) => {
+    window.dataLayer.push(i), console.log("Event obj: ", i);
+  }, b = ({ name: n, dev: e }) => {
     console.log(
       `%c EXP: ${n} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, B = (n) => {
+  }, k = (n) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", n, "variant_1"));
     }, 1e3);
@@ -40,7 +40,7 @@
     alt="Amazon Prime logo">
 </div>
 `
-  ), z = (
+  ), B = (
     /* HTML */
     `
 <div class="warranty-sale-custom">
@@ -119,7 +119,7 @@
   </div>
 </div>
 `
-  ), S = (
+  ), z = (
     /* HTML */
     `
 <div class="crs-popup">
@@ -160,7 +160,7 @@
   </div>
 </div>
 `
-  ), E = (
+  ), S = (
     /* HTML */
     `
 <div class="sticky-btn">
@@ -174,7 +174,7 @@
   </div>
 </div>
 `
-  ), F = (n) => (
+  ), E = (n) => (
     /* HTML */
     `
 <div class="crs-delivery" data-hide-prime="true">
@@ -197,15 +197,15 @@
       </div>
     </div>
   </div>
+  ${z}
   ${S}
-  ${E}
 `
-  ), P = (
+  ), F = (
     /* HTML */
     `
   <button class="buy-with-prime">Buy with <img src="https://conversionratestore.github.io/projects/geeni/img/amazon-prime/img/Amazon_Prime_Logo_White.svg" alt="Amazon Prime logo"></button>
 `
-  ), I = `/* TOP AMAZON */
+  ), P = `/* TOP AMAZON */
 .top-amazon {
   display: flex;
   justify-content: center;
@@ -726,7 +726,7 @@
   border-radius: 6px;
   border: 1px solid var(--font-h, #1B1B1B);
   background: #FFF;
-  padding: 10px 26px;
+  padding: 10px 22px;
   position: relative;
   margin-bottom: 20px;
   text-align: center;
@@ -834,7 +834,7 @@
   top: 5px;
   width: 45px;
   height: 27px;
-}/*# sourceMappingURL=styles.css.map */`, T = `.yotpo-widget-instance,
+}/*# sourceMappingURL=styles.css.map */`, I = `.yotpo-widget-instance,
 .yotpo-widget-clear {
   width: 100%;
 }
@@ -846,7 +846,7 @@
 
 .review-link {
   display: none !important;
-}`, L = `.product-single__media-slider::after {
+}`, T = `.product-single__media-slider::after {
   content: "";
   position: absolute;
   top: 6px;
@@ -863,7 +863,7 @@
     top: 0;
     right: 2px;
   }
-}`, q = `/* STICKY */
+}`, L = `/* STICKY */
 .sticky-btn {
   align-items: center;
   justify-content: center;
@@ -918,8 +918,8 @@
     display: none !important;
   }
 }`;
-  B("exp_amazon"), k({ name: "AmazonPay", dev: "AK" });
-  function f() {
+  k("exp_amazon"), b({ name: "AmazonPay", dev: "AK" });
+  function _() {
     const n = window.location.pathname;
     if (n === "/" || n === "/index")
       return "home";
@@ -928,11 +928,11 @@
     if (n.includes("/products/"))
       return "product";
   }
-  function g(n) {
+  function h(n) {
     const e = document.createElement("style");
     e.textContent = n, document.head.insertAdjacentElement("beforeend", e);
   }
-  class R {
+  class q {
     constructor() {
       this.initializePage();
     }
@@ -940,12 +940,12 @@
       this.addBlocks();
     }
     addBlocks() {
-      m("#MainContent").then((e) => e.insertAdjacentHTML("afterbegin", A)), m(".warranty-sale").then((e) => e.insertAdjacentHTML("afterend", z));
+      m("#MainContent").then((e) => e.insertAdjacentHTML("afterbegin", A)), m(".warranty-sale").then((e) => e.insertAdjacentHTML("afterend", B));
     }
     addEvents() {
     }
   }
-  class j {
+  class R {
     constructor(e) {
       this.pdpType = e, this.initializePage();
     }
@@ -955,11 +955,11 @@
     addComponent() {
       function e() {
         const o = setInterval(() => {
-          var i, h;
+          var i, g;
           if (document.querySelector(".product__block.product__form__wrapper") && ((i = document.querySelector("[data-delivery-date]")) != null && i.textContent)) {
             clearInterval(o);
-            const v = document.querySelector(".product__block.product__form__wrapper"), w = (h = document.querySelector("[data-delivery-date]")) == null ? void 0 : h.textContent, x = F(w);
-            v.insertAdjacentHTML("afterend", x);
+            const v = document.querySelector(".product__block.product__form__wrapper"), x = (g = document.querySelector("[data-delivery-date]")) == null ? void 0 : g.textContent, w = E(x);
+            v.insertAdjacentHTML("afterend", w);
           }
         }, 100);
       }
@@ -989,20 +989,16 @@
             day: "numeric"
             // "16" for the 16th
           });
-        }, h = function() {
+        }, g = function() {
           const r = setInterval(() => {
             var a, t, l;
             if (document.querySelector(".crs-delivery button") && ((l = (t = (a = document.querySelector("delivery-promise-wc")) == null ? void 0 : a.querySelector("#generic-promise-wc")) == null ? void 0 : t.shadowRoot) != null && l.querySelector(".amazon-pay-button")) && document.querySelector(".sticky-btn")) {
               clearInterval(r);
-              const p = document.querySelector(".crs-delivery button"), u = document.querySelector(".sticky-btn"), b = document.querySelector("delivery-promise-wc").querySelector("#generic-promise-wc").shadowRoot.querySelector(".amazon-pay-button");
-              p.addEventListener("click", (_) => {
-                _.preventDefault(), d("exp_amazon_pdp_u_buy_with_prime", "Buy with prime", "Button", "Product details"), setTimeout(() => {
-                  console.log("click on iframePrimeBtn"), b.click();
-                }, 1e4);
-              }), u.addEventListener("click", (_) => {
-                _.preventDefault(), d("exp_amazon_pdp_s_buy_with_prime", "Buy with prime", "Button", "Sticky button"), setTimeout(() => {
-                  console.log("click on iframePrimeBtn"), b.click();
-                }, 1e4);
+              const p = document.querySelector(".crs-delivery button"), u = document.querySelector(".sticky-btn"), f = document.querySelector("delivery-promise-wc").querySelector("#generic-promise-wc").shadowRoot.querySelector(".amazon-pay-button");
+              p.addEventListener("click", () => {
+                d("exp_amazon_pdp_u_buy_with_prime", "Buy with prime", "Button", "Product details"), f.click();
+              }), u.addEventListener("click", () => {
+                d("exp_amazon_pdp_s_buy_with_prime", "Buy with prime", "Button", "Sticky button"), f.click();
               });
             }
           }, 100);
@@ -1020,12 +1016,12 @@
               });
             }
           }, 100);
-        }, w = function() {
+        }, x = function() {
           setInterval(() => {
             const s = document.querySelector(".sticky-btn-wrapper__price"), r = document.querySelector(".sticky-btn__price");
             r && s && (r.textContent = s.textContent);
           }, 1e3);
-        }, x = function() {
+        }, w = function() {
           const r = setInterval(() => {
             var a, t;
             (t = (a = document.querySelector("delivery-promise-wc")) == null ? void 0 : a.shadowRoot) != null && t.querySelector(".AmazonLayout__icon") && document.querySelector(".prime-tooltip") && (clearInterval(r), document.querySelector(".prime-tooltip").addEventListener("click", () => {
@@ -1033,23 +1029,23 @@
             }));
           }, 100);
         };
-        console.log("Single page"), g(q), c(), h(), o(), v(), w(), x();
+        console.log("Single page"), h(L), c(), g(), o(), v(), x(), w();
       }
     }
     hideAllReviews() {
-      g(T);
+      h(I);
     }
     addPrimeCircleIfNeeded() {
-      this.pdpType !== "bundle" && g(L);
+      this.pdpType !== "bundle" && h(T);
     }
   }
-  class C {
+  class j {
     constructor() {
       this.handleStickyCart();
     }
     handleStickyCart() {
       m(".payments-cart-exp ul #AmazonPayButton").then((e) => {
-        document.querySelector(".payments-cart-exp").insertAdjacentHTML("beforeend", P), m(".buy-with-prime").then((c) => {
+        document.querySelector(".payments-cart-exp").insertAdjacentHTML("beforeend", F), m(".buy-with-prime").then((c) => {
           c.addEventListener("click", (o) => {
             o.preventDefault(), d("exp_amazon_cart_buy_with_prime", "Buy with prime", "Button", "Cart"), e.click();
           });
@@ -1058,7 +1054,7 @@
     }
   }
   m("head").then(() => {
-    if (g(I), f() === "home" && new R(), f() === "product") {
+    if (h(P), _() === "home" && new q(), _() === "product") {
       let n = function() {
         const e = window.location.pathname;
         return [
@@ -1068,9 +1064,8 @@
           "/products/smart-home-starter-pack"
         ].some((i) => e.includes(i)) ? "bundle" : "single";
       };
-      new j(n());
+      new R(n());
     }
-    new C();
+    new j();
   });
 })();
-//# sourceMappingURL=index.js.map
