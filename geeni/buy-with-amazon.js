@@ -1,13 +1,15 @@
 (function() {
   "use strict";
-  const d = (n, e, o, i = "") => {
-    window.dataLayer = window.dataLayer || [], window.dataLayer.push({
+  const d = (n, e, c, o = "") => {
+    window.dataLayer = window.dataLayer || [];
+    const i = {
       event: "event-to-ga4",
       event_name: n,
       event_desc: e,
-      event_type: o,
-      event_loc: i
-    }), console.log(`Event: ${n} | ${e} | ${o} | ${i.replace(/  +/g, " ")}`);
+      event_type: c,
+      event_loc: o.replace(/  +/g, " ")
+    };
+    window.dataLayer.push(i), console.log("window.dataLayer", window.dataLayer), console.log("Event obj: ", i);
   }, k = ({ name: n, dev: e }) => {
     console.log(
       `%c EXP: ${n} (DEV: ${e})`,
@@ -18,14 +20,14 @@
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", n, "variant_1"));
     }, 1e3);
   }, m = (n) => new Promise((e) => {
-    const o = document.querySelector(n);
-    if (o)
-      return e(o);
-    const i = new MutationObserver(() => {
-      const c = document.querySelector(n);
-      c && (e(c), i.disconnect());
+    const c = document.querySelector(n);
+    if (c)
+      return e(c);
+    const o = new MutationObserver(() => {
+      const i = document.querySelector(n);
+      i && (e(i), o.disconnect());
     });
-    i.observe(document.documentElement, {
+    o.observe(document.documentElement, {
       childList: !0,
       subtree: !0
     });
@@ -943,7 +945,7 @@
     addEvents() {
     }
   }
-  class C {
+  class j {
     constructor(e) {
       this.pdpType = e, this.initializePage();
     }
@@ -952,28 +954,28 @@
     }
     addComponent() {
       function e() {
-        const i = setInterval(() => {
-          var c, h;
-          if (document.querySelector(".product__block.product__form__wrapper") && ((c = document.querySelector("[data-delivery-date]")) != null && c.textContent)) {
-            clearInterval(i);
-            const v = document.querySelector(".product__block.product__form__wrapper"), x = (h = document.querySelector("[data-delivery-date]")) == null ? void 0 : h.textContent, w = F(x);
-            v.insertAdjacentHTML("afterend", w);
+        const o = setInterval(() => {
+          var i, h;
+          if (document.querySelector(".product__block.product__form__wrapper") && ((i = document.querySelector("[data-delivery-date]")) != null && i.textContent)) {
+            clearInterval(o);
+            const v = document.querySelector(".product__block.product__form__wrapper"), w = (h = document.querySelector("[data-delivery-date]")) == null ? void 0 : h.textContent, x = F(w);
+            v.insertAdjacentHTML("afterend", x);
           }
         }, 100);
       }
       if (e(), this.pdpType !== "bundle") {
-        let o = function() {
+        let c = function() {
           m(".crs-delivery").then((s) => s.dataset.hidePrime = "false");
-        }, i = function() {
+        }, o = function() {
           const r = setInterval(() => {
             var a, t, l;
             if ((t = (a = document.querySelector("delivery-promise-wc")) == null ? void 0 : a.shadowRoot) != null && t.querySelector(".AmazonLayout__nowrap") && document.querySelector('[data-delivery-type="prime"]')) {
               clearInterval(r);
               const p = document.querySelector('[data-delivery-type="prime"]'), u = (l = document.querySelector("delivery-promise-wc").shadowRoot.querySelector(".AmazonLayout__nowrap")) == null ? void 0 : l.textContent;
-              p.innerText = c(u);
+              p.innerText = i(u);
             }
           }, 100);
-        }, c = function(s) {
+        }, i = function(s) {
           const r = /(?:Tomorrow )?(?:\w+ )?(\w+) (\d+)/, a = s.match(r);
           if (!a)
             return "Invalid date";
@@ -1018,12 +1020,12 @@
               });
             }
           }, 100);
-        }, x = function() {
+        }, w = function() {
           setInterval(() => {
             const s = document.querySelector(".sticky-btn-wrapper__price"), r = document.querySelector(".sticky-btn__price");
             r && s && (r.textContent = s.textContent);
           }, 1e3);
-        }, w = function() {
+        }, x = function() {
           const r = setInterval(() => {
             var a, t;
             (t = (a = document.querySelector("delivery-promise-wc")) == null ? void 0 : a.shadowRoot) != null && t.querySelector(".AmazonLayout__icon") && document.querySelector(".prime-tooltip") && (clearInterval(r), document.querySelector(".prime-tooltip").addEventListener("click", () => {
@@ -1031,7 +1033,7 @@
             }));
           }, 100);
         };
-        console.log("Single page"), g(q), o(), h(), i(), v(), x(), w();
+        console.log("Single page"), g(q), c(), h(), o(), v(), w(), x();
       }
     }
     hideAllReviews() {
@@ -1041,15 +1043,15 @@
       this.pdpType !== "bundle" && g(L);
     }
   }
-  class j {
+  class C {
     constructor() {
       this.handleStickyCart();
     }
     handleStickyCart() {
       m(".payments-cart-exp ul #AmazonPayButton").then((e) => {
-        document.querySelector(".payments-cart-exp").insertAdjacentHTML("beforeend", P), m(".buy-with-prime").then((o) => {
-          o.addEventListener("click", (i) => {
-            i.preventDefault(), d("exp_amazon_cart_buy_with_prime", "Buy with prime", "Button", "Cart"), e.click();
+        document.querySelector(".payments-cart-exp").insertAdjacentHTML("beforeend", P), m(".buy-with-prime").then((c) => {
+          c.addEventListener("click", (o) => {
+            o.preventDefault(), d("exp_amazon_cart_buy_with_prime", "Buy with prime", "Button", "Cart"), e.click();
           });
         });
       });
@@ -1064,11 +1066,11 @@
           "/products/color-lighting-bundle",
           "/products/indoor-security-system-bundle",
           "/products/smart-home-starter-pack"
-        ].some((c) => e.includes(c)) ? "bundle" : "single";
+        ].some((i) => e.includes(i)) ? "bundle" : "single";
       };
-      new C(n());
+      new j(n());
     }
-    new j();
+    new C();
   });
 })();
 //# sourceMappingURL=index.js.map
