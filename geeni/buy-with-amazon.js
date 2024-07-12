@@ -608,9 +608,6 @@
 .collection-section .product__badge__item.product__badge__item--custom {
   background: #DD5611;
 }
-.collection-section .product__badge__item.product__badge__item--saving {
-  background: #4A30CA;
-}
 .collection-section .product__media__holder:not([aria-label="Smart Home Starter Pack"]):not([aria-label="Home Surveillance Bundle"]):not([aria-label="Color Lighting Bundle"]):not([aria-label="Indoor Security System Bundle"]) .product__media__image::after {
   content: "";
   position: absolute;
