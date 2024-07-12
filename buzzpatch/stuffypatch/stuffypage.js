@@ -504,6 +504,9 @@ body .itch-problems .title-container h2 .title-highlight {
 body .itch-problems + .c-white.js-desktop {
   padding: 0 0 100px;
 }
+body .itch-problems + .c-white.js-desktop .btn {
+  padding: 13px 69px;
+}
 body .itch-problems .card-MP {
   padding: 0 40px;
   margin-bottom: 15.5px;
@@ -528,7 +531,7 @@ body .itch-problems .card-MP-body p {
   font-size: 20px !important;
   font-style: normal;
   font-weight: 400;
-  line-height: 32px !important;
+  line-height: 30px !important;
   /* 160% */
   letter-spacing: 0;
 }
@@ -536,12 +539,13 @@ body .itch-problems .card-MP-body p {
   body .itch-problems .card-MP-link,
   body .itch-problems .card-MP-body p {
     font-size: 16px !important;
-    line-height: 20px !important;
+    line-height: 24px !important;
     /* 150% */
   }
 }
 body .itch-problems .card-MP-body {
   padding-top: 15px;
+  border-top: 0;
 }
 body .itch-problems .btn-accordion-MP {
   color: var(--Sleepy-Black, #0C0B0B);
@@ -572,6 +576,11 @@ html body .effectiveness .js-heading .js-btn.btn-primary {
   html body .effectiveness .js-heading .js-btn.btn-primary {
     font-size: 24px !important;
     margin-bottom: 28px;
+  }
+}
+@media (max-width: 768px) {
+  html body .effectiveness .js-heading .js-btn.btn-primary {
+    padding: 13px 20px !important;
   }
 }/*# sourceMappingURL=styles.css.map */`, x = (
     /* HTML */
