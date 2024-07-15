@@ -50,15 +50,15 @@
       childList: !0,
       subtree: !0
     });
-  }), e = "https://conversionratestore.github.io/projects/buzzpatch/stuffypatch/img", g = `body header .navbar {
+  }), e = "https://conversionratestore.github.io/projects/buzzpatch/stuffypatch/img", b = `body header .navbar {
   padding: 18px 2% 10px;
-  background: #1CADE6;
+  background: #1cade6;
   box-shadow: 0px 1px 10px 0px rgba(72, 67, 69, 0.21);
 }
 @media (max-width: 768px) {
   body header .navbar {
     padding: 12px 16px !important;
-    background: #81D0EF !important;
+    background: #81d0ef !important;
   }
 }
 body header .navbar .nav-item {
@@ -95,7 +95,7 @@ body header .js-mobile.wave-bg img {
 
 section.breathe {
   position: relative;
-  background: #81D0EF;
+  background: #81d0ef;
   padding: 0 0 117px 0;
   text-align: center;
 }
@@ -119,7 +119,7 @@ section.breathe .trustpilot {
   justify-content: center;
   padding: 8px 19px;
   border-radius: 0px 0px 15px 15px;
-  background: #FFF;
+  background: #fff;
   width: -moz-fit-content;
   width: fit-content;
   margin: 0 auto;
@@ -161,7 +161,7 @@ section.breathe .trustpilot > div p:last-child {
   }
 }
 section.breathe .heading-1 {
-  color: var(--Midnight, #1F1F5B);
+  color: var(--Midnight, #1f1f5b);
   text-align: center;
   font-family: "Din Condensed", "Roboto", sans-serif;
   font-size: 72px !important;
@@ -207,7 +207,7 @@ section.breathe .properties li:last-child {
   margin-bottom: 0;
 }
 section.breathe .properties li p {
-  color: var(--Midnight, #1F1F5B);
+  color: var(--Midnight, #1f1f5b);
   text-align: center;
   font-family: "Roboto", sans-serif;
   font-size: 16px !important;
@@ -252,7 +252,7 @@ section.breathe .learn-more {
   margin: 0 auto;
 }
 section.breathe .learn-more p {
-  color: var(--Black, #0C0B0B);
+  color: var(--Black, #0c0b0b);
   text-align: center;
   font-family: "Din Condensed", "Roboto", sans-serif;
   font-size: 22px !important;
@@ -280,6 +280,7 @@ section.breathe .bottom-wave {
   bottom: -1px;
   left: 0;
   z-index: 2;
+  width: 100%;
 }
 @media (max-width: 768px) {
   section.breathe .bottom-wave {
@@ -358,7 +359,7 @@ section.breathe .chamomile {
 section.top-features {
   padding: 0;
   margin: 0;
-  background: #FFF;
+  background: #fff;
 }
 
 .product-feature {
@@ -368,7 +369,7 @@ section.top-features {
   align-items: center;
 }
 .product-feature .heading-2 {
-  color: #1CADE6;
+  color: #1cade6;
   font-family: "Din Condensed", "Roboto", sans-serif;
   font-size: 72px !important;
   font-style: normal;
@@ -414,7 +415,7 @@ section.top-features {
   margin: 0;
 }
 .product-feature p b {
-  color: var(--NATPAT-BLUE, #1F4FC9);
+  color: var(--NATPAT-BLUE, #1f4fc9);
   font-weight: 700;
 }
 @media (max-width: 991px) {
@@ -445,6 +446,11 @@ body .itch-problems {
   padding-top: 20px;
   padding-bottom: 0;
   background: #fff;
+}
+@media (max-width: 991px) {
+  body .itch-problems {
+    margin-bottom: -30px;
+  }
 }
 body .itch-problems #accordion-MP {
   max-width: 858px;
@@ -478,7 +484,7 @@ body .itch-problems .title-container {
   margin-bottom: 0;
 }
 body .itch-problems .title-container h2 {
-  background: #1CADE6;
+  background: #1cade6;
   margin: 16px 0;
   padding: 6px 0;
 }
@@ -488,7 +494,7 @@ body .itch-problems .title-container h2 {
   }
 }
 body .itch-problems .title-container h2 .title-highlight {
-  color: var(--Sleepy-White, #FFF) !important;
+  color: var(--Sleepy-White, #fff) !important;
   font-size: 48px !important;
   font-weight: 400;
   line-height: 68px !important;
@@ -518,11 +524,16 @@ body .itch-problems .card-MP {
   }
 }
 body .itch-problems .card-MP:before {
-  background: #2B489B;
+  background: #2b489b;
   top: 30px;
 }
+@media (max-width: 991px) {
+  body .itch-problems .card-MP:before {
+    top: 25px;
+  }
+}
 body .itch-problems .arrow-down {
-  top: 20px !important;
+  top: calc(50% - 12px) !important;
 }
 body .itch-problems .card-MP-link,
 body .itch-problems .card-MP-body p {
@@ -548,7 +559,7 @@ body .itch-problems .card-MP-body {
   border-top: 0;
 }
 body .itch-problems .btn-accordion-MP {
-  color: var(--Sleepy-Black, #0C0B0B);
+  color: var(--Sleepy-Black, #0c0b0b);
   font-size: 24px;
   font-weight: 400;
   line-height: 16px;
@@ -556,20 +567,20 @@ body .itch-problems .btn-accordion-MP {
   text-transform: uppercase;
   padding: 25px 50px;
   border-radius: 52px;
-  background: #FFE401;
+  background: #ffe401;
   box-shadow: 0px 2px 4px 0px rgba(12, 11, 11, 0.1), 0px 12px 32px 0px rgba(0, 0, 0, 0.05);
   width: -moz-fit-content;
   width: fit-content;
-  margin: 18px 0 30px;
+  margin: 22px 0 30px;
 }
 @media (max-width: 991px) {
   body .itch-problems .btn-accordion-MP {
-    margin: 18px 0 20px;
+    margin: 22px 0 20px;
   }
 }
 
 html body .effectiveness .js-heading .js-btn.btn-primary {
-  background: #FFE401 !important;
+  background: #ffe401 !important;
   color: #000 !important;
 }
 @media (max-width: 991px) {
@@ -585,46 +596,55 @@ html body .effectiveness .js-heading .js-btn.btn-primary {
 }/*# sourceMappingURL=styles.css.map */`, x = (
     /* HTML */
     `
-    <section class="top-features" id="top-features">
-      <div class="custom-container">
-        <div class="product-features-wrapper">
-          <div class="product-feature">
-            <div class="product-feature__text">
-              <h2 class="heading-2">Clear Breathing with Confidence</h2>
-              <p>The natural sticker-patch that clears your child's congestion, providing fresh air and <b>fighting stuffiness</b> effortlessly!</p>
-            </div>
-            <div class="product-feature__img">
-              <img src="${e}/kid-breathing.png" alt="kid breathing">
-            </div>
+  <section class="top-features" id="top-features">
+    <div class="custom-container">
+      <div class="product-features-wrapper">
+        <div class="product-feature">
+          <div class="product-feature__text">
+            <h2 class="heading-2">Clear Breathing with Confidence</h2>
+            <p>
+              The natural sticker-patch that clears your child's congestion, providing fresh air and
+              <b>fighting stuffiness</b> effortlessly!
+            </p>
           </div>
-          <div class="product-feature">
           <div class="product-feature__img">
-          <img src="${e}/pacifier.png" alt="pacifier">
-            </div>
-            <div class="product-feature__text">
-              <h2 class="heading-2">Purely Natural and Safe</h2>
-              <p>StuffyPatch is crafted from a special blend of natural herbs and oils: <b>eucalyptus, essential oils,</b> and <b>menthol.</b></p>
-            </div>
+            <img src="${e}/kid-breathing.png" alt="kid breathing" />
           </div>
-          <div class="product-feature">
-            <div class="product-feature__text">
-              <h2 class="heading-2">Fast Relief, Long-Lasting Comfort</h2>
-              <p>Feel relief instantly after application and, with our unique nanomaterial, enjoy the effects for up to <b>8 hours</b>!</p>
-            </div>
-            <div class="product-feature__img">
-            <img src="${e}/kid-sleeping.png" alt="kid sleeping">
-            </div>
+        </div>
+        <div class="product-feature">
+          <div class="product-feature__img">
+            <img src="${e}/pacifier.png" alt="pacifier" />
+          </div>
+          <div class="product-feature__text">
+            <h2 class="heading-2">Purely Natural and Safe</h2>
+            <p>
+              StuffyPatch is crafted from a special blend of natural herbs and oils:
+              <b>eucalyptus, essential oils,</b> and <b>menthol.</b>
+            </p>
+          </div>
+        </div>
+        <div class="product-feature">
+          <div class="product-feature__text">
+            <h2 class="heading-2">Fast Relief, Long-Lasting Comfort</h2>
+            <p>
+              Feel relief instantly after application and, with our unique nanomaterial, enjoy the effects for up to
+              <b>8 hours</b>!
+            </p>
+          </div>
+          <div class="product-feature__img">
+            <img src="${e}/kid-sleeping.png" alt="kid sleeping" />
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 `
-  ), b = (
+  ), g = (
     /* HTML */
     `
   <section class="breathe">
     <style>
-      ${g}
+      ${b}
     </style>
     <div class="custom-container">
       <div class="trustpilot">
@@ -679,7 +699,7 @@ html body .effectiveness .js-heading .js-btn.btn-primary {
     }
     drawTopSection() {
       c(".c-white.js-desktop").then((n) => {
-        n.insertAdjacentHTML("beforebegin", b);
+        n.insertAdjacentHTML("beforebegin", g);
         const t = setInterval(() => {
           document.querySelector(".hand-banner #open") && document.querySelector(".cta") && (clearInterval(t), document.querySelector(".cta").addEventListener("click", () => {
             document.querySelector(".hand-banner #open").click();
@@ -696,14 +716,16 @@ html body .effectiveness .js-heading .js-btn.btn-primary {
       }, 100);
     }
     changeSubtitleText() {
-      c("body .itch-problems h2 + .accordion-MP-title").then((n) => n.textContent = "are you looking to solve?");
+      c("body .itch-problems h2 + .accordion-MP-title").then(
+        (n) => n.textContent = "are you looking to solve?"
+      );
     }
     moveBlockHigher() {
       const n = setInterval(() => {
         if (document.querySelector(".top-features") && document.querySelector(".itch-problems")) {
           clearInterval(n);
           const t = document.querySelector(".top-features"), o = document.querySelector(".itch-problems");
-          t.insertAdjacentElement("afterend", o), this.changeSubtitleText(), this.changeAccordionBtnText();
+          t.insertAdjacentElement("afterend", o), document.querySelectorAll(".navbar-nav .nav-link")[0].href = "#top-features", this.changeSubtitleText(), this.changeAccordionBtnText();
         }
       }, 100);
     }
