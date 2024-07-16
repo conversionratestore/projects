@@ -515,7 +515,8 @@ body .itch-problems + .c-white.js-desktop .btn {
 }
 body .itch-problems .card-MP {
   padding: 0 40px;
-  margin-bottom: 15.5px;
+  margin-bottom: 15px;
+  border-color: #d3effa;
 }
 @media (max-width: 991px) {
   body .itch-problems .card-MP {
@@ -576,6 +577,7 @@ body .itch-problems .btn-accordion-MP {
 @media (max-width: 991px) {
   body .itch-problems .btn-accordion-MP {
     margin: 22px 0 20px;
+    padding: 17px 50px;
   }
 }
 
