@@ -577,7 +577,7 @@ body .itch-problems .btn-accordion-MP {
 @media (max-width: 991px) {
   body .itch-problems .btn-accordion-MP {
     margin: 22px 0 20px;
-    padding: 17px 50px;
+    padding: 20px 50px 13px;
   }
 }
 
