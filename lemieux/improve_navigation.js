@@ -1,26 +1,31 @@
 (function() {
   "use strict";
-  const a = ({ name: n, dev: c }) => {
+  const r = ({ name: t, dev: c }) => {
     console.log(
-      `%c EXP: ${n} (DEV: ${c})`,
+      `%c EXP: ${t} (DEV: ${c})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   };
-  (function(n, c, o, i, t, e) {
-    n.hj = n.hj || function() {
-      (n.hj.q = n.hj.q || []).push(arguments);
-    }, n._hjSettings = { hjid: 2667925, hjsv: 6 }, t = c.getElementsByTagName("head")[0], e = c.createElement("script"), e.async = !0, e.src = o + n._hjSettings.hjid + i + n._hjSettings.hjsv, t && t.appendChild(e);
+  (function(t, c, o, n, e, s) {
+    t.hj = t.hj || function() {
+      (t.hj.q = t.hj.q || []).push(arguments);
+    }, t._hjSettings = { hjid: 2667925, hjsv: 6 }, e = c.getElementsByTagName("head")[0], s = c.createElement("script"), s.async = !0, s.src = o + t._hjSettings.hjid + n + t._hjSettings.hjsv, e && e.appendChild(s);
   })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv="), window.hj("event", "eliminate_cart_page"), window.onload = () => {
-    a({ name: "Eliminate cart page step on Desktop", dev: "OS" });
-    class n {
+    r({ name: "Eliminate cart page step on Desktop", dev: "OS" });
+    class t {
       constructor() {
-        var o, i;
-        this.observer = null, this.countryCode = (i = (o = window == null ? void 0 : window.autoInitData) == null ? void 0 : o.website) == null ? void 0 : i.websiteCode, this.checkoutClickHandler = null, this.basketButtonHandler = () => {
-          this.waitForElement('minibasket a[href*="/basket"]', (t) => {
-            const e = this.country === "us" ? "/us/checkout" : "/checkout";
-            console.log("Element appeared!", t), t.setAttribute("href", e), t.setAttribute("routerlink", e), this.checkoutClickHandler && t.removeEventListener("click", this.checkoutClickHandler), this.checkoutClickHandler = (s) => {
-              s.preventDefault(), window.location.assign(e);
-            }, t.addEventListener("click", this.checkoutClickHandler);
+        var o, n;
+        this.observer = null, this.countryCode = (n = (o = window == null ? void 0 : window.autoInitData) == null ? void 0 : o.website) == null ? void 0 : n.websiteCode, this.checkoutClickHandler = null, this.basketButtonHandler = () => {
+          this.waitForElement('minibasket a[href*="/basket"]', (e) => {
+            const s = this.country === "us" ? "/us/checkout" : "/checkout";
+            console.log("Element appeared!");
+            const i = (
+              /* HTML */
+              `<a class="w-12 p-r-0 p-l-0 button" href="${s}"
+          ><span class="p1 col-w">Checkout securely</span></a
+        >`
+            );
+            e.outerHTML = i;
           });
         }, this.country = this.countryCode === "base" ? "uk" : this.countryCode === "us" ? "us" : "other", this.device = window.innerWidth > 1024 ? "desktop" : "mobile", this.init();
       }
@@ -35,37 +40,37 @@
       }
       checkBasketPage() {
         function o() {
-          const t = setInterval(function() {
-            document.querySelectorAll("button").forEach((s) => {
-              var r;
-              if (s && ((r = s.textContent) != null && r.includes("Continue shopping"))) {
+          const e = setInterval(function() {
+            document.querySelectorAll("button").forEach((i) => {
+              var a;
+              if (i && ((a = i.textContent) != null && a.includes("Continue shopping"))) {
                 console.log("Button found.");
                 const u = document.referrer;
-                s.addEventListener("click", (h) => {
-                  u.includes("checkout") && (h.preventDefault(), history.go(-2));
-                }), clearInterval(t);
+                i.addEventListener("click", (l) => {
+                  u.includes("checkout") && (l.preventDefault(), history.go(-2));
+                }), clearInterval(e);
               }
             });
           }, 100);
         }
-        function i() {
+        function n() {
           location.href.includes("basket") && (console.log("here is basket page"), o());
         }
-        (function(t) {
-          const e = t.pushState, s = t.replaceState;
-          t.pushState = function(r) {
-            e.apply(t, arguments), i();
-          }, t.replaceState = function(r) {
-            s.apply(t, arguments), i();
-          }, window.addEventListener("popstate", function(r) {
-            i();
+        (function(e) {
+          const s = e.pushState, i = e.replaceState;
+          e.pushState = function(a) {
+            s.apply(e, arguments), n();
+          }, e.replaceState = function(a) {
+            i.apply(e, arguments), n();
+          }, window.addEventListener("popstate", function(a) {
+            n();
           });
-        })(window.history), i();
+        })(window.history), n();
       }
-      waitForElement(o, i) {
-        this.observer && this.observer.disconnect(), this.observer = new MutationObserver((t, e) => {
-          const s = document.querySelector(o);
-          s && i(s);
+      waitForElement(o, n) {
+        this.observer && this.observer.disconnect(), this.observer = new MutationObserver((e, s) => {
+          const i = document.querySelector(o);
+          i && n(i);
         }), this.observer.observe(document.body, {
           childList: !0,
           subtree: !0,
@@ -74,6 +79,6 @@
         });
       }
     }
-    new n();
+    new t();
   };
 })();
