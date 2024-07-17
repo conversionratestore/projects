@@ -598,8 +598,14 @@ html body .effectiveness .js-heading .js-btn.btn-primary {
 }
 
 @media (max-width: 768px) {
-  section .js-btn.btn-primary {
+  section .js-btn.btn-primary,
+  .button-proceed {
     padding: 16px 39px 10px !important;
+  }
+  .save-btn,
+  .best-deal-btn,
+  .top-seller-btn {
+    padding: 4px 5px 0;
   }
 }/*# sourceMappingURL=styles.css.map */`, x = (
     /* HTML */
