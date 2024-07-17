@@ -593,7 +593,13 @@ html body .effectiveness .js-heading .js-btn.btn-primary {
 }
 @media (max-width: 768px) {
   html body .effectiveness .js-heading .js-btn.btn-primary {
-    padding: 13px 20px !important;
+    padding: 16px 20px 10px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  section .js-btn.btn-primary {
+    padding: 16px 39px 10px !important;
   }
 }/*# sourceMappingURL=styles.css.map */`, x = (
     /* HTML */
