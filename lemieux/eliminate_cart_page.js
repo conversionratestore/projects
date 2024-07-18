@@ -1,31 +1,31 @@
 (function() {
   "use strict";
-  const l = ({ name: s, dev: t }) => {
+  const u = ({ name: s, dev: e }) => {
     console.log(
-      `%c EXP: ${s} (DEV: ${t})`,
+      `%c EXP: ${s} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   };
-  (function(s, t, o, n, i, e) {
+  (function(s, e, o, n, i, t) {
     s.hj = s.hj || function() {
       (s.hj.q = s.hj.q || []).push(arguments);
-    }, s._hjSettings = { hjid: 2667925, hjsv: 6 }, i = t.getElementsByTagName("head")[0], e = t.createElement("script"), e.async = !0, e.src = o + s._hjSettings.hjid + n + s._hjSettings.hjsv, i && i.appendChild(e);
-  })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv="), window.hj("event", "eliminate_cart_page"), l({ name: "Eliminate cart page step on Desktop", dev: "OS" });
-  class d {
+    }, s._hjSettings = { hjid: 2667925, hjsv: 6 }, i = e.getElementsByTagName("head")[0], t = e.createElement("script"), t.async = !0, t.src = o + s._hjSettings.hjid + n + s._hjSettings.hjsv, i && i.appendChild(t);
+  })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv="), window.hj("event", "eliminate_cart_page"), u({ name: "Eliminate cart page step on Desktop", dev: "OS" });
+  class l {
     constructor() {
-      var t, o;
-      this.observer = null, this.countryCode = (o = (t = window == null ? void 0 : window.autoInitData) == null ? void 0 : t.website) == null ? void 0 : o.websiteCode, this.addToCartClickHandler = null, this.basketButtonHandler = () => {
+      var e, o;
+      this.observer = null, this.countryCode = (o = (e = window == null ? void 0 : window.autoInitData) == null ? void 0 : e.website) == null ? void 0 : o.websiteCode, this.addToCartClickHandler = null, this.basketButtonHandler = () => {
         this.waitForElement('minibasket a[href*="/basket"]', (n) => {
           var c;
           const i = this.country === "us" ? "/us/checkout" : "/checkout";
           console.log("Element appeared!");
-          const e = (
+          const t = (
             /* HTML */
             `<a class="w-12 p-r-0 p-l-0 button" href="${i}"
         ><span class="p1 col-w">Checkout securely</span></a
       >`
           );
-          n.outerHTML = e, (c = document.querySelector('minibasket a[href*="/checkout"]')) == null || c.addEventListener("click", (r) => {
+          n.outerHTML = t, (c = document.querySelector('minibasket a[href*="/checkout"]')) == null || c.addEventListener("click", (r) => {
             const a = document.querySelector('minibasket [aria-label="Close"]');
             localStorage.setItem("lastPdpHref", location.href), a && a.click();
           });
@@ -37,47 +37,46 @@
     }
     updateDevice() {
       window.addEventListener("resize", () => {
-        const t = this.device;
-        this.device = window.innerWidth > 1024 ? "desktop" : "mobile", t !== this.device && this.init();
+        const e = this.device;
+        this.device = window.innerWidth > 1024 ? "desktop" : "mobile", e !== this.device && this.init();
       });
     }
     checkBasketPage() {
-      function t() {
+      function e() {
         const n = setInterval(function() {
-          document.querySelectorAll("button").forEach((e) => {
+          document.querySelectorAll("button").forEach((t) => {
             var c;
-            if (e && ((c = e.textContent) != null && c.includes("Continue shopping"))) {
+            if (t && ((c = t.textContent) != null && c.includes("Continue shopping"))) {
               console.log("Button found.");
-              const r = document.referrer;
-              e.addEventListener("click", (a) => {
-                if (r.includes("checkout")) {
-                  a.preventDefault();
-                  const u = localStorage.getItem("lastPdpHref");
-                  u && (location.href = u);
-                }
-              }), clearInterval(n);
+              const r = localStorage.getItem("lastPdpHref"), a = (
+                /* HTML */
+                ` <a class="w-12 button-1 m-b m-t-2" href="${r}"
+              ><span class="button__body">Continue shopping</span></a
+            >`
+              );
+              r && (t.outerHTML = a), clearInterval(n);
             }
           });
         }, 100);
       }
       function o() {
-        location.href.includes("basket") && (console.log("here is basket page"), t());
+        location.href.includes("basket") && (console.log("here is basket page"), e());
       }
       (function(n) {
-        const i = n.pushState, e = n.replaceState;
+        const i = n.pushState, t = n.replaceState;
         n.pushState = function(c) {
           i.apply(n, arguments), o();
         }, n.replaceState = function(c) {
-          e.apply(n, arguments), o();
+          t.apply(n, arguments), o();
         }, window.addEventListener("popstate", function(c) {
           o();
         });
       })(window.history), o();
     }
-    waitForElement(t, o) {
+    waitForElement(e, o) {
       this.observer && this.observer.disconnect(), this.observer = new MutationObserver((n, i) => {
-        const e = document.querySelector(t);
-        e && o(e);
+        const t = document.querySelector(e);
+        t && o(t);
       }), this.observer.observe(document.body, {
         childList: !0,
         subtree: !0,
@@ -86,5 +85,5 @@
       });
     }
   }
-  new d();
+  new l();
 })();
