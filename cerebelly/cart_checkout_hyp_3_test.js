@@ -8,7 +8,7 @@
       event_type: t,
       event_loc: a
     }), console.dir(`Event: ${r} | ${e} | ${t} | ${a}`);
-  }, m = (r) => document.querySelectorAll(r), n = (r) => document.querySelector(r), z = async (r) => {
+  }, d = (r) => document.querySelectorAll(r), n = (r) => document.querySelector(r), z = async (r) => {
     const e = (t) => new Promise((a, l) => {
       const c = t.split(".").pop();
       if (c === "js") {
@@ -67,7 +67,7 @@
       top: l,
       behavior: "smooth"
     }), await P(800), !0;
-  }, b = "https://conversionratestore.github.io/projects/cerebelly/img/", x = {
+  }, _ = "https://conversionratestore.github.io/projects/cerebelly/img/", g = {
     tickCircleIcon: (
       /* HTML */
       `
@@ -130,21 +130,21 @@
     </svg>
   `
     )
-  }, A = {
+  }, $ = {
     flavorGuarantee: `
   <div class='tooltip_block'>
-    ${x.infoCircleIcon}
+    ${g.infoCircleIcon}
     <div>
       <h3>Don’t like a pouch flavor?</h3>
       <p>No sweat! Reach out to us at support@cerebelly.com and we’ll send three new ones free of charge.</p>
     </div>
   </div>
   `
-  }, $ = (
+  }, A = (
     /* HTML */
     `
   <div class="free_shipping_block">
-    ${x.tickCircleIcon}
+    ${g.tickCircleIcon}
     <p>Congtatulations! You get <span class="accent_color_green">Free shipping</span></p>
   </div>
 `
@@ -153,7 +153,7 @@
     `
   <div class="flavor_guarantee_block">
     <div class="img_wrapper">
-      <img src="${b}flavor_guarantee_img.png" alt="child" />
+      <img src="${_}flavor_guarantee_img.png" alt="child" />
     </div>
     <div class="info_wrapper">
       <h3>Flavor Guarantee</h3>
@@ -161,7 +161,7 @@
         <span>Not happy with a flavor?</span>
         <span
           >Try 3 new ones <b>for FREE.</b>
-          <span data-tooltip data-title="${A.flavorGuarantee}" class="learn_more_btn">Learn more</span></span
+          <span data-tooltip data-title="${$.flavorGuarantee}" class="learn_more_btn">Learn more</span></span
         >
       </p>
     </div>
@@ -172,17 +172,17 @@
     `
   <div class="sticky_block">
     <div class="total_box"></div>
-    <button class="proceed_to_checkout_btn">Proceed to checkout ${x.arrowWhiteIcon}</button>
+    <button class="proceed_to_checkout_btn">Proceed to checkout ${g.arrowWhiteIcon}</button>
   </div>
 `
-  ), y = (
+  ), B = (
     /* HTML */
     `
   <div class="order_summary_block">
     <ul class="products_list"></ul>
   </div>
 `
-  ), I = (r, e, t, a, l, c, s) => (
+  ), I = (r, e, t, a, l, c) => (
     /* HTML */
     `
     <li class="products_item">
@@ -193,14 +193,14 @@
         <div>
           <h3>${e}</h3>
           <div class="quantity_packs_info">
-            <span class="items_count">${t} ${a}</span>
+            <span class="items_count">${t}</span>
             <span>|</span>
-            <span class="cadence_txt">${l}</span>
+            <span class="cadence_txt">${a}</span>
           </div>
-          ${s === 15 ? '<div class="subscribe_txt">Subscribe & Save 15%</div>' : ""}
+          ${c === 15 ? '<div class="subscribe_txt">Subscribe & Save 15%</div>' : ""}
         </div>
         <div class="price_wrapper">
-          ${s === 15 ? `<span class="price_txt green_color">${c}</span>` : `<span class="price_txt">${c}</span>`}
+          ${c === 15 ? `<span class="price_txt green_color">${l}</span>` : `<span class="price_txt">${l}</span>`}
         </div>
       </div>
     </li>
@@ -236,7 +236,7 @@
         </div>
         <div class="radio_days">
           <span>5-7 days</span>
-          <img src="${b}shipping_img.png" alt="shipping img" />
+          <img src="${_}shipping_img.png" alt="shipping img" />
         </div>
       </label>
 
@@ -251,7 +251,7 @@
         </div>
         <div class="radio_days">
           <span>1-3 days</span>
-          <img src="${b}shipping_img.png" alt="shipping img" />
+          <img src="${_}shipping_img.png" alt="shipping img" />
         </div>
       </label>
     </div>
@@ -269,7 +269,7 @@
     `
   <div class="order_summary_block_mobile">
     <div class="order_summary_header">
-      <p class="order_summary_toggle"><span>Show order summary</span> ${x.arrowBlueIcon}</p>
+      <p class="order_summary_toggle"><span>Show order summary</span> ${g.arrowBlueIcon}</p>
       <p class="price_total">
         <span class="price_total_strikethrough"></span>
         <span class="price_order_total"></span>
@@ -1591,8 +1591,8 @@ form .footer_mobile .tm-text {
       this.observer = new MutationObserver((t) => {
         var a, l, c;
         n(".css-jobqsc") && ((a = n(".flavor_guarantee_block")) == null || a.remove(), (l = n(".free_shipping_block")) == null || l.remove(), (c = n(".sticky_block")) == null || c.remove()), t.forEach((s) => {
-          var o, p, h, g, d, _, k, w, v, S, C, B, T, j, L;
-          window.location.pathname !== this.lastPath && (this.lastPath = window.location.pathname, console.dir(this.lastPath), this.lastPath === "/checkout" ? (this.renderStyles(), this.device === "mobile" && ((o = n(".sticky_block")) == null || o.remove(), n(".footer_mobile") || this.renderFooterMobile(), n(".order_summary_block_mobile") || this.renderOrderSummaryBlockMobile(), this.replaceOrderTotal()), n(".order_summary_block") || this.renderOrderSummaryBlock(), (!n(".secure_encrypted_txt") || !n(".payment_img")) && this.renderPaymentImgAndDescription(), n(".new_shipping_block") || this.renderStandardFreeShippingBlock(), this.checkedShippingRadioInit(), n(".pay_now_txt_block") || this.renderPayNowTxtBlock()) : this.lastPath === "/cart" ? (this.renderStyles(), (p = n(".actions-wrapper button")) != null && p.innerHTML.includes("Proceed to checkout") || this.changedTxtBtnCheckout(), this.device === "mobile" && !n(".css-jobqsc") && (n(".sticky_block") || this.renderStickyBlock(), this.toggleStickyBlockVisibility())) : ((h = n(".sticky_block")) == null || h.remove(), (g = n(".flavor_guarantee_block")) == null || g.remove(), (d = n(".free_shipping_block")) == null || d.remove(), (_ = n(".order_summary_block")) == null || _.remove(), (k = n(".pay_now_txt_block")) == null || k.remove(), (w = n(".new_shipping_block")) == null || w.remove(), (v = n(".new_shipping_txt_block")) == null || v.remove(), (S = n(".order_summary_block_mobile")) == null || S.remove(), (C = n(".footer_mobile")) == null || C.remove(), (B = n(".payment_img")) == null || B.remove(), (T = n(".secure_encrypted_txt")) == null || T.remove(), (j = n(".crs_inter")) == null || j.remove(), (L = n(".crs_style")) == null || L.remove(), n("body").classList.contains("cart_page") && n("body").classList.remove("cart_page"))), s.target.nodeName === "BODY" && (this.checkPage() === "cart" || this.checkPage() === "checkout") && !n(".flavor_guarantee_block") && !n(".css-jobqsc") && this.renderFlavorGuaranteeBlock();
+          var o, p, h, k, w, y, v, S, C, x, b, m, T, j, L;
+          window.location.pathname !== this.lastPath && (this.lastPath = window.location.pathname, console.dir(this.lastPath), this.lastPath === "/checkout" ? (this.renderStyles(), this.device === "mobile" && ((o = n(".sticky_block")) == null || o.remove(), n(".footer_mobile") || this.renderFooterMobile(), n(".order_summary_block_mobile") || this.renderOrderSummaryBlockMobile(), this.replaceOrderTotal()), n(".order_summary_block") || this.renderOrderSummaryBlock(), (!n(".secure_encrypted_txt") || !n(".payment_img")) && this.renderPaymentImgAndDescription(), n(".new_shipping_block") || this.renderStandardFreeShippingBlock(), this.checkedShippingRadioInit(), n(".pay_now_txt_block") || this.renderPayNowTxtBlock()) : this.lastPath === "/cart" ? (this.renderStyles(), (p = n(".actions-wrapper button")) != null && p.innerHTML.includes("Proceed to checkout") || this.changedTxtBtnCheckout(), this.device === "mobile" && !n(".css-jobqsc") && (n(".sticky_block") || this.renderStickyBlock(), this.toggleStickyBlockVisibility())) : ((h = n(".sticky_block")) == null || h.remove(), (k = n(".flavor_guarantee_block")) == null || k.remove(), (w = n(".free_shipping_block")) == null || w.remove(), (y = n(".order_summary_block")) == null || y.remove(), (v = n(".pay_now_txt_block")) == null || v.remove(), (S = n(".new_shipping_block")) == null || S.remove(), (C = n(".new_shipping_txt_block")) == null || C.remove(), (x = n(".order_summary_block_mobile")) == null || x.remove(), (b = n(".footer_mobile")) == null || b.remove(), (m = n(".payment_img")) == null || m.remove(), (T = n(".secure_encrypted_txt")) == null || T.remove(), (j = n(".crs_inter")) == null || j.remove(), (L = n(".crs_style")) == null || L.remove(), n("body").classList.contains("cart_page") && n("body").classList.remove("cart_page"))), s.target.nodeName === "BODY" && (this.checkPage() === "cart" || this.checkPage() === "checkout") && !n(".flavor_guarantee_block") && !n(".css-jobqsc") && this.renderFlavorGuaranteeBlock();
           for (let u of s.addedNodes)
             if (u instanceof HTMLElement) {
               if (this.isActivated)
@@ -1629,7 +1629,7 @@ form .footer_mobile .tm-text {
         "https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"
       ]).then(async () => {
         let t = setInterval(() => {
-          typeof tippy == "function" && n("[data-tooltip]") && (clearInterval(t), m("[data-tooltip]").forEach((a) => {
+          typeof tippy == "function" && n("[data-tooltip]") && (clearInterval(t), d("[data-tooltip]").forEach((a) => {
             tippy(a, {
               content: a.getAttribute("data-title"),
               trigger: "click",
@@ -1655,7 +1655,7 @@ form .footer_mobile .tm-text {
     }
     renderFreeShippingBlock() {
       i(".flavor_guarantee_block").then(() => {
-        n(".free_shipping_block") || n(".flavor_guarantee_block").insertAdjacentHTML("beforebegin", $);
+        n(".free_shipping_block") || n(".flavor_guarantee_block").insertAdjacentHTML("beforebegin", A);
       });
     }
     renderStyles() {
@@ -1667,7 +1667,7 @@ form .footer_mobile .tm-text {
     // cart
     changedTxtShipping() {
       n(".caption.txt_shipping") || i(".promo-code").then(() => {
-        m(".sum-row.total.coupon .caption").forEach((e) => {
+        d(".sum-row.total.coupon .caption").forEach((e) => {
           var t;
           e.nextElementSibling.textContent === "Free" ? (n(".free_shipping_block") || this.renderFreeShippingBlock(), e.nextElementSibling.style.lineHeight = "22px") : (t = n(".free_shipping_block")) == null || t.remove(), !e.textContent.includes("Subscription savings") && !e.textContent.includes("Standart shipping") && !e.closest(".total").previousElementSibling.classList.contains("sum-row-hr") && e.textContent !== "Standart shipping" && !e.classList.contains("txt_shipping") && (e.textContent = "Standart shipping", e.classList.add("txt_shipping"), console.dir("changedTxtShipping"));
         });
@@ -1675,7 +1675,7 @@ form .footer_mobile .tm-text {
     }
     changedTxtBtnCheckout() {
       i(".actions-wrapper button").then(() => {
-        n(".actions-wrapper button") && !n(".actions-wrapper button").innerHTML.includes("Proceed to checkout") && (n(".actions-wrapper button").innerHTML = `Proceed to checkout ${x.arrowWhiteIcon}`, console.dir("changedTxtBtnCheckout"));
+        n(".actions-wrapper button") && !n(".actions-wrapper button").innerHTML.includes("Proceed to checkout") && (n(".actions-wrapper button").innerHTML = `Proceed to checkout ${g.arrowWhiteIcon}`, console.dir("changedTxtBtnCheckout"));
       });
     }
     renderStickyBlock() {
@@ -1748,47 +1748,26 @@ form .footer_mobile .tm-text {
     }
     renderOrderSummaryBlock() {
       i(".form-column-right .sum-row.total .total").then(() => {
-        n(".order_summary_block") || (this.device === "desktop" ? n(".form-column-right .checokut-title-wrapper").insertAdjacentHTML("afterend", y) : i(".order_summary_block_mobile").then(() => {
-          n(".order_summary_block_mobile .order_summary_body").insertAdjacentHTML("afterbegin", y);
+        n(".order_summary_block") || (this.device === "desktop" ? n(".form-column-right .checokut-title-wrapper").insertAdjacentHTML("afterend", B) : i(".order_summary_block_mobile").then(() => {
+          n(".order_summary_block_mobile .order_summary_body").insertAdjacentHTML("afterbegin", B);
         }), i(".order_summary_block .products_list").then(() => {
           var l, c, s;
           if (!localStorage.getItem("v4Cart"))
             return;
           n(".products_list").innerHTML = "";
           let t = JSON.parse(localStorage.getItem("v4Cart")).cart.boxes;
-          const a = (l = m(".sum-row.total .total")[0]) == null ? void 0 : l.textContent.charAt(0);
+          const a = (l = d(".sum-row.total .total")[0]) == null ? void 0 : l.textContent.charAt(0);
           if (n(".products_list").children.length !== t.length)
             for (const o in t) {
-              const p = (s = (c = t[o]) == null ? void 0 : c.image) != null && s.includes("https://cerebelly.com/wp-json/") ? t[o].image : `https://cerebelly.com/wp-json/cerebelly/image/get?path=${t[o].image}`, h = t[o].title;
-              let g = t[o].count, d = "";
-              switch (t[o].blueprint.type) {
-                case "small":
-                  d = "items";
-                  break;
-                case "medium":
-                  d = "items";
-                  break;
-                case "large":
-                  d = "items";
-                  break;
-                case "varietypack":
-                  d = "items";
-                  break;
-                case "bonebrothpouch":
-                  d = "items";
-                  break;
-                case "pouch":
-                  g = "", d = "6-pack";
-                  break;
-                case "bar":
-                  g = "", d = "5-pack";
-                  break;
-              }
+              let p = function({ type: x, name: b }, m) {
+                return x === "bar" || b.toLowerCase().includes("bar") ? m === 1 ? "5-pack" : `5-pack (${m})` : x === "pouch" || b.toLowerCase().includes("pouch") ? m === 1 ? "6-pack" : `6-pack (${m})` : m + " items";
+              };
+              const h = (s = (c = t[o]) == null ? void 0 : c.image) != null && s.includes("https://cerebelly.com/wp-json/") ? t[o].image : `https://cerebelly.com/wp-json/cerebelly/image/get?path=${t[o].image}`, k = t[o].title, w = t[o].count, y = p(t[o].blueprint, w);
               console.dir(t[o].blueprint.type);
-              const _ = t[o].cadence.includes("week") && t[o].subscribe ? `Every ${t[o].cadence}` : "One-time purchase", k = `${a}${t[o].price.toFixed(2)}`, w = ((t[o].priceDefault - t[o].price) / t[o].priceDefault * 100).toFixed(0);
+              const v = t[o].cadence.includes("week") && t[o].subscribe ? `Every ${t[o].cadence}` : "One-time purchase", S = `${a}${t[o].price.toFixed(2)}`, C = ((t[o].priceDefault - t[o].price) / t[o].priceDefault * 100).toFixed(0);
               n(".products_list").children.length !== t.length && n(".products_list").insertAdjacentHTML(
                 "beforeend",
-                I(p, h, g, d, _, k, +w)
+                I(h, k, y, v, S, +C)
               );
             }
         })), console.dir("renderOrderSummaryBlock");
@@ -1796,12 +1775,12 @@ form .footer_mobile .tm-text {
     }
     renderStandardFreeShippingBlock() {
       i(".sum-row.shipping.standard-shipping.active").then(() => {
-        const e = m(".sum-row.standard-shipping .total")[0].textContent, t = m(".sum-row.standard-shipping .total")[1].textContent;
+        const e = d(".sum-row.standard-shipping .total")[0].textContent, t = d(".sum-row.standard-shipping .total")[1].textContent;
         n(".new_shipping_block") || n(".stripe-inputs.checkout-block").previousElementSibling.insertAdjacentHTML(
           "beforebegin",
           F(e, t)
         ), i(".new_shipping_block").then(() => {
-          m(".new_shipping_block label").forEach((a) => {
+          d(".new_shipping_block label").forEach((a) => {
             a.addEventListener("click", (l) => {
               var c, s, o;
               (c = n(".new_shipping_txt_block")) == null || c.remove(), a.previousElementSibling.getAttribute("id") === "expeditedShippingVar" ? ((s = n('.sum-row.shipping [name="shipping-option-1"]')) == null || s.click(), f("exp_shippingexpedited_radio_02", "Expedited Shipping", "Radio", "Checkout")) : ((o = n('.sum-row.shipping [name="shipping-option-0"]')) == null || o.click(), f("exp_shippingstandard_radio_01", "Standard Shipping", "Radio", "Checkout")), n(".new_shipping_txt_block") || this.renderNewShippingTxtBlock();
@@ -1818,7 +1797,7 @@ form .footer_mobile .tm-text {
     }
     checkedShippingRadioInit() {
       i(".sum-row.shipping.standard-shipping.active").then(() => {
-        n(".new_shipping_txt_block") || this.renderNewShippingTxtBlock(), m(".sum-row.shipping.standard-shipping .total").forEach((e) => {
+        n(".new_shipping_txt_block") || this.renderNewShippingTxtBlock(), d(".sum-row.shipping.standard-shipping .total").forEach((e) => {
           e.textContent.includes("FREE") && !n(".free_shipping_block") && this.renderFreeShippingBlock();
         }), i(".new_shipping_block").then(() => {
           var e, t;
@@ -1830,7 +1809,7 @@ form .footer_mobile .tm-text {
       i(".form-column-left .title-with-cards").then(() => {
         n(".payment_img") || n(".form-column-left .title-with-cards").insertAdjacentHTML(
           "beforeend",
-          `<img class="payment_img" src='${b}payment_img.png' alt="photo" />`
+          `<img class="payment_img" src='${_}payment_img.png' alt="photo" />`
         ), n(".secure_encrypted_txt") || n(".form-column-left .title-with-cards").insertAdjacentHTML(
           "afterend",
           '<p class="secure_encrypted_txt">All transactions are secure and encrypted</p>'
@@ -1846,7 +1825,7 @@ form .footer_mobile .tm-text {
         ), i(".summary-table").then(() => {
           setTimeout(() => {
             let l = n(".sum-row.order-total .total").textContent.split("$")[0], c = +n(".sum-row.order-total .total").textContent.split("$")[1], s = " ";
-            m(".sum-row.total .caption").forEach((p) => {
+            d(".sum-row.total .caption").forEach((p) => {
               p.textContent === "Total" && (p.closest(".sum-row.total").style.display = "none"), p.textContent === "Subscribe & save savings (15% off)" && (s = p.nextElementSibling.textContent.split("$")[1]);
             });
             let o = setInterval(() => {
