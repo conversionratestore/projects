@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const f = (r, e, t, a = "") => {
+  const h = (r, e, t, a = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: r,
@@ -18,8 +18,8 @@
         o.src = t, o.onload = a, o.onerror = l, document.head.appendChild(o);
       } else if (c === "css") {
         if (Array.from(document.styleSheets).map((p) => {
-          var h;
-          return (h = p.href) == null ? void 0 : h.toLowerCase();
+          var u;
+          return (u = p.href) == null ? void 0 : u.toLowerCase();
         }).includes(t.toLowerCase()))
           return console.log(`Style ${t} allready downloaded!`), a("");
         const o = document.createElement("link");
@@ -29,7 +29,7 @@
     for (const t of r)
       await e(t), console.log(`Loaded librari ${t}`);
     console.log("All libraries loaded!");
-  }, M = (r) => {
+  }, P = (r) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", r, "variant_1"));
     }, 1e3);
@@ -58,7 +58,7 @@
       return t = window.scrollY, e != null && (l = t - e), e = t, clearTimeout(a), a = setTimeout(s, c), l;
     };
   })();
-  function P(r) {
+  function M(r) {
     return new Promise((e) => setTimeout(e, r));
   }
   const E = async (r, e) => {
@@ -66,7 +66,7 @@
     return window.scrollTo({
       top: l,
       behavior: "smooth"
-    }), await P(800), !0;
+    }), await M(800), !0;
   }, _ = "https://conversionratestore.github.io/projects/cerebelly/img/", g = {
     tickCircleIcon: (
       /* HTML */
@@ -1570,11 +1570,11 @@ form .footer_mobile .tm-text {
 }/*# sourceMappingURL=main.css.map */`, V = window.innerWidth < 768 ? "mobile" : "desktop";
   class G {
     constructor(e) {
-      this.device = e, this.observer = null, this.lastPath = window.location.pathname, this.observePageChange(), this.isActivated = !1, this.init(), this.observePageChange();
+      this.device = e, this.observer = null, this.lastPath = window.location.pathname, this.observePageChange(), this.isActivated = !1, this.isClicked = !1, this.init(), this.observePageChange();
     }
     init() {
       var e, t;
-      M("new_enhancement_cart_checkout"), this.checkPage() === "cart" && (this.renderStyles(), console.dir("name: 'Cart', dev: 'SKh"), n(".flavor_guarantee_block") || this.renderFlavorGuaranteeBlock(), (e = n(".actions-wrapper button")) != null && e.innerHTML.includes("Proceed to checkout") || this.changedTxtBtnCheckout(), this.device === "mobile" && (n(".sticky_block") || this.renderStickyBlock(), this.toggleStickyBlockVisibility(), this.renderTxtStickyBlock(), this.handleDisabledStickyBlock())), this.checkPage() === "checkout" && (console.dir("name: 'Checkout', dev: 'SKh"), this.renderStyles(), n(".flavor_guarantee_block") || this.renderFlavorGuaranteeBlock(), n(".order_summary_block") || this.renderOrderSummaryBlock(), n(".new_shipping_block") || this.renderStandardFreeShippingBlock(), (!n(".secure_encrypted_txt") || !n(".payment_img")) && this.renderPaymentImgAndDescription(), this.checkedShippingRadioInit(), n(".pay_now_txt_block") || this.renderPayNowTxtBlock(), this.device === "mobile" && ((t = n(".sticky_block")) == null || t.remove(), n(".footer_mobile") || this.renderFooterMobile(), n(".order_summary_block_mobile") || this.renderOrderSummaryBlockMobile(), this.replaceOrderTotal(), this.renderTxtTotalToSummaryBlockMobile()));
+      P("new_enhancement_cart_checkout"), this.checkPage() === "cart" && (this.renderStyles(), console.dir("name: 'Cart', dev: 'SKh"), n(".flavor_guarantee_block") || this.renderFlavorGuaranteeBlock(), (e = n(".actions-wrapper button")) != null && e.innerHTML.includes("Proceed to checkout") || this.changedTxtBtnCheckout(), this.handleClickProceedToCheckoutBtn(), this.device === "mobile" && (n(".sticky_block") || this.renderStickyBlock(), this.toggleStickyBlockVisibility(), this.renderTxtStickyBlock(), this.handleDisabledStickyBlock())), this.checkPage() === "checkout" && (console.dir("name: 'Checkout', dev: 'SKh"), this.renderStyles(), n(".flavor_guarantee_block") || this.renderFlavorGuaranteeBlock(), n(".order_summary_block") || this.renderOrderSummaryBlock(), n(".new_shipping_block") || this.renderStandardFreeShippingBlock(), (!n(".secure_encrypted_txt") || !n(".payment_img")) && this.renderPaymentImgAndDescription(), this.checkedShippingRadioInit(), n(".pay_now_txt_block") || this.renderPayNowTxtBlock(), this.device === "mobile" && ((t = n(".sticky_block")) == null || t.remove(), n(".footer_mobile") || this.renderFooterMobile(), n(".order_summary_block_mobile") || this.renderOrderSummaryBlockMobile(), this.replaceOrderTotal(), this.renderTxtTotalToSummaryBlockMobile()));
     }
     checkPage() {
       const e = window.location.href;
@@ -1591,21 +1591,21 @@ form .footer_mobile .tm-text {
       this.observer = new MutationObserver((t) => {
         var a, l, c;
         n(".css-jobqsc") && ((a = n(".flavor_guarantee_block")) == null || a.remove(), (l = n(".free_shipping_block")) == null || l.remove(), (c = n(".sticky_block")) == null || c.remove()), t.forEach((s) => {
-          var o, p, h, k, w, y, v, S, C, x, b, m, T, j, L;
-          window.location.pathname !== this.lastPath && (this.lastPath = window.location.pathname, console.dir(this.lastPath), this.lastPath === "/checkout" ? (this.renderStyles(), this.device === "mobile" && ((o = n(".sticky_block")) == null || o.remove(), n(".footer_mobile") || this.renderFooterMobile(), n(".order_summary_block_mobile") || this.renderOrderSummaryBlockMobile(), this.replaceOrderTotal()), n(".order_summary_block") || this.renderOrderSummaryBlock(), (!n(".secure_encrypted_txt") || !n(".payment_img")) && this.renderPaymentImgAndDescription(), n(".new_shipping_block") || this.renderStandardFreeShippingBlock(), this.checkedShippingRadioInit(), n(".pay_now_txt_block") || this.renderPayNowTxtBlock()) : this.lastPath === "/cart" ? (this.renderStyles(), (p = n(".actions-wrapper button")) != null && p.innerHTML.includes("Proceed to checkout") || this.changedTxtBtnCheckout(), this.device === "mobile" && !n(".css-jobqsc") && (n(".sticky_block") || this.renderStickyBlock(), this.toggleStickyBlockVisibility())) : ((h = n(".sticky_block")) == null || h.remove(), (k = n(".flavor_guarantee_block")) == null || k.remove(), (w = n(".free_shipping_block")) == null || w.remove(), (y = n(".order_summary_block")) == null || y.remove(), (v = n(".pay_now_txt_block")) == null || v.remove(), (S = n(".new_shipping_block")) == null || S.remove(), (C = n(".new_shipping_txt_block")) == null || C.remove(), (x = n(".order_summary_block_mobile")) == null || x.remove(), (b = n(".footer_mobile")) == null || b.remove(), (m = n(".payment_img")) == null || m.remove(), (T = n(".secure_encrypted_txt")) == null || T.remove(), (j = n(".crs_inter")) == null || j.remove(), (L = n(".crs_style")) == null || L.remove(), n("body").classList.contains("cart_page") && n("body").classList.remove("cart_page"))), s.target.nodeName === "BODY" && (this.checkPage() === "cart" || this.checkPage() === "checkout") && !n(".flavor_guarantee_block") && !n(".css-jobqsc") && this.renderFlavorGuaranteeBlock();
-          for (let u of s.addedNodes)
-            if (u instanceof HTMLElement) {
+          var o, p, u, k, w, y, v, S, C, x, b, m, T, j, L;
+          window.location.pathname !== this.lastPath && (this.lastPath = window.location.pathname, console.dir(this.lastPath), this.lastPath === "/checkout" ? (this.renderStyles(), this.device === "mobile" && ((o = n(".sticky_block")) == null || o.remove(), n(".footer_mobile") || this.renderFooterMobile(), n(".order_summary_block_mobile") || this.renderOrderSummaryBlockMobile(), this.replaceOrderTotal()), n(".order_summary_block") || this.renderOrderSummaryBlock(), (!n(".secure_encrypted_txt") || !n(".payment_img")) && this.renderPaymentImgAndDescription(), n(".new_shipping_block") || this.renderStandardFreeShippingBlock(), this.checkedShippingRadioInit(), n(".pay_now_txt_block") || this.renderPayNowTxtBlock()) : this.lastPath === "/cart" ? (this.renderStyles(), (p = n(".actions-wrapper button")) != null && p.innerHTML.includes("Proceed to checkout") || this.changedTxtBtnCheckout(), this.handleClickProceedToCheckoutBtn(), this.device === "mobile" && !n(".css-jobqsc") && (n(".sticky_block") || this.renderStickyBlock(), this.toggleStickyBlockVisibility())) : ((u = n(".sticky_block")) == null || u.remove(), (k = n(".flavor_guarantee_block")) == null || k.remove(), (w = n(".free_shipping_block")) == null || w.remove(), (y = n(".order_summary_block")) == null || y.remove(), (v = n(".pay_now_txt_block")) == null || v.remove(), (S = n(".new_shipping_block")) == null || S.remove(), (C = n(".new_shipping_txt_block")) == null || C.remove(), (x = n(".order_summary_block_mobile")) == null || x.remove(), (b = n(".footer_mobile")) == null || b.remove(), (m = n(".payment_img")) == null || m.remove(), (T = n(".secure_encrypted_txt")) == null || T.remove(), (j = n(".crs_inter")) == null || j.remove(), (L = n(".crs_style")) == null || L.remove(), n("body").classList.contains("cart_page") && n("body").classList.remove("cart_page"))), s.target.nodeName === "BODY" && (this.checkPage() === "cart" || this.checkPage() === "checkout") && !n(".flavor_guarantee_block") && !n(".css-jobqsc") && this.renderFlavorGuaranteeBlock();
+          for (let f of s.addedNodes)
+            if (f instanceof HTMLElement) {
               if (this.isActivated)
                 return;
-              u.classList.contains("css-1i5hss0") && (this.isActivated = !0, console.dir(u, "node"), this.checkPage() === "cart" && this.device === "mobile" && !n(".css-jobqsc") && this.handleDisabledStickyBlock(), this.checkPage() === "checkout" && (this.handleDisabledRadioBlock(), this.device === "mobile" && n(".order_summary_body").classList.contains("is_open") && (n(".order_summary_body").style.height = "auto"))), u.classList.contains("input-holder") && this.checkPage() === "checkout" && this.device === "mobile" && n(".order_summary_body").classList.contains("is_open") && (n(".order_summary_body").style.height = "auto"), setTimeout(() => {
+              f.classList.contains("css-1i5hss0") && (this.isActivated = !0, console.dir(f, "node"), this.checkPage() === "cart" && this.device === "mobile" && !n(".css-jobqsc") && this.handleDisabledStickyBlock(), this.checkPage() === "checkout" && (this.handleDisabledRadioBlock(), this.device === "mobile" && n(".order_summary_body").classList.contains("is_open") && (n(".order_summary_body").style.height = "auto"))), f.classList.contains("input-holder") && this.checkPage() === "checkout" && this.device === "mobile" && n(".order_summary_body").classList.contains("is_open") && (n(".order_summary_body").style.height = "auto"), setTimeout(() => {
                 this.isActivated = !1;
               }, 700);
             }
-          for (let u of s.removedNodes)
-            if (u instanceof HTMLElement) {
+          for (let f of s.removedNodes)
+            if (f instanceof HTMLElement) {
               if (this.isActivated)
                 return;
-              u.classList.contains("css-1i5hss0") && (this.isActivated = !0, this.checkPage() === "cart" && (n(".caption.txt_shipping") || this.changedTxtShipping(), this.device === "mobile" && !n(".css-jobqsc") && (this.renderTxtStickyBlock(), this.handleDisabledStickyBlock())), this.checkPage() === "checkout" && (this.handleDisabledRadioBlock(), this.device === "mobile" && (this.renderTxtTotalToSummaryBlockMobile(), n(".order_summary_body").classList.contains("is_open") && (n(".order_summary_body").style.height = "auto")))), setTimeout(() => {
+              f.classList.contains("css-1i5hss0") && (this.isActivated = !0, this.checkPage() === "cart" && (n(".caption.txt_shipping") || this.changedTxtShipping(), this.device === "mobile" && !n(".css-jobqsc") && (this.renderTxtStickyBlock(), this.handleDisabledStickyBlock())), this.checkPage() === "checkout" && (this.handleDisabledRadioBlock(), this.device === "mobile" && (this.renderTxtTotalToSummaryBlockMobile(), n(".order_summary_body").classList.contains("is_open") && (n(".order_summary_body").style.height = "auto")))), setTimeout(() => {
                 this.isActivated = !1;
               }, 700);
             }
@@ -1644,7 +1644,7 @@ form .footer_mobile .tm-text {
               onShow(l) {
               },
               onTrigger(l) {
-                window.location.pathname === "/cart" && f("exp_learnmorecart_click_01", "Learn More", "Button", "Cart"), window.location.pathname === "/checkout" && f("exp_learnmorecheckout_click_02", "Learn More", "Button", "Checkout");
+                window.location.pathname === "/cart" && h("exp_learnmorecart_click_01", "Learn More", "Button", "Cart"), window.location.pathname === "/checkout" && h("exp_learnmorecheckout_click_02", "Learn More", "Button", "Checkout");
               },
               onHide(l) {
               }
@@ -1727,8 +1727,16 @@ form .footer_mobile .tm-text {
       i(".sticky_block button").then(() => {
         var e;
         (e = n(".sticky_block button")) == null || e.addEventListener("click", (t) => {
-          t.preventDefault(), f("exp_stickyproceed_click_03", "Proceed to Checkout", "Button", "Cart - Sticky Banner"), n(".container-fluid .col-md-4.custom-column .actions-wrapper button").click();
+          t.preventDefault(), this.isClicked = !0, h("exp_stickyproceed_click_03", "Proceed to Checkout", "Button", "Cart - Sticky Banner"), n(".container-fluid .col-md-4.custom-column .actions-wrapper button").click(), this.isClicked = !1;
         }), console.dir("handleClickStickyBtn");
+      });
+    }
+    handleClickProceedToCheckoutBtn() {
+      i(".container-fluid .col-md-4.custom-column .actions-wrapper button").then(() => {
+        var e;
+        (e = n(".container-fluid .col-md-4.custom-column .actions-wrapper button")) == null || e.addEventListener("click", (t) => {
+          this.isClicked || h("exp_cartproceed_click_04", "Proceed to Checkout", "Button", "Cart");
+        }), console.dir("handleClickProceedToCheckoutBtn");
       });
     }
     // checkout
@@ -1762,12 +1770,12 @@ form .footer_mobile .tm-text {
               let p = function({ type: x, name: b }, m) {
                 return x === "bar" || b.toLowerCase().includes("bar") ? m === 1 ? "5-pack" : `5-pack (${m})` : x === "pouch" || b.toLowerCase().includes("pouch") ? m === 1 ? "6-pack" : `6-pack (${m})` : m + " items";
               };
-              const h = (s = (c = t[o]) == null ? void 0 : c.image) != null && s.includes("https://cerebelly.com/wp-json/") ? t[o].image : `https://cerebelly.com/wp-json/cerebelly/image/get?path=${t[o].image}`, k = t[o].title, w = t[o].count, y = p(t[o].blueprint, w);
+              const u = (s = (c = t[o]) == null ? void 0 : c.image) != null && s.includes("https://cerebelly.com/wp-json/") ? t[o].image : `https://cerebelly.com/wp-json/cerebelly/image/get?path=${t[o].image}`, k = t[o].title, w = t[o].count, y = p(t[o].blueprint, w);
               console.dir(t[o].blueprint.type);
               const v = t[o].cadence.includes("week") && t[o].subscribe ? `Every ${t[o].cadence}` : "One-time purchase", S = `${a}${t[o].price.toFixed(2)}`, C = ((t[o].priceDefault - t[o].price) / t[o].priceDefault * 100).toFixed(0);
               n(".products_list").children.length !== t.length && n(".products_list").insertAdjacentHTML(
                 "beforeend",
-                I(h, k, y, v, S, +C)
+                I(u, k, y, v, S, +C)
               );
             }
         })), console.dir("renderOrderSummaryBlock");
@@ -1783,7 +1791,7 @@ form .footer_mobile .tm-text {
           d(".new_shipping_block label").forEach((a) => {
             a.addEventListener("click", (l) => {
               var c, s, o;
-              (c = n(".new_shipping_txt_block")) == null || c.remove(), a.previousElementSibling.getAttribute("id") === "expeditedShippingVar" ? ((s = n('.sum-row.shipping [name="shipping-option-1"]')) == null || s.click(), f("exp_shippingexpedited_radio_02", "Expedited Shipping", "Radio", "Checkout")) : ((o = n('.sum-row.shipping [name="shipping-option-0"]')) == null || o.click(), f("exp_shippingstandard_radio_01", "Standard Shipping", "Radio", "Checkout")), n(".new_shipping_txt_block") || this.renderNewShippingTxtBlock();
+              (c = n(".new_shipping_txt_block")) == null || c.remove(), a.previousElementSibling.getAttribute("id") === "expeditedShippingVar" ? ((s = n('.sum-row.shipping [name="shipping-option-1"]')) == null || s.click(), h("exp_shippingexpedited_radio_02", "Expedited Shipping", "Radio", "Checkout")) : ((o = n('.sum-row.shipping [name="shipping-option-0"]')) == null || o.click(), h("exp_shippingstandard_radio_01", "Standard Shipping", "Radio", "Checkout")), n(".new_shipping_txt_block") || this.renderNewShippingTxtBlock();
             });
           });
         }), console.dir("renderStandardFreeShippingBlock");
@@ -1853,7 +1861,7 @@ form .footer_mobile .tm-text {
     handleOpenAndCloseOrderSummaryBlockMobile() {
       i(".order_summary_block_mobile").then(() => {
         n(".order_summary_header .order_summary_toggle").addEventListener("click", (e) => {
-          f("exp_ordersummary_click_05", "Show Order Summary", "Button", "Checkout"), E(100, n(".order_summary_header"));
+          h("exp_ordersummary_click_05", "Show Order Summary", "Button", "Checkout"), E(100, n(".order_summary_header"));
           const t = n(".order_summary_body");
           e.currentTarget.classList.toggle("is_open"), t.classList.contains("is_open") ? e.currentTarget.querySelector("span").textContent = "Show order summary" : e.currentTarget.querySelector("span").textContent = "Hide order summary", this.resizeOrderSummaryBlockMobile(t), t.classList.toggle("is_open");
         }), console.dir("handleOpenAndCloseOrderSummaryBlockMobile");
