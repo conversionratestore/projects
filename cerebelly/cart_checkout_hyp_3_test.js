@@ -18,8 +18,8 @@
         o.src = t, o.onload = a, o.onerror = l, document.head.appendChild(o);
       } else if (c === "css") {
         if (Array.from(document.styleSheets).map((p) => {
-          var u;
-          return (u = p.href) == null ? void 0 : u.toLowerCase();
+          var f;
+          return (f = p.href) == null ? void 0 : f.toLowerCase();
         }).includes(t.toLowerCase()))
           return console.log(`Style ${t} allready downloaded!`), a("");
         const o = document.createElement("link");
@@ -61,13 +61,13 @@
   function M(r) {
     return new Promise((e) => setTimeout(e, r));
   }
-  const E = async (r, e) => {
+  const H = async (r, e) => {
     const t = r, l = (e == null ? void 0 : e.getBoundingClientRect().top) + window.pageYOffset - t;
     return window.scrollTo({
       top: l,
       behavior: "smooth"
     }), await M(800), !0;
-  }, _ = "https://conversionratestore.github.io/projects/cerebelly/img/", g = {
+  }, _ = "https://conversionratestore.github.io/projects/cerebelly/img/", u = {
     tickCircleIcon: (
       /* HTML */
       `
@@ -129,26 +129,38 @@
       </defs>
     </svg>
   `
-    )
-  }, $ = {
+    ),
+    fedExIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="13" viewBox="0 0 40 13" fill="none">
+  <g clip-path="url(#clip0_313_3285)">
+    <path d="M35.9269 11.9079L34.3355 10.1228L32.7587 11.9079H29.4414L32.684 8.26378L29.4414 4.61914H32.8626L34.4692 6.38986L36.016 4.61914H39.3186L36.0908 8.24866L39.3628 11.9079H35.9269Z" fill="#F47920"/>
+    <path d="M23.0679 11.9079V0.42627H29.4413V2.98539H25.7674V4.61907H29.4413V7.08147H25.7674V9.34131H29.4413V11.9079H23.0679Z" fill="#F47920"/>
+    <path d="M20.3791 0.42627V5.12499H20.35C19.7544 4.44075 19.0111 4.20291 18.1485 4.20291C16.3807 4.20291 15.0496 5.40483 14.5819 6.99291C14.0491 5.24307 12.6744 4.17027 10.6363 4.17027C8.98124 4.17027 7.6742 4.91331 6.99188 6.12363V4.61907H3.57068V2.98539H7.30436V0.42627H0.520996V11.9079H3.57068V7.08147H6.61076C6.52004 7.43595 6.47156 7.81563 6.47156 8.21595C6.47156 10.6111 8.30132 12.2916 10.6365 12.2916C12.6002 12.2916 13.894 11.3698 14.5785 9.68931H11.9649C11.6112 10.1943 11.3428 10.3443 10.6365 10.3443C9.81692 10.3443 9.11036 9.62931 9.11036 8.78115H14.4321C14.6632 10.6841 16.145 12.3247 18.1783 12.3247C19.0552 12.3247 19.8592 11.893 20.3503 11.1641H20.3793V11.9076H23.0683V0.42627H20.3791ZM9.19484 7.11579C9.36476 6.38691 9.92996 5.91003 10.6365 5.91003C11.4136 5.91003 11.9505 6.37227 12.0916 7.11579H9.19484ZM18.7478 10.1599C17.7568 10.1599 17.1408 9.23643 17.1408 8.27235C17.1408 7.24203 17.6769 6.25083 18.7478 6.25083C19.8585 6.25083 20.3008 7.24203 20.3008 8.27235C20.3008 9.24987 19.8321 10.1599 18.7478 10.1599Z" fill="#472F92"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_313_3285">
+      <rect width="38.88" height="12" fill="white" transform="translate(0.520996 0.42627)"/>
+    </clipPath>
+  </defs>
+</svg>`
+  }, E = {
     flavorGuarantee: `
   <div class='tooltip_block'>
-    ${g.infoCircleIcon}
+    ${u.infoCircleIcon}
     <div>
       <h3>Don’t like a pouch flavor?</h3>
       <p>No sweat! Reach out to us at support@cerebelly.com and we’ll send three new ones free of charge.</p>
     </div>
   </div>
   `
-  }, A = (
+  }, $ = (
     /* HTML */
     `
   <div class="free_shipping_block">
-    ${g.tickCircleIcon}
+    ${u.tickCircleIcon}
     <p>Congtatulations! You get <span class="accent_color_green">Free shipping</span></p>
   </div>
 `
-  ), q = (
+  ), A = (
     /* HTML */
     `
   <div class="flavor_guarantee_block">
@@ -161,18 +173,18 @@
         <span>Not happy with a flavor?</span>
         <span
           >Try 3 new ones <b>for FREE.</b>
-          <span data-tooltip data-title="${$.flavorGuarantee}" class="learn_more_btn">Learn more</span></span
+          <span data-tooltip data-title="${E.flavorGuarantee}" class="learn_more_btn">Learn more</span></span
         >
       </p>
     </div>
   </div>
 `
-  ), H = (
+  ), q = (
     /* HTML */
     `
   <div class="sticky_block">
     <div class="total_box"></div>
-    <button class="proceed_to_checkout_btn">Proceed to checkout ${g.arrowWhiteIcon}</button>
+    <button class="proceed_to_checkout_btn">Proceed to checkout ${u.arrowWhiteIcon}</button>
   </div>
 `
   ), B = (
@@ -236,7 +248,8 @@
         </div>
         <div class="radio_days">
           <span>5-7 days</span>
-          <img src="${_}shipping_img.png" alt="shipping img" />
+          ${u.fedExIcon}
+          <!-- <img src="${_}shipping_img.png" alt="shipping img" /> -->
         </div>
       </label>
 
@@ -251,12 +264,13 @@
         </div>
         <div class="radio_days">
           <span>1-3 days</span>
-          <img src="${_}shipping_img.png" alt="shipping img" />
+          ${u.fedExIcon}
+          <!-- <img src="${_}shipping_img.png" alt="shipping img" /> -->
         </div>
       </label>
     </div>
   `
-  ), N = (r, e, t) => (
+  ), V = (r, e, t) => (
     /* HTML */
     `
     <div class="new_shipping_txt_block">
@@ -264,12 +278,12 @@
       <span class="txt_price ${t}">${r}</span>
     </div>
   `
-  ), D = (
+  ), N = (
     /* HTML */
     `
   <div class="order_summary_block_mobile">
     <div class="order_summary_header">
-      <p class="order_summary_toggle"><span>Show order summary</span> ${g.arrowBlueIcon}</p>
+      <p class="order_summary_toggle"><span>Show order summary</span> ${u.arrowBlueIcon}</p>
       <p class="price_total">
         <span class="price_total_strikethrough"></span>
         <span class="price_order_total"></span>
@@ -278,7 +292,7 @@
     <div class="order_summary_body"></div>
   </div>
 `
-  ), R = `.accent_color_green {
+  ), D = `.accent_color_green {
   color: #00865a;
   font-weight: 700;
   letter-spacing: normal;
@@ -1567,8 +1581,8 @@ form .footer_mobile .tm-text {
 .order_summary_block_mobile .order_summary_body.is_open {
   height: auto;
   overflow: hidden;
-}/*# sourceMappingURL=main.css.map */`, V = window.innerWidth < 768 ? "mobile" : "desktop";
-  class G {
+}/*# sourceMappingURL=main.css.map */`, R = window.innerWidth < 768 ? "mobile" : "desktop";
+  class Z {
     constructor(e) {
       this.device = e, this.observer = null, this.lastPath = window.location.pathname, this.observePageChange(), this.isActivated = !1, this.isClicked = !1, this.init(), this.observePageChange();
     }
@@ -1591,21 +1605,21 @@ form .footer_mobile .tm-text {
       this.observer = new MutationObserver((t) => {
         var a, l, c;
         n(".css-jobqsc") && ((a = n(".flavor_guarantee_block")) == null || a.remove(), (l = n(".free_shipping_block")) == null || l.remove(), (c = n(".sticky_block")) == null || c.remove()), t.forEach((s) => {
-          var o, p, u, k, w, y, v, S, C, x, b, m, T, j, L;
-          window.location.pathname !== this.lastPath && (this.lastPath = window.location.pathname, console.dir(this.lastPath), this.lastPath === "/checkout" ? (this.renderStyles(), this.device === "mobile" && ((o = n(".sticky_block")) == null || o.remove(), n(".footer_mobile") || this.renderFooterMobile(), n(".order_summary_block_mobile") || this.renderOrderSummaryBlockMobile(), this.replaceOrderTotal()), n(".order_summary_block") || this.renderOrderSummaryBlock(), (!n(".secure_encrypted_txt") || !n(".payment_img")) && this.renderPaymentImgAndDescription(), n(".new_shipping_block") || this.renderStandardFreeShippingBlock(), this.checkedShippingRadioInit(), n(".pay_now_txt_block") || this.renderPayNowTxtBlock()) : this.lastPath === "/cart" ? (this.renderStyles(), (p = n(".actions-wrapper button")) != null && p.innerHTML.includes("Proceed to checkout") || this.changedTxtBtnCheckout(), this.handleClickProceedToCheckoutBtn(), this.device === "mobile" && !n(".css-jobqsc") && (n(".sticky_block") || this.renderStickyBlock(), this.toggleStickyBlockVisibility())) : ((u = n(".sticky_block")) == null || u.remove(), (k = n(".flavor_guarantee_block")) == null || k.remove(), (w = n(".free_shipping_block")) == null || w.remove(), (y = n(".order_summary_block")) == null || y.remove(), (v = n(".pay_now_txt_block")) == null || v.remove(), (S = n(".new_shipping_block")) == null || S.remove(), (C = n(".new_shipping_txt_block")) == null || C.remove(), (x = n(".order_summary_block_mobile")) == null || x.remove(), (b = n(".footer_mobile")) == null || b.remove(), (m = n(".payment_img")) == null || m.remove(), (T = n(".secure_encrypted_txt")) == null || T.remove(), (j = n(".crs_inter")) == null || j.remove(), (L = n(".crs_style")) == null || L.remove(), n("body").classList.contains("cart_page") && n("body").classList.remove("cart_page"))), s.target.nodeName === "BODY" && (this.checkPage() === "cart" || this.checkPage() === "checkout") && !n(".flavor_guarantee_block") && !n(".css-jobqsc") && this.renderFlavorGuaranteeBlock();
-          for (let f of s.addedNodes)
-            if (f instanceof HTMLElement) {
+          var o, p, f, k, w, y, v, S, C, x, b, m, L, T, j;
+          window.location.pathname !== this.lastPath && (this.lastPath = window.location.pathname, console.dir(this.lastPath), this.lastPath === "/checkout" ? (this.renderStyles(), this.device === "mobile" && ((o = n(".sticky_block")) == null || o.remove(), n(".footer_mobile") || this.renderFooterMobile(), n(".order_summary_block_mobile") || this.renderOrderSummaryBlockMobile(), this.replaceOrderTotal()), n(".order_summary_block") || this.renderOrderSummaryBlock(), (!n(".secure_encrypted_txt") || !n(".payment_img")) && this.renderPaymentImgAndDescription(), n(".new_shipping_block") || this.renderStandardFreeShippingBlock(), this.checkedShippingRadioInit(), n(".pay_now_txt_block") || this.renderPayNowTxtBlock()) : this.lastPath === "/cart" ? (this.renderStyles(), (p = n(".actions-wrapper button")) != null && p.innerHTML.includes("Proceed to checkout") || this.changedTxtBtnCheckout(), this.handleClickProceedToCheckoutBtn(), this.device === "mobile" && !n(".css-jobqsc") && (n(".sticky_block") || this.renderStickyBlock(), this.toggleStickyBlockVisibility())) : ((f = n(".sticky_block")) == null || f.remove(), (k = n(".flavor_guarantee_block")) == null || k.remove(), (w = n(".free_shipping_block")) == null || w.remove(), (y = n(".order_summary_block")) == null || y.remove(), (v = n(".pay_now_txt_block")) == null || v.remove(), (S = n(".new_shipping_block")) == null || S.remove(), (C = n(".new_shipping_txt_block")) == null || C.remove(), (x = n(".order_summary_block_mobile")) == null || x.remove(), (b = n(".footer_mobile")) == null || b.remove(), (m = n(".payment_img")) == null || m.remove(), (L = n(".secure_encrypted_txt")) == null || L.remove(), (T = n(".crs_inter")) == null || T.remove(), (j = n(".crs_style")) == null || j.remove(), n("body").classList.contains("cart_page") && n("body").classList.remove("cart_page"))), s.target.nodeName === "BODY" && (this.checkPage() === "cart" || this.checkPage() === "checkout") && !n(".flavor_guarantee_block") && !n(".css-jobqsc") && this.renderFlavorGuaranteeBlock();
+          for (let g of s.addedNodes)
+            if (g instanceof HTMLElement) {
               if (this.isActivated)
                 return;
-              f.classList.contains("css-1i5hss0") && (this.isActivated = !0, console.dir(f, "node"), this.checkPage() === "cart" && this.device === "mobile" && !n(".css-jobqsc") && this.handleDisabledStickyBlock(), this.checkPage() === "checkout" && (this.handleDisabledRadioBlock(), this.device === "mobile" && n(".order_summary_body").classList.contains("is_open") && (n(".order_summary_body").style.height = "auto"))), f.classList.contains("input-holder") && this.checkPage() === "checkout" && this.device === "mobile" && n(".order_summary_body").classList.contains("is_open") && (n(".order_summary_body").style.height = "auto"), setTimeout(() => {
+              g.classList.contains("css-1i5hss0") && (this.isActivated = !0, console.dir(g, "node"), this.checkPage() === "cart" && this.device === "mobile" && !n(".css-jobqsc") && this.handleDisabledStickyBlock(), this.checkPage() === "checkout" && (this.handleDisabledRadioBlock(), this.device === "mobile" && n(".order_summary_body").classList.contains("is_open") && (n(".order_summary_body").style.height = "auto"))), g.classList.contains("input-holder") && this.checkPage() === "checkout" && this.device === "mobile" && n(".order_summary_body").classList.contains("is_open") && (n(".order_summary_body").style.height = "auto"), setTimeout(() => {
                 this.isActivated = !1;
               }, 700);
             }
-          for (let f of s.removedNodes)
-            if (f instanceof HTMLElement) {
+          for (let g of s.removedNodes)
+            if (g instanceof HTMLElement) {
               if (this.isActivated)
                 return;
-              f.classList.contains("css-1i5hss0") && (this.isActivated = !0, this.checkPage() === "cart" && (n(".caption.txt_shipping") || this.changedTxtShipping(), this.device === "mobile" && !n(".css-jobqsc") && (this.renderTxtStickyBlock(), this.handleDisabledStickyBlock())), this.checkPage() === "checkout" && (this.handleDisabledRadioBlock(), this.device === "mobile" && (this.renderTxtTotalToSummaryBlockMobile(), n(".order_summary_body").classList.contains("is_open") && (n(".order_summary_body").style.height = "auto")))), setTimeout(() => {
+              g.classList.contains("css-1i5hss0") && (this.isActivated = !0, this.checkPage() === "cart" && (n(".caption.txt_shipping") || this.changedTxtShipping(), this.device === "mobile" && !n(".css-jobqsc") && (this.renderTxtStickyBlock(), this.handleDisabledStickyBlock())), this.checkPage() === "checkout" && (this.handleDisabledRadioBlock(), this.device === "mobile" && (this.renderTxtTotalToSummaryBlockMobile(), n(".order_summary_body").classList.contains("is_open") && (n(".order_summary_body").style.height = "auto")))), setTimeout(() => {
                 this.isActivated = !1;
               }, 700);
             }
@@ -1619,7 +1633,7 @@ form .footer_mobile .tm-text {
       i(".summary-table").then(() => {
         var a;
         let e = "", t = "";
-        n(".flavor_guarantee_block") || (this.checkPage() === "cart" && (this.device === "mobile" ? (e = ".container-fluid .heading", t = "afterend") : (e = ".summary-table", t = "beforebegin")), this.checkPage() === "checkout" && (this.device, e = ".form-column-left", t = "afterbegin"), (a = n(e)) == null || a.insertAdjacentHTML(t, q), console.dir("renderFlavorGuaranteeBlock"), this.initTooltip());
+        n(".flavor_guarantee_block") || (this.checkPage() === "cart" && (this.device === "mobile" ? (e = ".container-fluid .heading", t = "afterend") : (e = ".summary-table", t = "beforebegin")), this.checkPage() === "checkout" && (this.device, e = ".form-column-left", t = "afterbegin"), (a = n(e)) == null || a.insertAdjacentHTML(t, A), console.dir("renderFlavorGuaranteeBlock"), this.initTooltip());
       });
     }
     initTooltip() {
@@ -1655,14 +1669,14 @@ form .footer_mobile .tm-text {
     }
     renderFreeShippingBlock() {
       i(".flavor_guarantee_block").then(() => {
-        n(".free_shipping_block") || n(".flavor_guarantee_block").insertAdjacentHTML("beforebegin", A);
+        n(".free_shipping_block") || n(".flavor_guarantee_block").insertAdjacentHTML("beforebegin", $);
       });
     }
     renderStyles() {
       n(".crs_inter") || document.head.insertAdjacentHTML(
         "afterbegin",
         '<link class="crs_inter" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">'
-      ), n(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${R}</style>`), this.checkPage() === "cart" && !n("body").classList.contains("cart_page") ? n("body").classList.add("cart_page") : n("body").classList.remove("cart_page"), console.dir("renderStyles");
+      ), n(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${D}</style>`), this.checkPage() === "cart" && !n("body").classList.contains("cart_page") ? n("body").classList.add("cart_page") : n("body").classList.remove("cart_page"), console.dir("renderStyles");
     }
     // cart
     changedTxtShipping() {
@@ -1675,12 +1689,12 @@ form .footer_mobile .tm-text {
     }
     changedTxtBtnCheckout() {
       i(".actions-wrapper button").then(() => {
-        n(".actions-wrapper button") && !n(".actions-wrapper button").innerHTML.includes("Proceed to checkout") && (n(".actions-wrapper button").innerHTML = `Proceed to checkout ${g.arrowWhiteIcon}`, console.dir("changedTxtBtnCheckout"));
+        n(".actions-wrapper button") && !n(".actions-wrapper button").innerHTML.includes("Proceed to checkout") && (n(".actions-wrapper button").innerHTML = `Proceed to checkout ${u.arrowWhiteIcon}`, console.dir("changedTxtBtnCheckout"));
       });
     }
     renderStickyBlock() {
       i("#root").then(() => {
-        n(".sticky_block") || n("#root").insertAdjacentHTML("afterbegin", H), this.handleClickStickyBtn(), this.handleDisabledStickyBlock(), console.dir("renderStickyBlock");
+        n(".sticky_block") || n("#root").insertAdjacentHTML("afterbegin", q), this.handleClickStickyBtn(), this.handleDisabledStickyBlock(), console.dir("renderStickyBlock");
       });
     }
     renderTxtStickyBlock() {
@@ -1770,12 +1784,12 @@ form .footer_mobile .tm-text {
               let p = function({ type: x, name: b }, m) {
                 return x === "bar" || b.toLowerCase().includes("bar") ? m === 1 ? "5-pack" : `5-pack (${m})` : x === "pouch" || b.toLowerCase().includes("pouch") ? m === 1 ? "6-pack" : `6-pack (${m})` : m + " items";
               };
-              const u = (s = (c = t[o]) == null ? void 0 : c.image) != null && s.includes("https://cerebelly.com/wp-json/") ? t[o].image : `https://cerebelly.com/wp-json/cerebelly/image/get?path=${t[o].image}`, k = t[o].title, w = t[o].count, y = p(t[o].blueprint, w);
+              const f = (s = (c = t[o]) == null ? void 0 : c.image) != null && s.includes("https://cerebelly.com/wp-json/") ? t[o].image : `https://cerebelly.com/wp-json/cerebelly/image/get?path=${t[o].image}`, k = t[o].title, w = t[o].count, y = p(t[o].blueprint, w);
               console.dir(t[o].blueprint.type);
               const v = t[o].cadence.includes("week") && t[o].subscribe ? `Every ${t[o].cadence}` : "One-time purchase", S = `${a}${t[o].price.toFixed(2)}`, C = ((t[o].priceDefault - t[o].price) / t[o].priceDefault * 100).toFixed(0);
               n(".products_list").children.length !== t.length && n(".products_list").insertAdjacentHTML(
                 "beforeend",
-                I(u, k, y, v, S, +C)
+                I(f, k, y, v, S, +C)
               );
             }
         })), console.dir("renderOrderSummaryBlock");
@@ -1829,7 +1843,7 @@ form .footer_mobile .tm-text {
         const e = n(".sum-row.shipping.standard-shipping.active .total").textContent, t = n(".sum-row.shipping.standard-shipping.active label .name").textContent, a = e.includes("FREE") ? "accent_color_green" : "";
         n(".new_shipping_txt_block") || n(".sum-row-hr + .sum-row.shipping.standard-shipping").insertAdjacentHTML(
           "beforebegin",
-          N(e, t, a)
+          V(e, t, a)
         ), i(".summary-table").then(() => {
           setTimeout(() => {
             let l = n(".sum-row.order-total .total").textContent.split("$")[0], c = +n(".sum-row.order-total .total").textContent.split("$")[1], s = " ";
@@ -1855,13 +1869,13 @@ form .footer_mobile .tm-text {
     }
     renderOrderSummaryBlockMobile() {
       i(".form-row .form-column-right > .css-kq9w2n").then(() => {
-        n(".order_summary_block_mobile") || n(".form-row .form-column-right > .css-kq9w2n").insertAdjacentHTML("afterbegin", D), this.handleOpenAndCloseOrderSummaryBlockMobile(), console.dir("renderOrderSummaryBlockMobile");
+        n(".order_summary_block_mobile") || n(".form-row .form-column-right > .css-kq9w2n").insertAdjacentHTML("afterbegin", N), this.handleOpenAndCloseOrderSummaryBlockMobile(), console.dir("renderOrderSummaryBlockMobile");
       });
     }
     handleOpenAndCloseOrderSummaryBlockMobile() {
       i(".order_summary_block_mobile").then(() => {
         n(".order_summary_header .order_summary_toggle").addEventListener("click", (e) => {
-          h("exp_ordersummary_click_05", "Show Order Summary", "Button", "Checkout"), E(100, n(".order_summary_header"));
+          h("exp_ordersummary_click_05", "Show Order Summary", "Button", "Checkout"), H(100, n(".order_summary_header"));
           const t = n(".order_summary_body");
           e.currentTarget.classList.toggle("is_open"), t.classList.contains("is_open") ? e.currentTarget.querySelector("span").textContent = "Show order summary" : e.currentTarget.querySelector("span").textContent = "Hide order summary", this.resizeOrderSummaryBlockMobile(t), t.classList.toggle("is_open");
         }), console.dir("handleOpenAndCloseOrderSummaryBlockMobile");
@@ -1899,6 +1913,6 @@ form .footer_mobile .tm-text {
       });
     }
   }
-  new G(V);
+  new Z(R);
 })();
 //# sourceMappingURL=index.js.map
