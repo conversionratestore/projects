@@ -1,47 +1,47 @@
 (function() {
   "use strict";
-  const h = (r, e, t, a = "") => {
+  const h = (r, t, e, a = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: r,
-      event_desc: e,
-      event_type: t,
+      event_desc: t,
+      event_type: e,
       event_loc: a
-    }), console.dir(`Event: ${r} | ${e} | ${t} | ${a}`);
+    }), console.dir(`Event: ${r} | ${t} | ${e} | ${a}`);
   }, d = (r) => document.querySelectorAll(r), n = (r) => document.querySelector(r), z = async (r) => {
-    const e = (t) => new Promise((a, l) => {
-      const c = t.split(".").pop();
+    const t = (e) => new Promise((a, l) => {
+      const c = e.split(".").pop();
       if (c === "js") {
-        if (Array.from(document.scripts).map((p) => p.src.toLowerCase()).includes(t.toLowerCase()))
-          return console.log(`Script ${t} allready downloaded!`), a("");
+        if (Array.from(document.scripts).map((p) => p.src.toLowerCase()).includes(e.toLowerCase()))
+          return console.log(`Script ${e} allready downloaded!`), a("");
         const o = document.createElement("script");
-        o.src = t, o.onload = a, o.onerror = l, document.head.appendChild(o);
+        o.src = e, o.onload = a, o.onerror = l, document.head.appendChild(o);
       } else if (c === "css") {
         if (Array.from(document.styleSheets).map((p) => {
           var f;
           return (f = p.href) == null ? void 0 : f.toLowerCase();
-        }).includes(t.toLowerCase()))
-          return console.log(`Style ${t} allready downloaded!`), a("");
+        }).includes(e.toLowerCase()))
+          return console.log(`Style ${e} allready downloaded!`), a("");
         const o = document.createElement("link");
-        o.rel = "stylesheet", o.href = t, o.onload = a, o.onerror = l, document.head.appendChild(o);
+        o.rel = "stylesheet", o.href = e, o.onload = a, o.onerror = l, document.head.appendChild(o);
       }
     });
-    for (const t of r)
-      await e(t), console.log(`Loaded librari ${t}`);
+    for (const e of r)
+      await t(e), console.log(`Loaded librari ${e}`);
     console.log("All libraries loaded!");
   }, P = (r) => {
-    let e = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", r, "variant_1"));
+    let t = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", r, "variant_1"));
     }, 1e3);
   };
   function i(r) {
-    return new Promise((e) => {
+    return new Promise((t) => {
       if (document.querySelector(r))
-        return e(document.querySelector(r));
-      const t = new MutationObserver(() => {
-        document.querySelector(r) && (e(document.querySelector(r)), t.disconnect());
+        return t(document.querySelector(r));
+      const e = new MutationObserver(() => {
+        document.querySelector(r) && (t(document.querySelector(r)), e.disconnect());
       });
-      t.observe(document.documentElement, {
+      e.observe(document.documentElement, {
         childList: !0,
         subtree: !0,
         characterData: !0
@@ -50,23 +50,23 @@
   }
   (function(r) {
     r = r === void 0 ? {} : r;
-    let e, t, a, l, c = (r == null ? void 0 : r.delay) || 50;
+    let t, e, a, l, c = (r == null ? void 0 : r.delay) || 50;
     function s() {
-      e = null, l = 0;
+      t = null, l = 0;
     }
     return s(), function() {
-      return t = window.scrollY, e != null && (l = t - e), e = t, clearTimeout(a), a = setTimeout(s, c), l;
+      return e = window.scrollY, t != null && (l = e - t), t = e, clearTimeout(a), a = setTimeout(s, c), l;
     };
   })();
-  function M(r) {
-    return new Promise((e) => setTimeout(e, r));
+  function H(r) {
+    return new Promise((t) => setTimeout(t, r));
   }
-  const H = async (r, e) => {
-    const t = r, l = (e == null ? void 0 : e.getBoundingClientRect().top) + window.pageYOffset - t;
+  const M = async (r, t) => {
+    const e = r, l = (t == null ? void 0 : t.getBoundingClientRect().top) + window.pageYOffset - e;
     return window.scrollTo({
       top: l,
       behavior: "smooth"
-    }), await M(800), !0;
+    }), await H(800), !0;
   }, _ = "https://conversionratestore.github.io/projects/cerebelly/img/", u = {
     tickCircleIcon: (
       /* HTML */
@@ -160,7 +160,7 @@
     <p>Congtatulations! You get <span class="accent_color_green">Free shipping</span></p>
   </div>
 `
-  ), A = (
+  ), q = (
     /* HTML */
     `
   <div class="flavor_guarantee_block">
@@ -179,7 +179,7 @@
     </div>
   </div>
 `
-  ), q = (
+  ), A = (
     /* HTML */
     `
   <div class="sticky_block">
@@ -187,14 +187,14 @@
     <button class="proceed_to_checkout_btn">Proceed to checkout ${u.arrowWhiteIcon}</button>
   </div>
 `
-  ), B = (
+  ), L = (
     /* HTML */
     `
   <div class="order_summary_block">
     <ul class="products_list"></ul>
   </div>
 `
-  ), I = (r, e, t, a, l, c) => (
+  ), I = (r, t, e, a, l, c) => (
     /* HTML */
     `
     <li class="products_item">
@@ -203,9 +203,9 @@
       </div>
       <div class="item_info">
         <div>
-          <h3>${e}</h3>
+          <h3>${t}</h3>
           <div class="quantity_packs_info">
-            <span class="items_count">${t}</span>
+            <span class="items_count">${e}</span>
             <span>|</span>
             <span class="cadence_txt">${a}</span>
           </div>
@@ -233,7 +233,7 @@
     </p>
   </div>
 `
-  ), F = (r, e) => (
+  ), F = (r, t) => (
     /* HTML */
     `
     <div class="new_shipping_block">
@@ -247,7 +247,7 @@
           </div>
         </div>
         <div class="radio_days">
-          <span>5-7 days</span>
+          <span>5-7 business days</span>
           ${u.fedExIcon}
           <!-- <img src="${_}shipping_img.png" alt="shipping img" /> -->
         </div>
@@ -259,23 +259,23 @@
           <div class="radio_txt_box">
             <span class="new_custom_radio"></span>
             <span class="radio_txt">Expedited shipping</span>
-            <span class="shipping_txt">${e}</span>
+            <span class="shipping_txt">${t}</span>
           </div>
         </div>
         <div class="radio_days">
-          <span>1-3 days</span>
+          <span>1-3 business days</span>
           ${u.fedExIcon}
           <!-- <img src="${_}shipping_img.png" alt="shipping img" /> -->
         </div>
       </label>
     </div>
   `
-  ), V = (r, e, t) => (
+  ), V = (r, t, e) => (
     /* HTML */
     `
     <div class="new_shipping_txt_block">
-      <span class="txt_name">${e}</span>
-      <span class="txt_price ${t}">${r}</span>
+      <span class="txt_name">${t}</span>
+      <span class="txt_price ${e}">${r}</span>
     </div>
   `
   ), N = (
@@ -1583,35 +1583,35 @@ form .footer_mobile .tm-text {
   overflow: hidden;
 }/*# sourceMappingURL=main.css.map */`, R = window.innerWidth < 768 ? "mobile" : "desktop";
   class Z {
-    constructor(e) {
-      this.device = e, this.observer = null, this.lastPath = window.location.pathname, this.observePageChange(), this.isActivated = !1, this.isClicked = !1, this.init(), this.observePageChange();
+    constructor(t) {
+      this.device = t, this.observer = null, this.lastPath = window.location.pathname, this.observePageChange(), this.isActivated = !1, this.isClicked = !1, this.init(), this.observePageChange();
     }
     init() {
-      var e, t;
-      P("new_enhancement_cart_checkout"), this.checkPage() === "cart" && (this.renderStyles(), console.dir("name: 'Cart', dev: 'SKh"), n(".flavor_guarantee_block") || this.renderFlavorGuaranteeBlock(), (e = n(".actions-wrapper button")) != null && e.innerHTML.includes("Proceed to checkout") || this.changedTxtBtnCheckout(), this.handleClickProceedToCheckoutBtn(), this.device === "mobile" && (n(".sticky_block") || this.renderStickyBlock(), this.toggleStickyBlockVisibility(), this.renderTxtStickyBlock(), this.handleDisabledStickyBlock())), this.checkPage() === "checkout" && (console.dir("name: 'Checkout', dev: 'SKh"), this.renderStyles(), n(".flavor_guarantee_block") || this.renderFlavorGuaranteeBlock(), n(".order_summary_block") || this.renderOrderSummaryBlock(), n(".new_shipping_block") || this.renderStandardFreeShippingBlock(), (!n(".secure_encrypted_txt") || !n(".payment_img")) && this.renderPaymentImgAndDescription(), this.checkedShippingRadioInit(), n(".pay_now_txt_block") || this.renderPayNowTxtBlock(), this.device === "mobile" && ((t = n(".sticky_block")) == null || t.remove(), n(".footer_mobile") || this.renderFooterMobile(), n(".order_summary_block_mobile") || this.renderOrderSummaryBlockMobile(), this.replaceOrderTotal(), this.renderTxtTotalToSummaryBlockMobile()));
+      var t, e;
+      P("new_enhancement_cart_checkout"), this.checkPage() === "cart" && (this.renderStyles(), console.dir("name: 'Cart', dev: 'SKh"), n(".flavor_guarantee_block") || this.renderFlavorGuaranteeBlock(), (t = n(".actions-wrapper button")) != null && t.innerHTML.includes("Proceed to checkout") || this.changedTxtBtnCheckout(), this.handleClickProceedToCheckoutBtn(), this.device === "mobile" && (n(".sticky_block") || this.renderStickyBlock(), this.toggleStickyBlockVisibility(), this.renderTxtStickyBlock(), this.handleDisabledStickyBlock())), this.checkPage() === "checkout" && (console.dir("name: 'Checkout', dev: 'SKh"), this.renderStyles(), n(".flavor_guarantee_block") || this.renderFlavorGuaranteeBlock(), n(".order_summary_block") || this.renderOrderSummaryBlock(), n(".new_shipping_block") || this.renderStandardFreeShippingBlock(), (!n(".secure_encrypted_txt") || !n(".payment_img")) && this.renderPaymentImgAndDescription(), this.checkedShippingRadioInit(), n(".pay_now_txt_block") || this.renderPayNowTxtBlock(), this.device === "mobile" && ((e = n(".sticky_block")) == null || e.remove(), n(".footer_mobile") || this.renderFooterMobile(), n(".order_summary_block_mobile") || this.renderOrderSummaryBlockMobile(), this.replaceOrderTotal(), this.renderTxtTotalToSummaryBlockMobile()));
     }
     checkPage() {
-      const e = window.location.href;
+      const t = window.location.href;
       switch (!0) {
-        case e.includes("/checkout"):
+        case t.includes("/checkout"):
           return "checkout";
-        case e.includes("/cart"):
+        case t.includes("/cart"):
           return "cart";
         default:
           return "other";
       }
     }
     observePageChange() {
-      this.observer = new MutationObserver((t) => {
+      this.observer = new MutationObserver((e) => {
         var a, l, c;
-        n(".css-jobqsc") && ((a = n(".flavor_guarantee_block")) == null || a.remove(), (l = n(".free_shipping_block")) == null || l.remove(), (c = n(".sticky_block")) == null || c.remove()), t.forEach((s) => {
-          var o, p, f, k, w, y, v, S, C, x, b, m, L, T, j;
-          window.location.pathname !== this.lastPath && (this.lastPath = window.location.pathname, console.dir(this.lastPath), this.lastPath === "/checkout" ? (this.renderStyles(), this.device === "mobile" && ((o = n(".sticky_block")) == null || o.remove(), n(".footer_mobile") || this.renderFooterMobile(), n(".order_summary_block_mobile") || this.renderOrderSummaryBlockMobile(), this.replaceOrderTotal()), n(".order_summary_block") || this.renderOrderSummaryBlock(), (!n(".secure_encrypted_txt") || !n(".payment_img")) && this.renderPaymentImgAndDescription(), n(".new_shipping_block") || this.renderStandardFreeShippingBlock(), this.checkedShippingRadioInit(), n(".pay_now_txt_block") || this.renderPayNowTxtBlock()) : this.lastPath === "/cart" ? (this.renderStyles(), (p = n(".actions-wrapper button")) != null && p.innerHTML.includes("Proceed to checkout") || this.changedTxtBtnCheckout(), this.handleClickProceedToCheckoutBtn(), this.device === "mobile" && !n(".css-jobqsc") && (n(".sticky_block") || this.renderStickyBlock(), this.toggleStickyBlockVisibility())) : ((f = n(".sticky_block")) == null || f.remove(), (k = n(".flavor_guarantee_block")) == null || k.remove(), (w = n(".free_shipping_block")) == null || w.remove(), (y = n(".order_summary_block")) == null || y.remove(), (v = n(".pay_now_txt_block")) == null || v.remove(), (S = n(".new_shipping_block")) == null || S.remove(), (C = n(".new_shipping_txt_block")) == null || C.remove(), (x = n(".order_summary_block_mobile")) == null || x.remove(), (b = n(".footer_mobile")) == null || b.remove(), (m = n(".payment_img")) == null || m.remove(), (L = n(".secure_encrypted_txt")) == null || L.remove(), (T = n(".crs_inter")) == null || T.remove(), (j = n(".crs_style")) == null || j.remove(), n("body").classList.contains("cart_page") && n("body").classList.remove("cart_page"))), s.target.nodeName === "BODY" && (this.checkPage() === "cart" || this.checkPage() === "checkout") && !n(".flavor_guarantee_block") && !n(".css-jobqsc") && this.renderFlavorGuaranteeBlock();
+        n(".css-jobqsc") && ((a = n(".flavor_guarantee_block")) == null || a.remove(), (l = n(".free_shipping_block")) == null || l.remove(), (c = n(".sticky_block")) == null || c.remove()), e.forEach((s) => {
+          var o, p, f, k, w, y, v, S, C, x, b, m, j, T, B;
+          window.location.pathname !== this.lastPath && (this.lastPath = window.location.pathname, console.dir(this.lastPath), this.lastPath === "/checkout" ? (this.renderStyles(), this.device === "mobile" && ((o = n(".sticky_block")) == null || o.remove(), n(".footer_mobile") || this.renderFooterMobile(), n(".order_summary_block_mobile") || this.renderOrderSummaryBlockMobile(), this.replaceOrderTotal()), n(".order_summary_block") || this.renderOrderSummaryBlock(), (!n(".secure_encrypted_txt") || !n(".payment_img")) && this.renderPaymentImgAndDescription(), n(".new_shipping_block") || this.renderStandardFreeShippingBlock(), this.checkedShippingRadioInit(), n(".pay_now_txt_block") || this.renderPayNowTxtBlock()) : this.lastPath === "/cart" ? (this.renderStyles(), (p = n(".actions-wrapper button")) != null && p.innerHTML.includes("Proceed to checkout") || this.changedTxtBtnCheckout(), this.handleClickProceedToCheckoutBtn(), this.device === "mobile" && !n(".css-jobqsc") && (n(".sticky_block") || this.renderStickyBlock(), this.toggleStickyBlockVisibility())) : ((f = n(".sticky_block")) == null || f.remove(), (k = n(".flavor_guarantee_block")) == null || k.remove(), (w = n(".free_shipping_block")) == null || w.remove(), (y = n(".order_summary_block")) == null || y.remove(), (v = n(".pay_now_txt_block")) == null || v.remove(), (S = n(".new_shipping_block")) == null || S.remove(), (C = n(".new_shipping_txt_block")) == null || C.remove(), (x = n(".order_summary_block_mobile")) == null || x.remove(), (b = n(".footer_mobile")) == null || b.remove(), (m = n(".payment_img")) == null || m.remove(), (j = n(".secure_encrypted_txt")) == null || j.remove(), (T = n(".crs_inter")) == null || T.remove(), (B = n(".crs_style")) == null || B.remove(), n("body").classList.contains("cart_page") && n("body").classList.remove("cart_page"))), s.target.nodeName === "BODY" && (this.checkPage() === "cart" || this.checkPage() === "checkout") && !n(".flavor_guarantee_block") && !n(".css-jobqsc") && this.renderFlavorGuaranteeBlock();
           for (let g of s.addedNodes)
             if (g instanceof HTMLElement) {
               if (this.isActivated)
                 return;
-              g.classList.contains("css-1i5hss0") && (this.isActivated = !0, console.dir(g, "node"), this.checkPage() === "cart" && this.device === "mobile" && !n(".css-jobqsc") && this.handleDisabledStickyBlock(), this.checkPage() === "checkout" && (this.handleDisabledRadioBlock(), this.device === "mobile" && n(".order_summary_body").classList.contains("is_open") && (n(".order_summary_body").style.height = "auto"))), g.classList.contains("input-holder") && this.checkPage() === "checkout" && this.device === "mobile" && n(".order_summary_body").classList.contains("is_open") && (n(".order_summary_body").style.height = "auto"), setTimeout(() => {
+              g.classList.contains("css-1i5hss0") && (this.isActivated = !0, this.checkPage() === "cart" && this.device === "mobile" && !n(".css-jobqsc") && this.handleDisabledStickyBlock(), this.checkPage() === "checkout" && (this.handleDisabledRadioBlock(), this.device === "mobile" && n(".order_summary_body").classList.contains("is_open") && (n(".order_summary_body").style.height = "auto"))), g.classList.contains("input-holder") && this.checkPage() === "checkout" && this.device === "mobile" && n(".order_summary_body").classList.contains("is_open") && (n(".order_summary_body").style.height = "auto"), setTimeout(() => {
                 this.isActivated = !1;
               }, 700);
             }
@@ -1625,25 +1625,25 @@ form .footer_mobile .tm-text {
             }
         });
       });
-      const e = { childList: !0, subtree: !0 };
-      this.observer.observe(document.body, e);
+      const t = { childList: !0, subtree: !0 };
+      this.observer.observe(document.body, t);
     }
     // cart and checkout
     renderFlavorGuaranteeBlock() {
       i(".summary-table").then(() => {
         var a;
-        let e = "", t = "";
-        n(".flavor_guarantee_block") || (this.checkPage() === "cart" && (this.device === "mobile" ? (e = ".container-fluid .heading", t = "afterend") : (e = ".summary-table", t = "beforebegin")), this.checkPage() === "checkout" && (this.device, e = ".form-column-left", t = "afterbegin"), (a = n(e)) == null || a.insertAdjacentHTML(t, A), console.dir("renderFlavorGuaranteeBlock"), this.initTooltip());
+        let t = "", e = "";
+        n(".flavor_guarantee_block") || (this.checkPage() === "cart" && (this.device === "mobile" ? (t = ".container-fluid .heading", e = "afterend") : (t = ".summary-table", e = "beforebegin")), this.checkPage() === "checkout" && (this.device, t = ".form-column-left", e = "afterbegin"), (a = n(t)) == null || a.insertAdjacentHTML(e, q), this.initTooltip());
       });
     }
     initTooltip() {
-      let e = "bottom-end";
-      this.device === "mobile" && (e = "top-end"), z([
+      let t = "bottom-end";
+      this.device === "mobile" && (t = "top-end"), z([
         "https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js",
         "https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"
       ]).then(async () => {
-        let t = setInterval(() => {
-          typeof tippy == "function" && n("[data-tooltip]") && (clearInterval(t), d("[data-tooltip]").forEach((a) => {
+        let e = setInterval(() => {
+          typeof tippy == "function" && n("[data-tooltip]") && (clearInterval(e), d("[data-tooltip]").forEach((a) => {
             tippy(a, {
               content: a.getAttribute("data-title"),
               trigger: "click",
@@ -1653,7 +1653,7 @@ form .footer_mobile .tm-text {
               appendTo: function() {
                 return a.closest(".info_wrapper");
               },
-              placement: e,
+              placement: t,
               interactive: !0,
               onShow(l) {
               },
@@ -1676,25 +1676,25 @@ form .footer_mobile .tm-text {
       n(".crs_inter") || document.head.insertAdjacentHTML(
         "afterbegin",
         '<link class="crs_inter" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">'
-      ), n(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${D}</style>`), this.checkPage() === "cart" && !n("body").classList.contains("cart_page") ? n("body").classList.add("cart_page") : n("body").classList.remove("cart_page"), console.dir("renderStyles");
+      ), n(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${D}</style>`), this.checkPage() === "cart" && !n("body").classList.contains("cart_page") ? n("body").classList.add("cart_page") : n("body").classList.remove("cart_page");
     }
     // cart
     changedTxtShipping() {
       n(".caption.txt_shipping") || i(".promo-code").then(() => {
-        d(".sum-row.total.coupon .caption").forEach((e) => {
-          var t;
-          e.nextElementSibling.textContent === "Free" ? (n(".free_shipping_block") || this.renderFreeShippingBlock(), e.nextElementSibling.style.lineHeight = "22px") : (t = n(".free_shipping_block")) == null || t.remove(), !e.textContent.includes("Subscription savings") && !e.textContent.includes("Standart shipping") && !e.closest(".total").previousElementSibling.classList.contains("sum-row-hr") && e.textContent !== "Standart shipping" && !e.classList.contains("txt_shipping") && (e.textContent = "Standart shipping", e.classList.add("txt_shipping"), console.dir("changedTxtShipping"));
+        d(".sum-row.total.coupon .caption").forEach((t) => {
+          var e;
+          t.nextElementSibling.textContent === "Free" ? (n(".free_shipping_block") || this.renderFreeShippingBlock(), t.nextElementSibling.style.lineHeight = "22px") : (e = n(".free_shipping_block")) == null || e.remove(), !t.textContent.includes("Subscription savings") && !t.textContent.includes("Standart shipping") && !t.closest(".total").previousElementSibling.classList.contains("sum-row-hr") && t.textContent !== "Standart shipping" && !t.classList.contains("txt_shipping") && (t.textContent = "Standart shipping", t.classList.add("txt_shipping"));
         });
       });
     }
     changedTxtBtnCheckout() {
       i(".actions-wrapper button").then(() => {
-        n(".actions-wrapper button") && !n(".actions-wrapper button").innerHTML.includes("Proceed to checkout") && (n(".actions-wrapper button").innerHTML = `Proceed to checkout ${u.arrowWhiteIcon}`, console.dir("changedTxtBtnCheckout"));
+        n(".actions-wrapper button") && !n(".actions-wrapper button").innerHTML.includes("Proceed to checkout") && (n(".actions-wrapper button").innerHTML = `Proceed to checkout ${u.arrowWhiteIcon}`);
       });
     }
     renderStickyBlock() {
       i("#root").then(() => {
-        n(".sticky_block") || n("#root").insertAdjacentHTML("afterbegin", q), this.handleClickStickyBtn(), this.handleDisabledStickyBlock(), console.dir("renderStickyBlock");
+        n(".sticky_block") || n("#root").insertAdjacentHTML("afterbegin", A), this.handleClickStickyBtn(), this.handleDisabledStickyBlock();
       });
     }
     renderTxtStickyBlock() {
@@ -1702,8 +1702,8 @@ form .footer_mobile .tm-text {
         i(".sum-row.order-total .total").then(() => {
           if (n(".sticky_block .total_box")) {
             n(".sticky_block .total_box").innerHTML = "";
-            let e = n(".container-fluid .sum-row.order-total").cloneNode(!0);
-            n(".sticky_block .total_box .sum-row.order-total") || (n(".sticky_block .total_box").insertAdjacentElement("afterbegin", e), console.dir("renderTxtStickyBlock"));
+            let t = n(".container-fluid .sum-row.order-total").cloneNode(!0);
+            n(".sticky_block .total_box .sum-row.order-total") || n(".sticky_block .total_box").insertAdjacentElement("afterbegin", t);
           }
         });
       });
@@ -1711,14 +1711,14 @@ form .footer_mobile .tm-text {
     handleDisabledStickyBlock() {
       i(".sticky_block .proceed_to_checkout_btn").then(() => {
         i(".actions-wrapper button").then(() => {
-          n(".actions-wrapper button").disabled ? n(".sticky_block .proceed_to_checkout_btn").disabled = !0 : n(".sticky_block .proceed_to_checkout_btn").disabled = !1, console.dir("handleDisabledStickyBlock");
+          n(".actions-wrapper button").disabled ? n(".sticky_block .proceed_to_checkout_btn").disabled = !0 : n(".sticky_block .proceed_to_checkout_btn").disabled = !1;
         });
       });
     }
     toggleStickyBlockVisibility() {
       i(".actions-wrapper").then(() => {
         i(".sticky_block").then(() => {
-          const e = n(".sticky_block"), t = n(".actions-wrapper");
+          const t = n(".sticky_block"), e = n(".actions-wrapper");
           function a() {
             const l = {
               root: null,
@@ -1726,81 +1726,77 @@ form .footer_mobile .tm-text {
             };
             let c = new IntersectionObserver((s) => {
               s.forEach((o) => {
-                o.isIntersecting ? e.style.display = "none" : e.style.display = "block", c.unobserve(o.target);
+                o.isIntersecting ? t.style.display = "none" : t.style.display = "block", c.unobserve(o.target);
               }), c.disconnect();
             }, l);
-            c.observe(t);
+            c.observe(e);
           }
           window.addEventListener("scroll", () => {
             a();
           }), a();
         });
-      }), console.dir("toggleStickyBlockVisibility");
+      });
     }
     handleClickStickyBtn() {
       i(".sticky_block button").then(() => {
-        var e;
-        (e = n(".sticky_block button")) == null || e.addEventListener("click", (t) => {
-          t.preventDefault(), this.isClicked = !0, h("exp_stickyproceed_click_03", "Proceed to Checkout", "Button", "Cart - Sticky Banner"), n(".container-fluid .col-md-4.custom-column .actions-wrapper button").click(), this.isClicked = !1;
-        }), console.dir("handleClickStickyBtn");
+        var t;
+        (t = n(".sticky_block button")) == null || t.addEventListener("click", (e) => {
+          e.preventDefault(), this.isClicked = !0, h("exp_stickyproceed_click_03", "Proceed to Checkout", "Button", "Cart - Sticky Banner"), n(".container-fluid .col-md-4.custom-column .actions-wrapper button").click(), this.isClicked = !1;
+        });
       });
     }
     handleClickProceedToCheckoutBtn() {
       i(".container-fluid .col-md-4.custom-column .actions-wrapper button").then(() => {
-        var e;
-        (e = n(".container-fluid .col-md-4.custom-column .actions-wrapper button")) == null || e.addEventListener("click", (t) => {
+        var t;
+        (t = n(".container-fluid .col-md-4.custom-column .actions-wrapper button")) == null || t.addEventListener("click", (e) => {
           this.isClicked || h("exp_cartproceed_click_04", "Proceed to Checkout", "Button", "Cart");
-        }), console.dir("handleClickProceedToCheckoutBtn");
+        });
       });
     }
     // checkout
     renderPayNowTxtBlock() {
       i(".form-column-left button").then(() => {
-        n(".pay_now_txt_block") || n(".form-column-left button").insertAdjacentHTML("afterend", O), n(".form-column-left button").textContent !== "Pay now" && (n(".form-column-left button").textContent = "Pay now"), console.dir("renderPayNowTxtBlock"), this.handleClickNewLinksNearPayNow();
+        n(".pay_now_txt_block") || n(".form-column-left button").insertAdjacentHTML("afterend", O), n(".form-column-left button").textContent !== "Pay now" && (n(".form-column-left button").textContent = "Pay now"), this.handleClickNewLinksNearPayNow();
       });
     }
     handleClickNewLinksNearPayNow() {
       i(".pay_now_txt_block").then(() => {
-        n(".terms_sale_link").addEventListener("click", (e) => {
-          console.dir("terms_sale_link");
-        }), n(".privacy_link").addEventListener("click", (e) => {
-          console.dir("privacy_link");
+        n(".terms_sale_link").addEventListener("click", (t) => {
+        }), n(".privacy_link").addEventListener("click", (t) => {
         });
       });
     }
     renderOrderSummaryBlock() {
       i(".form-column-right .sum-row.total .total").then(() => {
-        n(".order_summary_block") || (this.device === "desktop" ? n(".form-column-right .checokut-title-wrapper").insertAdjacentHTML("afterend", B) : i(".order_summary_block_mobile").then(() => {
-          n(".order_summary_block_mobile .order_summary_body").insertAdjacentHTML("afterbegin", B);
+        n(".order_summary_block") || (this.device === "desktop" ? n(".form-column-right .checokut-title-wrapper").insertAdjacentHTML("afterend", L) : i(".order_summary_block_mobile").then(() => {
+          n(".order_summary_block_mobile .order_summary_body").insertAdjacentHTML("afterbegin", L);
         }), i(".order_summary_block .products_list").then(() => {
           var l, c, s;
           if (!localStorage.getItem("v4Cart"))
             return;
           n(".products_list").innerHTML = "";
-          let t = JSON.parse(localStorage.getItem("v4Cart")).cart.boxes;
+          let e = JSON.parse(localStorage.getItem("v4Cart")).cart.boxes;
           const a = (l = d(".sum-row.total .total")[0]) == null ? void 0 : l.textContent.charAt(0);
-          if (n(".products_list").children.length !== t.length)
-            for (const o in t) {
+          if (n(".products_list").children.length !== e.length)
+            for (const o in e) {
               let p = function({ type: x, name: b }, m) {
                 return x === "bar" || b.toLowerCase().includes("bar") ? m === 1 ? "5-pack" : `5-pack (${m})` : x === "pouch" || b.toLowerCase().includes("pouch") ? m === 1 ? "6-pack" : `6-pack (${m})` : m + " items";
               };
-              const f = (s = (c = t[o]) == null ? void 0 : c.image) != null && s.includes("https://cerebelly.com/wp-json/") ? t[o].image : `https://cerebelly.com/wp-json/cerebelly/image/get?path=${t[o].image}`, k = t[o].title, w = t[o].count, y = p(t[o].blueprint, w);
-              console.dir(t[o].blueprint.type);
-              const v = t[o].cadence.includes("week") && t[o].subscribe ? `Every ${t[o].cadence}` : "One-time purchase", S = `${a}${t[o].price.toFixed(2)}`, C = ((t[o].priceDefault - t[o].price) / t[o].priceDefault * 100).toFixed(0);
-              n(".products_list").children.length !== t.length && n(".products_list").insertAdjacentHTML(
+              const f = (s = (c = e[o]) == null ? void 0 : c.image) != null && s.includes("https://cerebelly.com/wp-json/") ? e[o].image : `https://cerebelly.com/wp-json/cerebelly/image/get?path=${e[o].image}`, k = e[o].title, w = e[o].count, y = p(e[o].blueprint, w), v = e[o].cadence.includes("week") && e[o].subscribe ? `Every ${e[o].cadence}` : "One-time purchase", S = `${a}${e[o].price.toFixed(2)}`, C = ((e[o].priceDefault - e[o].price) / e[o].priceDefault * 100).toFixed(0);
+              n(".products_list").children.length !== e.length && n(".products_list").insertAdjacentHTML(
                 "beforeend",
                 I(f, k, y, v, S, +C)
               );
             }
-        })), console.dir("renderOrderSummaryBlock");
+        }));
       });
     }
     renderStandardFreeShippingBlock() {
       i(".sum-row.shipping.standard-shipping.active").then(() => {
-        const e = d(".sum-row.standard-shipping .total")[0].textContent, t = d(".sum-row.standard-shipping .total")[1].textContent;
+        const t = d(".sum-row.standard-shipping .total")[0].textContent, e = d(".sum-row.standard-shipping .total")[1].textContent;
         n(".new_shipping_block") || n(".stripe-inputs.checkout-block").previousElementSibling.insertAdjacentHTML(
           "beforebegin",
-          F(e, t)
+          F(t, e)
         ), i(".new_shipping_block").then(() => {
           d(".new_shipping_block label").forEach((a) => {
             a.addEventListener("click", (l) => {
@@ -1808,23 +1804,23 @@ form .footer_mobile .tm-text {
               (c = n(".new_shipping_txt_block")) == null || c.remove(), a.previousElementSibling.getAttribute("id") === "expeditedShippingVar" ? ((s = n('.sum-row.shipping [name="shipping-option-1"]')) == null || s.click(), h("exp_shippingexpedited_radio_02", "Expedited Shipping", "Radio", "Checkout")) : ((o = n('.sum-row.shipping [name="shipping-option-0"]')) == null || o.click(), h("exp_shippingstandard_radio_01", "Standard Shipping", "Radio", "Checkout")), n(".new_shipping_txt_block") || this.renderNewShippingTxtBlock();
             });
           });
-        }), console.dir("renderStandardFreeShippingBlock");
+        });
       });
     }
     handleDisabledRadioBlock() {
       i(".new_shipping_block").then(() => {
-        var e;
-        n(".form-column-left button") && ((e = n(".form-column-left button")) != null && e.disabled ? (n(".new_shipping_block").style.opacity = "0.5", n(".new_shipping_block").style.pointerEvents = "none") : (n(".new_shipping_block").style.opacity = "1", n(".new_shipping_block").style.pointerEvents = "auto"), console.dir("handleDisabledRadioBlock"));
+        var t;
+        n(".form-column-left button") && ((t = n(".form-column-left button")) != null && t.disabled ? (n(".new_shipping_block").style.opacity = "0.5", n(".new_shipping_block").style.pointerEvents = "none") : (n(".new_shipping_block").style.opacity = "1", n(".new_shipping_block").style.pointerEvents = "auto"));
       });
     }
     checkedShippingRadioInit() {
       i(".sum-row.shipping.standard-shipping.active").then(() => {
-        n(".new_shipping_txt_block") || this.renderNewShippingTxtBlock(), d(".sum-row.shipping.standard-shipping .total").forEach((e) => {
-          e.textContent.includes("FREE") && !n(".free_shipping_block") && this.renderFreeShippingBlock();
+        n(".new_shipping_txt_block") || this.renderNewShippingTxtBlock(), d(".sum-row.shipping.standard-shipping .total").forEach((t) => {
+          t.textContent.includes("FREE") && !n(".free_shipping_block") && this.renderFreeShippingBlock();
         }), i(".new_shipping_block").then(() => {
-          var e, t;
-          ((e = document.querySelector(".sum-row.shipping.standard-shipping.active input")) == null ? void 0 : e.getAttribute("name")) === "shipping-option-1" && (n("#expeditedShippingVar").checked = !0, console.dir("expeditedShippingVar>>>>>>>>>>>>>>>>>>>")), ((t = document.querySelector(".sum-row.shipping.standard-shipping.active input")) == null ? void 0 : t.getAttribute("name")) === "shipping-option-0" && (n("#standartShippingVar").checked = !0, console.dir("standartShippingVar>>>>>>>>>>>>>>"));
-        }), console.dir("checkedShippingRadioInit");
+          var t, e;
+          ((t = document.querySelector(".sum-row.shipping.standard-shipping.active input")) == null ? void 0 : t.getAttribute("name")) === "shipping-option-1" && (n("#expeditedShippingVar").checked = !0), ((e = document.querySelector(".sum-row.shipping.standard-shipping.active input")) == null ? void 0 : e.getAttribute("name")) === "shipping-option-0" && (n("#standartShippingVar").checked = !0);
+        });
       });
     }
     renderPaymentImgAndDescription() {
@@ -1835,15 +1831,15 @@ form .footer_mobile .tm-text {
         ), n(".secure_encrypted_txt") || n(".form-column-left .title-with-cards").insertAdjacentHTML(
           "afterend",
           '<p class="secure_encrypted_txt">All transactions are secure and encrypted</p>'
-        ), console.dir("renderPaymentImgAndDescription");
+        );
       });
     }
     renderNewShippingTxtBlock() {
       i(".sum-row.shipping.standard-shipping.active").then(() => {
-        const e = n(".sum-row.shipping.standard-shipping.active .total").textContent, t = n(".sum-row.shipping.standard-shipping.active label .name").textContent, a = e.includes("FREE") ? "accent_color_green" : "";
+        const t = n(".sum-row.shipping.standard-shipping.active .total").textContent, e = n(".sum-row.shipping.standard-shipping.active label .name").textContent, a = t.includes("FREE") ? "accent_color_green" : "";
         n(".new_shipping_txt_block") || n(".sum-row-hr + .sum-row.shipping.standard-shipping").insertAdjacentHTML(
           "beforebegin",
-          V(e, t, a)
+          V(t, e, a)
         ), i(".summary-table").then(() => {
           setTimeout(() => {
             let l = n(".sum-row.order-total .total").textContent.split("$")[0], c = +n(".sum-row.order-total .total").textContent.split("$")[1], s = " ";
@@ -1865,33 +1861,33 @@ form .footer_mobile .tm-text {
         n(".footer_mobile") || n(".form-row").insertAdjacentHTML("afterbegin", '<div class="footer_mobile"></div>');
       }), i(".footer_mobile").then(() => {
         n(".footer_mobile .tm-text") || n(".footer_mobile").insertAdjacentElement("afterbegin", n(".tm-text")), n(".footer_mobile .css-1f2tjn7") || n(".footer_mobile").insertAdjacentElement("afterbegin", n(".css-1f2tjn7"));
-      }), console.dir("renderFooterMobile");
+      });
     }
     renderOrderSummaryBlockMobile() {
       i(".form-row .form-column-right > .css-kq9w2n").then(() => {
-        n(".order_summary_block_mobile") || n(".form-row .form-column-right > .css-kq9w2n").insertAdjacentHTML("afterbegin", N), this.handleOpenAndCloseOrderSummaryBlockMobile(), console.dir("renderOrderSummaryBlockMobile");
+        n(".order_summary_block_mobile") || n(".form-row .form-column-right > .css-kq9w2n").insertAdjacentHTML("afterbegin", N), this.handleOpenAndCloseOrderSummaryBlockMobile();
       });
     }
     handleOpenAndCloseOrderSummaryBlockMobile() {
       i(".order_summary_block_mobile").then(() => {
-        n(".order_summary_header .order_summary_toggle").addEventListener("click", (e) => {
-          h("exp_ordersummary_click_05", "Show Order Summary", "Button", "Checkout"), H(100, n(".order_summary_header"));
-          const t = n(".order_summary_body");
-          e.currentTarget.classList.toggle("is_open"), t.classList.contains("is_open") ? e.currentTarget.querySelector("span").textContent = "Show order summary" : e.currentTarget.querySelector("span").textContent = "Hide order summary", this.resizeOrderSummaryBlockMobile(t), t.classList.toggle("is_open");
-        }), console.dir("handleOpenAndCloseOrderSummaryBlockMobile");
+        n(".order_summary_header .order_summary_toggle").addEventListener("click", (t) => {
+          h("exp_ordersummary_click_05", "Show Order Summary", "Button", "Checkout"), M(100, n(".order_summary_header"));
+          const e = n(".order_summary_body");
+          t.currentTarget.classList.toggle("is_open"), e.classList.contains("is_open") ? t.currentTarget.querySelector("span").textContent = "Show order summary" : t.currentTarget.querySelector("span").textContent = "Hide order summary", this.resizeOrderSummaryBlockMobile(e), e.classList.toggle("is_open");
+        });
       });
     }
-    resizeOrderSummaryBlockMobile(e) {
-      if (e.classList.contains("is_open")) {
-        const t = e.scrollHeight;
-        e.style.height = t + "px", setTimeout(() => {
-          e.style.height = "0";
+    resizeOrderSummaryBlockMobile(t) {
+      if (t.classList.contains("is_open")) {
+        const e = t.scrollHeight;
+        t.style.height = e + "px", setTimeout(() => {
+          t.style.height = "0";
         }, 0);
       } else {
-        e.style.height = "auto";
-        const t = e.scrollHeight + "px";
-        e.style.height = "0", setTimeout(() => {
-          e.style.height = t;
+        t.style.height = "auto";
+        const e = t.scrollHeight + "px";
+        t.style.height = "0", setTimeout(() => {
+          t.style.height = e;
         }, 0);
       }
     }
@@ -1901,14 +1897,14 @@ form .footer_mobile .tm-text {
           n(".order_summary_block_mobile .order_summary_body .summary-table") || n(".order_summary_block_mobile .order_summary_body").insertAdjacentElement(
             "beforeend",
             n(".summary-table")
-          ), console.dir("replaceOrderTotal"), this.renderTxtTotalToSummaryBlockMobile();
+          ), this.renderTxtTotalToSummaryBlockMobile();
         });
       });
     }
     renderTxtTotalToSummaryBlockMobile() {
       i(".order_summary_block_mobile .order_summary_body .summary-table .new_subtotal").then(() => {
         i(".order_summary_block_mobile .order_summary_header .price_total .price_order_total").then(() => {
-          n(".order_summary_block_mobile .order_summary_header .price_total .price_order_total").textContent = n(".sum-row.order-total .total").textContent, n(".order_summary_block_mobile .order_summary_header .price_total .price_total_strikethrough").textContent = n(".order_summary_block_mobile .order_summary_body .summary-table .new_subtotal").textContent, console.dir("renderTxtTotalToSummaryBlockMobile");
+          n(".order_summary_block_mobile .order_summary_header .price_total .price_order_total").textContent = n(".sum-row.order-total .total").textContent, n(".order_summary_block_mobile .order_summary_header .price_total .price_total_strikethrough").textContent = n(".order_summary_block_mobile .order_summary_body .summary-table .new_subtotal").textContent;
         });
       });
     }
