@@ -13,22 +13,22 @@
       `%c EXP: ${e} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, u = (e) => document.querySelectorAll(e), l = (e) => document.querySelector(e), h = async (e) => {
+  }, u = (e) => document.querySelectorAll(e), p = (e) => document.querySelector(e), h = async (e) => {
     const n = (t) => new Promise((o, i) => {
       const r = t.split(".").pop();
       if (r === "js") {
         if (Array.from(document.scripts).map((d) => d.src.toLowerCase()).includes(t.toLowerCase()))
           return console.log(`Script ${t} allready downloaded!`), o("");
-        const p = document.createElement("script");
-        p.src = t, p.onload = o, p.onerror = i, document.head.appendChild(p);
+        const l = document.createElement("script");
+        l.src = t, l.onload = o, l.onerror = i, document.head.appendChild(l);
       } else if (r === "css") {
         if (Array.from(document.styleSheets).map((d) => {
           var w;
           return (w = d.href) == null ? void 0 : w.toLowerCase();
         }).includes(t.toLowerCase()))
           return console.log(`Style ${t} allready downloaded!`), o("");
-        const p = document.createElement("link");
-        p.rel = "stylesheet", p.href = t, p.onload = o, p.onerror = i, document.head.appendChild(p);
+        const l = document.createElement("link");
+        l.rel = "stylesheet", l.href = t, l.onload = o, l.onerror = i, document.head.appendChild(l);
       }
     });
     for (const t of e)
@@ -39,17 +39,17 @@
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
     }, 1e3);
   }, x = (e, n, t, o, i = 3e3, r = 0.5) => {
-    let c, p;
+    let c, l;
     if (c = new IntersectionObserver(
       function(d) {
-        d[0].isIntersecting === !0 ? p = setTimeout(() => {
+        d[0].isIntersecting === !0 ? l = setTimeout(() => {
           f(
             n,
             d[0].target.dataset.visible || o || "",
             "Visibility",
             t
           ), c.disconnect();
-        }, i) : (console.log("Element is not fully visible"), clearTimeout(p));
+        }, i) : (console.log("Element is not fully visible"), clearTimeout(l));
       },
       { threshold: [r] }
     ), typeof e == "string") {
@@ -58,7 +58,7 @@
     } else
       c.observe(e);
   };
-  function g(e) {
+  function b(e) {
     return new Promise((n) => {
       if (document.querySelector(e))
         return n(document.querySelector(e));
@@ -91,7 +91,7 @@
       top: i,
       behavior: "smooth"
     }), await y(800), !0;
-  }, b = "https://conversionratestore.github.io/projects/buzzpatch/img/", s = {
+  }, g = "https://conversionratestore.github.io/projects/buzzpatch/img/", s = {
     tooltipIcon: `
   <svg xmlns="http://www.w3.org/2000/svg" width="6" height="13" viewBox="0 0 6 13" fill="none">
   <path d="M2 11.1352H4V12.84H2V11.1352ZM0 3.38036C0 3.03495 0.0784317 2.70626 0.235294 2.39428C0.392157 2.08231 0.607843 1.8149 0.882353 1.59206C1.15686 1.35807 1.47712 1.17423 1.84314 1.04052C2.20915 0.906819 2.60131 0.839966 3.01961 0.839966C3.50327 0.839966 3.94118 0.923532 4.33333 1.09066C4.73856 1.25779 5.0719 1.49178 5.33333 1.79261C5.46405 1.9486 5.56863 2.09345 5.64706 2.22715C5.73856 2.36086 5.81046 2.5057 5.86275 2.66169C5.91503 2.80654 5.94771 2.97367 5.96078 3.16309C5.98693 3.3525 6 3.57534 6 3.83161C6 4.1213 5.99346 4.36643 5.98039 4.56699C5.98039 4.7564 5.96732 4.92353 5.94118 5.06838C5.91503 5.21323 5.88235 5.34136 5.84314 5.45278C5.80392 5.55306 5.75163 5.64777 5.68627 5.7369L4.33333 7.70905C4.24183 7.84275 4.1634 7.98203 4.09804 8.12687C4.03268 8.26058 4 8.40542 4 8.56141V9.89846H2V8.34414C2 8.09902 2.04575 7.86504 2.13725 7.64219C2.22876 7.41935 2.3464 7.20208 2.4902 6.99038L3.7451 5.25222C3.84967 5.10738 3.91503 4.95139 3.94118 4.78426C3.98039 4.61713 4 4.44999 4 4.28286V3.39707C4 3.16309 3.90196 2.96253 3.70588 2.7954C3.52288 2.62827 3.29412 2.5447 3.01961 2.5447C2.78431 2.5447 2.55556 2.61712 2.33333 2.76197C2.11111 2.90682 2 3.11852 2 3.39707V4.36643H0V3.38036Z" fill="#FFF"/>
@@ -105,11 +105,11 @@
   }, a = {
     ver_b: {
       id: "43643653652524",
-      img: `${b}whole_family_protection_kit_bundle.png`,
+      img: `${g}whole_family_protection_kit_bundle.png`,
       title: "Whole family protection kit",
       description: "3 Packs + 2 Packs of Mosquito Patches For Adults",
       price: "$10.00 Each",
-      imgTooltip: `${b}whole_family_protection_kit_bundle_tooltip.png`,
+      imgTooltip: `${g}whole_family_protection_kit_bundle_tooltip.png`,
       mainTitleTooltip: "BuzzPatch",
       subTitleTooltip: "Mosquito Repellent Patches",
       boldTitleTooltip: "40 Adult-Sized Patches",
@@ -117,11 +117,11 @@
     },
     ver_c: {
       id: "43643656339500",
-      img: `${b}outdoor_protection_kit_bundle.png`,
+      img: `${g}outdoor_protection_kit_bundle.png`,
       title: "Outdoor protection kit",
       description: "3 Packs + 48 Kids Tick <br/> Repellent Stickers",
       price: "$10.00 Each",
-      imgTooltip: `${b}outdoor_protection_kit_bundle_tooltip.png`,
+      imgTooltip: `${g}outdoor_protection_kit_bundle_tooltip.png`,
       mainTitleTooltip: "TrailPatch",
       subTitleTooltip: "Kids Tick Repellent Stickers",
       boldTitleTooltip: "48 Colorful Patches",
@@ -266,6 +266,11 @@
   left: 19px !important;
   top: -3px !important;
 }
+@media (max-width: 361px) {
+  .new-bundle-pack [data-tippy-root] .tippy-box {
+    left: 12px !important;
+  }
+}
 .new-bundle-pack [data-tippy-root] .tippy-box .tippy-content {
   padding: 16px;
 }
@@ -273,6 +278,11 @@
   display: block !important;
   color: #fff;
   left: -18px !important;
+}
+@media (max-width: 361px) {
+  .new-bundle-pack [data-tippy-root] .tippy-box .tippy-arrow {
+    left: -12px !important;
+  }
 }
 .new-bundle-pack [data-tippy-root] .tippy-box .tooltip_block .tooltip_wrapper {
   display: flex;
@@ -392,7 +402,6 @@
 }
 #getNow > img {
   max-width: 220px !important;
-  max-height: 120px !important;
   -o-object-fit: contain;
      object-fit: contain;
   margin: 1px auto 0 !important;
@@ -548,11 +557,11 @@ body.tooltip_open .new_bundle_tooltip svg path {
       ), document.head.insertAdjacentHTML("beforeend", `<style>${j}</style>`), this.changeBundleInfo(), this.clickBundleHandler(), this.handleClickGetNow(), this.clickProceedToCheckoutBtnHandler(), this.visibleHandler();
     }
     changeBundleInfo() {
-      g(".new-bundle-pack").then((n) => {
+      b(".new-bundle-pack").then((n) => {
         var o, i;
-        (o = l(".np-family-kit span.np-whole-family-kit")) == null || o.getAttribute("data-each-price");
-        const t = ((i = l(".np-family-kit span.outdoor-protection-kit")) == null ? void 0 : i.getAttribute("data-each-price")) ?? "";
-        l(".new_bundle_wrapper") || (l(".new-bundle-pack label").insertAdjacentHTML("afterbegin", T(t)), l(".new-bundle-pack input").value = a.ver_c.id, l(".new-bundle-pack label").insertAdjacentHTML("afterend", C)), this.initTooltip();
+        (o = p(".np-family-kit span.np-whole-family-kit")) == null || o.getAttribute("data-each-price");
+        const t = ((i = p(".np-family-kit span.outdoor-protection-kit")) == null ? void 0 : i.getAttribute("data-each-price")) ?? "";
+        p(".new_bundle_wrapper") || (p(".new-bundle-pack label").insertAdjacentHTML("afterbegin", T(t)), p(".new-bundle-pack input").value = a.ver_c.id, p(".new-bundle-pack label").insertAdjacentHTML("afterend", C)), this.initTooltip();
       });
     }
     clickBundleHandler() {
@@ -560,7 +569,7 @@ body.tooltip_open .new_bundle_tooltip svg path {
       u("#getNow input[type=radio] + label").forEach((t) => {
         t.addEventListener("click", (o) => {
           var i;
-          t.getAttribute("for") === "radios-0" || t.getAttribute("for") === "radios-1" || t.getAttribute("for") === "radios-2" || t.getAttribute("for") === "radios-3" ? (l(".js-total").style.display = "block", (i = l(".new_js_total")) == null || i.remove()) : (f("exp_introduce_v3_click_01", "Outdoor protection kit", "Click", "Bundle & save"), l(".js-total").style.display = "none", l(".new_js_total") || l(".js-total").insertAdjacentHTML("afterend", this.npFamilyKitHtml(n)));
+          t.getAttribute("for") === "radios-0" || t.getAttribute("for") === "radios-1" || t.getAttribute("for") === "radios-2" || t.getAttribute("for") === "radios-3" ? (p(".js-total").style.display = "block", (i = p(".new_js_total")) == null || i.remove()) : (f("exp_introduce_v3_click_01", "Outdoor protection kit", "Click", "Bundle & save"), p(".js-total").style.display = "none", p(".new_js_total") || p(".js-total").insertAdjacentHTML("afterend", this.npFamilyKitHtml(n)));
         });
       });
     }
@@ -577,12 +586,12 @@ body.tooltip_open .new_bundle_tooltip svg path {
       }) : o = "", o;
     }
     clickProceedToCheckoutBtnHandler() {
-      g("#addToCart").then((n) => {
+      b("#addToCart").then((n) => {
         var t;
-        (t = l("#addToCart")) == null || t.addEventListener("click", (o) => {
+        (t = p("#addToCart")) == null || t.addEventListener("click", (o) => {
           var r;
           o.preventDefault(), o.stopPropagation();
-          let i = (r = l(".js-packs input[type=radio]:checked+label")) == null ? void 0 : r.previousElementSibling.value;
+          let i = (r = p(".js-packs input[type=radio]:checked+label")) == null ? void 0 : r.previousElementSibling.value;
           this.addToCartHandler(i);
         });
       });
@@ -611,12 +620,12 @@ body.tooltip_open .new_bundle_tooltip svg path {
       });
     }
     handleClickGetNow() {
-      g("#getNow").then((n) => {
+      b("#getNow").then((n) => {
         u('[href="#getFormNow"]').forEach((t) => {
           t.addEventListener("click", (o) => {
             o.preventDefault(), o.stopPropagation(), $("html, body").stop();
-            let i = l("#getNow"), r = 65, c = !0, p = setInterval(async () => {
-              i.getBoundingClientRect().top > r - 1 && i.getBoundingClientRect().top <= r + 1 ? clearInterval(p) : c && (c = !1, c = await k(r, i));
+            let i = p("#getNow"), r = 65, c = !0, l = setInterval(async () => {
+              i.getBoundingClientRect().top > r - 1 && i.getBoundingClientRect().top <= r + 1 ? clearInterval(l) : c && (c = !1, c = await k(r, i));
             }, 100);
           });
         });
@@ -628,7 +637,7 @@ body.tooltip_open .new_bundle_tooltip svg path {
         "https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"
       ]).then(async () => {
         let n = setInterval(() => {
-          typeof tippy == "function" && l("[data-tooltip]") && (clearInterval(n), u("[data-tooltip]").forEach((t) => {
+          typeof tippy == "function" && p("[data-tooltip]") && (clearInterval(n), u("[data-tooltip]").forEach((t) => {
             tippy(t, {
               content: t.getAttribute("data-title"),
               trigger: "click",
@@ -644,10 +653,10 @@ body.tooltip_open .new_bundle_tooltip svg path {
                 f("exp_introduce_v3_element_02", "Outdoor protection kit tooltip", "Visibility", "Bundle & save");
               },
               onTrigger(o) {
-                l("body").classList.add("tooltip_open"), f("exp_introduce_v3_click_02", "Outdoor protection kit tooltip", "Click", "Bundle & save");
+                p("body").classList.add("tooltip_open"), f("exp_introduce_v3_click_02", "Outdoor protection kit tooltip", "Click", "Bundle & save");
               },
               onHide(o) {
-                l("body").classList.remove("tooltip_open");
+                p("body").classList.remove("tooltip_open");
               }
             });
           }));
@@ -655,7 +664,7 @@ body.tooltip_open .new_bundle_tooltip svg path {
       });
     }
     visibleHandler() {
-      g(".new_bundle_wrapper").then((n) => {
+      b(".new_bundle_wrapper").then((n) => {
         x(".new_bundle_wrapper", "exp_introduce_v3_element_01", "Bundle & save", "Outdoor protection kit");
       });
     }
