@@ -579,10 +579,7 @@ body.tooltip_open .new_bundle_tooltip svg path {
       return t ? t == null || t.forEach((i) => {
         i.getAttribute("data-variant-id") === n && (o = `<div class="new_js_total">
             <span class="new_price">${i.getAttribute("data-price")}</span> (<span class="new_price_off"
-              >${i.getAttribute("data-price-off")}%</span
-            >
-            OFF)
-          </div>`);
+              >60%</span> OFF)</div>`);
       }) : o = "", o;
     }
     clickProceedToCheckoutBtnHandler() {
