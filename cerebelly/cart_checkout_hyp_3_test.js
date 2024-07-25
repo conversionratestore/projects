@@ -157,7 +157,7 @@
     `
   <div class="free_shipping_block">
     ${u.tickCircleIcon}
-    <p>Congtatulations! You get <span class="accent_color_green">Free shipping</span></p>
+    <p>Congratulations! You get <span class="accent_color_green">Free shipping</span></p>
   </div>
 `
   ), q = (
@@ -248,8 +248,8 @@
         </div>
         <div class="radio_days">
           <span>5-7 business days</span>
-          ${u.fedExIcon}
-          <!-- <img src="${_}shipping_img.png" alt="shipping img" /> -->
+          <!-- ${u.fedExIcon} -->
+          <img src="${_}shipping_img.png" alt="shipping img" />
         </div>
       </label>
 
@@ -264,8 +264,8 @@
         </div>
         <div class="radio_days">
           <span>1-3 business days</span>
-          ${u.fedExIcon}
-          <!-- <img src="${_}shipping_img.png" alt="shipping img" /> -->
+          <!-- ${u.fedExIcon} -->
+          <img src="${_}shipping_img.png" alt="shipping img" />
         </div>
       </label>
     </div>
