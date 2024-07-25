@@ -364,6 +364,11 @@
   color: #fb7306;
 }
 
+.os-subnote > div .icon svg {
+  width: inherit;
+  height: inherit;
+}
+
 .os-subnote > div span {
   display: inline;
   color: #fb7306;
@@ -445,6 +450,11 @@
 .os-incentives-note {
   justify-content: center;
   width: 100%;
+}
+
+.os-subnote .os-saveup-note .icon {
+  width: 32px !important;
+  height: 32px !important;
 }`;
   class P {
     constructor({ container: n, position: t }) {
