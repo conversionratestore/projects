@@ -13,7 +13,7 @@
       `%c EXP: ${r} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, v = (r) => document.querySelector(r), k = (r) => {
+  }, b = (r) => document.querySelector(r), k = (r) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", r, "variant_1"));
     }, 1e3);
@@ -23,7 +23,7 @@
     const i = document.createElement("script");
     i.src = r, i.onload = n, i.onerror = t, document.head.appendChild(i);
   });
-  function b(r) {
+  function v(r) {
     return new Promise((n) => {
       if (document.querySelector(r))
         return n(document.querySelector(r));
@@ -275,7 +275,7 @@
     <clipPath id="a"><path fill="#fff" transform="translate(.5 .5)" d="M0 0h18v18H0z" /></clipPath>
   </defs>
 </svg>`
-  ), T = (
+  ), q = (
     /* HTML */
     `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none">
   <path
@@ -283,7 +283,7 @@
     fill="currentColor"
   />
 </svg>`
-  ), q = (
+  ), T = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -440,7 +440,12 @@
 .estimate-custom-bill .custom-radio .custom-radio-item:last-of-type {
   grid-column: 1 / -1;
 }
-`;
+
+
+.os-incentives-note {
+  justify-content: center;
+  width: 100%;
+}`;
   class P {
     constructor({ container: n, position: t }) {
       this.position = t || "beforeend", this.container = n, this.init();
@@ -449,6 +454,8 @@
       this.render(), this.handle(), this.addSubNote();
     }
     addSubNote() {
+      if (document.querySelector(".os-incentives-note"))
+        return;
       const n = (
         /* HTML */
         `<div class="os-incentives-note">
@@ -487,7 +494,7 @@
       </div>
     </div>`
       );
-      if (!this.container)
+      if (!this.container || document.querySelector("#estimate-custom-bill"))
         return;
       const t = document.querySelector("#bill-slider");
       (e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${j}</style>`), t && t.remove();
@@ -520,12 +527,12 @@
       if (n) {
         const e = (Number(n) * 12).toLocaleString("en-US"), i = (
           /* HTML */
-          `<div class="os-incentive-note">
-        <span class="icon">${T}</span>
+          `<div class="os-saveup-note">
+        <span class="icon">${q}</span>
         <div>You could <span>save up to $${e}</span> on your yearly energy bill</div>
       </div>`
         );
-        new f({
+        document.querySelector(".os-saveup-note") || new f({
           container: document.querySelector("#estimate-custom-address .container"),
           content: i,
           position: "afterend"
@@ -598,6 +605,12 @@
   text-align: left;
 }
 
+@media (max-width: 768px) {
+  #estimate-zip h5, .os-info-block__list li {
+    font-weight: 500 !important;
+  }
+  
+}
 #estimate-zip .os-title {
   font-size: 32px;
   font-weight: 900;
@@ -705,6 +718,8 @@
       !t || !e || t.before(e);
     }
     addSubNote() {
+      if (document.querySelector(".os-secure-note"))
+        return;
       const n = (
         /* HTML */
         `<div class="os-secure-note">
@@ -890,7 +905,7 @@
       </div>
     </div>`
       );
-      this.container && ((t = this.container) == null || t.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${O}</style>`));
+      !this.container || document.querySelector("#estimate-custom-shade") || ((t = this.container) == null || t.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${O}</style>`));
     }
     handle() {
       const n = document.querySelector("#estimate-custom-shade .custom-radio");
@@ -937,6 +952,12 @@
   font-weight: 400;
   text-align: left;
   margin-bottom: 8px !important;
+}
+
+@media (max-width: 768px) {
+  .estimate-custom-address h5 {
+    font-weight: 500;
+  }
 }
 
 .estimate-custom-address .os-location-wrap {
@@ -1024,7 +1045,7 @@
       </div>
     </div>`
       );
-      this.container && ((t = this.container) == null || t.insertAdjacentHTML(this.position, n), this.initAutocomplete(), document.head.insertAdjacentHTML("beforeend", `<style>${R}</style>`));
+      !this.container || document.querySelector("#estimate-custom-address") || ((t = this.container) == null || t.insertAdjacentHTML(this.position, n), this.initAutocomplete(), document.head.insertAdjacentHTML("beforeend", `<style>${R}</style>`));
     }
     handle() {
       const n = document.getElementById("os-googleautoaddress");
@@ -1329,7 +1350,7 @@
             <div class="os-before">Before</div>
             <div class="os-after">After</div>
           </div>
-          <div class="os-note">Based on data from more than 5,174 participants in the solar incentive program.</div>
+          <div class="os-note">Based on data from more than 5,174 <br class="mobile"> participants <br class="desktop"> in the solar incentive program.</div>
         </div>
 
         <div class="os-loading-bar">
@@ -1342,7 +1363,7 @@
       </div>
     </div>`
       );
-      this.container && ((t = this.container) == null || t.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${X}</style>`));
+      !this.container || document.querySelector("#estimate-custom-homeowner") || ((t = this.container) == null || t.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${X}</style>`));
     }
     startLoadingBar() {
       var p, m, h;
@@ -1390,10 +1411,10 @@
   }
 }
 
-.estimate-custom-name .os-title span {
-  display: flex;
-  align-items: center;
+.estimate-custom-name .os-title .icon {
   color: #fb7306;
+  width: 42px;
+  height: 42px;
 }
 
 .estimate-custom-name .os-subtitle {
@@ -1405,10 +1426,9 @@
   margin-bottom: 12px;
 }
 
-.estimate-custom-name .os-subtitle .icon {
+.estimate-custom-name .os-subtitle span {
+  font-weight: 700;
   color: #fb7306;
-  width: 42px;
-  height: 42px;
 }
 
 .estimate-custom-name .os-subtitle .icon svg {
@@ -1418,7 +1438,7 @@
 }
 
 @media (max-width: 768px) {
-  .estimate-custom-name .os-subtitle .icon  {
+  .estimate-custom-name .os-subtitle .icon {
     width: 32px;
     height: 32px;
   }
@@ -1429,6 +1449,17 @@
   text-align: left;
 }
 
+@media (max-width: 768px) {
+  #estimate-custom-name .container {
+    background: none !important;
+    padding-inline: 0 !important;
+  }
+  .estimate-custom-name .os-mobile-container {
+    padding: 16px;
+    border-radius: 4px;
+    background: linear-gradient(180deg, #fff 57.5%, #f7f7f8 78.5%);
+  }
+}
 .estimate-custom-name label {
   display: block;
   color: #4a4a4a;
@@ -1437,6 +1468,11 @@
   text-align: left;
 }
 
+@media (max-width: 768px) {
+  .estimate-custom-name label {
+    font-weight: 500;
+  }
+}
 .estimate-custom-name input {
   border-radius: 5px !important;
   border: 1px solid #dce0e2 !important;
@@ -1482,11 +1518,13 @@
         /* HTML */
         `<div class="v-center estimate-custom-name os-hide" id="estimate-custom-name">
       <div class="container text-center">
-        <h2 class="os-title"><span>${q}</span class="icon">Congratulations!</h2>
-        <h2 class="os-subtitle">
-          Our research indicates that you are a great candidate for <span>No Net Cost Solar*</span>
-        </h2>
-        <h5>Provide your contact information to get your qualifications</h5>
+        <div class="os-mobile-container">
+          <h2 class="os-title"><span class="icon">${T}</span>Congratulations!</h2>
+          <h2 class="os-subtitle">
+            Our research indicates that you are a great candidate for <br class="mobile"><span>No Net Cost Solar*</span>
+          </h2>
+          <h5>Provide your contact information to get your qualifications</h5>
+        </div>
         <div class="medium-container">
           <ul class="form-list">
             <li>
@@ -1512,7 +1550,7 @@
       </div>
     </div>`
       );
-      this.container && ((t = this.container) == null || t.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${K}</style>`));
+      !this.container || document.querySelector("#estimate-custom-name") || ((t = this.container) == null || t.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${K}</style>`));
     }
     handle() {
       const n = document.getElementById("os-fname"), t = document.getElementById("os-fname-error"), e = document.getElementById("os-lname"), i = document.getElementById("os-lname-error"), o = document.getElementById("os-namesaving");
@@ -1563,13 +1601,18 @@
 
 .estimate-custom-email .os-subtitle {
   color: #2b3d50;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   line-height: 30px;
   text-align: left;
   margin-bottom: 12px;
 }
 
+@media (max-width: 768px) {
+  .estimate-custom-email .os-subtitle {
+    font-size: 16px;
+  }
+}
 .estimate-custom-email .os-subtitle span {
   color: #fb7306;
 }
@@ -1586,6 +1629,12 @@
   font-size: 14px;
   font-weight: 400;
   text-align: left;
+}
+
+@media (max-width: 768px) {
+  .estimate-custom-email label {
+    font-weight: 500;
+  }
 }
 
 .estimate-custom-email input {
@@ -1620,6 +1669,18 @@
   font-weight: 400;
   line-height: 16px;
 }
+
+.os-email-note {
+  justify-content: center;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  #estimate-custom-email .container {
+    background: none !important;
+    padding-inline: 0 !important;
+  }
+}
 `;
   class tn {
     constructor({ container: n, position: t }) {
@@ -1629,6 +1690,8 @@
       this.render(), this.handle(), this.addSubNote();
     }
     addSubNote() {
+      if (document.querySelector(".os-email-note"))
+        return;
       const n = (
         /* HTML */
         `<div class="os-email-note">
@@ -1665,7 +1728,7 @@
       </div>
     </div>`
       );
-      this.container && ((t = this.container) == null || t.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${nn}</style>`));
+      !this.container || document.querySelector("#estimate-custom-email") || ((t = this.container) == null || t.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${nn}</style>`));
     }
     handle() {
       const n = document.getElementById("os-email"), t = document.getElementById("os-email-error"), e = document.getElementById("os-emailsaving");
@@ -1738,6 +1801,13 @@
   text-align: left;
 }
 
+@media (max-width: 768px) {
+  #estimate-phone label {
+    font-weight: 500;
+  }
+  
+}
+
 #estimate-phone #phone {
   border-radius: 5px !important;
   border: 1px solid #dce0e2 !important;
@@ -1767,7 +1837,13 @@
   font-size: 12px;
   font-weight: 350;
 }
-`;
+
+@media screen and (max-width: 768px) {
+  #estimate-phone .container {
+    background: none !important;
+    padding-inline: 0 !important;
+  }
+}`;
   class on {
     constructor() {
       this.init();
@@ -2049,7 +2125,7 @@
     }
     changeSlides() {
       new Y(), new on();
-      const n = document.querySelector(".swiper-container"), t = n == null ? void 0 : n.swiper, e = v("#solarForm .wrapper"), i = v(".os-navigation");
+      const n = document.querySelector(".swiper-container"), t = n == null ? void 0 : n.swiper, e = b("#solarForm .wrapper"), i = b(".os-navigation");
       i.querySelector(".os-next");
       const o = document.querySelector(".os-prev");
       this.progressBar.hide(), u("#estimate-zip", "exp_zipcode_view", "View Screen", "Step zipcode"), t == null || t.on("transitionEnd", () => {
@@ -2226,7 +2302,7 @@
   }
 }
 
-#solarForm h2.title {
+#solarForm h2.title:not(#processor-title) {
   font-size: 32px !important;
   font-weight: 900 !important;
   line-height: 42px !important;
@@ -2234,8 +2310,9 @@
   text-align: left;
 }
 
+
 @media (max-width: 768px) {
-  #solarForm h2.title {
+  #solarForm h2.title:not(#processor-title) {
     font-size: 24px !important;
     line-height: 32px !important;
     margin-bottom: 16px !important;
@@ -2284,20 +2361,18 @@
   }
 }
 
-.container,
-.small-container,
-.medium-container {
+.wrapper :is(.container, .small-container, .medium-container) {
   max-width: 540px !important;
   padding: 0 !important;
 }
 
 @media (max-width: 768px) {
-  .container {
+  .wrapper .container {
     padding: 0 20px !important;
   }
 }
 
-.medium-container {
+.wrapper .medium-container {
   margin-top: 16px;
 }
 
@@ -2634,8 +2709,8 @@ ul.form-list button {
       this.slideManager = new rn(), this.init();
     }
     init() {
-      location.pathname === "/save/" && b(".swiper-slide-active").then(() => {
-        b(".wrapper #slider-block .default").then(() => {
+      location.pathname === "/save/" && v(".swiper-slide-active").then(() => {
+        v(".wrapper #slider-block .default").then(() => {
           document.head.insertAdjacentHTML("beforeend", `<style>${ln}</style>`), document.title = "Solar Incentive Program", this.slideManager.addSlides(), this.slideManager.changeSlides();
         });
       });
