@@ -1993,7 +1993,6 @@
 @media (max-width: 768px) {
   .os-prev {
     bottom: 20px;
-    left: 20px;
   }
 }
 
@@ -2214,6 +2213,10 @@
 .site-header .lock {
   display: none;
 }
+
+.site-header .container {
+  max-width: 540px;
+}
 @media (max-width: 768px) {
   .site-header {
     margin-top: 10px;
@@ -2223,6 +2226,11 @@
   }
   .site-header.fixed {
     padding-top: 15px;
+  }
+
+  .site-header .container {
+    margin-inline: 20px;
+    padding: 0;
   }
 }
 
