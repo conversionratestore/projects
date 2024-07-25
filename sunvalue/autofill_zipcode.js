@@ -1889,7 +1889,7 @@
       n.placeholder = "Phone number", n.addEventListener("change", () => {
         p("exp_phone_input", "Input - Email", "input", "Step - Phone ");
       });
-      const t = document.getElementById("#submit");
+      const t = document.getElementById("submit");
       t && t.addEventListener("click", () => {
         p("exp_phone_click", "Submit", "click", "Step - Phone");
       });
@@ -2742,7 +2742,7 @@ ul.form-list button {
   }
 }
 `;
-  k({ name: "Hyp. #6 - Introduce short funnel with merging zip code with address step", dev: "OS" }), E("");
+  k({ name: "Hyp. #6 - Introduce short funnel with merging zip code with address step", dev: "OS" }), E("exp_autofill_zipcode_reinforcement_message");
   class cn {
     constructor() {
       this.slideManager = new ln(), this.init();
