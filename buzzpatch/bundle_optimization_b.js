@@ -13,22 +13,22 @@
       `%c EXP: ${e} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, u = (e) => document.querySelectorAll(e), p = (e) => document.querySelector(e), h = async (e) => {
+  }, u = (e) => document.querySelectorAll(e), l = (e) => document.querySelector(e), h = async (e) => {
     const n = (t) => new Promise((o, i) => {
       const r = t.split(".").pop();
       if (r === "js") {
         if (Array.from(document.scripts).map((d) => d.src.toLowerCase()).includes(t.toLowerCase()))
           return console.log(`Script ${t} allready downloaded!`), o("");
-        const l = document.createElement("script");
-        l.src = t, l.onload = o, l.onerror = i, document.head.appendChild(l);
+        const p = document.createElement("script");
+        p.src = t, p.onload = o, p.onerror = i, document.head.appendChild(p);
       } else if (r === "css") {
         if (Array.from(document.styleSheets).map((d) => {
           var w;
           return (w = d.href) == null ? void 0 : w.toLowerCase();
         }).includes(t.toLowerCase()))
           return console.log(`Style ${t} allready downloaded!`), o("");
-        const l = document.createElement("link");
-        l.rel = "stylesheet", l.href = t, l.onload = o, l.onerror = i, document.head.appendChild(l);
+        const p = document.createElement("link");
+        p.rel = "stylesheet", p.href = t, p.onload = o, p.onerror = i, document.head.appendChild(p);
       }
     });
     for (const t of e)
@@ -39,17 +39,17 @@
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
     }, 1e3);
   }, y = (e, n, t, o, i = 3e3, r = 0.5) => {
-    let c, l;
+    let c, p;
     if (c = new IntersectionObserver(
       function(d) {
-        d[0].isIntersecting === !0 ? l = setTimeout(() => {
+        d[0].isIntersecting === !0 ? p = setTimeout(() => {
           f(
             n,
             d[0].target.dataset.visible || o || "",
             "Visibility",
             t
           ), c.disconnect();
-        }, i) : (console.log("Element is not fully visible"), clearTimeout(l));
+        }, i) : (console.log("Element is not fully visible"), clearTimeout(p));
       },
       { threshold: [r] }
     ), typeof e == "string") {
@@ -559,8 +559,8 @@ body.tooltip_open .new_bundle_tooltip svg path {
     changeBundleInfo() {
       b(".new-bundle-pack").then((n) => {
         var o, i;
-        const t = ((o = p(".np-family-kit span.np-whole-family-kit")) == null ? void 0 : o.getAttribute("data-each-price")) ?? "";
-        (i = p(".np-family-kit span.outdoor-protection-kit")) == null || i.getAttribute("data-each-price"), p(".new_bundle_wrapper") || (p(".new-bundle-pack label").insertAdjacentHTML("afterbegin", T(t)), p(".new-bundle-pack input").value = a.ver_b.id, p(".new-bundle-pack label").insertAdjacentHTML("afterend", C)), this.initTooltip();
+        const t = ((o = l(".np-family-kit span.np-whole-family-kit")) == null ? void 0 : o.getAttribute("data-each-price")) ?? "";
+        (i = l(".np-family-kit span.outdoor-protection-kit")) == null || i.getAttribute("data-each-price"), l(".new_bundle_wrapper") || (l(".new-bundle-pack label").insertAdjacentHTML("afterbegin", T(t)), l(".new-bundle-pack input").value = a.ver_b.id, l(".new-bundle-pack label").insertAdjacentHTML("afterend", C)), this.initTooltip();
       });
     }
     clickBundleHandler() {
@@ -568,7 +568,7 @@ body.tooltip_open .new_bundle_tooltip svg path {
       u("#getNow input[type=radio] + label").forEach((t) => {
         t.addEventListener("click", (o) => {
           var i;
-          t.getAttribute("for") === "radios-0" || t.getAttribute("for") === "radios-1" || t.getAttribute("for") === "radios-2" || t.getAttribute("for") === "radios-3" ? (p(".js-total").style.display = "block", (i = p(".new_js_total")) == null || i.remove()) : (f("exp_introduce_v3_click_01", "Whole family protection kit", "Click", "Bundle & save"), p(".js-total").style.display = "none", p(".new_js_total") || p(".js-total").insertAdjacentHTML("afterend", this.npFamilyKitHtml(n)));
+          t.getAttribute("for") === "radios-0" || t.getAttribute("for") === "radios-1" || t.getAttribute("for") === "radios-2" || t.getAttribute("for") === "radios-3" ? (l(".js-total").style.display = "block", (i = l(".new_js_total")) == null || i.remove()) : (f("exp_introduce_v3_click_01", "Whole family protection kit", "Click", "Bundle & save"), l(".js-total").style.display = "none", l(".new_js_total") || l(".js-total").insertAdjacentHTML("afterend", this.npFamilyKitHtml(n)));
         });
       });
     }
@@ -578,19 +578,16 @@ body.tooltip_open .new_bundle_tooltip svg path {
       return t ? t == null || t.forEach((i) => {
         i.getAttribute("data-variant-id") === n && (o = `<div class="new_js_total">
             <span class="new_price">${i.getAttribute("data-price")}</span> (<span class="new_price_off"
-              >${i.getAttribute("data-price-off")}%</span
-            >
-            OFF)
-          </div>`);
+              >60%</span> OFF)</div>`);
       }) : o = "", o;
     }
     clickProceedToCheckoutBtnHandler() {
       b("#addToCart").then((n) => {
         var t;
-        (t = p("#addToCart")) == null || t.addEventListener("click", (o) => {
+        (t = l("#addToCart")) == null || t.addEventListener("click", (o) => {
           var r;
           o.preventDefault(), o.stopPropagation();
-          let i = (r = p(".js-packs input[type=radio]:checked+label")) == null ? void 0 : r.previousElementSibling.value;
+          let i = (r = l(".js-packs input[type=radio]:checked+label")) == null ? void 0 : r.previousElementSibling.value;
           this.addToCartHandler(i);
         });
       });
@@ -623,8 +620,8 @@ body.tooltip_open .new_bundle_tooltip svg path {
         u('[href="#getFormNow"]').forEach((t) => {
           t.addEventListener("click", (o) => {
             o.preventDefault(), o.stopPropagation(), $("html, body").stop();
-            let i = p("#getNow"), r = 65, c = !0, l = setInterval(async () => {
-              i.getBoundingClientRect().top > r - 1 && i.getBoundingClientRect().top <= r + 1 ? clearInterval(l) : c && (c = !1, c = await k(r, i));
+            let i = l("#getNow"), r = 65, c = !0, p = setInterval(async () => {
+              i.getBoundingClientRect().top > r - 1 && i.getBoundingClientRect().top <= r + 1 ? clearInterval(p) : c && (c = !1, c = await k(r, i));
             }, 100);
           });
         });
@@ -636,7 +633,7 @@ body.tooltip_open .new_bundle_tooltip svg path {
         "https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"
       ]).then(async () => {
         let n = setInterval(() => {
-          typeof tippy == "function" && p("[data-tooltip]") && (clearInterval(n), u("[data-tooltip]").forEach((t) => {
+          typeof tippy == "function" && l("[data-tooltip]") && (clearInterval(n), u("[data-tooltip]").forEach((t) => {
             tippy(t, {
               content: t.getAttribute("data-title"),
               trigger: "click",
@@ -657,10 +654,10 @@ body.tooltip_open .new_bundle_tooltip svg path {
                 );
               },
               onTrigger(o) {
-                p("body").classList.add("tooltip_open"), f("exp_introduce_v3_click_02", "Whole family protection kit tooltip", "Click", "Bundle & save");
+                l("body").classList.add("tooltip_open"), f("exp_introduce_v3_click_02", "Whole family protection kit tooltip", "Click", "Bundle & save");
               },
               onHide(o) {
-                p("body").classList.remove("tooltip_open");
+                l("body").classList.remove("tooltip_open");
               }
             });
           }));
