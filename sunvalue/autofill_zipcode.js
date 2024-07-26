@@ -1905,10 +1905,10 @@
       );
     }
   }
-  const rn = `.swiper-container-android .swiper-slide,
+  const rn = `/* .swiper-container-android .swiper-slide,
 .swiper-wrapper {
   transform: none !important;
-}
+} */
 
 .os-navigation {
   display: none;
@@ -2267,7 +2267,7 @@
 .wrapper[data-slide-name='homeowner'],
 .wrapper[data-slide-name='name'],
 .wrapper[data-slide-name='email'],
-.wrapper[data-current-slide='7']  {
+.wrapper[data-current-slide='7'] {
   padding-top: 80px !important;
 }
 
@@ -2345,7 +2345,6 @@
   margin-bottom: 32px !important;
   text-align: left;
 }
-
 
 @media (max-width: 768px) {
   #solarForm h2.title:not(#processor-title) {
@@ -2482,8 +2481,8 @@ ul.form-list button {
   display: none;
 }
 
-.swiper-wrapper {
-  @media (min-width: 768px) {
+@media (min-width: 768px) {
+  .swiper-wrapper {
     height: 100% !important;
   }
 }
