@@ -2282,9 +2282,6 @@
     padding-top: 100px !important;
   }
 
-  .wrapper[data-current-slide='7'] {
-    padding-top: 138px !important;
-  }
   .wrapper[data-slide-name='homeowner'],
   .wrapper[data-slide-name='name'],
   .wrapper[data-slide-name='email'] {
@@ -2330,13 +2327,7 @@
 #estimate-name {
   display: none;
 }
-#estimate-email,
-#estimate-name,
-#estimate-phone {
-  @media (max-width: 768px) {
-    margin-top: -63px;
-  }
-}
+
 
 #solarForm h2.title:not(#processor-title) {
   font-size: 32px !important;
