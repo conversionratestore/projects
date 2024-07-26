@@ -242,7 +242,7 @@
         <div class="radio_info">
           <div class="radio_txt_box">
             <span class="new_custom_radio"></span>
-            <span class="radio_txt">Standart shipping</span>
+            <span class="radio_txt">Standard shipping</span>
             <span class="shipping_txt accent_color_green">${r}</span>
           </div>
         </div>
@@ -1683,7 +1683,7 @@ form .footer_mobile .tm-text {
       n(".caption.txt_shipping") || i(".promo-code").then(() => {
         d(".sum-row.total.coupon .caption").forEach((t) => {
           var e;
-          t.nextElementSibling.textContent === "Free" ? (n(".free_shipping_block") || this.renderFreeShippingBlock(), t.nextElementSibling.style.lineHeight = "22px") : (e = n(".free_shipping_block")) == null || e.remove(), !t.textContent.includes("Subscription savings") && !t.textContent.includes("Standart shipping") && !t.closest(".total").previousElementSibling.classList.contains("sum-row-hr") && t.textContent !== "Standart shipping" && !t.classList.contains("txt_shipping") && (t.textContent = "Standart shipping", t.classList.add("txt_shipping"));
+          t.nextElementSibling.textContent === "Free" ? (n(".free_shipping_block") || this.renderFreeShippingBlock(), t.nextElementSibling.style.lineHeight = "22px") : (e = n(".free_shipping_block")) == null || e.remove(), !t.textContent.includes("Subscription savings") && !t.textContent.includes("Standard shipping") && !t.closest(".total").previousElementSibling.classList.contains("sum-row-hr") && t.textContent !== "Standard shipping" && !t.classList.contains("txt_shipping") && (t.textContent = "Standard shipping", t.classList.add("txt_shipping"));
         });
       });
     }
