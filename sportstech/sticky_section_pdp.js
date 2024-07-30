@@ -34,12 +34,12 @@
   }
   (function(c) {
     c = c === void 0 ? {} : c;
-    let t, n, i, r, d = (c == null ? void 0 : c.delay) || 50;
-    function a() {
+    let t, n, i, r, a = (c == null ? void 0 : c.delay) || 50;
+    function d() {
       t = null, r = 0;
     }
-    return a(), function() {
-      return n = window.scrollY, t != null && (r = n - t), t = n, clearTimeout(i), i = setTimeout(a, d), r;
+    return d(), function() {
+      return n = window.scrollY, t != null && (r = n - t), t = n, clearTimeout(i), i = setTimeout(d, a), r;
     };
   })();
   const p = {
@@ -189,6 +189,9 @@
   position: relative;
 }
 @media (min-width: 768px) {
+  .is-ctl-product .container-main {
+    margin: 0 !important;
+  }
   .is-ctl-product .cms-block-container:empty {
     display: none;
   }
@@ -800,6 +803,10 @@
   margin: 0;
   padding: 0;
 }
+.is-ctl-product .sticky_block_desktop .part_right .btn.btn-primary {
+  width: 100%;
+  text-wrap: wrap;
+}
 .is-ctl-product .fixed_block_desktop {
   display: flex;
   align-items: center;
@@ -899,7 +906,7 @@
 @media (max-width: 768px) {
   .is-ctl-product #pdpBreadcrumbs {
     margin: 0;
-    padding: 16px 20px 0;
+    padding: 16px 0 0;
   }
 }
 .is-ctl-product #pdpBreadcrumbs a {
@@ -956,7 +963,7 @@
     // PDP
     renderBreadcrumbsBlock() {
       let t = ".product-detail-buy";
-      this.device === "mobile" && (t = ".container-main"), o(".is-ctl-product").then((n) => {
+      this.device === "mobile" && (t = ".cms-block-gallery-buybox"), o(t).then(() => {
         e("#pdpBreadcrumbs") || e(t).insertAdjacentHTML("afterbegin", w), this.generateBreadcrumbs(), this.clickPdpBreadcrumbsHandler();
       }), console.log("renderBreadcrumbsBlock");
     }
@@ -979,10 +986,10 @@
       window.dataLayer.forEach((s) => {
         s.productCategory && (r = s.productCategory), s.productName && (this.activePdpName = s.productName), s.productPrice && (this.productPrice = s.productPrice);
       });
-      const a = window.location.pathname.split("/").filter((s) => s), _ = v(
+      const d = window.location.pathname.split("/").filter((s) => s), _ = v(
         i,
         n,
-        a[0],
+        d[0],
         r,
         this.activePdpName
       );
@@ -1150,12 +1157,12 @@
               root: null,
               threshold: 0.5
             };
-            let d = new IntersectionObserver((a) => {
-              a.forEach((_) => {
-                _.isIntersecting ? t.style.display = "none" : t.style.display = "block", d.unobserve(_.target);
-              }), d.disconnect();
+            let a = new IntersectionObserver((d) => {
+              d.forEach((_) => {
+                _.isIntersecting ? t.style.display = "none" : t.style.display = "block", a.unobserve(_.target);
+              }), a.disconnect();
             }, r);
-            d.observe(n);
+            a.observe(n);
           }
           window.addEventListener("scroll", () => {
             i();
