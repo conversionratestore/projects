@@ -789,7 +789,7 @@
   position: sticky;
   top: 10px;
   z-index: 2;
-  width: 30%;
+  width: 32%;
   height: 100vh;
   overflow-y: scroll;
   scrollbar-width: none;
@@ -801,7 +801,7 @@
 .is-ctl-product .sticky_block_desktop .part_right > div {
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 0 6px;
 }
 .is-ctl-product .sticky_block_desktop .part_right .btn.btn-primary {
   width: 100%;
