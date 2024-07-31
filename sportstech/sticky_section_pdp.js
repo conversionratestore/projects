@@ -188,10 +188,10 @@
   ), C = `.is-ctl-product {
   position: relative;
 }
+.is-ctl-product .container-main {
+  margin: 0 !important;
+}
 @media (min-width: 768px) {
-  .is-ctl-product .container-main {
-    margin: 0 !important;
-  }
   .is-ctl-product .cms-block-container:empty {
     display: none;
   }
