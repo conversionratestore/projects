@@ -137,7 +137,7 @@
       </p>
     </div>
   `
-  ), m = (
+  ), _ = (
     /* HTML */
     `
   <div class="people_joined_block">
@@ -145,7 +145,7 @@
     <span class="txt_block"><b>776</b> people <b>joined</b> today</span>
   </div>
 `
-  ), _ = (
+  ), m = (
     /* HTML */
     `
   <div class="guarantee_block">
@@ -195,6 +195,7 @@ main > div > div {
 main p.font-semibold,
 main p.font-semibold + p,
 main p.font-semibold + p + img,
+main p.font-semibold + p + svg,
 main .styles_subscriptionText__1MH_S {
   display: none;
 }
@@ -228,11 +229,12 @@ main .styles_plans__kjWfh .styles_plan__w4qlH h3 {
   font-weight: 600;
   line-height: 24px;
 }
-main .styles_plans__kjWfh .styles_plan__w4qlH.styles_activePlan__3pihe {
+main .styles_plans__kjWfh .styles_plan__w4qlH.styles_activePlan__3pihe, main .styles_plans__kjWfh .styles_plan__w4qlH.\\!border-themePrimary {
   background: rgba(59, 130, 246, 0.96);
   border: 2px solid rgba(59, 130, 246, 0.96);
+  border-color: rgba(59, 130, 246, 0.96) !important;
 }
-main .styles_plans__kjWfh .styles_plan__w4qlH.styles_activePlan__3pihe h3 {
+main .styles_plans__kjWfh .styles_plan__w4qlH.styles_activePlan__3pihe h3, main .styles_plans__kjWfh .styles_plan__w4qlH.\\!border-themePrimary h3 {
   color: #fff;
 }
 main .styles_plans__kjWfh > :last-child::before {
@@ -435,7 +437,7 @@ main .styles_plans__kjWfh > :last-child::after {
     }
     renderPeopleJoinedBlock() {
       i("button.z-0").then(() => {
-        e(".people_joined_block") || e("button.z-0").insertAdjacentHTML("beforebegin", m);
+        e(".people_joined_block") || e("button.z-0").insertAdjacentHTML("beforebegin", _);
       });
     }
     renderProceedToFindOutBlock() {
@@ -445,7 +447,7 @@ main .styles_plans__kjWfh > :last-child::after {
     }
     renderGuaranteeBlock() {
       i("button.z-0").then(() => {
-        e(".guarantee_block") || e("button.z-0").insertAdjacentHTML("afterend", _);
+        e(".guarantee_block") || e("button.z-0").insertAdjacentHTML("afterend", m);
       });
     }
     replaceTxtBtnGetStarted() {
