@@ -356,6 +356,10 @@
     bottom: 162px !important;
     display: none !important;
   }
+  .is-ctl-product .btn.btn-primary {
+    width: 100%;
+    text-wrap: wrap;
+  }
 }
 .is-ctl-product .breadcrumb.cms-breadcrumb {
   display: none !important;
@@ -795,13 +799,18 @@
   scrollbar-width: none;
   padding-bottom: 10px;
 }
+.is-ctl-product .sticky_block_desktop .part_right .row {
+  margin: 0;
+}
+.is-ctl-product .sticky_block_desktop .part_right form.buy-widget div.buybox--button-container {
+  padding: 0;
+}
 .is-ctl-product .sticky_block_desktop .part_right::-webkit-scrollbar {
   display: none;
 }
 .is-ctl-product .sticky_block_desktop .part_right > div {
   width: 100%;
   margin: 0;
-  padding: 0 6px;
 }
 .is-ctl-product .sticky_block_desktop .part_right .btn.btn-primary {
   width: 100%;
