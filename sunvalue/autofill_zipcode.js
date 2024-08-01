@@ -8,12 +8,12 @@
       event_type: t,
       event_loc: e
     }), console.log(`Event: ${r} | ${n} | ${t} | ${e}`);
-  }, E = ({ name: r, dev: n }) => {
+  }, L = ({ name: r, dev: n }) => {
     console.log(
       `%c EXP: ${r} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, w = (r) => document.querySelector(r), L = (r) => {
+  }, w = (r) => document.querySelector(r), E = (r) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", r, "variant_1"));
     }, 1e3);
@@ -491,7 +491,7 @@
           { text: "$101 - $150", value: "101" },
           { text: "$151 - $200", value: "151" },
           { text: "$201 - $300", value: "201" },
-          { text: "$301 - $400 ", value: "301" },
+          { text: "$301 - $400", value: "301" },
           { text: "$401 - $500", value: "401" },
           { text: "Over $500", value: "501" }
         ].map(({ text: i, value: a }) => (
@@ -970,14 +970,6 @@
   }
 }
 
-
-@media (max-width: 768px) {
-  #estimate-custom-address .container {
-    background: none !important;
-    padding: 0 !important;
-  }
-}
-
 .estimate-custom-address h5 {
   font-size: 14px;
   font-weight: 400;
@@ -1050,7 +1042,7 @@
         `<div class="v-center estimate-custom-address os-hide" id="estimate-custom-address">
       <div class="container text-center">
         <h2 class="os-title">
-          What is your property <br />
+          What is your property <br class="mobile" />
           address?
         </h2>
         <h5>Your Address</h5>
@@ -1480,23 +1472,26 @@
   text-align: left;
 }
 
-@media (max-width: 768px) {
-  #estimate-custom-name .container {
-    background: none !important;
-    padding: 0 !important;
-  }
-  .estimate-custom-name .os-mobile-container {
-    padding: 16px;
-    border-radius: 4px;
-    background: linear-gradient(180deg, #fff 57.5%, #f7f7f8 78.5%);
-  }
+.estimate-custom-name .os-container {
+  padding: 24px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #fff 57.5%, #f7f7f8 78.5%);
 }
+
+@media (max-width: 768px) {
+  .estimate-custom-name .os-container {
+    padding: 16px;
+  }
+  
+}
+
 .estimate-custom-name label {
   display: block;
   color: #4a4a4a;
   font-size: 14px;
   font-weight: 400;
   text-align: left;
+  margin-bottom: 8px;
 }
 
 @media (max-width: 768px) {
@@ -1549,7 +1544,7 @@
         /* HTML */
         `<div class="v-center estimate-custom-name os-hide" id="estimate-custom-name">
       <div class="container text-center">
-        <div class="os-mobile-container">
+        <div class="os-container">
           <h2 class="os-title"><span class="icon">${N}</span>Congratulations!</h2>
           <h2 class="os-subtitle">
             Our research indicates that you are a great candidate for <br class="mobile"><span>No Net Cost Solar*</span>
@@ -1560,12 +1555,12 @@
           <ul class="form-list">
             <li>
               <label for="os-fname">Your first name</label>
-              <input type="text" class="text-field" id="os-fname" placeholder="Enter first name" autocomplete="on" />
+              <input type="text" class="text-field" id="os-fname" placeholder="First name" autocomplete="on" />
               <span class="error-msg" id="os-fname-error"></span>
             </li>
             <li>
-              <label for="os-lname"> Your last name</label>
-              <input type="text" class="text-field" id="os-lname" placeholder="Enter last name" autocomplete="on" />
+              <label for="os-lname">Your last name</label>
+              <input type="text" class="text-field" id="os-lname" placeholder="Last name" autocomplete="on" />
               <span class="error-msg" id="os-lname-error"></span>
             </li>
             <li class="os-actions">
@@ -1602,7 +1597,7 @@
           return;
         }
         const h = document.getElementById("fname"), u = document.getElementById("lname");
-        h && (h.value = d), u && (u.value = m), o == null || o.classList.add("os-hide"), s == null || s.classList.remove("os-hide"), f(), c && (c.dataset.slideName = "email"), l.classList.remove("os-hide"), p("exp_name_click", "Continue", "click", "Step - Last and First Name"), g("#estimate-custom-email", "exp_email_view", "View - Email", "Step - Email");
+        h && (h.value = d), u && (u.value = m), o == null || o.classList.add("os-hide"), s == null || s.classList.remove("os-hide"), c && (c.dataset.slideName = "email"), f(), l.classList.remove("os-hide"), p("exp_name_click", "Continue", "click", "Step - Last and First Name"), g("#estimate-custom-email", "exp_email_view", "View - Email", "Step - Email");
       });
     }
   }
@@ -1660,6 +1655,7 @@
   font-size: 14px;
   font-weight: 400;
   text-align: left;
+  margin-bottom: 8px;
 }
 
 @media (max-width: 768px) {
@@ -1704,13 +1700,6 @@
 .os-email-note {
   justify-content: center;
   width: 100%;
-}
-
-@media screen and (max-width: 768px) {
-  #estimate-custom-email .container {
-    background: none !important;
-    padding: 0 !important;
-  }
 }
 `;
   class on {
@@ -1830,6 +1819,7 @@
   font-size: 14px;
   font-weight: 400;
   text-align: left;
+  margin-bottom: 8px;
 }
 
 @media (max-width: 768px) {
@@ -2328,7 +2318,6 @@
   display: none;
 }
 
-
 #solarForm h2.title:not(#processor-title) {
   font-size: 32px !important;
   font-weight: 900 !important;
@@ -2379,6 +2368,11 @@
     margin-inline: 20px;
     max-width: calc(100% - 40px) !important;
   }
+}
+
+:is(#estimate-custom-address, #estimate-custom-name, #estimate-custom-email, #estimate-phone) .container {
+  background: none !important;
+  padding: 0 !important;
 }
 
 @media (max-width: 768px) {
@@ -2729,7 +2723,7 @@ ul.form-list button {
   }
 }
 `;
-  E({ name: "Hyp. #6 - Introduce short funnel with merging zip code with address step", dev: "OS" }), L("exp_autofill_zipcode_reinforcement_message");
+  L({ name: "Hyp. #6 - Introduce short funnel with merging zip code with address step", dev: "OS" }), E("exp_autofill_zipcode_reinforcement_message");
   class pn {
     constructor() {
       this.slideManager = new dn(), this.init();
