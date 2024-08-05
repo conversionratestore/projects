@@ -641,21 +641,21 @@
         relationshipStatus: "Single",
         ageGroups: {
           "18-35": {
-            title: "Let’s Find Your <span>True Love</span>",
+            title: "Let’s Find Your <br/> <span>True Love</span>",
             txt: "“True love is on the horizon. Let's discover the path to your soulmate.”",
             img: "age_group_1.png",
             name: "Akho",
             descr: "6 years in palmistry readings and spiritual guidance."
           },
           "36-55": {
-            title: "Let’s Find Your <span>True Love</span>",
+            title: "Let’s Find Your <br/>  <span>True Love</span>",
             txt: "“True love is on the horizon. Let's discover the path to your soulmate.”",
             img: "age_group_2.png",
             name: "Jane",
             descr: "9 years in palmistry readings and spiritual guidance."
           },
           "56+": {
-            title: "Let’s Find Your <span>True Love</span>",
+            title: "Let’s Find Your <br/>  <span>True Love</span>",
             txt: "“True love is on the horizon. Let's discover the path to your soulmate.”",
             img: "age_group_3.png",
             name: "Lucy",
@@ -1125,10 +1125,10 @@
       this.device = e, this.goal = null, this.gender = null, this.relationshipStatus = null, this.astrologicalSign = null, this.resonatedElement = null, this.favoriteColor = null, this.favoriteColor = null, this.ageGroups = null, this.init();
     }
     init() {
-      y({ name: "Personalization (Paywall/Separate Page)", dev: "SKh" }), x("exp_hypothesis_2"), this.observeMain(), n(".crs_inter") || document.head.insertAdjacentHTML(
+      y({ name: "Personalization (Paywall/Separate Page)", dev: "SKh" }), x("exp_hypothesis_2"), this.observeMain(), n(".crs_inter_personalization") || document.head.insertAdjacentHTML(
         "afterbegin",
-        '<link class="crs_inter" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">'
-      ), n(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${S}</style>`), this.allFunctionsInitHandler();
+        '<link class="crs_inter_personalization" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">'
+      ), n(".crs_style_personalization") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style_personalization">${S}</style>`), this.allFunctionsInitHandler();
     }
     // allFunctions
     allFunctionsInitHandler() {
