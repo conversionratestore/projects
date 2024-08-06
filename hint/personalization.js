@@ -13,7 +13,7 @@
       `%c EXP: ${l} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, n = (l) => document.querySelector(l), x = (l) => {
+  }, t = (l) => document.querySelector(l), x = (l) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", l, "variant_1"));
     }, 1e3);
@@ -42,7 +42,7 @@
       return i = window.scrollY, e != null && (o = i - e), e = i, clearTimeout(a), a = setTimeout(r, s), o;
     };
   })();
-  const w = "https://conversionratestore.github.io/projects/hint/img/", t = {
+  const w = "https://conversionratestore.github.io/projects/hint/img/", n = {
     loveRelationshipIcon: (
       /* HTML */
       `
@@ -627,12 +627,12 @@
         },
         genderGroups: {
           male: {
-            imgBefore: "love_relationship_before.png",
-            imgAfter: "love_relationship_after.png"
+            imgBefore: "love_relationship_before.svg",
+            imgAfter: "love_relationship_after.svg"
           },
           female: {
-            imgBefore: "love_relationship_before.png",
-            imgAfter: "love_relationship_after.png"
+            imgBefore: "love_relationship_before.svg",
+            imgAfter: "love_relationship_after.svg"
           }
         }
       },
@@ -664,12 +664,12 @@
         },
         genderGroups: {
           male: {
-            imgBefore: "love_relationship_before_male.png",
-            imgAfter: "love_relationship_after.png"
+            imgBefore: "love_relationship_before_male.svg",
+            imgAfter: "love_relationship_after.svg"
           },
           female: {
-            imgBefore: "love_relationship_before_female.png",
-            imgAfter: "love_relationship_after.png"
+            imgBefore: "love_relationship_before_female.svg",
+            imgAfter: "love_relationship_after.svg"
           }
         }
       }
@@ -703,12 +703,12 @@
         },
         genderGroups: {
           male: {
-            imgBefore: "health_vitality_before_male.png",
-            imgAfter: "health_vitality_after_male.png"
+            imgBefore: "health_vitality_before_male.svg",
+            imgAfter: "health_vitality_after_male.svg"
           },
           female: {
-            imgBefore: "health_vitality_before_female.png",
-            imgAfter: "health_vitality_after_female.png"
+            imgBefore: "health_vitality_before_female.svg",
+            imgAfter: "health_vitality_after_female.svg"
           }
         }
       }
@@ -742,12 +742,12 @@
         },
         genderGroups: {
           female: {
-            imgBefore: "career_destiny_before_female.png",
-            imgAfter: "career_destiny_after_female.png"
+            imgBefore: "career_destiny_before_female.svg",
+            imgAfter: "career_destiny_after_female.svg"
           },
           male: {
-            imgBefore: "career_destiny_before_male.png",
-            imgAfter: "career_destiny_after_male.png"
+            imgBefore: "career_destiny_before_male.svg",
+            imgAfter: "career_destiny_after_male.svg"
           }
         }
       }
@@ -786,7 +786,7 @@
             <img src="${w}${a}" alt="icon" />
             <span>After Hint</span>
           </div>
-          ${t.arrowIcon}
+          ${n.arrowIcon}
         </div>
         <h3>It’s all about you</h3>
         <div class="all_about_you_block">
@@ -807,7 +807,7 @@
             </div>
             <div class="right_part">
               <div class="all_about_you_title">
-                <p class="accent_blue_txt">Ready ${t.readyIcon}</p>
+                <p class="accent_blue_txt">Ready ${n.readyIcon}</p>
               </div>
               <div class="all_about_you_item">
                 <span>Gender</span>
@@ -1125,29 +1125,29 @@
       this.device = e, this.goal = null, this.gender = null, this.relationshipStatus = null, this.astrologicalSign = null, this.resonatedElement = null, this.favoriteColor = null, this.favoriteColor = null, this.ageGroups = null, this.init();
     }
     init() {
-      y({ name: "Personalization (Paywall/Separate Page)", dev: "SKh" }), x("exp_hypothesis_2"), this.observeMain(), n(".crs_inter_personalization") || document.head.insertAdjacentHTML(
+      y({ name: "Personalization (Paywall/Separate Page)", dev: "SKh" }), x("exp_hypothesis_2"), this.observeMain(), t(".crs_inter_personalization") || document.head.insertAdjacentHTML(
         "afterbegin",
         '<link class="crs_inter_personalization" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">'
-      ), n(".crs_style_personalization") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style_personalization">${S}</style>`), this.allFunctionsInitHandler();
+      ), t(".crs_style_personalization") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style_personalization">${S}</style>`), this.allFunctionsInitHandler();
     }
     // allFunctions
     allFunctionsInitHandler() {
       var e, i, a, o;
       if (this.checkPage() === "paywall")
-        console.log("paywall"), (e = n("#wellDoneSection")) == null || e.remove(), (i = n(".new_btn_back")) == null || i.remove(), n("body").classList.add("paywall_page"), n("body").classList.contains("subscription_plan_page") && n("body").classList.remove("subscription_plan_page"), this.renderPaywallInfoBlockHandler();
+        console.log("paywall"), (e = t("#wellDoneSection")) == null || e.remove(), (i = t(".new_btn_back")) == null || i.remove(), t("body").classList.add("paywall_page"), t("body").classList.contains("subscription_plan_page") && t("body").classList.remove("subscription_plan_page"), this.renderPaywallInfoBlockHandler();
       else if (this.checkPage() === "subscriptionPlan") {
-        console.log("subscriptionPlan"), n("body").classList.contains("paywall_page") && n("body").classList.remove("paywall_page"), n("body").classList.add("subscription_plan_page");
+        console.log("subscriptionPlan"), t("body").classList.contains("paywall_page") && t("body").classList.remove("paywall_page"), t("body").classList.add("subscription_plan_page");
         let s = setInterval(() => {
-          n(".subscription_plan_page main") && (clearInterval(s), n(".subscription_plan_page main").classList.add("is_hidden"));
+          t(".subscription_plan_page main") && (clearInterval(s), t(".subscription_plan_page main").classList.add("is_hidden"));
         }, 300);
-        if (localStorage.getItem("wellDoneSection") || (n("main") && (n("main").style.display = "none"), this.renderWellDoneSection()), localStorage.getItem("wellDoneSection")) {
+        if (localStorage.getItem("wellDoneSection") || (t("main") && (t("main").style.display = "none"), this.renderWellDoneSection()), localStorage.getItem("wellDoneSection")) {
           this.renderNewBtnBack();
           let r = setInterval(() => {
-            n(".subscription_plan_page main.is_hidden") && (clearInterval(r), n(".subscription_plan_page main").classList.remove("is_hidden"));
+            t(".subscription_plan_page main.is_hidden") && (clearInterval(r), t(".subscription_plan_page main").classList.remove("is_hidden"));
           }, 300);
         }
       } else
-        console.log(this.checkPage()), (a = n("#wellDoneSection")) == null || a.remove(), (o = n(".new_btn_back")) == null || o.remove(), n("body").classList.contains("paywall_page") && n("body").classList.remove("paywall_page"), n("body").classList.contains("subscription_plan_page") && n("body").classList.remove("subscription_plan_page");
+        console.log(this.checkPage()), (a = t("#wellDoneSection")) == null || a.remove(), (o = t(".new_btn_back")) == null || o.remove(), t("body").classList.contains("paywall_page") && t("body").classList.remove("paywall_page"), t("body").classList.contains("subscription_plan_page") && t("body").classList.remove("subscription_plan_page");
     }
     // paywall
     // __________________________________________________________________________________________
@@ -1165,7 +1165,7 @@
             if (o.includes(c.relationshipStatus)) {
               const C = c.ageGroups[s];
               C && p(".trusted_wrapper__Qlbcw").then((f) => {
-                n(".paywall_info_block") || f.insertAdjacentHTML(
+                t(".paywall_info_block") || f.insertAdjacentHTML(
                   "afterend",
                   L(C.title, C.txt, C.img, C.name, C.descr)
                 );
@@ -1190,7 +1190,7 @@
             if (c.includes(b.relationshipStatus)) {
               const D = b.genderGroups[C], { imgBefore: V, imgAfter: I } = D;
               p("main").then((Z) => {
-                n("#wellDoneSection") || Z.insertAdjacentHTML(
+                t("#wellDoneSection") || Z.insertAdjacentHTML(
                   "beforebegin",
                   H(
                     a,
@@ -1217,13 +1217,13 @@
       p(".get_my_insights_btn").then((e) => {
         e.addEventListener("click", () => {
           var i;
-          _("exp_hyp2_button_01", "Get my insight", "Button", "Well done screen"), n(".subscription_plan_page main").style.display = "block", n(".subscription_plan_page main").classList.contains("is_hidden") && n(".subscription_plan_page main").classList.remove("is_hidden"), (i = n("#wellDoneSection")) == null || i.remove(), localStorage.setItem("wellDoneSection", "yes"), this.renderNewBtnBack();
+          _("exp_hyp2_button_01", "Get my insight", "Button", "Well done screen"), t(".subscription_plan_page main").style.display = "block", t(".subscription_plan_page main").classList.contains("is_hidden") && t(".subscription_plan_page main").classList.remove("is_hidden"), (i = t("#wellDoneSection")) == null || i.remove(), localStorage.setItem("wellDoneSection", "yes"), this.renderNewBtnBack();
         });
       });
     }
     toggleStickyGetMyInsightsBtnVisibility() {
       p("#wellDoneSection").then(() => {
-        const e = n(".section_footer"), i = n(".sticky_container");
+        const e = t(".section_footer"), i = t(".sticky_container");
         new IntersectionObserver(
           (o) => {
             o.forEach((s) => {
@@ -1240,14 +1240,14 @@
     renderNewBtnBack() {
       p("header button").then((e) => {
         setTimeout(() => {
-          n(".new_btn_back") || e.insertAdjacentHTML("beforebegin", `<div class="new_btn_back">${t.arrowLeftHeaderIcon}</div>`), this.clickNewBtnBackSubscriptionPlanHandler();
+          t(".new_btn_back") || e.insertAdjacentHTML("beforebegin", `<div class="new_btn_back">${n.arrowLeftHeaderIcon}</div>`), this.clickNewBtnBackSubscriptionPlanHandler();
         }, 500);
       });
     }
     clickNewBtnBackSubscriptionPlanHandler() {
       p(".new_btn_back").then((e) => {
         e.addEventListener("click", () => {
-          _("exp_hyp2_button_02", "Back", "Button", "Well done screen"), localStorage.getItem("wellDoneSection") && localStorage.removeItem("wellDoneSection"), n(".subscription_plan_page main").style.display = "none", n(".subscription_plan_page main").classList.contains("is_hidden") || n(".subscription_plan_page main").classList.add("is_hidden"), this.renderWellDoneSection(), e.remove();
+          _("exp_hyp2_button_02", "Back", "Button", "Well done screen"), localStorage.getItem("wellDoneSection") && localStorage.removeItem("wellDoneSection"), t(".subscription_plan_page main").style.display = "none", t(".subscription_plan_page main").classList.contains("is_hidden") || t(".subscription_plan_page main").classList.add("is_hidden"), this.renderWellDoneSection(), e.remove();
         });
       });
     }
@@ -1263,7 +1263,7 @@
         case e.includes("email"):
           return "email";
         default:
-          return n("body").classList.contains("paywall_page") && n("body").classList.remove("paywall_page"), "other";
+          return t("body").classList.contains("paywall_page") && t("body").classList.remove("paywall_page"), "other";
       }
     }
     observeMain() {
@@ -1271,7 +1271,7 @@
         for (let a of i)
           for (let o of a.removedNodes)
             o instanceof HTMLElement && o.tagName === "MAIN" && this.allFunctionsInitHandler();
-      }).observe(n("body"), { childList: !0, subtree: !0 });
+      }).observe(t("body"), { childList: !0, subtree: !0 });
     }
     getParsedHintState() {
       const e = localStorage.getItem("hint-state");
@@ -1286,13 +1286,13 @@
     getGoalHandler() {
       switch (this.getParsedHintState().wish) {
         case "1":
-          this.goal = `${t.loveRelationshipIcon} Love & Relationship`;
+          this.goal = `${n.loveRelationshipIcon} Love & Relationship`;
           break;
         case "2":
-          this.goal = `${t.healthVitalityIcon} Health & Vitality`;
+          this.goal = `${n.healthVitalityIcon} Health & Vitality`;
           break;
         case "3":
-          this.goal = `${t.careerDestinyIcon} Career & Destiny`;
+          this.goal = `${n.careerDestinyIcon} Career & Destiny`;
           break;
       }
       return this.goal;
@@ -1300,10 +1300,10 @@
     getRelationshipStatusHandler() {
       switch (this.getParsedHintState().relationship) {
         case "1":
-          this.getParsedHintState().gender === "1" ? this.relationshipStatus = `${t.singleMaleIcon} Single` : this.relationshipStatus = `${t.singleFemaleIcon} Single`;
+          this.getParsedHintState().gender === "1" ? this.relationshipStatus = `${n.singleMaleIcon} Single` : this.relationshipStatus = `${n.singleFemaleIcon} Single`;
           break;
         case "2":
-          this.relationshipStatus = `${t.inRelationshipIcon} In relationship`;
+          this.relationshipStatus = `${n.inRelationshipIcon} In relationship`;
           break;
         case null:
           this.relationshipStatus = "unknown";
@@ -1314,10 +1314,10 @@
     getGenderHandler() {
       switch (this.getParsedHintState().gender) {
         case "1":
-          this.gender = `${t.maleIcon} Male`;
+          this.gender = `${n.maleIcon} Male`;
           break;
         case "2":
-          this.gender = `${t.femaleIcon} Female`;
+          this.gender = `${n.femaleIcon} Female`;
           break;
       }
       return this.gender;
@@ -1325,16 +1325,16 @@
     getResonatedElementHandler() {
       switch (this.getParsedHintState().resonatedElement) {
         case "air":
-          this.resonatedElement = `${t.airIcon} Air`;
+          this.resonatedElement = `${n.airIcon} Air`;
           break;
         case "earth":
-          this.resonatedElement = `${t.earthIcon} Earth`;
+          this.resonatedElement = `${n.earthIcon} Earth`;
           break;
         case "fire":
-          this.resonatedElement = `${t.fireIcon} Fire`;
+          this.resonatedElement = `${n.fireIcon} Fire`;
           break;
         case "water":
-          this.resonatedElement = `${t.waterIcon} Water`;
+          this.resonatedElement = `${n.waterIcon} Water`;
           break;
       }
       return this.resonatedElement;
@@ -1342,28 +1342,28 @@
     getFavoriteColorHandler() {
       switch (this.getParsedHintState().colorYouLike) {
         case "blue":
-          this.favoriteColor = `${t.blueIcon} Blue`;
+          this.favoriteColor = `${n.blueIcon} Blue`;
           break;
         case "green":
-          this.favoriteColor = `${t.greenIcon} Green`;
+          this.favoriteColor = `${n.greenIcon} Green`;
           break;
         case "orange":
-          this.favoriteColor = `${t.orangeIcon} Orange`;
+          this.favoriteColor = `${n.orangeIcon} Orange`;
           break;
         case "red":
-          this.favoriteColor = `${t.redIcon} Red`;
+          this.favoriteColor = `${n.redIcon} Red`;
           break;
         case "violet":
-          this.favoriteColor = `${t.violetIcon} Violet`;
+          this.favoriteColor = `${n.violetIcon} Violet`;
           break;
         case "yellow":
-          this.favoriteColor = `${t.yellowIcon} Yellow`;
+          this.favoriteColor = `${n.yellowIcon} Yellow`;
           break;
       }
       return this.favoriteColor;
     }
     getZodiacSign(e, i, a) {
-      return i == 1 && e >= 20 || i == 2 && e <= 18 ? (this.astrologicalSign = `${t.aquariusIcon} Aquarius`, this.astrologicalSign) : i == 2 && e >= 19 || i == 3 && e <= 20 ? (this.astrologicalSign = `${t.piscesIcon} Pisces`, this.astrologicalSign) : i == 3 && e >= 21 || i == 4 && e <= 19 ? (this.astrologicalSign = `${t.ariesIcon} Aries`, this.astrologicalSign) : i == 4 && e >= 20 || i == 5 && e <= 20 ? (this.astrologicalSign = `${t.taurusIcon} Taurus`, this.astrologicalSign) : i == 5 && e >= 21 || i == 6 && e <= 20 ? (this.astrologicalSign = `${t.geminiIcon} Gemini`, this.astrologicalSign) : i == 6 && e >= 21 || i == 7 && e <= 22 ? (this.astrologicalSign = `${t.cancerIcon} Cancer`, this.astrologicalSign) : i == 7 && e >= 23 || i == 8 && e <= 22 ? (this.astrologicalSign = `${t.leoIcon} Leo`, this.astrologicalSign) : i == 8 && e >= 23 || i == 9 && e <= 22 ? (this.astrologicalSign = `${t.virgoIcon} Virgo`, this.astrologicalSign) : i == 9 && e >= 23 || i == 10 && e <= 22 ? (this.astrologicalSign = `${t.libraIcon} Libra`, this.astrologicalSign) : i == 10 && e >= 23 || i == 11 && e <= 21 ? (this.astrologicalSign = `${t.scorpioIcon} Scorpio`, this.astrologicalSign) : i == 11 && e >= 22 || i == 12 && e <= 21 ? (this.astrologicalSign = `${t.sagittariusIcon} Sagittarius`, this.astrologicalSign) : i == 12 && e >= 22 || i == 1 && e <= 19 ? (this.astrologicalSign = `${t.capricornIcon} Capricorn`, this.astrologicalSign) : "Invalid date";
+      return i == 1 && e >= 20 || i == 2 && e <= 18 ? (this.astrologicalSign = `${n.aquariusIcon} Aquarius`, this.astrologicalSign) : i == 2 && e >= 19 || i == 3 && e <= 20 ? (this.astrologicalSign = `${n.piscesIcon} Pisces`, this.astrologicalSign) : i == 3 && e >= 21 || i == 4 && e <= 19 ? (this.astrologicalSign = `${n.ariesIcon} Aries`, this.astrologicalSign) : i == 4 && e >= 20 || i == 5 && e <= 20 ? (this.astrologicalSign = `${n.taurusIcon} Taurus`, this.astrologicalSign) : i == 5 && e >= 21 || i == 6 && e <= 20 ? (this.astrologicalSign = `${n.geminiIcon} Gemini`, this.astrologicalSign) : i == 6 && e >= 21 || i == 7 && e <= 22 ? (this.astrologicalSign = `${n.cancerIcon} Cancer`, this.astrologicalSign) : i == 7 && e >= 23 || i == 8 && e <= 22 ? (this.astrologicalSign = `${n.leoIcon} Leo`, this.astrologicalSign) : i == 8 && e >= 23 || i == 9 && e <= 22 ? (this.astrologicalSign = `${n.virgoIcon} Virgo`, this.astrologicalSign) : i == 9 && e >= 23 || i == 10 && e <= 22 ? (this.astrologicalSign = `${n.libraIcon} Libra`, this.astrologicalSign) : i == 10 && e >= 23 || i == 11 && e <= 21 ? (this.astrologicalSign = `${n.scorpioIcon} Scorpio`, this.astrologicalSign) : i == 11 && e >= 22 || i == 12 && e <= 21 ? (this.astrologicalSign = `${n.sagittariusIcon} Sagittarius`, this.astrologicalSign) : i == 12 && e >= 22 || i == 1 && e <= 19 ? (this.astrologicalSign = `${n.capricornIcon} Capricorn`, this.astrologicalSign) : "Invalid date";
     }
     calculateAge(e) {
       const a = (/* @__PURE__ */ new Date()).getFullYear() - e;
