@@ -1182,7 +1182,12 @@
 }
 
 .sticky_block_visible #provesrc-widget-area #provesrc-notification-container {
-  bottom: 100px !important;
+  bottom: 150px !important;
+}
+@media (max-width: 769px) {
+  .sticky_block_visible #provesrc-widget-area #provesrc-notification-container {
+    bottom: 100px !important;
+  }
 }
 
 #purchase-slide {
