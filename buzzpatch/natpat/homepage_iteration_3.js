@@ -13,11 +13,11 @@
       `%c EXP: ${n} (DEV: ${i})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, m = (n) => document.querySelectorAll(n), l = (n) => document.querySelector(n), B = (n) => {
+  }, m = (n) => document.querySelectorAll(n), g = (n) => document.querySelector(n), B = (n) => {
     let i = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(i), window.clarity("set", n, "variant_1"));
     }, 1e3);
-  }, g = (n, i, s, t, e = 600, A = 0.5) => {
+  }, l = (n, i, s, t, e = 600, A = 0.5) => {
     let r, h;
     if (r = new IntersectionObserver(
       function(c) {
@@ -641,7 +641,7 @@
     </svg>
   `
     )
-  }, u = [
+  }, k = [
     {
       patchType: "SleepyPatch for Kids",
       text: "Helps My asd child!! My son is 8 and struggles to fall asleep. He is autistic so I guess This can be normal. Well tried melatonin and yes it works but idk not a fan. Tried these and wow work great and as routines work for him using this daily works!! Bought many times so far and will keep purchasing. Thank you for making these. Even got the adult ones. And they help me If I need it."
@@ -714,7 +714,7 @@
       patchType: "CravePatch Sugar Craving Relief",
       text: "All day my daughter asks me for either something starchy or filled with sugar! I finally gave in and purchased the CravePatch to see if it would make a difference. She’s been eating her meals and snack without constantly asking me for sweets now. Its been fantastic!"
     }
-  ], k = [
+  ], u = [
     {
       text: "“Like Garlic for Vampires: These Stickers Help Repel Mosquitoes. Because every kid loves stickers anyway.”",
       img: `${o}/img/new-home-page/slider_logo_3.png`,
@@ -832,7 +832,7 @@
       <h2>Natural Solutions for Enhanced Well-being</h2>
       <p>Better Sleep, Improved Mood, Sharper Focus, and More!</p>
     </div>
-    <div class="explore_stickers_btn">Explore all products</div>
+    <a href="/collections/homepage" class="explore_stickers_btn">Explore all products</a>
   </div>
 `
   ), y = () => (
@@ -938,7 +938,7 @@
     <h2>Trusted by over 1 million customers</h2>
     <div class="insta_widget"></div>
     <ul class="reviews_trust parent_slider">
-      ${u.map((n, i) => (
+      ${k.map((n, i) => (
       /* HTML */
       ` <li>
             <p>${n.patchType}</p>
@@ -979,7 +979,7 @@
     ` <section class="new_slider_news">
   <h2>We're in the news... for good reasons</h2>
   <div class="slider_wrapper parent_slider">
-    ${k.map((n, i) => (
+    ${u.map((n, i) => (
       /* HTML */
       `
           <div class="slide">
@@ -1179,6 +1179,10 @@
   .footer__content-bottom {
     padding-bottom: 100px !important;
   }
+}
+
+.sticky_block_visible #provesrc-widget-area #provesrc-notification-container {
+  bottom: 100px !important;
 }
 
 #purchase-slide {
@@ -1731,6 +1735,7 @@
   font-weight: 600;
   line-height: 24px;
   text-transform: uppercase;
+  text-decoration: unset;
   cursor: pointer;
 }
 .sticky_block .explore_stickers_btn:hover {
@@ -1756,6 +1761,7 @@
 .new_main_block .crs_btn {
   display: inline-flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
   max-width: 400px;
   height: 64px;
@@ -3053,7 +3059,7 @@ body {
   overflow-x: hidden;
 }/*# sourceMappingURL=main.css.map */`;
   d("#purchase-slide").then((n) => {
-    l("main") && (l("main").style.opacity = "0");
+    g("main") && (g("main").style.opacity = "0");
   });
   const j = window.innerWidth < 768 ? "mobile" : "desktop";
   class N {
@@ -3074,7 +3080,19 @@ body {
       });
     }
     async addBlocks() {
-      $(".new_home_page").append(y()).append(I).append(Q).append(v).append(E).append(D).append(M).append(P).append(F).append(L).append(H).append(K).append(T);
+      $(".new_home_page").append(y()).append(I).append(Q).append(v).append(E).append(D).append(M).append(P).append(F).append(L).append(H).append(K).append(T), $(".big-stickers .parent_slider").slick({
+        slidesToShow: this.device === "mobile" ? 1 : 3,
+        slidesToScroll: 1,
+        arrows: !1,
+        infinite: !0,
+        centerMode: this.device !== "mobile",
+        centerPadding: "0",
+        asNavFor: ".new_main_block .slider_dots",
+        autoplay: !0,
+        autoplaySpeed: 2500
+      }), setTimeout(() => {
+        g(".new_main_block .big-stickers").style.opacity = "1";
+      }, 800);
       const i = x().map((t, e) => (
         /* HTML */
         `
@@ -3096,7 +3114,7 @@ body {
       )).join("");
       if ($(".new_reviews_block .basic_slider").append(i), d(".slider_dots-2.slick-initialized").then((t) => {
         $(".insta_widget").append($("#shopify-section-template--15241309847596__17097813754ae81b0d")), $(".new_stickers_slider").append($("#shopify-section-template--15241309847596__custom_liquid_HmbWPi")), $("#shopify-block-archive_detect_ugc_gallery_8cpCVL").css("display", "block"), $("#purchaseSlide.slick-initialized").slick("setPosition"), $(".slider_dots-2.slick-initialized").slick("setPosition");
-      }), l("main").style.opacity = "1", $(window).on("scroll", function() {
+      }), $(window).on("scroll", function() {
         $(window).scrollTop() ? $(".up_btn").fadeIn() : $(".up_btn").fadeOut();
         const t = $(".new_natpat_block .parallax"), e = t[0].getBoundingClientRect(), A = window.scrollY || document.documentElement.scrollTop, r = e.top + A;
         A + window.innerHeight > r && t.css("transform", `translateY(${(A - r) * 0.3}px)`);
@@ -3155,21 +3173,9 @@ body {
           focusOnSelect: !0,
           asNavFor: $(e).closest("section").find(".parent_slider")
         });
-      }), $(".big-stickers .parent_slider").slick({
-        slidesToShow: this.device === "mobile" ? 1 : 3,
-        slidesToScroll: 1,
-        arrows: !1,
-        infinite: !0,
-        centerMode: this.device !== "mobile",
-        centerPadding: "0",
-        asNavFor: ".new_main_block .slider_dots",
-        autoplay: !0,
-        autoplaySpeed: 2500
-      }), setTimeout(() => {
-        l(".new_main_block .big-stickers").style.opacity = "1";
-      }, 400), $("a.total_reviews").on("click", function(t) {
+      }), $("a.total_reviews").on("click", function(t) {
         t.preventDefault(), b(".new_trustpilot_reviews");
-      }), $(".reviews_trust p:nth-child(2)").each(function(t, e) {
+      }), g("main").style.opacity = "1", $(".reviews_trust p:nth-child(2)").each(function(t, e) {
         if ($(e).text().length > 200) {
           const A = $(e).text(), r = A.slice(0, 200).lastIndexOf(" ");
           r !== -1 && $(e).text(A.slice(0, r) + "..."), $(e).after('<span class="read_more">Read more</span>'), $(e).next().on("click", function() {
@@ -3197,7 +3203,7 @@ body {
       $(".new_main_block .crs_btn").on("click", function(t) {
         a("exp_hp_3_main_image_0", "Explore Natpat Stickers", "Button", "Main block");
       }), $(".explore_stickers_btn").on("click", function(t) {
-        t.preventDefault(), a("exp_hp_3_sticky_btn", "Explore all products", "Button", "Sticky block"), window.location = "/en-eu/collections/homepage";
+        a("exp_hp_3_sticky_btn", "Explore all products", "Button", "Sticky block");
       }), $(".shop_by_category_block li").each(function(t, e) {
         $(e).on("click", function(A) {
           a(`exp_hp_3_shop_by_category_${t + 1}`, $(this).find("p").text().trim(), "Button", "Shop by category");
@@ -3214,7 +3220,7 @@ body {
       }), d(".new_stickers_slider .item:not(.slick-cloned)").then((t) => {
         console.log($(".new_stickers_slider .item:not(.slick-cloned)")), $(".new_stickers_slider .item:not(.slick-cloned)").each(function(e, A) {
           const r = $(this).closest(".item").find("h3").text().trim();
-          g(
+          l(
             A,
             `exp_hp_3_stickers_slider_product_${r}`,
             "Homepage Our bestsellers: Tried and True",
@@ -3262,39 +3268,39 @@ body {
       }, 1e3);
     }
     visibleHandler() {
-      g(
+      l(
         ".new_main_block",
         "exp_hp_3_hero_block",
         "Natural solutions for better sleep, mood, focus and more!",
         "Section"
-      ), g(".guarantee_block", "exp_hp_3_guarantee_block", "365-day Money Back Guarantee", "Section"), g(".different_info_hero_block", "exp_hp_3_free_shipping", "Free Shipping", "Section"), g(".shop_by_category_block", "exp_hp_3_shop_by_category", "Shop By Category", "Section"), $(".new_trustpilot_reviews .reviews_trust li:not(.slick-cloned)").each(function(i, s) {
-        g(s, `exp_hp_3_trustpilot_reviews_${i}`, "Homepage Trustpilot", "Section");
-      }), g(".new_trustpilot_reviews > p", "exp_hp_3_trustpilot_reviews", "Homepage Trustpilot", "Section"), g(
+      ), l(".guarantee_block", "exp_hp_3_guarantee_block", "365-day Money Back Guarantee", "Section"), l(".different_info_hero_block", "exp_hp_3_free_shipping", "Free Shipping", "Section"), l(".shop_by_category_block", "exp_hp_3_shop_by_category", "Shop By Category", "Section"), $(".new_trustpilot_reviews .reviews_trust li:not(.slick-cloned)").each(function(i, s) {
+        l(s, `exp_hp_3_trustpilot_reviews_${i}`, "Homepage Trustpilot", "Section");
+      }), l(".new_trustpilot_reviews > p", "exp_hp_3_trustpilot_reviews", "Homepage Trustpilot", "Section"), l(
         ".new_slider_news .slider_wrapper",
         "exp_hp_3_slider_news",
         "Homepage We're in the news... for good reasons.",
         "Section"
-      ), g(
+      ), l(
         ".new_science_block .content_wrapper",
         "exp_hp_3_science_block",
         "Homepage Unlocking the science behind natpat patches",
         "Section"
-      ), g(
+      ), l(
         ".new_natpat_block .layer",
         "exp_hp_3_natpat_block",
         "Homepage At NATPAT, it's not just about products; it's about a way of life. We're ....",
         "Section"
-      ), g(
+      ), l(
         ".new_info_block .content_wrapper p",
         "exp_hp_3_info_block",
         "Homepage Hey there! At NATPAT, we're all about unlocking the superhero potential in eve.....",
         "Section"
-      ), g(".slider_photo", "exp_hp_3_slider_photo", "Homepage The section with photos", "Section"), g(
+      ), l(".slider_photo", "exp_hp_3_slider_photo", "Homepage The section with photos", "Section"), l(
         ".new_reviews_block .basic_slider",
         "exp_hp_3_reviews_block",
         "Homepage Megan Hilling....",
         "Section"
-      ), g(
+      ), l(
         ".new_info2_block .content_wrapper",
         "exp_hp_3_section_09",
         "Health and wellness patches",
@@ -3303,11 +3309,11 @@ body {
     }
     fixes() {
       const i = setInterval(() => {
-        l("#amped-6269-26072") && l("#amped-6269-26072").shadowRoot && l("#amped-6269-26072").shadowRoot.querySelector("#el_uNBrKg7ulB") && (clearInterval(i), l("#amped-6269-26072").shadowRoot.querySelector("#el_uNBrKg7ulB").style.top = "75%");
+        g("#amped-6269-26072") && g("#amped-6269-26072").shadowRoot && g("#amped-6269-26072").shadowRoot.querySelector("#el_uNBrKg7ulB") && (clearInterval(i), g("#amped-6269-26072").shadowRoot.querySelector("#el_uNBrKg7ulB").style.top = "75%");
       }, 100);
       setTimeout(() => {
         clearInterval(i);
-      }, 5e3), m(".new_home_page a:not([class]), .new_home_page a.crs_btn").forEach((s) => {
+      }, 5e3), m(".new_home_page a:not([class]), .new_home_page a").forEach((s) => {
         const t = window.location.pathname === "/" ? s.getAttribute("href") : window.location.pathname + s.getAttribute("href");
         s.setAttribute("href", t);
       });
@@ -3315,7 +3321,7 @@ body {
     toggleStickyBlockVisibility() {
       d(".new_trustpilot_reviews").then(() => {
         d(".sticky_block").then(() => {
-          const i = l(".sticky_block"), s = l(".new_trustpilot_reviews");
+          const i = g(".sticky_block"), s = g(".new_trustpilot_reviews");
           function t() {
             const e = {
               root: null,
@@ -3323,7 +3329,7 @@ body {
             };
             let A = new IntersectionObserver((r) => {
               r.forEach((h) => {
-                h.boundingClientRect.top <= 0 ? i.style.display = "flex" : i.style.display = "none", A.unobserve(h.target);
+                h.boundingClientRect.top <= 0 ? (i.style.display = "flex", g("body").classList.add("sticky_block_visible")) : (i.style.display = "none", g("body").classList.contains("sticky_block_visible") && g("body").classList.remove("sticky_block_visible")), A.unobserve(h.target);
               }), A.disconnect();
             }, e);
             A.observe(s);
@@ -3336,7 +3342,7 @@ body {
     }
   }
   const Y = setInterval(() => {
-    window.jQuery && l("#purchase-slide") && (clearInterval(Y), new N(j));
+    window.jQuery && g("#purchase-slide") && (clearInterval(Y), new N(j));
   }, 100);
 })();
 //# sourceMappingURL=index.js.map
