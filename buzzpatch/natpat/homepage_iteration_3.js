@@ -3097,7 +3097,7 @@ body {
         autoplaySpeed: 2500
       }), setTimeout(() => {
         g(".new_main_block .big-stickers").style.opacity = "1";
-      }, 800);
+      }, 1e3);
       const i = x().map((t, e) => (
         /* HTML */
         `
@@ -3180,7 +3180,9 @@ body {
         });
       }), $("a.total_reviews").on("click", function(t) {
         t.preventDefault(), b(".new_trustpilot_reviews");
-      }), g("main").style.opacity = "1", $(".reviews_trust p:nth-child(2)").each(function(t, e) {
+      }), setTimeout(() => {
+        g("main").style.opacity = "1";
+      }, 500), $(".reviews_trust p:nth-child(2)").each(function(t, e) {
         if ($(e).text().length > 200) {
           const A = $(e).text(), r = A.slice(0, 200).lastIndexOf(" ");
           r !== -1 && $(e).text(A.slice(0, r) + "..."), $(e).after('<span class="read_more">Read more</span>'), $(e).next().on("click", function() {
