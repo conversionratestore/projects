@@ -3159,7 +3159,7 @@ body {
         centerPadding: this.device === "mobile" ? "24px" : "0",
         asNavFor: ".new_reviews_block .slider_dots"
       }).on("swipe", function(t, e, A) {
-        A === "left" ? a("exp_hp_3_stickers_slider_prev ", "Prev", "Click", "Stickers slider") : a("exp_hp_3_stickers_slider_next", "Next", "Click", "Stickers slider");
+        A === "left" ? a("exp_hp_3_stickers_slider_next", "Next", "Click", "Stickers slider") : a("exp_hp_3_stickers_slider_prev ", "Prev", "Click", "Stickers slider");
       }), $(".slider_photo").slick({
         slidesToShow: 1,
         slidesToScroll: 1,
