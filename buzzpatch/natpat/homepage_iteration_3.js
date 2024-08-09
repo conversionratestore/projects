@@ -13,11 +13,11 @@
       `%c EXP: ${e} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, m = (e) => document.querySelectorAll(e), g = (e) => document.querySelector(e), B = (e, n = "variant_1") => {
+  }, m = (e) => document.querySelectorAll(e), l = (e) => document.querySelector(e), B = (e, n = "variant_1") => {
     let s = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(s), window.clarity("set", e, n), console.log("set", e, n));
     }, 1e3);
-  }, l = (e, n, s, A, t = 600, i = 0.5) => {
+  }, g = (e, n, s, A, t = 600, i = 0.5) => {
     let r, c;
     if (r = new IntersectionObserver(
       function(d) {
@@ -861,53 +861,53 @@
           ${innerWidth > 768 ? `<div class="swiper-wrapper parent_slider">
             <div class="swiper-slide buzzpatch_bundles_var">
               <span>Mosquito Repellent Stickers</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_2_1x.webp" alt="Mosquito Repellent Stickers" />
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_2_1x.webp" alt="Mosquito Repellent Stickers" loading="lazy"/>
               <a class="shop_now_link" href="/products/buzzpatch-bundles">shop now</a>
             </div>
             <div class="swiper-slide sleepypatch_sleep_promoting_stickers_var">
               <span>Sleep Promoting Stickers</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_3_1x.webp" alt="Sleep Promoting Stickers" />
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_3_1x.webp" alt="Sleep Promoting Stickers" loading="lazy"/>
               <a class="shop_now_link" href="/products/sleepypatch-sleep-promoting-stickers">shop now</a>
             </div>
             <div class="swiper-slide zenpatch_mood_calming_stickers_var">
               <span>Mood Calming Patches</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_4_1x.webp" alt="Mood Calming Patches" />
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_4_1x.webp" alt="Mood Calming Patches" loading="lazy"/>
               <a class="shop_now_link" href="/products/zenpatch-mood-calming-stickers">shop now</a>
             </div>
             <div class="swiper-slide zenpatch_pet_stickers_var">
               <span>Pet Zen Vapor Stickers</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_5_1x.webp" alt="Pet Zen Vapor Stickers" />
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_5_1x.webp" alt="Pet Zen Vapor Stickers" loading="lazy"/>
               <a class="shop_now_link" href="/products/zenpatch-pet-stickers">shop now</a>
             </div>
             <div class="swiper-slide trailpatch_kids_tick_repellent_stickers_var">
               <span>Kids Tick Repellent Stickers</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_1_1x.webp" alt="Kids Tick Repellent Stickers" />
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_1_1x.webp" alt="Kids Tick Repellent Stickers" loading="lazy"/>
               <a class="shop_now_link" href="/products/trailpatch-kids-tick-repellent-stickers">shop now</a>
             </div>
           </div>` : `<div class="swiper-wrapper parent_slider">
             <div class="swiper-slide trailpatch_kids_tick_repellent_stickers_var">
               <span>Kids Tick Repellent Stickers</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_1_1x.webp" alt="Kids Tick Repellent Stickers" />
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_1_1x.webp" alt="Kids Tick Repellent Stickers" loading="lazy"/>
               <a class="shop_now_link" href="/products/trailpatch-kids-tick-repellent-stickers">shop now</a>
             </div>
             <div class="swiper-slide buzzpatch_bundles_var">
               <span>Mosquito Repellent Stickers</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_2_1x.webp" alt="Mosquito Repellent Stickers" />
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_2_1x.webp" alt="Mosquito Repellent Stickers" loading="lazy"/>
               <a class="shop_now_link" href="/products/buzzpatch-bundles">shop now</a>
             </div>
             <div class="swiper-slide sleepypatch_sleep_promoting_stickers_var">
               <span>Sleep Promoting Stickers</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_3_1x.webp" alt="Sleep Promoting Stickers" />
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_3_1x.webp" alt="Sleep Promoting Stickers" loading="lazy"/>
               <a class="shop_now_link" href="/products/sleepypatch-sleep-promoting-stickers">shop now</a>
             </div>
             <div class="swiper-slide zenpatch_mood_calming_stickers_var">
               <span>Mood Calming Patches</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_4_1x.webp" alt="Mood Calming Patches" />
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_4_1x.webp" alt="Mood Calming Patches" loading="lazy"/>
               <a class="shop_now_link" href="/products/zenpatch-mood-calming-stickers">shop now</a>
             </div>
             <div class="swiper-slide zenpatch_pet_stickers_var">
               <span>Pet Zen Vapor Stickers</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_5_1x.webp" alt="Pet Zen Vapor Stickers" />
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_5_1x.webp" alt="Pet Zen Vapor Stickers" loading="lazy"/>
               <a class="shop_now_link" href="/products/zenpatch-pet-stickers">shop now</a>
             </div>
           </div>`}
@@ -3064,7 +3064,7 @@ body {
   overflow-x: hidden;
 }/*# sourceMappingURL=main.css.map */`;
   h("#purchase-slide").then((e) => {
-    g("main") && (g("main").style.opacity = "0");
+    l("main") && (l("main").style.opacity = "0");
   });
   const j = window.innerWidth < 768 ? "mobile" : "desktop";
   class N {
@@ -3096,7 +3096,7 @@ body {
         autoplay: !0,
         autoplaySpeed: 2500
       }), setTimeout(() => {
-        g(".new_main_block .big-stickers").style.opacity = "1";
+        l(".new_main_block .big-stickers").style.opacity = "1";
       }, 900);
       const n = x().map((A, t) => (
         /* HTML */
@@ -3181,7 +3181,7 @@ body {
       }), $("a.total_reviews").on("click", function(A) {
         A.preventDefault(), b(".new_trustpilot_reviews");
       }), setTimeout(() => {
-        g("main").style.opacity = "1";
+        l("main").style.opacity = "1";
       }, 500), $(".reviews_trust p:nth-child(2)").each(function(A, t) {
         if ($(t).text().length > 200) {
           const i = $(t).text(), r = i.slice(0, 200).lastIndexOf(" ");
@@ -3227,7 +3227,7 @@ body {
       }), h(".new_stickers_slider .item:not(.slick-cloned)").then((t) => {
         console.log($(".new_stickers_slider .item:not(.slick-cloned)")), $(".new_stickers_slider .item:not(.slick-cloned)").each(function(i, r) {
           const c = $(this).closest(".item").find("h3").text().trim();
-          l(
+          g(
             r,
             `exp_hp_3_stickers_slider_product_${c}`,
             "Homepage Our bestsellers: Tried and True",
@@ -3281,39 +3281,39 @@ body {
       }, 1e3);
     }
     visibleHandler() {
-      l(
+      g(
         ".new_main_block",
         "exp_hp_3_hero_block",
         "Natural solutions for better sleep, mood, focus and more!",
         "Section"
-      ), l(".guarantee_block", "exp_hp_3_guarantee_block", "365-day Money Back Guarantee", "Section"), l(".different_info_hero_block", "exp_hp_3_free_shipping", "Free Shipping", "Section"), l(".shop_by_category_block", "exp_hp_3_shop_by_category", "Shop By Category", "Section"), $(".new_trustpilot_reviews .reviews_trust li:not(.slick-cloned)").each(function(n, s) {
-        l(s, `exp_hp_3_trustpilot_reviews_${n}`, "Homepage Trustpilot", "Section");
-      }), l(".new_trustpilot_reviews > p", "exp_hp_3_trustpilot_reviews", "Homepage Trustpilot", "Section"), l(
+      ), g(".guarantee_block", "exp_hp_3_guarantee_block", "365-day Money Back Guarantee", "Section"), g(".different_info_hero_block", "exp_hp_3_free_shipping", "Free Shipping", "Section"), g(".shop_by_category_block", "exp_hp_3_shop_by_category", "Shop By Category", "Section"), $(".new_trustpilot_reviews .reviews_trust li:not(.slick-cloned)").each(function(n, s) {
+        g(s, `exp_hp_3_trustpilot_reviews_${n}`, "Homepage Trustpilot", "Section");
+      }), g(".new_trustpilot_reviews > p", "exp_hp_3_trustpilot_reviews", "Homepage Trustpilot", "Section"), g(
         ".new_slider_news .slider_wrapper",
         "exp_hp_3_slider_news",
         "Homepage We're in the news... for good reasons.",
         "Section"
-      ), l(
+      ), g(
         ".new_science_block .content_wrapper",
         "exp_hp_3_science_block",
         "Homepage Unlocking the science behind natpat patches",
         "Section"
-      ), l(
+      ), g(
         ".new_natpat_block .layer",
         "exp_hp_3_natpat_block",
         "Homepage At NATPAT, it's not just about products; it's about a way of life. We're ....",
         "Section"
-      ), l(
+      ), g(
         ".new_info_block .content_wrapper p",
         "exp_hp_3_info_block",
         "Homepage Hey there! At NATPAT, we're all about unlocking the superhero potential in eve.....",
         "Section"
-      ), l(".slider_photo", "exp_hp_3_slider_photo", "Homepage The section with photos", "Section"), l(
+      ), g(".slider_photo", "exp_hp_3_slider_photo", "Homepage The section with photos", "Section"), g(
         ".new_reviews_block .basic_slider",
         "exp_hp_3_reviews_block",
         "Homepage Megan Hilling....",
         "Section"
-      ), l(
+      ), g(
         ".new_info2_block .content_wrapper",
         "exp_hp_3_section_09",
         "Health and wellness patches",
@@ -3322,7 +3322,7 @@ body {
     }
     fixes() {
       const n = setInterval(() => {
-        g("#amped-6269-26072") && g("#amped-6269-26072").shadowRoot && g("#amped-6269-26072").shadowRoot.querySelector("#el_uNBrKg7ulB") && (clearInterval(n), g("#amped-6269-26072").shadowRoot.querySelector("#el_uNBrKg7ulB").style.top = "75%");
+        l("#amped-6269-26072") && l("#amped-6269-26072").shadowRoot && l("#amped-6269-26072").shadowRoot.querySelector("#el_uNBrKg7ulB") && (clearInterval(n), l("#amped-6269-26072").shadowRoot.querySelector("#el_uNBrKg7ulB").style.top = "75%");
       }, 100);
       setTimeout(() => {
         clearInterval(n);
@@ -3334,7 +3334,7 @@ body {
     toggleStickyBlockVisibility() {
       h(".new_trustpilot_reviews").then(() => {
         h(".sticky_block").then(() => {
-          const n = g(".sticky_block"), s = g(".new_trustpilot_reviews");
+          const n = l(".sticky_block"), s = l(".new_trustpilot_reviews");
           function A() {
             const t = {
               root: null,
@@ -3342,7 +3342,7 @@ body {
             };
             let i = new IntersectionObserver((r) => {
               r.forEach((c) => {
-                c.boundingClientRect.top <= 0 ? (n.style.display = "flex", g("body").classList.add("sticky_block_visible")) : (n.style.display = "none", g("body").classList.contains("sticky_block_visible") && g("body").classList.remove("sticky_block_visible")), i.unobserve(c.target);
+                c.boundingClientRect.top <= 0 ? (n.style.display = "flex", l("body").classList.add("sticky_block_visible")) : (n.style.display = "none", l("body").classList.contains("sticky_block_visible") && l("body").classList.remove("sticky_block_visible")), i.unobserve(c.target);
               }), i.disconnect();
             }, t);
             i.observe(s);
@@ -3355,7 +3355,7 @@ body {
     }
   }
   const Y = setInterval(() => {
-    window.jQuery && g("#purchase-slide") && (clearInterval(Y), new N(j));
+    window.jQuery && l("#purchase-slide") && (clearInterval(Y), new N(j));
   }, 100);
 })();
 //# sourceMappingURL=index.js.map
