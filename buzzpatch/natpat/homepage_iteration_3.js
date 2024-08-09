@@ -3085,19 +3085,19 @@ body {
       });
     }
     async addBlocks() {
-      $(".new_home_page").append(y()).append(I).append(Q).append(v).append(E).append(D).append(M).append(P).append(F).append(L).append(H).append(K).append(T), $(".big-stickers .parent_slider").slick({
-        slidesToShow: this.device === "mobile" ? 1 : 3,
-        slidesToScroll: 1,
-        arrows: !1,
-        infinite: !0,
-        centerMode: this.device !== "mobile",
-        centerPadding: "0",
-        asNavFor: ".new_main_block .slider_dots",
-        autoplay: !0,
-        autoplaySpeed: 2500
-      }), setTimeout(() => {
-        l(".new_main_block .big-stickers").style.opacity = "1";
-      }, 900);
+      $(".new_home_page").append(y()).append(I).append(Q).append(v).append(E).append(D).append(M).append(P).append(F).append(L).append(H).append(K).append(T), setTimeout(() => {
+        $(".big-stickers .parent_slider").slick({
+          slidesToShow: this.device === "mobile" ? 1 : 3,
+          slidesToScroll: 1,
+          arrows: !1,
+          infinite: !0,
+          centerMode: this.device !== "mobile",
+          centerPadding: "0",
+          asNavFor: ".new_main_block .slider_dots",
+          autoplay: !0,
+          autoplaySpeed: 2500
+        }), l(".new_main_block .big-stickers").style.opacity = "1";
+      }, 2e3);
       const n = x().map((A, t) => (
         /* HTML */
         `
@@ -3182,7 +3182,7 @@ body {
         A.preventDefault(), b(".new_trustpilot_reviews");
       }), setTimeout(() => {
         l("main").style.opacity = "1";
-      }, 500), $(".reviews_trust p:nth-child(2)").each(function(A, t) {
+      }, 400), $(".reviews_trust p:nth-child(2)").each(function(A, t) {
         if ($(t).text().length > 200) {
           const i = $(t).text(), r = i.slice(0, 200).lastIndexOf(" ");
           r !== -1 && $(t).text(i.slice(0, r) + "..."), $(t).after('<span class="read_more">Read more</span>'), $(t).next().on("click", function() {
