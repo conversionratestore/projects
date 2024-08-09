@@ -746,7 +746,7 @@
       let t = {};
       t.name = $(A).find(".name").text(), t.img = $(A).find(".review-header>img").attr("data-src") || "no_img", t.text = $(A).find(".review-text p").text(), e.push(t);
     }), console.log(e), e;
-  }, v = (
+  }, Q = (
     /* HTML */
     `
   <div class="guarantee_block">
@@ -754,7 +754,7 @@
     <span>365-day Money Back Guarantee </span>
   </div>
 `
-  ), Q = (
+  ), v = (
     /* HTML */
     `
   <div class="different_info_hero_block">
@@ -1500,7 +1500,7 @@
   position: absolute;
   right: -20px;
   top: -20px;
-  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/wellness_absolute_icon.svg) no-repeat center center;
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/wellness_absolute_icon.png) no-repeat center center;
   width: 77px;
   height: 84px;
   background-size: contain;
@@ -1528,7 +1528,7 @@
   position: absolute;
   right: -13px;
   bottom: 24px;
-  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/outdoor_protection_absolute_icon.svg) no-repeat center center;
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/outdoor_protection_absolute_icon.png) no-repeat center center;
   width: 74px;
   height: 80px;
   background-size: contain;
@@ -1555,7 +1555,7 @@
   position: absolute;
   right: 95px;
   bottom: 18px;
-  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/allergy_relief_absolute_icon.svg) no-repeat center center;
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/allergy_relief_absolute_icon.png) no-repeat center center;
   width: 84px;
   height: 88px;
   background-size: contain;
@@ -1582,7 +1582,7 @@
   position: absolute;
   right: 35px;
   bottom: 20px;
-  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/pets_absolute_icon.svg) no-repeat center center;
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/pets_absolute_icon.png) no-repeat center center;
   width: 68px;
   height: 120px;
   background-size: contain;
@@ -3110,7 +3110,7 @@ body {
       });
     }
     async addBlocks() {
-      $(".new_home_page").append(y()).append(I).append(v).append(Q).append(E).append(D).append(M).append(P).append(F).append(L).append(H).append(K).append(T), $(".big-stickers .parent_slider").slick({
+      $(".new_home_page").append(y()).append(I).append(Q).append(v).append(E).append(D).append(M).append(P).append(F).append(L).append(H).append(K).append(T), $(".big-stickers .parent_slider").slick({
         slidesToShow: this.device === "mobile" ? 1 : 3,
         slidesToScroll: 1,
         arrows: !1,
@@ -3122,7 +3122,7 @@ body {
         autoplaySpeed: 2500
       }), setTimeout(() => {
         l(".new_main_block .big-stickers").style.opacity = "1";
-      }, 700);
+      }, 800);
       const n = x().map((A, t) => (
         /* HTML */
         `
