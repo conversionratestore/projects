@@ -13,7 +13,7 @@
       `%c EXP: ${e} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, m = (e) => document.querySelectorAll(e), l = (e) => document.querySelector(e), B = (e, n = "variant_1") => {
+  }, m = (e) => document.querySelectorAll(e), l = (e) => document.querySelector(e), b = (e, n = "variant_1") => {
     let s = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(s), window.clarity("set", e, n), console.log("set", e, n));
     }, 1e3);
@@ -61,7 +61,7 @@
       return s = window.scrollY, n != null && (t = s - n), n = s, clearTimeout(A), A = setTimeout(r, i), t;
     };
   })();
-  const b = (e) => {
+  const B = (e) => {
     const n = document.querySelector(e);
     if (!n)
       return;
@@ -746,7 +746,7 @@
       let t = {};
       t.name = $(A).find(".name").text(), t.img = $(A).find(".review-header>img").attr("data-src") || "no_img", t.text = $(A).find(".review-text p").text(), e.push(t);
     }), console.log(e), e;
-  }, Q = (
+  }, v = (
     /* HTML */
     `
   <div class="guarantee_block">
@@ -754,7 +754,7 @@
     <span>365-day Money Back Guarantee </span>
   </div>
 `
-  ), v = (
+  ), Q = (
     /* HTML */
     `
   <div class="different_info_hero_block">
@@ -857,57 +857,63 @@
         <span>Customer reviews</span>
       </a>
       <div class="big-stickers">
+        <!-- <div id="loader" class="loader">
+          <img
+            src="https://conversionratestore.github.io/projects/buzzpatch/img/outdoor_protection_absolute_icon.svg"
+            alt="Loading..."
+          />
+        </div> -->
         <div class="swiper-container">
           ${innerWidth > 768 ? `<div class="swiper-wrapper parent_slider">
             <div class="swiper-slide buzzpatch_bundles_var">
               <span>Mosquito Repellent Stickers</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_2_1x.webp" alt="Mosquito Repellent Stickers" loading="lazy"/>
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_2_2x.webp" alt="Mosquito Repellent Stickers" loading="lazy"/>
               <a class="shop_now_link" href="/products/buzzpatch-bundles">shop now</a>
             </div>
             <div class="swiper-slide sleepypatch_sleep_promoting_stickers_var">
               <span>Sleep Promoting Stickers</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_3_1x.webp" alt="Sleep Promoting Stickers" loading="lazy"/>
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_3_2x.webp" alt="Sleep Promoting Stickers" loading="lazy"/>
               <a class="shop_now_link" href="/products/sleepypatch-sleep-promoting-stickers">shop now</a>
             </div>
             <div class="swiper-slide zenpatch_mood_calming_stickers_var">
               <span>Mood Calming Patches</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_4_1x.webp" alt="Mood Calming Patches" loading="lazy"/>
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_4_2x.webp" alt="Mood Calming Patches" loading="lazy"/>
               <a class="shop_now_link" href="/products/zenpatch-mood-calming-stickers">shop now</a>
             </div>
             <div class="swiper-slide zenpatch_pet_stickers_var">
               <span>Pet Zen Vapor Stickers</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_5_1x.webp" alt="Pet Zen Vapor Stickers" loading="lazy"/>
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_5_2x.webp" alt="Pet Zen Vapor Stickers" loading="lazy"/>
               <a class="shop_now_link" href="/products/zenpatch-pet-stickers">shop now</a>
             </div>
             <div class="swiper-slide trailpatch_kids_tick_repellent_stickers_var">
               <span>Kids Tick Repellent Stickers</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_1_1x.webp" alt="Kids Tick Repellent Stickers" loading="lazy"/>
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_1_2x.webp" alt="Kids Tick Repellent Stickers" loading="lazy"/>
               <a class="shop_now_link" href="/products/trailpatch-kids-tick-repellent-stickers">shop now</a>
             </div>
           </div>` : `<div class="swiper-wrapper parent_slider">
             <div class="swiper-slide trailpatch_kids_tick_repellent_stickers_var">
               <span>Kids Tick Repellent Stickers</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_1_1x.webp" alt="Kids Tick Repellent Stickers" loading="lazy"/>
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_1_2x.webp" alt="Kids Tick Repellent Stickers" loading="lazy"/>
               <a class="shop_now_link" href="/products/trailpatch-kids-tick-repellent-stickers">shop now</a>
             </div>
             <div class="swiper-slide buzzpatch_bundles_var">
               <span>Mosquito Repellent Stickers</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_2_1x.webp" alt="Mosquito Repellent Stickers" loading="lazy"/>
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_2_2x.webp" alt="Mosquito Repellent Stickers" loading="lazy"/>
               <a class="shop_now_link" href="/products/buzzpatch-bundles">shop now</a>
             </div>
             <div class="swiper-slide sleepypatch_sleep_promoting_stickers_var">
               <span>Sleep Promoting Stickers</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_3_1x.webp" alt="Sleep Promoting Stickers" loading="lazy"/>
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_3_2x.webp" alt="Sleep Promoting Stickers" loading="lazy"/>
               <a class="shop_now_link" href="/products/sleepypatch-sleep-promoting-stickers">shop now</a>
             </div>
             <div class="swiper-slide zenpatch_mood_calming_stickers_var">
               <span>Mood Calming Patches</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_4_1x.webp" alt="Mood Calming Patches" loading="lazy"/>
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_4_2x.webp" alt="Mood Calming Patches" loading="lazy"/>
               <a class="shop_now_link" href="/products/zenpatch-mood-calming-stickers">shop now</a>
             </div>
             <div class="swiper-slide zenpatch_pet_stickers_var">
               <span>Pet Zen Vapor Stickers</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_5_1x.webp" alt="Pet Zen Vapor Stickers" loading="lazy"/>
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_5_2x.webp" alt="Pet Zen Vapor Stickers" loading="lazy"/>
               <a class="shop_now_link" href="/products/zenpatch-pet-stickers">shop now</a>
             </div>
           </div>`}
@@ -1807,6 +1813,7 @@
   margin-bottom: 40px;
 }
 .new_main_block .big-stickers {
+  position: relative;
   margin: 0 52px 40px;
   opacity: 0;
 }
@@ -1814,6 +1821,24 @@
   .new_main_block .big-stickers {
     margin: 0 0 22px;
     order: 1;
+  }
+}
+.new_main_block .big-stickers .loader {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  z-index: 9999; /* Ensure loader is on top */
+}
+.new_main_block .big-stickers .loader img {
+  width: 300px;
+  height: 300px;
+  animation: shake 0.5s infinite;
+}
+@media (max-width: 768px) {
+  .new_main_block .big-stickers .loader img {
+    width: 200px;
+    height: 200px;
   }
 }
 .new_main_block .big-stickers .parent_slider span {
@@ -3072,7 +3097,7 @@ body {
       this.device = n, this.init();
     }
     init() {
-      C({ name: "NatPat: Homepage - iteration 3", dev: "SKh" }), B("exp_homepage"), document.head.insertAdjacentHTML(
+      C({ name: "NatPat: Homepage - iteration 3", dev: "SKh" }), b("exp_homepage"), document.head.insertAdjacentHTML(
         "beforeend",
         '<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=M+PLUS+Rounded+1c:wght@900&display=swap" rel="stylesheet">'
       ), document.head.insertAdjacentHTML("beforeend", `<style>${z}</style>`), this.clearOldContent();
@@ -3085,19 +3110,19 @@ body {
       });
     }
     async addBlocks() {
-      $(".new_home_page").append(y()).append(I).append(Q).append(v).append(E).append(D).append(M).append(P).append(F).append(L).append(H).append(K).append(T), setTimeout(() => {
-        $(".big-stickers .parent_slider").slick({
-          slidesToShow: this.device === "mobile" ? 1 : 3,
-          slidesToScroll: 1,
-          arrows: !1,
-          infinite: !0,
-          centerMode: this.device !== "mobile",
-          centerPadding: "0",
-          asNavFor: ".new_main_block .slider_dots",
-          autoplay: !0,
-          autoplaySpeed: 2500
-        }), l(".new_main_block .big-stickers").style.opacity = "1";
-      }, 2e3);
+      $(".new_home_page").append(y()).append(I).append(v).append(Q).append(E).append(D).append(M).append(P).append(F).append(L).append(H).append(K).append(T), $(".big-stickers .parent_slider").slick({
+        slidesToShow: this.device === "mobile" ? 1 : 3,
+        slidesToScroll: 1,
+        arrows: !1,
+        infinite: !0,
+        centerMode: this.device !== "mobile",
+        centerPadding: "0",
+        asNavFor: ".new_main_block .slider_dots",
+        autoplay: !0,
+        autoplaySpeed: 2500
+      }), setTimeout(() => {
+        l(".new_main_block .big-stickers").style.opacity = "1";
+      }, 500);
       const n = x().map((A, t) => (
         /* HTML */
         `
@@ -3179,7 +3204,7 @@ body {
           asNavFor: $(t).closest("section").find(".parent_slider")
         });
       }), $("a.total_reviews").on("click", function(A) {
-        A.preventDefault(), b(".new_trustpilot_reviews");
+        A.preventDefault(), B(".new_trustpilot_reviews");
       }), setTimeout(() => {
         l("main").style.opacity = "1";
       }, 400), $(".reviews_trust p:nth-child(2)").each(function(A, t) {
