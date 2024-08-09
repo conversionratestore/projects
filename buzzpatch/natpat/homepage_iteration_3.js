@@ -3097,7 +3097,7 @@ body {
         autoplaySpeed: 2500
       }), setTimeout(() => {
         g(".new_main_block .big-stickers").style.opacity = "1";
-      }, 400);
+      }, 900);
       const n = x().map((A, t) => (
         /* HTML */
         `
