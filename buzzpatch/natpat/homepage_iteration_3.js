@@ -1489,7 +1489,7 @@
   }
 }
 .shop_by_category_block ul li:nth-child(1) {
-  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/wellness_bgr.png) no-repeat -3px;
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/wellness_bgr.webp) no-repeat -3px;
   background-size: cover;
 }
 .shop_by_category_block ul li:nth-child(1) span svg path {
@@ -1517,7 +1517,7 @@
   }
 }
 .shop_by_category_block ul li:nth-child(2) {
-  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/outdoor_protection_bgr.png) no-repeat -3px;
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/outdoor_protection_bgr.webp) no-repeat -3px;
   background-size: cover;
 }
 .shop_by_category_block ul li:nth-child(2) span svg path {
@@ -1544,7 +1544,7 @@
   }
 }
 .shop_by_category_block ul li:nth-child(3) {
-  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/allergy_relief_bgr.png) no-repeat -3px;
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/allergy_relief_bgr.webp) no-repeat -3px;
   background-size: cover;
 }
 .shop_by_category_block ul li:nth-child(3) span svg path {
@@ -1571,7 +1571,7 @@
   }
 }
 .shop_by_category_block ul li:nth-child(4) {
-  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/pets_bgr.png) no-repeat -3px;
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/pets_bgr.webp) no-repeat -3px;
   background-size: cover;
 }
 .shop_by_category_block ul li:nth-child(4) span svg path {
@@ -3122,7 +3122,7 @@ body {
         autoplaySpeed: 2500
       }), setTimeout(() => {
         l(".new_main_block .big-stickers").style.opacity = "1";
-      }, 500);
+      }, 700);
       const n = x().map((A, t) => (
         /* HTML */
         `
