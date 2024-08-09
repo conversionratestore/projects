@@ -867,12 +867,12 @@
           ${innerWidth > 768 ? `<div class="swiper-wrapper parent_slider">
             <div class="swiper-slide buzzpatch_bundles_var">
               <span>Mosquito Repellent Stickers</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_2_2x.webp" alt="Mosquito Repellent Stickers" loading="lazy"/>
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_2_2x.webp" alt="Mosquito Repellent Stickers"/>
               <a class="shop_now_link" href="/products/buzzpatch-bundles">shop now</a>
             </div>
             <div class="swiper-slide sleepypatch_sleep_promoting_stickers_var">
               <span>Sleep Promoting Stickers</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_3_2x.webp" alt="Sleep Promoting Stickers" loading="lazy"/>
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_3_2x.webp" alt="Sleep Promoting Stickers"/>
               <a class="shop_now_link" href="/products/sleepypatch-sleep-promoting-stickers">shop now</a>
             </div>
             <div class="swiper-slide zenpatch_mood_calming_stickers_var">
@@ -887,13 +887,13 @@
             </div>
             <div class="swiper-slide trailpatch_kids_tick_repellent_stickers_var">
               <span>Kids Tick Repellent Stickers</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_1_2x.webp" alt="Kids Tick Repellent Stickers" loading="lazy"/>
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_1_2x.webp" alt="Kids Tick Repellent Stickers"/>
               <a class="shop_now_link" href="/products/trailpatch-kids-tick-repellent-stickers">shop now</a>
             </div>
           </div>` : `<div class="swiper-wrapper parent_slider">
             <div class="swiper-slide trailpatch_kids_tick_repellent_stickers_var">
               <span>Kids Tick Repellent Stickers</span>
-              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_1_2x.webp" alt="Kids Tick Repellent Stickers" loading="lazy"/>
+              <img class="sticker-bg-img" src="${o}/img/hero_img_bgr_mob_1_2x.webp" alt="Kids Tick Repellent Stickers"/>
               <a class="shop_now_link" href="/products/trailpatch-kids-tick-repellent-stickers">shop now</a>
             </div>
             <div class="swiper-slide buzzpatch_bundles_var">
@@ -3122,7 +3122,7 @@ body {
         autoplaySpeed: 2500
       }), setTimeout(() => {
         l(".new_main_block .big-stickers").style.opacity = "1";
-      }, 800);
+      }, 900);
       const n = x().map((A, t) => (
         /* HTML */
         `
