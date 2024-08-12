@@ -1,48 +1,48 @@
 (function() {
   "use strict";
-  const s = (n, e, a, o = "") => {
+  const d = (C, e, n, o = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: n,
+      event_name: C,
       event_desc: e,
-      event_type: a,
+      event_type: n,
       event_loc: o
-    }), console.dir(`Event: ${n} | ${e} | ${a} | ${o}`);
-  }, d = ({ name: n, dev: e }) => {
+    }), console.dir(`Event: ${C} | ${e} | ${n} | ${o}`);
+  }, p = ({ name: C, dev: e }) => {
     console.log(
-      `%c EXP: ${n} (DEV: ${e})`,
+      `%c EXP: ${C} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, t = (n) => document.querySelector(n), c = (n, e = "variant_1") => {
-    let a = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(a), window.clarity("set", n, e), console.log("set", n, e));
+  }, t = (C) => document.querySelector(C), L = (C, e = "variant_1") => {
+    let n = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", C, e), console.log("set", C, e));
     }, 1e3);
   };
-  function p(n) {
+  function i(C) {
     return new Promise((e) => {
-      if (document.querySelector(n))
-        return e(document.querySelector(n));
-      const a = new MutationObserver(() => {
-        document.querySelector(n) && (e(document.querySelector(n)), a.disconnect());
+      if (document.querySelector(C))
+        return e(document.querySelector(C));
+      const n = new MutationObserver(() => {
+        document.querySelector(C) && (e(document.querySelector(C)), n.disconnect());
       });
-      a.observe(document.documentElement, {
+      n.observe(document.documentElement, {
         childList: !0,
         subtree: !0,
         characterData: !0
       });
     });
   }
-  (function(n) {
-    n = n === void 0 ? {} : n;
-    let e, a, o, C, L = (n == null ? void 0 : n.delay) || 50;
-    function m() {
-      e = null, C = 0;
+  (function(C) {
+    C = C === void 0 ? {} : C;
+    let e, n, o, a, y = (C == null ? void 0 : C.delay) || 50;
+    function c() {
+      e = null, a = 0;
     }
-    return m(), function() {
-      return a = window.scrollY, e != null && (C = a - e), e = a, clearTimeout(o), o = setTimeout(m, L), C;
+    return c(), function() {
+      return n = window.scrollY, e != null && (a = n - e), e = n, clearTimeout(o), o = setTimeout(c, y), a;
     };
   })();
-  const l = "https://conversionratestore.github.io/projects/cerebrum/img/", i = {
+  const r = "https://conversionratestore.github.io/projects/cerebrum/img/", l = {
     moneyBackGuaranteeIcon1: (
       /* HTML */
       `
@@ -149,17 +149,17 @@
 <path d="M4 8L6.71074 11L12 5" stroke="white" stroke-width="2" stroke-linecap="round"/>
 </svg>
   `
-  }, f = (
+  }, h = (
     /* HTML */
     `
   <div class="money_back_guarantee_block">
     <ul>
       <li>
-        ${i.moneyBackGuaranteeIcon1}
+        ${l.moneyBackGuaranteeIcon1}
         <span>No commitment. Cancel anytime.</span>
       </li>
       <li>
-        ${i.moneyBackGuaranteeIcon2}
+        ${l.moneyBackGuaranteeIcon2}
         <span
           >30-Day Money-Back <br />
           Guarantee</span
@@ -168,12 +168,12 @@
     </ul>
   </div>
 `
-  ), y = (
+  ), u = (
     /* HTML */
     `
   <ul id="paymentInfoListVerA">
     <li>
-      <div class="img_wrapper"><img src="${l}smart_icon.svg" alt="icon" /></div>
+      <div class="img_wrapper"><img src="${r}smart_icon.svg" alt="icon" /></div>
       <div>
         <h3>
           Find out your precise <br />
@@ -181,12 +181,12 @@
         </h3>
         <p>
           How smart are you compared <br />
-          to others in the USA <img src="${l}flag_us.svg" alt="flag us" />?
+          to others in the USA <img src="${r}flag_us.svg" alt="flag us" />?
         </p>
       </div>
     </li>
     <li>
-      <div class="img_wrapper"><img src="${l}points_icon.svg" alt="icon" /></div>
+      <div class="img_wrapper"><img src="${r}points_icon.svg" alt="icon" /></div>
       <div>
         <h3>
           <span class="accent_color_blue_second">Unleash</span> your mind’s true <br />
@@ -196,7 +196,7 @@
       </div>
     </li>
     <li>
-      <div class="img_wrapper"><img src="${l}program_icon.svg" alt="icon" /></div>
+      <div class="img_wrapper"><img src="${r}program_icon.svg" alt="icon" /></div>
       <div>
         <h3>
           <span class="accent_color_blue_second">Boost IQ</span> by up to 37% in <br />
@@ -207,12 +207,12 @@
     </li>
   </ul>
 `
-  ), h = (
+  ), H = (
     /* HTML */
     `
   <ul id="paymentInfoListVerB">
     <li>
-      <span class="check_icon">${i.checkIcon} </span>
+      <span class="check_icon">${l.checkIcon} </span>
       <p class="accent_color_blue_second"><b>Complete your IQ test</b></p>
     </li>
     <li>
@@ -232,569 +232,70 @@
     </li>
   </ul>
 `
-  ), _ = (
+  ), f = (
     /* HTML */
     `
   <ul id="paymentInfoListVerC">
     <li>
-      ${i.paymentInfoListVerCIcon1}
+      ${l.paymentInfoListVerCIcon1}
       <p>Get your <b>precise IQ score</b></p>
     </li>
     <li>
-      ${i.paymentInfoListVerCIcon2}
+      ${l.paymentInfoListVerCIcon2}
       <p>Find your <b>strengths</b> & <b>growth points</b></p>
     </li>
     <li>
-      ${i.paymentInfoListVerCIcon3}
+      ${l.paymentInfoListVerCIcon3}
       <p><b>Know</b> where you <b>stand</b> compared to others</p>
     </li>
     <li>
-      ${i.paymentInfoListVerCIcon4}
+      ${l.paymentInfoListVerCIcon4}
       <p><b>Boost IQ</b> by up to <b>37%</b> in 4 weeks</p>
     </li>
   </ul>
 `
-  ), x = (n) => (
+  ), v = (C) => (
     /* HTML */
     `
     <div class="left_part_payment_block">
       <p>
-        Over <b><span class="count_var">${n}</span></b> tests taken today Avg. IQ score: <b>103</b>
+        Over <b><span class="count_var">${C}</span></b> tests taken today Avg. IQ score: <b>103</b>
       </p>
       <h2 class="ver_a">Try <span class="accent_color_blue">Cerebrum IQ</span> for 7 days</h2>
-      ${y}
-      <!-- ${h} -->
-      <!-- ${_} -->
+      ${u}
+      <!-- ${H} -->
+      <!-- ${f} -->
     </div>
   `
-  ), r = `#payment {
-  padding: 40px 0 40px !important;
-}
-#payment #primer-checkout-apm-googlePay {
-  max-height: 40px;
-}
-#payment .item-center.text-center.mb-2.mt-3,
-#payment div.mb-4.flex.items-center,
-#payment .bg-blue-100 {
-  display: none !important;
-}
-#payment span.mb-4 {
-  color: #000;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
-  margin: 6px 0 0;
-}
-@media (max-width: 768px) {
-  #payment span.mb-4 {
-    margin: 0;
-    max-width: 235px;
-  }
-}
-#payment div.font-semibold > span {
-  color: #000;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 28px;
-  height: -moz-max-content;
-  height: max-content;
-}
-@media (max-width: 768px) {
-  #payment div.font-semibold > span {
-    font-size: 18px;
-    line-height: 20px;
-  }
-}
-#payment div.font-semibold > div.flex > div.flex {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-}
-#payment div.font-semibold span.line-through {
-  color: #94a3b8;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
-  text-decoration: line-through;
-}
-#payment div.font-semibold span.font-bold {
-  color: #000;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 28px;
-}
-@media (max-width: 768px) {
-  #payment div.font-semibold span.font-bold {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 20px;
-  }
-}
-#payment div.font-semibold span.text-red-500 {
-  color: #ef4444;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
-}
-#payment #checkout-container {
-  margin: 50px 0 0 !important;
-}
-@media (max-width: 768px) {
-  #payment #checkout-container {
-    margin: 0 !important;
-  }
-}
-#payment .accent_color_blue {
-  color: #2563eb;
-}
-#payment .accent_color_blue_second {
-  color: #0070f0;
-}
-#payment > div {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 60px;
-  border: none;
-  box-shadow: none;
-  outline: none;
-  outline-offset: unset;
-  max-width: 80rem;
-  padding: 24px 2rem;
-}
-@media (max-width: 768px) {
-  #payment > div {
-    flex-direction: column;
-    gap: 16px;
-    padding: 10px 15px;
-  }
-}
-#payment > div > div {
-  width: 50%;
-}
-@media (max-width: 768px) {
-  #payment > div > div {
-    width: 100%;
-  }
-}
-#payment .left_part_payment_block {
-  width: 55%;
-}
-@media (max-width: 768px) {
-  #payment .left_part_payment_block {
-    width: 100%;
-  }
-}
-#payment .left_part_payment_block > p {
-  border-radius: 8px;
-  background: #3b82f6;
-  margin: 0;
-  padding: 4px;
-  color: #fff;
-  text-align: center;
-  font-family: "Inter", sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 24px;
-}
-@media (max-width: 768px) {
-  #payment .left_part_payment_block > p {
-    font-size: 14px;
-    line-height: 20px;
-    padding: 4px 8px;
-    max-width: -moz-max-content;
-    max-width: max-content;
-    margin: 0 auto;
-  }
-}
-#payment .left_part_payment_block > h2 {
-  color: #11181c;
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 48px;
-  letter-spacing: -1.2px;
-  margin: 24px 0;
-}
-@media (max-width: 1250px) {
-  #payment .left_part_payment_block > h2 {
-    font-size: 44px;
-  }
-}
-@media (max-width: 768px) {
-  #payment .left_part_payment_block > h2 {
-    font-size: 24px;
-    line-height: 32px;
-    letter-spacing: normal;
-    font-family: "Inter", sans-serif;
-    text-align: center;
-    margin: 16px 0;
-  }
-}
-@media (max-width: 376px) {
-  #payment .left_part_payment_block > h2.ver_a {
-    margin: 10px 0;
-  }
-}
-#payment .left_part_payment_block #paymentInfoListVerA li {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 16px;
-}
-@media (max-width: 768px) {
-  #payment .left_part_payment_block #paymentInfoListVerA li {
-    gap: 12px;
-  }
-  #payment .left_part_payment_block #paymentInfoListVerA li:last-child {
-    border-bottom: 1px solid #eaecf0;
-    padding-bottom: 12px;
-  }
-}
-@media (max-width: 768px) and (max-width: 376px) {
-  #payment .left_part_payment_block #paymentInfoListVerA li:last-child {
-    padding-top: 5px;
-  }
-}
-#payment .left_part_payment_block #paymentInfoListVerA li + li {
-  border-top: 1px solid #eaecf0;
-  padding-top: 12px;
-  margin-top: 12px;
-}
-@media (max-width: 376px) {
-  #payment .left_part_payment_block #paymentInfoListVerA li + li {
-    padding-top: 5px;
-    margin-top: 5px;
-  }
-}
-#payment .left_part_payment_block #paymentInfoListVerA li .img_wrapper {
-  width: 100px;
-  height: 100px;
-  flex: 0 0 100px;
-}
-@media (max-width: 376px) {
-  #payment .left_part_payment_block #paymentInfoListVerA li .img_wrapper {
-    width: 80px;
-    height: 80px;
-  }
-}
-#payment .left_part_payment_block #paymentInfoListVerA li .img_wrapper img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-#payment .left_part_payment_block #paymentInfoListVerA li h3 {
-  color: #11181c;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 28px;
-  margin: 0 0 12px;
-}
-#payment .left_part_payment_block #paymentInfoListVerA li h3 br {
-  display: none;
-}
-@media (max-width: 1250px) {
-  #payment .left_part_payment_block #paymentInfoListVerA li h3 {
-    font-size: 18px;
-  }
-}
-@media (max-width: 768px) {
-  #payment .left_part_payment_block #paymentInfoListVerA li h3 {
-    font-size: 16px;
-    line-height: 24px;
-    margin-bottom: 4px;
-  }
-  #payment .left_part_payment_block #paymentInfoListVerA li h3 br {
-    display: block;
-  }
-}
-@media (max-width: 376px) {
-  #payment .left_part_payment_block #paymentInfoListVerA li h3 {
-    margin-bottom: 1px;
-  }
-  #payment .left_part_payment_block #paymentInfoListVerA li h3 br {
-    display: none;
-  }
-}
-#payment .left_part_payment_block #paymentInfoListVerA li p {
-  color: #3f3f46;
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 22px;
-  margin: 0;
-}
-#payment .left_part_payment_block #paymentInfoListVerA li p br {
-  display: none;
-}
-@media (max-width: 768px) {
-  #payment .left_part_payment_block #paymentInfoListVerA li p {
-    max-width: 223px;
-  }
-  #payment .left_part_payment_block #paymentInfoListVerA li p br {
-    display: block;
-  }
-}
-#payment .left_part_payment_block #paymentInfoListVerA li p img {
-  width: 18px;
-  display: inline;
-  height: 14px;
-  margin-top: -2px;
-}
-@media (max-width: 376px) {
-  #payment .left_part_payment_block #paymentInfoListVerA li p {
-    font-size: 12px;
-  }
-}
-@media (max-width: 768px) {
-  #payment .left_part_payment_block #paymentInfoListVerB {
-    border-radius: 8px;
-    background: #f4f4f5;
-    padding: 16px;
-  }
-}
-#payment .left_part_payment_block #paymentInfoListVerB li {
-  padding-left: 32px;
-  position: relative;
-}
-#payment .left_part_payment_block #paymentInfoListVerB li + li {
-  margin-top: 24px;
-}
-@media (max-width: 768px) {
-  #payment .left_part_payment_block #paymentInfoListVerB li + li {
-    margin-top: 16px;
-  }
-}
-#payment .left_part_payment_block #paymentInfoListVerB li:not(:first-child):before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 4px;
-  width: 16px;
-  height: 16px;
-  border-radius: 8px;
-  border: 2px solid #94a3b8;
-}
-@media (max-width: 391px) {
-  #payment .left_part_payment_block #paymentInfoListVerB li:not(:first-child):before {
-    top: 3px;
-  }
-}
-#payment .left_part_payment_block #paymentInfoListVerB li:nth-child(2)::before {
-  border-color: #3b82f6;
-}
-#payment .left_part_payment_block #paymentInfoListVerB li:not(:last-child):after {
-  content: "";
-  position: absolute;
-  left: 7px;
-  width: 2px;
-  height: 100%;
-  border-radius: 10px;
-  background: #94a3b8;
-  bottom: -24px;
-}
-@media (max-width: 768px) {
-  #payment .left_part_payment_block #paymentInfoListVerB li:not(:last-child):after {
-    height: 90%;
-    bottom: -17px;
-  }
-}
-#payment .left_part_payment_block #paymentInfoListVerB li:first-child:after {
-  background: #3b82f6;
-}
-@media (max-width: 768px) {
-  #payment .left_part_payment_block #paymentInfoListVerB li:first-child:after {
-    height: 75%;
-  }
-}
-@media (max-width: 376px) {
-  #payment .left_part_payment_block #paymentInfoListVerB li:first-child:after {
-    bottom: -15px;
-  }
-}
-#payment .left_part_payment_block #paymentInfoListVerB li .check_icon {
-  position: absolute;
-  left: 0;
-  top: 4px;
-}
-@media (max-width: 391px) {
-  #payment .left_part_payment_block #paymentInfoListVerB li .check_icon {
-    top: 3px;
-  }
-}
-#payment .left_part_payment_block #paymentInfoListVerB li p {
-  color: #404040;
-  font-family: "Inter", sans-serif;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 28px;
-  margin: 0;
-}
-#payment .left_part_payment_block #paymentInfoListVerB li p br {
-  display: none;
-}
-@media (max-width: 768px) {
-  #payment .left_part_payment_block #paymentInfoListVerB li p {
-    font-size: 16px;
-    line-height: 24px;
-  }
-  #payment .left_part_payment_block #paymentInfoListVerB li p br {
-    display: block;
-  }
-}
-#payment .left_part_payment_block #paymentInfoListVerB li p.accent_color_blue_second {
-  color: #0070f0;
-}
-#payment .left_part_payment_block #paymentInfoListVerC {
-  border-radius: 8px;
-  background: #f4f4f5;
-  padding: 20px;
-}
-@media (max-width: 768px) {
-  #payment .left_part_payment_block #paymentInfoListVerC {
-    padding: 16px;
-  }
-}
-#payment .left_part_payment_block #paymentInfoListVerC li {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 16px;
-}
-@media (max-width: 768px) {
-  #payment .left_part_payment_block #paymentInfoListVerC li {
-    gap: 12px;
-  }
-}
-#payment .left_part_payment_block #paymentInfoListVerC li + li {
-  margin-top: 24px;
-}
-@media (max-width: 768px) {
-  #payment .left_part_payment_block #paymentInfoListVerC li + li {
-    margin-top: 16px;
-  }
-}
-#payment .left_part_payment_block #paymentInfoListVerC li svg {
-  width: 40px;
-  height: 40px;
-  flex: 0 0 40px;
-}
-@media (max-width: 768px) {
-  #payment .left_part_payment_block #paymentInfoListVerC li svg {
-    width: 30px;
-    height: 30px;
-    flex: 0 0 30px;
-  }
-}
-#payment .left_part_payment_block #paymentInfoListVerC li p {
-  color: #404040;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 28px;
-  margin: 0;
-}
-@media (max-width: 768px) {
-  #payment .left_part_payment_block #paymentInfoListVerC li p {
-    font-size: 16px;
-    line-height: 24px;
-    max-width: 261px;
-  }
-}
-#payment .left_part_payment_block + div {
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.03), 0px 2px 30px 0px rgba(0, 0, 0, 0.08), 0px 0px 1px 0px rgba(0, 0, 0, 0.3);
-  padding: 24px;
-  overflow: initial;
-}
-@media (max-width: 768px) {
-  #payment .left_part_payment_block + div {
-    box-shadow: none;
-    padding: 0;
-  }
-}
-#payment .money_back_guarantee_block {
-  margin: 24px 0 -35px;
-}
-@media (max-width: 768px) {
-  #payment .money_back_guarantee_block {
-    position: relative;
-    margin: 16px 0;
-    padding-top: 16px;
-  }
-  #payment .money_back_guarantee_block::after {
-    content: "";
-    position: absolute;
-    width: 105%;
-    height: 1px;
-    background: #dee5f9;
-    top: 0;
-    left: -8px;
-  }
-}
-#payment .money_back_guarantee_block ul {
-  display: flex;
-  justify-content: space-between;
-}
-#payment .money_back_guarantee_block ul li {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 8px;
-}
-@media (max-width: 768px) {
-  #payment .money_back_guarantee_block ul li:first-child {
-    width: 45%;
-  }
-}
-#payment .money_back_guarantee_block ul li svg {
-  width: 36px;
-  height: 36px;
-  flex: 0 0 36px;
-}
-#payment .money_back_guarantee_block ul li span {
-  color: #121620;
-  font-family: "Inter", sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 18px;
-}
-#payment .money_back_guarantee_block ul li span br {
-  display: none;
-}
-@media (max-width: 768px) {
-  #payment .money_back_guarantee_block ul li span br {
-    display: block;
-  }
-}/*# sourceMappingURL=main.css.map */`, b = window.innerWidth < 768 ? "mobile" : "desktop";
-  class g {
+  ), s = "", V = window.innerWidth < 768 ? "mobile" : "desktop";
+  class m {
     constructor(e) {
       this.device = e, this.init();
     }
     init() {
-      d({ name: "Payment-Page-Improvements Hyp 2", dev: "SKh" }), c("exp_improve_payment"), t(".crs_style") || (document.head.insertAdjacentHTML(
+      p({ name: "Payment-Page-Improvements Hyp 2", dev: "SKh" }), L("exp_improve_payment"), t(".crs_style") || (document.head.insertAdjacentHTML(
         "afterbegin",
         '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">'
-      ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${r}</style>`)), this.renderLeftPartPaymentBlock(), this.chanheTxtCount(), this.observeTxtCount(), this.renderMoneyBackGuaranteeBlock(), this.observePaymentSection();
+      ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${s}</style>`)), this.renderLeftPartPaymentBlock(), this.chanheTxtCount(), this.observeTxtCount(), this.renderMoneyBackGuaranteeBlock(), this.observePaymentSection();
     }
     // HYP 2 _________________________________________________________________________________________________________________________________
     renderLeftPartPaymentBlock() {
-      p("#payment > div").then(() => {
+      i("#payment > div").then(() => {
         const e = t("#payment .bg-blue-100 .text-inherit b").textContent;
-        t(".left_part_payment_block") || (console.log(">>>>>>>>>>>>>>>>"), t("#payment > div").insertAdjacentHTML("afterbegin", x(e)));
+        t(".left_part_payment_block") || (console.log(">>>>>>>>>>>>>>>>"), t("#payment > div").insertAdjacentHTML("afterbegin", v(e)));
       });
     }
     chanheTxtCount() {
-      p("#payment .bg-blue-100 .text-inherit b").then(() => {
-        p(".left_part_payment_block .count_var").then(() => {
+      i("#payment .bg-blue-100 .text-inherit b").then(() => {
+        i(".left_part_payment_block .count_var").then(() => {
           const e = t("#payment .bg-blue-100 .text-inherit b").textContent;
           t(".left_part_payment_block .count_var").textContent = e;
         });
       });
     }
     renderMoneyBackGuaranteeBlock() {
-      p("#payment span.mb-4").then(() => {
-        t(".money_back_guarantee_block") || t("#payment span.mb-4").insertAdjacentHTML("afterend", f);
+      i("#payment span.mb-4").then(() => {
+        t(".money_back_guarantee_block") || t("#payment span.mb-4").insertAdjacentHTML("afterend", h);
       });
     }
     observeTxtCount() {
@@ -809,7 +310,7 @@
         t(".crs_style") || (document.head.insertAdjacentHTML(
           "afterbegin",
           '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">'
-        ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${r}</style>`)), t(".left_part_payment_block") || (this.renderLeftPartPaymentBlock(), this.observeTxtCount()), t(".money_back_guarantee_block") || this.renderMoneyBackGuaranteeBlock();
+        ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${s}</style>`)), t(".left_part_payment_block") || (this.renderLeftPartPaymentBlock(), this.observeTxtCount()), t(".money_back_guarantee_block") || this.renderMoneyBackGuaranteeBlock();
       }).observe(t("body"), { childList: !0, subtree: !0 });
     }
     // HYP 1 _________________________________________________________________________________________________________________________________
@@ -883,11 +384,11 @@
     //   observer.observe($el('body'), { childList: true, subtree: true })
     // }
     handleVisibility() {
-      p(".hero_section").then((e) => {
-        s("exp_screen_motivation_section_01_ver_2", "Section", "Visibility", "First screen Header");
+      i(".hero_section").then((e) => {
+        d("exp_screen_motivation_section_01_ver_2", "Section", "Visibility", "First screen Header");
       });
     }
   }
-  new g(b);
+  new m(V);
 })();
 //# sourceMappingURL=index.js.map
