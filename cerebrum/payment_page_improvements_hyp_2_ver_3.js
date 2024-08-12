@@ -270,6 +270,9 @@
   ), r = `#payment {
   padding: 40px 0 40px !important;
 }
+#payment #primer-checkout-apm-googlePay {
+  max-height: 40px;
+}
 #payment .item-center.text-center.mb-2.mt-3,
 #payment div.mb-4.flex.items-center,
 #payment .bg-blue-100 {
@@ -285,7 +288,7 @@
 @media (max-width: 768px) {
   #payment span.mb-4 {
     margin: 0;
-    max-width: 230px;
+    max-width: 235px;
   }
 }
 #payment div.font-semibold > span {
@@ -334,7 +337,12 @@
   line-height: 20px;
 }
 #payment #checkout-container {
-  margin: 0 !important;
+  margin: 50px 0 0 !important;
+}
+@media (max-width: 768px) {
+  #payment #checkout-container {
+    margin: 0 !important;
+  }
 }
 #payment .accent_color_blue {
   color: #2563eb;
@@ -706,7 +714,7 @@
   }
 }
 #payment .money_back_guarantee_block {
-  margin: 24px 0;
+  margin: 24px 0 -35px;
 }
 @media (max-width: 768px) {
   #payment .money_back_guarantee_block {
