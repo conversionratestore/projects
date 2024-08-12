@@ -24,8 +24,8 @@
       threshold: s
     };
     new IntersectionObserver((d) => {
-      d.forEach((p) => {
-        p.isIntersecting ? t = setTimeout(() => {
+      d.forEach((f) => {
+        f.isIntersecting ? t = setTimeout(() => {
           C(e, "Section", "view", n);
         }, 3e3) : clearTimeout(t);
       });
@@ -47,7 +47,7 @@
       });
     });
   }
-  const m = {
+  const _ = {
     google: `
         <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M22.06 11.249C22.06 10.469 21.99 9.71902 21.86 8.99902H11.5V13.254H17.42C17.165 14.629 16.39 15.794 15.225 16.574V19.334H18.78C20.86 17.419 22.06 14.599 22.06 11.249Z" fill="#4285F4"/>
@@ -113,9 +113,9 @@
     /* HTML */
     ` <hr class="d-md-block d-none" />
     <ul>
-      <li class="items-center">${m.iconList1} Curated and hand-picked by our team classes</li>
-      <li class="items-center">${m.iconList2} Complete collection of 30 curated programs & 50 challenges</li>
-      <li class="items-center">${m.iconList3} Exclusive access to all new releases and livestream events</li>
+      <li class="items-center">${_.iconList1} Curated and hand-picked by our team classes</li>
+      <li class="items-center">${_.iconList2} Complete collection of 30 curated programs & 50 challenges</li>
+      <li class="items-center">${_.iconList3} Exclusive access to all new releases and livestream events</li>
     </ul>
     <a class="sfc-nodePlayable__lockCta" href="/become-a-subscriber">Get Full Access Now</a>`
   ), y = () => (
@@ -124,11 +124,11 @@
       class="crs_btn_white flex-center"
       href="/yogi/login/google?destination=${window.location.pathname}"
     >
-      ${m.google}
+      ${_.google}
       <span>Continue with Google</span>
     </a>
     <a class="crs_btn_white flex-center btn_next_signUp" href="#">
-      ${m.email}
+      ${_.email}
       <span>Sign Up with Email</span>
     </a>
     <p class="crs_block_terms">
@@ -149,7 +149,7 @@
       </h2>
 
       <div class="flex-center">
-        <a href="#" class="crs_btn_back d-md-block d-none">${m.arrowLeft} Back</a>
+        <a href="#" class="crs_btn_back d-md-block d-none">${_.arrowLeft} Back</a>
         <button class="sfc-nodePlayable__lockCta" type="button">Create Free Account</button>
       </div>
       <p class="crs_block_terms">
@@ -562,12 +562,12 @@
       const n = k(this.thisClass, e);
       if (e === !1 || e === !0 && this.thisClass === "Premium") {
         this.insert(i(".sfc-nodePlayable__primaryContentContainer"), n);
-        const a = i(".crs_form h2"), o = i("#block-userregistrationform");
-        a && o && ((t = o.querySelector(".username")) == null || t.parentElement, o.querySelector(".form-type-email"), a.after(o));
-        let d = "", p = "Pop up " + (a == null ? void 0 : a.innerText.trim()) + (e === !1 ? ` Unauthorised ${this.thisClass} class` : " Authorized Premium class only");
-        if (e === !1 ? this.thisClass === "free" ? d = "exp_trailvideo_section_01" : d = "exp_trailvideo_section_02" : this.thisClass === "Premium" && (d = "exp_trailvideo_section_03"), g(".crs_block:not(.crs_form)", d, p), i(".crs_block.crs_form")) {
-          let f = this.thisClass === "free" ? "exp_trailvideo_section_04" : "exp_trailvideo_section_05";
-          g(".crs_block.crs_form", f, p);
+        const a = i(".crs_form h2"), r = i("#block-userregistrationform");
+        a && r && ((t = r.querySelector(".username")) == null || t.parentElement, r.querySelector(".form-type-email"), a.after(r));
+        let d = "", f = "Pop up " + (a == null ? void 0 : a.innerText.trim()) + (e === !1 ? ` Unauthorised ${this.thisClass} class` : " Authorized Premium class only");
+        if (e === !1 ? this.thisClass === "free" ? d = "exp_trailvideo_section_01" : d = "exp_trailvideo_section_02" : this.thisClass === "Premium" && (d = "exp_trailvideo_section_03"), g(".crs_block:not(.crs_form)", d, f), i(".crs_block.crs_form")) {
+          let p = this.thisClass === "free" ? "exp_trailvideo_section_04" : "exp_trailvideo_section_05";
+          g(".crs_block.crs_form", p, f);
         }
         this.actionsBlock(this.thisClass);
       }
@@ -576,39 +576,39 @@
       e.insertAdjacentHTML(s, n);
     }
     actionsBlock(e) {
-      var s, t, a, o, d, p, f;
+      var s, t, a, r, d, f, p;
       const n = i(".crs_form");
-      n && (i(".btn_next_signUp") && ((s = i(".btn_next_signUp")) == null || s.addEventListener("click", (l) => {
-        l.preventDefault();
-        const _ = l.target.closest(".crs_block");
-        _ && (_.style.display = "none"), n.style.display = "flex";
-      }), (t = i(".crs_btn_white")) == null || t.addEventListener("click", (l) => {
-      }), (a = i(".crs_btn_back")) == null || a.addEventListener("click", (l) => {
-        l.preventDefault();
-        const _ = l.target.closest(".crs_block");
-        _ && (_.style.display = "none");
+      n && (i(".btn_next_signUp") && ((s = i(".btn_next_signUp")) == null || s.addEventListener("click", (o) => {
+        o.preventDefault();
+        const m = o.target.closest(".crs_block");
+        m && (m.style.display = "none"), n.style.display = "flex";
+      }), (t = i(".crs_btn_white")) == null || t.addEventListener("click", (o) => {
+      }), (a = i(".crs_btn_back")) == null || a.addEventListener("click", (o) => {
+        o.preventDefault();
+        const m = o.target.closest(".crs_block");
+        m && (m.style.display = "none");
         const h = i(".crs_block:not(.crs_form)");
         h && (h.style.display = "block");
-      }), (o = i(".crs_form .sfc-nodePlayable__lockCta")) == null || o.addEventListener("click", (l) => {
-        l.preventDefault(), localStorage.setItem("isClass", e), localStorage.setItem("referrerInfo", window.location.href);
-        const r = i(".crs_form .sfc-button");
-        r == null || r.click();
-      }), this.device == "mobile" && (n.addEventListener("click", (l) => {
-        const r = l.target;
-        if (r.classList.contains("crs_form")) {
-          r.style.display = "none";
-          const _ = i(".crs_block:not(.crs_form)");
-          _ && (_.style.display = "block");
+      }), (r = i(".crs_form .sfc-nodePlayable__lockCta")) == null || r.addEventListener("click", (o) => {
+        o.preventDefault(), localStorage.setItem("isClass", e), localStorage.setItem("referrerInfo", window.location.href);
+        const l = i(".crs_form .sfc-button");
+        l == null || l.click();
+      }), this.device == "mobile" && (n.addEventListener("click", (o) => {
+        const l = o.target;
+        if (l.classList.contains("crs_form")) {
+          l.style.display = "none";
+          const m = i(".crs_block:not(.crs_form)");
+          m && (m.style.display = "block");
         }
-      }), (d = i(".crs_swipe")) == null || d.addEventListener("click", (l) => {
+      }), (d = i(".crs_swipe")) == null || d.addEventListener("click", (o) => {
         n.style.display = "none";
-        const r = i(".crs_block:not(.crs_form)");
-        r && (r.style.display = "block");
-      }), (p = i(".crs_swipe")) == null || p.addEventListener("touchmove", (l) => {
+        const l = i(".crs_block:not(.crs_form)");
+        l && (l.style.display = "block");
+      }), (f = i(".crs_swipe")) == null || f.addEventListener("touchmove", (o) => {
         n.style.display = "none";
-        const r = i(".crs_block:not(.crs_form)");
-        r && (r.style.display = "block");
-      }))), i(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta") && ((f = i(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta")) == null || f.addEventListener("click", (l) => {
+        const l = i(".crs_block:not(.crs_form)");
+        l && (l.style.display = "block");
+      }))), i(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta") && ((p = i(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta")) == null || p.addEventListener("click", (o) => {
       })));
     }
   }
@@ -623,15 +623,15 @@
       var e;
       try {
         const n = await b(".crs_form input.form-email"), s = await b(".crs_form input.username"), t = await b(".crs_form input[name=pass]");
-        n && s && t && this.thisClass != "" ? (n.placeholder = "Your email", s.placeholder = "Your username", t.placeholder = "Password", x(".crs_form input").forEach((a, o) => {
+        n && s && t && this.thisClass != "" ? (n.placeholder = "Your email", s.placeholder = "Your username", t.placeholder = "Password", x(".crs_form input").forEach((a, r) => {
           a.addEventListener("click", (d) => {
             d.stopImmediatePropagation();
-            let p = o + 1;
-            this.thisClass === "Premium" && (p = o + 4);
+            let f = r + 1;
+            this.thisClass === "Premium" && (f = r + 4);
           });
         }), (e = i(".crs_form input.password-field")) == null || e.addEventListener("input", (a) => {
-          const o = i(".crs_form input.password-confirm");
-          o && (o.value = a.target.value);
+          const r = i(".crs_form input.password-confirm");
+          r && (r.value = a.target.value);
         })) : console.error("One or more form elements are missing.");
       } catch (n) {
         console.error("Error waiting for form elements:", n);
@@ -640,7 +640,7 @@
   }
   class A {
     constructor({ previewBlock: e }) {
-      this.videoFound = !1, this.init(), this.previewBlock = e, this.previewTime = 3;
+      this.videoFound = !1, this.init(), this.previewBlock = e, this.previewTime = 120;
     }
     init() {
       this.getFlowPlayer();
@@ -657,21 +657,23 @@
             if (!t || typeof t != "object")
               return;
             this.videoFound = !0, e.disconnect();
-            const a = i("#video-preview-container"), o = i("#video-preview-container #playerContainer"), d = i("#posterImage"), p = i('.os-preview-badge a[data-action="os-signingup"]');
-            if (o && d && a) {
-              const f = i("flowplayer-header-duration"), l = i("flowplayer-fullscreen-enter-icon"), r = i("flowplayer-control");
-              o.classList.add("os-d-block"), a.classList.add("os-z-9"), d.classList.add("os-d-hidden"), f == null || f.classList.add("os-d-hidden"), l == null || l.classList.add("os-d-hidden"), r == null || r.classList.add("os-d-hidden");
+            const a = i("#video-preview-container"), r = i("#video-preview-container #playerContainer"), d = i("#posterImage"), f = i('.os-preview-badge a[data-action="os-signingup"]');
+            if (r && d && a) {
+              const p = i("flowplayer-header-duration"), o = i("flowplayer-fullscreen-enter-icon"), l = i("flowplayer-control");
+              r.classList.add("os-d-block"), a.classList.add("os-z-9"), d.classList.add("os-d-hidden"), p == null || p.classList.add("os-d-hidden"), o == null || o.classList.add("os-d-hidden"), l == null || l.classList.add("os-d-hidden");
             }
-            p == null || p.addEventListener("click", (f) => {
-              f.preventDefault(), this.previewBlock.remove(), t.pause();
-            }), t.on("seeked", () => {
-              console.log("ready");
-            }), t.on("playing", (f) => {
-              this.timer = setInterval(() => {
+            f == null || f.addEventListener("click", (p) => {
+              p.preventDefault(), this.previewBlock.remove(), t.pause();
+            }), t.on("beforeplay", (p) => {
+              var m;
+              const o = !i('[data-drupal-link-system-path="yogi/login"]'), l = (m = i(".sfc-nodePlayable__primaryContentContainer h3")) != null && m.innerHTML.includes("premium") ? "premium" : "free";
+              console.log("click", l), o || C("exp_video_previews_button_01", `${l} - Play`, "click", "Unauthorised Product Video"), l === "premium" && C("exp_video_previews_button_02", "Play", "click", "Premium class only Product Video");
+            }), t.on("playing", (p) => {
+              i(".sfc-playableOverlay__inner") && (this.timer = setInterval(() => {
                 console.log("time", t.currentTime), t.currentTime >= this.previewTime && (clearInterval(this.timer), t.pause(), this.previewBlock.remove());
-              }, 10);
-            }), t.on("pause", (f) => {
-              clearInterval(this.timer), console.info(f.type);
+              }, 10));
+            }), t.on("pause", (p) => {
+              clearInterval(this.timer), console.info(p.type);
             });
           } catch (s) {
             e.disconnect(), console.error("Error waiting for flowplayer:", s);
@@ -765,7 +767,7 @@
 .os-preview-badge .os-text a {
   color: #017922;
 }`;
-  class E {
+  class S {
     constructor() {
       this.styleElement = null, this.badgeElement = null, this.device = window.innerWidth < 769 ? "mobile" : "desktop";
     }
@@ -773,7 +775,7 @@
       this.render();
     }
     render() {
-      var a, o, d, p;
+      var a, r, d;
       const e = !i('[data-drupal-link-system-path="yogi/login"]');
       this.thisClass = (a = i(".sfc-nodePlayable__primaryContentContainer h3")) != null && a.innerHTML.includes("premium") ? "premium" : "free";
       let n;
@@ -796,14 +798,12 @@
     `
       ), t = i(".sfc-nodePlayable__primaryContentContainer");
       if (t) {
-        const f = i(".sfc-playableOverlay__inner"), l = i(".crs_block:not(.crs_form)");
+        const f = i(".sfc-playableOverlay__inner"), p = i(".crs_block:not(.crs_form)");
         if (!f)
           return;
-        f.classList.add("os-d-hidden"), l && l.classList.add("os-d-hidden"), this.initStyles(), this.insert(t, s), this.badgeElement = t.querySelector(".os-preview-badge"), (o = i("[data-action=os-signingup]")) == null || o.addEventListener("click", (r) => {
+        f.classList.add("os-d-hidden"), p && p.classList.add("os-d-hidden"), this.initStyles(), this.insert(t, s), this.badgeElement = t.querySelector(".os-preview-badge"), (r = i("[data-action=os-signingup]")) == null || r.addEventListener("click", (o) => {
           C("exp_video_previews_link_01", `${this.thisClass} - Signing up`, "click", "Unauthorised Product Banner Get a free access to the full video");
-        }), (d = i("flowplayer-play-icon")) == null || d.addEventListener("click", (r) => {
-          e || C("exp_video_previews_button_01", `${this.thisClass} - Play`, "click", "Unauthorised Product Video");
-        }), (p = i('[data-action="os-subscribe"]')) == null || p.addEventListener("click", (r) => {
+        }), (d = i('[data-action="os-subscribe"]')) == null || d.addEventListener("click", (o) => {
           C("exp_video_previews_link_02", "subscribing", "click", 'Premium class only Product Banner Get access to the full video"');
         });
       }
@@ -819,7 +819,7 @@
       e == null || e.insertAdjacentHTML(s, n);
     }
   }
-  const S = `.sfc-becomeASubscriber__section--hero--anon:before {
+  const E = `.sfc-becomeASubscriber__section--hero--anon:before {
   background-image: url('https://conversionratestore.github.io/projects/doyogawithme/img/yoga_bg.webp');
   background-size: contain;
   background-position: center bottom;
@@ -831,7 +831,6 @@
 }
 
 @media (min-width: 767px) {
-
   .sfc-becomeASubscriber__section--hero:before {
     background-image: url('https://conversionratestore.github.io/projects/doyogawithme/img/yoga_bg.webp');
     background-size: cover;
@@ -1026,6 +1025,30 @@ a.crs_browse_free:active {
 .os-subscriber-feature .os-block .descr p {
   margin: 0;
 }
+
+.sfc-becomeASubscriber__heroHeader {
+  position: relative;
+}
+
+.crs_browse_skip {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #f9f9f9;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.crs_browse_skip span:first-child {
+  text-decoration-line: underline;
+}
+
+@media (max-width: 767px) {
+  .crs_browse_skip {
+    display: none;
+  }
+}
 `, P = (
     /* HTML */
     `<svg
@@ -1095,7 +1118,7 @@ a.crs_browse_free:active {
     </clipPath>
   </defs>
 </svg>`
-  ), q = (
+  ), $ = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -1111,7 +1134,7 @@ a.crs_browse_free:active {
     fill="#027DB8"
   />
 </svg>`
-  ), $ = (
+  ), q = (
     /* HTML */
     `<section
   data-sfc-id="section"
@@ -1806,7 +1829,7 @@ a.crs_browse_free:active {
               </div>
             </div>
             <div class="os-block">
-              <div class="icon">${q}</div>
+              <div class="icon">${$}</div>
               <div class="content">
                 <h4>Exclusive access to all new releases and premium content</h4>
                 <div class="descr"><p>Enjoy new classes and get 25% discount on livestream events.</p></div>
@@ -1817,20 +1840,29 @@ a.crs_browse_free:active {
       </div>
     `
       );
-      s && (s.insertAdjacentHTML("afterend", a), this.device === "mobile" && (s.classList.add("os-d-hidden"), s.insertAdjacentHTML("afterend", $)));
+      s && (s.insertAdjacentHTML("afterend", a), this.device === "mobile" && (s.classList.add("os-d-hidden"), s.insertAdjacentHTML("afterend", q)));
     }
     render() {
       var s, t;
       if (!!i('[data-drupal-link-system-path="yogi/login"]'))
         return;
-      document.head.insertAdjacentHTML("beforeend", `<style>${S}</style>`);
+      document.head.insertAdjacentHTML("beforeend", `<style>${E}</style>`);
       let n = i("#block-samsara-content");
       if (localStorage.getItem("isClass") && (n != null && n.querySelector("h2"))) {
-        let a = localStorage.getItem("isClass"), o = localStorage.getItem("referrerInfo");
-        console.log(a), a == "free" ? (this.insert(
+        let a = localStorage.getItem("isClass"), r = localStorage.getItem("referrerInfo");
+        a == "free" ? (this.insert(
           n,
           /* HTML */
-          `<a href="${o}" class="crs_back">${m.arrowLeftWhite}Back</a>`
+          `<a href="${r}" class="crs_back">${_.arrowLeftWhite}Back</a>`
+        ), this.insert(
+          i(".sfc-becomeASubscriber__heroHeader"),
+          /* HTML */
+          ` <a
+            href="${r}"
+            class="crs_browse_skip"
+            ><span>Skip</span> <span>-></span></a></a
+          >`,
+          "afterend"
         ), (s = i(".crs_back")) == null || s.addEventListener("click", () => {
         })) : a == "Premium" && (this.insert(
           n.querySelector("h1"),
@@ -1838,7 +1870,7 @@ a.crs_browse_free:active {
           ` <a
             href="https://www.doyogawithme.com/yoga-classes?field_subscribers_only_value=1&sort_by=created"
             class="crs_browse_free"
-            >Browse free classes${m.arrowRight}</a
+            >Browse free classes${_.arrowRight}</a
           >`,
           "afterend"
         ), (t = i(".crs_browse_free")) == null || t.addEventListener("click", () => {
@@ -1858,12 +1890,12 @@ a.crs_browse_free:active {
       this.init();
     }
     init() {
-      if (console.log("init"), this.initStyles(), window.location.href.includes("/content/")) {
+      if (this.initStyles(), window.location.href.includes("/content/")) {
         new M();
-        const e = new E();
+        const e = new S();
         e.init(), new A({ previewBlock: e });
       }
-      console.log(window.location.href.includes("/become-a-subscriber"), window.location.href), window.location.href.includes("/become-a-subscriber") && (console.log("became-a-subscriber"), new F());
+      window.location.href.includes("/become-a-subscriber") && new F();
     }
     initStyles() {
       document.head.insertAdjacentHTML("beforeend", `<style>${H}</style>`);
