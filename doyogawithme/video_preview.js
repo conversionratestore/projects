@@ -836,18 +836,20 @@
       i == null || i.insertAdjacentHTML(t, n);
     }
   }
-  const P = `.sfc-becomeASubscriber__section--hero--anon:before {
-  background-image: url('https://conversionratestore.github.io/projects/doyogawithme/img/yoga_bg.webp');
-  background-size: contain;
-  background-position: center bottom;
-  z-index: 1;
-}
+  const P = `
 
 .sfc-becomeASubscriber__section--hero {
   padding-top: 0 !important;
 }
 
 @media (min-width: 767px) {
+  .sfc-becomeASubscriber__section--hero--anon:before {
+    background-image: url('https://conversionratestore.github.io/projects/doyogawithme/img/yoga_bg.webp');
+    background-size: contain;
+    background-position: center bottom;
+    z-index: 1;
+  }
+  
   .sfc-becomeASubscriber__section--hero:before {
     background-image: url('https://conversionratestore.github.io/projects/doyogawithme/img/yoga_bg.webp');
     background-size: cover;
