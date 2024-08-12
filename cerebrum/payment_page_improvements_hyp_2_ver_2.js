@@ -288,7 +288,7 @@
 @media (max-width: 768px) {
   #payment span.mb-4 {
     margin: 0;
-    max-width: 235px;
+    max-width: 265px;
   }
 }
 #payment div.font-semibold > span {
