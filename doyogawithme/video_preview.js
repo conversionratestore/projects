@@ -8,16 +8,16 @@
       event_type: n,
       event_loc: t
     }), console.log(`Event: ${c} | ${i} | ${n} | ${t}`);
-  }, v = ({ name: c, dev: i }) => {
+  }, u = ({ name: c, dev: i }) => {
     console.log(
       `%c EXP: ${c} (DEV: ${i})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, u = (c) => {
+  }, x = (c) => {
     let i = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(i), window.clarity("set", c, "variant_1"));
     }, 1e3);
-  }, g = (c, i, n, t = 1) => {
+  }, h = (c, i, n, t = 1) => {
     let s;
     const a = {
       root: null,
@@ -30,7 +30,7 @@
         }, 3e3) : clearTimeout(s);
       });
     }, a).observe(document.querySelector(c));
-  }, x = (c) => document.querySelectorAll(c), e = (c) => document.querySelector(c);
+  }, w = (c) => document.querySelectorAll(c), e = (c) => document.querySelector(c);
   function C(c) {
     return new Promise((i) => {
       const n = document.querySelector(c);
@@ -109,7 +109,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="9" height="14" viewBox="0 0 9 14" fill="none">
             <path d="M1.5 13L7.5 7L1.5 1" stroke="white" stroke-width="2"/>
         </svg>`
-  }, w = () => (
+  }, y = () => (
     /* HTML */
     ` <hr class="d-md-block d-none" />
     <ul>
@@ -118,7 +118,7 @@
       <li class="items-center">${_.iconList3} Exclusive access to all new releases and livestream events</li>
     </ul>
     <a class="sfc-nodePlayable__lockCta" href="/become-a-subscriber">Get Full Access Now</a>`
-  ), y = () => (
+  ), L = () => (
     /* HTML */
     ` <a
       class="crs_btn_white flex-center"
@@ -139,7 +139,7 @@
     <p>
       Already have an account? <a href="/yogi/login?destination=${window.location.pathname}" class="c-green">Log in</a>
     </p>`
-  ), L = (c) => (
+  ), k = (c) => (
     /* HTML */
     ` <div class="crs_block crs_form">
     <div class="crs_form_container">
@@ -158,7 +158,7 @@
       </p>
     </div>
   </div>`
-  ), k = (c, i) => (
+  ), T = (c, i) => (
     /* HTML */
     ` <div class="crs_block">
       <h2>
@@ -167,10 +167,10 @@
       <p class="crs_block_subtotal">
         ${c === "Premium" ? `Get ${i === !0 ? "full" : ""} access to this and 500+ other premium <br class="d-md-none"> classes` : 'Watch this and 500+ other free classes <br class="d-md-none"> after the sign up'}
       </p>
-      <div class="crs_block_content">${c === "Premium" && i ? w() : y()}</div>
+      <div class="crs_block_content">${c === "Premium" && i ? y() : L()}</div>
     </div>
-    ${i === !1 ? L(c) : ""}`
-  ), T = `.o-page__header {
+    ${i === !1 ? k(c) : ""}`
+  ), B = `.o-page__header {
   z-index: 4;
 }
 #main-content {
@@ -543,7 +543,7 @@
     width: 100%;
   }
 }`;
-  class B {
+  class M {
     constructor() {
       this.device = window.innerWidth < 769 ? "mobile" : "desktop";
     }
@@ -555,19 +555,19 @@
     }
     render() {
       var t, s;
-      if (document.head.insertAdjacentHTML("beforeend", `<style>${T}</style>`), e(".crs_block") || !e(".c-dropdownMenu__list--level0") && !e(".sfc-nodePlayable__lockContainerInner header > .sfc-item__headline") && !e("#block-userregistrationform"))
+      if (document.head.insertAdjacentHTML("beforeend", `<style>${B}</style>`), e(".crs_block") || !e(".c-dropdownMenu__list--level0") && !e(".sfc-nodePlayable__lockContainerInner header > .sfc-item__headline") && !e("#block-userregistrationform"))
         return;
       let i = !e('[data-drupal-link-system-path="yogi/login"]');
       this.thisClass = (t = e(".sfc-nodePlayable__primaryContentContainer h3")) != null && t.innerHTML.includes("premium") ? "Premium" : "free";
-      const n = k(this.thisClass, i);
+      const n = T(this.thisClass, i);
       if (i === !1 || i === !0 && this.thisClass === "Premium") {
         this.insert(e(".sfc-nodePlayable__primaryContentContainer"), n);
         const a = e(".crs_form h2"), o = e("#block-userregistrationform");
         a && o && ((s = o.querySelector(".username")) == null || s.parentElement, o.querySelector(".form-type-email"), a.after(o));
         let d = "", f = "Pop up " + (a == null ? void 0 : a.innerText.trim()) + (i === !1 ? ` Unauthorised ${this.thisClass} class` : " Authorized Premium class only");
-        if (i === !1 ? this.thisClass === "free" ? d = "exp_trailvideo_section_01" : d = "exp_trailvideo_section_02" : this.thisClass === "Premium" && (d = "exp_trailvideo_section_03"), g(".crs_block:not(.crs_form)", d, f), e(".crs_block.crs_form")) {
+        if (i === !1 ? this.thisClass === "free" ? d = "exp_trailvideo_section_01" : d = "exp_trailvideo_section_02" : this.thisClass === "Premium" && (d = "exp_trailvideo_section_03"), h(".crs_block:not(.crs_form)", d, f), e(".crs_block.crs_form")) {
           let p = this.thisClass === "free" ? "exp_trailvideo_section_04" : "exp_trailvideo_section_05";
-          g(".crs_block.crs_form", p, f);
+          h(".crs_block.crs_form", p, f);
         }
         this.actionsBlock(this.thisClass);
       }
@@ -587,8 +587,8 @@
         r.preventDefault();
         const m = r.target.closest(".crs_block");
         m && (m.style.display = "none");
-        const h = e(".crs_block:not(.crs_form)");
-        h && (h.style.display = "block");
+        const v = e(".crs_block:not(.crs_form)");
+        v && (v.style.display = "block");
       }), (o = e(".crs_form .sfc-nodePlayable__lockCta")) == null || o.addEventListener("click", (r) => {
         r.preventDefault(), localStorage.setItem("isClass", i), localStorage.setItem("referrerInfo", window.location.href);
         const l = e(".crs_form .sfc-button");
@@ -612,9 +612,9 @@
       })));
     }
   }
-  class M {
+  class A {
     constructor() {
-      this.device = window.innerWidth < 769 ? "mobile" : "desktop", this.thisClass = "", this.initBlock = new B(), this.init();
+      this.device = window.innerWidth < 769 ? "mobile" : "desktop", this.thisClass = "", this.initBlock = new M(), this.init();
     }
     init() {
       console.log("init"), this.initBlock.init(), this.thisClass = this.initBlock.getThisClass(), this.setupFormInteractions();
@@ -623,7 +623,7 @@
       var i;
       try {
         const n = await C(".crs_form input.form-email"), t = await C(".crs_form input.username"), s = await C(".crs_form input[name=pass]");
-        n && t && s && this.thisClass != "" ? (n.placeholder = "Your email", t.placeholder = "Your username", s.placeholder = "Password", x(".crs_form input").forEach((a, o) => {
+        n && t && s && this.thisClass != "" ? (n.placeholder = "Your email", t.placeholder = "Your username", s.placeholder = "Password", w(".crs_form input").forEach((a, o) => {
           a.addEventListener("click", (d) => {
             d.stopImmediatePropagation();
             let f = o + 1;
@@ -638,7 +638,7 @@
       }
     }
   }
-  class A {
+  class H {
     constructor({ previewBlock: i }) {
       this.videoFound = !1, this.init(), this.previewBlock = i, this.previewTime = 120;
     }
@@ -699,7 +699,7 @@
       });
     }
   }
-  const H = `.os-d-block {
+  const Z = `.os-d-block {
   display: block !important;
 }
 
@@ -713,7 +713,7 @@
 
 .os-z-9 {
   z-index: 9 !important;
-}`, Z = (
+}`, S = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -727,7 +727,7 @@
     fill="#017922"
   />
 </svg> `
-  ), S = `.os-preview-badge {
+  ), D = `.os-preview-badge {
   position: absolute;
   bottom: 10px;
   left: 50%;
@@ -784,7 +784,7 @@
   }
 }
 `;
-  class D {
+  class P {
     constructor() {
       this.styleElement = null, this.badgeElement = null, this.device = window.innerWidth < 769 ? "mobile" : "desktop";
     }
@@ -809,7 +809,7 @@
         /* HTML */
         `
       <div class="os-preview-badge">
-        <div class="os-icon">${Z}</div>
+        <div class="os-icon">${S}</div>
         <div class="os-text">${n}</div>
       </div>
     `
@@ -826,7 +826,7 @@
       }
     }
     initStyles() {
-      this.styleElement = document.createElement("style"), this.styleElement.textContent = S, document.head.appendChild(this.styleElement);
+      this.styleElement = document.createElement("style"), this.styleElement.textContent = D, document.head.appendChild(this.styleElement);
     }
     remove() {
       const i = e(".sfc-playableOverlay__inner"), n = e(".crs_block:not(.crs_form)");
@@ -836,7 +836,7 @@
       i == null || i.insertAdjacentHTML(t, n);
     }
   }
-  const P = `
+  const E = `
 
 .sfc-becomeASubscriber__section--hero {
   padding-top: 0 !important;
@@ -1087,21 +1087,7 @@ a.crs_browse_free:active {
     display: none;
   }
 }
-`, E = (
-    /* HTML */
-    `<svg
-  xmlns="http://www.w3.org/2000/svg"
-  width="28"
-  height="28"
-  viewBox="0 0 28 28"
-  fill="none"
->
-  <path
-    d="M19.706 23.7671C19.4534 23.7279 19.2627 23.7008 19.1075 23.679C18.6307 23.6112 18.5026 23.5931 17.9452 23.4196C17.7255 23.3511 16.8661 22.4844 16.8661 20.7879C16.8661 18.6025 17.385 16.6726 17.608 15.9443C17.6139 15.9253 17.6284 15.8703 17.6485 15.7959C17.6854 15.6591 17.9559 14.8333 17.9559 14.8333C18.1026 14.4133 18.2544 13.9787 18.353 13.5324L18.3583 13.5096C18.5072 12.8633 18.9958 10.501 19.0304 7.23341C19.0304 6.90369 18.7563 6.6168 18.5927 6.44547C18.5627 6.41399 18.5361 6.38645 18.5163 6.36329C18.3587 6.18 18.1512 5.95373 17.9108 5.6919C17.7525 5.51921 17.5782 5.32896 17.3903 5.12085C17.0897 4.78841 16.7545 4.48427 16.4302 4.19027C16.0315 3.82892 15.6194 3.45523 15.2808 3.03395C14.7747 2.40456 14.3068 1.30295 14.3915 0.415123C14.4043 0.281177 14.3731 0.165469 14.3035 0.089037C14.2263 0.00405341 14.1053 -0.022433 13.9986 0.0197182C13.8919 -0.022433 13.7707 0.00405341 13.6937 0.089037C13.6242 0.165469 13.5928 0.281177 13.6058 0.415123C13.6903 1.30295 13.2224 2.40456 12.7165 3.03395C12.3777 3.45523 11.9656 3.82892 11.5669 4.19027C11.2428 4.48427 10.9074 4.78841 10.6069 5.12085C10.4191 5.32896 10.2445 5.51921 10.0863 5.6919C9.84587 5.95373 9.63851 6.18 9.48073 6.36329C9.4609 6.38645 9.43457 6.41399 9.40453 6.44547C9.24084 6.6168 8.96667 6.90369 8.96667 7.23507C9.0014 10.501 9.49004 12.8633 9.63889 13.5096L9.64411 13.5324C9.74272 13.9787 9.8946 14.4133 10.0411 14.8333C10.0411 14.8333 10.3116 15.6591 10.3484 15.7959C10.3686 15.8703 10.3832 15.9253 10.3891 15.9443C10.612 16.6726 11.1308 18.6025 11.1308 20.7879C11.1308 22.4844 10.2715 23.3511 10.0519 23.4196C9.4945 23.5931 9.36638 23.6112 8.88948 23.679C8.73427 23.7008 8.54372 23.7279 8.29111 23.7671C5.5534 24.0584 5.25781 25.4175 5.25781 25.9884C5.25781 26.1414 5.33704 26.6386 5.69839 27.0969C6.02312 27.5088 6.66984 28 7.90774 28C8.09345 28 8.2899 27.9889 8.4918 27.9671C9.31568 27.8786 10.146 27.7455 10.9488 27.617C11.2405 27.5703 11.5316 27.5237 11.8233 27.4789C12.2118 27.4194 12.912 27.3799 13.9042 27.3617C13.9507 27.3608 13.983 27.3601 13.9986 27.3597C14.0143 27.3601 14.0466 27.3609 14.0929 27.3617C15.0853 27.3799 15.7854 27.4194 16.174 27.4789C16.4655 27.5237 16.7567 27.5703 17.0483 27.617C17.8512 27.7455 18.6816 27.8786 19.5053 27.9671C19.7072 27.9888 19.9037 28 20.0894 28C21.3275 28 21.9744 27.509 22.2989 27.0969C22.6602 26.6386 22.7393 26.1413 22.7393 25.9884C22.7392 25.4175 22.4437 24.0584 19.706 23.7671ZM15.4462 12.6406C15.4054 12.6406 15.3668 12.6317 15.3276 12.6132C15.2003 12.5624 15.037 12.3191 15.0218 12.2247C15.6561 11.7833 16.0846 10.945 16.0846 9.98277C16.0846 8.56181 15.9346 7.40981 13.9985 7.40981C12.0623 7.40981 11.9123 8.56181 11.9123 9.98277C11.9123 10.945 12.3409 11.7833 12.9751 12.2247C12.9602 12.3189 12.7932 12.5506 12.6693 12.6132C12.6303 12.6317 12.5917 12.6406 12.5507 12.6406C12.1431 12.6407 11.6321 11.7478 11.4979 11.3925C11.2693 10.7889 10.9839 9.75128 10.9227 8.23709L10.9202 8.17882C10.9046 7.85985 11.385 7.04414 11.4487 6.9046C11.5362 6.71246 12.6711 4.98244 13.0082 4.57258C13.1275 4.42766 13.7321 3.6249 13.9986 3.27059C14.2649 3.6249 14.8694 4.42766 14.9887 4.57258C15.326 4.98244 16.4607 6.71246 16.5483 6.9046C16.612 7.04414 17.0925 7.85985 17.0769 8.17882L17.0744 8.23709C17.0131 9.75136 16.7279 10.7889 16.499 11.3925C16.3649 11.7478 15.854 12.6406 15.4462 12.6406Z"
-    fill="#027DB8"
-  />
-</svg>`
-  ), V = (
+`, V = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -1116,6 +1102,20 @@ a.crs_browse_free:active {
   />
 </svg>`
   ), z = (
+    /* HTML */
+    `<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="28"
+  height="28"
+  viewBox="0 0 28 28"
+  fill="none"
+>
+  <path
+    d="M19.706 23.7671C19.4534 23.7279 19.2627 23.7008 19.1075 23.679C18.6307 23.6112 18.5026 23.5931 17.9452 23.4196C17.7255 23.3511 16.8661 22.4844 16.8661 20.7879C16.8661 18.6025 17.385 16.6726 17.608 15.9443C17.6139 15.9253 17.6284 15.8703 17.6485 15.7959C17.6854 15.6591 17.9559 14.8333 17.9559 14.8333C18.1026 14.4133 18.2544 13.9787 18.353 13.5324L18.3583 13.5096C18.5072 12.8633 18.9958 10.501 19.0304 7.23341C19.0304 6.90369 18.7563 6.6168 18.5927 6.44547C18.5627 6.41399 18.5361 6.38645 18.5163 6.36329C18.3587 6.18 18.1512 5.95373 17.9108 5.6919C17.7525 5.51921 17.5782 5.32896 17.3903 5.12085C17.0897 4.78841 16.7545 4.48427 16.4302 4.19027C16.0315 3.82892 15.6194 3.45523 15.2808 3.03395C14.7747 2.40456 14.3068 1.30295 14.3915 0.415123C14.4043 0.281177 14.3731 0.165469 14.3035 0.089037C14.2263 0.00405341 14.1053 -0.022433 13.9986 0.0197182C13.8919 -0.022433 13.7707 0.00405341 13.6937 0.089037C13.6242 0.165469 13.5928 0.281177 13.6058 0.415123C13.6903 1.30295 13.2224 2.40456 12.7165 3.03395C12.3777 3.45523 11.9656 3.82892 11.5669 4.19027C11.2428 4.48427 10.9074 4.78841 10.6069 5.12085C10.4191 5.32896 10.2445 5.51921 10.0863 5.6919C9.84587 5.95373 9.63851 6.18 9.48073 6.36329C9.4609 6.38645 9.43457 6.41399 9.40453 6.44547C9.24084 6.6168 8.96667 6.90369 8.96667 7.23507C9.0014 10.501 9.49004 12.8633 9.63889 13.5096L9.64411 13.5324C9.74272 13.9787 9.8946 14.4133 10.0411 14.8333C10.0411 14.8333 10.3116 15.6591 10.3484 15.7959C10.3686 15.8703 10.3832 15.9253 10.3891 15.9443C10.612 16.6726 11.1308 18.6025 11.1308 20.7879C11.1308 22.4844 10.2715 23.3511 10.0519 23.4196C9.4945 23.5931 9.36638 23.6112 8.88948 23.679C8.73427 23.7008 8.54372 23.7279 8.29111 23.7671C5.5534 24.0584 5.25781 25.4175 5.25781 25.9884C5.25781 26.1414 5.33704 26.6386 5.69839 27.0969C6.02312 27.5088 6.66984 28 7.90774 28C8.09345 28 8.2899 27.9889 8.4918 27.9671C9.31568 27.8786 10.146 27.7455 10.9488 27.617C11.2405 27.5703 11.5316 27.5237 11.8233 27.4789C12.2118 27.4194 12.912 27.3799 13.9042 27.3617C13.9507 27.3608 13.983 27.3601 13.9986 27.3597C14.0143 27.3601 14.0466 27.3609 14.0929 27.3617C15.0853 27.3799 15.7854 27.4194 16.174 27.4789C16.4655 27.5237 16.7567 27.5703 17.0483 27.617C17.8512 27.7455 18.6816 27.8786 19.5053 27.9671C19.7072 27.9888 19.9037 28 20.0894 28C21.3275 28 21.9744 27.509 22.2989 27.0969C22.6602 26.6386 22.7393 26.1413 22.7393 25.9884C22.7392 25.4175 22.4437 24.0584 19.706 23.7671ZM15.4462 12.6406C15.4054 12.6406 15.3668 12.6317 15.3276 12.6132C15.2003 12.5624 15.037 12.3191 15.0218 12.2247C15.6561 11.7833 16.0846 10.945 16.0846 9.98277C16.0846 8.56181 15.9346 7.40981 13.9985 7.40981C12.0623 7.40981 11.9123 8.56181 11.9123 9.98277C11.9123 10.945 12.3409 11.7833 12.9751 12.2247C12.9602 12.3189 12.7932 12.5506 12.6693 12.6132C12.6303 12.6317 12.5917 12.6406 12.5507 12.6406C12.1431 12.6407 11.6321 11.7478 11.4979 11.3925C11.2693 10.7889 10.9839 9.75128 10.9227 8.23709L10.9202 8.17882C10.9046 7.85985 11.385 7.04414 11.4487 6.9046C11.5362 6.71246 12.6711 4.98244 13.0082 4.57258C13.1275 4.42766 13.7321 3.6249 13.9986 3.27059C14.2649 3.6249 14.8694 4.42766 14.9887 4.57258C15.326 4.98244 16.4607 6.71246 16.5483 6.9046C16.612 7.04414 17.0925 7.85985 17.0769 8.17882L17.0744 8.23709C17.0131 9.75136 16.7279 10.7889 16.499 11.3925C16.3649 11.7478 15.854 12.6406 15.4462 12.6406Z"
+    fill="#027DB8"
+  />
+</svg>`
+  ), $ = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -1156,7 +1156,7 @@ a.crs_browse_free:active {
     </clipPath>
   </defs>
 </svg>`
-  ), $ = (
+  ), q = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -1172,7 +1172,7 @@ a.crs_browse_free:active {
     fill="#027DB8"
   />
 </svg>`
-  ), q = (
+  ), F = (
     /* HTML */
     `<section
   data-sfc-id="section"
@@ -1805,7 +1805,7 @@ a.crs_browse_free:active {
   </div>
 </section>`
   );
-  class F {
+  class I {
     constructor() {
       this.device = window.innerWidth < 769 ? "mobile" : "desktop", this.init();
     }
@@ -1830,7 +1830,7 @@ a.crs_browse_free:active {
         <div class="os-wrap">
           <div class="os-col">
             <div class="os-block">
-              <div class="icon">${E}</div>
+              <div class="icon">${V}</div>
               <div class="content">
                 <h4>Unlimited access to 1000+ Ad-Free yoga, meditation and movement classes</h4>
                 <div class="descr">
@@ -1849,7 +1849,7 @@ a.crs_browse_free:active {
           </div>
           <div class="os-col">
             <div class="os-block">
-              <div class="icon">${V}</div>
+              <div class="icon">${z}</div>
               <div class="content">
                 <h4>Watch classes from your laptop, TV, phone or tablet</h4>
                 <div class="descr">
@@ -1858,7 +1858,7 @@ a.crs_browse_free:active {
               </div>
             </div>
             <div class="os-block">
-              <div class="icon">${z}</div>
+              <div class="icon">${$}</div>
               <div class="content">
                 <h4>Access our complete collection of 30 curated programs & 50 challenges</h4>
                 <div class="descr">
@@ -1867,7 +1867,7 @@ a.crs_browse_free:active {
               </div>
             </div>
             <div class="os-block">
-              <div class="icon">${$}</div>
+              <div class="icon">${q}</div>
               <div class="content">
                 <h4>Exclusive access to all new releases and premium content</h4>
                 <div class="descr"><p>Enjoy new classes and get 25% discount on livestream events.</p></div>
@@ -1878,13 +1878,13 @@ a.crs_browse_free:active {
       </div>
     `
       );
-      t && (t.insertAdjacentHTML("afterend", a), this.device === "mobile" && (t.insertAdjacentHTML("afterend", q), t.remove()));
+      t && (t.insertAdjacentHTML("afterend", a), this.device === "mobile" && (t.insertAdjacentHTML("afterend", F), t.remove()));
     }
     render() {
       var t, s;
       if (!!e('[data-drupal-link-system-path="yogi/login"]'))
         return;
-      document.head.insertAdjacentHTML("beforeend", `<style>${P}</style>`);
+      document.head.insertAdjacentHTML("beforeend", `<style>${E}</style>`);
       let n = e("#block-samsara-content");
       if (localStorage.getItem("isClass") && (n != null && n.querySelector("h2"))) {
         let a = localStorage.getItem("isClass"), o = localStorage.getItem("referrerInfo");
@@ -1930,27 +1930,28 @@ a.crs_browse_free:active {
       i.insertAdjacentHTML(t, n);
     }
   }
-  v({
+  u({
     name: "Video Preview",
     dev: "OS"
-  }), u("exp_video_previews");
-  class I {
+  }), x("exp_video_previews");
+  class g {
     constructor() {
       this.init();
     }
     init() {
-      window.addEventListener("load", () => {
-        if (this.initStyles(), window.location.href.includes("/content/")) {
-          new M();
-          const i = new D();
-          i.init(), new A({ previewBlock: i });
-        }
-        window.location.href.includes("/become-a-subscriber") && new F();
-      });
+      document.readyState === "complete" ? this.run() : window.addEventListener("load", () => this.run());
+    }
+    run() {
+      if (this.initStyles(), window.location.href.includes("/content/")) {
+        new A();
+        const i = new P();
+        i.init(), new H({ previewBlock: i });
+      }
+      window.location.href.includes("/become-a-subscriber") && new I();
     }
     initStyles() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${H}</style>`);
+      document.head.insertAdjacentHTML("beforeend", `<style>${Z}</style>`);
     }
   }
-  new I();
+  new g(), new g();
 })();
