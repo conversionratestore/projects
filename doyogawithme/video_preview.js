@@ -158,7 +158,7 @@
       </p>
     </div>
   </div>`
-  ), T = (c, i) => (
+  ), B = (c, i) => (
     /* HTML */
     ` <div class="crs_block">
       <h2>
@@ -170,7 +170,7 @@
       <div class="crs_block_content">${c === "Premium" && i ? y() : L()}</div>
     </div>
     ${i === !1 ? k(c) : ""}`
-  ), B = `.o-page__header {
+  ), T = `.o-page__header {
   z-index: 4;
 }
 #main-content {
@@ -555,15 +555,15 @@
     }
     render() {
       var t, s;
-      if (document.head.insertAdjacentHTML("beforeend", `<style>${B}</style>`), e(".crs_block") || !e(".c-dropdownMenu__list--level0") && !e(".sfc-nodePlayable__lockContainerInner header > .sfc-item__headline") && !e("#block-userregistrationform"))
+      if (document.head.insertAdjacentHTML("beforeend", `<style>${T}</style>`), e(".crs_block") || !e(".c-dropdownMenu__list--level0") && !e(".sfc-nodePlayable__lockContainerInner header > .sfc-item__headline") && !e("#block-userregistrationform"))
         return;
       let i = !e('[data-drupal-link-system-path="yogi/login"]');
       this.thisClass = (t = e(".sfc-nodePlayable__primaryContentContainer h3")) != null && t.innerHTML.includes("premium") ? "Premium" : "free";
-      const n = T(this.thisClass, i);
+      const n = B(this.thisClass, i);
       if (i === !1 || i === !0 && this.thisClass === "Premium") {
         this.insert(e(".sfc-nodePlayable__primaryContentContainer"), n);
-        const a = e(".crs_form h2"), o = e("#block-userregistrationform");
-        a && o && ((s = o.querySelector(".username")) == null || s.parentElement, o.querySelector(".form-type-email"), a.after(o));
+        const a = e(".crs_form h2"), r = e("#block-userregistrationform");
+        a && r && ((s = r.querySelector(".username")) == null || s.parentElement, r.querySelector(".form-type-email"), a.after(r));
         let d = "", f = "Pop up " + (a == null ? void 0 : a.innerText.trim()) + (i === !1 ? ` Unauthorised ${this.thisClass} class` : " Authorized Premium class only");
         if (i === !1 ? this.thisClass === "free" ? d = "exp_trailvideo_section_01" : d = "exp_trailvideo_section_02" : this.thisClass === "Premium" && (d = "exp_trailvideo_section_03"), h(".crs_block:not(.crs_form)", d, f), e(".crs_block.crs_form")) {
           let p = this.thisClass === "free" ? "exp_trailvideo_section_04" : "exp_trailvideo_section_05";
@@ -576,39 +576,39 @@
       i.insertAdjacentHTML(t, n);
     }
     actionsBlock(i) {
-      var t, s, a, o, d, f, p;
+      var t, s, a, r, d, f, p;
       const n = e(".crs_form");
-      n && (e(".btn_next_signUp") && ((t = e(".btn_next_signUp")) == null || t.addEventListener("click", (r) => {
-        r.preventDefault();
-        const m = r.target.closest(".crs_block");
+      n && (e(".btn_next_signUp") && ((t = e(".btn_next_signUp")) == null || t.addEventListener("click", (o) => {
+        o.preventDefault();
+        const m = o.target.closest(".crs_block");
         m && (m.style.display = "none"), n.style.display = "flex";
-      }), (s = e(".crs_btn_white")) == null || s.addEventListener("click", (r) => {
-      }), (a = e(".crs_btn_back")) == null || a.addEventListener("click", (r) => {
-        r.preventDefault();
-        const m = r.target.closest(".crs_block");
+      }), (s = e(".crs_btn_white")) == null || s.addEventListener("click", (o) => {
+      }), (a = e(".crs_btn_back")) == null || a.addEventListener("click", (o) => {
+        o.preventDefault();
+        const m = o.target.closest(".crs_block");
         m && (m.style.display = "none");
         const v = e(".crs_block:not(.crs_form)");
         v && (v.style.display = "block");
-      }), (o = e(".crs_form .sfc-nodePlayable__lockCta")) == null || o.addEventListener("click", (r) => {
-        r.preventDefault(), localStorage.setItem("isClass", i), localStorage.setItem("referrerInfo", window.location.href);
+      }), (r = e(".crs_form .sfc-nodePlayable__lockCta")) == null || r.addEventListener("click", (o) => {
+        o.preventDefault(), localStorage.setItem("isClass", i), localStorage.setItem("referrerInfo", window.location.href);
         const l = e(".crs_form .sfc-button");
         l == null || l.click();
-      }), this.device == "mobile" && (n.addEventListener("click", (r) => {
-        const l = r.target;
+      }), this.device == "mobile" && (n.addEventListener("click", (o) => {
+        const l = o.target;
         if (l.classList.contains("crs_form")) {
           l.style.display = "none";
           const m = e(".crs_block:not(.crs_form)");
           m && (m.style.display = "block");
         }
-      }), (d = e(".crs_swipe")) == null || d.addEventListener("click", (r) => {
+      }), (d = e(".crs_swipe")) == null || d.addEventListener("click", (o) => {
         n.style.display = "none";
         const l = e(".crs_block:not(.crs_form)");
         l && (l.style.display = "block");
-      }), (f = e(".crs_swipe")) == null || f.addEventListener("touchmove", (r) => {
+      }), (f = e(".crs_swipe")) == null || f.addEventListener("touchmove", (o) => {
         n.style.display = "none";
         const l = e(".crs_block:not(.crs_form)");
         l && (l.style.display = "block");
-      }))), e(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta") && ((p = e(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta")) == null || p.addEventListener("click", (r) => {
+      }))), e(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta") && ((p = e(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta")) == null || p.addEventListener("click", (o) => {
       })));
     }
   }
@@ -617,21 +617,21 @@
       this.device = window.innerWidth < 769 ? "mobile" : "desktop", this.thisClass = "", this.initBlock = new M(), this.init();
     }
     init() {
-      console.log("init"), this.initBlock.init(), this.thisClass = this.initBlock.getThisClass(), this.setupFormInteractions();
+      this.initBlock.init(), this.thisClass = this.initBlock.getThisClass(), this.setupFormInteractions();
     }
     async setupFormInteractions() {
       var i;
       try {
         const n = await C(".crs_form input.form-email"), t = await C(".crs_form input.username"), s = await C(".crs_form input[name=pass]");
-        n && t && s && this.thisClass != "" ? (n.placeholder = "Your email", t.placeholder = "Your username", s.placeholder = "Password", w(".crs_form input").forEach((a, o) => {
+        n && t && s && this.thisClass != "" ? (n.placeholder = "Your email", t.placeholder = "Your username", s.placeholder = "Password", w(".crs_form input").forEach((a, r) => {
           a.addEventListener("click", (d) => {
             d.stopImmediatePropagation();
-            let f = o + 1;
-            this.thisClass === "Premium" && (f = o + 4);
+            let f = r + 1;
+            this.thisClass === "Premium" && (f = r + 4);
           });
         }), (i = e(".crs_form input.password-field")) == null || i.addEventListener("input", (a) => {
-          const o = e(".crs_form input.password-confirm");
-          o && (o.value = a.target.value);
+          const r = e(".crs_form input.password-confirm");
+          r && (r.value = a.target.value);
         })) : console.error("One or more form elements are missing.");
       } catch (n) {
         console.error("Error waiting for form elements:", n);
@@ -657,20 +657,20 @@
             if (!s || typeof s != "object")
               return;
             this.videoFound = !0, i.disconnect();
-            const a = e("#video-preview-container"), o = e("#video-preview-container #playerContainer"), d = e("#posterImage"), f = e('.os-preview-badge a[data-action="os-signingup"]');
-            if (o && d && a) {
-              const p = e("flowplayer-header-duration"), r = e("flowplayer-fullscreen-enter-icon"), l = e("flowplayer-control");
-              o.classList.add("os-d-block"), a.classList.add("os-z-9"), d.classList.add("os-d-hidden"), p == null || p.classList.add("os-d-hidden"), r == null || r.classList.add("os-d-hidden"), l == null || l.classList.add("os-d-hidden");
+            const a = e("#video-preview-container"), r = e("#video-preview-container #playerContainer"), d = e("#posterImage"), f = e('.os-preview-badge a[data-action="os-signingup"]');
+            if (r && d && a) {
+              const p = e("flowplayer-header-duration"), o = e("flowplayer-fullscreen-enter-icon"), l = e("flowplayer-control");
+              r.classList.add("os-d-block"), a.classList.add("os-z-9"), d.classList.add("os-d-hidden"), p == null || p.classList.add("os-d-hidden"), o == null || o.classList.add("os-d-hidden"), l == null || l.classList.add("os-d-hidden");
             }
             f == null || f.addEventListener("click", (p) => {
               p.preventDefault(), this.previewBlock.remove(), s.pause();
             }), s.on("beforeplay", (p) => {
               var m;
-              const r = !e('[data-drupal-link-system-path="yogi/login"]'), l = (m = e(".sfc-nodePlayable__primaryContentContainer h3")) != null && m.innerHTML.includes("premium") ? "premium" : "free";
-              console.log("click", l), r || b("exp_video_previews_button_01", `${l} - Play`, "click", "Unauthorised Product Video"), l === "premium" && b("exp_video_previews_button_02", "Play", "click", "Premium class only Product Video");
+              const o = !e('[data-drupal-link-system-path="yogi/login"]'), l = (m = e(".sfc-nodePlayable__primaryContentContainer h3")) != null && m.innerHTML.includes("premium") ? "premium" : "free";
+              o || b("exp_video_previews_button_01", `${l} - Play`, "click", "Unauthorised Product Video"), l === "premium" && b("exp_video_previews_button_02", "Play", "click", "Premium class only Product Video");
             }), s.on("playing", (p) => {
               e(".sfc-playableOverlay__inner") && (this.timer = setInterval(() => {
-                console.log("time", s.currentTime), s.currentTime >= this.previewTime && (clearInterval(this.timer), s.pause(), this.previewBlock.remove());
+                s.currentTime >= this.previewTime && (clearInterval(this.timer), s.pause(), this.previewBlock.remove());
               }, 10));
             }), s.on("pause", (p) => {
               clearInterval(this.timer), console.info(p.type);
@@ -792,11 +792,11 @@
       this.render();
     }
     render() {
-      var a, o, d;
+      var a, r, d;
       const i = !e('[data-drupal-link-system-path="yogi/login"]');
       this.thisClass = (a = e(".sfc-nodePlayable__primaryContentContainer h3")) != null && a.innerHTML.includes("premium") ? "Premium" : "free";
       let n;
-      console.log("authorized", e('[data-drupal-link-system-path="yogi/login"]')), i ? n = /* HTML */
+      i ? n = /* HTML */
       'This is a free 2 minute preview. <span>Get access to the full video by</span>  <a data-action="os-subscribe" href="/become-a-subscriber">subscribing</a>' : n = /* HTML */
       `This is a 2 minute preview. ${this.thisClass === "Premium" ? (
         /* HTML */
@@ -818,9 +818,9 @@
         const f = e(".sfc-playableOverlay__inner"), p = e(".crs_block:not(.crs_form)");
         if (!f)
           return;
-        f.classList.add("os-d-hidden"), p && p.classList.add("os-d-hidden"), this.initStyles(), this.insert(s, t), this.badgeElement = s.querySelector(".os-preview-badge"), (o = e("[data-action=os-signingup]")) == null || o.addEventListener("click", (r) => {
+        f.classList.add("os-d-hidden"), p && p.classList.add("os-d-hidden"), this.initStyles(), this.insert(s, t), this.badgeElement = s.querySelector(".os-preview-badge"), (r = e("[data-action=os-signingup]")) == null || r.addEventListener("click", (o) => {
           b("exp_video_previews_link_01", `${this.thisClass} - Signing up`, "click", "Unauthorised Product Banner Get a free access to the full video");
-        }), (d = e('[data-action="os-subscribe"]')) == null || d.addEventListener("click", (r) => {
+        }), (d = e('[data-action="os-subscribe"]')) == null || d.addEventListener("click", (o) => {
           localStorage.setItem("isClass", this.thisClass), b("exp_video_previews_link_02", "subscribing", "click", 'Premium class only Product Banner Get access to the full video"');
         });
       }
@@ -1887,17 +1887,17 @@ a.crs_browse_free:active {
       document.head.insertAdjacentHTML("beforeend", `<style>${E}</style>`);
       let n = e("#block-samsara-content");
       if (localStorage.getItem("isClass") && (n != null && n.querySelector("h2"))) {
-        let a = localStorage.getItem("isClass"), o = localStorage.getItem("referrerInfo");
+        let a = localStorage.getItem("isClass"), r = localStorage.getItem("referrerInfo");
         if (a == "free")
           this.insert(
             n,
             /* HTML */
-            `<a href="${o}" class="crs_back">${_.arrowLeftWhite}Back</a>`
+            `<a href="${r}" class="crs_back">${_.arrowLeftWhite}Back</a>`
           ), this.insert(
             e(".sfc-becomeASubscriber__heroHeader"),
             /* HTML */
             ` <a
-            href="${o}"
+            href="${r}"
             class="crs_browse_skip"
             ><span>Skip</span> <span>-></span></a></a
           >`,
@@ -1906,7 +1906,7 @@ a.crs_browse_free:active {
           });
         else if (a == "Premium") {
           const d = this.device === "mobile" ? e(".os-mob-sec h1.sfc-heading") : e(".sfc-pricingTablePremium");
-          console.log("element", d), this.insert(
+          this.insert(
             d,
             /* HTML */
             ` <a
