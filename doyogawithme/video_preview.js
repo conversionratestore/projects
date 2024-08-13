@@ -8,30 +8,30 @@
       event_type: i,
       event_loc: t
     }), console.log(`Event: ${o} | ${e} | ${i} | ${t}`);
-  }, L = ({ name: o, dev: e }) => {
+  }, B = ({ name: o, dev: e }) => {
     console.log(
       `%c EXP: ${o} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, B = (o) => {
+  }, M = (o) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", o, "variant_1"));
     }, 1e3);
-  }, w = (o, e, i, t = 1) => {
+  }, y = (o, e, i, t = 1) => {
     let s;
-    const c = {
+    const l = {
       root: null,
       threshold: t
     };
-    new IntersectionObserver((l) => {
-      l.forEach((p) => {
+    new IntersectionObserver((a) => {
+      a.forEach((p) => {
         p.isIntersecting ? s = setTimeout(() => {
           b(e, "Section", "view", i);
         }, 3e3) : clearTimeout(s);
       });
-    }, c).observe(document.querySelector(o));
-  }, M = (o) => document.querySelectorAll(o), n = (o) => document.querySelector(o);
-  function C(o) {
+    }, l).observe(document.querySelector(o));
+  }, T = (o) => document.querySelectorAll(o), n = (o) => document.querySelector(o);
+  function _(o) {
     return new Promise((e) => {
       const i = document.querySelector(o);
       if (i)
@@ -47,12 +47,12 @@
       });
     });
   }
-  const _ = () => {
+  const u = () => {
     var o;
     return (o = n(".sfc-nodePlayable__primaryContentContainer h3.sfc-playableLockOverlay__lockHeading")) != null && o.innerHTML.includes(
       "premium"
     ) ? "premium" : "free";
-  }, u = () => !n('[data-drupal-link-system-path="yogi/login"]'), g = {
+  }, v = () => !n('[data-drupal-link-system-path="yogi/login"]'), h = {
     google: `
         <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M22.06 11.249C22.06 10.469 21.99 9.71902 21.86 8.99902H11.5V13.254H17.42C17.165 14.629 16.39 15.794 15.225 16.574V19.334H18.78C20.86 17.419 22.06 14.599 22.06 11.249Z" fill="#4285F4"/>
@@ -114,26 +114,26 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="9" height="14" viewBox="0 0 9 14" fill="none">
             <path d="M1.5 13L7.5 7L1.5 1" stroke="white" stroke-width="2"/>
         </svg>`
-  }, T = () => (
+  }, H = () => (
     /* HTML */
     ` <hr class="d-md-block d-none" />
     <ul>
-      <li class="items-center">${g.iconList1} Curated and hand-picked by our team classes</li>
-      <li class="items-center">${g.iconList2} Complete collection of 30 curated programs & 50 challenges</li>
-      <li class="items-center">${g.iconList3} Exclusive access to all new releases and livestream events</li>
+      <li class="items-center">${h.iconList1} Curated and hand-picked by our team classes</li>
+      <li class="items-center">${h.iconList2} Complete collection of 30 curated programs & 50 challenges</li>
+      <li class="items-center">${h.iconList3} Exclusive access to all new releases and livestream events</li>
     </ul>
     <a class="sfc-nodePlayable__lockCta" href="/become-a-subscriber">Get Full Access Now</a>`
-  ), H = () => (
+  ), E = () => (
     /* HTML */
     ` <a
       class="crs_btn_white flex-center"
       href="/yogi/login/google?destination=${window.location.pathname}"
     >
-      ${g.google}
+      ${h.google}
       <span>Continue with Google</span>
     </a>
     <a class="crs_btn_white flex-center btn_next_signUp" href="#">
-      ${g.email}
+      ${h.email}
       <span>Sign Up with Email</span>
     </a>
     <p class="crs_block_terms">
@@ -144,7 +144,7 @@
     <p>
       Already have an account? <a href="/yogi/login?destination=${window.location.pathname}" class="c-green">Log in</a>
     </p>`
-  ), E = (o) => (
+  ), z = (o) => (
     /* HTML */
     ` <div class="crs_block crs_form">
     <div class="crs_form_container">
@@ -154,7 +154,7 @@
       </h2>
 
       <div class="flex-center">
-        <a href="#" class="crs_btn_back d-md-block d-none">${g.arrowLeft} Back</a>
+        <a href="#" class="crs_btn_back d-md-block d-none">${h.arrowLeft} Back</a>
         <button class="sfc-nodePlayable__lockCta" type="button">Create Free Account</button>
       </div>
       <p class="crs_block_terms">
@@ -163,7 +163,7 @@
       </p>
     </div>
   </div>`
-  ), z = (o, e) => (
+  ), S = (o, e) => (
     /* HTML */
     ` <div class="crs_block">
       <h2>
@@ -172,10 +172,10 @@
       <p class="crs_block_subtotal">
         ${o === "premium" ? `Get ${e === !0 ? "full" : ""} access to this and 500+ other premium <br class="d-md-none"> classes` : 'Watch this and 500+ other free classes <br class="d-md-none"> after the sign up'}
       </p>
-      <div class="crs_block_content">${o === "premium" && e ? T() : H()}</div>
+      <div class="crs_block_content">${o === "premium" && e ? H() : E()}</div>
     </div>
-    ${e === !1 ? E(o) : ""}`
-  ), S = `.o-page__header {
+    ${e === !1 ? z(o) : ""}`
+  ), A = `.o-page__header {
   z-index: 4;
 }
 #main-content {
@@ -548,7 +548,7 @@
     width: 100%;
   }
 }`;
-  class A {
+  class P {
     constructor() {
       this.device = window.innerWidth < 769 ? "mobile" : "desktop";
     }
@@ -560,19 +560,19 @@
     }
     render() {
       var t;
-      if (document.head.insertAdjacentHTML("beforeend", `<style>${S}</style>`), n(".crs_block") || !n(".c-dropdownMenu__list--level0") && !n(".sfc-nodePlayable__lockContainerInner header > .sfc-item__headline") && !n("#block-userregistrationform"))
+      if (document.head.insertAdjacentHTML("beforeend", `<style>${A}</style>`), n(".crs_block") || !n(".c-dropdownMenu__list--level0") && !n(".sfc-nodePlayable__lockContainerInner header > .sfc-item__headline") && !n("#block-userregistrationform"))
         return;
-      let e = u();
-      this.thisClass = _();
-      const i = z(this.thisClass, e);
+      let e = v();
+      this.thisClass = u();
+      const i = S(this.thisClass, e);
       if (e === !1 || e === !0 && this.thisClass === "premium") {
         this.insert(n(".sfc-nodePlayable__primaryContentContainer"), i);
-        const s = n(".crs_form h2"), c = n("#block-userregistrationform");
-        s && c && ((t = c.querySelector(".username")) == null || t.parentElement, c.querySelector(".form-type-email"), s.after(c));
-        let r = "", l = "Pop up " + (s == null ? void 0 : s.innerText.trim()) + (e === !1 ? ` Unauthorised ${this.thisClass} class` : " Authorized Premium class only");
-        if (e === !1 ? this.thisClass === "free" ? r = "exp_trailvideo_section_01" : r = "exp_trailvideo_section_02" : this.thisClass === "premium" && (r = "exp_trailvideo_section_03"), w(".crs_block:not(.crs_form)", r, l), n(".crs_block.crs_form")) {
+        const s = n(".crs_form h2"), l = n("#block-userregistrationform");
+        s && l && ((t = l.querySelector(".username")) == null || t.parentElement, l.querySelector(".form-type-email"), s.after(l));
+        let r = "", a = "Pop up " + (s == null ? void 0 : s.innerText.trim()) + (e === !1 ? ` Unauthorised ${this.thisClass} class` : " Authorized Premium class only");
+        if (e === !1 ? this.thisClass === "free" ? r = "exp_trailvideo_section_01" : r = "exp_trailvideo_section_02" : this.thisClass === "premium" && (r = "exp_trailvideo_section_03"), y(".crs_block:not(.crs_form)", r, a), n(".crs_block.crs_form")) {
           let p = this.thisClass === "free" ? "exp_trailvideo_section_04" : "exp_trailvideo_section_05";
-          w(".crs_block.crs_form", p, l);
+          y(".crs_block.crs_form", p, a);
         }
         this.actionsBlock(this.thisClass);
       }
@@ -581,45 +581,45 @@
       e.insertAdjacentHTML(t, i);
     }
     actionsBlock(e) {
-      var t, s, c, r, l, p, f;
+      var t, s, l, r, a, p, f;
       const i = n(".crs_form");
-      i && (n(".btn_next_signUp") && ((t = n(".btn_next_signUp")) == null || t.addEventListener("click", (d) => {
-        d.preventDefault();
-        const m = d.target.closest(".crs_block");
+      i && (n(".btn_next_signUp") && ((t = n(".btn_next_signUp")) == null || t.addEventListener("click", (c) => {
+        c.preventDefault();
+        const m = c.target.closest(".crs_block");
         m && (m.style.display = "none"), i.style.display = "flex";
-      }), (s = n(".crs_btn_white")) == null || s.addEventListener("click", (d) => {
-      }), (c = n(".crs_btn_back")) == null || c.addEventListener("click", (d) => {
-        d.preventDefault();
-        const m = d.target.closest(".crs_block");
+      }), (s = n(".crs_btn_white")) == null || s.addEventListener("click", (c) => {
+      }), (l = n(".crs_btn_back")) == null || l.addEventListener("click", (c) => {
+        c.preventDefault();
+        const m = c.target.closest(".crs_block");
         m && (m.style.display = "none");
-        const h = n(".crs_block:not(.crs_form)");
-        h && (h.style.display = "block");
-      }), (r = n(".crs_form .sfc-nodePlayable__lockCta")) == null || r.addEventListener("click", (d) => {
-        d.preventDefault(), localStorage.setItem("isClass", e), localStorage.setItem("referrerInfo", window.location.href);
-        const a = n(".crs_form .sfc-button");
-        a == null || a.click();
-      }), this.device == "mobile" && (i.addEventListener("click", (d) => {
-        const a = d.target;
-        if (a.classList.contains("crs_form")) {
-          a.style.display = "none";
+        const C = n(".crs_block:not(.crs_form)");
+        C && (C.style.display = "block");
+      }), (r = n(".crs_form .sfc-nodePlayable__lockCta")) == null || r.addEventListener("click", (c) => {
+        c.preventDefault(), localStorage.setItem("isClass", e), localStorage.setItem("referrerInfo", window.location.href);
+        const d = n(".crs_form .sfc-button");
+        d == null || d.click();
+      }), this.device == "mobile" && (i.addEventListener("click", (c) => {
+        const d = c.target;
+        if (d.classList.contains("crs_form")) {
+          d.style.display = "none";
           const m = n(".crs_block:not(.crs_form)");
           m && (m.style.display = "block");
         }
-      }), (l = n(".crs_swipe")) == null || l.addEventListener("click", (d) => {
+      }), (a = n(".crs_swipe")) == null || a.addEventListener("click", (c) => {
         i.style.display = "none";
-        const a = n(".crs_block:not(.crs_form)");
-        a && (a.style.display = "block");
-      }), (p = n(".crs_swipe")) == null || p.addEventListener("touchmove", (d) => {
+        const d = n(".crs_block:not(.crs_form)");
+        d && (d.style.display = "block");
+      }), (p = n(".crs_swipe")) == null || p.addEventListener("touchmove", (c) => {
         i.style.display = "none";
-        const a = n(".crs_block:not(.crs_form)");
-        a && (a.style.display = "block");
-      }))), n(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta") && ((f = n(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta")) == null || f.addEventListener("click", (d) => {
+        const d = n(".crs_block:not(.crs_form)");
+        d && (d.style.display = "block");
+      }))), n(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta") && ((f = n(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta")) == null || f.addEventListener("click", (c) => {
       })));
     }
   }
-  class P {
+  class D {
     constructor() {
-      this.device = window.innerWidth < 769 ? "mobile" : "desktop", this.thisClass = "", this.initBlock = new A(), this.init();
+      this.device = window.innerWidth < 769 ? "mobile" : "desktop", this.thisClass = "", this.initBlock = new P(), this.init();
     }
     init() {
       this.initBlock.init(), this.thisClass = this.initBlock.getThisClass(), this.setupFormInteractions();
@@ -627,23 +627,23 @@
     async setupFormInteractions() {
       var e;
       try {
-        const i = await C(".crs_form input.form-email"), t = await C(".crs_form input.username"), s = await C(".crs_form input[name=pass]");
-        i && t && s && this.thisClass != "" ? (i.placeholder = "Your email", t.placeholder = "Your username", s.placeholder = "Password", M(".crs_form input").forEach((c, r) => {
-          c.addEventListener("click", (l) => {
-            l.stopImmediatePropagation();
+        const i = await _(".crs_form input.form-email"), t = await _(".crs_form input.username"), s = await _(".crs_form input[name=pass]");
+        i && t && s && this.thisClass != "" ? (i.placeholder = "Your email", t.placeholder = "Your username", s.placeholder = "Password", T(".crs_form input").forEach((l, r) => {
+          l.addEventListener("click", (a) => {
+            a.stopImmediatePropagation();
             let p = r + 1;
             this.thisClass === "premium" && (p = r + 4);
           });
-        }), (e = n(".crs_form input.password-field")) == null || e.addEventListener("input", (c) => {
+        }), (e = n(".crs_form input.password-field")) == null || e.addEventListener("input", (l) => {
           const r = n(".crs_form input.password-confirm");
-          r && (r.value = c.target.value);
+          r && (r.value = l.target.value);
         })) : console.error("One or more form elements are missing.");
       } catch (i) {
         console.error("Error waiting for form elements:", i);
       }
     }
   }
-  class D {
+  class Z {
     constructor({ previewBlock: e }) {
       this.videoFound = !1, this.init(), this.previewBlock = e, this.previewTime = 120;
     }
@@ -661,17 +661,18 @@
             const s = t("#async_flowplayer");
             if (!s || typeof s != "object")
               return;
-            this.videoFound = !0, e.disconnect();
-            const c = n("#video-preview-container"), r = n("#video-preview-container #playerContainer"), l = n("#posterImage"), p = n('.os-preview-badge a[data-action="os-signingup"]');
-            if (r && l && c) {
-              const f = n("flowplayer-header-duration"), d = n("flowplayer-fullscreen-enter-icon"), a = n("flowplayer-control");
-              r.classList.add("os-d-block"), c.classList.add("os-z-9"), l.classList.add("os-d-hidden"), f == null || f.classList.add("os-d-hidden"), d == null || d.classList.add("os-d-hidden"), a == null || a.classList.add("os-d-hidden");
+            this.videoFound = !0;
+            const l = n("#video-preview-container"), r = n("#video-preview-container #playerContainer"), a = n("#posterImage"), p = n('.os-preview-badge a[data-action="os-signingup"]');
+            if (r && a && l) {
+              e.disconnect();
+              const f = n("flowplayer-header-duration"), c = n("flowplayer-fullscreen-enter-icon"), d = n("flowplayer-control");
+              r.classList.add("os-d-block"), l.classList.add("os-z-9"), a.classList.add("os-d-hidden"), f == null || f.classList.add("os-d-hidden"), c == null || c.classList.add("os-d-hidden"), d == null || d.classList.add("os-d-hidden");
             }
             p == null || p.addEventListener("click", (f) => {
               f.preventDefault(), this.previewBlock.remove(), s.pause();
             }), s.on("beforeplay", (f) => {
-              const d = u(), a = _();
-              d || b("exp_video_previews_button_01", `${a} - Play`, "click", "Unauthorised Product Video"), a === "premium" && b("exp_video_previews_button_02", "Play", "click", "Premium class only Product Video");
+              const c = v(), d = u();
+              c || b("exp_video_previews_button_01", `${d} - Play`, "click", "Unauthorised Product Video"), d === "premium" && b("exp_video_previews_button_02", "Play", "click", "Premium class only Product Video");
             }), s.on("playing", (f) => {
               n(".sfc-playableOverlay__inner") && (this.timer = setInterval(() => {
                 s.currentTime >= this.previewTime && (clearInterval(this.timer), s.pause(), this.previewBlock.remove());
@@ -703,7 +704,7 @@
       });
     }
   }
-  const Z = `.os-d-block {
+  const $ = `.os-d-block {
   display: block !important;
 }
 
@@ -721,7 +722,7 @@
 
 #block-upgradebannerblock-2{
   display: none;
-}`, $ = (
+}`, I = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -735,7 +736,7 @@
     fill="#017922"
   />
 </svg> `
-  ), I = `.os-preview-badge {
+  ), F = `.os-preview-badge {
   position: absolute;
   bottom: 10px;
   left: 50%;
@@ -794,7 +795,7 @@
   }
 }
 `;
-  class F {
+  class q {
     constructor() {
       this.styleElement = null, this.badgeElement = null;
     }
@@ -802,9 +803,9 @@
       this.render();
     }
     render() {
-      var c, r;
-      const e = u();
-      this.thisClass = _();
+      var l, r;
+      const e = v();
+      this.thisClass = u();
       let i;
       e ? i = /* HTML */
       `This is a free 2 minute preview. <span>Get access to the full video by</span>
@@ -821,16 +822,16 @@
         /* HTML */
         `
       <div class="os-preview-badge">
-        <div class="os-icon">${$}</div>
+        <div class="os-icon">${I}</div>
         <div class="os-text">${i}</div>
       </div>
     `
       ), s = n(".sfc-nodePlayable__primaryContentContainer");
       if (s) {
-        const l = n(".sfc-playableOverlay__inner"), p = n(".crs_block:not(.crs_form)");
-        if (!l)
+        const a = n(".sfc-playableOverlay__inner"), p = n(".crs_block:not(.crs_form)");
+        if (!a)
           return;
-        l.classList.add("os-d-hidden"), p && p.classList.add("os-d-hidden"), this.initStyles(), this.insert(s, t), this.badgeElement = s.querySelector(".os-preview-badge"), (c = n("[data-action=os-signingup]")) == null || c.addEventListener("click", (f) => {
+        a.classList.add("os-d-hidden"), p && p.classList.add("os-d-hidden"), this.initStyles(), this.insert(s, t), this.badgeElement = s.querySelector(".os-preview-badge"), (l = n("[data-action=os-signingup]")) == null || l.addEventListener("click", (f) => {
           b(
             "exp_video_previews_link_01",
             `${this.thisClass} - Signing up`,
@@ -848,7 +849,7 @@
       }
     }
     initStyles() {
-      this.styleElement = document.createElement("style"), this.styleElement.textContent = I, document.head.appendChild(this.styleElement);
+      this.styleElement = document.createElement("style"), this.styleElement.textContent = F, document.head.appendChild(this.styleElement);
     }
     remove() {
       const e = n(".sfc-playableOverlay__inner"), i = n(".crs_block:not(.crs_form)");
@@ -858,21 +859,7 @@
       e == null || e.insertAdjacentHTML(t, i);
     }
   }
-  const q = (
-    /* HTML */
-    `<svg
-  xmlns="http://www.w3.org/2000/svg"
-  width="28"
-  height="28"
-  viewBox="0 0 28 28"
-  fill="none"
->
-  <path
-    d="M19.706 23.7671C19.4534 23.7279 19.2627 23.7008 19.1075 23.679C18.6307 23.6112 18.5026 23.5931 17.9452 23.4196C17.7255 23.3511 16.8661 22.4844 16.8661 20.7879C16.8661 18.6025 17.385 16.6726 17.608 15.9443C17.6139 15.9253 17.6284 15.8703 17.6485 15.7959C17.6854 15.6591 17.9559 14.8333 17.9559 14.8333C18.1026 14.4133 18.2544 13.9787 18.353 13.5324L18.3583 13.5096C18.5072 12.8633 18.9958 10.501 19.0304 7.23341C19.0304 6.90369 18.7563 6.6168 18.5927 6.44547C18.5627 6.41399 18.5361 6.38645 18.5163 6.36329C18.3587 6.18 18.1512 5.95373 17.9108 5.6919C17.7525 5.51921 17.5782 5.32896 17.3903 5.12085C17.0897 4.78841 16.7545 4.48427 16.4302 4.19027C16.0315 3.82892 15.6194 3.45523 15.2808 3.03395C14.7747 2.40456 14.3068 1.30295 14.3915 0.415123C14.4043 0.281177 14.3731 0.165469 14.3035 0.089037C14.2263 0.00405341 14.1053 -0.022433 13.9986 0.0197182C13.8919 -0.022433 13.7707 0.00405341 13.6937 0.089037C13.6242 0.165469 13.5928 0.281177 13.6058 0.415123C13.6903 1.30295 13.2224 2.40456 12.7165 3.03395C12.3777 3.45523 11.9656 3.82892 11.5669 4.19027C11.2428 4.48427 10.9074 4.78841 10.6069 5.12085C10.4191 5.32896 10.2445 5.51921 10.0863 5.6919C9.84587 5.95373 9.63851 6.18 9.48073 6.36329C9.4609 6.38645 9.43457 6.41399 9.40453 6.44547C9.24084 6.6168 8.96667 6.90369 8.96667 7.23507C9.0014 10.501 9.49004 12.8633 9.63889 13.5096L9.64411 13.5324C9.74272 13.9787 9.8946 14.4133 10.0411 14.8333C10.0411 14.8333 10.3116 15.6591 10.3484 15.7959C10.3686 15.8703 10.3832 15.9253 10.3891 15.9443C10.612 16.6726 11.1308 18.6025 11.1308 20.7879C11.1308 22.4844 10.2715 23.3511 10.0519 23.4196C9.4945 23.5931 9.36638 23.6112 8.88948 23.679C8.73427 23.7008 8.54372 23.7279 8.29111 23.7671C5.5534 24.0584 5.25781 25.4175 5.25781 25.9884C5.25781 26.1414 5.33704 26.6386 5.69839 27.0969C6.02312 27.5088 6.66984 28 7.90774 28C8.09345 28 8.2899 27.9889 8.4918 27.9671C9.31568 27.8786 10.146 27.7455 10.9488 27.617C11.2405 27.5703 11.5316 27.5237 11.8233 27.4789C12.2118 27.4194 12.912 27.3799 13.9042 27.3617C13.9507 27.3608 13.983 27.3601 13.9986 27.3597C14.0143 27.3601 14.0466 27.3609 14.0929 27.3617C15.0853 27.3799 15.7854 27.4194 16.174 27.4789C16.4655 27.5237 16.7567 27.5703 17.0483 27.617C17.8512 27.7455 18.6816 27.8786 19.5053 27.9671C19.7072 27.9888 19.9037 28 20.0894 28C21.3275 28 21.9744 27.509 22.2989 27.0969C22.6602 26.6386 22.7393 26.1413 22.7393 25.9884C22.7392 25.4175 22.4437 24.0584 19.706 23.7671ZM15.4462 12.6406C15.4054 12.6406 15.3668 12.6317 15.3276 12.6132C15.2003 12.5624 15.037 12.3191 15.0218 12.2247C15.6561 11.7833 16.0846 10.945 16.0846 9.98277C16.0846 8.56181 15.9346 7.40981 13.9985 7.40981C12.0623 7.40981 11.9123 8.56181 11.9123 9.98277C11.9123 10.945 12.3409 11.7833 12.9751 12.2247C12.9602 12.3189 12.7932 12.5506 12.6693 12.6132C12.6303 12.6317 12.5917 12.6406 12.5507 12.6406C12.1431 12.6407 11.6321 11.7478 11.4979 11.3925C11.2693 10.7889 10.9839 9.75128 10.9227 8.23709L10.9202 8.17882C10.9046 7.85985 11.385 7.04414 11.4487 6.9046C11.5362 6.71246 12.6711 4.98244 13.0082 4.57258C13.1275 4.42766 13.7321 3.6249 13.9986 3.27059C14.2649 3.6249 14.8694 4.42766 14.9887 4.57258C15.326 4.98244 16.4607 6.71246 16.5483 6.9046C16.612 7.04414 17.0925 7.85985 17.0769 8.17882L17.0744 8.23709C17.0131 9.75136 16.7279 10.7889 16.499 11.3925C16.3649 11.7478 15.854 12.6406 15.4462 12.6406Z"
-    fill="#027DB8"
-  />
-</svg>`
-  ), j = (
+  const j = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -887,6 +874,20 @@
   />
 </svg>`
   ), V = (
+    /* HTML */
+    `<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="28"
+  height="28"
+  viewBox="0 0 28 28"
+  fill="none"
+>
+  <path
+    d="M19.706 23.7671C19.4534 23.7279 19.2627 23.7008 19.1075 23.679C18.6307 23.6112 18.5026 23.5931 17.9452 23.4196C17.7255 23.3511 16.8661 22.4844 16.8661 20.7879C16.8661 18.6025 17.385 16.6726 17.608 15.9443C17.6139 15.9253 17.6284 15.8703 17.6485 15.7959C17.6854 15.6591 17.9559 14.8333 17.9559 14.8333C18.1026 14.4133 18.2544 13.9787 18.353 13.5324L18.3583 13.5096C18.5072 12.8633 18.9958 10.501 19.0304 7.23341C19.0304 6.90369 18.7563 6.6168 18.5927 6.44547C18.5627 6.41399 18.5361 6.38645 18.5163 6.36329C18.3587 6.18 18.1512 5.95373 17.9108 5.6919C17.7525 5.51921 17.5782 5.32896 17.3903 5.12085C17.0897 4.78841 16.7545 4.48427 16.4302 4.19027C16.0315 3.82892 15.6194 3.45523 15.2808 3.03395C14.7747 2.40456 14.3068 1.30295 14.3915 0.415123C14.4043 0.281177 14.3731 0.165469 14.3035 0.089037C14.2263 0.00405341 14.1053 -0.022433 13.9986 0.0197182C13.8919 -0.022433 13.7707 0.00405341 13.6937 0.089037C13.6242 0.165469 13.5928 0.281177 13.6058 0.415123C13.6903 1.30295 13.2224 2.40456 12.7165 3.03395C12.3777 3.45523 11.9656 3.82892 11.5669 4.19027C11.2428 4.48427 10.9074 4.78841 10.6069 5.12085C10.4191 5.32896 10.2445 5.51921 10.0863 5.6919C9.84587 5.95373 9.63851 6.18 9.48073 6.36329C9.4609 6.38645 9.43457 6.41399 9.40453 6.44547C9.24084 6.6168 8.96667 6.90369 8.96667 7.23507C9.0014 10.501 9.49004 12.8633 9.63889 13.5096L9.64411 13.5324C9.74272 13.9787 9.8946 14.4133 10.0411 14.8333C10.0411 14.8333 10.3116 15.6591 10.3484 15.7959C10.3686 15.8703 10.3832 15.9253 10.3891 15.9443C10.612 16.6726 11.1308 18.6025 11.1308 20.7879C11.1308 22.4844 10.2715 23.3511 10.0519 23.4196C9.4945 23.5931 9.36638 23.6112 8.88948 23.679C8.73427 23.7008 8.54372 23.7279 8.29111 23.7671C5.5534 24.0584 5.25781 25.4175 5.25781 25.9884C5.25781 26.1414 5.33704 26.6386 5.69839 27.0969C6.02312 27.5088 6.66984 28 7.90774 28C8.09345 28 8.2899 27.9889 8.4918 27.9671C9.31568 27.8786 10.146 27.7455 10.9488 27.617C11.2405 27.5703 11.5316 27.5237 11.8233 27.4789C12.2118 27.4194 12.912 27.3799 13.9042 27.3617C13.9507 27.3608 13.983 27.3601 13.9986 27.3597C14.0143 27.3601 14.0466 27.3609 14.0929 27.3617C15.0853 27.3799 15.7854 27.4194 16.174 27.4789C16.4655 27.5237 16.7567 27.5703 17.0483 27.617C17.8512 27.7455 18.6816 27.8786 19.5053 27.9671C19.7072 27.9888 19.9037 28 20.0894 28C21.3275 28 21.9744 27.509 22.2989 27.0969C22.6602 26.6386 22.7393 26.1413 22.7393 25.9884C22.7392 25.4175 22.4437 24.0584 19.706 23.7671ZM15.4462 12.6406C15.4054 12.6406 15.3668 12.6317 15.3276 12.6132C15.2003 12.5624 15.037 12.3191 15.0218 12.2247C15.6561 11.7833 16.0846 10.945 16.0846 9.98277C16.0846 8.56181 15.9346 7.40981 13.9985 7.40981C12.0623 7.40981 11.9123 8.56181 11.9123 9.98277C11.9123 10.945 12.3409 11.7833 12.9751 12.2247C12.9602 12.3189 12.7932 12.5506 12.6693 12.6132C12.6303 12.6317 12.5917 12.6406 12.5507 12.6406C12.1431 12.6407 11.6321 11.7478 11.4979 11.3925C11.2693 10.7889 10.9839 9.75128 10.9227 8.23709L10.9202 8.17882C10.9046 7.85985 11.385 7.04414 11.4487 6.9046C11.5362 6.71246 12.6711 4.98244 13.0082 4.57258C13.1275 4.42766 13.7321 3.6249 13.9986 3.27059C14.2649 3.6249 14.8694 4.42766 14.9887 4.57258C15.326 4.98244 16.4607 6.71246 16.5483 6.9046C16.612 7.04414 17.0925 7.85985 17.0769 8.17882L17.0744 8.23709C17.0131 9.75136 16.7279 10.7889 16.499 11.3925C16.3649 11.7478 15.854 12.6406 15.4462 12.6406Z"
+    fill="#027DB8"
+  />
+</svg>`
+  ), G = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -927,7 +928,7 @@
     </clipPath>
   </defs>
 </svg>`
-  ), G = (
+  ), O = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -943,7 +944,7 @@
     fill="#027DB8"
   />
 </svg>`
-  ), y = (
+  ), k = (
     /* HTML */
     `<div
   class="sfc-pricingTable__benefitsContainer sfc-pricingTable__benefitsContainer--2"
@@ -1093,7 +1094,7 @@
     </li>
   </ul>
 </div>`
-  ), O = `.sfc-becomeASubscriber__section--hero {
+  ), U = `.sfc-becomeASubscriber__section--hero {
   padding-top: 0 !important;
 }
 
@@ -1143,6 +1144,7 @@ h1.sfc-heading {
   font-size: 32px !important;
   font-weight: 700 !important;
   line-height: normal !important;
+  margin-top: 6px;
   margin-bottom: 40px !important;
 }
 
@@ -1458,7 +1460,7 @@ a.crs_browse_free:active {
   }
 }
 `;
-  class U {
+  class Y {
     constructor() {
       this.device = window.innerWidth < 769 ? "mobile" : "desktop", this.init();
     }
@@ -1466,22 +1468,21 @@ a.crs_browse_free:active {
       this.changes(), this.render();
     }
     changes() {
-      localStorage.getItem("isClass");
-      const e = n("h1.sfc-heading"), i = n(".sfc-becomeASubscriber__upgradeBannerContainer"), t = n(".sfc-becomeASubscriber__section");
+      const e = localStorage.getItem("isClass"), i = n("h1.sfc-heading"), t = n(".sfc-becomeASubscriber__upgradeBannerContainer"), s = n(".sfc-becomeASubscriber__section");
       if (!!n('[data-drupal-link-system-path="yogi/login"]'))
         return;
-      if (e) {
-        e.textContent = "Your ultimate Yoga journey starts here";
-        const r = (
+      if (i) {
+        i.textContent = "Your ultimate Yoga journey starts here";
+        const a = (
           /* HTML */
-          '<h2 class="os-subtitle">Subscribe to unlock all Premium class and more</h2>'
+          `<h2 class="os-subtitle">${e === "premium" ? "Subscribe to unlock this Premium class" : "Subscribe to unlock all Premium class and more"}</h2>`
         );
         if (n(".os-subtitle"))
           return;
-        e.insertAdjacentHTML("afterend", r);
+        i.insertAdjacentHTML("afterend", a);
       }
-      i && i.classList.add("os-d-hidden");
-      const c = (
+      t && t.classList.add("os-d-hidden");
+      const r = (
         /* HTML */
         `
       <div class="os-subscriber-feature">
@@ -1489,7 +1490,7 @@ a.crs_browse_free:active {
         <div class="os-wrap">
           <div class="os-col">
             <div class="os-block">
-              <div class="icon">${q}</div>
+              <div class="icon">${j}</div>
               <div class="content">
                 <h4>Unlimited access to 1000+ Ad-Free yoga, meditation and movement classes</h4>
                 <div class="descr">
@@ -1508,7 +1509,7 @@ a.crs_browse_free:active {
           </div>
           <div class="os-col">
             <div class="os-block">
-              <div class="icon">${j}</div>
+              <div class="icon">${V}</div>
               <div class="content">
                 <h4>Watch classes from your laptop, TV, phone or tablet</h4>
                 <div class="descr">
@@ -1517,7 +1518,7 @@ a.crs_browse_free:active {
               </div>
             </div>
             <div class="os-block">
-              <div class="icon">${V}</div>
+              <div class="icon">${G}</div>
               <div class="content">
                 <h4>Access our complete collection of 30 curated programs & 50 challenges</h4>
                 <div class="descr">
@@ -1526,7 +1527,7 @@ a.crs_browse_free:active {
               </div>
             </div>
             <div class="os-block">
-              <div class="icon">${G}</div>
+              <div class="icon">${O}</div>
               <div class="content">
                 <h4>Exclusive access to all new releases and premium content</h4>
                 <div class="descr"><p>Enjoy new classes and get 25% discount on livestream events.</p></div>
@@ -1537,25 +1538,25 @@ a.crs_browse_free:active {
       </div>
     `
       );
-      if (t && (n(".os-subscriber-feature") || t.insertAdjacentHTML("afterend", c), this.device === "mobile")) {
-        const r = n(".sfc-pricingTablePremium__form"), l = n(".sfc-pricingTablePremium__cols--desktop");
-        if (r == null || r.remove(), l) {
-          l.style.display = "block";
-          const p = l.querySelector("li:first-child"), f = l.querySelector("li:nth-child(2)"), d = l.querySelectorAll(".sfc-pricingTableLevel__pricing");
-          p == null || p.insertAdjacentHTML("beforeend", y), f == null || f.insertAdjacentHTML("beforeend", y), d.forEach((a) => {
-            var m;
-            if ((m = a.textContent) != null && m.includes("9.08")) {
-              const h = a.closest(".sfc-pricingTableLevel__primary"), k = h == null ? void 0 : h.querySelector(".sfc-pricingTableLevel__duration"), v = a.querySelector(".sfc-pricingTableLevel__price"), x = a.querySelector(".sfc-pricingTableLevel__usd");
-              a.insertAdjacentHTML(
+      if (s && (n(".os-subscriber-feature") || s.insertAdjacentHTML("afterend", r), this.device === "mobile")) {
+        const a = n(".sfc-pricingTablePremium__form"), p = n(".sfc-pricingTablePremium__cols--desktop");
+        if (a == null || a.remove(), p) {
+          p.style.display = "block";
+          const f = p.querySelector("li:first-child"), c = p.querySelector("li:nth-child(2)"), d = p.querySelectorAll(".sfc-pricingTableLevel__pricing");
+          f == null || f.insertAdjacentHTML("beforeend", k), c == null || c.insertAdjacentHTML("beforeend", k), d.forEach((m) => {
+            var C;
+            if ((C = m.textContent) != null && C.includes("9.08")) {
+              const g = m.closest(".sfc-pricingTableLevel__primary"), L = g == null ? void 0 : g.querySelector(".sfc-pricingTableLevel__duration"), x = m.querySelector(".sfc-pricingTableLevel__price"), w = m.querySelector(".sfc-pricingTableLevel__usd");
+              m.insertAdjacentHTML(
                 "afterbegin",
                 /* HTML */
                 '<span class="os-free"><span>Free</span> /7 days</span>'
-              ), v == null || v.insertAdjacentHTML(
+              ), x == null || x.insertAdjacentHTML(
                 "afterbegin",
                 /* HTML */
                 '<span class="sfc-price__period">then </span>'
-              ), x && (x.innerHTML = /* HTML */
-              'All prices in USD, <span class="os-highlight">billed as $167.88</span> <span class="os-black os-highlight">$108.99</span><span class="os-black">/year</span>', h == null || h.insertAdjacentElement("afterend", x)), k && (k.innerHTML = "Yearly");
+              ), w && (w.innerHTML = /* HTML */
+              'All prices in USD, <span class="os-highlight">billed as $167.88</span> <span class="os-black os-highlight">$108.99</span><span class="os-black">/year</span>', g == null || g.insertAdjacentElement("afterend", w)), L && (L.innerHTML = "Yearly");
             }
           });
         }
@@ -1565,15 +1566,15 @@ a.crs_browse_free:active {
       var t, s;
       if (!!n('[data-drupal-link-system-path="yogi/login"]'))
         return;
-      document.head.insertAdjacentHTML("beforeend", `<style>${O}</style>`);
+      document.head.insertAdjacentHTML("beforeend", `<style>${U}</style>`);
       let i = n("#block-samsara-content");
       if (localStorage.getItem("isClass") && (i != null && i.querySelector("h2"))) {
-        let c = localStorage.getItem("isClass"), r = localStorage.getItem("referrerInfo");
-        if (c == "free")
+        let l = localStorage.getItem("isClass"), r = localStorage.getItem("referrerInfo");
+        if (l == "free")
           this.insert(
             i,
             /* HTML */
-            `<a href="${r}" class="crs_back">${g.arrowLeftWhite}Back</a>`
+            `<a href="${r}" class="crs_back">${h.arrowLeftWhite}Back</a>`
           ), this.insert(
             n(".sfc-becomeASubscriber__heroHeader"),
             /* HTML */
@@ -1585,10 +1586,10 @@ a.crs_browse_free:active {
             "afterend"
           ), (t = n(".crs_back")) == null || t.addEventListener("click", () => {
           });
-        else if (c == "premium") {
-          const l = this.device === "mobile" ? n(".os-mob-sec h1.sfc-heading") : n(".sfc-pricingTablePremium");
+        else if (l == "premium") {
+          const a = this.device === "mobile" ? n(".os-mob-sec h1.sfc-heading") : n(".sfc-pricingTablePremium");
           this.insert(
-            l,
+            a,
             /* HTML */
             ` <a
             href="https://www.doyogawithme.com/yoga-classes?field_subscribers_only_value=1&sort_by=created"
@@ -1610,11 +1611,11 @@ a.crs_browse_free:active {
       e.insertAdjacentHTML(t, i);
     }
   }
-  L({
+  B({
     name: "Video Preview",
     dev: "OS"
-  }), B("exp_video_previews");
-  class Y {
+  }), M("exp_video_previews");
+  class W {
     constructor() {
       this.init();
     }
@@ -1623,15 +1624,15 @@ a.crs_browse_free:active {
     }
     run() {
       if (this.initStyles(), window.location.href.includes("/content/")) {
-        new P();
-        const e = new F();
-        e.init(), new D({ previewBlock: e });
+        new D();
+        const e = new q();
+        e.init(), new Z({ previewBlock: e });
       }
-      window.location.href.includes("/become-a-subscriber") && new U();
+      window.location.href.includes("/become-a-subscriber") && new Y();
     }
     initStyles() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${Z}</style>`);
+      document.head.insertAdjacentHTML("beforeend", `<style>${$}</style>`);
     }
   }
-  new Y();
+  new W();
 })();
