@@ -1,44 +1,44 @@
 (function() {
   "use strict";
-  const b = (c, i, n, t = "") => {
+  const b = (o, e, i, t = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: c,
-      event_desc: i,
-      event_type: n,
+      event_name: o,
+      event_desc: e,
+      event_type: i,
       event_loc: t
-    }), console.log(`Event: ${c} | ${i} | ${n} | ${t}`);
-  }, u = ({ name: c, dev: i }) => {
+    }), console.log(`Event: ${o} | ${e} | ${i} | ${t}`);
+  }, L = ({ name: o, dev: e }) => {
     console.log(
-      `%c EXP: ${c} (DEV: ${i})`,
+      `%c EXP: ${o} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, x = (c) => {
-    let i = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(i), window.clarity("set", c, "variant_1"));
+  }, B = (o) => {
+    let e = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", o, "variant_1"));
     }, 1e3);
-  }, h = (c, i, n, t = 1) => {
+  }, w = (o, e, i, t = 1) => {
     let s;
-    const a = {
+    const c = {
       root: null,
       threshold: t
     };
-    new IntersectionObserver((d) => {
-      d.forEach((f) => {
-        f.isIntersecting ? s = setTimeout(() => {
-          b(i, "Section", "view", n);
+    new IntersectionObserver((l) => {
+      l.forEach((p) => {
+        p.isIntersecting ? s = setTimeout(() => {
+          b(e, "Section", "view", i);
         }, 3e3) : clearTimeout(s);
       });
-    }, a).observe(document.querySelector(c));
-  }, w = (c) => document.querySelectorAll(c), e = (c) => document.querySelector(c);
-  function C(c) {
-    return new Promise((i) => {
-      const n = document.querySelector(c);
-      if (n)
-        return i(n);
+    }, c).observe(document.querySelector(o));
+  }, M = (o) => document.querySelectorAll(o), n = (o) => document.querySelector(o);
+  function C(o) {
+    return new Promise((e) => {
+      const i = document.querySelector(o);
+      if (i)
+        return e(i);
       const t = new MutationObserver(() => {
-        const s = document.querySelector(c);
-        s && (i(s), t.disconnect());
+        const s = document.querySelector(o);
+        s && (e(s), t.disconnect());
       });
       t.observe(document.documentElement, {
         childList: !0,
@@ -47,7 +47,12 @@
       });
     });
   }
-  const _ = {
+  const _ = () => {
+    var o;
+    return (o = n(".sfc-nodePlayable__primaryContentContainer h3.sfc-playableLockOverlay__lockHeading")) != null && o.innerHTML.includes(
+      "premium"
+    ) ? "premium" : "free";
+  }, u = () => !n('[data-drupal-link-system-path="yogi/login"]'), g = {
     google: `
         <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M22.06 11.249C22.06 10.469 21.99 9.71902 21.86 8.99902H11.5V13.254H17.42C17.165 14.629 16.39 15.794 15.225 16.574V19.334H18.78C20.86 17.419 22.06 14.599 22.06 11.249Z" fill="#4285F4"/>
@@ -109,26 +114,26 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="9" height="14" viewBox="0 0 9 14" fill="none">
             <path d="M1.5 13L7.5 7L1.5 1" stroke="white" stroke-width="2"/>
         </svg>`
-  }, y = () => (
+  }, T = () => (
     /* HTML */
     ` <hr class="d-md-block d-none" />
     <ul>
-      <li class="items-center">${_.iconList1} Curated and hand-picked by our team classes</li>
-      <li class="items-center">${_.iconList2} Complete collection of 30 curated programs & 50 challenges</li>
-      <li class="items-center">${_.iconList3} Exclusive access to all new releases and livestream events</li>
+      <li class="items-center">${g.iconList1} Curated and hand-picked by our team classes</li>
+      <li class="items-center">${g.iconList2} Complete collection of 30 curated programs & 50 challenges</li>
+      <li class="items-center">${g.iconList3} Exclusive access to all new releases and livestream events</li>
     </ul>
     <a class="sfc-nodePlayable__lockCta" href="/become-a-subscriber">Get Full Access Now</a>`
-  ), L = () => (
+  ), H = () => (
     /* HTML */
     ` <a
       class="crs_btn_white flex-center"
       href="/yogi/login/google?destination=${window.location.pathname}"
     >
-      ${_.google}
+      ${g.google}
       <span>Continue with Google</span>
     </a>
     <a class="crs_btn_white flex-center btn_next_signUp" href="#">
-      ${_.email}
+      ${g.email}
       <span>Sign Up with Email</span>
     </a>
     <p class="crs_block_terms">
@@ -139,17 +144,17 @@
     <p>
       Already have an account? <a href="/yogi/login?destination=${window.location.pathname}" class="c-green">Log in</a>
     </p>`
-  ), k = (c) => (
+  ), E = (o) => (
     /* HTML */
     ` <div class="crs_block crs_form">
     <div class="crs_form_container">
       <div class="crs_swipe"></div>
       <h2>
-        ${c === "Premium" ? 'Subscribe to unlock this <span class="text-nowrap">Premium class</span>' : 'Sign up to get access <span class="text-nowrap">to this free class</span>'}
+        ${o === "premium" ? 'Subscribe to unlock this <span class="text-nowrap">Premium class</span>' : 'Sign up to get access <span class="text-nowrap">to this free class</span>'}
       </h2>
 
       <div class="flex-center">
-        <a href="#" class="crs_btn_back d-md-block d-none">${_.arrowLeft} Back</a>
+        <a href="#" class="crs_btn_back d-md-block d-none">${g.arrowLeft} Back</a>
         <button class="sfc-nodePlayable__lockCta" type="button">Create Free Account</button>
       </div>
       <p class="crs_block_terms">
@@ -158,19 +163,19 @@
       </p>
     </div>
   </div>`
-  ), B = (c, i) => (
+  ), z = (o, e) => (
     /* HTML */
     ` <div class="crs_block">
       <h2>
-        ${c === "Premium" ? 'Subscribe to unlock this <span class="text-nowrap">Premium class</span>' : 'Sign up to get access <span class="text-nowrap">to this free class</span>'}
+        ${o === "premium" ? 'Subscribe to unlock this <span class="text-nowrap">Premium class</span>' : 'Sign up to get access <span class="text-nowrap">to this free class</span>'}
       </h2>
       <p class="crs_block_subtotal">
-        ${c === "Premium" ? `Get ${i === !0 ? "full" : ""} access to this and 500+ other premium <br class="d-md-none"> classes` : 'Watch this and 500+ other free classes <br class="d-md-none"> after the sign up'}
+        ${o === "premium" ? `Get ${e === !0 ? "full" : ""} access to this and 500+ other premium <br class="d-md-none"> classes` : 'Watch this and 500+ other free classes <br class="d-md-none"> after the sign up'}
       </p>
-      <div class="crs_block_content">${c === "Premium" && i ? y() : L()}</div>
+      <div class="crs_block_content">${o === "premium" && e ? T() : H()}</div>
     </div>
-    ${i === !1 ? k(c) : ""}`
-  ), T = `.o-page__header {
+    ${e === !1 ? E(o) : ""}`
+  ), S = `.o-page__header {
   z-index: 4;
 }
 #main-content {
@@ -543,7 +548,7 @@
     width: 100%;
   }
 }`;
-  class M {
+  class A {
     constructor() {
       this.device = window.innerWidth < 769 ? "mobile" : "desktop";
     }
@@ -554,100 +559,100 @@
       return this.thisClass;
     }
     render() {
-      var t, s;
-      if (document.head.insertAdjacentHTML("beforeend", `<style>${T}</style>`), e(".crs_block") || !e(".c-dropdownMenu__list--level0") && !e(".sfc-nodePlayable__lockContainerInner header > .sfc-item__headline") && !e("#block-userregistrationform"))
+      var t;
+      if (document.head.insertAdjacentHTML("beforeend", `<style>${S}</style>`), n(".crs_block") || !n(".c-dropdownMenu__list--level0") && !n(".sfc-nodePlayable__lockContainerInner header > .sfc-item__headline") && !n("#block-userregistrationform"))
         return;
-      let i = !e('[data-drupal-link-system-path="yogi/login"]');
-      this.thisClass = (t = e(".sfc-nodePlayable__primaryContentContainer h3")) != null && t.innerHTML.includes("premium") ? "Premium" : "free";
-      const n = B(this.thisClass, i);
-      if (i === !1 || i === !0 && this.thisClass === "Premium") {
-        this.insert(e(".sfc-nodePlayable__primaryContentContainer"), n);
-        const a = e(".crs_form h2"), r = e("#block-userregistrationform");
-        a && r && ((s = r.querySelector(".username")) == null || s.parentElement, r.querySelector(".form-type-email"), a.after(r));
-        let d = "", f = "Pop up " + (a == null ? void 0 : a.innerText.trim()) + (i === !1 ? ` Unauthorised ${this.thisClass} class` : " Authorized Premium class only");
-        if (i === !1 ? this.thisClass === "free" ? d = "exp_trailvideo_section_01" : d = "exp_trailvideo_section_02" : this.thisClass === "Premium" && (d = "exp_trailvideo_section_03"), h(".crs_block:not(.crs_form)", d, f), e(".crs_block.crs_form")) {
+      let e = u();
+      this.thisClass = _();
+      const i = z(this.thisClass, e);
+      if (e === !1 || e === !0 && this.thisClass === "premium") {
+        this.insert(n(".sfc-nodePlayable__primaryContentContainer"), i);
+        const s = n(".crs_form h2"), c = n("#block-userregistrationform");
+        s && c && ((t = c.querySelector(".username")) == null || t.parentElement, c.querySelector(".form-type-email"), s.after(c));
+        let r = "", l = "Pop up " + (s == null ? void 0 : s.innerText.trim()) + (e === !1 ? ` Unauthorised ${this.thisClass} class` : " Authorized Premium class only");
+        if (e === !1 ? this.thisClass === "free" ? r = "exp_trailvideo_section_01" : r = "exp_trailvideo_section_02" : this.thisClass === "premium" && (r = "exp_trailvideo_section_03"), w(".crs_block:not(.crs_form)", r, l), n(".crs_block.crs_form")) {
           let p = this.thisClass === "free" ? "exp_trailvideo_section_04" : "exp_trailvideo_section_05";
-          h(".crs_block.crs_form", p, f);
+          w(".crs_block.crs_form", p, l);
         }
         this.actionsBlock(this.thisClass);
       }
     }
-    insert(i, n, t = "afterbegin") {
-      i.insertAdjacentHTML(t, n);
+    insert(e, i, t = "afterbegin") {
+      e.insertAdjacentHTML(t, i);
     }
-    actionsBlock(i) {
-      var t, s, a, r, d, f, p;
-      const n = e(".crs_form");
-      n && (e(".btn_next_signUp") && ((t = e(".btn_next_signUp")) == null || t.addEventListener("click", (o) => {
-        o.preventDefault();
-        const m = o.target.closest(".crs_block");
-        m && (m.style.display = "none"), n.style.display = "flex";
-      }), (s = e(".crs_btn_white")) == null || s.addEventListener("click", (o) => {
-      }), (a = e(".crs_btn_back")) == null || a.addEventListener("click", (o) => {
-        o.preventDefault();
-        const m = o.target.closest(".crs_block");
+    actionsBlock(e) {
+      var t, s, c, r, l, p, f;
+      const i = n(".crs_form");
+      i && (n(".btn_next_signUp") && ((t = n(".btn_next_signUp")) == null || t.addEventListener("click", (d) => {
+        d.preventDefault();
+        const m = d.target.closest(".crs_block");
+        m && (m.style.display = "none"), i.style.display = "flex";
+      }), (s = n(".crs_btn_white")) == null || s.addEventListener("click", (d) => {
+      }), (c = n(".crs_btn_back")) == null || c.addEventListener("click", (d) => {
+        d.preventDefault();
+        const m = d.target.closest(".crs_block");
         m && (m.style.display = "none");
-        const v = e(".crs_block:not(.crs_form)");
-        v && (v.style.display = "block");
-      }), (r = e(".crs_form .sfc-nodePlayable__lockCta")) == null || r.addEventListener("click", (o) => {
-        o.preventDefault(), localStorage.setItem("isClass", i), localStorage.setItem("referrerInfo", window.location.href);
-        const l = e(".crs_form .sfc-button");
-        l == null || l.click();
-      }), this.device == "mobile" && (n.addEventListener("click", (o) => {
-        const l = o.target;
-        if (l.classList.contains("crs_form")) {
-          l.style.display = "none";
-          const m = e(".crs_block:not(.crs_form)");
+        const h = n(".crs_block:not(.crs_form)");
+        h && (h.style.display = "block");
+      }), (r = n(".crs_form .sfc-nodePlayable__lockCta")) == null || r.addEventListener("click", (d) => {
+        d.preventDefault(), localStorage.setItem("isClass", e), localStorage.setItem("referrerInfo", window.location.href);
+        const a = n(".crs_form .sfc-button");
+        a == null || a.click();
+      }), this.device == "mobile" && (i.addEventListener("click", (d) => {
+        const a = d.target;
+        if (a.classList.contains("crs_form")) {
+          a.style.display = "none";
+          const m = n(".crs_block:not(.crs_form)");
           m && (m.style.display = "block");
         }
-      }), (d = e(".crs_swipe")) == null || d.addEventListener("click", (o) => {
-        n.style.display = "none";
-        const l = e(".crs_block:not(.crs_form)");
-        l && (l.style.display = "block");
-      }), (f = e(".crs_swipe")) == null || f.addEventListener("touchmove", (o) => {
-        n.style.display = "none";
-        const l = e(".crs_block:not(.crs_form)");
-        l && (l.style.display = "block");
-      }))), e(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta") && ((p = e(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta")) == null || p.addEventListener("click", (o) => {
+      }), (l = n(".crs_swipe")) == null || l.addEventListener("click", (d) => {
+        i.style.display = "none";
+        const a = n(".crs_block:not(.crs_form)");
+        a && (a.style.display = "block");
+      }), (p = n(".crs_swipe")) == null || p.addEventListener("touchmove", (d) => {
+        i.style.display = "none";
+        const a = n(".crs_block:not(.crs_form)");
+        a && (a.style.display = "block");
+      }))), n(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta") && ((f = n(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta")) == null || f.addEventListener("click", (d) => {
       })));
     }
   }
-  class A {
+  class P {
     constructor() {
-      this.device = window.innerWidth < 769 ? "mobile" : "desktop", this.thisClass = "", this.initBlock = new M(), this.init();
+      this.device = window.innerWidth < 769 ? "mobile" : "desktop", this.thisClass = "", this.initBlock = new A(), this.init();
     }
     init() {
       this.initBlock.init(), this.thisClass = this.initBlock.getThisClass(), this.setupFormInteractions();
     }
     async setupFormInteractions() {
-      var i;
+      var e;
       try {
-        const n = await C(".crs_form input.form-email"), t = await C(".crs_form input.username"), s = await C(".crs_form input[name=pass]");
-        n && t && s && this.thisClass != "" ? (n.placeholder = "Your email", t.placeholder = "Your username", s.placeholder = "Password", w(".crs_form input").forEach((a, r) => {
-          a.addEventListener("click", (d) => {
-            d.stopImmediatePropagation();
-            let f = r + 1;
-            this.thisClass === "Premium" && (f = r + 4);
+        const i = await C(".crs_form input.form-email"), t = await C(".crs_form input.username"), s = await C(".crs_form input[name=pass]");
+        i && t && s && this.thisClass != "" ? (i.placeholder = "Your email", t.placeholder = "Your username", s.placeholder = "Password", M(".crs_form input").forEach((c, r) => {
+          c.addEventListener("click", (l) => {
+            l.stopImmediatePropagation();
+            let p = r + 1;
+            this.thisClass === "premium" && (p = r + 4);
           });
-        }), (i = e(".crs_form input.password-field")) == null || i.addEventListener("input", (a) => {
-          const r = e(".crs_form input.password-confirm");
-          r && (r.value = a.target.value);
+        }), (e = n(".crs_form input.password-field")) == null || e.addEventListener("input", (c) => {
+          const r = n(".crs_form input.password-confirm");
+          r && (r.value = c.target.value);
         })) : console.error("One or more form elements are missing.");
-      } catch (n) {
-        console.error("Error waiting for form elements:", n);
+      } catch (i) {
+        console.error("Error waiting for form elements:", i);
       }
     }
   }
-  class H {
-    constructor({ previewBlock: i }) {
-      this.videoFound = !1, this.init(), this.previewBlock = i, this.previewTime = 120;
+  class D {
+    constructor({ previewBlock: e }) {
+      this.videoFound = !1, this.init(), this.previewBlock = e, this.previewTime = 3;
     }
     init() {
       this.getFlowPlayer();
     }
     getFlowPlayer() {
-      let i;
-      const n = async () => {
+      let e;
+      const i = async () => {
         if (!this.videoFound)
           try {
             const t = window == null ? void 0 : window.flowplayer;
@@ -656,45 +661,44 @@
             const s = t("#async_flowplayer");
             if (!s || typeof s != "object")
               return;
-            this.videoFound = !0, i.disconnect();
-            const a = e("#video-preview-container"), r = e("#video-preview-container #playerContainer"), d = e("#posterImage"), f = e('.os-preview-badge a[data-action="os-signingup"]');
-            if (r && d && a) {
-              const p = e("flowplayer-header-duration"), o = e("flowplayer-fullscreen-enter-icon"), l = e("flowplayer-control");
-              r.classList.add("os-d-block"), a.classList.add("os-z-9"), d.classList.add("os-d-hidden"), p == null || p.classList.add("os-d-hidden"), o == null || o.classList.add("os-d-hidden"), l == null || l.classList.add("os-d-hidden");
+            this.videoFound = !0, e.disconnect();
+            const c = n("#video-preview-container"), r = n("#video-preview-container #playerContainer"), l = n("#posterImage"), p = n('.os-preview-badge a[data-action="os-signingup"]');
+            if (r && l && c) {
+              const f = n("flowplayer-header-duration"), d = n("flowplayer-fullscreen-enter-icon"), a = n("flowplayer-control");
+              r.classList.add("os-d-block"), c.classList.add("os-z-9"), l.classList.add("os-d-hidden"), f == null || f.classList.add("os-d-hidden"), d == null || d.classList.add("os-d-hidden"), a == null || a.classList.add("os-d-hidden");
             }
-            f == null || f.addEventListener("click", (p) => {
-              p.preventDefault(), this.previewBlock.remove(), s.pause();
-            }), s.on("beforeplay", (p) => {
-              var m;
-              const o = !e('[data-drupal-link-system-path="yogi/login"]'), l = (m = e(".sfc-nodePlayable__primaryContentContainer h3")) != null && m.innerHTML.includes("premium") ? "premium" : "free";
-              o || b("exp_video_previews_button_01", `${l} - Play`, "click", "Unauthorised Product Video"), l === "premium" && b("exp_video_previews_button_02", "Play", "click", "Premium class only Product Video");
-            }), s.on("playing", (p) => {
-              e(".sfc-playableOverlay__inner") && (this.timer = setInterval(() => {
+            p == null || p.addEventListener("click", (f) => {
+              f.preventDefault(), this.previewBlock.remove(), s.pause();
+            }), s.on("beforeplay", (f) => {
+              const d = u(), a = _();
+              d || b("exp_video_previews_button_01", `${a} - Play`, "click", "Unauthorised Product Video"), a === "premium" && b("exp_video_previews_button_02", "Play", "click", "Premium class only Product Video");
+            }), s.on("playing", (f) => {
+              n(".sfc-playableOverlay__inner") && (this.timer = setInterval(() => {
                 s.currentTime >= this.previewTime && (clearInterval(this.timer), s.pause(), this.previewBlock.remove());
               }, 10));
-            }), s.on("pause", (p) => {
-              clearInterval(this.timer), console.info(p.type);
+            }), s.on("pause", (f) => {
+              clearInterval(this.timer);
             });
           } catch (t) {
-            i.disconnect(), console.error("Error waiting for flowplayer:", t);
+            e.disconnect(), console.error("Error waiting for flowplayer:", t);
           }
       };
-      i = new MutationObserver((t) => {
+      e = new MutationObserver((t) => {
         t.forEach((s) => {
-          s && n();
+          s && i();
         });
-      }), i.observe(document.body, {
+      }), e.observe(document.body, {
         childList: !0,
         subtree: !0
       });
     }
     waitForFlowplayer() {
-      return new Promise((i, n) => {
+      return new Promise((e, i) => {
         const t = setInterval(() => {
-          window.flowplayer && (clearInterval(t), i(window.flowplayer));
+          window.flowplayer && (clearInterval(t), e(window.flowplayer));
         }, 100);
         setTimeout(() => {
-          clearInterval(t), n(new Error("Flowplayer is not available"));
+          clearInterval(t), i(new Error("Flowplayer is not available"));
         }, 5e3);
       });
     }
@@ -713,7 +717,11 @@
 
 .os-z-9 {
   z-index: 9 !important;
-}`, S = (
+}
+
+#block-upgradebannerblock-2{
+  display: none;
+}`, $ = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -727,7 +735,7 @@
     fill="#017922"
   />
 </svg> `
-  ), D = `.os-preview-badge {
+  ), I = `.os-preview-badge {
   position: absolute;
   bottom: 10px;
   left: 50%;
@@ -766,6 +774,8 @@
 
 .os-preview-badge .os-text a {
   color: #017922;
+  text-decoration: underline;
+  text-underline-offset: 5px;
 }
 
 @media (max-width: 767px) {
@@ -784,72 +794,320 @@
   }
 }
 `;
-  class P {
+  class F {
     constructor() {
-      this.styleElement = null, this.badgeElement = null, this.device = window.innerWidth < 769 ? "mobile" : "desktop";
+      this.styleElement = null, this.badgeElement = null;
     }
     init() {
       this.render();
     }
     render() {
-      var a, r, d;
-      const i = !e('[data-drupal-link-system-path="yogi/login"]');
-      this.thisClass = (a = e(".sfc-nodePlayable__primaryContentContainer h3")) != null && a.innerHTML.includes("premium") ? "Premium" : "free";
-      let n;
-      i ? n = /* HTML */
-      'This is a free 2 minute preview. <span>Get access to the full video by</span>  <a data-action="os-subscribe" href="/become-a-subscriber">subscribing</a>' : n = /* HTML */
-      `This is a 2 minute preview. ${this.thisClass === "Premium" ? (
+      var c, r;
+      const e = u();
+      this.thisClass = _();
+      let i;
+      e ? i = /* HTML */
+      `This is a free 2 minute preview. <span>Get access to the full video by</span>
+        <a data-action="os-subscribe" href="/become-a-subscriber">subscribing</a>` : i = /* HTML */
+      `This is a 2 minute preview. ${this.thisClass === "premium" ? (
         /* HTML */
         "<span>Get access to the full video</span>"
       ) : (
         /* HTML */
         "<span>Get a free access</span> to the full video"
-      )} by <a href="/yogi/login?destination=/content/core-awake" data-action="os-signingup">signing up</a>`;
+      )} by
+        <a href="#" data-action="os-signingup">signing up</a>`;
       const t = (
         /* HTML */
         `
       <div class="os-preview-badge">
-        <div class="os-icon">${S}</div>
-        <div class="os-text">${n}</div>
+        <div class="os-icon">${$}</div>
+        <div class="os-text">${i}</div>
       </div>
     `
-      ), s = e(".sfc-nodePlayable__primaryContentContainer");
+      ), s = n(".sfc-nodePlayable__primaryContentContainer");
       if (s) {
-        const f = e(".sfc-playableOverlay__inner"), p = e(".crs_block:not(.crs_form)");
-        if (!f)
+        const l = n(".sfc-playableOverlay__inner"), p = n(".crs_block:not(.crs_form)");
+        if (!l)
           return;
-        f.classList.add("os-d-hidden"), p && p.classList.add("os-d-hidden"), this.initStyles(), this.insert(s, t), this.badgeElement = s.querySelector(".os-preview-badge"), (r = e("[data-action=os-signingup]")) == null || r.addEventListener("click", (o) => {
-          b("exp_video_previews_link_01", `${this.thisClass} - Signing up`, "click", "Unauthorised Product Banner Get a free access to the full video");
-        }), (d = e('[data-action="os-subscribe"]')) == null || d.addEventListener("click", (o) => {
-          localStorage.setItem("isClass", this.thisClass), b("exp_video_previews_link_02", "subscribing", "click", 'Premium class only Product Banner Get access to the full video"');
+        l.classList.add("os-d-hidden"), p && p.classList.add("os-d-hidden"), this.initStyles(), this.insert(s, t), this.badgeElement = s.querySelector(".os-preview-badge"), (c = n("[data-action=os-signingup]")) == null || c.addEventListener("click", (f) => {
+          b(
+            "exp_video_previews_link_01",
+            `${this.thisClass} - Signing up`,
+            "click",
+            "Unauthorised Product Banner Get a free access to the full video"
+          );
+        }), (r = n('[data-action="os-subscribe"]')) == null || r.addEventListener("click", (f) => {
+          localStorage.setItem("isClass", this.thisClass), b(
+            "exp_video_previews_link_02",
+            "subscribing",
+            "click",
+            'Premium class only Product Banner Get access to the full video"'
+          );
         });
       }
     }
     initStyles() {
-      this.styleElement = document.createElement("style"), this.styleElement.textContent = D, document.head.appendChild(this.styleElement);
+      this.styleElement = document.createElement("style"), this.styleElement.textContent = I, document.head.appendChild(this.styleElement);
     }
     remove() {
-      const i = e(".sfc-playableOverlay__inner"), n = e(".crs_block:not(.crs_form)");
-      i && i.classList.remove("os-d-hidden"), n && n.classList.remove("os-d-hidden"), this.styleElement && (this.styleElement.remove(), this.styleElement = null), this.badgeElement && (this.badgeElement.remove(), this.badgeElement = null);
+      const e = n(".sfc-playableOverlay__inner"), i = n(".crs_block:not(.crs_form)");
+      e && e.classList.remove("os-d-hidden"), i && i.classList.remove("os-d-hidden"), this.styleElement && (this.styleElement.remove(), this.styleElement = null), this.badgeElement && (this.badgeElement.remove(), this.badgeElement = null);
     }
-    insert(i, n, t = "afterbegin") {
-      i == null || i.insertAdjacentHTML(t, n);
+    insert(e, i, t = "afterbegin") {
+      e == null || e.insertAdjacentHTML(t, i);
     }
   }
-  const E = `
+  const q = (
+    /* HTML */
+    `<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="28"
+  height="28"
+  viewBox="0 0 28 28"
+  fill="none"
+>
+  <path
+    d="M19.706 23.7671C19.4534 23.7279 19.2627 23.7008 19.1075 23.679C18.6307 23.6112 18.5026 23.5931 17.9452 23.4196C17.7255 23.3511 16.8661 22.4844 16.8661 20.7879C16.8661 18.6025 17.385 16.6726 17.608 15.9443C17.6139 15.9253 17.6284 15.8703 17.6485 15.7959C17.6854 15.6591 17.9559 14.8333 17.9559 14.8333C18.1026 14.4133 18.2544 13.9787 18.353 13.5324L18.3583 13.5096C18.5072 12.8633 18.9958 10.501 19.0304 7.23341C19.0304 6.90369 18.7563 6.6168 18.5927 6.44547C18.5627 6.41399 18.5361 6.38645 18.5163 6.36329C18.3587 6.18 18.1512 5.95373 17.9108 5.6919C17.7525 5.51921 17.5782 5.32896 17.3903 5.12085C17.0897 4.78841 16.7545 4.48427 16.4302 4.19027C16.0315 3.82892 15.6194 3.45523 15.2808 3.03395C14.7747 2.40456 14.3068 1.30295 14.3915 0.415123C14.4043 0.281177 14.3731 0.165469 14.3035 0.089037C14.2263 0.00405341 14.1053 -0.022433 13.9986 0.0197182C13.8919 -0.022433 13.7707 0.00405341 13.6937 0.089037C13.6242 0.165469 13.5928 0.281177 13.6058 0.415123C13.6903 1.30295 13.2224 2.40456 12.7165 3.03395C12.3777 3.45523 11.9656 3.82892 11.5669 4.19027C11.2428 4.48427 10.9074 4.78841 10.6069 5.12085C10.4191 5.32896 10.2445 5.51921 10.0863 5.6919C9.84587 5.95373 9.63851 6.18 9.48073 6.36329C9.4609 6.38645 9.43457 6.41399 9.40453 6.44547C9.24084 6.6168 8.96667 6.90369 8.96667 7.23507C9.0014 10.501 9.49004 12.8633 9.63889 13.5096L9.64411 13.5324C9.74272 13.9787 9.8946 14.4133 10.0411 14.8333C10.0411 14.8333 10.3116 15.6591 10.3484 15.7959C10.3686 15.8703 10.3832 15.9253 10.3891 15.9443C10.612 16.6726 11.1308 18.6025 11.1308 20.7879C11.1308 22.4844 10.2715 23.3511 10.0519 23.4196C9.4945 23.5931 9.36638 23.6112 8.88948 23.679C8.73427 23.7008 8.54372 23.7279 8.29111 23.7671C5.5534 24.0584 5.25781 25.4175 5.25781 25.9884C5.25781 26.1414 5.33704 26.6386 5.69839 27.0969C6.02312 27.5088 6.66984 28 7.90774 28C8.09345 28 8.2899 27.9889 8.4918 27.9671C9.31568 27.8786 10.146 27.7455 10.9488 27.617C11.2405 27.5703 11.5316 27.5237 11.8233 27.4789C12.2118 27.4194 12.912 27.3799 13.9042 27.3617C13.9507 27.3608 13.983 27.3601 13.9986 27.3597C14.0143 27.3601 14.0466 27.3609 14.0929 27.3617C15.0853 27.3799 15.7854 27.4194 16.174 27.4789C16.4655 27.5237 16.7567 27.5703 17.0483 27.617C17.8512 27.7455 18.6816 27.8786 19.5053 27.9671C19.7072 27.9888 19.9037 28 20.0894 28C21.3275 28 21.9744 27.509 22.2989 27.0969C22.6602 26.6386 22.7393 26.1413 22.7393 25.9884C22.7392 25.4175 22.4437 24.0584 19.706 23.7671ZM15.4462 12.6406C15.4054 12.6406 15.3668 12.6317 15.3276 12.6132C15.2003 12.5624 15.037 12.3191 15.0218 12.2247C15.6561 11.7833 16.0846 10.945 16.0846 9.98277C16.0846 8.56181 15.9346 7.40981 13.9985 7.40981C12.0623 7.40981 11.9123 8.56181 11.9123 9.98277C11.9123 10.945 12.3409 11.7833 12.9751 12.2247C12.9602 12.3189 12.7932 12.5506 12.6693 12.6132C12.6303 12.6317 12.5917 12.6406 12.5507 12.6406C12.1431 12.6407 11.6321 11.7478 11.4979 11.3925C11.2693 10.7889 10.9839 9.75128 10.9227 8.23709L10.9202 8.17882C10.9046 7.85985 11.385 7.04414 11.4487 6.9046C11.5362 6.71246 12.6711 4.98244 13.0082 4.57258C13.1275 4.42766 13.7321 3.6249 13.9986 3.27059C14.2649 3.6249 14.8694 4.42766 14.9887 4.57258C15.326 4.98244 16.4607 6.71246 16.5483 6.9046C16.612 7.04414 17.0925 7.85985 17.0769 8.17882L17.0744 8.23709C17.0131 9.75136 16.7279 10.7889 16.499 11.3925C16.3649 11.7478 15.854 12.6406 15.4462 12.6406Z"
+    fill="#027DB8"
+  />
+</svg>`
+  ), j = (
+    /* HTML */
+    `<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="28"
+  height="28"
+  viewBox="0 0 28 28"
+  fill="none"
+>
+  <path
+    d="M19.706 23.7671C19.4534 23.7279 19.2627 23.7008 19.1075 23.679C18.6307 23.6112 18.5026 23.5931 17.9452 23.4196C17.7255 23.3511 16.8661 22.4844 16.8661 20.7879C16.8661 18.6025 17.385 16.6726 17.608 15.9443C17.6139 15.9253 17.6284 15.8703 17.6485 15.7959C17.6854 15.6591 17.9559 14.8333 17.9559 14.8333C18.1026 14.4133 18.2544 13.9787 18.353 13.5324L18.3583 13.5096C18.5072 12.8633 18.9958 10.501 19.0304 7.23341C19.0304 6.90369 18.7563 6.6168 18.5927 6.44547C18.5627 6.41399 18.5361 6.38645 18.5163 6.36329C18.3587 6.18 18.1512 5.95373 17.9108 5.6919C17.7525 5.51921 17.5782 5.32896 17.3903 5.12085C17.0897 4.78841 16.7545 4.48427 16.4302 4.19027C16.0315 3.82892 15.6194 3.45523 15.2808 3.03395C14.7747 2.40456 14.3068 1.30295 14.3915 0.415123C14.4043 0.281177 14.3731 0.165469 14.3035 0.089037C14.2263 0.00405341 14.1053 -0.022433 13.9986 0.0197182C13.8919 -0.022433 13.7707 0.00405341 13.6937 0.089037C13.6242 0.165469 13.5928 0.281177 13.6058 0.415123C13.6903 1.30295 13.2224 2.40456 12.7165 3.03395C12.3777 3.45523 11.9656 3.82892 11.5669 4.19027C11.2428 4.48427 10.9074 4.78841 10.6069 5.12085C10.4191 5.32896 10.2445 5.51921 10.0863 5.6919C9.84587 5.95373 9.63851 6.18 9.48073 6.36329C9.4609 6.38645 9.43457 6.41399 9.40453 6.44547C9.24084 6.6168 8.96667 6.90369 8.96667 7.23507C9.0014 10.501 9.49004 12.8633 9.63889 13.5096L9.64411 13.5324C9.74272 13.9787 9.8946 14.4133 10.0411 14.8333C10.0411 14.8333 10.3116 15.6591 10.3484 15.7959C10.3686 15.8703 10.3832 15.9253 10.3891 15.9443C10.612 16.6726 11.1308 18.6025 11.1308 20.7879C11.1308 22.4844 10.2715 23.3511 10.0519 23.4196C9.4945 23.5931 9.36638 23.6112 8.88948 23.679C8.73427 23.7008 8.54372 23.7279 8.29111 23.7671C5.5534 24.0584 5.25781 25.4175 5.25781 25.9884C5.25781 26.1414 5.33704 26.6386 5.69839 27.0969C6.02312 27.5088 6.66984 28 7.90774 28C8.09345 28 8.2899 27.9889 8.4918 27.9671C9.31568 27.8786 10.146 27.7455 10.9488 27.617C11.2405 27.5703 11.5316 27.5237 11.8233 27.4789C12.2118 27.4194 12.912 27.3799 13.9042 27.3617C13.9507 27.3608 13.983 27.3601 13.9986 27.3597C14.0143 27.3601 14.0466 27.3609 14.0929 27.3617C15.0853 27.3799 15.7854 27.4194 16.174 27.4789C16.4655 27.5237 16.7567 27.5703 17.0483 27.617C17.8512 27.7455 18.6816 27.8786 19.5053 27.9671C19.7072 27.9888 19.9037 28 20.0894 28C21.3275 28 21.9744 27.509 22.2989 27.0969C22.6602 26.6386 22.7393 26.1413 22.7393 25.9884C22.7392 25.4175 22.4437 24.0584 19.706 23.7671ZM15.4462 12.6406C15.4054 12.6406 15.3668 12.6317 15.3276 12.6132C15.2003 12.5624 15.037 12.3191 15.0218 12.2247C15.6561 11.7833 16.0846 10.945 16.0846 9.98277C16.0846 8.56181 15.9346 7.40981 13.9985 7.40981C12.0623 7.40981 11.9123 8.56181 11.9123 9.98277C11.9123 10.945 12.3409 11.7833 12.9751 12.2247C12.9602 12.3189 12.7932 12.5506 12.6693 12.6132C12.6303 12.6317 12.5917 12.6406 12.5507 12.6406C12.1431 12.6407 11.6321 11.7478 11.4979 11.3925C11.2693 10.7889 10.9839 9.75128 10.9227 8.23709L10.9202 8.17882C10.9046 7.85985 11.385 7.04414 11.4487 6.9046C11.5362 6.71246 12.6711 4.98244 13.0082 4.57258C13.1275 4.42766 13.7321 3.6249 13.9986 3.27059C14.2649 3.6249 14.8694 4.42766 14.9887 4.57258C15.326 4.98244 16.4607 6.71246 16.5483 6.9046C16.612 7.04414 17.0925 7.85985 17.0769 8.17882L17.0744 8.23709C17.0131 9.75136 16.7279 10.7889 16.499 11.3925C16.3649 11.7478 15.854 12.6406 15.4462 12.6406Z"
+    fill="#027DB8"
+  />
+</svg>`
+  ), V = (
+    /* HTML */
+    `<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="28"
+  height="28"
+  viewBox="0 0 28 28"
+  fill="none"
+>
+  <g clip-path="url(#clip0_2964_5345)">
+    <path
+      d="M26.9355 25.0851H17.978C17.9683 25.0851 17.9589 25.084 17.9493 25.0837C17.2603 25.0687 16.6146 24.7936 16.1257 24.304L11.2069 19.3789C10.8869 19.0584 10.887 18.539 11.2073 18.2188C11.5275 17.8985 12.0466 17.8986 12.3666 18.2191L17.2855 23.1443C17.5401 23.3994 17.9051 23.5034 18.2723 23.4117C18.3549 23.3911 18.4346 23.3586 18.5082 23.3159C19.1208 22.9603 19.1953 22.1581 18.7318 21.6938L11.8365 14.7874C11.2811 14.2313 10.5367 13.9492 9.62396 13.9492H0.711539C0.318555 13.9493 0 14.268 0 14.6613V19.8509C0 20.2441 0.318555 20.5629 0.711539 20.5629H4.87517C5.59874 20.5629 6.30432 20.7679 6.91545 21.1556L15.552 26.6345C16.0691 26.9625 16.6659 27.1359 17.278 27.1359H26.9491C27.2338 27.1359 27.5124 27.0295 27.7106 26.8251C27.9042 26.6256 28.0068 26.3621 27.9996 26.0829C27.9855 25.5327 27.5081 25.0851 26.9355 25.0851Z"
+      fill="#027DB8"
+    />
+    <path
+      d="M20.6777 6.30286C20.6171 4.7103 20.138 3.19896 19.2504 1.80563C19.0752 1.53077 18.8993 1.28577 18.7332 1.07222C18.5144 0.791012 18.088 0.794294 17.8728 1.07823C17.0589 2.15191 15.9893 3.98711 15.8906 6.30411C16.9144 7.31698 17.7344 8.53525 18.2835 9.89145C18.8329 8.53465 19.6534 7.31594 20.6777 6.30286Z"
+      fill="#027DB8"
+    />
+    <path
+      d="M19.0628 13.9362C23.7995 13.848 27.6946 10.0866 27.9769 5.38407C27.9968 5.05173 27.7186 4.77824 27.3871 4.80673C25.2735 4.98857 23.3358 5.90568 21.8711 7.31027C20.1472 8.95746 19.0426 11.3499 19.0628 13.9362Z"
+      fill="#027DB8"
+    />
+    <path
+      d="M15.3649 2.11122C14.6684 1.54182 14.0287 1.15528 13.6095 0.929042C13.3313 0.77887 12.985 0.895191 12.8547 1.18339C12.6175 1.70812 12.2732 2.61746 12.0938 3.78542C12.9349 4.09736 13.7266 4.51222 14.4529 5.01529C14.6251 3.92132 14.9654 2.94679 15.3649 2.11122Z"
+      fill="#027DB8"
+    />
+    <path
+      d="M24.6108 3.74114C24.4326 2.58374 24.0916 1.69397 23.8555 1.18035C23.7246 0.895533 23.3815 0.779759 23.1054 0.927962C22.6724 1.16044 22.0005 1.56545 21.2734 2.16882C21.6503 2.98339 21.967 3.93468 22.1278 5.01383C22.8898 4.48697 23.7235 4.05691 24.6108 3.74114Z"
+      fill="#027DB8"
+    />
+    <path
+      d="M17.5084 13.9334C17.5277 11.3699 16.4379 8.96329 14.7001 7.30751C13.2573 5.92436 11.3109 4.98324 9.18415 4.80277C8.85269 4.77466 8.5746 5.04821 8.59478 5.38049C8.87971 10.0721 12.7557 13.8468 17.5084 13.9334Z"
+      fill="#027DB8"
+    />
+  </g>
+  <defs>
+    <clipPath id="clip0_2964_5345">
+      <rect width="28" height="28" fill="white" />
+    </clipPath>
+  </defs>
+</svg>`
+  ), G = (
+    /* HTML */
+    `<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="28"
+  height="28"
+  viewBox="0 0 28 28"
+  fill="none"
+>
+  <path
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+    d="M3.87458 17.3288L2.57978 9.23757C2.49466 8.70667 2.72873 8.1747 3.17771 7.87893C3.62669 7.58316 4.20653 7.57784 4.66082 7.86403L8.71759 10.426L12.9691 5.55318C13.2287 5.25528 13.6053 5.08398 14 5.08398C14.3947 5.08398 14.7713 5.25528 15.0309 5.55318L19.2824 10.426L23.3392 7.86403C23.7935 7.57784 24.3733 7.58316 24.8223 7.87893C25.2713 8.1747 25.5053 8.70667 25.4202 9.23757L24.1254 17.3288H3.87458ZM23.8701 18.9246L23.4924 21.2834C23.3424 22.2239 22.5306 22.9154 21.5794 22.9154H6.42056C5.46941 22.9154 4.65763 22.2239 4.50762 21.2834L4.12992 18.9246H23.8701Z"
+    fill="#027DB8"
+  />
+</svg>`
+  ), y = (
+    /* HTML */
+    `<div
+  class="sfc-pricingTable__benefitsContainer sfc-pricingTable__benefitsContainer--2"
+>
+  <style>
+    .sfc-pricingTable__benefitsContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: auto;
+  color: #272727;
+  padding: var(--pricing-card-gap);
+  font-size: 0.89em;
+}
 
-.sfc-becomeASubscriber__section--hero {
+.sfc-pricingBenefits {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-weight: 600;
+}
+
+.sfc-pricingTable__benefits {
+  color: #555555;
+}
+  </style>
+  <ul
+    data-sfc-id="pricing_benefits"
+    data-sfc-unique-id="pricing_benefits66b9b74167392"
+    data-sfc-ids="pricing_benefits"
+    class="sfc-pricingTable__benefits sfc-pricingTable__benefits--2 sfc-pricingBenefits"
+    data-sfc-class="sfc-pricingBenefits"
+  >
+    <li>
+      <div
+        data-sfc-id="item"
+        data-sfc-unique-id="item66b9b74167432"
+        data-sfc-ids="item"
+        class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
+        data-sfc-class="sfc-item"
+        data-once="sfcAttach--item"
+      >
+        <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
+          <iconify-icon icon="fa-solid:check"></iconify-icon>
+        </div>
+        <div class="sfc-item__content sfc-pricingBenefits__content">
+          Access 1000s of AD-FREE yoga, meditation and movement classes
+        </div>
+      </div>
+    </li>
+    <li>
+      <div
+        data-sfc-id="item"
+        data-sfc-unique-id="item66b9b74167584"
+        data-sfc-ids="item"
+        class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
+        data-sfc-class="sfc-item"
+        data-once="sfcAttach--item"
+      >
+        <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
+          <iconify-icon icon="fa-solid:check"></iconify-icon>
+        </div>
+        <div class="sfc-item__content sfc-pricingBenefits__content">
+          Exclusive access to all new releases and premium content
+        </div>
+      </div>
+    </li>
+    <li>
+      <div
+        data-sfc-id="item"
+        data-sfc-unique-id="item66b9b741676c8"
+        data-sfc-ids="item"
+        class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
+        data-sfc-class="sfc-item"
+        data-once="sfcAttach--item"
+      >
+        <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
+          <iconify-icon icon="fa-solid:check"></iconify-icon>
+        </div>
+        <div class="sfc-item__content sfc-pricingBenefits__content">
+          Access our complete collection of curated programs &amp; challenges
+        </div>
+      </div>
+    </li>
+    <li>
+      <div
+        data-sfc-id="item"
+        data-sfc-unique-id="item66b9b74167812"
+        data-sfc-ids="item"
+        class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
+        data-sfc-class="sfc-item"
+        data-once="sfcAttach--item"
+      >
+        <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
+          <iconify-icon icon="fa-solid:check"></iconify-icon>
+        </div>
+        <div class="sfc-item__content sfc-pricingBenefits__content">25% off livestream events</div>
+      </div>
+    </li>
+    <li>
+      <div
+        data-sfc-id="item"
+        data-sfc-unique-id="item66b9b74167947"
+        data-sfc-ids="item"
+        class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
+        data-sfc-class="sfc-item"
+        data-once="sfcAttach--item"
+      >
+        <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
+          <iconify-icon icon="fa-solid:check"></iconify-icon>
+        </div>
+        <div class="sfc-item__content sfc-pricingBenefits__content">Follow your favorite teachers</div>
+      </div>
+    </li>
+    <li>
+      <div
+        data-sfc-id="item"
+        data-sfc-unique-id="item66b9b74167a74"
+        data-sfc-ids="item"
+        class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
+        data-sfc-class="sfc-item"
+        data-once="sfcAttach--item"
+      >
+        <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
+          <iconify-icon icon="fa-solid:check"></iconify-icon>
+        </div>
+        <div class="sfc-item__content sfc-pricingBenefits__content">Curate your own collection of favorite classes</div>
+      </div>
+    </li>
+    <li>
+      <div
+        data-sfc-id="item"
+        data-sfc-unique-id="item66b9b74167bdd"
+        data-sfc-ids="item"
+        class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
+        data-sfc-class="sfc-item"
+        data-once="sfcAttach--item"
+      >
+        <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
+          <iconify-icon icon="fa-solid:check"></iconify-icon>
+        </div>
+        <div class="sfc-item__content sfc-pricingBenefits__content">Access to our Mobile and TV app</div>
+      </div>
+    </li>
+  </ul>
+</div>`
+  ), O = `.sfc-becomeASubscriber__section--hero {
   padding-top: 0 !important;
 }
 
 @media (min-width: 767px) {
+  .sfc-becomeASubscriber__section--hero {
+    padding-bottom: 109px;
+  }
   .sfc-becomeASubscriber__section--hero--anon:before {
     background-image: url('https://conversionratestore.github.io/projects/doyogawithme/img/yoga_bg.webp');
     background-size: contain;
     background-position: center bottom;
     z-index: 1;
   }
-  
+
   .sfc-becomeASubscriber__section--hero:before {
     background-image: url('https://conversionratestore.github.io/projects/doyogawithme/img/yoga_bg.webp');
     background-size: cover;
@@ -873,6 +1131,14 @@ h1.sfc-heading {
   line-height: normal;
   margin-top: 43px;
 }
+
+@media (max-width: 767px) {
+  h1.sfc-heading {
+    margin-top: 0;
+    font-size: 34px !important;
+    line-height: 34px !important;
+  }
+}
 .os-subtitle {
   font-size: 32px !important;
   font-weight: 700 !important;
@@ -880,6 +1146,11 @@ h1.sfc-heading {
   margin-bottom: 40px !important;
 }
 
+@media (max-width: 767px) {
+  .os-subtitle {
+    display: none;
+  }
+}
 h2.sfc-becomeASubscriber__choosePlan {
   font-size: 24px !important;
   font-weight: 400 !important;
@@ -890,10 +1161,13 @@ h2.sfc-becomeASubscriber__choosePlan {
 
 @media (max-width: 767px) {
   h2.sfc-becomeASubscriber__choosePlan {
+    color: #fff !important;
     margin-block: 16px !important;
-    font-size: 16px !important;
+    font-size: 18px !important;
     font-weight: 500 !important;
-    line-height: 26px !important;
+    line-height: 31px !important;
+    margin-top: 8px !important;
+    margin-bottom: 28px !important;
   }
 }
 
@@ -961,12 +1235,10 @@ a.crs_back:active {
 }
 .crs_browse_free {
   color: var(--white, #fff);
-  font-size: 16px;
-  font-style: normal;
+  font-size: 24px;
   font-weight: 600;
-  line-height: normal;
   text-decoration-line: underline;
-  margin: 0 auto 50px !important;
+  margin: 0 auto !important;
   display: flex;
   width: fit-content;
   align-items: center;
@@ -1003,7 +1275,7 @@ a.crs_browse_free:active {
   box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
   padding: 50px;
   max-width: 930px;
-  margin-top: -140px;
+  margin-top: -190px;
   margin-inline: auto;
   z-index: 20;
   margin-bottom: 35px;
@@ -1086,726 +1358,107 @@ a.crs_browse_free:active {
   .crs_browse_skip {
     display: none;
   }
-}
-`, V = (
-    /* HTML */
-    `<svg
-  xmlns="http://www.w3.org/2000/svg"
-  width="28"
-  height="28"
-  viewBox="0 0 28 28"
-  fill="none"
->
-  <path
-    d="M19.706 23.7671C19.4534 23.7279 19.2627 23.7008 19.1075 23.679C18.6307 23.6112 18.5026 23.5931 17.9452 23.4196C17.7255 23.3511 16.8661 22.4844 16.8661 20.7879C16.8661 18.6025 17.385 16.6726 17.608 15.9443C17.6139 15.9253 17.6284 15.8703 17.6485 15.7959C17.6854 15.6591 17.9559 14.8333 17.9559 14.8333C18.1026 14.4133 18.2544 13.9787 18.353 13.5324L18.3583 13.5096C18.5072 12.8633 18.9958 10.501 19.0304 7.23341C19.0304 6.90369 18.7563 6.6168 18.5927 6.44547C18.5627 6.41399 18.5361 6.38645 18.5163 6.36329C18.3587 6.18 18.1512 5.95373 17.9108 5.6919C17.7525 5.51921 17.5782 5.32896 17.3903 5.12085C17.0897 4.78841 16.7545 4.48427 16.4302 4.19027C16.0315 3.82892 15.6194 3.45523 15.2808 3.03395C14.7747 2.40456 14.3068 1.30295 14.3915 0.415123C14.4043 0.281177 14.3731 0.165469 14.3035 0.089037C14.2263 0.00405341 14.1053 -0.022433 13.9986 0.0197182C13.8919 -0.022433 13.7707 0.00405341 13.6937 0.089037C13.6242 0.165469 13.5928 0.281177 13.6058 0.415123C13.6903 1.30295 13.2224 2.40456 12.7165 3.03395C12.3777 3.45523 11.9656 3.82892 11.5669 4.19027C11.2428 4.48427 10.9074 4.78841 10.6069 5.12085C10.4191 5.32896 10.2445 5.51921 10.0863 5.6919C9.84587 5.95373 9.63851 6.18 9.48073 6.36329C9.4609 6.38645 9.43457 6.41399 9.40453 6.44547C9.24084 6.6168 8.96667 6.90369 8.96667 7.23507C9.0014 10.501 9.49004 12.8633 9.63889 13.5096L9.64411 13.5324C9.74272 13.9787 9.8946 14.4133 10.0411 14.8333C10.0411 14.8333 10.3116 15.6591 10.3484 15.7959C10.3686 15.8703 10.3832 15.9253 10.3891 15.9443C10.612 16.6726 11.1308 18.6025 11.1308 20.7879C11.1308 22.4844 10.2715 23.3511 10.0519 23.4196C9.4945 23.5931 9.36638 23.6112 8.88948 23.679C8.73427 23.7008 8.54372 23.7279 8.29111 23.7671C5.5534 24.0584 5.25781 25.4175 5.25781 25.9884C5.25781 26.1414 5.33704 26.6386 5.69839 27.0969C6.02312 27.5088 6.66984 28 7.90774 28C8.09345 28 8.2899 27.9889 8.4918 27.9671C9.31568 27.8786 10.146 27.7455 10.9488 27.617C11.2405 27.5703 11.5316 27.5237 11.8233 27.4789C12.2118 27.4194 12.912 27.3799 13.9042 27.3617C13.9507 27.3608 13.983 27.3601 13.9986 27.3597C14.0143 27.3601 14.0466 27.3609 14.0929 27.3617C15.0853 27.3799 15.7854 27.4194 16.174 27.4789C16.4655 27.5237 16.7567 27.5703 17.0483 27.617C17.8512 27.7455 18.6816 27.8786 19.5053 27.9671C19.7072 27.9888 19.9037 28 20.0894 28C21.3275 28 21.9744 27.509 22.2989 27.0969C22.6602 26.6386 22.7393 26.1413 22.7393 25.9884C22.7392 25.4175 22.4437 24.0584 19.706 23.7671ZM15.4462 12.6406C15.4054 12.6406 15.3668 12.6317 15.3276 12.6132C15.2003 12.5624 15.037 12.3191 15.0218 12.2247C15.6561 11.7833 16.0846 10.945 16.0846 9.98277C16.0846 8.56181 15.9346 7.40981 13.9985 7.40981C12.0623 7.40981 11.9123 8.56181 11.9123 9.98277C11.9123 10.945 12.3409 11.7833 12.9751 12.2247C12.9602 12.3189 12.7932 12.5506 12.6693 12.6132C12.6303 12.6317 12.5917 12.6406 12.5507 12.6406C12.1431 12.6407 11.6321 11.7478 11.4979 11.3925C11.2693 10.7889 10.9839 9.75128 10.9227 8.23709L10.9202 8.17882C10.9046 7.85985 11.385 7.04414 11.4487 6.9046C11.5362 6.71246 12.6711 4.98244 13.0082 4.57258C13.1275 4.42766 13.7321 3.6249 13.9986 3.27059C14.2649 3.6249 14.8694 4.42766 14.9887 4.57258C15.326 4.98244 16.4607 6.71246 16.5483 6.9046C16.612 7.04414 17.0925 7.85985 17.0769 8.17882L17.0744 8.23709C17.0131 9.75136 16.7279 10.7889 16.499 11.3925C16.3649 11.7478 15.854 12.6406 15.4462 12.6406Z"
-    fill="#027DB8"
-  />
-</svg>`
-  ), z = (
-    /* HTML */
-    `<svg
-  xmlns="http://www.w3.org/2000/svg"
-  width="28"
-  height="28"
-  viewBox="0 0 28 28"
-  fill="none"
->
-  <path
-    d="M19.706 23.7671C19.4534 23.7279 19.2627 23.7008 19.1075 23.679C18.6307 23.6112 18.5026 23.5931 17.9452 23.4196C17.7255 23.3511 16.8661 22.4844 16.8661 20.7879C16.8661 18.6025 17.385 16.6726 17.608 15.9443C17.6139 15.9253 17.6284 15.8703 17.6485 15.7959C17.6854 15.6591 17.9559 14.8333 17.9559 14.8333C18.1026 14.4133 18.2544 13.9787 18.353 13.5324L18.3583 13.5096C18.5072 12.8633 18.9958 10.501 19.0304 7.23341C19.0304 6.90369 18.7563 6.6168 18.5927 6.44547C18.5627 6.41399 18.5361 6.38645 18.5163 6.36329C18.3587 6.18 18.1512 5.95373 17.9108 5.6919C17.7525 5.51921 17.5782 5.32896 17.3903 5.12085C17.0897 4.78841 16.7545 4.48427 16.4302 4.19027C16.0315 3.82892 15.6194 3.45523 15.2808 3.03395C14.7747 2.40456 14.3068 1.30295 14.3915 0.415123C14.4043 0.281177 14.3731 0.165469 14.3035 0.089037C14.2263 0.00405341 14.1053 -0.022433 13.9986 0.0197182C13.8919 -0.022433 13.7707 0.00405341 13.6937 0.089037C13.6242 0.165469 13.5928 0.281177 13.6058 0.415123C13.6903 1.30295 13.2224 2.40456 12.7165 3.03395C12.3777 3.45523 11.9656 3.82892 11.5669 4.19027C11.2428 4.48427 10.9074 4.78841 10.6069 5.12085C10.4191 5.32896 10.2445 5.51921 10.0863 5.6919C9.84587 5.95373 9.63851 6.18 9.48073 6.36329C9.4609 6.38645 9.43457 6.41399 9.40453 6.44547C9.24084 6.6168 8.96667 6.90369 8.96667 7.23507C9.0014 10.501 9.49004 12.8633 9.63889 13.5096L9.64411 13.5324C9.74272 13.9787 9.8946 14.4133 10.0411 14.8333C10.0411 14.8333 10.3116 15.6591 10.3484 15.7959C10.3686 15.8703 10.3832 15.9253 10.3891 15.9443C10.612 16.6726 11.1308 18.6025 11.1308 20.7879C11.1308 22.4844 10.2715 23.3511 10.0519 23.4196C9.4945 23.5931 9.36638 23.6112 8.88948 23.679C8.73427 23.7008 8.54372 23.7279 8.29111 23.7671C5.5534 24.0584 5.25781 25.4175 5.25781 25.9884C5.25781 26.1414 5.33704 26.6386 5.69839 27.0969C6.02312 27.5088 6.66984 28 7.90774 28C8.09345 28 8.2899 27.9889 8.4918 27.9671C9.31568 27.8786 10.146 27.7455 10.9488 27.617C11.2405 27.5703 11.5316 27.5237 11.8233 27.4789C12.2118 27.4194 12.912 27.3799 13.9042 27.3617C13.9507 27.3608 13.983 27.3601 13.9986 27.3597C14.0143 27.3601 14.0466 27.3609 14.0929 27.3617C15.0853 27.3799 15.7854 27.4194 16.174 27.4789C16.4655 27.5237 16.7567 27.5703 17.0483 27.617C17.8512 27.7455 18.6816 27.8786 19.5053 27.9671C19.7072 27.9888 19.9037 28 20.0894 28C21.3275 28 21.9744 27.509 22.2989 27.0969C22.6602 26.6386 22.7393 26.1413 22.7393 25.9884C22.7392 25.4175 22.4437 24.0584 19.706 23.7671ZM15.4462 12.6406C15.4054 12.6406 15.3668 12.6317 15.3276 12.6132C15.2003 12.5624 15.037 12.3191 15.0218 12.2247C15.6561 11.7833 16.0846 10.945 16.0846 9.98277C16.0846 8.56181 15.9346 7.40981 13.9985 7.40981C12.0623 7.40981 11.9123 8.56181 11.9123 9.98277C11.9123 10.945 12.3409 11.7833 12.9751 12.2247C12.9602 12.3189 12.7932 12.5506 12.6693 12.6132C12.6303 12.6317 12.5917 12.6406 12.5507 12.6406C12.1431 12.6407 11.6321 11.7478 11.4979 11.3925C11.2693 10.7889 10.9839 9.75128 10.9227 8.23709L10.9202 8.17882C10.9046 7.85985 11.385 7.04414 11.4487 6.9046C11.5362 6.71246 12.6711 4.98244 13.0082 4.57258C13.1275 4.42766 13.7321 3.6249 13.9986 3.27059C14.2649 3.6249 14.8694 4.42766 14.9887 4.57258C15.326 4.98244 16.4607 6.71246 16.5483 6.9046C16.612 7.04414 17.0925 7.85985 17.0769 8.17882L17.0744 8.23709C17.0131 9.75136 16.7279 10.7889 16.499 11.3925C16.3649 11.7478 15.854 12.6406 15.4462 12.6406Z"
-    fill="#027DB8"
-  />
-</svg>`
-  ), $ = (
-    /* HTML */
-    `<svg
-  xmlns="http://www.w3.org/2000/svg"
-  width="28"
-  height="28"
-  viewBox="0 0 28 28"
-  fill="none"
->
-  <g clip-path="url(#clip0_2964_5345)">
-    <path
-      d="M26.9355 25.0851H17.978C17.9683 25.0851 17.9589 25.084 17.9493 25.0837C17.2603 25.0687 16.6146 24.7936 16.1257 24.304L11.2069 19.3789C10.8869 19.0584 10.887 18.539 11.2073 18.2188C11.5275 17.8985 12.0466 17.8986 12.3666 18.2191L17.2855 23.1443C17.5401 23.3994 17.9051 23.5034 18.2723 23.4117C18.3549 23.3911 18.4346 23.3586 18.5082 23.3159C19.1208 22.9603 19.1953 22.1581 18.7318 21.6938L11.8365 14.7874C11.2811 14.2313 10.5367 13.9492 9.62396 13.9492H0.711539C0.318555 13.9493 0 14.268 0 14.6613V19.8509C0 20.2441 0.318555 20.5629 0.711539 20.5629H4.87517C5.59874 20.5629 6.30432 20.7679 6.91545 21.1556L15.552 26.6345C16.0691 26.9625 16.6659 27.1359 17.278 27.1359H26.9491C27.2338 27.1359 27.5124 27.0295 27.7106 26.8251C27.9042 26.6256 28.0068 26.3621 27.9996 26.0829C27.9855 25.5327 27.5081 25.0851 26.9355 25.0851Z"
-      fill="#027DB8"
-    />
-    <path
-      d="M20.6777 6.30286C20.6171 4.7103 20.138 3.19896 19.2504 1.80563C19.0752 1.53077 18.8993 1.28577 18.7332 1.07222C18.5144 0.791012 18.088 0.794294 17.8728 1.07823C17.0589 2.15191 15.9893 3.98711 15.8906 6.30411C16.9144 7.31698 17.7344 8.53525 18.2835 9.89145C18.8329 8.53465 19.6534 7.31594 20.6777 6.30286Z"
-      fill="#027DB8"
-    />
-    <path
-      d="M19.0628 13.9362C23.7995 13.848 27.6946 10.0866 27.9769 5.38407C27.9968 5.05173 27.7186 4.77824 27.3871 4.80673C25.2735 4.98857 23.3358 5.90568 21.8711 7.31027C20.1472 8.95746 19.0426 11.3499 19.0628 13.9362Z"
-      fill="#027DB8"
-    />
-    <path
-      d="M15.3649 2.11122C14.6684 1.54182 14.0287 1.15528 13.6095 0.929042C13.3313 0.77887 12.985 0.895191 12.8547 1.18339C12.6175 1.70812 12.2732 2.61746 12.0938 3.78542C12.9349 4.09736 13.7266 4.51222 14.4529 5.01529C14.6251 3.92132 14.9654 2.94679 15.3649 2.11122Z"
-      fill="#027DB8"
-    />
-    <path
-      d="M24.6108 3.74114C24.4326 2.58374 24.0916 1.69397 23.8555 1.18035C23.7246 0.895533 23.3815 0.779759 23.1054 0.927962C22.6724 1.16044 22.0005 1.56545 21.2734 2.16882C21.6503 2.98339 21.967 3.93468 22.1278 5.01383C22.8898 4.48697 23.7235 4.05691 24.6108 3.74114Z"
-      fill="#027DB8"
-    />
-    <path
-      d="M17.5084 13.9334C17.5277 11.3699 16.4379 8.96329 14.7001 7.30751C13.2573 5.92436 11.3109 4.98324 9.18415 4.80277C8.85269 4.77466 8.5746 5.04821 8.59478 5.38049C8.87971 10.0721 12.7557 13.8468 17.5084 13.9334Z"
-      fill="#027DB8"
-    />
-  </g>
-  <defs>
-    <clipPath id="clip0_2964_5345">
-      <rect width="28" height="28" fill="white" />
-    </clipPath>
-  </defs>
-</svg>`
-  ), q = (
-    /* HTML */
-    `<svg
-  xmlns="http://www.w3.org/2000/svg"
-  width="28"
-  height="28"
-  viewBox="0 0 28 28"
-  fill="none"
->
-  <path
-    fill-rule="evenodd"
-    clip-rule="evenodd"
-    d="M3.87458 17.3288L2.57978 9.23757C2.49466 8.70667 2.72873 8.1747 3.17771 7.87893C3.62669 7.58316 4.20653 7.57784 4.66082 7.86403L8.71759 10.426L12.9691 5.55318C13.2287 5.25528 13.6053 5.08398 14 5.08398C14.3947 5.08398 14.7713 5.25528 15.0309 5.55318L19.2824 10.426L23.3392 7.86403C23.7935 7.57784 24.3733 7.58316 24.8223 7.87893C25.2713 8.1747 25.5053 8.70667 25.4202 9.23757L24.1254 17.3288H3.87458ZM23.8701 18.9246L23.4924 21.2834C23.3424 22.2239 22.5306 22.9154 21.5794 22.9154H6.42056C5.46941 22.9154 4.65763 22.2239 4.50762 21.2834L4.12992 18.9246H23.8701Z"
-    fill="#027DB8"
-  />
-</svg>`
-  ), F = (
-    /* HTML */
-    `<section
-  data-sfc-id="section"
-  data-sfc-unique-id="section66b9b74164151"
-  data-sfc-ids="section"
-  class="sfc-becomeASubscriber__section sfc-becomeASubscriber__section--hero sfc-becomeASubscriber__section--anon sfc-becomeASubscriber__section--hero--anon sfc-section sfc-section--brandDark os-mob-sec"
-  data-sfc-class="sfc-section"
-  data-once="sfcAttach--section"
->
-  <style>.sfc-becomeASubscriber__section--hero .sfc-becomeASubscriber__heroHeader .sfc-heading {
-  color: var(--white, #fff);
-  text-align: center;
-  font-size: 34px !important;
-  font-weight: 700;
-  line-height: 34px !important;
-  margin: 0 !important;
-}
 
-.sfc-pricingTable__cols {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  gap: 1.66rem;
-}
+  .sfc-pricingTablePremium__cols {
+    display: flex !important;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .sfc-pricingTablePremium__col {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    background: #f5f5f5;
+  }
+  .sfc-pricingTablePremium__cols > li:first-child {
+    order: 2;
+  }
 
-.sfc-pricingTable__col {
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  background: #f5f5f5;
-}
+  .sfc-badge {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-.sfc-pricingTable__col,
-.sfc-pricingTable__meta {
-  border-radius: calc(3px * 2);
-}
+  .sfc-pricingTablePremium__derisk {
+    gap: 10px;
+    padding: 0;
+  }
+  .sfc-item__prefix {
+    width: 20px;
+    height: 20px;
+  }
+  .sfc-item__content {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+  }
 
-.sfc-pricingTableLevel {
-  background: white;
-  color: #272727;
-  padding: 1rem;
-  position: relative;
-  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.2509803922);
-  z-index: 2;
-}
+  .sfc-pricingTableLevel__primary .os-free {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+  }
 
-.sfc-pricingTable__benefitsContainer {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: auto;
-  color: #272727;
-  padding: 1rem;
-  font-size: 0.89em;
-}
+  .sfc-pricingTableLevel__primary {
+    align-items: flex-start;
+  }
 
-.sfc-pricingBenefits {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-  font-weight: 600;
+  .sfc-pricingTableLevel__primary > div,
+  .sfc-pricingTableLevel__levelHeader {
+    gap: 6px;
+  }
+  .sfc-pricingTableLevel__duration {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  .sfc-pricingTableLevel__price .sfc-price__amt {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 32px;
+  }
+
+  .sfc-pricingTableLevel__levelHeader h3 {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    line-height: 30px !important;
+  }
+  .sfc-pricingTableLevel__primary .os-free span {
+    color: var(--Blue-Main, #027db8);
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .sfc-price__period {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+
+  .sfc-pricingTableLevelAnnual__pricesSecondary {
+    display: none;
+  }
+
+  .sfc-pricingTableLevel__usd {
+    color: #a5a5a5;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+  }
+
+  .sfc-pricingTableLevel__usd span.os-highlight {
+    font-size: 12px;
+    font-weight: 600 !important;
+    line-height: 18px;
+  }
+
+  .sfc-pricingTableLevel__usd span.os-black {
+    color: #272727;
+  }
 }
-</style>
-  <div class="sfc-section__contentContainer">
-    <div class="sfc-section__header">
-      <header class="sfc-becomeASubscriber__heroHeader">
-        <h1
-          data-sfc-id="heading"
-          data-sfc-unique-id="heading66b9b74164533"
-          data-sfc-ids="heading"
-          class="sfc-heading"
-          data-sfc-class="sfc-heading"
-        >
-          Your ultimate Yoga journey starts here
-        </h1>
-        <h2 class="sfc-becomeASubscriber__choosePlan sfc-becomeASubscriber__choosePlan--anon">Choose your plan</h2>
-      </header>
-    </div>
-    <div class="sfc-section__content">
-      <div
-        data-sfc-id="pricing_table"
-        data-sfc-unique-id="pricing_table66b9b741647f6"
-        data-sfc-ids="pricing_table"
-        class="sfc-pricingTable"
-        data-sfc-class="sfc-pricingTable"
-        data-gtm-vis-first-on-screen7860770_824="12500"
-        data-gtm-vis-total-visible-time7860770_824="3000"
-        data-gtm-vis-has-fired7860770_824="1"
-      >
-        <ul class="sfc-pricingTable__cols">
-          
-          <li class="sfc-pricingTable__col sfc-pricingTable__col--2">
-            <div
-              data-sfc-id="pricing_table_level"
-              data-sfc-unique-id="pricing_table_level__annual66b9b741664ab"
-              data-sfc-ids="pricing_table_level__annual"
-              class="sfc-pricingTable__meta sfc-pricingTable__meta--2 sfc-pricingTableLevelAnnual sfc-pricingTableLevel"
-              data-sfc-class="sfc-pricingTableLevel"
-            >
-              <div
-                data-sfc-id="badge"
-                data-sfc-unique-id="badge66b9b741667c1"
-                data-sfc-ids="badge"
-                class="sfc-pricingTableLevel__badge sfc-pricingTableLevelAnnual__badge sfc-badge"
-                data-sfc-class="sfc-badge"
-              >
-                SAVE 35%
-              </div>
-              <div
-                data-sfc-id="band"
-                data-sfc-unique-id="band66b9b741669f6"
-                data-sfc-ids="band"
-                class="sfc-pricingTableLevel__band sfc-pricingTableLevelAnnual__band sfc-band"
-                data-sfc-class="sfc-band"
-              >
-                SAVE 35%
-              </div>
-              <div class="sfc-pricingTableLevel__primary sfc-pricingTableLevelAnnual__primary">
-                <div
-                  class="sfc-pricingTableLevel__levelHeaderContainer sfc-pricingTableLevelAnnual__levelHeaderContainer"
-                >
-                  <div class="sfc-pricingTableLevel__levelHeader sfc-pricingTableLevelAnnual__levelHeader">
-                    <h3
-                      data-sfc-id="heading"
-                      data-sfc-unique-id="heading66b9b74166b0d"
-                      data-sfc-ids="heading"
-                      class="sfc-pricingTableLevel__heading sfc-pricingTableLevelAnnual__heading sfc-heading"
-                      data-sfc-class="sfc-heading"
-                    >
-                      Unlimited access
-                    </h3>
-                    <div class="sfc-pricingTableLevel__duration sfc-pricingTableLevelAnnual__duration">12 months</div>
-                  </div>
-                </div>
-                <div
-                  class="sfc-pricingTableLevel__pricing sfc-pricingTableLevel__pricing--paid sfc-pricingTableLevelAnnual__pricing sfc-pricingTableLevelAnnual__pricing--paid"
-                >
-                  <div
-                    data-sfc-id="price"
-                    data-sfc-unique-id="price66b9b74166c2d"
-                    data-sfc-ids="price"
-                    class="sfc-pricingTableLevel__price sfc-pricingTableLevel__price--primary sfc-pricingTableLevelAnnual__price sfc-pricingTableLevelAnnual__price--primary sfc-price sfc-price--boldAmt"
-                    data-sfc-class="sfc-price"
-                  >
-                    <span class="sfc-price__amt"> $9.08 </span>
-                    <span class="sfc-price__slash">/</span>
-                    <span class="sfc-price__period"> month </span>
-                  </div>
-                  <div class="sfc-pricingTableLevelAnnual__pricesSecondary">
-                    <dive>
-                      <div
-                        data-sfc-id="price"
-                        data-sfc-unique-id="price66b9b74166d48"
-                        data-sfc-ids="price"
-                        class="sfc-pricingTableLevelAnnual__price sfc-pricingTableLevelAnnual__price--strike sfc-price"
-                        data-sfc-class="sfc-price"
-                      >
-                        <span class="sfc-price__amt"> $167.88 </span>
-                      </div>
-                    </dive>
-                    <div
-                      data-sfc-id="price"
-                      data-sfc-unique-id="price66b9b74166e04"
-                      data-sfc-ids="price"
-                      class="sfc-pricingTableLevelAnnual__price sfc-price sfc-price--boldAmt"
-                      data-sfc-class="sfc-price"
-                    >
-                      <span class="sfc-price__amt"> $108.99 </span>
-                      <span class="sfc-price__slash">/</span>
-                      <span class="sfc-price__period"> year </span>
-                    </div>
-                  </div>
-                  <div class="sfc-pricingTableLevel__usd sfc-pricingTableLevelAnnual__usd">*All prices in USD</div>
-                </div>
-              </div>
-              <div
-                data-sfc-id="pricing_cta"
-                data-sfc-unique-id="pricing_cta66b9b74166f23"
-                data-sfc-ids="pricing_cta"
-                class="sfc-pricingTableLevel__ctaFooter sfc-pricingTableLevelAnnual__ctaFooter sfc-pricingCta"
-                data-sfc-class="sfc-pricingCta"
-              >
-                <a
-                  data-sfc-id="button"
-                  data-sfc-unique-id="button66b9b74167002"
-                  data-sfc-ids="button"
-                  class="sfc-pricingCta__button sfc-pricingTableLevel__button sfc-pricingTableLevelAnnual__button sfc-button sfc-button--cta sfc-button--inlineBlock"
-                  data-sfc-class="sfc-button"
-                  href="/express-checkout/55"
-                  data-once="sfcAttach--button"
-                >
-                  <span class="sfc-button__text">
-                    Get Started Now
-                    <span class="sfc-button__badge"></span>
-                  </span>
-                </a>
-                <div class="sfc-pricingCta__derisk sfc-pricingTableLevel__derisk sfc-pricingTableLevelAnnual__derisk">
-                  <div
-                    data-sfc-id="item"
-                    data-sfc-unique-id="item66b9b74167147"
-                    data-sfc-ids="item"
-                    class="sfc-item sfc-item--gutter-xs"
-                    data-sfc-class="sfc-item"
-                    data-once="sfcAttach--item"
-                  >
-                    <div class="sfc-item__prefix sfc-item__prefix--vCenter">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M4.73987 19.9056H11.1321C11.5463 19.9056 11.8821 19.5698 11.8821 19.1556C11.8821 18.7415 11.5463 18.4056 11.1321 18.4056H4.73987C3.7804 18.4056 3 17.6285 3 16.6731V8.69702H17.666V9.95386C17.666 10.368 18.0018 10.7039 18.416 10.7039C18.8302 10.7039 19.166 10.368 19.166 9.95386V6.69824C19.166 4.91187 17.7125 3.45837 15.9261 3.45837H15.123V2.99219C15.123 2.578 14.7872 2.24219 14.373 2.24219C13.9589 2.24219 13.623 2.578 13.623 2.99219V3.45837H7.04114V2.99219C7.04114 2.578 6.70532 2.24219 6.29114 2.24219C5.87695 2.24219 5.54114 2.578 5.54114 2.99219V3.45837H4.73987C3.62311 3.45837 2.63649 4.02646 2.05376 4.88875C1.7043 5.40552 1.5 6.02808 1.5 6.69751V16.6731C1.5 18.4554 2.95349 19.9056 4.73987 19.9056ZM17.6642 7.19702H3V6.69824C3 6.45851 3.04871 6.23 3.13678 6.02203C3.40086 5.39893 4.01875 4.96057 4.73694 4.96057H5.54114V5.42896C5.54114 5.84314 5.87695 6.17896 6.29114 6.17896C6.70532 6.17896 7.04114 5.84314 7.04114 5.42896V4.96057H13.623V5.42896C13.623 5.84314 13.9589 6.17896 14.373 6.17896C14.7872 6.17896 15.123 5.84314 15.123 5.42896V4.96057H15.9276C16.8853 4.96057 17.6642 5.73987 17.6642 6.69751V7.19702Z"
-                          fill="#027DB8"
-                        ></path>
-                        <path
-                          d="M17.2933 11.3438C14.4208 11.3438 12.084 13.6805 12.084 16.5531C12.084 19.4257 14.4208 21.7628 17.2933 21.7628C20.1659 21.7628 22.5031 19.4257 22.5031 16.5531C22.5031 13.6805 20.1659 11.3438 17.2933 11.3438ZM13.584 16.5531C13.584 14.5078 15.248 12.8438 17.2933 12.8438C19.339 12.8438 21.0031 14.5078 21.0031 16.5531C21.0031 18.5988 19.339 20.2628 17.2933 20.2628C15.248 20.2628 13.584 18.5988 13.584 16.5531Z"
-                          fill="#027DB8"
-                        ></path>
-                        <path
-                          d="M18.9969 14.8447C18.704 14.5518 18.2294 14.5518 17.9364 14.8447L17.291 15.4902L16.6455 14.8447C16.3525 14.5518 15.8779 14.5518 15.585 14.8447C15.292 15.1377 15.292 15.6123 15.585 15.9053L16.2304 16.5507L15.585 17.1962C15.292 17.4891 15.292 17.9637 15.585 18.2567C15.7314 18.4032 15.9233 18.4764 16.1152 18.4764C16.3071 18.4764 16.499 18.4032 16.6455 18.2567L17.291 17.6113L17.9364 18.2567C18.0829 18.4032 18.2748 18.4764 18.4667 18.4764C18.6586 18.4764 18.8505 18.4032 18.9969 18.2567C19.2899 17.9637 19.2899 17.4891 18.9969 17.1962L18.3515 16.5507L18.9969 15.9053C19.2899 15.6123 19.2899 15.1377 18.9969 14.8447Z"
-                          fill="#027DB8"
-                        ></path>
-                      </svg>
-                    </div>
-                    <div class="sfc-item__content">Cancel anytime</div>
-                  </div>
-                  <div
-                    data-sfc-id="item"
-                    data-sfc-unique-id="item66b9b74167255"
-                    data-sfc-ids="item"
-                    class="sfc-item sfc-item--gutter-xs"
-                    data-sfc-class="sfc-item"
-                    data-once="sfcAttach--item"
-                  >
-                    <div class="sfc-item__prefix sfc-item__prefix--vCenter">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M20.25 4.49655C16.08 4.49655 12.5025 1.69155 12.465 1.66155C12.3326 1.55692 12.1688 1.5 12 1.5C11.8312 1.5 11.6674 1.55692 11.535 1.66155C11.4975 1.69155 7.935 4.49655 3.75 4.49655C3.55109 4.49655 3.36032 4.57557 3.21967 4.71622C3.07902 4.85687 3 5.04764 3 5.24655V11.9965C3 17.029 5.0325 19.4965 11.6925 22.4291C11.7892 22.4725 11.894 22.495 12 22.495C12.106 22.495 12.2108 22.4725 12.3075 22.4291C18.9675 19.4965 21 17.029 21 11.9965V5.24655C21 5.04764 20.921 4.85687 20.7803 4.71622C20.6397 4.57557 20.4489 4.49655 20.25 4.49655ZM19.5 11.9965C19.5 15.8815 18.45 17.9965 12 20.9215C5.55 17.9965 4.5 15.8815 4.5 11.9965V5.99655C7.20177 5.72083 9.78588 4.74921 12 3.17655C14.2141 4.74921 16.7982 5.72083 19.5 5.99655V11.9965Z"
-                          fill="#027DB8"
-                        ></path>
-                        <path
-                          d="M10.2807 11.4628C10.2108 11.3928 10.1277 11.3374 10.0364 11.2995C9.94501 11.2617 9.84708 11.2422 9.74819 11.2422C9.64929 11.2422 9.55136 11.2617 9.46 11.2995C9.36863 11.3374 9.28561 11.3928 9.21569 11.4628C9.14576 11.5327 9.09029 11.6157 9.05244 11.7071C9.0146 11.7984 8.99512 11.8964 8.99512 11.9953C8.99512 12.0942 9.0146 12.1921 9.05244 12.2834C9.09029 12.3748 9.14576 12.4578 9.21569 12.5278L10.7157 14.0278C10.7854 14.0981 10.8684 14.1538 10.9598 14.1919C11.0511 14.23 11.1492 14.2496 11.2482 14.2496C11.3472 14.2496 11.4452 14.23 11.5366 14.1919C11.628 14.1538 11.711 14.0981 11.7807 14.0278L14.7807 11.0278C14.8506 10.9578 14.9061 10.8748 14.9439 10.7834C14.9818 10.6921 15.0013 10.5942 15.0013 10.4953C15.0013 10.3964 14.9818 10.2984 14.9439 10.2071C14.9061 10.1157 14.8506 10.0327 14.7807 9.96276C14.7108 9.89283 14.6277 9.83736 14.5364 9.79951C14.445 9.76167 14.3471 9.74219 14.2482 9.74219C14.1493 9.74219 14.0514 9.76167 13.96 9.79951C13.8686 9.83736 13.7856 9.89283 13.7157 9.96276L11.2482 12.4378L10.2807 11.4628Z"
-                          fill="#027DB8"
-                        ></path>
-                        <path
-                          d="M6 12C6 13.1867 6.35189 14.3467 7.01118 15.3334C7.67047 16.3201 8.60754 17.0892 9.7039 17.5433C10.8003 17.9974 12.0067 18.1162 13.1705 17.8847C14.3344 17.6532 15.4035 17.0818 16.2426 16.2426C17.0818 15.4035 17.6532 14.3344 17.8847 13.1705C18.1162 12.0067 17.9974 10.8003 17.5433 9.7039C17.0892 8.60754 16.3201 7.67047 15.3334 7.01118C14.3467 6.35189 13.1867 6 12 6C10.4087 6 8.88258 6.63214 7.75736 7.75736C6.63214 8.88258 6 10.4087 6 12ZM16.5 12C16.5 12.89 16.2361 13.76 15.7416 14.5001C15.2471 15.2401 14.5443 15.8169 13.7221 16.1575C12.8998 16.4981 11.995 16.5872 11.1221 16.4135C10.2492 16.2399 9.44736 15.8113 8.81802 15.182C8.18868 14.5526 7.7601 13.7508 7.58647 12.8779C7.41283 12.005 7.50195 11.1002 7.84254 10.2779C8.18314 9.45566 8.75991 8.75285 9.49993 8.25839C10.24 7.76392 11.11 7.5 12 7.5C13.1935 7.5 14.3381 7.97411 15.182 8.81802C16.0259 9.66193 16.5 10.8065 16.5 12Z"
-                          fill="#027DB8"
-                        ></path>
-                      </svg>
-                    </div>
-                    <div class="sfc-item__content">30-Day Money-Back Guarantee</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="sfc-pricingTable__benefitsContainer sfc-pricingTable__benefitsContainer--2">
-              <ul
-                data-sfc-id="pricing_benefits"
-                data-sfc-unique-id="pricing_benefits66b9b74167392"
-                data-sfc-ids="pricing_benefits"
-                class="sfc-pricingTable__benefits sfc-pricingTable__benefits--2 sfc-pricingBenefits"
-                data-sfc-class="sfc-pricingBenefits"
-              >
-                <li>
-                  <div
-                    data-sfc-id="item"
-                    data-sfc-unique-id="item66b9b74167432"
-                    data-sfc-ids="item"
-                    class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
-                    data-sfc-class="sfc-item"
-                    data-once="sfcAttach--item"
-                  >
-                    <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
-                      <iconify-icon icon="fa-solid:check"></iconify-icon>
-                    </div>
-                    <div class="sfc-item__content sfc-pricingBenefits__content">
-                      Access 1000s of AD-FREE yoga, meditation and movement classes
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div
-                    data-sfc-id="item"
-                    data-sfc-unique-id="item66b9b74167584"
-                    data-sfc-ids="item"
-                    class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
-                    data-sfc-class="sfc-item"
-                    data-once="sfcAttach--item"
-                  >
-                    <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
-                      <iconify-icon icon="fa-solid:check"></iconify-icon>
-                    </div>
-                    <div class="sfc-item__content sfc-pricingBenefits__content">
-                      Exclusive access to all new releases and premium content
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div
-                    data-sfc-id="item"
-                    data-sfc-unique-id="item66b9b741676c8"
-                    data-sfc-ids="item"
-                    class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
-                    data-sfc-class="sfc-item"
-                    data-once="sfcAttach--item"
-                  >
-                    <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
-                      <iconify-icon icon="fa-solid:check"></iconify-icon>
-                    </div>
-                    <div class="sfc-item__content sfc-pricingBenefits__content">
-                      Access our complete collection of curated programs &amp; challenges
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div
-                    data-sfc-id="item"
-                    data-sfc-unique-id="item66b9b74167812"
-                    data-sfc-ids="item"
-                    class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
-                    data-sfc-class="sfc-item"
-                    data-once="sfcAttach--item"
-                  >
-                    <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
-                      <iconify-icon icon="fa-solid:check"></iconify-icon>
-                    </div>
-                    <div class="sfc-item__content sfc-pricingBenefits__content">25% off livestream events</div>
-                  </div>
-                </li>
-                <li>
-                  <div
-                    data-sfc-id="item"
-                    data-sfc-unique-id="item66b9b74167947"
-                    data-sfc-ids="item"
-                    class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
-                    data-sfc-class="sfc-item"
-                    data-once="sfcAttach--item"
-                  >
-                    <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
-                      <iconify-icon icon="fa-solid:check"></iconify-icon>
-                    </div>
-                    <div class="sfc-item__content sfc-pricingBenefits__content">Follow your favorite teachers</div>
-                  </div>
-                </li>
-                <li>
-                  <div
-                    data-sfc-id="item"
-                    data-sfc-unique-id="item66b9b74167a74"
-                    data-sfc-ids="item"
-                    class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
-                    data-sfc-class="sfc-item"
-                    data-once="sfcAttach--item"
-                  >
-                    <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
-                      <iconify-icon icon="fa-solid:check"></iconify-icon>
-                    </div>
-                    <div class="sfc-item__content sfc-pricingBenefits__content">
-                      Curate your own collection of favorite classes
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div
-                    data-sfc-id="item"
-                    data-sfc-unique-id="item66b9b74167bdd"
-                    data-sfc-ids="item"
-                    class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
-                    data-sfc-class="sfc-item"
-                    data-once="sfcAttach--item"
-                  >
-                    <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
-                      <iconify-icon icon="fa-solid:check"></iconify-icon>
-                    </div>
-                    <div class="sfc-item__content sfc-pricingBenefits__content">Access to our Mobile and TV app</div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="sfc-pricingTable__col sfc-pricingTable__col--3">
-            <div
-              data-sfc-id="pricing_table_level"
-              data-sfc-unique-id="pricing_table_level__monthly66b9b74167eb5"
-              data-sfc-ids="pricing_table_level__monthly"
-              class="sfc-pricingTable__meta sfc-pricingTable__meta--3 sfc-pricingTableLevelMonthly sfc-pricingTableLevel"
-              data-sfc-class="sfc-pricingTableLevel"
-            >
-              <div
-                class="sfc-pricingTableLevel__primary sfc-pricingTableLevel__primary--fixed sfc-pricingTableLevelMonthly__primary sfc-pricingTableLevelMonthly__primary--fixed"
-              >
-                <div
-                  class="sfc-pricingTableLevel__levelHeaderContainer sfc-pricingTableLevelMonthly__levelHeaderContainer"
-                >
-                  <div class="sfc-pricingTableLevel__levelHeader sfc-pricingTableLevelMonthly__levelHeader">
-                    <h3
-                      data-sfc-id="heading"
-                      data-sfc-unique-id="heading66b9b741680bb"
-                      data-sfc-ids="heading"
-                      class="sfc-pricingTableLevel__heading sfc-pricingTableLevelMonthly__heading sfc-heading"
-                      data-sfc-class="sfc-heading"
-                    >
-                      Unlimited access
-                    </h3>
-                    <div class="sfc-pricingTableLevel__duration sfc-pricingTableLevelMonthly__duration">1 month</div>
-                  </div>
-                </div>
-                <div
-                  class="sfc-pricingTableLevel__pricing sfc-pricingTableLevel__pricing--paid sfc-pricingTableLevelMonthly__pricing sfc-pricingTableLevelMonthly__pricing--paid"
-                >
-                  <div
-                    data-sfc-id="price"
-                    data-sfc-unique-id="price66b9b741681b7"
-                    data-sfc-ids="price"
-                    class="sfc-pricingTableLevel__price sfc-pricingTableLevel__price--primary sfc-pricingTableLevelMonthly__price sfc-pricingTableLevelMonthly__price--primary sfc-price sfc-price--boldAmt"
-                    data-sfc-class="sfc-price"
-                  >
-                    <span class="sfc-price__amt"> $13.99 </span>
-                    <span class="sfc-price__slash">/</span>
-                    <span class="sfc-price__period"> month </span>
-                  </div>
-                  <div class="sfc-pricingTableLevel__usd sfc-pricingTableLevelMonthly__usd">*All prices in USD</div>
-                </div>
-              </div>
-              <div
-                data-sfc-id="pricing_cta"
-                data-sfc-unique-id="pricing_cta66b9b741682d5"
-                data-sfc-ids="pricing_cta"
-                class="sfc-pricingTableLevel__ctaFooter sfc-pricingTableLevelMonthly__ctaFooter sfc-pricingCta"
-                data-sfc-class="sfc-pricingCta"
-              >
-                <a
-                  data-sfc-id="button"
-                  data-sfc-unique-id="button66b9b741683b5"
-                  data-sfc-ids="button"
-                  class="sfc-pricingCta__button sfc-pricingTableLevel__button sfc-pricingTableLevelMonthly__button sfc-button sfc-button--white--cta sfc-button--inlineBlock"
-                  data-sfc-class="sfc-button"
-                  href="/express-checkout/54"
-                  data-once="sfcAttach--button"
-                >
-                  <span class="sfc-button__text">
-                    Get Started Now
-                    <span class="sfc-button__badge"></span>
-                  </span>
-                </a>
-                <div class="sfc-pricingCta__derisk sfc-pricingTableLevel__derisk sfc-pricingTableLevelMonthly__derisk">
-                  <div
-                    data-sfc-id="item"
-                    data-sfc-unique-id="item66b9b741684f1"
-                    data-sfc-ids="item"
-                    class="sfc-item sfc-item--gutter-xs"
-                    data-sfc-class="sfc-item"
-                    data-once="sfcAttach--item"
-                  >
-                    <div class="sfc-item__prefix sfc-item__prefix--vCenter">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M4.73987 19.9056H11.1321C11.5463 19.9056 11.8821 19.5698 11.8821 19.1556C11.8821 18.7415 11.5463 18.4056 11.1321 18.4056H4.73987C3.7804 18.4056 3 17.6285 3 16.6731V8.69702H17.666V9.95386C17.666 10.368 18.0018 10.7039 18.416 10.7039C18.8302 10.7039 19.166 10.368 19.166 9.95386V6.69824C19.166 4.91187 17.7125 3.45837 15.9261 3.45837H15.123V2.99219C15.123 2.578 14.7872 2.24219 14.373 2.24219C13.9589 2.24219 13.623 2.578 13.623 2.99219V3.45837H7.04114V2.99219C7.04114 2.578 6.70532 2.24219 6.29114 2.24219C5.87695 2.24219 5.54114 2.578 5.54114 2.99219V3.45837H4.73987C3.62311 3.45837 2.63649 4.02646 2.05376 4.88875C1.7043 5.40552 1.5 6.02808 1.5 6.69751V16.6731C1.5 18.4554 2.95349 19.9056 4.73987 19.9056ZM17.6642 7.19702H3V6.69824C3 6.45851 3.04871 6.23 3.13678 6.02203C3.40086 5.39893 4.01875 4.96057 4.73694 4.96057H5.54114V5.42896C5.54114 5.84314 5.87695 6.17896 6.29114 6.17896C6.70532 6.17896 7.04114 5.84314 7.04114 5.42896V4.96057H13.623V5.42896C13.623 5.84314 13.9589 6.17896 14.373 6.17896C14.7872 6.17896 15.123 5.84314 15.123 5.42896V4.96057H15.9276C16.8853 4.96057 17.6642 5.73987 17.6642 6.69751V7.19702Z"
-                          fill="#027DB8"
-                        ></path>
-                        <path
-                          d="M17.2933 11.3438C14.4208 11.3438 12.084 13.6805 12.084 16.5531C12.084 19.4257 14.4208 21.7628 17.2933 21.7628C20.1659 21.7628 22.5031 19.4257 22.5031 16.5531C22.5031 13.6805 20.1659 11.3438 17.2933 11.3438ZM13.584 16.5531C13.584 14.5078 15.248 12.8438 17.2933 12.8438C19.339 12.8438 21.0031 14.5078 21.0031 16.5531C21.0031 18.5988 19.339 20.2628 17.2933 20.2628C15.248 20.2628 13.584 18.5988 13.584 16.5531Z"
-                          fill="#027DB8"
-                        ></path>
-                        <path
-                          d="M18.9969 14.8447C18.704 14.5518 18.2294 14.5518 17.9364 14.8447L17.291 15.4902L16.6455 14.8447C16.3525 14.5518 15.8779 14.5518 15.585 14.8447C15.292 15.1377 15.292 15.6123 15.585 15.9053L16.2304 16.5507L15.585 17.1962C15.292 17.4891 15.292 17.9637 15.585 18.2567C15.7314 18.4032 15.9233 18.4764 16.1152 18.4764C16.3071 18.4764 16.499 18.4032 16.6455 18.2567L17.291 17.6113L17.9364 18.2567C18.0829 18.4032 18.2748 18.4764 18.4667 18.4764C18.6586 18.4764 18.8505 18.4032 18.9969 18.2567C19.2899 17.9637 19.2899 17.4891 18.9969 17.1962L18.3515 16.5507L18.9969 15.9053C19.2899 15.6123 19.2899 15.1377 18.9969 14.8447Z"
-                          fill="#027DB8"
-                        ></path>
-                      </svg>
-                    </div>
-                    <div class="sfc-item__content">Cancel anytime</div>
-                  </div>
-                  <div
-                    data-sfc-id="item"
-                    data-sfc-unique-id="item66b9b74168624"
-                    data-sfc-ids="item"
-                    class="sfc-item sfc-item--gutter-xs"
-                    data-sfc-class="sfc-item"
-                    data-once="sfcAttach--item"
-                  >
-                    <div class="sfc-item__prefix sfc-item__prefix--vCenter">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M20.25 4.49655C16.08 4.49655 12.5025 1.69155 12.465 1.66155C12.3326 1.55692 12.1688 1.5 12 1.5C11.8312 1.5 11.6674 1.55692 11.535 1.66155C11.4975 1.69155 7.935 4.49655 3.75 4.49655C3.55109 4.49655 3.36032 4.57557 3.21967 4.71622C3.07902 4.85687 3 5.04764 3 5.24655V11.9965C3 17.029 5.0325 19.4965 11.6925 22.4291C11.7892 22.4725 11.894 22.495 12 22.495C12.106 22.495 12.2108 22.4725 12.3075 22.4291C18.9675 19.4965 21 17.029 21 11.9965V5.24655C21 5.04764 20.921 4.85687 20.7803 4.71622C20.6397 4.57557 20.4489 4.49655 20.25 4.49655ZM19.5 11.9965C19.5 15.8815 18.45 17.9965 12 20.9215C5.55 17.9965 4.5 15.8815 4.5 11.9965V5.99655C7.20177 5.72083 9.78588 4.74921 12 3.17655C14.2141 4.74921 16.7982 5.72083 19.5 5.99655V11.9965Z"
-                          fill="#027DB8"
-                        ></path>
-                        <path
-                          d="M10.2807 11.4628C10.2108 11.3928 10.1277 11.3374 10.0364 11.2995C9.94501 11.2617 9.84708 11.2422 9.74819 11.2422C9.64929 11.2422 9.55136 11.2617 9.46 11.2995C9.36863 11.3374 9.28561 11.3928 9.21569 11.4628C9.14576 11.5327 9.09029 11.6157 9.05244 11.7071C9.0146 11.7984 8.99512 11.8964 8.99512 11.9953C8.99512 12.0942 9.0146 12.1921 9.05244 12.2834C9.09029 12.3748 9.14576 12.4578 9.21569 12.5278L10.7157 14.0278C10.7854 14.0981 10.8684 14.1538 10.9598 14.1919C11.0511 14.23 11.1492 14.2496 11.2482 14.2496C11.3472 14.2496 11.4452 14.23 11.5366 14.1919C11.628 14.1538 11.711 14.0981 11.7807 14.0278L14.7807 11.0278C14.8506 10.9578 14.9061 10.8748 14.9439 10.7834C14.9818 10.6921 15.0013 10.5942 15.0013 10.4953C15.0013 10.3964 14.9818 10.2984 14.9439 10.2071C14.9061 10.1157 14.8506 10.0327 14.7807 9.96276C14.7108 9.89283 14.6277 9.83736 14.5364 9.79951C14.445 9.76167 14.3471 9.74219 14.2482 9.74219C14.1493 9.74219 14.0514 9.76167 13.96 9.79951C13.8686 9.83736 13.7856 9.89283 13.7157 9.96276L11.2482 12.4378L10.2807 11.4628Z"
-                          fill="#027DB8"
-                        ></path>
-                        <path
-                          d="M6 12C6 13.1867 6.35189 14.3467 7.01118 15.3334C7.67047 16.3201 8.60754 17.0892 9.7039 17.5433C10.8003 17.9974 12.0067 18.1162 13.1705 17.8847C14.3344 17.6532 15.4035 17.0818 16.2426 16.2426C17.0818 15.4035 17.6532 14.3344 17.8847 13.1705C18.1162 12.0067 17.9974 10.8003 17.5433 9.7039C17.0892 8.60754 16.3201 7.67047 15.3334 7.01118C14.3467 6.35189 13.1867 6 12 6C10.4087 6 8.88258 6.63214 7.75736 7.75736C6.63214 8.88258 6 10.4087 6 12ZM16.5 12C16.5 12.89 16.2361 13.76 15.7416 14.5001C15.2471 15.2401 14.5443 15.8169 13.7221 16.1575C12.8998 16.4981 11.995 16.5872 11.1221 16.4135C10.2492 16.2399 9.44736 15.8113 8.81802 15.182C8.18868 14.5526 7.7601 13.7508 7.58647 12.8779C7.41283 12.005 7.50195 11.1002 7.84254 10.2779C8.18314 9.45566 8.75991 8.75285 9.49993 8.25839C10.24 7.76392 11.11 7.5 12 7.5C13.1935 7.5 14.3381 7.97411 15.182 8.81802C16.0259 9.66193 16.5 10.8065 16.5 12Z"
-                          fill="#027DB8"
-                        ></path>
-                      </svg>
-                    </div>
-                    <div class="sfc-item__content">30-Day Money-Back Guarantee</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="sfc-pricingTable__benefitsContainer sfc-pricingTable__benefitsContainer--3">
-              <ul
-                data-sfc-id="pricing_benefits"
-                data-sfc-unique-id="pricing_benefits66b9b7416875b"
-                data-sfc-ids="pricing_benefits"
-                class="sfc-pricingTable__benefits sfc-pricingTable__benefits--3 sfc-pricingBenefits"
-                data-sfc-class="sfc-pricingBenefits"
-              >
-                <li>
-                  <div
-                    data-sfc-id="item"
-                    data-sfc-unique-id="item66b9b741687fa"
-                    data-sfc-ids="item"
-                    class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
-                    data-sfc-class="sfc-item"
-                    data-once="sfcAttach--item"
-                  >
-                    <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
-                      <iconify-icon icon="fa-solid:check"></iconify-icon>
-                    </div>
-                    <div class="sfc-item__content sfc-pricingBenefits__content">
-                      Access 1000s of AD-FREE yoga, meditation and movement classes
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div
-                    data-sfc-id="item"
-                    data-sfc-unique-id="item66b9b74168929"
-                    data-sfc-ids="item"
-                    class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
-                    data-sfc-class="sfc-item"
-                    data-once="sfcAttach--item"
-                  >
-                    <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
-                      <iconify-icon icon="fa-solid:check"></iconify-icon>
-                    </div>
-                    <div class="sfc-item__content sfc-pricingBenefits__content">
-                      Exclusive access to all new releases and premium content
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div
-                    data-sfc-id="item"
-                    data-sfc-unique-id="item66b9b74168a56"
-                    data-sfc-ids="item"
-                    class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
-                    data-sfc-class="sfc-item"
-                    data-once="sfcAttach--item"
-                  >
-                    <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
-                      <iconify-icon icon="fa-solid:check"></iconify-icon>
-                    </div>
-                    <div class="sfc-item__content sfc-pricingBenefits__content">
-                      Access our complete collection of curated programs &amp; challenges
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div
-                    data-sfc-id="item"
-                    data-sfc-unique-id="item66b9b74168bc8"
-                    data-sfc-ids="item"
-                    class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
-                    data-sfc-class="sfc-item"
-                    data-once="sfcAttach--item"
-                  >
-                    <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
-                      <iconify-icon icon="fa-solid:check"></iconify-icon>
-                    </div>
-                    <div class="sfc-item__content sfc-pricingBenefits__content">25% off livestream events</div>
-                  </div>
-                </li>
-                <li>
-                  <div
-                    data-sfc-id="item"
-                    data-sfc-unique-id="item66b9b74168cf6"
-                    data-sfc-ids="item"
-                    class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
-                    data-sfc-class="sfc-item"
-                    data-once="sfcAttach--item"
-                  >
-                    <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
-                      <iconify-icon icon="fa-solid:check"></iconify-icon>
-                    </div>
-                    <div class="sfc-item__content sfc-pricingBenefits__content">Follow your favorite teachers</div>
-                  </div>
-                </li>
-                <li>
-                  <div
-                    data-sfc-id="item"
-                    data-sfc-unique-id="item66b9b74168e43"
-                    data-sfc-ids="item"
-                    class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
-                    data-sfc-class="sfc-item"
-                    data-once="sfcAttach--item"
-                  >
-                    <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
-                      <iconify-icon icon="fa-solid:check"></iconify-icon>
-                    </div>
-                    <div class="sfc-item__content sfc-pricingBenefits__content">
-                      Curate your own collection of favorite classes
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div
-                    data-sfc-id="item"
-                    data-sfc-unique-id="item66b9b74168f87"
-                    data-sfc-ids="item"
-                    class="sfc-item sfc-item--gutter-sm sfc-item--alignTop"
-                    data-sfc-class="sfc-item"
-                    data-once="sfcAttach--item"
-                  >
-                    <div class="sfc-item__prefix sfc-pricingBenefits__prefix">
-                      <iconify-icon icon="fa-solid:check"></iconify-icon>
-                    </div>
-                    <div class="sfc-item__content sfc-pricingBenefits__content">Access to our Mobile and TV app</div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>`
-  );
-  class I {
+`;
+  class U {
     constructor() {
       this.device = window.innerWidth < 769 ? "mobile" : "desktop", this.init();
     }
@@ -1814,15 +1467,21 @@ a.crs_browse_free:active {
     }
     changes() {
       localStorage.getItem("isClass");
-      const i = e("h1.sfc-heading"), n = e(".sfc-becomeASubscriber__upgradeBannerContainer"), t = e(".sfc-becomeASubscriber__section");
-      if (!!e('[data-drupal-link-system-path="yogi/login"]'))
+      const e = n("h1.sfc-heading"), i = n(".sfc-becomeASubscriber__upgradeBannerContainer"), t = n(".sfc-becomeASubscriber__section");
+      if (!!n('[data-drupal-link-system-path="yogi/login"]'))
         return;
-      i && (i.textContent = "Your ultimate Yoga journey starts here", i.insertAdjacentHTML(
-        "afterend",
-        /* HTML */
-        '<h2 class="os-subtitle">Subscribe to unlock all Premium class and more</h2>'
-      )), n && n.classList.add("os-d-hidden");
-      const a = (
+      if (e) {
+        e.textContent = "Your ultimate Yoga journey starts here";
+        const r = (
+          /* HTML */
+          '<h2 class="os-subtitle">Subscribe to unlock all Premium class and more</h2>'
+        );
+        if (n(".os-subtitle"))
+          return;
+        e.insertAdjacentHTML("afterend", r);
+      }
+      i && i.classList.add("os-d-hidden");
+      const c = (
         /* HTML */
         `
       <div class="os-subscriber-feature">
@@ -1830,7 +1489,7 @@ a.crs_browse_free:active {
         <div class="os-wrap">
           <div class="os-col">
             <div class="os-block">
-              <div class="icon">${V}</div>
+              <div class="icon">${q}</div>
               <div class="content">
                 <h4>Unlimited access to 1000+ Ad-Free yoga, meditation and movement classes</h4>
                 <div class="descr">
@@ -1849,7 +1508,7 @@ a.crs_browse_free:active {
           </div>
           <div class="os-col">
             <div class="os-block">
-              <div class="icon">${z}</div>
+              <div class="icon">${j}</div>
               <div class="content">
                 <h4>Watch classes from your laptop, TV, phone or tablet</h4>
                 <div class="descr">
@@ -1858,7 +1517,7 @@ a.crs_browse_free:active {
               </div>
             </div>
             <div class="os-block">
-              <div class="icon">${$}</div>
+              <div class="icon">${V}</div>
               <div class="content">
                 <h4>Access our complete collection of 30 curated programs & 50 challenges</h4>
                 <div class="descr">
@@ -1867,7 +1526,7 @@ a.crs_browse_free:active {
               </div>
             </div>
             <div class="os-block">
-              <div class="icon">${q}</div>
+              <div class="icon">${G}</div>
               <div class="content">
                 <h4>Exclusive access to all new releases and premium content</h4>
                 <div class="descr"><p>Enjoy new classes and get 25% discount on livestream events.</p></div>
@@ -1878,23 +1537,45 @@ a.crs_browse_free:active {
       </div>
     `
       );
-      t && (t.insertAdjacentHTML("afterend", a), this.device === "mobile" && (t.insertAdjacentHTML("afterend", F), t.remove()));
+      if (t && (n(".os-subscriber-feature") || t.insertAdjacentHTML("afterend", c), this.device === "mobile")) {
+        const r = n(".sfc-pricingTablePremium__form"), l = n(".sfc-pricingTablePremium__cols--desktop");
+        if (r == null || r.remove(), l) {
+          l.style.display = "block";
+          const p = l.querySelector("li:first-child"), f = l.querySelector("li:nth-child(2)"), d = l.querySelectorAll(".sfc-pricingTableLevel__pricing");
+          p == null || p.insertAdjacentHTML("beforeend", y), f == null || f.insertAdjacentHTML("beforeend", y), d.forEach((a) => {
+            var m;
+            if ((m = a.textContent) != null && m.includes("9.08")) {
+              const h = a.closest(".sfc-pricingTableLevel__primary"), k = h == null ? void 0 : h.querySelector(".sfc-pricingTableLevel__duration"), v = a.querySelector(".sfc-pricingTableLevel__price"), x = a.querySelector(".sfc-pricingTableLevel__usd");
+              a.insertAdjacentHTML(
+                "afterbegin",
+                /* HTML */
+                '<span class="os-free"><span>Free</span> /7 days</span>'
+              ), v == null || v.insertAdjacentHTML(
+                "afterbegin",
+                /* HTML */
+                '<span class="sfc-price__period">then </span>'
+              ), x && (x.innerHTML = /* HTML */
+              'All prices in USD, <span class="os-highlight">billed as $167.88</span> <span class="os-black os-highlight">$108.99</span><span class="os-black">/year</span>', h == null || h.insertAdjacentElement("afterend", x)), k && (k.innerHTML = "Yearly");
+            }
+          });
+        }
+      }
     }
     render() {
       var t, s;
-      if (!!e('[data-drupal-link-system-path="yogi/login"]'))
+      if (!!n('[data-drupal-link-system-path="yogi/login"]'))
         return;
-      document.head.insertAdjacentHTML("beforeend", `<style>${E}</style>`);
-      let n = e("#block-samsara-content");
-      if (localStorage.getItem("isClass") && (n != null && n.querySelector("h2"))) {
-        let a = localStorage.getItem("isClass"), r = localStorage.getItem("referrerInfo");
-        if (a == "free")
+      document.head.insertAdjacentHTML("beforeend", `<style>${O}</style>`);
+      let i = n("#block-samsara-content");
+      if (localStorage.getItem("isClass") && (i != null && i.querySelector("h2"))) {
+        let c = localStorage.getItem("isClass"), r = localStorage.getItem("referrerInfo");
+        if (c == "free")
           this.insert(
-            n,
+            i,
             /* HTML */
-            `<a href="${r}" class="crs_back">${_.arrowLeftWhite}Back</a>`
+            `<a href="${r}" class="crs_back">${g.arrowLeftWhite}Back</a>`
           ), this.insert(
-            e(".sfc-becomeASubscriber__heroHeader"),
+            n(".sfc-becomeASubscriber__heroHeader"),
             /* HTML */
             ` <a
             href="${r}"
@@ -1902,39 +1583,38 @@ a.crs_browse_free:active {
             ><span>Skip</span> <span>-></span></a></a
           >`,
             "afterend"
-          ), (t = e(".crs_back")) == null || t.addEventListener("click", () => {
+          ), (t = n(".crs_back")) == null || t.addEventListener("click", () => {
           });
-        else if (a == "Premium") {
-          const d = this.device === "mobile" ? e(".os-mob-sec h1.sfc-heading") : e(".sfc-pricingTablePremium");
+        else if (c == "premium") {
+          const l = this.device === "mobile" ? n(".os-mob-sec h1.sfc-heading") : n(".sfc-pricingTablePremium");
           this.insert(
-            d,
+            l,
             /* HTML */
             ` <a
             href="https://www.doyogawithme.com/yoga-classes?field_subscribers_only_value=1&sort_by=created"
             class="crs_browse_free"
-            >Browse free classes${_.arrowRight}</a
+            >browse free classes</a
           >`,
             "afterend"
           ), this.device === "mobile" && this.insert(
-            e(".crs_browse_free"),
+            n(".crs_browse_free"),
             /* HTML */
             '<div class="os-line"></div>',
             "afterend"
-          ), (s = e(".crs_browse_free")) == null || s.addEventListener("click", () => {
+          ), (s = n(".crs_browse_free")) == null || s.addEventListener("click", () => {
           });
         }
-        localStorage.removeItem("isClass");
       }
     }
-    insert(i, n, t = "afterbegin") {
-      i.insertAdjacentHTML(t, n);
+    insert(e, i, t = "afterbegin") {
+      e.insertAdjacentHTML(t, i);
     }
   }
-  u({
+  L({
     name: "Video Preview",
     dev: "OS"
-  }), x("exp_video_previews");
-  class g {
+  }), B("exp_video_previews");
+  class Y {
     constructor() {
       this.init();
     }
@@ -1943,15 +1623,15 @@ a.crs_browse_free:active {
     }
     run() {
       if (this.initStyles(), window.location.href.includes("/content/")) {
-        new A();
-        const i = new P();
-        i.init(), new H({ previewBlock: i });
+        new P();
+        const e = new F();
+        e.init(), new D({ previewBlock: e });
       }
-      window.location.href.includes("/become-a-subscriber") && new I();
+      window.location.href.includes("/become-a-subscriber") && new U();
     }
     initStyles() {
       document.head.insertAdjacentHTML("beforeend", `<style>${Z}</style>`);
     }
   }
-  new g(), new g();
+  new Y();
 })();
