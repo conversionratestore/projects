@@ -652,18 +652,18 @@
     }
     getFlowPlayer() {
       let e;
-      const t = async () => {
+      if (!n(".sfc-playableOverlay__inner")) {
+        console.log("video not blocked");
+        return;
+      }
+      const i = async () => {
         if (this.videoFound) {
-          e.disconnect();
-          return;
-        }
-        if (!n(".sfc-playableOverlay__inner")) {
-          e.disconnect();
+          e.disconnect(), console.log("video already found");
           return;
         }
         const s = window == null ? void 0 : window.flowplayer;
         if (!s) {
-          e.disconnect(), e.observe(document.body, {
+          e.disconnect(), console.log("flowplayer instance not found"), e.observe(document.body, {
             childList: !0,
             subtree: !0
           });
@@ -674,7 +674,7 @@
           e.disconnect(), e.observe(document.body, {
             childList: !0,
             subtree: !0
-          });
+          }), console.log("video not found");
           return;
         }
         const a = n("#video-preview-container"), c = n("#video-preview-container #playerContainer"), l = n("#posterImage"), m = n('.os-preview-badge a[data-action="os-signingup"]'), d = n("flowplayer-header-duration"), p = n("flowplayer-fullscreen-enter-icon"), f = n("flowplayer-control");
@@ -691,9 +691,9 @@
           clearInterval(this.timer);
         });
       };
-      e = new MutationObserver((i) => {
-        i.forEach((s) => {
-          s && t();
+      e = new MutationObserver((s) => {
+        s.forEach((r) => {
+          r && i();
         });
       }), e.observe(document.body, {
         childList: !0,
