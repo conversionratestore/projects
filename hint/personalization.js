@@ -13,9 +13,9 @@
       `%c EXP: ${l} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, t = (l) => document.querySelector(l), x = (l) => {
-    let e = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", l, "variant_1"));
+  }, t = (l) => document.querySelector(l), x = (l, e = "variant_1") => {
+    let i = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(i), window.clarity("set", l, e), console.log("set", l, e));
     }, 1e3);
   };
   function p(l) {
@@ -1163,7 +1163,8 @@
         for (const r in h)
           h.hasOwnProperty(r) && a.match(r) && h[r].forEach((c) => {
             if (o.includes(c.relationshipStatus)) {
-              const C = c.ageGroups[s];
+              console.log(s, "age>>>>>>>>>>>>");
+              const C = c.ageGroups["18-35"];
               C && p(".trusted_wrapper__Qlbcw").then((f) => {
                 t(".paywall_info_block") || f.insertAdjacentHTML(
                   "afterend",
