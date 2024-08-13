@@ -645,7 +645,7 @@
   }
   class Z {
     constructor({ previewBlock: e }) {
-      this.videoFound = !1, this.init(), this.previewBlock = e, this.previewTime = 120;
+      this.videoFound = !1, this.previewBlock = e, this.previewTime = 120, this.init();
     }
     init() {
       this.getFlowPlayer();
@@ -1633,7 +1633,7 @@ a.crs_browse_free:active {
       if (this.initStyles(), window.location.href.includes("/content/")) {
         new P();
         const e = new q();
-        e.init(), new Z({ previewBlock: e });
+        new Z({ previewBlock: e }), e.init();
       }
       window.location.href.includes("/become-a-subscriber") && new Y();
     }
