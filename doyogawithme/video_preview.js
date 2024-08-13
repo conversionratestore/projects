@@ -123,7 +123,7 @@
       <li class="items-center">${b.iconList3} Exclusive access to all new releases and livestream events</li>
     </ul>
     <a class="sfc-nodePlayable__lockCta" href="/become-a-subscriber">Get Full Access Now</a>`
-  ), E = () => (
+  ), z = () => (
     /* HTML */
     ` <a
       class="crs_btn_white flex-center"
@@ -144,7 +144,7 @@
     <p>
       Already have an account? <a href="/yogi/login?destination=${window.location.pathname}" class="c-green">Log in</a>
     </p>`
-  ), z = (o) => (
+  ), E = (o) => (
     /* HTML */
     ` <div class="crs_block crs_form">
     <div class="crs_form_container">
@@ -172,9 +172,9 @@
       <p class="crs_block_subtotal">
         ${o === "premium" ? `Get ${e === !0 ? "full" : ""} access to this and 500+ other premium <br class="d-md-none"> classes` : 'Watch this and 500+ other free classes <br class="d-md-none"> after the sign up'}
       </p>
-      <div class="crs_block_content">${o === "premium" && e ? H() : E()}</div>
+      <div class="crs_block_content">${o === "premium" && e ? H() : z()}</div>
     </div>
-    ${e === !1 ? z(o) : ""}`
+    ${e === !1 ? E(o) : ""}`
   ), A = `.o-page__header {
   z-index: 4;
 }
@@ -653,33 +653,30 @@
     getFlowPlayer() {
       let e;
       const i = async () => {
-        if (!this.videoFound)
-          try {
-            const t = window == null ? void 0 : window.flowplayer;
-            if (!t)
-              return;
-            const s = t("#async_flowplayer");
-            if (!s || typeof s != "object")
-              return;
-            const c = n("#video-preview-container"), r = n("#video-preview-container #playerContainer"), a = n("#posterImage"), l = n('.os-preview-badge a[data-action="os-signingup"]');
-            if (!a)
-              return;
-            const m = n("flowplayer-header-duration"), d = n("flowplayer-fullscreen-enter-icon"), p = n("flowplayer-control");
-            r == null || r.classList.add("os-d-block"), c == null || c.classList.add("os-z-9"), a == null || a.classList.add("os-d-hidden"), m == null || m.classList.add("os-d-hidden"), d == null || d.classList.add("os-d-hidden"), p == null || p.classList.add("os-d-hidden"), this.videoFound = !0, e.disconnect(), l == null || l.addEventListener("click", (f) => {
-              f.preventDefault(), this.previewBlock.remove(), s.pause();
-            }), s.on("beforeplay", (f) => {
-              const g = v(), h = u();
-              g || C("exp_video_previews_button_01", `${h} - Play`, "click", "Unauthorised Product Video"), h === "premium" && C("exp_video_previews_button_02", "Play", "click", "Premium class only Product Video");
-            }), s.on("playing", (f) => {
-              n(".sfc-playableOverlay__inner") && (this.timer = setInterval(() => {
-                s.currentTime >= this.previewTime && (clearInterval(this.timer), s.pause(), this.previewBlock.remove());
-              }, 10));
-            }), s.on("pause", (f) => {
-              clearInterval(this.timer);
-            });
-          } catch (t) {
-            e.disconnect(), console.error("Error waiting for flowplayer:", t);
-          }
+        if (this.videoFound)
+          return;
+        const t = window == null ? void 0 : window.flowplayer;
+        if (!t)
+          return;
+        const s = t("#async_flowplayer");
+        if (!s || typeof s != "object")
+          return;
+        const c = n("#video-preview-container"), r = n("#video-preview-container #playerContainer"), a = n("#posterImage"), l = n('.os-preview-badge a[data-action="os-signingup"]');
+        if (!a)
+          return;
+        const m = n("flowplayer-header-duration"), d = n("flowplayer-fullscreen-enter-icon"), p = n("flowplayer-control");
+        r == null || r.classList.add("os-d-block"), c == null || c.classList.add("os-z-9"), a == null || a.classList.add("os-d-hidden"), m == null || m.classList.add("os-d-hidden"), d == null || d.classList.add("os-d-hidden"), p == null || p.classList.add("os-d-hidden"), this.videoFound = !0, e.disconnect(), l == null || l.addEventListener("click", (f) => {
+          f.preventDefault(), this.previewBlock.remove(), s.pause();
+        }), s.on("beforeplay", (f) => {
+          const g = v(), h = u();
+          g || C("exp_video_previews_button_01", `${h} - Play`, "click", "Unauthorised Product Video"), h === "premium" && C("exp_video_previews_button_02", "Play", "click", "Premium class only Product Video");
+        }), s.on("playing", (f) => {
+          n(".sfc-playableOverlay__inner") && (this.timer = setInterval(() => {
+            s.currentTime >= this.previewTime && (clearInterval(this.timer), s.pause(), this.previewBlock.remove());
+          }, 10));
+        }), s.on("pause", (f) => {
+          clearInterval(this.timer);
+        });
       };
       e = new MutationObserver((t) => {
         t.forEach((s) => {
