@@ -664,9 +664,8 @@
             this.videoFound = !0;
             const l = n("#video-preview-container"), r = n("#video-preview-container #playerContainer"), a = n("#posterImage"), p = n('.os-preview-badge a[data-action="os-signingup"]');
             if (r && a && l) {
-              e.disconnect();
               const f = n("flowplayer-header-duration"), c = n("flowplayer-fullscreen-enter-icon"), d = n("flowplayer-control");
-              r.classList.add("os-d-block"), l.classList.add("os-z-9"), a.classList.add("os-d-hidden"), f == null || f.classList.add("os-d-hidden"), c == null || c.classList.add("os-d-hidden"), d == null || d.classList.add("os-d-hidden");
+              r.classList.add("os-d-block"), l.classList.add("os-z-9"), a.classList.add("os-d-hidden"), f == null || f.classList.add("os-d-hidden"), c == null || c.classList.add("os-d-hidden"), d == null || d.classList.add("os-d-hidden"), e.disconnect();
             }
             p == null || p.addEventListener("click", (f) => {
               f.preventDefault(), this.previewBlock.remove(), s.pause();
