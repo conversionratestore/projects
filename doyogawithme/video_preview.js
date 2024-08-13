@@ -645,7 +645,7 @@
   }
   class D {
     constructor({ previewBlock: e }) {
-      this.videoFound = !1, this.init(), this.previewBlock = e, this.previewTime = 3;
+      this.videoFound = !1, this.init(), this.previewBlock = e, this.previewTime = 120;
     }
     init() {
       this.getFlowPlayer();
