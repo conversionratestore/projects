@@ -1440,7 +1440,7 @@
       this.position = e || "beforeend", this.container = n, this.init();
     }
     init() {
-      this.render(), this.addClarification();
+      this.render(), this.addClarification(), this.observeShadeClass();
     }
     render() {
       var e;
