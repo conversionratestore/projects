@@ -1,68 +1,68 @@
 (function() {
   "use strict";
-  const p = (r, n, t, e = "") => {
+  const p = (r, n, e, t = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: r,
       event_desc: n,
-      event_type: t,
-      event_loc: e
-    }), console.log(`Event: ${r} | ${n} | ${t} | ${e}`);
-  }, L = ({ name: r, dev: n }) => {
+      event_type: e,
+      event_loc: t
+    }), console.log(`Event: ${r} | ${n} | ${e} | ${t}`);
+  }, B = ({ name: r, dev: n }) => {
     console.log(
       `%c EXP: ${r} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, w = (r) => document.querySelector(r), E = (r) => {
+  }, k = (r) => document.querySelector(r), $ = (r) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", r, "variant_1"));
     }, 1e3);
-  }, z = (r) => new Promise((n, t) => {
-    if (r.split(".").pop(), Array.from(document.scripts).map((a) => a.src.toLowerCase()).includes(r.toLowerCase()))
+  }, I = (r) => new Promise((n, e) => {
+    if (r.split(".").pop(), Array.from(document.scripts).map((s) => s.src.toLowerCase()).includes(r.toLowerCase()))
       return console.log(`Script ${r} already downloaded!`), n("");
     const i = document.createElement("script");
-    i.src = r, i.onload = n, i.onerror = t, document.head.appendChild(i);
+    i.src = r, i.onload = n, i.onerror = e, document.head.appendChild(i);
   });
-  function _(r) {
+  function L(r) {
     return new Promise((n) => {
       if (document.querySelector(r))
         return n(document.querySelector(r));
-      const t = new MutationObserver(() => {
-        document.querySelector(r) && (n(document.querySelector(r)), t.disconnect());
+      const e = new MutationObserver(() => {
+        document.querySelector(r) && (n(document.querySelector(r)), e.disconnect());
       });
-      t.observe(document.documentElement, {
+      e.observe(document.documentElement, {
         childList: !0,
         subtree: !0,
         characterData: !0
       });
     });
   }
-  const g = (r, n, t, e) => {
+  const g = (r, n, e, t) => {
     let i = new IntersectionObserver(
       (o) => {
-        o.forEach((s) => {
-          s.isIntersecting && (i.unobserve(s.target), setTimeout(function() {
-            a.observe(s.target);
+        o.forEach((a) => {
+          a.isIntersecting && (i.unobserve(a.target), setTimeout(function() {
+            s.observe(a.target);
           }, 1e3));
         });
       },
       {
         threshold: 0.5
       }
-    ), a = new IntersectionObserver((o) => {
-      o.forEach((s) => {
-        s.isIntersecting ? (p(n || `view_element_${s.target.id}`, t || "Element visibility", "view", e || s.target.id), i.unobserve(s.target)) : i.observe(s.target), a.unobserve(s.target);
+    ), s = new IntersectionObserver((o) => {
+      o.forEach((a) => {
+        a.isIntersecting ? (p(n || `view_element_${a.target.id}`, e || "Element visibility", "view", t || a.target.id), i.unobserve(a.target)) : i.observe(a.target), s.unobserve(a.target);
       });
     });
     document.querySelectorAll(r).forEach((o) => {
       i.observe(o);
     });
-  }, f = () => {
+  }, w = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth"
     });
-  }, B = `.os-progress {
+  }, q = `.os-progress {
   position: absolute;
   top: 72px;
   left: 50%;
@@ -125,7 +125,7 @@
   letter-spacing: -0.36px;
 }
 `;
-  class C {
+  class T {
     constructor() {
       this.init();
     }
@@ -143,39 +143,39 @@
         <div class="os-progress__step" data-step="4"></div>
       </div>
     `
-      ), t = (
+      ), e = (
         /* HTML */
         `
       <div class="os-ind-step"><span>1</span>/4</div>
     `
-      ), e = document.querySelector(".wrapper"), i = document.querySelector(".content-wrapper .container");
-      document.head.insertAdjacentHTML("afterbegin", `<style>${B}</style>`), e == null || e.insertAdjacentHTML("beforeend", n), i == null || i.insertAdjacentHTML("beforeend", t);
+      ), t = document.querySelector(".wrapper"), i = document.querySelector(".content-wrapper .container");
+      document.head.insertAdjacentHTML("afterbegin", `<style>${q}</style>`), t == null || t.insertAdjacentHTML("beforeend", n), i == null || i.insertAdjacentHTML("beforeend", e);
     }
     update(n) {
       if (n < 1 || n > 4) {
         console.error("Step must be between 1 and 5");
         return;
       }
-      const t = document.querySelector(".os-progress"), e = document.querySelector(".os-ind-step span");
-      if (e && (e.textContent = n.toString()), !t)
+      const e = document.querySelector(".os-progress"), t = document.querySelector(".os-ind-step span");
+      if (t && (t.textContent = n.toString()), !e)
         return;
-      const i = t.querySelector('[data-step="1"]'), a = t.querySelector('[data-step="2"]'), o = t.querySelector('[data-step="3"]'), s = t.querySelector('[data-step="4"]');
-      n === 1 && (console.log("step", n), i.style.setProperty("--fill", "100%"), a.style.setProperty("--fill", "0%"), o.style.setProperty("--fill", "0%"), s.style.setProperty("--fill", "0%")), n === 2 && (i.style.setProperty("--fill", "100%"), a.style.setProperty("--fill", "50%"), o.style.setProperty("--fill", "0%"), s.style.setProperty("--fill", "0%")), n === 3 && (i.style.setProperty("--fill", "100%"), a.style.setProperty("--fill", "100%"), o.style.setProperty("--fill", "50%"), s.style.setProperty("--fill", "0%")), n === 4 && (i.style.setProperty("--fill", "100%"), a.style.setProperty("--fill", "100%"), o.style.setProperty("--fill", "100%"), s.style.setProperty("--fill", "50%"));
+      const i = e.querySelector('[data-step="1"]'), s = e.querySelector('[data-step="2"]'), o = e.querySelector('[data-step="3"]'), a = e.querySelector('[data-step="4"]');
+      n === 1 && (i.style.setProperty("--fill", "100%"), s.style.setProperty("--fill", "0%"), o.style.setProperty("--fill", "0%"), a.style.setProperty("--fill", "0%")), n === 2 && (i.style.setProperty("--fill", "100%"), s.style.setProperty("--fill", "50%"), o.style.setProperty("--fill", "0%"), a.style.setProperty("--fill", "0%")), n === 3 && (i.style.setProperty("--fill", "100%"), s.style.setProperty("--fill", "100%"), o.style.setProperty("--fill", "50%"), a.style.setProperty("--fill", "0%")), n === 4 && (i.style.setProperty("--fill", "100%"), s.style.setProperty("--fill", "100%"), o.style.setProperty("--fill", "100%"), a.style.setProperty("--fill", "50%"));
     }
     hide() {
       const n = document.querySelector(".os-progress");
       n == null || n.classList.add("os-hide");
-      const t = document.querySelector(".os-ind-step");
-      t && t.classList.add("os-hide");
+      const e = document.querySelector(".os-ind-step");
+      e && e.classList.add("os-hide");
     }
     show() {
       const n = document.querySelector(".os-progress");
       n == null || n.classList.remove("os-hide");
-      const t = document.querySelector(".os-ind-step");
-      t && t.classList.remove("os-hide");
+      const e = document.querySelector(".os-ind-step");
+      e && e.classList.remove("os-hide");
     }
   }
-  const $ = (
+  const A = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -209,7 +209,7 @@
   </g>
   <!-- [ldio] generated by https://loading.io -->
 </svg>`
-  ), S = (
+  ), E = (
     /* HTML */
     `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
   <path
@@ -221,7 +221,7 @@
     fill="currentColor"
   />
 </svg>`
-  ), v = (
+  ), S = (
     /* HTML */
     `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none">
   <path
@@ -229,7 +229,7 @@
     fill="currentColor"
   />
 </svg>`
-  ), M = (
+  ), N = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -243,7 +243,7 @@
     fill="#3B3B3B"
   />
 </svg>`
-  ), q = (
+  ), H = (
     /* HTML */
     `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none">
   <path
@@ -252,7 +252,7 @@
   />
   <path d="M13.125 15.313h-6.25a.625.625 0 1 1 0-1.25h6.25a.624.624 0 1 1 0 1.25Z" fill="currentColor" />
 </svg>`
-  ), I = (
+  ), j = (
     /* HTML */
     `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none">
   <path
@@ -260,7 +260,7 @@
     fill="currentColor"
   />
 </svg>`
-  ), T = (
+  ), P = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -280,7 +280,7 @@
     <clipPath id="a"><path fill="#fff" transform="translate(.5 .5)" d="M0 0h18v18H0z" /></clipPath>
   </defs>
 </svg>`
-  ), A = (
+  ), Z = (
     /* HTML */
     `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none">
   <path
@@ -288,7 +288,7 @@
     fill="currentColor"
   />
 </svg>`
-  ), N = (
+  ), F = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -301,7 +301,7 @@
     fill="currentColor"
   />
 </svg>`
-  ), H = (
+  ), V = (
     /* HTML */
     `<svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" fill="none">
   <path
@@ -311,7 +311,7 @@
     fill="#4A4A4A"
   />
 </svg>`
-  ), j = (
+  ), D = (
     /* HTML */
     `<svg
   width="347"
@@ -325,7 +325,7 @@
   <path d="M1 64L347 64" stroke="#DEDEDE" stroke-dasharray="2 2" />
   <path d="M1 32L347 32" stroke="#DEDEDE" stroke-dasharray="2 2" />
 </svg>`
-  ), P = `.os-subnote-wrap {
+  ), W = `.os-subnote-wrap {
   max-width: 540px;
   width: 100%;
   margin: 0 auto;
@@ -379,23 +379,23 @@
   color: #fb7306;
 }
 `;
-  class x {
-    constructor({ container: n, content: t, position: e }) {
-      this.container = n, this.content = t, this.position = e || "beforeend", this.init();
+  class _ {
+    constructor({ container: n, content: e, position: t }) {
+      this.container = n, this.content = e, this.position = t || "beforeend", this.init();
     }
     init() {
       this.render();
     }
     render() {
-      var t;
+      var e;
       const n = (
         /* HTML */
         ` <div class="os-subnote-wrap"><div class="os-subnote">${this.content}</div></div>`
       );
-      this.container && ((t = this.container) == null || t.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${P}</style>`));
+      this.container && ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${W}</style>`));
     }
   }
-  const Z = `.estimate-custom-bill .os-title {
+  const O = `.estimate-custom-bill .os-title {
   margin-bottom: 20px !important;
   font-size: 32px;
   font-weight: 900;
@@ -455,10 +455,96 @@
 .os-subnote .os-saveup-note .icon {
   width: 32px !important;
   height: 32px !important;
+}`, x = {
+    Alabama: { savings: "62.04%" },
+    Alaska: { savings: "77.40%" },
+    Arizona: { savings: "60.19%" },
+    Arkansas: { savings: "55.24%" },
+    California: { savings: "79.56%" },
+    Colorado: { savings: "64.89%" },
+    Connecticut: { savings: "78.72%" },
+    Delaware: { savings: "65.78%" },
+    Florida: { savings: "64.71%" },
+    Georgia: { savings: "58.19%" },
+    Hawaii: { savings: "88.83%" },
+    Idaho: { savings: "52.43%" },
+    Illinois: { savings: "69.12%" },
+    Indiana: { savings: "67.95%" },
+    Iowa: { savings: "55.36%" },
+    Kansas: { savings: "62.57%" },
+    Kentucky: { savings: "61.51%" },
+    Louisiana: { savings: "59.28%" },
+    Maine: { savings: "77.80%" },
+    Maryland: { savings: "67.87%" },
+    Massachusetts: { savings: "83.73%" },
+    Michigan: { savings: "71.89%" },
+    Minnesota: { savings: "62.49%" },
+    Mississippi: { savings: "60.16%" },
+    Missouri: { savings: "54.71%" },
+    Montana: { savings: "57.66%" },
+    Nebraska: { savings: "49.19%" },
+    Nevada: { savings: "66.60%" },
+    "New Hampshire": { savings: "83.83%" },
+    "New Jersey": { savings: "70.10%" },
+    "New Mexico": { savings: "63.13%" },
+    "New York": { savings: "78.06%" },
+    "North Carolina": { savings: "57.81%" },
+    "North Dakota": { savings: "48.02%" },
+    Ohio: { savings: "64.59%" },
+    Oklahoma: { savings: "55.48%" },
+    Oregon: { savings: "54.79%" },
+    Pennsylvania: { savings: "72.02%" },
+    "Rhode Island": { savings: "81.82%" },
+    "South Carolina": { savings: "65.06%" },
+    "South Dakota": { savings: "55.71%" },
+    Tennessee: { savings: "59.32%" },
+    Texas: { savings: "64.94%" },
+    Utah: { savings: "52.56%" },
+    Vermont: { savings: "75.19%" },
+    Virginia: { savings: "64.13%" },
+    Washington: { savings: "50.15%" },
+    "West Virginia": { savings: "60.81%" },
+    Wisconsin: { savings: "66.37%" },
+    Wyoming: { savings: "51.88%" },
+    default: { savings: "88.83%" }
+  }, Y = `.os-clarification {
+  margin-top: 24px;
+  color: #757575;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+@media (max-width: 768px) {
+  .os-clarification {
+    padding-inline: 20px;
+
+  }
 }`;
-  class F {
-    constructor({ container: n, position: t }) {
-      this.position = t || "beforeend", this.container = n, this.init();
+  class z {
+    constructor({ selector: n, content: e, position: t }) {
+      this.container = document.querySelector(n), this.content = e, this.position = t || "beforeend", this.init();
+    }
+    init() {
+      this.checkContainer(), this.render();
+    }
+    render() {
+      const n = (
+        /* HTML */
+        `<div class="os-clarification"><div class="medium-container">${this.content}</div></div>`
+      );
+      this.container && (this.container.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${Y}</style>`));
+    }
+    checkContainer() {
+      if (!this.container) {
+        console.log("Clarification container not found");
+        return;
+      }
+    }
+  }
+  class G {
+    constructor({ container: n, position: e }) {
+      this.position = e || "beforeend", this.container = n, this.init();
     }
     init() {
       this.render(), this.handle(), this.addSubNote();
@@ -469,17 +555,17 @@
       const n = (
         /* HTML */
         `<div class="os-incentives-note">
-      <span class="icon">${T}</span> Incentives are found in your area
+      <span class="icon">${P}</span> Incentives are found in your area
     </div>`
       );
-      new x({
+      new _({
         container: document.querySelector("#estimate-custom-bill .container"),
         content: n,
         position: "afterend"
       });
     }
     render() {
-      var e;
+      var t;
       const n = (
         /* HTML */
         `<div class="v-center estimate-custom-bill" id="estimate-custom-bill">
@@ -488,16 +574,22 @@
         <h4 class="os-subtitle">Select the range that best fits your bill:</h4>
         <div class="custom-radio with-img borderd">
           ${[
-          { text: "$101 - $150", value: "101" },
-          { text: "$151 - $200", value: "151" },
-          { text: "$201 - $300", value: "201" },
-          { text: "$301 - $400", value: "301" },
-          { text: "$401 - $500", value: "401" },
-          { text: "Over $500", value: "501" }
-        ].map(({ text: i, value: a }) => (
+          { text: "$101 - $150", value: "101", averageValue: "125" },
+          { text: "$151 - $200", value: "151", averageValue: "175" },
+          { text: "$201 - $300", value: "201", averageValue: "250" },
+          { text: "$301 - $400", value: "301", averageValue: "350" },
+          { text: "$401 - $500", value: "401", averageValue: "450" },
+          { text: "Over $500", value: "501", averageValue: "650" }
+        ].map(({ text: i, value: s, averageValue: o }) => (
           /* HTML */
           `<div class="custom-radio-item radioNext">
-                <input class="bill-button" type="radio" name="monthly_elec" value="${a}" />${i}
+                <input
+                  class="bill-button"
+                  type="radio"
+                  name="monthly_elec"
+                  value="${s}"
+                  data-average-value="${o}"
+                />${i}
               </div>`
         )).join("")}
         </div>
@@ -506,23 +598,23 @@
       );
       if (!this.container || document.querySelector("#estimate-custom-bill"))
         return;
-      const t = document.querySelector("#bill-slider");
-      (e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${Z}</style>`), t && t.remove();
+      const e = document.querySelector("#bill-slider");
+      (t = this.container) == null || t.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${O}</style>`), e && e.remove();
     }
     handle() {
       const n = document.querySelector(".estimate-custom-bill .custom-radio");
       if (!n)
         return;
-      n.addEventListener("click", (e) => {
-        if (e.target.closest(".radioNext")) {
-          const a = document.querySelector(".os-next");
-          a && a.dispatchEvent(new Event("click"));
+      n.addEventListener("click", (t) => {
+        if (t.target.closest(".radioNext")) {
+          const s = document.querySelector(".os-next");
+          s && s.dispatchEvent(new Event("click"));
         }
-      }), n.querySelectorAll(".bill-button").forEach((e) => {
-        e.addEventListener("change", () => {
-          var a, o;
-          sessionStorage.setItem("monthly_elec", e.value), this.addAdressSubNote();
-          const i = (o = (a = e.parentElement) == null ? void 0 : a.textContent) == null ? void 0 : o.trim();
+      }), n.querySelectorAll(".bill-button").forEach((t) => {
+        t.addEventListener("change", () => {
+          var s, o;
+          sessionStorage.setItem("monthly_elec", t.dataset.averageValue), this.addAdressSubNote();
+          const i = (o = (s = t.parentElement) == null ? void 0 : s.textContent) == null ? void 0 : o.trim();
           p(
             "exp_how_much_monthly_bill_click",
             i,
@@ -533,79 +625,91 @@
       });
     }
     addAdressSubNote() {
-      var t, e;
-      const n = sessionStorage.getItem("monthly_elec");
+      var i, s, o;
+      const n = sessionStorage.getItem("monthly_elec"), e = sessionStorage.getItem("chosen_state");
+      if (!e)
+        return;
+      const t = (i = x[e]) == null ? void 0 : i.savings;
       if (n) {
-        const a = (Number(n) * 12).toLocaleString("en-US"), o = (
+        const a = Number(n), d = parseFloat(t) / 100, l = a * 12 * d, m = Math.round(l).toLocaleString("en-US"), u = (
           /* HTML */
           `<div class="os-saveup-note">
-        <span class="icon">${A}</span>
-        <div>You could <span>save up to $${a}</span> on your yearly energy bill</div>
+        <span class="icon">${Z}</span>
+        <div>You could <span>save up to $${m}*</span> on your yearly energy bill</div>
       </div>`
-        ), s = document.querySelector(".os-incentives-note");
-        s && ((t = s.closest(".os-subnote-wrap")) == null || t.remove());
-        const c = document.querySelector(".os-saveup-note");
-        c && ((e = c.closest(".os-subnote-wrap")) == null || e.remove()), new x({
+        ), h = document.querySelector(".os-incentives-note");
+        h && ((s = h.closest(".os-subnote-wrap")) == null || s.remove());
+        const v = document.querySelector(".os-saveup-note");
+        v && ((o = v.closest(".os-subnote-wrap")) == null || o.remove()), new _({
           container: document.querySelector("#estimate-custom-address .container"),
-          content: o,
+          content: u,
           position: "afterend"
         });
-        const l = document.querySelector(".os-chart__cost");
-        if (!l)
+        const b = document.querySelector(".os-clarification:has(#os-address-clarification)");
+        b && b.remove(), new z({
+          selector: "#estimate-custom-address .os-subnote-wrap",
+          content: '<span id="os-address-clarification">*Savings are estimated. The amount is not guaranteed. Actual savings are subject to change and vary by location, system size, and energy usage. Consult with local solar professionals to get precise estimates.</span>',
+          position: "afterend"
+        });
+        const f = document.querySelector(".os-chart__cost"), M = document.querySelector(".os-chart__after");
+        if (!f || !M)
           return;
-        n === "101" && (l.innerHTML = `
+        let y = 0;
+        n === "125" && (f.innerHTML = `
           <div>$150</div>
           <div>$100</div>
           <div>$50</div>
           <div>$0</div>
-        `), n === "151" && (l.innerHTML = `
+        `, y = 150), n === "175" && (f.innerHTML = `
           <div>$200</div>
           <div>$150</div>
           <div>$100</div>
           <div>$0</div>
-        `), n === "201" && (l.innerHTML = `
+        `, y = 200), n === "250" && (f.innerHTML = `
           <div>$250</div>
           <div>$200</div>
           <div>$150</div>
           <div>$0</div>
-        `), n === "301" && (l.innerHTML = `
+        `, y = 250), n === "350" && (f.innerHTML = `
           <div>$350</div>
           <div>$250</div>
           <div>$150</div>
           <div>$0</div>
-        `), n === "401" && (l.innerHTML = `
+        `, y = 350), n === "450" && (f.innerHTML = `
           <div>$500</div>
           <div>$300</div>
           <div>$100</div>
           <div>$0</div>
-        `), n === "501" && (l.innerHTML = `
+        `, y = 500), n === "650" && (f.innerHTML = `
           <div>$600</div>
           <div>$400</div>
           <div>$200</div>
           <div>$0</div>
-        `);
+        `, y = 600);
+        const vn = a * (1 - d) / y * 100;
+        M.style.height = `${vn}%`;
       }
     }
   }
-  const D = "https://api.sunvalue.com/api/address?zip=", V = "https://api.sunvalue.com/api/geo";
-  async function k(r, n = "GET", t = null) {
+  const U = "https://api.sunvalue.com/api/address?zip=", R = "https://api.sunvalue.com/api/geo";
+  async function C(r, n = "GET", e = null) {
     try {
-      const e = {
+      const t = {
         method: n,
         headers: {
           "Content-Type": "application/json"
         }
       };
-      t && (e.body = JSON.stringify(t));
-      const i = await fetch(r, e);
+      e && (t.body = JSON.stringify(e));
+      const i = await fetch(r, t);
       if (!i.ok)
         throw new Error(`HTTP error! status: ${i.status}`);
       return await i.json();
-    } catch (e) {
-      throw console.error("Fetch error:", e), e;
+    } catch (t) {
+      throw console.error("Fetch error:", t), t;
     }
   }
-  const O = async (r) => await k(D + r), W = async () => await k(V), Y = `#estimate-zip h1:not(.os-title) {
+  const X = async (r) => await C(U + r), K = async () => await C(R), J = `#estimate-zip h1:not(.os-title) {
   display: none !important;
 }
 
@@ -724,16 +828,16 @@
 }
 
 `;
-  class G {
+  class Q {
     constructor() {
       this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${Y}</style>`), this.titleAndZipChanges(), this.addInfoBlock(), this.zipCodeHandler(), this.addSubNote(), this.transferErrorMsg();
+      document.head.insertAdjacentHTML("beforeend", `<style>${J}</style>`), this.titleAndZipChanges(), this.addInfoBlock(), this.zipCodeHandler(), this.addSubNote(), this.transferErrorMsg();
     }
     transferErrorMsg() {
-      const n = document.querySelector("#estimate-zip"), t = n == null ? void 0 : n.querySelector("#calculateYourSavings"), e = n == null ? void 0 : n.querySelector(".error-msg");
-      !t || !e || t.before(e);
+      const n = document.querySelector("#estimate-zip"), e = n == null ? void 0 : n.querySelector("#calculateYourSavings"), t = n == null ? void 0 : n.querySelector(".error-msg");
+      !e || !t || e.before(t);
     }
     addSubNote() {
       if (document.querySelector(".os-secure-note"))
@@ -741,10 +845,10 @@
       const n = (
         /* HTML */
         `<div class="os-secure-note">
-      <span class="icon">${S}</span> Fast. Simple. Secure
+      <span class="icon">${E}</span> Fast. Simple. Secure
     </div>`
       );
-      new x({
+      new _({
         container: document.querySelector("#estimate-zip .container"),
         content: n,
         position: "afterend"
@@ -757,76 +861,91 @@
       <div class="os-info-block">
         <div class="os-info-block__title">Based on your:</div>
         <ul class="os-info-block__list">
-          <li><span>${v}</span>Location</li>
-          <li><span>${q}</span>Your energy bill amount</li>
-          <li><span>${I}</span>Best incentives provided in your area</li>
+          <li><span>${S}</span>Location</li>
+          <li><span>${H}</span>Your energy bill amount</li>
+          <li><span>${j}</span>Best incentives provided in your area</li>
         </ul>
       </div>
     `
-      ), t = document.querySelector("h4");
-      t && t.insertAdjacentHTML("afterend", n);
+      ), e = document.querySelector("h4");
+      e && e.insertAdjacentHTML("afterend", n);
     }
     async titleAndZipChanges() {
-      var c, l;
-      const n = await W();
+      var d, l, c;
+      const n = await K();
       n.postal ? p("exp_zipcode_is_autofilled", n.postal, "input", "Step zipcode") : p("exp_zipcode_is_not_autofilled", "No zipcode", "input", "Step zipcode");
-      const t = document.querySelector("#estimate-zip");
-      if (!t)
+      const e = document.querySelector("#estimate-zip");
+      if (!e)
         return;
-      const e = t.querySelector(".title"), i = t.querySelector("h5"), a = t.querySelector("#calculateYourSavings"), o = t.querySelector("#zip"), s = t.querySelector("#zip-error");
-      if (s && (s.textContent = ""), e) {
-        const d = (y) => {
-          for (const b of y)
-            b.type === "characterData" && (e.insertAdjacentHTML("afterend", u), m.disconnect());
-        }, m = new MutationObserver(d), h = { characterData: !0, subtree: !0 };
-        m.observe(e, h);
-        const u = (
+      const t = e.querySelector(".title"), i = e.querySelector("h5"), s = e.querySelector("#calculateYourSavings"), o = e.querySelector("#zip"), a = e.querySelector("#zip-error");
+      if (a && (a.textContent = ""), t) {
+        const m = (b) => {
+          for (const f of b)
+            f.type === "characterData" && (t.insertAdjacentHTML("afterend", v), u.disconnect());
+        }, u = new MutationObserver(m), h = { characterData: !0, subtree: !0 };
+        u.observe(t, h);
+        const v = (
           /* HTML */
           `<h1 class="os-title">
-        See if your home qualifies for <span>${(c = e.textContent) == null ? void 0 : c.replace("Incentive", "Energy")}</span>
+        See if your home qualifies for <span>${(d = t.textContent) == null ? void 0 : d.replace("Incentive", "Energy")}</span>
       </h1>`
         );
-        e.insertAdjacentHTML("afterend", u);
+        t.insertAdjacentHTML("afterend", v);
       }
-      if (i && (i.textContent = "Enter your ZIP code to get started"), a && (a.textContent = "GeT STARTED", a.addEventListener("click", () => {
+      if (i && (i.textContent = "Enter your ZIP code to get started"), s && (s.textContent = "GeT STARTED", s.addEventListener("click", () => {
         p("exp_zipcode_get_started", "Get Started", "click", "Step zipcode");
       })), o) {
-        o.setAttribute("placeholder", "Enter Your Zip Code"), n.postal && (o.value = n.postal);
-        const d = (
+        o.setAttribute("placeholder", "Enter Your Zip Code"), n.postal && (o.value = n.postal), sessionStorage.setItem("chosen_state", n.regionName);
+        const m = document.querySelector("#os-save-up");
+        if (m) {
+          const h = ((l = x[n.regionName]) == null ? void 0 : l.savings) || x.default.savings;
+          m.innerHTML = h;
+        }
+        const u = (
           /* HTML */
           `
         <div class="os-current-location">
-          ${n.regionName ? `<span class="os-current-location__icon">${v}</span>
+          ${n.regionName ? `<span class="os-current-location__icon">${S}</span>
           <span class="os-current-location__city">${n.regionName}</span>` : ""}
         </div>
       `
         );
-        (l = o == null ? void 0 : o.closest("li")) == null || l.insertAdjacentHTML("beforeend", d);
+        (c = o == null ? void 0 : o.closest("li")) == null || c.insertAdjacentHTML("beforeend", u);
       }
     }
     zipCodeHandler() {
       const n = document.querySelector("#zip");
       if (!n)
         return;
-      let t;
+      let e;
       n.addEventListener("input", async () => {
-        const e = n.value;
-        clearTimeout(t), t = setTimeout(async () => {
+        const t = n.value;
+        clearTimeout(e), e = setTimeout(async () => {
+          var a, d;
           const i = document.querySelector(".os-current-location");
           if (!i)
             return;
-          e.length < 5 && (i.innerHTML = ""), i.innerHTML = /* HTML */
-          `<span class="os-current-location__spinner">${$}</span>`;
-          const { state_name: a } = await O(Number(e));
-          a ? i.innerHTML = `<span class="os-current-location__icon">${v}</span>
-          <span class="os-current-location__city">${a}</span>` : i.innerHTML = "";
+          t.length < 5 && (i.innerHTML = ""), i.innerHTML = /* HTML */
+          `<span class="os-current-location__spinner">${A}</span>`;
+          const { state_name: s } = await X(Number(t));
+          sessionStorage.setItem("chosen_state", s);
+          const o = document.querySelector("#os-save-up");
+          if (s) {
+            const l = ((a = x[s]) == null ? void 0 : a.savings) || x.default.savings;
+            o && (o.innerHTML = l), i.innerHTML = /* HTML */
+            `<span class="os-current-location__icon">${S}</span>
+            <span class="os-current-location__city">${s}</span>`;
+          } else {
+            const l = ((d = x[s]) == null ? void 0 : d.savings) || x.default.savings;
+            o && (o.innerHTML = l), i.innerHTML = "";
+          }
         }, 500);
       }), n.addEventListener("change", () => {
         p("exp_zipcode_input", "Input", "input", "Step zipcode");
       });
     }
   }
-  const U = `.estimate-custom-shade .os-title {
+  const nn = `.estimate-custom-shade .os-title {
   color: #4a4a4a;
   font-size: 32px;
   font-weight: 900;
@@ -878,9 +997,9 @@
   object-fit: contain;
 }
 `;
-  class R {
-    constructor({ container: n, position: t, progressBar: e }) {
-      this.title = "Does your roof get sunlight?", console.log(this.title), this.position = t || "beforeend", this.container = n, this.progressBar = e, this.init();
+  class en {
+    constructor({ container: n, position: e, progressBar: t }) {
+      this.title = "Does your roof get sunlight?", this.position = e || "beforeend", this.container = n, this.progressBar = t, this.init();
     }
     init() {
       this.render(), this.handle();
@@ -889,7 +1008,7 @@
       this.progressBar && this.progressBar.update(4);
     }
     render() {
-      var t;
+      var e;
       const n = (
         /* HTML */
         `<div class="v-center estimate-custom-shade" id="estimate-custom-shade">
@@ -928,34 +1047,34 @@
       </div>
     </div>`
       );
-      !this.container || document.querySelector("#estimate-custom-shade") || ((t = this.container) == null || t.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${U}</style>`));
+      !this.container || document.querySelector("#estimate-custom-shade") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${nn}</style>`));
     }
     handle() {
       const n = document.querySelector("#estimate-custom-shade .custom-radio");
-      n && n.addEventListener("click", (t) => {
-        var i, a;
-        const e = t.target;
-        if (e.closest(".custom-radio-item")) {
-          const o = (i = e.closest(".custom-radio-item")) == null ? void 0 : i.dataset.value;
+      n && n.addEventListener("click", (e) => {
+        var i, s;
+        const t = e.target;
+        if (t.closest(".custom-radio-item")) {
+          const o = (i = t.closest(".custom-radio-item")) == null ? void 0 : i.dataset.value;
           if (o) {
-            const s = document.querySelector(`input[value="${o}"]`);
-            if (!s)
+            const a = document.querySelector(`input[value="${o}"]`);
+            if (!a)
               return;
-            s.checked = !0;
-            const c = document.getElementById("estimate-custom-shade"), l = document.getElementById("estimate-custom-address"), d = document.querySelector(".wrapper");
-            c && (c.classList.add("os-hide"), l == null || l.classList.remove("os-hide"), f(), d && (d.dataset.slideName = "address"), g(
+            a.checked = !0;
+            const d = document.getElementById("estimate-custom-shade"), l = document.getElementById("estimate-custom-address"), c = document.querySelector(".wrapper");
+            d && (d.classList.add("os-hide"), l == null || l.classList.remove("os-hide"), w(), c && (c.dataset.slideName = "address"), g(
               "#estimate-custom-address",
               "exp_property_adress_view",
               "What is your property address?",
               "Step 4 - What is your property address?"
             ), this.updateProgressBar());
           }
-          p("exp_roof_click", (a = e.textContent) == null ? void 0 : a.trim(), "click", "Step 3 - Does your roof get sunlight?");
+          p("exp_roof_click", (s = t.textContent) == null ? void 0 : s.trim(), "click", "Step 3 - Does your roof get sunlight?");
         }
       });
     }
   }
-  const X = `.estimate-custom-address .os-title {
+  const tn = `.estimate-custom-address .os-title {
   font-size: 32px;
   font-weight: 900;
   line-height: 42px;
@@ -1025,9 +1144,9 @@
   width: 32px !important;
   height: 32px !important;
 }`;
-  class J {
-    constructor({ container: n, position: t, progressBar: e }) {
-      this.position = t || "beforeend", this.container = n, this.progressBar = e, this.init();
+  class on {
+    constructor({ container: n, position: e, progressBar: t }) {
+      this.position = e || "beforeend", this.container = n, this.progressBar = t, this.init();
     }
     init() {
       this.render(), this.handle();
@@ -1036,7 +1155,7 @@
       this.progressBar && this.progressBar.hide();
     }
     render() {
-      var t;
+      var e;
       const n = (
         /* HTML */
         `<div class="v-center estimate-custom-address os-hide" id="estimate-custom-address">
@@ -1049,7 +1168,7 @@
         <ul class="form-list">
           <li>
             <div class="os-location-wrap">
-              <span class="icon">${M}</span>
+              <span class="icon">${N}</span>
               <input
                 class="text-field location pac-target-input active"
                 type="text"
@@ -1068,58 +1187,58 @@
       </div>
     </div>`
       );
-      !this.container || document.querySelector("#estimate-custom-address") || ((t = this.container) == null || t.insertAdjacentHTML(this.position, n), this.initAutocomplete(), document.head.insertAdjacentHTML("beforeend", `<style>${X}</style>`));
+      !this.container || document.querySelector("#estimate-custom-address") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), this.initAutocomplete(), document.head.insertAdjacentHTML("beforeend", `<style>${tn}</style>`));
     }
     handle() {
       const n = document.getElementById("os-googleautoaddress");
       n && (n.addEventListener("input", () => {
-        const e = document.getElementById("os-address-error");
-        e && (e.textContent = "");
+        const t = document.getElementById("os-address-error");
+        t && (t.textContent = "");
       }), n.addEventListener("change", () => {
         p("exp_property_adress_input", "Input", "input", "Step 4 - What is your property address?");
       }));
-      const t = document.querySelector("#os-addresssaving");
-      t && t.addEventListener("click", (e) => {
-        const i = e.target, a = document.getElementById("os-googleautoaddress"), o = document.getElementById("estimate-custom-address"), s = document.getElementById("estimate-custom-homeowner"), c = document.querySelector(".wrapper"), l = document.querySelector(".os-prev"), d = (i == null ? void 0 : i.dataset.disabled) === "true";
-        if (!a)
+      const e = document.querySelector("#os-addresssaving");
+      e && e.addEventListener("click", (t) => {
+        const i = t.target, s = document.getElementById("os-googleautoaddress"), o = document.getElementById("estimate-custom-address"), a = document.getElementById("estimate-custom-homeowner"), d = document.querySelector(".wrapper"), l = document.querySelector(".os-prev"), c = (i == null ? void 0 : i.dataset.disabled) === "true";
+        if (!s)
           return;
-        const m = a.value;
-        if (m && !d)
-          o.classList.add("os-hide"), s.classList.remove("os-hide"), f(), c && (c.dataset.slideName = "homeowner"), l.classList.add("os-hide"), this.updateProgressBar(), g("#estimate-custom-homeowner", "exp_evaluation_view", "Evaluating your average monthly energy bill ...", "Step  - Evaluation View");
+        const m = s.value;
+        if (m && !c)
+          o.classList.add("os-hide"), a.classList.remove("os-hide"), w(), d && (d.dataset.slideName = "homeowner"), l.classList.add("os-hide"), this.updateProgressBar(), g("#estimate-custom-homeowner", "exp_evaluation_view", "Evaluating your average monthly energy bill ...", "Step  - Evaluation View");
         else if (!m) {
-          const h = document.getElementById("os-address-error");
-          h && (h.textContent = "Please enter your address");
+          const u = document.getElementById("os-address-error");
+          u && (u.textContent = "Please enter your address");
         }
         p("exp_property_adress_click", "Continue", "click", "Step 4 - What is your property address?");
       });
     }
     setContinueButtonState(n) {
-      const t = document.getElementById("os-addresssaving");
-      t && (t.dataset.disabled = String(!n));
+      const e = document.getElementById("os-addresssaving");
+      e && (e.dataset.disabled = String(!n));
     }
     initAutocomplete() {
-      z(
+      I(
         "https://maps.googleapis.com/maps/api/js?key=AIzaSyDtjbzGiQga-NP-KNnEuJmBWuEdNlZynK0&libraries=places&language=en"
       ).then(() => {
         const n = document.getElementById("os-googleautoaddress");
         if (!n)
           return;
-        const t = new google.maps.places.Autocomplete(n, {
+        const e = new google.maps.places.Autocomplete(n, {
           types: ["geocode"],
           componentRestrictions: { country: "US" }
         });
-        t.addListener("place_changed", () => {
-          const i = t.getPlace().formatted_address;
+        e.addListener("place_changed", () => {
+          const i = e.getPlace().formatted_address;
           this.validateAddress(i);
         });
       }).catch((n) => console.error("Error loading Google Maps Places API:", n));
     }
     validateAddress(n) {
-      const t = document.getElementById("autoaddress"), e = document.getElementById("os-address-error");
-      !n || !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]/.test(n) ? (this.setContinueButtonState(!1), e && (e.textContent = "Your address must contain letters and numbers")) : (this.setContinueButtonState(!0), t && (t.value = n), e && (e.textContent = ""));
+      const e = document.getElementById("autoaddress"), t = document.getElementById("os-address-error");
+      !n || !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]/.test(n) ? (this.setContinueButtonState(!1), t && (t.textContent = "Your address must contain letters and numbers")) : (this.setContinueButtonState(!0), e && (e.value = n), t && (t.textContent = ""));
     }
   }
-  const K = `.estimate-custom-homeowner .os-title {
+  const sn = `.estimate-custom-homeowner .os-title {
   font-size: 32px;
   font-weight: 900;
   line-height: 42px;
@@ -1256,8 +1375,8 @@
 @media (max-width: 500px) {
   .os-chart__label {
     justify-content: flex-end;
-    gap: 84px;
-    padding-right: 40px;
+    gap: 77px;
+    padding-right: 45px;
   }
 }
 
@@ -1331,32 +1450,33 @@
 }
 
 .os-loading-bar__label {
-  margin-top: 12px;
+  margin-bottom: 12px;
   color: #2b3d50;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
 }
 `;
-  class Q {
-    constructor({ container: n, position: t }) {
-      this.position = t || "beforeend", this.container = n, this.init();
+  class an {
+    constructor({ container: n, position: e }) {
+      this.position = e || "beforeend", this.container = n, this.init();
     }
     init() {
-      this.render(), this.observeShadeClass();
+      this.render(), this.addClarification(), this.observeShadeClass();
     }
     render() {
-      var t;
+      var e;
       const n = (
         /* HTML */
         `<div class="v-center estimate-custom-homeowner os-hide" id="estimate-custom-homeowner">
       <div class="container text-center">
         <h2 class="os-title">
-          <span>Homeowners save up to 87%</span> <br />on their energy bill <br />with Solar Energy Program
+          <span>Homeowners save up to <span id="os-save-up"></span>*</span> <br />on their energy bill <br />with Solar
+          Energy Program
         </h2>
         <div class="os-chart">
           <div class="os-chart__container">
-            <div class="os-chart__grid">${j}</div>
+            <div class="os-chart__grid">${D}</div>
             <h5 class="os-chart__title">Average monthly energy bill</h5>
             <div class="os-chart__cost">
               <div>$250</div>
@@ -1373,51 +1493,65 @@
             <div class="os-before">Before</div>
             <div class="os-after">After</div>
           </div>
-          <div class="os-note">Based on data from more than 5,174 <br class="mobile"> participants <br class="desktop"> in the solar incentive program.</div>
         </div>
 
         <div class="os-loading-bar">
+          <div class="os-loading-bar__label">
+            Evaluating your average monthly <br class="mobile" />
+            energy bill ...
+          </div>
           <div class="os-loading-bar__container">
             <div class="os-loading-bar__progress"></div>
             <div class="os-loading-bar__status">0%</div>
           </div>
-          <div class="os-loading-bar__label">Evaluating your average monthly <br class="mobile"> energy bill ...</div>
         </div>
       </div>
     </div>`
       );
-      !this.container || document.querySelector("#estimate-custom-homeowner") || ((t = this.container) == null || t.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${K}</style>`));
+      !this.container || document.querySelector("#estimate-custom-homeowner") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${sn}</style>`));
     }
     startLoadingBar() {
-      var d, m, h;
-      const n = document.getElementById("estimate-custom-homeowner"), t = document.getElementById("estimate-custom-name"), e = document.querySelector(".wrapper"), i = (d = this.container) == null ? void 0 : d.querySelector(".os-loading-bar__progress"), a = (m = this.container) == null ? void 0 : m.querySelector(".os-loading-bar__status"), o = (h = this.container) == null ? void 0 : h.querySelector(".os-loading-bar__label");
-      let s = 0;
+      var c, m, u;
+      const n = document.getElementById("estimate-custom-homeowner"), e = document.getElementById("estimate-custom-name"), t = document.querySelector(".wrapper"), i = (c = this.container) == null ? void 0 : c.querySelector(".os-loading-bar__progress"), s = (m = this.container) == null ? void 0 : m.querySelector(".os-loading-bar__status"), o = (u = this.container) == null ? void 0 : u.querySelector(".os-loading-bar__label");
+      let a = 0;
       const l = setInterval(() => {
-        if (s++, i && i.style.setProperty("--var-width", `${s}%`), a && (a.textContent = `${s}%`), o)
-          if (s === 16)
+        if (a++, i && i.style.setProperty("--var-width", `${a}%`), s && (s.textContent = `${a}%`), o)
+          if (a === 16)
             o.innerHTML = 'Evaluating your average monthly <br class="mobile"> energy bill ...';
-          else if (s === 42)
+          else if (a === 42)
             o.innerHTML = 'Evaluating your address and <br class="mobile"> position to sun ...';
-          else if (s === 83) {
-            const u = document.querySelector(".os-current-location__city");
-            o.innerHTML = `Exploring available solar <br class="mobile"> programs in ${u == null ? void 0 : u.textContent} ...`;
+          else if (a === 83) {
+            const h = document.querySelector(".os-current-location__city");
+            o.innerHTML = `Exploring available solar <br class="mobile"> programs in ${h == null ? void 0 : h.textContent} ...`;
           } else
-            s === 100 && (clearInterval(l), n == null || n.classList.add("os-hide"), t == null || t.classList.remove("os-hide"), f(), e && (e.dataset.slideName = "name"), g("#estimate-custom-name", "exp_name_view", "Last and First Name", "Step - Last and First Name"));
+            a === 100 && (clearInterval(l), n == null || n.classList.add("os-hide"), e == null || e.classList.remove("os-hide"), w(), t && (t.dataset.slideName = "name"), g(
+              "#estimate-custom-name",
+              "exp_name_view",
+              "Last and First Name",
+              "Step - Last and First Name"
+            ));
       }, 100);
     }
     observeShadeClass() {
       const n = document.getElementById("estimate-custom-homeowner");
       if (!n)
         return;
-      const t = new MutationObserver((e) => {
-        e.forEach((i) => {
-          i.attributeName === "class" && (i.target.classList.contains("os-hide") || (this.startLoadingBar(), t.disconnect()));
+      const e = new MutationObserver((t) => {
+        t.forEach((i) => {
+          i.attributeName === "class" && (i.target.classList.contains("os-hide") || (this.startLoadingBar(), e.disconnect()));
         });
       });
-      t.observe(n, { attributes: !0 });
+      e.observe(n, { attributes: !0 });
+    }
+    addClarification() {
+      document.querySelector("#os-homeowner-clarification") || new z({
+        selector: "#estimate-custom-homeowner .container",
+        content: '<span id="os-homeowner-clarification">*Savings are estimated. The amount is not guaranteed. Actual savings are subject to change and vary by location, system size, and energy usage. Consult with local solar professionals to get precise estimates.</span>',
+        position: "afterend"
+      });
     }
   }
-  const nn = `.estimate-custom-name .os-title {
+  const rn = `.estimate-custom-name .os-title {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1531,21 +1665,21 @@
   line-height: 16px;
 }
 `;
-  class tn {
-    constructor({ container: n, position: t }) {
-      this.position = t || "beforeend", this.container = n, this.init();
+  class ln {
+    constructor({ container: n, position: e }) {
+      this.position = e || "beforeend", this.container = n, this.init();
     }
     init() {
       this.render(), this.handle();
     }
     render() {
-      var t;
+      var e;
       const n = (
         /* HTML */
         `<div class="v-center estimate-custom-name os-hide" id="estimate-custom-name">
       <div class="container text-center">
         <div class="os-container">
-          <h2 class="os-title"><span class="icon">${N}</span>Congratulations!</h2>
+          <h2 class="os-title"><span class="icon">${F}</span>Congratulations!</h2>
           <h2 class="os-subtitle">
             Our research indicates that you are a great candidate for <br class="mobile"><span>No Net Cost Solar*</span>
           </h2>
@@ -1576,32 +1710,32 @@
       </div>
     </div>`
       );
-      !this.container || document.querySelector("#estimate-custom-name") || ((t = this.container) == null || t.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${nn}</style>`));
+      !this.container || document.querySelector("#estimate-custom-name") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${rn}</style>`));
     }
     handle() {
-      const n = document.getElementById("os-fname"), t = document.getElementById("os-fname-error"), e = document.getElementById("os-lname"), i = document.getElementById("os-lname-error"), a = document.getElementById("os-namesaving");
+      const n = document.getElementById("os-fname"), e = document.getElementById("os-fname-error"), t = document.getElementById("os-lname"), i = document.getElementById("os-lname-error"), s = document.getElementById("os-namesaving");
       n == null || n.addEventListener("change", () => {
         p("exp_fname_input", "Input - First name", "input", "Step - Last and First Name");
-      }), e == null || e.addEventListener("change", () => {
+      }), t == null || t.addEventListener("change", () => {
         p("exp_lname_input", "Input - Last name", "input", "Step - Last and First Name");
-      }), a && a.addEventListener("click", () => {
-        const o = document.getElementById("estimate-custom-name"), s = document.getElementById("estimate-custom-email"), c = document.querySelector(".wrapper"), l = document.querySelector(".os-prev");
-        t.textContent = "", i.textContent = "";
-        const d = n.value, m = e.value;
-        if (!d || d.length === 0) {
-          t.textContent = "Please enter your first name";
+      }), s && s.addEventListener("click", () => {
+        const o = document.getElementById("estimate-custom-name"), a = document.getElementById("estimate-custom-email"), d = document.querySelector(".wrapper"), l = document.querySelector(".os-prev");
+        e.textContent = "", i.textContent = "";
+        const c = n.value, m = t.value;
+        if (!c || c.length === 0) {
+          e.textContent = "Please enter your first name";
           return;
         }
         if (!m || m.length === 0) {
           i.textContent = "Please enter your last name";
           return;
         }
-        const h = document.getElementById("fname"), u = document.getElementById("lname");
-        h && (h.value = d), u && (u.value = m), o == null || o.classList.add("os-hide"), s == null || s.classList.remove("os-hide"), c && (c.dataset.slideName = "email"), f(), l.classList.remove("os-hide"), p("exp_name_click", "Continue", "click", "Step - Last and First Name"), g("#estimate-custom-email", "exp_email_view", "View - Email", "Step - Email");
+        const u = document.getElementById("fname"), h = document.getElementById("lname");
+        u && (u.value = c), h && (h.value = m), o == null || o.classList.add("os-hide"), a == null || a.classList.remove("os-hide"), d && (d.dataset.slideName = "email"), w(), l.classList.remove("os-hide"), p("exp_name_click", "Continue", "click", "Step - Last and First Name"), g("#estimate-custom-email", "exp_email_view", "View - Email", "Step - Email");
       });
     }
   }
-  const en = `.estimate-custom-email .os-title {
+  const dn = `.estimate-custom-email .os-title {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1702,9 +1836,9 @@
   width: 100%;
 }
 `;
-  class on {
-    constructor({ container: n, position: t }) {
-      this.position = t || "beforeend", this.container = n, this.init();
+  class cn {
+    constructor({ container: n, position: e }) {
+      this.position = e || "beforeend", this.container = n, this.init();
     }
     init() {
       this.render(), this.handle(), this.addSubNote();
@@ -1715,17 +1849,17 @@
       const n = (
         /* HTML */
         `<div class="os-email-note">
-      <span class="icon">${S}</span> We keep your information safe and secure
+      <span class="icon">${E}</span> We keep your information safe and secure
     </div>`
       );
-      new x({
+      new _({
         container: document.querySelector("#estimate-custom-email .container"),
         content: n,
         position: "afterend"
       });
     }
     render() {
-      var t;
+      var e;
       const n = (
         /* HTML */
         `<div class="v-center estimate-custom-email os-hide" id="estimate-custom-email">
@@ -1748,28 +1882,28 @@
       </div>
     </div>`
       );
-      !this.container || document.querySelector("#estimate-custom-email") || ((t = this.container) == null || t.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${en}</style>`));
+      !this.container || document.querySelector("#estimate-custom-email") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${dn}</style>`));
     }
     handle() {
-      const n = document.getElementById("os-email"), t = document.getElementById("os-email-error"), e = document.getElementById("os-emailsaving");
+      const n = document.getElementById("os-email"), e = document.getElementById("os-email-error"), t = document.getElementById("os-emailsaving");
       n == null || n.addEventListener("change", () => {
         p("exp_email_input", "Input - Email", "input", "Step - Email");
-      }), e && e.addEventListener("click", () => {
+      }), t && t.addEventListener("click", () => {
         const i = document.querySelector(".wrapper");
         n.textContent = "";
-        const a = n.value, o = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!a || a.trim() === "" || !o.test(a)) {
-          t.textContent = "Please Enter a Valid Email Address";
+        const s = n.value, o = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!s || s.trim() === "" || !o.test(s)) {
+          e.textContent = "Please Enter a Valid Email Address";
           return;
         }
-        const s = document.getElementById("email");
-        s && (s.value = a);
-        const c = document.querySelector("#slider-block a:last-child");
-        c && c.click(), i && (i.dataset.slideName = "phone"), p("exp_email_click", "Continue", "click", "Step - Email ");
+        const a = document.getElementById("email");
+        a && (a.value = s);
+        const d = document.querySelector("#slider-block a:last-child");
+        d && d.click(), i && (i.dataset.slideName = "phone"), p("exp_email_click", "Continue", "click", "Step - Email ");
       });
     }
   }
-  const sn = `#estimate-phone .medium-container {
+  const pn = `#estimate-phone .medium-container {
   max-width: 580px;
 }
 
@@ -1865,12 +1999,12 @@
     padding: 0 !important;
   }
 }`;
-  class an {
+  class mn {
     constructor() {
       this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${sn}</style>`), this.addLabel(), this.inputChanges();
+      document.head.insertAdjacentHTML("beforeend", `<style>${pn}</style>`), this.addLabel(), this.inputChanges();
     }
     inputChanges() {
       const n = document.getElementById("phone");
@@ -1879,8 +2013,8 @@
       n.placeholder = "Phone number", n.addEventListener("change", () => {
         p("exp_phone_input", "Input - Email", "input", "Step - Phone ");
       });
-      const t = document.getElementById("submit");
-      t && t.addEventListener("click", () => {
+      const e = document.getElementById("submit");
+      e && e.addEventListener("click", () => {
         p("exp_phone_click", "Submit", "click", "Step - Phone");
       });
     }
@@ -1895,7 +2029,7 @@
       );
     }
   }
-  const rn = `/* .swiper-container-android .swiper-slide,
+  const un = `/* .swiper-container-android .swiper-slide,
 .swiper-wrapper {
   transform: none !important;
 } */
@@ -2068,9 +2202,9 @@
   }
 }
 `;
-  class ln {
-    constructor({ progressBar: n, swiper: t }) {
-      this.progressBar = n, this.swiper = t, this.init();
+  class hn {
+    constructor({ progressBar: n, swiper: e }) {
+      this.progressBar = n, this.swiper = e, this.init();
     }
     init() {
       this.render();
@@ -2088,71 +2222,71 @@
         </div>
       </div>
     `
-      ), t = (
+      ), e = (
         /* HTML */
-        `<button type="button" data-current-slide="0" class="os-prev">${H}</button>`
-      ), e = document.querySelector("#slider-block"), i = document.querySelector(".swiper-wrapper"), a = document.querySelector(".wrapper"), o = document.querySelector(".content-wrapper .container");
+        `<button type="button" data-current-slide="0" class="os-prev">${V}</button>`
+      ), t = document.querySelector("#slider-block"), i = document.querySelector(".swiper-wrapper"), s = document.querySelector(".wrapper"), o = document.querySelector(".content-wrapper .container");
       if (!i || !o)
         return;
-      document.head.insertAdjacentHTML("beforeend", `<style>${rn}</style>`), i.insertAdjacentHTML("beforeend", n), o.insertAdjacentHTML("afterbegin", t);
-      const s = document.querySelector(".os-prev"), c = document.querySelector(".os-next");
-      s == null || s.addEventListener("click", () => {
+      document.head.insertAdjacentHTML("beforeend", `<style>${un}</style>`), i.insertAdjacentHTML("beforeend", n), o.insertAdjacentHTML("afterbegin", e);
+      const a = document.querySelector(".os-prev"), d = document.querySelector(".os-next");
+      a == null || a.addEventListener("click", () => {
         var m;
         const l = document.querySelector(".os-navigation");
         if (l.classList.add("os-hide"), setTimeout(() => {
           l.classList.remove("os-hide");
-        }, 400), s.dataset.currentSlide === "1" && p(
+        }, 400), a.dataset.currentSlide === "1" && p(
           "exp_how_much_monthly_bill_back",
           "Back",
           "click",
           "Step 1 - How much is your latest monthly energy bill?"
-        ), s.dataset.currentSlide === "2" && p("exp_utility_provider_back", "Back", "click", "Step 2 - Who is your utility provider?"), s.dataset.currentSlide === "3") {
-          const h = document.getElementById("estimate-custom-address"), u = document.getElementById("estimate-custom-shade"), y = document.getElementById("estimate-custom-name"), b = document.getElementById("estimate-custom-email");
-          if (u.classList.contains("os-hide") || p("exp_roof_back", "Back", "click", "Step 3 - Does your roof get sunlight?"), !h.classList.contains("os-hide")) {
-            h.classList.add("os-hide"), u.classList.remove("os-hide"), f(), this.progressBar && this.progressBar.update(3), p("exp_property_adress_back", "Back", "click", "Step 4 - What is your property address?");
+        ), a.dataset.currentSlide === "2" && p("exp_utility_provider_back", "Back", "click", "Step 2 - Who is your utility provider?"), a.dataset.currentSlide === "3") {
+          const u = document.getElementById("estimate-custom-address"), h = document.getElementById("estimate-custom-shade"), v = document.getElementById("estimate-custom-name"), b = document.getElementById("estimate-custom-email");
+          if (h.classList.contains("os-hide") || p("exp_roof_back", "Back", "click", "Step 3 - Does your roof get sunlight?"), !u.classList.contains("os-hide")) {
+            u.classList.add("os-hide"), h.classList.remove("os-hide"), w(), this.progressBar && this.progressBar.update(3), p("exp_property_adress_back", "Back", "click", "Step 4 - What is your property address?");
             return;
           }
           if (!b.classList.contains("os-hide")) {
-            b.classList.add("os-hide"), y.classList.remove("os-hide"), f(), a.dataset.slideName = "name", s.classList.add("os-hide"), p("exp_email_back", "Back", "click", "Step - Email ");
+            b.classList.add("os-hide"), v.classList.remove("os-hide"), w(), s.dataset.slideName = "name", a.classList.add("os-hide"), p("exp_email_back", "Back", "click", "Step - Email ");
             return;
           }
         }
-        if (s.dataset.currentSlide === "7") {
-          (m = this.swiper) == null || m.slideTo(3), a.dataset.slideName = "email", p("exp_phone_back", "Back", "click", "Step - Phone");
+        if (a.dataset.currentSlide === "7") {
+          (m = this.swiper) == null || m.slideTo(3), s.dataset.slideName = "email", p("exp_phone_back", "Back", "click", "Step - Phone");
           return;
         }
-        const d = e == null ? void 0 : e.querySelector("a:first-child");
+        const c = t == null ? void 0 : t.querySelector("a:first-child");
         setTimeout(() => {
-          d == null || d.click();
+          c == null || c.click();
         }, 0);
-      }), c == null || c.addEventListener("click", () => {
-        const l = e == null ? void 0 : e.querySelector("a:last-child"), d = document.querySelector(".os-navigation");
-        d.classList.add("os-hide"), setTimeout(() => {
-          d.classList.remove("os-hide");
+      }), d == null || d.addEventListener("click", () => {
+        const l = t == null ? void 0 : t.querySelector("a:last-child"), c = document.querySelector(".os-navigation");
+        c.classList.add("os-hide"), setTimeout(() => {
+          c.classList.remove("os-hide");
         }, 400), setTimeout(() => {
           l == null || l.click();
         }, 0);
       });
     }
   }
-  class dn {
+  class gn {
     constructor() {
       var n;
-      this.swiperElement = document.querySelector(".swiper-container"), this.swiper = (n = this.swiperElement) == null ? void 0 : n.swiper, this.progressBar = new C(), this.addNavigation(), this.otherEvents();
+      this.swiperElement = document.querySelector(".swiper-container"), this.swiper = (n = this.swiperElement) == null ? void 0 : n.swiper, this.progressBar = new T(), this.addNavigation(), this.otherEvents();
     }
     addNavigation() {
-      new ln({ progressBar: this.progressBar, swiper: this.swiper });
+      new hn({ progressBar: this.progressBar, swiper: this.swiper });
     }
     changeSlides() {
-      new G(), new an();
-      const n = document.querySelector(".swiper-container"), t = n == null ? void 0 : n.swiper, e = w("#solarForm .wrapper"), i = w(".os-navigation");
+      new Q(), new mn();
+      const n = document.querySelector(".swiper-container"), e = n == null ? void 0 : n.swiper, t = k("#solarForm .wrapper"), i = k(".os-navigation");
       i.querySelector(".os-next");
-      const a = document.querySelector(".os-prev");
-      this.progressBar.hide(), g("#estimate-zip", "exp_zipcode_view", "View Screen", "Step zipcode"), t == null || t.on("transitionEnd", () => {
-        const o = t.realIndex;
-        e.dataset.currentSlide = o.toString(), a && (a.dataset.currentSlide = o.toString());
-        const s = document.querySelector(".swiper-slide-active"), c = (s == null ? void 0 : s.clientHeight) || 0;
-        if (i.style.top = `${c}px`, n && (n.dataset.currentSlide = o.toString()), o === 0 && this.progressBar.hide(), o === 1 && (this.progressBar.show(), this.progressBar.update(1), g(
+      const s = document.querySelector(".os-prev");
+      this.progressBar.hide(), g("#estimate-zip", "exp_zipcode_view", "View Screen", "Step zipcode"), e == null || e.on("transitionEnd", () => {
+        const o = e.realIndex;
+        t.dataset.currentSlide = o.toString(), s && (s.dataset.currentSlide = o.toString());
+        const a = document.querySelector(".swiper-slide-active"), d = (a == null ? void 0 : a.clientHeight) || 0;
+        if (i.style.top = `${d}px`, n && (n.dataset.currentSlide = o.toString()), o === 0 && this.progressBar.hide(), o === 1 && (this.progressBar.show(), this.progressBar.update(1), g(
           "#estimate-custom-bill",
           "exp_how_much_monthly_bill_view",
           "How much is your latest monthly energy bill?",
@@ -2177,31 +2311,31 @@
             "Step 3 - Does your roof get sunlight?"
           );
         }
-        o === 4 && document.querySelectorAll('input[name="shade"]').forEach((d) => {
-          if (d.checked) {
-            const m = d.closest(".radioNext");
+        o === 4 && document.querySelectorAll('input[name="shade"]').forEach((c) => {
+          if (c.checked) {
+            const m = c.closest(".radioNext");
             m && m.click();
           }
-        }), o === 4 && t.slideTo(7), o === 7 && g("#estimate-phone", "exp_phone_view", "View - Phone", "Step - Phone");
+        }), o === 4 && e.slideTo(7), o === 7 && g("#estimate-phone", "exp_phone_view", "View - Phone", "Step - Phone");
       });
     }
     otherEvents() {
       const n = document.querySelector("#estimate-provider .custom-radio");
-      n && n.addEventListener("click", (t) => {
-        var i, a;
-        const e = t.target;
-        if (e.closest(".radioNext")) {
-          const o = (a = (i = e.closest(".radioNext")) == null ? void 0 : i.textContent) == null ? void 0 : a.trim();
+      n && n.addEventListener("click", (e) => {
+        var i, s;
+        const t = e.target;
+        if (t.closest(".radioNext")) {
+          const o = (s = (i = t.closest(".radioNext")) == null ? void 0 : i.textContent) == null ? void 0 : s.trim();
           p("exp_utility_provider_click", o, "click", "Step 2 - Who is your utility provider?");
         }
       });
     }
     addSlides() {
       const n = document.querySelectorAll(".swiper-slide");
-      new F({ container: n[1], position: "beforeend" }), new R({ container: n[3], position: "beforeend", progressBar: this.progressBar }), new J({ container: n[3], position: "beforeend", progressBar: this.progressBar }), new Q({ container: n[3], position: "beforeend" }), new tn({ container: n[3], position: "beforeend" }), new on({ container: n[3], position: "beforeend" });
+      new G({ container: n[1], position: "beforeend" }), new en({ container: n[3], position: "beforeend", progressBar: this.progressBar }), new on({ container: n[3], position: "beforeend", progressBar: this.progressBar }), new an({ container: n[3], position: "beforeend" }), new ln({ container: n[3], position: "beforeend" }), new cn({ container: n[3], position: "beforeend" });
     }
   }
-  const cn = `.site-header {
+  const fn = `.site-header {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2723,18 +2857,18 @@ ul.form-list button {
   }
 }
 `;
-  L({ name: "Hyp. #6 - Introduce short funnel with merging zip code with address step", dev: "OS" }), E("exp_autofill_zipcode_reinforcement_message");
-  class pn {
+  B({ name: "Hyp. #6 - Introduce short funnel with merging zip code with address step", dev: "OS" }), $("exp_autofill_zipcode_reinforcement_message");
+  class xn {
     constructor() {
-      this.slideManager = new dn(), this.init();
+      this.slideManager = new gn(), this.init();
     }
     init() {
-      location.pathname === "/save/" && _(".swiper-slide-active").then(() => {
-        _(".wrapper #slider-block .default").then(() => {
-          document.head.insertAdjacentHTML("beforeend", `<style>${cn}</style>`), document.title = "Solar Incentive Program", this.slideManager.addSlides(), this.slideManager.changeSlides();
+      location.pathname === "/save/" && L(".swiper-slide-active").then(() => {
+        L(".wrapper #slider-block .default").then(() => {
+          document.head.insertAdjacentHTML("beforeend", `<style>${fn}</style>`), document.title = "Solar Incentive Program", this.slideManager.addSlides(), this.slideManager.changeSlides();
         });
       });
     }
   }
-  new pn();
+  new xn();
 })();
