@@ -1167,7 +1167,7 @@ h2.sfc-becomeASubscriber__choosePlan {
   h2.sfc-becomeASubscriber__choosePlan {
     color: #fff !important;
     margin-block: 16px !important;
-    font-size: 18px !important;
+    font-size: 16px !important;
     font-weight: 500 !important;
     line-height: 31px !important;
     margin-top: 8px !important;
@@ -1261,6 +1261,7 @@ a.crs_browse_free:active {
 }
 @media (max-width: 767px) {
   a.crs_browse_free {
+    font-size: 16px;
     margin: 16px auto !important;
   }
   .os-line {
@@ -1589,14 +1590,14 @@ a.crs_browse_free:active {
           ), (t = n(".crs_back")) == null || t.addEventListener("click", () => {
           });
         else if (c == "premium") {
-          const a = this.device === "mobile" ? n(".os-mob-sec h1.sfc-heading") : n(".sfc-pricingTablePremium");
+          const a = this.device === "mobile" ? n("h1.sfc-heading") : n(".sfc-pricingTablePremium");
           this.insert(
             a,
             /* HTML */
             ` <a
             href="https://www.doyogawithme.com/yoga-classes?field_subscribers_only_value=1&sort_by=created"
             class="crs_browse_free"
-            >browse free classes</a
+            >${this.device === "mobile" ? "Browse free classes" : "browse free classes"}</a
           >`,
             "afterend"
           ), this.device === "mobile" && this.insert(
@@ -1607,6 +1608,7 @@ a.crs_browse_free:active {
           ), (s = n(".crs_browse_free")) == null || s.addEventListener("click", () => {
           });
         }
+        localStorage.removeItem("isClass");
       }
     }
     insert(e, i, t = "afterbegin") {
