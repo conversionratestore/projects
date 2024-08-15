@@ -1765,7 +1765,7 @@
 }
 .new_main_block .hi {
   position: absolute;
-  top: -55px;
+  top: -21px;
   right: -5px;
   z-index: 100;
 }
