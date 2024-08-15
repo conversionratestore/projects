@@ -13,7 +13,7 @@
       `%c EXP: ${r} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, E = (r) => document.querySelector(r), T = (r) => {
+  }, L = (r) => document.querySelector(r), T = (r) => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", r, "variant_1"));
     }, 1e3);
@@ -22,8 +22,13 @@
       return console.log(`Script ${r} already downloaded!`), n("");
     const i = document.createElement("script");
     i.src = r, i.onload = n, i.onerror = e, document.head.appendChild(i);
-  });
-  function L(r) {
+  }), H = (r) => {
+    Array.from(document.scripts).filter((e) => e.src.includes(r)).forEach((e) => {
+      var t;
+      return (t = e.parentNode) == null ? void 0 : t.removeChild(e);
+    });
+  };
+  function E(r) {
     return new Promise((n) => {
       if (document.querySelector(r))
         return n(document.querySelector(r));
@@ -62,7 +67,7 @@
       top: 0,
       behavior: "smooth"
     });
-  }, A = `.os-progress {
+  }, j = `.os-progress {
   position: absolute;
   top: 72px;
   left: 50%;
@@ -125,7 +130,7 @@
   letter-spacing: -0.36px;
 }
 `;
-  class H {
+  class P {
     constructor() {
       this.init();
     }
@@ -149,7 +154,7 @@
       <div class="os-ind-step"><span>1</span>/4</div>
     `
       ), t = document.querySelector(".wrapper"), i = document.querySelector(".content-wrapper .container");
-      document.head.insertAdjacentHTML("afterbegin", `<style>${A}</style>`), t == null || t.insertAdjacentHTML("beforeend", n), i == null || i.insertAdjacentHTML("beforeend", e);
+      document.head.insertAdjacentHTML("afterbegin", `<style>${j}</style>`), t == null || t.insertAdjacentHTML("beforeend", n), i == null || i.insertAdjacentHTML("beforeend", e);
     }
     update(n) {
       if (n < 1 || n > 4) {
@@ -175,7 +180,7 @@
       e && e.classList.remove("os-hide");
     }
   }
-  const j = (
+  const Z = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -229,7 +234,7 @@
     fill="currentColor"
   />
 </svg>`
-  ), P = (
+  ), F = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -243,7 +248,7 @@
     fill="#3B3B3B"
   />
 </svg>`
-  ), Z = (
+  ), V = (
     /* HTML */
     `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none">
   <path
@@ -252,7 +257,7 @@
   />
   <path d="M13.125 15.313h-6.25a.625.625 0 1 1 0-1.25h6.25a.624.624 0 1 1 0 1.25Z" fill="currentColor" />
 </svg>`
-  ), F = (
+  ), D = (
     /* HTML */
     `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none">
   <path
@@ -260,7 +265,7 @@
     fill="currentColor"
   />
 </svg>`
-  ), V = (
+  ), O = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -280,7 +285,7 @@
     <clipPath id="a"><path fill="#fff" transform="translate(.5 .5)" d="M0 0h18v18H0z" /></clipPath>
   </defs>
 </svg>`
-  ), D = (
+  ), W = (
     /* HTML */
     `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none">
   <path
@@ -288,7 +293,7 @@
     fill="currentColor"
   />
 </svg>`
-  ), W = (
+  ), Y = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -301,7 +306,7 @@
     fill="currentColor"
   />
 </svg>`
-  ), O = (
+  ), G = (
     /* HTML */
     `<svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" fill="none">
   <path
@@ -311,7 +316,7 @@
     fill="#4A4A4A"
   />
 </svg>`
-  ), Y = (
+  ), U = (
     /* HTML */
     `<svg
   width="347"
@@ -325,7 +330,7 @@
   <path d="M1 64L347 64" stroke="#DEDEDE" stroke-dasharray="2 2" />
   <path d="M1 32L347 32" stroke="#DEDEDE" stroke-dasharray="2 2" />
 </svg>`
-  ), G = `.os-subnote-wrap {
+  ), R = `.os-subnote-wrap {
   max-width: 540px;
   width: 100%;
   margin: 0 auto;
@@ -392,10 +397,10 @@
         /* HTML */
         ` <div class="os-subnote-wrap"><div class="os-subnote">${this.content}</div></div>`
       );
-      this.container && ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${G}</style>`));
+      this.container && ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${R}</style>`));
     }
   }
-  const U = `.estimate-custom-bill .os-title {
+  const K = `.estimate-custom-bill .os-title {
   margin-bottom: 20px !important;
   font-size: 32px;
   font-weight: 900;
@@ -507,7 +512,7 @@
     Wisconsin: { savings: "66.37%" },
     Wyoming: { savings: "51.88%" },
     default: { savings: "88.83%" }
-  }, R = `.os-clarification {
+  }, X = `.os-clarification {
   margin-top: 24px;
   color: #757575;
   font-size: 12px;
@@ -533,7 +538,7 @@
         /* HTML */
         `<div class="os-clarification"><div class="medium-container">${this.content}</div></div>`
       );
-      this.container && (this.container.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${R}</style>`));
+      this.container && (this.container.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${X}</style>`));
     }
     checkContainer() {
       if (!this.container) {
@@ -542,7 +547,7 @@
       }
     }
   }
-  class X {
+  class J {
     constructor({ container: n, position: e }) {
       this.position = e || "beforeend", this.container = n, this.init();
     }
@@ -555,7 +560,7 @@
       const n = (
         /* HTML */
         `<div class="os-incentives-note">
-      <span class="icon">${V}</span> Incentives are found in your area
+      <span class="icon">${O}</span> Incentives are found in your area
     </div>`
       );
       new w({
@@ -599,7 +604,7 @@
       if (!this.container || document.querySelector("#estimate-custom-bill"))
         return;
       const e = document.querySelector("#bill-slider");
-      (t = this.container) == null || t.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${U}</style>`), e && e.remove();
+      (t = this.container) == null || t.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${K}</style>`), e && e.remove();
     }
     handle() {
       const n = document.querySelector(".estimate-custom-bill .custom-radio");
@@ -631,10 +636,10 @@
         return;
       const t = (i = f[e]) == null ? void 0 : i.savings;
       if (n) {
-        const a = Number(n), d = parseFloat(t) / 100, l = a * 12 * d, m = Math.round(l).toLocaleString("en-US"), u = (
+        const a = Number(n), l = parseFloat(t) / 100, d = a * 12 * l, m = Math.round(d).toLocaleString("en-US"), u = (
           /* HTML */
           `<div class="os-saveup-note">
-        <span class="icon">${D}</span>
+        <span class="icon">${W}</span>
         <div>You could <span>save up to $${m}*</span> on your yearly energy bill</div>
       </div>`
         ), h = document.querySelector(".os-incentives-note");
@@ -651,26 +656,26 @@
           content: '<span id="os-address-clarification">*Savings are estimated. The amount is not guaranteed. Actual savings are subject to change and vary by location, system size, and energy usage. Consult with local solar professionals to get precise estimates.</span>',
           position: "afterend"
         });
-        const _ = document.querySelector(".os-chart__cost"), M = document.querySelector(".os-chart__after");
-        if (!_ || !M)
+        const _ = document.querySelector(".os-chart__cost"), I = document.querySelector(".os-chart__after");
+        if (!_ || !I)
           return;
-        let I = 0;
+        let q = 0;
         if (n === "125" || n === "175" || n === "250" || n === "350" || n === "450" || n === "650") {
-          const S = parseInt(n, 10), q = Math.floor(S / 3 / 10) * 10, y = [S, S - q, S - 2 * q, 0];
+          const S = parseInt(n, 10), A = Math.floor(S / 3 / 10) * 10, y = [S, S - A, S - 2 * A, 0];
           _.innerHTML = `
             <div>$${y[0]}</div>
             <div>$${y[1]}</div>
             <div>$${y[2]}</div>
             <div>$${y[3]}</div>
-          `, I = y[0];
+          `, q = y[0];
         }
-        const wn = a * (1 - d) / I * 100;
-        M.style.height = `${wn}%`;
+        const Sn = a * (1 - l) / q * 100;
+        I.style.height = `${Sn}%`;
       }
     }
   }
-  const K = "https://api.sunvalue.com/api/address?zip=", J = "https://api.sunvalue.com/api/geo";
-  async function B(r, n = "GET", e = null) {
+  const Q = "https://api.sunvalue.com/api/address?zip=", nn = "https://api.sunvalue.com/api/geo";
+  async function M(r, n = "GET", e = null) {
     try {
       const t = {
         method: n,
@@ -687,7 +692,7 @@
       throw console.error("Fetch error:", t), t;
     }
   }
-  const Q = async (r) => await B(K + r), nn = async () => await B(J), en = `#estimate-zip h1:not(.os-title) {
+  const en = async (r) => await M(Q + r), tn = async () => await M(nn), on = `#estimate-zip h1:not(.os-title) {
   display: none !important;
 }
 
@@ -806,12 +811,12 @@
 }
 
 `;
-  class tn {
+  class sn {
     constructor() {
       this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${en}</style>`), this.titleAndZipChanges(), this.addInfoBlock(), this.zipCodeHandler(), this.addSubNote(), this.transferErrorMsg();
+      document.head.insertAdjacentHTML("beforeend", `<style>${on}</style>`), this.titleAndZipChanges(), this.addInfoBlock(), this.zipCodeHandler(), this.addSubNote(), this.transferErrorMsg();
     }
     transferErrorMsg() {
       const n = document.querySelector("#estimate-zip"), e = n == null ? void 0 : n.querySelector("#calculateYourSavings"), t = n == null ? void 0 : n.querySelector(".error-msg");
@@ -823,7 +828,7 @@
       const n = (
         /* HTML */
         `<div class="os-secure-note">
-      <span class="icon">${z}</span> Fast. Simple. Secure
+      <span class="icon">${z}</span> Fast. Simple. Secure.
     </div>`
       );
       new w({
@@ -839,9 +844,9 @@
       <div class="os-info-block">
         <div class="os-info-block__title">Based on your:</div>
         <ul class="os-info-block__list">
-          <li><span>${k}</span>Location</li>
-          <li><span>${Z}</span>Your energy bill amount</li>
-          <li><span>${F}</span>Best incentives provided in your area</li>
+          <li><span>${k}</span>Your Location</li>
+          <li><span>${V}</span>Your energy bill amount</li>
+          <li><span>${D}</span>Available incentives in your area</li>
         </ul>
       </div>
     `
@@ -849,8 +854,8 @@
       e && e.insertAdjacentHTML("afterend", n);
     }
     async titleAndZipChanges() {
-      var d, l, c;
-      const n = await nn();
+      var l, d, c;
+      const n = await tn();
       n.postal ? p("exp_zipcode_is_autofilled", n.postal, "input", "Step zipcode") : p("exp_zipcode_is_not_autofilled", "No zipcode", "input", "Step zipcode");
       const e = document.querySelector("#estimate-zip");
       if (!e)
@@ -865,7 +870,7 @@
         const x = (
           /* HTML */
           `<h1 class="os-title">
-        See if your home qualifies for <span>${(d = t.textContent) == null ? void 0 : d.replace("Incentive", "Energy")}</span>
+        See if your home qualifies for the <span>${(l = t.textContent) == null ? void 0 : l.replace("Incentive", "Energy")}</span>
       </h1>`
         );
         t.insertAdjacentHTML("afterend", x);
@@ -876,7 +881,7 @@
         o.setAttribute("placeholder", "Enter Your Zip Code"), n.postal && (o.value = n.postal), sessionStorage.setItem("chosen_state", n.regionName);
         const m = document.querySelector("#os-save-up");
         if (m) {
-          const h = ((l = f[n.regionName]) == null ? void 0 : l.savings) || f.default.savings;
+          const h = ((d = f[n.regionName]) == null ? void 0 : d.savings) || f.default.savings;
           m.innerHTML = h;
         }
         const u = (
@@ -899,23 +904,23 @@
       n.addEventListener("input", async () => {
         const t = n.value;
         clearTimeout(e), e = setTimeout(async () => {
-          var a, d;
+          var a, l;
           const i = document.querySelector(".os-current-location");
           if (!i)
             return;
           t.length < 5 && (i.innerHTML = ""), i.innerHTML = /* HTML */
-          `<span class="os-current-location__spinner">${j}</span>`;
-          const { state_name: s } = await Q(Number(t));
+          `<span class="os-current-location__spinner">${Z}</span>`;
+          const { state_name: s } = await en(Number(t));
           sessionStorage.setItem("chosen_state", s);
           const o = document.querySelector("#os-save-up");
           if (s) {
-            const l = ((a = f[s]) == null ? void 0 : a.savings) || f.default.savings;
-            o && (o.innerHTML = l), i.innerHTML = /* HTML */
+            const d = ((a = f[s]) == null ? void 0 : a.savings) || f.default.savings;
+            o && (o.innerHTML = d), i.innerHTML = /* HTML */
             `<span class="os-current-location__icon">${k}</span>
             <span class="os-current-location__city">${s}</span>`;
           } else {
-            const l = ((d = f[s]) == null ? void 0 : d.savings) || f.default.savings;
-            o && (o.innerHTML = l), i.innerHTML = "";
+            const d = ((l = f[s]) == null ? void 0 : l.savings) || f.default.savings;
+            o && (o.innerHTML = d), i.innerHTML = "";
           }
         }, 500);
       }), n.addEventListener("change", () => {
@@ -923,7 +928,7 @@
       });
     }
   }
-  const on = `.estimate-custom-shade .os-title {
+  const an = `.estimate-custom-shade .os-title {
   color: #4a4a4a;
   font-size: 32px;
   font-weight: 900;
@@ -975,7 +980,7 @@
   object-fit: contain;
 }
 `;
-  class sn {
+  class rn {
     constructor({ container: n, position: e, progressBar: t }) {
       this.title = "Does your roof get sunlight?", this.position = e || "beforeend", this.container = n, this.progressBar = t, this.init();
     }
@@ -1025,7 +1030,7 @@
       </div>
     </div>`
       );
-      !this.container || document.querySelector("#estimate-custom-shade") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${on}</style>`));
+      !this.container || document.querySelector("#estimate-custom-shade") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${an}</style>`));
     }
     handle() {
       const n = document.querySelector("#estimate-custom-shade .custom-radio");
@@ -1039,8 +1044,8 @@
             if (!a)
               return;
             a.checked = !0;
-            const d = document.getElementById("estimate-custom-shade"), l = document.getElementById("estimate-custom-address"), c = document.querySelector(".wrapper");
-            d && (d.classList.add("os-hide"), l == null || l.classList.remove("os-hide"), b(), c && (c.dataset.slideName = "address"), g(
+            const l = document.getElementById("estimate-custom-shade"), d = document.getElementById("estimate-custom-address"), c = document.querySelector(".wrapper");
+            l && (l.classList.add("os-hide"), d == null || d.classList.remove("os-hide"), b(), c && (c.dataset.slideName = "address"), g(
               "#estimate-custom-address",
               "exp_property_adress_view",
               "What is your property address?",
@@ -1052,7 +1057,7 @@
       });
     }
   }
-  const an = `.estimate-custom-address .os-title {
+  const B = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDtjbzGiQga-NP-KNnEuJmBWuEdNlZynK0&libraries=places&language=en", ln = `.estimate-custom-address .os-title {
   font-size: 32px;
   font-weight: 900;
   line-height: 42px;
@@ -1122,7 +1127,7 @@
   width: 32px !important;
   height: 32px !important;
 }`;
-  class rn {
+  class dn {
     constructor({ container: n, position: e, progressBar: t }) {
       this.position = e || "beforeend", this.container = n, this.progressBar = t, this.init();
     }
@@ -1146,7 +1151,7 @@
         <ul class="form-list">
           <li>
             <div class="os-location-wrap">
-              <span class="icon">${P}</span>
+              <span class="icon">${F}</span>
               <input
                 class="text-field location pac-target-input active"
                 type="text"
@@ -1165,7 +1170,7 @@
       </div>
     </div>`
       );
-      !this.container || document.querySelector("#estimate-custom-address") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), this.initAutocomplete(), document.head.insertAdjacentHTML("beforeend", `<style>${an}</style>`));
+      !this.container || document.querySelector("#estimate-custom-address") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), this.initAutocomplete(), document.head.insertAdjacentHTML("beforeend", `<style>${ln}</style>`));
     }
     handle() {
       const n = document.getElementById("os-googleautoaddress");
@@ -1177,12 +1182,17 @@
       }));
       const e = document.querySelector("#os-addresssaving");
       e && e.addEventListener("click", (t) => {
-        const i = t.target, s = document.getElementById("os-googleautoaddress"), o = document.getElementById("estimate-custom-address"), a = document.getElementById("estimate-custom-homeowner"), d = document.querySelector(".wrapper"), l = document.querySelector(".os-prev"), c = (i == null ? void 0 : i.dataset.disabled) === "true";
+        const i = t.target, s = document.getElementById("os-googleautoaddress"), o = document.getElementById("estimate-custom-address"), a = document.getElementById("estimate-custom-homeowner"), l = document.querySelector(".wrapper"), d = document.querySelector(".os-prev"), c = (i == null ? void 0 : i.dataset.disabled) === "true";
         if (!s)
           return;
         const m = s.value;
         if (m && !c)
-          o.classList.add("os-hide"), a.classList.remove("os-hide"), b(), d && (d.dataset.slideName = "homeowner"), l.classList.add("os-hide"), this.updateProgressBar(), g("#estimate-custom-homeowner", "exp_evaluation_view", "Evaluating your average monthly energy bill ...", "Step  - Evaluation View");
+          o.classList.add("os-hide"), a.classList.remove("os-hide"), b(), l && (l.dataset.slideName = "homeowner"), d.classList.add("os-hide"), this.updateProgressBar(), g(
+            "#estimate-custom-homeowner",
+            "exp_evaluation_view",
+            "Evaluating your average monthly energy bill ...",
+            "Step  - Evaluation View"
+          ), H(B), window != null && window.google && (window.google = null);
         else if (!m) {
           const u = document.getElementById("os-address-error");
           u && (u.textContent = "Please enter your address");
@@ -1195,28 +1205,29 @@
       e && (e.dataset.disabled = String(!n));
     }
     initAutocomplete() {
-      N(
-        "https://maps.googleapis.com/maps/api/js?key=AIzaSyDtjbzGiQga-NP-KNnEuJmBWuEdNlZynK0&libraries=places&language=en"
-      ).then(() => {
-        const n = document.getElementById("os-googleautoaddress");
-        if (!n)
-          return;
-        const e = new google.maps.places.Autocomplete(n, {
-          types: ["geocode"],
-          componentRestrictions: { country: "US" }
-        });
-        e.addListener("place_changed", () => {
-          const i = e.getPlace().formatted_address;
-          this.validateAddress(i);
-        });
+      window.googleMapsScriptLoaded ? this.initializeAutocomplete() : N(B).then(() => {
+        window.googleMapsScriptLoaded = !0, this.initializeAutocomplete();
       }).catch((n) => console.error("Error loading Google Maps Places API:", n));
+    }
+    initializeAutocomplete() {
+      const n = document.getElementById("os-googleautoaddress");
+      if (!n)
+        return;
+      const e = new google.maps.places.Autocomplete(n, {
+        types: ["geocode"],
+        componentRestrictions: { country: "US" }
+      });
+      e.addListener("place_changed", () => {
+        const i = e.getPlace().formatted_address;
+        this.validateAddress(i);
+      });
     }
     validateAddress(n) {
       const e = document.getElementById("autoaddress"), t = document.getElementById("os-address-error");
       !n || !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]/.test(n) ? (this.setContinueButtonState(!1), t && (t.textContent = "Your address must contain letters and numbers")) : (this.setContinueButtonState(!0), e && (e.value = n), t && (t.textContent = ""));
     }
   }
-  const ln = `.estimate-custom-homeowner .os-title {
+  const cn = `.estimate-custom-homeowner .os-title {
   font-size: 32px;
   font-weight: 900;
   line-height: 42px;
@@ -1435,7 +1446,7 @@
   line-height: 24px;
 }
 `;
-  class dn {
+  class pn {
     constructor({ container: n, position: e }) {
       this.position = e || "beforeend", this.container = n, this.init();
     }
@@ -1454,7 +1465,7 @@
         </h2>
         <div class="os-chart">
           <div class="os-chart__container">
-            <div class="os-chart__grid">${Y}</div>
+            <div class="os-chart__grid">${U}</div>
             <h5 class="os-chart__title">Average monthly energy bill</h5>
             <div class="os-chart__cost">
               <div>$250</div>
@@ -1486,13 +1497,13 @@
       </div>
     </div>`
       );
-      !this.container || document.querySelector("#estimate-custom-homeowner") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${ln}</style>`));
+      !this.container || document.querySelector("#estimate-custom-homeowner") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${cn}</style>`));
     }
     startLoadingBar() {
       var c, m, u;
       const n = document.getElementById("estimate-custom-homeowner"), e = document.getElementById("estimate-custom-name"), t = document.querySelector(".wrapper"), i = (c = this.container) == null ? void 0 : c.querySelector(".os-loading-bar__progress"), s = (m = this.container) == null ? void 0 : m.querySelector(".os-loading-bar__status"), o = (u = this.container) == null ? void 0 : u.querySelector(".os-loading-bar__label");
       let a = 0;
-      const l = setInterval(() => {
+      const d = setInterval(() => {
         if (a++, i && i.style.setProperty("--var-width", `${a}%`), s && (s.textContent = `${a}%`), o)
           if (a === 16)
             o.innerHTML = 'Evaluating your average monthly <br class="mobile"> energy bill ...';
@@ -1502,7 +1513,7 @@
             const h = document.querySelector(".os-current-location__city");
             o.innerHTML = `Exploring available solar <br class="mobile"> programs in ${h == null ? void 0 : h.textContent} ...`;
           } else
-            a === 100 && (clearInterval(l), n == null || n.classList.add("os-hide"), e == null || e.classList.remove("os-hide"), b(), t && (t.dataset.slideName = "name"), g(
+            a === 100 && (clearInterval(d), n == null || n.classList.add("os-hide"), e == null || e.classList.remove("os-hide"), b(), t && (t.dataset.slideName = "name"), g(
               "#estimate-custom-name",
               "exp_name_view",
               "Last and First Name",
@@ -1529,7 +1540,7 @@
       });
     }
   }
-  const cn = `.estimate-custom-name .os-title {
+  const mn = `.estimate-custom-name .os-title {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1643,7 +1654,7 @@
   line-height: 16px;
 }
 `;
-  class pn {
+  class un {
     constructor({ container: n, position: e }) {
       this.position = e || "beforeend", this.container = n, this.init();
     }
@@ -1657,7 +1668,7 @@
         `<div class="v-center estimate-custom-name os-hide" id="estimate-custom-name">
       <div class="container text-center">
         <div class="os-container">
-          <h2 class="os-title"><span class="icon">${W}</span>Congratulations!</h2>
+          <h2 class="os-title"><span class="icon">${Y}</span>Congratulations!</h2>
           <h2 class="os-subtitle">
             Our research indicates that you are a great candidate for <br class="mobile"><span>No Net Cost Solar*</span>
           </h2>
@@ -1688,7 +1699,7 @@
       </div>
     </div>`
       );
-      !this.container || document.querySelector("#estimate-custom-name") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${cn}</style>`));
+      !this.container || document.querySelector("#estimate-custom-name") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${mn}</style>`));
     }
     handle() {
       const n = document.getElementById("os-fname"), e = document.getElementById("os-fname-error"), t = document.getElementById("os-lname"), i = document.getElementById("os-lname-error"), s = document.getElementById("os-namesaving");
@@ -1697,7 +1708,7 @@
       }), t == null || t.addEventListener("change", () => {
         p("exp_lname_input", "Input - Last name", "input", "Step - Last and First Name");
       }), s && s.addEventListener("click", () => {
-        const o = document.getElementById("estimate-custom-name"), a = document.getElementById("estimate-custom-email"), d = document.querySelector(".wrapper"), l = document.querySelector(".os-prev");
+        const o = document.getElementById("estimate-custom-name"), a = document.getElementById("estimate-custom-email"), l = document.querySelector(".wrapper"), d = document.querySelector(".os-prev");
         e.textContent = "", i.textContent = "";
         const c = n.value, m = t.value;
         if (!c || c.length === 0) {
@@ -1709,11 +1720,11 @@
           return;
         }
         const u = document.getElementById("fname"), h = document.getElementById("lname");
-        u && (u.value = c), h && (h.value = m), o == null || o.classList.add("os-hide"), a == null || a.classList.remove("os-hide"), d && (d.dataset.slideName = "email"), b(), l.classList.remove("os-hide"), p("exp_name_click", "Continue", "click", "Step - Last and First Name"), g("#estimate-custom-email", "exp_email_view", "View - Email", "Step - Email");
+        u && (u.value = c), h && (h.value = m), o == null || o.classList.add("os-hide"), a == null || a.classList.remove("os-hide"), l && (l.dataset.slideName = "email"), b(), d.classList.remove("os-hide"), p("exp_name_click", "Continue", "click", "Step - Last and First Name"), g("#estimate-custom-email", "exp_email_view", "View - Email", "Step - Email");
       });
     }
   }
-  const mn = `.estimate-custom-email .os-title {
+  const hn = `.estimate-custom-email .os-title {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1814,7 +1825,7 @@
   width: 100%;
 }
 `;
-  class un {
+  class gn {
     constructor({ container: n, position: e }) {
       this.position = e || "beforeend", this.container = n, this.init();
     }
@@ -1860,7 +1871,7 @@
       </div>
     </div>`
       );
-      !this.container || document.querySelector("#estimate-custom-email") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${mn}</style>`));
+      !this.container || document.querySelector("#estimate-custom-email") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${hn}</style>`));
     }
     handle() {
       const n = document.getElementById("os-email"), e = document.getElementById("os-email-error"), t = document.getElementById("os-emailsaving");
@@ -1876,12 +1887,12 @@
         }
         const a = document.getElementById("email");
         a && (a.value = s);
-        const d = document.querySelector("#slider-block a:last-child");
-        d && d.click(), i && (i.dataset.slideName = "phone"), p("exp_email_click", "Continue", "click", "Step - Email ");
+        const l = document.querySelector("#slider-block a:last-child");
+        l && l.click(), i && (i.dataset.slideName = "phone"), p("exp_email_click", "Continue", "click", "Step - Email ");
       });
     }
   }
-  const hn = `#estimate-phone .medium-container {
+  const fn = `#estimate-phone .medium-container {
   max-width: 580px;
 }
 
@@ -1977,12 +1988,12 @@
     padding: 0 !important;
   }
 }`;
-  class gn {
+  class xn {
     constructor() {
       this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${hn}</style>`), this.addLabel(), this.inputChanges();
+      document.head.insertAdjacentHTML("beforeend", `<style>${fn}</style>`), this.addLabel(), this.inputChanges();
     }
     inputChanges() {
       const n = document.getElementById("phone");
@@ -1993,7 +2004,8 @@
       });
       const e = document.getElementById("submit");
       e && e.addEventListener("click", () => {
-        p("exp_phone_click", "Submit", "click", "Step - Phone");
+        const t = document.querySelector(".os-prev");
+        t && t.classList.add("os-hide"), p("exp_phone_click", "Submit", "click", "Step - Phone");
       });
     }
     addLabel() {
@@ -2007,7 +2019,7 @@
       );
     }
   }
-  const fn = `/* .swiper-container-android .swiper-slide,
+  const vn = `/* .swiper-container-android .swiper-slide,
 .swiper-wrapper {
   transform: none !important;
 } */
@@ -2180,7 +2192,7 @@
   }
 }
 `;
-  class xn {
+  class bn {
     constructor({ progressBar: n, swiper: e }) {
       this.progressBar = n, this.swiper = e, this.init();
     }
@@ -2202,17 +2214,17 @@
     `
       ), e = (
         /* HTML */
-        `<button type="button" data-current-slide="0" class="os-prev">${O}</button>`
+        `<button type="button" data-current-slide="0" class="os-prev">${G}</button>`
       ), t = document.querySelector("#slider-block"), i = document.querySelector(".swiper-wrapper"), s = document.querySelector(".wrapper"), o = document.querySelector(".content-wrapper .container");
       if (!i || !o)
         return;
-      document.head.insertAdjacentHTML("beforeend", `<style>${fn}</style>`), i.insertAdjacentHTML("beforeend", n), o.insertAdjacentHTML("afterbegin", e);
-      const a = document.querySelector(".os-prev"), d = document.querySelector(".os-next");
+      document.head.insertAdjacentHTML("beforeend", `<style>${vn}</style>`), i.insertAdjacentHTML("beforeend", n), o.insertAdjacentHTML("afterbegin", e);
+      const a = document.querySelector(".os-prev"), l = document.querySelector(".os-next");
       a == null || a.addEventListener("click", () => {
         var m;
-        const l = document.querySelector(".os-navigation");
-        if (l.classList.add("os-hide"), setTimeout(() => {
-          l.classList.remove("os-hide");
+        const d = document.querySelector(".os-navigation");
+        if (d.classList.add("os-hide"), setTimeout(() => {
+          d.classList.remove("os-hide");
         }, 400), a.dataset.currentSlide === "1" && p(
           "exp_how_much_monthly_bill_back",
           "Back",
@@ -2230,41 +2242,41 @@
           }
         }
         if (a.dataset.currentSlide === "7") {
-          (m = this.swiper) == null || m.slideTo(3), s.dataset.slideName = "email", p("exp_phone_back", "Back", "click", "Step - Phone");
+          (m = this.swiper) == null || m.slideTo(3), window != null && window.google && (window.google = null), s.dataset.slideName = "email", p("exp_phone_back", "Back", "click", "Step - Phone");
           return;
         }
         const c = t == null ? void 0 : t.querySelector("a:first-child");
         setTimeout(() => {
           c == null || c.click();
         }, 0);
-      }), d == null || d.addEventListener("click", () => {
-        const l = t == null ? void 0 : t.querySelector("a:last-child"), c = document.querySelector(".os-navigation");
+      }), l == null || l.addEventListener("click", () => {
+        const d = t == null ? void 0 : t.querySelector("a:last-child"), c = document.querySelector(".os-navigation");
         c.classList.add("os-hide"), setTimeout(() => {
           c.classList.remove("os-hide");
         }, 400), setTimeout(() => {
-          l == null || l.click();
+          d == null || d.click();
         }, 0);
       });
     }
   }
-  class vn {
+  class yn {
     constructor() {
       var n;
-      this.swiperElement = document.querySelector(".swiper-container"), this.swiper = (n = this.swiperElement) == null ? void 0 : n.swiper, this.progressBar = new H(), this.addNavigation(), this.otherEvents();
+      this.swiperElement = document.querySelector(".swiper-container"), this.swiper = (n = this.swiperElement) == null ? void 0 : n.swiper, this.progressBar = new P(), this.addNavigation(), this.otherEvents();
     }
     addNavigation() {
-      new xn({ progressBar: this.progressBar, swiper: this.swiper });
+      new bn({ progressBar: this.progressBar, swiper: this.swiper });
     }
     changeSlides() {
-      new tn(), new gn();
-      const n = document.querySelector(".swiper-container"), e = n == null ? void 0 : n.swiper, t = E("#solarForm .wrapper"), i = E(".os-navigation");
+      new sn(), new xn();
+      const n = document.querySelector(".swiper-container"), e = n == null ? void 0 : n.swiper, t = L("#solarForm .wrapper"), i = L(".os-navigation");
       i.querySelector(".os-next");
       const s = document.querySelector(".os-prev");
       this.progressBar.hide(), g("#estimate-zip", "exp_zipcode_view", "View Screen", "Step zipcode"), e == null || e.on("transitionEnd", () => {
         const o = e.realIndex;
         t.dataset.currentSlide = o.toString(), s && (s.dataset.currentSlide = o.toString());
-        const a = document.querySelector(".swiper-slide-active"), d = (a == null ? void 0 : a.clientHeight) || 0;
-        if (i.style.top = `${d}px`, n && (n.dataset.currentSlide = o.toString()), o === 0 && this.progressBar.hide(), o === 1 && (this.progressBar.show(), this.progressBar.update(1), g(
+        const a = document.querySelector(".swiper-slide-active"), l = (a == null ? void 0 : a.clientHeight) || 0;
+        i.style.top = `${l}px`, n && (n.dataset.currentSlide = o.toString()), o === 0 && this.progressBar.hide(), o === 1 && (this.progressBar.show(), this.progressBar.update(1), g(
           "#estimate-custom-bill",
           "exp_how_much_monthly_bill_view",
           "How much is your latest monthly energy bill?",
@@ -2279,22 +2291,17 @@
           "exp_utility_provider_view",
           "Who is your utility provider?",
           "Step 2 - Who is your utility provider?"
-        )), o === 3) {
-          this.progressBar.update(3), document.getElementById("estimate-custom-address");
-          const l = document.getElementById("estimate-custom-shade");
-          document.getElementById("estimate-custom-name"), document.getElementById("estimate-custom-email"), l.classList.contains("os-hide") || g(
-            "#estimate-custom-shade",
-            "exp_roof_view",
-            "Does your roof get sunlight?",
-            "Step 3 - Does your roof get sunlight?"
-          );
-        }
-        o === 4 && document.querySelectorAll('input[name="shade"]').forEach((c) => {
+        )), o === 3 && (this.progressBar.update(3), document.getElementById("estimate-custom-shade").classList.contains("os-hide") || g(
+          "#estimate-custom-shade",
+          "exp_roof_view",
+          "Does your roof get sunlight?",
+          "Step 3 - Does your roof get sunlight?"
+        )), o === 4 && (document.querySelectorAll('input[name="shade"]').forEach((c) => {
           if (c.checked) {
             const m = c.closest(".radioNext");
             m && m.click();
           }
-        }), o === 4 && e.slideTo(7), o === 7 && g("#estimate-phone", "exp_phone_view", "View - Phone", "Step - Phone");
+        }), e.slideTo(7)), o === 7 && g("#estimate-phone", "exp_phone_view", "View - Phone", "Step - Phone");
       });
     }
     otherEvents() {
@@ -2310,10 +2317,10 @@
     }
     addSlides() {
       const n = document.querySelectorAll(".swiper-slide");
-      new X({ container: n[1], position: "beforeend" }), new sn({ container: n[3], position: "beforeend", progressBar: this.progressBar }), new rn({ container: n[3], position: "beforeend", progressBar: this.progressBar }), new dn({ container: n[3], position: "beforeend" }), new pn({ container: n[3], position: "beforeend" }), new un({ container: n[3], position: "beforeend" });
+      new J({ container: n[1], position: "beforeend" }), new rn({ container: n[3], position: "beforeend", progressBar: this.progressBar }), new dn({ container: n[3], position: "beforeend", progressBar: this.progressBar }), new pn({ container: n[3], position: "beforeend" }), new un({ container: n[3], position: "beforeend" }), new gn({ container: n[3], position: "beforeend" });
     }
   }
-  const bn = `.site-header {
+  const wn = `.site-header {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2836,17 +2843,17 @@ ul.form-list button {
 }
 `;
   $({ name: "Hyp. #6 - Introduce short funnel with merging zip code with address step", dev: "OS" }), T("exp_autofill_zipcode_reinforcement_message");
-  class yn {
+  class _n {
     constructor() {
-      this.slideManager = new vn(), this.init();
+      this.slideManager = new yn(), this.init();
     }
     init() {
-      location.pathname === "/save/" && L(".swiper-slide-active").then(() => {
-        L(".wrapper #slider-block .default").then(() => {
-          document.head.insertAdjacentHTML("beforeend", `<style>${bn}</style>`), document.title = "Solar Incentive Program", this.slideManager.addSlides(), this.slideManager.changeSlides();
+      location.pathname === "/save/" && E(".swiper-slide-active").then(() => {
+        E(".wrapper #slider-block .default").then(() => {
+          document.head.insertAdjacentHTML("beforeend", `<style>${wn}</style>`), document.title = "Solar Incentive Program", this.slideManager.addSlides(), this.slideManager.changeSlides();
         });
       });
     }
   }
-  new yn();
+  new _n();
 })();
