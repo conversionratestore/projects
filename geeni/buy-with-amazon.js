@@ -1,127 +1,136 @@
-(function() {
-  "use strict";
-  const d = (n, e, c, o = "") => {
-    window.dataLayer = window.dataLayer || [];
-    const i = {
-      event: "event-to-ga4",
-      event_name: n,
-      event_desc: e,
-      event_type: c,
-      event_loc: o.replace(/  +/g, " ")
-    };
-    window.dataLayer.push(i), console.log("Event obj: ", i);
-  }, b = ({ name: n, dev: e }) => {
-    console.log(
-      `%c EXP: ${n} (DEV: ${e})`,
-      "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
-    );
-  }, k = (n) => {
-    let e = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", n, "variant_1"));
-    }, 1e3);
-  }, m = (n) => new Promise((e) => {
-    const c = document.querySelector(n);
-    if (c)
-      return e(c);
-    const o = new MutationObserver(() => {
-      const i = document.querySelector(n);
-      i && (e(i), o.disconnect());
-    });
-    o.observe(document.documentElement, {
-      childList: !0,
-      subtree: !0
-    });
-  }), y = "https://conversionratestore.github.io/projects/geeni/img/amazon-prime/img", A = (
-    /* HTML */
-    `
-<div class="top-amazon">
-  <p><span class="fw-700">Fast, FREE delivery</span> with</p>
-  <img src="${y}/Amazon_Prime_Logo_Blue.svg"
-    alt="Amazon Prime logo">
-</div>
-`
-  ), B = (
-    /* HTML */
-    `
-<div class="warranty-sale-custom">
-  <div class="container">
-    <div class="warranty-sale-custom__container--desktop">
-      <div>
-        <p class="warranty-sale-custom__title">Warranty On All Products</p>
-        <p class="warranty-sale-custom__description">365-days</p>
-        <p class="warranty-sale-custom__subdescription">Direct from manufacturer</p>
-      </div>
-      <div>
-        <p class="warranty-sale-custom__title"><span>Buy with</span> <span class="prime-img-wrap"><img
-            src="${y}/Amazon_Prime_Logo_Blue.svg"
-            alt="Amazon Prime logo"></span></p>
-        <p class="warranty-sale-custom__description">Fast, FREE Delivery & Returns</p>
-        <p class="warranty-sale-custom__subdescription">Guaranteed by Amazon</p>
-      </div>
-      <div>
-        <p class="warranty-sale-custom__title">Buy More, Save More</p>
-        <div class="warranty-sale-custom__three-columns">
-          <div>
-            <p class="warranty-sale-custom__description">10% off</p>
-            <p class="warranty-sale-custom__subdescription">orders of $99+</p>
-          </div>
-          <div>
-            <p class="warranty-sale-custom__description">15% off</p>
-            <p class="warranty-sale-custom__subdescription">orders of $149+</p>
-          </div>
-          <div>
-            <p class="warranty-sale-custom__description">20% off</p>
-            <p class="warranty-sale-custom__subdescription">orders of $199+</p>
+;(function () {
+  'use strict'
+  const d = (n, e, c, o = '') => {
+      window.dataLayer = window.dataLayer || []
+      const i = {
+        event: 'event-to-ga4',
+        event_name: n,
+        event_desc: e,
+        event_type: c,
+        event_loc: o.replace(/  +/g, ' ')
+      }
+      window.dataLayer.push(i), console.log('Event obj: ', i)
+    },
+    b = ({ name: n, dev: e }) => {
+      console.log(
+        `%c EXP: ${n} (DEV: ${e})`,
+        'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;'
+      )
+    },
+    k = n => {
+      let e = setInterval(function () {
+        typeof window.clarity == 'function' && (clearInterval(e), window.clarity('set', n, 'variant_1'))
+      }, 1e3)
+    },
+    m = n =>
+      new Promise(e => {
+        const c = document.querySelector(n)
+        if (c) return e(c)
+        const o = new MutationObserver(() => {
+          const i = document.querySelector(n)
+          i && (e(i), o.disconnect())
+        })
+        o.observe(document.documentElement, {
+          childList: !0,
+          subtree: !0
+        })
+      }),
+    y = 'https://conversionratestore.github.io/projects/geeni/img/amazon-prime/img',
+    A =
+      /* HTML */
+      `
+        <div class="top-amazon">
+          <p><span class="fw-700">Fast, FREE delivery</span> with</p>
+          <img src="${y}/Amazon_Prime_Logo_Blue.svg" alt="Amazon Prime logo" />
+        </div>
+      `,
+    B =
+      /* HTML */
+      `
+        <div class="warranty-sale-custom">
+          <div class="container">
+            <div class="warranty-sale-custom__container--desktop">
+              <div>
+                <p class="warranty-sale-custom__title">Warranty On All Products</p>
+                <p class="warranty-sale-custom__description">365-days</p>
+                <p class="warranty-sale-custom__subdescription">Direct from manufacturer</p>
+              </div>
+              <div>
+                <p class="warranty-sale-custom__title">
+                  <span>Buy with</span>
+                  <span class="prime-img-wrap"
+                    ><img src="${y}/Amazon_Prime_Logo_Blue.svg" alt="Amazon Prime logo"
+                  /></span>
+                </p>
+                <p class="warranty-sale-custom__description">Fast, FREE Delivery & Returns</p>
+                <p class="warranty-sale-custom__subdescription">Guaranteed by Amazon</p>
+              </div>
+              <div>
+                <p class="warranty-sale-custom__title">Buy More, Save More</p>
+                <div class="warranty-sale-custom__three-columns">
+                  <div>
+                    <p class="warranty-sale-custom__description">10% off</p>
+                    <p class="warranty-sale-custom__subdescription">orders of $99+</p>
+                  </div>
+                  <div>
+                    <p class="warranty-sale-custom__description">15% off</p>
+                    <p class="warranty-sale-custom__subdescription">orders of $149+</p>
+                  </div>
+                  <div>
+                    <p class="warranty-sale-custom__description">20% off</p>
+                    <p class="warranty-sale-custom__subdescription">orders of $199+</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="warranty-sale-custom__container--mobile">
+              <div class="warranty-sale-custom__special-block">
+                <p class="warranty-sale-custom__title">
+                  <span>Buy with</span>
+                  <span class="prime-img-wrap"
+                    ><img src="${y}/Amazon_Prime_Logo_Blue.svg" alt="Amazon Prime logo"
+                  /></span>
+                </p>
+                <p class="warranty-sale-custom__description">Fast, FREE Delivery & Returns</p>
+                <p class="warranty-sale-custom__subdescription">Guaranteed by Amazon</p>
+              </div>
+              <div>
+                <img src="https://conversionratestore.github.io/projects/geeni/img/home-app-web/check.svg" alt="" />
+                <div>
+                  <p><span class="fw-700">Direct from manufacturer</span></p>
+                  <p><span class="fw-700">365</span>-days warranty on all products</p>
+                </div>
+              </div>
+              <div class="warranty-sale-custom__buy-block">
+                <div class="warranty-sale-custom__buy">
+                  <img src="https://conversionratestore.github.io/projects/geeni/img/home-app-web/bonus.svg" alt="" />
+                  <p><span class="fw-700">Buy More, Save More</span></p>
+                </div>
+                <div class="saves-comparison">
+                  <div>
+                    <div><span>SAVE</span><span>10% off</span></div>
+                    <div class="line"></div>
+                    <div><span>spend</span><span>$99</span></div>
+                  </div>
+                  <div>
+                    <div><span>SAVE</span><span>15% off</span></div>
+                    <div class="line"></div>
+                    <div><span>spend</span><span>$149</span></div>
+                  </div>
+                  <div>
+                    <div><span>SAVE</span><span>20% off</span></div>
+                    <div class="line"></div>
+                    <div><span>spend</span><span>$199</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-
-    </div>
-    <div class="warranty-sale-custom__container--mobile">
-      <div class="warranty-sale-custom__special-block">
-      <p class="warranty-sale-custom__title"><span>Buy with</span> <span class="prime-img-wrap"><img
-            src="${y}/Amazon_Prime_Logo_Blue.svg"
-            alt="Amazon Prime logo"></span></p>
-        <p class="warranty-sale-custom__description">Fast, FREE Delivery & Returns</p>
-        <p class="warranty-sale-custom__subdescription">Guaranteed by Amazon</p>
-      </div>
-      <div>
-        <img src="https://conversionratestore.github.io/projects/geeni/img/home-app-web/check.svg" alt="">
-        <div>
-          <p><span class="fw-700">Direct from manufacturer</span></p>
-          <p><span class="fw-700">365</span>-days warranty on all products</p>
-        </div>
-      </div>
-      <div class="warranty-sale-custom__buy-block">
-        <div class="warranty-sale-custom__buy">
-          <img src="https://conversionratestore.github.io/projects/geeni/img/home-app-web/bonus.svg" alt="">
-          <p><span class="fw-700">Buy More, Save More</span></p>
-        </div>
-        <div class="saves-comparison">
-          <div>
-            <div><span>SAVE</span><span>10% off</span></div>
-            <div class="line"></div>
-            <div><span>spend</span><span>$99</span></div>
-          </div>
-          <div>
-            <div><span>SAVE</span><span>15% off</span></div>
-            <div class="line"></div>
-            <div><span>spend</span><span>$149</span></div>
-          </div>
-          <div>
-            <div><span>SAVE</span><span>20% off</span></div>
-            <div class="line"></div>
-            <div><span>spend</span><span>$199</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`
-  ), z = (
-    /* HTML */
-    `
+      `,
+    z =
+      /* HTML */
+      `
 <div class="crs-popup">
   <div class="container">
       <button class="crs-popup_close d-flex" type="button">
@@ -159,53 +168,80 @@
       </div>
   </div>
 </div>
-`
-  ), S = (
-    /* HTML */
-    `
-<div class="sticky-btn">
-  <div class="sticky-btn-inner">
-    <button>
-        Buy with 
-        <img src="https://conversionratestore.github.io/projects/geeni/img/amazon-prime/img/Amazon_Prime_Logo_White.svg" alt="Amazon Prime logo">
-        <span class="sticky-btn__dot"></span>
-        <span class="sticky-btn__price"></span>
-      </button>
-  </div>
-</div>
-`
-  ), E = (n) => (
-    /* HTML */
-    `
-<div class="crs-delivery" data-hide-prime="true">
-    <div>
-      <p><span class="fw-700">Free standard delivery</span> on orders over <span class="fw-700">$69</span><br><span class="fw-700"> • 30 days free return</span></p>
-      <p>Approximate date of delivery, <span class="fw-700" data-delivery-type="standart">${n}</span> <img class="crs-tooltip" src="${y}/info_icon.svg" alt="open info popup"></p>
-    </div>
+`,
+    S =
+      /* HTML */
+      `
+        <div class="sticky-btn">
+          <div class="sticky-btn-inner">
+            <button>
+              Buy with
+              <img
+                src="https://conversionratestore.github.io/projects/geeni/img/amazon-prime/img/Amazon_Prime_Logo_White.svg"
+                alt="Amazon Prime logo"
+              />
+              <span class="sticky-btn__dot"></span>
+              <span class="sticky-btn__price"></span>
+            </button>
+          </div>
+        </div>
+      `,
+    E = n =>
+      /* HTML */
+      `
+        <div class="crs-delivery" data-hide-prime="true">
+          <div>
+            <p>
+              <span class="fw-700">Free standard delivery</span> on orders over <span class="fw-700">$69</span
+              ><br /><span class="fw-700"> • 30 days free return</span>
+            </p>
+            <p>
+              Approximate date of delivery, <span class="fw-700" data-delivery-type="standart">${n}</span>
+              <img class="crs-tooltip" src="${y}/info_icon.svg" alt="open info popup" />
+            </p>
+          </div>
 
-    <div class="or-divider">
-      <div></div>
-      <span>OR</span>
-      <div></div>
-    </div>
+          <div class="or-divider">
+            <div></div>
+            <span>OR</span>
+            <div></div>
+          </div>
 
-    <div>
-      <button>Buy with <img src="https://conversionratestore.github.io/projects/geeni/img/amazon-prime/img/Amazon_Prime_Logo_White.svg" alt="Amazon Prime logo"></button>
-      <div>
-        <p><span class="fw-700">FREE & fast delivery</span> guaranteed by Amazon<br><span class="fw-700"> • 30 days free return</span></p>
-        <p>Approximate date of delivery, <span class="fw-700" data-delivery-type="prime"></span> <img class="prime-tooltip" src="${y}/info_icon.svg" alt="open info popup"></p>
-      </div>
-    </div>
-  </div>
-  ${z}
-  ${S}
-`
-  ), F = (
-    /* HTML */
-    `
-  <button class="buy-with-prime">Buy with <img src="https://conversionratestore.github.io/projects/geeni/img/amazon-prime/img/Amazon_Prime_Logo_White.svg" alt="Amazon Prime logo"></button>
-`
-  ), P = `/* TOP AMAZON */
+          <div>
+            <button>
+              Buy with
+              <img
+                src="https://conversionratestore.github.io/projects/geeni/img/amazon-prime/img/Amazon_Prime_Logo_White.svg"
+                alt="Amazon Prime logo"
+              />
+            </button>
+            <div>
+              <p>
+                <span class="fw-700">FREE & fast delivery</span> guaranteed by Amazon<br /><span class="fw-700">
+                  • 30 days free return</span
+                >
+              </p>
+              <p>
+                Approximate date of delivery, <span class="fw-700" data-delivery-type="prime"></span>
+                <img class="prime-tooltip" src="${y}/info_icon.svg" alt="open info popup" />
+              </p>
+            </div>
+          </div>
+        </div>
+        ${z} ${S}
+      `,
+    F =
+      /* HTML */
+      `
+        <button class="buy-with-prime">
+          Buy with
+          <img
+            src="https://conversionratestore.github.io/projects/geeni/img/amazon-prime/img/Amazon_Prime_Logo_White.svg"
+            alt="Amazon Prime logo"
+          />
+        </button>
+      `,
+    P = `/* TOP AMAZON */
 .top-amazon {
   display: flex;
   justify-content: center;
@@ -831,7 +867,8 @@
   top: 5px;
   width: 45px;
   height: 27px;
-}/*# sourceMappingURL=styles.css.map */`, I = `.yotpo-widget-instance,
+}/*# sourceMappingURL=styles.css.map */`,
+    I = `.yotpo-widget-instance,
 .yotpo-widget-clear {
   width: 100%;
 }
@@ -843,7 +880,8 @@
 
 .review-link {
   display: none !important;
-}`, T = `.product-single__media-slider::after {
+}`,
+    T = `.product-single__media-slider::after {
   content: "";
   position: absolute;
   top: 6px;
@@ -860,7 +898,8 @@
     top: 0;
     right: 2px;
   }
-}`, L = `/* STICKY */
+}`,
+    L = `/* STICKY */
 .sticky-btn {
   align-items: center;
   justify-content: center;
@@ -914,155 +953,223 @@
   .sticky-btn-wrapper {
     display: none !important;
   }
-}`;
-  k("exp_amazon"), b({ name: "AmazonPay", dev: "AK" });
+}`
+  k('exp_amazon'), b({ name: 'AmazonPay', dev: 'AK' })
   function _() {
-    const n = window.location.pathname;
-    if (n === "/" || n === "/index")
-      return "home";
-    if (n.includes("/collections/") && !n.includes("/products/"))
-      return "collections";
-    if (n.includes("/products/"))
-      return "product";
+    const n = window.location.pathname
+    if (n === '/' || n === '/index') return 'home'
+    if (n.includes('/collections/') && !n.includes('/products/')) return 'collections'
+    if (n.includes('/products/')) return 'product'
   }
   function h(n) {
-    const e = document.createElement("style");
-    e.textContent = n, document.head.insertAdjacentElement("beforeend", e);
+    const e = document.createElement('style')
+    ;(e.textContent = n), document.head.insertAdjacentElement('beforeend', e)
   }
   class q {
     constructor() {
-      this.initializePage();
+      this.initializePage()
     }
     initializePage() {
-      this.addBlocks();
+      this.addBlocks()
     }
     addBlocks() {
-      m("#MainContent").then((e) => e.insertAdjacentHTML("afterbegin", A)), m(".warranty-sale").then((e) => e.insertAdjacentHTML("afterend", B));
+      m('#MainContent').then(e => e.insertAdjacentHTML('afterbegin', A)),
+        m('.warranty-sale').then(e => e.insertAdjacentHTML('afterend', B))
     }
-    addEvents() {
-    }
+    addEvents() {}
   }
   class R {
     constructor(e) {
-      this.pdpType = e, this.initializePage();
+      ;(this.pdpType = e), this.initializePage()
     }
     initializePage() {
-      this.hideAllReviews(), this.addPrimeCircleIfNeeded(), this.addComponent();
+      this.hideAllReviews(), this.addPrimeCircleIfNeeded(), this.addComponent()
     }
     addComponent() {
       function e() {
         const o = setInterval(() => {
-          var i, g;
-          if (document.querySelector(".product__block.product__form__wrapper") && ((i = document.querySelector("[data-delivery-date]")) != null && i.textContent)) {
-            clearInterval(o);
-            const v = document.querySelector(".product__block.product__form__wrapper"), x = (g = document.querySelector("[data-delivery-date]")) == null ? void 0 : g.textContent, w = E(x);
-            v.insertAdjacentHTML("afterend", w);
+          var i, g
+          if (
+            document.querySelector('.product__block.product__form__wrapper') &&
+            (i = document.querySelector('[data-delivery-date]')) != null &&
+            i.textContent
+          ) {
+            clearInterval(o)
+            const v = document.querySelector('.product__block.product__form__wrapper'),
+              x = (g = document.querySelector('[data-delivery-date]')) == null ? void 0 : g.textContent,
+              w = E(x)
+            v.insertAdjacentHTML('afterend', w)
           }
-        }, 100);
+        }, 100)
       }
-      if (e(), this.pdpType !== "bundle") {
-        let c = function() {
-          m(".crs-delivery").then((s) => s.dataset.hidePrime = "false");
-        }, o = function() {
-          const r = setInterval(() => {
-            var a, t, l;
-            if ((t = (a = document.querySelector("delivery-promise-wc")) == null ? void 0 : a.shadowRoot) != null && t.querySelector(".AmazonLayout__nowrap") && document.querySelector('[data-delivery-type="prime"]')) {
-              clearInterval(r);
-              const p = document.querySelector('[data-delivery-type="prime"]'), u = (l = document.querySelector("delivery-promise-wc").shadowRoot.querySelector(".AmazonLayout__nowrap")) == null ? void 0 : l.textContent;
-              p.innerText = i(u);
-            }
-          }, 100);
-        }, i = function(s) {
-          const r = /(?:Tomorrow )?(?:\w+ )?(\w+) (\d+)/, a = s.match(r);
-          if (!a)
-            return "Invalid date";
-          const [, t, l] = a, p = /* @__PURE__ */ new Date();
-          let u = /* @__PURE__ */ new Date(`${t} ${l}, ${p.getFullYear()}`);
-          return s.startsWith("Tomorrow") && u.setDate(p.getDate() + 1), u.toLocaleDateString("en-US", {
-            weekday: "short",
-            // "Mon" for Monday
-            month: "short",
-            // "Jul" for July
-            day: "numeric"
-            // "16" for the 16th
-          });
-        }, g = function() {
-          const r = setInterval(() => {
-            var a, t, l;
-            if (document.querySelector(".crs-delivery button") && ((l = (t = (a = document.querySelector("delivery-promise-wc")) == null ? void 0 : a.querySelector("#generic-promise-wc")) == null ? void 0 : t.shadowRoot) != null && l.querySelector(".amazon-pay-button")) && document.querySelector(".sticky-btn")) {
-              clearInterval(r);
-              const p = document.querySelector(".crs-delivery button"), u = document.querySelector(".sticky-btn"), f = document.querySelector("delivery-promise-wc").querySelector("#generic-promise-wc").shadowRoot.querySelector(".amazon-pay-button");
-              p.addEventListener("click", () => {
-                d("exp_amazon_pdp_u_buy_with_prime", "Buy with prime", "Button", "Product details"), f.click();
-              }), u.addEventListener("click", () => {
-                d("exp_amazon_pdp_s_buy_with_prime", "Buy with prime", "Button", "Sticky button"), f.click();
-              });
-            }
-          }, 100);
-        }, v = function() {
-          const r = setInterval(() => {
-            if (document.querySelector(".crs-tooltip") && document.querySelector(".crs-popup") && document.querySelector(".crs-popup_close")) {
-              clearInterval(r);
-              const a = document.querySelector(".crs-tooltip"), t = document.querySelector(".crs-popup"), l = document.querySelector(".crs-popup_close");
-              a.addEventListener("click", () => {
-                t.classList.add("active"), d("exp_amazon_pdp_tooltip", "Tooltip", "Button", "Free & fast delivery on orders over $69");
-              }), l.addEventListener("click", () => {
-                t.classList.remove("active");
-              }), t.addEventListener("click", (p) => {
-                p.target.closest(".container") || p.target.classList.remove("active");
-              });
-            }
-          }, 100);
-        }, x = function() {
-          setInterval(() => {
-            const s = document.querySelector(".sticky-btn-wrapper__price"), r = document.querySelector(".sticky-btn__price");
-            r && s && (r.textContent = s.textContent);
-          }, 1e3);
-        }, w = function() {
-          const r = setInterval(() => {
-            var a, t;
-            (t = (a = document.querySelector("delivery-promise-wc")) == null ? void 0 : a.shadowRoot) != null && t.querySelector(".AmazonLayout__icon") && document.querySelector(".prime-tooltip") && (clearInterval(r), document.querySelector(".prime-tooltip").addEventListener("click", () => {
-              d("exp_amazon_pdp_learn_more", "Learn more", "Button", "Free & fast delivery guaranteed by Amazon"), document.querySelector("delivery-promise-wc").shadowRoot.querySelector(".AmazonLayout__icon").click(), d("exp_amazon_free_delivery_view", "View on screen", "Element visibility", "Popup Get fast free delivery");
-            }));
-          }, 100);
-        };
-        console.log("Single page"), h(L), c(), g(), o(), v(), x(), w();
+      if ((e(), this.pdpType !== 'bundle')) {
+        let c = function () {
+            m('.crs-delivery').then(s => (s.dataset.hidePrime = 'false'))
+          },
+          o = function () {
+            const r = setInterval(() => {
+              var a, t, l
+              if (
+                (t = (a = document.querySelector('delivery-promise-wc')) == null ? void 0 : a.shadowRoot) != null &&
+                t.querySelector('.AmazonLayout__nowrap') &&
+                document.querySelector('[data-delivery-type="prime"]')
+              ) {
+                clearInterval(r)
+                const p = document.querySelector('[data-delivery-type="prime"]'),
+                  u =
+                    (l = document
+                      .querySelector('delivery-promise-wc')
+                      .shadowRoot.querySelector('.AmazonLayout__nowrap')) == null
+                      ? void 0
+                      : l.textContent
+                p.innerText = i(u)
+              }
+            }, 100)
+          },
+          i = function (s) {
+            const r = /(?:Tomorrow )?(?:\w+ )?(\w+) (\d+)/,
+              a = s.match(r)
+            if (!a) return 'Invalid date'
+            const [, t, l] = a,
+              p = /* @__PURE__ */ new Date()
+            let u = /* @__PURE__ */ new Date(`${t} ${l}, ${p.getFullYear()}`)
+            return (
+              s.startsWith('Tomorrow') && u.setDate(p.getDate() + 1),
+              u.toLocaleDateString('en-US', {
+                weekday: 'short',
+                // "Mon" for Monday
+                month: 'short',
+                // "Jul" for July
+                day: 'numeric'
+                // "16" for the 16th
+              })
+            )
+          },
+          g = function () {
+            const r = setInterval(() => {
+              var a, t, l
+              if (
+                document.querySelector('.crs-delivery button') &&
+                (l =
+                  (t =
+                    (a = document.querySelector('delivery-promise-wc')) == null
+                      ? void 0
+                      : a.querySelector('#generic-promise-wc')) == null
+                    ? void 0
+                    : t.shadowRoot) != null &&
+                l.querySelector('.amazon-pay-button') &&
+                document.querySelector('.sticky-btn')
+              ) {
+                clearInterval(r)
+                const p = document.querySelector('.crs-delivery button'),
+                  u = document.querySelector('.sticky-btn'),
+                  f = document
+                    .querySelector('delivery-promise-wc')
+                    .querySelector('#generic-promise-wc')
+                    .shadowRoot.querySelector('.amazon-pay-button')
+                p.addEventListener('click', () => {
+                  d('exp_amazon_pdp_u_buy_with_prime', 'Buy with prime', 'Button', 'Product details'), f.click()
+                }),
+                  u.addEventListener('click', () => {
+                    d('exp_amazon_pdp_s_buy_with_prime', 'Buy with prime', 'Button', 'Sticky button'), f.click()
+                  })
+                d('exp_amazon_pdp_vis_u_buy_with_prime', 'Buy with prime', 'Element visibility', 'Product details')
+              }
+            }, 100)
+          },
+          v = function () {
+            const r = setInterval(() => {
+              if (
+                document.querySelector('.crs-tooltip') &&
+                document.querySelector('.crs-popup') &&
+                document.querySelector('.crs-popup_close')
+              ) {
+                clearInterval(r)
+                const a = document.querySelector('.crs-tooltip'),
+                  t = document.querySelector('.crs-popup'),
+                  l = document.querySelector('.crs-popup_close')
+                a.addEventListener('click', () => {
+                  t.classList.add('active'),
+                    d('exp_amazon_pdp_tooltip', 'Tooltip', 'Button', 'Free & fast delivery on orders over $69')
+                }),
+                  l.addEventListener('click', () => {
+                    t.classList.remove('active')
+                  }),
+                  t.addEventListener('click', p => {
+                    p.target.closest('.container') || p.target.classList.remove('active')
+                  })
+              }
+            }, 100)
+          },
+          x = function () {
+            setInterval(() => {
+              const s = document.querySelector('.sticky-btn-wrapper__price'),
+                r = document.querySelector('.sticky-btn__price')
+              r && s && (r.textContent = s.textContent)
+            }, 1e3)
+          },
+          w = function () {
+            const r = setInterval(() => {
+              var a, t
+              ;(t = (a = document.querySelector('delivery-promise-wc')) == null ? void 0 : a.shadowRoot) != null &&
+                t.querySelector('.AmazonLayout__icon') &&
+                document.querySelector('.prime-tooltip') &&
+                (clearInterval(r),
+                document.querySelector('.prime-tooltip').addEventListener('click', () => {
+                  d('exp_amazon_pdp_learn_more', 'Learn more', 'Button', 'Free & fast delivery guaranteed by Amazon'),
+                    document
+                      .querySelector('delivery-promise-wc')
+                      .shadowRoot.querySelector('.AmazonLayout__icon')
+                      .click(),
+                    d(
+                      'exp_amazon_free_delivery_view',
+                      'View on screen',
+                      'Element visibility',
+                      'Popup Get fast free delivery'
+                    )
+                }))
+            }, 100)
+          }
+        console.log('Single page'), h(L), c(), g(), o(), v(), x(), w()
       }
     }
     hideAllReviews() {
-      h(I);
+      h(I)
     }
     addPrimeCircleIfNeeded() {
-      this.pdpType !== "bundle" && h(T);
+      this.pdpType !== 'bundle' && h(T)
     }
   }
   class j {
     constructor() {
-      this.handleStickyCart();
+      this.handleStickyCart()
     }
     handleStickyCart() {
-      m(".payments-cart-exp ul #AmazonPayButton").then((e) => {
-        document.querySelector(".payments-cart-exp").insertAdjacentHTML("beforeend", F), m(".buy-with-prime").then((c) => {
-          c.addEventListener("click", (o) => {
-            o.preventDefault(), d("exp_amazon_cart_buy_with_prime", "Buy with prime", "Button", "Cart"), e.click();
-          });
-        });
-      });
+      m('.payments-cart-exp ul #AmazonPayButton').then(e => {
+        document.querySelector('.payments-cart-exp').insertAdjacentHTML('beforeend', F),
+          m('.buy-with-prime').then(c => {
+            c.addEventListener('click', o => {
+              o.preventDefault(), d('exp_amazon_cart_buy_with_prime', 'Buy with prime', 'Button', 'Cart'), e.click()
+            })
+          })
+      })
     }
   }
-  m("head").then(() => {
-    if (h(P), _() === "home" && new q(), _() === "product") {
-      let n = function() {
-        const e = window.location.pathname;
+  m('head').then(() => {
+    if ((h(P), _() === 'home' && new q(), _() === 'product')) {
+      let n = function () {
+        const e = window.location.pathname
         return [
-          "/products/full-security-bundle",
-          "/products/color-lighting-bundle",
-          "/products/indoor-security-system-bundle",
-          "/products/smart-home-starter-pack"
-        ].some((i) => e.includes(i)) ? "bundle" : "single";
-      };
-      new R(n());
+          '/products/full-security-bundle',
+          '/products/color-lighting-bundle',
+          '/products/indoor-security-system-bundle',
+          '/products/smart-home-starter-pack'
+        ].some(i => e.includes(i))
+          ? 'bundle'
+          : 'single'
+      }
+      new R(n())
     }
-    new j();
-  });
-})();
+    new j()
+  })
+})()
