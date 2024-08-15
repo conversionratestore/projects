@@ -1073,7 +1073,6 @@
                   u.addEventListener('click', () => {
                     d('exp_amazon_pdp_s_buy_with_prime', 'Buy with prime', 'Button', 'Sticky button'), f.click()
                   })
-                d('exp_amazon_pdp_vis_u_buy_with_prime', 'Buy with prime', 'Element visibility', 'Product details')
               }
             }, 100)
           },
@@ -1129,8 +1128,16 @@
                     )
                 }))
             }, 100)
+          },
+          y = function () {
+            const r = setInterval(() => {
+              if (document.querySelector('.crs-delivery button')) {
+                clearInterval(r)
+                d('exp_amazon_pdp_vis_u_buy_with_prime', 'Buy with prime', 'Element visibility', 'Product details')
+              }
+            }, 100)
           }
-        console.log('Single page'), h(L), c(), g(), o(), v(), x(), w()
+        console.log('Single page'), h(L), c(), g(), o(), v(), x(), w(), y()
       }
     }
     hideAllReviews() {
