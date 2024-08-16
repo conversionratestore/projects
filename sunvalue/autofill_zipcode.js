@@ -2122,8 +2122,7 @@
 .os-prev[data-current-slide="1"],
 .os-prev[data-current-slide="2"],
 .os-prev[data-current-slide="3"],
-.os-prev[data-current-slide="4"],
-.os-prev[data-current-slide="7"]  {
+.os-prev[data-current-slide="4"] {
   display: flex;
 }
 
