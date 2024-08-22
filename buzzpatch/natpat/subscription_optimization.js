@@ -23,8 +23,8 @@
         c.src = t, c.onload = e, c.onerror = i, document.head.appendChild(c);
       } else if (l === "css") {
         if (Array.from(document.styleSheets).map((a) => {
-          var u;
-          return (u = a.href) == null ? void 0 : u.toLowerCase();
+          var b;
+          return (b = a.href) == null ? void 0 : b.toLowerCase();
         }).includes(t.toLowerCase()))
           return console.log(`Style ${t} allready downloaded!`), e("");
         const c = document.createElement("link");
@@ -39,7 +39,7 @@
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", r, n), console.log("set", r, n));
     }, 1e3);
   };
-  function s(r) {
+  function p(r) {
     return new Promise((n) => {
       if (document.querySelector(r))
         return n(document.querySelector(r));
@@ -56,11 +56,11 @@
   (function(r) {
     r = r === void 0 ? {} : r;
     let n, t, e, i, l = (r == null ? void 0 : r.delay) || 50;
-    function p() {
+    function s() {
       n = null, i = 0;
     }
-    return p(), function() {
-      return t = window.scrollY, n != null && (i = t - n), n = t, clearTimeout(e), e = setTimeout(p, l), i;
+    return s(), function() {
+      return t = window.scrollY, n != null && (i = t - n), n = t, clearTimeout(e), e = setTimeout(s, l), i;
     };
   })();
   function S(r) {
@@ -609,7 +609,6 @@ body .sleep-heading {
 }
 .new_subscription_block .plan_comment [data-tippy-root] {
   right: -20px !important;
-  top: -4px !important;
 }
 .new_subscription_block .plan_comment .tippy-box {
   background-color: #fff;
@@ -647,11 +646,11 @@ body .sleep-heading {
   font-weight: 400;
   margin: 0;
 }
-.new_subscription_block .plan_comment .tippy-box[data-placement^=bottom] > .tippy-arrow {
+.new_subscription_block .plan_comment .tippy-box[data-placement^=bottom] > .tippy-arrow, .new_subscription_block .plan_comment .tippy-box[data-placement^=top] > .tippy-arrow {
   display: block;
   color: white;
 }
-.new_subscription_block .plan_comment .tippy-box[data-placement^=bottom] > .tippy-arrow:before {
+.new_subscription_block .plan_comment .tippy-box[data-placement^=bottom] > .tippy-arrow:before, .new_subscription_block .plan_comment .tippy-box[data-placement^=top] > .tippy-arrow:before {
   left: -20px !important;
 }
 .new_subscription_block .plan_details {
@@ -811,9 +810,8 @@ body .sleep-heading {
 @media (max-width: 768px) and (max-width: 376px) {
   #newSubscriptionBlock .new_subscription_block .plan_comment [data-tippy-root] {
     right: -10px !important;
-    top: -4px !important;
   }
-  #newSubscriptionBlock .new_subscription_block .plan_comment .tippy-box[data-placement^=bottom] > .tippy-arrow:before {
+  #newSubscriptionBlock .new_subscription_block .plan_comment .tippy-box[data-placement^=bottom] > .tippy-arrow:before, #newSubscriptionBlock .new_subscription_block .plan_comment .tippy-box[data-placement^=top] > .tippy-arrow:before {
     left: -10px !important;
   }
 }
@@ -946,23 +944,23 @@ body .sleep-heading {
       ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${E}</style>`), this.changeTxtxMainBtn(), this.observePageChange(), this.device === "mobile" && this.renderStickyBlock();
     }
     changeTxtxMainBtn() {
-      s(".product-form__buttons button").then((n) => {
+      p(".product-form__buttons button").then((n) => {
         o(".new_txt_btn") || n.insertAdjacentHTML("afterbegin", '<div class="new_txt_btn">Add to cart</div>');
       });
     }
     replacePriceTxtHandler() {
-      s(".cPrice span").then((n) => {
-        s(".price__container").then((t) => {
-          s(".product-form__submit span[data-rtx-subscription-price]").then((e) => {
+      p(".cPrice span").then((n) => {
+        p(".price__container").then((t) => {
+          p(".product-form__submit span[data-rtx-subscription-price]").then((e) => {
             let i = setInterval(() => {
-              e.textContent !== "" && (clearInterval(i), s(".price--on-sale .price__badge-sale").then((l) => {
-                var u;
-                const p = n.textContent;
+              e.textContent !== "" && (clearInterval(i), p(".price--on-sale .price__badge-sale").then((l) => {
+                var b;
+                const s = n.textContent;
                 let c = "", a = "";
-                o(".product-form__submit span[data-rtx-subscription-price]").classList.contains("hidden") || (c = o(".product-form__submit span[data-rtx-subscription-price]").textContent, a = "Тут %", console.log("Тут %")), o(".product-form__submit span[data-rtx-onetime-price]").classList.contains("hidden") || (c = o(".product-form__submit span[data-rtx-onetime-price]").textContent, a = (u = o(".price--on-sale .price__badge-sale")) == null ? void 0 : u.textContent.trim(), console.log(a, "percentOff")), o(".new_price_wrapper") || t.insertAdjacentHTML(
+                o(".product-form__submit span[data-rtx-subscription-price]").classList.contains("hidden") || (c = o(".product-form__submit span[data-rtx-subscription-price]").textContent, a = "Тут %", console.log("Тут %")), o(".product-form__submit span[data-rtx-onetime-price]").classList.contains("hidden") || (c = o(".product-form__submit span[data-rtx-onetime-price]").textContent, a = (b = o(".price--on-sale .price__badge-sale")) == null ? void 0 : b.textContent.trim(), console.log(a, "percentOff")), o(".new_price_wrapper") || t.insertAdjacentHTML(
                   "beforebegin",
                   `<div class="new_price_wrapper">
-                      <div class="new_reg_price">${p}</div>
+                      <div class="new_reg_price">${s}</div>
                       <div class="new_sale_price">${c}</div>
                       <div class="percent_off">${x.percentIcon} ${a}</div>
                     </div>`
@@ -982,14 +980,14 @@ body .sleep-heading {
       this.observer.observe(o("body"), n);
     }
     renderNewSubscriptionBlock() {
-      s(".rtx-subscription-label__wrapper").then((n) => {
+      p(".rtx-subscription-label__wrapper").then((n) => {
         o("#newSubscriptionBlock") || n.insertAdjacentHTML("afterend", B);
-      }), s(".new_subscription_block").then((n) => {
+      }), p(".new_subscription_block").then((n) => {
         this.replacePriceTxtHandler(), this.changeSubscriptionPlanHandler(), this.renderCustomDropdown();
       }), this.initTooltip(), console.log("renderNewSubscriptionBlock>>>>>>>>>>>>>>>>");
     }
     changeSubscriptionPlanHandler() {
-      s(".plan_selection").then((n) => {
+      p(".plan_selection").then((n) => {
         console.log("plan_selection>>>>>>>>>>>>>>"), d(".plan_selection label").forEach((t) => {
           t.addEventListener("click", () => {
             var e, i;
@@ -1007,51 +1005,51 @@ body .sleep-heading {
       });
     }
     renderCustomDropdown() {
-      s("#newSubscriptionBlock").then((n) => {
+      p("#newSubscriptionBlock").then((n) => {
         o(".custom_dropdown") || n.insertAdjacentHTML("beforeend", T), this.renderOptions();
       });
     }
     renderOptions() {
-      s(".rtx-subscription-dropdown option").then((n) => {
-        s(".custom_dropdown").then((t) => {
-          const e = o(".rtx-subscription-dropdown"), i = d(".rtx-subscription-dropdown option"), l = o(".dropdown_menu"), p = o(".dropdown_toggle");
+      p(".rtx-subscription-dropdown option").then((n) => {
+        p(".custom_dropdown").then((t) => {
+          const e = o(".rtx-subscription-dropdown"), i = d(".rtx-subscription-dropdown option"), l = o(".dropdown_menu"), s = o(".dropdown_toggle");
           i.forEach((c) => {
             var _, h, m, g, y;
             let a = c.getAttribute("selected") !== null ? "selected" : "";
-            const u = c.getAttribute("value");
-            let b = (_ = c.textContent) != null && _.includes("Every") ? `<b>Ship every:</b> <span class="text_transform">${(h = c.textContent) == null ? void 0 : h.split("Every ")[1]}</span>` : c.textContent;
-            (m = c.textContent) != null && m.includes("(most common)") && (b = `<b>Ship every:</b> <span class="text_transform">${(g = c.textContent) == null ? void 0 : g.split("Every ")[1].split("(most common)")[0]}</span> <span class="most_common">(${(y = c.textContent) == null ? void 0 : y.split("(")[1]}</span>`), e && e.value === u && (p.innerHTML = `${b}`, a = "selected"), b && b.includes("One Time") && o('[id="purchaseTypeOneTime"]').checked && p.classList.add("disabled"), l.insertAdjacentHTML(
+            const b = c.getAttribute("value");
+            let u = (_ = c.textContent) != null && _.includes("Every") ? `<b>Ship every:</b> <span class="text_transform">${(h = c.textContent) == null ? void 0 : h.split("Every ")[1]}</span>` : c.textContent;
+            (m = c.textContent) != null && m.includes("(most common)") && (u = `<b>Ship every:</b> <span class="text_transform">${(g = c.textContent) == null ? void 0 : g.split("Every ")[1].split("(most common)")[0]}</span> <span class="most_common">(${(y = c.textContent) == null ? void 0 : y.split("(")[1]}</span>`), e && e.value === b && (s.innerHTML = `${u}`, a = "selected"), u && u.includes("One Time") && o('[id="purchaseTypeOneTime"]').checked && s.classList.add("disabled"), l.insertAdjacentHTML(
               "beforeend",
-              `<div class="dropdown_item ${a}" data-value="${u}">${b}</div>`
+              `<div class="dropdown_item ${a}" data-value="${b}">${u}</div>`
             );
           }), this.changeCustomDropdownHandler(".custom_dropdown");
         });
       });
     }
     changeCustomDropdownHandler(n) {
-      const t = o(n), e = t.querySelector(".dropdown_toggle"), i = t.querySelector(".dropdown_menu"), l = t.querySelectorAll(".dropdown_item"), p = d(".rtx-subscription-dropdown option");
+      const t = o(n), e = t.querySelector(".dropdown_toggle"), i = t.querySelector(".dropdown_menu"), l = t.querySelectorAll(".dropdown_item"), s = d(".rtx-subscription-dropdown option");
       e.addEventListener("click", () => {
         f("exp_sub_option_dropdown_01", "Ship every", "Dropdown", "Subscribe section"), i.classList.toggle("show"), this.adjustDropdownPosition(i), e.classList.toggle("active");
       }), l.forEach((a) => {
-        a.addEventListener("click", (u) => {
+        a.addEventListener("click", (b) => {
           var h;
-          const b = u.currentTarget, _ = b.getAttribute("data-value");
-          l.forEach((m) => m.classList.remove("selected")), b.classList.add("selected"), i.style.top = "100%", e.innerHTML = b.innerHTML, i.classList.remove("show"), e.classList.remove("active"), console.log(`Selected value: ${_}`), f(
+          const u = b.currentTarget, _ = u.getAttribute("data-value");
+          l.forEach((m) => m.classList.remove("selected")), u.classList.add("selected"), i.style.top = "100%", e.innerHTML = u.innerHTML, i.classList.remove("show"), e.classList.remove("active"), console.log(`Selected value: ${_}`), f(
             "exp_sub_option_dropdown_02",
-            `Selected value: ${(h = b.querySelector(".text_transform")) == null ? void 0 : h.textContent}`,
+            `Selected value: ${(h = u.querySelector(".text_transform")) == null ? void 0 : h.textContent}`,
             "Dropdown",
             "Subscribe section"
-          ), p.forEach((m) => {
+          ), s.forEach((m) => {
             m.getAttribute("value") === _ && (console.log(m.getAttribute("value") === _), m.closest("select") && (m.closest("select").value = _));
           });
         });
       }), document.addEventListener("click", (a) => {
-        const u = a.target;
-        t.contains(u) || (i.classList.remove("show"), e.classList.remove("active"), i.style.top = "100%");
+        const b = a.target;
+        t.contains(b) || (i.classList.remove("show"), e.classList.remove("active"), i.style.top = "100%");
       }), new IntersectionObserver(
         (a) => {
-          a.forEach((u) => {
-            u.isIntersecting || this.adjustDropdownPosition(i);
+          a.forEach((b) => {
+            b.isIntersecting || this.adjustDropdownPosition(i);
           });
         },
         {
@@ -1065,7 +1063,7 @@ body .sleep-heading {
       t.bottom > e ? n.style.top = `-${t.height + 2}px` : n.style.top = "100%";
     }
     changeSubscribePricePacksHandler() {
-      s("label .each-pack").then((n) => {
+      p("label .each-pack").then((n) => {
         d("label .each-pack").forEach((t) => {
           var e;
           (e = t.previousElementSibling) != null && e.classList.contains("each_pack_subscribe") || t.insertAdjacentHTML("beforebegin", '<span class="each_pack_subscribe">Тут буде ціна</span>');
@@ -1105,24 +1103,24 @@ body .sleep-heading {
     }
     // MOBILE
     renderStickyBlock() {
-      s("body").then((n) => {
-        o(".sticky_block") || n.insertAdjacentHTML("afterend", z), s(".sticky_block").then((t) => {
+      p("body").then((n) => {
+        o(".sticky_block") || n.insertAdjacentHTML("afterend", z), p(".sticky_block").then((t) => {
           let e = setInterval(() => {
             d("a.get-it") && d("a.get-it").length > 0 && (clearInterval(e), this.toggleStickyBlockVisibility("a.get-it"), console.log("a.get-it"));
           }, 300), i = setInterval(() => {
             d("a.scroll-to-checkout") && d("a.scroll-to-checkout").length > 0 && (clearInterval(i), this.toggleStickyBlockVisibility("a.scroll-to-checkout"), console.log("a.scroll-to-checkout"));
           }, 300), l = setInterval(() => {
             d("a.get-it-now") && d("a.get-it-now").length > 0 && (clearInterval(l), this.toggleStickyBlockVisibility("a.get-it-now"), console.log("a.get-it-now"));
-          }, 300), p = setInterval(() => {
-            window.location.pathname.match("focuspatch-focus-enhancing-sticker") && d('a[href="#pdpGetNow"]') && d('a[href="#pdpGetNow"]').length > 0 && (clearInterval(p), this.toggleStickyBlockVisibility('a[href="#pdpGetNow"]'), console.log('a[href="#pdpGetNow"]'));
+          }, 300), s = setInterval(() => {
+            window.location.pathname.match("focuspatch-focus-enhancing-sticker") && d('a[href="#pdpGetNow"]') && d('a[href="#pdpGetNow"]').length > 0 && (clearInterval(s), this.toggleStickyBlockVisibility('a[href="#pdpGetNow"]'), console.log('a[href="#pdpGetNow"]'));
           }, 300);
           this.clickStickyBtnHandler();
         });
       });
     }
     toggleStickyBlockVisibility(n) {
-      s("section.page-width").then(() => {
-        s(".sticky_block").then(() => {
+      p("section.page-width").then(() => {
+        p(".sticky_block").then(() => {
           const t = o(".sticky_block"), e = o("section.page-width");
           let i = d(n);
           console.log(i, "getItButtons");
@@ -1130,25 +1128,25 @@ body .sleep-heading {
             const a = c.getBoundingClientRect();
             return a.top < (window.innerHeight || document.documentElement.clientHeight) && a.bottom > 0 && a.left < (window.innerWidth || document.documentElement.clientWidth) && a.right > 0;
           }
-          function p() {
+          function s() {
             let c = !1;
             l(e) && (c = !0), i.forEach((a) => {
               l(a) && (c = !0);
             }), c ? (t.style.display = "none", o("body").classList.contains("sticky_block_visible") && o("body").classList.remove("sticky_block_visible")) : (t.style.display = "block", o("body").classList.add("sticky_block_visible"));
           }
-          p(), window.addEventListener("scroll", p), window.addEventListener("resize", p);
+          s(), window.addEventListener("scroll", s), window.addEventListener("resize", s);
         });
       });
     }
     clickStickyBtnHandler() {
-      s(".choose_your_product_btn").then((n) => {
+      p(".choose_your_product_btn").then((n) => {
         n.addEventListener("click", () => {
           f("exp_sub_option_button_03", "Choose your product", "Button", "Sticky button"), w(0, o("#pdpGetNow .product__title")), window.innerWidth < 376 && w(10, o("variant-radios"));
         });
       });
     }
   }
-  s(".rtx-subscription").then((r) => {
+  p(".rtx-subscription").then((r) => {
     new H(I);
   });
 })();
