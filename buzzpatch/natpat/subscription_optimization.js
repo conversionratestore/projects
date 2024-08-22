@@ -51,7 +51,7 @@
       top: r,
       behavior: "smooth"
     }), await S(800), !0;
-  }, w = {
+  }, g = {
     orangeArrowIcon: (
       /* HTML */
       `
@@ -90,7 +90,7 @@
         <input type="radio" name="plan" value="subscribeSave" id="subscribeSave" checked />
         <label for="subscribeSave" class="subscribe_save_variant"> Subscribe & Save</label>
       </div>
-      <div class="plan_comment">A choice that saves both time and money ${w.orangeArrowIcon}</div>
+      <div class="plan_comment">A choice that saves both time and money ${g.orangeArrowIcon}</div>
       <ul class="plan_details">
         <li>100% Money-Back Guarantee</li>
         <li>Priority Customer Service</li>
@@ -843,16 +843,16 @@ body .sleep-heading {
       s(".cPrice span").then((n) => {
         s(".price__container").then((e) => {
           s(".product-form__submit span[data-rtx-subscription-price]").then((t) => {
-            s(".product-form__submit span[data-rtx-subscription-price]").then((r) => {
+            s(".price--on-sale .price__badge-sale").then((r) => {
               var a;
               const d = n.textContent;
               let p = "", c = "";
-              o(".product-form__submit span[data-rtx-subscription-price]").classList.contains("hidden") || (p = o(".product-form__submit span[data-rtx-subscription-price]").textContent, c = "Тут %"), o(".product-form__submit span[data-rtx-onetime-price]").classList.contains("hidden") || (p = o(".product-form__submit span[data-rtx-onetime-price]").textContent, c = (a = o(".price--on-sale .price__badge-sale")) == null ? void 0 : a.textContent.trim()), o(".new_price_wrapper") || e.insertAdjacentHTML(
+              o(".product-form__submit span[data-rtx-subscription-price]").classList.contains("hidden") || (p = o(".product-form__submit span[data-rtx-subscription-price]").textContent, c = "Тут %", console.log("Тут %")), o(".product-form__submit span[data-rtx-onetime-price]").classList.contains("hidden") || (p = o(".product-form__submit span[data-rtx-onetime-price]").textContent, c = (a = o(".price--on-sale .price__badge-sale")) == null ? void 0 : a.textContent.trim(), console.log(c, "percentOff")), o(".new_price_wrapper") || e.insertAdjacentHTML(
                 "beforebegin",
                 `<div class="new_price_wrapper">
                   <div class="new_reg_price">${d}</div>
                   <div class="new_sale_price">${p}</div>
-                  <div class="percent_off">${w.percentIcon} ${c}</div>
+                  <div class="percent_off">${g.percentIcon} ${c}</div>
                 </div>`
               );
             });
@@ -903,11 +903,11 @@ body .sleep-heading {
         s(".custom_dropdown").then((e) => {
           const t = o(".rtx-subscription-dropdown"), r = f(".rtx-subscription-dropdown option"), d = o(".dropdown_menu"), p = o(".dropdown_toggle");
           r.forEach((c) => {
-            var _, h, u, g, y;
+            var _, h, u, w, y;
             let a = c.getAttribute("selected") !== null ? "selected" : "";
             const b = c.getAttribute("value");
             let l = (_ = c.textContent) != null && _.includes("Every") ? `<b>Ship every:</b> <span class="text_transform">${(h = c.textContent) == null ? void 0 : h.split("Every ")[1]}</span>` : c.textContent;
-            (u = c.textContent) != null && u.includes("(most common)") && (l = `<b>Ship every:</b> <span class="text_transform">${(g = c.textContent) == null ? void 0 : g.split("Every ")[1].split("(most common)")[0]}</span> <span class="most_common">(${(y = c.textContent) == null ? void 0 : y.split("(")[1]}</span>`), t && t.value === b && (p.innerHTML = `${l}`, a = "selected"), l && l.includes("One Time") && p.classList.add("disabled"), d.insertAdjacentHTML(
+            (u = c.textContent) != null && u.includes("(most common)") && (l = `<b>Ship every:</b> <span class="text_transform">${(w = c.textContent) == null ? void 0 : w.split("Every ")[1].split("(most common)")[0]}</span> <span class="most_common">(${(y = c.textContent) == null ? void 0 : y.split("(")[1]}</span>`), t && t.value === b && (p.innerHTML = `${l}`, a = "selected"), l && l.includes("One Time") && p.classList.add("disabled"), d.insertAdjacentHTML(
               "beforeend",
               `<div class="dropdown_item ${a}" data-value="${b}">${l}</div>`
             );
