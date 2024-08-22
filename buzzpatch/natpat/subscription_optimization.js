@@ -18,7 +18,7 @@
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", i, n), console.log("set", i, n));
     }, 1e3);
   };
-  function s(i) {
+  function a(i) {
     return new Promise((n) => {
       if (document.querySelector(i))
         return n(document.querySelector(i));
@@ -34,12 +34,12 @@
   }
   (function(i) {
     i = i === void 0 ? {} : i;
-    let n, e, t, r, d = (i == null ? void 0 : i.delay) || 50;
-    function p() {
+    let n, e, t, r, p = (i == null ? void 0 : i.delay) || 50;
+    function d() {
       n = null, r = 0;
     }
-    return p(), function() {
-      return e = window.scrollY, n != null && (r = e - n), n = e, clearTimeout(t), t = setTimeout(p, d), r;
+    return d(), function() {
+      return e = window.scrollY, n != null && (r = e - n), n = e, clearTimeout(t), t = setTimeout(d, p), r;
     };
   })();
   function S(i) {
@@ -835,27 +835,29 @@ body .sleep-heading {
       ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${z}</style>`), this.changeTxtxMainBtn(), this.observePageChange(), this.device === "mobile" && this.renderStickyBlock();
     }
     changeTxtxMainBtn() {
-      s(".product-form__buttons button").then((n) => {
+      a(".product-form__buttons button").then((n) => {
         o(".new_txt_btn") || n.insertAdjacentHTML("afterbegin", '<div class="new_txt_btn">Add to cart</div>');
       });
     }
     replacePriceTxtHandler() {
-      s(".cPrice span").then((n) => {
-        s(".price__container").then((e) => {
-          s(".product-form__submit span[data-rtx-subscription-price]").then((t) => {
-            s(".price--on-sale .price__badge-sale").then((r) => {
-              var a;
-              const d = n.textContent;
-              let p = "", c = "";
-              o(".product-form__submit span[data-rtx-subscription-price]").classList.contains("hidden") || (p = o(".product-form__submit span[data-rtx-subscription-price]").textContent, c = "Тут %", console.log("Тут %")), o(".product-form__submit span[data-rtx-onetime-price]").classList.contains("hidden") || (p = o(".product-form__submit span[data-rtx-onetime-price]").textContent, c = (a = o(".price--on-sale .price__badge-sale")) == null ? void 0 : a.textContent.trim(), console.log(c, "percentOff")), o(".new_price_wrapper") || e.insertAdjacentHTML(
-                "beforebegin",
-                `<div class="new_price_wrapper">
-                  <div class="new_reg_price">${d}</div>
-                  <div class="new_sale_price">${p}</div>
-                  <div class="percent_off">${g.percentIcon} ${c}</div>
-                </div>`
-              );
-            });
+      a(".cPrice span").then((n) => {
+        a(".price__container").then((e) => {
+          a(".product-form__submit span[data-rtx-subscription-price]").then((t) => {
+            let r = setInterval(() => {
+              t.textContent !== "" && (clearInterval(r), a(".price--on-sale .price__badge-sale").then((p) => {
+                var l;
+                const d = n.textContent;
+                let c = "", s = "";
+                o(".product-form__submit span[data-rtx-subscription-price]").classList.contains("hidden") || (c = o(".product-form__submit span[data-rtx-subscription-price]").textContent, s = "Тут %", console.log("Тут %")), o(".product-form__submit span[data-rtx-onetime-price]").classList.contains("hidden") || (c = o(".product-form__submit span[data-rtx-onetime-price]").textContent, s = (l = o(".price--on-sale .price__badge-sale")) == null ? void 0 : l.textContent.trim(), console.log(s, "percentOff")), o(".new_price_wrapper") || e.insertAdjacentHTML(
+                  "beforebegin",
+                  `<div class="new_price_wrapper">
+                      <div class="new_reg_price">${d}</div>
+                      <div class="new_sale_price">${c}</div>
+                      <div class="percent_off">${g.percentIcon} ${s}</div>
+                    </div>`
+                );
+              }));
+            }, 300);
           });
         });
       });
@@ -869,14 +871,14 @@ body .sleep-heading {
       this.observer.observe(o("body"), n);
     }
     renderNewSubscriptionBlock() {
-      s(".rtx-subscription-label__wrapper").then((n) => {
+      a(".rtx-subscription-label__wrapper").then((n) => {
         o("#newSubscriptionBlock") || n.insertAdjacentHTML("afterend", C);
-      }), s(".new_subscription_block").then((n) => {
+      }), a(".new_subscription_block").then((n) => {
         this.replacePriceTxtHandler(), this.changeSubscriptionPlanHandler(), this.renderCustomDropdown();
       }), console.log("renderNewSubscriptionBlock>>>>>>>>>>>>>>>>");
     }
     changeSubscriptionPlanHandler() {
-      s(".plan_selection").then((n) => {
+      a(".plan_selection").then((n) => {
         console.log("plan_selection>>>>>>>>>>>>>>"), f(".plan_selection label").forEach((e) => {
           e.addEventListener("click", () => {
             var t, r;
@@ -894,51 +896,51 @@ body .sleep-heading {
       });
     }
     renderCustomDropdown() {
-      s("#newSubscriptionBlock").then((n) => {
+      a("#newSubscriptionBlock").then((n) => {
         o(".custom_dropdown") || n.insertAdjacentHTML("beforeend", L), this.renderOptions();
       });
     }
     renderOptions() {
-      s(".rtx-subscription-dropdown option").then((n) => {
-        s(".custom_dropdown").then((e) => {
-          const t = o(".rtx-subscription-dropdown"), r = f(".rtx-subscription-dropdown option"), d = o(".dropdown_menu"), p = o(".dropdown_toggle");
+      a(".rtx-subscription-dropdown option").then((n) => {
+        a(".custom_dropdown").then((e) => {
+          const t = o(".rtx-subscription-dropdown"), r = f(".rtx-subscription-dropdown option"), p = o(".dropdown_menu"), d = o(".dropdown_toggle");
           r.forEach((c) => {
-            var _, h, u, w, y;
-            let a = c.getAttribute("selected") !== null ? "selected" : "";
-            const b = c.getAttribute("value");
-            let l = (_ = c.textContent) != null && _.includes("Every") ? `<b>Ship every:</b> <span class="text_transform">${(h = c.textContent) == null ? void 0 : h.split("Every ")[1]}</span>` : c.textContent;
-            (u = c.textContent) != null && u.includes("(most common)") && (l = `<b>Ship every:</b> <span class="text_transform">${(w = c.textContent) == null ? void 0 : w.split("Every ")[1].split("(most common)")[0]}</span> <span class="most_common">(${(y = c.textContent) == null ? void 0 : y.split("(")[1]}</span>`), t && t.value === b && (p.innerHTML = `${l}`, a = "selected"), l && l.includes("One Time") && p.classList.add("disabled"), d.insertAdjacentHTML(
+            var _, h, b, w, y;
+            let s = c.getAttribute("selected") !== null ? "selected" : "";
+            const l = c.getAttribute("value");
+            let u = (_ = c.textContent) != null && _.includes("Every") ? `<b>Ship every:</b> <span class="text_transform">${(h = c.textContent) == null ? void 0 : h.split("Every ")[1]}</span>` : c.textContent;
+            (b = c.textContent) != null && b.includes("(most common)") && (u = `<b>Ship every:</b> <span class="text_transform">${(w = c.textContent) == null ? void 0 : w.split("Every ")[1].split("(most common)")[0]}</span> <span class="most_common">(${(y = c.textContent) == null ? void 0 : y.split("(")[1]}</span>`), t && t.value === l && (d.innerHTML = `${u}`, s = "selected"), u && u.includes("One Time") && d.classList.add("disabled"), p.insertAdjacentHTML(
               "beforeend",
-              `<div class="dropdown_item ${a}" data-value="${b}">${l}</div>`
+              `<div class="dropdown_item ${s}" data-value="${l}">${u}</div>`
             );
           }), this.changeCustomDropdownHandler(".custom_dropdown");
         });
       });
     }
     changeCustomDropdownHandler(n) {
-      const e = o(n), t = e.querySelector(".dropdown_toggle"), r = e.querySelector(".dropdown_menu"), d = e.querySelectorAll(".dropdown_item"), p = f(".rtx-subscription-dropdown option");
+      const e = o(n), t = e.querySelector(".dropdown_toggle"), r = e.querySelector(".dropdown_menu"), p = e.querySelectorAll(".dropdown_item"), d = f(".rtx-subscription-dropdown option");
       t.addEventListener("click", () => {
         m("exp_sub_option_dropdown_01", "Ship every", "Dropdown", "Subscribe section"), r.classList.toggle("show"), this.adjustDropdownPosition(r), t.classList.toggle("active");
-      }), d.forEach((a) => {
-        a.addEventListener("click", (b) => {
+      }), p.forEach((s) => {
+        s.addEventListener("click", (l) => {
           var h;
-          const l = b.currentTarget, _ = l.getAttribute("data-value");
-          d.forEach((u) => u.classList.remove("selected")), l.classList.add("selected"), r.style.top = "100%", t.innerHTML = l.innerHTML, r.classList.remove("show"), t.classList.remove("active"), console.log(`Selected value: ${_}`), m(
+          const u = l.currentTarget, _ = u.getAttribute("data-value");
+          p.forEach((b) => b.classList.remove("selected")), u.classList.add("selected"), r.style.top = "100%", t.innerHTML = u.innerHTML, r.classList.remove("show"), t.classList.remove("active"), console.log(`Selected value: ${_}`), m(
             "exp_sub_option_dropdown_02",
-            `Selected value: ${(h = l.querySelector(".text_transform")) == null ? void 0 : h.textContent}`,
+            `Selected value: ${(h = u.querySelector(".text_transform")) == null ? void 0 : h.textContent}`,
             "Dropdown",
             "Subscribe section"
-          ), p.forEach((u) => {
-            u.getAttribute("value") === _ && (console.log(u.getAttribute("value") === _), u.closest("select") && (u.closest("select").value = _));
+          ), d.forEach((b) => {
+            b.getAttribute("value") === _ && (console.log(b.getAttribute("value") === _), b.closest("select") && (b.closest("select").value = _));
           });
         });
-      }), document.addEventListener("click", (a) => {
-        const b = a.target;
-        e.contains(b) || (r.classList.remove("show"), t.classList.remove("active"), r.style.top = "100%");
+      }), document.addEventListener("click", (s) => {
+        const l = s.target;
+        e.contains(l) || (r.classList.remove("show"), t.classList.remove("active"), r.style.top = "100%");
       }), new IntersectionObserver(
-        (a) => {
-          a.forEach((b) => {
-            b.isIntersecting || this.adjustDropdownPosition(r);
+        (s) => {
+          s.forEach((l) => {
+            l.isIntersecting || this.adjustDropdownPosition(r);
           });
         },
         {
@@ -952,7 +954,7 @@ body .sleep-heading {
       e.bottom > t ? n.style.top = `-${e.height + 2}px` : n.style.top = "100%";
     }
     changeSubscribePricePacksHandler() {
-      s("label .each-pack").then((n) => {
+      a("label .each-pack").then((n) => {
         f("label .each-pack").forEach((e) => {
           var t;
           (t = e.previousElementSibling) != null && t.classList.contains("each_pack_subscribe") || e.insertAdjacentHTML("beforebegin", '<span class="each_pack_subscribe">Тут буде ціна</span>');
@@ -961,45 +963,45 @@ body .sleep-heading {
     }
     // MOBILE
     renderStickyBlock() {
-      s("body").then((n) => {
+      a("body").then((n) => {
         o(".sticky_block") || n.insertAdjacentHTML("afterend", B), this.toggleStickyBlockVisibility(), this.clickStickyBtnHandler();
       });
     }
     toggleStickyBlockVisibility() {
-      s("section.page-width").then(() => {
-        s(".sticky_block").then(() => {
+      a("section.page-width").then(() => {
+        a(".sticky_block").then(() => {
           const n = document.querySelector(".sticky_block"), e = document.querySelector("section.page-width");
           let t = "";
-          s(".get-it").then((c) => {
+          a(".get-it").then((c) => {
             t = f(".get-it");
-          }), s('[href="#pdpGetNow"]').then((c) => {
+          }), a('[href="#pdpGetNow"]').then((c) => {
             t = f('[href="#pdpGetNow"]');
           }), console.log(t);
           function r(c) {
-            const a = c.getBoundingClientRect();
-            return a.top < (window.innerHeight || document.documentElement.clientHeight) && a.bottom > 0 && a.left < (window.innerWidth || document.documentElement.clientWidth) && a.right > 0;
+            const s = c.getBoundingClientRect();
+            return s.top < (window.innerHeight || document.documentElement.clientHeight) && s.bottom > 0 && s.left < (window.innerWidth || document.documentElement.clientWidth) && s.right > 0;
           }
-          function d() {
+          function p() {
             let c = !1;
-            r(e) && (c = !0), t == null || t.forEach((a) => {
-              r(a) && (c = !0);
+            r(e) && (c = !0), t == null || t.forEach((s) => {
+              r(s) && (c = !0);
             }), c ? (n.style.display = "none", o("body").classList.contains("sticky_block_visible") && o("body").classList.remove("sticky_block_visible")) : (n.style.display = "block", o("body").classList.add("sticky_block_visible"));
           }
-          let p = setInterval(() => {
-            t !== "" && (d(), clearInterval(p), window.addEventListener("scroll", d), window.addEventListener("resize", d));
+          let d = setInterval(() => {
+            t !== "" && (p(), clearInterval(d), window.addEventListener("scroll", p), window.addEventListener("resize", p));
           }, 100);
         });
       });
     }
     clickStickyBtnHandler() {
-      s(".choose_your_product_btn").then((n) => {
+      a(".choose_your_product_btn").then((n) => {
         n.addEventListener("click", () => {
           m("exp_sub_option_button_03", "Choose your product", "Button", "Sticky button"), x(0, o("#pdpGetNow .product__title")), window.innerWidth < 376 && x(10, o("variant-radios"));
         });
       });
     }
   }
-  s(".rtx-subscription").then((i) => {
+  a(".rtx-subscription").then((i) => {
     new E(T);
   });
 })();
