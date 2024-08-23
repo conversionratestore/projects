@@ -1014,13 +1014,13 @@ body .sleep-heading {
         p(".custom_dropdown").then((t) => {
           const o = e(".rtx-subscription-dropdown"), i = d(".rtx-subscription-dropdown option"), l = e(".dropdown_menu"), s = e(".dropdown_toggle");
           i.forEach((c) => {
-            var _, h, m, g, y;
+            var _, h, u, g, y;
             let a = c.getAttribute("selected") !== null ? "selected" : "";
             const b = c.getAttribute("value");
-            let u = (_ = c.textContent) != null && _.includes("Every") ? `<b>Ship every:</b> <span class="text_transform">${(h = c.textContent) == null ? void 0 : h.split("Every ")[1]}</span>` : c.textContent;
-            (m = c.textContent) != null && m.includes("(most common)") && (u = `<b>Ship every:</b> <span class="text_transform">${(g = c.textContent) == null ? void 0 : g.split("Every ")[1].split("(most common)")[0]}</span> <span class="most_common">(${(y = c.textContent) == null ? void 0 : y.split("(")[1]}</span>`), o && o.value === b && (s.innerHTML = `${u}`, a = "selected"), u && u.includes("One Time") && e('[id="purchaseTypeOneTime"]').checked && s.classList.add("disabled"), l.insertAdjacentHTML(
+            let m = (_ = c.textContent) != null && _.includes("Every") ? `<b>Ship every:</b> <span class="text_transform">${(h = c.textContent) == null ? void 0 : h.split("Every ")[1]}</span>` : c.textContent;
+            (u = c.textContent) != null && u.includes("(most common)") && (m = `<b>Ship every:</b> <span class="text_transform">${(g = c.textContent) == null ? void 0 : g.split("Every ")[1].split("(most common)")[0]}</span> <span class="most_common">(${(y = c.textContent) == null ? void 0 : y.split("(")[1]}</span>`), o && o.value === b && (s.innerHTML = `${m}`, a = "selected"), e(".one_time_checked") && s.classList.add("disabled"), l.insertAdjacentHTML(
               "beforeend",
-              `<div class="dropdown_item ${a}" data-value="${b}">${u}</div>`
+              `<div class="dropdown_item ${a}" data-value="${b}">${m}</div>`
             );
           }), this.changeCustomDropdownHandler(".custom_dropdown");
         });
@@ -1033,14 +1033,14 @@ body .sleep-heading {
       }), l.forEach((a) => {
         a.addEventListener("click", (b) => {
           var h;
-          const u = b.currentTarget, _ = u.getAttribute("data-value");
-          l.forEach((m) => m.classList.remove("selected")), u.classList.add("selected"), i.style.top = "100%", o.innerHTML = u.innerHTML, i.classList.remove("show"), o.classList.remove("active"), console.log(`Selected value: ${_}`), f(
+          const m = b.currentTarget, _ = m.getAttribute("data-value");
+          l.forEach((u) => u.classList.remove("selected")), m.classList.add("selected"), i.style.top = "100%", o.innerHTML = m.innerHTML, i.classList.remove("show"), o.classList.remove("active"), console.log(`Selected value: ${_}`), f(
             "exp_sub_option_dropdown_02",
-            `Selected value: ${(h = u.querySelector(".text_transform")) == null ? void 0 : h.textContent}`,
+            `Selected value: ${(h = m.querySelector(".text_transform")) == null ? void 0 : h.textContent}`,
             "Dropdown",
             "Subscribe section"
-          ), s.forEach((m) => {
-            m.getAttribute("value") === _ && (console.log(m.getAttribute("value") === _), m.closest("select") && (m.closest("select").value = _));
+          ), s.forEach((u) => {
+            u.getAttribute("value") === _ && (console.log(u.getAttribute("value") === _), u.closest("select") && (u.closest("select").value = _));
           });
         });
       }), document.addEventListener("click", (a) => {
