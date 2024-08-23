@@ -144,7 +144,7 @@
     <p>
       Already have an account? <a href="/yogi/login?destination=${window.location.pathname}" class="c-green">Log in</a>
     </p>`
-  ), S = (o) => (
+  ), P = (o) => (
     /* HTML */
     ` <div class="crs_block crs_form">
     <div class="crs_form_container">
@@ -163,7 +163,7 @@
       </p>
     </div>
   </div>`
-  ), P = (o, e) => (
+  ), S = (o, e) => (
     /* HTML */
     ` <div class="crs_block">
       <h2>
@@ -174,7 +174,7 @@
       </p>
       <div class="crs_block_content">${o === "premium" && e ? E() : H()}</div>
     </div>
-    ${e === !1 ? S(o) : ""}`
+    ${e === !1 ? P(o) : ""}`
   ), z = `.o-page__header {
   z-index: 4;
 }
@@ -564,7 +564,7 @@
         return;
       let e = v();
       this.thisClass = x();
-      const t = P(this.thisClass, e);
+      const t = S(this.thisClass, e);
       if (e === !1 || e === !0 && this.thisClass === "premium") {
         this.insert(n(".sfc-nodePlayable__primaryContentContainer"), t);
         const i = n(".crs_form h2"), p = n("#block-userregistrationform");
@@ -757,11 +757,13 @@
 }
 
 #block-upgradebannerblock-2 {
+  padding: 0;
   background: none;
 }
 [data-sfc-id="upgrade_banner"] {
   display: none;
-}`, F = (
+}
+`, F = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -831,6 +833,10 @@
   .os-preview-badge .os-text {
     font-size: 14px;
     line-height: 24px;
+  }
+
+  .sfc-nodePlayable__primaryContentContainer {
+    margin-top: 20px;
   }
 }
 `;
