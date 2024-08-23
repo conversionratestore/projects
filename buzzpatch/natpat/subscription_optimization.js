@@ -974,7 +974,7 @@ body .sleep-heading {
     observePageChange() {
       this.observer = new MutationObserver((t) => {
         var o, i;
-        e(".rtx-subscription-unselected.np-one-pack.is-hidden") ? e("#newSubscriptionBlock") || this.renderNewSubscriptionBlock() : (o = e("#newSubscriptionBlock")) == null || o.remove(), e('[id="purchaseTypeSubscription"]').checked ? this.changeSubscribePricePacksHandler() : (i = e(".each_pack_subscribe")) == null || i.remove();
+        e(".rtx-subscription-unselected.np-one-pack.is-hidden") ? e("#newSubscriptionBlock") || this.renderNewSubscriptionBlock() : (o = e("#newSubscriptionBlock")) == null || o.remove(), e(".one_time_checked") ? (i = e(".each_pack_subscribe")) == null || i.remove() : this.changeSubscribePricePacksHandler();
       });
       const n = { childList: !0, subtree: !0 };
       this.observer.observe(e("body"), n);
@@ -1014,13 +1014,13 @@ body .sleep-heading {
         p(".custom_dropdown").then((t) => {
           const o = e(".rtx-subscription-dropdown"), i = d(".rtx-subscription-dropdown option"), l = e(".dropdown_menu"), s = e(".dropdown_toggle");
           i.forEach((c) => {
-            var _, h, u, g, y;
+            var m, h, u, g, y;
             let a = c.getAttribute("selected") !== null ? "selected" : "";
             const b = c.getAttribute("value");
-            let m = (_ = c.textContent) != null && _.includes("Every") ? `<b>Ship every:</b> <span class="text_transform">${(h = c.textContent) == null ? void 0 : h.split("Every ")[1]}</span>` : c.textContent;
-            (u = c.textContent) != null && u.includes("(most common)") && (m = `<b>Ship every:</b> <span class="text_transform">${(g = c.textContent) == null ? void 0 : g.split("Every ")[1].split("(most common)")[0]}</span> <span class="most_common">(${(y = c.textContent) == null ? void 0 : y.split("(")[1]}</span>`), o && o.value === b && (s.innerHTML = `${m}`, a = "selected"), e(".one_time_checked") && s.classList.add("disabled"), l.insertAdjacentHTML(
+            let _ = (m = c.textContent) != null && m.includes("Every") ? `<b>Ship every:</b> <span class="text_transform">${(h = c.textContent) == null ? void 0 : h.split("Every ")[1]}</span>` : c.textContent;
+            (u = c.textContent) != null && u.includes("(most common)") && (_ = `<b>Ship every:</b> <span class="text_transform">${(g = c.textContent) == null ? void 0 : g.split("Every ")[1].split("(most common)")[0]}</span> <span class="most_common">(${(y = c.textContent) == null ? void 0 : y.split("(")[1]}</span>`), o && o.value === b && (s.innerHTML = `${_}`, a = "selected"), e(".one_time_checked") && s.classList.add("disabled"), l.insertAdjacentHTML(
               "beforeend",
-              `<div class="dropdown_item ${a}" data-value="${b}">${m}</div>`
+              `<div class="dropdown_item ${a}" data-value="${b}">${_}</div>`
             );
           }), this.changeCustomDropdownHandler(".custom_dropdown");
         });
@@ -1033,14 +1033,14 @@ body .sleep-heading {
       }), l.forEach((a) => {
         a.addEventListener("click", (b) => {
           var h;
-          const m = b.currentTarget, _ = m.getAttribute("data-value");
-          l.forEach((u) => u.classList.remove("selected")), m.classList.add("selected"), i.style.top = "100%", o.innerHTML = m.innerHTML, i.classList.remove("show"), o.classList.remove("active"), console.log(`Selected value: ${_}`), f(
+          const _ = b.currentTarget, m = _.getAttribute("data-value");
+          l.forEach((u) => u.classList.remove("selected")), _.classList.add("selected"), i.style.top = "100%", o.innerHTML = _.innerHTML, i.classList.remove("show"), o.classList.remove("active"), console.log(`Selected value: ${m}`), f(
             "exp_sub_option_dropdown_02",
-            `Selected value: ${(h = m.querySelector(".text_transform")) == null ? void 0 : h.textContent}`,
+            `Selected value: ${(h = _.querySelector(".text_transform")) == null ? void 0 : h.textContent}`,
             "Dropdown",
             "Subscribe section"
           ), s.forEach((u) => {
-            u.getAttribute("value") === _ && (console.log(u.getAttribute("value") === _), u.closest("select") && (u.closest("select").value = _));
+            u.getAttribute("value") === m && (console.log(u.getAttribute("value") === m), u.closest("select") && (u.closest("select").value = m));
           });
         });
       }), document.addEventListener("click", (a) => {
