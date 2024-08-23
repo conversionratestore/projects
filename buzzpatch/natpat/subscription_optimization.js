@@ -1,52 +1,52 @@
 (function() {
   "use strict";
-  const f = (r, n, t, o = "") => {
+  const _ = (r, t, n, o = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: r,
-      event_desc: n,
-      event_type: t,
+      event_desc: t,
+      event_type: n,
       event_loc: o
-    }), console.dir(`Event: ${r} | ${n} | ${t} | ${o}`);
-  }, k = ({ name: r, dev: n }) => {
+    }), console.dir(`Event: ${r} | ${t} | ${n} | ${o}`);
+  }, k = ({ name: r, dev: t }) => {
     console.log(
-      `%c EXP: ${r} (DEV: ${n})`,
+      `%c EXP: ${r} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   }, d = (r) => document.querySelectorAll(r), e = (r) => document.querySelector(r), v = async (r) => {
-    const n = (t) => new Promise((o, i) => {
-      const l = t.split(".").pop();
+    const t = (n) => new Promise((o, c) => {
+      const l = n.split(".").pop();
       if (l === "js") {
-        if (Array.from(document.scripts).map((a) => a.src.toLowerCase()).includes(t.toLowerCase()))
-          return console.log(`Script ${t} allready downloaded!`), o("");
-        const c = document.createElement("script");
-        c.src = t, c.onload = o, c.onerror = i, document.head.appendChild(c);
+        if (Array.from(document.scripts).map((a) => a.src.toLowerCase()).includes(n.toLowerCase()))
+          return console.log(`Script ${n} allready downloaded!`), o("");
+        const i = document.createElement("script");
+        i.src = n, i.onload = o, i.onerror = c, document.head.appendChild(i);
       } else if (l === "css") {
         if (Array.from(document.styleSheets).map((a) => {
           var b;
           return (b = a.href) == null ? void 0 : b.toLowerCase();
-        }).includes(t.toLowerCase()))
-          return console.log(`Style ${t} allready downloaded!`), o("");
-        const c = document.createElement("link");
-        c.rel = "stylesheet", c.href = t, c.onload = o, c.onerror = i, document.head.appendChild(c);
+        }).includes(n.toLowerCase()))
+          return console.log(`Style ${n} allready downloaded!`), o("");
+        const i = document.createElement("link");
+        i.rel = "stylesheet", i.href = n, i.onload = o, i.onerror = c, document.head.appendChild(i);
       }
     });
-    for (const t of r)
-      await n(t), console.log(`Loaded librari ${t}`);
+    for (const n of r)
+      await t(n), console.log(`Loaded librari ${n}`);
     console.log("All libraries loaded!");
-  }, C = (r, n = "variant_1") => {
-    let t = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", r, n), console.log("set", r, n));
+  }, C = (r, t = "variant_1") => {
+    let n = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", r, t), console.log("set", r, t));
     }, 1e3);
   };
-  function p(r) {
-    return new Promise((n) => {
+  function s(r) {
+    return new Promise((t) => {
       if (document.querySelector(r))
-        return n(document.querySelector(r));
-      const t = new MutationObserver(() => {
-        document.querySelector(r) && (n(document.querySelector(r)), t.disconnect());
+        return t(document.querySelector(r));
+      const n = new MutationObserver(() => {
+        document.querySelector(r) && (t(document.querySelector(r)), n.disconnect());
       });
-      t.observe(document.documentElement, {
+      n.observe(document.documentElement, {
         childList: !0,
         subtree: !0,
         characterData: !0
@@ -55,21 +55,21 @@
   }
   (function(r) {
     r = r === void 0 ? {} : r;
-    let n, t, o, i, l = (r == null ? void 0 : r.delay) || 50;
-    function s() {
-      n = null, i = 0;
+    let t, n, o, c, l = (r == null ? void 0 : r.delay) || 50;
+    function p() {
+      t = null, c = 0;
     }
-    return s(), function() {
-      return t = window.scrollY, n != null && (i = t - n), n = t, clearTimeout(o), o = setTimeout(s, l), i;
+    return p(), function() {
+      return n = window.scrollY, t != null && (c = n - t), t = n, clearTimeout(o), o = setTimeout(p, l), c;
     };
   })();
   function S(r) {
-    return new Promise((n) => setTimeout(n, r));
+    return new Promise((t) => setTimeout(t, r));
   }
-  const w = async (r, n) => {
-    const t = r, i = (n == null ? void 0 : n.getBoundingClientRect().top) + window.pageYOffset - t;
+  const w = async (r, t) => {
+    const n = r, c = (t == null ? void 0 : t.getBoundingClientRect().top) + window.pageYOffset - n;
     return window.scrollTo({
-      top: i,
+      top: c,
       behavior: "smooth"
     }), await S(800), !0;
   }, x = {
@@ -932,10 +932,10 @@ body .sleep-heading {
 }
 .custom_dropdown .dropdown_item:hover .most_common {
   color: white;
-}/*# sourceMappingURL=main.css.map */`, I = window.innerWidth < 768 ? "mobile" : "desktop";
-  class H {
-    constructor(n) {
-      this.device = n, this.observer = null, this.init();
+}/*# sourceMappingURL=main.css.map */`, H = window.innerWidth < 768 ? "mobile" : "desktop";
+  class I {
+    constructor(t) {
+      this.device = t, this.observer = null, this.init();
     }
     init() {
       k({ name: "NatPat: subscription Optimization", dev: "SKh" }), C("exp_sub_option"), document.head.insertAdjacentHTML(
@@ -944,24 +944,24 @@ body .sleep-heading {
       ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${E}</style>`), this.changeTxtxMainBtn(), this.observePageChange(), this.device === "mobile" && this.renderStickyBlock();
     }
     changeTxtxMainBtn() {
-      p(".product-form__buttons button").then((n) => {
-        e(".new_txt_btn") || n.insertAdjacentHTML("afterbegin", '<div class="new_txt_btn">Add to cart</div>');
+      s(".product-form__buttons button").then((t) => {
+        e(".new_txt_btn") || t.insertAdjacentHTML("afterbegin", '<div class="new_txt_btn">Add to cart</div>');
       });
     }
     replacePriceTxtHandler() {
-      p(".cPrice span").then((n) => {
-        p(".price__container").then((t) => {
-          p(".product-form__submit span[data-rtx-subscription-price]").then((o) => {
-            let i = setInterval(() => {
-              o.textContent !== "" && e("[data-percent]") && (clearInterval(i), p(".price--on-sale .price__badge-sale").then((l) => {
+      s(".cPrice span").then((t) => {
+        s(".price__container").then((n) => {
+          s(".product-form__submit span[data-rtx-subscription-price]").then((o) => {
+            let c = setInterval(() => {
+              o.textContent !== "" && e("[data-percent]") && (clearInterval(c), s(".price--on-sale .price__badge-sale").then((l) => {
                 var b;
-                const s = n.textContent;
-                let c = "", a = "";
-                e(".product-form__submit span[data-rtx-subscription-price]").classList.contains("hidden") || (c = e(".product-form__submit span[data-rtx-subscription-price]").textContent, a = e("[data-percent]").getAttribute("data-percent"), console.log("Тут %")), e(".product-form__submit span[data-rtx-onetime-price]").classList.contains("hidden") || (c = e(".product-form__submit span[data-rtx-onetime-price]").textContent, a = (b = e(".price--on-sale .price__badge-sale")) == null ? void 0 : b.textContent.trim(), console.log(a, "percentOff")), e(".new_price_wrapper") || t.insertAdjacentHTML(
+                const p = t.textContent;
+                let i = "", a = "";
+                e(".product-form__submit span[data-rtx-subscription-price]").classList.contains("hidden") || (i = e(".product-form__submit span[data-rtx-subscription-price]").textContent, a = e("[data-percent]").getAttribute("data-percent"), console.log("Тут %")), e(".product-form__submit span[data-rtx-onetime-price]").classList.contains("hidden") || (i = e(".product-form__submit span[data-rtx-onetime-price]").textContent, a = (b = e(".price--on-sale .price__badge-sale")) == null ? void 0 : b.textContent.trim(), console.log(a, "percentOff")), e(".new_price_wrapper") || n.insertAdjacentHTML(
                   "beforebegin",
                   `<div class="new_price_wrapper">
-                      <div class="new_reg_price">${s}</div>
-                      <div class="new_sale_price">${c}</div>
+                      <div class="new_reg_price">${p}</div>
+                      <div class="new_sale_price">${i}</div>
                       <div class="percent_off">${x.percentIcon} ${a}</div>
                     </div>`
                 );
@@ -972,31 +972,35 @@ body .sleep-heading {
       });
     }
     observePageChange() {
-      this.observer = new MutationObserver((t) => {
-        var o, i;
-        e(".rtx-subscription-unselected.np-one-pack.is-hidden") ? e("#newSubscriptionBlock") || this.renderNewSubscriptionBlock() : (o = e("#newSubscriptionBlock")) == null || o.remove(), e(".one_time_checked") ? (i = e(".each_pack_subscribe")) == null || i.remove() : this.changeSubscribePricePacksHandler();
+      this.observer = new MutationObserver((n) => {
+        var o, c;
+        e(".rtx-subscription-unselected.np-one-pack.is-hidden") ? e("#newSubscriptionBlock") || this.renderNewSubscriptionBlock() : (o = e("#newSubscriptionBlock")) == null || o.remove(), e(".one_time_checked") ? (c = e(".each_pack_subscribe")) == null || c.remove() : this.changeSubscribePricePacksHandler();
       });
-      const n = { childList: !0, subtree: !0 };
-      this.observer.observe(e("body"), n);
+      const t = { childList: !0, subtree: !0 };
+      this.observer.observe(e("body"), t);
     }
     renderNewSubscriptionBlock() {
-      p(".rtx-subscription-label__wrapper").then((n) => {
-        e("#newSubscriptionBlock") || n.insertAdjacentHTML("afterend", B);
-      }), p(".new_subscription_block").then((n) => {
+      s(".rtx-subscription-label__wrapper").then((t) => {
+        e("#newSubscriptionBlock") || t.insertAdjacentHTML("afterend", B);
+      }), s(".new_subscription_block").then((t) => {
         this.replacePriceTxtHandler(), this.changeSubscriptionPlanHandler(), this.renderCustomDropdown();
       }), this.initTooltip(), console.log("renderNewSubscriptionBlock>>>>>>>>>>>>>>>>");
     }
     changeSubscriptionPlanHandler() {
-      p(".plan_selection").then((n) => {
-        console.log("plan_selection>>>>>>>>>>>>>>"), d(".plan_selection label").forEach((t) => {
-          t.addEventListener("click", () => {
-            var o, i;
-            switch (console.log("label >>>>>>>>", t.getAttribute("for")), (o = e(".custom_dropdown")) == null || o.remove(), (i = e(".new_price_wrapper")) == null || i.remove(), t.getAttribute("for")) {
+      s(".plan_selection").then((t) => {
+        d(".plan_selection label").forEach((n) => {
+          n.addEventListener("click", () => {
+            var o, c, l, p, i, a;
+            switch (n.getAttribute("for")) {
               case "oneTime":
-                f("exp_sub_option_button_01", "One-Time", "Button", "Subscribe section"), e('[id="purchaseTypeOneTime"]').click(), e(".plan_details").classList.contains("one_time_checked") || e(".plan_details").classList.add("one_time_checked");
+                if (_("exp_sub_option_button_01", "One-Time", "Button", "Subscribe section"), (o = n.previousElementSibling) != null && o.checked)
+                  return;
+                (c = e(".custom_dropdown")) == null || c.remove(), (l = e(".new_price_wrapper")) == null || l.remove(), e('[id="purchaseTypeOneTime"]').click(), e(".plan_details").classList.contains("one_time_checked") || e(".plan_details").classList.add("one_time_checked");
                 break;
               case "subscribeSave":
-                f("exp_sub_option_button_02", "Subscribe & Save", "Button", "Subscribe section"), e('[id="purchaseTypeSubscription"]').click(), e(".plan_details").classList.contains("one_time_checked") && e(".plan_details").classList.remove("one_time_checked");
+                if (_("exp_sub_option_button_02", "Subscribe & Save", "Button", "Subscribe section"), (p = n.previousElementSibling) != null && p.checked)
+                  return;
+                (i = e(".custom_dropdown")) == null || i.remove(), (a = e(".new_price_wrapper")) == null || a.remove(), e('[id="purchaseTypeSubscription"]').click(), e(".plan_details").classList.contains("one_time_checked") && e(".plan_details").classList.remove("one_time_checked");
                 break;
             }
             this.renderCustomDropdown(), this.replacePriceTxtHandler();
@@ -1005,70 +1009,70 @@ body .sleep-heading {
       });
     }
     renderCustomDropdown() {
-      p("#newSubscriptionBlock").then((n) => {
-        e(".custom_dropdown") || n.insertAdjacentHTML("beforeend", T), this.renderOptions();
+      s("#newSubscriptionBlock").then((t) => {
+        e(".custom_dropdown") || t.insertAdjacentHTML("beforeend", T), this.renderOptions(), console.log("renderCustomDropdown");
       });
     }
     renderOptions() {
-      p(".rtx-subscription-dropdown option").then((n) => {
-        p(".custom_dropdown").then((t) => {
-          const o = e(".rtx-subscription-dropdown"), i = d(".rtx-subscription-dropdown option"), l = e(".dropdown_menu"), s = e(".dropdown_toggle");
-          i.forEach((c) => {
-            var m, h, u, g, y;
-            let a = c.getAttribute("selected") !== null ? "selected" : "";
-            const b = c.getAttribute("value");
-            let _ = (m = c.textContent) != null && m.includes("Every") ? `<b>Ship every:</b> <span class="text_transform">${(h = c.textContent) == null ? void 0 : h.split("Every ")[1]}</span>` : c.textContent;
-            (u = c.textContent) != null && u.includes("(most common)") && (_ = `<b>Ship every:</b> <span class="text_transform">${(g = c.textContent) == null ? void 0 : g.split("Every ")[1].split("(most common)")[0]}</span> <span class="most_common">(${(y = c.textContent) == null ? void 0 : y.split("(")[1]}</span>`), o && o.value === b && (s.innerHTML = `${_}`, a = "selected"), e(".one_time_checked") && s.classList.add("disabled"), l.insertAdjacentHTML(
+      s(".rtx-subscription-dropdown option").then((t) => {
+        s(".custom_dropdown").then((n) => {
+          const o = e(".rtx-subscription-dropdown"), c = d(".rtx-subscription-dropdown option"), l = e(".dropdown_menu"), p = e(".dropdown_toggle");
+          c.forEach((i) => {
+            var f, h, m, g, y;
+            let a = i.getAttribute("selected") !== null ? "selected" : "";
+            const b = i.getAttribute("value");
+            let u = (f = i.textContent) != null && f.includes("Every") ? `<b>Ship every:</b> <span class="text_transform">${(h = i.textContent) == null ? void 0 : h.split("Every ")[1]}</span>` : i.textContent;
+            (m = i.textContent) != null && m.includes("(most common)") && (u = `<b>Ship every:</b> <span class="text_transform">${(g = i.textContent) == null ? void 0 : g.split("Every ")[1].split("(most common)")[0]}</span> <span class="most_common">(${(y = i.textContent) == null ? void 0 : y.split("(")[1]}</span>`), o && o.value === b && (p.innerHTML = `${u}`, a = "selected"), e(".one_time_checked") && p.classList.add("disabled"), l.insertAdjacentHTML(
               "beforeend",
-              `<div class="dropdown_item ${a}" data-value="${b}">${_}</div>`
+              `<div class="dropdown_item ${a}" data-value="${b}">${u}</div>`
             );
           }), this.changeCustomDropdownHandler(".custom_dropdown");
         });
       });
     }
-    changeCustomDropdownHandler(n) {
-      const t = e(n), o = t.querySelector(".dropdown_toggle"), i = t.querySelector(".dropdown_menu"), l = t.querySelectorAll(".dropdown_item"), s = d(".rtx-subscription-dropdown option");
+    changeCustomDropdownHandler(t) {
+      const n = e(t), o = n.querySelector(".dropdown_toggle"), c = n.querySelector(".dropdown_menu"), l = n.querySelectorAll(".dropdown_item"), p = d(".rtx-subscription-dropdown option");
       o.addEventListener("click", () => {
-        f("exp_sub_option_dropdown_01", "Ship every", "Dropdown", "Subscribe section"), i.classList.toggle("show"), this.adjustDropdownPosition(i), o.classList.toggle("active");
+        _("exp_sub_option_dropdown_01", "Ship every", "Dropdown", "Subscribe section"), c.classList.toggle("show"), this.adjustDropdownPosition(c), o.classList.toggle("active");
       }), l.forEach((a) => {
         a.addEventListener("click", (b) => {
           var h;
-          const _ = b.currentTarget, m = _.getAttribute("data-value");
-          l.forEach((u) => u.classList.remove("selected")), _.classList.add("selected"), i.style.top = "100%", o.innerHTML = _.innerHTML, i.classList.remove("show"), o.classList.remove("active"), console.log(`Selected value: ${m}`), f(
+          const u = b.currentTarget, f = u.getAttribute("data-value");
+          l.forEach((m) => m.classList.remove("selected")), u.classList.add("selected"), c.style.top = "100%", o.innerHTML = u.innerHTML, c.classList.remove("show"), o.classList.remove("active"), _(
             "exp_sub_option_dropdown_02",
-            `Selected value: ${(h = _.querySelector(".text_transform")) == null ? void 0 : h.textContent}`,
+            `Selected value: ${(h = u.querySelector(".text_transform")) == null ? void 0 : h.textContent}`,
             "Dropdown",
             "Subscribe section"
-          ), s.forEach((u) => {
-            u.getAttribute("value") === m && (console.log(u.getAttribute("value") === m), u.closest("select") && (u.closest("select").value = m));
+          ), p.forEach((m) => {
+            m.getAttribute("value") === f && m.closest("select") && (m.closest("select").value = f);
           });
         });
       }), document.addEventListener("click", (a) => {
         const b = a.target;
-        t.contains(b) || (i.classList.remove("show"), o.classList.remove("active"), i.style.top = "100%");
+        n.contains(b) || (c.classList.remove("show"), o.classList.remove("active"), c.style.top = "100%");
       }), new IntersectionObserver(
         (a) => {
           a.forEach((b) => {
-            b.isIntersecting || this.adjustDropdownPosition(i);
+            b.isIntersecting || this.adjustDropdownPosition(c);
           });
         },
         {
           root: null,
           threshold: 1
         }
-      ).observe(i);
+      ).observe(c);
     }
-    adjustDropdownPosition(n) {
-      const t = n.getBoundingClientRect(), o = window.innerHeight || document.documentElement.clientHeight;
-      t.bottom > o ? n.style.top = `-${t.height + 2}px` : n.style.top = "100%";
+    adjustDropdownPosition(t) {
+      const n = t.getBoundingClientRect(), o = window.innerHeight || document.documentElement.clientHeight;
+      n.bottom > o ? t.style.top = `-${n.height + 2}px` : t.style.top = "100%";
     }
     changeSubscribePricePacksHandler() {
-      p("label .each-pack[data-subscribe]").then((n) => {
-        d("label .each-pack").forEach((t) => {
+      s("label .each-pack[data-subscribe]").then((t) => {
+        d("label .each-pack").forEach((n) => {
           var o;
-          t.closest('label[data-pack="1"]') || (o = t.previousElementSibling) != null && o.classList.contains("each_pack_subscribe") || t.insertAdjacentHTML(
+          n.closest('label[data-pack="1"]') || (o = n.previousElementSibling) != null && o.classList.contains("each_pack_subscribe") || n.insertAdjacentHTML(
             "beforebegin",
-            `<span class="each_pack_subscribe">${t.getAttribute("data-subscribe")}</span>`
+            `<span class="each_pack_subscribe">${n.getAttribute("data-subscribe")}</span>`
           );
         });
       });
@@ -1078,21 +1082,21 @@ body .sleep-heading {
         "https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js",
         "https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"
       ]).then(async () => {
-        let n = setInterval(() => {
-          typeof tippy == "function" && e("[data-tooltip]") && (clearInterval(n), d("[data-tooltip]").forEach((t) => {
-            tippy(t, {
-              content: t.getAttribute("data-title"),
+        let t = setInterval(() => {
+          typeof tippy == "function" && e("[data-tooltip]") && (clearInterval(t), d("[data-tooltip]").forEach((n) => {
+            tippy(n, {
+              content: n.getAttribute("data-title"),
               // trigger: 'click',
               allowHTML: !0,
               arrow: !0,
               arrowType: "round",
               appendTo: function() {
-                return t.closest(".plan_comment");
+                return n.closest(".plan_comment");
               },
               placement: "bottom-end",
               interactive: !0,
               onShow(o) {
-                f(
+                _(
                   "exp_sub_option_tooltip_01",
                   "A choice that saves both time and money",
                   "Visibility",
@@ -1106,51 +1110,50 @@ body .sleep-heading {
     }
     // MOBILE
     renderStickyBlock() {
-      p("body").then((n) => {
-        e(".sticky_block") || n.insertAdjacentHTML("afterend", z), p(".sticky_block").then((t) => {
+      s("body").then((t) => {
+        e(".sticky_block") || t.insertAdjacentHTML("afterend", z), s(".sticky_block").then((n) => {
           let o = setInterval(() => {
-            d("a.get-it") && d("a.get-it").length > 0 && (clearInterval(o), this.toggleStickyBlockVisibility("a.get-it"), console.log("a.get-it"));
-          }, 300), i = setInterval(() => {
-            d("a.scroll-to-checkout") && d("a.scroll-to-checkout").length > 0 && (clearInterval(i), this.toggleStickyBlockVisibility("a.scroll-to-checkout"), console.log("a.scroll-to-checkout"));
+            d("a.get-it") && d("a.get-it").length > 0 && (clearInterval(o), this.toggleStickyBlockVisibility("a.get-it"));
+          }, 300), c = setInterval(() => {
+            d("a.scroll-to-checkout") && d("a.scroll-to-checkout").length > 0 && (clearInterval(c), this.toggleStickyBlockVisibility("a.scroll-to-checkout"));
           }, 300), l = setInterval(() => {
-            d("a.get-it-now") && d("a.get-it-now").length > 0 && (clearInterval(l), this.toggleStickyBlockVisibility("a.get-it-now"), console.log("a.get-it-now"));
-          }, 300), s = setInterval(() => {
-            window.location.pathname.match("focuspatch-focus-enhancing-sticker") && d('a[href="#pdpGetNow"]') && d('a[href="#pdpGetNow"]').length > 0 && (clearInterval(s), this.toggleStickyBlockVisibility('a[href="#pdpGetNow"]'), console.log('a[href="#pdpGetNow"]'));
+            d("a.get-it-now") && d("a.get-it-now").length > 0 && (clearInterval(l), this.toggleStickyBlockVisibility("a.get-it-now"));
+          }, 300), p = setInterval(() => {
+            window.location.pathname.match("focuspatch-focus-enhancing-sticker") && d('a[href="#pdpGetNow"]') && d('a[href="#pdpGetNow"]').length > 0 && (clearInterval(p), this.toggleStickyBlockVisibility('a[href="#pdpGetNow"]'));
           }, 300);
           this.clickStickyBtnHandler();
         });
       });
     }
-    toggleStickyBlockVisibility(n) {
-      p("section.page-width").then(() => {
-        p(".sticky_block").then(() => {
-          const t = e(".sticky_block"), o = e("section.page-width");
-          let i = d(n);
-          console.log(i, "getItButtons");
-          function l(c) {
-            const a = c.getBoundingClientRect();
+    toggleStickyBlockVisibility(t) {
+      s("section.page-width").then(() => {
+        s(".sticky_block").then(() => {
+          const n = e(".sticky_block"), o = e("section.page-width");
+          let c = d(t);
+          function l(i) {
+            const a = i.getBoundingClientRect();
             return a.top < (window.innerHeight || document.documentElement.clientHeight) && a.bottom > 0 && a.left < (window.innerWidth || document.documentElement.clientWidth) && a.right > 0;
           }
-          function s() {
-            let c = !1;
-            l(o) && (c = !0), i.forEach((a) => {
-              l(a) && (c = !0);
-            }), c ? (t.style.display = "none", e("body").classList.contains("sticky_block_visible") && e("body").classList.remove("sticky_block_visible")) : (t.style.display = "block", e("body").classList.add("sticky_block_visible"));
+          function p() {
+            let i = !1;
+            l(o) && (i = !0), c.forEach((a) => {
+              l(a) && (i = !0);
+            }), i ? (n.style.display = "none", e("body").classList.contains("sticky_block_visible") && e("body").classList.remove("sticky_block_visible")) : (n.style.display = "block", e("body").classList.add("sticky_block_visible"));
           }
-          s(), window.addEventListener("scroll", s), window.addEventListener("resize", s);
+          p(), window.addEventListener("scroll", p), window.addEventListener("resize", p);
         });
       });
     }
     clickStickyBtnHandler() {
-      p(".choose_your_product_btn").then((n) => {
-        n.addEventListener("click", () => {
-          f("exp_sub_option_button_03", "Choose your product", "Button", "Sticky button"), w(0, e("#pdpGetNow .product__title")), window.innerWidth < 376 && w(10, e("variant-radios"));
+      s(".choose_your_product_btn").then((t) => {
+        t.addEventListener("click", () => {
+          _("exp_sub_option_button_03", "Choose your product", "Button", "Sticky button"), w(0, e("#pdpGetNow .product__title")), window.innerWidth < 376 && w(10, e("variant-radios"));
         });
       });
     }
   }
-  p(".rtx-subscription").then((r) => {
-    new H(I);
+  s(".rtx-subscription").then((r) => {
+    new I(H);
   });
 })();
 //# sourceMappingURL=index.js.map
