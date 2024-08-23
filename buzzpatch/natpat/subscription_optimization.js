@@ -146,7 +146,7 @@
         <li>Priority Customer Service</li>
         <li>Free, Fast Shipping Worldwide</li>
         <li>5 Day Reminder - Cancel Anytime</li>
-        <li>Extra 15% Off First and Fauture Orders</li>
+        <li>Extra 15% Off First and Future Orders</li>
       </ul>
     </div>
   </div>
