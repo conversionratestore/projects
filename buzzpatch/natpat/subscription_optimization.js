@@ -1,26 +1,26 @@
 (function() {
   "use strict";
-  const m = (r, t, n, o = "") => {
+  const m = (c, t, n, o = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: r,
+      event_name: c,
       event_desc: t,
       event_type: n,
       event_loc: o
-    }), console.dir(`Event: ${r} | ${t} | ${n} | ${o}`);
-  }, k = ({ name: r, dev: t }) => {
+    }), console.dir(`Event: ${c} | ${t} | ${n} | ${o}`);
+  }, k = ({ name: c, dev: t }) => {
     console.log(
-      `%c EXP: ${r} (DEV: ${t})`,
+      `%c EXP: ${c} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, d = (r) => document.querySelectorAll(r), e = (r) => document.querySelector(r), v = async (r) => {
-    const t = (n) => new Promise((o, c) => {
+  }, d = (c) => document.querySelectorAll(c), e = (c) => document.querySelector(c), v = async (c) => {
+    const t = (n) => new Promise((o, r) => {
       const l = n.split(".").pop();
       if (l === "js") {
         if (Array.from(document.scripts).map((a) => a.src.toLowerCase()).includes(n.toLowerCase()))
           return console.log(`Script ${n} allready downloaded!`), o("");
         const i = document.createElement("script");
-        i.src = n, i.onload = o, i.onerror = c, document.head.appendChild(i);
+        i.src = n, i.onload = o, i.onerror = r, document.head.appendChild(i);
       } else if (l === "css") {
         if (Array.from(document.styleSheets).map((a) => {
           var b;
@@ -28,23 +28,23 @@
         }).includes(n.toLowerCase()))
           return console.log(`Style ${n} allready downloaded!`), o("");
         const i = document.createElement("link");
-        i.rel = "stylesheet", i.href = n, i.onload = o, i.onerror = c, document.head.appendChild(i);
+        i.rel = "stylesheet", i.href = n, i.onload = o, i.onerror = r, document.head.appendChild(i);
       }
     });
-    for (const n of r)
+    for (const n of c)
       await t(n), console.log(`Loaded librari ${n}`);
     console.log("All libraries loaded!");
-  }, C = (r, t = "variant_1") => {
+  }, C = (c, t = "variant_1") => {
     let n = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", r, t), console.log("set", r, t));
+      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", c, t), console.log("set", c, t));
     }, 1e3);
   };
-  function p(r) {
+  function p(c) {
     return new Promise((t) => {
-      if (document.querySelector(r))
-        return t(document.querySelector(r));
+      if (document.querySelector(c))
+        return t(document.querySelector(c));
       const n = new MutationObserver(() => {
-        document.querySelector(r) && (t(document.querySelector(r)), n.disconnect());
+        document.querySelector(c) && (t(document.querySelector(c)), n.disconnect());
       });
       n.observe(document.documentElement, {
         childList: !0,
@@ -53,23 +53,23 @@
       });
     });
   }
-  (function(r) {
-    r = r === void 0 ? {} : r;
-    let t, n, o, c, l = (r == null ? void 0 : r.delay) || 50;
+  (function(c) {
+    c = c === void 0 ? {} : c;
+    let t, n, o, r, l = (c == null ? void 0 : c.delay) || 50;
     function s() {
-      t = null, c = 0;
+      t = null, r = 0;
     }
     return s(), function() {
-      return n = window.scrollY, t != null && (c = n - t), t = n, clearTimeout(o), o = setTimeout(s, l), c;
+      return n = window.scrollY, t != null && (r = n - t), t = n, clearTimeout(o), o = setTimeout(s, l), r;
     };
   })();
-  function S(r) {
-    return new Promise((t) => setTimeout(t, r));
+  function S(c) {
+    return new Promise((t) => setTimeout(t, c));
   }
-  const w = async (r, t) => {
-    const n = r, c = (t == null ? void 0 : t.getBoundingClientRect().top) + window.pageYOffset - n;
+  const w = async (c, t) => {
+    const n = c, r = (t == null ? void 0 : t.getBoundingClientRect().top) + window.pageYOffset - n;
     return window.scrollTo({
-      top: c,
+      top: r,
       behavior: "smooth"
     }), await S(800), !0;
   }, x = {
@@ -147,6 +147,7 @@
         <li>Free, Fast Shipping Worldwide</li>
         <li>5 Day Reminder - Cancel Anytime</li>
         <li>Extra 15% Off First and Future Orders</li>
+        <li>Exclusive access to deals, FREE gifts, and FREE merch.</li>
       </ul>
     </div>
   </div>
@@ -697,12 +698,14 @@ body .sleep-heading {
 }
 .new_subscription_block .plan_details.one_time_checked li:nth-child(2),
 .new_subscription_block .plan_details.one_time_checked li:nth-child(4),
-.new_subscription_block .plan_details.one_time_checked li:nth-child(5) {
+.new_subscription_block .plan_details.one_time_checked li:nth-child(5),
+.new_subscription_block .plan_details.one_time_checked li:nth-child(6) {
   color: #c3c3c3;
 }
 .new_subscription_block .plan_details.one_time_checked li:nth-child(2)::before,
 .new_subscription_block .plan_details.one_time_checked li:nth-child(4)::before,
-.new_subscription_block .plan_details.one_time_checked li:nth-child(5)::before {
+.new_subscription_block .plan_details.one_time_checked li:nth-child(5)::before,
+.new_subscription_block .plan_details.one_time_checked li:nth-child(6)::before {
   content: "";
   background: url(https://conversionratestore.github.io/projects/buzzpatch/img/stop_icon.svg) no-repeat center center;
   background-size: contain;
@@ -952,8 +955,8 @@ body .sleep-heading {
       p(".cPrice span").then((t) => {
         p(".price__container").then((n) => {
           p(".product-form__submit span[data-rtx-subscription-price]").then((o) => {
-            let c = setInterval(() => {
-              o.textContent !== "" && e("[data-percent]") && (clearInterval(c), p(".price--on-sale .price__badge-sale").then((l) => {
+            let r = setInterval(() => {
+              o.textContent !== "" && e("[data-percent]") && (clearInterval(r), p(".price--on-sale .price__badge-sale").then((l) => {
                 var b;
                 const s = t.textContent;
                 let i = "", a = "";
@@ -973,8 +976,8 @@ body .sleep-heading {
     }
     observePageChange() {
       this.observer = new MutationObserver((n) => {
-        var o, c;
-        e(".rtx-subscription-unselected.np-one-pack.is-hidden") ? e("#newSubscriptionBlock") || (this.renderNewSubscriptionBlock(), e("body").classList.add("new_subscription_block_visible")) : ((o = e("#newSubscriptionBlock")) == null || o.remove(), e("body").classList.contains("new_subscription_block_visible") && e("body").classList.remove("new_subscription_block_visible")), e(".one_time_checked") ? (c = e(".each_pack_subscribe")) == null || c.remove() : this.changeSubscribePricePacksHandler();
+        var o, r;
+        e(".rtx-subscription-unselected.np-one-pack.is-hidden") ? e("#newSubscriptionBlock") || (this.renderNewSubscriptionBlock(), e("body").classList.add("new_subscription_block_visible")) : ((o = e("#newSubscriptionBlock")) == null || o.remove(), e("body").classList.contains("new_subscription_block_visible") && e("body").classList.remove("new_subscription_block_visible")), e(".one_time_checked") ? (r = e(".each_pack_subscribe")) == null || r.remove() : this.changeSubscribePricePacksHandler();
       });
       const t = { childList: !0, subtree: !0 };
       this.observer.observe(e("body"), t);
@@ -983,19 +986,19 @@ body .sleep-heading {
       p(".rtx-subscription-label__wrapper").then((t) => {
         e("#newSubscriptionBlock") || t.insertAdjacentHTML("afterend", B);
       }), p(".new_subscription_block").then((t) => {
-        this.replacePriceTxtHandler(), this.changeSubscriptionPlanHandler(), this.renderCustomDropdown();
+        this.replacePriceTxtHandler(), this.changeSubscriptionPlanHandler(), this.renderCustomDropdown(), this.changePacksHandler();
       }), this.initTooltip(), console.log("renderNewSubscriptionBlock>>>>>>>>>>>>>>>>");
     }
     changeSubscriptionPlanHandler() {
       p(".plan_selection").then((t) => {
         d(".plan_selection label").forEach((n) => {
           n.addEventListener("click", () => {
-            var o, c, l, s, i, a;
+            var o, r, l, s, i, a;
             switch (n.getAttribute("for")) {
               case "oneTime":
                 if (m("exp_sub_option_button_01", "One-Time", "Button", "Subscribe section"), (o = n.previousElementSibling) != null && o.checked)
                   return;
-                (c = e(".custom_dropdown")) == null || c.remove(), (l = e(".new_price_wrapper")) == null || l.remove(), e('[id="purchaseTypeOneTime"]').click(), e(".plan_details").classList.contains("one_time_checked") || e(".plan_details").classList.add("one_time_checked");
+                (r = e(".custom_dropdown")) == null || r.remove(), (l = e(".new_price_wrapper")) == null || l.remove(), e('[id="purchaseTypeOneTime"]').click(), e(".plan_details").classList.contains("one_time_checked") || e(".plan_details").classList.add("one_time_checked");
                 break;
               case "subscribeSave":
                 if (m("exp_sub_option_button_02", "Subscribe & Save", "Button", "Subscribe section"), (s = n.previousElementSibling) != null && s.checked)
@@ -1016,8 +1019,8 @@ body .sleep-heading {
     renderOptions() {
       p(".rtx-subscription-dropdown option").then((t) => {
         p(".custom_dropdown").then((n) => {
-          const o = e(".rtx-subscription-dropdown"), c = d(".rtx-subscription-dropdown option"), l = e(".dropdown_menu"), s = e(".dropdown_toggle");
-          c.forEach((i) => {
+          const o = e(".rtx-subscription-dropdown"), r = d(".rtx-subscription-dropdown option"), l = e(".dropdown_menu"), s = e(".dropdown_toggle");
+          r.forEach((i) => {
             var f, h, _, g, y;
             let a = i.getAttribute("selected") !== null ? "selected" : "";
             const b = i.getAttribute("value");
@@ -1031,14 +1034,14 @@ body .sleep-heading {
       });
     }
     changeCustomDropdownHandler(t) {
-      const n = e(t), o = n.querySelector(".dropdown_toggle"), c = n.querySelector(".dropdown_menu"), l = n.querySelectorAll(".dropdown_item"), s = d(".rtx-subscription-dropdown option");
+      const n = e(t), o = n.querySelector(".dropdown_toggle"), r = n.querySelector(".dropdown_menu"), l = n.querySelectorAll(".dropdown_item"), s = d(".rtx-subscription-dropdown option");
       o.addEventListener("click", () => {
-        m("exp_sub_option_dropdown_01", "Ship every", "Dropdown", "Subscribe section"), c.classList.toggle("show"), this.adjustDropdownPosition(c), o.classList.toggle("active");
+        m("exp_sub_option_dropdown_01", "Ship every", "Dropdown", "Subscribe section"), r.classList.toggle("show"), this.adjustDropdownPosition(r), o.classList.toggle("active");
       }), l.forEach((a) => {
         a.addEventListener("click", (b) => {
           var h;
           const u = b.currentTarget, f = u.getAttribute("data-value");
-          l.forEach((_) => _.classList.remove("selected")), u.classList.add("selected"), c.style.top = "100%", o.innerHTML = u.innerHTML, c.classList.remove("show"), o.classList.remove("active"), m(
+          l.forEach((_) => _.classList.remove("selected")), u.classList.add("selected"), r.style.top = "100%", o.innerHTML = u.innerHTML, r.classList.remove("show"), o.classList.remove("active"), m(
             "exp_sub_option_dropdown_02",
             `Selected value: ${(h = u.querySelector(".text_transform")) == null ? void 0 : h.textContent}`,
             "Dropdown",
@@ -1049,18 +1052,18 @@ body .sleep-heading {
         });
       }), document.addEventListener("click", (a) => {
         const b = a.target;
-        n.contains(b) || (c.classList.remove("show"), o.classList.remove("active"), c.style.top = "100%");
+        n.contains(b) || (r.classList.remove("show"), o.classList.remove("active"), r.style.top = "100%");
       }), new IntersectionObserver(
         (a) => {
           a.forEach((b) => {
-            b.isIntersecting || this.adjustDropdownPosition(c);
+            b.isIntersecting || this.adjustDropdownPosition(r);
           });
         },
         {
           root: null,
           threshold: 1
         }
-      ).observe(c);
+      ).observe(r);
     }
     adjustDropdownPosition(t) {
       const n = t.getBoundingClientRect(), o = window.innerHeight || document.documentElement.clientHeight;
@@ -1075,6 +1078,25 @@ body .sleep-heading {
             `<span class="each_pack_subscribe">${n.getAttribute("data-subscribe")}</span>`
           );
         });
+      });
+    }
+    changePacksHandler() {
+      p(".price--large").then((t) => {
+        new MutationObserver((o) => {
+          if (e("input[name=plan]:checked").value === "oneTime")
+            return;
+          switch (e(".product-form__input input:checked+label").getAttribute("data-pack")) {
+            case "2":
+              d('.dropdown_item[data-value="1060536364"]')[0].click();
+              break;
+            case "3":
+              d('.dropdown_item[data-value="1068531756"]')[0].click();
+              break;
+            case "4":
+              d('.dropdown_item[data-value="1060569132"]')[0].click();
+              break;
+          }
+        }).observe(e(".price--large"), { childList: !0, subtree: !0 });
       });
     }
     initTooltip() {
@@ -1114,8 +1136,8 @@ body .sleep-heading {
         e(".sticky_block") || t.insertAdjacentHTML("afterend", z), p(".sticky_block").then((n) => {
           let o = setInterval(() => {
             d("a.get-it") && d("a.get-it").length > 0 && (clearInterval(o), this.toggleStickyBlockVisibility("a.get-it"));
-          }, 300), c = setInterval(() => {
-            d("a.scroll-to-checkout") && d("a.scroll-to-checkout").length > 0 && (clearInterval(c), this.toggleStickyBlockVisibility("a.scroll-to-checkout"));
+          }, 300), r = setInterval(() => {
+            d("a.scroll-to-checkout") && d("a.scroll-to-checkout").length > 0 && (clearInterval(r), this.toggleStickyBlockVisibility("a.scroll-to-checkout"));
           }, 300), l = setInterval(() => {
             d("a.get-it-now") && d("a.get-it-now").length > 0 && (clearInterval(l), this.toggleStickyBlockVisibility("a.get-it-now"));
           }, 300), s = setInterval(() => {
@@ -1129,14 +1151,14 @@ body .sleep-heading {
       p("section.page-width").then(() => {
         p(".sticky_block").then(() => {
           const n = e(".sticky_block"), o = e("section.page-width");
-          let c = d(t);
+          let r = d(t);
           function l(i) {
             const a = i.getBoundingClientRect();
             return a.top < (window.innerHeight || document.documentElement.clientHeight) && a.bottom > 0 && a.left < (window.innerWidth || document.documentElement.clientWidth) && a.right > 0;
           }
           function s() {
             let i = !1;
-            l(o) && (i = !0), c.forEach((a) => {
+            l(o) && (i = !0), r.forEach((a) => {
               l(a) && (i = !0);
             }), i ? (n.style.display = "none", e("body").classList.contains("sticky_block_visible") && e("body").classList.remove("sticky_block_visible")) : (n.style.display = "block", e("body").classList.add("sticky_block_visible"));
           }
@@ -1152,7 +1174,7 @@ body .sleep-heading {
       });
     }
   }
-  p(".rtx-subscription").then((r) => {
+  p(".rtx-subscription").then((c) => {
     new I(H);
   });
 })();
