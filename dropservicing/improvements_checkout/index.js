@@ -246,10 +246,13 @@
 
   .crsTargetSection [data-col='left'] {
     width: 100% !important;
+    max-width: 100% !important;
   }
 
   .crsTargetSection [data-col='right'] {
     width: 100% !important;
+    max-width: 100% !important;
+
   }
 }
 
@@ -341,6 +344,9 @@
 }
 
 @media screen and (max-width: 768px) {
+  .crsTargetSection {
+    /* background-color: #f2ebfc !important; */
+  }
   .o2step_step1 p:not(.formInstructionNote) {
     grid-template-columns: 1fr;
   }
