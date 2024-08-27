@@ -1,11 +1,11 @@
 (function() {
   "use strict";
-  const O = ({ name: o, dev: n }) => {
+  const T = ({ name: a, dev: e }) => {
     console.log(
-      `%c EXP: ${o} (DEV: ${n})`,
+      `%c EXP: ${a} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, k = (o) => document.querySelectorAll(o), e = (o) => document.querySelector(o), T = (
+  }, L = (a) => document.querySelectorAll(a), s = (a) => document.querySelector(a), B = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +22,7 @@
     stroke-linejoin="round"
   />
 </svg>`
-  ), L = (
+  ), $ = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +36,7 @@
     fill="white"
   />
 </svg>`
-  ), D = (
+  ), z = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -47,30 +47,30 @@
 >
   <path d="M11 1L5 8L1 4" stroke="white" stroke-width="2" />
 </svg>`
-  ), z = (
+  ), D = (
     /* HTML */
     '<h3 class="crs-step-title">Provide your personal information</h3>'
-  ), B = (
-    /* HTML */
-    '<h3 class="crs-step-title">Provide your billing details</h3>'
   ), P = (
     /* HTML */
-    `
-  <div class="nextStepBtn">
-    <button>${L} Secure Checkout</button>
-  </div>
-`
+    '<h3 class="crs-step-title">Provide your billing details</h3>'
   ), E = (
     /* HTML */
     `
-  <div class="submitBtn">
-    <button>${L} Submit Purchase</button>
+  <div class="nextStepBtn">
+    <button>${$} Secure Checkout</button>
   </div>
 `
   ), I = (
     /* HTML */
-    `<button class="crs-back-btn">${T} Back</button>`
+    `
+  <div class="submitBtn">
+    <button>${$} Submit Purchase</button>
+  </div>
+`
   ), M = (
+    /* HTML */
+    `<button class="crs-back-btn">${B} Back</button>`
+  ), A = (
     /* HTML */
     ` <div class="crs-sticky-cta-container">
   <div class="crs-order-details">
@@ -87,7 +87,7 @@
   <div class="crs-order-button"></div>
   <div class="crs-guarantee"><span>30</span>- day action-based money-back guarantee</div>
 </div>`
-  ), A = (
+  ), j = (
     /* HTML */
     `
   <div class="crs-custom-options">
@@ -104,7 +104,7 @@
     </div>
   </div>
 `
-  ), j = (
+  ), R = (
     /* HTML */
     `
   <div class="crs-order-summary">
@@ -188,7 +188,7 @@
     </li>
   </ul>
 `
-  ), R = `.crsTargetSection [data-col='left'] .elHeadlineWrapper,
+  ), F = `.crsTargetSection [data-col='left'] .elHeadlineWrapper,
 .order2StepHeader,
 .order2stepbutton,
 .order2ButtonSubText,
@@ -781,7 +781,7 @@
   line-height: 27.641px;
 }
 `;
-  class F {
+  class U {
     constructor() {
       this.init();
     }
@@ -789,87 +789,91 @@
       this.initStyles(), this.changes(), this.observeInputs();
     }
     changes() {
-      var H;
-      const n = e(".row:has(.order2stepbuttonOrder)");
-      e(".elOrder2Step");
-      const r = e(".o2step_step1"), c = e(".o2step_step2"), p = e(".order2stepbuttonOrder"), t = n == null ? void 0 : n.querySelector('[data-col="right"]'), d = n == null ? void 0 : n.querySelector('[data-col="left"]'), m = e(".elOS1Shipping"), b = e(".elOrderProductOptions");
+      var O;
+      const e = s(".row:has(.order2stepbuttonOrder)");
+      s(".elOrder2Step");
+      const i = s(".o2step_step1"), o = s(".o2step_step2"), d = s(".order2stepbuttonOrder"), n = e == null ? void 0 : e.querySelector('[data-col="right"]'), c = e == null ? void 0 : e.querySelector('[data-col="left"]'), m = s(".elOS1Shipping"), v = s(".elOrderProductOptions");
       let u, g;
-      if (!r || !c)
+      if (!i || !o)
         return;
-      if (n && n.classList.add("crsTargetSection"), b) {
-        b.style.display = "none";
-        const a = b.querySelector(".elOrderProductOptinItem"), h = b.querySelectorAll(".elOrderProductOptinProducts");
-        a && (a.style.display = "none"), t == null || t.insertAdjacentHTML("beforeend", A), k(".crs-custom-options input").forEach((l) => {
-          l.addEventListener("input", (v) => {
-            var y, s, i;
-            ((y = v.target) == null ? void 0 : y.value) === "monthly" ? (console.log(
+      if (e && e.classList.add("crsTargetSection"), v) {
+        v.style.display = "none";
+        const r = v.querySelector(".elOrderProductOptinItem"), h = v.querySelectorAll(".elOrderProductOptinProducts");
+        r && (r.style.display = "none"), n == null || n.insertAdjacentHTML("beforeend", j), L(".crs-custom-options input").forEach((l) => {
+          l.addEventListener("input", (y) => {
+            var f, S, t;
+            ((f = y.target) == null ? void 0 : f.value) === "monthly" ? (console.log(
               "Monthly payment selected",
-              e('input[data-product="Partner Program (3 monthly payments)"]')
-            ), (s = e('input[data-product-name="Partner Program (3 monthly payments)"]')) == null || s.click()) : (console.log("One-time payment selected", e('input[data-product="Partner Program"]')), (i = e('input[data-product-name="Partner Program"]')) == null || i.click());
+              s('input[data-product="Partner Program (3 monthly payments)"]')
+            ), (S = s('input[data-product-name="Partner Program (3 monthly payments)"]')) == null || S.click()) : (console.log("One-time payment selected", s('input[data-product="Partner Program"]')), (t = s('input[data-product-name="Partner Program"]')) == null || t.click());
           });
         }), h.forEach((l) => {
-          var x, y;
-          (x = l.textContent) != null && x.includes("3 monthly payments") && (l.after(l.previousElementSibling), (y = l.querySelector("input")) == null || y.click());
+          var _, f;
+          (_ = l.textContent) != null && _.includes("3 monthly payments") && (l.after(l.previousElementSibling), (f = l.querySelector("input")) == null || f.click());
         });
       }
-      if (p) {
-        p.style.display = "none", t == null || t.insertAdjacentHTML("beforeend", M);
-        const a = e(".crs-sticky-cta-container"), h = e(".crs-sticky-cta-container .crs-order-button");
-        if (h == null || h.insertAdjacentHTML("beforeend", P), h == null || h.insertAdjacentHTML("beforeend", E), !a)
+      if (d) {
+        d.style.display = "none", n == null || n.insertAdjacentHTML("beforeend", A);
+        const r = s(".crs-sticky-cta-container"), h = s(".crs-sticky-cta-container .crs-order-button");
+        if (h == null || h.insertAdjacentHTML("beforeend", E), h == null || h.insertAdjacentHTML("beforeend", I), !r)
           return;
-        const _ = document.createElement("div");
-        _.style.position = "absolute", _.style.top = "0", _.style.width = "100%", _.style.height = "1px", (H = a.parentNode) == null || H.insertBefore(_, a);
-        let l = !1, v = 0, x = 0;
+        const x = document.createElement("div");
+        x.style.position = "absolute", x.style.top = "0", x.style.width = "100%", x.style.height = "1px", (O = r.parentNode) == null || O.insertBefore(x, r);
+        let l = !1, y = 0, _ = 0;
+        const f = () => {
+          const t = n == null ? void 0 : n.getBoundingClientRect();
+          y = window.innerWidth - t.right, _ = t.width, r.style.right = `${y}px`, r.style.width = `${_}px`;
+        };
         new IntersectionObserver(
-          (s) => {
-            s.forEach((i) => {
-              const w = a.getBoundingClientRect();
-              console.log(i.isIntersecting, i.intersectionRect.top > 0, !l), i.isIntersecting && i.intersectionRect.top > 0 && !l ? (v = window.innerWidth - w.right, x = w.width, a.classList.add("crs-sticky-cta-container--fixed"), a.style.right = `${v}px`, a.style.width = `${x}px`, l = !0) : (a.classList.remove("crs-sticky-cta-container--fixed"), a.style.right = "", a.style.width = "", l = !1);
+          (t) => {
+            t.forEach((p) => {
+              const C = r.getBoundingClientRect(), w = n == null ? void 0 : n.getBoundingClientRect();
+              p.isIntersecting && p.intersectionRect.top > 0 && !l ? (y = window.innerWidth - w.right, _ = C.width, r.classList.add("crs-sticky-cta-container--fixed"), r.style.right = `${y}px`, r.style.width = `${_}px`, l = !0) : (r.classList.remove("crs-sticky-cta-container--fixed"), r.style.right = "", r.style.width = "", l = !1);
             });
           },
           {
             root: null,
             threshold: 0
           }
-        ).observe(_), u = e(".nextStepBtn"), g = e(".submitBtn"), u == null || u.addEventListener("click", () => {
-          const s = e('.o2step_step1 input[name="name"]'), i = e('.o2step_step1 input[name="email"]');
-          if (console.log(s), !s || !i)
+        ).observe(x), window.addEventListener("resize", f), u = s(".nextStepBtn"), g = s(".submitBtn"), u == null || u.addEventListener("click", () => {
+          const t = s('.o2step_step1 input[name="name"]'), p = s('.o2step_step1 input[name="email"]');
+          if (console.log(t), !t || !p)
             return;
-          const w = s == null ? void 0 : s.value, C = i == null ? void 0 : i.value;
-          let S = !0;
-          !w || w.trim() === "" ? (s.classList.add("crs-input-error"), console.log("Invalid name"), S = !1) : s.classList.remove("crs-input-error");
-          const Y = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          !C || C.trim() === "" || !Y.test(C) ? (console.log("Invalid email"), i.classList.add("crs-input-error"), S = !1) : i.classList.remove("crs-input-error"), S && (r.style.display = "none", c.style.display = "block", g && (g.style.display = ""), u && (u.style.display = "none"));
+          const C = t == null ? void 0 : t.value, w = p == null ? void 0 : p.value;
+          let k = !0;
+          !C || C.trim() === "" ? (t.classList.add("crs-input-error"), console.log("Invalid name"), k = !1) : t.classList.remove("crs-input-error");
+          const J = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          !w || w.trim() === "" || !J.test(w) ? (console.log("Invalid email"), p.classList.add("crs-input-error"), k = !1) : p.classList.remove("crs-input-error"), k && (i.style.display = "none", o.style.display = "block", g && (g.style.display = ""), u && (u.style.display = "none"));
         }), g && (g.style.display = "none", g.addEventListener("click", () => {
           console.log("Custom order button clicked");
-          const s = p.querySelector("a");
-          s == null || s.click();
+          const t = d.querySelector("a");
+          t == null || t.click();
         }));
       }
-      m && c.insertAdjacentElement("afterbegin", m), r.insertAdjacentHTML("afterbegin", z), c.insertAdjacentHTML("afterbegin", B), c.insertAdjacentHTML("afterbegin", I), d == null || d.insertAdjacentHTML("beforeend", V), t == null || t.insertAdjacentHTML("afterbegin", j);
-      const $ = e(".crs-back-btn");
-      $ && $.addEventListener("click", () => {
-        r.style.display = "block", c.style.display = "none", g && (g.style.display = "none"), u && (u.style.display = "block");
+      m && o.insertAdjacentElement("afterbegin", m), i.insertAdjacentHTML("afterbegin", D), o.insertAdjacentHTML("afterbegin", P), o.insertAdjacentHTML("afterbegin", M), c == null || c.insertAdjacentHTML("beforeend", V), n == null || n.insertAdjacentHTML("afterbegin", R);
+      const H = s(".crs-back-btn");
+      H && H.addEventListener("click", () => {
+        i.style.display = "block", o.style.display = "none", g && (g.style.display = "none"), u && (u.style.display = "block");
       });
     }
     initStyles() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${R}</style>`);
+      document.head.insertAdjacentHTML("beforeend", `<style>${F}</style>`);
     }
     observeInputs() {
-      const n = document.querySelectorAll("input, select"), r = (p) => {
-        p.forEach((t) => {
-          if (t.type === "attributes" && t.attributeName === "style") {
-            const d = t.target, m = d.style;
-            m.borderColor === "rgb(185, 21, 23)" && m.borderWidth === "3px" && (d.classList.add("crs-input-error"), document.createElement("div").classList.add("input-wrapper"));
+      const e = document.querySelectorAll("input, select"), i = (d) => {
+        d.forEach((n) => {
+          if (n.type === "attributes" && n.attributeName === "style") {
+            const c = n.target, m = c.style;
+            m.borderColor === "rgb(185, 21, 23)" && m.borderWidth === "3px" && (c.classList.add("crs-input-error"), document.createElement("div").classList.add("input-wrapper"));
           }
         });
-      }, c = new MutationObserver(r);
-      n.forEach((p) => {
-        c.observe(p, { attributes: !0, attributeFilter: ["style"] });
+      }, o = new MutationObserver(i);
+      e.forEach((d) => {
+        o.observe(d, { attributes: !0, attributeFilter: ["style"] });
       });
     }
   }
-  const U = `.crs-header {
+  const W = `.crs-header {
   display: flex;
   justify-content: space-between;
 }
@@ -928,7 +932,7 @@
     display: none;
   }
 }`;
-  class W {
+  class q {
     constructor() {
       this.init();
     }
@@ -936,27 +940,27 @@
       this.initStyles(), this.changes();
     }
     changes() {
-      k(".col-inner").forEach((r) => {
-        var c;
-        if ((c = r.textContent) != null && c.includes("DROP SERVICING PARTNER PROGRAM")) {
-          const p = (
+      L(".col-inner").forEach((i) => {
+        var o;
+        if ((o = i.textContent) != null && o.includes("DROP SERVICING PARTNER PROGRAM")) {
+          const d = (
             /* HTML */
             ` <div class="crs-header__guarantee">
           <span>30</span>- day action-based money-back guarantee
         </div>`
-          ), t = r.querySelector(".elHeadlineWrapper"), d = r.querySelectorAll("b");
-          d == null || d.forEach((m) => {
+          ), n = i.querySelector(".elHeadlineWrapper"), c = i.querySelectorAll("b");
+          c == null || c.forEach((m) => {
             m.textContent === "DROP SERVICING PARTNER PROGRAM" && m.classList.add("crs-header__headline");
-          }), r.classList.add("crs-header"), t && t.insertAdjacentHTML("afterend", p);
+          }), i.classList.add("crs-header"), n && n.insertAdjacentHTML("afterend", d);
         }
       });
     }
     initStyles() {
-      const n = document.createElement("style");
-      n.textContent = U, document.head.appendChild(n);
+      const e = document.createElement("style");
+      e.textContent = W, document.head.appendChild(e);
     }
   }
-  const q = `.crs-schedule {
+  const N = `.crs-schedule {
   margin-block: 40px;
 }
 
@@ -990,7 +994,7 @@
   color: #8F53E3;
 }
 
-.crs-schedule__wrap {
+.crs-schedule__blocks {
   margin-top: 32px;
   display: flex;
   justify-content: space-between;
@@ -1002,15 +1006,18 @@
   position: relative;
   background: #e8dbfa;
 
-  padding: 14px 0 14px 28px;
-  width: 204px;
+  padding: 0;
+  width: 216px;
   height: 128px;
   flex-shrink: 0;
   clip-path: polygon(90% 0%, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
 }
 
+.crs-schedule__wrap {
+  padding: 14px 14px 14px 28px;
+}
+
 .crs-schedule__block:first-child {
-  padding-left: 14px;
   clip-path: polygon(90% 0%, 100% 50%, 90% 100%, 0% 100%, 0% 0%);
 }
 
@@ -1064,11 +1071,11 @@
   line-height: 20px;
 }
 `;
-  function f(o) {
-    const n = { month: "short", day: "numeric", year: "numeric" };
-    return o.toLocaleDateString("en-US", n);
+  function b(a) {
+    const e = { month: "short", day: "numeric", year: "numeric" };
+    return a.toLocaleDateString("en-US", e);
   }
-  class N {
+  class Z {
     constructor() {
       this.init();
     }
@@ -1076,65 +1083,75 @@
       this.getDates(), this.render();
     }
     render() {
-      const n = (
+      const e = (
         /* HTML */
         `
       <div class="crs-schedule">
         <div class="crs-schedule__header">
           <h3 class="crs-schedule__title">
-            Secure your spot in the Drop Servicing Partner Program – Save <span>$2,000</span> and Get 8 Exclusive Bonuses Today
+            Secure your spot in the Drop Servicing Partner Program – Save <span>$2,000</span> and Get 8 Exclusive
+            Bonuses Today
           </h3>
         </div>
-        <div class="crs-schedule__wrap">
+        <div class="crs-schedule__blocks">
           <div class="crs-schedule__block">
-            <div class="crs-schedule__date">${f(this.today)}</div>
-            <div class="crs-schedule__today">today</div>
-            <div class="crs-schedule__text">Join Drop Servicing Partner Program</div>
-          </div>
-          <div class="crs-schedule__block">
-            <div class="crs-schedule__date">${f(this.today)}</div>
-            <div class="crs-schedule__text">
-              Access the full Drop Servicing Partner Program package, community and support
+            <div class="crs-schedule__wrap">
+              <div class="crs-schedule__date">${b(this.today)}</div>
+              <div class="crs-schedule__today">today</div>
+              <div class="crs-schedule__text">Join Drop Servicing Partner Program</div>
             </div>
           </div>
           <div class="crs-schedule__block">
-            <div class="crs-schedule__date">${f(this.date2DaysLater)}</div>
-            <div class="crs-schedule__text">
-              Attend live video calls and receive personalized coaching (3x every week)
+            <div class="crs-schedule__wrap">
+              <div class="crs-schedule__date">${b(this.today)}</div>
+              <div class="crs-schedule__text">
+                Access the full Drop Servicing Partner Program package, community and support
+              </div>
             </div>
           </div>
           <div class="crs-schedule__block">
-            <div class="crs-schedule__date">${f(this.date17DaysLater)}</div>
-            <div class="crs-schedule__text">Launch your first drop servicing business</div>
+            <div class="crs-schedule__wrap">
+              <div class="crs-schedule__date">${b(this.date2DaysLater)}</div>
+              <div class="crs-schedule__text">
+                Attend live video calls and receive personalized coaching (3x every week)
+              </div>
+            </div>
           </div>
           <div class="crs-schedule__block">
-            <div class="crs-schedule__check">${D}</div>
-            <div class="crs-schedule__date">${f(this.date31DaysLater)}</div>
-            <div class="crs-schedule__text">30 days action-based money-back guarantee</div>
+            <div class="crs-schedule__wrap">
+              <div class="crs-schedule__date">${b(this.date17DaysLater)}</div>
+              <div class="crs-schedule__text">Launch your first drop servicing business</div>
+            </div>
+          </div>
+          <div class="crs-schedule__block">
+            <div class="crs-schedule__wrap">
+              <div class="crs-schedule__check">${z}</div>
+              <div class="crs-schedule__date">${b(this.date31DaysLater)}</div>
+              <div class="crs-schedule__text">30 days action-based money-back guarantee</div>
+            </div>
           </div>
         </div>
       </div>
     `
-      ), r = document.querySelector(".crsTargetSection");
-      r && (this.initStyles(), r.insertAdjacentHTML("beforebegin", n));
+      ), i = document.querySelector(".crsTargetSection");
+      i && (this.initStyles(), i.insertAdjacentHTML("beforebegin", e));
     }
     getDates() {
       this.today = /* @__PURE__ */ new Date(), this.date2DaysLater = new Date(this.today), this.date2DaysLater.setDate(this.today.getDate() + 2), this.date17DaysLater = new Date(this.today), this.date17DaysLater.setDate(this.today.getDate() + 17), this.date31DaysLater = new Date(this.today), this.date31DaysLater.setDate(this.today.getDate() + 31);
     }
     initStyles() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${q}</style>`);
+      document.head.insertAdjacentHTML("beforeend", `<style>${N}</style>`);
     }
   }
-  O({ name: "Improvements on Checkout Page", dev: "OS" });
-  const Z = "/partner-offer";
-  class G {
+  T({ name: "Improvements on Checkout Page", dev: "OS" });
+  const G = "/partner-offer";
+  class Y {
     constructor() {
       this.init();
     }
     init() {
-      window.location.pathname === Z && (console.log("Experiment launched"), new F(), new N(), new W());
+      window.location.pathname === G && (console.log("Experiment launched"), new U(), new Z(), new q());
     }
   }
-  new G();
+  new Y();
 })();
-//# sourceMappingURL=index.js.map
