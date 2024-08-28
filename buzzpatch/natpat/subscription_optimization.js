@@ -147,7 +147,7 @@
         <li>Free, Fast Shipping Worldwide</li>
         <li>5 Day Reminder - Cancel Anytime</li>
         <li>Extra 15% Off First and Future Orders</li>
-        <li>Exclusive access to deals, FREE gifts, and FREE merch.</li>
+        <li>Exclusive access to deals, FREE gifts, and FREE merch</li>
       </ul>
     </div>
   </div>
