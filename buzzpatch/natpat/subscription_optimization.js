@@ -1090,7 +1090,7 @@ body .sleep-heading {
               d('.dropdown_item[data-value="1060536364"]')[0].click();
               break;
             case "3":
-              d('.dropdown_item[data-value="1068531756"]')[0].click();
+              d('.dropdown_item[data-value="1068564524"]')[0].click();
               break;
             case "4":
               d('.dropdown_item[data-value="1060569132"]')[0].click();
