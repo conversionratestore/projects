@@ -661,7 +661,7 @@ body .sleep-heading {
   gap: 16px;
   border-radius: 6px;
   background: #fff;
-  padding: 15px 5px 15px 15px;
+  padding: 15px;
   margin: 0;
   list-style: none;
 }
@@ -675,11 +675,6 @@ body .sleep-heading {
   line-height: 20px;
   letter-spacing: normal;
   padding-left: 22px;
-}
-@media (min-width: 1230px) {
-  .new_subscription_block .plan_details li:last-child {
-    margin-top: -16px;
-  }
 }
 @media (max-width: 1230px) {
   .new_subscription_block .plan_details li {
@@ -848,6 +843,9 @@ body .sleep-heading {
   }
   #newSubscriptionBlock .new_subscription_block .plan_details li:nth-child(5) {
     order: 3;
+  }
+  #newSubscriptionBlock .new_subscription_block .plan_details li:nth-child(5) {
+    order: 6;
   }
 }
 .custom_dropdown {
