@@ -844,7 +844,7 @@ body .sleep-heading {
   #newSubscriptionBlock .new_subscription_block .plan_details li:nth-child(5) {
     order: 3;
   }
-  #newSubscriptionBlock .new_subscription_block .plan_details li:nth-child(5) {
+  #newSubscriptionBlock .new_subscription_block .plan_details li:nth-child(6) {
     order: 6;
   }
 }
