@@ -2070,7 +2070,7 @@ div:has(> .crs-header__headline) {
             <div class="crs-schedule__wrap">
               <div class="crs-schedule__check">${q}</div>
               <div class="crs-schedule__date"><span class="crs-schedule__until">Until</span>&nbsp;${P(this.date31DaysLater)}</div>
-              <div class="crs-schedule__text">30 day <a href="${pn}" target="__blank">action-based</a> money-back guarantee</div>
+              <div class="crs-schedule__text">30-day <a href="${pn}" target="__blank">action-based</a> money-back guarantee</div>
             </div>
           </div>
         </div>
