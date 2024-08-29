@@ -18,7 +18,7 @@
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", c, "variant_1"));
     }, 1e3);
   }, D = (c) => document.querySelectorAll(c), i = (c) => document.querySelector(c);
-  function L(c) {
+  function E(c) {
     return new Promise((e) => {
       if (document.querySelector(c))
         return e(document.querySelector(c));
@@ -32,7 +32,7 @@
       });
     });
   }
-  const S = (c, e, r, l) => {
+  const T = (c, e, r, l) => {
     let a = [];
     if (typeof c == "string")
       a = document.querySelectorAll(c);
@@ -78,7 +78,7 @@
     stroke-linejoin="round"
   />
 </svg>`
-  ), V = (
+  ), H = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -144,14 +144,14 @@
     /* HTML */
     `
   <div class="nextStepBtn">
-    <button>${V} Secure Checkout</button>
+    <button>${H} Secure Checkout</button>
   </div>
 `
   ), Y = (
     /* HTML */
     `
   <div class="submitBtn">
-    <button>${V} Submit Purchase</button>
+    <button>${H} Submit Purchase</button>
   </div>
 `
   ), J = (
@@ -159,7 +159,7 @@
     `<div class="crs-sticky-container-wrap">
   <div class="crs-sticky-cta-container">
     <div class="crs-order-details">
-      <span class="crs-order-details__text">Total:</span> <span class="crs-order-details__sale">79% off</span>
+      <span class="crs-order-details__text">Total:</span> <span class="crs-order-details__sale">67% off</span>
       <span class="crs-order-details__price-container">
         <span class="crs-order-details__price-amount">$396</span>&nbsp;
         <sub class="crs-order-details__currency">usd</sub>
@@ -187,7 +187,7 @@
     <div class="crs-custom-options__groups">
       <div class="crs-custom-options__group">
         <input id="crs-monthly" type="radio" name="crs-payment" value="monthly" checked />
-        <label for="crs-monthly"><b>$396 x</b> 3 monthly payments</label>
+        <label for="crs-monthly"><b>$396</b> x 3 monthly payments</label>
       </div>
       <div class="crs-custom-options__group">
         <input id="crs-onetime" type="radio" name="crs-payment" value="onetime" />
@@ -224,7 +224,7 @@
       </li>
       <li class="crs-order-summary__item">
         <span class="crs-order-summary__text"
-          ><b>Bonus 1</b> - $200 Cash Back <b>Get it by posting your first sale</b></span
+          ><b>Bonus 1</b> - $200 Cash Back (Get it by posting your first sale)</span
         ><span class="crs-order-summary__price"><span class="crs-order-summary__old-price">$200</span>$0</span>
       </li>
       <li class="crs-order-summary__item">
@@ -253,7 +253,7 @@
       </li>
       <li class="crs-order-summary__item">
         <span class="crs-order-summary__text"><b>Bonus 8</b> - Extra Full Membership</span
-        ><span class="crs-order-summary__price"><span class="crs-order-summary__old-price">$999</span>$0</span>
+        ><span class="crs-order-summary__price"><span class="crs-order-summary__old-price">$996</span>$0</span>
       </li>
     </ul>
   </div>
@@ -1395,6 +1395,7 @@
 .crs-sticky-container-wrap {
   position: relative;
   height: min-content;
+  min-height: 100px;
 }`;
   class on {
     constructor() {
@@ -1404,21 +1405,21 @@
       this.initStyles(), this.changes(), this.inputsValidation();
     }
     changes() {
-      var $;
+      var V;
       const e = i(".row:has(.order2stepbuttonOrder)"), r = i(".elOrder2Step"), l = i(".order2stepbuttonOrder"), a = e == null ? void 0 : e.querySelector('[data-col="right"]'), s = e == null ? void 0 : e.querySelector('[data-col="left"]'), h = i(".elOrderProductOptions");
       let p, t;
       if (!r)
         return;
       e && e.classList.add("crsTargetSection"), D(".fullContainer").forEach((n) => {
-        var o, f, T, u, y;
-        (o = n.textContent) != null && o.includes("Just a few incredible success stories from our members!") && n.classList.add("crs-members"), (f = n.textContent) != null && f.includes("Verified Reviews") && n.classList.add("crs-reviews"), (T = n.textContent) != null && T.includes("Overall Rating") && n.classList.add("crs-reviews-mob"), (u = n.textContent) != null && u.includes("Frequently Asked Questions") && n.classList.add("crs-faq"), (y = n.textContent) != null && y.includes("Join Drop Servicing Partner Program Today") && n.classList.add("crs-join");
+        var o, f, w, u, y;
+        (o = n.textContent) != null && o.includes("Just a few incredible success stories from our members!") && n.classList.add("crs-members"), (f = n.textContent) != null && f.includes("Verified Reviews") && n.classList.add("crs-reviews"), (w = n.textContent) != null && w.includes("Overall Rating") && n.classList.add("crs-reviews-mob"), (u = n.textContent) != null && u.includes("Frequently Asked Questions") && n.classList.add("crs-faq"), (y = n.textContent) != null && y.includes("Join Drop Servicing Partner Program Today") && n.classList.add("crs-join");
       });
-      const g = i(".crs-members"), v = i(".crs-reviews"), z = i(".crs-reviews-mob"), E = i(".crs-faq"), N = i(".crs-join");
-      r.insertAdjacentHTML("beforebegin", en), S(".crs-step1", "exp_imprcheck_ev_provide", "View on screen", "Provide your personal information"), S(".crs-step2", "exp_imprcheck_ev_billing", "View on screen", "Provide your billing details");
+      const g = i(".crs-members"), v = i(".crs-reviews"), z = i(".crs-reviews-mob"), A = i(".crs-faq"), N = i(".crs-join");
+      r.insertAdjacentHTML("beforebegin", en), T(".crs-step1", "exp_imprcheck_ev_provide", "View on screen", "Provide your personal information"), T(".crs-step2", "exp_imprcheck_ev_billing", "View on screen", "Provide your billing details");
       const O = i(".crs-form");
       if (!O)
         return;
-      const w = O.querySelector(".crs-step1"), x = O.querySelector(".crs-step2");
+      const C = O.querySelector(".crs-step1"), x = O.querySelector(".crs-step2");
       if (O.querySelectorAll("input, select").forEach((n) => {
         n.addEventListener("input", () => {
           if (n.id === "crs-name") {
@@ -1452,34 +1453,34 @@
         }), n.addEventListener("change", () => {
           n.id === "crs-name" && _("exp_imprcheck_cl_name", "Full Name", "input", "Provide your personal information"), n.id === "crs-email" && _("exp_imprcheck_cl_email", "Email", "input", "Provide your personal information"), n.id === "crs-address" && _("exp_imprcheck_cl_address", "Full Address", "input", "Provide your billing details"), n.id === "crs-city" && _("exp_imprcheck_cl_city", "City Name", "input", "Provide your billing details"), n.id === "crs-zip" && _("exp_imprcheck_cl_zip", "Zip Code", "input", "Provide your billing details"), n.id === "crs-state" && _("exp_imprcheck_cl_state", "State / Province", "input", "Provide your billing details"), n.id === "crs-country" && _("exp_imprcheck_cl_country", "Country", "input", "Provide your billing details");
         });
-      }), L(".elCreditCardForm").then((n) => {
+      }), E(".elCreditCardForm").then((n) => {
         const o = n, f = i("#order-declined-message");
         o && f && (x == null || x.append(f), x == null || x.append(o), this.paymentChanges());
       }), h) {
         h.style.display = "none";
         const n = h.querySelector(".elOrderProductOptinItem"), o = h.querySelectorAll(".elOrderProductOptinProducts");
         n && (n.style.display = "none"), a == null || a.insertAdjacentHTML("beforeend", Q);
-        const f = D(".crs-custom-options input"), T = (u) => {
-          var B;
-          const y = u ? "$396" : "$996", M = u ? "flex" : "none", d = u ? "none" : "flex", m = u ? "Partner Program (3 monthly payments)" : "Partner Program", k = u ? "exp_imprcheck_cl_3monthly" : "exp_imprcheck_cl_onetime", P = u ? "3 monthly payments" : "One-time payment";
-          L(".crs-order-details__price-amount").then((b) => {
-            const A = b;
-            A && (A.textContent = y);
-          }), L(".crs-order-details__payment-info").then(() => {
-            const b = i('.crs-order-details__payment-info[data-info="monthly"]'), A = i('.crs-order-details__payment-info[data-info="onetime"]');
-            b && A && (b.style.display = M, A.style.display = d);
-          }), (B = i(`input[data-product-name="${m}"]`)) == null || B.click(), _(k, P, "input", "Choose payment plan");
+        const f = D(".crs-custom-options input"), w = (u) => {
+          var L;
+          const y = u ? "$396" : "$996", M = u ? "flex" : "none", d = u ? "none" : "flex", m = u ? "Partner Program (3 monthly payments)" : "Partner Program", k = u ? "exp_imprcheck_cl_3monthly" : "exp_imprcheck_cl_onetime", I = u ? "3 monthly payments" : "One-time payment";
+          E(".crs-order-details__price-amount").then((S) => {
+            const B = S;
+            B && (B.textContent = y);
+          }), E(".crs-order-details__payment-info").then(() => {
+            const S = i('.crs-order-details__payment-info[data-info="monthly"]'), B = i('.crs-order-details__payment-info[data-info="onetime"]');
+            S && B && (S.style.display = M, B.style.display = d);
+          }), (L = i(`input[data-product-name="${m}"]`)) == null || L.click(), _(k, I, "input", "Choose payment plan");
         };
         f.forEach((u) => {
           u.addEventListener("input", (y) => {
             var d;
             const M = (d = y.target) == null ? void 0 : d.value;
-            T(M === "monthly");
+            w(M === "monthly");
           });
         }), o.forEach((u) => {
           var M, d;
           (M = u.textContent) != null && M.includes("3 monthly payments") && (u.after(u.previousElementSibling), (d = u.querySelector("input")) == null || d.click());
-        }), L(".crs-order-details").then(() => {
+        }), E(".crs-order-details").then(() => {
           D(".crs-order-details__full-price").forEach((y) => {
             y.addEventListener("click", (M) => {
               var m, k;
@@ -1494,21 +1495,21 @@
         if (o == null || o.insertAdjacentHTML("beforeend", Z), o == null || o.insertAdjacentHTML("beforeend", Y), !n)
           return;
         const f = document.createElement("div");
-        f.style.position = "absolute", f.style.top = "0", f.style.width = "100%", f.style.height = "1px", f.classList.add("crs-sentinel"), ($ = n.parentNode) == null || $.insertBefore(f, n);
-        let T = !1, u = 0;
+        f.style.position = "absolute", f.style.top = "0", f.style.width = "100%", f.style.height = "1px", f.classList.add("crs-sentinel"), (V = n.parentNode) == null || V.insertBefore(f, n);
+        let w = !1, u = 0;
         n.getBoundingClientRect().top;
         const y = () => {
           const d = a == null ? void 0 : a.getBoundingClientRect(), m = d.left;
-          u = d.width, T ? (n.style.left = `${m}px`, n.style.width = `${u}px`, n.style.transform = "translateX(0)") : (n.style.left = "", n.style.width = "", n.style.transform = "");
+          u = d.width, w ? (n.style.left = `${m}px`, n.style.width = `${u}px`, n.style.transform = "translateX(0)") : (n.style.left = "", n.style.width = "", n.style.transform = "");
         }, M = new IntersectionObserver(
           (d) => {
             d.forEach((m) => {
-              const k = n.getBoundingClientRect(), P = f.getBoundingClientRect();
-              if (!m.isIntersecting && m.intersectionRect.top <= 0 && !T && P.top > 0) {
-                const b = a.getBoundingClientRect().left;
-                n.classList.add("crs-sticky-cta-container--fixed"), n.style.left = `${b}px`, u = k.width, n.style.width = `${u}px`, n.style.transform = "translateX(0)", T = !0;
+              const k = n.getBoundingClientRect(), I = f.getBoundingClientRect(), L = window.innerHeight;
+              if (console.log("viewportHeight", L), console.log(m.isIntersecting, m.intersectionRect.top, !w, I.top > 0), !m.isIntersecting && m.intersectionRect.top <= 0 && !w && I.top > 0) {
+                const B = a.getBoundingClientRect().left;
+                n.classList.add("crs-sticky-cta-container--fixed"), n.style.left = `${B}px`, u = k.width, n.style.width = `${u}px`, n.style.transform = "translateX(0)", w = !0;
               } else
-                n.classList.remove("crs-sticky-cta-container--fixed"), n.style.left = "", n.style.width = "", n.style.transform = "", T = !1;
+                console.log("remove"), n.classList.remove("crs-sticky-cta-container--fixed"), n.style.left = "", n.style.width = "", n.style.transform = "", w = !1;
             });
           },
           {
@@ -1521,29 +1522,29 @@
         }, 1e3), window.addEventListener("resize", y), p = i(".nextStepBtn"), t = i(".submitBtn"), p == null || p.addEventListener("click", () => {
           const d = i("#crs-name"), m = i("#crs-email");
           _("exp_imprcheck_cl_sum_checkout", "Secure Checkout", "click", "Order summary");
-          const k = w == null ? void 0 : w.getBoundingClientRect();
-          if (k && (k.top < 0 || k.bottom > window.innerHeight) && (w == null || w.scrollIntoView({ behavior: "smooth" })), !d || !m)
+          const k = C == null ? void 0 : C.getBoundingClientRect();
+          if (k && (k.top < 0 || k.bottom > window.innerHeight) && (C == null || C.scrollIntoView({ behavior: "smooth" })), !d || !m)
             return;
-          const P = d == null ? void 0 : d.value, B = m == null ? void 0 : m.value;
-          let b = !0;
-          !P || P.trim() === "" ? (d.classList.add("crs-input-error"), b = !1) : d.classList.remove("crs-input-error");
-          const A = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!B || B.trim() === "" || !A.test(B))
-            m.classList.add("crs-input-error"), b = !1;
+          const I = d == null ? void 0 : d.value, L = m == null ? void 0 : m.value;
+          let S = !0;
+          !I || I.trim() === "" ? (d.classList.add("crs-input-error"), S = !1) : d.classList.remove("crs-input-error");
+          const B = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!L || L.trim() === "" || !B.test(L))
+            m.classList.add("crs-input-error"), S = !1;
           else {
-            const [H] = B.split("@");
-            H.includes("test") ? (m == null || m.classList.add("crs-input-error"), b = !1) : m.classList.remove("crs-input-error");
+            const [$] = L.split("@");
+            $.includes("test") ? (m == null || m.classList.add("crs-input-error"), S = !1) : m.classList.remove("crs-input-error");
           }
-          b && (!w || !x || (w.style.display = "none", x.style.display = "block", x.classList.add("crs-step2-active"), g && (g.style.display = "none"), v && (v.style.display = "none"), z && (z.style.display = "none"), E && (E.style.display = "none"), N && (N.style.display = "none"), t && (t.style.display = ""), p && (p.style.display = "none")));
+          S && (!C || !x || (C.style.display = "none", x.style.display = "block", x.classList.add("crs-step2-active"), g && (g.style.display = "none"), v && (v.style.display = "none"), z && (z.style.display = "none"), A && (A.style.display = "none"), N && (N.style.display = "none"), t && (t.style.display = ""), p && (p.style.display = "none")));
         }), t && (t.style.display = "none", t.addEventListener("click", () => {
           const d = l.querySelector("a");
           d == null || d.click();
         }));
       }
-      s == null || s.insertAdjacentHTML("beforeend", nn), a == null || a.insertAdjacentHTML("afterbegin", X), S(".crs-comments", "exp_imprcheck_ev_review", "View on screen", "Positive review"), S(".crs-order-summary", "exp_imprcheck_ev_order", "View on screen", "Order summary");
+      s == null || s.insertAdjacentHTML("beforeend", nn), a == null || a.insertAdjacentHTML("afterbegin", X), T(".crs-comments", "exp_imprcheck_ev_review", "View on screen", "Positive review"), T(".crs-order-summary", "exp_imprcheck_ev_order", "View on screen", "Order summary");
       const R = i(".crs-back-btn");
       R && R.addEventListener("click", () => {
-        _("exp_imprcheck_cl_back", "Back", "click", "Provide your billing details"), w && (w.style.display = "block"), x && (x.style.display = "none", x.classList.remove("crs-step2-active"), g && (g.style.display = ""), v && (v.style.display = ""), v && (v.style.display = ""), E && (E.style.display = ""), N && (N.style.display = "")), t && (t.style.display = "none"), p && (p.style.display = "block");
+        _("exp_imprcheck_cl_back", "Back", "click", "Provide your billing details"), C && (C.style.display = "block"), x && (x.style.display = "none", x.classList.remove("crs-step2-active"), g && (g.style.display = ""), v && (v.style.display = ""), v && (v.style.display = ""), A && (A.style.display = ""), N && (N.style.display = "")), t && (t.style.display = "none"), p && (p.style.display = "block");
       });
     }
     initStyles() {
@@ -1556,20 +1557,20 @@
       e.addEventListener("click", () => {
         const t = i("#order-declined-message");
         _("exp_imprcheck_cl_sf_checkout", "Secure Checkout", "click", "Sticky footer (mobile)");
-        const C = () => {
+        const b = () => {
           if (t && t.style.display !== "none") {
             const v = t.getBoundingClientRect();
             (v.top < 0 || v.bottom > window.innerHeight) && t.scrollIntoView({ behavior: "smooth" }), p.disconnect();
           }
         };
         t && new MutationObserver((z) => {
-          for (const E of z)
-            E.type === "attributes" && E.attributeName === "style" && C();
+          for (const A of z)
+            A.type === "attributes" && A.attributeName === "style" && b();
         }).observe(t, { attributes: !0, attributeFilter: ["style"] });
         const g = s == null ? void 0 : s.getBoundingClientRect();
-        L(".crs-input-error").then(() => {
+        E(".crs-input-error").then(() => {
           g && (g.top < 0 || g.bottom > window.innerHeight) && (s == null || s.scrollIntoView({ behavior: "smooth" }));
-        }), C(), h.forEach((v) => {
+        }), b(), h.forEach((v) => {
           !v.value || v.value.trim() === "" ? v.classList.add("crs-input-error") : v.classList.remove("crs-input-error"), v.addEventListener("input", () => {
             v.classList.remove("crs-input-error"), e.disabled = !1;
           });
@@ -1580,9 +1581,9 @@
         });
       });
       const p = new MutationObserver((t) => {
-        t.forEach((C) => {
-          if (C.type === "attributes" && C.attributeName === "disabled") {
-            const g = C.target;
+        t.forEach((b) => {
+          if (b.type === "attributes" && b.attributeName === "disabled") {
+            const g = b.target;
             g.disabled && (g.disabled = !1);
           }
         });
@@ -1593,13 +1594,13 @@
       const e = i(".elCreditCardForm"), r = i(".crs-step2");
       if (i(".ccExpYearText"), !e || !r)
         return;
-      L(".ccExpYearText").then((a) => {
+      E(".ccExpYearText").then((a) => {
         const s = a;
         s && (s.textContent = "Expiration date");
-      }), L(".ccCVCText").then((a) => {
+      }), E(".ccCVCText").then((a) => {
         const s = a;
         s && (s.textContent = "CVV");
-      }), L(".ccCardText ").then((a) => {
+      }), E(".ccCardText ").then((a) => {
         const s = a;
         s && (s.textContent = "Card number");
       }), e.insertAdjacentHTML(
@@ -1780,7 +1781,7 @@ div:has(> .crs-header__headline) {
           const s = (
             /* HTML */
             `<div class="crs-header__guarantee">
-          <div class="crs-header__guarantee-wrap"><div><span>${K}</span> - day &nbsp;<a href="${rn}" target="__blank">action-based</a>&nbsp;</div> <div>money-back guarantee</div></div>
+          <div class="crs-header__guarantee-wrap"><div><span>${K}</span> - day&nbsp;<a href="${rn}" target="__blank">action-based</a>&nbsp;</div> <div>money-back guarantee</div></div>
         </div>`
           ), h = r.querySelector(".elHeadlineWrapper"), p = r.querySelectorAll("b");
           p == null || p.forEach((t) => {
@@ -1802,7 +1803,7 @@ div:has(> .crs-header__headline) {
       this.addEvents();
     }
     addEvents() {
-      S(
+      T(
         '.fullContainer[style*="Background-Big-Last-Footer-t-"]',
         "exp_imprcheck_ev_success_st",
         "View on screen",
@@ -1819,9 +1820,9 @@ div:has(> .crs-header__headline) {
           "Just a few incredible success stories from our members"
         );
       }), document.querySelectorAll(".fullContainer").forEach((l) => {
-        var a, s, h, p, t, C;
-        if (((a = l.textContent) != null && a.includes("Overall Rating") || (s = l.textContent) != null && s.includes("Verified Reviews")) && S(l, "exp_imprcheck_ev_rating", "View on screen", "Overall Rating"), (h = l.textContent) != null && h.includes("Frequently Asked Questions") && (console.log("FAQ", l), S(l, "exp_imprcheck_ev_faq", "View on screen", "Frequently Asked Questions")), (p = l.textContent) != null && p.includes("Join Drop Servicing Partner Program Today")) {
-          if ((C = (t = l.querySelector("a")) == null ? void 0 : t.textContent) != null && C.includes("Join Drop Servicing Partner Program Today"))
+        var a, s, h, p, t, b;
+        if (((a = l.textContent) != null && a.includes("Overall Rating") || (s = l.textContent) != null && s.includes("Verified Reviews")) && T(l, "exp_imprcheck_ev_rating", "View on screen", "Overall Rating"), (h = l.textContent) != null && h.includes("Frequently Asked Questions") && (console.log("FAQ", l), T(l, "exp_imprcheck_ev_faq", "View on screen", "Frequently Asked Questions")), (p = l.textContent) != null && p.includes("Join Drop Servicing Partner Program Today")) {
+          if ((b = (t = l.querySelector("a")) == null ? void 0 : t.textContent) != null && b.includes("Join Drop Servicing Partner Program Today"))
             return;
           const g = l.querySelector("a.elButtonRounded");
           g && (g == null || g.addEventListener("mousedown", () => {
@@ -1831,7 +1832,7 @@ div:has(> .crs-header__headline) {
               "click",
               "Join Drop Servicing Partner Program Today"
             );
-          })), S(
+          })), T(
             l,
             "exp_imprcheck_ev_join_drop",
             "View on screen",
@@ -2013,7 +2014,7 @@ div:has(> .crs-header__headline) {
   text-underline-offset: 2px;
 }
 `, pn = "https://www.dropservicing.com/refund-guarantee?_gl=1*1idgxw5*_gcl_au*MTQ4MDg5MTY4OS4xNzIzNTQxOTY2*_ga*NTg4MzI1MjUuMTcyMzU0MTk2Nw..*_ga_KQ2Z1WNWC8*MTcyNDE2MTg2OS45LjAuMTcyNDE2MTg2OS42MC4wLjA.";
-  function I(c) {
+  function P(c) {
     const e = { month: "short", day: "numeric", year: "numeric" };
     return c.toLocaleDateString("en-US", e);
   }
@@ -2038,14 +2039,14 @@ div:has(> .crs-header__headline) {
         <div class="crs-schedule__blocks">
           <div class="crs-schedule__block">
             <div class="crs-schedule__wrap">
-              <div class="crs-schedule__date">${I(this.today)}</div>
+              <div class="crs-schedule__date">${P(this.today)}</div>
               <div class="crs-schedule__today">today</div>
               <div class="crs-schedule__text">Join Drop Servicing Partner Program</div>
             </div>
           </div>
           <div class="crs-schedule__block">
             <div class="crs-schedule__wrap">
-              <div class="crs-schedule__date">${I(this.today)}</div>
+              <div class="crs-schedule__date">${P(this.today)}</div>
               <div class="crs-schedule__text">
                 Access the full Drop Servicing Partner Program package, community and support
               </div>
@@ -2053,7 +2054,7 @@ div:has(> .crs-header__headline) {
           </div>
           <div class="crs-schedule__block">
             <div class="crs-schedule__wrap">
-              <div class="crs-schedule__date">${I(this.date2DaysLater)}</div>
+              <div class="crs-schedule__date">${P(this.date2DaysLater)}</div>
               <div class="crs-schedule__text">
                 Attend live video calls and receive personalized coaching (3x every week)
               </div>
@@ -2061,22 +2062,22 @@ div:has(> .crs-header__headline) {
           </div>
           <div class="crs-schedule__block">
             <div class="crs-schedule__wrap">
-              <div class="crs-schedule__date">${I(this.date17DaysLater)}</div>
-              <div class="crs-schedule__text">Launch your first drop servicing business</div>
+              <div class="crs-schedule__date">${P(this.date17DaysLater)}</div>
+              <div class="crs-schedule__text">Launch your first Drop Servicing business</div>
             </div>
           </div>
           <div class="crs-schedule__block">
             <div class="crs-schedule__wrap">
               <div class="crs-schedule__check">${q}</div>
-              <div class="crs-schedule__date"><span class="crs-schedule__until">Until</span>&nbsp;${I(this.date31DaysLater)}</div>
-              <div class="crs-schedule__text">30 days <a href="${pn}" target="__blank">action-based</a> money-back guarantee</div>
+              <div class="crs-schedule__date"><span class="crs-schedule__until">Until</span>&nbsp;${P(this.date31DaysLater)}</div>
+              <div class="crs-schedule__text">30 day <a href="${pn}" target="__blank">action-based</a> money-back guarantee</div>
             </div>
           </div>
         </div>
       </div>
     `
       ), r = document.querySelector(".crsTargetSection");
-      r && (this.initStyles(), r.insertAdjacentHTML("beforebegin", e), S(".crs-schedule", "exp_imprcheck_ev_timeline", "View on screen", "Timeline"));
+      r && (this.initStyles(), r.insertAdjacentHTML("beforebegin", e), T(".crs-schedule", "exp_imprcheck_ev_timeline", "View on screen", "Timeline"));
     }
     getDates() {
       this.today = /* @__PURE__ */ new Date(), this.date2DaysLater = new Date(this.today), this.date2DaysLater.setDate(this.today.getDate() + 2), this.date17DaysLater = new Date(this.today), this.date17DaysLater.setDate(this.today.getDate() + 17), this.date31DaysLater = new Date(this.today), this.date31DaysLater.setDate(this.today.getDate() + 31);
