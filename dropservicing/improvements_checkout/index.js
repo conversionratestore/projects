@@ -2032,8 +2032,8 @@ div:has(> .crs-header__headline) {
       <div class="crs-schedule">
         <div class="crs-schedule__header">
           <h3 class="crs-schedule__title">
-            Secure your spot in the Drop Servicing Partner Program – Save <span>$2,000</span> and Get 8 Exclusive
-            Bonuses Today
+            Secure your spot in the Drop Servicing Partner Program – <span>Save $2,000</span> and <span>Get 8 Exclusive
+            Bonuses</span> Today
           </h3>
         </div>
         <div class="crs-schedule__blocks">
