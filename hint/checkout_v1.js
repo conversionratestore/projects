@@ -56,7 +56,7 @@
   const s = (a) => new f(a), d = `.variant1 {
   padding: 20px;
   height: 100%;
-  overflow: scroll;
+  overflow: auto;
 }
 .variant1 h1 {
   font-size: 24px;
