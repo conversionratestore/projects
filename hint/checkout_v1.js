@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const l = (a, n) => {
+  const r = (a, n) => {
     const t = setInterval(() => {
       document.querySelector(a) && (clearInterval(t), n());
     }, 100);
@@ -16,13 +16,13 @@
     }
     on(n, t, e) {
       return typeof t == "function" && (e = t, t = ""), this.elements.forEach(function(i) {
-        i.addEventListener(n, function(r) {
+        i.addEventListener(n, function(l) {
           var p;
           if (t) {
-            let C = (p = r.target) == null ? void 0 : p.closest(t);
-            i.contains(C) && (e == null || e.call(C, r));
+            let C = (p = l.target) == null ? void 0 : p.closest(t);
+            i.contains(C) && (e == null || e.call(C, l));
           } else
-            e == null || e.call(i, r);
+            e == null || e.call(i, l);
         });
       }), this;
     }
@@ -47,7 +47,7 @@
       }), this;
     }
     style(n, t) {
-      const e = n.split("-").map((i, r) => r === 0 ? i : i.charAt(0).toUpperCase() + i.slice(1)).join("");
+      const e = n.split("-").map((i, l) => l === 0 ? i : i.charAt(0).toUpperCase() + i.slice(1)).join("");
       return this.elements.forEach(function(i) {
         i.style[e] = t;
       }), this;
@@ -120,6 +120,7 @@
   font-size: 12px;
   line-height: 18px;
   color: #04a777;
+  font-weight: 600;
 }
 .variant1 .special_offer .code svg {
   margin-right: 8px;
@@ -128,6 +129,10 @@
   font-size: 12px;
   color: #6b7baa;
   margin-top: 12px;
+}
+.variant1 .special_offer .info > * {
+  color: #6b7baa;
+  display: block;
 }
 .variant1 > a {
   margin-top: 16px;
@@ -187,12 +192,16 @@
   justify-content: center;
   align-items: center;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
   color: #fff;
   z-index: 2;
 }
 .crs_timer .timer_wrapper p span {
   font-weight: 700;
+}
+
+.sticky > .w-full.font-bold {
+  display: none;
 }/*# sourceMappingURL=style.css.map */`, h = "https://conversionratestore.github.io/projects/hint/img", o = {
     hand: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
     <g clip-path="url(#clip0_80_7276)">
@@ -263,18 +272,18 @@
   </div>
 `
   );
-  let v = setInterval(function() {
-    typeof window.clarity == "function" && (clearInterval(v), window.clarity("set", "exp_hypothesis_3", "variant_1"));
+  let w = setInterval(function() {
+    typeof window.clarity == "function" && (clearInterval(w), window.clarity("set", "exp_hypothesis_3", "variant_2"));
   }, 1e3);
   c({ name: "Checkout Optimization", dev: "YK" });
-  class w {
+  class x {
     constructor() {
       this.device = window.innerWidth > 768 ? "desktop" : "mobile", this.data = {}, this.init();
     }
     init() {
-      l("span.text-primary.font-bold", () => {
+      r("span.text-primary.font-bold", () => {
         this.getData();
-      }), l(".flex-grow.overflow-auto.pt-4", () => {
+      }), r(".flex-grow.overflow-auto.pt-4", () => {
         this.render();
       });
     }
@@ -295,6 +304,6 @@
       }, 1e3);
     }
   }
-  new w();
+  new x();
 })();
 //# sourceMappingURL=index.js.map
