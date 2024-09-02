@@ -263,6 +263,9 @@
   </div>
 `
   );
+  let v = setInterval(function() {
+    typeof window.clarity == "function" && (clearInterval(v), window.clarity("set", "exp_hypothesis_3", "variant_1"));
+  }, 1e3);
   c({ name: "Checkout Optimization", dev: "YK" });
   class w {
     constructor() {
