@@ -271,8 +271,11 @@
   </div>
 `
   );
+  let v = setInterval(function() {
+    typeof window.clarity == "function" && (clearInterval(v), window.clarity("set", "exp_hypothesis_3", "variant_2"));
+  }, 1e3);
   c({ name: "Checkout Optimization", dev: "YK" });
-  class v {
+  class x {
     constructor() {
       this.device = window.innerWidth > 768 ? "desktop" : "mobile", this.data = {}, this.init();
     }
@@ -300,6 +303,6 @@
       }, 1e3);
     }
   }
-  new v();
+  new x();
 })();
 //# sourceMappingURL=index.js.map
