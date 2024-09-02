@@ -4,7 +4,7 @@
     const t = setInterval(() => {
       document.querySelector(a) && (clearInterval(t), n());
     }, 100);
-  }, c = ({ name: a, dev: n }) => {
+  }, C = ({ name: a, dev: n }) => {
     console.log(
       `%c EXP: ${a} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
@@ -19,8 +19,8 @@
         s.addEventListener(n, function(r) {
           var p;
           if (t) {
-            let C = (p = r.target) == null ? void 0 : p.closest(t);
-            s.contains(C) && (e == null || e.call(C, r));
+            let c = (p = r.target) == null ? void 0 : p.closest(t);
+            s.contains(c) && (e == null || e.call(c, r));
           } else
             e == null || e.call(s, r);
         });
@@ -118,6 +118,7 @@
   font-size: 12px;
   line-height: 18px;
   color: #04a777;
+  font-weight: 600;
 }
 .variant1 .special_offer .code svg {
   margin-right: 8px;
@@ -126,6 +127,10 @@
   font-size: 12px;
   color: #6b7baa;
   margin-top: 12px;
+}
+.variant1 .special_offer .info > * {
+  color: #6b7baa;
+  display: block;
 }
 .variant1 > a {
   margin-top: 16px;
@@ -185,12 +190,16 @@
   justify-content: center;
   align-items: center;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
   color: #fff;
   z-index: 2;
 }
 .crs_timer .timer_wrapper p span {
   font-weight: 700;
+}
+
+.sticky > .w-full.font-bold {
+  display: none;
 }/*# sourceMappingURL=style.css.map */`, h = "https://conversionratestore.github.io/projects/hint/img", o = {
     hand: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
     <g clip-path="url(#clip0_80_7276)">
@@ -274,7 +283,7 @@
   let v = setInterval(function() {
     typeof window.clarity == "function" && (clearInterval(v), window.clarity("set", "exp_hypothesis_3", "variant_2"));
   }, 1e3);
-  c({ name: "Checkout Optimization", dev: "YK" });
+  C({ name: "Checkout Optimization", dev: "YK" });
   class x {
     constructor() {
       this.device = window.innerWidth > 768 ? "desktop" : "mobile", this.data = {}, this.init();
