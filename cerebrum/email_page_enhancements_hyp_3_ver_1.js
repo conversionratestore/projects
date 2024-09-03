@@ -22,12 +22,12 @@
   }
   (function(e) {
     e = e === void 0 ? {} : e;
-    let t, i, l, a, g = (e == null ? void 0 : e.delay) || 50;
+    let t, i, l, a, x = (e == null ? void 0 : e.delay) || 50;
     function d() {
       t = null, a = 0;
     }
     return d(), function() {
-      return i = window.scrollY, t != null && (a = i - t), t = i, clearTimeout(l), l = setTimeout(d, g), a;
+      return i = window.scrollY, t != null && (a = i - t), t = i, clearTimeout(l), l = setTimeout(d, x), a;
     };
   })();
   const r = {
@@ -186,8 +186,7 @@ body.crs_dev main > div > .w-full {
 }
 body.crs_dev main > div > .mx-auto {
   margin: auto 0 0;
-  padding: 0 20px;
-  position: fixed;
+  padding: 0 !important;
   bottom: 20px;
   left: 0;
   right: 0;
@@ -304,7 +303,7 @@ body.crs_dev main > div > .mx-auto button > svg {
 .terms_conditions_block p a {
   color: #00f;
 }/*# sourceMappingURL=main.css.map */`, b = window.innerWidth < 768 ? "mobile" : "desktop";
-  class x {
+  class g {
     constructor(t) {
       this.device = t, this.init();
     }
@@ -362,6 +361,6 @@ body.crs_dev main > div > .mx-auto button > svg {
       }).observe(n("body"), { childList: !0, subtree: !0 });
     }
   }
-  new x(b);
+  new g(b);
 })();
 //# sourceMappingURL=index.js.map
