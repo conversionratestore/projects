@@ -246,8 +246,8 @@
   <div class="crs_block variant1">
     <style>${d}</style>
     <h1>Transform your life with a <span>Power of Palmistry</span></h1>
-    <p>${o.hand} <b>Unlimited</b>&nbsp;personalized palm readings</p>
-    <p>${o.chat} <b>Unlimited</b>&nbsp;chats with palmistry experts</p>
+    <p>${o.hand}<span><b>Unlimited</b>&nbsp;personalized palm readings</span></p>
+    <p>${o.chat}<span><b>Unlimited</b>&nbsp;chats with palmistry experts</span></p>
     <div class="special_offer">
       <span>Special offer</span>
       <div class="bottom_part">
