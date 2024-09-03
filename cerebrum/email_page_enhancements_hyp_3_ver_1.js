@@ -215,11 +215,6 @@ body.crs_dev main > div > .mx-auto button > svg {
   width: 18px;
   height: 13px;
 }
-body.crs_dev.ver_c main > div {
-  justify-content: center;
-  margin-top: -99px;
-}
-
 .title_block h2 {
   color: #11181c;
   font-family: "Inter", sans-serif;
