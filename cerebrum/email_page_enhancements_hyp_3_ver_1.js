@@ -22,15 +22,24 @@
   }
   (function(e) {
     e = e === void 0 ? {} : e;
-    let t, i, s, a, x = (e == null ? void 0 : e.delay) || 50;
+    let t, i, r, a, v = (e == null ? void 0 : e.delay) || 50;
     function d() {
       t = null, a = 0;
     }
     return d(), function() {
-      return i = window.scrollY, t != null && (a = i - t), t = i, clearTimeout(s), s = setTimeout(d, x), a;
+      return i = window.scrollY, t != null && (a = i - t), t = i, clearTimeout(r), r = setTimeout(d, v), a;
     };
   })();
-  const r = {
+  function m(e) {
+    return new Promise((t) => setTimeout(t, e));
+  }
+  const h = async (e, t) => {
+    const i = e, a = (t == null ? void 0 : t.getBoundingClientRect().top) + window.pageYOffset - i;
+    return window.scrollTo({
+      top: a,
+      behavior: "smooth"
+    }), await m(800), !0;
+  }, s = {
     safeAndSecureIcon: (
       /* HTML */
       `
@@ -71,7 +80,7 @@
     </svg>
   `
     )
-  }, m = (
+  }, u = (
     /* HTML */
     `
   <div class="title_block">
@@ -92,20 +101,20 @@
     </ul>
   </div>
 `
-  ), h = (
+  ), f = (
     /* HTML */
     `
   <p class="new_label_txt">Create an account to save and access your data</p>
 `
-  ), u = (
+  ), b = (
     /* HTML */
     `
   <div class="safe_and_secure_block">
-    ${r.safeAndSecureIcon}
+    ${s.safeAndSecureIcon}
     <p>Your data is safe and secure. No ads or spam</p>
   </div>
 `
-  ), f = (
+  ), g = (
     /* HTML */
     `
   <div class="terms_conditions_block">
@@ -116,7 +125,7 @@
   </div>
 `
   ), l = `html.crs_dev {
-  height: 100vh;
+  height: 100%;
 }
 html.crs_dev body {
   height: 100% !important;
@@ -337,8 +346,8 @@ html.crs_dev body.input_focused main > div > .mx-auto {
 }
 .terms_conditions_block p a {
   color: #00f;
-}/*# sourceMappingURL=main.css.map */`, b = window.innerWidth < 768 ? "mobile" : "desktop";
-  class g {
+}/*# sourceMappingURL=main.css.map */`, x = window.innerWidth < 768 ? "mobile" : "desktop";
+  class _ {
     constructor(t) {
       this.device = t, this.init();
     }
@@ -350,36 +359,38 @@ html.crs_dev body.input_focused main > div > .mx-auto {
     }
     renderTitleBlock() {
       o("main > div > div.gap-1").then(() => {
-        n(".title_block") || n("main > div").insertAdjacentHTML("afterbegin", m);
+        n(".title_block") || n("main > div").insertAdjacentHTML("afterbegin", u);
       });
     }
     changeInputHandler() {
       o('[data-slot="input-wrapper"]').then(() => {
         n('[data-slot="input-wrapper"] input').placeholder !== "example@mail.com" && (n('[data-slot="input-wrapper"] input').placeholder = "example@mail.com"), n('[data-slot="input-wrapper"] input').addEventListener("focus", (t) => {
-          console.log(t.target), n("body").classList.add("input_focused");
+          console.log(t.target), n("body").classList.add("input_focused"), h(0, n("body nav"));
         }), n('[data-slot="input-wrapper"] input').addEventListener("blur", (t) => {
-          console.log(t.target), n("body").classList.contains("input_focused") && n("body").classList.remove("input_focused");
+          console.log(t.target), setTimeout(() => {
+            n("body").classList.contains("input_focused") && n("body").classList.remove("input_focused");
+          }, 300);
         });
       });
     }
     renderNewLabelForInput() {
       o('[data-slot="input-wrapper"]').then(() => {
-        n(".new_label_txt") || n('[data-slot="input-wrapper"]').insertAdjacentHTML("beforebegin", h);
+        n(".new_label_txt") || n('[data-slot="input-wrapper"]').insertAdjacentHTML("beforebegin", f);
       });
     }
     renderSafeAndSecureBlock() {
       o("body main > div > .w-full").then(() => {
-        n(".safe_and_secure_block") || n("body main > div > .w-full").insertAdjacentHTML("afterend", u);
+        n(".safe_and_secure_block") || n("body main > div > .w-full").insertAdjacentHTML("afterend", b);
       });
     }
     renderTermsConditionsBlock() {
       o("main > div > .mx-auto").then(() => {
-        n(".terms_conditions_block") || n("main > div > .mx-auto").insertAdjacentHTML("beforeend", f), this.clickLinkTermsHandler();
+        n(".terms_conditions_block") || n("main > div > .mx-auto").insertAdjacentHTML("beforeend", g), this.clickLinkTermsHandler();
       });
     }
     renderContinueIcon() {
       o("main > div > .mx-auto button").then(() => {
-        n(".continue_icon") || n("main > div > .mx-auto button").insertAdjacentHTML("beforeend", `${r.continueIcon}`);
+        n(".continue_icon") || n("main > div > .mx-auto button").insertAdjacentHTML("beforeend", `${s.continueIcon}`);
       });
     }
     clickLinkTermsHandler() {
@@ -400,6 +411,6 @@ html.crs_dev body.input_focused main > div > .mx-auto {
       }).observe(n("body"), { childList: !0, subtree: !0 });
     }
   }
-  new g(b);
+  new _(x);
 })();
 //# sourceMappingURL=index.js.map
