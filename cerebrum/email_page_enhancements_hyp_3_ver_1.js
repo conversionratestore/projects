@@ -1,17 +1,17 @@
 (function() {
   "use strict";
-  const c = ({ name: t, dev: e }) => {
+  const c = ({ name: e, dev: t }) => {
     console.log(
-      `%c EXP: ${t} (DEV: ${e})`,
+      `%c EXP: ${e} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, p = (t) => document.querySelectorAll(t), n = (t) => document.querySelector(t);
-  function o(t) {
-    return new Promise((e) => {
-      if (document.querySelector(t))
-        return e(document.querySelector(t));
+  }, p = (e) => document.querySelectorAll(e), n = (e) => document.querySelector(e);
+  function o(e) {
+    return new Promise((t) => {
+      if (document.querySelector(e))
+        return t(document.querySelector(e));
       const i = new MutationObserver(() => {
-        document.querySelector(t) && (e(document.querySelector(t)), i.disconnect());
+        document.querySelector(e) && (t(document.querySelector(e)), i.disconnect());
       });
       i.observe(document.documentElement, {
         childList: !0,
@@ -20,14 +20,14 @@
       });
     });
   }
-  (function(t) {
-    t = t === void 0 ? {} : t;
-    let e, i, l, a, x = (t == null ? void 0 : t.delay) || 50;
+  (function(e) {
+    e = e === void 0 ? {} : e;
+    let t, i, s, a, x = (e == null ? void 0 : e.delay) || 50;
     function d() {
-      e = null, a = 0;
+      t = null, a = 0;
     }
     return d(), function() {
-      return i = window.scrollY, e != null && (a = i - e), e = i, clearTimeout(l), l = setTimeout(d, x), a;
+      return i = window.scrollY, t != null && (a = i - t), t = i, clearTimeout(s), s = setTimeout(d, x), a;
     };
   })();
   const r = {
@@ -71,7 +71,7 @@
     </svg>
   `
     )
-  }, u = (
+  }, m = (
     /* HTML */
     `
   <div class="title_block">
@@ -92,12 +92,12 @@
     </ul>
   </div>
 `
-  ), f = (
+  ), h = (
     /* HTML */
     `
   <p class="new_label_txt">Create an account to save and access your data</p>
 `
-  ), m = (
+  ), u = (
     /* HTML */
     `
   <div class="safe_and_secure_block">
@@ -105,7 +105,7 @@
     <p>Your data is safe and secure. No ads or spam</p>
   </div>
 `
-  ), b = (
+  ), f = (
     /* HTML */
     `
   <div class="terms_conditions_block">
@@ -115,40 +115,46 @@
     </p>
   </div>
 `
-  ), s = `body.crs_dev main > div > div.gap-1,
-body.crs_dev main p.text-default-600 {
-  display: none !important;
-}
-body.crs_dev > div > div {
+  ), l = `html.crs_dev {
   height: 100vh;
 }
-body.crs_dev nav {
+html.crs_dev body {
+  height: 100% !important;
+}
+html.crs_dev body main > div > div.gap-1,
+html.crs_dev body main p.text-default-600 {
+  display: none !important;
+}
+html.crs_dev body > div > div {
+  height: 100%;
+}
+html.crs_dev body nav {
   border-bottom: 1px solid #d2d1d6 !important;
   background: #fff !important;
   -webkit-backdrop-filter: blur(8px) !important;
           backdrop-filter: blur(8px) !important;
   padding: 0 24px !important;
 }
-body.crs_dev nav header {
+html.crs_dev body nav header {
   padding: 0 !important;
 }
-body.crs_dev nav + div {
+html.crs_dev body nav + div {
   height: 100%;
 }
-body.crs_dev main {
+html.crs_dev body main {
   padding: 24px 20px 20px !important;
   height: 100%;
 }
-body.crs_dev main > div {
+html.crs_dev body main > div {
   padding: 0 !important;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
-body.crs_dev main .group[data-focus=true] [data-slot=input-wrapper] {
+html.crs_dev body main .group[data-focus=true] [data-slot=input-wrapper] {
   background: #fff !important;
 }
-body.crs_dev main [data-slot=input-wrapper] {
+html.crs_dev body main [data-slot=input-wrapper] {
   position: relative;
   border-radius: 8px;
   border: 1px solid #dee8f7;
@@ -156,7 +162,7 @@ body.crs_dev main [data-slot=input-wrapper] {
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.02), 0px 2px 10px 0px rgba(0, 0, 0, 0.06), 0px 0px 1px 0px rgba(0, 0, 0, 0.3);
   padding: 12px 20px 12px 46px;
 }
-body.crs_dev main [data-slot=input-wrapper]::before {
+html.crs_dev body main [data-slot=input-wrapper]::before {
   position: absolute;
   content: "";
   width: 18px;
@@ -166,14 +172,14 @@ body.crs_dev main [data-slot=input-wrapper]::before {
   transform: translateY(-50%);
   background: url("https://conversionratestore.github.io/projects/cerebrum/img/email_icon.svg") no-repeat;
 }
-body.crs_dev main [data-slot=input-wrapper] label {
+html.crs_dev body main [data-slot=input-wrapper] label {
   display: none !important;
 }
-body.crs_dev main [data-slot=input-wrapper] [data-slot=inner-wrapper] {
+html.crs_dev body main [data-slot=input-wrapper] [data-slot=inner-wrapper] {
   display: flex;
   align-items: center;
 }
-body.crs_dev main [data-slot=input-wrapper] input {
+html.crs_dev body main [data-slot=input-wrapper] input {
   height: 100%;
   width: 100%;
   color: #11181c !important;
@@ -182,24 +188,24 @@ body.crs_dev main [data-slot=input-wrapper] input {
   font-weight: 400;
   line-height: 100%;
 }
-body.crs_dev main [data-slot=input-wrapper] input::-moz-placeholder {
+html.crs_dev body main [data-slot=input-wrapper] input::-moz-placeholder {
   color: #bababb;
   font-family: "Inter", sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 100%;
 }
-body.crs_dev main [data-slot=input-wrapper] input::placeholder {
+html.crs_dev body main [data-slot=input-wrapper] input::placeholder {
   color: #bababb;
   font-family: "Inter", sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 100%;
 }
-body.crs_dev main > div > .w-full {
+html.crs_dev body main > div > .w-full {
   margin: 0;
 }
-body.crs_dev main > div > .mx-auto {
+html.crs_dev body main > div > .mx-auto {
   margin: auto 0 0;
   padding: 0 20px !important;
   position: fixed;
@@ -207,7 +213,7 @@ body.crs_dev main > div > .mx-auto {
   left: 0;
   right: 0;
 }
-body.crs_dev main > div > .mx-auto button {
+html.crs_dev body main > div > .mx-auto button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -223,21 +229,21 @@ body.crs_dev main > div > .mx-auto button {
   border-radius: 8px;
   background: #0d766e;
 }
-body.crs_dev main > div > .mx-auto button > div {
+html.crs_dev body main > div > .mx-auto button > div {
   display: none !important;
 }
-body.crs_dev main > div > .mx-auto button > svg {
+html.crs_dev body main > div > .mx-auto button > svg {
   width: 18px;
   height: 13px;
 }
-body.crs_dev.input_focused .title_block p,
-body.crs_dev.input_focused .title_block ul {
+html.crs_dev body.input_focused .title_block p,
+html.crs_dev body.input_focused .title_block ul {
   display: none;
 }
-body.crs_dev.input_focused .new_label_txt {
+html.crs_dev body.input_focused .new_label_txt {
   margin-top: 24px;
 }
-body.crs_dev.input_focused main > div > .mx-auto {
+html.crs_dev body.input_focused main > div > .mx-auto {
   position: initial;
   padding: 0 !important;
   margin-top: 20px;
@@ -331,44 +337,44 @@ body.crs_dev.input_focused main > div > .mx-auto {
 }
 .terms_conditions_block p a {
   color: #00f;
-}/*# sourceMappingURL=main.css.map */`, h = window.innerWidth < 768 ? "mobile" : "desktop";
+}/*# sourceMappingURL=main.css.map */`, b = window.innerWidth < 768 ? "mobile" : "desktop";
   class g {
-    constructor(e) {
-      this.device = e, this.init();
+    constructor(t) {
+      this.device = t, this.init();
     }
     init() {
-      c({ name: "Email page enhancements", dev: "SKh" }), n("body").classList.contains("crs_dev") || n("body").classList.add("crs_dev"), n(".crs_style") || (document.head.insertAdjacentHTML(
+      c({ name: "Email page enhancements", dev: "SKh" }), n("html").classList.contains("crs_dev") || n("html").classList.add("crs_dev"), n(".crs_style") || (document.head.insertAdjacentHTML(
         "afterbegin",
         '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">'
-      ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${s}</style>`)), this.renderTitleBlock(), this.changeInputHandler(), this.renderNewLabelForInput(), this.renderSafeAndSecureBlock(), this.renderTermsConditionsBlock(), this.renderContinueIcon(), this.observeEmailPage();
+      ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${l}</style>`)), this.renderTitleBlock(), this.changeInputHandler(), this.renderNewLabelForInput(), this.renderSafeAndSecureBlock(), this.renderTermsConditionsBlock(), this.renderContinueIcon(), this.observeEmailPage();
     }
     renderTitleBlock() {
       o("main > div > div.gap-1").then(() => {
-        n(".title_block") || n("main > div").insertAdjacentHTML("afterbegin", u);
+        n(".title_block") || n("main > div").insertAdjacentHTML("afterbegin", m);
       });
     }
     changeInputHandler() {
       o('[data-slot="input-wrapper"]').then(() => {
-        n('[data-slot="input-wrapper"] input').placeholder !== "example@mail.com" && (n('[data-slot="input-wrapper"] input').placeholder = "example@mail.com"), n('[data-slot="input-wrapper"] input').addEventListener("focus", (e) => {
-          console.log(e.target), n("body").classList.add("input_focused");
-        }), n('[data-slot="input-wrapper"] input').addEventListener("blur", (e) => {
-          console.log(e.target), n("body").classList.contains("input_focused") && n("body").classList.remove("input_focused");
+        n('[data-slot="input-wrapper"] input').placeholder !== "example@mail.com" && (n('[data-slot="input-wrapper"] input').placeholder = "example@mail.com"), n('[data-slot="input-wrapper"] input').addEventListener("focus", (t) => {
+          console.log(t.target), n("body").classList.add("input_focused");
+        }), n('[data-slot="input-wrapper"] input').addEventListener("blur", (t) => {
+          console.log(t.target), n("body").classList.contains("input_focused") && n("body").classList.remove("input_focused");
         });
       });
     }
     renderNewLabelForInput() {
       o('[data-slot="input-wrapper"]').then(() => {
-        n(".new_label_txt") || n('[data-slot="input-wrapper"]').insertAdjacentHTML("beforebegin", f);
+        n(".new_label_txt") || n('[data-slot="input-wrapper"]').insertAdjacentHTML("beforebegin", h);
       });
     }
     renderSafeAndSecureBlock() {
       o("body main > div > .w-full").then(() => {
-        n(".safe_and_secure_block") || n("body main > div > .w-full").insertAdjacentHTML("afterend", m);
+        n(".safe_and_secure_block") || n("body main > div > .w-full").insertAdjacentHTML("afterend", u);
       });
     }
     renderTermsConditionsBlock() {
       o("main > div > .mx-auto").then(() => {
-        n(".terms_conditions_block") || n("main > div > .mx-auto").insertAdjacentHTML("beforeend", b), this.clickLinkTermsHandler();
+        n(".terms_conditions_block") || n("main > div > .mx-auto").insertAdjacentHTML("beforeend", f), this.clickLinkTermsHandler();
       });
     }
     renderContinueIcon() {
@@ -378,22 +384,22 @@ body.crs_dev.input_focused main > div > .mx-auto {
     }
     clickLinkTermsHandler() {
       o(".terms_conditions_block").then(() => {
-        p(".terms_conditions_block a").forEach((e) => {
-          e.addEventListener("click", (i) => {
-            i.preventDefault(), e.classList.contains("terms") && n("main p.text-default-600 a:nth-child(1)").click(), e.classList.contains("privacy") && n("main p.text-default-600 a:nth-child(2)").click(), console.log("Link clicked");
+        p(".terms_conditions_block a").forEach((t) => {
+          t.addEventListener("click", (i) => {
+            i.preventDefault(), t.classList.contains("terms") && n("main p.text-default-600 a:nth-child(1)").click(), t.classList.contains("privacy") && n("main p.text-default-600 a:nth-child(2)").click(), console.log("Link clicked");
           });
         });
       });
     }
     observeEmailPage() {
       new MutationObserver(() => {
-        location.pathname.match("/email") ? (n("body").classList.contains("crs_dev") || n("body").classList.add("crs_dev"), n(".crs_style") || (document.head.insertAdjacentHTML(
+        location.pathname.match("/email") ? (n("html").classList.contains("crs_dev") || n("html").classList.add("crs_dev"), n(".crs_style") || (document.head.insertAdjacentHTML(
           "afterbegin",
           '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">'
-        ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${s}</style>`)), n(".title_block") || this.renderTitleBlock(), n(".new_label_txt") || this.renderNewLabelForInput(), n(".safe_and_secure_block") || this.renderSafeAndSecureBlock(), n(".terms_conditions_block") || this.renderTermsConditionsBlock(), n(".continue_icon") || this.renderContinueIcon(), n('[data-slot="input-wrapper"] input').placeholder !== "example@mail.com" && this.changeInputHandler()) : n("body").classList.contains("crs_dev") && n("body").classList.remove("crs_dev");
+        ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${l}</style>`)), n(".title_block") || this.renderTitleBlock(), n(".new_label_txt") || this.renderNewLabelForInput(), n(".safe_and_secure_block") || this.renderSafeAndSecureBlock(), n(".terms_conditions_block") || this.renderTermsConditionsBlock(), n(".continue_icon") || this.renderContinueIcon(), n('[data-slot="input-wrapper"] input').placeholder !== "example@mail.com" && this.changeInputHandler()) : n("html").classList.contains("crs_dev") && n("html").classList.remove("crs_dev");
       }).observe(n("body"), { childList: !0, subtree: !0 });
     }
   }
-  new g(h);
+  new g(b);
 })();
 //# sourceMappingURL=index.js.map
