@@ -142,7 +142,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 25px;
+  gap: 20px;
   margin-bottom: 12px;
   padding: 0 20px;
 }
