@@ -1,17 +1,17 @@
 (function() {
   "use strict";
-  const c = ({ name: e, dev: t }) => {
+  const c = ({ name: t, dev: e }) => {
     console.log(
-      `%c EXP: ${e} (DEV: ${t})`,
+      `%c EXP: ${t} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, p = (e) => document.querySelectorAll(e), n = (e) => document.querySelector(e);
-  function o(e) {
-    return new Promise((t) => {
-      if (document.querySelector(e))
-        return t(document.querySelector(e));
+  }, p = (t) => document.querySelectorAll(t), n = (t) => document.querySelector(t);
+  function o(t) {
+    return new Promise((e) => {
+      if (document.querySelector(t))
+        return e(document.querySelector(t));
       const i = new MutationObserver(() => {
-        document.querySelector(e) && (t(document.querySelector(e)), i.disconnect());
+        document.querySelector(t) && (e(document.querySelector(t)), i.disconnect());
       });
       i.observe(document.documentElement, {
         childList: !0,
@@ -20,14 +20,14 @@
       });
     });
   }
-  (function(e) {
-    e = e === void 0 ? {} : e;
-    let t, i, l, a, x = (e == null ? void 0 : e.delay) || 50;
+  (function(t) {
+    t = t === void 0 ? {} : t;
+    let e, i, l, a, x = (t == null ? void 0 : t.delay) || 50;
     function d() {
-      t = null, a = 0;
+      e = null, a = 0;
     }
     return d(), function() {
-      return i = window.scrollY, t != null && (a = i - t), t = i, clearTimeout(l), l = setTimeout(d, x), a;
+      return i = window.scrollY, e != null && (a = i - e), e = i, clearTimeout(l), l = setTimeout(d, x), a;
     };
   })();
   const r = {
@@ -71,18 +71,33 @@
     </svg>
   `
     )
-  }, m = (
+  }, u = (
     /* HTML */
     `
   <div class="title_block">
-    <h2>Find your <span class="accent_color_green">IQ Test</span> Insights right in your inbox</h2>
-    <p>Create an account to save and access your results</p>
+    <h2>Your <span class="accent_color_green">IQ test</span> results are ready!</h2>
+    <ul>
+      <li>
+        <p>Unlock your full IQ report</p>
+      </li>
+      <li>
+        <p>Discover your intellectual strengths and growth areas</p>
+      </li>
+      <li>
+        <p>
+          Access proven, personalized training <br />
+          to boost your IQ by 37% in just 4 weeks
+        </p>
+      </li>
+    </ul>
   </div>
 `
   ), f = (
     /* HTML */
-    ' <p class="new_label_txt">Enter your email</p> '
-  ), u = (
+    `
+  <p class="new_label_txt">Create an account to save and access your data</p>
+`
+  ), m = (
     /* HTML */
     `
   <div class="safe_and_secure_block">
@@ -90,7 +105,7 @@
     <p>Your data is safe and secure. No ads or spam</p>
   </div>
 `
-  ), h = (
+  ), b = (
     /* HTML */
     `
   <div class="terms_conditions_block">
@@ -186,7 +201,8 @@ body.crs_dev main > div > .w-full {
 }
 body.crs_dev main > div > .mx-auto {
   margin: auto 0 0;
-  padding: 0 !important;
+  padding: 0 20px !important;
+  position: fixed;
   bottom: 20px;
   left: 0;
   right: 0;
@@ -214,6 +230,19 @@ body.crs_dev main > div > .mx-auto button > svg {
   width: 18px;
   height: 13px;
 }
+body.crs_dev.input_focused .title_block p,
+body.crs_dev.input_focused .title_block ul {
+  display: none;
+}
+body.crs_dev.input_focused .new_label_txt {
+  margin-top: 24px;
+}
+body.crs_dev.input_focused main > div > .mx-auto {
+  position: initial;
+  padding: 0 !important;
+  margin-top: 20px;
+}
+
 .title_block h2 {
   color: #11181c;
   font-family: "Inter", sans-serif;
@@ -302,10 +331,10 @@ body.crs_dev main > div > .mx-auto button > svg {
 }
 .terms_conditions_block p a {
   color: #00f;
-}/*# sourceMappingURL=main.css.map */`, b = window.innerWidth < 768 ? "mobile" : "desktop";
+}/*# sourceMappingURL=main.css.map */`, h = window.innerWidth < 768 ? "mobile" : "desktop";
   class g {
-    constructor(t) {
-      this.device = t, this.init();
+    constructor(e) {
+      this.device = e, this.init();
     }
     init() {
       c({ name: "Email page enhancements", dev: "SKh" }), n("body").classList.contains("crs_dev") || n("body").classList.add("crs_dev"), n(".crs_style") || (document.head.insertAdjacentHTML(
@@ -315,12 +344,16 @@ body.crs_dev main > div > .mx-auto button > svg {
     }
     renderTitleBlock() {
       o("main > div > div.gap-1").then(() => {
-        n(".title_block") || (n("main > div").insertAdjacentHTML("afterbegin", m), n("body").classList.add("ver_c"));
+        n(".title_block") || n("main > div").insertAdjacentHTML("afterbegin", u);
       });
     }
     changeInputHandler() {
       o('[data-slot="input-wrapper"]').then(() => {
-        n('[data-slot="input-wrapper"] input').placeholder !== "example@mail.com" && (n('[data-slot="input-wrapper"] input').placeholder = "example@mail.com");
+        n('[data-slot="input-wrapper"] input').placeholder !== "example@mail.com" && (n('[data-slot="input-wrapper"] input').placeholder = "example@mail.com"), n('[data-slot="input-wrapper"] input').addEventListener("focus", (e) => {
+          console.log(e.target), n("body").classList.add("input_focused");
+        }), n('[data-slot="input-wrapper"] input').addEventListener("blur", (e) => {
+          console.log(e.target), n("body").classList.contains("input_focused") && n("body").classList.remove("input_focused");
+        });
       });
     }
     renderNewLabelForInput() {
@@ -330,12 +363,12 @@ body.crs_dev main > div > .mx-auto button > svg {
     }
     renderSafeAndSecureBlock() {
       o("body main > div > .w-full").then(() => {
-        n(".safe_and_secure_block") || n("body main > div > .w-full").insertAdjacentHTML("afterend", u);
+        n(".safe_and_secure_block") || n("body main > div > .w-full").insertAdjacentHTML("afterend", m);
       });
     }
     renderTermsConditionsBlock() {
       o("main > div > .mx-auto").then(() => {
-        n(".terms_conditions_block") || n("main > div > .mx-auto").insertAdjacentHTML("beforeend", h), this.clickLinkTermsHandler();
+        n(".terms_conditions_block") || n("main > div > .mx-auto").insertAdjacentHTML("beforeend", b), this.clickLinkTermsHandler();
       });
     }
     renderContinueIcon() {
@@ -345,9 +378,9 @@ body.crs_dev main > div > .mx-auto button > svg {
     }
     clickLinkTermsHandler() {
       o(".terms_conditions_block").then(() => {
-        p(".terms_conditions_block a").forEach((t) => {
-          t.addEventListener("click", (i) => {
-            i.preventDefault(), t.classList.contains("terms") && n("main p.text-default-600 a:nth-child(1)").click(), t.classList.contains("privacy") && n("main p.text-default-600 a:nth-child(2)").click(), console.log("Link clicked");
+        p(".terms_conditions_block a").forEach((e) => {
+          e.addEventListener("click", (i) => {
+            i.preventDefault(), e.classList.contains("terms") && n("main p.text-default-600 a:nth-child(1)").click(), e.classList.contains("privacy") && n("main p.text-default-600 a:nth-child(2)").click(), console.log("Link clicked");
           });
         });
       });
@@ -361,6 +394,6 @@ body.crs_dev main > div > .mx-auto button > svg {
       }).observe(n("body"), { childList: !0, subtree: !0 });
     }
   }
-  new g(b);
+  new g(h);
 })();
 //# sourceMappingURL=index.js.map
