@@ -199,7 +199,9 @@
 .crs_timer .timer_wrapper p span {
   font-weight: 700;
 }
-
+#primer-checkout-scene-credit-card-form {
+  margin-top: 25px;
+}
 .sticky > .w-full.font-bold {
   display: none;
 }/*# sourceMappingURL=style.css.map */`, h = "https://conversionratestore.github.io/projects/hint/img", o = {
