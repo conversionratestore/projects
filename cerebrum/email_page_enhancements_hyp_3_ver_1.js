@@ -353,15 +353,16 @@ html.crs_dev body.input_focused main > div > .mx-auto {
     }
     changeInputHandler() {
       o('[data-slot="input-wrapper"]').then(() => {
-        n('[data-slot="input-wrapper"] input').placeholder !== "example@mail.com" && (n('[data-slot="input-wrapper"] input').placeholder = "example@mail.com"), n('[data-slot="input-wrapper"] input').addEventListener("focus", (e) => {
-          console.log(e.target), n("body").classList.add("input_focused"), window.removeEventListener("resize", () => {
-            n("body nav").style.position = "fixed";
-          });
-        }), n('[data-slot="input-wrapper"] input').addEventListener("blur", (e) => {
-          console.log(e.target), setTimeout(() => {
+        n('[data-slot="input-wrapper"] input').placeholder !== "example@mail.com" && (n('[data-slot="input-wrapper"] input').placeholder = "example@mail.com"), n('[data-slot="input-wrapper"] input').addEventListener("focus", (i) => {
+          n("body").classList.add("input_focused"), window.addEventListener("resize", e);
+        }), n('[data-slot="input-wrapper"] input').addEventListener("blur", (i) => {
+          window.removeEventListener("resize", e), setTimeout(() => {
             n("body").classList.contains("input_focused") && n("body").classList.remove("input_focused");
           }, 300);
         });
+        function e() {
+          n("body nav").style.position = "fixed", console.log("handleResize");
+        }
       });
     }
     renderNewLabelForInput() {
