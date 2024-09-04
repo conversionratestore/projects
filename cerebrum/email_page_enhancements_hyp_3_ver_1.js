@@ -22,24 +22,15 @@
   }
   (function(e) {
     e = e === void 0 ? {} : e;
-    let t, i, r, a, v = (e == null ? void 0 : e.delay) || 50;
+    let t, i, l, a, x = (e == null ? void 0 : e.delay) || 50;
     function d() {
       t = null, a = 0;
     }
     return d(), function() {
-      return i = window.scrollY, t != null && (a = i - t), t = i, clearTimeout(r), r = setTimeout(d, v), a;
+      return i = window.scrollY, t != null && (a = i - t), t = i, clearTimeout(l), l = setTimeout(d, x), a;
     };
   })();
-  function m(e) {
-    return new Promise((t) => setTimeout(t, e));
-  }
-  const h = async (e, t) => {
-    const i = e, a = (t == null ? void 0 : t.getBoundingClientRect().top) + window.pageYOffset - i;
-    return window.scrollTo({
-      top: a,
-      behavior: "smooth"
-    }), await m(800), !0;
-  }, s = {
+  const r = {
     safeAndSecureIcon: (
       /* HTML */
       `
@@ -80,7 +71,7 @@
     </svg>
   `
     )
-  }, u = (
+  }, m = (
     /* HTML */
     `
   <div class="title_block">
@@ -101,20 +92,20 @@
     </ul>
   </div>
 `
-  ), f = (
+  ), h = (
     /* HTML */
     `
   <p class="new_label_txt">Create an account to save and access your data</p>
 `
-  ), b = (
+  ), u = (
     /* HTML */
     `
   <div class="safe_and_secure_block">
-    ${s.safeAndSecureIcon}
+    ${r.safeAndSecureIcon}
     <p>Your data is safe and secure. No ads or spam</p>
   </div>
 `
-  ), g = (
+  ), f = (
     /* HTML */
     `
   <div class="terms_conditions_block">
@@ -124,11 +115,12 @@
     </p>
   </div>
 `
-  ), l = `html.crs_dev {
+  ), s = `html.crs_dev {
   height: 100%;
 }
 html.crs_dev body {
   height: 100% !important;
+  padding-top: 64px;
 }
 html.crs_dev body main > div > div.gap-1,
 html.crs_dev body main p.text-default-600 {
@@ -138,6 +130,10 @@ html.crs_dev body > div > div {
   height: 100%;
 }
 html.crs_dev body nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
   border-bottom: 1px solid #d2d1d6 !important;
   background: #fff !important;
   -webkit-backdrop-filter: blur(8px) !important;
@@ -245,13 +241,6 @@ html.crs_dev body main > div > .mx-auto button > svg {
   width: 18px;
   height: 13px;
 }
-html.crs_dev body.input_focused .title_block p,
-html.crs_dev body.input_focused .title_block ul {
-  display: none;
-}
-html.crs_dev body.input_focused .new_label_txt {
-  margin-top: 24px;
-}
 html.crs_dev body.input_focused main > div > .mx-auto {
   position: initial;
   padding: 0 !important;
@@ -346,8 +335,8 @@ html.crs_dev body.input_focused main > div > .mx-auto {
 }
 .terms_conditions_block p a {
   color: #00f;
-}/*# sourceMappingURL=main.css.map */`, x = window.innerWidth < 768 ? "mobile" : "desktop";
-  class _ {
+}/*# sourceMappingURL=main.css.map */`, b = window.innerWidth < 768 ? "mobile" : "desktop";
+  class g {
     constructor(t) {
       this.device = t, this.init();
     }
@@ -355,17 +344,17 @@ html.crs_dev body.input_focused main > div > .mx-auto {
       c({ name: "Email page enhancements", dev: "SKh" }), n("html").classList.contains("crs_dev") || n("html").classList.add("crs_dev"), n(".crs_style") || (document.head.insertAdjacentHTML(
         "afterbegin",
         '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">'
-      ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${l}</style>`)), this.renderTitleBlock(), this.changeInputHandler(), this.renderNewLabelForInput(), this.renderSafeAndSecureBlock(), this.renderTermsConditionsBlock(), this.renderContinueIcon(), this.observeEmailPage();
+      ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${s}</style>`)), this.renderTitleBlock(), this.changeInputHandler(), this.renderNewLabelForInput(), this.renderSafeAndSecureBlock(), this.renderTermsConditionsBlock(), this.renderContinueIcon(), this.observeEmailPage();
     }
     renderTitleBlock() {
       o("main > div > div.gap-1").then(() => {
-        n(".title_block") || n("main > div").insertAdjacentHTML("afterbegin", u);
+        n(".title_block") || n("main > div").insertAdjacentHTML("afterbegin", m);
       });
     }
     changeInputHandler() {
       o('[data-slot="input-wrapper"]').then(() => {
         n('[data-slot="input-wrapper"] input').placeholder !== "example@mail.com" && (n('[data-slot="input-wrapper"] input').placeholder = "example@mail.com"), n('[data-slot="input-wrapper"] input').addEventListener("focus", (t) => {
-          console.log(t.target), n("body").classList.add("input_focused"), h(0, n("body nav"));
+          console.log(t.target), n("body").classList.add("input_focused");
         }), n('[data-slot="input-wrapper"] input').addEventListener("blur", (t) => {
           console.log(t.target), setTimeout(() => {
             n("body").classList.contains("input_focused") && n("body").classList.remove("input_focused");
@@ -375,22 +364,22 @@ html.crs_dev body.input_focused main > div > .mx-auto {
     }
     renderNewLabelForInput() {
       o('[data-slot="input-wrapper"]').then(() => {
-        n(".new_label_txt") || n('[data-slot="input-wrapper"]').insertAdjacentHTML("beforebegin", f);
+        n(".new_label_txt") || n('[data-slot="input-wrapper"]').insertAdjacentHTML("beforebegin", h);
       });
     }
     renderSafeAndSecureBlock() {
       o("body main > div > .w-full").then(() => {
-        n(".safe_and_secure_block") || n("body main > div > .w-full").insertAdjacentHTML("afterend", b);
+        n(".safe_and_secure_block") || n("body main > div > .w-full").insertAdjacentHTML("afterend", u);
       });
     }
     renderTermsConditionsBlock() {
       o("main > div > .mx-auto").then(() => {
-        n(".terms_conditions_block") || n("main > div > .mx-auto").insertAdjacentHTML("beforeend", g), this.clickLinkTermsHandler();
+        n(".terms_conditions_block") || n("main > div > .mx-auto").insertAdjacentHTML("beforeend", f), this.clickLinkTermsHandler();
       });
     }
     renderContinueIcon() {
       o("main > div > .mx-auto button").then(() => {
-        n(".continue_icon") || n("main > div > .mx-auto button").insertAdjacentHTML("beforeend", `${s.continueIcon}`);
+        n(".continue_icon") || n("main > div > .mx-auto button").insertAdjacentHTML("beforeend", `${r.continueIcon}`);
       });
     }
     clickLinkTermsHandler() {
@@ -407,10 +396,10 @@ html.crs_dev body.input_focused main > div > .mx-auto {
         location.pathname.match("/email") ? (n("html").classList.contains("crs_dev") || n("html").classList.add("crs_dev"), n(".crs_style") || (document.head.insertAdjacentHTML(
           "afterbegin",
           '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">'
-        ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${l}</style>`)), n(".title_block") || this.renderTitleBlock(), n(".new_label_txt") || this.renderNewLabelForInput(), n(".safe_and_secure_block") || this.renderSafeAndSecureBlock(), n(".terms_conditions_block") || this.renderTermsConditionsBlock(), n(".continue_icon") || this.renderContinueIcon(), n('[data-slot="input-wrapper"] input').placeholder !== "example@mail.com" && this.changeInputHandler()) : n("html").classList.contains("crs_dev") && n("html").classList.remove("crs_dev");
+        ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${s}</style>`)), n(".title_block") || this.renderTitleBlock(), n(".new_label_txt") || this.renderNewLabelForInput(), n(".safe_and_secure_block") || this.renderSafeAndSecureBlock(), n(".terms_conditions_block") || this.renderTermsConditionsBlock(), n(".continue_icon") || this.renderContinueIcon(), n('[data-slot="input-wrapper"] input').placeholder !== "example@mail.com" && this.changeInputHandler()) : n("html").classList.contains("crs_dev") && n("html").classList.remove("crs_dev");
       }).observe(n("body"), { childList: !0, subtree: !0 });
     }
   }
-  new _(x);
+  new g(b);
 })();
 //# sourceMappingURL=index.js.map
