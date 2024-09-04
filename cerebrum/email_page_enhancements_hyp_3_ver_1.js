@@ -1,17 +1,17 @@
 (function() {
   "use strict";
-  const c = ({ name: e, dev: t }) => {
+  const c = ({ name: t, dev: e }) => {
     console.log(
-      `%c EXP: ${e} (DEV: ${t})`,
+      `%c EXP: ${t} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, p = (e) => document.querySelectorAll(e), n = (e) => document.querySelector(e);
-  function o(e) {
-    return new Promise((t) => {
-      if (document.querySelector(e))
-        return t(document.querySelector(e));
+  }, p = (t) => document.querySelectorAll(t), n = (t) => document.querySelector(t);
+  function o(t) {
+    return new Promise((e) => {
+      if (document.querySelector(t))
+        return e(document.querySelector(t));
       const i = new MutationObserver(() => {
-        document.querySelector(e) && (t(document.querySelector(e)), i.disconnect());
+        document.querySelector(t) && (e(document.querySelector(t)), i.disconnect());
       });
       i.observe(document.documentElement, {
         childList: !0,
@@ -20,14 +20,14 @@
       });
     });
   }
-  (function(e) {
-    e = e === void 0 ? {} : e;
-    let t, i, l, a, x = (e == null ? void 0 : e.delay) || 50;
+  (function(t) {
+    t = t === void 0 ? {} : t;
+    let e, i, l, a, x = (t == null ? void 0 : t.delay) || 50;
     function d() {
-      t = null, a = 0;
+      e = null, a = 0;
     }
     return d(), function() {
-      return i = window.scrollY, t != null && (a = i - t), t = i, clearTimeout(l), l = setTimeout(d, x), a;
+      return i = window.scrollY, e != null && (a = i - e), e = i, clearTimeout(l), l = setTimeout(d, x), a;
     };
   })();
   const r = {
@@ -337,8 +337,8 @@ html.crs_dev body.input_focused main > div > .mx-auto {
   color: #00f;
 }/*# sourceMappingURL=main.css.map */`, b = window.innerWidth < 768 ? "mobile" : "desktop";
   class g {
-    constructor(t) {
-      this.device = t, this.init();
+    constructor(e) {
+      this.device = e, this.init();
     }
     init() {
       c({ name: "Email page enhancements", dev: "SKh" }), n("html").classList.contains("crs_dev") || n("html").classList.add("crs_dev"), n(".crs_style") || (document.head.insertAdjacentHTML(
@@ -353,10 +353,12 @@ html.crs_dev body.input_focused main > div > .mx-auto {
     }
     changeInputHandler() {
       o('[data-slot="input-wrapper"]').then(() => {
-        n('[data-slot="input-wrapper"] input').placeholder !== "example@mail.com" && (n('[data-slot="input-wrapper"] input').placeholder = "example@mail.com"), n('[data-slot="input-wrapper"] input').addEventListener("focus", (t) => {
-          console.log(t.target), n("body").classList.add("input_focused");
-        }), n('[data-slot="input-wrapper"] input').addEventListener("blur", (t) => {
-          console.log(t.target), setTimeout(() => {
+        n('[data-slot="input-wrapper"] input').placeholder !== "example@mail.com" && (n('[data-slot="input-wrapper"] input').placeholder = "example@mail.com"), n('[data-slot="input-wrapper"] input').addEventListener("focus", (e) => {
+          console.log(e.target), n("body").classList.add("input_focused"), window.removeEventListener("resize", () => {
+            n("body nav").style.position = "fixed";
+          });
+        }), n('[data-slot="input-wrapper"] input').addEventListener("blur", (e) => {
+          console.log(e.target), setTimeout(() => {
             n("body").classList.contains("input_focused") && n("body").classList.remove("input_focused");
           }, 300);
         });
@@ -384,9 +386,9 @@ html.crs_dev body.input_focused main > div > .mx-auto {
     }
     clickLinkTermsHandler() {
       o(".terms_conditions_block").then(() => {
-        p(".terms_conditions_block a").forEach((t) => {
-          t.addEventListener("click", (i) => {
-            i.preventDefault(), t.classList.contains("terms") && n("main p.text-default-600 a:nth-child(1)").click(), t.classList.contains("privacy") && n("main p.text-default-600 a:nth-child(2)").click(), console.log("Link clicked");
+        p(".terms_conditions_block a").forEach((e) => {
+          e.addEventListener("click", (i) => {
+            i.preventDefault(), e.classList.contains("terms") && n("main p.text-default-600 a:nth-child(1)").click(), e.classList.contains("privacy") && n("main p.text-default-600 a:nth-child(2)").click(), console.log("Link clicked");
           });
         });
       });
