@@ -1,10 +1,10 @@
 (function() {
   "use strict";
-  const r = (a, n) => {
+  const l = (a, n) => {
     const t = setInterval(() => {
       document.querySelector(a) && (clearInterval(t), n());
     }, 100);
-  }, c = ({ name: a, dev: n }) => {
+  }, C = ({ name: a, dev: n }) => {
     console.log(
       `%c EXP: ${a} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
@@ -16,13 +16,13 @@
     }
     on(n, t, e) {
       return typeof t == "function" && (e = t, t = ""), this.elements.forEach(function(i) {
-        i.addEventListener(n, function(l) {
+        i.addEventListener(n, function(r) {
           var p;
           if (t) {
-            let C = (p = l.target) == null ? void 0 : p.closest(t);
-            i.contains(C) && (e == null || e.call(C, l));
+            let c = (p = r.target) == null ? void 0 : p.closest(t);
+            i.contains(c) && (e == null || e.call(c, r));
           } else
-            e == null || e.call(i, l);
+            e == null || e.call(i, r);
         });
       }), this;
     }
@@ -47,19 +47,19 @@
       }), this;
     }
     style(n, t) {
-      const e = n.split("-").map((i, l) => l === 0 ? i : i.charAt(0).toUpperCase() + i.slice(1)).join("");
+      const e = n.split("-").map((i, r) => r === 0 ? i : i.charAt(0).toUpperCase() + i.slice(1)).join("");
       return this.elements.forEach(function(i) {
         i.style[e] = t;
       }), this;
     }
   }
-  const s = (a) => new f(a), d = `.variant1 {
+  const s = (a) => new f(a), h = `.variant1 {
   padding: 20px;
   height: 100%;
   overflow: auto;
 }
 .variant1 h1 {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 32px;
   margin-bottom: 12px;
@@ -68,9 +68,9 @@
   color: #066fde;
 }
 .variant1 > p {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   display: flex;
 }
 .variant1 > p b {
@@ -79,6 +79,9 @@
 }
 .variant1 > p svg {
   margin-right: 12px;
+}
+.variant1 .special_offer {
+  margin-top: 12px;
 }
 .variant1 .special_offer > span {
   border-radius: 8px 8px 0px 0px;
@@ -114,9 +117,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px dashed #c2cad8;
+  margin-top: 8px;
   font-size: 12px;
   line-height: 18px;
   color: #04a777;
@@ -128,14 +129,14 @@
 .variant1 .special_offer .info {
   font-size: 12px;
   color: #6b7baa;
-  margin-top: 12px;
+  margin-top: 8px;
 }
 .variant1 .special_offer .info > * {
   color: #6b7baa;
   display: block;
 }
 .variant1 > a {
-  margin-top: 16px;
+  margin-top: 12px;
   padding: 0 20px;
   display: block;
 }
@@ -144,7 +145,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 25px;
   margin-bottom: 12px;
   padding: 0 20px;
 }
@@ -162,7 +163,7 @@
 }
 
 .crs_timer {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 .crs_timer .timer_wrapper {
   width: 100%;
@@ -170,7 +171,7 @@
   background: #3e9cff;
   position: relative;
   overflow: hidden;
-  height: 32px;
+  height: 24px;
 }
 .crs_timer .timer_wrapper .timer_line {
   position: absolute;
@@ -191,7 +192,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   color: #fff;
   z-index: 2;
@@ -199,12 +200,14 @@
 .crs_timer .timer_wrapper p span {
   font-weight: 700;
 }
-#primer-checkout-scene-credit-card-form {
-  margin-top: 25px;
-}
+
 .sticky > .w-full.font-bold {
   display: none;
-}/*# sourceMappingURL=style.css.map */`, h = "https://conversionratestore.github.io/projects/hint/img", o = {
+}
+
+#primer-checkout-scene-credit-card-form {
+  margin-top: 25px;
+}/*# sourceMappingURL=style.css.map */`, d = "https://conversionratestore.github.io/projects/hint/img", o = {
     hand: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
     <g clip-path="url(#clip0_80_7276)">
     <path d="M26.3157 23.7873L23.0191 20.4906L21.8542 21.6556L21.2217 21.0231C21.9442 20.0604 22.3726 18.865 22.3726 17.5715C22.3726 15.2765 21.0239 13.2907 19.0776 12.3646L19.0777 7.77492C19.0777 6.4143 17.9707 5.3072 16.6101 5.30709H16.61C16.32 5.30709 16.0415 5.35735 15.7828 5.44966V4.88163C15.7828 3.52105 14.6759 2.41396 13.3151 2.4138C13.0251 2.4138 12.7466 2.46405 12.488 2.55637V2.46772C12.4879 1.1072 11.3809 0.000164062 10.0202 0C8.65947 0 7.55243 1.10709 7.55243 2.46783V2.55637C7.29381 2.46405 7.01534 2.4138 6.72539 2.41374C5.3646 2.41374 4.25756 3.52078 4.25756 4.88157L4.25751 8.76843C3.99714 8.67502 3.71659 8.62411 3.42456 8.62411C2.06705 8.62411 0.962585 9.72852 0.962585 11.086V17.4982C0.962531 20.1525 2.11053 22.6319 4.12637 24.3625V28H15.9137V24.3625C16.288 24.0412 16.6316 23.6935 16.9442 23.3242C18.1091 23.2573 19.1825 22.843 20.0618 22.1832L20.6942 22.8157L19.5292 23.9806L22.8258 27.2773C23.7915 28.2534 25.3728 28.2212 26.3157 27.2773C27.2779 26.315 27.2779 24.7494 26.3157 23.7873ZM16.61 6.94766C17.066 6.94777 17.4371 7.31883 17.4371 7.77487L17.437 11.8683C17.1669 11.8293 16.8908 11.8087 16.61 11.8087C16.3292 11.8087 16.0531 11.8293 15.7829 11.8683V7.77487C15.7829 7.31877 16.154 6.94772 16.61 6.94766ZM14.273 23.5764V26.3594H5.76694V23.5764C3.80552 22.1718 2.59244 19.9088 2.60316 17.4982V11.086C2.60316 10.6332 2.97159 10.2647 3.42451 10.2647C3.88377 10.2647 4.25745 10.6384 4.25745 11.0976L4.2574 16.0787H5.07771C7.35063 16.0787 9.19978 17.9279 9.19978 20.2008H10.8404C10.8404 17.3018 8.68834 14.8958 5.89802 14.4963L5.89813 4.88157C5.89813 4.42548 6.26919 4.05437 6.72523 4.05437C7.18132 4.05442 7.55237 4.42553 7.55237 4.88157V12.7142H9.193V2.46783C9.193 2.01168 9.56405 1.64062 10.02 1.64062C10.4762 1.64068 10.8473 2.01184 10.8474 2.46783V12.7142H12.488V4.88163C12.488 4.42553 12.859 4.05442 13.315 4.05442C13.7712 4.05448 14.1422 4.42559 14.1422 4.88163V12.3646C12.1959 13.2908 10.8472 15.2765 10.8472 17.5715C10.8472 20.1517 12.5519 22.3414 14.8942 23.0734C14.7987 23.1627 14.417 23.465 14.273 23.5764ZM16.61 21.6935C14.3371 21.6935 12.4879 19.8444 12.4879 17.5715C12.4879 15.2986 14.3371 13.4494 16.61 13.4494C18.8829 13.4494 20.7321 15.2986 20.7321 17.5715C20.7321 19.8444 18.8829 21.6935 16.61 21.6935ZM25.1556 26.1171C24.8331 26.4395 24.3084 26.4396 23.9859 26.1171L21.8493 23.9806L23.0191 22.8108L25.1556 24.9473C25.4782 25.2698 25.4782 25.7946 25.1556 26.1171Z" fill="#066FDE"/>
@@ -248,8 +251,8 @@
     /* html */
     `
   <div class="crs_block variant1">
-    <style>${d}</style>
-    <h1>Transform your life with a <span>Power of Palmistry</span></h1>
+    <style>${h}</style>
+    <h1>Transform your life with a<br><span>Power of Palmistry</span></h1>
     <p>${o.hand}<span><b>Unlimited</b>&nbsp;personalized palm readings</span></p>
     <p>${o.chat}<span><b>Unlimited</b>&nbsp;chats with palmistry experts</span></p>
     <div class="special_offer">
@@ -261,7 +264,7 @@
       </div>
     </div>
     <a href="https://www.reviews.io/company-reviews/store/hint.app" target="_blank">
-      <img src="${h}/reviews_checkout.png" alt="reviews" />
+      <img src="${d}/reviews_checkout.png" alt="reviews" />
     </a>
   </div>
 `
@@ -277,15 +280,15 @@
   let w = setInterval(function() {
     typeof window.clarity == "function" && (clearInterval(w), window.clarity("set", "exp_hypothesis_3", "variant_2"));
   }, 1e3);
-  c({ name: "Checkout Optimization", dev: "YK" });
+  C({ name: "Checkout Optimization", dev: "YK" });
   class x {
     constructor() {
       this.device = window.innerWidth > 768 ? "desktop" : "mobile", this.data = {}, this.init();
     }
     init() {
-      r("span.text-primary.font-bold", () => {
+      l("span.text-primary.font-bold", () => {
         this.getData();
-      }), r(".flex-grow.overflow-auto.pt-4", () => {
+      }), l(".flex-grow.overflow-auto.pt-4", () => {
         this.render();
       });
     }
