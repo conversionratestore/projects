@@ -59,7 +59,7 @@
   overflow: auto;
 }
 .variant1 h1 {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 32px;
   margin-bottom: 12px;
@@ -68,9 +68,9 @@
   color: #066fde;
 }
 .variant1 > p {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   display: flex;
 }
 .variant1 > p b {
@@ -79,6 +79,9 @@
 }
 .variant1 > p svg {
   margin-right: 12px;
+}
+.variant1 .special_offer {
+  margin-top: 12px;
 }
 .variant1 .special_offer > span {
   display: none;
@@ -112,9 +115,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px dashed #c2cad8;
+  margin-top: 8px;
   font-size: 12px;
   line-height: 18px;
   color: #04a777;
@@ -126,14 +127,14 @@
 .variant1 .special_offer .info {
   font-size: 12px;
   color: #6b7baa;
-  margin-top: 12px;
+  margin-top: 8px;
 }
 .variant1 .special_offer .info > * {
   color: #6b7baa;
   display: block;
 }
 .variant1 > a {
-  margin-top: 16px;
+  margin-top: 12px;
   padding: 0 20px;
   display: block;
 }
@@ -142,7 +143,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 25px;
   margin-bottom: 12px;
   padding: 0 20px;
 }
@@ -160,7 +161,7 @@
 }
 
 .crs_timer {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 .crs_timer .timer_wrapper {
   width: 100%;
@@ -168,7 +169,7 @@
   background: #3e9cff;
   position: relative;
   overflow: hidden;
-  height: 32px;
+  height: 24px;
 }
 .crs_timer .timer_wrapper .timer_line {
   position: absolute;
@@ -189,7 +190,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   color: #fff;
   z-index: 2;
@@ -197,11 +198,13 @@
 .crs_timer .timer_wrapper p span {
   font-weight: 700;
 }
-#primer-checkout-scene-credit-card-form {
-  margin-top: 25px;
-}
+
 .sticky > .w-full.font-bold {
   display: none;
+}
+
+#primer-checkout-scene-credit-card-form {
+  margin-top: 25px;
 }/*# sourceMappingURL=style.css.map */`, h = "https://conversionratestore.github.io/projects/hint/img", o = {
     hand: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
     <g clip-path="url(#clip0_80_7276)">
@@ -247,7 +250,7 @@
     `
   <div class="crs_block variant1">
     <style>${d}</style>
-    <h1>Transform your life with a <span>Power of Palmistry</span></h1>
+    <h1>Transform your life with a<br><span>Power of Palmistry</span></h1>
     <p>${o.hand}<span><b>Unlimited</b>&nbsp;personalized palm readings</span></p>
     <p>${o.chat}<span><b>Unlimited</b>&nbsp;chats with palmistry experts</span></p>
     <div class="special_offer">
