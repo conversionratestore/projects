@@ -22,12 +22,12 @@
   }
   (function(t) {
     t = t === void 0 ? {} : t;
-    let e, i, l, a, x = (t == null ? void 0 : t.delay) || 50;
+    let e, i, l, a, g = (t == null ? void 0 : t.delay) || 50;
     function d() {
       e = null, a = 0;
     }
     return d(), function() {
-      return i = window.scrollY, e != null && (a = i - e), e = i, clearTimeout(l), l = setTimeout(d, x), a;
+      return i = window.scrollY, e != null && (a = i - e), e = i, clearTimeout(l), l = setTimeout(d, g), a;
     };
   })();
   const r = {
@@ -75,29 +75,14 @@
     /* HTML */
     `
   <div class="title_block">
-    <h2>Your <span class="accent_color_green">IQ test</span> results are ready!</h2>
-    <ul>
-      <li>
-        <p>Unlock your full IQ report</p>
-      </li>
-      <li>
-        <p>Discover your intellectual strengths and growth areas</p>
-      </li>
-      <li>
-        <p>
-          Access proven, personalized training <br />
-          to boost your IQ by 37% in just 4 weeks
-        </p>
-      </li>
-    </ul>
+    <h2>Find your <span class="accent_color_green">IQ Test</span> Insights right in your inbox</h2>
+    <p>Create an account to save and access your results</p>
   </div>
 `
   ), h = (
     /* HTML */
-    `
-  <p class="new_label_txt">Create an account to save and access your data</p>
-`
-  ), u = (
+    ' <p class="new_label_txt">Enter your email</p> '
+  ), f = (
     /* HTML */
     `
   <div class="safe_and_secure_block">
@@ -105,7 +90,7 @@
     <p>Your data is safe and secure. No ads or spam</p>
   </div>
 `
-  ), f = (
+  ), u = (
     /* HTML */
     `
   <div class="terms_conditions_block">
@@ -217,6 +202,8 @@ html.crs_dev body main > div > .mx-auto {
   bottom: 20px;
   left: 0;
   right: 0;
+  transform: translateY(0);
+  transition: transform 0.3s ease, margin-top 0.3s ease;
 }
 html.crs_dev body main > div > .mx-auto button {
   display: flex;
@@ -244,7 +231,8 @@ html.crs_dev body main > div > .mx-auto button > svg {
 html.crs_dev body.input_focused main > div > .mx-auto {
   position: initial;
   padding: 0 !important;
-  margin-top: 20px;
+  margin-top: 40px;
+  transform: translateY(-20px);
 }
 
 .title_block h2 {
@@ -336,7 +324,7 @@ html.crs_dev body.input_focused main > div > .mx-auto {
 .terms_conditions_block p a {
   color: #00f;
 }/*# sourceMappingURL=main.css.map */`, b = window.innerWidth < 768 ? "mobile" : "desktop";
-  class g {
+  class x {
     constructor(e) {
       this.device = e, this.init();
     }
@@ -348,7 +336,7 @@ html.crs_dev body.input_focused main > div > .mx-auto {
     }
     renderTitleBlock() {
       o("main > div > div.gap-1").then(() => {
-        n(".title_block") || n("main > div").insertAdjacentHTML("afterbegin", m);
+        n(".title_block") || (n("main > div").insertAdjacentHTML("afterbegin", m), n("body").classList.add("ver_c"));
       });
     }
     changeInputHandler() {
@@ -372,12 +360,12 @@ html.crs_dev body.input_focused main > div > .mx-auto {
     }
     renderSafeAndSecureBlock() {
       o("body main > div > .w-full").then(() => {
-        n(".safe_and_secure_block") || n("body main > div > .w-full").insertAdjacentHTML("afterend", u);
+        n(".safe_and_secure_block") || n("body main > div > .w-full").insertAdjacentHTML("afterend", f);
       });
     }
     renderTermsConditionsBlock() {
       o("main > div > .mx-auto").then(() => {
-        n(".terms_conditions_block") || n("main > div > .mx-auto").insertAdjacentHTML("beforeend", f), this.clickLinkTermsHandler();
+        n(".terms_conditions_block") || n("main > div > .mx-auto").insertAdjacentHTML("beforeend", u), this.clickLinkTermsHandler();
       });
     }
     renderContinueIcon() {
@@ -403,6 +391,6 @@ html.crs_dev body.input_focused main > div > .mx-auto {
       }).observe(n("body"), { childList: !0, subtree: !0 });
     }
   }
-  new g(b);
+  new x(b);
 })();
 //# sourceMappingURL=index.js.map
