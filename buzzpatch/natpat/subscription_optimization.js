@@ -260,41 +260,14 @@ body .product__info-container .product-form__input input[type=radio] + label {
   line-height: 16px !important;
   letter-spacing: 1px;
   text-transform: uppercase;
-  max-width: 48.4%;
-  width: 100%;
+  max-width: 100%;
+  width: calc((100% - 15px) / 2);
   padding: 13.4px !important;
   margin: 0;
 }
-@media (max-width: 1080px) {
-  body .product__info-container .product-form__input input[type=radio] + label {
-    max-width: 48.3%;
-  }
-}
-@media (max-width: 1022px) {
-  body .product__info-container .product-form__input input[type=radio] + label {
-    max-width: 48.2%;
-  }
-}
-@media (max-width: 875px) {
-  body .product__info-container .product-form__input input[type=radio] + label {
-    max-width: 48%;
-  }
-}
 @media (max-width: 768px) {
-  body .product__info-container .product-form__input input[type=radio] + label {
-    line-height: 22px !important;
-    padding: 7.4px !important;
-    max-width: 48.6%;
-  }
-}
-@media (max-width: 376px) {
-  body .product__info-container .product-form__input input[type=radio] + label {
-    max-width: 48.5%;
-  }
-}
-@media (max-width: 361px) {
-  body .product__info-container .product-form__input input[type=radio] + label {
-    max-width: 48.4%;
+  body .product__info-container .product-form__input {
+     width: calc((100% - 10px) / 2);
   }
 }
 body .product__info-container label .best-seller {
