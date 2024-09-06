@@ -1,13 +1,13 @@
 (function() {
   "use strict";
-  const h = (c, e, r, l = "") => {
+  const h = (c, e, a, l = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: c,
       event_desc: e,
-      event_type: r,
+      event_type: a,
       event_loc: l
-    }), console.log(`Event: ${c} | ${e} | ${r} | ${l}`);
+    }), console.log(`Event: ${c} | ${e} | ${a} | ${l}`);
   }, F = ({ name: c, dev: e }) => {
     console.log(
       `%c EXP: ${c} (DEV: ${e})`,
@@ -22,17 +22,17 @@
     return new Promise((e) => {
       if (document.querySelector(c))
         return e(document.querySelector(c));
-      const r = new MutationObserver(() => {
-        document.querySelector(c) && (e(document.querySelector(c)), r.disconnect());
+      const a = new MutationObserver(() => {
+        document.querySelector(c) && (e(document.querySelector(c)), a.disconnect());
       });
-      r.observe(document.documentElement, {
+      a.observe(document.documentElement, {
         childList: !0,
         subtree: !0,
         characterData: !0
       });
     });
   }
-  const T = (c, e, r, l) => {
+  const T = (c, e, a, l) => {
     let i = [];
     if (typeof c == "string")
       i = document.querySelectorAll(c);
@@ -42,10 +42,10 @@
       console.error("Invalid target type:", c);
       return;
     }
-    let a = new IntersectionObserver(
+    let r = new IntersectionObserver(
       (p) => {
         p.forEach((s) => {
-          s.isIntersecting && (a.unobserve(s.target), setTimeout(function() {
+          s.isIntersecting && (r.unobserve(s.target), setTimeout(function() {
             u.observe(s.target);
           }, 1e3));
         });
@@ -55,11 +55,11 @@
       }
     ), u = new IntersectionObserver((p) => {
       p.forEach((s) => {
-        s.isIntersecting ? (h(e || `view_element_${s.target.id}`, r || "Element visibility", "view", l || s.target.id), a.unobserve(s.target)) : a.observe(s.target), u.unobserve(s.target);
+        s.isIntersecting ? (h(e || `view_element_${s.target.id}`, a || "Element visibility", "view", l || s.target.id), r.unobserve(s.target)) : r.observe(s.target), u.unobserve(s.target);
       });
     });
     i.forEach((p) => {
-      a.observe(p);
+      r.observe(p);
     });
   }, j = (
     /* HTML */
@@ -1387,16 +1387,16 @@
     }
     changes() {
       var H;
-      const e = o(".row:has(.order2stepbuttonOrder)"), r = o(".elOrder2Step"), l = o(".order2stepbuttonOrder"), i = e == null ? void 0 : e.querySelector('[data-col="right"]'), a = e == null ? void 0 : e.querySelector('[data-col="left"]'), u = o(".elOrderProductOptions");
+      const e = o(".row:has(.order2stepbuttonOrder)"), a = o(".elOrder2Step"), l = o(".order2stepbuttonOrder"), i = e == null ? void 0 : e.querySelector('[data-col="right"]'), r = e == null ? void 0 : e.querySelector('[data-col="left"]'), u = o(".elOrderProductOptions");
       let p, s;
-      if (!r)
+      if (!a)
         return;
       e && e.classList.add("crsTargetSection"), N(".fullContainer").forEach((n) => {
         var t, f, L, d, b;
         (t = n.textContent) != null && t.includes("Just a few incredible success stories from our members!") && n.classList.add("crs-members"), (f = n.textContent) != null && f.includes("Verified Reviews") && n.classList.add("crs-reviews"), (L = n.textContent) != null && L.includes("Overall Rating") && n.classList.add("crs-reviews-mob"), (d = n.textContent) != null && d.includes("Frequently Asked Questions") && n.classList.add("crs-faq"), (b = n.textContent) != null && b.includes("Join Drop Servicing Partner Program Today") && n.classList.add("crs-join");
       });
       const m = o(".crs-members"), M = o(".crs-reviews"), O = o(".crs-reviews-mob"), g = o(".crs-faq"), A = o(".crs-join");
-      r.insertAdjacentHTML("beforebegin", en), T(".crs-step1", "exp_imprcheck_ev_provide", "View on screen", "Provide your personal information"), T(".crs-step2", "exp_imprcheck_ev_billing", "View on screen", "Provide your billing details");
+      a.insertAdjacentHTML("beforebegin", en), T(".crs-step1", "exp_imprcheck_ev_provide", "View on screen", "Provide your personal information"), T(".crs-step2", "exp_imprcheck_ev_billing", "View on screen", "Provide your billing details");
       const I = o(".crs-form");
       if (!I)
         return;
@@ -1404,31 +1404,31 @@
       if (I.querySelectorAll("input, select").forEach((n) => {
         n.addEventListener("input", () => {
           if (n.id === "crs-name") {
-            const t = r.querySelector('input[name="name"]');
+            const t = a.querySelector('input[name="name"]');
             t && (t.value = n.value);
           }
           if (n.id === "crs-email") {
-            const t = r.querySelector('input[name="email"]');
+            const t = a.querySelector('input[name="email"]');
             t && (t.value = n.value);
           }
           if (n.id === "crs-address") {
-            const t = r.querySelector('input[name="shipping_address"]');
+            const t = a.querySelector('input[name="shipping_address"]');
             t && (t.value = n.value);
           }
           if (n.id === "crs-city") {
-            const t = r.querySelector('input[name="shipping_city"]');
+            const t = a.querySelector('input[name="shipping_city"]');
             t && (t.value = n.value);
           }
           if (n.id === "crs-zip") {
-            const t = r.querySelector('input[name="shipping_zip"]');
+            const t = a.querySelector('input[name="shipping_zip"]');
             t && (t.value = n.value);
           }
           if (n.id === "crs-state") {
-            const t = r.querySelector('input[name="shipping_state"]');
+            const t = a.querySelector('input[name="shipping_state"]');
             t && (t.value = n.value);
           }
           if (n.id === "crs-country") {
-            const t = r.querySelector('select[name="shipping_country"]');
+            const t = a.querySelector('select[name="shipping_country"]');
             t && (t.value = n.value);
           }
         }), n.addEventListener("change", () => {
@@ -1522,7 +1522,7 @@
           v == null || v.click();
         }));
       }
-      a == null || a.insertAdjacentHTML("beforeend", nn), i == null || i.insertAdjacentHTML("afterbegin", X), T(".crs-comments", "exp_imprcheck_ev_review", "View on screen", "Positive review"), T(".crs-order-summary", "exp_imprcheck_ev_order", "View on screen", "Order summary");
+      r == null || r.insertAdjacentHTML("beforeend", nn), i == null || i.insertAdjacentHTML("afterbegin", X), T(".crs-comments", "exp_imprcheck_ev_review", "View on screen", "Positive review"), T(".crs-order-summary", "exp_imprcheck_ev_order", "View on screen", "Order summary");
       const $ = o(".crs-back-btn");
       $ && $.addEventListener("click", () => {
         h("exp_imprcheck_cl_back", "Back", "click", "Provide your billing details"), C && (C.style.display = "block"), y && (y.style.display = "none", y.classList.remove("crs-step2-active"), m && (m.style.display = ""), M && (M.style.display = ""), M && (M.style.display = ""), g && (g.style.display = ""), A && (A.style.display = "")), s && (s.style.display = "none"), p && (p.style.display = "block");
@@ -1532,7 +1532,7 @@
       document.head.insertAdjacentHTML("beforeend", `<style>${tn}</style>`);
     }
     inputsValidation() {
-      const e = o(".submitBtn button"), r = o(".nextStepBtn button"), l = o(".crs-back-btn"), i = o(".crs-form"), a = o(".crs-step2"), u = i == null ? void 0 : i.querySelectorAll("input, select");
+      const e = o(".submitBtn button"), a = o(".nextStepBtn button"), l = o(".crs-back-btn"), i = o(".crs-form"), r = o(".crs-step2"), u = i == null ? void 0 : i.querySelectorAll("input, select");
       if (!u || !e)
         return;
       e.addEventListener("mousedown", (s) => {
@@ -1548,9 +1548,9 @@
           for (const I of A)
             I.type === "attributes" && I.attributeName === "style" && M();
         }).observe(m, { attributes: !0, attributeFilter: ["style"] });
-        const O = a == null ? void 0 : a.getBoundingClientRect();
+        const O = r == null ? void 0 : r.getBoundingClientRect();
         P(".crs-input-error").then(() => {
-          O && (O.top < 0 || O.bottom > window.innerHeight) && (a == null || a.scrollIntoView({ behavior: "smooth" }));
+          O && (O.top < 0 || O.bottom > window.innerHeight) && (r == null || r.scrollIntoView({ behavior: "smooth" }));
         }), M(), u.forEach((g) => {
           !g.value || g.value.trim() === "" ? g.classList.add("crs-input-error") : g.classList.remove("crs-input-error"), g.addEventListener("input", () => {
             g.classList.remove("crs-input-error"), e.disabled = !1;
@@ -1569,21 +1569,21 @@
           }
         });
       });
-      p.observe(e, { attributes: !0 }), l && p.observe(l, { attributes: !0 }), r && p.observe(r, { attributes: !0 });
+      p.observe(e, { attributes: !0 }), l && p.observe(l, { attributes: !0 }), a && p.observe(a, { attributes: !0 });
     }
     paymentChanges() {
-      const e = o(".elCreditCardForm"), r = o(".crs-step2");
-      if (o(".ccExpYearText"), !e || !r)
+      const e = o(".elCreditCardForm"), a = o(".crs-step2");
+      if (o(".ccExpYearText"), !e || !a)
         return;
       P(".ccExpYearText").then((i) => {
-        const a = i;
-        a && (a.textContent = "Expiration date");
+        const r = i;
+        r && (r.textContent = "Expiration date");
       }), P(".ccCVCText").then((i) => {
-        const a = i;
-        a && (a.textContent = "CVV");
+        const r = i;
+        r && (r.textContent = "CVV");
       }), P(".ccCardText ").then((i) => {
-        const a = i;
-        a && (a.textContent = "Card number");
+        const r = i;
+        r && (r.textContent = "Card number");
       }), e.insertAdjacentHTML(
         "beforebegin",
         /* HTML */
@@ -1618,7 +1618,7 @@
       );
     }
   }
-  const rn = `.crs-header {
+  const an = `.crs-header {
   display: flex;
   align-items: center;
   padding-top: 0 !important;
@@ -1748,7 +1748,7 @@ div:has(> .crs-header__headline) {
 
 }
 `;
-  class an {
+  class rn {
     constructor() {
       this.init();
     }
@@ -1756,20 +1756,20 @@ div:has(> .crs-header__headline) {
       this.initStyles(), this.changes();
     }
     changes() {
-      N(".fullContainer ").forEach((r) => {
+      N(".fullContainer ").forEach((a) => {
         var l, i;
-        if ((l = r.textContent) != null && l.includes("DROP SERVICING PARTNER PROGRAM") && ((i = r.textContent) != null && i.includes("Questions?"))) {
-          r.querySelector(".elHeadlineWrapper");
-          const a = r.querySelectorAll("b");
-          a == null || a.forEach((u) => {
+        if ((l = a.textContent) != null && l.includes("DROP SERVICING PARTNER PROGRAM") && ((i = a.textContent) != null && i.includes("Questions?"))) {
+          a.querySelector(".elHeadlineWrapper");
+          const r = a.querySelectorAll("b");
+          r == null || r.forEach((u) => {
             u.textContent === "DROP SERVICING PARTNER PROGRAM" && u.classList.add("crs-header__headline"), u.textContent === "Questions?" && u.classList.add("crs-header__questions");
-          }), r.classList.add("crs-header");
+          }), a.classList.add("crs-header");
         }
       });
     }
     initStyles() {
       const e = document.createElement("style");
-      e.textContent = rn, document.head.appendChild(e);
+      e.textContent = an, document.head.appendChild(e);
     }
   }
   class sn {
@@ -1797,8 +1797,8 @@ div:has(> .crs-header__headline) {
           "Just a few incredible success stories from our members"
         );
       }), document.querySelectorAll(".fullContainer").forEach((l) => {
-        var i, a, u, p, s, k;
-        if (((i = l.textContent) != null && i.includes("Overall Rating") || (a = l.textContent) != null && a.includes("Verified Reviews")) && T(l, "exp_imprcheck_ev_rating", "View on screen", "Overall Rating"), (u = l.textContent) != null && u.includes("Frequently Asked Questions") && T(l, "exp_imprcheck_ev_faq", "View on screen", "Frequently Asked Questions"), (p = l.textContent) != null && p.includes("Join Drop Servicing Partner Program Today")) {
+        var i, r, u, p, s, k;
+        if (((i = l.textContent) != null && i.includes("Overall Rating") || (r = l.textContent) != null && r.includes("Verified Reviews")) && T(l, "exp_imprcheck_ev_rating", "View on screen", "Overall Rating"), (u = l.textContent) != null && u.includes("Frequently Asked Questions") && T(l, "exp_imprcheck_ev_faq", "View on screen", "Frequently Asked Questions"), (p = l.textContent) != null && p.includes("Join Drop Servicing Partner Program Today")) {
           if ((k = (s = l.querySelector("a")) == null ? void 0 : s.textContent) != null && k.includes("Join Drop Servicing Partner Program Today"))
             return;
           const m = l.querySelector("a.elButtonRounded");
@@ -1819,8 +1819,15 @@ div:has(> .crs-header__headline) {
       });
     }
   }
-  const cn = `.crs-schedule {
-  margin-top: 40px;
+  const cn = `
+@media (min-width: 769px) {
+  [data-hide-on="desktop"] {
+    display: none;
+  }
+}
+
+.crs-schedule {
+  margin-top: 15px;
   color: #000;
 }
 
@@ -2052,8 +2059,8 @@ div:has(> .crs-header__headline) {
         </div>
       </div>
     `
-      ), r = document.querySelector(".crsTargetSection");
-      r && (this.initStyles(), r.insertAdjacentHTML("beforebegin", e), T(".crs-schedule", "exp_imprcheck_ev_timeline", "View on screen", "Timeline"));
+      ), a = document.querySelector(".crsTargetSection");
+      a && (this.initStyles(), a.insertAdjacentHTML("beforebegin", e), T(".crs-schedule", "exp_imprcheck_ev_timeline", "View on screen", "Timeline"));
     }
     getDates() {
       this.today = /* @__PURE__ */ new Date(), this.date2DaysLater = new Date(this.today), this.date2DaysLater.setDate(this.today.getDate() + 2), this.date10DaysLater = new Date(this.today), this.date10DaysLater.setDate(this.today.getDate() + 10), this.date31DaysLater = new Date(this.today), this.date31DaysLater.setDate(this.today.getDate() + 31);
@@ -2069,7 +2076,7 @@ div:has(> .crs-header__headline) {
       this.init();
     }
     init() {
-      window.location.pathname === dn && (new on(), new pn(), new an(), new sn());
+      window.location.pathname === dn && (new on(), new pn(), new rn(), new sn());
     }
   }
   new un();
