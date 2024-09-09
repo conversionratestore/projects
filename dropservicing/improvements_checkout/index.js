@@ -1500,7 +1500,7 @@
 }
 
 #paypal-button-container {
-  height: 62px;
+  min-height: 62px;
 }
 
 @media (max-width: 768px) {
