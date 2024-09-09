@@ -1503,6 +1503,9 @@
   min-height: 62px;
 }
 
+:is(.crs-custom-options__group, .crs-payment__header) :is(label, input) {
+  cursor: pointer;
+}
 @media (max-width: 768px) {
   .crs-step1,
   .crs-step2 {
@@ -2184,7 +2187,7 @@ div:has(> .crs-header__headline) {
       </div>
     `
       ), o = document.querySelector(".crsTargetSection");
-      console.log("schedule container", o), o && (this.initStyles(), o.insertAdjacentHTML("beforebegin", e), E(".crs-schedule", "exp_imprcheck_ev_timeline", "View on screen", "Timeline"));
+      o && (this.initStyles(), o.insertAdjacentHTML("beforebegin", e), E(".crs-schedule", "exp_imprcheck_ev_timeline", "View on screen", "Timeline"));
     }
     getDates() {
       this.today = /* @__PURE__ */ new Date(), this.date2DaysLater = new Date(this.today), this.date2DaysLater.setDate(this.today.getDate() + 2), this.date10DaysLater = new Date(this.today), this.date10DaysLater.setDate(this.today.getDate() + 10), this.date31DaysLater = new Date(this.today), this.date31DaysLater.setDate(this.today.getDate() + 31);
