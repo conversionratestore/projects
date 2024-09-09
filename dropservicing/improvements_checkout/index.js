@@ -8,17 +8,17 @@
       event_type: o,
       event_loc: a
     }), console.log(`Event: ${d} | ${e} | ${o} | ${a}`);
-  }, K = ({ name: d, dev: e }) => {
+  }, W = ({ name: d, dev: e }) => {
     console.log(
       `%c EXP: ${d} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, W = (d) => {
+  }, J = (d) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", d, "variant_1"));
     }, 1e3);
-  }, J = "AedyRanyobuc4kcUU-IG0fvSQ06ts6-zX9TYZjkg-SF3Bm0QGuLpcyxygoeE32Y9Kgbp9ePlShxG3OyK";
-  class Z {
+  }, Z = "AedyRanyobuc4kcUU-IG0fvSQ06ts6-zX9TYZjkg-SF3Bm0QGuLpcyxygoeE32Y9Kgbp9ePlShxG3OyK";
+  class Y {
     constructor() {
       this.sdkLoaded = this.initSDKScript();
     }
@@ -53,7 +53,7 @@
           }
         },
         async onApprove(l, s) {
-          var c, r, y, m, k, A, v, M, B;
+          var c, r, y, m, k, P, v, L, M;
           try {
             const u = await (await fetch("https://server.dropservicing.com/api/paypal/confirm-payment", {
               method: "POST",
@@ -70,9 +70,9 @@
             if (N)
               throw new Error(`${N.description} (${u.debug_id})`);
             if (u.purchase_units) {
-              const V = ((k = (m = (y = (r = u == null ? void 0 : u.purchase_units) == null ? void 0 : r[0]) == null ? void 0 : y.payments) == null ? void 0 : m.captures) == null ? void 0 : k[0]) || ((B = (M = (v = (A = u == null ? void 0 : u.purchase_units) == null ? void 0 : A[0]) == null ? void 0 : v.payments) == null ? void 0 : M.authorizations) == null ? void 0 : B[0]);
+              const G = ((k = (m = (y = (r = u == null ? void 0 : u.purchase_units) == null ? void 0 : r[0]) == null ? void 0 : y.payments) == null ? void 0 : m.captures) == null ? void 0 : k[0]) || ((M = (L = (v = (P = u == null ? void 0 : u.purchase_units) == null ? void 0 : P[0]) == null ? void 0 : v.payments) == null ? void 0 : L.authorizations) == null ? void 0 : M[0]);
               t(
-                `Transaction ${V.status}: ${V.id}<br><br>See console for all available details`
+                `Transaction ${G.status}: ${G.id}<br><br>See console for all available details`
               ), console.log("Capture result", u, JSON.stringify(u, null, 2));
             } else
               throw new Error(JSON.stringify(u));
@@ -93,12 +93,12 @@
         const s = document.createElement("script");
         s.src = o, s.id = "paypal-sdk", s.onload = a, s.onerror = t, document.head.appendChild(s);
       }))(
-        `https://www.paypal.com/sdk/js?client-id=${J}&currency=USD&disable-funding=card&intent=capture`
+        `https://www.paypal.com/sdk/js?client-id=${Z}&currency=USD&disable-funding=card&intent=capture`
       );
     }
   }
-  const R = (d) => document.querySelectorAll(d), i = (d) => document.querySelector(d);
-  function L(d) {
+  const H = (d) => document.querySelectorAll(d), i = (d) => document.querySelector(d);
+  function T(d) {
     return new Promise((e) => {
       if (document.querySelector(d))
         return e(document.querySelector(d));
@@ -112,7 +112,7 @@
       });
     });
   }
-  const P = (d, e, o, a) => {
+  const E = (d, e, o, a) => {
     let t = [];
     if (typeof d == "string")
       t = document.querySelectorAll(d);
@@ -141,7 +141,7 @@
     t.forEach((c) => {
       l.observe(c);
     });
-  }, Y = (
+  }, Q = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -158,7 +158,7 @@
     stroke-linejoin="round"
   />
 </svg>`
-  ), F = (
+  ), j = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -172,7 +172,7 @@
     fill="white"
   />
 </svg>`
-  ), Q = (
+  ), X = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -183,7 +183,7 @@
 >
   <path d="M11 1L5 8L1 4" stroke="white" stroke-width="2" />
 </svg>`
-  ), X = (
+  ), nn = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -201,21 +201,21 @@
     fill="white"
   />
 </svg>`
-  ), nn = "https://www.dropservicing.com/refund-guarantee?_gl=1*1idgxw5*_gcl_au*MTQ4MDg5MTY4OS4xNzIzNTQxOTY2*_ga*NTg4MzI1MjUuMTcyMzU0MTk2Nw..*_ga_KQ2Z1WNWC8*MTcyNDE2MTg2OS45LjAuMTcyNDE2MTg2OS42MC4wLjA.", en = (
+  ), en = "https://www.dropservicing.com/refund-guarantee?_gl=1*1idgxw5*_gcl_au*MTQ4MDg5MTY4OS4xNzIzNTQxOTY2*_ga*NTg4MzI1MjUuMTcyMzU0MTk2Nw..*_ga_KQ2Z1WNWC8*MTcyNDE2MTg2OS45LjAuMTcyNDE2MTg2OS42MC4wLjA.", tn = (
     /* HTML */
     `
   <div class="nextStepBtn">
-    <button>${F} Secure Checkout</button>
-  </div>
-`
-  ), tn = (
-    /* HTML */
-    `
-  <div class="submitBtn">
-    <button>${F} Submit Purchase</button>
+    <button>${j} Secure Checkout</button>
   </div>
 `
   ), on = (
+    /* HTML */
+    `
+  <div class="submitBtn">
+    <button>${j} Submit Purchase</button>
+  </div>
+`
+  ), an = (
     /* HTML */
     `<div class="crs-sticky-container-wrap">
   <div class="crs-sticky-cta-container">
@@ -237,11 +237,11 @@
     <div class="crs-order-button"></div>
     <div id="paypal-button-container" style="display: none"></div>
     <div class="crs-guarantee">
-      <span>30</span> - day <a href="${nn}" target="__blank">action-based</a> money-back guarantee
+      <span>30</span> - day <a href="${en}" target="__blank">action-based</a> money-back guarantee
     </div>
   </div>
 </div>`
-  ), an = (
+  ), rn = (
     /* HTML */
     `
   <div class="crs-custom-options">
@@ -258,7 +258,7 @@
     </div>
   </div>
 `
-  ), rn = (
+  ), sn = (
     /* HTML */
     `
   <div class="crs-order-summary">
@@ -319,7 +319,7 @@
     </ul>
   </div>
 `
-  ), sn = (
+  ), cn = (
     /* HTML */
     `
   <ul class="crs-comments">
@@ -348,7 +348,7 @@
     </li>
   </ul>
 `
-  ), cn = (
+  ), pn = (
     /* HTML */
     `
   <div class="crs-form">
@@ -373,7 +373,7 @@
       </div>
     </div>
     <div class="crs-step2" style="display: none">
-      <button class="crs-back-btn">${Y} back</button>
+      <button class="crs-back-btn">${Q} back</button>
       <h3 class="crs-step-title">Provide your billing details</h3>
       <div class="crs-form__row">
         <div class="crs-form__control">
@@ -682,7 +682,7 @@
 
     <div class="crs-payment__badge">
       <div class="crs-payment__wrap">
-        <div class="crs-payment__icon">${X}</div>
+        <div class="crs-payment__icon">${nn}</div>
         <div class="crs-payment__content">
           <div class="crs-payment__title">SSL SECURE PAYMENT</div>
           <div class="crs-payment__desc">Secure Order Form - 100% Protected & Safe</div>
@@ -691,7 +691,7 @@
     </div>
   </div>
 `
-  ), pn = (
+  ), ln = (
     /* HTML */
     `
   <div class="crs-payment__header">
@@ -725,7 +725,7 @@
     </div>
   </div>
 `
-  ), ln = (
+  ), dn = (
     /* HTML */
     `
   <div class="crs-payment__header">
@@ -742,7 +742,7 @@
   /></div>
   </div>
 `
-  ), dn = `.crsTargetSection [data-col='left'] .elHeadlineWrapper,
+  ), un = `.crsTargetSection [data-col='left'] .elHeadlineWrapper,
 .order2StepHeader,
 .order2stepbutton,
 .order2ButtonSubText,
@@ -1161,6 +1161,7 @@
   font-weight: 700;
   line-height: 18px;
   margin-right: 10px;
+  text-wrap: nowrap;
 }
 
 .crs-order-details__price-amount {
@@ -1522,30 +1523,30 @@
   height: min-content;
   min-height: 100px;
 }`;
-  class un {
+  class mn {
     constructor() {
-      this.device = "desktop", this.orderId = null, this.device = window.innerWidth < 768 ? "mobile" : "desktop", this.paypal = new Z(), this.init();
+      this.device = "desktop", this.orderId = null, this.device = window.innerWidth < 768 ? "mobile" : "desktop", this.paypal = new Y(), this.init();
     }
     init() {
       this.initStyles(), this.changes(), this.inputsValidation(), this.switchPaymentMethod();
     }
     changes() {
-      var q;
+      var U;
       const e = i(".row:has(.order2stepbuttonOrder)"), o = i(".elOrder2Step"), a = i(".order2stepbuttonOrder"), t = e == null ? void 0 : e.querySelector('[data-col="right"]'), l = e == null ? void 0 : e.querySelector('[data-col="left"]'), s = i(".elOrderProductOptions");
       let c, r;
       if (!o)
         return;
-      e && e.classList.add("crsTargetSection"), R(".fullContainer").forEach((n) => {
-        var p, _, I, h, w;
-        (p = n.textContent) != null && p.includes("Just a few incredible success stories from our members!") && n.classList.add("crs-members"), (_ = n.textContent) != null && _.includes("Verified Reviews") && n.classList.add("crs-reviews"), (I = n.textContent) != null && I.includes("Overall Rating") && n.classList.add("crs-reviews-mob"), (h = n.textContent) != null && h.includes("Frequently Asked Questions") && n.classList.add("crs-faq"), (w = n.textContent) != null && w.includes("Join Drop Servicing Partner Program Today") && n.classList.add("crs-join");
+      e && e.classList.add("crsTargetSection"), H(".fullContainer").forEach((n) => {
+        var p, _, A, h, w;
+        (p = n.textContent) != null && p.includes("Just a few incredible success stories from our members!") && n.classList.add("crs-members"), (_ = n.textContent) != null && _.includes("Verified Reviews") && n.classList.add("crs-reviews"), (A = n.textContent) != null && A.includes("Overall Rating") && n.classList.add("crs-reviews-mob"), (h = n.textContent) != null && h.includes("Frequently Asked Questions") && n.classList.add("crs-faq"), (w = n.textContent) != null && w.includes("Join Drop Servicing Partner Program Today") && n.classList.add("crs-join");
       });
-      const m = i(".crs-members"), k = i(".crs-reviews"), A = i(".crs-reviews-mob"), v = i(".crs-faq"), M = i(".crs-join");
-      o.insertAdjacentHTML("beforebegin", cn), P(".crs-step1", "exp_imprcheck_ev_provide", "View on screen", "Provide your personal information"), P(".crs-step2", "exp_imprcheck_ev_billing", "View on screen", "Provide your billing details");
-      const B = i(".crs-form");
-      if (!B)
+      const m = i(".crs-members"), k = i(".crs-reviews"), P = i(".crs-reviews-mob"), v = i(".crs-faq"), L = i(".crs-join");
+      o.insertAdjacentHTML("beforebegin", pn), E(".crs-step1", "exp_imprcheck_ev_provide", "View on screen", "Provide your personal information"), E(".crs-step2", "exp_imprcheck_ev_billing", "View on screen", "Provide your billing details");
+      const M = i(".crs-form");
+      if (!M)
         return;
-      const x = B.querySelector(".crs-step1"), u = B.querySelector(".crs-step2");
-      if (B.querySelectorAll("input, select").forEach((n) => {
+      const x = M.querySelector(".crs-step1"), u = M.querySelector(".crs-step2");
+      if (M.querySelectorAll("input, select").forEach((n) => {
         n.addEventListener("input", () => {
           if (n.id === "crs-name") {
             const p = o.querySelector('input[name="name"]');
@@ -1578,63 +1579,63 @@
         }), n.addEventListener("change", () => {
           n.id === "crs-name" && f("exp_imprcheck_cl_name", "Full Name", "input", "Provide your personal information"), n.id === "crs-email" && f("exp_imprcheck_cl_email", "Email", "input", "Provide your personal information"), n.id === "crs-address" && f("exp_imprcheck_cl_address", "Full Address", "input", "Provide your billing details"), n.id === "crs-city" && f("exp_imprcheck_cl_city", "City Name", "input", "Provide your billing details"), n.id === "crs-zip" && f("exp_imprcheck_cl_zip", "Zip Code", "input", "Provide your billing details"), n.id === "crs-state" && f("exp_imprcheck_cl_state", "State / Province", "input", "Provide your billing details"), n.id === "crs-country" && f("exp_imprcheck_cl_country", "Country", "input", "Provide your billing details");
         });
-      }), L(".elCreditCardForm").then((n) => {
+      }), T(".elCreditCardForm").then((n) => {
         const p = n, _ = i("#order-declined-message");
         p && _ && (u == null || u.append(_), u == null || u.append(p), this.paymentChanges());
       }), s) {
         s.style.display = "none";
         const n = s.querySelector(".elOrderProductOptinItem"), p = s.querySelectorAll(".elOrderProductOptinProducts");
-        n && (n.style.display = "none"), t == null || t.insertAdjacentHTML("beforeend", an);
-        const _ = R(".crs-custom-options input"), I = (h) => {
+        n && (n.style.display = "none"), t == null || t.insertAdjacentHTML("beforeend", rn);
+        const _ = H(".crs-custom-options input"), A = (h) => {
           var D;
-          const w = h ? "$396" : "$996", O = h ? "flex" : "none", g = h ? "none" : "flex", C = h ? "Partner Program (3 monthly payments)" : "Partner Program", E = h ? "exp_imprcheck_cl_3monthly" : "exp_imprcheck_cl_onetime", $ = h ? "3 monthly payments" : "One-time payment", S = i("#crs-email"), b = S == null ? void 0 : S.value;
-          b && (this.paypal.createPayment(w === "$396" ? "396" : "996", b), L(".crs-order-details__price-amount").then((z) => {
-            const T = z;
-            T && (T.textContent = w);
-          }), L(".crs-order-details__payment-info").then(() => {
-            const z = i('.crs-order-details__payment-info[data-info="monthly"]'), T = i('.crs-order-details__payment-info[data-info="onetime"]');
-            z && T && (z.style.display = O, T.style.display = g);
-          }), (D = i(`input[data-product-name="${C}"]`)) == null || D.click(), f(E, $, "input", "Choose payment plan"));
+          const w = h ? "$396" : "$996", I = h ? "flex" : "none", g = h ? "none" : "flex", C = h ? "Partner Program (3 monthly payments)" : "Partner Program", B = h ? "exp_imprcheck_cl_3monthly" : "exp_imprcheck_cl_onetime", $ = h ? "3 monthly payments" : "One-time payment", S = i("#crs-email"), b = S == null ? void 0 : S.value;
+          b && this.paypal.createPayment(w === "$396" ? "396" : "996", b), T(".crs-order-details__price-amount").then((O) => {
+            const z = O;
+            z && (z.textContent = w);
+          }), T(".crs-order-details__payment-info").then(() => {
+            const O = i('.crs-order-details__payment-info[data-info="monthly"]'), z = i('.crs-order-details__payment-info[data-info="onetime"]');
+            O && z && (O.style.display = I, z.style.display = g);
+          }), (D = i(`input[data-product-name="${C}"]`)) == null || D.click(), f(B, $, "input", "Choose payment plan");
         };
         _.forEach((h) => {
           h.addEventListener("input", (w) => {
             var g;
-            const O = (g = w.target) == null ? void 0 : g.value;
-            I(O === "monthly");
+            const I = (g = w.target) == null ? void 0 : g.value;
+            A(I === "monthly");
           });
         }), p.forEach((h) => {
-          var O, g;
-          (O = h.textContent) != null && O.includes("3 monthly payments") && (h.after(h.previousElementSibling), (g = h.querySelector("input")) == null || g.click());
-        }), L(".crs-order-details").then(() => {
-          R(".crs-order-details__full-price").forEach((w) => {
-            w.addEventListener("click", (O) => {
-              var C, E;
-              w.dataset.action === "monthly" ? (E = i("#crs-onetime")) == null || E.click() : (C = i("#crs-monthly")) == null || C.click();
+          var I, g;
+          (I = h.textContent) != null && I.includes("3 monthly payments") && (h.after(h.previousElementSibling), (g = h.querySelector("input")) == null || g.click());
+        }), T(".crs-order-details").then(() => {
+          H(".crs-order-details__full-price").forEach((w) => {
+            w.addEventListener("click", (I) => {
+              var C, B;
+              w.dataset.action === "monthly" ? (B = i("#crs-onetime")) == null || B.click() : (C = i("#crs-monthly")) == null || C.click();
             });
           });
         });
       }
       if (a) {
-        a.style.display = "none", t == null || t.insertAdjacentHTML("beforeend", on);
+        a.style.display = "none", t == null || t.insertAdjacentHTML("beforeend", an);
         const n = i(".crs-sticky-cta-container"), p = i(".crs-sticky-cta-container .crs-order-button");
-        if (p == null || p.insertAdjacentHTML("beforeend", en), p == null || p.insertAdjacentHTML("beforeend", tn), !n)
+        if (p == null || p.insertAdjacentHTML("beforeend", tn), p == null || p.insertAdjacentHTML("beforeend", on), !n)
           return;
         const _ = document.createElement("div");
-        _.style.position = "absolute", _.style.top = "0", _.style.width = "100%", _.style.height = "1px", (q = n.parentNode) == null || q.insertBefore(_, n);
-        let I = !1, h = 0;
+        _.style.position = "absolute", _.style.top = "0", _.style.width = "100%", _.style.height = "1px", (U = n.parentNode) == null || U.insertBefore(_, n);
+        let A = !1, h = 0;
         n.getBoundingClientRect().top;
         const w = () => {
           const g = t == null ? void 0 : t.getBoundingClientRect(), C = g.left;
-          h = g.width, I ? (n.style.left = `${C}px`, n.style.width = `${h}px`, n.style.transform = "translateX(0)") : (n.style.left = "", n.style.width = "", n.style.transform = "");
-        }, O = new IntersectionObserver(
+          h = g.width, A ? (n.style.left = `${C}px`, n.style.width = `${h}px`, n.style.transform = "translateX(0)") : (n.style.left = "", n.style.width = "", n.style.transform = "");
+        }, I = new IntersectionObserver(
           (g) => {
             g.forEach((C) => {
-              const E = n.getBoundingClientRect(), $ = _.getBoundingClientRect();
-              if (!C.isIntersecting && C.intersectionRect.top <= 0 && !I && $.top > 0) {
+              const B = n.getBoundingClientRect(), $ = _.getBoundingClientRect();
+              if (!C.isIntersecting && C.intersectionRect.top <= 0 && !A && $.top > 0) {
                 const b = t.getBoundingClientRect().left;
-                n.classList.add("crs-sticky-cta-container--fixed"), n.style.left = `${b}px`, h = E.width, n.style.width = `${h}px`, n.style.transform = "translateX(0)", I = !0;
+                n.classList.add("crs-sticky-cta-container--fixed"), n.style.left = `${b}px`, h = B.width, n.style.width = `${h}px`, n.style.transform = "translateX(0)", A = !0;
               } else
-                n.classList.remove("crs-sticky-cta-container--fixed"), n.style.left = "", n.style.width = "", n.style.transform = "", I = !1;
+                n.classList.remove("crs-sticky-cta-container--fixed"), n.style.left = "", n.style.width = "", n.style.transform = "", A = !1;
             });
           },
           {
@@ -1643,37 +1644,37 @@
           }
         );
         setTimeout(() => {
-          O.observe(_);
+          I.observe(_);
         }, 1e3), window.addEventListener("resize", w), c = i(".nextStepBtn"), r = i(".submitBtn"), c == null || c.addEventListener("click", (g) => {
-          const C = g.target, E = i("#crs-paypal"), $ = i("#paypal-button-container"), S = i("#crs-name"), b = i("#crs-email");
+          const C = g.target, B = i("#crs-paypal"), $ = i("#paypal-button-container"), S = i("#crs-name"), b = i("#crs-email"), D = i("#crs-onetime");
           C && C.closest(".crs-sticky-cta-container--fixed") ? f("exp_imprcheck_cl_sum_check_st", "Secure Checkout (sticky)", "click", "Order summary (step 1)") : f("exp_imprcheck_cl_sum_checkout", "Secure Checkout", "click", "Order summary (step 1)");
-          const D = x == null ? void 0 : x.getBoundingClientRect();
-          if (D && (D.top < 0 || D.bottom > window.innerHeight) && (x == null || x.scrollIntoView({ behavior: "smooth" })), !S || !b)
+          const O = x == null ? void 0 : x.getBoundingClientRect();
+          if (O && (O.top < 0 || O.bottom > window.innerHeight) && (x == null || x.scrollIntoView({ behavior: "smooth" })), !S || !b)
             return;
-          const z = S == null ? void 0 : S.value, T = b == null ? void 0 : b.value;
-          let G = !0;
-          !z || z.trim() === "" ? (S.classList.add("crs-input-error"), G = !1) : S.classList.remove("crs-input-error");
-          const bn = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!T || T.trim() === "" || !bn.test(T))
-            b.classList.add("crs-input-error"), G = !1;
+          const z = S == null ? void 0 : S.value, R = b == null ? void 0 : b.value;
+          let F = !0;
+          !z || z.trim() === "" ? (S.classList.add("crs-input-error"), F = !1) : S.classList.remove("crs-input-error");
+          const wn = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!R || R.trim() === "" || !wn.test(R))
+            b.classList.add("crs-input-error"), F = !1;
           else {
-            const [U] = T.split("@");
-            U.includes("test") ? (b == null || b.classList.add("crs-input-error"), G = !1) : b.classList.remove("crs-input-error");
+            const [K] = R.split("@");
+            K.includes("test") ? (b == null || b.classList.add("crs-input-error"), F = !1) : b.classList.remove("crs-input-error");
           }
-          G && (!x || !u || (x.style.display = "none", u.style.display = "block", u.classList.add("crs-step2-active"), this.paypal.createPayment("396", T), m && (m.style.display = "none"), k && (k.style.display = "none"), A && (A.style.display = "none"), v && (v.style.display = "none"), M && (M.style.display = "none"), E != null && E.checked ? $ && ($.style.display = "") : r && (r.style.display = ""), c && (c.style.display = "none")));
+          F && (!x || !u || (x.style.display = "none", u.style.display = "block", u.classList.add("crs-step2-active"), D != null && D.checked ? this.paypal.createPayment("996", R) : this.paypal.createPayment("396", R), m && (m.style.display = "none"), k && (k.style.display = "none"), P && (P.style.display = "none"), v && (v.style.display = "none"), L && (L.style.display = "none"), B != null && B.checked ? $ && ($.style.display = "") : r && (r.style.display = ""), c && (c.style.display = "none")));
         }), r && (r.style.display = "none", r.addEventListener("click", () => {
           const g = a.querySelector("a");
           g == null || g.click();
         }));
       }
-      l == null || l.insertAdjacentHTML("beforeend", sn), t == null || t.insertAdjacentHTML("afterbegin", rn), P(".crs-comments", "exp_imprcheck_ev_review", "View on screen", "Positive review"), P(".crs-order-summary", "exp_imprcheck_ev_order", "View on screen", "Order summary");
-      const V = i(".crs-back-btn"), j = i("#paypal-button-container");
-      V && V.addEventListener("click", () => {
-        f("exp_imprcheck_cl_back", "Back", "click", "Provide your billing details"), x && (x.style.display = "block"), u && (u.style.display = "none", u.classList.remove("crs-step2-active"), m && (m.style.display = ""), k && (k.style.display = ""), k && (k.style.display = ""), v && (v.style.display = ""), M && (M.style.display = "")), r && (r.style.display = "none"), c && (c.style.display = "block"), j && (j.style.display = "none");
+      l == null || l.insertAdjacentHTML("beforeend", cn), t == null || t.insertAdjacentHTML("afterbegin", sn), E(".crs-comments", "exp_imprcheck_ev_review", "View on screen", "Positive review"), E(".crs-order-summary", "exp_imprcheck_ev_order", "View on screen", "Order summary");
+      const G = i(".crs-back-btn"), q = i("#paypal-button-container");
+      G && G.addEventListener("click", () => {
+        f("exp_imprcheck_cl_back", "Back", "click", "Provide your billing details"), x && (x.style.display = "block"), u && (u.style.display = "none", u.classList.remove("crs-step2-active"), m && (m.style.display = ""), k && (k.style.display = ""), k && (k.style.display = ""), v && (v.style.display = ""), L && (L.style.display = "")), r && (r.style.display = "none"), c && (c.style.display = "block"), q && (q.style.display = "none");
       });
     }
     initStyles() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${dn}</style>`);
+      document.head.insertAdjacentHTML("beforeend", `<style>${un}</style>`);
     }
     inputsValidation() {
       const e = i(".submitBtn button"), o = i(".nextStepBtn button"), a = i(".crs-back-btn"), t = i(".crs-form"), l = i(".crs-step2"), s = t == null ? void 0 : t.querySelectorAll("input, select");
@@ -1688,13 +1689,13 @@
             (v.top < 0 || v.bottom > window.innerHeight) && m.scrollIntoView({ behavior: "smooth" }), c.disconnect();
           }
         };
-        m && new MutationObserver((M) => {
-          for (const B of M)
-            B.type === "attributes" && B.attributeName === "style" && k();
+        m && new MutationObserver((L) => {
+          for (const M of L)
+            M.type === "attributes" && M.attributeName === "style" && k();
         }).observe(m, { attributes: !0, attributeFilter: ["style"] });
-        const A = l == null ? void 0 : l.getBoundingClientRect();
-        L(".crs-input-error").then(() => {
-          A && (A.top < 0 || A.bottom > window.innerHeight) && (l == null || l.scrollIntoView({ behavior: "smooth" }));
+        const P = l == null ? void 0 : l.getBoundingClientRect();
+        T(".crs-input-error").then(() => {
+          P && (P.top < 0 || P.bottom > window.innerHeight) && (l == null || l.scrollIntoView({ behavior: "smooth" }));
         }), k(), s.forEach((v) => {
           !v.value || v.value.trim() === "" ? v.classList.add("crs-input-error") : v.classList.remove("crs-input-error"), v.addEventListener("input", () => {
             v.classList.remove("crs-input-error"), e.disabled = !1;
@@ -1716,8 +1717,8 @@
       c.observe(e, { attributes: !0 }), a && c.observe(a, { attributes: !0 }), o && c.observe(o, { attributes: !0 });
     }
     switchPaymentMethod() {
-      L('input[name="crs-payment-method"]').then(() => {
-        const e = R('input[name="crs-payment-method"]'), o = i(".elCreditCardForm"), a = i(".submitBtn"), t = i("#paypal-button-container");
+      T('input[name="crs-payment-method"]').then(() => {
+        const e = H('input[name="crs-payment-method"]'), o = i(".elCreditCardForm"), a = i(".submitBtn"), t = i("#paypal-button-container");
         !e || !o || !a || !t || e.forEach((l) => {
           l.addEventListener("change", () => {
             l.value === "credit" ? (t.style.display = "none", o.style.display = "", a.style.display = "") : (o.style.display = "none", a.style.display = "none", t.style.display = "");
@@ -1727,21 +1728,21 @@
     }
     paymentChanges() {
       const e = i(".elCreditCardForm"), o = i(".crs-step2");
-      i(".ccExpYearText"), !(!e || !o) && (L(".ccExpYearText").then((a) => {
+      i(".ccExpYearText"), !(!e || !o) && (T(".ccExpYearText").then((a) => {
         const t = a;
         t && (t.textContent = "Expiration date");
-      }), L(".ccCVCText").then((a) => {
+      }), T(".ccCVCText").then((a) => {
         const t = a;
         t && (t.textContent = "CVV");
-      }), L(".ccCardText ").then((a) => {
+      }), T(".ccCardText ").then((a) => {
         const t = a;
         t && (t.textContent = "Card number");
-      }), e.insertAdjacentHTML("beforebegin", pn), L("#paypal-sdk").then(() => {
-        e.insertAdjacentHTML("afterend", ln);
+      }), e.insertAdjacentHTML("beforebegin", ln), T("#paypal-sdk").then(() => {
+        e.insertAdjacentHTML("afterend", dn);
       }));
     }
   }
-  const mn = `.crs-header {
+  const hn = `.crs-header {
   display: flex;
   align-items: center;
   padding-top: 0 !important;
@@ -1871,7 +1872,7 @@ div:has(> .crs-header__headline) {
 
 }
 `;
-  class hn {
+  class vn {
     constructor() {
       this.init();
     }
@@ -1879,7 +1880,7 @@ div:has(> .crs-header__headline) {
       this.initStyles(), this.changes();
     }
     changes() {
-      R(".fullContainer ").forEach((o) => {
+      H(".fullContainer ").forEach((o) => {
         var a, t;
         if ((a = o.textContent) != null && a.includes("DROP SERVICING PARTNER PROGRAM") && ((t = o.textContent) != null && t.includes("Questions?"))) {
           o.querySelector(".elHeadlineWrapper");
@@ -1892,10 +1893,10 @@ div:has(> .crs-header__headline) {
     }
     initStyles() {
       const e = document.createElement("style");
-      e.textContent = mn, document.head.appendChild(e);
+      e.textContent = hn, document.head.appendChild(e);
     }
   }
-  class vn {
+  class gn {
     constructor() {
       this.init();
     }
@@ -1903,7 +1904,7 @@ div:has(> .crs-header__headline) {
       this.addEvents();
     }
     addEvents() {
-      P(
+      E(
         '.fullContainer[style*="Background-Big-Last-Footer-t-"]',
         "exp_imprcheck_ev_success_st",
         "View on screen",
@@ -1921,7 +1922,7 @@ div:has(> .crs-header__headline) {
         );
       }), document.querySelectorAll(".fullContainer").forEach((a) => {
         var t, l, s, c, r, y;
-        if (((t = a.textContent) != null && t.includes("Overall Rating") || (l = a.textContent) != null && l.includes("Verified Reviews")) && P(a, "exp_imprcheck_ev_rating", "View on screen", "Overall Rating"), (s = a.textContent) != null && s.includes("Frequently Asked Questions") && P(a, "exp_imprcheck_ev_faq", "View on screen", "Frequently Asked Questions"), (c = a.textContent) != null && c.includes("Join Drop Servicing Partner Program Today")) {
+        if (((t = a.textContent) != null && t.includes("Overall Rating") || (l = a.textContent) != null && l.includes("Verified Reviews")) && E(a, "exp_imprcheck_ev_rating", "View on screen", "Overall Rating"), (s = a.textContent) != null && s.includes("Frequently Asked Questions") && E(a, "exp_imprcheck_ev_faq", "View on screen", "Frequently Asked Questions"), (c = a.textContent) != null && c.includes("Join Drop Servicing Partner Program Today")) {
           if ((y = (r = a.querySelector("a")) == null ? void 0 : r.textContent) != null && y.includes("Join Drop Servicing Partner Program Today"))
             return;
           const m = a.querySelector("a.elButtonRounded");
@@ -1932,7 +1933,7 @@ div:has(> .crs-header__headline) {
               "click",
               "Join Drop Servicing Partner Program Today"
             );
-          })), P(
+          })), E(
             a,
             "exp_imprcheck_ev_join_drop",
             "View on screen",
@@ -1942,7 +1943,7 @@ div:has(> .crs-header__headline) {
       });
     }
   }
-  const gn = `
+  const fn = `
 @media (min-width: 769px) {
   [data-hide-on="desktop"] {
     display: none;
@@ -2119,12 +2120,12 @@ div:has(> .crs-header__headline) {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-`, fn = "https://www.dropservicing.com/refund-guarantee?_gl=1*1idgxw5*_gcl_au*MTQ4MDg5MTY4OS4xNzIzNTQxOTY2*_ga*NTg4MzI1MjUuMTcyMzU0MTk2Nw..*_ga_KQ2Z1WNWC8*MTcyNDE2MTg2OS45LjAuMTcyNDE2MTg2OS42MC4wLjA.";
-  function H(d) {
+`, yn = "https://www.dropservicing.com/refund-guarantee?_gl=1*1idgxw5*_gcl_au*MTQ4MDg5MTY4OS4xNzIzNTQxOTY2*_ga*NTg4MzI1MjUuMTcyMzU0MTk2Nw..*_ga_KQ2Z1WNWC8*MTcyNDE2MTg2OS45LjAuMTcyNDE2MTg2OS42MC4wLjA.";
+  function V(d) {
     const e = { month: "short", day: "numeric", year: "numeric" };
     return d.toLocaleDateString("en-US", e);
   }
-  class yn {
+  class _n {
     constructor() {
       this.init();
     }
@@ -2145,14 +2146,14 @@ div:has(> .crs-header__headline) {
         <div class="crs-schedule__blocks">
           <div class="crs-schedule__block">
             <div class="crs-schedule__wrap">
-              <div class="crs-schedule__date">${H(this.today)}</div>
+              <div class="crs-schedule__date">${V(this.today)}</div>
               <div class="crs-schedule__today">today</div>
               <div class="crs-schedule__text">Join Drop Servicing Partner Program</div>
             </div>
           </div>
           <div class="crs-schedule__block">
             <div class="crs-schedule__wrap">
-              <div class="crs-schedule__date">${H(this.today)}</div>
+              <div class="crs-schedule__date">${V(this.today)}</div>
               <div class="crs-schedule__text">
                 Get full access to all resources, community and support
               </div>
@@ -2160,7 +2161,7 @@ div:has(> .crs-header__headline) {
           </div>
           <div class="crs-schedule__block">
             <div class="crs-schedule__wrap">
-              <div class="crs-schedule__date">FROM ${H(this.date2DaysLater)}</div>
+              <div class="crs-schedule__date">FROM ${V(this.date2DaysLater)}</div>
               <div class="crs-schedule__text">
                 Receive personalized coaching in weekly live video calls
               </div>
@@ -2168,39 +2169,39 @@ div:has(> .crs-header__headline) {
           </div>
           <div class="crs-schedule__block">
             <div class="crs-schedule__wrap">
-              <div class="crs-schedule__date">${H(this.date10DaysLater)}</div>
+              <div class="crs-schedule__date">${V(this.date10DaysLater)}</div>
               <div class="crs-schedule__text">Launch your first business with our Done For You Partnership</div>
             </div>
           </div>
           <div class="crs-schedule__block">
             <div class="crs-schedule__wrap">
-              <div class="crs-schedule__check">${Q}</div>
-              <div class="crs-schedule__date"><span class="crs-schedule__until"></span>&nbsp;${H(this.date31DaysLater)}</div>
-              <div class="crs-schedule__text">Our <a href="${fn}" target="_blank">money-back guarantee</a> covers you if not fully satisfied</div>
+              <div class="crs-schedule__check">${X}</div>
+              <div class="crs-schedule__date"><span class="crs-schedule__until"></span>&nbsp;${V(this.date31DaysLater)}</div>
+              <div class="crs-schedule__text">Our <a href="${yn}" target="_blank">money-back guarantee</a> covers you if not fully satisfied</div>
             </div>
           </div>
         </div>
       </div>
     `
       ), o = document.querySelector(".crsTargetSection");
-      console.log("schedule container", o), o && (this.initStyles(), o.insertAdjacentHTML("beforebegin", e), P(".crs-schedule", "exp_imprcheck_ev_timeline", "View on screen", "Timeline"));
+      console.log("schedule container", o), o && (this.initStyles(), o.insertAdjacentHTML("beforebegin", e), E(".crs-schedule", "exp_imprcheck_ev_timeline", "View on screen", "Timeline"));
     }
     getDates() {
       this.today = /* @__PURE__ */ new Date(), this.date2DaysLater = new Date(this.today), this.date2DaysLater.setDate(this.today.getDate() + 2), this.date10DaysLater = new Date(this.today), this.date10DaysLater.setDate(this.today.getDate() + 10), this.date31DaysLater = new Date(this.today), this.date31DaysLater.setDate(this.today.getDate() + 31);
     }
     initStyles() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${gn}</style>`);
+      document.head.insertAdjacentHTML("beforeend", `<style>${fn}</style>`);
     }
   }
-  K({ name: "Improvements on Checkout Page", dev: "OS" }), W("exp_imprcheck_loaded");
-  const _n = "/partner-offer";
-  class xn {
+  W({ name: "Improvements on Checkout Page", dev: "OS" }), J("exp_imprcheck_loaded");
+  const xn = "/partner-offer";
+  class bn {
     constructor() {
       this.init();
     }
     init() {
-      window.location.pathname === _n && (new un(), new yn(), new hn(), new vn());
+      window.location.pathname === xn && (new mn(), new _n(), new vn(), new gn());
     }
   }
-  new xn();
+  new bn();
 })();
