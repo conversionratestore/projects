@@ -93,7 +93,7 @@
         const s = document.createElement("script");
         s.src = o, s.id = "paypal-sdk", s.onload = a, s.onerror = t, document.head.appendChild(s);
       }))(
-        `https://www.paypal.com/sdk/js?client-id=${Z}&currency=USD&disable-funding=card&intent=capture`
+        `https://www.paypal.com/sdk/js?client-id=${Z}&currency=USD&disable-funding=paylater,card,credit,p24&intent=capture`
       );
     }
   }
