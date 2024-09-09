@@ -15,16 +15,16 @@
     );
   }, d = (c) => document.querySelectorAll(c), e = (c) => document.querySelector(c), v = async (c) => {
     const t = (n) => new Promise((o, i) => {
-      const s = n.split(".").pop();
-      if (s === "js") {
-        if (Array.from(document.scripts).map((a) => a.src.toLowerCase()).includes(n.toLowerCase()))
+      const a = n.split(".").pop();
+      if (a === "js") {
+        if (Array.from(document.scripts).map((s) => s.src.toLowerCase()).includes(n.toLowerCase()))
           return console.log(`Script ${n} allready downloaded!`), o("");
         const r = document.createElement("script");
         r.src = n, r.onload = o, r.onerror = i, document.head.appendChild(r);
-      } else if (s === "css") {
-        if (Array.from(document.styleSheets).map((a) => {
+      } else if (a === "css") {
+        if (Array.from(document.styleSheets).map((s) => {
           var b;
-          return (b = a.href) == null ? void 0 : b.toLowerCase();
+          return (b = s.href) == null ? void 0 : b.toLowerCase();
         }).includes(n.toLowerCase()))
           return console.log(`Style ${n} allready downloaded!`), o("");
         const r = document.createElement("link");
@@ -55,24 +55,24 @@
   }
   (function(c) {
     c = c === void 0 ? {} : c;
-    let t, n, o, i, s = (c == null ? void 0 : c.delay) || 50;
+    let t, n, o, i, a = (c == null ? void 0 : c.delay) || 50;
     function p() {
       t = null, i = 0;
     }
     return p(), function() {
-      return n = window.scrollY, t != null && (i = n - t), t = n, clearTimeout(o), o = setTimeout(p, s), i;
+      return n = window.scrollY, t != null && (i = n - t), t = n, clearTimeout(o), o = setTimeout(p, a), i;
     };
   })();
   function S(c) {
     return new Promise((t) => setTimeout(t, c));
   }
-  const w = async (c, t) => {
+  const x = async (c, t) => {
     const n = c, i = (t == null ? void 0 : t.getBoundingClientRect().top) + window.pageYOffset - n;
     return window.scrollTo({
       top: i,
       behavior: "smooth"
     }), await S(800), !0;
-  }, x = {
+  }, w = {
     orangeArrowIcon: (
       /* HTML */
       `
@@ -135,10 +135,10 @@
         <label for="subscribeSave" class="subscribe_save_variant"> Subscribe & Save</label>
       </div>
       <div class="plan_comment">
-        A choice that saves both time and money ${x.orangeArrowIcon}<span
+        A choice that saves both time and money ${w.orangeArrowIcon}<span
           data-tooltip
           data-title="${L.subscribe}"
-          >${x.tooltipIcon}</span
+          >${w.tooltipIcon}</span
         >
       </div>
       <ul class="plan_details">
@@ -266,8 +266,8 @@ body .product__info-container .product-form__input input[type=radio] + label {
   margin: 0;
 }
 @media (max-width: 768px) {
-  body .product__info-container .product-form__input {
-     width: calc((100% - 10px) / 2);
+  body .product__info-container .product-form__input input[type=radio] + label {
+    width: calc((100% - 10px) / 2);
   }
 }
 body .product__info-container label .best-seller {
@@ -927,16 +927,16 @@ body .sleep-heading {
         l(".price__container").then((n) => {
           l(".product-form__submit span[data-rtx-subscription-price]").then((o) => {
             let i = setInterval(() => {
-              o.textContent !== "" && e("[data-percent]") && (clearInterval(i), l(".price--on-sale .price__badge-sale").then((s) => {
+              o.textContent !== "" && e("[data-percent]") && (clearInterval(i), l(".price--on-sale .price__badge-sale").then((a) => {
                 var b;
                 const p = t.textContent;
-                let r = "", a = "";
-                e(".product-form__submit span[data-rtx-subscription-price]").classList.contains("hidden") || (r = e(".product-form__submit span[data-rtx-subscription-price]").textContent, a = e("[data-percent]").getAttribute("data-percent"), console.log("Тут %")), e(".product-form__submit span[data-rtx-onetime-price]").classList.contains("hidden") || (r = e(".product-form__submit span[data-rtx-onetime-price]").textContent, a = (b = e(".price--on-sale .price__badge-sale")) == null ? void 0 : b.textContent.trim(), console.log(a, "percentOff")), e(".new_price_wrapper") || n.insertAdjacentHTML(
+                let r = "", s = "";
+                e(".product-form__submit span[data-rtx-subscription-price]").classList.contains("hidden") || (r = e(".product-form__submit span[data-rtx-subscription-price]").textContent, s = e("[data-percent]").getAttribute("data-percent"), console.log("Тут %")), e(".product-form__submit span[data-rtx-onetime-price]").classList.contains("hidden") || (r = e(".product-form__submit span[data-rtx-onetime-price]").textContent, s = (b = e(".price--on-sale .price__badge-sale")) == null ? void 0 : b.textContent.trim(), console.log(s, "percentOff")), e(".new_price_wrapper") || n.insertAdjacentHTML(
                   "beforebegin",
                   `<div class="new_price_wrapper">
                       <div class="new_reg_price">${p}</div>
                       <div class="new_sale_price">${r}</div>
-                      <div class="percent_off">${x.percentIcon} ${a}</div>
+                      <div class="percent_off">${w.percentIcon} ${s}</div>
                     </div>`
                 );
               }));
@@ -964,17 +964,17 @@ body .sleep-heading {
       l(".plan_selection").then((t) => {
         d(".plan_selection label").forEach((n) => {
           n.addEventListener("click", () => {
-            var o, i, s, p, r, a;
+            var o, i, a, p, r, s;
             switch (n.getAttribute("for")) {
               case "oneTime":
                 if (m("exp_sub_option_button_01", "One-Time", "Button", "Subscribe section"), (o = n.previousElementSibling) != null && o.checked)
                   return;
-                (i = e(".custom_dropdown")) == null || i.remove(), (s = e(".new_price_wrapper")) == null || s.remove(), e('[id="purchaseTypeOneTime"]').click(), e(".plan_details").classList.contains("one_time_checked") || e(".plan_details").classList.add("one_time_checked");
+                (i = e(".custom_dropdown")) == null || i.remove(), (a = e(".new_price_wrapper")) == null || a.remove(), e('[id="purchaseTypeOneTime"]').click(), e(".plan_details").classList.contains("one_time_checked") || e(".plan_details").classList.add("one_time_checked");
                 break;
               case "subscribeSave":
                 if (m("exp_sub_option_button_02", "Subscribe & Save", "Button", "Subscribe section"), (p = n.previousElementSibling) != null && p.checked)
                   return;
-                (r = e(".custom_dropdown")) == null || r.remove(), (a = e(".new_price_wrapper")) == null || a.remove(), e('[id="purchaseTypeSubscription"]').click(), e(".plan_details").classList.contains("one_time_checked") && e(".plan_details").classList.remove("one_time_checked");
+                (r = e(".custom_dropdown")) == null || r.remove(), (s = e(".new_price_wrapper")) == null || s.remove(), e('[id="purchaseTypeSubscription"]').click(), e(".plan_details").classList.contains("one_time_checked") && e(".plan_details").classList.remove("one_time_checked");
                 break;
             }
             this.renderCustomDropdown(), this.replacePriceTxtHandler();
@@ -990,29 +990,29 @@ body .sleep-heading {
     renderOptions() {
       l(".rtx-subscription-dropdown option").then((t) => {
         l(".custom_dropdown").then((n) => {
-          const o = e(".rtx-subscription-dropdown"), i = d(".rtx-subscription-dropdown option"), s = e(".dropdown_menu"), p = e(".dropdown_toggle");
+          const o = e(".rtx-subscription-dropdown"), i = d(".rtx-subscription-dropdown option"), a = e(".dropdown_menu"), p = e(".dropdown_toggle");
           i.forEach((r) => {
             var f, h, _, g, y;
-            let a = r.getAttribute("selected") !== null ? "selected" : "";
+            let s = r.getAttribute("selected") !== null ? "selected" : "";
             const b = r.getAttribute("value");
             let u = (f = r.textContent) != null && f.includes("Every") ? `<b>Ship every:</b> <span class="text_transform">${(h = r.textContent) == null ? void 0 : h.split("Every ")[1]}</span>` : r.textContent;
-            (_ = r.textContent) != null && _.includes("(most common)") && (u = `<b>Ship every:</b> <span class="text_transform">${(g = r.textContent) == null ? void 0 : g.split("Every ")[1].split("(most common)")[0]}</span> <span class="most_common">(${(y = r.textContent) == null ? void 0 : y.split("(")[1]}</span>`), o && o.value === b && (p.innerHTML = `${u}`, a = "selected"), e(".one_time_checked") && p.classList.add("disabled"), s.insertAdjacentHTML(
+            (_ = r.textContent) != null && _.includes("(most common)") && (u = `<b>Ship every:</b> <span class="text_transform">${(g = r.textContent) == null ? void 0 : g.split("Every ")[1].split("(most common)")[0]}</span> <span class="most_common">(${(y = r.textContent) == null ? void 0 : y.split("(")[1]}</span>`), o && o.value === b && (p.innerHTML = `${u}`, s = "selected"), e(".one_time_checked") && p.classList.add("disabled"), a.insertAdjacentHTML(
               "beforeend",
-              `<div class="dropdown_item ${a}" data-value="${b}">${u}</div>`
+              `<div class="dropdown_item ${s}" data-value="${b}">${u}</div>`
             );
           }), this.changeCustomDropdownHandler(".custom_dropdown");
         });
       });
     }
     changeCustomDropdownHandler(t) {
-      const n = e(t), o = n.querySelector(".dropdown_toggle"), i = n.querySelector(".dropdown_menu"), s = n.querySelectorAll(".dropdown_item"), p = d(".rtx-subscription-dropdown option");
+      const n = e(t), o = n.querySelector(".dropdown_toggle"), i = n.querySelector(".dropdown_menu"), a = n.querySelectorAll(".dropdown_item"), p = d(".rtx-subscription-dropdown option");
       o.addEventListener("click", () => {
         m("exp_sub_option_dropdown_01", "Ship every", "Dropdown", "Subscribe section"), i.classList.toggle("show"), this.adjustDropdownPosition(i), o.classList.toggle("active");
-      }), s.forEach((a) => {
-        a.addEventListener("click", (b) => {
+      }), a.forEach((s) => {
+        s.addEventListener("click", (b) => {
           var h;
           const u = b.currentTarget, f = u.getAttribute("data-value");
-          s.forEach((_) => _.classList.remove("selected")), u.classList.add("selected"), i.style.top = "100%", o.innerHTML = u.innerHTML, i.classList.remove("show"), o.classList.remove("active"), m(
+          a.forEach((_) => _.classList.remove("selected")), u.classList.add("selected"), i.style.top = "100%", o.innerHTML = u.innerHTML, i.classList.remove("show"), o.classList.remove("active"), m(
             "exp_sub_option_dropdown_02",
             `Selected value: ${(h = u.querySelector(".text_transform")) == null ? void 0 : h.textContent}`,
             "Dropdown",
@@ -1021,12 +1021,12 @@ body .sleep-heading {
             _.getAttribute("value") === f && _.closest("select") && (_.closest("select").value = f);
           });
         });
-      }), document.addEventListener("click", (a) => {
-        const b = a.target;
+      }), document.addEventListener("click", (s) => {
+        const b = s.target;
         n.contains(b) || (i.classList.remove("show"), o.classList.remove("active"), i.style.top = "100%");
       }), new IntersectionObserver(
-        (a) => {
-          a.forEach((b) => {
+        (s) => {
+          s.forEach((b) => {
             b.isIntersecting || this.adjustDropdownPosition(i);
           });
         },
@@ -1057,22 +1057,22 @@ body .sleep-heading {
           if (e("input[name=plan]:checked").value === "oneTime")
             return;
           const i = e(".product-form__input input:checked+label").getAttribute("data-pack");
-          let s = null;
+          let a = null;
           switch (i) {
             case "2":
-              s = "1060536364";
+              a = "1060536364";
               break;
             case "3":
-              s = "1068564524";
+              a = "1068564524";
               break;
             case "4":
-              s = "1060569132";
+              a = "1060569132";
               break;
           }
-          e(".dropdown_item span.most_common").remove(), d(`.dropdown_item[data-value="${s}"]`)[0].insertAdjacentHTML(
+          e(".dropdown_item span.most_common").remove(), d(`.dropdown_item[data-value="${a}"]`)[0].insertAdjacentHTML(
             "beforeend",
             '<span class="most_common"> (most common)</span>'
-          ), d(`.dropdown_item[data-value="${s}"]`)[0].click();
+          ), d(`.dropdown_item[data-value="${a}"]`)[0].click();
         }).observe(e(".price--large"), { childList: !0, subtree: !0 });
       });
     }
@@ -1085,7 +1085,7 @@ body .sleep-heading {
           typeof tippy == "function" && e("[data-tooltip]") && (clearInterval(t), d("[data-tooltip]").forEach((n) => {
             tippy(n, {
               content: n.getAttribute("data-title"),
-              // trigger: 'click',
+              trigger: window.innerWidth < 768 ? "click" : "mouseenter",
               allowHTML: !0,
               arrow: !0,
               arrowType: "round",
@@ -1115,8 +1115,8 @@ body .sleep-heading {
             d("a.get-it") && d("a.get-it").length > 0 && (clearInterval(o), this.toggleStickyBlockVisibility("a.get-it"));
           }, 300), i = setInterval(() => {
             d("a.scroll-to-checkout") && d("a.scroll-to-checkout").length > 0 && (clearInterval(i), this.toggleStickyBlockVisibility("a.scroll-to-checkout"));
-          }, 300), s = setInterval(() => {
-            d("a.get-it-now") && d("a.get-it-now").length > 0 && (clearInterval(s), this.toggleStickyBlockVisibility("a.get-it-now"));
+          }, 300), a = setInterval(() => {
+            d("a.get-it-now") && d("a.get-it-now").length > 0 && (clearInterval(a), this.toggleStickyBlockVisibility("a.get-it-now"));
           }, 300), p = setInterval(() => {
             window.location.pathname.match("focuspatch-focus-enhancing-sticker") && d('a[href="#pdpGetNow"]') && d('a[href="#pdpGetNow"]').length > 0 && (clearInterval(p), this.toggleStickyBlockVisibility('a[href="#pdpGetNow"]'));
           }, 300);
@@ -1129,14 +1129,14 @@ body .sleep-heading {
         l(".sticky_block").then(() => {
           const n = e(".sticky_block"), o = e("section.page-width");
           let i = d(t);
-          function s(r) {
-            const a = r.getBoundingClientRect();
-            return a.top < (window.innerHeight || document.documentElement.clientHeight) && a.bottom > 0 && a.left < (window.innerWidth || document.documentElement.clientWidth) && a.right > 0;
+          function a(r) {
+            const s = r.getBoundingClientRect();
+            return s.top < (window.innerHeight || document.documentElement.clientHeight) && s.bottom > 0 && s.left < (window.innerWidth || document.documentElement.clientWidth) && s.right > 0;
           }
           function p() {
             let r = !1;
-            s(o) && (r = !0), i.forEach((a) => {
-              s(a) && (r = !0);
+            a(o) && (r = !0), i.forEach((s) => {
+              a(s) && (r = !0);
             }), r ? (n.style.display = "none", e("body").classList.contains("sticky_block_visible") && e("body").classList.remove("sticky_block_visible")) : (n.style.display = "block", e("body").classList.add("sticky_block_visible"));
           }
           p(), window.addEventListener("scroll", p), window.addEventListener("resize", p);
@@ -1146,7 +1146,7 @@ body .sleep-heading {
     clickStickyBtnHandler() {
       l(".choose_your_product_btn").then((t) => {
         t.addEventListener("click", () => {
-          m("exp_sub_option_button_03", "Choose your product", "Button", "Sticky button"), w(0, e("#pdpGetNow .product__title")), window.innerWidth < 376 && w(10, e("variant-radios"));
+          m("exp_sub_option_button_03", "Choose your product", "Button", "Sticky button"), x(0, e("#pdpGetNow .product__title")), window.innerWidth < 376 && x(10, e("variant-radios"));
         });
       });
     }
