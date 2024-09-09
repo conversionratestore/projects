@@ -278,7 +278,7 @@
 `
   );
   let w = setInterval(function() {
-    typeof window.clarity == "function" && (clearInterval(w), window.clarity("set", "exp_hypothesis_3", "variant_2"));
+    typeof window.clarity == "function" && (clearInterval(w), window.clarity("set", "exp_hypothesis_3", "variant_1"));
   }, 1e3);
   C({ name: "Checkout Optimization", dev: "YK" });
   class x {
