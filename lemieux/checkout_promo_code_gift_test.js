@@ -174,15 +174,14 @@ checkout-form coupon-form form [zippyclass=is-open]::before {
             );
           });
         });
-      }), o('[zippyname="basketTab"] giftcards-form') || (p("giftcards-form").then((t) => {
+      }), o('[zippyname="basketTab"] giftcards-form') || p("giftcards-form").then((t) => {
         p('[zippyname="basketTab"]').then((n) => {
           console.log("giftcards>>>>"), this.toggleElementBetweenContainers("giftcards-form", "mention-me-wrapper", '[zippyname="basketTab"]');
         });
-      }), p('[zippyname="basketTab"] coupon-form').then((t) => {
-      })));
+      }));
     }
     toggleElementBetweenContainers(t, n, c) {
-      const r = o(t), i = o(n), s = o(c), m = o('[zippyname="basketTab"] h4');
+      const r = o(t), i = o(n), s = o(c), d = o('[zippyname="basketTab"] h4');
       if (!r || !i || !s) {
         console.log(r, i, s), console.error("Element or containers not found");
         return;
@@ -244,11 +243,11 @@ checkout-form coupon-form form [zippyclass=is-open]::before {
       }
       console.log("toggleElementBetweenContainers", t);
       const B = new IntersectionObserver((a) => {
-        a.forEach((d) => {
-          d.isIntersecting && (console.log(d.target, "entry.target"), d.target === i ? (console.log("container1"), E(i)) : d.target === m && (console.log("container3"), E(s)));
+        a.forEach((m) => {
+          m.isIntersecting && (console.log(m.target, "entry.target"), m.target === i && (console.log("container1"), E(i)), m.target === d && (console.log("container3"), E(s)));
         });
       });
-      B.observe(i), B.observe(m);
+      B.observe(i), B.observe(d);
     }
     observePageChange() {
       this.observerNew = new MutationObserver((n) => {
@@ -282,14 +281,14 @@ checkout-form coupon-form form [zippyclass=is-open]::before {
       this.observer = null, this.countryCode = (n = (t = window == null ? void 0 : window.autoInitData) == null ? void 0 : t.website) == null ? void 0 : n.websiteCode, this.basketButtonHandler = () => {
         const c = () => {
           this.country !== "other" && this.device === "desktop" && !location.href.includes("basket") && !location.href.includes("checkout") && this.waitForElementCustom('minibasket a[href*="/basket"]', (r) => {
-            var m;
+            var d;
             const s = (
               /* HTML */
               `<a class="w-12 p-r-0 p-l-0 button" href="${this.country === "us" ? "/us/checkout" : "/checkout"}"
             ><span class="p1 col-w">Checkout securely</span></a
           >`
             );
-            r.outerHTML = s, (m = o('minibasket a[href*="/checkout"]')) == null || m.addEventListener("click", (h) => {
+            r.outerHTML = s, (d = o('minibasket a[href*="/checkout"]')) == null || d.addEventListener("click", (h) => {
               const g = document.querySelector('minibasket [aria-label="Close"]');
               localStorage.setItem("lastPdpHref", location.href), g && g.click();
             });
@@ -313,13 +312,13 @@ checkout-form coupon-form form [zippyclass=is-open]::before {
           document.querySelectorAll("button").forEach((i) => {
             var s;
             if (i && ((s = i.textContent) != null && s.includes("Continue shopping"))) {
-              const m = localStorage.getItem("lastPdpHref"), h = (
+              const d = localStorage.getItem("lastPdpHref"), h = (
                 /* HTML */
-                ` <a class="w-12 button-1 m-b m-t-2" href="${m}"
+                ` <a class="w-12 button-1 m-b m-t-2" href="${d}"
               ><span class="button__body">Continue shopping</span></a
             >`
               );
-              m && (i.outerHTML = h), clearInterval(c);
+              d && (i.outerHTML = h), clearInterval(c);
             }
           });
         }, 100);
