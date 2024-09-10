@@ -245,7 +245,7 @@ checkout-form coupon-form form [zippyclass=is-open]::before {
       console.log("toggleElementBetweenContainers", t);
       const B = new IntersectionObserver((a) => {
         a.forEach((d) => {
-          d.isIntersecting && (d.target === i ? E(i) : d.target === m && E(s));
+          d.isIntersecting && (console.log(d.target, "entry.target"), d.target === i ? (console.log("container1"), E(i)) : d.target === m && (console.log("container3"), E(s)));
         });
       });
       B.observe(i), B.observe(m);
