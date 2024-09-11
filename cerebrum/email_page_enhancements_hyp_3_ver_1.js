@@ -26,12 +26,12 @@
   }
   (function(e) {
     e = e === void 0 ? {} : e;
-    let t, i, s, a, _ = (e == null ? void 0 : e.delay) || 50;
+    let t, i, s, a, v = (e == null ? void 0 : e.delay) || 50;
     function d() {
       t = null, a = 0;
     }
     return d(), function() {
-      return i = window.scrollY, t != null && (a = i - t), t = i, clearTimeout(s), s = setTimeout(d, _), a;
+      return i = window.scrollY, t != null && (a = i - t), t = i, clearTimeout(s), s = setTimeout(d, v), a;
     };
   })();
   const r = {
@@ -242,6 +242,13 @@ html.crs_dev body main > div > .mx-auto {
   right: 0;
   transform: translateY(0);
   transition: transform 0.3s ease, margin-top 0.3s ease;
+}
+@media (max-width: 321px) {
+  html.crs_dev body main > div > .mx-auto {
+    margin-top: 24px;
+    position: initial;
+    padding: 0 !important;
+  }
 }
 @media (min-width: 768px) {
   html.crs_dev body main > div > .mx-auto {
