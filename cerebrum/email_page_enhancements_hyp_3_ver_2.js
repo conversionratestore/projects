@@ -228,6 +228,13 @@ html.crs_dev body main > div > .mx-auto {
   transform: translateY(0);
   transition: transform 0.3s ease, margin-top 0.3s ease;
 }
+@media (max-width: 321px) {
+  html.crs_dev body main > div > .mx-auto {
+    margin-top: 40px;
+    position: initial;
+    padding: 0 !important;
+  }
+}
 @media (min-width: 768px) {
   html.crs_dev body main > div > .mx-auto {
     margin-top: 24px;
