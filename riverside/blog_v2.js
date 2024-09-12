@@ -1,12 +1,12 @@
 (function() {
   "use strict";
-  const l = (r, e) => {
+  const l = (o, e) => {
     const t = setInterval(() => {
-      document.querySelector(r) && (clearInterval(t), e());
+      document.querySelector(o) && (clearInterval(t), e());
     }, 100);
-  }, c = ({ name: r, dev: e }) => {
+  }, c = ({ name: o, dev: e }) => {
     console.log(
-      `%c EXP: ${r} (DEV: ${e})`,
+      `%c EXP: ${o} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   };
@@ -15,14 +15,14 @@
       this.elements = typeof e == "string" ? document.querySelectorAll(e) : e instanceof Element ? [e] : e;
     }
     on(e, t, i) {
-      return typeof t == "function" && (i = t, t = ""), this.elements.forEach(function(o) {
-        o.addEventListener(e, function(a) {
+      return typeof t == "function" && (i = t, t = ""), this.elements.forEach(function(r) {
+        r.addEventListener(e, function(a) {
           var s;
           if (t) {
             let n = (s = a.target) == null ? void 0 : s.closest(t);
-            o.contains(n) && (i == null || i.call(n, a));
+            r.contains(n) && (i == null || i.call(n, a));
           } else
-            i == null || i.call(o, a);
+            i == null || i.call(r, a);
         });
       }), this;
     }
@@ -47,13 +47,17 @@
       }), this;
     }
     style(e, t) {
-      const i = e.split("-").map((o, a) => a === 0 ? o : o.charAt(0).toUpperCase() + o.slice(1)).join("");
-      return this.elements.forEach(function(o) {
-        o.style[i] = t;
+      const i = e.split("-").map((r, a) => a === 0 ? r : r.charAt(0).toUpperCase() + r.slice(1)).join("");
+      return this.elements.forEach(function(r) {
+        r.style[i] = t;
       }), this;
     }
   }
-  const d = (r) => new u(r), h = {
+  const d = (o) => new u(o), h = (o) => {
+    let e = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", o, "variant_1"));
+    }, 1e3);
+  }, b = {
     "/blog/how-to-transcribe-audio-to-text": {
       header: "Transcribe Audio to Text Seamlessly with Riverside",
       bullets: ["Fast, accurate transcriptions", "Supports multiple speakers", "Includes automatic timestamps"],
@@ -397,7 +401,9 @@
       ],
       header_mobile: "Record and Edit Your Podcast Videos with Riverside"
     }
-  }, b = (r, e = "info") => {
+  };
+  h("Riverside blog v2 41 pages");
+  const p = (o, e = "info") => {
     switch (e) {
       case "info":
         e = "color: #3498db;";
@@ -412,20 +418,20 @@
         e = "color: #2ecc71;";
         break;
     }
-    console.log(`%c>>> ${r}`, `${e} font-size: 16px; font-weight: 600`);
+    console.log(`%c>>> ${o}`, `${e} font-size: 16px; font-weight: 600`);
   };
   c({ name: "Riverside change copy", dev: "YK" });
-  class p {
+  class v {
     constructor(e) {
       this.data = e, this.init();
     }
     init() {
       const e = window.location.pathname, t = this.data[e];
       if (!t) {
-        b("No data found for this page", "warn");
+        p("No data found for this page", "warn");
         return;
       }
-      const i = t.bullets.map((a) => `<li>${a}</li>`).join(""), o = (
+      const i = t.bullets.map((a) => `<li>${a}</li>`).join(""), r = (
         /* html */
         `
       <style>
@@ -454,13 +460,13 @@
     `
       );
       l(".blog__sidebar-sticky-inner", () => {
-        d("body").elements[0].insertAdjacentHTML("afterbegin", o), d(".blog__sidebar-sticky-inner .blog__sidebar-h3").elements[0].innerText = t.header, d(".blog__sidebar-sticky-inner .blog__sidebar-h3").elements[0].insertAdjacentHTML(
+        d("body").elements[0].insertAdjacentHTML("afterbegin", r), d(".blog__sidebar-sticky-inner .blog__sidebar-h3").elements[0].innerText = t.header, d(".blog__sidebar-sticky-inner .blog__sidebar-h3").elements[0].insertAdjacentHTML(
           "afterend",
           `<ul class="crs_bullets">${i}</ul>`
         ), d(".blog__sidebar-sticky-inner .blog__sidebar-text").elements[0].innerText = t.header_mobile;
       });
     }
   }
-  new p(h);
+  new v(b);
 })();
 //# sourceMappingURL=index.js.map
