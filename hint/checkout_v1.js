@@ -15,14 +15,14 @@
       this.elements = typeof n == "string" ? document.querySelectorAll(n) : n instanceof Element ? [n] : n;
     }
     on(n, t, e) {
-      return typeof t == "function" && (e = t, t = ""), this.elements.forEach(function(i) {
-        i.addEventListener(n, function(r) {
+      return typeof t == "function" && (e = t, t = ""), this.elements.forEach(function(s) {
+        s.addEventListener(n, function(r) {
           var p;
           if (t) {
             let c = (p = r.target) == null ? void 0 : p.closest(t);
-            i.contains(c) && (e == null || e.call(c, r));
+            s.contains(c) && (e == null || e.call(c, r));
           } else
-            e == null || e.call(i, r);
+            e == null || e.call(s, r);
         });
       }), this;
     }
@@ -47,13 +47,13 @@
       }), this;
     }
     style(n, t) {
-      const e = n.split("-").map((i, r) => r === 0 ? i : i.charAt(0).toUpperCase() + i.slice(1)).join("");
-      return this.elements.forEach(function(i) {
-        i.style[e] = t;
+      const e = n.split("-").map((s, r) => r === 0 ? s : s.charAt(0).toUpperCase() + s.slice(1)).join("");
+      return this.elements.forEach(function(s) {
+        s.style[e] = t;
       }), this;
     }
   }
-  const s = (a) => new f(a), h = `.variant1 {
+  const i = (a) => new f(a), h = `.variant1 {
   padding: 20px;
   height: 100%;
   overflow: auto;
@@ -283,7 +283,7 @@
   C({ name: "Checkout Optimization", dev: "YK" });
   class x {
     constructor() {
-      this.device = window.innerWidth > 768 ? "desktop" : "mobile", this.data = {}, this.init();
+      this.device = window.innerWidth > 768 ? "desktop" : "mobile", this.data = {}, this.init(), this.checkPages();
     }
     init() {
       l("span.text-primary.font-bold", () => {
@@ -293,20 +293,32 @@
       });
     }
     getData() {
-      const n = s(".items-center+.w-full.flex-col").elements[0].innerHTML;
+      const n = i(".items-center+.w-full.flex-col").elements[0].innerHTML;
       this.data = { ...this.data, text: n };
-      const t = s(".text-primary.font-bold").elements[0].innerHTML;
+      const t = i(".text-primary.font-bold").elements[0].innerHTML;
       this.data = { ...this.data, price: t };
     }
     render() {
-      const n = s(".flex-grow.overflow-auto.pt-4").elements[0], t = s(".sticky.w-full").elements[0];
-      n.style.display = "none", n.insertAdjacentHTML("afterend", g), t.insertAdjacentHTML("afterbegin", m), s(".special_offer .total span").elements[0].innerHTML = this.data.price, s(".special_offer .info").elements[0].innerHTML = this.data.text;
+      if (i(".payment_labels").elements.length === 0) {
+        const n = i(".flex-grow.overflow-auto.pt-4").elements[0], t = i(".sticky.w-full").elements[0];
+        n.style.display = "none", n.insertAdjacentHTML("afterend", g), t.insertAdjacentHTML("afterbegin", m), i(".special_offer .total span").elements[0].innerHTML = this.data.price, i(".special_offer .info").elements[0].innerHTML = this.data.text;
+      }
     }
     setTimer() {
       setInterval(() => {
+        if (window.location.pathname !== "/en/payment/trial")
+          return;
         const n = JSON.parse(localStorage.getItem("timer"));
-        s(".crs_timer .timer_wrapper p span").elements[0].innerHTML = `${n.minutes}:${n.seconds < 10 ? "0" + n.seconds : n.seconds}`, s(".crs_timer .timer_line").elements[0].style.width = `${(n.minutes * 60 + n.seconds) * 100 / 900}%`;
+        i(".crs_timer .timer_wrapper p span").elements[0].innerHTML = `${n.minutes}:${n.seconds < 10 ? "0" + n.seconds : n.seconds}`, i(".crs_timer .timer_line").elements[0].style.width = `${(n.minutes * 60 + n.seconds) * 100 / 900}%`;
       }, 1e3);
+    }
+    checkPages() {
+      new MutationObserver(() => {
+        window.location.pathname === "/en/payment/trial" && i(".payment_labels").elements.length === 0 && this.init();
+      }).observe(document.body, {
+        childList: !0,
+        subtree: !0
+      });
     }
   }
   new x();
