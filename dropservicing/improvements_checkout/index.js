@@ -70,9 +70,9 @@
             if (N)
               throw new Error(`${N.description} (${u.debug_id})`);
             if (u.purchase_units) {
-              const G = ((k = (m = (y = (r = u == null ? void 0 : u.purchase_units) == null ? void 0 : r[0]) == null ? void 0 : y.payments) == null ? void 0 : m.captures) == null ? void 0 : k[0]) || ((M = (L = (v = (P = u == null ? void 0 : u.purchase_units) == null ? void 0 : P[0]) == null ? void 0 : v.payments) == null ? void 0 : L.authorizations) == null ? void 0 : M[0]);
+              const H = ((k = (m = (y = (r = u == null ? void 0 : u.purchase_units) == null ? void 0 : r[0]) == null ? void 0 : y.payments) == null ? void 0 : m.captures) == null ? void 0 : k[0]) || ((M = (L = (v = (P = u == null ? void 0 : u.purchase_units) == null ? void 0 : P[0]) == null ? void 0 : v.payments) == null ? void 0 : L.authorizations) == null ? void 0 : M[0]);
               t(
-                `Transaction ${G.status}: ${G.id}<br><br>See console for all available details`
+                `Transaction ${H.status}: ${H.id}<br><br>See console for all available details`
               ), console.log("Capture result", u, JSON.stringify(u, null, 2));
             } else
               throw new Error(JSON.stringify(u));
@@ -97,7 +97,7 @@
       );
     }
   }
-  const H = (d) => document.querySelectorAll(d), i = (d) => document.querySelector(d);
+  const V = (d) => document.querySelectorAll(d), i = (d) => document.querySelector(d);
   function T(d) {
     return new Promise((e) => {
       if (document.querySelector(d))
@@ -696,9 +696,7 @@
     `
   <div class="crs-payment__header">
     <h3>
-      <input type="radio" name="crs-payment-method" value="credit" id="crs-credit" checked /><label for="crs-credit"
-        >Credit Card</label
-      >
+      Credit Card
     </h3>
     <div class="crs-payment__methods">
       <img
@@ -725,24 +723,7 @@
     </div>
   </div>
 `
-  ), dn = (
-    /* HTML */
-    `
-  <div class="crs-payment__header">
-    <h3>
-      <input type="radio" name="crs-payment-method" value="paypal" id="crs-paypal" /><label for="crs-paypal"
-        >Paypal</label
-      >
-    </h3>
-    <div class="crs-payment__methods"><img
-    src="https://conversionratestore.github.io/projects/dropservicing/improvements_checkout/img/paypal.svg"
-    alt="Paypal"
-    width="38"
-    height="25"
-  /></div>
-  </div>
-`
-  ), un = `.crsTargetSection [data-col='left'] .elHeadlineWrapper,
+  ), dn = `.crsTargetSection [data-col='left'] .elHeadlineWrapper,
 .order2StepHeader,
 .order2stepbutton,
 .order2ButtonSubText,
@@ -1505,6 +1486,7 @@
 
 :is(.crs-custom-options__group, .crs-payment__header) :is(label, input) {
   cursor: pointer;
+  margin: 0;
 }
 @media (max-width: 768px) {
   .crs-step1,
@@ -1526,7 +1508,7 @@
   height: min-content;
   min-height: 100px;
 }`;
-  class mn {
+  class un {
     constructor() {
       this.device = "desktop", this.orderId = null, this.device = window.innerWidth < 768 ? "mobile" : "desktop", this.paypal = new Y(), this.init();
     }
@@ -1539,7 +1521,7 @@
       let c, r;
       if (!o)
         return;
-      e && e.classList.add("crsTargetSection"), H(".fullContainer").forEach((n) => {
+      e && e.classList.add("crsTargetSection"), V(".fullContainer").forEach((n) => {
         var p, _, A, h, w;
         (p = n.textContent) != null && p.includes("Just a few incredible success stories from our members!") && n.classList.add("crs-members"), (_ = n.textContent) != null && _.includes("Verified Reviews") && n.classList.add("crs-reviews"), (A = n.textContent) != null && A.includes("Overall Rating") && n.classList.add("crs-reviews-mob"), (h = n.textContent) != null && h.includes("Frequently Asked Questions") && n.classList.add("crs-faq"), (w = n.textContent) != null && w.includes("Join Drop Servicing Partner Program Today") && n.classList.add("crs-join");
       });
@@ -1589,7 +1571,7 @@
         s.style.display = "none";
         const n = s.querySelector(".elOrderProductOptinItem"), p = s.querySelectorAll(".elOrderProductOptinProducts");
         n && (n.style.display = "none"), t == null || t.insertAdjacentHTML("beforeend", rn);
-        const _ = H(".crs-custom-options input"), A = (h) => {
+        const _ = V(".crs-custom-options input"), A = (h) => {
           var D;
           const w = h ? "$396" : "$996", I = h ? "flex" : "none", g = h ? "none" : "flex", C = h ? "Partner Program (3 monthly payments)" : "Partner Program", B = h ? "exp_imprcheck_cl_3monthly" : "exp_imprcheck_cl_onetime", $ = h ? "3 monthly payments" : "One-time payment", S = i("#crs-email"), b = S == null ? void 0 : S.value;
           b && this.paypal.createPayment(w === "$396" ? "396" : "996", b), T(".crs-order-details__price-amount").then((O) => {
@@ -1610,7 +1592,7 @@
           var I, g;
           (I = h.textContent) != null && I.includes("3 monthly payments") && (h.after(h.previousElementSibling), (g = h.querySelector("input")) == null || g.click());
         }), T(".crs-order-details").then(() => {
-          H(".crs-order-details__full-price").forEach((w) => {
+          V(".crs-order-details__full-price").forEach((w) => {
             w.addEventListener("click", (I) => {
               var C, B;
               w.dataset.action === "monthly" ? (B = i("#crs-onetime")) == null || B.click() : (C = i("#crs-monthly")) == null || C.click();
@@ -1657,8 +1639,8 @@
           const z = S == null ? void 0 : S.value, R = b == null ? void 0 : b.value;
           let F = !0;
           !z || z.trim() === "" ? (S.classList.add("crs-input-error"), F = !1) : S.classList.remove("crs-input-error");
-          const wn = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!R || R.trim() === "" || !wn.test(R))
+          const bn = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!R || R.trim() === "" || !bn.test(R))
             b.classList.add("crs-input-error"), F = !1;
           else {
             const [K] = R.split("@");
@@ -1671,13 +1653,13 @@
         }));
       }
       l == null || l.insertAdjacentHTML("beforeend", cn), t == null || t.insertAdjacentHTML("afterbegin", sn), E(".crs-comments", "exp_imprcheck_ev_review", "View on screen", "Positive review"), E(".crs-order-summary", "exp_imprcheck_ev_order", "View on screen", "Order summary");
-      const G = i(".crs-back-btn"), q = i("#paypal-button-container");
-      G && G.addEventListener("click", () => {
+      const H = i(".crs-back-btn"), q = i("#paypal-button-container");
+      H && H.addEventListener("click", () => {
         f("exp_imprcheck_cl_back", "Back", "click", "Provide your billing details"), x && (x.style.display = "block"), u && (u.style.display = "none", u.classList.remove("crs-step2-active"), m && (m.style.display = ""), k && (k.style.display = ""), k && (k.style.display = ""), v && (v.style.display = ""), L && (L.style.display = "")), r && (r.style.display = "none"), c && (c.style.display = "block"), q && (q.style.display = "none");
       });
     }
     initStyles() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${un}</style>`);
+      document.head.insertAdjacentHTML("beforeend", `<style>${dn}</style>`);
     }
     inputsValidation() {
       const e = i(".submitBtn button"), o = i(".nextStepBtn button"), a = i(".crs-back-btn"), t = i(".crs-form"), l = i(".crs-step2"), s = t == null ? void 0 : t.querySelectorAll("input, select");
@@ -1721,7 +1703,7 @@
     }
     switchPaymentMethod() {
       T('input[name="crs-payment-method"]').then(() => {
-        const e = H('input[name="crs-payment-method"]'), o = i(".elCreditCardForm"), a = i(".submitBtn"), t = i("#paypal-button-container");
+        const e = V('input[name="crs-payment-method"]'), o = i(".elCreditCardForm"), a = i(".submitBtn"), t = i("#paypal-button-container");
         !e || !o || !a || !t || e.forEach((l) => {
           l.addEventListener("change", () => {
             l.value === "credit" ? (t.style.display = "none", o.style.display = "", a.style.display = "") : (o.style.display = "none", a.style.display = "none", t.style.display = "");
@@ -1741,11 +1723,10 @@
         const t = a;
         t && (t.textContent = "Card number");
       }), e.insertAdjacentHTML("beforebegin", ln), T("#paypal-sdk").then(() => {
-        e.insertAdjacentHTML("afterend", dn);
       }));
     }
   }
-  const hn = `.crs-header {
+  const mn = `.crs-header {
   display: flex;
   align-items: center;
   padding-top: 0 !important;
@@ -1875,7 +1856,7 @@ div:has(> .crs-header__headline) {
 
 }
 `;
-  class vn {
+  class hn {
     constructor() {
       this.init();
     }
@@ -1883,7 +1864,7 @@ div:has(> .crs-header__headline) {
       this.initStyles(), this.changes();
     }
     changes() {
-      H(".fullContainer ").forEach((o) => {
+      V(".fullContainer ").forEach((o) => {
         var a, t;
         if ((a = o.textContent) != null && a.includes("DROP SERVICING PARTNER PROGRAM") && ((t = o.textContent) != null && t.includes("Questions?"))) {
           o.querySelector(".elHeadlineWrapper");
@@ -1896,10 +1877,10 @@ div:has(> .crs-header__headline) {
     }
     initStyles() {
       const e = document.createElement("style");
-      e.textContent = hn, document.head.appendChild(e);
+      e.textContent = mn, document.head.appendChild(e);
     }
   }
-  class gn {
+  class vn {
     constructor() {
       this.init();
     }
@@ -1946,7 +1927,7 @@ div:has(> .crs-header__headline) {
       });
     }
   }
-  const fn = `
+  const gn = `
 @media (min-width: 769px) {
   [data-hide-on="desktop"] {
     display: none;
@@ -2123,12 +2104,12 @@ div:has(> .crs-header__headline) {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-`, yn = "https://www.dropservicing.com/refund-guarantee?_gl=1*1idgxw5*_gcl_au*MTQ4MDg5MTY4OS4xNzIzNTQxOTY2*_ga*NTg4MzI1MjUuMTcyMzU0MTk2Nw..*_ga_KQ2Z1WNWC8*MTcyNDE2MTg2OS45LjAuMTcyNDE2MTg2OS42MC4wLjA.";
-  function V(d) {
+`, fn = "https://www.dropservicing.com/refund-guarantee?_gl=1*1idgxw5*_gcl_au*MTQ4MDg5MTY4OS4xNzIzNTQxOTY2*_ga*NTg4MzI1MjUuMTcyMzU0MTk2Nw..*_ga_KQ2Z1WNWC8*MTcyNDE2MTg2OS45LjAuMTcyNDE2MTg2OS42MC4wLjA.";
+  function G(d) {
     const e = { month: "short", day: "numeric", year: "numeric" };
     return d.toLocaleDateString("en-US", e);
   }
-  class _n {
+  class yn {
     constructor() {
       this.init();
     }
@@ -2149,14 +2130,14 @@ div:has(> .crs-header__headline) {
         <div class="crs-schedule__blocks">
           <div class="crs-schedule__block">
             <div class="crs-schedule__wrap">
-              <div class="crs-schedule__date">${V(this.today)}</div>
+              <div class="crs-schedule__date">${G(this.today)}</div>
               <div class="crs-schedule__today">today</div>
               <div class="crs-schedule__text">Join Drop Servicing Partner Program</div>
             </div>
           </div>
           <div class="crs-schedule__block">
             <div class="crs-schedule__wrap">
-              <div class="crs-schedule__date">${V(this.today)}</div>
+              <div class="crs-schedule__date">${G(this.today)}</div>
               <div class="crs-schedule__text">
                 Get full access to all resources, community and support
               </div>
@@ -2164,7 +2145,7 @@ div:has(> .crs-header__headline) {
           </div>
           <div class="crs-schedule__block">
             <div class="crs-schedule__wrap">
-              <div class="crs-schedule__date">FROM ${V(this.date2DaysLater)}</div>
+              <div class="crs-schedule__date">FROM ${G(this.date2DaysLater)}</div>
               <div class="crs-schedule__text">
                 Receive personalized coaching in weekly live video calls
               </div>
@@ -2172,15 +2153,15 @@ div:has(> .crs-header__headline) {
           </div>
           <div class="crs-schedule__block">
             <div class="crs-schedule__wrap">
-              <div class="crs-schedule__date">${V(this.date10DaysLater)}</div>
+              <div class="crs-schedule__date">${G(this.date10DaysLater)}</div>
               <div class="crs-schedule__text">Launch your first business with our Done For You Partnership</div>
             </div>
           </div>
           <div class="crs-schedule__block">
             <div class="crs-schedule__wrap">
               <div class="crs-schedule__check">${X}</div>
-              <div class="crs-schedule__date"><span class="crs-schedule__until"></span>&nbsp;${V(this.date31DaysLater)}</div>
-              <div class="crs-schedule__text">Our <a href="${yn}" target="_blank">money-back guarantee</a> covers you if not fully satisfied</div>
+              <div class="crs-schedule__date"><span class="crs-schedule__until"></span>&nbsp;${G(this.date31DaysLater)}</div>
+              <div class="crs-schedule__text">Our <a href="${fn}" target="_blank">money-back guarantee</a> covers you if not fully satisfied</div>
             </div>
           </div>
         </div>
@@ -2193,18 +2174,18 @@ div:has(> .crs-header__headline) {
       this.today = /* @__PURE__ */ new Date(), this.date2DaysLater = new Date(this.today), this.date2DaysLater.setDate(this.today.getDate() + 2), this.date10DaysLater = new Date(this.today), this.date10DaysLater.setDate(this.today.getDate() + 10), this.date31DaysLater = new Date(this.today), this.date31DaysLater.setDate(this.today.getDate() + 31);
     }
     initStyles() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${fn}</style>`);
+      document.head.insertAdjacentHTML("beforeend", `<style>${gn}</style>`);
     }
   }
   W({ name: "Improvements on Checkout Page", dev: "OS" }), J("exp_imprcheck_loaded");
-  const xn = "/partner-offer";
-  class bn {
+  const _n = "/partner-offer";
+  class xn {
     constructor() {
       this.init();
     }
     init() {
-      window.location.pathname === xn && (new mn(), new _n(), new vn(), new gn());
+      window.location.pathname === _n && (new un(), new yn(), new hn(), new vn());
     }
   }
-  new bn();
+  new xn();
 })();
