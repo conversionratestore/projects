@@ -731,13 +731,13 @@
       img: `${o}/img/new-home-page/slider_logo_2.png`,
       imgBgr: `${o}/img/slide_bg_2.png`
     }
-  ], Q = () => {
+  ], x = () => {
     let e = [];
     return $("#featured-reviews2 .carousel-item:not(.slick-cloned)").each((s, n) => {
       let i = {};
       i.name = $(n).find(".name").text(), i.img = $(n).find(".review-header>img").attr("data-src") || "no_img", i.text = $(n).find(".review-text p").text(), e.push(i);
     }), console.log(e), e;
-  }, v = (
+  }, Q = (
     /* HTML */
     `
   <div class="guarantee_block">
@@ -745,7 +745,7 @@
     <span>365-day Money Back Guarantee </span>
   </div>
 `
-  ), x = (
+  ), v = (
     /* HTML */
     `
   <div class="different_info_hero_block">
@@ -1583,6 +1583,32 @@
   .shop_by_category_block ul li a {
     min-height: 318px;
     padding: 16px 16px 40px;
+  }
+}
+@media (max-width: 431px) {
+  .shop_by_category_block ul li a {
+    min-height: 345px;
+  }
+}
+@media (max-width: 420px) {
+  .shop_by_category_block ul li a {
+    min-height: 333px;
+  }
+}
+@media (max-width: 393px) {
+  .shop_by_category_block ul li a {
+    min-height: 314px;
+  }
+}
+@media (max-width: 380px) {
+  .shop_by_category_block ul li a {
+    min-height: 300px;
+  }
+}
+@media (max-width: 364px) {
+  .shop_by_category_block ul li a {
+    min-height: 284px;
+    padding: 16px 16px 33px;
   }
 }
 .shop_by_category_block ul li a > div {
@@ -3097,7 +3123,7 @@ body {
       });
     }
     async addBlocks() {
-      $(".new_home_page").append(y()).append(I).append(v).append(x).append(E).append(D).append(M).append(P).append(F).append(L).append(H).append(K).append(T), $(".big-stickers .parent_slider").slick({
+      $(".new_home_page").append(y()).append(I).append(Q).append(v).append(E).append(D).append(M).append(P).append(F).append(L).append(H).append(K).append(T), $(".big-stickers .parent_slider").slick({
         slidesToShow: this.device === "mobile" ? 1 : 3,
         slidesToScroll: 1,
         arrows: !1,
@@ -3110,7 +3136,7 @@ body {
       }), setTimeout(() => {
         g(".new_main_block .big-stickers").style.opacity = "1";
       }, 900);
-      const t = Q().map((n, i) => (
+      const t = x().map((n, i) => (
         /* HTML */
         `
           <div class="slide">
