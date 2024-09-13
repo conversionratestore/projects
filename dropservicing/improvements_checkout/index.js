@@ -1936,7 +1936,7 @@ div:has(> .crs-header__headline) {
   }
   const gn = `
 @media (min-width: 769px) {
-  [data-hide-on="desktop"] {
+  .crs-header + div + [data-hide-on="desktop"] {
     display: none;
   }
 }
