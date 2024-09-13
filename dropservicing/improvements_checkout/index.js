@@ -2021,7 +2021,7 @@ div:has(> .crs-header__headline) {
 }
 @media (max-width: 768px) {
   .crs-schedule__blocks {
-    margin-top: 24px;
+    margin-top: 16px;
     padding-right: 16px;
     
   }
