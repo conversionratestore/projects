@@ -2775,10 +2775,9 @@ footer {
     font-size: 28px;
     line-height: 32px;
     margin: 0 0 16px;
-    text-align: left;
+    text-align: center;
     text-shadow: none;
     order: 2;
-    max-width: 327px;
     padding-left: 6px;
   }
   .new_main_block .total_reviews {
@@ -2828,6 +2827,7 @@ footer {
     line-height: 30px;
     margin: 0 0 24px;
     padding: 0 24px;
+    text-align: center;
   }
   .new_trustpilot_reviews .slick-slide {
     scale: 0.91;
@@ -2891,6 +2891,7 @@ footer {
     line-height: 30px;
     margin-bottom: 28px;
     padding: 0 24px;
+    text-align: center;
   }
   .new_science_block .content_wrapper {
     flex-direction: column;
