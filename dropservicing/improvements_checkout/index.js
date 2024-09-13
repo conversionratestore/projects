@@ -45,15 +45,15 @@
             if (c.id)
               return c.id;
             {
-              const r = (l = c == null ? void 0 : c.details) == null ? void 0 : l[0], y = r ? `${r.issue} ${r.description} (${c.debug_id})` : JSON.stringify(c);
-              throw new Error(y);
+              const r = (l = c == null ? void 0 : c.details) == null ? void 0 : l[0], _ = r ? `${r.issue} ${r.description} (${c.debug_id})` : JSON.stringify(c);
+              throw new Error(_);
             }
           } catch (s) {
             console.error(s), t(`Could not initiate PayPal Checkout...<br><br>${s}`);
           }
         },
         async onApprove(l, s) {
-          var c, r, y, m, k, P, v, L, M;
+          var c, r, _, m, k, P, v, L, M;
           try {
             const u = await (await fetch("https://server.dropservicing.com/api/paypal/confirm-payment", {
               method: "POST",
@@ -70,7 +70,7 @@
             if (N)
               throw new Error(`${N.description} (${u.debug_id})`);
             if (u.purchase_units) {
-              const H = ((k = (m = (y = (r = u == null ? void 0 : u.purchase_units) == null ? void 0 : r[0]) == null ? void 0 : y.payments) == null ? void 0 : m.captures) == null ? void 0 : k[0]) || ((M = (L = (v = (P = u == null ? void 0 : u.purchase_units) == null ? void 0 : P[0]) == null ? void 0 : v.payments) == null ? void 0 : L.authorizations) == null ? void 0 : M[0]);
+              const H = ((k = (m = (_ = (r = u == null ? void 0 : u.purchase_units) == null ? void 0 : r[0]) == null ? void 0 : _.payments) == null ? void 0 : m.captures) == null ? void 0 : k[0]) || ((M = (L = (v = (P = u == null ? void 0 : u.purchase_units) == null ? void 0 : P[0]) == null ? void 0 : v.payments) == null ? void 0 : L.authorizations) == null ? void 0 : M[0]);
               t(
                 `Transaction ${H.status}: ${H.id}<br><br>See console for all available details`
               ), console.log("Capture result", u, JSON.stringify(u, null, 2));
@@ -746,7 +746,7 @@
   width: 100% !important;
   margin: 0 !important;
   background: none;
-  margin-top: 40px !important;
+  margin-top: 20px !important;
 }
 
 @media (max-width: 768px) {
@@ -1522,8 +1522,8 @@
       if (!o)
         return;
       e && e.classList.add("crsTargetSection"), V(".fullContainer").forEach((n) => {
-        var p, _, A, h, w;
-        (p = n.textContent) != null && p.includes("Just a few incredible success stories from our members!") && n.classList.add("crs-members"), (_ = n.textContent) != null && _.includes("Verified Reviews") && n.classList.add("crs-reviews"), (A = n.textContent) != null && A.includes("Overall Rating") && n.classList.add("crs-reviews-mob"), (h = n.textContent) != null && h.includes("Frequently Asked Questions") && n.classList.add("crs-faq"), (w = n.textContent) != null && w.includes("Join Drop Servicing Partner Program Today") && n.classList.add("crs-join");
+        var p, y, A, h, w;
+        (p = n.textContent) != null && p.includes("Just a few incredible success stories from our members!") && n.classList.add("crs-members"), (y = n.textContent) != null && y.includes("Verified Reviews") && n.classList.add("crs-reviews"), (A = n.textContent) != null && A.includes("Overall Rating") && n.classList.add("crs-reviews-mob"), (h = n.textContent) != null && h.includes("Frequently Asked Questions") && n.classList.add("crs-faq"), (w = n.textContent) != null && w.includes("Join Drop Servicing Partner Program Today") && n.classList.add("crs-join");
       });
       const m = i(".crs-members"), k = i(".crs-reviews"), P = i(".crs-reviews-mob"), v = i(".crs-faq"), L = i(".crs-join");
       o.insertAdjacentHTML("beforebegin", pn), E(".crs-step1", "exp_imprcheck_ev_provide", "View on screen", "Provide your personal information"), E(".crs-step2", "exp_imprcheck_ev_billing", "View on screen", "Provide your billing details");
@@ -1565,13 +1565,13 @@
           n.id === "crs-name" && f("exp_imprcheck_cl_name", "Full Name", "input", "Provide your personal information"), n.id === "crs-email" && f("exp_imprcheck_cl_email", "Email", "input", "Provide your personal information"), n.id === "crs-address" && f("exp_imprcheck_cl_address", "Full Address", "input", "Provide your billing details"), n.id === "crs-city" && f("exp_imprcheck_cl_city", "City Name", "input", "Provide your billing details"), n.id === "crs-zip" && f("exp_imprcheck_cl_zip", "Zip Code", "input", "Provide your billing details"), n.id === "crs-state" && f("exp_imprcheck_cl_state", "State / Province", "input", "Provide your billing details"), n.id === "crs-country" && f("exp_imprcheck_cl_country", "Country", "input", "Provide your billing details");
         });
       }), T(".elCreditCardForm").then((n) => {
-        const p = n, _ = i("#order-declined-message");
-        p && _ && (u == null || u.append(_), u == null || u.append(p), this.paymentChanges());
+        const p = n, y = i("#order-declined-message");
+        p && y && (u == null || u.append(y), u == null || u.append(p), this.paymentChanges());
       }), s) {
         s.style.display = "none";
         const n = s.querySelector(".elOrderProductOptinItem"), p = s.querySelectorAll(".elOrderProductOptinProducts");
         n && (n.style.display = "none"), t == null || t.insertAdjacentHTML("beforeend", rn);
-        const _ = V(".crs-custom-options input"), A = (h) => {
+        const y = V(".crs-custom-options input"), A = (h) => {
           var D;
           const w = h ? "$396" : "$996", I = h ? "flex" : "none", g = h ? "none" : "flex", C = h ? "Partner Program (3 monthly payments)" : "Partner Program", B = h ? "exp_imprcheck_cl_3monthly" : "exp_imprcheck_cl_onetime", $ = h ? "3 monthly payments" : "One-time payment", S = i("#crs-email"), b = S == null ? void 0 : S.value;
           b && this.paypal.createPayment(w === "$396" ? "396" : "996", b), T(".crs-order-details__price-amount").then((O) => {
@@ -1582,7 +1582,7 @@
             O && z && (O.style.display = I, z.style.display = g);
           }), (D = i(`input[data-product-name="${C}"]`)) == null || D.click(), f(B, $, "input", "Choose payment plan");
         };
-        _.forEach((h) => {
+        y.forEach((h) => {
           h.addEventListener("input", (w) => {
             var g;
             const I = (g = w.target) == null ? void 0 : g.value;
@@ -1605,8 +1605,8 @@
         const n = i(".crs-sticky-cta-container"), p = i(".crs-sticky-cta-container .crs-order-button");
         if (p == null || p.insertAdjacentHTML("beforeend", tn), p == null || p.insertAdjacentHTML("beforeend", on), !n)
           return;
-        const _ = document.createElement("div");
-        _.style.position = "absolute", _.style.top = "0", _.style.width = "100%", _.style.height = "1px", (U = n.parentNode) == null || U.insertBefore(_, n);
+        const y = document.createElement("div");
+        y.style.position = "absolute", y.style.top = "0", y.style.width = "100%", y.style.height = "1px", (U = n.parentNode) == null || U.insertBefore(y, n);
         let A = !1, h = 0;
         n.getBoundingClientRect().top;
         const w = () => {
@@ -1615,7 +1615,7 @@
         }, I = new IntersectionObserver(
           (g) => {
             g.forEach((C) => {
-              const B = n.getBoundingClientRect(), $ = _.getBoundingClientRect();
+              const B = n.getBoundingClientRect(), $ = y.getBoundingClientRect();
               if (!C.isIntersecting && C.intersectionRect.top <= 0 && !A && $.top > 0) {
                 const b = t.getBoundingClientRect().left;
                 n.classList.add("crs-sticky-cta-container--fixed"), n.style.left = `${b}px`, h = B.width, n.style.width = `${h}px`, n.style.transform = "translateX(0)", A = !0;
@@ -1629,7 +1629,7 @@
           }
         );
         setTimeout(() => {
-          I.observe(_);
+          I.observe(y);
         }, 1e3), window.addEventListener("resize", w), c = i(".nextStepBtn"), r = i(".submitBtn"), c == null || c.addEventListener("click", (g) => {
           const C = g.target, B = i("#crs-paypal"), $ = i("#paypal-button-container"), S = i("#crs-name"), b = i("#crs-email"), D = i("#crs-onetime");
           C && C.closest(".crs-sticky-cta-container--fixed") ? f("exp_imprcheck_cl_sum_check_st", "Secure Checkout (sticky)", "click", "Order summary (step 1)") : f("exp_imprcheck_cl_sum_checkout", "Secure Checkout", "click", "Order summary (step 1)");
@@ -1666,8 +1666,8 @@
       if (!s || !e)
         return;
       e.addEventListener("mousedown", (r) => {
-        const y = r.target, m = i("#order-declined-message");
-        y && y.closest(".crs-sticky-cta-container--fixed") ? f("exp_imprcheck_cl_sum_submit_st", "Submit Purchase (sticky)", "click", "Order summary (step 2)") : f("exp_imprcheck_cl_sum_submit", "Submit Purchase", "click", "Order summary (step 2)");
+        const _ = r.target, m = i("#order-declined-message");
+        _ && _.closest(".crs-sticky-cta-container--fixed") ? f("exp_imprcheck_cl_sum_submit_st", "Submit Purchase (sticky)", "click", "Order summary (step 2)") : f("exp_imprcheck_cl_sum_submit", "Submit Purchase", "click", "Order summary (step 2)");
         const k = () => {
           if (m && m.style.display !== "none") {
             const v = m.getBoundingClientRect();
@@ -1692,9 +1692,9 @@
         });
       });
       const c = new MutationObserver((r) => {
-        r.forEach((y) => {
-          if (y.type === "attributes" && y.attributeName === "disabled") {
-            const m = y.target;
+        r.forEach((_) => {
+          if (_.type === "attributes" && _.attributeName === "disabled") {
+            const m = _.target;
             m.disabled && (m.disabled = !1);
           }
         });
@@ -1731,7 +1731,7 @@
   align-items: center;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
-  padding-inline: 30px;
+  /* padding-inline: 30px; */
   height: 58px;
 }
 
@@ -1745,6 +1745,8 @@
 
 .crs-header .containerInner {
   width: 100%;
+  max-width: 1120px;
+  padding-inline: 20px;
 }
 .crs-header .col-inner {
   display: flex;
@@ -1818,7 +1820,7 @@ div:has(> .crs-header__headline) {
 
 @media (max-width: 768px) {
   .crs-header {
-    height: 62px;
+    height: 50px;
     padding-inline: 0;
   }
 
@@ -1833,11 +1835,16 @@ div:has(> .crs-header__headline) {
 
   .crs-header__headline {
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 20px;
     margin-bottom: 2px;
   }
 
+  @media (max-width: 768px) {
+    .crs-header__headline {
+      margin-bottom: 0;
+    }
+  }
   .crs-header .elHeadlineWrapper:last-child {
     display: none;
   }
@@ -1905,9 +1912,9 @@ div:has(> .crs-header__headline) {
           "Just a few incredible success stories from our members"
         );
       }), document.querySelectorAll(".fullContainer").forEach((a) => {
-        var t, l, s, c, r, y;
+        var t, l, s, c, r, _;
         if (((t = a.textContent) != null && t.includes("Overall Rating") || (l = a.textContent) != null && l.includes("Verified Reviews")) && E(a, "exp_imprcheck_ev_rating", "View on screen", "Overall Rating"), (s = a.textContent) != null && s.includes("Frequently Asked Questions") && E(a, "exp_imprcheck_ev_faq", "View on screen", "Frequently Asked Questions"), (c = a.textContent) != null && c.includes("Join Drop Servicing Partner Program Today")) {
-          if ((y = (r = a.querySelector("a")) == null ? void 0 : r.textContent) != null && y.includes("Join Drop Servicing Partner Program Today"))
+          if ((_ = (r = a.querySelector("a")) == null ? void 0 : r.textContent) != null && _.includes("Join Drop Servicing Partner Program Today"))
             return;
           const m = a.querySelector("a.elButtonRounded");
           m && (m == null || m.addEventListener("mousedown", () => {
@@ -1935,13 +1942,13 @@ div:has(> .crs-header__headline) {
 }
 
 .crs-schedule {
-  margin-top: 15px;
+  margin-top: 20px;
   color: #000;
 }
 
 @media screen and (max-width: 768px) {
   .crs-schedule {
-    margin-top: 24px;
+    margin-top: 16px;
     padding-inline: 16px;
     margin-right: -16px;
 
@@ -1955,7 +1962,7 @@ div:has(> .crs-header__headline) {
   inset: 0;
   display: block;
   background: #F2EBFC;
-  height: 480px;
+  height: 425px;
   z-index: -1;
 }
 
@@ -1984,7 +1991,7 @@ div:has(> .crs-header__headline) {
 }
 
 .crs-schedule__blocks {
-  margin-top: 32px;
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
   overflow-x: auto;
@@ -2009,7 +2016,7 @@ div:has(> .crs-header__headline) {
 }
 @media (max-width: 1120px) {
   .crs-schedule__blocks {
-    padding-bottom: 24px;
+    padding-bottom: 16px;
   }
 }
 @media (max-width: 768px) {
@@ -2109,7 +2116,7 @@ div:has(> .crs-header__headline) {
     const e = { month: "short", day: "numeric", year: "numeric" };
     return d.toLocaleDateString("en-US", e);
   }
-  class yn {
+  class _n {
     constructor() {
       this.init();
     }
@@ -2178,13 +2185,13 @@ div:has(> .crs-header__headline) {
     }
   }
   W({ name: "Improvements on Checkout Page", dev: "OS" }), J("exp_imprcheck_loaded");
-  const _n = "/partner-offer";
+  const yn = "/partner-offer";
   class xn {
     constructor() {
       this.init();
     }
     init() {
-      window.location.pathname === _n && (new un(), new yn(), new hn(), new vn());
+      window.location.pathname === yn && (new un(), new _n(), new hn(), new vn());
     }
   }
   new xn();
