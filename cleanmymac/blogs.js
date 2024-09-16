@@ -141,10 +141,10 @@
     }
     console.log(`%c>>> ${n}`, `${a} font-size: 16px; font-weight: 600`);
   }, b = "https://conversionratestore.github.io/projects/cleanmymac", f = (n, e, a) => {
-    const { header: t, bullets: r, img: o } = n, { background: i, btn: s, bulletColor: M } = e, x = r.map((k) => (
+    const { header: t, bullets: r, img: o } = n, { background: i, btn: s, bulletColor: M } = e, v = r.map((x) => (
       /* html */
       `
-      <li><span style="background: ${M}"></span>${k}</li>
+      <li><span style="background: ${M}"></span>${x}</li>
     `
     )).join("");
     return (
@@ -154,7 +154,7 @@
       <img src="${b}/img/${o}.png" alt="${o}" />
       <h3>${t}</h3>
       <ul>
-        ${x}
+        ${v}
       </ul>
       <a style="background: ${s}" href="${a}">Try CleanMyMac X</a>
     </div>
@@ -317,51 +317,61 @@
     cpu: {
       background: "linear-gradient(180deg, #8C699F 0%, #373C6C 100%)",
       btn: "linear-gradient(180deg, #FE7AAD 0%, #EC5998 100%)",
+      btnHover: "#EC5998",
       bulletColor: "linear-gradient(180deg, #FE7AAD 0%, #EC5998 100%)"
     },
     desktop: {
       background: "linear-gradient(180deg, #8C699F 0%, #373C6C 100%)",
       btn: "linear-gradient(180deg, #FE7AAD 0%, #EC5998 100%)",
+      btnHover: "#EC5998",
       bulletColor: "#F4927C"
     },
     malware: {
       background: "linear-gradient(180deg, rgba(203, 104, 102, 0.60) 0%, rgba(111, 88, 113, 0.60) 72.19%), linear-gradient(180deg, #8C699F 0%, #373C6C 100%)",
       btn: "linear-gradient(180deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.00) 100%), #F1795E",
+      btnHover: "#F1795E",
       bulletColor: "#F4927C"
     },
     mouse: {
       background: "linear-gradient(180deg, #CC6EA8 -8.24%, #605784 78.55%)",
       btn: "linear-gradient(180deg, #FE7AAD 0%, #EC5998 100%)",
+      btnHover: "#EC5998",
       bulletColor: "linear-gradient(180deg, #FE7AAD 0%, #EC5998 100%)"
     },
     programs: {
       background: "linear-gradient(180deg, rgba(95, 143, 181, 0.60) 0%, rgba(72, 101, 140, 0.60) 100%), linear-gradient(180deg, #8C699F 0%, #373C6C 100%)",
       btn: "linear-gradient(180deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.00) 100%), #29A0FC",
+      btnHover: "#29A0FC",
       bulletColor: "#4FB1FD"
     },
     mail: {
       background: "linear-gradient(180deg, rgba(203, 104, 102, 0.60) 0%, rgba(111, 88, 113, 0.60) 72.19%), linear-gradient(180deg, #8C699F 0%, #373C6C 100%)",
       btn: "linear-gradient(180deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.00) 100%), #F1795E",
+      btnHover: "#F1795E",
       bulletColor: "#F4927C"
     },
     power: {
       background: "linear-gradient(180deg, rgba(61, 171, 153, 0.50) 0%, rgba(59, 103, 128, 0.50) 100%), linear-gradient(180deg, #8C699F 0%, #373C6C 100%)",
       btn: "linear-gradient(180deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.00) 100%), #04A19A",
+      btnHover: "#04A19A",
       bulletColor: "#06B1AA"
     },
     ssd: {
       background: "linear-gradient(180deg, #8C699F 0%, #373C6C 100%)",
       btn: "linear-gradient(180deg, #FE7AAD 0%, #EC5998 100%)",
+      btnHover: "#EC5998",
       bulletColor: "linear-gradient(180deg, #FE7AAD 0%, #EC5998 100%)"
     },
     hard: {
       background: "linear-gradient(180deg, rgba(95, 143, 181, 0.60) 0%, rgba(72, 101, 140, 0.60) 100%), linear-gradient(180deg, #8C699F 0%, #373C6C 100%)",
       btn: "linear-gradient(180deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.00) 100%), #29A0FC",
+      btnHover: "#29A0FC",
       bulletColor: "#4FB1FD"
     },
     settings: {
       background: "linear-gradient(180deg, #8C699F 0%, #373C6C 100%)",
       btn: "linear-gradient(180deg, #FE7AAD 0%, #EC5998 100%)",
+      btnHover: "#EC5998",
       bulletColor: "#F4927C"
     }
   };
@@ -385,7 +395,17 @@
         c("Trial link not found!", "error");
         return;
       }
-      l("body").elements[0].insertAdjacentHTML("afterbegin", `<style>${g}</style>`), l("aside.floating-banner").elements[0].innerHTML = f(this.data, this.style, e);
+      l("body").elements[0].insertAdjacentHTML(
+        "afterbegin",
+        /* html */
+        `<style>
+      ${g}
+
+      .crs_banner a:hover {
+        background: ${this.style.btnHover} !important;
+      }
+      </style>`
+      ), l("aside.floating-banner").elements[0].innerHTML = f(this.data, this.style, e);
     }
   }
   new C();
