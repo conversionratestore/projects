@@ -2,7 +2,8 @@
   "use strict";
   const l = (o, e) => {
     const t = setInterval(() => {
-      document.querySelector(o) && (clearInterval(t), e());
+      const i = document.querySelector(o);
+      i && (clearInterval(t), e(i));
     }, 100);
   }, c = ({ name: o, dev: e }) => {
     console.log(
@@ -122,16 +123,16 @@
       ],
       header_mobile: "Record and Edit Podcast Videos with Riverside"
     },
-    "/blog/how-to-record-a-google-meet": {
-      header: "Record Your Meetings with Riverside – Your Dedicated Meeting Recording Software",
-      bullets: [
-        "Capture high-quality recordings up to 4K video resolution and 48kHz audio",
-        "Perfect your video with our state-of-the-art text-based, multi-track editor",
-        "Transcribe, clip, and edit your video in seconds",
-        "Easily create short, shareable videos for social media"
-      ],
-      header_mobile: "Record Your Meetings Seamlessly with Riverside"
-    },
+    // '/blog/how-to-record-a-google-meet': {
+    //   header: 'Record Your Meetings with Riverside – Your Dedicated Meeting Recording Software',
+    //   bullets: [
+    //     'Capture high-quality recordings up to 4K video resolution and 48kHz audio',
+    //     'Perfect your video with our state-of-the-art text-based, multi-track editor',
+    //     'Transcribe, clip, and edit your video in seconds',
+    //     'Easily create short, shareable videos for social media'
+    //   ],
+    //   header_mobile: 'Record Your Meetings Seamlessly with Riverside'
+    // },
     "/blog/best-background-noise-removal-apps": {
       header: "Try Riverside's Studio-Quality Recording and Editing Tools",
       bullets: [
@@ -426,7 +427,7 @@
       this.data = e, this.init();
     }
     init() {
-      const e = window.location.pathname, t = this.data[e];
+      const e = window.location.pathname.replace(/\/$/, ""), t = this.data[e];
       if (!t) {
         p("No data found for this page", "warn");
         return;
