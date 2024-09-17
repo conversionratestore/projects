@@ -1144,8 +1144,7 @@
           Parents will appreciate the gentle effectiveness of the <a
             href="/products/sleepypatch-sleep-promoting-stickers"
             >sleepy patch for kids</a
-          >, ensuring a peaceful night for the little ones. For adults, the <a
-            href="/products/sleepypatch-sleep-promoting-stickers"
+          >, ensuring a peaceful night for the little ones. For adults, the <a href="/products/sleepypatch-adult"
             >sleep patch for adults</a
           > offers a similar benefit, promoting restful sleep. The <a href="/products/pack-magic-patch-bundles"
             >itch patch</a
