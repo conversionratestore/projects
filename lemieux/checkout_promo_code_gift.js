@@ -172,17 +172,19 @@ checkout-form coupon-form form [zippyclass=is-open]::before {
       }), n(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${S}</style>`), this.initAllFunc();
     }
     initAllFunc() {
-      this.checkPage() === "checkout" && (n('[zippyname="basketTab"] #mmWrapper > div') || a("#mmWrapper > div").then((t) => {
-        a('[zippyname="basketTab"]').then((e) => {
-          a("mention-me-wrapper").then((r) => {
-            console.log("mmWrapper>>>>"), this.toggleElementBetweenContainers(
-              "#mmWrapper",
-              "mention-me-wrapper",
-              '[zippyname="basketTab"] > div.zippy-hide-up'
-            );
+      this.checkPage() === "checkout" && (setTimeout(() => {
+        n('[zippyname="basketTab"] #mmWrapper > div') || a("#mmWrapper > div").then((t) => {
+          a('[zippyname="basketTab"]').then((e) => {
+            a("mention-me-wrapper").then((r) => {
+              console.log("mmWrapper>>>>"), this.toggleElementBetweenContainers(
+                "#mmWrapper",
+                "mention-me-wrapper",
+                '[zippyname="basketTab"] > div.zippy-hide-up'
+              );
+            });
           });
         });
-      }), n('[zippyname="basketTab"] coupon-form') || a("coupon-form").then((t) => {
+      }, 1e3), n('[zippyname="basketTab"] coupon-form') || a("coupon-form").then((t) => {
         a('[zippyname="basketTab"]').then((e) => {
           a("mention-me-wrapper").then((r) => {
             console.log("coupon>>>>"), this.toggleElementBetweenContainers(
