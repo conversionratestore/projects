@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const g = `aside.floating-banner {
+  const u = `aside.floating-banner {
   padding: 0;
   background: unset;
   border: none;
@@ -64,19 +64,27 @@
   color: #fff;
   font-size: 14px;
   font-weight: 600;
-  margin-top: 24px;
-}/*# sourceMappingURL=style.css.map */`, d = (n, e) => {
+  margin-top: 12px;
+}/*# sourceMappingURL=style.css.map */`, d = (n, e, a, t = "") => {
+    window.dataLayer = window.dataLayer || [], window.dataLayer.push({
+      event: "event-to-ga4",
+      event_name: n,
+      event_desc: e,
+      event_type: a,
+      event_loc: t
+    }), g(`Event: ${n} | ${e} | ${a} | ${t}`, "success");
+  }, p = (n, e) => {
     const a = setInterval(() => {
       const t = document.querySelector(n);
       t && (clearInterval(a), e(t));
     }, 100);
-  }, u = ({ name: n, dev: e }) => {
+  }, m = ({ name: n, dev: e }) => {
     console.log(
       `%c EXP: ${n} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   };
-  class p {
+  class b {
     constructor(e) {
       this.elements = typeof e == "string" ? document.querySelectorAll(e) : e instanceof Element ? [e] : e;
     }
@@ -119,11 +127,26 @@
       }), this;
     }
   }
-  const l = (n) => new p(n), m = (n) => {
-    let e = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", n, "variant_1"));
-    }, 1e3);
-  }, c = (n, e = "info") => {
+  const c = (n) => new b(n), f = (n, e, a, t, r = 1e3, o = 0.5) => {
+    let i, s;
+    if (i = new IntersectionObserver(
+      function(l) {
+        l[0].isIntersecting === !0 ? s = setTimeout(() => {
+          d(
+            e,
+            l[0].target.dataset.visible || t || "",
+            "view",
+            a
+          ), i.disconnect();
+        }, r) : (console.log("Element is not fully visible"), clearTimeout(s));
+      },
+      { threshold: [o] }
+    ), typeof n == "string") {
+      const l = document.querySelector(n);
+      l && i.observe(l);
+    } else
+      i.observe(n);
+  }, g = (n, e = "info") => {
     let a;
     switch (e) {
       case "info":
@@ -140,27 +163,27 @@
         break;
     }
     console.log(`%c>>> ${n}`, `${a} font-size: 16px; font-weight: 600`);
-  }, b = "https://conversionratestore.github.io/projects/cleanmymac", f = (n, e, a) => {
-    const { header: t, bullets: r, img: o } = n, { background: i, btn: s, bulletColor: M } = e, v = r.map((x) => (
+  }, h = "https://conversionratestore.github.io/projects/cleanmymac", y = (n, e, a) => {
+    const { header: t, bullets: r, img: o } = n, { background: i, btn: s, bulletColor: l } = e, x = r.map((k) => (
       /* html */
       `
-      <li><span style="background: ${M}"></span>${x}</li>
+      <li><span style="background: ${l}"></span>${k}</li>
     `
     )).join("");
     return (
       /* html */
       `
     <div class="crs_banner" style="background: ${i}">
-      <img src="${b}/img/${o}.png" alt="${o}" />
+      <img src="${h}/img/${o}.png" alt="${o}" />
       <h3>${t}</h3>
       <ul>
-        ${v}
+        ${x}
       </ul>
       <a style="background: ${s}" href="${a}">Try CleanMyMac X</a>
     </div>
   `
     );
-  }, h = {
+  }, C = {
     "/blog/mac-keeps-shutting-down": {
       header: "Remove malware causing your Mac to shut down ",
       bullets: [
@@ -206,7 +229,7 @@
       img: "desktop"
     },
     "/blog/macbook-not-sleeping-lid-closed": {
-      header: "Fix Mac Sleep Issues by Managing System Resources with CleanMyMac",
+      header: "Fix Mac Sleep Issues by Managing System Resources",
       bullets: [
         "Automatically close hung applications to fix sleep issues",
         "Monitor CPU usage and spot resource-draining apps",
@@ -313,7 +336,7 @@
       ],
       img: "settings"
     }
-  }, y = {
+  }, v = {
     cpu: {
       background: "linear-gradient(180deg, #8C699F 0%, #373C6C 100%)",
       btn: "linear-gradient(180deg, #FE7AAD 0%, #EC5998 100%)",
@@ -375,39 +398,44 @@
       bulletColor: "#F4927C"
     }
   };
-  u({ name: "Blog banner", dev: "YK" }), m("Blog banner");
-  class C {
+  m({ name: "Blog banner", dev: "YK" }), d("exp_blog_banner_loaded", "Experiment loaded", "loaded");
+  class M {
     constructor() {
-      if (this.path = window.location.pathname, this.data = h[this.path], !this.data) {
-        c("Data not found!", "error");
+      if (this.path = window.location.pathname, this.data = C[this.path], !this.data) {
+        g("Data not found!", "error");
         return;
       }
-      this.style = y[this.data.img], this.init();
+      this.style = v[this.data.img], this.init();
     }
     init() {
-      d("aside.floating-banner", () => {
+      p("aside.floating-banner", () => {
         this.createBanner();
       });
     }
     createBanner() {
-      const e = l(".bottom-banner__cta").elements[0].getAttribute("href");
+      const e = c(".bottom-banner__cta").elements[0].getAttribute("href");
       if (!e) {
-        c("Trial link not found!", "error");
+        g("Trial link not found!", "error");
         return;
       }
-      l("body").elements[0].insertAdjacentHTML(
+      c("body").elements[0].insertAdjacentHTML(
         "afterbegin",
         /* html */
         `<style>
-      ${g}
+      ${u}
 
       .crs_banner a:hover {
         background: ${this.style.btnHover} !important;
       }
       </style>`
-      ), l("aside.floating-banner").elements[0].innerHTML = f(this.data, this.style, e);
+      ), c("aside.floating-banner").elements[0].innerHTML = y(this.data, this.style, e), this.addEvents();
+    }
+    addEvents() {
+      f(".crs_banner", "exp_blog_banner_visible", "Sidebar CTA banner", "Banner visible"), c(".crs_banner a").on("click", function(e) {
+        d("exp_blog_banner_cta", "Banner button clicked", "click", "Sidebar CTA banner");
+      });
     }
   }
-  new C();
+  new M();
 })();
 //# sourceMappingURL=index.js.map
