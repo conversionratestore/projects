@@ -5,7 +5,7 @@
       `%c EXP: ${o} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, p = (o) => document.querySelectorAll(o), t = (o) => document.querySelector(o), m = (o, e = "variant_1") => {
+  }, p = (o) => document.querySelectorAll(o), t = (o) => document.querySelector(o), b = (o, e = "variant_1") => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", o, e), console.log("set", o, e));
     }, 1e3);
@@ -34,19 +34,20 @@
       return n = window.scrollY, e != null && (r = n - e), e = n, clearTimeout(i), i = setTimeout(s, c), r;
     };
   })();
-  const d = "https://conversionratestore.github.io/projects/envest/img/", b = (
+  const d = "https://conversionratestore.github.io/projects/envest/img/", m = (
     /* HTML */
     `
   <div class="hero_section ver_c">
     <div class="hero_section_content">
       <h2 class="hero_section_title is_desk">
-        <span class="absol_text">Shift Your M</span>indset. <br />
-        Grow Your Wealth <br />
+        Shift Your Mindset. <br />
+        <span class="absol_text">Grow Your Wealth</span> <br />
         with Envest.
       </h2>
       <h2 class="hero_section_title is_mob">
-        <span class="absol_text">Shift Your</span> <span>Mindset</span>. Grow Your <span>Wealth</span> with
-        <span>Envest</span>.
+        Shift Your Mindset. <br />
+        <span class="absol_text">Grow Your Wealth</span> <br />
+        with Envest.
       </h2>
       <div class="hero_section_image is_mob"><img src="${d}hero_ver_с_mob.webp" alt="men poor and rich" /></div>
       <p class="hero_section_subtitle">
@@ -125,9 +126,9 @@
   position: absolute;
   bottom: 6px;
   left: -4px;
-  width: 103.5%;
+  width: 102.9%;
   height: 24px;
-  background: url(https://conversionratestore.github.io/projects/envest/img/underline_title.svg) no-repeat;
+  background: url(https://conversionratestore.github.io/projects/envest/img/underline_title_2.svg) no-repeat;
   z-index: -1;
   background-size: contain;
 }
@@ -141,7 +142,9 @@
     font-size: 45px;
   }
   .hero_section .hero_section_content .hero_section_title .absol_text::before {
-    bottom: 0;
+    width: 105%;
+    bottom: -1px;
+    left: -8px;
   }
 }
 @media (max-width: 768px) {
@@ -156,17 +159,14 @@
   .hero_section .hero_section_content .hero_section_title br {
     display: none;
   }
-  .hero_section .hero_section_content .hero_section_title span:not(.absol_text) {
-    color: #1570ef;
-  }
 }
 @media (max-width: 768px) and (max-width: 768px) {
   .hero_section .hero_section_content .hero_section_title .absol_text::before {
-    background: url(https://conversionratestore.github.io/projects/envest/img/underline_title_mob.svg) no-repeat;
+    background: url(https://conversionratestore.github.io/projects/envest/img/underline_title_mob_2.svg) no-repeat;
     background-size: contain;
     left: -6px;
     height: 20px;
-    bottom: -2px;
+    bottom: -3px;
   }
 }
 .hero_section .hero_section_content .hero_section_subtitle {
@@ -196,7 +196,7 @@
   width: 100%;
   max-width: 100%;
   border-radius: 8px;
-  background: #008080;
+  background: #0d9488;
   box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
   color: #fff;
   font-family: "Inter", sans-serif;
@@ -224,9 +224,11 @@
   max-width: 616px;
 }
 .hero_section.ver_c .hero_section_content .hero_section_title .absol_text::before {
-  bottom: 2px;
+  background: url(https://conversionratestore.github.io/projects/envest/img/underline_title_2_v3.svg) no-repeat;
+  background-size: contain;
+  bottom: 4px;
   left: -8px;
-  width: 103%;
+  width: 104%;
 }
 @media (max-width: 1260px) {
   .hero_section.ver_c .hero_section_content .hero_section_title {
@@ -264,6 +266,10 @@
   .hero_section.ver_c .hero_section_content .hero_section_title {
     font-size: 45px;
   }
+  .hero_section.ver_c .hero_section_content .hero_section_title .absol_text::before {
+    bottom: -4px;
+    left: -3px;
+  }
 }
 @media (max-width: 1050px) {
   .hero_section.ver_c .hero_section_content .hero_section_title {
@@ -281,12 +287,15 @@
     font-size: 30px;
     line-height: 38px;
   }
+  .hero_section.ver_c .hero_section_content .hero_section_title .absol_text {
+    display: inline-block;
+  }
   .hero_section.ver_c .hero_section_content .hero_section_title .absol_text::before {
-    background: url(https://conversionratestore.github.io/projects/envest/img/underline_title_mob_ver_c.svg) no-repeat;
+    background: url(https://conversionratestore.github.io/projects/envest/img/underline_title_mob_2_v3.svg) no-repeat;
     background-size: contain;
-    left: -8px;
-    bottom: -3px;
+    bottom: 1px;
     width: 109%;
+    left: -9px;
   }
 }
 .hero_section.ver_c .hero_section_content .hero_section_subtitle {
@@ -388,7 +397,7 @@ footer + div {
       this.initAllFunc(), this.observeMain();
     }
     initAllFunc() {
-      window.location.href.match("paywall2") && (_({ name: "Payment-Page-Improvements", dev: "SKh" }), console.log(this.device), m("exp_paywall2"), document.head.insertAdjacentHTML(
+      window.location.href.match("paywall2") && (_({ name: "Payment-Page-Improvements", dev: "SKh" }), console.log(this.device), b("exp_paywall2"), document.head.insertAdjacentHTML(
         "afterbegin",
         '<link class="crs_inter" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">'
       ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${f}</style>`), this.renderHeroSection(), this.renderHeroBtn(), this.handleClickHeroBtn(), this.renderStickyBlock(), this.renderStickyBtn(), this.handleClickStickyBtn(), this.handleVisibility(), this.observeNewSection());
@@ -396,7 +405,7 @@ footer + div {
     renderHeroSection() {
       l("main > div > section:nth-child(2)").then(() => {
         let e = "beforeend";
-        this.device === "mobile" && (e = "afterend"), t(".hero_section") || t("main > div > section:nth-child(2) > div >div:nth-child(1)").insertAdjacentHTML(e, b);
+        this.device === "mobile" && (e = "afterend"), t(".hero_section") || t("main > div > section:nth-child(2) > div >div:nth-child(1)").insertAdjacentHTML(e, m);
       });
     }
     renderHeroBtn() {
