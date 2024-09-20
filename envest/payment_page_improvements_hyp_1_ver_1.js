@@ -40,12 +40,12 @@
   <div class="hero_section ver_a">
     <div class="hero_section_content">
       <h2 class="hero_section_title is_desk">
-        <span class="absol_text">Still looking </span>for a<br />
+        <span class="absol_text">Still looking for</span> a<br />
         <span>sign</span> to start <br />
         <span>investing</span>? This is it!
       </h2>
       <h2 class="hero_section_title is_mob">
-        <span class="absol_text">Still looking fo</span>r a<br />
+        <span class="absol_text">Still looking for</span> a<br />
         <span>sign</span> to start <br />
         <span>investing</span>? This is it!
       </h2>
@@ -126,9 +126,9 @@
   position: absolute;
   bottom: 6px;
   left: -4px;
-  width: 103.5%;
+  width: 102.9%;
   height: 24px;
-  background: url(https://conversionratestore.github.io/projects/envest/img/underline_title.svg) no-repeat;
+  background: url(https://conversionratestore.github.io/projects/envest/img/underline_title_2.svg) no-repeat;
   z-index: -1;
   background-size: contain;
 }
@@ -142,7 +142,9 @@
     font-size: 45px;
   }
   .hero_section .hero_section_content .hero_section_title .absol_text::before {
-    bottom: 0;
+    width: 105%;
+    bottom: -1px;
+    left: -8px;
   }
 }
 @media (max-width: 768px) {
@@ -157,17 +159,14 @@
   .hero_section .hero_section_content .hero_section_title br {
     display: none;
   }
-  .hero_section .hero_section_content .hero_section_title span:not(.absol_text) {
-    color: #1570ef;
-  }
 }
 @media (max-width: 768px) and (max-width: 768px) {
   .hero_section .hero_section_content .hero_section_title .absol_text::before {
-    background: url(https://conversionratestore.github.io/projects/envest/img/underline_title_mob.svg) no-repeat;
+    background: url(https://conversionratestore.github.io/projects/envest/img/underline_title_mob_2.svg) no-repeat;
     background-size: contain;
     left: -6px;
     height: 20px;
-    bottom: -2px;
+    bottom: -3px;
   }
 }
 .hero_section .hero_section_content .hero_section_subtitle {
@@ -197,7 +196,7 @@
   width: 100%;
   max-width: 100%;
   border-radius: 8px;
-  background: #008080;
+  background: #0d9488;
   box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
   color: #fff;
   font-family: "Inter", sans-serif;
