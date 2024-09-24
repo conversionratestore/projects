@@ -1633,6 +1633,11 @@
   line-height: 140%;
   margin: 0;
 }
+@media (max-width: 350px) {
+  .shop_by_category_block ul li a .item_descr p {
+    font-size: 14px;
+  }
+}
 .shop_by_category_block ul li a .item_btn {
   display: flex;
   justify-content: center;
