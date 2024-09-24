@@ -405,7 +405,7 @@ footer + div {
       this.initAllFunc(), this.observeMain();
     }
     initAllFunc() {
-      window.location.href.match("paywall2") && (p({ name: "Payment-Page-Improvements", dev: "SKh" }), console.log(this.device), m("exp_paywall2"), document.head.insertAdjacentHTML(
+      window.location.href.match("paywall2") && (p({ name: "Payment-Page-Improvements", dev: "SKh" }), console.log(this.device), m("exp_paywall2", "variant_3"), document.head.insertAdjacentHTML(
         "afterbegin",
         '<link class="crs_inter" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">'
       ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${f}</style>`), this.renderHeroSection(), this.renderHeroBtn(), this.handleClickHeroBtn(), this.renderStickyBlock(), this.renderStickyBtn(), this.handleClickStickyBtn(), this.handleVisibility(), this.observeNewSection());
