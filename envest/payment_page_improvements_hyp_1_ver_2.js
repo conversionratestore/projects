@@ -1,45 +1,45 @@
 (function() {
   "use strict";
-  const h = (o, e, t, i = "") => {
+  const h = (i, t, e, o = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: o,
-      event_desc: e,
-      event_type: t,
-      event_loc: i
-    }), console.dir(`Event: ${o} | ${e} | ${t} | ${i}`);
-  }, p = ({ name: o, dev: e }) => {
+      event_name: i,
+      event_desc: t,
+      event_type: e,
+      event_loc: o
+    }), console.dir(`Event: ${i} | ${t} | ${e} | ${o}`);
+  }, p = ({ name: i, dev: t }) => {
     console.log(
-      `%c EXP: ${o} (DEV: ${e})`,
+      `%c EXP: ${i} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, b = (o) => document.querySelectorAll(o), n = (o) => document.querySelector(o), m = (o, e = "variant_1") => {
-    let t = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", o, e), console.log("set", o, e));
+  }, b = (i) => document.querySelectorAll(i), n = (i) => document.querySelector(i), m = (i, t = "variant_1") => {
+    let e = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", i, t), console.log("set", i, t));
     }, 1e3);
   };
-  function l(o) {
-    return new Promise((e) => {
-      if (document.querySelector(o))
-        return e(document.querySelector(o));
-      const t = new MutationObserver(() => {
-        document.querySelector(o) && (e(document.querySelector(o)), t.disconnect());
+  function l(i) {
+    return new Promise((t) => {
+      if (document.querySelector(i))
+        return t(document.querySelector(i));
+      const e = new MutationObserver(() => {
+        document.querySelector(i) && (t(document.querySelector(i)), e.disconnect());
       });
-      t.observe(document.documentElement, {
+      e.observe(document.documentElement, {
         childList: !0,
         subtree: !0,
         characterData: !0
       });
     });
   }
-  (function(o) {
-    o = o === void 0 ? {} : o;
-    let e, t, i, r, c = (o == null ? void 0 : o.delay) || 50;
+  (function(i) {
+    i = i === void 0 ? {} : i;
+    let t, e, o, r, c = (i == null ? void 0 : i.delay) || 50;
     function s() {
-      e = null, r = 0;
+      t = null, r = 0;
     }
     return s(), function() {
-      return t = window.scrollY, e != null && (r = t - e), e = t, clearTimeout(i), i = setTimeout(s, c), r;
+      return e = window.scrollY, t != null && (r = e - t), t = e, clearTimeout(o), o = setTimeout(s, c), r;
     };
   })();
   const _ = "https://conversionratestore.github.io/projects/envest/img/", x = (
@@ -391,42 +391,42 @@ footer + div {
   }
 }/*# sourceMappingURL=main.css.map */`, v = window.innerWidth < 768 ? "mobile" : "desktop";
   class g {
-    constructor(e) {
-      this.device = e, this.init();
+    constructor(t) {
+      this.device = t, this.init();
     }
     init() {
       this.initAllFunc(), this.observeMain();
     }
     initAllFunc() {
-      window.location.href.match("paywall2") && (p({ name: "Payment-Page-Improvements", dev: "SKh" }), console.log(this.device), m("exp_paywall2"), document.head.insertAdjacentHTML(
+      window.location.href.match("paywall2") && (p({ name: "Payment-Page-Improvements", dev: "SKh" }), console.log(this.device), m("exp_paywall2", "variant_2"), document.head.insertAdjacentHTML(
         "afterbegin",
         '<link class="crs_inter" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">'
       ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${u}</style>`), this.renderHeroSection(), this.renderHeroBtn(), this.handleClickHeroBtn(), this.renderStickyBlock(), this.renderStickyBtn(), this.handleClickStickyBtn(), this.handleVisibility(), this.observeNewSection());
     }
     renderHeroSection() {
       l("main > div > section:nth-child(2)").then(() => {
-        let e = "beforeend";
-        this.device === "mobile" && (e = "afterend"), n(".hero_section") || n("main > div > section:nth-child(2) > div >div:nth-child(1)").insertAdjacentHTML(e, x);
+        let t = "beforeend";
+        this.device === "mobile" && (t = "afterend"), n(".hero_section") || n("main > div > section:nth-child(2) > div >div:nth-child(1)").insertAdjacentHTML(t, x);
       });
     }
     renderHeroBtn() {
       this.device === "desktop" && l(".hero_section").then(() => {
-        const e = n("main > div > section:nth-child(2) > div >div:nth-child(1) button"), t = n(".hero_section_content");
-        if (!n(".hero_section_content button") && e) {
-          const i = "Get My Investment Plan!";
-          e.textContent = i, t.insertAdjacentElement("beforeend", e);
+        const t = n("main > div > section:nth-child(2) > div >div:nth-child(1) button"), e = n(".hero_section_content");
+        if (!n(".hero_section_content button") && t) {
+          const o = "Get My Investment Plan!";
+          t.textContent = o, e.insertAdjacentElement("beforeend", t);
         }
       });
     }
     handleClickHeroBtn() {
       l(".hero_section").then(() => {
-        const e = n("body");
-        e && e.addEventListener("click", (t) => {
-          var i, r;
-          if (!((i = n(".hero_section")) != null && i.getAttribute("data-test"))) {
-            if (!t.target.closest(".z-0"))
+        const t = n("body");
+        t && t.addEventListener("click", (e) => {
+          var o, r;
+          if (!((o = n(".hero_section")) != null && o.getAttribute("data-test"))) {
+            if (!e.target.closest(".z-0"))
               return;
-            (t.target.closest(".ver_a") && !t.target.closest(".sticky_block") ? "ver_1" : t.target.closest(".ver_b") && !t.target.closest(".sticky_block") ? "ver_2" : t.target.closest(".ver_c") && !t.target.closest(".sticky_block") ? "ver_3" : null) && h("exp_paywall2_button_01", "Get my plan", "Click", "First screen");
+            (e.target.closest(".ver_a") && !e.target.closest(".sticky_block") ? "ver_1" : e.target.closest(".ver_b") && !e.target.closest(".sticky_block") ? "ver_2" : e.target.closest(".ver_c") && !e.target.closest(".sticky_block") ? "ver_3" : null) && h("exp_paywall2_button_01", "Get my plan", "Click", "First screen");
           }
           (r = n(".hero_section")) == null || r.setAttribute("data-test", "1"), setTimeout(() => {
             var c, s;
@@ -442,22 +442,22 @@ footer + div {
     }
     renderStickyBtn() {
       l(".sticky_block").then(() => {
-        const e = n("footer + div > button"), t = n(".sticky_block");
-        if (!n(".sticky_block button") && e) {
-          const i = "Get My Investment Plan!";
-          e.textContent = i, t.insertAdjacentElement("beforeend", e);
+        const t = n("footer + div > button"), e = n(".sticky_block");
+        if (!n(".sticky_block button") && t) {
+          const o = "Get My Investment Plan!";
+          t.textContent = o, e.insertAdjacentElement("beforeend", t);
         }
       });
     }
     handleClickStickyBtn() {
       l(".sticky_block").then(() => {
-        const e = n("body");
-        e && e.addEventListener("click", (t) => {
-          var i, r;
-          if (!((i = n(".sticky_block")) != null && i.getAttribute("data-test"))) {
-            if (!t.target.closest(".z-0"))
+        const t = n("body");
+        t && t.addEventListener("click", (e) => {
+          var o, r;
+          if (!((o = n(".sticky_block")) != null && o.getAttribute("data-test"))) {
+            if (!e.target.closest(".z-0"))
               return;
-            (t.target.closest(".sticky_block") && !t.target.closest(".ver_a") ? "ver_1" : t.target.closest(".ver_b") && !t.target.closest(".ver_b") ? "ver_2" : t.target.closest(".ver_c") && !t.target.closest(".ver_c") ? "ver_3" : null) && h("exp_paywall2_button_02", "Get my plan", "Click", "Stiky button");
+            (e.target.closest(".sticky_block") && !e.target.closest(".ver_a") ? "ver_1" : e.target.closest(".ver_b") && !e.target.closest(".ver_b") ? "ver_2" : e.target.closest(".ver_c") && !e.target.closest(".ver_c") ? "ver_3" : null) && h("exp_paywall2_button_02", "Get my plan", "Click", "Stiky button");
           }
           (r = n(".sticky_block")) == null || r.setAttribute("data-test", "1"), setTimeout(() => {
             var c, s;
@@ -466,20 +466,20 @@ footer + div {
         });
       });
     }
-    toggleStickyBlockVisibility(e) {
+    toggleStickyBlockVisibility(t) {
       l("#checkout-container").then(() => {
         l(".sticky_block").then(() => {
-          const t = n(".sticky_block"), i = n("#checkout-container");
-          let r = b(e);
+          const e = n(".sticky_block"), o = n("#checkout-container");
+          let r = b(t);
           function c(d) {
             const a = d.getBoundingClientRect();
             return a.top < (window.innerHeight || document.documentElement.clientHeight) && a.bottom > 0 && a.left < (window.innerWidth || document.documentElement.clientWidth) && a.right > 0;
           }
           function s() {
             let d = !1;
-            c(i) && (d = !0), r.forEach((a) => {
+            c(o) && (d = !0), r.forEach((a) => {
               c(a) && (d = !0);
-            }), d ? (t.style.display = "none", n("body").classList.contains("sticky_block_visible") && n("body").classList.remove("sticky_block_visible")) : (t.style.display = "flex", n("body").classList.add("sticky_block_visible"));
+            }), d ? (e.style.display = "none", n("body").classList.contains("sticky_block_visible") && n("body").classList.remove("sticky_block_visible")) : (e.style.display = "flex", n("body").classList.add("sticky_block_visible"));
           }
           s(), window.addEventListener("scroll", s), window.addEventListener("resize", s);
         });
@@ -491,18 +491,18 @@ footer + div {
       }).observe(n("body"), { childList: !0, subtree: !0 });
     }
     observeMain() {
-      new MutationObserver((t) => {
-        var i, r, c, s;
-        for (let d of t) {
+      new MutationObserver((e) => {
+        var o, r, c, s;
+        for (let d of e) {
           for (let a of d.removedNodes)
             a instanceof HTMLElement && a.tagName === "HEADER" && (console.log(a), this.initAllFunc());
           for (let a of d.addedNodes)
-            a instanceof HTMLElement && a.tagName === "HEADER" && (console.log(a), (i = n(".hero_section")) == null || i.remove(), (r = n(".stickyBlock")) == null || r.remove(), (c = n(".crs_style")) == null || c.remove(), (s = n(".crs_inter")) == null || s.remove());
+            a instanceof HTMLElement && a.tagName === "HEADER" && (console.log(a), (o = n(".hero_section")) == null || o.remove(), (r = n(".stickyBlock")) == null || r.remove(), (c = n(".crs_style")) == null || c.remove(), (s = n(".crs_inter")) == null || s.remove());
         }
       }).observe(n("body"), { childList: !0, subtree: !0 });
     }
     handleVisibility() {
-      l(".hero_section").then((e) => {
+      l(".hero_section").then((t) => {
       });
     }
   }
