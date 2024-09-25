@@ -1356,6 +1356,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
 @media (max-width: 768px) {
   .crs_popup_form form h2 {
     text-align: left;
+    padding-right: 40px;
   }
 }
 .crs_popup_form form h2 + p {
