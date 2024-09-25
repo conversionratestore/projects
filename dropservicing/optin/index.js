@@ -1077,13 +1077,13 @@ section {
   gap: 10px;
   flex-direction: column;
   justify-content: center;
-  width: 40%;
 }
 @media (max-width: 768px) {
   #trust_pilot .points .crs_container p {
     font-size: 16px;
     line-height: 24px;
     flex-direction: column-reverse;
+    width: 40%;
   }
 }
 #trust_pilot .tns-nav button {
@@ -1640,10 +1640,10 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     on(i, r, l) {
       return typeof r == "function" && (l = r, r = ""), this.elements.forEach(function(s) {
         s.addEventListener(i, function(d) {
-          var w;
+          var y;
           if (r) {
-            let v = (w = d.target) == null ? void 0 : w.closest(r);
-            s.contains(v) && (l == null || l.call(v, d));
+            let x = (y = d.target) == null ? void 0 : y.closest(r);
+            s.contains(x) && (l == null || l.call(x, d));
           } else
             l == null || l.call(s, d);
         });
@@ -1680,18 +1680,18 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     const i = (r) => new Promise((l, s) => {
       const d = r.split(".").pop();
       if (d === "js") {
-        if (Array.from(document.scripts).map((_) => _.src.toLowerCase()).includes(r.toLowerCase()))
+        if (Array.from(document.scripts).map((v) => v.src.toLowerCase()).includes(r.toLowerCase()))
           return Un(`Script ${r} allready downloaded!`, "success"), l("");
-        const v = document.createElement("script");
-        v.src = r, v.onload = l, v.onerror = s, document.head.appendChild(v);
+        const x = document.createElement("script");
+        x.src = r, x.onload = l, x.onerror = s, document.head.appendChild(x);
       } else if (d === "css") {
-        if (Array.from(document.styleSheets).map((_) => {
+        if (Array.from(document.styleSheets).map((v) => {
           var K;
-          return (K = _.href) == null ? void 0 : K.toLowerCase();
+          return (K = v.href) == null ? void 0 : K.toLowerCase();
         }).includes(r.toLowerCase()))
           return Un(`Style ${r} allready downloaded!`, "success"), l("");
-        const v = document.createElement("link");
-        v.rel = "stylesheet", v.href = r, v.onload = l, v.onerror = s, document.head.appendChild(v);
+        const x = document.createElement("link");
+        x.rel = "stylesheet", x.href = r, x.onload = l, x.onerror = s, document.head.appendChild(x);
       }
     });
     for (const r of e)
@@ -1702,24 +1702,24 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       typeof window.clarity == "function" && (clearInterval(i), window.clarity("set", e, "variant_1"));
     }, 1e3);
   }, Tn = (e, i, r, l, s = 1e3, d = 0.5) => {
-    let w, v;
-    if (w = new IntersectionObserver(
-      function(_) {
-        _[0].isIntersecting === !0 ? v = setTimeout(() => {
+    let y, x;
+    if (y = new IntersectionObserver(
+      function(v) {
+        v[0].isIntersecting === !0 ? x = setTimeout(() => {
           G(
             i,
-            _[0].target.dataset.visible || l || "",
+            v[0].target.dataset.visible || l || "",
             "view",
             r
-          ), w.disconnect();
-        }, s) : (Un("Element is not fully visible", "warn"), clearTimeout(v));
+          ), y.disconnect();
+        }, s) : (Un("Element is not fully visible", "warn"), clearTimeout(x));
       },
       { threshold: [d] }
     ), typeof e == "string") {
-      const _ = document.querySelector(e);
-      _ && w.observe(_);
+      const v = document.querySelector(e);
+      v && y.observe(v);
     } else
-      w.observe(e);
+      y.observe(e);
   }, Un = (e, i = "info") => {
     let r;
     switch (i) {
@@ -1780,23 +1780,23 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       img: "guy.jpg",
       videoId: "9luz6eb8y5"
     }
-  ], Io = [
+  ], Oo = [
     "<b>The Drop Servicing Method:</b> Our new strategy for earning online without significant startup costs.",
     "<b>A Simple 4-Step Process:</b> Start your online business journey with just a laptop and internet connection.",
     "<b>Escape The 9-5 Grind:</b> How to transition from traditional employment to being your own boss.",
     "<b>The 2024 Opportunity:</b> How to capitalize on this emerging trend to achieve your financial freedom goals.",
     "<b>Real Success Stories:</b> Get inspired by participants who left their jobs to build successful businesses, gaining the freedom to live on their own terms."
-  ], Oo = [
+  ], Io = [
     'Dylan Sigley was a broke college student working in a call center when he discovered a new online business method called "Drop Servicing".',
     "Soon after, he built a ridiculously profitable business from home, allowing him to quit his job and earn 6-figures while traveling the world and working only 5 hours a week.",
     "This FREE webclass skips the nonsense to show you, step-by-step, how Dylan grew his business so quickly and how hundreds of others have replicated his success using the same process. It's the most practical, results-driven training you'll find.",
     "Dylan has one of the best (if not the best) track records in the industry for helping people around the world build Drop Servicing Businesses, even as complete beginners with no skills or degree.",
     "Normally, it costs between $4K and $24K to work with Dylan, but in this webclass you get his exact methods for FREE! Register now before this is taken offline in the next few days."
-  ], Ro = [
+  ], No = [
     "Aspiring entrepreneurs eager to shift from employee to business owner.",
     "People tired of their jobs and wanting to move towards achieving their financial freedom goals.",
     "Anyone ready for actionable insights to take control of their lives and financial goals."
-  ], qo = [
+  ], Ro = [
     {
       name: "Fabiano Musase",
       title: "Drop Servicing Blueprint Partner Program",
@@ -1881,7 +1881,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       date: "May 16, 2023",
       link: "https://www.trustpilot.com/reviews/64638248fe2b0edcd71caf04"
     }
-  ], No = [
+  ], qo = [
     {
       question: "Who is this training for?",
       answer: "This training is for anyone interested in discovering a new business idea and learning how people worldwide are achieving their financial freedom goals."
@@ -1926,7 +1926,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
           <div class="youll_list">
             <p>In this FREE training, you’ll learn: <img src="${E}/arrow.svg" alt="arrow" class="desktop" /></p>
             <ul>
-              ${Io.map(
+              ${Oo.map(
       (e) => (
         /* HTML */
         `<li>
@@ -2023,7 +2023,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     </div>
   </section>
 `
-  ), Wo = (
+  ), Po = (
     /* HTML */
     `
   <section id="host_block" class="crs_container">
@@ -2036,7 +2036,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       <h2>Your Host: Dylan Sigley</h2>
       <p>7 Figure Drop Servicer</p>
       <ul>
-        ${Oo.map((e) => (
+        ${Io.map((e) => (
       /* HTML */
       `<li><span></span>${e}</li>`
     )).join("")}
@@ -2046,7 +2046,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     </div>
   </section>
 `
-  ), Po = (
+  ), Wo = (
     /* HTML */
     `
   <section id="video_block">
@@ -2102,7 +2102,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       <h2>Who is the Training for?</h2>
       <p>This free training is designed for:</p>
       <ul>
-        ${Ro.map((e) => (
+        ${No.map((e) => (
       /* HTML */
       `<li><img src="${E}/check.svg" alt="check" />${e}</li>`
     )).join("")}
@@ -2125,7 +2125,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       </h2>
       <p>People just like you joined the training</p>
       <ul>
-        ${qo.map(
+        ${Ro.map(
       ({ name: e, title: i, text: r, date: l, link: s }) => (
         /* HTML */
         `
@@ -2161,7 +2161,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     <div class="crs_container">
       <h2>Frequently asked questions</h2>
       <ul>
-        ${No.map(
+        ${qo.map(
       ({ question: e, answer: i }) => (
         /* HTML */
         `
@@ -2281,7 +2281,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   </div>
 `
   );
-  var Ke = window, On = Ke.requestAnimationFrame || Ke.webkitRequestAnimationFrame || Ke.mozRequestAnimationFrame || Ke.msRequestAnimationFrame || function(e) {
+  var Ke = window, In = Ke.requestAnimationFrame || Ke.webkitRequestAnimationFrame || Ke.mozRequestAnimationFrame || Ke.msRequestAnimationFrame || function(e) {
     return setTimeout(e, 16);
   }, vi = window, Ct = vi.cancelAnimationFrame || vi.mozCancelAnimationFrame || function(e) {
     clearTimeout(e);
@@ -2324,9 +2324,9 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     var e = document, i = Ve(), r = Ze(i), l = e.createElement("div"), s = !1;
     i.appendChild(l);
     try {
-      for (var d = "(10px * 10)", w = ["calc" + d, "-moz-calc" + d, "-webkit-calc" + d], v, _ = 0; _ < 3; _++)
-        if (v = w[_], l.style.width = v, l.offsetWidth === 100) {
-          s = v.replace(d, "");
+      for (var d = "(10px * 10)", y = ["calc" + d, "-moz-calc" + d, "-webkit-calc" + d], x, v = 0; v < 3; v++)
+        if (x = y[v], l.style.width = x, l.offsetWidth === 100) {
+          s = x.replace(d, "");
           break;
         }
     } catch {
@@ -2334,17 +2334,17 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     return i.fake ? Qe(i, r) : l.remove(), s;
   }
   function Bo() {
-    var e = document, i = Ve(), r = Ze(i), l = e.createElement("div"), s = e.createElement("div"), d = "", w = 70, v = 3, _ = !1;
+    var e = document, i = Ve(), r = Ze(i), l = e.createElement("div"), s = e.createElement("div"), d = "", y = 70, x = 3, v = !1;
     l.className = "tns-t-subp2", s.className = "tns-t-ct";
-    for (var K = 0; K < w; K++)
+    for (var K = 0; K < y; K++)
       d += "<div></div>";
-    return s.innerHTML = d, l.appendChild(s), i.appendChild(l), _ = Math.abs(l.getBoundingClientRect().left - s.children[w - v].getBoundingClientRect().left) < 2, i.fake ? Qe(i, r) : l.remove(), _;
+    return s.innerHTML = d, l.appendChild(s), i.appendChild(l), v = Math.abs(l.getBoundingClientRect().left - s.children[y - x].getBoundingClientRect().left) < 2, i.fake ? Qe(i, r) : l.remove(), v;
   }
   function na() {
     if (window.matchMedia || window.msMatchMedia)
       return !0;
-    var e = document, i = Ve(), r = Ze(i), l = e.createElement("div"), s = e.createElement("style"), d = "@media all and (min-width:1px){.tns-mq-test{position:absolute}}", w;
-    return s.type = "text/css", l.className = "tns-mq-test", i.appendChild(s), i.appendChild(l), s.styleSheet ? s.styleSheet.cssText = d : s.appendChild(e.createTextNode(d)), w = window.getComputedStyle ? window.getComputedStyle(l).position : l.currentStyle.position, i.fake ? Qe(i, r) : l.remove(), w === "absolute";
+    var e = document, i = Ve(), r = Ze(i), l = e.createElement("div"), s = e.createElement("style"), d = "@media all and (min-width:1px){.tns-mq-test{position:absolute}}", y;
+    return s.type = "text/css", l.className = "tns-mq-test", i.appendChild(s), i.appendChild(l), s.styleSheet ? s.styleSheet.cssText = d : s.appendChild(e.createTextNode(d)), y = window.getComputedStyle ? window.getComputedStyle(l).position : l.currentStyle.position, i.fake ? Qe(i, r) : l.remove(), y === "absolute";
   }
   function ea(e, i) {
     var r = document.createElement("style");
@@ -2367,19 +2367,19 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     var r = !1, l = Math.abs(90 - Math.abs(e));
     return l >= 90 - i ? r = "horizontal" : l <= i && (r = "vertical"), r;
   }
-  function Rn(e, i, r) {
+  function Nn(e, i, r) {
     for (var l = 0, s = e.length; l < s; l++)
       i.call(r, e[l], l);
   }
-  var It = "classList" in document.createElement("_"), le = It ? function(e, i) {
+  var Ot = "classList" in document.createElement("_"), le = Ot ? function(e, i) {
     return e.classList.contains(i);
   } : function(e, i) {
     return e.className.indexOf(i) >= 0;
-  }, N = It ? function(e, i) {
+  }, q = Ot ? function(e, i) {
     le(e, i) || e.classList.add(i);
   } : function(e, i) {
     le(e, i) || (e.className += " " + i);
-  }, an = It ? function(e, i) {
+  }, an = Ot ? function(e, i) {
     le(e, i) && e.classList.remove(i);
   } : function(e, i) {
     le(e, i) && (e.className = e.className.replace(i, ""));
@@ -2393,13 +2393,13 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   function xi(e) {
     return typeof e.item < "u";
   }
-  function fn(e, i) {
+  function pn(e, i) {
     if (e = xi(e) || e instanceof Array ? e : [e], Object.prototype.toString.call(i) === "[object Object]")
       for (var r = e.length; r--; )
         for (var l in i)
           e[r].setAttribute(l, i[l]);
   }
-  function qn(e, i) {
+  function Rn(e, i) {
     e = xi(e) || e instanceof Array ? e : [e], i = i instanceof Array ? i : [i];
     for (var r = i.length, l = e.length; l--; )
       for (var s = r; s--; )
@@ -2410,7 +2410,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       i.push(e[r]);
     return i;
   }
-  function pn(e, i) {
+  function fn(e, i) {
     e.style.display !== "none" && (e.style.display = "none");
   }
   function un(e, i) {
@@ -2422,24 +2422,24 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   function _e(e) {
     if (typeof e == "string") {
       var i = [e], r = e.charAt(0).toUpperCase() + e.substr(1), l = ["Webkit", "Moz", "ms", "O"];
-      l.forEach(function(v) {
-        (v !== "ms" || e === "transform") && i.push(v + r);
+      l.forEach(function(x) {
+        (x !== "ms" || e === "transform") && i.push(x + r);
       }), e = i;
     }
     var s = document.createElement("fakeelement");
     e.length;
     for (var d = 0; d < e.length; d++) {
-      var w = e[d];
-      if (s.style[w] !== void 0)
-        return w;
+      var y = e[d];
+      if (s.style[y] !== void 0)
+        return y;
     }
     return !1;
   }
   function aa(e) {
     if (!e || !window.getComputedStyle)
       return !1;
-    var i = document, r = Ve(), l = Ze(r), s = i.createElement("p"), d, w = e.length > 9 ? "-" + e.slice(0, -9).toLowerCase() + "-" : "";
-    return w += "transform", r.insertBefore(s, null), s.style[e] = "translate3d(1px,1px,1px)", d = window.getComputedStyle(s).getPropertyValue(w), r.fake ? Qe(r, l) : s.remove(), d !== void 0 && d.length > 0 && d !== "none";
+    var i = document, r = Ve(), l = Ze(r), s = i.createElement("p"), d, y = e.length > 9 ? "-" + e.slice(0, -9).toLowerCase() + "-" : "";
+    return y += "transform", r.insertBefore(s, null), s.style[e] = "translate3d(1px,1px,1px)", d = window.getComputedStyle(s).getPropertyValue(y), r.fake ? Qe(r, l) : s.remove(), d !== void 0 && d.length > 0 && d !== "none";
   }
   function _i(e, i) {
     var r = !1;
@@ -2456,7 +2456,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   } catch {
   }
   var Ti = ki ? { passive: !0 } : !1;
-  function q(e, i, r) {
+  function R(e, i, r) {
     for (var l in i) {
       var s = ["touchstart", "touchmove"].indexOf(l) >= 0 && !r ? Ti : !1;
       e.addEventListener(l, i[l], s);
@@ -2490,11 +2490,11 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       }
     };
   }
-  function la(e, i, r, l, K, d, w) {
-    var v = Math.min(d, 10), _ = K.indexOf("%") >= 0 ? "%" : "px", K = K.replace(_, ""), rn = Number(e.style[i].replace(r, "").replace(l, "").replace(_, "")), Xn = (K - rn) / d * v;
-    setTimeout(Be, v);
+  function la(e, i, r, l, K, d, y) {
+    var x = Math.min(d, 10), v = K.indexOf("%") >= 0 ? "%" : "px", K = K.replace(v, ""), rn = Number(e.style[i].replace(r, "").replace(l, "").replace(v, "")), Xn = (K - rn) / d * x;
+    setTimeout(Be, x);
     function Be() {
-      d -= v, rn += Xn, e.style[i] = r + rn + _ + l, d > 0 ? setTimeout(Be, v) : w();
+      d -= x, rn += Xn, e.style[i] = r + rn + v + l, d > 0 ? setTimeout(Be, x) : y();
     }
   }
   Object.keys || (Object.keys = function(e) {
@@ -2567,18 +2567,18 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       RIGHT: 39
     }, s = {}, d = e.useLocalStorage;
     if (d) {
-      var w = navigator.userAgent, v = /* @__PURE__ */ new Date();
+      var y = navigator.userAgent, x = /* @__PURE__ */ new Date();
       try {
-        s = r.localStorage, s ? (s.setItem(v, v), d = s.getItem(v) == v, s.removeItem(v)) : d = !1, d || (s = {});
+        s = r.localStorage, s ? (s.setItem(x, x), d = s.getItem(x) == x, s.removeItem(x)) : d = !1, d || (s = {});
       } catch {
         d = !1;
       }
-      d && (s.tnsApp && s.tnsApp !== w && ["tC", "tPL", "tMQ", "tTf", "t3D", "tTDu", "tTDe", "tADu", "tADe", "tTE", "tAE"].forEach(function(n) {
+      d && (s.tnsApp && s.tnsApp !== y && ["tC", "tPL", "tMQ", "tTf", "t3D", "tTDu", "tTDe", "tADu", "tADe", "tTE", "tAE"].forEach(function(n) {
         s.removeItem(n);
-      }), localStorage.tnsApp = w);
+      }), localStorage.tnsApp = y);
     }
-    var _ = s.tC ? yn(s.tC) : _n(s, "tC", Xo(), d), K = s.tPL ? yn(s.tPL) : _n(s, "tPL", Bo(), d), rn = s.tMQ ? yn(s.tMQ) : _n(s, "tMQ", na(), d), Xn = s.tTf ? yn(s.tTf) : _n(s, "tTf", _e("transform"), d), Be = s.t3D ? yn(s.t3D) : _n(s, "t3D", aa(Xn), d), B = s.tTDu ? yn(s.tTDu) : _n(s, "tTDu", _e("transitionDuration"), d), nt = s.tTDe ? yn(s.tTDe) : _n(s, "tTDe", _e("transitionDelay"), d), et = s.tADu ? yn(s.tADu) : _n(s, "tADu", _e("animationDuration"), d), Ot = s.tADe ? yn(s.tADe) : _n(s, "tADe", _e("animationDelay"), d), Bn = s.tTE ? yn(s.tTE) : _n(s, "tTE", _i(B, "Transition"), d), Ei = s.tAE ? yn(s.tAE) : _n(s, "tAE", _i(et, "Animation"), d), Si = r.console && typeof r.console.warn == "function", Rt = ["container", "controlsContainer", "prevButton", "nextButton", "navContainer", "autoplayButton"], Ai = {};
-    if (Rt.forEach(function(n) {
+    var v = s.tC ? yn(s.tC) : _n(s, "tC", Xo(), d), K = s.tPL ? yn(s.tPL) : _n(s, "tPL", Bo(), d), rn = s.tMQ ? yn(s.tMQ) : _n(s, "tMQ", na(), d), Xn = s.tTf ? yn(s.tTf) : _n(s, "tTf", _e("transform"), d), Be = s.t3D ? yn(s.t3D) : _n(s, "t3D", aa(Xn), d), B = s.tTDu ? yn(s.tTDu) : _n(s, "tTDu", _e("transitionDuration"), d), nt = s.tTDe ? yn(s.tTDe) : _n(s, "tTDe", _e("transitionDelay"), d), et = s.tADu ? yn(s.tADu) : _n(s, "tADu", _e("animationDuration"), d), It = s.tADe ? yn(s.tADe) : _n(s, "tADe", _e("animationDelay"), d), Bn = s.tTE ? yn(s.tTE) : _n(s, "tTE", _i(B, "Transition"), d), Ei = s.tAE ? yn(s.tAE) : _n(s, "tAE", _i(et, "Animation"), d), Si = r.console && typeof r.console.warn == "function", Nt = ["container", "controlsContainer", "prevButton", "nextButton", "navContainer", "autoplayButton"], Ai = {};
+    if (Nt.forEach(function(n) {
       if (typeof e[n] == "string") {
         var t = e[n], o = i.querySelector(t);
         if (Ai[n] = t, o && o.nodeName)
@@ -2592,96 +2592,96 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       Si && console.warn("No slides found in", e.container);
       return;
     }
-    var j = e.responsive, ce = e.nested, p = e.mode === "carousel";
+    var j = e.responsive, ce = e.nested, f = e.mode === "carousel";
     if (j) {
       0 in j && (e = jt(e, j[0]), delete j[0]);
-      var qt = {};
+      var Rt = {};
       for (var Li in j) {
         var ke = j[Li];
-        ke = typeof ke == "number" ? { items: ke } : ke, qt[Li] = ke;
+        ke = typeof ke == "number" ? { items: ke } : ke, Rt[Li] = ke;
       }
-      j = qt, qt = null;
+      j = Rt, Rt = null;
     }
     function Mi(n) {
       for (var t in n)
-        p || (t === "slideBy" && (n[t] = "page"), t === "edgePadding" && (n[t] = !1), t === "autoHeight" && (n[t] = !1)), t === "responsive" && Mi(n[t]);
+        f || (t === "slideBy" && (n[t] = "page"), t === "edgePadding" && (n[t] = !1), t === "autoHeight" && (n[t] = !1)), t === "responsive" && Mi(n[t]);
     }
-    if (p || Mi(e), !p) {
+    if (f || Mi(e), !f) {
       e.axis = "horizontal", e.slideBy = "page", e.edgePadding = !1;
-      var Nn = e.animateIn, tt = e.animateOut, Nt = e.animateDelay, Sn = e.animateNormal;
+      var qn = e.animateIn, tt = e.animateOut, qt = e.animateDelay, Sn = e.animateNormal;
     }
-    var L = e.axis === "horizontal", tn = i.createElement("div"), on = i.createElement("div"), sn, m = e.container, $t = m.parentNode, zi = m.outerHTML, S = m.children, g = S.length, Te, it = Wi(), Ee = !1;
-    j && no(), p && (m.className += " tns-vpfix");
-    var x = e.autoWidth, u = b("fixedWidth"), O = b("edgePadding"), k = b("gutter"), W = Yi(), V = b("center"), y = x ? 1 : Math.floor(b("items")), de = b("slideBy"), Ft = e.viewportMax || e.fixedWidthViewportWidth, $n = b("arrowKeys"), bn = b("speed"), Se = e.rewind, Z = Se ? !1 : e.loop, ln = b("autoHeight"), An = b("controls"), Fn = b("controlsText"), Ln = b("nav"), Hn = b("touch"), Wn = b("mouseDrag"), nn = b("autoplay"), Ht = b("autoplayTimeout"), Pn = b("autoplayText"), Yn = b("autoplayHoverPause"), Gn = b("autoplayResetOnVisibility"), M = ea(null, b("nonce")), Ae = e.lazyload, da = e.lazyloadSelector, $, fe = [], Q = Z ? ha() : 0, A = p ? g + Q * 2 : g + Q, Di = !!((u || x) && !Z), pe = u ? ri() : null, Wt = !p || !Z, ne = L ? "left" : "top", Jn = "", ue = "", Le = /* @__PURE__ */ function() {
+    var L = e.axis === "horizontal", tn = i.createElement("div"), on = i.createElement("div"), sn, m = e.container, $t = m.parentNode, zi = m.outerHTML, S = m.children, g = S.length, Te, it = Pi(), Ee = !1;
+    j && no(), f && (m.className += " tns-vpfix");
+    var w = e.autoWidth, u = b("fixedWidth"), I = b("edgePadding"), k = b("gutter"), P = Yi(), V = b("center"), _ = w ? 1 : Math.floor(b("items")), de = b("slideBy"), Ft = e.viewportMax || e.fixedWidthViewportWidth, $n = b("arrowKeys"), bn = b("speed"), Se = e.rewind, Z = Se ? !1 : e.loop, ln = b("autoHeight"), An = b("controls"), Fn = b("controlsText"), Ln = b("nav"), Hn = b("touch"), Pn = b("mouseDrag"), nn = b("autoplay"), Ht = b("autoplayTimeout"), Wn = b("autoplayText"), Yn = b("autoplayHoverPause"), Gn = b("autoplayResetOnVisibility"), M = ea(null, b("nonce")), Ae = e.lazyload, da = e.lazyloadSelector, $, pe = [], Q = Z ? ha() : 0, A = f ? g + Q * 2 : g + Q, Di = !!((u || w) && !Z), fe = u ? ri() : null, Pt = !f || !Z, ne = L ? "left" : "top", Jn = "", ue = "", Le = /* @__PURE__ */ function() {
       return u ? function() {
-        return V && !Z ? g - 1 : Math.ceil(-pe / (u + k));
-      } : x ? function() {
+        return V && !Z ? g - 1 : Math.ceil(-fe / (u + k));
+      } : w ? function() {
         for (var n = 0; n < A; n++)
-          if ($[n] >= -pe)
+          if ($[n] >= -fe)
             return n;
       } : function() {
-        return V && p && !Z ? g - 1 : Z || p ? Math.max(0, A - Math.ceil(y)) : A - 1;
+        return V && f && !Z ? g - 1 : Z || f ? Math.max(0, A - Math.ceil(_)) : A - 1;
       };
     }(), c = Fi(b("startIndex")), Kn = c;
     $i();
-    var Mn = 0, hn = x ? null : Le(), ot = e.preventActionWhenRunning, at = e.swipeAngle, zn = at ? "?" : !0, Vn = !1, Pt = e.onInit, P = new sa(), Zn = " tns-slider tns-" + e.mode, I = m.id || Uo(), cn = b("disable"), Me = !1, rt = e.freezable, vn = rt && !x ? Bt() : !1, ze = !1, De = {
+    var Mn = 0, hn = w ? null : Le(), ot = e.preventActionWhenRunning, at = e.swipeAngle, zn = at ? "?" : !0, Vn = !1, Wt = e.onInit, W = new sa(), Zn = " tns-slider tns-" + e.mode, O = m.id || Uo(), cn = b("disable"), Me = !1, rt = e.freezable, vn = rt && !w ? Bt() : !1, ze = !1, De = {
       click: Qn,
-      keydown: Ra
+      keydown: Na
     }, Yt = {
       click: Ma,
-      keydown: qa
+      keydown: Ra
     }, Ce = {
       mouseover: ja,
-      mouseout: Ia
-    }, je = { visibilitychange: Ca }, Ie = { keydown: Oa }, Oe = {
+      mouseout: Oa
+    }, je = { visibilitychange: Ca }, Oe = { keydown: Ia }, Ie = {
       touchstart: ko,
       touchmove: To,
       touchend: zt,
       touchcancel: zt
-    }, Re = {
+    }, Ne = {
       mousedown: ko,
       mousemove: To,
       mouseup: zt,
       mouseleave: zt
-    }, st = jn("controls"), Gt = jn("nav"), qe = x ? !0 : e.navAsThumbnails, Jt = jn("autoplay"), Ci = jn("touch"), ji = jn("mouseDrag"), Kt = "tns-slide-active", Ii = "tns-slide-cloned", lt = "tns-complete", ct = {
+    }, st = jn("controls"), Gt = jn("nav"), Re = w ? !0 : e.navAsThumbnails, Jt = jn("autoplay"), Ci = jn("touch"), ji = jn("mouseDrag"), Kt = "tns-slide-active", Oi = "tns-slide-cloned", lt = "tns-complete", ct = {
       load: ya,
       error: _a
-    }, Vt, Zt, Ne = e.preventScrollOnTouch === "force";
+    }, Vt, Zt, qe = e.preventScrollOnTouch === "force";
     if (st)
-      var F = e.controlsContainer, Oi = e.controlsContainer ? e.controlsContainer.outerHTML : "", z = e.prevButton, D = e.nextButton, fa = e.prevButton ? e.prevButton.outerHTML : "", pa = e.nextButton ? e.nextButton.outerHTML : "", $e, Fe;
+      var F = e.controlsContainer, Ii = e.controlsContainer ? e.controlsContainer.outerHTML : "", z = e.prevButton, D = e.nextButton, pa = e.prevButton ? e.prevButton.outerHTML : "", fa = e.nextButton ? e.nextButton.outerHTML : "", $e, Fe;
     if (Gt)
-      var U = e.navContainer, Ri = e.navContainer ? e.navContainer.outerHTML : "", mn, xn = x ? g : So(), ee = 0, te = -1, gn = Hi(), he = gn, dt = "tns-nav-active", me = "Carousel Page ", Qt = " (Current Slide)";
+      var U = e.navContainer, Ni = e.navContainer ? e.navContainer.outerHTML : "", mn, xn = w ? g : So(), ee = 0, te = -1, gn = Hi(), he = gn, dt = "tns-nav-active", me = "Carousel Page ", Qt = " (Current Slide)";
     if (Jt)
-      var qi = e.autoplayDirection === "forward" ? 1 : -1, R = e.autoplayButton, Ni = e.autoplayButton ? e.autoplayButton.outerHTML : "", He = ["<span class='tns-visually-hidden'>", " animation</span>"], ft, dn, pt, ge, ut;
+      var Ri = e.autoplayDirection === "forward" ? 1 : -1, N = e.autoplayButton, qi = e.autoplayButton ? e.autoplayButton.outerHTML : "", He = ["<span class='tns-visually-hidden'>", " animation</span>"], pt, dn, ft, ge, ut;
     if (Ci || ji)
       var ie = {}, kn = {}, ht, oe = !1, wn, Ut = L ? function(n, t) {
         return n.x - t.x;
       } : function(n, t) {
         return n.y - t.y;
       };
-    x || mt(cn || vn), Xn && (ne = Xn, Jn = "translate", Be ? (Jn += L ? "3d(" : "3d(0px, ", ue = L ? ", 0px, 0px)" : ", 0px)") : (Jn += L ? "X(" : "Y(", ue = ")")), p && (m.className = m.className.replace("tns-vpfix", "")), ga(), ba(), Ki();
+    w || mt(cn || vn), Xn && (ne = Xn, Jn = "translate", Be ? (Jn += L ? "3d(" : "3d(0px, ", ue = L ? ", 0px, 0px)" : ", 0px)") : (Jn += L ? "X(" : "Y(", ue = ")")), f && (m.className = m.className.replace("tns-vpfix", "")), ga(), ba(), Ki();
     function mt(n) {
-      n && (An = Ln = Hn = Wn = $n = nn = Yn = Gn = !1);
+      n && (An = Ln = Hn = Pn = $n = nn = Yn = Gn = !1);
     }
     function $i() {
-      for (var n = p ? c - Q : c; n < 0; )
+      for (var n = f ? c - Q : c; n < 0; )
         n += g;
       return n % g + 1;
     }
     function Fi(n) {
-      return n = n ? Math.max(0, Math.min(Z ? g - 1 : g - y, n)) : 0, p ? n + Q : n;
+      return n = n ? Math.max(0, Math.min(Z ? g - 1 : g - _, n)) : 0, f ? n + Q : n;
     }
     function gt(n) {
-      for (n == null && (n = c), p && (n -= Q); n < 0; )
+      for (n == null && (n = c), f && (n -= Q); n < 0; )
         n += g;
       return Math.floor(n % g);
     }
     function Hi() {
       var n = gt(), t;
-      return t = qe ? n : u || x ? Math.ceil((n + 1) * xn / g - 1) : Math.floor(n / y), !Z && p && c === hn && (t = xn - 1), t;
+      return t = Re ? n : u || w ? Math.ceil((n + 1) * xn / g - 1) : Math.floor(n / _), !Z && f && c === hn && (t = xn - 1), t;
     }
     function ua() {
-      if (x || u && !Ft)
+      if (w || u && !Ft)
         return g - 1;
       var n = u ? "fixedWidth" : "items", t = [];
       if ((u || e[n] < g) && t.push(e[n]), j)
@@ -2692,24 +2692,24 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       return t.length || t.push(0), Math.ceil(u ? Ft / Math.min.apply(null, t) : Math.max.apply(null, t));
     }
     function ha() {
-      var n = ua(), t = p ? Math.ceil((n * 5 - g) / 2) : n * 4 - g;
+      var n = ua(), t = f ? Math.ceil((n * 5 - g) / 2) : n * 4 - g;
       return t = Math.max(n, t), jn("edgePadding") ? t + 1 : t;
     }
-    function Wi() {
+    function Pi() {
       return r.innerWidth || i.documentElement.clientWidth || i.body.clientWidth;
     }
     function Xt(n) {
       return n === "top" ? "afterbegin" : "beforeend";
     }
-    function Pi(n) {
+    function Wi(n) {
       if (n != null) {
         var t = i.createElement("div"), o, a;
-        return n.appendChild(t), o = t.getBoundingClientRect(), a = o.right - o.left, t.remove(), a || Pi(n.parentNode);
+        return n.appendChild(t), o = t.getBoundingClientRect(), a = o.right - o.left, t.remove(), a || Wi(n.parentNode);
       }
     }
     function Yi() {
-      var n = O ? O * 2 - k : 0;
-      return Pi($t) - n;
+      var n = I ? I * 2 - k : 0;
+      return Wi($t) - n;
     }
     function jn(n) {
       if (e[n])
@@ -2723,17 +2723,17 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     }
     function b(n, t) {
       if (t == null && (t = it), n === "items" && u)
-        return Math.floor((W + k) / (u + k)) || 1;
+        return Math.floor((P + k) / (u + k)) || 1;
       var o = e[n];
       if (j)
         for (var a in j)
           t >= parseInt(a) && n in j[a] && (o = j[a][n]);
-      return n === "slideBy" && o === "page" && (o = b("items")), !p && (n === "slideBy" || n === "items") && (o = Math.floor(o)), o;
+      return n === "slideBy" && o === "page" && (o = b("items")), !f && (n === "slideBy" || n === "items") && (o = Math.floor(o)), o;
     }
     function ma(n) {
-      return _ ? _ + "(" + n * 100 + "% / " + A + ")" : n * 100 / A + "%";
+      return v ? v + "(" + n * 100 + "% / " + A + ")" : n * 100 / A + "%";
     }
-    function bt(n, t, o, a, f) {
+    function bt(n, t, o, a, p) {
       var h = "";
       if (n !== void 0) {
         var T = n;
@@ -2742,19 +2742,19 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         var Y = "-" + t + "px", X = L ? Y + " 0 0" : "0 " + Y + " 0";
         h = "margin: 0 " + X + ";";
       }
-      return !p && f && B && a && (h += ae(a)), h;
+      return !f && p && B && a && (h += ae(a)), h;
     }
     function vt(n, t, o) {
-      return n ? (n + t) * A + "px" : _ ? _ + "(" + A * 100 + "% / " + o + ")" : A * 100 / o + "%";
+      return n ? (n + t) * A + "px" : v ? v + "(" + A * 100 + "% / " + o + ")" : A * 100 / o + "%";
     }
     function xt(n, t, o) {
       var a;
       if (n)
         a = n + t + "px";
       else {
-        p || (o = Math.floor(o));
-        var f = p ? A : o;
-        a = _ ? _ + "(100% / " + f + ")" : 100 / f + "%";
+        f || (o = Math.floor(o));
+        var p = f ? A : o;
+        a = v ? v + "(100% / " + p + ")" : 100 / p + "%";
       }
       return a = "width:" + a, ce !== "inner" ? a + ";" : a + " !important;";
     }
@@ -2778,44 +2778,44 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     }
     function ga() {
       var n = "tns-outer", t = "tns-inner";
-      if (jn("gutter"), tn.className = n, on.className = t, tn.id = I + "-ow", on.id = I + "-iw", m.id === "" && (m.id = I), Zn += K || x ? " tns-subpixel" : " tns-no-subpixel", Zn += _ ? " tns-calc" : " tns-no-calc", x && (Zn += " tns-autowidth"), Zn += " tns-" + e.axis, m.className += Zn, p ? (sn = i.createElement("div"), sn.id = I + "-mw", sn.className = "tns-ovh", tn.appendChild(sn), sn.appendChild(on)) : tn.appendChild(on), ln) {
+      if (jn("gutter"), tn.className = n, on.className = t, tn.id = O + "-ow", on.id = O + "-iw", m.id === "" && (m.id = O), Zn += K || w ? " tns-subpixel" : " tns-no-subpixel", Zn += v ? " tns-calc" : " tns-no-calc", w && (Zn += " tns-autowidth"), Zn += " tns-" + e.axis, m.className += Zn, f ? (sn = i.createElement("div"), sn.id = O + "-mw", sn.className = "tns-ovh", tn.appendChild(sn), sn.appendChild(on)) : tn.appendChild(on), ln) {
         var o = sn || on;
         o.className += " tns-ah";
       }
-      if ($t.insertBefore(tn, m), on.appendChild(m), Rn(S, function(H, ve) {
-        N(H, "tns-item"), H.id || (H.id = I + "-item" + ve), !p && Sn && N(H, Sn), fn(H, {
+      if ($t.insertBefore(tn, m), on.appendChild(m), Nn(S, function(H, ve) {
+        q(H, "tns-item"), H.id || (H.id = O + "-item" + ve), !f && Sn && q(H, Sn), pn(H, {
           "aria-hidden": "true",
           tabindex: "-1"
         });
       }), Q) {
-        for (var a = i.createDocumentFragment(), f = i.createDocumentFragment(), h = Q; h--; ) {
+        for (var a = i.createDocumentFragment(), p = i.createDocumentFragment(), h = Q; h--; ) {
           var T = h % g, Y = S[T].cloneNode(!0);
-          if (N(Y, Ii), qn(Y, "id"), f.insertBefore(Y, f.firstChild), p) {
+          if (q(Y, Oi), Rn(Y, "id"), p.insertBefore(Y, p.firstChild), f) {
             var X = S[g - 1 - T].cloneNode(!0);
-            N(X, Ii), qn(X, "id"), a.appendChild(X);
+            q(X, Oi), Rn(X, "id"), a.appendChild(X);
           }
         }
-        m.insertBefore(a, m.firstChild), m.appendChild(f), S = m.children;
+        m.insertBefore(a, m.firstChild), m.appendChild(p), S = m.children;
       }
     }
     function Ki() {
-      if (jn("autoHeight") || x || !L) {
+      if (jn("autoHeight") || w || !L) {
         var n = m.querySelectorAll("img");
-        Rn(n, function(t) {
+        Nn(n, function(t) {
           var o = t.src;
-          Ae || (o && o.indexOf("data:image") < 0 ? (t.src = "", q(t, ct), N(t, "loading"), t.src = o) : ro(t));
-        }), On(function() {
+          Ae || (o && o.indexOf("data:image") < 0 ? (t.src = "", R(t, ct), q(t, "loading"), t.src = o) : ro(t));
+        }), In(function() {
           kt(wi(n), function() {
             Vt = !0;
           });
-        }), jn("autoHeight") && (n = oi(c, Math.min(c + y - 1, A - 1))), Ae ? Vi() : On(function() {
+        }), jn("autoHeight") && (n = oi(c, Math.min(c + _ - 1, A - 1))), Ae ? Vi() : In(function() {
           kt(wi(n), Vi);
         });
       } else
-        p && Pe(), Qi(), Ui();
+        f && We(), Qi(), Ui();
     }
     function Vi() {
-      if (x && g > 1) {
+      if (w && g > 1) {
         var n = Z ? c : g - 1;
         (function t() {
           var o = S[n].getBoundingClientRect().left, a = S[n - 1].getBoundingClientRect().right;
@@ -2827,136 +2827,136 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         Zi();
     }
     function Zi() {
-      (!L || x) && (fo(), x ? (pe = ri(), rt && (vn = Bt()), hn = Le(), mt(cn || vn)) : ci()), p && Pe(), Qi(), Ui();
+      (!L || w) && (po(), w ? (fe = ri(), rt && (vn = Bt()), hn = Le(), mt(cn || vn)) : ci()), f && We(), Qi(), Ui();
     }
     function ba() {
-      if (!p)
-        for (var n = c, t = c + Math.min(g, y); n < t; n++) {
+      if (!f)
+        for (var n = c, t = c + Math.min(g, _); n < t; n++) {
           var o = S[n];
-          o.style.left = (n - c) * 100 / y + "%", N(o, Nn), an(o, Sn);
+          o.style.left = (n - c) * 100 / _ + "%", q(o, qn), an(o, Sn);
         }
-      if (L && (K || x ? (Cn(M, "#" + I + " > .tns-item", "font-size:" + r.getComputedStyle(S[0]).fontSize + ";", En(M)), Cn(M, "#" + I, "font-size:0;", En(M))) : p && Rn(S, function(ui, hi) {
+      if (L && (K || w ? (Cn(M, "#" + O + " > .tns-item", "font-size:" + r.getComputedStyle(S[0]).fontSize + ";", En(M)), Cn(M, "#" + O, "font-size:0;", En(M))) : f && Nn(S, function(ui, hi) {
         ui.style.marginLeft = ma(hi);
       })), rn) {
         if (B) {
           var a = sn && e.autoHeight ? ae(e.speed) : "";
-          Cn(M, "#" + I + "-mw", a, En(M));
+          Cn(M, "#" + O + "-mw", a, En(M));
         }
-        a = bt(e.edgePadding, e.gutter, e.fixedWidth, e.speed, e.autoHeight), Cn(M, "#" + I + "-iw", a, En(M)), p && (a = L && !x ? "width:" + vt(e.fixedWidth, e.gutter, e.items) + ";" : "", B && (a += ae(bn)), Cn(M, "#" + I, a, En(M))), a = L && !x ? xt(e.fixedWidth, e.gutter, e.items) : "", e.gutter && (a += wt(e.gutter)), p || (B && (a += ae(bn)), et && (a += Ji(bn))), a && Cn(M, "#" + I + " > .tns-item", a, En(M));
+        a = bt(e.edgePadding, e.gutter, e.fixedWidth, e.speed, e.autoHeight), Cn(M, "#" + O + "-iw", a, En(M)), f && (a = L && !w ? "width:" + vt(e.fixedWidth, e.gutter, e.items) + ";" : "", B && (a += ae(bn)), Cn(M, "#" + O, a, En(M))), a = L && !w ? xt(e.fixedWidth, e.gutter, e.items) : "", e.gutter && (a += wt(e.gutter)), f || (B && (a += ae(bn)), et && (a += Ji(bn))), a && Cn(M, "#" + O + " > .tns-item", a, En(M));
       } else {
-        Ta(), on.style.cssText = bt(O, k, u, ln), p && L && !x && (m.style.width = vt(u, k, y));
-        var a = L && !x ? xt(u, k, y) : "";
-        k && (a += wt(k)), a && Cn(M, "#" + I + " > .tns-item", a, En(M));
+        Ta(), on.style.cssText = bt(I, k, u, ln), f && L && !w && (m.style.width = vt(u, k, _));
+        var a = L && !w ? xt(u, k, _) : "";
+        k && (a += wt(k)), a && Cn(M, "#" + O + " > .tns-item", a, En(M));
       }
       if (j && rn)
-        for (var f in j) {
-          f = parseInt(f);
-          var h = j[f], a = "", T = "", Y = "", X = "", H = "", ve = x ? null : b("items", f), Je = b("fixedWidth", f), se = b("speed", f), fi = b("edgePadding", f), pi = b("autoHeight", f), xe = b("gutter", f);
-          B && sn && b("autoHeight", f) && "speed" in h && (T = "#" + I + "-mw{" + ae(se) + "}"), ("edgePadding" in h || "gutter" in h) && (Y = "#" + I + "-iw{" + bt(fi, xe, Je, se, pi) + "}"), p && L && !x && ("fixedWidth" in h || "items" in h || u && "gutter" in h) && (X = "width:" + vt(Je, xe, ve) + ";"), B && "speed" in h && (X += ae(se)), X && (X = "#" + I + "{" + X + "}"), ("fixedWidth" in h || u && "gutter" in h || !p && "items" in h) && (H += xt(Je, xe, ve)), "gutter" in h && (H += wt(xe)), !p && "speed" in h && (B && (H += ae(se)), et && (H += Ji(se))), H && (H = "#" + I + " > .tns-item{" + H + "}"), a = T + Y + X + H, a && M.insertRule("@media (min-width: " + f / 16 + "em) {" + a + "}", M.cssRules.length);
+        for (var p in j) {
+          p = parseInt(p);
+          var h = j[p], a = "", T = "", Y = "", X = "", H = "", ve = w ? null : b("items", p), Je = b("fixedWidth", p), se = b("speed", p), pi = b("edgePadding", p), fi = b("autoHeight", p), xe = b("gutter", p);
+          B && sn && b("autoHeight", p) && "speed" in h && (T = "#" + O + "-mw{" + ae(se) + "}"), ("edgePadding" in h || "gutter" in h) && (Y = "#" + O + "-iw{" + bt(pi, xe, Je, se, fi) + "}"), f && L && !w && ("fixedWidth" in h || "items" in h || u && "gutter" in h) && (X = "width:" + vt(Je, xe, ve) + ";"), B && "speed" in h && (X += ae(se)), X && (X = "#" + O + "{" + X + "}"), ("fixedWidth" in h || u && "gutter" in h || !f && "items" in h) && (H += xt(Je, xe, ve)), "gutter" in h && (H += wt(xe)), !f && "speed" in h && (B && (H += ae(se)), et && (H += Ji(se))), H && (H = "#" + O + " > .tns-item{" + H + "}"), a = T + Y + X + H, a && M.insertRule("@media (min-width: " + p / 16 + "em) {" + a + "}", M.cssRules.length);
         }
     }
     function Qi() {
       if (ai(), tn.insertAdjacentHTML("afterbegin", '<div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">' + ao() + "</span>  of " + g + "</div>"), Zt = tn.querySelector(".tns-liveregion .current"), Jt) {
         var n = nn ? "stop" : "start";
-        R ? fn(R, { "data-action": n }) : e.autoplayButtonOutput && (tn.insertAdjacentHTML(Xt(e.autoplayPosition), '<button type="button" data-action="' + n + '">' + He[0] + n + He[1] + Pn[0] + "</button>"), R = tn.querySelector("[data-action]")), R && q(R, { click: xo }), nn && (Mt(), Yn && q(m, Ce), Gn && q(m, je));
+        N ? pn(N, { "data-action": n }) : e.autoplayButtonOutput && (tn.insertAdjacentHTML(Xt(e.autoplayPosition), '<button type="button" data-action="' + n + '">' + He[0] + n + He[1] + Wn[0] + "</button>"), N = tn.querySelector("[data-action]")), N && R(N, { click: xo }), nn && (Mt(), Yn && R(m, Ce), Gn && R(m, je));
       }
       if (Gt) {
         if (U)
-          fn(U, { "aria-label": "Carousel Pagination" }), mn = U.children, Rn(mn, function(T, Y) {
-            fn(T, {
+          pn(U, { "aria-label": "Carousel Pagination" }), mn = U.children, Nn(mn, function(T, Y) {
+            pn(T, {
               "data-nav": Y,
               tabindex: "-1",
               "aria-label": me + (Y + 1),
-              "aria-controls": I
+              "aria-controls": O
             });
           });
         else {
-          for (var t = "", o = qe ? "" : 'style="display:none"', a = 0; a < g; a++)
-            t += '<button type="button" data-nav="' + a + '" tabindex="-1" aria-controls="' + I + '" ' + o + ' aria-label="' + me + (a + 1) + '"></button>';
+          for (var t = "", o = Re ? "" : 'style="display:none"', a = 0; a < g; a++)
+            t += '<button type="button" data-nav="' + a + '" tabindex="-1" aria-controls="' + O + '" ' + o + ' aria-label="' + me + (a + 1) + '"></button>';
           t = '<div class="tns-nav" aria-label="Carousel Pagination">' + t + "</div>", tn.insertAdjacentHTML(Xt(e.navPosition), t), U = tn.querySelector(".tns-nav"), mn = U.children;
         }
         if (di(), B) {
-          var f = B.substring(0, B.length - 18).toLowerCase(), h = "transition: all " + bn / 1e3 + "s";
-          f && (h = "-" + f + "-" + h), Cn(M, "[aria-controls^=" + I + "-item]", h, En(M));
+          var p = B.substring(0, B.length - 18).toLowerCase(), h = "transition: all " + bn / 1e3 + "s";
+          p && (h = "-" + p + "-" + h), Cn(M, "[aria-controls^=" + O + "-item]", h, En(M));
         }
-        fn(mn[gn], { "aria-label": me + (gn + 1) + Qt }), qn(mn[gn], "tabindex"), N(mn[gn], dt), q(U, Yt);
+        pn(mn[gn], { "aria-label": me + (gn + 1) + Qt }), Rn(mn[gn], "tabindex"), q(mn[gn], dt), R(U, Yt);
       }
-      st && (!F && (!z || !D) && (tn.insertAdjacentHTML(Xt(e.controlsPosition), '<div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button type="button" data-controls="prev" tabindex="-1" aria-controls="' + I + '">' + Fn[0] + '</button><button type="button" data-controls="next" tabindex="-1" aria-controls="' + I + '">' + Fn[1] + "</button></div>"), F = tn.querySelector(".tns-controls")), (!z || !D) && (z = F.children[0], D = F.children[1]), e.controlsContainer && fn(F, {
+      st && (!F && (!z || !D) && (tn.insertAdjacentHTML(Xt(e.controlsPosition), '<div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button type="button" data-controls="prev" tabindex="-1" aria-controls="' + O + '">' + Fn[0] + '</button><button type="button" data-controls="next" tabindex="-1" aria-controls="' + O + '">' + Fn[1] + "</button></div>"), F = tn.querySelector(".tns-controls")), (!z || !D) && (z = F.children[0], D = F.children[1]), e.controlsContainer && pn(F, {
         "aria-label": "Carousel Navigation",
         tabindex: "0"
-      }), (e.controlsContainer || e.prevButton && e.nextButton) && fn([z, D], {
-        "aria-controls": I,
+      }), (e.controlsContainer || e.prevButton && e.nextButton) && pn([z, D], {
+        "aria-controls": O,
         tabindex: "-1"
-      }), (e.controlsContainer || e.prevButton && e.nextButton) && (fn(z, { "data-controls": "prev" }), fn(D, { "data-controls": "next" })), $e = uo(z), Fe = uo(D), mo(), F ? q(F, De) : (q(z, De), q(D, De))), ei();
+      }), (e.controlsContainer || e.prevButton && e.nextButton) && (pn(z, { "data-controls": "prev" }), pn(D, { "data-controls": "next" })), $e = uo(z), Fe = uo(D), mo(), F ? R(F, De) : (R(z, De), R(D, De))), ei();
     }
     function Ui() {
-      if (p && Bn) {
+      if (f && Bn) {
         var n = {};
-        n[Bn] = Dn, q(m, n);
+        n[Bn] = Dn, R(m, n);
       }
-      Hn && q(m, Oe, e.preventScrollOnTouch), Wn && q(m, Re), $n && q(i, Ie), ce === "inner" ? P.on("outerResized", function() {
-        Bi(), P.emit("innerLoaded", en());
-      }) : (j || u || x || ln || !L) && q(r, { resize: Xi }), ln && (ce === "outer" ? P.on("innerLoaded", _t) : cn || _t()), ti(), cn ? io() : vn && to(), P.on("indexChanged", so), ce === "inner" && P.emit("innerLoaded", en()), typeof Pt == "function" && Pt(en()), Ee = !0;
+      Hn && R(m, Ie, e.preventScrollOnTouch), Pn && R(m, Ne), $n && R(i, Oe), ce === "inner" ? W.on("outerResized", function() {
+        Bi(), W.emit("innerLoaded", en());
+      }) : (j || u || w || ln || !L) && R(r, { resize: Xi }), ln && (ce === "outer" ? W.on("innerLoaded", _t) : cn || _t()), ti(), cn ? io() : vn && to(), W.on("indexChanged", so), ce === "inner" && W.emit("innerLoaded", en()), typeof Wt == "function" && Wt(en()), Ee = !0;
     }
     function va() {
-      if (M.disabled = !0, M.ownerNode && M.ownerNode.remove(), J(r, { resize: Xi }), $n && J(i, Ie), F && J(F, De), U && J(U, Yt), J(m, Ce), J(m, je), R && J(R, { click: xo }), nn && clearInterval(ft), p && Bn) {
+      if (M.disabled = !0, M.ownerNode && M.ownerNode.remove(), J(r, { resize: Xi }), $n && J(i, Oe), F && J(F, De), U && J(U, Yt), J(m, Ce), J(m, je), N && J(N, { click: xo }), nn && clearInterval(pt), f && Bn) {
         var n = {};
         n[Bn] = Dn, J(m, n);
       }
-      Hn && J(m, Oe), Wn && J(m, Re);
-      var t = [zi, Oi, fa, pa, Ri, Ni];
-      Rt.forEach(function(a, f) {
+      Hn && J(m, Ie), Pn && J(m, Ne);
+      var t = [zi, Ii, pa, fa, Ni, qi];
+      Nt.forEach(function(a, p) {
         var h = a === "container" ? tn : e[a];
         if (typeof h == "object" && h) {
           var T = h.previousElementSibling ? h.previousElementSibling : !1, Y = h.parentNode;
-          h.outerHTML = t[f], e[a] = T ? T.nextElementSibling : Y.firstElementChild;
+          h.outerHTML = t[p], e[a] = T ? T.nextElementSibling : Y.firstElementChild;
         }
-      }), Rt = Nn = tt = Nt = Sn = L = tn = on = m = $t = zi = S = g = Te = it = x = u = O = k = W = y = de = Ft = $n = bn = Se = Z = ln = M = Ae = $ = fe = Q = A = Di = pe = Wt = ne = Jn = ue = Le = c = Kn = Mn = hn = at = zn = Vn = Pt = P = Zn = I = cn = Me = rt = vn = ze = De = Yt = Ce = je = Ie = Oe = Re = st = Gt = qe = Jt = Ci = ji = Kt = lt = ct = Vt = An = Fn = F = Oi = z = D = $e = Fe = Ln = U = Ri = mn = xn = ee = te = gn = he = dt = me = Qt = nn = Ht = qi = Pn = Yn = R = Ni = Gn = He = ft = dn = pt = ge = ut = ie = kn = ht = oe = wn = Ut = Hn = Wn = null;
+      }), Nt = qn = tt = qt = Sn = L = tn = on = m = $t = zi = S = g = Te = it = w = u = I = k = P = _ = de = Ft = $n = bn = Se = Z = ln = M = Ae = $ = pe = Q = A = Di = fe = Pt = ne = Jn = ue = Le = c = Kn = Mn = hn = at = zn = Vn = Wt = W = Zn = O = cn = Me = rt = vn = ze = De = Yt = Ce = je = Oe = Ie = Ne = st = Gt = Re = Jt = Ci = ji = Kt = lt = ct = Vt = An = Fn = F = Ii = z = D = $e = Fe = Ln = U = Ni = mn = xn = ee = te = gn = he = dt = me = Qt = nn = Ht = Ri = Wn = Yn = N = qi = Gn = He = pt = dn = ft = ge = ut = ie = kn = ht = oe = wn = Ut = Hn = Pn = null;
       for (var o in this)
         o !== "rebuild" && (this[o] = null);
       Ee = !1;
     }
     function Xi(n) {
-      On(function() {
-        Bi(In(n));
+      In(function() {
+        Bi(On(n));
       });
     }
     function Bi(n) {
       if (Ee) {
-        ce === "outer" && P.emit("outerResized", en(n)), it = Wi();
+        ce === "outer" && W.emit("outerResized", en(n)), it = Pi();
         var t, o = Te, a = !1;
-        j && (no(), t = o !== Te, t && P.emit("newBreakpointStart", en(n)));
-        var f, h, T = y, Y = cn, X = vn, H = $n, ve = An, Je = Ln, se = Hn, fi = Wn, pi = nn, xe = Yn, ui = Gn, hi = c;
+        j && (no(), t = o !== Te, t && W.emit("newBreakpointStart", en(n)));
+        var p, h, T = _, Y = cn, X = vn, H = $n, ve = An, Je = Ln, se = Hn, pi = Pn, fi = nn, xe = Yn, ui = Gn, hi = c;
         if (t) {
-          var Na = u, $a = ln, Fa = Fn, Ha = V, mi = Pn;
+          var qa = u, $a = ln, Fa = Fn, Ha = V, mi = Wn;
           if (!rn)
-            var Wa = k, Pa = O;
+            var Pa = k, Wa = I;
         }
-        if ($n = b("arrowKeys"), An = b("controls"), Ln = b("nav"), Hn = b("touch"), V = b("center"), Wn = b("mouseDrag"), nn = b("autoplay"), Yn = b("autoplayHoverPause"), Gn = b("autoplayResetOnVisibility"), t && (cn = b("disable"), u = b("fixedWidth"), bn = b("speed"), ln = b("autoHeight"), Fn = b("controlsText"), Pn = b("autoplayText"), Ht = b("autoplayTimeout"), rn || (O = b("edgePadding"), k = b("gutter"))), mt(cn), W = Yi(), (!L || x) && !cn && (fo(), L || (ci(), a = !0)), (u || x) && (pe = ri(), hn = Le()), (t || u) && (y = b("items"), de = b("slideBy"), h = y !== T, h && (!u && !x && (hn = Le()), ni())), t && cn !== Y && (cn ? io() : wa()), rt && (t || u || x) && (vn = Bt(), vn !== X && (vn ? (si(St(Fi(0))), to()) : (xa(), a = !0))), mt(cn || vn), nn || (Yn = Gn = !1), $n !== H && ($n ? q(i, Ie) : J(i, Ie)), An !== ve && (An ? F ? un(F) : (z && un(z), D && un(D)) : F ? pn(F) : (z && pn(z), D && pn(D))), Ln !== Je && (Ln ? (un(U), di()) : pn(U)), Hn !== se && (Hn ? q(m, Oe, e.preventScrollOnTouch) : J(m, Oe)), Wn !== fi && (Wn ? q(m, Re) : J(m, Re)), nn !== pi && (nn ? (R && un(R), !dn && !ge && Mt()) : (R && pn(R), dn && Ge())), Yn !== xe && (Yn ? q(m, Ce) : J(m, Ce)), Gn !== ui && (Gn ? q(i, je) : J(i, je)), t) {
-          if ((u !== Na || V !== Ha) && (a = !0), ln !== $a && (ln || (on.style.height = "")), An && Fn !== Fa && (z.innerHTML = Fn[0], D.innerHTML = Fn[1]), R && Pn !== mi) {
-            var gi = nn ? 1 : 0, bi = R.innerHTML, Ao = bi.length - mi[gi].length;
-            bi.substring(Ao) === mi[gi] && (R.innerHTML = bi.substring(0, Ao) + Pn[gi]);
+        if ($n = b("arrowKeys"), An = b("controls"), Ln = b("nav"), Hn = b("touch"), V = b("center"), Pn = b("mouseDrag"), nn = b("autoplay"), Yn = b("autoplayHoverPause"), Gn = b("autoplayResetOnVisibility"), t && (cn = b("disable"), u = b("fixedWidth"), bn = b("speed"), ln = b("autoHeight"), Fn = b("controlsText"), Wn = b("autoplayText"), Ht = b("autoplayTimeout"), rn || (I = b("edgePadding"), k = b("gutter"))), mt(cn), P = Yi(), (!L || w) && !cn && (po(), L || (ci(), a = !0)), (u || w) && (fe = ri(), hn = Le()), (t || u) && (_ = b("items"), de = b("slideBy"), h = _ !== T, h && (!u && !w && (hn = Le()), ni())), t && cn !== Y && (cn ? io() : wa()), rt && (t || u || w) && (vn = Bt(), vn !== X && (vn ? (si(St(Fi(0))), to()) : (xa(), a = !0))), mt(cn || vn), nn || (Yn = Gn = !1), $n !== H && ($n ? R(i, Oe) : J(i, Oe)), An !== ve && (An ? F ? un(F) : (z && un(z), D && un(D)) : F ? fn(F) : (z && fn(z), D && fn(D))), Ln !== Je && (Ln ? (un(U), di()) : fn(U)), Hn !== se && (Hn ? R(m, Ie, e.preventScrollOnTouch) : J(m, Ie)), Pn !== pi && (Pn ? R(m, Ne) : J(m, Ne)), nn !== fi && (nn ? (N && un(N), !dn && !ge && Mt()) : (N && fn(N), dn && Ge())), Yn !== xe && (Yn ? R(m, Ce) : J(m, Ce)), Gn !== ui && (Gn ? R(i, je) : J(i, je)), t) {
+          if ((u !== qa || V !== Ha) && (a = !0), ln !== $a && (ln || (on.style.height = "")), An && Fn !== Fa && (z.innerHTML = Fn[0], D.innerHTML = Fn[1]), N && Wn !== mi) {
+            var gi = nn ? 1 : 0, bi = N.innerHTML, Ao = bi.length - mi[gi].length;
+            bi.substring(Ao) === mi[gi] && (N.innerHTML = bi.substring(0, Ao) + Wn[gi]);
           }
         } else
-          V && (u || x) && (a = !0);
-        if ((h || u && !x) && (xn = So(), di()), f = c !== hi, f ? (P.emit("indexChanged", en()), a = !0) : h ? f || so() : (u || x) && (ti(), ai(), oo()), h && !p && Ea(), !cn && !vn) {
-          if (t && !rn && ((O !== Pa || k !== Wa) && (on.style.cssText = bt(O, k, u, bn, ln)), L)) {
-            p && (m.style.width = vt(u, k, y));
-            var Ya = xt(u, k, y) + wt(k);
-            ta(M, En(M) - 1), Cn(M, "#" + I + " > .tns-item", Ya, En(M));
+          V && (u || w) && (a = !0);
+        if ((h || u && !w) && (xn = So(), di()), p = c !== hi, p ? (W.emit("indexChanged", en()), a = !0) : h ? p || so() : (u || w) && (ti(), ai(), oo()), h && !f && Ea(), !cn && !vn) {
+          if (t && !rn && ((I !== Wa || k !== Pa) && (on.style.cssText = bt(I, k, u, bn, ln)), L)) {
+            f && (m.style.width = vt(u, k, _));
+            var Ya = xt(u, k, _) + wt(k);
+            ta(M, En(M) - 1), Cn(M, "#" + O + " > .tns-item", Ya, En(M));
           }
-          ln && _t(), a && (Pe(), Kn = c);
+          ln && _t(), a && (We(), Kn = c);
         }
-        t && P.emit("newBreakpointEnd", en(n));
+        t && W.emit("newBreakpointEnd", en(n));
       }
     }
     function Bt() {
-      if (!u && !x) {
-        var n = V ? y - (y - 1) / 2 : y;
+      if (!u && !w) {
+        var n = V ? _ - (_ - 1) / 2 : _;
         return g <= n;
       }
-      var t = u ? (u + k) * g : $[g], o = O ? W + O * 2 : W + k;
-      return V && (o -= u ? (W - u) / 2 : (W - ($[c + 1] - $[c] - k)) / 2), t <= o;
+      var t = u ? (u + k) * g : $[g], o = I ? P + I * 2 : P + k;
+      return V && (o -= u ? (P - u) / 2 : (P - ($[c + 1] - $[c] - k)) / 2), t <= o;
     }
     function no() {
       Te = 0;
@@ -2964,11 +2964,11 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         n = parseInt(n), it >= n && (Te = n);
     }
     var ni = /* @__PURE__ */ function() {
-      return Z ? p ? (
+      return Z ? f ? (
         // loop + carousel
         function() {
           var n = Mn, t = hn;
-          n += de, t -= de, O ? (n += 1, t -= 1) : u && (W + k) % (u + k) && (t -= 1), Q && (c > t ? c -= g : c < n && (c += g));
+          n += de, t -= de, I ? (n += 1, t -= 1) : u && (P + k) % (u + k) && (t -= 1), Q && (c > t ? c -= g : c < n && (c += g));
         }
       ) : (
         // loop + gallery
@@ -2988,49 +2988,49 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       );
     }();
     function ei() {
-      !nn && R && pn(R), !Ln && U && pn(U), An || (F ? pn(F) : (z && pn(z), D && pn(D)));
+      !nn && N && fn(N), !Ln && U && fn(U), An || (F ? fn(F) : (z && fn(z), D && fn(D)));
     }
     function eo() {
-      nn && R && un(R), Ln && U && un(U), An && (F ? un(F) : (z && un(z), D && un(D)));
+      nn && N && un(N), Ln && U && un(U), An && (F ? un(F) : (z && un(z), D && un(D)));
     }
     function to() {
       if (!ze) {
-        if (O && (on.style.margin = "0px"), Q)
+        if (I && (on.style.margin = "0px"), Q)
           for (var n = "tns-transparent", t = Q; t--; )
-            p && N(S[t], n), N(S[A - t - 1], n);
+            f && q(S[t], n), q(S[A - t - 1], n);
         ei(), ze = !0;
       }
     }
     function xa() {
       if (ze) {
-        if (O && rn && (on.style.margin = ""), Q)
+        if (I && rn && (on.style.margin = ""), Q)
           for (var n = "tns-transparent", t = Q; t--; )
-            p && an(S[t], n), an(S[A - t - 1], n);
+            f && an(S[t], n), an(S[A - t - 1], n);
         eo(), ze = !1;
       }
     }
     function io() {
       if (!Me) {
-        if (M.disabled = !0, m.className = m.className.replace(Zn.substring(1), ""), qn(m, ["style"]), Z)
+        if (M.disabled = !0, m.className = m.className.replace(Zn.substring(1), ""), Rn(m, ["style"]), Z)
           for (var n = Q; n--; )
-            p && pn(S[n]), pn(S[A - n - 1]);
-        if ((!L || !p) && qn(on, ["style"]), !p)
+            f && fn(S[n]), fn(S[A - n - 1]);
+        if ((!L || !f) && Rn(on, ["style"]), !f)
           for (var t = c, o = c + g; t < o; t++) {
             var a = S[t];
-            qn(a, ["style"]), an(a, Nn), an(a, Sn);
+            Rn(a, ["style"]), an(a, qn), an(a, Sn);
           }
         ei(), Me = !0;
       }
     }
     function wa() {
       if (Me) {
-        if (M.disabled = !1, m.className += Zn, Pe(), Z)
+        if (M.disabled = !1, m.className += Zn, We(), Z)
           for (var n = Q; n--; )
-            p && un(S[n]), un(S[A - n - 1]);
-        if (!p)
+            f && un(S[n]), un(S[A - n - 1]);
+        if (!f)
           for (var t = c, o = c + g; t < o; t++) {
-            var a = S[t], f = t < c + y ? Nn : Sn;
-            a.style.left = (t - c) * 100 / y + "%", N(a, f);
+            var a = S[t], p = t < c + _ ? qn : Sn;
+            a.style.left = (t - c) * 100 / _ + "%", q(a, p);
           }
         eo(), Me = !1;
       }
@@ -3045,24 +3045,24 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     }
     function yt(n) {
       n == null && (n = St());
-      var t = c, o, a, f;
-      if (V || O ? (x || u) && (a = -(parseFloat(n) + O), f = a + W + O * 2) : x && (a = $[c], f = a + W), x)
+      var t = c, o, a, p;
+      if (V || I ? (w || u) && (a = -(parseFloat(n) + I), p = a + P + I * 2) : w && (a = $[c], p = a + P), w)
         $.forEach(function(X, H) {
-          H < A && ((V || O) && X <= a + 0.5 && (t = H), f - X >= 0.5 && (o = H));
+          H < A && ((V || I) && X <= a + 0.5 && (t = H), p - X >= 0.5 && (o = H));
         });
       else {
         if (u) {
           var h = u + k;
-          V || O ? (t = Math.floor(a / h), o = Math.ceil(f / h - 1)) : o = t + Math.ceil(W / h) - 1;
-        } else if (V || O) {
-          var T = y - 1;
-          if (V ? (t -= T / 2, o = c + T / 2) : o = c + T, O) {
-            var Y = O * y / W;
+          V || I ? (t = Math.floor(a / h), o = Math.ceil(p / h - 1)) : o = t + Math.ceil(P / h) - 1;
+        } else if (V || I) {
+          var T = _ - 1;
+          if (V ? (t -= T / 2, o = c + T / 2) : o = c + T, I) {
+            var Y = I * _ / P;
             t -= Y, o += Y;
           }
           t = Math.floor(t), o = Math.ceil(o);
         } else
-          o = t + y - 1;
+          o = t + _ - 1;
         t = Math.max(t, 0), o = Math.min(o, A - 1);
       }
       return [t, o];
@@ -3073,11 +3073,11 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         n.push(da), oi.apply(null, n).forEach(function(t) {
           if (!le(t, lt)) {
             var o = {};
-            o[Bn] = function(f) {
-              f.stopPropagation();
-            }, q(t, o), q(t, ct), t.src = Ue(t, "data-src");
+            o[Bn] = function(p) {
+              p.stopPropagation();
+            }, R(t, o), R(t, ct), t.src = Ue(t, "data-src");
             var a = Ue(t, "data-srcset");
-            a && (t.srcset = a), N(t, "loading");
+            a && (t.srcset = a), q(t, "loading");
           }
         });
       }
@@ -3089,25 +3089,25 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       ka(be(n));
     }
     function ro(n) {
-      N(n, "loaded"), ii(n);
+      q(n, "loaded"), ii(n);
     }
     function ka(n) {
-      N(n, "failed"), ii(n);
+      q(n, "failed"), ii(n);
     }
     function ii(n) {
-      N(n, lt), an(n, "loading"), J(n, ct);
+      q(n, lt), an(n, "loading"), J(n, ct);
     }
     function oi(n, t, o) {
       var a = [];
       for (o || (o = "img"); n <= t; )
-        Rn(S[n].querySelectorAll(o), function(f) {
-          a.push(f);
+        Nn(S[n].querySelectorAll(o), function(p) {
+          a.push(p);
         }), n++;
       return a;
     }
     function _t() {
       var n = oi.apply(null, yt());
-      On(function() {
+      In(function() {
         kt(n, co);
       });
     }
@@ -3116,7 +3116,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         !Ae && o.complete && ii(o), le(o, lt) && n.splice(a, 1);
       }), !n.length))
         return t();
-      On(function() {
+      In(function() {
         kt(n, t);
       });
     }
@@ -3124,40 +3124,40 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       ti(), ai(), oo(), mo(), Sa();
     }
     function Ta() {
-      p && ln && (sn.style[B] = bn / 1e3 + "s");
+      f && ln && (sn.style[B] = bn / 1e3 + "s");
     }
     function lo(n, t) {
-      for (var o = [], a = n, f = Math.min(n + t, A); a < f; a++)
+      for (var o = [], a = n, p = Math.min(n + t, A); a < p; a++)
         o.push(S[a].offsetHeight);
       return Math.max.apply(null, o);
     }
     function co() {
-      var n = ln ? lo(c, y) : lo(Q, g), t = sn || on;
+      var n = ln ? lo(c, _) : lo(Q, g), t = sn || on;
       t.style.height !== n && (t.style.height = n + "px");
     }
-    function fo() {
+    function po() {
       $ = [0];
       var n = L ? "left" : "top", t = L ? "right" : "bottom", o = S[0].getBoundingClientRect()[n];
-      Rn(S, function(a, f) {
-        f && $.push(a.getBoundingClientRect()[n] - o), f === A - 1 && $.push(a.getBoundingClientRect()[t] - o);
+      Nn(S, function(a, p) {
+        p && $.push(a.getBoundingClientRect()[n] - o), p === A - 1 && $.push(a.getBoundingClientRect()[t] - o);
       });
     }
     function ai() {
       var n = yt(), t = n[0], o = n[1];
-      Rn(S, function(a, f) {
-        f >= t && f <= o ? ye(a, "aria-hidden") && (qn(a, ["aria-hidden", "tabindex"]), N(a, Kt)) : ye(a, "aria-hidden") || (fn(a, {
+      Nn(S, function(a, p) {
+        p >= t && p <= o ? ye(a, "aria-hidden") && (Rn(a, ["aria-hidden", "tabindex"]), q(a, Kt)) : ye(a, "aria-hidden") || (pn(a, {
           "aria-hidden": "true",
           tabindex: "-1"
         }), an(a, Kt));
       });
     }
     function Ea() {
-      for (var n = c + Math.min(g, y), t = A; t--; ) {
+      for (var n = c + Math.min(g, _), t = A; t--; ) {
         var o = S[t];
-        t >= c && t < n ? (N(o, "tns-moving"), o.style.left = (t - c) * 100 / y + "%", N(o, Nn), an(o, Sn)) : o.style.left && (o.style.left = "", N(o, Sn), an(o, Nn)), an(o, tt);
+        t >= c && t < n ? (q(o, "tns-moving"), o.style.left = (t - c) * 100 / _ + "%", q(o, qn), an(o, Sn)) : o.style.left && (o.style.left = "", q(o, Sn), an(o, qn)), an(o, tt);
       }
       setTimeout(function() {
-        Rn(S, function(a) {
+        Nn(S, function(a) {
           an(a, "tns-moving");
         });
       }, 300);
@@ -3165,17 +3165,17 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     function Sa() {
       if (Ln && (gn = te >= 0 ? te : Hi(), te = -1, gn !== he)) {
         var n = mn[he], t = mn[gn];
-        fn(n, {
+        pn(n, {
           tabindex: "-1",
           "aria-label": me + (he + 1)
-        }), an(n, dt), fn(t, { "aria-label": me + (gn + 1) + Qt }), qn(t, "tabindex"), N(t, dt), he = gn;
+        }), an(n, dt), pn(t, { "aria-label": me + (gn + 1) + Qt }), Rn(t, "tabindex"), q(t, dt), he = gn;
       }
     }
-    function po(n) {
+    function fo(n) {
       return n.nodeName.toLowerCase();
     }
     function uo(n) {
-      return po(n) === "button";
+      return fo(n) === "button";
     }
     function ho(n) {
       return n.getAttribute("aria-disabled") === "true";
@@ -3195,71 +3195,71 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     function Aa() {
       return u ? (u + k) * A : $[A];
     }
-    function We(n) {
+    function Pe(n) {
       n == null && (n = c);
-      var t = O ? k : 0;
-      return x ? (W - t - ($[n + 1] - $[n] - k)) / 2 : u ? (W - u) / 2 : (y - 1) / 2;
+      var t = I ? k : 0;
+      return w ? (P - t - ($[n + 1] - $[n] - k)) / 2 : u ? (P - u) / 2 : (_ - 1) / 2;
     }
     function ri() {
-      var n = O ? k : 0, t = W + n - Aa();
-      return V && !Z && (t = u ? -(u + k) * (A - 1) - We() : We(A - 1) - $[A - 1]), t > 0 && (t = 0), t;
+      var n = I ? k : 0, t = P + n - Aa();
+      return V && !Z && (t = u ? -(u + k) * (A - 1) - Pe() : Pe(A - 1) - $[A - 1]), t > 0 && (t = 0), t;
     }
     function St(n) {
       n == null && (n = c);
       var t;
-      if (L && !x)
+      if (L && !w)
         if (u)
-          t = -(u + k) * n, V && (t += We());
+          t = -(u + k) * n, V && (t += Pe());
         else {
-          var o = Xn ? A : y;
-          V && (n -= We()), t = -n * 100 / o;
+          var o = Xn ? A : _;
+          V && (n -= Pe()), t = -n * 100 / o;
         }
       else
-        t = -$[n], V && x && (t += We());
-      return Di && (t = Math.max(t, pe)), t += L && !x && !u ? "%" : "px", t;
+        t = -$[n], V && w && (t += Pe());
+      return Di && (t = Math.max(t, fe)), t += L && !w && !u ? "%" : "px", t;
     }
-    function Pe(n) {
+    function We(n) {
       Et(m, "0s"), si(n);
     }
     function si(n) {
       n == null && (n = St()), m.style[ne] = Jn + n + ue;
     }
     function go(n, t, o, a) {
-      var f = n + y;
-      Z || (f = Math.min(f, A));
-      for (var h = n; h < f; h++) {
+      var p = n + _;
+      Z || (p = Math.min(p, A));
+      for (var h = n; h < p; h++) {
         var T = S[h];
-        a || (T.style.left = (h - c) * 100 / y + "%"), Nt && nt && (T.style[nt] = T.style[Ot] = Nt * (h - n) / 1e3 + "s"), an(T, t), N(T, o), a && fe.push(T);
+        a || (T.style.left = (h - c) * 100 / _ + "%"), qt && nt && (T.style[nt] = T.style[It] = qt * (h - n) / 1e3 + "s"), an(T, t), q(T, o), a && pe.push(T);
       }
     }
     var La = /* @__PURE__ */ function() {
-      return p ? function() {
+      return f ? function() {
         Et(m, ""), B || !bn ? (si(), (!bn || !yi(m)) && Dn()) : la(m, ne, Jn, ue, St(), bn, Dn), L || ci();
       } : function() {
-        fe = [];
+        pe = [];
         var n = {};
-        n[Bn] = n[Ei] = Dn, J(S[Kn], n), q(S[c], n), go(Kn, Nn, tt, !0), go(c, Sn, Nn), (!Bn || !Ei || !bn || !yi(m)) && Dn();
+        n[Bn] = n[Ei] = Dn, J(S[Kn], n), R(S[c], n), go(Kn, qn, tt, !0), go(c, Sn, qn), (!Bn || !Ei || !bn || !yi(m)) && Dn();
       };
     }();
     function li(n, t) {
-      Wt && ni(), (c !== Kn || t) && (P.emit("indexChanged", en()), P.emit("transitionStart", en()), ln && _t(), dn && n && ["click", "keydown"].indexOf(n.type) >= 0 && Ge(), Vn = !0, La());
+      Pt && ni(), (c !== Kn || t) && (W.emit("indexChanged", en()), W.emit("transitionStart", en()), ln && _t(), dn && n && ["click", "keydown"].indexOf(n.type) >= 0 && Ge(), Vn = !0, La());
     }
     function bo(n) {
       return n.toLowerCase().replace(/-/g, "");
     }
     function Dn(n) {
-      if (p || Vn) {
-        if (P.emit("transitionEnd", en(n)), !p && fe.length > 0)
-          for (var t = 0; t < fe.length; t++) {
-            var o = fe[t];
-            o.style.left = "", Ot && nt && (o.style[Ot] = "", o.style[nt] = ""), an(o, tt), N(o, Sn);
+      if (f || Vn) {
+        if (W.emit("transitionEnd", en(n)), !f && pe.length > 0)
+          for (var t = 0; t < pe.length; t++) {
+            var o = pe[t];
+            o.style.left = "", It && nt && (o.style[It] = "", o.style[nt] = ""), an(o, tt), q(o, Sn);
           }
-        if (!n || !p && n.target.parentNode === m || n.target === m && bo(n.propertyName) === bo(ne)) {
-          if (!Wt) {
+        if (!n || !f && n.target.parentNode === m || n.target === m && bo(n.propertyName) === bo(ne)) {
+          if (!Pt) {
             var a = c;
-            ni(), c !== a && (P.emit("indexChanged", en()), Pe());
+            ni(), c !== a && (W.emit("indexChanged", en()), We());
           }
-          ce === "inner" && P.emit("innerLoaded", en()), Vn = !1, Kn = c;
+          ce === "inner" && W.emit("innerLoaded", en()), Vn = !1, Kn = c;
         }
       }
     }
@@ -3276,11 +3276,11 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
             Dn();
           }
           var o = gt(), a = 0;
-          if (n === "first" ? a = -o : n === "last" ? a = p ? g - y - o : g - 1 - o : (typeof n != "number" && (n = parseInt(n)), isNaN(n) || (t || (n = Math.max(0, Math.min(g - 1, n))), a = n - o)), !p && a && Math.abs(a) < y) {
-            var f = a > 0 ? 1 : -1;
-            a += c + a - g >= Mn ? g * f : g * 2 * f * -1;
+          if (n === "first" ? a = -o : n === "last" ? a = f ? g - _ - o : g - 1 - o : (typeof n != "number" && (n = parseInt(n)), isNaN(n) || (t || (n = Math.max(0, Math.min(g - 1, n))), a = n - o)), !f && a && Math.abs(a) < _) {
+            var p = a > 0 ? 1 : -1;
+            a += c + a - g >= Mn ? g * p : g * 2 * p * -1;
           }
-          c += a, p && Z && (c < Mn && (c += g), c > hn && (c -= g)), gt(c) !== gt(Kn) && li(t);
+          c += a, f && Z && (c < Mn && (c += g), c > hn && (c -= g)), gt(c) !== gt(Kn) && li(t);
         }
     }
     function Qn(n, t) {
@@ -3291,11 +3291,11 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       }
       var o;
       if (!t) {
-        n = In(n);
+        n = On(n);
         for (var a = be(n); a !== F && [z, D].indexOf(a) < 0; )
           a = a.parentNode;
-        var f = [z, D].indexOf(a);
-        f >= 0 && (o = !0, t = f === 0 ? -1 : 1);
+        var p = [z, D].indexOf(a);
+        p >= 0 && (o = !0, t = p === 0 ? -1 : 1);
       }
       if (Se) {
         if (c === Mn && t === -1) {
@@ -3306,7 +3306,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
           return;
         }
       }
-      t && (c += de * t, x && (c = Math.floor(c)), li(o || n && n.type === "keydown" ? n : null));
+      t && (c += de * t, w && (c = Math.floor(c)), li(o || n && n.type === "keydown" ? n : null));
     }
     function Ma(n) {
       if (Vn) {
@@ -3314,30 +3314,30 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
           return;
         Dn();
       }
-      n = In(n);
+      n = On(n);
       for (var t = be(n), o; t !== U && !ye(t, "data-nav"); )
         t = t.parentNode;
       if (ye(t, "data-nav")) {
-        var o = te = Number(Ue(t, "data-nav")), a = u || x ? o * g / xn : o * y, f = qe ? o : Math.min(Math.ceil(a), g - 1);
-        Ye(f, n), gn === o && (dn && Ge(), te = -1);
+        var o = te = Number(Ue(t, "data-nav")), a = u || w ? o * g / xn : o * _, p = Re ? o : Math.min(Math.ceil(a), g - 1);
+        Ye(p, n), gn === o && (dn && Ge(), te = -1);
       }
     }
     function At() {
-      ft = setInterval(function() {
-        Qn(null, qi);
+      pt = setInterval(function() {
+        Qn(null, Ri);
       }, Ht), dn = !0;
     }
     function Lt() {
-      clearInterval(ft), dn = !1;
+      clearInterval(pt), dn = !1;
     }
     function vo(n, t) {
-      fn(R, { "data-action": n }), R.innerHTML = He[0] + n + He[1] + t;
+      pn(N, { "data-action": n }), N.innerHTML = He[0] + n + He[1] + t;
     }
     function Mt() {
-      At(), R && vo("stop", Pn[1]);
+      At(), N && vo("stop", Wn[1]);
     }
     function Ge() {
-      Lt(), R && vo("start", Pn[0]);
+      Lt(), N && vo("start", Wn[0]);
     }
     function za() {
       nn && !dn && (Mt(), ge = !1);
@@ -3352,33 +3352,33 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       i.hidden ? dn && (Lt(), ut = !0) : ut && (At(), ut = !1);
     }
     function ja() {
-      dn && (Lt(), pt = !0);
+      dn && (Lt(), ft = !0);
     }
-    function Ia() {
-      pt && (At(), pt = !1);
+    function Oa() {
+      ft && (At(), ft = !1);
     }
-    function Oa(n) {
-      n = In(n);
+    function Ia(n) {
+      n = On(n);
       var t = [l.LEFT, l.RIGHT].indexOf(n.keyCode);
       t >= 0 && Qn(n, t === 0 ? -1 : 1);
     }
-    function Ra(n) {
-      n = In(n);
+    function Na(n) {
+      n = On(n);
       var t = [l.LEFT, l.RIGHT].indexOf(n.keyCode);
       t >= 0 && (t === 0 ? z.disabled || Qn(n, -1) : D.disabled || Qn(n, 1));
     }
     function wo(n) {
       n.focus();
     }
-    function qa(n) {
-      n = In(n);
+    function Ra(n) {
+      n = On(n);
       var t = i.activeElement;
       if (ye(t, "data-nav")) {
         var o = [l.LEFT, l.RIGHT, l.ENTER, l.SPACE].indexOf(n.keyCode), a = Number(Ue(t, "data-nav"));
         o >= 0 && (o === 0 ? a > 0 && wo(mn[a - 1]) : o === 1 ? a < xn - 1 && wo(mn[a + 1]) : (te = a, Ye(a, n)));
       }
     }
-    function In(n) {
+    function On(n) {
       return n = n || r.event, re(n) ? n.changedTouches[0] : n;
     }
     function be(n) {
@@ -3400,15 +3400,15 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         Dn();
       }
       nn && dn && Lt(), oe = !0, wn && (Ct(wn), wn = null);
-      var t = In(n);
-      P.emit(re(n) ? "touchStart" : "dragStart", en(n)), !re(n) && ["img", "a"].indexOf(po(be(n))) >= 0 && yo(n), kn.x = ie.x = t.clientX, kn.y = ie.y = t.clientY, p && (ht = parseFloat(m.style[ne].replace(Jn, "")), Et(m, "0s"));
+      var t = On(n);
+      W.emit(re(n) ? "touchStart" : "dragStart", en(n)), !re(n) && ["img", "a"].indexOf(fo(be(n))) >= 0 && yo(n), kn.x = ie.x = t.clientX, kn.y = ie.y = t.clientY, f && (ht = parseFloat(m.style[ne].replace(Jn, "")), Et(m, "0s"));
     }
     function To(n) {
       if (oe) {
-        var t = In(n);
-        kn.x = t.clientX, kn.y = t.clientY, p ? wn || (wn = On(function() {
+        var t = On(n);
+        kn.x = t.clientX, kn.y = t.clientY, f ? wn || (wn = In(function() {
           Eo(n);
-        })) : (zn === "?" && (zn = _o()), zn && (Ne = !0)), (typeof n.cancelable != "boolean" || n.cancelable) && Ne && n.preventDefault();
+        })) : (zn === "?" && (zn = _o()), zn && (qe = !0)), (typeof n.cancelable != "boolean" || n.cancelable) && qe && n.preventDefault();
       }
     }
     function Eo(n) {
@@ -3416,19 +3416,19 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         oe = !1;
         return;
       }
-      if (Ct(wn), oe && (wn = On(function() {
+      if (Ct(wn), oe && (wn = In(function() {
         Eo(n);
       })), zn === "?" && (zn = _o()), zn) {
-        !Ne && re(n) && (Ne = !0);
+        !qe && re(n) && (qe = !0);
         try {
-          n.type && P.emit(re(n) ? "touchMove" : "dragMove", en(n));
+          n.type && W.emit(re(n) ? "touchMove" : "dragMove", en(n));
         } catch {
         }
         var t = ht, o = Ut(kn, ie);
-        if (!L || u || x)
+        if (!L || u || w)
           t += o, t += "px";
         else {
-          var a = Xn ? o * y * 100 / ((W + k) * A) : o * 100 / (W + k);
+          var a = Xn ? o * _ * 100 / ((P + k) * A) : o * 100 / (P + k);
           t += a, t += "%";
         }
         m.style[ne] = Jn + t + ue;
@@ -3436,21 +3436,21 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     }
     function zt(n) {
       if (oe) {
-        wn && (Ct(wn), wn = null), p && Et(m, ""), oe = !1;
-        var t = In(n);
+        wn && (Ct(wn), wn = null), f && Et(m, ""), oe = !1;
+        var t = On(n);
         kn.x = t.clientX, kn.y = t.clientY;
         var o = Ut(kn, ie);
         if (Math.abs(o)) {
           if (!re(n)) {
             var a = be(n);
-            q(a, { click: function f(h) {
-              yo(h), J(a, { click: f });
+            R(a, { click: function p(h) {
+              yo(h), J(a, { click: p });
             } });
           }
-          p ? wn = On(function() {
-            if (L && !x) {
-              var f = -o * y / (W + k);
-              f = o > 0 ? Math.floor(f) : Math.ceil(f), c += f;
+          f ? wn = In(function() {
+            if (L && !w) {
+              var p = -o * _ / (P + k);
+              p = o > 0 ? Math.floor(p) : Math.ceil(p), c += p;
             } else {
               var h = -(ht + o);
               if (h <= 0)
@@ -3461,24 +3461,24 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
                 for (var T = 0; T < A && h >= $[T]; )
                   c = T, h > $[T] && o < 0 && (c += 1), T++;
             }
-            li(n, o), P.emit(re(n) ? "touchEnd" : "dragEnd", en(n));
+            li(n, o), W.emit(re(n) ? "touchEnd" : "dragEnd", en(n));
           }) : zn && Qn(n, o > 0 ? -1 : 1);
         }
       }
-      e.preventScrollOnTouch === "auto" && (Ne = !1), at && (zn = "?"), nn && !dn && At();
+      e.preventScrollOnTouch === "auto" && (qe = !1), at && (zn = "?"), nn && !dn && At();
     }
     function ci() {
       var n = sn || on;
-      n.style.height = $[c + y] - $[c] + "px";
+      n.style.height = $[c + _] - $[c] + "px";
     }
     function So() {
-      var n = u ? (u + k) * g / W : g / y;
+      var n = u ? (u + k) * g / P : g / _;
       return Math.min(Math.ceil(n), g);
     }
     function di() {
-      if (!(!Ln || qe) && xn !== ee) {
+      if (!(!Ln || Re) && xn !== ee) {
         var n = ee, t = xn, o = un;
-        for (ee > xn && (n = xn, t = ee, o = pn); n < t; )
+        for (ee > xn && (n = xn, t = ee, o = fn); n < t; )
           o(mn[n]), n++;
         ee = xn;
       }
@@ -3493,7 +3493,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         hasControls: st,
         prevButton: z,
         nextButton: D,
-        items: y,
+        items: _,
         slideBy: de,
         cloneCount: Q,
         slideCount: g,
@@ -3513,7 +3513,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     return {
       version: "2.9.4",
       getInfo: en,
-      events: P,
+      events: W,
       goTo: Ye,
       play: za,
       pause: Da,
@@ -3546,14 +3546,45 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     addBlocks() {
       C(".containerWrapper").elements[0].insertAdjacentHTML("afterend", '<div class="crs_landing"></div>');
       const i = C(".crs_landing").elements[0];
-      i.insertAdjacentHTML("afterbegin", $o), i.insertAdjacentHTML("beforeend", Fo), i.insertAdjacentHTML("beforeend", Ho), i.insertAdjacentHTML("beforeend", Wo), i.insertAdjacentHTML("beforeend", Po), i.insertAdjacentHTML("beforeend", Yo), i.insertAdjacentHTML("beforeend", Go), i.insertAdjacentHTML("beforeend", Jo), i.insertAdjacentHTML("beforeend", Ko), i.insertAdjacentHTML("beforeend", Vo), i.insertAdjacentHTML("beforeend", Zo), i.insertAdjacentHTML("beforeend", Qo);
+      i.insertAdjacentHTML("afterbegin", $o), i.insertAdjacentHTML("beforeend", Fo), i.insertAdjacentHTML("beforeend", Ho), i.insertAdjacentHTML("beforeend", Po), i.insertAdjacentHTML("beforeend", Wo), i.insertAdjacentHTML("beforeend", Yo), i.insertAdjacentHTML("beforeend", Go), i.insertAdjacentHTML("beforeend", Jo), i.insertAdjacentHTML("beforeend", Ko), i.insertAdjacentHTML("beforeend", Vo), i.insertAdjacentHTML("beforeend", Zo), i.insertAdjacentHTML("beforeend", Qo);
     }
     setActions() {
-      C("form").on("submit", function(s) {
+      C("form").on("submit", async function(s) {
         s.preventDefault();
-        const d = this.querySelector('input[name="name"]').value, w = this.querySelector('input[name="email"]').value;
-        let v = !0;
-        (!d || d.trim() === "") && (this.querySelector('input[name="name"]').closest("label").classList.add("error"), v = !1), (!w || w.trim() === "" || !w.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) && (this.querySelector('input[name="email"]').closest("label").classList.add("error"), v = !1), v && (this.closest("#main_block") ? G("exp_optin_fs_button", "Grab Your FREE Seat Now", "click", "First screen form") : G("exp_optin_popup_cta_button", "Grab Your FREE Seat Now", "click", "Popup after click on CTA"), window.location.href = "https://event.webinarjam.com/register/1click/75/n7l3oh11?first_name=" + d + "&email=" + w.replace("@", "%40") + "&schedule_id=1");
+        const d = this.querySelector('input[name="name"]').value, y = this.querySelector('input[name="email"]').value;
+        let x = !0;
+        (!d || d.trim() === "") && (this.querySelector('input[name="name"]').closest("label").classList.add("error"), x = !1), (!y || y.trim() === "" || !y.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) && (this.querySelector('input[name="email"]').closest("label").classList.add("error"), x = !1), x && (this.closest("#main_block") ? G("exp_optin_fs_button", "Grab Your FREE Seat Now", "click", "First screen form") : G("exp_optin_popup_cta_button", "Grab Your FREE Seat Now", "click", "Popup after click on CTA"), window.innerWidth <= 768 ? (await fetch("https://conversionrate.top/api/dropservicing/get-schedules", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            webinarId: 75
+          })
+        }).then((v) => v.json()).then((v) => v.schedule_id), window.location.href = "https://event.webinarjam.com/register/1click/75/n7l3oh11?first_name=" + d + "&email=" + y.replace("@", "%40") + "&schedule_id=1") : (await fetch("https://conversionrate.top/api/dropservicing/get-schedules", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            webinarId: 74
+          })
+        }).then((v) => v.json()).then((v) => v.schedule_id), fetch("https://conversionrate.top/api/dropservicing/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          },
+          body: JSON.stringify({
+            api_key: "8f4aff29-94fa-4197-a1a2-4a3c03ede2e0",
+            webinarId: 74,
+            name: d,
+            email: y,
+            schedule: 275
+          })
+        }).then((v) => v.json()).then((v) => {
+          window.location.href = v.user.thank_you_url;
+        })));
       }), C("form input").on("input", function() {
         this.closest("label").classList.remove("error");
       }), C('input[name="name"]').on("change", function() {
@@ -3572,8 +3603,8 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       }), C(".crs_popup_form .close").on("click", function() {
         C(".crs_popup_form").elements[0].classList.remove("active");
       }), C("#base_review .slide").on("click", function() {
-        const s = this.querySelector(".slide>p").textContent, d = this.getAttribute("data-video"), w = C(`.video_slide[data-video="${d}"] .video`).elements[0].cloneNode(!0);
-        C(".crs_video_popup .video").elements[0].appendChild(w), C(".crs_video_popup").elements[0].classList.add("active"), G("exp_optin_why_join_review", `Open review. ${s}`, "click", "Why Join This Webinar"), C(".crs_video_popup .wistia_embed").on("click", function() {
+        const s = this.querySelector(".slide>p").textContent, d = this.getAttribute("data-video"), y = C(`.video_slide[data-video="${d}"] .video`).elements[0].cloneNode(!0);
+        C(".crs_video_popup .video").elements[0].appendChild(y), C(".crs_video_popup").elements[0].classList.add("active"), G("exp_optin_why_join_review", `Open review. ${s}`, "click", "Why Join This Webinar"), C(".crs_video_popup .wistia_embed").on("click", function() {
           G("exp_optin_popup_review_video", `Play video ${s}`, "click", "Popup after review");
         });
       }), C(".crs_video_popup .crs_close").on("click", function() {
@@ -3624,13 +3655,13 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       setTimeout(() => {
         i.getInfo().navItems && i.getInfo().navItems[1].classList.add("tns-nav-near");
       }, 500), i.events.on("indexChanged", function(s) {
-        var w, v;
+        var y, x;
         const d = s.navItems;
-        Array.from(d).forEach((_) => _.classList.remove("tns-nav-near")), (w = d[s.index - 1]) == null || w.classList.add("tns-nav-near"), (v = d[s.index + 1]) == null || v.classList.add("tns-nav-near");
+        Array.from(d).forEach((v) => v.classList.remove("tns-nav-near")), (y = d[s.index - 1]) == null || y.classList.add("tns-nav-near"), (x = d[s.index + 1]) == null || x.classList.add("tns-nav-near");
       }), r.getInfo().slideItems[0].classList.add("tns-current"), r.getInfo().navItems[1].classList.add("tns-nav-near"), r.events.on("indexChanged", function(s) {
-        var _, K;
-        const d = s.slideItems, w = s.navItems;
-        Array.from(w).forEach((rn) => rn.classList.remove("tns-nav-near")), Array.from(d).forEach((rn) => rn.classList.remove("tns-current")), (_ = w[s.index - 1]) == null || _.classList.add("tns-nav-near"), (K = w[s.index + 1]) == null || K.classList.add("tns-nav-near"), d[s.index].classList.add("tns-current");
+        var v, K;
+        const d = s.slideItems, y = s.navItems;
+        Array.from(y).forEach((rn) => rn.classList.remove("tns-nav-near")), Array.from(d).forEach((rn) => rn.classList.remove("tns-current")), (v = y[s.index - 1]) == null || v.classList.add("tns-nav-near"), (K = y[s.index + 1]) == null || K.classList.add("tns-nav-near"), d[s.index].classList.add("tns-current");
       }), Xe({
         container: "#trust_pilot ul",
         items: 3,
