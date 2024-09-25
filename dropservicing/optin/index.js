@@ -1,6 +1,12 @@
 (function() {
   "use strict";
-  const Eo = `.mobile {
+  const Lo = `*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.mobile {
   display: none;
 }
 @media (max-width: 768px) {
@@ -37,6 +43,11 @@ h2 {
   justify-content: center;
   gap: 10px;
   margin-top: 53px;
+}
+@media (max-width: 768px) {
+  .tns-nav {
+    margin-top: 20px;
+  }
 }
 .tns-nav button {
   height: 10px;
@@ -81,6 +92,10 @@ h2 {
 .tns-controls button:first-of-type {
   transform: rotate(180deg);
 }
+.tns-controls button:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
 
 section {
   margin: 110px 0;
@@ -119,36 +134,42 @@ section {
 #main_block {
   width: 100%;
   background: radial-gradient(39.95% 80.28% at 50% 50%, #080210 40%, #1e032e 100%);
-  padding: 0 100px 80px;
+  padding: 0 0 80px;
   margin-top: 0;
 }
 @media (max-width: 768px) {
   #main_block {
-    padding: 40px 16px;
+    padding: 20px 0 40px;
   }
 }
 #main_block .wrapper {
   margin: 0 auto;
-  width: 100%;
-  max-width: 1400px;
+  width: calc(100% - 32px);
+  max-width: 1280px;
 }
 #main_block header {
-  padding: 36px 0;
+  padding: 16px 0;
 }
 @media (max-width: 768px) {
   #main_block header {
-    padding: 0 0 32px;
+    padding: 0 0 22px;
   }
+}
+#main_block header img {
+  height: 50px;
+  width: auto;
 }
 #main_block .flex {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 60px;
+  margin-top: 36px;
 }
 @media (max-width: 768px) {
   #main_block .flex {
     gap: 0;
+    margin-top: 0;
   }
 }
 #main_block .flex > div:first-of-type {
@@ -175,8 +196,8 @@ section {
   gap: 8px;
   color: #fff;
   font-size: 16px;
-  line-height: 25px;
-  align-items: center;
+  line-height: 1;
+  align-items: flex-end;
 }
 #main_block .tp_label > img {
   width: auto;
@@ -185,14 +206,14 @@ section {
 #main_block .tp_label p {
   margin: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
 }
 #main_block .tp_label b {
   color: #00b67a;
 }
 #main_block .tp_label span:last-of-type {
   font-size: 12px;
-  line-height: 15px;
+  line-height: 1;
   width: -moz-max-content;
   width: max-content;
 }
@@ -242,11 +263,12 @@ section {
   line-height: 28px;
   color: #fff;
   font-weight: 700;
-  margin-bottom: 42px;
+  margin-bottom: 30px;
 }
 @media (max-width: 768px) {
   #main_block .youll_list > p {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
+    font-size: 18px;
   }
 }
 #main_block .youll_list ul {
@@ -264,6 +286,8 @@ section {
 #main_block .youll_list ul li img {
   width: 17px;
   height: 17px;
+  position: relative;
+  top: 4px;
 }
 #main_block .youll_list ul li p {
   margin: 0;
@@ -317,9 +341,12 @@ section {
   border-radius: 3px;
   border: 1px solid #ccc;
   background: #fff;
-  padding: 13px;
+  padding: 18px 13px;
   margin-bottom: 20px;
   position: relative;
+}
+#main_block .form form label.error {
+  border-color: red;
 }
 #main_block .form form label input {
   width: calc(100% - 46px);
@@ -361,7 +388,7 @@ section {
   background-size: contain;
 }
 #main_block .form form .cta {
-  margin-top: 32px;
+  margin-top: 12px;
 }
 #main_block .form .bonus {
   padding: 54px 40px;
@@ -422,6 +449,7 @@ section {
 }
 @media (max-width: 768px) {
   #base_review h2 + p {
+    font-size: 16px;
     text-align: left;
     margin-bottom: 32px;
     padding: 0 16px;
@@ -435,6 +463,8 @@ section {
   border-radius: 3px;
   background: #f5effd;
   cursor: pointer;
+  position: relative;
+  margin-bottom: 25px;
 }
 #base_review ul .slide:not(:last-of-type) {
   margin-right: 30px;
@@ -443,6 +473,7 @@ section {
   display: flex;
   gap: 14px;
   margin-bottom: 24px;
+  align-items: center;
 }
 #base_review ul .slide > div .img {
   height: 49px;
@@ -461,19 +492,33 @@ section {
   line-height: 24px;
   color: #262626;
   font-weight: 700;
+  margin: 0;
 }
 #base_review ul .slide > div p b {
   display: block;
   margin-bottom: 4px;
 }
 #base_review ul .slide > div p img {
-  height: 20px;
-  width: auto;
+  margin: 3px 0;
+  height: 14px;
+  width: 88px;
 }
 #base_review ul .slide > p {
   font-size: 18px;
   color: #31364e;
   line-height: 26px;
+}
+#base_review ul .slide::after {
+  content: "";
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  width: 25px;
+  height: 28px;
+  background: #f5effd;
+  border-radius: 3px;
+  -webkit-clip-path: polygon(0 0, 100% 0, 0 100%);
+          clip-path: polygon(0 0, 100% 0, 0 100%);
 }
 #base_review .tns-controls {
   position: absolute;
@@ -512,7 +557,7 @@ section {
   }
 }
 #bonus_block .crs_container > div {
-  padding: 40px 60px;
+  padding: 60px;
 }
 @media (max-width: 768px) {
   #bonus_block .crs_container > div {
@@ -522,6 +567,11 @@ section {
 #bonus_block .crs_container > div h2 {
   color: #fff;
   margin-bottom: 12px;
+}
+@media (max-width: 768px) {
+  #bonus_block .crs_container > div h2 {
+    margin-bottom: 24px;
+  }
 }
 #bonus_block .crs_container > div p {
   color: #fff;
@@ -592,6 +642,11 @@ section {
   color: #161718;
   margin-bottom: 24px;
 }
+@media (max-width: 768px) {
+  #host_block.crs_container .info h2 + p {
+    font-size: 18px;
+  }
+}
 #host_block.crs_container .info ul {
   padding: 0;
   margin-bottom: 24px;
@@ -637,7 +692,13 @@ section {
   font-size: 14px;
   line-height: 22px;
   color: #161718;
-  margin-bottom: 40px;
+  margin: 0 auto 40px;
+  max-width: 1000px;
+}
+@media (max-width: 768px) {
+  #video_block .crs_container > p {
+    margin-bottom: 24px;
+  }
 }
 #video_block .video_slide {
   width: 100%;
@@ -663,17 +724,29 @@ section {
     padding: 16px;
   }
 }
-#video_block .video_slide .head > img {
+#video_block .video_slide .head p {
+  margin: 0;
+}
+#video_block .video_slide .head > .img {
   width: 49px;
   height: 49px;
   margin-right: 14px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+#video_block .video_slide .head > .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 @media (max-width: 768px) {
-  #video_block .video_slide .head > img {
+  #video_block .video_slide .head > .img {
     display: none;
   }
 }
-#video_block .video_slide .head > img + p {
+#video_block .video_slide .head > .img + p {
   font-size: 14px;
   line-height: 24px;
   color: #262626;
@@ -681,26 +754,30 @@ section {
   margin-bottom: 4px;
 }
 @media (max-width: 768px) {
-  #video_block .video_slide .head > img + p {
+  #video_block .video_slide .head > .img + p {
     width: 100%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
   }
 }
-#video_block .video_slide .head > img + p img {
-  height: 21px;
-  width: auto;
+#video_block .video_slide .head > .img + p img {
+  height: 14px;
+  width: 88px;
+  margin: 3px 0;
 }
 #video_block .video_slide .head p:last-of-type {
   font-size: 18px;
   color: #31364e;
   line-height: 26px;
   margin-left: 80px;
+  padding-right: 100px;
 }
 @media (max-width: 768px) {
   #video_block .video_slide .head p:last-of-type {
     margin-left: 0;
+    padding-right: 0;
+    font-size: 14px;
   }
 }
 #video_block .video_slide .video {
@@ -857,26 +934,34 @@ section {
 #trust_pilot h2 {
   margin-bottom: 9px;
   color: #fff;
+  display: flex;
+  align-items: flex-end;
+  line-height: 1;
 }
 #trust_pilot h2 b {
   color: #00b67a;
 }
 #trust_pilot h2 span {
-  font-size: 24px;
-  line-height: 28px;
+  font-size: 19px;
+  line-height: 1;
   font-weight: 300;
   color: #efecfb;
 }
 #trust_pilot h2 + p {
-  font-size: 16px;
-  line-height: 25px;
+  font-size: 24px;
+  line-height: 28px;
   color: #efecfb;
-  margin-bottom: 60px;
+  margin-bottom: 76px;
+  font-weight: 300;
 }
 @media (max-width: 768px) {
   #trust_pilot h2 + p {
     margin-bottom: 30px;
   }
+}
+#trust_pilot h2 img {
+  height: 38px;
+  width: 38px;
 }
 #trust_pilot ul {
   padding-left: 0;
@@ -910,6 +995,7 @@ section {
   font-weight: 700;
   text-decoration: none;
   margin-bottom: 8px;
+  display: block;
 }
 #trust_pilot .review_slide .text {
   font-size: 16px;
@@ -954,6 +1040,9 @@ section {
   #trust_pilot .points .crs_container {
     justify-content: space-around;
     row-gap: 34px;
+    -moz-column-gap: 15px;
+         column-gap: 15px;
+    padding: 40px 0;
   }
 }
 #trust_pilot .points .crs_container p {
@@ -1020,6 +1109,11 @@ section {
   font-weight: 500;
   line-height: 28px;
   color: #101828;
+}
+@media (max-width: 768px) {
+  #faq_block li .question {
+    font-size: 16px;
+  }
 }
 #faq_block li .question span {
   display: flex;
@@ -1098,6 +1192,11 @@ section {
   margin: 12px 0 0;
   font-size: 16px;
   line-height: 26px;
+}
+@media (max-width: 768px) {
+  #last_cta p {
+    font-size: 14px;
+  }
 }
 #last_cta p:last-of-type {
   font-weight: 700;
@@ -1193,8 +1292,8 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
 }
 .crs_popup_form .form .close::before {
   content: "";
-  width: 20px;
-  height: 2px;
+  width: 14px;
+  height: 1px;
   background: #000;
   position: absolute;
   top: 50%;
@@ -1203,8 +1302,8 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
 }
 .crs_popup_form .form .close::after {
   content: "";
-  width: 20px;
-  height: 2px;
+  width: 14px;
+  height: 1px;
   background: #000;
   position: absolute;
   top: 50%;
@@ -1212,7 +1311,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 .crs_popup_form form {
-  padding: 56px 40px;
+  padding: 46px 40px;
   display: flex;
   flex-direction: column;
   background: #fff;
@@ -1258,6 +1357,11 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   font-weight: 600;
   margin-bottom: 32px;
 }
+@media (max-width: 768px) {
+  .crs_popup_form form .icons {
+    margin-bottom: 24px;
+  }
+}
 .crs_popup_form form .icons span {
   display: flex;
   align-items: center;
@@ -1271,9 +1375,12 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   border-radius: 3px;
   border: 1px solid #ccc;
   background: #fff;
-  padding: 13px;
+  padding: 18px 13px;
   margin-bottom: 20px;
   position: relative;
+}
+.crs_popup_form form label.error {
+  border-color: red;
 }
 .crs_popup_form form label input {
   width: calc(100% - 46px);
@@ -1317,8 +1424,13 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
 .crs_popup_form form .cta {
   margin-top: 12px;
 }
+@media (max-width: 768px) {
+  .crs_popup_form form .cta {
+    margin-top: 4px;
+  }
+}
 .crs_popup_form .bonus {
-  padding: 54px 40px;
+  padding: 40px;
   background: #f2ebfc;
 }
 @media (max-width: 768px) {
@@ -1382,6 +1494,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   background: #fff;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 @media (max-width: 768px) {
   .crs_video_popup .banner {
@@ -1418,6 +1531,10 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
 .crs_video_popup .banner > div p:last-of-type img:last-of-type {
   width: 14px;
   height: 14px;
+}
+.crs_video_popup .banner .cta {
+  width: 100%;
+  max-width: 470px;
 }
 .crs_video_popup .video {
   display: flex;
@@ -1472,30 +1589,38 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   height: 20px;
   border-radius: 4px;
   background: #fff;
-}/*# sourceMappingURL=style.css.map */`, So = (e, i) => {
+}/*# sourceMappingURL=style.css.map */`, G = (e, i, r, l = "") => {
+    window.dataLayer = window.dataLayer || [], window.dataLayer.push({
+      event: "event-to-ga4",
+      event_name: e,
+      event_desc: i,
+      event_type: r,
+      event_loc: l
+    }), Un(`Event: ${e} | ${i} | ${r} | ${l}`, "success");
+  }, Mo = (e, i) => {
     const r = setInterval(() => {
       const l = document.querySelector(e);
       l && (clearInterval(r), i(l));
     }, 100);
-  }, Ao = ({ name: e, dev: i }) => {
+  }, zo = ({ name: e, dev: i }) => {
     console.log(
       `%c EXP: ${e} (DEV: ${i})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   };
-  class Mo {
+  class Do {
     constructor(i) {
       this.elements = typeof i == "string" ? document.querySelectorAll(i) : i instanceof Element ? [i] : i;
     }
     on(i, r, l) {
       return typeof r == "function" && (l = r, r = ""), this.elements.forEach(function(s) {
-        s.addEventListener(i, function(f) {
-          var S;
+        s.addEventListener(i, function(d) {
+          var x;
           if (r) {
-            let x = (S = f.target) == null ? void 0 : S.closest(r);
-            s.contains(x) && (l == null || l.call(x, f));
+            let w = (x = d.target) == null ? void 0 : x.closest(r);
+            s.contains(w) && (l == null || l.call(w, d));
           } else
-            l == null || l.call(s, f);
+            l == null || l.call(s, d);
         });
       }), this;
     }
@@ -1520,93 +1645,133 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       }), this;
     }
     style(i, r) {
-      const l = i.split("-").map((s, f) => f === 0 ? s : s.charAt(0).toUpperCase() + s.slice(1)).join("");
+      const l = i.split("-").map((s, d) => d === 0 ? s : s.charAt(0).toUpperCase() + s.slice(1)).join("");
       return this.elements.forEach(function(s) {
         s.style[l] = r;
       }), this;
     }
   }
-  const G = (e) => new Mo(e), Lo = async (e) => {
+  const C = (e) => new Do(e), Co = async (e) => {
     const i = (r) => new Promise((l, s) => {
-      const f = r.split(".").pop();
-      if (f === "js") {
-        if (Array.from(document.scripts).map((L) => L.src.toLowerCase()).includes(r.toLowerCase()))
-          return console.log(`Script ${r} allready downloaded!`), l("");
-        const x = document.createElement("script");
-        x.src = r, x.onload = l, x.onerror = s, document.head.appendChild(x);
-      } else if (f === "css") {
-        if (Array.from(document.styleSheets).map((L) => {
+      const d = r.split(".").pop();
+      if (d === "js") {
+        if (Array.from(document.scripts).map((_) => _.src.toLowerCase()).includes(r.toLowerCase()))
+          return Un(`Script ${r} allready downloaded!`, "success"), l("");
+        const w = document.createElement("script");
+        w.src = r, w.onload = l, w.onerror = s, document.head.appendChild(w);
+      } else if (d === "css") {
+        if (Array.from(document.styleSheets).map((_) => {
           var K;
-          return (K = L.href) == null ? void 0 : K.toLowerCase();
+          return (K = _.href) == null ? void 0 : K.toLowerCase();
         }).includes(r.toLowerCase()))
-          return console.log(`Style ${r} allready downloaded!`), l("");
-        const x = document.createElement("link");
-        x.rel = "stylesheet", x.href = r, x.onload = l, x.onerror = s, document.head.appendChild(x);
+          return Un(`Style ${r} allready downloaded!`, "success"), l("");
+        const w = document.createElement("link");
+        w.rel = "stylesheet", w.href = r, w.onload = l, w.onerror = s, document.head.appendChild(w);
       }
     });
     for (const r of e)
-      console.log(r), await i(r), console.log(`Loaded librari ${r}`);
-    console.log("All libraries loaded!");
-  }, Mt = [
-    {
-      name: "Christian",
-      review: "From an unfulfilling job to running his own business, Christian transformed his life in just three months.",
-      img: "christian.jpg",
-      videoId: "24pvu5oip9"
-    },
-    {
-      name: "Ed",
-      review: "Ed went from a busy father of two with limited time to running a thriving business on his own term.",
-      img: "ed.jpg",
-      videoId: "n2ujymsyou"
-    },
+      Un(r), await i(r), Un(`Loaded librari ${r}`);
+    Un("All libraries loaded!", "success");
+  }, jo = (e) => {
+    let i = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(i), window.clarity("set", e, "variant_1"));
+    }, 1e3);
+  }, Tn = (e, i, r, l, s = 1e3, d = 0.5) => {
+    let x, w;
+    if (x = new IntersectionObserver(
+      function(_) {
+        _[0].isIntersecting === !0 ? w = setTimeout(() => {
+          G(
+            i,
+            _[0].target.dataset.visible || l || "",
+            "view",
+            r
+          ), x.disconnect();
+        }, s) : (Un("Element is not fully visible", "warn"), clearTimeout(w));
+      },
+      { threshold: [d] }
+    ), typeof e == "string") {
+      const _ = document.querySelector(e);
+      _ && x.observe(_);
+    } else
+      x.observe(e);
+  }, Un = (e, i = "info") => {
+    let r;
+    switch (i) {
+      case "info":
+        r = "color: #3498db;";
+        break;
+      case "warn":
+        r = "color: #f39c12;";
+        break;
+      case "error":
+        r = "color: #e74c3c;";
+        break;
+      case "success":
+        r = "color: #2ecc71;";
+        break;
+    }
+    console.log(`%c>>> ${e}`, `${r} font-size: 16px; font-weight: 600`);
+  }, Dt = [
     {
       name: "Lauren",
-      review: "Lauren transitioned from managing physical stores to building her own automated Drop Servicing business.",
+      review: '"Lauren transitioned from managing physical stores to building her own automated Drop Servicing business."',
       img: "lauren.jpg",
       videoId: "q8xu3220ak"
     },
     {
-      name: "Aleksa",
-      review: "Aleksa transformed from a struggling student to a financially independent entrepreneur in just one year.",
-      img: "aleksa.jpg",
-      videoId: "rup4dintys"
+      name: "Christian",
+      review: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
+      img: "christian.jpg",
+      videoId: "24pvu5oip9"
     },
     {
       name: "Michelle",
-      review: "Michelle went from juggling various online side gigs to creating a steady income that allows her to live abroad.",
+      review: '"Michelle went from juggling various online side gigs to creating a steady income that allows her to live abroad."',
       img: "michelle.jpg",
       videoId: "9lsnni5wtx"
     },
     {
-      name: "Guy",
-      review: "Guy turned her part-time side hustle into a reliable source of income while working full-time as a nurse.",
-      img: "guy.jpg",
-      videoId: "9luz6eb8y5"
+      name: "Ed",
+      review: '"Ed went from a busy father of two with limited time to running a thriving business on his own term."',
+      img: "ed.jpg",
+      videoId: "n2ujymsyou"
     },
     {
       name: "Muhammad",
-      review: "Muhammad went from struggling with other business models to building a thriving business without needing sales calls.",
+      review: '"Muhammad went from struggling with other business models to building a thriving business without needing sales calls."',
       img: "muhammad.jpg",
       videoId: "q03fyag9sb"
+    },
+    {
+      name: "Aleksa",
+      review: '"Aleksa transformed from a struggling student to a financially independent entrepreneur in just one year."',
+      img: "aleksa.jpg",
+      videoId: "rup4dintys"
+    },
+    {
+      name: "Guy",
+      review: '"Guy turned her part-time side hustle into a reliable source of income while working full-time as a nurse."',
+      img: "guy.jpg",
+      videoId: "9luz6eb8y5"
     }
-  ], zo = [
+  ], Io = [
     "<b>The Drop Servicing Method:</b> Our new strategy for earning online without significant startup costs.",
     "<b>A Simple 4-Step Process:</b> Start your online business journey with just a laptop and internet connection.",
     "<b>Escape The 9-5 Grind:</b> How to transition from traditional employment to being your own boss.",
     "<b>The 2024 Opportunity:</b> How to capitalize on this emerging trend to achieve your financial freedom goals.",
     "<b>Real Success Stories:</b> Get inspired by participants who left their jobs to build successful businesses, gaining the freedom to live on their own terms."
-  ], Do = [
+  ], Oo = [
     'Dylan Sigley was a broke college student working in a call center when he discovered a new online business method called "Drop Servicing".',
     "Soon after, he built a ridiculously profitable business from home, allowing him to quit his job and earn 6-figures while traveling the world and working only 5 hours a week.",
     "This FREE webclass skips the nonsense to show you, step-by-step, how Dylan grew his business so quickly and how hundreds of others have replicated his success using the same process. It's the most practical, results-driven training you'll find.",
     "Dylan has one of the best (if not the best) track records in the industry for helping people around the world build Drop Servicing Businesses, even as complete beginners with no skills or degree.",
     "Normally, it costs between $4K and $24K to work with Dylan, but in this webclass you get his exact methods for FREE! Register now before this is taken offline in the next few days."
-  ], Co = [
+  ], Ro = [
     "Aspiring entrepreneurs eager to shift from employee to business owner.",
     "People tired of their jobs and wanting to move towards achieving their financial freedom goals.",
     "Anyone ready for actionable insights to take control of their lives and financial goals."
-  ], jo = [
+  ], qo = [
     {
       name: "Fabiano Musase",
       title: "Drop Servicing Blueprint Partner Program",
@@ -1617,14 +1782,14 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     {
       name: "Ashaya Gupta",
       title: "Amazing Course with Unparalleled Support!",
-      text: "I am extremely satisfied with the Drop Servicing Blueprint course! The content is incredibly in-depth and packed with tons of valuable material that is well-structured and easy to follow. The course itself is worth every penny, but what truly stands out is the exclusive community you gain access to. The experts in the group are very helpful and always willing to answer any questions you may have. Plus, Dylan Sigley himself is super accessible and responsive, which is rare in online courses like this. Thanks to the course, I’ve already bagged a couple of sales and am eager to continue expanding my business with the insights and strategies I've learned. The community support combined with the high-quality course material makes this a winning combination. Fully satisfied and highly recommend!",
+      text: "I am extremely satisfied with the Drop Servicing Blueprint course! The content is incredibly in-depth and packed with tons of valuable material that is well-structured and easy to follow. The course itself is worth every penny, but what truly stands out is the exclusive community you gain access to. The experts in the group are very helpful and always willing to answer any questions you may have. Plus, Dylan Sigley himself is super accessible and responsive, which is rare in online courses like this.<br><br>Thanks to the course, I’ve already bagged a couple of sales and am eager to continue expanding my business with the insights and strategies I've learned. The community support combined with the high-quality course material makes this a winning combination. Fully satisfied and highly recommend!",
       date: "Aug 27, 2024",
       link: "https://www.trustpilot.com/reviews/66cdbcb0c3878fd95a2e31a7"
     },
     {
       name: "Carlos Lima",
       title: "Step-by-Step Guide 4 all",
-      text: 'My Experience with the Course is that You have all the information you need (Step-by-step) Dylan and His team guide you thru all the points, configurations, and templates of all you need to do to Thrive in the Niche you Pick. For me, it has been an amazing experience, and being someone that has tried several Online courses about different topics and from different, so-called "Gurus", I can clearly state that this one is worth every penny. Thank You for purring this course together.',
+      text: 'My Experience with the Course is that You have all the information you need (Step-by-step) Dylan and His team guide you thru all the points, configurations, and templates of all you need to do to Thrive in the Niche you Pick. For me, it has been an amazing experience, and being someone that has tried several Online courses about different topics and from different, so-called "Gurus", I can clearly state that this one is worth every penny.<br><br>Thank You for purring this course together.',
       date: "Jun 26, 2023",
       link: "https://www.trustpilot.com/reviews/6499351115ff79ccb5de2646"
     },
@@ -1638,7 +1803,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     {
       name: "Maged Rafaat",
       title: "Simply a hidden Gem",
-      text: "An amazing course with all the details covered from scratch on how to build a business online.<br>Everything need is explained thoroughly with all details and step by step guides from building your website to how to lo get leads to finalizing deals and closing on sales.<br>I strongly recommend this course to anyone who is interested in drop shipping as this course has it all.",
+      text: "An amazing course with all the details covered from scratch on how to build a business online.<br><br>Everything need is explained thoroughly with all details and step by step guides from building your website to how to lo get leads to finalizing deals and closing on sales.<br><br>I strongly recommend this course to anyone who is interested in drop shipping as this course has it all.",
       date: "Jun 27, 2023",
       link: "https://www.trustpilot.com/reviews/649afb0dbe90b81ce4f7001e"
     },
@@ -1659,7 +1824,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     {
       name: "Karey Nduta",
       title: "Look no further",
-      text: "This is my first ever online review because, damn! This course deserves an online review.<br>Since 2010, I have started so many online businesses. From E-commerce to affiliate marketing to trading to falling for stupid scams and loosing hundreds of dollars. If it has trended, I have tried it. You see, I know one thing for sure, I was born to be free. Before this course I had freedom of location working remotely for the best silicon valley start up anyone would want to work for but I still craved freedom of time. Not having to report to someone 5 days a week, 9 to 5.<br>Just when that ache was becoming unbearable and I had started to fight with my employer for more flexibility, I found Dylan. I am very tech savvy but this course is so plainly spelt out that even the least technical person would understand.<br>I just launched my first campaign using the guide in the course and have a few interested clients I am meeting with. This is so surreal. I can't believe am finally running my own business.",
+      text: "This is my first ever online review because, damn! This course deserves an online review.<br><br>Since 2010, I have started so many online businesses. From E-commerce to affiliate marketing to trading to falling for stupid scams and loosing hundreds of dollars. If it has trended, I have tried it. You see, I know one thing for sure, I was born to be free. Before this course I had freedom of location working remotely for the best silicon valley start up anyone would want to work for but I still craved freedom of time. Not having to report to someone 5 days a week, 9 to 5.<br><br>Just when that ache was becoming unbearable and I had started to fight with my employer for more flexibility, I found Dylan. I am very tech savvy but this course is so plainly spelt out that even the least technical person would understand.<br><br>I just launched my first campaign using the guide in the course and have a few interested clients I am meeting with. This is so surreal. I can't believe am finally running my own business.",
       date: "Oct 7, 2022",
       link: "https://www.trustpilot.com/reviews/6340206f350baeeabe63848e"
     },
@@ -1680,18 +1845,18 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     {
       name: "Andy Jay",
       title: "Exceeded Expectations",
-      text: "The course starts off with a lot of mindset exercises that I felt really got me out of my funk and into a deeper state of motivation. Then, the rest of the course is jam-packed with so many resources, yet done in a way that doesn't make you feel overwhelmed.<br>I'm still going through his course, but I have already begun recommending it to my friends and family.<br>Also, for everything he offers, I've paid, and I'm not even exaggerating... 10x more for other courses that are not nearly as good. So, if you're looking for a way to break out of the 9-5 rat race, this course is your best shot. Invest in yourself and get to work!",
+      text: "The course starts off with a lot of mindset exercises that I felt really got me out of my funk and into a deeper state of motivation. Then, the rest of the course is jam-packed with so many resources, yet done in a way that doesn't make you feel overwhelmed.<br><br>I'm still going through his course, but I have already begun recommending it to my friends and family.<br><br>Also, for everything he offers, I've paid, and I'm not even exaggerating... 10x more for other courses that are not nearly as good. So, if you're looking for a way to break out of the 9-5 rat race, this course is your best shot. Invest in yourself and get to work!",
       date: "Oct 8, 2022",
       link: "https://www.trustpilot.com/reviews/6340ef6bb67840c2ab2b641b"
     },
     {
       name: "Fredrik Ljunggren",
       title: "Amazing course",
-      text: "Very easy to follow. You don't have to have any knowledge in how to start a business before entering this course. I did't know much about anything to be honest and I've managed to start an online business and fulfill my dream, thanks to this course.<br>You wont regret buying it.",
+      text: "Very easy to follow. You don't have to have any knowledge in how to start a business before entering this course. I did't know much about anything to be honest and I've managed to start an online business and fulfill my dream, thanks to this course.<br><br>You wont regret buying it.",
       date: "May 16, 2023",
       link: "https://www.trustpilot.com/reviews/64638248fe2b0edcd71caf04"
     }
-  ], Io = [
+  ], No = [
     {
       question: "Who is this training for?",
       answer: "This training is for anyone interested in discovering a new business idea and learning how people worldwide are achieving their financial freedom goals."
@@ -1712,21 +1877,21 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       question: "Will I be able to start this business just by watching the training?",
       answer: "Dylan is going to reveal the 4 steps you need to get started as well as give you a tutorial and template you can use right away."
     }
-  ], k = "https://conversionratestore.github.io/projects/dropservicing/optin/img", Oo = (
+  ], E = "https://conversionratestore.github.io/projects/dropservicing/optin/img", $o = (
     /* HTML */
     `
   <section id="main_block">
     <div class="wrapper">
       <header>
-        <img src="${k}/logo.svg" alt="logo" />
+        <img src="${E}/logo.png" alt="logo" />
       </header>
       <div class="flex">
         <div class="info">
           <div class="tp_label">
-            <img src="${k}/trustpilot.svg" alt="stars" />
+            <img src="${E}/trustpilot.svg" alt="stars" />
             <p>
               TrustScore&nbsp;
-              <img src="${k}/trustpilot_star.svg" alt="star" />
+              <img src="${E}/trustpilot_star.svg" alt="star" />
               <b>4.8/5</b>&nbsp;<span>300+ Reviews</span>
             </p>
           </div>
@@ -1734,13 +1899,13 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
           <p>Discover how to go from overworked employee to successful entrepreneur in a FREE Webinar!</p>
           <button class="cta pop mobile">Grab Your FREE Seat Now!</button>
           <div class="youll_list">
-            <p>In this FREE training, you’ll learn: <img src="${k}/arrow.svg" alt="arrow" class="desktop" /></p>
+            <p>In this FREE training, you’ll learn: <img src="${E}/arrow.svg" alt="arrow" class="desktop" /></p>
             <ul>
-              ${zo.map(
+              ${Io.map(
       (e) => (
         /* HTML */
         `<li>
-                      <img src="${k}/check.svg" alt="check" />
+                      <img src="${E}/check.svg" alt="check" />
                       <p>${e}</p>
                     </li>`
       )
@@ -1753,24 +1918,24 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
             <h2>Join our Exclusive Online Training</h2>
             <p>
               <span>
-                <img src="${k}/dollar.svg" alt="dollar" />
+                <img src="${E}/dollar.svg" alt="dollar" />
                 Free
               </span>
               <span>
-                <img src="${k}/frame.svg" alt="frame" />
+                <img src="${E}/frame.svg" alt="frame" />
                 Live Training
               </span>
               <span>
-                <img src="${k}/calendar.svg" alt="calendar" />
+                <img src="${E}/calendar.svg" alt="calendar" />
                 Today
               </span>
             </p>
-            <label><input type="text" placeholder="First Name" /></label>
-            <label><input type="email" placeholder="Email Address" /></label>
-            <button class="cta">Grab Your FREE Seat Now!</button>
+            <label><input type="text" placeholder="Enter your name..." name="name" /></label>
+            <label><input type="email" placeholder="Enter email address..." name="email" /></label>
+            <button class="cta register">Grab Your FREE Seat Now!</button>
           </form>
           <div class="bonus">
-            <p><img src="${k}/present.png" alt="gift" /> Exclusive bonuses!</p>
+            <p><img src="${E}/present.png" alt="gift" /> Exclusive bonuses!</p>
             <p>Stay until the end of the training to receive the following:</p>
             <ul>
               <li>Comprehensive 12K Sale Tutorial (+Free Copy/Paste Template)</li>
@@ -1782,7 +1947,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     </div>
   </section>
 `
-  ), Ro = (
+  ), Fo = (
     /* HTML */
     `
   <section id="base_review">
@@ -1793,7 +1958,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     </p>
     <div class="crs_container">
       <ul>
-        ${Mt.map(
+        ${Dt.map(
       ({ name: e, review: i, img: r, videoId: l }) => (
         /* HTML */
         `
@@ -1801,9 +1966,9 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
                 <div class="slide" data-video="${l}">
                   <div>
                     <div class="img">
-                      <img src="${k}/${r}" alt="${e}" />
+                      <img src="${E}/${r}" alt="${e}" />
                     </div>
-                    <p><b>${e}</b><img src="${k}/rating_stars.png" alt="stars" /></p>
+                    <p><b>${e}</b><img src="${E}/rating_stars.png" alt="stars" /></p>
                   </div>
                   <p>${i}</p>
                 </div>
@@ -1815,7 +1980,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     </div>
   </section>
 `
-  ), No = (
+  ), Ho = (
     /* HTML */
     `
   <section id="bonus_block">
@@ -1829,23 +1994,23 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         </ul>
         <button class="cta pop">Grab Your FREE Seat Now!</button>
       </div>
-      <img src="${k}/bonus.png" alt="bonus" />
+      <img src="${E}/bonus.png" alt="bonus" />
     </div>
   </section>
 `
-  ), $o = (
+  ), Wo = (
     /* HTML */
     `
   <section id="host_block" class="crs_container">
     <div class="img">
-      <img src="${k}/founder.jpg" alt="dylan" class="desktop" />
-      <img src="${k}/founder_mob.jpg" alt="dylan" class="mobile" />
+      <img src="${E}/founder.jpg" alt="dylan" class="desktop" />
+      <img src="${E}/founder_mob.jpg" alt="dylan" class="mobile" />
     </div>
     <div class="info">
       <h2>Your Host: Dylan Sigley</h2>
       <p>7 Figure Drop Servicer</p>
       <ul>
-        ${Do.map((e) => (
+        ${Oo.map((e) => (
       /* HTML */
       `<li><span></span>${e}</li>`
     )).join("")}
@@ -1855,7 +2020,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     </div>
   </section>
 `
-  ), Ho = (
+  ), Po = (
     /* HTML */
     `
   <section id="video_block">
@@ -1869,15 +2034,17 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       </p>
     </div>
     <ul>
-      ${Mt.map(
+      ${Dt.map(
       ({ name: e, review: i, img: r, videoId: l }) => (
         /* HTML */
         `
             <li>
               <div class="video_slide" data-video="${l}">
                 <div class="head">
-                  <img src="${k}/${r}" alt="${e}" />
-                  <p><b>${e}</b><img src="${k}/rating_stars.png" alt="stars" /></p>
+                  <div class="img">
+                    <img src="${E}/${r}" alt="${e}" />
+                  </div>
+                  <p><b>${e}</b><img src="${E}/rating_stars.png" alt="stars" /></p>
                   <p>${i}</p>
                 </div>
                 <div class="video">
@@ -1891,12 +2058,12 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     </ul>
   </section>
 `
-  ), qo = (
+  ), Yo = (
     /* HTML */
     `
   <section id="training_for" class="crs_container">
     <div class="photo">
-      <img src="${k}/founder2.jpg" alt="dylan" />
+      <img src="${E}/founder2.jpg" alt="dylan" />
       <div class="bottom_info">
         <p>Spaces are limited and filling up fast</p>
         <p>Grab this limited time offer to learn Drop Servicing today</p>
@@ -1909,9 +2076,9 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       <h2>Who is the Training for?</h2>
       <p>This free training is designed for:</p>
       <ul>
-        ${Co.map((e) => (
+        ${Ro.map((e) => (
       /* HTML */
-      `<li><img src="${k}/check.svg" alt="check" />${e}</li>`
+      `<li><img src="${E}/check.svg" alt="check" />${e}</li>`
     )).join("")}
       </ul>
       <p>If any of the above apply to you, you're in the right place!</p>
@@ -1920,29 +2087,29 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     </div>
   </section>
 `
-  ), Fo = (
+  ), Go = (
     /* HTML */
     `
   <section id="trust_pilot">
     <div class="crs_container">
       <h2>
-        TrustScore&nbsp;<img src="${k}/trustpilot_star.svg" alt="" />&nbsp;<b>4.8/5</b>&nbsp;<span class="desktop"
+        TrustScore&nbsp;<img src="${E}/trustpilot_star.svg" alt="" />&nbsp;<b>4.8/5</b>&nbsp;<span class="desktop"
           >300+ Reviews</span
         >
       </h2>
       <p>People just like you joined the training</p>
       <ul>
-        ${jo.map(
+        ${qo.map(
       ({ name: e, title: i, text: r, date: l, link: s }) => (
         /* HTML */
         `
               <li>
                 <div class="review_slide">
-                  <p class="name">${e}<img src="${k}/stars_tp.svg" alt="stars" /></p>
+                  <p class="name">${e}<img src="${E}/stars_tp.svg" alt="stars" /></p>
                   <a href="${s}">${i}</a>
                   <p class="text">${r}</p>
                   <p>
-                    <span><img src="${k}/check2.svg" alt="check" />Verified User</span>${l}
+                    <span><img src="${E}/check2.svg" alt="check" />Verified User</span>${l}
                   </p>
                 </div>
               </li>
@@ -1953,22 +2120,22 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     </div>
     <div class="points">
       <div class="crs_container">
-        <p>3,000+ Members <img src="${k}/members.svg" alt="members" /></p>
-        <p>4M+ In Revenue <img src="${k}/revenue.svg" alt="revenue" /></p>
-        <p>100+ Countries <img src="${k}/countries.svg" alt="countries" /></p>
-        <p>15M+ Views <img src="${k}/views.svg" alt="views" /></p>
+        <p>3,000+ Members <img src="${E}/members.svg" alt="members" /></p>
+        <p>4M+ In Revenue <img src="${E}/revenue.svg" alt="revenue" /></p>
+        <p>100+ Countries <img src="${E}/countries.svg" alt="countries" /></p>
+        <p>15M+ Views <img src="${E}/views.svg" alt="views" /></p>
       </div>
     </div>
   </section>
 `
-  ), Wo = (
+  ), Jo = (
     /* HTML */
     `
   <section id="faq_block">
     <div class="crs_container">
       <h2>Frequently asked questions</h2>
       <ul>
-        ${Io.map(
+        ${No.map(
       ({ question: e, answer: i }) => (
         /* HTML */
         `
@@ -1983,22 +2150,22 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     </div>
   </section>
 `
-  ), Po = (
+  ), Ko = (
     /* HTML */
     `
   <section id="last_cta" class="crs_container">
     <div class="img">
-      <img src="${k}/product.jpg" alt="product" />
+      <img src="${E}/product.jpg" alt="product" />
     </div>
     <div>
       <h2>Your Future Starts Here!</h2>
       <p>Transform your life by learning how to create a successful Drop Servicing business.</p>
       <p>Join us and take the first step toward financial independence.</p>
-      <button class="cta pop">Join the exclusive training</button>
+      <button class="cta pop">Join The Exclusive Training</button>
     </div>
   </section>
 `
-  ), Yo = (
+  ), Vo = (
     /* HTML */
     `
   <footer>
@@ -2029,7 +2196,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     </div>
   </footer>
 `
-  ), Go = (
+  ), Zo = (
     /* HTML */
     `
   <div class="crs_popup_form">
@@ -2037,27 +2204,26 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       <div class="close"></div>
       <form>
         <h2>Join our Exclusive Online Training</h2>
-        <p>We'll email you the link for the training</p>
         <p class="icons">
           <span>
-            <img src="${k}/dollar.svg" alt="dollar" />
+            <img src="${E}/dollar.svg" alt="dollar" />
             Free
           </span>
           <span>
-            <img src="${k}/frame.svg" alt="frame" />
+            <img src="${E}/frame.svg" alt="frame" />
             Live Training
           </span>
           <span>
-            <img src="${k}/calendar.svg" alt="calendar" />
+            <img src="${E}/calendar.svg" alt="calendar" />
             Today
           </span>
         </p>
-        <label><input type="text" placeholder="First Name" /></label>
-        <label><input type="email" placeholder="Email Address" /></label>
-        <button class="cta pop">Grab Your FREE Seat Now!</button>
+        <label><input type="text" placeholder="Enter your name..." name="name" /></label>
+        <label><input type="email" placeholder="Enter email address..." name="email" /></label>
+        <button class="cta register">Grab Your FREE Seat Now!</button>
       </form>
       <div class="bonus">
-        <p><img src="${k}/present.png" alt="gift" /> Exclusive bonuses!</p>
+        <p><img src="${E}/present.png" alt="gift" /> Exclusive bonuses!</p>
         <p>Stay until the end of the training to receive the following:</p>
         <ul>
           <li>Comprehensive 12K Sale Tutorial (+Free Copy/Paste Template)</li>
@@ -2067,7 +2233,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     </div>
   </div>
 `
-  ), Ko = (
+  ), Qo = (
     /* HTML */
     `
   <div class="crs_video_popup">
@@ -2078,8 +2244,8 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       <div>
         <p>Free Training: Learn how to earn online with Drop Servicing</p>
         <p>
-          <img src="${k}/trustpilot.svg" alt="trustpilot" />TrustScore&nbsp;<img
-            src="${k}/trustpilot_star.svg"
+          <img src="${E}/trustpilot.svg" alt="trustpilot" />TrustScore&nbsp;<img
+            src="${E}/trustpilot_star.svg"
             alt="star"
           /><span>4.8</span>
         </p>
@@ -2089,22 +2255,22 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   </div>
 `
   );
-  var Ye = window, jn = Ye.requestAnimationFrame || Ye.webkitRequestAnimationFrame || Ye.mozRequestAnimationFrame || Ye.msRequestAnimationFrame || function(e) {
+  var Ke = window, On = Ke.requestAnimationFrame || Ke.webkitRequestAnimationFrame || Ke.mozRequestAnimationFrame || Ke.msRequestAnimationFrame || function(e) {
     return setTimeout(e, 16);
-  }, gi = window, Lt = gi.cancelAnimationFrame || gi.mozCancelAnimationFrame || function(e) {
+  }, vi = window, Ct = vi.cancelAnimationFrame || vi.mozCancelAnimationFrame || function(e) {
     clearTimeout(e);
   };
-  function zt() {
-    for (var e, i, r, l = arguments[0] || {}, s = 1, f = arguments.length; s < f; s++)
+  function jt() {
+    for (var e, i, r, l = arguments[0] || {}, s = 1, d = arguments.length; s < d; s++)
       if ((e = arguments[s]) !== null)
         for (i in e)
           r = e[i], l !== r && r !== void 0 && (l[i] = r);
     return l;
   }
-  function wn(e) {
+  function yn(e) {
     return ["true", "false"].indexOf(e) >= 0 ? JSON.parse(e) : e;
   }
-  function yn(e, i, r, l) {
+  function _n(e, i, r, l) {
     if (l)
       try {
         e.setItem(i, r);
@@ -2112,171 +2278,171 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       }
     return r;
   }
-  function Vo() {
+  function Uo() {
     var e = window.tnsId;
     return window.tnsId = e ? e + 1 : 1, "tns" + window.tnsId;
   }
-  function Ge() {
+  function Ve() {
     var e = document, i = e.body;
     return i || (i = e.createElement("body"), i.fake = !0), i;
   }
-  var be = document.documentElement;
-  function Ke(e) {
+  var we = document.documentElement;
+  function Ze(e) {
     var i = "";
-    return e.fake && (i = be.style.overflow, e.style.background = "", e.style.overflow = be.style.overflow = "hidden", be.appendChild(e)), i;
+    return e.fake && (i = we.style.overflow, e.style.background = "", e.style.overflow = we.style.overflow = "hidden", we.appendChild(e)), i;
   }
-  function Ve(e, i) {
-    e.fake && (e.remove(), be.style.overflow = i, be.offsetHeight);
+  function Qe(e, i) {
+    e.fake && (e.remove(), we.style.overflow = i, we.offsetHeight);
   }
-  function Jo() {
-    var e = document, i = Ge(), r = Ke(i), l = e.createElement("div"), s = !1;
+  function Xo() {
+    var e = document, i = Ve(), r = Ze(i), l = e.createElement("div"), s = !1;
     i.appendChild(l);
     try {
-      for (var f = "(10px * 10)", S = ["calc" + f, "-moz-calc" + f, "-webkit-calc" + f], x, L = 0; L < 3; L++)
-        if (x = S[L], l.style.width = x, l.offsetWidth === 100) {
-          s = x.replace(f, "");
+      for (var d = "(10px * 10)", x = ["calc" + d, "-moz-calc" + d, "-webkit-calc" + d], w, _ = 0; _ < 3; _++)
+        if (w = x[_], l.style.width = w, l.offsetWidth === 100) {
+          s = w.replace(d, "");
           break;
         }
     } catch {
     }
-    return i.fake ? Ve(i, r) : l.remove(), s;
+    return i.fake ? Qe(i, r) : l.remove(), s;
   }
-  function Zo() {
-    var e = document, i = Ge(), r = Ke(i), l = e.createElement("div"), s = e.createElement("div"), f = "", S = 70, x = 3, L = !1;
+  function Bo() {
+    var e = document, i = Ve(), r = Ze(i), l = e.createElement("div"), s = e.createElement("div"), d = "", x = 70, w = 3, _ = !1;
     l.className = "tns-t-subp2", s.className = "tns-t-ct";
-    for (var K = 0; K < S; K++)
-      f += "<div></div>";
-    return s.innerHTML = f, l.appendChild(s), i.appendChild(l), L = Math.abs(l.getBoundingClientRect().left - s.children[S - x].getBoundingClientRect().left) < 2, i.fake ? Ve(i, r) : l.remove(), L;
+    for (var K = 0; K < x; K++)
+      d += "<div></div>";
+    return s.innerHTML = d, l.appendChild(s), i.appendChild(l), _ = Math.abs(l.getBoundingClientRect().left - s.children[x - w].getBoundingClientRect().left) < 2, i.fake ? Qe(i, r) : l.remove(), _;
   }
-  function Qo() {
+  function na() {
     if (window.matchMedia || window.msMatchMedia)
       return !0;
-    var e = document, i = Ge(), r = Ke(i), l = e.createElement("div"), s = e.createElement("style"), f = "@media all and (min-width:1px){.tns-mq-test{position:absolute}}", S;
-    return s.type = "text/css", l.className = "tns-mq-test", i.appendChild(s), i.appendChild(l), s.styleSheet ? s.styleSheet.cssText = f : s.appendChild(e.createTextNode(f)), S = window.getComputedStyle ? window.getComputedStyle(l).position : l.currentStyle.position, i.fake ? Ve(i, r) : l.remove(), S === "absolute";
+    var e = document, i = Ve(), r = Ze(i), l = e.createElement("div"), s = e.createElement("style"), d = "@media all and (min-width:1px){.tns-mq-test{position:absolute}}", x;
+    return s.type = "text/css", l.className = "tns-mq-test", i.appendChild(s), i.appendChild(l), s.styleSheet ? s.styleSheet.cssText = d : s.appendChild(e.createTextNode(d)), x = window.getComputedStyle ? window.getComputedStyle(l).position : l.currentStyle.position, i.fake ? Qe(i, r) : l.remove(), x === "absolute";
   }
-  function Uo(e, i) {
+  function ea(e, i) {
     var r = document.createElement("style");
     return e && r.setAttribute("media", e), i && r.setAttribute("nonce", i), document.querySelector("head").appendChild(r), r.sheet ? r.sheet : r.styleSheet;
   }
-  function zn(e, i, r, l) {
+  function Cn(e, i, r, l) {
     "insertRule" in e ? e.insertRule(i + "{" + r + "}", l) : e.addRule(i, r, l);
   }
-  function Xo(e, i) {
+  function ta(e, i) {
     "deleteRule" in e ? e.deleteRule(i) : e.removeRule(i);
   }
-  function kn(e) {
+  function En(e) {
     var i = "insertRule" in e ? e.cssRules : e.rules;
     return i.length;
   }
-  function Bo(e, i) {
+  function ia(e, i) {
     return Math.atan2(e, i) * (180 / Math.PI);
   }
-  function na(e, i) {
+  function oa(e, i) {
     var r = !1, l = Math.abs(90 - Math.abs(e));
     return l >= 90 - i ? r = "horizontal" : l <= i && (r = "vertical"), r;
   }
-  function In(e, i, r) {
+  function Rn(e, i, r) {
     for (var l = 0, s = e.length; l < s; l++)
       i.call(r, e[l], l);
   }
-  var Dt = "classList" in document.createElement("_"), ae = Dt ? function(e, i) {
+  var It = "classList" in document.createElement("_"), le = It ? function(e, i) {
     return e.classList.contains(i);
   } : function(e, i) {
     return e.className.indexOf(i) >= 0;
-  }, N = Dt ? function(e, i) {
-    ae(e, i) || e.classList.add(i);
+  }, N = It ? function(e, i) {
+    le(e, i) || e.classList.add(i);
   } : function(e, i) {
-    ae(e, i) || (e.className += " " + i);
-  }, on = Dt ? function(e, i) {
-    ae(e, i) && e.classList.remove(i);
+    le(e, i) || (e.className += " " + i);
+  }, an = It ? function(e, i) {
+    le(e, i) && e.classList.remove(i);
   } : function(e, i) {
-    ae(e, i) && (e.className = e.className.replace(i, ""));
+    le(e, i) && (e.className = e.className.replace(i, ""));
   };
-  function ve(e, i) {
+  function ye(e, i) {
     return e.hasAttribute(i);
   }
-  function Je(e, i) {
+  function Ue(e, i) {
     return e.getAttribute(i);
   }
-  function mi(e) {
+  function xi(e) {
     return typeof e.item < "u";
   }
-  function dn(e, i) {
-    if (e = mi(e) || e instanceof Array ? e : [e], Object.prototype.toString.call(i) === "[object Object]")
+  function fn(e, i) {
+    if (e = xi(e) || e instanceof Array ? e : [e], Object.prototype.toString.call(i) === "[object Object]")
       for (var r = e.length; r--; )
         for (var l in i)
           e[r].setAttribute(l, i[l]);
   }
-  function On(e, i) {
-    e = mi(e) || e instanceof Array ? e : [e], i = i instanceof Array ? i : [i];
+  function qn(e, i) {
+    e = xi(e) || e instanceof Array ? e : [e], i = i instanceof Array ? i : [i];
     for (var r = i.length, l = e.length; l--; )
       for (var s = r; s--; )
         e[l].removeAttribute(i[s]);
   }
-  function bi(e) {
+  function wi(e) {
     for (var i = [], r = 0, l = e.length; r < l; r++)
       i.push(e[r]);
     return i;
   }
-  function fn(e, i) {
+  function pn(e, i) {
     e.style.display !== "none" && (e.style.display = "none");
   }
-  function pn(e, i) {
+  function un(e, i) {
     e.style.display === "none" && (e.style.display = "");
   }
-  function vi(e) {
+  function yi(e) {
     return window.getComputedStyle(e).display !== "none";
   }
-  function xe(e) {
+  function _e(e) {
     if (typeof e == "string") {
       var i = [e], r = e.charAt(0).toUpperCase() + e.substr(1), l = ["Webkit", "Moz", "ms", "O"];
-      l.forEach(function(x) {
-        (x !== "ms" || e === "transform") && i.push(x + r);
+      l.forEach(function(w) {
+        (w !== "ms" || e === "transform") && i.push(w + r);
       }), e = i;
     }
     var s = document.createElement("fakeelement");
     e.length;
-    for (var f = 0; f < e.length; f++) {
-      var S = e[f];
-      if (s.style[S] !== void 0)
-        return S;
+    for (var d = 0; d < e.length; d++) {
+      var x = e[d];
+      if (s.style[x] !== void 0)
+        return x;
     }
     return !1;
   }
-  function ea(e) {
+  function aa(e) {
     if (!e || !window.getComputedStyle)
       return !1;
-    var i = document, r = Ge(), l = Ke(r), s = i.createElement("p"), f, S = e.length > 9 ? "-" + e.slice(0, -9).toLowerCase() + "-" : "";
-    return S += "transform", r.insertBefore(s, null), s.style[e] = "translate3d(1px,1px,1px)", f = window.getComputedStyle(s).getPropertyValue(S), r.fake ? Ve(r, l) : s.remove(), f !== void 0 && f.length > 0 && f !== "none";
+    var i = document, r = Ve(), l = Ze(r), s = i.createElement("p"), d, x = e.length > 9 ? "-" + e.slice(0, -9).toLowerCase() + "-" : "";
+    return x += "transform", r.insertBefore(s, null), s.style[e] = "translate3d(1px,1px,1px)", d = window.getComputedStyle(s).getPropertyValue(x), r.fake ? Qe(r, l) : s.remove(), d !== void 0 && d.length > 0 && d !== "none";
   }
-  function xi(e, i) {
+  function _i(e, i) {
     var r = !1;
     return /^Webkit/.test(e) ? r = "webkit" + i + "End" : /^O/.test(e) ? r = "o" + i + "End" : e && (r = i.toLowerCase() + "end"), r;
   }
-  var wi = !1;
+  var ki = !1;
   try {
-    var ta = Object.defineProperty({}, "passive", {
+    var ra = Object.defineProperty({}, "passive", {
       get: function() {
-        wi = !0;
+        ki = !0;
       }
     });
-    window.addEventListener("test", null, ta);
+    window.addEventListener("test", null, ra);
   } catch {
   }
-  var yi = wi ? { passive: !0 } : !1;
-  function R(e, i, r) {
+  var Ti = ki ? { passive: !0 } : !1;
+  function q(e, i, r) {
     for (var l in i) {
-      var s = ["touchstart", "touchmove"].indexOf(l) >= 0 && !r ? yi : !1;
+      var s = ["touchstart", "touchmove"].indexOf(l) >= 0 && !r ? Ti : !1;
       e.addEventListener(l, i[l], s);
     }
   }
-  function Y(e, i) {
+  function J(e, i) {
     for (var r in i) {
-      var l = ["touchstart", "touchmove"].indexOf(r) >= 0 ? yi : !1;
+      var l = ["touchstart", "touchmove"].indexOf(r) >= 0 ? Ti : !1;
       e.removeEventListener(r, i[r], l);
     }
   }
-  function ia() {
+  function sa() {
     return {
       topics: {},
       on: function(e, i) {
@@ -2298,11 +2464,11 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       }
     };
   }
-  function oa(e, i, r, l, K, f, S) {
-    var x = Math.min(f, 10), L = K.indexOf("%") >= 0 ? "%" : "px", K = K.replace(L, ""), an = Number(e.style[i].replace(r, "").replace(l, "").replace(L, "")), Zn = (K - an) / f * x;
-    setTimeout(Qe, x);
-    function Qe() {
-      f -= x, an += Zn, e.style[i] = r + an + L + l, f > 0 ? setTimeout(Qe, x) : S();
+  function la(e, i, r, l, K, d, x) {
+    var w = Math.min(d, 10), _ = K.indexOf("%") >= 0 ? "%" : "px", K = K.replace(_, ""), rn = Number(e.style[i].replace(r, "").replace(l, "").replace(_, "")), Xn = (K - rn) / d * w;
+    setTimeout(Be, w);
+    function Be() {
+      d -= w, rn += Xn, e.style[i] = r + rn + _ + l, d > 0 ? setTimeout(Be, w) : x();
     }
   }
   Object.keys || (Object.keys = function(e) {
@@ -2313,8 +2479,8 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   }), "remove" in Element.prototype || (Element.prototype.remove = function() {
     this.parentNode && this.parentNode.removeChild(this);
   });
-  var Ze = function(e) {
-    e = zt({
+  var Xe = function(e) {
+    e = jt({
       container: ".slider",
       mode: "carousel",
       axis: "horizontal",
@@ -2373,1014 +2539,1027 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       SPACE: 32,
       LEFT: 37,
       RIGHT: 39
-    }, s = {}, f = e.useLocalStorage;
-    if (f) {
-      var S = navigator.userAgent, x = /* @__PURE__ */ new Date();
+    }, s = {}, d = e.useLocalStorage;
+    if (d) {
+      var x = navigator.userAgent, w = /* @__PURE__ */ new Date();
       try {
-        s = r.localStorage, s ? (s.setItem(x, x), f = s.getItem(x) == x, s.removeItem(x)) : f = !1, f || (s = {});
+        s = r.localStorage, s ? (s.setItem(w, w), d = s.getItem(w) == w, s.removeItem(w)) : d = !1, d || (s = {});
       } catch {
-        f = !1;
+        d = !1;
       }
-      f && (s.tnsApp && s.tnsApp !== S && ["tC", "tPL", "tMQ", "tTf", "t3D", "tTDu", "tTDe", "tADu", "tADe", "tTE", "tAE"].forEach(function(n) {
+      d && (s.tnsApp && s.tnsApp !== x && ["tC", "tPL", "tMQ", "tTf", "t3D", "tTDu", "tTDe", "tADu", "tADe", "tTE", "tAE"].forEach(function(n) {
         s.removeItem(n);
-      }), localStorage.tnsApp = S);
+      }), localStorage.tnsApp = x);
     }
-    var L = s.tC ? wn(s.tC) : yn(s, "tC", Jo(), f), K = s.tPL ? wn(s.tPL) : yn(s, "tPL", Zo(), f), an = s.tMQ ? wn(s.tMQ) : yn(s, "tMQ", Qo(), f), Zn = s.tTf ? wn(s.tTf) : yn(s, "tTf", xe("transform"), f), Qe = s.t3D ? wn(s.t3D) : yn(s, "t3D", ea(Zn), f), X = s.tTDu ? wn(s.tTDu) : yn(s, "tTDu", xe("transitionDuration"), f), Ue = s.tTDe ? wn(s.tTDe) : yn(s, "tTDe", xe("transitionDelay"), f), Xe = s.tADu ? wn(s.tADu) : yn(s, "tADu", xe("animationDuration"), f), Ct = s.tADe ? wn(s.tADe) : yn(s, "tADe", xe("animationDelay"), f), Qn = s.tTE ? wn(s.tTE) : yn(s, "tTE", xi(X, "Transition"), f), _i = s.tAE ? wn(s.tAE) : yn(s, "tAE", xi(Xe, "Animation"), f), ki = r.console && typeof r.console.warn == "function", jt = ["container", "controlsContainer", "prevButton", "nextButton", "navContainer", "autoplayButton"], Ti = {};
-    if (jt.forEach(function(n) {
+    var _ = s.tC ? yn(s.tC) : _n(s, "tC", Xo(), d), K = s.tPL ? yn(s.tPL) : _n(s, "tPL", Bo(), d), rn = s.tMQ ? yn(s.tMQ) : _n(s, "tMQ", na(), d), Xn = s.tTf ? yn(s.tTf) : _n(s, "tTf", _e("transform"), d), Be = s.t3D ? yn(s.t3D) : _n(s, "t3D", aa(Xn), d), B = s.tTDu ? yn(s.tTDu) : _n(s, "tTDu", _e("transitionDuration"), d), nt = s.tTDe ? yn(s.tTDe) : _n(s, "tTDe", _e("transitionDelay"), d), et = s.tADu ? yn(s.tADu) : _n(s, "tADu", _e("animationDuration"), d), Ot = s.tADe ? yn(s.tADe) : _n(s, "tADe", _e("animationDelay"), d), Bn = s.tTE ? yn(s.tTE) : _n(s, "tTE", _i(B, "Transition"), d), Ei = s.tAE ? yn(s.tAE) : _n(s, "tAE", _i(et, "Animation"), d), Si = r.console && typeof r.console.warn == "function", Rt = ["container", "controlsContainer", "prevButton", "nextButton", "navContainer", "autoplayButton"], Ai = {};
+    if (Rt.forEach(function(n) {
       if (typeof e[n] == "string") {
         var t = e[n], o = i.querySelector(t);
-        if (Ti[n] = t, o && o.nodeName)
+        if (Ai[n] = t, o && o.nodeName)
           e[n] = o;
         else {
-          ki && console.warn("Can't find", e[n]);
+          Si && console.warn("Can't find", e[n]);
           return;
         }
       }
     }), e.container.children.length < 1) {
-      ki && console.warn("No slides found in", e.container);
+      Si && console.warn("No slides found in", e.container);
       return;
     }
-    var C = e.responsive, re = e.nested, p = e.mode === "carousel";
-    if (C) {
-      0 in C && (e = zt(e, C[0]), delete C[0]);
-      var It = {};
-      for (var Ei in C) {
-        var we = C[Ei];
-        we = typeof we == "number" ? { items: we } : we, It[Ei] = we;
+    var j = e.responsive, ce = e.nested, p = e.mode === "carousel";
+    if (j) {
+      0 in j && (e = jt(e, j[0]), delete j[0]);
+      var qt = {};
+      for (var Li in j) {
+        var ke = j[Li];
+        ke = typeof ke == "number" ? { items: ke } : ke, qt[Li] = ke;
       }
-      C = It, It = null;
+      j = qt, qt = null;
     }
-    function Si(n) {
+    function Mi(n) {
       for (var t in n)
-        p || (t === "slideBy" && (n[t] = "page"), t === "edgePadding" && (n[t] = !1), t === "autoHeight" && (n[t] = !1)), t === "responsive" && Si(n[t]);
+        p || (t === "slideBy" && (n[t] = "page"), t === "edgePadding" && (n[t] = !1), t === "autoHeight" && (n[t] = !1)), t === "responsive" && Mi(n[t]);
     }
-    if (p || Si(e), !p) {
+    if (p || Mi(e), !p) {
       e.axis = "horizontal", e.slideBy = "page", e.edgePadding = !1;
-      var Rn = e.animateIn, Be = e.animateOut, Ot = e.animateDelay, Tn = e.animateNormal;
+      var Nn = e.animateIn, tt = e.animateOut, Nt = e.animateDelay, Sn = e.animateNormal;
     }
-    var A = e.axis === "horizontal", en = i.createElement("div"), tn = i.createElement("div"), rn, g = e.container, Rt = g.parentNode, Ai = g.outerHTML, T = g.children, m = T.length, ye, nt = Hi(), _e = !1;
-    C && Ui(), p && (g.className += " tns-vpfix");
-    var v = e.autoWidth, u = b("fixedWidth"), I = b("edgePadding"), y = b("gutter"), F = Fi(), V = b("center"), w = v ? 1 : Math.floor(b("items")), se = b("slideBy"), Nt = e.viewportMax || e.fixedWidthViewportWidth, Nn = b("arrowKeys"), mn = b("speed"), ke = e.rewind, J = ke ? !1 : e.loop, sn = b("autoHeight"), En = b("controls"), $n = b("controlsText"), Sn = b("nav"), Hn = b("touch"), qn = b("mouseDrag"), B = b("autoplay"), $t = b("autoplayTimeout"), Fn = b("autoplayText"), Wn = b("autoplayHoverPause"), Pn = b("autoplayResetOnVisibility"), M = Uo(null, b("nonce")), Te = e.lazyload, ra = e.lazyloadSelector, $, le = [], Z = J ? da() : 0, E = p ? m + Z * 2 : m + Z, Mi = !!((u || v) && !J), ce = u ? ii() : null, Ht = !p || !J, Un = A ? "left" : "top", Yn = "", de = "", Ee = /* @__PURE__ */ function() {
+    var L = e.axis === "horizontal", tn = i.createElement("div"), on = i.createElement("div"), sn, m = e.container, $t = m.parentNode, zi = m.outerHTML, S = m.children, g = S.length, Te, it = Wi(), Ee = !1;
+    j && no(), p && (m.className += " tns-vpfix");
+    var v = e.autoWidth, u = b("fixedWidth"), O = b("edgePadding"), k = b("gutter"), W = Yi(), V = b("center"), y = v ? 1 : Math.floor(b("items")), de = b("slideBy"), Ft = e.viewportMax || e.fixedWidthViewportWidth, $n = b("arrowKeys"), bn = b("speed"), Se = e.rewind, Z = Se ? !1 : e.loop, ln = b("autoHeight"), An = b("controls"), Fn = b("controlsText"), Ln = b("nav"), Hn = b("touch"), Wn = b("mouseDrag"), nn = b("autoplay"), Ht = b("autoplayTimeout"), Pn = b("autoplayText"), Yn = b("autoplayHoverPause"), Gn = b("autoplayResetOnVisibility"), M = ea(null, b("nonce")), Ae = e.lazyload, da = e.lazyloadSelector, $, fe = [], Q = Z ? ha() : 0, A = p ? g + Q * 2 : g + Q, Di = !!((u || v) && !Z), pe = u ? ri() : null, Wt = !p || !Z, ne = L ? "left" : "top", Jn = "", ue = "", Le = /* @__PURE__ */ function() {
       return u ? function() {
-        return V && !J ? m - 1 : Math.ceil(-ce / (u + y));
+        return V && !Z ? g - 1 : Math.ceil(-pe / (u + k));
       } : v ? function() {
-        for (var n = 0; n < E; n++)
-          if ($[n] >= -ce)
+        for (var n = 0; n < A; n++)
+          if ($[n] >= -pe)
             return n;
       } : function() {
-        return V && p && !J ? m - 1 : J || p ? Math.max(0, E - Math.ceil(w)) : E - 1;
+        return V && p && !Z ? g - 1 : Z || p ? Math.max(0, A - Math.ceil(y)) : A - 1;
       };
-    }(), c = Ni(b("startIndex")), Gn = c;
-    Ri();
-    var An = 0, un = v ? null : Ee(), et = e.preventActionWhenRunning, tt = e.swipeAngle, Mn = tt ? "?" : !0, Kn = !1, qt = e.onInit, W = new ia(), Vn = " tns-slider tns-" + e.mode, j = g.id || Vo(), ln = b("disable"), Se = !1, it = e.freezable, bn = it && !v ? Qt() : !1, Ae = !1, Me = {
-      click: Jn,
-      keydown: Ca
-    }, Ft = {
-      click: Ea,
-      keydown: ja
-    }, Le = {
-      mouseover: La,
-      mouseout: za
-    }, ze = { visibilitychange: Ma }, De = { keydown: Da }, Ce = {
-      touchstart: wo,
-      touchmove: yo,
-      touchend: At,
-      touchcancel: At
-    }, je = {
-      mousedown: wo,
-      mousemove: yo,
-      mouseup: At,
-      mouseleave: At
-    }, ot = Dn("controls"), Wt = Dn("nav"), Ie = v ? !0 : e.navAsThumbnails, Pt = Dn("autoplay"), Li = Dn("touch"), zi = Dn("mouseDrag"), Yt = "tns-slide-active", Di = "tns-slide-cloned", at = "tns-complete", rt = {
-      load: ba,
-      error: va
-    }, Gt, Kt, Oe = e.preventScrollOnTouch === "force";
-    if (ot)
-      var H = e.controlsContainer, Ci = e.controlsContainer ? e.controlsContainer.outerHTML : "", z = e.prevButton, D = e.nextButton, sa = e.prevButton ? e.prevButton.outerHTML : "", la = e.nextButton ? e.nextButton.outerHTML : "", Re, Ne;
-    if (Wt)
-      var Q = e.navContainer, ji = e.navContainer ? e.navContainer.outerHTML : "", hn, vn = v ? m : ko(), Xn = 0, Bn = -1, gn = $i(), fe = gn, st = "tns-nav-active", pe = "Carousel Page ", Vt = " (Current Slide)";
-    if (Pt)
-      var Ii = e.autoplayDirection === "forward" ? 1 : -1, O = e.autoplayButton, Oi = e.autoplayButton ? e.autoplayButton.outerHTML : "", $e = ["<span class='tns-visually-hidden'>", " animation</span>"], lt, cn, ct, ue, dt;
-    if (Li || zi)
-      var ne = {}, _n = {}, ft, ee = !1, xn, Jt = A ? function(n, t) {
+    }(), c = Fi(b("startIndex")), Kn = c;
+    $i();
+    var Mn = 0, hn = v ? null : Le(), ot = e.preventActionWhenRunning, at = e.swipeAngle, zn = at ? "?" : !0, Vn = !1, Pt = e.onInit, P = new sa(), Zn = " tns-slider tns-" + e.mode, I = m.id || Uo(), cn = b("disable"), Me = !1, rt = e.freezable, vn = rt && !v ? Bt() : !1, ze = !1, De = {
+      click: Qn,
+      keydown: Ra
+    }, Yt = {
+      click: Ma,
+      keydown: qa
+    }, Ce = {
+      mouseover: ja,
+      mouseout: Ia
+    }, je = { visibilitychange: Ca }, Ie = { keydown: Oa }, Oe = {
+      touchstart: ko,
+      touchmove: To,
+      touchend: zt,
+      touchcancel: zt
+    }, Re = {
+      mousedown: ko,
+      mousemove: To,
+      mouseup: zt,
+      mouseleave: zt
+    }, st = jn("controls"), Gt = jn("nav"), qe = v ? !0 : e.navAsThumbnails, Jt = jn("autoplay"), Ci = jn("touch"), ji = jn("mouseDrag"), Kt = "tns-slide-active", Ii = "tns-slide-cloned", lt = "tns-complete", ct = {
+      load: ya,
+      error: _a
+    }, Vt, Zt, Ne = e.preventScrollOnTouch === "force";
+    if (st)
+      var F = e.controlsContainer, Oi = e.controlsContainer ? e.controlsContainer.outerHTML : "", z = e.prevButton, D = e.nextButton, fa = e.prevButton ? e.prevButton.outerHTML : "", pa = e.nextButton ? e.nextButton.outerHTML : "", $e, Fe;
+    if (Gt)
+      var U = e.navContainer, Ri = e.navContainer ? e.navContainer.outerHTML : "", mn, xn = v ? g : So(), ee = 0, te = -1, gn = Hi(), he = gn, dt = "tns-nav-active", me = "Carousel Page ", Qt = " (Current Slide)";
+    if (Jt)
+      var qi = e.autoplayDirection === "forward" ? 1 : -1, R = e.autoplayButton, Ni = e.autoplayButton ? e.autoplayButton.outerHTML : "", He = ["<span class='tns-visually-hidden'>", " animation</span>"], ft, dn, pt, ge, ut;
+    if (Ci || ji)
+      var ie = {}, kn = {}, ht, oe = !1, wn, Ut = L ? function(n, t) {
         return n.x - t.x;
       } : function(n, t) {
         return n.y - t.y;
       };
-    v || pt(ln || bn), Zn && (Un = Zn, Yn = "translate", Qe ? (Yn += A ? "3d(" : "3d(0px, ", de = A ? ", 0px, 0px)" : ", 0px)") : (Yn += A ? "X(" : "Y(", de = ")")), p && (g.className = g.className.replace("tns-vpfix", "")), pa(), ua(), Yi();
-    function pt(n) {
-      n && (En = Sn = Hn = qn = Nn = B = Wn = Pn = !1);
-    }
-    function Ri() {
-      for (var n = p ? c - Z : c; n < 0; )
-        n += m;
-      return n % m + 1;
-    }
-    function Ni(n) {
-      return n = n ? Math.max(0, Math.min(J ? m - 1 : m - w, n)) : 0, p ? n + Z : n;
-    }
-    function ut(n) {
-      for (n == null && (n = c), p && (n -= Z); n < 0; )
-        n += m;
-      return Math.floor(n % m);
+    v || mt(cn || vn), Xn && (ne = Xn, Jn = "translate", Be ? (Jn += L ? "3d(" : "3d(0px, ", ue = L ? ", 0px, 0px)" : ", 0px)") : (Jn += L ? "X(" : "Y(", ue = ")")), p && (m.className = m.className.replace("tns-vpfix", "")), ga(), ba(), Ki();
+    function mt(n) {
+      n && (An = Ln = Hn = Wn = $n = nn = Yn = Gn = !1);
     }
     function $i() {
-      var n = ut(), t;
-      return t = Ie ? n : u || v ? Math.ceil((n + 1) * vn / m - 1) : Math.floor(n / w), !J && p && c === un && (t = vn - 1), t;
+      for (var n = p ? c - Q : c; n < 0; )
+        n += g;
+      return n % g + 1;
     }
-    function ca() {
-      if (v || u && !Nt)
-        return m - 1;
-      var n = u ? "fixedWidth" : "items", t = [];
-      if ((u || e[n] < m) && t.push(e[n]), C)
-        for (var o in C) {
-          var a = C[o][n];
-          a && (u || a < m) && t.push(a);
-        }
-      return t.length || t.push(0), Math.ceil(u ? Nt / Math.min.apply(null, t) : Math.max.apply(null, t));
+    function Fi(n) {
+      return n = n ? Math.max(0, Math.min(Z ? g - 1 : g - y, n)) : 0, p ? n + Q : n;
     }
-    function da() {
-      var n = ca(), t = p ? Math.ceil((n * 5 - m) / 2) : n * 4 - m;
-      return t = Math.max(n, t), Dn("edgePadding") ? t + 1 : t;
+    function gt(n) {
+      for (n == null && (n = c), p && (n -= Q); n < 0; )
+        n += g;
+      return Math.floor(n % g);
     }
     function Hi() {
+      var n = gt(), t;
+      return t = qe ? n : u || v ? Math.ceil((n + 1) * xn / g - 1) : Math.floor(n / y), !Z && p && c === hn && (t = xn - 1), t;
+    }
+    function ua() {
+      if (v || u && !Ft)
+        return g - 1;
+      var n = u ? "fixedWidth" : "items", t = [];
+      if ((u || e[n] < g) && t.push(e[n]), j)
+        for (var o in j) {
+          var a = j[o][n];
+          a && (u || a < g) && t.push(a);
+        }
+      return t.length || t.push(0), Math.ceil(u ? Ft / Math.min.apply(null, t) : Math.max.apply(null, t));
+    }
+    function ha() {
+      var n = ua(), t = p ? Math.ceil((n * 5 - g) / 2) : n * 4 - g;
+      return t = Math.max(n, t), jn("edgePadding") ? t + 1 : t;
+    }
+    function Wi() {
       return r.innerWidth || i.documentElement.clientWidth || i.body.clientWidth;
     }
-    function Zt(n) {
+    function Xt(n) {
       return n === "top" ? "afterbegin" : "beforeend";
     }
-    function qi(n) {
+    function Pi(n) {
       if (n != null) {
         var t = i.createElement("div"), o, a;
-        return n.appendChild(t), o = t.getBoundingClientRect(), a = o.right - o.left, t.remove(), a || qi(n.parentNode);
+        return n.appendChild(t), o = t.getBoundingClientRect(), a = o.right - o.left, t.remove(), a || Pi(n.parentNode);
       }
     }
-    function Fi() {
-      var n = I ? I * 2 - y : 0;
-      return qi(Rt) - n;
+    function Yi() {
+      var n = O ? O * 2 - k : 0;
+      return Pi($t) - n;
     }
-    function Dn(n) {
+    function jn(n) {
       if (e[n])
         return !0;
-      if (C) {
-        for (var t in C)
-          if (C[t][n])
+      if (j) {
+        for (var t in j)
+          if (j[t][n])
             return !0;
       }
       return !1;
     }
     function b(n, t) {
-      if (t == null && (t = nt), n === "items" && u)
-        return Math.floor((F + y) / (u + y)) || 1;
+      if (t == null && (t = it), n === "items" && u)
+        return Math.floor((W + k) / (u + k)) || 1;
       var o = e[n];
-      if (C)
-        for (var a in C)
-          t >= parseInt(a) && n in C[a] && (o = C[a][n]);
+      if (j)
+        for (var a in j)
+          t >= parseInt(a) && n in j[a] && (o = j[a][n]);
       return n === "slideBy" && o === "page" && (o = b("items")), !p && (n === "slideBy" || n === "items") && (o = Math.floor(o)), o;
     }
-    function fa(n) {
-      return L ? L + "(" + n * 100 + "% / " + E + ")" : n * 100 / E + "%";
+    function ma(n) {
+      return _ ? _ + "(" + n * 100 + "% / " + A + ")" : n * 100 / A + "%";
     }
-    function ht(n, t, o, a, d) {
+    function bt(n, t, o, a, f) {
       var h = "";
       if (n !== void 0) {
-        var _ = n;
-        t && (_ -= t), h = A ? "margin: 0 " + _ + "px 0 " + n + "px;" : "margin: " + n + "px 0 " + _ + "px 0;";
+        var T = n;
+        t && (T -= t), h = L ? "margin: 0 " + T + "px 0 " + n + "px;" : "margin: " + n + "px 0 " + T + "px 0;";
       } else if (t && !o) {
-        var P = "-" + t + "px", U = A ? P + " 0 0" : "0 " + P + " 0";
-        h = "margin: 0 " + U + ";";
+        var Y = "-" + t + "px", X = L ? Y + " 0 0" : "0 " + Y + " 0";
+        h = "margin: 0 " + X + ";";
       }
-      return !p && d && X && a && (h += te(a)), h;
+      return !p && f && B && a && (h += ae(a)), h;
     }
-    function gt(n, t, o) {
-      return n ? (n + t) * E + "px" : L ? L + "(" + E * 100 + "% / " + o + ")" : E * 100 / o + "%";
+    function vt(n, t, o) {
+      return n ? (n + t) * A + "px" : _ ? _ + "(" + A * 100 + "% / " + o + ")" : A * 100 / o + "%";
     }
-    function mt(n, t, o) {
+    function xt(n, t, o) {
       var a;
       if (n)
         a = n + t + "px";
       else {
         p || (o = Math.floor(o));
-        var d = p ? E : o;
-        a = L ? L + "(100% / " + d + ")" : 100 / d + "%";
+        var f = p ? A : o;
+        a = _ ? _ + "(100% / " + f + ")" : 100 / f + "%";
       }
-      return a = "width:" + a, re !== "inner" ? a + ";" : a + " !important;";
+      return a = "width:" + a, ce !== "inner" ? a + ";" : a + " !important;";
     }
-    function bt(n) {
+    function wt(n) {
       var t = "";
       if (n !== !1) {
-        var o = A ? "padding-" : "margin-", a = A ? "right" : "bottom";
+        var o = L ? "padding-" : "margin-", a = L ? "right" : "bottom";
         t = o + a + ": " + n + "px;";
       }
       return t;
     }
-    function Wi(n, t) {
+    function Gi(n, t) {
       var o = n.substring(0, n.length - t).toLowerCase();
       return o && (o = "-" + o + "-"), o;
     }
-    function te(n) {
-      return Wi(X, 18) + "transition-duration:" + n / 1e3 + "s;";
+    function ae(n) {
+      return Gi(B, 18) + "transition-duration:" + n / 1e3 + "s;";
     }
-    function Pi(n) {
-      return Wi(Xe, 17) + "animation-duration:" + n / 1e3 + "s;";
+    function Ji(n) {
+      return Gi(et, 17) + "animation-duration:" + n / 1e3 + "s;";
     }
-    function pa() {
+    function ga() {
       var n = "tns-outer", t = "tns-inner";
-      if (Dn("gutter"), en.className = n, tn.className = t, en.id = j + "-ow", tn.id = j + "-iw", g.id === "" && (g.id = j), Vn += K || v ? " tns-subpixel" : " tns-no-subpixel", Vn += L ? " tns-calc" : " tns-no-calc", v && (Vn += " tns-autowidth"), Vn += " tns-" + e.axis, g.className += Vn, p ? (rn = i.createElement("div"), rn.id = j + "-mw", rn.className = "tns-ovh", en.appendChild(rn), rn.appendChild(tn)) : en.appendChild(tn), sn) {
-        var o = rn || tn;
+      if (jn("gutter"), tn.className = n, on.className = t, tn.id = I + "-ow", on.id = I + "-iw", m.id === "" && (m.id = I), Zn += K || v ? " tns-subpixel" : " tns-no-subpixel", Zn += _ ? " tns-calc" : " tns-no-calc", v && (Zn += " tns-autowidth"), Zn += " tns-" + e.axis, m.className += Zn, p ? (sn = i.createElement("div"), sn.id = I + "-mw", sn.className = "tns-ovh", tn.appendChild(sn), sn.appendChild(on)) : tn.appendChild(on), ln) {
+        var o = sn || on;
         o.className += " tns-ah";
       }
-      if (Rt.insertBefore(en, g), tn.appendChild(g), In(T, function(q, ge) {
-        N(q, "tns-item"), q.id || (q.id = j + "-item" + ge), !p && Tn && N(q, Tn), dn(q, {
+      if ($t.insertBefore(tn, m), on.appendChild(m), Rn(S, function(H, ve) {
+        N(H, "tns-item"), H.id || (H.id = I + "-item" + ve), !p && Sn && N(H, Sn), fn(H, {
           "aria-hidden": "true",
           tabindex: "-1"
         });
-      }), Z) {
-        for (var a = i.createDocumentFragment(), d = i.createDocumentFragment(), h = Z; h--; ) {
-          var _ = h % m, P = T[_].cloneNode(!0);
-          if (N(P, Di), On(P, "id"), d.insertBefore(P, d.firstChild), p) {
-            var U = T[m - 1 - _].cloneNode(!0);
-            N(U, Di), On(U, "id"), a.appendChild(U);
+      }), Q) {
+        for (var a = i.createDocumentFragment(), f = i.createDocumentFragment(), h = Q; h--; ) {
+          var T = h % g, Y = S[T].cloneNode(!0);
+          if (N(Y, Ii), qn(Y, "id"), f.insertBefore(Y, f.firstChild), p) {
+            var X = S[g - 1 - T].cloneNode(!0);
+            N(X, Ii), qn(X, "id"), a.appendChild(X);
           }
         }
-        g.insertBefore(a, g.firstChild), g.appendChild(d), T = g.children;
+        m.insertBefore(a, m.firstChild), m.appendChild(f), S = m.children;
       }
     }
-    function Yi() {
-      if (Dn("autoHeight") || v || !A) {
-        var n = g.querySelectorAll("img");
-        In(n, function(t) {
+    function Ki() {
+      if (jn("autoHeight") || v || !L) {
+        var n = m.querySelectorAll("img");
+        Rn(n, function(t) {
           var o = t.src;
-          Te || (o && o.indexOf("data:image") < 0 ? (t.src = "", R(t, rt), N(t, "loading"), t.src = o) : io(t));
-        }), jn(function() {
-          wt(bi(n), function() {
-            Gt = !0;
+          Ae || (o && o.indexOf("data:image") < 0 ? (t.src = "", q(t, ct), N(t, "loading"), t.src = o) : ro(t));
+        }), On(function() {
+          kt(wi(n), function() {
+            Vt = !0;
           });
-        }), Dn("autoHeight") && (n = ei(c, Math.min(c + w - 1, E - 1))), Te ? Gi() : jn(function() {
-          wt(bi(n), Gi);
+        }), jn("autoHeight") && (n = oi(c, Math.min(c + y - 1, A - 1))), Ae ? Vi() : On(function() {
+          kt(wi(n), Vi);
         });
       } else
-        p && qe(), Vi(), Ji();
+        p && Pe(), Qi(), Ui();
     }
-    function Gi() {
-      if (v && m > 1) {
-        var n = J ? c : m - 1;
+    function Vi() {
+      if (v && g > 1) {
+        var n = Z ? c : g - 1;
         (function t() {
-          var o = T[n].getBoundingClientRect().left, a = T[n - 1].getBoundingClientRect().right;
-          Math.abs(o - a) <= 1 ? Ki() : setTimeout(function() {
+          var o = S[n].getBoundingClientRect().left, a = S[n - 1].getBoundingClientRect().right;
+          Math.abs(o - a) <= 1 ? Zi() : setTimeout(function() {
             t();
           }, 16);
         })();
       } else
-        Ki();
+        Zi();
     }
-    function Ki() {
-      (!A || v) && (so(), v ? (ce = ii(), it && (bn = Qt()), un = Ee(), pt(ln || bn)) : ri()), p && qe(), Vi(), Ji();
+    function Zi() {
+      (!L || v) && (fo(), v ? (pe = ri(), rt && (vn = Bt()), hn = Le(), mt(cn || vn)) : ci()), p && Pe(), Qi(), Ui();
     }
-    function ua() {
+    function ba() {
       if (!p)
-        for (var n = c, t = c + Math.min(m, w); n < t; n++) {
-          var o = T[n];
-          o.style.left = (n - c) * 100 / w + "%", N(o, Rn), on(o, Tn);
+        for (var n = c, t = c + Math.min(g, y); n < t; n++) {
+          var o = S[n];
+          o.style.left = (n - c) * 100 / y + "%", N(o, Nn), an(o, Sn);
         }
-      if (A && (K || v ? (zn(M, "#" + j + " > .tns-item", "font-size:" + r.getComputedStyle(T[0]).fontSize + ";", kn(M)), zn(M, "#" + j, "font-size:0;", kn(M))) : p && In(T, function(di, fi) {
-        di.style.marginLeft = fa(fi);
-      })), an) {
-        if (X) {
-          var a = rn && e.autoHeight ? te(e.speed) : "";
-          zn(M, "#" + j + "-mw", a, kn(M));
+      if (L && (K || v ? (Cn(M, "#" + I + " > .tns-item", "font-size:" + r.getComputedStyle(S[0]).fontSize + ";", En(M)), Cn(M, "#" + I, "font-size:0;", En(M))) : p && Rn(S, function(ui, hi) {
+        ui.style.marginLeft = ma(hi);
+      })), rn) {
+        if (B) {
+          var a = sn && e.autoHeight ? ae(e.speed) : "";
+          Cn(M, "#" + I + "-mw", a, En(M));
         }
-        a = ht(e.edgePadding, e.gutter, e.fixedWidth, e.speed, e.autoHeight), zn(M, "#" + j + "-iw", a, kn(M)), p && (a = A && !v ? "width:" + gt(e.fixedWidth, e.gutter, e.items) + ";" : "", X && (a += te(mn)), zn(M, "#" + j, a, kn(M))), a = A && !v ? mt(e.fixedWidth, e.gutter, e.items) : "", e.gutter && (a += bt(e.gutter)), p || (X && (a += te(mn)), Xe && (a += Pi(mn))), a && zn(M, "#" + j + " > .tns-item", a, kn(M));
+        a = bt(e.edgePadding, e.gutter, e.fixedWidth, e.speed, e.autoHeight), Cn(M, "#" + I + "-iw", a, En(M)), p && (a = L && !v ? "width:" + vt(e.fixedWidth, e.gutter, e.items) + ";" : "", B && (a += ae(bn)), Cn(M, "#" + I, a, En(M))), a = L && !v ? xt(e.fixedWidth, e.gutter, e.items) : "", e.gutter && (a += wt(e.gutter)), p || (B && (a += ae(bn)), et && (a += Ji(bn))), a && Cn(M, "#" + I + " > .tns-item", a, En(M));
       } else {
-        wa(), tn.style.cssText = ht(I, y, u, sn), p && A && !v && (g.style.width = gt(u, y, w));
-        var a = A && !v ? mt(u, y, w) : "";
-        y && (a += bt(y)), a && zn(M, "#" + j + " > .tns-item", a, kn(M));
+        Ta(), on.style.cssText = bt(O, k, u, ln), p && L && !v && (m.style.width = vt(u, k, y));
+        var a = L && !v ? xt(u, k, y) : "";
+        k && (a += wt(k)), a && Cn(M, "#" + I + " > .tns-item", a, En(M));
       }
-      if (C && an)
-        for (var d in C) {
-          d = parseInt(d);
-          var h = C[d], a = "", _ = "", P = "", U = "", q = "", ge = v ? null : b("items", d), Pe = b("fixedWidth", d), oe = b("speed", d), li = b("edgePadding", d), ci = b("autoHeight", d), me = b("gutter", d);
-          X && rn && b("autoHeight", d) && "speed" in h && (_ = "#" + j + "-mw{" + te(oe) + "}"), ("edgePadding" in h || "gutter" in h) && (P = "#" + j + "-iw{" + ht(li, me, Pe, oe, ci) + "}"), p && A && !v && ("fixedWidth" in h || "items" in h || u && "gutter" in h) && (U = "width:" + gt(Pe, me, ge) + ";"), X && "speed" in h && (U += te(oe)), U && (U = "#" + j + "{" + U + "}"), ("fixedWidth" in h || u && "gutter" in h || !p && "items" in h) && (q += mt(Pe, me, ge)), "gutter" in h && (q += bt(me)), !p && "speed" in h && (X && (q += te(oe)), Xe && (q += Pi(oe))), q && (q = "#" + j + " > .tns-item{" + q + "}"), a = _ + P + U + q, a && M.insertRule("@media (min-width: " + d / 16 + "em) {" + a + "}", M.cssRules.length);
+      if (j && rn)
+        for (var f in j) {
+          f = parseInt(f);
+          var h = j[f], a = "", T = "", Y = "", X = "", H = "", ve = v ? null : b("items", f), Je = b("fixedWidth", f), se = b("speed", f), fi = b("edgePadding", f), pi = b("autoHeight", f), xe = b("gutter", f);
+          B && sn && b("autoHeight", f) && "speed" in h && (T = "#" + I + "-mw{" + ae(se) + "}"), ("edgePadding" in h || "gutter" in h) && (Y = "#" + I + "-iw{" + bt(fi, xe, Je, se, pi) + "}"), p && L && !v && ("fixedWidth" in h || "items" in h || u && "gutter" in h) && (X = "width:" + vt(Je, xe, ve) + ";"), B && "speed" in h && (X += ae(se)), X && (X = "#" + I + "{" + X + "}"), ("fixedWidth" in h || u && "gutter" in h || !p && "items" in h) && (H += xt(Je, xe, ve)), "gutter" in h && (H += wt(xe)), !p && "speed" in h && (B && (H += ae(se)), et && (H += Ji(se))), H && (H = "#" + I + " > .tns-item{" + H + "}"), a = T + Y + X + H, a && M.insertRule("@media (min-width: " + f / 16 + "em) {" + a + "}", M.cssRules.length);
         }
     }
-    function Vi() {
-      if (ti(), en.insertAdjacentHTML("afterbegin", '<div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">' + to() + "</span>  of " + m + "</div>"), Kt = en.querySelector(".tns-liveregion .current"), Pt) {
-        var n = B ? "stop" : "start";
-        O ? dn(O, { "data-action": n }) : e.autoplayButtonOutput && (en.insertAdjacentHTML(Zt(e.autoplayPosition), '<button type="button" data-action="' + n + '">' + $e[0] + n + $e[1] + Fn[0] + "</button>"), O = en.querySelector("[data-action]")), O && R(O, { click: mo }), B && (St(), Wn && R(g, Le), Pn && R(g, ze));
+    function Qi() {
+      if (ai(), tn.insertAdjacentHTML("afterbegin", '<div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">' + ao() + "</span>  of " + g + "</div>"), Zt = tn.querySelector(".tns-liveregion .current"), Jt) {
+        var n = nn ? "stop" : "start";
+        R ? fn(R, { "data-action": n }) : e.autoplayButtonOutput && (tn.insertAdjacentHTML(Xt(e.autoplayPosition), '<button type="button" data-action="' + n + '">' + He[0] + n + He[1] + Pn[0] + "</button>"), R = tn.querySelector("[data-action]")), R && q(R, { click: xo }), nn && (Mt(), Yn && q(m, Ce), Gn && q(m, je));
       }
-      if (Wt) {
-        if (Q)
-          dn(Q, { "aria-label": "Carousel Pagination" }), hn = Q.children, In(hn, function(_, P) {
-            dn(_, {
-              "data-nav": P,
+      if (Gt) {
+        if (U)
+          fn(U, { "aria-label": "Carousel Pagination" }), mn = U.children, Rn(mn, function(T, Y) {
+            fn(T, {
+              "data-nav": Y,
               tabindex: "-1",
-              "aria-label": pe + (P + 1),
-              "aria-controls": j
+              "aria-label": me + (Y + 1),
+              "aria-controls": I
             });
           });
         else {
-          for (var t = "", o = Ie ? "" : 'style="display:none"', a = 0; a < m; a++)
-            t += '<button type="button" data-nav="' + a + '" tabindex="-1" aria-controls="' + j + '" ' + o + ' aria-label="' + pe + (a + 1) + '"></button>';
-          t = '<div class="tns-nav" aria-label="Carousel Pagination">' + t + "</div>", en.insertAdjacentHTML(Zt(e.navPosition), t), Q = en.querySelector(".tns-nav"), hn = Q.children;
+          for (var t = "", o = qe ? "" : 'style="display:none"', a = 0; a < g; a++)
+            t += '<button type="button" data-nav="' + a + '" tabindex="-1" aria-controls="' + I + '" ' + o + ' aria-label="' + me + (a + 1) + '"></button>';
+          t = '<div class="tns-nav" aria-label="Carousel Pagination">' + t + "</div>", tn.insertAdjacentHTML(Xt(e.navPosition), t), U = tn.querySelector(".tns-nav"), mn = U.children;
         }
-        if (si(), X) {
-          var d = X.substring(0, X.length - 18).toLowerCase(), h = "transition: all " + mn / 1e3 + "s";
-          d && (h = "-" + d + "-" + h), zn(M, "[aria-controls^=" + j + "-item]", h, kn(M));
+        if (di(), B) {
+          var f = B.substring(0, B.length - 18).toLowerCase(), h = "transition: all " + bn / 1e3 + "s";
+          f && (h = "-" + f + "-" + h), Cn(M, "[aria-controls^=" + I + "-item]", h, En(M));
         }
-        dn(hn[gn], { "aria-label": pe + (gn + 1) + Vt }), On(hn[gn], "tabindex"), N(hn[gn], st), R(Q, Ft);
+        fn(mn[gn], { "aria-label": me + (gn + 1) + Qt }), qn(mn[gn], "tabindex"), N(mn[gn], dt), q(U, Yt);
       }
-      ot && (!H && (!z || !D) && (en.insertAdjacentHTML(Zt(e.controlsPosition), '<div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button type="button" data-controls="prev" tabindex="-1" aria-controls="' + j + '">' + $n[0] + '</button><button type="button" data-controls="next" tabindex="-1" aria-controls="' + j + '">' + $n[1] + "</button></div>"), H = en.querySelector(".tns-controls")), (!z || !D) && (z = H.children[0], D = H.children[1]), e.controlsContainer && dn(H, {
+      st && (!F && (!z || !D) && (tn.insertAdjacentHTML(Xt(e.controlsPosition), '<div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button type="button" data-controls="prev" tabindex="-1" aria-controls="' + I + '">' + Fn[0] + '</button><button type="button" data-controls="next" tabindex="-1" aria-controls="' + I + '">' + Fn[1] + "</button></div>"), F = tn.querySelector(".tns-controls")), (!z || !D) && (z = F.children[0], D = F.children[1]), e.controlsContainer && fn(F, {
         "aria-label": "Carousel Navigation",
         tabindex: "0"
-      }), (e.controlsContainer || e.prevButton && e.nextButton) && dn([z, D], {
-        "aria-controls": j,
+      }), (e.controlsContainer || e.prevButton && e.nextButton) && fn([z, D], {
+        "aria-controls": I,
         tabindex: "-1"
-      }), (e.controlsContainer || e.prevButton && e.nextButton) && (dn(z, { "data-controls": "prev" }), dn(D, { "data-controls": "next" })), Re = co(z), Ne = co(D), po(), H ? R(H, Me) : (R(z, Me), R(D, Me))), Xt();
+      }), (e.controlsContainer || e.prevButton && e.nextButton) && (fn(z, { "data-controls": "prev" }), fn(D, { "data-controls": "next" })), $e = uo(z), Fe = uo(D), mo(), F ? q(F, De) : (q(z, De), q(D, De))), ei();
     }
-    function Ji() {
-      if (p && Qn) {
+    function Ui() {
+      if (p && Bn) {
         var n = {};
-        n[Qn] = Ln, R(g, n);
+        n[Bn] = Dn, q(m, n);
       }
-      Hn && R(g, Ce, e.preventScrollOnTouch), qn && R(g, je), Nn && R(i, De), re === "inner" ? W.on("outerResized", function() {
-        Qi(), W.emit("innerLoaded", nn());
-      }) : (C || u || v || sn || !A) && R(r, { resize: Zi }), sn && (re === "outer" ? W.on("innerLoaded", xt) : ln || xt()), Bt(), ln ? no() : bn && Bi(), W.on("indexChanged", oo), re === "inner" && W.emit("innerLoaded", nn()), typeof qt == "function" && qt(nn()), _e = !0;
+      Hn && q(m, Oe, e.preventScrollOnTouch), Wn && q(m, Re), $n && q(i, Ie), ce === "inner" ? P.on("outerResized", function() {
+        Bi(), P.emit("innerLoaded", en());
+      }) : (j || u || v || ln || !L) && q(r, { resize: Xi }), ln && (ce === "outer" ? P.on("innerLoaded", _t) : cn || _t()), ti(), cn ? io() : vn && to(), P.on("indexChanged", so), ce === "inner" && P.emit("innerLoaded", en()), typeof Pt == "function" && Pt(en()), Ee = !0;
     }
-    function ha() {
-      if (M.disabled = !0, M.ownerNode && M.ownerNode.remove(), Y(r, { resize: Zi }), Nn && Y(i, De), H && Y(H, Me), Q && Y(Q, Ft), Y(g, Le), Y(g, ze), O && Y(O, { click: mo }), B && clearInterval(lt), p && Qn) {
+    function va() {
+      if (M.disabled = !0, M.ownerNode && M.ownerNode.remove(), J(r, { resize: Xi }), $n && J(i, Ie), F && J(F, De), U && J(U, Yt), J(m, Ce), J(m, je), R && J(R, { click: xo }), nn && clearInterval(ft), p && Bn) {
         var n = {};
-        n[Qn] = Ln, Y(g, n);
+        n[Bn] = Dn, J(m, n);
       }
-      Hn && Y(g, Ce), qn && Y(g, je);
-      var t = [Ai, Ci, sa, la, ji, Oi];
-      jt.forEach(function(a, d) {
-        var h = a === "container" ? en : e[a];
+      Hn && J(m, Oe), Wn && J(m, Re);
+      var t = [zi, Oi, fa, pa, Ri, Ni];
+      Rt.forEach(function(a, f) {
+        var h = a === "container" ? tn : e[a];
         if (typeof h == "object" && h) {
-          var _ = h.previousElementSibling ? h.previousElementSibling : !1, P = h.parentNode;
-          h.outerHTML = t[d], e[a] = _ ? _.nextElementSibling : P.firstElementChild;
+          var T = h.previousElementSibling ? h.previousElementSibling : !1, Y = h.parentNode;
+          h.outerHTML = t[f], e[a] = T ? T.nextElementSibling : Y.firstElementChild;
         }
-      }), jt = Rn = Be = Ot = Tn = A = en = tn = g = Rt = Ai = T = m = ye = nt = v = u = I = y = F = w = se = Nt = Nn = mn = ke = J = sn = M = Te = $ = le = Z = E = Mi = ce = Ht = Un = Yn = de = Ee = c = Gn = An = un = tt = Mn = Kn = qt = W = Vn = j = ln = Se = it = bn = Ae = Me = Ft = Le = ze = De = Ce = je = ot = Wt = Ie = Pt = Li = zi = Yt = at = rt = Gt = En = $n = H = Ci = z = D = Re = Ne = Sn = Q = ji = hn = vn = Xn = Bn = gn = fe = st = pe = Vt = B = $t = Ii = Fn = Wn = O = Oi = Pn = $e = lt = cn = ct = ue = dt = ne = _n = ft = ee = xn = Jt = Hn = qn = null;
+      }), Rt = Nn = tt = Nt = Sn = L = tn = on = m = $t = zi = S = g = Te = it = v = u = O = k = W = y = de = Ft = $n = bn = Se = Z = ln = M = Ae = $ = fe = Q = A = Di = pe = Wt = ne = Jn = ue = Le = c = Kn = Mn = hn = at = zn = Vn = Pt = P = Zn = I = cn = Me = rt = vn = ze = De = Yt = Ce = je = Ie = Oe = Re = st = Gt = qe = Jt = Ci = ji = Kt = lt = ct = Vt = An = Fn = F = Oi = z = D = $e = Fe = Ln = U = Ri = mn = xn = ee = te = gn = he = dt = me = Qt = nn = Ht = qi = Pn = Yn = R = Ni = Gn = He = ft = dn = pt = ge = ut = ie = kn = ht = oe = wn = Ut = Hn = Wn = null;
       for (var o in this)
         o !== "rebuild" && (this[o] = null);
-      _e = !1;
+      Ee = !1;
     }
-    function Zi(n) {
-      jn(function() {
-        Qi(Cn(n));
+    function Xi(n) {
+      On(function() {
+        Bi(In(n));
       });
     }
-    function Qi(n) {
-      if (_e) {
-        re === "outer" && W.emit("outerResized", nn(n)), nt = Hi();
-        var t, o = ye, a = !1;
-        C && (Ui(), t = o !== ye, t && W.emit("newBreakpointStart", nn(n)));
-        var d, h, _ = w, P = ln, U = bn, q = Nn, ge = En, Pe = Sn, oe = Hn, li = qn, ci = B, me = Wn, di = Pn, fi = c;
+    function Bi(n) {
+      if (Ee) {
+        ce === "outer" && P.emit("outerResized", en(n)), it = Wi();
+        var t, o = Te, a = !1;
+        j && (no(), t = o !== Te, t && P.emit("newBreakpointStart", en(n)));
+        var f, h, T = y, Y = cn, X = vn, H = $n, ve = An, Je = Ln, se = Hn, fi = Wn, pi = nn, xe = Yn, ui = Gn, hi = c;
         if (t) {
-          var Ia = u, Oa = sn, Ra = $n, Na = V, pi = Fn;
-          if (!an)
-            var $a = y, Ha = I;
+          var Na = u, $a = ln, Fa = Fn, Ha = V, mi = Pn;
+          if (!rn)
+            var Wa = k, Pa = O;
         }
-        if (Nn = b("arrowKeys"), En = b("controls"), Sn = b("nav"), Hn = b("touch"), V = b("center"), qn = b("mouseDrag"), B = b("autoplay"), Wn = b("autoplayHoverPause"), Pn = b("autoplayResetOnVisibility"), t && (ln = b("disable"), u = b("fixedWidth"), mn = b("speed"), sn = b("autoHeight"), $n = b("controlsText"), Fn = b("autoplayText"), $t = b("autoplayTimeout"), an || (I = b("edgePadding"), y = b("gutter"))), pt(ln), F = Fi(), (!A || v) && !ln && (so(), A || (ri(), a = !0)), (u || v) && (ce = ii(), un = Ee()), (t || u) && (w = b("items"), se = b("slideBy"), h = w !== _, h && (!u && !v && (un = Ee()), Ut())), t && ln !== P && (ln ? no() : ma()), it && (t || u || v) && (bn = Qt(), bn !== U && (bn ? (oi(kt(Ni(0))), Bi()) : (ga(), a = !0))), pt(ln || bn), B || (Wn = Pn = !1), Nn !== q && (Nn ? R(i, De) : Y(i, De)), En !== ge && (En ? H ? pn(H) : (z && pn(z), D && pn(D)) : H ? fn(H) : (z && fn(z), D && fn(D))), Sn !== Pe && (Sn ? (pn(Q), si()) : fn(Q)), Hn !== oe && (Hn ? R(g, Ce, e.preventScrollOnTouch) : Y(g, Ce)), qn !== li && (qn ? R(g, je) : Y(g, je)), B !== ci && (B ? (O && pn(O), !cn && !ue && St()) : (O && fn(O), cn && We())), Wn !== me && (Wn ? R(g, Le) : Y(g, Le)), Pn !== di && (Pn ? R(i, ze) : Y(i, ze)), t) {
-          if ((u !== Ia || V !== Na) && (a = !0), sn !== Oa && (sn || (tn.style.height = "")), En && $n !== Ra && (z.innerHTML = $n[0], D.innerHTML = $n[1]), O && Fn !== pi) {
-            var ui = B ? 1 : 0, hi = O.innerHTML, To = hi.length - pi[ui].length;
-            hi.substring(To) === pi[ui] && (O.innerHTML = hi.substring(0, To) + Fn[ui]);
+        if ($n = b("arrowKeys"), An = b("controls"), Ln = b("nav"), Hn = b("touch"), V = b("center"), Wn = b("mouseDrag"), nn = b("autoplay"), Yn = b("autoplayHoverPause"), Gn = b("autoplayResetOnVisibility"), t && (cn = b("disable"), u = b("fixedWidth"), bn = b("speed"), ln = b("autoHeight"), Fn = b("controlsText"), Pn = b("autoplayText"), Ht = b("autoplayTimeout"), rn || (O = b("edgePadding"), k = b("gutter"))), mt(cn), W = Yi(), (!L || v) && !cn && (fo(), L || (ci(), a = !0)), (u || v) && (pe = ri(), hn = Le()), (t || u) && (y = b("items"), de = b("slideBy"), h = y !== T, h && (!u && !v && (hn = Le()), ni())), t && cn !== Y && (cn ? io() : wa()), rt && (t || u || v) && (vn = Bt(), vn !== X && (vn ? (si(St(Fi(0))), to()) : (xa(), a = !0))), mt(cn || vn), nn || (Yn = Gn = !1), $n !== H && ($n ? q(i, Ie) : J(i, Ie)), An !== ve && (An ? F ? un(F) : (z && un(z), D && un(D)) : F ? pn(F) : (z && pn(z), D && pn(D))), Ln !== Je && (Ln ? (un(U), di()) : pn(U)), Hn !== se && (Hn ? q(m, Oe, e.preventScrollOnTouch) : J(m, Oe)), Wn !== fi && (Wn ? q(m, Re) : J(m, Re)), nn !== pi && (nn ? (R && un(R), !dn && !ge && Mt()) : (R && pn(R), dn && Ge())), Yn !== xe && (Yn ? q(m, Ce) : J(m, Ce)), Gn !== ui && (Gn ? q(i, je) : J(i, je)), t) {
+          if ((u !== Na || V !== Ha) && (a = !0), ln !== $a && (ln || (on.style.height = "")), An && Fn !== Fa && (z.innerHTML = Fn[0], D.innerHTML = Fn[1]), R && Pn !== mi) {
+            var gi = nn ? 1 : 0, bi = R.innerHTML, Ao = bi.length - mi[gi].length;
+            bi.substring(Ao) === mi[gi] && (R.innerHTML = bi.substring(0, Ao) + Pn[gi]);
           }
         } else
           V && (u || v) && (a = !0);
-        if ((h || u && !v) && (vn = ko(), si()), d = c !== fi, d ? (W.emit("indexChanged", nn()), a = !0) : h ? d || oo() : (u || v) && (Bt(), ti(), eo()), h && !p && ya(), !ln && !bn) {
-          if (t && !an && ((I !== Ha || y !== $a) && (tn.style.cssText = ht(I, y, u, mn, sn)), A)) {
-            p && (g.style.width = gt(u, y, w));
-            var qa = mt(u, y, w) + bt(y);
-            Xo(M, kn(M) - 1), zn(M, "#" + j + " > .tns-item", qa, kn(M));
+        if ((h || u && !v) && (xn = So(), di()), f = c !== hi, f ? (P.emit("indexChanged", en()), a = !0) : h ? f || so() : (u || v) && (ti(), ai(), oo()), h && !p && Ea(), !cn && !vn) {
+          if (t && !rn && ((O !== Pa || k !== Wa) && (on.style.cssText = bt(O, k, u, bn, ln)), L)) {
+            p && (m.style.width = vt(u, k, y));
+            var Ya = xt(u, k, y) + wt(k);
+            ta(M, En(M) - 1), Cn(M, "#" + I + " > .tns-item", Ya, En(M));
           }
-          sn && xt(), a && (qe(), Gn = c);
+          ln && _t(), a && (Pe(), Kn = c);
         }
-        t && W.emit("newBreakpointEnd", nn(n));
+        t && P.emit("newBreakpointEnd", en(n));
       }
     }
-    function Qt() {
+    function Bt() {
       if (!u && !v) {
-        var n = V ? w - (w - 1) / 2 : w;
-        return m <= n;
+        var n = V ? y - (y - 1) / 2 : y;
+        return g <= n;
       }
-      var t = u ? (u + y) * m : $[m], o = I ? F + I * 2 : F + y;
-      return V && (o -= u ? (F - u) / 2 : (F - ($[c + 1] - $[c] - y)) / 2), t <= o;
+      var t = u ? (u + k) * g : $[g], o = O ? W + O * 2 : W + k;
+      return V && (o -= u ? (W - u) / 2 : (W - ($[c + 1] - $[c] - k)) / 2), t <= o;
     }
-    function Ui() {
-      ye = 0;
-      for (var n in C)
-        n = parseInt(n), nt >= n && (ye = n);
+    function no() {
+      Te = 0;
+      for (var n in j)
+        n = parseInt(n), it >= n && (Te = n);
     }
-    var Ut = /* @__PURE__ */ function() {
-      return J ? p ? (
+    var ni = /* @__PURE__ */ function() {
+      return Z ? p ? (
         // loop + carousel
         function() {
-          var n = An, t = un;
-          n += se, t -= se, I ? (n += 1, t -= 1) : u && (F + y) % (u + y) && (t -= 1), Z && (c > t ? c -= m : c < n && (c += m));
+          var n = Mn, t = hn;
+          n += de, t -= de, O ? (n += 1, t -= 1) : u && (W + k) % (u + k) && (t -= 1), Q && (c > t ? c -= g : c < n && (c += g));
         }
       ) : (
         // loop + gallery
         function() {
-          if (c > un)
-            for (; c >= An + m; )
-              c -= m;
-          else if (c < An)
-            for (; c <= un - m; )
-              c += m;
+          if (c > hn)
+            for (; c >= Mn + g; )
+              c -= g;
+          else if (c < Mn)
+            for (; c <= hn - g; )
+              c += g;
         }
       ) : (
         // non-loop
         function() {
-          c = Math.max(An, Math.min(un, c));
+          c = Math.max(Mn, Math.min(hn, c));
         }
       );
     }();
-    function Xt() {
-      !B && O && fn(O), !Sn && Q && fn(Q), En || (H ? fn(H) : (z && fn(z), D && fn(D)));
-    }
-    function Xi() {
-      B && O && pn(O), Sn && Q && pn(Q), En && (H ? pn(H) : (z && pn(z), D && pn(D)));
-    }
-    function Bi() {
-      if (!Ae) {
-        if (I && (tn.style.margin = "0px"), Z)
-          for (var n = "tns-transparent", t = Z; t--; )
-            p && N(T[t], n), N(T[E - t - 1], n);
-        Xt(), Ae = !0;
-      }
-    }
-    function ga() {
-      if (Ae) {
-        if (I && an && (tn.style.margin = ""), Z)
-          for (var n = "tns-transparent", t = Z; t--; )
-            p && on(T[t], n), on(T[E - t - 1], n);
-        Xi(), Ae = !1;
-      }
-    }
-    function no() {
-      if (!Se) {
-        if (M.disabled = !0, g.className = g.className.replace(Vn.substring(1), ""), On(g, ["style"]), J)
-          for (var n = Z; n--; )
-            p && fn(T[n]), fn(T[E - n - 1]);
-        if ((!A || !p) && On(tn, ["style"]), !p)
-          for (var t = c, o = c + m; t < o; t++) {
-            var a = T[t];
-            On(a, ["style"]), on(a, Rn), on(a, Tn);
-          }
-        Xt(), Se = !0;
-      }
-    }
-    function ma() {
-      if (Se) {
-        if (M.disabled = !1, g.className += Vn, qe(), J)
-          for (var n = Z; n--; )
-            p && pn(T[n]), pn(T[E - n - 1]);
-        if (!p)
-          for (var t = c, o = c + m; t < o; t++) {
-            var a = T[t], d = t < c + w ? Rn : Tn;
-            a.style.left = (t - c) * 100 / w + "%", N(a, d);
-          }
-        Xi(), Se = !1;
-      }
+    function ei() {
+      !nn && R && pn(R), !Ln && U && pn(U), An || (F ? pn(F) : (z && pn(z), D && pn(D)));
     }
     function eo() {
-      var n = to();
-      Kt.innerHTML !== n && (Kt.innerHTML = n);
+      nn && R && un(R), Ln && U && un(U), An && (F ? un(F) : (z && un(z), D && un(D)));
     }
     function to() {
-      var n = vt(), t = n[0] + 1, o = n[1] + 1;
+      if (!ze) {
+        if (O && (on.style.margin = "0px"), Q)
+          for (var n = "tns-transparent", t = Q; t--; )
+            p && N(S[t], n), N(S[A - t - 1], n);
+        ei(), ze = !0;
+      }
+    }
+    function xa() {
+      if (ze) {
+        if (O && rn && (on.style.margin = ""), Q)
+          for (var n = "tns-transparent", t = Q; t--; )
+            p && an(S[t], n), an(S[A - t - 1], n);
+        eo(), ze = !1;
+      }
+    }
+    function io() {
+      if (!Me) {
+        if (M.disabled = !0, m.className = m.className.replace(Zn.substring(1), ""), qn(m, ["style"]), Z)
+          for (var n = Q; n--; )
+            p && pn(S[n]), pn(S[A - n - 1]);
+        if ((!L || !p) && qn(on, ["style"]), !p)
+          for (var t = c, o = c + g; t < o; t++) {
+            var a = S[t];
+            qn(a, ["style"]), an(a, Nn), an(a, Sn);
+          }
+        ei(), Me = !0;
+      }
+    }
+    function wa() {
+      if (Me) {
+        if (M.disabled = !1, m.className += Zn, Pe(), Z)
+          for (var n = Q; n--; )
+            p && un(S[n]), un(S[A - n - 1]);
+        if (!p)
+          for (var t = c, o = c + g; t < o; t++) {
+            var a = S[t], f = t < c + y ? Nn : Sn;
+            a.style.left = (t - c) * 100 / y + "%", N(a, f);
+          }
+        eo(), Me = !1;
+      }
+    }
+    function oo() {
+      var n = ao();
+      Zt.innerHTML !== n && (Zt.innerHTML = n);
+    }
+    function ao() {
+      var n = yt(), t = n[0] + 1, o = n[1] + 1;
       return t === o ? t + "" : t + " to " + o;
     }
-    function vt(n) {
-      n == null && (n = kt());
-      var t = c, o, a, d;
-      if (V || I ? (v || u) && (a = -(parseFloat(n) + I), d = a + F + I * 2) : v && (a = $[c], d = a + F), v)
-        $.forEach(function(U, q) {
-          q < E && ((V || I) && U <= a + 0.5 && (t = q), d - U >= 0.5 && (o = q));
+    function yt(n) {
+      n == null && (n = St());
+      var t = c, o, a, f;
+      if (V || O ? (v || u) && (a = -(parseFloat(n) + O), f = a + W + O * 2) : v && (a = $[c], f = a + W), v)
+        $.forEach(function(X, H) {
+          H < A && ((V || O) && X <= a + 0.5 && (t = H), f - X >= 0.5 && (o = H));
         });
       else {
         if (u) {
-          var h = u + y;
-          V || I ? (t = Math.floor(a / h), o = Math.ceil(d / h - 1)) : o = t + Math.ceil(F / h) - 1;
-        } else if (V || I) {
-          var _ = w - 1;
-          if (V ? (t -= _ / 2, o = c + _ / 2) : o = c + _, I) {
-            var P = I * w / F;
-            t -= P, o += P;
+          var h = u + k;
+          V || O ? (t = Math.floor(a / h), o = Math.ceil(f / h - 1)) : o = t + Math.ceil(W / h) - 1;
+        } else if (V || O) {
+          var T = y - 1;
+          if (V ? (t -= T / 2, o = c + T / 2) : o = c + T, O) {
+            var Y = O * y / W;
+            t -= Y, o += Y;
           }
           t = Math.floor(t), o = Math.ceil(o);
         } else
-          o = t + w - 1;
-        t = Math.max(t, 0), o = Math.min(o, E - 1);
+          o = t + y - 1;
+        t = Math.max(t, 0), o = Math.min(o, A - 1);
       }
       return [t, o];
     }
-    function Bt() {
-      if (Te && !ln) {
-        var n = vt();
-        n.push(ra), ei.apply(null, n).forEach(function(t) {
-          if (!ae(t, at)) {
+    function ti() {
+      if (Ae && !cn) {
+        var n = yt();
+        n.push(da), oi.apply(null, n).forEach(function(t) {
+          if (!le(t, lt)) {
             var o = {};
-            o[Qn] = function(d) {
-              d.stopPropagation();
-            }, R(t, o), R(t, rt), t.src = Je(t, "data-src");
-            var a = Je(t, "data-srcset");
+            o[Bn] = function(f) {
+              f.stopPropagation();
+            }, q(t, o), q(t, ct), t.src = Ue(t, "data-src");
+            var a = Ue(t, "data-srcset");
             a && (t.srcset = a), N(t, "loading");
           }
         });
       }
     }
-    function ba(n) {
-      io(he(n));
+    function ya(n) {
+      ro(be(n));
     }
-    function va(n) {
-      xa(he(n));
+    function _a(n) {
+      ka(be(n));
     }
-    function io(n) {
-      N(n, "loaded"), ni(n);
+    function ro(n) {
+      N(n, "loaded"), ii(n);
     }
-    function xa(n) {
-      N(n, "failed"), ni(n);
+    function ka(n) {
+      N(n, "failed"), ii(n);
     }
-    function ni(n) {
-      N(n, at), on(n, "loading"), Y(n, rt);
+    function ii(n) {
+      N(n, lt), an(n, "loading"), J(n, ct);
     }
-    function ei(n, t, o) {
+    function oi(n, t, o) {
       var a = [];
       for (o || (o = "img"); n <= t; )
-        In(T[n].querySelectorAll(o), function(d) {
-          a.push(d);
+        Rn(S[n].querySelectorAll(o), function(f) {
+          a.push(f);
         }), n++;
       return a;
     }
-    function xt() {
-      var n = ei.apply(null, vt());
-      jn(function() {
-        wt(n, ro);
+    function _t() {
+      var n = oi.apply(null, yt());
+      On(function() {
+        kt(n, co);
       });
     }
-    function wt(n, t) {
-      if (Gt || (n.forEach(function(o, a) {
-        !Te && o.complete && ni(o), ae(o, at) && n.splice(a, 1);
+    function kt(n, t) {
+      if (Vt || (n.forEach(function(o, a) {
+        !Ae && o.complete && ii(o), le(o, lt) && n.splice(a, 1);
       }), !n.length))
         return t();
-      jn(function() {
-        wt(n, t);
+      On(function() {
+        kt(n, t);
       });
-    }
-    function oo() {
-      Bt(), ti(), eo(), po(), _a();
-    }
-    function wa() {
-      p && sn && (rn.style[X] = mn / 1e3 + "s");
-    }
-    function ao(n, t) {
-      for (var o = [], a = n, d = Math.min(n + t, E); a < d; a++)
-        o.push(T[a].offsetHeight);
-      return Math.max.apply(null, o);
-    }
-    function ro() {
-      var n = sn ? ao(c, w) : ao(Z, m), t = rn || tn;
-      t.style.height !== n && (t.style.height = n + "px");
     }
     function so() {
+      ti(), ai(), oo(), mo(), Sa();
+    }
+    function Ta() {
+      p && ln && (sn.style[B] = bn / 1e3 + "s");
+    }
+    function lo(n, t) {
+      for (var o = [], a = n, f = Math.min(n + t, A); a < f; a++)
+        o.push(S[a].offsetHeight);
+      return Math.max.apply(null, o);
+    }
+    function co() {
+      var n = ln ? lo(c, y) : lo(Q, g), t = sn || on;
+      t.style.height !== n && (t.style.height = n + "px");
+    }
+    function fo() {
       $ = [0];
-      var n = A ? "left" : "top", t = A ? "right" : "bottom", o = T[0].getBoundingClientRect()[n];
-      In(T, function(a, d) {
-        d && $.push(a.getBoundingClientRect()[n] - o), d === E - 1 && $.push(a.getBoundingClientRect()[t] - o);
+      var n = L ? "left" : "top", t = L ? "right" : "bottom", o = S[0].getBoundingClientRect()[n];
+      Rn(S, function(a, f) {
+        f && $.push(a.getBoundingClientRect()[n] - o), f === A - 1 && $.push(a.getBoundingClientRect()[t] - o);
       });
     }
-    function ti() {
-      var n = vt(), t = n[0], o = n[1];
-      In(T, function(a, d) {
-        d >= t && d <= o ? ve(a, "aria-hidden") && (On(a, ["aria-hidden", "tabindex"]), N(a, Yt)) : ve(a, "aria-hidden") || (dn(a, {
+    function ai() {
+      var n = yt(), t = n[0], o = n[1];
+      Rn(S, function(a, f) {
+        f >= t && f <= o ? ye(a, "aria-hidden") && (qn(a, ["aria-hidden", "tabindex"]), N(a, Kt)) : ye(a, "aria-hidden") || (fn(a, {
           "aria-hidden": "true",
           tabindex: "-1"
-        }), on(a, Yt));
+        }), an(a, Kt));
       });
     }
-    function ya() {
-      for (var n = c + Math.min(m, w), t = E; t--; ) {
-        var o = T[t];
-        t >= c && t < n ? (N(o, "tns-moving"), o.style.left = (t - c) * 100 / w + "%", N(o, Rn), on(o, Tn)) : o.style.left && (o.style.left = "", N(o, Tn), on(o, Rn)), on(o, Be);
+    function Ea() {
+      for (var n = c + Math.min(g, y), t = A; t--; ) {
+        var o = S[t];
+        t >= c && t < n ? (N(o, "tns-moving"), o.style.left = (t - c) * 100 / y + "%", N(o, Nn), an(o, Sn)) : o.style.left && (o.style.left = "", N(o, Sn), an(o, Nn)), an(o, tt);
       }
       setTimeout(function() {
-        In(T, function(a) {
-          on(a, "tns-moving");
+        Rn(S, function(a) {
+          an(a, "tns-moving");
         });
       }, 300);
     }
-    function _a() {
-      if (Sn && (gn = Bn >= 0 ? Bn : $i(), Bn = -1, gn !== fe)) {
-        var n = hn[fe], t = hn[gn];
-        dn(n, {
+    function Sa() {
+      if (Ln && (gn = te >= 0 ? te : Hi(), te = -1, gn !== he)) {
+        var n = mn[he], t = mn[gn];
+        fn(n, {
           tabindex: "-1",
-          "aria-label": pe + (fe + 1)
-        }), on(n, st), dn(t, { "aria-label": pe + (gn + 1) + Vt }), On(t, "tabindex"), N(t, st), fe = gn;
+          "aria-label": me + (he + 1)
+        }), an(n, dt), fn(t, { "aria-label": me + (gn + 1) + Qt }), qn(t, "tabindex"), N(t, dt), he = gn;
       }
     }
-    function lo(n) {
+    function po(n) {
       return n.nodeName.toLowerCase();
     }
-    function co(n) {
-      return lo(n) === "button";
-    }
-    function fo(n) {
-      return n.getAttribute("aria-disabled") === "true";
-    }
-    function yt(n, t, o) {
-      n ? t.disabled = o : t.setAttribute("aria-disabled", o.toString());
-    }
-    function po() {
-      if (!(!En || ke || J)) {
-        var n = Re ? z.disabled : fo(z), t = Ne ? D.disabled : fo(D), o = c <= An, a = !ke && c >= un;
-        o && !n && yt(Re, z, !0), !o && n && yt(Re, z, !1), a && !t && yt(Ne, D, !0), !a && t && yt(Ne, D, !1);
-      }
-    }
-    function _t(n, t) {
-      X && (n.style[X] = t);
-    }
-    function ka() {
-      return u ? (u + y) * E : $[E];
-    }
-    function He(n) {
-      n == null && (n = c);
-      var t = I ? y : 0;
-      return v ? (F - t - ($[n + 1] - $[n] - y)) / 2 : u ? (F - u) / 2 : (w - 1) / 2;
-    }
-    function ii() {
-      var n = I ? y : 0, t = F + n - ka();
-      return V && !J && (t = u ? -(u + y) * (E - 1) - He() : He(E - 1) - $[E - 1]), t > 0 && (t = 0), t;
-    }
-    function kt(n) {
-      n == null && (n = c);
-      var t;
-      if (A && !v)
-        if (u)
-          t = -(u + y) * n, V && (t += He());
-        else {
-          var o = Zn ? E : w;
-          V && (n -= He()), t = -n * 100 / o;
-        }
-      else
-        t = -$[n], V && v && (t += He());
-      return Mi && (t = Math.max(t, ce)), t += A && !v && !u ? "%" : "px", t;
-    }
-    function qe(n) {
-      _t(g, "0s"), oi(n);
-    }
-    function oi(n) {
-      n == null && (n = kt()), g.style[Un] = Yn + n + de;
-    }
-    function uo(n, t, o, a) {
-      var d = n + w;
-      J || (d = Math.min(d, E));
-      for (var h = n; h < d; h++) {
-        var _ = T[h];
-        a || (_.style.left = (h - c) * 100 / w + "%"), Ot && Ue && (_.style[Ue] = _.style[Ct] = Ot * (h - n) / 1e3 + "s"), on(_, t), N(_, o), a && le.push(_);
-      }
-    }
-    var Ta = /* @__PURE__ */ function() {
-      return p ? function() {
-        _t(g, ""), X || !mn ? (oi(), (!mn || !vi(g)) && Ln()) : oa(g, Un, Yn, de, kt(), mn, Ln), A || ri();
-      } : function() {
-        le = [];
-        var n = {};
-        n[Qn] = n[_i] = Ln, Y(T[Gn], n), R(T[c], n), uo(Gn, Rn, Be, !0), uo(c, Tn, Rn), (!Qn || !_i || !mn || !vi(g)) && Ln();
-      };
-    }();
-    function ai(n, t) {
-      Ht && Ut(), (c !== Gn || t) && (W.emit("indexChanged", nn()), W.emit("transitionStart", nn()), sn && xt(), cn && n && ["click", "keydown"].indexOf(n.type) >= 0 && We(), Kn = !0, Ta());
+    function uo(n) {
+      return po(n) === "button";
     }
     function ho(n) {
+      return n.getAttribute("aria-disabled") === "true";
+    }
+    function Tt(n, t, o) {
+      n ? t.disabled = o : t.setAttribute("aria-disabled", o.toString());
+    }
+    function mo() {
+      if (!(!An || Se || Z)) {
+        var n = $e ? z.disabled : ho(z), t = Fe ? D.disabled : ho(D), o = c <= Mn, a = !Se && c >= hn;
+        o && !n && Tt($e, z, !0), !o && n && Tt($e, z, !1), a && !t && Tt(Fe, D, !0), !a && t && Tt(Fe, D, !1);
+      }
+    }
+    function Et(n, t) {
+      B && (n.style[B] = t);
+    }
+    function Aa() {
+      return u ? (u + k) * A : $[A];
+    }
+    function We(n) {
+      n == null && (n = c);
+      var t = O ? k : 0;
+      return v ? (W - t - ($[n + 1] - $[n] - k)) / 2 : u ? (W - u) / 2 : (y - 1) / 2;
+    }
+    function ri() {
+      var n = O ? k : 0, t = W + n - Aa();
+      return V && !Z && (t = u ? -(u + k) * (A - 1) - We() : We(A - 1) - $[A - 1]), t > 0 && (t = 0), t;
+    }
+    function St(n) {
+      n == null && (n = c);
+      var t;
+      if (L && !v)
+        if (u)
+          t = -(u + k) * n, V && (t += We());
+        else {
+          var o = Xn ? A : y;
+          V && (n -= We()), t = -n * 100 / o;
+        }
+      else
+        t = -$[n], V && v && (t += We());
+      return Di && (t = Math.max(t, pe)), t += L && !v && !u ? "%" : "px", t;
+    }
+    function Pe(n) {
+      Et(m, "0s"), si(n);
+    }
+    function si(n) {
+      n == null && (n = St()), m.style[ne] = Jn + n + ue;
+    }
+    function go(n, t, o, a) {
+      var f = n + y;
+      Z || (f = Math.min(f, A));
+      for (var h = n; h < f; h++) {
+        var T = S[h];
+        a || (T.style.left = (h - c) * 100 / y + "%"), Nt && nt && (T.style[nt] = T.style[Ot] = Nt * (h - n) / 1e3 + "s"), an(T, t), N(T, o), a && fe.push(T);
+      }
+    }
+    var La = /* @__PURE__ */ function() {
+      return p ? function() {
+        Et(m, ""), B || !bn ? (si(), (!bn || !yi(m)) && Dn()) : la(m, ne, Jn, ue, St(), bn, Dn), L || ci();
+      } : function() {
+        fe = [];
+        var n = {};
+        n[Bn] = n[Ei] = Dn, J(S[Kn], n), q(S[c], n), go(Kn, Nn, tt, !0), go(c, Sn, Nn), (!Bn || !Ei || !bn || !yi(m)) && Dn();
+      };
+    }();
+    function li(n, t) {
+      Wt && ni(), (c !== Kn || t) && (P.emit("indexChanged", en()), P.emit("transitionStart", en()), ln && _t(), dn && n && ["click", "keydown"].indexOf(n.type) >= 0 && Ge(), Vn = !0, La());
+    }
+    function bo(n) {
       return n.toLowerCase().replace(/-/g, "");
     }
-    function Ln(n) {
-      if (p || Kn) {
-        if (W.emit("transitionEnd", nn(n)), !p && le.length > 0)
-          for (var t = 0; t < le.length; t++) {
-            var o = le[t];
-            o.style.left = "", Ct && Ue && (o.style[Ct] = "", o.style[Ue] = ""), on(o, Be), N(o, Tn);
+    function Dn(n) {
+      if (p || Vn) {
+        if (P.emit("transitionEnd", en(n)), !p && fe.length > 0)
+          for (var t = 0; t < fe.length; t++) {
+            var o = fe[t];
+            o.style.left = "", Ot && nt && (o.style[Ot] = "", o.style[nt] = ""), an(o, tt), N(o, Sn);
           }
-        if (!n || !p && n.target.parentNode === g || n.target === g && ho(n.propertyName) === ho(Un)) {
-          if (!Ht) {
+        if (!n || !p && n.target.parentNode === m || n.target === m && bo(n.propertyName) === bo(ne)) {
+          if (!Wt) {
             var a = c;
-            Ut(), c !== a && (W.emit("indexChanged", nn()), qe());
+            ni(), c !== a && (P.emit("indexChanged", en()), Pe());
           }
-          re === "inner" && W.emit("innerLoaded", nn()), Kn = !1, Gn = c;
+          ce === "inner" && P.emit("innerLoaded", en()), Vn = !1, Kn = c;
         }
       }
     }
-    function Fe(n, t) {
-      if (!bn)
+    function Ye(n, t) {
+      if (!vn)
         if (n === "prev")
-          Jn(t, -1);
+          Qn(t, -1);
         else if (n === "next")
-          Jn(t, 1);
+          Qn(t, 1);
         else {
-          if (Kn) {
-            if (et)
+          if (Vn) {
+            if (ot)
               return;
-            Ln();
+            Dn();
           }
-          var o = ut(), a = 0;
-          if (n === "first" ? a = -o : n === "last" ? a = p ? m - w - o : m - 1 - o : (typeof n != "number" && (n = parseInt(n)), isNaN(n) || (t || (n = Math.max(0, Math.min(m - 1, n))), a = n - o)), !p && a && Math.abs(a) < w) {
-            var d = a > 0 ? 1 : -1;
-            a += c + a - m >= An ? m * d : m * 2 * d * -1;
+          var o = gt(), a = 0;
+          if (n === "first" ? a = -o : n === "last" ? a = p ? g - y - o : g - 1 - o : (typeof n != "number" && (n = parseInt(n)), isNaN(n) || (t || (n = Math.max(0, Math.min(g - 1, n))), a = n - o)), !p && a && Math.abs(a) < y) {
+            var f = a > 0 ? 1 : -1;
+            a += c + a - g >= Mn ? g * f : g * 2 * f * -1;
           }
-          c += a, p && J && (c < An && (c += m), c > un && (c -= m)), ut(c) !== ut(Gn) && ai(t);
+          c += a, p && Z && (c < Mn && (c += g), c > hn && (c -= g)), gt(c) !== gt(Kn) && li(t);
         }
     }
-    function Jn(n, t) {
-      if (Kn) {
-        if (et)
+    function Qn(n, t) {
+      if (Vn) {
+        if (ot)
           return;
-        Ln();
+        Dn();
       }
       var o;
       if (!t) {
-        n = Cn(n);
-        for (var a = he(n); a !== H && [z, D].indexOf(a) < 0; )
+        n = In(n);
+        for (var a = be(n); a !== F && [z, D].indexOf(a) < 0; )
           a = a.parentNode;
-        var d = [z, D].indexOf(a);
-        d >= 0 && (o = !0, t = d === 0 ? -1 : 1);
+        var f = [z, D].indexOf(a);
+        f >= 0 && (o = !0, t = f === 0 ? -1 : 1);
       }
-      if (ke) {
-        if (c === An && t === -1) {
-          Fe("last", n);
+      if (Se) {
+        if (c === Mn && t === -1) {
+          Ye("last", n);
           return;
-        } else if (c === un && t === 1) {
-          Fe("first", n);
+        } else if (c === hn && t === 1) {
+          Ye("first", n);
           return;
         }
       }
-      t && (c += se * t, v && (c = Math.floor(c)), ai(o || n && n.type === "keydown" ? n : null));
+      t && (c += de * t, v && (c = Math.floor(c)), li(o || n && n.type === "keydown" ? n : null));
     }
-    function Ea(n) {
-      if (Kn) {
-        if (et)
+    function Ma(n) {
+      if (Vn) {
+        if (ot)
           return;
-        Ln();
+        Dn();
       }
-      n = Cn(n);
-      for (var t = he(n), o; t !== Q && !ve(t, "data-nav"); )
+      n = In(n);
+      for (var t = be(n), o; t !== U && !ye(t, "data-nav"); )
         t = t.parentNode;
-      if (ve(t, "data-nav")) {
-        var o = Bn = Number(Je(t, "data-nav")), a = u || v ? o * m / vn : o * w, d = Ie ? o : Math.min(Math.ceil(a), m - 1);
-        Fe(d, n), gn === o && (cn && We(), Bn = -1);
+      if (ye(t, "data-nav")) {
+        var o = te = Number(Ue(t, "data-nav")), a = u || v ? o * g / xn : o * y, f = qe ? o : Math.min(Math.ceil(a), g - 1);
+        Ye(f, n), gn === o && (dn && Ge(), te = -1);
       }
     }
-    function Tt() {
-      lt = setInterval(function() {
-        Jn(null, Ii);
-      }, $t), cn = !0;
+    function At() {
+      ft = setInterval(function() {
+        Qn(null, qi);
+      }, Ht), dn = !0;
     }
-    function Et() {
-      clearInterval(lt), cn = !1;
+    function Lt() {
+      clearInterval(ft), dn = !1;
     }
-    function go(n, t) {
-      dn(O, { "data-action": n }), O.innerHTML = $e[0] + n + $e[1] + t;
+    function vo(n, t) {
+      fn(R, { "data-action": n }), R.innerHTML = He[0] + n + He[1] + t;
     }
-    function St() {
-      Tt(), O && go("stop", Fn[1]);
+    function Mt() {
+      At(), R && vo("stop", Pn[1]);
     }
-    function We() {
-      Et(), O && go("start", Fn[0]);
-    }
-    function Sa() {
-      B && !cn && (St(), ue = !1);
-    }
-    function Aa() {
-      cn && (We(), ue = !0);
-    }
-    function mo() {
-      cn ? (We(), ue = !0) : (St(), ue = !1);
-    }
-    function Ma() {
-      i.hidden ? cn && (Et(), dt = !0) : dt && (Tt(), dt = !1);
-    }
-    function La() {
-      cn && (Et(), ct = !0);
+    function Ge() {
+      Lt(), R && vo("start", Pn[0]);
     }
     function za() {
-      ct && (Tt(), ct = !1);
+      nn && !dn && (Mt(), ge = !1);
     }
-    function Da(n) {
-      n = Cn(n);
-      var t = [l.LEFT, l.RIGHT].indexOf(n.keyCode);
-      t >= 0 && Jn(n, t === 0 ? -1 : 1);
-    }
-    function Ca(n) {
-      n = Cn(n);
-      var t = [l.LEFT, l.RIGHT].indexOf(n.keyCode);
-      t >= 0 && (t === 0 ? z.disabled || Jn(n, -1) : D.disabled || Jn(n, 1));
-    }
-    function bo(n) {
-      n.focus();
-    }
-    function ja(n) {
-      n = Cn(n);
-      var t = i.activeElement;
-      if (ve(t, "data-nav")) {
-        var o = [l.LEFT, l.RIGHT, l.ENTER, l.SPACE].indexOf(n.keyCode), a = Number(Je(t, "data-nav"));
-        o >= 0 && (o === 0 ? a > 0 && bo(hn[a - 1]) : o === 1 ? a < vn - 1 && bo(hn[a + 1]) : (Bn = a, Fe(a, n)));
-      }
-    }
-    function Cn(n) {
-      return n = n || r.event, ie(n) ? n.changedTouches[0] : n;
-    }
-    function he(n) {
-      return n.target || r.event.srcElement;
-    }
-    function ie(n) {
-      return n.type.indexOf("touch") >= 0;
-    }
-    function vo(n) {
-      n.preventDefault ? n.preventDefault() : n.returnValue = !1;
+    function Da() {
+      dn && (Ge(), ge = !0);
     }
     function xo() {
-      return na(Bo(_n.y - ne.y, _n.x - ne.x), tt) === e.axis;
+      dn ? (Ge(), ge = !0) : (Mt(), ge = !1);
+    }
+    function Ca() {
+      i.hidden ? dn && (Lt(), ut = !0) : ut && (At(), ut = !1);
+    }
+    function ja() {
+      dn && (Lt(), pt = !0);
+    }
+    function Ia() {
+      pt && (At(), pt = !1);
+    }
+    function Oa(n) {
+      n = In(n);
+      var t = [l.LEFT, l.RIGHT].indexOf(n.keyCode);
+      t >= 0 && Qn(n, t === 0 ? -1 : 1);
+    }
+    function Ra(n) {
+      n = In(n);
+      var t = [l.LEFT, l.RIGHT].indexOf(n.keyCode);
+      t >= 0 && (t === 0 ? z.disabled || Qn(n, -1) : D.disabled || Qn(n, 1));
     }
     function wo(n) {
-      if (Kn) {
-        if (et)
-          return;
-        Ln();
+      n.focus();
+    }
+    function qa(n) {
+      n = In(n);
+      var t = i.activeElement;
+      if (ye(t, "data-nav")) {
+        var o = [l.LEFT, l.RIGHT, l.ENTER, l.SPACE].indexOf(n.keyCode), a = Number(Ue(t, "data-nav"));
+        o >= 0 && (o === 0 ? a > 0 && wo(mn[a - 1]) : o === 1 ? a < xn - 1 && wo(mn[a + 1]) : (te = a, Ye(a, n)));
       }
-      B && cn && Et(), ee = !0, xn && (Lt(xn), xn = null);
-      var t = Cn(n);
-      W.emit(ie(n) ? "touchStart" : "dragStart", nn(n)), !ie(n) && ["img", "a"].indexOf(lo(he(n))) >= 0 && vo(n), _n.x = ne.x = t.clientX, _n.y = ne.y = t.clientY, p && (ft = parseFloat(g.style[Un].replace(Yn, "")), _t(g, "0s"));
+    }
+    function In(n) {
+      return n = n || r.event, re(n) ? n.changedTouches[0] : n;
+    }
+    function be(n) {
+      return n.target || r.event.srcElement;
+    }
+    function re(n) {
+      return n.type.indexOf("touch") >= 0;
     }
     function yo(n) {
-      if (ee) {
-        var t = Cn(n);
-        _n.x = t.clientX, _n.y = t.clientY, p ? xn || (xn = jn(function() {
-          _o(n);
-        })) : (Mn === "?" && (Mn = xo()), Mn && (Oe = !0)), (typeof n.cancelable != "boolean" || n.cancelable) && Oe && n.preventDefault();
+      n.preventDefault ? n.preventDefault() : n.returnValue = !1;
+    }
+    function _o() {
+      return oa(ia(kn.y - ie.y, kn.x - ie.x), at) === e.axis;
+    }
+    function ko(n) {
+      if (Vn) {
+        if (ot)
+          return;
+        Dn();
+      }
+      nn && dn && Lt(), oe = !0, wn && (Ct(wn), wn = null);
+      var t = In(n);
+      P.emit(re(n) ? "touchStart" : "dragStart", en(n)), !re(n) && ["img", "a"].indexOf(po(be(n))) >= 0 && yo(n), kn.x = ie.x = t.clientX, kn.y = ie.y = t.clientY, p && (ht = parseFloat(m.style[ne].replace(Jn, "")), Et(m, "0s"));
+    }
+    function To(n) {
+      if (oe) {
+        var t = In(n);
+        kn.x = t.clientX, kn.y = t.clientY, p ? wn || (wn = On(function() {
+          Eo(n);
+        })) : (zn === "?" && (zn = _o()), zn && (Ne = !0)), (typeof n.cancelable != "boolean" || n.cancelable) && Ne && n.preventDefault();
       }
     }
-    function _o(n) {
-      if (!Mn) {
-        ee = !1;
+    function Eo(n) {
+      if (!zn) {
+        oe = !1;
         return;
       }
-      if (Lt(xn), ee && (xn = jn(function() {
-        _o(n);
-      })), Mn === "?" && (Mn = xo()), Mn) {
-        !Oe && ie(n) && (Oe = !0);
+      if (Ct(wn), oe && (wn = On(function() {
+        Eo(n);
+      })), zn === "?" && (zn = _o()), zn) {
+        !Ne && re(n) && (Ne = !0);
         try {
-          n.type && W.emit(ie(n) ? "touchMove" : "dragMove", nn(n));
+          n.type && P.emit(re(n) ? "touchMove" : "dragMove", en(n));
         } catch {
         }
-        var t = ft, o = Jt(_n, ne);
-        if (!A || u || v)
+        var t = ht, o = Ut(kn, ie);
+        if (!L || u || v)
           t += o, t += "px";
         else {
-          var a = Zn ? o * w * 100 / ((F + y) * E) : o * 100 / (F + y);
+          var a = Xn ? o * y * 100 / ((W + k) * A) : o * 100 / (W + k);
           t += a, t += "%";
         }
-        g.style[Un] = Yn + t + de;
+        m.style[ne] = Jn + t + ue;
       }
     }
-    function At(n) {
-      if (ee) {
-        xn && (Lt(xn), xn = null), p && _t(g, ""), ee = !1;
-        var t = Cn(n);
-        _n.x = t.clientX, _n.y = t.clientY;
-        var o = Jt(_n, ne);
+    function zt(n) {
+      if (oe) {
+        wn && (Ct(wn), wn = null), p && Et(m, ""), oe = !1;
+        var t = In(n);
+        kn.x = t.clientX, kn.y = t.clientY;
+        var o = Ut(kn, ie);
         if (Math.abs(o)) {
-          if (!ie(n)) {
-            var a = he(n);
-            R(a, { click: function d(h) {
-              vo(h), Y(a, { click: d });
+          if (!re(n)) {
+            var a = be(n);
+            q(a, { click: function f(h) {
+              yo(h), J(a, { click: f });
             } });
           }
-          p ? xn = jn(function() {
-            if (A && !v) {
-              var d = -o * w / (F + y);
-              d = o > 0 ? Math.floor(d) : Math.ceil(d), c += d;
+          p ? wn = On(function() {
+            if (L && !v) {
+              var f = -o * y / (W + k);
+              f = o > 0 ? Math.floor(f) : Math.ceil(f), c += f;
             } else {
-              var h = -(ft + o);
+              var h = -(ht + o);
               if (h <= 0)
-                c = An;
-              else if (h >= $[E - 1])
-                c = un;
+                c = Mn;
+              else if (h >= $[A - 1])
+                c = hn;
               else
-                for (var _ = 0; _ < E && h >= $[_]; )
-                  c = _, h > $[_] && o < 0 && (c += 1), _++;
+                for (var T = 0; T < A && h >= $[T]; )
+                  c = T, h > $[T] && o < 0 && (c += 1), T++;
             }
-            ai(n, o), W.emit(ie(n) ? "touchEnd" : "dragEnd", nn(n));
-          }) : Mn && Jn(n, o > 0 ? -1 : 1);
+            li(n, o), P.emit(re(n) ? "touchEnd" : "dragEnd", en(n));
+          }) : zn && Qn(n, o > 0 ? -1 : 1);
         }
       }
-      e.preventScrollOnTouch === "auto" && (Oe = !1), tt && (Mn = "?"), B && !cn && Tt();
+      e.preventScrollOnTouch === "auto" && (Ne = !1), at && (zn = "?"), nn && !dn && At();
     }
-    function ri() {
-      var n = rn || tn;
-      n.style.height = $[c + w] - $[c] + "px";
+    function ci() {
+      var n = sn || on;
+      n.style.height = $[c + y] - $[c] + "px";
     }
-    function ko() {
-      var n = u ? (u + y) * m / F : m / w;
-      return Math.min(Math.ceil(n), m);
+    function So() {
+      var n = u ? (u + k) * g / W : g / y;
+      return Math.min(Math.ceil(n), g);
     }
-    function si() {
-      if (!(!Sn || Ie) && vn !== Xn) {
-        var n = Xn, t = vn, o = pn;
-        for (Xn > vn && (n = vn, t = Xn, o = fn); n < t; )
-          o(hn[n]), n++;
-        Xn = vn;
+    function di() {
+      if (!(!Ln || qe) && xn !== ee) {
+        var n = ee, t = xn, o = un;
+        for (ee > xn && (n = xn, t = ee, o = pn); n < t; )
+          o(mn[n]), n++;
+        ee = xn;
       }
     }
-    function nn(n) {
+    function en(n) {
       return {
-        container: g,
-        slideItems: T,
-        navContainer: Q,
-        navItems: hn,
-        controlsContainer: H,
-        hasControls: ot,
+        container: m,
+        slideItems: S,
+        navContainer: U,
+        navItems: mn,
+        controlsContainer: F,
+        hasControls: st,
         prevButton: z,
         nextButton: D,
-        items: w,
-        slideBy: se,
-        cloneCount: Z,
-        slideCount: m,
-        slideCountNew: E,
+        items: y,
+        slideBy: de,
+        cloneCount: Q,
+        slideCount: g,
+        slideCountNew: A,
         index: c,
-        indexCached: Gn,
-        displayIndex: Ri(),
+        indexCached: Kn,
+        displayIndex: $i(),
         navCurrentIndex: gn,
-        navCurrentIndexCached: fe,
-        pages: vn,
-        pagesCached: Xn,
+        navCurrentIndexCached: he,
+        pages: xn,
+        pagesCached: ee,
         sheet: M,
-        isOn: _e,
+        isOn: Ee,
         event: n || {}
       };
     }
     return {
       version: "2.9.4",
-      getInfo: nn,
-      events: W,
-      goTo: Fe,
-      play: Sa,
-      pause: Aa,
-      isOn: _e,
-      updateSliderHeight: ro,
-      refresh: Yi,
-      destroy: ha,
+      getInfo: en,
+      events: P,
+      goTo: Ye,
+      play: za,
+      pause: Da,
+      isOn: Ee,
+      updateSliderHeight: co,
+      refresh: Ki,
+      destroy: va,
       rebuild: function() {
-        return Ze(zt(e, Ti));
+        return Xe(jt(e, Ai));
       }
     };
   };
-  Lo([
+  jo("opt_in"), G("exp_optin_loaded", "Loaded", "loaded"), Co([
     "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css",
     "https://fast.wistia.com/assets/external/E-v1.js"
-  ]), Ao({ name: "Opt in page", dev: "YK" });
-  class aa {
+  ]), zo({ name: "Opt in page", dev: "YK" });
+  class ca {
     constructor() {
-      So("body", () => {
-        G("body").elements[0].insertAdjacentHTML(
+      Mo("body", () => {
+        C("body").elements[0].insertAdjacentHTML(
           "afterbegin",
           /* html */
-          `<style>${Eo}</style>`
+          `<style>${Lo}</style>`
         ), this.init();
       });
     }
     init() {
-      this.addBlocks(), this.setActions();
+      this.addBlocks(), this.setActions(), this.setEvents();
     }
     addBlocks() {
-      G(".containerWrapper").elements[0].insertAdjacentHTML("afterend", '<div class="crs_landing"></div>');
-      const i = G(".crs_landing").elements[0];
-      i.insertAdjacentHTML("afterbegin", Oo), i.insertAdjacentHTML("beforeend", Ro), i.insertAdjacentHTML("beforeend", No), i.insertAdjacentHTML("beforeend", $o), i.insertAdjacentHTML("beforeend", Ho), i.insertAdjacentHTML("beforeend", qo), i.insertAdjacentHTML("beforeend", Fo), i.insertAdjacentHTML("beforeend", Wo), i.insertAdjacentHTML("beforeend", Po), i.insertAdjacentHTML("beforeend", Yo), i.insertAdjacentHTML("beforeend", Go), i.insertAdjacentHTML("beforeend", Ko);
+      C(".containerWrapper").elements[0].insertAdjacentHTML("afterend", '<div class="crs_landing"></div>');
+      const i = C(".crs_landing").elements[0];
+      i.insertAdjacentHTML("afterbegin", $o), i.insertAdjacentHTML("beforeend", Fo), i.insertAdjacentHTML("beforeend", Ho), i.insertAdjacentHTML("beforeend", Wo), i.insertAdjacentHTML("beforeend", Po), i.insertAdjacentHTML("beforeend", Yo), i.insertAdjacentHTML("beforeend", Go), i.insertAdjacentHTML("beforeend", Jo), i.insertAdjacentHTML("beforeend", Ko), i.insertAdjacentHTML("beforeend", Vo), i.insertAdjacentHTML("beforeend", Zo), i.insertAdjacentHTML("beforeend", Qo);
     }
     setActions() {
-      G(".question").on("click", function() {
+      C("form").on("submit", function(s) {
+        s.preventDefault();
+        const d = this.querySelector('input[name="name"]').value, x = this.querySelector('input[name="email"]').value;
+        (!d || d.trim() === "") && this.querySelector('input[name="name"]').closest("label").classList.add("error"), (!x || x.trim() === "" || !x.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) && this.querySelector('input[name="email"]').closest("label").classList.add("error"), this.closest("#main_block") ? G("exp_optin_fs_button", "Grab Your FREE Seat Now", "click", "First screen form") : G("exp_optin_popup_cta_button", "Grab Your FREE Seat Now", "click", "Popup after click on CTA"), window.location.href = "https://event.webinarjam.com/register/1click/75/n7l3oh11?first_name=" + d + "&email=" + x.replace("@", "%40") + "&schedule_id=1";
+      }), C("form input").on("input", function() {
+        this.closest("label").classList.remove("error");
+      }), C('input[name="name"]').on("change", function() {
+        !!this.closest("#main_block") ? G("exp_optin_fs_name", "Enter your name", "input", "First screen form") : G("exp_optin_popup_cta_name", "Enter your name", "input", "Popup after click on CTA");
+      }), C('input[name="email"]').on("change", function() {
+        !!this.closest("#main_block") ? G("exp_optin_fs_email", "Enter email address", "input", "First screen form") : G("exp_optin_popup_cta_email", "Enter email address", "input", "Popup after click on CTA");
+      }), C(".question").on("click", function() {
+        const s = this.innerText;
         if (this.classList.contains("active")) {
-          this.classList.remove("active");
+          this.classList.remove("active"), G("exp_optin_faq_close", `Close question. ${s}`, "click", "Frequently asked questions");
           return;
         }
-        G(".question.active").removeClass("active"), this.classList.toggle("active");
-      }), G(".cta.pop").on("click", function() {
-        G(".crs_video_popup").elements[0].classList.remove("active"), G(".crs_popup_form").elements[0].classList.add("active");
-      }), G(".crs_popup_form .close").on("click", function() {
-        G(".crs_popup_form").elements[0].classList.remove("active");
-      }), G("#base_review .slide").on("click", function() {
-        const s = this.getAttribute("data-video"), f = G(`.video_slide[data-video="${s}"] .video`).elements[0].cloneNode(!0);
-        G(".crs_video_popup .video").elements[0].appendChild(f), G(".crs_video_popup").elements[0].classList.add("active");
-      }), G(".crs_video_popup .crs_close").on("click", function() {
-        G(".crs_video_popup .video *:not(.crs_close)").elements.forEach((s) => s.remove()), G(".crs_video_popup").elements[0].classList.remove("active");
+        C(".question.active").removeClass("active"), this.classList.toggle("active"), G("exp_optin_faq_open", `Open question. ${s}`, "click", "Frequently asked questions");
+      }), C(".cta.pop").on("click", function() {
+        C(".crs_video_popup").elements[0].classList.contains("active") && C(".crs_video_popup .video *:not(.crs_close)").elements.forEach((s) => s.remove()), C(".crs_video_popup").elements[0].classList.remove("active"), C(".crs_popup_form").elements[0].classList.add("active"), this.closest("#last_cta") && G("exp_optin_future_cta", "Join the exclusive training", "click", "Your Future Starts Here"), this.closest("#training_for") && G("exp_optin_who_cta", "Join The FREE Training Now", "click", "Who is the Training for"), this.closest("#host_block") && G("exp_optin_host_cta", "Unlock Dylan’s Formula for Free ", "click", "Your Host: Dylan Sydney"), this.closest("#bonus_block") && G("exp_optin_bonuses_cta", "Grab Your FREE Seat Now", "click", "Exclusive Bonuses"), this.closest(".crs_video_popup") && G("exp_optin_popup_review_cta", "Grab Your FREE Seat Now", "click", "Popup after review");
+      }), C(".crs_popup_form .close").on("click", function() {
+        C(".crs_popup_form").elements[0].classList.remove("active");
+      }), C("#base_review .slide").on("click", function() {
+        const s = this.querySelector(".slide>p").textContent, d = this.getAttribute("data-video"), x = C(`.video_slide[data-video="${d}"] .video`).elements[0].cloneNode(!0);
+        C(".crs_video_popup .video").elements[0].appendChild(x), C(".crs_video_popup").elements[0].classList.add("active"), G("exp_optin_why_join_review", `Open review. ${s}`, "click", "Why Join This Webinar"), C(".crs_video_popup .wistia_embed").on("click", function() {
+          G("exp_optin_popup_review_video", `Play video ${s}`, "click", "Popup after review");
+        });
+      }), C(".crs_video_popup .crs_close").on("click", function() {
+        C(".crs_video_popup .video *:not(.crs_close)").elements.forEach((s) => s.remove()), C(".crs_video_popup").elements[0].classList.remove("active");
       });
-      const i = Ze({
+      const i = Xe({
         container: "#base_review ul",
         slideBy: 1,
         loop: !1,
         navPosition: "bottom",
         //@ts-ignore
         controlsPosition: "bottom",
-        mouseDrag: !0,
+        mouseDrag: !1,
         gutter: 30,
         responsive: {
           0: {
@@ -3394,7 +3573,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
             nav: !1
           }
         }
-      }), r = Ze({
+      }), r = Xe({
         container: "#video_block ul",
         items: 1,
         slideBy: 1,
@@ -3418,14 +3597,14 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       setTimeout(() => {
         i.getInfo().navItems && i.getInfo().navItems[1].classList.add("tns-nav-near");
       }, 500), i.events.on("indexChanged", function(s) {
-        var S, x;
-        const f = s.navItems;
-        Array.from(f).forEach((L) => L.classList.remove("tns-nav-near")), (S = f[s.index - 1]) == null || S.classList.add("tns-nav-near"), (x = f[s.index + 1]) == null || x.classList.add("tns-nav-near");
+        var x, w;
+        const d = s.navItems;
+        Array.from(d).forEach((_) => _.classList.remove("tns-nav-near")), (x = d[s.index - 1]) == null || x.classList.add("tns-nav-near"), (w = d[s.index + 1]) == null || w.classList.add("tns-nav-near");
       }), r.getInfo().slideItems[0].classList.add("tns-current"), r.getInfo().navItems[1].classList.add("tns-nav-near"), r.events.on("indexChanged", function(s) {
-        var L, K;
-        const f = s.slideItems, S = s.navItems;
-        Array.from(S).forEach((an) => an.classList.remove("tns-nav-near")), Array.from(f).forEach((an) => an.classList.remove("tns-current")), (L = S[s.index - 1]) == null || L.classList.add("tns-nav-near"), (K = S[s.index + 1]) == null || K.classList.add("tns-nav-near"), f[s.index].classList.add("tns-current");
-      }), Ze({
+        var _, K;
+        const d = s.slideItems, x = s.navItems;
+        Array.from(x).forEach((rn) => rn.classList.remove("tns-nav-near")), Array.from(d).forEach((rn) => rn.classList.remove("tns-current")), (_ = x[s.index - 1]) == null || _.classList.add("tns-nav-near"), (K = x[s.index + 1]) == null || K.classList.add("tns-nav-near"), d[s.index].classList.add("tns-current");
+      }), Xe({
         container: "#trust_pilot ul",
         items: 3,
         slideBy: 1,
@@ -3449,18 +3628,27 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         }
       });
       const l = setInterval(() => {
-        window.Wistia && (clearInterval(l), window._wq = window._wq || [], Mt.forEach((s) => {
+        window.Wistia && (clearInterval(l), window._wq = window._wq || [], Dt.forEach((s) => {
           window._wq.push({
             id: s.videoId,
-            onReady: function(f) {
-              console.log("I got a handle to the video!" + s.videoId);
+            onReady: function(d) {
+              d.bind("play", function() {
+                d.container.closest(".video_slide") && G(
+                  "exp_optin_hear_video",
+                  `Video ${d.data.media.name}`,
+                  "click",
+                  "Hear from Our Participants"
+                );
+              });
             }
           });
         }));
       }, 500);
     }
+    setEvents() {
+      Tn(".crs_video_popup", "exp_optin_popup_review_view", "Popup after review"), Tn(".crs_popup_form", "exp_optin_popup_cta_view", "Popup after click on CTA"), Tn("#base_review", "exp_optin_why_join_view", "Why Join This Webinar"), Tn("#bonus_block", "exp_optin_bonuses_view", "Exclusive Bonuses"), Tn("#host_block", "exp_optin_host_view", "Your Host: Dylan Sydney"), Tn("#video_block", "exp_optin_hear_view", "Hear from Our Participants"), Tn("#training_for", "exp_optin_who_view", "Who is the Training for"), Tn("#trust_pilot", "exp_optin_trustscore_view", "TrustScore"), Tn("#faq_block", "exp_optin_faq_view", "Frequently asked questions"), Tn("#last_cta", "exp_optin_future_view", "Your Future Starts Here");
+    }
   }
-  new aa();
+  window.location.href.includes("training") && new ca();
 })();
 //# sourceMappingURL=index.js.map
-
