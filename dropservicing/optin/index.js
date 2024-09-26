@@ -1310,9 +1310,10 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   position: absolute;
   top: 22px;
   right: 22px;
-  height: 10px;
-  width: 10px;
+  height: 20px;
+  width: 20px;
   opacity: 1;
+  z-index: 1;
 }
 .crs_popup_form .form .close::before {
   content: "";
@@ -1614,7 +1615,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   height: 20px;
   border-radius: 4px;
   background: #fff;
-}/*# sourceMappingURL=style.css.map */`, G = (e, i, r, l = "") => {
+}/*# sourceMappingURL=style.css.map */`, P = (e, i, r, l = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
@@ -1706,7 +1707,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     if (y = new IntersectionObserver(
       function(v) {
         v[0].isIntersecting === !0 ? x = setTimeout(() => {
-          G(
+          P(
             i,
             v[0].target.dataset.visible || l || "",
             "view",
@@ -2612,7 +2613,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     }
     var L = e.axis === "horizontal", tn = i.createElement("div"), on = i.createElement("div"), sn, m = e.container, $t = m.parentNode, zi = m.outerHTML, S = m.children, g = S.length, Te, it = Pi(), Ee = !1;
     j && no(), f && (m.className += " tns-vpfix");
-    var w = e.autoWidth, u = b("fixedWidth"), I = b("edgePadding"), k = b("gutter"), P = Yi(), V = b("center"), _ = w ? 1 : Math.floor(b("items")), de = b("slideBy"), Ft = e.viewportMax || e.fixedWidthViewportWidth, $n = b("arrowKeys"), bn = b("speed"), Se = e.rewind, Z = Se ? !1 : e.loop, ln = b("autoHeight"), An = b("controls"), Fn = b("controlsText"), Ln = b("nav"), Hn = b("touch"), Pn = b("mouseDrag"), nn = b("autoplay"), Ht = b("autoplayTimeout"), Wn = b("autoplayText"), Yn = b("autoplayHoverPause"), Gn = b("autoplayResetOnVisibility"), M = ea(null, b("nonce")), Ae = e.lazyload, da = e.lazyloadSelector, $, pe = [], Q = Z ? ha() : 0, A = f ? g + Q * 2 : g + Q, Di = !!((u || w) && !Z), fe = u ? ri() : null, Pt = !f || !Z, ne = L ? "left" : "top", Jn = "", ue = "", Le = /* @__PURE__ */ function() {
+    var w = e.autoWidth, u = b("fixedWidth"), I = b("edgePadding"), k = b("gutter"), W = Yi(), V = b("center"), _ = w ? 1 : Math.floor(b("items")), de = b("slideBy"), Ft = e.viewportMax || e.fixedWidthViewportWidth, $n = b("arrowKeys"), bn = b("speed"), Se = e.rewind, Z = Se ? !1 : e.loop, ln = b("autoHeight"), An = b("controls"), Fn = b("controlsText"), Ln = b("nav"), Hn = b("touch"), Pn = b("mouseDrag"), nn = b("autoplay"), Ht = b("autoplayTimeout"), Wn = b("autoplayText"), Yn = b("autoplayHoverPause"), Gn = b("autoplayResetOnVisibility"), M = ea(null, b("nonce")), Ae = e.lazyload, da = e.lazyloadSelector, $, pe = [], Q = Z ? ha() : 0, A = f ? g + Q * 2 : g + Q, Di = !!((u || w) && !Z), fe = u ? ri() : null, Pt = !f || !Z, ne = L ? "left" : "top", Jn = "", ue = "", Le = /* @__PURE__ */ function() {
       return u ? function() {
         return V && !Z ? g - 1 : Math.ceil(-fe / (u + k));
       } : w ? function() {
@@ -2624,7 +2625,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       };
     }(), c = Fi(b("startIndex")), Kn = c;
     $i();
-    var Mn = 0, hn = w ? null : Le(), ot = e.preventActionWhenRunning, at = e.swipeAngle, zn = at ? "?" : !0, Vn = !1, Wt = e.onInit, W = new sa(), Zn = " tns-slider tns-" + e.mode, O = m.id || Uo(), cn = b("disable"), Me = !1, rt = e.freezable, vn = rt && !w ? Bt() : !1, ze = !1, De = {
+    var Mn = 0, hn = w ? null : Le(), ot = e.preventActionWhenRunning, at = e.swipeAngle, zn = at ? "?" : !0, Vn = !1, Wt = e.onInit, Y = new sa(), Zn = " tns-slider tns-" + e.mode, O = m.id || Uo(), cn = b("disable"), Me = !1, rt = e.freezable, vn = rt && !w ? Bt() : !1, ze = !1, De = {
       click: Qn,
       keydown: Na
     }, Yt = {
@@ -2723,7 +2724,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     }
     function b(n, t) {
       if (t == null && (t = it), n === "items" && u)
-        return Math.floor((P + k) / (u + k)) || 1;
+        return Math.floor((W + k) / (u + k)) || 1;
       var o = e[n];
       if (j)
         for (var a in j)
@@ -2739,7 +2740,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         var T = n;
         t && (T -= t), h = L ? "margin: 0 " + T + "px 0 " + n + "px;" : "margin: " + n + "px 0 " + T + "px 0;";
       } else if (t && !o) {
-        var Y = "-" + t + "px", X = L ? Y + " 0 0" : "0 " + Y + " 0";
+        var G = "-" + t + "px", X = L ? G + " 0 0" : "0 " + G + " 0";
         h = "margin: 0 " + X + ";";
       }
       return !f && p && B && a && (h += ae(a)), h;
@@ -2789,8 +2790,8 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         });
       }), Q) {
         for (var a = i.createDocumentFragment(), p = i.createDocumentFragment(), h = Q; h--; ) {
-          var T = h % g, Y = S[T].cloneNode(!0);
-          if (q(Y, Oi), Rn(Y, "id"), p.insertBefore(Y, p.firstChild), f) {
+          var T = h % g, G = S[T].cloneNode(!0);
+          if (q(G, Oi), Rn(G, "id"), p.insertBefore(G, p.firstChild), f) {
             var X = S[g - 1 - T].cloneNode(!0);
             q(X, Oi), Rn(X, "id"), a.appendChild(X);
           }
@@ -2851,8 +2852,8 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       if (j && rn)
         for (var p in j) {
           p = parseInt(p);
-          var h = j[p], a = "", T = "", Y = "", X = "", H = "", ve = w ? null : b("items", p), Je = b("fixedWidth", p), se = b("speed", p), pi = b("edgePadding", p), fi = b("autoHeight", p), xe = b("gutter", p);
-          B && sn && b("autoHeight", p) && "speed" in h && (T = "#" + O + "-mw{" + ae(se) + "}"), ("edgePadding" in h || "gutter" in h) && (Y = "#" + O + "-iw{" + bt(pi, xe, Je, se, fi) + "}"), f && L && !w && ("fixedWidth" in h || "items" in h || u && "gutter" in h) && (X = "width:" + vt(Je, xe, ve) + ";"), B && "speed" in h && (X += ae(se)), X && (X = "#" + O + "{" + X + "}"), ("fixedWidth" in h || u && "gutter" in h || !f && "items" in h) && (H += xt(Je, xe, ve)), "gutter" in h && (H += wt(xe)), !f && "speed" in h && (B && (H += ae(se)), et && (H += Ji(se))), H && (H = "#" + O + " > .tns-item{" + H + "}"), a = T + Y + X + H, a && M.insertRule("@media (min-width: " + p / 16 + "em) {" + a + "}", M.cssRules.length);
+          var h = j[p], a = "", T = "", G = "", X = "", H = "", ve = w ? null : b("items", p), Je = b("fixedWidth", p), se = b("speed", p), pi = b("edgePadding", p), fi = b("autoHeight", p), xe = b("gutter", p);
+          B && sn && b("autoHeight", p) && "speed" in h && (T = "#" + O + "-mw{" + ae(se) + "}"), ("edgePadding" in h || "gutter" in h) && (G = "#" + O + "-iw{" + bt(pi, xe, Je, se, fi) + "}"), f && L && !w && ("fixedWidth" in h || "items" in h || u && "gutter" in h) && (X = "width:" + vt(Je, xe, ve) + ";"), B && "speed" in h && (X += ae(se)), X && (X = "#" + O + "{" + X + "}"), ("fixedWidth" in h || u && "gutter" in h || !f && "items" in h) && (H += xt(Je, xe, ve)), "gutter" in h && (H += wt(xe)), !f && "speed" in h && (B && (H += ae(se)), et && (H += Ji(se))), H && (H = "#" + O + " > .tns-item{" + H + "}"), a = T + G + X + H, a && M.insertRule("@media (min-width: " + p / 16 + "em) {" + a + "}", M.cssRules.length);
         }
     }
     function Qi() {
@@ -2862,11 +2863,11 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       }
       if (Gt) {
         if (U)
-          pn(U, { "aria-label": "Carousel Pagination" }), mn = U.children, Nn(mn, function(T, Y) {
+          pn(U, { "aria-label": "Carousel Pagination" }), mn = U.children, Nn(mn, function(T, G) {
             pn(T, {
-              "data-nav": Y,
+              "data-nav": G,
               tabindex: "-1",
-              "aria-label": me + (Y + 1),
+              "aria-label": me + (G + 1),
               "aria-controls": O
             });
           });
@@ -2894,9 +2895,9 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         var n = {};
         n[Bn] = Dn, R(m, n);
       }
-      Hn && R(m, Ie, e.preventScrollOnTouch), Pn && R(m, Ne), $n && R(i, Oe), ce === "inner" ? W.on("outerResized", function() {
-        Bi(), W.emit("innerLoaded", en());
-      }) : (j || u || w || ln || !L) && R(r, { resize: Xi }), ln && (ce === "outer" ? W.on("innerLoaded", _t) : cn || _t()), ti(), cn ? io() : vn && to(), W.on("indexChanged", so), ce === "inner" && W.emit("innerLoaded", en()), typeof Wt == "function" && Wt(en()), Ee = !0;
+      Hn && R(m, Ie, e.preventScrollOnTouch), Pn && R(m, Ne), $n && R(i, Oe), ce === "inner" ? Y.on("outerResized", function() {
+        Bi(), Y.emit("innerLoaded", en());
+      }) : (j || u || w || ln || !L) && R(r, { resize: Xi }), ln && (ce === "outer" ? Y.on("innerLoaded", _t) : cn || _t()), ti(), cn ? io() : vn && to(), Y.on("indexChanged", so), ce === "inner" && Y.emit("innerLoaded", en()), typeof Wt == "function" && Wt(en()), Ee = !0;
     }
     function va() {
       if (M.disabled = !0, M.ownerNode && M.ownerNode.remove(), J(r, { resize: Xi }), $n && J(i, Oe), F && J(F, De), U && J(U, Yt), J(m, Ce), J(m, je), N && J(N, { click: xo }), nn && clearInterval(pt), f && Bn) {
@@ -2908,10 +2909,10 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       Nt.forEach(function(a, p) {
         var h = a === "container" ? tn : e[a];
         if (typeof h == "object" && h) {
-          var T = h.previousElementSibling ? h.previousElementSibling : !1, Y = h.parentNode;
-          h.outerHTML = t[p], e[a] = T ? T.nextElementSibling : Y.firstElementChild;
+          var T = h.previousElementSibling ? h.previousElementSibling : !1, G = h.parentNode;
+          h.outerHTML = t[p], e[a] = T ? T.nextElementSibling : G.firstElementChild;
         }
-      }), Nt = qn = tt = qt = Sn = L = tn = on = m = $t = zi = S = g = Te = it = w = u = I = k = P = _ = de = Ft = $n = bn = Se = Z = ln = M = Ae = $ = pe = Q = A = Di = fe = Pt = ne = Jn = ue = Le = c = Kn = Mn = hn = at = zn = Vn = Wt = W = Zn = O = cn = Me = rt = vn = ze = De = Yt = Ce = je = Oe = Ie = Ne = st = Gt = Re = Jt = Ci = ji = Kt = lt = ct = Vt = An = Fn = F = Ii = z = D = $e = Fe = Ln = U = Ni = mn = xn = ee = te = gn = he = dt = me = Qt = nn = Ht = Ri = Wn = Yn = N = qi = Gn = He = pt = dn = ft = ge = ut = ie = kn = ht = oe = wn = Ut = Hn = Pn = null;
+      }), Nt = qn = tt = qt = Sn = L = tn = on = m = $t = zi = S = g = Te = it = w = u = I = k = W = _ = de = Ft = $n = bn = Se = Z = ln = M = Ae = $ = pe = Q = A = Di = fe = Pt = ne = Jn = ue = Le = c = Kn = Mn = hn = at = zn = Vn = Wt = Y = Zn = O = cn = Me = rt = vn = ze = De = Yt = Ce = je = Oe = Ie = Ne = st = Gt = Re = Jt = Ci = ji = Kt = lt = ct = Vt = An = Fn = F = Ii = z = D = $e = Fe = Ln = U = Ni = mn = xn = ee = te = gn = he = dt = me = Qt = nn = Ht = Ri = Wn = Yn = N = qi = Gn = He = pt = dn = ft = ge = ut = ie = kn = ht = oe = wn = Ut = Hn = Pn = null;
       for (var o in this)
         o !== "rebuild" && (this[o] = null);
       Ee = !1;
@@ -2923,23 +2924,23 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     }
     function Bi(n) {
       if (Ee) {
-        ce === "outer" && W.emit("outerResized", en(n)), it = Pi();
+        ce === "outer" && Y.emit("outerResized", en(n)), it = Pi();
         var t, o = Te, a = !1;
-        j && (no(), t = o !== Te, t && W.emit("newBreakpointStart", en(n)));
-        var p, h, T = _, Y = cn, X = vn, H = $n, ve = An, Je = Ln, se = Hn, pi = Pn, fi = nn, xe = Yn, ui = Gn, hi = c;
+        j && (no(), t = o !== Te, t && Y.emit("newBreakpointStart", en(n)));
+        var p, h, T = _, G = cn, X = vn, H = $n, ve = An, Je = Ln, se = Hn, pi = Pn, fi = nn, xe = Yn, ui = Gn, hi = c;
         if (t) {
           var qa = u, $a = ln, Fa = Fn, Ha = V, mi = Wn;
           if (!rn)
             var Pa = k, Wa = I;
         }
-        if ($n = b("arrowKeys"), An = b("controls"), Ln = b("nav"), Hn = b("touch"), V = b("center"), Pn = b("mouseDrag"), nn = b("autoplay"), Yn = b("autoplayHoverPause"), Gn = b("autoplayResetOnVisibility"), t && (cn = b("disable"), u = b("fixedWidth"), bn = b("speed"), ln = b("autoHeight"), Fn = b("controlsText"), Wn = b("autoplayText"), Ht = b("autoplayTimeout"), rn || (I = b("edgePadding"), k = b("gutter"))), mt(cn), P = Yi(), (!L || w) && !cn && (po(), L || (ci(), a = !0)), (u || w) && (fe = ri(), hn = Le()), (t || u) && (_ = b("items"), de = b("slideBy"), h = _ !== T, h && (!u && !w && (hn = Le()), ni())), t && cn !== Y && (cn ? io() : wa()), rt && (t || u || w) && (vn = Bt(), vn !== X && (vn ? (si(St(Fi(0))), to()) : (xa(), a = !0))), mt(cn || vn), nn || (Yn = Gn = !1), $n !== H && ($n ? R(i, Oe) : J(i, Oe)), An !== ve && (An ? F ? un(F) : (z && un(z), D && un(D)) : F ? fn(F) : (z && fn(z), D && fn(D))), Ln !== Je && (Ln ? (un(U), di()) : fn(U)), Hn !== se && (Hn ? R(m, Ie, e.preventScrollOnTouch) : J(m, Ie)), Pn !== pi && (Pn ? R(m, Ne) : J(m, Ne)), nn !== fi && (nn ? (N && un(N), !dn && !ge && Mt()) : (N && fn(N), dn && Ge())), Yn !== xe && (Yn ? R(m, Ce) : J(m, Ce)), Gn !== ui && (Gn ? R(i, je) : J(i, je)), t) {
+        if ($n = b("arrowKeys"), An = b("controls"), Ln = b("nav"), Hn = b("touch"), V = b("center"), Pn = b("mouseDrag"), nn = b("autoplay"), Yn = b("autoplayHoverPause"), Gn = b("autoplayResetOnVisibility"), t && (cn = b("disable"), u = b("fixedWidth"), bn = b("speed"), ln = b("autoHeight"), Fn = b("controlsText"), Wn = b("autoplayText"), Ht = b("autoplayTimeout"), rn || (I = b("edgePadding"), k = b("gutter"))), mt(cn), W = Yi(), (!L || w) && !cn && (po(), L || (ci(), a = !0)), (u || w) && (fe = ri(), hn = Le()), (t || u) && (_ = b("items"), de = b("slideBy"), h = _ !== T, h && (!u && !w && (hn = Le()), ni())), t && cn !== G && (cn ? io() : wa()), rt && (t || u || w) && (vn = Bt(), vn !== X && (vn ? (si(St(Fi(0))), to()) : (xa(), a = !0))), mt(cn || vn), nn || (Yn = Gn = !1), $n !== H && ($n ? R(i, Oe) : J(i, Oe)), An !== ve && (An ? F ? un(F) : (z && un(z), D && un(D)) : F ? fn(F) : (z && fn(z), D && fn(D))), Ln !== Je && (Ln ? (un(U), di()) : fn(U)), Hn !== se && (Hn ? R(m, Ie, e.preventScrollOnTouch) : J(m, Ie)), Pn !== pi && (Pn ? R(m, Ne) : J(m, Ne)), nn !== fi && (nn ? (N && un(N), !dn && !ge && Mt()) : (N && fn(N), dn && Ge())), Yn !== xe && (Yn ? R(m, Ce) : J(m, Ce)), Gn !== ui && (Gn ? R(i, je) : J(i, je)), t) {
           if ((u !== qa || V !== Ha) && (a = !0), ln !== $a && (ln || (on.style.height = "")), An && Fn !== Fa && (z.innerHTML = Fn[0], D.innerHTML = Fn[1]), N && Wn !== mi) {
             var gi = nn ? 1 : 0, bi = N.innerHTML, Ao = bi.length - mi[gi].length;
             bi.substring(Ao) === mi[gi] && (N.innerHTML = bi.substring(0, Ao) + Wn[gi]);
           }
         } else
           V && (u || w) && (a = !0);
-        if ((h || u && !w) && (xn = So(), di()), p = c !== hi, p ? (W.emit("indexChanged", en()), a = !0) : h ? p || so() : (u || w) && (ti(), ai(), oo()), h && !f && Ea(), !cn && !vn) {
+        if ((h || u && !w) && (xn = So(), di()), p = c !== hi, p ? (Y.emit("indexChanged", en()), a = !0) : h ? p || so() : (u || w) && (ti(), ai(), oo()), h && !f && Ea(), !cn && !vn) {
           if (t && !rn && ((I !== Wa || k !== Pa) && (on.style.cssText = bt(I, k, u, bn, ln)), L)) {
             f && (m.style.width = vt(u, k, _));
             var Ya = xt(u, k, _) + wt(k);
@@ -2947,7 +2948,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
           }
           ln && _t(), a && (We(), Kn = c);
         }
-        t && W.emit("newBreakpointEnd", en(n));
+        t && Y.emit("newBreakpointEnd", en(n));
       }
     }
     function Bt() {
@@ -2955,8 +2956,8 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         var n = V ? _ - (_ - 1) / 2 : _;
         return g <= n;
       }
-      var t = u ? (u + k) * g : $[g], o = I ? P + I * 2 : P + k;
-      return V && (o -= u ? (P - u) / 2 : (P - ($[c + 1] - $[c] - k)) / 2), t <= o;
+      var t = u ? (u + k) * g : $[g], o = I ? W + I * 2 : W + k;
+      return V && (o -= u ? (W - u) / 2 : (W - ($[c + 1] - $[c] - k)) / 2), t <= o;
     }
     function no() {
       Te = 0;
@@ -2968,7 +2969,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         // loop + carousel
         function() {
           var n = Mn, t = hn;
-          n += de, t -= de, I ? (n += 1, t -= 1) : u && (P + k) % (u + k) && (t -= 1), Q && (c > t ? c -= g : c < n && (c += g));
+          n += de, t -= de, I ? (n += 1, t -= 1) : u && (W + k) % (u + k) && (t -= 1), Q && (c > t ? c -= g : c < n && (c += g));
         }
       ) : (
         // loop + gallery
@@ -3046,19 +3047,19 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     function yt(n) {
       n == null && (n = St());
       var t = c, o, a, p;
-      if (V || I ? (w || u) && (a = -(parseFloat(n) + I), p = a + P + I * 2) : w && (a = $[c], p = a + P), w)
+      if (V || I ? (w || u) && (a = -(parseFloat(n) + I), p = a + W + I * 2) : w && (a = $[c], p = a + W), w)
         $.forEach(function(X, H) {
           H < A && ((V || I) && X <= a + 0.5 && (t = H), p - X >= 0.5 && (o = H));
         });
       else {
         if (u) {
           var h = u + k;
-          V || I ? (t = Math.floor(a / h), o = Math.ceil(p / h - 1)) : o = t + Math.ceil(P / h) - 1;
+          V || I ? (t = Math.floor(a / h), o = Math.ceil(p / h - 1)) : o = t + Math.ceil(W / h) - 1;
         } else if (V || I) {
           var T = _ - 1;
           if (V ? (t -= T / 2, o = c + T / 2) : o = c + T, I) {
-            var Y = I * _ / P;
-            t -= Y, o += Y;
+            var G = I * _ / W;
+            t -= G, o += G;
           }
           t = Math.floor(t), o = Math.ceil(o);
         } else
@@ -3198,10 +3199,10 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     function Pe(n) {
       n == null && (n = c);
       var t = I ? k : 0;
-      return w ? (P - t - ($[n + 1] - $[n] - k)) / 2 : u ? (P - u) / 2 : (_ - 1) / 2;
+      return w ? (W - t - ($[n + 1] - $[n] - k)) / 2 : u ? (W - u) / 2 : (_ - 1) / 2;
     }
     function ri() {
-      var n = I ? k : 0, t = P + n - Aa();
+      var n = I ? k : 0, t = W + n - Aa();
       return V && !Z && (t = u ? -(u + k) * (A - 1) - Pe() : Pe(A - 1) - $[A - 1]), t > 0 && (t = 0), t;
     }
     function St(n) {
@@ -3242,14 +3243,14 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       };
     }();
     function li(n, t) {
-      Pt && ni(), (c !== Kn || t) && (W.emit("indexChanged", en()), W.emit("transitionStart", en()), ln && _t(), dn && n && ["click", "keydown"].indexOf(n.type) >= 0 && Ge(), Vn = !0, La());
+      Pt && ni(), (c !== Kn || t) && (Y.emit("indexChanged", en()), Y.emit("transitionStart", en()), ln && _t(), dn && n && ["click", "keydown"].indexOf(n.type) >= 0 && Ge(), Vn = !0, La());
     }
     function bo(n) {
       return n.toLowerCase().replace(/-/g, "");
     }
     function Dn(n) {
       if (f || Vn) {
-        if (W.emit("transitionEnd", en(n)), !f && pe.length > 0)
+        if (Y.emit("transitionEnd", en(n)), !f && pe.length > 0)
           for (var t = 0; t < pe.length; t++) {
             var o = pe[t];
             o.style.left = "", It && nt && (o.style[It] = "", o.style[nt] = ""), an(o, tt), q(o, Sn);
@@ -3257,9 +3258,9 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         if (!n || !f && n.target.parentNode === m || n.target === m && bo(n.propertyName) === bo(ne)) {
           if (!Pt) {
             var a = c;
-            ni(), c !== a && (W.emit("indexChanged", en()), We());
+            ni(), c !== a && (Y.emit("indexChanged", en()), We());
           }
-          ce === "inner" && W.emit("innerLoaded", en()), Vn = !1, Kn = c;
+          ce === "inner" && Y.emit("innerLoaded", en()), Vn = !1, Kn = c;
         }
       }
     }
@@ -3401,7 +3402,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       }
       nn && dn && Lt(), oe = !0, wn && (Ct(wn), wn = null);
       var t = On(n);
-      W.emit(re(n) ? "touchStart" : "dragStart", en(n)), !re(n) && ["img", "a"].indexOf(fo(be(n))) >= 0 && yo(n), kn.x = ie.x = t.clientX, kn.y = ie.y = t.clientY, f && (ht = parseFloat(m.style[ne].replace(Jn, "")), Et(m, "0s"));
+      Y.emit(re(n) ? "touchStart" : "dragStart", en(n)), !re(n) && ["img", "a"].indexOf(fo(be(n))) >= 0 && yo(n), kn.x = ie.x = t.clientX, kn.y = ie.y = t.clientY, f && (ht = parseFloat(m.style[ne].replace(Jn, "")), Et(m, "0s"));
     }
     function To(n) {
       if (oe) {
@@ -3421,14 +3422,14 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       })), zn === "?" && (zn = _o()), zn) {
         !qe && re(n) && (qe = !0);
         try {
-          n.type && W.emit(re(n) ? "touchMove" : "dragMove", en(n));
+          n.type && Y.emit(re(n) ? "touchMove" : "dragMove", en(n));
         } catch {
         }
         var t = ht, o = Ut(kn, ie);
         if (!L || u || w)
           t += o, t += "px";
         else {
-          var a = Xn ? o * _ * 100 / ((P + k) * A) : o * 100 / (P + k);
+          var a = Xn ? o * _ * 100 / ((W + k) * A) : o * 100 / (W + k);
           t += a, t += "%";
         }
         m.style[ne] = Jn + t + ue;
@@ -3449,7 +3450,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
           }
           f ? wn = In(function() {
             if (L && !w) {
-              var p = -o * _ / (P + k);
+              var p = -o * _ / (W + k);
               p = o > 0 ? Math.floor(p) : Math.ceil(p), c += p;
             } else {
               var h = -(ht + o);
@@ -3461,7 +3462,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
                 for (var T = 0; T < A && h >= $[T]; )
                   c = T, h > $[T] && o < 0 && (c += 1), T++;
             }
-            li(n, o), W.emit(re(n) ? "touchEnd" : "dragEnd", en(n));
+            li(n, o), Y.emit(re(n) ? "touchEnd" : "dragEnd", en(n));
           }) : zn && Qn(n, o > 0 ? -1 : 1);
         }
       }
@@ -3472,7 +3473,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       n.style.height = $[c + _] - $[c] + "px";
     }
     function So() {
-      var n = u ? (u + k) * g / P : g / _;
+      var n = u ? (u + k) * g / W : g / _;
       return Math.min(Math.ceil(n), g);
     }
     function di() {
@@ -3513,7 +3514,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     return {
       version: "2.9.4",
       getInfo: en,
-      events: W,
+      events: Y,
       goTo: Ye,
       play: za,
       pause: Da,
@@ -3526,7 +3527,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       }
     };
   };
-  jo("opt_in"), G("exp_optin_loaded", "Loaded", "loaded"), Co([
+  jo("opt_in"), P("exp_optin_loaded", "Loaded", "loaded"), Co([
     "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css",
     "https://fast.wistia.com/assets/external/E-v1.js"
   ]), zo({ name: "Opt in page", dev: "YK" });
@@ -3553,7 +3554,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         s.preventDefault();
         const d = this.querySelector('input[name="name"]').value, y = this.querySelector('input[name="email"]').value;
         let x = !0;
-        (!d || d.trim() === "") && (this.querySelector('input[name="name"]').closest("label").classList.add("error"), x = !1), (!y || y.trim() === "" || !y.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) && (this.querySelector('input[name="email"]').closest("label").classList.add("error"), x = !1), x && (this.closest("#main_block") ? G("exp_optin_fs_button", "Grab Your FREE Seat Now", "click", "First screen form") : G("exp_optin_popup_cta_button", "Grab Your FREE Seat Now", "click", "Popup after click on CTA"), window.innerWidth <= 768 ? (await fetch("https://conversionrate.top/api/dropservicing/get-schedules", {
+        (!d || d.trim() === "") && (this.querySelector('input[name="name"]').closest("label").classList.add("error"), x = !1), (!y || y.trim() === "" || !y.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) && (this.querySelector('input[name="email"]').closest("label").classList.add("error"), x = !1), x && (this.closest("#main_block") ? P("exp_optin_fs_button", "Grab Your FREE Seat Now", "click", "First screen form") : P("exp_optin_popup_cta_button", "Grab Your FREE Seat Now", "click", "Popup after click on CTA"), window.innerWidth <= 768 ? (await fetch("https://conversionrate.top/api/dropservicing/get-schedules", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -3588,24 +3589,24 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       }), C("form input").on("input", function() {
         this.closest("label").classList.remove("error");
       }), C('input[name="name"]').on("change", function() {
-        !!this.closest("#main_block") ? G("exp_optin_fs_name", "Enter your name", "input", "First screen form") : G("exp_optin_popup_cta_name", "Enter your name", "input", "Popup after click on CTA");
+        !!this.closest("#main_block") ? P("exp_optin_fs_name", "Enter your name", "input", "First screen form") : P("exp_optin_popup_cta_name", "Enter your name", "input", "Popup after click on CTA");
       }), C('input[name="email"]').on("change", function() {
-        !!this.closest("#main_block") ? G("exp_optin_fs_email", "Enter email address", "input", "First screen form") : G("exp_optin_popup_cta_email", "Enter email address", "input", "Popup after click on CTA");
+        !!this.closest("#main_block") ? P("exp_optin_fs_email", "Enter email address", "input", "First screen form") : P("exp_optin_popup_cta_email", "Enter email address", "input", "Popup after click on CTA");
       }), C(".question").on("click", function() {
         const s = this.innerText;
         if (this.classList.contains("active")) {
-          this.classList.remove("active"), G("exp_optin_faq_close", `Close question. ${s}`, "click", "Frequently asked questions");
+          this.classList.remove("active"), P("exp_optin_faq_close", `Close question. ${s}`, "click", "Frequently asked questions");
           return;
         }
-        C(".question.active").removeClass("active"), this.classList.toggle("active"), G("exp_optin_faq_open", `Open question. ${s}`, "click", "Frequently asked questions");
+        C(".question.active").removeClass("active"), this.classList.toggle("active"), P("exp_optin_faq_open", `Open question. ${s}`, "click", "Frequently asked questions");
       }), C(".cta.pop").on("click", function() {
-        C(".crs_video_popup").elements[0].classList.contains("active") && C(".crs_video_popup .video *:not(.crs_close)").elements.forEach((s) => s.remove()), C(".crs_video_popup").elements[0].classList.remove("active"), C(".crs_popup_form").elements[0].classList.add("active"), this.closest("#last_cta") && G("exp_optin_future_cta", "Join the exclusive training", "click", "Your Future Starts Here"), this.closest("#training_for") && G("exp_optin_who_cta", "Join The FREE Training Now", "click", "Who is the Training for"), this.closest("#host_block") && G("exp_optin_host_cta", "Unlock Dylan’s Formula for Free ", "click", "Your Host: Dylan Sydney"), this.closest("#bonus_block") && G("exp_optin_bonuses_cta", "Grab Your FREE Seat Now", "click", "Exclusive Bonuses"), this.closest(".crs_video_popup") && G("exp_optin_popup_review_cta", "Grab Your FREE Seat Now", "click", "Popup after review");
+        C(".crs_video_popup").elements[0].classList.contains("active") && C(".crs_video_popup .video *:not(.crs_close)").elements.forEach((s) => s.remove()), C(".crs_video_popup").elements[0].classList.remove("active"), C(".crs_popup_form").elements[0].classList.add("active"), this.closest("#last_cta") && P("exp_optin_future_cta", "Join the exclusive training", "click", "Your Future Starts Here"), this.closest("#training_for") && P("exp_optin_who_cta", "Join The FREE Training Now", "click", "Who is the Training for"), this.closest("#host_block") && P("exp_optin_host_cta", "Unlock Dylan’s Formula for Free ", "click", "Your Host: Dylan Sydney"), this.closest("#bonus_block") && P("exp_optin_bonuses_cta", "Grab Your FREE Seat Now", "click", "Exclusive Bonuses"), this.closest(".crs_video_popup") && P("exp_optin_popup_review_cta", "Grab Your FREE Seat Now", "click", "Popup after review"), this.closest("#main_block") && P("exp_optin_fs_button_mobile", "Grab Your FREE Seat Now", "click", "First screen form");
       }), C(".crs_popup_form .close").on("click", function() {
         C(".crs_popup_form").elements[0].classList.remove("active");
       }), C("#base_review .slide").on("click", function() {
         const s = this.querySelector(".slide>p").textContent, d = this.getAttribute("data-video"), y = C(`.video_slide[data-video="${d}"] .video`).elements[0].cloneNode(!0);
-        C(".crs_video_popup .video").elements[0].appendChild(y), C(".crs_video_popup").elements[0].classList.add("active"), G("exp_optin_why_join_review", `Open review. ${s}`, "click", "Why Join This Webinar"), C(".crs_video_popup .wistia_embed").on("click", function() {
-          G("exp_optin_popup_review_video", `Play video ${s}`, "click", "Popup after review");
+        C(".crs_video_popup .video").elements[0].appendChild(y), C(".crs_video_popup").elements[0].classList.add("active"), P("exp_optin_why_join_review", `Open review. ${s}`, "click", "Why Join This Webinar"), C(".crs_video_popup .wistia_embed").on("click", function() {
+          P("exp_optin_popup_review_video", `Play video ${s}`, "click", "Popup after review");
         });
       }), C(".crs_video_popup .crs_close").on("click", function() {
         C(".crs_video_popup .video *:not(.crs_close)").elements.forEach((s) => s.remove()), C(".crs_video_popup").elements[0].classList.remove("active");
@@ -3691,7 +3692,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
             id: s.videoId,
             onReady: function(d) {
               d.bind("play", function() {
-                d.container.closest(".video_slide") && G(
+                d.container.closest(".video_slide") && P(
                   "exp_optin_hear_video",
                   `Video ${d.data.media.name}`,
                   "click",
