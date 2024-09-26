@@ -1446,6 +1446,10 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   background: url("https://conversionratestore.github.io/projects/dropservicing/optin/img/sms.svg") no-repeat center;
   background-size: contain;
 }
+.crs_popup_form form .inputs1 {
+  display: flex;
+  flex-direction: column;
+}
 .crs_popup_form form .inputs2 {
   display: none;
 }
