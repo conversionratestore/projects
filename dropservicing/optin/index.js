@@ -148,8 +148,13 @@ section {
 }
 #main_block .wrapper {
   margin: 0 auto;
-  width: calc(100% - 32px);
+  width: calc(100% - 180px);
   max-width: 1280px;
+}
+@media (max-width: 768px) {
+  #main_block .wrapper {
+    width: calc(100% - 32px);
+  }
 }
 #main_block header {
   padding: 16px 0;
@@ -168,7 +173,7 @@ section {
   justify-content: space-between;
   align-items: flex-start;
   gap: 60px;
-  margin-top: 36px;
+  margin-top: 12px;
 }
 @media (max-width: 768px) {
   #main_block .flex {
@@ -390,6 +395,74 @@ section {
 #main_block .form form label:last-of-type::after {
   background: url("https://conversionratestore.github.io/projects/dropservicing/optin/img/sms.svg") no-repeat center;
   background-size: contain;
+}
+#main_block .form form .inputs1 {
+  display: flex;
+  flex-direction: column;
+}
+#main_block .form form .inputs2 {
+  display: none;
+}
+#main_block .form form .inputs2.active {
+  display: block;
+}
+#main_block .form form .inputs2 .time_list {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  margin-bottom: 12px;
+  margin-top: 14px;
+  padding: 0;
+}
+#main_block .form form .inputs2 .time_list li {
+  display: flex;
+  position: relative;
+  padding: 7px 13px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  gap: 10px;
+  cursor: pointer;
+}
+#main_block .form form .inputs2 .time_list li .point {
+  margin-top: 4px;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  border: 1px solid #d8dae5;
+}
+#main_block .form form .inputs2 .time_list li.selected {
+  border-color: #06f;
+}
+#main_block .form form .inputs2 .time_list li.selected .point {
+  border: 5px solid #06f;
+}
+#main_block .form form .inputs2 .time_list li p {
+  margin: 0;
+}
+#main_block .form form .inputs2 .time_list li p:first-of-type {
+  font-size: 14px;
+  line-height: 24px;
+  color: #000;
+  font-weight: 600;
+}
+#main_block .form form .inputs2 .time_list li p:last-of-type {
+  font-size: 12px;
+  line-height: 23px;
+  color: #000;
+  font-weight: 400;
+}
+#main_block .form form .inputs2 .time_list li .comment {
+  font-size: 12px;
+  line-height: 22px;
+  color: #161718;
+  font-weight: 400;
+  opacity: 0.4;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 0;
+}
+#main_block .form form .inputs2 button {
+  width: 100%;
 }
 #main_block .form form .cta {
   margin-top: 12px;
@@ -805,6 +878,11 @@ section {
   width: 100%;
   aspect-ratio: 16/9;
   background: #000;
+}
+@media (max-width: 768px) {
+  #video_block .video_slide .video {
+    height: 60vw;
+  }
 }
 #video_block ul {
   padding: 0;
@@ -1474,6 +1552,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   cursor: pointer;
 }
 .crs_popup_form form .inputs2 .time_list li .point {
+  margin-top: 4px;
   width: 19px;
   height: 19px;
   border-radius: 50%;
@@ -1625,7 +1704,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   width: 100%;
   max-width: 470px;
 }
-.crs_video_popup .video {
+.crs_video_popup > .video {
   display: flex;
   width: 95%;
   max-width: 1100px;
@@ -1635,7 +1714,17 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   margin: 0 auto;
   position: relative;
 }
-.crs_video_popup .video .video {
+@media (max-width: 768px) {
+  .crs_video_popup > .video {
+    max-height: 50vh;
+    height: 60vw;
+    margin-top: calc(50vh - 30vw - 100px);
+  }
+}
+.crs_video_popup > .video .video {
+  width: 100%;
+}
+.crs_video_popup > .video > div:not(.crs_close) {
   width: 100%;
 }
 .crs_video_popup .crs_close {
@@ -1678,7 +1767,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   height: 20px;
   border-radius: 4px;
   background: #fff;
-}/*# sourceMappingURL=style.css.map */`, F = (e, i, r, l = "") => {
+}/*# sourceMappingURL=style.css.map */`, H = (e, i, r, l = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
@@ -1704,10 +1793,10 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     on(i, r, l) {
       return typeof r == "function" && (l = r, r = ""), this.elements.forEach(function(s) {
         s.addEventListener(i, function(c) {
-          var w;
+          var x;
           if (r !== "") {
-            let x = (w = c.target) == null ? void 0 : w.closest(r);
-            x && (l == null || l.call(x, c));
+            let v = (x = c.target) == null ? void 0 : x.closest(r);
+            v && (l == null || l.call(v, c));
           } else
             l == null || l.call(s, c);
         });
@@ -1740,22 +1829,22 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       }), this;
     }
   }
-  const A = (e) => new Do(e), Co = async (e) => {
+  const z = (e) => new Do(e), Co = async (e) => {
     const i = (r) => new Promise((l, s) => {
       const c = r.split(".").pop();
       if (c === "js") {
-        if (Array.from(document.scripts).map((v) => v.src.toLowerCase()).includes(r.toLowerCase()))
+        if (Array.from(document.scripts).map((y) => y.src.toLowerCase()).includes(r.toLowerCase()))
           return Xn(`Script ${r} allready downloaded!`, "success"), l("");
-        const x = document.createElement("script");
-        x.src = r, x.onload = l, x.onerror = s, document.head.appendChild(x);
+        const v = document.createElement("script");
+        v.src = r, v.onload = l, v.onerror = s, document.head.appendChild(v);
       } else if (c === "css") {
-        if (Array.from(document.styleSheets).map((v) => {
-          var Y;
-          return (Y = v.href) == null ? void 0 : Y.toLowerCase();
+        if (Array.from(document.styleSheets).map((y) => {
+          var $;
+          return ($ = y.href) == null ? void 0 : $.toLowerCase();
         }).includes(r.toLowerCase()))
           return Xn(`Style ${r} allready downloaded!`, "success"), l("");
-        const x = document.createElement("link");
-        x.rel = "stylesheet", x.href = r, x.onload = l, x.onerror = s, document.head.appendChild(x);
+        const v = document.createElement("link");
+        v.rel = "stylesheet", v.href = r, v.onload = l, v.onerror = s, document.head.appendChild(v);
       }
     });
     for (const r of e)
@@ -1766,24 +1855,24 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       typeof window.clarity == "function" && (clearInterval(i), window.clarity("set", e, "variant_1"));
     }, 1e3);
   }, En = (e, i, r, l, s = 1e3, c = 0.5) => {
-    let w, x;
-    if (w = new IntersectionObserver(
-      function(v) {
-        v[0].isIntersecting === !0 ? x = setTimeout(() => {
-          F(
+    let x, v;
+    if (x = new IntersectionObserver(
+      function(y) {
+        y[0].isIntersecting === !0 ? v = setTimeout(() => {
+          H(
             i,
-            v[0].target.dataset.visible || l || "",
+            y[0].target.dataset.visible || l || "",
             "view",
             r
-          ), w.disconnect();
-        }, s) : (Xn("Element is not fully visible", "warn"), clearTimeout(x));
+          ), x.disconnect();
+        }, s) : (Xn("Element is not fully visible", "warn"), clearTimeout(v));
       },
       { threshold: [c] }
     ), typeof e == "string") {
-      const v = document.querySelector(e);
-      v && w.observe(v);
+      const y = document.querySelector(e);
+      y && x.observe(y);
     } else
-      w.observe(e);
+      x.observe(e);
   }, Xn = (e, i = "info") => {
     let r;
     switch (i) {
@@ -1852,28 +1941,21 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     "<b>Real Success Stories:</b> Get inspired by participants who left their jobs to build successful businesses, gaining the freedom to live on their own terms."
   ], Io = [
     'Dylan Sigley was a broke college student working in a call center when he discovered a new online business method called "Drop Servicing".',
-    "Soon after, he built a ridiculously profitable business from home, allowing him to quit his job and earn 6-figures while traveling the world and working only 5 hours a week.",
-    "This FREE webclass skips the nonsense to show you, step-by-step, how Dylan grew his business so quickly and how hundreds of others have replicated his success using the same process. It's the most practical, results-driven training you'll find.",
-    "Dylan has one of the best (if not the best) track records in the industry for helping people around the world build Drop Servicing Businesses, even as complete beginners with no skills or degree.",
-    "Normally, it costs between $4K and $24K to work with Dylan, but in this webclass you get his exact methods for FREE! Register now before this is taken offline in the next few days."
+    "Soon after, he built a successful online business, allowing him to quit his job and earn 6-figures while traveling the world and working only 5 hours a week from his laptop.",
+    "This FREE webclass skips the nonsense to show you, step-by-step, how Dylan grew his business so quickly and how hundreds of others have used the same process to successfully start their own businesses.",
+    "Dylan has one of the best track records in the industry for helping people around the world build Drop Servicing Businesses, even as complete beginners with no degree.",
+    "Normally, it costs between 4K and 24K to work with Dylan, but in this webclass you get his exact methods for FREE! Register now before this is taken offline in the next few days."
   ], $o = [
     "Aspiring entrepreneurs eager to shift from employee to business owner.",
     "People tired of their jobs and wanting to move towards achieving their financial freedom goals.",
     "Anyone ready for actionable insights to take control of their lives and financial goals."
-  ], No = [
+  ], qo = [
     {
       name: "Fabiano Musase",
       title: "Drop Servicing Blueprint Partner Program",
       text: "The level of detail provided in the course is great. I have learned more about business and entrepreneurship from this course than I have in any other. The tools that are provided, the strategies, and even better, the done-for-you templates and portfolio come with practical examples a student can simply copy, paste and implement. It is really up to the hard work, dedication and consistency of the individual to generate great results from this course.",
       date: "Updated Sep 5, 2024",
       link: "https://www.trustpilot.com/reviews/66d751064ea542f0b227b3d5"
-    },
-    {
-      name: "Ashaya Gupta",
-      title: "Amazing Course with Unparalleled Support!",
-      text: "I am extremely satisfied with the Drop Servicing Blueprint course! The content is incredibly in-depth and packed with tons of valuable material that is well-structured and easy to follow. The course itself is worth every penny, but what truly stands out is the exclusive community you gain access to. The experts in the group are very helpful and always willing to answer any questions you may have. Plus, Dylan Sigley himself is super accessible and responsive, which is rare in online courses like this.<br><br>Thanks to the course, I’ve already bagged a couple of sales and am eager to continue expanding my business with the insights and strategies I've learned. The community support combined with the high-quality course material makes this a winning combination. Fully satisfied and highly recommend!",
-      date: "Aug 27, 2024",
-      link: "https://www.trustpilot.com/reviews/66cdbcb0c3878fd95a2e31a7"
     },
     {
       name: "Carlos Lima",
@@ -1909,6 +1991,13 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       text: "Drop Servicing blueprint is the best online business venture. I have learned a lot from the course regarding business management and opportunities. The teacher is supportive and always available to guide and help. I highly recommend the course to everyone who wants to start a new business venture",
       date: "Jul 14, 2022",
       link: "https://www.trustpilot.com/reviews/62d010668000af4a883feeef"
+    },
+    {
+      name: "Ashaya Gupta",
+      title: "Amazing Course with Unparalleled Support!",
+      text: "I am extremely satisfied with the Drop Servicing Blueprint course! The content is incredibly in-depth and packed with tons of valuable material that is well-structured and easy to follow. The course itself is worth every penny, but what truly stands out is the exclusive community you gain access to. The experts in the group are very helpful and always willing to answer any questions you may have. Plus, Dylan Sigley himself is super accessible and responsive, which is rare in online courses like this.<br><br>Thanks to the course, I’ve already bagged a couple of sales and am eager to continue expanding my business with the insights and strategies I've learned. The community support combined with the high-quality course material makes this a winning combination. Fully satisfied and highly recommend!",
+      date: "Aug 27, 2024",
+      link: "https://www.trustpilot.com/reviews/66cdbcb0c3878fd95a2e31a7"
     },
     {
       name: "Karey Nduta",
@@ -1966,7 +2055,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       question: "Will I be able to start this business just by watching the training?",
       answer: "Dylan is going to reveal the 4 steps you need to get started as well as give you a tutorial and template you can use right away."
     }
-  ], E = "https://conversionratestore.github.io/projects/dropservicing/optin/img", qo = (
+  ], E = "https://conversionratestore.github.io/projects/dropservicing/optin/img", No = (
     /* HTML */
     `
   <section id="main_block">
@@ -1984,7 +2073,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
               <b>4.8/5</b>&nbsp;<span>300+ Reviews</span>
             </p>
           </div>
-          <h1>The 4 Steps to Make Money Online in 2024 with no experience or startup costs</h1>
+          <h1>The 4 Steps to Make Money Online in 2024 (with no experience or startup costs)</h1>
           <p>Discover how to go from overworked employee to successful entrepreneur in a FREE Webinar!</p>
           <button class="cta pop mobile">Grab Your FREE Seat Now!</button>
           <div class="youll_list">
@@ -2014,14 +2103,18 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
                 <img src="${E}/frame.svg" alt="frame" />
                 Live Training
               </span>
+
               <span>
                 <img src="${E}/calendar.svg" alt="calendar" />
                 Today
               </span>
             </p>
-            <label><input type="text" placeholder="Enter your name..." name="name" /></label>
-            <label><input type="email" placeholder="Enter email address..." name="email" /></label>
-            <button class="cta register">Grab Your FREE Seat Now!</button>
+            <div class="inputs1">
+              <label><input type="text" placeholder="Enter your name..." name="name" /></label>
+              <label><input type="email" placeholder="Enter email address..." name="email" /></label>
+              <button class="cta register">Grab Your FREE Seat Now!</button>
+            </div>
+            <div class="inputs2"></div>
           </form>
           <div class="bonus">
             <p><img src="${E}/present.png" alt="gift" /> Exclusive bonuses!</p>
@@ -2098,14 +2191,14 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     </div>
     <div class="info">
       <h2>Your Host: Dylan Sigley</h2>
-      <p>7 Figure Drop Servicer</p>
+      <p>7 Figure Online Entrepreneur</p>
       <ul>
         ${Io.map((e) => (
       /* HTML */
       `<li><span></span>${e}</li>`
     )).join("")}
       </ul>
-      <p>Access Dylan’s formula to learn how to start your online business and unlock financial freedom goals</p>
+      <p>Access Dylan’s formula to learn how to start your online business and achieve financial freedom goals</p>
       <button class="cta pop">Unlock Dylan’s Formula for Free</button>
     </div>
   </section>
@@ -2115,7 +2208,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     `
   <section id="video_block">
     <div class="crs_container">
-      <h2>Hear from Our Participants</h2>
+      <h2>Hear From Our Participants</h2>
       <p>
         These are past attendees who were happy with the training and have allowed us to share their success stories.
         The experiences and successes on this page are real examples from our participants but are not typical or
@@ -2172,7 +2265,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     )).join("")}
       </ul>
       <p>If any of the above apply to you, you're in the right place!</p>
-      <p>Join your Free training to start your business and transform your career</p>
+      <p>Join your Free training to start your business and transform your career.</p>
       <button class="cta pop">Join The FREE Training Now</button>
     </div>
   </section>
@@ -2189,7 +2282,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       </h2>
       <p>People just like you joined the training</p>
       <ul>
-        ${No.map(
+        ${qo.map(
       ({ name: e, title: i, text: r, date: l, link: s }) => (
         /* HTML */
         `
@@ -2347,33 +2440,36 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     </div>
   </div>
 `
-  ), Uo = (e, i) => (
-    /* HTML */
-    `
+  ), Uo = (e, i) => {
+    const r = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    return (
+      /* HTML */
+      `
     <ul class="time_list">
-      ${e.map(({ date: r, schedule: l }, s) => {
-      const c = new Date(r).toLocaleString("en-us", { weekday: "long" }), w = new Date(r).toLocaleString("en-us", { month: "long", day: "numeric" }), x = new Date(r).toLocaleString("en-us", { hour: "numeric", minute: "numeric" }), v = new Date(r).getTime() - (/* @__PURE__ */ new Date()).getTime();
-      return (
-        /* HTML */
-        `
-            <li class="${s === 0 ? "selected" : ""}" data-schedule="${l}">
+      ${e.map(({ date: l, schedule: s }, c) => {
+        const x = new Date(l).toLocaleString("en-us", { weekday: "long" }), v = new Date(l).toLocaleString("en-us", { month: "long", day: "numeric" }), y = new Date(l).toLocaleString("en-us", { hour: "numeric", minute: "numeric" }), $ = new Date(l).getTime() - (/* @__PURE__ */ new Date()).getTime(), j = $ < 0 ? 0 : Math.floor($ / (1e3 * 60));
+        return (
+          /* HTML */
+          `
+            <li class="${c === 0 ? "selected" : ""}" data-schedule="${s}">
               <span class="point"></span>
               <div>
-                <p>${c}, ${w}, ${x}</p>
-                <p>${i}</p>
+                <p>${x}, ${v}, ${y}</p>
+                <p>${r}</p>
               </div>
               <span class="comment"
-                >Starts in ${s === 0 ? Math.floor(v / (1e3 * 60)) : Math.ceil(v / (1e3 * 60 * 60))}
-                ${s === 0 ? "minutes" : "hours"}</span
+                >Starts in ${c === 0 ? j : Math.ceil($ / (1e3 * 60 * 60))}
+                ${c === 0 ? "minutes" : "hours"}</span
               >
             </li>
           `
-      );
-    }).join("")}
+        );
+      }).join("")}
     </ul>
     <button class="cta register_mob">Select a Time to Join</button>
   `
-  );
+    );
+  };
   var Ke = window, $n = Ke.requestAnimationFrame || Ke.webkitRequestAnimationFrame || Ke.mozRequestAnimationFrame || Ke.msRequestAnimationFrame || function(e) {
     return setTimeout(e, 16);
   }, vi = window, Ct = vi.cancelAnimationFrame || vi.mozCancelAnimationFrame || function(e) {
@@ -2417,9 +2513,9 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     var e = document, i = Ve(), r = Ze(i), l = e.createElement("div"), s = !1;
     i.appendChild(l);
     try {
-      for (var c = "(10px * 10)", w = ["calc" + c, "-moz-calc" + c, "-webkit-calc" + c], x, v = 0; v < 3; v++)
-        if (x = w[v], l.style.width = x, l.offsetWidth === 100) {
-          s = x.replace(c, "");
+      for (var c = "(10px * 10)", x = ["calc" + c, "-moz-calc" + c, "-webkit-calc" + c], v, y = 0; y < 3; y++)
+        if (v = x[y], l.style.width = v, l.offsetWidth === 100) {
+          s = v.replace(c, "");
           break;
         }
     } catch {
@@ -2427,17 +2523,17 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     return i.fake ? Qe(i, r) : l.remove(), s;
   }
   function na() {
-    var e = document, i = Ve(), r = Ze(i), l = e.createElement("div"), s = e.createElement("div"), c = "", w = 70, x = 3, v = !1;
+    var e = document, i = Ve(), r = Ze(i), l = e.createElement("div"), s = e.createElement("div"), c = "", x = 70, v = 3, y = !1;
     l.className = "tns-t-subp2", s.className = "tns-t-ct";
-    for (var Y = 0; Y < w; Y++)
+    for (var $ = 0; $ < x; $++)
       c += "<div></div>";
-    return s.innerHTML = c, l.appendChild(s), i.appendChild(l), v = Math.abs(l.getBoundingClientRect().left - s.children[w - x].getBoundingClientRect().left) < 2, i.fake ? Qe(i, r) : l.remove(), v;
+    return s.innerHTML = c, l.appendChild(s), i.appendChild(l), y = Math.abs(l.getBoundingClientRect().left - s.children[x - v].getBoundingClientRect().left) < 2, i.fake ? Qe(i, r) : l.remove(), y;
   }
   function ea() {
     if (window.matchMedia || window.msMatchMedia)
       return !0;
-    var e = document, i = Ve(), r = Ze(i), l = e.createElement("div"), s = e.createElement("style"), c = "@media all and (min-width:1px){.tns-mq-test{position:absolute}}", w;
-    return s.type = "text/css", l.className = "tns-mq-test", i.appendChild(s), i.appendChild(l), s.styleSheet ? s.styleSheet.cssText = c : s.appendChild(e.createTextNode(c)), w = window.getComputedStyle ? window.getComputedStyle(l).position : l.currentStyle.position, i.fake ? Qe(i, r) : l.remove(), w === "absolute";
+    var e = document, i = Ve(), r = Ze(i), l = e.createElement("div"), s = e.createElement("style"), c = "@media all and (min-width:1px){.tns-mq-test{position:absolute}}", x;
+    return s.type = "text/css", l.className = "tns-mq-test", i.appendChild(s), i.appendChild(l), s.styleSheet ? s.styleSheet.cssText = c : s.appendChild(e.createTextNode(c)), x = window.getComputedStyle ? window.getComputedStyle(l).position : l.currentStyle.position, i.fake ? Qe(i, r) : l.remove(), x === "absolute";
   }
   function ta(e, i) {
     var r = document.createElement("style");
@@ -2460,7 +2556,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     var r = !1, l = Math.abs(90 - Math.abs(e));
     return l >= 90 - i ? r = "horizontal" : l <= i && (r = "vertical"), r;
   }
-  function Nn(e, i, r) {
+  function qn(e, i, r) {
     for (var l = 0, s = e.length; l < s; l++)
       i.call(r, e[l], l);
   }
@@ -2468,7 +2564,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     return e.classList.contains(i);
   } : function(e, i) {
     return e.className.indexOf(i) >= 0;
-  }, q = Ot ? function(e, i) {
+  }, F = Ot ? function(e, i) {
     le(e, i) || e.classList.add(i);
   } : function(e, i) {
     le(e, i) || (e.className += " " + i);
@@ -2486,7 +2582,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   function xi(e) {
     return typeof e.item < "u";
   }
-  function pn(e, i) {
+  function dn(e, i) {
     if (e = xi(e) || e instanceof Array ? e : [e], Object.prototype.toString.call(i) === "[object Object]")
       for (var r = e.length; r--; )
         for (var l in i)
@@ -2515,24 +2611,24 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   function _e(e) {
     if (typeof e == "string") {
       var i = [e], r = e.charAt(0).toUpperCase() + e.substr(1), l = ["Webkit", "Moz", "ms", "O"];
-      l.forEach(function(x) {
-        (x !== "ms" || e === "transform") && i.push(x + r);
+      l.forEach(function(v) {
+        (v !== "ms" || e === "transform") && i.push(v + r);
       }), e = i;
     }
     var s = document.createElement("fakeelement");
     e.length;
     for (var c = 0; c < e.length; c++) {
-      var w = e[c];
-      if (s.style[w] !== void 0)
-        return w;
+      var x = e[c];
+      if (s.style[x] !== void 0)
+        return x;
     }
     return !1;
   }
   function ra(e) {
     if (!e || !window.getComputedStyle)
       return !1;
-    var i = document, r = Ve(), l = Ze(r), s = i.createElement("p"), c, w = e.length > 9 ? "-" + e.slice(0, -9).toLowerCase() + "-" : "";
-    return w += "transform", r.insertBefore(s, null), s.style[e] = "translate3d(1px,1px,1px)", c = window.getComputedStyle(s).getPropertyValue(w), r.fake ? Qe(r, l) : s.remove(), c !== void 0 && c.length > 0 && c !== "none";
+    var i = document, r = Ve(), l = Ze(r), s = i.createElement("p"), c, x = e.length > 9 ? "-" + e.slice(0, -9).toLowerCase() + "-" : "";
+    return x += "transform", r.insertBefore(s, null), s.style[e] = "translate3d(1px,1px,1px)", c = window.getComputedStyle(s).getPropertyValue(x), r.fake ? Qe(r, l) : s.remove(), c !== void 0 && c.length > 0 && c !== "none";
   }
   function _i(e, i) {
     var r = !1;
@@ -2583,11 +2679,11 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       }
     };
   }
-  function ca(e, i, r, l, Y, c, w) {
-    var x = Math.min(c, 10), v = Y.indexOf("%") >= 0 ? "%" : "px", Y = Y.replace(v, ""), R = Number(e.style[i].replace(r, "").replace(l, "").replace(v, "")), hn = (Y - R) / c * x;
-    setTimeout(Be, x);
+  function ca(e, i, r, l, $, c, x) {
+    var v = Math.min(c, 10), y = $.indexOf("%") >= 0 ? "%" : "px", $ = $.replace(y, ""), j = Number(e.style[i].replace(r, "").replace(l, "").replace(y, "")), hn = ($ - j) / c * v;
+    setTimeout(Be, v);
     function Be() {
-      c -= x, R += hn, e.style[i] = r + R + v + l, c > 0 ? setTimeout(Be, x) : w();
+      c -= v, j += hn, e.style[i] = r + j + y + l, c > 0 ? setTimeout(Be, v) : x();
     }
   }
   Object.keys || (Object.keys = function(e) {
@@ -2660,17 +2756,17 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       RIGHT: 39
     }, s = {}, c = e.useLocalStorage;
     if (c) {
-      var w = navigator.userAgent, x = /* @__PURE__ */ new Date();
+      var x = navigator.userAgent, v = /* @__PURE__ */ new Date();
       try {
-        s = r.localStorage, s ? (s.setItem(x, x), c = s.getItem(x) == x, s.removeItem(x)) : c = !1, c || (s = {});
+        s = r.localStorage, s ? (s.setItem(v, v), c = s.getItem(v) == v, s.removeItem(v)) : c = !1, c || (s = {});
       } catch {
         c = !1;
       }
-      c && (s.tnsApp && s.tnsApp !== w && ["tC", "tPL", "tMQ", "tTf", "t3D", "tTDu", "tTDe", "tADu", "tADe", "tTE", "tAE"].forEach(function(n) {
+      c && (s.tnsApp && s.tnsApp !== x && ["tC", "tPL", "tMQ", "tTf", "t3D", "tTDu", "tTDe", "tADu", "tADe", "tTE", "tAE"].forEach(function(n) {
         s.removeItem(n);
-      }), localStorage.tnsApp = w);
+      }), localStorage.tnsApp = x);
     }
-    var v = s.tC ? _n(s.tC) : kn(s, "tC", Bo(), c), Y = s.tPL ? _n(s.tPL) : kn(s, "tPL", na(), c), R = s.tMQ ? _n(s.tMQ) : kn(s, "tMQ", ea(), c), hn = s.tTf ? _n(s.tTf) : kn(s, "tTf", _e("transform"), c), Be = s.t3D ? _n(s.t3D) : kn(s, "t3D", ra(hn), c), nn = s.tTDu ? _n(s.tTDu) : kn(s, "tTDu", _e("transitionDuration"), c), nt = s.tTDe ? _n(s.tTDe) : kn(s, "tTDe", _e("transitionDelay"), c), et = s.tADu ? _n(s.tADu) : kn(s, "tADu", _e("animationDuration"), c), It = s.tADe ? _n(s.tADe) : kn(s, "tADe", _e("animationDelay"), c), Bn = s.tTE ? _n(s.tTE) : kn(s, "tTE", _i(nn, "Transition"), c), Ei = s.tAE ? _n(s.tAE) : kn(s, "tAE", _i(et, "Animation"), c), Si = r.console && typeof r.console.warn == "function", $t = ["container", "controlsContainer", "prevButton", "nextButton", "navContainer", "autoplayButton"], Ai = {};
+    var y = s.tC ? _n(s.tC) : kn(s, "tC", Bo(), c), $ = s.tPL ? _n(s.tPL) : kn(s, "tPL", na(), c), j = s.tMQ ? _n(s.tMQ) : kn(s, "tMQ", ea(), c), hn = s.tTf ? _n(s.tTf) : kn(s, "tTf", _e("transform"), c), Be = s.t3D ? _n(s.t3D) : kn(s, "t3D", ra(hn), c), nn = s.tTDu ? _n(s.tTDu) : kn(s, "tTDu", _e("transitionDuration"), c), nt = s.tTDe ? _n(s.tTDe) : kn(s, "tTDe", _e("transitionDelay"), c), et = s.tADu ? _n(s.tADu) : kn(s, "tADu", _e("animationDuration"), c), It = s.tADe ? _n(s.tADe) : kn(s, "tADe", _e("animationDelay"), c), Bn = s.tTE ? _n(s.tTE) : kn(s, "tTE", _i(nn, "Transition"), c), Ei = s.tAE ? _n(s.tAE) : kn(s, "tAE", _i(et, "Animation"), c), Si = r.console && typeof r.console.warn == "function", $t = ["container", "controlsContainer", "prevButton", "nextButton", "navContainer", "autoplayButton"], Ai = {};
     if ($t.forEach(function(n) {
       if (typeof e[n] == "string") {
         var t = e[n], o = i.querySelector(t);
@@ -2685,15 +2781,15 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       Si && console.warn("No slides found in", e.container);
       return;
     }
-    var j = e.responsive, ce = e.nested, f = e.mode === "carousel";
-    if (j) {
-      0 in j && (e = jt(e, j[0]), delete j[0]);
-      var Nt = {};
-      for (var Li in j) {
-        var ke = j[Li];
-        ke = typeof ke == "number" ? { items: ke } : ke, Nt[Li] = ke;
+    var O = e.responsive, ce = e.nested, f = e.mode === "carousel";
+    if (O) {
+      0 in O && (e = jt(e, O[0]), delete O[0]);
+      var qt = {};
+      for (var Li in O) {
+        var ke = O[Li];
+        ke = typeof ke == "number" ? { items: ke } : ke, qt[Li] = ke;
       }
-      j = Nt, Nt = null;
+      O = qt, qt = null;
     }
     function Mi(n) {
       for (var t in n)
@@ -2701,25 +2797,25 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     }
     if (f || Mi(e), !f) {
       e.axis = "horizontal", e.slideBy = "page", e.edgePadding = !1;
-      var qn = e.animateIn, tt = e.animateOut, Rt = e.animateDelay, An = e.animateNormal;
+      var Nn = e.animateIn, tt = e.animateOut, Rt = e.animateDelay, An = e.animateNormal;
     }
-    var M = e.axis === "horizontal", on = i.createElement("div"), an = i.createElement("div"), sn, m = e.container, qt = m.parentNode, zi = m.outerHTML, S = m.children, g = S.length, Te, it = Pi(), Ee = !1;
-    j && no(), f && (m.className += " tns-vpfix");
-    var y = e.autoWidth, u = b("fixedWidth"), I = b("edgePadding"), k = b("gutter"), G = Yi(), Z = b("center"), _ = y ? 1 : Math.floor(b("items")), de = b("slideBy"), Ft = e.viewportMax || e.fixedWidthViewportWidth, Fn = b("arrowKeys"), vn = b("speed"), Se = e.rewind, Q = Se ? !1 : e.loop, ln = b("autoHeight"), Ln = b("controls"), Hn = b("controlsText"), Mn = b("nav"), Pn = b("touch"), Wn = b("mouseDrag"), en = b("autoplay"), Ht = b("autoplayTimeout"), Yn = b("autoplayText"), Gn = b("autoplayHoverPause"), Jn = b("autoplayResetOnVisibility"), z = ta(null, b("nonce")), Ae = e.lazyload, pa = e.lazyloadSelector, H, pe = [], U = Q ? ma() : 0, L = f ? g + U * 2 : g + U, Di = !!((u || y) && !Q), fe = u ? ri() : null, Pt = !f || !Q, ne = M ? "left" : "top", Kn = "", ue = "", Le = /* @__PURE__ */ function() {
+    var L = e.axis === "horizontal", on = i.createElement("div"), an = i.createElement("div"), sn, m = e.container, Nt = m.parentNode, zi = m.outerHTML, S = m.children, g = S.length, Te, it = Pi(), Ee = !1;
+    O && no(), f && (m.className += " tns-vpfix");
+    var w = e.autoWidth, u = b("fixedWidth"), q = b("edgePadding"), k = b("gutter"), G = Yi(), Z = b("center"), _ = w ? 1 : Math.floor(b("items")), pe = b("slideBy"), Ft = e.viewportMax || e.fixedWidthViewportWidth, Fn = b("arrowKeys"), vn = b("speed"), Se = e.rewind, Q = Se ? !1 : e.loop, ln = b("autoHeight"), Ln = b("controls"), Hn = b("controlsText"), Mn = b("nav"), Pn = b("touch"), Wn = b("mouseDrag"), en = b("autoplay"), Ht = b("autoplayTimeout"), Yn = b("autoplayText"), Gn = b("autoplayHoverPause"), Jn = b("autoplayResetOnVisibility"), M = ta(null, b("nonce")), Ae = e.lazyload, da = e.lazyloadSelector, P, de = [], U = Q ? ma() : 0, A = f ? g + U * 2 : g + U, Di = !!((u || w) && !Q), fe = u ? ri() : null, Pt = !f || !Q, ne = L ? "left" : "top", Kn = "", ue = "", Le = /* @__PURE__ */ function() {
       return u ? function() {
         return Z && !Q ? g - 1 : Math.ceil(-fe / (u + k));
-      } : y ? function() {
-        for (var n = 0; n < L; n++)
-          if (H[n] >= -fe)
+      } : w ? function() {
+        for (var n = 0; n < A; n++)
+          if (P[n] >= -fe)
             return n;
       } : function() {
-        return Z && f && !Q ? g - 1 : Q || f ? Math.max(0, L - Math.ceil(_)) : L - 1;
+        return Z && f && !Q ? g - 1 : Q || f ? Math.max(0, A - Math.ceil(_)) : A - 1;
       };
-    }(), d = Fi(b("startIndex")), Vn = d;
-    qi();
-    var zn = 0, mn = y ? null : Le(), ot = e.preventActionWhenRunning, at = e.swipeAngle, Dn = at ? "?" : !0, Zn = !1, Wt = e.onInit, J = new la(), Qn = " tns-slider tns-" + e.mode, O = m.id || Xo(), cn = b("disable"), Me = !1, rt = e.freezable, xn = rt && !y ? Bt() : !1, ze = !1, De = {
+    }(), p = Fi(b("startIndex")), Vn = p;
+    Ni();
+    var zn = 0, mn = w ? null : Le(), ot = e.preventActionWhenRunning, at = e.swipeAngle, Dn = at ? "?" : !0, Zn = !1, Wt = e.onInit, J = new la(), Qn = " tns-slider tns-" + e.mode, I = m.id || Xo(), cn = b("disable"), Me = !1, rt = e.freezable, xn = rt && !w ? Bt() : !1, ze = !1, De = {
       click: Un,
-      keydown: Na
+      keydown: qa
     }, Yt = {
       click: za,
       keydown: Ra
@@ -2736,28 +2832,28 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       mousemove: To,
       mouseup: zt,
       mouseleave: zt
-    }, st = On("controls"), Gt = On("nav"), Ne = y ? !0 : e.navAsThumbnails, Jt = On("autoplay"), Ci = On("touch"), ji = On("mouseDrag"), Kt = "tns-slide-active", Oi = "tns-slide-cloned", lt = "tns-complete", ct = {
+    }, st = On("controls"), Gt = On("nav"), qe = w ? !0 : e.navAsThumbnails, Jt = On("autoplay"), Ci = On("touch"), ji = On("mouseDrag"), Kt = "tns-slide-active", Oi = "tns-slide-cloned", lt = "tns-complete", ct = {
       load: _a,
       error: ka
     }, Vt, Zt, Re = e.preventScrollOnTouch === "force";
     if (st)
-      var P = e.controlsContainer, Ii = e.controlsContainer ? e.controlsContainer.outerHTML : "", D = e.prevButton, C = e.nextButton, fa = e.prevButton ? e.prevButton.outerHTML : "", ua = e.nextButton ? e.nextButton.outerHTML : "", qe, Fe;
+      var W = e.controlsContainer, Ii = e.controlsContainer ? e.controlsContainer.outerHTML : "", D = e.prevButton, C = e.nextButton, fa = e.prevButton ? e.prevButton.outerHTML : "", ua = e.nextButton ? e.nextButton.outerHTML : "", Ne, Fe;
     if (Gt)
-      var X = e.navContainer, $i = e.navContainer ? e.navContainer.outerHTML : "", gn, wn = y ? g : So(), ee = 0, te = -1, bn = Hi(), he = bn, dt = "tns-nav-active", me = "Carousel Page ", Qt = " (Current Slide)";
+      var X = e.navContainer, $i = e.navContainer ? e.navContainer.outerHTML : "", gn, wn = w ? g : So(), ee = 0, te = -1, bn = Hi(), he = bn, pt = "tns-nav-active", me = "Carousel Page ", Qt = " (Current Slide)";
     if (Jt)
-      var Ni = e.autoplayDirection === "forward" ? 1 : -1, $ = e.autoplayButton, Ri = e.autoplayButton ? e.autoplayButton.outerHTML : "", He = ["<span class='tns-visually-hidden'>", " animation</span>"], pt, dn, ft, ge, ut;
+      var qi = e.autoplayDirection === "forward" ? 1 : -1, R = e.autoplayButton, Ri = e.autoplayButton ? e.autoplayButton.outerHTML : "", He = ["<span class='tns-visually-hidden'>", " animation</span>"], dt, pn, ft, ge, ut;
     if (Ci || ji)
-      var ie = {}, Tn = {}, ht, oe = !1, yn, Ut = M ? function(n, t) {
+      var ie = {}, Tn = {}, ht, oe = !1, yn, Ut = L ? function(n, t) {
         return n.x - t.x;
       } : function(n, t) {
         return n.y - t.y;
       };
-    y || mt(cn || xn), hn && (ne = hn, Kn = "translate", Be ? (Kn += M ? "3d(" : "3d(0px, ", ue = M ? ", 0px, 0px)" : ", 0px)") : (Kn += M ? "X(" : "Y(", ue = ")")), f && (m.className = m.className.replace("tns-vpfix", "")), ba(), va(), Ki();
+    w || mt(cn || xn), hn && (ne = hn, Kn = "translate", Be ? (Kn += L ? "3d(" : "3d(0px, ", ue = L ? ", 0px, 0px)" : ", 0px)") : (Kn += L ? "X(" : "Y(", ue = ")")), f && (m.className = m.className.replace("tns-vpfix", "")), ba(), va(), Ki();
     function mt(n) {
       n && (Ln = Mn = Pn = Wn = Fn = en = Gn = Jn = !1);
     }
-    function qi() {
-      for (var n = f ? d - U : d; n < 0; )
+    function Ni() {
+      for (var n = f ? p - U : p; n < 0; )
         n += g;
       return n % g + 1;
     }
@@ -2765,21 +2861,21 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       return n = n ? Math.max(0, Math.min(Q ? g - 1 : g - _, n)) : 0, f ? n + U : n;
     }
     function gt(n) {
-      for (n == null && (n = d), f && (n -= U); n < 0; )
+      for (n == null && (n = p), f && (n -= U); n < 0; )
         n += g;
       return Math.floor(n % g);
     }
     function Hi() {
       var n = gt(), t;
-      return t = Ne ? n : u || y ? Math.ceil((n + 1) * wn / g - 1) : Math.floor(n / _), !Q && f && d === mn && (t = wn - 1), t;
+      return t = qe ? n : u || w ? Math.ceil((n + 1) * wn / g - 1) : Math.floor(n / _), !Q && f && p === mn && (t = wn - 1), t;
     }
     function ha() {
-      if (y || u && !Ft)
+      if (w || u && !Ft)
         return g - 1;
       var n = u ? "fixedWidth" : "items", t = [];
-      if ((u || e[n] < g) && t.push(e[n]), j)
-        for (var o in j) {
-          var a = j[o][n];
+      if ((u || e[n] < g) && t.push(e[n]), O)
+        for (var o in O) {
+          var a = O[o][n];
           a && (u || a < g) && t.push(a);
         }
       return t.length || t.push(0), Math.ceil(u ? Ft / Math.min.apply(null, t) : Math.max.apply(null, t));
@@ -2801,15 +2897,15 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       }
     }
     function Yi() {
-      var n = I ? I * 2 - k : 0;
-      return Wi(qt) - n;
+      var n = q ? q * 2 - k : 0;
+      return Wi(Nt) - n;
     }
     function On(n) {
       if (e[n])
         return !0;
-      if (j) {
-        for (var t in j)
-          if (j[t][n])
+      if (O) {
+        for (var t in O)
+          if (O[t][n])
             return !0;
       }
       return !1;
@@ -2818,27 +2914,27 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       if (t == null && (t = it), n === "items" && u)
         return Math.floor((G + k) / (u + k)) || 1;
       var o = e[n];
-      if (j)
-        for (var a in j)
-          t >= parseInt(a) && n in j[a] && (o = j[a][n]);
+      if (O)
+        for (var a in O)
+          t >= parseInt(a) && n in O[a] && (o = O[a][n]);
       return n === "slideBy" && o === "page" && (o = b("items")), !f && (n === "slideBy" || n === "items") && (o = Math.floor(o)), o;
     }
     function ga(n) {
-      return v ? v + "(" + n * 100 + "% / " + L + ")" : n * 100 / L + "%";
+      return y ? y + "(" + n * 100 + "% / " + A + ")" : n * 100 / A + "%";
     }
-    function bt(n, t, o, a, p) {
+    function bt(n, t, o, a, d) {
       var h = "";
       if (n !== void 0) {
         var T = n;
-        t && (T -= t), h = M ? "margin: 0 " + T + "px 0 " + n + "px;" : "margin: " + n + "px 0 " + T + "px 0;";
+        t && (T -= t), h = L ? "margin: 0 " + T + "px 0 " + n + "px;" : "margin: " + n + "px 0 " + T + "px 0;";
       } else if (t && !o) {
-        var K = "-" + t + "px", B = M ? K + " 0 0" : "0 " + K + " 0";
+        var K = "-" + t + "px", B = L ? K + " 0 0" : "0 " + K + " 0";
         h = "margin: 0 " + B + ";";
       }
-      return !f && p && nn && a && (h += ae(a)), h;
+      return !f && d && nn && a && (h += ae(a)), h;
     }
     function vt(n, t, o) {
-      return n ? (n + t) * L + "px" : v ? v + "(" + L * 100 + "% / " + o + ")" : L * 100 / o + "%";
+      return n ? (n + t) * A + "px" : y ? y + "(" + A * 100 + "% / " + o + ")" : A * 100 / o + "%";
     }
     function xt(n, t, o) {
       var a;
@@ -2846,15 +2942,15 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         a = n + t + "px";
       else {
         f || (o = Math.floor(o));
-        var p = f ? L : o;
-        a = v ? v + "(100% / " + p + ")" : 100 / p + "%";
+        var d = f ? A : o;
+        a = y ? y + "(100% / " + d + ")" : 100 / d + "%";
       }
       return a = "width:" + a, ce !== "inner" ? a + ";" : a + " !important;";
     }
     function wt(n) {
       var t = "";
       if (n !== !1) {
-        var o = M ? "padding-" : "margin-", a = M ? "right" : "bottom";
+        var o = L ? "padding-" : "margin-", a = L ? "right" : "bottom";
         t = o + a + ": " + n + "px;";
       }
       return t;
@@ -2871,45 +2967,45 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     }
     function ba() {
       var n = "tns-outer", t = "tns-inner";
-      if (On("gutter"), on.className = n, an.className = t, on.id = O + "-ow", an.id = O + "-iw", m.id === "" && (m.id = O), Qn += Y || y ? " tns-subpixel" : " tns-no-subpixel", Qn += v ? " tns-calc" : " tns-no-calc", y && (Qn += " tns-autowidth"), Qn += " tns-" + e.axis, m.className += Qn, f ? (sn = i.createElement("div"), sn.id = O + "-mw", sn.className = "tns-ovh", on.appendChild(sn), sn.appendChild(an)) : on.appendChild(an), ln) {
+      if (On("gutter"), on.className = n, an.className = t, on.id = I + "-ow", an.id = I + "-iw", m.id === "" && (m.id = I), Qn += $ || w ? " tns-subpixel" : " tns-no-subpixel", Qn += y ? " tns-calc" : " tns-no-calc", w && (Qn += " tns-autowidth"), Qn += " tns-" + e.axis, m.className += Qn, f ? (sn = i.createElement("div"), sn.id = I + "-mw", sn.className = "tns-ovh", on.appendChild(sn), sn.appendChild(an)) : on.appendChild(an), ln) {
         var o = sn || an;
         o.className += " tns-ah";
       }
-      if (qt.insertBefore(on, m), an.appendChild(m), Nn(S, function(W, ve) {
-        q(W, "tns-item"), W.id || (W.id = O + "-item" + ve), !f && An && q(W, An), pn(W, {
+      if (Nt.insertBefore(on, m), an.appendChild(m), qn(S, function(Y, ve) {
+        F(Y, "tns-item"), Y.id || (Y.id = I + "-item" + ve), !f && An && F(Y, An), dn(Y, {
           "aria-hidden": "true",
           tabindex: "-1"
         });
       }), U) {
-        for (var a = i.createDocumentFragment(), p = i.createDocumentFragment(), h = U; h--; ) {
+        for (var a = i.createDocumentFragment(), d = i.createDocumentFragment(), h = U; h--; ) {
           var T = h % g, K = S[T].cloneNode(!0);
-          if (q(K, Oi), Rn(K, "id"), p.insertBefore(K, p.firstChild), f) {
+          if (F(K, Oi), Rn(K, "id"), d.insertBefore(K, d.firstChild), f) {
             var B = S[g - 1 - T].cloneNode(!0);
-            q(B, Oi), Rn(B, "id"), a.appendChild(B);
+            F(B, Oi), Rn(B, "id"), a.appendChild(B);
           }
         }
-        m.insertBefore(a, m.firstChild), m.appendChild(p), S = m.children;
+        m.insertBefore(a, m.firstChild), m.appendChild(d), S = m.children;
       }
     }
     function Ki() {
-      if (On("autoHeight") || y || !M) {
+      if (On("autoHeight") || w || !L) {
         var n = m.querySelectorAll("img");
-        Nn(n, function(t) {
+        qn(n, function(t) {
           var o = t.src;
-          Ae || (o && o.indexOf("data:image") < 0 ? (t.src = "", N(t, ct), q(t, "loading"), t.src = o) : ro(t));
+          Ae || (o && o.indexOf("data:image") < 0 ? (t.src = "", N(t, ct), F(t, "loading"), t.src = o) : ro(t));
         }), $n(function() {
           kt(wi(n), function() {
             Vt = !0;
           });
-        }), On("autoHeight") && (n = oi(d, Math.min(d + _ - 1, L - 1))), Ae ? Vi() : $n(function() {
+        }), On("autoHeight") && (n = oi(p, Math.min(p + _ - 1, A - 1))), Ae ? Vi() : $n(function() {
           kt(wi(n), Vi);
         });
       } else
         f && We(), Qi(), Ui();
     }
     function Vi() {
-      if (y && g > 1) {
-        var n = Q ? d : g - 1;
+      if (w && g > 1) {
+        var n = Q ? p : g - 1;
         (function t() {
           var o = S[n].getBoundingClientRect().left, a = S[n - 1].getBoundingClientRect().right;
           Math.abs(o - a) <= 1 ? Zi() : setTimeout(function() {
@@ -2920,67 +3016,67 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         Zi();
     }
     function Zi() {
-      (!M || y) && (po(), y ? (fe = ri(), rt && (xn = Bt()), mn = Le(), mt(cn || xn)) : ci()), f && We(), Qi(), Ui();
+      (!L || w) && (po(), w ? (fe = ri(), rt && (xn = Bt()), mn = Le(), mt(cn || xn)) : ci()), f && We(), Qi(), Ui();
     }
     function va() {
       if (!f)
-        for (var n = d, t = d + Math.min(g, _); n < t; n++) {
+        for (var n = p, t = p + Math.min(g, _); n < t; n++) {
           var o = S[n];
-          o.style.left = (n - d) * 100 / _ + "%", q(o, qn), rn(o, An);
+          o.style.left = (n - p) * 100 / _ + "%", F(o, Nn), rn(o, An);
         }
-      if (M && (Y || y ? (jn(z, "#" + O + " > .tns-item", "font-size:" + r.getComputedStyle(S[0]).fontSize + ";", Sn(z)), jn(z, "#" + O, "font-size:0;", Sn(z))) : f && Nn(S, function(ui, hi) {
+      if (L && ($ || w ? (jn(M, "#" + I + " > .tns-item", "font-size:" + r.getComputedStyle(S[0]).fontSize + ";", Sn(M)), jn(M, "#" + I, "font-size:0;", Sn(M))) : f && qn(S, function(ui, hi) {
         ui.style.marginLeft = ga(hi);
-      })), R) {
+      })), j) {
         if (nn) {
           var a = sn && e.autoHeight ? ae(e.speed) : "";
-          jn(z, "#" + O + "-mw", a, Sn(z));
+          jn(M, "#" + I + "-mw", a, Sn(M));
         }
-        a = bt(e.edgePadding, e.gutter, e.fixedWidth, e.speed, e.autoHeight), jn(z, "#" + O + "-iw", a, Sn(z)), f && (a = M && !y ? "width:" + vt(e.fixedWidth, e.gutter, e.items) + ";" : "", nn && (a += ae(vn)), jn(z, "#" + O, a, Sn(z))), a = M && !y ? xt(e.fixedWidth, e.gutter, e.items) : "", e.gutter && (a += wt(e.gutter)), f || (nn && (a += ae(vn)), et && (a += Ji(vn))), a && jn(z, "#" + O + " > .tns-item", a, Sn(z));
+        a = bt(e.edgePadding, e.gutter, e.fixedWidth, e.speed, e.autoHeight), jn(M, "#" + I + "-iw", a, Sn(M)), f && (a = L && !w ? "width:" + vt(e.fixedWidth, e.gutter, e.items) + ";" : "", nn && (a += ae(vn)), jn(M, "#" + I, a, Sn(M))), a = L && !w ? xt(e.fixedWidth, e.gutter, e.items) : "", e.gutter && (a += wt(e.gutter)), f || (nn && (a += ae(vn)), et && (a += Ji(vn))), a && jn(M, "#" + I + " > .tns-item", a, Sn(M));
       } else {
-        Ea(), an.style.cssText = bt(I, k, u, ln), f && M && !y && (m.style.width = vt(u, k, _));
-        var a = M && !y ? xt(u, k, _) : "";
-        k && (a += wt(k)), a && jn(z, "#" + O + " > .tns-item", a, Sn(z));
+        Ea(), an.style.cssText = bt(q, k, u, ln), f && L && !w && (m.style.width = vt(u, k, _));
+        var a = L && !w ? xt(u, k, _) : "";
+        k && (a += wt(k)), a && jn(M, "#" + I + " > .tns-item", a, Sn(M));
       }
-      if (j && R)
-        for (var p in j) {
-          p = parseInt(p);
-          var h = j[p], a = "", T = "", K = "", B = "", W = "", ve = y ? null : b("items", p), Je = b("fixedWidth", p), se = b("speed", p), pi = b("edgePadding", p), fi = b("autoHeight", p), xe = b("gutter", p);
-          nn && sn && b("autoHeight", p) && "speed" in h && (T = "#" + O + "-mw{" + ae(se) + "}"), ("edgePadding" in h || "gutter" in h) && (K = "#" + O + "-iw{" + bt(pi, xe, Je, se, fi) + "}"), f && M && !y && ("fixedWidth" in h || "items" in h || u && "gutter" in h) && (B = "width:" + vt(Je, xe, ve) + ";"), nn && "speed" in h && (B += ae(se)), B && (B = "#" + O + "{" + B + "}"), ("fixedWidth" in h || u && "gutter" in h || !f && "items" in h) && (W += xt(Je, xe, ve)), "gutter" in h && (W += wt(xe)), !f && "speed" in h && (nn && (W += ae(se)), et && (W += Ji(se))), W && (W = "#" + O + " > .tns-item{" + W + "}"), a = T + K + B + W, a && z.insertRule("@media (min-width: " + p / 16 + "em) {" + a + "}", z.cssRules.length);
+      if (O && j)
+        for (var d in O) {
+          d = parseInt(d);
+          var h = O[d], a = "", T = "", K = "", B = "", Y = "", ve = w ? null : b("items", d), Je = b("fixedWidth", d), se = b("speed", d), di = b("edgePadding", d), fi = b("autoHeight", d), xe = b("gutter", d);
+          nn && sn && b("autoHeight", d) && "speed" in h && (T = "#" + I + "-mw{" + ae(se) + "}"), ("edgePadding" in h || "gutter" in h) && (K = "#" + I + "-iw{" + bt(di, xe, Je, se, fi) + "}"), f && L && !w && ("fixedWidth" in h || "items" in h || u && "gutter" in h) && (B = "width:" + vt(Je, xe, ve) + ";"), nn && "speed" in h && (B += ae(se)), B && (B = "#" + I + "{" + B + "}"), ("fixedWidth" in h || u && "gutter" in h || !f && "items" in h) && (Y += xt(Je, xe, ve)), "gutter" in h && (Y += wt(xe)), !f && "speed" in h && (nn && (Y += ae(se)), et && (Y += Ji(se))), Y && (Y = "#" + I + " > .tns-item{" + Y + "}"), a = T + K + B + Y, a && M.insertRule("@media (min-width: " + d / 16 + "em) {" + a + "}", M.cssRules.length);
         }
     }
     function Qi() {
       if (ai(), on.insertAdjacentHTML("afterbegin", '<div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">' + ao() + "</span>  of " + g + "</div>"), Zt = on.querySelector(".tns-liveregion .current"), Jt) {
         var n = en ? "stop" : "start";
-        $ ? pn($, { "data-action": n }) : e.autoplayButtonOutput && (on.insertAdjacentHTML(Xt(e.autoplayPosition), '<button type="button" data-action="' + n + '">' + He[0] + n + He[1] + Yn[0] + "</button>"), $ = on.querySelector("[data-action]")), $ && N($, { click: xo }), en && (Mt(), Gn && N(m, Ce), Jn && N(m, je));
+        R ? dn(R, { "data-action": n }) : e.autoplayButtonOutput && (on.insertAdjacentHTML(Xt(e.autoplayPosition), '<button type="button" data-action="' + n + '">' + He[0] + n + He[1] + Yn[0] + "</button>"), R = on.querySelector("[data-action]")), R && N(R, { click: xo }), en && (Mt(), Gn && N(m, Ce), Jn && N(m, je));
       }
       if (Gt) {
         if (X)
-          pn(X, { "aria-label": "Carousel Pagination" }), gn = X.children, Nn(gn, function(T, K) {
-            pn(T, {
+          dn(X, { "aria-label": "Carousel Pagination" }), gn = X.children, qn(gn, function(T, K) {
+            dn(T, {
               "data-nav": K,
               tabindex: "-1",
               "aria-label": me + (K + 1),
-              "aria-controls": O
+              "aria-controls": I
             });
           });
         else {
-          for (var t = "", o = Ne ? "" : 'style="display:none"', a = 0; a < g; a++)
-            t += '<button type="button" data-nav="' + a + '" tabindex="-1" aria-controls="' + O + '" ' + o + ' aria-label="' + me + (a + 1) + '"></button>';
+          for (var t = "", o = qe ? "" : 'style="display:none"', a = 0; a < g; a++)
+            t += '<button type="button" data-nav="' + a + '" tabindex="-1" aria-controls="' + I + '" ' + o + ' aria-label="' + me + (a + 1) + '"></button>';
           t = '<div class="tns-nav" aria-label="Carousel Pagination">' + t + "</div>", on.insertAdjacentHTML(Xt(e.navPosition), t), X = on.querySelector(".tns-nav"), gn = X.children;
         }
-        if (di(), nn) {
-          var p = nn.substring(0, nn.length - 18).toLowerCase(), h = "transition: all " + vn / 1e3 + "s";
-          p && (h = "-" + p + "-" + h), jn(z, "[aria-controls^=" + O + "-item]", h, Sn(z));
+        if (pi(), nn) {
+          var d = nn.substring(0, nn.length - 18).toLowerCase(), h = "transition: all " + vn / 1e3 + "s";
+          d && (h = "-" + d + "-" + h), jn(M, "[aria-controls^=" + I + "-item]", h, Sn(M));
         }
-        pn(gn[bn], { "aria-label": me + (bn + 1) + Qt }), Rn(gn[bn], "tabindex"), q(gn[bn], dt), N(X, Yt);
+        dn(gn[bn], { "aria-label": me + (bn + 1) + Qt }), Rn(gn[bn], "tabindex"), F(gn[bn], pt), N(X, Yt);
       }
-      st && (!P && (!D || !C) && (on.insertAdjacentHTML(Xt(e.controlsPosition), '<div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button type="button" data-controls="prev" tabindex="-1" aria-controls="' + O + '">' + Hn[0] + '</button><button type="button" data-controls="next" tabindex="-1" aria-controls="' + O + '">' + Hn[1] + "</button></div>"), P = on.querySelector(".tns-controls")), (!D || !C) && (D = P.children[0], C = P.children[1]), e.controlsContainer && pn(P, {
+      st && (!W && (!D || !C) && (on.insertAdjacentHTML(Xt(e.controlsPosition), '<div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button type="button" data-controls="prev" tabindex="-1" aria-controls="' + I + '">' + Hn[0] + '</button><button type="button" data-controls="next" tabindex="-1" aria-controls="' + I + '">' + Hn[1] + "</button></div>"), W = on.querySelector(".tns-controls")), (!D || !C) && (D = W.children[0], C = W.children[1]), e.controlsContainer && dn(W, {
         "aria-label": "Carousel Navigation",
         tabindex: "0"
-      }), (e.controlsContainer || e.prevButton && e.nextButton) && pn([D, C], {
-        "aria-controls": O,
+      }), (e.controlsContainer || e.prevButton && e.nextButton) && dn([D, C], {
+        "aria-controls": I,
         tabindex: "-1"
-      }), (e.controlsContainer || e.prevButton && e.nextButton) && (pn(D, { "data-controls": "prev" }), pn(C, { "data-controls": "next" })), qe = uo(D), Fe = uo(C), mo(), P ? N(P, De) : (N(D, De), N(C, De))), ei();
+      }), (e.controlsContainer || e.prevButton && e.nextButton) && (dn(D, { "data-controls": "prev" }), dn(C, { "data-controls": "next" })), Ne = uo(D), Fe = uo(C), mo(), W ? N(W, De) : (N(D, De), N(C, De))), ei();
     }
     function Ui() {
       if (f && Bn) {
@@ -2989,22 +3085,22 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       }
       Pn && N(m, Ie, e.preventScrollOnTouch), Wn && N(m, $e), Fn && N(i, Oe), ce === "inner" ? J.on("outerResized", function() {
         Bi(), J.emit("innerLoaded", tn());
-      }) : (j || u || y || ln || !M) && N(r, { resize: Xi }), ln && (ce === "outer" ? J.on("innerLoaded", _t) : cn || _t()), ti(), cn ? io() : xn && to(), J.on("indexChanged", so), ce === "inner" && J.emit("innerLoaded", tn()), typeof Wt == "function" && Wt(tn()), Ee = !0;
+      }) : (O || u || w || ln || !L) && N(r, { resize: Xi }), ln && (ce === "outer" ? J.on("innerLoaded", _t) : cn || _t()), ti(), cn ? io() : xn && to(), J.on("indexChanged", so), ce === "inner" && J.emit("innerLoaded", tn()), typeof Wt == "function" && Wt(tn()), Ee = !0;
     }
     function xa() {
-      if (z.disabled = !0, z.ownerNode && z.ownerNode.remove(), V(r, { resize: Xi }), Fn && V(i, Oe), P && V(P, De), X && V(X, Yt), V(m, Ce), V(m, je), $ && V($, { click: xo }), en && clearInterval(pt), f && Bn) {
+      if (M.disabled = !0, M.ownerNode && M.ownerNode.remove(), V(r, { resize: Xi }), Fn && V(i, Oe), W && V(W, De), X && V(X, Yt), V(m, Ce), V(m, je), R && V(R, { click: xo }), en && clearInterval(dt), f && Bn) {
         var n = {};
         n[Bn] = Cn, V(m, n);
       }
       Pn && V(m, Ie), Wn && V(m, $e);
       var t = [zi, Ii, fa, ua, $i, Ri];
-      $t.forEach(function(a, p) {
+      $t.forEach(function(a, d) {
         var h = a === "container" ? on : e[a];
         if (typeof h == "object" && h) {
           var T = h.previousElementSibling ? h.previousElementSibling : !1, K = h.parentNode;
-          h.outerHTML = t[p], e[a] = T ? T.nextElementSibling : K.firstElementChild;
+          h.outerHTML = t[d], e[a] = T ? T.nextElementSibling : K.firstElementChild;
         }
-      }), $t = qn = tt = Rt = An = M = on = an = m = qt = zi = S = g = Te = it = y = u = I = k = G = _ = de = Ft = Fn = vn = Se = Q = ln = z = Ae = H = pe = U = L = Di = fe = Pt = ne = Kn = ue = Le = d = Vn = zn = mn = at = Dn = Zn = Wt = J = Qn = O = cn = Me = rt = xn = ze = De = Yt = Ce = je = Oe = Ie = $e = st = Gt = Ne = Jt = Ci = ji = Kt = lt = ct = Vt = Ln = Hn = P = Ii = D = C = qe = Fe = Mn = X = $i = gn = wn = ee = te = bn = he = dt = me = Qt = en = Ht = Ni = Yn = Gn = $ = Ri = Jn = He = pt = dn = ft = ge = ut = ie = Tn = ht = oe = yn = Ut = Pn = Wn = null;
+      }), $t = Nn = tt = Rt = An = L = on = an = m = Nt = zi = S = g = Te = it = w = u = q = k = G = _ = pe = Ft = Fn = vn = Se = Q = ln = M = Ae = P = de = U = A = Di = fe = Pt = ne = Kn = ue = Le = p = Vn = zn = mn = at = Dn = Zn = Wt = J = Qn = I = cn = Me = rt = xn = ze = De = Yt = Ce = je = Oe = Ie = $e = st = Gt = qe = Jt = Ci = ji = Kt = lt = ct = Vt = Ln = Hn = W = Ii = D = C = Ne = Fe = Mn = X = $i = gn = wn = ee = te = bn = he = pt = me = Qt = en = Ht = qi = Yn = Gn = R = Ri = Jn = He = dt = pn = ft = ge = ut = ie = Tn = ht = oe = yn = Ut = Pn = Wn = null;
       for (var o in this)
         o !== "rebuild" && (this[o] = null);
       Ee = !1;
@@ -3018,42 +3114,42 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       if (Ee) {
         ce === "outer" && J.emit("outerResized", tn(n)), it = Pi();
         var t, o = Te, a = !1;
-        j && (no(), t = o !== Te, t && J.emit("newBreakpointStart", tn(n)));
-        var p, h, T = _, K = cn, B = xn, W = Fn, ve = Ln, Je = Mn, se = Pn, pi = Wn, fi = en, xe = Gn, ui = Jn, hi = d;
+        O && (no(), t = o !== Te, t && J.emit("newBreakpointStart", tn(n)));
+        var d, h, T = _, K = cn, B = xn, Y = Fn, ve = Ln, Je = Mn, se = Pn, di = Wn, fi = en, xe = Gn, ui = Jn, hi = p;
         if (t) {
-          var qa = u, Fa = ln, Ha = Hn, Pa = Z, mi = Yn;
-          if (!R)
-            var Wa = k, Ya = I;
+          var Na = u, Fa = ln, Ha = Hn, Pa = Z, mi = Yn;
+          if (!j)
+            var Wa = k, Ya = q;
         }
-        if (Fn = b("arrowKeys"), Ln = b("controls"), Mn = b("nav"), Pn = b("touch"), Z = b("center"), Wn = b("mouseDrag"), en = b("autoplay"), Gn = b("autoplayHoverPause"), Jn = b("autoplayResetOnVisibility"), t && (cn = b("disable"), u = b("fixedWidth"), vn = b("speed"), ln = b("autoHeight"), Hn = b("controlsText"), Yn = b("autoplayText"), Ht = b("autoplayTimeout"), R || (I = b("edgePadding"), k = b("gutter"))), mt(cn), G = Yi(), (!M || y) && !cn && (po(), M || (ci(), a = !0)), (u || y) && (fe = ri(), mn = Le()), (t || u) && (_ = b("items"), de = b("slideBy"), h = _ !== T, h && (!u && !y && (mn = Le()), ni())), t && cn !== K && (cn ? io() : ya()), rt && (t || u || y) && (xn = Bt(), xn !== B && (xn ? (si(St(Fi(0))), to()) : (wa(), a = !0))), mt(cn || xn), en || (Gn = Jn = !1), Fn !== W && (Fn ? N(i, Oe) : V(i, Oe)), Ln !== ve && (Ln ? P ? un(P) : (D && un(D), C && un(C)) : P ? fn(P) : (D && fn(D), C && fn(C))), Mn !== Je && (Mn ? (un(X), di()) : fn(X)), Pn !== se && (Pn ? N(m, Ie, e.preventScrollOnTouch) : V(m, Ie)), Wn !== pi && (Wn ? N(m, $e) : V(m, $e)), en !== fi && (en ? ($ && un($), !dn && !ge && Mt()) : ($ && fn($), dn && Ge())), Gn !== xe && (Gn ? N(m, Ce) : V(m, Ce)), Jn !== ui && (Jn ? N(i, je) : V(i, je)), t) {
-          if ((u !== qa || Z !== Pa) && (a = !0), ln !== Fa && (ln || (an.style.height = "")), Ln && Hn !== Ha && (D.innerHTML = Hn[0], C.innerHTML = Hn[1]), $ && Yn !== mi) {
-            var gi = en ? 1 : 0, bi = $.innerHTML, Ao = bi.length - mi[gi].length;
-            bi.substring(Ao) === mi[gi] && ($.innerHTML = bi.substring(0, Ao) + Yn[gi]);
+        if (Fn = b("arrowKeys"), Ln = b("controls"), Mn = b("nav"), Pn = b("touch"), Z = b("center"), Wn = b("mouseDrag"), en = b("autoplay"), Gn = b("autoplayHoverPause"), Jn = b("autoplayResetOnVisibility"), t && (cn = b("disable"), u = b("fixedWidth"), vn = b("speed"), ln = b("autoHeight"), Hn = b("controlsText"), Yn = b("autoplayText"), Ht = b("autoplayTimeout"), j || (q = b("edgePadding"), k = b("gutter"))), mt(cn), G = Yi(), (!L || w) && !cn && (po(), L || (ci(), a = !0)), (u || w) && (fe = ri(), mn = Le()), (t || u) && (_ = b("items"), pe = b("slideBy"), h = _ !== T, h && (!u && !w && (mn = Le()), ni())), t && cn !== K && (cn ? io() : ya()), rt && (t || u || w) && (xn = Bt(), xn !== B && (xn ? (si(St(Fi(0))), to()) : (wa(), a = !0))), mt(cn || xn), en || (Gn = Jn = !1), Fn !== Y && (Fn ? N(i, Oe) : V(i, Oe)), Ln !== ve && (Ln ? W ? un(W) : (D && un(D), C && un(C)) : W ? fn(W) : (D && fn(D), C && fn(C))), Mn !== Je && (Mn ? (un(X), pi()) : fn(X)), Pn !== se && (Pn ? N(m, Ie, e.preventScrollOnTouch) : V(m, Ie)), Wn !== di && (Wn ? N(m, $e) : V(m, $e)), en !== fi && (en ? (R && un(R), !pn && !ge && Mt()) : (R && fn(R), pn && Ge())), Gn !== xe && (Gn ? N(m, Ce) : V(m, Ce)), Jn !== ui && (Jn ? N(i, je) : V(i, je)), t) {
+          if ((u !== Na || Z !== Pa) && (a = !0), ln !== Fa && (ln || (an.style.height = "")), Ln && Hn !== Ha && (D.innerHTML = Hn[0], C.innerHTML = Hn[1]), R && Yn !== mi) {
+            var gi = en ? 1 : 0, bi = R.innerHTML, Ao = bi.length - mi[gi].length;
+            bi.substring(Ao) === mi[gi] && (R.innerHTML = bi.substring(0, Ao) + Yn[gi]);
           }
         } else
-          Z && (u || y) && (a = !0);
-        if ((h || u && !y) && (wn = So(), di()), p = d !== hi, p ? (J.emit("indexChanged", tn()), a = !0) : h ? p || so() : (u || y) && (ti(), ai(), oo()), h && !f && Sa(), !cn && !xn) {
-          if (t && !R && ((I !== Ya || k !== Wa) && (an.style.cssText = bt(I, k, u, vn, ln)), M)) {
+          Z && (u || w) && (a = !0);
+        if ((h || u && !w) && (wn = So(), pi()), d = p !== hi, d ? (J.emit("indexChanged", tn()), a = !0) : h ? d || so() : (u || w) && (ti(), ai(), oo()), h && !f && Sa(), !cn && !xn) {
+          if (t && !j && ((q !== Ya || k !== Wa) && (an.style.cssText = bt(q, k, u, vn, ln)), L)) {
             f && (m.style.width = vt(u, k, _));
             var Ga = xt(u, k, _) + wt(k);
-            ia(z, Sn(z) - 1), jn(z, "#" + O + " > .tns-item", Ga, Sn(z));
+            ia(M, Sn(M) - 1), jn(M, "#" + I + " > .tns-item", Ga, Sn(M));
           }
-          ln && _t(), a && (We(), Vn = d);
+          ln && _t(), a && (We(), Vn = p);
         }
         t && J.emit("newBreakpointEnd", tn(n));
       }
     }
     function Bt() {
-      if (!u && !y) {
+      if (!u && !w) {
         var n = Z ? _ - (_ - 1) / 2 : _;
         return g <= n;
       }
-      var t = u ? (u + k) * g : H[g], o = I ? G + I * 2 : G + k;
-      return Z && (o -= u ? (G - u) / 2 : (G - (H[d + 1] - H[d] - k)) / 2), t <= o;
+      var t = u ? (u + k) * g : P[g], o = q ? G + q * 2 : G + k;
+      return Z && (o -= u ? (G - u) / 2 : (G - (P[p + 1] - P[p] - k)) / 2), t <= o;
     }
     function no() {
       Te = 0;
-      for (var n in j)
+      for (var n in O)
         n = parseInt(n), it >= n && (Te = n);
     }
     var ni = /* @__PURE__ */ function() {
@@ -3061,69 +3157,69 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         // loop + carousel
         function() {
           var n = zn, t = mn;
-          n += de, t -= de, I ? (n += 1, t -= 1) : u && (G + k) % (u + k) && (t -= 1), U && (d > t ? d -= g : d < n && (d += g));
+          n += pe, t -= pe, q ? (n += 1, t -= 1) : u && (G + k) % (u + k) && (t -= 1), U && (p > t ? p -= g : p < n && (p += g));
         }
       ) : (
         // loop + gallery
         function() {
-          if (d > mn)
-            for (; d >= zn + g; )
-              d -= g;
-          else if (d < zn)
-            for (; d <= mn - g; )
-              d += g;
+          if (p > mn)
+            for (; p >= zn + g; )
+              p -= g;
+          else if (p < zn)
+            for (; p <= mn - g; )
+              p += g;
         }
       ) : (
         // non-loop
         function() {
-          d = Math.max(zn, Math.min(mn, d));
+          p = Math.max(zn, Math.min(mn, p));
         }
       );
     }();
     function ei() {
-      !en && $ && fn($), !Mn && X && fn(X), Ln || (P ? fn(P) : (D && fn(D), C && fn(C)));
+      !en && R && fn(R), !Mn && X && fn(X), Ln || (W ? fn(W) : (D && fn(D), C && fn(C)));
     }
     function eo() {
-      en && $ && un($), Mn && X && un(X), Ln && (P ? un(P) : (D && un(D), C && un(C)));
+      en && R && un(R), Mn && X && un(X), Ln && (W ? un(W) : (D && un(D), C && un(C)));
     }
     function to() {
       if (!ze) {
-        if (I && (an.style.margin = "0px"), U)
+        if (q && (an.style.margin = "0px"), U)
           for (var n = "tns-transparent", t = U; t--; )
-            f && q(S[t], n), q(S[L - t - 1], n);
+            f && F(S[t], n), F(S[A - t - 1], n);
         ei(), ze = !0;
       }
     }
     function wa() {
       if (ze) {
-        if (I && R && (an.style.margin = ""), U)
+        if (q && j && (an.style.margin = ""), U)
           for (var n = "tns-transparent", t = U; t--; )
-            f && rn(S[t], n), rn(S[L - t - 1], n);
+            f && rn(S[t], n), rn(S[A - t - 1], n);
         eo(), ze = !1;
       }
     }
     function io() {
       if (!Me) {
-        if (z.disabled = !0, m.className = m.className.replace(Qn.substring(1), ""), Rn(m, ["style"]), Q)
+        if (M.disabled = !0, m.className = m.className.replace(Qn.substring(1), ""), Rn(m, ["style"]), Q)
           for (var n = U; n--; )
-            f && fn(S[n]), fn(S[L - n - 1]);
-        if ((!M || !f) && Rn(an, ["style"]), !f)
-          for (var t = d, o = d + g; t < o; t++) {
+            f && fn(S[n]), fn(S[A - n - 1]);
+        if ((!L || !f) && Rn(an, ["style"]), !f)
+          for (var t = p, o = p + g; t < o; t++) {
             var a = S[t];
-            Rn(a, ["style"]), rn(a, qn), rn(a, An);
+            Rn(a, ["style"]), rn(a, Nn), rn(a, An);
           }
         ei(), Me = !0;
       }
     }
     function ya() {
       if (Me) {
-        if (z.disabled = !1, m.className += Qn, We(), Q)
+        if (M.disabled = !1, m.className += Qn, We(), Q)
           for (var n = U; n--; )
-            f && un(S[n]), un(S[L - n - 1]);
+            f && un(S[n]), un(S[A - n - 1]);
         if (!f)
-          for (var t = d, o = d + g; t < o; t++) {
-            var a = S[t], p = t < d + _ ? qn : An;
-            a.style.left = (t - d) * 100 / _ + "%", q(a, p);
+          for (var t = p, o = p + g; t < o; t++) {
+            var a = S[t], d = t < p + _ ? Nn : An;
+            a.style.left = (t - p) * 100 / _ + "%", F(a, d);
           }
         eo(), Me = !1;
       }
@@ -3138,39 +3234,39 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     }
     function yt(n) {
       n == null && (n = St());
-      var t = d, o, a, p;
-      if (Z || I ? (y || u) && (a = -(parseFloat(n) + I), p = a + G + I * 2) : y && (a = H[d], p = a + G), y)
-        H.forEach(function(B, W) {
-          W < L && ((Z || I) && B <= a + 0.5 && (t = W), p - B >= 0.5 && (o = W));
+      var t = p, o, a, d;
+      if (Z || q ? (w || u) && (a = -(parseFloat(n) + q), d = a + G + q * 2) : w && (a = P[p], d = a + G), w)
+        P.forEach(function(B, Y) {
+          Y < A && ((Z || q) && B <= a + 0.5 && (t = Y), d - B >= 0.5 && (o = Y));
         });
       else {
         if (u) {
           var h = u + k;
-          Z || I ? (t = Math.floor(a / h), o = Math.ceil(p / h - 1)) : o = t + Math.ceil(G / h) - 1;
-        } else if (Z || I) {
+          Z || q ? (t = Math.floor(a / h), o = Math.ceil(d / h - 1)) : o = t + Math.ceil(G / h) - 1;
+        } else if (Z || q) {
           var T = _ - 1;
-          if (Z ? (t -= T / 2, o = d + T / 2) : o = d + T, I) {
-            var K = I * _ / G;
+          if (Z ? (t -= T / 2, o = p + T / 2) : o = p + T, q) {
+            var K = q * _ / G;
             t -= K, o += K;
           }
           t = Math.floor(t), o = Math.ceil(o);
         } else
           o = t + _ - 1;
-        t = Math.max(t, 0), o = Math.min(o, L - 1);
+        t = Math.max(t, 0), o = Math.min(o, A - 1);
       }
       return [t, o];
     }
     function ti() {
       if (Ae && !cn) {
         var n = yt();
-        n.push(pa), oi.apply(null, n).forEach(function(t) {
+        n.push(da), oi.apply(null, n).forEach(function(t) {
           if (!le(t, lt)) {
             var o = {};
-            o[Bn] = function(p) {
-              p.stopPropagation();
+            o[Bn] = function(d) {
+              d.stopPropagation();
             }, N(t, o), N(t, ct), t.src = Ue(t, "data-src");
             var a = Ue(t, "data-srcset");
-            a && (t.srcset = a), q(t, "loading");
+            a && (t.srcset = a), F(t, "loading");
           }
         });
       }
@@ -3182,19 +3278,19 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       Ta(be(n));
     }
     function ro(n) {
-      q(n, "loaded"), ii(n);
+      F(n, "loaded"), ii(n);
     }
     function Ta(n) {
-      q(n, "failed"), ii(n);
+      F(n, "failed"), ii(n);
     }
     function ii(n) {
-      q(n, lt), rn(n, "loading"), V(n, ct);
+      F(n, lt), rn(n, "loading"), V(n, ct);
     }
     function oi(n, t, o) {
       var a = [];
       for (o || (o = "img"); n <= t; )
-        Nn(S[n].querySelectorAll(o), function(p) {
-          a.push(p);
+        qn(S[n].querySelectorAll(o), function(d) {
+          a.push(d);
         }), n++;
       return a;
     }
@@ -3220,37 +3316,37 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       f && ln && (sn.style[nn] = vn / 1e3 + "s");
     }
     function lo(n, t) {
-      for (var o = [], a = n, p = Math.min(n + t, L); a < p; a++)
+      for (var o = [], a = n, d = Math.min(n + t, A); a < d; a++)
         o.push(S[a].offsetHeight);
       return Math.max.apply(null, o);
     }
     function co() {
-      var n = ln ? lo(d, _) : lo(U, g), t = sn || an;
+      var n = ln ? lo(p, _) : lo(U, g), t = sn || an;
       t.style.height !== n && (t.style.height = n + "px");
     }
     function po() {
-      H = [0];
-      var n = M ? "left" : "top", t = M ? "right" : "bottom", o = S[0].getBoundingClientRect()[n];
-      Nn(S, function(a, p) {
-        p && H.push(a.getBoundingClientRect()[n] - o), p === L - 1 && H.push(a.getBoundingClientRect()[t] - o);
+      P = [0];
+      var n = L ? "left" : "top", t = L ? "right" : "bottom", o = S[0].getBoundingClientRect()[n];
+      qn(S, function(a, d) {
+        d && P.push(a.getBoundingClientRect()[n] - o), d === A - 1 && P.push(a.getBoundingClientRect()[t] - o);
       });
     }
     function ai() {
       var n = yt(), t = n[0], o = n[1];
-      Nn(S, function(a, p) {
-        p >= t && p <= o ? ye(a, "aria-hidden") && (Rn(a, ["aria-hidden", "tabindex"]), q(a, Kt)) : ye(a, "aria-hidden") || (pn(a, {
+      qn(S, function(a, d) {
+        d >= t && d <= o ? ye(a, "aria-hidden") && (Rn(a, ["aria-hidden", "tabindex"]), F(a, Kt)) : ye(a, "aria-hidden") || (dn(a, {
           "aria-hidden": "true",
           tabindex: "-1"
         }), rn(a, Kt));
       });
     }
     function Sa() {
-      for (var n = d + Math.min(g, _), t = L; t--; ) {
+      for (var n = p + Math.min(g, _), t = A; t--; ) {
         var o = S[t];
-        t >= d && t < n ? (q(o, "tns-moving"), o.style.left = (t - d) * 100 / _ + "%", q(o, qn), rn(o, An)) : o.style.left && (o.style.left = "", q(o, An), rn(o, qn)), rn(o, tt);
+        t >= p && t < n ? (F(o, "tns-moving"), o.style.left = (t - p) * 100 / _ + "%", F(o, Nn), rn(o, An)) : o.style.left && (o.style.left = "", F(o, An), rn(o, Nn)), rn(o, tt);
       }
       setTimeout(function() {
-        Nn(S, function(a) {
+        qn(S, function(a) {
           rn(a, "tns-moving");
         });
       }, 300);
@@ -3258,10 +3354,10 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     function Aa() {
       if (Mn && (bn = te >= 0 ? te : Hi(), te = -1, bn !== he)) {
         var n = gn[he], t = gn[bn];
-        pn(n, {
+        dn(n, {
           tabindex: "-1",
           "aria-label": me + (he + 1)
-        }), rn(n, dt), pn(t, { "aria-label": me + (bn + 1) + Qt }), Rn(t, "tabindex"), q(t, dt), he = bn;
+        }), rn(n, pt), dn(t, { "aria-label": me + (bn + 1) + Qt }), Rn(t, "tabindex"), F(t, pt), he = bn;
       }
     }
     function fo(n) {
@@ -3278,38 +3374,38 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     }
     function mo() {
       if (!(!Ln || Se || Q)) {
-        var n = qe ? D.disabled : ho(D), t = Fe ? C.disabled : ho(C), o = d <= zn, a = !Se && d >= mn;
-        o && !n && Tt(qe, D, !0), !o && n && Tt(qe, D, !1), a && !t && Tt(Fe, C, !0), !a && t && Tt(Fe, C, !1);
+        var n = Ne ? D.disabled : ho(D), t = Fe ? C.disabled : ho(C), o = p <= zn, a = !Se && p >= mn;
+        o && !n && Tt(Ne, D, !0), !o && n && Tt(Ne, D, !1), a && !t && Tt(Fe, C, !0), !a && t && Tt(Fe, C, !1);
       }
     }
     function Et(n, t) {
       nn && (n.style[nn] = t);
     }
     function La() {
-      return u ? (u + k) * L : H[L];
+      return u ? (u + k) * A : P[A];
     }
     function Pe(n) {
-      n == null && (n = d);
-      var t = I ? k : 0;
-      return y ? (G - t - (H[n + 1] - H[n] - k)) / 2 : u ? (G - u) / 2 : (_ - 1) / 2;
+      n == null && (n = p);
+      var t = q ? k : 0;
+      return w ? (G - t - (P[n + 1] - P[n] - k)) / 2 : u ? (G - u) / 2 : (_ - 1) / 2;
     }
     function ri() {
-      var n = I ? k : 0, t = G + n - La();
-      return Z && !Q && (t = u ? -(u + k) * (L - 1) - Pe() : Pe(L - 1) - H[L - 1]), t > 0 && (t = 0), t;
+      var n = q ? k : 0, t = G + n - La();
+      return Z && !Q && (t = u ? -(u + k) * (A - 1) - Pe() : Pe(A - 1) - P[A - 1]), t > 0 && (t = 0), t;
     }
     function St(n) {
-      n == null && (n = d);
+      n == null && (n = p);
       var t;
-      if (M && !y)
+      if (L && !w)
         if (u)
           t = -(u + k) * n, Z && (t += Pe());
         else {
-          var o = hn ? L : _;
+          var o = hn ? A : _;
           Z && (n -= Pe()), t = -n * 100 / o;
         }
       else
-        t = -H[n], Z && y && (t += Pe());
-      return Di && (t = Math.max(t, fe)), t += M && !y && !u ? "%" : "px", t;
+        t = -P[n], Z && w && (t += Pe());
+      return Di && (t = Math.max(t, fe)), t += L && !w && !u ? "%" : "px", t;
     }
     function We(n) {
       Et(m, "0s"), si(n);
@@ -3318,41 +3414,41 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       n == null && (n = St()), m.style[ne] = Kn + n + ue;
     }
     function go(n, t, o, a) {
-      var p = n + _;
-      Q || (p = Math.min(p, L));
-      for (var h = n; h < p; h++) {
+      var d = n + _;
+      Q || (d = Math.min(d, A));
+      for (var h = n; h < d; h++) {
         var T = S[h];
-        a || (T.style.left = (h - d) * 100 / _ + "%"), Rt && nt && (T.style[nt] = T.style[It] = Rt * (h - n) / 1e3 + "s"), rn(T, t), q(T, o), a && pe.push(T);
+        a || (T.style.left = (h - p) * 100 / _ + "%"), Rt && nt && (T.style[nt] = T.style[It] = Rt * (h - n) / 1e3 + "s"), rn(T, t), F(T, o), a && de.push(T);
       }
     }
     var Ma = /* @__PURE__ */ function() {
       return f ? function() {
-        Et(m, ""), nn || !vn ? (si(), (!vn || !yi(m)) && Cn()) : ca(m, ne, Kn, ue, St(), vn, Cn), M || ci();
+        Et(m, ""), nn || !vn ? (si(), (!vn || !yi(m)) && Cn()) : ca(m, ne, Kn, ue, St(), vn, Cn), L || ci();
       } : function() {
-        pe = [];
+        de = [];
         var n = {};
-        n[Bn] = n[Ei] = Cn, V(S[Vn], n), N(S[d], n), go(Vn, qn, tt, !0), go(d, An, qn), (!Bn || !Ei || !vn || !yi(m)) && Cn();
+        n[Bn] = n[Ei] = Cn, V(S[Vn], n), N(S[p], n), go(Vn, Nn, tt, !0), go(p, An, Nn), (!Bn || !Ei || !vn || !yi(m)) && Cn();
       };
     }();
     function li(n, t) {
-      Pt && ni(), (d !== Vn || t) && (J.emit("indexChanged", tn()), J.emit("transitionStart", tn()), ln && _t(), dn && n && ["click", "keydown"].indexOf(n.type) >= 0 && Ge(), Zn = !0, Ma());
+      Pt && ni(), (p !== Vn || t) && (J.emit("indexChanged", tn()), J.emit("transitionStart", tn()), ln && _t(), pn && n && ["click", "keydown"].indexOf(n.type) >= 0 && Ge(), Zn = !0, Ma());
     }
     function bo(n) {
       return n.toLowerCase().replace(/-/g, "");
     }
     function Cn(n) {
       if (f || Zn) {
-        if (J.emit("transitionEnd", tn(n)), !f && pe.length > 0)
-          for (var t = 0; t < pe.length; t++) {
-            var o = pe[t];
-            o.style.left = "", It && nt && (o.style[It] = "", o.style[nt] = ""), rn(o, tt), q(o, An);
+        if (J.emit("transitionEnd", tn(n)), !f && de.length > 0)
+          for (var t = 0; t < de.length; t++) {
+            var o = de[t];
+            o.style.left = "", It && nt && (o.style[It] = "", o.style[nt] = ""), rn(o, tt), F(o, An);
           }
         if (!n || !f && n.target.parentNode === m || n.target === m && bo(n.propertyName) === bo(ne)) {
           if (!Pt) {
-            var a = d;
-            ni(), d !== a && (J.emit("indexChanged", tn()), We());
+            var a = p;
+            ni(), p !== a && (J.emit("indexChanged", tn()), We());
           }
-          ce === "inner" && J.emit("innerLoaded", tn()), Zn = !1, Vn = d;
+          ce === "inner" && J.emit("innerLoaded", tn()), Zn = !1, Vn = p;
         }
       }
     }
@@ -3370,10 +3466,10 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
           }
           var o = gt(), a = 0;
           if (n === "first" ? a = -o : n === "last" ? a = f ? g - _ - o : g - 1 - o : (typeof n != "number" && (n = parseInt(n)), isNaN(n) || (t || (n = Math.max(0, Math.min(g - 1, n))), a = n - o)), !f && a && Math.abs(a) < _) {
-            var p = a > 0 ? 1 : -1;
-            a += d + a - g >= zn ? g * p : g * 2 * p * -1;
+            var d = a > 0 ? 1 : -1;
+            a += p + a - g >= zn ? g * d : g * 2 * d * -1;
           }
-          d += a, f && Q && (d < zn && (d += g), d > mn && (d -= g)), gt(d) !== gt(Vn) && li(t);
+          p += a, f && Q && (p < zn && (p += g), p > mn && (p -= g)), gt(p) !== gt(Vn) && li(t);
         }
     }
     function Un(n, t) {
@@ -3385,21 +3481,21 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       var o;
       if (!t) {
         n = In(n);
-        for (var a = be(n); a !== P && [D, C].indexOf(a) < 0; )
+        for (var a = be(n); a !== W && [D, C].indexOf(a) < 0; )
           a = a.parentNode;
-        var p = [D, C].indexOf(a);
-        p >= 0 && (o = !0, t = p === 0 ? -1 : 1);
+        var d = [D, C].indexOf(a);
+        d >= 0 && (o = !0, t = d === 0 ? -1 : 1);
       }
       if (Se) {
-        if (d === zn && t === -1) {
+        if (p === zn && t === -1) {
           Ye("last", n);
           return;
-        } else if (d === mn && t === 1) {
+        } else if (p === mn && t === 1) {
           Ye("first", n);
           return;
         }
       }
-      t && (d += de * t, y && (d = Math.floor(d)), li(o || n && n.type === "keydown" ? n : null));
+      t && (p += pe * t, w && (p = Math.floor(p)), li(o || n && n.type === "keydown" ? n : null));
     }
     function za(n) {
       if (Zn) {
@@ -3411,41 +3507,41 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       for (var t = be(n), o; t !== X && !ye(t, "data-nav"); )
         t = t.parentNode;
       if (ye(t, "data-nav")) {
-        var o = te = Number(Ue(t, "data-nav")), a = u || y ? o * g / wn : o * _, p = Ne ? o : Math.min(Math.ceil(a), g - 1);
-        Ye(p, n), bn === o && (dn && Ge(), te = -1);
+        var o = te = Number(Ue(t, "data-nav")), a = u || w ? o * g / wn : o * _, d = qe ? o : Math.min(Math.ceil(a), g - 1);
+        Ye(d, n), bn === o && (pn && Ge(), te = -1);
       }
     }
     function At() {
-      pt = setInterval(function() {
-        Un(null, Ni);
-      }, Ht), dn = !0;
+      dt = setInterval(function() {
+        Un(null, qi);
+      }, Ht), pn = !0;
     }
     function Lt() {
-      clearInterval(pt), dn = !1;
+      clearInterval(dt), pn = !1;
     }
     function vo(n, t) {
-      pn($, { "data-action": n }), $.innerHTML = He[0] + n + He[1] + t;
+      dn(R, { "data-action": n }), R.innerHTML = He[0] + n + He[1] + t;
     }
     function Mt() {
-      At(), $ && vo("stop", Yn[1]);
+      At(), R && vo("stop", Yn[1]);
     }
     function Ge() {
-      Lt(), $ && vo("start", Yn[0]);
+      Lt(), R && vo("start", Yn[0]);
     }
     function Da() {
-      en && !dn && (Mt(), ge = !1);
+      en && !pn && (Mt(), ge = !1);
     }
     function Ca() {
-      dn && (Ge(), ge = !0);
+      pn && (Ge(), ge = !0);
     }
     function xo() {
-      dn ? (Ge(), ge = !0) : (Mt(), ge = !1);
+      pn ? (Ge(), ge = !0) : (Mt(), ge = !1);
     }
     function ja() {
-      i.hidden ? dn && (Lt(), ut = !0) : ut && (At(), ut = !1);
+      i.hidden ? pn && (Lt(), ut = !0) : ut && (At(), ut = !1);
     }
     function Oa() {
-      dn && (Lt(), ft = !0);
+      pn && (Lt(), ft = !0);
     }
     function Ia() {
       ft && (At(), ft = !1);
@@ -3455,7 +3551,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       var t = [l.LEFT, l.RIGHT].indexOf(n.keyCode);
       t >= 0 && Un(n, t === 0 ? -1 : 1);
     }
-    function Na(n) {
+    function qa(n) {
       n = In(n);
       var t = [l.LEFT, l.RIGHT].indexOf(n.keyCode);
       t >= 0 && (t === 0 ? D.disabled || Un(n, -1) : C.disabled || Un(n, 1));
@@ -3492,7 +3588,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
           return;
         Cn();
       }
-      en && dn && Lt(), oe = !0, yn && (Ct(yn), yn = null);
+      en && pn && Lt(), oe = !0, yn && (Ct(yn), yn = null);
       var t = In(n);
       J.emit(re(n) ? "touchStart" : "dragStart", tn(n)), !re(n) && ["img", "a"].indexOf(fo(be(n))) >= 0 && yo(n), Tn.x = ie.x = t.clientX, Tn.y = ie.y = t.clientY, f && (ht = parseFloat(m.style[ne].replace(Kn, "")), Et(m, "0s"));
     }
@@ -3518,10 +3614,10 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         } catch {
         }
         var t = ht, o = Ut(Tn, ie);
-        if (!M || u || y)
+        if (!L || u || w)
           t += o, t += "px";
         else {
-          var a = hn ? o * _ * 100 / ((G + k) * L) : o * 100 / (G + k);
+          var a = hn ? o * _ * 100 / ((G + k) * A) : o * 100 / (G + k);
           t += a, t += "%";
         }
         m.style[ne] = Kn + t + ue;
@@ -3536,40 +3632,40 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         if (Math.abs(o)) {
           if (!re(n)) {
             var a = be(n);
-            N(a, { click: function p(h) {
-              yo(h), V(a, { click: p });
+            N(a, { click: function d(h) {
+              yo(h), V(a, { click: d });
             } });
           }
           f ? yn = $n(function() {
-            if (M && !y) {
-              var p = -o * _ / (G + k);
-              p = o > 0 ? Math.floor(p) : Math.ceil(p), d += p;
+            if (L && !w) {
+              var d = -o * _ / (G + k);
+              d = o > 0 ? Math.floor(d) : Math.ceil(d), p += d;
             } else {
               var h = -(ht + o);
               if (h <= 0)
-                d = zn;
-              else if (h >= H[L - 1])
-                d = mn;
+                p = zn;
+              else if (h >= P[A - 1])
+                p = mn;
               else
-                for (var T = 0; T < L && h >= H[T]; )
-                  d = T, h > H[T] && o < 0 && (d += 1), T++;
+                for (var T = 0; T < A && h >= P[T]; )
+                  p = T, h > P[T] && o < 0 && (p += 1), T++;
             }
             li(n, o), J.emit(re(n) ? "touchEnd" : "dragEnd", tn(n));
           }) : Dn && Un(n, o > 0 ? -1 : 1);
         }
       }
-      e.preventScrollOnTouch === "auto" && (Re = !1), at && (Dn = "?"), en && !dn && At();
+      e.preventScrollOnTouch === "auto" && (Re = !1), at && (Dn = "?"), en && !pn && At();
     }
     function ci() {
       var n = sn || an;
-      n.style.height = H[d + _] - H[d] + "px";
+      n.style.height = P[p + _] - P[p] + "px";
     }
     function So() {
       var n = u ? (u + k) * g / G : g / _;
       return Math.min(Math.ceil(n), g);
     }
-    function di() {
-      if (!(!Mn || Ne) && wn !== ee) {
+    function pi() {
+      if (!(!Mn || qe) && wn !== ee) {
         var n = ee, t = wn, o = un;
         for (ee > wn && (n = wn, t = ee, o = fn); n < t; )
           o(gn[n]), n++;
@@ -3582,23 +3678,23 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         slideItems: S,
         navContainer: X,
         navItems: gn,
-        controlsContainer: P,
+        controlsContainer: W,
         hasControls: st,
         prevButton: D,
         nextButton: C,
         items: _,
-        slideBy: de,
+        slideBy: pe,
         cloneCount: U,
         slideCount: g,
-        slideCountNew: L,
-        index: d,
+        slideCountNew: A,
+        index: p,
         indexCached: Vn,
-        displayIndex: qi(),
+        displayIndex: Ni(),
         navCurrentIndex: bn,
         navCurrentIndexCached: he,
         pages: wn,
         pagesCached: ee,
-        sheet: z,
+        sheet: M,
         isOn: Ee,
         event: n || {}
       };
@@ -3619,14 +3715,14 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       }
     };
   };
-  jo("opt_in"), F("exp_optin_loaded", "Loaded", "loaded"), Co([
+  jo("opt_in"), H("exp_optin_loaded", "Loaded", "loaded"), Co([
     "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css",
     "https://fast.wistia.com/assets/external/E-v1.js"
   ]), zo({ name: "Opt in page", dev: "YK" });
-  class da {
+  class pa {
     constructor() {
       Mo("body", () => {
-        A("body").elements[0].insertAdjacentHTML(
+        z("body").elements[0].insertAdjacentHTML(
           "afterbegin",
           /* html */
           `<style>${Lo}</style>`
@@ -3637,110 +3733,83 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       this.addBlocks(), this.setActions(), this.setEvents();
     }
     addBlocks() {
-      A(".containerWrapper").elements[0].insertAdjacentHTML("afterend", '<div class="crs_landing"></div>');
-      const i = A(".crs_landing").elements[0];
-      i.insertAdjacentHTML("afterbegin", qo), i.insertAdjacentHTML("beforeend", Fo), i.insertAdjacentHTML("beforeend", Ho), i.insertAdjacentHTML("beforeend", Po), i.insertAdjacentHTML("beforeend", Wo), i.insertAdjacentHTML("beforeend", Yo), i.insertAdjacentHTML("beforeend", Go), i.insertAdjacentHTML("beforeend", Jo), i.insertAdjacentHTML("beforeend", Ko), i.insertAdjacentHTML("beforeend", Vo), i.insertAdjacentHTML("beforeend", Zo), i.insertAdjacentHTML("beforeend", Qo);
+      z(".containerWrapper").elements[0].insertAdjacentHTML("afterend", '<div class="crs_landing"></div>');
+      const i = z(".crs_landing").elements[0];
+      i.insertAdjacentHTML("afterbegin", No), i.insertAdjacentHTML("beforeend", Fo), i.insertAdjacentHTML("beforeend", Ho), i.insertAdjacentHTML("beforeend", Po), i.insertAdjacentHTML("beforeend", Wo), i.insertAdjacentHTML("beforeend", Yo), i.insertAdjacentHTML("beforeend", Go), i.insertAdjacentHTML("beforeend", Jo), i.insertAdjacentHTML("beforeend", Ko), i.insertAdjacentHTML("beforeend", Vo), i.insertAdjacentHTML("beforeend", Zo), i.insertAdjacentHTML("beforeend", Qo);
     }
     setActions() {
-      A(".inputs2").on("click", "li", function() {
+      z(".inputs2").on("click", "li", function() {
         if (!this.classList.contains("selected")) {
           this.closest(".inputs2").querySelector(".selected").classList.remove("selected"), this.classList.add("selected");
           const s = this.getAttribute("data-schedule");
-          F("exp_optin_popup_cta_time", `Select time ${s}`, "click", "Popup after click on CTA");
+          H("exp_optin_popup_cta_time", `Select time ${s}`, "click", "Popup after click on CTA");
         }
-      }), A("form").on("submit", async function(s) {
+      }), z("form").on("submit", async function(s) {
         s.preventDefault();
-        const c = this.querySelector('input[name="name"]').value, w = this.querySelector('input[name="email"]').value;
-        let x = !0;
-        if ((!c || c.trim() === "") && (this.querySelector('input[name="name"]').closest("label").classList.add("error"), x = !1), (!w || w.trim() === "" || !w.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) && (this.querySelector('input[name="email"]').closest("label").classList.add("error"), x = !1), !!x)
-          if (this.closest("#main_block") ? F("exp_optin_fs_button", "Grab Your FREE Seat Now", "click", "First screen form") : F("exp_optin_popup_cta_button", "Grab Your FREE Seat Now", "click", "Popup after click on CTA"), window.innerWidth <= 768) {
-            const v = (/* @__PURE__ */ new Date()).getTimezoneOffset() / 60, Y = `GMT${v > 0 ? "-" : "+"}${Math.abs(v)}`;
-            if (console.log(this.querySelector("button").textContent), this.querySelector(".inputs2").classList.contains("active")) {
-              const R = A(".inputs2 .selected").elements[0].getAttribute("data-schedule");
-              fetch("https://conversionrate.top/api/dropservicing/register", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  Accept: "application/json"
-                },
-                body: JSON.stringify({
-                  api_key: "8f4aff29-94fa-4197-a1a2-4a3c03ede2e0",
-                  webinarId: 75,
-                  name: c,
-                  email: w,
-                  schedule: R
-                })
-              }).then((hn) => hn.json()).then((hn) => {
-                window.location.href = hn.user.thank_you_url;
-              });
-            } else
-              try {
-                const R = await fetch("https://conversionrate.top/api/dropservicing/get-schedules", {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json"
-                  },
-                  body: JSON.stringify({
-                    webinarId: 75,
-                    timezone: Y
-                  })
-                }).then((hn) => hn.json());
-                console.log(R), A(".crs_popup_form .inputs1").elements[0].style.display = "none", A(".crs_popup_form .inputs2").elements[0].innerHTML = Uo(
-                  R.webinar.schedules,
-                  R.webinar.timezone
-                ), A(".crs_popup_form .inputs2").addClass("active");
-              } catch (R) {
-                console.log(R);
-              }
-          } else
-            await fetch("https://conversionrate.top/api/dropservicing/get-schedules", {
+        const c = this.querySelector('input[name="name"]').value, x = this.querySelector('input[name="email"]').value;
+        let v = !0;
+        if ((!c || c.trim() === "") && (this.querySelector('input[name="name"]').closest("label").classList.add("error"), v = !1), (!x || x.trim() === "" || !x.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) && (this.querySelector('input[name="email"]').closest("label").classList.add("error"), v = !1), !v)
+          return;
+        this.closest("#main_block") ? H("exp_optin_fs_button", "Grab Your FREE Seat Now", "click", "First screen form") : H("exp_optin_popup_cta_button", "Grab Your FREE Seat Now", "click", "Popup after click on CTA");
+        const y = (/* @__PURE__ */ new Date()).getTimezoneOffset() / 60, $ = `GMT${y > 0 ? "-" : "+"}${Math.abs(y)}`;
+        if (this.querySelector(".inputs2").classList.contains("active")) {
+          const j = z(".inputs2 .selected").elements[0].getAttribute("data-schedule");
+          fetch("https://conversionrate.top/api/dropservicing/register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json"
+            },
+            body: JSON.stringify({
+              api_key: "8f4aff29-94fa-4197-a1a2-4a3c03ede2e0",
+              webinarId: window.innerWidth > 768 ? 74 : 75,
+              name: c,
+              email: x,
+              schedule: j
+            })
+          }).then((hn) => hn.json()).then((hn) => {
+            window.location.href = hn.user.thank_you_url;
+          });
+        } else
+          try {
+            const j = await fetch("https://conversionrate.top/api/dropservicing/get-schedules", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json"
               },
               body: JSON.stringify({
-                webinarId: 74
+                webinarId: window.innerWidth > 768 ? 74 : 75,
+                timezone: $
               })
-            }).then((v) => v.json()).then((v) => v.schedule_id), fetch("https://conversionrate.top/api/dropservicing/register", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-              },
-              body: JSON.stringify({
-                api_key: "8f4aff29-94fa-4197-a1a2-4a3c03ede2e0",
-                webinarId: 74,
-                name: c,
-                email: w,
-                schedule: 275
-              })
-            }).then((v) => v.json()).then((v) => {
-              window.location.href = v.user.thank_you_url;
-            });
-      }), A("form input").on("input", function() {
+            }).then((hn) => hn.json());
+            console.log(j), console.log(this), this.querySelector(".inputs1").style.display = "none", this.querySelector(".inputs2").innerHTML = Uo(j.webinar.schedules, j.webinar.timezone), this.querySelector(".inputs2").classList.add("active");
+          } catch (j) {
+            console.log(j);
+          }
+      }), z("form input").on("input", function() {
         this.closest("label").classList.remove("error");
-      }), A('input[name="name"]').on("change", function() {
-        !!this.closest("#main_block") ? F("exp_optin_fs_name", "Enter your name", "input", "First screen form") : F("exp_optin_popup_cta_name", "Enter your name", "input", "Popup after click on CTA");
-      }), A('input[name="email"]').on("change", function() {
-        !!this.closest("#main_block") ? F("exp_optin_fs_email", "Enter email address", "input", "First screen form") : F("exp_optin_popup_cta_email", "Enter email address", "input", "Popup after click on CTA");
-      }), A(".question").on("click", function() {
+      }), z('input[name="name"]').on("change", function() {
+        !!this.closest("#main_block") ? H("exp_optin_fs_name", "Enter your name", "input", "First screen form") : H("exp_optin_popup_cta_name", "Enter your name", "input", "Popup after click on CTA");
+      }), z('input[name="email"]').on("change", function() {
+        !!this.closest("#main_block") ? H("exp_optin_fs_email", "Enter email address", "input", "First screen form") : H("exp_optin_popup_cta_email", "Enter email address", "input", "Popup after click on CTA");
+      }), z(".question").on("click", function() {
         const s = this.innerText;
         if (this.classList.contains("active")) {
-          this.classList.remove("active"), F("exp_optin_faq_close", `Close question. ${s}`, "click", "Frequently asked questions");
+          this.classList.remove("active"), H("exp_optin_faq_close", `Close question. ${s}`, "click", "Frequently asked questions");
           return;
         }
-        A(".question.active").removeClass("active"), this.classList.toggle("active"), F("exp_optin_faq_open", `Open question. ${s}`, "click", "Frequently asked questions");
-      }), A(".cta.pop").on("click", function() {
-        A(".crs_video_popup").elements[0].classList.contains("active") && A(".crs_video_popup .video *:not(.crs_close)").elements.forEach((s) => s.remove()), A(".crs_video_popup").elements[0].classList.remove("active"), A(".crs_popup_form").elements[0].classList.add("active"), this.closest("#last_cta") && F("exp_optin_future_cta", "Join the exclusive training", "click", "Your Future Starts Here"), this.closest("#training_for") && F("exp_optin_who_cta", "Join The FREE Training Now", "click", "Who is the Training for"), this.closest("#host_block") && F("exp_optin_host_cta", "Unlock Dylan’s Formula for Free ", "click", "Your Host: Dylan Sydney"), this.closest("#bonus_block") && F("exp_optin_bonuses_cta", "Grab Your FREE Seat Now", "click", "Exclusive Bonuses"), this.closest(".crs_video_popup") && F("exp_optin_popup_review_cta", "Grab Your FREE Seat Now", "click", "Popup after review"), this.closest("#main_block") && F("exp_optin_fs_button_mobile", "Grab Your FREE Seat Now", "click", "First screen form");
-      }), A(".crs_popup_form .close").on("click", function() {
-        A(".crs_popup_form").elements[0].classList.remove("active"), A(".crs_popup_form .inputs1").elements[0].style.display = "block", A(".crs_popup_form .inputs2").removeClass("active");
-      }), A("#base_review .slide").on("click", function() {
-        const s = this.querySelector(".slide>p").textContent, c = this.getAttribute("data-video"), w = A(`.video_slide[data-video="${c}"] .video`).elements[0].cloneNode(!0);
-        A(".crs_video_popup .video").elements[0].appendChild(w), A(".crs_video_popup").elements[0].classList.add("active"), F("exp_optin_why_join_review", `Open review. ${s}`, "click", "Why Join This Webinar"), A(".crs_video_popup .wistia_embed").on("click", function() {
-          F("exp_optin_popup_review_video", `Play video ${s}`, "click", "Popup after review");
+        z(".question.active").removeClass("active"), this.classList.toggle("active"), H("exp_optin_faq_open", `Open question. ${s}`, "click", "Frequently asked questions");
+      }), z(".cta.pop").on("click", function() {
+        z(".crs_video_popup").elements[0].classList.contains("active") && z(".crs_video_popup .video *:not(.crs_close)").elements.forEach((s) => s.remove()), z(".crs_video_popup").elements[0].classList.remove("active"), z(".crs_popup_form").elements[0].classList.add("active"), this.closest("#last_cta") && H("exp_optin_future_cta", "Join the exclusive training", "click", "Your Future Starts Here"), this.closest("#training_for") && H("exp_optin_who_cta", "Join The FREE Training Now", "click", "Who is the Training for"), this.closest("#host_block") && H("exp_optin_host_cta", "Unlock Dylan’s Formula for Free ", "click", "Your Host: Dylan Sydney"), this.closest("#bonus_block") && H("exp_optin_bonuses_cta", "Grab Your FREE Seat Now", "click", "Exclusive Bonuses"), this.closest(".crs_video_popup") && H("exp_optin_popup_review_cta", "Grab Your FREE Seat Now", "click", "Popup after review"), this.closest("#main_block") && H("exp_optin_fs_button_mobile", "Grab Your FREE Seat Now", "click", "First screen form");
+      }), z(".crs_popup_form .close").on("click", function() {
+        z(".crs_popup_form").elements[0].classList.remove("active"), z(".crs_popup_form .inputs1").elements[0].style.display = "block", z(".crs_popup_form .inputs2").removeClass("active");
+      }), z("#base_review .slide").on("click", function() {
+        const s = this.querySelector(".slide>p").textContent, c = this.getAttribute("data-video"), x = z(`.video_slide[data-video="${c}"] .video`).elements[0].cloneNode(!0);
+        z(".crs_video_popup .video").elements[0].appendChild(x), z(".crs_video_popup").elements[0].classList.add("active"), H("exp_optin_why_join_review", `Open review. ${s}`, "click", "Why Join This Webinar"), z(".crs_video_popup .wistia_embed").on("click", function() {
+          H("exp_optin_popup_review_video", `Play video ${s}`, "click", "Popup after review");
         });
-      }), A(".crs_video_popup .crs_close").on("click", function() {
-        A(".crs_video_popup .video *:not(.crs_close)").elements.forEach((s) => s.remove()), A(".crs_video_popup").elements[0].classList.remove("active");
+      }), z(".crs_video_popup .crs_close").on("click", function() {
+        z(".crs_video_popup .video *:not(.crs_close)").elements.forEach((s) => s.remove()), z(".crs_video_popup").elements[0].classList.remove("active");
       });
       const i = Xe({
         container: "#base_review ul",
@@ -3787,13 +3856,13 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       setTimeout(() => {
         i.getInfo().navItems && i.getInfo().navItems[1].classList.add("tns-nav-near");
       }, 500), i.events.on("indexChanged", function(s) {
-        var w, x;
+        var x, v;
         const c = s.navItems;
-        Array.from(c).forEach((v) => v.classList.remove("tns-nav-near")), (w = c[s.index - 1]) == null || w.classList.add("tns-nav-near"), (x = c[s.index + 1]) == null || x.classList.add("tns-nav-near");
+        Array.from(c).forEach((y) => y.classList.remove("tns-nav-near")), (x = c[s.index - 1]) == null || x.classList.add("tns-nav-near"), (v = c[s.index + 1]) == null || v.classList.add("tns-nav-near");
       }), r.getInfo().slideItems[0].classList.add("tns-current"), r.getInfo().navItems[1].classList.add("tns-nav-near"), r.events.on("indexChanged", function(s) {
-        var v, Y;
-        const c = s.slideItems, w = s.navItems;
-        Array.from(w).forEach((R) => R.classList.remove("tns-nav-near")), Array.from(c).forEach((R) => R.classList.remove("tns-current")), (v = w[s.index - 1]) == null || v.classList.add("tns-nav-near"), (Y = w[s.index + 1]) == null || Y.classList.add("tns-nav-near"), c[s.index].classList.add("tns-current");
+        var y, $;
+        const c = s.slideItems, x = s.navItems;
+        Array.from(x).forEach((j) => j.classList.remove("tns-nav-near")), Array.from(c).forEach((j) => j.classList.remove("tns-current")), (y = x[s.index - 1]) == null || y.classList.add("tns-nav-near"), ($ = x[s.index + 1]) == null || $.classList.add("tns-nav-near"), c[s.index].classList.add("tns-current");
       }), Xe({
         container: "#trust_pilot ul",
         items: 3,
@@ -3823,7 +3892,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
             id: s.videoId,
             onReady: function(c) {
               c.bind("play", function() {
-                c.container.closest(".video_slide") && F(
+                c.container.closest(".video_slide") && H(
                   "exp_optin_hear_video",
                   `Video ${c.data.media.name}`,
                   "click",
@@ -3839,6 +3908,6 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       En(".crs_video_popup", "exp_optin_popup_review_view", "Popup after review"), En(".crs_popup_form", "exp_optin_popup_cta_view", "Popup after click on CTA"), En("#base_review", "exp_optin_why_join_view", "Why Join This Webinar"), En("#bonus_block", "exp_optin_bonuses_view", "Exclusive Bonuses"), En("#host_block", "exp_optin_host_view", "Your Host: Dylan Sydney"), En("#video_block", "exp_optin_hear_view", "Hear from Our Participants"), En("#training_for", "exp_optin_who_view", "Who is the Training for"), En("#trust_pilot", "exp_optin_trustscore_view", "TrustScore"), En("#faq_block", "exp_optin_faq_view", "Frequently asked questions"), En("#last_cta", "exp_optin_future_view", "Your Future Starts Here");
     }
   }
-  window.location.href.includes("training") && new da();
+  window.location.href.includes("training") && new pa();
 })();
 //# sourceMappingURL=index.js.map
