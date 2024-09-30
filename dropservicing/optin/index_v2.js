@@ -3460,7 +3460,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       }
     };
   };
-  Oo("opt_in"), $("exp_optin_loaded", "Loaded", "loaded"), Do([
+  Oo("opt_in_v2"), $("exp_optin_loaded", "Loaded", "loaded"), Do([
     "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css",
     "https://fast.wistia.com/assets/external/E-v1.js"
   ]), Mo({ name: "Opt in page", dev: "YK" });
