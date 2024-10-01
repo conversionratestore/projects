@@ -1383,6 +1383,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   margin: 0 auto;
   width: -moz-fit-content;
   width: fit-content;
+  max-width: 500px;
 }
 .crs_popup_form .form .close {
   position: absolute;
@@ -1591,6 +1592,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
 }
 .crs_popup_form form .cta {
   margin-top: 12px;
+  width: 100%;
 }
 @media (max-width: 768px) {
   .crs_popup_form form .cta {
