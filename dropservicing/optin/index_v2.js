@@ -1996,7 +1996,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
                 Live Training
               </span>
 
-              <!-- <span>
+              <!--<span>
                 <img src="${H}/calendar.svg" alt="calendar" />
                 Today
               </span>-->
@@ -2194,7 +2194,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       `
     <ul class="time_list">
       ${e.map(({ date: s, schedule: l }, p) => {
-        const _ = new Date(s).toLocaleString("en-us", { weekday: "long" }), v = new Date(s).toLocaleString("en-us", { month: "long", day: "numeric" }), T = new Date(s).toLocaleString("en-us", { hour: "numeric", minute: "numeric" }), z = new Date(s).getTime() - (/* @__PURE__ */ new Date()).getTime(), G = new Date(s).getTime() + 1e3 * 60 * 15, On = new Date(G).toLocaleString("en-us", { hour: "numeric", minute: "numeric" }), ce = G - (/* @__PURE__ */ new Date()).getTime(), J = Math.floor((z < 0 ? ce : z) / (1e3 * 60));
+        const _ = new Date(s).toLocaleString("en-us", { weekday: "long" }), v = new Date(s).toLocaleString("en-us", { month: "long", day: "numeric" }), T = new Date(s).toLocaleString("en-us", { hour: "numeric", minute: "numeric" }), z = new Date(s).getTime() - (/* @__PURE__ */ new Date()).getTime(), G = new Date(s).getTime() + 1e3 * 60 * 15, On = new Date(G).toLocaleString("en-us", { hour: "numeric", minute: "numeric" }), ce = G - (/* @__PURE__ */ new Date()).getTime(), J = Math.ceil((z < 0 ? ce : z) / (1e3 * 60));
         return (
           /* HTML */
           `
