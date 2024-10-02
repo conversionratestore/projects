@@ -854,6 +854,7 @@ section {
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
+    flex-direction: row;
   }
 }
 #video_block .video_slide .head > .img + p img {
