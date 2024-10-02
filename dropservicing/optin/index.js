@@ -845,6 +845,8 @@ section {
   color: #262626;
   font-weight: 700;
   margin-bottom: 4px;
+  display: flex;
+  flex-direction: column;
 }
 @media (max-width: 768px) {
   #video_block .video_slide .head > .img + p {
