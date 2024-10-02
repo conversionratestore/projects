@@ -223,7 +223,7 @@
   margin: 0 0 4px;
 }
 .subscription_plan_page .new_astrologers_screen .astrologers_list .astrologer_description {
-  max-width: 165px;
+  max-width: 170px;
   color: #4a567a;
   font-size: 12px;
   font-weight: 500;
