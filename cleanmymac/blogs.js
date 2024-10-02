@@ -179,7 +179,7 @@
       <ul>
         ${x}
       </ul>
-      <a style="background: ${s}" href="${a}">Try CleanMyMac X</a>
+      <a style="background: ${s}" href="${a}">Try 7 Days Free</a>
     </div>
   `
     );
