@@ -369,8 +369,8 @@
   border: 2px solid #858da5;
 }
 .subscription_plan_page .new_astrologers_screen .new_sticky_block {
-  border-top: 1px solid #dee5f9;
   background: #fff;
+  box-shadow: 0px -2px 16px 0px rgba(18, 22, 32, 0.1);
   position: fixed;
   bottom: 0;
   left: 0;
