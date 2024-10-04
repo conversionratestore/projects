@@ -1,19 +1,19 @@
 (function() {
   "use strict";
-  const p = (t, e, n, r = "") => {
+  const _ = (t, e, n, i = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: t,
       event_desc: e,
       event_type: n,
-      event_loc: r
-    }), console.dir(`Event: ${t} | ${e} | ${n} | ${r}`);
+      event_loc: i
+    }), console.dir(`Event: ${t} | ${e} | ${n} | ${i}`);
   }, d = ({ name: t, dev: e }) => {
     console.log(
       `%c EXP: ${t} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, _ = (t) => document.querySelectorAll(t), s = (t) => document.querySelector(t), g = (t, e = "variant_1") => {
+  }, p = (t) => document.querySelectorAll(t), s = (t) => document.querySelector(t), g = (t, e = "variant_1") => {
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", t, e), console.log("set", t, e));
     }, 1e3);
@@ -34,12 +34,12 @@
   }
   (function(t) {
     t = t === void 0 ? {} : t;
-    let e, n, r, i, o = (t == null ? void 0 : t.delay) || 50;
-    function a() {
-      e = null, i = 0;
+    let e, n, i, a, r = (t == null ? void 0 : t.delay) || 50;
+    function o() {
+      e = null, a = 0;
     }
-    return a(), function() {
-      return n = window.scrollY, e != null && (i = n - e), e = n, clearTimeout(r), r = setTimeout(a, o), i;
+    return o(), function() {
+      return n = window.scrollY, e != null && (a = n - e), e = n, clearTimeout(i), i = setTimeout(o, r), a;
     };
   })();
   const c = "https://conversionratestore.github.io/projects/hint/img/", u = {
@@ -62,7 +62,7 @@
         <input type="radio" id="radio_btn_1" name="radio_btn" value="Akho" />
         <label for="radio_btn_1">
           <div class="img_wrapper">
-            <img src="${c}astrologer_akho.png" alt="astrologer photo" />
+            <img src="${c}astrologer_akho_1.png" alt="astrologer photo" />
           </div>
           <div>
             <h3 class="astrologer_name">Akho</h3>
@@ -80,7 +80,7 @@
         <input type="radio" id="radio_btn_2" name="radio_btn" value="Jane" />
         <label for="radio_btn_2">
           <div class="img_wrapper">
-            <img src="${c}astrologer_jane.png" alt="astrologer photo" />
+            <img src="${c}astrologer_jane_1.png" alt="astrologer photo" />
           </div>
           <div>
             <h3 class="astrologer_name">Jane</h3>
@@ -95,7 +95,7 @@
         <input type="radio" id="radio_btn_3" name="radio_btn" value="Samira" />
         <label for="radio_btn_3">
           <div class="img_wrapper">
-            <img src="${c}astrologer_samira.png" alt="astrologer photo" />
+            <img src="${c}astrologer_samira_1.png" alt="astrologer photo" />
           </div>
           <div>
             <h3 class="astrologer_name">Samira</h3>
@@ -110,7 +110,7 @@
         <input type="radio" id="radio_btn_4" name="radio_btn" value="Rebecca" />
         <label for="radio_btn_4">
           <div class="img_wrapper">
-            <img src="${c}astrologer_rebecca.png" alt="astrologer photo" />
+            <img src="${c}astrologer_rebecca_1.png" alt="astrologer photo" />
           </div>
           <div>
             <h3 class="astrologer_name">Rebecca</h3>
@@ -128,7 +128,7 @@
         <input type="radio" id="radio_btn_5" name="radio_btn" value="Kate" />
         <label for="radio_btn_5">
           <div class="img_wrapper">
-            <img src="${c}astrologer_kate.png" alt="astrologer photo" />
+            <img src="${c}astrologer_kate_1.png" alt="astrologer photo" />
           </div>
           <div>
             <h3 class="astrologer_name">Kate</h3>
@@ -143,7 +143,7 @@
         <input type="radio" id="radio_btn_6" name="radio_btn" value="Lucy" />
         <label for="radio_btn_6">
           <div class="img_wrapper">
-            <img src="${c}astrologer_lucy.png" alt="astrologer photo" />
+            <img src="${c}astrologer_lucy_1.png" alt="astrologer photo" />
           </div>
           <div>
             <h3 class="astrologer_name">Lucy</h3>
@@ -161,7 +161,7 @@
     </div>
   </div>
 `
-  ), h = `.subscription_plan_page .new_astrologers_screen + main {
+  ), w = `.subscription_plan_page .new_astrologers_screen + main {
   opacity: 0;
 }
 .subscription_plan_page .new_astrologers_screen + main.is_hidden {
@@ -225,48 +225,11 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 8px;
+  padding: 12px 12px 12px 20px;
   border-radius: 12px;
-  border: 2px solid #c2cad8;
-  background: #dee5f9;
+  background: #edfaff;
   position: relative;
   z-index: 2;
-}
-.subscription_plan_page .new_astrologers_screen .astrologers_list .astrologer_item.best_for_you {
-  position: relative;
-  border: 2px solid #04a777;
-}
-.subscription_plan_page .new_astrologers_screen .astrologers_list .astrologer_item.best_for_you::after {
-  content: "Best for you";
-  position: absolute;
-  top: -0.5px;
-  right: -0.4px;
-  padding: 0px 6px 3px;
-  border-radius: 0px 12px;
-  background: #04a777;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 16px;
-  letter-spacing: 0.01px;
-}
-.subscription_plan_page .new_astrologers_screen .astrologers_list .astrologer_item.no_content {
-  width: 95%;
-  height: 80px;
-  border-radius: 12px;
-  border: 2px solid #c2cad8;
-  background: #dee5f9;
-  margin: -80px auto 0;
-  z-index: 1;
-}
-.subscription_plan_page .new_astrologers_screen .astrologers_list .astrologer_item.no_content_second {
-  width: 90%;
-  height: 80px;
-  border-radius: 12px;
-  border: 2px solid #c2cad8;
-  background: #dee5f9;
-  margin: -80px auto 0;
-  z-index: 0;
 }
 .subscription_plan_page .new_astrologers_screen .astrologers_list .img_wrapper {
   width: 68px;
@@ -432,7 +395,7 @@
 }
 .new_btn_back + button {
   display: none;
-}/*# sourceMappingURL=main.css.map */`, w = window.innerWidth < 768 ? "mobile" : "desktop";
+}/*# sourceMappingURL=main.css.map */`, h = window.innerWidth < 768 ? "mobile" : "desktop";
   class m {
     constructor(e) {
       this.device = e, this.lastPath = window.location.pathname, this.storage = "", this.init();
@@ -444,27 +407,27 @@
       s(".crs_inter_astrologers") || document.head.insertAdjacentHTML(
         "afterbegin",
         '<link class="crs_inter_astrologers" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">'
-      ), s(".crs_style_astrologers") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style_astrologers">${h}</style>`);
+      ), s(".crs_style_astrologers") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style_astrologers">${w}</style>`);
     }
     // allFunctions
     allFunctionsInitHandler() {
-      var n, r, i;
+      var n, i, a;
       const e = s("body");
       if (this.checkPage() === "paywall")
         (n = s(".new_btn_back")) == null || n.remove(), e.classList.contains("subscription_plan_page") && e.classList.remove("subscription_plan_page");
       else if (this.checkPage() === "subscriptionPlan") {
         console.log("subscriptionPlan"), e.classList.add("subscription_plan_page");
-        let o = setInterval(() => {
-          s(".subscription_plan_page main") && (clearInterval(o), s(".subscription_plan_page main").classList.add("is_hidden"));
+        let r = setInterval(() => {
+          s(".subscription_plan_page main") && (clearInterval(r), s(".subscription_plan_page main").classList.add("is_hidden"));
         }, 300);
         if (localStorage.getItem("newAstrologersScreen") || (s("main") && (s("main").style.display = "none"), this.renderNewAstrologersScreenSection()), localStorage.getItem("newAstrologersScreen")) {
           this.renderNewBtnBack();
-          let a = setInterval(() => {
-            s(".subscription_plan_page main.is_hidden") && (clearInterval(a), s(".subscription_plan_page main").classList.remove("is_hidden"));
+          let o = setInterval(() => {
+            s(".subscription_plan_page main.is_hidden") && (clearInterval(o), s(".subscription_plan_page main").classList.remove("is_hidden"));
           }, 300);
         }
       } else
-        console.log(this.checkPage()), (r = s(".new_btn_back")) == null || r.remove(), (i = s(".new_astrologers_screen")) == null || i.remove(), e.classList.contains("subscription_plan_page") && e.classList.remove("subscription_plan_page");
+        console.log(this.checkPage()), (i = s(".new_btn_back")) == null || i.remove(), (a = s(".new_astrologers_screen")) == null || a.remove(), e.classList.contains("subscription_plan_page") && e.classList.remove("subscription_plan_page");
     }
     // subscription-plan
     renderNewAstrologersScreenSection() {
@@ -472,26 +435,26 @@
         const n = e;
         s(".new_astrologers_screen") || n.insertAdjacentHTML("beforebegin", b);
       }), this.clickNewContinueBtnHandler(), this.clickRadioBtnsHandler(), l(".new_astrologers_screen").then((e) => {
-        p("exp_new_astro_visibility_02", "Screen view", "View", "palm readers");
+        _("exp_new_astro_visibility_02", "Screen view", "View", "palm readers");
       });
     }
     clickNewContinueBtnHandler() {
       l("[data-nextBtn]").then((e) => {
-        const n = _("[data-nextBtn]"), r = s(".subscription_plan_page main");
-        n.forEach((i) => {
-          i.addEventListener("click", () => {
-            var o;
-            i.classList.contains("new_continue_btn") ? p("exp_new_astro_button_03", `Continue - ${this.storage}`, "Click", "palm readers") : p("exp_new_astro_button_05", "Chose later", "Click", "palm readers"), r.style.display = "block", r.classList.contains("is_hidden") && r.classList.remove("is_hidden"), (o = s(".new_astrologers_screen")) == null || o.remove(), localStorage.setItem("newAstrologersScreen", "yes"), this.renderNewBtnBack();
+        const n = p("[data-nextBtn]"), i = s(".subscription_plan_page main");
+        n.forEach((a) => {
+          a.addEventListener("click", () => {
+            var r;
+            a.classList.contains("new_continue_btn") ? _("exp_new_astro_button_03", `Continue - ${this.storage}`, "Click", "palm readers") : _("exp_new_astro_button_05", "Chose later", "Click", "palm readers"), i.style.display = "block", i.classList.contains("is_hidden") && i.classList.remove("is_hidden"), (r = s(".new_astrologers_screen")) == null || r.remove(), localStorage.setItem("newAstrologersScreen", "yes"), this.renderNewBtnBack();
           });
         });
       });
     }
     clickRadioBtnsHandler() {
       l(".radio_item label").then((e) => {
-        _(".radio_item label").forEach((r) => {
-          r.addEventListener("click", (i) => {
-            var o, a;
-            this.storage = i.currentTarget.previousElementSibling.getAttribute("value").trim(), localStorage.setItem("newAstrologerValue", this.storage), p("exp_new_astro_button_06", this.storage, "Click", "palm readers"), (o = s(".new_continue_btn")) != null && o.classList.contains("is_disabled") && ((a = s(".new_continue_btn")) == null || a.classList.remove("is_disabled"));
+        p(".radio_item label").forEach((i) => {
+          i.addEventListener("click", (a) => {
+            var r, o;
+            this.storage = a.currentTarget.previousElementSibling.getAttribute("value").trim(), localStorage.setItem("newAstrologerValue", this.storage), _("exp_new_astro_button_06", this.storage, "Click", "palm readers"), (r = s(".new_continue_btn")) != null && r.classList.contains("is_disabled") && ((o = s(".new_continue_btn")) == null || o.classList.remove("is_disabled"));
           });
         });
       });
@@ -506,9 +469,9 @@
     }
     clickNewBtnBackHandler() {
       l(".new_btn_back").then((e) => {
-        const n = e, r = s(".subscription_plan_page main");
+        const n = e, i = s(".subscription_plan_page main");
         n.addEventListener("click", () => {
-          p("exp_new_astro_button_04", "Back", "Click", "palm readers"), localStorage.getItem("newAstrologersScreen") && localStorage.removeItem("newAstrologersScreen"), r.style.display = "none", r.classList.add("is_hidden"), this.renderNewAstrologersScreenSection(), n.remove();
+          _("exp_new_astro_button_04", "Back", "Click", "palm readers"), localStorage.getItem("newAstrologersScreen") && localStorage.removeItem("newAstrologersScreen"), i.style.display = "none", i.classList.add("is_hidden"), this.renderNewAstrologersScreenSection(), n.remove();
         });
       });
     }
@@ -532,14 +495,14 @@
     }
     observeMain() {
       new MutationObserver((n) => {
-        for (let r of n) {
+        for (let i of n) {
           window.location.pathname !== this.lastPath && (this.lastPath = window.location.pathname, this.checkPage() === "paywall" && this.allFunctionsInitHandler(), this.checkPage() === "subscriptionPlan" && !s("body").classList.contains("subscription_plan_page") && this.allFunctionsInitHandler());
-          for (let i of r.removedNodes)
-            i instanceof HTMLElement && i.tagName === "MAIN" && this.checkPage() === "email" && this.allFunctionsInitHandler();
+          for (let a of i.removedNodes)
+            a instanceof HTMLElement && a.tagName === "MAIN" && this.checkPage() === "email" && this.allFunctionsInitHandler();
         }
       }).observe(s("body"), { childList: !0, subtree: !0 });
     }
   }
-  new m(w);
+  new m(h);
 })();
 //# sourceMappingURL=index.js.map
