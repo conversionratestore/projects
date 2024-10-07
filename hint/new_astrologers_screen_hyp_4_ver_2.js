@@ -68,7 +68,7 @@
             <h3 class="astrologer_name">Akho</h3>
             <p class="astrologer_description">
               6 years in palmistry readings <br />
-              and spiritual guidance.
+              and spiritual guidance
             </p>
           </div>
           <div class="new_custom_radio_wrapper">
@@ -116,7 +116,7 @@
             <h3 class="astrologer_name">Rebecca</h3>
             <p class="astrologer_description">
               8 years in palmistry readings <br />
-              and spiritual guidance.
+              and spiritual guidance
             </p>
           </div>
           <div class="new_custom_radio_wrapper">
