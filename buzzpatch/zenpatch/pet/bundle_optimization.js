@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const x = (a, n, e, t = "") => {
+  const _ = (a, n, e, t = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: a,
@@ -38,12 +38,12 @@
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", a, n), console.log("set", a, n));
     }, 1e3);
-  }, _ = (a, n, e, t, r = "Visibility", l = 600, s = 0.3) => {
+  }, x = (a, n, e, t, r = "Visibility", l = 600, c = 0.3) => {
     let i, h;
     if (i = new IntersectionObserver(
       function(d) {
         d[0].isIntersecting === !0 ? h = setTimeout(() => {
-          x(
+          _(
             n,
             d[0].target.dataset.visible || t || "",
             r,
@@ -51,7 +51,7 @@
           ), i.disconnect();
         }, l) : clearTimeout(h);
       },
-      { threshold: [s] }
+      { threshold: [c] }
     ), typeof a == "string") {
       const d = document.querySelector(a);
       d && i.observe(d);
@@ -75,11 +75,11 @@
   (function(a) {
     a = a === void 0 ? {} : a;
     let n, e, t, r, l = (a == null ? void 0 : a.delay) || 50;
-    function s() {
+    function c() {
       n = null, r = 0;
     }
-    return s(), function() {
-      return e = window.scrollY, n != null && (r = e - n), n = e, clearTimeout(t), t = setTimeout(s, l), r;
+    return c(), function() {
+      return e = window.scrollY, n != null && (r = e - n), n = e, clearTimeout(t), t = setTimeout(c, l), r;
     };
   })();
   const f = "https://conversionratestore.github.io/projects/buzzpatch/zenpatch/pet/img/", u = {
@@ -99,7 +99,7 @@
   <path d="M9.76011 9.59998C8.60241 9.59998 7.66011 8.79268 7.66011 7.79997C7.66011 6.98607 8.29371 6.29757 9.16011 6.07587V5.39997H10.3601V6.07587C11.2265 6.29757 11.8601 6.98607 11.8601 7.79997H10.6601C10.6601 7.48047 10.2395 7.19998 9.76011 7.19998C9.28071 7.19998 8.86011 7.48047 8.86011 7.79997C8.86011 8.11947 9.28071 8.39997 9.76011 8.39997C10.9178 8.39997 11.8601 9.20728 11.8601 10.2C11.8601 11.0139 11.2265 11.7024 10.3601 11.9241V12.6H9.16011V11.9241C8.29371 11.7024 7.66011 11.0139 7.66011 10.2H8.86011C8.86011 10.5195 9.28071 10.8 9.76011 10.8C10.2395 10.8 10.6601 10.5195 10.6601 10.2C10.6601 9.88048 10.2395 9.59998 9.76011 9.59998Z" fill="#337C6B"/>
 </svg>
   `
-  }, c = {
+  }, s = {
     ver_b: {
       id: "43842554855468",
       img: `${f}zenpatch-pet_bundle_img_11zon.webp`,
@@ -116,17 +116,17 @@
   <div class='tooltip_block'>
     <div class='tooltip_wrapper'>
       <div class='img_wrapper'>
-       <img src='${c.ver_b.imgTooltip}' alt='${c.ver_b.mainTitleTooltip}' />
+       <img src='${s.ver_b.imgTooltip}' alt='${s.ver_b.mainTitleTooltip}' />
       </div>
       <div class='tooltip_info'>
         <div>
-          <h2>${c.ver_b.mainTitleTooltip}</h2>
+          <h2>${s.ver_b.mainTitleTooltip}</h2>
          <span>${u.starIcon}${u.starIcon}${u.starIcon}${u.starIcon}${u.starIcon}</span>
         </div>
-        <p>${c.ver_b.subTitleTooltip}</p>
+        <p>${s.ver_b.subTitleTooltip}</p>
       </div>
     </div>
-    <p>${c.ver_b.descriptionTooltip}</p>
+    <p>${s.ver_b.descriptionTooltip}</p>
   </div>
   `
   }, y = (
@@ -143,17 +143,17 @@
           type="radio"
           name="price"
           id="bundle"
-          value="${c.ver_b.id}"
-          data-tick-id="${c.ver_b.id}"
+          value="${s.ver_b.id}"
+          data-tick-id="${s.ver_b.id}"
         />
         <label for="bundle">
-          <div class="new_bundle_wrapper" id="${c.ver_b.id}">
+          <div class="new_bundle_wrapper" id="${s.ver_b.id}">
             <div class="img_wrapper">
-              <img src="${c.ver_b.img}" alt="${c.ver_b.title}" />
+              <img src="${s.ver_b.img}" alt="${s.ver_b.title}" />
             </div>
             <div class="info_wrapper">
-              <h2 class="new_bundle_title">${c.ver_b.title}</h2>
-              <p class="new_bundle_description">${c.ver_b.description}</p>
+              <h2 class="new_bundle_title">${s.ver_b.title}</h2>
+              <p class="new_bundle_description">${s.ver_b.description}</p>
               <span class="new_bundle_price">${a} Each item</span>
             </div>
           </div>
@@ -167,7 +167,7 @@
     `
   <span class="new_bundle_tooltip" data-tooltip data-title="${k.ver_b}">${u.tooltipIcon}</span>
 `
-  ), z = (
+  ), L = (
     /* HTML */
     `
   <div class="guarantee_block">
@@ -183,7 +183,7 @@
     </ul>
   </div>
 `
-  ), L = `@media (min-width: 992px) {
+  ), z = `@media (min-width: 992px) {
   .lp-tr--purchase .container {
     max-width: 1280px;
   }
@@ -911,7 +911,7 @@
       b({ name: 'Starter Pack" Bundle and UX Improvements on Shopping block', dev: "SKh" }), w("exp_zen_introduce", "variant_1"), p(".crs_font") || document.head.insertAdjacentHTML(
         "afterbegin",
         'link class="crs_font" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"'
-      ), document.head.insertAdjacentHTML("beforeend", `<style>${L}</style>`), this.renderNewTitle(), this.changePurchaseBlock(), this.clickPetLocketInputHandler(), this.renderGuaranteeBlock(), this.renderNewBundle(), this.clickBundleHandler(), this.clickProceedToCheckoutBtnHandler(), this.visibleHandler();
+      ), document.head.insertAdjacentHTML("beforeend", `<style>${z}</style>`), this.renderNewTitle(), this.changePurchaseBlock(), this.clickPetLocketInputHandler(), this.renderGuaranteeBlock(), this.renderNewBundle(), this.clickBundleHandler(), this.clickProceedToCheckoutBtnHandler(), this.visibleHandler();
     }
     renderNewTitle() {
       o("h3.purchase__title").then((n) => {
@@ -924,8 +924,8 @@
         m(".lp-tr--purchase .form-group .packs label span:not(.lp-tr--pack-price)").forEach((t) => {
           const l = t.textContent.match(/\(([^)]+)\/each\)/i);
           if (l) {
-            const s = l[1];
-            t.textContent = `${s} Each`;
+            const c = l[1];
+            t.textContent = `${c} Each`;
           }
         });
       }), o(".lp-tr--purchase .form-group .packs label[for=pack1] span.lp-tr--pack-price").then((n) => {
@@ -957,7 +957,7 @@
     }
     renderGuaranteeBlock() {
       o(".lp-tr--purchase .lp-tr--btn").then((n) => {
-        p(".guarantee_block") || p(".lp-tr--purchase .lp-tr--btn").insertAdjacentHTML("afterend", z);
+        p(".guarantee_block") || p(".lp-tr--purchase .lp-tr--btn").insertAdjacentHTML("afterend", L);
       });
     }
     renderNewBundle() {
@@ -978,7 +978,7 @@
         m(".lp-tr--purchase input[type=radio] + label").forEach((t) => {
           t.addEventListener("click", (r) => {
             var l;
-            t.getAttribute("for") === "pack3" || t.getAttribute("for") === "pack2" || t.getAttribute("for") === "pack1" || t.getAttribute("for") === "pack4" ? (p(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.contains("is_hidden") && p(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.remove("is_hidden"), p(".lp-tr--purchase .purchase__regular-price").classList.contains("is_hidden") && p(".lp-tr--purchase .purchase__regular-price").classList.remove("is_hidden"), (l = p(".new_bundle_price_wrapper")) == null || l.remove()) : (x("exp_zen_introduce_click_01", "Pet Zen Starter Pack", "Click", "Bundle & save"), p(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.add("is_hidden"), p(".lp-tr--purchase .purchase__regular-price").classList.add("is_hidden"), p(".new_bundle_price_wrapper") || p(".lp-tr--purchase .overall-price.lp-tr--mobile").insertAdjacentHTML(
+            t.getAttribute("for") === "pack3" || t.getAttribute("for") === "pack2" || t.getAttribute("for") === "pack1" || t.getAttribute("for") === "pack4" ? (p(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.contains("is_hidden") && p(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.remove("is_hidden"), p(".lp-tr--purchase .purchase__regular-price").classList.contains("is_hidden") && p(".lp-tr--purchase .purchase__regular-price").classList.remove("is_hidden"), (l = p(".new_bundle_price_wrapper")) == null || l.remove()) : (_("exp_zen_introduce_click_01", "Pet Zen Starter Pack", "Click", "Bundle & save"), p(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.add("is_hidden"), p(".lp-tr--purchase .purchase__regular-price").classList.add("is_hidden"), p(".new_bundle_price_wrapper") || p(".lp-tr--purchase .overall-price.lp-tr--mobile").insertAdjacentHTML(
               "afterend",
               this.newPricePetZenStarterPackHtml(e)
             ));
@@ -1016,35 +1016,83 @@
         });
       });
     }
+    // async addToCartHandler(idValue: number, petlocket: boolean = false) {
+    //   // clearCart
+    //   await fetch('/cart/clear.js', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     }
+    //   })
+    //   console.log('clearCART!!!!!!!!!!!!!!!!!!!')
+    //   let items = [
+    //     {
+    //       id: idValue,
+    //       quantity: 1
+    //     }
+    //   ]
+    //   if (petlocket) {
+    //     items.push({
+    //       id: 43558182027308,
+    //       quantity: 1
+    //     })
+    //   }
+    //   let formData = {
+    //     items: items
+    //   }
+    //   // addToCart
+    //   // await fetch('/cart/add.js', {
+    //   //   method: 'POST',
+    //   //   headers: {
+    //   //     'Content-Type': 'application/json'
+    //   //   },
+    //   //   body: JSON.stringify(formData)
+    //   // }).then(() => {
+    //   //   console.log(`idValue`, idValue, petlocket)
+    //   //   setTimeout(() => {
+    //   //     window.location.href = '/checkout'
+    //   //   }, 800)
+    //   // })
+    //   // addToCart
+    //   try {
+    //     const response = await fetch('/cart/add.js', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json'
+    //       },
+    //       body: JSON.stringify(formData)
+    //     })
+    //     if (!response.ok) {
+    //       throw new Error('Failed to add items to cart')
+    //     }
+    //     console.log(`idValue`, idValue, petlocket)
+    //     window.location.href = '/checkout'
+    //   } catch (error) {
+    //     console.error('Error adding items to cart:', error)
+    //   }
+    // }
     async addToCartHandler(n, e = !1) {
-      await fetch("/cart/clear.js", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }), console.log("clearCART!!!!!!!!!!!!!!!!!!!");
-      let t = [
-        {
-          id: n,
-          quantity: 1
-        }
-      ];
-      e && t.push({
-        id: 43558182027308,
-        quantity: 1
-      }), await fetch("/cart/add.js", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          items: t
-        })
-      }).then(() => {
-        console.log("idValue", n, e), setTimeout(() => {
-          window.location.href = "/checkout";
-        }, 500);
-      });
+      const t = "/cart/clear.js", r = "/cart/add.js";
+      try {
+        await fetch(t, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }), console.log("Cart cleared successfully");
+        const c = [{ id: n, quantity: 1 }];
+        if (e && c.push({ id: 43558182027308, quantity: 1 }), !(await fetch(r, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ items: c })
+        })).ok)
+          throw new Error("Failed to add items to cart");
+        console.log("Items added to cart", n, e), window.location.href = "/checkout";
+      } catch (c) {
+        console.error("Error in addToCartHandler:", c);
+      }
     }
     initTooltip() {
       g([
@@ -1067,7 +1115,7 @@
               onShow(t) {
               },
               onTrigger(t) {
-                p("body").classList.add("tooltip_open"), x("exp_zen_introduce_click_02", "Pet Zen Starter Pack", "Click", "Bundle & save");
+                p("body").classList.add("tooltip_open"), _("exp_zen_introduce_click_02", "Pet Zen Starter Pack", "Click", "Bundle & save");
               },
               onHide(t) {
                 setTimeout(() => {
@@ -1081,7 +1129,7 @@
     }
     visibleHandler() {
       o(".new_bundle_pack").then((n) => {
-        _(
+        x(
           ".new_bundle_pack",
           "exp_zen_introduce_element_01",
           "Bundle & save",
@@ -1089,7 +1137,7 @@
           "View"
         );
       }), o(".guarantee_block").then((n) => {
-        _(".guarantee_block", "exp_zen_introduce_element_02", "Bundle & save", "Guarantee", "View");
+        x(".guarantee_block", "exp_zen_introduce_element_02", "Bundle & save", "Guarantee", "View");
       });
     }
   }
