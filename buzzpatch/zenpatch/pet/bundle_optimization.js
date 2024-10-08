@@ -1040,9 +1040,11 @@
         body: JSON.stringify({
           items: t
         })
-      }), console.log("checkout", n), setTimeout(() => {
-        window.location.href = "/checkout";
-      }, 600);
+      }).then(() => {
+        console.log("idValue", n, e), setTimeout(() => {
+          window.location.href = "/checkout";
+        }, 500);
+      });
     }
     initTooltip() {
       g([
