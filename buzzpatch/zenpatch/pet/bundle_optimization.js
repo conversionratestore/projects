@@ -969,7 +969,10 @@
     }
     initCheckedBundle() {
       o(".new_bundle_pack").then((n) => {
-        localStorage.getItem("petZenStarterPack") && (p("#bundle").checked = !0, localStorage.removeItem("petZenStarterPack"));
+        localStorage.getItem("petZenStarterPack") && (p("#bundle").checked = !0, p(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.add("is_hidden"), p(".lp-tr--purchase .purchase__regular-price").classList.add("is_hidden"), p(".new_bundle_price_wrapper") || p(".lp-tr--purchase .overall-price.lp-tr--mobile").insertAdjacentHTML(
+          "afterend",
+          this.newPricePetZenStarterPackHtml("43842554855468")
+        ), localStorage.removeItem("petZenStarterPack"));
       });
     }
     clickBundleHandler() {
