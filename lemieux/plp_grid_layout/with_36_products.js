@@ -1,24 +1,24 @@
 (function() {
   "use strict";
-  const g = (o, e, t, r = "") => {
+  const f = (r, e, t, o = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: o,
+      event_name: r,
       event_desc: e,
       event_type: t,
-      event_loc: r
-    }), console.log(`Event: ${o} | ${e} | ${t} | ${r}`);
-  }, y = ({ name: o, dev: e }) => {
+      event_loc: o
+    }), console.log(`Event: ${r} | ${e} | ${t} | ${o}`);
+  }, y = ({ name: r, dev: e }) => {
     console.log(
-      `%c EXP: ${o} (DEV: ${e})`,
+      `%c EXP: ${r} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, p = (o) => document.querySelector(o), L = (o) => {
+  }, p = (r) => document.querySelector(r), L = (r) => {
     let e = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", o, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", r, "variant_1"));
     }, 1e3);
-  }, P = (o, e) => {
-    let t = null, r = null;
+  }, S = (r, e) => {
+    let t = null, o = null;
     const n = {
       threshold: 0.5
       // 50% of the product must be visible
@@ -30,22 +30,22 @@
           const m = window.crypto.randomUUID();
           s.target.setAttribute("data-product-id", m);
           const v = (a = s.target.querySelector("[cy-listingproductname]")) == null ? void 0 : a.textContent;
-          e.add(v), o(e.size), c.unobserve(s.target);
+          e.add(v), r(e.size), c.unobserve(s.target);
         }
       });
     }
-    r = new IntersectionObserver(i, n);
+    o = new IntersectionObserver(i, n);
     const u = document.querySelector("ac-product-listing");
     return u ? (u.querySelectorAll("product").forEach((d) => {
-      r.observe(d);
+      o.observe(d);
     }), t = new MutationObserver((d) => {
       d.forEach((c) => {
         c.addedNodes.forEach((s) => {
-          s instanceof HTMLElement && s.nodeName.toLowerCase() === "product" && r.observe(s);
+          s instanceof HTMLElement && s.nodeName.toLowerCase() === "product" && o.observe(s);
         });
       });
-    }), t.observe(u, { childList: !0, subtree: !0 }), [t, r]) : void 0;
-  }, S = `/* div:has(> product) {
+    }), t.observe(u, { childList: !0, subtree: !0 }), [t, o]) : void 0;
+  }, P = `/* div:has(> product) {
   --os-grid-columns: 4;
   grid-template-columns: [column-start] repeat(var(--os-grid-columns, 12), 1fr) [column-end] !important;
 
@@ -62,19 +62,19 @@ product-listing listing-size {
   display: none;
 } */`;
   y({ name: "New PLP GRID Layout", dev: "OS" }), L("");
-  const b = (o, e) => {
+  const b = (r, e) => {
     let t = null;
-    const r = () => {
-      const n = document.querySelector(o);
+    const o = () => {
+      const n = document.querySelector(r);
       n && (e(n), t && t.disconnect());
     };
-    return t && t.disconnect(), t = new MutationObserver(r), t.observe(document.body, {
+    return t && t.disconnect(), t = new MutationObserver(o), t.observe(document.body, {
       childList: !0,
       subtree: !0
-    }), r(), t;
-  }, E = (o) => {
-    const e = new MutationObserver((t, r) => {
-      document.querySelector('[aria-label="Load more"]') && (o(), r.disconnect());
+    }), o(), t;
+  }, E = (r) => {
+    const e = new MutationObserver((t, o) => {
+      document.querySelector('[aria-label="Load more"]') && (r(), o.disconnect());
     });
     return e.observe(document, {
       childList: !0,
@@ -83,10 +83,10 @@ product-listing listing-size {
   };
   class O {
     constructor() {
-      this.observers = [], this.clickNum = 1, this.productsLoaded = !1, this.productsSeen = 0, this.productsSet = /* @__PURE__ */ new Set(), this.device = window.innerWidth < 768 ? "mobile" : "desktop", this.productClickEvent = this.handleProductClick.bind(this), this.init();
+      this.observers = [], this.clickNum = 1, this.productsLoaded = !1, this.productsSeen = 0, this.productsSet = /* @__PURE__ */ new Set(), this.device = window.innerWidth < 1101 ? "mobile" : "desktop", this.productClickEvent = this.handleProductClick.bind(this), this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${S}</style>`);
+      document.head.insertAdjacentHTML("beforeend", `<style>${P}</style>`);
       let e = window.location.pathname;
       const t = () => {
         this.mainObserver && this.mainObserver.disconnect(), this.mainObserver = new MutationObserver((n) => {
@@ -96,28 +96,28 @@ product-listing listing-size {
               return;
             this.changeListingSize();
             const u = E(() => {
-              this.productsLoaded = !0, setTimeout(() => {
+              setTimeout(() => {
                 this.trackProductVisibility();
               }, 1e3);
             });
             this.observers.push(u);
           }
         }), this.mainObserver.observe(document.body, { childList: !0, subtree: !0 });
-      }, r = () => {
-        window.location.pathname !== e && (this.productsLoaded = !1, this.elementCountObserver && this.elementCountObserver.disconnect(), document.removeEventListener("mousedown", this.productClickEvent), clearInterval(this.timerId), this.observers.forEach((n) => {
+      }, o = () => {
+        window.location.pathname !== e && (this.elementCountObserver && this.elementCountObserver.disconnect(), document.removeEventListener("mousedown", this.productClickEvent), clearInterval(this.timerId), this.observers.forEach((n) => {
           n.disconnect();
-        }), t(), this.productsSet.clear());
+        }), this.changeListingSize(), t(), this.productsSet.clear(), e = window.location.pathname);
       };
-      t(), this.pageChangeHandler(r);
+      t(), this.pageChangeHandler(o);
     }
     handleProductClick(e) {
-      e.target.closest("product img") && g("plp_product_image_click", "Product Image ", "click", "PLP Product Image");
+      e.target.closest("product img") && f("plp_product_image_click", "Product Image ", "click", "PLP Product Image");
     }
     pageChangeHandler(e) {
       (function(t) {
-        const r = t.pushState, n = t.replaceState;
+        const o = t.pushState, n = t.replaceState;
         t.pushState = function(i) {
-          r.apply(t, arguments), e();
+          o.apply(t, arguments), e();
         }, t.replaceState = function(i) {
           n.apply(t, arguments), e();
         }, window.addEventListener("popstate", function(i) {
@@ -126,29 +126,36 @@ product-listing listing-size {
       })(window.history);
     }
     trackProductVisibility() {
-      this.productsLoaded && (this.elementCountObserver && this.elementCountObserver.disconnect(), this.elementCountObserver = b("ac-product-listing", (e) => {
+      this.elementCountObserver && this.elementCountObserver.disconnect(), this.elementCountObserver = b("ac-product-listing", (e) => {
         document.addEventListener("mousedown", this.productClickEvent);
-        const t = b('[aria-label="Load more"]', (r) => {
-          const n = P((h) => {
-            this.productsSeen !== h && (this.productsSeen = h, g("plp_view_items_count", `Product Seen: ${h}`, "view", "PLP"));
+        const t = b('[aria-label="Load more"]', (o) => {
+          const n = S((h) => {
+            this.productsSeen !== h && (this.productsSeen = h, f("plp_view_items_count", `Product Seen: ${h}`, "view", "PLP"));
           }, this.productsSet), i = n == null ? void 0 : n[0], u = n == null ? void 0 : n[1];
           this.observers.push(i), this.observers.push(u);
         });
         this.observers.push(t);
-      }), this.observers.push(this.elementCountObserver));
+      }), this.observers.push(this.elementCountObserver);
     }
     updateProductAmountNum() {
       const e = p("ac-product-listing");
       if (!e)
         return 0;
-      const t = e.querySelector("ac-product-listing-tools span").textContent;
-      return parseInt(t.trim());
+      try {
+        const t = this.device === "desktop" ? e.querySelector("ac-product-listing-tools span").textContent : e.querySelector("ac-product-listing-tools .p1").textContent;
+        return parseInt(t);
+      } catch {
+        return 0;
+      }
     }
     changeProductsSize() {
       const e = p("ac-product-listing");
       if (!e)
         return;
-      const t = this.updateProductAmountNum(), r = e.querySelectorAll("product"), n = Array.from(r), i = new URLSearchParams(window.location.search), h = parseInt(i.get("pg") || "1", 10) * 24;
+      const t = this.updateProductAmountNum();
+      if (t === 0)
+        return;
+      const o = e.querySelectorAll("product"), n = Array.from(o), i = new URLSearchParams(window.location.search), h = parseInt(i.get("pg") || "1", 10) * 24;
       n.forEach((a, m) => {
         a.style.display = "";
       }), n.forEach((a, m) => {
@@ -157,8 +164,8 @@ product-listing listing-size {
       const d = n.filter((a) => a.style.display !== "none").length, c = document.querySelector('[aria-label="Load more"]'), s = c == null ? void 0 : c.previousElementSibling;
       s && (s.textContent = `You’ve viewed ${d} of ${t} products`), c && ((t > n.length || d < t) && (c.disabled = !1), c.addEventListener("click", async () => {
         await new Promise((l) => {
-          new MutationObserver((q, x) => {
-            q.some(($) => $.addedNodes.length > 0) && (x.disconnect(), l(!0));
+          new MutationObserver((x, q) => {
+            x.some(($) => $.addedNodes.length > 0) && (q.disconnect(), l(!0));
           }).observe(p("ac-product-listing"), { childList: !0, subtree: !0 });
         });
         const a = p("ac-product-listing"), m = a.querySelectorAll("product"), v = Array.from(m), C = a.querySelectorAll('product[style*="display: none"]'), A = Array.from(C), k = new URLSearchParams(window.location.search), I = parseInt(k.get("pg") || "1", 10);
@@ -167,13 +174,13 @@ product-listing listing-size {
         }), v.forEach((l, w) => {
           w >= I * 24 && (l.style.display = "none");
         });
-        const f = v.filter((l) => l.style.display !== "none").length;
-        s && (s.textContent = `You’ve viewed ${f >= t ? t : f} of ${t} products`), f !== t ? c.disabled = !1 : c.disabled = !0;
+        const g = v.filter((l) => l.style.display !== "none").length;
+        s && (s.textContent = `You’ve viewed ${g >= t ? t : g} of ${t} products`), g !== t ? c.disabled = !1 : c.disabled = !0;
       }));
     }
     changeListingSize() {
-      const e = p("ac-listing-size"), t = e == null ? void 0 : e.querySelector("button:first-of-type"), r = e == null ? void 0 : e.querySelector("button:last-of-type");
-      !t || !r || t.click();
+      const e = p("ac-listing-size"), t = e == null ? void 0 : e.querySelector("button:first-of-type"), o = e == null ? void 0 : e.querySelector("button:last-of-type");
+      !t || !o || t.click();
     }
   }
   new O();
