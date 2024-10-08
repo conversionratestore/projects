@@ -38,7 +38,7 @@
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", a, n), console.log("set", a, n));
     }, 1e3);
-  }, x = (a, n, e, t, r = "Visibility", l = 600, c = 0.3) => {
+  }, x = (a, n, e, t, r = "Visibility", l = 600, s = 0.3) => {
     let i, h;
     if (i = new IntersectionObserver(
       function(d) {
@@ -51,7 +51,7 @@
           ), i.disconnect();
         }, l) : clearTimeout(h);
       },
-      { threshold: [c] }
+      { threshold: [s] }
     ), typeof a == "string") {
       const d = document.querySelector(a);
       d && i.observe(d);
@@ -75,11 +75,11 @@
   (function(a) {
     a = a === void 0 ? {} : a;
     let n, e, t, r, l = (a == null ? void 0 : a.delay) || 50;
-    function c() {
+    function s() {
       n = null, r = 0;
     }
-    return c(), function() {
-      return e = window.scrollY, n != null && (r = e - n), n = e, clearTimeout(t), t = setTimeout(c, l), r;
+    return s(), function() {
+      return e = window.scrollY, n != null && (r = e - n), n = e, clearTimeout(t), t = setTimeout(s, l), r;
     };
   })();
   const f = "https://conversionratestore.github.io/projects/buzzpatch/zenpatch/pet/img/", u = {
@@ -99,7 +99,7 @@
   <path d="M9.76011 9.59998C8.60241 9.59998 7.66011 8.79268 7.66011 7.79997C7.66011 6.98607 8.29371 6.29757 9.16011 6.07587V5.39997H10.3601V6.07587C11.2265 6.29757 11.8601 6.98607 11.8601 7.79997H10.6601C10.6601 7.48047 10.2395 7.19998 9.76011 7.19998C9.28071 7.19998 8.86011 7.48047 8.86011 7.79997C8.86011 8.11947 9.28071 8.39997 9.76011 8.39997C10.9178 8.39997 11.8601 9.20728 11.8601 10.2C11.8601 11.0139 11.2265 11.7024 10.3601 11.9241V12.6H9.16011V11.9241C8.29371 11.7024 7.66011 11.0139 7.66011 10.2H8.86011C8.86011 10.5195 9.28071 10.8 9.76011 10.8C10.2395 10.8 10.6601 10.5195 10.6601 10.2C10.6601 9.88048 10.2395 9.59998 9.76011 9.59998Z" fill="#337C6B"/>
 </svg>
   `
-  }, s = {
+  }, c = {
     ver_b: {
       id: "43842554855468",
       img: `${f}zenpatch-pet_bundle_img_11zon.webp`,
@@ -116,17 +116,17 @@
   <div class='tooltip_block'>
     <div class='tooltip_wrapper'>
       <div class='img_wrapper'>
-       <img src='${s.ver_b.imgTooltip}' alt='${s.ver_b.mainTitleTooltip}' />
+       <img src='${c.ver_b.imgTooltip}' alt='${c.ver_b.mainTitleTooltip}' />
       </div>
       <div class='tooltip_info'>
         <div>
-          <h2>${s.ver_b.mainTitleTooltip}</h2>
+          <h2>${c.ver_b.mainTitleTooltip}</h2>
          <span>${u.starIcon}${u.starIcon}${u.starIcon}${u.starIcon}${u.starIcon}</span>
         </div>
-        <p>${s.ver_b.subTitleTooltip}</p>
+        <p>${c.ver_b.subTitleTooltip}</p>
       </div>
     </div>
-    <p>${s.ver_b.descriptionTooltip}</p>
+    <p>${c.ver_b.descriptionTooltip}</p>
   </div>
   `
   }, y = (
@@ -143,17 +143,17 @@
           type="radio"
           name="price"
           id="bundle"
-          value="${s.ver_b.id}"
-          data-tick-id="${s.ver_b.id}"
+          value="${c.ver_b.id}"
+          data-tick-id="${c.ver_b.id}"
         />
         <label for="bundle">
-          <div class="new_bundle_wrapper" id="${s.ver_b.id}">
+          <div class="new_bundle_wrapper" id="${c.ver_b.id}">
             <div class="img_wrapper">
-              <img src="${s.ver_b.img}" alt="${s.ver_b.title}" />
+              <img src="${c.ver_b.img}" alt="${c.ver_b.title}" />
             </div>
             <div class="info_wrapper">
-              <h2 class="new_bundle_title">${s.ver_b.title}</h2>
-              <p class="new_bundle_description">${s.ver_b.description}</p>
+              <h2 class="new_bundle_title">${c.ver_b.title}</h2>
+              <p class="new_bundle_description">${c.ver_b.description}</p>
               <span class="new_bundle_price">${a} Each item</span>
             </div>
           </div>
@@ -924,8 +924,8 @@
         m(".lp-tr--purchase .form-group .packs label span:not(.lp-tr--pack-price)").forEach((t) => {
           const l = t.textContent.match(/\(([^)]+)\/each\)/i);
           if (l) {
-            const c = l[1];
-            t.textContent = `${c} Each`;
+            const s = l[1];
+            t.textContent = `${s} Each`;
           }
         });
       }), o(".lp-tr--purchase .form-group .packs label[for=pack1] span.lp-tr--pack-price").then((n) => {
@@ -1077,24 +1077,28 @@
     async addToCartHandler(n, e = !1) {
       const t = "/cart/clear.js", r = "/cart/add.js";
       try {
-        await fetch(t, {
+        if (!(await fetch(t, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
           }
-        }), console.log("Cart cleared successfully");
-        const c = [{ id: n, quantity: 1 }];
-        if (e && c.push({ id: 43558182027308, quantity: 1 }), !(await fetch(r, {
+        })).ok)
+          throw new Error("Failed to clear the cart");
+        console.log("Cart cleared successfully");
+        const i = [{ id: n, quantity: 1 }];
+        if (e && i.push({ id: 43558182027308, quantity: 1 }), !(await fetch(r, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({ items: c })
+          body: JSON.stringify({ items: i })
         })).ok)
           throw new Error("Failed to add items to cart");
-        console.log("Items added to cart", n, e), window.location.href = "/checkout";
-      } catch (c) {
-        console.error("Error in addToCartHandler:", c);
+        console.log("Items added to cart", n, e), setTimeout(() => {
+          window.location.href = "/checkout";
+        }, 700);
+      } catch (s) {
+        console.error("Error in addToCartHandler:", s), console.log("There was an error adding items to the cart. Please try again.");
       }
     }
     initTooltip() {
