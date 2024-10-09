@@ -1096,7 +1096,7 @@
           throw new Error("Failed to add items to cart");
         console.log("Items added to cart", n, e), setTimeout(() => {
           window.location.href = "/checkout";
-        }, 700);
+        }, 1200);
       } catch (s) {
         console.error("Error in addToCartHandler:", s), console.log("There was an error adding items to the cart. Please try again.");
       }
