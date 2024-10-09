@@ -2106,10 +2106,10 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
                 Live Training
               </span>
 
-              <!--<span>
+              <span>
                 <img src="${E}/calendar.svg" alt="calendar" />
                 Today
-              </span>-->
+              </span>
             </p>
             <div class="inputs1">
               <label><input type="text" placeholder="Enter your name..." name="name" /></label>
@@ -2398,10 +2398,10 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
             <img src="${E}/frame.svg" alt="frame" />
             Live Training
           </span>
-          <!--<span>
+          <span>
             <img src="${E}/calendar.svg" alt="calendar" />
             Today
-          </span>-->
+          </span>
         </p>
         <div class="inputs1">
           <label><input type="text" placeholder="Enter your name..." name="name" /></label>
