@@ -280,10 +280,12 @@
         <span class="crs-order-summary__text">Done For You Partnership</span
         ><span class="crs-order-summary__price"><span class="crs-order-summary__old-price">$900</span>$299</span>
       </li>
+      <!--
       <li class="crs-order-summary__item">
         <span class="crs-order-summary__text">Drop Servicing AI Software</span
         ><span class="crs-order-summary__price"><span class="crs-order-summary__old-price">$550</span>$180</span>
-      </li>
+      </li> 
+      -->
       <li class="crs-order-summary__item">
         <span class="crs-order-summary__text"><b>Bonus 1</b> - $200 Cash Back (Get it by posting your first sale)</span
         ><span class="crs-order-summary__price"><span class="crs-order-summary__old-price">$200</span>$0</span>
@@ -1937,7 +1939,7 @@ div:has(> .crs-header__headline) {
   const gn = `
 @media (min-width: 769px) {
   .crs-header + div + [data-hide-on="desktop"] {
-    display: none;
+    /* display: none; */
   }
 }
 
