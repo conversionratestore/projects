@@ -1,55 +1,55 @@
 (function() {
   "use strict";
-  const _ = (a, n, e, t = "") => {
+  const _ = (a, p, e, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: a,
-      event_desc: n,
+      event_desc: p,
       event_type: e,
-      event_loc: t
-    }), console.dir(`Event: ${a} | ${n} | ${e} | ${t}`);
-  }, b = ({ name: a, dev: n }) => {
+      event_loc: n
+    }), console.dir(`Event: ${a} | ${p} | ${e} | ${n}`);
+  }, g = ({ name: a, dev: p }) => {
     console.log(
-      `%c EXP: ${a} (DEV: ${n})`,
+      `%c EXP: ${a} (DEV: ${p})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, m = (a) => document.querySelectorAll(a), p = (a) => document.querySelector(a), g = async (a) => {
-    const n = (e) => new Promise((t, r) => {
+  }, m = (a) => document.querySelectorAll(a), t = (a) => document.querySelector(a), w = async (a) => {
+    const p = (e) => new Promise((n, r) => {
       const l = e.split(".").pop();
       if (l === "js") {
-        if (Array.from(document.scripts).map((h) => h.src.toLowerCase()).includes(e.toLowerCase()))
-          return console.log(`Script ${e} allready downloaded!`), t("");
+        if (Array.from(document.scripts).map((u) => u.src.toLowerCase()).includes(e.toLowerCase()))
+          return console.log(`Script ${e} allready downloaded!`), n("");
         const i = document.createElement("script");
-        i.src = e, i.onload = t, i.onerror = r, document.head.appendChild(i);
+        i.src = e, i.onload = n, i.onerror = r, document.head.appendChild(i);
       } else if (l === "css") {
-        if (Array.from(document.styleSheets).map((h) => {
+        if (Array.from(document.styleSheets).map((u) => {
           var d;
-          return (d = h.href) == null ? void 0 : d.toLowerCase();
+          return (d = u.href) == null ? void 0 : d.toLowerCase();
         }).includes(e.toLowerCase()))
-          return console.log(`Style ${e} allready downloaded!`), t("");
+          return console.log(`Style ${e} allready downloaded!`), n("");
         const i = document.createElement("link");
-        i.rel = "stylesheet", i.href = e, i.onload = t, i.onerror = r, document.head.appendChild(i);
+        i.rel = "stylesheet", i.href = e, i.onload = n, i.onerror = r, document.head.appendChild(i);
       }
     });
     for (const e of a)
-      await n(e), console.log(`Loaded librari ${e}`);
+      await p(e), console.log(`Loaded librari ${e}`);
     console.log("All libraries loaded!");
-  }, w = (a, n = "variant_1") => {
+  }, k = (a, p = "variant_1") => {
     let e = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", a, n), console.log("set", a, n));
+      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", a, p), console.log("set", a, p));
     }, 1e3);
-  }, x = (a, n, e, t, r = "Visibility", l = 600, s = 0.3) => {
-    let i, h;
+  }, b = (a, p, e, n, r = "Visibility", l = 600, s = 0.3) => {
+    let i, u;
     if (i = new IntersectionObserver(
       function(d) {
-        d[0].isIntersecting === !0 ? h = setTimeout(() => {
+        d[0].isIntersecting === !0 ? u = setTimeout(() => {
           _(
-            n,
-            d[0].target.dataset.visible || t || "",
+            p,
+            d[0].target.dataset.visible || n || "",
             r,
             e
           ), i.disconnect();
-        }, l) : clearTimeout(h);
+        }, l) : clearTimeout(u);
       },
       { threshold: [s] }
     ), typeof a == "string") {
@@ -59,11 +59,11 @@
       i.observe(a);
   };
   function o(a) {
-    return new Promise((n) => {
+    return new Promise((p) => {
       if (document.querySelector(a))
-        return n(document.querySelector(a));
+        return p(document.querySelector(a));
       const e = new MutationObserver(() => {
-        document.querySelector(a) && (n(document.querySelector(a)), e.disconnect());
+        document.querySelector(a) && (p(document.querySelector(a)), e.disconnect());
       });
       e.observe(document.documentElement, {
         childList: !0,
@@ -74,15 +74,15 @@
   }
   (function(a) {
     a = a === void 0 ? {} : a;
-    let n, e, t, r, l = (a == null ? void 0 : a.delay) || 50;
+    let p, e, n, r, l = (a == null ? void 0 : a.delay) || 50;
     function s() {
-      n = null, r = 0;
+      p = null, r = 0;
     }
     return s(), function() {
-      return e = window.scrollY, n != null && (r = e - n), n = e, clearTimeout(t), t = setTimeout(s, l), r;
+      return e = window.scrollY, p != null && (r = e - p), p = e, clearTimeout(n), n = setTimeout(s, l), r;
     };
   })();
-  const f = "https://conversionratestore.github.io/projects/buzzpatch/zenpatch/pet/img/", u = {
+  const f = "https://conversionratestore.github.io/projects/buzzpatch/zenpatch/pet/img/", h = {
     tooltipIcon: `
 <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
   <path d="M2.52002 10.2953H4.52002V12H2.52002V10.2953ZM0.52002 2.54039C0.52002 2.19499 0.598451 1.8663 0.755314 1.55432C0.912177 1.24234 1.12786 0.974931 1.40237 0.75209C1.67688 0.518107 1.99714 0.334263 2.36316 0.200558C2.72917 0.0668529 3.12133 0 3.53963 0C4.02329 0 4.4612 0.0835661 4.85335 0.250698C5.25858 0.417828 5.59192 0.651811 5.85335 0.952647C5.98407 1.10864 6.08865 1.25348 6.16708 1.38719C6.25858 1.52089 6.33048 1.66574 6.38277 1.82173C6.43505 1.96657 6.46773 2.1337 6.4808 2.32312C6.50695 2.51253 6.52002 2.73538 6.52002 2.99164C6.52002 3.28134 6.51348 3.52646 6.50041 3.72702C6.50041 3.91644 6.48734 4.08357 6.4612 4.22841C6.43505 4.37326 6.40237 4.50139 6.36316 4.61281C6.32394 4.71309 6.27165 4.8078 6.20629 4.89694L4.85335 6.86908C4.76185 7.00279 4.68342 7.14206 4.61806 7.28691C4.5527 7.42061 4.52002 7.56546 4.52002 7.72145V9.0585H2.52002V7.50418C2.52002 7.25905 2.56577 7.02507 2.65727 6.80223C2.74878 6.57939 2.86642 6.36212 3.01022 6.15042L4.26512 4.41226C4.36969 4.26741 4.43505 4.11142 4.4612 3.94429C4.50041 3.77716 4.52002 3.61003 4.52002 3.4429V2.5571C4.52002 2.32312 4.42198 2.12256 4.2259 1.95543C4.0429 1.7883 3.81414 1.70474 3.53963 1.70474C3.30433 1.70474 3.07558 1.77716 2.85335 1.92201C2.63113 2.06685 2.52002 2.27855 2.52002 2.5571V3.52646H0.52002V2.54039Z" fill="white"/>
@@ -111,7 +111,7 @@
       subTitleTooltip: "1 locket for pet patches",
       descriptionTooltip: "This locket is designed specifically for easy and convenient use with NATPAT Pet Stickers. Use in just 3 simple steps: open front window -> insert NATPAT Pet Sticker -> clip window into place & loop onto collar."
     }
-  }, k = {
+  }, y = {
     ver_b: `
   <div class='tooltip_block'>
     <div class='tooltip_wrapper'>
@@ -121,7 +121,7 @@
       <div class='tooltip_info'>
         <div>
           <h2>${c.ver_b.mainTitleTooltip}</h2>
-         <span>${u.starIcon}${u.starIcon}${u.starIcon}${u.starIcon}${u.starIcon}</span>
+         <span>${h.starIcon}${h.starIcon}${h.starIcon}${h.starIcon}${h.starIcon}</span>
         </div>
         <p>${c.ver_b.subTitleTooltip}</p>
       </div>
@@ -129,10 +129,10 @@
     <p>${c.ver_b.descriptionTooltip}</p>
   </div>
   `
-  }, y = (
+  }, v = (
     /* HTML */
     '<h2 class="stock_up_title">Stock up & Save!</h2>'
-  ), v = (a) => (
+  ), C = (a) => (
     /* HTML */
     `
     <div class="new_bundle_pack">
@@ -158,14 +158,14 @@
             </div>
           </div>
         </label>
-        ${C}
+        ${z}
       </div>
     </div>
   `
-  ), C = (
+  ), z = (
     /* HTML */
     `
-  <span class="new_bundle_tooltip" data-tooltip data-title="${k.ver_b}">${u.tooltipIcon}</span>
+  <span class="new_bundle_tooltip" data-tooltip data-title="${y.ver_b}">${h.tooltipIcon}</span>
 `
   ), L = (
     /* HTML */
@@ -173,7 +173,7 @@
   <div class="guarantee_block">
     <ul>
       <li>
-        ${u.moneyBackGuaranteeIcon}
+        ${h.moneyBackGuaranteeIcon}
         <span>Money-Back Guarantee</span>
       </li>
       <li>
@@ -183,7 +183,7 @@
     </ul>
   </div>
 `
-  ), z = `@media (min-width: 992px) {
+  ), T = `@media (min-width: 992px) {
   .lp-tr--purchase .container {
     max-width: 1280px;
   }
@@ -697,6 +697,7 @@
   }
 }
 .lp-tr--purchase .lp-tr--btn {
+  display: none !important;
   margin: 16px 0;
 }
 @media (max-width: 993px) {
@@ -726,6 +727,7 @@
   text-transform: uppercase;
   border-radius: 50px;
   padding: 2px 0 0 !important;
+  display: none !important;
 }
 @media (max-width: 768px) {
   .lp-tr--purchase .lp-tr--btn a {
@@ -902,86 +904,122 @@
 .purchase__pet-locket input[type=checkbox]:checked + .custom-label:after {
   border: solid #337c6b !important;
   border-width: 0 3px 3px 0 !important;
-}/*# sourceMappingURL=main.css.map */`, T = window.innerWidth < 768 ? "mobile" : "desktop";
-  class P {
-    constructor(n) {
-      this.device = n, this.idValue = "", this.init();
+}
+
+.new_proceed_to_checkout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  max-width: 345px;
+  margin: 16px auto;
+  border-radius: 50px;
+  background: #337c6b;
+  font-family: "DIN Condensed";
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  padding: 2px 0 0;
+  color: #fff;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .new_proceed_to_checkout {
+    height: 54px;
+    font-size: 20px;
+    max-width: 100%;
+  }
+}/*# sourceMappingURL=main.css.map */`, P = window.innerWidth < 768 ? "mobile" : "desktop";
+  class S {
+    constructor(p) {
+      this.device = p, this.idValue = "", this.init();
     }
     init() {
-      b({ name: 'Starter Pack" Bundle and UX Improvements on Shopping block', dev: "SKh" }), w("exp_zen_introduce", "variant_1"), p(".crs_font") || document.head.insertAdjacentHTML(
+      g({ name: 'Starter Pack" Bundle and UX Improvements on Shopping block', dev: "SKh" }), k("exp_zen_introduce", "variant_1"), t(".crs_font") || document.head.insertAdjacentHTML(
         "afterbegin",
         'link class="crs_font" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"'
-      ), document.head.insertAdjacentHTML("beforeend", `<style>${z}</style>`), this.renderNewTitle(), this.changePurchaseBlock(), this.clickPetLocketInputHandler(), this.renderGuaranteeBlock(), this.renderNewBundle(), this.clickBundleHandler(), this.clickProceedToCheckoutBtnHandler(), this.visibleHandler();
+      ), document.head.insertAdjacentHTML("beforeend", `<style>${T}</style>`), this.renderNewTitle(), this.changePurchaseBlock(), this.clickPetLocketInputHandler(), this.renderGuaranteeBlock(), this.renderNewProceedToCheckoutBtn(), this.renderNewBundle(), this.clickBundleHandler(), this.clickProceedToCheckoutBtnHandler(), this.visibleHandler();
     }
     renderNewTitle() {
-      o("h3.purchase__title").then((n) => {
+      o("h3.purchase__title").then((p) => {
         let e = "h3.purchase__title";
-        this.device === "mobile" && (e = ".lp-tr--purchase h2.lp-tr--section-big-title"), p(".stock_up_title") || p(e).insertAdjacentHTML("afterend", y);
+        this.device === "mobile" && (e = ".lp-tr--purchase h2.lp-tr--section-big-title"), t(".stock_up_title") || t(e).insertAdjacentHTML("afterend", v);
       });
     }
     changePurchaseBlock() {
-      o(".lp-tr--purchase .form-group .packs label span:not(.lp-tr--pack-price)").then((n) => {
-        m(".lp-tr--purchase .form-group .packs label span:not(.lp-tr--pack-price)").forEach((t) => {
-          const l = t.textContent.match(/\(([^)]+)\/each\)/i);
+      o(".lp-tr--purchase .form-group .packs label span:not(.lp-tr--pack-price)").then((p) => {
+        m(".lp-tr--purchase .form-group .packs label span:not(.lp-tr--pack-price)").forEach((n) => {
+          const l = n.textContent.match(/\(([^)]+)\/each\)/i);
           if (l) {
             const s = l[1];
-            t.textContent = `${s} Each`;
+            n.textContent = `${s} Each`;
           }
         });
-      }), o(".lp-tr--purchase .form-group .packs label[for=pack1] span.lp-tr--pack-price").then((n) => {
-        const e = p(".lp-tr--purchase .form-group .packs label[for=pack1] span.lp-tr--pack-price");
+      }), o(".lp-tr--purchase .form-group .packs label[for=pack1] span.lp-tr--pack-price").then((p) => {
+        const e = t(".lp-tr--purchase .form-group .packs label[for=pack1] span.lp-tr--pack-price");
         e && (e.textContent = `${e.textContent} Each`);
-      }), o(".lp-tr--purchase .lp-tr--gray-bg > .lp-tr--desktop img").then((n) => {
-        m(".lp-tr--purchase .lp-tr--gray-bg > .lp-tr--desktop img").forEach((t) => {
+      }), o(".lp-tr--purchase .lp-tr--gray-bg > .lp-tr--desktop img").then((p) => {
+        m(".lp-tr--purchase .lp-tr--gray-bg > .lp-tr--desktop img").forEach((n) => {
           let r = `${f}zenpatch-pet_img_11zon.webp`;
-          this.device === "mobile" && (r = `${f}zenpatch-pet_img_mob.webp`), t && t.src !== r && (t.src = r);
+          this.device === "mobile" && (r = `${f}zenpatch-pet_img_mob.webp`), n && n.src !== r && (n.src = r);
         });
-      }), o(".lp-tr--purchase .purchase__pet-locket").then((n) => {
-        const e = p(".lp-tr--purchase .purchase__pet-locket"), t = p("#lptrPurchase .form"), r = p(".lp-tr--purchase .purchase__pet-locket label:not(.custom-label)");
-        this.device === "desktop" && !p("#lptrPurchase .form + .purchase__pet-locket") && t && p("#lptrPurchase .form").insertAdjacentElement("afterend", e), this.device === "mobile" && (p("#lptrPurchase .new_pet_locket_wrapper") || p("#lptrPurchase .form").insertAdjacentHTML("afterend", '<div class="new_pet_locket_wrapper"></div>'), o(".lp-tr--purchase .new_pet_locket_wrapper").then((l) => {
-          !p("#lptrPurchase .new_pet_locket_wrapper .purchase__pet-locket") && t && p("#lptrPurchase .new_pet_locket_wrapper").insertAdjacentElement("beforeend", e);
+      }), o(".lp-tr--purchase .purchase__pet-locket").then((p) => {
+        const e = t(".lp-tr--purchase .purchase__pet-locket"), n = t("#lptrPurchase .form"), r = t(".lp-tr--purchase .purchase__pet-locket label:not(.custom-label)");
+        this.device === "desktop" && !t("#lptrPurchase .form + .purchase__pet-locket") && n && t("#lptrPurchase .form").insertAdjacentElement("afterend", e), this.device === "mobile" && (t("#lptrPurchase .new_pet_locket_wrapper") || t("#lptrPurchase .form").insertAdjacentHTML("afterend", '<div class="new_pet_locket_wrapper"></div>'), o(".lp-tr--purchase .new_pet_locket_wrapper").then((l) => {
+          !t("#lptrPurchase .new_pet_locket_wrapper .purchase__pet-locket") && n && t("#lptrPurchase .new_pet_locket_wrapper").insertAdjacentElement("beforeend", e);
         })), r.textContent.includes("separately") || (r.textContent = `Add a Pet Locket separately for ${r.textContent.split("for")[1]}`);
       });
     }
     clickPetLocketInputHandler() {
-      o(".purchase__pet-locket").then((n) => {
-        const e = p(".purchase__pet-locket"), t = p("#petlocket");
-        t && (e.addEventListener("click", (r) => {
-          r.target.getAttribute("data-test") || r.target.classList.contains("purchase__pet-locket") && (t == null || t.click(), e.classList.toggle("is_checked")), r.target.setAttribute("data-test", "1"), setTimeout(() => {
+      o(".purchase__pet-locket").then((p) => {
+        const e = t(".purchase__pet-locket"), n = t("#petlocket");
+        n && (e.addEventListener("click", (r) => {
+          r.target.getAttribute("data-test") || r.target.classList.contains("purchase__pet-locket") && (n == null || n.click(), e.classList.toggle("is_checked")), r.target.setAttribute("data-test", "1"), setTimeout(() => {
             r.target.getAttribute("data-test") && r.target.removeAttribute("data-test");
           }, 400);
-        }), t.addEventListener("change", () => {
-          t.checked ? e.classList.add("is_selected") : e.classList.remove("is_selected");
+        }), n.addEventListener("change", () => {
+          n.checked ? e.classList.add("is_selected") : e.classList.remove("is_selected");
         }));
       });
     }
     renderGuaranteeBlock() {
-      o(".lp-tr--purchase .lp-tr--btn").then((n) => {
-        p(".guarantee_block") || p(".lp-tr--purchase .lp-tr--btn").insertAdjacentHTML("afterend", L);
+      o(".lp-tr--purchase .lp-tr--btn").then((p) => {
+        t(".guarantee_block") || t(".lp-tr--purchase .lp-tr--btn").insertAdjacentHTML("afterend", L);
+      });
+    }
+    renderNewProceedToCheckoutBtn() {
+      o(".guarantee_block").then((p) => {
+        t(".new_proceed_to_checkout") || t(".guarantee_block").insertAdjacentHTML(
+          "beforebegin",
+          '<div class="new_proceed_to_checkout">Get pet zen now</div>'
+        );
       });
     }
     renderNewBundle() {
-      o("#lptrPurchase .form .form-group").then((n) => {
-        var t;
-        const e = ((t = p(".pet-zenp-starter-pack span")) == null ? void 0 : t.getAttribute("data-each-price")) ?? "";
-        p(".new_bundle_wrapper") || p("#lptrPurchase .form .form-group").insertAdjacentHTML("afterend", v(e)), this.initTooltip(), this.initCheckedBundle();
+      o("#lptrPurchase .form .form-group").then((p) => {
+        var n;
+        const e = ((n = t(".pet-zenp-starter-pack span")) == null ? void 0 : n.getAttribute("data-each-price")) ?? "";
+        t(".new_bundle_wrapper") || t("#lptrPurchase .form .form-group").insertAdjacentHTML("afterend", C(e)), this.initTooltip(), this.initCheckedBundle();
       });
     }
     initCheckedBundle() {
-      o(".new_bundle_pack").then((n) => {
-        localStorage.getItem("petZenStarterPack") && (p("#bundle").checked = !0, p(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.add("is_hidden"), p(".lp-tr--purchase .purchase__regular-price").classList.add("is_hidden"), p(".new_bundle_price_wrapper") || p(".lp-tr--purchase .overall-price.lp-tr--mobile").insertAdjacentHTML(
+      o(".new_bundle_pack").then((p) => {
+        localStorage.getItem("petZenStarterPack") && (t("#bundle").checked = !0, t(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.add("is_hidden"), t(".lp-tr--purchase .purchase__regular-price").classList.add("is_hidden"), t(".new_bundle_price_wrapper") || t(".lp-tr--purchase .overall-price.lp-tr--mobile").insertAdjacentHTML(
           "afterend",
           this.newPricePetZenStarterPackHtml("43842554855468")
         ), localStorage.removeItem("petZenStarterPack"));
       });
     }
     clickBundleHandler() {
-      o(".new_bundle_pack").then((n) => {
+      o(".new_bundle_pack").then((p) => {
         const e = "43842554855468";
-        m(".lp-tr--purchase input[type=radio] + label").forEach((t) => {
-          t.addEventListener("click", (r) => {
+        m(".lp-tr--purchase input[type=radio] + label").forEach((n) => {
+          n.addEventListener("click", (r) => {
             var l;
-            t.getAttribute("for") === "pack3" || t.getAttribute("for") === "pack2" || t.getAttribute("for") === "pack1" || t.getAttribute("for") === "pack4" ? (p(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.contains("is_hidden") && p(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.remove("is_hidden"), p(".lp-tr--purchase .purchase__regular-price").classList.contains("is_hidden") && p(".lp-tr--purchase .purchase__regular-price").classList.remove("is_hidden"), (l = p(".new_bundle_price_wrapper")) == null || l.remove()) : (_("exp_zen_introduce_click_01", "Pet Zen Starter Pack", "Click", "Bundle & save"), p(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.add("is_hidden"), p(".lp-tr--purchase .purchase__regular-price").classList.add("is_hidden"), p(".new_bundle_price_wrapper") || p(".lp-tr--purchase .overall-price.lp-tr--mobile").insertAdjacentHTML(
+            n.getAttribute("for") === "pack3" || n.getAttribute("for") === "pack2" || n.getAttribute("for") === "pack1" || n.getAttribute("for") === "pack4" ? (t(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.contains("is_hidden") && t(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.remove("is_hidden"), t(".lp-tr--purchase .purchase__regular-price").classList.contains("is_hidden") && t(".lp-tr--purchase .purchase__regular-price").classList.remove("is_hidden"), (l = t(".new_bundle_price_wrapper")) == null || l.remove()) : (_("exp_zen_introduce_click_01", "Pet Zen Starter Pack", "Click", "Bundle & save"), t(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.add("is_hidden"), t(".lp-tr--purchase .purchase__regular-price").classList.add("is_hidden"), t(".new_bundle_price_wrapper") || t(".lp-tr--purchase .overall-price.lp-tr--mobile").insertAdjacentHTML(
               "afterend",
               this.newPricePetZenStarterPackHtml(e)
             ));
@@ -989,11 +1027,11 @@
         });
       });
     }
-    newPricePetZenStarterPackHtml(n) {
+    newPricePetZenStarterPackHtml(p) {
       const e = m(".pet-zenp-starter-pack span");
-      let t = "";
+      let n = "";
       return e ? e == null || e.forEach((r) => {
-        r.getAttribute("data-variant-id") === n && (t = /* HTML */
+        r.getAttribute("data-variant-id") === p && (n = /* HTML */
         `
             <div class="new_bundle_price_wrapper">
               <div class="new_bundle_price_total">
@@ -1006,78 +1044,24 @@
               </div>
             </div>
           `);
-      }) : t = "", t;
+      }) : n = "", n;
     }
     clickProceedToCheckoutBtnHandler() {
-      o(".new_bundle_pack").then((n) => {
-        var e;
-        (e = p(".lp-tr--purchase #proceed")) == null || e.addEventListener("click", (t) => {
-          var r;
-          t.preventDefault(), t.stopPropagation(), this.idValue = (r = p(".lp-tr--purchase input[type=radio]:checked+label")) == null ? void 0 : r.previousElementSibling.getAttribute(
-            "data-tick-id"
-          ), this.idValue === "43842554855468" && localStorage.setItem("petZenStarterPack", "yes"), p("#petlocket:checked") ? this.addToCartHandler(+this.idValue, !0) : this.addToCartHandler(+this.idValue);
+      o(".new_bundle_pack").then((p) => {
+        o(".new_proceed_to_checkout").then((e) => {
+          t(".new_proceed_to_checkout").addEventListener("click", (n) => {
+            var r;
+            _("exp_zen_get_pet_zen_now_click_01", "Get Pet Zen Now", "Click", "Bundle & save"), this.idValue = (r = t(".lp-tr--purchase input[type=radio]:checked+label")) == null ? void 0 : r.previousElementSibling.getAttribute(
+              "data-tick-id"
+            ), this.idValue === "43842554855468" && localStorage.setItem("petZenStarterPack", "yes"), t("#petlocket:checked") ? this.addToCartHandler(+this.idValue, !0) : this.addToCartHandler(+this.idValue);
+          });
         });
       });
     }
-    // async addToCartHandler(idValue: number, petlocket: boolean = false) {
-    //   // clearCart
-    //   await fetch('/cart/clear.js', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     }
-    //   })
-    //   console.log('clearCART!!!!!!!!!!!!!!!!!!!')
-    //   let items = [
-    //     {
-    //       id: idValue,
-    //       quantity: 1
-    //     }
-    //   ]
-    //   if (petlocket) {
-    //     items.push({
-    //       id: 43558182027308,
-    //       quantity: 1
-    //     })
-    //   }
-    //   let formData = {
-    //     items: items
-    //   }
-    //   // addToCart
-    //   // await fetch('/cart/add.js', {
-    //   //   method: 'POST',
-    //   //   headers: {
-    //   //     'Content-Type': 'application/json'
-    //   //   },
-    //   //   body: JSON.stringify(formData)
-    //   // }).then(() => {
-    //   //   console.log(`idValue`, idValue, petlocket)
-    //   //   setTimeout(() => {
-    //   //     window.location.href = '/checkout'
-    //   //   }, 800)
-    //   // })
-    //   // addToCart
-    //   try {
-    //     const response = await fetch('/cart/add.js', {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json'
-    //       },
-    //       body: JSON.stringify(formData)
-    //     })
-    //     if (!response.ok) {
-    //       throw new Error('Failed to add items to cart')
-    //     }
-    //     console.log(`idValue`, idValue, petlocket)
-    //     window.location.href = '/checkout'
-    //   } catch (error) {
-    //     console.error('Error adding items to cart:', error)
-    //   }
-    // }
-    async addToCartHandler(n, e = !1) {
-      const t = "/cart/clear.js", r = "/cart/add.js";
+    async addToCartHandler(p, e = !1) {
+      const n = "/cart/clear.js", r = "/cart/add.js";
       try {
-        if (!(await fetch(t, {
+        if (!(await fetch(n, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -1085,29 +1069,28 @@
         })).ok)
           throw new Error("Failed to clear the cart");
         console.log("Cart cleared successfully");
-        const i = [{ id: n, quantity: 1 }];
-        if (e && i.push({ id: 43558182027308, quantity: 1 }), !(await fetch(r, {
+        const i = [{ id: p, quantity: 1 }];
+        e && i.push({ id: 43558182027308, quantity: 1 });
+        const d = await fetch(r, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({ items: i })
-        })).ok)
-          throw new Error("Failed to add items to cart");
-        console.log("Items added to cart", n, e), setTimeout(() => {
-          window.location.href = "/checkout";
-        }, 1200);
+        }).then((x) => x.json()).then((x) => {
+          console.log("Items added to cart", p, e, x), window.location.href = "/checkout";
+        });
       } catch (s) {
         console.error("Error in addToCartHandler:", s), console.log("There was an error adding items to the cart. Please try again.");
       }
     }
     initTooltip() {
-      g([
+      w([
         "https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js",
         "https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"
       ]).then(async () => {
-        let n = setInterval(() => {
-          typeof tippy == "function" && p("[data-tooltip]") && (clearInterval(n), m("[data-tooltip]").forEach((e) => {
+        let p = setInterval(() => {
+          typeof tippy == "function" && t("[data-tooltip]") && (clearInterval(p), m("[data-tooltip]").forEach((e) => {
             tippy(e, {
               content: e.getAttribute("data-title"),
               trigger: "click",
@@ -1119,14 +1102,14 @@
               },
               placement: "top-end",
               interactive: !0,
-              onShow(t) {
+              onShow(n) {
               },
-              onTrigger(t) {
-                p("body").classList.add("tooltip_open"), _("exp_zen_introduce_click_02", "Pet Zen Starter Pack", "Click", "Bundle & save");
+              onTrigger(n) {
+                t("body").classList.add("tooltip_open"), _("exp_zen_introduce_click_02", "Pet Zen Starter Pack", "Click", "Bundle & save");
               },
-              onHide(t) {
+              onHide(n) {
                 setTimeout(() => {
-                  p("body").classList.remove("tooltip_open");
+                  t("body").classList.remove("tooltip_open");
                 }, 200);
               }
             });
@@ -1135,19 +1118,19 @@
       });
     }
     visibleHandler() {
-      o(".new_bundle_pack").then((n) => {
-        x(
+      o(".new_bundle_pack").then((p) => {
+        b(
           ".new_bundle_pack",
           "exp_zen_introduce_element_01",
           "Bundle & save",
           "Pet Zen Starter Pack",
           "View"
         );
-      }), o(".guarantee_block").then((n) => {
-        x(".guarantee_block", "exp_zen_introduce_element_02", "Bundle & save", "Guarantee", "View");
+      }), o(".guarantee_block").then((p) => {
+        b(".guarantee_block", "exp_zen_introduce_element_02", "Bundle & save", "Guarantee", "View");
       });
     }
   }
-  window.location.pathname.match("pages") && new P(T);
+  window.location.pathname.match("pages") && new S(P);
 })();
 //# sourceMappingURL=index.js.map
