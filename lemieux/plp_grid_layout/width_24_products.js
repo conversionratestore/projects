@@ -1,51 +1,47 @@
 (function() {
   "use strict";
-  const f = (r, e, t, o = "") => {
+  const f = (o, e, t, s = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: r,
+      event_name: o,
       event_desc: e,
       event_type: t,
-      event_loc: o
-    }), console.log(`Event: ${r} | ${e} | ${t} | ${o}`);
-  }, y = ({ name: r, dev: e }) => {
+      event_loc: s
+    }), console.log(`Event: ${o} | ${e} | ${t} | ${s}`);
+  }, y = ({ name: o, dev: e }) => {
     console.log(
-      `%c EXP: ${r} (DEV: ${e})`,
+      `%c EXP: ${o} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, p = (r) => document.querySelector(r), L = (r) => {
-    let e = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", r, "variant_1"));
-    }, 1e3);
-  }, S = (r, e) => {
-    let t = null, o = null;
+  }, p = (o) => document.querySelector(o), L = (o, e) => {
+    let t = null, s = null;
     const n = {
       threshold: 0.5
       // 50% of the product must be visible
     };
-    function i(d, c) {
-      d.forEach((s) => {
+    function r(d, c) {
+      d.forEach((i) => {
         var a;
-        if (s.isIntersecting) {
+        if (i.isIntersecting) {
           const m = window.crypto.randomUUID();
-          s.target.setAttribute("data-product-id", m);
-          const v = (a = s.target.querySelector("[cy-listingproductname]")) == null ? void 0 : a.textContent;
-          e.add(v), r(e.size), c.unobserve(s.target);
+          i.target.setAttribute("data-product-id", m);
+          const g = (a = i.target.querySelector("[cy-listingproductname]")) == null ? void 0 : a.textContent;
+          e.add(g), o(e.size), c.unobserve(i.target);
         }
       });
     }
-    o = new IntersectionObserver(i, n);
+    s = new IntersectionObserver(r, n);
     const u = document.querySelector("ac-product-listing");
     return u ? (u.querySelectorAll("product").forEach((d) => {
-      o.observe(d);
+      s.observe(d);
     }), t = new MutationObserver((d) => {
       d.forEach((c) => {
-        c.addedNodes.forEach((s) => {
-          s instanceof HTMLElement && s.nodeName.toLowerCase() === "product" && o.observe(s);
+        c.addedNodes.forEach((i) => {
+          i instanceof HTMLElement && i.nodeName.toLowerCase() === "product" && s.observe(i);
         });
       });
-    }), t.observe(u, { childList: !0, subtree: !0 }), [t, o]) : void 0;
-  }, P = `/* div:has(> product) {
+    }), t.observe(u, { childList: !0, subtree: !0 }), [t, s]) : void 0;
+  }, S = `/* div:has(> product) {
   --os-grid-columns: 4;
   grid-template-columns: [column-start] repeat(var(--os-grid-columns, 12), 1fr) [column-end] !important;
 
@@ -61,41 +57,45 @@
 product-listing listing-size {
   display: none;
 } */`;
-  y({ name: "New PLP GRID Layout", dev: "OS" }), L("");
-  const b = (r, e) => {
+  y({ name: "New PLP GRID Layout", dev: "OS" }), function(o, e, t, s, n, r) {
+    o.hj = o.hj || function() {
+      (o.hj.q = o.hj.q || []).push(arguments);
+    }, o._hjSettings = { hjid: 2667925, hjsv: 6 }, n = e.getElementsByTagName("head")[0], r = e.createElement("script"), r.async = !0, r.src = t + o._hjSettings.hjid + s + o._hjSettings.hjsv, n && n.appendChild(r);
+  }(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv="), window.hj("event", "plp_grid");
+  const b = (o, e) => {
     let t = null;
-    const o = () => {
-      const n = document.querySelector(r);
+    const s = () => {
+      const n = document.querySelector(o);
       n && (e(n), t && t.disconnect());
     };
-    return t && t.disconnect(), t = new MutationObserver(o), t.observe(document.body, {
+    return t && t.disconnect(), t = new MutationObserver(s), t.observe(document.body, {
       childList: !0,
       subtree: !0
-    }), o(), t;
-  }, E = (r) => {
-    const e = new MutationObserver((t, o) => {
-      document.querySelector('[aria-label="Load more"]') && (r(), o.disconnect());
+    }), s(), t;
+  }, P = (o) => {
+    const e = new MutationObserver((t, s) => {
+      document.querySelector('[aria-label="Load more"]') && (o(), s.disconnect());
     });
     return e.observe(document, {
       childList: !0,
       subtree: !0
     }), e;
   };
-  class O {
+  class E {
     constructor() {
       this.observers = [], this.clickNum = 1, this.productsLoaded = !1, this.productsSeen = 0, this.productsSet = /* @__PURE__ */ new Set(), this.device = window.innerWidth < 1101 ? "mobile" : "desktop", this.productClickEvent = this.handleProductClick.bind(this), this.init();
     }
     init() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${P}</style>`);
+      document.head.insertAdjacentHTML("beforeend", `<style>${S}</style>`);
       let e = window.location.pathname;
       const t = () => {
         this.mainObserver && this.mainObserver.disconnect(), this.mainObserver = new MutationObserver((n) => {
-          if (n.some((i) => i.addedNodes.length > 0)) {
-            const i = p("ac-product-listing");
-            if (this.mainObserver && this.mainObserver.disconnect(), this.mainObserver.observe(document.body, { childList: !0, subtree: !0 }), !i)
+          if (n.some((r) => r.addedNodes.length > 0)) {
+            const r = p("ac-product-listing");
+            if (this.mainObserver && this.mainObserver.disconnect(), this.mainObserver.observe(document.body, { childList: !0, subtree: !0 }), !r)
               return;
             this.changeProductsSize(), this.changeListingSize();
-            const u = E(() => {
+            const u = P(() => {
               setTimeout(() => {
                 this.trackProductVisibility();
               }, 1e3);
@@ -103,24 +103,24 @@ product-listing listing-size {
             this.observers.push(u);
           }
         }), this.mainObserver.observe(document.body, { childList: !0, subtree: !0 });
-      }, o = () => {
-        window.location.pathname !== e && (console.log("path changed"), this.elementCountObserver && this.elementCountObserver.disconnect(), document.removeEventListener("mousedown", this.productClickEvent), clearInterval(this.timerId), this.observers.forEach((n) => {
+      }, s = () => {
+        window.location.pathname !== e && (this.elementCountObserver && this.elementCountObserver.disconnect(), document.removeEventListener("mousedown", this.productClickEvent), clearInterval(this.timerId), this.observers.forEach((n) => {
           n.disconnect();
         }), this.changeProductsSize(), this.changeListingSize(), t(), this.productsSet.clear(), e = window.location.pathname);
       };
-      t(), this.pageChangeHandler(o);
+      t(), this.pageChangeHandler(s);
     }
     handleProductClick(e) {
       e.target.closest("product img") && f("plp_product_image_click", "Product Image ", "click", "PLP Product Image");
     }
     pageChangeHandler(e) {
       (function(t) {
-        const o = t.pushState, n = t.replaceState;
-        t.pushState = function(i) {
-          o.apply(t, arguments), e();
-        }, t.replaceState = function(i) {
+        const s = t.pushState, n = t.replaceState;
+        t.pushState = function(r) {
+          s.apply(t, arguments), e();
+        }, t.replaceState = function(r) {
           n.apply(t, arguments), e();
-        }, window.addEventListener("popstate", function(i) {
+        }, window.addEventListener("popstate", function(r) {
           e();
         });
       })(window.history);
@@ -128,11 +128,11 @@ product-listing listing-size {
     trackProductVisibility() {
       this.elementCountObserver && this.elementCountObserver.disconnect(), this.elementCountObserver = b("ac-product-listing", (e) => {
         document.addEventListener("mousedown", this.productClickEvent);
-        const t = b('[aria-label="Load more"]', (o) => {
-          const n = S((h) => {
+        const t = b('[aria-label="Load more"]', (s) => {
+          const n = L((h) => {
             this.productsSeen !== h && (this.productsSeen = h, f("plp_view_items_count", `Product Seen: ${h}`, "view", "PLP"));
-          }, this.productsSet), i = n == null ? void 0 : n[0], u = n == null ? void 0 : n[1];
-          this.observers.push(i), this.observers.push(u);
+          }, this.productsSet), r = n == null ? void 0 : n[0], u = n == null ? void 0 : n[1];
+          this.observers.push(r), this.observers.push(u);
         });
         this.observers.push(t);
       }), this.observers.push(this.elementCountObserver);
@@ -155,33 +155,33 @@ product-listing listing-size {
       const t = this.updateProductAmountNum();
       if (t === 0)
         return;
-      const o = e.querySelectorAll("product"), n = Array.from(o), i = new URLSearchParams(window.location.search), h = parseInt(i.get("pg") || "1", 10) * 24;
+      const s = e.querySelectorAll("product"), n = Array.from(s), r = new URLSearchParams(window.location.search), h = parseInt(r.get("pg") || "1", 10) * 24;
       n.forEach((a, m) => {
         a.style.display = "";
       }), n.forEach((a, m) => {
         m >= h && (a.style.display = "none");
       });
-      const d = n.filter((a) => a.style.display !== "none").length, c = document.querySelector('[aria-label="Load more"]'), s = c == null ? void 0 : c.previousElementSibling;
-      s && (s.textContent = `You’ve viewed ${d} of ${t} products`), c && ((t > n.length || d < t) && (c.disabled = !1), c.addEventListener("click", async () => {
+      const d = n.filter((a) => a.style.display !== "none").length, c = document.querySelector('[aria-label="Load more"]'), i = c == null ? void 0 : c.previousElementSibling;
+      i && (i.textContent = `You’ve viewed ${d} of ${t} products`), c && ((t > n.length || d < t) && (c.disabled = !1), c.addEventListener("click", async () => {
         await new Promise((l) => {
-          new MutationObserver((x, q) => {
-            x.some(($) => $.addedNodes.length > 0) && (q.disconnect(), l(!0));
+          new MutationObserver((q, x) => {
+            q.some((_) => _.addedNodes.length > 0) && (x.disconnect(), l(!0));
           }).observe(p("ac-product-listing"), { childList: !0, subtree: !0 });
         });
-        const a = p("ac-product-listing"), m = a.querySelectorAll("product"), v = Array.from(m), C = a.querySelectorAll('product[style*="display: none"]'), A = Array.from(C), k = new URLSearchParams(window.location.search), I = parseInt(k.get("pg") || "1", 10);
-        A.slice(0, 24).forEach((l) => {
+        const a = p("ac-product-listing"), m = a.querySelectorAll("product"), g = Array.from(m), O = a.querySelectorAll('product[style*="display: none"]'), C = Array.from(O), A = new URLSearchParams(window.location.search), k = parseInt(A.get("pg") || "1", 10);
+        C.slice(0, 24).forEach((l) => {
           l.style.display = "";
-        }), v.forEach((l, w) => {
-          w >= I * 24 && (l.style.display = "none");
+        }), g.forEach((l, w) => {
+          w >= k * 24 && (l.style.display = "none");
         });
-        const g = v.filter((l) => l.style.display !== "none").length;
-        s && (s.textContent = `You’ve viewed ${g >= t ? t : g} of ${t} products`), g !== t ? c.disabled = !1 : c.disabled = !0;
+        const v = g.filter((l) => l.style.display !== "none").length;
+        i && (i.textContent = `You’ve viewed ${v >= t ? t : v} of ${t} products`), v !== t ? c.disabled = !1 : c.disabled = !0;
       }));
     }
     changeListingSize() {
-      const e = p("ac-listing-size"), t = e == null ? void 0 : e.querySelector("button:first-of-type"), o = e == null ? void 0 : e.querySelector("button:last-of-type");
-      !t || !o || t.click();
+      const e = p("ac-listing-size"), t = e == null ? void 0 : e.querySelector("button:first-of-type"), s = e == null ? void 0 : e.querySelector("button:last-of-type");
+      !t || !s || t.click();
     }
   }
-  new O();
+  new E();
 })();
