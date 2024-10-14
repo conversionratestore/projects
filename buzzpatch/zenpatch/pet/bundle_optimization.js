@@ -8,7 +8,7 @@
       event_type: e,
       event_loc: n
     }), console.dir(`Event: ${a} | ${p} | ${e} | ${n}`);
-  }, g = ({ name: a, dev: p }) => {
+  }, b = ({ name: a, dev: p }) => {
     console.log(
       `%c EXP: ${a} (DEV: ${p})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
@@ -38,7 +38,7 @@
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", a, p), console.log("set", a, p));
     }, 1e3);
-  }, b = (a, p, e, n, r = "Visibility", l = 600, s = 0.3) => {
+  }, g = (a, p, e, n, r = "Visibility", l = 600, s = 0.3) => {
     let i, u;
     if (i = new IntersectionObserver(
       function(d) {
@@ -906,13 +906,23 @@
   border-width: 0 3px 3px 0 !important;
 }
 
-.new_proceed_to_checkout {
+.proceed_to_checkout_wrapper {
+  margin: 16px auto;
+}
+@media (max-width: 768px) {
+  .proceed_to_checkout_wrapper {
+    padding: 12px 22px;
+    background: #fff;
+    margin: 0;
+  }
+}
+.proceed_to_checkout_wrapper .new_proceed_to_checkout {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 56px;
   max-width: 345px;
-  margin: 16px auto;
+  margin: 0 auto;
   border-radius: 50px;
   background: #337c6b;
   font-family: "DIN Condensed";
@@ -927,7 +937,7 @@
   cursor: pointer;
 }
 @media (max-width: 768px) {
-  .new_proceed_to_checkout {
+  .proceed_to_checkout_wrapper .new_proceed_to_checkout {
     height: 54px;
     font-size: 20px;
     max-width: 100%;
@@ -938,7 +948,7 @@
       this.device = p, this.idValue = "", this.init();
     }
     init() {
-      g({ name: 'Starter Pack" Bundle and UX Improvements on Shopping block', dev: "SKh" }), k("exp_zen_introduce", "variant_1"), t(".crs_font") || document.head.insertAdjacentHTML(
+      b({ name: 'Starter Pack" Bundle and UX Improvements on Shopping block', dev: "SKh" }), k("exp_zen_introduce", "variant_1"), t(".crs_font") || document.head.insertAdjacentHTML(
         "afterbegin",
         'link class="crs_font" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"'
       ), document.head.insertAdjacentHTML("beforeend", `<style>${T}</style>`), this.renderNewTitle(), this.changePurchaseBlock(), this.clickPetLocketInputHandler(), this.renderGuaranteeBlock(), this.renderNewProceedToCheckoutBtn(), this.renderNewBundle(), this.clickBundleHandler(), this.clickProceedToCheckoutBtnHandler(), this.visibleHandler();
@@ -992,9 +1002,9 @@
     }
     renderNewProceedToCheckoutBtn() {
       o(".guarantee_block").then((p) => {
-        t(".new_proceed_to_checkout") || t(".guarantee_block").insertAdjacentHTML(
+        t(".proceed_to_checkout_wrapper") || t(".guarantee_block").insertAdjacentHTML(
           "beforebegin",
-          '<div class="new_proceed_to_checkout">Get pet zen now</div>'
+          '<div class="proceed_to_checkout_wrapper"><div class="new_proceed_to_checkout">Get pet zen now</div></div>'
         );
       });
     }
@@ -1119,7 +1129,7 @@
     }
     visibleHandler() {
       o(".new_bundle_pack").then((p) => {
-        b(
+        g(
           ".new_bundle_pack",
           "exp_zen_introduce_element_01",
           "Bundle & save",
@@ -1127,7 +1137,7 @@
           "View"
         );
       }), o(".guarantee_block").then((p) => {
-        b(".guarantee_block", "exp_zen_introduce_element_02", "Bundle & save", "Guarantee", "View");
+        g(".guarantee_block", "exp_zen_introduce_element_02", "Bundle & save", "Guarantee", "View");
       });
     }
   }
