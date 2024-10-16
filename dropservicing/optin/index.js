@@ -1834,7 +1834,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       }), this;
     }
   }
-  const z = (e) => new Do(e), Co = async (e) => {
+  const M = (e) => new Do(e), Co = async (e) => {
     const i = (r) => new Promise((l, s) => {
       const c = r.split(".").pop();
       if (c === "js") {
@@ -2060,21 +2060,21 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       question: "Will I be able to start this business just by watching the training?",
       answer: "Dylan is going to reveal the 4 steps you need to get started as well as give you a tutorial and template you can use right away."
     }
-  ], E = "https://conversionratestore.github.io/projects/dropservicing/optin/img", No = (
+  ], S = "https://conversionratestore.github.io/projects/dropservicing/optin/img", No = (
     /* HTML */
     `
   <section id="main_block">
     <div class="wrapper">
       <header>
-        <img src="${E}/logo.png" alt="logo" />
+        <img src="${S}/logo.png" alt="logo" />
       </header>
       <div class="flex">
         <div class="info">
           <div class="tp_label">
-            <img src="${E}/trustpilot.svg" alt="stars" />
+            <img src="${S}/trustpilot.svg" alt="stars" />
             <p>
               TrustScore&nbsp;
-              <img src="${E}/trustpilot_star.svg" alt="star" />
+              <img src="${S}/trustpilot_star.svg" alt="star" />
               <b>4.8/5</b>&nbsp;<span>300+ Reviews</span>
             </p>
           </div>
@@ -2082,13 +2082,13 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
           <p>Discover how to go from overworked employee to successful entrepreneur in a FREE Webinar!</p>
           <button class="cta pop mobile">Grab Your FREE Seat Now!</button>
           <div class="youll_list">
-            <p>In this FREE training, you’ll learn: <img src="${E}/arrow.svg" alt="arrow" class="desktop" /></p>
+            <p>In this FREE training, you’ll learn: <img src="${S}/arrow.svg" alt="arrow" class="desktop" /></p>
             <ul>
               ${Oo.map(
       (e) => (
         /* HTML */
         `<li>
-                      <img src="${E}/check.svg" alt="check" />
+                      <img src="${S}/check.svg" alt="check" />
                       <p>${e}</p>
                     </li>`
       )
@@ -2101,16 +2101,16 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
             <h2>Join our Exclusive Online Training</h2>
             <p>
               <span>
-                <img src="${E}/dollar.svg" alt="dollar" />
+                <img src="${S}/dollar.svg" alt="dollar" />
                 Free
               </span>
               <span>
-                <img src="${E}/frame.svg" alt="frame" />
+                <img src="${S}/frame.svg" alt="frame" />
                 Live Training
               </span>
 
               <span>
-                <img src="${E}/calendar.svg" alt="calendar" />
+                <img src="${S}/calendar.svg" alt="calendar" />
                 Today
               </span>
             </p>
@@ -2122,7 +2122,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
             <div class="inputs2"></div>
           </form>
           <div class="bonus">
-            <p><img src="${E}/present.png" alt="gift" /> Exclusive bonuses!</p>
+            <p><img src="${S}/present.png" alt="gift" /> Exclusive bonuses!</p>
             <p>Stay until the end of the training to receive the following:</p>
             <ul>
               <li>Comprehensive 12K Sale Tutorial (+Free Copy/Paste Template)</li>
@@ -2153,9 +2153,9 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
                 <div class="slide" data-video="${l}">
                   <div>
                     <div class="img">
-                      <img src="${E}/${r}" alt="${e}" />
+                      <img src="${S}/${r}" alt="${e}" />
                     </div>
-                    <p><b>${e}</b><img src="${E}/rating_stars.png" alt="stars" /></p>
+                    <p><b>${e}</b><img src="${S}/rating_stars.png" alt="stars" /></p>
                   </div>
                   <p>${i}</p>
                 </div>
@@ -2181,7 +2181,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         </ul>
         <button class="cta pop">Grab Your FREE Seat Now!</button>
       </div>
-      <img src="${E}/bonus.png" alt="bonus" />
+      <img src="${S}/bonus.png" alt="bonus" />
     </div>
   </section>
 `
@@ -2190,8 +2190,8 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     `
   <section id="host_block" class="crs_container">
     <div class="img">
-      <img src="${E}/founder.jpg" alt="dylan" class="desktop" />
-      <img src="${E}/founder_mob.jpg" alt="dylan" class="mobile" />
+      <img src="${S}/founder.jpg" alt="dylan" class="desktop" />
+      <img src="${S}/founder_mob.jpg" alt="dylan" class="mobile" />
       <a href="https://dropservicing.com/homepage"></a>
     </div>
     <div class="info">
@@ -2230,9 +2230,9 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
               <div class="video_slide" data-video="${l}">
                 <div class="head">
                   <div class="img">
-                    <img src="${E}/${r}" alt="${e}" />
+                    <img src="${S}/${r}" alt="${e}" />
                   </div>
-                  <p><b>${e}</b><img src="${E}/rating_stars.png" alt="stars" /></p>
+                  <p><b>${e}</b><img src="${S}/rating_stars.png" alt="stars" /></p>
                   <p>${i}</p>
                 </div>
                 <div class="video">
@@ -2251,7 +2251,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     `
   <section id="training_for" class="crs_container">
     <div class="photo">
-      <img src="${E}/founder2.jpg" alt="dylan" />
+      <img src="${S}/founder2.jpg" alt="dylan" />
       <div class="bottom_info">
         <p>Spaces are limited and filling up fast</p>
         <p>Grab this limited time offer to learn Drop Servicing today</p>
@@ -2266,7 +2266,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       <ul>
         ${Io.map((e) => (
       /* HTML */
-      `<li><img src="${E}/check.svg" alt="check" />${e}</li>`
+      `<li><img src="${S}/check.svg" alt="check" />${e}</li>`
     )).join("")}
       </ul>
       <p>If any of the above apply to you, you're in the right place!</p>
@@ -2281,7 +2281,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   <section id="trust_pilot">
     <div class="crs_container">
       <h2>
-        TrustScore&nbsp;<img src="${E}/trustpilot_star.svg" alt="" />&nbsp;<b>4.8/5</b>&nbsp;<span class="desktop"
+        TrustScore&nbsp;<img src="${S}/trustpilot_star.svg" alt="" />&nbsp;<b>4.8/5</b>&nbsp;<span class="desktop"
           >300+ Reviews</span
         >
       </h2>
@@ -2293,11 +2293,11 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         `
               <li>
                 <div class="review_slide">
-                  <p class="name">${e}<img src="${E}/stars_tp.svg" alt="stars" /></p>
+                  <p class="name">${e}<img src="${S}/stars_tp.svg" alt="stars" /></p>
                   <a href="${s}">${i}</a>
                   <p class="text">${r}</p>
                   <p>
-                    <span><img src="${E}/check2.svg" alt="check" />Verified User</span>${l}
+                    <span><img src="${S}/check2.svg" alt="check" />Verified User</span>${l}
                   </p>
                 </div>
               </li>
@@ -2308,10 +2308,10 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     </div>
     <div class="points">
       <div class="crs_container">
-        <p>3,000+ Members <img src="${E}/members.svg" alt="members" /></p>
-        <p>4M+ In Revenue <img src="${E}/revenue.svg" alt="revenue" /></p>
-        <p>100+ Countries <img src="${E}/countries.svg" alt="countries" /></p>
-        <p>15M+ Views <img src="${E}/views.svg" alt="views" /></p>
+        <p>3,000+ Members <img src="${S}/members.svg" alt="members" /></p>
+        <p>4M+ In Revenue <img src="${S}/revenue.svg" alt="revenue" /></p>
+        <p>100+ Countries <img src="${S}/countries.svg" alt="countries" /></p>
+        <p>15M+ Views <img src="${S}/views.svg" alt="views" /></p>
       </div>
     </div>
   </section>
@@ -2343,7 +2343,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     `
   <section id="last_cta" class="crs_container">
     <div class="img">
-      <img src="${E}/product.jpg" alt="product" />
+      <img src="${S}/product.jpg" alt="product" />
     </div>
     <div>
       <h2>Your Future Starts Here!</h2>
@@ -2394,15 +2394,15 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         <h2>Join our Exclusive Online Training</h2>
         <p class="icons">
           <span>
-            <img src="${E}/dollar.svg" alt="dollar" />
+            <img src="${S}/dollar.svg" alt="dollar" />
             Free
           </span>
           <span>
-            <img src="${E}/frame.svg" alt="frame" />
+            <img src="${S}/frame.svg" alt="frame" />
             Live Training
           </span>
           <span>
-            <img src="${E}/calendar.svg" alt="calendar" />
+            <img src="${S}/calendar.svg" alt="calendar" />
             Today
           </span>
         </p>
@@ -2414,7 +2414,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         <div class="inputs2"></div>
       </form>
       <div class="bonus">
-        <p><img src="${E}/present.png" alt="gift" /> Exclusive bonuses!</p>
+        <p><img src="${S}/present.png" alt="gift" /> Exclusive bonuses!</p>
         <p>Stay until the end of the training to receive the following:</p>
         <ul>
           <li>Comprehensive 12K Sale Tutorial (+Free Copy/Paste Template)</li>
@@ -2435,8 +2435,8 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       <div>
         <p>Free Training: Learn how to earn online with Drop Servicing</p>
         <p>
-          <img src="${E}/trustpilot.svg" alt="trustpilot" />TrustScore&nbsp;<img
-            src="${E}/trustpilot_star.svg"
+          <img src="${S}/trustpilot.svg" alt="trustpilot" />TrustScore&nbsp;<img
+            src="${S}/trustpilot_star.svg"
             alt="star"
           /><span>4.8</span>
         </p>
@@ -2490,7 +2490,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   function Tn(e) {
     return ["true", "false"].indexOf(e) >= 0 ? JSON.parse(e) : e;
   }
-  function En(e, i, r, l) {
+  function Sn(e, i, r, l) {
     if (l)
       try {
         e.setItem(i, r);
@@ -2771,19 +2771,19 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         s.removeItem(n);
       }), localStorage.tnsApp = w);
     }
-    var y = s.tC ? Tn(s.tC) : En(s, "tC", Bo(), c), D = s.tPL ? Tn(s.tPL) : En(s, "tPL", na(), c), Y = s.tMQ ? Tn(s.tMQ) : En(s, "tMQ", ea(), c), Q = s.tTf ? Tn(s.tTf) : En(s, "tTf", ke("transform"), c), xn = s.t3D ? Tn(s.t3D) : En(s, "t3D", ra(Q), c), Z = s.tTDu ? Tn(s.tTDu) : En(s, "tTDu", ke("transitionDuration"), c), nt = s.tTDe ? Tn(s.tTDe) : En(s, "tTDe", ke("transitionDelay"), c), et = s.tADu ? Tn(s.tADu) : En(s, "tADu", ke("animationDuration"), c), $t = s.tADe ? Tn(s.tADe) : En(s, "tADe", ke("animationDelay"), c), ne = s.tTE ? Tn(s.tTE) : En(s, "tTE", _i(Z, "Transition"), c), Ei = s.tAE ? Tn(s.tAE) : En(s, "tAE", _i(et, "Animation"), c), Si = r.console && typeof r.console.warn == "function", It = ["container", "controlsContainer", "prevButton", "nextButton", "navContainer", "autoplayButton"], Ai = {};
+    var y = s.tC ? Tn(s.tC) : Sn(s, "tC", Bo(), c), D = s.tPL ? Tn(s.tPL) : Sn(s, "tPL", na(), c), Y = s.tMQ ? Tn(s.tMQ) : Sn(s, "tMQ", ea(), c), Q = s.tTf ? Tn(s.tTf) : Sn(s, "tTf", ke("transform"), c), xn = s.t3D ? Tn(s.t3D) : Sn(s, "t3D", ra(Q), c), Z = s.tTDu ? Tn(s.tTDu) : Sn(s, "tTDu", ke("transitionDuration"), c), nt = s.tTDe ? Tn(s.tTDe) : Sn(s, "tTDe", ke("transitionDelay"), c), et = s.tADu ? Tn(s.tADu) : Sn(s, "tADu", ke("animationDuration"), c), $t = s.tADe ? Tn(s.tADe) : Sn(s, "tADe", ke("animationDelay"), c), ne = s.tTE ? Tn(s.tTE) : Sn(s, "tTE", _i(Z, "Transition"), c), Si = s.tAE ? Tn(s.tAE) : Sn(s, "tAE", _i(et, "Animation"), c), Ei = r.console && typeof r.console.warn == "function", It = ["container", "controlsContainer", "prevButton", "nextButton", "navContainer", "autoplayButton"], Ai = {};
     if (It.forEach(function(n) {
       if (typeof e[n] == "string") {
         var t = e[n], o = i.querySelector(t);
         if (Ai[n] = t, o && o.nodeName)
           e[n] = o;
         else {
-          Si && console.warn("Can't find", e[n]);
+          Ei && console.warn("Can't find", e[n]);
           return;
         }
       }
     }), e.container.children.length < 1) {
-      Si && console.warn("No slides found in", e.container);
+      Ei && console.warn("No slides found in", e.container);
       return;
     }
     var O = e.responsive, pe = e.nested, f = e.mode === "carousel";
@@ -2804,9 +2804,9 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       e.axis = "horizontal", e.slideBy = "page", e.edgePadding = !1;
       var Fn = e.animateIn, tt = e.animateOut, Rt = e.animateDelay, Ln = e.animateNormal;
     }
-    var L = e.axis === "horizontal", an = i.createElement("div"), rn = i.createElement("div"), ln, m = e.container, Nt = m.parentNode, zi = m.outerHTML, S = m.children, g = S.length, Ee, it = Pi(), Se = !1;
+    var L = e.axis === "horizontal", an = i.createElement("div"), rn = i.createElement("div"), ln, m = e.container, Nt = m.parentNode, zi = m.outerHTML, E = m.children, g = E.length, Se, it = Pi(), Ee = !1;
     O && no(), f && (m.className += " tns-vpfix");
-    var x = e.autoWidth, u = b("fixedWidth"), I = b("edgePadding"), k = b("gutter"), G = Yi(), U = b("center"), _ = x ? 1 : Math.floor(b("items")), de = b("slideBy"), Ft = e.viewportMax || e.fixedWidthViewportWidth, Hn = b("arrowKeys"), wn = b("speed"), Ae = e.rewind, X = Ae ? !1 : e.loop, cn = b("autoHeight"), Mn = b("controls"), Pn = b("controlsText"), zn = b("nav"), Wn = b("touch"), Yn = b("mouseDrag"), tn = b("autoplay"), Ht = b("autoplayTimeout"), Gn = b("autoplayText"), Jn = b("autoplayHoverPause"), Kn = b("autoplayResetOnVisibility"), M = ta(null, b("nonce")), Le = e.lazyload, da = e.lazyloadSelector, H, fe = [], B = X ? ma() : 0, A = f ? g + B * 2 : g + B, Di = !!((u || x) && !X), ue = u ? ri() : null, Pt = !f || !X, ee = L ? "left" : "top", Vn = "", he = "", Me = /* @__PURE__ */ function() {
+    var x = e.autoWidth, u = b("fixedWidth"), I = b("edgePadding"), k = b("gutter"), G = Yi(), U = b("center"), _ = x ? 1 : Math.floor(b("items")), de = b("slideBy"), Ft = e.viewportMax || e.fixedWidthViewportWidth, Hn = b("arrowKeys"), wn = b("speed"), Ae = e.rewind, X = Ae ? !1 : e.loop, cn = b("autoHeight"), Mn = b("controls"), Pn = b("controlsText"), zn = b("nav"), Wn = b("touch"), Yn = b("mouseDrag"), tn = b("autoplay"), Ht = b("autoplayTimeout"), Gn = b("autoplayText"), Jn = b("autoplayHoverPause"), Kn = b("autoplayResetOnVisibility"), z = ta(null, b("nonce")), Le = e.lazyload, da = e.lazyloadSelector, H, fe = [], B = X ? ma() : 0, A = f ? g + B * 2 : g + B, Di = !!((u || x) && !X), ue = u ? ri() : null, Pt = !f || !X, ee = L ? "left" : "top", Vn = "", he = "", Me = /* @__PURE__ */ function() {
       return u ? function() {
         return U && !X ? g - 1 : Math.ceil(-ue / (u + k));
       } : x ? function() {
@@ -2844,11 +2844,11 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     if (st)
       var P = e.controlsContainer, $i = e.controlsContainer ? e.controlsContainer.outerHTML : "", C = e.prevButton, j = e.nextButton, fa = e.prevButton ? e.prevButton.outerHTML : "", ua = e.nextButton ? e.nextButton.outerHTML : "", Fe, He;
     if (Gt)
-      var nn = e.navContainer, Ii = e.navContainer ? e.navContainer.outerHTML : "", gn, _n = x ? g : So(), te = 0, ie = -1, bn = Hi(), me = bn, pt = "tns-nav-active", ge = "Carousel Page ", Qt = " (Current Slide)";
+      var nn = e.navContainer, Ii = e.navContainer ? e.navContainer.outerHTML : "", gn, _n = x ? g : Eo(), te = 0, ie = -1, bn = Hi(), me = bn, pt = "tns-nav-active", ge = "Carousel Page ", Qt = " (Current Slide)";
     if (Jt)
       var qi = e.autoplayDirection === "forward" ? 1 : -1, q = e.autoplayButton, Ri = e.autoplayButton ? e.autoplayButton.outerHTML : "", Pe = ["<span class='tns-visually-hidden'>", " animation</span>"], dt, dn, ft, be, ut;
     if (Ci || ji)
-      var oe = {}, Sn = {}, ht, ae = !1, kn, Ut = L ? function(n, t) {
+      var oe = {}, En = {}, ht, ae = !1, kn, Ut = L ? function(n, t) {
         return n.x - t.x;
       } : function(n, t) {
         return n.y - t.y;
@@ -2976,20 +2976,20 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         var o = ln || rn;
         o.className += " tns-ah";
       }
-      if (Nt.insertBefore(an, m), rn.appendChild(m), Rn(S, function(W, xe) {
+      if (Nt.insertBefore(an, m), rn.appendChild(m), Rn(E, function(W, xe) {
         N(W, "tns-item"), W.id || (W.id = $ + "-item" + xe), !f && Ln && N(W, Ln), fn(W, {
           "aria-hidden": "true",
           tabindex: "-1"
         });
       }), B) {
         for (var a = i.createDocumentFragment(), d = i.createDocumentFragment(), h = B; h--; ) {
-          var T = h % g, K = S[T].cloneNode(!0);
+          var T = h % g, K = E[T].cloneNode(!0);
           if (N(K, Oi), Nn(K, "id"), d.insertBefore(K, d.firstChild), f) {
-            var en = S[g - 1 - T].cloneNode(!0);
+            var en = E[g - 1 - T].cloneNode(!0);
             N(en, Oi), Nn(en, "id"), a.appendChild(en);
           }
         }
-        m.insertBefore(a, m.firstChild), m.appendChild(d), S = m.children;
+        m.insertBefore(a, m.firstChild), m.appendChild(d), E = m.children;
       }
     }
     function Ki() {
@@ -3012,7 +3012,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       if (x && g > 1) {
         var n = X ? p : g - 1;
         (function t() {
-          var o = S[n].getBoundingClientRect().left, a = S[n - 1].getBoundingClientRect().right;
+          var o = E[n].getBoundingClientRect().left, a = E[n - 1].getBoundingClientRect().right;
           Math.abs(o - a) <= 1 ? Zi() : setTimeout(function() {
             t();
           }, 16);
@@ -3026,27 +3026,27 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     function va() {
       if (!f)
         for (var n = p, t = p + Math.min(g, _); n < t; n++) {
-          var o = S[n];
+          var o = E[n];
           o.style.left = (n - p) * 100 / _ + "%", N(o, Fn), sn(o, Ln);
         }
-      if (L && (D || x ? (On(M, "#" + $ + " > .tns-item", "font-size:" + r.getComputedStyle(S[0]).fontSize + ";", An(M)), On(M, "#" + $, "font-size:0;", An(M))) : f && Rn(S, function(ui, hi) {
+      if (L && (D || x ? (On(z, "#" + $ + " > .tns-item", "font-size:" + r.getComputedStyle(E[0]).fontSize + ";", An(z)), On(z, "#" + $, "font-size:0;", An(z))) : f && Rn(E, function(ui, hi) {
         ui.style.marginLeft = ga(hi);
       })), Y) {
         if (Z) {
           var a = ln && e.autoHeight ? re(e.speed) : "";
-          On(M, "#" + $ + "-mw", a, An(M));
+          On(z, "#" + $ + "-mw", a, An(z));
         }
-        a = bt(e.edgePadding, e.gutter, e.fixedWidth, e.speed, e.autoHeight), On(M, "#" + $ + "-iw", a, An(M)), f && (a = L && !x ? "width:" + vt(e.fixedWidth, e.gutter, e.items) + ";" : "", Z && (a += re(wn)), On(M, "#" + $, a, An(M))), a = L && !x ? xt(e.fixedWidth, e.gutter, e.items) : "", e.gutter && (a += wt(e.gutter)), f || (Z && (a += re(wn)), et && (a += Ji(wn))), a && On(M, "#" + $ + " > .tns-item", a, An(M));
+        a = bt(e.edgePadding, e.gutter, e.fixedWidth, e.speed, e.autoHeight), On(z, "#" + $ + "-iw", a, An(z)), f && (a = L && !x ? "width:" + vt(e.fixedWidth, e.gutter, e.items) + ";" : "", Z && (a += re(wn)), On(z, "#" + $, a, An(z))), a = L && !x ? xt(e.fixedWidth, e.gutter, e.items) : "", e.gutter && (a += wt(e.gutter)), f || (Z && (a += re(wn)), et && (a += Ji(wn))), a && On(z, "#" + $ + " > .tns-item", a, An(z));
       } else {
-        Ea(), rn.style.cssText = bt(I, k, u, cn), f && L && !x && (m.style.width = vt(u, k, _));
+        Sa(), rn.style.cssText = bt(I, k, u, cn), f && L && !x && (m.style.width = vt(u, k, _));
         var a = L && !x ? xt(u, k, _) : "";
-        k && (a += wt(k)), a && On(M, "#" + $ + " > .tns-item", a, An(M));
+        k && (a += wt(k)), a && On(z, "#" + $ + " > .tns-item", a, An(z));
       }
       if (O && Y)
         for (var d in O) {
           d = parseInt(d);
           var h = O[d], a = "", T = "", K = "", en = "", W = "", xe = x ? null : b("items", d), Ke = b("fixedWidth", d), le = b("speed", d), di = b("edgePadding", d), fi = b("autoHeight", d), we = b("gutter", d);
-          Z && ln && b("autoHeight", d) && "speed" in h && (T = "#" + $ + "-mw{" + re(le) + "}"), ("edgePadding" in h || "gutter" in h) && (K = "#" + $ + "-iw{" + bt(di, we, Ke, le, fi) + "}"), f && L && !x && ("fixedWidth" in h || "items" in h || u && "gutter" in h) && (en = "width:" + vt(Ke, we, xe) + ";"), Z && "speed" in h && (en += re(le)), en && (en = "#" + $ + "{" + en + "}"), ("fixedWidth" in h || u && "gutter" in h || !f && "items" in h) && (W += xt(Ke, we, xe)), "gutter" in h && (W += wt(we)), !f && "speed" in h && (Z && (W += re(le)), et && (W += Ji(le))), W && (W = "#" + $ + " > .tns-item{" + W + "}"), a = T + K + en + W, a && M.insertRule("@media (min-width: " + d / 16 + "em) {" + a + "}", M.cssRules.length);
+          Z && ln && b("autoHeight", d) && "speed" in h && (T = "#" + $ + "-mw{" + re(le) + "}"), ("edgePadding" in h || "gutter" in h) && (K = "#" + $ + "-iw{" + bt(di, we, Ke, le, fi) + "}"), f && L && !x && ("fixedWidth" in h || "items" in h || u && "gutter" in h) && (en = "width:" + vt(Ke, we, xe) + ";"), Z && "speed" in h && (en += re(le)), en && (en = "#" + $ + "{" + en + "}"), ("fixedWidth" in h || u && "gutter" in h || !f && "items" in h) && (W += xt(Ke, we, xe)), "gutter" in h && (W += wt(we)), !f && "speed" in h && (Z && (W += re(le)), et && (W += Ji(le))), W && (W = "#" + $ + " > .tns-item{" + W + "}"), a = T + K + en + W, a && z.insertRule("@media (min-width: " + d / 16 + "em) {" + a + "}", z.cssRules.length);
         }
     }
     function Qi() {
@@ -3071,7 +3071,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         }
         if (pi(), Z) {
           var d = Z.substring(0, Z.length - 18).toLowerCase(), h = "transition: all " + wn / 1e3 + "s";
-          d && (h = "-" + d + "-" + h), On(M, "[aria-controls^=" + $ + "-item]", h, An(M));
+          d && (h = "-" + d + "-" + h), On(z, "[aria-controls^=" + $ + "-item]", h, An(z));
         }
         fn(gn[bn], { "aria-label": ge + (bn + 1) + Qt }), Nn(gn[bn], "tabindex"), N(gn[bn], pt), R(nn, Yt);
       }
@@ -3090,10 +3090,10 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       }
       Wn && R(m, Ie, e.preventScrollOnTouch), Yn && R(m, qe), Hn && R(i, $e), pe === "inner" ? J.on("outerResized", function() {
         Bi(), J.emit("innerLoaded", on());
-      }) : (O || u || x || cn || !L) && R(r, { resize: Xi }), cn && (pe === "outer" ? J.on("innerLoaded", _t) : pn || _t()), ti(), pn ? io() : yn && to(), J.on("indexChanged", so), pe === "inner" && J.emit("innerLoaded", on()), typeof Wt == "function" && Wt(on()), Se = !0;
+      }) : (O || u || x || cn || !L) && R(r, { resize: Xi }), cn && (pe === "outer" ? J.on("innerLoaded", _t) : pn || _t()), ti(), pn ? io() : yn && to(), J.on("indexChanged", so), pe === "inner" && J.emit("innerLoaded", on()), typeof Wt == "function" && Wt(on()), Ee = !0;
     }
     function xa() {
-      if (M.disabled = !0, M.ownerNode && M.ownerNode.remove(), V(r, { resize: Xi }), Hn && V(i, $e), P && V(P, Ce), nn && V(nn, Yt), V(m, je), V(m, Oe), q && V(q, { click: xo }), tn && clearInterval(dt), f && ne) {
+      if (z.disabled = !0, z.ownerNode && z.ownerNode.remove(), V(r, { resize: Xi }), Hn && V(i, $e), P && V(P, Ce), nn && V(nn, Yt), V(m, je), V(m, Oe), q && V(q, { click: xo }), tn && clearInterval(dt), f && ne) {
         var n = {};
         n[ne] = jn, V(m, n);
       }
@@ -3105,10 +3105,10 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
           var T = h.previousElementSibling ? h.previousElementSibling : !1, K = h.parentNode;
           h.outerHTML = t[d], e[a] = T ? T.nextElementSibling : K.firstElementChild;
         }
-      }), It = Fn = tt = Rt = Ln = L = an = rn = m = Nt = zi = S = g = Ee = it = x = u = I = k = G = _ = de = Ft = Hn = wn = Ae = X = cn = M = Le = H = fe = B = A = Di = ue = Pt = ee = Vn = he = Me = p = Zn = Dn = mn = at = Cn = Qn = Wt = J = Un = $ = pn = ze = rt = yn = De = Ce = Yt = je = Oe = $e = Ie = qe = st = Gt = Re = Jt = Ci = ji = Kt = lt = ct = Vt = Mn = Pn = P = $i = C = j = Fe = He = zn = nn = Ii = gn = _n = te = ie = bn = me = pt = ge = Qt = tn = Ht = qi = Gn = Jn = q = Ri = Kn = Pe = dt = dn = ft = be = ut = oe = Sn = ht = ae = kn = Ut = Wn = Yn = null;
+      }), It = Fn = tt = Rt = Ln = L = an = rn = m = Nt = zi = E = g = Se = it = x = u = I = k = G = _ = de = Ft = Hn = wn = Ae = X = cn = z = Le = H = fe = B = A = Di = ue = Pt = ee = Vn = he = Me = p = Zn = Dn = mn = at = Cn = Qn = Wt = J = Un = $ = pn = ze = rt = yn = De = Ce = Yt = je = Oe = $e = Ie = qe = st = Gt = Re = Jt = Ci = ji = Kt = lt = ct = Vt = Mn = Pn = P = $i = C = j = Fe = He = zn = nn = Ii = gn = _n = te = ie = bn = me = pt = ge = Qt = tn = Ht = qi = Gn = Jn = q = Ri = Kn = Pe = dt = dn = ft = be = ut = oe = En = ht = ae = kn = Ut = Wn = Yn = null;
       for (var o in this)
         o !== "rebuild" && (this[o] = null);
-      Se = !1;
+      Ee = !1;
     }
     function Xi(n) {
       qn(function() {
@@ -3116,28 +3116,28 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       });
     }
     function Bi(n) {
-      if (Se) {
+      if (Ee) {
         pe === "outer" && J.emit("outerResized", on(n)), it = Pi();
-        var t, o = Ee, a = !1;
-        O && (no(), t = o !== Ee, t && J.emit("newBreakpointStart", on(n)));
+        var t, o = Se, a = !1;
+        O && (no(), t = o !== Se, t && J.emit("newBreakpointStart", on(n)));
         var d, h, T = _, K = pn, en = yn, W = Hn, xe = Mn, Ke = zn, le = Wn, di = Yn, fi = tn, we = Jn, ui = Kn, hi = p;
         if (t) {
           var Na = u, Fa = cn, Ha = Pn, Pa = U, mi = Gn;
           if (!Y)
             var Wa = k, Ya = I;
         }
-        if (Hn = b("arrowKeys"), Mn = b("controls"), zn = b("nav"), Wn = b("touch"), U = b("center"), Yn = b("mouseDrag"), tn = b("autoplay"), Jn = b("autoplayHoverPause"), Kn = b("autoplayResetOnVisibility"), t && (pn = b("disable"), u = b("fixedWidth"), wn = b("speed"), cn = b("autoHeight"), Pn = b("controlsText"), Gn = b("autoplayText"), Ht = b("autoplayTimeout"), Y || (I = b("edgePadding"), k = b("gutter"))), mt(pn), G = Yi(), (!L || x) && !pn && (po(), L || (ci(), a = !0)), (u || x) && (ue = ri(), mn = Me()), (t || u) && (_ = b("items"), de = b("slideBy"), h = _ !== T, h && (!u && !x && (mn = Me()), ni())), t && pn !== K && (pn ? io() : ya()), rt && (t || u || x) && (yn = Bt(), yn !== en && (yn ? (si(St(Fi(0))), to()) : (wa(), a = !0))), mt(pn || yn), tn || (Jn = Kn = !1), Hn !== W && (Hn ? R(i, $e) : V(i, $e)), Mn !== xe && (Mn ? P ? hn(P) : (C && hn(C), j && hn(j)) : P ? un(P) : (C && un(C), j && un(j))), zn !== Ke && (zn ? (hn(nn), pi()) : un(nn)), Wn !== le && (Wn ? R(m, Ie, e.preventScrollOnTouch) : V(m, Ie)), Yn !== di && (Yn ? R(m, qe) : V(m, qe)), tn !== fi && (tn ? (q && hn(q), !dn && !be && Mt()) : (q && un(q), dn && Je())), Jn !== we && (Jn ? R(m, je) : V(m, je)), Kn !== ui && (Kn ? R(i, Oe) : V(i, Oe)), t) {
+        if (Hn = b("arrowKeys"), Mn = b("controls"), zn = b("nav"), Wn = b("touch"), U = b("center"), Yn = b("mouseDrag"), tn = b("autoplay"), Jn = b("autoplayHoverPause"), Kn = b("autoplayResetOnVisibility"), t && (pn = b("disable"), u = b("fixedWidth"), wn = b("speed"), cn = b("autoHeight"), Pn = b("controlsText"), Gn = b("autoplayText"), Ht = b("autoplayTimeout"), Y || (I = b("edgePadding"), k = b("gutter"))), mt(pn), G = Yi(), (!L || x) && !pn && (po(), L || (ci(), a = !0)), (u || x) && (ue = ri(), mn = Me()), (t || u) && (_ = b("items"), de = b("slideBy"), h = _ !== T, h && (!u && !x && (mn = Me()), ni())), t && pn !== K && (pn ? io() : ya()), rt && (t || u || x) && (yn = Bt(), yn !== en && (yn ? (si(Et(Fi(0))), to()) : (wa(), a = !0))), mt(pn || yn), tn || (Jn = Kn = !1), Hn !== W && (Hn ? R(i, $e) : V(i, $e)), Mn !== xe && (Mn ? P ? hn(P) : (C && hn(C), j && hn(j)) : P ? un(P) : (C && un(C), j && un(j))), zn !== Ke && (zn ? (hn(nn), pi()) : un(nn)), Wn !== le && (Wn ? R(m, Ie, e.preventScrollOnTouch) : V(m, Ie)), Yn !== di && (Yn ? R(m, qe) : V(m, qe)), tn !== fi && (tn ? (q && hn(q), !dn && !be && Mt()) : (q && un(q), dn && Je())), Jn !== we && (Jn ? R(m, je) : V(m, je)), Kn !== ui && (Kn ? R(i, Oe) : V(i, Oe)), t) {
           if ((u !== Na || U !== Pa) && (a = !0), cn !== Fa && (cn || (rn.style.height = "")), Mn && Pn !== Ha && (C.innerHTML = Pn[0], j.innerHTML = Pn[1]), q && Gn !== mi) {
             var gi = tn ? 1 : 0, bi = q.innerHTML, Ao = bi.length - mi[gi].length;
             bi.substring(Ao) === mi[gi] && (q.innerHTML = bi.substring(0, Ao) + Gn[gi]);
           }
         } else
           U && (u || x) && (a = !0);
-        if ((h || u && !x) && (_n = So(), pi()), d = p !== hi, d ? (J.emit("indexChanged", on()), a = !0) : h ? d || so() : (u || x) && (ti(), ai(), oo()), h && !f && Sa(), !pn && !yn) {
+        if ((h || u && !x) && (_n = Eo(), pi()), d = p !== hi, d ? (J.emit("indexChanged", on()), a = !0) : h ? d || so() : (u || x) && (ti(), ai(), oo()), h && !f && Ea(), !pn && !yn) {
           if (t && !Y && ((I !== Ya || k !== Wa) && (rn.style.cssText = bt(I, k, u, wn, cn)), L)) {
             f && (m.style.width = vt(u, k, _));
             var Ga = xt(u, k, _) + wt(k);
-            ia(M, An(M) - 1), On(M, "#" + $ + " > .tns-item", Ga, An(M));
+            ia(z, An(z) - 1), On(z, "#" + $ + " > .tns-item", Ga, An(z));
           }
           cn && _t(), a && (Ye(), Zn = p);
         }
@@ -3153,9 +3153,9 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       return U && (o -= u ? (G - u) / 2 : (G - (H[p + 1] - H[p] - k)) / 2), t <= o;
     }
     function no() {
-      Ee = 0;
+      Se = 0;
       for (var n in O)
-        n = parseInt(n), it >= n && (Ee = n);
+        n = parseInt(n), it >= n && (Se = n);
     }
     var ni = /* @__PURE__ */ function() {
       return X ? f ? (
@@ -3191,7 +3191,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       if (!De) {
         if (I && (rn.style.margin = "0px"), B)
           for (var n = "tns-transparent", t = B; t--; )
-            f && N(S[t], n), N(S[A - t - 1], n);
+            f && N(E[t], n), N(E[A - t - 1], n);
         ei(), De = !0;
       }
     }
@@ -3199,18 +3199,18 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       if (De) {
         if (I && Y && (rn.style.margin = ""), B)
           for (var n = "tns-transparent", t = B; t--; )
-            f && sn(S[t], n), sn(S[A - t - 1], n);
+            f && sn(E[t], n), sn(E[A - t - 1], n);
         eo(), De = !1;
       }
     }
     function io() {
       if (!ze) {
-        if (M.disabled = !0, m.className = m.className.replace(Un.substring(1), ""), Nn(m, ["style"]), X)
+        if (z.disabled = !0, m.className = m.className.replace(Un.substring(1), ""), Nn(m, ["style"]), X)
           for (var n = B; n--; )
-            f && un(S[n]), un(S[A - n - 1]);
+            f && un(E[n]), un(E[A - n - 1]);
         if ((!L || !f) && Nn(rn, ["style"]), !f)
           for (var t = p, o = p + g; t < o; t++) {
-            var a = S[t];
+            var a = E[t];
             Nn(a, ["style"]), sn(a, Fn), sn(a, Ln);
           }
         ei(), ze = !0;
@@ -3218,12 +3218,12 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     }
     function ya() {
       if (ze) {
-        if (M.disabled = !1, m.className += Un, Ye(), X)
+        if (z.disabled = !1, m.className += Un, Ye(), X)
           for (var n = B; n--; )
-            f && hn(S[n]), hn(S[A - n - 1]);
+            f && hn(E[n]), hn(E[A - n - 1]);
         if (!f)
           for (var t = p, o = p + g; t < o; t++) {
-            var a = S[t], d = t < p + _ ? Fn : Ln;
+            var a = E[t], d = t < p + _ ? Fn : Ln;
             a.style.left = (t - p) * 100 / _ + "%", N(a, d);
           }
         eo(), ze = !1;
@@ -3238,7 +3238,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       return t === o ? t + "" : t + " to " + o;
     }
     function yt(n) {
-      n == null && (n = St());
+      n == null && (n = Et());
       var t = p, o, a, d;
       if (U || I ? (x || u) && (a = -(parseFloat(n) + I), d = a + G + I * 2) : x && (a = H[p], d = a + G), x)
         H.forEach(function(en, W) {
@@ -3294,7 +3294,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     function oi(n, t, o) {
       var a = [];
       for (o || (o = "img"); n <= t; )
-        Rn(S[n].querySelectorAll(o), function(d) {
+        Rn(E[n].querySelectorAll(o), function(d) {
           a.push(d);
         }), n++;
       return a;
@@ -3317,12 +3317,12 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     function so() {
       ti(), ai(), oo(), mo(), Aa();
     }
-    function Ea() {
+    function Sa() {
       f && cn && (ln.style[Z] = wn / 1e3 + "s");
     }
     function lo(n, t) {
       for (var o = [], a = n, d = Math.min(n + t, A); a < d; a++)
-        o.push(S[a].offsetHeight);
+        o.push(E[a].offsetHeight);
       return Math.max.apply(null, o);
     }
     function co() {
@@ -3331,27 +3331,27 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     }
     function po() {
       H = [0];
-      var n = L ? "left" : "top", t = L ? "right" : "bottom", o = S[0].getBoundingClientRect()[n];
-      Rn(S, function(a, d) {
+      var n = L ? "left" : "top", t = L ? "right" : "bottom", o = E[0].getBoundingClientRect()[n];
+      Rn(E, function(a, d) {
         d && H.push(a.getBoundingClientRect()[n] - o), d === A - 1 && H.push(a.getBoundingClientRect()[t] - o);
       });
     }
     function ai() {
       var n = yt(), t = n[0], o = n[1];
-      Rn(S, function(a, d) {
+      Rn(E, function(a, d) {
         d >= t && d <= o ? _e(a, "aria-hidden") && (Nn(a, ["aria-hidden", "tabindex"]), N(a, Kt)) : _e(a, "aria-hidden") || (fn(a, {
           "aria-hidden": "true",
           tabindex: "-1"
         }), sn(a, Kt));
       });
     }
-    function Sa() {
+    function Ea() {
       for (var n = p + Math.min(g, _), t = A; t--; ) {
-        var o = S[t];
+        var o = E[t];
         t >= p && t < n ? (N(o, "tns-moving"), o.style.left = (t - p) * 100 / _ + "%", N(o, Fn), sn(o, Ln)) : o.style.left && (o.style.left = "", N(o, Ln), sn(o, Fn)), sn(o, tt);
       }
       setTimeout(function() {
-        Rn(S, function(a) {
+        Rn(E, function(a) {
           sn(a, "tns-moving");
         });
       }, 300);
@@ -3383,7 +3383,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         o && !n && Tt(Fe, C, !0), !o && n && Tt(Fe, C, !1), a && !t && Tt(He, j, !0), !a && t && Tt(He, j, !1);
       }
     }
-    function Et(n, t) {
+    function St(n, t) {
       Z && (n.style[Z] = t);
     }
     function La() {
@@ -3398,7 +3398,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       var n = I ? k : 0, t = G + n - La();
       return U && !X && (t = u ? -(u + k) * (A - 1) - We() : We(A - 1) - H[A - 1]), t > 0 && (t = 0), t;
     }
-    function St(n) {
+    function Et(n) {
       n == null && (n = p);
       var t;
       if (L && !x)
@@ -3413,26 +3413,26 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       return Di && (t = Math.max(t, ue)), t += L && !x && !u ? "%" : "px", t;
     }
     function Ye(n) {
-      Et(m, "0s"), si(n);
+      St(m, "0s"), si(n);
     }
     function si(n) {
-      n == null && (n = St()), m.style[ee] = Vn + n + he;
+      n == null && (n = Et()), m.style[ee] = Vn + n + he;
     }
     function go(n, t, o, a) {
       var d = n + _;
       X || (d = Math.min(d, A));
       for (var h = n; h < d; h++) {
-        var T = S[h];
+        var T = E[h];
         a || (T.style.left = (h - p) * 100 / _ + "%"), Rt && nt && (T.style[nt] = T.style[$t] = Rt * (h - n) / 1e3 + "s"), sn(T, t), N(T, o), a && fe.push(T);
       }
     }
     var Ma = /* @__PURE__ */ function() {
       return f ? function() {
-        Et(m, ""), Z || !wn ? (si(), (!wn || !yi(m)) && jn()) : ca(m, ee, Vn, he, St(), wn, jn), L || ci();
+        St(m, ""), Z || !wn ? (si(), (!wn || !yi(m)) && jn()) : ca(m, ee, Vn, he, Et(), wn, jn), L || ci();
       } : function() {
         fe = [];
         var n = {};
-        n[ne] = n[Ei] = jn, V(S[Zn], n), R(S[p], n), go(Zn, Fn, tt, !0), go(p, Ln, Fn), (!ne || !Ei || !wn || !yi(m)) && jn();
+        n[ne] = n[Si] = jn, V(E[Zn], n), R(E[p], n), go(Zn, Fn, tt, !0), go(p, Ln, Fn), (!ne || !Si || !wn || !yi(m)) && jn();
       };
     }();
     function li(n, t) {
@@ -3585,7 +3585,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       n.preventDefault ? n.preventDefault() : n.returnValue = !1;
     }
     function _o() {
-      return aa(oa(Sn.y - oe.y, Sn.x - oe.x), at) === e.axis;
+      return aa(oa(En.y - oe.y, En.x - oe.x), at) === e.axis;
     }
     function ko(n) {
       if (Qn) {
@@ -3595,30 +3595,30 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       }
       tn && dn && Lt(), ae = !0, kn && (Ct(kn), kn = null);
       var t = In(n);
-      J.emit(se(n) ? "touchStart" : "dragStart", on(n)), !se(n) && ["img", "a"].indexOf(fo(ve(n))) >= 0 && yo(n), Sn.x = oe.x = t.clientX, Sn.y = oe.y = t.clientY, f && (ht = parseFloat(m.style[ee].replace(Vn, "")), Et(m, "0s"));
+      J.emit(se(n) ? "touchStart" : "dragStart", on(n)), !se(n) && ["img", "a"].indexOf(fo(ve(n))) >= 0 && yo(n), En.x = oe.x = t.clientX, En.y = oe.y = t.clientY, f && (ht = parseFloat(m.style[ee].replace(Vn, "")), St(m, "0s"));
     }
     function To(n) {
       if (ae) {
         var t = In(n);
-        Sn.x = t.clientX, Sn.y = t.clientY, f ? kn || (kn = qn(function() {
-          Eo(n);
+        En.x = t.clientX, En.y = t.clientY, f ? kn || (kn = qn(function() {
+          So(n);
         })) : (Cn === "?" && (Cn = _o()), Cn && (Ne = !0)), (typeof n.cancelable != "boolean" || n.cancelable) && Ne && n.preventDefault();
       }
     }
-    function Eo(n) {
+    function So(n) {
       if (!Cn) {
         ae = !1;
         return;
       }
       if (Ct(kn), ae && (kn = qn(function() {
-        Eo(n);
+        So(n);
       })), Cn === "?" && (Cn = _o()), Cn) {
         !Ne && se(n) && (Ne = !0);
         try {
           n.type && J.emit(se(n) ? "touchMove" : "dragMove", on(n));
         } catch {
         }
-        var t = ht, o = Ut(Sn, oe);
+        var t = ht, o = Ut(En, oe);
         if (!L || u || x)
           t += o, t += "px";
         else {
@@ -3630,10 +3630,10 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     }
     function zt(n) {
       if (ae) {
-        kn && (Ct(kn), kn = null), f && Et(m, ""), ae = !1;
+        kn && (Ct(kn), kn = null), f && St(m, ""), ae = !1;
         var t = In(n);
-        Sn.x = t.clientX, Sn.y = t.clientY;
-        var o = Ut(Sn, oe);
+        En.x = t.clientX, En.y = t.clientY;
+        var o = Ut(En, oe);
         if (Math.abs(o)) {
           if (!se(n)) {
             var a = ve(n);
@@ -3665,7 +3665,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       var n = ln || rn;
       n.style.height = H[p + _] - H[p] + "px";
     }
-    function So() {
+    function Eo() {
       var n = u ? (u + k) * g / G : g / _;
       return Math.min(Math.ceil(n), g);
     }
@@ -3680,7 +3680,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     function on(n) {
       return {
         container: m,
-        slideItems: S,
+        slideItems: E,
         navContainer: nn,
         navItems: gn,
         controlsContainer: P,
@@ -3699,8 +3699,8 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         navCurrentIndexCached: me,
         pages: _n,
         pagesCached: te,
-        sheet: M,
-        isOn: Se,
+        sheet: z,
+        isOn: Ee,
         event: n || {}
       };
     }
@@ -3711,7 +3711,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       goTo: Ge,
       play: Da,
       pause: Ca,
-      isOn: Se,
+      isOn: Ee,
       updateSliderHeight: co,
       refresh: Ki,
       destroy: xa,
@@ -3727,7 +3727,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
   class pa {
     constructor() {
       Mo("body", () => {
-        z("body").elements[0].insertAdjacentHTML(
+        M("body").elements[0].insertAdjacentHTML(
           "afterbegin",
           /* html */
           `<style>${Lo}</style>`
@@ -3738,18 +3738,18 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
       this.addBlocks(), this.setActions(), this.setEvents();
     }
     addBlocks() {
-      z(".containerWrapper").elements[0].insertAdjacentHTML("afterend", '<div class="crs_landing"></div>');
-      const i = z(".crs_landing").elements[0];
-      i.insertAdjacentHTML("afterbegin", No), i.insertAdjacentHTML("beforeend", Fo), i.insertAdjacentHTML("beforeend", Ho), i.insertAdjacentHTML("beforeend", Po), i.insertAdjacentHTML("beforeend", Wo), i.insertAdjacentHTML("beforeend", Yo), i.insertAdjacentHTML("beforeend", Go), i.insertAdjacentHTML("beforeend", Jo), i.insertAdjacentHTML("beforeend", Ko), i.insertAdjacentHTML("beforeend", Vo), i.insertAdjacentHTML("beforeend", Zo), i.insertAdjacentHTML("beforeend", Qo);
+      M(".containerWrapper").elements[0].insertAdjacentHTML("afterend", '<div class="crs_landing"></div>');
+      const i = M(".crs_landing").elements[0];
+      i.insertAdjacentHTML("afterbegin", No), i.insertAdjacentHTML("beforeend", Fo), i.insertAdjacentHTML("beforeend", Ho), i.insertAdjacentHTML("beforeend", Po), i.insertAdjacentHTML("beforeend", Wo), i.insertAdjacentHTML("beforeend", Yo), i.insertAdjacentHTML("beforeend", Go), i.insertAdjacentHTML("beforeend", Jo), i.insertAdjacentHTML("beforeend", Ko), i.insertAdjacentHTML("beforeend", Vo), i.insertAdjacentHTML("beforeend", Zo), i.insertAdjacentHTML("beforeend", Qo), window.location.href.includes("dropservicing.net") && (M("#main_block h1").elements[0].innerHTML = "The 4 Steps to Start Your Online Business in 2024 and Achieve Financial Freedom Goals");
     }
     setActions() {
-      z(".inputs2").on("click", "li", function() {
+      M(".inputs2").on("click", "li", function() {
         if (!this.classList.contains("selected")) {
           this.closest(".inputs2").querySelector(".selected").classList.remove("selected"), this.classList.add("selected");
           const s = this.getAttribute("data-schedule");
           F("exp_optin_popup_cta_time", `Select time ${s}`, "click", "Popup after click on CTA");
         }
-      }), z("form").on("submit", async function(s) {
+      }), M("form").on("submit", async function(s) {
         s.preventDefault();
         const c = window.location.href.includes("dropservicingblueprint") ? 1 : 2, w = this.querySelector('input[name="name"]').value, v = this.querySelector('input[name="email"]').value;
         let y = !0;
@@ -3768,7 +3768,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
         );
         const D = (/* @__PURE__ */ new Date()).getTimezoneOffset() / 60, Y = `GMT${D > 0 ? "-" : "+"}${Math.abs(D)}`;
         if (this.querySelector(".inputs2").classList.contains("active")) {
-          const Q = z(".inputs2 .selected").elements[0].getAttribute("data-schedule");
+          const Q = M(".inputs2 .selected").elements[0].getAttribute("data-schedule");
           fetch("https://conversionrate.top/api/dropservicing/register", {
             method: "POST",
             headers: {
@@ -3801,30 +3801,30 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
           } catch (Q) {
             console.log(Q);
           }
-      }), z("form input").on("input", function() {
+      }), M("form input").on("input", function() {
         this.closest("label").classList.remove("error");
-      }), z('input[name="name"]').on("change", function() {
+      }), M('input[name="name"]').on("change", function() {
         !!this.closest("#main_block") ? F("exp_optin_fs_name", "Enter your name", "input", "First screen form") : F("exp_optin_popup_cta_name", "Enter your name", "input", "Popup after click on CTA");
-      }), z('input[name="email"]').on("change", function() {
+      }), M('input[name="email"]').on("change", function() {
         !!this.closest("#main_block") ? F("exp_optin_fs_email", "Enter email address", "input", "First screen form") : F("exp_optin_popup_cta_email", "Enter email address", "input", "Popup after click on CTA");
-      }), z(".question").on("click", function() {
+      }), M(".question").on("click", function() {
         const s = this.innerText;
         if (this.classList.contains("active")) {
           this.classList.remove("active"), F("exp_optin_faq_close", `Close question. ${s}`, "click", "Frequently asked questions");
           return;
         }
-        z(".question.active").removeClass("active"), this.classList.toggle("active"), F("exp_optin_faq_open", `Open question. ${s}`, "click", "Frequently asked questions");
-      }), z(".cta.pop").on("click", function() {
-        z(".crs_video_popup").elements[0].classList.contains("active") && z(".crs_video_popup .video *:not(.crs_close)").elements.forEach((s) => s.remove()), z(".crs_video_popup").elements[0].classList.remove("active"), z(".crs_popup_form").elements[0].classList.add("active"), this.closest("#last_cta") && F("exp_optin_future_cta", "Join the exclusive training", "click", "Your Future Starts Here"), this.closest("#training_for") && F("exp_optin_who_cta", "Join The FREE Training Now", "click", "Who is the Training for"), this.closest("#host_block") && F("exp_optin_host_cta", "Unlock Dylan’s Formula for Free ", "click", "Your Host: Dylan Sydney"), this.closest("#bonus_block") && F("exp_optin_bonuses_cta", "Grab Your FREE Seat Now", "click", "Exclusive Bonuses"), this.closest(".crs_video_popup") && F("exp_optin_popup_review_cta", "Grab Your FREE Seat Now", "click", "Popup after review"), this.closest("#main_block") && F("exp_optin_fs_button_mobile", "Grab Your FREE Seat Now", "click", "First screen form");
-      }), z(".crs_popup_form .close").on("click", function() {
-        z(".crs_popup_form").elements[0].classList.remove("active"), z(".crs_popup_form .inputs1").elements[0].style.display = "block", z(".crs_popup_form .inputs2").removeClass("active");
-      }), z("#base_review .slide").on("click", function() {
-        const s = this.querySelector(".slide>p").textContent, c = this.getAttribute("data-video"), w = z(`.video_slide[data-video="${c}"] .video`).elements[0].cloneNode(!0);
-        z(".crs_video_popup .video").elements[0].appendChild(w), z(".crs_video_popup").elements[0].classList.add("active"), F("exp_optin_why_join_review", `Open review. ${s}`, "click", "Why Join This Webinar"), z(".crs_video_popup .wistia_embed").on("click", function() {
+        M(".question.active").removeClass("active"), this.classList.toggle("active"), F("exp_optin_faq_open", `Open question. ${s}`, "click", "Frequently asked questions");
+      }), M(".cta.pop").on("click", function() {
+        M(".crs_video_popup").elements[0].classList.contains("active") && M(".crs_video_popup .video *:not(.crs_close)").elements.forEach((s) => s.remove()), M(".crs_video_popup").elements[0].classList.remove("active"), M(".crs_popup_form").elements[0].classList.add("active"), this.closest("#last_cta") && F("exp_optin_future_cta", "Join the exclusive training", "click", "Your Future Starts Here"), this.closest("#training_for") && F("exp_optin_who_cta", "Join The FREE Training Now", "click", "Who is the Training for"), this.closest("#host_block") && F("exp_optin_host_cta", "Unlock Dylan’s Formula for Free ", "click", "Your Host: Dylan Sydney"), this.closest("#bonus_block") && F("exp_optin_bonuses_cta", "Grab Your FREE Seat Now", "click", "Exclusive Bonuses"), this.closest(".crs_video_popup") && F("exp_optin_popup_review_cta", "Grab Your FREE Seat Now", "click", "Popup after review"), this.closest("#main_block") && F("exp_optin_fs_button_mobile", "Grab Your FREE Seat Now", "click", "First screen form");
+      }), M(".crs_popup_form .close").on("click", function() {
+        M(".crs_popup_form").elements[0].classList.remove("active"), M(".crs_popup_form .inputs1").elements[0].style.display = "block", M(".crs_popup_form .inputs2").removeClass("active");
+      }), M("#base_review .slide").on("click", function() {
+        const s = this.querySelector(".slide>p").textContent, c = this.getAttribute("data-video"), w = M(`.video_slide[data-video="${c}"] .video`).elements[0].cloneNode(!0);
+        M(".crs_video_popup .video").elements[0].appendChild(w), M(".crs_video_popup").elements[0].classList.add("active"), F("exp_optin_why_join_review", `Open review. ${s}`, "click", "Why Join This Webinar"), M(".crs_video_popup .wistia_embed").on("click", function() {
           F("exp_optin_popup_review_video", `Play video ${s}`, "click", "Popup after review");
         });
-      }), z(".crs_video_popup .crs_close").on("click", function() {
-        z(".crs_video_popup .video *:not(.crs_close)").elements.forEach((s) => s.remove()), z(".crs_video_popup").elements[0].classList.remove("active");
+      }), M(".crs_video_popup .crs_close").on("click", function() {
+        M(".crs_video_popup .video *:not(.crs_close)").elements.forEach((s) => s.remove()), M(".crs_video_popup").elements[0].classList.remove("active");
       });
       const i = Be({
         container: "#base_review ul",
