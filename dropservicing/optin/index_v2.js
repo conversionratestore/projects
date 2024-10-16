@@ -1968,7 +1968,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
               <b>4.8/5</b>&nbsp;<span>300+ Reviews</span>
             </p>
           </div>
-          <h1>The 4 Steps to Make Money Online in 2024 (with no experience or startup costs)</h1>
+          <h1>The 4 Steps to Start Your Online Business in 2024 and Achieve Financial Freedom Goals</h1>
           <p>Discover how to go from overworked employee to successful entrepreneur in a FREE Webinar!</p>
           <button class="cta pop mobile">Grab Your FREE Seat Now!</button>
           <div class="youll_list">
