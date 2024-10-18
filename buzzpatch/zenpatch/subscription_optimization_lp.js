@@ -252,7 +252,7 @@
     </div>
   </div>
 `
-  ), j = (r, t, n, e, i) => (
+  ), O = (r, t, n, e, i) => (
     /* HTML */
     `
     <div class="info_wrapper">
@@ -271,7 +271,7 @@
       </div>
     </div>
   `
-  ), O = `body #getNow {
+  ), j = `body #getNow {
   background: #fbfbf9;
   padding: 16px 0 21px;
 }
@@ -819,6 +819,11 @@ body #cons .new_subscription .new_subscription_block .plan_comment > span svg {
 body #cons .new_subscription .new_subscription_block [data-tippy-root] {
   right: 0px !important;
 }
+@media (max-width: 345px) {
+  body #cons .new_subscription .new_subscription_block .tippy-box {
+    max-width: 310px !important;
+  }
+}
 body #cons .new_subscription .new_subscription_block .tippy-box[data-placement^=bottom] > .tippy-arrow:before,
 body #cons .new_subscription .new_subscription_block .tippy-box[data-placement^=top] > .tippy-arrow:before {
   left: 0px !important;
@@ -871,6 +876,11 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
   text-decoration-line: underline;
   letter-spacing: normal;
   margin: 4px 0 12px auto;
+}
+@media (max-width: 345px) {
+  .new_subscription .new_subscription_block.is_disabled .is_active_one_pack {
+    font-size: 13px;
+  }
 }
 .new_subscription .new_subscription_block.is_disabled .is_active_one_pack > svg {
   width: 15px;
@@ -966,6 +976,11 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
     gap: 8px;
   }
 }
+@media (max-width: 345px) {
+  .new_subscription .new_subscription_block .plan_comment {
+    font-size: 12px;
+  }
+}
 .new_subscription .new_subscription_block .plan_comment > svg {
   width: 15px;
   height: 20px;
@@ -976,6 +991,11 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
 .new_subscription .new_subscription_block [data-tippy-root] {
   right: -20px !important;
   z-index: 10 !important;
+}
+@media (max-width: 345px) {
+  .new_subscription .new_subscription_block [data-tippy-root] {
+    right: -3px !important;
+  }
 }
 .new_subscription .new_subscription_block .tippy-box {
   background-color: #fff;
@@ -1021,6 +1041,11 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
 }
 .new_subscription .new_subscription_block .tippy-box[data-placement^=bottom] > .tippy-arrow:before, .new_subscription .new_subscription_block .tippy-box[data-placement^=top] > .tippy-arrow:before {
   left: -20px !important;
+}
+@media (max-width: 345px) {
+  .new_subscription .new_subscription_block .tippy-box[data-placement^=bottom] > .tippy-arrow:before, .new_subscription .new_subscription_block .tippy-box[data-placement^=top] > .tippy-arrow:before {
+    left: -3px !important;
+  }
 }
 .new_subscription .new_subscription_block .is_active_one_pack {
   display: none;
@@ -1172,6 +1197,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
   gap: 10px;
   align-items: center;
   justify-content: center;
+  padding: 0 16px;
 }
 .new_price_wrapper .new_reg_price {
   color: #616267;
@@ -1217,7 +1243,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
       L({ name: "NatPat: subscription Optimization", dev: "SKh" }), T("exp_sub_land"), document.head.insertAdjacentHTML(
         "beforeend",
         '<link class="crs_font" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">'
-      ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${O}</style>`), this.changeSaveTxtOnePack(), this.renderNewSubscriptionBlock(), this.changeActivePackHandler(), this.changeTxtMainBtnToSubscribeAndSaveBtn(), this.changeSrcLogoUnderButton(), this.renderHeaderSlideInCart(), this.changeSrcCloseButtonSlideInCart(), this.renderNextStepBtnSlideInCart(), this.changeNextStepSlideInCart(), this.replaceLogoSlideInCart(), this.addEventsProceedToCheckoutBtn(), this.observeElementVisibility();
+      ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${j}</style>`), this.changeSaveTxtOnePack(), this.renderNewSubscriptionBlock(), this.changeActivePackHandler(), this.changeTxtMainBtnToSubscribeAndSaveBtn(), this.changeSrcLogoUnderButton(), this.renderHeaderSlideInCart(), this.changeSrcCloseButtonSlideInCart(), this.renderNextStepBtnSlideInCart(), this.changeNextStepSlideInCart(), this.replaceLogoSlideInCart(), this.addEventsProceedToCheckoutBtn(), this.observeElementVisibility();
     }
     changeSaveTxtOnePack() {
       _(".list-packs-1 .save-btn span").then((t) => {
@@ -1234,12 +1260,12 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
         this.uniqueId = "Cons", n.forEach((i) => {
           i.closest("#getNow") && (this.uniqueId = "GetNow"), i.previousElementSibling.classList.contains("new_subscription") || (this.isActiveOnePack && (e = !0), i.insertAdjacentHTML("beforebegin", N(e, this.uniqueId)));
         });
-      }), console.log("renderNewSubscriptionBlock"), this.newSubscriptionBlockHandlers();
+      }), this.newSubscriptionBlockHandlers();
     }
     newSubscriptionBlockHandlers() {
       _(".new_subscription").then((t) => {
         this.isActiveOnePack || this.checkSubscriptionDefault(), this.renderCustomDropdown(), this.changeSubscriptionPlanHandler(), this.renderNewPriceBlock(), this.initTooltip();
-      }), console.log("newSubscriptionBlockHandlers");
+      });
     }
     checkSubscriptionDefault() {
       _("#getNow #rtxSubscribe").then((t) => {
@@ -1251,7 +1277,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
       _(".new_subscription_block").then((t) => {
         l(".new_subscription_block").forEach((e) => {
           e.querySelector(".custom_dropdown") || e.insertAdjacentHTML("beforeend", I);
-        }), this.renderCustomOptions(), console.log("renderCustomDropdown");
+        }), this.renderCustomOptions();
       });
     }
     renderCustomOptions() {
@@ -1279,7 +1305,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
     }
     changeCustomDropdownHandler(t) {
       l(t).forEach((e) => {
-        const i = e.querySelector(".dropdown_toggle"), c = e.querySelector(".dropdown_menu"), s = e.querySelectorAll(".dropdown_item"), o = l("#getNow .subscribe-frequency select option");
+        const i = e.querySelector(".dropdown_toggle"), c = e.querySelector(".dropdown_menu"), s = e.querySelectorAll(".dropdown_item"), o = l(".subscribe-frequency select option");
         i.addEventListener("click", () => {
           i.closest("#getNow") && h("exp_sub_land_element_04", "Sub_plan", "Click", "Order Selection & Confirmation"), i.closest("#cons") && h("exp_sub_land_element_03", "Sub_plan", "Click", "Sticky cart"), c.classList.toggle("show"), this.adjustDropdownPosition(c), i.classList.toggle("active");
         }), s.forEach((p) => {
@@ -1346,7 +1372,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
                   }), this.syncRadioButtons("oneTime");
                   break;
                 case "subscribeSave":
-                  if (console.log(this.uniqueId), this.uniqueId === "Cons" && h("exp_sub_land_button_06", "Subscribe & save", "Click", "Sticky cart"), this.uniqueId === "GetNow" && h("exp_sub_land_button_08", "Subscribe & save", "Click", "Order Selection & Confirmation"), (f = s.previousElementSibling) != null && f.checked)
+                  if (this.uniqueId === "Cons" && h("exp_sub_land_button_06", "Subscribe & save", "Click", "Sticky cart"), this.uniqueId === "GetNow" && h("exp_sub_land_button_08", "Subscribe & save", "Click", "Order Selection & Confirmation"), (f = s.previousElementSibling) != null && f.checked)
                     return;
                   !(e != null && e.checked) && !this.isActiveOnePack && (i == null || i.click()), this.isActiveOnePack && (this.isActiveTwoPack = !0, a("#getNow .list-packs.list-packs-2").click()), this.changeTxtMainBtnToSubscribeAndSaveBtn(), (g = l(".plan_details")) == null || g.forEach((b) => {
                     b.classList.contains("one_time_checked") && b.classList.remove("one_time_checked");
@@ -1361,7 +1387,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
             });
           });
         });
-      }), console.log("changeSubscriptionPlanHandler");
+      });
     }
     syncRadioButtons(t) {
       l(".plan_selection input").forEach((e) => {
@@ -1373,7 +1399,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
         l(".magicpatch-packs .list-packs").forEach((e) => {
           e.addEventListener("click", () => {
             var i, c, s;
-            console.log("object"), e.classList.contains("list-packs-1") ? (this.isActiveOnePack = !0, this.changeTxtMainBtnToProceedToCheckoutBtn()) : (this.isActiveOnePack = !1, this.changeTxtMainBtnToSubscribeAndSaveBtn()), (i = l(".new_subscription")) == null || i.forEach((o) => {
+            e.classList.contains("list-packs-1") ? (this.isActiveOnePack = !0, this.changeTxtMainBtnToProceedToCheckoutBtn()) : (this.isActiveOnePack = !1, this.changeTxtMainBtnToSubscribeAndSaveBtn()), (i = l(".new_subscription")) == null || i.forEach((o) => {
               o == null || o.remove();
             }), (c = l(".new_price_wrapper")) == null || c.forEach((o) => {
               o == null || o.remove();
@@ -1481,7 +1507,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
         const n = a("#cons .body_slide_in_cart");
         a(".info_wrapper") || n.insertAdjacentHTML(
           "beforeend",
-          j(this.regPrice, this.salePrice, this.imgSrc, this.packPrice, this.pcs)
+          O(this.regPrice, this.salePrice, this.imgSrc, this.packPrice, this.pcs)
         );
       });
     }
