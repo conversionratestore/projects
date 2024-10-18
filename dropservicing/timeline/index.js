@@ -599,7 +599,7 @@
 <rect width="12" height="12" fill="white"/>
 </clipPath>
 </defs>
-</svg>`, C = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
+</svg>`, T = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
 <g clip-path="url(#clip0_2066_846)">
 <path d="M7.5 0.5C3.35476 0.5 0 3.85438 0 8C0 12.1452 3.35438 15.5 7.5 15.5C11.6452 15.5 15 12.1456 15 8C15 3.85481 11.6456 0.5 7.5 0.5ZM8.27019 10.9772C8.27019 11.2141 7.92466 11.451 7.50015 11.451C7.05589 11.451 6.74001 11.2141 6.74001 10.9772V7.21584C6.74001 6.93942 7.05592 6.75181 7.50015 6.75181C7.92466 6.75181 8.27019 6.93942 8.27019 7.21584V10.9772ZM7.50018 5.84363C7.04605 5.84363 6.69067 5.50798 6.69067 5.1328C6.69067 4.75766 7.04607 4.43187 7.50018 4.43187C7.94443 4.43187 8.29986 4.75766 8.29986 5.1328C8.29986 5.50798 7.9444 5.84363 7.50018 5.84363Z" fill="white"/>
 </g>
@@ -610,7 +610,7 @@
 </defs>
 </svg>`, f = `<svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
 <path d="M6.5 1L1.5 6L6.5 11" stroke="#100119" stroke-width="1.4" stroke-linecap="round"/>
-</svg>`, T = `<svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+</svg>`, C = `<svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
 <path d="M1 1.06543L6 6.06543L1 11.0654" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
 </svg>`, E = (o) => (
     /* HTML */
@@ -634,7 +634,7 @@
       /* HTML */
       `
             <span class="badge_${o.type}"
-              >${o.type === "critical" ? `${C} Critical information` : "Achieve Financial Freedom"}</span
+              >${o.type === "critical" ? `${T} Critical information` : "Achieve Financial Freedom"}</span
             >
           `
     ) : ""}
@@ -661,11 +661,11 @@
   <p class="time">00:00</p>
   <p class="info"></p>
   <p class="text">${h[0].text}</p>
-  <button>See full training plan ${T}</button>
+  <button>See full training plan ${C}</button>
 </div>`
   );
   x({ name: "Webinar Timeline", dev: "YK" }), y("webinar_timeline");
-  class P {
+  class H {
     constructor() {
       this.init();
     }
@@ -695,15 +695,15 @@
         const l = ((b = r.previousElementSibling) == null ? void 0 : b.dataset.time) || 0, c = r.querySelector(".progress_step circle"), p = (i - +l) / (+r.dataset.time - +l) * 100;
         if (c.style.strokeDashoffset = (e - p / 100 * e).toString(), p > 100) {
           r.classList.remove("active"), r.classList.add("viewed"), (m = r.nextElementSibling) == null || m.classList.add("active");
-          const W = (w = r.nextElementSibling) == null ? void 0 : w.getBoundingClientRect().left, $ = t.scrollLeft, A = t.clientWidth / 2 - 100;
+          const P = (w = r.nextElementSibling) == null ? void 0 : w.getBoundingClientRect().left, W = t.scrollLeft, $ = t.clientWidth / 2 - 100;
           if (t.scrollTo({
-            left: $ + (W - A),
+            left: W + (P - $),
             behavior: "smooth"
           }), window.innerWidth < 768) {
             const g = n(".mobile_info_block").elements[0], k = n(".point_block.active").elements[0];
             g.querySelector(".time").textContent = k.querySelector(
               ".point_time span:first-of-type"
-            ).textContent, g.querySelector(".text").textContent = k.querySelector("p").textContent;
+            ).textContent, g.querySelector(".text").innerHTML = k.querySelector("p").innerHTML;
           }
         }
       }, 1e3);
@@ -733,7 +733,7 @@
         }
         i.querySelector(".time").textContent = r.querySelector(
           ".point_time span:first-of-type"
-        ).textContent, i.querySelector(".text").textContent = r.querySelector("p").textContent;
+        ).textContent, i.querySelector(".text").innerHTML = r.querySelector("p").innerHTML;
       }
     }
     setScroll() {
@@ -753,6 +753,6 @@
       });
     }
   }
-  new P();
+  new H();
 })();
 //# sourceMappingURL=index.js.map
