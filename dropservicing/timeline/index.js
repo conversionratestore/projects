@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const g = `@charset "UTF-8";
+  const u = `@charset "UTF-8";
 .top_content_wrapper {
   max-width: calc(100% - 405px);
 }
@@ -50,11 +50,11 @@
 
 .live_content_wrapper_generic {
   flex-shrink: 0;
-  width: 80%;
+  width: 80% !important;
 }
 @media (max-width: 768px) {
   .live_content_wrapper_generic {
-    width: 100%;
+    width: 100% !important;
   }
 }
 
@@ -313,8 +313,10 @@
 .point_block_wrapper .point_block.viewed .point_time .status::after {
   content: "viewed";
 }
-.point_block_wrapper .point_block.viewed .point_time span:first-of-type {
-  color: #a2a2a3;
+@media (max-width: 768px) {
+  .point_block_wrapper .point_block.viewed .point_time span:first-of-type {
+    color: #a2a2a3;
+  }
 }
 .point_block_wrapper .point_block.active .progress_step span {
   background: #fff;
@@ -380,6 +382,7 @@
   gap: 10px;
   text-decoration: underline;
   border: none;
+  padding: 0;
 }
 
 @media (max-width: 768px) {
@@ -398,25 +401,25 @@
       const s = document.querySelector(i);
       s && (clearInterval(t), e(s));
     }, 100);
-  }, w = ({ name: i, dev: e }) => {
+  }, x = ({ name: i, dev: e }) => {
     console.log(
       `%c EXP: ${i} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   };
-  class k {
+  class v {
     constructor(e) {
       this.elements = typeof e == "string" ? document.querySelectorAll(e) : e instanceof Element ? [e] : e;
     }
     on(e, t, s) {
-      return typeof t == "function" && (s = t, t = ""), this.elements.forEach(function(o) {
-        o.addEventListener(e, function(r) {
-          var a;
+      return typeof t == "function" && (s = t, t = ""), this.elements.forEach(function(a) {
+        a.addEventListener(e, function(o) {
+          var r;
           if (t !== "") {
-            let p = (a = r.target) == null ? void 0 : a.closest(t);
-            p && (s == null || s.call(p, r));
+            let l = (r = o.target) == null ? void 0 : r.closest(t);
+            l && (s == null || s.call(l, o));
           } else
-            s == null || s.call(o, r);
+            s == null || s.call(a, o);
         });
       }), this;
     }
@@ -441,17 +444,17 @@
       }), this;
     }
     style(e, t) {
-      const s = e.split("-").map((o, r) => r === 0 ? o : o.charAt(0).toUpperCase() + o.slice(1)).join("");
-      return this.elements.forEach(function(o) {
-        o.style[s] = t;
+      const s = e.split("-").map((a, o) => o === 0 ? a : a.charAt(0).toUpperCase() + a.slice(1)).join("");
+      return this.elements.forEach(function(a) {
+        a.style[s] = t;
       }), this;
     }
   }
-  const n = (i) => new k(i), u = (i) => {
+  const n = (i) => new v(i), y = (i) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", i, "variant_1"));
     }, 1e3);
-  }, x = (i, e = "info") => {
+  }, S = (i, e = "info") => {
     let t;
     switch (e) {
       case "info":
@@ -579,7 +582,7 @@
       text: "Get the done for you partnership with our top freelancers, resources, community and support to fast track your success.” My opinion is it doesn’t indicate that we are selling something, and it would be interesting to learn more about this",
       type: "final"
     }
-  ], v = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+  ], L = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
 <g clip-path="url(#clip0_2066_824)">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M0.5 6C0.5 2.96243 2.96243 0.5 6 0.5C9.03755 0.5 11.5 2.96243 11.5 6C11.5 9.03755 9.03755 11.5 6 11.5C2.96243 11.5 0.5 9.03755 0.5 6ZM6.5 2.5V5.5H8.5V6.5H6C5.72385 6.5 5.5 6.27615 5.5 6V2.5H6.5Z" fill="#382941"/>
 </g>
@@ -588,7 +591,7 @@
 <rect width="12" height="12" fill="white"/>
 </clipPath>
 </defs>
-</svg>`, y = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
+</svg>`, C = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
 <g clip-path="url(#clip0_2066_846)">
 <path d="M7.5 0.5C3.35476 0.5 0 3.85438 0 8C0 12.1452 3.35438 15.5 7.5 15.5C11.6452 15.5 15 12.1456 15 8C15 3.85481 11.6456 0.5 7.5 0.5ZM8.27019 10.9772C8.27019 11.2141 7.92466 11.451 7.50015 11.451C7.05589 11.451 6.74001 11.2141 6.74001 10.9772V7.21584C6.74001 6.93942 7.05592 6.75181 7.50015 6.75181C7.92466 6.75181 8.27019 6.93942 8.27019 7.21584V10.9772ZM7.50018 5.84363C7.04605 5.84363 6.69067 5.50798 6.69067 5.1328C6.69067 4.75766 7.04607 4.43187 7.50018 4.43187C7.94443 4.43187 8.29986 4.75766 8.29986 5.1328C8.29986 5.50798 7.9444 5.84363 7.50018 5.84363Z" fill="white"/>
 </g>
@@ -599,9 +602,9 @@
 </defs>
 </svg>`, h = `<svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
 <path d="M6.5 1L1.5 6L6.5 11" stroke="#100119" stroke-width="1.4" stroke-linecap="round"/>
-</svg>`, S = `<svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+</svg>`, T = `<svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
 <path d="M1 1.06543L6 6.06543L1 11.0654" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-</svg>`, L = (i) => (
+</svg>`, E = (i) => (
     /* HTML */
     `<div class="point_block" data-time="${+i.time * 60}">
     <div class="progress_step">
@@ -615,7 +618,7 @@
     </div>
     <div class="mob_right">
       <div class="point_time">
-        ${v}
+        ${L}
         <span>${+i.start > 9 ? i.start : "0" + i.start}:00</span>
         <span class="status"></span>
       </div>
@@ -623,7 +626,7 @@
       /* HTML */
       `
             <span class="badge_${i.type}"
-              >${i.type === "critical" ? `${y} Critical information` : "Achieve Financial Freedom"}</span
+              >${i.type === "critical" ? `${C} Critical information` : "Achieve Financial Freedom"}</span
             >
           `
     ) : ""}
@@ -634,35 +637,35 @@
     /* HTML */
     ` <div class="points_block">
   <div class="header_wrap">
-    <p class="title">Topics covered on this free training:</p>
+    <p class="title">Topics we'll cover in the live training:</p>
     <div class="btns_desktop">
       <span class="prev disabled">${h}</span>
       <span class="next">${h}</span>
     </div>
   </div>
   <div class="shadows left">
-    <div class="point_block_wrapper">${f.map((i) => L(i)).join("")}</div>
+    <div class="point_block_wrapper">${f.map((i) => E(i)).join("")}</div>
   </div>
 </div>`
-  ), C = (
+  ), M = (
     /* HTML */
     `<div class="mobile_info_block">
   <p class="time">00:00</p>
   <p class="info"></p>
   <p class="text">${f[0].text}</p>
-  <button>See full webinar plan ${S}</button>
+  <button>See full training plan ${T}</button>
 </div>`
   );
-  w({ name: "Webinar Timeline", dev: "YK" }), u("webinar_timeline");
-  class T {
+  x({ name: "Webinar Timeline", dev: "YK" }), y("webinar_timeline");
+  class P {
     constructor() {
       this.init();
     }
     async init() {
       d("body", async () => {
-        n("body").elements[0].insertAdjacentHTML("afterbegin", `<style>${g}</style>`);
+        n("body").elements[0].insertAdjacentHTML("afterbegin", `<style class="crs_style">${u}</style>`);
       }), d("#vjs_video_3", async () => {
-        window.innerWidth > 768 ? n(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", _) : (n(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", C), n(".main-container").elements[0].insertAdjacentHTML("beforeend", _), n(".mobile_info_block button").elements[0].addEventListener("click", () => {
+        window.innerWidth > 768 ? n(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", _) : (n(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", M), n(".main-container").elements[0].insertAdjacentHTML("beforeend", _), n(".mobile_info_block button").elements[0].addEventListener("click", () => {
           n(".points_block").elements[0].scrollIntoView({ behavior: "smooth" });
         }));
       }), d(".point_block", async () => {
@@ -670,48 +673,59 @@
       });
     }
     async checkTime() {
-      const e = 2 * Math.PI * 17;
-      let t = !1;
-      setInterval(() => {
-        var c, l;
-        const s = n("video").elements[0].currentTime;
-        if (s === 0)
+      const e = 2 * Math.PI * 17, t = n(".point_block_wrapper").elements[0];
+      let s = !1;
+      const a = setInterval(() => {
+        var b, m, g;
+        const o = n("video").elements[0].currentTime;
+        if (o === 0)
           return;
-        t || (this.startPosition(), t = !0);
-        const o = n(".point_block.active").elements[0];
-        if (!o)
+        s || (this.startPosition(), s = !0);
+        const r = n(".point_block.active").elements[0];
+        if (console.log(o), o > 50 * 60 && window.innerWidth < 768 && (n(".mobile_info_block").elements[0].remove(), n(".points_block").elements[0].remove(), n(".crs_style").elements[0].remove(), clearInterval(a)), !r)
           return;
-        const r = ((c = o.previousElementSibling) == null ? void 0 : c.dataset.time) || 0, a = o.querySelector(".progress_step circle"), p = (s - +r) / (+o.dataset.time - +r) * 100;
-        if (a.style.strokeDashoffset = (e - p / 100 * e).toString(), p > 100 && (o.classList.remove("active"), o.classList.add("viewed"), (l = o.nextElementSibling) == null || l.classList.add("active"), window.innerWidth < 768)) {
-          const b = n(".mobile_info_block").elements[0], m = n(".point_block.active").elements[0];
-          b.querySelector(".time").textContent = m.querySelector(
-            ".point_time span:first-of-type"
-          ).textContent, b.querySelector(".info").textContent = m.querySelector("p").textContent;
+        const l = ((b = r.previousElementSibling) == null ? void 0 : b.dataset.time) || 0, c = r.querySelector(".progress_step circle"), p = (o - +l) / (+r.dataset.time - +l) * 100;
+        if (c.style.strokeDashoffset = (e - p / 100 * e).toString(), p > 100) {
+          r.classList.remove("active"), r.classList.add("viewed"), (m = r.nextElementSibling) == null || m.classList.add("active");
+          const W = (g = r.nextElementSibling) == null ? void 0 : g.getBoundingClientRect().left, $ = t.scrollLeft, A = t.clientWidth / 2 - 100;
+          if (t.scrollTo({
+            left: $ + (W - A),
+            behavior: "smooth"
+          }), window.innerWidth < 768) {
+            const w = n(".mobile_info_block").elements[0], k = n(".point_block.active").elements[0];
+            w.querySelector(".time").textContent = k.querySelector(
+              ".point_time span:first-of-type"
+            ).textContent, w.querySelector(".text").textContent = k.querySelector("p").textContent;
+          }
         }
       }, 1e3);
     }
     async startPosition() {
       const e = n("video").elements[0].currentTime, t = n(".point_block").elements, s = 2 * Math.PI * 17;
-      let o = null;
-      if (t.forEach((r, a) => {
-        if (r.dataset.time && +r.dataset.time < e)
-          r.classList.add("viewed"), o = a;
+      let a = null;
+      if (t.forEach((o, r) => {
+        if (o.dataset.time && +o.dataset.time < e)
+          o.classList.add("viewed"), a = r;
         else {
-          if (o === null && a === 0) {
-            r.classList.add("active");
+          if (a === null && r === 0) {
+            o.classList.add("active");
             return;
           }
-          if (r.dataset.time && o !== null && a === o + 1) {
-            r.classList.add("active");
-            const p = r.querySelector(".progress_step circle"), c = +t[a - 1].dataset.time, l = (e - c) / (+r.dataset.time - c) * 100;
-            p.style.strokeDashoffset = (s - l / 100 * s).toString();
+          if (o.dataset.time && a !== null && r === a + 1) {
+            o.classList.add("active");
+            const l = o.querySelector(".progress_step circle"), c = +t[r - 1].dataset.time, p = (e - c) / (+o.dataset.time - c) * 100;
+            l.style.strokeDashoffset = (s - p / 100 * s).toString();
           }
         }
       }), window.innerWidth < 768) {
-        const r = n(".mobile_info_block").elements[0], a = n(".point_block.active").elements[0];
-        r.querySelector(".time").textContent = a.querySelector(
+        const o = n(".mobile_info_block").elements[0], r = n(".point_block.active").elements[0];
+        if (!r) {
+          o.querySelector(".time").textContent = "44:00", o.querySelector(".text").textContent = "Get the done for you partnership with our top freelancers, resources, community and support to fast track your success.” My opinion is it doesn’t indicate that we are selling something, and it would be interesting to learn more about this";
+          return;
+        }
+        o.querySelector(".time").textContent = r.querySelector(
           ".point_time span:first-of-type"
-        ).textContent, r.querySelector(".info").textContent = a.querySelector("p").textContent;
+        ).textContent, o.querySelector(".text").textContent = r.querySelector("p").textContent;
       }
     }
     setScroll() {
@@ -727,11 +741,10 @@
           behavior: "smooth"
         });
       }), e.addEventListener("scroll", () => {
-        x("scroll"), e.scrollLeft === 0 ? (n(".btns_desktop .prev").elements[0].classList.add("disabled"), n(".shadows").elements[0].classList.add("left")) : (n(".btns_desktop .prev").elements[0].classList.remove("disabled"), n(".shadows").elements[0].classList.remove("left")), e.scrollLeft === e.scrollWidth - e.clientWidth ? (n(".btns_desktop .next").elements[0].classList.add("disabled"), n(".shadows").elements[0].classList.add("right")) : (n(".btns_desktop .next").elements[0].classList.remove("disabled"), n(".shadows").elements[0].classList.remove("right"));
+        S("scroll"), e.scrollLeft === 0 ? (n(".btns_desktop .prev").elements[0].classList.add("disabled"), n(".shadows").elements[0].classList.add("left")) : (n(".btns_desktop .prev").elements[0].classList.remove("disabled"), n(".shadows").elements[0].classList.remove("left")), e.scrollLeft < e.scrollWidth - e.clientWidth && e.scrollLeft > e.scrollWidth - e.clientWidth - 2 ? (n(".btns_desktop .next").elements[0].classList.add("disabled"), n(".shadows").elements[0].classList.add("right")) : (n(".btns_desktop .next").elements[0].classList.remove("disabled"), n(".shadows").elements[0].classList.remove("right"));
       });
     }
   }
-  new T();
+  new P();
 })();
 //# sourceMappingURL=index.js.map
-
