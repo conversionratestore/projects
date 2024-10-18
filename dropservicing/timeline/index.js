@@ -599,7 +599,7 @@
     {
       start: "44",
       time: "44",
-      text: "Get the done for you partnership with our top freelancers, resources, community and support to fast track your success.” My opinion is it doesn’t indicate that we are selling something, and it would be interesting to learn more about this",
+      text: "Get the done for you partnership with our top freelancers, resources, community and support to fast track your success.”",
       type: "final"
     }
   ], y = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -736,7 +736,7 @@
       }), window.innerWidth < 768) {
         const o = t(".mobile_info_block").elements[0], r = t(".point_block.active").elements[0];
         if (!r) {
-          o.querySelector(".time").textContent = "44:00", o.querySelector(".text").textContent = "Get the done for you partnership with our top freelancers, resources, community and support to fast track your success.” My opinion is it doesn’t indicate that we are selling something, and it would be interesting to learn more about this";
+          o.querySelector(".time").textContent = "44:00", o.querySelector(".text").textContent = "Get the done for you partnership with our top freelancers, resources, community and support to fast track your success.”";
           return;
         }
         o.querySelector(".text").innerHTML = r.querySelector("p").innerHTML;
