@@ -232,6 +232,9 @@
 .point_block_wrapper .point_block:last-child .progress_step::after {
   display: none;
 }
+.point_block_wrapper .point_block:last-child {
+  width: 203px;
+}
 .point_block_wrapper .point_block:first-child {
   padding-left: 4px;
 }
