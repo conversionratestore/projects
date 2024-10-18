@@ -11,9 +11,9 @@
   }
 }
 .points_block {
-  width: 100%;
+  width: 99%;
   background: #100119;
-  padding: 23px 32px;
+  padding: 20px 20px;
   position: relative;
   z-index: 200;
   overflow: hidden;
@@ -21,7 +21,13 @@
 }
 @media (max-width: 768px) {
   .points_block {
+    width: 100%;
     padding: 20px 16px;
+  }
+}
+@media (min-width: 769px) {
+  .points_block {
+    padding-top: 10px;
   }
 }
 .points_block p {
@@ -50,7 +56,7 @@
 
 .live_content_wrapper_generic {
   flex-shrink: 0;
-  width: 80% !important;
+  width: 90% !important;
 }
 @media (max-width: 768px) {
   .live_content_wrapper_generic {
@@ -289,11 +295,6 @@
   color: #fbfcff;
   opacity: 0.4;
 }
-@media (max-width: 768px) {
-  .point_block_wrapper .point_block .point_time .status {
-    display: none;
-  }
-}
 .point_block_wrapper .point_block .point_time .status::after {
   content: "(Approx.)";
 }
@@ -376,7 +377,6 @@
   line-height: 20px;
   color: #fff;
   margin-bottom: 16px;
-  margin-top: 7px;
 }
 .mobile_info_block button {
   width: -moz-fit-content;
@@ -404,6 +404,17 @@
   }
   .tab-content-underlined {
     min-height: 200px;
+  }
+}
+@media (min-width: 769px) {
+  .top_content_wrapper {
+    background: #100119;
+  }
+  .layout-renderer-container-attendee {
+    padding-top: 10px;
+  }
+  .live_content_wrapper-working-area_attendee {
+    height: calc(100vh - 55px);
   }
 }/*# sourceMappingURL=style.css.map */`, d = (o, e) => {
     const t = setInterval(() => {
@@ -659,8 +670,6 @@
   ), M = (
     /* HTML */
     `<div class="mobile_info_block">
-  <p class="time">00:00</p>
-  <p class="info"></p>
   <p class="text">${h[0].text}</p>
   <button>See full training plan ${C}</button>
 </div>`
