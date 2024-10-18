@@ -364,6 +364,7 @@
   background: #100119;
   gap: 7px;
   padding: 16px;
+  width: 100%;
 }
 .mobile_info_block p {
   font-size: 14px;
