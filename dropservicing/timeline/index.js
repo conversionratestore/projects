@@ -235,6 +235,11 @@
 .point_block_wrapper .point_block:last-child {
   width: 203px;
 }
+@media (max-width: 768px) {
+  .point_block_wrapper .point_block:last-child {
+    width: 100%;
+  }
+}
 .point_block_wrapper .point_block:first-child {
   padding-left: 4px;
 }
@@ -399,14 +404,14 @@
   .tab-content-underlined {
     min-height: 200px;
   }
-}/*# sourceMappingURL=style.css.map */`, d = (i, e) => {
+}/*# sourceMappingURL=style.css.map */`, d = (o, e) => {
     const t = setInterval(() => {
-      const s = document.querySelector(i);
+      const s = document.querySelector(o);
       s && (clearInterval(t), e(s));
     }, 100);
-  }, x = ({ name: i, dev: e }) => {
+  }, x = ({ name: o, dev: e }) => {
     console.log(
-      `%c EXP: ${i} (DEV: ${e})`,
+      `%c EXP: ${o} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   };
@@ -416,13 +421,13 @@
     }
     on(e, t, s) {
       return typeof t == "function" && (s = t, t = ""), this.elements.forEach(function(a) {
-        a.addEventListener(e, function(o) {
+        a.addEventListener(e, function(i) {
           var r;
           if (t !== "") {
-            let l = (r = o.target) == null ? void 0 : r.closest(t);
-            l && (s == null || s.call(l, o));
+            let l = (r = i.target) == null ? void 0 : r.closest(t);
+            l && (s == null || s.call(l, i));
           } else
-            s == null || s.call(a, o);
+            s == null || s.call(a, i);
         });
       }), this;
     }
@@ -447,17 +452,17 @@
       }), this;
     }
     style(e, t) {
-      const s = e.split("-").map((a, o) => o === 0 ? a : a.charAt(0).toUpperCase() + a.slice(1)).join("");
+      const s = e.split("-").map((a, i) => i === 0 ? a : a.charAt(0).toUpperCase() + a.slice(1)).join("");
       return this.elements.forEach(function(a) {
         a.style[s] = t;
       }), this;
     }
   }
-  const n = (i) => new v(i), y = (i) => {
+  const n = (o) => new v(o), y = (o) => {
     let e = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", i, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", o, "variant_1"));
     }, 1e3);
-  }, S = (i, e = "info") => {
+  }, S = (o, e = "info") => {
     let t;
     switch (e) {
       case "info":
@@ -473,8 +478,8 @@
         t = "color: #2ecc71;";
         break;
     }
-    console.log(`%c>>> ${i}`, `${t} font-size: 16px; font-weight: 600`);
-  }, f = [
+    console.log(`%c>>> ${o}`, `${t} font-size: 16px; font-weight: 600`);
+  }, h = [
     {
       start: "0",
       time: "3",
@@ -603,13 +608,13 @@
 <rect width="15" height="15" fill="white" transform="translate(0 0.5)"/>
 </clipPath>
 </defs>
-</svg>`, h = `<svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+</svg>`, f = `<svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
 <path d="M6.5 1L1.5 6L6.5 11" stroke="#100119" stroke-width="1.4" stroke-linecap="round"/>
 </svg>`, T = `<svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
 <path d="M1 1.06543L6 6.06543L1 11.0654" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-</svg>`, E = (i) => (
+</svg>`, E = (o) => (
     /* HTML */
-    `<div class="point_block" data-time="${+i.time * 60}">
+    `<div class="point_block" data-time="${+o.time * 60}">
     <div class="progress_step">
       <span>
         <div class="progress_border">
@@ -622,18 +627,18 @@
     <div class="mob_right">
       <div class="point_time">
         ${L}
-        <span>${+i.start > 9 ? i.start : "0" + i.start}:00</span>
+        <span>${+o.start > 9 ? o.start : "0" + o.start}:00</span>
         <span class="status"></span>
       </div>
-      ${i.type ? (
+      ${o.type ? (
       /* HTML */
       `
-            <span class="badge_${i.type}"
-              >${i.type === "critical" ? `${C} Critical information` : "Achieve Financial Freedom"}</span
+            <span class="badge_${o.type}"
+              >${o.type === "critical" ? `${C} Critical information` : "Achieve Financial Freedom"}</span
             >
           `
     ) : ""}
-      <p>${i.text}</p>
+      <p>${o.text}</p>
     </div>
   </div>`
   ), _ = (
@@ -642,12 +647,12 @@
   <div class="header_wrap">
     <p class="title">Topics we'll cover in the live training:</p>
     <div class="btns_desktop">
-      <span class="prev disabled">${h}</span>
-      <span class="next">${h}</span>
+      <span class="prev disabled">${f}</span>
+      <span class="next">${f}</span>
     </div>
   </div>
   <div class="shadows left">
-    <div class="point_block_wrapper">${f.map((i) => E(i)).join("")}</div>
+    <div class="point_block_wrapper">${h.map((o) => E(o)).join("")}</div>
   </div>
 </div>`
   ), M = (
@@ -655,7 +660,7 @@
     `<div class="mobile_info_block">
   <p class="time">00:00</p>
   <p class="info"></p>
-  <p class="text">${f[0].text}</p>
+  <p class="text">${h[0].text}</p>
   <button>See full training plan ${T}</button>
 </div>`
   );
@@ -680,14 +685,14 @@
       let s = !1;
       const a = setInterval(() => {
         var b, m, w;
-        const o = n("video").elements[0].currentTime;
-        if (o === 0)
+        const i = n("video").elements[0].currentTime;
+        if (i === 0)
           return;
         s || (this.startPosition(), s = !0);
         const r = n(".point_block.active").elements[0];
-        if (o > 50 * 60 && window.innerWidth < 768 && (n(".mobile_info_block").elements[0].remove(), n(".points_block").elements[0].remove(), n(".crs_style").elements[0].remove(), clearInterval(a)), !r)
+        if (i > 50 * 60 && window.innerWidth < 768 && (n(".mobile_info_block").elements[0].remove(), n(".points_block").elements[0].remove(), n(".crs_style").elements[0].remove(), clearInterval(a)), !r)
           return;
-        const l = ((b = r.previousElementSibling) == null ? void 0 : b.dataset.time) || 0, c = r.querySelector(".progress_step circle"), p = (o - +l) / (+r.dataset.time - +l) * 100;
+        const l = ((b = r.previousElementSibling) == null ? void 0 : b.dataset.time) || 0, c = r.querySelector(".progress_step circle"), p = (i - +l) / (+r.dataset.time - +l) * 100;
         if (c.style.strokeDashoffset = (e - p / 100 * e).toString(), p > 100) {
           r.classList.remove("active"), r.classList.add("viewed"), (m = r.nextElementSibling) == null || m.classList.add("active");
           const W = (w = r.nextElementSibling) == null ? void 0 : w.getBoundingClientRect().left, $ = t.scrollLeft, A = t.clientWidth / 2 - 100;
@@ -706,29 +711,29 @@
     async startPosition() {
       const e = n("video").elements[0].currentTime, t = n(".point_block").elements, s = 2 * Math.PI * 17;
       let a = null;
-      if (t.forEach((o, r) => {
-        if (o.dataset.time && +o.dataset.time < e)
-          o.classList.add("viewed"), a = r;
+      if (t.forEach((i, r) => {
+        if (i.dataset.time && +i.dataset.time < e)
+          i.classList.add("viewed"), a = r;
         else {
           if (a === null && r === 0) {
-            o.classList.add("active");
+            i.classList.add("active");
             return;
           }
-          if (o.dataset.time && a !== null && r === a + 1) {
-            o.classList.add("active");
-            const l = o.querySelector(".progress_step circle"), c = +t[r - 1].dataset.time, p = (e - c) / (+o.dataset.time - c) * 100;
+          if (i.dataset.time && a !== null && r === a + 1) {
+            i.classList.add("active");
+            const l = i.querySelector(".progress_step circle"), c = +t[r - 1].dataset.time, p = (e - c) / (+i.dataset.time - c) * 100;
             l.style.strokeDashoffset = (s - p / 100 * s).toString();
           }
         }
       }), window.innerWidth < 768) {
-        const o = n(".mobile_info_block").elements[0], r = n(".point_block.active").elements[0];
+        const i = n(".mobile_info_block").elements[0], r = n(".point_block.active").elements[0];
         if (!r) {
-          o.querySelector(".time").textContent = "44:00", o.querySelector(".text").textContent = "Get the done for you partnership with our top freelancers, resources, community and support to fast track your success.” My opinion is it doesn’t indicate that we are selling something, and it would be interesting to learn more about this";
+          i.querySelector(".time").textContent = "44:00", i.querySelector(".text").textContent = "Get the done for you partnership with our top freelancers, resources, community and support to fast track your success.” My opinion is it doesn’t indicate that we are selling something, and it would be interesting to learn more about this";
           return;
         }
-        o.querySelector(".time").textContent = r.querySelector(
+        i.querySelector(".time").textContent = r.querySelector(
           ".point_time span:first-of-type"
-        ).textContent, o.querySelector(".text").textContent = r.querySelector("p").textContent;
+        ).textContent, i.querySelector(".text").textContent = r.querySelector("p").textContent;
       }
     }
     setScroll() {
