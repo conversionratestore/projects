@@ -679,26 +679,26 @@
       const e = 2 * Math.PI * 17, t = n(".point_block_wrapper").elements[0];
       let s = !1;
       const a = setInterval(() => {
-        var b, m, g;
+        var b, m, w;
         const o = n("video").elements[0].currentTime;
         if (o === 0)
           return;
         s || (this.startPosition(), s = !0);
         const r = n(".point_block.active").elements[0];
-        if (console.log(o), o > 50 * 60 && window.innerWidth < 768 && (n(".mobile_info_block").elements[0].remove(), n(".points_block").elements[0].remove(), n(".crs_style").elements[0].remove(), clearInterval(a)), !r)
+        if (o > 50 * 60 && window.innerWidth < 768 && (n(".mobile_info_block").elements[0].remove(), n(".points_block").elements[0].remove(), n(".crs_style").elements[0].remove(), clearInterval(a)), !r)
           return;
         const l = ((b = r.previousElementSibling) == null ? void 0 : b.dataset.time) || 0, c = r.querySelector(".progress_step circle"), p = (o - +l) / (+r.dataset.time - +l) * 100;
         if (c.style.strokeDashoffset = (e - p / 100 * e).toString(), p > 100) {
           r.classList.remove("active"), r.classList.add("viewed"), (m = r.nextElementSibling) == null || m.classList.add("active");
-          const W = (g = r.nextElementSibling) == null ? void 0 : g.getBoundingClientRect().left, $ = t.scrollLeft, A = t.clientWidth / 2 - 100;
+          const W = (w = r.nextElementSibling) == null ? void 0 : w.getBoundingClientRect().left, $ = t.scrollLeft, A = t.clientWidth / 2 - 100;
           if (t.scrollTo({
             left: $ + (W - A),
             behavior: "smooth"
           }), window.innerWidth < 768) {
-            const w = n(".mobile_info_block").elements[0], k = n(".point_block.active").elements[0];
-            w.querySelector(".time").textContent = k.querySelector(
+            const g = n(".mobile_info_block").elements[0], k = n(".point_block.active").elements[0];
+            g.querySelector(".time").textContent = k.querySelector(
               ".point_time span:first-of-type"
-            ).textContent, w.querySelector(".text").textContent = k.querySelector("p").textContent;
+            ).textContent, g.querySelector(".text").textContent = k.querySelector("p").textContent;
           }
         }
       }, 1e3);
@@ -744,7 +744,7 @@
           behavior: "smooth"
         });
       }), e.addEventListener("scroll", () => {
-        S("scroll"), e.scrollLeft === 0 ? (n(".btns_desktop .prev").elements[0].classList.add("disabled"), n(".shadows").elements[0].classList.add("left")) : (n(".btns_desktop .prev").elements[0].classList.remove("disabled"), n(".shadows").elements[0].classList.remove("left")), e.scrollLeft < e.scrollWidth - e.clientWidth && e.scrollLeft > e.scrollWidth - e.clientWidth - 2 ? (n(".btns_desktop .next").elements[0].classList.add("disabled"), n(".shadows").elements[0].classList.add("right")) : (n(".btns_desktop .next").elements[0].classList.remove("disabled"), n(".shadows").elements[0].classList.remove("right"));
+        S("scroll"), e.scrollLeft === 0 ? (n(".btns_desktop .prev").elements[0].classList.add("disabled"), n(".shadows").elements[0].classList.add("left")) : (n(".btns_desktop .prev").elements[0].classList.remove("disabled"), n(".shadows").elements[0].classList.remove("left")), e.scrollLeft <= e.scrollWidth - e.clientWidth && e.scrollLeft > e.scrollWidth - e.clientWidth - 2 ? (n(".btns_desktop .next").elements[0].classList.add("disabled"), n(".shadows").elements[0].classList.add("right")) : (n(".btns_desktop .next").elements[0].classList.remove("disabled"), n(".shadows").elements[0].classList.remove("right"));
       });
     }
   }
