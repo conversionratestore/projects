@@ -308,6 +308,16 @@
   line-height: 20px;
   color: #fff;
 }
+.point_block_wrapper .point_block ul {
+  padding-left: 20px;
+  margin-top: -6px;
+}
+.point_block_wrapper .point_block ul li {
+  font-size: 14px;
+  line-height: 20px;
+  color: #fff;
+  margin-bottom: 6px;
+}
 .point_block_wrapper .point_block.viewed .progress_step span {
   background: #a46bf5;
 }
@@ -495,7 +505,7 @@
     {
       start: "0",
       time: "3",
-      text: "<b>How to Create Recurring Passive Income with Drop Servicing</b> - Learn the simple steps to achieving financial freedom with no skills, experience, or knowledge required."
+      text: "<b>How to Create Recurring Passive Income with Drop Servicing</b> - Learn the simple steps to achieving financial freedom with no skills, experience, or knowledge required"
     },
     {
       start: "3",
@@ -516,12 +526,12 @@
     {
       start: "10",
       time: "13",
-      text: "<b>Stay to the End and Get These Bonuses:</b> <br>$12,000 Sale Tutorial (+ Free Copy Paste Template)<br>A Quick Guide to Drop Servicing (Get Selling FAST and for ZERO)"
+      text: "<b>Stay to the End and Get These Bonuses:</b> <ul><li>$12,000 Sale Tutorial (+ Free Copy Paste Template)</li><li>A Quick Guide to Drop Servicing (Get Selling FAST and for ZERO)</li></ul>"
     },
     {
       start: "13",
       time: "15",
-      text: "<b>The High-Profit Service System</b> - Discover a proven system that enables you to start a highly profitable online business quickly with no startup costs."
+      text: "<b>The High-Profit Service System</b> - Discover a proven system that enables you to start a highly profitable online business quickly with no startup costs"
     },
     {
       start: "15",
@@ -563,7 +573,7 @@
     {
       start: "32",
       time: "33",
-      text: "<b>Scaling & Automating Your Drop Servicing Business</b> - Learn how to use automated systems to build and scale your business, secure recurring clients, and achieve financial freedom with minimal effort."
+      text: "<b>Scaling & Automating Your Drop Servicing Business</b> - Learn how to use automated systems to build and scale your business, secure recurring clients, and achieve financial freedom with minimal effort"
     },
     {
       start: "33",
