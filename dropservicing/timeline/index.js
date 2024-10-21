@@ -376,6 +376,7 @@
   gap: 7px;
   padding: 16px;
   width: 100%;
+  display: none;
 }
 .mobile_info_block p {
   font-size: 14px;
@@ -741,7 +742,7 @@
       }), window.innerWidth < 768) {
         const i = t(".mobile_info_block").elements[0], r = t(".point_block.active").elements[0];
         if (!r) {
-          i.querySelector(".time").textContent = "44:00", i.querySelector(".text").textContent = "Get the done for you partnership with our top freelancers, resources, community and support to fast track your success.”";
+          i.querySelector(".text").textContent = "Get the done for you partnership with our top freelancers, resources, community and support to fast track your success.”";
           return;
         }
         i.querySelector(".text").innerHTML = r.querySelector("p").innerHTML;
