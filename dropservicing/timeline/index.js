@@ -416,14 +416,14 @@
   .live_content_wrapper-working-area_attendee {
     height: calc(100vh - 55px);
   }
-}/*# sourceMappingURL=style.css.map */`, d = (i, e) => {
+}/*# sourceMappingURL=style.css.map */`, d = (o, e) => {
     const n = setInterval(() => {
-      const s = document.querySelector(i);
+      const s = document.querySelector(o);
       s && (clearInterval(n), e(s));
     }, 100);
-  }, k = ({ name: i, dev: e }) => {
+  }, k = ({ name: o, dev: e }) => {
     console.log(
-      `%c EXP: ${i} (DEV: ${e})`,
+      `%c EXP: ${o} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   };
@@ -433,13 +433,13 @@
     }
     on(e, n, s) {
       return typeof n == "function" && (s = n, n = ""), this.elements.forEach(function(a) {
-        a.addEventListener(e, function(o) {
+        a.addEventListener(e, function(i) {
           var r;
           if (n !== "") {
-            let l = (r = o.target) == null ? void 0 : r.closest(n);
-            l && (s == null || s.call(l, o));
+            let l = (r = i.target) == null ? void 0 : r.closest(n);
+            l && (s == null || s.call(l, i));
           } else
-            s == null || s.call(a, o);
+            s == null || s.call(a, i);
         });
       }), this;
     }
@@ -464,17 +464,17 @@
       }), this;
     }
     style(e, n) {
-      const s = e.split("-").map((a, o) => o === 0 ? a : a.charAt(0).toUpperCase() + a.slice(1)).join("");
+      const s = e.split("-").map((a, i) => i === 0 ? a : a.charAt(0).toUpperCase() + a.slice(1)).join("");
       return this.elements.forEach(function(a) {
         a.style[s] = n;
       }), this;
     }
   }
-  const t = (i) => new u(i), x = (i) => {
+  const t = (o) => new u(o), x = (o) => {
     let e = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", i, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", o, "variant_1"));
     }, 1e3);
-  }, v = (i, e = "info") => {
+  }, v = (o, e = "info") => {
     let n;
     switch (e) {
       case "info":
@@ -490,17 +490,17 @@
         n = "color: #2ecc71;";
         break;
     }
-    console.log(`%c>>> ${i}`, `${n} font-size: 16px; font-weight: 600`);
+    console.log(`%c>>> ${o}`, `${n} font-size: 16px; font-weight: 600`);
   }, h = [
     {
       start: "0",
       time: "3",
-      text: "Discover the Simple Steps to Create a Recurring Passive Income Stream with Drop Servicing “Achieve Financial Freedom With No Skills, Experience or Knowledge”"
+      text: "<b>How to Create Recurring Passive Income with Drop Servicing</b> - Learn the simple steps to achieving financial freedom with no skills, experience, or knowledge required."
     },
     {
       start: "3",
       time: "4",
-      text: "<b>Real-Life Success Stories and Why Drop Servicing Works</b> - Inspiring success stories of individuals from various backgrounds who achieved substantial income using Drop Servicing."
+      text: "<b>Real-Life Success Stories: Why Drop Servicing Works</b> - Inspiring stories of ordinary people who have achieved substantial income through Drop Servicing"
     },
     {
       start: "4",
@@ -510,96 +510,91 @@
     },
     {
       start: "5",
-      time: "6",
-      text: "How Dylan went from -$60K to $4M+ with Drop Servicing"
-    },
-    {
-      start: "6",
       time: "10",
-      text: "<b>Why This Life-Changing Method is Being Shared</b> - Discover the motivation behind sharing this system, and how it can help you create recurring income and gain control over your life with minimal effort."
+      text: "<b>How Dylan went from -$60K to $4M+ with Drop Servicing</b> - Discover the method he used to take control of his life, quit his job, and achieve financial freedom"
     },
     {
       start: "10",
       time: "13",
-      text: "STAY TO THE END & GET THESE BONUSES: $12,000 Sale Tutorial (+ Free Copy Paste Template) A Quick Guide to Drop Servicing (Get Selling FAST and for ZERO)"
+      text: "<b>Stay to the End and Get These Bonuses:</b> <br>$12,000 Sale Tutorial (+ Free Copy Paste Template)<br>A Quick Guide to Drop Servicing (Get Selling FAST and for ZERO)"
     },
     {
       start: "13",
       time: "15",
-      text: "Introduction to the High Profit Service System - An overview of the High Profit Service System, designed to help anyone start a profitable online business quickly and avoid common pitfalls. Learn how this system simplifies the process with no startup costs and fast results."
+      text: "<b>The High-Profit Service System</b> - Discover a proven system that enables you to start a highly profitable online business quickly with no startup costs."
     },
     {
       start: "15",
       time: "18",
-      text: "<b>Why Drop Servicing is the new best way to make money online</b> – How we get sales for free and fast then create multiple passive income streams",
+      text: "<b>Why Drop Servicing Is the New Best Way to Make Money Online</b> - Learn how we get sales for free and fast then create multiple passive income streams",
       type: "critical"
     },
     {
       start: "18",
       time: "19",
-      text: "Specific Example of How Drop Servicing Works"
+      text: "A specific example of how Drop Servicing works"
     },
     {
       start: "19",
       time: "21",
-      text: "Why Drop Servicing Works and How to Start for FREE with the Partnership method"
+      text: "Why Drop Servicing works and how to start for FREE with the Partnership method"
     },
     {
       start: "21",
       time: "23",
-      text: "How much can you make with Drop Servicing?"
+      text: "<b>How Much Can You Make With Drop Servicing?</b> - The realistic income potential of Drop Servicing and what you can expect as your business grows"
     },
     {
       start: "23",
       time: "28",
-      text: "How to find high simple high profit services to sell - A detailed guide on how to select high-demand, profitable digital services, source freelancers, and price services effectively to generate substantial recurring income with Drop Servicing."
+      text: "<b>How to Find Simple, High-Profit Services to Sell</b> - A detailed guide on finding high-demand, profitable digital services, sourcing freelancers, and pricing effectively to generate substantial recurring income"
     },
     {
       start: "28",
       time: "30",
-      text: "The Best High Profit Services You Can Make The Most Money With Today",
+      text: "The best high profit services you can make the most money with today",
       type: "critical"
     },
     {
       start: "30",
       time: "32",
-      text: "The Automated Sales System - Three Simple Steps to $10,000 Per Month"
+      text: "The Automated Sales System: 3 simple steps to $10,000 per month"
     },
     {
       start: "32",
       time: "33",
-      text: "<b>Scaling and Automating Your Drop Servicing Business</b> - Learn how to use automated systems to build and scale your business, secure recurring clients, and achieve financial freedom with minimal effort."
+      text: "<b>Scaling & Automating Your Drop Servicing Business</b> - Learn how to use automated systems to build and scale your business, secure recurring clients, and achieve financial freedom with minimal effort."
     },
     {
       start: "33",
       time: "34",
-      text: "How to Instantly Get More Sales in Your Drop Servicing Business"
+      text: "How to instantly get more sales in your Drop Servicing business"
     },
     {
       start: "34",
       time: "35",
-      text: "Why Freelancers Badly Want To Work With You (Use My Template)"
+      text: "Why freelancers badly want to work with you (use my template)"
     },
     {
       start: "35",
       time: "38",
-      text: "How to Automate and Scale Fast To Achieve Your Freedom Lifestyle"
+      text: "How to automate and scale your business fast to achieve your freedom lifestyle"
     },
     {
       start: "38",
       time: "41",
-      text: "<b>How To Turn A Single Sale Into Multiple Passive Income Streams</b> - Learn how one service can lead to recurring revenue, repeat clients, and referral business, creating multiple streams of passive income.",
+      text: "<b>How to Turn a Single Sale into Multiple Passive Income Streams</b> - Learn the secret to turning one service into recurring revenue, repeat clients, and referral business",
       type: "critical"
     },
     {
       start: "41",
       time: "44",
-      text: "How Much We Can Sell Our Drop Servicing Businesses For (And Achieve a MASSIVE Pay Day)"
+      text: "How much we can sell our Drop Servicing businesses for (and achieve a massive pay day)"
     },
     {
       start: "44",
       time: "44",
-      text: "Get the done for you partnership with our top freelancers, resources, community and support to fast track your success.”",
+      text: "Get the Done For You partnership with our top freelancers, resources, community and support to fast track your success",
       type: "final"
     }
   ], y = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -611,7 +606,7 @@
 <rect width="12" height="12" fill="white"/>
 </clipPath>
 </defs>
-</svg>`, S = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
+</svg>`, L = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
 <g clip-path="url(#clip0_2066_846)">
 <path d="M7.5 0.5C3.35476 0.5 0 3.85438 0 8C0 12.1452 3.35438 15.5 7.5 15.5C11.6452 15.5 15 12.1456 15 8C15 3.85481 11.6456 0.5 7.5 0.5ZM8.27019 10.9772C8.27019 11.2141 7.92466 11.451 7.50015 11.451C7.05589 11.451 6.74001 11.2141 6.74001 10.9772V7.21584C6.74001 6.93942 7.05592 6.75181 7.50015 6.75181C7.92466 6.75181 8.27019 6.93942 8.27019 7.21584V10.9772ZM7.50018 5.84363C7.04605 5.84363 6.69067 5.50798 6.69067 5.1328C6.69067 4.75766 7.04607 4.43187 7.50018 4.43187C7.94443 4.43187 8.29986 4.75766 8.29986 5.1328C8.29986 5.50798 7.9444 5.84363 7.50018 5.84363Z" fill="white"/>
 </g>
@@ -622,11 +617,11 @@
 </defs>
 </svg>`, f = `<svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
 <path d="M6.5 1L1.5 6L6.5 11" stroke="#100119" stroke-width="1.4" stroke-linecap="round"/>
-</svg>`, L = `<svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+</svg>`, S = `<svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
 <path d="M1 1.06543L6 6.06543L1 11.0654" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-</svg>`, T = (i) => (
+</svg>`, T = (o) => (
     /* HTML */
-    `<div class="point_block" data-time="${+i.time * 60}">
+    `<div class="point_block" data-time="${+o.time * 60}">
     <div class="progress_step">
       <span>
         <div class="progress_border">
@@ -639,39 +634,39 @@
     <div class="mob_right">
       <div class="point_time">
         ${y}
-        <span>${+i.start > 9 ? i.start : "0" + i.start}:00</span>
+        <span>${+o.start > 9 ? o.start : "0" + o.start}:00</span>
         <span class="status"></span>
       </div>
-      ${i.type ? (
+      ${o.type ? (
       /* HTML */
       `
-            <span class="badge_${i.type}"
-              >${i.type === "critical" ? `${S} Critical information` : "Achieve Financial Freedom"}</span
+            <span class="badge_${o.type}"
+              >${o.type === "critical" ? `${L} Critical information` : "Achieve Financial Freedom"}</span
             >
           `
     ) : ""}
-      <p>${i.text}</p>
+      <p>${o.text}</p>
     </div>
   </div>`
-  ), _ = (
+  ), b = (
     /* HTML */
     ` <div class="points_block">
   <div class="header_wrap">
-    <p class="title">Topics we'll cover in the live training:</p>
+    <p class="title">What you’ll learn in the live training:</p>
     <div class="btns_desktop">
       <span class="prev disabled">${f}</span>
       <span class="next">${f}</span>
     </div>
   </div>
   <div class="shadows left">
-    <div class="point_block_wrapper">${h.map((i) => T(i)).join("")}</div>
+    <div class="point_block_wrapper">${h.map((o) => T(o)).join("")}</div>
   </div>
 </div>`
   ), C = (
     /* HTML */
     `<div class="mobile_info_block">
   <p class="text">${h[0].text}</p>
-  <button>See full training plan ${L}</button>
+  <button>See full training plan ${S}</button>
 </div>`
   );
   k({ name: "Webinar Timeline", dev: "YK" }), x("webinar_timeline");
@@ -683,7 +678,7 @@
       d("body", async () => {
         t("body").elements[0].insertAdjacentHTML("afterbegin", `<style class="crs_style">${g}</style>`);
       }), d("#vjs_video_3", async () => {
-        window.innerWidth > 768 ? t(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", _) : (t(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", C), t(".main-container").elements[0].insertAdjacentHTML("beforeend", _), t(".mobile_info_block button").elements[0].addEventListener("click", () => {
+        window.innerWidth > 768 ? t(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", b) : (t(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", C), t(".main-container").elements[0].insertAdjacentHTML("beforeend", b), t(".mobile_info_block button").elements[0].addEventListener("click", () => {
           t(".points_block").elements[0].scrollIntoView({ behavior: "smooth" });
         }));
       }), d(".point_block", async () => {
@@ -694,24 +689,24 @@
       const e = 2 * Math.PI * 17, n = t(".point_block_wrapper").elements[0];
       let s = !1;
       const a = setInterval(() => {
-        var b, m, w;
-        const o = t("video").elements[0].currentTime;
-        if (o === 0)
+        var _, w, m;
+        const i = t("video").elements[0].currentTime;
+        if (i === 0)
           return;
         s || (this.startPosition(), s = !0);
         const r = t(".point_block.active").elements[0];
-        if (o > 50 * 60 && window.innerWidth < 768 && (t(".mobile_info_block").elements[0].remove(), t(".points_block").elements[0].remove(), t(".crs_style").elements[0].remove(), clearInterval(a)), !r)
+        if (i > 50 * 60 && window.innerWidth < 768 && (t(".mobile_info_block").elements[0].remove(), t(".points_block").elements[0].remove(), t(".crs_style").elements[0].remove(), clearInterval(a)), !r)
           return;
-        const l = ((b = r.previousElementSibling) == null ? void 0 : b.dataset.time) || 0, c = r.querySelector(".progress_step circle"), p = (o - +l) / (+r.dataset.time - +l) * 100;
-        if (c.style.strokeDashoffset = (e - p / 100 * e).toString(), p > 100) {
-          r.classList.remove("active"), r.classList.add("viewed"), (m = r.nextElementSibling) == null || m.classList.add("active");
-          const M = (w = r.nextElementSibling) == null ? void 0 : w.getBoundingClientRect().left, H = n.scrollLeft, P = n.clientWidth / 2 - 100;
+        const l = ((_ = r.previousElementSibling) == null ? void 0 : _.dataset.time) || 0, p = r.querySelector(".progress_step circle"), c = (i - +l) / (+r.dataset.time - +l) * 100;
+        if (p.style.strokeDashoffset = (e - c / 100 * e).toString(), c > 100) {
+          r.classList.remove("active"), r.classList.add("viewed"), (w = r.nextElementSibling) == null || w.classList.add("active");
+          const M = (m = r.nextElementSibling) == null ? void 0 : m.getBoundingClientRect().left, $ = n.scrollLeft, P = n.clientWidth / 2 - 100;
           if (n.scrollTo({
-            left: H + (M - P),
+            left: $ + (M - P),
             behavior: "smooth"
           }), window.innerWidth < 768) {
-            const W = t(".mobile_info_block").elements[0], $ = t(".point_block.active").elements[0];
-            W.querySelector(".text").innerHTML = $.querySelector("p").innerHTML;
+            const H = t(".mobile_info_block").elements[0], D = t(".point_block.active").elements[0];
+            H.querySelector(".text").innerHTML = D.querySelector("p").innerHTML;
           }
         }
       }, 1e3);
@@ -719,27 +714,27 @@
     async startPosition() {
       const e = t("video").elements[0].currentTime, n = t(".point_block").elements, s = 2 * Math.PI * 17;
       let a = null;
-      if (n.forEach((o, r) => {
-        if (o.dataset.time && +o.dataset.time < e)
-          o.classList.add("viewed"), a = r;
+      if (n.forEach((i, r) => {
+        if (i.dataset.time && +i.dataset.time < e)
+          i.classList.add("viewed"), a = r;
         else {
           if (a === null && r === 0) {
-            o.classList.add("active");
+            i.classList.add("active");
             return;
           }
-          if (o.dataset.time && a !== null && r === a + 1) {
-            o.classList.add("active");
-            const l = o.querySelector(".progress_step circle"), c = +n[r - 1].dataset.time, p = (e - c) / (+o.dataset.time - c) * 100;
-            l.style.strokeDashoffset = (s - p / 100 * s).toString();
+          if (i.dataset.time && a !== null && r === a + 1) {
+            i.classList.add("active");
+            const l = i.querySelector(".progress_step circle"), p = +n[r - 1].dataset.time, c = (e - p) / (+i.dataset.time - p) * 100;
+            l.style.strokeDashoffset = (s - c / 100 * s).toString();
           }
         }
       }), window.innerWidth < 768) {
-        const o = t(".mobile_info_block").elements[0], r = t(".point_block.active").elements[0];
+        const i = t(".mobile_info_block").elements[0], r = t(".point_block.active").elements[0];
         if (!r) {
-          o.querySelector(".time").textContent = "44:00", o.querySelector(".text").textContent = "Get the done for you partnership with our top freelancers, resources, community and support to fast track your success.”";
+          i.querySelector(".time").textContent = "44:00", i.querySelector(".text").textContent = "Get the done for you partnership with our top freelancers, resources, community and support to fast track your success.”";
           return;
         }
-        o.querySelector(".text").innerHTML = r.querySelector("p").innerHTML;
+        i.querySelector(".text").innerHTML = r.querySelector("p").innerHTML;
       }
     }
     setScroll() {
