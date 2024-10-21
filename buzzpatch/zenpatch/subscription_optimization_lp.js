@@ -300,7 +300,7 @@ body #getNow .magicpatch-packs .list-packs {
   border: 2px solid #eceef0;
   background: #fff;
   box-shadow: 0px 2px 4px 0px rgba(12, 11, 11, 0.1), 0px 12px 32px 0px rgba(0, 0, 0, 0.05);
-  padding: 8px !important;
+  padding: 5.2px 8px !important;
 }
 body #getNow .magicpatch-packs .list-packs.active-slide {
   border: 2px solid #2a7b72;
@@ -408,6 +408,7 @@ body #getNow .magicpatch-packs .list-packs .buttons-sticker .top-seller-btn {
 body #getNow .view-prices {
   gap: 0;
   margin: 0;
+  padding: 0 24px;
 }
 body #getNow .view-prices > h3,
 body #getNow .view-prices .hide-price-pack,
@@ -431,7 +432,9 @@ body #getNow .view-prices #no-icart-open {
   line-height: 24px;
   letter-spacing: 0.2px;
   text-transform: uppercase;
-  margin-top: 12px;
+  margin: 12px auto 0;
+  max-width: 100%;
+  box-shadow: none;
 }
 body #getNow .reviews-slide {
   margin-top: 16px !important;
@@ -517,7 +520,7 @@ body #cons .magicpatch-packs .list-packs {
   border: 2px solid #eceef0;
   background: #fff;
   box-shadow: 0px 2px 4px 0px rgba(12, 11, 11, 0.1), 0px 12px 32px 0px rgba(0, 0, 0, 0.05);
-  padding: 8px !important;
+  padding: 5.2px 8px !important;
 }
 body #cons .magicpatch-packs .list-packs.active-slide {
   border: 2px solid #2a7b72;
@@ -695,6 +698,7 @@ body #cons .body_slide_in_cart .main_title_wrapper .main_title {
   font-weight: 700;
   line-height: normal !important;
   text-transform: uppercase;
+  letter-spacing: normal;
   margin: 0;
 }
 body #cons .body_slide_in_cart .main_title_wrapper .change_btn {
@@ -705,6 +709,7 @@ body #cons .body_slide_in_cart .main_title_wrapper .change_btn {
   line-height: normal;
   text-decoration-line: underline;
   text-transform: uppercase;
+  letter-spacing: normal;
   margin: 0;
 }
 body #cons .body_slide_in_cart .info_wrapper {
@@ -854,7 +859,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
 
 .new_subscription {
   margin: 34px 0 12px;
-  padding: 0 24px;
+  padding: 0;
 }
 .new_subscription .new_subscription_block.is_disabled .plan_selection label {
   color: #d3d3d3;
@@ -1197,7 +1202,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
   gap: 10px;
   align-items: center;
   justify-content: center;
-  padding: 0 16px;
+  padding: 0;
 }
 .new_price_wrapper .new_reg_price {
   color: #616267;
