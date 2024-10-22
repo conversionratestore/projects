@@ -8,12 +8,12 @@
       event_type: e,
       event_loc: n
     }), console.dir(`Event: ${r} | ${t} | ${e} | ${n}`);
-  }, E = ({ name: r, dev: t }) => {
+  }, S = ({ name: r, dev: t }) => {
     console.log(
       `%c EXP: ${r} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, b = (r) => document.querySelectorAll(r), a = (r) => document.querySelector(r), T = async (r) => {
+  }, b = (r) => document.querySelectorAll(r), a = (r) => document.querySelector(r), L = async (r) => {
     const t = (e) => new Promise((n, i) => {
       const c = e.split(".").pop();
       if (c === "js") {
@@ -34,7 +34,7 @@
     for (const e of r)
       await t(e), console.log(`Loaded librari ${e}`);
     console.log("All libraries loaded!");
-  }, N = (r, t = "variant_1") => {
+  }, E = (r, t = "variant_1") => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", r, t), console.log("set", r, t));
     }, 1e3);
@@ -166,7 +166,7 @@
   </ul>
   </div>
   `
-  }, I = (r = !1, t) => (
+  }, T = (r = !1, t) => (
     /* HTML */
     `
     <div class="new_subscription" id="subscription${t}">
@@ -214,7 +214,7 @@
       </div>
     </div>
   `
-  ), B = (
+  ), N = (
     /* HTML */
     `
   <div class="custom_dropdown">
@@ -222,7 +222,7 @@
     <div class="dropdown_menu"></div>
   </div>
 `
-  ), P = (r, t, e) => (
+  ), I = (r, t, e) => (
     /* HTML */
     `
     <div class="new_price_wrapper">
@@ -231,7 +231,7 @@
       <div class="percent_off">${x.percentIcon} ${e}% OFF</div>
     </div>
   `
-  ), A = (
+  ), B = (
     /* HTML */
     `
   <div class="header_slide_in_cart">
@@ -239,10 +239,10 @@
     <p class="step_wrapper"><span class="active_step">1</span>/2</p>
   </div>
 `
-  ), z = (
+  ), A = (
     /* HTML */
     '<div class="next_step_btn">Next step 1/2</div> '
-  ), O = (
+  ), z = (
     /* HTML */
     `
   <div class="body_slide_in_cart">
@@ -252,7 +252,7 @@
     </div>
   </div>
 `
-  ), j = (r, t, e, n, i) => (
+  ), P = (r, t, e, n, i) => (
     /* HTML */
     `
     <div class="info_wrapper">
@@ -271,7 +271,7 @@
       </div>
     </div>
   `
-  ), $ = `body #getNow {
+  ), j = `body #getNow {
   background: #fbfbf9;
   padding: 16px 0 21px;
 }
@@ -1240,16 +1240,16 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
   width: 20px;
   height: 20px;
   flex-shrink: 0;
-}/*# sourceMappingURL=main.css.map */`, q = window.innerWidth < 768 ? "mobile" : "desktop";
-  class D {
+}/*# sourceMappingURL=main.css.map */`, $ = window.innerWidth < 768 ? "mobile" : "desktop";
+  class O {
     constructor(t) {
-      this.device = t, this.observer = null, this.isActiveOnePack = !1, this.isActiveTwoPack = !1, this.regPrice = "", this.salePrice = "", this.percentOff = "", this.imgSrc = "", this.packPrice = "", this.pcs = "", this.uniqueId = "", this.init();
+      this.device = t, this.observer = null, this.isActiveOnePack = !1, this.isActiveTwoPack = !1, this.uniqueId = "", this.init();
     }
     init() {
-      E({ name: "NatPat: subscription Optimization", dev: "SKh" }), N("exp_sub_land"), document.head.insertAdjacentHTML(
+      S({ name: "NatPat: subscription Optimization", dev: "SKh" }), E("exp_sub_land"), document.head.insertAdjacentHTML(
         "beforeend",
         '<link class="crs_font" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">'
-      ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${$}</style>`), this.changeSaveTxtOnePack(), this.renderNewSubscriptionBlock(), this.changeActivePackHandler(), this.changeTxtMainBtnToSubscribeAndSaveBtn(), this.changeSrcLogoUnderButton(), this.renderHeaderSlideInCart(), this.changeSrcCloseButtonSlideInCart(), this.renderNextStepBtnSlideInCart(), this.changeNextStepSlideInCart(), this.replaceLogoSlideInCart(), this.addEventsProceedToCheckoutBtn(), this.observeElementVisibility();
+      ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${j}</style>`), this.checkSubscriptionDefault(), this.changeSaveTxtOnePack(), this.renderNewSubscriptionBlock(), this.changeActivePackHandler(), this.changeTxtMainBtnToSubscribeAndSaveBtn(), this.changeSrcLogoUnderButton(), this.renderHeaderSlideInCart(), this.changeSrcCloseButtonSlideInCart(), this.renderNextStepBtnSlideInCart(), this.changeNextStepSlideInCart(), this.replaceLogoSlideInCart(), this.addEventsProceedToCheckoutBtn(), this.observeElementVisibility();
     }
     changeSaveTxtOnePack() {
       _(".list-packs-1 .save-btn span").then((t) => {
@@ -1264,7 +1264,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
         const e = b(".stay-container");
         let n = !1;
         this.uniqueId = "Cons", e.forEach((i) => {
-          i.closest("#getNow") && (this.uniqueId = "GetNow"), i.previousElementSibling.classList.contains("new_subscription") || (this.isActiveOnePack && (n = !0), i.insertAdjacentHTML("beforebegin", I(n, this.uniqueId)));
+          i.closest("#getNow") && (this.uniqueId = "GetNow"), i.previousElementSibling.classList.contains("new_subscription") || (this.isActiveOnePack && (n = !0), i.insertAdjacentHTML("beforebegin", T(n, this.uniqueId)));
         });
       }), this.newSubscriptionBlockHandlers();
     }
@@ -1276,13 +1276,13 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
     checkSubscriptionDefault() {
       _("#getNow #rtxSubscribe + label").then((t) => {
         const e = a("#getNow #rtxSubscribe"), n = e.nextElementSibling;
-        console.log(e.checked, n, "inputControlVar.checked"), e.checked || (console.log(e.checked, n, "inputControlVar.checked"), n.click(), console.log(e.checked, n, "inputControlVar.checked")), console.log(e.checked, n, "inputControlVar.checked");
+        e.checked || (console.log(e.checked, n, "inputControlVar.checked"), n.click()), console.log(e.checked, n, "inputControlVar.checked");
       });
     }
     renderCustomDropdown() {
       _(".new_subscription_block").then((t) => {
         b(".new_subscription_block").forEach((n) => {
-          n.querySelector(".custom_dropdown") || n.insertAdjacentHTML("beforeend", B);
+          n.querySelector(".custom_dropdown") || n.insertAdjacentHTML("beforeend", N);
         }), this.renderCustomOptions();
       });
     }
@@ -1419,18 +1419,20 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
     renderNewPriceBlock() {
       _(".new_subscription").then((t) => {
         _(".list-packs.active-slide").then((e) => {
-          var c, s, o, d, p, f, h, m, u, w, l, k, y;
+          var d, p, f, h, m, u, w, l;
           const n = a(".list-packs.active-slide");
           let i = b("#no-icart-open");
-          this.regPrice = ((s = (c = n.querySelector(".info .before-after-prices .strikethrough")) == null ? void 0 : c.textContent) == null ? void 0 : s.trim()) || "", this.salePrice = ((d = (o = n.querySelector(".info .before-after-prices .after-price")) == null ? void 0 : o.textContent) == null ? void 0 : d.trim()) || "", this.percentOff = ((f = (p = n.querySelector(".save-btn span")) == null ? void 0 : p.textContent) == null ? void 0 : f.trim()) || "", this.imgSrc = ((h = n.querySelector(".sticker-image img")) == null ? void 0 : h.getAttribute("src")) || "", this.packPrice = ((u = (m = n.querySelector(".info .pack-price")) == null ? void 0 : m.textContent) == null ? void 0 : u.trim()) || "", this.pcs = ((l = (w = n.querySelector(".info .pcs")) == null ? void 0 : w.textContent) == null ? void 0 : l.split("|")[0].trim()) || "", n.classList.contains("list-packs-1") && (this.percentOff = ((y = (k = n.querySelector(".save-btn .new_save_txt")) == null ? void 0 : k.textContent) == null ? void 0 : y.trim()) || ""), this.regPrice !== "" && this.salePrice !== "" && this.percentOff !== "" && i.forEach((S) => {
-            var L;
-            (L = S.previousElementSibling) != null && L.classList.contains("new_price_wrapper") || S.insertAdjacentHTML("beforebegin", P(this.regPrice, this.salePrice, this.percentOff));
+          const c = ((p = (d = n.querySelector(".info .before-after-prices .strikethrough")) == null ? void 0 : d.textContent) == null ? void 0 : p.trim()) || "", s = ((h = (f = n.querySelector(".info .before-after-prices .after-price")) == null ? void 0 : f.textContent) == null ? void 0 : h.trim()) || "";
+          let o = ((u = (m = n.querySelector(".save-btn span")) == null ? void 0 : m.textContent) == null ? void 0 : u.trim()) || "";
+          n.classList.contains("list-packs-1") && (o = ((l = (w = n.querySelector(".save-btn .new_save_txt")) == null ? void 0 : w.textContent) == null ? void 0 : l.trim()) || ""), c !== "" && s !== "" && o !== "" && i.forEach((k) => {
+            var y;
+            (y = k.previousElementSibling) != null && y.classList.contains("new_price_wrapper") || k.insertAdjacentHTML("beforebegin", I(c, s, o));
           });
         });
       });
     }
     initTooltip() {
-      T([
+      L([
         "https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js",
         "https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"
       ]).then(async () => {
@@ -1485,7 +1487,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
     renderHeaderSlideInCart() {
       _("#cons .title-logo").then((t) => {
         const e = a("#cons .title-logo");
-        a(".header_slide_in_cart") || e.insertAdjacentHTML("afterbegin", A);
+        a(".header_slide_in_cart") || e.insertAdjacentHTML("afterbegin", B);
       });
     }
     changeSrcCloseButtonSlideInCart() {
@@ -1497,14 +1499,14 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
     renderNextStepBtnSlideInCart() {
       _("#cons #no-icart-open").then((t) => {
         const e = a("#cons #no-icart-open");
-        a(".next_step_btn") || e.insertAdjacentHTML("afterend", z);
+        a(".next_step_btn") || e.insertAdjacentHTML("afterend", A);
       });
     }
     changeNextStepSlideInCart() {
       _("#cons .next_step_btn").then((t) => {
         const e = a("#cons .next_step_btn"), n = a("body #cons .magicpatch-packs"), i = a("#cons .header_slide_in_cart"), c = i == null ? void 0 : i.querySelector(".active_title"), s = i == null ? void 0 : i.querySelector(".active_step"), o = a("#cons #no-icart-open"), d = a("#cons .view-prices");
         e.addEventListener("click", (p) => {
-          g("exp_sub_land_button_01", "Next step", "Click", "Sticky cart"), p.currentTarget.classList.add("active_step_second"), n.classList.add("active_step_second"), a(".body_slide_in_cart") || (n.insertAdjacentHTML("beforebegin", O), this.changePrevStepSlideInCart()), this.renderInfoWrapperSlideInCart(), a(".arrow_back") || i.insertAdjacentHTML(
+          g("exp_sub_land_button_01", "Next step", "Click", "Sticky cart"), p.currentTarget.classList.add("active_step_second"), n.classList.add("active_step_second"), a(".body_slide_in_cart") || (n.insertAdjacentHTML("beforebegin", z), this.changePrevStepSlideInCart()), this.renderInfoWrapperSlideInCart(), a(".arrow_back") || i.insertAdjacentHTML(
             "afterbegin",
             /* HTML */
             `<span data-btnBack class="arrow_back">${x.arrowLeftBackIcon}</span>`
@@ -1518,7 +1520,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
         const e = a("#cons .body_slide_in_cart"), n = a(".list-packs.active-slide"), i = ((f = (p = n.querySelector(".info .before-after-prices .strikethrough")) == null ? void 0 : p.textContent) == null ? void 0 : f.trim()) || "", c = ((m = (h = n.querySelector(".info .before-after-prices .after-price")) == null ? void 0 : h.textContent) == null ? void 0 : m.trim()) || "", s = ((u = n.querySelector(".sticker-image img")) == null ? void 0 : u.getAttribute("src")) || "", o = ((l = (w = n.querySelector(".info .pack-price")) == null ? void 0 : w.textContent) == null ? void 0 : l.trim()) || "", d = ((y = (k = n.querySelector(".info .pcs")) == null ? void 0 : k.textContent) == null ? void 0 : y.split("|")[0].trim()) || "";
         a(".info_wrapper") || e.insertAdjacentHTML(
           "beforeend",
-          j(i, c, s, o, d)
+          P(i, c, s, o, d)
         );
       });
     }
@@ -1569,7 +1571,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
     }
   }
   _("#getNow #rtxSubscribe + label").then((r) => {
-    new D(q);
+    new O($);
   });
 })();
 //# sourceMappingURL=index.js.map
