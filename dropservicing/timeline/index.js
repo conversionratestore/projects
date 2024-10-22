@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const g = `@charset "UTF-8";
+  const u = `@charset "UTF-8";
 .top_content_wrapper {
   max-width: calc(100% - 405px);
 }
@@ -168,6 +168,9 @@
   gap: 12px;
   flex-shrink: 0;
   counter-increment: point;
+}
+.point_block_wrapper .point_block.hidden {
+  display: none;
 }
 @media (max-width: 768px) {
   .point_block_wrapper .point_block {
@@ -420,6 +423,10 @@
 @media (min-width: 769px) {
   .top_content_wrapper {
     background: #100119;
+    transition: all 0.3s;
+  }
+  .top_content_wrapper.expanded {
+    max-width: calc(100% - 35px);
   }
   .layout-renderer-container-attendee {
     padding-top: 10px;
@@ -427,7 +434,7 @@
   .live_content_wrapper-working-area_attendee {
     height: calc(100vh - 55px);
   }
-}/*# sourceMappingURL=style.css.map */`, d = (o, e) => {
+}/*# sourceMappingURL=style.css.map */`, p = (o, e) => {
     const n = setInterval(() => {
       const s = document.querySelector(o);
       s && (clearInterval(n), e(s));
@@ -438,7 +445,7 @@
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   };
-  class u {
+  class x {
     constructor(e) {
       this.elements = typeof e == "string" ? document.querySelectorAll(e) : e instanceof Element ? [e] : e;
     }
@@ -481,11 +488,11 @@
       }), this;
     }
   }
-  const t = (o) => new u(o), x = (o) => {
+  const t = (o) => new x(o), v = (o) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", o, "variant_1"));
     }, 1e3);
-  }, v = (o, e = "info") => {
+  }, y = (o, e = "info") => {
     let n;
     switch (e) {
       case "info":
@@ -604,11 +611,96 @@
     },
     {
       start: "44",
-      time: "44",
+      time: "45",
       text: "Get the Done For You partnership with our top freelancers, resources, community and support to fast track your success",
       type: "final"
+    },
+    {
+      start: "45",
+      time: "48",
+      text: "he Done For You Partner Program where we do the heavy lifting for you"
+    },
+    {
+      start: "48",
+      time: "50",
+      text: "Get VIP access to our best service and freelancer team"
+    },
+    {
+      start: "50",
+      time: "51",
+      text: "Drop Servicing Partner Program Course"
+    },
+    {
+      start: "51",
+      time: "52",
+      text: "Unlimited access to coaching calls 3 times every week"
+    },
+    {
+      start: "52",
+      time: "59",
+      text: "Special discounted access to the entire program today!"
+    },
+    {
+      start: "59",
+      time: "60",
+      text: "<b>Bonus #1</b>: $200 Cash Back to you"
+    },
+    {
+      start: "60",
+      time: "61",
+      text: "<b>Bonus #2</b>: Everything inside one of my fully automated Drop Servicing Businesses – So you can literally copy and paste my business"
+    },
+    {
+      start: "61",
+      time: "62",
+      text: "<b>Bonus #3</b>: Drop Servicing Blueprint 3.0 video course"
+    },
+    {
+      start: "62",
+      time: "63",
+      text: "<b>Bonus #4</b>: 200+ Done For You Templates"
+    },
+    {
+      start: "63",
+      time: "64",
+      text: "<b>Bonus #5</b>: Done For You Website Template"
+    },
+    {
+      start: "64",
+      time: "65",
+      text: "<b>Bonus #6</b>: Quality Stamp of Approval"
+    },
+    {
+      start: "65",
+      time: "66",
+      text: "<b>Bonus #7</b>: 10 Highest Demand Services"
+    },
+    {
+      start: "66",
+      time: "68",
+      text: "<b>Bonus #8</b>: Extra Full Membership Account"
+    },
+    {
+      start: "68",
+      time: "71",
+      text: "Our 100% Money Back Guarantee (that puts all the risk on us)"
+    },
+    {
+      start: "71",
+      time: "73",
+      text: "The simple & easy way to get a refund"
+    },
+    {
+      start: "73",
+      time: "92",
+      text: "Hear from our members themselves! Personal testimonials and in-depth interviews"
+    },
+    {
+      start: "92",
+      time: "92",
+      text: "<b>Q&A Session</b> - Addressing all of your common questions"
     }
-  ], y = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+  ], S = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
 <g clip-path="url(#clip0_2066_824)">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M0.5 6C0.5 2.96243 2.96243 0.5 6 0.5C9.03755 0.5 11.5 2.96243 11.5 6C11.5 9.03755 9.03755 11.5 6 11.5C2.96243 11.5 0.5 9.03755 0.5 6ZM6.5 2.5V5.5H8.5V6.5H6C5.72385 6.5 5.5 6.27615 5.5 6V2.5H6.5Z" fill="#382941"/>
 </g>
@@ -628,11 +720,11 @@
 </defs>
 </svg>`, f = `<svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
 <path d="M6.5 1L1.5 6L6.5 11" stroke="#100119" stroke-width="1.4" stroke-linecap="round"/>
-</svg>`, S = `<svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+</svg>`, T = `<svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
 <path d="M1 1.06543L6 6.06543L1 11.0654" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-</svg>`, T = (o) => (
+</svg>`, C = (o) => (
     /* HTML */
-    `<div class="point_block" data-time="${+o.time * 60}">
+    `<div class="point_block ${+o.start > 44 ? "hidden" : ""}" data-time="${+o.time * 60}">
     <div class="progress_step">
       <span>
         <div class="progress_border">
@@ -644,7 +736,7 @@
     </div>
     <div class="mob_right">
       <div class="point_time">
-        ${y}
+        ${S}
         <span>${+o.start > 9 ? o.start : "0" + o.start}:00</span>
         <span class="status"></span>
       </div>
@@ -659,7 +751,7 @@
       <p>${o.text}</p>
     </div>
   </div>`
-  ), b = (
+  ), m = (
     /* HTML */
     ` <div class="points_block">
   <div class="header_wrap">
@@ -670,54 +762,58 @@
     </div>
   </div>
   <div class="shadows left">
-    <div class="point_block_wrapper">${h.map((o) => T(o)).join("")}</div>
+    <div class="point_block_wrapper">${h.map((o) => C(o)).join("")}</div>
   </div>
 </div>`
-  ), C = (
+  ), B = (
     /* HTML */
     `<div class="mobile_info_block">
   <p class="text">${h[0].text}</p>
-  <button>See full training plan ${S}</button>
+  <button>See full training plan ${T}</button>
 </div>`
   );
-  k({ name: "Webinar Timeline", dev: "YK" }), x("webinar_timeline");
+  k({ name: "Webinar Timeline", dev: "YK" }), v("webinar_timeline");
   class E {
     constructor() {
       this.init();
     }
     async init() {
-      d("body", async () => {
-        t("body").elements[0].insertAdjacentHTML("afterbegin", `<style class="crs_style">${g}</style>`);
-      }), d("#vjs_video_3", async () => {
-        window.innerWidth > 768 ? t(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", b) : (t(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", C), t(".main-container").elements[0].insertAdjacentHTML("beforeend", b), t(".mobile_info_block button").elements[0].addEventListener("click", () => {
+      p("body", async () => {
+        t("body").elements[0].insertAdjacentHTML("afterbegin", `<style class="crs_style">${u}</style>`);
+      }), p("#vjs_video_3", async () => {
+        window.innerWidth > 768 ? t(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", m) : (t(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", B), t(".main-container").elements[0].insertAdjacentHTML("beforeend", m), t(".mobile_info_block button").elements[0].addEventListener("click", () => {
           t(".points_block").elements[0].scrollIntoView({ behavior: "smooth" });
         }));
-      }), d(".point_block", async () => {
+      }), p(".point_block", async () => {
         this.checkTime(), this.setScroll();
+      }), p(".btn-expander-left", async () => {
+        t(".btn-expander-left").elements[0].addEventListener("click", () => {
+          t(".top_content_wrapper").elements[0].classList.toggle("expanded");
+        });
       });
     }
     async checkTime() {
       const e = 2 * Math.PI * 17, n = t(".point_block_wrapper").elements[0];
       let s = !1;
       const a = setInterval(() => {
-        var _, w, m;
+        var _, w, g;
         const i = t("video").elements[0].currentTime;
         if (i === 0)
           return;
-        s || (this.startPosition(), s = !0);
+        s || (this.startPosition(), s = !0), i > 44 * 60 && t(".point_block.hidden").elements.forEach((b) => b.classList.remove("hidden"));
         const r = t(".point_block.active").elements[0];
-        if (i > 50 * 60 && window.innerWidth < 768 && (t(".mobile_info_block").elements[0].remove(), t(".points_block").elements[0].remove(), t(".crs_style").elements[0].remove(), clearInterval(a)), !r)
+        if (i > 55 * 60 && window.innerWidth < 768 && (t(".mobile_info_block").elements[0].remove(), t(".points_block").elements[0].remove(), t(".crs_style").elements[0].remove(), clearInterval(a)), !r)
           return;
-        const l = ((_ = r.previousElementSibling) == null ? void 0 : _.dataset.time) || 0, p = r.querySelector(".progress_step circle"), c = (i - +l) / (+r.dataset.time - +l) * 100;
-        if (p.style.strokeDashoffset = (e - c / 100 * e).toString(), c > 100) {
+        const l = ((_ = r.previousElementSibling) == null ? void 0 : _.dataset.time) || 0, c = r.querySelector(".progress_step circle"), d = (i - +l) / (+r.dataset.time - +l) * 100;
+        if (c.style.strokeDashoffset = (e - d / 100 * e).toString(), d > 100) {
           r.classList.remove("active"), r.classList.add("viewed"), (w = r.nextElementSibling) == null || w.classList.add("active");
-          const M = (m = r.nextElementSibling) == null ? void 0 : m.getBoundingClientRect().left, $ = n.scrollLeft, P = n.clientWidth / 2 - 100;
+          const b = (g = r.nextElementSibling) == null ? void 0 : g.getBoundingClientRect().left, P = n.scrollLeft, D = n.clientWidth / 2 - 100;
           if (n.scrollTo({
-            left: $ + (M - P),
+            left: P + (b - D),
             behavior: "smooth"
           }), window.innerWidth < 768) {
-            const H = t(".mobile_info_block").elements[0], D = t(".point_block.active").elements[0];
-            H.querySelector(".text").innerHTML = D.querySelector("p").innerHTML;
+            const M = t(".mobile_info_block").elements[0], $ = t(".point_block.active").elements[0];
+            M.querySelector(".text").innerHTML = $.querySelector("p").innerHTML;
           }
         }
       }, 1e3);
@@ -735,8 +831,8 @@
           }
           if (i.dataset.time && a !== null && r === a + 1) {
             i.classList.add("active");
-            const l = i.querySelector(".progress_step circle"), p = +n[r - 1].dataset.time, c = (e - p) / (+i.dataset.time - p) * 100;
-            l.style.strokeDashoffset = (s - c / 100 * s).toString();
+            const l = i.querySelector(".progress_step circle"), c = +n[r - 1].dataset.time, d = (e - c) / (+i.dataset.time - c) * 100;
+            l.style.strokeDashoffset = (s - d / 100 * s).toString();
           }
         }
       }), window.innerWidth < 768) {
@@ -761,7 +857,7 @@
           behavior: "smooth"
         });
       }), e.addEventListener("scroll", () => {
-        v("scroll"), e.scrollLeft === 0 ? (t(".btns_desktop .prev").elements[0].classList.add("disabled"), t(".shadows").elements[0].classList.add("left")) : (t(".btns_desktop .prev").elements[0].classList.remove("disabled"), t(".shadows").elements[0].classList.remove("left")), e.scrollLeft <= e.scrollWidth - e.clientWidth && e.scrollLeft > e.scrollWidth - e.clientWidth - 2 ? (t(".btns_desktop .next").elements[0].classList.add("disabled"), t(".shadows").elements[0].classList.add("right")) : (t(".btns_desktop .next").elements[0].classList.remove("disabled"), t(".shadows").elements[0].classList.remove("right"));
+        y("scroll"), e.scrollLeft === 0 ? (t(".btns_desktop .prev").elements[0].classList.add("disabled"), t(".shadows").elements[0].classList.add("left")) : (t(".btns_desktop .prev").elements[0].classList.remove("disabled"), t(".shadows").elements[0].classList.remove("left")), e.scrollLeft <= e.scrollWidth - e.clientWidth && e.scrollLeft > e.scrollWidth - e.clientWidth - 2 ? (t(".btns_desktop .next").elements[0].classList.add("disabled"), t(".shadows").elements[0].classList.add("right")) : (t(".btns_desktop .next").elements[0].classList.remove("disabled"), t(".shadows").elements[0].classList.remove("right"));
       });
     }
   }
