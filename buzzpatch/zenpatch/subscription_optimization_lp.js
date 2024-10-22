@@ -8,7 +8,7 @@
       event_type: e,
       event_loc: n
     }), console.dir(`Event: ${r} | ${t} | ${e} | ${n}`);
-  }, S = ({ name: r, dev: t }) => {
+  }, C = ({ name: r, dev: t }) => {
     console.log(
       `%c EXP: ${r} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
@@ -155,7 +155,7 @@
     </svg>
   `
     )
-  }, C = {
+  }, S = {
     subscribe: `
   <div class='tooltip_block'>
   <p>Free delivery</p>
@@ -193,14 +193,14 @@
         <div class="plan_comment">
           A choice that saves both time and money ${x.orangeArrowIcon}<span
             data-tooltip
-            data-title="${C.subscribe}"
+            data-title="${S.subscribe}"
             >${x.tooltipIcon}</span
           >
         </div>
         <div class="is_active_one_pack">
           Select 2, 3 or 4 packs to subscribe with an extra of 15% off — save time and money ${x.orangeArrowIcon}<span
             data-tooltip
-            data-title="${C.subscribe}"
+            data-title="${S.subscribe}"
             >${x.tooltipIcon}</span
           >
         </div>
@@ -1246,10 +1246,10 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
       this.device = t, this.observer = null, this.isActiveOnePack = !1, this.isActiveTwoPack = !1, this.uniqueId = "", this.init();
     }
     init() {
-      S({ name: "NatPat: subscription Optimization", dev: "SKh" }), E("exp_sub_land"), document.head.insertAdjacentHTML(
+      C({ name: "NatPat: subscription Optimization", dev: "SKh" }), E("exp_sub_land"), document.head.insertAdjacentHTML(
         "beforeend",
         '<link class="crs_font" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">'
-      ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${j}</style>`), console.log("checkSubscriptionDefault START"), this.checkSubscriptionDefault(), this.changeSaveTxtOnePack(), this.renderNewSubscriptionBlock(), this.changeActivePackHandler(), this.changeTxtMainBtnToSubscribeAndSaveBtn(), this.changeSrcLogoUnderButton(), this.renderHeaderSlideInCart(), this.changeSrcCloseButtonSlideInCart(), this.renderNextStepBtnSlideInCart(), this.changeNextStepSlideInCart(), this.replaceLogoSlideInCart(), this.addEventsProceedToCheckoutBtn(), this.observeElementVisibility();
+      ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${j}</style>`), this.checkSubscriptionInitDefault(), this.changeSaveTxtOnePack(), this.renderNewSubscriptionBlock(), this.changeActivePackHandler(), this.changeTxtMainBtnToSubscribeAndSaveBtn(), this.changeSrcLogoUnderButton(), this.renderHeaderSlideInCart(), this.changeSrcCloseButtonSlideInCart(), this.renderNextStepBtnSlideInCart(), this.changeNextStepSlideInCart(), this.replaceLogoSlideInCart(), this.addEventsProceedToCheckoutBtn(), this.observeElementVisibility();
     }
     changeSaveTxtOnePack() {
       _(".list-packs-1 .save-btn span").then((t) => {
@@ -1270,18 +1270,21 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
     }
     newSubscriptionBlockHandlers() {
       _(".new_subscription").then((t) => {
-        this.isActiveOnePack || (console.log("new_subscription"), this.checkSubscriptionDefault()), this.renderCustomDropdown(), this.changeSubscriptionPlanHandler(), this.renderNewPriceBlock(), this.initTooltip();
+        this.isActiveOnePack || this.checkSubscriptionDefault(), this.renderCustomDropdown(), this.changeSubscriptionPlanHandler(), this.renderNewPriceBlock(), this.initTooltip();
+      });
+    }
+    checkSubscriptionInitDefault() {
+      console.log("checkSubscriptionInitDefault"), _("#getNow #rtxSubscribe + label").then((t) => {
+        b("#getNow #rtxSubscribe").forEach((n) => {
+          const i = n.nextElementSibling;
+          console.log(n.checked, i, "inputControlVar.checked"), n.checked || i.click(), console.log(n.checked, i, "inputControlVar.checked");
+        });
       });
     }
     checkSubscriptionDefault() {
-      _("#getNow #rtxSubscribe + label").then((t) => {
+      console.log("checkSubscriptionDefault"), _("#getNow #rtxSubscribe + label").then((t) => {
         const e = p("#getNow #rtxSubscribe"), n = e.nextElementSibling;
-        if (!e.checked) {
-          console.log(e.checked, n, "inputControlVar.checked");
-          const i = new Event("click", { bubbles: !0 });
-          n.dispatchEvent(i);
-        }
-        console.log(e.checked, n, "inputControlVar.checked");
+        e.checked || n.click(), console.log(e.checked, n, "inputControlVar.checked");
       });
     }
     renderCustomDropdown() {
@@ -1409,15 +1412,14 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
     }
     changeActivePackHandler() {
       _(".magicpatch-packs").then((t) => {
-        const e = b(".magicpatch-packs .list-packs");
-        e.forEach((n) => {
+        b(".magicpatch-packs .list-packs").forEach((n) => {
           n.addEventListener("click", (i) => {
             var c, o, s;
-            n.classList.contains("active") || (e.forEach((a) => a.classList.remove("active")), n.classList.add("active"), n.classList.contains("list-packs-1") ? (this.isActiveOnePack = !0, this.changeTxtMainBtnToProceedToCheckoutBtn()) : (this.isActiveOnePack = !1, this.changeTxtMainBtnToSubscribeAndSaveBtn()), (c = b(".new_subscription")) == null || c.forEach((a) => {
+            n.classList.contains("list-packs-1") ? (this.isActiveOnePack = !0, this.changeTxtMainBtnToProceedToCheckoutBtn()) : (this.isActiveOnePack = !1, this.changeTxtMainBtnToSubscribeAndSaveBtn()), (c = b(".new_subscription")) == null || c.forEach((a) => {
               a == null || a.remove();
             }), (o = b(".new_price_wrapper")) == null || o.forEach((a) => {
               a == null || a.remove();
-            }), (s = p(".info_wrapper")) == null || s.remove(), this.renderNewSubscriptionBlock(), this.renderInfoWrapperSlideInCart(), this.renderNewPriceBlock());
+            }), (s = p(".info_wrapper")) == null || s.remove(), this.renderNewSubscriptionBlock(), this.renderInfoWrapperSlideInCart(), this.renderNewPriceBlock();
           });
         });
       });
