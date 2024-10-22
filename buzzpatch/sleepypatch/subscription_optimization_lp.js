@@ -13,18 +13,18 @@
       `%c EXP: ${r} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, l = (r) => document.querySelectorAll(r), a = (r) => document.querySelector(r), E = async (r) => {
+  }, d = (r) => document.querySelectorAll(r), a = (r) => document.querySelector(r), E = async (r) => {
     const t = (n) => new Promise((e, i) => {
       const c = n.split(".").pop();
       if (c === "js") {
-        if (Array.from(document.scripts).map((d) => d.src.toLowerCase()).includes(n.toLowerCase()))
+        if (Array.from(document.scripts).map((b) => b.src.toLowerCase()).includes(n.toLowerCase()))
           return console.log(`Script ${n} allready downloaded!`), e("");
         const o = document.createElement("script");
         o.src = n, o.onload = e, o.onerror = i, document.head.appendChild(o);
       } else if (c === "css") {
-        if (Array.from(document.styleSheets).map((d) => {
+        if (Array.from(document.styleSheets).map((b) => {
           var p;
-          return (p = d.href) == null ? void 0 : p.toLowerCase();
+          return (p = b.href) == null ? void 0 : p.toLowerCase();
         }).includes(n.toLowerCase()))
           return console.log(`Style ${n} allready downloaded!`), e("");
         const o = document.createElement("link");
@@ -38,18 +38,18 @@
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", r, t), console.log("set", r, t));
     }, 1e3);
-  }, y = (r, t, n, e, i = "Visibility", c = 600, s = 0.3) => {
-    let o, d;
+  }, k = (r, t, n, e, i = "Visibility", c = 600, s = 0.3) => {
+    let o, b;
     if (o = new IntersectionObserver(
       function(p) {
-        p[0].isIntersecting === !0 ? d = setTimeout(() => {
+        p[0].isIntersecting === !0 ? b = setTimeout(() => {
           f(
             t,
             p[0].target.dataset.visible || e || "",
             i,
             n
           ), o.disconnect();
-        }, c) : clearTimeout(d);
+        }, c) : clearTimeout(b);
       },
       { threshold: [s] }
     ), typeof r == "string") {
@@ -58,7 +58,7 @@
     } else
       o.observe(r);
   };
-  function b(r) {
+  function _(r) {
     return new Promise((t) => {
       if (document.querySelector(r))
         return t(document.querySelector(r));
@@ -82,7 +82,7 @@
       return n = window.scrollY, t != null && (i = n - t), t = n, clearTimeout(e), e = setTimeout(s, c), i;
     };
   })();
-  const k = {
+  const x = {
     orangeArrowIcon: (
       /* HTML */
       `
@@ -155,7 +155,7 @@
     </svg>
   `
     )
-  }, v = {
+  }, y = {
     subscribe: `
   <div class='tooltip_block'>
   <p>Free delivery</p>
@@ -201,17 +201,17 @@
           <label for="subscribeSave${t}" class="subscribe_save_variant"> Subscribe & Save</label>
         </div>
         <div class="plan_comment">
-          A choice that saves both time and money ${k.orangeArrowIcon}<span
+          A choice that saves both time and money ${x.orangeArrowIcon}<span
             data-tooltip
-            data-title="${v.subscribe}"
-            >${k.tooltipIcon}</span
+            data-title="${y.subscribe}"
+            >${x.tooltipIcon}</span
           >
         </div>
         <div class="is_active_one_pack">
-          Select 2, 3 or 4 packs to subscribe with an extra of 15% off — save time and money ${k.orangeArrowIcon}<span
+          Select 2, 3 or 4 packs to subscribe with an extra of 15% off — save time and money ${x.orangeArrowIcon}<span
             data-tooltip
-            data-title="${v.subscribe}"
-            >${k.tooltipIcon}</span
+            data-title="${y.subscribe}"
+            >${x.tooltipIcon}</span
           >
         </div>
         <ul class="plan_details  ${r ? "one_time_checked" : ""}">
@@ -238,7 +238,7 @@
     <div class="new_price_wrapper">
       <div class="new_reg_price">${r}</div>
       <div class="new_sale_price">${t}</div>
-      <div class="percent_off">${k.percentIcon} ${n}% OFF</div>
+      <div class="percent_off">${x.percentIcon} ${n}% OFF</div>
     </div>
   `
   ), j = (
@@ -462,7 +462,7 @@ body #cons {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  max-width: 343px;
+  max-width: 350px;
   background: #fcfcfa;
   padding: 0 !important;
 }
@@ -1020,8 +1020,9 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
 .new_subscription .new_subscription_block .tippy-box {
   background-color: #fff;
   filter: drop-shadow(0px 12px 32px rgba(0, 0, 0, 0.1));
+  box-shadow: 30px 18px 39px 79px rgba(0, 0, 0, 0.08);
   max-width: 330px !important;
-  border-radius: 15px;
+  border-radius: 8px;
 }
 .new_subscription .new_subscription_block .tippy-box .tippy-content {
   padding: 16px;
@@ -1275,28 +1276,28 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
       ), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${$}</style>`), this.changeSaveTxtOnePack(), this.changeTxtMainHeader(), this.renderNewFreeShippingBlock(), this.renderNewSubscriptionBlock(), this.changeActivePackHandler(), this.changeTxtMainBtnToSubscribeAndSaveBtn(), this.changeSrcLogoUnderButton(), this.renderHeaderSlideInCart(), this.renderNextStepBtnSlideInCart(), this.changeNextStepSlideInCart(), this.replaceLogoSlideInCart(), this.addEventsProceedToCheckoutBtn(), this.observeElementVisibility();
     }
     changeSaveTxtOnePack() {
-      b(".list-packs-1 .save-btn span").then((t) => {
-        l(".list-packs-1 .save-btn span").forEach((e) => {
+      _(".list-packs-1 .save-btn span").then((t) => {
+        d(".list-packs-1 .save-btn span").forEach((e) => {
           var i;
           (i = e.nextElementSibling) != null && i.classList.contains("new_save_txt") || e.insertAdjacentHTML("afterend", `<span class="new_save_txt">${e.getAttribute("data-price")}</span>`);
         });
       });
     }
     changeTxtMainHeader() {
-      b("body #getNow .js-heading h2").then((t) => {
+      _("body #getNow .js-heading h2").then((t) => {
         const n = a("body #getNow .js-heading h2");
         n.textContent !== "Stock up and save" && (n.textContent = "Stock up and save");
       });
     }
     renderNewFreeShippingBlock() {
-      b("body #getNow .js-heading").then((t) => {
+      _("body #getNow .js-heading").then((t) => {
         const n = a("body #getNow .js-heading");
         a(".new_free_shipping_block") || n.insertAdjacentHTML("afterend", N);
       });
     }
     renderNewSubscriptionBlock() {
-      b(".stay-container").then((t) => {
-        const n = l(".stay-container");
+      _(".stay-container").then((t) => {
+        const n = d(".stay-container");
         let e = !1;
         this.uniqueId = "Cons", n.forEach((i) => {
           i.closest("#getNow") && (this.uniqueId = "GetNow"), i.previousElementSibling.classList.contains("new_subscription") || (this.isActiveOnePack && (e = !0), i.insertAdjacentHTML("beforebegin", I(e, this.uniqueId)));
@@ -1304,40 +1305,42 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
       }), console.log("renderNewSubscriptionBlock"), this.newSubscriptionBlockHandlers();
     }
     newSubscriptionBlockHandlers() {
-      b(".new_subscription").then((t) => {
+      _(".new_subscription").then((t) => {
         this.isActiveOnePack || this.checkSubscriptionDefault(), this.renderCustomDropdown(), this.changeSubscriptionPlanHandler(), this.renderNewPriceBlock(), this.initTooltip();
       }), console.log("newSubscriptionBlockHandlers");
     }
     checkSubscriptionDefault() {
-      b("#getNow #rtxSubscribe").then((t) => {
+      _("#getNow #rtxSubscribe").then((t) => {
         const n = a("#getNow #rtxSubscribe"), e = n.nextElementSibling;
         n.checked || e.click();
       });
     }
     renderCustomDropdown() {
-      b(".new_subscription_block").then((t) => {
-        l(".new_subscription_block").forEach((e) => {
+      _(".new_subscription_block").then((t) => {
+        d(".new_subscription_block").forEach((e) => {
           e.querySelector(".custom_dropdown") || e.insertAdjacentHTML("beforeend", B);
         }), this.renderCustomOptions(), console.log("renderCustomDropdown");
       });
     }
     renderCustomOptions() {
-      b(".subscribe-frequency select option").then((t) => {
-        b(".custom_dropdown").then((n) => {
-          const e = a("#getNow .subscribe-frequency select"), i = l("#getNow .subscribe-frequency select option"), c = l(".dropdown_menu"), s = l(".dropdown_toggle");
+      _(".subscribe-frequency select option").then((t) => {
+        _(".custom_dropdown").then((n) => {
+          const e = a("#getNow .subscribe-frequency select"), i = d("#getNow .subscribe-frequency select option"), c = d(".dropdown_menu"), s = d(".dropdown_toggle");
           i.forEach((o) => {
-            var g, m, u, w, _;
-            let d = o.getAttribute("selected") !== null ? "selected" : "";
+            var g, m, u, w;
+            let b = o.getAttribute("selected") !== null ? "selected" : "";
             const p = o.getAttribute("value");
             let h = (g = o.textContent) != null && g.includes("Every") ? `<b>Ship every:</b> <span class="text_transform">${(m = o.textContent) == null ? void 0 : m.split("Every ")[1]}</span>` : o.textContent;
-            (u = o.textContent) != null && u.includes("(most common)") && (h = `<b>Ship every:</b> <span class="text_transform">${(w = o.textContent) == null ? void 0 : w.split("Every ")[1].split("(most common)")[0]}</span> <span class="most_common">(${(_ = o.textContent) == null ? void 0 : _.split("(")[1]}</span>`), e && e.value === p && s.forEach((x) => {
-              x.innerHTML = `${h}`, d = "selected";
-            }), a(".one_time_checked") && s.forEach((x) => {
-              x.classList.add("disabled");
-            }), c.forEach((x) => {
-              x.insertAdjacentHTML(
+            (u = o.textContent) != null && u.includes("2 Months") && (h = `<b>Ship every:</b> <span class="text_transform">${(w = o.textContent) == null ? void 0 : w.split(
+              "Every "
+            )[1]}</span> <span class="most_common"> (most common)</span>`), e && e.value === p && s.forEach((l) => {
+              l.innerHTML = `${h}`, b = "selected";
+            }), a(".one_time_checked") && s.forEach((l) => {
+              l.classList.add("disabled");
+            }), c.forEach((l) => {
+              l.insertAdjacentHTML(
                 "beforeend",
-                `<div class="dropdown_item ${d}" data-value="${p}">${h}</div>`
+                `<div class="dropdown_item ${b}" data-value="${p}">${h}</div>`
               );
             });
           }), this.changeCustomDropdownHandler(".custom_dropdown");
@@ -1345,15 +1348,15 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
       });
     }
     changeCustomDropdownHandler(t) {
-      l(t).forEach((e) => {
-        const i = e.querySelector(".dropdown_toggle"), c = e.querySelector(".dropdown_menu"), s = e.querySelectorAll(".dropdown_item"), o = l(".subscribe-frequency select option");
+      d(t).forEach((e) => {
+        const i = e.querySelector(".dropdown_toggle"), c = e.querySelector(".dropdown_menu"), s = e.querySelectorAll(".dropdown_item"), o = d(".subscribe-frequency select option");
         i.addEventListener("click", () => {
           i.closest("#getNow") && f("exp_sub_land_element_04", "Sub_plan", "Click", "Order Selection & Confirmation"), i.closest("#cons") && f("exp_sub_land_element_03", "Sub_plan", "Click", "Sticky cart"), c.classList.toggle("show"), this.adjustDropdownPosition(c), i.classList.toggle("active");
         }), s.forEach((p) => {
           p.addEventListener("click", (h) => {
             var u, w;
             const g = h.currentTarget, m = g.getAttribute("data-value");
-            this.syncDropdowns(t, m), s.forEach((_) => _.classList.remove("selected")), g.classList.add("selected"), c.style.top = "100%", i.innerHTML = g.innerHTML, c.classList.remove("show"), i.classList.remove("active"), i.closest("#getNow") && f(
+            this.syncDropdowns(t, m), s.forEach((l) => l.classList.remove("selected")), g.classList.add("selected"), c.style.top = "100%", i.innerHTML = g.innerHTML, c.classList.remove("show"), i.classList.remove("active"), i.closest("#getNow") && f(
               "exp_sub_land_dropdown_02",
               `Selected value: ${(u = g.querySelector(".text_transform")) == null ? void 0 : u.textContent}`,
               "Dropdown",
@@ -1363,8 +1366,8 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
               `Selected value: ${(w = g.querySelector(".text_transform")) == null ? void 0 : w.textContent}`,
               "Dropdown",
               "Sticky cart"
-            ), o.forEach((_) => {
-              _.getAttribute("value") === m && _.closest("select") && (_.closest("select").value = m);
+            ), o.forEach((l) => {
+              l.getAttribute("value") === m && l.closest("select") && (l.closest("select").value = m);
             });
           });
         }), document.addEventListener("click", (p) => {
@@ -1388,42 +1391,42 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
       n.bottom > e ? t.style.top = `-${n.height + 2}px` : t.style.top = "100%";
     }
     syncDropdowns(t, n) {
-      l(t).forEach((i) => {
+      d(t).forEach((i) => {
         const c = i.querySelector(".dropdown_toggle"), s = i.querySelector(".dropdown_menu"), o = i.querySelectorAll(".dropdown_item");
-        o.forEach((d) => {
-          d.getAttribute("data-value") === n && (o.forEach((p) => p.classList.remove("selected")), d.classList.add("selected"), c.innerHTML = d.innerHTML, s.classList.remove("show"), c.classList.remove("active"));
+        o.forEach((b) => {
+          b.getAttribute("data-value") === n && (o.forEach((p) => p.classList.remove("selected")), b.classList.add("selected"), c.innerHTML = b.innerHTML, s.classList.remove("show"), c.classList.remove("active"));
         });
       });
     }
     changeSubscriptionPlanHandler() {
-      b(".new_subscription_block ").then(() => {
-        const t = l("#rtxSubscribe"), n = l(".plan_selection label");
+      _(".new_subscription_block ").then(() => {
+        const t = d("#rtxSubscribe"), n = d(".plan_selection label");
         t.forEach((e) => {
           const i = e.nextElementSibling;
           n.forEach((c) => {
             const s = c.cloneNode(!0);
             c.replaceWith(s), s.addEventListener("click", () => {
-              var o, d, p, h, g, m, u, w;
+              var o, b, p, h, g, m, u, w;
               switch (console.log(s.getAttribute("for"), "newLabel.getAttribute('for') "), (s.getAttribute("for") === "oneTimeCons" || s.getAttribute("for") === "subscribeSaveCons") && (this.uniqueId = "Cons"), (s.getAttribute("for") === "oneTimeGetNow" || s.getAttribute("for") === "subscribeSaveGetNow") && (this.uniqueId = "GetNow"), (o = s == null ? void 0 : s.previousElementSibling) == null ? void 0 : o.value) {
                 case "oneTime":
-                  if (this.uniqueId === "Cons" && f("exp_sub_land_button_05", "One time", "Click", "Sticky cart"), this.uniqueId === "GetNow" && f("exp_sub_land_button_07", "One time", "Click", "Order Selection & Confirmation"), (d = s.previousElementSibling) != null && d.checked)
+                  if (this.uniqueId === "Cons" && f("exp_sub_land_button_05", "One time", "Click", "Sticky cart"), this.uniqueId === "GetNow" && f("exp_sub_land_button_07", "One time", "Click", "Order Selection & Confirmation"), (b = s.previousElementSibling) != null && b.checked)
                     return;
-                  e != null && e.checked && (i == null || i.click()), this.changeTxtMainBtnToProceedToCheckoutBtn(), (p = l(".plan_details")) == null || p.forEach((_) => {
-                    _.classList.contains("one_time_checked") || _.classList.add("one_time_checked");
+                  e != null && e.checked && (i == null || i.click()), this.changeTxtMainBtnToProceedToCheckoutBtn(), (p = d(".plan_details")) == null || p.forEach((l) => {
+                    l.classList.contains("one_time_checked") || l.classList.add("one_time_checked");
                   }), this.syncRadioButtons("oneTime");
                   break;
                 case "subscribeSave":
                   if (console.log(this.uniqueId), this.uniqueId === "Cons" && f("exp_sub_land_button_06", "Subscribe & save", "Click", "Sticky cart"), this.uniqueId === "GetNow" && f("exp_sub_land_button_08", "Subscribe & save", "Click", "Order Selection & Confirmation"), (h = s.previousElementSibling) != null && h.checked)
                     return;
-                  !(e != null && e.checked) && !this.isActiveOnePack && (i == null || i.click()), this.isActiveOnePack && (this.isActiveTwoPack = !0, a("#getNow .list-packs.list-packs-2").click()), this.changeTxtMainBtnToSubscribeAndSaveBtn(), (g = l(".plan_details")) == null || g.forEach((_) => {
-                    _.classList.contains("one_time_checked") && _.classList.remove("one_time_checked");
+                  !(e != null && e.checked) && !this.isActiveOnePack && (i == null || i.click()), this.isActiveOnePack && (this.isActiveTwoPack = !0, a("#getNow .list-packs.list-packs-2").click()), this.changeTxtMainBtnToSubscribeAndSaveBtn(), (g = d(".plan_details")) == null || g.forEach((l) => {
+                    l.classList.contains("one_time_checked") && l.classList.remove("one_time_checked");
                   }), this.syncRadioButtons("subscribeSave");
                   break;
               }
-              (m = l(".custom_dropdown")) == null || m.forEach((_) => {
-                _ == null || _.remove();
-              }), (u = l(".new_price_wrapper")) == null || u.forEach((_) => {
-                _ == null || _.remove();
+              (m = d(".custom_dropdown")) == null || m.forEach((l) => {
+                l == null || l.remove();
+              }), (u = d(".new_price_wrapper")) == null || u.forEach((l) => {
+                l == null || l.remove();
               }), (w = a(".info_wrapper")) == null || w.remove(), this.isActiveTwoPack || this.renderCustomDropdown(), this.isActiveTwoPack = !1, this.renderInfoWrapperSlideInCart(), this.renderNewPriceBlock();
             });
           });
@@ -1431,18 +1434,18 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
       }), console.log("changeSubscriptionPlanHandler");
     }
     syncRadioButtons(t) {
-      l(".plan_selection input").forEach((e) => {
+      d(".plan_selection input").forEach((e) => {
         e.value === t && (e.checked = !0);
       });
     }
     changeActivePackHandler() {
-      b(".magicpatch-packs").then((t) => {
-        l(".magicpatch-packs .list-packs").forEach((e) => {
+      _(".magicpatch-packs").then((t) => {
+        d(".magicpatch-packs .list-packs").forEach((e) => {
           e.addEventListener("click", () => {
             var i, c, s;
-            console.log("object"), e.classList.contains("list-packs-1") ? (this.isActiveOnePack = !0, this.changeTxtMainBtnToProceedToCheckoutBtn()) : (this.isActiveOnePack = !1, this.changeTxtMainBtnToSubscribeAndSaveBtn()), (i = l(".new_subscription")) == null || i.forEach((o) => {
+            console.log("object"), e.classList.contains("list-packs-1") ? (this.isActiveOnePack = !0, this.changeTxtMainBtnToProceedToCheckoutBtn()) : (this.isActiveOnePack = !1, this.changeTxtMainBtnToSubscribeAndSaveBtn()), (i = d(".new_subscription")) == null || i.forEach((o) => {
               o == null || o.remove();
-            }), (c = l(".new_price_wrapper")) == null || c.forEach((o) => {
+            }), (c = d(".new_price_wrapper")) == null || c.forEach((o) => {
               o == null || o.remove();
             }), (s = a(".info_wrapper")) == null || s.remove(), this.renderNewSubscriptionBlock(), this.renderNewPriceBlock(), this.renderInfoWrapperSlideInCart();
           });
@@ -1450,11 +1453,11 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
       });
     }
     renderNewPriceBlock() {
-      b(".list-packs.active-slide").then((t) => {
-        var i, c, s, o, d, p, h, g, m, u, w, _, x;
+      _(".list-packs.active-slide").then((t) => {
+        var i, c, s, o, b, p, h, g, m, u, w, l, v;
         const n = a(".list-packs.active-slide");
-        let e = l("#no-icart-open");
-        this.regPrice = ((c = (i = n.querySelector(".info .before-after-prices .strikethrough")) == null ? void 0 : i.textContent) == null ? void 0 : c.trim()) || "", this.salePrice = ((o = (s = n.querySelector(".info .before-after-prices .after-price")) == null ? void 0 : s.textContent) == null ? void 0 : o.trim()) || "", this.percentOff = ((p = (d = n.querySelector(".save-btn span")) == null ? void 0 : d.textContent) == null ? void 0 : p.trim()) || "", this.imgSrc = ((h = n.querySelector(".sticker-image img")) == null ? void 0 : h.getAttribute("src")) || "", this.packPrice = ((m = (g = n.querySelector(".info .pack-price")) == null ? void 0 : g.textContent) == null ? void 0 : m.trim()) || "", this.pcs = ((w = (u = n.querySelector(".info .pcs")) == null ? void 0 : u.textContent) == null ? void 0 : w.split("|")[0].trim()) || "", n.classList.contains("list-packs-1") && (this.percentOff = ((x = (_ = n.querySelector(".save-btn .new_save_txt")) == null ? void 0 : _.textContent) == null ? void 0 : x.trim()) || ""), this.regPrice !== "" && this.salePrice !== "" && this.percentOff !== "" && e.forEach((S) => {
+        let e = d("#no-icart-open");
+        this.regPrice = ((c = (i = n.querySelector(".info .before-after-prices .strikethrough")) == null ? void 0 : i.textContent) == null ? void 0 : c.trim()) || "", this.salePrice = ((o = (s = n.querySelector(".info .before-after-prices .after-price")) == null ? void 0 : s.textContent) == null ? void 0 : o.trim()) || "", this.percentOff = ((p = (b = n.querySelector(".save-btn span")) == null ? void 0 : b.textContent) == null ? void 0 : p.trim()) || "", this.imgSrc = ((h = n.querySelector(".sticker-image img")) == null ? void 0 : h.getAttribute("src")) || "", this.packPrice = ((m = (g = n.querySelector(".info .pack-price")) == null ? void 0 : g.textContent) == null ? void 0 : m.trim()) || "", this.pcs = ((w = (u = n.querySelector(".info .pcs")) == null ? void 0 : u.textContent) == null ? void 0 : w.split("|")[0].trim()) || "", n.classList.contains("list-packs-1") && (this.percentOff = ((v = (l = n.querySelector(".save-btn .new_save_txt")) == null ? void 0 : l.textContent) == null ? void 0 : v.trim()) || ""), this.regPrice !== "" && this.salePrice !== "" && this.percentOff !== "" && e.forEach((S) => {
           var C;
           (C = S.previousElementSibling) != null && C.classList.contains("new_price_wrapper") || S.insertAdjacentHTML("beforebegin", P(this.regPrice, this.salePrice, this.percentOff));
         });
@@ -1466,7 +1469,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
         "https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"
       ]).then(async () => {
         let t = setInterval(() => {
-          typeof tippy == "function" && a("[data-tooltip]") && (clearInterval(t), l("[data-tooltip]").forEach((n) => {
+          typeof tippy == "function" && a("[data-tooltip]") && (clearInterval(t), d("[data-tooltip]").forEach((n) => {
             tippy(n, {
               content: n.getAttribute("data-title"),
               trigger: "click",
@@ -1492,53 +1495,53 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
       });
     }
     changeSrcLogoUnderButton() {
-      b(".reviews-slide > img").then((t) => {
-        const n = l(".reviews-slide > img"), e = "https://conversionratestore.github.io/projects/zenpatch/img/new_logos.png";
+      _(".reviews-slide > img").then((t) => {
+        const n = d(".reviews-slide > img"), e = "https://conversionratestore.github.io/projects/zenpatch/img/new_logos.png";
         n.forEach((i) => {
           i.src !== e && (i.src = e);
         });
       });
     }
     changeTxtMainBtnToProceedToCheckoutBtn() {
-      b("#no-icart-open").then((t) => {
-        l("#no-icart-open").forEach((e) => {
+      _("#no-icart-open").then((t) => {
+        d("#no-icart-open").forEach((e) => {
           e.textContent !== "PROCEED TO CHECKOUT" && (e.textContent = "PROCEED TO CHECKOUT");
         });
       });
     }
     changeTxtMainBtnToSubscribeAndSaveBtn() {
-      b("#no-icart-open").then((t) => {
-        l("#no-icart-open").forEach((e) => {
+      _("#no-icart-open").then((t) => {
+        d("#no-icart-open").forEach((e) => {
           e.textContent !== "Subscribe & Save" && (e.textContent = "Subscribe & Save");
         });
       });
     }
     renderHeaderSlideInCart() {
-      b("#cons .title-logo").then((t) => {
+      _("#cons .title-logo").then((t) => {
         const n = a("#cons .title-logo");
         a(".header_slide_in_cart") || n.insertAdjacentHTML("afterbegin", j);
       });
     }
     renderNextStepBtnSlideInCart() {
-      b("#cons #no-icart-open").then((t) => {
+      _("#cons #no-icart-open").then((t) => {
         const n = a("#cons #no-icart-open");
         a(".next_step_btn") || n.insertAdjacentHTML("afterend", A);
       });
     }
     changeNextStepSlideInCart() {
-      b("#cons .next_step_btn").then((t) => {
-        const n = a("#cons .next_step_btn"), e = a("body #cons .magicpatch-packs"), i = a("#cons .header_slide_in_cart"), c = i == null ? void 0 : i.querySelector(".active_title"), s = i == null ? void 0 : i.querySelector(".active_step"), o = a("#cons #no-icart-open"), d = a("#cons .view-prices");
+      _("#cons .next_step_btn").then((t) => {
+        const n = a("#cons .next_step_btn"), e = a("body #cons .magicpatch-packs"), i = a("#cons .header_slide_in_cart"), c = i == null ? void 0 : i.querySelector(".active_title"), s = i == null ? void 0 : i.querySelector(".active_step"), o = a("#cons #no-icart-open"), b = a("#cons .view-prices");
         n.addEventListener("click", (p) => {
           f("exp_sub_land_button_01", "Next step", "Click", "Sticky cart"), p.currentTarget.classList.add("active_step_second"), e.classList.add("active_step_second"), a(".body_slide_in_cart") || (e.insertAdjacentHTML("beforebegin", z), this.changePrevStepSlideInCart()), this.renderInfoWrapperSlideInCart(), a(".arrow_back") || i.insertAdjacentHTML(
             "afterbegin",
             /* HTML */
-            `<span data-btnBack class="arrow_back">${k.arrowLeftBackIcon}</span>`
-          ), o.style.display = "flex", c && s && d && (c.textContent = "plan", s.textContent = "2", d.classList.add("active_step_second"));
+            `<span data-btnBack class="arrow_back">${x.arrowLeftBackIcon}</span>`
+          ), o.style.display = "flex", c && s && b && (c.textContent = "plan", s.textContent = "2", b.classList.add("active_step_second"));
         });
       });
     }
     renderInfoWrapperSlideInCart() {
-      b("#cons .body_slide_in_cart").then((t) => {
+      _("#cons .body_slide_in_cart").then((t) => {
         const n = a("#cons .body_slide_in_cart");
         a(".info_wrapper") || n.insertAdjacentHTML(
           "beforeend",
@@ -1547,25 +1550,25 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
       });
     }
     changePrevStepSlideInCart() {
-      b("#cons .body_slide_in_cart").then((t) => {
-        const n = l("#cons [data-btnBack]"), e = a("#cons .next_step_btn"), i = a("#cons .body_slide_in_cart"), c = a("#cons .magicpatch-packs"), s = a("#cons .header_slide_in_cart"), o = s == null ? void 0 : s.querySelector(".active_title"), d = s == null ? void 0 : s.querySelector(".active_step"), p = a("#cons #no-icart-open"), h = a("#cons .view-prices");
+      _("#cons .body_slide_in_cart").then((t) => {
+        const n = d("#cons [data-btnBack]"), e = a("#cons .next_step_btn"), i = a("#cons .body_slide_in_cart"), c = a("#cons .magicpatch-packs"), s = a("#cons .header_slide_in_cart"), o = s == null ? void 0 : s.querySelector(".active_title"), b = s == null ? void 0 : s.querySelector(".active_step"), p = a("#cons #no-icart-open"), h = a("#cons .view-prices");
         n == null || n.forEach((g) => {
           g.addEventListener("click", (m) => {
             var u;
-            g.classList.contains("arrow_back") ? f("exp_sub_land_arrow_back_01", "Arrow Back", "Click", "Sticky cart") : f("exp_sub_land_button_04", "Change", "Click", "Sticky cart"), e.classList.remove("active_step_second"), c.classList.remove("active_step_second"), i == null || i.remove(), p.style.display = "none", (u = a(".arrow_back")) == null || u.remove(), o && d && h && (o.textContent = "package", d.textContent = "1", h.classList.contains("active_step_second") && h.classList.remove("active_step_second"));
+            g.classList.contains("arrow_back") ? f("exp_sub_land_arrow_back_01", "Arrow Back", "Click", "Sticky cart") : f("exp_sub_land_button_04", "Change", "Click", "Sticky cart"), e.classList.remove("active_step_second"), c.classList.remove("active_step_second"), i == null || i.remove(), p.style.display = "none", (u = a(".arrow_back")) == null || u.remove(), o && b && h && (o.textContent = "package", b.textContent = "1", h.classList.contains("active_step_second") && h.classList.remove("active_step_second"));
           });
         });
       });
     }
     replaceLogoSlideInCart() {
-      b("#cons .reviews-slide").then((t) => {
+      _("#cons .reviews-slide").then((t) => {
         const n = a("#cons .reviews-slide"), e = a("#cons .view-prices");
         !(e != null && e.querySelector(".reviews-slide")) && e && e.insertAdjacentElement("beforeend", n);
       });
     }
     addEventsProceedToCheckoutBtn() {
-      b("#no-icart-open").then((t) => {
-        l("#no-icart-open").forEach((e) => {
+      _("#no-icart-open").then((t) => {
+        d("#no-icart-open").forEach((e) => {
           e.addEventListener("click", (i) => {
             e.closest("#getNow") && (e.textContent === "Subscribe & Save" && f("exp_sub_land_button_09", "Subscribe & save", "Click", "Order Selection & Confirmation"), e.textContent === "PROCEED TO CHECKOUT" && f("exp_sub_land_button_10", "Proceed to checkout", "Click", "Order Selection & Confirmation")), e.closest("#cons") && (e.textContent === "Subscribe & Save" && f("exp_sub_land_button_02", "Subscribe & save", "Click", "Sticky cart"), e.textContent === "PROCEED TO CHECKOUT" && f("exp_sub_land_button_03", "Proceed to checkout", "Click", "Sticky cart"));
           });
@@ -1578,21 +1581,21 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
         rootMargin: "0px",
         threshold: 0.1
       }, n = new IntersectionObserver(e, t);
-      b("#cons .next_step_btn").then((i) => {
+      _("#cons .next_step_btn").then((i) => {
         const c = a(".next_step_btn");
         n.observe(c);
-      }), b("#cons .body_slide_in_cart").then((i) => {
+      }), _("#cons .body_slide_in_cart").then((i) => {
         const c = a(".body_slide_in_cart");
         n.observe(c);
       });
       function e(i) {
         i.forEach((c) => {
-          c.isIntersecting && (c.target.classList.contains("next_step_btn") ? y(".next_step_btn", "exp_sub_land_element_01", "Sticky cart", "Step 1", "View") : c.target.classList.contains("body_slide_in_cart") && y(".body_slide_in_cart", "exp_sub_land_element_02", "Sticky cart", "Step 2", "View"));
+          c.isIntersecting && (c.target.classList.contains("next_step_btn") ? k(".next_step_btn", "exp_sub_land_element_01", "Sticky cart", "Step 1", "View") : c.target.classList.contains("body_slide_in_cart") && k(".body_slide_in_cart", "exp_sub_land_element_02", "Sticky cart", "Step 2", "View"));
         });
       }
     }
   }
-  b("#getNow .stay-container").then((r) => {
+  _("#getNow .stay-container").then((r) => {
     new D(H);
   });
 })();
