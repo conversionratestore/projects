@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const f = (r, i, e, n = "") => {
+  const h = (r, i, e, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: r,
@@ -43,7 +43,7 @@
     if (o = new IntersectionObserver(
       function(p) {
         p[0].isIntersecting === !0 ? b = setTimeout(() => {
-          f(
+          h(
             i,
             p[0].target.dataset.visible || n || "",
             t,
@@ -1276,8 +1276,8 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
     checkSubscriptionDefault() {
       _("#getNow #rtxSubscribe + label").then((i) => {
         _("#cons #rtxSubscribe + label").then((e) => {
-          const n = a("#getNow #rtxSubscribe"), t = n.nextElementSibling;
-          console.log(n.checked, t, "inputControlVar.checked"), n.checked || (console.log(n.checked, t, "inputControlVar.checked"), t.click(), console.log(n.checked, t, "inputControlVar.checked")), console.log(n.checked, t, "inputControlVar.checked");
+          const n = a("#cons #rtxSubscribe"), t = n.nextElementSibling;
+          console.log(n.checked, t, "inputControlVar.checked"), n.checked || (console.log(n.checked, t, "inputControlVar.checked"), n.nextElementSibling && n.nextElementSibling.click(), console.log(n.checked, t, "inputControlVar.checked")), console.log(n.checked, t, "inputControlVar.checked");
         });
       });
     }
@@ -1296,17 +1296,17 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
             var g, m, u, w;
             let b = o.getAttribute("selected") !== null ? "selected" : "";
             const p = o.getAttribute("value");
-            let h = (g = o.textContent) != null && g.includes("Every") ? `<b>Ship every:</b> <span class="text_transform">${(m = o.textContent) == null ? void 0 : m.split("Every ")[1]}</span>` : o.textContent;
-            (u = o.textContent) != null && u.includes("2 Months") && (h = `<b>Ship every:</b> <span class="text_transform">${(w = o.textContent) == null ? void 0 : w.split(
+            let f = (g = o.textContent) != null && g.includes("Every") ? `<b>Ship every:</b> <span class="text_transform">${(m = o.textContent) == null ? void 0 : m.split("Every ")[1]}</span>` : o.textContent;
+            (u = o.textContent) != null && u.includes("2 Months") && (f = `<b>Ship every:</b> <span class="text_transform">${(w = o.textContent) == null ? void 0 : w.split(
               "Every "
             )[1]}</span> <span class="most_common"> (most common)</span>`), n && n.value === p && s.forEach((l) => {
-              l.innerHTML = `${h}`, b = "selected";
+              l.innerHTML = `${f}`, b = "selected";
             }), a(".one_time_checked") && s.forEach((l) => {
               l.classList.add("disabled");
             }), c.forEach((l) => {
               l.insertAdjacentHTML(
                 "beforeend",
-                `<div class="dropdown_item ${b}" data-value="${p}">${h}</div>`
+                `<div class="dropdown_item ${b}" data-value="${p}">${f}</div>`
               );
             });
           }), this.changeCustomDropdownHandler(".custom_dropdown");
@@ -1317,17 +1317,17 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
       d(i).forEach((n) => {
         const t = n.querySelector(".dropdown_toggle"), c = n.querySelector(".dropdown_menu"), s = n.querySelectorAll(".dropdown_item"), o = d(".subscribe-frequency select option");
         t.addEventListener("click", () => {
-          t.closest("#getNow") && f("exp_sub_land_element_04", "Sub_plan", "Click", "Order Selection & Confirmation"), t.closest("#cons") && f("exp_sub_land_element_03", "Sub_plan", "Click", "Sticky cart"), c.classList.toggle("show"), this.adjustDropdownPosition(c), t.classList.toggle("active");
+          t.closest("#getNow") && h("exp_sub_land_element_04", "Sub_plan", "Click", "Order Selection & Confirmation"), t.closest("#cons") && h("exp_sub_land_element_03", "Sub_plan", "Click", "Sticky cart"), c.classList.toggle("show"), this.adjustDropdownPosition(c), t.classList.toggle("active");
         }), s.forEach((p) => {
-          p.addEventListener("click", (h) => {
+          p.addEventListener("click", (f) => {
             var u, w;
-            const g = h.currentTarget, m = g.getAttribute("data-value");
-            this.syncDropdowns(i, m), s.forEach((l) => l.classList.remove("selected")), g.classList.add("selected"), c.style.top = "100%", t.innerHTML = g.innerHTML, c.classList.remove("show"), t.classList.remove("active"), t.closest("#getNow") && f(
+            const g = f.currentTarget, m = g.getAttribute("data-value");
+            this.syncDropdowns(i, m), s.forEach((l) => l.classList.remove("selected")), g.classList.add("selected"), c.style.top = "100%", t.innerHTML = g.innerHTML, c.classList.remove("show"), t.classList.remove("active"), t.closest("#getNow") && h(
               "exp_sub_land_dropdown_02",
               `Selected value: ${(u = g.querySelector(".text_transform")) == null ? void 0 : u.textContent}`,
               "Dropdown",
               "Order Selection & Confirmation"
-            ), t.closest("#cons") && f(
+            ), t.closest("#cons") && h(
               "exp_sub_land_dropdown_01",
               `Selected value: ${(w = g.querySelector(".text_transform")) == null ? void 0 : w.textContent}`,
               "Dropdown",
@@ -1337,12 +1337,12 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
             });
           });
         }), document.addEventListener("click", (p) => {
-          const h = p.target;
-          n.contains(h) || (c.classList.remove("show"), t.classList.remove("active"), c.style.top = "100%");
+          const f = p.target;
+          n.contains(f) || (c.classList.remove("show"), t.classList.remove("active"), c.style.top = "100%");
         }), new IntersectionObserver(
           (p) => {
-            p.forEach((h) => {
-              h.isIntersecting || this.adjustDropdownPosition(c);
+            p.forEach((f) => {
+              f.isIntersecting || this.adjustDropdownPosition(c);
             });
           },
           {
@@ -1372,17 +1372,17 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
           e.forEach((c) => {
             const s = c.cloneNode(!0);
             c.replaceWith(s), s.addEventListener("click", () => {
-              var o, b, p, h, g, m, u, w;
+              var o, b, p, f, g, m, u, w;
               switch (console.log(s.getAttribute("for"), "newLabel.getAttribute('for') "), (s.getAttribute("for") === "oneTimeCons" || s.getAttribute("for") === "subscribeSaveCons") && (this.uniqueId = "Cons"), (s.getAttribute("for") === "oneTimeGetNow" || s.getAttribute("for") === "subscribeSaveGetNow") && (this.uniqueId = "GetNow"), (o = s == null ? void 0 : s.previousElementSibling) == null ? void 0 : o.value) {
                 case "oneTime":
-                  if (this.uniqueId === "Cons" && f("exp_sub_land_button_05", "One time", "Click", "Sticky cart"), this.uniqueId === "GetNow" && f("exp_sub_land_button_07", "One time", "Click", "Order Selection & Confirmation"), (b = s.previousElementSibling) != null && b.checked)
+                  if (this.uniqueId === "Cons" && h("exp_sub_land_button_05", "One time", "Click", "Sticky cart"), this.uniqueId === "GetNow" && h("exp_sub_land_button_07", "One time", "Click", "Order Selection & Confirmation"), (b = s.previousElementSibling) != null && b.checked)
                     return;
                   n != null && n.checked && (t == null || t.click()), this.changeTxtMainBtnToProceedToCheckoutBtn(), (p = d(".plan_details")) == null || p.forEach((l) => {
                     l.classList.contains("one_time_checked") || l.classList.add("one_time_checked");
                   }), this.syncRadioButtons("oneTime");
                   break;
                 case "subscribeSave":
-                  if (this.uniqueId === "Cons" && f("exp_sub_land_button_06", "Subscribe & save", "Click", "Sticky cart"), this.uniqueId === "GetNow" && f("exp_sub_land_button_08", "Subscribe & save", "Click", "Order Selection & Confirmation"), (h = s.previousElementSibling) != null && h.checked)
+                  if (this.uniqueId === "Cons" && h("exp_sub_land_button_06", "Subscribe & save", "Click", "Sticky cart"), this.uniqueId === "GetNow" && h("exp_sub_land_button_08", "Subscribe & save", "Click", "Order Selection & Confirmation"), (f = s.previousElementSibling) != null && f.checked)
                     return;
                   !(n != null && n.checked) && !this.isActiveOnePack && (t == null || t.click()), this.isActiveOnePack && (this.isActiveTwoPack = !0, a("#getNow .list-packs.list-packs-2").click()), this.changeTxtMainBtnToSubscribeAndSaveBtn(), (g = d(".plan_details")) == null || g.forEach((l) => {
                     l.classList.contains("one_time_checked") && l.classList.remove("one_time_checked");
@@ -1420,10 +1420,10 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
     }
     renderNewPriceBlock() {
       _(".list-packs.active-slide").then((i) => {
-        var t, c, s, o, b, p, h, g, m, u, w, l, v;
+        var t, c, s, o, b, p, f, g, m, u, w, l, v;
         const e = a(".list-packs.active-slide");
         let n = d("#no-icart-open");
-        this.regPrice = ((c = (t = e.querySelector(".info .before-after-prices .strikethrough")) == null ? void 0 : t.textContent) == null ? void 0 : c.trim()) || "", this.salePrice = ((o = (s = e.querySelector(".info .before-after-prices .after-price")) == null ? void 0 : s.textContent) == null ? void 0 : o.trim()) || "", this.percentOff = ((p = (b = e.querySelector(".save-btn span")) == null ? void 0 : b.textContent) == null ? void 0 : p.trim()) || "", this.imgSrc = ((h = e.querySelector(".sticker-image img")) == null ? void 0 : h.getAttribute("src")) || "", this.packPrice = ((m = (g = e.querySelector(".info .pack-price")) == null ? void 0 : g.textContent) == null ? void 0 : m.trim()) || "", this.pcs = ((w = (u = e.querySelector(".info .pcs")) == null ? void 0 : u.textContent) == null ? void 0 : w.split("|")[0].trim()) || "", e.classList.contains("list-packs-1") && (this.percentOff = ((v = (l = e.querySelector(".save-btn .new_save_txt")) == null ? void 0 : l.textContent) == null ? void 0 : v.trim()) || ""), this.regPrice !== "" && this.salePrice !== "" && this.percentOff !== "" && n.forEach((C) => {
+        this.regPrice = ((c = (t = e.querySelector(".info .before-after-prices .strikethrough")) == null ? void 0 : t.textContent) == null ? void 0 : c.trim()) || "", this.salePrice = ((o = (s = e.querySelector(".info .before-after-prices .after-price")) == null ? void 0 : s.textContent) == null ? void 0 : o.trim()) || "", this.percentOff = ((p = (b = e.querySelector(".save-btn span")) == null ? void 0 : b.textContent) == null ? void 0 : p.trim()) || "", this.imgSrc = ((f = e.querySelector(".sticker-image img")) == null ? void 0 : f.getAttribute("src")) || "", this.packPrice = ((m = (g = e.querySelector(".info .pack-price")) == null ? void 0 : g.textContent) == null ? void 0 : m.trim()) || "", this.pcs = ((w = (u = e.querySelector(".info .pcs")) == null ? void 0 : u.textContent) == null ? void 0 : w.split("|")[0].trim()) || "", e.classList.contains("list-packs-1") && (this.percentOff = ((v = (l = e.querySelector(".save-btn .new_save_txt")) == null ? void 0 : l.textContent) == null ? void 0 : v.trim()) || ""), this.regPrice !== "" && this.salePrice !== "" && this.percentOff !== "" && n.forEach((C) => {
           var S;
           (S = C.previousElementSibling) != null && S.classList.contains("new_price_wrapper") || C.insertAdjacentHTML("beforebegin", B(this.regPrice, this.salePrice, this.percentOff));
         });
@@ -1448,12 +1448,12 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
               placement: "bottom-end",
               interactive: !0,
               onShow(n) {
-                e.closest(".plan_comment") && f(
+                e.closest(".plan_comment") && h(
                   "exp_sub_land_tooltip_01",
                   "A choice that saves both time and money",
                   "View",
                   "Subscribe section"
-                ), e.closest(".is_active_one_pack") && f("exp_sub_land_tooltip_02", "Select 2, 3 or 4 packs..", "View", "Subscribe section");
+                ), e.closest(".is_active_one_pack") && h("exp_sub_land_tooltip_02", "Select 2, 3 or 4 packs..", "View", "Subscribe section");
               }
             });
           }));
@@ -1504,7 +1504,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
       _("#cons .next_step_btn").then((i) => {
         const e = a("#cons .next_step_btn"), n = a("body #cons .magicpatch-packs"), t = a("#cons .header_slide_in_cart"), c = t == null ? void 0 : t.querySelector(".active_title"), s = t == null ? void 0 : t.querySelector(".active_step"), o = a("#cons #no-icart-open"), b = a("#cons .view-prices");
         e.addEventListener("click", (p) => {
-          f("exp_sub_land_button_01", "Next step", "Click", "Sticky cart"), p.currentTarget.classList.add("active_step_second"), n.classList.add("active_step_second"), a(".body_slide_in_cart") || (n.insertAdjacentHTML("beforebegin", z), this.changePrevStepSlideInCart()), this.renderInfoWrapperSlideInCart(), a(".arrow_back") || t.insertAdjacentHTML(
+          h("exp_sub_land_button_01", "Next step", "Click", "Sticky cart"), p.currentTarget.classList.add("active_step_second"), n.classList.add("active_step_second"), a(".body_slide_in_cart") || (n.insertAdjacentHTML("beforebegin", z), this.changePrevStepSlideInCart()), this.renderInfoWrapperSlideInCart(), a(".arrow_back") || t.insertAdjacentHTML(
             "afterbegin",
             /* HTML */
             `<span data-btnBack class="arrow_back">${x.arrowLeftBackIcon}</span>`
@@ -1523,11 +1523,11 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
     }
     changePrevStepSlideInCart() {
       _("#cons .body_slide_in_cart").then((i) => {
-        const e = d("#cons [data-btnBack]"), n = a("#cons .next_step_btn"), t = a("#cons .body_slide_in_cart"), c = a("#cons .magicpatch-packs"), s = a("#cons .header_slide_in_cart"), o = s == null ? void 0 : s.querySelector(".active_title"), b = s == null ? void 0 : s.querySelector(".active_step"), p = a("#cons #no-icart-open"), h = a("#cons .view-prices");
+        const e = d("#cons [data-btnBack]"), n = a("#cons .next_step_btn"), t = a("#cons .body_slide_in_cart"), c = a("#cons .magicpatch-packs"), s = a("#cons .header_slide_in_cart"), o = s == null ? void 0 : s.querySelector(".active_title"), b = s == null ? void 0 : s.querySelector(".active_step"), p = a("#cons #no-icart-open"), f = a("#cons .view-prices");
         e == null || e.forEach((g) => {
           g.addEventListener("click", (m) => {
             var u;
-            g.classList.contains("arrow_back") ? f("exp_sub_land_arrow_back_01", "Arrow Back", "Click", "Sticky cart") : f("exp_sub_land_button_04", "Change", "Click", "Sticky cart"), n.classList.remove("active_step_second"), c.classList.remove("active_step_second"), t == null || t.remove(), p.style.display = "none", (u = a(".arrow_back")) == null || u.remove(), o && b && h && (o.textContent = "package", b.textContent = "1", h.classList.contains("active_step_second") && h.classList.remove("active_step_second"));
+            g.classList.contains("arrow_back") ? h("exp_sub_land_arrow_back_01", "Arrow Back", "Click", "Sticky cart") : h("exp_sub_land_button_04", "Change", "Click", "Sticky cart"), n.classList.remove("active_step_second"), c.classList.remove("active_step_second"), t == null || t.remove(), p.style.display = "none", (u = a(".arrow_back")) == null || u.remove(), o && b && f && (o.textContent = "package", b.textContent = "1", f.classList.contains("active_step_second") && f.classList.remove("active_step_second"));
           });
         });
       });
@@ -1542,7 +1542,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
       _("#no-icart-open").then((i) => {
         d("#no-icart-open").forEach((n) => {
           n.addEventListener("click", (t) => {
-            n.closest("#getNow") && (n.textContent === "Subscribe & Save" && f("exp_sub_land_button_09", "Subscribe & save", "Click", "Order Selection & Confirmation"), n.textContent === "PROCEED TO CHECKOUT" && f("exp_sub_land_button_10", "Proceed to checkout", "Click", "Order Selection & Confirmation")), n.closest("#cons") && (n.textContent === "Subscribe & Save" && f("exp_sub_land_button_02", "Subscribe & save", "Click", "Sticky cart"), n.textContent === "PROCEED TO CHECKOUT" && f("exp_sub_land_button_03", "Proceed to checkout", "Click", "Sticky cart"));
+            n.closest("#getNow") && (n.textContent === "Subscribe & Save" && h("exp_sub_land_button_09", "Subscribe & save", "Click", "Order Selection & Confirmation"), n.textContent === "PROCEED TO CHECKOUT" && h("exp_sub_land_button_10", "Proceed to checkout", "Click", "Order Selection & Confirmation")), n.closest("#cons") && (n.textContent === "Subscribe & Save" && h("exp_sub_land_button_02", "Subscribe & save", "Click", "Sticky cart"), n.textContent === "PROCEED TO CHECKOUT" && h("exp_sub_land_button_03", "Proceed to checkout", "Click", "Sticky cart"));
           });
         });
       });
