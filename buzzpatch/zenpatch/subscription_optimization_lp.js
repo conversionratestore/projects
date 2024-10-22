@@ -1276,7 +1276,12 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
     checkSubscriptionDefault() {
       _("#getNow #rtxSubscribe + label").then((t) => {
         const e = p("#getNow #rtxSubscribe"), n = e.nextElementSibling;
-        e.checked || (console.log(e.checked, n, "inputControlVar.checked"), p("#getNow #rtxSubscribe + label").click()), console.log(e.checked, n, "inputControlVar.checked");
+        if (!e.checked) {
+          console.log(e.checked, n, "inputControlVar.checked");
+          const i = new Event("click", { bubbles: !0 });
+          n.dispatchEvent(i);
+        }
+        console.log(e.checked, n, "inputControlVar.checked");
       });
     }
     renderCustomDropdown() {
