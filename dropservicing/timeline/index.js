@@ -618,7 +618,7 @@
     {
       start: "45",
       time: "48",
-      text: "he Done For You Partner Program where we do the heavy lifting for you"
+      text: "The Done For You Partner Program where we do the heavy lifting for you"
     },
     {
       start: "48",
