@@ -147,6 +147,7 @@
   gap: 36px;
   overflow-x: auto;
   counter-reset: point;
+  padding-bottom: 10px;
 }
 .point_block_wrapper::-webkit-scrollbar {
   height: 1px;
@@ -159,6 +160,7 @@
   .point_block_wrapper {
     flex-direction: column;
     overflow-x: unset;
+    padding-bottom: 0;
   }
 }
 .point_block_wrapper .point_block {
@@ -277,6 +279,9 @@
 .point_block_wrapper .point_block [class*=badge_].badge_final {
   background: #a46bf5;
 }
+.point_block_wrapper .point_block [class*=badge_].badge_exclusive {
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 100%), #ab78f4;
+}
 .point_block_wrapper .point_block .point_time {
   display: flex;
   align-items: center;
@@ -314,12 +319,15 @@
 .point_block_wrapper .point_block ul {
   padding-left: 20px;
   margin-top: -6px;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 .point_block_wrapper .point_block ul li {
   font-size: 14px;
   line-height: 20px;
   color: #fff;
-  margin-bottom: 6px;
 }
 .point_block_wrapper .point_block.viewed .progress_step span {
   background: #a46bf5;
@@ -638,7 +646,8 @@
     {
       start: "52",
       time: "59",
-      text: "Special discounted access to the entire program today!"
+      text: "Special discounted access to the entire program today!",
+      type: "exclusive"
     },
     {
       start: "59",
@@ -737,21 +746,23 @@
     <div class="mob_right">
       <div class="point_time">
         ${S}
-        <span>${+o.start > 9 ? o.start : "0" + o.start}:00</span>
+        <span
+          >${+o.start > 9 ? +o.start > 59 ? `1:${+o.start % 60 > 9 ? +o.start % 60 : "0" + +o.start % 60}` : o.start : "0" + o.start}:00</span
+        >
         <span class="status"></span>
       </div>
       ${o.type ? (
       /* HTML */
       `
             <span class="badge_${o.type}"
-              >${o.type === "critical" ? `${L} Critical information` : "Achieve Financial Freedom"}</span
+              >${o.type === "critical" ? `${L} Critical information` : o.type === "exclusive" ? "EXCLUSIVE OFFER" : "Achieve Financial Freedom"}</span
             >
           `
     ) : ""}
       <p>${o.text}</p>
     </div>
   </div>`
-  ), m = (
+  ), _ = (
     /* HTML */
     ` <div class="points_block">
   <div class="header_wrap">
@@ -765,7 +776,7 @@
     <div class="point_block_wrapper">${h.map((o) => C(o)).join("")}</div>
   </div>
 </div>`
-  ), B = (
+  ), E = (
     /* HTML */
     `<div class="mobile_info_block">
   <p class="text">${h[0].text}</p>
@@ -773,7 +784,7 @@
 </div>`
   );
   k({ name: "Webinar Timeline", dev: "YK" }), v("webinar_timeline");
-  class E {
+  class B {
     constructor() {
       this.init();
     }
@@ -781,7 +792,7 @@
       p("body", async () => {
         t("body").elements[0].insertAdjacentHTML("afterbegin", `<style class="crs_style">${u}</style>`);
       }), p("#vjs_video_3", async () => {
-        window.innerWidth > 768 ? t(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", m) : (t(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", B), t(".main-container").elements[0].insertAdjacentHTML("beforeend", m), t(".mobile_info_block button").elements[0].addEventListener("click", () => {
+        window.innerWidth > 768 ? t(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", _) : (t(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", E), t(".main-container").elements[0].insertAdjacentHTML("beforeend", _), t(".mobile_info_block button").elements[0].addEventListener("click", () => {
           t(".points_block").elements[0].scrollIntoView({ behavior: "smooth" });
         }));
       }), p(".point_block", async () => {
@@ -796,18 +807,18 @@
       const e = 2 * Math.PI * 17, n = t(".point_block_wrapper").elements[0];
       let s = !1;
       const a = setInterval(() => {
-        var _, w, g;
+        var m, g, w;
         const i = t("video").elements[0].currentTime;
         if (i === 0)
           return;
         s || (this.startPosition(), s = !0), i > 44 * 60 && t(".point_block.hidden").elements.forEach((b) => b.classList.remove("hidden"));
         const r = t(".point_block.active").elements[0];
-        if (i > 55 * 60 && window.innerWidth < 768 && (t(".mobile_info_block").elements[0].remove(), t(".points_block").elements[0].remove(), t(".crs_style").elements[0].remove(), clearInterval(a)), !r)
+        if (i > 55.25 * 60 && window.innerWidth < 768 && (t(".mobile_info_block").elements[0].remove(), t(".points_block").elements[0].remove(), t(".crs_style").elements[0].remove(), clearInterval(a)), !r)
           return;
-        const l = ((_ = r.previousElementSibling) == null ? void 0 : _.dataset.time) || 0, c = r.querySelector(".progress_step circle"), d = (i - +l) / (+r.dataset.time - +l) * 100;
+        const l = ((m = r.previousElementSibling) == null ? void 0 : m.dataset.time) || 0, c = r.querySelector(".progress_step circle"), d = (i - +l) / (+r.dataset.time - +l) * 100;
         if (c.style.strokeDashoffset = (e - d / 100 * e).toString(), d > 100) {
-          r.classList.remove("active"), r.classList.add("viewed"), (w = r.nextElementSibling) == null || w.classList.add("active");
-          const b = (g = r.nextElementSibling) == null ? void 0 : g.getBoundingClientRect().left, P = n.scrollLeft, D = n.clientWidth / 2 - 100;
+          r.classList.remove("active"), r.classList.add("viewed"), (g = r.nextElementSibling) == null || g.classList.add("active");
+          const b = (w = r.nextElementSibling) == null ? void 0 : w.getBoundingClientRect().left, P = n.scrollLeft, D = n.clientWidth / 2 - 100;
           if (n.scrollTo({
             left: P + (b - D),
             behavior: "smooth"
@@ -861,6 +872,6 @@
       });
     }
   }
-  new E();
+  new B();
 })();
 //# sourceMappingURL=index.js.map
