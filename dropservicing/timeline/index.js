@@ -280,7 +280,7 @@
   background: #a46bf5;
 }
 .point_block_wrapper .point_block [class*=badge_].badge_exclusive {
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 100%), #ab78f4;
+  background: #ab78f4;
 }
 .point_block_wrapper .point_block .point_time {
   display: flex;
