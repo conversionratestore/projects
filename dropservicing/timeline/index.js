@@ -329,6 +329,9 @@
   line-height: 20px;
   color: #fff;
 }
+.point_block_wrapper .point_block ul + p {
+  margin-top: -12px;
+}
 .point_block_wrapper .point_block.viewed .progress_step span {
   background: #a46bf5;
 }
