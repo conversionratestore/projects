@@ -2343,7 +2343,7 @@ footer .crs_container p:last-of-type a:not(:last-child)::after {
     `
   <section id="last_cta" class="crs_container">
     <div class="img">
-      <img src="${S}/product.jpg" alt="product" />
+      <img src="${S}/product.png" alt="product" />
     </div>
     <div>
       <h2>Your Future Starts Here!</h2>
