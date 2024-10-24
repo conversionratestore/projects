@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const L = (o, n, t, e = "") => {
+  const E = (o, n, t, e = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: o,
@@ -20,13 +20,13 @@
       // 50% of the product must be visible
     };
     function r(h, v) {
-      h.forEach((c) => {
-        var i;
-        if (c.isIntersecting) {
+      h.forEach((i) => {
+        var c;
+        if (i.isIntersecting) {
           const f = window.crypto.randomUUID();
-          c.target.setAttribute("data-product-id", f);
-          const w = (i = c.target.querySelector("[cy-listingproductname]")) == null ? void 0 : i.textContent;
-          n.add(w), o(n.size), v.unobserve(c.target);
+          i.target.setAttribute("data-product-id", f);
+          const w = (c = i.target.querySelector("[cy-listingproductname]")) == null ? void 0 : c.textContent;
+          n.add(w), o(n.size), v.unobserve(i.target);
         }
       });
     }
@@ -36,8 +36,8 @@
       e.observe(h);
     }), t = new MutationObserver((h) => {
       h.forEach((v) => {
-        v.addedNodes.forEach((c) => {
-          c instanceof HTMLElement && c.nodeName.toLowerCase() === "product" && e.observe(c);
+        v.addedNodes.forEach((i) => {
+          i instanceof HTMLElement && i.nodeName.toLowerCase() === "product" && e.observe(i);
         });
       });
     }), t.observe(d, { childList: !0, subtree: !0 }), [t, e]) : void 0;
@@ -83,7 +83,7 @@ product-listing listing-size {
   };
   class x {
     constructor() {
-      this.observers = [], this.clickNum = 1, this.productsLoaded = !1, this.productsSeen = 0, this.productsSet = /* @__PURE__ */ new Set(), this.previousProductAmount = 0, this.device = window.innerWidth < 1101 ? "mobile" : "desktop", this.productClickEvent = this.handleProductClick.bind(this), this.init();
+      this.observers = [], this.timers = [], this.clickNum = 1, this.productsLoaded = !1, this.productsSeen = 0, this.productsSet = /* @__PURE__ */ new Set(), this.previousProductAmount = 0, this.device = window.innerWidth < 1101 ? "mobile" : "desktop", this.productClickEvent = this.handleProductClick.bind(this), this.init();
     }
     init() {
       document.head.insertAdjacentHTML("beforeend", `<style>${k}</style>`);
@@ -93,14 +93,16 @@ product-listing listing-size {
           this.trackProductVisibility();
         }, 1e3));
       }, e = () => {
-        this.elementCountObserver && this.elementCountObserver.disconnect(), document.removeEventListener("mousedown", this.productClickEvent), clearInterval(this.timerId), this.observers.forEach((s) => {
+        this.elementCountObserver && this.elementCountObserver.disconnect(), document.removeEventListener("mousedown", this.productClickEvent), clearInterval(this.timerId), this.timers.forEach((s) => {
+          clearTimeout(s);
+        }), this.observers.forEach((s) => {
           s.disconnect();
         }), t(), window.location.pathname !== n && this.productsSet.clear(), n = window.location.pathname;
       };
       t(), this.pageChangeHandler(e);
     }
     handleProductClick(n) {
-      n.target.closest("product img") && L("plp_product_image_click", "Product Image ", "click", "PLP Product Image");
+      n.target.closest("product img") && E("plp_product_image_click", "Product Image ", "click", "PLP Product Image");
     }
     pageChangeHandler(n) {
       (function(t) {
@@ -119,7 +121,7 @@ product-listing listing-size {
         document.addEventListener("mousedown", this.productClickEvent);
         const t = y('[aria-label="Load more"]', (e) => {
           const s = A((p) => {
-            this.productsSeen !== p && (this.productsSeen = p, L("plp_view_items_count", `Product Seen: ${p}`, "view", "PLP"));
+            this.productsSeen !== p && (this.productsSeen = p, E("plp_view_items_count", `Product Seen: ${p}`, "view", "PLP"));
           }, this.productsSet), r = s == null ? void 0 : s[0], d = s == null ? void 0 : s[1];
           this.observers.push(r), this.observers.push(d);
         });
@@ -128,7 +130,7 @@ product-listing listing-size {
     }
     changeProductsSize() {
       const n = () => {
-        var E;
+        var L;
         let e = 0;
         const r = l("ac-product-listing").querySelectorAll("product"), d = Array.from(r), p = new URLSearchParams(window.location.search), v = parseInt(p.get("pg") || "1", 10) * 24;
         d.forEach((a, m) => {
@@ -136,7 +138,7 @@ product-listing listing-size {
         }), d.forEach((a, m) => {
           m >= v && (a.style.display = "none");
         });
-        const c = d.filter((a) => a.style.display !== "none").length, i = document.querySelector('[aria-label="Load more"]'), f = (E = i == null ? void 0 : i.parentElement) == null ? void 0 : E.querySelector(".p1.col-1");
+        const i = d.filter((a) => a.style.display !== "none").length, c = document.querySelector('[aria-label="Load more"]'), f = (L = c == null ? void 0 : c.parentElement) == null ? void 0 : L.querySelector(".p1.col-1");
         f.style.display = "none";
         const w = f.textContent;
         if (w) {
@@ -145,14 +147,14 @@ product-listing listing-size {
           const m = (
             /* HTML */
             `<div class="crs-viewed">
-          You’ve viewed ${c <= e ? c : e} of ${e} products
+          You’ve viewed ${i <= e ? i : e} of ${e} products
         </div>`
           );
-          c !== e ? i.disabled = !1 : i.disabled = !0;
+          i !== e ? c.disabled = !1 : c.disabled = !0;
           const g = l(".crs-viewed");
-          g ? g.textContent = `You’ve viewed ${c} of ${e} products` : f.insertAdjacentHTML("afterend", m);
+          g ? g.textContent = `You’ve viewed ${i} of ${e} products` : f.insertAdjacentHTML("afterend", m);
         }
-        i && ((e > d.length || c < e) && (i.disabled = !1), i.addEventListener("click", async () => {
+        c && ((e > d.length || i < e) && (c.disabled = !1), c.addEventListener("click", async () => {
           await new Promise((u) => {
             new MutationObserver((_, I) => {
               _.some((M) => M.addedNodes.length > 0) && (I.disconnect(), u(!0));
@@ -167,17 +169,17 @@ product-listing listing-size {
           const b = g.filter(
             (u) => u.style.display !== "none"
           ).length;
-          S && (S.textContent = `You’ve viewed ${b >= e ? e : b} of ${e} products`), b !== e ? i.disabled = !1 : i.disabled = !0;
+          S && (S.textContent = `You’ve viewed ${b >= e ? e : b} of ${e} products`), b !== e ? c.disabled = !1 : c.disabled = !0;
         }));
       }, t = new MutationObserver((e) => {
         e.forEach((s) => {
           n();
         });
       });
-      n(), y('[aria-label="Load more"]', (e) => {
+      y('[aria-label="Load more"]', (e) => {
         var r;
         const s = (r = e == null ? void 0 : e.parentElement) == null ? void 0 : r.querySelector(".p1.col-1");
-        t.observe(s, {
+        n(), t.observe(s, {
           childList: !0,
           subtree: !0,
           characterData: !0
@@ -189,5 +191,7 @@ product-listing listing-size {
       !t || !e || t.classList.contains("col-43") || t.click();
     }
   }
-  new x();
+  window.onload = () => {
+    new x();
+  };
 })();
