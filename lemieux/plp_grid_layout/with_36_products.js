@@ -147,7 +147,8 @@ product-listing listing-size {
           const m = (
             /* HTML */
             `<div class="crs-viewed">
-          You’ve viewed ${i <= e ? i : e} of ${e} products
+          You’ve viewed ${i <= e ? i : e} of
+          ${e} products
         </div>`
           );
           i !== e ? c.disabled = !1 : c.disabled = !0;
@@ -191,7 +192,5 @@ product-listing listing-size {
       !t || !e || t.classList.contains("col-43") || t.click();
     }
   }
-  window.onload = () => {
-    new x();
-  };
+  new x();
 })();
