@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const _ = (a, t, e, n = "") => {
+  const f = (a, t, e, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: a,
@@ -43,7 +43,7 @@
     if (i = new IntersectionObserver(
       function(d) {
         d[0].isIntersecting === !0 ? u = setTimeout(() => {
-          _(
+          f(
             t,
             d[0].target.dataset.visible || n || "",
             r,
@@ -82,7 +82,7 @@
       return e = window.scrollY, t != null && (r = e - t), t = e, clearTimeout(n), n = setTimeout(s, o), r;
     };
   })();
-  const f = "https://conversionratestore.github.io/projects/buzzpatch/zenpatch/pet/img/", h = {
+  const _ = "https://conversionratestore.github.io/projects/buzzpatch/zenpatch/pet/img/", h = {
     tooltipIcon: `
 <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
   <path d="M2.52002 10.2953H4.52002V12H2.52002V10.2953ZM0.52002 2.54039C0.52002 2.19499 0.598451 1.8663 0.755314 1.55432C0.912177 1.24234 1.12786 0.974931 1.40237 0.75209C1.67688 0.518107 1.99714 0.334263 2.36316 0.200558C2.72917 0.0668529 3.12133 0 3.53963 0C4.02329 0 4.4612 0.0835661 4.85335 0.250698C5.25858 0.417828 5.59192 0.651811 5.85335 0.952647C5.98407 1.10864 6.08865 1.25348 6.16708 1.38719C6.25858 1.52089 6.33048 1.66574 6.38277 1.82173C6.43505 1.96657 6.46773 2.1337 6.4808 2.32312C6.50695 2.51253 6.52002 2.73538 6.52002 2.99164C6.52002 3.28134 6.51348 3.52646 6.50041 3.72702C6.50041 3.91644 6.48734 4.08357 6.4612 4.22841C6.43505 4.37326 6.40237 4.50139 6.36316 4.61281C6.32394 4.71309 6.27165 4.8078 6.20629 4.89694L4.85335 6.86908C4.76185 7.00279 4.68342 7.14206 4.61806 7.28691C4.5527 7.42061 4.52002 7.56546 4.52002 7.72145V9.0585H2.52002V7.50418C2.52002 7.25905 2.56577 7.02507 2.65727 6.80223C2.74878 6.57939 2.86642 6.36212 3.01022 6.15042L4.26512 4.41226C4.36969 4.26741 4.43505 4.11142 4.4612 3.94429C4.50041 3.77716 4.52002 3.61003 4.52002 3.4429V2.5571C4.52002 2.32312 4.42198 2.12256 4.2259 1.95543C4.0429 1.7883 3.81414 1.70474 3.53963 1.70474C3.30433 1.70474 3.07558 1.77716 2.85335 1.92201C2.63113 2.06685 2.52002 2.27855 2.52002 2.5571V3.52646H0.52002V2.54039Z" fill="white"/>
@@ -102,11 +102,11 @@
   }, c = {
     ver_b: {
       id: "43842554855468",
-      img: `${f}zenpatch-pet_bundle_img_11zon.webp`,
+      img: `${_}zenpatch-pet_bundle_img_11zon.webp`,
       title: "Pet Zen Starter Pack",
       description: "Pet Locket + 3 Packs of Pet Zen Vapor Stickers",
       price: "$10.00",
-      imgTooltip: `${f}zenpatch-pet_bundle_tooltip_img_11zon.webp`,
+      imgTooltip: `${_}zenpatch-pet_bundle_tooltip_img_11zon.webp`,
       mainTitleTooltip: "Pet Locket",
       subTitleTooltip: "1 locket for pet patches",
       descriptionTooltip: "This locket is designed specifically for easy and convenient use with NATPAT Pet Stickers. Use in just 3 simple steps: open front window -> insert NATPAT Pet Sticker -> clip window into place & loop onto collar."
@@ -177,7 +177,7 @@
         <span>Money-Back Guarantee</span>
       </li>
       <li>
-        <img src="${f}secure_checkout_icon.svg" alt="secure checkout icon" />
+        <img src="${_}secure_checkout_icon.svg" alt="secure checkout icon" />
         <span>Secure Checkout</span>
       </li>
     </ul>
@@ -942,7 +942,7 @@
     max-width: 100%;
   }
 }/*# sourceMappingURL=main.css.map */`, P = window.innerWidth < 768 ? "mobile" : "desktop";
-  class $ {
+  class S {
     constructor(t) {
       this.device = t, this.idValue = "", this.init();
     }
@@ -972,8 +972,8 @@
         e && (e.textContent = `${e.textContent} Each`);
       }), l(".lp-tr--purchase .lp-tr--gray-bg > .lp-tr--desktop img").then((t) => {
         m(".lp-tr--purchase .lp-tr--gray-bg > .lp-tr--desktop img").forEach((n) => {
-          let r = `${f}zenpatch-pet_img_11zon.webp`;
-          this.device === "mobile" && (r = `${f}zenpatch-pet_img_mob.webp`), n && n.src !== r && (n.src = r);
+          let r = "https://conversionratestore.github.io/projects/buzzpatch//img/zenpatch_pet_img_desk.webp";
+          this.device === "mobile" && (r = "https://conversionratestore.github.io/projects/buzzpatch//img/zenpatch_pet_img_mob.webp"), n && n.src !== r && (n.src = r);
         });
       }), l(".lp-tr--purchase .purchase__pet-locket").then((t) => {
         const e = p(".lp-tr--purchase .purchase__pet-locket"), n = p("#lptrPurchase .form"), r = p(".lp-tr--purchase .purchase__pet-locket label:not(.custom-label)");
@@ -1028,7 +1028,7 @@
         m(".lp-tr--purchase input[type=radio] + label").forEach((n) => {
           n.addEventListener("click", (r) => {
             var o;
-            n.getAttribute("for") === "pack3" || n.getAttribute("for") === "pack2" || n.getAttribute("for") === "pack1" || n.getAttribute("for") === "pack4" ? (p(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.contains("is_hidden") && p(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.remove("is_hidden"), p(".lp-tr--purchase .purchase__regular-price").classList.contains("is_hidden") && p(".lp-tr--purchase .purchase__regular-price").classList.remove("is_hidden"), (o = p(".new_bundle_price_wrapper")) == null || o.remove()) : (_("exp_zen_introduce_click_01", "Pet Zen Starter Pack", "Click", "Bundle & save"), p(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.add("is_hidden"), p(".lp-tr--purchase .purchase__regular-price").classList.add("is_hidden"), p(".new_bundle_price_wrapper") || p(".lp-tr--purchase .overall-price.lp-tr--mobile").insertAdjacentHTML(
+            n.getAttribute("for") === "pack3" || n.getAttribute("for") === "pack2" || n.getAttribute("for") === "pack1" || n.getAttribute("for") === "pack4" ? (p(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.contains("is_hidden") && p(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.remove("is_hidden"), p(".lp-tr--purchase .purchase__regular-price").classList.contains("is_hidden") && p(".lp-tr--purchase .purchase__regular-price").classList.remove("is_hidden"), (o = p(".new_bundle_price_wrapper")) == null || o.remove()) : (f("exp_zen_introduce_click_01", "Pet Zen Starter Pack", "Click", "Bundle & save"), p(".lp-tr--purchase .overall-price.lp-tr--mobile").classList.add("is_hidden"), p(".lp-tr--purchase .purchase__regular-price").classList.add("is_hidden"), p(".new_bundle_price_wrapper") || p(".lp-tr--purchase .overall-price.lp-tr--mobile").insertAdjacentHTML(
               "afterend",
               this.newPricePetZenStarterPackHtml(e)
             ));
@@ -1076,7 +1076,7 @@
         l("#lptrPurchase .lp-tr--btn a").then((e) => {
           p("#lptrPurchase .lp-tr--btn a").addEventListener("click", (n) => {
             var o;
-            _("exp_zen_get_pet_zen_now_click_01", "Get Pet Zen Now", "Click", "Bundle & save"), this.idValue = (o = p(".lp-tr--purchase input[type=radio]:checked+label")) == null ? void 0 : o.previousElementSibling.getAttribute(
+            f("exp_zen_get_pet_zen_now_click_01", "Get Pet Zen Now", "Click", "Bundle & save"), this.idValue = (o = p(".lp-tr--purchase input[type=radio]:checked+label")) == null ? void 0 : o.previousElementSibling.getAttribute(
               "data-tick-id"
             );
             const r = n.target.href.replace(/\/cart\/\d+:/, `/cart/${this.idValue}:`);
@@ -1132,7 +1132,7 @@
               onShow(n) {
               },
               onTrigger(n) {
-                p("body").classList.add("tooltip_open"), _("exp_zen_introduce_click_02", "Pet Zen Starter Pack", "Click", "Bundle & save");
+                p("body").classList.add("tooltip_open"), f("exp_zen_introduce_click_02", "Pet Zen Starter Pack", "Click", "Bundle & save");
               },
               onHide(n) {
                 setTimeout(() => {
@@ -1158,6 +1158,6 @@
       });
     }
   }
-  window.location.pathname.match("pages") && new $(P);
+  window.location.pathname.match("pages") && new S(P);
 })();
 //# sourceMappingURL=index.js.map
