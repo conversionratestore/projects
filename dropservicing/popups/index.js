@@ -288,42 +288,42 @@
     constructor(n) {
       this.elements = typeof n == "string" ? document.querySelectorAll(n) : n instanceof Element ? [n] : n;
     }
-    on(n, s, t) {
-      return typeof s == "function" && (t = s, s = ""), this.elements.forEach(function(o) {
+    on(n, t, s) {
+      return typeof t == "function" && (s = t, t = ""), this.elements.forEach(function(o) {
         o.addEventListener(n, function(r) {
           var a;
-          if (s !== "") {
-            let l = (a = r.target) == null ? void 0 : a.closest(s);
-            l && (t == null || t.call(l, r));
+          if (t !== "") {
+            let l = (a = r.target) == null ? void 0 : a.closest(t);
+            l && (s == null || s.call(l, r));
           } else
-            t == null || t.call(o, r);
+            s == null || s.call(o, r);
         });
       }), this;
     }
     addClass(n) {
-      return this.elements.forEach(function(s) {
-        s.classList.add(n);
+      return this.elements.forEach(function(t) {
+        t.classList.add(n);
       }), this;
     }
     removeClass(n) {
-      return this.elements.forEach(function(s) {
-        s.classList.remove(n);
+      return this.elements.forEach(function(t) {
+        t.classList.remove(n);
       }), this;
     }
     toggleClass(n) {
-      return this.elements.forEach(function(s) {
-        s.classList.toggle(n);
+      return this.elements.forEach(function(t) {
+        t.classList.toggle(n);
       }), this;
     }
     each(n) {
-      return this.elements.forEach((s, t) => {
-        n(s, t);
+      return this.elements.forEach((t, s) => {
+        n(t, s);
       }), this;
     }
-    style(n, s) {
-      const t = n.split("-").map((o, r) => r === 0 ? o : o.charAt(0).toUpperCase() + o.slice(1)).join("");
+    style(n, t) {
+      const s = n.split("-").map((o, r) => r === 0 ? o : o.charAt(0).toUpperCase() + o.slice(1)).join("");
       return this.elements.forEach(function(o) {
-        o.style[t] = s;
+        o.style[s] = t;
       }), this;
     }
   }
@@ -430,7 +430,7 @@
             ${m[e]}
           </h3>
           <ul>
-            ${x[e].map((s) => `<li>${v}<p>${s}</p></li>`).join("")}
+            ${x[e].map((t) => `<li>${v}<p>${t}</p></li>`).join("")}
           </ul>
           ${e !== 3 ? "<p><b>...and much more.</b></p>" : ""}
         </div>
@@ -456,27 +456,27 @@
         <div class="crs_stories_block">
           <div class="crs_stories_nav">
             ${c.map(
-        (s, t) => `<span class="${t === 0 ? "active" : ""}">
-                <img src="${p}/popups/img/avatar_${t}.jpg" alt="avatar" />
+        (t, s) => `<span class="${s === 0 ? "active" : ""}">
+                <img src="${p}/popups/img/avatar_${s}.jpg" alt="avatar" />
               </span>`
       ).join("")}
           </div>
           <div class="crs_stories_content">
             ${c.map(
-        (s, t) => (
+        (t, s) => (
           /* HTML */
-          `<div class="crs_story ${t === 0 ? "active" : ""}">
+          `<div class="crs_story ${s === 0 ? "active" : ""}">
                     <div class="crs_story_head">
                       <span>
-                        <img src="${p}/popups/img/avatar_${t}.jpg" alt="avatar" />
+                        <img src="${p}/popups/img/avatar_${s}.jpg" alt="avatar" />
                       </span>
                       <p>
-                        <b>${s.name}</b><br />
+                        <b>${t.name}</b><br />
                         <span>Verified Customer ✅</span>
                       </p>
                     </div>
                     <img src="${p}/optin/img/rating_stars.png" alt="stars" />
-                    <p>${s.text}</p>
+                    <p>${t.text}</p>
                   </div>`
         )
       ).join("")}
@@ -496,9 +496,9 @@
       document.body.insertAdjacentHTML("afterbegin", `<style>${u}</style>`), document.body.insertAdjacentHTML("beforeend", '<div class="crs_popup_wrapper"></div>'), this.setTriggers();
     }
     async showPopup() {
-      const n = localStorage.getItem("popupShown"), s = i("video").elements[0].currentTime;
-      let t = Math.floor(s / (20 * 60));
-      t > 3 && (t = 3), !(n && +n === t) && (i(".crs_popup_wrapper").elements[0].innerHTML = y(2), i(".crs_popup_wrapper").addClass("active"), localStorage.setItem("popupShown", t.toString()), i(".crs_popup_wrapper .crs_close, button.crs_btn").on("click", () => {
+      const n = localStorage.getItem("popupShown"), t = i("video").elements[0].currentTime;
+      let s = Math.floor(t / (20 * 60));
+      s > 3 && (s = 3), !(n && +n === s) && (i(".crs_popup_wrapper").elements[0].innerHTML = y(s), i(".crs_popup_wrapper").addClass("active"), localStorage.setItem("popupShown", s.toString()), i(".crs_popup_wrapper .crs_close, button.crs_btn").on("click", () => {
         i(".crs_popup_wrapper").removeClass("active");
       }), i(".crs_popup_wrapper").on("click", (o) => {
         o.target.classList.contains("crs_popup_wrapper") && i(".crs_popup_wrapper").removeClass("active");
@@ -509,7 +509,7 @@
         if (this.classList.contains("active"))
           return;
         i(".crs_stories_nav span").removeClass("active"), this.classList.add("active");
-        const s = Array.from(this.parentElement.children).indexOf(this), t = i(".crs_stories_content .crs_story").elements[s].getBoundingClientRect().left, r = i(".crs_stories_content").elements[0].getBoundingClientRect().left - t, a = i(".crs_stories_content").elements[0].scrollLeft;
+        const t = Array.from(this.parentElement.children).indexOf(this), s = i(".crs_stories_content .crs_story").elements[t].getBoundingClientRect().left, r = i(".crs_stories_content").elements[0].getBoundingClientRect().left - s, a = i(".crs_stories_content").elements[0].scrollLeft;
         i(".crs_stories_content").elements[0].scrollTo({
           left: a - r,
           behavior: "smooth"
@@ -523,9 +523,9 @@
         document.visibilityState === "visible" && this.showPopup();
       }), window.innerWidth < 768) {
         let n = 0;
-        i(".top_content_wrapper").on("touchend", async (s) => {
-          const t = (/* @__PURE__ */ new Date()).getTime(), o = t - n;
-          n = t, o < 500 && o > 0 && (s.preventDefault(), this.showPopup());
+        i(".top_content_wrapper").on("touchend", async (t) => {
+          const s = (/* @__PURE__ */ new Date()).getTime(), o = s - n;
+          n = s, o < 500 && o > 0 && (t.preventDefault(), this.showPopup());
         });
       }
     }
