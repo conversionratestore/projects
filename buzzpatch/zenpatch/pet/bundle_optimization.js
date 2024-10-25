@@ -972,8 +972,8 @@
         e && (e.textContent = `${e.textContent} Each`);
       }), l(".lp-tr--purchase .lp-tr--gray-bg > .lp-tr--desktop img").then((t) => {
         m(".lp-tr--purchase .lp-tr--gray-bg > .lp-tr--desktop img").forEach((n) => {
-          let r = "https://conversionratestore.github.io/projects/buzzpatch//img/zenpatch_pet_img_desk.webp";
-          this.device === "mobile" && (r = "https://conversionratestore.github.io/projects/buzzpatch//img/zenpatch_pet_img_mob.webp"), n && n.src !== r && (n.src = r);
+          let r = "https://conversionratestore.github.io/projects/buzzpatch//img/zenpatch_pet_img_desk_1.webp";
+          this.device === "mobile" && (r = "https://conversionratestore.github.io/projects/buzzpatch//img/zenpatch_pet_img_mob_1.webp"), n && n.src !== r && (n.src = r);
         });
       }), l(".lp-tr--purchase .purchase__pet-locket").then((t) => {
         const e = p(".lp-tr--purchase .purchase__pet-locket"), n = p("#lptrPurchase .form"), r = p(".lp-tr--purchase .purchase__pet-locket label:not(.custom-label)");
