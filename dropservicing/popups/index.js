@@ -67,6 +67,7 @@
   line-height: 30px;
   margin-bottom: 20px;
   text-align: center;
+  text-transform: uppercase;
 }
 .crs_popup .crs_stories_nav {
   display: flex;
@@ -169,7 +170,6 @@
 }
 .crs_popup .crs_main_info .sub {
   line-height: 21px;
-  margin-bottom: 22px;
   font-size: 14px;
 }
 @media (max-width: 768px) {
@@ -178,6 +178,7 @@
   }
 }
 .crs_popup .crs_main_info .crs_list_block {
+  margin-top: 22px;
   padding: 16px;
   background: #f2ebfc;
   border-radius: 3px;
@@ -247,6 +248,11 @@
   text-decoration: none;
   font-weight: 700;
   border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.crs_popup .crs_main_info .crs_btn:hover {
+  background: #198f19;
 }
 .crs_popup .crs_main_info .crs_guarantee {
   display: flex;
@@ -272,9 +278,9 @@
   text-align: center;
   max-width: 365px;
   margin: 0 auto 10px;
-}/*# sourceMappingURL=style.css.map */`, d = ({ name: s, dev: n }) => {
+}/*# sourceMappingURL=style.css.map */`, d = ({ name: e, dev: n }) => {
     console.log(
-      `%c EXP: ${s} (DEV: ${n})`,
+      `%c EXP: ${e} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   };
@@ -282,50 +288,50 @@
     constructor(n) {
       this.elements = typeof n == "string" ? document.querySelectorAll(n) : n instanceof Element ? [n] : n;
     }
-    on(n, t, e) {
-      return typeof t == "function" && (e = t, t = ""), this.elements.forEach(function(o) {
+    on(n, s, t) {
+      return typeof s == "function" && (t = s, s = ""), this.elements.forEach(function(o) {
         o.addEventListener(n, function(r) {
-          var c;
-          if (t !== "") {
-            let l = (c = r.target) == null ? void 0 : c.closest(t);
-            l && (e == null || e.call(l, r));
+          var a;
+          if (s !== "") {
+            let l = (a = r.target) == null ? void 0 : a.closest(s);
+            l && (t == null || t.call(l, r));
           } else
-            e == null || e.call(o, r);
+            t == null || t.call(o, r);
         });
       }), this;
     }
     addClass(n) {
-      return this.elements.forEach(function(t) {
-        t.classList.add(n);
+      return this.elements.forEach(function(s) {
+        s.classList.add(n);
       }), this;
     }
     removeClass(n) {
-      return this.elements.forEach(function(t) {
-        t.classList.remove(n);
+      return this.elements.forEach(function(s) {
+        s.classList.remove(n);
       }), this;
     }
     toggleClass(n) {
-      return this.elements.forEach(function(t) {
-        t.classList.toggle(n);
+      return this.elements.forEach(function(s) {
+        s.classList.toggle(n);
       }), this;
     }
     each(n) {
-      return this.elements.forEach((t, e) => {
-        n(t, e);
+      return this.elements.forEach((s, t) => {
+        n(s, t);
       }), this;
     }
-    style(n, t) {
-      const e = n.split("-").map((o, r) => r === 0 ? o : o.charAt(0).toUpperCase() + o.slice(1)).join("");
+    style(n, s) {
+      const t = n.split("-").map((o, r) => r === 0 ? o : o.charAt(0).toUpperCase() + o.slice(1)).join("");
       return this.elements.forEach(function(o) {
-        o.style[e] = t;
+        o.style[t] = s;
       }), this;
     }
   }
-  const i = (s) => new h(s), f = (s) => {
+  const i = (e) => new h(e), _ = (e) => {
     let n = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", s, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
     }, 1e3);
-  }, a = [
+  }, c = [
     {
       img: "christian.jpg",
       name: "Christian",
@@ -346,7 +352,7 @@
       name: "Aleksa",
       text: '"Aleksa transformed from a struggling student to a financially independent entrepreneur in just one year."'
     }
-  ], _ = [
+  ], f = [
     "Don’t miss your chance!",
     "Essential Tips Ahead",
     "Congratulations!",
@@ -405,37 +411,37 @@
 </defs>
 </svg>`, v = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
 <path d="M15 8L9 15L5 11" stroke="#2F2F2F" stroke-width="2"/>
-</svg>`, y = (s) => {
-    const n = s === 0 || s === 1 ? "hat.png" : s === 2 ? "prize.png" : "top.png";
+</svg>`, y = (e) => {
+    const n = e === 0 || e === 1 ? "hat.png" : e === 2 ? "prize.png" : "top.png";
     return (
       /* HTML */
       `
-    <div class="crs_popup interval_${s}">
+    <div class="crs_popup interval_${e}">
       <span class="crs_close">${w}</span>
       <div class="crs_main_info">
-        <h2>${_[s]}</h2>
-        ${s !== 3 ? (
+        <h2>${f[e]}</h2>
+        ${e !== 3 ? (
         /* HTML */
-        `<p class="sub">${g[s]}</p>`
+        `<p class="sub">${g[e]}</p>`
       ) : ""}
         <div class="crs_list_block">
           <h3>
             <img src="${p}/popups/img/${n}" alt="icon" />
-            ${m[s]}
+            ${m[e]}
           </h3>
           <ul>
-            ${x[s].map((t) => `<li>${v}<p>${t}</p></li>`).join("")}
+            ${x[e].map((s) => `<li>${v}<p>${s}</p></li>`).join("")}
           </ul>
-          ${s !== 3 ? "<p><b>...and much more.</b></p>" : ""}
+          ${e !== 3 ? "<p><b>...and much more.</b></p>" : ""}
         </div>
-        ${s !== 3 ? (
+        ${e !== 3 ? (
         /* HTML */
         `<div class="crs_note">
               <img src="${p}/popups/img/info-circle.png" alt="info" />
-              <p><b>IMPORTANT NOTE:</b> ${b[s]}</p>
+              <p><b>IMPORTANT NOTE:</b> ${b[e]}</p>
             </div>`
       ) : ""}
-        ${s === 3 ? (
+        ${e === 3 ? (
         /* HTML */
         `<div class="crs_guarantee">
               <h4>100% satisfaction</h4>
@@ -443,34 +449,34 @@
               <img src="${p}/popups/img/guaranteed.svg" alt="guaranteed" />
             </div>`
       ) : ""}
-        ${s < 2 ? '<button class="crs_btn">Continue Watching</button>' : '<a class="crs_btn" href="https://start.dropservicing.com/partner">Access Special Offer Now</a>'}
+        ${e < 2 ? '<button class="crs_btn">Continue Watching</button>' : '<a class="crs_btn" href="https://start.dropservicing.com/partner" target="_blank">Access Special Offer Now</a>'}
       </div>
       <div class="crs_stories">
         <p>Our Success Stories</p>
         <div class="crs_stories_block">
           <div class="crs_stories_nav">
-            ${a.map(
-        (t, e) => `<span class="${e === 0 ? "active" : ""}">
-                <img src="${p}/optin/img/${t.img}" alt="avatar" />
+            ${c.map(
+        (s, t) => `<span class="${t === 0 ? "active" : ""}">
+                <img src="${p}/popups/img/avatar_${t}.jpg" alt="avatar" />
               </span>`
       ).join("")}
           </div>
           <div class="crs_stories_content">
-            ${a.map(
-        (t, e) => (
+            ${c.map(
+        (s, t) => (
           /* HTML */
-          `<div class="crs_story ${e === 0 ? "active" : ""}">
+          `<div class="crs_story ${t === 0 ? "active" : ""}">
                     <div class="crs_story_head">
                       <span>
-                        <img src="${p}/optin/img/${t.img}" alt="avatar" />
+                        <img src="${p}/popups/img/avatar_${t}.jpg" alt="avatar" />
                       </span>
                       <p>
-                        <b>${t.name}</b><br />
+                        <b>${s.name}</b><br />
                         <span>Verified Customer ✅</span>
                       </p>
                     </div>
                     <img src="${p}/optin/img/rating_stars.png" alt="stars" />
-                    <p>${t.text}</p>
+                    <p>${s.text}</p>
                   </div>`
         )
       ).join("")}
@@ -481,7 +487,7 @@
   `
     );
   };
-  d({ name: "Webinar popups", dev: "YK" }), f("webinar_popups");
+  d({ name: "Webinar popups", dev: "YK" }), _("webinar_popups");
   class k {
     constructor() {
       this.init();
@@ -490,10 +496,12 @@
       document.body.insertAdjacentHTML("afterbegin", `<style>${u}</style>`), document.body.insertAdjacentHTML("beforeend", '<div class="crs_popup_wrapper"></div>'), this.setTriggers();
     }
     async showPopup() {
-      const n = localStorage.getItem("popupShown"), t = i("video").elements[0].currentTime;
-      let e = Math.floor(t / (20 * 60));
-      e > 3 && (e = 3), !(n && +n === e) && (i(".crs_popup_wrapper").elements[0].innerHTML = y(e), i(".crs_popup_wrapper").addClass("active"), localStorage.setItem("popupShown", e.toString()), i(".crs_popup_wrapper .crs_close, button.crs_btn").on("click", () => {
+      const n = localStorage.getItem("popupShown"), s = i("video").elements[0].currentTime;
+      let t = Math.floor(s / (20 * 60));
+      t > 3 && (t = 3), !(n && +n === t) && (i(".crs_popup_wrapper").elements[0].innerHTML = y(2), i(".crs_popup_wrapper").addClass("active"), localStorage.setItem("popupShown", t.toString()), i(".crs_popup_wrapper .crs_close, button.crs_btn").on("click", () => {
         i(".crs_popup_wrapper").removeClass("active");
+      }), i(".crs_popup_wrapper").on("click", (o) => {
+        o.target.classList.contains("crs_popup_wrapper") && i(".crs_popup_wrapper").removeClass("active");
       }), this.setSlider());
     }
     setSlider() {
@@ -501,9 +509,9 @@
         if (this.classList.contains("active"))
           return;
         i(".crs_stories_nav span").removeClass("active"), this.classList.add("active");
-        const t = Array.from(this.parentElement.children).indexOf(this), e = i(".crs_stories_content .crs_story").elements[t].getBoundingClientRect().left, r = i(".crs_stories_content").elements[0].getBoundingClientRect().left - e, c = i(".crs_stories_content").elements[0].scrollLeft;
+        const s = Array.from(this.parentElement.children).indexOf(this), t = i(".crs_stories_content .crs_story").elements[s].getBoundingClientRect().left, r = i(".crs_stories_content").elements[0].getBoundingClientRect().left - t, a = i(".crs_stories_content").elements[0].scrollLeft;
         i(".crs_stories_content").elements[0].scrollTo({
-          left: c - r,
+          left: a - r,
           behavior: "smooth"
         });
       });
@@ -515,9 +523,9 @@
         document.visibilityState === "visible" && this.showPopup();
       }), window.innerWidth < 768) {
         let n = 0;
-        i(".top_content_wrapper").on("touchend", async (t) => {
-          const e = (/* @__PURE__ */ new Date()).getTime(), o = e - n;
-          n = e, o < 500 && o > 0 && (t.preventDefault(), this.showPopup());
+        i(".top_content_wrapper").on("touchend", async (s) => {
+          const t = (/* @__PURE__ */ new Date()).getTime(), o = t - n;
+          n = t, o < 500 && o > 0 && (s.preventDefault(), this.showPopup());
         });
       }
     }
@@ -525,4 +533,3 @@
   new k();
 })();
 //# sourceMappingURL=index.js.map
-
