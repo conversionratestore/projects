@@ -67,17 +67,18 @@
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
+  line-height: 1;
 }
 .crs_banner a:hover {
   border: 4px solid #91da9c;
-}/*# sourceMappingURL=style.css.map */`, d = (s, e, n, t = "") => {
+}/*# sourceMappingURL=style.css.map */`, g = (s, e, n, t = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: s,
       event_desc: e,
       event_type: n,
       event_loc: t
-    }), g(`Event: ${s} | ${e} | ${n} | ${t}`, "success");
+    }), d(`Event: ${s} | ${e} | ${n} | ${t}`, "success");
   }, u = (s, e) => {
     const n = setInterval(() => {
       const t = document.querySelector(s);
@@ -137,13 +138,13 @@
     if (r = new IntersectionObserver(
       function(l) {
         l[0].isIntersecting === !0 ? c = setTimeout(() => {
-          d(
+          g(
             e,
             l[0].target.dataset.visible || t || "",
             "view",
             n
           ), r.disconnect();
-        }, a) : (g("Element is not fully visible", "warn"), clearTimeout(c));
+        }, a) : (d("Element is not fully visible", "warn"), clearTimeout(c));
       },
       { threshold: [o] }
     ), typeof s == "string") {
@@ -151,7 +152,7 @@
       l && r.observe(l);
     } else
       r.observe(s);
-  }, g = (s, e = "info") => {
+  }, d = (s, e = "info") => {
     let n;
     switch (e) {
       case "info":
@@ -195,7 +196,7 @@
       <span class="close">${y}</span>
       <div>
       
-      <img src="${m}/img/desktop.png" alt="desktop" />
+      <img src="${m}/img/pink_monitor.svg" alt="desktop" />
       <h3>${s}</h3>
       <a href="${e}">${n}</a>
       </div>
@@ -220,11 +221,11 @@
     "/blog/free-up-space-mac": "Free up Mac space by automatically identifying and removing system junk",
     "/blog/speed-up-slow-mac": "Improve your Mac's speed by up to 2.5x with CleanMyMac X"
   };
-  b({ name: "Blog banner V2", dev: "YK" }), d("exp_blog_banner_v2_loaded", "Experiment loaded", "loaded");
+  b({ name: "Blog banner V2", dev: "YK" }), g("exp_blog_banner_v2_loaded", "Experiment loaded", "loaded");
   class _ {
     constructor(e) {
       if (this.path = window.location.pathname, this.title = x[this.path], !this.title) {
-        g("Data not found!", "error");
+        d("Data not found!", "error");
         return;
       }
       this.link = e === "b" ? "https://cleanmymac.com/" : "https://macpaw.com/download/cleanmymac", this.btn = e === "b" ? "Explore CleanMyMac" : "Download", this.init();
@@ -245,13 +246,12 @@
     }
     addEvents() {
       f(".crs_banner", "exp_blog_banner_visible", "Sidebar CTA banner", "Banner visible"), i(".crs_banner .close").on("click", function(e) {
-        d("exp_blog_banner_close", "Banner closed", "click", "Sidebar CTA banner"), i(".crs_banner").addClass("hide");
+        g("exp_blog_banner_close", "Banner closed", "click", "Sidebar CTA banner"), i(".crs_banner").addClass("hide");
       }), i(".crs_banner a").on("click", function(e) {
-        d("exp_blog_banner_cta", "Banner button clicked", "click", "Sidebar CTA banner");
+        g("exp_blog_banner_cta", "Banner button clicked", "click", "Sidebar CTA banner");
       });
     }
   }
   new _("b");
 })();
 //# sourceMappingURL=index.js.map
-
