@@ -196,7 +196,7 @@
       <span class="close">${y}</span>
       <div>
       
-      <img src="${m}/img/pink_monitor.svg" alt="desktop" />
+      <img src="${m}/img/pink_monitor.png" alt="desktop" />
       <h3>${s}</h3>
       <a href="${e}">${n}</a>
       </div>
