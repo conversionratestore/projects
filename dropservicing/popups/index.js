@@ -561,8 +561,13 @@
       });
     }
     setTriggers() {
-      if (document.addEventListener("mouseleave", async () => {
-        i("video").elements[0].currentTime !== 0 && this.showPopup();
+      if (document.addEventListener("mouseout", async (n) => {
+        const e = n.relatedTarget || n.toElement;
+        if (!e || e.nodeName === "HTML") {
+          if (i("video").elements[0].currentTime === 0)
+            return;
+          this.showPopup();
+        }
       }), document.addEventListener("visibilitychange", async () => {
         i("video").elements[0].currentTime !== 0 && document.visibilityState === "visible" && this.showPopup();
       }), window.innerWidth < 768) {
