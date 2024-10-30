@@ -513,7 +513,7 @@
     );
   };
   h({ name: "Webinar popups", dev: "YK" }), f("webinar_popups"), p("exp_exit_intent_loaded", "Loaded", "success", "Webinar popups");
-  class E {
+  class T {
     constructor() {
       this.init();
     }
@@ -562,9 +562,9 @@
     }
     setTriggers() {
       if (document.addEventListener("mouseleave", async () => {
-        this.showPopup();
+        i("video").elements[0].currentTime !== 0 && this.showPopup();
       }), document.addEventListener("visibilitychange", async () => {
-        document.visibilityState === "visible" && this.showPopup();
+        i("video").elements[0].currentTime !== 0 && document.visibilityState === "visible" && this.showPopup();
       }), window.innerWidth < 768) {
         let n = 0;
         i(".top_content_wrapper").on("touchend", async (e) => {
@@ -580,6 +580,6 @@
       return n ? +n : 0;
     }
   }
-  new E();
+  new T();
 })();
 //# sourceMappingURL=index.js.map
