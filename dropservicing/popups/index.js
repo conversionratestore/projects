@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const u = `.crs_popup_wrapper {
+  const d = `.crs_popup_wrapper {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -278,60 +278,85 @@
   text-align: center;
   max-width: 365px;
   margin: 0 auto 10px;
-}/*# sourceMappingURL=style.css.map */`, d = ({ name: e, dev: n }) => {
+}/*# sourceMappingURL=style.css.map */`, p = (s, n, e, t = "") => {
+    window.dataLayer = window.dataLayer || [], window.dataLayer.push({
+      event: "event-to-ga4",
+      event_name: s,
+      event_desc: n,
+      event_type: e,
+      event_loc: t
+    }), g(`Event: ${s} | ${n} | ${e} | ${t}`, "success");
+  }, h = ({ name: s, dev: n }) => {
     console.log(
-      `%c EXP: ${e} (DEV: ${n})`,
+      `%c EXP: ${s} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   };
-  class h {
+  class _ {
     constructor(n) {
       this.elements = typeof n == "string" ? document.querySelectorAll(n) : n instanceof Element ? [n] : n;
     }
-    on(n, t, s) {
-      return typeof t == "function" && (s = t, t = ""), this.elements.forEach(function(o) {
+    on(n, e, t) {
+      return typeof e == "function" && (t = e, e = ""), this.elements.forEach(function(o) {
         o.addEventListener(n, function(r) {
           var a;
-          if (t !== "") {
-            let l = (a = r.target) == null ? void 0 : a.closest(t);
-            l && (s == null || s.call(l, r));
+          if (e !== "") {
+            let u = (a = r.target) == null ? void 0 : a.closest(e);
+            u && (t == null || t.call(u, r));
           } else
-            s == null || s.call(o, r);
+            t == null || t.call(o, r);
         });
       }), this;
     }
     addClass(n) {
-      return this.elements.forEach(function(t) {
-        t.classList.add(n);
+      return this.elements.forEach(function(e) {
+        e.classList.add(n);
       }), this;
     }
     removeClass(n) {
-      return this.elements.forEach(function(t) {
-        t.classList.remove(n);
+      return this.elements.forEach(function(e) {
+        e.classList.remove(n);
       }), this;
     }
     toggleClass(n) {
-      return this.elements.forEach(function(t) {
-        t.classList.toggle(n);
+      return this.elements.forEach(function(e) {
+        e.classList.toggle(n);
       }), this;
     }
     each(n) {
-      return this.elements.forEach((t, s) => {
-        n(t, s);
+      return this.elements.forEach((e, t) => {
+        n(e, t);
       }), this;
     }
-    style(n, t) {
-      const s = n.split("-").map((o, r) => r === 0 ? o : o.charAt(0).toUpperCase() + o.slice(1)).join("");
+    style(n, e) {
+      const t = n.split("-").map((o, r) => r === 0 ? o : o.charAt(0).toUpperCase() + o.slice(1)).join("");
       return this.elements.forEach(function(o) {
-        o.style[s] = t;
+        o.style[t] = e;
       }), this;
     }
   }
-  const i = (e) => new h(e), _ = (e) => {
+  const i = (s) => new _(s), f = (s) => {
     let n = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", e, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", s, "variant_1"));
     }, 1e3);
-  }, c = [
+  }, g = (s, n = "info") => {
+    let e;
+    switch (n) {
+      case "info":
+        e = "color: #3498db;";
+        break;
+      case "warn":
+        e = "color: #f39c12;";
+        break;
+      case "error":
+        e = "color: #e74c3c;";
+        break;
+      case "success":
+        e = "color: #2ecc71;";
+        break;
+    }
+    console.log(`%c>>> ${s}`, `${e} font-size: 16px; font-weight: 600`);
+  }, l = [
     {
       img: "christian.jpg",
       name: "Christian",
@@ -352,21 +377,21 @@
       name: "Aleksa",
       text: '"Aleksa transformed from a struggling student to a financially independent entrepreneur in just one year."'
     }
-  ], f = [
+  ], m = [
     "Don’t miss your chance!",
     "Essential Tips Ahead",
     "Congratulations!",
     "TRY THE PROGRAM RISK-FREE"
-  ], g = [
+  ], x = [
     "This webinar is packed with life-changing insights, but it’s only available for a limited time. Watch it while you still can!",
     "This webinar is only available for a limited time, so watch it while you still can!",
     "You've unlocked an exclusive <b>$2,000 discount</b> on our Drop Servicing Partner Program!"
-  ], m = [
+  ], b = [
     "IN THE NEXT HOUR, YOU'LL DISCOVER:",
     "IN THE NEXT 30 MINUTES, YOU'LL DISCOVER:",
     "In addition, you will receive the following for FREE:",
     "We offer a market-leading guarantee:"
-  ], x = [
+  ], w = [
     [
       "How to create passive, <b>recurring income</b> with Drop Servicing.",
       "<b>Real-life success stories</b> of people who achieved financial freedom with this method.",
@@ -387,11 +412,11 @@
       "Launch a <b>fully automated Drop Servicing business</b> with our proven system.",
       "Follow our step-by-step process to <b>get your first sales</b>."
     ]
-  ], b = [
+  ], v = [
     "Stay until the end and receive a special bonus that could change your financial future!",
     "Watch the entire webinar, because we have a special surprise for you at the end!",
     "This offer is time limited so claim it while you can."
-  ], p = "https://conversionratestore.github.io/projects/dropservicing", w = `<svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38" fill="none">
+  ], c = "https://conversionratestore.github.io/projects/dropservicing", y = `<svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38" fill="none">
 <g filter="url(#filter0_d_2047_2074)">
 <circle cx="19" cy="15" r="15" fill="#222222"/>
 <circle cx="19" cy="15" r="13.8" stroke="white" stroke-width="2.4"/>
@@ -409,74 +434,74 @@
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2047_2074" result="shape"/>
 </filter>
 </defs>
-</svg>`, v = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+</svg>`, k = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
 <path d="M15 8L9 15L5 11" stroke="#2F2F2F" stroke-width="2"/>
-</svg>`, y = (e) => {
-    const n = e === 0 || e === 1 ? "hat.png" : e === 2 ? "prize.png" : "top.png";
+</svg>`, $ = (s) => {
+    const n = s === 0 || s === 1 ? "hat.png" : s === 2 ? "prize.png" : "top.png";
     return (
       /* HTML */
       `
-    <div class="crs_popup interval_${e}">
-      <span class="crs_close">${w}</span>
+    <div class="crs_popup interval_${s}" data-interval="${s}">
+      <span class="crs_close">${y}</span>
       <div class="crs_main_info">
-        <h2>${f[e]}</h2>
-        ${e !== 3 ? (
+        <h2>${m[s]}</h2>
+        ${s !== 3 ? (
         /* HTML */
-        `<p class="sub">${g[e]}</p>`
+        `<p class="sub">${x[s]}</p>`
       ) : ""}
         <div class="crs_list_block">
           <h3>
-            <img src="${p}/popups/img/${n}" alt="icon" />
-            ${m[e]}
+            <img src="${c}/popups/img/${n}" alt="icon" />
+            ${b[s]}
           </h3>
           <ul>
-            ${x[e].map((t) => `<li>${v}<p>${t}</p></li>`).join("")}
+            ${w[s].map((e) => `<li>${k}<p>${e}</p></li>`).join("")}
           </ul>
-          ${e !== 3 ? "<p><b>...and much more.</b></p>" : ""}
+          ${s !== 3 ? "<p><b>...and much more.</b></p>" : ""}
         </div>
-        ${e !== 3 ? (
+        ${s !== 3 ? (
         /* HTML */
         `<div class="crs_note">
-              <img src="${p}/popups/img/info-circle.png" alt="info" />
-              <p><b>IMPORTANT NOTE:</b> ${b[e]}</p>
+              <img src="${c}/popups/img/info-circle.png" alt="info" />
+              <p><b>IMPORTANT NOTE:</b> ${v[s]}</p>
             </div>`
       ) : ""}
-        ${e === 3 ? (
+        ${s === 3 ? (
         /* HTML */
         `<div class="crs_guarantee">
               <h4>100% satisfaction</h4>
               <p>If you’re not completely satisfied after implementing our step-by-step plan, get a full refund!</p>
-              <img src="${p}/popups/img/guaranteed.svg" alt="guaranteed" />
+              <img src="${c}/popups/img/guaranteed.svg" alt="guaranteed" />
             </div>`
       ) : ""}
-        ${e < 2 ? '<button class="crs_btn">Continue Watching</button>' : '<a class="crs_btn" href="https://start.dropservicing.com/partner" target="_blank">Access Special Offer Now</a>'}
+        ${s < 2 ? '<button class="crs_btn">Continue Watching</button>' : '<a class="crs_btn" href="https://start.dropservicing.com/partner" target="_blank">Access Special Offer Now</a>'}
       </div>
       <div class="crs_stories">
         <p>Our Success Stories</p>
         <div class="crs_stories_block">
           <div class="crs_stories_nav">
-            ${c.map(
-        (t, s) => `<span class="${s === 0 ? "active" : ""}">
-                <img src="${p}/popups/img/avatar_${s}.jpg" alt="avatar" />
+            ${l.map(
+        (e, t) => `<span class="${t === 0 ? "active" : ""}">
+                <img src="${c}/popups/img/avatar_${t}.jpg" alt="avatar" />
               </span>`
       ).join("")}
           </div>
           <div class="crs_stories_content">
-            ${c.map(
-        (t, s) => (
+            ${l.map(
+        (e, t) => (
           /* HTML */
-          `<div class="crs_story ${s === 0 ? "active" : ""}">
+          `<div class="crs_story ${t === 0 ? "active" : ""}">
                     <div class="crs_story_head">
                       <span>
-                        <img src="${p}/popups/img/avatar_${s}.jpg" alt="avatar" />
+                        <img src="${c}/popups/img/avatar_${t}.jpg" alt="avatar" />
                       </span>
                       <p>
-                        <b>${t.name}</b><br />
+                        <b>${e.name}</b><br />
                         <span>Verified Customer ✅</span>
                       </p>
                     </div>
-                    <img src="${p}/optin/img/rating_stars.png" alt="stars" />
-                    <p>${t.text}</p>
+                    <img src="${c}/optin/img/rating_stars.png" alt="stars" />
+                    <p>${e.text}</p>
                   </div>`
         )
       ).join("")}
@@ -487,29 +512,48 @@
   `
     );
   };
-  d({ name: "Webinar popups", dev: "YK" }), _("webinar_popups");
-  class k {
+  h({ name: "Webinar popups", dev: "YK" }), f("webinar_popups"), p("exp_exit_intent_loaded", "Loaded", "success", "Webinar popups");
+  class E {
     constructor() {
       this.init();
     }
     init() {
-      document.body.insertAdjacentHTML("afterbegin", `<style>${u}</style>`), document.body.insertAdjacentHTML("beforeend", '<div class="crs_popup_wrapper"></div>'), this.setTriggers();
+      document.body.insertAdjacentHTML("afterbegin", `<style>${d}</style>`), document.body.insertAdjacentHTML("beforeend", '<div class="crs_popup_wrapper"></div>'), this.setTriggers();
     }
     async showPopup() {
-      const n = localStorage.getItem("popupShown"), t = i("video").elements[0].currentTime;
-      let s = Math.floor(t / (20 * 60));
-      s > 3 && (s = 3), !(n && +n === s) && (i(".crs_popup_wrapper").elements[0].innerHTML = y(s), i(".crs_popup_wrapper").addClass("active"), localStorage.setItem("popupShown", s.toString()), i(".crs_popup_wrapper .crs_close, button.crs_btn").on("click", () => {
-        i(".crs_popup_wrapper").removeClass("active");
+      const n = localStorage.getItem("popupShown"), e = i("video").elements[0].currentTime;
+      let t = Math.floor(e / (20 * 60));
+      t > 3 && (t = 3), !(n && +n === t) && (i(".crs_popup_wrapper").elements[0].innerHTML = $(t), i(".crs_popup_wrapper").addClass("active"), localStorage.setItem("popupShown", t.toString()), i(".crs_popup_wrapper .crs_close").on("click", () => {
+        i(".crs_popup_wrapper").removeClass("active"), p(`exp_exit_intent_popup${this.checkPopup()}_close`, "Close", "click", `Popup #${this.checkPopup()}`);
+      }), i("button.crs_btn").on("click", () => {
+        i(".crs_popup_wrapper").removeClass("active"), p(
+          `exp_exit_intent_popup${this.checkPopup()}_click`,
+          "Continue watching",
+          "click",
+          `Popup #${this.checkPopup()}`
+        );
+      }), i("a.crs_btn").on("click", () => {
+        p(
+          `exp_exit_intent_popup${this.checkPopup()}_click`,
+          "Click on link",
+          "click",
+          `Popup #${this.checkPopup()}`
+        );
       }), i(".crs_popup_wrapper").on("click", (o) => {
-        o.target.classList.contains("crs_popup_wrapper") && i(".crs_popup_wrapper").removeClass("active");
-      }), this.setSlider());
+        o.target.classList.contains("crs_popup_wrapper") && (i(".crs_popup_wrapper").removeClass("active"), p(
+          `exp_exit_intent_popup${this.checkPopup()}_close`,
+          "Close popup through the background",
+          "click",
+          `Popup #${this.checkPopup()}`
+        ));
+      }), this.setSlider(), p(`exp_exit_intent_popup${this.checkPopup()}_view`, "View on screen", "view", `Popup #${this.checkPopup()}`));
     }
     setSlider() {
       i(".crs_stories_nav span").on("click", function(n) {
         if (this.classList.contains("active"))
           return;
         i(".crs_stories_nav span").removeClass("active"), this.classList.add("active");
-        const t = Array.from(this.parentElement.children).indexOf(this), s = i(".crs_stories_content .crs_story").elements[t].getBoundingClientRect().left, r = i(".crs_stories_content").elements[0].getBoundingClientRect().left - s, a = i(".crs_stories_content").elements[0].scrollLeft;
+        const e = Array.from(this.parentElement.children).indexOf(this), t = i(".crs_stories_content .crs_story").elements[e].getBoundingClientRect().left, r = i(".crs_stories_content").elements[0].getBoundingClientRect().left - t, a = i(".crs_stories_content").elements[0].scrollLeft;
         i(".crs_stories_content").elements[0].scrollTo({
           left: a - r,
           behavior: "smooth"
@@ -523,13 +567,19 @@
         document.visibilityState === "visible" && this.showPopup();
       }), window.innerWidth < 768) {
         let n = 0;
-        i(".top_content_wrapper").on("touchend", async (t) => {
-          const s = (/* @__PURE__ */ new Date()).getTime(), o = s - n;
-          n = s, o < 500 && o > 0 && (t.preventDefault(), this.showPopup());
+        i(".top_content_wrapper").on("touchend", async (e) => {
+          const t = (/* @__PURE__ */ new Date()).getTime(), o = t - n;
+          n = t, o < 500 && o > 0 && (e.preventDefault(), this.showPopup());
         });
       }
     }
+    checkPopup() {
+      if (i(".crs_popup").elements.length === 0)
+        return 0;
+      const n = i(".crs_popup").elements[0].dataset.interval;
+      return n ? +n : 0;
+    }
   }
-  new k();
+  new E();
 })();
 //# sourceMappingURL=index.js.map
