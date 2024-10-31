@@ -518,7 +518,14 @@
       this.init();
     }
     init() {
-      document.body.insertAdjacentHTML("afterbegin", `<style>${d}</style>`), document.body.insertAdjacentHTML("beforeend", '<div class="crs_popup_wrapper"></div>'), this.setTriggers();
+      document.body.insertAdjacentHTML("afterbegin", `<style>${d}</style>`), document.body.insertAdjacentHTML("beforeend", '<div class="crs_popup_wrapper"></div>'), i(".crs_popup_wrapper").on("click", (n) => {
+        n.target.classList.contains("crs_popup_wrapper") && (i(".crs_popup_wrapper").removeClass("active"), p(
+          `exp_exit_intent_popup${this.checkPopup()}_close`,
+          "Close popup through the background",
+          "click",
+          `Popup #${this.checkPopup()}`
+        ));
+      }), this.setTriggers();
     }
     async showPopup() {
       const n = localStorage.getItem("popupShown"), e = i("video").elements[0].currentTime;
@@ -539,13 +546,6 @@
           "click",
           `Popup #${this.checkPopup()}`
         );
-      }), i(".crs_popup_wrapper").on("click", (o) => {
-        o.target.classList.contains("crs_popup_wrapper") && (i(".crs_popup_wrapper").removeClass("active"), p(
-          `exp_exit_intent_popup${this.checkPopup()}_close`,
-          "Close popup through the background",
-          "click",
-          `Popup #${this.checkPopup()}`
-        ));
       }), this.setSlider(), p(`exp_exit_intent_popup${this.checkPopup()}_view`, "View on screen", "view", `Popup #${this.checkPopup()}`));
     }
     setSlider() {
