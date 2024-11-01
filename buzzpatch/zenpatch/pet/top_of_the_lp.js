@@ -1,19 +1,19 @@
 (function() {
   "use strict";
-  const p = (t, n, e, i = "") => {
+  const p = (t, n, e, r = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: t,
       event_desc: n,
       event_type: e,
-      event_loc: i
-    }), console.dir(`Event: ${t} | ${n} | ${e} | ${i}`);
+      event_loc: r
+    }), console.dir(`Event: ${t} | ${n} | ${e} | ${r}`);
   }, f = ({ name: t, dev: n }) => {
     console.log(
       `%c EXP: ${t} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, d = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), C = (t, n = "variant_1") => {
+  }, m = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), d = (t, n = "variant_1") => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", t, n), console.log("set", t, n));
     }, 1e3);
@@ -34,15 +34,24 @@
   }
   (function(t) {
     t = t === void 0 ? {} : t;
-    let n, e, i, r, c = (t == null ? void 0 : t.delay) || 50;
+    let n, e, r, i, c = (t == null ? void 0 : t.delay) || 50;
     function s() {
-      n = null, r = 0;
+      n = null, i = 0;
     }
     return s(), function() {
-      return e = window.scrollY, n != null && (r = e - n), n = e, clearTimeout(i), i = setTimeout(s, c), r;
+      return e = window.scrollY, n != null && (i = e - n), n = e, clearTimeout(r), r = setTimeout(s, c), i;
     };
   })();
-  const h = (t) => (
+  const h = (t, n = 100) => {
+    const e = document.querySelector(t);
+    if (!e)
+      return;
+    const i = e.getBoundingClientRect().top - n;
+    window.scrollBy({
+      top: i,
+      behavior: "smooth"
+    });
+  }, C = (t) => (
     /* HTML */
     `
     <div class="main_benefits_block">
@@ -113,7 +122,7 @@
 </svg>
 
   `
-  }, m = {
+  }, g = {
     mainBenefits: [
       {
         svg: `${a.benefitIconFirst}`,
@@ -132,149 +141,188 @@
         txt: "Effective all day"
       }
     ]
-  }, g = `.lp-tr--hero-section {
-  padding-top: 16px !important;
+  }, x = `@media (min-width: 769px) {
+  .lp-tr--header-section {
+    padding: 40px 0 !important;
+  }
+  .lp-tr--hero-section {
+    padding-top: 0 !important;
+  }
+  .lp-tr--hero-section .lp-tr--main-title,
+  .lp-tr--hero-section .lp-tr--hero-lists {
+    display: none !important;
+  }
+  .lp-tr--hero-section .lp-tr--btn {
+    margin: 0 auto !important;
+  }
+  .lp-tr--hero-section .lp-tr--btn a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 428px !important;
+    height: 66px;
+    color: #000;
+    text-align: center;
+    font-family: "DINEngschrift LT";
+    font-size: 32px !important;
+    font-weight: 400;
+    line-height: 40px;
+    text-transform: uppercase;
+    border-radius: 50px;
+    background: #ffa311;
+    box-shadow: none;
+  }
+  .lp-tr--accordion-section {
+    padding-top: 56px !important;
+  }
 }
-.lp-tr--hero-section > .container {
-  padding: 0 14px !important;
+@media (max-width: 768px) {
+  .lp-tr--hero-section {
+    padding-top: 16px !important;
+  }
+  .lp-tr--hero-section > .container {
+    padding: 0 14px !important;
+  }
+  .lp-tr--hero-section > .container > .row {
+    margin: 0;
+  }
+  .lp-tr--hero-section > .container > .row > .col-12 {
+    margin: 0;
+    padding: 0;
+  }
+  .lp-tr--hero-section .lp-tr--main-title,
+  .lp-tr--hero-section .lp-tr--hero-lists {
+    display: none !important;
+  }
+  .lp-tr--hero-section .lp-tr--btn .lp-tr--kids-tick-mb-img {
+    max-width: 265px;
+    margin-bottom: -59px;
+  }
+  .lp-tr--hero-section .lp-tr--btn a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 311px !important;
+    color: #000;
+    height: 64px;
+    text-align: center;
+    font-family: "DINEngschrift LT";
+    font-size: 24px !important;
+    font-weight: 400;
+    line-height: 40px;
+    text-transform: uppercase;
+    border-radius: 100px;
+    background: #ffa311;
+    box-shadow: 0px 4px 15px 0px rgba(72, 67, 69, 0.51);
+  }
+  .lp-tr--hero-section .lp-tr--learn-more-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: #fff;
+    text-align: center;
+    font-family: "DINEngschrift LT";
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 28px;
+    text-transform: uppercase;
+    margin: 16px 0;
+  }
+  .lp-tr--hero-section .lp-tr--learn-more-btn img {
+    display: none !important;
+  }
+  .lp-tr--accordion-section {
+    padding: 30px 0 12px !important;
+    margin-bottom: 42px;
+  }
+  .lp-tr--accordion-section .lp-tr--acordion-title-mobile {
+    color: #000;
+    text-align: center;
+    font-family: "Roboto", sans-serif !important;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 54px;
+    text-transform: lowercase;
+    padding: 0;
+  }
+  .lp-tr--accordion-section .lp-tr--acordion-title-mobile span {
+    color: #fff;
+    text-align: center;
+    font-family: "Inter", sans-serif !important;
+    font-size: 28.824px;
+    font-weight: 400;
+    line-height: 54px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .lp-tr--formula {
+    padding-top: 32px !important;
+  }
+  .lp-tr--formula > .container {
+    padding: 0 15px !important;
+  }
+  .lp-tr--formula > .container > .row {
+    margin: 0;
+  }
+  .lp-tr--formula > .container > .row > .col-md-6 {
+    margin: 0;
+    padding: 0;
+  }
+  .lp-tr--formula .lp-pet-zen--natural-box {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-bottom: 15px;
+  }
+  .lp-tr--formula .lp-pet-zen--natural-box .lp-pet-zen--section-title {
+    color: #212529;
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    margin: 0;
+  }
+  .lp-tr--formula .lp-pet-zen--section-description {
+    color: #000;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: initial;
+    margin-bottom: 10px !important;
+  }
+  .lp-tr--formula .col-md-6:not(.lp-pet-zen--padding) {
+    max-width: 330px;
+    margin: -10px auto 0 !important;
+  }
+  .lp-tr--formula .col-md-6:not(.lp-pet-zen--padding) a.lp-tr--mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    height: 69px;
+    color: #fff;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-size: 21.188px;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    margin: 12px 0 0;
+  }
 }
-.lp-tr--hero-section > .container > .row {
-  margin: 0;
-}
-.lp-tr--hero-section > .container > .row > .col-12 {
-  margin: 0;
-  padding: 0;
-}
-.lp-tr--hero-section .lp-tr--main-title,
-.lp-tr--hero-section .lp-tr--hero-lists {
-  display: none !important;
-}
-.lp-tr--hero-section .lp-tr--btn .lp-tr--kids-tick-mb-img {
-  max-width: 265px;
-  margin-bottom: -59px;
-}
-.lp-tr--hero-section .lp-tr--btn a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 311px !important;
-  color: #000;
-  height: 64px;
-  text-align: center;
-  font-family: "DINEngschrift LT";
-  font-size: 24px !important;
-  font-weight: 400;
-  line-height: 40px;
-  text-transform: uppercase;
-  border-radius: 100px;
-  background: #ffa311;
-  box-shadow: 0px 4px 15px 0px rgba(72, 67, 69, 0.51);
-}
-.lp-tr--hero-section .lp-tr--learn-more-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  color: #fff;
-  text-align: center;
-  font-family: "DINEngschrift LT";
-  font-size: 22px;
-  font-weight: 400;
-  line-height: 28px;
-  text-transform: uppercase;
-  margin: 16px 0;
-}
-.lp-tr--hero-section .lp-tr--learn-more-btn img {
-  display: none !important;
-}
-
-.lp-tr--accordion-section {
-  padding: 30px 0 12px !important;
-  margin-bottom: 42px;
-}
-.lp-tr--accordion-section .lp-tr--acordion-title-mobile {
-  color: #000;
-  text-align: center;
-  font-family: "Roboto", sans-serif !important;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 54px;
-  text-transform: lowercase;
-  padding: 0;
-}
-.lp-tr--accordion-section .lp-tr--acordion-title-mobile span {
-  color: #fff;
-  text-align: center;
-  font-family: "Inter", sans-serif !important;
-  font-size: 28.824px;
-  font-weight: 400;
-  line-height: 54px;
-  text-transform: uppercase;
-  margin-bottom: 5px;
-}
-
-.lp-tr--formula {
-  padding-top: 32px !important;
-}
-.lp-tr--formula > .container {
-  padding: 0 15px !important;
-}
-.lp-tr--formula > .container > .row {
-  margin: 0;
-}
-.lp-tr--formula > .container > .row > .col-md-6 {
-  margin: 0;
-  padding: 0;
-}
-.lp-tr--formula .lp-pet-zen--natural-box {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 12px;
-  margin-bottom: 15px;
-}
-.lp-tr--formula .lp-pet-zen--natural-box .lp-pet-zen--section-title {
-  color: #212529;
-  font-family: "Roboto", sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 28px;
-  margin: 0;
-}
-.lp-tr--formula .lp-pet-zen--section-description {
-  color: #000;
-  font-family: "Roboto", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: initial;
-  margin-bottom: 10px !important;
-}
-.lp-tr--formula .col-md-6:not(.lp-pet-zen--padding) {
-  max-width: 330px;
-  margin: -10px auto 0 !important;
-}
-.lp-tr--formula .col-md-6:not(.lp-pet-zen--padding) a.lp-tr--mobile {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 100%;
-  height: 69px;
-  color: #fff;
-  text-align: center;
-  font-family: "Inter", sans-serif;
-  font-size: 21.188px;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  margin: 12px 0 0;
-}
-
 .main_benefits_block {
   margin-bottom: 20px;
+}
+@media (min-width: 768px) {
+  .main_benefits_block {
+    margin-bottom: 24px;
+  }
 }
 .main_benefits_block .main_benefits_title {
   color: #fff;
@@ -287,10 +335,25 @@
   text-transform: uppercase;
   margin: 0 0 16px;
 }
+@media (min-width: 768px) {
+  .main_benefits_block .main_benefits_title {
+    font-size: 70px;
+    line-height: 82px;
+    letter-spacing: 0.35px;
+    margin: 0 auto 24px;
+  }
+}
 .main_benefits_block .main_benefits_list {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+@media (min-width: 768px) {
+  .main_benefits_block .main_benefits_list {
+    max-width: 435px;
+    margin: 0 auto;
+    gap: 16px;
+  }
 }
 .main_benefits_block .main_benefits_list .main_benefits_item {
   display: flex;
@@ -303,6 +366,12 @@
   height: 32px;
   flex-shrink: 0;
 }
+@media (min-width: 768px) {
+  .main_benefits_block .main_benefits_list .main_benefits_item svg {
+    width: 40px;
+    height: 40px;
+  }
+}
 .main_benefits_block .main_benefits_list .main_benefits_item p {
   color: #fff;
   font-family: "Roboto", sans-serif;
@@ -312,23 +381,47 @@
   letter-spacing: initial;
   margin: 0;
 }
+@media (min-width: 768px) {
+  .main_benefits_block .main_benefits_list .main_benefits_item p {
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
 .main_benefits_block .main_benefits_list .main_benefits_item p .under_line_accent {
   text-decoration-line: underline;
-}/*# sourceMappingURL=main.css.map */`, x = window.innerWidth < 768 ? "mobile" : "desktop";
-  class w {
+}
+
+.new_learn_more_btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: -moz-max-content;
+  width: max-content;
+  color: #fff;
+  font-family: "DINEngschrift LT";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 28px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin: 24px auto 0;
+}/*# sourceMappingURL=main.css.map */`, w = window.innerWidth < 768 ? "mobile" : "desktop";
+  class _ {
     constructor(n) {
       this.device = n, this.init();
     }
     init() {
-      f({ name: "Top of the LP", dev: "SKh" }), C("exp_zenpet_ux2"), o(".crs_font") || document.head.insertAdjacentHTML(
+      f({ name: "Top of the LP", dev: "SKh" }), d("exp_zenpet_ux2"), o(".crs_font") || document.head.insertAdjacentHTML(
         "afterbegin",
         'link class="crs_font" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"'
-      ), document.head.insertAdjacentHTML("beforeend", `<style>${g}</style>`), this.renderMainBenefitsBlock(), this.changeIconLearnMore(), this.replaceFAQBlock(), this.addEventsAccordion();
+      ), document.head.insertAdjacentHTML("beforeend", `<style>${x}</style>`), this.renderMainBenefitsBlock(), this.device === "mobile" && (this.changeIconLearnMore(), this.scrollToFAQ(".lp-tr--hero-section .lp-tr--learn-more-btn")), this.device === "desktop" && (this.renderLearnMoreBtnOnDesktop(), this.scrollToFAQ(".new_learn_more_btn")), this.replaceFAQBlock(), this.addEventsAccordion();
     }
     renderMainBenefitsBlock() {
       l(".lp-tr--hero-section .lp-tr--main-title").then((n) => {
         const e = o(".lp-tr--hero-section .lp-tr--main-title");
-        o(".main_benefits_block") || e.insertAdjacentHTML("beforebegin", h(m.mainBenefits));
+        o(".main_benefits_block") || e.insertAdjacentHTML("beforebegin", C(g.mainBenefits));
       });
     }
     changeIconLearnMore() {
@@ -337,27 +430,48 @@
         o(".new_yellow_icon") || e.insertAdjacentHTML("beforeend", `${a.newYellowIcon}`);
       });
     }
+    renderLearnMoreBtnOnDesktop() {
+      l(".lp-tr--hero-section .lp-tr--btn").then((n) => {
+        const e = o(".lp-tr--hero-section .lp-tr--btn");
+        o(".new_learn_more_btn") || e.insertAdjacentHTML(
+          "afterend",
+          `<div class="new_learn_more_btn">Learn more ${a.newYellowIcon}</div>`
+        );
+      });
+    }
+    scrollToFAQ(n) {
+      l(n).then((e) => {
+        o(n).addEventListener("click", (i) => {
+          i.preventDefault(), i.stopPropagation(), h(".lp-tr--accordion-section .lp-tr--accordion-header", 0), n === ".new_learn_more_btn" && p(
+            "exp_zenpet_ux_learn_more_01",
+            "Learn more",
+            "Click",
+            "Help Your Pet Stay zen - stress relief for every occasion"
+          );
+        });
+      });
+    }
     replaceFAQBlock() {
       l(".lp-tr--formula").then((n) => {
         l(".lp-tr--accordion-section").then((e) => {
-          const i = o(".lp-tr--formula"), r = o(".lp-tr--accordion-section");
-          o(".lp-tr--accordion-section + .lp-tr--formula") || i.insertAdjacentElement("beforebegin", r);
+          const r = o(".lp-tr--formula"), i = o(".lp-tr--accordion-section");
+          o(".lp-tr--accordion-section + .lp-tr--formula") || r.insertAdjacentElement("beforebegin", i);
         });
       });
     }
     addEventsAccordion() {
       l(".lp-tr--what-tick-accordion .card .btn").then((e) => {
       });
-      const n = d(".lp-tr--what-tick-accordion .card .btn");
+      const n = m(".lp-tr--what-tick-accordion .card .btn");
       n == null || n.forEach((e) => {
-        e.addEventListener("click", (i) => {
+        e.addEventListener("click", (r) => {
           var c, s;
-          const r = (s = (c = i.target) == null ? void 0 : c.textContent) == null ? void 0 : s.trim();
-          p("exp_zenpet_ux_item_01", r, "Accordion", "Zenpatch is perfect");
+          const i = (s = (c = r.target) == null ? void 0 : c.textContent) == null ? void 0 : s.trim();
+          p("exp_zenpet_ux_item_01", i, "Accordion", "Zenpatch is perfect");
         });
       });
     }
   }
-  window.location.pathname.match("pages") && new w(x);
+  window.location.pathname.match("pages") && new _(w);
 })();
 //# sourceMappingURL=index.js.map
