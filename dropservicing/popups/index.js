@@ -358,24 +358,20 @@
     console.log(`%c>>> ${s}`, `${e} font-size: 16px; font-weight: 600`);
   }, l = [
     {
-      img: "christian.jpg",
-      name: "Christian",
-      text: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."'
+      name: "Barend K.",
+      text: '"Barend worked two stressful restaurant jobs, used this strategy to earn $69,650 in one sale and $77,000 in the next."'
     },
     {
-      img: "ed.jpg",
-      name: "Ed",
-      text: '"Ed went from a busy father of two with limited time to running a thriving business on his own term."'
+      name: "Derik J.",
+      text: '"Derik left a stressful day job, now lands high-ticket sales like $23,400, and has clients paying $162,000 yearly."'
     },
     {
-      img: "lauren.jpg",
-      name: "Lauren",
-      text: '"Lauren transitioned from managing physical stores to building her own automated Drop Servicing business."'
+      name: "Lauren G.",
+      text: '"Lauren made $8,700 in 6 weeks, reached $100,000 in 6 months, and bought her first house."'
     },
     {
-      img: "aleksa.jpg",
-      name: "Aleksa",
-      text: '"Aleksa transformed from a struggling student to a financially independent entrepreneur in just one year."'
+      name: "Stephen H.",
+      text: '"Stephen lost his job, used this system to quickly earn $10,000 per month, and now travels the world in freedom."'
     }
   ], m = [
     "Don’t miss your chance!",
