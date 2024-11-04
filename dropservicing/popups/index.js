@@ -359,11 +359,11 @@
   }, l = [
     {
       name: "Barend K.",
-      text: '"Barend worked two stressful restaurant jobs, used this strategy to earn $69,650 in one sale and $77,000 in the next."'
+      text: '"Barend was working two stressful restaurant jobs and used this strategy to earn $69,650 in one sale, followed by $77,000 in the next."'
     },
     {
       name: "Derik J.",
-      text: '"Derik left a stressful day job, now lands high-ticket sales like $23,400, and has clients paying $162,000 yearly."'
+      text: '"Derik left a stressful day job, now lands high-ticket sales like $23,400, and has clients paying him $162,000 yearly."'
     },
     {
       name: "Lauren G.",
