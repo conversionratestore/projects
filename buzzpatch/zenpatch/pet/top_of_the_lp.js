@@ -1,24 +1,24 @@
 (function() {
   "use strict";
-  const p = (t, n, e, r = "") => {
+  const p = (t, n, e, i = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: t,
       event_desc: n,
       event_type: e,
-      event_loc: r
-    }), console.dir(`Event: ${t} | ${n} | ${e} | ${r}`);
-  }, f = ({ name: t, dev: n }) => {
+      event_loc: i
+    }), console.dir(`Event: ${t} | ${n} | ${e} | ${i}`);
+  }, m = ({ name: t, dev: n }) => {
     console.log(
       `%c EXP: ${t} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, m = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), d = (t, n = "variant_1") => {
+  }, f = (t) => document.querySelectorAll(t), r = (t) => document.querySelector(t), h = (t, n = "variant_1") => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", t, n), console.log("set", t, n));
     }, 1e3);
   };
-  function l(t) {
+  function a(t) {
     return new Promise((n) => {
       if (document.querySelector(t))
         return n(document.querySelector(t));
@@ -34,24 +34,24 @@
   }
   (function(t) {
     t = t === void 0 ? {} : t;
-    let n, e, r, i, c = (t == null ? void 0 : t.delay) || 50;
-    function s() {
-      n = null, i = 0;
+    let n, e, i, o, c = (t == null ? void 0 : t.delay) || 50;
+    function l() {
+      n = null, o = 0;
     }
-    return s(), function() {
-      return e = window.scrollY, n != null && (i = e - n), n = e, clearTimeout(r), r = setTimeout(s, c), i;
+    return l(), function() {
+      return e = window.scrollY, n != null && (o = e - n), n = e, clearTimeout(i), i = setTimeout(l, c), o;
     };
   })();
-  const h = (t, n = 100) => {
+  const d = (t, n = 100) => {
     const e = document.querySelector(t);
     if (!e)
       return;
-    const i = e.getBoundingClientRect().top - n;
+    const o = e.getBoundingClientRect().top - n;
     window.scrollBy({
-      top: i,
+      top: o,
       behavior: "smooth"
     });
-  }, C = (t) => (
+  }, g = (t) => (
     /* HTML */
     `
     <div class="main_benefits_block">
@@ -72,7 +72,7 @@
       </ul>
     </div>
   `
-  ), a = {
+  ), s = {
     benefitIconFirst: `
   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
   <path d="M28.2816 7.4578L27.7324 6.03033L26.7693 7.21812C26.7392 7.25615 23.6932 10.9646 19.6859 11.5368C18.9253 11.6456 18.2151 11.7871 17.5288 11.9454C17.7171 8.82954 16.4453 5.85699 13.7434 3.08961L12.6759 2L12.2602 3.46903C12.2505 3.49999 11.3289 6.67243 8.98786 8.10078C6.42302 9.67063 4.78948 11.4059 4.00234 13.4011C3.20719 15.287 3.18685 17.4101 3.94574 19.3109C4.47684 20.6148 5.50598 21.6531 6.80509 22.1959C6.93228 22.2444 7.06185 22.2863 7.19335 22.3215C7.12547 23.2035 7.20319 24.0906 7.42331 24.9473C6.9466 24.9889 6.49112 25.0101 6.06483 25.0101C4.89484 25.0328 3.72845 24.8732 2.6076 24.537L2 26.1997C3.3157 26.6123 4.68982 26.808 6.06836 26.779C6.75335 26.7764 7.43762 26.7337 8.11758 26.6507C8.40834 27.1609 8.7652 27.6305 9.17889 28.0473C10.6113 29.3778 12.5173 30.0786 14.4704 29.993C17.4586 29.9247 20.3443 28.8906 22.6956 27.0452L22.9547 26.8418C25.3869 24.9367 32.7781 19.149 28.2816 7.4578ZM7.49052 20.5623L7.47637 20.557C6.60245 20.1941 5.91337 19.4919 5.56689 18.6113C4.99273 17.1411 5.02004 15.504 5.64295 14.0539C6.28505 12.4256 7.67714 10.9725 9.90678 9.61049C11.4623 8.56941 12.6811 7.098 13.4144 5.37586C15.1447 7.30313 15.9709 9.87698 15.6856 12.4513C13.7151 13.052 11.9146 14.1103 10.4312 15.5397C9.02528 16.9253 8.01073 18.6581 7.49052 20.5623ZM21.8678 25.4453L21.6024 25.6549C18.0055 28.5036 12.6821 29.0475 10.4312 26.7967C10.2824 26.6474 10.1435 26.4884 10.0156 26.3209C13.6355 25.4966 18.0479 23.3651 22.5797 18.4698L21.2814 17.2679C16.8504 22.0553 12.5901 24.0116 9.18774 24.697C8.94513 23.8708 8.87376 23.0038 8.97813 22.149C9.24771 20.1084 10.2003 18.2193 11.6809 16.7894C13.5037 14.9657 16.2048 13.8204 19.9362 13.2879C22.6586 12.7611 25.1568 11.4198 27.1 9.44157C30.1035 18.996 24.1655 23.6463 21.8678 25.4453Z" fill="white"/>
@@ -122,22 +122,22 @@
 </svg>
 
   `
-  }, g = {
+  }, C = {
     mainBenefits: [
       {
-        svg: `${a.benefitIconFirst}`,
+        svg: `${s.benefitIconFirst}`,
         txt: "All natural content & chemical free"
       },
       {
-        svg: `${a.benefitIconSecond}`,
+        svg: `${s.benefitIconSecond}`,
         txt: 'Suitable for <span class="under_line_accent">dogs</span>, <span class="under_line_accent">cats</span> and <span class="under_line_accent">other pets</span>'
       },
       {
-        svg: `${a.benefitIconThird}`,
+        svg: `${s.benefitIconThird}`,
         txt: 'Natural <span class="under_line_accent">stress</span>, <span class="under_line_accent">aggression</span> and <span class="under_line_accent">anxiety</span> aid'
       },
       {
-        svg: `${a.benefitIconFourth}`,
+        svg: `${s.benefitIconFourth}`,
         txt: "Effective all day"
       }
     ]
@@ -407,42 +407,62 @@
   text-transform: uppercase;
   cursor: pointer;
   margin: 24px auto 0;
+}
+
+.new_get_zen_stickers_now {
+  display: flex;
+  max-width: 280px;
+  width: 100%;
+  height: 61px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  background: #ffa311;
+  color: #000;
+  font-family: "DINEngschrift LT";
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 1px;
+  line-height: 40px;
+  text-transform: uppercase;
+  margin: 0 auto;
+  cursor: pointer;
 }/*# sourceMappingURL=main.css.map */`, w = window.innerWidth < 768 ? "mobile" : "desktop";
   class _ {
     constructor(n) {
       this.device = n, this.init();
     }
     init() {
-      f({ name: "Top of the LP", dev: "SKh" }), d("exp_zenpet_ux2"), o(".crs_font") || document.head.insertAdjacentHTML(
+      m({ name: "Top of the LP", dev: "SKh" }), h("exp_zenpet_ux2"), r(".crs_font") || document.head.insertAdjacentHTML(
         "afterbegin",
         'link class="crs_font" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"'
-      ), document.head.insertAdjacentHTML("beforeend", `<style>${x}</style>`), this.renderMainBenefitsBlock(), this.device === "mobile" && (this.changeIconLearnMore(), this.scrollToFAQ(".lp-tr--hero-section .lp-tr--learn-more-btn")), this.device === "desktop" && (this.renderLearnMoreBtnOnDesktop(), this.scrollToFAQ(".new_learn_more_btn")), this.replaceFAQBlock(), this.addEventsAccordion();
+      ), document.head.insertAdjacentHTML("beforeend", `<style>${x}</style>`), this.renderMainBenefitsBlock(), this.device === "mobile" && (this.changeIconLearnMore(), this.scrollToFAQ(".lp-tr--hero-section .lp-tr--learn-more-btn")), this.device === "desktop" && (this.renderLearnMoreBtnOnDesktop(), this.scrollToFAQ(".new_learn_more_btn")), this.replaceFAQBlock(), this.addEventsAccordion(), this.renderBtnGetZenToAccordionBody(), this.scrollToFromNewGetZenStickersNowBtns(".new_get_zen_stickers_now");
     }
     renderMainBenefitsBlock() {
-      l(".lp-tr--hero-section .lp-tr--main-title").then((n) => {
-        const e = o(".lp-tr--hero-section .lp-tr--main-title");
-        o(".main_benefits_block") || e.insertAdjacentHTML("beforebegin", C(g.mainBenefits));
+      a(".lp-tr--hero-section .lp-tr--main-title").then((n) => {
+        const e = r(".lp-tr--hero-section .lp-tr--main-title");
+        r(".main_benefits_block") || e.insertAdjacentHTML("beforebegin", g(C.mainBenefits));
       });
     }
     changeIconLearnMore() {
-      l(".lp-tr--hero-section .lp-tr--learn-more-btn").then((n) => {
-        const e = o(".lp-tr--hero-section .lp-tr--learn-more-btn");
-        o(".new_yellow_icon") || e.insertAdjacentHTML("beforeend", `${a.newYellowIcon}`);
+      a(".lp-tr--hero-section .lp-tr--learn-more-btn").then((n) => {
+        const e = r(".lp-tr--hero-section .lp-tr--learn-more-btn");
+        r(".new_yellow_icon") || e.insertAdjacentHTML("beforeend", `${s.newYellowIcon}`);
       });
     }
     renderLearnMoreBtnOnDesktop() {
-      l(".lp-tr--hero-section .lp-tr--btn").then((n) => {
-        const e = o(".lp-tr--hero-section .lp-tr--btn");
-        o(".new_learn_more_btn") || e.insertAdjacentHTML(
+      a(".lp-tr--hero-section .lp-tr--btn").then((n) => {
+        const e = r(".lp-tr--hero-section .lp-tr--btn");
+        r(".new_learn_more_btn") || e.insertAdjacentHTML(
           "afterend",
-          `<div class="new_learn_more_btn">Learn more ${a.newYellowIcon}</div>`
+          `<div class="new_learn_more_btn">Learn more ${s.newYellowIcon}</div>`
         );
       });
     }
     scrollToFAQ(n) {
-      l(n).then((e) => {
-        o(n).addEventListener("click", (i) => {
-          i.preventDefault(), i.stopPropagation(), h(".lp-tr--accordion-section .lp-tr--accordion-header", 0), n === ".new_learn_more_btn" && p(
+      a(n).then((e) => {
+        r(n).addEventListener("click", (o) => {
+          o.preventDefault(), o.stopPropagation(), d(".lp-tr--accordion-section .lp-tr--accordion-header", 0), n === ".new_learn_more_btn" && p(
             "exp_zenpet_ux_learn_more_01",
             "Learn more",
             "Click",
@@ -452,22 +472,43 @@
       });
     }
     replaceFAQBlock() {
-      l(".lp-tr--formula").then((n) => {
-        l(".lp-tr--accordion-section").then((e) => {
-          const r = o(".lp-tr--formula"), i = o(".lp-tr--accordion-section");
-          o(".lp-tr--accordion-section + .lp-tr--formula") || r.insertAdjacentElement("beforebegin", i);
+      a(".lp-tr--formula").then((n) => {
+        a(".lp-tr--accordion-section").then((e) => {
+          const i = r(".lp-tr--formula"), o = r(".lp-tr--accordion-section");
+          r(".lp-tr--accordion-section + .lp-tr--formula") || i.insertAdjacentElement("beforebegin", o);
         });
       });
     }
     addEventsAccordion() {
-      l(".lp-tr--what-tick-accordion .card .btn").then((e) => {
+      a(".lp-tr--what-tick-accordion .card .btn").then((e) => {
       });
-      const n = m(".lp-tr--what-tick-accordion .card .btn");
+      const n = f(".lp-tr--what-tick-accordion .card .btn");
       n == null || n.forEach((e) => {
-        e.addEventListener("click", (r) => {
-          var c, s;
-          const i = (s = (c = r.target) == null ? void 0 : c.textContent) == null ? void 0 : s.trim();
-          p("exp_zenpet_ux_item_01", i, "Accordion", "Zenpatch is perfect");
+        e.addEventListener("click", (i) => {
+          var c, l;
+          const o = (l = (c = i.target) == null ? void 0 : c.textContent) == null ? void 0 : l.trim();
+          p("exp_zenpet_ux_item_01", o, "Accordion", "Zenpatch is perfect");
+        });
+      });
+    }
+    renderBtnGetZenToAccordionBody() {
+      a(".lp-tr--what-tick-accordion .card-body").then((n) => {
+        f(".lp-tr--what-tick-accordion .card-body").forEach((i) => {
+          i.querySelector(".new_get_zen_stickers_now") || i.insertAdjacentHTML("beforeend", '<div class="new_get_zen_stickers_now">Get Zen Stickers Now</div>');
+        });
+      });
+    }
+    scrollToFromNewGetZenStickersNowBtns(n) {
+      a(n).then((e) => {
+        f(n).forEach((o, c) => {
+          o.addEventListener("click", (l) => {
+            l.preventDefault(), l.stopPropagation(), d("#lptrPurchase", 0), p(
+              "exp_zenpet_ux_new_get_zen_stickers_now_01",
+              `Get Zen Stickers Now ${c + 1}`,
+              "Click",
+              "ZenPatch is Perfect If Your Pet..."
+            );
+          });
         });
       });
     }
