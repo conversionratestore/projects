@@ -19,17 +19,17 @@
     }, 1e3);
   }, k = (o, e, t, i = 1) => {
     let s;
-    const r = {
+    const a = {
       root: null,
       threshold: i
-    };
-    new IntersectionObserver((a) => {
-      a.forEach((l) => {
-        l.isIntersecting ? s = setTimeout(() => {
+    }, p = new IntersectionObserver((l) => {
+      l.forEach((d) => {
+        d.isIntersecting ? s = setTimeout(() => {
           b(e, "Section", "view", t);
         }, 1e3) : clearTimeout(s);
       });
-    }, r).observe(document.querySelector(o));
+    }, a), r = document.querySelector(o);
+    r && p.observe(r);
   }, T = (o) => document.querySelectorAll(o), n = (o) => document.querySelector(o);
   function C(o) {
     return new Promise((e) => {
@@ -567,21 +567,21 @@
       const t = z(this.thisClass, e);
       if (e === !1 || e === !0 && this.thisClass === "premium") {
         this.insert(n(".sfc-nodePlayable__primaryContentContainer"), t);
-        const s = n(".crs_form h2"), r = n("#block-userregistrationform");
-        s && r && ((i = r.querySelector(".username")) == null || i.parentElement, r.querySelector(".form-type-email"), s.after(r));
-        let d = "", a = "Pop up " + (s == null ? void 0 : s.innerText.trim()) + (e === !1 ? ` Unauthorised ${this.thisClass} class` : " Authorized Premium class only");
-        if (e === !1 ? this.thisClass === "free" ? d = "exp_trailvideo_section_01" : d = "exp_trailvideo_section_02" : this.thisClass === "premium" && (d = "exp_trailvideo_section_03"), k(".crs_block:not(.crs_form)", d, a), n(".crs_block.crs_form")) {
+        const s = n(".crs_form h2"), a = n("#block-userregistrationform");
+        s && a && ((i = a.querySelector(".username")) == null || i.parentElement, a.querySelector(".form-type-email"), s.after(a));
+        let p = "", r = "Pop up " + (s == null ? void 0 : s.innerText.trim()) + (e === !1 ? ` Unauthorised ${this.thisClass} class` : " Authorized Premium class only");
+        if (e === !1 ? this.thisClass === "free" ? p = "exp_trailvideo_section_01" : p = "exp_trailvideo_section_02" : this.thisClass === "premium" && (p = "exp_trailvideo_section_03"), k(".crs_block:not(.crs_form)", p, r), n(".crs_block.crs_form")) {
           let l = this.thisClass === "free" ? "exp_trailvideo_section_04" : "exp_trailvideo_section_05";
-          k(".crs_block.crs_form", l, a);
+          k(".crs_block.crs_form", l, r);
         }
         this.actionsBlock(this.thisClass);
       }
     }
     insert(e, t, i = "afterbegin") {
-      e.insertAdjacentHTML(i, t);
+      e && (e == null || e.insertAdjacentHTML(i, t));
     }
     actionsBlock(e) {
-      var i, s, r, d, a, l, p;
+      var i, s, a, p, r, l, d;
       const t = n(".crs_form");
       if (t) {
         let h = "";
@@ -600,13 +600,13 @@
             "click",
             "Pop up " + ((c = n(".crs_block h2")) == null ? void 0 : c.innerText.trim()) + ` Unauthorised ${e} class`
           );
-        }), (r = n(".crs_btn_back")) == null || r.addEventListener("click", (m) => {
+        }), (a = n(".crs_btn_back")) == null || a.addEventListener("click", (m) => {
           m.preventDefault();
           const f = m.target.closest(".crs_block");
           f && (f.style.display = "none");
           const g = n(".crs_block:not(.crs_form)");
           g && (g.style.display = "block");
-        }), (d = n(".crs_form .sfc-nodePlayable__lockCta")) == null || d.addEventListener("click", (m) => {
+        }), (p = n(".crs_form .sfc-nodePlayable__lockCta")) == null || p.addEventListener("click", (m) => {
           var f;
           m.preventDefault(), localStorage.setItem("isClass", e), h = e === "free" ? "06" : "07", b(
             "exp_trailvideo_button_" + h,
@@ -623,7 +623,7 @@
             const f = n(".crs_block:not(.crs_form)");
             f && (f.style.display = "block");
           }
-        }), (a = n(".crs_swipe")) == null || a.addEventListener("click", (m) => {
+        }), (r = n(".crs_swipe")) == null || r.addEventListener("click", (m) => {
           t.style.display = "none";
           const c = n(".crs_block:not(.crs_form)");
           c && (c.style.display = "block");
@@ -633,7 +633,7 @@
           c && (c.style.display = "block");
         })));
       }
-      n(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta") && ((p = n(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta")) == null || p.addEventListener("click", (h) => {
+      n(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta") && ((d = n(".crs_block:not(.crs_form) .sfc-nodePlayable__lockCta")) == null || d.addEventListener("click", (h) => {
         b(
           "exp_trailvideo_button_05",
           "Get Full Access Now",
@@ -653,32 +653,32 @@
     async setupFormInteractions() {
       var e;
       try {
-        const t = await C(".crs_form input.form-email"), i = await C(".crs_form input.username"), s = await C(".crs_form input[name=pass]"), r = await C(".crs_form .sfc-nodePlayable__lockCta"), d = v();
+        const t = await C(".crs_form input.form-email"), i = await C(".crs_form input.username"), s = await C(".crs_form input[name=pass]"), a = await C(".crs_form .sfc-nodePlayable__lockCta"), p = v();
         if (t && i && s && this.thisClass != "") {
-          t.placeholder = "Your email", i.placeholder = "Your username", s.placeholder = "Password", T(".crs_form input").forEach((l, p) => {
+          t.placeholder = "Your email", i.placeholder = "Your username", s.placeholder = "Password", T(".crs_form input").forEach((l, d) => {
             l.addEventListener("click", (h) => {
               h.stopImmediatePropagation();
-              let m = p + 1;
-              this.thisClass === "premium" && (m = p + 4);
+              let m = d + 1;
+              this.thisClass === "premium" && (m = d + 4);
             });
           });
-          const a = (l, p, h, m) => {
+          const r = (l, d, h, m) => {
             l.addEventListener("change", (c) => {
               let f = "";
-              d === !1 && (this.thisClass === "free" ? f = h : f = m), b(
+              p === !1 && (this.thisClass === "free" ? f = h : f = m), b(
                 f,
-                p,
+                d,
                 "input",
                 "Pop up Sign up to get access to this free class Unauthorised Free class"
               );
             });
           };
-          a(t, "Your email ", "exp_trailvideo_input_01", "exp_trailvideo_input_04"), a(i, "Your username", "exp_trailvideo_input_02", "exp_trailvideo_input_05"), a(s, "Password", "exp_trailvideo_input_03", "exp_trailvideo_input_06"), (e = n(".crs_form input.password-field")) == null || e.addEventListener("input", (l) => {
-            const p = n(".crs_form input.password-confirm");
-            p && (p.value = l.target.value);
-          }), r.addEventListener("click", (l) => {
-            let p = "";
-            d === !1 && (this.thisClass === "free" ? p = "exp_trailvideo_button_06" : p = "exp_trailvideo_button_07"), b(p, "Create Free Account", "click", "Pop up Sign up to get access to this free class Unauthorised Free class");
+          r(t, "Your email ", "exp_trailvideo_input_01", "exp_trailvideo_input_04"), r(i, "Your username", "exp_trailvideo_input_02", "exp_trailvideo_input_05"), r(s, "Password", "exp_trailvideo_input_03", "exp_trailvideo_input_06"), (e = n(".crs_form input.password-field")) == null || e.addEventListener("input", (l) => {
+            const d = n(".crs_form input.password-confirm");
+            d && (d.value = l.target.value);
+          }), a.addEventListener("click", (l) => {
+            let d = "";
+            p === !1 && (this.thisClass === "free" ? d = "exp_trailvideo_button_06" : d = "exp_trailvideo_button_07"), b(d, "Create Free Account", "click", "Pop up Sign up to get access to this free class Unauthorised Free class");
           });
         } else
           console.error("One or more form elements are missing.");
@@ -712,30 +712,30 @@
           console.log("flowplayer instance not found");
           return;
         }
-        const r = s("#async_flowplayer");
-        if (!r || typeof r != "object") {
+        const a = s("#async_flowplayer");
+        if (!a || typeof a != "object") {
           console.log("video not found");
           return;
         }
-        const d = n("#video-preview-container"), a = n("#video-preview-container #playerContainer"), l = n("#posterImage"), p = n('.os-preview-badge a[data-action="os-signingup"]');
+        const p = n("#video-preview-container"), r = n("#video-preview-container #playerContainer"), l = n("#posterImage"), d = n('.os-preview-badge a[data-action="os-signingup"]');
         this.videoFound = !0, this.observer.disconnect();
         const h = n("flowplayer-header-duration"), m = n("flowplayer-fullscreen-enter-icon"), c = n("flowplayer-control");
-        a == null || a.classList.add("os-d-block"), d == null || d.classList.add("os-z-9"), l == null || l.classList.add("os-d-hidden"), h == null || h.classList.add("os-d-hidden"), m == null || m.classList.add("os-d-hidden"), c == null || c.classList.add("os-d-hidden"), p == null || p.addEventListener("click", (f) => {
-          f.preventDefault(), this.observer.disconnect(), this.previewBlock.remove(), r.pause();
-        }), r.on("beforeplay", (f) => {
+        r == null || r.classList.add("os-d-block"), p == null || p.classList.add("os-z-9"), l == null || l.classList.add("os-d-hidden"), h == null || h.classList.add("os-d-hidden"), m == null || m.classList.add("os-d-hidden"), c == null || c.classList.add("os-d-hidden"), d == null || d.addEventListener("click", (f) => {
+          f.preventDefault(), this.observer.disconnect(), this.previewBlock.remove(), a.pause();
+        }), a.on("beforeplay", (f) => {
           const g = v(), u = x();
           !g && !this.unauthEvent && (b("exp_video_previews_button_01", `${u} - Play`, "click", "Unauthorised Product Video"), this.unauthEvent = !0), u === "premium" && !this.premiumEvent && (b("exp_video_previews_button_02", "Play", "click", "Premium class only Product Video"), this.premiumEvent = !0);
-        }), r.on("playing", (f) => {
+        }), a.on("playing", (f) => {
           this.observer.disconnect(), n(".sfc-playableOverlay__inner") && (this.timer = setInterval(() => {
-            r.currentTime >= this.previewTime && (clearInterval(this.timer), r.pause(), this.previewBlock.remove());
+            a.currentTime >= this.previewTime && (clearInterval(this.timer), a.pause(), this.previewBlock.remove());
           }, 10));
-        }), r.on("pause", (f) => {
+        }), a.on("pause", (f) => {
           clearInterval(this.timer);
         });
       };
       this.observer = new MutationObserver((s) => {
-        s.forEach((r) => {
-          r && i();
+        s.forEach((a) => {
+          a && i();
         });
       }), this.observer.observe(document.body, {
         childList: !0,
@@ -851,7 +851,7 @@
       this.render();
     }
     render() {
-      var r, d;
+      var a, p;
       const e = v();
       this.thisClass = x();
       let t;
@@ -876,17 +876,17 @@
     `
       ), s = n(".sfc-nodePlayable__primaryContentContainer");
       if (s) {
-        const a = n(".sfc-playableOverlay__inner"), l = n(".crs_block:not(.crs_form)");
-        if (!a)
+        const r = n(".sfc-playableOverlay__inner"), l = n(".crs_block:not(.crs_form)");
+        if (!r)
           return;
-        a.classList.add("os-d-hidden"), l && l.classList.add("os-d-hidden"), this.initStyles(), this.insert(s, i), this.badgeElement = s.querySelector(".os-preview-badge"), (r = n("[data-action=os-signingup]")) == null || r.addEventListener("click", (p) => {
+        r.classList.add("os-d-hidden"), l && l.classList.add("os-d-hidden"), this.initStyles(), this.insert(s, i), this.badgeElement = s.querySelector(".os-preview-badge"), (a = n("[data-action=os-signingup]")) == null || a.addEventListener("click", (d) => {
           b(
             "exp_video_previews_link_01",
             `${this.thisClass} - Signing up`,
             "click",
             "Unauthorised Product Banner Get a free access to the full video"
           );
-        }), (d = n('[data-action="os-subscribe"]')) == null || d.addEventListener("click", (p) => {
+        }), (p = n('[data-action="os-subscribe"]')) == null || p.addEventListener("click", (d) => {
           localStorage.setItem("isClass", this.thisClass), b(
             "exp_video_previews_link_02",
             "subscribing",
@@ -1526,7 +1526,7 @@ a.crs_browse_free:active {
         return;
       if (t) {
         t.textContent = "Your ultimate Yoga journey starts here";
-        const a = (
+        const r = (
           /* HTML */
           `<h2 class="os-subtitle">
         ${e === "premium" ? "Subscribe to unlock this Premium class" : "Subscribe to unlock all Premium class and more"}
@@ -1534,10 +1534,10 @@ a.crs_browse_free:active {
         );
         if (n(".os-subtitle"))
           return;
-        t.insertAdjacentHTML("afterend", a);
+        t.insertAdjacentHTML("afterend", r);
       }
       i && i.classList.add("os-d-hidden");
-      const d = (
+      const p = (
         /* HTML */
         `
       <div class="os-subscriber-feature">
@@ -1593,12 +1593,12 @@ a.crs_browse_free:active {
       </div>
     `
       );
-      if (s && (n(".os-subscriber-feature") || s.insertAdjacentHTML("afterend", d), this.device === "mobile")) {
-        const a = n(".sfc-pricingTablePremium__form"), l = n(".sfc-pricingTablePremium__cols--desktop");
-        if (a == null || a.remove(), l) {
+      if (s && (n(".os-subscriber-feature") || s.insertAdjacentHTML("afterend", p), this.device === "mobile")) {
+        const r = n(".sfc-pricingTablePremium__form"), l = n(".sfc-pricingTablePremium__cols--desktop");
+        if (r == null || r.remove(), l) {
           l.style.display = "block";
-          const p = l.querySelector("li:first-child"), h = l.querySelector("li:nth-child(2)"), m = l.querySelectorAll(".sfc-pricingTableLevel__pricing");
-          p == null || p.insertAdjacentHTML("beforeend", L), h == null || h.insertAdjacentHTML("beforeend", L), m.forEach((c) => {
+          const d = l.querySelector("li:first-child"), h = l.querySelector("li:nth-child(2)"), m = l.querySelectorAll(".sfc-pricingTableLevel__pricing");
+          d == null || d.insertAdjacentHTML("beforeend", L), h == null || h.insertAdjacentHTML("beforeend", L), m.forEach((c) => {
             var f;
             if ((f = c.textContent) != null && f.includes("9.08")) {
               const g = c.closest(".sfc-pricingTableLevel__primary"), u = g == null ? void 0 : g.querySelector(".sfc-pricingTableLevel__duration"), w = c.querySelector(".sfc-pricingTableLevel__price"), y = c.querySelector(".sfc-pricingTableLevel__usd");
@@ -1628,24 +1628,24 @@ a.crs_browse_free:active {
       this.initStyles();
       let t = n("#block-samsara-content");
       if (localStorage.getItem("isClass") && (t != null && t.querySelector("h2"))) {
-        let s = localStorage.getItem("isClass"), r = localStorage.getItem("referrerInfo");
+        let s = localStorage.getItem("isClass"), a = localStorage.getItem("referrerInfo");
         if (s == "free")
           this.insert(
             t,
             /* HTML */
-            `<a href="${r}" class="crs_back">${_.arrowLeftWhite}Back</a>`
+            `<a href="${a}" class="crs_back">${_.arrowLeftWhite}Back</a>`
           ), this.insert(
             n(".sfc-becomeASubscriber__heroHeader"),
             /* HTML */
             ` <a
-            href="${r}"
+            href="${a}"
             class="crs_browse_skip"
             ><span>Skip</span> <span>-></span></a></a
           >`,
             "afterend"
-          ), [".crs_browse_skip", ".crs_back"].forEach((d) => {
-            var a;
-            (a = n(d)) == null || a.addEventListener("click", () => {
+          ), [".crs_browse_skip", ".crs_back"].forEach((p) => {
+            var r;
+            (r = n(p)) == null || r.addEventListener("click", () => {
               b(
                 "exp_trailvideo_button_08",
                 "Back",
@@ -1655,9 +1655,9 @@ a.crs_browse_free:active {
             });
           });
         else if (s == "premium") {
-          const d = this.device === "mobile" ? n("h1.sfc-heading") : n(".sfc-pricingTablePremium");
+          const p = this.device === "mobile" ? n("h1.sfc-heading") : n(".sfc-pricingTablePremium");
           this.insert(
-            d,
+            p,
             /* HTML */
             ` <a
             href="https://www.doyogawithme.com/yoga-classes?field_subscribers_only_value=1&sort_by=created"
