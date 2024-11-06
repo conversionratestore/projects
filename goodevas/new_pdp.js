@@ -3049,7 +3049,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
 }
 .main_benefits_block .main_benefits_list .main_benefits_item_title {
   color: #000;
-  font-family: "Segoe UI";
+  font-family: "Harmonia Sans Pro Cyr";
   font-size: 15px;
   font-weight: 600;
   line-height: 24px;
@@ -4072,22 +4072,24 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     resizeSlider() {
       l(".product-slideshow").then((e) => {
         const t = f(".product-slideshow")[0];
-        if (t) {
-          const n = Flickity.data(t);
-          if (n) {
-            n.cells.forEach((c) => {
-              c.element.style.width = "100%";
-            });
-            const r = document.createElement("button");
-            r.className = "flickity-prev-next-button previous", r.innerHTML = `${s.prevBtnIcon}`, t.appendChild(r);
-            const d = document.createElement("button");
-            d.className = "flickity-prev-next-button next", d.innerHTML = `${s.nextBtnIcon}`, t.appendChild(d), r.addEventListener("click", () => {
-              n.previous();
-            }), d.addEventListener("click", () => {
-              n.next();
-            }), n.resize();
+        setInterval(() => {
+          if (typeof Flickity == "function" && t) {
+            const n = Flickity.data(t);
+            if (n) {
+              n.cells.forEach((c) => {
+                c.element.style.width = "100%";
+              });
+              const r = document.createElement("button");
+              r.className = "flickity-prev-next-button previous", r.innerHTML = `${s.prevBtnIcon}`, t.appendChild(r);
+              const d = document.createElement("button");
+              d.className = "flickity-prev-next-button next", d.innerHTML = `${s.nextBtnIcon}`, t.appendChild(d), r.addEventListener("click", () => {
+                n.previous();
+              }), d.addEventListener("click", () => {
+                n.next();
+              }), n.resize();
+            }
           }
-        }
+        }, 400);
       });
     }
   }
