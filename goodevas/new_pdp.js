@@ -1739,6 +1739,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     height: 35px;
     z-index: 10;
     opacity: 1 !important;
+    padding: 0;
   }
   .page-content--product product-images .flickity-prev-next-button-new.new_button svg {
     width: 100%;
@@ -1746,7 +1747,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     overflow: visible !important;
   }
   .page-content--product product-images .flickity-prev-next-button-new.previous.new_button {
-    left: 10px;
+    left: 8px;
   }
   .page-content--product product-images .flickity-prev-next-button-new.next.new_button {
     right: 10px;
