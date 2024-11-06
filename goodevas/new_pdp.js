@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const h = (i, e, t, n = "") => {
+  const m = (i, e, t, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: i,
@@ -8,7 +8,7 @@
       event_type: t,
       event_loc: n
     }), console.dir(`Event: ${i} | ${e} | ${t} | ${n}`);
-  }, v = ({ name: i, dev: e }) => {
+  }, C = ({ name: i, dev: e }) => {
     console.log(
       `%c EXP: ${i} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
@@ -18,24 +18,24 @@
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", i, e), console.log("set", i, e));
     }, 1e3);
   }, b = (i, e, t, n, r = "Visibility", d = 600, c = 0.5) => {
-    let g, _;
-    if (g = new IntersectionObserver(
-      function(u) {
-        u[0].isIntersecting === !0 ? _ = setTimeout(() => {
-          h(
+    let u, p;
+    if (u = new IntersectionObserver(
+      function(g) {
+        g[0].isIntersecting === !0 ? p = setTimeout(() => {
+          m(
             e,
-            u[0].target.dataset.visible || n || "",
+            g[0].target.dataset.visible || n || "",
             r,
             t
-          ), g.disconnect();
-        }, d) : clearTimeout(_);
+          ), u.disconnect();
+        }, d) : clearTimeout(p);
       },
       { threshold: [c] }
     ), typeof i == "string") {
-      const u = document.querySelector(i);
-      u && g.observe(u);
+      const g = document.querySelector(i);
+      g && u.observe(g);
     } else
-      g.observe(i);
+      u.observe(i);
   };
   function l(i) {
     return new Promise((e) => {
@@ -61,13 +61,19 @@
       return t = window.scrollY, e != null && (r = t - e), e = t, clearTimeout(n), n = setTimeout(c, d), r;
     };
   })();
-  const C = (i, e = 100) => {
+  const S = (i, e = 100) => {
     const t = document.querySelector(i);
     if (!t)
       return;
     const r = t.getBoundingClientRect().top - e;
     window.scrollBy({
       top: r,
+      behavior: "smooth"
+    });
+  }, w = (i, e = 100) => {
+    const n = i.getBoundingClientRect().top + window.scrollY - e;
+    window.scrollTo({
+      top: n,
       behavior: "smooth"
     });
   }, o = "https://conversionratestore.github.io/projects/goodevas/img/", s = {
@@ -143,9 +149,11 @@
 </svg>
     `,
     warrantyIcon: `
-<svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
-  <path d="M23.5464 6.473L23.5458 6.47333C23.9928 7.20262 24.2346 8.03906 24.2457 8.89435M23.5464 6.473L24.1957 8.89615M23.5464 6.473L23.5412 6.46695C22.9817 5.81329 22.256 5.32288 21.4409 5.04749C21.0672 4.90226 20.7094 4.71891 20.3732 4.50036C20.0662 4.24886 19.786 3.96635 19.537 3.65731C19.0214 2.95937 18.3246 2.41579 17.5222 2.08546L17.5225 2.08488L17.5148 2.08305C16.691 1.88678 15.8297 1.91551 15.0209 2.16623C14.6197 2.27056 14.2089 2.3336 13.7949 2.35436C13.3809 2.33366 12.9701 2.27062 12.5689 2.16623C11.76 1.91628 10.8989 1.88755 10.0751 2.08304L10.075 2.08243L10.0676 2.08547C9.26556 2.41638 8.56901 2.9598 8.05294 3.65722C7.80332 3.96348 7.52311 4.24349 7.21667 4.49288C6.88085 4.71133 6.52332 4.89441 6.1498 5.03921C5.33416 5.31409 4.60812 5.80459 4.04866 6.4587L4.04818 6.45829L4.04401 6.46509C3.59748 7.19457 3.35571 8.03087 3.34412 8.88607C3.32003 9.29093 3.25491 9.69231 3.14978 10.084C3.011 10.4473 2.83472 10.7951 2.62379 11.1218C2.1153 11.8334 1.8114 12.6707 1.74507 13.5428L1.74449 13.5427L1.74506 13.5503C1.81065 14.4239 2.1146 15.2627 2.62383 15.9755C2.83429 16.2999 3.01056 16.6452 3.1498 17.0059C3.25499 17.3973 3.3201 17.7984 3.34412 18.2029C3.35522 19.0582 3.59703 19.8947 4.04403 20.6239L4.04349 20.6243L4.04867 20.6303C4.60816 21.284 5.33379 21.7744 6.14891 22.0498C6.52266 22.195 6.88046 22.3784 7.21664 22.5969C7.52344 22.8471 7.80367 23.1283 8.0529 23.4359C8.56857 24.1339 9.26524 24.6777 10.0676 25.0085L10.0674 25.0091L10.075 25.0109C10.8987 25.2076 11.7602 25.1789 12.569 24.9277C12.9701 24.8234 13.3809 24.7604 13.7949 24.7396C14.2093 24.7603 14.6205 24.8235 15.022 24.928L15.0222 24.9281C15.5319 25.0585 16.0542 25.1336 16.58 25.1519L16.5812 25.1519C16.8989 25.1551 17.2152 25.108 17.5182 25.0124L17.5183 25.0126L17.5223 25.011C18.3247 24.6791 19.0213 24.1345 19.5369 23.4359C19.7863 23.1297 20.0662 22.8497 20.3724 22.6002C20.7082 22.3818 21.0657 22.1987 21.4392 22.0539C22.2549 21.779 22.9809 21.2885 23.5404 20.6344L23.5408 20.6349L23.545 20.628C23.9915 19.8986 24.2333 19.0623 24.2449 18.2071C24.2686 17.8022 24.3337 17.4008 24.4392 17.0092C24.5785 16.6485 24.7547 16.3032 24.9652 15.9788C25.4753 15.2652 25.7796 14.4251 25.8448 13.5503L25.8454 13.5503L25.8448 13.5428C25.7784 12.6706 25.4745 11.8334 24.966 11.1217C24.7555 10.7974 24.5793 10.4521 24.44 10.0913M23.5464 6.473L24.3924 10.1069M24.2457 8.89435C24.2457 8.89474 24.2457 8.89513 24.2457 8.89552L24.1957 8.89615M24.2457 8.89435C24.2457 8.89398 24.2457 8.89362 24.2457 8.89325L24.1957 8.89615M24.2457 8.89435C24.2693 9.29895 24.3344 9.70005 24.44 10.0913M24.1957 8.89615C24.2196 9.30542 24.2855 9.71114 24.3924 10.1069M24.44 10.0913C24.4397 10.0905 24.4394 10.0897 24.4391 10.0889L24.3924 10.1069M24.44 10.0913C24.4403 10.0922 24.4405 10.093 24.4407 10.0939L24.3924 10.1069M22.7736 16.4666L22.7735 16.4666L22.7725 16.4699C22.6251 16.9825 22.5341 17.5096 22.5012 18.0418L22.5011 18.0418L22.5011 18.045C22.502 18.5868 22.3733 19.1209 22.1259 19.6028C21.741 19.9913 21.2678 20.2809 20.7467 20.4469L20.7467 20.4468L20.7436 20.448C20.2504 20.6415 19.7801 20.8891 19.3413 21.1862L19.3412 21.1861L19.3385 21.1882C18.9265 21.51 18.5511 21.8762 18.2191 22.2801L18.219 22.28L18.2171 22.2827C17.8954 22.7298 17.4698 23.092 16.9771 23.338C16.4506 23.4199 15.9121 23.3765 15.4055 23.2114L15.4055 23.2113L15.4023 23.2105C14.8768 23.0769 14.3384 23.001 13.7965 22.9842L13.7965 22.9841L13.7932 22.9842C13.2513 23.0025 12.7129 23.0795 12.1875 23.2138L12.1875 23.2137L12.1844 23.2147C11.6772 23.3803 11.1382 23.4236 10.6111 23.3413C10.1188 23.0953 9.69375 22.7331 9.37273 22.286L9.37281 22.2859L9.37078 22.2835C9.03829 21.878 8.66237 21.5101 8.24974 21.1866L8.24981 21.1865L8.247 21.1846C7.80783 20.8861 7.33697 20.6371 6.84302 20.4422L6.84307 20.4421L6.8399 20.4411C6.31899 20.2746 5.8459 19.9851 5.46066 19.597C5.2134 19.115 5.08474 18.581 5.08542 18.0392H5.08552L5.08532 18.0361C5.05255 17.5038 4.96158 16.9766 4.81404 16.4641L4.81416 16.4641L4.81297 16.4608C4.63581 15.9753 4.4052 15.511 4.12539 15.0765L4.12547 15.0765L4.12364 15.074C3.79285 14.6239 3.5781 14.0993 3.49833 13.5466C3.57881 12.993 3.7947 12.4678 4.12689 12.0176L4.12697 12.0176L4.12869 12.015C4.40851 11.5804 4.63912 11.1162 4.81627 10.6306L4.81639 10.6307L4.81735 10.6273C4.96475 10.1148 5.05571 9.58772 5.08863 9.05544L5.08873 9.05545L5.08872 9.05227C5.08783 8.51048 5.2165 7.97636 5.46396 7.49446C5.84832 7.10693 6.32061 6.81792 6.84069 6.65206L6.84072 6.65216L6.84377 6.65096C7.33701 6.45738 7.80731 6.20981 8.24609 5.91277L8.24616 5.91287L8.24889 5.91073C8.66209 5.58717 9.03833 5.21902 9.3708 4.81295L9.37087 4.81302L9.3727 4.81048C9.69443 4.36335 10.12 4.00117 10.6128 3.7551C11.1393 3.67328 11.6777 3.71664 12.1844 3.88171L12.1844 3.88182L12.1876 3.88263C12.713 4.01625 13.2515 4.09213 13.7934 4.10894L13.7934 4.10905L13.7966 4.10894C14.3386 4.09063 14.877 4.01364 15.4023 3.87931L15.4024 3.87941L15.4055 3.8784C15.9126 3.7128 16.4517 3.66943 16.9787 3.75179C17.471 3.99779 17.8961 4.35999 18.2171 4.80713L18.217 4.80719L18.2191 4.80968C18.5516 5.21516 18.9275 5.58299 19.3401 5.90657L19.34 5.90667L19.3429 5.90865C19.7823 6.2057 20.2532 6.45327 20.7469 6.64684L20.7469 6.64693L20.7499 6.64791C21.2709 6.8144 21.7439 7.10395 22.1292 7.49199C22.3765 7.97423 22.5052 8.50858 22.5044 9.05063L22.5043 9.05063L22.5045 9.05378C22.5374 9.5858 22.6283 10.1126 22.7758 10.6249L22.7757 10.6249L22.7769 10.6282C22.954 11.1137 23.1846 11.578 23.4645 12.0125L23.4644 12.0125L23.4662 12.015C23.7976 12.4662 24.0124 12.9923 24.0915 13.5465C24.011 14.1001 23.7952 14.6253 23.463 15.0756L23.4532 15.0888V15.0947C23.177 15.5256 22.949 15.9857 22.7736 16.4666Z" fill="#1773B0" stroke="#1773B0" stroke-width="0.1"/>
-  <path d="M8.98847 13.6118L8.98845 13.6118C8.83969 13.433 8.76802 13.2025 8.78923 12.9709C8.81043 12.7393 8.92276 12.5257 9.10151 12.3769C9.28025 12.2281 9.51078 12.1565 9.74236 12.1777C9.97395 12.1989 10.1876 12.3112 10.3364 12.49M8.98847 13.6118L12.2081 14.8149L12.2461 14.7824M8.98847 13.6118L11.4678 16.587C11.5421 16.6763 11.6335 16.75 11.7365 16.8037C11.8396 16.8574 11.9523 16.8901 12.0681 16.8999L12.0681 16.8999L12.0705 16.9L12.14 16.9025L12.14 16.9025L12.1418 16.9025C12.3508 16.9023 12.5529 16.8274 12.7115 16.6913C12.7115 16.6913 12.7115 16.6913 12.7115 16.6913L18.4959 11.7333C18.5879 11.6601 18.6643 11.5692 18.7204 11.4659C18.7768 11.3624 18.8116 11.2485 18.8229 11.1312C18.8342 11.0139 18.8218 10.8955 18.7862 10.7831C18.7507 10.6707 18.6929 10.5666 18.6162 10.4771C18.5395 10.3875 18.4456 10.3144 18.34 10.262C18.2344 10.2096 18.1193 10.1791 18.0016 10.1722C17.884 10.1653 17.7661 10.1823 17.6551 10.222C17.5445 10.2616 17.4429 10.3231 17.3565 10.4028L12.2461 14.7824M8.98847 13.6118L12.2781 14.8208L12.2461 14.7824M10.3364 12.49L10.298 12.5219L10.3364 12.4899L10.3364 12.49ZM10.3364 12.49L12.2461 14.7824" fill="#1773B0" stroke="#1773B0" stroke-width="0.1"/>
+<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M23.4247 9.92478C23.2116 9.59651 23.0332 9.24697 22.8924 8.8818C22.7855 8.48605 22.7196 8.08032 22.6957 7.67106C22.685 6.82437 22.4457 5.9963 22.0032 5.27436C21.4493 4.62727 20.7309 4.14184 19.9238 3.8694C19.5457 3.72253 19.1837 3.53697 18.8437 3.31569C18.5329 3.06135 18.2493 2.77553 17.9974 2.46279C17.4872 1.77177 16.7975 1.23359 16.0032 0.906594C15.1878 0.712308 14.3352 0.740853 13.5346 0.989239C13.129 1.09481 12.7136 1.1585 12.2949 1.17932C11.8763 1.15856 11.4609 1.09487 11.0553 0.989239C10.2546 0.741617 9.40213 0.713079 8.58666 0.906594C7.79268 1.23418 7.10317 1.77224 6.59244 2.46279C6.33993 2.77274 6.05635 3.05603 5.74616 3.30825C5.40649 3.52942 5.04477 3.71471 4.66682 3.86114C3.85931 4.13307 3.14049 4.61857 2.58666 5.2661C2.14461 5.98824 1.90537 6.81617 1.8941 7.66279C1.86981 8.07228 1.80391 8.47823 1.6974 8.87436C1.5571 9.2421 1.37872 9.59416 1.16517 9.92478C0.66157 10.6292 0.360591 11.4581 0.294922 12.3215C0.359849 13.1863 0.660862 14.0167 1.16517 14.7223C1.37826 15.0506 1.55663 15.4001 1.6974 15.7653C1.80397 16.1611 1.86988 16.5668 1.8941 16.976C1.90488 17.8227 2.14416 18.6508 2.58666 19.3727C3.14054 20.0198 3.85897 20.5052 4.666 20.7777C5.04416 20.9245 5.40614 21.1101 5.74616 21.3314C6.05672 21.5844 6.34032 21.8689 6.59244 22.1801C7.10276 22.8713 7.79237 23.4097 8.58666 23.7372C9.40201 23.9319 10.2547 23.9033 11.0553 23.6545C11.4609 23.549 11.8763 23.4853 12.2949 23.4644C12.7136 23.4852 13.129 23.5489 13.5346 23.6545C14.0408 23.7841 14.5595 23.8586 15.0817 23.8768C15.3942 23.8799 15.7052 23.8336 16.0032 23.7397C16.7976 23.4112 17.4871 22.8719 17.9974 22.1801C18.2497 21.8702 18.533 21.587 18.8429 21.3347C19.1825 21.1135 19.5442 20.9282 19.9222 20.7818C20.7297 20.5099 21.4485 20.0244 22.0024 19.3768C22.4444 18.6547 22.6836 17.8268 22.6949 16.9801C22.7188 16.5706 22.7847 16.1646 22.8916 15.7686C23.0324 15.4034 23.2108 15.0539 23.4238 14.7256C23.929 14.0192 24.2303 13.1875 24.2949 12.3215C24.2293 11.4581 23.9283 10.6292 23.4247 9.92478ZM22.0032 13.8843C21.7254 14.3157 21.4964 14.7766 21.3205 15.2587C21.1742 15.7677 21.0838 16.2912 21.0511 16.8198C21.052 17.3722 20.9202 17.9166 20.6668 18.4074C20.2753 18.8044 19.7931 19.1002 19.2619 19.2694C18.7721 19.4616 18.305 19.7075 17.8693 20.0025C17.4602 20.3221 17.0874 20.6857 16.7577 21.0868C16.4298 21.5426 15.9954 21.9114 15.4924 22.1611C14.9557 22.2458 14.4066 22.2022 13.89 22.0339C13.368 21.9011 12.8332 21.8258 12.2949 21.8091C11.7566 21.8273 11.2218 21.9037 10.6999 22.0372C10.1828 22.206 9.633 22.2496 9.09575 22.1644C8.5932 21.9148 8.15938 21.5459 7.83211 21.0901C7.50194 20.6874 7.12864 20.3221 6.71889 20.0008C6.28278 19.7044 5.81519 19.4572 5.32467 19.2636C4.79365 19.0939 4.3116 18.7981 3.91972 18.4016C3.66651 17.9108 3.53473 17.3664 3.53542 16.814C3.50286 16.2854 3.41252 15.7619 3.266 15.2529C3.09011 14.7709 2.86116 14.3099 2.58335 13.8785C2.24627 13.4199 2.02793 12.885 1.94781 12.3215C2.02865 11.7571 2.24815 11.2216 2.58666 10.7628C2.86446 10.3314 3.09342 9.87044 3.2693 9.38841C3.41569 8.87939 3.50603 8.3559 3.53872 7.82726C3.53781 7.27491 3.66961 6.73043 3.92302 6.23965C4.31403 5.84364 4.79529 5.54842 5.3255 5.37932C5.81531 5.18709 6.28234 4.94124 6.71806 4.64626C7.12837 4.32497 7.50198 3.9594 7.83211 3.55618C8.16009 3.10036 8.59444 2.73155 9.0974 2.4818C9.63412 2.39715 10.1833 2.44077 10.6999 2.60907C11.2218 2.7418 11.7566 2.81717 12.2949 2.83387C12.8333 2.81569 13.3681 2.73921 13.89 2.60577C14.4071 2.43692 14.9568 2.3933 15.4941 2.4785C15.9966 2.72818 16.4305 3.09703 16.7577 3.55288C17.0879 3.95554 17.4612 4.3208 17.871 4.64213C18.3073 4.93712 18.7748 5.18297 19.2652 5.37519C19.7962 5.54491 20.2782 5.84066 20.6701 6.23717C20.9234 6.72829 21.0552 7.27301 21.0544 7.8256C21.087 8.35398 21.1774 8.87721 21.3238 9.38593C21.4997 9.86796 21.7287 10.3289 22.0065 10.7603C22.3442 11.2201 22.5626 11.7565 22.642 12.3215C22.5612 12.8858 22.3417 13.4214 22.0032 13.8801V13.8843Z" fill="#1773B0"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M22.0032 5.27427C22.4457 5.99621 22.685 6.82427 22.6958 7.67096C22.7196 8.08022 22.7855 8.48595 22.8924 8.8817C23.0332 9.24687 23.2116 9.59641 23.4247 9.92468C23.9283 10.6291 24.2293 11.458 24.2949 12.3214C24.2303 13.1874 23.929 14.0191 23.4239 14.7255C23.2108 15.0538 23.0324 15.4033 22.8916 15.7685C22.7847 16.1645 22.7188 16.5705 22.6949 16.98C22.6837 17.8267 22.4444 18.6546 22.0024 19.3767C21.4485 20.0243 20.7297 20.5098 19.9222 20.7817C19.5442 20.9281 19.1825 21.1134 18.8429 21.3346C18.533 21.5869 18.2497 21.8701 17.9974 22.18C17.4871 22.8718 16.7976 23.4111 16.0032 23.7396C15.7052 23.8335 15.3942 23.8798 15.0817 23.8767C14.5595 23.8585 14.0408 23.784 13.5346 23.6544C13.129 23.5488 12.7136 23.4851 12.2949 23.4643C11.8763 23.4852 11.4609 23.5489 11.0553 23.6544C10.2548 23.9032 9.40201 23.9318 8.58666 23.7371C7.79238 23.4096 7.10277 22.8712 6.59245 22.18C6.34032 21.8688 6.05672 21.5843 5.74617 21.3313C5.40614 21.11 5.04417 20.9244 4.666 20.7776C3.85897 20.5051 3.14054 20.0197 2.58666 19.3726C2.14416 18.6507 1.90488 17.8226 1.8941 16.9759C1.86988 16.5667 1.80398 16.161 1.69741 15.7652C1.55664 15.4 1.37827 15.0505 1.16517 14.7222C0.660867 14.0166 0.359854 13.1862 0.294926 12.3214C0.360595 11.458 0.661574 10.6291 1.16517 9.92468C1.37873 9.59406 1.55711 9.242 1.69741 8.87427C1.80391 8.47813 1.86981 8.07218 1.8941 7.66269C1.90537 6.81607 2.14462 5.98814 2.58666 5.266C3.14049 4.61847 3.85931 4.13297 4.66683 3.86104C5.04478 3.71461 5.4065 3.52932 5.74617 3.30815C6.05636 3.05594 6.33993 2.77264 6.59245 2.4627C7.10318 1.77215 7.79269 1.23408 8.58666 0.906497C9.40213 0.712982 10.2546 0.74152 11.0553 0.989141C11.4609 1.09477 11.8763 1.15847 12.2949 1.17922C12.7136 1.1584 13.129 1.09471 13.5346 0.989141C14.3352 0.740755 15.1878 0.71221 16.0032 0.906497C16.7975 1.2335 17.4872 1.77167 17.9974 2.4627C18.2493 2.77543 18.5329 3.06125 18.8437 3.31559C19.1837 3.53687 19.5457 3.72243 19.9239 3.86931C20.7309 4.14174 21.4493 4.62717 22.0032 5.27427ZM19.958 3.7753C20.7812 4.05363 21.5141 4.54904 22.0792 5.20924L22.0843 5.21526L22.0884 5.22201C22.54 5.95864 22.7843 6.80345 22.7957 7.66735C22.8191 8.06728 22.8834 8.46377 22.9876 8.85059C23.1253 9.20686 23.2995 9.54794 23.5074 9.8684C24.0208 10.5872 24.3276 11.4329 24.3946 12.3138L24.3952 12.3213L24.3946 12.3288C24.3288 13.2124 24.0216 14.0609 23.5065 14.7818C23.2987 15.1022 23.1245 15.4433 22.9868 15.7996C22.8827 16.1867 22.8184 16.5834 22.7949 16.9836C22.783 17.8475 22.5387 18.6921 22.0877 19.429L22.0835 19.4357L22.0784 19.4417C21.5133 20.1024 20.78 20.5979 19.9563 20.8757C19.5872 21.0189 19.2338 21.1998 18.9019 21.4155C18.5995 21.6621 18.3229 21.9388 18.0765 22.2414C17.5555 22.9468 16.8519 23.4968 16.0414 23.832L16.0334 23.8353L16.0333 23.8349C15.7252 23.9321 15.4037 23.9799 15.0807 23.9767L15.0782 23.9767L15.0782 23.9767C14.5488 23.9582 14.023 23.8827 13.5098 23.7513L13.5094 23.7512C13.112 23.6477 12.7051 23.5851 12.2949 23.5645C11.8856 23.5852 11.4794 23.6475 11.0827 23.7506C10.2657 24.0041 9.39549 24.033 8.56344 23.8343L8.5558 23.8325L8.54855 23.8295C7.7381 23.4954 7.03437 22.9462 6.51336 22.2413C6.26703 21.9374 5.99017 21.6596 5.68714 21.4122C5.35481 21.1963 5.0012 21.0152 4.63186 20.8716C3.80863 20.5933 3.07579 20.0978 2.51069 19.4376L2.50554 19.4316L2.5014 19.4249C2.0499 18.6882 1.80557 17.8435 1.79414 16.9796C1.77032 16.5797 1.70602 16.1832 1.60221 15.7962C1.46449 15.44 1.29033 15.0989 1.0825 14.7785C0.568346 14.0584 0.261448 13.2112 0.195207 12.3289L0.194641 12.3213L0.195214 12.3138C0.262209 11.433 0.569047 10.5873 1.08244 9.86846C1.29073 9.54569 1.4649 9.20215 1.60216 8.84338C1.70593 8.45609 1.77025 8.05929 1.79414 7.65905C1.80606 6.79526 2.05035 5.9506 2.50137 5.21379L2.50551 5.20703L2.51067 5.201C3.07574 4.54032 3.80902 4.04482 4.63277 3.76699C5.00188 3.62382 5.35522 3.44294 5.68718 3.22723C5.98988 2.98064 6.26673 2.70392 6.51345 2.40133C7.03487 1.69706 7.73845 1.14828 8.54852 0.814056L8.55585 0.81103L8.56357 0.809199C9.39569 0.611734 10.2655 0.640653 11.0826 0.892932C11.4793 0.996083 11.8855 1.05846 12.2949 1.0791C12.7043 1.0584 13.1105 0.996026 13.5072 0.892942C14.3242 0.63988 15.1943 0.610957 16.0264 0.80922L16.034 0.811039L16.0413 0.814026C16.8518 1.1477 17.5556 1.69669 18.0766 2.40157C18.3227 2.70689 18.5996 2.98608 18.9028 3.23474C19.2351 3.45056 19.5887 3.6317 19.958 3.7753ZM21.3205 15.2586C21.4964 14.7765 21.7254 14.3156 22.0032 13.8842V13.88C22.3417 13.4213 22.5612 12.8858 22.642 12.3214C22.5626 11.7564 22.3442 11.22 22.0065 10.7602C21.7287 10.3288 21.4997 9.86786 21.3239 9.38584C21.1774 8.87711 21.087 8.35389 21.0544 7.8255C21.0552 7.27291 20.9234 6.72819 20.6701 6.23707C20.2782 5.84057 19.7962 5.54482 19.2652 5.37509C18.7748 5.18287 18.3073 4.93702 17.871 4.64203C17.4612 4.3207 17.0879 3.95544 16.7577 3.55278C16.4305 3.09694 15.9966 2.72809 15.4941 2.4784C14.9569 2.3932 14.4071 2.43682 13.89 2.60567C13.3681 2.73911 12.8333 2.81559 12.2949 2.83377C11.7567 2.81707 11.2218 2.7417 10.6999 2.60898C10.1833 2.44067 9.63412 2.39706 9.0974 2.4817C8.59444 2.73145 8.1601 3.10026 7.83212 3.55608C7.50198 3.9593 7.12837 4.32488 6.71807 4.64617C6.28234 4.94114 5.81531 5.18699 5.3255 5.37922C4.7953 5.54832 4.31404 5.84354 3.92303 6.23955C3.66961 6.73033 3.53781 7.27481 3.53873 7.82716C3.50604 8.3558 3.41569 8.87929 3.26931 9.38832C3.09342 9.87034 2.86447 10.3313 2.58666 10.7627C2.24815 11.2215 2.02865 11.757 1.94782 12.3214C2.02794 12.8849 2.24627 13.4198 2.58336 13.8784C2.86116 14.3098 3.09012 14.7708 3.266 15.2528C3.41252 15.7618 3.50287 16.2853 3.53542 16.8139C3.53473 17.3663 3.66652 17.9107 3.91972 18.4015C4.31161 18.798 4.79365 19.0938 5.32468 19.2635C5.81519 19.4571 6.28278 19.7043 6.71889 20.0007C7.12864 20.322 7.50195 20.6873 7.83212 21.09C8.15938 21.5458 8.59321 21.9147 9.09575 22.1643C9.633 22.2495 10.1828 22.2059 10.6999 22.0371C11.2218 21.9036 11.7566 21.8272 12.2949 21.809C12.8332 21.8257 13.368 21.901 13.89 22.0338C14.4066 22.2021 14.9557 22.2457 15.4924 22.161C15.9954 21.9113 16.4298 21.5425 16.7577 21.0867C17.0874 20.6856 17.4602 20.322 17.8693 20.0024C18.305 19.7074 18.7721 19.4615 19.2619 19.2693C19.7931 19.1001 20.2753 18.8043 20.6668 18.4073C20.9202 17.9165 21.052 17.3721 21.0511 16.8197C21.0838 16.2911 21.1742 15.7676 21.3205 15.2586ZM20.5849 18.3479C20.8264 17.8749 20.952 17.3511 20.9511 16.8199L20.9511 16.8135L20.9513 16.8135C20.9845 16.2776 21.076 15.7469 21.2244 15.2309L21.2264 15.2242L21.2266 15.2243C21.4017 14.7445 21.6285 14.2854 21.9032 13.8549V13.8471L21.9227 13.8207C22.2486 13.379 22.4609 12.8641 22.541 12.3212C22.4622 11.7778 22.251 11.2621 21.9259 10.8194L21.9223 10.8145L21.9224 10.8144C21.6406 10.3767 21.4083 9.9091 21.2299 9.42011L21.2275 9.41357L21.2278 9.4135C21.0793 8.89777 20.9877 8.36733 20.9546 7.83167L20.9542 7.82536H20.9544C20.9552 7.29386 20.8296 6.76987 20.5882 6.29652C20.2096 5.91694 19.7455 5.6336 19.2347 5.47034L19.2286 5.46839L19.2287 5.46819C18.7315 5.27328 18.2574 5.02399 17.8149 4.72488L17.8091 4.72092L17.8092 4.72072C17.3937 4.39489 17.0152 4.02449 16.6804 3.61618L16.6763 3.61122L16.6765 3.6111C16.3617 3.17266 15.9454 2.8171 15.4633 2.5748C14.9465 2.49528 14.4182 2.53838 13.921 2.70073L13.9148 2.70276L13.9147 2.70255C13.3859 2.83778 12.8439 2.91529 12.2983 2.93371L12.2918 2.93393L12.2918 2.93372C11.7463 2.9168 11.2042 2.84041 10.6752 2.70589L10.6688 2.70426L10.6689 2.70406C10.1722 2.54222 9.64445 2.49913 9.12815 2.57813C8.6456 2.8205 8.22877 3.17604 7.91329 3.61449L7.90964 3.61956L7.90949 3.61943C7.5747 4.02835 7.19581 4.39908 6.77972 4.7249L6.77426 4.72917L6.77413 4.72898C6.33229 5.02808 5.85871 5.27738 5.36204 5.47231L5.35595 5.4747L5.35589 5.4745C4.84594 5.63713 4.38262 5.91994 4.00492 6.29899C3.7634 6.772 3.63785 7.29575 3.63873 7.82699L3.63874 7.83334L3.63854 7.83333C3.6054 8.36924 3.51381 8.89993 3.36541 9.41595L3.36348 9.42268L3.36325 9.42259C3.18482 9.91158 2.95256 10.3792 2.67074 10.8168L2.66729 10.8222L2.66713 10.8221C2.34126 11.2637 2.12897 11.7786 2.04886 12.3214C2.12828 12.8634 2.33944 13.3777 2.66393 13.8192L2.66759 13.8242L2.66743 13.8243C2.94925 14.2619 3.18152 14.7295 3.35994 15.2185L3.36233 15.225L3.3621 15.2251C3.51064 15.7411 3.60223 16.2718 3.63523 16.8078L3.63562 16.8141H3.63542C3.63476 17.3453 3.7603 17.869 4.00162 18.3421C4.3802 18.7217 4.84433 19.005 5.35512 19.1683L5.36146 19.1703L5.36138 19.1705C5.85876 19.3667 6.33289 19.6174 6.77511 19.918L6.78075 19.9218L6.7806 19.922C7.1961 20.2479 7.57464 20.6182 7.90944 21.0266L7.91352 21.0315L7.91335 21.0316C8.22812 21.4701 8.64443 21.8256 9.12655 22.0679C9.64334 22.1474 10.1717 22.1043 10.6689 21.942L10.6751 21.94L10.6751 21.9402C11.204 21.805 11.746 21.7275 12.2916 21.709L12.298 21.7088L12.298 21.709C12.8436 21.7259 13.3856 21.8023 13.9146 21.9369L13.921 21.9385L13.9209 21.9387C14.4177 22.1005 14.9454 22.1436 15.4617 22.0646C15.9443 21.8222 16.3611 21.4667 16.6766 21.0283L16.6803 21.023L16.6805 21.0232C17.0148 20.6164 17.3928 20.2477 17.8077 19.9236L17.8131 19.9194L17.8132 19.9196C18.2551 19.6204 18.7287 19.3712 19.2253 19.1762L19.2315 19.1738L19.2315 19.174C19.7425 19.0113 20.2067 18.7279 20.5849 18.3479Z" fill="#1773B0"/>
+<path d="M15.8897 9.21478L10.7401 13.628L8.79795 11.2966C8.65767 11.128 8.45618 11.0221 8.2378 11.0021C8.01942 10.9821 7.80205 11.0497 7.63349 11.19C7.46494 11.3303 7.35901 11.5318 7.33902 11.7501C7.31902 11.9685 7.3866 12.1859 7.52688 12.3545L10.0062 15.3297C10.0763 15.4139 10.1624 15.4834 10.2596 15.534C10.3568 15.5847 10.4631 15.6155 10.5723 15.6247L10.6418 15.6272C10.8388 15.627 11.0294 15.5563 11.1789 15.428L16.9641 10.4693C17.0512 10.4003 17.1234 10.3143 17.1765 10.2167C17.2296 10.1191 17.2625 10.0117 17.2732 9.90106C17.2838 9.79042 17.2721 9.67877 17.2386 9.57279C17.2051 9.4668 17.1505 9.36866 17.0782 9.28424C17.0059 9.19981 16.9174 9.13084 16.8178 9.08145C16.7182 9.03205 16.6097 9.00325 16.4987 8.99677C16.3878 8.99028 16.2766 9.00625 16.172 9.04371C16.0673 9.08117 15.9713 9.13936 15.8897 9.21478Z" fill="#1773B0"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M10.5723 15.6248C10.4631 15.6157 10.3568 15.5848 10.2596 15.5342C10.1624 15.4835 10.0763 15.4141 10.0062 15.3298L7.52684 12.3546C7.38656 12.186 7.31899 11.9687 7.33898 11.7503C7.35897 11.5319 7.4649 11.3304 7.63345 11.1901C7.80201 11.0499 8.01939 10.9823 8.23777 11.0023C8.45615 11.0223 8.65764 11.1282 8.79792 11.2967L10.7401 13.6282L15.8897 9.21493C15.9713 9.1395 16.0673 9.08132 16.172 9.04386C16.2766 9.0064 16.3877 8.99043 16.4987 8.99692C16.6097 9.0034 16.7182 9.0322 16.8177 9.08159C16.9173 9.13099 17.0059 9.19996 17.0782 9.28438C17.1505 9.36881 17.205 9.46695 17.2385 9.57293C17.272 9.67892 17.2838 9.79057 17.2731 9.90121C17.2625 10.0118 17.2296 10.1192 17.1765 10.2168C17.1234 10.3145 17.0511 10.4004 16.964 10.4695L11.1789 15.4282C11.0293 15.5565 10.8388 15.6271 10.6417 15.6273L10.5723 15.6248ZM11.244 15.5041C11.244 15.5041 11.244 15.5041 11.244 15.5041C11.0763 15.6479 10.8627 15.7271 10.6418 15.7273L10.6381 15.7273L10.5639 15.7246C10.4415 15.7143 10.3223 15.6797 10.2134 15.6229C10.1044 15.5661 10.0079 15.4882 9.9293 15.3938M8.87478 11.2328C8.71754 11.0438 8.49167 10.9251 8.24688 10.9027C8.00209 10.8803 7.75843 10.956 7.56949 11.1133C7.38054 11.2705 7.26181 11.4964 7.2394 11.7412C7.21699 11.986 7.29273 12.2296 7.44998 12.4186L9.9293 15.3938M11.244 15.5041L17.0277 10.5466C17.1246 10.4694 17.2051 10.3735 17.2643 10.2646C17.3239 10.1552 17.3607 10.0348 17.3727 9.9108C17.3846 9.78677 17.3714 9.66161 17.3339 9.5428C17.2963 9.42399 17.2352 9.31398 17.1542 9.21934C17.0731 9.1247 16.9738 9.04738 16.8622 8.99201C16.7506 8.93664 16.6289 8.90435 16.5045 8.89709C16.3801 8.88982 16.2556 8.90771 16.1383 8.94971C16.0215 8.99148 15.9144 9.05625 15.8232 9.14017L10.752 13.4862L8.87478 11.2328" fill="#1773B0"/>
 </svg>
     `,
     shippingIcon: `
@@ -194,7 +202,7 @@
   <path d="M1 0.799316L15 18.2993L1 35.7993" stroke="black" stroke-opacity="0.2" stroke-linecap="round"/>
 </svg>
   `
-  }, p = {
+  }, _ = {
     "/en-gb/products/5in1-montessori-climbing-frame-set-triangle-ladder-arch-rocker-slide-board-ramp-netting-rope-cushion": {
       boughtSoFarTxt: "17850",
       deliveryDays: 4,
@@ -1408,10 +1416,10 @@
         `${o}goodevas_img.webp`
       ]
     }
-  }, S = (
+  }, L = (
     /* HTML */
     ` <div class="best_seller_label_block">${s.bestSellerLabelIcon}</div> `
-  ), w = (i) => (
+  ), x = (i) => (
     /* HTML */
     `
     <div class="bought_so_far_block">
@@ -1419,7 +1427,7 @@
       <p><span class="">${i}</span> bought so far</p>
     </div>
   `
-  ), L = (i) => (
+  ), T = (i) => (
     /* HTML */
     `
     <div class="get_free_delivery_block">
@@ -1430,7 +1438,7 @@
       </p>
     </div>
   `
-  ), T = (i) => (
+  ), H = (i) => (
     /* HTML */
     `
     <div class="new_product_sales_points_block">
@@ -1447,7 +1455,7 @@
       </ul>
     </div>
   `
-  ), H = (i) => (
+  ), I = (i) => (
     /* HTML */
     `
     <div class="one_review_block">
@@ -1467,10 +1475,10 @@
       </div>
     </div>
   `
-  ), I = (i) => (
+  ), D = (i) => (
     /* HTML */
     ` <h2 class="tolstoy_stories_new_title">${i}</h2> `
-  ), D = (i) => (
+  ), M = (i) => (
     /* HTML */
     `
     <div class="product_details_block">
@@ -1493,7 +1501,7 @@
       </ul>
     </div>
   `
-  ), M = (i) => (
+  ), z = (i) => (
     /* HTML */
     `
     <div class="main_benefits_block">
@@ -1515,7 +1523,7 @@
       </ul>
     </div>
   `
-  ), z = (i) => (
+  ), E = (i) => (
     /* HTML */
     `
     <div class="comparison_table_block">
@@ -1580,7 +1588,7 @@
       </div>
     </div>
   `
-  ), E = (i) => (
+  ), P = (i) => (
     /* HTML */
     `
     <div class="faq_block">
@@ -1603,7 +1611,7 @@
       </ul>
     </div>
   `
-  ), P = (i) => (
+  ), A = (i) => (
     /* HTML */
     `
     <div class="product_image_gallery_block">
@@ -1622,14 +1630,14 @@
       </div>
     </div>
   `
-  ), A = (i, e) => (
+  ), q = (i, e) => (
     /* HTML */
     `
     <div class="sticky_block">
       <div class="add_to_cart_btn ${e}">${i}</div>
     </div>
   `
-  ), q = (i, e, t) => (
+  ), W = (i, e, t) => (
     /* HTML */
     `
     <div class="color_wrapper">
@@ -1640,7 +1648,7 @@
       </div>
     </div>
   `
-  ), W = (i, e, t, n, r) => (
+  ), V = (i, e, t, n, r) => (
     /* HTML */
     `
     <div class="estimate_your_shipping_period_block">
@@ -1668,7 +1676,7 @@
       </div>
     </div>
   `
-  ), V = `@charset "UTF-8";
+  ), j = `@charset "UTF-8";
 @media (max-width: 768px) {
   body {
     padding-bottom: 80px;
@@ -2832,7 +2840,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
   background: #ffc03c;
   bottom: 23px;
   left: -1px;
-  z-index: 11;
+  z-index: 3;
 }
 @media (max-width: 1020px) {
   .estimate_your_shipping_period_block .shipping_details > div::before {
@@ -3665,16 +3673,16 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
   border-left: 2px solid;
   border-color: var(--colorBorder);
   transform: rotate(45deg);
-}/*# sourceMappingURL=main.css.map */`, j = window.innerWidth < 768 ? "mobile" : "desktop";
-  class B {
+}/*# sourceMappingURL=main.css.map */`, B = window.innerWidth < 768 ? "mobile" : "desktop";
+  class O {
     constructor(e) {
       this.device = e, this.observer = null, this.pathName = this.findTranslationKey(window.location.pathname), this.init();
     }
     findTranslationKey(e) {
-      return Object.keys(p).find((n) => e.includes(n)) || "";
+      return Object.keys(_).find((n) => e.includes(n)) || "";
     }
     init() {
-      v({ name: "PDP v2 Major Release", dev: "SKh" }), k("new_pdp"), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${V}</style>`), this.renderBestSellerLabelForPhoto(), this.renderBoughtSoFarBlock(), this.renderGetFreeDeliveryBlock(), this.renderNewProductSalesPointsBlock(), this.renderKlarnaWrapper(), this.replaceKlarnaPlacement(), this.renderOneReviewBlock(), this.renderTolstoyStoriesNewTitle(), this.clickAllReviewsLink(), this.renderProductDetailsBlock(), this.toggleSeeMoreTxt(), this.renderEstimateYourShippingPeriodBlock(), this.renderMainBenefits(), this.renderComparisonTable(), this.renderProductImageGalleryBlock(), this.renderFAQBlock(), this.initAccordionProductDetails(
+      C({ name: "PDP v2 Major Release", dev: "SKh" }), k("new_pdp"), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${j}</style>`), this.renderBestSellerLabelForPhoto(), this.renderBoughtSoFarBlock(), this.renderGetFreeDeliveryBlock(), this.renderNewProductSalesPointsBlock(), this.renderKlarnaWrapper(), this.replaceKlarnaPlacement(), this.renderOneReviewBlock(), this.renderTolstoyStoriesNewTitle(), this.clickAllReviewsLink(), this.renderProductDetailsBlock(), this.toggleSeeMoreTxt(), this.renderEstimateYourShippingPeriodBlock(), this.renderMainBenefits(), this.renderComparisonTable(), this.renderProductImageGalleryBlock(), this.renderFAQBlock(), this.initAccordionProductDetails(
         ".product_details_block",
         ".product_details_accordion_block",
         ".product_details_accordion_link",
@@ -3689,25 +3697,25 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     renderBestSellerLabelForPhoto() {
       l(".product__main-photos").then((e) => {
         const t = a(".product__main-photos");
-        a(".best_seller_label_block") || t.insertAdjacentHTML("afterbegin", S);
+        a(".best_seller_label_block") || t.insertAdjacentHTML("afterbegin", L);
       });
     }
     renderBoughtSoFarBlock() {
       this.device === "desktop" && l("#shopify-block-yotpo_product_reviews_ugc_star_rating_FVceyX").then((e) => {
         const t = a("#shopify-block-yotpo_product_reviews_ugc_star_rating_FVceyX");
-        a(".bought_so_far_block") || t.insertAdjacentHTML("beforeend", w(p[this.pathName].boughtSoFarTxt));
+        a(".bought_so_far_block") || t.insertAdjacentHTML("beforeend", x(_[this.pathName].boughtSoFarTxt));
       }), this.device === "mobile" && l(".page-content--product .product-single__meta").then((e) => {
         const t = a(".page-content--product .product-single__meta");
         a(".bought_so_far_block") || t.insertAdjacentHTML(
           "afterbegin",
-          w(p[this.pathName].boughtSoFarTxt)
+          x(_[this.pathName].boughtSoFarTxt)
         );
       });
     }
     renderGetFreeDeliveryBlock() {
       l("block-price").then((e) => {
         const t = a("block-price");
-        a(".get_free_delivery_block") || t.insertAdjacentHTML("afterend", L(this.getShippingDayDate()));
+        a(".get_free_delivery_block") || t.insertAdjacentHTML("afterend", T(this.getShippingDayDate()));
       });
     }
     renderNewProductSalesPointsBlock() {
@@ -3715,7 +3723,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         const t = a("product-inventory");
         a(".new_product_sales_points_block") || t.insertAdjacentHTML(
           "beforebegin",
-          T(p[this.pathName].newProductSalesPointsTxt)
+          H(_[this.pathName].newProductSalesPointsTxt)
         );
       });
     }
@@ -3738,7 +3746,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     renderOneReviewBlock() {
       l("block-buy-buttons").then((e) => {
         const t = a("block-buy-buttons");
-        a(".one_review_block") || t.insertAdjacentHTML("afterend", H(p[this.pathName].oneReviewBlock));
+        a(".one_review_block") || t.insertAdjacentHTML("afterend", I(_[this.pathName].oneReviewBlock));
       });
     }
     renderTolstoyStoriesNewTitle() {
@@ -3746,7 +3754,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         const t = a(".tolstoy-stories-title");
         a(".tolstoy_stories_new_title") || t.insertAdjacentHTML(
           "afterend",
-          I(p[this.pathName].tolstoyStoriesNewTitle)
+          D(_[this.pathName].tolstoyStoriesNewTitle)
         );
       });
     }
@@ -3754,7 +3762,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       l(".all_reviews_link").then((e) => {
         l(".yotpo-main-layout").then((t) => {
           a(".all_reviews_link").addEventListener("click", () => {
-            h("exp_new_pdp_button_03", "All reviews", "Click", "Review section"), C(".yotpo-main-layout");
+            m("exp_new_pdp_button_03", "All reviews", "Click", "Review section"), S(".yotpo-main-layout");
           });
         });
       });
@@ -3764,14 +3772,14 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         const t = a(".main_benefits_block");
         a(".product_details_block") || t.insertAdjacentHTML(
           "beforebegin",
-          D(p[this.pathName].productDetailsTxt)
+          M(_[this.pathName].productDetailsTxt)
         );
       });
     }
     toggleSeeMoreTxt() {
       l(".see_more_block").then((e) => {
         a(".see_more_block").addEventListener("click", (n) => {
-          n.currentTarget && !n.currentTarget.classList.contains("is_open") ? (h("exp_new_pdp_link_01", "See more", "Click", "Product details"), n.currentTarget.classList.add("is_open"), n.currentTarget.querySelector("div").textContent = "See Less", n.currentTarget.previousElementSibling.classList.remove("blur_txt")) : (h("exp_new_pdp_link_01", "See Less", "Click", "Product details"), n.currentTarget.classList.remove("is_open"), n.currentTarget.querySelector("div").textContent = "See More", n.currentTarget.previousElementSibling.classList.add("blur_txt"));
+          n.currentTarget && !n.currentTarget.classList.contains("is_open") ? (m("exp_new_pdp_link_01", "See more", "Click", "Product details"), n.currentTarget.classList.add("is_open"), n.currentTarget.querySelector("div").textContent = "See Less", n.currentTarget.previousElementSibling.classList.remove("blur_txt")) : (m("exp_new_pdp_link_01", "See Less", "Click", "Product details"), n.currentTarget.classList.remove("is_open"), n.currentTarget.querySelector("div").textContent = "See More", n.currentTarget.previousElementSibling.classList.add("blur_txt"));
         });
       });
     }
@@ -3780,10 +3788,10 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         const t = a(".product_details_block");
         a(".estimate_your_shipping_period_block") || t.insertAdjacentHTML(
           "beforebegin",
-          W(
-            p[this.pathName].deliveryToPlace,
+          V(
+            _[this.pathName].deliveryToPlace,
             this.getTodayDate(),
-            p[this.pathName].deliveryDays,
+            _[this.pathName].deliveryDays,
             this.getShippingDate(),
             this.getGuaranteeDate()
           )
@@ -3796,11 +3804,11 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     getShippingDate() {
       const e = /* @__PURE__ */ new Date(), t = new Date(e);
-      return t.setDate(e.getDate() + p[this.pathName].deliveryDays), this.formatDate(t);
+      return t.setDate(e.getDate() + _[this.pathName].deliveryDays), this.formatDate(t);
     }
     getGuaranteeDate() {
       const e = /* @__PURE__ */ new Date(), t = new Date(e);
-      return t.setDate(e.getDate() + p[this.pathName].guaranteeDate), this.formatDate(t);
+      return t.setDate(e.getDate() + _[this.pathName].guaranteeDate), this.formatDate(t);
     }
     formatDate(e) {
       const t = { month: "short", day: "numeric", year: "numeric" };
@@ -3808,7 +3816,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     getShippingDayDate() {
       const e = /* @__PURE__ */ new Date(), t = new Date(e);
-      return t.setDate(e.getDate() + p[this.pathName].guaranteeDate), this.formatDayDate(t);
+      return t.setDate(e.getDate() + _[this.pathName].guaranteeDate), this.formatDayDate(t);
     }
     formatDayDate(e) {
       const t = { weekday: "long", month: "long", day: "numeric" };
@@ -3817,7 +3825,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     renderMainBenefits() {
       l(".product-single__meta").then((e) => {
         const t = a(".product-single__meta");
-        a(".main_benefits_block") || t.insertAdjacentHTML("beforeend", M(p[this.pathName].mainBenefits));
+        a(".main_benefits_block") || t.insertAdjacentHTML("beforeend", z(_[this.pathName].mainBenefits));
       });
     }
     renderComparisonTable() {
@@ -3825,7 +3833,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         const t = a(".main_benefits_block");
         a(".comparison_table_block") || t.insertAdjacentHTML(
           "afterend",
-          z(p[this.pathName].comparisonTable)
+          E(_[this.pathName].comparisonTable)
         );
       });
     }
@@ -3833,7 +3841,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       l(".comparison_table_block").then((e) => {
         l(".product_image_gallery_block").then((t) => {
           let n = a(".comparison_table_block");
-          this.device === "mobile" && (n = a(".product_image_gallery_block")), a(".faq_block") || n.insertAdjacentHTML("afterend", E(p[this.pathName].fAQTxt));
+          this.device === "mobile" && (n = a(".product_image_gallery_block")), a(".faq_block") || n.insertAdjacentHTML("afterend", P(_[this.pathName].fAQTxt));
         });
       });
     }
@@ -3843,7 +3851,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         const n = a(e);
         a(".product_image_gallery_block") || n.insertAdjacentHTML(
           "beforebegin",
-          P(p[this.pathName].productImageGalleryImgs)
+          A(_[this.pathName].productImageGalleryImgs)
         );
       });
     }
@@ -3851,23 +3859,24 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       let d = setInterval(() => {
         typeof jQuery == "function" && a(e) && (clearInterval(d), console.log("Accordion initialized for", e), $(`${t}`).eq(0).addClass("active"), $(`${t} ${n}`).eq(0).addClass("active"), $(`${t} ${r}`).eq(0).css("display", "flex"), $(`${n}`).on("click", function(c) {
           $(this).toggleClass("active"), $(this).closest("li").toggleClass("active"), $(this).next(r).slideToggle(), $(`${n}`).not(this).next(r).slideUp(), $(`${n}`).not(this).removeClass("active").closest("li").removeClass("active"), e === ".product_details_block" && (setTimeout(() => {
-            c.currentTarget.closest("li").scrollIntoView({ block: "start", behavior: "smooth" });
-          }, 400), c.currentTarget.classList.contains("active") ? h(
+            const p = c.target.closest(".product_details_accordion_block");
+            p && (window.innerWidth < 768 ? w(p, 90) : w(p, 0));
+          }, 400), c.currentTarget.classList.contains("active") ? m(
             "exp_new_pdp_dropdown_02",
             `Open - ${c.currentTarget.querySelector("p").textContent}`,
             "Click",
             "Product details"
-          ) : h(
+          ) : m(
             "exp_new_pdp_dropdown_03",
             `Close - ${c.currentTarget.querySelector("p").textContent}`,
             "Click",
             "Product details"
-          )), e === ".faq_block" && (c.currentTarget.classList.contains("active") ? h(
+          )), e === ".faq_block" && (c.currentTarget.classList.contains("active") ? m(
             "exp_new_pdp_dropdown_04",
             `Open - ${c.currentTarget.querySelector("p").textContent}`,
             "Click",
             "FAQ"
-          ) : h(
+          ) : m(
             "exp_new_pdp_dropdown_05",
             `Close - ${c.currentTarget.querySelector("p").textContent}`,
             "Click",
@@ -3880,7 +3889,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       l(".product-single__meta block-buy-buttons .add-to-cart").then((e) => {
         const t = a("body"), n = a(".product-single__meta block-buy-buttons .add-to-cart span"), r = a(".restock-rocket-button-container button");
         let d = n.textContent || "", c = "";
-        d === "Sold Out" && !r && (console.log(r), c = "sold_out"), r && (c = "notify_available", d = r.textContent || ""), a(".sticky_block") || t.insertAdjacentHTML("beforeend", A(d, c));
+        d === "Sold Out" && !r && (console.log(r), c = "sold_out"), r && (c = "notify_available", d = r.textContent || ""), a(".sticky_block") || t.insertAdjacentHTML("beforeend", q(d, c));
       });
     }
     toggleStickyBlockVisibility() {
@@ -3893,8 +3902,8 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
               threshold: 0
             };
             let d = new IntersectionObserver((c) => {
-              c.forEach((g) => {
-                g.isIntersecting ? e.style.display = "none" : e.style.display = "flex", d.unobserve(g.target);
+              c.forEach((u) => {
+                u.isIntersecting ? e.style.display = "none" : e.style.display = "flex", d.unobserve(u.target);
               }), d.disconnect();
             }, r);
             d.observe(t);
@@ -3910,13 +3919,13 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         l(".product-single__meta block-variant-picker > .variant-button-wrap input").then((t) => {
           const n = a(".sticky_block"), r = f(".product-single__meta block-variant-picker > .variant-button-wrap input");
           if (r.length > 0) {
-            let d = [], c = "", g = !1;
-            r.forEach((_) => {
-              const u = _.getAttribute("value") || "Unknown", m = _.checked, y = _.hasAttribute("data-disabled");
-              m && (c = u), y && (g = !0), d.push(this.createDropdownItem(u, m, y));
+            let d = [], c = "", u = !1;
+            r.forEach((p) => {
+              const g = p.getAttribute("value") || "Unknown", h = p.checked, y = p.hasAttribute("data-disabled");
+              h && (c = g), y && (u = !0), d.push(this.createDropdownItem(g, h, y));
             }), a(".color_wrapper") || n.insertAdjacentHTML(
               "afterbegin",
-              q(d.join(""), c, g)
+              W(d.join(""), c, u)
             ), this.changeCustomDropdownHandler(".custom_dropdown");
           }
         });
@@ -3937,21 +3946,21 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         ".product-single__meta block-variant-picker > .variant-button-wrap input"
       );
       n.addEventListener("click", () => {
-        h("exp_new_pdp_button_02", "Color", "Click", "Stiky section"), r.classList.toggle("show"), this.adjustDropdownPosition(r), n.classList.toggle("active");
-      }), d.forEach((_) => {
-        _.addEventListener("click", (u) => {
-          const m = u.currentTarget, y = m.getAttribute("data-value"), O = m.hasAttribute("data-disabled");
-          r.style.top = "100%", n.innerHTML = m.innerHTML, r.classList.remove("show"), n.classList.remove("active"), O ? n.setAttribute("data-disabled", "") : n.removeAttribute("data-disabled"), h("exp_new_pdp_dropdown_01", `Selected value: ${m == null ? void 0 : m.textContent}`, "Dropdown", "Stiky section"), c.forEach((x) => {
-            x.getAttribute("value") === y && x.click();
+        m("exp_new_pdp_button_02", "Color", "Click", "Stiky section"), r.classList.toggle("show"), this.adjustDropdownPosition(r), n.classList.toggle("active");
+      }), d.forEach((p) => {
+        p.addEventListener("click", (g) => {
+          const h = g.currentTarget, y = h.getAttribute("data-value"), N = h.hasAttribute("data-disabled");
+          r.style.top = "100%", n.innerHTML = h.innerHTML, r.classList.remove("show"), n.classList.remove("active"), N ? n.setAttribute("data-disabled", "") : n.removeAttribute("data-disabled"), m("exp_new_pdp_dropdown_01", `Selected value: ${h == null ? void 0 : h.textContent}`, "Dropdown", "Stiky section"), c.forEach((v) => {
+            v.getAttribute("value") === y && v.click();
           });
         });
-      }), document.addEventListener("click", (_) => {
-        const u = _.target;
-        t.contains(u) || (r.classList.remove("show"), n.classList.remove("active"), r.style.top = "100%");
+      }), document.addEventListener("click", (p) => {
+        const g = p.target;
+        t.contains(g) || (r.classList.remove("show"), n.classList.remove("active"), r.style.top = "100%");
       }), new IntersectionObserver(
-        (_) => {
-          _.forEach((u) => {
-            u.isIntersecting || this.adjustDropdownPosition(r);
+        (p) => {
+          p.forEach((g) => {
+            g.isIntersecting || this.adjustDropdownPosition(r);
           });
         },
         {
@@ -3968,7 +3977,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       l(".sticky_block").then((e) => {
         l(".sticky_block").then((t) => {
           a(".add_to_cart_btn").addEventListener("click", () => {
-            h("exp_new_pdp_button_01", "Add to cart", "Click", "Stiky section");
+            m("exp_new_pdp_button_01", "Add to cart", "Click", "Stiky section");
             const r = a(".restock-rocket-button-container .restock-rocket-button-cover"), d = a(".product-single__meta block-buy-buttons .add-to-cart");
             r ? r.click() : d.click();
           });
@@ -3988,8 +3997,8 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       const e = f(".product-single__meta block-variant-picker > .variant-button-wrap input"), t = a(".color_wrapper .dropdown_toggle");
       let n = "", r = !1;
       e.forEach((d) => {
-        const c = d.getAttribute("value") || "Unknown", g = d.checked, _ = a(`.color_wrapper .dropdown_item[data-value="${c}"]`);
-        _ && (g ? (_.classList.add("active"), n = c, r = d.hasAttribute("data-disabled")) : _.classList.remove("active"));
+        const c = d.getAttribute("value") || "Unknown", u = d.checked, p = a(`.color_wrapper .dropdown_item[data-value="${c}"]`);
+        p && (u ? (p.classList.add("active"), n = c, r = d.hasAttribute("data-disabled")) : p.classList.remove("active"));
       }), t && n && (t.textContent = n, r ? t.setAttribute("data-disabled", "") : t.removeAttribute("data-disabled"));
     }
     syncLoadingState() {
@@ -4056,7 +4065,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
   }
   l(".page-content--product").then((i) => {
-    new B(j);
+    new O(B);
   });
 })();
 //# sourceMappingURL=index.js.map
