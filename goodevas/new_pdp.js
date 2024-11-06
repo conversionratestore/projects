@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const g = (o, e, t, n = "") => {
+  const m = (o, e, t, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: o,
@@ -8,34 +8,34 @@
       event_type: t,
       event_loc: n
     }), console.dir(`Event: ${o} | ${e} | ${t} | ${n}`);
-  }, w = ({ name: o, dev: e }) => {
+  }, v = ({ name: o, dev: e }) => {
     console.log(
       `%c EXP: ${o} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, b = (o) => document.querySelectorAll(o), a = (o) => document.querySelector(o), v = (o, e = "variant_1") => {
+  }, f = (o) => document.querySelectorAll(o), a = (o) => document.querySelector(o), k = (o, e = "variant_1") => {
     let t = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", o, e), console.log("set", o, e));
     }, 1e3);
-  }, h = (o, e, t, n, r = "Visibility", d = 600, c = 0.5) => {
-    let _, m;
-    if (_ = new IntersectionObserver(
+  }, b = (o, e, t, n, r = "Visibility", d = 600, c = 0.5) => {
+    let g, _;
+    if (g = new IntersectionObserver(
       function(u) {
-        u[0].isIntersecting === !0 ? m = setTimeout(() => {
-          g(
+        u[0].isIntersecting === !0 ? _ = setTimeout(() => {
+          m(
             e,
             u[0].target.dataset.visible || n || "",
             r,
             t
-          ), _.disconnect();
-        }, d) : clearTimeout(m);
+          ), g.disconnect();
+        }, d) : clearTimeout(_);
       },
       { threshold: [c] }
     ), typeof o == "string") {
       const u = document.querySelector(o);
-      u && _.observe(u);
+      u && g.observe(u);
     } else
-      _.observe(o);
+      g.observe(o);
   };
   function l(o) {
     return new Promise((e) => {
@@ -61,7 +61,7 @@
       return t = window.scrollY, e != null && (r = t - e), e = t, clearTimeout(n), n = setTimeout(c, d), r;
     };
   })();
-  const k = (o, e = 100) => {
+  const C = (o, e = 100) => {
     const t = document.querySelector(o);
     if (!t)
       return;
@@ -258,7 +258,23 @@
         },
         {
           title: "Easy to Assemble",
-          txt: "<p>Easy to assemble</p>"
+          txt: `
+          <p>We provide detailed, easy-to-follow instructions to make assembling our sets a fun and enjoyable experience for the whole family. In the attached file, you'll find step-by-step <a class="under_line_accent" target="_blank" href="https://drive.google.com/file/d/1e8TZwkP6QfK9a3m4uwarp1mHoaHr_NTv/view?usp=sharing">instructions</a>.</p>
+          <p>For additional support, we've also included a link to a video tutorial to make building together even more enjoyable.</p>
+          <ol>
+            <li>
+              <a class="under_line_accent" href="https://youtu.be/zzr0sgSfuQI" target="_blank" rel="noopener noreferrer">Triangle ladder assembly</a>
+            </li>
+            <li>
+              <a class="under_line_accent" href="https://youtu.be/JWVnHix3RD4" target="_blank" rel="noopener noreferrer">Arch assembly</a>
+            </li>
+            <li>
+              <a class="under_line_accent" href="https://youtu.be/5TSJYOXEWQ4" target="_blank" rel="noopener noreferrer">Slide assembly</a>
+            </li>
+            <li>
+              <a class="under_line_accent" href="https://youtu.be/iZE0yZ_lFfI" target="_blank" rel="noopener noreferrer">Net assembly</a>
+            </li>
+          </ol>`
         }
       ],
       mainBenefits: {
@@ -403,7 +419,23 @@
         },
         {
           title: "Easy to Assemble",
-          txt: "<p>Easy to assemble</p>"
+          txt: `
+        <p>We provide detailed, easy-to-follow instructions to make assembling our sets a fun and enjoyable experience for the whole family. In the attached file, you'll find step-by-step <a class="under_line_accent" target="_blank" href="https://drive.google.com/file/d/1KGE0V7U25b_d2S-GyaZN3Gbe5ikueE8P/view?usp=sharing">instructions</a>.</p>
+        <p>For additional support, we've also included a link to a video tutorial to make building together even more enjoyable.</p>
+        <ol>
+          <li>
+            <a class="under_line_accent" href="https://youtu.be/zzr0sgSfuQI" target="_blank" rel="noopener noreferrer">Triangle ladder assembly</a>
+          </li>
+          <li>
+            <a class="under_line_accent" href="https://youtu.be/JWVnHix3RD4" target="_blank" rel="noopener noreferrer">Arch assembly</a>
+          </li>
+          <li>
+            <a class="under_line_accent" href="https://youtu.be/5TSJYOXEWQ4" target="_blank" rel="noopener noreferrer">Slide assembly</a>
+          </li>
+          <li>
+            <a class="under_line_accent" href="https://youtu.be/iZE0yZ_lFfI" target="_blank" rel="noopener noreferrer">Net assembly</a>
+          </li>
+        </ol>`
         }
       ],
       mainBenefits: {
@@ -564,7 +596,17 @@
         },
         {
           title: "Easy to Assemble",
-          txt: "<p>Easy to assemble</p>"
+          txt: `
+        <p>We provide detailed, easy-to-follow instructions to make assembling our sets a fun and enjoyable experience for the whole family. In the attached file, you'll find step-by-step <a class="under_line_accent" target="_blank" href="https://drive.google.com/file/d/19mZU3SEwwK_NLEr-bT3YDIZQusiU7rZ7/view?usp=sharing">instructions</a>.</p>
+        <p>For additional support, we've also included a link to a video tutorial to make building together even more enjoyable.</p>
+        <ol>
+          <li>
+            <a class="under_line_accent" href="https://youtu.be/zzr0sgSfuQI" target="_blank" rel="noopener noreferrer">Triangle ladder assembly</a>
+          </li>
+          <li>
+            <a class="under_line_accent" href="https://youtu.be/5TSJYOXEWQ4" target="_blank" rel="noopener noreferrer">Slide assembly</a>
+          </li>
+        </ol>`
         }
       ],
       mainBenefits: {
@@ -716,7 +758,20 @@
         },
         {
           title: "Easy to Assemble",
-          txt: "<p>Easy to assemble</p>"
+          txt: `
+        <p>We provide detailed, easy-to-follow instructions to make assembling our sets a fun and enjoyable experience for the whole family. In the attached file, you'll find step-by-step <a class="under_line_accent" target="_blank" href="https://drive.google.com/file/d/1PPYggl--kaEOfCVSbbDc6CRkDrKYK2k-/view?usp=sharing">instructions</a>.</p>
+        <p>For additional support, we've also included a link to a video tutorial to make building together even more enjoyable.</p>
+        <ol>
+          <li>
+            <a class="under_line_accent" href="https://youtu.be/zzr0sgSfuQI" target="_blank" rel="noopener noreferrer">Triangle ladder assembly</a>
+          </li>
+          <li>
+            <a class="under_line_accent" href="https://youtu.be/JWVnHix3RD4" target="_blank" rel="noopener noreferrer">Arch assembly</a>
+          </li>
+          <li>
+            <a class="under_line_accent" href="https://youtu.be/5TSJYOXEWQ4" target="_blank" rel="noopener noreferrer">Slide assembly</a>
+          </li>
+        </ol>`
         }
       ],
       mainBenefits: {
@@ -909,7 +964,26 @@
         },
         {
           title: "Easy to Assemble",
-          txt: "<p>Easy to assemble</p>"
+          txt: `
+          <p>We provide detailed, easy-to-follow instructions to make assembling our sets a fun and enjoyable experience for the whole family. In the attached file, you'll find step-by-step <a class="under_line_accent" target="_blank" href="https://drive.google.com/file/d/1Jojhia3980XfOuY0FIXZKxR8hmkzeGP0/view?usp=sharing">instructions</a>.</p>
+          <p>For additional support, we've also included a link to a video tutorial to make building together even more enjoyable.</p>
+          <ol>
+            <li>
+              <a class="under_line_accent" href="https://youtu.be/zzr0sgSfuQI" target="_blank" rel="noopener noreferrer">Triangle ladder assembly</a>
+            </li>
+            <li>
+              <a class="under_line_accent" href="https://youtu.be/JWVnHix3RD4" target="_blank" rel="noopener noreferrer">Arch assembly</a>
+            </li>
+            <li>
+              <a class="under_line_accent" href="https://youtu.be/5TSJYOXEWQ4" target="_blank" rel="noopener noreferrer">Slide assembly</a>
+            </li>
+            <li>
+              <a class="under_line_accent" href="https://youtu.be/iZE0yZ_lFfI" target="_blank" rel="noopener noreferrer">Net assembly</a>
+            </li>
+            <li>
+              <a class="under_line_accent" href="https://youtu.be/AS8SqeccpFc" target="_blank" rel="noopener noreferrer">Art Addition assembly</a>
+            </li>
+          </ol>`
         }
       ],
       mainBenefits: {
@@ -1063,7 +1137,23 @@
         },
         {
           title: "Easy to Assemble",
-          txt: "<p>Easy to assemble</p>"
+          txt: `
+        <p>We provide detailed, easy-to-follow instructions to make assembling our sets a fun and enjoyable experience for the whole family. In the attached file, you'll find step-by-step <a class="under_line_accent" target="_blank" href="https://drive.google.com/file/d/1e8TZwkP6QfK9a3m4uwarp1mHoaHr_NTv/view?usp=sharing">instructions</a>.</p>
+        <p>For additional support, we've also included a link to a video tutorial to make building together even more enjoyable.</p>
+        <ol>
+          <li>
+            <a class="under_line_accent" href="https://youtu.be/zzr0sgSfuQI" target="_blank" rel="noopener noreferrer">Triangle ladder assembly</a>
+          </li>
+          <li>
+            <a class="under_line_accent" href="https://youtu.be/JWVnHix3RD4" target="_blank" rel="noopener noreferrer">Arch assembly</a>
+          </li>
+          <li>
+            <a class="under_line_accent" href="https://youtu.be/5TSJYOXEWQ4" target="_blank" rel="noopener noreferrer">Slide assembly</a>
+          </li>
+          <li>
+            <a class="under_line_accent" href="https://youtu.be/iZE0yZ_lFfI" target="_blank" rel="noopener noreferrer">Net assembly</a>
+          </li>
+        </ol>`
         }
       ],
       mainBenefits: {
@@ -1217,7 +1307,23 @@
         },
         {
           title: "Easy to Assemble",
-          txt: "<p>Easy to assemble</p>"
+          txt: `
+        <p>We provide detailed, easy-to-follow instructions to make assembling our sets a fun and enjoyable experience for the whole family. In the attached file, you'll find step-by-step <a class="under_line_accent" target="_blank" href="https://drive.google.com/file/d/1e8TZwkP6QfK9a3m4uwarp1mHoaHr_NTv/view?usp=sharing">instructions</a>.</p>
+        <p>For additional support, we've also included a link to a video tutorial to make building together even more enjoyable.</p>
+        <ol>
+          <li>
+            <a class="under_line_accent" href="https://youtu.be/zzr0sgSfuQI" target="_blank" rel="noopener noreferrer">Triangle ladder assembly</a>
+          </li>
+          <li>
+            <a class="under_line_accent" href="https://youtu.be/JWVnHix3RD4" target="_blank" rel="noopener noreferrer">Arch assembly</a>
+          </li>
+          <li>
+            <a class="under_line_accent" href="https://youtu.be/5TSJYOXEWQ4" target="_blank" rel="noopener noreferrer">Slide assembly</a>
+          </li>
+          <li>
+            <a class="under_line_accent" href="https://youtu.be/iZE0yZ_lFfI" target="_blank" rel="noopener noreferrer">Net assembly</a>
+          </li>
+        </ol>`
         }
       ],
       mainBenefits: {
@@ -1302,10 +1408,10 @@
         `${i}goodevas_img.webp`
       ]
     }
-  }, C = (
+  }, S = (
     /* HTML */
     ` <div class="best_seller_label_block">${s.bestSellerLabelIcon}</div> `
-  ), y = (o) => (
+  ), w = (o) => (
     /* HTML */
     `
     <div class="bought_so_far_block">
@@ -1313,7 +1419,7 @@
       <p><span class="">${o}</span> bought so far</p>
     </div>
   `
-  ), S = (o) => (
+  ), L = (o) => (
     /* HTML */
     `
     <div class="get_free_delivery_block">
@@ -1324,7 +1430,7 @@
       </p>
     </div>
   `
-  ), L = (o) => (
+  ), T = (o) => (
     /* HTML */
     `
     <div class="new_product_sales_points_block">
@@ -1341,7 +1447,7 @@
       </ul>
     </div>
   `
-  ), T = (o) => (
+  ), D = (o) => (
     /* HTML */
     `
     <div class="one_review_block">
@@ -1361,10 +1467,10 @@
       </div>
     </div>
   `
-  ), D = (o) => (
+  ), H = (o) => (
     /* HTML */
     ` <h2 class="tolstoy_stories_new_title">${o}</h2> `
-  ), H = (o) => (
+  ), I = (o) => (
     /* HTML */
     `
     <div class="product_details_block">
@@ -1409,7 +1515,7 @@
       </ul>
     </div>
   `
-  ), I = (o) => (
+  ), z = (o) => (
     /* HTML */
     `
     <div class="comparison_table_block">
@@ -1474,7 +1580,7 @@
       </div>
     </div>
   `
-  ), z = (o) => (
+  ), E = (o) => (
     /* HTML */
     `
     <div class="faq_block">
@@ -1497,7 +1603,7 @@
       </ul>
     </div>
   `
-  ), E = (o) => (
+  ), A = (o) => (
     /* HTML */
     `
     <div class="product_image_gallery_block">
@@ -1523,18 +1629,18 @@
       <div class="add_to_cart_btn ${e}">${o}</div>
     </div>
   `
-  ), A = (o, e) => (
+  ), q = (o, e, t) => (
     /* HTML */
     `
     <div class="color_wrapper">
       <span>Color</span>
       <div class="custom_dropdown" id="productColor">
-        <div class="dropdown_toggle">${e}</div>
+        <div class="dropdown_toggle" ${t ? "data-disabled" : ""}>${e}</div>
         <div class="dropdown_menu">${o}</div>
       </div>
     </div>
   `
-  ), q = (o, e, t, n, r) => (
+  ), W = (o, e, t, n, r) => (
     /* HTML */
     `
     <div class="estimate_your_shipping_period_block">
@@ -1562,7 +1668,7 @@
       </div>
     </div>
   `
-  ), B = `@charset "UTF-8";
+  ), V = `@charset "UTF-8";
 @media (max-width: 768px) {
   body {
     padding-bottom: 80px;
@@ -2521,40 +2627,63 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
   letter-spacing: 0.65px;
   margin: 0;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul {
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul,
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div ol {
   margin: 0 0 0 15px;
   padding: 0;
   list-style: disc;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul + p {
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul + p,
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div ol + p {
   margin-top: 15px;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul > li {
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul > li,
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div ol > li {
   margin: 0;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul > li + li {
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul > li + li,
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div ol > li + li {
   margin-top: 8px;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul > li strong {
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul > li strong,
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div ol > li strong {
   display: block;
   margin-bottom: 5px;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul > li > p + ul {
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul > li > p + ul,
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div ol > li > p + ul {
   margin-top: 5px;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul > li > ul {
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul > li > ul,
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div ol > li > ul {
   list-style: circle;
   margin: 0 0 0 15px;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul > li > ul > li {
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul > li > ul > li,
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div ol > li > ul > li {
   margin: 0;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div p + ul {
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div p + ul,
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div p + ol {
   margin: 15px 0 0 15px;
 }
 .product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .under_line_accent {
   text-decoration: underline;
   margin-bottom: 5px;
+}
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div a.under_line_accent {
+  position: relative;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div a.under_line_accent:hover {
+  color: #0056b3;
+}
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div a {
+  cursor: pointer;
+}
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > p + p {
+  margin-top: 15px;
 }
 .product_details_block .blur_txt {
   position: relative;
@@ -3457,6 +3586,20 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
   letter-spacing: 0.65px;
   padding-right: 20px;
 }
+.sticky_block .custom_dropdown .dropdown_toggle[data-disabled] {
+  position: relative;
+  opacity: 0.75;
+}
+.sticky_block .custom_dropdown .dropdown_toggle[data-disabled]::before {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  border-left: 2px solid;
+  border-color: #000000;
+  transform: rotate(45deg);
+}
 .sticky_block .custom_dropdown .dropdown_toggle.disabled {
   pointer-events: none;
   color: #c3c3c3;
@@ -3509,8 +3652,21 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
 .sticky_block .custom_dropdown .dropdown_item.active {
   background: #ffcc60;
   color: white;
-}/*# sourceMappingURL=main.css.map */`, V = window.innerWidth < 768 ? "mobile" : "desktop";
-  class W {
+}
+.sticky_block .custom_dropdown .dropdown_item[data-disabled] {
+  position: relative;
+}
+.sticky_block .custom_dropdown .dropdown_item[data-disabled]::before {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  border-left: 2px solid;
+  border-color: var(--colorBorder);
+  transform: rotate(45deg);
+}/*# sourceMappingURL=main.css.map */`, B = window.innerWidth < 768 ? "mobile" : "desktop";
+  class j {
     constructor(e) {
       this.device = e, this.observer = null, this.pathName = this.findTranslationKey(window.location.pathname), this.init();
     }
@@ -3518,7 +3674,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       return Object.keys(p).find((n) => e.includes(n)) || "";
     }
     init() {
-      w({ name: "PDP v2 Major Release", dev: "SKh" }), v("new_pdp"), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${B}</style>`), this.renderBestSellerLabelForPhoto(), this.renderBoughtSoFarBlock(), this.renderGetFreeDeliveryBlock(), this.renderNewProductSalesPointsBlock(), this.renderKlarnaWrapper(), this.replaceKlarnaPlacement(), this.renderOneReviewBlock(), this.renderTolstoyStoriesNewTitle(), this.clickAllReviewsLink(), this.renderProductDetailsBlock(), this.toggleSeeMoreTxt(), this.renderEstimateYourShippingPeriodBlock(), this.renderMainBenefits(), this.renderComparisonTable(), this.renderProductImageGalleryBlock(), this.renderFAQBlock(), this.initAccordionProductDetails(
+      v({ name: "PDP v2 Major Release", dev: "SKh" }), k("new_pdp"), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${V}</style>`), this.renderBestSellerLabelForPhoto(), this.renderBoughtSoFarBlock(), this.renderGetFreeDeliveryBlock(), this.renderNewProductSalesPointsBlock(), this.renderKlarnaWrapper(), this.replaceKlarnaPlacement(), this.renderOneReviewBlock(), this.renderTolstoyStoriesNewTitle(), this.clickAllReviewsLink(), this.renderProductDetailsBlock(), this.toggleSeeMoreTxt(), this.renderEstimateYourShippingPeriodBlock(), this.renderMainBenefits(), this.renderComparisonTable(), this.renderProductImageGalleryBlock(), this.renderFAQBlock(), this.initAccordionProductDetails(
         ".product_details_block",
         ".product_details_accordion_block",
         ".product_details_accordion_link",
@@ -3533,25 +3689,25 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     renderBestSellerLabelForPhoto() {
       l(".product__main-photos").then((e) => {
         const t = a(".product__main-photos");
-        a(".best_seller_label_block") || t.insertAdjacentHTML("afterbegin", C);
+        a(".best_seller_label_block") || t.insertAdjacentHTML("afterbegin", S);
       });
     }
     renderBoughtSoFarBlock() {
       this.device === "desktop" && l("#shopify-block-yotpo_product_reviews_ugc_star_rating_FVceyX").then((e) => {
         const t = a("#shopify-block-yotpo_product_reviews_ugc_star_rating_FVceyX");
-        a(".bought_so_far_block") || t.insertAdjacentHTML("beforeend", y(p[this.pathName].boughtSoFarTxt));
+        a(".bought_so_far_block") || t.insertAdjacentHTML("beforeend", w(p[this.pathName].boughtSoFarTxt));
       }), this.device === "mobile" && l(".page-content--product .product-single__meta").then((e) => {
         const t = a(".page-content--product .product-single__meta");
         a(".bought_so_far_block") || t.insertAdjacentHTML(
           "afterbegin",
-          y(p[this.pathName].boughtSoFarTxt)
+          w(p[this.pathName].boughtSoFarTxt)
         );
       });
     }
     renderGetFreeDeliveryBlock() {
       l("block-price").then((e) => {
         const t = a("block-price");
-        a(".get_free_delivery_block") || t.insertAdjacentHTML("afterend", S(this.getShippingDayDate()));
+        a(".get_free_delivery_block") || t.insertAdjacentHTML("afterend", L(this.getShippingDayDate()));
       });
     }
     renderNewProductSalesPointsBlock() {
@@ -3559,7 +3715,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         const t = a("product-inventory");
         a(".new_product_sales_points_block") || t.insertAdjacentHTML(
           "beforebegin",
-          L(p[this.pathName].newProductSalesPointsTxt)
+          T(p[this.pathName].newProductSalesPointsTxt)
         );
       });
     }
@@ -3582,7 +3738,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     renderOneReviewBlock() {
       l("block-buy-buttons").then((e) => {
         const t = a("block-buy-buttons");
-        a(".one_review_block") || t.insertAdjacentHTML("afterend", T(p[this.pathName].oneReviewBlock));
+        a(".one_review_block") || t.insertAdjacentHTML("afterend", D(p[this.pathName].oneReviewBlock));
       });
     }
     renderTolstoyStoriesNewTitle() {
@@ -3590,7 +3746,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         const t = a(".tolstoy-stories-title");
         a(".tolstoy_stories_new_title") || t.insertAdjacentHTML(
           "afterend",
-          D(p[this.pathName].tolstoyStoriesNewTitle)
+          H(p[this.pathName].tolstoyStoriesNewTitle)
         );
       });
     }
@@ -3598,7 +3754,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       l(".all_reviews_link").then((e) => {
         l(".yotpo-main-layout").then((t) => {
           a(".all_reviews_link").addEventListener("click", () => {
-            g("exp_new_pdp_button_03", "All reviews", "Click", "Review section"), k(".yotpo-main-layout");
+            m("exp_new_pdp_button_03", "All reviews", "Click", "Review section"), C(".yotpo-main-layout");
           });
         });
       });
@@ -3608,14 +3764,14 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         const t = a(".main_benefits_block");
         a(".product_details_block") || t.insertAdjacentHTML(
           "beforebegin",
-          H(p[this.pathName].productDetailsTxt)
+          I(p[this.pathName].productDetailsTxt)
         );
       });
     }
     toggleSeeMoreTxt() {
       l(".see_more_block").then((e) => {
         a(".see_more_block").addEventListener("click", (n) => {
-          n.currentTarget && !n.currentTarget.classList.contains("is_open") ? (g("exp_new_pdp_link_01", "See more", "Click", "Product details"), n.currentTarget.classList.add("is_open"), n.currentTarget.querySelector("div").textContent = "See Less", n.currentTarget.previousElementSibling.classList.remove("blur_txt")) : (g("exp_new_pdp_link_01", "See Less", "Click", "Product details"), n.currentTarget.classList.remove("is_open"), n.currentTarget.querySelector("div").textContent = "See More", n.currentTarget.previousElementSibling.classList.add("blur_txt"));
+          n.currentTarget && !n.currentTarget.classList.contains("is_open") ? (m("exp_new_pdp_link_01", "See more", "Click", "Product details"), n.currentTarget.classList.add("is_open"), n.currentTarget.querySelector("div").textContent = "See Less", n.currentTarget.previousElementSibling.classList.remove("blur_txt")) : (m("exp_new_pdp_link_01", "See Less", "Click", "Product details"), n.currentTarget.classList.remove("is_open"), n.currentTarget.querySelector("div").textContent = "See More", n.currentTarget.previousElementSibling.classList.add("blur_txt"));
         });
       });
     }
@@ -3624,7 +3780,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         const t = a(".product_details_block");
         a(".estimate_your_shipping_period_block") || t.insertAdjacentHTML(
           "beforebegin",
-          q(
+          W(
             p[this.pathName].deliveryToPlace,
             this.getTodayDate(),
             p[this.pathName].deliveryDays,
@@ -3669,7 +3825,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         const t = a(".main_benefits_block");
         a(".comparison_table_block") || t.insertAdjacentHTML(
           "afterend",
-          I(p[this.pathName].comparisonTable)
+          z(p[this.pathName].comparisonTable)
         );
       });
     }
@@ -3677,7 +3833,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       l(".comparison_table_block").then((e) => {
         l(".product_image_gallery_block").then((t) => {
           let n = a(".comparison_table_block");
-          this.device === "mobile" && (n = a(".product_image_gallery_block")), a(".faq_block") || n.insertAdjacentHTML("afterend", z(p[this.pathName].fAQTxt));
+          this.device === "mobile" && (n = a(".product_image_gallery_block")), a(".faq_block") || n.insertAdjacentHTML("afterend", E(p[this.pathName].fAQTxt));
         });
       });
     }
@@ -3687,29 +3843,31 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         const n = a(e);
         a(".product_image_gallery_block") || n.insertAdjacentHTML(
           "beforebegin",
-          E(p[this.pathName].productImageGalleryImgs)
+          A(p[this.pathName].productImageGalleryImgs)
         );
       });
     }
     initAccordionProductDetails(e, t, n, r) {
       let d = setInterval(() => {
         typeof jQuery == "function" && a(e) && (clearInterval(d), console.log("Accordion initialized for", e), $(`${t}`).eq(0).addClass("active"), $(`${t} ${n}`).eq(0).addClass("active"), $(`${t} ${r}`).eq(0).css("display", "flex"), $(`${n}`).on("click", function(c) {
-          $(this).toggleClass("active"), $(this).closest("li").toggleClass("active"), $(this).next(r).slideToggle(), $(`${n}`).not(this).next(r).slideUp(), $(`${n}`).not(this).removeClass("active").closest("li").removeClass("active"), e === ".product_details_block" && (c.currentTarget.classList.contains("active") ? g(
+          $(this).toggleClass("active"), $(this).closest("li").toggleClass("active"), $(this).next(r).slideToggle(), $(`${n}`).not(this).next(r).slideUp(), $(`${n}`).not(this).removeClass("active").closest("li").removeClass("active"), e === ".product_details_block" && (setTimeout(() => {
+            c.currentTarget.closest("li").scrollIntoView({ block: "start", behavior: "smooth" });
+          }, 400), c.currentTarget.classList.contains("active") ? m(
             "exp_new_pdp_dropdown_02",
             `Open - ${c.currentTarget.querySelector("p").textContent}`,
             "Click",
             "Product details"
-          ) : g(
+          ) : m(
             "exp_new_pdp_dropdown_03",
             `Close - ${c.currentTarget.querySelector("p").textContent}`,
             "Click",
             "Product details"
-          )), e === ".faq_block" && (c.currentTarget.classList.contains("active") ? g(
+          )), e === ".faq_block" && (c.currentTarget.classList.contains("active") ? m(
             "exp_new_pdp_dropdown_04",
             `Open - ${c.currentTarget.querySelector("p").textContent}`,
             "Click",
             "FAQ"
-          ) : g(
+          ) : m(
             "exp_new_pdp_dropdown_05",
             `Close - ${c.currentTarget.querySelector("p").textContent}`,
             "Click",
@@ -3735,8 +3893,8 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
               threshold: 0
             };
             let d = new IntersectionObserver((c) => {
-              c.forEach((_) => {
-                _.isIntersecting ? e.style.display = "none" : e.style.display = "flex", d.unobserve(_.target);
+              c.forEach((g) => {
+                g.isIntersecting ? e.style.display = "none" : e.style.display = "flex", d.unobserve(g.target);
               }), d.disconnect();
             }, r);
             d.observe(t);
@@ -3750,42 +3908,49 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     renderColorWrapper() {
       l(".sticky_block").then((e) => {
         l(".product-single__meta block-variant-picker > .variant-button-wrap input").then((t) => {
-          const n = a(".sticky_block"), r = b(".product-single__meta block-variant-picker > .variant-button-wrap input");
+          const n = a(".sticky_block"), r = f(".product-single__meta block-variant-picker > .variant-button-wrap input");
           if (r.length > 0) {
-            let d = [], c = "";
+            let d = [], c = "", g = !1;
             r.forEach((_) => {
-              const m = _.getAttribute("value") || "Unknown", u = _.checked;
-              u && (c = m), d.push(this.createDropdownItem(m, u));
-            }), a(".color_wrapper") || n.insertAdjacentHTML("afterbegin", A(d.join(""), c)), this.changeCustomDropdownHandler(".custom_dropdown");
+              const u = _.getAttribute("value") || "Unknown", h = _.checked, y = _.hasAttribute("data-disabled");
+              h && (c = u), y && (g = !0), d.push(this.createDropdownItem(u, h, y));
+            }), a(".color_wrapper") || n.insertAdjacentHTML(
+              "afterbegin",
+              q(d.join(""), c, g)
+            ), this.changeCustomDropdownHandler(".custom_dropdown");
           }
         });
       });
     }
-    createDropdownItem(e, t) {
+    createDropdownItem(e, t, n) {
       return (
         /* HTML */
-        ` <div class="dropdown_item ${t ? "active" : ""}" data-value="${e}">${e}</div> `
+        `
+      <div class="dropdown_item ${t ? "active" : ""}" data-value="${e}" ${n ? "data-disabled" : ""}>
+        ${e}
+      </div>
+    `
       );
     }
     changeCustomDropdownHandler(e) {
-      const t = a(e), n = t.querySelector(".dropdown_toggle"), r = t.querySelector(".dropdown_menu"), d = t.querySelectorAll(".dropdown_item"), c = b(
+      const t = a(e), n = t.querySelector(".dropdown_toggle"), r = t.querySelector(".dropdown_menu"), d = t.querySelectorAll(".dropdown_item"), c = f(
         ".product-single__meta block-variant-picker > .variant-button-wrap input"
       );
       n.addEventListener("click", () => {
-        g("exp_new_pdp_button_02", "Color", "Click", "Stiky section"), r.classList.toggle("show"), this.adjustDropdownPosition(r), n.classList.toggle("active");
-      }), d.forEach((m) => {
-        m.addEventListener("click", (u) => {
-          const f = u.currentTarget, O = f.getAttribute("data-value");
-          r.style.top = "100%", n.innerHTML = f.innerHTML, r.classList.remove("show"), n.classList.remove("active"), g("exp_new_pdp_dropdown_01", `Selected value: ${f == null ? void 0 : f.textContent}`, "Dropdown", "Stiky section"), c.forEach((x) => {
-            x.getAttribute("value") === O && x.click();
+        m("exp_new_pdp_button_02", "Color", "Click", "Stiky section"), r.classList.toggle("show"), this.adjustDropdownPosition(r), n.classList.toggle("active");
+      }), d.forEach((_) => {
+        _.addEventListener("click", (u) => {
+          const h = u.currentTarget, y = h.getAttribute("data-value"), O = h.hasAttribute("data-disabled");
+          r.style.top = "100%", n.innerHTML = h.innerHTML, r.classList.remove("show"), n.classList.remove("active"), O ? n.setAttribute("data-disabled", "") : n.removeAttribute("data-disabled"), m("exp_new_pdp_dropdown_01", `Selected value: ${h == null ? void 0 : h.textContent}`, "Dropdown", "Stiky section"), c.forEach((x) => {
+            x.getAttribute("value") === y && x.click();
           });
         });
-      }), document.addEventListener("click", (m) => {
-        const u = m.target;
+      }), document.addEventListener("click", (_) => {
+        const u = _.target;
         t.contains(u) || (r.classList.remove("show"), n.classList.remove("active"), r.style.top = "100%");
       }), new IntersectionObserver(
-        (m) => {
-          m.forEach((u) => {
+        (_) => {
+          _.forEach((u) => {
             u.isIntersecting || this.adjustDropdownPosition(r);
           });
         },
@@ -3803,7 +3968,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       l(".sticky_block").then((e) => {
         l(".sticky_block").then((t) => {
           a(".add_to_cart_btn").addEventListener("click", () => {
-            g("exp_new_pdp_button_01", "Add to cart", "Click", "Stiky section");
+            m("exp_new_pdp_button_01", "Add to cart", "Click", "Stiky section");
             const r = a(".restock-rocket-button-container .restock-rocket-button-cover"), d = a(".product-single__meta block-buy-buttons .add-to-cart");
             r ? r.click() : d.click();
           });
@@ -3812,7 +3977,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     changeColorOnPdp() {
       l(".product-single__meta block-variant-picker > .variant-button-wrap input").then((e) => {
-        b(".product-single__meta block-variant-picker > .variant-button-wrap input").forEach((n) => {
+        f(".product-single__meta block-variant-picker > .variant-button-wrap input").forEach((n) => {
           n.addEventListener("click", () => {
             this.updateActiveColor();
           });
@@ -3820,12 +3985,12 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       });
     }
     updateActiveColor() {
-      const e = b(".product-single__meta block-variant-picker > .variant-button-wrap input"), t = a(".color_wrapper .dropdown_toggle");
-      let n = "";
-      e.forEach((r) => {
-        const d = r.getAttribute("value") || "Unknown", c = r.checked, _ = a(`.color_wrapper .dropdown_item[data-value="${d}"]`);
-        _ && (c ? (_.classList.add("active"), n = d) : _.classList.remove("active"));
-      }), t && n && (t.textContent = n);
+      const e = f(".product-single__meta block-variant-picker > .variant-button-wrap input"), t = a(".color_wrapper .dropdown_toggle");
+      let n = "", r = !1;
+      e.forEach((d) => {
+        const c = d.getAttribute("value") || "Unknown", g = d.checked, _ = a(`.color_wrapper .dropdown_item[data-value="${c}"]`);
+        _ && (g ? (_.classList.add("active"), n = c, r = d.hasAttribute("data-disabled")) : _.classList.remove("active"));
+      }), t && n && (t.textContent = n, r ? t.setAttribute("data-disabled", "") : t.removeAttribute("data-disabled"));
     }
     syncLoadingState() {
       l(".product-single__meta block-buy-buttons .add-to-cart").then(() => {
@@ -3837,7 +4002,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     visibleHandler() {
       l(".estimate_your_shipping_period_block").then((e) => {
-        h(
+        b(
           ".estimate_your_shipping_period_block",
           "exp_new_pdp_element_01",
           "Estimate your shipping period",
@@ -3845,11 +4010,11 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
           "View"
         );
       }), l(".product_details_block").then((e) => {
-        h(".product_details_block", "exp_new_pdp_element_02", "Product details", "Product details", "View");
+        b(".product_details_block", "exp_new_pdp_element_02", "Product details", "Product details", "View");
       }), l(".main_benefits_block").then((e) => {
-        h(".main_benefits_block", "exp_new_pdp_element_03", "Benefits details", "Benefits details", "View");
+        b(".main_benefits_block", "exp_new_pdp_element_03", "Benefits details", "Benefits details", "View");
       }), l(".comparison_table_block").then((e) => {
-        h(
+        b(
           ".comparison_table_block",
           "exp_new_pdp_element_04",
           "Goodevas Quality vs Others",
@@ -3857,9 +4022,9 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
           "View"
         );
       }), l(".faq_block").then((e) => {
-        h(".faq_block", "exp_new_pdp_element_05", "FAQ", "FAQ", "View");
+        b(".faq_block", "exp_new_pdp_element_05", "FAQ", "FAQ", "View");
       }), l(".product_image_gallery_block").then((e) => {
-        h(
+        b(
           ".product_image_gallery_block",
           "exp_new_pdp_element_06",
           "Product image gallery",
@@ -3870,7 +4035,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     resizeSlider() {
       l(".product-slideshow").then((e) => {
-        const t = b(".product-slideshow")[0];
+        const t = f(".product-slideshow")[0];
         if (t) {
           const n = Flickity.data(t);
           if (n) {
@@ -3891,7 +4056,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
   }
   l(".page-content--product").then((o) => {
-    new W(V);
+    new j(B);
   });
 })();
 //# sourceMappingURL=index.js.map
