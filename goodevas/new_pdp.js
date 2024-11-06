@@ -1735,7 +1735,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     display: flex !important;
     align-items: center;
     justify-content: center;
-    width: 26px;
+    width: 43px;
     height: 35px;
     z-index: 10;
     opacity: 1 !important;
