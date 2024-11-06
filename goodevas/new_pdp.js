@@ -17,7 +17,7 @@
     let t = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", i, e), console.log("set", i, e));
     }, 1e3);
-  }, b = (i, e, t, n, r = "Visibility", d = 600, c = 0.5) => {
+  }, b = (i, e, t, n, o = "Visibility", c = 600, d = 0.5) => {
     let u, p;
     if (u = new IntersectionObserver(
       function(g) {
@@ -25,12 +25,12 @@
           h(
             e,
             g[0].target.dataset.visible || n || "",
-            r,
+            o,
             t
           ), u.disconnect();
-        }, d) : clearTimeout(p);
+        }, c) : clearTimeout(p);
       },
-      { threshold: [c] }
+      { threshold: [d] }
     ), typeof i == "string") {
       const g = document.querySelector(i);
       g && u.observe(g);
@@ -53,21 +53,21 @@
   }
   (function(i) {
     i = i === void 0 ? {} : i;
-    let e, t, n, r, d = (i == null ? void 0 : i.delay) || 50;
-    function c() {
-      e = null, r = 0;
+    let e, t, n, o, c = (i == null ? void 0 : i.delay) || 50;
+    function d() {
+      e = null, o = 0;
     }
-    return c(), function() {
-      return t = window.scrollY, e != null && (r = t - e), e = t, clearTimeout(n), n = setTimeout(c, d), r;
+    return d(), function() {
+      return t = window.scrollY, e != null && (o = t - e), e = t, clearTimeout(n), n = setTimeout(d, c), o;
     };
   })();
   const S = (i, e = 100) => {
     const t = document.querySelector(i);
     if (!t)
       return;
-    const r = t.getBoundingClientRect().top - e;
+    const o = t.getBoundingClientRect().top - e;
     window.scrollBy({
-      top: r,
+      top: o,
       behavior: "smooth"
     });
   }, w = (i, e = 100) => {
@@ -76,7 +76,7 @@
       top: n,
       behavior: "smooth"
     });
-  }, o = "https://conversionratestore.github.io/projects/goodevas/img/", s = {
+  }, r = "https://conversionratestore.github.io/projects/goodevas/img/", s = {
     bestSellerLabelIcon: `
     <svg xmlns="http://www.w3.org/2000/svg" width="155" height="38" viewBox="0 0 155 38" fill="none">
   <path d="M150.422 6.69351L141.288 17.1084C141.288 17.1082 141.288 17.1085 141.288 17.1084C140.949 17.4948 140.75 17.9521 140.75 18.441C140.75 18.9301 140.949 19.3871 141.288 19.7737L150.422 30.1885C151.373 31.2722 150.603 32.9704 149.162 32.9704H17.2279C15.7866 32.9704 15.0172 31.2721 15.9676 30.1885L25.1024 19.7737C25.4418 19.3871 25.6407 18.9301 25.6407 18.441C25.6407 17.952 25.4418 17.4949 25.1024 17.1084L15.9676 6.69356C15.0172 5.61 15.7866 3.91162 17.2279 3.91162H149.162C150.603 3.91162 151.373 5.60993 150.422 6.69351Z" fill="#FFF0CF"/>
@@ -305,9 +305,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${o}goodevas_img.webp`,
+        goodevasImg: `${r}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${o}competitors_img.webp`,
+        competitorsImg: `${r}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -359,12 +359,12 @@
         }
       ],
       productImageGalleryImgs: [
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`
       ]
     },
     "/products/4in1-montessori-climbing-frame-set-triangle-ladder-arch-rocker-slide-board-ramp-netting-rope": {
@@ -466,9 +466,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${o}goodevas_img.webp`,
+        goodevasImg: `${r}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${o}competitors_img.webp`,
+        competitorsImg: `${r}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -520,12 +520,12 @@
         }
       ],
       productImageGalleryImgs: [
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`
       ]
     },
     "/en-gb/products/3in1-wooden-swedish-wall-climbing-ladder-for-children-swing-set-slide-board": {
@@ -637,9 +637,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${o}goodevas_img.webp`,
+        goodevasImg: `${r}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${o}competitors_img.webp`,
+        competitorsImg: `${r}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -691,12 +691,12 @@
         }
       ],
       productImageGalleryImgs: [
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`
       ]
     },
     "/en-gb/products/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige": {
@@ -802,9 +802,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${o}goodevas_img.webp`,
+        goodevasImg: `${r}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${o}competitors_img.webp`,
+        competitorsImg: `${r}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -856,12 +856,12 @@
         }
       ],
       productImageGalleryImgs: [
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`
       ]
     },
     "/en-ca/products/6in1-montessori-climbing-frame-set-triangle-ladder-arch-rocker-slide-ramp-net-cushion-art-addition": {
@@ -1014,9 +1014,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${o}goodevas_img.webp`,
+        goodevasImg: `${r}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${o}competitors_img.webp`,
+        competitorsImg: `${r}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -1068,12 +1068,12 @@
         }
       ],
       productImageGalleryImgs: [
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`
       ]
     },
     "/en-ca/products/5in1-montessori-climbing-set-triangle-ladder-arch-rocker-slide-board-ramp-net-cushion-chocolate": {
@@ -1184,9 +1184,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${o}goodevas_img.webp`,
+        goodevasImg: `${r}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${o}competitors_img.webp`,
+        competitorsImg: `${r}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -1238,12 +1238,12 @@
         }
       ],
       productImageGalleryImgs: [
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`
       ]
     },
     "/en-eu/products/5in1-montessori-climbing-set-triangle-ladder-arch-rocker-slide-board-ramp-net-cushion-chocolate": {
@@ -1354,9 +1354,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${o}goodevas_img.webp`,
+        goodevasImg: `${r}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${o}competitors_img.webp`,
+        competitorsImg: `${r}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -1408,12 +1408,12 @@
         }
       ],
       productImageGalleryImgs: [
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`,
-        `${o}goodevas_img.webp`
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`,
+        `${r}goodevas_img.webp`
       ]
     }
   }, L = (
@@ -1546,7 +1546,7 @@
           <div class="header_table">
             <div class="table_cell">
               <h3>${i.goodevasTitle}</h3>
-              <img src="${o}goodevas_1_img.png" alt="child girl" />
+              <img src="${r}goodevas_1_img.png" alt="child girl" />
             </div>
           </div>
           <div class="body_table">
@@ -1568,7 +1568,7 @@
           <div class="header_table">
             <div class="table_cell">
               <h3>${i.competitorsTitle}</h3>
-              <img src="${o}competitors_1_img.png" alt="child girl" />
+              <img src="${r}competitors_1_img.png" alt="child girl" />
             </div>
           </div>
           <div class="body_table">
@@ -1648,7 +1648,7 @@
       </div>
     </div>
   `
-  ), B = (i, e, t, n, r) => (
+  ), B = (i, e, t, n, o) => (
     /* HTML */
     `
     <div class="estimate_your_shipping_period_block">
@@ -1671,7 +1671,7 @@
         <div class="money_back_guarantee">
           <h3 class="shipping_details_title">100% money-back guarantee through</h3>
           <span class="shipping_details_date guarantee_duration">30 days after purchase</span>
-          <span class="shipping_details_estimated_date guarantee_estimated_date">${r}</span>
+          <span class="shipping_details_estimated_date guarantee_estimated_date">${o}</span>
         </div>
       </div>
     </div>
@@ -1737,7 +1737,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     justify-content: center;
     width: 26px;
     height: 35px;
-    z-index: 5;
+    z-index: 10;
   }
   .page-content--product product-images .flickity-prev-next-button svg {
     width: 100%;
@@ -3740,8 +3740,8 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     replaceKlarnaPlacement() {
       l("klarna-placement").then((e) => {
         l(".klarna_wrapper").then((t) => {
-          const n = a(".klarna_wrapper"), r = a("klarna-placement");
-          a(".klarna_wrapper klarna-placement") || n.insertAdjacentElement("beforeend", r);
+          const n = a(".klarna_wrapper"), o = a("klarna-placement");
+          a(".klarna_wrapper klarna-placement") || n.insertAdjacentElement("beforeend", o);
         });
       });
     }
@@ -3857,30 +3857,30 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         );
       });
     }
-    initAccordionProductDetails(e, t, n, r) {
-      let d = setInterval(() => {
-        typeof jQuery == "function" && a(e) && (clearInterval(d), console.log("Accordion initialized for", e), $(`${t}`).eq(0).addClass("active"), $(`${t} ${n}`).eq(0).addClass("active"), $(`${t} ${r}`).eq(0).css("display", "flex"), $(`${n}`).on("click", function(c) {
-          $(this).toggleClass("active"), $(this).closest("li").toggleClass("active"), $(this).next(r).slideToggle(), $(`${n}`).not(this).next(r).slideUp(), $(`${n}`).not(this).removeClass("active").closest("li").removeClass("active"), e === ".product_details_block" && (setTimeout(() => {
-            const p = c.target.closest(".product_details_accordion_block");
+    initAccordionProductDetails(e, t, n, o) {
+      let c = setInterval(() => {
+        typeof jQuery == "function" && a(e) && (clearInterval(c), console.log("Accordion initialized for", e), $(`${t}`).eq(0).addClass("active"), $(`${t} ${n}`).eq(0).addClass("active"), $(`${t} ${o}`).eq(0).css("display", "flex"), $(`${n}`).on("click", function(d) {
+          $(this).toggleClass("active"), $(this).closest("li").toggleClass("active"), $(this).next(o).slideToggle(), $(`${n}`).not(this).next(o).slideUp(), $(`${n}`).not(this).removeClass("active").closest("li").removeClass("active"), e === ".product_details_block" && (setTimeout(() => {
+            const p = d.target.closest(".product_details_accordion_block");
             p && (window.innerWidth < 768 ? w(p, 90) : w(p, 0));
-          }, 400), c.currentTarget.classList.contains("active") ? h(
+          }, 400), d.currentTarget.classList.contains("active") ? h(
             "exp_new_pdp_dropdown_02",
-            `Open - ${c.currentTarget.querySelector("p").textContent}`,
+            `Open - ${d.currentTarget.querySelector("p").textContent}`,
             "Click",
             "Product details"
           ) : h(
             "exp_new_pdp_dropdown_03",
-            `Close - ${c.currentTarget.querySelector("p").textContent}`,
+            `Close - ${d.currentTarget.querySelector("p").textContent}`,
             "Click",
             "Product details"
-          )), e === ".faq_block" && (c.currentTarget.classList.contains("active") ? h(
+          )), e === ".faq_block" && (d.currentTarget.classList.contains("active") ? h(
             "exp_new_pdp_dropdown_04",
-            `Open - ${c.currentTarget.querySelector("p").textContent}`,
+            `Open - ${d.currentTarget.querySelector("p").textContent}`,
             "Click",
             "FAQ"
           ) : h(
             "exp_new_pdp_dropdown_05",
-            `Close - ${c.currentTarget.querySelector("p").textContent}`,
+            `Close - ${d.currentTarget.querySelector("p").textContent}`,
             "Click",
             "FAQ"
           ));
@@ -3889,9 +3889,9 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     renderStickyBlock() {
       l(".product-single__meta block-buy-buttons .add-to-cart").then((e) => {
-        const t = a("body"), n = a(".product-single__meta block-buy-buttons .add-to-cart span"), r = a(".restock-rocket-button-container button");
-        let d = n.textContent || "", c = "";
-        r && (c = "notify_available", d = r.textContent || ""), a(".sticky_block") || t.insertAdjacentHTML("beforeend", q(d, c));
+        const t = a("body"), n = a(".product-single__meta block-buy-buttons .add-to-cart span"), o = a(".restock-rocket-button-container button");
+        let c = n.textContent || "", d = "";
+        o && (d = "notify_available", c = o.textContent || ""), a(".sticky_block") || t.insertAdjacentHTML("beforeend", q(c, d));
       });
     }
     toggleStickyBlockVisibility() {
@@ -3899,16 +3899,16 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         l(".sticky_block").then(() => {
           const e = a(".sticky_block"), t = a("block-buy-buttons");
           function n() {
-            const r = {
+            const o = {
               root: null,
               threshold: 0
             };
-            let d = new IntersectionObserver((c) => {
-              c.forEach((u) => {
-                u.isIntersecting ? e.style.display = "none" : e.style.display = "flex", d.unobserve(u.target);
-              }), d.disconnect();
-            }, r);
-            d.observe(t);
+            let c = new IntersectionObserver((d) => {
+              d.forEach((u) => {
+                u.isIntersecting ? e.style.display = "none" : e.style.display = "flex", c.unobserve(u.target);
+              }), c.disconnect();
+            }, o);
+            c.observe(t);
           }
           window.addEventListener("scroll", () => {
             n();
@@ -3919,15 +3919,15 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     renderColorWrapper() {
       l(".sticky_block").then((e) => {
         l(".product-single__meta block-variant-picker > .variant-button-wrap input").then((t) => {
-          const n = a(".sticky_block"), r = f(".product-single__meta block-variant-picker > .variant-button-wrap input");
-          if (r.length > 0) {
-            let d = [], c = "", u = !1;
-            r.forEach((p) => {
+          const n = a(".sticky_block"), o = f(".product-single__meta block-variant-picker > .variant-button-wrap input");
+          if (o.length > 0) {
+            let c = [], d = "", u = !1;
+            o.forEach((p) => {
               const g = p.getAttribute("value") || "Unknown", m = p.checked, y = p.hasAttribute("data-disabled");
-              m && (c = g, u = y), d.push(this.createDropdownItem(g, m, y));
+              m && (d = g, u = y), c.push(this.createDropdownItem(g, m, y));
             }), a(".color_wrapper") || n.insertAdjacentHTML(
               "afterbegin",
-              W(d.join(""), c, u)
+              W(c.join(""), d, u)
             ), this.changeCustomDropdownHandler(".custom_dropdown");
           }
         });
@@ -3944,32 +3944,32 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       );
     }
     changeCustomDropdownHandler(e) {
-      const t = a(e), n = t.querySelector(".dropdown_toggle"), r = t.querySelector(".dropdown_menu"), d = t.querySelectorAll(".dropdown_item"), c = f(
+      const t = a(e), n = t.querySelector(".dropdown_toggle"), o = t.querySelector(".dropdown_menu"), c = t.querySelectorAll(".dropdown_item"), d = f(
         ".product-single__meta block-variant-picker > .variant-button-wrap input"
       );
       n.addEventListener("click", () => {
-        h("exp_new_pdp_button_02", "Color", "Click", "Stiky section"), r.classList.toggle("show"), this.adjustDropdownPosition(r), n.classList.toggle("active");
-      }), d.forEach((p) => {
+        h("exp_new_pdp_button_02", "Color", "Click", "Stiky section"), o.classList.toggle("show"), this.adjustDropdownPosition(o), n.classList.toggle("active");
+      }), c.forEach((p) => {
         p.addEventListener("click", (g) => {
           const m = g.currentTarget, y = m.getAttribute("data-value"), N = m.hasAttribute("data-disabled");
-          r.style.top = "100%", n.innerHTML = m.innerHTML, r.classList.remove("show"), n.classList.remove("active"), N ? n.setAttribute("data-disabled", "") : n.removeAttribute("data-disabled"), h("exp_new_pdp_dropdown_01", `Selected value: ${m == null ? void 0 : m.textContent}`, "Dropdown", "Stiky section"), c.forEach((v) => {
+          o.style.top = "100%", n.innerHTML = m.innerHTML, o.classList.remove("show"), n.classList.remove("active"), N ? n.setAttribute("data-disabled", "") : n.removeAttribute("data-disabled"), h("exp_new_pdp_dropdown_01", `Selected value: ${m == null ? void 0 : m.textContent}`, "Dropdown", "Stiky section"), d.forEach((v) => {
             v.getAttribute("value") === y && v.click();
           });
         });
       }), document.addEventListener("click", (p) => {
         const g = p.target;
-        t.contains(g) || (r.classList.remove("show"), n.classList.remove("active"), r.style.top = "100%");
+        t.contains(g) || (o.classList.remove("show"), n.classList.remove("active"), o.style.top = "100%");
       }), new IntersectionObserver(
         (p) => {
           p.forEach((g) => {
-            g.isIntersecting || this.adjustDropdownPosition(r);
+            g.isIntersecting || this.adjustDropdownPosition(o);
           });
         },
         {
           root: null,
           threshold: 1
         }
-      ).observe(r);
+      ).observe(o);
     }
     adjustDropdownPosition(e) {
       const t = e.getBoundingClientRect(), n = window.innerHeight || document.documentElement.clientHeight;
@@ -3980,8 +3980,8 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         l(".add_to_cart_btn").then((t) => {
           a(".add_to_cart_btn").addEventListener("click", () => {
             h("exp_new_pdp_button_01", "Add to cart", "Click", "Stiky section");
-            const r = a(".restock-rocket-button-container .restock-rocket-button-cover"), d = a(".product-single__meta block-buy-buttons .add-to-cart");
-            r ? r.click() : d.click();
+            const o = a(".restock-rocket-button-container .restock-rocket-button-cover"), c = a(".product-single__meta block-buy-buttons .add-to-cart");
+            o ? o.click() : c.click();
           });
         });
       });
@@ -3997,19 +3997,19 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     updateActiveColor() {
       const e = f(".product-single__meta block-variant-picker > .variant-button-wrap input"), t = a(".color_wrapper .dropdown_toggle");
-      let n = "", r = !1;
-      e.forEach((d) => {
-        const c = d.getAttribute("value") || "Unknown", u = d.checked, p = a(`.color_wrapper .dropdown_item[data-value="${c}"]`);
-        p && (u ? (p.classList.add("active"), n = c, r = d.hasAttribute("data-disabled")) : p.classList.remove("active"));
-      }), t && n && (t.textContent = n, r ? t.setAttribute("data-disabled", "") : t.removeAttribute("data-disabled"));
+      let n = "", o = !1;
+      e.forEach((c) => {
+        const d = c.getAttribute("value") || "Unknown", u = c.checked, p = a(`.color_wrapper .dropdown_item[data-value="${d}"]`);
+        p && (u ? (p.classList.add("active"), n = d, o = c.hasAttribute("data-disabled")) : p.classList.remove("active"));
+      }), t && n && (t.textContent = n, o ? t.setAttribute("data-disabled", "") : t.removeAttribute("data-disabled"));
     }
     observeRestockRocketButton() {
       new MutationObserver((t) => {
         for (const n of t) {
-          for (let r of n.addedNodes)
-            r instanceof HTMLElement && r.matches(".restock-rocket-button-container") && this.handleRestockButtonAdded();
-          for (let r of n.removedNodes)
-            r instanceof HTMLElement && r.matches(".restock-rocket-button-container") && this.handleRestockButtonRemoved();
+          for (let o of n.addedNodes)
+            o instanceof HTMLElement && o.matches(".restock-rocket-button-container") && this.handleRestockButtonAdded();
+          for (let o of n.removedNodes)
+            o instanceof HTMLElement && o.matches(".restock-rocket-button-container") && this.handleRestockButtonRemoved();
         }
       }).observe(document.body, { childList: !0, subtree: !0 });
     }
@@ -4021,8 +4021,8 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     updateAddToCartButton(e, t) {
       l(".add_to_cart_btn").then(() => {
-        var n, r;
-        (n = a(".add_to_cart_btn")) == null || n.remove(), a(".add_to_cart_btn") || (r = a(".sticky_block")) == null || r.insertAdjacentHTML(
+        var n, o;
+        (n = a(".add_to_cart_btn")) == null || n.remove(), a(".add_to_cart_btn") || (o = a(".sticky_block")) == null || o.insertAdjacentHTML(
           "beforeend",
           `<div class="add_to_cart_btn ${t}">${e}</div>`
         ), this.clickAddToCartStickyBtn();
@@ -4076,17 +4076,21 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
           if (typeof Flickity == "function" && t) {
             const n = Flickity.data(t);
             if (n) {
-              n.cells.forEach((c) => {
-                c.element.style.width = "100%";
-              });
-              const r = document.createElement("button");
-              r.className = "flickity-prev-next-button previous", r.innerHTML = `${s.prevBtnIcon}`, t.appendChild(r);
-              const d = document.createElement("button");
-              d.className = "flickity-prev-next-button next", d.innerHTML = `${s.nextBtnIcon}`, t.appendChild(d), r.addEventListener("click", () => {
-                n.previous();
-              }), d.addEventListener("click", () => {
-                n.next();
-              }), n.resize();
+              if (n.cells.forEach((o) => {
+                o.element.style.width = "100%";
+              }), !a(".flickity-prev-next-button.previous")) {
+                const o = document.createElement("button");
+                o.className = "flickity-prev-next-button previous", o.innerHTML = `${s.prevBtnIcon}`, t.appendChild(o), o.addEventListener("click", () => {
+                  n.previous();
+                });
+              }
+              if (!a(".flickity-prev-next-button.next")) {
+                const o = document.createElement("button");
+                o.className = "flickity-prev-next-button next", o.innerHTML = `${s.nextBtnIcon}`, t.appendChild(o), o.addEventListener("click", () => {
+                  n.next();
+                });
+              }
+              n.resize();
             }
           }
         }, 400);
