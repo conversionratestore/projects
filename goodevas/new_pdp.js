@@ -1588,7 +1588,7 @@
       </div>
     </div>
   `
-  ), A = (i) => (
+  ), P = (i) => (
     /* HTML */
     `
     <div class="faq_block">
@@ -1611,7 +1611,7 @@
       </ul>
     </div>
   `
-  ), P = (i) => (
+  ), A = (i) => (
     /* HTML */
     `
     <div class="product_image_gallery_block">
@@ -3846,7 +3846,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       l(".comparison_table_block").then((e) => {
         l(".product_image_gallery_block").then((t) => {
           let n = a(".comparison_table_block");
-          this.device === "mobile" && (n = a(".product_image_gallery_block")), a(".faq_block") || n.insertAdjacentHTML("afterend", A(_[this.pathName].fAQTxt));
+          this.device === "mobile" && (n = a(".product_image_gallery_block")), a(".faq_block") || n.insertAdjacentHTML("afterend", P(_[this.pathName].fAQTxt));
         });
       });
     }
@@ -3856,7 +3856,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         const n = a(e);
         a(".product_image_gallery_block") || n.insertAdjacentHTML(
           "beforebegin",
-          P(_[this.pathName].productImageGalleryImgs)
+          A(_[this.pathName].productImageGalleryImgs)
         );
       });
     }
@@ -4084,13 +4084,13 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
               }), !a(".flickity-prev-next-button-new.previous.new_button")) {
                 const o = document.createElement("button");
                 o.className = "flickity-prev-next-button-new new_button previous", o.innerHTML = `${s.prevBtnIcon}`, t.appendChild(o), o.addEventListener("click", () => {
-                  n.previous();
+                  n.previous(), h("exp_new_pdp_slider_previous_01", "Previous", "Click", "First slider photo");
                 });
               }
               if (!a(".flickity-prev-next-button-new.next.new_button")) {
                 const o = document.createElement("button");
                 o.className = "flickity-prev-next-button-new new_button next", o.innerHTML = `${s.nextBtnIcon}`, t.appendChild(o), o.addEventListener("click", () => {
-                  n.next();
+                  n.next(), h("exp_new_pdp_slider_next_01", "Next", "Click", "First slider photo");
                 });
               }
               n.resize();
