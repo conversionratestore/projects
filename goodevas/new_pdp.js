@@ -2057,7 +2057,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
   height: 100% !important;
   border-radius: 12px !important;
   border: none !important;
-  max-width: 100% !important;
+  max-width: 156px !important;
 }
 .page-content--product .product-single__meta #shopify-block-rebuy_personalization_engine_rebuy_widget_XMhGer {
   margin-top: 32px;
