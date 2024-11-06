@@ -1728,7 +1728,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
   .page-content--product product-images .product-main-slide {
     border: 1px solid #e8e8e1 !important;
   }
-  .page-content--product product-images .flickity-prev-next-button {
+  .page-content--product product-images .flickity-prev-next-button-new.new_button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -1740,14 +1740,15 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     z-index: 10;
     opacity: 1 !important;
   }
-  .page-content--product product-images .flickity-prev-next-button svg {
+  .page-content--product product-images .flickity-prev-next-button-new.new_button svg {
     width: 100%;
     height: 100%;
+    overflow: visible !important;
   }
-  .page-content--product product-images .flickity-prev-next-button.previous {
+  .page-content--product product-images .flickity-prev-next-button-new.previous.new_button {
     left: 10px;
   }
-  .page-content--product product-images .flickity-prev-next-button.next {
+  .page-content--product product-images .flickity-prev-next-button-new.next.new_button {
     right: 10px;
   }
 }
@@ -4079,15 +4080,15 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
             if (n) {
               if (n.cells.forEach((o) => {
                 o.element.style.width = "100%";
-              }), !a(".flickity-prev-next-button.previous")) {
+              }), !a(".flickity-prev-next-button-new.previous.new_button")) {
                 const o = document.createElement("button");
-                o.className = "flickity-prev-next-button previous", o.innerHTML = `${s.prevBtnIcon}`, t.appendChild(o), o.addEventListener("click", () => {
+                o.className = "flickity-prev-next-button-new new_button previous", o.innerHTML = `${s.prevBtnIcon}`, t.appendChild(o), o.addEventListener("click", () => {
                   n.previous();
                 });
               }
-              if (!a(".flickity-prev-next-button.next")) {
+              if (!a(".flickity-prev-next-button-new.next.new_button")) {
                 const o = document.createElement("button");
-                o.className = "flickity-prev-next-button next", o.innerHTML = `${s.nextBtnIcon}`, t.appendChild(o), o.addEventListener("click", () => {
+                o.className = "flickity-prev-next-button-new new_button next", o.innerHTML = `${s.nextBtnIcon}`, t.appendChild(o), o.addEventListener("click", () => {
                   n.next();
                 });
               }
