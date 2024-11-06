@@ -17,7 +17,7 @@
     let t = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", i, e), console.log("set", i, e));
     }, 1e3);
-  }, b = (i, e, t, n, r = "Visibility", d = 600, c = 0.5) => {
+  }, b = (i, e, t, n, r = "Visibility", c = 600, d = 0.5) => {
     let u, p;
     if (u = new IntersectionObserver(
       function(g) {
@@ -28,9 +28,9 @@
             r,
             t
           ), u.disconnect();
-        }, d) : clearTimeout(p);
+        }, c) : clearTimeout(p);
       },
-      { threshold: [c] }
+      { threshold: [d] }
     ), typeof i == "string") {
       const g = document.querySelector(i);
       g && u.observe(g);
@@ -53,12 +53,12 @@
   }
   (function(i) {
     i = i === void 0 ? {} : i;
-    let e, t, n, r, d = (i == null ? void 0 : i.delay) || 50;
-    function c() {
+    let e, t, n, r, c = (i == null ? void 0 : i.delay) || 50;
+    function d() {
       e = null, r = 0;
     }
-    return c(), function() {
-      return t = window.scrollY, e != null && (r = t - e), e = t, clearTimeout(n), n = setTimeout(c, d), r;
+    return d(), function() {
+      return t = window.scrollY, e != null && (r = t - e), e = t, clearTimeout(n), n = setTimeout(d, c), r;
     };
   })();
   const S = (i, e = 100) => {
@@ -1648,7 +1648,7 @@
       </div>
     </div>
   `
-  ), V = (i, e, t, n, r) => (
+  ), B = (i, e, t, n, r) => (
     /* HTML */
     `
     <div class="estimate_your_shipping_period_block">
@@ -1676,7 +1676,7 @@
       </div>
     </div>
   `
-  ), j = `@charset "UTF-8";
+  ), V = `@charset "UTF-8";
 @media (max-width: 768px) {
   body {
     padding-bottom: 80px;
@@ -3673,7 +3673,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
   border-left: 2px solid;
   border-color: var(--colorBorder);
   transform: rotate(45deg);
-}/*# sourceMappingURL=main.css.map */`, B = window.innerWidth < 768 ? "mobile" : "desktop";
+}/*# sourceMappingURL=main.css.map */`, j = window.innerWidth < 768 ? "mobile" : "desktop";
   class O {
     constructor(e) {
       this.device = e, this.observer = null, this.pathName = this.findTranslationKey(window.location.pathname), this.init();
@@ -3682,7 +3682,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       return Object.keys(_).find((n) => e.includes(n)) || "";
     }
     init() {
-      C({ name: "PDP v2 Major Release", dev: "SKh" }), k("new_pdp"), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${j}</style>`), this.renderBestSellerLabelForPhoto(), this.renderBoughtSoFarBlock(), this.renderGetFreeDeliveryBlock(), this.renderNewProductSalesPointsBlock(), this.renderKlarnaWrapper(), this.replaceKlarnaPlacement(), this.renderOneReviewBlock(), this.renderTolstoyStoriesNewTitle(), this.clickAllReviewsLink(), this.renderProductDetailsBlock(), this.toggleSeeMoreTxt(), this.renderEstimateYourShippingPeriodBlock(), this.renderMainBenefits(), this.renderComparisonTable(), this.renderProductImageGalleryBlock(), this.renderFAQBlock(), this.initAccordionProductDetails(
+      C({ name: "PDP v2 Major Release", dev: "SKh" }), k("new_pdp"), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${V}</style>`), this.renderBestSellerLabelForPhoto(), this.renderBoughtSoFarBlock(), this.renderGetFreeDeliveryBlock(), this.renderNewProductSalesPointsBlock(), this.renderKlarnaWrapper(), this.replaceKlarnaPlacement(), this.renderOneReviewBlock(), this.renderTolstoyStoriesNewTitle(), this.clickAllReviewsLink(), this.renderProductDetailsBlock(), this.toggleSeeMoreTxt(), this.renderEstimateYourShippingPeriodBlock(), this.renderMainBenefits(), this.renderComparisonTable(), this.renderProductImageGalleryBlock(), this.renderFAQBlock(), this.initAccordionProductDetails(
         ".product_details_block",
         ".product_details_accordion_block",
         ".product_details_accordion_link",
@@ -3692,7 +3692,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         ".faq_accordion_block",
         ".faq_accordion_link",
         ".faq_accordion_lists"
-      ), this.device === "mobile" && (this.renderStickyBlock(), this.toggleStickyBlockVisibility(), this.renderColorWrapper(), this.clickAddToCartStickyBtn(), this.changeColorOnPdp(), this.syncLoadingState(), this.resizeSlider()), this.visibleHandler();
+      ), this.device === "mobile" && (this.renderStickyBlock(), this.toggleStickyBlockVisibility(), this.renderColorWrapper(), this.clickAddToCartStickyBtn(), this.changeColorOnPdp(), this.syncLoadingState(), this.resizeSlider(), this.observeRestockRocketButton()), this.visibleHandler();
     }
     renderBestSellerLabelForPhoto() {
       l(".product__main-photos").then((e) => {
@@ -3788,7 +3788,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         const t = a(".product_details_block");
         a(".estimate_your_shipping_period_block") || t.insertAdjacentHTML(
           "beforebegin",
-          V(
+          B(
             _[this.pathName].deliveryToPlace,
             this.getTodayDate(),
             _[this.pathName].deliveryDays,
@@ -3856,29 +3856,29 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       });
     }
     initAccordionProductDetails(e, t, n, r) {
-      let d = setInterval(() => {
-        typeof jQuery == "function" && a(e) && (clearInterval(d), console.log("Accordion initialized for", e), $(`${t}`).eq(0).addClass("active"), $(`${t} ${n}`).eq(0).addClass("active"), $(`${t} ${r}`).eq(0).css("display", "flex"), $(`${n}`).on("click", function(c) {
+      let c = setInterval(() => {
+        typeof jQuery == "function" && a(e) && (clearInterval(c), console.log("Accordion initialized for", e), $(`${t}`).eq(0).addClass("active"), $(`${t} ${n}`).eq(0).addClass("active"), $(`${t} ${r}`).eq(0).css("display", "flex"), $(`${n}`).on("click", function(d) {
           $(this).toggleClass("active"), $(this).closest("li").toggleClass("active"), $(this).next(r).slideToggle(), $(`${n}`).not(this).next(r).slideUp(), $(`${n}`).not(this).removeClass("active").closest("li").removeClass("active"), e === ".product_details_block" && (setTimeout(() => {
-            const p = c.target.closest(".product_details_accordion_block");
+            const p = d.target.closest(".product_details_accordion_block");
             p && (window.innerWidth < 768 ? w(p, 90) : w(p, 0));
-          }, 400), c.currentTarget.classList.contains("active") ? m(
+          }, 400), d.currentTarget.classList.contains("active") ? m(
             "exp_new_pdp_dropdown_02",
-            `Open - ${c.currentTarget.querySelector("p").textContent}`,
+            `Open - ${d.currentTarget.querySelector("p").textContent}`,
             "Click",
             "Product details"
           ) : m(
             "exp_new_pdp_dropdown_03",
-            `Close - ${c.currentTarget.querySelector("p").textContent}`,
+            `Close - ${d.currentTarget.querySelector("p").textContent}`,
             "Click",
             "Product details"
-          )), e === ".faq_block" && (c.currentTarget.classList.contains("active") ? m(
+          )), e === ".faq_block" && (d.currentTarget.classList.contains("active") ? m(
             "exp_new_pdp_dropdown_04",
-            `Open - ${c.currentTarget.querySelector("p").textContent}`,
+            `Open - ${d.currentTarget.querySelector("p").textContent}`,
             "Click",
             "FAQ"
           ) : m(
             "exp_new_pdp_dropdown_05",
-            `Close - ${c.currentTarget.querySelector("p").textContent}`,
+            `Close - ${d.currentTarget.querySelector("p").textContent}`,
             "Click",
             "FAQ"
           ));
@@ -3888,8 +3888,8 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     renderStickyBlock() {
       l(".product-single__meta block-buy-buttons .add-to-cart").then((e) => {
         const t = a("body"), n = a(".product-single__meta block-buy-buttons .add-to-cart span"), r = a(".restock-rocket-button-container button");
-        let d = n.textContent || "", c = "";
-        d === "Sold Out" && !r && (console.log(r), c = "sold_out"), r && (c = "notify_available", d = r.textContent || ""), a(".sticky_block") || t.insertAdjacentHTML("beforeend", q(d, c));
+        let c = n.textContent || "", d = "";
+        c === "Sold Out" && !r && (console.log(r), d = "sold_out"), r && (d = "notify_available", c = r.textContent || ""), a(".sticky_block") || t.insertAdjacentHTML("beforeend", q(c, d));
       });
     }
     toggleStickyBlockVisibility() {
@@ -3901,12 +3901,12 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
               root: null,
               threshold: 0
             };
-            let d = new IntersectionObserver((c) => {
-              c.forEach((u) => {
-                u.isIntersecting ? e.style.display = "none" : e.style.display = "flex", d.unobserve(u.target);
-              }), d.disconnect();
+            let c = new IntersectionObserver((d) => {
+              d.forEach((u) => {
+                u.isIntersecting ? e.style.display = "none" : e.style.display = "flex", c.unobserve(u.target);
+              }), c.disconnect();
             }, r);
-            d.observe(t);
+            c.observe(t);
           }
           window.addEventListener("scroll", () => {
             n();
@@ -3919,13 +3919,13 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         l(".product-single__meta block-variant-picker > .variant-button-wrap input").then((t) => {
           const n = a(".sticky_block"), r = f(".product-single__meta block-variant-picker > .variant-button-wrap input");
           if (r.length > 0) {
-            let d = [], c = "", u = !1;
+            let c = [], d = "", u = !1;
             r.forEach((p) => {
               const g = p.getAttribute("value") || "Unknown", h = p.checked, y = p.hasAttribute("data-disabled");
-              h && (c = g), y && (u = !0), d.push(this.createDropdownItem(g, h, y));
+              h && (d = g, u = y), c.push(this.createDropdownItem(g, h, y));
             }), a(".color_wrapper") || n.insertAdjacentHTML(
               "afterbegin",
-              W(d.join(""), c, u)
+              W(c.join(""), d, u)
             ), this.changeCustomDropdownHandler(".custom_dropdown");
           }
         });
@@ -3942,15 +3942,15 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       );
     }
     changeCustomDropdownHandler(e) {
-      const t = a(e), n = t.querySelector(".dropdown_toggle"), r = t.querySelector(".dropdown_menu"), d = t.querySelectorAll(".dropdown_item"), c = f(
+      const t = a(e), n = t.querySelector(".dropdown_toggle"), r = t.querySelector(".dropdown_menu"), c = t.querySelectorAll(".dropdown_item"), d = f(
         ".product-single__meta block-variant-picker > .variant-button-wrap input"
       );
       n.addEventListener("click", () => {
         m("exp_new_pdp_button_02", "Color", "Click", "Stiky section"), r.classList.toggle("show"), this.adjustDropdownPosition(r), n.classList.toggle("active");
-      }), d.forEach((p) => {
+      }), c.forEach((p) => {
         p.addEventListener("click", (g) => {
           const h = g.currentTarget, y = h.getAttribute("data-value"), N = h.hasAttribute("data-disabled");
-          r.style.top = "100%", n.innerHTML = h.innerHTML, r.classList.remove("show"), n.classList.remove("active"), N ? n.setAttribute("data-disabled", "") : n.removeAttribute("data-disabled"), m("exp_new_pdp_dropdown_01", `Selected value: ${h == null ? void 0 : h.textContent}`, "Dropdown", "Stiky section"), c.forEach((v) => {
+          r.style.top = "100%", n.innerHTML = h.innerHTML, r.classList.remove("show"), n.classList.remove("active"), N ? n.setAttribute("data-disabled", "") : n.removeAttribute("data-disabled"), m("exp_new_pdp_dropdown_01", `Selected value: ${h == null ? void 0 : h.textContent}`, "Dropdown", "Stiky section"), d.forEach((v) => {
             v.getAttribute("value") === y && v.click();
           });
         });
@@ -3978,8 +3978,8 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         l(".sticky_block").then((t) => {
           a(".add_to_cart_btn").addEventListener("click", () => {
             m("exp_new_pdp_button_01", "Add to cart", "Click", "Stiky section");
-            const r = a(".restock-rocket-button-container .restock-rocket-button-cover"), d = a(".product-single__meta block-buy-buttons .add-to-cart");
-            r ? r.click() : d.click();
+            const r = a(".restock-rocket-button-container .restock-rocket-button-cover"), c = a(".product-single__meta block-buy-buttons .add-to-cart");
+            r ? r.click() : c.click();
           });
         });
       });
@@ -3996,10 +3996,21 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     updateActiveColor() {
       const e = f(".product-single__meta block-variant-picker > .variant-button-wrap input"), t = a(".color_wrapper .dropdown_toggle");
       let n = "", r = !1;
-      e.forEach((d) => {
-        const c = d.getAttribute("value") || "Unknown", u = d.checked, p = a(`.color_wrapper .dropdown_item[data-value="${c}"]`);
-        p && (u ? (p.classList.add("active"), n = c, r = d.hasAttribute("data-disabled")) : p.classList.remove("active"));
+      e.forEach((c) => {
+        const d = c.getAttribute("value") || "Unknown", u = c.checked, p = a(`.color_wrapper .dropdown_item[data-value="${d}"]`);
+        p && (u ? (p.classList.add("active"), n = d, r = c.hasAttribute("data-disabled")) : p.classList.remove("active"));
       }), t && n && (t.textContent = n, r ? t.setAttribute("data-disabled", "") : t.removeAttribute("data-disabled"));
+    }
+    observeRestockRocketButton() {
+      new MutationObserver((t) => {
+        var n, r;
+        for (const c of t) {
+          for (let d of c.addedNodes)
+            d instanceof HTMLElement && d.matches(".restock-rocket-button-container") && a(".restock-rocket-button-container") && (console.log("restockButton"), (n = a(".add_to_cart_btn")) == null || n.remove());
+          for (let d of c.removedNodes)
+            d instanceof HTMLElement && d.matches(".restock-rocket-button-container") && (console.log("NOT restockButton"), a(".add_to_cart_btn") || (r = a(".sticky_block")) == null || r.insertAdjacentHTML("beforeend", '<div class="add_to_cart_btn">Add to cart</div>'));
+        }
+      }).observe(document.body, { childList: !0, subtree: !0 });
     }
     syncLoadingState() {
       l(".product-single__meta block-buy-buttons .add-to-cart").then(() => {
@@ -4048,15 +4059,15 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         if (t) {
           const n = Flickity.data(t);
           if (n) {
-            n.cells.forEach((c) => {
-              c.element.style.width = "100%";
+            n.cells.forEach((d) => {
+              d.element.style.width = "100%";
             });
             const r = document.createElement("button");
             r.className = "flickity-prev-next-button previous", r.innerHTML = `${s.prevBtnIcon}`, t.appendChild(r);
-            const d = document.createElement("button");
-            d.className = "flickity-prev-next-button next", d.innerHTML = `${s.nextBtnIcon}`, t.appendChild(d), r.addEventListener("click", () => {
+            const c = document.createElement("button");
+            c.className = "flickity-prev-next-button next", c.innerHTML = `${s.nextBtnIcon}`, t.appendChild(c), r.addEventListener("click", () => {
               n.previous();
-            }), d.addEventListener("click", () => {
+            }), c.addEventListener("click", () => {
               n.next();
             }), n.resize();
           }
@@ -4065,7 +4076,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
   }
   l(".page-content--product").then((i) => {
-    new O(B);
+    new O(j);
   });
 })();
 //# sourceMappingURL=index.js.map
