@@ -1,28 +1,28 @@
 (function() {
   "use strict";
-  const m = (o, e, t, n = "") => {
+  const h = (i, e, t, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: o,
+      event_name: i,
       event_desc: e,
       event_type: t,
       event_loc: n
-    }), console.dir(`Event: ${o} | ${e} | ${t} | ${n}`);
-  }, v = ({ name: o, dev: e }) => {
+    }), console.dir(`Event: ${i} | ${e} | ${t} | ${n}`);
+  }, v = ({ name: i, dev: e }) => {
     console.log(
-      `%c EXP: ${o} (DEV: ${e})`,
+      `%c EXP: ${i} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, f = (o) => document.querySelectorAll(o), a = (o) => document.querySelector(o), k = (o, e = "variant_1") => {
+  }, f = (i) => document.querySelectorAll(i), a = (i) => document.querySelector(i), k = (i, e = "variant_1") => {
     let t = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", o, e), console.log("set", o, e));
+      typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", i, e), console.log("set", i, e));
     }, 1e3);
-  }, b = (o, e, t, n, r = "Visibility", d = 600, c = 0.5) => {
+  }, b = (i, e, t, n, r = "Visibility", d = 600, c = 0.5) => {
     let g, _;
     if (g = new IntersectionObserver(
       function(u) {
         u[0].isIntersecting === !0 ? _ = setTimeout(() => {
-          m(
+          h(
             e,
             u[0].target.dataset.visible || n || "",
             r,
@@ -31,18 +31,18 @@
         }, d) : clearTimeout(_);
       },
       { threshold: [c] }
-    ), typeof o == "string") {
-      const u = document.querySelector(o);
+    ), typeof i == "string") {
+      const u = document.querySelector(i);
       u && g.observe(u);
     } else
-      g.observe(o);
+      g.observe(i);
   };
-  function l(o) {
+  function l(i) {
     return new Promise((e) => {
-      if (document.querySelector(o))
-        return e(document.querySelector(o));
+      if (document.querySelector(i))
+        return e(document.querySelector(i));
       const t = new MutationObserver(() => {
-        document.querySelector(o) && (e(document.querySelector(o)), t.disconnect());
+        document.querySelector(i) && (e(document.querySelector(i)), t.disconnect());
       });
       t.observe(document.documentElement, {
         childList: !0,
@@ -51,9 +51,9 @@
       });
     });
   }
-  (function(o) {
-    o = o === void 0 ? {} : o;
-    let e, t, n, r, d = (o == null ? void 0 : o.delay) || 50;
+  (function(i) {
+    i = i === void 0 ? {} : i;
+    let e, t, n, r, d = (i == null ? void 0 : i.delay) || 50;
     function c() {
       e = null, r = 0;
     }
@@ -61,8 +61,8 @@
       return t = window.scrollY, e != null && (r = t - e), e = t, clearTimeout(n), n = setTimeout(c, d), r;
     };
   })();
-  const C = (o, e = 100) => {
-    const t = document.querySelector(o);
+  const C = (i, e = 100) => {
+    const t = document.querySelector(i);
     if (!t)
       return;
     const r = t.getBoundingClientRect().top - e;
@@ -70,7 +70,7 @@
       top: r,
       behavior: "smooth"
     });
-  }, i = "https://conversionratestore.github.io/projects/goodevas/img/", s = {
+  }, o = "https://conversionratestore.github.io/projects/goodevas/img/", s = {
     bestSellerLabelIcon: `
     <svg xmlns="http://www.w3.org/2000/svg" width="155" height="38" viewBox="0 0 155 38" fill="none">
   <path d="M150.422 6.69351L141.288 17.1084C141.288 17.1082 141.288 17.1085 141.288 17.1084C140.949 17.4948 140.75 17.9521 140.75 18.441C140.75 18.9301 140.949 19.3871 141.288 19.7737L150.422 30.1885C151.373 31.2722 150.603 32.9704 149.162 32.9704H17.2279C15.7866 32.9704 15.0172 31.2721 15.9676 30.1885L25.1024 19.7737C25.4418 19.3871 25.6407 18.9301 25.6407 18.441C25.6407 17.952 25.4418 17.4949 25.1024 17.1084L15.9676 6.69356C15.0172 5.61 15.7866 3.91162 17.2279 3.91162H149.162C150.603 3.91162 151.373 5.60993 150.422 6.69351Z" fill="#FFF0CF"/>
@@ -208,10 +208,10 @@
       ],
       yourImpactTxt: "Your Impact: 5 trees planted with this order",
       oneReviewBlock: {
-        txt: "“Amazing quality of the product. Very easy to assemble. Both of my kids love it! I’m really happy with our purchase. Definitely happy and will purchase again next time.”",
-        name: "Courtney D.",
+        txt: "“I recently purchased a climbing frame, and I must say the overall experience was outstanding. The service was impeccable, delivery prompt, and the quality of the climbing frame exceeded my expectations. Highly recommend!”",
+        name: "Laur",
         rating: 5,
-        img: `${i}goodevas_img.webp`
+        img: "https://cdn-yotpo-images-production.yotpo.com/Review/555469445/535006134/original.jpg?1710194520"
       },
       tolstoyStoriesNewTitle: "5in1 Montessori Climbing Frame Set",
       productDetailsTxt: [
@@ -297,9 +297,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${i}goodevas_img.webp`,
+        goodevasImg: `${o}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${i}competitors_img.webp`,
+        competitorsImg: `${o}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -351,12 +351,12 @@
         }
       ],
       productImageGalleryImgs: [
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`
       ]
     },
     "/products/4in1-montessori-climbing-frame-set-triangle-ladder-arch-rocker-slide-board-ramp-netting-rope": {
@@ -372,10 +372,10 @@
       ],
       yourImpactTxt: "Your Impact: 5 trees planted with this order",
       oneReviewBlock: {
-        txt: "“Amazing quality of the product. Very easy to assemble. Both of my kids love it! I’m really happy with our purchase. Definitely happy and will purchase again next time.”",
-        name: "Courtney D.",
+        txt: "“The climbing set is exactly what I’d hoped for! Great value for the price. It was easy to assemble and our 20 month old loves it. I can tell she will enjoy it for years to come. Thank you!”",
+        name: "Caroline P.",
         rating: 5,
-        img: `${i}goodevas_img.webp`
+        img: "https://cdn-yotpo-images-production.yotpo.com/Review/477333005/434222901/original.jpg?1686918544"
       },
       tolstoyStoriesNewTitle: "4in1 Montessori Climbing Set",
       productDetailsTxt: [
@@ -458,9 +458,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${i}goodevas_img.webp`,
+        goodevasImg: `${o}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${i}competitors_img.webp`,
+        competitorsImg: `${o}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -512,12 +512,12 @@
         }
       ],
       productImageGalleryImgs: [
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`
       ]
     },
     "/en-gb/products/3in1-wooden-swedish-wall-climbing-ladder-for-children-swing-set-slide-board": {
@@ -533,10 +533,10 @@
       ],
       yourImpactTxt: "Your Impact: 5 trees planted with this order",
       oneReviewBlock: {
-        txt: "“Amazing quality of the product. Very easy to assemble. Both of my kids love it! I’m really happy with our purchase. Definitely happy and will purchase again next time.”",
-        name: "Courtney D.",
+        txt: "“Absolutely amazing product! Our almost 2 years old LOVES it! Great quality, pretty easy to install and would definitely recommend for any toddler!!”",
+        name: "Oliviya",
         rating: 5,
-        img: `${i}goodevas_img.webp`
+        img: "https://cdn-yotpo-images-production.yotpo.com/Review/555469024/535005974/original.jpg?1710194503"
       },
       tolstoyStoriesNewTitle: "6in1 Wooden Swedish Wall",
       productDetailsTxt: [
@@ -629,9 +629,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${i}goodevas_img.webp`,
+        goodevasImg: `${o}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${i}competitors_img.webp`,
+        competitorsImg: `${o}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -683,12 +683,12 @@
         }
       ],
       productImageGalleryImgs: [
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`
       ]
     },
     "/en-gb/products/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige": {
@@ -704,10 +704,10 @@
       ],
       yourImpactTxt: "Your Impact: 5 trees planted with this order",
       oneReviewBlock: {
-        txt: "“Amazing quality of the product. Very easy to assemble. Both of my kids love it! I’m really happy with our purchase. Definitely happy and will purchase again next time.”",
-        name: "Courtney D.",
+        txt: "“I'm more than happy with the wood triangle, arch, and slide for my baby! It's beautifully made with high-quality wood, providing a safe and fun playtime. My baby loves it, and I can see how it helps with her development. Also a stylish addition to our playroom.”",
+        name: "Sandra",
         rating: 5,
-        img: `${i}goodevas_img.webp`
+        img: "https://cdn-yotpo-images-production.yotpo.com/Review/555520604/535101206/original.jpg?1710224014"
       },
       tolstoyStoriesNewTitle: "4in1 Montessori Climbing Set",
       productDetailsTxt: [
@@ -794,9 +794,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${i}goodevas_img.webp`,
+        goodevasImg: `${o}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${i}competitors_img.webp`,
+        competitorsImg: `${o}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -848,12 +848,12 @@
         }
       ],
       productImageGalleryImgs: [
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`
       ]
     },
     "/en-ca/products/6in1-montessori-climbing-frame-set-triangle-ladder-arch-rocker-slide-ramp-net-cushion-art-addition": {
@@ -869,10 +869,10 @@
       ],
       yourImpactTxt: "Your Impact: 5 trees planted with this order",
       oneReviewBlock: {
-        txt: "“Amazing quality of the product. Very easy to assemble. Both of my kids love it! I’m really happy with our purchase. Definitely happy and will purchase again next time.”",
-        name: "Courtney D.",
+        txt: "“We got the arch for our son's first birthday. It has been the perfect addition to go with the triangle and slide we gave our 3 year old for Christmas. Both kids use this set daily. The arch is easy to assemble, is very sturdy, and a great size. I'm so impressed with the shipping times, and the company's customer service is phenomenal. I look forward to having this set for several years!!”",
+        name: "Stephanie S.",
         rating: 5,
-        img: `${i}goodevas_img.webp`
+        img: "https://cdn-yotpo-images-production.yotpo.com/Review/555684885/535284091/original.jpg?1710274581"
       },
       tolstoyStoriesNewTitle: "6in1 Montessori Climbing Frame Set",
       productDetailsTxt: [
@@ -1006,9 +1006,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${i}goodevas_img.webp`,
+        goodevasImg: `${o}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${i}competitors_img.webp`,
+        competitorsImg: `${o}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -1060,12 +1060,12 @@
         }
       ],
       productImageGalleryImgs: [
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`
       ]
     },
     "/en-ca/products/5in1-montessori-climbing-set-triangle-ladder-arch-rocker-slide-board-ramp-net-cushion-chocolate": {
@@ -1081,10 +1081,10 @@
       ],
       yourImpactTxt: "Your Impact: 5 trees planted with this order",
       oneReviewBlock: {
-        txt: "“Amazing quality of the product. Very easy to assemble. Both of my kids love it! I’m really happy with our purchase. Definitely happy and will purchase again next time.”",
-        name: "Courtney D.",
+        txt: "“Absolutely no regrets! Love that we can set it up multiple ways. My 4.5 year old loves obstacle courses and this is great! I also love that it stores fairly easily behind the arch. Would definitely recommend!”",
+        name: "Sam",
         rating: 5,
-        img: `${i}goodevas_img.webp`
+        img: "https://cdn-yotpo-images-production.yotpo.com/Review/555469362/535006066/original.jpg?1710194512"
       },
       tolstoyStoriesNewTitle: "5in1 Montessori Climbing Set",
       productDetailsTxt: [
@@ -1176,9 +1176,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${i}goodevas_img.webp`,
+        goodevasImg: `${o}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${i}competitors_img.webp`,
+        competitorsImg: `${o}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -1230,12 +1230,12 @@
         }
       ],
       productImageGalleryImgs: [
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`
       ]
     },
     "/en-eu/products/5in1-montessori-climbing-set-triangle-ladder-arch-rocker-slide-board-ramp-net-cushion-chocolate": {
@@ -1251,10 +1251,10 @@
       ],
       yourImpactTxt: "Your Impact: 5 trees planted with this order",
       oneReviewBlock: {
-        txt: "“Amazing quality of the product. Very easy to assemble. Both of my kids love it! I’m really happy with our purchase. Definitely happy and will purchase again next time.”",
-        name: "Courtney D.",
+        txt: "“I can’t rave about this item enough! My baby(10 months) has been on it since we got it. Shipping was crazy fast and set up was super quick and easy! I love the dark stain and the quality is amazing, it is very sturdy. My baby is all about pulling up on EVERYTHING so this has helped give him a safe space to do that.”",
+        name: "Ashley",
         rating: 5,
-        img: `${i}goodevas_img.webp`
+        img: "https://cdn-yotpo-images-production.yotpo.com/Review/555469368/535006062/original.jpg?1710194512"
       },
       tolstoyStoriesNewTitle: "5in1 Montessori Climbing Set",
       productDetailsTxt: [
@@ -1346,9 +1346,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${i}goodevas_img.webp`,
+        goodevasImg: `${o}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${i}competitors_img.webp`,
+        competitorsImg: `${o}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -1400,42 +1400,42 @@
         }
       ],
       productImageGalleryImgs: [
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`,
-        `${i}goodevas_img.webp`
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`,
+        `${o}goodevas_img.webp`
       ]
     }
   }, S = (
     /* HTML */
     ` <div class="best_seller_label_block">${s.bestSellerLabelIcon}</div> `
-  ), w = (o) => (
+  ), w = (i) => (
     /* HTML */
     `
     <div class="bought_so_far_block">
       ${s.cartIcon}
-      <p><span class="">${o}</span> bought so far</p>
+      <p><span class="">${i}</span> bought so far</p>
     </div>
   `
-  ), L = (o) => (
+  ), L = (i) => (
     /* HTML */
     `
     <div class="get_free_delivery_block">
       ${s.freeDeliveryIcon}
       <p>
         Order now and get <span class="accent_underline">FREE delivery</span> on or before
-        <span class="date_txt">${o}</span>
+        <span class="date_txt">${i}</span>
       </p>
     </div>
   `
-  ), T = (o) => (
+  ), T = (i) => (
     /* HTML */
     `
     <div class="new_product_sales_points_block">
       <ul class="new_product_sales_points_list">
-        ${o.map((e) => (
+        ${i.map((e) => (
       /* HTML */
       `
               <li class="new_product_sales_points_item">
@@ -1447,36 +1447,36 @@
       </ul>
     </div>
   `
-  ), D = (o) => (
+  ), H = (i) => (
     /* HTML */
     `
     <div class="one_review_block">
       <div class="info_wrapper">
-        <p class="info_descr">${o.txt}</p>
+        <p class="info_descr">${i.txt}</p>
         <div class="name_stars_wrapper">
-          <span class="name_review">${o.name}</span>
+          <span class="name_review">${i.name}</span>
           <div class="stars_summary">
             <div class="stars_wrapper">${s.starIcon}${s.starIcon}${s.starIcon}${s.starIcon}${s.starIcon}</div>
-            <span>${o.rating}</span>
+            <span>${i.rating}</span>
           </div>
         </div>
       </div>
       <div class="img_wrapper">
-        <img src="${o.img}" alt="photo product" />
+        <img src="${i.img}" alt="photo product" />
         <span class="all_reviews_link">All reviews</span>
       </div>
     </div>
   `
-  ), H = (o) => (
+  ), I = (i) => (
     /* HTML */
-    ` <h2 class="tolstoy_stories_new_title">${o}</h2> `
-  ), I = (o) => (
+    ` <h2 class="tolstoy_stories_new_title">${i}</h2> `
+  ), D = (i) => (
     /* HTML */
     `
     <div class="product_details_block">
       <h2>Product details</h2>
       <ul class="product_details_accordion">
-        ${o.map((e, t) => (
+        ${i.map((e, t) => (
       /* HTML */
       `
               <li class="product_details_accordion_block" data-visability="${t + 1}">
@@ -1493,12 +1493,12 @@
       </ul>
     </div>
   `
-  ), M = (o) => (
+  ), M = (i) => (
     /* HTML */
     `
     <div class="main_benefits_block">
       <ul class="main_benefits_list">
-        ${Object.values(o).map(
+        ${Object.values(i).map(
       (e) => (
         /* HTML */
         `
@@ -1515,11 +1515,11 @@
       </ul>
     </div>
   `
-  ), z = (o) => (
+  ), z = (i) => (
     /* HTML */
     `
     <div class="comparison_table_block">
-      <h2 class="comparison_table_main_title">${o.mainTitle}</h2>
+      <h2 class="comparison_table_main_title">${i.mainTitle}</h2>
 
       <div class="custom_table">
         <div class="benefits_row">
@@ -1527,7 +1527,7 @@
             <div class="table_cell"></div>
           </div>
           <div class="body_table">
-            ${o.benefits.map((e) => (
+            ${i.benefits.map((e) => (
       /* HTML */
       ` <div class="benefits_cell table_cell"><p>${e.benefitName}</p></div> `
     )).join("")}
@@ -1537,12 +1537,12 @@
         <div class="goodevas_row is_active">
           <div class="header_table">
             <div class="table_cell">
-              <h3>${o.goodevasTitle}</h3>
-              <img src="${i}goodevas_1_img.png" alt="child girl" />
+              <h3>${i.goodevasTitle}</h3>
+              <img src="${o}goodevas_1_img.png" alt="child girl" />
             </div>
           </div>
           <div class="body_table">
-            ${o.benefits.map(
+            ${i.benefits.map(
       (e) => (
         /* HTML */
         `
@@ -1559,12 +1559,12 @@
         <div class="competitors_row">
           <div class="header_table">
             <div class="table_cell">
-              <h3>${o.competitorsTitle}</h3>
-              <img src="${i}competitors_1_img.png" alt="child girl" />
+              <h3>${i.competitorsTitle}</h3>
+              <img src="${o}competitors_1_img.png" alt="child girl" />
             </div>
           </div>
           <div class="body_table">
-            ${o.benefits.map(
+            ${i.benefits.map(
       (e) => (
         /* HTML */
         `
@@ -1580,13 +1580,13 @@
       </div>
     </div>
   `
-  ), E = (o) => (
+  ), E = (i) => (
     /* HTML */
     `
     <div class="faq_block">
       <h2>FAQ</h2>
       <ul class="faq_accordion">
-        ${o.map((e, t) => (
+        ${i.map((e, t) => (
       /* HTML */
       `
               <li class="faq_accordion_block" data-visability="${t + 1}">
@@ -1603,14 +1603,14 @@
       </ul>
     </div>
   `
-  ), A = (o) => (
+  ), P = (i) => (
     /* HTML */
     `
     <div class="product_image_gallery_block">
       <div class="product_image_gallery_container">
         <h2>Product image gallery</h2>
         <ul class="product_image_gallery_list">
-          ${o.map((e) => (
+          ${i.map((e) => (
       /* HTML */
       `
                 <li class="product_image_gallery_item">
@@ -1622,32 +1622,32 @@
       </div>
     </div>
   `
-  ), P = (o, e) => (
+  ), A = (i, e) => (
     /* HTML */
     `
     <div class="sticky_block">
-      <div class="add_to_cart_btn ${e}">${o}</div>
+      <div class="add_to_cart_btn ${e}">${i}</div>
     </div>
   `
-  ), q = (o, e, t) => (
+  ), q = (i, e, t) => (
     /* HTML */
     `
     <div class="color_wrapper">
       <span>Color</span>
       <div class="custom_dropdown" id="productColor">
         <div class="dropdown_toggle" ${t ? "data-disabled" : ""}>${e}</div>
-        <div class="dropdown_menu">${o}</div>
+        <div class="dropdown_menu">${i}</div>
       </div>
     </div>
   `
-  ), W = (o, e, t, n, r) => (
+  ), W = (i, e, t, n, r) => (
     /* HTML */
     `
     <div class="estimate_your_shipping_period_block">
       <h2 class="shipping_title">Estimate <span>your</span> shipping period</h2>
       <div class="shipping_destination">
         <span>Ship to:</span>
-        <span class="country_txt">${o}</span>
+        <span class="country_txt">${i}</span>
       </div>
       <div class="shipping_details">
         <div class="buy_goodevas">
@@ -3665,8 +3665,8 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
   border-left: 2px solid;
   border-color: var(--colorBorder);
   transform: rotate(45deg);
-}/*# sourceMappingURL=main.css.map */`, B = window.innerWidth < 768 ? "mobile" : "desktop";
-  class j {
+}/*# sourceMappingURL=main.css.map */`, j = window.innerWidth < 768 ? "mobile" : "desktop";
+  class B {
     constructor(e) {
       this.device = e, this.observer = null, this.pathName = this.findTranslationKey(window.location.pathname), this.init();
     }
@@ -3738,7 +3738,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     renderOneReviewBlock() {
       l("block-buy-buttons").then((e) => {
         const t = a("block-buy-buttons");
-        a(".one_review_block") || t.insertAdjacentHTML("afterend", D(p[this.pathName].oneReviewBlock));
+        a(".one_review_block") || t.insertAdjacentHTML("afterend", H(p[this.pathName].oneReviewBlock));
       });
     }
     renderTolstoyStoriesNewTitle() {
@@ -3746,7 +3746,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         const t = a(".tolstoy-stories-title");
         a(".tolstoy_stories_new_title") || t.insertAdjacentHTML(
           "afterend",
-          H(p[this.pathName].tolstoyStoriesNewTitle)
+          I(p[this.pathName].tolstoyStoriesNewTitle)
         );
       });
     }
@@ -3754,7 +3754,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       l(".all_reviews_link").then((e) => {
         l(".yotpo-main-layout").then((t) => {
           a(".all_reviews_link").addEventListener("click", () => {
-            m("exp_new_pdp_button_03", "All reviews", "Click", "Review section"), C(".yotpo-main-layout");
+            h("exp_new_pdp_button_03", "All reviews", "Click", "Review section"), C(".yotpo-main-layout");
           });
         });
       });
@@ -3764,14 +3764,14 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         const t = a(".main_benefits_block");
         a(".product_details_block") || t.insertAdjacentHTML(
           "beforebegin",
-          I(p[this.pathName].productDetailsTxt)
+          D(p[this.pathName].productDetailsTxt)
         );
       });
     }
     toggleSeeMoreTxt() {
       l(".see_more_block").then((e) => {
         a(".see_more_block").addEventListener("click", (n) => {
-          n.currentTarget && !n.currentTarget.classList.contains("is_open") ? (m("exp_new_pdp_link_01", "See more", "Click", "Product details"), n.currentTarget.classList.add("is_open"), n.currentTarget.querySelector("div").textContent = "See Less", n.currentTarget.previousElementSibling.classList.remove("blur_txt")) : (m("exp_new_pdp_link_01", "See Less", "Click", "Product details"), n.currentTarget.classList.remove("is_open"), n.currentTarget.querySelector("div").textContent = "See More", n.currentTarget.previousElementSibling.classList.add("blur_txt"));
+          n.currentTarget && !n.currentTarget.classList.contains("is_open") ? (h("exp_new_pdp_link_01", "See more", "Click", "Product details"), n.currentTarget.classList.add("is_open"), n.currentTarget.querySelector("div").textContent = "See Less", n.currentTarget.previousElementSibling.classList.remove("blur_txt")) : (h("exp_new_pdp_link_01", "See Less", "Click", "Product details"), n.currentTarget.classList.remove("is_open"), n.currentTarget.querySelector("div").textContent = "See More", n.currentTarget.previousElementSibling.classList.add("blur_txt"));
         });
       });
     }
@@ -3843,7 +3843,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         const n = a(e);
         a(".product_image_gallery_block") || n.insertAdjacentHTML(
           "beforebegin",
-          A(p[this.pathName].productImageGalleryImgs)
+          P(p[this.pathName].productImageGalleryImgs)
         );
       });
     }
@@ -3852,22 +3852,22 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         typeof jQuery == "function" && a(e) && (clearInterval(d), console.log("Accordion initialized for", e), $(`${t}`).eq(0).addClass("active"), $(`${t} ${n}`).eq(0).addClass("active"), $(`${t} ${r}`).eq(0).css("display", "flex"), $(`${n}`).on("click", function(c) {
           $(this).toggleClass("active"), $(this).closest("li").toggleClass("active"), $(this).next(r).slideToggle(), $(`${n}`).not(this).next(r).slideUp(), $(`${n}`).not(this).removeClass("active").closest("li").removeClass("active"), e === ".product_details_block" && (setTimeout(() => {
             c.currentTarget.closest("li").scrollIntoView({ block: "start", behavior: "smooth" });
-          }, 400), c.currentTarget.classList.contains("active") ? m(
+          }, 400), c.currentTarget.classList.contains("active") ? h(
             "exp_new_pdp_dropdown_02",
             `Open - ${c.currentTarget.querySelector("p").textContent}`,
             "Click",
             "Product details"
-          ) : m(
+          ) : h(
             "exp_new_pdp_dropdown_03",
             `Close - ${c.currentTarget.querySelector("p").textContent}`,
             "Click",
             "Product details"
-          )), e === ".faq_block" && (c.currentTarget.classList.contains("active") ? m(
+          )), e === ".faq_block" && (c.currentTarget.classList.contains("active") ? h(
             "exp_new_pdp_dropdown_04",
             `Open - ${c.currentTarget.querySelector("p").textContent}`,
             "Click",
             "FAQ"
-          ) : m(
+          ) : h(
             "exp_new_pdp_dropdown_05",
             `Close - ${c.currentTarget.querySelector("p").textContent}`,
             "Click",
@@ -3880,7 +3880,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       l(".product-single__meta block-buy-buttons .add-to-cart").then((e) => {
         const t = a("body"), n = a(".product-single__meta block-buy-buttons .add-to-cart span"), r = a(".restock-rocket-button-container button");
         let d = n.textContent || "", c = "";
-        d === "Sold Out" && !r && (console.log(r), c = "sold_out"), r && (c = "notify_available", d = r.textContent || ""), a(".sticky_block") || t.insertAdjacentHTML("beforeend", P(d, c));
+        d === "Sold Out" && !r && (console.log(r), c = "sold_out"), r && (c = "notify_available", d = r.textContent || ""), a(".sticky_block") || t.insertAdjacentHTML("beforeend", A(d, c));
       });
     }
     toggleStickyBlockVisibility() {
@@ -3912,8 +3912,8 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
           if (r.length > 0) {
             let d = [], c = "", g = !1;
             r.forEach((_) => {
-              const u = _.getAttribute("value") || "Unknown", h = _.checked, y = _.hasAttribute("data-disabled");
-              h && (c = u), y && (g = !0), d.push(this.createDropdownItem(u, h, y));
+              const u = _.getAttribute("value") || "Unknown", m = _.checked, y = _.hasAttribute("data-disabled");
+              m && (c = u), y && (g = !0), d.push(this.createDropdownItem(u, m, y));
             }), a(".color_wrapper") || n.insertAdjacentHTML(
               "afterbegin",
               q(d.join(""), c, g)
@@ -3937,11 +3937,11 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         ".product-single__meta block-variant-picker > .variant-button-wrap input"
       );
       n.addEventListener("click", () => {
-        m("exp_new_pdp_button_02", "Color", "Click", "Stiky section"), r.classList.toggle("show"), this.adjustDropdownPosition(r), n.classList.toggle("active");
+        h("exp_new_pdp_button_02", "Color", "Click", "Stiky section"), r.classList.toggle("show"), this.adjustDropdownPosition(r), n.classList.toggle("active");
       }), d.forEach((_) => {
         _.addEventListener("click", (u) => {
-          const h = u.currentTarget, y = h.getAttribute("data-value"), O = h.hasAttribute("data-disabled");
-          r.style.top = "100%", n.innerHTML = h.innerHTML, r.classList.remove("show"), n.classList.remove("active"), O ? n.setAttribute("data-disabled", "") : n.removeAttribute("data-disabled"), m("exp_new_pdp_dropdown_01", `Selected value: ${h == null ? void 0 : h.textContent}`, "Dropdown", "Stiky section"), c.forEach((x) => {
+          const m = u.currentTarget, y = m.getAttribute("data-value"), O = m.hasAttribute("data-disabled");
+          r.style.top = "100%", n.innerHTML = m.innerHTML, r.classList.remove("show"), n.classList.remove("active"), O ? n.setAttribute("data-disabled", "") : n.removeAttribute("data-disabled"), h("exp_new_pdp_dropdown_01", `Selected value: ${m == null ? void 0 : m.textContent}`, "Dropdown", "Stiky section"), c.forEach((x) => {
             x.getAttribute("value") === y && x.click();
           });
         });
@@ -3968,7 +3968,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       l(".sticky_block").then((e) => {
         l(".sticky_block").then((t) => {
           a(".add_to_cart_btn").addEventListener("click", () => {
-            m("exp_new_pdp_button_01", "Add to cart", "Click", "Stiky section");
+            h("exp_new_pdp_button_01", "Add to cart", "Click", "Stiky section");
             const r = a(".restock-rocket-button-container .restock-rocket-button-cover"), d = a(".product-single__meta block-buy-buttons .add-to-cart");
             r ? r.click() : d.click();
           });
@@ -4055,8 +4055,8 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       });
     }
   }
-  l(".page-content--product").then((o) => {
-    new j(B);
+  l(".page-content--product").then((i) => {
+    new B(j);
   });
 })();
 //# sourceMappingURL=index.js.map
