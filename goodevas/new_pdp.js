@@ -1732,12 +1732,13 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     width: 26px;
     height: 35px;
     z-index: 10;
+    opacity: 1 !important;
   }
   .page-content--product product-images .flickity-prev-next-button svg {
     width: 100%;
@@ -4025,7 +4026,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         (n = a(".add_to_cart_btn")) == null || n.remove(), a(".add_to_cart_btn") || (o = a(".sticky_block")) == null || o.insertAdjacentHTML(
           "beforeend",
           `<div class="add_to_cart_btn ${t}">${e}</div>`
-        ), this.clickAddToCartStickyBtn();
+        ), this.clickAddToCartStickyBtn(), this.syncLoadingState();
       });
     }
     syncLoadingState() {
