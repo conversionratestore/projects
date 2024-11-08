@@ -1,48 +1,48 @@
 (function() {
   "use strict";
-  const h = (i, e, t, n = "") => {
+  const u = (n, e, t, i = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: i,
+      event_name: n,
       event_desc: e,
       event_type: t,
-      event_loc: n
-    }), console.dir(`Event: ${i} | ${e} | ${t} | ${n}`);
-  }, C = ({ name: i, dev: e }) => {
+      event_loc: i
+    }), console.dir(`Event: ${n} | ${e} | ${t} | ${i}`);
+  }, k = ({ name: n, dev: e }) => {
     console.log(
-      `%c EXP: ${i} (DEV: ${e})`,
+      `%c EXP: ${n} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, f = (i) => document.querySelectorAll(i), r = (i) => document.querySelector(i), k = (i, e = "variant_1") => {
+  }, f = (n) => document.querySelectorAll(n), a = (n) => document.querySelector(n), C = (n, e = "variant_1") => {
     let t = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", i, e), console.log("set", i, e));
+      typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", n, e), console.log("set", n, e));
     }, 1e3);
-  }, b = (i, e, t, n, o = "Visibility", c = 600, d = 0.5) => {
-    let _, p;
-    if (_ = new IntersectionObserver(
-      function(u) {
-        u[0].isIntersecting === !0 ? p = setTimeout(() => {
-          h(
+  }, b = (n, e, t, i, o = "Visibility", c = 600, d = 0.5) => {
+    let m, p;
+    if (m = new IntersectionObserver(
+      function(h) {
+        h[0].isIntersecting === !0 ? p = setTimeout(() => {
+          u(
             e,
-            u[0].target.dataset.visible || n || "",
+            h[0].target.dataset.visible || i || "",
             o,
             t
-          ), _.disconnect();
+          ), m.disconnect();
         }, c) : clearTimeout(p);
       },
       { threshold: [d] }
-    ), typeof i == "string") {
-      const u = document.querySelector(i);
-      u && _.observe(u);
+    ), typeof n == "string") {
+      const h = document.querySelector(n);
+      h && m.observe(h);
     } else
-      _.observe(i);
+      m.observe(n);
   };
-  function l(i) {
+  function l(n) {
     return new Promise((e) => {
-      if (document.querySelector(i))
-        return e(document.querySelector(i));
+      if (document.querySelector(n))
+        return e(document.querySelector(n));
       const t = new MutationObserver(() => {
-        document.querySelector(i) && (e(document.querySelector(i)), t.disconnect());
+        document.querySelector(n) && (e(document.querySelector(n)), t.disconnect());
       });
       t.observe(document.documentElement, {
         childList: !0,
@@ -51,18 +51,18 @@
       });
     });
   }
-  (function(i) {
-    i = i === void 0 ? {} : i;
-    let e, t, n, o, c = (i == null ? void 0 : i.delay) || 50;
+  (function(n) {
+    n = n === void 0 ? {} : n;
+    let e, t, i, o, c = (n == null ? void 0 : n.delay) || 50;
     function d() {
       e = null, o = 0;
     }
     return d(), function() {
-      return t = window.scrollY, e != null && (o = t - e), e = t, clearTimeout(n), n = setTimeout(d, c), o;
+      return t = window.scrollY, e != null && (o = t - e), e = t, clearTimeout(i), i = setTimeout(d, c), o;
     };
   })();
-  const S = (i, e = 100) => {
-    const t = document.querySelector(i);
+  const S = (n, e = 100) => {
+    const t = document.querySelector(n);
     if (!t)
       return;
     const o = t.getBoundingClientRect().top - e;
@@ -70,13 +70,13 @@
       top: o,
       behavior: "smooth"
     });
-  }, w = (i, e = 100) => {
-    const n = i.getBoundingClientRect().top + window.scrollY - e;
+  }, y = (n, e = 100) => {
+    const i = n.getBoundingClientRect().top + window.scrollY - e;
     window.scrollTo({
-      top: n,
+      top: i,
       behavior: "smooth"
     });
-  }, a = "https://conversionratestore.github.io/projects/goodevas/img/", s = {
+  }, r = "https://conversionratestore.github.io/projects/goodevas/img/", s = {
     bestSellerLabelIcon: `
     <svg xmlns="http://www.w3.org/2000/svg" width="155" height="38" viewBox="0 0 155 38" fill="none">
   <path d="M150.422 6.69351L141.288 17.1084C141.288 17.1082 141.288 17.1085 141.288 17.1084C140.949 17.4948 140.75 17.9521 140.75 18.441C140.75 18.9301 140.949 19.3871 141.288 19.7737L150.422 30.1885C151.373 31.2722 150.603 32.9704 149.162 32.9704H17.2279C15.7866 32.9704 15.0172 31.2721 15.9676 30.1885L25.1024 19.7737C25.4418 19.3871 25.6407 18.9301 25.6407 18.441C25.6407 17.952 25.4418 17.4949 25.1024 17.1084L15.9676 6.69356C15.0172 5.61 15.7866 3.91162 17.2279 3.91162H149.162C150.603 3.91162 151.373 5.60993 150.422 6.69351Z" fill="#FFF0CF"/>
@@ -305,9 +305,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${a}goodevas_img.webp`,
+        goodevasImg: `${r}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${a}competitors_img.webp`,
+        competitorsImg: `${r}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -359,16 +359,16 @@
         }
       ],
       productImageGalleryImgs: [
-        `${a}pdp_page_1_1_desk.webp`,
-        `${a}pdp_page_1_2_desk.webp`,
-        `${a}pdp_page_1_3_desk.webp`,
-        `${a}pdp_page_1_4_desk.webp`
+        `${r}pdp_page_1_1_desk.webp`,
+        `${r}pdp_page_1_2_desk.webp`,
+        `${r}pdp_page_1_3_desk.webp`,
+        `${r}pdp_page_1_4_desk.webp`
       ],
       productImageGalleryImgsMobile: [
-        `${a}pdp_page_1_1_mob.webp`,
-        `${a}pdp_page_1_2_mob.webp`,
-        `${a}pdp_page_1_3_mob.webp`,
-        `${a}pdp_page_1_4_mob.webp`
+        `${r}pdp_page_1_1_mob.webp`,
+        `${r}pdp_page_1_2_mob.webp`,
+        `${r}pdp_page_1_3_mob.webp`,
+        `${r}pdp_page_1_4_mob.webp`
       ]
     },
     "/products/4in1-montessori-climbing-frame-set-triangle-ladder-arch-rocker-slide-board-ramp-netting-rope": {
@@ -470,9 +470,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${a}goodevas_img.webp`,
+        goodevasImg: `${r}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${a}competitors_img.webp`,
+        competitorsImg: `${r}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -524,20 +524,20 @@
         }
       ],
       productImageGalleryImgs: [
-        `${a}pdp_page_2_1_desk.webp`,
-        `${a}pdp_page_2_2_desk.webp`,
-        `${a}pdp_page_2_3_desk.webp`,
-        `${a}pdp_page_2_4_desk.webp`,
-        `${a}pdp_page_2_5_desk.webp`,
-        `${a}pdp_page_2_6_desk.webp`,
-        `${a}pdp_page_2_7_desk.webp`,
-        `${a}pdp_page_2_8_desk.webp`
+        `${r}pdp_page_2_1_desk.webp`,
+        `${r}pdp_page_2_2_desk.webp`,
+        `${r}pdp_page_2_3_desk.webp`,
+        `${r}pdp_page_2_4_desk.webp`,
+        `${r}pdp_page_2_5_desk.webp`,
+        `${r}pdp_page_2_6_desk.webp`,
+        `${r}pdp_page_2_7_desk.webp`,
+        `${r}pdp_page_2_8_desk.webp`
       ],
       productImageGalleryImgsMobile: [
-        `${a}pdp_page_2_1_mob.webp`,
-        `${a}pdp_page_2_2_mob.webp`,
-        `${a}pdp_page_2_3_mob.webp`,
-        `${a}pdp_page_2_4_mob.webp`
+        `${r}pdp_page_2_1_mob.webp`,
+        `${r}pdp_page_2_2_mob.webp`,
+        `${r}pdp_page_2_3_mob.webp`,
+        `${r}pdp_page_2_4_mob.webp`
       ]
     },
     "/en-gb/products/3in1-wooden-swedish-wall-climbing-ladder-for-children-swing-set-slide-board": {
@@ -649,9 +649,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${a}goodevas_img.webp`,
+        goodevasImg: `${r}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${a}competitors_img.webp`,
+        competitorsImg: `${r}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -703,11 +703,11 @@
         }
       ],
       productImageGalleryImgs: [
-        `${a}pdp_page_3_1_desk.webp`,
-        `${a}pdp_page_3_2_desk.webp`,
-        `${a}pdp_page_3_3_desk.webp`
+        `${r}pdp_page_3_1_desk.webp`,
+        `${r}pdp_page_3_2_desk.webp`,
+        `${r}pdp_page_3_3_desk.webp`
       ],
-      productImageGalleryImgsMobile: [`${a}pdp_page_3_1_mob.webp`, `${a}pdp_page_3_2_mob.webp`]
+      productImageGalleryImgsMobile: [`${r}pdp_page_3_1_mob.webp`, `${r}pdp_page_3_2_mob.webp`]
     },
     "/en-gb/products/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige": {
       boughtSoFarTxt: "4740",
@@ -812,9 +812,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${a}goodevas_img.webp`,
+        goodevasImg: `${r}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${a}competitors_img.webp`,
+        competitorsImg: `${r}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -1038,9 +1038,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${a}goodevas_img.webp`,
+        goodevasImg: `${r}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${a}competitors_img.webp`,
+        competitorsImg: `${r}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -1092,16 +1092,26 @@
         }
       ],
       productImageGalleryImgs: [
-        `${a}pdp_page_1_1_desk.webp`,
-        `${a}pdp_page_1_2_desk.webp`,
-        `${a}pdp_page_1_3_desk.webp`,
-        `${a}pdp_page_1_4_desk.webp`
+        "//goodevas.com/cdn/shop/products/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-593918.jpg?v=1716373756&width=360 360w, //goodevas.com/cdn/shop/products/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-593918.jpg?v=1716373756&width=540 540w, //goodevas.com/cdn/shop/products/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-593918.jpg?v=1716373756&width=720 720w, //goodevas.com/cdn/shop/products/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-593918.jpg?v=1716373756&width=900 900w, //goodevas.com/cdn/shop/products/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-593918.jpg?v=1716373756&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-795998.jpg?v=1729228106&width=360 360w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-795998.jpg?v=1729228106&width=540 540w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-795998.jpg?v=1729228106&width=720 720w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-795998.jpg?v=1729228106&width=900 900w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-795998.jpg?v=1729228106&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-534907.jpg?v=1729062373&width=360 360w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-534907.jpg?v=1729062373&width=540 540w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-534907.jpg?v=1729062373&width=720 720w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-534907.jpg?v=1729062373&width=900 900w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-534907.jpg?v=1729062373&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-187572.jpg?v=1729062373&width=360 360w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-187572.jpg?v=1729062373&width=540 540w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-187572.jpg?v=1729062373&width=720 720w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-187572.jpg?v=1729062373&width=900 900w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-187572.jpg?v=1729062373&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-827546.jpg?v=1729062373&width=360 360w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-827546.jpg?v=1729062373&width=540 540w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-827546.jpg?v=1729062373&width=720 720w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-827546.jpg?v=1729062373&width=900 900w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-827546.jpg?v=1729062373&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-365331.jpg?v=1729062373&width=360 360w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-365331.jpg?v=1729062373&width=540 540w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-365331.jpg?v=1729062373&width=720 720w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-365331.jpg?v=1729062373&width=900 900w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-365331.jpg?v=1729062373&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-328196.jpg?v=1729062373&width=360 360w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-328196.jpg?v=1729062373&width=540 540w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-328196.jpg?v=1729062373&width=720 720w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-328196.jpg?v=1729062373&width=900 900w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-328196.jpg?v=1729062373&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-924251.webp?v=1729228106&width=360 360w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-924251.webp?v=1729228106&width=540 540w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-924251.webp?v=1729228106&width=720 720w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-924251.webp?v=1729228106&width=900 900w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-924251.webp?v=1729228106&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-638320.jpg?v=1729062373&width=360 360w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-638320.jpg?v=1729062373&width=540 540w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-638320.jpg?v=1729062373&width=720 720w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-638320.jpg?v=1729062373&width=900 900w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-638320.jpg?v=1729062373&width=1080 1080w"
       ],
       productImageGalleryImgsMobile: [
-        `${a}pdp_page_1_1_mob.webp`,
-        `${a}pdp_page_1_2_mob.webp`,
-        `${a}pdp_page_1_3_mob.webp`,
-        `${a}pdp_page_1_4_mob.webp`
+        "//goodevas.com/cdn/shop/products/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-593918.jpg?v=1716373756&width=360 360w, //goodevas.com/cdn/shop/products/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-593918.jpg?v=1716373756&width=540 540w, //goodevas.com/cdn/shop/products/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-593918.jpg?v=1716373756&width=720 720w, //goodevas.com/cdn/shop/products/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-593918.jpg?v=1716373756&width=900 900w, //goodevas.com/cdn/shop/products/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-593918.jpg?v=1716373756&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-795998.jpg?v=1729228106&width=360 360w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-795998.jpg?v=1729228106&width=540 540w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-795998.jpg?v=1729228106&width=720 720w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-795998.jpg?v=1729228106&width=900 900w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-795998.jpg?v=1729228106&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-534907.jpg?v=1729062373&width=360 360w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-534907.jpg?v=1729062373&width=540 540w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-534907.jpg?v=1729062373&width=720 720w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-534907.jpg?v=1729062373&width=900 900w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-534907.jpg?v=1729062373&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-187572.jpg?v=1729062373&width=360 360w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-187572.jpg?v=1729062373&width=540 540w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-187572.jpg?v=1729062373&width=720 720w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-187572.jpg?v=1729062373&width=900 900w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-187572.jpg?v=1729062373&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-827546.jpg?v=1729062373&width=360 360w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-827546.jpg?v=1729062373&width=540 540w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-827546.jpg?v=1729062373&width=720 720w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-827546.jpg?v=1729062373&width=900 900w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-827546.jpg?v=1729062373&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-365331.jpg?v=1729062373&width=360 360w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-365331.jpg?v=1729062373&width=540 540w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-365331.jpg?v=1729062373&width=720 720w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-365331.jpg?v=1729062373&width=900 900w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-365331.jpg?v=1729062373&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-328196.jpg?v=1729062373&width=360 360w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-328196.jpg?v=1729062373&width=540 540w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-328196.jpg?v=1729062373&width=720 720w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-328196.jpg?v=1729062373&width=900 900w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-328196.jpg?v=1729062373&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-924251.webp?v=1729228106&width=360 360w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-924251.webp?v=1729228106&width=540 540w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-924251.webp?v=1729228106&width=720 720w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-924251.webp?v=1729228106&width=900 900w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-924251.webp?v=1729228106&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-638320.jpg?v=1729062373&width=360 360w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-638320.jpg?v=1729062373&width=540 540w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-638320.jpg?v=1729062373&width=720 720w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-638320.jpg?v=1729062373&width=900 900w, //goodevas.com/cdn/shop/files/6in1-montessori-climbing-frame-set-triangle-ladder-archrocker-slideramp-net-cushion-art-addition-638320.jpg?v=1729062373&width=1080 1080w"
       ]
     },
     "/en-ca/products/5in1-montessori-climbing-set-triangle-ladder-arch-rocker-slide-board-ramp-net-cushion-chocolate": {
@@ -1212,9 +1222,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${a}goodevas_img.webp`,
+        goodevasImg: `${r}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${a}competitors_img.webp`,
+        competitorsImg: `${r}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -1265,8 +1275,8 @@
           txt: "<p>We understand that purchasing from a new brand may raise questions. Our company has been in business since 2020, with over 50,000 positive reviews on our website, Amazon, and Etsy, which reflect the trustworthiness of our brand and products.</p>"
         }
       ],
-      productImageGalleryImgs: [`${a}pdp_page_6_1_desk.webp`, `${a}pdp_page_6_2_desk.webp`],
-      productImageGalleryImgsMobile: [`${a}pdp_page_6_1_mob.webp`, `${a}pdp_page_6_2_mob.webp`]
+      productImageGalleryImgs: [`${r}pdp_page_6_1_desk.webp`, `${r}pdp_page_6_2_desk.webp`],
+      productImageGalleryImgsMobile: [`${r}pdp_page_6_1_mob.webp`, `${r}pdp_page_6_2_mob.webp`]
     },
     "/en-eu/products/5in1-montessori-climbing-set-triangle-ladder-arch-rocker-slide-board-ramp-net-cushion-chocolate": {
       boughtSoFarTxt: "7245",
@@ -1376,9 +1386,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${a}goodevas_img.webp`,
+        goodevasImg: `${r}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${a}competitors_img.webp`,
+        competitorsImg: `${r}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -1430,46 +1440,46 @@
         }
       ],
       productImageGalleryImgs: [
-        `${a}pdp_page_7_1_desk.webp`,
-        `${a}pdp_page_7_2_desk.webp`,
-        `${a}pdp_page_7_3_desk.webp`,
-        `${a}pdp_page_7_4_desk.webp`
+        `${r}pdp_page_7_1_desk.webp`,
+        `${r}pdp_page_7_2_desk.webp`,
+        `${r}pdp_page_7_3_desk.webp`,
+        `${r}pdp_page_7_4_desk.webp`
       ],
       productImageGalleryImgsMobile: [
-        `${a}pdp_page_7_1_mob.webp`,
-        `${a}pdp_page_7_2_mob.webp`,
-        `${a}pdp_page_7_3_mob.webp`,
-        `${a}pdp_page_7_4_mob.webp`
+        `${r}pdp_page_7_1_mob.webp`,
+        `${r}pdp_page_7_2_mob.webp`,
+        `${r}pdp_page_7_3_mob.webp`,
+        `${r}pdp_page_7_4_mob.webp`
       ]
     }
   }, L = (
     /* HTML */
     ` <div class="best_seller_label_block">${s.bestSellerLabelIcon}</div> `
-  ), v = (i) => (
+  ), v = (n) => (
     /* HTML */
     `
     <div class="bought_so_far_block">
       ${s.cartIcon}
-      <p><span class="">${i}</span> bought so far</p>
+      <p><span class="">${n}</span> bought so far</p>
     </div>
   `
-  ), T = (i) => (
+  ), j = (n) => (
     /* HTML */
     `
     <div class="get_free_delivery_block">
       ${s.freeDeliveryIcon}
       <p>
         Order now and get <span class="accent_underline">FREE delivery</span> on or before
-        <span class="date_txt">${i}</span>
+        <span class="date_txt">${n}</span>
       </p>
     </div>
   `
-  ), I = (i) => (
+  ), T = (n) => (
     /* HTML */
     `
     <div class="new_product_sales_points_block">
       <ul class="new_product_sales_points_list">
-        ${i.map((e) => (
+        ${n.map((e) => (
       /* HTML */
       `
               <li class="new_product_sales_points_item">
@@ -1481,36 +1491,36 @@
       </ul>
     </div>
   `
-  ), H = (i) => (
+  ), I = (n) => (
     /* HTML */
     `
     <div class="one_review_block">
       <div class="info_wrapper">
-        <p class="info_descr">${i.txt}</p>
+        <p class="info_descr">${n.txt}</p>
         <div class="name_stars_wrapper">
-          <span class="name_review">${i.name}</span>
+          <span class="name_review">${n.name}</span>
           <div class="stars_summary">
             <div class="stars_wrapper">${s.starIcon}${s.starIcon}${s.starIcon}${s.starIcon}${s.starIcon}</div>
-            <span>${i.rating}</span>
+            <span>${n.rating}</span>
           </div>
         </div>
       </div>
       <div class="img_wrapper">
-        <img src="${i.img}" alt="photo product" />
+        <img src="${n.img}" alt="photo product" />
         <span class="all_reviews_link">All reviews</span>
       </div>
     </div>
   `
-  ), j = (i) => (
+  ), H = (n) => (
     /* HTML */
-    ` <h2 class="tolstoy_stories_new_title">${i}</h2> `
-  ), D = (i) => (
+    ` <h2 class="tolstoy_stories_new_title">${n}</h2> `
+  ), D = (n) => (
     /* HTML */
     `
     <div class="product_details_block">
       <h2>Product details</h2>
       <ul class="product_details_accordion">
-        ${i.map((e, t) => (
+        ${n.map((e, t) => (
       /* HTML */
       `
               <li class="product_details_accordion_block" data-visability="${t + 1}">
@@ -1527,12 +1537,12 @@
       </ul>
     </div>
   `
-  ), M = (i) => (
+  ), M = (n) => (
     /* HTML */
     `
     <div class="main_benefits_block">
       <ul class="main_benefits_list">
-        ${Object.values(i).map(
+        ${Object.values(n).map(
       (e) => (
         /* HTML */
         `
@@ -1549,11 +1559,11 @@
       </ul>
     </div>
   `
-  ), z = (i) => (
+  ), z = (n) => (
     /* HTML */
     `
     <div class="comparison_table_block">
-      <h2 class="comparison_table_main_title">${i.mainTitle}</h2>
+      <h2 class="comparison_table_main_title">${n.mainTitle}</h2>
 
       <div class="custom_table">
         <div class="benefits_row">
@@ -1561,7 +1571,7 @@
             <div class="table_cell"></div>
           </div>
           <div class="body_table">
-            ${i.benefits.map((e) => (
+            ${n.benefits.map((e) => (
       /* HTML */
       ` <div class="benefits_cell table_cell"><p>${e.benefitName}</p></div> `
     )).join("")}
@@ -1571,12 +1581,12 @@
         <div class="goodevas_row is_active">
           <div class="header_table">
             <div class="table_cell">
-              <h3>${i.goodevasTitle}</h3>
-              <img src="${a}goodevas_1_img.png" alt="child girl" />
+              <h3>${n.goodevasTitle}</h3>
+              <img src="${r}goodevas_1_img.png" alt="child girl" />
             </div>
           </div>
           <div class="body_table">
-            ${i.benefits.map(
+            ${n.benefits.map(
       (e) => (
         /* HTML */
         `
@@ -1593,12 +1603,12 @@
         <div class="competitors_row">
           <div class="header_table">
             <div class="table_cell">
-              <h3>${i.competitorsTitle}</h3>
-              <img src="${a}competitors_1_img.png" alt="child girl" />
+              <h3>${n.competitorsTitle}</h3>
+              <img src="${r}competitors_1_img.png" alt="child girl" />
             </div>
           </div>
           <div class="body_table">
-            ${i.benefits.map(
+            ${n.benefits.map(
       (e) => (
         /* HTML */
         `
@@ -1614,13 +1624,13 @@
       </div>
     </div>
   `
-  ), E = (i) => (
+  ), E = (n) => (
     /* HTML */
     `
     <div class="faq_block">
       <h2>FAQ</h2>
       <ul class="faq_accordion">
-        ${i.map((e, t) => (
+        ${n.map((e, t) => (
       /* HTML */
       `
               <li class="faq_accordion_block" data-visability="${t + 1}">
@@ -1637,14 +1647,14 @@
       </ul>
     </div>
   `
-  ), P = (i, e = "") => (
+  ), P = (n, e = "") => (
     /* HTML */
     `
     <div class="product_image_gallery_block">
       <div class="product_image_gallery_container">
         <h2>Product image gallery</h2>
         <ul class="product_image_gallery_list">
-          ${i.map((t) => (
+          ${n.map((t) => (
       /* HTML */
       `
                 <li class="product_image_gallery_item ${e}">
@@ -1656,32 +1666,32 @@
       </div>
     </div>
   `
-  ), A = (i, e) => (
+  ), A = (n, e) => (
     /* HTML */
     `
     <div class="sticky_block">
-      <div class="add_to_cart_btn ${e}">${i}</div>
+      <div class="add_to_cart_btn ${e}">${n}</div>
     </div>
   `
-  ), q = (i, e, t) => (
+  ), q = (n, e, t) => (
     /* HTML */
     `
     <div class="color_wrapper">
       <span>Color</span>
       <div class="custom_dropdown" id="productColor">
         <div class="dropdown_toggle" ${t ? "data-disabled" : ""}>${e}</div>
-        <div class="dropdown_menu">${i}</div>
+        <div class="dropdown_menu">${n}</div>
       </div>
     </div>
   `
-  ), W = (i, e, t, n, o) => (
+  ), W = (n, e, t, i, o) => (
     /* HTML */
     `
     <div class="estimate_your_shipping_period_block">
       <h2 class="shipping_title">Estimate <span>your</span> shipping period</h2>
       <div class="shipping_destination">
         <span>Ship to:</span>
-        <span class="country_txt">${i}</span>
+        <span class="country_txt">${n}</span>
       </div>
       <div class="shipping_details">
         <div class="buy_goodevas">
@@ -1692,7 +1702,7 @@
         <div class="shipping_info">
           <h3 class="shipping_details_title">Shipping</h3>
           <span class="shipping_details_date shipping_duration">${t} days</span>
-          <span class="shipping_details_estimated_date shipping_estimated_date">${n}</span>
+          <span class="shipping_details_estimated_date shipping_estimated_date">${i}</span>
         </div>
         <div class="money_back_guarantee">
           <h3 class="shipping_details_title">100% money-back guarantee through</h3>
@@ -3716,10 +3726,10 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       this.device = e, this.observer = null, this.pathName = this.findTranslationKey(window.location.pathname), this.init();
     }
     findTranslationKey(e) {
-      return Object.keys(g).find((n) => e.includes(n)) || "";
+      return Object.keys(g).find((i) => e.includes(i)) || "";
     }
     init() {
-      C({ name: "PDP v2 Major Release", dev: "SKh" }), k("new_pdp"), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${B}</style>`), this.renderBestSellerLabelForPhoto(), this.renderBoughtSoFarBlock(), this.renderGetFreeDeliveryBlock(), this.renderNewProductSalesPointsBlock(), this.renderKlarnaWrapper(), this.replaceKlarnaPlacement(), this.renderOneReviewBlock(), this.renderTolstoyStoriesNewTitle(), this.clickAllReviewsLink(), this.renderProductDetailsBlock(), this.toggleSeeMoreTxt(), this.renderEstimateYourShippingPeriodBlock(), this.renderMainBenefits(), this.renderComparisonTable(), this.renderProductImageGalleryBlock(), this.renderFAQBlock(), this.initAccordionProductDetails(
+      k({ name: "PDP v2 Major Release", dev: "SKh" }), C("new_pdp"), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${B}</style>`), this.renderBestSellerLabelForPhoto(), this.renderBoughtSoFarBlock(), this.renderGetFreeDeliveryBlock(), this.renderNewProductSalesPointsBlock(), this.renderKlarnaWrapper(), this.replaceKlarnaPlacement(), this.renderOneReviewBlock(), this.renderTolstoyStoriesNewTitle(), this.clickAllReviewsLink(), this.renderProductDetailsBlock(), this.toggleSeeMoreTxt(), this.renderEstimateYourShippingPeriodBlock(), this.renderMainBenefits(), this.renderComparisonTable(), this.renderProductImageGalleryBlock(), this.renderFAQBlock(), this.initAccordionProductDetails(
         ".product_details_block",
         ".product_details_accordion_block",
         ".product_details_accordion_link",
@@ -3733,17 +3743,17 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     renderBestSellerLabelForPhoto() {
       l(".product__main-photos").then((e) => {
-        const t = r(".product__main-photos");
-        r(".best_seller_label_block") || t.insertAdjacentHTML("afterbegin", L);
+        const t = a(".product__main-photos");
+        a(".best_seller_label_block") || t.insertAdjacentHTML("afterbegin", L);
       });
     }
     renderBoughtSoFarBlock() {
       this.device === "desktop" && l("#shopify-block-yotpo_product_reviews_ugc_star_rating_FVceyX").then((e) => {
-        const t = r("#shopify-block-yotpo_product_reviews_ugc_star_rating_FVceyX");
-        r(".bought_so_far_block") || t.insertAdjacentHTML("beforeend", v(g[this.pathName].boughtSoFarTxt));
+        const t = a("#shopify-block-yotpo_product_reviews_ugc_star_rating_FVceyX");
+        a(".bought_so_far_block") || t.insertAdjacentHTML("beforeend", v(g[this.pathName].boughtSoFarTxt));
       }), this.device === "mobile" && l(".page-content--product .product-single__meta").then((e) => {
-        const t = r(".page-content--product .product-single__meta");
-        r(".bought_so_far_block") || t.insertAdjacentHTML(
+        const t = a(".page-content--product .product-single__meta");
+        a(".bought_so_far_block") || t.insertAdjacentHTML(
           "afterbegin",
           v(g[this.pathName].boughtSoFarTxt)
         );
@@ -3751,63 +3761,63 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     renderGetFreeDeliveryBlock() {
       l("block-price").then((e) => {
-        const t = r("block-price");
-        r(".get_free_delivery_block") || t.insertAdjacentHTML("afterend", T(this.getShippingDayDate()));
+        const t = a("block-price");
+        a(".get_free_delivery_block") || t.insertAdjacentHTML("afterend", j(this.getShippingDayDate()));
       });
     }
     renderNewProductSalesPointsBlock() {
       l("product-inventory").then((e) => {
-        const t = r("product-inventory");
-        r(".new_product_sales_points_block") || t.insertAdjacentHTML(
+        const t = a("product-inventory");
+        a(".new_product_sales_points_block") || t.insertAdjacentHTML(
           "beforebegin",
-          I(g[this.pathName].newProductSalesPointsTxt)
+          T(g[this.pathName].newProductSalesPointsTxt)
         );
       });
     }
     renderKlarnaWrapper() {
       l("klarna-placement").then((e) => {
         l(".page-content--product .product-single__meta block-buy-buttons").then((t) => {
-          const n = r(".page-content--product .product-single__meta block-buy-buttons");
-          r(".klarna_wrapper") || n.insertAdjacentHTML("beforeend", ' <div class="klarna_wrapper"></div>');
+          const i = a(".page-content--product .product-single__meta block-buy-buttons");
+          a(".klarna_wrapper") || i.insertAdjacentHTML("beforeend", ' <div class="klarna_wrapper"></div>');
         });
       });
     }
     replaceKlarnaPlacement() {
       l("klarna-placement").then((e) => {
         l(".klarna_wrapper").then((t) => {
-          const n = r(".klarna_wrapper"), o = r("klarna-placement");
-          r(".klarna_wrapper klarna-placement") || n.insertAdjacentElement("beforeend", o);
+          const i = a(".klarna_wrapper"), o = a("klarna-placement");
+          a(".klarna_wrapper klarna-placement") || i.insertAdjacentElement("beforeend", o);
         });
       });
     }
     renderOneReviewBlock() {
       l("block-buy-buttons").then((e) => {
-        const t = r("block-buy-buttons");
-        r(".one_review_block") || t.insertAdjacentHTML("afterend", H(g[this.pathName].oneReviewBlock));
+        const t = a("block-buy-buttons");
+        a(".one_review_block") || t.insertAdjacentHTML("afterend", I(g[this.pathName].oneReviewBlock));
       });
     }
     renderTolstoyStoriesNewTitle() {
       l(".tolstoy-stories-title").then((e) => {
-        const t = r(".tolstoy-stories-title");
-        r(".tolstoy_stories_new_title") || t.insertAdjacentHTML(
+        const t = a(".tolstoy-stories-title");
+        a(".tolstoy_stories_new_title") || t.insertAdjacentHTML(
           "afterend",
-          j(g[this.pathName].tolstoyStoriesNewTitle)
+          H(g[this.pathName].tolstoyStoriesNewTitle)
         );
       });
     }
     clickAllReviewsLink() {
       l(".all_reviews_link").then((e) => {
         l(".yotpo-main-layout").then((t) => {
-          r(".all_reviews_link").addEventListener("click", () => {
-            h("exp_new_pdp_button_03", "All reviews", "Click", "Review section"), S(".yotpo-main-layout");
+          a(".all_reviews_link").addEventListener("click", () => {
+            u("exp_new_pdp_button_03", "All reviews", "Click", "Review section"), S(".yotpo-main-layout");
           });
         });
       });
     }
     renderProductDetailsBlock() {
       l(".main_benefits_block").then((e) => {
-        const t = r(".main_benefits_block");
-        r(".product_details_block") || t.insertAdjacentHTML(
+        const t = a(".main_benefits_block");
+        a(".product_details_block") || t.insertAdjacentHTML(
           "beforebegin",
           D(g[this.pathName].productDetailsTxt)
         );
@@ -3815,15 +3825,15 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     toggleSeeMoreTxt() {
       l(".see_more_block").then((e) => {
-        r(".see_more_block").addEventListener("click", (n) => {
-          n.currentTarget && !n.currentTarget.classList.contains("is_open") ? (h("exp_new_pdp_link_01", "See more", "Click", "Product details"), n.currentTarget.classList.add("is_open"), n.currentTarget.querySelector("div").textContent = "See Less", n.currentTarget.previousElementSibling.classList.remove("blur_txt")) : (h("exp_new_pdp_link_01", "See Less", "Click", "Product details"), n.currentTarget.classList.remove("is_open"), n.currentTarget.querySelector("div").textContent = "See More", n.currentTarget.previousElementSibling.classList.add("blur_txt"));
+        a(".see_more_block").addEventListener("click", (i) => {
+          i.currentTarget && !i.currentTarget.classList.contains("is_open") ? (u("exp_new_pdp_link_01", "See more", "Click", "Product details"), i.currentTarget.classList.add("is_open"), i.currentTarget.querySelector("div").textContent = "See Less", i.currentTarget.previousElementSibling.classList.remove("blur_txt")) : (u("exp_new_pdp_link_01", "See Less", "Click", "Product details"), i.currentTarget.classList.remove("is_open"), i.currentTarget.querySelector("div").textContent = "See More", i.currentTarget.previousElementSibling.classList.add("blur_txt"));
         });
       });
     }
     renderEstimateYourShippingPeriodBlock() {
       l(".product_details_block").then((e) => {
-        const t = r(".product_details_block");
-        r(".estimate_your_shipping_period_block") || t.insertAdjacentHTML(
+        const t = a(".product_details_block");
+        a(".estimate_your_shipping_period_block") || t.insertAdjacentHTML(
           "beforebegin",
           W(
             g[this.pathName].deliveryToPlace,
@@ -3861,14 +3871,14 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     renderMainBenefits() {
       l(".product-single__meta").then((e) => {
-        const t = r(".product-single__meta");
-        r(".main_benefits_block") || t.insertAdjacentHTML("beforeend", M(g[this.pathName].mainBenefits));
+        const t = a(".product-single__meta");
+        a(".main_benefits_block") || t.insertAdjacentHTML("beforeend", M(g[this.pathName].mainBenefits));
       });
     }
     renderComparisonTable() {
       l(".main_benefits_block").then((e) => {
-        const t = r(".main_benefits_block");
-        r(".comparison_table_block") || t.insertAdjacentHTML(
+        const t = a(".main_benefits_block");
+        a(".comparison_table_block") || t.insertAdjacentHTML(
           "afterend",
           z(g[this.pathName].comparisonTable)
         );
@@ -3877,17 +3887,17 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     renderFAQBlock() {
       l(".comparison_table_block").then((e) => {
         l(".product_image_gallery_block").then((t) => {
-          let n = r(".comparison_table_block");
-          this.device === "mobile" && (n = r(".product_image_gallery_block")), r(".faq_block") || n.insertAdjacentHTML("afterend", E(g[this.pathName].fAQTxt));
+          let i = a(".comparison_table_block");
+          this.device === "mobile" && (i = a(".product_image_gallery_block")), a(".faq_block") || i.insertAdjacentHTML("afterend", E(g[this.pathName].fAQTxt));
         });
       });
     }
     renderProductImageGalleryBlock() {
-      let e = r("#shopify-section-template--18038805430429__1727770539adc7a55b") ? "#shopify-section-template--18038805430429__1727770539adc7a55b" : "#shopify-section-template--18135477813405__1727770539adc7a55b";
+      let e = a("#shopify-section-template--18038805430429__1727770539adc7a55b") ? "#shopify-section-template--18038805430429__1727770539adc7a55b" : "#shopify-section-template--18135477813405__1727770539adc7a55b";
       l(e).then((t) => {
-        const n = r(e);
+        const i = a(e);
         let o = "";
-        this.pathName === "/en-gb/products/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige" && (o = "flex_6"), r(".product_image_gallery_block") || n.insertAdjacentHTML(
+        (this.pathName === "/en-gb/products/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige" || this.pathName === "/en-ca/products/6in1-montessori-climbing-frame-set-triangle-ladder-arch-rocker-slide-ramp-net-cushion-art-addition") && (o = "flex_6"), a(".product_image_gallery_block") || i.insertAdjacentHTML(
           "beforebegin",
           P(
             this.device === "desktop" ? g[this.pathName].productImageGalleryImgs : g[this.pathName].productImageGalleryImgsMobile,
@@ -3896,28 +3906,28 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         );
       });
     }
-    initAccordionProductDetails(e, t, n, o) {
+    initAccordionProductDetails(e, t, i, o) {
       let c = setInterval(() => {
-        typeof jQuery == "function" && r(e) && (clearInterval(c), console.log("Accordion initialized for", e), $(`${t}`).eq(0).addClass("active"), $(`${t} ${n}`).eq(0).addClass("active"), $(`${t} ${o}`).eq(0).css("display", "flex"), $(`${n}`).on("click", function(d) {
-          $(this).toggleClass("active"), $(this).closest("li").toggleClass("active"), $(this).next(o).slideToggle(), $(`${n}`).not(this).next(o).slideUp(), $(`${n}`).not(this).removeClass("active").closest("li").removeClass("active"), e === ".product_details_block" && (setTimeout(() => {
+        typeof jQuery == "function" && a(e) && (clearInterval(c), console.log("Accordion initialized for", e), $(`${t}`).eq(0).addClass("active"), $(`${t} ${i}`).eq(0).addClass("active"), $(`${t} ${o}`).eq(0).css("display", "flex"), $(`${i}`).on("click", function(d) {
+          $(this).toggleClass("active"), $(this).closest("li").toggleClass("active"), $(this).next(o).slideToggle(), $(`${i}`).not(this).next(o).slideUp(), $(`${i}`).not(this).removeClass("active").closest("li").removeClass("active"), e === ".product_details_block" && (setTimeout(() => {
             const p = d.target.closest(".product_details_accordion_block");
-            p && (window.innerWidth < 768 ? w(p, 90) : w(p, 0));
-          }, 400), d.currentTarget.classList.contains("active") ? h(
+            p && (window.innerWidth < 768 ? y(p, 90) : y(p, 0));
+          }, 400), d.currentTarget.classList.contains("active") ? u(
             "exp_new_pdp_dropdown_02",
             `Open - ${d.currentTarget.querySelector("p").textContent}`,
             "Click",
             "Product details"
-          ) : h(
+          ) : u(
             "exp_new_pdp_dropdown_03",
             `Close - ${d.currentTarget.querySelector("p").textContent}`,
             "Click",
             "Product details"
-          )), e === ".faq_block" && (d.currentTarget.classList.contains("active") ? h(
+          )), e === ".faq_block" && (d.currentTarget.classList.contains("active") ? u(
             "exp_new_pdp_dropdown_04",
             `Open - ${d.currentTarget.querySelector("p").textContent}`,
             "Click",
             "FAQ"
-          ) : h(
+          ) : u(
             "exp_new_pdp_dropdown_05",
             `Close - ${d.currentTarget.querySelector("p").textContent}`,
             "Click",
@@ -3928,80 +3938,80 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     renderStickyBlock() {
       l(".product-single__meta block-buy-buttons .add-to-cart").then((e) => {
-        const t = r("body"), n = r(".product-single__meta block-buy-buttons .add-to-cart span"), o = r(".restock-rocket-button-container button");
-        let c = n.textContent || "", d = "";
-        o && (d = "notify_available", c = o.textContent || ""), r(".sticky_block") || t.insertAdjacentHTML("beforeend", A(c, d));
+        const t = a("body"), i = a(".product-single__meta block-buy-buttons .add-to-cart span"), o = a(".restock-rocket-button-container button");
+        let c = i.textContent || "", d = "";
+        o && (d = "notify_available", c = o.textContent || ""), a(".sticky_block") || t.insertAdjacentHTML("beforeend", A(c, d));
       });
     }
     toggleStickyBlockVisibility() {
       l("block-buy-buttons").then(() => {
         l(".sticky_block").then(() => {
-          const e = r(".sticky_block"), t = r("block-buy-buttons");
-          function n() {
+          const e = a(".sticky_block"), t = a("block-buy-buttons");
+          function i() {
             const o = {
               root: null,
               threshold: 0
             };
             let c = new IntersectionObserver((d) => {
-              d.forEach((_) => {
-                _.isIntersecting ? e.style.display = "none" : e.style.display = "flex", c.unobserve(_.target);
+              d.forEach((m) => {
+                m.isIntersecting ? e.style.display = "none" : e.style.display = "flex", c.unobserve(m.target);
               }), c.disconnect();
             }, o);
             c.observe(t);
           }
           window.addEventListener("scroll", () => {
-            n();
-          }), n();
+            i();
+          }), i();
         });
       });
     }
     renderColorWrapper() {
       l(".sticky_block").then((e) => {
         l(".product-single__meta block-variant-picker > .variant-button-wrap input").then((t) => {
-          const n = r(".sticky_block"), o = f(".product-single__meta block-variant-picker > .variant-button-wrap input");
+          const i = a(".sticky_block"), o = f(".product-single__meta block-variant-picker > .variant-button-wrap input");
           if (o.length > 0) {
-            let c = [], d = "", _ = !1;
+            let c = [], d = "", m = !1;
             o.forEach((p) => {
-              const u = p.getAttribute("value") || "Unknown", m = p.checked, y = p.hasAttribute("data-disabled");
-              m && (d = u, _ = y), c.push(this.createDropdownItem(u, m, y));
-            }), r(".color_wrapper") || n.insertAdjacentHTML(
+              const h = p.getAttribute("value") || "Unknown", _ = p.checked, w = p.hasAttribute("data-disabled");
+              _ && (d = h, m = w), c.push(this.createDropdownItem(h, _, w));
+            }), a(".color_wrapper") || i.insertAdjacentHTML(
               "afterbegin",
-              q(c.join(""), d, _)
+              q(c.join(""), d, m)
             ), this.changeCustomDropdownHandler(".custom_dropdown");
           }
         });
       });
     }
-    createDropdownItem(e, t, n) {
+    createDropdownItem(e, t, i) {
       return (
         /* HTML */
         `
-      <div class="dropdown_item ${t ? "active" : ""}" data-value="${e}" ${n ? "data-disabled" : ""}>
+      <div class="dropdown_item ${t ? "active" : ""}" data-value="${e}" ${i ? "data-disabled" : ""}>
         ${e}
       </div>
     `
       );
     }
     changeCustomDropdownHandler(e) {
-      const t = r(e), n = t.querySelector(".dropdown_toggle"), o = t.querySelector(".dropdown_menu"), c = t.querySelectorAll(".dropdown_item"), d = f(
+      const t = a(e), i = t.querySelector(".dropdown_toggle"), o = t.querySelector(".dropdown_menu"), c = t.querySelectorAll(".dropdown_item"), d = f(
         ".product-single__meta block-variant-picker > .variant-button-wrap input"
       );
-      n.addEventListener("click", () => {
-        h("exp_new_pdp_button_02", "Color", "Click", "Stiky section"), o.classList.toggle("show"), this.adjustDropdownPosition(o), n.classList.toggle("active");
+      i.addEventListener("click", () => {
+        u("exp_new_pdp_button_02", "Color", "Click", "Stiky section"), o.classList.toggle("show"), this.adjustDropdownPosition(o), i.classList.toggle("active");
       }), c.forEach((p) => {
-        p.addEventListener("click", (u) => {
-          const m = u.currentTarget, y = m.getAttribute("data-value"), N = m.hasAttribute("data-disabled");
-          o.style.top = "100%", n.innerHTML = m.innerHTML, o.classList.remove("show"), n.classList.remove("active"), N ? n.setAttribute("data-disabled", "") : n.removeAttribute("data-disabled"), h("exp_new_pdp_dropdown_01", `Selected value: ${m == null ? void 0 : m.textContent}`, "Dropdown", "Stiky section"), d.forEach((x) => {
-            x.getAttribute("value") === y && x.click();
+        p.addEventListener("click", (h) => {
+          const _ = h.currentTarget, w = _.getAttribute("data-value"), N = _.hasAttribute("data-disabled");
+          o.style.top = "100%", i.innerHTML = _.innerHTML, o.classList.remove("show"), i.classList.remove("active"), N ? i.setAttribute("data-disabled", "") : i.removeAttribute("data-disabled"), u("exp_new_pdp_dropdown_01", `Selected value: ${_ == null ? void 0 : _.textContent}`, "Dropdown", "Stiky section"), d.forEach((x) => {
+            x.getAttribute("value") === w && x.click();
           });
         });
       }), document.addEventListener("click", (p) => {
-        const u = p.target;
-        t.contains(u) || (o.classList.remove("show"), n.classList.remove("active"), o.style.top = "100%");
+        const h = p.target;
+        t.contains(h) || (o.classList.remove("show"), i.classList.remove("active"), o.style.top = "100%");
       }), new IntersectionObserver(
         (p) => {
-          p.forEach((u) => {
-            u.isIntersecting || this.adjustDropdownPosition(o);
+          p.forEach((h) => {
+            h.isIntersecting || this.adjustDropdownPosition(o);
           });
         },
         {
@@ -4011,15 +4021,15 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       ).observe(o);
     }
     adjustDropdownPosition(e) {
-      const t = e.getBoundingClientRect(), n = window.innerHeight || document.documentElement.clientHeight;
-      t.bottom > n ? e.style.top = `-${t.height + 2}px` : e.style.top = "100%";
+      const t = e.getBoundingClientRect(), i = window.innerHeight || document.documentElement.clientHeight;
+      t.bottom > i ? e.style.top = `-${t.height + 2}px` : e.style.top = "100%";
     }
     clickAddToCartStickyBtn() {
       l(".sticky_block").then((e) => {
         l(".add_to_cart_btn").then((t) => {
-          r(".add_to_cart_btn").addEventListener("click", () => {
-            h("exp_new_pdp_button_01", "Add to cart", "Click", "Stiky section");
-            const o = r(".restock-rocket-button-container .restock-rocket-button-cover"), c = r(".product-single__meta block-buy-buttons .add-to-cart");
+          a(".add_to_cart_btn").addEventListener("click", () => {
+            u("exp_new_pdp_button_01", "Add to cart", "Click", "Stiky section");
+            const o = a(".restock-rocket-button-container .restock-rocket-button-cover"), c = a(".product-single__meta block-buy-buttons .add-to-cart");
             o ? o.click() : c.click();
           });
         });
@@ -4027,41 +4037,41 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     changeColorOnPdp() {
       l(".product-single__meta block-variant-picker > .variant-button-wrap input").then((e) => {
-        f(".product-single__meta block-variant-picker > .variant-button-wrap input").forEach((n) => {
-          n.addEventListener("click", () => {
+        f(".product-single__meta block-variant-picker > .variant-button-wrap input").forEach((i) => {
+          i.addEventListener("click", () => {
             this.updateActiveColor();
           });
         });
       });
     }
     updateActiveColor() {
-      const e = f(".product-single__meta block-variant-picker > .variant-button-wrap input"), t = r(".color_wrapper .dropdown_toggle");
-      let n = "", o = !1;
+      const e = f(".product-single__meta block-variant-picker > .variant-button-wrap input"), t = a(".color_wrapper .dropdown_toggle");
+      let i = "", o = !1;
       e.forEach((c) => {
-        const d = c.getAttribute("value") || "Unknown", _ = c.checked, p = r(`.color_wrapper .dropdown_item[data-value="${d}"]`);
-        p && (_ ? (p.classList.add("active"), n = d, o = c.hasAttribute("data-disabled")) : p.classList.remove("active"));
-      }), t && n && (t.textContent = n, o ? t.setAttribute("data-disabled", "") : t.removeAttribute("data-disabled"));
+        const d = c.getAttribute("value") || "Unknown", m = c.checked, p = a(`.color_wrapper .dropdown_item[data-value="${d}"]`);
+        p && (m ? (p.classList.add("active"), i = d, o = c.hasAttribute("data-disabled")) : p.classList.remove("active"));
+      }), t && i && (t.textContent = i, o ? t.setAttribute("data-disabled", "") : t.removeAttribute("data-disabled"));
     }
     observeRestockRocketButton() {
       new MutationObserver((t) => {
-        for (const n of t) {
-          for (let o of n.addedNodes)
+        for (const i of t) {
+          for (let o of i.addedNodes)
             o instanceof HTMLElement && o.matches(".restock-rocket-button-container") && this.handleRestockButtonAdded();
-          for (let o of n.removedNodes)
+          for (let o of i.removedNodes)
             o instanceof HTMLElement && o.matches(".restock-rocket-button-container") && this.handleRestockButtonRemoved();
         }
       }).observe(document.body, { childList: !0, subtree: !0 });
     }
     handleRestockButtonAdded() {
-      r(".restock-rocket-button-container") && this.updateAddToCartButton("Notify me when available", "notify_available");
+      a(".restock-rocket-button-container") && this.updateAddToCartButton("Notify me when available", "notify_available");
     }
     handleRestockButtonRemoved() {
       this.updateAddToCartButton("Add to cart", "");
     }
     updateAddToCartButton(e, t) {
       l(".add_to_cart_btn").then(() => {
-        var n, o;
-        (n = r(".add_to_cart_btn")) == null || n.remove(), r(".add_to_cart_btn") || (o = r(".sticky_block")) == null || o.insertAdjacentHTML(
+        var i, o;
+        (i = a(".add_to_cart_btn")) == null || i.remove(), a(".add_to_cart_btn") || (o = a(".sticky_block")) == null || o.insertAdjacentHTML(
           "beforeend",
           `<div class="add_to_cart_btn ${t}">${e}</div>`
         ), this.clickAddToCartStickyBtn(), this.syncLoadingState();
@@ -4069,7 +4079,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     syncLoadingState() {
       l(".product-single__meta block-buy-buttons .add-to-cart").then(() => {
-        const e = r(".product-single__meta block-buy-buttons .add-to-cart"), t = r(".sticky_block .add_to_cart_btn");
+        const e = a(".product-single__meta block-buy-buttons .add-to-cart"), t = a(".sticky_block .add_to_cart_btn");
         new MutationObserver(() => {
           e.classList.contains("btn--loading") ? t.classList.add("btn--loading") : t.classList.remove("btn--loading");
         }).observe(e, { attributes: !0, attributeFilter: ["class"] });
@@ -4113,30 +4123,30 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         const t = f(".product-slideshow")[0];
         setInterval(() => {
           if (typeof Flickity == "function" && t) {
-            const n = Flickity.data(t);
-            if (n) {
-              if (n.cells.forEach((o) => {
+            const i = Flickity.data(t);
+            if (i) {
+              if (i.cells.forEach((o) => {
                 o.element.style.width = "100%";
-              }), !r(".flickity-prev-next-button-new.previous.new_button")) {
+              }), !a(".flickity-prev-next-button-new.previous.new_button")) {
                 const o = document.createElement("button");
                 o.className = "flickity-prev-next-button-new new_button previous", o.innerHTML = `${s.prevBtnIcon}`, t.appendChild(o), o.addEventListener("click", () => {
-                  n.previous(), h("exp_new_pdp_slider_previous_01", "Previous", "Click", "First slider photo");
+                  i.previous(), u("exp_new_pdp_slider_previous_01", "Previous", "Click", "First slider photo");
                 });
               }
-              if (!r(".flickity-prev-next-button-new.next.new_button")) {
+              if (!a(".flickity-prev-next-button-new.next.new_button")) {
                 const o = document.createElement("button");
                 o.className = "flickity-prev-next-button-new new_button next", o.innerHTML = `${s.nextBtnIcon}`, t.appendChild(o), o.addEventListener("click", () => {
-                  n.next(), h("exp_new_pdp_slider_next_01", "Next", "Click", "First slider photo");
+                  i.next(), u("exp_new_pdp_slider_next_01", "Next", "Click", "First slider photo");
                 });
               }
-              n.resize();
+              i.resize();
             }
           }
         }, 400);
       });
     }
   }
-  l(".page-content--product").then((i) => {
+  l(".page-content--product").then((n) => {
     new O(V);
   });
 })();
