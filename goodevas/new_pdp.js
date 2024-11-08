@@ -1,23 +1,23 @@
 (function() {
   "use strict";
-  const h = (i, e, t, n = "") => {
+  const h = (o, e, t, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: i,
+      event_name: o,
       event_desc: e,
       event_type: t,
       event_loc: n
-    }), console.dir(`Event: ${i} | ${e} | ${t} | ${n}`);
-  }, C = ({ name: i, dev: e }) => {
+    }), console.dir(`Event: ${o} | ${e} | ${t} | ${n}`);
+  }, C = ({ name: o, dev: e }) => {
     console.log(
-      `%c EXP: ${i} (DEV: ${e})`,
+      `%c EXP: ${o} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, f = (i) => document.querySelectorAll(i), a = (i) => document.querySelector(i), k = (i, e = "variant_1") => {
+  }, f = (o) => document.querySelectorAll(o), r = (o) => document.querySelector(o), k = (o, e = "variant_1") => {
     let t = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", i, e), console.log("set", i, e));
+      typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", o, e), console.log("set", o, e));
     }, 1e3);
-  }, b = (i, e, t, n, o = "Visibility", c = 600, d = 0.5) => {
+  }, b = (o, e, t, n, a = "Visibility", c = 600, d = 0.5) => {
     let u, p;
     if (u = new IntersectionObserver(
       function(g) {
@@ -25,24 +25,24 @@
           h(
             e,
             g[0].target.dataset.visible || n || "",
-            o,
+            a,
             t
           ), u.disconnect();
         }, c) : clearTimeout(p);
       },
       { threshold: [d] }
-    ), typeof i == "string") {
-      const g = document.querySelector(i);
+    ), typeof o == "string") {
+      const g = document.querySelector(o);
       g && u.observe(g);
     } else
-      u.observe(i);
+      u.observe(o);
   };
-  function l(i) {
+  function l(o) {
     return new Promise((e) => {
-      if (document.querySelector(i))
-        return e(document.querySelector(i));
+      if (document.querySelector(o))
+        return e(document.querySelector(o));
       const t = new MutationObserver(() => {
-        document.querySelector(i) && (e(document.querySelector(i)), t.disconnect());
+        document.querySelector(o) && (e(document.querySelector(o)), t.disconnect());
       });
       t.observe(document.documentElement, {
         childList: !0,
@@ -51,32 +51,32 @@
       });
     });
   }
-  (function(i) {
-    i = i === void 0 ? {} : i;
-    let e, t, n, o, c = (i == null ? void 0 : i.delay) || 50;
+  (function(o) {
+    o = o === void 0 ? {} : o;
+    let e, t, n, a, c = (o == null ? void 0 : o.delay) || 50;
     function d() {
-      e = null, o = 0;
+      e = null, a = 0;
     }
     return d(), function() {
-      return t = window.scrollY, e != null && (o = t - e), e = t, clearTimeout(n), n = setTimeout(d, c), o;
+      return t = window.scrollY, e != null && (a = t - e), e = t, clearTimeout(n), n = setTimeout(d, c), a;
     };
   })();
-  const S = (i, e = 100) => {
-    const t = document.querySelector(i);
+  const S = (o, e = 100) => {
+    const t = document.querySelector(o);
     if (!t)
       return;
-    const o = t.getBoundingClientRect().top - e;
+    const a = t.getBoundingClientRect().top - e;
     window.scrollBy({
-      top: o,
+      top: a,
       behavior: "smooth"
     });
-  }, w = (i, e = 100) => {
-    const n = i.getBoundingClientRect().top + window.scrollY - e;
+  }, w = (o, e = 100) => {
+    const n = o.getBoundingClientRect().top + window.scrollY - e;
     window.scrollTo({
       top: n,
       behavior: "smooth"
     });
-  }, r = "https://conversionratestore.github.io/projects/goodevas/img/", s = {
+  }, i = "https://conversionratestore.github.io/projects/goodevas/img/", s = {
     bestSellerLabelIcon: `
     <svg xmlns="http://www.w3.org/2000/svg" width="155" height="38" viewBox="0 0 155 38" fill="none">
   <path d="M150.422 6.69351L141.288 17.1084C141.288 17.1082 141.288 17.1085 141.288 17.1084C140.949 17.4948 140.75 17.9521 140.75 18.441C140.75 18.9301 140.949 19.3871 141.288 19.7737L150.422 30.1885C151.373 31.2722 150.603 32.9704 149.162 32.9704H17.2279C15.7866 32.9704 15.0172 31.2721 15.9676 30.1885L25.1024 19.7737C25.4418 19.3871 25.6407 18.9301 25.6407 18.441C25.6407 17.952 25.4418 17.4949 25.1024 17.1084L15.9676 6.69356C15.0172 5.61 15.7866 3.91162 17.2279 3.91162H149.162C150.603 3.91162 151.373 5.60993 150.422 6.69351Z" fill="#FFF0CF"/>
@@ -305,9 +305,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${r}goodevas_img.webp`,
+        goodevasImg: `${i}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${r}competitors_img.webp`,
+        competitorsImg: `${i}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -359,12 +359,16 @@
         }
       ],
       productImageGalleryImgs: [
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`
+        `${i}pdp_page_1_1_desk.webp`,
+        `${i}pdp_page_1_2_desk.webp`,
+        `${i}pdp_page_1_3_desk.webp`,
+        `${i}pdp_page_1_4_desk.webp`
+      ],
+      productImageGalleryImgsMobile: [
+        `${i}pdp_page_1_1_mob.webp`,
+        `${i}pdp_page_1_2_mob.webp`,
+        `${i}pdp_page_1_3_mob.webp`,
+        `${i}pdp_page_1_4_mob.webp`
       ]
     },
     "/products/4in1-montessori-climbing-frame-set-triangle-ladder-arch-rocker-slide-board-ramp-netting-rope": {
@@ -466,9 +470,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${r}goodevas_img.webp`,
+        goodevasImg: `${i}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${r}competitors_img.webp`,
+        competitorsImg: `${i}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -520,12 +524,20 @@
         }
       ],
       productImageGalleryImgs: [
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`
+        `${i}pdp_page_2_1_desk.webp`,
+        `${i}pdp_page_2_2_desk.webp`,
+        `${i}pdp_page_2_3_desk.webp`,
+        `${i}pdp_page_2_4_desk.webp`,
+        `${i}pdp_page_2_5_desk.webp`,
+        `${i}pdp_page_2_6_desk.webp`,
+        `${i}pdp_page_2_7_desk.webp`,
+        `${i}pdp_page_2_8_desk.webp`
+      ],
+      productImageGalleryImgsMobile: [
+        `${i}pdp_page_2_1_mob.webp`,
+        `${i}pdp_page_2_2_mob.webp`,
+        `${i}pdp_page_2_3_mob.webp`,
+        `${i}pdp_page_2_4_mob.webp`
       ]
     },
     "/en-gb/products/3in1-wooden-swedish-wall-climbing-ladder-for-children-swing-set-slide-board": {
@@ -637,9 +649,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${r}goodevas_img.webp`,
+        goodevasImg: `${i}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${r}competitors_img.webp`,
+        competitorsImg: `${i}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -691,13 +703,11 @@
         }
       ],
       productImageGalleryImgs: [
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`
-      ]
+        `${i}pdp_page_3_1_desk.webp`,
+        `${i}pdp_page_3_2_desk.webp`,
+        `${i}pdp_page_3_3_desk.webp`
+      ],
+      productImageGalleryImgsMobile: [`${i}pdp_page_3_1_mob.webp`, `${i}pdp_page_3_2_mob.webp`]
     },
     "/en-gb/products/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige": {
       boughtSoFarTxt: "4740",
@@ -802,9 +812,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${r}goodevas_img.webp`,
+        goodevasImg: `${i}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${r}competitors_img.webp`,
+        competitorsImg: `${i}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -856,12 +866,16 @@
         }
       ],
       productImageGalleryImgs: [
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`
+        `${i}pdp_page_1_1_desk.webp`,
+        `${i}pdp_page_1_2_desk.webp`,
+        `${i}pdp_page_1_3_desk.webp`,
+        `${i}pdp_page_1_4_desk.webp`
+      ],
+      productImageGalleryImgsMobile: [
+        `${i}pdp_page_1_1_mob.webp`,
+        `${i}pdp_page_1_2_mob.webp`,
+        `${i}pdp_page_1_3_mob.webp`,
+        `${i}pdp_page_1_4_mob.webp`
       ]
     },
     "/en-ca/products/6in1-montessori-climbing-frame-set-triangle-ladder-arch-rocker-slide-ramp-net-cushion-art-addition": {
@@ -1014,9 +1028,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${r}goodevas_img.webp`,
+        goodevasImg: `${i}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${r}competitors_img.webp`,
+        competitorsImg: `${i}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -1068,12 +1082,16 @@
         }
       ],
       productImageGalleryImgs: [
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`
+        `${i}pdp_page_1_1_desk.webp`,
+        `${i}pdp_page_1_2_desk.webp`,
+        `${i}pdp_page_1_3_desk.webp`,
+        `${i}pdp_page_1_4_desk.webp`
+      ],
+      productImageGalleryImgsMobile: [
+        `${i}pdp_page_1_1_mob.webp`,
+        `${i}pdp_page_1_2_mob.webp`,
+        `${i}pdp_page_1_3_mob.webp`,
+        `${i}pdp_page_1_4_mob.webp`
       ]
     },
     "/en-ca/products/5in1-montessori-climbing-set-triangle-ladder-arch-rocker-slide-board-ramp-net-cushion-chocolate": {
@@ -1184,9 +1202,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${r}goodevas_img.webp`,
+        goodevasImg: `${i}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${r}competitors_img.webp`,
+        competitorsImg: `${i}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -1237,14 +1255,8 @@
           txt: "<p>We understand that purchasing from a new brand may raise questions. Our company has been in business since 2020, with over 50,000 positive reviews on our website, Amazon, and Etsy, which reflect the trustworthiness of our brand and products.</p>"
         }
       ],
-      productImageGalleryImgs: [
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`
-      ]
+      productImageGalleryImgs: [`${i}pdp_page_6_1_desk.webp`, `${i}pdp_page_6_2_desk.webp`],
+      productImageGalleryImgsMobile: [`${i}pdp_page_6_1_mob.webp`, `${i}pdp_page_6_2_mob.webp`]
     },
     "/en-eu/products/5in1-montessori-climbing-set-triangle-ladder-arch-rocker-slide-board-ramp-net-cushion-chocolate": {
       boughtSoFarTxt: "7245",
@@ -1354,9 +1366,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${r}goodevas_img.webp`,
+        goodevasImg: `${i}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${r}competitors_img.webp`,
+        competitorsImg: `${i}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -1408,42 +1420,46 @@
         }
       ],
       productImageGalleryImgs: [
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`,
-        `${r}goodevas_img.webp`
+        `${i}pdp_page_7_1_desk.webp`,
+        `${i}pdp_page_7_2_desk.webp`,
+        `${i}pdp_page_7_3_desk.webp`,
+        `${i}pdp_page_7_4_desk.webp`
+      ],
+      productImageGalleryImgsMobile: [
+        `${i}pdp_page_7_1_mob.webp`,
+        `${i}pdp_page_7_2_mob.webp`,
+        `${i}pdp_page_7_3_mob.webp`,
+        `${i}pdp_page_7_4_mob.webp`
       ]
     }
   }, L = (
     /* HTML */
     ` <div class="best_seller_label_block">${s.bestSellerLabelIcon}</div> `
-  ), x = (i) => (
+  ), x = (o) => (
     /* HTML */
     `
     <div class="bought_so_far_block">
       ${s.cartIcon}
-      <p><span class="">${i}</span> bought so far</p>
+      <p><span class="">${o}</span> bought so far</p>
     </div>
   `
-  ), T = (i) => (
+  ), T = (o) => (
     /* HTML */
     `
     <div class="get_free_delivery_block">
       ${s.freeDeliveryIcon}
       <p>
         Order now and get <span class="accent_underline">FREE delivery</span> on or before
-        <span class="date_txt">${i}</span>
+        <span class="date_txt">${o}</span>
       </p>
     </div>
   `
-  ), H = (i) => (
+  ), I = (o) => (
     /* HTML */
     `
     <div class="new_product_sales_points_block">
       <ul class="new_product_sales_points_list">
-        ${i.map((e) => (
+        ${o.map((e) => (
       /* HTML */
       `
               <li class="new_product_sales_points_item">
@@ -1455,36 +1471,36 @@
       </ul>
     </div>
   `
-  ), I = (i) => (
+  ), H = (o) => (
     /* HTML */
     `
     <div class="one_review_block">
       <div class="info_wrapper">
-        <p class="info_descr">${i.txt}</p>
+        <p class="info_descr">${o.txt}</p>
         <div class="name_stars_wrapper">
-          <span class="name_review">${i.name}</span>
+          <span class="name_review">${o.name}</span>
           <div class="stars_summary">
             <div class="stars_wrapper">${s.starIcon}${s.starIcon}${s.starIcon}${s.starIcon}${s.starIcon}</div>
-            <span>${i.rating}</span>
+            <span>${o.rating}</span>
           </div>
         </div>
       </div>
       <div class="img_wrapper">
-        <img src="${i.img}" alt="photo product" />
+        <img src="${o.img}" alt="photo product" />
         <span class="all_reviews_link">All reviews</span>
       </div>
     </div>
   `
-  ), D = (i) => (
+  ), D = (o) => (
     /* HTML */
-    ` <h2 class="tolstoy_stories_new_title">${i}</h2> `
-  ), M = (i) => (
+    ` <h2 class="tolstoy_stories_new_title">${o}</h2> `
+  ), M = (o) => (
     /* HTML */
     `
     <div class="product_details_block">
       <h2>Product details</h2>
       <ul class="product_details_accordion">
-        ${i.map((e, t) => (
+        ${o.map((e, t) => (
       /* HTML */
       `
               <li class="product_details_accordion_block" data-visability="${t + 1}">
@@ -1501,12 +1517,12 @@
       </ul>
     </div>
   `
-  ), z = (i) => (
+  ), z = (o) => (
     /* HTML */
     `
     <div class="main_benefits_block">
       <ul class="main_benefits_list">
-        ${Object.values(i).map(
+        ${Object.values(o).map(
       (e) => (
         /* HTML */
         `
@@ -1523,11 +1539,11 @@
       </ul>
     </div>
   `
-  ), E = (i) => (
+  ), E = (o) => (
     /* HTML */
     `
     <div class="comparison_table_block">
-      <h2 class="comparison_table_main_title">${i.mainTitle}</h2>
+      <h2 class="comparison_table_main_title">${o.mainTitle}</h2>
 
       <div class="custom_table">
         <div class="benefits_row">
@@ -1535,7 +1551,7 @@
             <div class="table_cell"></div>
           </div>
           <div class="body_table">
-            ${i.benefits.map((e) => (
+            ${o.benefits.map((e) => (
       /* HTML */
       ` <div class="benefits_cell table_cell"><p>${e.benefitName}</p></div> `
     )).join("")}
@@ -1545,12 +1561,12 @@
         <div class="goodevas_row is_active">
           <div class="header_table">
             <div class="table_cell">
-              <h3>${i.goodevasTitle}</h3>
-              <img src="${r}goodevas_1_img.png" alt="child girl" />
+              <h3>${o.goodevasTitle}</h3>
+              <img src="${i}goodevas_1_img.png" alt="child girl" />
             </div>
           </div>
           <div class="body_table">
-            ${i.benefits.map(
+            ${o.benefits.map(
       (e) => (
         /* HTML */
         `
@@ -1567,12 +1583,12 @@
         <div class="competitors_row">
           <div class="header_table">
             <div class="table_cell">
-              <h3>${i.competitorsTitle}</h3>
-              <img src="${r}competitors_1_img.png" alt="child girl" />
+              <h3>${o.competitorsTitle}</h3>
+              <img src="${i}competitors_1_img.png" alt="child girl" />
             </div>
           </div>
           <div class="body_table">
-            ${i.benefits.map(
+            ${o.benefits.map(
       (e) => (
         /* HTML */
         `
@@ -1588,13 +1604,13 @@
       </div>
     </div>
   `
-  ), P = (i) => (
+  ), P = (o) => (
     /* HTML */
     `
     <div class="faq_block">
       <h2>FAQ</h2>
       <ul class="faq_accordion">
-        ${i.map((e, t) => (
+        ${o.map((e, t) => (
       /* HTML */
       `
               <li class="faq_accordion_block" data-visability="${t + 1}">
@@ -1611,14 +1627,14 @@
       </ul>
     </div>
   `
-  ), A = (i) => (
+  ), A = (o) => (
     /* HTML */
     `
     <div class="product_image_gallery_block">
       <div class="product_image_gallery_container">
         <h2>Product image gallery</h2>
         <ul class="product_image_gallery_list">
-          ${i.map((e) => (
+          ${o.map((e) => (
       /* HTML */
       `
                 <li class="product_image_gallery_item">
@@ -1630,32 +1646,32 @@
       </div>
     </div>
   `
-  ), q = (i, e) => (
+  ), q = (o, e) => (
     /* HTML */
     `
     <div class="sticky_block">
-      <div class="add_to_cart_btn ${e}">${i}</div>
+      <div class="add_to_cart_btn ${e}">${o}</div>
     </div>
   `
-  ), W = (i, e, t) => (
+  ), W = (o, e, t) => (
     /* HTML */
     `
     <div class="color_wrapper">
       <span>Color</span>
       <div class="custom_dropdown" id="productColor">
         <div class="dropdown_toggle" ${t ? "data-disabled" : ""}>${e}</div>
-        <div class="dropdown_menu">${i}</div>
+        <div class="dropdown_menu">${o}</div>
       </div>
     </div>
   `
-  ), B = (i, e, t, n, o) => (
+  ), B = (o, e, t, n, a) => (
     /* HTML */
     `
     <div class="estimate_your_shipping_period_block">
       <h2 class="shipping_title">Estimate <span>your</span> shipping period</h2>
       <div class="shipping_destination">
         <span>Ship to:</span>
-        <span class="country_txt">${i}</span>
+        <span class="country_txt">${o}</span>
       </div>
       <div class="shipping_details">
         <div class="buy_goodevas">
@@ -1671,7 +1687,7 @@
         <div class="money_back_guarantee">
           <h3 class="shipping_details_title">100% money-back guarantee through</h3>
           <span class="shipping_details_date guarantee_duration">30 days after purchase</span>
-          <span class="shipping_details_estimated_date guarantee_estimated_date">${o}</span>
+          <span class="shipping_details_estimated_date guarantee_estimated_date">${a}</span>
         </div>
       </div>
     </div>
@@ -3426,19 +3442,19 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
   }
 }
 .product_image_gallery_block .product_image_gallery_container .product_image_gallery_list .product_image_gallery_item {
-  width: calc((100% - 36px) / 3);
   margin: 0;
 }
 @media (max-width: 768px) {
   .product_image_gallery_block .product_image_gallery_container .product_image_gallery_list .product_image_gallery_item {
     width: 100%;
+    min-height: auto;
   }
 }
 .product_image_gallery_block .product_image_gallery_container .product_image_gallery_list .product_image_gallery_item img {
   width: 100%;
   height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .faq_block {
@@ -3701,17 +3717,17 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     renderBestSellerLabelForPhoto() {
       l(".product__main-photos").then((e) => {
-        const t = a(".product__main-photos");
-        a(".best_seller_label_block") || t.insertAdjacentHTML("afterbegin", L);
+        const t = r(".product__main-photos");
+        r(".best_seller_label_block") || t.insertAdjacentHTML("afterbegin", L);
       });
     }
     renderBoughtSoFarBlock() {
       this.device === "desktop" && l("#shopify-block-yotpo_product_reviews_ugc_star_rating_FVceyX").then((e) => {
-        const t = a("#shopify-block-yotpo_product_reviews_ugc_star_rating_FVceyX");
-        a(".bought_so_far_block") || t.insertAdjacentHTML("beforeend", x(_[this.pathName].boughtSoFarTxt));
+        const t = r("#shopify-block-yotpo_product_reviews_ugc_star_rating_FVceyX");
+        r(".bought_so_far_block") || t.insertAdjacentHTML("beforeend", x(_[this.pathName].boughtSoFarTxt));
       }), this.device === "mobile" && l(".page-content--product .product-single__meta").then((e) => {
-        const t = a(".page-content--product .product-single__meta");
-        a(".bought_so_far_block") || t.insertAdjacentHTML(
+        const t = r(".page-content--product .product-single__meta");
+        r(".bought_so_far_block") || t.insertAdjacentHTML(
           "afterbegin",
           x(_[this.pathName].boughtSoFarTxt)
         );
@@ -3719,45 +3735,45 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     renderGetFreeDeliveryBlock() {
       l("block-price").then((e) => {
-        const t = a("block-price");
-        a(".get_free_delivery_block") || t.insertAdjacentHTML("afterend", T(this.getShippingDayDate()));
+        const t = r("block-price");
+        r(".get_free_delivery_block") || t.insertAdjacentHTML("afterend", T(this.getShippingDayDate()));
       });
     }
     renderNewProductSalesPointsBlock() {
       l("product-inventory").then((e) => {
-        const t = a("product-inventory");
-        a(".new_product_sales_points_block") || t.insertAdjacentHTML(
+        const t = r("product-inventory");
+        r(".new_product_sales_points_block") || t.insertAdjacentHTML(
           "beforebegin",
-          H(_[this.pathName].newProductSalesPointsTxt)
+          I(_[this.pathName].newProductSalesPointsTxt)
         );
       });
     }
     renderKlarnaWrapper() {
       l("klarna-placement").then((e) => {
         l(".page-content--product .product-single__meta block-buy-buttons").then((t) => {
-          const n = a(".page-content--product .product-single__meta block-buy-buttons");
-          a(".klarna_wrapper") || n.insertAdjacentHTML("beforeend", ' <div class="klarna_wrapper"></div>');
+          const n = r(".page-content--product .product-single__meta block-buy-buttons");
+          r(".klarna_wrapper") || n.insertAdjacentHTML("beforeend", ' <div class="klarna_wrapper"></div>');
         });
       });
     }
     replaceKlarnaPlacement() {
       l("klarna-placement").then((e) => {
         l(".klarna_wrapper").then((t) => {
-          const n = a(".klarna_wrapper"), o = a("klarna-placement");
-          a(".klarna_wrapper klarna-placement") || n.insertAdjacentElement("beforeend", o);
+          const n = r(".klarna_wrapper"), a = r("klarna-placement");
+          r(".klarna_wrapper klarna-placement") || n.insertAdjacentElement("beforeend", a);
         });
       });
     }
     renderOneReviewBlock() {
       l("block-buy-buttons").then((e) => {
-        const t = a("block-buy-buttons");
-        a(".one_review_block") || t.insertAdjacentHTML("afterend", I(_[this.pathName].oneReviewBlock));
+        const t = r("block-buy-buttons");
+        r(".one_review_block") || t.insertAdjacentHTML("afterend", H(_[this.pathName].oneReviewBlock));
       });
     }
     renderTolstoyStoriesNewTitle() {
       l(".tolstoy-stories-title").then((e) => {
-        const t = a(".tolstoy-stories-title");
-        a(".tolstoy_stories_new_title") || t.insertAdjacentHTML(
+        const t = r(".tolstoy-stories-title");
+        r(".tolstoy_stories_new_title") || t.insertAdjacentHTML(
           "afterend",
           D(_[this.pathName].tolstoyStoriesNewTitle)
         );
@@ -3766,7 +3782,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     clickAllReviewsLink() {
       l(".all_reviews_link").then((e) => {
         l(".yotpo-main-layout").then((t) => {
-          a(".all_reviews_link").addEventListener("click", () => {
+          r(".all_reviews_link").addEventListener("click", () => {
             h("exp_new_pdp_button_03", "All reviews", "Click", "Review section"), S(".yotpo-main-layout");
           });
         });
@@ -3774,8 +3790,8 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     renderProductDetailsBlock() {
       l(".main_benefits_block").then((e) => {
-        const t = a(".main_benefits_block");
-        a(".product_details_block") || t.insertAdjacentHTML(
+        const t = r(".main_benefits_block");
+        r(".product_details_block") || t.insertAdjacentHTML(
           "beforebegin",
           M(_[this.pathName].productDetailsTxt)
         );
@@ -3783,15 +3799,15 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     toggleSeeMoreTxt() {
       l(".see_more_block").then((e) => {
-        a(".see_more_block").addEventListener("click", (n) => {
+        r(".see_more_block").addEventListener("click", (n) => {
           n.currentTarget && !n.currentTarget.classList.contains("is_open") ? (h("exp_new_pdp_link_01", "See more", "Click", "Product details"), n.currentTarget.classList.add("is_open"), n.currentTarget.querySelector("div").textContent = "See Less", n.currentTarget.previousElementSibling.classList.remove("blur_txt")) : (h("exp_new_pdp_link_01", "See Less", "Click", "Product details"), n.currentTarget.classList.remove("is_open"), n.currentTarget.querySelector("div").textContent = "See More", n.currentTarget.previousElementSibling.classList.add("blur_txt"));
         });
       });
     }
     renderEstimateYourShippingPeriodBlock() {
       l(".product_details_block").then((e) => {
-        const t = a(".product_details_block");
-        a(".estimate_your_shipping_period_block") || t.insertAdjacentHTML(
+        const t = r(".product_details_block");
+        r(".estimate_your_shipping_period_block") || t.insertAdjacentHTML(
           "beforebegin",
           B(
             _[this.pathName].deliveryToPlace,
@@ -3829,14 +3845,14 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     renderMainBenefits() {
       l(".product-single__meta").then((e) => {
-        const t = a(".product-single__meta");
-        a(".main_benefits_block") || t.insertAdjacentHTML("beforeend", z(_[this.pathName].mainBenefits));
+        const t = r(".product-single__meta");
+        r(".main_benefits_block") || t.insertAdjacentHTML("beforeend", z(_[this.pathName].mainBenefits));
       });
     }
     renderComparisonTable() {
       l(".main_benefits_block").then((e) => {
-        const t = a(".main_benefits_block");
-        a(".comparison_table_block") || t.insertAdjacentHTML(
+        const t = r(".main_benefits_block");
+        r(".comparison_table_block") || t.insertAdjacentHTML(
           "afterend",
           E(_[this.pathName].comparisonTable)
         );
@@ -3845,25 +3861,27 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     renderFAQBlock() {
       l(".comparison_table_block").then((e) => {
         l(".product_image_gallery_block").then((t) => {
-          let n = a(".comparison_table_block");
-          this.device === "mobile" && (n = a(".product_image_gallery_block")), a(".faq_block") || n.insertAdjacentHTML("afterend", P(_[this.pathName].fAQTxt));
+          let n = r(".comparison_table_block");
+          this.device === "mobile" && (n = r(".product_image_gallery_block")), r(".faq_block") || n.insertAdjacentHTML("afterend", P(_[this.pathName].fAQTxt));
         });
       });
     }
     renderProductImageGalleryBlock() {
-      let e = a("#shopify-section-template--18038805430429__1727770539adc7a55b") ? "#shopify-section-template--18038805430429__1727770539adc7a55b" : "#shopify-section-template--18135477813405__1727770539adc7a55b";
+      let e = r("#shopify-section-template--18038805430429__1727770539adc7a55b") ? "#shopify-section-template--18038805430429__1727770539adc7a55b" : "#shopify-section-template--18135477813405__1727770539adc7a55b";
       l(e).then((t) => {
-        const n = a(e);
-        a(".product_image_gallery_block") || n.insertAdjacentHTML(
+        const n = r(e);
+        r(".product_image_gallery_block") || n.insertAdjacentHTML(
           "beforebegin",
-          A(_[this.pathName].productImageGalleryImgs)
+          A(
+            this.device === "desktop" ? _[this.pathName].productImageGalleryImgs : _[this.pathName].productImageGalleryImgsMobile
+          )
         );
       });
     }
-    initAccordionProductDetails(e, t, n, o) {
+    initAccordionProductDetails(e, t, n, a) {
       let c = setInterval(() => {
-        typeof jQuery == "function" && a(e) && (clearInterval(c), console.log("Accordion initialized for", e), $(`${t}`).eq(0).addClass("active"), $(`${t} ${n}`).eq(0).addClass("active"), $(`${t} ${o}`).eq(0).css("display", "flex"), $(`${n}`).on("click", function(d) {
-          $(this).toggleClass("active"), $(this).closest("li").toggleClass("active"), $(this).next(o).slideToggle(), $(`${n}`).not(this).next(o).slideUp(), $(`${n}`).not(this).removeClass("active").closest("li").removeClass("active"), e === ".product_details_block" && (setTimeout(() => {
+        typeof jQuery == "function" && r(e) && (clearInterval(c), console.log("Accordion initialized for", e), $(`${t}`).eq(0).addClass("active"), $(`${t} ${n}`).eq(0).addClass("active"), $(`${t} ${a}`).eq(0).css("display", "flex"), $(`${n}`).on("click", function(d) {
+          $(this).toggleClass("active"), $(this).closest("li").toggleClass("active"), $(this).next(a).slideToggle(), $(`${n}`).not(this).next(a).slideUp(), $(`${n}`).not(this).removeClass("active").closest("li").removeClass("active"), e === ".product_details_block" && (setTimeout(() => {
             const p = d.target.closest(".product_details_accordion_block");
             p && (window.innerWidth < 768 ? w(p, 90) : w(p, 0));
           }, 400), d.currentTarget.classList.contains("active") ? h(
@@ -3892,17 +3910,17 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     renderStickyBlock() {
       l(".product-single__meta block-buy-buttons .add-to-cart").then((e) => {
-        const t = a("body"), n = a(".product-single__meta block-buy-buttons .add-to-cart span"), o = a(".restock-rocket-button-container button");
+        const t = r("body"), n = r(".product-single__meta block-buy-buttons .add-to-cart span"), a = r(".restock-rocket-button-container button");
         let c = n.textContent || "", d = "";
-        o && (d = "notify_available", c = o.textContent || ""), a(".sticky_block") || t.insertAdjacentHTML("beforeend", q(c, d));
+        a && (d = "notify_available", c = a.textContent || ""), r(".sticky_block") || t.insertAdjacentHTML("beforeend", q(c, d));
       });
     }
     toggleStickyBlockVisibility() {
       l("block-buy-buttons").then(() => {
         l(".sticky_block").then(() => {
-          const e = a(".sticky_block"), t = a("block-buy-buttons");
+          const e = r(".sticky_block"), t = r("block-buy-buttons");
           function n() {
-            const o = {
+            const a = {
               root: null,
               threshold: 0
             };
@@ -3910,7 +3928,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
               d.forEach((u) => {
                 u.isIntersecting ? e.style.display = "none" : e.style.display = "flex", c.unobserve(u.target);
               }), c.disconnect();
-            }, o);
+            }, a);
             c.observe(t);
           }
           window.addEventListener("scroll", () => {
@@ -3922,13 +3940,13 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     renderColorWrapper() {
       l(".sticky_block").then((e) => {
         l(".product-single__meta block-variant-picker > .variant-button-wrap input").then((t) => {
-          const n = a(".sticky_block"), o = f(".product-single__meta block-variant-picker > .variant-button-wrap input");
-          if (o.length > 0) {
+          const n = r(".sticky_block"), a = f(".product-single__meta block-variant-picker > .variant-button-wrap input");
+          if (a.length > 0) {
             let c = [], d = "", u = !1;
-            o.forEach((p) => {
+            a.forEach((p) => {
               const g = p.getAttribute("value") || "Unknown", m = p.checked, y = p.hasAttribute("data-disabled");
               m && (d = g, u = y), c.push(this.createDropdownItem(g, m, y));
-            }), a(".color_wrapper") || n.insertAdjacentHTML(
+            }), r(".color_wrapper") || n.insertAdjacentHTML(
               "afterbegin",
               W(c.join(""), d, u)
             ), this.changeCustomDropdownHandler(".custom_dropdown");
@@ -3947,32 +3965,32 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       );
     }
     changeCustomDropdownHandler(e) {
-      const t = a(e), n = t.querySelector(".dropdown_toggle"), o = t.querySelector(".dropdown_menu"), c = t.querySelectorAll(".dropdown_item"), d = f(
+      const t = r(e), n = t.querySelector(".dropdown_toggle"), a = t.querySelector(".dropdown_menu"), c = t.querySelectorAll(".dropdown_item"), d = f(
         ".product-single__meta block-variant-picker > .variant-button-wrap input"
       );
       n.addEventListener("click", () => {
-        h("exp_new_pdp_button_02", "Color", "Click", "Stiky section"), o.classList.toggle("show"), this.adjustDropdownPosition(o), n.classList.toggle("active");
+        h("exp_new_pdp_button_02", "Color", "Click", "Stiky section"), a.classList.toggle("show"), this.adjustDropdownPosition(a), n.classList.toggle("active");
       }), c.forEach((p) => {
         p.addEventListener("click", (g) => {
           const m = g.currentTarget, y = m.getAttribute("data-value"), N = m.hasAttribute("data-disabled");
-          o.style.top = "100%", n.innerHTML = m.innerHTML, o.classList.remove("show"), n.classList.remove("active"), N ? n.setAttribute("data-disabled", "") : n.removeAttribute("data-disabled"), h("exp_new_pdp_dropdown_01", `Selected value: ${m == null ? void 0 : m.textContent}`, "Dropdown", "Stiky section"), d.forEach((v) => {
+          a.style.top = "100%", n.innerHTML = m.innerHTML, a.classList.remove("show"), n.classList.remove("active"), N ? n.setAttribute("data-disabled", "") : n.removeAttribute("data-disabled"), h("exp_new_pdp_dropdown_01", `Selected value: ${m == null ? void 0 : m.textContent}`, "Dropdown", "Stiky section"), d.forEach((v) => {
             v.getAttribute("value") === y && v.click();
           });
         });
       }), document.addEventListener("click", (p) => {
         const g = p.target;
-        t.contains(g) || (o.classList.remove("show"), n.classList.remove("active"), o.style.top = "100%");
+        t.contains(g) || (a.classList.remove("show"), n.classList.remove("active"), a.style.top = "100%");
       }), new IntersectionObserver(
         (p) => {
           p.forEach((g) => {
-            g.isIntersecting || this.adjustDropdownPosition(o);
+            g.isIntersecting || this.adjustDropdownPosition(a);
           });
         },
         {
           root: null,
           threshold: 1
         }
-      ).observe(o);
+      ).observe(a);
     }
     adjustDropdownPosition(e) {
       const t = e.getBoundingClientRect(), n = window.innerHeight || document.documentElement.clientHeight;
@@ -3981,10 +3999,10 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     clickAddToCartStickyBtn() {
       l(".sticky_block").then((e) => {
         l(".add_to_cart_btn").then((t) => {
-          a(".add_to_cart_btn").addEventListener("click", () => {
+          r(".add_to_cart_btn").addEventListener("click", () => {
             h("exp_new_pdp_button_01", "Add to cart", "Click", "Stiky section");
-            const o = a(".restock-rocket-button-container .restock-rocket-button-cover"), c = a(".product-single__meta block-buy-buttons .add-to-cart");
-            o ? o.click() : c.click();
+            const a = r(".restock-rocket-button-container .restock-rocket-button-cover"), c = r(".product-single__meta block-buy-buttons .add-to-cart");
+            a ? a.click() : c.click();
           });
         });
       });
@@ -3999,33 +4017,33 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       });
     }
     updateActiveColor() {
-      const e = f(".product-single__meta block-variant-picker > .variant-button-wrap input"), t = a(".color_wrapper .dropdown_toggle");
-      let n = "", o = !1;
+      const e = f(".product-single__meta block-variant-picker > .variant-button-wrap input"), t = r(".color_wrapper .dropdown_toggle");
+      let n = "", a = !1;
       e.forEach((c) => {
-        const d = c.getAttribute("value") || "Unknown", u = c.checked, p = a(`.color_wrapper .dropdown_item[data-value="${d}"]`);
-        p && (u ? (p.classList.add("active"), n = d, o = c.hasAttribute("data-disabled")) : p.classList.remove("active"));
-      }), t && n && (t.textContent = n, o ? t.setAttribute("data-disabled", "") : t.removeAttribute("data-disabled"));
+        const d = c.getAttribute("value") || "Unknown", u = c.checked, p = r(`.color_wrapper .dropdown_item[data-value="${d}"]`);
+        p && (u ? (p.classList.add("active"), n = d, a = c.hasAttribute("data-disabled")) : p.classList.remove("active"));
+      }), t && n && (t.textContent = n, a ? t.setAttribute("data-disabled", "") : t.removeAttribute("data-disabled"));
     }
     observeRestockRocketButton() {
       new MutationObserver((t) => {
         for (const n of t) {
-          for (let o of n.addedNodes)
-            o instanceof HTMLElement && o.matches(".restock-rocket-button-container") && this.handleRestockButtonAdded();
-          for (let o of n.removedNodes)
-            o instanceof HTMLElement && o.matches(".restock-rocket-button-container") && this.handleRestockButtonRemoved();
+          for (let a of n.addedNodes)
+            a instanceof HTMLElement && a.matches(".restock-rocket-button-container") && this.handleRestockButtonAdded();
+          for (let a of n.removedNodes)
+            a instanceof HTMLElement && a.matches(".restock-rocket-button-container") && this.handleRestockButtonRemoved();
         }
       }).observe(document.body, { childList: !0, subtree: !0 });
     }
     handleRestockButtonAdded() {
-      a(".restock-rocket-button-container") && this.updateAddToCartButton("Notify me when available", "notify_available");
+      r(".restock-rocket-button-container") && this.updateAddToCartButton("Notify me when available", "notify_available");
     }
     handleRestockButtonRemoved() {
       this.updateAddToCartButton("Add to cart", "");
     }
     updateAddToCartButton(e, t) {
       l(".add_to_cart_btn").then(() => {
-        var n, o;
-        (n = a(".add_to_cart_btn")) == null || n.remove(), a(".add_to_cart_btn") || (o = a(".sticky_block")) == null || o.insertAdjacentHTML(
+        var n, a;
+        (n = r(".add_to_cart_btn")) == null || n.remove(), r(".add_to_cart_btn") || (a = r(".sticky_block")) == null || a.insertAdjacentHTML(
           "beforeend",
           `<div class="add_to_cart_btn ${t}">${e}</div>`
         ), this.clickAddToCartStickyBtn(), this.syncLoadingState();
@@ -4033,7 +4051,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
     }
     syncLoadingState() {
       l(".product-single__meta block-buy-buttons .add-to-cart").then(() => {
-        const e = a(".product-single__meta block-buy-buttons .add-to-cart"), t = a(".sticky_block .add_to_cart_btn");
+        const e = r(".product-single__meta block-buy-buttons .add-to-cart"), t = r(".sticky_block .add_to_cart_btn");
         new MutationObserver(() => {
           e.classList.contains("btn--loading") ? t.classList.add("btn--loading") : t.classList.remove("btn--loading");
         }).observe(e, { attributes: !0, attributeFilter: ["class"] });
@@ -4079,17 +4097,17 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
           if (typeof Flickity == "function" && t) {
             const n = Flickity.data(t);
             if (n) {
-              if (n.cells.forEach((o) => {
-                o.element.style.width = "100%";
-              }), !a(".flickity-prev-next-button-new.previous.new_button")) {
-                const o = document.createElement("button");
-                o.className = "flickity-prev-next-button-new new_button previous", o.innerHTML = `${s.prevBtnIcon}`, t.appendChild(o), o.addEventListener("click", () => {
+              if (n.cells.forEach((a) => {
+                a.element.style.width = "100%";
+              }), !r(".flickity-prev-next-button-new.previous.new_button")) {
+                const a = document.createElement("button");
+                a.className = "flickity-prev-next-button-new new_button previous", a.innerHTML = `${s.prevBtnIcon}`, t.appendChild(a), a.addEventListener("click", () => {
                   n.previous(), h("exp_new_pdp_slider_previous_01", "Previous", "Click", "First slider photo");
                 });
               }
-              if (!a(".flickity-prev-next-button-new.next.new_button")) {
-                const o = document.createElement("button");
-                o.className = "flickity-prev-next-button-new new_button next", o.innerHTML = `${s.nextBtnIcon}`, t.appendChild(o), o.addEventListener("click", () => {
+              if (!r(".flickity-prev-next-button-new.next.new_button")) {
+                const a = document.createElement("button");
+                a.className = "flickity-prev-next-button-new new_button next", a.innerHTML = `${s.nextBtnIcon}`, t.appendChild(a), a.addEventListener("click", () => {
                   n.next(), h("exp_new_pdp_slider_next_01", "Next", "Click", "First slider photo");
                 });
               }
@@ -4100,7 +4118,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       });
     }
   }
-  l(".page-content--product").then((i) => {
+  l(".page-content--product").then((o) => {
     new O(j);
   });
 })();
