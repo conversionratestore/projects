@@ -86,6 +86,10 @@
   gap: 12px;
   margin-top: 10px;
 }
+.crs_subscriptionPlan div.sticky > button {
+  width: 100%;
+  max-width: 100%;
+}
 .crs_subscriptionPlan .new_btn_skip {
   display: flex;
   justify-content: center;
@@ -123,7 +127,8 @@
     }
     // allFunctions
     allFunctionsInitHandler() {
-      this.checkPage() === "subscriptionPlan" ? (console.log("subscriptionPlan"), this.addClassToBody(), this.renderNewBtnSkip()) : (console.log(this.checkPage()), this.removeClassFromBody());
+      var n;
+      this.checkPage() === "subscriptionPlan" ? (console.log("subscriptionPlan"), this.addClassToBody(), this.renderNewBtnSkip()) : (console.log(this.checkPage()), this.removeClassFromBody(), (n = s(".new_btn_skip")) == null || n.remove());
     }
     checkPage() {
       const n = window.location.href;
