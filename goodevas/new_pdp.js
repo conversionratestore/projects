@@ -1,48 +1,48 @@
 (function() {
   "use strict";
-  const h = (o, e, t, n = "") => {
+  const h = (i, e, t, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: o,
+      event_name: i,
       event_desc: e,
       event_type: t,
       event_loc: n
-    }), console.dir(`Event: ${o} | ${e} | ${t} | ${n}`);
-  }, C = ({ name: o, dev: e }) => {
+    }), console.dir(`Event: ${i} | ${e} | ${t} | ${n}`);
+  }, C = ({ name: i, dev: e }) => {
     console.log(
-      `%c EXP: ${o} (DEV: ${e})`,
+      `%c EXP: ${i} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, f = (o) => document.querySelectorAll(o), r = (o) => document.querySelector(o), k = (o, e = "variant_1") => {
+  }, f = (i) => document.querySelectorAll(i), r = (i) => document.querySelector(i), k = (i, e = "variant_1") => {
     let t = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", o, e), console.log("set", o, e));
+      typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", i, e), console.log("set", i, e));
     }, 1e3);
-  }, b = (o, e, t, n, a = "Visibility", c = 600, d = 0.5) => {
-    let u, p;
-    if (u = new IntersectionObserver(
-      function(g) {
-        g[0].isIntersecting === !0 ? p = setTimeout(() => {
+  }, b = (i, e, t, n, a = "Visibility", c = 600, d = 0.5) => {
+    let g, p;
+    if (g = new IntersectionObserver(
+      function(u) {
+        u[0].isIntersecting === !0 ? p = setTimeout(() => {
           h(
             e,
-            g[0].target.dataset.visible || n || "",
+            u[0].target.dataset.visible || n || "",
             a,
             t
-          ), u.disconnect();
+          ), g.disconnect();
         }, c) : clearTimeout(p);
       },
       { threshold: [d] }
-    ), typeof o == "string") {
-      const g = document.querySelector(o);
-      g && u.observe(g);
+    ), typeof i == "string") {
+      const u = document.querySelector(i);
+      u && g.observe(u);
     } else
-      u.observe(o);
+      g.observe(i);
   };
-  function l(o) {
+  function l(i) {
     return new Promise((e) => {
-      if (document.querySelector(o))
-        return e(document.querySelector(o));
+      if (document.querySelector(i))
+        return e(document.querySelector(i));
       const t = new MutationObserver(() => {
-        document.querySelector(o) && (e(document.querySelector(o)), t.disconnect());
+        document.querySelector(i) && (e(document.querySelector(i)), t.disconnect());
       });
       t.observe(document.documentElement, {
         childList: !0,
@@ -51,9 +51,9 @@
       });
     });
   }
-  (function(o) {
-    o = o === void 0 ? {} : o;
-    let e, t, n, a, c = (o == null ? void 0 : o.delay) || 50;
+  (function(i) {
+    i = i === void 0 ? {} : i;
+    let e, t, n, a, c = (i == null ? void 0 : i.delay) || 50;
     function d() {
       e = null, a = 0;
     }
@@ -61,8 +61,8 @@
       return t = window.scrollY, e != null && (a = t - e), e = t, clearTimeout(n), n = setTimeout(d, c), a;
     };
   })();
-  const S = (o, e = 100) => {
-    const t = document.querySelector(o);
+  const S = (i, e = 100) => {
+    const t = document.querySelector(i);
     if (!t)
       return;
     const a = t.getBoundingClientRect().top - e;
@@ -70,13 +70,13 @@
       top: a,
       behavior: "smooth"
     });
-  }, w = (o, e = 100) => {
-    const n = o.getBoundingClientRect().top + window.scrollY - e;
+  }, w = (i, e = 100) => {
+    const n = i.getBoundingClientRect().top + window.scrollY - e;
     window.scrollTo({
       top: n,
       behavior: "smooth"
     });
-  }, i = "https://conversionratestore.github.io/projects/goodevas/img/", s = {
+  }, o = "https://conversionratestore.github.io/projects/goodevas/img/", s = {
     bestSellerLabelIcon: `
     <svg xmlns="http://www.w3.org/2000/svg" width="155" height="38" viewBox="0 0 155 38" fill="none">
   <path d="M150.422 6.69351L141.288 17.1084C141.288 17.1082 141.288 17.1085 141.288 17.1084C140.949 17.4948 140.75 17.9521 140.75 18.441C140.75 18.9301 140.949 19.3871 141.288 19.7737L150.422 30.1885C151.373 31.2722 150.603 32.9704 149.162 32.9704H17.2279C15.7866 32.9704 15.0172 31.2721 15.9676 30.1885L25.1024 19.7737C25.4418 19.3871 25.6407 18.9301 25.6407 18.441C25.6407 17.952 25.4418 17.4949 25.1024 17.1084L15.9676 6.69356C15.0172 5.61 15.7866 3.91162 17.2279 3.91162H149.162C150.603 3.91162 151.373 5.60993 150.422 6.69351Z" fill="#FFF0CF"/>
@@ -305,9 +305,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${i}goodevas_img.webp`,
+        goodevasImg: `${o}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${i}competitors_img.webp`,
+        competitorsImg: `${o}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -359,16 +359,16 @@
         }
       ],
       productImageGalleryImgs: [
-        `${i}pdp_page_1_1_desk.webp`,
-        `${i}pdp_page_1_2_desk.webp`,
-        `${i}pdp_page_1_3_desk.webp`,
-        `${i}pdp_page_1_4_desk.webp`
+        `${o}pdp_page_1_1_desk.webp`,
+        `${o}pdp_page_1_2_desk.webp`,
+        `${o}pdp_page_1_3_desk.webp`,
+        `${o}pdp_page_1_4_desk.webp`
       ],
       productImageGalleryImgsMobile: [
-        `${i}pdp_page_1_1_mob.webp`,
-        `${i}pdp_page_1_2_mob.webp`,
-        `${i}pdp_page_1_3_mob.webp`,
-        `${i}pdp_page_1_4_mob.webp`
+        `${o}pdp_page_1_1_mob.webp`,
+        `${o}pdp_page_1_2_mob.webp`,
+        `${o}pdp_page_1_3_mob.webp`,
+        `${o}pdp_page_1_4_mob.webp`
       ]
     },
     "/products/4in1-montessori-climbing-frame-set-triangle-ladder-arch-rocker-slide-board-ramp-netting-rope": {
@@ -470,9 +470,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${i}goodevas_img.webp`,
+        goodevasImg: `${o}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${i}competitors_img.webp`,
+        competitorsImg: `${o}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -524,20 +524,20 @@
         }
       ],
       productImageGalleryImgs: [
-        `${i}pdp_page_2_1_desk.webp`,
-        `${i}pdp_page_2_2_desk.webp`,
-        `${i}pdp_page_2_3_desk.webp`,
-        `${i}pdp_page_2_4_desk.webp`,
-        `${i}pdp_page_2_5_desk.webp`,
-        `${i}pdp_page_2_6_desk.webp`,
-        `${i}pdp_page_2_7_desk.webp`,
-        `${i}pdp_page_2_8_desk.webp`
+        `${o}pdp_page_2_1_desk.webp`,
+        `${o}pdp_page_2_2_desk.webp`,
+        `${o}pdp_page_2_3_desk.webp`,
+        `${o}pdp_page_2_4_desk.webp`,
+        `${o}pdp_page_2_5_desk.webp`,
+        `${o}pdp_page_2_6_desk.webp`,
+        `${o}pdp_page_2_7_desk.webp`,
+        `${o}pdp_page_2_8_desk.webp`
       ],
       productImageGalleryImgsMobile: [
-        `${i}pdp_page_2_1_mob.webp`,
-        `${i}pdp_page_2_2_mob.webp`,
-        `${i}pdp_page_2_3_mob.webp`,
-        `${i}pdp_page_2_4_mob.webp`
+        `${o}pdp_page_2_1_mob.webp`,
+        `${o}pdp_page_2_2_mob.webp`,
+        `${o}pdp_page_2_3_mob.webp`,
+        `${o}pdp_page_2_4_mob.webp`
       ]
     },
     "/en-gb/products/3in1-wooden-swedish-wall-climbing-ladder-for-children-swing-set-slide-board": {
@@ -649,9 +649,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${i}goodevas_img.webp`,
+        goodevasImg: `${o}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${i}competitors_img.webp`,
+        competitorsImg: `${o}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -703,11 +703,11 @@
         }
       ],
       productImageGalleryImgs: [
-        `${i}pdp_page_3_1_desk.webp`,
-        `${i}pdp_page_3_2_desk.webp`,
-        `${i}pdp_page_3_3_desk.webp`
+        `${o}pdp_page_3_1_desk.webp`,
+        `${o}pdp_page_3_2_desk.webp`,
+        `${o}pdp_page_3_3_desk.webp`
       ],
-      productImageGalleryImgsMobile: [`${i}pdp_page_3_1_mob.webp`, `${i}pdp_page_3_2_mob.webp`]
+      productImageGalleryImgsMobile: [`${o}pdp_page_3_1_mob.webp`, `${o}pdp_page_3_2_mob.webp`]
     },
     "/en-gb/products/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige": {
       boughtSoFarTxt: "4740",
@@ -812,9 +812,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${i}goodevas_img.webp`,
+        goodevasImg: `${o}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${i}competitors_img.webp`,
+        competitorsImg: `${o}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -866,16 +866,21 @@
         }
       ],
       productImageGalleryImgs: [
-        `${i}pdp_page_1_1_desk.webp`,
-        `${i}pdp_page_1_2_desk.webp`,
-        `${i}pdp_page_1_3_desk.webp`,
-        `${i}pdp_page_1_4_desk.webp`
+        "//goodevas.com/cdn/shop/products/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-982165.jpg?v=1716373901&width=360 360w, //goodevas.com/cdn/shop/products/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-982165.jpg?v=1716373901&width=540 540w, //goodevas.com/cdn/shop/products/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-982165.jpg?v=1716373901&width=720 720w, //goodevas.com/cdn/shop/products/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-982165.jpg?v=1716373901&width=900 900w, //goodevas.com/cdn/shop/products/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-982165.jpg?v=1716373901&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-908975.jpg?v=1727949627&width=360 360w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-908975.jpg?v=1727949627&width=540 540w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-908975.jpg?v=1727949627&width=720 720w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-908975.jpg?v=1727949627&width=900 900w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-908975.jpg?v=1727949627&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-846617.jpg?v=1727949627&width=360 360w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-846617.jpg?v=1727949627&width=540 540w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-846617.jpg?v=1727949627&width=720 720w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-846617.jpg?v=1727949627&width=900 900w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-846617.jpg?v=1727949627&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-674376.jpg?v=1729062362&width=360 360w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-674376.jpg?v=1729062362&width=540 540w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-674376.jpg?v=1729062362&width=720 720w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-674376.jpg?v=1729062362&width=900 900w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-674376.jpg?v=1729062362&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-344825.jpg?v=1729062362&width=360 360w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-344825.jpg?v=1729062362&width=540 540w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-344825.jpg?v=1729062362&width=720 720w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-344825.jpg?v=1729062362&width=900 900w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-344825.jpg?v=1729062362&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-647979.jpg?v=1729062362&width=360 360w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-647979.jpg?v=1729062362&width=540 540w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-647979.jpg?v=1729062362&width=720 720w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-647979.jpg?v=1729062362&width=900 900w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-647979.jpg?v=1729062362&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-622773.jpg?v=1729808108&width=360 360w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-622773.jpg?v=1729808108&width=540 540w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-622773.jpg?v=1729808108&width=720 720w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-622773.jpg?v=1729808108&width=900 900w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-622773.jpg?v=1729808108&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/newphotos-4.jpg?v=1729759748&width=360 360w, //goodevas.com/cdn/shop/files/newphotos-4.jpg?v=1729759748&width=540 540w, //goodevas.com/cdn/shop/files/newphotos-4.jpg?v=1729759748&width=720 720w, //goodevas.com/cdn/shop/files/newphotos-4.jpg?v=1729759748&width=900 900w, //goodevas.com/cdn/shop/files/newphotos-4.jpg?v=1729759748&width=1080 1080w",
+        "//goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-142479.jpg?v=1729808108&width=360 360w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-142479.jpg?v=1729808108&width=540 540w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-142479.jpg?v=1729808108&width=720 720w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-142479.jpg?v=1729808108&width=900 900w, //goodevas.com/cdn/shop/files/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige-142479.jpg?v=1729808108&width=1080 1080w"
       ],
       productImageGalleryImgsMobile: [
-        `${i}pdp_page_1_1_mob.webp`,
-        `${i}pdp_page_1_2_mob.webp`,
-        `${i}pdp_page_1_3_mob.webp`,
-        `${i}pdp_page_1_4_mob.webp`
+        `${o}pdp_page_1_1_mob.webp`,
+        `${o}pdp_page_1_2_mob.webp`,
+        `${o}pdp_page_1_3_mob.webp`,
+        `${o}pdp_page_1_4_mob.webp`
       ]
     },
     "/en-ca/products/6in1-montessori-climbing-frame-set-triangle-ladder-arch-rocker-slide-ramp-net-cushion-art-addition": {
@@ -1028,9 +1033,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${i}goodevas_img.webp`,
+        goodevasImg: `${o}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${i}competitors_img.webp`,
+        competitorsImg: `${o}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -1082,16 +1087,16 @@
         }
       ],
       productImageGalleryImgs: [
-        `${i}pdp_page_1_1_desk.webp`,
-        `${i}pdp_page_1_2_desk.webp`,
-        `${i}pdp_page_1_3_desk.webp`,
-        `${i}pdp_page_1_4_desk.webp`
+        `${o}pdp_page_1_1_desk.webp`,
+        `${o}pdp_page_1_2_desk.webp`,
+        `${o}pdp_page_1_3_desk.webp`,
+        `${o}pdp_page_1_4_desk.webp`
       ],
       productImageGalleryImgsMobile: [
-        `${i}pdp_page_1_1_mob.webp`,
-        `${i}pdp_page_1_2_mob.webp`,
-        `${i}pdp_page_1_3_mob.webp`,
-        `${i}pdp_page_1_4_mob.webp`
+        `${o}pdp_page_1_1_mob.webp`,
+        `${o}pdp_page_1_2_mob.webp`,
+        `${o}pdp_page_1_3_mob.webp`,
+        `${o}pdp_page_1_4_mob.webp`
       ]
     },
     "/en-ca/products/5in1-montessori-climbing-set-triangle-ladder-arch-rocker-slide-board-ramp-net-cushion-chocolate": {
@@ -1202,9 +1207,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${i}goodevas_img.webp`,
+        goodevasImg: `${o}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${i}competitors_img.webp`,
+        competitorsImg: `${o}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -1255,8 +1260,8 @@
           txt: "<p>We understand that purchasing from a new brand may raise questions. Our company has been in business since 2020, with over 50,000 positive reviews on our website, Amazon, and Etsy, which reflect the trustworthiness of our brand and products.</p>"
         }
       ],
-      productImageGalleryImgs: [`${i}pdp_page_6_1_desk.webp`, `${i}pdp_page_6_2_desk.webp`],
-      productImageGalleryImgsMobile: [`${i}pdp_page_6_1_mob.webp`, `${i}pdp_page_6_2_mob.webp`]
+      productImageGalleryImgs: [`${o}pdp_page_6_1_desk.webp`, `${o}pdp_page_6_2_desk.webp`],
+      productImageGalleryImgsMobile: [`${o}pdp_page_6_1_mob.webp`, `${o}pdp_page_6_2_mob.webp`]
     },
     "/en-eu/products/5in1-montessori-climbing-set-triangle-ladder-arch-rocker-slide-board-ramp-net-cushion-chocolate": {
       boughtSoFarTxt: "7245",
@@ -1366,9 +1371,9 @@
       comparisonTable: {
         mainTitle: "Goodevas Quality vs Others",
         goodevasTitle: "GOODEVAS",
-        goodevasImg: `${i}goodevas_img.webp`,
+        goodevasImg: `${o}goodevas_img.webp`,
         competitorsTitle: "OTHERS",
-        competitorsImg: `${i}competitors_img.webp`,
+        competitorsImg: `${o}competitors_img.webp`,
         benefits: [
           {
             benefitName: "Material",
@@ -1420,46 +1425,46 @@
         }
       ],
       productImageGalleryImgs: [
-        `${i}pdp_page_7_1_desk.webp`,
-        `${i}pdp_page_7_2_desk.webp`,
-        `${i}pdp_page_7_3_desk.webp`,
-        `${i}pdp_page_7_4_desk.webp`
+        `${o}pdp_page_7_1_desk.webp`,
+        `${o}pdp_page_7_2_desk.webp`,
+        `${o}pdp_page_7_3_desk.webp`,
+        `${o}pdp_page_7_4_desk.webp`
       ],
       productImageGalleryImgsMobile: [
-        `${i}pdp_page_7_1_mob.webp`,
-        `${i}pdp_page_7_2_mob.webp`,
-        `${i}pdp_page_7_3_mob.webp`,
-        `${i}pdp_page_7_4_mob.webp`
+        `${o}pdp_page_7_1_mob.webp`,
+        `${o}pdp_page_7_2_mob.webp`,
+        `${o}pdp_page_7_3_mob.webp`,
+        `${o}pdp_page_7_4_mob.webp`
       ]
     }
   }, L = (
     /* HTML */
     ` <div class="best_seller_label_block">${s.bestSellerLabelIcon}</div> `
-  ), x = (o) => (
+  ), x = (i) => (
     /* HTML */
     `
     <div class="bought_so_far_block">
       ${s.cartIcon}
-      <p><span class="">${o}</span> bought so far</p>
+      <p><span class="">${i}</span> bought so far</p>
     </div>
   `
-  ), T = (o) => (
+  ), T = (i) => (
     /* HTML */
     `
     <div class="get_free_delivery_block">
       ${s.freeDeliveryIcon}
       <p>
         Order now and get <span class="accent_underline">FREE delivery</span> on or before
-        <span class="date_txt">${o}</span>
+        <span class="date_txt">${i}</span>
       </p>
     </div>
   `
-  ), I = (o) => (
+  ), I = (i) => (
     /* HTML */
     `
     <div class="new_product_sales_points_block">
       <ul class="new_product_sales_points_list">
-        ${o.map((e) => (
+        ${i.map((e) => (
       /* HTML */
       `
               <li class="new_product_sales_points_item">
@@ -1471,36 +1476,36 @@
       </ul>
     </div>
   `
-  ), H = (o) => (
+  ), H = (i) => (
     /* HTML */
     `
     <div class="one_review_block">
       <div class="info_wrapper">
-        <p class="info_descr">${o.txt}</p>
+        <p class="info_descr">${i.txt}</p>
         <div class="name_stars_wrapper">
-          <span class="name_review">${o.name}</span>
+          <span class="name_review">${i.name}</span>
           <div class="stars_summary">
             <div class="stars_wrapper">${s.starIcon}${s.starIcon}${s.starIcon}${s.starIcon}${s.starIcon}</div>
-            <span>${o.rating}</span>
+            <span>${i.rating}</span>
           </div>
         </div>
       </div>
       <div class="img_wrapper">
-        <img src="${o.img}" alt="photo product" />
+        <img src="${i.img}" alt="photo product" />
         <span class="all_reviews_link">All reviews</span>
       </div>
     </div>
   `
-  ), D = (o) => (
+  ), D = (i) => (
     /* HTML */
-    ` <h2 class="tolstoy_stories_new_title">${o}</h2> `
-  ), M = (o) => (
+    ` <h2 class="tolstoy_stories_new_title">${i}</h2> `
+  ), M = (i) => (
     /* HTML */
     `
     <div class="product_details_block">
       <h2>Product details</h2>
       <ul class="product_details_accordion">
-        ${o.map((e, t) => (
+        ${i.map((e, t) => (
       /* HTML */
       `
               <li class="product_details_accordion_block" data-visability="${t + 1}">
@@ -1517,12 +1522,12 @@
       </ul>
     </div>
   `
-  ), z = (o) => (
+  ), z = (i) => (
     /* HTML */
     `
     <div class="main_benefits_block">
       <ul class="main_benefits_list">
-        ${Object.values(o).map(
+        ${Object.values(i).map(
       (e) => (
         /* HTML */
         `
@@ -1539,11 +1544,11 @@
       </ul>
     </div>
   `
-  ), E = (o) => (
+  ), E = (i) => (
     /* HTML */
     `
     <div class="comparison_table_block">
-      <h2 class="comparison_table_main_title">${o.mainTitle}</h2>
+      <h2 class="comparison_table_main_title">${i.mainTitle}</h2>
 
       <div class="custom_table">
         <div class="benefits_row">
@@ -1551,7 +1556,7 @@
             <div class="table_cell"></div>
           </div>
           <div class="body_table">
-            ${o.benefits.map((e) => (
+            ${i.benefits.map((e) => (
       /* HTML */
       ` <div class="benefits_cell table_cell"><p>${e.benefitName}</p></div> `
     )).join("")}
@@ -1561,12 +1566,12 @@
         <div class="goodevas_row is_active">
           <div class="header_table">
             <div class="table_cell">
-              <h3>${o.goodevasTitle}</h3>
-              <img src="${i}goodevas_1_img.png" alt="child girl" />
+              <h3>${i.goodevasTitle}</h3>
+              <img src="${o}goodevas_1_img.png" alt="child girl" />
             </div>
           </div>
           <div class="body_table">
-            ${o.benefits.map(
+            ${i.benefits.map(
       (e) => (
         /* HTML */
         `
@@ -1583,12 +1588,12 @@
         <div class="competitors_row">
           <div class="header_table">
             <div class="table_cell">
-              <h3>${o.competitorsTitle}</h3>
-              <img src="${i}competitors_1_img.png" alt="child girl" />
+              <h3>${i.competitorsTitle}</h3>
+              <img src="${o}competitors_1_img.png" alt="child girl" />
             </div>
           </div>
           <div class="body_table">
-            ${o.benefits.map(
+            ${i.benefits.map(
       (e) => (
         /* HTML */
         `
@@ -1604,13 +1609,13 @@
       </div>
     </div>
   `
-  ), P = (o) => (
+  ), P = (i) => (
     /* HTML */
     `
     <div class="faq_block">
       <h2>FAQ</h2>
       <ul class="faq_accordion">
-        ${o.map((e, t) => (
+        ${i.map((e, t) => (
       /* HTML */
       `
               <li class="faq_accordion_block" data-visability="${t + 1}">
@@ -1627,18 +1632,18 @@
       </ul>
     </div>
   `
-  ), A = (o) => (
+  ), A = (i, e = "") => (
     /* HTML */
     `
     <div class="product_image_gallery_block">
       <div class="product_image_gallery_container">
         <h2>Product image gallery</h2>
         <ul class="product_image_gallery_list">
-          ${o.map((e) => (
+          ${i.map((t) => (
       /* HTML */
       `
-                <li class="product_image_gallery_item">
-                  <img src="${e}" alt="photo product" />
+                <li class="product_image_gallery_item ${e}">
+                  <img src="${t}" alt="photo product" />
                 </li>
               `
     )).join("")}
@@ -1646,32 +1651,32 @@
       </div>
     </div>
   `
-  ), q = (o, e) => (
+  ), j = (i, e) => (
     /* HTML */
     `
     <div class="sticky_block">
-      <div class="add_to_cart_btn ${e}">${o}</div>
+      <div class="add_to_cart_btn ${e}">${i}</div>
     </div>
   `
-  ), W = (o, e, t) => (
+  ), q = (i, e, t) => (
     /* HTML */
     `
     <div class="color_wrapper">
       <span>Color</span>
       <div class="custom_dropdown" id="productColor">
         <div class="dropdown_toggle" ${t ? "data-disabled" : ""}>${e}</div>
-        <div class="dropdown_menu">${o}</div>
+        <div class="dropdown_menu">${i}</div>
       </div>
     </div>
   `
-  ), B = (o, e, t, n, a) => (
+  ), W = (i, e, t, n, a) => (
     /* HTML */
     `
     <div class="estimate_your_shipping_period_block">
       <h2 class="shipping_title">Estimate <span>your</span> shipping period</h2>
       <div class="shipping_destination">
         <span>Ship to:</span>
-        <span class="country_txt">${o}</span>
+        <span class="country_txt">${i}</span>
       </div>
       <div class="shipping_details">
         <div class="buy_goodevas">
@@ -1692,7 +1697,7 @@
       </div>
     </div>
   `
-  ), V = `@charset "UTF-8";
+  ), B = `@charset "UTF-8";
 @media (max-width: 768px) {
   body {
     padding-bottom: 80px;
@@ -3444,6 +3449,9 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
 .product_image_gallery_block .product_image_gallery_container .product_image_gallery_list .product_image_gallery_item {
   margin: 0;
 }
+.product_image_gallery_block .product_image_gallery_container .product_image_gallery_list .product_image_gallery_item.flex_6 {
+  width: calc((100% - 36px) / 3);
+}
 @media (max-width: 768px) {
   .product_image_gallery_block .product_image_gallery_container .product_image_gallery_list .product_image_gallery_item {
     width: 100%;
@@ -3694,7 +3702,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
   border-left: 2px solid;
   border-color: var(--colorBorder);
   transform: rotate(45deg);
-}/*# sourceMappingURL=main.css.map */`, j = window.innerWidth < 768 ? "mobile" : "desktop";
+}/*# sourceMappingURL=main.css.map */`, V = window.innerWidth < 768 ? "mobile" : "desktop";
   class O {
     constructor(e) {
       this.device = e, this.observer = null, this.pathName = this.findTranslationKey(window.location.pathname), this.init();
@@ -3703,7 +3711,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       return Object.keys(_).find((n) => e.includes(n)) || "";
     }
     init() {
-      C({ name: "PDP v2 Major Release", dev: "SKh" }), k("new_pdp"), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${V}</style>`), this.renderBestSellerLabelForPhoto(), this.renderBoughtSoFarBlock(), this.renderGetFreeDeliveryBlock(), this.renderNewProductSalesPointsBlock(), this.renderKlarnaWrapper(), this.replaceKlarnaPlacement(), this.renderOneReviewBlock(), this.renderTolstoyStoriesNewTitle(), this.clickAllReviewsLink(), this.renderProductDetailsBlock(), this.toggleSeeMoreTxt(), this.renderEstimateYourShippingPeriodBlock(), this.renderMainBenefits(), this.renderComparisonTable(), this.renderProductImageGalleryBlock(), this.renderFAQBlock(), this.initAccordionProductDetails(
+      C({ name: "PDP v2 Major Release", dev: "SKh" }), k("new_pdp"), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${B}</style>`), this.renderBestSellerLabelForPhoto(), this.renderBoughtSoFarBlock(), this.renderGetFreeDeliveryBlock(), this.renderNewProductSalesPointsBlock(), this.renderKlarnaWrapper(), this.replaceKlarnaPlacement(), this.renderOneReviewBlock(), this.renderTolstoyStoriesNewTitle(), this.clickAllReviewsLink(), this.renderProductDetailsBlock(), this.toggleSeeMoreTxt(), this.renderEstimateYourShippingPeriodBlock(), this.renderMainBenefits(), this.renderComparisonTable(), this.renderProductImageGalleryBlock(), this.renderFAQBlock(), this.initAccordionProductDetails(
         ".product_details_block",
         ".product_details_accordion_block",
         ".product_details_accordion_link",
@@ -3809,7 +3817,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         const t = r(".product_details_block");
         r(".estimate_your_shipping_period_block") || t.insertAdjacentHTML(
           "beforebegin",
-          B(
+          W(
             _[this.pathName].deliveryToPlace,
             this.getTodayDate(),
             _[this.pathName].deliveryDays,
@@ -3870,10 +3878,12 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       let e = r("#shopify-section-template--18038805430429__1727770539adc7a55b") ? "#shopify-section-template--18038805430429__1727770539adc7a55b" : "#shopify-section-template--18135477813405__1727770539adc7a55b";
       l(e).then((t) => {
         const n = r(e);
-        r(".product_image_gallery_block") || n.insertAdjacentHTML(
+        let a = "";
+        this.pathName === "/en-gb/products/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige" && (a = "flex_6"), r(".product_image_gallery_block") || n.insertAdjacentHTML(
           "beforebegin",
           A(
-            this.device === "desktop" ? _[this.pathName].productImageGalleryImgs : _[this.pathName].productImageGalleryImgsMobile
+            this.device === "desktop" ? _[this.pathName].productImageGalleryImgs : _[this.pathName].productImageGalleryImgsMobile,
+            a
           )
         );
       });
@@ -3912,7 +3922,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       l(".product-single__meta block-buy-buttons .add-to-cart").then((e) => {
         const t = r("body"), n = r(".product-single__meta block-buy-buttons .add-to-cart span"), a = r(".restock-rocket-button-container button");
         let c = n.textContent || "", d = "";
-        a && (d = "notify_available", c = a.textContent || ""), r(".sticky_block") || t.insertAdjacentHTML("beforeend", q(c, d));
+        a && (d = "notify_available", c = a.textContent || ""), r(".sticky_block") || t.insertAdjacentHTML("beforeend", j(c, d));
       });
     }
     toggleStickyBlockVisibility() {
@@ -3925,8 +3935,8 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
               threshold: 0
             };
             let c = new IntersectionObserver((d) => {
-              d.forEach((u) => {
-                u.isIntersecting ? e.style.display = "none" : e.style.display = "flex", c.unobserve(u.target);
+              d.forEach((g) => {
+                g.isIntersecting ? e.style.display = "none" : e.style.display = "flex", c.unobserve(g.target);
               }), c.disconnect();
             }, a);
             c.observe(t);
@@ -3942,13 +3952,13 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
         l(".product-single__meta block-variant-picker > .variant-button-wrap input").then((t) => {
           const n = r(".sticky_block"), a = f(".product-single__meta block-variant-picker > .variant-button-wrap input");
           if (a.length > 0) {
-            let c = [], d = "", u = !1;
+            let c = [], d = "", g = !1;
             a.forEach((p) => {
-              const g = p.getAttribute("value") || "Unknown", m = p.checked, y = p.hasAttribute("data-disabled");
-              m && (d = g, u = y), c.push(this.createDropdownItem(g, m, y));
+              const u = p.getAttribute("value") || "Unknown", m = p.checked, y = p.hasAttribute("data-disabled");
+              m && (d = u, g = y), c.push(this.createDropdownItem(u, m, y));
             }), r(".color_wrapper") || n.insertAdjacentHTML(
               "afterbegin",
-              W(c.join(""), d, u)
+              q(c.join(""), d, g)
             ), this.changeCustomDropdownHandler(".custom_dropdown");
           }
         });
@@ -3971,19 +3981,19 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       n.addEventListener("click", () => {
         h("exp_new_pdp_button_02", "Color", "Click", "Stiky section"), a.classList.toggle("show"), this.adjustDropdownPosition(a), n.classList.toggle("active");
       }), c.forEach((p) => {
-        p.addEventListener("click", (g) => {
-          const m = g.currentTarget, y = m.getAttribute("data-value"), N = m.hasAttribute("data-disabled");
+        p.addEventListener("click", (u) => {
+          const m = u.currentTarget, y = m.getAttribute("data-value"), N = m.hasAttribute("data-disabled");
           a.style.top = "100%", n.innerHTML = m.innerHTML, a.classList.remove("show"), n.classList.remove("active"), N ? n.setAttribute("data-disabled", "") : n.removeAttribute("data-disabled"), h("exp_new_pdp_dropdown_01", `Selected value: ${m == null ? void 0 : m.textContent}`, "Dropdown", "Stiky section"), d.forEach((v) => {
             v.getAttribute("value") === y && v.click();
           });
         });
       }), document.addEventListener("click", (p) => {
-        const g = p.target;
-        t.contains(g) || (a.classList.remove("show"), n.classList.remove("active"), a.style.top = "100%");
+        const u = p.target;
+        t.contains(u) || (a.classList.remove("show"), n.classList.remove("active"), a.style.top = "100%");
       }), new IntersectionObserver(
         (p) => {
-          p.forEach((g) => {
-            g.isIntersecting || this.adjustDropdownPosition(a);
+          p.forEach((u) => {
+            u.isIntersecting || this.adjustDropdownPosition(a);
           });
         },
         {
@@ -4020,8 +4030,8 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       const e = f(".product-single__meta block-variant-picker > .variant-button-wrap input"), t = r(".color_wrapper .dropdown_toggle");
       let n = "", a = !1;
       e.forEach((c) => {
-        const d = c.getAttribute("value") || "Unknown", u = c.checked, p = r(`.color_wrapper .dropdown_item[data-value="${d}"]`);
-        p && (u ? (p.classList.add("active"), n = d, a = c.hasAttribute("data-disabled")) : p.classList.remove("active"));
+        const d = c.getAttribute("value") || "Unknown", g = c.checked, p = r(`.color_wrapper .dropdown_item[data-value="${d}"]`);
+        p && (g ? (p.classList.add("active"), n = d, a = c.hasAttribute("data-disabled")) : p.classList.remove("active"));
       }), t && n && (t.textContent = n, a ? t.setAttribute("data-disabled", "") : t.removeAttribute("data-disabled"));
     }
     observeRestockRocketButton() {
@@ -4118,8 +4128,8 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
       });
     }
   }
-  l(".page-content--product").then((o) => {
-    new O(j);
+  l(".page-content--product").then((i) => {
+    new O(V);
   });
 })();
 //# sourceMappingURL=index.js.map
