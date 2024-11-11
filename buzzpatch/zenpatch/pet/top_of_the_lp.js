@@ -437,7 +437,7 @@
       m({ name: "Top of the LP", dev: "SKh" }), h("exp_zenpet_ux2"), r(".crs_font") || document.head.insertAdjacentHTML(
         "afterbegin",
         'link class="crs_font" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"'
-      ), document.head.insertAdjacentHTML("beforeend", `<style>${x}</style>`), this.renderMainBenefitsBlock(), this.device === "mobile" ? (console.log(this.device), this.changeIconLearnMore(), this.scrollToFAQ(".lp-tr--hero-section .lp-tr--learn-more-btn"), (n = r(".new_learn_more_btn")) == null || n.remove()) : (console.log(this.device), this.renderLearnMoreBtnOnDesktop(), this.scrollToFAQ(".new_learn_more_btn")), this.replaceFAQBlock(), this.addEventsAccordion(), this.renderBtnGetZenToAccordionBody(), this.scrollToFromNewGetZenStickersNowBtns(".new_get_zen_stickers_now");
+      ), document.head.insertAdjacentHTML("beforeend", `<style>${x}</style>`), this.renderMainBenefitsBlock(), this.device === "mobile" && (console.log(this.device), this.changeIconLearnMore(), this.scrollToFAQ(".lp-tr--hero-section .lp-tr--learn-more-btn"), (n = r(".new_learn_more_btn")) == null || n.remove()), window.innerWidth >= 768 && (console.log(this.device), this.renderLearnMoreBtnOnDesktop(), this.scrollToFAQ(".new_learn_more_btn")), this.replaceFAQBlock(), this.addEventsAccordion(), this.renderBtnGetZenToAccordionBody(), this.scrollToFromNewGetZenStickersNowBtns(".new_get_zen_stickers_now");
     }
     renderMainBenefitsBlock() {
       a(".lp-tr--hero-section .lp-tr--main-title").then((n) => {
