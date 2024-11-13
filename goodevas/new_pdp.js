@@ -2040,6 +2040,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
   border: 1px solid #edcf48;
   background: #f9d94c;
   transition: all 550ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  border-radius: unset;
 }
 .page-content--product .product-single__meta block-buy-buttons .restock-rocket-button-container button {
   margin: 14px 0 0;
