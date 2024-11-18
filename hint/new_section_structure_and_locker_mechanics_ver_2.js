@@ -450,7 +450,7 @@
         return "";
       switch (e.wish) {
         case "1":
-          this.goal = "Deep analysis of the relationships with your partner based on a unique birth chart";
+          this.goal = "Deep analysis of the relationships with your partner based on a unique birth chart.";
           break;
         case "2":
           this.goal = "In-depth analysis of your health and vitality based on the unique patterns in your palm lines.";
@@ -459,7 +459,7 @@
           this.goal = "In-depth analysis of your career and destiny based on the unique patterns in your palm lines.";
           break;
         default:
-          this.goal = "Deep analysis of the relationships with your partner based on a unique birth chart";
+          this.goal = "Deep analysis of the relationships with your partner based on a unique birth chart.";
           break;
       }
       return this.goal;
