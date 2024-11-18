@@ -267,7 +267,7 @@
   padding: 0 16px;
 }
 .locker_mechanics ol li {
-  max-width: 305px;
+  max-width: 315px;
   color: #1d2939;
   font-size: 16px;
   font-weight: 400;
