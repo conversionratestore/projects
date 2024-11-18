@@ -100,7 +100,10 @@
     /* HTML */
     `
   <div class="palm_reading_is_ready">
-    <h2 class="palm_reading_is_ready_title">Your Palm Reading <span>is Ready</span></h2>
+    <h2 class="palm_reading_is_ready_title">
+      Your Palm Reading <br />
+      <span>is Ready</span>
+    </h2>
     <div class="palm_reading_is_ready_img_wrapper">
       <img src="${d}palm_reading_is_ready.webp" alt="Palm" class="img_initial" />
       <img src="${d}children_blue.webp" alt="Сhildren" class="img_first_absolute" data-tocheckout />
@@ -185,7 +188,6 @@
   padding: 0 16px;
 }
 .palm_reading_is_ready_title {
-  max-width: 294px;
   color: #121620;
   text-align: center;
   font-size: 30px;
@@ -352,7 +354,7 @@
   flex-shrink: 0;
 }
 .money_back_guarantee_title {
-  max-width: 158px;
+  max-width: 165px;
   color: #11181c;
   font-size: 18px;
   font-weight: 700;
