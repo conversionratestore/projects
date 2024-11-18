@@ -1,64 +1,64 @@
 (function() {
   "use strict";
-  const u = (n, e, t, i = "") => {
+  const u = (t, e, n, i = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: n,
+      event_name: t,
       event_desc: e,
-      event_type: t,
+      event_type: n,
       event_loc: i
-    }), console.dir(`Event: ${n} | ${e} | ${t} | ${i}`);
-  }, g = ({ name: n, dev: e }) => {
+    }), console.dir(`Event: ${t} | ${e} | ${n} | ${i}`);
+  }, _ = ({ name: t, dev: e }) => {
     console.log(
-      `%c EXP: ${n} (DEV: ${e})`,
+      `%c EXP: ${t} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, y = (n) => document.querySelectorAll(n), a = (n) => document.querySelector(n), f = (n, e = "variant_1") => {
-    let t = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", n, e), console.log("set", n, e));
+  }, y = (t) => document.querySelectorAll(t), a = (t) => document.querySelector(t), f = (t, e = "variant_1") => {
+    let n = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", t, e), console.log("set", t, e));
     }, 1e3);
-  }, h = (n, e, t, i, l = "Visibility", c = 600, o = 0.5) => {
-    let s, _;
-    if (s = new IntersectionObserver(
+  }, h = (t, e, n, i, s = "Visibility", c = 600, o = 0.5) => {
+    let l, g;
+    if (l = new IntersectionObserver(
       function(p) {
-        p[0].isIntersecting === !0 ? _ = setTimeout(() => {
+        p[0].isIntersecting === !0 ? g = setTimeout(() => {
           u(
             e,
             p[0].target.dataset.visible || i || "",
-            l,
-            t
-          ), s.disconnect();
-        }, c) : clearTimeout(_);
+            s,
+            n
+          ), l.disconnect();
+        }, c) : clearTimeout(g);
       },
       { threshold: [o] }
-    ), typeof n == "string") {
-      const p = document.querySelector(n);
-      p && s.observe(p);
+    ), typeof t == "string") {
+      const p = document.querySelector(t);
+      p && l.observe(p);
     } else
-      s.observe(n);
+      l.observe(t);
   };
-  function r(n) {
+  function r(t) {
     return new Promise((e) => {
-      if (document.querySelector(n))
-        return e(document.querySelector(n));
-      const t = new MutationObserver(() => {
-        document.querySelector(n) && (e(document.querySelector(n)), t.disconnect());
+      if (document.querySelector(t))
+        return e(document.querySelector(t));
+      const n = new MutationObserver(() => {
+        document.querySelector(t) && (e(document.querySelector(t)), n.disconnect());
       });
-      t.observe(document.documentElement, {
+      n.observe(document.documentElement, {
         childList: !0,
         subtree: !0,
         characterData: !0
       });
     });
   }
-  (function(n) {
-    n = n === void 0 ? {} : n;
-    let e, t, i, l, c = (n == null ? void 0 : n.delay) || 50;
+  (function(t) {
+    t = t === void 0 ? {} : t;
+    let e, n, i, s, c = (t == null ? void 0 : t.delay) || 50;
     function o() {
-      e = null, l = 0;
+      e = null, s = 0;
     }
     return o(), function() {
-      return t = window.scrollY, e != null && (l = t - e), e = t, clearTimeout(i), i = setTimeout(o, c), l;
+      return n = window.scrollY, e != null && (s = n - e), e = n, clearTimeout(i), i = setTimeout(o, c), s;
     };
   })();
   const d = "https://conversionratestore.github.io/projects/hint/img/", m = {
@@ -113,14 +113,14 @@
     </div>
   </div>
 `
-  ), w = (n) => (
+  ), w = (t) => (
     /* HTML */
     `
     <div class="locker_mechanics" data-tocheckout>
       <h2 class="locker_mechanics_title">Content</h2>
       <div>
         <ol>
-          <li>${n}</li>
+          <li>${t}</li>
         </ol>
         <div class="is_locker">
           <ol>
@@ -137,7 +137,7 @@
       </div>
     </div>
   `
-  ), b = (n) => (
+  ), b = (t) => (
     /* HTML */
     `
     <div class="money_back_guarantee">
@@ -146,11 +146,11 @@
           ${m.moneyBackGuaranteeIcon}
           <h3 class="money_back_guarantee_title">100% money-back guarantee</h3>
         </div>
-        <div class="money_back_guarantee_description">${n}</div>
+        <div class="money_back_guarantee_description">${t}</div>
       </div>
     </div>
   `
-  ), v = `.crs_paywall main .mx-auto.pb-6 {
+  ), k = `.crs_paywall main .mx-auto.pb-6 {
   width: 100%;
   padding-left: 0;
   padding-right: 0;
@@ -369,17 +369,17 @@
   .money_back_guarantee_description {
     max-width: 273px;
   }
-}/*# sourceMappingURL=main.css.map */`, k = window.innerWidth < 768 ? "mobile" : "desktop";
+}/*# sourceMappingURL=main.css.map */`, v = window.innerWidth < 768 ? "mobile" : "desktop";
   class C {
     constructor(e) {
-      this.device = e, this.lastPath = window.location.pathname, this.goal = null, this.txtMoneyBackGuarantee = null, this.init();
+      this.device = e, this.lastPath = window.location.pathname, this.relationshipStatus = null, this.goal = null, this.txtMoneyBackGuarantee = null, this.init();
     }
     init() {
-      g({ name: "Improvements on the paywall screen (new section structure + Locker mechanics)", dev: "SKh" }), f("exp_6", "variant_1"), this.observeMain(), this.allFunctionsInitHandler();
+      _({ name: "Improvements on the paywall screen (new section structure + Locker mechanics)", dev: "SKh" }), f("exp_6", "variant_1"), this.observeMain(), this.allFunctionsInitHandler();
     }
     observeMain() {
-      new MutationObserver((t) => {
-        for (let i of t)
+      new MutationObserver((n) => {
+        for (let i of n)
           window.location.pathname !== this.lastPath && (this.lastPath = window.location.pathname, this.allFunctionsInitHandler());
       }).observe(a("body"), { childList: !0, subtree: !0 });
     }
@@ -387,12 +387,12 @@
       a(".crs_inter") || document.head.insertAdjacentHTML(
         "afterbegin",
         '<link class="crs_inter" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">'
-      ), a(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${v}</style>`);
+      ), a(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${k}</style>`);
     }
     // allFunctions
     allFunctionsInitHandler() {
-      var e, t, i;
-      this.checkPage() === "paywall" ? (console.log("paywall"), this.loadFontsAndStyles(), this.addClassToBody(), this.renderPalmReadingIsReady(), this.renderLockerMechanics(), this.addClickForImgProceedToCheckout(), this.addClickForGetMyPrediction(), this.renderMoneyBackGuarantee(), this.visibleHandler()) : (console.log(this.checkPage()), this.removeClassFromBody(), (e = a(".palmReadingIsReady")) == null || e.remove(), (t = a(".locker_mechanics")) == null || t.remove(), (i = a("money_back_guarantee")) == null || i.remove());
+      var e, n, i;
+      this.checkPage() === "paywall" ? (console.log("paywall"), this.loadFontsAndStyles(), this.addClassToBody(), this.renderPalmReadingIsReady(), this.renderLockerMechanics(), this.addClickForImgProceedToCheckout(), this.addClickForGetMyPrediction(), this.renderMoneyBackGuarantee(), this.visibleHandler()) : (console.log(this.checkPage()), this.removeClassFromBody(), (e = a(".palmReadingIsReady")) == null || e.remove(), (n = a(".locker_mechanics")) == null || n.remove(), (i = a("money_back_guarantee")) == null || i.remove());
     }
     checkPage() {
       const e = window.location.href;
@@ -409,29 +409,29 @@
     }
     renderPalmReadingIsReady() {
       r("main .mx-auto.pb-6 > div.mx-auto").then((e) => {
-        const t = a("main .mx-auto.pb-6 > div.mx-auto");
-        a(".palm_reading_is_ready") || t.insertAdjacentHTML("afterbegin", x);
+        const n = a("main .mx-auto.pb-6 > div.mx-auto");
+        a(".palm_reading_is_ready") || n.insertAdjacentHTML("afterbegin", x);
       });
     }
     renderLockerMechanics() {
       r(".mx-auto > .flex.gap-4").then((e) => {
-        const t = a(".mx-auto > .flex.gap-4"), i = this.getGoalHandler();
-        a(".locker_mechanics") || t.insertAdjacentHTML("beforebegin", w(i));
+        const n = a(".mx-auto > .flex.gap-4"), i = this.getGoalHandler();
+        a(".locker_mechanics") || n.insertAdjacentHTML("beforebegin", w(i));
       });
     }
     addClickForImgProceedToCheckout() {
       r(".mx-auto > .flex.gap-4 > div.w-full button").then((e) => {
-        r("[data-tocheckout]").then((t) => {
-          y("[data-tocheckout]").forEach((l) => {
-            l.addEventListener("click", (c) => {
-              var s;
+        r("[data-tocheckout]").then((n) => {
+          y("[data-tocheckout]").forEach((s) => {
+            s.addEventListener("click", (c) => {
+              var l;
               let o = c.currentTarget.getAttribute("alt");
               c.currentTarget && o ? u(`exp_6__${o.toLocaleLowerCase().split(" ").join("_")}`, o, "Click", "Palm hand with icons") : u(
                 "exp_6__locker_mechanics",
                 "Locker mechanics",
                 "Click",
                 "To read the full report, you need to get access"
-              ), (s = a("footer + .bg-violet-50 button")) == null || s.click();
+              ), (l = a("footer + .bg-violet-50 button")) == null || l.click();
             });
           });
         });
@@ -450,7 +450,7 @@
         return "";
       switch (e.wish) {
         case "1":
-          this.goal = "Deep analysis of the relationships with your partner based on a unique birth chart.";
+          this.goal = `Deep analysis of the relationships with your ${this.getRelationshipStatusHandler()} partner based on a unique birth chart.`;
           break;
         case "2":
           this.goal = "In-depth analysis of your health and vitality based on the unique patterns in your palm lines.";
@@ -459,25 +459,15 @@
           this.goal = "In-depth analysis of your career and destiny based on the unique patterns in your palm lines.";
           break;
         default:
-          this.goal = "Deep analysis of the relationships with your partner based on a unique birth chart.";
+          this.goal = `Deep analysis of the relationships with your ${this.getRelationshipStatusHandler()} partner based on a unique birth chart.`;
           break;
       }
       return this.goal;
     }
-    getParsedHintState() {
-      const e = localStorage.getItem("hint-state");
-      if (e)
-        try {
-          return JSON.parse(e).state;
-        } catch (t) {
-          return console.error("Error parsing hint-state from localStorage", t), null;
-        }
-      return null;
-    }
     renderMoneyBackGuarantee() {
       r("main .mx-auto > .flex.gap-4 > ul.flex").then((e) => {
-        const t = a("main .mx-auto > .flex.gap-4 > ul.flex");
-        a(".money_back_guarantee") || t.insertAdjacentHTML(
+        const n = a("main .mx-auto > .flex.gap-4 > ul.flex");
+        a(".money_back_guarantee") || n.insertAdjacentHTML(
           "beforebegin",
           b(this.getTxtMoneyBackGuaranteeHandler())
         );
@@ -489,7 +479,7 @@
         return "";
       switch (e.wish) {
         case "1":
-          this.txtMoneyBackGuarantee = "We are convinced that this report will provide you with a deeper understanding of your partner and suggest ways to enhance your relationship. With a track record of stellar customer reviews, we are fully prepared to refund your money if you find that this report does not deliver any value.";
+          this.txtMoneyBackGuarantee = `We are convinced that this report will provide you with a deeper understanding of your ${this.getRelationshipStatusHandler()} partner and suggest ways to enhance your relationship. With a track record of stellar customer reviews, we are fully prepared to refund your money if you find that this report does not deliver any value.`;
           break;
         case "2":
           this.txtMoneyBackGuarantee = "We are confident that this report will provide you with valuable insights into your health and vitality while offering practical suggestions to improve your overall well-being. With a track record of stellar customer reviews, we are fully prepared to refund your money if you find that this report does not deliver any value.";
@@ -498,10 +488,37 @@
           this.txtMoneyBackGuarantee = "We are confident this report will provide valuable insights into your career and life's purpose, with actionable guidance to help you succeed. With a track record of stellar customer reviews, we are fully prepared to refund your money if you find that this report does not deliver any value.";
           break;
         default:
-          this.txtMoneyBackGuarantee = "We are convinced that this report will provide you with a deeper understanding of your partner and suggest ways to enhance your relationship. With a track record of stellar customer reviews, we are fully prepared to refund your money if you find that this report does not deliver any value.";
+          this.txtMoneyBackGuarantee = `We are convinced that this report will provide you with a deeper understanding of your ${this.getRelationshipStatusHandler()} partner and suggest ways to enhance your relationship. With a track record of stellar customer reviews, we are fully prepared to refund your money if you find that this report does not deliver any value.`;
           break;
       }
       return this.txtMoneyBackGuarantee;
+    }
+    getRelationshipStatusHandler() {
+      const e = this.getParsedHintState();
+      if (!e)
+        return "";
+      switch (e.relationship) {
+        case "1":
+          this.relationshipStatus = "potential";
+          break;
+        case "2":
+          this.relationshipStatus = "";
+          break;
+        default:
+          this.relationshipStatus = "";
+          break;
+      }
+      return this.relationshipStatus;
+    }
+    getParsedHintState() {
+      const e = localStorage.getItem("hint-state");
+      if (e)
+        try {
+          return JSON.parse(e).state;
+        } catch (n) {
+          return console.error("Error parsing hint-state from localStorage", n), null;
+        }
+      return null;
     }
     visibleHandler() {
       r(".palm_reading_is_ready").then((e) => {
@@ -519,8 +536,8 @@
       });
     }
   }
-  r("body").then((n) => {
-    new C(k);
+  r("body").then((t) => {
+    new C(v);
   });
 })();
 //# sourceMappingURL=index.js.map
