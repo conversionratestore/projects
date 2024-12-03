@@ -469,6 +469,8 @@
 }
 .discount_popup .info_wrapper .body_popup .email_wrapper [for=emailNew] input:focus-visible {
   border-radius: 0;
+  outline: 1px solid black !important;
+  border: none !important;
 }
 .discount_popup .info_wrapper .body_popup .email_wrapper #emailAddressError {
   display: block;
