@@ -1,19 +1,19 @@
 (function() {
   "use strict";
-  const r = (t, n, e, p = "") => {
+  const r = (t, n, e, o = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: t,
       event_desc: n,
       event_type: e,
-      event_loc: p
-    }), console.dir(`Event: ${t} | ${n} | ${e} | ${p}`);
+      event_loc: o
+    }), console.dir(`Event: ${t} | ${n} | ${e} | ${o}`);
   }, h = ({ name: t, dev: n }) => {
     console.log(
       `%c EXP: ${t} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, c = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), m = (t, n = "variant_1") => {
+  }, d = (t) => document.querySelectorAll(t), p = (t) => document.querySelector(t), m = (t, n = "variant_1") => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", t, n), console.log("set", t, n));
     }, 1e3);
@@ -34,15 +34,15 @@
   }
   (function(t) {
     t = t === void 0 ? {} : t;
-    let n, e, p, i, a = (t == null ? void 0 : t.delay) || 50;
-    function _() {
+    let n, e, o, i, a = (t == null ? void 0 : t.delay) || 50;
+    function u() {
       n = null, i = 0;
     }
-    return _(), function() {
-      return e = window.scrollY, n != null && (i = e - n), n = e, clearTimeout(p), p = setTimeout(_, a), i;
+    return u(), function() {
+      return e = window.scrollY, n != null && (i = e - n), n = e, clearTimeout(o), o = setTimeout(u, a), i;
     };
   })();
-  const l = "https://conversionratestore.github.io/projects/roofing4us/img/", d = {
+  const l = "https://conversionratestore.github.io/projects/roofing4us/img/", c = {
     closeIcon: (
       /* HTML */
       `
@@ -130,11 +130,11 @@
     </svg>
   `
     )
-  }, u = (t) => (
+  }, _ = (t) => (
     /* HTML */
     `
     <div class="get_discount_btn_pdp">
-      ${d.btnIcon}
+      ${c.btnIcon}
       <span>${t}</span>
     </div>
   `
@@ -171,7 +171,7 @@
     <div class="second_screen is_hidden">
       <div class="info_wrapper">
         <div class="header_popup">
-          ${d.checkIcon}
+          ${c.checkIcon}
           <h2 class="check_title">
             Your <span>5%</span> Discount <br />
             Code is Ready!
@@ -182,7 +182,7 @@
           <div class="discount_code_wrapper">
             <div class="discount_code_container">
               <span class="discount_code_txt">0AN8XT0VRWD1</span>
-              <span data-discount="0AN8XT0VRWD1">${d.copyIcon}</span>
+              <span data-discount="0AN8XT0VRWD1">${c.copyIcon}</span>
             </div>
           </div>
           <div class="btn_wrapper">
@@ -202,7 +202,7 @@
   <div class="new_popup_backdrop is_hidden">
     <div class="new_popup">
       <button class="new_popup_close" data-popup="close">
-        ${window.innerWidth > 768 ? `${d.closeIcon}` : `${d.closeIconMob}`}
+        ${window.innerWidth > 768 ? `${c.closeIcon}` : `${c.closeIconMob}`}
       </button>
       <div class="new_popup_content">${w}</div>
     </div>
@@ -608,20 +608,26 @@
   position: relative;
 }
 @media only screen and (max-width: 1200px) {
-  .page-container .product-single__meta:not(.callforprice_meta) .product__price {
+  .page-container .product-single__meta:not(.callforprice_meta) .product__price:not(.call_for_price_b) {
     display: inline-flex;
     margin-bottom: 14px;
-    width: -moz-max-content;
-    width: max-content;
   }
 }
 @media only screen and (max-width: 768px) {
-  .page-container .product-single__meta:not(.callforprice_meta) .product__price .price-item {
+  .page-container .product-single__meta:not(.callforprice_meta) .product__price:not(.call_for_price_b) {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .page-container .product-single__meta:not(.callforprice_meta) .product__price:not(.call_for_price_b) .price-item:not(.price-item--sale) {
     color: #101010;
     font-family: "Poppins", sans-serif;
     font-size: 29px;
     font-weight: 700;
     line-height: 37.13px;
+  }
+  .page-container .product-single__meta:not(.callforprice_meta) .product__price:not(.call_for_price_b) .price--on-sale {
+    margin-bottom: 15px;
   }
 }
 
@@ -633,47 +639,47 @@
       this.isPopupEventHandlersAdded = !1, this.device = n, this.init(), this.observeLocalStorage();
     }
     init() {
-      h({ name: "Welcome discount on PDP", dev: "SKh" }), m("exp_01_welcome"), o(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${g}</style>`), this.renderButtonTriggerForPopup(), this.addClickOnButtonTriggerToOpenPopup(), this.createPopup(), this.addClickOnEmailInput(), this.addClickOnStepEmailButton(), this.addClickOnStepCouponButton(), this.copyDiscount(), this.observeControlPopup();
+      h({ name: "Welcome discount on PDP", dev: "SKh" }), m("exp_01_welcome"), p(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${g}</style>`), this.renderButtonTriggerForPopup(), this.addClickOnButtonTriggerToOpenPopup(), this.createPopup(), this.addClickOnEmailInput(), this.addClickOnStepEmailButton(), this.addClickOnStepCouponButton(), this.copyDiscount(), this.observeControlPopup();
     }
     renderButtonTriggerForPopup() {
       s(".page-container .product__price").then((n) => {
-        const e = o(".page-container .product__price"), p = o(".price--on-sale");
-        !o(".get_discount_btn_pdp") && !localStorage.getItem("pushowl_email") && !sessionStorage.getItem("sentEmail") && (p ? (console.log("placeElementSale"), e.insertAdjacentHTML("afterend", u("Take Extra 5% Discount"))) : (console.log("NOT placeElementSale"), e.insertAdjacentHTML("afterend", u("Get a 5% Discount"))));
+        const e = p(".page-container .product__price"), o = p(".price--on-sale");
+        !p(".get_discount_btn_pdp") && !localStorage.getItem("pushowl_email") && !sessionStorage.getItem("sentEmail") && (o ? (console.log("placeElementSale"), e.insertAdjacentHTML("beforeend", _("Get an Extra 5% Discount!"))) : (console.log("NOT placeElementSale"), e.insertAdjacentHTML("beforeend", _("Get a 5% Discount"))));
       });
     }
     observeLocalStorage() {
       const n = localStorage.setItem;
-      localStorage.setItem = function(e, p) {
+      localStorage.setItem = function(e, o) {
         const i = new Event("itemInserted");
         document.dispatchEvent(i), n.apply(this, arguments);
       }, document.addEventListener("itemInserted", () => {
         if (localStorage.getItem("pushowl_email")) {
-          const e = o(".get_discount_btn_pdp");
+          const e = p(".get_discount_btn_pdp");
           e && e.classList.add("is_hidden");
         }
       });
     }
     addClickOnButtonTriggerToOpenPopup() {
       s(".get_discount_btn_pdp").then((n) => {
-        o(".get_discount_btn_pdp").addEventListener("click", () => {
+        p(".get_discount_btn_pdp").addEventListener("click", () => {
           r("exp_01_welcome__get_discount", "Get a 5% discount", "click", "Product description"), this.showPopup("getDiscount", "Click on the btn");
         });
       });
     }
     createPopup() {
       s(".page-container .product__price").then((n) => {
-        console.log("createPopup !!!"), o(".new_popup_backdrop") || o("body").insertAdjacentHTML("afterbegin", f);
+        console.log("createPopup !!!"), p(".new_popup_backdrop") || p("body").insertAdjacentHTML("afterbegin", f);
       });
     }
     showPopup(n, e) {
       if (sessionStorage.getItem(n))
         return;
-      const i = o("body"), a = o(".new_popup_backdrop");
+      const i = p("body"), a = p(".new_popup_backdrop");
       a.classList.contains("is_hidden") && a.classList.remove("is_hidden"), i.style.overflow = "hidden", r("exp_01_welcome__popup_1__view", "Step 1, Email form", "view", "Popup Save 5% on Your next order"), this.closePopup();
     }
     closePopup() {
-      const n = o(".new_popup_backdrop"), p = o(".new_popup").querySelectorAll('[data-popup="close"]');
-      this.isPopupEventHandlersAdded || (p.forEach((i) => {
+      const n = p(".new_popup_backdrop"), o = p(".new_popup").querySelectorAll('[data-popup="close"]');
+      this.isPopupEventHandlersAdded || (o.forEach((i) => {
         i.addEventListener("click", this.handleBtnClosePopupClick.bind(this));
       }), n.addEventListener("click", this.handleBackdropClick.bind(this)), this.isPopupEventHandlersAdded = !0);
     }
@@ -684,17 +690,17 @@
       n.target.matches(".new_popup_backdrop") && (n.target.closest(".step_coupon_wrapper") ? (console.log("new_popup_backdrop step_coupon_wrapper"), this.applyCoupon("0AN8XT0VRWD1")) : this.hidePopup(), r("exp_01_welcome__backdrop", "Сlick behind the pop-up area", "click", "Popup Save 5% on Your next order"));
     }
     hidePopup() {
-      const n = o("body");
-      o(".new_popup_backdrop").classList.add("is_hidden"), n.style.overflow = "initial";
+      const n = p("body");
+      p(".new_popup_backdrop").classList.add("is_hidden"), n.style.overflow = "initial";
     }
     addClickOnEmailInput() {
       s("#emailNew").then((n) => {
-        c("#emailNew").forEach((e) => {
-          e.addEventListener("input", (p) => {
-            this.validateEmailForm(p.target);
-          }), e.addEventListener("keyup", (p) => {
-            p.key === "Enter" && this.validateEmailForm(p.target, !0);
-          }), e.addEventListener("blur", (p) => {
+        d("#emailNew").forEach((e) => {
+          e.addEventListener("input", (o) => {
+            this.validateEmailForm(o.target);
+          }), e.addEventListener("keyup", (o) => {
+            o.key === "Enter" && this.validateEmailForm(o.target, !0);
+          }), e.addEventListener("blur", (o) => {
             r("exp_01_welcome__popup_1__email", "Email", "click", "Popup Save 5% on Your next order");
           });
         });
@@ -702,22 +708,22 @@
     }
     addClickOnStepEmailButton() {
       s(".main_red_btn.step_email").then((n) => {
-        const e = o(".main_red_btn.step_email"), p = o("#emailNew");
+        const e = p(".main_red_btn.step_email"), o = p("#emailNew");
         e.addEventListener("click", () => {
-          r("exp_01_welcome__popup_1__continue", "Continue", "click", "Popup Save 5% on Your next order"), this.validateEmailForm(p, !0);
+          r("exp_01_welcome__popup_1__continue", "Continue", "click", "Popup Save 5% on Your next order"), this.validateEmailForm(o, !0);
         });
       });
     }
     validateEmailForm(n, e = !1) {
       var a;
-      const p = o("#emailNew").value, i = p.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/);
-      n.getAttribute("name") === "emailNew" && (i === null ? o("#emailAddressError") || n.closest("label").insertAdjacentHTML(
+      const o = p("#emailNew").value, i = o.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/);
+      n.getAttribute("name") === "emailNew" && (i === null ? p("#emailAddressError") || n.closest("label").insertAdjacentHTML(
         "afterend",
         '<span id="emailAddressError" class="error">Please Enter Valid Email Address</span>'
-      ) : (a = o("#emailAddressError")) == null || a.remove()), i !== null && e && this.handleEmailSubmission(p);
+      ) : (a = p("#emailAddressError")) == null || a.remove()), i !== null && e && this.handleEmailSubmission(o);
     }
     handleEmailSubmission(n) {
-      this.sendEmailToGoogleSheet(n), o(".new_popup_backdrop").classList.add("step_coupon_wrapper"), o(".get_discount_btn_pdp").classList.add("is_hidden"), o(".first_screen") && o(".first_screen").classList.add("is_hidden"), o(".second_screen").classList.contains("is_hidden") && o(".second_screen").classList.remove("is_hidden"), r("exp_01_welcome__popup_2__view", "Step 2. Coupon code", "view", "Popup Save 5% on Your next order");
+      this.sendEmailToGoogleSheet(n), p(".new_popup_backdrop").classList.add("step_coupon_wrapper"), p(".get_discount_btn_pdp").classList.add("is_hidden"), p(".first_screen") && p(".first_screen").classList.add("is_hidden"), p(".second_screen").classList.contains("is_hidden") && p(".second_screen").classList.remove("is_hidden"), r("exp_01_welcome__popup_2__view", "Step 2. Coupon code", "view", "Popup Save 5% on Your next order");
     }
     sendEmailToGoogleSheet(n) {
       fetch("https://script.google.com/macros/s/AKfycbyA8NPDk20WCSWow0TDtKORatekqwFNliI74uv8h4Cb3woquUnCID-NA6OpGssJAG6iOw/exec", {
@@ -726,19 +732,19 @@
           "Content-Type": "application/x-www-form-urlencoded"
         },
         body: new URLSearchParams({ email: n })
-      }).then((p) => {
-        if (!p.ok)
+      }).then((o) => {
+        if (!o.ok)
           throw new Error("Network response was not ok");
-        return sessionStorage.setItem("sentEmail", "yes"), p.json();
-      }).then((p) => {
-        console.log("Success:", p);
-      }).catch((p) => {
-        console.error("Error:", p);
+        return sessionStorage.setItem("sentEmail", "yes"), o.json();
+      }).then((o) => {
+        console.log("Success:", o);
+      }).catch((o) => {
+        console.error("Error:", o);
       });
     }
     addClickOnStepCouponButton() {
       s(".main_red_btn.step_coupon").then((n) => {
-        o(".main_red_btn.step_coupon").addEventListener("click", () => {
+        p(".main_red_btn.step_coupon").addEventListener("click", () => {
           r("exp_01_welcome__popup_2__got_it", "Got it, Let`s Shop!", "click", "Popup Save 5% on Your next order"), this.applyCoupon("0AN8XT0VRWD1");
         });
       });
@@ -749,12 +755,12 @@
     }
     copyDiscount() {
       s("[data-discount]").then((n) => {
-        c("[data-discount]").forEach((e) => {
-          e.addEventListener("click", (p) => {
+        d("[data-discount]").forEach((e) => {
+          e.addEventListener("click", (o) => {
             r("exp_01_welcome__popup_2__copy", "Copy code", "click", "Popup Save 5% on Your next order");
-            let i = p.currentTarget.dataset.discount;
-            navigator.clipboard.writeText(i), p.currentTarget.textContent = "Copied!", setTimeout(() => {
-              e.innerHTML = `${d.copyIcon}`;
+            let i = o.currentTarget.dataset.discount;
+            navigator.clipboard.writeText(i), o.currentTarget.textContent = "Copied!", setTimeout(() => {
+              e.innerHTML = `${c.copyIcon}`;
             }, 600);
           });
         });
@@ -762,11 +768,11 @@
     }
     observeControlPopup() {
       new MutationObserver((e) => {
-        for (const p of e)
-          if (p.type === "childList") {
-            const i = o(".new_popup_backdrop");
+        for (const o of e)
+          if (o.type === "childList") {
+            const i = p(".new_popup_backdrop");
             if (i && !i.classList.contains("is_hidden")) {
-              const a = o("body > div> div.needsclick.kl-private-reset-css-Xuajs1");
+              const a = p("body > div> div.needsclick.kl-private-reset-css-Xuajs1");
               a && (console.log("popup"), a.classList.add("is_hidden"));
             }
           }
