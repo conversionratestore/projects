@@ -745,9 +745,24 @@ body::-webkit-scrollbar-thumb {
 }
 @media (max-width: 768px) {
   .crs_v2 #blokers {
+    overflow: hidden;
     margin: 0;
     padding: 36px 0 40px;
     background: linear-gradient(0deg, #00042e 0%, #00042e 100%), #161718;
+  }
+  .crs_v2 #blokers::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    max-width: 1126px;
+    height: 795px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0013db;
+    opacity: 0.5;
+    filter: blur(232px);
+    z-index: -1;
   }
 }
 .crs_v2 #blokers .blokers {
