@@ -8,12 +8,12 @@
       event_type: e,
       event_loc: p
     }), console.dir(`Event: ${t} | ${n} | ${e} | ${p}`);
-  }, _ = ({ name: t, dev: n }) => {
+  }, h = ({ name: t, dev: n }) => {
     console.log(
       `%c EXP: ${t} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, c = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), h = (t, n = "variant_1") => {
+  }, c = (t) => document.querySelectorAll(t), o = (t) => document.querySelector(t), m = (t, n = "variant_1") => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", t, n), console.log("set", t, n));
     }, 1e3);
@@ -35,11 +35,11 @@
   (function(t) {
     t = t === void 0 ? {} : t;
     let n, e, p, i, a = (t == null ? void 0 : t.delay) || 50;
-    function u() {
+    function _() {
       n = null, i = 0;
     }
-    return u(), function() {
-      return e = window.scrollY, n != null && (i = e - n), n = e, clearTimeout(p), p = setTimeout(u, a), i;
+    return _(), function() {
+      return e = window.scrollY, n != null && (i = e - n), n = e, clearTimeout(p), p = setTimeout(_, a), i;
     };
   })();
   const l = "https://conversionratestore.github.io/projects/roofing4us/img/", d = {
@@ -130,12 +130,12 @@
     </svg>
   `
     )
-  }, m = () => (
+  }, u = (t) => (
     /* HTML */
     `
     <div class="get_discount_btn_pdp">
       ${d.btnIcon}
-      <span>Get a 5% Discount</span>
+      <span>${t}</span>
     </div>
   `
   ), w = (
@@ -196,7 +196,7 @@
     </div>
   </div>
 `
-  ), g = (
+  ), f = (
     /* HTML */
     `
   <div class="new_popup_backdrop is_hidden">
@@ -208,7 +208,7 @@
     </div>
   </div>
 `
-  ), f = `.new_popup_backdrop {
+  ), g = `.new_popup_backdrop {
   background: rgba(20, 20, 20, 0.6);
   position: fixed;
   opacity: 1;
@@ -272,13 +272,10 @@
   }
 }
 
-.discount_popup {
-  background: #fff;
-}
 .discount_popup .first_screen,
 .discount_popup .second_screen {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
 }
 .discount_popup .first_screen > div,
@@ -295,6 +292,10 @@
   display: none;
 }
 .discount_popup .info_wrapper {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 10px 36px;
 }
 @media (max-width: 768px) {
@@ -632,12 +633,12 @@
       this.isPopupEventHandlersAdded = !1, this.device = n, this.init(), this.observeLocalStorage();
     }
     init() {
-      _({ name: "Welcome discount on PDP", dev: "SKh" }), h("exp_01_welcome"), o(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${f}</style>`), this.renderButtonTriggerForPopup(), this.addClickOnButtonTriggerToOpenPopup(), this.createPopup(), this.addClickOnEmailInput(), this.addClickOnStepEmailButton(), this.addClickOnStepCouponButton(), this.copyDiscount(), this.observeControlPopup();
+      h({ name: "Welcome discount on PDP", dev: "SKh" }), m("exp_01_welcome"), o(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${g}</style>`), this.renderButtonTriggerForPopup(), this.addClickOnButtonTriggerToOpenPopup(), this.createPopup(), this.addClickOnEmailInput(), this.addClickOnStepEmailButton(), this.addClickOnStepCouponButton(), this.copyDiscount(), this.observeControlPopup();
     }
     renderButtonTriggerForPopup() {
       s(".page-container .product__price").then((n) => {
-        const e = o(".page-container .product__price");
-        !o(".get_discount_btn_pdp") && !localStorage.getItem("pushowl_email") && !sessionStorage.getItem("sentEmail") && e.insertAdjacentHTML("afterend", m());
+        const e = o(".page-container .product__price"), p = o(".price--on-sale");
+        !o(".get_discount_btn_pdp") && !localStorage.getItem("pushowl_email") && !sessionStorage.getItem("sentEmail") && (p ? (console.log("placeElementSale"), e.insertAdjacentHTML("afterend", u("Take Extra 5% Discount"))) : (console.log("NOT placeElementSale"), e.insertAdjacentHTML("afterend", u("Get a 5% Discount"))));
       });
     }
     observeLocalStorage() {
@@ -661,7 +662,7 @@
     }
     createPopup() {
       s(".page-container .product__price").then((n) => {
-        console.log("createPopup !!!"), o(".new_popup_backdrop") || o("body").insertAdjacentHTML("afterbegin", g);
+        console.log("createPopup !!!"), o(".new_popup_backdrop") || o("body").insertAdjacentHTML("afterbegin", f);
       });
     }
     showPopup(n, e) {
