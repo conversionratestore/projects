@@ -659,6 +659,11 @@ body::-webkit-scrollbar-thumb {
   -webkit-backdrop-filter: blur(17px);
           backdrop-filter: blur(17px);
 }
+@media (min-width: 1700px) {
+  .crs_v2 #main_block .crs_stories {
+    left: 55%;
+  }
+}
 .crs_v2 #main_block .crs_stories::before {
   content: "";
   position: absolute;
@@ -3376,13 +3381,14 @@ body::-webkit-scrollbar-thumb {
       review: '"Aleksa transformed from a struggling student to a financially independent entrepreneur in just one year."',
       img: "aleksa.jpg",
       videoId: "rup4dintys"
-    },
-    {
-      name: "Guy",
-      review: '"Guy turned her part-time side hustle into a reliable source of income while working full-time as a nurse."',
-      img: "guy.jpg",
-      videoId: "9luz6eb8y5"
     }
+    // {
+    //   name: 'Guy',
+    //   review:
+    //     '"Guy turned her part-time side hustle into a reliable source of income while working full-time as a nurse."',
+    //   img: 'guy.jpg',
+    //   videoId: '9luz6eb8y5'
+    // }
   ], B1 = [
     'Dylan Sigley was a broke college student working in a call center when he discovered a new online business method called "Drop Servicing".',
     "Soon after, he built a ridiculously profitable business from home, allowing him to quit his job and earn 6-figures while traveling the world and working only 5 hours a week.",
@@ -3627,7 +3633,7 @@ body::-webkit-scrollbar-thumb {
     <b><span class="seats_left_value"></span> seats left</b>
   </p>
 `
-  ), Ii = (
+  ), $i = (
     /* HTML */
     `
   <div class="progress_bar_container">
@@ -3957,7 +3963,7 @@ body::-webkit-scrollbar-thumb {
       <form class="crs_form">
         <div class="inputs1">
           <h2>Access Your Exclusive Online Training</h2>
-          ${Ei} ${Ii} ${X1} ${Q1}
+          ${Ei} ${$i} ${X1} ${Q1}
           <h3 class="inputs1_title">
             Enter your email <br class="mobile" />
             to get a link for the live training
@@ -4010,7 +4016,7 @@ body::-webkit-scrollbar-thumb {
     <h3 class="inputs2_title">Select a time to join</h3>
     <ul class="time_list">
       ${e.map(({ date: c, schedule: l }, a) => {
-        const p = new Date(c).toLocaleString("en-us", { weekday: "long" }), _ = new Date(c).toLocaleString("en-us", { month: "long", day: "numeric" }), h = new Date(c).toLocaleString("en-us", { hour: "numeric", minute: "numeric" }), S = new Date(c).getTime() - (/* @__PURE__ */ new Date()).getTime(), $ = new Date(c).getTime() + 1e3 * 60 * 15, X = new Date($).toLocaleString("en-us", { hour: "numeric", minute: "numeric" }), F = $ - (/* @__PURE__ */ new Date()).getTime(), j = Math.ceil((S < 0 ? F : S) / (1e3 * 60));
+        const p = new Date(c).toLocaleString("en-us", { weekday: "long" }), _ = new Date(c).toLocaleString("en-us", { month: "long", day: "numeric" }), h = new Date(c).toLocaleString("en-us", { hour: "numeric", minute: "numeric" }), S = new Date(c).getTime() - (/* @__PURE__ */ new Date()).getTime(), I = new Date(c).getTime() + 1e3 * 60 * 15, X = new Date(I).toLocaleString("en-us", { hour: "numeric", minute: "numeric" }), F = I - (/* @__PURE__ */ new Date()).getTime(), j = Math.ceil((S < 0 ? F : S) / (1e3 * 60));
         return (
           /* HTML */
           `
@@ -4082,7 +4088,7 @@ body::-webkit-scrollbar-thumb {
       <div class="close" data-closeexit>${k.closeSvgExitPopup}</div>
       <div class="crs_main_info">
         <h2>Wait! Don't Miss Out on This Opportunity!</h2>
-        ${Ei} ${Ii}
+        ${Ei} ${$i}
         <p>This free training is only available for a short time—don’t miss your last chance!</p>
         <div class="crs_list_block">
           <h3>
@@ -4114,7 +4120,7 @@ body::-webkit-scrollbar-thumb {
   );
   var nt = window, On = nt.requestAnimationFrame || nt.webkitRequestAnimationFrame || nt.mozRequestAnimationFrame || nt.msRequestAnimationFrame || function(e) {
     return setTimeout(e, 16);
-  }, $i = window, Pt = $i.cancelAnimationFrame || $i.mozCancelAnimationFrame || function(e) {
+  }, Ii = window, Pt = Ii.cancelAnimationFrame || Ii.mozCancelAnimationFrame || function(e) {
     clearTimeout(e);
   };
   function Nt() {
@@ -4187,7 +4193,7 @@ body::-webkit-scrollbar-thumb {
   function yo(e, i) {
     "deleteRule" in e ? e.deleteRule(i) : e.removeRule(i);
   }
-  function In(e) {
+  function $n(e) {
     var i = "insertRule" in e ? e.cssRules : e.rules;
     return i.length;
   }
@@ -4322,10 +4328,10 @@ body::-webkit-scrollbar-thumb {
     };
   }
   function Eo(e, i, r, c, S, a, p) {
-    var _ = Math.min(a, 10), h = S.indexOf("%") >= 0 ? "%" : "px", S = S.replace(h, ""), $ = Number(e.style[i].replace(r, "").replace(c, "").replace(h, "")), X = (S - $) / a * _;
+    var _ = Math.min(a, 10), h = S.indexOf("%") >= 0 ? "%" : "px", S = S.replace(h, ""), I = Number(e.style[i].replace(r, "").replace(c, "").replace(h, "")), X = (S - I) / a * _;
     setTimeout(F, _);
     function F() {
-      a -= _, $ += X, e.style[i] = r + $ + h + c, a > 0 ? setTimeout(F, _) : p();
+      a -= _, I += X, e.style[i] = r + I + h + c, a > 0 ? setTimeout(F, _) : p();
     }
   }
   Object.keys || (Object.keys = function(e) {
@@ -4408,7 +4414,7 @@ body::-webkit-scrollbar-thumb {
         l.removeItem(n);
       }), localStorage.tnsApp = p);
     }
-    var h = l.tC ? Mn(l.tC) : Sn(l, "tC", bo(), a), S = l.tPL ? Mn(l.tPL) : Sn(l, "tPL", xo(), a), $ = l.tMQ ? Mn(l.tMQ) : Sn(l, "tMQ", wo(), a), X = l.tTf ? Mn(l.tTf) : Sn(l, "tTf", Te("transform"), a), F = l.t3D ? Mn(l.t3D) : Sn(l, "t3D", To(X), a), j = l.tTDu ? Mn(l.tTDu) : Sn(l, "tTDu", Te("transitionDuration"), a), de = l.tTDe ? Mn(l.tTDe) : Sn(l, "tTDe", Te("transitionDelay"), a), fe = l.tADu ? Mn(l.tADu) : Sn(l, "tADu", Te("animationDuration"), a), Se = l.tADe ? Mn(l.tADe) : Sn(l, "tADe", Te("animationDelay"), a), Cn = l.tTE ? Mn(l.tTE) : Sn(l, "tTE", Di(j, "Transition"), a), Ee = l.tAE ? Mn(l.tAE) : Sn(l, "tAE", Di(fe, "Animation"), a), Ot = r.console && typeof r.console.warn == "function", qt = ["container", "controlsContainer", "prevButton", "nextButton", "navContainer", "autoplayButton"], Ni = {};
+    var h = l.tC ? Mn(l.tC) : Sn(l, "tC", bo(), a), S = l.tPL ? Mn(l.tPL) : Sn(l, "tPL", xo(), a), I = l.tMQ ? Mn(l.tMQ) : Sn(l, "tMQ", wo(), a), X = l.tTf ? Mn(l.tTf) : Sn(l, "tTf", Te("transform"), a), F = l.t3D ? Mn(l.t3D) : Sn(l, "t3D", To(X), a), j = l.tTDu ? Mn(l.tTDu) : Sn(l, "tTDu", Te("transitionDuration"), a), de = l.tTDe ? Mn(l.tTDe) : Sn(l, "tTDe", Te("transitionDelay"), a), fe = l.tADu ? Mn(l.tADu) : Sn(l, "tADu", Te("animationDuration"), a), Se = l.tADe ? Mn(l.tADe) : Sn(l, "tADe", Te("animationDelay"), a), Cn = l.tTE ? Mn(l.tTE) : Sn(l, "tTE", Di(j, "Transition"), a), Ee = l.tAE ? Mn(l.tAE) : Sn(l, "tAE", Di(fe, "Animation"), a), Ot = r.console && typeof r.console.warn == "function", qt = ["container", "controlsContainer", "prevButton", "nextButton", "navContainer", "autoplayButton"], Ni = {};
     if (qt.forEach(function(n) {
       if (typeof e[n] == "string") {
         var t = e[n], o = i.querySelector(t);
@@ -4428,8 +4434,8 @@ body::-webkit-scrollbar-thumb {
       0 in N && (e = Nt(e, N[0]), delete N[0]);
       var Rt = {};
       for (var Zi in N) {
-        var Ie = N[Zi];
-        Ie = typeof Ie == "number" ? { items: Ie } : Ie, Rt[Zi] = Ie;
+        var $e = N[Zi];
+        $e = typeof $e == "number" ? { items: $e } : $e, Rt[Zi] = $e;
       }
       N = Rt, Rt = null;
     }
@@ -4439,11 +4445,11 @@ body::-webkit-scrollbar-thumb {
     }
     if (g || Oi(e), !g) {
       e.axis = "horizontal", e.slideBy = "page", e.edgePadding = !1;
-      var Fn = e.animateIn, st = e.animateOut, Ft = e.animateDelay, $n = e.animateNormal;
+      var Fn = e.animateIn, st = e.animateOut, Ft = e.animateDelay, In = e.animateNormal;
     }
-    var I = e.axis === "horizontal", an = i.createElement("div"), cn = i.createElement("div"), pn, b = e.container, Wt = b.parentNode, qi = b.outerHTML, M = b.children, x = M.length, $e, rt = Qi(), Ae = !1;
+    var $ = e.axis === "horizontal", an = i.createElement("div"), cn = i.createElement("div"), pn, b = e.container, Wt = b.parentNode, qi = b.outerHTML, M = b.children, x = M.length, Ie, rt = Qi(), Ae = !1;
     N && d1(), g && (b.className += " tns-vpfix");
-    var C = e.autoWidth, m = w("fixedWidth"), O = w("edgePadding"), L = w("gutter"), G = e1(), Q = w("center"), y = C ? 1 : Math.floor(w("items")), he = w("slideBy"), Vt = e.viewportMax || e.fixedWidthViewportWidth, Wn = w("arrowKeys"), yn = w("speed"), ze = e.rewind, nn = ze ? !1 : e.loop, dn = w("autoHeight"), An = w("controls"), Vn = w("controlsText"), zn = w("nav"), Bn = w("touch"), Yn = w("mouseDrag"), sn = w("autoplay"), Bt = w("autoplayTimeout"), Gn = w("autoplayText"), Jn = w("autoplayHoverPause"), Kn = w("autoplayResetOnVisibility"), A = Co(null, w("nonce")), je = e.lazyload, $o = e.lazyloadSelector, V, _e = [], en = nn ? Do() : 0, E = g ? x + en * 2 : x + en, Ri = !!((m || C) && !nn), ge = m ? di() : null, Yt = !g || !nn, te = I ? "left" : "top", Un = "", me = "", De = /* @__PURE__ */ function() {
+    var C = e.autoWidth, m = w("fixedWidth"), O = w("edgePadding"), L = w("gutter"), G = e1(), Q = w("center"), y = C ? 1 : Math.floor(w("items")), he = w("slideBy"), Vt = e.viewportMax || e.fixedWidthViewportWidth, Wn = w("arrowKeys"), yn = w("speed"), ze = e.rewind, nn = ze ? !1 : e.loop, dn = w("autoHeight"), An = w("controls"), Vn = w("controlsText"), zn = w("nav"), Bn = w("touch"), Yn = w("mouseDrag"), sn = w("autoplay"), Bt = w("autoplayTimeout"), Gn = w("autoplayText"), Jn = w("autoplayHoverPause"), Kn = w("autoplayResetOnVisibility"), A = Co(null, w("nonce")), je = e.lazyload, Io = e.lazyloadSelector, V, _e = [], en = nn ? Do() : 0, E = g ? x + en * 2 : x + en, Ri = !!((m || C) && !nn), ge = m ? di() : null, Yt = !g || !nn, te = $ ? "left" : "top", Un = "", me = "", De = /* @__PURE__ */ function() {
       return m ? function() {
         return Q && !nn ? x - 1 : Math.ceil(-ge / (m + L));
       } : C ? function() {
@@ -4485,12 +4491,12 @@ body::-webkit-scrollbar-thumb {
     if (Ut)
       var Gi = e.autoplayDirection === "forward" ? 1 : -1, q = e.autoplayButton, Ji = e.autoplayButton ? e.autoplayButton.outerHTML : "", Ge = ["<span class='tns-visually-hidden'>", " animation</span>"], ht, un, _t, xe, gt;
     if (Fi || Wi)
-      var se = {}, En = {}, mt, re = !1, Tn, ti = I ? function(n, t) {
+      var se = {}, En = {}, mt, re = !1, Tn, ti = $ ? function(n, t) {
         return n.x - t.x;
       } : function(n, t) {
         return n.y - t.y;
       };
-    C || vt(fn || kn), X && (te = X, Un = "translate", F ? (Un += I ? "3d(" : "3d(0px, ", me = I ? ", 0px, 0px)" : ", 0px)") : (Un += I ? "X(" : "Y(", me = ")")), g && (b.className = b.className.replace("tns-vpfix", "")), Po(), No(), o1();
+    C || vt(fn || kn), X && (te = X, Un = "translate", F ? (Un += $ ? "3d(" : "3d(0px, ", me = $ ? ", 0px, 0px)" : ", 0px)") : (Un += $ ? "X(" : "Y(", me = ")")), g && (b.className = b.className.replace("tns-vpfix", "")), Po(), No(), o1();
     function vt(n) {
       n && (An = zn = Bn = Yn = Wn = sn = Jn = Kn = !1);
     }
@@ -4568,9 +4574,9 @@ body::-webkit-scrollbar-thumb {
       var v = "";
       if (n !== void 0) {
         var T = n;
-        t && (T -= t), v = I ? "margin: 0 " + T + "px 0 " + n + "px;" : "margin: " + n + "px 0 " + T + "px 0;";
+        t && (T -= t), v = $ ? "margin: 0 " + T + "px 0 " + n + "px;" : "margin: " + n + "px 0 " + T + "px 0;";
       } else if (t && !o) {
-        var K = "-" + t + "px", on = I ? K + " 0 0" : "0 " + K + " 0";
+        var K = "-" + t + "px", on = $ ? K + " 0 0" : "0 " + K + " 0";
         v = "margin: 0 " + on + ";";
       }
       return !g && u && j && s && (v += ae(s)), v;
@@ -4592,7 +4598,7 @@ body::-webkit-scrollbar-thumb {
     function yt(n) {
       var t = "";
       if (n !== !1) {
-        var o = I ? "padding-" : "margin-", s = I ? "right" : "bottom";
+        var o = $ ? "padding-" : "margin-", s = $ ? "right" : "bottom";
         t = o + s + ": " + n + "px;";
       }
       return t;
@@ -4614,7 +4620,7 @@ body::-webkit-scrollbar-thumb {
         o.className += " tns-ah";
       }
       if (Wt.insertBefore(an, b), cn.appendChild(b), qn(M, function(Y, Ce) {
-        W(Y, "tns-item"), Y.id || (Y.id = Z + "-item" + Ce), !g && $n && W(Y, $n), _n(Y, {
+        W(Y, "tns-item"), Y.id || (Y.id = Z + "-item" + Ce), !g && In && W(Y, In), _n(Y, {
           "aria-hidden": "true",
           tabindex: "-1"
         });
@@ -4630,7 +4636,7 @@ body::-webkit-scrollbar-thumb {
       }
     }
     function o1() {
-      if (Nn("autoHeight") || C || !I) {
+      if (Nn("autoHeight") || C || !$) {
         var n = b.querySelectorAll("img");
         qn(n, function(t) {
           var o = t.src;
@@ -4658,32 +4664,32 @@ body::-webkit-scrollbar-thumb {
         r1();
     }
     function r1() {
-      (!I || C) && (w1(), C ? (ge = di(), lt && (kn = oi()), vn = De(), vt(fn || kn)) : hi()), g && Ke(), a1(), c1();
+      (!$ || C) && (w1(), C ? (ge = di(), lt && (kn = oi()), vn = De(), vt(fn || kn)) : hi()), g && Ke(), a1(), c1();
     }
     function No() {
       if (!g)
         for (var n = d, t = d + Math.min(x, y); n < t; n++) {
           var o = M[n];
-          o.style.left = (n - d) * 100 / y + "%", W(o, Fn), ln(o, $n);
+          o.style.left = (n - d) * 100 / y + "%", W(o, Fn), ln(o, In);
         }
-      if (I && (S || C ? (Pn(A, "#" + Z + " > .tns-item", "font-size:" + r.getComputedStyle(M[0]).fontSize + ";", In(A)), Pn(A, "#" + Z, "font-size:0;", In(A))) : g && qn(M, function(vi, bi) {
+      if ($ && (S || C ? (Pn(A, "#" + Z + " > .tns-item", "font-size:" + r.getComputedStyle(M[0]).fontSize + ";", $n(A)), Pn(A, "#" + Z, "font-size:0;", $n(A))) : g && qn(M, function(vi, bi) {
         vi.style.marginLeft = Ho(bi);
-      })), $) {
+      })), I) {
         if (j) {
           var s = pn && e.autoHeight ? ae(e.speed) : "";
-          Pn(A, "#" + Z + "-mw", s, In(A));
+          Pn(A, "#" + Z + "-mw", s, $n(A));
         }
-        s = xt(e.edgePadding, e.gutter, e.fixedWidth, e.speed, e.autoHeight), Pn(A, "#" + Z + "-iw", s, In(A)), g && (s = I && !C ? "width:" + wt(e.fixedWidth, e.gutter, e.items) + ";" : "", j && (s += ae(yn)), Pn(A, "#" + Z, s, In(A))), s = I && !C ? Ct(e.fixedWidth, e.gutter, e.items) : "", e.gutter && (s += yt(e.gutter)), g || (j && (s += ae(yn)), fe && (s += i1(yn))), s && Pn(A, "#" + Z + " > .tns-item", s, In(A));
+        s = xt(e.edgePadding, e.gutter, e.fixedWidth, e.speed, e.autoHeight), Pn(A, "#" + Z + "-iw", s, $n(A)), g && (s = $ && !C ? "width:" + wt(e.fixedWidth, e.gutter, e.items) + ";" : "", j && (s += ae(yn)), Pn(A, "#" + Z, s, $n(A))), s = $ && !C ? Ct(e.fixedWidth, e.gutter, e.items) : "", e.gutter && (s += yt(e.gutter)), g || (j && (s += ae(yn)), fe && (s += i1(yn))), s && Pn(A, "#" + Z + " > .tns-item", s, $n(A));
       } else {
-        Vo(), cn.style.cssText = xt(O, L, m, dn), g && I && !C && (b.style.width = wt(m, L, y));
-        var s = I && !C ? Ct(m, L, y) : "";
-        L && (s += yt(L)), s && Pn(A, "#" + Z + " > .tns-item", s, In(A));
+        Vo(), cn.style.cssText = xt(O, L, m, dn), g && $ && !C && (b.style.width = wt(m, L, y));
+        var s = $ && !C ? Ct(m, L, y) : "";
+        L && (s += yt(L)), s && Pn(A, "#" + Z + " > .tns-item", s, $n(A));
       }
-      if (N && $)
+      if (N && I)
         for (var u in N) {
           u = parseInt(u);
           var v = N[u], s = "", T = "", K = "", on = "", Y = "", Ce = C ? null : w("items", u), Qe = w("fixedWidth", u), le = w("speed", u), gi = w("edgePadding", u), mi = w("autoHeight", u), ye = w("gutter", u);
-          j && pn && w("autoHeight", u) && "speed" in v && (T = "#" + Z + "-mw{" + ae(le) + "}"), ("edgePadding" in v || "gutter" in v) && (K = "#" + Z + "-iw{" + xt(gi, ye, Qe, le, mi) + "}"), g && I && !C && ("fixedWidth" in v || "items" in v || m && "gutter" in v) && (on = "width:" + wt(Qe, ye, Ce) + ";"), j && "speed" in v && (on += ae(le)), on && (on = "#" + Z + "{" + on + "}"), ("fixedWidth" in v || m && "gutter" in v || !g && "items" in v) && (Y += Ct(Qe, ye, Ce)), "gutter" in v && (Y += yt(ye)), !g && "speed" in v && (j && (Y += ae(le)), fe && (Y += i1(le))), Y && (Y = "#" + Z + " > .tns-item{" + Y + "}"), s = T + K + on + Y, s && A.insertRule("@media (min-width: " + u / 16 + "em) {" + s + "}", A.cssRules.length);
+          j && pn && w("autoHeight", u) && "speed" in v && (T = "#" + Z + "-mw{" + ae(le) + "}"), ("edgePadding" in v || "gutter" in v) && (K = "#" + Z + "-iw{" + xt(gi, ye, Qe, le, mi) + "}"), g && $ && !C && ("fixedWidth" in v || "items" in v || m && "gutter" in v) && (on = "width:" + wt(Qe, ye, Ce) + ";"), j && "speed" in v && (on += ae(le)), on && (on = "#" + Z + "{" + on + "}"), ("fixedWidth" in v || m && "gutter" in v || !g && "items" in v) && (Y += Ct(Qe, ye, Ce)), "gutter" in v && (Y += yt(ye)), !g && "speed" in v && (j && (Y += ae(le)), fe && (Y += i1(le))), Y && (Y = "#" + Z + " > .tns-item{" + Y + "}"), s = T + K + on + Y, s && A.insertRule("@media (min-width: " + u / 16 + "em) {" + s + "}", A.cssRules.length);
         }
     }
     function a1() {
@@ -4708,7 +4714,7 @@ body::-webkit-scrollbar-thumb {
         }
         if (_i(), j) {
           var u = j.substring(0, j.length - 18).toLowerCase(), v = "transition: all " + yn / 1e3 + "s";
-          u && (v = "-" + u + "-" + v), Pn(A, "[aria-controls^=" + Z + "-item]", v, In(A));
+          u && (v = "-" + u + "-" + v), Pn(A, "[aria-controls^=" + Z + "-item]", v, $n(A));
         }
         _n(bn[xn], { "aria-label": be + (xn + 1) + ei }), Rn(bn[xn], "tabindex"), W(bn[xn], ut), R(tn, Jt);
       }
@@ -4727,7 +4733,7 @@ body::-webkit-scrollbar-thumb {
       }
       Bn && R(b, Re, e.preventScrollOnTouch), Yn && R(b, Fe), Wn && R(i, qe), ue === "inner" ? J.on("outerResized", function() {
         p1(), J.emit("innerLoaded", rn());
-      }) : (N || m || C || dn || !I) && R(r, { resize: l1 }), dn && (ue === "outer" ? J.on("innerLoaded", Lt) : fn || Lt()), ai(), fn ? h1() : kn && u1(), J.on("indexChanged", v1), ue === "inner" && J.emit("innerLoaded", rn()), typeof Gt == "function" && Gt(rn()), Ae = !0;
+      }) : (N || m || C || dn || !$) && R(r, { resize: l1 }), dn && (ue === "outer" ? J.on("innerLoaded", Lt) : fn || Lt()), ai(), fn ? h1() : kn && u1(), J.on("indexChanged", v1), ue === "inner" && J.emit("innerLoaded", rn()), typeof Gt == "function" && Gt(rn()), Ae = !0;
     }
     function Zo() {
       if (A.disabled = !0, A.ownerNode && A.ownerNode.remove(), U(r, { resize: l1 }), Wn && U(i, qe), B && U(B, Ne), tn && U(tn, Jt), U(b, Ze), U(b, Oe), q && U(q, { click: E1 }), sn && clearInterval(ht), g && Cn) {
@@ -4742,7 +4748,7 @@ body::-webkit-scrollbar-thumb {
           var T = v.previousElementSibling ? v.previousElementSibling : !1, K = v.parentNode;
           v.outerHTML = t[u], e[s] = T ? T.nextElementSibling : K.firstElementChild;
         }
-      }), qt = Fn = st = Ft = $n = I = an = cn = b = Wt = qi = M = x = $e = rt = C = m = O = L = G = y = he = Vt = Wn = yn = ze = nn = dn = A = je = V = _e = en = E = Ri = ge = Yt = te = Un = me = De = d = Xn = jn = vn = ct = Dn = Qn = Gt = J = ne = Z = fn = He = lt = kn = Pe = Ne = Jt = Ze = Oe = qe = Re = Fe = pt = Kt = We = Ut = Fi = Wi = Xt = dt = ft = Qt = An = Vn = B = Bi = D = H = Be = Ye = zn = tn = Yi = bn = Ln = ie = oe = xn = ve = ut = be = ei = sn = Bt = Gi = Gn = Jn = q = Ji = Kn = Ge = ht = un = _t = xe = gt = se = En = mt = re = Tn = ti = Bn = Yn = null;
+      }), qt = Fn = st = Ft = In = $ = an = cn = b = Wt = qi = M = x = Ie = rt = C = m = O = L = G = y = he = Vt = Wn = yn = ze = nn = dn = A = je = V = _e = en = E = Ri = ge = Yt = te = Un = me = De = d = Xn = jn = vn = ct = Dn = Qn = Gt = J = ne = Z = fn = He = lt = kn = Pe = Ne = Jt = Ze = Oe = qe = Re = Fe = pt = Kt = We = Ut = Fi = Wi = Xt = dt = ft = Qt = An = Vn = B = Bi = D = H = Be = Ye = zn = tn = Yi = bn = Ln = ie = oe = xn = ve = ut = be = ei = sn = Bt = Gi = Gn = Jn = q = Ji = Kn = Ge = ht = un = _t = xe = gt = se = En = mt = re = Tn = ti = Bn = Yn = null;
       for (var o in this)
         o !== "rebuild" && (this[o] = null);
       Ae = !1;
@@ -4755,15 +4761,15 @@ body::-webkit-scrollbar-thumb {
     function p1(n) {
       if (Ae) {
         ue === "outer" && J.emit("outerResized", rn(n)), rt = Qi();
-        var t, o = $e, s = !1;
-        N && (d1(), t = o !== $e, t && J.emit("newBreakpointStart", rn(n)));
+        var t, o = Ie, s = !1;
+        N && (d1(), t = o !== Ie, t && J.emit("newBreakpointStart", rn(n)));
         var u, v, T = y, K = fn, on = kn, Y = Wn, Ce = An, Qe = zn, le = Bn, gi = Yn, mi = sn, ye = Jn, vi = Kn, bi = d;
         if (t) {
           var ss = m, rs = dn, as = Vn, cs = Q, xi = Gn;
-          if (!$)
+          if (!I)
             var ls = L, ps = O;
         }
-        if (Wn = w("arrowKeys"), An = w("controls"), zn = w("nav"), Bn = w("touch"), Q = w("center"), Yn = w("mouseDrag"), sn = w("autoplay"), Jn = w("autoplayHoverPause"), Kn = w("autoplayResetOnVisibility"), t && (fn = w("disable"), m = w("fixedWidth"), yn = w("speed"), dn = w("autoHeight"), Vn = w("controlsText"), Gn = w("autoplayText"), Bt = w("autoplayTimeout"), $ || (O = w("edgePadding"), L = w("gutter"))), vt(fn), G = e1(), (!I || C) && !fn && (w1(), I || (hi(), s = !0)), (m || C) && (ge = di(), vn = De()), (t || m) && (y = w("items"), he = w("slideBy"), v = y !== T, v && (!m && !C && (vn = De()), si())), t && fn !== K && (fn ? h1() : qo()), lt && (t || m || C) && (kn = oi(), kn !== on && (kn ? (fi(Et(Ui(0))), u1()) : (Oo(), s = !0))), vt(fn || kn), sn || (Jn = Kn = !1), Wn !== Y && (Wn ? R(i, qe) : U(i, qe)), An !== Ce && (An ? B ? mn(B) : (D && mn(D), H && mn(H)) : B ? gn(B) : (D && gn(D), H && gn(H))), zn !== Qe && (zn ? (mn(tn), _i()) : gn(tn)), Bn !== le && (Bn ? R(b, Re, e.preventScrollOnTouch) : U(b, Re)), Yn !== gi && (Yn ? R(b, Fe) : U(b, Fe)), sn !== mi && (sn ? (q && mn(q), !un && !xe && At()) : (q && gn(q), un && Xe())), Jn !== ye && (Jn ? R(b, Ze) : U(b, Ze)), Kn !== vi && (Kn ? R(i, Oe) : U(i, Oe)), t) {
+        if (Wn = w("arrowKeys"), An = w("controls"), zn = w("nav"), Bn = w("touch"), Q = w("center"), Yn = w("mouseDrag"), sn = w("autoplay"), Jn = w("autoplayHoverPause"), Kn = w("autoplayResetOnVisibility"), t && (fn = w("disable"), m = w("fixedWidth"), yn = w("speed"), dn = w("autoHeight"), Vn = w("controlsText"), Gn = w("autoplayText"), Bt = w("autoplayTimeout"), I || (O = w("edgePadding"), L = w("gutter"))), vt(fn), G = e1(), (!$ || C) && !fn && (w1(), $ || (hi(), s = !0)), (m || C) && (ge = di(), vn = De()), (t || m) && (y = w("items"), he = w("slideBy"), v = y !== T, v && (!m && !C && (vn = De()), si())), t && fn !== K && (fn ? h1() : qo()), lt && (t || m || C) && (kn = oi(), kn !== on && (kn ? (fi(Et(Ui(0))), u1()) : (Oo(), s = !0))), vt(fn || kn), sn || (Jn = Kn = !1), Wn !== Y && (Wn ? R(i, qe) : U(i, qe)), An !== Ce && (An ? B ? mn(B) : (D && mn(D), H && mn(H)) : B ? gn(B) : (D && gn(D), H && gn(H))), zn !== Qe && (zn ? (mn(tn), _i()) : gn(tn)), Bn !== le && (Bn ? R(b, Re, e.preventScrollOnTouch) : U(b, Re)), Yn !== gi && (Yn ? R(b, Fe) : U(b, Fe)), sn !== mi && (sn ? (q && mn(q), !un && !xe && At()) : (q && gn(q), un && Xe())), Jn !== ye && (Jn ? R(b, Ze) : U(b, Ze)), Kn !== vi && (Kn ? R(i, Oe) : U(i, Oe)), t) {
           if ((m !== ss || Q !== cs) && (s = !0), dn !== rs && (dn || (cn.style.height = "")), An && Vn !== as && (D.innerHTML = Vn[0], H.innerHTML = Vn[1]), q && Gn !== xi) {
             var wi = sn ? 1 : 0, Ci = q.innerHTML, P1 = Ci.length - xi[wi].length;
             Ci.substring(P1) === xi[wi] && (q.innerHTML = Ci.substring(0, P1) + Gn[wi]);
@@ -4771,10 +4777,10 @@ body::-webkit-scrollbar-thumb {
         } else
           Q && (m || C) && (s = !0);
         if ((v || m && !C) && (Ln = H1(), _i()), u = d !== bi, u ? (J.emit("indexChanged", rn()), s = !0) : v ? u || v1() : (m || C) && (ai(), pi(), _1()), v && !g && Bo(), !fn && !kn) {
-          if (t && !$ && ((O !== ps || L !== ls) && (cn.style.cssText = xt(O, L, m, yn, dn)), I)) {
+          if (t && !I && ((O !== ps || L !== ls) && (cn.style.cssText = xt(O, L, m, yn, dn)), $)) {
             g && (b.style.width = wt(m, L, y));
             var ds = Ct(m, L, y) + yt(L);
-            yo(A, In(A) - 1), Pn(A, "#" + Z + " > .tns-item", ds, In(A));
+            yo(A, $n(A) - 1), Pn(A, "#" + Z + " > .tns-item", ds, $n(A));
           }
           dn && Lt(), s && (Ke(), Xn = d);
         }
@@ -4790,9 +4796,9 @@ body::-webkit-scrollbar-thumb {
       return Q && (o -= m ? (G - m) / 2 : (G - (V[d + 1] - V[d] - L)) / 2), t <= o;
     }
     function d1() {
-      $e = 0;
+      Ie = 0;
       for (var n in N)
-        n = parseInt(n), rt >= n && ($e = n);
+        n = parseInt(n), rt >= n && (Ie = n);
     }
     var si = /* @__PURE__ */ function() {
       return nn ? g ? (
@@ -4834,7 +4840,7 @@ body::-webkit-scrollbar-thumb {
     }
     function Oo() {
       if (Pe) {
-        if (O && $ && (cn.style.margin = ""), en)
+        if (O && I && (cn.style.margin = ""), en)
           for (var n = "tns-transparent", t = en; t--; )
             g && ln(M[t], n), ln(M[E - t - 1], n);
         f1(), Pe = !1;
@@ -4845,10 +4851,10 @@ body::-webkit-scrollbar-thumb {
         if (A.disabled = !0, b.className = b.className.replace(ne.substring(1), ""), Rn(b, ["style"]), nn)
           for (var n = en; n--; )
             g && gn(M[n]), gn(M[E - n - 1]);
-        if ((!I || !g) && Rn(cn, ["style"]), !g)
+        if ((!$ || !g) && Rn(cn, ["style"]), !g)
           for (var t = d, o = d + x; t < o; t++) {
             var s = M[t];
-            Rn(s, ["style"]), ln(s, Fn), ln(s, $n);
+            Rn(s, ["style"]), ln(s, Fn), ln(s, In);
           }
         ri(), He = !0;
       }
@@ -4860,7 +4866,7 @@ body::-webkit-scrollbar-thumb {
             g && mn(M[n]), mn(M[E - n - 1]);
         if (!g)
           for (var t = d, o = d + x; t < o; t++) {
-            var s = M[t], u = t < d + y ? Fn : $n;
+            var s = M[t], u = t < d + y ? Fn : In;
             s.style.left = (t - d) * 100 / y + "%", W(s, u);
           }
         f1(), He = !1;
@@ -4901,7 +4907,7 @@ body::-webkit-scrollbar-thumb {
     function ai() {
       if (je && !fn) {
         var n = kt();
-        n.push($o), li.apply(null, n).forEach(function(t) {
+        n.push(Io), li.apply(null, n).forEach(function(t) {
           if (!pe(t, dt)) {
             var o = {};
             o[Cn] = function(u) {
@@ -4968,7 +4974,7 @@ body::-webkit-scrollbar-thumb {
     }
     function w1() {
       V = [0];
-      var n = I ? "left" : "top", t = I ? "right" : "bottom", o = M[0].getBoundingClientRect()[n];
+      var n = $ ? "left" : "top", t = $ ? "right" : "bottom", o = M[0].getBoundingClientRect()[n];
       qn(M, function(s, u) {
         u && V.push(s.getBoundingClientRect()[n] - o), u === E - 1 && V.push(s.getBoundingClientRect()[t] - o);
       });
@@ -4985,7 +4991,7 @@ body::-webkit-scrollbar-thumb {
     function Bo() {
       for (var n = d + Math.min(x, y), t = E; t--; ) {
         var o = M[t];
-        t >= d && t < n ? (W(o, "tns-moving"), o.style.left = (t - d) * 100 / y + "%", W(o, Fn), ln(o, $n)) : o.style.left && (o.style.left = "", W(o, $n), ln(o, Fn)), ln(o, st);
+        t >= d && t < n ? (W(o, "tns-moving"), o.style.left = (t - d) * 100 / y + "%", W(o, Fn), ln(o, In)) : o.style.left && (o.style.left = "", W(o, In), ln(o, Fn)), ln(o, st);
       }
       setTimeout(function() {
         qn(M, function(s) {
@@ -5038,7 +5044,7 @@ body::-webkit-scrollbar-thumb {
     function Et(n) {
       n == null && (n = d);
       var t;
-      if (I && !C)
+      if ($ && !C)
         if (m)
           t = -(m + L) * n, Q && (t += Je());
         else {
@@ -5047,7 +5053,7 @@ body::-webkit-scrollbar-thumb {
         }
       else
         t = -V[n], Q && C && (t += Je());
-      return Ri && (t = Math.max(t, ge)), t += I && !C && !m ? "%" : "px", t;
+      return Ri && (t = Math.max(t, ge)), t += $ && !C && !m ? "%" : "px", t;
     }
     function Ke(n) {
       St(b, "0s"), fi(n);
@@ -5065,11 +5071,11 @@ body::-webkit-scrollbar-thumb {
     }
     var Jo = /* @__PURE__ */ function() {
       return g ? function() {
-        St(b, ""), j || !yn ? (fi(), (!yn || !ji(b)) && Hn()) : Eo(b, te, Un, me, Et(), yn, Hn), I || hi();
+        St(b, ""), j || !yn ? (fi(), (!yn || !ji(b)) && Hn()) : Eo(b, te, Un, me, Et(), yn, Hn), $ || hi();
       } : function() {
         _e = [];
         var n = {};
-        n[Cn] = n[Ee] = Hn, U(M[Xn], n), R(M[d], n), T1(Xn, Fn, st, !0), T1(d, $n, Fn), (!Cn || !Ee || !yn || !ji(b)) && Hn();
+        n[Cn] = n[Ee] = Hn, U(M[Xn], n), R(M[d], n), T1(Xn, Fn, st, !0), T1(d, In, Fn), (!Cn || !Ee || !yn || !ji(b)) && Hn();
       };
     }();
     function ui(n, t) {
@@ -5083,7 +5089,7 @@ body::-webkit-scrollbar-thumb {
         if (J.emit("transitionEnd", rn(n)), !g && _e.length > 0)
           for (var t = 0; t < _e.length; t++) {
             var o = _e[t];
-            o.style.left = "", Se && de && (o.style[Se] = "", o.style[de] = ""), ln(o, st), W(o, $n);
+            o.style.left = "", Se && de && (o.style[Se] = "", o.style[de] = ""), ln(o, st), W(o, In);
           }
         if (!n || !g && n.target.parentNode === b || n.target === b && M1(n.propertyName) === M1(te)) {
           if (!Yt) {
@@ -5153,22 +5159,22 @@ body::-webkit-scrollbar-thumb {
         Ue(u, n), xn === o && (un && Xe(), oe = -1);
       }
     }
-    function It() {
+    function $t() {
       ht = setInterval(function() {
         ee(null, Gi);
       }, Bt), un = !0;
     }
-    function $t() {
+    function It() {
       clearInterval(ht), un = !1;
     }
     function S1(n, t) {
       _n(q, { "data-action": n }), q.innerHTML = Ge[0] + n + Ge[1] + t;
     }
     function At() {
-      It(), q && S1("stop", Gn[1]);
+      $t(), q && S1("stop", Gn[1]);
     }
     function Xe() {
-      $t(), q && S1("start", Gn[0]);
+      It(), q && S1("start", Gn[0]);
     }
     function Uo() {
       sn && !un && (At(), xe = !1);
@@ -5180,13 +5186,13 @@ body::-webkit-scrollbar-thumb {
       un ? (Xe(), xe = !0) : (At(), xe = !1);
     }
     function Qo() {
-      i.hidden ? un && ($t(), gt = !0) : gt && (It(), gt = !1);
+      i.hidden ? un && (It(), gt = !0) : gt && ($t(), gt = !1);
     }
     function ns() {
-      un && ($t(), _t = !0);
+      un && (It(), _t = !0);
     }
     function es() {
-      _t && (It(), _t = !1);
+      _t && ($t(), _t = !1);
     }
     function ts(n) {
       n = Zn(n);
@@ -5198,7 +5204,7 @@ body::-webkit-scrollbar-thumb {
       var t = [c.LEFT, c.RIGHT].indexOf(n.keyCode);
       t >= 0 && (t === 0 ? D.disabled || ee(n, -1) : H.disabled || ee(n, 1));
     }
-    function I1(n) {
+    function $1(n) {
       n.focus();
     }
     function os(n) {
@@ -5206,7 +5212,7 @@ body::-webkit-scrollbar-thumb {
       var t = i.activeElement;
       if (Le(t, "data-nav")) {
         var o = [c.LEFT, c.RIGHT, c.ENTER, c.SPACE].indexOf(n.keyCode), s = Number(ot(t, "data-nav"));
-        o >= 0 && (o === 0 ? s > 0 && I1(bn[s - 1]) : o === 1 ? s < Ln - 1 && I1(bn[s + 1]) : (oe = s, Ue(s, n)));
+        o >= 0 && (o === 0 ? s > 0 && $1(bn[s - 1]) : o === 1 ? s < Ln - 1 && $1(bn[s + 1]) : (oe = s, Ue(s, n)));
       }
     }
     function Zn(n) {
@@ -5218,7 +5224,7 @@ body::-webkit-scrollbar-thumb {
     function ce(n) {
       return n.type.indexOf("touch") >= 0;
     }
-    function $1(n) {
+    function I1(n) {
       n.preventDefault ? n.preventDefault() : n.returnValue = !1;
     }
     function A1() {
@@ -5230,9 +5236,9 @@ body::-webkit-scrollbar-thumb {
           return;
         Hn();
       }
-      sn && un && $t(), re = !0, Tn && (Pt(Tn), Tn = null);
+      sn && un && It(), re = !0, Tn && (Pt(Tn), Tn = null);
       var t = Zn(n);
-      J.emit(ce(n) ? "touchStart" : "dragStart", rn(n)), !ce(n) && ["img", "a"].indexOf(C1(we(n))) >= 0 && $1(n), En.x = se.x = t.clientX, En.y = se.y = t.clientY, g && (mt = parseFloat(b.style[te].replace(Un, "")), St(b, "0s"));
+      J.emit(ce(n) ? "touchStart" : "dragStart", rn(n)), !ce(n) && ["img", "a"].indexOf(C1(we(n))) >= 0 && I1(n), En.x = se.x = t.clientX, En.y = se.y = t.clientY, g && (mt = parseFloat(b.style[te].replace(Un, "")), St(b, "0s"));
     }
     function j1(n) {
       if (re) {
@@ -5256,7 +5262,7 @@ body::-webkit-scrollbar-thumb {
         } catch {
         }
         var t = mt, o = ti(En, se);
-        if (!I || m || C)
+        if (!$ || m || C)
           t += o, t += "px";
         else {
           var s = X ? o * y * 100 / ((G + L) * E) : o * 100 / (G + L);
@@ -5275,11 +5281,11 @@ body::-webkit-scrollbar-thumb {
           if (!ce(n)) {
             var s = we(n);
             R(s, { click: function u(v) {
-              $1(v), U(s, { click: u });
+              I1(v), U(s, { click: u });
             } });
           }
           g ? Tn = On(function() {
-            if (I && !C) {
+            if ($ && !C) {
               var u = -o * y / (G + L);
               u = o > 0 ? Math.floor(u) : Math.ceil(u), d += u;
             } else {
@@ -5296,7 +5302,7 @@ body::-webkit-scrollbar-thumb {
           }) : Dn && ee(n, o > 0 ? -1 : 1);
         }
       }
-      e.preventScrollOnTouch === "auto" && (Ve = !1), ct && (Dn = "?"), sn && !un && It();
+      e.preventScrollOnTouch === "auto" && (Ve = !1), ct && (Dn = "?"), sn && !un && $t();
     }
     function hi() {
       var n = pn || cn;
@@ -5358,7 +5364,7 @@ body::-webkit-scrollbar-thumb {
     };
   };
   O1({ name: "Opt in page V2", dev: "SKH" });
-  class Io {
+  class $o {
     constructor() {
       this.device = window.innerWidth < 768 ? "mobile" : "desktop", Z1("body", () => {
         f("head").elements[0].insertAdjacentHTML(
@@ -5454,14 +5460,14 @@ body::-webkit-scrollbar-thumb {
         if (!p)
           return;
         f("body").elements[0].style.overflow = "hidden", f(".crs_blockers_popup").elements[0].classList.add("active");
-        const _ = p.getAttribute("data-id"), h = f(".crs_blockers_popup").elements[0], S = f(".crs_blockers_content").elements[0], $ = ki.find((F) => F.id === parseInt(_ || "")), X = $ == null ? void 0 : $.popupContent.title;
+        const _ = p.getAttribute("data-id"), h = f(".crs_blockers_popup").elements[0], S = f(".crs_blockers_content").elements[0], I = ki.find((F) => F.id === parseInt(_ || "")), X = I == null ? void 0 : I.popupContent.title;
         if (z(
           "exp_opt_in_v2__slider__open",
           `See details. ${X}`,
           "click",
           "What’s stopping you from achieving your financial and lifestyle goals?"
-        ), $) {
-          const { icon: F, title: j, text: de, button: fe, video: Se, review: Cn } = ($ == null ? void 0 : $.popupContent) || {};
+        ), I) {
+          const { icon: F, title: j, text: de, button: fe, video: Se, review: Cn } = (I == null ? void 0 : I.popupContent) || {};
           S.insertAdjacentHTML(
             "beforeend",
             go(
@@ -5542,7 +5548,7 @@ body::-webkit-scrollbar-thumb {
           "click",
           `${this.querySelector(".inputs2").classList.contains("active") ? "Popup. Access Your Exclusive Online Training. Step 2" : "Popup. Access Your Exclusive Online Training. Step 1"}`
         );
-        const $ = (/* @__PURE__ */ new Date()).getTimezoneOffset() / 60, X = `GMT${$ > 0 ? "-" : "+"}${Math.abs($)}`;
+        const I = (/* @__PURE__ */ new Date()).getTimezoneOffset() / 60, X = `GMT${I > 0 ? "-" : "+"}${Math.abs(I)}`;
         if (this.querySelector(".inputs2").classList.contains("active")) {
           const F = f(".inputs2 .selected").elements[0].getAttribute("data-schedule");
           fetch("https://conversionrate.top/api/dropservicing/register", {
@@ -5655,7 +5661,7 @@ body::-webkit-scrollbar-thumb {
         }, 500), a.events.on("indexChanged", function(p) {
           var h, S;
           const _ = p.navItems;
-          Array.from(_).forEach(($) => $.classList.remove("tns-nav-near")), (h = _[p.index - 1]) == null || h.classList.add("tns-nav-near"), (S = _[p.index + 1]) == null || S.classList.add("tns-nav-near");
+          Array.from(_).forEach((I) => I.classList.remove("tns-nav-near")), (h = _[p.index - 1]) == null || h.classList.add("tns-nav-near"), (S = _[p.index + 1]) == null || S.classList.add("tns-nav-near");
         });
       }
       if (this.device === "desktop") {
@@ -5681,9 +5687,9 @@ body::-webkit-scrollbar-thumb {
           }
         });
         a.getInfo().slideItems[0].classList.add("tns-current"), a.getInfo().navItems[1].classList.add("tns-nav-near"), a.events.on("indexChanged", function(p) {
-          var $, X;
+          var I, X;
           const _ = p.slideItems, h = p.navItems;
-          Array.from(h).forEach((F) => F.classList.remove("tns-nav-near")), Array.from(_).forEach((F) => F.classList.remove("tns-current")), ($ = h[p.index - 1]) == null || $.classList.add("tns-nav-near"), (X = h[p.index + 1]) == null || X.classList.add("tns-nav-near"), _[p.index].classList.add("tns-current");
+          Array.from(h).forEach((F) => F.classList.remove("tns-nav-near")), Array.from(_).forEach((F) => F.classList.remove("tns-current")), (I = h[p.index - 1]) == null || I.classList.add("tns-nav-near"), (X = h[p.index + 1]) == null || X.classList.add("tns-nav-near"), _[p.index].classList.add("tns-current");
         }), Me({
           container: "#trust_pilot ul",
           items: 3,
@@ -5751,7 +5757,7 @@ body::-webkit-scrollbar-thumb {
     }
   }
   Dt(".crs_landing").then((e) => {
-    new Io();
+    new $o();
   });
 })();
 //# sourceMappingURL=index.js.map
