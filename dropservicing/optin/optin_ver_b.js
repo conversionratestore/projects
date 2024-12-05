@@ -5466,7 +5466,10 @@ body::-webkit-scrollbar-thumb {
           `See details. ${X}`,
           "click",
           "What’s stopping you from achieving your financial and lifestyle goals?"
-        ), I) {
+        ), window.innerWidth < 768 && (console.log("MOB"), h.insertAdjacentHTML(
+          "beforeend",
+          '<div class="sticky_btn_wrapper"><button class="cta pop">Yes! Get Access Now!</button></div>'
+        )), I) {
           const { icon: F, title: j, text: de, button: fe, video: Se, review: Cn } = (I == null ? void 0 : I.popupContent) || {};
           S.insertAdjacentHTML(
             "beforeend",
@@ -5494,10 +5497,6 @@ body::-webkit-scrollbar-thumb {
             }, 800));
           }), i();
         }
-        window.innerWidth < 768 && (console.log("MOB"), h.insertAdjacentHTML(
-          "beforeend",
-          '<div class="sticky_btn_wrapper"><button class="cta pop">Yes! Get Access Now!</button></div>'
-        ));
       }), f("[data-closeblokers]").on("click", function(a) {
         a.target.closest(".crs_blockers_content") || (c(), f("body").elements[0].style.overflow = "auto");
       }), f(".show_more_block").on("click", function(a) {
