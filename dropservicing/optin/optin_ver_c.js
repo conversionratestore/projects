@@ -3357,13 +3357,14 @@ body::-webkit-scrollbar-thumb {
       review: '"Aleksa transformed from a struggling student to a financially independent entrepreneur in just one year."',
       img: "aleksa.jpg",
       videoId: "rup4dintys"
-    },
-    {
-      name: "Guy",
-      review: '"Guy turned her part-time side hustle into a reliable source of income while working full-time as a nurse."',
-      img: "guy.jpg",
-      videoId: "9luz6eb8y5"
     }
+    // {
+    //   name: 'Guy',
+    //   review:
+    //     '"Guy turned her part-time side hustle into a reliable source of income while working full-time as a nurse."',
+    //   img: 'guy.jpg',
+    //   videoId: '9luz6eb8y5'
+    // }
   ], Y1 = [
     'Dylan Sigley was a broke college student working in a call center when he discovered a new online business method called "Drop Servicing".',
     "Soon after, he built a ridiculously profitable business from home, allowing him to quit his job and earn 6-figures while traveling the world and working only 5 hours a week.",
