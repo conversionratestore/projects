@@ -896,6 +896,7 @@ body::-webkit-scrollbar-thumb {
   border-radius: 0;
   padding: 18px;
   margin-bottom: 40px;
+  cursor: pointer;
 }
 @media (max-width: 1290px) {
   .crs_v2 #blokers .blokers .blokers_list li .blokers_item {
@@ -3609,12 +3610,12 @@ body::-webkit-scrollbar-thumb {
         /* HTML */
         `
             <li>
-              <div class="blokers_item">
+              <div data-id="${e}" class="blokers_item" data-seedetails>
                 <div>
                   ${i}
                   <p>${r}</p>
                 </div>
-                <div data-id="${e}" class="btn_see_details">${c}</div>
+                <div class="btn_see_details">${c}</div>
               </div>
             </li>
           `
@@ -5466,7 +5467,7 @@ body::-webkit-scrollbar-thumb {
           ), p = h;
         });
       }
-      if (f(".btn_see_details").on("click", function(a) {
+      if (f("[data-seedetails]").on("click", function(a) {
         const p = a.currentTarget;
         if (!p)
           return;
