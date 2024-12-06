@@ -5510,7 +5510,7 @@ body::-webkit-scrollbar-thumb {
           }), i();
         }
       }), f("[data-closeblokers]").on("click", function(a) {
-        a.target.closest(".crs_blockers_content") || (c(), f("body").elements[0].style.overflow = "auto");
+        console.log(a.currentTarget), (a.target.matches(".crs_blockers_popup") || a.currentTarget.matches(".close")) && (c(), f("body").elements[0].style.overflow = "auto");
       }), f(".show_more_block").on("click", function(a) {
         const p = a.currentTarget;
         if (!p)
@@ -5632,7 +5632,7 @@ body::-webkit-scrollbar-thumb {
           "Popup"
         );
       }), f("[data-closeform]").on("click", function(a) {
-        !a.target.closest(".bonus") && !a.target.closest(".crs_form") && (f("body").elements[0].style.overflow = "auto", f(".crs_popup_form").elements[0].classList.remove("active"), f(".crs_popup_form .inputs1").elements[0].style.display = "block", f(".crs_popup_form .inputs2").removeClass("active"), sessionStorage.getItem("intentPopupTriggers") || setTimeout(() => {
+        (a.target.matches(".crs_popup_form") || a.currentTarget.matches(".close")) && (f("body").elements[0].style.overflow = "auto", f(".crs_popup_form").elements[0].classList.remove("active"), f(".crs_popup_form .inputs1").elements[0].style.display = "block", f(".crs_popup_form .inputs2").removeClass("active"), sessionStorage.getItem("intentPopupTriggers") || setTimeout(() => {
           sessionStorage.setItem("intentPopupTriggers", "true"), f(".crs_exit_popup").elements[0].classList.add("active"), f("body").elements[0].style.overflow = "hidden", A("exp_opt_in_v2__p_exit__view", "Popup", "view", "Popup. Exit-intent");
         }, 400));
       }), f("#base_review .slide").on("click", function() {
