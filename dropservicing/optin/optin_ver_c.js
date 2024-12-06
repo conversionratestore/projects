@@ -392,12 +392,20 @@ body::-webkit-scrollbar-thumb {
   line-height: 55px;
   font-weight: 700;
 }
+@media (max-width: 1040px) {
+  .crs_v2 #main_block h1 br {
+    display: none;
+  }
+}
 @media (max-width: 768px) {
   .crs_v2 #main_block h1 {
     margin: 24px 0;
     font-size: 32px;
     line-height: 42px;
     text-align: left;
+  }
+  .crs_v2 #main_block h1 br {
+    display: block;
   }
 }
 .crs_v2 #main_block h1 + p {
@@ -5391,7 +5399,7 @@ body::-webkit-scrollbar-thumb {
     }
     addBlocks() {
       const i = d(".crs_landing").elements[0];
-      i && i.nextElementSibling && i.nextElementSibling.tagName.toLowerCase() === "style" && i.nextElementSibling.remove(), i.innerHTML = "", i.classList.add("crs_v2"), i.insertAdjacentHTML("afterbegin", no), i.insertAdjacentHTML("beforeend", eo), i.insertAdjacentHTML("beforeend", to), i.insertAdjacentHTML("beforeend", io), i.insertAdjacentHTML("beforeend", oo), this.device === "desktop" && (i.insertAdjacentHTML("beforeend", so), i.insertAdjacentHTML("beforeend", ro), i.insertAdjacentHTML("beforeend", ao), i.insertAdjacentHTML("beforeend", co)), i.insertAdjacentHTML("beforeend", lo), i.insertAdjacentHTML("beforeend", po), i.insertAdjacentHTML("beforeend", ho), i.insertAdjacentHTML("beforeend", mo), i.insertAdjacentHTML("beforeend", fo), window.location.href.includes("dropservicing.net") && (d("#main_block h1").elements[0].innerHTML = "The 4 steps to start your online business in 2024 and achieve financial freedom goals");
+      i && i.nextElementSibling && i.nextElementSibling.tagName.toLowerCase() === "style" && i.nextElementSibling.remove(), i.innerHTML = "", i.classList.add("crs_v2"), i.insertAdjacentHTML("afterbegin", no), i.insertAdjacentHTML("beforeend", eo), i.insertAdjacentHTML("beforeend", to), i.insertAdjacentHTML("beforeend", io), i.insertAdjacentHTML("beforeend", oo), this.device === "desktop" && (i.insertAdjacentHTML("beforeend", so), i.insertAdjacentHTML("beforeend", ro), i.insertAdjacentHTML("beforeend", ao), i.insertAdjacentHTML("beforeend", co)), i.insertAdjacentHTML("beforeend", lo), i.insertAdjacentHTML("beforeend", po), i.insertAdjacentHTML("beforeend", ho), i.insertAdjacentHTML("beforeend", mo), i.insertAdjacentHTML("beforeend", fo), window.location.href.includes("dropservicing.net") && (d("#main_block h1").elements[0].innerHTML = "The 4 steps to start your online business <br /> in 2024 and achieve financial freedom goals");
     }
     setActions() {
       function i() {
