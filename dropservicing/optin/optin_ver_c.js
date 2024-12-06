@@ -1892,6 +1892,7 @@ body::-webkit-scrollbar-thumb {
   align-items: center;
   padding: 0;
   transition: all 0.8s ease 0s;
+  background: rgba(5, 31, 67, 0.2);
 }
 @media (max-width: 768px) {
   .crs_v2 .crs_popup_form {
