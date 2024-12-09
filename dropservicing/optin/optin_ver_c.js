@@ -3580,7 +3580,7 @@ body::-webkit-scrollbar-thumb {
                 <div class="crs_story_head">
                   <span>
                     <img
-                      src="https://conversionratestore.github.io/projects/dropservicing/popups/img/avatar_new_${i}.jpg"
+                      src="https://conversionratestore.github.io/projects/dropservicing/popups/img/avatar_new_${i}.png"
                       alt="avatar"
                     />
                   </span>
