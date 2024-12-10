@@ -774,11 +774,11 @@
     },
     {
       start: "94.09",
-      time: "108.02",
+      time: "108.11",
       text: "<b>Q&A Session</b> - Addressing all of your common questions"
     },
     {
-      start: "108.02",
+      start: "108.11",
       time: "110.68",
       text: "<b>Closing Remarks</b> - A recap of the presented opportunities"
     }
