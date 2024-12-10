@@ -243,11 +243,11 @@
 .point_block_wrapper .point_block:last-child .progress_step::after {
   display: none;
 }
-.point_block_wrapper .point_block:last-child {
+.point_block_wrapper .point_block:nth-child(21) {
   width: 203px;
 }
 @media (max-width: 768px) {
-  .point_block_wrapper .point_block:last-child {
+  .point_block_wrapper .point_block:nth-child(21) {
     width: 100%;
   }
 }
@@ -534,26 +534,26 @@
     {
       start: "4.25",
       time: "5.27",
-      text: "The 2 things holding you back from financial freedom",
+      text: "<b>The 2 things holding you back from financial freedom</b>",
       type: "critical"
     },
     {
       start: "5.27",
-      time: "10.73",
+      time: "10.74",
       text: "<b>How Dylan went from -$60K to $4M+ with Drop Servicing</b> - Discover the method he used to take control of his life, quit his job, and achieve financial freedom"
     },
     {
-      start: "10.73",
-      time: "13.08",
+      start: "10.74",
+      time: "13.09",
       text: "<b>Stay to the End and Get These Bonuses:</b> <ul><li>$12,000 Sale Tutorial (+ Free Copy Paste Template)</li><li>A Quick Guide to Drop Servicing (Get Selling FAST and for ZERO)</li></ul>"
     },
     {
-      start: "13.08",
-      time: "15.08",
+      start: "13.09",
+      time: "15.09",
       text: "<b>The High-Profit Service System</b> - Discover a proven system that enables you to start a highly profitable online business quickly with no startup costs"
     },
     {
-      start: "15.08",
+      start: "15.09",
       time: "18",
       text: "<b>Why Drop Servicing Is the New Best Way to Make Money Online</b> - Learn how we get sales for free and fast then create multiple passive income streams",
       type: "critical"
@@ -561,41 +561,41 @@
     {
       start: "18",
       time: "18.42",
-      text: "<b>Why there’s never been a better time to do this</b><br>Introducing our new A.I. system for Drop Servicing that helps us build, scale and automate our businesses fast."
+      text: "<b>Why there’s never been a better time to do this</b><br>Introducing our new A.I. system for Drop Servicing that helps us build, scale and automate our businesses fast"
     },
     {
       start: "18.42",
-      time: "19.63",
+      time: "19.64",
       text: "A specific example of how Drop Servicing works"
     },
     {
-      start: "19.63",
+      start: "19.64",
       time: "21.47",
       text: "Why Drop Servicing works and how to start for FREE with the Partnership method"
     },
     {
       start: "21.47",
-      time: "23.68",
+      time: "23.69",
       text: "<b>How Much Can You Make With Drop Servicing?</b> - The realistic income potential of Drop Servicing and what you can expect as your business grows"
     },
     {
-      start: "23.68",
-      time: "28.48",
+      start: "23.69",
+      time: "28.49",
       text: "<b>How to Find Simple, High-Profit Services to Sell</b> - A detailed guide on finding high-demand, profitable digital services, sourcing freelancers, and pricing effectively to generate substantial recurring income"
     },
     {
-      start: "28.48",
-      time: "30.2",
+      start: "28.49",
+      time: "30.21",
       text: "The best high profit services you can make the most money with today",
       type: "critical"
     },
     {
-      start: "30.2",
-      time: "32.33",
+      start: "30.21",
+      time: "32.34",
       text: "The Automated Sales System: 3 simple steps to $10,000 per month"
     },
     {
-      start: "32.33",
+      start: "32.34",
       time: "33",
       text: "<b>Scaling & Automating Your Drop Servicing Business</b> - Learn how to use automated systems to build and scale your business, secure recurring clients, and achieve financial freedom with minimal effort"
     },
@@ -606,11 +606,11 @@
     },
     {
       start: "33.87",
-      time: "35.28",
+      time: "35.29",
       text: "Why freelancers badly want to work with you (use my template)"
     },
     {
-      start: "35.28",
+      start: "35.29",
       time: "39.77",
       text: "How to automate and scale your business fast to achieve your freedom lifestyle"
     },
@@ -622,17 +622,17 @@
     },
     {
       start: "43.5",
-      time: "46.4",
+      time: "46.41",
       text: "How much we can sell our Drop Servicing businesses for (and achieve a massive pay day)"
     },
     {
-      start: "46.4",
-      time: "47.68",
+      start: "46.41",
+      time: "47.69",
       text: "Get the Done For You partnership with our top freelancers, resources, community and support to fast track your success",
       type: "final"
     },
     {
-      start: "47.68",
+      start: "47.69",
       time: "49",
       text: "The Done For You Partner Program where we do the heavy lifting for you"
     },
@@ -643,62 +643,62 @@
     },
     {
       start: "49.7",
-      time: "50.83",
+      time: "50.84",
       text: "What you get as a Partner"
     },
     {
-      start: "50.83",
+      start: "50.84",
       time: "51.1",
       text: "Get VIP access to our best service and freelancer team"
     },
     {
       start: "51.1",
-      time: "52.33",
+      time: "52.34",
       text: "Drop Servicing Blueprint VIP community"
     },
     {
-      start: "52.33",
-      time: "52.93",
+      start: "52.34",
+      time: "52.94",
       text: "Drop Servicing Partner Program Course"
     },
     {
-      start: "52.93",
+      start: "52.94",
       time: "54.2",
       text: "Unlimited access to coaching calls 3 times every week"
     },
     {
       start: "54.2",
-      time: "54.58",
+      time: "54.59",
       text: "Done For Your Business Partnership"
     },
     {
-      start: "54.58",
-      time: "55.33",
+      start: "54.59",
+      time: "55.34",
       text: "Drop Servicing AI Software"
     },
     {
-      start: "55.33",
-      time: "55.83",
+      start: "55.34",
+      time: "55.84",
       text: "Special discounted access to the entire program today!",
       type: "exclusive"
     },
     {
-      start: "55.83",
-      time: "56.73",
+      start: "55.84",
+      time: "56.74",
       text: "How much is the program worth? (based on how much students are making)"
     },
     {
-      start: "56.73",
+      start: "56.74",
       time: "58.02",
       text: "How much is the small investment to join the Partner Program?"
     },
     {
       start: "58.02",
-      time: "58.08",
+      time: "58.09",
       text: "Special discounted price for the first 100 partners today"
     },
     {
-      start: "58.08",
+      start: "58.09",
       time: "58.5",
       text: "3 month payment plan (pause or stop it at any time)"
     },
@@ -709,21 +709,21 @@
     },
     {
       start: "62.32",
-      time: "62.68",
+      time: "62.69",
       text: "8 Bonuses for the first 30 people that join today"
     },
     {
-      start: "62.68",
+      start: "62.69",
       time: "63.97",
       text: "<b>Bonus #1</b>: $200 Cash Back to you"
     },
     {
       start: "63.97",
-      time: "64.58",
+      time: "64.59",
       text: "<b>Bonus #2</b>: Everything inside one of my fully automated Drop Servicing Businesses – So you can literally copy and paste my business"
     },
     {
-      start: "64.58",
+      start: "64.59",
       time: "65.17",
       text: "<b>Bonus #3</b>: Drop Servicing Blueprint 3.0 video course"
     },
@@ -734,48 +734,53 @@
     },
     {
       start: "66.47",
-      time: "67.58",
+      time: "67.59",
       text: "<b>Bonus #5</b>: Done For You Website Template"
     },
     {
-      start: "67.58",
-      time: "68.08",
+      start: "67.59",
+      time: "68.09",
       text: "<b>Bonus #6</b>: Quality Stamp of Approval"
     },
     {
-      start: "68.08",
-      time: "68.85",
+      start: "68.09",
+      time: "68.86",
       text: "<b>Bonus #7</b>: 10 Highest Demand Services"
     },
     {
-      start: "68.85",
-      time: "70.6",
+      start: "68.86",
+      time: "70.61",
       text: "<b>Bonus #8</b>: Extra Full Membership Account"
     },
     {
-      start: "70.6",
+      start: "70.61",
       time: "73.67",
       text: "Our 100% Money Back Guarantee (that puts all the risk on us)"
     },
     {
       start: "73.67",
-      time: "75.55",
+      time: "75.56",
       text: "The simple & easy way to get a refund"
     },
     {
-      start: "75.55",
-      time: "76.05",
+      start: "75.56",
+      time: "76.06",
       text: "Everything you get today as a Partner"
     },
     {
-      start: "76.05",
-      time: "94.08",
+      start: "76.06",
+      time: "94.09",
       text: "Hear from our members themselves! Personal testimonials and in-depth interviews"
     },
     {
-      start: "94.08",
-      time: "110.68",
+      start: "94.09",
+      time: "108.02",
       text: "<b>Q&A Session</b> - Addressing all of your common questions"
+    },
+    {
+      start: "108.02",
+      time: "110.68",
+      text: "<b>Closing Remarks</b> - A recap of the presented opportunities"
     }
   ], S = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
 <g clip-path="url(#clip0_2066_824)">
@@ -844,7 +849,7 @@
     <div class="point_block_wrapper">${b.map((n) => T(n)).join("")}</div>
   </div>
 </div>`
-  ), B = (
+  ), C = (
     /* HTML */
     `<div class="mobile_info_block">
   <p class="text">${b[0].text}</p>
@@ -852,7 +857,7 @@
 </div>`
   );
   x({ name: "Webinar Timeline", dev: "YK" }), v("webinar_timeline");
-  class C {
+  class B {
     constructor() {
       this.init();
     }
@@ -860,7 +865,7 @@
       p("body", async () => {
         t("body").elements[0].insertAdjacentHTML("afterbegin", `<style class="crs_style">${u}</style>`);
       }), p("#vjs_video_3", async () => {
-        window.innerWidth > 768 ? t(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", f) : (t(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", B), t(".main-container").elements[0].insertAdjacentHTML("beforeend", f), t(".mobile_info_block button").elements[0].addEventListener("click", () => {
+        window.innerWidth > 768 ? t(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", f) : (t(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", C), t(".main-container").elements[0].insertAdjacentHTML("beforeend", f), t(".mobile_info_block button").elements[0].addEventListener("click", () => {
           t(".points_block").elements[0].scrollIntoView({ behavior: "smooth" });
         }));
       }), p(".point_block", async () => {
@@ -940,6 +945,6 @@
       });
     }
   }
-  new C();
+  new B();
 })();
 //# sourceMappingURL=index.js.map
