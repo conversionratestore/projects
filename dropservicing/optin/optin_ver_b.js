@@ -5549,7 +5549,7 @@ body::-webkit-scrollbar-thumb {
           "What’s stopping you from achieving your financial and lifestyle goals?"
         ), window.innerWidth < 768 && (console.log("MOB"), h.insertAdjacentHTML(
           "beforeend",
-          '<div class="sticky_btn_wrapper"><button class="cta pop">Yes! Get Access Now!</button></div>'
+          '<div class="sticky_btn_wrapper"><button class="cta pop">Access Your Free Training Now!</button></div>'
         )), I) {
           const { icon: R, title: D, text: de, button: fe, video: Me, review: Cn } = (I == null ? void 0 : I.popupContent) || {};
           M.insertAdjacentHTML(
