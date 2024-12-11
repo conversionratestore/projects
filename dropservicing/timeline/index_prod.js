@@ -801,7 +801,7 @@
 <path d="M1 1.06543L6 6.06543L1 11.0654" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
 </svg>`, T = (o) => (
     /* HTML */
-    `<div class="point_block ${+o.start > 44 ? "hidden" : ""}" data-time="${+o.time * 60}">
+    `<div class="point_block ${+o.start > 47 ? "hidden" : ""}" data-time="${+o.time * 60}">
     <div class="progress_step">
       <span>
         <div class="progress_border">
