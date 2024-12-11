@@ -2981,7 +2981,7 @@ body::-webkit-scrollbar-thumb {
       c && (clearInterval(r), i(c));
     }, 100);
   };
-  class R1 {
+  class F1 {
     constructor(i) {
       this.elements = typeof i == "string" ? document.querySelectorAll(i) : i instanceof Element ? [i] : i;
     }
@@ -3024,7 +3024,7 @@ body::-webkit-scrollbar-thumb {
       }), this;
     }
   }
-  const f = (e) => new R1(e), F1 = (e) => {
+  const f = (e) => new F1(e), R1 = (e) => {
     const i = document.querySelector(e);
     if (!i)
       return;
@@ -3278,7 +3278,7 @@ body::-webkit-scrollbar-thumb {
         icon: k.blockersIcon1,
         title: "I feel stuck in the 9-to-5 grind with no time, freedom, or flexibility to enjoy my life.",
         text: "<p>Feeling stuck in a 9-to-5 grind can drain your time, freedom, and flexibility. This free training introduces a business model built for a lifestyle of freedom: Drop Servicing.</p> <p>Everything you need can be used on a laptop and internet connection. Using the most powerful tools in modern history, you’ll learn how to create an income stream that lets you work from anywhere and on your schedule.</p> <p>The training provides step-by-step guidance, done-for-you templates, and proven strategies, so you can escape the daily grind and design a life you love without taking big risks like giving up your current job.</p>",
-        button: "Yes! Get Access Now!",
+        button: "Access Your Free Training Now!",
         video: "j8tl4ke9sf",
         review: {
           reviewerPhoto: `${wn}avatar_3.png`,
@@ -3297,7 +3297,7 @@ body::-webkit-scrollbar-thumb {
         icon: k.blockersIcon2,
         title: "I don’t know how to achieve financial freedom or build recurring, reliable income streams.",
         text: "<p>Financial freedom starts with the right strategy, and this free training delivers just that.</p> <p>You’ll learn a proven 4-step system to build a Drop Servicing business—an online model where you connect clients with services and earn recurring income.</p> <p>It’s affordable, beginner-friendly, and requires no inventory, startup costs or technical skills.</p> <p>We break everything into clear, actionable steps, showing you how to generate consistent income monthly.</p> <p>Whether you want to earn extra on the side or replace your job entirely, this training provides the tools to achieve it.</p>",
-        button: "Yes! Get Access Now!",
+        button: "Access Your Free Training Now!",
         video: "1tltf1pv7w",
         review: {
           reviewerPhoto: `${wn}avatar_4.png`,
@@ -3316,7 +3316,7 @@ body::-webkit-scrollbar-thumb {
         icon: k.blockersIcon3,
         title: "I’m struggling to boost my income fast without sacrificing all my free time or taking big risks.",
         text: "<p>This free training is perfect for anyone wanting to increase their income in a flexible way.</p> <p>You’ll discover how to build a Drop Servicing business that fits your schedule and learn strategies to land your first high-value client quickly using low-risk methods and time-saving automation.</p> <p>With done-for-you templates and a beginner-friendly process, you’ll gain the tools to grow at your own pace and create a scalable recurring income stream—whether as a side hustle or a full-time business.</p>",
-        button: "Yes! Get Access Now!",
+        button: "Access Your Free Training Now!",
         video: "tnipq3xvpy",
         review: {
           reviewerPhoto: `${wn}avatar_1.png`,
@@ -3335,7 +3335,7 @@ body::-webkit-scrollbar-thumb {
         icon: k.blockersIcon4,
         title: "I lack the skills or clarity to start an online business; it feels overwhelming and impossible to begin.",
         text: "<p>Starting an online business is overwhelming to say the least. But it doesn’t have to be.</p> <p>This free training breaks everything down into a simple, step-by-step process designed for beginners.</p> <p>You don’t need prior experience or technical skills—just follow our checklist, use the provided done-for-you templates, and you’ll be on your way to building your own path to financial freedom.</p> <p>You’ll also see real-life success stories of people who started from scratch that will motivate you and prove it’s possible.</p> <p>By the end of the training, you’ll have the clarity, tools, and confidence to get started with Drop Servicing stress-free.</p>",
-        button: "Yes! Get Access Now!",
+        button: "Access Your Free Training Now!",
         video: "7ua39ckg5r",
         review: {
           reviewerPhoto: `${wn}avatar_2.png`,
@@ -3354,7 +3354,7 @@ body::-webkit-scrollbar-thumb {
         icon: k.blockersIcon5,
         title: "I feel overwhelmed by options and need a simple, beginner-friendly path to success.",
         text: "<p>Overwhelmed by options? This free training makes starting an online business simple and beginner-friendly.</p> <p>Drop Servicing eliminates the need for technical skills, upfront investments, or complicated setups. Using just a laptop and an internet connection you’ll build a simple little laptop business that funds your freedom.</p> <p>Our free training provides done-for-you templates, automation tools, and real-life examples, ensuring your success. By the end, you’ll have the confidence and knowledge to begin immediately, knowing this proven model has helped countless other beginners succeed.</p>",
-        button: "Yes! Get Access Now!",
+        button: "Access Your Free Training Now!",
         video: "9b68j3xe9c",
         review: {
           reviewerPhoto: `${wn}avatar_5.png`,
@@ -3373,7 +3373,7 @@ body::-webkit-scrollbar-thumb {
         icon: k.blockersIcon6,
         title: "I’m skeptical of online business promises and need a proven, trustworthy system.",
         text: "<p>Skeptical about online business promises? This free training is built on transparency and proven results.</p> <p>We show you a clear, step-by-step system to build a Drop Servicing business, supported by real-life case studies and success stories.</p> <p>No hype—just actionable strategies that thousands have used to achieve financial freedom goals. You’ll see how this beginner-friendly model works and why it’s trusted by so many.</p> <p>With no fluff and no gimmicks, this training provides the tools and guidance you need to start confidently and see real results.</p>",
-        button: "Yes! Get Access Now!",
+        button: "Access Your Free Training Now!",
         video: "omtwqz5l9v",
         review: {
           reviewerPhoto: `${wn}avatar_6.png`,
@@ -4097,7 +4097,7 @@ body::-webkit-scrollbar-thumb {
     <h3 class="inputs2_title">Select a time to join</h3>
     <ul class="time_list">
       ${e.map(({ date: c, schedule: l }, a) => {
-        const p = new Date(c).toLocaleString("en-us", { weekday: "long" }), _ = new Date(c).toLocaleString("en-us", { month: "long", day: "numeric" }), h = new Date(c).toLocaleString("en-us", { hour: "numeric", minute: "numeric" }), M = new Date(c).getTime() - (/* @__PURE__ */ new Date()).getTime(), I = new Date(c).getTime() + 1e3 * 60 * 15, X = new Date(I).toLocaleString("en-us", { hour: "numeric", minute: "numeric" }), F = I - (/* @__PURE__ */ new Date()).getTime(), D = Math.ceil((M < 0 ? F : M) / (1e3 * 60));
+        const p = new Date(c).toLocaleString("en-us", { weekday: "long" }), _ = new Date(c).toLocaleString("en-us", { month: "long", day: "numeric" }), h = new Date(c).toLocaleString("en-us", { hour: "numeric", minute: "numeric" }), M = new Date(c).getTime() - (/* @__PURE__ */ new Date()).getTime(), I = new Date(c).getTime() + 1e3 * 60 * 15, X = new Date(I).toLocaleString("en-us", { hour: "numeric", minute: "numeric" }), R = I - (/* @__PURE__ */ new Date()).getTime(), D = Math.ceil((M < 0 ? R : M) / (1e3 * 60));
         return (
           /* HTML */
           `
@@ -4317,7 +4317,7 @@ body::-webkit-scrollbar-thumb {
         for (var c in i)
           e[r].setAttribute(c, i[c]);
   }
-  function Rn(e, i) {
+  function Fn(e, i) {
     e = Ii(e) || e instanceof Array ? e : [e], i = i instanceof Array ? i : [i];
     for (var r = i.length, c = e.length; c--; )
       for (var l = r; l--; )
@@ -4374,7 +4374,7 @@ body::-webkit-scrollbar-thumb {
   } catch {
   }
   var Hi = Di ? { passive: !0 } : !1;
-  function R(e, i, r) {
+  function F(e, i, r) {
     for (var c in i) {
       var l = ["touchstart", "touchmove"].indexOf(c) >= 0 && !r ? Hi : !1;
       e.addEventListener(c, i[c], l);
@@ -4410,9 +4410,9 @@ body::-webkit-scrollbar-thumb {
   }
   function Io(e, i, r, c, M, a, p) {
     var _ = Math.min(a, 10), h = M.indexOf("%") >= 0 ? "%" : "px", M = M.replace(h, ""), I = Number(e.style[i].replace(r, "").replace(c, "").replace(h, "")), X = (M - I) / a * _;
-    setTimeout(F, _);
-    function F() {
-      a -= _, I += X, e.style[i] = r + I + h + c, a > 0 ? setTimeout(F, _) : p();
+    setTimeout(R, _);
+    function R() {
+      a -= _, I += X, e.style[i] = r + I + h + c, a > 0 ? setTimeout(R, _) : p();
     }
   }
   Object.keys || (Object.keys = function(e) {
@@ -4495,7 +4495,7 @@ body::-webkit-scrollbar-thumb {
         l.removeItem(n);
       }), localStorage.tnsApp = p);
     }
-    var h = l.tC ? Sn(l.tC) : Mn(l, "tC", wo(), a), M = l.tPL ? Sn(l.tPL) : Mn(l, "tPL", Co(), a), I = l.tMQ ? Sn(l.tMQ) : Mn(l, "tMQ", yo(), a), X = l.tTf ? Sn(l.tTf) : Mn(l, "tTf", Te("transform"), a), F = l.t3D ? Sn(l.t3D) : Mn(l, "t3D", Mo(X), a), D = l.tTDu ? Sn(l.tTDu) : Mn(l, "tTDu", Te("transitionDuration"), a), de = l.tTDe ? Sn(l.tTDe) : Mn(l, "tTDe", Te("transitionDelay"), a), fe = l.tADu ? Sn(l.tADu) : Mn(l, "tADu", Te("animationDuration"), a), Me = l.tADe ? Sn(l.tADe) : Mn(l, "tADe", Te("animationDelay"), a), Cn = l.tTE ? Sn(l.tTE) : Mn(l, "tTE", ji(D, "Transition"), a), Ee = l.tAE ? Sn(l.tAE) : Mn(l, "tAE", ji(fe, "Animation"), a), Ot = r.console && typeof r.console.warn == "function", Zt = ["container", "controlsContainer", "prevButton", "nextButton", "navContainer", "autoplayButton"], Pi = {};
+    var h = l.tC ? Sn(l.tC) : Mn(l, "tC", wo(), a), M = l.tPL ? Sn(l.tPL) : Mn(l, "tPL", Co(), a), I = l.tMQ ? Sn(l.tMQ) : Mn(l, "tMQ", yo(), a), X = l.tTf ? Sn(l.tTf) : Mn(l, "tTf", Te("transform"), a), R = l.t3D ? Sn(l.t3D) : Mn(l, "t3D", Mo(X), a), D = l.tTDu ? Sn(l.tTDu) : Mn(l, "tTDu", Te("transitionDuration"), a), de = l.tTDe ? Sn(l.tTDe) : Mn(l, "tTDe", Te("transitionDelay"), a), fe = l.tADu ? Sn(l.tADu) : Mn(l, "tADu", Te("animationDuration"), a), Me = l.tADe ? Sn(l.tADe) : Mn(l, "tADe", Te("animationDelay"), a), Cn = l.tTE ? Sn(l.tTE) : Mn(l, "tTE", ji(D, "Transition"), a), Ee = l.tAE ? Sn(l.tAE) : Mn(l, "tAE", ji(fe, "Animation"), a), Ot = r.console && typeof r.console.warn == "function", Zt = ["container", "controlsContainer", "prevButton", "nextButton", "navContainer", "autoplayButton"], Pi = {};
     if (Zt.forEach(function(n) {
       if (typeof e[n] == "string") {
         var t = e[n], o = i.querySelector(t);
@@ -4526,9 +4526,9 @@ body::-webkit-scrollbar-thumb {
     }
     if (g || Oi(e), !g) {
       e.axis = "horizontal", e.slideBy = "page", e.edgePadding = !1;
-      var Fn = e.animateIn, st = e.animateOut, Rt = e.animateDelay, In = e.animateNormal;
+      var Rn = e.animateIn, st = e.animateOut, Ft = e.animateDelay, In = e.animateNormal;
     }
-    var $ = e.axis === "horizontal", an = i.createElement("div"), cn = i.createElement("div"), pn, b = e.container, Ft = b.parentNode, Zi = b.outerHTML, S = b.children, x = S.length, Ie, rt = Xi(), Ae = !1;
+    var $ = e.axis === "horizontal", an = i.createElement("div"), cn = i.createElement("div"), pn, b = e.container, Rt = b.parentNode, Zi = b.outerHTML, S = b.children, x = S.length, Ie, rt = Xi(), Ae = !1;
     N && p1(), g && (b.className += " tns-vpfix");
     var C = e.autoWidth, m = w("fixedWidth"), Z = w("edgePadding"), L = w("gutter"), G = n1(), Q = w("center"), y = C ? 1 : Math.floor(w("items")), he = w("slideBy"), Wt = e.viewportMax || e.fixedWidthViewportWidth, Wn = w("arrowKeys"), yn = w("speed"), ze = e.rewind, nn = ze ? !1 : e.loop, dn = w("autoHeight"), An = w("controls"), Vn = w("controlsText"), zn = w("nav"), Bn = w("touch"), Yn = w("mouseDrag"), sn = w("autoplay"), Vt = w("autoplayTimeout"), Gn = w("autoplayText"), Jn = w("autoplayHoverPause"), Kn = w("autoplayResetOnVisibility"), A = ko(null, w("nonce")), je = e.lazyload, zo = e.lazyloadSelector, V, _e = [], en = nn ? Po() : 0, E = g ? x + en * 2 : x + en, qi = !!((m || C) && !nn), ge = m ? pi() : null, Bt = !g || !nn, te = $ ? "left" : "top", Un = "", me = "", De = /* @__PURE__ */ function() {
       return m ? function() {
@@ -4551,17 +4551,17 @@ body::-webkit-scrollbar-thumb {
     }, Oe = {
       mouseover: ts,
       mouseout: is
-    }, Ze = { visibilitychange: es }, qe = { keydown: os }, Re = {
+    }, Ze = { visibilitychange: es }, qe = { keydown: os }, Fe = {
       touchstart: A1,
       touchmove: z1,
       touchend: zt,
       touchcancel: zt
-    }, Fe = {
+    }, Re = {
       mousedown: A1,
       mousemove: z1,
       mouseup: zt,
       mouseleave: zt
-    }, pt = Nn("controls"), Jt = Nn("nav"), We = C ? !0 : e.navAsThumbnails, Kt = Nn("autoplay"), Ri = Nn("touch"), Fi = Nn("mouseDrag"), Ut = "tns-slide-active", Wi = "tns-slide-cloned", dt = "tns-complete", ft = {
+    }, pt = Nn("controls"), Jt = Nn("nav"), We = C ? !0 : e.navAsThumbnails, Kt = Nn("autoplay"), Fi = Nn("touch"), Ri = Nn("mouseDrag"), Ut = "tns-slide-active", Wi = "tns-slide-cloned", dt = "tns-complete", ft = {
       load: Wo,
       error: Vo
     }, Xt, Qt, Ve = e.preventScrollOnTouch === "force";
@@ -4571,13 +4571,13 @@ body::-webkit-scrollbar-thumb {
       var tn = e.navContainer, Bi = e.navContainer ? e.navContainer.outerHTML : "", bn, Ln = C ? x : D1(), ie = 0, oe = -1, xn = Ui(), ve = xn, ut = "tns-nav-active", be = "Carousel Page ", ni = " (Current Slide)";
     if (Kt)
       var Yi = e.autoplayDirection === "forward" ? 1 : -1, q = e.autoplayButton, Gi = e.autoplayButton ? e.autoplayButton.outerHTML : "", Ge = ["<span class='tns-visually-hidden'>", " animation</span>"], ht, un, _t, xe, gt;
-    if (Ri || Fi)
+    if (Fi || Ri)
       var se = {}, En = {}, mt, re = !1, Tn, ei = $ ? function(n, t) {
         return n.x - t.x;
       } : function(n, t) {
         return n.y - t.y;
       };
-    C || vt(fn || kn), X && (te = X, Un = "translate", F ? (Un += $ ? "3d(" : "3d(0px, ", me = $ ? ", 0px, 0px)" : ", 0px)") : (Un += $ ? "X(" : "Y(", me = ")")), g && (b.className = b.className.replace("tns-vpfix", "")), Oo(), Zo(), i1();
+    C || vt(fn || kn), X && (te = X, Un = "translate", R ? (Un += $ ? "3d(" : "3d(0px, ", me = $ ? ", 0px, 0px)" : ", 0px)") : (Un += $ ? "X(" : "Y(", me = ")")), g && (b.className = b.className.replace("tns-vpfix", "")), Oo(), Zo(), i1();
     function vt(n) {
       n && (An = zn = Bn = Yn = Wn = sn = Jn = Kn = !1);
     }
@@ -4627,7 +4627,7 @@ body::-webkit-scrollbar-thumb {
     }
     function n1() {
       var n = Z ? Z * 2 - L : 0;
-      return Qi(Ft) - n;
+      return Qi(Rt) - n;
     }
     function Nn(n) {
       if (e[n])
@@ -4700,7 +4700,7 @@ body::-webkit-scrollbar-thumb {
         var o = pn || cn;
         o.className += " tns-ah";
       }
-      if (Ft.insertBefore(an, b), cn.appendChild(b), qn(S, function(Y, Ce) {
+      if (Rt.insertBefore(an, b), cn.appendChild(b), qn(S, function(Y, Ce) {
         W(Y, "tns-item"), Y.id || (Y.id = O + "-item" + Ce), !g && In && W(Y, In), _n(Y, {
           "aria-hidden": "true",
           tabindex: "-1"
@@ -4708,9 +4708,9 @@ body::-webkit-scrollbar-thumb {
       }), en) {
         for (var s = i.createDocumentFragment(), u = i.createDocumentFragment(), v = en; v--; ) {
           var T = v % x, K = S[T].cloneNode(!0);
-          if (W(K, Wi), Rn(K, "id"), u.insertBefore(K, u.firstChild), g) {
+          if (W(K, Wi), Fn(K, "id"), u.insertBefore(K, u.firstChild), g) {
             var on = S[x - 1 - T].cloneNode(!0);
-            W(on, Wi), Rn(on, "id"), s.appendChild(on);
+            W(on, Wi), Fn(on, "id"), s.appendChild(on);
           }
         }
         b.insertBefore(s, b.firstChild), b.appendChild(u), S = b.children;
@@ -4721,7 +4721,7 @@ body::-webkit-scrollbar-thumb {
         var n = b.querySelectorAll("img");
         qn(n, function(t) {
           var o = t.src;
-          je || (o && o.indexOf("data:image") < 0 ? (t.src = "", R(t, ft), W(t, "loading"), t.src = o) : g1(t));
+          je || (o && o.indexOf("data:image") < 0 ? (t.src = "", F(t, ft), W(t, "loading"), t.src = o) : g1(t));
         }), Zn(function() {
           Tt(Ai(n), function() {
             Xt = !0;
@@ -4751,7 +4751,7 @@ body::-webkit-scrollbar-thumb {
       if (!g)
         for (var n = d, t = d + Math.min(x, y); n < t; n++) {
           var o = S[n];
-          o.style.left = (n - d) * 100 / y + "%", W(o, Fn), ln(o, In);
+          o.style.left = (n - d) * 100 / y + "%", W(o, Rn), ln(o, In);
         }
       if ($ && (M || C ? (Pn(A, "#" + O + " > .tns-item", "font-size:" + r.getComputedStyle(S[0]).fontSize + ";", $n(A)), Pn(A, "#" + O, "font-size:0;", $n(A))) : g && qn(S, function(mi, vi) {
         mi.style.marginLeft = No(vi);
@@ -4776,7 +4776,7 @@ body::-webkit-scrollbar-thumb {
     function r1() {
       if (li(), an.insertAdjacentHTML("afterbegin", '<div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">' + _1() + "</span>  of " + x + "</div>"), Qt = an.querySelector(".tns-liveregion .current"), Kt) {
         var n = sn ? "stop" : "start";
-        q ? _n(q, { "data-action": n }) : e.autoplayButtonOutput && (an.insertAdjacentHTML(ti(e.autoplayPosition), '<button type="button" data-action="' + n + '">' + Ge[0] + n + Ge[1] + Gn[0] + "</button>"), q = an.querySelector("[data-action]")), q && R(q, { click: M1 }), sn && (At(), Jn && R(b, Oe), Kn && R(b, Ze));
+        q ? _n(q, { "data-action": n }) : e.autoplayButtonOutput && (an.insertAdjacentHTML(ti(e.autoplayPosition), '<button type="button" data-action="' + n + '">' + Ge[0] + n + Ge[1] + Gn[0] + "</button>"), q = an.querySelector("[data-action]")), q && F(q, { click: M1 }), sn && (At(), Jn && F(b, Oe), Kn && F(b, Ze));
       }
       if (Jt) {
         if (tn)
@@ -4797,7 +4797,7 @@ body::-webkit-scrollbar-thumb {
           var u = D.substring(0, D.length - 18).toLowerCase(), v = "transition: all " + yn / 1e3 + "s";
           u && (v = "-" + u + "-" + v), Pn(A, "[aria-controls^=" + O + "-item]", v, $n(A));
         }
-        _n(bn[xn], { "aria-label": be + (xn + 1) + ni }), Rn(bn[xn], "tabindex"), W(bn[xn], ut), R(tn, Gt);
+        _n(bn[xn], { "aria-label": be + (xn + 1) + ni }), Fn(bn[xn], "tabindex"), W(bn[xn], ut), F(tn, Gt);
       }
       pt && (!B && (!H || !P) && (an.insertAdjacentHTML(ti(e.controlsPosition), '<div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button type="button" data-controls="prev" tabindex="-1" aria-controls="' + O + '">' + Vn[0] + '</button><button type="button" data-controls="next" tabindex="-1" aria-controls="' + O + '">' + Vn[1] + "</button></div>"), B = an.querySelector(".tns-controls")), (!H || !P) && (H = B.children[0], P = B.children[1]), e.controlsContainer && _n(B, {
         "aria-label": "Carousel Navigation",
@@ -4805,23 +4805,23 @@ body::-webkit-scrollbar-thumb {
       }), (e.controlsContainer || e.prevButton && e.nextButton) && _n([H, P], {
         "aria-controls": O,
         tabindex: "-1"
-      }), (e.controlsContainer || e.prevButton && e.nextButton) && (_n(H, { "data-controls": "prev" }), _n(P, { "data-controls": "next" })), Be = C1(H), Ye = C1(P), k1(), B ? R(B, Ne) : (R(H, Ne), R(P, Ne))), si();
+      }), (e.controlsContainer || e.prevButton && e.nextButton) && (_n(H, { "data-controls": "prev" }), _n(P, { "data-controls": "next" })), Be = C1(H), Ye = C1(P), k1(), B ? F(B, Ne) : (F(H, Ne), F(P, Ne))), si();
     }
     function a1() {
       if (g && Cn) {
         var n = {};
-        n[Cn] = Hn, R(b, n);
+        n[Cn] = Hn, F(b, n);
       }
-      Bn && R(b, Re, e.preventScrollOnTouch), Yn && R(b, Fe), Wn && R(i, qe), ue === "inner" ? J.on("outerResized", function() {
+      Bn && F(b, Fe, e.preventScrollOnTouch), Yn && F(b, Re), Wn && F(i, qe), ue === "inner" ? J.on("outerResized", function() {
         l1(), J.emit("innerLoaded", rn());
-      }) : (N || m || C || dn || !$) && R(r, { resize: c1 }), dn && (ue === "outer" ? J.on("innerLoaded", Lt) : fn || Lt()), ri(), fn ? u1() : kn && f1(), J.on("indexChanged", m1), ue === "inner" && J.emit("innerLoaded", rn()), typeof Yt == "function" && Yt(rn()), Ae = !0;
+      }) : (N || m || C || dn || !$) && F(r, { resize: c1 }), dn && (ue === "outer" ? J.on("innerLoaded", Lt) : fn || Lt()), ri(), fn ? u1() : kn && f1(), J.on("indexChanged", m1), ue === "inner" && J.emit("innerLoaded", rn()), typeof Yt == "function" && Yt(rn()), Ae = !0;
     }
     function qo() {
       if (A.disabled = !0, A.ownerNode && A.ownerNode.remove(), U(r, { resize: c1 }), Wn && U(i, qe), B && U(B, Ne), tn && U(tn, Gt), U(b, Oe), U(b, Ze), q && U(q, { click: M1 }), sn && clearInterval(ht), g && Cn) {
         var n = {};
         n[Cn] = Hn, U(b, n);
       }
-      Bn && U(b, Re), Yn && U(b, Fe);
+      Bn && U(b, Fe), Yn && U(b, Re);
       var t = [Zi, Vi, jo, Do, Bi, Gi];
       Zt.forEach(function(s, u) {
         var v = s === "container" ? an : e[s];
@@ -4829,7 +4829,7 @@ body::-webkit-scrollbar-thumb {
           var T = v.previousElementSibling ? v.previousElementSibling : !1, K = v.parentNode;
           v.outerHTML = t[u], e[s] = T ? T.nextElementSibling : K.firstElementChild;
         }
-      }), Zt = Fn = st = Rt = In = $ = an = cn = b = Ft = Zi = S = x = Ie = rt = C = m = Z = L = G = y = he = Wt = Wn = yn = ze = nn = dn = A = je = V = _e = en = E = qi = ge = Bt = te = Un = me = De = d = Xn = jn = vn = ct = Dn = Qn = Yt = J = ne = O = fn = He = lt = kn = Pe = Ne = Gt = Oe = Ze = qe = Re = Fe = pt = Jt = We = Kt = Ri = Fi = Ut = dt = ft = Xt = An = Vn = B = Vi = H = P = Be = Ye = zn = tn = Bi = bn = Ln = ie = oe = xn = ve = ut = be = ni = sn = Vt = Yi = Gn = Jn = q = Gi = Kn = Ge = ht = un = _t = xe = gt = se = En = mt = re = Tn = ei = Bn = Yn = null;
+      }), Zt = Rn = st = Ft = In = $ = an = cn = b = Rt = Zi = S = x = Ie = rt = C = m = Z = L = G = y = he = Wt = Wn = yn = ze = nn = dn = A = je = V = _e = en = E = qi = ge = Bt = te = Un = me = De = d = Xn = jn = vn = ct = Dn = Qn = Yt = J = ne = O = fn = He = lt = kn = Pe = Ne = Gt = Oe = Ze = qe = Fe = Re = pt = Jt = We = Kt = Fi = Ri = Ut = dt = ft = Xt = An = Vn = B = Vi = H = P = Be = Ye = zn = tn = Bi = bn = Ln = ie = oe = xn = ve = ut = be = ni = sn = Vt = Yi = Gn = Jn = q = Gi = Kn = Ge = ht = un = _t = xe = gt = se = En = mt = re = Tn = ei = Bn = Yn = null;
       for (var o in this)
         o !== "rebuild" && (this[o] = null);
       Ae = !1;
@@ -4850,7 +4850,7 @@ body::-webkit-scrollbar-thumb {
           if (!I)
             var ds = L, fs = Z;
         }
-        if (Wn = w("arrowKeys"), An = w("controls"), zn = w("nav"), Bn = w("touch"), Q = w("center"), Yn = w("mouseDrag"), sn = w("autoplay"), Jn = w("autoplayHoverPause"), Kn = w("autoplayResetOnVisibility"), t && (fn = w("disable"), m = w("fixedWidth"), yn = w("speed"), dn = w("autoHeight"), Vn = w("controlsText"), Gn = w("autoplayText"), Vt = w("autoplayTimeout"), I || (Z = w("edgePadding"), L = w("gutter"))), vt(fn), G = n1(), (!$ || C) && !fn && (x1(), $ || (ui(), s = !0)), (m || C) && (ge = pi(), vn = De()), (t || m) && (y = w("items"), he = w("slideBy"), v = y !== T, v && (!m && !C && (vn = De()), oi())), t && fn !== K && (fn ? u1() : Fo()), lt && (t || m || C) && (kn = ii(), kn !== on && (kn ? (di(Et(Ki(0))), f1()) : (Ro(), s = !0))), vt(fn || kn), sn || (Jn = Kn = !1), Wn !== Y && (Wn ? R(i, qe) : U(i, qe)), An !== Ce && (An ? B ? mn(B) : (H && mn(H), P && mn(P)) : B ? gn(B) : (H && gn(H), P && gn(P))), zn !== Qe && (zn ? (mn(tn), hi()) : gn(tn)), Bn !== le && (Bn ? R(b, Re, e.preventScrollOnTouch) : U(b, Re)), Yn !== _i && (Yn ? R(b, Fe) : U(b, Fe)), sn !== gi && (sn ? (q && mn(q), !un && !xe && At()) : (q && gn(q), un && Xe())), Jn !== ye && (Jn ? R(b, Oe) : U(b, Oe)), Kn !== mi && (Kn ? R(i, Ze) : U(i, Ze)), t) {
+        if (Wn = w("arrowKeys"), An = w("controls"), zn = w("nav"), Bn = w("touch"), Q = w("center"), Yn = w("mouseDrag"), sn = w("autoplay"), Jn = w("autoplayHoverPause"), Kn = w("autoplayResetOnVisibility"), t && (fn = w("disable"), m = w("fixedWidth"), yn = w("speed"), dn = w("autoHeight"), Vn = w("controlsText"), Gn = w("autoplayText"), Vt = w("autoplayTimeout"), I || (Z = w("edgePadding"), L = w("gutter"))), vt(fn), G = n1(), (!$ || C) && !fn && (x1(), $ || (ui(), s = !0)), (m || C) && (ge = pi(), vn = De()), (t || m) && (y = w("items"), he = w("slideBy"), v = y !== T, v && (!m && !C && (vn = De()), oi())), t && fn !== K && (fn ? u1() : Ro()), lt && (t || m || C) && (kn = ii(), kn !== on && (kn ? (di(Et(Ki(0))), f1()) : (Fo(), s = !0))), vt(fn || kn), sn || (Jn = Kn = !1), Wn !== Y && (Wn ? F(i, qe) : U(i, qe)), An !== Ce && (An ? B ? mn(B) : (H && mn(H), P && mn(P)) : B ? gn(B) : (H && gn(H), P && gn(P))), zn !== Qe && (zn ? (mn(tn), hi()) : gn(tn)), Bn !== le && (Bn ? F(b, Fe, e.preventScrollOnTouch) : U(b, Fe)), Yn !== _i && (Yn ? F(b, Re) : U(b, Re)), sn !== gi && (sn ? (q && mn(q), !un && !xe && At()) : (q && gn(q), un && Xe())), Jn !== ye && (Jn ? F(b, Oe) : U(b, Oe)), Kn !== mi && (Kn ? F(i, Ze) : U(i, Ze)), t) {
           if ((m !== as || Q !== ps) && (s = !0), dn !== cs && (dn || (cn.style.height = "")), An && Vn !== ls && (H.innerHTML = Vn[0], P.innerHTML = Vn[1]), q && Gn !== bi) {
             var xi = sn ? 1 : 0, wi = q.innerHTML, H1 = wi.length - bi[xi].length;
             wi.substring(H1) === bi[xi] && (q.innerHTML = wi.substring(0, H1) + Gn[xi]);
@@ -4919,7 +4919,7 @@ body::-webkit-scrollbar-thumb {
         si(), Pe = !0;
       }
     }
-    function Ro() {
+    function Fo() {
       if (Pe) {
         if (Z && I && (cn.style.margin = ""), en)
           for (var n = "tns-transparent", t = en; t--; )
@@ -4929,25 +4929,25 @@ body::-webkit-scrollbar-thumb {
     }
     function u1() {
       if (!He) {
-        if (A.disabled = !0, b.className = b.className.replace(ne.substring(1), ""), Rn(b, ["style"]), nn)
+        if (A.disabled = !0, b.className = b.className.replace(ne.substring(1), ""), Fn(b, ["style"]), nn)
           for (var n = en; n--; )
             g && gn(S[n]), gn(S[E - n - 1]);
-        if ((!$ || !g) && Rn(cn, ["style"]), !g)
+        if ((!$ || !g) && Fn(cn, ["style"]), !g)
           for (var t = d, o = d + x; t < o; t++) {
             var s = S[t];
-            Rn(s, ["style"]), ln(s, Fn), ln(s, In);
+            Fn(s, ["style"]), ln(s, Rn), ln(s, In);
           }
         si(), He = !0;
       }
     }
-    function Fo() {
+    function Ro() {
       if (He) {
         if (A.disabled = !1, b.className += ne, Ke(), nn)
           for (var n = en; n--; )
             g && mn(S[n]), mn(S[E - n - 1]);
         if (!g)
           for (var t = d, o = d + x; t < o; t++) {
-            var s = S[t], u = t < d + y ? Fn : In;
+            var s = S[t], u = t < d + y ? Rn : In;
             s.style.left = (t - d) * 100 / y + "%", W(s, u);
           }
         d1(), He = !1;
@@ -4993,7 +4993,7 @@ body::-webkit-scrollbar-thumb {
             var o = {};
             o[Cn] = function(u) {
               u.stopPropagation();
-            }, R(t, o), R(t, ft), t.src = ot(t, "data-src");
+            }, F(t, o), F(t, ft), t.src = ot(t, "data-src");
             var s = ot(t, "data-srcset");
             s && (t.srcset = s), W(t, "loading");
           }
@@ -5063,7 +5063,7 @@ body::-webkit-scrollbar-thumb {
     function li() {
       var n = kt(), t = n[0], o = n[1];
       qn(S, function(s, u) {
-        u >= t && u <= o ? Le(s, "aria-hidden") && (Rn(s, ["aria-hidden", "tabindex"]), W(s, Ut)) : Le(s, "aria-hidden") || (_n(s, {
+        u >= t && u <= o ? Le(s, "aria-hidden") && (Fn(s, ["aria-hidden", "tabindex"]), W(s, Ut)) : Le(s, "aria-hidden") || (_n(s, {
           "aria-hidden": "true",
           tabindex: "-1"
         }), ln(s, Ut));
@@ -5072,7 +5072,7 @@ body::-webkit-scrollbar-thumb {
     function Go() {
       for (var n = d + Math.min(x, y), t = E; t--; ) {
         var o = S[t];
-        t >= d && t < n ? (W(o, "tns-moving"), o.style.left = (t - d) * 100 / y + "%", W(o, Fn), ln(o, In)) : o.style.left && (o.style.left = "", W(o, In), ln(o, Fn)), ln(o, st);
+        t >= d && t < n ? (W(o, "tns-moving"), o.style.left = (t - d) * 100 / y + "%", W(o, Rn), ln(o, In)) : o.style.left && (o.style.left = "", W(o, In), ln(o, Rn)), ln(o, st);
       }
       setTimeout(function() {
         qn(S, function(s) {
@@ -5086,7 +5086,7 @@ body::-webkit-scrollbar-thumb {
         _n(n, {
           tabindex: "-1",
           "aria-label": be + (ve + 1)
-        }), ln(n, ut), _n(t, { "aria-label": be + (xn + 1) + ni }), Rn(t, "tabindex"), W(t, ut), ve = xn;
+        }), ln(n, ut), _n(t, { "aria-label": be + (xn + 1) + ni }), Fn(t, "tabindex"), W(t, ut), ve = xn;
       }
     }
     function w1(n) {
@@ -5147,7 +5147,7 @@ body::-webkit-scrollbar-thumb {
       nn || (u = Math.min(u, E));
       for (var v = n; v < u; v++) {
         var T = S[v];
-        s || (T.style.left = (v - d) * 100 / y + "%"), Rt && de && (T.style[de] = T.style[Me] = Rt * (v - n) / 1e3 + "s"), ln(T, t), W(T, o), s && _e.push(T);
+        s || (T.style.left = (v - d) * 100 / y + "%"), Ft && de && (T.style[de] = T.style[Me] = Ft * (v - n) / 1e3 + "s"), ln(T, t), W(T, o), s && _e.push(T);
       }
     }
     var Uo = /* @__PURE__ */ function() {
@@ -5156,7 +5156,7 @@ body::-webkit-scrollbar-thumb {
       } : function() {
         _e = [];
         var n = {};
-        n[Cn] = n[Ee] = Hn, U(S[Xn], n), R(S[d], n), L1(Xn, Fn, st, !0), L1(d, In, Fn), (!Cn || !Ee || !yn || !zi(b)) && Hn();
+        n[Cn] = n[Ee] = Hn, U(S[Xn], n), F(S[d], n), L1(Xn, Rn, st, !0), L1(d, In, Rn), (!Cn || !Ee || !yn || !zi(b)) && Hn();
       };
     }();
     function fi(n, t) {
@@ -5361,7 +5361,7 @@ body::-webkit-scrollbar-thumb {
         if (Math.abs(o)) {
           if (!ce(n)) {
             var s = we(n);
-            R(s, { click: function u(v) {
+            F(s, { click: function u(v) {
               $1(v), U(s, { click: u });
             } });
           }
@@ -5541,7 +5541,7 @@ body::-webkit-scrollbar-thumb {
         if (!p)
           return;
         f("body").elements[0].style.overflow = "hidden", f(".crs_blockers_popup").elements[0].classList.add("active");
-        const _ = p.getAttribute("data-id"), h = f(".crs_blockers_popup").elements[0], M = f(".crs_blockers_content").elements[0], I = yi.find((F) => F.id === parseInt(_ || "")), X = I == null ? void 0 : I.popupContent.title;
+        const _ = p.getAttribute("data-id"), h = f(".crs_blockers_popup").elements[0], M = f(".crs_blockers_content").elements[0], I = yi.find((R) => R.id === parseInt(_ || "")), X = I == null ? void 0 : I.popupContent.title;
         if (z(
           "exp_opt_in_v2__slider__open",
           `See details. ${X}`,
@@ -5551,7 +5551,7 @@ body::-webkit-scrollbar-thumb {
           "beforeend",
           '<div class="sticky_btn_wrapper"><button class="cta pop">Yes! Get Access Now!</button></div>'
         )), I) {
-          const { icon: F, title: D, text: de, button: fe, video: Me, review: Cn } = (I == null ? void 0 : I.popupContent) || {};
+          const { icon: R, title: D, text: de, button: fe, video: Me, review: Cn } = (I == null ? void 0 : I.popupContent) || {};
           M.insertAdjacentHTML(
             "beforeend",
             vo(
@@ -5559,7 +5559,7 @@ body::-webkit-scrollbar-thumb {
               Cn.reviewerName,
               Cn.reviewText,
               Cn.stars,
-              F,
+              R,
               D,
               de,
               fe,
@@ -5586,7 +5586,7 @@ body::-webkit-scrollbar-thumb {
           return;
         p.classList.toggle("is_open");
         const _ = p.previousElementSibling, h = p.querySelector("span");
-        _ && _.classList.toggle("is_open"), h && !p.classList.contains("is_open") ? (h.textContent = "Show more options", F1(".blokers_list li:nth-of-type(4) .blokers_item")) : h && (h.textContent = "Show less options");
+        _ && _.classList.toggle("is_open"), h && !p.classList.contains("is_open") ? (h.textContent = "Show more options", R1(".blokers_list li:nth-of-type(4) .blokers_item")) : h && (h.textContent = "Show less options");
       }), f("[data-closeexit]").on("click", function(a) {
         !a.target.closest(".crs_main_info") && !a.target.closest(".crs_stories") && (f("body").elements[0].style.overflow = "auto", f(".crs_exit_popup").elements[0].classList.remove("active"));
       }), f(".crs_exit_popup .cta").on("click", function(a) {
@@ -5630,7 +5630,7 @@ body::-webkit-scrollbar-thumb {
         );
         const I = (/* @__PURE__ */ new Date()).getTimezoneOffset() / 60, X = `GMT${I > 0 ? "-" : "+"}${Math.abs(I)}`;
         if (this.querySelector(".inputs2").classList.contains("active")) {
-          const F = f(".inputs2 .selected").elements[0].getAttribute("data-schedule");
+          const R = f(".inputs2 .selected").elements[0].getAttribute("data-schedule");
           fetch("https://conversionrate.top/api/dropservicing/register", {
             method: "POST",
             headers: {
@@ -5641,14 +5641,14 @@ body::-webkit-scrollbar-thumb {
               webinarId: window.innerWidth > 768 ? p === 1 ? 74 : 73 : p === 1 ? 75 : 72,
               name: _,
               email: h,
-              schedule: F
+              schedule: R
             })
           }).then((D) => D.json()).then((D) => {
             window.location.href = D.user.thank_you_url;
           });
         } else
           try {
-            const F = await fetch("https://conversionrate.top/api/dropservicing/get-schedules", {
+            const R = await fetch("https://conversionrate.top/api/dropservicing/get-schedules", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json"
@@ -5658,14 +5658,14 @@ body::-webkit-scrollbar-thumb {
                 timezone: X
               })
             }).then((D) => D.json());
-            console.log(F), console.log(this), this.querySelector(".inputs1").style.display = "none", this.querySelector(".inputs2").innerHTML = go(F.webinar.schedules, F.webinar.timezone), this.querySelector(".inputs2").classList.add("active"), z(
+            console.log(R), console.log(this), this.querySelector(".inputs1").style.display = "none", this.querySelector(".inputs2").innerHTML = go(R.webinar.schedules, R.webinar.timezone), this.querySelector(".inputs2").classList.add("active"), z(
               "exp_opt_in_v2__p_form__2__view",
               "Popup",
               "view",
               "Popup. Access Your Exclusive Online Training. Step 2"
             );
-          } catch (F) {
-            console.log(F);
+          } catch (R) {
+            console.log(R);
           }
       }), f("form input").on("input", function() {
         this.closest("label").classList.remove("error");
@@ -5769,7 +5769,7 @@ body::-webkit-scrollbar-thumb {
         a.getInfo().slideItems[0].classList.add("tns-current"), a.getInfo().navItems[1].classList.add("tns-nav-near"), a.events.on("indexChanged", function(p) {
           var I, X;
           const _ = p.slideItems, h = p.navItems;
-          Array.from(h).forEach((F) => F.classList.remove("tns-nav-near")), Array.from(_).forEach((F) => F.classList.remove("tns-current")), (I = h[p.index - 1]) == null || I.classList.add("tns-nav-near"), (X = h[p.index + 1]) == null || X.classList.add("tns-nav-near"), _[p.index].classList.add("tns-current");
+          Array.from(h).forEach((R) => R.classList.remove("tns-nav-near")), Array.from(_).forEach((R) => R.classList.remove("tns-current")), (I = h[p.index - 1]) == null || I.classList.add("tns-nav-near"), (X = h[p.index + 1]) == null || X.classList.add("tns-nav-near"), _[p.index].classList.add("tns-current");
         }), Se({
           container: "#trust_pilot ul",
           items: 3,
