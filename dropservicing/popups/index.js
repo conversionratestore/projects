@@ -469,7 +469,7 @@
               <img src="${c}/popups/img/guaranteed.svg" alt="guaranteed" />
             </div>`
       ) : ""}
-        ${s < 2 ? '<button class="crs_btn">Continue Watching</button>' : '<a class="crs_btn" href="https://start.dropservicing.com/partner" target="_blank">Access Special Offer Now</a>'}
+        ${s < 2 ? '<button class="crs_btn">Continue Watching</button>' : '<a class="crs_btn" href="https://start.dropservicing.com/partner30" target="_blank">Access Special Offer Now</a>'}
       </div>
       <div class="crs_stories">
         <p>Our Success Stories</p>
