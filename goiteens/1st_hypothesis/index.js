@@ -1,33 +1,33 @@
 (function() {
   "use strict";
-  const m = ({ name: p, dev: n }) => {
+  const u = ({ name: p, dev: n }) => {
     console.log(
       `%c EXP: ${p} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, u = async (p) => {
+  }, x = async (p) => {
     const n = (t) => new Promise((e, i) => {
       const r = t.split(".").pop();
       if (r === "js") {
         if (Array.from(document.scripts).map((c) => c.src.toLowerCase()).includes(t.toLowerCase()))
           return console.log(`Script ${t} allready downloaded!`), e("");
-        const o = document.createElement("script");
-        o.src = t, o.onload = e, o.onerror = i, document.head.appendChild(o);
+        const s = document.createElement("script");
+        s.src = t, s.onload = e, s.onerror = i, document.head.appendChild(s);
       } else if (r === "css") {
         if (Array.from(document.styleSheets).map((c) => {
           var a;
           return (a = c.href) == null ? void 0 : a.toLowerCase();
         }).includes(t.toLowerCase()))
           return console.log(`Style ${t} allready downloaded!`), e("");
-        const o = document.createElement("link");
-        o.rel = "stylesheet", o.href = t, o.onload = e, o.onerror = i, document.head.appendChild(o);
+        const s = document.createElement("link");
+        s.rel = "stylesheet", s.href = t, s.onload = e, s.onerror = i, document.head.appendChild(s);
       }
     });
     for (const t of p)
       await n(t), console.log(`Loaded librari ${t}`);
     console.log("All libraries loaded!");
   }, d = "https://conversionratestore.github.io/projects/goiteens/1st_hypothesis";
-  class x {
+  class h {
     constructor({ container: n, position: t }) {
       this.container = n, this.position = t || "beforeend", this.init();
     }
@@ -58,7 +58,7 @@
       </button>
     </form>`
       );
-      u([
+      x([
         "https://cdn.jsdelivr.net/npm/intl-tel-input@20.3.0/build/js/intlTelInput.min.js",
         "https://cdn.jsdelivr.net/npm/intl-tel-input@20.3.0/build/css/intlTelInput.css",
         "https://cdn.jsdelivr.net/npm/intl-tel-input@20.3.0/build/js/utils.js"
@@ -80,14 +80,14 @@
               const { add: c, remove: a } = this.errorToInput(t);
               i.isValidNumber() || c("Номер телефону невірний!"), i.isValidNumber() && (t.dataset.value = i.getNumber(), a());
             }
-          }, s = document.querySelector("#popup_input_name"), o = (c) => {
+          }, o = document.querySelector("#popup_input_name"), s = (c) => {
             const a = c.target.value;
             if (a) {
-              const { add: l, remove: A } = this.errorToInput(s);
+              const { add: l, remove: A } = this.errorToInput(o);
               A(), /\d/.test(a) ? l("Ім’я невірне") : a.trim() === "" ? l("Ім’я обов’язкове") : a.length < 2 ? l("Поле повинно містити мінімум 2 символи") : A();
             }
           };
-          t.addEventListener("input", r), s == null || s.addEventListener("input", o);
+          t.addEventListener("input", r), o == null || o.addEventListener("input", s);
         }
       });
     }
@@ -115,16 +115,32 @@
         const e = n.querySelector("#popup_input_name"), i = n.querySelector("#popup_input_phone");
         if (!e || !i)
           return;
-        const r = e == null ? void 0 : e.value, s = i == null ? void 0 : i.dataset.value, { add: o, remove: c } = this.errorToInput(e), { add: a, remove: l } = this.errorToInput(i);
+        const r = e == null ? void 0 : e.value, o = i == null ? void 0 : i.dataset.value, { add: s, remove: c } = this.errorToInput(e), { add: a, remove: l } = this.errorToInput(i);
         let A = !0;
-        if ((!r || r.trim() === "") && (o("Ім’я обов’язкове"), A = !1), (!s || s.trim() === "") && (i == null || i.classList.add("is-invalid"), a("Номер телефону невірний!"), A = !1), !A)
+        if ((!r || r.trim() === "") && (s("Ім’я обов’язкове"), A = !1), (!o || o.trim() === "") && (i == null || i.classList.add("is-invalid"), a("Номер телефону невірний!"), A = !1), !A)
           return;
         const g = n.querySelector('button[type="submit"]');
         g == null || g.setAttribute("disabled", "true");
+        try {
+          (await (await fetch("https://courses-all.goiteens.com/v-gl-v3/crm/lead.php", {
+            method: "POST",
+            body: JSON.stringify({
+              name: r,
+              phone: o,
+              SiteURL: "https://courses-all.goiteens.com/v-gl-v3/",
+              product_name: "GoITeens_Courses_All_GL_v3"
+            }),
+            headers: {
+              "Content-type": "application/json; charset=UTF-8"
+            }
+          })).json()).Deal_ID && (location.href = "https://courses-all.goiteens.com/v-gl/success/");
+        } catch (m) {
+          console.log("error", m);
+        }
       });
     }
   }
-  const h = `.crs-popup {
+  const f = `.crs-popup {
   max-width: 1140px;
   border: none;
   border-radius: 40px;
@@ -455,12 +471,12 @@
   }
 }
 `;
-  class f {
+  class w {
     constructor() {
       this.popup = null, this.init();
     }
     init() {
-      this.initStyles(), this.render(), this.eventListeners(), new x({ container: document.querySelector(".crs-form__container") });
+      this.initStyles(), this.render(), this.eventListeners(), new h({ container: document.querySelector(".crs-form__container") });
     }
     render() {
       const n = (
@@ -521,10 +537,10 @@
     }
     initStyles() {
       const n = document.createElement("style");
-      n.textContent = h, document.head.insertAdjacentElement("beforeend", n);
+      n.textContent = f, document.head.insertAdjacentElement("beforeend", n);
     }
   }
-  const w = `.crs-achieve {
+  const b = `.crs-achieve {
   margin-bottom: 60px;
   position: relative;
   padding-block: 84px;
@@ -775,7 +791,7 @@
     padding-top: 16px;
   }
 }
-`, b = [
+`, B = [
     {
       icon: `${d}/img/icons/icon-1.webp`,
       title: "Хочу щоб моя дитина замість ігор і TikTok витрачала час із користю",
@@ -904,9 +920,9 @@
       description: "Дізнайтесь які напрямки будуть відповідати інтересам і талантам вашої дитини"
     }
   ];
-  class B {
+  class v {
     constructor({ container: n, position: t }) {
-      this.container = n, this.position = t || "beforeend", this.popup = new f(), this.init();
+      this.container = n, this.position = t || "beforeend", this.popup = new w(), this.init();
     }
     init() {
       if (!this.container) {
@@ -922,7 +938,7 @@
       <div class="container">
         <h2 class="section-title mb-6 md:mb-10">Що ви хочете досягти завдяки IT курсам?</h2>
         <div class="crs-accordion">
-          ${b.map(({ icon: t, title: e, body: i, action: r, description: s }) => (
+          ${B.map(({ icon: t, title: e, body: i, action: r, description: o }) => (
           /* HTML */
           `<div class="crs-accordion__item" data-state="close">
                 <div class="crs-accordion__title"><img src="${t}" width="41" height="41" load="lazy"><h3>${e}</h3><span class="crs-accordion__toggle"><span>Хочу!</span></span></div>
@@ -933,7 +949,7 @@
                       <button data-popup="${r.popup}" class="crs-accordion__action">${r.text}</button>
                     </div>
                     <div class="crs-accordion__description">
-                      ${s}
+                      ${o}
                     </div>
                   </div>
                 </div>
@@ -950,7 +966,7 @@
       n.forEach((e) => {
         const i = e.querySelector(".crs-accordion__title");
         i == null || i.addEventListener("click", () => {
-          e.getAttribute("data-state") === "open" ? e.setAttribute("data-state", "close") : (n.forEach((s) => s.setAttribute("data-state", "close")), e.setAttribute("data-state", "open"));
+          e.getAttribute("data-state") === "open" ? e.setAttribute("data-state", "close") : (n.forEach((o) => o.setAttribute("data-state", "close")), e.setAttribute("data-state", "open"));
         });
       }), this.container.querySelectorAll('.crs-accordion__action[data-popup="free-lesson"]').forEach((e) => {
         e.addEventListener("click", () => {
@@ -960,10 +976,10 @@
     }
     initStyles() {
       const n = document.createElement("style");
-      n.innerHTML = w, document.head.appendChild(n);
+      n.innerHTML = b, document.head.appendChild(n);
     }
   }
-  const v = `.crs-badges {
+  const y = `.crs-badges {
   position: absolute;
   left: 50%;
   bottom: -184px;
@@ -1141,7 +1157,7 @@
   }
 }
 `;
-  class y {
+  class M {
     constructor({ container: n, position: t }) {
       this.container = n, this.position = t || "beforeend", this.init();
     }
@@ -1234,10 +1250,10 @@
     }
     initStyles() {
       const n = document.createElement("style");
-      n.innerHTML = v, document.head.appendChild(n);
+      n.innerHTML = y, document.head.appendChild(n);
     }
   }
-  const M = `@media (min-width: 1280px) {
+  const z = `@media (min-width: 1280px) {
   header.header {
     position: relative;
     margin-bottom: 206px;
@@ -1292,7 +1308,7 @@
   }
 }
 `;
-  class z {
+  class I {
     constructor() {
       this.init();
     }
@@ -1301,10 +1317,10 @@
     }
     initStyles() {
       const n = document.createElement("style");
-      n.innerHTML = M, document.head.appendChild(n);
+      n.innerHTML = z, document.head.appendChild(n);
     }
   }
-  const I = `@media (min-width: 1200px) {
+  const G = `@media (min-width: 1200px) {
   br.mobile {
     display: none;
   }
@@ -1315,7 +1331,7 @@
     display: none;
   }
 }`;
-  m({
+  u({
     name: "1st hypothesis",
     dev: "OS"
   });
@@ -1324,11 +1340,11 @@
       this.init();
     }
     init() {
-      location.pathname.includes("v-gl-v2/") && (this.initStyles(), new z(), new y({ container: document.querySelector("header"), position: "beforeend" }), new B({ container: document.querySelector("main"), position: "afterbegin" }));
+      location.pathname.includes("v-gl-v2/") && (this.initStyles(), new I(), new M({ container: document.querySelector("header"), position: "beforeend" }), new v({ container: document.querySelector("main"), position: "afterbegin" }));
     }
     initStyles() {
       const n = document.createElement("style");
-      n.textContent = I, document.head.appendChild(n);
+      n.textContent = G, document.head.appendChild(n);
     }
   }
   new E();
