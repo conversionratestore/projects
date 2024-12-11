@@ -381,7 +381,7 @@
   ], x = [
     "This webinar is packed with life-changing insights, but it’s only available for a limited time. Watch it while you still can!",
     "This webinar is only available for a limited time, so watch it while you still can!",
-    "You've unlocked an exclusive <b>$2,000 discount</b> on our Drop Servicing Partner Program!"
+    "You've unlocked an exclusive <b>$4,000 discount</b> on our Drop Servicing Partner Program!"
   ], b = [
     "IN THE NEXT 15 MINUTES, YOU'LL DISCOVER:",
     "IN THE NEXT 20 MINUTES, YOU’LL DISCOVER:",
