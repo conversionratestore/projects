@@ -715,7 +715,7 @@
     {
       start: "62.69",
       time: "63.97",
-      text: "<b>Bonus #1</b>: $200 Cash Back to you"
+      text: "<b>Bonus #1</b>: $500 Cash Back to you"
     },
     {
       start: "63.97",
@@ -774,13 +774,8 @@
     },
     {
       start: "94.09",
-      time: "108.02",
-      text: "<b>Q&A Session</b> - Addressing all of your common questions"
-    },
-    {
-      start: "108.02",
       time: "110.68",
-      text: "<b>Closing Remarks</b> - A recap of the presented opportunities"
+      text: "<b>Q&A Session</b> - Addressing all of your common questions"
     }
   ], S = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
 <g clip-path="url(#clip0_2066_824)">
@@ -849,7 +844,7 @@
     <div class="point_block_wrapper">${b.map((o) => T(o)).join("")}</div>
   </div>
 </div>`
-  ), C = (
+  ), B = (
     /* HTML */
     `<div class="mobile_info_block">
   <p class="text">${b[0].text}</p>
@@ -857,7 +852,7 @@
 </div>`
   );
   x({ name: "Webinar Timeline", dev: "YK" }), v("webinar_timeline");
-  class B {
+  class C {
     constructor() {
       this.init();
     }
@@ -865,7 +860,7 @@
       p("body", async () => {
         t("body").elements[0].insertAdjacentHTML("afterbegin", `<style class="crs_style">${u}</style>`);
       }), p("#vjs_video_3", async () => {
-        window.innerWidth > 768 ? t(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", f) : (t(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", C), t(".main-container").elements[0].insertAdjacentHTML("beforeend", f), t(".mobile_info_block button").elements[0].addEventListener("click", () => {
+        window.innerWidth > 768 ? t(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", f) : (t(".live_content_wrapper-working-area_attendee").elements[0].insertAdjacentHTML("beforeend", B), t(".main-container").elements[0].insertAdjacentHTML("beforeend", f), t(".mobile_info_block button").elements[0].addEventListener("click", () => {
           t(".points_block").elements[0].scrollIntoView({ behavior: "smooth" });
         }));
       }), p(".point_block", async () => {
@@ -884,7 +879,7 @@
         const i = t("video").elements[0].currentTime;
         if (i === 0)
           return;
-        r || (this.startPosition(), r = !0), i > 45.72 * 60 && t(".point_block.hidden").elements.forEach((h) => h.classList.remove("hidden"));
+        r || (this.startPosition(), r = !0), i > 46.44 * 60 && t(".point_block.hidden").elements.forEach((h) => h.classList.remove("hidden"));
         const s = t(".point_block.active").elements[0];
         if (i > 58.48 * 60 && window.innerWidth < 768 && (t(".mobile_info_block").elements[0].remove(), t(".points_block").elements[0].remove(), t(".crs_style").elements[0].remove(), clearInterval(a)), !s)
           return;
@@ -945,6 +940,6 @@
       });
     }
   }
-  new B();
+  new C();
 })();
 //# sourceMappingURL=index.js.map
