@@ -445,14 +445,14 @@
   .live_content_wrapper-working-area_attendee {
     height: calc(100vh - 55px);
   }
-}/*# sourceMappingURL=style.css.map */`, p = (n, e) => {
-    const o = setInterval(() => {
-      const r = document.querySelector(n);
-      r && (clearInterval(o), e(r));
+}/*# sourceMappingURL=style.css.map */`, p = (o, e) => {
+    const n = setInterval(() => {
+      const r = document.querySelector(o);
+      r && (clearInterval(n), e(r));
     }, 100);
-  }, x = ({ name: n, dev: e }) => {
+  }, x = ({ name: o, dev: e }) => {
     console.log(
-      `%c EXP: ${n} (DEV: ${e})`,
+      `%c EXP: ${o} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   };
@@ -460,12 +460,12 @@
     constructor(e) {
       this.elements = typeof e == "string" ? document.querySelectorAll(e) : e instanceof Element ? [e] : e;
     }
-    on(e, o, r) {
-      return typeof o == "function" && (r = o, o = ""), this.elements.forEach(function(a) {
+    on(e, n, r) {
+      return typeof n == "function" && (r = n, n = ""), this.elements.forEach(function(a) {
         a.addEventListener(e, function(i) {
           var s;
-          if (o !== "") {
-            let l = (s = i.target) == null ? void 0 : s.closest(o);
+          if (n !== "") {
+            let l = (s = i.target) == null ? void 0 : s.closest(n);
             l && (r == null || r.call(l, i));
           } else
             r == null || r.call(a, i);
@@ -473,53 +473,53 @@
       }), this;
     }
     addClass(e) {
-      return this.elements.forEach(function(o) {
-        o.classList.add(e);
+      return this.elements.forEach(function(n) {
+        n.classList.add(e);
       }), this;
     }
     removeClass(e) {
-      return this.elements.forEach(function(o) {
-        o.classList.remove(e);
+      return this.elements.forEach(function(n) {
+        n.classList.remove(e);
       }), this;
     }
     toggleClass(e) {
-      return this.elements.forEach(function(o) {
-        o.classList.toggle(e);
+      return this.elements.forEach(function(n) {
+        n.classList.toggle(e);
       }), this;
     }
     each(e) {
-      return this.elements.forEach((o, r) => {
-        e(o, r);
+      return this.elements.forEach((n, r) => {
+        e(n, r);
       }), this;
     }
-    style(e, o) {
+    style(e, n) {
       const r = e.split("-").map((a, i) => i === 0 ? a : a.charAt(0).toUpperCase() + a.slice(1)).join("");
       return this.elements.forEach(function(a) {
-        a.style[r] = o;
+        a.style[r] = n;
       }), this;
     }
   }
-  const t = (n) => new k(n), v = (n) => {
+  const t = (o) => new k(o), v = (o) => {
     let e = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", n, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", o, "variant_1"));
     }, 1e3);
-  }, y = (n, e = "info") => {
-    let o;
+  }, y = (o, e = "info") => {
+    let n;
     switch (e) {
       case "info":
-        o = "color: #3498db;";
+        n = "color: #3498db;";
         break;
       case "warn":
-        o = "color: #f39c12;";
+        n = "color: #f39c12;";
         break;
       case "error":
-        o = "color: #e74c3c;";
+        n = "color: #e74c3c;";
         break;
       case "success":
-        o = "color: #2ecc71;";
+        n = "color: #2ecc71;";
         break;
     }
-    console.log(`%c>>> ${n}`, `${o} font-size: 16px; font-weight: 600`);
+    console.log(`%c>>> ${o}`, `${n} font-size: 16px; font-weight: 600`);
   }, b = [
     {
       start: "0",
@@ -774,11 +774,11 @@
     },
     {
       start: "94.09",
-      time: "108.11",
+      time: "108.02",
       text: "<b>Q&A Session</b> - Addressing all of your common questions"
     },
     {
-      start: "108.11",
+      start: "108.02",
       time: "110.68",
       text: "<b>Closing Remarks</b> - A recap of the presented opportunities"
     }
@@ -804,9 +804,9 @@
 <path d="M6.5 1L1.5 6L6.5 11" stroke="#100119" stroke-width="1.4" stroke-linecap="round"/>
 </svg>`, P = `<svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
 <path d="M1 1.06543L6 6.06543L1 11.0654" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-</svg>`, T = (n) => (
+</svg>`, T = (o) => (
     /* HTML */
-    `<div class="point_block ${+n.start > 44 ? "hidden" : ""}" data-time="${+n.time * 60}">
+    `<div class="point_block ${+o.start > 44 ? "hidden" : ""}" data-time="${+o.time * 60}">
     <div class="progress_step">
       <span>
         <div class="progress_border">
@@ -820,19 +820,19 @@
       <div class="point_time">
         ${S}
         <span
-          >${+n.start > 9 ? +n.start > 59 ? `1:${+n.start % 60 > 9 ? Math.floor(+n.start) % 60 : "0" + Math.floor(+n.start) % 60}` : Math.floor(+n.start) : "0" + Math.floor(+n.start)}:${+n.start % 1 * 60 < 10 ? "0" + Math.floor(+n.start % 1 * 60) : Math.floor(+n.start % 1 * 60)}</span
+          >${+o.start > 9 ? +o.start > 59 ? `1:${+o.start % 60 > 9 ? Math.floor(+o.start) % 60 : "0" + Math.floor(+o.start) % 60}` : Math.floor(+o.start) : "0" + Math.floor(+o.start)}:00</span
         >
         <span class="status"></span>
       </div>
-      ${n.type ? (
+      ${o.type ? (
       /* HTML */
       `
-            <span class="badge_${n.type}"
-              >${n.type === "critical" ? `${L} Critical information` : n.type === "exclusive" ? "EXCLUSIVE OFFER" : "Achieve Financial Freedom"}</span
+            <span class="badge_${o.type}"
+              >${o.type === "critical" ? `${L} Critical information` : o.type === "exclusive" ? "EXCLUSIVE OFFER" : "Achieve Financial Freedom"}</span
             >
           `
     ) : ""}
-      <p>${n.text}</p>
+      <p>${o.text}</p>
     </div>
   </div>`
   ), f = (
@@ -846,7 +846,7 @@
     </div>
   </div>
   <div class="shadows left">
-    <div class="point_block_wrapper">${b.map((n) => T(n)).join("")}</div>
+    <div class="point_block_wrapper">${b.map((o) => T(o)).join("")}</div>
   </div>
 </div>`
   ), C = (
@@ -877,7 +877,7 @@
       });
     }
     async checkTime() {
-      const e = 2 * Math.PI * 17, o = t(".point_block_wrapper").elements[0];
+      const e = 2 * Math.PI * 17, n = t(".point_block_wrapper").elements[0];
       let r = !1;
       const a = setInterval(() => {
         var _, g, w;
@@ -891,21 +891,21 @@
         const l = ((_ = s.previousElementSibling) == null ? void 0 : _.dataset.time) || 0, c = s.querySelector(".progress_step circle"), d = (i - +l) / (+s.dataset.time - +l) * 100;
         if (c.style.strokeDashoffset = (e - d / 100 * e).toString(), d > 100) {
           s.classList.remove("active"), s.classList.add("viewed"), (g = s.nextElementSibling) == null || g.classList.add("active");
-          const h = (w = s.nextElementSibling) == null ? void 0 : w.getBoundingClientRect().left, E = o.scrollLeft, M = o.clientWidth / 2 - 100;
-          if (o.scrollTo({
-            left: E + (h - M),
+          const h = (w = s.nextElementSibling) == null ? void 0 : w.getBoundingClientRect().left, E = n.scrollLeft, D = n.clientWidth / 2 - 100;
+          if (n.scrollTo({
+            left: E + (h - D),
             behavior: "smooth"
           }), window.innerWidth < 768) {
-            const D = t(".mobile_info_block").elements[0], $ = t(".point_block.active").elements[0];
-            D.querySelector(".text").innerHTML = $.querySelector("p").innerHTML;
+            const M = t(".mobile_info_block").elements[0], H = t(".point_block.active").elements[0];
+            M.querySelector(".text").innerHTML = H.querySelector("p").innerHTML;
           }
         }
       }, 1e3);
     }
     async startPosition() {
-      const e = t("video").elements[0].currentTime, o = t(".point_block").elements, r = 2 * Math.PI * 17;
+      const e = t("video").elements[0].currentTime, n = t(".point_block").elements, r = 2 * Math.PI * 17;
       let a = null;
-      if (o.forEach((i, s) => {
+      if (n.forEach((i, s) => {
         if (i.dataset.time && +i.dataset.time < e)
           i.classList.add("viewed"), a = s;
         else {
@@ -915,7 +915,7 @@
           }
           if (i.dataset.time && a !== null && s === a + 1) {
             i.classList.add("active");
-            const l = i.querySelector(".progress_step circle"), c = +o[s - 1].dataset.time, d = (e - c) / (+i.dataset.time - c) * 100;
+            const l = i.querySelector(".progress_step circle"), c = +n[s - 1].dataset.time, d = (e - c) / (+i.dataset.time - c) * 100;
             l.style.strokeDashoffset = (r - d / 100 * r).toString();
           }
         }
