@@ -4116,7 +4116,7 @@ body::-webkit-scrollbar-thumb {
       <div class="crs_blockers_content"></div>
     </div>
 
-    ${window.innerWidth < 768 ? '<div class="sticky_btn_wrapper"><button class="cta pop">Yes! Get Access Now!</button></div>' : ""}
+    ${window.innerWidth < 768 ? '<div class="sticky_btn_wrapper"><button class="cta pop">Access Your Free Training Now!</button></div>' : ""}
   </div>
 `
   ), mo = (e, i, r, a, c, h, l, p, _) => (
@@ -5515,7 +5515,7 @@ body::-webkit-scrollbar-thumb {
           "What’s stopping you from achieving your financial and lifestyle goals?"
         ), window.innerWidth < 768 && (console.log("MOB"), C.insertAdjacentHTML(
           "beforeend",
-          '<div class="sticky_btn_wrapper"><button class="cta pop">Yes! Get Access Now!</button></div>'
+          '<div class="sticky_btn_wrapper"><button class="cta pop">Access Your Free Training Now!</button></div>'
         )), j) {
           const { icon: T, title: Cn, text: ue, button: Se, video: Nn, review: ie } = (j == null ? void 0 : j.popupContent) || {};
           $.insertAdjacentHTML(
