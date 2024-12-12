@@ -1,40 +1,40 @@
 (function() {
   "use strict";
-  const A = (a, n, e, t = "") => {
+  const A = (a, n, t, e = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: a,
       event_desc: n,
-      event_type: e,
-      event_loc: t
-    }), console.log(`Event: ${a} | ${n} | ${e} | ${t}`);
-  }, f = ({ name: a, dev: n }) => {
+      event_type: t,
+      event_loc: e
+    }), console.log(`Event: ${a} | ${n} | ${t} | ${e}`);
+  }, w = ({ name: a, dev: n }) => {
     console.log(
       `%c EXP: ${a} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, w = async (a) => {
-    const n = (e) => new Promise((t, i) => {
-      const s = e.split(".").pop();
+  }, b = async (a) => {
+    const n = (t) => new Promise((e, i) => {
+      const s = t.split(".").pop();
       if (s === "js") {
-        if (Array.from(document.scripts).map((p) => p.src.toLowerCase()).includes(e.toLowerCase()))
-          return console.log(`Script ${e} allready downloaded!`), t("");
+        if (Array.from(document.scripts).map((p) => p.src.toLowerCase()).includes(t.toLowerCase()))
+          return console.log(`Script ${t} allready downloaded!`), e("");
         const o = document.createElement("script");
-        o.src = e, o.onload = t, o.onerror = i, document.head.appendChild(o);
+        o.src = t, o.onload = e, o.onerror = i, document.head.appendChild(o);
       } else if (s === "css") {
         if (Array.from(document.styleSheets).map((p) => {
           var c;
           return (c = p.href) == null ? void 0 : c.toLowerCase();
-        }).includes(e.toLowerCase()))
-          return console.log(`Style ${e} allready downloaded!`), t("");
+        }).includes(t.toLowerCase()))
+          return console.log(`Style ${t} allready downloaded!`), e("");
         const o = document.createElement("link");
-        o.rel = "stylesheet", o.href = e, o.onload = t, o.onerror = i, document.head.appendChild(o);
+        o.rel = "stylesheet", o.href = t, o.onload = e, o.onerror = i, document.head.appendChild(o);
       }
     });
-    for (const e of a)
-      await n(e), console.log(`Loaded librari ${e}`);
+    for (const t of a)
+      await n(t), console.log(`Loaded librari ${t}`);
     console.log("All libraries loaded!");
-  }, b = (a, n, e, t) => {
+  }, v = (a, n, t, e) => {
     let i = [];
     if (typeof a == "string")
       i = document.querySelectorAll(a);
@@ -57,16 +57,16 @@
       }
     ), r = new IntersectionObserver((o) => {
       o.forEach((p) => {
-        p.isIntersecting ? (A(n || `view_element_${p.target.id}`, e || "Element visibility", "view", t || p.target.id), s.unobserve(p.target)) : s.observe(p.target), r.unobserve(p.target);
+        p.isIntersecting ? (A(n || `view_element_${p.target.id}`, t || "Element visibility", "view", e || p.target.id), s.unobserve(p.target)) : s.observe(p.target), r.unobserve(p.target);
       });
     });
     i.forEach((o) => {
       s.observe(o);
     });
-  }, l = "https://conversionratestore.github.io/projects/goiteens/1st_hypothesis", u = "accordion_index";
-  class v {
-    constructor({ container: n, position: e }) {
-      this.container = n, this.position = e || "beforeend", this.init();
+  }, l = "https://conversionratestore.github.io/projects/goiteens/1st_hypothesis", x = "accordion_index";
+  class y {
+    constructor({ container: n, position: t }) {
+      this.container = n, this.position = t || "beforeend", this.init();
     }
     init() {
       this.render();
@@ -95,16 +95,16 @@
       </button>
     </form>`
       );
-      w([
+      b([
         "https://cdn.jsdelivr.net/npm/intl-tel-input@20.3.0/build/js/intlTelInput.min.js",
         "https://cdn.jsdelivr.net/npm/intl-tel-input@20.3.0/build/css/intlTelInput.css",
         "https://cdn.jsdelivr.net/npm/intl-tel-input@20.3.0/build/js/utils.js"
       ]).then(() => {
-        var t;
-        (t = this.container) == null || t.insertAdjacentHTML(this.position, n), this.submitForm();
-        const e = document.querySelector("#popup_input_phone");
-        if (e) {
-          const i = window.intlTelInput(e, {
+        var e;
+        (e = this.container) == null || e.insertAdjacentHTML(this.position, n), this.submitForm();
+        const t = document.querySelector("#popup_input_phone");
+        if (t) {
+          const i = window.intlTelInput(t, {
             initialCountry: "ua",
             countrySearch: !1,
             nationalMode: !0,
@@ -113,9 +113,9 @@
               phone: "phone_full"
             })
           }), s = () => {
-            if (e.value) {
-              const { add: c, remove: g } = this.errorToInput(e);
-              i.isValidNumber() || c("Номер телефону невірний!"), i.isValidNumber() && (e.dataset.value = i.getNumber(), g());
+            if (t.value) {
+              const { add: c, remove: g } = this.errorToInput(t);
+              i.isValidNumber() || c("Номер телефону невірний!"), i.isValidNumber() && (t.dataset.value = i.getNumber(), g());
             }
           }, r = document.querySelector("#popup_input_name"), o = (c) => {
             const g = c.target.value;
@@ -124,7 +124,7 @@
               d(), /\d/.test(g) ? m("Ім’я невірне") : g.trim() === "" ? m("Ім’я обов’язкове") : g.length < 2 ? m("Поле повинно містити мінімум 2 символи") : d();
             }
           };
-          e.addEventListener("input", s), e.addEventListener("change", () => {
+          t.addEventListener("input", s), t.addEventListener("change", () => {
             A("exp_hyp_2_1_input_02", "Phone", "input", "Choose the perfect course");
           }), r == null || r.addEventListener("input", o), r.addEventListener("change", () => {
             A("exp_hyp_2_1_input_01", "Name", "input", "Choose the perfect course");
@@ -137,11 +137,11 @@
       });
     }
     errorToInput(n) {
-      const e = document.createElement("div");
+      const t = document.createElement("div");
       return {
-        add: (t) => {
+        add: (e) => {
           var i;
-          this.removeErrors(n), n.classList.add("is-invalid"), e.style.color = "rgb(202, 56, 31)", e.classList.add("is-label-invalid", "just-validate-error-label"), e.textContent = t, (i = n.parentElement) == null || i.appendChild(e);
+          this.removeErrors(n), n.classList.add("is-invalid"), t.style.color = "rgb(202, 56, 31)", t.classList.add("is-label-invalid", "just-validate-error-label"), t.textContent = e, (i = n.parentElement) == null || i.appendChild(t);
         },
         remove: () => {
           n.classList.remove("is-invalid"), this.removeErrors(n);
@@ -149,18 +149,18 @@
       };
     }
     removeErrors(n) {
-      var t;
-      const e = (t = n.parentElement) == null ? void 0 : t.querySelectorAll(".just-validate-error-label");
-      e == null || e.forEach((i) => i.remove());
+      var e;
+      const t = (e = n.parentElement) == null ? void 0 : e.querySelectorAll(".just-validate-error-label");
+      t == null || t.forEach((i) => i.remove());
     }
     submitForm() {
       const n = document.querySelector(".crs-popup__form form");
-      n == null || n.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const t = n.querySelector("#popup_input_name"), i = n.querySelector("#popup_input_phone");
-        if (!t || !i)
+      n == null || n.addEventListener("submit", async (t) => {
+        t.preventDefault();
+        const e = n.querySelector("#popup_input_name"), i = n.querySelector("#popup_input_phone");
+        if (!e || !i)
           return;
-        const s = t == null ? void 0 : t.value, r = i == null ? void 0 : i.dataset.value, { add: o, remove: p } = this.errorToInput(t), { add: c, remove: g } = this.errorToInput(i);
+        const s = e == null ? void 0 : e.value, r = i == null ? void 0 : i.dataset.value, { add: o, remove: p } = this.errorToInput(e), { add: c, remove: g } = this.errorToInput(i);
         let m = !0;
         if ((!s || s.trim() === "") && (o("Ім’я обов’язкове"), m = !1), (!r || r.trim() === "") && (i == null || i.classList.add("is-invalid"), c("Номер телефону невірний!"), m = !1), !m)
           return;
@@ -180,13 +180,13 @@
             }
           })).json()).Deal_ID) {
             location.href = "https://courses-all.goiteens.com/v-gl/success/";
-            const D = sessionStorage.getItem(u);
-            A("exp_hyp_2_1_submit_01", `Sign up - ${D}`, "submit", "Choose the perfect course"), d == null || d.removeAttribute("disabled"), n.reset();
-            const h = n.closest("dialog");
-            h && h.close();
+            const P = sessionStorage.getItem(x);
+            A("exp_hyp_2_1_submit_01", `Sign up - ${P}`, "submit", "Choose the perfect course"), d == null || d.removeAttribute("disabled"), n.reset();
+            const f = n.closest("dialog");
+            f && f.close();
           }
-        } catch (x) {
-          console.log("error", x);
+        } catch (h) {
+          console.log("error", h);
         }
       });
     }
@@ -202,8 +202,12 @@
   background-position: top 0 right 0;
 }
 
+body:has(.crs-popup[open]) {
+  overflow: hidden;
+}
 .crs-popup::backdrop {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%);
+  backdrop-filter: blur(4px);
 }
 .crs-popup .iti__dropdown-content {
   overflow-y: hidden !important;
@@ -418,7 +422,7 @@
   line-height: 24px;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 992px) {
   .crs-popup {
     max-width: 360px;
     border-radius: 24px;
@@ -427,8 +431,8 @@
   }
 
   .crs-popup__close {
-    top: 17px;
-    right: 17px;
+    top: 10px;
+    right: 12px;
     width: 32px;
     height: 32px;
   }
@@ -521,13 +525,86 @@
     margin-top: 16px;
   }
 }
-`;
-  class y {
+`, u = {
+    1: {
+      title: (
+        /* HTML */
+        "Оберіть ідеальний курс для вашої дитини на <span>безоплатному уроці</span>"
+      ),
+      description: "Отримайте персональну консультацію з методистом, де ви разом із дитиною оберете курс, від якого вона буде у захваті.",
+      content: [
+        "Знайомимо з напрямками й підбираємо курс за інтересами та здібностями дитини.",
+        "Дитина створює проєкт і перевіряє, чи цікавий їй обраний напрямок.",
+        "Обговорюємо результати й допомагаємо зробити наступний крок."
+      ]
+    },
+    2: {
+      title: (
+        /* HTML */
+        "Оберіть найкращий старт в IT для вашої дитини на <span>безоплатному уроці</span>"
+      ),
+      description: "Отримайте персональну консультацію з методистом, де ви разом із дитиною оберете IT-напрям, що її захоплює.",
+      content: [
+        "Знайомимо з IT-професіями й підбираємо курс за інтересами та здібностями дитини.",
+        "Дитина створює проєкт і перевіряє, чи цікавий їй обраний напрямок.",
+        "Обговорюємо результати й допомагаємо зробити наступний крок."
+      ]
+    },
+    3: {
+      title: (
+        /* HTML */
+        "Оберіть ідеальний курс для вашої дитини на <span>безоплатному уроці</span>"
+      ),
+      description: "Отримайте персональну консультацію з методистом, де ви разом із дитиною оберете курс, від якого вона буде у захваті.",
+      content: [
+        "Знайомимо з напрямками й підбираємо курс за інтересами та здібностями дитини.",
+        "Дитина створює проєкт і перевіряє, чи цікавий їй обраний напрямок.",
+        "Обговорюємо результати й допомагаємо зробити наступний крок."
+      ]
+    },
+    4: {
+      title: (
+        /* HTML */
+        "Оберіть ідеальний курс для вашої дитини на <span>безоплатному уроці</span>"
+      ),
+      description: "Отримайте персональну консультацію з методистом, де ви разом із дитиною оберете курс, на якому ваша дитина знайде друзів!",
+      content: [
+        "Знайомимо з напрямками й підбираємо курс за інтересами та здібностями дитини.",
+        "Дитина створює проєкт і перевіряє, чи цікавий їй обраний напрямок.",
+        "Обговорюємо результати й допомагаємо зробити наступний крок."
+      ]
+    },
+    5: {
+      title: (
+        /* HTML */
+        "Оберіть ідеальний курс для вашої дитини на <span>безоплатному уроці</span>"
+      ),
+      description: "Отримайте персональну консультацію з методистом, де ви разом із дитиною оберете курс, від якого вона буде у захваті.",
+      content: [
+        "Знайомимо з напрямками й підбираємо курс за інтересами та здібностями дитини.",
+        "Дитина створює проєкт і перевіряє, чи цікавий їй обраний напрямок.",
+        "Обговорюємо результати й допомагаємо зробити наступний крок."
+      ]
+    },
+    6: {
+      title: (
+        /* HTML */
+        "Оберіть ідеальний курс для вашої дитини на <span>безоплатному уроці</span>"
+      ),
+      description: "Отримайте персональну консультацію з методистом, де ви разом із дитиною оберете курс, від якого вона буде у захваті.",
+      content: [
+        "Знайомимо з напрямками й підбираємо курс за інтересами та здібностями дитини.",
+        "Дитина створює проєкт і перевіряє, чи цікавий їй обраний напрямок.",
+        "Обговорюємо результати й допомагаємо зробити наступний крок."
+      ]
+    }
+  };
+  class M {
     constructor() {
       this.popup = null, this.init();
     }
     init() {
-      this.initStyles(), this.render(), this.eventListeners(), new v({ container: document.querySelector(".crs-form__container") });
+      this.initStyles(), this.render(), this.eventListeners(), new y({ container: document.querySelector(".crs-form__container") });
     }
     render() {
       const n = (
@@ -535,23 +612,20 @@
         `<dialog class="crs-popup">
       <button type="button" class="crs-popup__close"></button>
       <div class="crs-popup__wrap">
-        <h3 class="crs-popup__title">Оберіть ідеальний курс для вашої дитини на <span>безоплатному уроці</span></h3>
-        <div class="crs-popup__description">
-          Отримайте персональну консультацію з методистом, де ви разом із дитиною оберете курс, від якого вона буде у
-          захваті.
-        </div>
+        <h3 class="crs-popup__title">${u[1].title}</h3>
+        <div class="crs-popup__description">${u[1].description}</div>
         <div class="crs-popup__content">
           <h4 class="crs-popup__content-title">Як проходить урок:</h4>
           <ol class="crs-popup__content-list">
-            <li>Знайомимо з напрямками й підбираємо курс за інтересами та здібностями дитини.</li>
-            <li>Дитина створює проєкт і перевіряє, чи цікавий їй обраний напрямок.</li>
-            <li>Обговорюємо результати й допомагаємо зробити наступний крок.</li>
+            ${u[1].content.map((t) => `<li>${t}</li>`).join("")}
           </ol>
         </div>
 
         <div class="crs-popup__form crs-form">
           <div class="crs-form__wrap">
-            <h4 class="crs-form__title">Отримати безоплатний <br class="mobile"> урок</h4>
+            <h4 class="crs-form__title">
+              Отримати <br class="mobile" /> безоплатний урок
+            </h4>
 
             <div class="crs-form__container"></div>
             <div class="crs-popup__branding">
@@ -572,26 +646,36 @@
       document.body.insertAdjacentHTML("beforeend", n), this.popup = document.querySelector(".crs-popup");
     }
     eventListeners() {
-      var e;
+      var t;
       const n = document.querySelector(".crs-popup__close");
       n == null || n.addEventListener("click", () => {
         this.close();
-      }), (e = this.popup) == null || e.addEventListener("click", (t) => {
-        t.target === this.popup && this.close();
+      }), (t = this.popup) == null || t.addEventListener("click", (e) => {
+        e.target === this.popup && this.close();
       });
     }
-    open() {
-      this.popup && this.popup.showModal();
+    open(n) {
+      this.updatePopupContent(n), this.popup && this.popup.showModal();
     }
     close() {
       this.popup && (this.popup.close(), A("exp_hyp_2_1_button_04", "Close", "click", "Choose the perfect course"));
+    }
+    updatePopupContent(n) {
+      var t, e, i;
+      if (console.log("index", n), n) {
+        const s = u[n];
+        if (s) {
+          const r = (t = this.popup) == null ? void 0 : t.querySelector(".crs-popup__title"), o = (e = this.popup) == null ? void 0 : e.querySelector(".crs-popup__description"), p = (i = this.popup) == null ? void 0 : i.querySelector(".crs-popup__content-list");
+          r && (r.innerHTML = s.title), o && (o.textContent = s.description), p && (p.innerHTML = s.content.map((c) => `<li>${c}</li>`).join(""));
+        }
+      }
     }
     initStyles() {
       const n = document.createElement("style");
       n.textContent = B, document.head.insertAdjacentElement("beforeend", n);
     }
   }
-  const M = [
+  const I = [
     {
       icon: `${l}/img/icons/icon-1.webp`,
       title: "Хочу щоб моя дитина замість ігор і TikTok витрачала час із користю",
@@ -719,7 +803,7 @@
       },
       description: "Дізнайтесь які напрямки будуть відповідати інтересам і талантам вашої дитини"
     }
-  ], I = `.crs-achieve {
+  ], z = `.crs-achieve {
   margin-bottom: 60px;
   position: relative;
   padding-block: 84px;
@@ -873,7 +957,7 @@
   overflow: hidden;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 768px) {
   .crs-achieve {
     padding-block: 58px;
     margin-bottom: 0;
@@ -975,9 +1059,9 @@
   }
 }
 `;
-  class z {
-    constructor({ container: n, position: e }) {
-      this.container = n, this.position = e || "beforeend", this.popup = new y(), this.init();
+  class E {
+    constructor({ container: n, position: t }) {
+      this.container = n, this.position = t || "beforeend", this.popup = new M(), this.init();
     }
     init() {
       if (!this.container) {
@@ -993,12 +1077,12 @@
       <div class="container">
         <h2 class="section-title mb-6 md:mb-10">Що ви хочете досягти завдяки IT курсам?</h2>
         <div class="crs-accordion">
-          ${M.map(({ icon: e, title: t, body: i, action: s, description: r }, o) => (
+          ${I.map(({ icon: t, title: e, body: i, action: s, description: r }, o) => (
           /* HTML */
           `<div class="crs-accordion__item" data-state="close" data-index="${o + 1}">
                 <div class="crs-accordion__title">
-                  <img src="${e}" width="41" height="41" load="lazy" />
-                  <h3>${t}</h3>
+                  <img src="${t}" width="41" height="41" load="lazy" />
+                  <h3>${e}</h3>
                   <span class="crs-accordion__toggle"><span>Хочу!</span></span>
                 </div>
                 <div class="crs-accordion__body">
@@ -1020,32 +1104,33 @@
     }
     addEventListeners() {
       const n = this.container.querySelectorAll(".crs-accordion__item");
-      n.forEach((t) => {
-        const i = t.querySelector(".crs-accordion__title");
+      n.forEach((e) => {
+        const i = e.querySelector(".crs-accordion__title");
         i == null || i.addEventListener("click", () => {
-          if (t.getAttribute("data-state") === "open")
-            t.setAttribute("data-state", "close"), sessionStorage.removeItem(u);
+          if (e.getAttribute("data-state") === "open")
+            e.setAttribute("data-state", "close"), sessionStorage.removeItem(x);
           else {
-            n.forEach((o) => o.setAttribute("data-state", "close")), t.setAttribute("data-state", "open");
-            const r = t.getAttribute("data-index");
-            r && (sessionStorage.setItem(u, r), A("exp_hyp_2_1_button_01", `Want - ${r}`, "click", "What do you want"));
+            n.forEach((o) => o.setAttribute("data-state", "close")), e.setAttribute("data-state", "open");
+            const r = e.getAttribute("data-index");
+            r && (sessionStorage.setItem(x, r), A("exp_hyp_2_1_button_01", `Want - ${r}`, "click", "What do you want"));
           }
         });
-      }), this.container.querySelectorAll('.crs-accordion__action[data-popup="free-lesson"]').forEach((t) => {
-        t.addEventListener("click", () => {
-          var s;
-          this.popup.open();
-          const i = (s = t.closest(".crs-accordion__item")) == null ? void 0 : s.getAttribute("data-index");
-          i && !isNaN(Number(i)) && A("exp_hyp_2_1_button_02", `Sign up for a free lesson - ${i}`, "click", "What do you want");
+      }), this.container.querySelectorAll('.crs-accordion__action[data-popup="free-lesson"]').forEach((e) => {
+        e.addEventListener("click", () => {
+          var r, o;
+          const i = (r = e.closest(".crs-accordion__item")) == null ? void 0 : r.getAttribute("data-index");
+          this.popup.open(i ? Number(i) : 1);
+          const s = (o = e.closest(".crs-accordion__item")) == null ? void 0 : o.getAttribute("data-index");
+          s && !isNaN(Number(s)) && A("exp_hyp_2_1_button_02", `Sign up for a free lesson - ${s}`, "click", "What do you want");
         });
       });
     }
     initStyles() {
       const n = document.createElement("style");
-      n.innerHTML = I, document.head.appendChild(n);
+      n.innerHTML = z, document.head.appendChild(n);
     }
   }
-  const E = `.crs-badges {
+  const C = `.crs-badges {
   position: absolute;
   left: 50%;
   bottom: -184px;
@@ -1223,9 +1308,9 @@
   }
 }
 `;
-  class C {
-    constructor({ container: n, position: e }) {
-      this.container = n, this.position = e || "beforeend", this.init();
+  class G {
+    constructor({ container: n, position: t }) {
+      this.container = n, this.position = t || "beforeend", this.init();
     }
     init() {
       if (!this.container) {
@@ -1312,14 +1397,14 @@
         </div>
       </div>
     `
-      ), b(".crs-badges", "exp_hyp_2_1_element_01", "Benefits visibility", "Second screen"));
+      ), v(".crs-badges", "exp_hyp_2_1_element_01", "Benefits visibility", "Second screen"));
     }
     initStyles() {
       const n = document.createElement("style");
-      n.innerHTML = E, document.head.appendChild(n);
+      n.innerHTML = C, document.head.appendChild(n);
     }
   }
-  const G = `@media (min-width: 1280px) {
+  const L = `@media (min-width: 1280px) {
   header.header {
     position: relative;
     margin-bottom: 206px;
@@ -1383,10 +1468,10 @@
     }
     initStyles() {
       const n = document.createElement("style");
-      n.innerHTML = G, document.head.appendChild(n);
+      n.innerHTML = L, document.head.appendChild(n);
     }
   }
-  const L = `@media (min-width: 1200px) {
+  const k = `@media (min-width: 1200px) {
   br.mobile {
     display: none;
   }
@@ -1397,21 +1482,21 @@
     display: none;
   }
 }`;
-  f({
+  w({
     name: "1st hypothesis",
     dev: "OS"
   });
-  class k {
+  class D {
     constructor() {
       this.init();
     }
     init() {
-      location.pathname.includes("v-gl-v2/") && (this.initStyles(), new Y(), new C({ container: document.querySelector("header"), position: "beforeend" }), new z({ container: document.querySelector("main"), position: "afterbegin" }));
+      location.pathname.includes("v-gl-v2/") && (this.initStyles(), new Y(), new G({ container: document.querySelector("header"), position: "beforeend" }), new E({ container: document.querySelector("main"), position: "afterbegin" }));
     }
     initStyles() {
       const n = document.createElement("style");
-      n.textContent = L, document.head.appendChild(n);
+      n.textContent = k, document.head.appendChild(n);
     }
   }
-  new k();
+  new D();
 })();
