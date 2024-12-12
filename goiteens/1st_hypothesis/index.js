@@ -737,6 +737,7 @@
   background-repeat: no-repeat;
 }
 .crs-achieve h2 {
+  position: relative;
   margin-bottom: 25px;
   font-size: 36px;
   line-height: 47px;
@@ -744,6 +745,7 @@
   font-family: 'IBMPlexMono', sans-serif;
   text-align: center;
   text-transform: inherit;
+  z-index: 1;
 }
 
 .crs-accordion {
@@ -890,6 +892,7 @@
     font-size: 24px;
     font-weight: 500;
     line-height: 29px;
+    text-align: left;
   }
 
   .crs-accordion {
@@ -899,8 +902,9 @@
   }
 
   .crs-accordion__item {
-    width: 100%;
+    width: calc(100% + 12px);
     padding: 16px 12px;
+    margin-left: -6px;
   }
 
   .crs-accordion__title {
