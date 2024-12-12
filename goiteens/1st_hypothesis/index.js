@@ -1,35 +1,72 @@
 (function() {
   "use strict";
-  const u = ({ name: p, dev: n }) => {
+  const A = (a, n, e, t = "") => {
+    window.dataLayer = window.dataLayer || [], window.dataLayer.push({
+      event: "event-to-ga4",
+      event_name: a,
+      event_desc: n,
+      event_type: e,
+      event_loc: t
+    }), console.log(`Event: ${a} | ${n} | ${e} | ${t}`);
+  }, f = ({ name: a, dev: n }) => {
     console.log(
-      `%c EXP: ${p} (DEV: ${n})`,
+      `%c EXP: ${a} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, x = async (p) => {
-    const n = (t) => new Promise((e, i) => {
-      const r = t.split(".").pop();
-      if (r === "js") {
-        if (Array.from(document.scripts).map((c) => c.src.toLowerCase()).includes(t.toLowerCase()))
-          return console.log(`Script ${t} allready downloaded!`), e("");
-        const s = document.createElement("script");
-        s.src = t, s.onload = e, s.onerror = i, document.head.appendChild(s);
-      } else if (r === "css") {
-        if (Array.from(document.styleSheets).map((c) => {
-          var a;
-          return (a = c.href) == null ? void 0 : a.toLowerCase();
-        }).includes(t.toLowerCase()))
-          return console.log(`Style ${t} allready downloaded!`), e("");
-        const s = document.createElement("link");
-        s.rel = "stylesheet", s.href = t, s.onload = e, s.onerror = i, document.head.appendChild(s);
+  }, w = async (a) => {
+    const n = (e) => new Promise((t, i) => {
+      const s = e.split(".").pop();
+      if (s === "js") {
+        if (Array.from(document.scripts).map((p) => p.src.toLowerCase()).includes(e.toLowerCase()))
+          return console.log(`Script ${e} allready downloaded!`), t("");
+        const o = document.createElement("script");
+        o.src = e, o.onload = t, o.onerror = i, document.head.appendChild(o);
+      } else if (s === "css") {
+        if (Array.from(document.styleSheets).map((p) => {
+          var c;
+          return (c = p.href) == null ? void 0 : c.toLowerCase();
+        }).includes(e.toLowerCase()))
+          return console.log(`Style ${e} allready downloaded!`), t("");
+        const o = document.createElement("link");
+        o.rel = "stylesheet", o.href = e, o.onload = t, o.onerror = i, document.head.appendChild(o);
       }
     });
-    for (const t of p)
-      await n(t), console.log(`Loaded librari ${t}`);
+    for (const e of a)
+      await n(e), console.log(`Loaded librari ${e}`);
     console.log("All libraries loaded!");
-  }, d = "https://conversionratestore.github.io/projects/goiteens/1st_hypothesis";
-  class h {
-    constructor({ container: n, position: t }) {
-      this.container = n, this.position = t || "beforeend", this.init();
+  }, b = (a, n, e, t) => {
+    let i = [];
+    if (typeof a == "string")
+      i = document.querySelectorAll(a);
+    else if (a instanceof Element)
+      i = [a];
+    else {
+      console.error("Invalid target type:", a);
+      return;
+    }
+    let s = new IntersectionObserver(
+      (o) => {
+        o.forEach((p) => {
+          p.isIntersecting && (s.unobserve(p.target), setTimeout(function() {
+            r.observe(p.target);
+          }, 1e3));
+        });
+      },
+      {
+        threshold: 0.2
+      }
+    ), r = new IntersectionObserver((o) => {
+      o.forEach((p) => {
+        p.isIntersecting ? (A(n || `view_element_${p.target.id}`, e || "Element visibility", "view", t || p.target.id), s.unobserve(p.target)) : s.observe(p.target), r.unobserve(p.target);
+      });
+    });
+    i.forEach((o) => {
+      s.observe(o);
+    });
+  }, l = "https://conversionratestore.github.io/projects/goiteens/1st_hypothesis", u = "accordion_index";
+  class v {
+    constructor({ container: n, position: e }) {
+      this.container = n, this.position = e || "beforeend", this.init();
     }
     init() {
       this.render();
@@ -37,7 +74,7 @@
     render() {
       const n = (
         /* HTML */
-        `<form action="">
+        `<form class="crs-popup-form" action="">
       <div class="input-wrap">
         <input
           class="input-field"
@@ -58,16 +95,16 @@
       </button>
     </form>`
       );
-      x([
+      w([
         "https://cdn.jsdelivr.net/npm/intl-tel-input@20.3.0/build/js/intlTelInput.min.js",
         "https://cdn.jsdelivr.net/npm/intl-tel-input@20.3.0/build/css/intlTelInput.css",
         "https://cdn.jsdelivr.net/npm/intl-tel-input@20.3.0/build/js/utils.js"
       ]).then(() => {
-        var e;
-        (e = this.container) == null || e.insertAdjacentHTML(this.position, n);
-        const t = document.querySelector("#popup_input_phone");
-        if (this.submitForm(), t) {
-          const i = window.intlTelInput(t, {
+        var t;
+        (t = this.container) == null || t.insertAdjacentHTML(this.position, n), this.submitForm();
+        const e = document.querySelector("#popup_input_phone");
+        if (e) {
+          const i = window.intlTelInput(e, {
             initialCountry: "ua",
             countrySearch: !1,
             nationalMode: !0,
@@ -75,28 +112,36 @@
             hiddenInput: (c) => ({
               phone: "phone_full"
             })
-          }), r = () => {
-            if (t.value) {
-              const { add: c, remove: a } = this.errorToInput(t);
-              i.isValidNumber() || c("Номер телефону невірний!"), i.isValidNumber() && (t.dataset.value = i.getNumber(), a());
+          }), s = () => {
+            if (e.value) {
+              const { add: c, remove: g } = this.errorToInput(e);
+              i.isValidNumber() || c("Номер телефону невірний!"), i.isValidNumber() && (e.dataset.value = i.getNumber(), g());
             }
-          }, o = document.querySelector("#popup_input_name"), s = (c) => {
-            const a = c.target.value;
-            if (a) {
-              const { add: l, remove: A } = this.errorToInput(o);
-              A(), /\d/.test(a) ? l("Ім’я невірне") : a.trim() === "" ? l("Ім’я обов’язкове") : a.length < 2 ? l("Поле повинно містити мінімум 2 символи") : A();
+          }, r = document.querySelector("#popup_input_name"), o = (c) => {
+            const g = c.target.value;
+            if (g) {
+              const { add: m, remove: d } = this.errorToInput(r);
+              d(), /\d/.test(g) ? m("Ім’я невірне") : g.trim() === "" ? m("Ім’я обов’язкове") : g.length < 2 ? m("Поле повинно містити мінімум 2 символи") : d();
             }
           };
-          t.addEventListener("input", r), o == null || o.addEventListener("input", s);
+          e.addEventListener("input", s), e.addEventListener("change", () => {
+            A("exp_hyp_2_1_input_02", "Phone", "input", "Choose the perfect course");
+          }), r == null || r.addEventListener("input", o), r.addEventListener("change", () => {
+            A("exp_hyp_2_1_input_01", "Name", "input", "Choose the perfect course");
+          });
+          const p = document.querySelector('.crs-popup-form button[type="submit"]');
+          p && p.addEventListener("click", () => {
+            A("exp_hyp_2_1_button_03", "Sign up", "click", "Choose the perfect course");
+          });
         }
       });
     }
     errorToInput(n) {
-      const t = document.createElement("div");
+      const e = document.createElement("div");
       return {
-        add: (e) => {
+        add: (t) => {
           var i;
-          this.removeErrors(n), n.classList.add("is-invalid"), t.style.color = "rgb(202, 56, 31)", t.classList.add("is-label-invalid", "just-validate-error-label"), t.textContent = e, (i = n.parentElement) == null || i.appendChild(t);
+          this.removeErrors(n), n.classList.add("is-invalid"), e.style.color = "rgb(202, 56, 31)", e.classList.add("is-label-invalid", "just-validate-error-label"), e.textContent = t, (i = n.parentElement) == null || i.appendChild(e);
         },
         remove: () => {
           n.classList.remove("is-invalid"), this.removeErrors(n);
@@ -104,43 +149,49 @@
       };
     }
     removeErrors(n) {
-      var e;
-      const t = (e = n.parentElement) == null ? void 0 : e.querySelectorAll(".just-validate-error-label");
-      t == null || t.forEach((i) => i.remove());
+      var t;
+      const e = (t = n.parentElement) == null ? void 0 : t.querySelectorAll(".just-validate-error-label");
+      e == null || e.forEach((i) => i.remove());
     }
     submitForm() {
       const n = document.querySelector(".crs-popup__form form");
-      n == null || n.addEventListener("submit", async (t) => {
-        t.preventDefault();
-        const e = n.querySelector("#popup_input_name"), i = n.querySelector("#popup_input_phone");
-        if (!e || !i)
+      n == null || n.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const t = n.querySelector("#popup_input_name"), i = n.querySelector("#popup_input_phone");
+        if (!t || !i)
           return;
-        const r = e == null ? void 0 : e.value, o = i == null ? void 0 : i.dataset.value, { add: s, remove: c } = this.errorToInput(e), { add: a, remove: l } = this.errorToInput(i);
-        let A = !0;
-        if ((!r || r.trim() === "") && (s("Ім’я обов’язкове"), A = !1), (!o || o.trim() === "") && (i == null || i.classList.add("is-invalid"), a("Номер телефону невірний!"), A = !1), !A)
+        const s = t == null ? void 0 : t.value, r = i == null ? void 0 : i.dataset.value, { add: o, remove: p } = this.errorToInput(t), { add: c, remove: g } = this.errorToInput(i);
+        let m = !0;
+        if ((!s || s.trim() === "") && (o("Ім’я обов’язкове"), m = !1), (!r || r.trim() === "") && (i == null || i.classList.add("is-invalid"), c("Номер телефону невірний!"), m = !1), !m)
           return;
-        const g = n.querySelector('button[type="submit"]');
-        g == null || g.setAttribute("disabled", "true");
+        const d = n.querySelector('button[type="submit"]');
+        d == null || d.setAttribute("disabled", "true");
         try {
-          (await (await fetch("https://courses-all.goiteens.com/v-gl-v3/crm/lead.php", {
+          if ((await (await fetch("https://courses-all.goiteens.com/v-gl-v3/crm/lead.php", {
             method: "POST",
             body: JSON.stringify({
-              name: r,
-              phone: o,
+              name: s,
+              phone: r,
               SiteURL: "https://courses-all.goiteens.com/v-gl-v3/",
               product_name: "GoITeens_Courses_All_GL_v3"
             }),
             headers: {
               "Content-type": "application/json; charset=UTF-8"
             }
-          })).json()).Deal_ID && (location.href = "https://courses-all.goiteens.com/v-gl/success/");
-        } catch (m) {
-          console.log("error", m);
+          })).json()).Deal_ID) {
+            location.href = "https://courses-all.goiteens.com/v-gl/success/";
+            const D = sessionStorage.getItem(u);
+            A("exp_hyp_2_1_submit_01", `Sign up - ${D}`, "submit", "Choose the perfect course"), d == null || d.removeAttribute("disabled"), n.reset();
+            const h = n.closest("dialog");
+            h && h.close();
+          }
+        } catch (x) {
+          console.log("error", x);
         }
       });
     }
   }
-  const f = `.crs-popup {
+  const B = `.crs-popup {
   max-width: 1140px;
   border: none;
   border-radius: 40px;
@@ -471,18 +522,18 @@
   }
 }
 `;
-  class w {
+  class y {
     constructor() {
       this.popup = null, this.init();
     }
     init() {
-      this.initStyles(), this.render(), this.eventListeners(), new h({ container: document.querySelector(".crs-form__container") });
+      this.initStyles(), this.render(), this.eventListeners(), new v({ container: document.querySelector(".crs-form__container") });
     }
     render() {
       const n = (
         /* HTML */
-        ` <dialog class="crs-popup">
-      <button class="crs-popup__close" autofocus="false"></button>
+        `<dialog class="crs-popup">
+      <button type="button" class="crs-popup__close"></button>
       <div class="crs-popup__wrap">
         <h3 class="crs-popup__title">Оберіть ідеальний курс для вашої дитини на <span>безоплатному уроці</span></h3>
         <div class="crs-popup__description">
@@ -505,7 +556,7 @@
             <div class="crs-form__container"></div>
             <div class="crs-popup__branding">
               <img
-                src="${d}/img/award_boty_2023.svg"
+                src="${l}/img/award_boty_2023.svg"
                 alt="Business of the year 2023"
                 width="64"
                 height="64"
@@ -521,26 +572,154 @@
       document.body.insertAdjacentHTML("beforeend", n), this.popup = document.querySelector(".crs-popup");
     }
     eventListeners() {
-      var t;
+      var e;
       const n = document.querySelector(".crs-popup__close");
       n == null || n.addEventListener("click", () => {
         this.close();
-      }), (t = this.popup) == null || t.addEventListener("click", (e) => {
-        e.target === this.popup && this.close();
+      }), (e = this.popup) == null || e.addEventListener("click", (t) => {
+        t.target === this.popup && this.close();
       });
     }
     open() {
       this.popup && this.popup.showModal();
     }
     close() {
-      this.popup && this.popup.close();
+      this.popup && (this.popup.close(), A("exp_hyp_2_1_button_04", "Close", "click", "Choose the perfect course"));
     }
     initStyles() {
       const n = document.createElement("style");
-      n.textContent = f, document.head.insertAdjacentElement("beforeend", n);
+      n.textContent = B, document.head.insertAdjacentElement("beforeend", n);
     }
   }
-  const b = `.crs-achieve {
+  const M = [
+    {
+      icon: `${l}/img/icons/icon-1.webp`,
+      title: "Хочу щоб моя дитина замість ігор і TikTok витрачала час із користю",
+      body: (
+        /* HTML */
+        `<p>
+        Перетворіть це на корисне хобі! Уроки зі Scratch, Minecraft, Roblox та малювання на планшеті допоможуть
+        розвивати творчість, математику та програмування в ігровому форматі. Навчання через гру відкриє світ проєктів,
+        де з’являються власні ігри та 3D персонажі. Замість безцільного перегляду відео та ігор — досягнення, якими ви
+        будете пишатись!
+      </p>
+      <p>
+        Ми зробили акцент на контрасті між шкідливим і безцільним часом у гаджетах на досягненнях дитини, що резонує із
+        цілями батьків.
+      </p>`
+      ),
+      action: {
+        text: "Записатись на безоплатний урок",
+        popup: "free-lesson"
+      },
+      description: "Дізнайтесь які напрямки будуть відповідати інтересам і талантам вашої дитини"
+    },
+    {
+      icon: `${l}/img/icons/icon-2.webp`,
+      title: "Забезпечити дитині перспективну роботу в IT",
+      body: (
+        /* HTML */
+        `<p>Підготуйте дитину до успішної кар'єри в IT!</p>
+      <p>
+        Фахівці в своїй галазі допоможуть пройти шлях від початківця до junior-спеціаліста, навчаючи створювати ігри,
+        програми та вебсайти. Дитина розробить реальні проєкти, які потраплять до її портфоліо, і це стане основою для
+        подальшого професійного розвитку в IT.
+      </p>
+      <p>В результаті навчання вона отримає навички для старту кар'єри в галузі.</p>`
+      ),
+      action: {
+        text: "Записатись на безоплатний урок",
+        popup: "free-lesson"
+      },
+      description: "Дізнайтесь які напрямки будуть відповідати інтересам і талантам вашої дитини"
+    },
+    {
+      icon: `${l}/img/icons/icon-3.webp`,
+      title: "Розвивати в моїй дитині обізнаність в IT і технічні навички",
+      body: (
+        /* HTML */
+        `<p>
+        Курси GoITeens дають дітям можливість розвивати технічні навички через практичні заняття та роботу над реальними
+        проєктами.
+      </p>
+      <p>
+        Вони не лише вивчають програмування, а й здобувають досвід у створенні ігор, анімацій і вебсайтів, що допомагає
+        швидко освоювати нові технології. Це сприяє розвитку інженерного мислення, яке необхідне для успіху в сучасному
+        технологічному світі.
+      </p>`
+      ),
+      action: {
+        text: "Записатись на безоплатний урок",
+        popup: "free-lesson"
+      },
+      description: "Дізнайтесь які напрямки будуть відповідати інтересам і талантам вашої дитини"
+    },
+    {
+      icon: `${l}/img/icons/icon-4.webp`,
+      title: "Допомогти моїй дитині соціалізуватись, більше спілкуватись з однолітками",
+      body: (
+        /* HTML */
+        `<p>
+        GoITeens допомагає вашій дитині соціалізуватися завдяки інтерактивним урокам і командним проєктам, де учні
+        співпрацюють, обговорюють ідеї та вирішують завдання разом.
+      </p>
+      <p>
+        У GoITeens Club діти публікують свої роботи, отримують відгуки та знаходять однодумців для спільного розвитку.
+        Це простір, де народжуються дружні стосунки та формується активна взаємодія з ровесниками.
+      </p>`
+      ),
+      action: {
+        text: "Записатись на безоплатний урок",
+        popup: "free-lesson"
+      },
+      description: "Дізнайтесь які курси і заходи допоможуть вашій дитині отримати більше спілкування з однолітками"
+    },
+    {
+      icon: `${l}/img/icons/icon-5.webp`,
+      title: "Розвивати в моїй дитині логічне та креативне мислення",
+      body: (
+        /* HTML */
+        `<p>
+        Курси GoITeens допоможуть вашій дитині розвинути логічне і креативне мислення через захоплюючі інтерактивні
+        заняття.
+      </p>
+      <p>
+        Наприклад, на курсі Scratch дитина навчиться вирішувати задачі, працювати в команді та розвивати критичне
+        мислення.
+      </p>
+      <p>
+        Заняття з логіки покращать концентрацію і пам'ять, а курс математики навчить розуміти причинно-наслідкові
+        зв’язки, допомогаючи розкрити потенціал вашої дитини.
+      </p>`
+      ),
+      action: {
+        text: "Записатись на безоплатний урок",
+        popup: "free-lesson"
+      },
+      description: "Дізнайтесь які напрямки будуть відповідати інтересам і талантам вашої дитини"
+    },
+    {
+      icon: `${l}/img/icons/icon-6.webp`,
+      title: "Допомогти моїй дитині всебічно розвиватись",
+      body: (
+        /* HTML */
+        `<p>
+        В GoITeens ваша дитина може спробувати себе в різних напрямках — від малювання на планшеті до опанування
+        професії розробника.
+      </p>
+      <p>
+        Ми не тільки навчаємо технічним навичкам, а й активно розвиваємо емоційний інтелект, соціальні навички та
+        стратегічне мислення. Завдяки такому підходу ваша дитина відкриє свої таланти, зможе розвивати внутрішні якості
+        та знайти шлях до успіху в житті.
+      </p>`
+      ),
+      action: {
+        text: "Записатись на безоплатний урок",
+        popup: "free-lesson"
+      },
+      description: "Дізнайтесь які напрямки будуть відповідати інтересам і талантам вашої дитини"
+    }
+  ], I = `.crs-achieve {
   margin-bottom: 60px;
   position: relative;
   padding-block: 84px;
@@ -791,138 +970,10 @@
     padding-top: 16px;
   }
 }
-`, B = [
-    {
-      icon: `${d}/img/icons/icon-1.webp`,
-      title: "Хочу щоб моя дитина замість ігор і TikTok витрачала час із користю",
-      body: (
-        /* HTML */
-        `<p>
-        Перетворіть це на корисне хобі! Уроки зі Scratch, Minecraft, Roblox та малювання на планшеті допоможуть
-        розвивати творчість, математику та програмування в ігровому форматі. Навчання через гру відкриє світ проєктів,
-        де з’являються власні ігри та 3D персонажі. Замість безцільного перегляду відео та ігор — досягнення, якими ви
-        будете пишатись!
-      </p>
-      <p>
-        Ми зробили акцент на контрасті між шкідливим і безцільним часом у гаджетах на досягненнях дитини, що резонує із
-        цілями батьків.
-      </p>`
-      ),
-      action: {
-        text: "Записатись на безоплатний урок",
-        popup: "free-lesson"
-      },
-      description: "Дізнайтесь які напрямки будуть відповідати інтересам і талантам вашої дитини"
-    },
-    {
-      icon: `${d}/img/icons/icon-2.webp`,
-      title: "Забезпечити дитині перспективну роботу в IT",
-      body: (
-        /* HTML */
-        `<p>Підготуйте дитину до успішної кар'єри в IT!</p>
-      <p>
-        Фахівці в своїй галазі допоможуть пройти шлях від початківця до junior-спеціаліста, навчаючи створювати ігри,
-        програми та вебсайти. Дитина розробить реальні проєкти, які потраплять до її портфоліо, і це стане основою для
-        подальшого професійного розвитку в IT.
-      </p>
-      <p>В результаті навчання вона отримає навички для старту кар'єри в галузі.</p>`
-      ),
-      action: {
-        text: "Записатись на безоплатний урок",
-        popup: "free-lesson"
-      },
-      description: "Дізнайтесь які напрямки будуть відповідати інтересам і талантам вашої дитини"
-    },
-    {
-      icon: `${d}/img/icons/icon-3.webp`,
-      title: "Розвивати в моїй дитині обізнаність в IT і технічні навички",
-      body: (
-        /* HTML */
-        `<p>
-        Курси GoITeens дають дітям можливість розвивати технічні навички через практичні заняття та роботу над реальними
-        проєктами.
-      </p>
-      <p>
-        Вони не лише вивчають програмування, а й здобувають досвід у створенні ігор, анімацій і вебсайтів, що допомагає
-        швидко освоювати нові технології. Це сприяє розвитку інженерного мислення, яке необхідне для успіху в сучасному
-        технологічному світі.
-      </p>`
-      ),
-      action: {
-        text: "Записатись на безоплатний урок",
-        popup: "free-lesson"
-      },
-      description: "Дізнайтесь які напрямки будуть відповідати інтересам і талантам вашої дитини"
-    },
-    {
-      icon: `${d}/img/icons/icon-4.webp`,
-      title: "Допомогти моїй дитині соціалізуватись, більше спілкуватись з однолітками",
-      body: (
-        /* HTML */
-        `<p>
-        GoITeens допомагає вашій дитині соціалізуватися завдяки інтерактивним урокам і командним проєктам, де учні
-        співпрацюють, обговорюють ідеї та вирішують завдання разом.
-      </p>
-      <p>
-        У GoITeens Club діти публікують свої роботи, отримують відгуки та знаходять однодумців для спільного розвитку.
-        Це простір, де народжуються дружні стосунки та формується активна взаємодія з ровесниками.
-      </p>`
-      ),
-      action: {
-        text: "Записатись на безоплатний урок",
-        popup: "free-lesson"
-      },
-      description: "Дізнайтесь які курси і заходи допоможуть вашій дитині отримати більше спілкування з однолітками"
-    },
-    {
-      icon: `${d}/img/icons/icon-5.webp`,
-      title: "Розвивати в моїй дитині логічне та креативне мислення",
-      body: (
-        /* HTML */
-        `<p>
-        Курси GoITeens допоможуть вашій дитині розвинути логічне і креативне мислення через захоплюючі інтерактивні
-        заняття.
-      </p>
-      <p>
-        Наприклад, на курсі Scratch дитина навчиться вирішувати задачі, працювати в команді та розвивати критичне
-        мислення.
-      </p>
-      <p>
-        Заняття з логіки покращать концентрацію і пам'ять, а курс математики навчить розуміти причинно-наслідкові
-        зв’язки, допомогаючи розкрити потенціал вашої дитини.
-      </p>`
-      ),
-      action: {
-        text: "Записатись на безоплатний урок",
-        popup: "free-lesson"
-      },
-      description: "Дізнайтесь які напрямки будуть відповідати інтересам і талантам вашої дитини"
-    },
-    {
-      icon: `${d}/img/icons/icon-6.webp`,
-      title: "Допомогти моїй дитині всебічно розвиватись",
-      body: (
-        /* HTML */
-        `<p>
-        В GoITeens ваша дитина може спробувати себе в різних напрямках — від малювання на планшеті до опанування
-        професії розробника.
-      </p>
-      <p>
-        Ми не тільки навчаємо технічним навичкам, а й активно розвиваємо емоційний інтелект, соціальні навички та
-        стратегічне мислення. Завдяки такому підходу ваша дитина відкриє свої таланти, зможе розвивати внутрішні якості
-        та знайти шлях до успіху в житті.
-      </p>`
-      ),
-      action: {
-        text: "Записатись на безоплатний урок",
-        popup: "free-lesson"
-      },
-      description: "Дізнайтесь які напрямки будуть відповідати інтересам і талантам вашої дитини"
-    }
-  ];
-  class v {
-    constructor({ container: n, position: t }) {
-      this.container = n, this.position = t || "beforeend", this.popup = new w(), this.init();
+`;
+  class z {
+    constructor({ container: n, position: e }) {
+      this.container = n, this.position = e || "beforeend", this.popup = new y(), this.init();
     }
     init() {
       if (!this.container) {
@@ -938,19 +989,21 @@
       <div class="container">
         <h2 class="section-title mb-6 md:mb-10">Що ви хочете досягти завдяки IT курсам?</h2>
         <div class="crs-accordion">
-          ${B.map(({ icon: t, title: e, body: i, action: r, description: o }) => (
+          ${M.map(({ icon: e, title: t, body: i, action: s, description: r }, o) => (
           /* HTML */
-          `<div class="crs-accordion__item" data-state="close">
-                <div class="crs-accordion__title"><img src="${t}" width="41" height="41" load="lazy"><h3>${e}</h3><span class="crs-accordion__toggle"><span>Хочу!</span></span></div>
+          `<div class="crs-accordion__item" data-state="close" data-index="${o + 1}">
+                <div class="crs-accordion__title">
+                  <img src="${e}" width="41" height="41" load="lazy" />
+                  <h3>${t}</h3>
+                  <span class="crs-accordion__toggle"><span>Хочу!</span></span>
+                </div>
                 <div class="crs-accordion__body">
                   <div>
                     <div>${i}</div>
                     <div class="crs-accordion__actions">
-                      <button data-popup="${r.popup}" class="crs-accordion__action">${r.text}</button>
+                      <button data-popup="${s.popup}" class="crs-accordion__action">${s.text}</button>
                     </div>
-                    <div class="crs-accordion__description">
-                      ${o}
-                    </div>
+                    <div class="crs-accordion__description">${r}</div>
                   </div>
                 </div>
               </div>`
@@ -963,23 +1016,32 @@
     }
     addEventListeners() {
       const n = this.container.querySelectorAll(".crs-accordion__item");
-      n.forEach((e) => {
-        const i = e.querySelector(".crs-accordion__title");
+      n.forEach((t) => {
+        const i = t.querySelector(".crs-accordion__title");
         i == null || i.addEventListener("click", () => {
-          e.getAttribute("data-state") === "open" ? e.setAttribute("data-state", "close") : (n.forEach((o) => o.setAttribute("data-state", "close")), e.setAttribute("data-state", "open"));
+          if (t.getAttribute("data-state") === "open")
+            t.setAttribute("data-state", "close"), sessionStorage.removeItem(u);
+          else {
+            n.forEach((o) => o.setAttribute("data-state", "close")), t.setAttribute("data-state", "open");
+            const r = t.getAttribute("data-index");
+            r && (sessionStorage.setItem(u, r), A("exp_hyp_2_1_button_01", `Want - ${r}`, "click", "What do you want"));
+          }
         });
-      }), this.container.querySelectorAll('.crs-accordion__action[data-popup="free-lesson"]').forEach((e) => {
-        e.addEventListener("click", () => {
+      }), this.container.querySelectorAll('.crs-accordion__action[data-popup="free-lesson"]').forEach((t) => {
+        t.addEventListener("click", () => {
+          var s;
           this.popup.open();
+          const i = (s = t.closest(".crs-accordion__item")) == null ? void 0 : s.getAttribute("data-index");
+          i && !isNaN(Number(i)) && A("exp_hyp_2_1_button_02", `Sign up for a free lesson - ${i}`, "click", "What do you want");
         });
       });
     }
     initStyles() {
       const n = document.createElement("style");
-      n.innerHTML = b, document.head.appendChild(n);
+      n.innerHTML = I, document.head.appendChild(n);
     }
   }
-  const y = `.crs-badges {
+  const E = `.crs-badges {
   position: absolute;
   left: 50%;
   bottom: -184px;
@@ -1157,9 +1219,9 @@
   }
 }
 `;
-  class M {
-    constructor({ container: n, position: t }) {
-      this.container = n, this.position = t || "beforeend", this.init();
+  class C {
+    constructor({ container: n, position: e }) {
+      this.container = n, this.position = e || "beforeend", this.init();
     }
     init() {
       if (!this.container) {
@@ -1169,7 +1231,7 @@
       this.initStyles(), this.render();
     }
     render() {
-      this.container && this.container.insertAdjacentHTML(
+      this.container && (this.container.insertAdjacentHTML(
         this.position,
         /* HTML */
         `
@@ -1246,14 +1308,14 @@
         </div>
       </div>
     `
-      );
+      ), b(".crs-badges", "exp_hyp_2_1_element_01", "Benefits visibility", "Second screen"));
     }
     initStyles() {
       const n = document.createElement("style");
-      n.innerHTML = y, document.head.appendChild(n);
+      n.innerHTML = E, document.head.appendChild(n);
     }
   }
-  const z = `@media (min-width: 1280px) {
+  const G = `@media (min-width: 1280px) {
   header.header {
     position: relative;
     margin-bottom: 206px;
@@ -1308,7 +1370,7 @@
   }
 }
 `;
-  class I {
+  class Y {
     constructor() {
       this.init();
     }
@@ -1317,10 +1379,10 @@
     }
     initStyles() {
       const n = document.createElement("style");
-      n.innerHTML = z, document.head.appendChild(n);
+      n.innerHTML = G, document.head.appendChild(n);
     }
   }
-  const G = `@media (min-width: 1200px) {
+  const L = `@media (min-width: 1200px) {
   br.mobile {
     display: none;
   }
@@ -1331,21 +1393,21 @@
     display: none;
   }
 }`;
-  u({
+  f({
     name: "1st hypothesis",
     dev: "OS"
   });
-  class E {
+  class k {
     constructor() {
       this.init();
     }
     init() {
-      location.pathname.includes("v-gl-v2/") && (this.initStyles(), new I(), new M({ container: document.querySelector("header"), position: "beforeend" }), new v({ container: document.querySelector("main"), position: "afterbegin" }));
+      location.pathname.includes("v-gl-v2/") && (this.initStyles(), new Y(), new C({ container: document.querySelector("header"), position: "beforeend" }), new z({ container: document.querySelector("main"), position: "afterbegin" }));
     }
     initStyles() {
       const n = document.createElement("style");
-      n.textContent = G, document.head.appendChild(n);
+      n.textContent = L, document.head.appendChild(n);
     }
   }
-  new E();
+  new k();
 })();
