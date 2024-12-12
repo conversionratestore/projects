@@ -325,6 +325,8 @@ body::-webkit-scrollbar-thumb {
 .crs_v2 #main_block .img_bgr img {
   width: 100%;
   height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 @media (max-width: 768px) {
   .crs_v2 #main_block {
@@ -1968,7 +1970,7 @@ body::-webkit-scrollbar-thumb {
   height: 100%;
 }
 .crs_v2 .crs_popup_form form {
-  padding: 40px 40px 24px;
+  padding: 15px 40px 24px;
   display: flex;
   flex-direction: column;
   background: #fff;
@@ -2914,12 +2916,12 @@ body::-webkit-scrollbar-thumb {
       event_type: r,
       event_loc: c
     }), console.dir(`Event: ${e} | ${i} | ${r} | ${c}`);
-  }, O1 = ({ name: e, dev: i }) => {
+  }, Z1 = ({ name: e, dev: i }) => {
     console.log(
       `%c EXP: ${e} (DEV: ${i})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, Ci = (e) => document.querySelectorAll(e), Z1 = (e, i = "variant_1") => {
+  }, Ci = (e) => document.querySelectorAll(e), O1 = (e, i = "variant_1") => {
     let r = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(r), window.clarity("set", e, i), console.log("set", e, i));
     }, 1e3);
@@ -2967,7 +2969,7 @@ body::-webkit-scrollbar-thumb {
       return r = window.scrollY, i != null && (l = r - i), i = r, clearTimeout(c), c = setTimeout(p, a), l;
     };
   })();
-  const z = (e, i, r, c = "") => {
+  const I = (e, i, r, c = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: e,
@@ -3277,9 +3279,9 @@ body::-webkit-scrollbar-thumb {
       popupContent: {
         icon: k.blockersIcon1,
         title: "I feel stuck in the 9-to-5 grind with no time, freedom, or flexibility to enjoy my life.",
-        text: "<p>Feeling stuck in a 9-to-5 grind can drain your time, freedom, and flexibility. This free training introduces a business model built for a lifestyle of freedom: Drop Servicing.</p> <p>Everything you need can be used on a laptop and internet connection. Using the most powerful tools in modern history, you’ll learn how to create an income stream that lets you work from anywhere and on your schedule.</p> <p>The training provides step-by-step guidance, done-for-you templates, and proven strategies, so you can escape the daily grind and design a life you love without taking big risks like giving up your current job.</p>",
+        text: "<p>Feeling stuck in a 9-to-5 grind can drain your time, freedom, and flexibility. This free training introduces a business model built for a lifestyle of freedom: Drop Servicing.</p> <p>All you need is a laptop and an internet connection to get started. Leveraging simple tools of modern technology, you’ll learn how to create an online business that lets you work from anywhere and earn on your terms.</p> <p>The training provides step-by-step guidance, done-for-you templates, and proven strategies, so you can escape the daily grind and design a life you love without taking big risks like giving up your current job.</p>",
         button: "Access Your Free Training Now!",
-        video: "j8tl4ke9sf",
+        video: "hitp8ywcck",
         review: {
           reviewerPhoto: `${wn}avatar_3.png`,
           reviewerName: "Barend",
@@ -3296,9 +3298,9 @@ body::-webkit-scrollbar-thumb {
       popupContent: {
         icon: k.blockersIcon2,
         title: "I don’t know how to achieve financial freedom or build recurring, reliable income streams.",
-        text: "<p>Financial freedom starts with the right strategy, and this free training delivers just that.</p> <p>You’ll learn a proven 4-step system to build a Drop Servicing business—an online model where you connect clients with services and earn recurring income.</p> <p>It’s affordable, beginner-friendly, and requires no inventory, startup costs or technical skills.</p> <p>We break everything into clear, actionable steps, showing you how to generate consistent income monthly.</p> <p>Whether you want to earn extra on the side or replace your job entirely, this training provides the tools to achieve it.</p>",
+        text: "<p>Financial freedom starts with the right strategy, and this free training delivers just that.</p> <p>You’ll discover a 4-step system to build a Drop Servicing business—an online model that connects clients with services to create recurring income.</p> <p>It’s affordable, beginner-friendly, and requires no inventory, startup costs or technical skills.</p> <p>The process is broken into clear actionable steps, helping beginners work toward consistent monthly income.</p> <p>Whether you want to earn extra on the side or replace your job entirely, this training provides the tools to achieve it.</p>",
         button: "Access Your Free Training Now!",
-        video: "1tltf1pv7w",
+        video: "ox92uv10uy",
         review: {
           reviewerPhoto: `${wn}avatar_4.png`,
           reviewerName: "Aleksa",
@@ -3310,18 +3312,18 @@ body::-webkit-scrollbar-thumb {
     {
       id: 3,
       icon: k.blockersIcon3,
-      text: "I’m struggling to boost my income fast without sacrificing all my free time or taking big risks.",
+      text: "I’m struggling to boost my income without sacrificing all my free time or taking big risks.",
       button: `See details <span class="arrow_btn_icon">${k.arrowBtnIcon}</span>`,
       popupContent: {
         icon: k.blockersIcon3,
-        title: "I’m struggling to boost my income fast without sacrificing all my free time or taking big risks.",
-        text: "<p>This free training is perfect for anyone wanting to increase their income in a flexible way.</p> <p>You’ll discover how to build a Drop Servicing business that fits your schedule and learn strategies to land your first high-value client quickly using low-risk methods and time-saving automation.</p> <p>With done-for-you templates and a beginner-friendly process, you’ll gain the tools to grow at your own pace and create a scalable recurring income stream—whether as a side hustle or a full-time business.</p>",
+        title: "I’m struggling to boost my income without sacrificing all my free time or taking big risks.",
+        text: "<p>This free training is perfect for anyone wanting to increase their income in a flexible way.</p> <p>You’ll discover how to build a Drop Servicing business that fits your schedule and learn strategies to land your first high-value client using low-risk methods and time-saving automation.</p> <p>With done-for-you templates and a beginner-friendly process, you’ll gain the tools to grow at your own pace and create a scalable recurring income stream—whether as a side hustle or a full-time business.</p>",
         button: "Access Your Free Training Now!",
-        video: "tnipq3xvpy",
+        video: "8mgchi8e3u",
         review: {
           reviewerPhoto: `${wn}avatar_1.png`,
           reviewerName: "Ed",
-          reviewText: "“Ed used our strategies to boost his income fast and earned 6 figures within his first year”",
+          reviewText: "“Ed used our strategies to boost his income and earned 6 figures within his first year”",
           stars: `${wn}rating_stars_new.png`
         }
       }
@@ -3336,7 +3338,7 @@ body::-webkit-scrollbar-thumb {
         title: "I lack the skills or clarity to start an online business; it feels overwhelming and impossible to begin.",
         text: "<p>Starting an online business is overwhelming to say the least. But it doesn’t have to be.</p> <p>This free training breaks everything down into a simple, step-by-step process designed for beginners.</p> <p>You don’t need prior experience or technical skills—just follow our checklist, use the provided done-for-you templates, and you’ll be on your way to building your own path to financial freedom.</p> <p>You’ll also see real-life success stories of people who started from scratch that will motivate you and prove it’s possible.</p> <p>By the end of the training, you’ll have the clarity, tools, and confidence to get started with Drop Servicing stress-free.</p>",
         button: "Access Your Free Training Now!",
-        video: "7ua39ckg5r",
+        video: "vh73j7o7wv",
         review: {
           reviewerPhoto: `${wn}avatar_2.png`,
           reviewerName: "Lauren",
@@ -3355,7 +3357,7 @@ body::-webkit-scrollbar-thumb {
         title: "I feel overwhelmed by options and need a simple, beginner-friendly path to success.",
         text: "<p>Overwhelmed by options? This free training makes starting an online business simple and beginner-friendly.</p> <p>Drop Servicing eliminates the need for technical skills, upfront investments, or complicated setups. Using just a laptop and an internet connection you’ll build a simple little laptop business that funds your freedom.</p> <p>Our free training provides done-for-you templates, automation tools, and real-life examples, ensuring your success. By the end, you’ll have the confidence and knowledge to begin immediately, knowing this proven model has helped countless other beginners succeed.</p>",
         button: "Access Your Free Training Now!",
-        video: "9b68j3xe9c",
+        video: "qv1wf5xyro",
         review: {
           reviewerPhoto: `${wn}avatar_5.png`,
           reviewerName: "Jordan",
@@ -3374,7 +3376,7 @@ body::-webkit-scrollbar-thumb {
         title: "I’m skeptical of online business promises and need a proven, trustworthy system.",
         text: "<p>Skeptical about online business promises? This free training is built on transparency and proven results.</p> <p>We show you a clear, step-by-step system to build a Drop Servicing business, supported by real-life case studies and success stories.</p> <p>No hype—just actionable strategies that thousands have used to achieve financial freedom goals. You’ll see how this beginner-friendly model works and why it’s trusted by so many.</p> <p>With no fluff and no gimmicks, this training provides the tools and guidance you need to start confidently and see real results.</p>",
         button: "Access Your Free Training Now!",
-        video: "omtwqz5l9v",
+        video: "8h8gxkujt7",
         review: {
           reviewerPhoto: `${wn}avatar_6.png`,
           reviewerName: "Michelle",
@@ -3398,7 +3400,7 @@ body::-webkit-scrollbar-thumb {
     },
     {
       name: "Stephen",
-      review: '"After losing his job, Stephen found our training and turned things around, landing his first client in weeks. Fast forward a few months and he’s now traveling the world with his laptop business."',
+      review: '"After losing his job, Stephen found our training and turned things around, landing his first client in weeks. He’s now traveling the world with his laptop business."',
       img: "stephen.jpg",
       videoId: "hil0o6ude6"
     },
@@ -3455,7 +3457,7 @@ body::-webkit-scrollbar-thumb {
     {
       name: "Maged Rafaat",
       title: "Simply a hidden Gem",
-      text: "An amazing course with all the details covered from scratch on how to build a business online.<br><br>Everything need is explained thoroughly with all details and step by step guides from building your website to how to lo get leads to finalizing deals and closing on sales.<br><br>I strongly recommend this course to anyone who is interested in drop shipping as this course has it all.",
+      text: "An amazing course with all the details covered from scratch on how to build a business online.<br><br>Everything need is explained thoroughly with all details and step by step guides from building your website to how to lo get leads to finalizing deals and closing on sales.<br><br>I strongly recommend this course to anyone who is interested in drop servicing as this course has it all.",
       date: "Jun 27, 2023",
       link: "https://www.trustpilot.com/reviews/649afb0dbe90b81ce4f7001e"
     },
@@ -3476,14 +3478,14 @@ body::-webkit-scrollbar-thumb {
     {
       name: "Ashaya Gupta",
       title: "Amazing Course with Unparalleled Support!",
-      text: "I am extremely satisfied with the Drop Servicing Blueprint course! The content is incredibly in-depth and packed with tons of valuable material that is well-structured and easy to follow. The course itself is worth every penny, but what truly stands out is the exclusive community you gain access to. The experts in the group are very helpful and always willing to answer any questions you may have. Plus, Dylan Sigley himself is super accessible and responsive, which is rare in online courses like this.<br><br>Thanks to the course, I’ve already bagged a couple of sales and am eager to continue expanding my business with the insights and strategies I've learned. The community support combined with the high-quality course material makes this a winning combination. Fully satisfied and highly recommend!",
+      text: "I am extremely satisfied with the Drop Servicing Blueprint course! The content is incredibly in-depth and packed with tons of valuable material that is well-structured and easy to follow.<br><br>Thanks to the course, I’ve already bagged a couple of sales and am eager to continue expanding my business with the insights and strategies I've learned. Fully satisfied and highly recommend!",
       date: "Aug 27, 2024",
       link: "https://www.trustpilot.com/reviews/66cdbcb0c3878fd95a2e31a7"
     },
     {
       name: "Karey Nduta",
       title: "Look no further",
-      text: "This is my first ever online review because, damn! This course deserves an online review.<br><br>Since 2010, I have started so many online businesses. From E-commerce to affiliate marketing to trading to falling for stupid scams and loosing hundreds of dollars. If it has trended, I have tried it. You see, I know one thing for sure, I was born to be free. Before this course I had freedom of location working remotely for the best silicon valley start up anyone would want to work for but I still craved freedom of time. Not having to report to someone 5 days a week, 9 to 5.<br><br>Just when that ache was becoming unbearable and I had started to fight with my employer for more flexibility, I found Dylan. I am very tech savvy but this course is so plainly spelt out that even the least technical person would understand.<br><br>I just launched my first campaign using the guide in the course and have a few interested clients I am meeting with. This is so surreal. I can't believe am finally running my own business.",
+      text: "This is my first ever online review because, damn! This course deserves an online review.<br><br>Since 2010, I have started so many online businesses. From E-commerce to affiliate marketing to trading. If it has trended, I have tried it.<br><br>I just launched my first campaign using the guide in the course and have a few interested clients I am meeting with. This is so surreal. I can't believe am finally running my own business.",
       date: "Oct 7, 2022",
       link: "https://www.trustpilot.com/reviews/6340206f350baeeabe63848e"
     },
@@ -3495,16 +3497,16 @@ body::-webkit-scrollbar-thumb {
       link: "https://www.trustpilot.com/reviews/634028a1350baeeabe638d65"
     },
     {
-      name: "Ewa",
-      title: "It is worth more than it costs",
-      text: "A well-structured course that taught me not only how to build my first online business but also how to gain the trust of customers and build the image of my own brand. T o be hones I was scared at the beginning to pay such an amount of money because I am just a student. But now I know it was the best decision I could have made. The value of the course pays back many times.",
-      date: "Mar 15, 2023",
-      link: "https://www.trustpilot.com/reviews/641198058c535135419c1a9a"
+      name: "Maswood Abdus Sakur",
+      title: "Dylan's course is an absolute…",
+      text: "Dylan's course is an absolute game-changer! From A to Z, it covers everything with insightful materials and practical templates. The supportive community, daily guidance & support, and weekly live calls with different mentors, including Dylan, make it truly exceptional. It's not just a course; it's a positive and energetic journey that has become the best investment in my life. Highly recommend!",
+      date: "Dec 27, 2023",
+      link: "https://www.trustpilot.com/reviews/658bb218247a1f1d02cadea1"
     },
     {
       name: "Andy Jay",
       title: "Exceeded Expectations",
-      text: "The course starts off with a lot of mindset exercises that I felt really got me out of my funk and into a deeper state of motivation. Then, the rest of the course is jam-packed with so many resources, yet done in a way that doesn't make you feel overwhelmed.<br><br>I'm still going through his course, but I have already begun recommending it to my friends and family.<br><br>Also, for everything he offers, I've paid, and I'm not even exaggerating... 10x more for other courses that are not nearly as good. So, if you're looking for a way to break out of the 9-5 rat race, this course is your best shot. Invest in yourself and get to work!",
+      text: "The course starts off with a lot of mindset exercises that I felt really got me out of my funk and into a deeper state of motivation. Then, the rest of the course is jam-packed with so many resources, yet done in a way that doesn't make you feel overwhelmed.<br><br>Also, for everything he offers, I've paid, and I'm not even exaggerating... 10x more for other courses that are not nearly as good. So, if you're looking for a way to break out of the 9-5 rat race, this course is your best shot. Invest in yourself and get to work!",
       date: "Oct 8, 2022",
       link: "https://www.trustpilot.com/reviews/6340ef6bb67840c2ab2b641b"
     },
@@ -3560,7 +3562,7 @@ body::-webkit-scrollbar-thumb {
     },
     {
       name: "Steve",
-      text: '"Steve went from long hours in a corporate cubicle to a life of freedom, earning 7 figures per year. Now, he vacations more than he works, with a business that runs itself while he enjoys life."'
+      text: '"Steve went from long hours in a corporate cubicle to a life of freedom, earning 7 figures per year with a business that runs itself."'
     },
     {
       name: "Fredrik",
@@ -3568,7 +3570,7 @@ body::-webkit-scrollbar-thumb {
     },
     {
       name: "Albert",
-      text: '"After countless setbacks with other business models, Albert found success in Drop Servicing, creating a steady revenue source that gives him the freedom to explore the world."'
+      text: '"After countless setbacks with other business models, Albert found success in Drop Servicing and finally achieved financial freedom."'
     }
   ], j = "https://conversionratestore.github.io/projects/dropservicing/optin/img", K1 = (
     /* HTML */
@@ -3856,9 +3858,7 @@ body::-webkit-scrollbar-thumb {
       `<li><span></span>${e}</li>`
     )).join("")}
       </ul>
-      <p>
-        Access Dylan’s formula to learn how to start your Drop Servicing business and unlock financial freedom goals
-      </p>
+      <p>Access Dylan's formula to learn how to start your online business and achieve financial freedom goals</p>
       <button class="cta pop">Unlock Dylan’s Formula for Free</button>
     </div>
   </section>
@@ -3947,10 +3947,10 @@ body::-webkit-scrollbar-thumb {
               <li>
                 <div class="review_slide">
                   <p class="name">${e}<img src="${j}/stars_tp.svg" alt="stars" /></p>
-                  <a href="${l}">${i}</a>
+                  <a href="${l}" target="_blank">${i}</a>
                   <p class="text">${r}</p>
                   <p>
-                    <span><img src="${j}/check2.svg" alt="check" />Verified User</span>${c}
+                    <span><img src="${j}/check2.svg" alt="check" />Verified User</span>
                   </p>
                 </div>
               </li>
@@ -4097,7 +4097,7 @@ body::-webkit-scrollbar-thumb {
     <h3 class="inputs2_title">Select a time to join</h3>
     <ul class="time_list">
       ${e.map(({ date: c, schedule: l }, a) => {
-        const p = new Date(c).toLocaleString("en-us", { weekday: "long" }), _ = new Date(c).toLocaleString("en-us", { month: "long", day: "numeric" }), h = new Date(c).toLocaleString("en-us", { hour: "numeric", minute: "numeric" }), M = new Date(c).getTime() - (/* @__PURE__ */ new Date()).getTime(), I = new Date(c).getTime() + 1e3 * 60 * 15, X = new Date(I).toLocaleString("en-us", { hour: "numeric", minute: "numeric" }), R = I - (/* @__PURE__ */ new Date()).getTime(), D = Math.ceil((M < 0 ? R : M) / (1e3 * 60));
+        const p = new Date(c).toLocaleString("en-us", { weekday: "long" }), _ = new Date(c).toLocaleString("en-us", { month: "long", day: "numeric" }), h = new Date(c).toLocaleString("en-us", { hour: "numeric", minute: "numeric" }), M = new Date(c).getTime() - (/* @__PURE__ */ new Date()).getTime(), A = new Date(c).getTime() + 1e3 * 60 * 15, X = new Date(A).toLocaleString("en-us", { hour: "numeric", minute: "numeric" }), R = A - (/* @__PURE__ */ new Date()).getTime(), D = Math.ceil((M < 0 ? R : M) / (1e3 * 60));
         return (
           /* HTML */
           `
@@ -4199,7 +4199,7 @@ body::-webkit-scrollbar-thumb {
   </div>
 `
   );
-  var nt = window, Zn = nt.requestAnimationFrame || nt.webkitRequestAnimationFrame || nt.mozRequestAnimationFrame || nt.msRequestAnimationFrame || function(e) {
+  var nt = window, On = nt.requestAnimationFrame || nt.webkitRequestAnimationFrame || nt.mozRequestAnimationFrame || nt.msRequestAnimationFrame || function(e) {
     return setTimeout(e, 16);
   }, $i = window, Ht = $i.cancelAnimationFrame || $i.mozCancelAnimationFrame || function(e) {
     clearTimeout(e);
@@ -4308,22 +4308,22 @@ body::-webkit-scrollbar-thumb {
   function ot(e, i) {
     return e.getAttribute(i);
   }
-  function Ii(e) {
+  function Ai(e) {
     return typeof e.item < "u";
   }
   function _n(e, i) {
-    if (e = Ii(e) || e instanceof Array ? e : [e], Object.prototype.toString.call(i) === "[object Object]")
+    if (e = Ai(e) || e instanceof Array ? e : [e], Object.prototype.toString.call(i) === "[object Object]")
       for (var r = e.length; r--; )
         for (var c in i)
           e[r].setAttribute(c, i[c]);
   }
   function Fn(e, i) {
-    e = Ii(e) || e instanceof Array ? e : [e], i = i instanceof Array ? i : [i];
+    e = Ai(e) || e instanceof Array ? e : [e], i = i instanceof Array ? i : [i];
     for (var r = i.length, c = e.length; c--; )
       for (var l = r; l--; )
         e[c].removeAttribute(i[l]);
   }
-  function Ai(e) {
+  function zi(e) {
     for (var i = [], r = 0, c = e.length; r < c; r++)
       i.push(e[r]);
     return i;
@@ -4334,7 +4334,7 @@ body::-webkit-scrollbar-thumb {
   function mn(e, i) {
     e.style.display === "none" && (e.style.display = "");
   }
-  function zi(e) {
+  function Ii(e) {
     return window.getComputedStyle(e).display !== "none";
   }
   function Te(e) {
@@ -4408,11 +4408,11 @@ body::-webkit-scrollbar-thumb {
       }
     };
   }
-  function Io(e, i, r, c, M, a, p) {
-    var _ = Math.min(a, 10), h = M.indexOf("%") >= 0 ? "%" : "px", M = M.replace(h, ""), I = Number(e.style[i].replace(r, "").replace(c, "").replace(h, "")), X = (M - I) / a * _;
+  function Ao(e, i, r, c, M, a, p) {
+    var _ = Math.min(a, 10), h = M.indexOf("%") >= 0 ? "%" : "px", M = M.replace(h, ""), A = Number(e.style[i].replace(r, "").replace(c, "").replace(h, "")), X = (M - A) / a * _;
     setTimeout(R, _);
     function R() {
-      a -= _, I += X, e.style[i] = r + I + h + c, a > 0 ? setTimeout(R, _) : p();
+      a -= _, A += X, e.style[i] = r + A + h + c, a > 0 ? setTimeout(R, _) : p();
     }
   }
   Object.keys || (Object.keys = function(e) {
@@ -4495,19 +4495,19 @@ body::-webkit-scrollbar-thumb {
         l.removeItem(n);
       }), localStorage.tnsApp = p);
     }
-    var h = l.tC ? Sn(l.tC) : Mn(l, "tC", wo(), a), M = l.tPL ? Sn(l.tPL) : Mn(l, "tPL", Co(), a), I = l.tMQ ? Sn(l.tMQ) : Mn(l, "tMQ", yo(), a), X = l.tTf ? Sn(l.tTf) : Mn(l, "tTf", Te("transform"), a), R = l.t3D ? Sn(l.t3D) : Mn(l, "t3D", Mo(X), a), D = l.tTDu ? Sn(l.tTDu) : Mn(l, "tTDu", Te("transitionDuration"), a), de = l.tTDe ? Sn(l.tTDe) : Mn(l, "tTDe", Te("transitionDelay"), a), fe = l.tADu ? Sn(l.tADu) : Mn(l, "tADu", Te("animationDuration"), a), Me = l.tADe ? Sn(l.tADe) : Mn(l, "tADe", Te("animationDelay"), a), Cn = l.tTE ? Sn(l.tTE) : Mn(l, "tTE", ji(D, "Transition"), a), Ee = l.tAE ? Sn(l.tAE) : Mn(l, "tAE", ji(fe, "Animation"), a), Ot = r.console && typeof r.console.warn == "function", Zt = ["container", "controlsContainer", "prevButton", "nextButton", "navContainer", "autoplayButton"], Pi = {};
-    if (Zt.forEach(function(n) {
+    var h = l.tC ? Sn(l.tC) : Mn(l, "tC", wo(), a), M = l.tPL ? Sn(l.tPL) : Mn(l, "tPL", Co(), a), A = l.tMQ ? Sn(l.tMQ) : Mn(l, "tMQ", yo(), a), X = l.tTf ? Sn(l.tTf) : Mn(l, "tTf", Te("transform"), a), R = l.t3D ? Sn(l.t3D) : Mn(l, "t3D", Mo(X), a), D = l.tTDu ? Sn(l.tTDu) : Mn(l, "tTDu", Te("transitionDuration"), a), de = l.tTDe ? Sn(l.tTDe) : Mn(l, "tTDe", Te("transitionDelay"), a), fe = l.tADu ? Sn(l.tADu) : Mn(l, "tADu", Te("animationDuration"), a), Me = l.tADe ? Sn(l.tADe) : Mn(l, "tADe", Te("animationDelay"), a), Cn = l.tTE ? Sn(l.tTE) : Mn(l, "tTE", ji(D, "Transition"), a), Ee = l.tAE ? Sn(l.tAE) : Mn(l, "tAE", ji(fe, "Animation"), a), Zt = r.console && typeof r.console.warn == "function", Ot = ["container", "controlsContainer", "prevButton", "nextButton", "navContainer", "autoplayButton"], Pi = {};
+    if (Ot.forEach(function(n) {
       if (typeof e[n] == "string") {
         var t = e[n], o = i.querySelector(t);
         if (Pi[n] = t, o && o.nodeName)
           e[n] = o;
         else {
-          Ot && console.warn("Can't find", e[n]);
+          Zt && console.warn("Can't find", e[n]);
           return;
         }
       }
     }), e.container.children.length < 1) {
-      Ot && console.warn("No slides found in", e.container);
+      Zt && console.warn("No slides found in", e.container);
       return;
     }
     var N = e.responsive, ue = e.nested, g = e.mode === "carousel";
@@ -4520,17 +4520,17 @@ body::-webkit-scrollbar-thumb {
       }
       N = qt, qt = null;
     }
-    function Oi(n) {
+    function Zi(n) {
       for (var t in n)
-        g || (t === "slideBy" && (n[t] = "page"), t === "edgePadding" && (n[t] = !1), t === "autoHeight" && (n[t] = !1)), t === "responsive" && Oi(n[t]);
+        g || (t === "slideBy" && (n[t] = "page"), t === "edgePadding" && (n[t] = !1), t === "autoHeight" && (n[t] = !1)), t === "responsive" && Zi(n[t]);
     }
-    if (g || Oi(e), !g) {
+    if (g || Zi(e), !g) {
       e.axis = "horizontal", e.slideBy = "page", e.edgePadding = !1;
-      var Rn = e.animateIn, st = e.animateOut, Ft = e.animateDelay, In = e.animateNormal;
+      var Rn = e.animateIn, st = e.animateOut, Ft = e.animateDelay, An = e.animateNormal;
     }
-    var $ = e.axis === "horizontal", an = i.createElement("div"), cn = i.createElement("div"), pn, b = e.container, Rt = b.parentNode, Zi = b.outerHTML, S = b.children, x = S.length, Ie, rt = Xi(), Ae = !1;
+    var $ = e.axis === "horizontal", an = i.createElement("div"), cn = i.createElement("div"), pn, b = e.container, Rt = b.parentNode, Oi = b.outerHTML, S = b.children, x = S.length, Ae, rt = Xi(), ze = !1;
     N && p1(), g && (b.className += " tns-vpfix");
-    var C = e.autoWidth, m = w("fixedWidth"), Z = w("edgePadding"), L = w("gutter"), G = n1(), Q = w("center"), y = C ? 1 : Math.floor(w("items")), he = w("slideBy"), Wt = e.viewportMax || e.fixedWidthViewportWidth, Wn = w("arrowKeys"), yn = w("speed"), ze = e.rewind, nn = ze ? !1 : e.loop, dn = w("autoHeight"), An = w("controls"), Vn = w("controlsText"), zn = w("nav"), Bn = w("touch"), Yn = w("mouseDrag"), sn = w("autoplay"), Vt = w("autoplayTimeout"), Gn = w("autoplayText"), Jn = w("autoplayHoverPause"), Kn = w("autoplayResetOnVisibility"), A = ko(null, w("nonce")), je = e.lazyload, zo = e.lazyloadSelector, V, _e = [], en = nn ? Po() : 0, E = g ? x + en * 2 : x + en, qi = !!((m || C) && !nn), ge = m ? pi() : null, Bt = !g || !nn, te = $ ? "left" : "top", Un = "", me = "", De = /* @__PURE__ */ function() {
+    var C = e.autoWidth, m = w("fixedWidth"), O = w("edgePadding"), L = w("gutter"), G = n1(), Q = w("center"), y = C ? 1 : Math.floor(w("items")), he = w("slideBy"), Wt = e.viewportMax || e.fixedWidthViewportWidth, Wn = w("arrowKeys"), yn = w("speed"), Ie = e.rewind, nn = Ie ? !1 : e.loop, dn = w("autoHeight"), zn = w("controls"), Vn = w("controlsText"), In = w("nav"), Bn = w("touch"), Yn = w("mouseDrag"), sn = w("autoplay"), Vt = w("autoplayTimeout"), Gn = w("autoplayText"), Jn = w("autoplayHoverPause"), Kn = w("autoplayResetOnVisibility"), z = ko(null, w("nonce")), je = e.lazyload, Io = e.lazyloadSelector, V, _e = [], en = nn ? Po() : 0, E = g ? x + en * 2 : x + en, qi = !!((m || C) && !nn), ge = m ? pi() : null, Bt = !g || !nn, te = $ ? "left" : "top", Un = "", me = "", De = /* @__PURE__ */ function() {
       return m ? function() {
         return Q && !nn ? x - 1 : Math.ceil(-ge / (m + L));
       } : C ? function() {
@@ -4542,25 +4542,25 @@ body::-webkit-scrollbar-thumb {
       };
     }(), d = Ki(w("startIndex")), Xn = d;
     Ji();
-    var jn = 0, vn = C ? null : De(), at = e.preventActionWhenRunning, ct = e.swipeAngle, Dn = ct ? "?" : !0, Qn = !1, Yt = e.onInit, J = new $o(), ne = " tns-slider tns-" + e.mode, O = b.id || xo(), fn = w("disable"), He = !1, lt = e.freezable, kn = lt && !C ? ii() : !1, Pe = !1, Ne = {
+    var jn = 0, vn = C ? null : De(), at = e.preventActionWhenRunning, ct = e.swipeAngle, Dn = ct ? "?" : !0, Qn = !1, Yt = e.onInit, J = new $o(), ne = " tns-slider tns-" + e.mode, Z = b.id || xo(), fn = w("disable"), He = !1, lt = e.freezable, kn = lt && !C ? ii() : !1, Pe = !1, Ne = {
       click: ee,
       keydown: ss
     }, Gt = {
       click: Xo,
       keydown: rs
-    }, Oe = {
+    }, Ze = {
       mouseover: ts,
       mouseout: is
-    }, Ze = { visibilitychange: es }, qe = { keydown: os }, Fe = {
-      touchstart: A1,
-      touchmove: z1,
-      touchend: zt,
-      touchcancel: zt
+    }, Oe = { visibilitychange: es }, qe = { keydown: os }, Fe = {
+      touchstart: z1,
+      touchmove: I1,
+      touchend: It,
+      touchcancel: It
     }, Re = {
-      mousedown: A1,
-      mousemove: z1,
-      mouseup: zt,
-      mouseleave: zt
+      mousedown: z1,
+      mousemove: I1,
+      mouseup: It,
+      mouseleave: It
     }, pt = Nn("controls"), Jt = Nn("nav"), We = C ? !0 : e.navAsThumbnails, Kt = Nn("autoplay"), Fi = Nn("touch"), Ri = Nn("mouseDrag"), Ut = "tns-slide-active", Wi = "tns-slide-cloned", dt = "tns-complete", ft = {
       load: Wo,
       error: Vo
@@ -4577,9 +4577,9 @@ body::-webkit-scrollbar-thumb {
       } : function(n, t) {
         return n.y - t.y;
       };
-    C || vt(fn || kn), X && (te = X, Un = "translate", R ? (Un += $ ? "3d(" : "3d(0px, ", me = $ ? ", 0px, 0px)" : ", 0px)") : (Un += $ ? "X(" : "Y(", me = ")")), g && (b.className = b.className.replace("tns-vpfix", "")), Oo(), Zo(), i1();
+    C || vt(fn || kn), X && (te = X, Un = "translate", R ? (Un += $ ? "3d(" : "3d(0px, ", me = $ ? ", 0px, 0px)" : ", 0px)") : (Un += $ ? "X(" : "Y(", me = ")")), g && (b.className = b.className.replace("tns-vpfix", "")), Zo(), Oo(), i1();
     function vt(n) {
-      n && (An = zn = Bn = Yn = Wn = sn = Jn = Kn = !1);
+      n && (zn = In = Bn = Yn = Wn = sn = Jn = Kn = !1);
     }
     function Ji() {
       for (var n = g ? d - en : d; n < 0; )
@@ -4626,7 +4626,7 @@ body::-webkit-scrollbar-thumb {
       }
     }
     function n1() {
-      var n = Z ? Z * 2 - L : 0;
+      var n = O ? O * 2 - L : 0;
       return Qi(Rt) - n;
     }
     function Nn(n) {
@@ -4694,14 +4694,14 @@ body::-webkit-scrollbar-thumb {
     function t1(n) {
       return e1(fe, 17) + "animation-duration:" + n / 1e3 + "s;";
     }
-    function Oo() {
+    function Zo() {
       var n = "tns-outer", t = "tns-inner";
-      if (Nn("gutter"), an.className = n, cn.className = t, an.id = O + "-ow", cn.id = O + "-iw", b.id === "" && (b.id = O), ne += M || C ? " tns-subpixel" : " tns-no-subpixel", ne += h ? " tns-calc" : " tns-no-calc", C && (ne += " tns-autowidth"), ne += " tns-" + e.axis, b.className += ne, g ? (pn = i.createElement("div"), pn.id = O + "-mw", pn.className = "tns-ovh", an.appendChild(pn), pn.appendChild(cn)) : an.appendChild(cn), dn) {
+      if (Nn("gutter"), an.className = n, cn.className = t, an.id = Z + "-ow", cn.id = Z + "-iw", b.id === "" && (b.id = Z), ne += M || C ? " tns-subpixel" : " tns-no-subpixel", ne += h ? " tns-calc" : " tns-no-calc", C && (ne += " tns-autowidth"), ne += " tns-" + e.axis, b.className += ne, g ? (pn = i.createElement("div"), pn.id = Z + "-mw", pn.className = "tns-ovh", an.appendChild(pn), pn.appendChild(cn)) : an.appendChild(cn), dn) {
         var o = pn || cn;
         o.className += " tns-ah";
       }
       if (Rt.insertBefore(an, b), cn.appendChild(b), qn(S, function(Y, Ce) {
-        W(Y, "tns-item"), Y.id || (Y.id = O + "-item" + Ce), !g && In && W(Y, In), _n(Y, {
+        W(Y, "tns-item"), Y.id || (Y.id = Z + "-item" + Ce), !g && An && W(Y, An), _n(Y, {
           "aria-hidden": "true",
           tabindex: "-1"
         });
@@ -4722,12 +4722,12 @@ body::-webkit-scrollbar-thumb {
         qn(n, function(t) {
           var o = t.src;
           je || (o && o.indexOf("data:image") < 0 ? (t.src = "", F(t, ft), W(t, "loading"), t.src = o) : g1(t));
-        }), Zn(function() {
-          Tt(Ai(n), function() {
+        }), On(function() {
+          Tt(zi(n), function() {
             Xt = !0;
           });
-        }), Nn("autoHeight") && (n = ci(d, Math.min(d + y - 1, E - 1))), je ? o1() : Zn(function() {
-          Tt(Ai(n), o1);
+        }), Nn("autoHeight") && (n = ci(d, Math.min(d + y - 1, E - 1))), je ? o1() : On(function() {
+          Tt(zi(n), o1);
         });
       } else
         g && Ke(), r1(), a1();
@@ -4747,36 +4747,36 @@ body::-webkit-scrollbar-thumb {
     function s1() {
       (!$ || C) && (x1(), C ? (ge = pi(), lt && (kn = ii()), vn = De(), vt(fn || kn)) : ui()), g && Ke(), r1(), a1();
     }
-    function Zo() {
+    function Oo() {
       if (!g)
         for (var n = d, t = d + Math.min(x, y); n < t; n++) {
           var o = S[n];
-          o.style.left = (n - d) * 100 / y + "%", W(o, Rn), ln(o, In);
+          o.style.left = (n - d) * 100 / y + "%", W(o, Rn), ln(o, An);
         }
-      if ($ && (M || C ? (Pn(A, "#" + O + " > .tns-item", "font-size:" + r.getComputedStyle(S[0]).fontSize + ";", $n(A)), Pn(A, "#" + O, "font-size:0;", $n(A))) : g && qn(S, function(mi, vi) {
+      if ($ && (M || C ? (Pn(z, "#" + Z + " > .tns-item", "font-size:" + r.getComputedStyle(S[0]).fontSize + ";", $n(z)), Pn(z, "#" + Z, "font-size:0;", $n(z))) : g && qn(S, function(mi, vi) {
         mi.style.marginLeft = No(vi);
-      })), I) {
+      })), A) {
         if (D) {
           var s = pn && e.autoHeight ? ae(e.speed) : "";
-          Pn(A, "#" + O + "-mw", s, $n(A));
+          Pn(z, "#" + Z + "-mw", s, $n(z));
         }
-        s = xt(e.edgePadding, e.gutter, e.fixedWidth, e.speed, e.autoHeight), Pn(A, "#" + O + "-iw", s, $n(A)), g && (s = $ && !C ? "width:" + wt(e.fixedWidth, e.gutter, e.items) + ";" : "", D && (s += ae(yn)), Pn(A, "#" + O, s, $n(A))), s = $ && !C ? Ct(e.fixedWidth, e.gutter, e.items) : "", e.gutter && (s += yt(e.gutter)), g || (D && (s += ae(yn)), fe && (s += t1(yn))), s && Pn(A, "#" + O + " > .tns-item", s, $n(A));
+        s = xt(e.edgePadding, e.gutter, e.fixedWidth, e.speed, e.autoHeight), Pn(z, "#" + Z + "-iw", s, $n(z)), g && (s = $ && !C ? "width:" + wt(e.fixedWidth, e.gutter, e.items) + ";" : "", D && (s += ae(yn)), Pn(z, "#" + Z, s, $n(z))), s = $ && !C ? Ct(e.fixedWidth, e.gutter, e.items) : "", e.gutter && (s += yt(e.gutter)), g || (D && (s += ae(yn)), fe && (s += t1(yn))), s && Pn(z, "#" + Z + " > .tns-item", s, $n(z));
       } else {
-        Yo(), cn.style.cssText = xt(Z, L, m, dn), g && $ && !C && (b.style.width = wt(m, L, y));
+        Yo(), cn.style.cssText = xt(O, L, m, dn), g && $ && !C && (b.style.width = wt(m, L, y));
         var s = $ && !C ? Ct(m, L, y) : "";
-        L && (s += yt(L)), s && Pn(A, "#" + O + " > .tns-item", s, $n(A));
+        L && (s += yt(L)), s && Pn(z, "#" + Z + " > .tns-item", s, $n(z));
       }
-      if (N && I)
+      if (N && A)
         for (var u in N) {
           u = parseInt(u);
           var v = N[u], s = "", T = "", K = "", on = "", Y = "", Ce = C ? null : w("items", u), Qe = w("fixedWidth", u), le = w("speed", u), _i = w("edgePadding", u), gi = w("autoHeight", u), ye = w("gutter", u);
-          D && pn && w("autoHeight", u) && "speed" in v && (T = "#" + O + "-mw{" + ae(le) + "}"), ("edgePadding" in v || "gutter" in v) && (K = "#" + O + "-iw{" + xt(_i, ye, Qe, le, gi) + "}"), g && $ && !C && ("fixedWidth" in v || "items" in v || m && "gutter" in v) && (on = "width:" + wt(Qe, ye, Ce) + ";"), D && "speed" in v && (on += ae(le)), on && (on = "#" + O + "{" + on + "}"), ("fixedWidth" in v || m && "gutter" in v || !g && "items" in v) && (Y += Ct(Qe, ye, Ce)), "gutter" in v && (Y += yt(ye)), !g && "speed" in v && (D && (Y += ae(le)), fe && (Y += t1(le))), Y && (Y = "#" + O + " > .tns-item{" + Y + "}"), s = T + K + on + Y, s && A.insertRule("@media (min-width: " + u / 16 + "em) {" + s + "}", A.cssRules.length);
+          D && pn && w("autoHeight", u) && "speed" in v && (T = "#" + Z + "-mw{" + ae(le) + "}"), ("edgePadding" in v || "gutter" in v) && (K = "#" + Z + "-iw{" + xt(_i, ye, Qe, le, gi) + "}"), g && $ && !C && ("fixedWidth" in v || "items" in v || m && "gutter" in v) && (on = "width:" + wt(Qe, ye, Ce) + ";"), D && "speed" in v && (on += ae(le)), on && (on = "#" + Z + "{" + on + "}"), ("fixedWidth" in v || m && "gutter" in v || !g && "items" in v) && (Y += Ct(Qe, ye, Ce)), "gutter" in v && (Y += yt(ye)), !g && "speed" in v && (D && (Y += ae(le)), fe && (Y += t1(le))), Y && (Y = "#" + Z + " > .tns-item{" + Y + "}"), s = T + K + on + Y, s && z.insertRule("@media (min-width: " + u / 16 + "em) {" + s + "}", z.cssRules.length);
         }
     }
     function r1() {
       if (li(), an.insertAdjacentHTML("afterbegin", '<div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">' + _1() + "</span>  of " + x + "</div>"), Qt = an.querySelector(".tns-liveregion .current"), Kt) {
         var n = sn ? "stop" : "start";
-        q ? _n(q, { "data-action": n }) : e.autoplayButtonOutput && (an.insertAdjacentHTML(ti(e.autoplayPosition), '<button type="button" data-action="' + n + '">' + Ge[0] + n + Ge[1] + Gn[0] + "</button>"), q = an.querySelector("[data-action]")), q && F(q, { click: M1 }), sn && (At(), Jn && F(b, Oe), Kn && F(b, Ze));
+        q ? _n(q, { "data-action": n }) : e.autoplayButtonOutput && (an.insertAdjacentHTML(ti(e.autoplayPosition), '<button type="button" data-action="' + n + '">' + Ge[0] + n + Ge[1] + Gn[0] + "</button>"), q = an.querySelector("[data-action]")), q && F(q, { click: M1 }), sn && (zt(), Jn && F(b, Ze), Kn && F(b, Oe));
       }
       if (Jt) {
         if (tn)
@@ -4785,25 +4785,25 @@ body::-webkit-scrollbar-thumb {
               "data-nav": K,
               tabindex: "-1",
               "aria-label": be + (K + 1),
-              "aria-controls": O
+              "aria-controls": Z
             });
           });
         else {
           for (var t = "", o = We ? "" : 'style="display:none"', s = 0; s < x; s++)
-            t += '<button type="button" data-nav="' + s + '" tabindex="-1" aria-controls="' + O + '" ' + o + ' aria-label="' + be + (s + 1) + '"></button>';
+            t += '<button type="button" data-nav="' + s + '" tabindex="-1" aria-controls="' + Z + '" ' + o + ' aria-label="' + be + (s + 1) + '"></button>';
           t = '<div class="tns-nav" aria-label="Carousel Pagination">' + t + "</div>", an.insertAdjacentHTML(ti(e.navPosition), t), tn = an.querySelector(".tns-nav"), bn = tn.children;
         }
         if (hi(), D) {
           var u = D.substring(0, D.length - 18).toLowerCase(), v = "transition: all " + yn / 1e3 + "s";
-          u && (v = "-" + u + "-" + v), Pn(A, "[aria-controls^=" + O + "-item]", v, $n(A));
+          u && (v = "-" + u + "-" + v), Pn(z, "[aria-controls^=" + Z + "-item]", v, $n(z));
         }
         _n(bn[xn], { "aria-label": be + (xn + 1) + ni }), Fn(bn[xn], "tabindex"), W(bn[xn], ut), F(tn, Gt);
       }
-      pt && (!B && (!H || !P) && (an.insertAdjacentHTML(ti(e.controlsPosition), '<div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button type="button" data-controls="prev" tabindex="-1" aria-controls="' + O + '">' + Vn[0] + '</button><button type="button" data-controls="next" tabindex="-1" aria-controls="' + O + '">' + Vn[1] + "</button></div>"), B = an.querySelector(".tns-controls")), (!H || !P) && (H = B.children[0], P = B.children[1]), e.controlsContainer && _n(B, {
+      pt && (!B && (!H || !P) && (an.insertAdjacentHTML(ti(e.controlsPosition), '<div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button type="button" data-controls="prev" tabindex="-1" aria-controls="' + Z + '">' + Vn[0] + '</button><button type="button" data-controls="next" tabindex="-1" aria-controls="' + Z + '">' + Vn[1] + "</button></div>"), B = an.querySelector(".tns-controls")), (!H || !P) && (H = B.children[0], P = B.children[1]), e.controlsContainer && _n(B, {
         "aria-label": "Carousel Navigation",
         tabindex: "0"
       }), (e.controlsContainer || e.prevButton && e.nextButton) && _n([H, P], {
-        "aria-controls": O,
+        "aria-controls": Z,
         tabindex: "-1"
       }), (e.controlsContainer || e.prevButton && e.nextButton) && (_n(H, { "data-controls": "prev" }), _n(P, { "data-controls": "next" })), Be = C1(H), Ye = C1(P), k1(), B ? F(B, Ne) : (F(H, Ne), F(P, Ne))), si();
     }
@@ -4814,54 +4814,54 @@ body::-webkit-scrollbar-thumb {
       }
       Bn && F(b, Fe, e.preventScrollOnTouch), Yn && F(b, Re), Wn && F(i, qe), ue === "inner" ? J.on("outerResized", function() {
         l1(), J.emit("innerLoaded", rn());
-      }) : (N || m || C || dn || !$) && F(r, { resize: c1 }), dn && (ue === "outer" ? J.on("innerLoaded", Lt) : fn || Lt()), ri(), fn ? u1() : kn && f1(), J.on("indexChanged", m1), ue === "inner" && J.emit("innerLoaded", rn()), typeof Yt == "function" && Yt(rn()), Ae = !0;
+      }) : (N || m || C || dn || !$) && F(r, { resize: c1 }), dn && (ue === "outer" ? J.on("innerLoaded", Lt) : fn || Lt()), ri(), fn ? u1() : kn && f1(), J.on("indexChanged", m1), ue === "inner" && J.emit("innerLoaded", rn()), typeof Yt == "function" && Yt(rn()), ze = !0;
     }
     function qo() {
-      if (A.disabled = !0, A.ownerNode && A.ownerNode.remove(), U(r, { resize: c1 }), Wn && U(i, qe), B && U(B, Ne), tn && U(tn, Gt), U(b, Oe), U(b, Ze), q && U(q, { click: M1 }), sn && clearInterval(ht), g && Cn) {
+      if (z.disabled = !0, z.ownerNode && z.ownerNode.remove(), U(r, { resize: c1 }), Wn && U(i, qe), B && U(B, Ne), tn && U(tn, Gt), U(b, Ze), U(b, Oe), q && U(q, { click: M1 }), sn && clearInterval(ht), g && Cn) {
         var n = {};
         n[Cn] = Hn, U(b, n);
       }
       Bn && U(b, Fe), Yn && U(b, Re);
-      var t = [Zi, Vi, jo, Do, Bi, Gi];
-      Zt.forEach(function(s, u) {
+      var t = [Oi, Vi, jo, Do, Bi, Gi];
+      Ot.forEach(function(s, u) {
         var v = s === "container" ? an : e[s];
         if (typeof v == "object" && v) {
           var T = v.previousElementSibling ? v.previousElementSibling : !1, K = v.parentNode;
           v.outerHTML = t[u], e[s] = T ? T.nextElementSibling : K.firstElementChild;
         }
-      }), Zt = Rn = st = Ft = In = $ = an = cn = b = Rt = Zi = S = x = Ie = rt = C = m = Z = L = G = y = he = Wt = Wn = yn = ze = nn = dn = A = je = V = _e = en = E = qi = ge = Bt = te = Un = me = De = d = Xn = jn = vn = ct = Dn = Qn = Yt = J = ne = O = fn = He = lt = kn = Pe = Ne = Gt = Oe = Ze = qe = Fe = Re = pt = Jt = We = Kt = Fi = Ri = Ut = dt = ft = Xt = An = Vn = B = Vi = H = P = Be = Ye = zn = tn = Bi = bn = Ln = ie = oe = xn = ve = ut = be = ni = sn = Vt = Yi = Gn = Jn = q = Gi = Kn = Ge = ht = un = _t = xe = gt = se = En = mt = re = Tn = ei = Bn = Yn = null;
+      }), Ot = Rn = st = Ft = An = $ = an = cn = b = Rt = Oi = S = x = Ae = rt = C = m = O = L = G = y = he = Wt = Wn = yn = Ie = nn = dn = z = je = V = _e = en = E = qi = ge = Bt = te = Un = me = De = d = Xn = jn = vn = ct = Dn = Qn = Yt = J = ne = Z = fn = He = lt = kn = Pe = Ne = Gt = Ze = Oe = qe = Fe = Re = pt = Jt = We = Kt = Fi = Ri = Ut = dt = ft = Xt = zn = Vn = B = Vi = H = P = Be = Ye = In = tn = Bi = bn = Ln = ie = oe = xn = ve = ut = be = ni = sn = Vt = Yi = Gn = Jn = q = Gi = Kn = Ge = ht = un = _t = xe = gt = se = En = mt = re = Tn = ei = Bn = Yn = null;
       for (var o in this)
         o !== "rebuild" && (this[o] = null);
-      Ae = !1;
+      ze = !1;
     }
     function c1(n) {
-      Zn(function() {
-        l1(On(n));
+      On(function() {
+        l1(Zn(n));
       });
     }
     function l1(n) {
-      if (Ae) {
+      if (ze) {
         ue === "outer" && J.emit("outerResized", rn(n)), rt = Xi();
-        var t, o = Ie, s = !1;
-        N && (p1(), t = o !== Ie, t && J.emit("newBreakpointStart", rn(n)));
-        var u, v, T = y, K = fn, on = kn, Y = Wn, Ce = An, Qe = zn, le = Bn, _i = Yn, gi = sn, ye = Jn, mi = Kn, vi = d;
+        var t, o = Ae, s = !1;
+        N && (p1(), t = o !== Ae, t && J.emit("newBreakpointStart", rn(n)));
+        var u, v, T = y, K = fn, on = kn, Y = Wn, Ce = zn, Qe = In, le = Bn, _i = Yn, gi = sn, ye = Jn, mi = Kn, vi = d;
         if (t) {
           var as = m, cs = dn, ls = Vn, ps = Q, bi = Gn;
-          if (!I)
-            var ds = L, fs = Z;
+          if (!A)
+            var ds = L, fs = O;
         }
-        if (Wn = w("arrowKeys"), An = w("controls"), zn = w("nav"), Bn = w("touch"), Q = w("center"), Yn = w("mouseDrag"), sn = w("autoplay"), Jn = w("autoplayHoverPause"), Kn = w("autoplayResetOnVisibility"), t && (fn = w("disable"), m = w("fixedWidth"), yn = w("speed"), dn = w("autoHeight"), Vn = w("controlsText"), Gn = w("autoplayText"), Vt = w("autoplayTimeout"), I || (Z = w("edgePadding"), L = w("gutter"))), vt(fn), G = n1(), (!$ || C) && !fn && (x1(), $ || (ui(), s = !0)), (m || C) && (ge = pi(), vn = De()), (t || m) && (y = w("items"), he = w("slideBy"), v = y !== T, v && (!m && !C && (vn = De()), oi())), t && fn !== K && (fn ? u1() : Ro()), lt && (t || m || C) && (kn = ii(), kn !== on && (kn ? (di(Et(Ki(0))), f1()) : (Fo(), s = !0))), vt(fn || kn), sn || (Jn = Kn = !1), Wn !== Y && (Wn ? F(i, qe) : U(i, qe)), An !== Ce && (An ? B ? mn(B) : (H && mn(H), P && mn(P)) : B ? gn(B) : (H && gn(H), P && gn(P))), zn !== Qe && (zn ? (mn(tn), hi()) : gn(tn)), Bn !== le && (Bn ? F(b, Fe, e.preventScrollOnTouch) : U(b, Fe)), Yn !== _i && (Yn ? F(b, Re) : U(b, Re)), sn !== gi && (sn ? (q && mn(q), !un && !xe && At()) : (q && gn(q), un && Xe())), Jn !== ye && (Jn ? F(b, Oe) : U(b, Oe)), Kn !== mi && (Kn ? F(i, Ze) : U(i, Ze)), t) {
-          if ((m !== as || Q !== ps) && (s = !0), dn !== cs && (dn || (cn.style.height = "")), An && Vn !== ls && (H.innerHTML = Vn[0], P.innerHTML = Vn[1]), q && Gn !== bi) {
+        if (Wn = w("arrowKeys"), zn = w("controls"), In = w("nav"), Bn = w("touch"), Q = w("center"), Yn = w("mouseDrag"), sn = w("autoplay"), Jn = w("autoplayHoverPause"), Kn = w("autoplayResetOnVisibility"), t && (fn = w("disable"), m = w("fixedWidth"), yn = w("speed"), dn = w("autoHeight"), Vn = w("controlsText"), Gn = w("autoplayText"), Vt = w("autoplayTimeout"), A || (O = w("edgePadding"), L = w("gutter"))), vt(fn), G = n1(), (!$ || C) && !fn && (x1(), $ || (ui(), s = !0)), (m || C) && (ge = pi(), vn = De()), (t || m) && (y = w("items"), he = w("slideBy"), v = y !== T, v && (!m && !C && (vn = De()), oi())), t && fn !== K && (fn ? u1() : Ro()), lt && (t || m || C) && (kn = ii(), kn !== on && (kn ? (di(Et(Ki(0))), f1()) : (Fo(), s = !0))), vt(fn || kn), sn || (Jn = Kn = !1), Wn !== Y && (Wn ? F(i, qe) : U(i, qe)), zn !== Ce && (zn ? B ? mn(B) : (H && mn(H), P && mn(P)) : B ? gn(B) : (H && gn(H), P && gn(P))), In !== Qe && (In ? (mn(tn), hi()) : gn(tn)), Bn !== le && (Bn ? F(b, Fe, e.preventScrollOnTouch) : U(b, Fe)), Yn !== _i && (Yn ? F(b, Re) : U(b, Re)), sn !== gi && (sn ? (q && mn(q), !un && !xe && zt()) : (q && gn(q), un && Xe())), Jn !== ye && (Jn ? F(b, Ze) : U(b, Ze)), Kn !== mi && (Kn ? F(i, Oe) : U(i, Oe)), t) {
+          if ((m !== as || Q !== ps) && (s = !0), dn !== cs && (dn || (cn.style.height = "")), zn && Vn !== ls && (H.innerHTML = Vn[0], P.innerHTML = Vn[1]), q && Gn !== bi) {
             var xi = sn ? 1 : 0, wi = q.innerHTML, H1 = wi.length - bi[xi].length;
             wi.substring(H1) === bi[xi] && (q.innerHTML = wi.substring(0, H1) + Gn[xi]);
           }
         } else
           Q && (m || C) && (s = !0);
         if ((v || m && !C) && (Ln = D1(), hi()), u = d !== vi, u ? (J.emit("indexChanged", rn()), s = !0) : v ? u || m1() : (m || C) && (ri(), li(), h1()), v && !g && Go(), !fn && !kn) {
-          if (t && !I && ((Z !== fs || L !== ds) && (cn.style.cssText = xt(Z, L, m, yn, dn)), $)) {
+          if (t && !A && ((O !== fs || L !== ds) && (cn.style.cssText = xt(O, L, m, yn, dn)), $)) {
             g && (b.style.width = wt(m, L, y));
             var us = Ct(m, L, y) + yt(L);
-            Lo(A, $n(A) - 1), Pn(A, "#" + O + " > .tns-item", us, $n(A));
+            Lo(z, $n(z) - 1), Pn(z, "#" + Z + " > .tns-item", us, $n(z));
           }
           dn && Lt(), s && (Ke(), Xn = d);
         }
@@ -4873,20 +4873,20 @@ body::-webkit-scrollbar-thumb {
         var n = Q ? y - (y - 1) / 2 : y;
         return x <= n;
       }
-      var t = m ? (m + L) * x : V[x], o = Z ? G + Z * 2 : G + L;
+      var t = m ? (m + L) * x : V[x], o = O ? G + O * 2 : G + L;
       return Q && (o -= m ? (G - m) / 2 : (G - (V[d + 1] - V[d] - L)) / 2), t <= o;
     }
     function p1() {
-      Ie = 0;
+      Ae = 0;
       for (var n in N)
-        n = parseInt(n), rt >= n && (Ie = n);
+        n = parseInt(n), rt >= n && (Ae = n);
     }
     var oi = /* @__PURE__ */ function() {
       return nn ? g ? (
         // loop + carousel
         function() {
           var n = jn, t = vn;
-          n += he, t -= he, Z ? (n += 1, t -= 1) : m && (G + L) % (m + L) && (t -= 1), en && (d > t ? d -= x : d < n && (d += x));
+          n += he, t -= he, O ? (n += 1, t -= 1) : m && (G + L) % (m + L) && (t -= 1), en && (d > t ? d -= x : d < n && (d += x));
         }
       ) : (
         // loop + gallery
@@ -4906,14 +4906,14 @@ body::-webkit-scrollbar-thumb {
       );
     }();
     function si() {
-      !sn && q && gn(q), !zn && tn && gn(tn), An || (B ? gn(B) : (H && gn(H), P && gn(P)));
+      !sn && q && gn(q), !In && tn && gn(tn), zn || (B ? gn(B) : (H && gn(H), P && gn(P)));
     }
     function d1() {
-      sn && q && mn(q), zn && tn && mn(tn), An && (B ? mn(B) : (H && mn(H), P && mn(P)));
+      sn && q && mn(q), In && tn && mn(tn), zn && (B ? mn(B) : (H && mn(H), P && mn(P)));
     }
     function f1() {
       if (!Pe) {
-        if (Z && (cn.style.margin = "0px"), en)
+        if (O && (cn.style.margin = "0px"), en)
           for (var n = "tns-transparent", t = en; t--; )
             g && W(S[t], n), W(S[E - t - 1], n);
         si(), Pe = !0;
@@ -4921,7 +4921,7 @@ body::-webkit-scrollbar-thumb {
     }
     function Fo() {
       if (Pe) {
-        if (Z && I && (cn.style.margin = ""), en)
+        if (O && A && (cn.style.margin = ""), en)
           for (var n = "tns-transparent", t = en; t--; )
             g && ln(S[t], n), ln(S[E - t - 1], n);
         d1(), Pe = !1;
@@ -4929,25 +4929,25 @@ body::-webkit-scrollbar-thumb {
     }
     function u1() {
       if (!He) {
-        if (A.disabled = !0, b.className = b.className.replace(ne.substring(1), ""), Fn(b, ["style"]), nn)
+        if (z.disabled = !0, b.className = b.className.replace(ne.substring(1), ""), Fn(b, ["style"]), nn)
           for (var n = en; n--; )
             g && gn(S[n]), gn(S[E - n - 1]);
         if ((!$ || !g) && Fn(cn, ["style"]), !g)
           for (var t = d, o = d + x; t < o; t++) {
             var s = S[t];
-            Fn(s, ["style"]), ln(s, Rn), ln(s, In);
+            Fn(s, ["style"]), ln(s, Rn), ln(s, An);
           }
         si(), He = !0;
       }
     }
     function Ro() {
       if (He) {
-        if (A.disabled = !1, b.className += ne, Ke(), nn)
+        if (z.disabled = !1, b.className += ne, Ke(), nn)
           for (var n = en; n--; )
             g && mn(S[n]), mn(S[E - n - 1]);
         if (!g)
           for (var t = d, o = d + x; t < o; t++) {
-            var s = S[t], u = t < d + y ? Rn : In;
+            var s = S[t], u = t < d + y ? Rn : An;
             s.style.left = (t - d) * 100 / y + "%", W(s, u);
           }
         d1(), He = !1;
@@ -4964,18 +4964,18 @@ body::-webkit-scrollbar-thumb {
     function kt(n) {
       n == null && (n = Et());
       var t = d, o, s, u;
-      if (Q || Z ? (C || m) && (s = -(parseFloat(n) + Z), u = s + G + Z * 2) : C && (s = V[d], u = s + G), C)
+      if (Q || O ? (C || m) && (s = -(parseFloat(n) + O), u = s + G + O * 2) : C && (s = V[d], u = s + G), C)
         V.forEach(function(on, Y) {
-          Y < E && ((Q || Z) && on <= s + 0.5 && (t = Y), u - on >= 0.5 && (o = Y));
+          Y < E && ((Q || O) && on <= s + 0.5 && (t = Y), u - on >= 0.5 && (o = Y));
         });
       else {
         if (m) {
           var v = m + L;
-          Q || Z ? (t = Math.floor(s / v), o = Math.ceil(u / v - 1)) : o = t + Math.ceil(G / v) - 1;
-        } else if (Q || Z) {
+          Q || O ? (t = Math.floor(s / v), o = Math.ceil(u / v - 1)) : o = t + Math.ceil(G / v) - 1;
+        } else if (Q || O) {
           var T = y - 1;
-          if (Q ? (t -= T / 2, o = d + T / 2) : o = d + T, Z) {
-            var K = Z * y / G;
+          if (Q ? (t -= T / 2, o = d + T / 2) : o = d + T, O) {
+            var K = O * y / G;
             t -= K, o += K;
           }
           t = Math.floor(t), o = Math.ceil(o);
@@ -4988,7 +4988,7 @@ body::-webkit-scrollbar-thumb {
     function ri() {
       if (je && !fn) {
         var n = kt();
-        n.push(zo), ci.apply(null, n).forEach(function(t) {
+        n.push(Io), ci.apply(null, n).forEach(function(t) {
           if (!pe(t, dt)) {
             var o = {};
             o[Cn] = function(u) {
@@ -5025,7 +5025,7 @@ body::-webkit-scrollbar-thumb {
     }
     function Lt() {
       var n = ci.apply(null, kt());
-      Zn(function() {
+      On(function() {
         Tt(n, b1);
       });
     }
@@ -5034,7 +5034,7 @@ body::-webkit-scrollbar-thumb {
         !je && o.complete && ai(o), pe(o, dt) && n.splice(s, 1);
       }), !n.length))
         return t();
-      Zn(function() {
+      On(function() {
         Tt(n, t);
       });
     }
@@ -5072,7 +5072,7 @@ body::-webkit-scrollbar-thumb {
     function Go() {
       for (var n = d + Math.min(x, y), t = E; t--; ) {
         var o = S[t];
-        t >= d && t < n ? (W(o, "tns-moving"), o.style.left = (t - d) * 100 / y + "%", W(o, Rn), ln(o, In)) : o.style.left && (o.style.left = "", W(o, In), ln(o, Rn)), ln(o, st);
+        t >= d && t < n ? (W(o, "tns-moving"), o.style.left = (t - d) * 100 / y + "%", W(o, Rn), ln(o, An)) : o.style.left && (o.style.left = "", W(o, An), ln(o, Rn)), ln(o, st);
       }
       setTimeout(function() {
         qn(S, function(s) {
@@ -5081,7 +5081,7 @@ body::-webkit-scrollbar-thumb {
       }, 300);
     }
     function Jo() {
-      if (zn && (xn = oe >= 0 ? oe : Ui(), oe = -1, xn !== ve)) {
+      if (In && (xn = oe >= 0 ? oe : Ui(), oe = -1, xn !== ve)) {
         var n = bn[ve], t = bn[xn];
         _n(n, {
           tabindex: "-1",
@@ -5102,8 +5102,8 @@ body::-webkit-scrollbar-thumb {
       n ? t.disabled = o : t.setAttribute("aria-disabled", o.toString());
     }
     function k1() {
-      if (!(!An || ze || nn)) {
-        var n = Be ? H.disabled : y1(H), t = Ye ? P.disabled : y1(P), o = d <= jn, s = !ze && d >= vn;
+      if (!(!zn || Ie || nn)) {
+        var n = Be ? H.disabled : y1(H), t = Ye ? P.disabled : y1(P), o = d <= jn, s = !Ie && d >= vn;
         o && !n && St(Be, H, !0), !o && n && St(Be, H, !1), s && !t && St(Ye, P, !0), !s && t && St(Ye, P, !1);
       }
     }
@@ -5115,11 +5115,11 @@ body::-webkit-scrollbar-thumb {
     }
     function Je(n) {
       n == null && (n = d);
-      var t = Z ? L : 0;
+      var t = O ? L : 0;
       return C ? (G - t - (V[n + 1] - V[n] - L)) / 2 : m ? (G - m) / 2 : (y - 1) / 2;
     }
     function pi() {
-      var n = Z ? L : 0, t = G + n - Ko();
+      var n = O ? L : 0, t = G + n - Ko();
       return Q && !nn && (t = m ? -(m + L) * (E - 1) - Je() : Je(E - 1) - V[E - 1]), t > 0 && (t = 0), t;
     }
     function Et(n) {
@@ -5152,11 +5152,11 @@ body::-webkit-scrollbar-thumb {
     }
     var Uo = /* @__PURE__ */ function() {
       return g ? function() {
-        Mt(b, ""), D || !yn ? (di(), (!yn || !zi(b)) && Hn()) : Io(b, te, Un, me, Et(), yn, Hn), $ || ui();
+        Mt(b, ""), D || !yn ? (di(), (!yn || !Ii(b)) && Hn()) : Ao(b, te, Un, me, Et(), yn, Hn), $ || ui();
       } : function() {
         _e = [];
         var n = {};
-        n[Cn] = n[Ee] = Hn, U(S[Xn], n), F(S[d], n), L1(Xn, Rn, st, !0), L1(d, In, Rn), (!Cn || !Ee || !yn || !zi(b)) && Hn();
+        n[Cn] = n[Ee] = Hn, U(S[Xn], n), F(S[d], n), L1(Xn, Rn, st, !0), L1(d, An, Rn), (!Cn || !Ee || !yn || !Ii(b)) && Hn();
       };
     }();
     function fi(n, t) {
@@ -5170,7 +5170,7 @@ body::-webkit-scrollbar-thumb {
         if (J.emit("transitionEnd", rn(n)), !g && _e.length > 0)
           for (var t = 0; t < _e.length; t++) {
             var o = _e[t];
-            o.style.left = "", Me && de && (o.style[Me] = "", o.style[de] = ""), ln(o, st), W(o, In);
+            o.style.left = "", Me && de && (o.style[Me] = "", o.style[de] = ""), ln(o, st), W(o, An);
           }
         if (!n || !g && n.target.parentNode === b || n.target === b && T1(n.propertyName) === T1(te)) {
           if (!Bt) {
@@ -5209,13 +5209,13 @@ body::-webkit-scrollbar-thumb {
       }
       var o;
       if (!t) {
-        n = On(n);
+        n = Zn(n);
         for (var s = we(n); s !== B && [H, P].indexOf(s) < 0; )
           s = s.parentNode;
         var u = [H, P].indexOf(s);
         u >= 0 && (o = !0, t = u === 0 ? -1 : 1);
       }
-      if (ze) {
+      if (Ie) {
         if (d === jn && t === -1) {
           Ue("last", n);
           return;
@@ -5232,7 +5232,7 @@ body::-webkit-scrollbar-thumb {
           return;
         Hn();
       }
-      n = On(n);
+      n = Zn(n);
       for (var t = we(n), o; t !== tn && !Le(t, "data-nav"); )
         t = t.parentNode;
       if (Le(t, "data-nav")) {
@@ -5245,43 +5245,43 @@ body::-webkit-scrollbar-thumb {
         ee(null, Yi);
       }, Vt), un = !0;
     }
-    function It() {
+    function At() {
       clearInterval(ht), un = !1;
     }
     function S1(n, t) {
       _n(q, { "data-action": n }), q.innerHTML = Ge[0] + n + Ge[1] + t;
     }
-    function At() {
+    function zt() {
       $t(), q && S1("stop", Gn[1]);
     }
     function Xe() {
-      It(), q && S1("start", Gn[0]);
+      At(), q && S1("start", Gn[0]);
     }
     function Qo() {
-      sn && !un && (At(), xe = !1);
+      sn && !un && (zt(), xe = !1);
     }
     function ns() {
       un && (Xe(), xe = !0);
     }
     function M1() {
-      un ? (Xe(), xe = !0) : (At(), xe = !1);
+      un ? (Xe(), xe = !0) : (zt(), xe = !1);
     }
     function es() {
-      i.hidden ? un && (It(), gt = !0) : gt && ($t(), gt = !1);
+      i.hidden ? un && (At(), gt = !0) : gt && ($t(), gt = !1);
     }
     function ts() {
-      un && (It(), _t = !0);
+      un && (At(), _t = !0);
     }
     function is() {
       _t && ($t(), _t = !1);
     }
     function os(n) {
-      n = On(n);
+      n = Zn(n);
       var t = [c.LEFT, c.RIGHT].indexOf(n.keyCode);
       t >= 0 && ee(n, t === 0 ? -1 : 1);
     }
     function ss(n) {
-      n = On(n);
+      n = Zn(n);
       var t = [c.LEFT, c.RIGHT].indexOf(n.keyCode);
       t >= 0 && (t === 0 ? H.disabled || ee(n, -1) : P.disabled || ee(n, 1));
     }
@@ -5289,14 +5289,14 @@ body::-webkit-scrollbar-thumb {
       n.focus();
     }
     function rs(n) {
-      n = On(n);
+      n = Zn(n);
       var t = i.activeElement;
       if (Le(t, "data-nav")) {
         var o = [c.LEFT, c.RIGHT, c.ENTER, c.SPACE].indexOf(n.keyCode), s = Number(ot(t, "data-nav"));
         o >= 0 && (o === 0 ? s > 0 && E1(bn[s - 1]) : o === 1 ? s < Ln - 1 && E1(bn[s + 1]) : (oe = s, Ue(s, n)));
       }
     }
-    function On(n) {
+    function Zn(n) {
       return n = n || r.event, ce(n) ? n.changedTouches[0] : n;
     }
     function we(n) {
@@ -5308,25 +5308,25 @@ body::-webkit-scrollbar-thumb {
     function $1(n) {
       n.preventDefault ? n.preventDefault() : n.returnValue = !1;
     }
-    function I1() {
+    function A1() {
       return So(To(En.y - se.y, En.x - se.x), ct) === e.axis;
     }
-    function A1(n) {
+    function z1(n) {
       if (Qn) {
         if (at)
           return;
         Hn();
       }
-      sn && un && It(), re = !0, Tn && (Ht(Tn), Tn = null);
-      var t = On(n);
+      sn && un && At(), re = !0, Tn && (Ht(Tn), Tn = null);
+      var t = Zn(n);
       J.emit(ce(n) ? "touchStart" : "dragStart", rn(n)), !ce(n) && ["img", "a"].indexOf(w1(we(n))) >= 0 && $1(n), En.x = se.x = t.clientX, En.y = se.y = t.clientY, g && (mt = parseFloat(b.style[te].replace(Un, "")), Mt(b, "0s"));
     }
-    function z1(n) {
+    function I1(n) {
       if (re) {
-        var t = On(n);
-        En.x = t.clientX, En.y = t.clientY, g ? Tn || (Tn = Zn(function() {
+        var t = Zn(n);
+        En.x = t.clientX, En.y = t.clientY, g ? Tn || (Tn = On(function() {
           j1(n);
-        })) : (Dn === "?" && (Dn = I1()), Dn && (Ve = !0)), (typeof n.cancelable != "boolean" || n.cancelable) && Ve && n.preventDefault();
+        })) : (Dn === "?" && (Dn = A1()), Dn && (Ve = !0)), (typeof n.cancelable != "boolean" || n.cancelable) && Ve && n.preventDefault();
       }
     }
     function j1(n) {
@@ -5334,9 +5334,9 @@ body::-webkit-scrollbar-thumb {
         re = !1;
         return;
       }
-      if (Ht(Tn), re && (Tn = Zn(function() {
+      if (Ht(Tn), re && (Tn = On(function() {
         j1(n);
-      })), Dn === "?" && (Dn = I1()), Dn) {
+      })), Dn === "?" && (Dn = A1()), Dn) {
         !Ve && ce(n) && (Ve = !0);
         try {
           n.type && J.emit(ce(n) ? "touchMove" : "dragMove", rn(n));
@@ -5352,10 +5352,10 @@ body::-webkit-scrollbar-thumb {
         b.style[te] = Un + t + me;
       }
     }
-    function zt(n) {
+    function It(n) {
       if (re) {
         Tn && (Ht(Tn), Tn = null), g && Mt(b, ""), re = !1;
-        var t = On(n);
+        var t = Zn(n);
         En.x = t.clientX, En.y = t.clientY;
         var o = ei(En, se);
         if (Math.abs(o)) {
@@ -5365,7 +5365,7 @@ body::-webkit-scrollbar-thumb {
               $1(v), U(s, { click: u });
             } });
           }
-          g ? Tn = Zn(function() {
+          g ? Tn = On(function() {
             if ($ && !C) {
               var u = -o * y / (G + L);
               u = o > 0 ? Math.floor(u) : Math.ceil(u), d += u;
@@ -5394,7 +5394,7 @@ body::-webkit-scrollbar-thumb {
       return Math.min(Math.ceil(n), x);
     }
     function hi() {
-      if (!(!zn || We) && Ln !== ie) {
+      if (!(!In || We) && Ln !== ie) {
         var n = ie, t = Ln, o = mn;
         for (ie > Ln && (n = Ln, t = ie, o = gn); n < t; )
           o(bn[n]), n++;
@@ -5423,8 +5423,8 @@ body::-webkit-scrollbar-thumb {
         navCurrentIndexCached: ve,
         pages: Ln,
         pagesCached: ie,
-        sheet: A,
-        isOn: Ae,
+        sheet: z,
+        isOn: ze,
         event: n || {}
       };
     }
@@ -5435,7 +5435,7 @@ body::-webkit-scrollbar-thumb {
       goTo: Ue,
       play: Qo,
       pause: ns,
-      isOn: Ae,
+      isOn: ze,
       updateSliderHeight: b1,
       refresh: i1,
       destroy: qo,
@@ -5444,8 +5444,8 @@ body::-webkit-scrollbar-thumb {
       }
     };
   };
-  O1({ name: "Opt in page V2", dev: "SKH" });
-  class Ao {
+  Z1({ name: "Opt in page V2", dev: "SKH" });
+  class zo {
     constructor() {
       this.device = window.innerWidth < 768 ? "mobile" : "desktop", q1("body", () => {
         f("head").elements[0].insertAdjacentHTML(
@@ -5459,7 +5459,7 @@ body::-webkit-scrollbar-thumb {
       });
     }
     init() {
-      Z1("exp_opt_in_v2", "variant_1"), this.getRandomNumberForSeatsLeft() || this.generateAndStoreRandomNumberForSeatsLeft(), this.addBlocks(), this.setActions(), this.setEvents(), this.setInnerTxtRandomNumberForSeatsLeft(), this.setSliderStories("#main_block"), this.setSliderStories(".crs_exit_popup"), this.intentPopupTriggers();
+      O1("exp_opt_in_v2", "variant_1"), this.getRandomNumberForSeatsLeft() || this.generateAndStoreRandomNumberForSeatsLeft(), this.addBlocks(), this.setActions(), this.setEvents(), this.setInnerTxtRandomNumberForSeatsLeft(), this.setSliderStories("#main_block"), this.setSliderStories(".crs_exit_popup"), this.intentPopupTriggers();
     }
     getRandomNumberForSeatsLeft() {
       return sessionStorage.getItem("randomNumber");
@@ -5523,12 +5523,12 @@ body::-webkit-scrollbar-thumb {
         let p = a.getInfo().index;
         a.events.on("indexChanged", function(_) {
           const h = _.index;
-          h > p ? z(
+          h > p ? I(
             "exp_opt_in_v2__slider__right",
             "Change slides. Right",
             "click",
             "What’s stopping you from achieving your financial and lifestyle goals?"
-          ) : h < p && z(
+          ) : h < p && I(
             "exp_opt_in_v2__slider__left",
             "Change slides. Left",
             "click",
@@ -5541,8 +5541,8 @@ body::-webkit-scrollbar-thumb {
         if (!p)
           return;
         f("body").elements[0].style.overflow = "hidden", f(".crs_blockers_popup").elements[0].classList.add("active");
-        const _ = p.getAttribute("data-id"), h = f(".crs_blockers_popup").elements[0], M = f(".crs_blockers_content").elements[0], I = yi.find((R) => R.id === parseInt(_ || "")), X = I == null ? void 0 : I.popupContent.title;
-        if (z(
+        const _ = p.getAttribute("data-id"), h = f(".crs_blockers_popup").elements[0], M = f(".crs_blockers_content").elements[0], A = yi.find((R) => R.id === parseInt(_ || "")), X = A == null ? void 0 : A.popupContent.title;
+        if (I(
           "exp_opt_in_v2__slider__open",
           `See details. ${X}`,
           "click",
@@ -5550,8 +5550,8 @@ body::-webkit-scrollbar-thumb {
         ), window.innerWidth < 768 && (console.log("MOB"), h.insertAdjacentHTML(
           "beforeend",
           '<div class="sticky_btn_wrapper"><button class="cta pop">Access Your Free Training Now!</button></div>'
-        )), I) {
-          const { icon: R, title: D, text: de, button: fe, video: Me, review: Cn } = (I == null ? void 0 : I.popupContent) || {};
+        )), A) {
+          const { icon: R, title: D, text: de, button: fe, video: Me, review: Cn } = (A == null ? void 0 : A.popupContent) || {};
           M.insertAdjacentHTML(
             "beforeend",
             vo(
@@ -5566,9 +5566,9 @@ body::-webkit-scrollbar-thumb {
               Me
             )
           ), jt(".crs_blockers_content .info_wrapper").then((Ee) => {
-            z("exp_opt_in_v2__popup_det__view", "Popup", "view", `Popup. ${X}`);
+            I("exp_opt_in_v2__popup_det__view", "Popup", "view", `Popup. ${X}`);
           }), f(".crs_blockers_popup .cta").on("click", function(Ee) {
-            Ee.currentTarget && (z("exp_opt_in_v2__popup_det__cta", "Yes! Get Access Now!", "click", `Popup. ${X}`), c(), setTimeout(() => {
+            Ee.currentTarget && (I("exp_opt_in_v2__popup_det__cta", "Yes! Get Access Now!", "click", `Popup. ${X}`), c(), setTimeout(() => {
               f(".crs_popup_form").elements[0].classList.add("active"), hn(
                 ".crs_popup_form.active .inputs1",
                 "exp_opt_in_v2__p_form__1__view",
@@ -5590,7 +5590,7 @@ body::-webkit-scrollbar-thumb {
       }), f("[data-closeexit]").on("click", function(a) {
         !a.target.closest(".crs_main_info") && !a.target.closest(".crs_stories") && (f("body").elements[0].style.overflow = "auto", f(".crs_exit_popup").elements[0].classList.remove("active"));
       }), f(".crs_exit_popup .cta").on("click", function(a) {
-        z("exp_opt_in_v2__p_exit__yes", "Yes, I want free training & bonuses", "click", "Popup. Exit-intent"), f(".crs_exit_popup").elements[0].classList.remove("active"), hn(
+        I("exp_opt_in_v2__p_exit__yes", "Yes, I want free training & bonuses", "click", "Popup. Exit-intent"), f(".crs_exit_popup").elements[0].classList.remove("active"), hn(
           ".crs_popup_form.active .inputs1",
           "exp_opt_in_v2__p_form__1__view",
           "Popup. Access Your Exclusive Online Training. Step 1",
@@ -5599,12 +5599,12 @@ body::-webkit-scrollbar-thumb {
           f(".crs_popup_form").elements[0].classList.add("active");
         }, 800);
       }), f(".no_btn").on("click", function(a) {
-        z("exp_opt_in_v2__p_exit__no", "No, I'll miss out", "click", "Popup. Exit-intent"), f("body").elements[0].style.overflow = "auto", f(".crs_exit_popup").elements[0].classList.remove("active");
+        I("exp_opt_in_v2__p_exit__no", "No, I'll miss out", "click", "Popup. Exit-intent"), f("body").elements[0].style.overflow = "auto", f(".crs_exit_popup").elements[0].classList.remove("active");
       }), f(".inputs2").on("click", "li", function() {
         if (!this.classList.contains("selected")) {
           this.closest(".inputs2").querySelector(".selected").classList.remove("selected"), this.classList.add("selected");
           const a = this.getAttribute("data-schedule");
-          z(
+          I(
             "exp_opt_in_v2__p_form__2__time",
             `Input. Time. ${a}`,
             "click",
@@ -5617,18 +5617,18 @@ body::-webkit-scrollbar-thumb {
         let M = !0;
         if ((!_ || _.trim() === "") && (this.querySelector('input[name="name"]').closest("label").classList.add("error"), M = !1), (!h || h.trim() === "" || !h.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) && (this.querySelector('input[name="email"]').closest("label").classList.add("error"), M = !1), !M)
           return;
-        this.closest("#main_block") ? z(
+        this.closest("#main_block") ? I(
           `exp_optin_fs_button_${this.querySelector(".inputs2").classList.contains("active") ? "step_2" : "step_1"}`,
           "Grab Your FREE Seat Now",
           "click",
           `First screen form ${this.querySelector(".inputs2").classList.contains("active") ? "step 2" : "step 1"}`
-        ) : z(
+        ) : I(
           `exp_opt_in_v2__p_form__${this.querySelector(".inputs2").classList.contains("active") ? "2__select" : "1__get"}`,
           `${this.querySelector(".inputs2").classList.contains("active") ? "Select a Time" : "Get free training"}`,
           "click",
           `${this.querySelector(".inputs2").classList.contains("active") ? "Popup. Access Your Exclusive Online Training. Step 2" : "Popup. Access Your Exclusive Online Training. Step 1"}`
         );
-        const I = (/* @__PURE__ */ new Date()).getTimezoneOffset() / 60, X = `GMT${I > 0 ? "-" : "+"}${Math.abs(I)}`;
+        const A = (/* @__PURE__ */ new Date()).getTimezoneOffset() / 60, X = `GMT${A > 0 ? "-" : "+"}${Math.abs(A)}`;
         if (this.querySelector(".inputs2").classList.contains("active")) {
           const R = f(".inputs2 .selected").elements[0].getAttribute("data-schedule");
           fetch("https://conversionrate.top/api/dropservicing/register", {
@@ -5658,7 +5658,7 @@ body::-webkit-scrollbar-thumb {
                 timezone: X
               })
             }).then((D) => D.json());
-            console.log(R), console.log(this), this.querySelector(".inputs1").style.display = "none", this.querySelector(".inputs2").innerHTML = go(R.webinar.schedules, R.webinar.timezone), this.querySelector(".inputs2").classList.add("active"), z(
+            console.log(R), console.log(this), this.querySelector(".inputs1").style.display = "none", this.querySelector(".inputs2").innerHTML = go(R.webinar.schedules, R.webinar.timezone), this.querySelector(".inputs2").classList.add("active"), I(
               "exp_opt_in_v2__p_form__2__view",
               "Popup",
               "view",
@@ -5670,14 +5670,14 @@ body::-webkit-scrollbar-thumb {
       }), f("form input").on("input", function() {
         this.closest("label").classList.remove("error");
       }), f('input[name="name"]').on("change", function() {
-        !!this.closest("#main_block") ? z("exp_optin_fs_name", "Enter your name", "input", "First screen form") : z(
+        !!this.closest("#main_block") ? I("exp_optin_fs_name", "Enter your name", "input", "First screen form") : I(
           "exp_opt_in_v2__p_form__1__name",
           "Input. Enter your name",
           "click",
           "Popup. Access Your Exclusive Online Training. Step 1"
         );
       }), f('input[name="email"]').on("change", function() {
-        !!this.closest("#main_block") ? z("exp_optin_fs_email", "Enter email address", "input", "First screen form") : z(
+        !!this.closest("#main_block") ? I("exp_optin_fs_email", "Enter email address", "input", "First screen form") : I(
           "exp_opt_in_v2__p_form__1__email",
           "Input. Enter email address",
           "click",
@@ -5688,13 +5688,13 @@ body::-webkit-scrollbar-thumb {
       }), f(".question").on("click", function() {
         const a = this.innerText;
         if (this.classList.contains("active")) {
-          this.classList.remove("active"), z("exp_optin_faq_close", `Close question. ${a}`, "click", "Frequently asked questions");
+          this.classList.remove("active"), I("exp_optin_faq_close", `Close question. ${a}`, "click", "Frequently asked questions");
           return;
         }
-        f(".question.active").removeClass("active"), this.classList.toggle("active"), z("exp_optin_faq_open", `Open question. ${a}`, "click", "Frequently asked questions");
+        f(".question.active").removeClass("active"), this.classList.toggle("active"), I("exp_optin_faq_open", `Open question. ${a}`, "click", "Frequently asked questions");
       }), f(".cta.pop").on("click", function() {
         var a, p, _, h;
-        f("body").elements[0].style.overflow = "hidden", console.log(".cta.pop"), (p = (a = f(".crs_video_popup")) == null ? void 0 : a.elements[0]) != null && p.classList.contains("active") && f(".crs_video_popup .video *:not(.crs_close)").elements.forEach((M) => M.remove()), (h = (_ = f(".crs_video_popup")) == null ? void 0 : _.elements[0]) == null || h.classList.remove("active"), f(".crs_popup_form").elements[0].classList.add("active"), this.closest("#last_cta") && z("exp_optin_future_cta", "Join the exclusive training", "click", "Your Future Starts Here"), this.closest("#training_for") && z("exp_optin_who_cta", "Join The FREE Training Now", "click", "Who is the Training for"), this.closest("#host_block") && z("exp_optin_host_cta", "Unlock Dylan’s Formula for Free ", "click", "Your Host: Dylan Sydney"), this.closest("#bonus_block") && z("exp_optin_bonuses_cta", "Grab Your FREE Seat Now", "click", "Exclusive Bonuses"), this.closest(".crs_video_popup") && z("exp_optin_popup_review_cta", "Grab Your FREE Seat Now", "click", "Popup after review"), this.closest("#main_block") && z("exp_opt_in_v2__fs__cta", "Yes! Get Access Now!", "click", "First screen"), hn(
+        f("body").elements[0].style.overflow = "hidden", console.log(".cta.pop"), (p = (a = f(".crs_video_popup")) == null ? void 0 : a.elements[0]) != null && p.classList.contains("active") && f(".crs_video_popup .video *:not(.crs_close)").elements.forEach((M) => M.remove()), (h = (_ = f(".crs_video_popup")) == null ? void 0 : _.elements[0]) == null || h.classList.remove("active"), f(".crs_popup_form").elements[0].classList.add("active"), this.closest("#last_cta") && I("exp_optin_future_cta", "Join the exclusive training", "click", "Your Future Starts Here"), this.closest("#training_for") && I("exp_optin_who_cta", "Join The FREE Training Now", "click", "Who is the Training for"), this.closest("#host_block") && I("exp_optin_host_cta", "Unlock Dylan’s Formula for Free ", "click", "Your Host: Dylan Sydney"), this.closest("#bonus_block") && I("exp_optin_bonuses_cta", "Grab Your FREE Seat Now", "click", "Exclusive Bonuses"), this.closest(".crs_video_popup") && I("exp_optin_popup_review_cta", "Grab Your FREE Seat Now", "click", "Popup after review"), this.closest("#main_block") && I("exp_opt_in_v2__fs__cta", "Yes! Get Access Now!", "click", "First screen"), hn(
           ".crs_popup_form.active",
           "exp_opt_in_v2__p_form__1__view",
           "Popup. Access Your Exclusive Online Training. Step 1",
@@ -5702,13 +5702,13 @@ body::-webkit-scrollbar-thumb {
         );
       }), f("[data-closeform]").on("click", function(a) {
         (a.target.matches(".crs_popup_form") || a.currentTarget.matches(".close")) && (f("body").elements[0].style.overflow = "auto", f(".crs_popup_form").elements[0].classList.remove("active"), f(".crs_popup_form .inputs1").elements[0].style.display = "block", f(".crs_popup_form .inputs2").removeClass("active"), sessionStorage.getItem("intentPopupTriggers") || setTimeout(() => {
-          sessionStorage.setItem("intentPopupTriggers", "true"), f(".crs_exit_popup").elements[0].classList.add("active"), f("body").elements[0].style.overflow = "hidden", z("exp_opt_in_v2__p_exit__view", "Popup", "view", "Popup. Exit-intent");
+          sessionStorage.setItem("intentPopupTriggers", "true"), f(".crs_exit_popup").elements[0].classList.add("active"), f("body").elements[0].style.overflow = "hidden", I("exp_opt_in_v2__p_exit__view", "Popup", "view", "Popup. Exit-intent");
         }, 400));
       }), f("#base_review .slide").on("click", function() {
         var h, M;
         const a = this.querySelector(".slide>p").textContent, p = this.getAttribute("data-video"), _ = f(`.video_slide[data-video="${p}"] .video`).elements[0].cloneNode(!0);
-        console.log(_, p, "videoBlock"), f(".crs_video_popup .video").elements[0].appendChild(_), (M = (h = f(".crs_video_popup")) == null ? void 0 : h.elements[0]) == null || M.classList.add("active"), z("exp_optin_why_join_review", `Open review. ${a}`, "click", "Why Join This Webinar"), f(".crs_video_popup .wistia_embed").on("click", function() {
-          z("exp_optin_popup_review_video", `Play video ${a}`, "click", "Popup after review");
+        console.log(_, p, "videoBlock"), f(".crs_video_popup .video").elements[0].appendChild(_), (M = (h = f(".crs_video_popup")) == null ? void 0 : h.elements[0]) == null || M.classList.add("active"), I("exp_optin_why_join_review", `Open review. ${a}`, "click", "Why Join This Webinar"), f(".crs_video_popup .wistia_embed").on("click", function() {
+          I("exp_optin_popup_review_video", `Play video ${a}`, "click", "Popup after review");
         });
       }), f(".crs_video_popup .crs_close").on("click", function() {
         f(".crs_video_popup .video *:not(.crs_close)").elements.forEach((a) => a.remove()), f(".crs_video_popup").elements[0].classList.remove("active");
@@ -5741,7 +5741,7 @@ body::-webkit-scrollbar-thumb {
         }, 500), a.events.on("indexChanged", function(p) {
           var h, M;
           const _ = p.navItems;
-          Array.from(_).forEach((I) => I.classList.remove("tns-nav-near")), (h = _[p.index - 1]) == null || h.classList.add("tns-nav-near"), (M = _[p.index + 1]) == null || M.classList.add("tns-nav-near");
+          Array.from(_).forEach((A) => A.classList.remove("tns-nav-near")), (h = _[p.index - 1]) == null || h.classList.add("tns-nav-near"), (M = _[p.index + 1]) == null || M.classList.add("tns-nav-near");
         });
       }
       if (this.device === "desktop") {
@@ -5767,9 +5767,9 @@ body::-webkit-scrollbar-thumb {
           }
         });
         a.getInfo().slideItems[0].classList.add("tns-current"), a.getInfo().navItems[1].classList.add("tns-nav-near"), a.events.on("indexChanged", function(p) {
-          var I, X;
+          var A, X;
           const _ = p.slideItems, h = p.navItems;
-          Array.from(h).forEach((R) => R.classList.remove("tns-nav-near")), Array.from(_).forEach((R) => R.classList.remove("tns-current")), (I = h[p.index - 1]) == null || I.classList.add("tns-nav-near"), (X = h[p.index + 1]) == null || X.classList.add("tns-nav-near"), _[p.index].classList.add("tns-current");
+          Array.from(h).forEach((R) => R.classList.remove("tns-nav-near")), Array.from(_).forEach((R) => R.classList.remove("tns-current")), (A = h[p.index - 1]) == null || A.classList.add("tns-nav-near"), (X = h[p.index + 1]) == null || X.classList.add("tns-nav-near"), _[p.index].classList.add("tns-current");
         }), Se({
           container: "#trust_pilot ul",
           items: 3,
@@ -5800,7 +5800,7 @@ body::-webkit-scrollbar-thumb {
             id: a.videoId,
             onReady: function(p) {
               p.bind("play", function() {
-                p.container.closest(".video_slide") && z(
+                p.container.closest(".video_slide") && I(
                   "exp_optin_hear_video",
                   `Video ${p.data.media.name}`,
                   "click",
@@ -5833,11 +5833,11 @@ body::-webkit-scrollbar-thumb {
       });
     }
     showExitPopup() {
-      sessionStorage.setItem("intentPopupTriggers", "true"), f("body").elements[0].style.overflow = "hidden", f(".crs_exit_popup").elements[0].classList.add("active"), z("exp_opt_in_v2__p_exit__view", "Popup", "view", "Popup. Exit-intent");
+      sessionStorage.setItem("intentPopupTriggers", "true"), f("body").elements[0].style.overflow = "hidden", f(".crs_exit_popup").elements[0].classList.add("active"), I("exp_opt_in_v2__p_exit__view", "Popup", "view", "Popup. Exit-intent");
     }
   }
   jt(".crs_landing").then((e) => {
-    new Ao();
+    new zo();
   });
 })();
 //# sourceMappingURL=index.js.map
