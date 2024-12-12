@@ -1,55 +1,59 @@
 (function() {
   "use strict";
-  const B = (f, s, a, c = "") => {
+  const B = (g, s, a, c = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: f,
+      event_name: g,
       event_desc: s,
       event_type: a,
       event_loc: c
-    }), console.log(`Event: ${f} | ${s} | ${a} | ${c}`);
-  }, H = ({ name: f, dev: s }) => {
+    }), console.log(`Event: ${g} | ${s} | ${a} | ${c}`);
+  }, H = ({ name: g, dev: s }) => {
     console.log(
-      `%c EXP: ${f} (DEV: ${s})`,
+      `%c EXP: ${g} (DEV: ${s})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, O = (f, s, a, c) => {
+  }, O = (g) => {
+    let s = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(s), window.clarity("set", g, "variant_1"));
+    }, 1e3);
+  }, U = (g, s, a, c) => {
     let h = [];
-    if (typeof f == "string")
-      h = document.querySelectorAll(f);
-    else if (f instanceof Element)
-      h = [f];
+    if (typeof g == "string")
+      h = document.querySelectorAll(g);
+    else if (g instanceof Element)
+      h = [g];
     else {
-      console.error("Invalid target type:", f);
+      console.error("Invalid target type:", g);
       return;
     }
     let A = new IntersectionObserver(
       (m) => {
         m.forEach((w) => {
           w.isIntersecting && (A.unobserve(w.target), setTimeout(function() {
-            g.observe(w.target);
+            f.observe(w.target);
           }, 1e3));
         });
       },
       {
         threshold: 0.2
       }
-    ), g = new IntersectionObserver((m) => {
+    ), f = new IntersectionObserver((m) => {
       m.forEach((w) => {
-        w.isIntersecting ? (B(s || `view_element_${w.target.id}`, a || "Element visibility", "view", c || w.target.id), A.unobserve(w.target)) : A.observe(w.target), g.unobserve(w.target);
+        w.isIntersecting ? (B(s || `view_element_${w.target.id}`, a || "Element visibility", "view", c || w.target.id), A.unobserve(w.target)) : A.observe(w.target), f.unobserve(w.target);
       });
     });
     h.forEach((m) => {
       A.observe(m);
     });
   }, E = "https://conversionratestore.github.io/projects/goiteens/1st_hypothesis", F = "accordion_index";
-  function U(f) {
-    return f && f.__esModule && Object.prototype.hasOwnProperty.call(f, "default") ? f.default : f;
+  function X(g) {
+    return g && g.__esModule && Object.prototype.hasOwnProperty.call(g, "default") ? g.default : g;
   }
   var W = { exports: {} };
-  (function(f) {
+  (function(g) {
     (function(s) {
-      f.exports ? f.exports = s() : window.intlTelInput = s();
+      g.exports ? g.exports = s() : window.intlTelInput = s();
     })(function(s) {
       return function() {
         for (var a = [["Afghanistan", "af", "93"], ["Albania", "al", "355"], ["Algeria", "dz", "213"], ["American Samoa", "as", "1", 5, ["684"]], ["Andorra", "ad", "376"], ["Angola", "ao", "244"], ["Anguilla", "ai", "1", 6, ["264"]], ["Antigua & Barbuda", "ag", "1", 7, ["268"]], ["Argentina", "ar", "54"], ["Armenia", "am", "374"], ["Aruba", "aw", "297"], ["Ascension Island", "ac", "247"], ["Australia", "au", "61", 0], ["Austria", "at", "43"], ["Azerbaijan", "az", "994"], ["Bahamas", "bs", "1", 8, ["242"]], ["Bahrain", "bh", "973"], ["Bangladesh", "bd", "880"], ["Barbados", "bb", "1", 9, ["246"]], ["Belarus", "by", "375"], ["Belgium", "be", "32"], ["Belize", "bz", "501"], ["Benin", "bj", "229"], ["Bermuda", "bm", "1", 10, ["441"]], ["Bhutan", "bt", "975"], ["Bolivia", "bo", "591"], ["Bosnia & Herzegovina", "ba", "387"], ["Botswana", "bw", "267"], ["Brazil", "br", "55"], ["British Indian Ocean Territory", "io", "246"], ["British Virgin Islands", "vg", "1", 11, ["284"]], ["Brunei", "bn", "673"], ["Bulgaria", "bg", "359"], ["Burkina Faso", "bf", "226"], ["Burundi", "bi", "257"], ["Cambodia", "kh", "855"], ["Cameroon", "cm", "237"], ["Canada", "ca", "1", 1, ["204", "226", "236", "249", "250", "263", "289", "306", "343", "354", "365", "367", "368", "382", "387", "403", "416", "418", "428", "431", "437", "438", "450", "584", "468", "474", "506", "514", "519", "548", "579", "581", "584", "587", "604", "613", "639", "647", "672", "683", "705", "709", "742", "753", "778", "780", "782", "807", "819", "825", "867", "873", "902", "905"]], ["Cape Verde", "cv", "238"], ["Caribbean Netherlands", "bq", "599", 1, ["3", "4", "7"]], ["Cayman Islands", "ky", "1", 12, ["345"]], ["Central African Republic", "cf", "236"], ["Chad", "td", "235"], ["Chile", "cl", "56"], ["China", "cn", "86"], ["Christmas Island", "cx", "61", 2, ["89164"]], ["Cocos (Keeling) Islands", "cc", "61", 1, ["89162"]], ["Colombia", "co", "57"], ["Comoros", "km", "269"], ["Congo - Brazzaville", "cg", "242"], ["Congo - Kinshasa", "cd", "243"], ["Cook Islands", "ck", "682"], ["Costa Rica", "cr", "506"], ["Côte d’Ivoire", "ci", "225"], ["Croatia", "hr", "385"], ["Cuba", "cu", "53"], ["Curaçao", "cw", "599", 0], ["Cyprus", "cy", "357"], ["Czech Republic", "cz", "420"], ["Denmark", "dk", "45"], ["Djibouti", "dj", "253"], ["Dominica", "dm", "1", 13, ["767"]], ["Dominican Republic", "do", "1", 2, ["809", "829", "849"]], ["Ecuador", "ec", "593"], ["Egypt", "eg", "20"], ["El Salvador", "sv", "503"], ["Equatorial Guinea", "gq", "240"], ["Eritrea", "er", "291"], ["Estonia", "ee", "372"], ["Eswatini", "sz", "268"], ["Ethiopia", "et", "251"], ["Falkland Islands", "fk", "500"], ["Faroe Islands", "fo", "298"], ["Fiji", "fj", "679"], ["Finland", "fi", "358", 0], ["France", "fr", "33"], ["French Guiana", "gf", "594"], ["French Polynesia", "pf", "689"], ["Gabon", "ga", "241"], ["Gambia", "gm", "220"], ["Georgia", "ge", "995"], ["Germany", "de", "49"], ["Ghana", "gh", "233"], ["Gibraltar", "gi", "350"], ["Greece", "gr", "30"], ["Greenland", "gl", "299"], ["Grenada", "gd", "1", 14, ["473"]], ["Guadeloupe", "gp", "590", 0], ["Guam", "gu", "1", 15, ["671"]], ["Guatemala", "gt", "502"], ["Guernsey", "gg", "44", 1, ["1481", "7781", "7839", "7911"]], ["Guinea", "gn", "224"], ["Guinea-Bissau", "gw", "245"], ["Guyana", "gy", "592"], ["Haiti", "ht", "509"], ["Honduras", "hn", "504"], ["Hong Kong", "hk", "852"], ["Hungary", "hu", "36"], ["Iceland", "is", "354"], ["India", "in", "91"], ["Indonesia", "id", "62"], ["Iran", "ir", "98"], ["Iraq", "iq", "964"], ["Ireland", "ie", "353"], ["Isle of Man", "im", "44", 2, ["1624", "74576", "7524", "7924", "7624"]], ["Israel", "il", "972"], ["Italy", "it", "39", 0], ["Jamaica", "jm", "1", 4, ["876", "658"]], ["Japan", "jp", "81"], ["Jersey", "je", "44", 3, ["1534", "7509", "7700", "7797", "7829", "7937"]], ["Jordan", "jo", "962"], ["Kazakhstan", "kz", "7", 1, ["33", "7"]], ["Kenya", "ke", "254"], ["Kiribati", "ki", "686"], ["Kosovo", "xk", "383"], ["Kuwait", "kw", "965"], ["Kyrgyzstan", "kg", "996"], ["Laos", "la", "856"], ["Latvia", "lv", "371"], ["Lebanon", "lb", "961"], ["Lesotho", "ls", "266"], ["Liberia", "lr", "231"], ["Libya", "ly", "218"], ["Liechtenstein", "li", "423"], ["Lithuania", "lt", "370"], ["Luxembourg", "lu", "352"], ["Macau", "mo", "853"], ["Madagascar", "mg", "261"], ["Malawi", "mw", "265"], ["Malaysia", "my", "60"], ["Maldives", "mv", "960"], ["Mali", "ml", "223"], ["Malta", "mt", "356"], ["Marshall Islands", "mh", "692"], ["Martinique", "mq", "596"], ["Mauritania", "mr", "222"], ["Mauritius", "mu", "230"], ["Mayotte", "yt", "262", 1, ["269", "639"]], ["Mexico", "mx", "52"], ["Micronesia", "fm", "691"], ["Moldova", "md", "373"], ["Monaco", "mc", "377"], ["Mongolia", "mn", "976"], ["Montenegro", "me", "382"], ["Montserrat", "ms", "1", 16, ["664"]], ["Morocco", "ma", "212", 0], ["Mozambique", "mz", "258"], ["Myanmar (Burma)", "mm", "95"], ["Namibia", "na", "264"], ["Nauru", "nr", "674"], ["Nepal", "np", "977"], ["Netherlands", "nl", "31"], ["New Caledonia", "nc", "687"], ["New Zealand", "nz", "64"], ["Nicaragua", "ni", "505"], ["Niger", "ne", "227"], ["Nigeria", "ng", "234"], ["Niue", "nu", "683"], ["Norfolk Island", "nf", "672"], ["North Korea", "kp", "850"], ["North Macedonia", "mk", "389"], ["Northern Mariana Islands", "mp", "1", 17, ["670"]], ["Norway", "no", "47", 0], ["Oman", "om", "968"], ["Pakistan", "pk", "92"], ["Palau", "pw", "680"], ["Palestine", "ps", "970"], ["Panama", "pa", "507"], ["Papua New Guinea", "pg", "675"], ["Paraguay", "py", "595"], ["Peru", "pe", "51"], ["Philippines", "ph", "63"], ["Poland", "pl", "48"], ["Portugal", "pt", "351"], ["Puerto Rico", "pr", "1", 3, ["787", "939"]], ["Qatar", "qa", "974"], ["Réunion", "re", "262", 0], ["Romania", "ro", "40"], ["Russia", "ru", "7", 0], ["Rwanda", "rw", "250"], ["Samoa", "ws", "685"], ["San Marino", "sm", "378"], ["São Tomé & Príncipe", "st", "239"], ["Saudi Arabia", "sa", "966"], ["Senegal", "sn", "221"], ["Serbia", "rs", "381"], ["Seychelles", "sc", "248"], ["Sierra Leone", "sl", "232"], ["Singapore", "sg", "65"], ["Sint Maarten", "sx", "1", 21, ["721"]], ["Slovakia", "sk", "421"], ["Slovenia", "si", "386"], ["Solomon Islands", "sb", "677"], ["Somalia", "so", "252"], ["South Africa", "za", "27"], ["South Korea", "kr", "82"], ["South Sudan", "ss", "211"], ["Spain", "es", "34"], ["Sri Lanka", "lk", "94"], ["St Barthélemy", "bl", "590", 1], ["St Helena", "sh", "290"], ["St Kitts & Nevis", "kn", "1", 18, ["869"]], ["St Lucia", "lc", "1", 19, ["758"]], ["St Martin", "mf", "590", 2], ["St Pierre & Miquelon", "pm", "508"], ["St Vincent & Grenadines", "vc", "1", 20, ["784"]], ["Sudan", "sd", "249"], ["Suriname", "sr", "597"], ["Svalbard & Jan Mayen", "sj", "47", 1, ["79"]], ["Sweden", "se", "46"], ["Switzerland", "ch", "41"], ["Syria", "sy", "963"], ["Taiwan", "tw", "886"], ["Tajikistan", "tj", "992"], ["Tanzania", "tz", "255"], ["Thailand", "th", "66"], ["Timor-Leste", "tl", "670"], ["Togo", "tg", "228"], ["Tokelau", "tk", "690"], ["Tonga", "to", "676"], ["Trinidad & Tobago", "tt", "1", 22, ["868"]], ["Tunisia", "tn", "216"], ["Turkey", "tr", "90"], ["Turkmenistan", "tm", "993"], ["Turks & Caicos Islands", "tc", "1", 23, ["649"]], ["Tuvalu", "tv", "688"], ["Uganda", "ug", "256"], ["Ukraine", "ua", "380"], ["United Arab Emirates", "ae", "971"], ["United Kingdom", "gb", "44", 0], ["United States", "us", "1", 0], ["Uruguay", "uy", "598"], ["US Virgin Islands", "vi", "1", 24, ["340"]], ["Uzbekistan", "uz", "998"], ["Vanuatu", "vu", "678"], ["Vatican City", "va", "39", 1, ["06698"]], ["Venezuela", "ve", "58"], ["Vietnam", "vn", "84"], ["Wallis & Futuna", "wf", "681"], ["Western Sahara", "eh", "212", 1, ["5288", "5289"]], ["Yemen", "ye", "967"], ["Zambia", "zm", "260"], ["Zimbabwe", "zw", "263"], ["Åland Islands", "ax", "358", 1, ["18"]]], c = 0; c < a.length; c++) {
@@ -68,12 +72,12 @@
             typeof Object.getOwnPropertySymbols == "function" && e.push.apply(e, Object.getOwnPropertySymbols(t).filter(function(n) {
               return Object.getOwnPropertyDescriptor(t, n).enumerable;
             })), e.forEach(function(n) {
-              g(p, n, t[n]);
+              f(p, n, t[n]);
             });
           }
           return p;
         }
-        function g(p, i, t) {
+        function f(p, i, t) {
           return i = _(i), i in p ? Object.defineProperty(p, i, {
             value: t,
             enumerable: !0,
@@ -182,7 +186,7 @@
           k(window.intlTelInputGlobals.instances, function(t) {
             window.intlTelInputGlobals.instances[t][i]();
           });
-        }, at = /* @__PURE__ */ function() {
+        }, lt = /* @__PURE__ */ function() {
           function p(i, t) {
             var e = this;
             m(this, p), this.id = D++, this.telInput = i, this.activeItem = null, this.highlightedItem = null;
@@ -324,9 +328,9 @@
                 this.telInput.disabled || this.selectedFlag.setAttribute("tabindex", "0"), this.dropdownArrow = this._createEl("div", {
                   class: "iti__arrow"
                 }, this.selectedFlag);
-                var lt = u ? "" : "iti--flexible-dropdown-width";
+                var dt = u ? "" : "iti--flexible-dropdown-width";
                 if (this.dropdownContent = this._createEl("div", {
-                  class: "iti__dropdown-content iti__hide ".concat(lt)
+                  class: "iti__dropdown-content iti__hide ".concat(dt)
                 }), y && (this.searchInput = this._createEl("input", {
                   type: "text",
                   class: "iti__search-input",
@@ -881,15 +885,15 @@
           }
           return null;
         }, b.defaults = T, b.version = "18.5.3", function(p, i) {
-          var t = new at(p, i);
+          var t = new lt(p, i);
           return t._init(), p.setAttribute("data-intl-tel-input-id", t.id), window.intlTelInputGlobals.instances[t.id] = t, t;
         };
       }();
     });
   })(W);
-  var X = W.exports, Z = X;
-  const Q = /* @__PURE__ */ U(Z);
-  class V {
+  var Z = W.exports, Q = Z;
+  const V = /* @__PURE__ */ X(Q);
+  class K {
     constructor({ container: s, position: a }) {
       this.container = s, this.position = a || "beforeend", this.init();
     }
@@ -924,8 +928,9 @@
       ), this.submitForm();
       const a = document.querySelector("#popup_input_phone");
       if (a) {
-        const h = Q(a, {
+        const h = V(a, {
           initialCountry: "ua",
+          countryOrder: ["ua"],
           countrySearch: !1,
           nationalMode: !0,
           showFlags: !0,
@@ -935,16 +940,16 @@
             const { add: I, remove: _ } = this.errorToInput(a);
             h.isValidNumber() || I("Номер телефону невірний!"), h.isValidNumber() && (a.dataset.value = h.getNumber(), _());
           }
-        }, g = document.querySelector("#popup_input_name"), m = (I) => {
+        }, f = document.querySelector("#popup_input_name"), m = (I) => {
           const _ = I.target.value;
           if (_) {
-            const { add: L, remove: b } = this.errorToInput(g);
+            const { add: L, remove: b } = this.errorToInput(f);
             b(), /\d/.test(_) ? L("Ім’я невірне") : _.trim() === "" ? L("Ім’я обов’язкове") : _.length < 2 ? L("Поле повинно містити мінімум 2 символи") : b();
           }
         };
         a.addEventListener("input", A), a.addEventListener("change", () => {
           B("exp_hyp_2_1_input_02", "Phone", "input", "Choose the perfect course");
-        }), g == null || g.addEventListener("input", m), g.addEventListener("change", () => {
+        }), f == null || f.addEventListener("input", m), f.addEventListener("change", () => {
           B("exp_hyp_2_1_input_01", "Name", "input", "Choose the perfect course");
         });
         const w = document.querySelector('.crs-popup-form button[type="submit"]');
@@ -977,9 +982,9 @@
         const c = s.querySelector("#popup_input_name"), h = s.querySelector("#popup_input_phone");
         if (!c || !h)
           return;
-        const A = c == null ? void 0 : c.value, g = h == null ? void 0 : h.dataset.value, { add: m, remove: w } = this.errorToInput(c), { add: I, remove: _ } = this.errorToInput(h);
+        const A = c == null ? void 0 : c.value, f = h == null ? void 0 : h.dataset.value, { add: m, remove: w } = this.errorToInput(c), { add: I, remove: _ } = this.errorToInput(h);
         let L = !0;
-        if ((!A || A.trim() === "") && (m("Ім’я обов’язкове"), L = !1), (!g || g.trim() === "") && (h == null || h.classList.add("is-invalid"), I("Номер телефону невірний!"), L = !1), !L)
+        if ((!A || A.trim() === "") && (m("Ім’я обов’язкове"), L = !1), (!f || f.trim() === "") && (h == null || h.classList.add("is-invalid"), I("Номер телефону невірний!"), L = !1), !L)
           return;
         const b = s.querySelector('button[type="submit"]');
         b == null || b.setAttribute("disabled", "true");
@@ -988,7 +993,7 @@
             method: "POST",
             body: JSON.stringify({
               name: A,
-              phone: g,
+              phone: f,
               SiteURL: "https://courses-all.goiteens.com/v-gl-v3/",
               product_name: "GoITeens_Courses_All_GL_v3"
             }),
@@ -1012,7 +1017,7 @@
       });
     }
   }
-  const K = `.crs-popup {
+  const J = `.crs-popup {
   max-width: 1140px;
   border: none;
   border-radius: 40px;
@@ -1418,12 +1423,12 @@ body:has(.crs-popup[open]) {
       ]
     }
   };
-  class J {
+  class q {
     constructor() {
       this.popup = null, this.init();
     }
     init() {
-      this.initStyles(), this.render(), this.eventListeners(), new V({ container: document.querySelector(".crs-form__container") });
+      this.initStyles(), this.render(), this.eventListeners(), new K({ container: document.querySelector(".crs-form__container") });
     }
     render() {
       const s = (
@@ -1484,17 +1489,17 @@ body:has(.crs-popup[open]) {
       if (console.log("index", s), s) {
         const A = M[s];
         if (A) {
-          const g = (a = this.popup) == null ? void 0 : a.querySelector(".crs-popup__title"), m = (c = this.popup) == null ? void 0 : c.querySelector(".crs-popup__description"), w = (h = this.popup) == null ? void 0 : h.querySelector(".crs-popup__content-list");
-          g && (g.innerHTML = A.title), m && (m.textContent = A.description), w && (w.innerHTML = A.content.map((I) => `<li>${I}</li>`).join(""));
+          const f = (a = this.popup) == null ? void 0 : a.querySelector(".crs-popup__title"), m = (c = this.popup) == null ? void 0 : c.querySelector(".crs-popup__description"), w = (h = this.popup) == null ? void 0 : h.querySelector(".crs-popup__content-list");
+          f && (f.innerHTML = A.title), m && (m.textContent = A.description), w && (w.innerHTML = A.content.map((I) => `<li>${I}</li>`).join(""));
         }
       }
     }
     initStyles() {
       const s = document.createElement("style");
-      s.textContent = K, document.head.insertAdjacentElement("beforeend", s);
+      s.textContent = J, document.head.insertAdjacentElement("beforeend", s);
     }
   }
-  const q = [
+  const $ = [
     {
       icon: `${E}/img/icons/icon-1.webp`,
       title: "Хочу щоб моя дитина замість ігор і TikTok витрачала час із користю",
@@ -1622,7 +1627,7 @@ body:has(.crs-popup[open]) {
       },
       description: "Дізнайтесь які напрямки будуть відповідати інтересам і талантам вашої дитини"
     }
-  ], $ = `.crs-achieve {
+  ], tt = `.crs-achieve {
   margin-bottom: 60px;
   position: relative;
   padding-block: 84px;
@@ -1878,9 +1883,9 @@ body:has(.crs-popup[open]) {
   }
 }
 `;
-  class tt {
+  class et {
     constructor({ container: s, position: a }) {
-      this.container = s, this.position = a || "beforeend", this.popup = new J(), this.init();
+      this.container = s, this.position = a || "beforeend", this.popup = new q(), this.init();
     }
     init() {
       if (!this.container) {
@@ -1896,7 +1901,7 @@ body:has(.crs-popup[open]) {
       <div class="container">
         <h2 class="section-title mb-6 md:mb-10">Що ви хочете досягти завдяки IT курсам?</h2>
         <div class="crs-accordion">
-          ${q.map(({ icon: a, title: c, body: h, action: A, description: g }, m) => (
+          ${$.map(({ icon: a, title: c, body: h, action: A, description: f }, m) => (
           /* HTML */
           `<div class="crs-accordion__item" data-state="close" data-index="${m + 1}">
                 <div class="crs-accordion__title">
@@ -1910,7 +1915,7 @@ body:has(.crs-popup[open]) {
                     <div class="crs-accordion__actions">
                       <button data-popup="${A.popup}" class="crs-accordion__action">${A.text}</button>
                     </div>
-                    <div class="crs-accordion__description">${g}</div>
+                    <div class="crs-accordion__description">${f}</div>
                   </div>
                 </div>
               </div>`
@@ -1930,14 +1935,14 @@ body:has(.crs-popup[open]) {
             c.setAttribute("data-state", "close"), sessionStorage.removeItem(F);
           else {
             s.forEach((m) => m.setAttribute("data-state", "close")), c.setAttribute("data-state", "open");
-            const g = c.getAttribute("data-index");
-            g && (sessionStorage.setItem(F, g), B("exp_hyp_2_1_button_01", `Want - ${g}`, "click", "What do you want"));
+            const f = c.getAttribute("data-index");
+            f && (sessionStorage.setItem(F, f), B("exp_hyp_2_1_button_01", `Want - ${f}`, "click", "What do you want"));
           }
         });
       }), this.container.querySelectorAll('.crs-accordion__action[data-popup="free-lesson"]').forEach((c) => {
         c.addEventListener("click", () => {
-          var g, m;
-          const h = (g = c.closest(".crs-accordion__item")) == null ? void 0 : g.getAttribute("data-index");
+          var f, m;
+          const h = (f = c.closest(".crs-accordion__item")) == null ? void 0 : f.getAttribute("data-index");
           this.popup.open(h ? Number(h) : 1);
           const A = (m = c.closest(".crs-accordion__item")) == null ? void 0 : m.getAttribute("data-index");
           A && !isNaN(Number(A)) && B("exp_hyp_2_1_button_02", `Sign up for a free lesson - ${A}`, "click", "What do you want");
@@ -1946,10 +1951,10 @@ body:has(.crs-popup[open]) {
     }
     initStyles() {
       const s = document.createElement("style");
-      s.innerHTML = $, document.head.appendChild(s);
+      s.innerHTML = tt, document.head.appendChild(s);
     }
   }
-  const et = `.crs-badges {
+  const nt = `.crs-badges {
   position: absolute;
   left: 50%;
   bottom: -184px;
@@ -2127,7 +2132,7 @@ body:has(.crs-popup[open]) {
   }
 }
 `;
-  class nt {
+  class it {
     constructor({ container: s, position: a }) {
       this.container = s, this.position = a || "beforeend", this.init();
     }
@@ -2216,14 +2221,14 @@ body:has(.crs-popup[open]) {
         </div>
       </div>
     `
-      ), O(".crs-badges", "exp_hyp_2_1_element_01", "Benefits visibility", "Second screen"));
+      ), U(".crs-badges", "exp_hyp_2_1_element_01", "Benefits visibility", "Second screen"));
     }
     initStyles() {
       const s = document.createElement("style");
-      s.innerHTML = et, document.head.appendChild(s);
+      s.innerHTML = nt, document.head.appendChild(s);
     }
   }
-  const it = `@media (min-width: 1280px) {
+  const ot = `@media (min-width: 1280px) {
   header.header {
     position: relative;
     margin-bottom: 206px;
@@ -2278,7 +2283,7 @@ body:has(.crs-popup[open]) {
   }
 }
 `;
-  class ot {
+  class st {
     constructor() {
       this.init();
     }
@@ -2287,10 +2292,10 @@ body:has(.crs-popup[open]) {
     }
     initStyles() {
       const s = document.createElement("style");
-      s.innerHTML = it, document.head.appendChild(s);
+      s.innerHTML = ot, document.head.appendChild(s);
     }
   }
-  const st = `@media (min-width: 1200px) {
+  const rt = `@media (min-width: 1200px) {
   br.mobile {
     display: none;
   }
@@ -2304,18 +2309,18 @@ body:has(.crs-popup[open]) {
   H({
     name: "1st hypothesis",
     dev: "OS"
-  });
-  class rt {
+  }), O('goiteens_hyp_2_1"');
+  class at {
     constructor() {
       this.init();
     }
     init() {
-      location.pathname.includes("v-gl-v2/") && (this.initStyles(), new ot(), new nt({ container: document.querySelector("header"), position: "beforeend" }), new tt({ container: document.querySelector("main"), position: "afterbegin" }));
+      location.pathname.includes("v-gl-v2/") && (this.initStyles(), new st(), new it({ container: document.querySelector("header"), position: "beforeend" }), new et({ container: document.querySelector("main"), position: "afterbegin" }));
     }
     initStyles() {
       const s = document.createElement("style");
-      s.textContent = st, document.head.appendChild(s);
+      s.textContent = rt, document.head.appendChild(s);
     }
   }
-  new rt();
+  new at();
 })();
