@@ -1938,7 +1938,7 @@ body::-webkit-scrollbar-thumb {
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 40px;
+  top: 15px;
   right: 40px;
   height: 16px;
   width: 16px;
