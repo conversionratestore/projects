@@ -2628,9 +2628,6 @@ body::-webkit-scrollbar-thumb {
 .crs_v2 .crs_blockers_popup .crs_blockers_content .video_wrapper .video .wistia_embed > div {
   border-radius: 20px !important;
 }
-.crs_v2 .crs_blockers_popup .crs_blockers_content .video_wrapper .video .wistia_embed > div .w-css-reset .w-css-reset-tree.w-bpb-wrapper button {
-  display: none !important;
-}
 @media (max-width: 768px) {
   .crs_v2 .crs_blockers_popup .crs_blockers_content .video_wrapper .video {
     aspect-ratio: unset;
