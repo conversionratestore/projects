@@ -1952,7 +1952,7 @@ body::-webkit-scrollbar-thumb {
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 40px;
+  top: 15px;
   right: 40px;
   height: 16px;
   width: 16px;
@@ -2473,7 +2473,7 @@ body::-webkit-scrollbar-thumb {
 .crs_v2 .crs_blockers_popup .close {
   position: absolute;
   opacity: 1;
-  top: 15px;
+  top: 40px;
   right: 40px;
   width: 16px;
   height: 16px;
