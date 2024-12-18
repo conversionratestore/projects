@@ -239,7 +239,7 @@ checkout-form coupon-form form [zippyclass='is-open']::before {
   display: none;
   background: url('https://conversionratestore.github.io/projects/lemieux/img/promo_code_icon.svg') no-repeat;
   background-size: contain;
-} /*# sourceMappingURL=main.css.map */
+} 
 
 /* C TEST */
 
@@ -287,7 +287,7 @@ checkout-account social-login .button__body i {
     }
     initFunc() {
       L({
-        name: "Adding promo code and gift card options to the checkout (Second iteration v2)",
+        name: "Adding promo code and gift card options to the checkout (Second iteration С)",
         dev: "SKh (OS)"
       }), o(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${S}</style>`), this.initAllFunc();
     }
