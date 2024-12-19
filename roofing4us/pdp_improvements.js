@@ -1,55 +1,55 @@
 (function() {
   "use strict";
-  const m = (s, o, t, i = "") => {
+  const m = (s, n, t, i = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: s,
-      event_desc: o,
+      event_desc: n,
       event_type: t,
       event_loc: i
-    }), console.dir(`Event: ${s} | ${o} | ${t} | ${i}`);
-  }, S = ({ name: s, dev: o }) => {
+    }), console.dir(`Event: ${s} | ${n} | ${t} | ${i}`);
+  }, S = ({ name: s, dev: n }) => {
     console.log(
-      `%c EXP: ${s} (DEV: ${o})`,
+      `%c EXP: ${s} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, f = (s) => document.querySelectorAll(s), r = (s) => document.querySelector(s), b = async (s) => {
-    const o = (t) => new Promise((i, n) => {
-      const l = t.split(".").pop();
-      if (l === "js") {
-        if (Array.from(document.scripts).map((u) => u.src.toLowerCase()).includes(t.toLowerCase()))
+  }, f = (s) => document.querySelectorAll(s), r = (s) => document.querySelector(s), y = async (s) => {
+    const n = (t) => new Promise((i, o) => {
+      const c = t.split(".").pop();
+      if (c === "js") {
+        if (Array.from(document.scripts).map((h) => h.src.toLowerCase()).includes(t.toLowerCase()))
           return console.log(`Script ${t} allready downloaded!`), i("");
         const d = document.createElement("script");
-        d.src = t, d.onload = i, d.onerror = n, document.head.appendChild(d);
-      } else if (l === "css") {
-        if (Array.from(document.styleSheets).map((u) => {
+        d.src = t, d.onload = i, d.onerror = o, document.head.appendChild(d);
+      } else if (c === "css") {
+        if (Array.from(document.styleSheets).map((h) => {
           var _;
-          return (_ = u.href) == null ? void 0 : _.toLowerCase();
+          return (_ = h.href) == null ? void 0 : _.toLowerCase();
         }).includes(t.toLowerCase()))
           return console.log(`Style ${t} allready downloaded!`), i("");
         const d = document.createElement("link");
-        d.rel = "stylesheet", d.href = t, d.onload = i, d.onerror = n, document.head.appendChild(d);
+        d.rel = "stylesheet", d.href = t, d.onload = i, d.onerror = o, document.head.appendChild(d);
       }
     });
     for (const t of s)
-      await o(t), console.log(`Loaded librari ${t}`);
+      await n(t), console.log(`Loaded librari ${t}`);
     console.log("All libraries loaded!");
-  }, T = (s, o = "variant_1") => {
+  }, T = (s, n = "variant_1") => {
     let t = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", s, o), console.log("set", s, o));
+      typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", s, n), console.log("set", s, n));
     }, 1e3);
-  }, y = (s, o, t, i, n = "Visibility", l = 600, p = 0.5) => {
-    let d, u;
+  }, b = (s, n, t, i, o = "Visibility", c = 600, p = 0.5) => {
+    let d, h;
     if (d = new IntersectionObserver(
       function(_) {
-        _[0].isIntersecting === !0 ? u = setTimeout(() => {
+        _[0].isIntersecting === !0 ? h = setTimeout(() => {
           m(
-            o,
-            _[0].target.dataset.visible || i || "",
             n,
+            _[0].target.dataset.visible || i || "",
+            o,
             t
           ), d.disconnect();
-        }, l) : clearTimeout(u);
+        }, c) : clearTimeout(h);
       },
       { threshold: [p] }
     ), typeof s == "string") {
@@ -58,12 +58,12 @@
     } else
       d.observe(s);
   };
-  function c(s) {
-    return new Promise((o) => {
+  function l(s) {
+    return new Promise((n) => {
       if (document.querySelector(s))
-        return o(document.querySelector(s));
+        return n(document.querySelector(s));
       const t = new MutationObserver(() => {
-        document.querySelector(s) && (o(document.querySelector(s)), t.disconnect());
+        document.querySelector(s) && (n(document.querySelector(s)), t.disconnect());
       });
       t.observe(document.documentElement, {
         childList: !0,
@@ -74,16 +74,16 @@
   }
   (function(s) {
     s = s === void 0 ? {} : s;
-    let o, t, i, n, l = (s == null ? void 0 : s.delay) || 50;
+    let n, t, i, o, c = (s == null ? void 0 : s.delay) || 50;
     function p() {
-      o = null, n = 0;
+      n = null, o = 0;
     }
     return p(), function() {
-      return t = window.scrollY, o != null && (n = t - o), o = t, clearTimeout(i), i = setTimeout(p, l), n;
+      return t = window.scrollY, n != null && (o = t - n), n = t, clearTimeout(i), i = setTimeout(p, c), o;
     };
   })();
-  const v = (s, o = 100) => {
-    const i = s.getBoundingClientRect().top + window.scrollY - o;
+  const v = (s, n = 100) => {
+    const i = s.getBoundingClientRect().top + window.scrollY - n;
     window.scrollTo({
       top: i,
       behavior: "smooth"
@@ -386,7 +386,7 @@
   <path d="M104.855 95.3641C104.757 93.9611 104.561 92.4307 104.272 90.8147C103.98 89.1865 103.604 87.6473 103.154 86.2406C102.69 84.7865 102.057 83.3506 101.276 81.9746C100.465 80.5464 99.5127 79.3027 98.4439 78.2794C97.3262 77.2088 95.9578 76.348 94.3754 75.7201C92.7985 75.0956 91.051 74.7792 89.1816 74.7792C88.4475 74.7792 87.7375 75.0807 86.3664 75.9745C85.5225 76.5254 84.5355 77.1626 83.4337 77.8674C82.4916 78.4683 81.2154 79.0314 79.6391 79.5411C78.1011 80.0394 76.5396 80.292 74.9984 80.292C73.4571 80.292 71.8961 80.0394 70.3565 79.5411C68.7818 79.0319 67.5056 78.4689 66.5646 77.8679C65.4733 77.1698 64.4857 76.5326 63.6292 75.9739C62.2597 75.0802 61.5492 74.7786 60.8151 74.7786C58.9452 74.7786 57.1982 75.0956 55.6218 75.7207C54.0405 76.3474 52.6716 77.2082 51.5528 78.2799C50.4846 79.3038 49.5315 80.5469 48.7217 81.9746C47.9409 83.3506 47.3088 84.786 46.8436 86.2411C46.3942 87.6479 46.0183 89.1865 45.7264 90.8147C45.4373 92.4286 45.2409 93.9595 45.1438 95.3657C45.0483 96.7434 45 98.1733 45 99.6174C45 103.376 46.1934 106.418 48.5466 108.662C50.8708 110.877 53.9462 112 57.686 112H92.314C96.0538 112 99.1281 110.877 101.453 108.662C103.807 106.42 105 103.377 105 99.6169C104.999 98.1661 104.951 96.7352 104.855 95.3641Z" fill="white"/>
 </svg>
 `
-  }, h = {
+  }, u = {
     "/products/twinwall-polycarbonate-sheet-all-sizes": {
       sideSliderImg: [
         `<img src='${a}polycarbonate_sheet_img_1.webp' alt="photo product roofing4us" />`,
@@ -441,7 +441,8 @@
       productDetailsTxt: [
         {
           title: "Description",
-          txt: `<p>Twinwall Polycarbonate Sheets are a premium choice for construction and DIY projects, offering unmatched strength, light transmission, and thermal insulation. At just 1/8 the weight of glass but 200 times more impact-resistant, these sheets are easy to handle and built to last. The twin-wall design provides superior thermal efficiency, while a UV-protective layer ensures long-lasting clarity and resistance to weathering.</p>
+          txt: `<div class="note_txt">${e.noteIcon} The customer is required to have a means of offloading their order when it arrives</div>
+        <p>Twinwall Polycarbonate Sheets are a premium choice for construction and DIY projects, offering unmatched strength, light transmission, and thermal insulation. At just 1/8 the weight of glass but 200 times more impact-resistant, these sheets are easy to handle and built to last. The twin-wall design provides superior thermal efficiency, while a UV-protective layer ensures long-lasting clarity and resistance to weathering.</p>
         <div class="bullet_wrapper">
           <p><b>Key Features:</b></p>
           <ul>
@@ -1096,7 +1097,7 @@
         }
       ],
       anchorMenuTxt: ["Description", "Technical Specs", "Delivery Information", "Reviews", "FAQ"],
-      boughtSoFarTxt: "3K+",
+      boughtSoFarTxt: "2K+",
       newProductSalesPointsTxt: [
         "Shipping Protection for Peace of Mind",
         "Fast Processing & Delivery",
@@ -1255,8 +1256,17 @@
         "Flexible Delivery Options"
       ],
       oneReviewBlockFirst: {
-        txt: '"Outstanding transaction in every way! Great price! Excellent communication! I would highly recommend! Thank you."',
-        name: "Robert Harms ",
+        txt: `“The TPO Plus Roof Membranes available on Roofing4us.com are an excellent choice for any roofing project. The TPO Plus membrane is a high-quality roofing material that is durable, long-lasting, and easy to install. The membranes are available in a variety of sizes to fit any project, making them a versatile option for contractors and DIYers alike.
+<br/>
+<br/>
+The TPO Plus membrane is made from a blend of thermoplastic and rubber materials that provide excellent resistance to weathering, UV rays, and chemicals. It also has a reinforced scrim that gives it added strength and stability, making it ideal for use in areas with high wind or foot traffic.
+<br/>
+<br/>
+One of the best things about the TPO Plus membrane is that it is easy to install. The membrane comes with a self-adhesive backing that makes installation quick and simple. It can be applied directly to the roof deck, eliminating the need for additional adhesive or mechanical fasteners.
+<br/>
+<br/>
+Overall, the TPO Plus Roof Membranes are a great choice for any roofing project. They are affordable, easy to install, and provide excellent durability and resistance to the elements. Whether you're a professional contractor or a DIYer, these membranes are an excellent option for your roofing needs.”`,
+        name: "Customer Feedback",
         rating: 5,
         starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}`,
         img: e.anonymousIcon,
@@ -1324,6 +1334,18 @@
             <p>StarWrap Superior Synthetic Felt Underlayment 4 ft x 250 ft (10sq) - StarWrap Superior is a premium synthetic felt underlayment that provides superior protection against the elements. It is easy to install and is suitable for use on a wide variety of roofing surfaces.</p>
             <p>Synthetic Roofing Underlayments - Stringer EXO50 - The Stringer EXO50 is a high-performance synthetic roofing underlayment that provides excellent protection against the elements. It is lightweight, easy to install, and is suitable for use on a wide range of roofing surfaces.</p>
           </div>
+        </div>
+        <div class="bullet_wrapper">
+            <p><b>Frequently Asked Questions</b></p>
+            <div class="txt_wrapper">
+              <p><b>What is TPO roofing?</b> TPO (Thermoplastic Olefin) roofing is a type of single-ply roofing membrane that is commonly used in commercial and industrial roofing applications. TPO roofing is known for its durability, energy efficiency, and ease of installation.</p>
+              <p><b>What are TPO Plus Roof Membranes?</b> TPO Plus Roof Membranes are a type of TPO roofing membrane that features a factory-applied, self-adhering layer for easier installation. This eliminates the need for adhesives, which can simplify the installation process and save time and money.</p>
+              <p><b>What are the benefits of TPO Plus Roof Membranes?</b> TPO Plus Roof Membranes offer a number of benefits, including superior weather resistance, energy efficiency, and ease of installation. The self-adhering layer eliminates the need for adhesives, which can save time and money on installation. TPO roofing is also known for its durability, which can lead to a longer lifespan and lower maintenance costs.</p>
+              <p><b>What sizes are available for TPO Plus Roof Membranes?</b> TPO Plus Roof Membranes are available in a range of sizes to meet the needs of different roofing applications. At Roofing4US, we carry TPO Plus Roof Membranes in a variety of sizes to suit your specific project requirements.</p>
+              <p><b>Can TPO Plus Roof Membranes be installed in cold weather</b> Yes, TPO Plus Roof Membranes can be installed in cold weather conditions. The self-adhering layer allows for easier installation in colder temperatures, which can be beneficial for projects that need to be completed during the winter months.</p>
+              <p><b>How long do TPO Plus Roof Membranes last?</b> The lifespan of TPO Plus Roof Membranes can vary depending on factors such as weather conditions, maintenance, and installation quality. However, TPO roofing is known for its durability and can last for up to 30 years or more with proper installation and maintenance.</p>
+              <p><b>Are TPO Plus Roof Membranes environmentally friendly</b> Yes, TPO Plus Roof Membranes are environmentally friendly. TPO roofing is known for its energy efficiency, which can help to reduce heating and cooling costs for buildings. Additionally, TPO roofing is 100% recyclable at the end of its life, which can help to reduce waste in landfills.</p>
+              </div>
         </div>
         `,
           class: "new_description"
@@ -1429,36 +1451,36 @@
     },
     "/products/landmark-shingles-all-colors": {
       sideSliderImg: [
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-AtlanticBlue_1024x1024@2x.jpg?v=1662157097" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-Birchwood_1024x1024@2x.jpg?v=1599568308" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-BlackWalnut_1024x1024@2x.jpg?v=1599568318" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-BurntSienna_1024x1024@2x.jpg?v=1662157080" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-CharcoalBlack_1024x1024@2x.jpg?v=1599568334" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-CobblestoneGray_1024x1024@2x.jpg?v=1599568340" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-CottageRed_1024x1024@2x.jpg?v=1662156978" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-Driftwood_1024x1024@2x.jpg?v=1599568357" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-GeorgetownGray_1024x1024@2x.jpg?v=1599568365" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-HeatherBlend_1024x1024@2x.jpg?v=1662156959" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-HunterGreen_1024x1024@2x.jpg?v=1599568382" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MaxDefGeorgetownGray_1024x1024@2x.jpg?v=1599568393" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MaxDefMoireBlack_1024x1024@2x.jpg?v=1599568402" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MaxDefWeatheredWood_1024x1024@2x.jpg?v=1662156852" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MissionBrown_1024x1024@2x.jpg?v=1662156847" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MoireBlack_1024x1024@2x.jpg?v=1599568434" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MojaveTan_1024x1024@2x.jpg?v=1662156835" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-PaintedDesert_1024x1024@2x.jpg?v=1662156828" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-Pewter_1024x1024@2x.jpg?v=1599568455" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-Pewterwood_1024x1024@2x.jpg?v=1599568462" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-ResawnShake_1024x1024@2x.jpg?v=1662156725" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-SilverBirch_1024x1024@2x.jpg?v=1599568474" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-ThunderStormGray_1024x1024@2x.jpg?v=1599568481" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-WeatheredWood_1024x1024@2x.jpg?v=1599568487" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/LM-CinderBlack_1200x1400_4118a0c0-88de-4913-83b8-b35e73cb4587_1024x1024@2x.jpg?v=1662156617" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/LM-GraniteGray_1200x460_03d87295-79a8-4a1f-aafc-10cd0f2aa9af_1024x1024@2x.jpg?v=1599568507" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/LM-MountainTimber_1200x460_855bca38-10a9-46f4-bbbc-520b6e9bc2ff_1024x1024@2x.jpg?v=1599568516" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/LM-SunriseCedar_1200x460_af546e8e-9707-4076-823b-1a56e103f110_1024x1024@2x.jpg?v=1662156601" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/products/308747-LM-ColonialSlate_1024x1024@2x.jpg?v=1599568534" alt="photo product roofing4us" />',
-        '<img src="//roofing4us.com/cdn/shop/files/CertainteedLandmark_1024x1024@2x.png?v=1683013172" alt="photo product roofing4us" />'
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-AtlanticBlue_1024x1024@2x.jpg?v=1662157097" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-Birchwood_1024x1024@2x.jpg?v=1599568308" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-BlackWalnut_1024x1024@2x.jpg?v=1599568318" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-BurntSienna_1024x1024@2x.jpg?v=1662157080" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-CharcoalBlack_1024x1024@2x.jpg?v=1599568334" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-CobblestoneGray_1024x1024@2x.jpg?v=1599568340" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-CottageRed_1024x1024@2x.jpg?v=1662156978" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-Driftwood_1024x1024@2x.jpg?v=1599568357" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-GeorgetownGray_1024x1024@2x.jpg?v=1599568365" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-HeatherBlend_1024x1024@2x.jpg?v=1662156959" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-HunterGreen_1024x1024@2x.jpg?v=1599568382" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MaxDefGeorgetownGray_1024x1024@2x.jpg?v=1599568393" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MaxDefMoireBlack_1024x1024@2x.jpg?v=1599568402" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MaxDefWeatheredWood_1024x1024@2x.jpg?v=1662156852" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MissionBrown_1024x1024@2x.jpg?v=1662156847" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MoireBlack_1024x1024@2x.jpg?v=1599568434" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MojaveTan_1024x1024@2x.jpg?v=1662156835" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-PaintedDesert_1024x1024@2x.jpg?v=1662156828" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-Pewter_1024x1024@2x.jpg?v=1599568455" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-Pewterwood_1024x1024@2x.jpg?v=1599568462" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-ResawnShake_1024x1024@2x.jpg?v=1662156725" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-SilverBirch_1024x1024@2x.jpg?v=1599568474" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-ThunderStormGray_1024x1024@2x.jpg?v=1599568481" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-WeatheredWood_1024x1024@2x.jpg?v=1599568487" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/LM-CinderBlack_1200x1400_4118a0c0-88de-4913-83b8-b35e73cb4587_1024x1024@2x.jpg?v=1662156617" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/LM-GraniteGray_1200x460_03d87295-79a8-4a1f-aafc-10cd0f2aa9af_1024x1024@2x.jpg?v=1599568507" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/LM-MountainTimber_1200x460_855bca38-10a9-46f4-bbbc-520b6e9bc2ff_1024x1024@2x.jpg?v=1599568516" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/LM-SunriseCedar_1200x460_af546e8e-9707-4076-823b-1a56e103f110_1024x1024@2x.jpg?v=1662156601" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-ColonialSlate_1024x1024@2x.jpg?v=1599568534" alt="photo product roofing4us" />',
+        // '<img src="//roofing4us.com/cdn/shop/files/CertainteedLandmark_1024x1024@2x.png?v=1683013172" alt="photo product roofing4us" />'
       ],
       additionalImg: [],
       tooltipTxt: "While the estimated delivery time is 10-12 working days, we often ship faster! Place your order today and we'll do our best to get it to you sooner. If the timeline doesn’t work for you, no worries – you can cancel your order anytime before it ships.",
@@ -1549,6 +1571,31 @@
           <p>Installing Landmark shingles correctly is crucial for the warranty and performance of your roof. CertainTeed provides comprehensive installation instructions, available in both English and Spanish, to ensure proper installation.</p>
         </div>
         <div class="note_txt">${e.noteIcon} All Colors May Not Be Available In Your Location At Time Of Purchase</div>
+        <div class="bullet_wrapper">
+          <p><b>Browse Other Shingle Products:</b></p>
+          <div class="txt_wrapper">
+            <p><b class="underline_txt">Heritage Vintage Laminated Asphalt Shingles: </b>These shingles offer a vintage look and provide exceptional durability, featuring a unique granule mix and shadowtone blend for a striking appearance.</p>
+            <p><b class="underline_txt">Heritage IR Laminated Asphalt Shingles:</b> Designed to provide enhanced impact resistance, these shingles are an excellent choice for homes in hail-prone areas.</p>
+            <p><b class="underline_txt">Heritage Woodgate Laminated Asphalt Shingles:</b> With a wider design and a rustic, wood shake-like appearance, these shingles add a touch of charm to any home.</p>
+            <p><b class="underline_txt">Elite Glass-Seal 3-Tab Shingles:</b> A classic choice, these 3-tab shingles offer reliable protection and a wide range of color options.</p>
+            <p><b class="underline_txt">Solaris Hip & Ridge Shingle:</b> Designed to complement Solaris shingles, these hip and ridge shingles provide additional protection and a consistent appearance across the entire roof.</p>
+            <p><b class="underline_txt">Heritage Premium Laminated Asphalt Shingles:</b> Offering an upgrade from standard Heritage shingles, the Premium line provides additional durability and an enhanced aesthetic.</p>
+            <p><b class="underline_txt">CertainTeed XT 25 3-Tab Shingles:</b> A popular 3-tab shingle option from CertainTeed, these shingles provide long-lasting protection with a variety of color choices.</p>
+            <p><b class="underline_txt">Heritage Laminated Asphalt Shingles:</b> A versatile option with an attractive dimensional appearance, these laminated shingles offer exceptional performance and style.</p>
+            <p><b class="underline_txt">Tamko Heritage Hip & Ridge: </b>These hip and ridge shingles are designed to match and complement Tamko Heritage shingles, ensuring a cohesive look across your entire roof.</p>
+          </div>
+        </div>
+        <div class="bullet_wrapper">
+          <p><b>Frequently Asked Questions:</b></p>
+          <div class="txt_wrapper">
+            <p><b>Are Landmark shingles algae-resistant?</b>  Landmark offers algae-resistant (AR) shingles that help protect against dark or black discoloration, sometimes called staining or streaking, caused by blue-green algae. AR shingles are not available in all regions.</p>
+            <p><b>What is the minimum roof slope required for Landmark shingles? </b>Landmark shingles should be used on roofs with slopes greater than 2" per foot. Low-slope applications (2:12 to < 4:12) require additional underlayment.</p>
+            <p><b>Are Landmark shingles fire-resistant?</b> Landmark shingles have a Class A fire-resistance rating, which is the highest rating available.</p>
+            <p><b>Are Landmark shingles approved for use in high-wind regions?</b> Landmark shingles meet TDI Windstorm Requirements and have ASTM D3161 Class F Wind Resistance and ASTM D7158 Class H Wind Resistance certifications.</p>
+            <p><b>Can I install Landmark shingles over existing shingles? </b>While it is possible to install Landmark shingles over existing shingles, it is generally not recommended. Installing new shingles over old ones can lead to improper sealing, reduced wind resistance, and shortened lifespan. Always consult a professional roofing contractor and local building codes before deciding to install new shingles over existing ones.</p>
+            <p><b>Are Landmark shingles environmentally friendly? </b>CertainTeed is committed to sustainability and offers various environmentally friendly roofing products. Landmark shingles are made with a fiberglass mat base, which is more sustainable and requires less energy to produce than organic mat-based shingles. Additionally, CertainTeed operates a shingle recycling program to help keep old shingles out of landfills.</p>
+          </div>
+        </div>
         `,
           class: "new_description"
         },
@@ -1668,7 +1715,7 @@
         }
       ],
       anchorMenuTxt: ["Description", "Technical Specs", "Datasheets", "Delivery Information", "Reviews", "FAQ"],
-      boughtSoFarTxt: "2K+",
+      boughtSoFarTxt: "3K+",
       newProductSalesPointsTxt: [
         "Shipping Protection for Peace of Mind",
         "Fast Processing & Delivery",
@@ -1756,6 +1803,15 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
         </div>
         <p><b>Rmax Thermasheath-3 Polyiso Rigid Foam Insulation Board:</b> This product is a polyiso insulation board that can be used in walls, roofs, and other applications. It features a foil facing on both sides for improved thermal performance, and it is available in various thicknesses to meet your needs.</p>
         <p><b>Rmax Durasheath-3 Insulation Board:</b> This product is a polyiso insulation board that is designed for use in walls and roofs. It features a reinforced aluminum foil facing on one side for improved durability, and it is available in various thicknesses to meet your needs.</p>
+        <div class="bullet_wrapper">
+          <p><b>Frequently Asked Questions:</b></p>
+          <div class="txt_wrapper">
+            <p><b>What is sheathing?</b> Sheathing is a layer of material, typically made of wood, gypsum, or foam, that is used to cover the exterior of a building before siding is installed. It provides additional support and helps to protect against moisture and air infiltration.</p>
+            <p><b>What are the benefits of using sheathing?</b> Sheathing provides several benefits, including added structural support, improved energy efficiency, and protection against moisture and air infiltration. It can also improve the overall appearance of the building.</p>
+            <p><b>How is sheathing installed? </b>Sheathing is typically installed over the studs of a building, and is fastened in place using nails or screws. Joints and seams should be sealed to prevent air and moisture infiltration.</p>
+            <p><b>Can sheathing be used for interior walls?</b> Sheathing is typically used for exterior walls, but can also be used for interior walls in some cases. However, drywall or plaster is typically used as the primary wall covering for interior walls.</p>
+          </div>
+        </div>
         `,
           class: "new_description"
         },
@@ -1863,14 +1919,14 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
     `
     <div class="key_selling_points_block">
       <ul class="key_selling_points_list">
-        ${s.map((o) => (
+        ${s.map((n) => (
       /* HTML */
       `
               <li class="key_selling_points_item">
-                ${o.icon}
+                ${n.icon}
                 <div>
-                  <h3>${o.title}</h3>
-                  <p>${o.txt}</p>
+                  <h3>${n.title}</h3>
+                  <p>${n.txt}</p>
                 </div>
               </li>
             `
@@ -1888,12 +1944,12 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
             <span>General</span>
           </a>
         </li>
-        ${s.map((o) => (
+        ${s.map((n) => (
       /* HTML */
       `
               <li class="anchor_menu_item">
-                <a href="#${o.replace(/\s+/g, "")}" class="anchor_menu_link" data-target="${o.replace(/\s+/g, "")}">
-                  <span>${o}</span>
+                <a href="#${n.replace(/\s+/g, "")}" class="anchor_menu_link" data-target="${n.replace(/\s+/g, "")}">
+                  <span>${n}</span>
                 </a>
               </li>
             `
@@ -1909,10 +1965,10 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       <p><span class="">${s}</span> bought so far</p>
     </div>
   `
-  ), M = (s) => (
+  ), D = (s) => (
     /* HTML */
     ` <div class="tooltip_zone" data-tooltip data-title="${s}">${e.tooltipIcon}</div> `
-  ), D = () => (
+  ), M = () => (
     /* HTML */
     `
     <div class="in_stock_block">
@@ -1920,17 +1976,17 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       <p class="in_stock_txt">In stock, ready to ship</p>
     </div>
   `
-  ), B = (s) => (
+  ), A = (s) => (
     /* HTML */
     `
     <div class="new_product_sales_points_block">
       <ul class="new_product_sales_points_list">
-        ${s.map((o) => (
+        ${s.map((n) => (
       /* HTML */
       `
               <li class="new_product_sales_points_item">
                 ${e.salesPointIcon}
-                <p>${o}</p>
+                <p>${n}</p>
               </li>
             `
     )).join("")}
@@ -1958,25 +2014,25 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       </div>
     </a>
   `
-  ), E = (s) => (
+  ), R = (s) => (
     /* HTML */
     `
     <div class="product_details_block">
       <ul class="product_details_accordion">
-        ${s.map((o, t) => (
+        ${s.map((n, t) => (
       /* HTML */
       `
               <li
-                class="product_details_accordion_block ${o.class}"
+                class="product_details_accordion_block ${n.class}"
                 data-visability="${t + 1}"
-                id="${o.title.replace(/\s+/g, "")}"
+                id="${n.title.replace(/\s+/g, "")}"
               >
                 <div class="product_details_accordion_link">
-                  <p>${o.title}</p>
+                  <p>${n.title}</p>
                   <span class="product_details_icon">${e.arrowAccordionIconProduct}</span>
                 </div>
                 <div class="product_details_accordion_lists" data-visability-open="${t + 1}">
-                  <div>${o.txt}</div>
+                  <div>${n.txt}</div>
                 </div>
               </li>
             `
@@ -1987,7 +2043,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   ), C = (s) => (
     /* HTML */
     ` <div class="video_block">${s}</div> `
-  ), A = () => (
+  ), E = () => (
     /* HTML */
     `
     <div class="reviews_block">
@@ -2016,16 +2072,16 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       <div class="new_container">
         <h2>FAQ</h2>
         <ul class="faq_accordion">
-          ${s.map((o, t) => (
+          ${s.map((n, t) => (
       /* HTML */
       `
                 <li class="faq_accordion_block" data-visability="${t + 1}">
                   <div class="faq_accordion_link">
-                    <p>${o.title}</p>
+                    <p>${n.title}</p>
                     <span class="faq_icon">${e.arrowAccordionIcon}</span>
                   </div>
                   <div class="faq_accordion_lists" data-visability-open="${t + 1}">
-                    <div>${o.txt}</div>
+                    <div>${n.txt}</div>
                   </div>
                 </li>
               `
@@ -2034,7 +2090,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       </div>
     </div>
   `
-  ), R = (s) => (
+  ), q = (s) => (
     /* HTML */
     `
     <div class="comparison_table_block">
@@ -2047,9 +2103,9 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
               <div class="table_cell"></div>
             </div>
             <div class="body_table">
-              ${s.benefits.map((o) => (
+              ${s.benefits.map((n) => (
       /* HTML */
-      ` <div class="benefits_cell table_cell"><p>${o.benefitName}</p></div> `
+      ` <div class="benefits_cell table_cell"><p>${n.benefitName}</p></div> `
     )).join("")}
             </div>
           </div>
@@ -2062,11 +2118,11 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
             </div>
             <div class="body_table">
               ${s.benefits.map(
-      (o) => (
+      (n) => (
         /* HTML */
         `
                     <div class="my_cell table_cell">
-                      <p>${o.myDescr}</p>
+                      <p>${n.myDescr}</p>
                     </div>
                   `
       )
@@ -2082,11 +2138,11 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
             </div>
             <div class="body_table">
               ${s.benefits.map(
-      (o) => (
+      (n) => (
         /* HTML */
         `
                     <div class="competitors_cell table_cell">
-                      <p>${o.competitorsDescr}</p>
+                      <p>${n.competitorsDescr}</p>
                     </div>
                   `
       )
@@ -2097,13 +2153,13 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       </div>
     </div>
   `
-  ), q = (s, o) => (
+  ), B = (s, n) => (
     /* HTML */
     `
     <div class="sticky_block">
       ${window.innerWidth >= 768 ? `<div class="sticky_product_info">
         <div class="sticky_product_title">${s}</div>
-        <div class="sticky_product_price">${o}</div>
+        <div class="sticky_product_price">${n}</div>
       </div>` : ""}
       <div class="sticky_btn_wrapper">
         <div class="sticky_add_to_cart">
@@ -2124,23 +2180,23 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       </div>
     </div>
   `
-  ), j = (s) => (
+  ), H = (s) => (
     /* HTML */
     `
     <div class="slider_block">
       <div class="slider_wrapper">
-        ${s.map((o) => {
-      const t = o.includes("<iframe"), i = o.match(/src=["']([^"']+)["']/), n = i ? i[1] : "", l = t ? `${a}fancybox_video_img.png` : n;
+        ${s.map((n) => {
+      const t = n.includes("<iframe"), i = n.match(/src=["']([^"']+)["']/), o = i ? i[1] : "", c = t ? `${a}fancybox_video_img.png` : o;
       return (
         /* HTML */
         `
               <div
                 data-fancybox="demo"
                 data-type="${t ? "iframe" : "image"}"
-                data-src="${n}"
+                data-src="${o}"
                 class="slider_item"
               >
-                <img src="${l}" alt="Gallery item" />
+                <img src="${c}" alt="Gallery item" />
               </div>
             `
       );
@@ -2148,21 +2204,32 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       </div>
     </div>
   `
-  ), H = (s) => (
+  ), W = (s) => (
     /* HTML */
     `
     <ul class="additional_img_block">
-      ${s.map((o) => (
+      ${s.map((n) => (
       /* HTML */
       `
             <li>
-              <img src="${o}" alt="photo product roofing4us" />
+              <img src="${n}" alt="photo product roofing4us" />
             </li>
           `
     )).join("")}
     </ul>
   `
-  ), W = `#clerk1 > div {
+  ), O = `.usp-banner-item a[href="/pages/customer-review"] {
+  color: #101010;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22.5px;
+}
+.usp-banner-item a[href="/pages/customer-review"] span {
+  text-decoration: underline;
+}
+
+#clerk1 > div {
   margin: 80px 0 !important;
 }
 @media (max-width: 768px) {
@@ -2207,6 +2274,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   .breadcrumbs {
     width: 100%;
     padding: 12px 16px;
+    display: flex;
   }
 }
 .breadcrumbs li a {
@@ -2229,6 +2297,13 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   .breadcrumbs li:nth-child(1) a {
     color: #003068;
     font-weight: 400;
+  }
+}
+@media (max-width: 768px) {
+  .breadcrumbs li:nth-of-type(2) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 .breadcrumbs .breadcrumb-separator {
@@ -2411,6 +2486,45 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .product-template__container > .product-section .product-image-section div[data-thumbnail-slider] {
   display: none !important;
+}
+.product-template__container > .product-section .product-image-section div[data-thumbnail-slider].old_slider {
+  display: block !important;
+}
+@media (min-width: 768px) {
+  .product-template__container > .product-section .product-image-section div[data-thumbnail-slider].old_slider .product-single__thumbnails {
+    margin: 10px 0;
+  }
+  .product-template__container > .product-section .product-image-section div[data-thumbnail-slider].old_slider .product-single__thumbnails-slider-track {
+    gap: 20px 10px;
+    justify-content: center;
+  }
+  .product-template__container > .product-section .product-image-section div[data-thumbnail-slider].old_slider .product-single__thumbnails-item--medium {
+    flex: 0 0 15.19%;
+    padding: 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 1200px) {
+  .product-template__container > .product-section .product-image-section div[data-thumbnail-slider].old_slider .product-single__thumbnails-item--medium {
+    flex: 0 0 18%;
+  }
+}
+@media (min-width: 768px) and (max-width: 970px) {
+  .product-template__container > .product-section .product-image-section div[data-thumbnail-slider].old_slider .product-single__thumbnails-item--medium {
+    flex: 0 0 23%;
+  }
+}
+@media (min-width: 768px) {
+  .product-template__container > .product-section .product-image-section div[data-thumbnail-slider].old_slider .product-single__thumbnails-item--medium .product-single__thumbnail {
+    margin: 0;
+  }
+  .product-template__container > .product-section .product-image-section div[data-thumbnail-slider].old_slider .product-single__thumbnails-item--medium .product-single__thumbnail-image {
+    padding: 0;
+  }
+}
+@media (max-width: 768px) {
+  .product-template__container > .product-section .product-image-section div[data-thumbnail-slider].old_slider .thumbnails-wrapper {
+    margin: 0 0 20px;
+  }
 }
 .product-template__container > .product-section .detail_page_padding {
   display: flex;
@@ -3384,6 +3498,9 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   flex-direction: column;
   gap: 16px;
 }
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > .bullet_wrapper .underline_txt {
+  text-decoration: underline;
+}
 .product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .table_wrapper table {
   margin: 0;
 }
@@ -3438,6 +3555,20 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   font-size: 12px;
   font-weight: 400;
   line-height: 20px;
+}
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent .rate_list {
+  text-transform: initial;
+}
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent .general-delivery-info {
+  margin-top: 15px;
+  text-transform: initial;
+}
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent .general-delivery-info a {
+  display: block;
+  color: #e0162b;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin: 5px 0 10px;
 }
 .product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent h4 + ul + p {
   display: none;
@@ -3912,15 +4043,15 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 .fancybox__container {
   z-index: 1111111111111111 !important;
 }/*# sourceMappingURL=main.css.map */`, V = window.innerWidth < 768 ? "mobile" : "desktop";
-  class Z {
-    constructor(o) {
-      this.device = o, this.observer = null, this.pathName = this.findTranslationKey(window.location.pathname), this.init();
+  class j {
+    constructor(n) {
+      this.device = n, this.observer = null, this.pathName = this.findTranslationKey(window.location.pathname), this.init();
     }
-    findTranslationKey(o) {
-      return Object.keys(h).find((i) => decodeURIComponent(o).includes(decodeURIComponent(i))) || "";
+    findTranslationKey(n) {
+      return Object.keys(u).find((i) => decodeURIComponent(n).includes(decodeURIComponent(i))) || "";
     }
     init() {
-      S({ name: "PDP improvements", dev: "SKh" }), T("new_pdp"), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${W}</style>`), this.addIdGeneral(), this.device === "desktop" && (this.renderkeySellingPointsBlock(), this.renderAdditionalImgBlock()), this.renderBoughtSoFarBlock(), this.renderTooltipBlock(), this.initTooltipBlock(), this.renderInStockBlock(), this.renderBtnsWrapper(), this.replaceBtnsPayToBtnsWrapper(), this.replaceCallFPBtn(), this.renderNewProductSalesPointsBlock(), this.renderOneReviewBlockFirst(), this.device === "desktop" && this.renderOneReviewBlockSecond(), this.renderVideoBlock(), this.clickAllReviewsLink(), this.renderProductDetailsBlock(), this.replaceInformationToProductDetailsBlock(), this.replaceFrequentlyBoughtTogetherBlock(), this.changeTxtViewProduct(), this.renderReviewsBlock(), this.renderFAQBlock(), this.renderComparisonTable(), this.initAccordionProductDetails(
+      S({ name: "PDP improvements", dev: "SKh" }), T("new_pdp"), document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${O}</style>`), this.addIdGeneral(), this.changeTxtBannerCustomerReview(), this.device === "desktop" && (this.renderkeySellingPointsBlock(), this.renderAdditionalImgBlock()), this.addClassOldSlider(), this.renderBoughtSoFarBlock(), this.renderTooltipBlock(), this.initTooltipBlock(), this.renderInStockBlock(), this.renderBtnsWrapper(), this.replaceBtnsPayToBtnsWrapper(), this.replaceCallFPBtn(), this.renderNewProductSalesPointsBlock(), this.renderOneReviewBlockFirst(), this.device === "desktop" && this.renderOneReviewBlockSecond(), this.renderVideoBlock(), this.clickAllReviewsLink(), this.renderProductDetailsBlock(), this.replaceInformationToProductDetailsBlock(), this.replaceFrequentlyBoughtTogetherBlock(), this.changeTxtViewProduct(), this.renderReviewsBlock(), this.renderFAQBlock(), this.renderComparisonTable(), this.initAccordionProductDetails(
         ".product_details_block",
         ".product_details_accordion_block",
         ".product_details_accordion_link",
@@ -3933,65 +4064,76 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       ), this.renderAnchorMenu(), this.initializeAnchorMenu(), this.renderStickyBlock(), this.toggleStickyBlockVisibility(), this.renderSliderBlock(), this.initSlickCarousel(), this.initFancybox(), this.clickDescriptionRelatedProducts(), this.visibleHandler(), this.addClassLabelColor(), this.addClassLabelLength(), this.addClassLabelThicknessFirst(), this.addClassLabelThickness(), this.addClassLabelSize(), this.changeFisrtImgInMainSlider();
     }
     addIdGeneral() {
-      c(
+      l(
         ".product-template__container > .product-section .detail_page_padding .product-content-section"
-      ).then((o) => {
+      ).then((n) => {
         r(".product-template__container > .product-section .detail_page_padding .product-content-section").setAttribute(
           "id",
           "General"
         );
       });
     }
+    changeTxtBannerCustomerReview() {
+      l('.usp-banner-item a[href="/pages/customer-review"]').then((n) => {
+        const t = r('.usp-banner-item a[href="/pages/customer-review"]');
+        t && t.textContent && !t.textContent.includes("198 Reviews") && (t.innerHTML = '<img src="https://cdn.shopify.com/s/files/1/0579/4807/8277/files/review-star-rating-Insulation4less-110-x-20.png?v=1637592262" alt="5 star rating">4.8  |  <span>198 Reviews</span>');
+      });
+    }
     renderkeySellingPointsBlock() {
-      c(".product-image-section").then((o) => {
+      l(".product-image-section").then((n) => {
         const t = r(".product-image-section");
         r(".key_selling_points_block") || t.insertAdjacentHTML(
           "beforeend",
-          P(h[this.pathName].keySellingPointsTxt)
+          P(u[this.pathName].keySellingPointsTxt)
         );
       });
     }
+    addClassOldSlider() {
+      l("div[data-thumbnail-slider]").then((n) => {
+        window.location.pathname.includes("/products/landmark-shingles-all-colors") && (console.log(">>>>>>>>>>>>>>>>>>>"), r("div[data-thumbnail-slider]").classList.add("old_slider"));
+      });
+    }
     renderAdditionalImgBlock() {
-      c(".key_selling_points_block").then((o) => {
+      l(".key_selling_points_block").then((n) => {
         const t = r(".key_selling_points_block");
-        !r(".additional_img_block") && h[this.pathName].additionalImg.length > 0 && t.insertAdjacentHTML("afterend", H(h[this.pathName].additionalImg));
+        !r(".additional_img_block") && u[this.pathName].additionalImg.length > 0 && t.insertAdjacentHTML("afterend", W(u[this.pathName].additionalImg));
       });
     }
     renderBoughtSoFarBlock() {
-      this.device === "desktop" && c(
+      this.device === "desktop" && l(
         ".product-template__container > .product-section .detail_page_padding .product-content-section"
-      ).then((o) => {
+      ).then((n) => {
         const t = r(
           ".product-template__container > .product-section .detail_page_padding .product-content-section"
         );
         r(".bought_so_far_block") || t.insertAdjacentHTML(
           "afterbegin",
-          x(h[this.pathName].boughtSoFarTxt)
+          x(u[this.pathName].boughtSoFarTxt)
         );
-      }), this.device === "mobile" && c(".product-template__container > .product-section .product-image-section").then((o) => {
+      }), this.device === "mobile" && l(".product-template__container > .product-section .product-image-section").then((n) => {
         const t = r(
           ".product-template__container > .product-section .product-image-section"
         );
         r(".bought_so_far_block") || t.insertAdjacentHTML(
           "afterbegin",
-          x(h[this.pathName].boughtSoFarTxt)
+          x(u[this.pathName].boughtSoFarTxt)
         );
       });
     }
     renderTooltipBlock() {
-      c(".free_delivery p").then((o) => {
+      l(".free_delivery p").then((n) => {
         f(".free_delivery p").forEach((i) => {
-          r(".tooltip_zone") || i.insertAdjacentHTML("beforeend", M(h[this.pathName].tooltipTxt));
+          r(".tooltip_zone") || i.insertAdjacentHTML("beforeend", D(u[this.pathName].tooltipTxt));
         });
       });
     }
     initTooltipBlock() {
-      b([
+      y([
         "https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js",
         "https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"
       ]).then(async () => {
-        let o = setInterval(() => {
-          typeof tippy == "function" && (clearInterval(o), f("[data-tooltip]").forEach((t) => {
+        let n = setInterval(() => {
+          typeof tippy == "function" && (clearInterval(n), f("[data-tooltip]").forEach((t) => {
             tippy(t, {
               content: t.getAttribute("data-title"),
               // trigger: 'click',
@@ -4016,82 +4158,82 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       });
     }
     renderInStockBlock() {
-      c(".product-form .product-form__controls-group--submit").then((o) => {
+      l(".product-form .product-form__controls-group--submit").then((n) => {
         const t = r(".product-form .product-form__controls-group--submit");
-        r(".in_stock_block") || t.insertAdjacentHTML("beforebegin", D());
+        r(".in_stock_block") || t.insertAdjacentHTML("beforebegin", M());
       });
     }
     renderBtnsWrapper() {
-      c(".product-form .product-form__controls-group--submit").then((o) => {
+      l(".product-form .product-form__controls-group--submit").then((n) => {
         const t = r(".product-form .product-form__controls-group--submit");
         r(".btns_wrapper_payment") || t.insertAdjacentHTML("afterbegin", '<div class="btns_wrapper_payment"></div>');
       });
     }
     replaceBtnsPayToBtnsWrapper() {
-      c(".btns_wrapper_payment").then(() => {
-        c(".product-form__cart-submit").then((o) => {
+      l(".btns_wrapper_payment").then(() => {
+        l(".product-form__cart-submit").then((n) => {
           this.moveElement(".product-form__cart-submit", ".btns_wrapper_payment", "afterbegin");
-        }), c('[data-shopify="payment-button"]').then((o) => {
+        }), l('[data-shopify="payment-button"]').then((n) => {
           this.moveElement('[data-shopify="payment-button"]', ".btns_wrapper_payment", "beforeend");
         });
       });
     }
     replaceCallFPBtn() {
-      c(".call_F_P_tag2:not(.cfp_note)").then(() => {
-        c(".in_stock_block").then((o) => {
+      l(".call_F_P_tag2:not(.cfp_note)").then(() => {
+        l(".in_stock_block").then((n) => {
           this.moveElement(".call_F_P_tag2:not(.cfp_note)", ".in_stock_block", "beforebegin");
         });
       });
     }
     renderNewProductSalesPointsBlock() {
-      c(".product-template__container > .product-section .detail_page_padding .product-atc-section").then(
-        (o) => {
+      l(".product-template__container > .product-section .detail_page_padding .product-atc-section").then(
+        (n) => {
           const t = r(
             ".product-template__container > .product-section .detail_page_padding .product-atc-section"
           );
           r(".new_product_sales_points_block") || t.insertAdjacentHTML(
             "beforeend",
-            B(h[this.pathName].newProductSalesPointsTxt)
+            A(u[this.pathName].newProductSalesPointsTxt)
           );
         }
       );
     }
     renderOneReviewBlockFirst() {
-      c(".new_product_sales_points_block").then((o) => {
+      l(".new_product_sales_points_block").then((n) => {
         const t = r(".new_product_sales_points_block");
-        r(".one_review_block.first_review") || t.insertAdjacentHTML("afterend", k(h[this.pathName].oneReviewBlockFirst));
+        r(".one_review_block.first_review") || t.insertAdjacentHTML("afterend", k(u[this.pathName].oneReviewBlockFirst));
       });
     }
     renderOneReviewBlockSecond() {
-      c(".product-template__container > .product-section .detail_page_padding .product-atc-section").then(
-        (o) => {
+      l(".product-template__container > .product-section .detail_page_padding .product-atc-section").then(
+        (n) => {
           const t = r(
             ".product-template__container > .product-section .detail_page_padding .product-atc-section"
           );
           r(".one_review_block.second_review") || t.insertAdjacentHTML(
             "beforeend",
-            k(h[this.pathName].oneReviewBlockSecond)
+            k(u[this.pathName].oneReviewBlockSecond)
           );
         }
       );
     }
     renderVideoBlock() {
-      this.device === "desktop" ? c(".product-template__container > .product-section .product-image-section").then((o) => {
+      this.device === "desktop" ? l(".product-template__container > .product-section .product-image-section").then((n) => {
         const t = r(
           ".product-template__container > .product-section .product-image-section"
         );
-        !r(".video_block") && h[this.pathName].videoLink.length > 0 && t.insertAdjacentHTML("beforeend", C(h[this.pathName].videoLink));
-      }) : c(".product-template__container > .product-section .detail_page_padding .product-atc-section").then(
-        (o) => {
+        !r(".video_block") && u[this.pathName].videoLink.length > 0 && t.insertAdjacentHTML("beforeend", C(u[this.pathName].videoLink));
+      }) : l(".product-template__container > .product-section .detail_page_padding .product-atc-section").then(
+        (n) => {
           const t = r(
             ".product-template__container > .product-section .detail_page_padding .product-atc-section"
           );
-          !r(".video_block") && h[this.pathName].videoLink.length > 0 && t.insertAdjacentHTML("beforeend", C(h[this.pathName].videoLink));
+          !r(".video_block") && u[this.pathName].videoLink.length > 0 && t.insertAdjacentHTML("beforeend", C(u[this.pathName].videoLink));
         }
       );
     }
     clickAllReviewsLink() {
-      c(".one_review_block").then((o) => {
+      l(".one_review_block").then((n) => {
         f(".one_review_block").forEach((i) => {
           i.addEventListener("click", () => {
             i.classList.contains("first_review") ? m("exp_add_quality_element_02", "1", "click", "Reviews") : m("exp_add_quality_element_02", "2", "click", "Reviews");
@@ -4100,35 +4242,35 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       });
     }
     renderProductDetailsBlock() {
-      c(".one_review_block.first_review").then((o) => {
+      l(".one_review_block.first_review").then((n) => {
         const t = r(".one_review_block.first_review");
         r(".product_details_block") || t.insertAdjacentHTML(
           "afterend",
-          E(h[this.pathName].productDetailsTxt)
+          R(u[this.pathName].productDetailsTxt)
         );
       });
     }
     replaceInformationToProductDetailsBlock() {
-      c(".product_details_block").then(() => {
-        c(".product_details_block .new_technical_specs .product_details_accordion_lists > div").then(() => {
+      l(".product_details_block").then(() => {
+        l(".product_details_block .new_technical_specs .product_details_accordion_lists > div").then(() => {
           this.moveElement(
             "#productSpecs",
             ".product_details_block .new_technical_specs .product_details_accordion_lists > div",
             "afterbegin"
           );
-        }), c(".product_details_block .new_datasheets .product_details_accordion_lists > div").then(() => {
+        }), l(".product_details_block .new_datasheets .product_details_accordion_lists > div").then(() => {
           this.moveElement(
             "#productDatasheets",
             ".product_details_block .new_datasheets .product_details_accordion_lists > div",
             "afterbegin"
           );
-        }), c(".product_details_block .delivery_information .product_details_accordion_lists > div").then(() => {
+        }), l(".product_details_block .delivery_information .product_details_accordion_lists > div").then(() => {
           this.moveElement(
             "#productShipping",
             ".product_details_block .delivery_information .product_details_accordion_lists > div",
             "afterbegin"
           );
-        }), c(".product_details_block .new_reviews .product_details_accordion_lists > div").then(() => {
+        }), l(".product_details_block .new_reviews .product_details_accordion_lists > div").then(() => {
           this.moveElement(
             "#productReviews",
             ".product_details_block .new_reviews .product_details_accordion_lists > div",
@@ -4138,55 +4280,55 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       });
     }
     replaceFrequentlyBoughtTogetherBlock() {
-      c(".description-related-products").then(() => {
-        c(".one_review_block.first_review").then((o) => {
+      l(".description-related-products").then(() => {
+        l(".one_review_block.first_review").then((n) => {
           this.moveElement(".description-related-products", ".one_review_block.first_review", "afterend");
         });
       });
     }
-    moveElement(o, t, i) {
-      c(o).then(() => {
-        const n = r(o);
-        r(t).insertAdjacentElement(i, n);
+    moveElement(n, t, i) {
+      l(n).then(() => {
+        const o = r(n);
+        r(t).insertAdjacentElement(i, o);
       });
     }
     changeTxtViewProduct() {
-      c(".description-related-products b").then(() => {
+      l(".description-related-products b").then(() => {
         f(".description-related-products b").forEach((t) => {
           t.textContent = "View product";
         });
       });
     }
     renderReviewsBlock() {
-      c("#shopify-section-product-template.shopify-section").then((o) => {
+      l("#shopify-section-product-template.shopify-section").then((n) => {
         const t = r("#shopify-section-product-template.shopify-section");
-        r(".reviews_block") || t.insertAdjacentHTML("afterend", A());
+        r(".reviews_block") || t.insertAdjacentHTML("afterend", E());
       });
     }
     renderFAQBlock() {
-      c(".reviews_block").then((o) => {
+      l(".reviews_block").then((n) => {
         let t = r(".reviews_block");
-        r(".faq_block") || t.insertAdjacentHTML("afterend", F(h[this.pathName].fAQTxt));
+        r(".faq_block") || t.insertAdjacentHTML("afterend", F(u[this.pathName].fAQTxt));
       });
     }
     renderComparisonTable() {
-      c(".faq_block").then((o) => {
+      l(".faq_block").then((n) => {
         const t = r(".faq_block");
         r(".comparison_table_block") || t.insertAdjacentHTML(
           "afterend",
-          R(h[this.pathName].comparisonTable)
+          q(u[this.pathName].comparisonTable)
         );
       });
     }
-    initAccordionProductDetails(o, t, i, n) {
-      let l = setInterval(() => {
-        typeof jQuery == "function" && r(o) && (clearInterval(l), console.log("Accordion initialized for", o), $(`${t}`).eq(0).addClass("active"), $(`${t} ${i}`).eq(0).addClass("active"), $(`${t} ${n}`).eq(0).css("display", "flex"), $(`${i}`).on("click", function(p) {
-          if ($(this).toggleClass("active"), $(this).closest("li").toggleClass("active"), $(this).next(n).slideToggle(), $(`${i}`).not(this).next(n).slideUp(), $(`${i}`).not(this).removeClass("active").closest("li").removeClass("active"), o === ".product_details_block" && (setTimeout(() => {
-            const u = p.target.closest(".product_details_accordion_block");
-            u && v(u, 43);
+    initAccordionProductDetails(n, t, i, o) {
+      let c = setInterval(() => {
+        typeof jQuery == "function" && r(n) && (clearInterval(c), console.log("Accordion initialized for", n), $(`${t}`).eq(0).addClass("active"), $(`${t} ${i}`).eq(0).addClass("active"), $(`${t} ${o}`).eq(0).css("display", "flex"), $(`${i}`).on("click", function(p) {
+          if ($(this).toggleClass("active"), $(this).closest("li").toggleClass("active"), $(this).next(o).slideToggle(), $(`${i}`).not(this).next(o).slideUp(), $(`${i}`).not(this).removeClass("active").closest("li").removeClass("active"), n === ".product_details_block" && (setTimeout(() => {
+            const h = p.target.closest(".product_details_accordion_block");
+            h && v(h, 43);
           }, 400), !localStorage.getItem("anchorMenu"))) {
             const d = f(".anchor_menu_link");
-            d == null || d.forEach((u) => u.classList.remove("is_active")), p.currentTarget.classList.contains("active") ? m(
+            d == null || d.forEach((h) => h.classList.remove("is_active")), p.currentTarget.classList.contains("active") ? m(
               "exp_add_quality_button_08",
               `${p.currentTarget.querySelector("p").textContent} - Open`,
               "click",
@@ -4198,7 +4340,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
               "Product details"
             );
           }
-          o === ".faq_block" && (p.currentTarget.classList.contains("active") ? m(
+          n === ".faq_block" && (p.currentTarget.classList.contains("active") ? m(
             "exp_add_quality_button_03",
             `${p.currentTarget.querySelector("p").textContent} - Open`,
             "click",
@@ -4213,76 +4355,76 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       }, 1e3);
     }
     renderAnchorMenu() {
-      c("#PageContainer").then((o) => {
+      l("#PageContainer").then((n) => {
         const t = r("#PageContainer");
-        r(".anchor_menu") || t.insertAdjacentHTML("beforebegin", L(h[this.pathName].anchorMenuTxt));
+        r(".anchor_menu") || t.insertAdjacentHTML("beforebegin", L(u[this.pathName].anchorMenuTxt));
       });
     }
     initializeAnchorMenu() {
-      c(".product_details_accordion").then((o) => {
-        const t = r("#shopify-section-product-template"), i = r(".anchor_menu"), n = f(".anchor_menu_link"), l = Array.from(n).map((u) => r(u.getAttribute("href"))), p = () => {
+      l(".product_details_accordion").then((n) => {
+        const t = r("#shopify-section-product-template"), i = r(".anchor_menu"), o = f(".anchor_menu_link"), c = Array.from(o).map((h) => r(h.getAttribute("href"))), p = () => {
           t && t.getBoundingClientRect().top <= 0 ? i.classList.add("is_sticky") : i.classList.remove("is_sticky");
         }, d = new IntersectionObserver(
-          (u) => {
-            u.forEach((_) => {
+          (h) => {
+            h.forEach((_) => {
               const w = _.target.getAttribute("id"), g = r(`.anchor_menu_link[href="#${w}"]`);
               _.isIntersecting || g.classList.remove("is_active");
             });
           },
           { threshold: [0.5] }
         );
-        l.forEach((u) => {
-          d.observe(u);
-        }), n.forEach((u) => {
-          u.addEventListener("click", function(_) {
+        c.forEach((h) => {
+          d.observe(h);
+        }), o.forEach((h) => {
+          h.addEventListener("click", function(_) {
             var I;
             _.preventDefault();
             const w = this.getAttribute("data-target"), g = r(`#${w}`);
-            n.forEach((O) => O.classList.remove("is_active")), this.classList.add("is_active"), m("exp_add_quality_button_01", this.textContent.trim(), "click", "Header"), localStorage.setItem("anchorMenu", this.textContent.trim()), g && (g.classList.contains("product_details_accordion_block") && !g.classList.contains("active") ? (I = g == null ? void 0 : g.querySelector(".product_details_accordion_link")) == null || I.click() : v(g, 43)), localStorage.removeItem("anchorMenu");
+            o.forEach((Z) => Z.classList.remove("is_active")), this.classList.add("is_active"), m("exp_add_quality_button_01", this.textContent.trim(), "click", "Header"), localStorage.setItem("anchorMenu", this.textContent.trim()), g && (g.classList.contains("product_details_accordion_block") && !g.classList.contains("active") ? (I = g == null ? void 0 : g.querySelector(".product_details_accordion_link")) == null || I.click() : v(g, 43)), localStorage.removeItem("anchorMenu");
           });
         }), window.addEventListener("scroll", p), p();
       });
     }
     renderStickyBlock() {
-      c(".btns_wrapper_payment ").then((o) => {
-        const t = r("body"), i = r(".template-product h1.product-single__title").textContent, n = r(".price-item"), l = n.textContent;
-        !r(".sticky_block") && l && t.insertAdjacentHTML("beforeend", q(i, l)), this.observePriceChange(n), this.observeCallForPrice(), this.clickStickyAddToCartBtn(), this.clickStickyCallForPriceBtn();
+      l(".btns_wrapper_payment ").then((n) => {
+        const t = r("body"), i = r(".template-product h1.product-single__title").textContent, o = r(".price-item"), c = o.textContent;
+        !r(".sticky_block") && c && t.insertAdjacentHTML("beforeend", B(i, c)), this.observePriceChange(o), this.observeCallForPrice(), this.clickStickyAddToCartBtn(), this.clickStickyCallForPriceBtn();
       });
     }
-    observePriceChange(o) {
+    observePriceChange(n) {
       const t = r(".sticky_product_price");
-      new MutationObserver((n) => {
-        n.forEach((l) => {
-          l.type === "childList" && t && (t.textContent = o.textContent);
+      new MutationObserver((o) => {
+        o.forEach((c) => {
+          c.type === "childList" && t && (t.textContent = n.textContent);
         });
-      }).observe(o, { childList: !0 });
+      }).observe(n, { childList: !0 });
     }
     observeCallForPrice() {
-      c(".product-single__meta").then((o) => {
-        const t = r(".product-single__meta"), i = r(".sticky_call_to_inquire"), n = r(".sticky_add_to_cart"), l = () => {
-          t.classList.contains("callforprice_meta") ? (i.style.display = "flex", n.style.display = "none") : (i.style.display = "none", n.style.display = "flex");
+      l(".product-single__meta").then((n) => {
+        const t = r(".product-single__meta"), i = r(".sticky_call_to_inquire"), o = r(".sticky_add_to_cart"), c = () => {
+          t.classList.contains("callforprice_meta") ? (i.style.display = "flex", o.style.display = "none") : (i.style.display = "none", o.style.display = "flex");
         };
         new MutationObserver((d) => {
-          d.forEach((u) => {
-            u.attributeName === "class" && l();
+          d.forEach((h) => {
+            h.attributeName === "class" && c();
           });
-        }).observe(t, { attributes: !0 }), l();
+        }).observe(t, { attributes: !0 }), c();
       });
     }
     toggleStickyBlockVisibility() {
-      c(".product-template__container > .product-section .product-atc-section .product-form").then(() => {
-        c(".sticky_block").then(() => {
-          const o = r(".sticky_block"), t = r(".product-single__meta");
+      l(".product-template__container > .product-section .product-atc-section .product-form").then(() => {
+        l(".sticky_block").then(() => {
+          const n = r(".sticky_block"), t = r(".product-single__meta");
           let i = !1;
-          function n(p) {
+          function o(p) {
             p.forEach((d) => {
-              d.isIntersecting ? i || (i = !0, r("body").classList.remove("sticky_block_visible"), o.classList.remove("visible")) : i && (i = !1, r("body").classList.add("sticky_block_visible"), o.classList.add("visible"));
+              d.isIntersecting ? i || (i = !0, r("body").classList.remove("sticky_block_visible"), n.classList.remove("visible")) : i && (i = !1, r("body").classList.add("sticky_block_visible"), n.classList.add("visible"));
             });
           }
-          new IntersectionObserver(n, {
+          new IntersectionObserver(o, {
             root: null,
             threshold: 0.1
-          }).observe(t), n([
+          }).observe(t), o([
             {
               target: t,
               isIntersecting: t.getBoundingClientRect().top < window.innerHeight
@@ -4292,44 +4434,44 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       });
     }
     clickStickyAddToCartBtn() {
-      c(".sticky_add_to_cart").then((o) => {
-        c(".product-single__meta .btns_wrapper_payment .product-form__cart-submit").then((t) => {
-          const i = r(".sticky_add_to_cart"), n = r(
+      l(".sticky_add_to_cart").then((n) => {
+        l(".product-single__meta .btns_wrapper_payment .product-form__cart-submit").then((t) => {
+          const i = r(".sticky_add_to_cart"), o = r(
             ".product-single__meta .btns_wrapper_payment .product-form__cart-submit"
           );
           new MutationObserver((p) => {
             p.forEach((d) => {
-              d.attributeName === "aria-disabled" && (n.hasAttribute("aria-disabled") ? i.setAttribute("disabled", "true") : i.removeAttribute("disabled"));
+              d.attributeName === "aria-disabled" && (o.hasAttribute("aria-disabled") ? i.setAttribute("disabled", "true") : i.removeAttribute("disabled"));
             });
-          }).observe(n, { attributes: !0 }), i.addEventListener("click", () => {
-            m("exp_add_quality_button_07", "Add to cart", "click", "Sticky add to cart"), n.click();
+          }).observe(o, { attributes: !0 }), i.addEventListener("click", () => {
+            m("exp_add_quality_button_07", "Add to cart", "click", "Sticky add to cart"), o.click();
           });
         });
       });
     }
     clickStickyCallForPriceBtn() {
-      c(".call_F_P_tag2 a").then((o) => {
-        c(".sticky_call_to_inquire").then((t) => {
-          const i = r(".sticky_call_to_inquire"), n = r(".call_F_P_tag2 a");
+      l(".call_F_P_tag2 a").then((n) => {
+        l(".sticky_call_to_inquire").then((t) => {
+          const i = r(".sticky_call_to_inquire"), o = r(".call_F_P_tag2 a");
           i.addEventListener("click", () => {
-            m("exp_add_quality_button_09", "Sticky Call to inquire", "click", "Sticky Call to inquire"), n.click();
+            m("exp_add_quality_button_09", "Sticky Call to inquire", "click", "Sticky Call to inquire"), o.click();
           });
         });
       });
     }
     renderSliderBlock() {
-      c("#ProductSection-product-template").then((o) => {
+      l("#ProductSection-product-template").then((n) => {
         let t = r("#ProductSection-product-template"), i = "afterbegin";
-        this.device === "mobile" && (t = r(".product-template__container > .product-section .product-image-section"), i = "afterend"), !r(".slider_block") && h[this.pathName].sideSliderImg.length > 0 && t.insertAdjacentHTML(i, j(h[this.pathName].sideSliderImg));
+        this.device === "mobile" && (t = r(".product-template__container > .product-section .product-image-section"), i = "afterend"), !r(".slider_block") && u[this.pathName].sideSliderImg.length > 0 && t.insertAdjacentHTML(i, H(u[this.pathName].sideSliderImg));
       });
     }
     initSlickCarousel() {
-      b([
+      y([
         "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css",
         "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
       ]).then(async () => {
-        let o = setInterval(() => {
-          typeof jQuery(".slider_wrapper").slick == "function" && r(".slider_block") && (clearInterval(o), jQuery(".slider_wrapper").slick({
+        let n = setInterval(() => {
+          typeof jQuery(".slider_wrapper").slick == "function" && r(".slider_block") && (clearInterval(n), jQuery(".slider_wrapper").slick({
             slidesToShow: 12,
             vertical: !0,
             infinite: !1,
@@ -4351,12 +4493,12 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       });
     }
     initFancybox() {
-      b([
+      y([
         "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js",
         "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"
       ]).then(async () => {
-        let o = setInterval(() => {
-          typeof Fancybox == "function" && r(".slider_block") && (clearInterval(o), Fancybox.bind('[data-fancybox="gallery"]', {
+        let n = setInterval(() => {
+          typeof Fancybox == "function" && r(".slider_block") && (clearInterval(n), Fancybox.bind('[data-fancybox="gallery"]', {
             Thumbs: {
               type: "classic"
             }
@@ -4369,13 +4511,13 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       });
     }
     clickDescriptionRelatedProducts() {
-      c(".description-related-products a").then((o) => {
+      l(".description-related-products a").then((n) => {
         f(".description-related-products a").forEach((i) => {
-          i.addEventListener("click", (n) => {
-            var l;
+          i.addEventListener("click", (o) => {
+            var c;
             m(
               "exp_add_quality_button_02",
-              ((l = n.currentTarget) == null ? void 0 : l.getAttribute("href")) || "",
+              ((c = o.currentTarget) == null ? void 0 : c.getAttribute("href")) || "",
               "click",
               "Frequently Bought Together"
             );
@@ -4384,24 +4526,24 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       });
     }
     visibleHandler() {
-      c(".one_review_block.first_review").then((o) => {
-        y(".one_review_block.first_review", "exp_add_quality_visibility_02", "Reviews", "1", "view");
-      }), c(".one_review_block.second_review").then((o) => {
-        y(".one_review_block.second_review", "exp_add_quality_visibility_02", "Reviews", "2", "view");
-      }), c(".description-related-products").then((o) => {
-        y(
+      l(".one_review_block.first_review").then((n) => {
+        b(".one_review_block.first_review", "exp_add_quality_visibility_02", "Reviews", "1", "view");
+      }), l(".one_review_block.second_review").then((n) => {
+        b(".one_review_block.second_review", "exp_add_quality_visibility_02", "Reviews", "2", "view");
+      }), l(".description-related-products").then((n) => {
+        b(
           ".description-related-products",
           "exp_add_quality_visibility_03",
           "Frequently Bought Together",
           "Frequently Bought Together",
           "view"
         );
-      }), c(".reviews_block").then((o) => {
-        y(".reviews_block", "exp_add_quality_visibility_04", "All Reviews", "Reviews io", "view");
-      }), c(".faq_block").then((o) => {
-        y(".faq_block", "exp_add_quality_visibility_05", "FAQ", "FAQ", "view");
-      }), c(".comparison_table_block").then((o) => {
-        y(
+      }), l(".reviews_block").then((n) => {
+        b(".reviews_block", "exp_add_quality_visibility_04", "All Reviews", "Reviews io", "view");
+      }), l(".faq_block").then((n) => {
+        b(".faq_block", "exp_add_quality_visibility_05", "FAQ", "FAQ", "view");
+      }), l(".comparison_table_block").then((n) => {
+        b(
           ".comparison_table_block",
           "exp_add_quality_visibility_06",
           "Why Buy From Roofing4US?",
@@ -4411,47 +4553,47 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       });
     }
     addClassLabelColor() {
-      c('[for="SingleOptionSelector-0"]').then((o) => {
-        var i, n, l, p;
+      l('[for="SingleOptionSelector-0"]').then((n) => {
+        var i, o, c, p;
         const t = r('[for="SingleOptionSelector-0"]');
-        (i = t.textContent) != null && i.includes("Color") && ((n = t.parentElement) == null || n.classList.add("label_color")), window.location.pathname.includes("/products/landmark-shingles-all-colors") && ((l = t.closest(".product-form__controls-group")) == null || l.classList.add("label_parent"), (p = t.parentElement) == null || p.classList.add("label_color_first"));
+        (i = t.textContent) != null && i.includes("Color") && ((o = t.parentElement) == null || o.classList.add("label_color")), window.location.pathname.includes("/products/landmark-shingles-all-colors") && ((c = t.closest(".product-form__controls-group")) == null || c.classList.add("label_parent"), (p = t.parentElement) == null || p.classList.add("label_color_first"));
       });
     }
     addClassLabelLength() {
-      c('[for="SingleOptionSelector-0"]').then((o) => {
-        var i, n;
+      l('[for="SingleOptionSelector-0"]').then((n) => {
+        var i, o;
         const t = r('[for="SingleOptionSelector-0"]');
-        (i = t.textContent) != null && i.includes("Length") && ((n = t.parentElement) == null || n.classList.add("label_length"));
+        (i = t.textContent) != null && i.includes("Length") && ((o = t.parentElement) == null || o.classList.add("label_length"));
       });
     }
     addClassLabelSize() {
-      c('[for="SingleOptionSelector-0"]').then((o) => {
-        var i, n;
+      l('[for="SingleOptionSelector-0"]').then((n) => {
+        var i, o;
         const t = r('[for="SingleOptionSelector-0"]');
-        (i = t.textContent) != null && i.includes("Size") && ((n = t.parentElement) == null || n.classList.add("label_size"));
+        (i = t.textContent) != null && i.includes("Size") && ((o = t.parentElement) == null || o.classList.add("label_size"));
       });
     }
     addClassLabelThicknessFirst() {
-      c('[for="SingleOptionSelector-0"]').then((o) => {
-        var i, n, l;
+      l('[for="SingleOptionSelector-0"]').then((n) => {
+        var i, o, c;
         const t = r('[for="SingleOptionSelector-0"]');
-        (i = t.textContent) != null && i.includes("Thickness") && ((n = t.parentElement) == null || n.classList.add("label_thickness_first")), window.location.pathname.includes("/products/dow-thermax-sheathing-4-x-8-polyiso-all-sizes") && ((l = t.closest(".product-form__controls-group")) == null || l.classList.add("label_parent"));
+        (i = t.textContent) != null && i.includes("Thickness") && ((o = t.parentElement) == null || o.classList.add("label_thickness_first")), window.location.pathname.includes("/products/dow-thermax-sheathing-4-x-8-polyiso-all-sizes") && ((c = t.closest(".product-form__controls-group")) == null || c.classList.add("label_parent"));
       });
     }
     addClassLabelThickness() {
-      c('[for="SingleOptionSelector-1"]').then((o) => {
-        var i, n;
+      l('[for="SingleOptionSelector-1"]').then((n) => {
+        var i, o;
         const t = r('[for="SingleOptionSelector-1"]');
-        (i = t.textContent) != null && i.includes("Thickness") && ((n = t.parentElement) == null || n.classList.add("label_thickness"));
+        (i = t.textContent) != null && i.includes("Thickness") && ((o = t.parentElement) == null || o.classList.add("label_thickness"));
       });
     }
     trackYouTubePlay() {
-      let o = document.createElement("script");
-      o.src = "https://www.youtube.com/iframe_api", o.async = !1, document.head.appendChild(o), c(".video_block").then((t) => {
+      let n = document.createElement("script");
+      n.src = "https://www.youtube.com/iframe_api", n.async = !1, document.head.appendChild(n), l(".video_block").then((t) => {
         window.onYouTubeIframeAPIReady = () => {
-          f('iframe[src*="youtube.com/embed/"]').forEach((l, p) => {
-            l.src.match(/embed\/([a-zA-Z0-9_-]+)/)[1];
-            const d = new YT.Player(l, {
+          f('iframe[src*="youtube.com/embed/"]').forEach((c, p) => {
+            c.src.match(/embed\/([a-zA-Z0-9_-]+)/)[1];
+            const d = new YT.Player(c, {
               events: {
                 onStateChange: i
               }
@@ -4459,49 +4601,49 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
             console.log(d, "Player");
           });
         };
-        function i(n) {
-          n.data == YT.PlayerState.PLAYING && (console.log("YouTube video is playing"), m("exp_add_quality_element_01", "video", "click", "Product specification"));
+        function i(o) {
+          o.data == YT.PlayerState.PLAYING && (console.log("YouTube video is playing"), m("exp_add_quality_element_01", "video", "click", "Product specification"));
         }
       });
     }
     changeFisrtImgInMainSlider() {
-      c("#FeaturedMedia-product-template-30758060785816-wrapper").then((o) => {
-        r("#FeaturedMedia-product-template-30758060785816-wrapper").querySelectorAll("img").forEach((n) => {
-          n.src !== `${a}polycarbonate_sheet_img_1.webp` && n.getAttribute("srcset") !== `${a}polycarbonate_sheet_img_1.webp` && (n.src = `${a}polycarbonate_sheet_img_1.webp`, n.setAttribute("srcset", `${a}polycarbonate_sheet_img_1.webp`));
+      l("#FeaturedMedia-product-template-30758060785816-wrapper").then((n) => {
+        r("#FeaturedMedia-product-template-30758060785816-wrapper").querySelectorAll("img").forEach((o) => {
+          o.src !== `${a}polycarbonate_sheet_img_1.webp` && o.getAttribute("srcset") !== `${a}polycarbonate_sheet_img_1.webp` && (o.src = `${a}polycarbonate_sheet_img_1.webp`, o.setAttribute("srcset", `${a}polycarbonate_sheet_img_1.webp`));
         });
-      }), c("#FeaturedMedia-product-template-30758060818584-wrapper").then((o) => {
-        r("#FeaturedMedia-product-template-30758060818584-wrapper").querySelectorAll("img").forEach((n) => {
-          n.src !== `${a}polycarbonate_sheet_img_5.webp` && n.getAttribute("srcset") !== `${a}polycarbonate_sheet_img_5.webp` && (n.src = `${a}polycarbonate_sheet_img_5.webp`, n.setAttribute("srcset", `${a}polycarbonate_sheet_img_5.webp`));
+      }), l("#FeaturedMedia-product-template-30758060818584-wrapper").then((n) => {
+        r("#FeaturedMedia-product-template-30758060818584-wrapper").querySelectorAll("img").forEach((o) => {
+          o.src !== `${a}polycarbonate_sheet_img_5.webp` && o.getAttribute("srcset") !== `${a}polycarbonate_sheet_img_5.webp` && (o.src = `${a}polycarbonate_sheet_img_5.webp`, o.setAttribute("srcset", `${a}polycarbonate_sheet_img_5.webp`));
         });
-      }), c("#FeaturedMedia-product-template-30758062063768-wrapper").then((o) => {
-        r("#FeaturedMedia-product-template-30758062063768-wrapper").querySelectorAll("img").forEach((n) => {
-          n.src !== `${a}h_channel_polycarbonate_sheet_img_1.webp` && n.getAttribute("srcset") !== `${a}h_channel_polycarbonate_sheet_img_1.webp` && (n.src = `${a}h_channel_polycarbonate_sheet_img_1.webp`, n.setAttribute("srcset", `${a}h_channel_polycarbonate_sheet_img_1.webp`));
+      }), l("#FeaturedMedia-product-template-30758062063768-wrapper").then((n) => {
+        r("#FeaturedMedia-product-template-30758062063768-wrapper").querySelectorAll("img").forEach((o) => {
+          o.src !== `${a}h_channel_polycarbonate_sheet_img_1.webp` && o.getAttribute("srcset") !== `${a}h_channel_polycarbonate_sheet_img_1.webp` && (o.src = `${a}h_channel_polycarbonate_sheet_img_1.webp`, o.setAttribute("srcset", `${a}h_channel_polycarbonate_sheet_img_1.webp`));
         });
-      }), c("#FeaturedMedia-product-template-30758061998232-wrapper").then((o) => {
-        r("#FeaturedMedia-product-template-30758061998232-wrapper").querySelectorAll("img").forEach((n) => {
-          n.src !== `${a}u_chanel_polycarbonate_sheet_img_1.webp` && n.getAttribute("srcset") !== `${a}u_chanel_polycarbonate_sheet_img_1.webp` && (n.src = `${a}u_chanel_polycarbonate_sheet_img_1.webp`, n.setAttribute("srcset", `${a}u_chanel_polycarbonate_sheet_img_1.webp`));
+      }), l("#FeaturedMedia-product-template-30758061998232-wrapper").then((n) => {
+        r("#FeaturedMedia-product-template-30758061998232-wrapper").querySelectorAll("img").forEach((o) => {
+          o.src !== `${a}u_chanel_polycarbonate_sheet_img_1.webp` && o.getAttribute("srcset") !== `${a}u_chanel_polycarbonate_sheet_img_1.webp` && (o.src = `${a}u_chanel_polycarbonate_sheet_img_1.webp`, o.setAttribute("srcset", `${a}u_chanel_polycarbonate_sheet_img_1.webp`));
         });
-      }), c("#FeaturedMedia-product-template-37519802138776-wrapper").then((o) => {
-        r("#FeaturedMedia-product-template-37519802138776-wrapper").querySelectorAll("img").forEach((n) => {
-          n.src !== `${a}Roofing Shovel_img_1.webp` && n.getAttribute("srcset") !== `${a}Roofing Shovel_img_1.webp` && (n.src = `${a}Roofing Shovel_img_1.webp`, n.setAttribute("srcset", `${a}Roofing Shovel_img_1.webp`));
+      }), l("#FeaturedMedia-product-template-37519802138776-wrapper").then((n) => {
+        r("#FeaturedMedia-product-template-37519802138776-wrapper").querySelectorAll("img").forEach((o) => {
+          o.src !== `${a}Roofing Shovel_img_1.webp` && o.getAttribute("srcset") !== `${a}Roofing Shovel_img_1.webp` && (o.src = `${a}Roofing Shovel_img_1.webp`, o.setAttribute("srcset", `${a}Roofing Shovel_img_1.webp`));
         });
-      }), c("#FeaturedMedia-product-template-37457632723096-wrapper").then((o) => {
-        r("#FeaturedMedia-product-template-37457632723096-wrapper").querySelectorAll("img").forEach((n) => {
-          n.src !== `${a}roofing_knife_img_1.webp` && n.getAttribute("srcset") !== `${a}roofing_knife_img_1.webp` && (n.src = `${a}roofing_knife_img_1.webp`, n.setAttribute("srcset", `${a}roofing_knife_img_1.webp`));
+      }), l("#FeaturedMedia-product-template-37457632723096-wrapper").then((n) => {
+        r("#FeaturedMedia-product-template-37457632723096-wrapper").querySelectorAll("img").forEach((o) => {
+          o.src !== `${a}roofing_knife_img_1.webp` && o.getAttribute("srcset") !== `${a}roofing_knife_img_1.webp` && (o.src = `${a}roofing_knife_img_1.webp`, o.setAttribute("srcset", `${a}roofing_knife_img_1.webp`));
         });
-      }), c("#FeaturedMedia-product-template-10901381841048-wrapper").then((o) => {
-        r("#FeaturedMedia-product-template-10901381841048-wrapper").querySelectorAll("img").forEach((n) => {
-          n.src !== `${a}roof_membranes_img_1.webp` && n.getAttribute("srcset") !== `${a}roof_membranes_img_1.webp` && (n.src = `${a}roof_membranes_img_1.webp`, n.setAttribute("srcset", `${a}roof_membranes_img_1.webp`));
+      }), l("#FeaturedMedia-product-template-10901381841048-wrapper").then((n) => {
+        r("#FeaturedMedia-product-template-10901381841048-wrapper").querySelectorAll("img").forEach((o) => {
+          o.src !== `${a}roof_membranes_img_1.webp` && o.getAttribute("srcset") !== `${a}roof_membranes_img_1.webp` && (o.src = `${a}roof_membranes_img_1.webp`, o.setAttribute("srcset", `${a}roof_membranes_img_1.webp`));
         });
-      }), c("#FeaturedMedia-product-template-10918798885016-wrapper").then((o) => {
-        r("#FeaturedMedia-product-template-10918798885016-wrapper").querySelectorAll("img").forEach((n) => {
-          n.src !== `${a}dow_thermax_sheathing_img_1.webp` && n.getAttribute("srcset") !== `${a}dow_thermax_sheathing_img_1.webp` && (n.src = `${a}dow_thermax_sheathing_img_1.webp`, n.setAttribute("srcset", `${a}dow_thermax_sheathing_img_1.webp`));
+      }), l("#FeaturedMedia-product-template-10918798885016-wrapper").then((n) => {
+        r("#FeaturedMedia-product-template-10918798885016-wrapper").querySelectorAll("img").forEach((o) => {
+          o.src !== `${a}dow_thermax_sheathing_img_1.webp` && o.getAttribute("srcset") !== `${a}dow_thermax_sheathing_img_1.webp` && (o.src = `${a}dow_thermax_sheathing_img_1.webp`, o.setAttribute("srcset", `${a}dow_thermax_sheathing_img_1.webp`));
         });
       });
     }
   }
-  c(".product-template__container").then((s) => {
-    new Z(V);
+  l(".product-template__container").then((s) => {
+    new j(V);
   });
 })();
 //# sourceMappingURL=index.js.map
