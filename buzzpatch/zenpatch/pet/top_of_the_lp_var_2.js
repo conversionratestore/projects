@@ -13,7 +13,7 @@
       `%c EXP: ${e} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, p = (e) => document.querySelectorAll(e), l = (e) => document.querySelector(e), g = (e, n = "variant_1") => {
+  }, p = (e) => document.querySelectorAll(e), a = (e) => document.querySelector(e), g = (e, n = "variant_1") => {
     let t = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", e, n), console.log("set", e, n));
     }, 1e3);
@@ -34,12 +34,12 @@
   }
   (function(e) {
     e = e === void 0 ? {} : e;
-    let n, t, i, o, a = (e == null ? void 0 : e.delay) || 50;
-    function r() {
+    let n, t, i, o, r = (e == null ? void 0 : e.delay) || 50;
+    function l() {
       n = null, o = 0;
     }
-    return r(), function() {
-      return t = window.scrollY, n != null && (o = t - n), n = t, clearTimeout(i), i = setTimeout(r, a), o;
+    return l(), function() {
+      return t = window.scrollY, n != null && (o = t - n), n = t, clearTimeout(i), i = setTimeout(l, r), o;
     };
   })();
   function C(e) {
@@ -420,33 +420,33 @@ header.sticky {
 header.hidden {
   display: none;
 }/*# sourceMappingURL=main.css.map */`, b = window.innerWidth < 768 ? "mobile" : "desktop";
-  class L {
+  class y {
     constructor(n) {
       this.device = n, this.init();
     }
     init() {
       var n;
-      m({ name: "Top of the LP Var 2", dev: "SKh" }), g("exp_zenpet_ux2"), l(".crs_font") || document.head.insertAdjacentHTML(
+      m({ name: "Top of the LP Var 2", dev: "SKh" }), g("exp_zenpet_ux2"), a(".crs_font") || document.head.insertAdjacentHTML(
         "afterbegin",
         'link class="crs_font" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"'
-      ), document.head.insertAdjacentHTML("beforeend", `<style>${u}</style>`), this.renderMainBenefitsBlock(), window.innerWidth >= 768 ? (console.log(this.device, window.innerWidth), this.renderLearnMoreBtnOnDesktop(), this.scrollToFAQ(".new_learn_more_btn")) : (console.log(this.device, window.innerWidth), this.changeIconLearnMore(), this.scrollToFAQ(".lp-tr--hero-section .lp-tr--learn-more-btn"), (n = l(".new_learn_more_btn")) == null || n.remove()), this.toggleStickyHeader(), this.handleClickGetNow(), this.addEventsAccordion(), this.renderBtnGetZenToAccordionBody(), this.scrollToFromNewGetZenStickersNowBtns(".new_get_zen_stickers_now");
+      ), document.head.insertAdjacentHTML("beforeend", `<style>${u}</style>`), this.renderMainBenefitsBlock(), window.innerWidth >= 768 ? (console.log(this.device, window.innerWidth), this.renderLearnMoreBtnOnDesktop(), this.scrollToFAQ(".new_learn_more_btn")) : (console.log(this.device, window.innerWidth), this.changeIconLearnMore(), this.scrollToFAQ(".lp-tr--hero-section .lp-tr--learn-more-btn"), (n = a(".new_learn_more_btn")) == null || n.remove(), this.toggleStickyHeader(), this.handleClickGetNow()), this.addEventsAccordion(), this.renderBtnGetZenToAccordionBody(), this.scrollToFromNewGetZenStickersNowBtns(".new_get_zen_stickers_now");
     }
     renderMainBenefitsBlock() {
       s(".lp-tr--hero-section .lp-tr--main-title").then((n) => {
-        const t = l(".lp-tr--hero-section .lp-tr--main-title");
-        l(".main_benefits_block") || t.insertAdjacentHTML("beforebegin", _(x.mainBenefits));
+        const t = a(".lp-tr--hero-section .lp-tr--main-title");
+        a(".main_benefits_block") || t.insertAdjacentHTML("beforebegin", _(x.mainBenefits));
       });
     }
     changeIconLearnMore() {
       s(".lp-tr--hero-section .lp-tr--learn-more-btn").then((n) => {
-        const t = l(".lp-tr--hero-section .lp-tr--learn-more-btn");
-        l(".new_yellow_icon") || t.insertAdjacentHTML("beforeend", `${c.newYellowIcon}`);
+        const t = a(".lp-tr--hero-section .lp-tr--learn-more-btn");
+        a(".new_yellow_icon") || t.insertAdjacentHTML("beforeend", `${c.newYellowIcon}`);
       });
     }
     renderLearnMoreBtnOnDesktop() {
       s(".lp-tr--hero-section .lp-tr--btn").then((n) => {
-        const t = l(".lp-tr--hero-section .lp-tr--btn");
-        l(".new_learn_more_btn") || t.insertAdjacentHTML(
+        const t = a(".lp-tr--hero-section .lp-tr--btn");
+        a(".new_learn_more_btn") || t.insertAdjacentHTML(
           "afterend",
           `<div class="new_learn_more_btn">Learn more ${c.newYellowIcon}</div>`
         );
@@ -454,8 +454,10 @@ header.hidden {
     }
     scrollToFAQ(n) {
       s(n).then((t) => {
-        l(n).addEventListener("click", (o) => {
-          o.preventDefault(), o.stopPropagation(), h(".lp-tr--why-kids-love-np-section", 110), n === ".new_learn_more_btn" && f(
+        const i = a(n);
+        let o = -60;
+        this.device === "mobile" && (o = 110), i.addEventListener("click", (r) => {
+          r.preventDefault(), r.stopPropagation(), h(".lp-tr--why-kids-love-np-section", o), n === ".new_learn_more_btn" && f(
             "exp_zenpet_ux_learn_more_01",
             "Learn more",
             "Click",
@@ -470,8 +472,8 @@ header.hidden {
       const n = p(".lp-tr--what-tick-accordion .card .btn");
       n == null || n.forEach((t) => {
         t.addEventListener("click", (i) => {
-          var a, r;
-          const o = (r = (a = i.target) == null ? void 0 : a.textContent) == null ? void 0 : r.trim();
+          var r, l;
+          const o = (l = (r = i.target) == null ? void 0 : r.textContent) == null ? void 0 : l.trim();
           f("exp_zenpet_ux_item_01", o, "Accordion", "Zenpatch is perfect");
         });
       });
@@ -485,11 +487,11 @@ header.hidden {
     }
     scrollToFromNewGetZenStickersNowBtns(n) {
       s(n).then((t) => {
-        p(n).forEach((o, a) => {
-          o.addEventListener("click", (r) => {
-            r.preventDefault(), r.stopPropagation(), h("#lptrPurchase", 0), f(
+        p(n).forEach((o, r) => {
+          o.addEventListener("click", (l) => {
+            l.preventDefault(), l.stopPropagation(), h("#lptrPurchase", 0), f(
               "exp_zenpet_ux_new_get_zen_stickers_now_01",
-              `Get Zen Stickers Now ${a + 1}`,
+              `Get Zen Stickers Now ${r + 1}`,
               "Click",
               "ZenPatch is Perfect If Your Pet..."
             );
@@ -499,12 +501,12 @@ header.hidden {
     }
     toggleStickyHeader() {
       s(".lp-tr--hero-section .lp-tr--btn a").then((n) => {
-        const t = l(".lp-tr--hero-section .lp-tr--btn a"), i = l("header"), o = l(".lp-tr--purchase");
-        function a() {
-          const r = t.getBoundingClientRect(), d = o.getBoundingClientRect();
-          d.top <= window.innerHeight && d.bottom >= 0 ? (i.classList.remove("sticky"), i.classList.add("hidden")) : r.top <= 0 ? (i.classList.add("sticky"), i.classList.remove("hidden")) : (i.classList.remove("sticky"), i.classList.remove("hidden"));
+        const t = a(".lp-tr--hero-section .lp-tr--btn a"), i = a("header"), o = a(".lp-tr--purchase");
+        function r() {
+          const l = t.getBoundingClientRect(), d = o.getBoundingClientRect();
+          d.top <= window.innerHeight && d.bottom >= 0 ? (i.classList.remove("sticky"), i.classList.add("hidden")) : l.top <= 0 ? (i.classList.add("sticky"), i.classList.remove("hidden")) : (i.classList.remove("sticky"), i.classList.remove("hidden"));
         }
-        window.addEventListener("scroll", a), a();
+        window.addEventListener("scroll", r), r();
       });
     }
     handleClickGetNow() {
@@ -512,14 +514,14 @@ header.hidden {
         p(".scroll-to-checkout").forEach((t) => {
           t.addEventListener("click", (i) => {
             i.preventDefault(), i.stopPropagation(), $("html, body").stop();
-            let o = l("#lptrPurchase"), a = 0, r = !0, d = setInterval(async () => {
-              o.getBoundingClientRect().top > a - 1 && o.getBoundingClientRect().top <= a + 1 ? clearInterval(d) : r && (r = !1, r = await w(a, o));
+            let o = a("#lptrPurchase"), r = 0, l = !0, d = setInterval(async () => {
+              o.getBoundingClientRect().top > r - 1 && o.getBoundingClientRect().top <= r + 1 ? clearInterval(d) : l && (l = !1, l = await w(r, o));
             }, 100);
           });
         });
       });
     }
   }
-  window.location.pathname.match("pages") && new L(b);
+  window.location.pathname.match("pages") && new y(b);
 })();
 //# sourceMappingURL=index.js.map
