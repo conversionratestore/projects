@@ -3459,9 +3459,9 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 .product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_link p {
   color: #101010;
   font-family: "Poppins", sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
-  line-height: 22px;
+  line-height: 24px;
   margin: 0;
 }
 @media (max-width: 768px) {
@@ -3483,7 +3483,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 .product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div p {
   color: #101010;
   font-family: "Poppins", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 22px;
   margin: 0;
@@ -3538,9 +3538,9 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   padding: 8px 12px;
   color: #101010;
   font-family: "Poppins", sans-serif;
-  font-size: 13.5px;
+  font-size: 14px;
   font-weight: 500;
-  line-height: 20.25px;
+  line-height: 22px;
 }
 .product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > .note_txt svg {
   width: 25px;
@@ -3559,7 +3559,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 .product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent > div {
   color: #101010;
   font-family: "Poppins", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 22px;
 }
