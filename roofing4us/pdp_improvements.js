@@ -3564,7 +3564,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   text-transform: initial;
 }
 .product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent .general-delivery-info a {
-  display: block;
+  display: inline-block;
   color: #e0162b;
   font-weight: 600;
   text-transform: capitalize;
