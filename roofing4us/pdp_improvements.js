@@ -784,18 +784,18 @@
         "Flexible Delivery Options"
       ],
       oneReviewBlockFirst: {
-        txt: '"Great price, communication and service! I will be buying from them again soon!"',
-        name: "Alan Willis",
+        txt: "I bought some polycarbonate sheets that were cheaper than those offered by other companies. Delivered before expected time and so well protected from damage during delivery. A lot of effort went into ensuring it arrived in perfect condition",
+        name: "Chelsea Wong",
         rating: 5,
         starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}`,
         img: e.anonymousIcon,
         class: "first_review"
       },
       oneReviewBlockSecond: {
-        txt: '"Excellent Customer Service. I received my insulation faster than anticipated - all at the very best price. Thanks!"',
-        name: "Jason Hawkins",
-        rating: 5,
-        starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}`,
+        txt: "Placed the order and it arrived within a few days. I'd like to get a text 30 minutes to an hour before delivery, but all in all great service.",
+        name: "Tim Kelsey",
+        rating: 4,
+        starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIconEmpty}`,
         img: e.anonymousIcon,
         class: "second_review"
       },
@@ -954,16 +954,16 @@
         "Flexible Delivery Options"
       ],
       oneReviewBlockFirst: {
-        txt: `"I wish I had known about the company at the start of my project, I would have ordered all of my insulation through them and avoided the big box stores who did not want to help my situation in any way. Thanks again, I'll be back."`,
-        name: "Ryan Leger",
-        rating: 5,
-        starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}`,
+        txt: "Niall was extremely helpful and provided excellent customer service and follow-up. <br/>The delivery driver was great...arrived on time in VERY bad (snowy) weather and made the drop-off without a hitch. <br/><br/> Thanks",
+        name: "John Vitali",
+        rating: 4,
+        starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIconEmpty}`,
         img: e.anonymousIcon,
         class: "first_review"
       },
       oneReviewBlockSecond: {
-        txt: '"Highly recommend Insulation4US! If you need to buy insulation, this is who you buy it from!".',
-        name: "Leigh Bartley",
+        txt: "They had the best prices I could find and the order process was very easy. Shipping was fast and the shipper was great to work with. I will be ordering again in the future.",
+        name: "Justin Galvin",
         rating: 5,
         starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}`,
         img: e.anonymousIcon,
@@ -1104,18 +1104,18 @@
         "Flexible Delivery Options"
       ],
       oneReviewBlockFirst: {
-        txt: '"This is one of the best roofing tools I’ve ever purchased! The knife is sturdy, sharp, and easy to handle, even for long projects. Shipping was fast, and customer service answered all my questions."',
-        name: "Sarah L.",
+        txt: "Great Service! Before I knew about this company, I ordered insulation from one of the  large home improvement chains.  The delivery date for my order was delayed for two months so I canceled my order and found this store.   So glad I did!   I saved money and my order was delivered in two days!   The delivery driver was great.  Super nice and very helpful.  Thanks for the fantastic service.",
+        name: "Chelsea Wong",
         rating: 5,
         starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}`,
         img: e.anonymousIcon,
         class: "first_review"
       },
       oneReviewBlockSecond: {
-        txt: '"Great tool for roofing professionals. The knife cuts through tough materials easily, and the grip is very ergonomic. Delivery was quick, and everything arrived in perfect condition."',
-        name: "Mike T.",
-        rating: 5,
-        starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}`,
+        txt: "Can’t beat the price.   They were very good to work with and Nathan especially was very helpful.   Due to the supply chain issues everywhere, the original insulation I ordered got back-ordered 6 months and they helped me to find a suitable alternate which actually worked out great.",
+        name: "Thomas W Linn Jr",
+        rating: 4,
+        starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIconEmpty}`,
         img: e.anonymousIcon,
         class: "second_review"
       },
@@ -1273,8 +1273,8 @@ Overall, the TPO Plus Roof Membranes are a great choice for any roofing project.
         class: "first_review"
       },
       oneReviewBlockSecond: {
-        txt: '"Very straight-forward. Easy to make the purchase and the delivery was prompt. The delivery guy was very friendly and helpful. Everything was transparent and efficient just the way contractors like it!"',
-        name: "Michael Cavanaugh",
+        txt: "Fast delivery, very good quality insulation, made my work easy. I used insulation sheets for my garage and definitely I noticed a difference in temperature. It’s not as hot any more.",
+        name: "Anonymous",
         rating: 5,
         starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}`,
         img: e.anonymousIcon,
@@ -1504,16 +1504,16 @@ Overall, the TPO Plus Roof Membranes are a great choice for any roofing project.
         "Flexible Delivery Options"
       ],
       oneReviewBlockFirst: {
-        txt: `"I wish I had known about the company at the start of my project; I would have ordered all of my insulation through them and avoided the big box stores who did not want to help my situation in any way. Thanks again, I'll be back."`,
-        name: "Ryan Leger",
+        txt: "We have been long-time customers of this company and are always happy with the quick delivery of their high-quality roofing products.",
+        name: "Nettie Combs",
         rating: 5,
         starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}`,
         img: e.anonymousIcon,
         class: "first_review"
       },
       oneReviewBlockSecond: {
-        txt: '"I purchased some polycarbonate sheets that were more affordable than those offered by other stores. Delivered before estimated time and so nicely protected from damage during delivery. A lot of effort was put into ensuring the products arrived in perfect condition."',
-        name: "Anonymous",
+        txt: "Everything I ordered arrived and was first quality.  The price was the lowest i could find.  You do have to be able to wait a bit longer than just going to the local materials yard and buying it.  From ordering to to delivery was about 2 weeks for me.  I did order the week of the new years holiday so that could have been a factor as well.  All communication is done via email so don't expect instant answers.",
+        name: "Andrew Blight",
         rating: 5,
         starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}`,
         img: e.anonymousIcon,
@@ -1736,10 +1736,10 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
         class: "first_review"
       },
       oneReviewBlockSecond: {
-        txt: '"I purchased some polycarbonate sheets that were more affordable than those offered by other stores. Delivered before estimated time and so nicely protected from damage during delivery. A lot of effort was put into ensuring the products arrived in perfect condition."',
+        txt: "There was a little confusion about the delivery, but it was taken care of relatively quickly and professionally.",
         name: "Anonymous",
-        rating: 5,
-        starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}`,
+        rating: 4,
+        starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIconEmpty}`,
         img: e.anonymousIcon,
         class: "second_review"
       },
@@ -2065,7 +2065,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       </div>
     </div>
   `
-  ), F = (s) => (
+  ), q = (s) => (
     /* HTML */
     `
     <div class="faq_block" id="FAQ">
@@ -2090,7 +2090,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       </div>
     </div>
   `
-  ), q = (s) => (
+  ), F = (s) => (
     /* HTML */
     `
     <div class="comparison_table_block">
@@ -3485,7 +3485,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   font-family: "Poppins", sans-serif;
   font-size: 12px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 22px;
   margin: 0;
 }
 .product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > .bullet_wrapper {
@@ -3561,7 +3561,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   font-family: "Poppins", sans-serif;
   font-size: 12px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 22px;
 }
 .product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent .rate_list {
   text-transform: initial;
@@ -4330,7 +4330,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
     renderFAQBlock() {
       l(".reviews_block").then((n) => {
         let t = r(".reviews_block");
-        r(".faq_block") || t.insertAdjacentHTML("afterend", F(u[this.pathName].fAQTxt));
+        r(".faq_block") || t.insertAdjacentHTML("afterend", q(u[this.pathName].fAQTxt));
       });
     }
     renderComparisonTable() {
@@ -4338,7 +4338,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
         const t = r(".faq_block");
         r(".comparison_table_block") || t.insertAdjacentHTML(
           "afterend",
-          q(u[this.pathName].comparisonTable)
+          F(u[this.pathName].comparisonTable)
         );
       });
     }
