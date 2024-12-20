@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const B = (g, s, a, c = "") => {
+  const I = (g, s, a, c = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: g,
@@ -40,13 +40,13 @@
       }
     ), f = new IntersectionObserver((m) => {
       m.forEach((w) => {
-        w.isIntersecting ? (B(s || `view_element_${w.target.id}`, a || "Element visibility", "view", c || w.target.id), A.unobserve(w.target)) : A.observe(w.target), f.unobserve(w.target);
+        w.isIntersecting ? (I(s || `view_element_${w.target.id}`, a || "Element visibility", "view", c || w.target.id), A.unobserve(w.target)) : A.observe(w.target), f.unobserve(w.target);
       });
     });
     h.forEach((m) => {
       A.observe(m);
     });
-  }, E = "https://conversionratestore.github.io/projects/goiteens/1st_hypothesis", F = "accordion_index";
+  }, E = "https://conversionratestore.github.io/projects/goiteens/1st_hypothesis", M = "accordion_index";
   function X(g) {
     return g && g.__esModule && Object.prototype.hasOwnProperty.call(g, "default") ? g.default : g;
   }
@@ -95,16 +95,16 @@
             e.enumerable = e.enumerable || !1, e.configurable = !0, "value" in e && (e.writable = !0), Object.defineProperty(p, _(e.key), e);
           }
         }
-        function I(p, i, t) {
+        function L(p, i, t) {
           return i && w(p.prototype, i), t && w(p, t), Object.defineProperty(p, "prototype", {
             writable: !1
           }), p;
         }
         function _(p) {
-          var i = L(p, "string");
+          var i = B(p, "string");
           return typeof i == "symbol" ? i : String(i);
         }
-        function L(p, i) {
+        function B(p, i) {
           if (typeof p != "object" || p === null)
             return p;
           var t = p[Symbol.toPrimitive];
@@ -128,7 +128,7 @@
           }
         };
         typeof window == "object" && (window.intlTelInputGlobals = b);
-        var D = 0, T = {
+        var P = 0, T = {
           // whether or not to allow the dropdown
           allowDropdown: !0,
           // auto insert dial code (A) on init, (B) on user selecting a country, (C) on calling setCountry
@@ -182,20 +182,20 @@
         }, G = ["800", "822", "833", "844", "855", "866", "877", "880", "881", "882", "883", "884", "885", "886", "887", "888", "889"], k = function(i, t) {
           for (var e = Object.keys(i), n = 0; n < e.length; n++)
             t(e[n], i[e[n]]);
-        }, P = function(i) {
+        }, z = function(i) {
           k(window.intlTelInputGlobals.instances, function(t) {
             window.intlTelInputGlobals.instances[t][i]();
           });
         }, lt = /* @__PURE__ */ function() {
           function p(i, t) {
             var e = this;
-            m(this, p), this.id = D++, this.telInput = i, this.activeItem = null, this.highlightedItem = null;
+            m(this, p), this.id = P++, this.telInput = i, this.activeItem = null, this.highlightedItem = null;
             var n = t || {};
             this.options = {}, k(T, function(o, r) {
               e.options[o] = n.hasOwnProperty(o) ? n[o] : r;
             }), this.hadInitialPlaceholder = !!i.getAttribute("placeholder");
           }
-          return I(p, [{
+          return L(p, [{
             key: "_init",
             value: function() {
               var t = this;
@@ -309,10 +309,10 @@
                 class: x
               });
               this.telInput.parentNode.insertBefore(C, this.telInput);
-              var z = e || o || n;
-              if (z && (this.flagsContainer = this._createEl("div", {
+              var F = e || o || n;
+              if (F && (this.flagsContainer = this._createEl("div", {
                 class: "iti__flag-container"
-              }, C)), C.appendChild(this.telInput), z && (this.selectedFlag = this._createEl("div", A({
+              }, C)), C.appendChild(this.telInput), F && (this.selectedFlag = this._createEl("div", A({
                 class: "iti__selected-flag"
               }, e && {
                 role: "combobox",
@@ -344,22 +344,22 @@
                   class: "iti__divider",
                   "aria-hidden": "true"
                 }, this.countryList)), this._appendListItems(this.countries, "iti__standard"), l) {
-                  var Y = "iti iti--container";
-                  v && (Y += " iti--fullscreen-popup"), y && (Y += " iti--country-search"), this.dropdown = this._createEl("div", {
-                    class: Y
+                  var S = "iti iti--container";
+                  v && (S += " iti--fullscreen-popup"), y && (S += " iti--country-search"), this.dropdown = this._createEl("div", {
+                    class: S
                   }), this.dropdown.appendChild(this.dropdownContent);
                 } else
                   this.flagsContainer.appendChild(this.dropdownContent);
               }
               if (d) {
-                var j = d, S = this.telInput.getAttribute("name");
-                if (S) {
-                  var R = S.lastIndexOf("[");
-                  R !== -1 && (j = "".concat(S.substr(0, R), "[").concat(j, "]"));
+                var Y = d, j = this.telInput.getAttribute("name");
+                if (j) {
+                  var R = j.lastIndexOf("[");
+                  R !== -1 && (Y = "".concat(j.substr(0, R), "[").concat(Y, "]"));
                 }
                 this.hiddenInput = this._createEl("input", {
                   type: "hidden",
-                  name: j
+                  name: Y
                 }), C.appendChild(this.hiddenInput);
               }
             }
@@ -441,10 +441,10 @@
             value: function() {
               window.intlTelInputGlobals.autoCountry ? this.handleAutoCountry() : window.intlTelInputGlobals.startedLoadingAutoCountry || (window.intlTelInputGlobals.startedLoadingAutoCountry = !0, typeof this.options.geoIpLookup == "function" && this.options.geoIpLookup(function(t) {
                 window.intlTelInputGlobals.autoCountry = t.toLowerCase(), setTimeout(function() {
-                  return P("handleAutoCountry");
+                  return z("handleAutoCountry");
                 });
               }, function() {
-                return P("rejectAutoCountryPromise");
+                return z("rejectAutoCountryPromise");
               }));
             }
           }, {
@@ -718,8 +718,8 @@
                 e && (x -= C), n.scrollTop = x;
               else if (y > l) {
                 e && (x += C);
-                var z = r - u;
-                n.scrollTop = x - z;
+                var F = r - u;
+                n.scrollTop = x - F;
               }
             }
           }, {
@@ -870,9 +870,9 @@
         var N = function(i, t, e) {
           var n = document.createElement("script");
           n.onload = function() {
-            P("handleUtils"), t && t();
+            z("handleUtils"), t && t();
           }, n.onerror = function() {
-            P("rejectUtilsScriptPromise"), e && e();
+            z("rejectUtilsScriptPromise"), e && e();
           }, n.className = "iti-load-utils", n.async = !0, n.src = i, document.body.appendChild(n);
         };
         return b.loadUtils = function(p) {
@@ -930,6 +930,7 @@
       if (a) {
         const h = V(a, {
           initialCountry: "ua",
+          // @ts-ignore
           countryOrder: ["ua"],
           countrySearch: !1,
           nationalMode: !0,
@@ -937,24 +938,24 @@
           useFullscreenPopup: !1
         }), A = () => {
           if (a.value) {
-            const { add: I, remove: _ } = this.errorToInput(a);
-            h.isValidNumber() || I("Номер телефону невірний!"), h.isValidNumber() && (a.dataset.value = h.getNumber(), _());
+            const { add: L, remove: _ } = this.errorToInput(a);
+            h.isValidNumber() || L("Номер телефону невірний!"), h.isValidNumber() && (a.dataset.value = h.getNumber(), _());
           }
-        }, f = document.querySelector("#popup_input_name"), m = (I) => {
-          const _ = I.target.value;
+        }, f = document.querySelector("#popup_input_name"), m = (L) => {
+          const _ = L.target.value;
           if (_) {
-            const { add: L, remove: b } = this.errorToInput(f);
-            b(), /\d/.test(_) ? L("Ім’я невірне") : _.trim() === "" ? L("Ім’я обов’язкове") : _.length < 2 ? L("Поле повинно містити мінімум 2 символи") : b();
+            const { add: B, remove: b } = this.errorToInput(f);
+            b(), /\d/.test(_) ? B("Ім’я невірне") : _.trim() === "" ? B("Ім’я обов’язкове") : _.length < 2 ? B("Поле повинно містити мінімум 2 символи") : b();
           }
         };
         a.addEventListener("input", A), a.addEventListener("change", () => {
-          B("exp_hyp_2_1_input_02", "Phone", "input", "Choose the perfect course");
+          I("exp_hyp_2_1_input_02", "Phone", "input", "Choose the perfect course");
         }), f == null || f.addEventListener("input", m), f.addEventListener("change", () => {
-          B("exp_hyp_2_1_input_01", "Name", "input", "Choose the perfect course");
+          I("exp_hyp_2_1_input_01", "Name", "input", "Choose the perfect course");
         });
         const w = document.querySelector('.crs-popup-form button[type="submit"]');
         w && w.addEventListener("click", () => {
-          B("exp_hyp_2_1_button_03", "Sign up", "click", "Choose the perfect course");
+          I("exp_hyp_2_1_button_03", "Sign up", "click", "Choose the perfect course");
         });
       }
     }
@@ -982,9 +983,9 @@
         const c = s.querySelector("#popup_input_name"), h = s.querySelector("#popup_input_phone");
         if (!c || !h)
           return;
-        const A = c == null ? void 0 : c.value, f = h == null ? void 0 : h.dataset.value, { add: m, remove: w } = this.errorToInput(c), { add: I, remove: _ } = this.errorToInput(h);
-        let L = !0;
-        if ((!A || A.trim() === "") && (m("Ім’я обов’язкове"), L = !1), (!f || f.trim() === "") && (h == null || h.classList.add("is-invalid"), I("Номер телефону невірний!"), L = !1), !L)
+        const A = c == null ? void 0 : c.value, f = h == null ? void 0 : h.dataset.value, { add: m, remove: w } = this.errorToInput(c), { add: L, remove: _ } = this.errorToInput(h);
+        let B = !0;
+        if ((!A || A.trim() === "") && (m("Ім’я обов’язкове"), B = !1), (!f || f.trim() === "") && (h == null || h.classList.add("is-invalid"), L("Номер телефону невірний!"), B = !1), !B)
           return;
         const b = s.querySelector('button[type="submit"]');
         b == null || b.setAttribute("disabled", "true");
@@ -1001,8 +1002,8 @@
               "Content-type": "application/json; charset=UTF-8"
             }
           })).json()).Deal_ID) {
-            const G = sessionStorage.getItem(F);
-            B(
+            const G = sessionStorage.getItem(M);
+            I(
               "exp_hyp_2_1_submit_01",
               `Sign up - ${G}`,
               "submit",
@@ -1011,8 +1012,8 @@
             const k = s.closest("dialog");
             k && k.close(), location.href = "https://courses-all.goiteens.com/v-gl/success/";
           }
-        } catch (D) {
-          console.log("error", D);
+        } catch (P) {
+          console.log("error", P);
         }
       });
     }
@@ -1349,7 +1350,7 @@ body:has(.crs-popup[open]) {
     margin-top: 16px;
   }
 }
-`, M = {
+`, D = {
     1: {
       title: (
         /* HTML */
@@ -1436,12 +1437,12 @@ body:has(.crs-popup[open]) {
         `<dialog class="crs-popup">
       <button type="button" class="crs-popup__close"></button>
       <div class="crs-popup__wrap">
-        <h3 class="crs-popup__title">${M[1].title}</h3>
-        <div class="crs-popup__description">${M[1].description}</div>
+        <h3 class="crs-popup__title">${D[1].title}</h3>
+        <div class="crs-popup__description">${D[1].description}</div>
         <div class="crs-popup__content">
           <h4 class="crs-popup__content-title">Як проходить урок:</h4>
           <ol class="crs-popup__content-list">
-            ${M[1].content.map((a) => `<li>${a}</li>`).join("")}
+            ${D[1].content.map((a) => `<li>${a}</li>`).join("")}
           </ol>
         </div>
 
@@ -1482,15 +1483,15 @@ body:has(.crs-popup[open]) {
       this.updatePopupContent(s), this.popup && this.popup.showModal();
     }
     close() {
-      this.popup && (this.popup.close(), B("exp_hyp_2_1_button_04", "Close", "click", "Choose the perfect course"));
+      this.popup && (this.popup.close(), I("exp_hyp_2_1_button_04", "Close", "click", "Choose the perfect course"));
     }
     updatePopupContent(s) {
       var a, c, h;
       if (console.log("index", s), s) {
-        const A = M[s];
+        const A = D[s];
         if (A) {
           const f = (a = this.popup) == null ? void 0 : a.querySelector(".crs-popup__title"), m = (c = this.popup) == null ? void 0 : c.querySelector(".crs-popup__description"), w = (h = this.popup) == null ? void 0 : h.querySelector(".crs-popup__content-list");
-          f && (f.innerHTML = A.title), m && (m.textContent = A.description), w && (w.innerHTML = A.content.map((I) => `<li>${I}</li>`).join(""));
+          f && (f.innerHTML = A.title), m && (m.textContent = A.description), w && (w.innerHTML = A.content.map((L) => `<li>${L}</li>`).join(""));
         }
       }
     }
@@ -1932,11 +1933,11 @@ body:has(.crs-popup[open]) {
         const h = c.querySelector(".crs-accordion__title");
         h == null || h.addEventListener("click", () => {
           if (c.getAttribute("data-state") === "open")
-            c.setAttribute("data-state", "close"), sessionStorage.removeItem(F);
+            c.setAttribute("data-state", "close"), sessionStorage.removeItem(M);
           else {
             s.forEach((m) => m.setAttribute("data-state", "close")), c.setAttribute("data-state", "open");
             const f = c.getAttribute("data-index");
-            f && (sessionStorage.setItem(F, f), B("exp_hyp_2_1_button_01", `Want - ${f}`, "click", "What do you want"));
+            f && (sessionStorage.setItem(M, f), I("exp_hyp_2_1_button_01", `Want - ${f}`, "click", "What do you want"));
           }
         });
       }), this.container.querySelectorAll('.crs-accordion__action[data-popup="free-lesson"]').forEach((c) => {
@@ -1945,7 +1946,7 @@ body:has(.crs-popup[open]) {
           const h = (f = c.closest(".crs-accordion__item")) == null ? void 0 : f.getAttribute("data-index");
           this.popup.open(h ? Number(h) : 1);
           const A = (m = c.closest(".crs-accordion__item")) == null ? void 0 : m.getAttribute("data-index");
-          A && !isNaN(Number(A)) && B("exp_hyp_2_1_button_02", `Sign up for a free lesson - ${A}`, "click", "What do you want");
+          A && !isNaN(Number(A)) && I("exp_hyp_2_1_button_02", `Sign up for a free lesson - ${A}`, "click", "What do you want");
         });
       });
     }
@@ -2315,7 +2316,10 @@ body:has(.crs-popup[open]) {
       this.init();
     }
     init() {
-      location.pathname.includes("v-gl-v2/") && (this.initStyles(), new st(), new it({ container: document.querySelector("header"), position: "beforeend" }), new et({ container: document.querySelector("main"), position: "afterbegin" }));
+      if (location.pathname.includes("v-gl-v2/") && (this.initStyles(), new st(), new it({ container: document.querySelector("header"), position: "beforeend" }), new et({ container: document.querySelector("main"), position: "afterbegin" })), location.pathname.includes("success")) {
+        const s = sessionStorage.getItem(M);
+        s && I("exp_hyp_2_1_submit_02", `Sign up - ${s}`, "submit", "Success page"), sessionStorage.removeItem(M);
+      }
     }
     initStyles() {
       const s = document.createElement("style");
