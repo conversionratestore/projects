@@ -5838,9 +5838,11 @@ body::-webkit-scrollbar-thumb {
       });
     }
     intentPopupTriggers() {
-      sessionStorage.getItem("intentPopupTriggers") || this.device === "desktop" && document.addEventListener("mouseout", (i) => {
-        !i.relatedTarget && !sessionStorage.getItem("intentPopupTriggers") && !f(".crs_popup_form.active").elements[0] && (console.log("mouseout"), this.showExitPopup());
-      });
+      sessionStorage.getItem("intentPopupTriggers") || this.device === "desktop" && setTimeout(() => {
+        document.addEventListener("mouseout", (i) => {
+          !i.relatedTarget && !sessionStorage.getItem("intentPopupTriggers") && !f(".crs_popup_form.active").elements[0] && (console.log("mouseout"), this.showExitPopup());
+        });
+      }, 1e4);
     }
     showExitPopup() {
       sessionStorage.setItem("intentPopupTriggers", "true"), f("body").elements[0].style.overflow = "hidden", f(".crs_exit_popup").elements[0].classList.add("active"), I("exp_opt_in_v2__p_exit__view", "Popup", "view", "Popup. Exit-intent");
