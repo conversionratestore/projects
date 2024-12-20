@@ -2349,7 +2349,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 @media (max-width: 768px) {
   .sticky_block_visible #chat-widget-container {
-    bottom: 65px !important;
+    bottom: 70px !important;
   }
   .sticky_block_visible #chat-widget-container.visible {
     bottom: 0 !important;
@@ -4438,18 +4438,20 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
         l(".sticky_block").then(() => {
           const n = r(".sticky_block"), t = r(".product-single__meta");
           let i = !1;
-          function o(d) {
-            d.forEach((p) => {
-              p.isIntersecting ? i || (i = !0, r("body").classList.remove("sticky_block_visible"), n.classList.remove("visible")) : i && (i = !1, r("body").classList.add("sticky_block_visible"), n.classList.add("visible"));
+          function o(p) {
+            p.forEach((h) => {
+              h.isIntersecting ? i && (i = !1, r("body").classList.remove("sticky_block_visible"), n.classList.remove("visible")) : i || (i = !0, r("body").classList.add("sticky_block_visible"), n.classList.add("visible"));
             });
           }
           new IntersectionObserver(o, {
             root: null,
             threshold: 0.1
-          }).observe(t), o([
+          }).observe(t);
+          const d = t.getBoundingClientRect();
+          o([
             {
               target: t,
-              isIntersecting: t.getBoundingClientRect().top < window.innerHeight
+              isIntersecting: d.top >= 0 && d.bottom <= window.innerHeight
             }
           ]);
         });
