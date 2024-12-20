@@ -423,18 +423,18 @@
         "Flexible Delivery Options"
       ],
       oneReviewBlockFirst: {
-        txt: '"They had the best prices I could find and the order process was very easy. Shipping was fast and the shipper was great to work with. I will be ordering again in the future."',
-        name: "Justin Galvin",
+        txt: "I'm very impressed with the speed of delivery, the courteous nature of the drivers and staff that helped set up the delivery on line.  The particular product I ordered was very hard to find in smaller batches, to have the ability to buy one package at a time is excellent! <br/><br/> I wish I had known about the company at the start of my project, I would have ordered all of my insulation through them and avoided the big box stores who did not want to help my situation in anyway.   Thanks again and I'll be back if I ever have another insulation project.",
+        name: "Ryan Leger",
         rating: 5,
         starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}`,
         img: e.anonymousIcon,
         class: "first_review"
       },
       oneReviewBlockSecond: {
-        txt: '"Very pleased with the trading that I have done with this company."',
+        txt: "There was a little confusion about the delivery, but it was taken care of relatively quickly and professionally.",
         name: "Anonymous",
-        rating: 5,
-        starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}`,
+        rating: 4,
+        starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIconEmpty}`,
         img: e.anonymousIcon,
         class: "second_review"
       },
@@ -612,18 +612,18 @@
         "Flexible Delivery Options"
       ],
       oneReviewBlockFirst: {
-        txt: '"Outstanding transaction in every way! Great price! Excellent communication! I would highly recommend! Thank you."',
-        name: "Robert Harms",
+        txt: "Can’t beat the price.   They were very good to work with and Nathan especially was very helpful.   Due to the supply chain issues everywhere, the original insulation I ordered got back-ordered 6 months and they helped me to find a suitable alternate which actually worked out great.",
+        name: "Stefanie Horton",
         rating: 5,
         starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}`,
         img: e.anonymousIcon,
         class: "first_review"
       },
       oneReviewBlockSecond: {
-        txt: '"Very straight-forward. Easy to make the purchase and the delivery was prompt. The delivery guy was very friendly and helpful. Everything was transparent and efficient just the way contractors like it!".',
-        name: "Michael Cavanaugh",
-        rating: 5,
-        starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}`,
+        txt: "Large array of insulation available.  Personel very responsive to emails and calls.  Would be 5 stars except for delay in shipping on orders.  However, will continue to use them for all insulation needs.",
+        name: "Larry Carlson",
+        rating: 4,
+        starIcons: `${e.starIcon}${e.starIcon}${e.starIcon}${e.starIcon}${e.starIconEmpty}`,
         img: e.anonymousIcon,
         class: "second_review"
       },
@@ -777,7 +777,7 @@
         }
       ],
       anchorMenuTxt: ["Description", "Technical Specs", "Datasheets", "Delivery Information", "Reviews", "FAQ"],
-      boughtSoFarTxt: "1000+",
+      boughtSoFarTxt: "4K+",
       newProductSalesPointsTxt: [
         "Shipping Protection for Peace of Mind",
         "Fast Processing & Delivery",
