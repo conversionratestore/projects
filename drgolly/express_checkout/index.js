@@ -1366,7 +1366,7 @@ header .et_pb_column_3_tb_header {
   border-radius: 6px !important;
   border: 1px solid #999 !important;
   background: #fff;
-  height: 48px;
+  height: 48px !important;
 }
 .coupon-container {
   display: none !important;
