@@ -1081,6 +1081,13 @@ body:has(.crs-popup[open]) {
   padding: 0;
   margin-bottom: 24px;
 }
+
+.crs-popup__content :is(p, ul):last-child {
+  margin-bottom: 0;
+}
+.crs-popup__content .et_pb_toggle_close  p {
+  margin-bottom: 0;
+}
 .crs-popup__content p:empty {
   display: none;
   height: 0;
@@ -1120,6 +1127,7 @@ body:has(.crs-popup[open]) {
   font-style: normal;
   font-weight: 700;
   line-height: 50.76px; /* 141% */
+  padding: 0 !important;
 }
 
 .crs-popup__content .et_pb_row_0.et_pb_row {
@@ -1425,7 +1433,6 @@ tr.coupon_item td {
 }
 
 .crs-refund {
-  margin-top: 20px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1449,6 +1456,17 @@ tr.coupon_item td {
   font-style: normal;
   font-weight: 600;
   line-height: 18px; /* 138.462% */
+}
+
+.crs-refund__tooltip {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  margin-left: 6px;
+}
+.crs-refund__tooltip svg {
+  position: absolute;
+  inset: 0;
 }
 
 .crs-footer {
@@ -1573,7 +1591,7 @@ tr.coupon_item td {
       </div>
     `
       );
-      (await l(".place-order-actions")).insertAdjacentHTML("afterend", e), document.querySelector(".crs-refund__tooltip").addEventListener("click", () => {
+      (await l("form.checkout ")).insertAdjacentHTML("afterend", e), document.querySelector(".crs-refund__tooltip").addEventListener("click", () => {
         p(
           "exp__01__exp_checkout__refund__click",
           "30 days refund banner",
@@ -1792,6 +1810,10 @@ tr.coupon_item td {
   line-height: 16.8px;
 }
 
+.crs-comment__rating {
+  display: flex;
+  align-items: center;
+}
 .crs-comment__verified {
   margin-top: 7px;
   display: flex;
