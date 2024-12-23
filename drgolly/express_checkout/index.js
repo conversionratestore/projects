@@ -1,21 +1,29 @@
 (function() {
   "use strict";
-  const m = ({ name: i, dev: e }) => {
+  const p = (n, e, t, o = "") => {
+    window.dataLayer = window.dataLayer || [], window.dataLayer.push({
+      event: "event-to-ga4",
+      event_name: n,
+      event_desc: e,
+      event_type: t,
+      event_loc: o
+    }), console.log(`Event: ${n} | ${e} | ${t} | ${o}`);
+  }, y = ({ name: n, dev: e }) => {
     console.log(
-      `%c EXP: ${i} (DEV: ${e})`,
+      `%c EXP: ${n} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, y = (i) => {
+  }, f = (n) => {
     let e = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", i, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", n, "variant_1"));
     }, 1e3);
   };
-  function s(i) {
+  function l(n) {
     return new Promise((e) => {
-      if (document.querySelector(i))
-        return e(document.querySelector(i));
+      if (document.querySelector(n))
+        return e(document.querySelector(n));
       const t = new MutationObserver(() => {
-        document.querySelector(i) && (e(document.querySelector(i)), t.disconnect());
+        document.querySelector(n) && (e(document.querySelector(n)), t.disconnect());
       });
       t.observe(document.documentElement, {
         childList: !0,
@@ -24,7 +32,36 @@
       });
     });
   }
-  const p = (
+  const d = (n, e, t, o) => {
+    let r = [];
+    if (typeof n == "string")
+      r = document.querySelectorAll(n);
+    else if (n instanceof Element)
+      r = [n];
+    else {
+      console.error("Invalid target type:", n);
+      return;
+    }
+    let i = new IntersectionObserver(
+      (s) => {
+        s.forEach((c) => {
+          c.isIntersecting && (i.unobserve(c.target), setTimeout(function() {
+            a.observe(c.target);
+          }, 1e3));
+        });
+      },
+      {
+        threshold: 0.2
+      }
+    ), a = new IntersectionObserver((s) => {
+      s.forEach((c) => {
+        c.isIntersecting ? (p(e || `view_element_${c.target.id}`, t || "Element visibility", "view", o || c.target.id), i.unobserve(c.target)) : i.observe(c.target), a.unobserve(c.target);
+      });
+    });
+    r.forEach((s) => {
+      i.observe(s);
+    });
+  }, u = (
     /* HTML */
     `<div class="et_pb_section et_pb_section_0 et_section_regular">
   <div class="et_pb_row et_pb_row_0">
@@ -255,7 +292,7 @@ height: 100%; width: 100%; display:none"
     </div>
   </div>
 </div>`
-  ), f = (
+  ), g = (
     /* HTML */
     `<div class="et-l et-l--post">
   <div class="et_builder_inner_content et_pb_gutters3">
@@ -275,8 +312,10 @@ height: 100%; width: 100%; display:none"
         <div class="et_pb_column et_pb_column_4_4 et_pb_column_1  et_pb_css_mix_blend_mode_passthrough et-last-child">
           <div class="et_pb_module et_pb_text et_pb_text_0  et_pb_text_align_left et_pb_bg_layout_light">
             <div class="et_pb_text_inner">
-              This Privacy Policy describes how drgolly.com (the “Site” or “we”) collects, uses, and discloses your
-              Personal Information when you visit or make a purchase from the Site.
+              <p>
+                This Privacy Policy describes how drgolly.com (the “Site” or “we”) collects, uses, and discloses your
+                Personal Information when you visit or make a purchase from the Site.
+              </p>
               <p></p>
               <h2>SECTION 1 – WHAT DO WE DO WITH YOUR INFORMATION?</h2>
               <p>
@@ -454,7 +493,7 @@ height: 100%; width: 100%; display:none"
     </div>
   </div>
 </div>`
-  ), _ = (
+  ), b = (
     /* HTML */
     `<div class="et_builder_inner_content et_pb_gutters3">
   <div class="et_pb_section et_pb_section_0 section__header-standard et_pb_with_background et_section_regular">
@@ -505,7 +544,7 @@ height: 100%; width: 100%; display:none"
     </div>
   </div>
 </div>`
-  ), g = (
+  ), v = (
     /* HTML */
     `<div class="et_builder_inner_content et_pb_gutters3">
   <div class="et_pb_section et_pb_section_0 section__header-standard et_pb_with_background et_section_regular">
@@ -535,7 +574,7 @@ height: 100%; width: 100%; display:none"
     </div>
   </div>
 </div>`
-  ), b = (
+  ), w = (
     /* HTML */
     `<div class="et_builder_inner_content et_pb_gutters3">
   <div class="et_pb_section et_pb_section_0 section__header-standard et_pb_with_background et_section_regular">
@@ -958,7 +997,7 @@ height: 100%; width: 100%; display:none"
     </div>
   </div>
 </div>`
-  ), v = (
+  ), x = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -977,7 +1016,7 @@ height: 100%; width: 100%; display:none"
     </clipPath>
   </defs>
 </svg>`
-  ), w = `dialog.crs-popup {
+  ), C = `dialog.crs-popup {
   position: fixed;
   top: 0;
   left: 0;
@@ -1034,6 +1073,9 @@ body:has(.crs-popup[open]) {
   line-height: 26.46px; /* 176.4% */
 }
 
+.crs-popup__content .et_pb_section_0.et_pb_section {
+  margin-top: 0 !important;
+}
 .crs-popup__content :is(p, ul) {
   font-size: 15px !important;
   padding: 0;
@@ -1051,6 +1093,9 @@ body:has(.crs-popup[open]) {
   font-weight: 700;
   line-height: 33.84px; /* 141% */
 }
+.crs-popup__content .et_pb_column .et_pb_row_inner, .et_pb_row {
+  padding: 0!important;
+}
 
 .section__header-standard {
   display: flex;
@@ -1060,12 +1105,14 @@ body:has(.crs-popup[open]) {
   margin-left: -16px;
   margin-right: -16px;
   width: calc(100% + 32px);
+  height: 282px !important;
+  min-height: auto;
 }
 .crs-popup__content .et_pb_row {
   width: 100%;
 }
 
-.crs-popup__content .entry-title {
+.crs-popup__content h1 {
   color: #8bc3c3;
   text-align: center;
   font-family: Raleway;
@@ -1074,14 +1121,75 @@ body:has(.crs-popup[open]) {
   font-weight: 700;
   line-height: 50.76px; /* 141% */
 }
-`, x = {
-    contact: p,
-    privacyPolicy: f,
-    shippingPolicy: g,
-    terms: b,
-    refundPolicy: _
+
+.crs-popup__content .et_pb_row_0.et_pb_row {
+  padding: 0 !important;
+}
+.crs-popup__content .et_pb_column .et_pb_module {
+  margin-bottom: 14px;
+}
+
+.crs-popup__content .et_pb_row_0.et_pb_row  .et_pb_text_inner p {
+  color: #095d66;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20.11px; /* 125.688% */
+}
+
+.crs-popup__content .et_pb_row_0.et_pb_row  h1:not(.entry-title) {
+  margin-top: 44px;
+}
+
+.crs-popup__content .et_pb_toggle {
+  border: none;
+  background: #fff !important;
+  border-top: 1px solid #a9b1b5;
+  margin-bottom: 0 !important;
+}
+
+.crs-popup__content .et_pb_toggle_title {
+  color: #095d66;
+  font-family: Montserrat;
+  font-size: 16px !important;
+  font-style: normal;
+  font-weight: 600 !important;
+  line-height: 22.5px !important;
+  text-transform: inherit;
+}
+
+.et_pb_toggle_title:before {
+  content: '' !important;
+  width: 21px;
+  height: 21px;
+  background-size: contain;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none"><g clip-path="url(%23clip0_206_9803)"><path d="M15.0002 9.75446L11.2063 13.5484L7.41235 9.75446C7.28931 9.61774 7.1355 9.54938 6.95093 9.54938C6.76636 9.54938 6.61255 9.61774 6.4895 9.75446C6.35278 9.8775 6.28442 10.0279 6.28442 10.2056C6.28442 10.3834 6.35278 10.5406 6.4895 10.6773L10.7346 14.9224C10.803 14.9908 10.8782 15.0421 10.9602 15.0762C11.0422 15.1104 11.1243 15.1275 11.2063 15.1275C11.2883 15.1275 11.3704 15.1104 11.4524 15.0762C11.5344 15.0421 11.6096 14.9908 11.678 14.9224L15.9231 10.6773C16.0598 10.5406 16.1282 10.3834 16.1282 10.2056C16.1282 10.0279 16.0598 9.8775 15.9231 9.75446C15.8 9.61774 15.6462 9.54938 15.4617 9.54938C15.2771 9.54938 15.1233 9.61774 15.0002 9.75446ZM11.2473 2.10504C9.8938 2.10504 8.62231 2.35797 7.43286 2.86383C6.24341 3.38336 5.20776 4.08405 4.32593 4.96588C3.44409 5.84772 2.74341 6.88336 2.22388 8.07281C1.71802 9.26227 1.46509 10.5338 1.46509 11.8873C1.46509 13.2408 1.71802 14.5123 2.22388 15.7017C2.74341 16.8912 3.44409 17.9302 4.32593 18.8189C5.20776 19.7076 6.24341 20.4048 7.43286 20.9107C8.62231 21.4302 9.8938 21.69 11.2473 21.69C12.6008 21.69 13.8723 21.4302 15.0618 20.9107C16.2512 20.4048 17.2903 19.7076 18.179 18.8189C19.0676 17.9302 19.7649 16.8912 20.2708 15.7017C20.7903 14.5123 21.05 13.2408 21.05 11.8873C21.05 10.5338 20.7903 9.26227 20.2708 8.07281C19.7649 6.88336 19.0676 5.84772 18.179 4.96588C17.2903 4.08405 16.2512 3.38336 15.0618 2.86383C13.8723 2.35797 12.6008 2.10504 11.2473 2.10504ZM11.2473 20.3775C10.0852 20.3775 8.98462 20.1519 7.94556 19.7007C6.92017 19.2632 6.02466 18.6617 5.25903 17.8961C4.49341 17.1304 3.88501 16.2281 3.43384 15.189C2.99634 14.1636 2.77759 13.063 2.77759 11.8873C2.77759 10.7252 2.99634 9.62457 3.43384 8.58551C3.88501 7.56012 4.49341 6.66461 5.25903 5.89899C6.02466 5.13336 6.92017 4.52496 7.94556 4.07379C8.98462 3.63629 10.0852 3.41754 11.2473 3.41754C12.4231 3.41754 13.5237 3.63629 14.5491 4.07379C15.5881 4.52496 16.4905 5.13336 17.2561 5.89899C18.0217 6.66461 18.6233 7.56012 19.0608 8.58551C19.512 9.62457 19.7375 10.7252 19.7375 11.8873C19.7375 13.063 19.512 14.1636 19.0608 15.189C18.6233 16.2281 18.0217 17.1304 17.2561 17.8961C16.4905 18.6617 15.5881 19.2632 14.5491 19.7007C13.5237 20.1519 12.4231 20.3775 11.2473 20.3775Z" fill="%235EB9B9"/></g><defs><clipPath id="clip0_206_9803"><rect width="21" height="21" fill="white" transform="matrix(1 0 0 -1 0.0500488 21.69)"/></clipPath></defs></svg>');
+}
+
+.crs-popup__content .et_pb_toggle_open .et_pb_toggle_title:before {
+  position: absolute;
+  display: block !important;
+  right: -0.563rem !important;
+  top: 50%;
+  margin-top: -0.5em;
+  content: '' !important;
+  width: 21px;
+  height: 21px;
+  transform: rotate(180deg);
+  background-size: contain;
+
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none"><g clip-path="url(%23clip0_206_9803)"><path d="M15.0002 9.75446L11.2063 13.5484L7.41235 9.75446C7.28931 9.61774 7.1355 9.54938 6.95093 9.54938C6.76636 9.54938 6.61255 9.61774 6.4895 9.75446C6.35278 9.8775 6.28442 10.0279 6.28442 10.2056C6.28442 10.3834 6.35278 10.5406 6.4895 10.6773L10.7346 14.9224C10.803 14.9908 10.8782 15.0421 10.9602 15.0762C11.0422 15.1104 11.1243 15.1275 11.2063 15.1275C11.2883 15.1275 11.3704 15.1104 11.4524 15.0762C11.5344 15.0421 11.6096 14.9908 11.678 14.9224L15.9231 10.6773C16.0598 10.5406 16.1282 10.3834 16.1282 10.2056C16.1282 10.0279 16.0598 9.8775 15.9231 9.75446C15.8 9.61774 15.6462 9.54938 15.4617 9.54938C15.2771 9.54938 15.1233 9.61774 15.0002 9.75446ZM11.2473 2.10504C9.8938 2.10504 8.62231 2.35797 7.43286 2.86383C6.24341 3.38336 5.20776 4.08405 4.32593 4.96588C3.44409 5.84772 2.74341 6.88336 2.22388 8.07281C1.71802 9.26227 1.46509 10.5338 1.46509 11.8873C1.46509 13.2408 1.71802 14.5123 2.22388 15.7017C2.74341 16.8912 3.44409 17.9302 4.32593 18.8189C5.20776 19.7076 6.24341 20.4048 7.43286 20.9107C8.62231 21.4302 9.8938 21.69 11.2473 21.69C12.6008 21.69 13.8723 21.4302 15.0618 20.9107C16.2512 20.4048 17.2903 19.7076 18.179 18.8189C19.0676 17.9302 19.7649 16.8912 20.2708 15.7017C20.7903 14.5123 21.05 13.2408 21.05 11.8873C21.05 10.5338 20.7903 9.26227 20.2708 8.07281C19.7649 6.88336 19.0676 5.84772 18.179 4.96588C17.2903 4.08405 16.2512 3.38336 15.0618 2.86383C13.8723 2.35797 12.6008 2.10504 11.2473 2.10504ZM11.2473 20.3775C10.0852 20.3775 8.98462 20.1519 7.94556 19.7007C6.92017 19.2632 6.02466 18.6617 5.25903 17.8961C4.49341 17.1304 3.88501 16.2281 3.43384 15.189C2.99634 14.1636 2.77759 13.063 2.77759 11.8873C2.77759 10.7252 2.99634 9.62457 3.43384 8.58551C3.88501 7.56012 4.49341 6.66461 5.25903 5.89899C6.02466 5.13336 6.92017 4.52496 7.94556 4.07379C8.98462 3.63629 10.0852 3.41754 11.2473 3.41754C12.4231 3.41754 13.5237 3.63629 14.5491 4.07379C15.5881 4.52496 16.4905 5.13336 17.2561 5.89899C18.0217 6.66461 18.6233 7.56012 19.0608 8.58551C19.512 9.62457 19.7375 10.7252 19.7375 11.8873C19.7375 13.063 19.512 14.1636 19.0608 15.189C18.6233 16.2281 18.0217 17.1304 17.2561 17.8961C16.4905 18.6617 15.5881 19.2632 14.5491 19.7007C13.5237 20.1519 12.4231 20.3775 11.2473 20.3775Z" fill="%235EB9B9"/></g><defs><clipPath id="clip0_206_9803"><rect width="21" height="21" fill="white" transform="matrix(1 0 0 -1 0.0500488 21.69)"/></clipPath></defs></svg>');
+}
+`, S = {
+    contact: u,
+    privacyPolicy: g,
+    shippingPolicy: v,
+    terms: w,
+    refundPolicy: b
   };
-  class S {
+  class T {
     constructor() {
       this.popup = null, this.init(), console.log("Popup constructor");
     }
@@ -1094,9 +1202,9 @@ body:has(.crs-popup[open]) {
         `
       <dialog class="crs-popup">
         <div class="crs-popup__wrap">
-          <button class="crs-popup__close">${v}</button>
+          <button class="crs-popup__close">${x}</button>
 
-          <div class="crs-popup__content">${p}</div>
+          <div class="crs-popup__content">${u}</div>
         </div>
       </dialog>
     `
@@ -1110,7 +1218,14 @@ body:has(.crs-popup[open]) {
     }
     open(e) {
       var t;
-      this.popup && (this.popup.querySelector(".crs-popup__content").innerHTML = "", this.popup.querySelector(".crs-popup__content").insertAdjacentHTML("beforeend", x[e]), (t = this.popup) == null || t.showModal());
+      this.popup && (this.popup.querySelector(".crs-popup__content").innerHTML = "", this.popup.querySelector(".crs-popup__content").insertAdjacentHTML("beforeend", S[e]), (t = this.popup) == null || t.showModal(), e !== "contact" ? d(".crs-popup", "exp__01__exp_checkout__pop_serv__view", "Section", "Service page popup") : (l(".crs-popup__content .et_pb_toggle").then((o) => {
+        document.querySelectorAll(".crs-popup__content .et_pb_toggle h3").forEach((i) => {
+          console.log("toggle", i), i == null || i.addEventListener("click", (a) => {
+            const s = a.currentTarget;
+            p("exp__01__exp_checkout__pop_cont__open", `Open question. ${s.textContent}`, "click", "Contact us popup");
+          });
+        });
+      }), d(".crs-popup", "exp__01__exp_checkout__pop_cont__view", "Section", "Contact us popup")));
     }
     close() {
       var e;
@@ -1118,10 +1233,10 @@ body:has(.crs-popup[open]) {
     }
     initStyles() {
       const e = document.createElement("style");
-      e.innerHTML = w, document.head.appendChild(e);
+      e.innerHTML = C, document.head.appendChild(e);
     }
   }
-  const C = (
+  const I = (
     /* HTML */
     `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="45" fill="none">
   <g clip-path="url(#a)">
@@ -1158,7 +1273,7 @@ body:has(.crs-popup[open]) {
     <clipPath id="a"><path fill="#fff" transform="translate(0 .8)" d="M0 0h44v44H0z" /></clipPath>
   </defs>
 </svg>`
-  ), T = (
+  ), E = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -1179,13 +1294,17 @@ body:has(.crs-popup[open]) {
     </clipPath>
   </defs>
 </svg>`
-  ), I = `header {
+  ), k = `header {
   background: #f2f2f2;
+  padding-bottom: 22px;
 }
 header .et_pb_section {
   background: transparent !important;
 }
 
+header .et_pb_section_1_tb_header.et_pb_section {
+  padding-bottom: 0 !important;
+}
 header div:has(> .et_pb_column_1_tb_header) {
   display: flex;
   gap: 24px;
@@ -1199,6 +1318,9 @@ header div:has(> .et_pb_column_1_tb_header)::after {
   display: none !important;
 }
 
+header .et_pb_section_0_tb_header.et_pb_section {
+  display: none !important;
+}
 .crs-top {
   position: relative;
   width: 100%;
@@ -1228,7 +1350,10 @@ header :is(.et_pb_column_1_tb_header, .et_pb_image_0_tb_header) {
 header .et_pb_column_3_tb_header {
   width: 100% !important;
 }
-
+.et_pb_section_0.et_pb_section {
+  margin-top: 20px !important;
+  padding-top: 0 !important;
+}
 .mandatory-fields {
   padding: 16px 25px !important;
   margin-bottom: 20px;
@@ -1355,15 +1480,15 @@ tr.coupon_item td {
   text-underline-position: from-font;
 }
 `;
-  class E {
+  class P {
     constructor() {
-      this.popup = new S(), this.init();
+      this.popup = new T(), this.init();
     }
     init() {
-      console.log("Checkout Page Changes"), this.initStyles(), this.coupon(), this.details(), this.header(), this.footer(), this.refundBadge();
+      console.log("Checkout Page Changes"), this.initStyles(), this.coupon(), this.details(), this.header(), this.footer(), this.refundBadge(), this.events();
     }
     async coupon() {
-      var c;
+      var i;
       const e = (
         /* HTML */
         `<tr class="coupon_item">
@@ -1401,33 +1526,33 @@ tr.coupon_item td {
         </details>
       </td>
     </tr>`
-      ), t = await s("#order_review");
-      (c = (await s("table.shop_table")).querySelector("tbody")) == null || c.insertAdjacentHTML(
+      ), t = await l("#order_review");
+      (i = (await l("table.shop_table")).querySelector("tbody")) == null || i.insertAdjacentHTML(
         "beforeend",
         /* HTML */
         ` ${e}`
-      ), new MutationObserver((r, a) => {
-        var h;
-        for (const u of r)
-          if (u.type === "childList") {
+      ), new MutationObserver((a, s) => {
+        var c;
+        for (const _ of a)
+          if (_.type === "childList") {
             const N = document.querySelector(".crs-coupon-container");
-            if (console.log(u), !N && ((h = document.querySelector("table.shop_table").querySelector("tbody")) == null || h.insertAdjacentHTML(
+            if (console.log(_), !N && ((c = document.querySelector("table.shop_table").querySelector("tbody")) == null || c.insertAdjacentHTML(
               "beforeend",
               /* HTML */
               ` ${e}`
             ), document.querySelector(".discount-amount"))) {
-              const l = document.querySelector(".crs-coupon-container"), M = l == null ? void 0 : l.querySelector(".coupon-heading span");
-              M.textContent = "Coupon applied";
+              const h = document.querySelector(".crs-coupon-container"), W = h == null ? void 0 : h.querySelector(".coupon-heading span");
+              W.textContent = "Coupon applied";
             }
           }
       }).observe(t, { childList: !0 });
     }
     async details() {
-      const e = await s(".mandatory-fields"), t = await s("#order_review"), o = e.previousElementSibling;
+      const e = await l(".mandatory-fields"), t = await l("#order_review"), o = e.previousElementSibling;
       o && o.tagName === "H3" && (t == null || t.insertAdjacentElement("beforebegin", o)), t == null || t.insertAdjacentElement("beforebegin", e);
     }
     async header() {
-      const t = (await s("header")).querySelector(".et_pb_column_3_tb_header");
+      const t = (await l("header")).querySelector(".et_pb_column_3_tb_header");
       t && (t.innerHTML = /* HTML */
       `<div class="crs-top">
       You're one step closer to<br />
@@ -1439,21 +1564,31 @@ tr.coupon_item td {
         /* HTML */
         `
       <div class="crs-refund">
-        <div class="crs-refund__icon">${C}</div>
+        <div class="crs-refund__icon">${I}</div>
 
         <div class="crs-refund__text">
           No results after completing the program? Get a full refund within 30 days!
-          <span class="crs-refund__tooltip">${T}</span>
+          <span class="crs-refund__tooltip">${E}</span>
         </div>
       </div>
     `
       );
-      (await s(".place-order-actions")).insertAdjacentHTML("afterend", e), document.querySelector(".crs-refund__tooltip").addEventListener("click", () => {
-        this.popup.open("refundPolicy");
-      });
+      (await l(".place-order-actions")).insertAdjacentHTML("afterend", e), document.querySelector(".crs-refund__tooltip").addEventListener("click", () => {
+        p(
+          "exp__01__exp_checkout__refund__click",
+          "30 days refund banner",
+          "click",
+          "No results after completing the program? Get a full refund within 30 days!"
+        ), this.popup.open("refundPolicy");
+      }), d(
+        ".crs-refund",
+        "exp__01__exp_checkout__refund__view",
+        "Section",
+        "No results after completing the program? Get a full refund within 30 days!"
+      );
     }
     async footer() {
-      const e = await s("footer");
+      const e = await l("footer");
       e.innerHTML = /* HTML */
       `
       <div class="crs-footer">
@@ -1471,19 +1606,26 @@ tr.coupon_item td {
           </ul>
         </div>
       </div>
-    `, e.querySelectorAll("li[data-popup]").forEach((o) => {
+    `, d(".crs-footer", "exp__01__exp_checkout__footer__view", "Section", "Footer"), e.querySelectorAll("li[data-popup]").forEach((o) => {
         o.addEventListener("click", () => {
-          const n = o.getAttribute("data-popup");
-          n && this.popup.open(n);
+          const r = o.getAttribute("data-popup"), i = o.textContent;
+          r && (this.popup.open(r), p("exp__01__exp_checkout__footer__click", `Text: ${i}`, "click", "Footer"));
         });
+      });
+    }
+    async events() {
+      (await l(".wc-ppcp-payment-method__container")).addEventListener("click", () => {
+        p("exp__01__exp_checkout__paypal", "PayPal", "click", "Complete your order in under 2 minutes");
+      }), (await l("#wc-stripe-payment-request-wrapper")).addEventListener("click", () => {
+        p("exp__01__exp_checkout__applepay", "Apple Pay", "click", "Complete your order in under 2 minutess");
       });
     }
     initStyles() {
       const e = document.createElement("style");
-      e.innerHTML = I, document.head.appendChild(e);
+      e.innerHTML = k, document.head.appendChild(e);
     }
   }
-  const P = (
+  const O = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -1497,7 +1639,7 @@ tr.coupon_item td {
     fill="#0E1311"
   />
 </svg>`
-  ), d = (
+  ), m = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -1511,7 +1653,7 @@ tr.coupon_item td {
     fill="#0E1311"
   />
 </svg>`
-  ), O = `.crs-reviews {
+  ), A = `.crs-reviews {
   padding-top: 8px;
   margin-bottom: 48px;
   padding-right: 2.08rem !important;
@@ -1557,6 +1699,7 @@ tr.coupon_item td {
 
 .crs-ration__stars {
   margin-top: 8px;
+  white-space: nowrap;
 }
 
 .crs-rating__right {
@@ -1575,7 +1718,8 @@ tr.coupon_item td {
   font-size: 15px;
   font-style: normal;
   font-weight: 600;
-  line-height: 21px; /* 140% */
+  line-height: 21px;
+  white-space: nowrap;
 }
 
 .crs-rating__right div:last-child {
@@ -1715,7 +1859,7 @@ tr.coupon_item td {
   transform: rotate(180deg);
 }
 `;
-  class k {
+  class L {
     constructor({ element: e, position: t = "beforeend" }) {
       this.container = e, this.position = t, this.currentSlide = 0, this.totalSlides = 0, this.init();
     }
@@ -1730,9 +1874,9 @@ tr.coupon_item td {
       try {
         const t = await (await fetch(
           "https://api.reviews.io/timeline/data?type=store_review&store=www.drgolly.com&sort=date_desc&page=1&per_page=10&enable_avatars=false&include_subrating_breakdown=1&branch=&tag=&include_product_reviews=1&sku=&lang=en"
-        )).json(), o = t.stats, n = t.timeline;
-        this.totalSlides = n.length, console.log(o, n);
-        const c = (
+        )).json(), o = t.stats, r = t.timeline;
+        this.totalSlides = r.length, console.log(o, r);
+        const i = (
           /* HTML */
           `
         <div class="crs-reviews">
@@ -1762,20 +1906,20 @@ tr.coupon_item td {
           <div class="crs-reviews__comments crs-comments">
             <div class="crs-comments__wrap">
               <div class="crs-comments__list">
-                ${n.map(({ _source: r }, a) => (
+                ${r.map(({ _source: a }, s) => (
             /* HTML */
             `
-                      <div class="crs-comments__item crs-comment ${a === 0 ? "active" : ""}" data-index="${a}">
+                      <div class="crs-comments__item crs-comment ${s === 0 ? "active" : ""}" data-index="${s}">
                         <div class="crs-comment__header">
-                          <span class="crs-comment__author">${r.author}</span>
+                          <span class="crs-comment__author">${a.author}</span>
                           <span class="crs-comment__rating"
-                            >${this.renderStars(r.rating)}</span
+                            >${this.renderStars(a.rating)}</span
                           >
                         </div>
-                        <div class="crs-comment__verified">${P} Verified Customer</div>
+                        <div class="crs-comment__verified">${O} Verified Customer</div>
 
-                        <div class="crs-comment__text">${r.comments}</div>
-                        <div class="crs-comment__date">${r.human_date}</div>
+                        <div class="crs-comment__text">${a.comments}</div>
+                        <div class="crs-comment__date">${a.human_date}</div>
                       </div>
                     `
           )).join("")}
@@ -1783,8 +1927,8 @@ tr.coupon_item td {
             </div>
 
             <div class="crs-comments__actions">
-              <button class="crs-comments__prev"><span>${d}</span></button>
-              <button class="crs-comments__next"><span>${d}</span></button>
+              <button class="crs-comments__prev"><span>${m}</span></button>
+              <button class="crs-comments__next"><span>${m}</span></button>
             </div>
           </div>
         </div>
@@ -1792,57 +1936,57 @@ tr.coupon_item td {
         );
         if (!this.container)
           return;
-        this.container.insertAdjacentHTML(this.position, c), this.initSlider();
+        this.container.insertAdjacentHTML(this.position, i), this.initSlider(), d(".crs-reviews", "exp__01__exp_checkout__reviews__view", "Section", "Let customer speak for us");
       } catch (e) {
         console.error(e);
       }
     }
     renderStars(e) {
-      const t = (a) => `<svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+      const t = (s) => `<svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M11.0859 2.96692L8.70117 9.62708H2.3418L7.54102 13.5372L5.69336 20.4337L11.0859 16.3087L16.4785 20.4337L14.6094 13.5372L19.8301 9.62708H13.4707L11.0859 2.96692Z"
         fill="#FEEDC7" />
       <path
         d="M11.0859 2.96692L8.70117 9.62708H2.3418L7.54102 13.5372L5.69336 20.4337L11.0859 16.3087L16.4785 20.4337L14.6094 13.5372L19.8301 9.62708H13.4707L11.0859 2.96692Z"
-        fill="url(#paint0_linear_${a})" />
+        fill="url(#paint0_linear_${s})" />
       <defs>
-        <linearGradient id="paint0_linear_${a}" x1="0" y1="0" x2="22" y2="0" gradientUnits="userSpaceOnUse">
-          <stop offset="${a}" stop-color="#FEEDC7" />
-          <stop offset="${a}" stop-color="#C4BAA3" />
+        <linearGradient id="paint0_linear_${s}" x1="0" y1="0" x2="22" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="${s}" stop-color="#FEEDC7" />
+          <stop offset="${s}" stop-color="#C4BAA3" />
         </linearGradient>
       </defs>
-    </svg>`, o = Math.floor(e), n = Math.round((e - o) * 4) / 4, c = 5 - o - (n > 0 ? 1 : 0);
-      let r = "";
-      return n === 0.25 ? r = t(0.4) : n === 0.5 ? r = t(0.5) : n === 0.75 && (r = t(0.6)), t(1).repeat(o) + r + t(0).repeat(c);
+    </svg>`, o = Math.floor(e), r = Math.round((e - o) * 4) / 4, i = 5 - o - (r > 0 ? 1 : 0);
+      let a = "";
+      return r === 0.25 ? a = t(0.4) : r === 0.5 ? a = t(0.5) : r === 0.75 && (a = t(0.6)), t(1).repeat(o) + a + t(0).repeat(i);
     }
     initSlider() {
       const e = document.querySelector(".crs-comments__list"), t = document.querySelector(".crs-comments__prev"), o = document.querySelector(".crs-comments__next");
       if (!e || !t || !o)
         return;
-      const n = () => {
-        e.querySelectorAll(".crs-comments__item").forEach((r, a) => {
-          a === this.currentSlide ? r.classList.add("active") : r.classList.remove("active");
+      const r = () => {
+        e.querySelectorAll(".crs-comments__item").forEach((a, s) => {
+          s === this.currentSlide ? a.classList.add("active") : a.classList.remove("active");
         });
       };
       t.addEventListener("click", () => {
-        this.currentSlide = this.currentSlide > 0 ? this.currentSlide - 1 : this.totalSlides - 1, console.log(this.currentSlide), n();
+        this.currentSlide = this.currentSlide > 0 ? this.currentSlide - 1 : this.totalSlides - 1, r(), p("exp__01__exp_checkout__reviews__nav", "Buttons for next/previous review", "click", "Let customer speak for us");
       }), o.addEventListener("click", () => {
-        this.currentSlide = this.currentSlide < this.totalSlides - 1 ? this.currentSlide + 1 : 0, n();
-      }), n();
+        this.currentSlide = this.currentSlide < this.totalSlides - 1 ? this.currentSlide + 1 : 0, r(), p("exp__01__exp_checkout__reviews__nav", "Buttons for next/previous review", "click", "Let customer speak for us");
+      }), r();
     }
     initStyles() {
       const e = document.createElement("style");
-      e.innerHTML = O, document.head.appendChild(e);
+      e.innerHTML = A, document.head.appendChild(e);
     }
   }
-  m({ name: "Express Checkout", dev: "OS" }), y("exp__01__express_checkout");
-  class A {
+  y({ name: "Express Checkout", dev: "OS" }), f("exp__01__express_checkout");
+  class M {
     constructor() {
       this.device = window.screen.width < 981 ? "mobile" : "desktop", this.init();
     }
     init() {
-      !location.pathname.includes("/checkout") || this.device !== "mobile" || (new E(), new k({ element: document.querySelector("footer"), position: "beforebegin" }));
+      !location.pathname.includes("/checkout") || this.device !== "mobile" || (new P(), new L({ element: document.querySelector("footer"), position: "beforebegin" }));
     }
   }
-  new A();
+  new M();
 })();
