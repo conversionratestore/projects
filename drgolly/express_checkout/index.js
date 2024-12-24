@@ -8,12 +8,12 @@
       event_type: t,
       event_loc: o
     }), console.log(`Event: ${i} | ${e} | ${t} | ${o}`);
-  }, _ = ({ name: i, dev: e }) => {
+  }, m = ({ name: i, dev: e }) => {
     console.log(
       `%c EXP: ${i} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, f = (i) => {
+  }, _ = (i) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", i, "variant_1"));
     }, 1e3);
@@ -62,22 +62,22 @@
       r.observe(s);
     });
   };
-  class y {
+  class f {
     constructor() {
       this.init();
     }
     init() {
-      console.log("Contact Form"), this.events();
+      this.events();
     }
     addInputError(e, t) {
       var n;
       const o = document.createElement("wpcf7-not-valid-tip");
-      o.classList.add("error"), o.textContent = t, console.log(e), (n = e.closest(".wpcf7-form-control-wrap")) == null || n.insertAdjacentElement("beforeend", o);
+      o.classList.add("error"), o.textContent = t, (n = e.closest(".wpcf7-form-control-wrap")) == null || n.insertAdjacentElement("beforeend", o);
     }
     async events() {
       try {
         const e = await l("#crs-contact-form form");
-        console.log("form", e), e.addEventListener("submit", async (t) => {
+        e.addEventListener("submit", async (t) => {
           t.preventDefault();
           const o = new FormData(e), n = await fetch("https://drgolly.com/wp-json/contact-form-7/v1/contact-forms/1671/feedback", {
             method: "POST",
@@ -85,15 +85,15 @@
           }), r = await n.json();
           if (!n.ok)
             throw new Error(r.message || "Something went wrong");
-          if (console.log("data", r), r.status === "validation_failed")
+          if (r.status === "validation_failed")
             for (const a of r.invalid_fields)
-              console.log("name, message", a);
+              ;
         });
       } catch {
       }
     }
   }
-  const g = (
+  const y = (
     /* HTML */
     `<div class="et_pb_section et_pb_section_0 et_section_regular">
   <div class="et_pb_row et_pb_row_0">
@@ -322,7 +322,7 @@ height: 100%; width: 100%; display:none"
     </div>
   </div>
 </div>`
-  ), b = (
+  ), g = (
     /* HTML */
     `<div class="et-l et-l--post">
   <div class="et_builder_inner_content et_pb_gutters3">
@@ -523,7 +523,7 @@ height: 100%; width: 100%; display:none"
     </div>
   </div>
 </div>`
-  ), v = (
+  ), b = (
     /* HTML */
     `<div class="et_builder_inner_content et_pb_gutters3">
   <div class="et_pb_section et_pb_section_0 section__header-standard et_pb_with_background et_section_regular">
@@ -574,7 +574,7 @@ height: 100%; width: 100%; display:none"
     </div>
   </div>
 </div>`
-  ), w = (
+  ), v = (
     /* HTML */
     `<div class="et_builder_inner_content et_pb_gutters3">
   <div class="et_pb_section et_pb_section_0 section__header-standard et_pb_with_background et_section_regular">
@@ -604,7 +604,7 @@ height: 100%; width: 100%; display:none"
     </div>
   </div>
 </div>`
-  ), x = (
+  ), w = (
     /* HTML */
     `<div class="et_builder_inner_content et_pb_gutters3">
   <div class="et_pb_section et_pb_section_0 section__header-standard et_pb_with_background et_section_regular">
@@ -1027,7 +1027,7 @@ height: 100%; width: 100%; display:none"
     </div>
   </div>
 </div>`
-  ), C = (
+  ), x = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -1046,7 +1046,7 @@ height: 100%; width: 100%; display:none"
     </clipPath>
   </defs>
 </svg>`
-  ), S = `dialog.crs-popup {
+  ), C = `dialog.crs-popup {
   position: fixed;
   top: 0;
   left: 0;
@@ -1257,16 +1257,16 @@ body:has(.crs-popup[open]) {
 #crs-contact-form form input[type="submit"]{
   background-color: #8bc3c3 !important;
 }
-`, T = {
-    contact: g,
-    privacyPolicy: b,
-    shippingPolicy: w,
-    terms: x,
-    refundPolicy: v
+`, S = {
+    contact: y,
+    privacyPolicy: g,
+    shippingPolicy: v,
+    terms: w,
+    refundPolicy: b
   };
-  class I {
+  class T {
     constructor() {
-      this.popup = null, this.init(), console.log("Popup constructor");
+      this.popup = null, this.init();
     }
     init() {
       this.initStyles(), this.render(), this.events();
@@ -1277,7 +1277,7 @@ body:has(.crs-popup[open]) {
         `
       <dialog class="crs-popup">
         <div class="crs-popup__wrap">
-          <button class="crs-popup__close">${C}</button>
+          <button class="crs-popup__close">${x}</button>
 
           <div class="crs-popup__content"></div>
         </div>
@@ -1293,13 +1293,13 @@ body:has(.crs-popup[open]) {
     }
     open(e) {
       var t;
-      this.popup && (this.popup.querySelector(".crs-popup__content").innerHTML = "", this.popup.querySelector(".crs-popup__content").insertAdjacentHTML("beforeend", T[e]), (t = this.popup) == null || t.showModal(), e !== "contact" ? d(".crs-popup", "exp__01__exp_checkout__pop_serv__view", "Section", "Service page popup") : (l(".crs-popup__content .et_pb_toggle").then((o) => {
+      this.popup && (this.popup.querySelector(".crs-popup__content").innerHTML = "", this.popup.querySelector(".crs-popup__content").insertAdjacentHTML("beforeend", S[e]), (t = this.popup) == null || t.showModal(), e !== "contact" ? d(".crs-popup", "exp__01__exp_checkout__pop_serv__view", "Section", "Service page popup") : (l(".crs-popup__content .et_pb_toggle").then((o) => {
         document.querySelectorAll(".crs-popup__content .et_pb_toggle h3").forEach((r) => {
-          console.log("toggle", r), r == null || r.addEventListener("click", (a) => {
+          r == null || r.addEventListener("click", (a) => {
             const s = a.currentTarget;
             p("exp__01__exp_checkout__pop_cont__open", `Open question. ${s.textContent}`, "click", "Contact us popup");
           });
-        }), new y();
+        }), new f();
       }), d(".crs-popup", "exp__01__exp_checkout__pop_cont__view", "Section", "Contact us popup")));
     }
     close() {
@@ -1308,10 +1308,10 @@ body:has(.crs-popup[open]) {
     }
     initStyles() {
       const e = document.createElement("style");
-      e.innerHTML = S, document.head.appendChild(e);
+      e.innerHTML = C, document.head.appendChild(e);
     }
   }
-  const k = (
+  const I = (
     /* HTML */
     `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="45" fill="none">
   <g clip-path="url(#a)">
@@ -1348,7 +1348,7 @@ body:has(.crs-popup[open]) {
     <clipPath id="a"><path fill="#fff" transform="translate(0 .8)" d="M0 0h44v44H0z" /></clipPath>
   </defs>
 </svg>`
-  ), E = (
+  ), k = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -1369,7 +1369,7 @@ body:has(.crs-popup[open]) {
     </clipPath>
   </defs>
 </svg>`
-  ), P = `header {
+  ), E = `header {
   background: #f2f2f2;
   padding-bottom: 22px;
 }
@@ -1565,12 +1565,12 @@ tr.coupon_item td {
   text-underline-position: from-font;
 }
 `;
-  class O {
+  class P {
     constructor() {
-      this.popup = new I(), this.init();
+      this.popup = new T(), this.init();
     }
     init() {
-      console.log("Checkout Page Changes"), this.initStyles(), this.coupon(), this.details(), this.header(), this.footer(), this.refundBadge(), this.events();
+      this.initStyles(), this.coupon(), this.details(), this.header(), this.footer(), this.refundBadge(), this.events();
     }
     async coupon() {
       var r;
@@ -1618,17 +1618,14 @@ tr.coupon_item td {
         ` ${e}`
       ), new MutationObserver((a, s) => {
         var c;
-        for (const m of a)
-          if (m.type === "childList") {
-            const W = document.querySelector(".crs-coupon-container");
-            if (console.log(m), !W && ((c = document.querySelector("table.shop_table").querySelector("tbody")) == null || c.insertAdjacentHTML(
-              "beforeend",
-              /* HTML */
-              ` ${e}`
-            ), document.querySelector(".discount-amount"))) {
-              const h = document.querySelector(".crs-coupon-container"), R = h == null ? void 0 : h.querySelector(".coupon-heading span");
-              R.textContent = "Coupon applied";
-            }
+        for (const M of a)
+          if (M.type === "childList" && !document.querySelector(".crs-coupon-container") && ((c = document.querySelector("table.shop_table").querySelector("tbody")) == null || c.insertAdjacentHTML(
+            "beforeend",
+            /* HTML */
+            ` ${e}`
+          ), document.querySelector(".discount-amount"))) {
+            const h = document.querySelector(".crs-coupon-container"), W = h == null ? void 0 : h.querySelector(".coupon-heading span");
+            W.textContent = "Coupon applied";
           }
       }).observe(t, { childList: !0 });
     }
@@ -1649,11 +1646,11 @@ tr.coupon_item td {
         /* HTML */
         `
       <div class="crs-refund">
-        <div class="crs-refund__icon">${k}</div>
+        <div class="crs-refund__icon">${I}</div>
 
         <div class="crs-refund__text">
           No results after completing the program? Get a full refund within 30 days!
-          <span class="crs-refund__tooltip">${E}</span>
+          <span class="crs-refund__tooltip">${k}</span>
         </div>
       </div>
     `
@@ -1707,10 +1704,10 @@ tr.coupon_item td {
     }
     initStyles() {
       const e = document.createElement("style");
-      e.innerHTML = P, document.head.appendChild(e);
+      e.innerHTML = E, document.head.appendChild(e);
     }
   }
-  const L = (
+  const O = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -1738,7 +1735,7 @@ tr.coupon_item td {
     fill="#0E1311"
   />
 </svg>`
-  ), A = `.crs-reviews {
+  ), L = `.crs-reviews {
   padding-top: 8px;
   margin-bottom: 48px;
   padding-right: 2.08rem !important;
@@ -1848,14 +1845,15 @@ tr.coupon_item td {
 
 .crs-comments__item {
   min-width: 100%;
-  display: none;
 }
 
-.crs-comments__item.active {
+/* .crs-comments__item.active {
   display: block;
-}
+} */
 
 .crs-comment {
+  display: flex;
+  flex-direction: column;
   border-radius: 5px;
   padding: 26px 25px;
   background: #f8f8f8;
@@ -1895,6 +1893,7 @@ tr.coupon_item td {
 }
 
 .crs-comment__text {
+  margin-bottom: 40px;
   margin-top: 7px;
   color: #0e1311;
   font-family: Montserrat;
@@ -1905,7 +1904,7 @@ tr.coupon_item td {
 }
 
 .crs-comment__date {
-  margin-top: 40px;
+  margin-top: auto;
   display: flex;
   justify-content: flex-end;
   color: #0e1311;
@@ -1948,7 +1947,7 @@ tr.coupon_item td {
   transform: rotate(180deg);
 }
 `;
-  class N {
+  class A {
     constructor({ element: e, position: t = "beforeend" }) {
       this.container = e, this.position = t, this.currentSlide = 0, this.totalSlides = 0, this.init();
     }
@@ -1964,7 +1963,7 @@ tr.coupon_item td {
         const t = await (await fetch(
           "https://api.reviews.io/timeline/data?type=store_review&store=www.drgolly.com&sort=date_desc&page=1&per_page=10&enable_avatars=false&include_subrating_breakdown=1&branch=&tag=&include_product_reviews=1&sku=&lang=en"
         )).json(), o = t.stats, n = t.timeline;
-        this.totalSlides = n.length, console.log(o, n);
+        this.totalSlides = n.length;
         const r = (
           /* HTML */
           `
@@ -2005,7 +2004,7 @@ tr.coupon_item td {
                             >${this.renderStars(a.rating)}</span
                           >
                         </div>
-                        <div class="crs-comment__verified">${L} Verified Customer</div>
+                        <div class="crs-comment__verified">${O} Verified Customer</div>
 
                         <div class="crs-comment__text">${a.comments}</div>
                         <div class="crs-comment__date">${a.human_date}</div>
@@ -2053,7 +2052,8 @@ tr.coupon_item td {
       if (!e || !t || !o)
         return;
       const n = () => {
-        e.querySelectorAll(".crs-comments__item").forEach((a, s) => {
+        const r = e.querySelectorAll(".crs-comments__item");
+        e.style.transform = `translateX(-${this.currentSlide * 100}%)`, r.forEach((a, s) => {
           s === this.currentSlide ? a.classList.add("active") : a.classList.remove("active");
         });
       };
@@ -2065,17 +2065,17 @@ tr.coupon_item td {
     }
     initStyles() {
       const e = document.createElement("style");
-      e.innerHTML = A, document.head.appendChild(e);
+      e.innerHTML = L, document.head.appendChild(e);
     }
   }
-  _({ name: "Express Checkout", dev: "OS" }), f("exp__01__express_checkout");
-  class M {
+  m({ name: "Express Checkout", dev: "OS" }), _("exp__01__express_checkout");
+  class N {
     constructor() {
       this.device = window.screen.width < 981 ? "mobile" : "desktop", this.init();
     }
     init() {
-      !location.pathname.includes("/checkout") || this.device !== "mobile" || (new O(), new N({ element: document.querySelector("footer"), position: "beforebegin" }));
+      !location.pathname.includes("/checkout") || this.device !== "mobile" || (new P(), new A({ element: document.querySelector("footer"), position: "beforebegin" }));
     }
   }
-  new M();
+  new N();
 })();
