@@ -87,7 +87,7 @@
             throw new Error(r.message || "Something went wrong");
           if (r.status === "validation_failed")
             for (const a of r.invalid_fields)
-              ;
+              console.log(a);
         });
       } catch {
       }
@@ -1252,10 +1252,19 @@ body:has(.crs-popup[open]) {
   font-weight: 600;
   width: 100%;
   color: var(--base-color);
+  padding: 0.667rem 1rem;
 }
 
-#crs-contact-form form input[type="submit"]{
-  background-color: #8bc3c3 !important;
+#crs-contact-form form input[type='submit'] {
+  background-color: rgb(94, 185, 185);
+  color: #fff;
+  border-color: #5eb9b9;
+  font-size: 1.5rem;
+  width: 26.667rem;
+  text-align: center;
+  max-width: 18rem;
+  padding: 1rem 0.9375rem;
+  margin-inline: auto;
 }
 `, S = {
     contact: y,
@@ -1804,7 +1813,7 @@ tr.coupon_item td {
   white-space: nowrap;
 }
 
-.crs-rating__right div:last-child {
+.crs-rating__reviewio {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -1815,6 +1824,11 @@ tr.coupon_item td {
   font-style: normal;
   font-weight: 600;
   line-height: 22.4px; /* 172.308% */
+}
+
+.crs-rating__reviewio a {
+  display: inline-flex;
+  align-items: flex-end;
 }
 
 .crs-reviews__photo {
@@ -1976,14 +1990,14 @@ tr.coupon_item td {
             </div>
             <div class="crs-rating__right">
               <div>Based on ${o.review_count} reviews</div>
-              <div>
+              <div class="crs-rating__reviewio">
                 <span>Excellent on</span
-                ><img
+                > <a href="https://www.reviews.io/company-reviews/store/www.drgolly.com" target="__self"><img
                   src="https://assets.reviews.io/img/all-global-assets/logo/reviewsio-logo.svg"
                   alt="reviewsio logo"
                   width="78"
                   height="12"
-                />
+                /></a>
               </div>
             </div>
           </div>
