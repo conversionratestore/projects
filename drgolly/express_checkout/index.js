@@ -1590,6 +1590,7 @@ tr.coupon_item td {
 .crs-footer {
   display: flex;
   justify-content: space-between;
+  gap: 25px;
   padding: 25px;
   border-top: 1px solid rgba(139, 195, 195, 0.2);
 }
@@ -1598,6 +1599,7 @@ tr.coupon_item td {
   display: grid;
   gap: 12px;
   list-style: none;
+  padding: 0;
 }
 
 .crs-footer ul li {
