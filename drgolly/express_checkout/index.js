@@ -1439,6 +1439,7 @@ header .et_pb_section_0_tb_header.et_pb_section {
 
 .form-row.place-order {
   margin-top: 0 !important;
+  margin-bottom: 20px !important;
 }
 .wc_coupon_message_wrap:has(.no_wc_coupon_message:empty) {
   display: none !important;
@@ -1452,6 +1453,10 @@ header .et_pb_section_0_tb_header.et_pb_section {
 
 .woocommerce-billing-fields {
   margin-bottom: 10px;
+}
+
+.woocommerce-terms-and-conditions-wrapper {
+  margin-bottom: 25px !important;
 }
 header :is(.et_pb_column_1_tb_header, .et_pb_image_0_tb_header) {
   width: 71px !important;
@@ -1536,6 +1541,7 @@ header .et_pb_column_3_tb_header {
   font-weight: 400;
   line-height: 18.9px;
 }
+
 tr.coupon_item td {
   padding: 0 !important;
 }
@@ -2048,7 +2054,7 @@ tr.coupon_item td {
   padding: 26px 25px;
   background: #f8f8f8;
   box-shadow: 0px 1.25px 5px -4px rgba(0, 0, 0, 0.05);
- height: 236px;
+  height: 236px;
 }
 
 .crs-comment__header {
