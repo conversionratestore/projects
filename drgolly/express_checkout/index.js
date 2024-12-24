@@ -1,13 +1,13 @@
 (function() {
   "use strict";
-  const u = (s, e, t, o = "") => {
+  const h = (s, e, t, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: s,
       event_desc: e,
       event_type: t,
-      event_loc: o
-    }), console.log(`Event: ${s} | ${e} | ${t} | ${o}`);
+      event_loc: n
+    }), console.log(`Event: ${s} | ${e} | ${t} | ${n}`);
   }, x = ({ name: s, dev: e }) => {
     console.log(
       `%c EXP: ${s} (DEV: ${e})`,
@@ -32,20 +32,20 @@
       });
     });
   }
-  const y = (s, e, t, o) => {
-    let i = [];
+  const g = (s, e, t, n) => {
+    let r = [];
     if (typeof s == "string")
-      i = document.querySelectorAll(s);
+      r = document.querySelectorAll(s);
     else if (s instanceof Element)
-      i = [s];
+      r = [s];
     else {
       console.error("Invalid target type:", s);
       return;
     }
-    let n = new IntersectionObserver(
-      (r) => {
-        r.forEach((c) => {
-          c.isIntersecting && (n.unobserve(c.target), setTimeout(function() {
+    let o = new IntersectionObserver(
+      (i) => {
+        i.forEach((c) => {
+          c.isIntersecting && (o.unobserve(c.target), setTimeout(function() {
             a.observe(c.target);
           }, 1e3));
         });
@@ -53,13 +53,13 @@
       {
         threshold: 0.2
       }
-    ), a = new IntersectionObserver((r) => {
-      r.forEach((c) => {
-        c.isIntersecting ? (u(e || `view_element_${c.target.id}`, t || "Element visibility", "view", o || c.target.id), n.unobserve(c.target)) : n.observe(c.target), a.unobserve(c.target);
+    ), a = new IntersectionObserver((i) => {
+      i.forEach((c) => {
+        c.isIntersecting ? (h(e || `view_element_${c.target.id}`, t || "Element visibility", "view", n || c.target.id), o.unobserve(c.target)) : o.observe(c.target), a.unobserve(c.target);
       });
     });
-    i.forEach((r) => {
-      n.observe(r);
+    r.forEach((i) => {
+      o.observe(i);
     });
   };
   class S {
@@ -70,23 +70,23 @@
       this.events();
     }
     addInputError(e, t) {
-      var i;
-      const o = document.createElement("wpcf7-not-valid-tip");
-      o.classList.add("error"), o.textContent = t, (i = e.closest(".wpcf7-form-control-wrap")) == null || i.insertAdjacentElement("beforeend", o);
+      var r;
+      const n = document.createElement("wpcf7-not-valid-tip");
+      n.classList.add("error"), n.textContent = t, (r = e.closest(".wpcf7-form-control-wrap")) == null || r.insertAdjacentElement("beforeend", n);
     }
     async events() {
       try {
         const e = await p("#crs-contact-form form");
         e.addEventListener("submit", async (t) => {
           t.preventDefault();
-          const o = new FormData(e), i = await fetch("https://drgolly.com/wp-json/contact-form-7/v1/contact-forms/1671/feedback", {
+          const n = new FormData(e), r = await fetch("https://drgolly.com/wp-json/contact-form-7/v1/contact-forms/1671/feedback", {
             method: "POST",
-            body: o
-          }), n = await i.json();
-          if (!i.ok)
-            throw new Error(n.message || "Something went wrong");
-          if (n.status === "validation_failed")
-            for (const a of n.invalid_fields)
+            body: n
+          }), o = await r.json();
+          if (!r.ok)
+            throw new Error(o.message || "Something went wrong");
+          if (o.status === "validation_failed")
+            for (const a of o.invalid_fields)
               console.log(a);
         });
       } catch {
@@ -1302,14 +1302,14 @@ body:has(.crs-popup[open]) {
     }
     open(e) {
       var t;
-      this.popup && (this.popup.querySelector(".crs-popup__content").innerHTML = "", this.popup.querySelector(".crs-popup__content").insertAdjacentHTML("beforeend", O[e]), (t = this.popup) == null || t.showModal(), e !== "contact" ? y(".crs-popup", "exp__01__exp_checkout__pop_serv__view", "Section", "Service page popup") : (p(".crs-popup__content .et_pb_toggle").then((o) => {
-        document.querySelectorAll(".crs-popup__content .et_pb_toggle h3").forEach((n) => {
-          n == null || n.addEventListener("click", (a) => {
-            const r = a.currentTarget;
-            u("exp__01__exp_checkout__pop_cont__open", `Open question. ${r.textContent}`, "click", "Contact us popup");
+      this.popup && (this.popup.querySelector(".crs-popup__content").innerHTML = "", this.popup.querySelector(".crs-popup__content").insertAdjacentHTML("beforeend", O[e]), (t = this.popup) == null || t.showModal(), e !== "contact" ? g(".crs-popup", "exp__01__exp_checkout__pop_serv__view", "Section", "Service page popup") : (p(".crs-popup__content .et_pb_toggle").then((n) => {
+        document.querySelectorAll(".crs-popup__content .et_pb_toggle h3").forEach((o) => {
+          o == null || o.addEventListener("click", (a) => {
+            const i = a.currentTarget;
+            h("exp__01__exp_checkout__pop_cont__open", `Open question. ${i.textContent}`, "click", "Contact us popup");
           });
         }), new S();
-      }), y(".crs-popup", "exp__01__exp_checkout__pop_cont__view", "Section", "Contact us popup")));
+      }), g(".crs-popup", "exp__01__exp_checkout__pop_cont__view", "Section", "Contact us popup")));
     }
     close() {
       var e;
@@ -1624,7 +1624,7 @@ tr.coupon_item td {
       this.initStyles(), this.coupon(), this.details(), this.header(), this.footer(), this.refundBadge(), this.events();
     }
     async coupon() {
-      var n;
+      var o;
       const e = (
         /* HTML */
         `<tr class="coupon_item">
@@ -1663,14 +1663,14 @@ tr.coupon_item td {
       </td>
     </tr>`
       ), t = await p("#order_review");
-      (n = (await p("table.shop_table")).querySelector("tbody")) == null || n.insertAdjacentHTML(
+      (o = (await p("table.shop_table")).querySelector("tbody")) == null || o.insertAdjacentHTML(
         "beforeend",
         /* HTML */
         ` ${e}`
-      ), new MutationObserver((a, r) => {
+      ), new MutationObserver((a, i) => {
         var c;
-        for (const _ of a)
-          if (console.log(_), _.type === "childList") {
+        for (const f of a)
+          if (console.log(f), f.type === "childList") {
             if (!document.querySelector(".crs-coupon-container")) {
               const l = document.querySelector("table.shop_table");
               if ((c = l == null ? void 0 : l.querySelector("tbody")) == null || c.insertAdjacentHTML(
@@ -1678,21 +1678,21 @@ tr.coupon_item td {
                 /* HTML */
                 ` ${e}`
               ), document.querySelector(".discount-amount")) {
-                const f = document.querySelector(".crs-coupon-container"), g = f == null ? void 0 : f.querySelector(".coupon-heading span");
-                g.textContent = "Coupon applied";
+                const u = document.querySelector(".crs-coupon-container"), y = u == null ? void 0 : u.querySelector(".coupon-heading span");
+                y.textContent = "Coupon applied";
               }
             }
-            const h = document.querySelectorAll(".cart_item");
-            if (h && h.length === 0) {
-              const l = document.querySelector(".crs-refund"), m = document.querySelector(".crs-reviews");
-              l == null || l.remove(), m == null || m.remove(), r.disconnect();
+            const m = document.querySelectorAll(".cart_item");
+            if (m && m.length === 0) {
+              const l = document.querySelector(".crs-refund"), _ = document.querySelector(".crs-reviews"), u = document.querySelector(".crs-footer"), y = document.querySelector("footer");
+              y.querySelector("div").style.display = "", u == null || u.remove(), l == null || l.remove(), _ == null || _.remove(), i.disconnect();
             }
           }
       }).observe(t, { childList: !0, subtree: !0 });
     }
     async details() {
-      const e = await p(".mandatory-fields"), t = await p("#order_review"), o = e.previousElementSibling;
-      o && o.tagName === "H3" && (t == null || t.insertAdjacentElement("beforebegin", o)), t == null || t.insertAdjacentElement("beforebegin", e);
+      const e = await p(".mandatory-fields"), t = await p("#order_review"), n = e.previousElementSibling;
+      n && n.tagName === "H3" && (t == null || t.insertAdjacentElement("beforebegin", n)), t == null || t.insertAdjacentElement("beforebegin", e);
     }
     async header() {
       const t = (await p("header")).querySelector(".et_pb_column_3_tb_header");
@@ -1717,13 +1717,13 @@ tr.coupon_item td {
     `
       );
       (await p("form.checkout ")).insertAdjacentHTML("afterend", e), document.querySelector(".crs-refund__tooltip").addEventListener("click", () => {
-        u(
+        h(
           "exp__01__exp_checkout__refund__click",
           "30 days refund banner",
           "click",
           "No results after completing the program? Get a full refund within 30 days!"
         ), this.popup.open("refundPolicy");
-      }), y(
+      }), g(
         ".crs-refund",
         "exp__01__exp_checkout__refund__view",
         "Section",
@@ -1732,35 +1732,38 @@ tr.coupon_item td {
     }
     async footer() {
       const e = await p("footer");
-      e.innerHTML = /* HTML */
-      `
-      <div class="crs-footer">
-        <div class="crs-footer__left">
-          <ul>
-            <li data-popup="contact">Contact & Support</li>
-            <li data-popup="shippingPolicy">Shipping Policy</li>
-            <li data-popup="terms">Terms of Service</li>
-          </ul>
-        </div>
-        <div class="crs-footer__right">
-          <ul>
-            <li data-popup="privacyPolicy">Privacy Policy</li>
-            <li data-popup="refundPolicy">Refund Policy</li>
-          </ul>
-        </div>
+      e.insertAdjacentHTML(
+        "beforeend",
+        /* HTML */
+        `
+    <div class="crs-footer">
+      <div class="crs-footer__left">
+        <ul>
+          <li data-popup="contact">Contact & Support</li>
+          <li data-popup="shippingPolicy">Shipping Policy</li>
+          <li data-popup="terms">Terms of Service</li>
+        </ul>
       </div>
-    `, y(".crs-footer", "exp__01__exp_checkout__footer__view", "Section", "Footer"), e.querySelectorAll("li[data-popup]").forEach((o) => {
-        o.addEventListener("click", () => {
-          const i = o.getAttribute("data-popup"), n = o.textContent;
-          i && (this.popup.open(i), u("exp__01__exp_checkout__footer__click", `Text: ${n}`, "click", "Footer"));
+      <div class="crs-footer__right">
+        <ul>
+          <li data-popup="privacyPolicy">Privacy Policy</li>
+          <li data-popup="refundPolicy">Refund Policy</li>
+        </ul>
+      </div>
+    </div>
+  `
+      ), e.querySelector("div").style.display = "none", g(".crs-footer", "exp__01__exp_checkout__footer__view", "Section", "Footer"), e.querySelectorAll("li[data-popup]").forEach((r) => {
+        r.addEventListener("click", () => {
+          const o = r.getAttribute("data-popup"), a = r.textContent;
+          o && (this.popup.open(o), h("exp__01__exp_checkout__footer__click", `Text: ${a}`, "click", "Footer"));
         });
       });
     }
     async events() {
       (await p(".wc-ppcp-payment-method__container")).addEventListener("click", () => {
-        u("exp__01__exp_checkout__paypal", "PayPal", "click", "Complete your order in under 2 minutes");
+        h("exp__01__exp_checkout__paypal", "PayPal", "click", "Complete your order in under 2 minutes");
       }), (await p("#wc-stripe-payment-request-wrapper")).addEventListener("click", () => {
-        u("exp__01__exp_checkout__applepay", "Apple Pay", "click", "Complete your order in under 2 minutess");
+        h("exp__01__exp_checkout__applepay", "Apple Pay", "click", "Complete your order in under 2 minutess");
       });
     }
     initStyles() {
@@ -1906,41 +1909,41 @@ tr.coupon_item td {
       const e = document.querySelector(".crs-review-popup__close");
       e == null || e.addEventListener("click", () => this.close());
       const t = document.querySelector(".crs-review-popup");
-      t == null || t.addEventListener("click", (o) => {
-        o.target === t && this.close();
+      t == null || t.addEventListener("click", (n) => {
+        n.target === t && this.close();
       });
     }
-    open({ author: e, rating: t, text: o, date: i }) {
-      const n = document.querySelector(".crs-review-popup");
-      n.querySelector(".crs-review-popup__author").innerHTML = "", n.querySelector(".crs-review-popup__rating").innerHTML = "", n.querySelector(".crs-review-popup__text").innerHTML = "", n.querySelector(".crs-review-popup__date").innerHTML = "", n.querySelector(".crs-review-popup__author").innerText = e, n.querySelector(".crs-review-popup__rating").innerHTML = this.renderStars(t), n.querySelector(".crs-review-popup__text").innerText = o, n.querySelector(".crs-review-popup__date").innerText = i, n.showModal();
+    open({ author: e, rating: t, text: n, date: r }) {
+      const o = document.querySelector(".crs-review-popup");
+      o.querySelector(".crs-review-popup__author").innerHTML = "", o.querySelector(".crs-review-popup__rating").innerHTML = "", o.querySelector(".crs-review-popup__text").innerHTML = "", o.querySelector(".crs-review-popup__date").innerHTML = "", o.querySelector(".crs-review-popup__author").innerText = e, o.querySelector(".crs-review-popup__rating").innerHTML = this.renderStars(t), o.querySelector(".crs-review-popup__text").innerText = n, o.querySelector(".crs-review-popup__date").innerText = r, o.showModal();
     }
     close() {
       document.querySelector(".crs-review-popup").close();
     }
     renderStars(e) {
-      const t = (r) => `<svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+      const t = (i) => `<svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M11.0859 2.96692L8.70117 9.62708H2.3418L7.54102 13.5372L5.69336 20.4337L11.0859 16.3087L16.4785 20.4337L14.6094 13.5372L19.8301 9.62708H13.4707L11.0859 2.96692Z"
         fill="#FEEDC7" />
       <path
         d="M11.0859 2.96692L8.70117 9.62708H2.3418L7.54102 13.5372L5.69336 20.4337L11.0859 16.3087L16.4785 20.4337L14.6094 13.5372L19.8301 9.62708H13.4707L11.0859 2.96692Z"
-        fill="url(#paint0_linear_${r})" />
+        fill="url(#paint0_linear_${i})" />
       <defs>
-        <linearGradient id="paint0_linear_${r}" x1="0" y1="0" x2="22" y2="0" gradientUnits="userSpaceOnUse">
-          <stop offset="${r}" stop-color="#FEEDC7" />
-          <stop offset="${r}" stop-color="#C4BAA3" />
+        <linearGradient id="paint0_linear_${i}" x1="0" y1="0" x2="22" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="${i}" stop-color="#FEEDC7" />
+          <stop offset="${i}" stop-color="#C4BAA3" />
         </linearGradient>
       </defs>
-    </svg>`, o = Math.floor(e), i = Math.round((e - o) * 4) / 4, n = 5 - o - (i > 0 ? 1 : 0);
+    </svg>`, n = Math.floor(e), r = Math.round((e - n) * 4) / 4, o = 5 - n - (r > 0 ? 1 : 0);
       let a = "";
-      return i === 0.25 ? a = t(0.4) : i === 0.5 ? a = t(0.5) : i === 0.75 && (a = t(0.6)), t(1).repeat(o) + a + t(0).repeat(n);
+      return r === 0.25 ? a = t(0.4) : r === 0.5 ? a = t(0.5) : r === 0.75 && (a = t(0.6)), t(1).repeat(n) + a + t(0).repeat(o);
     }
     initStyles() {
       const e = document.createElement("style");
       e.textContent = R, document.head.insertAdjacentElement("beforeend", e);
     }
   }
-  const H = `.crs-reviews {
+  const j = `.crs-reviews {
   padding-top: 8px;
   margin-bottom: 48px;
   padding-right: 2.08rem !important;
@@ -2163,7 +2166,7 @@ tr.coupon_item td {
   transform: rotate(180deg);
 }
 `;
-  class j {
+  class H {
     constructor({ element: e, position: t = "beforeend" }) {
       this.container = e, this.position = t, this.currentSlide = 0, this.totalSlides = 0, this.reviewPopup = new W(), this.init();
     }
@@ -2178,20 +2181,20 @@ tr.coupon_item td {
       try {
         const t = await (await fetch(
           "https://api.reviews.io/timeline/data?type=store_review&store=www.drgolly.com&sort=date_desc&page=1&per_page=50&enable_avatars=false&include_subrating_breakdown=1&branch=&tag=&include_product_reviews=1&sku=&lang=en"
-        )).json(), o = t.stats, i = t.timeline.filter(({ _source: r }) => r.reviewer_desc === "Verified Buyer");
-        this.totalSlides = i.length;
-        const n = (
+        )).json(), n = t.stats, r = t.timeline.filter(({ _source: i }) => i.reviewer_desc === "Verified Buyer");
+        this.totalSlides = r.length;
+        const o = (
           /* HTML */
           `
         <div class="crs-reviews">
           <h3>Let customers speak for us</h3>
           <div class="crs-reviews__rating crs-rating">
             <div class="crs-rating__left">
-              <div class="crs-rating__count">${o.average_rating}</div>
-              <div class="crs-ration__stars">${this.renderStars(o.average_rating)}</div>
+              <div class="crs-rating__count">${n.average_rating}</div>
+              <div class="crs-ration__stars">${this.renderStars(n.average_rating)}</div>
             </div>
             <div class="crs-rating__right">
-              <div>Based on ${o.review_count} reviews</div>
+              <div>Based on ${n.review_count} reviews</div>
               <div class="crs-rating__reviewio">
                 <span>Excellent on</span
                 > <a href="https://www.reviews.io/company-reviews/store/www.drgolly.com" target="__self"><img
@@ -2210,20 +2213,20 @@ tr.coupon_item td {
           <div class="crs-reviews__comments crs-comments">
             <div class="crs-comments__wrap">
               <div class="crs-comments__list">
-                ${i.map(({ _source: r }, c) => (
+                ${r.map(({ _source: i }, c) => (
             /* HTML */
             `
                       <div class="crs-comments__item crs-comment ${c === 0 ? "active" : ""}" data-index="${c}">
                         <div class="crs-comment__header">
-                          <span class="crs-comment__author">${r.author}</span>
-                          <span class="crs-comment__rating" data-rating="${r.rating}"
-                            >${this.renderStars(r.rating)}</span
+                          <span class="crs-comment__author">${i.author}</span>
+                          <span class="crs-comment__rating" data-rating="${i.rating}"
+                            >${this.renderStars(i.rating)}</span
                           >
                         </div>
                         <div class="crs-comment__verified">${b} Verified Customer</div>
 
-                        <div class="crs-comment__text">${r.comments}</div>
-                        <div class="crs-comment__date">${r.human_date}</div>
+                        <div class="crs-comment__text">${i.comments}</div>
+                        <div class="crs-comment__date">${i.human_date}</div>
                       </div>
                     `
           )).join("")}
@@ -2240,12 +2243,12 @@ tr.coupon_item td {
         );
         if (!this.container)
           return;
-        this.container.insertAdjacentHTML(this.position, n), this.initSlider(), y(".crs-reviews", "exp__01__exp_checkout__reviews__view", "Section", "Let customer speak for us"), document.querySelectorAll(".crs-comment").forEach((r) => {
-          r.addEventListener("click", () => {
-            var l, m, f, g;
-            console.log("click", r);
-            const c = (l = r.querySelector(".crs-comment__author")) == null ? void 0 : l.textContent, _ = (m = r.querySelector(".crs-comment__rating")) == null ? void 0 : m.getAttribute("data-rating"), d = (f = r.querySelector(".crs-comment__text")) == null ? void 0 : f.textContent, h = (g = r.querySelector(".crs-comment__date")) == null ? void 0 : g.textContent;
-            this.reviewPopup.open({ author: c, rating: _, text: d, date: h });
+        this.container.insertAdjacentHTML(this.position, o), this.initSlider(), g(".crs-reviews", "exp__01__exp_checkout__reviews__view", "Section", "Let customer speak for us"), document.querySelectorAll(".crs-comment").forEach((i) => {
+          i.addEventListener("click", () => {
+            var l, _, u, y;
+            console.log("click", i);
+            const c = (l = i.querySelector(".crs-comment__author")) == null ? void 0 : l.textContent, f = (_ = i.querySelector(".crs-comment__rating")) == null ? void 0 : _.getAttribute("data-rating"), d = (u = i.querySelector(".crs-comment__text")) == null ? void 0 : u.textContent, m = (y = i.querySelector(".crs-comment__date")) == null ? void 0 : y.textContent;
+            this.reviewPopup.open({ author: c, rating: f, text: d, date: m });
           });
         });
       } catch (e) {
@@ -2253,52 +2256,52 @@ tr.coupon_item td {
       }
     }
     renderStars(e) {
-      const t = (r) => `<svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+      const t = (i) => `<svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M11.0859 2.96692L8.70117 9.62708H2.3418L7.54102 13.5372L5.69336 20.4337L11.0859 16.3087L16.4785 20.4337L14.6094 13.5372L19.8301 9.62708H13.4707L11.0859 2.96692Z"
         fill="#FEEDC7" />
       <path
         d="M11.0859 2.96692L8.70117 9.62708H2.3418L7.54102 13.5372L5.69336 20.4337L11.0859 16.3087L16.4785 20.4337L14.6094 13.5372L19.8301 9.62708H13.4707L11.0859 2.96692Z"
-        fill="url(#paint0_linear_${r})" />
+        fill="url(#paint0_linear_${i})" />
       <defs>
-        <linearGradient id="paint0_linear_${r}" x1="0" y1="0" x2="22" y2="0" gradientUnits="userSpaceOnUse">
-          <stop offset="${r}" stop-color="#FEEDC7" />
-          <stop offset="${r}" stop-color="#C4BAA3" />
+        <linearGradient id="paint0_linear_${i}" x1="0" y1="0" x2="22" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="${i}" stop-color="#FEEDC7" />
+          <stop offset="${i}" stop-color="#C4BAA3" />
         </linearGradient>
       </defs>
-    </svg>`, o = Math.floor(e), i = Math.round((e - o) * 4) / 4, n = 5 - o - (i > 0 ? 1 : 0);
+    </svg>`, n = Math.floor(e), r = Math.round((e - n) * 4) / 4, o = 5 - n - (r > 0 ? 1 : 0);
       let a = "";
-      return i === 0.25 ? a = t(0.4) : i === 0.5 ? a = t(0.5) : i === 0.75 && (a = t(0.6)), t(1).repeat(o) + a + t(0).repeat(n);
+      return r === 0.25 ? a = t(0.4) : r === 0.5 ? a = t(0.5) : r === 0.75 && (a = t(0.6)), t(1).repeat(n) + a + t(0).repeat(o);
     }
     initSlider() {
-      const e = document.querySelector(".crs-comments__list"), t = document.querySelector(".crs-comments__prev"), o = document.querySelector(".crs-comments__next");
-      if (!e || !t || !o)
+      const e = document.querySelector(".crs-comments__list"), t = document.querySelector(".crs-comments__prev"), n = document.querySelector(".crs-comments__next");
+      if (!e || !t || !n)
         return;
-      let i = null, n = null;
+      let r = null, o = null;
       const a = () => {
         const d = e.querySelectorAll(".crs-comments__item");
-        e.style.transform = `translateX(-${this.currentSlide * 100}%)`, d.forEach((h, l) => {
-          l === this.currentSlide ? h.classList.add("active") : h.classList.remove("active");
+        e.style.transform = `translateX(-${this.currentSlide * 100}%)`, d.forEach((m, l) => {
+          l === this.currentSlide ? m.classList.add("active") : m.classList.remove("active");
         });
-      }, r = (d) => {
-        i = d.touches[0].clientX;
+      }, i = (d) => {
+        r = d.touches[0].clientX;
       }, c = (d) => {
-        i && (n = d.touches[0].clientX);
-      }, _ = () => {
-        if (!i || !n)
+        r && (o = d.touches[0].clientX);
+      }, f = () => {
+        if (!r || !o)
           return;
-        const d = i - n;
-        d > 50 ? this.currentSlide = this.currentSlide < this.totalSlides - 1 ? this.currentSlide + 1 : 0 : d < -50 && (this.currentSlide = this.currentSlide > 0 ? this.currentSlide - 1 : this.totalSlides - 1), a(), i = null, n = null;
+        const d = r - o;
+        d > 50 ? this.currentSlide = this.currentSlide < this.totalSlides - 1 ? this.currentSlide + 1 : 0 : d < -50 && (this.currentSlide = this.currentSlide > 0 ? this.currentSlide - 1 : this.totalSlides - 1), a(), r = null, o = null;
       };
-      e.addEventListener("touchstart", r), e.addEventListener("touchmove", c), e.addEventListener("touchend", _), t.addEventListener("click", () => {
-        this.currentSlide = this.currentSlide > 0 ? this.currentSlide - 1 : this.totalSlides - 1, a(), u("exp__01__exp_checkout__reviews__nav", "Buttons for next/previous review", "click", "Let customer speak for us");
-      }), o.addEventListener("click", () => {
-        this.currentSlide = this.currentSlide < this.totalSlides - 1 ? this.currentSlide + 1 : 0, a(), u("exp__01__exp_checkout__reviews__nav", "Buttons for next/previous review", "click", "Let customer speak for us");
+      e.addEventListener("touchstart", i), e.addEventListener("touchmove", c), e.addEventListener("touchend", f), t.addEventListener("click", () => {
+        this.currentSlide = this.currentSlide > 0 ? this.currentSlide - 1 : this.totalSlides - 1, a(), h("exp__01__exp_checkout__reviews__nav", "Buttons for next/previous review", "click", "Let customer speak for us");
+      }), n.addEventListener("click", () => {
+        this.currentSlide = this.currentSlide < this.totalSlides - 1 ? this.currentSlide + 1 : 0, a(), h("exp__01__exp_checkout__reviews__nav", "Buttons for next/previous review", "click", "Let customer speak for us");
       }), a();
     }
     initStyles() {
       const e = document.createElement("style");
-      e.innerHTML = H, document.head.appendChild(e);
+      e.innerHTML = j, document.head.appendChild(e);
     }
   }
   x({ name: "Express Checkout", dev: "OS" }), C("exp__01__express_checkout");
@@ -2307,7 +2310,7 @@ tr.coupon_item td {
       this.device = window.screen.width < 981 ? "mobile" : "desktop", this.init();
     }
     init() {
-      !location.pathname.includes("/checkout") || this.device !== "mobile" || (new D(), new j({ element: document.querySelector("footer"), position: "beforebegin" }));
+      !location.pathname.includes("/checkout") || this.device !== "mobile" || (new D(), new H({ element: document.querySelector("footer"), position: "beforebegin" }));
     }
   }
   new Y();
