@@ -1,29 +1,29 @@
 (function() {
   "use strict";
-  const p = (n, e, t, o = "") => {
+  const p = (i, e, t, o = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: n,
+      event_name: i,
       event_desc: e,
       event_type: t,
       event_loc: o
-    }), console.log(`Event: ${n} | ${e} | ${t} | ${o}`);
-  }, y = ({ name: n, dev: e }) => {
+    }), console.log(`Event: ${i} | ${e} | ${t} | ${o}`);
+  }, _ = ({ name: i, dev: e }) => {
     console.log(
-      `%c EXP: ${n} (DEV: ${e})`,
+      `%c EXP: ${i} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, f = (n) => {
+  }, f = (i) => {
     let e = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", n, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", i, "variant_1"));
     }, 1e3);
   };
-  function l(n) {
+  function l(i) {
     return new Promise((e) => {
-      if (document.querySelector(n))
-        return e(document.querySelector(n));
+      if (document.querySelector(i))
+        return e(document.querySelector(i));
       const t = new MutationObserver(() => {
-        document.querySelector(n) && (e(document.querySelector(n)), t.disconnect());
+        document.querySelector(i) && (e(document.querySelector(i)), t.disconnect());
       });
       t.observe(document.documentElement, {
         childList: !0,
@@ -32,20 +32,20 @@
       });
     });
   }
-  const d = (n, e, t, o) => {
-    let r = [];
-    if (typeof n == "string")
-      r = document.querySelectorAll(n);
-    else if (n instanceof Element)
-      r = [n];
+  const d = (i, e, t, o) => {
+    let n = [];
+    if (typeof i == "string")
+      n = document.querySelectorAll(i);
+    else if (i instanceof Element)
+      n = [i];
     else {
-      console.error("Invalid target type:", n);
+      console.error("Invalid target type:", i);
       return;
     }
-    let i = new IntersectionObserver(
+    let r = new IntersectionObserver(
       (s) => {
         s.forEach((c) => {
-          c.isIntersecting && (i.unobserve(c.target), setTimeout(function() {
+          c.isIntersecting && (r.unobserve(c.target), setTimeout(function() {
             a.observe(c.target);
           }, 1e3));
         });
@@ -55,13 +55,45 @@
       }
     ), a = new IntersectionObserver((s) => {
       s.forEach((c) => {
-        c.isIntersecting ? (p(e || `view_element_${c.target.id}`, t || "Element visibility", "view", o || c.target.id), i.unobserve(c.target)) : i.observe(c.target), a.unobserve(c.target);
+        c.isIntersecting ? (p(e || `view_element_${c.target.id}`, t || "Element visibility", "view", o || c.target.id), r.unobserve(c.target)) : r.observe(c.target), a.unobserve(c.target);
       });
     });
-    r.forEach((s) => {
-      i.observe(s);
+    n.forEach((s) => {
+      r.observe(s);
     });
-  }, u = (
+  };
+  class y {
+    constructor() {
+      this.init();
+    }
+    init() {
+      console.log("Contact Form"), this.events();
+    }
+    addInputError(e, t) {
+      var n;
+      const o = document.createElement("wpcf7-not-valid-tip");
+      o.classList.add("error"), o.textContent = t, console.log(e), (n = e.closest(".wpcf7-form-control-wrap")) == null || n.insertAdjacentElement("beforeend", o);
+    }
+    async events() {
+      try {
+        const e = await l("#crs-contact-form form");
+        console.log("form", e), e.addEventListener("submit", async (t) => {
+          t.preventDefault();
+          const o = new FormData(e), n = await fetch("https://drgolly.com/wp-json/contact-form-7/v1/contact-forms/1671/feedback", {
+            method: "POST",
+            body: o
+          }), r = await n.json();
+          if (!n.ok)
+            throw new Error(r.message || "Something went wrong");
+          if (console.log("data", r), r.status === "validation_failed")
+            for (const a of r.invalid_fields)
+              console.log("name, message", a);
+        });
+      } catch {
+      }
+    }
+  }
+  const g = (
     /* HTML */
     `<div class="et_pb_section et_pb_section_0 et_section_regular">
   <div class="et_pb_row et_pb_row_0">
@@ -143,13 +175,12 @@
           <h3 class="et_pb_toggle_title">Additional Queries</h3>
           <div class="et_pb_toggle_content clearfix">
             <p></p>
-            <div class="wpcf7 js" id="wpcf7-f1671-p1667-o1" lang="en-US" dir="ltr">
+            <div class="wpcf7 js" id="crs-contact-form" lang="en-US" dir="ltr">
               <div class="screen-reader-response">
                 <p role="status" aria-live="polite" aria-atomic="true"></p>
                 <ul></ul>
               </div>
               <form
-                action="/contact-us/#wpcf7-f1671-p1667-o1"
                 method="post"
                 class="wpcf7-form init"
                 aria-label="Contact form"
@@ -166,10 +197,9 @@
                   <input
                     type="hidden"
                     name="_wpcf7_recaptcha_response"
-                    value="03AFcWeA7f2PVubIA3n-8SIkJGxZNg6KxRNk3X42SfpVehFLatwxchO1qEo2pBmyssjvNZCJf3uTqftNBZT973aLaORUCF67Mc9Um966Sfgbz09HXracLHFrWQXqz4q0UEPuXM4jqgL7N3WIRBfWiTzARQPtses52C9SqQyOzpAqXD2HFvdU8fA6Wcvhpn81i7pW2E1nF-wE5PzN18Gx0CF1mWe3Kr5YeECsPeJ-9mZErbmmkP5H7yJBxb3toFw68XRuJypnxcW14lQ6ayQkcsocgIU1ii0zitGYABdKTGs2omejsDA-orPK1aZUr81-yvjfSK15QFRP7siCdfMD0MORLTneTQht3c7xoJQSeJAPLpdsMZMT0hDgkqH0_9QheFEp1nUayHgN7dA4lv_k8vJECW9yuW-xtAHWF062jV3L0P3P7VfAO1M14YXe7mnFwH6bB-wUAVz5yqIw_XTP-9pgKZwFam-l6xfPtmYs9KmZj7OTpQ6djxBv0bEQAiNpEOQ3JIrWX_cB9DlLF1BTrHWARhjXfBeiROJxMCjN3GY7Bv85QAS3_Tsov68D_eIqzYv8J701G2OTq5G5YoTAsc3TDnqXWCJEZohQNGVy-V9nqziiQe_SgMbJjKhRr0c1o4ANwSzhPn3VeW7upKfw1bPqyQEvle7kezNw7_XhmYTHMlJOs9ARBmxMCGsw5KfFXOq8BpCU8KZHIb9aQQz5N9xEpe0sZIXEPHokIJRQLoF24SJJJuM-ILSeUOI0V_D-M3mHynjmIjCCdrMXcKg9XoYv5xFARpKbph8-Zy7nDoEBRJV4MNtPJ3bnSHpCvc-uzTu19pBiRj_YKWVgjPMkCe1brpPdUijbyh0sURf1XKhHG1m1aqTs5YC4ffF7jG7L7I6RwpJtv562sRJLRTU7wvlmKuBcHK1GNbt7TO-FpjJPAzutze5LUXBPg9NowvH2rze2FDEpJ-3bR9z-cJQLwjYcOjpzAplyHA6iTTSvuChVoZ2T_qaLwbWBunQZfPGK0Jkxx1gX71VeiuHcJycF2zmoLDn7k21XrEay_xGe-CQtKBnPMmD2B2F3jprpCLgx9iS7TdiDhpiZZnHnAZZrG6sX0xdhhlAjRu5cc9uXAVsjbgapzh4KXBmfZhMptptf8fIt101TbTW-IwGmmQUc6oMGBJAz1nUFOYllG0UoTg3KDQlhK7JSfYUE1rW1cNQ1V4TMcZW0Wc7YQMqTPH48GxJP7tTj4fyc3IiBDV3g40-YHZmJllHs5oglIsJWtSnyB178ksYmYqbyTI63_tRFV96NegVhYxSCB9aDP-m4MbCGxAyiaNepXgU2w560uK_9OdRYwbl7wZcgD6mg4vgMqvPz23BY0IV4E048S7Sqb2lWXmjfd5aQYICaV_hOFDF9r_CSijPkT3gdXJsqzoO8Pgq5zyVFePHQjKhueO32nn4jC_jAukJKZfjytltlZzCMH4rR0VyiJf61BEGi-X_2napl-juibEHVmEzi87F6DPH2JOG8fkqbC44ylOatdtEzM7lXxHP3hG61APeXGUIno20V5EzfAO-5vnxrORGUK7pEXQ2LazWuO-d5SgMKLseHOYPIRaYUKHYXxtn8HCRvq4D_3GD8zTrG3lXmzLPHldrhKw28d_8Bj6aXm17ii8n1nb0zuJQNIPC_0DxoajWXPtNKqLo4cTVTmgCNXnfP3PacmUDqIXum2F9v9OpCzLceSZVbDhKFzydckLi_zOO_ztKP3QUwDqcbeu7MwLkGvXdZiY_fkXYOHFJztAtNnSB3dyAagtxEL0kSJtsGLp2ICGSR7s4uv-DNKMJMQXgh5ttzLIOD8V9uX0ofdCbCtqHXGnW9Y3cpbH04Dka6u6csE24_vNCXLZfaKO4SmCmhB2ARXMDN9JCAzP7rFYJKC26OE-FSzhoC3zmTZ6KHtJWqKsLYKZlIupRi-G0tx0WydXipomUgyoIcw_VU9NxKcyeIYnCBPYUMHXgyOhhPYwWuLXlqVZpiWNEUY5MMx9W-uI7Uw9in-plqvKYbDWrAHg8oCHTpkfE46jm01FcBTs9rT2fAtWH3T2QUW-kViVWW9IUVYd6YlHYFrCcMGJBDNPX-gOWXe7S3lckXqTPObdIHDnFA1lKwqVLrZmN0NXNqvQq63O-i2uSvWxGq6hlpoMjzo_kvNoZh4iQ53_j3_E5F9SaPzgdAikCO_mdA"
                   />
                 </div>
-                <p>
+                <div>
                   <label>
                     Name <span class="required">*</span><br />
                     <span class="wpcf7-form-control-wrap" data-name="your-name"
@@ -184,8 +214,8 @@
                         name="your-name"
                     /></span>
                   </label>
-                </p>
-                <p>
+                </div>
+                <div>
                   <label>
                     Email <span class="required">*</span><br />
                     <span class="wpcf7-form-control-wrap" data-name="your-email"
@@ -255,8 +285,8 @@ height: 100%; width: 100%; display:none"
                       </div></span
                     >
                   </label>
-                </p>
-                <p>
+                </div>
+                <div>
                   <label>
                     Message <span class="required">*</span><br />
                     <span class="wpcf7-form-control-wrap" data-name="your-message">
@@ -271,12 +301,12 @@ height: 100%; width: 100%; display:none"
                       ></textarea>
                     </span>
                   </label>
-                </p>
-                <p>
+                </div>
+                <div>
                   <input class="wpcf7-form-control wpcf7-submit has-spinner" type="submit" value="Submit" /><span
                     class="wpcf7-spinner"
                   ></span>
-                </p>
+                </div>
                 <input
                   type="hidden"
                   class="wpcf7-pum"
@@ -285,14 +315,14 @@ height: 100%; width: 100%; display:none"
                 <div class="wpcf7-response-output" aria-hidden="true"></div>
               </form>
             </div>
-            <p></p>
+      
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>`
-  ), g = (
+  ), b = (
     /* HTML */
     `<div class="et-l et-l--post">
   <div class="et_builder_inner_content et_pb_gutters3">
@@ -493,7 +523,7 @@ height: 100%; width: 100%; display:none"
     </div>
   </div>
 </div>`
-  ), b = (
+  ), v = (
     /* HTML */
     `<div class="et_builder_inner_content et_pb_gutters3">
   <div class="et_pb_section et_pb_section_0 section__header-standard et_pb_with_background et_section_regular">
@@ -544,7 +574,7 @@ height: 100%; width: 100%; display:none"
     </div>
   </div>
 </div>`
-  ), v = (
+  ), w = (
     /* HTML */
     `<div class="et_builder_inner_content et_pb_gutters3">
   <div class="et_pb_section et_pb_section_0 section__header-standard et_pb_with_background et_section_regular">
@@ -574,7 +604,7 @@ height: 100%; width: 100%; display:none"
     </div>
   </div>
 </div>`
-  ), w = (
+  ), x = (
     /* HTML */
     `<div class="et_builder_inner_content et_pb_gutters3">
   <div class="et_pb_section et_pb_section_0 section__header-standard et_pb_with_background et_section_regular">
@@ -997,7 +1027,7 @@ height: 100%; width: 100%; display:none"
     </div>
   </div>
 </div>`
-  ), x = (
+  ), C = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -1016,7 +1046,7 @@ height: 100%; width: 100%; display:none"
     </clipPath>
   </defs>
 </svg>`
-  ), C = `dialog.crs-popup {
+  ), S = `dialog.crs-popup {
   position: fixed;
   top: 0;
   left: 0;
@@ -1076,6 +1106,10 @@ body:has(.crs-popup[open]) {
 .crs-popup__content .et_pb_section_0.et_pb_section {
   margin-top: 0 !important;
 }
+
+.crs-popup__content .et_pb_section_1.et_pb_section {
+  padding-top: 0 !important;
+}
 .crs-popup__content :is(p, ul) {
   font-size: 15px !important;
   padding: 0;
@@ -1085,7 +1119,7 @@ body:has(.crs-popup[open]) {
 .crs-popup__content :is(p, ul):last-child {
   margin-bottom: 0;
 }
-.crs-popup__content .et_pb_toggle_close  p {
+.crs-popup__content .et_pb_toggle_close p {
   margin-bottom: 0;
 }
 .crs-popup__content p:empty {
@@ -1100,8 +1134,9 @@ body:has(.crs-popup[open]) {
   font-weight: 700;
   line-height: 33.84px; /* 141% */
 }
-.crs-popup__content .et_pb_column .et_pb_row_inner, .et_pb_row {
-  padding: 0!important;
+.crs-popup__content .et_pb_column .et_pb_row_inner {
+  padding: 0 !important;
+  margin-bottom: 30px;
 }
 
 .section__header-standard {
@@ -1137,7 +1172,7 @@ body:has(.crs-popup[open]) {
   margin-bottom: 14px;
 }
 
-.crs-popup__content .et_pb_row_0.et_pb_row  .et_pb_text_inner p {
+.crs-popup__content .et_pb_row_0.et_pb_row .et_pb_text_inner p {
   color: #095d66;
   text-align: center;
   font-family: Montserrat;
@@ -1147,7 +1182,7 @@ body:has(.crs-popup[open]) {
   line-height: 20.11px; /* 125.688% */
 }
 
-.crs-popup__content .et_pb_row_0.et_pb_row  h1:not(.entry-title) {
+.crs-popup__content .et_pb_row_0.et_pb_row h1:not(.entry-title) {
   margin-top: 44px;
 }
 
@@ -1190,14 +1225,46 @@ body:has(.crs-popup[open]) {
 
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none"><g clip-path="url(%23clip0_206_9803)"><path d="M15.0002 9.75446L11.2063 13.5484L7.41235 9.75446C7.28931 9.61774 7.1355 9.54938 6.95093 9.54938C6.76636 9.54938 6.61255 9.61774 6.4895 9.75446C6.35278 9.8775 6.28442 10.0279 6.28442 10.2056C6.28442 10.3834 6.35278 10.5406 6.4895 10.6773L10.7346 14.9224C10.803 14.9908 10.8782 15.0421 10.9602 15.0762C11.0422 15.1104 11.1243 15.1275 11.2063 15.1275C11.2883 15.1275 11.3704 15.1104 11.4524 15.0762C11.5344 15.0421 11.6096 14.9908 11.678 14.9224L15.9231 10.6773C16.0598 10.5406 16.1282 10.3834 16.1282 10.2056C16.1282 10.0279 16.0598 9.8775 15.9231 9.75446C15.8 9.61774 15.6462 9.54938 15.4617 9.54938C15.2771 9.54938 15.1233 9.61774 15.0002 9.75446ZM11.2473 2.10504C9.8938 2.10504 8.62231 2.35797 7.43286 2.86383C6.24341 3.38336 5.20776 4.08405 4.32593 4.96588C3.44409 5.84772 2.74341 6.88336 2.22388 8.07281C1.71802 9.26227 1.46509 10.5338 1.46509 11.8873C1.46509 13.2408 1.71802 14.5123 2.22388 15.7017C2.74341 16.8912 3.44409 17.9302 4.32593 18.8189C5.20776 19.7076 6.24341 20.4048 7.43286 20.9107C8.62231 21.4302 9.8938 21.69 11.2473 21.69C12.6008 21.69 13.8723 21.4302 15.0618 20.9107C16.2512 20.4048 17.2903 19.7076 18.179 18.8189C19.0676 17.9302 19.7649 16.8912 20.2708 15.7017C20.7903 14.5123 21.05 13.2408 21.05 11.8873C21.05 10.5338 20.7903 9.26227 20.2708 8.07281C19.7649 6.88336 19.0676 5.84772 18.179 4.96588C17.2903 4.08405 16.2512 3.38336 15.0618 2.86383C13.8723 2.35797 12.6008 2.10504 11.2473 2.10504ZM11.2473 20.3775C10.0852 20.3775 8.98462 20.1519 7.94556 19.7007C6.92017 19.2632 6.02466 18.6617 5.25903 17.8961C4.49341 17.1304 3.88501 16.2281 3.43384 15.189C2.99634 14.1636 2.77759 13.063 2.77759 11.8873C2.77759 10.7252 2.99634 9.62457 3.43384 8.58551C3.88501 7.56012 4.49341 6.66461 5.25903 5.89899C6.02466 5.13336 6.92017 4.52496 7.94556 4.07379C8.98462 3.63629 10.0852 3.41754 11.2473 3.41754C12.4231 3.41754 13.5237 3.63629 14.5491 4.07379C15.5881 4.52496 16.4905 5.13336 17.2561 5.89899C18.0217 6.66461 18.6233 7.56012 19.0608 8.58551C19.512 9.62457 19.7375 10.7252 19.7375 11.8873C19.7375 13.063 19.512 14.1636 19.0608 15.189C18.6233 16.2281 18.0217 17.1304 17.2561 17.8961C16.4905 18.6617 15.5881 19.2632 14.5491 19.7007C13.5237 20.1519 12.4231 20.3775 11.2473 20.3775Z" fill="%235EB9B9"/></g><defs><clipPath id="clip0_206_9803"><rect width="21" height="21" fill="white" transform="matrix(1 0 0 -1 0.0500488 21.69)"/></clipPath></defs></svg>');
 }
-`, S = {
-    contact: u,
-    privacyPolicy: g,
-    shippingPolicy: v,
-    terms: w,
-    refundPolicy: b
+
+#crs-contact-form form {
+  max-width: 73.375rem;
+
+  background-color: #e8eff3;
+  border-radius: 0.875rem;
+  position: relative;
+  padding: 2.5rem 1.333rem;
+
+  max-width: none;
+}
+
+#crs-contact-form form label {
+  color: #095d66;
+  font-weight: 600;
+  font-size: 1.333rem;
+}
+#crs-contact-form form :is(input, textarea) {
+  margin-block: 1rem;
+
+  border: 1px solid #818c93;
+  background: #fff;
+  font-family: var(--heading-font);
+  font-size: 1.375rem;
+  font-weight: 600;
+  width: 100%;
+  color: var(--base-color);
+}
+
+#crs-contact-form form input[type="submit"]{
+  background-color: #8bc3c3 !important;
+}
+`, T = {
+    contact: g,
+    privacyPolicy: b,
+    shippingPolicy: w,
+    terms: x,
+    refundPolicy: v
   };
-  class T {
+  class I {
     constructor() {
       this.popup = null, this.init(), console.log("Popup constructor");
     }
@@ -1210,9 +1277,9 @@ body:has(.crs-popup[open]) {
         `
       <dialog class="crs-popup">
         <div class="crs-popup__wrap">
-          <button class="crs-popup__close">${x}</button>
+          <button class="crs-popup__close">${C}</button>
 
-          <div class="crs-popup__content">${u}</div>
+          <div class="crs-popup__content"></div>
         </div>
       </dialog>
     `
@@ -1226,13 +1293,13 @@ body:has(.crs-popup[open]) {
     }
     open(e) {
       var t;
-      this.popup && (this.popup.querySelector(".crs-popup__content").innerHTML = "", this.popup.querySelector(".crs-popup__content").insertAdjacentHTML("beforeend", S[e]), (t = this.popup) == null || t.showModal(), e !== "contact" ? d(".crs-popup", "exp__01__exp_checkout__pop_serv__view", "Section", "Service page popup") : (l(".crs-popup__content .et_pb_toggle").then((o) => {
-        document.querySelectorAll(".crs-popup__content .et_pb_toggle h3").forEach((i) => {
-          console.log("toggle", i), i == null || i.addEventListener("click", (a) => {
+      this.popup && (this.popup.querySelector(".crs-popup__content").innerHTML = "", this.popup.querySelector(".crs-popup__content").insertAdjacentHTML("beforeend", T[e]), (t = this.popup) == null || t.showModal(), e !== "contact" ? d(".crs-popup", "exp__01__exp_checkout__pop_serv__view", "Section", "Service page popup") : (l(".crs-popup__content .et_pb_toggle").then((o) => {
+        document.querySelectorAll(".crs-popup__content .et_pb_toggle h3").forEach((r) => {
+          console.log("toggle", r), r == null || r.addEventListener("click", (a) => {
             const s = a.currentTarget;
             p("exp__01__exp_checkout__pop_cont__open", `Open question. ${s.textContent}`, "click", "Contact us popup");
           });
-        });
+        }), new y();
       }), d(".crs-popup", "exp__01__exp_checkout__pop_cont__view", "Section", "Contact us popup")));
     }
     close() {
@@ -1241,10 +1308,10 @@ body:has(.crs-popup[open]) {
     }
     initStyles() {
       const e = document.createElement("style");
-      e.innerHTML = C, document.head.appendChild(e);
+      e.innerHTML = S, document.head.appendChild(e);
     }
   }
-  const I = (
+  const k = (
     /* HTML */
     `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="45" fill="none">
   <g clip-path="url(#a)">
@@ -1302,7 +1369,7 @@ body:has(.crs-popup[open]) {
     </clipPath>
   </defs>
 </svg>`
-  ), k = `header {
+  ), P = `header {
   background: #f2f2f2;
   padding-bottom: 22px;
 }
@@ -1498,15 +1565,15 @@ tr.coupon_item td {
   text-underline-position: from-font;
 }
 `;
-  class P {
+  class O {
     constructor() {
-      this.popup = new T(), this.init();
+      this.popup = new I(), this.init();
     }
     init() {
       console.log("Checkout Page Changes"), this.initStyles(), this.coupon(), this.details(), this.header(), this.footer(), this.refundBadge(), this.events();
     }
     async coupon() {
-      var i;
+      var r;
       const e = (
         /* HTML */
         `<tr class="coupon_item">
@@ -1545,22 +1612,22 @@ tr.coupon_item td {
       </td>
     </tr>`
       ), t = await l("#order_review");
-      (i = (await l("table.shop_table")).querySelector("tbody")) == null || i.insertAdjacentHTML(
+      (r = (await l("table.shop_table")).querySelector("tbody")) == null || r.insertAdjacentHTML(
         "beforeend",
         /* HTML */
         ` ${e}`
       ), new MutationObserver((a, s) => {
         var c;
-        for (const _ of a)
-          if (_.type === "childList") {
-            const N = document.querySelector(".crs-coupon-container");
-            if (console.log(_), !N && ((c = document.querySelector("table.shop_table").querySelector("tbody")) == null || c.insertAdjacentHTML(
+        for (const m of a)
+          if (m.type === "childList") {
+            const W = document.querySelector(".crs-coupon-container");
+            if (console.log(m), !W && ((c = document.querySelector("table.shop_table").querySelector("tbody")) == null || c.insertAdjacentHTML(
               "beforeend",
               /* HTML */
               ` ${e}`
             ), document.querySelector(".discount-amount"))) {
-              const h = document.querySelector(".crs-coupon-container"), W = h == null ? void 0 : h.querySelector(".coupon-heading span");
-              W.textContent = "Coupon applied";
+              const h = document.querySelector(".crs-coupon-container"), R = h == null ? void 0 : h.querySelector(".coupon-heading span");
+              R.textContent = "Coupon applied";
             }
           }
       }).observe(t, { childList: !0 });
@@ -1582,7 +1649,7 @@ tr.coupon_item td {
         /* HTML */
         `
       <div class="crs-refund">
-        <div class="crs-refund__icon">${I}</div>
+        <div class="crs-refund__icon">${k}</div>
 
         <div class="crs-refund__text">
           No results after completing the program? Get a full refund within 30 days!
@@ -1626,8 +1693,8 @@ tr.coupon_item td {
       </div>
     `, d(".crs-footer", "exp__01__exp_checkout__footer__view", "Section", "Footer"), e.querySelectorAll("li[data-popup]").forEach((o) => {
         o.addEventListener("click", () => {
-          const r = o.getAttribute("data-popup"), i = o.textContent;
-          r && (this.popup.open(r), p("exp__01__exp_checkout__footer__click", `Text: ${i}`, "click", "Footer"));
+          const n = o.getAttribute("data-popup"), r = o.textContent;
+          n && (this.popup.open(n), p("exp__01__exp_checkout__footer__click", `Text: ${r}`, "click", "Footer"));
         });
       });
     }
@@ -1640,10 +1707,10 @@ tr.coupon_item td {
     }
     initStyles() {
       const e = document.createElement("style");
-      e.innerHTML = k, document.head.appendChild(e);
+      e.innerHTML = P, document.head.appendChild(e);
     }
   }
-  const O = (
+  const L = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -1657,7 +1724,7 @@ tr.coupon_item td {
     fill="#0E1311"
   />
 </svg>`
-  ), m = (
+  ), u = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -1881,7 +1948,7 @@ tr.coupon_item td {
   transform: rotate(180deg);
 }
 `;
-  class L {
+  class N {
     constructor({ element: e, position: t = "beforeend" }) {
       this.container = e, this.position = t, this.currentSlide = 0, this.totalSlides = 0, this.init();
     }
@@ -1896,9 +1963,9 @@ tr.coupon_item td {
       try {
         const t = await (await fetch(
           "https://api.reviews.io/timeline/data?type=store_review&store=www.drgolly.com&sort=date_desc&page=1&per_page=10&enable_avatars=false&include_subrating_breakdown=1&branch=&tag=&include_product_reviews=1&sku=&lang=en"
-        )).json(), o = t.stats, r = t.timeline;
-        this.totalSlides = r.length, console.log(o, r);
-        const i = (
+        )).json(), o = t.stats, n = t.timeline;
+        this.totalSlides = n.length, console.log(o, n);
+        const r = (
           /* HTML */
           `
         <div class="crs-reviews">
@@ -1928,7 +1995,7 @@ tr.coupon_item td {
           <div class="crs-reviews__comments crs-comments">
             <div class="crs-comments__wrap">
               <div class="crs-comments__list">
-                ${r.map(({ _source: a }, s) => (
+                ${n.map(({ _source: a }, s) => (
             /* HTML */
             `
                       <div class="crs-comments__item crs-comment ${s === 0 ? "active" : ""}" data-index="${s}">
@@ -1938,7 +2005,7 @@ tr.coupon_item td {
                             >${this.renderStars(a.rating)}</span
                           >
                         </div>
-                        <div class="crs-comment__verified">${O} Verified Customer</div>
+                        <div class="crs-comment__verified">${L} Verified Customer</div>
 
                         <div class="crs-comment__text">${a.comments}</div>
                         <div class="crs-comment__date">${a.human_date}</div>
@@ -1949,8 +2016,8 @@ tr.coupon_item td {
             </div>
 
             <div class="crs-comments__actions">
-              <button class="crs-comments__prev"><span>${m}</span></button>
-              <button class="crs-comments__next"><span>${m}</span></button>
+              <button class="crs-comments__prev"><span>${u}</span></button>
+              <button class="crs-comments__next"><span>${u}</span></button>
             </div>
           </div>
         </div>
@@ -1958,7 +2025,7 @@ tr.coupon_item td {
         );
         if (!this.container)
           return;
-        this.container.insertAdjacentHTML(this.position, i), this.initSlider(), d(".crs-reviews", "exp__01__exp_checkout__reviews__view", "Section", "Let customer speak for us");
+        this.container.insertAdjacentHTML(this.position, r), this.initSlider(), d(".crs-reviews", "exp__01__exp_checkout__reviews__view", "Section", "Let customer speak for us");
       } catch (e) {
         console.error(e);
       }
@@ -1977,37 +2044,37 @@ tr.coupon_item td {
           <stop offset="${s}" stop-color="#C4BAA3" />
         </linearGradient>
       </defs>
-    </svg>`, o = Math.floor(e), r = Math.round((e - o) * 4) / 4, i = 5 - o - (r > 0 ? 1 : 0);
+    </svg>`, o = Math.floor(e), n = Math.round((e - o) * 4) / 4, r = 5 - o - (n > 0 ? 1 : 0);
       let a = "";
-      return r === 0.25 ? a = t(0.4) : r === 0.5 ? a = t(0.5) : r === 0.75 && (a = t(0.6)), t(1).repeat(o) + a + t(0).repeat(i);
+      return n === 0.25 ? a = t(0.4) : n === 0.5 ? a = t(0.5) : n === 0.75 && (a = t(0.6)), t(1).repeat(o) + a + t(0).repeat(r);
     }
     initSlider() {
       const e = document.querySelector(".crs-comments__list"), t = document.querySelector(".crs-comments__prev"), o = document.querySelector(".crs-comments__next");
       if (!e || !t || !o)
         return;
-      const r = () => {
+      const n = () => {
         e.querySelectorAll(".crs-comments__item").forEach((a, s) => {
           s === this.currentSlide ? a.classList.add("active") : a.classList.remove("active");
         });
       };
       t.addEventListener("click", () => {
-        this.currentSlide = this.currentSlide > 0 ? this.currentSlide - 1 : this.totalSlides - 1, r(), p("exp__01__exp_checkout__reviews__nav", "Buttons for next/previous review", "click", "Let customer speak for us");
+        this.currentSlide = this.currentSlide > 0 ? this.currentSlide - 1 : this.totalSlides - 1, n(), p("exp__01__exp_checkout__reviews__nav", "Buttons for next/previous review", "click", "Let customer speak for us");
       }), o.addEventListener("click", () => {
-        this.currentSlide = this.currentSlide < this.totalSlides - 1 ? this.currentSlide + 1 : 0, r(), p("exp__01__exp_checkout__reviews__nav", "Buttons for next/previous review", "click", "Let customer speak for us");
-      }), r();
+        this.currentSlide = this.currentSlide < this.totalSlides - 1 ? this.currentSlide + 1 : 0, n(), p("exp__01__exp_checkout__reviews__nav", "Buttons for next/previous review", "click", "Let customer speak for us");
+      }), n();
     }
     initStyles() {
       const e = document.createElement("style");
       e.innerHTML = A, document.head.appendChild(e);
     }
   }
-  y({ name: "Express Checkout", dev: "OS" }), f("exp__01__express_checkout");
+  _({ name: "Express Checkout", dev: "OS" }), f("exp__01__express_checkout");
   class M {
     constructor() {
       this.device = window.screen.width < 981 ? "mobile" : "desktop", this.init();
     }
     init() {
-      !location.pathname.includes("/checkout") || this.device !== "mobile" || (new P(), new L({ element: document.querySelector("footer"), position: "beforebegin" }));
+      !location.pathname.includes("/checkout") || this.device !== "mobile" || (new O(), new N({ element: document.querySelector("footer"), position: "beforebegin" }));
     }
   }
   new M();
