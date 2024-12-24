@@ -1433,8 +1433,15 @@ header .et_pb_section_0_tb_header.et_pb_section {
   background: #095d66 !important;
 }
 
-.wc_payment_method:last-child {
+.wc_payment_methods {
   margin-bottom: 20px !important;
+}
+
+#wc-stripe-payment-request-wrapper {
+  margin-bottom: 20px !important;
+}
+.wc_payment_method:last-child {
+  margin-bottom: 0 !important;
 }
 
 .form-row.place-order {
