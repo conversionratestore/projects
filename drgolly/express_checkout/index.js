@@ -2046,6 +2046,16 @@ tr.coupon_item td {
   line-height: 22.4px; /* 172.308% */
 }
 
+@media screen and (max-width: 370px) {
+  .crs-rating__right div:first-child {
+    white-space: normal;
+  }
+
+  .crs-rating__reviewio {
+    flex-direction: column;
+  }
+}
+
 .crs-rating__reviewio a {
   display: inline-flex;
   align-items: flex-end;
