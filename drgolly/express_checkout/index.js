@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const h = (s, e, t, o = "") => {
+  const u = (s, e, t, o = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: s,
@@ -18,7 +18,7 @@
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", s, "variant_1"));
     }, 1e3);
   };
-  function d(s) {
+  function h(s) {
     return new Promise((e) => {
       if (document.querySelector(s))
         return e(document.querySelector(s));
@@ -55,7 +55,7 @@
       }
     ), c = new IntersectionObserver((a) => {
       a.forEach((i) => {
-        i.isIntersecting ? (h(e || `view_element_${i.target.id}`, t || "Element visibility", "view", o || i.target.id), r.unobserve(i.target)) : r.observe(i.target), c.unobserve(i.target);
+        i.isIntersecting ? (u(e || `view_element_${i.target.id}`, t || "Element visibility", "view", o || i.target.id), r.unobserve(i.target)) : r.observe(i.target), c.unobserve(i.target);
       });
     });
     n.forEach((a) => {
@@ -76,7 +76,7 @@
     }
     async events() {
       try {
-        const e = await d("#crs-contact-form form");
+        const e = await h("#crs-contact-form form");
         e.addEventListener("submit", async (t) => {
           t.preventDefault();
           const o = new FormData(e), n = await fetch("https://drgolly.com/wp-json/contact-form-7/v1/contact-forms/1671/feedback", {
@@ -1302,11 +1302,11 @@ body:has(.crs-popup[open]) {
     }
     open(e) {
       var t;
-      this.popup && (this.popup.querySelector(".crs-popup__content").innerHTML = "", this.popup.querySelector(".crs-popup__content").insertAdjacentHTML("beforeend", M[e]), (t = this.popup) == null || t.showModal(), e !== "contact" ? g(".crs-popup", "exp__01__exp_checkout__pop_serv__view", "Section", "Service page popup") : (d(".crs-popup__content .et_pb_toggle").then((o) => {
+      this.popup && (this.popup.querySelector(".crs-popup__content").innerHTML = "", this.popup.querySelector(".crs-popup__content").insertAdjacentHTML("beforeend", M[e]), (t = this.popup) == null || t.showModal(), e !== "contact" ? g(".crs-popup", "exp__01__exp_checkout__pop_serv__view", "Section", "Service page popup") : (h(".crs-popup__content .et_pb_toggle").then((o) => {
         document.querySelectorAll(".crs-popup__content .et_pb_toggle h3").forEach((r) => {
           r == null || r.addEventListener("click", (c) => {
             const a = c.currentTarget;
-            a.closest(".et_pb_toggle_open") || h("exp__01__exp_checkout__pop_cont__open", `Open question. ${a.textContent}`, "click", "Contact us popup");
+            a.closest(".et_pb_toggle_open") || u("exp__01__exp_checkout__pop_cont__open", `Open question. ${a.textContent}`, "click", "Contact us popup");
           });
         }), new T();
       }), g(".crs-popup", "exp__01__exp_checkout__pop_cont__view", "Section", "Contact us popup")));
@@ -1683,8 +1683,8 @@ tr.coupon_item td {
         </details>
       </td>
     </tr>`
-      ), t = await d("#order_review");
-      (r = (await d("table.shop_table")).querySelector("tbody")) == null || r.insertAdjacentHTML(
+      ), t = await h("#order_review");
+      (r = (await h("table.shop_table")).querySelector("tbody")) == null || r.insertAdjacentHTML(
         "beforeend",
         /* HTML */
         ` ${e}`
@@ -1693,8 +1693,8 @@ tr.coupon_item td {
         for (const m of c)
           if (m.type === "childList") {
             if (!document.querySelector(".crs-coupon-container")) {
-              const u = document.querySelector("table.shop_table");
-              if ((i = u == null ? void 0 : u.querySelector("tbody")) == null || i.insertAdjacentHTML(
+              const d = document.querySelector("table.shop_table");
+              if ((i = d == null ? void 0 : d.querySelector("tbody")) == null || i.insertAdjacentHTML(
                 "beforeend",
                 /* HTML */
                 ` ${e}`
@@ -1705,18 +1705,18 @@ tr.coupon_item td {
             }
             const f = document.querySelectorAll(".cart_item");
             if (f && f.length === 0) {
-              const u = document.querySelector(".crs-refund"), _ = document.querySelector(".crs-reviews"), p = document.querySelector(".crs-footer"), l = document.querySelector("footer");
-              l.querySelector("div").style.display = "", p == null || p.remove(), u == null || u.remove(), _ == null || _.remove(), a.disconnect();
+              const d = document.querySelector(".crs-refund"), _ = document.querySelector(".crs-reviews"), p = document.querySelector(".crs-footer"), l = document.querySelector("footer");
+              l.querySelector("div").style.display = "", p == null || p.remove(), d == null || d.remove(), _ == null || _.remove(), a.disconnect();
             }
           }
       }).observe(t, { childList: !0, subtree: !0 });
     }
     async details() {
-      const e = await d(".mandatory-fields"), t = await d("#order_review"), o = e.previousElementSibling;
+      const e = await h(".mandatory-fields"), t = await h("#order_review"), o = e.previousElementSibling;
       o && o.tagName === "H3" && (t == null || t.insertAdjacentElement("beforebegin", o)), t == null || t.insertAdjacentElement("beforebegin", e);
     }
     async header() {
-      const t = (await d("header")).querySelector(".et_pb_column_3_tb_header");
+      const t = (await h("header")).querySelector(".et_pb_column_3_tb_header");
       t && (t.innerHTML = /* HTML */
       `<div class="crs-top">
       You're one step closer to<br />
@@ -1737,8 +1737,8 @@ tr.coupon_item td {
       </div>
     `
       );
-      (await d("form.checkout ")).insertAdjacentHTML("afterend", e), document.querySelector(".crs-refund__tooltip").addEventListener("click", () => {
-        h(
+      (await h("form.checkout ")).insertAdjacentHTML("afterend", e), document.querySelector(".crs-refund__tooltip").addEventListener("click", () => {
+        u(
           "exp__01__exp_checkout__refund__click",
           "30 days refund banner",
           "click",
@@ -1752,39 +1752,39 @@ tr.coupon_item td {
       );
     }
     async footer() {
-      const e = await d("footer");
+      const e = await h("footer");
       e.insertAdjacentHTML(
         "beforeend",
         /* HTML */
         `
-    <div class="crs-footer">
-      <div class="crs-footer__left">
-        <ul>
-          <li data-popup="contact">Contact & Support</li>
-          <li data-popup="shippingPolicy">Shipping Policy</li>
-          <li data-popup="terms">Terms of Service</li>
-        </ul>
+      <div class="crs-footer">
+        <div class="crs-footer__left">
+          <ul>
+            <li data-popup="contact">Contact & Support</li>
+            <li data-popup="shippingPolicy">Shipping Policy</li>
+            <li data-popup="terms">Terms of Service</li>
+          </ul>
+        </div>
+        <div class="crs-footer__right">
+          <ul>
+            <li data-popup="privacyPolicy">Privacy Policy</li>
+            <li data-popup="refundPolicy">Refund Policy</li>
+          </ul>
+        </div>
       </div>
-      <div class="crs-footer__right">
-        <ul>
-          <li data-popup="privacyPolicy">Privacy Policy</li>
-          <li data-popup="refundPolicy">Refund Policy</li>
-        </ul>
-      </div>
-    </div>
-  `
+    `
       ), e.querySelector("div").style.display = "none", g(".crs-footer", "exp__01__exp_checkout__footer__view", "Section", "Footer"), e.querySelectorAll("li[data-popup]").forEach((n) => {
         n.addEventListener("click", () => {
           const r = n.getAttribute("data-popup"), c = n.textContent;
-          r && (this.popup.open(r), h("exp__01__exp_checkout__footer__click", `Text: ${c}`, "click", "Footer"));
+          r && (this.popup.open(r), u("exp__01__exp_checkout__footer__click", `Text: ${c}`, "click", "Footer"));
         });
       });
     }
     async events() {
-      (await d(".wc-ppcp-payment-method__container")).addEventListener("click", () => {
-        h("exp__01__exp_checkout__paypal", "PayPal", "click", "Complete your order in under 2 minutes");
-      }), (await d("#wc-stripe-payment-request-wrapper")).addEventListener("click", () => {
-        h("exp__01__exp_checkout__applepay", "Apple Pay", "click", "Complete your order in under 2 minutess");
+      const e = await h(".wc_payment_methods.payment_methods");
+      e && e.addEventListener("click", (t) => {
+        const o = t.target;
+        o.closest(".wc-ppcp-payment-method__container") && u("exp__01__exp_checkout__paypal", "PayPal", "click", "Complete your order in under 2 minutes"), o.closest("#wc-stripe-payment-request-wrapper") && u("exp__01__exp_checkout__applepay", "Apple Pay", "click", "Complete your order in under 2 minutess");
       });
     }
     initStyles() {
@@ -2277,12 +2277,12 @@ tr.coupon_item td {
         this.container.insertAdjacentHTML(this.position, r), this.initSlider(), g(".crs-reviews", "exp__01__exp_checkout__reviews__view", "Section", "Let customer speak for us");
         const c = document.querySelectorAll(".crs-comment"), a = document.querySelector(".crs-rating__reviewio a");
         a && a.addEventListener("click", () => {
-          h("exp__01__exp_checkout__reviews__link", "Excellent on Reviews.io", "click", "Let customer speak for us");
+          u("exp__01__exp_checkout__reviews__link", "Excellent on Reviews.io", "click", "Let customer speak for us");
         }), c.forEach((i) => {
           i.addEventListener("click", () => {
             var _, p, l, x;
-            const m = (_ = i.querySelector(".crs-comment__author")) == null ? void 0 : _.textContent, y = (p = i.querySelector(".crs-comment__rating")) == null ? void 0 : p.getAttribute("data-rating"), f = (l = i.querySelector(".crs-comment__text")) == null ? void 0 : l.textContent, u = (x = i.querySelector(".crs-comment__date")) == null ? void 0 : x.textContent;
-            this.reviewPopup.open({ author: m, rating: y, text: f, date: u }), h("exp__01__exp_checkout__reviews__card", "Open review card", "click", "Let customer speak for us");
+            const m = (_ = i.querySelector(".crs-comment__author")) == null ? void 0 : _.textContent, y = (p = i.querySelector(".crs-comment__rating")) == null ? void 0 : p.getAttribute("data-rating"), f = (l = i.querySelector(".crs-comment__text")) == null ? void 0 : l.textContent, d = (x = i.querySelector(".crs-comment__date")) == null ? void 0 : x.textContent;
+            this.reviewPopup.open({ author: m, rating: y, text: f, date: d }), u("exp__01__exp_checkout__reviews__card", "Open review card", "click", "Let customer speak for us");
           });
         });
       } catch (e) {
@@ -2318,7 +2318,7 @@ tr.coupon_item td {
         m || (e.style.transition = "transform 0.5s ease-in-out", e.style.transform = `translateX(-${(this.currentSlide + 1) * 100}%)`, e.addEventListener("transitionend", f));
       }, f = () => {
         m = !1, e.removeEventListener("transitionend", f), this.currentSlide <= -1 ? (e.style.transition = "none", this.currentSlide = n.length - 1, e.style.transform = `translateX(-${(this.currentSlide + 1) * 100}%)`) : this.currentSlide >= n.length && (e.style.transition = "none", this.currentSlide = 0, e.style.transform = `translateX(-${(this.currentSlide + 1) * 100}%)`);
-      }, u = (l) => {
+      }, d = (l) => {
         a = l.touches[0].clientX;
       }, _ = (l) => {
         a && (i = l.touches[0].clientX);
@@ -2328,10 +2328,10 @@ tr.coupon_item td {
         const l = a - i;
         l > 50 ? this.currentSlide++ : l < -50 && this.currentSlide--, y(), a = null, i = null;
       };
-      e.addEventListener("touchstart", u), e.addEventListener("touchmove", _), e.addEventListener("touchend", p), t.addEventListener("click", () => {
-        this.currentSlide--, y(), h("exp__01__exp_checkout__reviews__nav", "Buttons for next/previous review", "click", "Let customer speak for us");
+      e.addEventListener("touchstart", d), e.addEventListener("touchmove", _), e.addEventListener("touchend", p), t.addEventListener("click", () => {
+        this.currentSlide--, y(), u("exp__01__exp_checkout__reviews__nav", "Buttons for next/previous review", "click", "Let customer speak for us");
       }), o.addEventListener("click", () => {
-        this.currentSlide++, y(), h("exp__01__exp_checkout__reviews__nav", "Buttons for next/previous review", "click", "Let customer speak for us");
+        this.currentSlide++, y(), u("exp__01__exp_checkout__reviews__nav", "Buttons for next/previous review", "click", "Let customer speak for us");
       }), this.currentSlide = 0, e.style.transform = `translateX(-${(this.currentSlide + 1) * 100}%)`;
     }
     initStyles() {
