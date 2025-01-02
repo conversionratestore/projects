@@ -1781,10 +1781,9 @@ tr.coupon_item td {
       });
     }
     async events() {
-      const e = await h(".wc_payment_methods.payment_methods");
-      e && e.addEventListener("click", (t) => {
-        const o = t.target;
-        o.closest(".wc-ppcp-payment-method__container") && u("exp__01__exp_checkout__paypal", "PayPal", "click", "Complete your order in under 2 minutes"), o.closest("#wc-stripe-payment-request-wrapper") && u("exp__01__exp_checkout__applepay", "Apple Pay", "click", "Complete your order in under 2 minutess");
+      document.addEventListener("click", (e) => {
+        const t = e.target;
+        t.closest(".wc-ppcp-payment-method__container") && u("exp__01__exp_checkout__paypal", "PayPal", "click", "Complete your order in under 2 minutes"), t.closest("#wc-stripe-payment-request-wrapper") && u("exp__01__exp_checkout__applepay", "Apple Pay", "click", "Complete your order in under 2 minutess");
       });
     }
     initStyles() {
